@@ -252,9 +252,9 @@ namespace CombatExtended
                     // Pawn is using melee weapon
                     if (dinfo.WeaponGear.IsMeleeWeapon)
                     {
-                        if (instigatorPawn.equipment != null
-                            && instigatorPawn.equipment.Primary != null
-                            && instigatorPawn.equipment.Primary.def == dinfo.WeaponGear)
+                        if (instigatorPawn.equipment == null
+                            || instigatorPawn.equipment.Primary == null
+                            || instigatorPawn.equipment.Primary.def != dinfo.WeaponGear)
                         {
                             Log.Error("CE tried getting armor penetration from melee weapon " + dinfo.WeaponGear.defName + " but instigator " + dinfo.Instigator.ToString() + " equipment does not match");
                             return 0;
