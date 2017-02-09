@@ -29,7 +29,7 @@ namespace CombatExtended
                     ExactRotation.eulerAngles.y,
                     launcher,
                     null,
-                    equipmentDef);
+                    def);
 
               //  if (damDefCE != null && damDefCE.harmOnlyOutsideLayers) dinfo.ForceHitPart.depth = BodyPartDepth.Outside;
 

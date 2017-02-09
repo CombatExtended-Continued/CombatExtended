@@ -169,6 +169,14 @@ namespace CombatExtended
         /// </summary>
         public static int GetAfterArmorDamage(Pawn pawn, int damAmountInt, BodyPartRecord part, DamageInfo dinfo, bool damageArmor, ref bool deflected)
         {
+            Log.Message("CE :: called GetAfterArmorDamage with " + dinfo.ToString() + ", BodyPartGroup null " + (dinfo.WeaponBodyPartGroup == null).ToString());
+            String hediffString = null;
+            if (dinfo.WeaponLinkedHediff != null)
+            {
+                hediffString = dinfo.WeaponLinkedHediff.ToString();
+            }
+            Log.Message("CE :: dinfo WeaponLinkedHediff " + hediffString);
+
             DamageDef damageDef = dinfo.Def;
             if (damageDef.armorCategory == DamageArmorCategory.IgnoreArmor)
             {
@@ -176,37 +184,8 @@ namespace CombatExtended
             }
             float damageAmount = (float)damAmountInt;
             StatDef deflectionStat = damageDef.armorCategory.DeflectionStat();
-            // Get armor penetration value
-            float pierceAmount = 0f;
-            if (dinfo.WeaponGear != null)
-            {
-                Pawn instigatorPawn = dinfo.Instigator as Pawn;
-                if (dinfo.WeaponGear.Verbs.Find(s => s.projectileDef != null) != null)
-                {
-                   ProjectilePropertiesCE projectileProps = dinfo.WeaponGear.Verbs.Find(s => s.projectileDef != null).projectileDef.projectile as ProjectilePropertiesCE;
-              //     ProjectilePropertiesCE projectileProps = dinfo.WeaponGear.projectile as ProjectilePropertiesCE;
-                    if (projectileProps != null)
-                    {
-                        pierceAmount = projectileProps.armorPenetration;
-                    }
-                }
-                else if (dinfo.Instigator != null)
-                {
-                    if (instigatorPawn != null)
-                    {
-                        if (instigatorPawn.equipment != null && instigatorPawn.equipment.Primary != null)
-                        {
-                            pierceAmount = instigatorPawn.equipment.Primary.GetStatValue(StatDef.Named("ArmorPenetration"));
-                        }
-                        else
-                        {
-                            pierceAmount = instigatorPawn.GetStatValue(StatDef.Named("ArmorPenetration"));
-                        }
-                    }
-                }
-            }
-
-
+            float pierceAmount = GetPenetrationValue(dinfo);
+            
             // Run armor calculations on all apparel
             if (pawn.apparel != null)
             {
@@ -261,6 +240,67 @@ namespace CombatExtended
                 ApplyArmor(ref damageAmount, ref pierceAmount, pawn.GetStatValue(deflectionStat, true), pawn, damageDef);
             }
             return Mathf.RoundToInt(damageAmount);
+        }
+
+        private static float GetPenetrationValue(DamageInfo dinfo)
+        {
+            if(dinfo.WeaponGear != null)
+            {
+                // Case 1: projectile attack
+                ProjectilePropertiesCE projectileProps = dinfo.WeaponGear.projectile as ProjectilePropertiesCE;
+                if (projectileProps != null)
+                {
+                    return projectileProps.armorPenetration;
+                }
+
+                // Case 2: melee attack
+                Pawn instigatorPawn = dinfo.Instigator as Pawn;
+                if(instigatorPawn != null)
+                {
+                    // Pawn is using melee weapon
+                    if (dinfo.WeaponGear.IsMeleeWeapon)
+                    {
+                        if (instigatorPawn.equipment != null
+                            && instigatorPawn.equipment.Primary != null
+                            && instigatorPawn.equipment.Primary.def == dinfo.WeaponGear)
+                        {
+                            return instigatorPawn.equipment.Primary.GetStatValue(CE_StatDefOf.ArmorPenetration);
+                        }
+                        else
+                        {
+                            Log.Error("CE tried getting armor penetration from melee weapon " + dinfo.WeaponGear.defName + " but instigator " + dinfo.Instigator.ToString() + " equipment does not match");
+                        }
+                    }
+
+                    // Pawn is using body parts
+                    if (instigatorPawn.def == dinfo.WeaponGear)
+                    {
+                        // Pawn is augmented
+                        if(dinfo.WeaponLinkedHediff != null)
+                        {
+                            HediffCompProperties_VerbGiver compProps = dinfo.WeaponLinkedHediff.CompPropsFor(typeof(HediffComp_VerbGiver)) as HediffCompProperties_VerbGiver;
+                            if(compProps != null)
+                            {
+                                VerbPropertiesCE verbProps = compProps.verbs.FirstOrDefault(v => v as VerbPropertiesCE != null) as VerbPropertiesCE;
+                                if(verbProps != null)
+                                {
+                                    return verbProps.meleeArmorPenetration;
+                                }
+                            }
+                        }
+
+                        // Regular pawn melee
+                        if(dinfo.WeaponBodyPartGroup != null
+                        && instigatorPawn.verbTracker != null
+                        && !instigatorPawn.verbTracker.AllVerbs.NullOrEmpty())
+                        {
+                            return instigatorPawn.GetStatValue(CE_StatDefOf.ArmorPenetration);
+                        }
+                    }
+                }
+            }
+
+            return 0;
         }
 
         private static bool ApplyArmor(ref float damAmount, ref float pierceAmount, float armorRating, Thing armorThing, DamageDef damageDef)
