@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <Defs>
 
-  <DamageDef Class="Combat_Realism.DamageDef_CE" Name="LocalInjuryBase" Abstract="True">
-    <workerClass>Combat_Realism.DamageWorker_AddInjuryCE</workerClass>
+  <DamageDef Class="CombatExtended.DamageDef_CE" Name="LocalInjuryBase" Abstract="True">
+    <workerClass>CombatExtended.DamageWorker_AddInjuryCE</workerClass>
   </DamageDef>
 
   <DamageDef ParentName="LocalInjuryBase">
@@ -47,6 +47,7 @@
     <impactSoundType>Blunt</impactSoundType>
     <armorCategory>Blunt</armorCategory>
     <harmOnlyOutsideLayers>true</harmOnlyOutsideLayers>
+    <deflectable>true</deflectable>
   </DamageDef>
 
   <DamageDef ParentName="Blunt">
@@ -186,12 +187,12 @@
   <DamageDef ParentName="DamageBombBase">
     <defName>Thermobaric</defName>
     <label>thermobaric</label>
-    <workerClass>Combat_Realism.DamageWorker_FlameCE</workerClass>
+    <workerClass>CombatExtended.DamageWorker_FlameCE</workerClass>
   </DamageDef>
 
   <DamageDef Name="Flame" ParentName="LocalInjuryBase">
     <defName>Flame</defName>
-    <workerClass>Combat_Realism.DamageWorker_FlameCE</workerClass>
+    <workerClass>CombatExtended.DamageWorker_FlameCE</workerClass>
     <label>flame</label>
     <hasForcefulImpact>false</hasForcefulImpact>
     <makesBlood>false</makesBlood>
