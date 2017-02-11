@@ -12,6 +12,7 @@ namespace CombatExtended
 
         protected override Job TryGiveJob(Pawn pawn)
         {
+            Log.Message("CE :: Trying to issue RunForCover job to " + pawn.ToString());
             //Calculate cover position
             CompSuppressable comp = pawn.TryGetComp<CompSuppressable>();
             if (comp == null)

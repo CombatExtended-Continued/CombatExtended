@@ -305,7 +305,7 @@ namespace CombatExtended
             DamageDef_CE damageDefCE = damageDef as DamageDef_CE;
             float penetrationChance = 1;
             if (damageDefCE != null && damageDefCE.deflectable)
-                penetrationChance = Mathf.Clamp((pierceAmount - armorRating) * 6, 0, 1);
+                penetrationChance = Mathf.Clamp01((pierceAmount - armorRating) * 6);
             //Shot is deflected
             if (penetrationChance == 0 || Rand.Value > penetrationChance)
             {

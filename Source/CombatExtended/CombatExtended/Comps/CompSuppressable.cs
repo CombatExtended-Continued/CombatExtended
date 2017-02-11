@@ -24,7 +24,7 @@ namespace CombatExtended
         private const float maxSuppression = 100f;          //Cap to prevent suppression from building indefinitely
         private const float suppressionDecayRate = 7.5f;    //How much suppression decays per second
         private int ticksPerMote = 200;               //How many ticks between throwing a mote
-        public static readonly String[] robotBodyList = { "AIRobot", "HumanoidTerminator" };
+        //public static readonly String[] robotBodyList = { "AIRobot", "HumanoidTerminator" };
 
         // --------------- Location calculations ---------------
 
@@ -134,14 +134,29 @@ namespace CombatExtended
 
         public void AddSuppression(float amount, IntVec3 origin)
         {
-            //Add suppression to global suppression counter
+            Pawn pawn = parent as Pawn;
+            if (pawn == null)
+            {
+                Log.Error("Trying to suppress non-pawn " + parent.ToString() + ", this should never happen");
+                return;
+            }
+
+            // No suppression on berserking or fleeing pawns
+            if (pawn.MentalStateDef != null && (pawn.MentalState.def == MentalStateDefOf.Berserk || pawn.MentalState.def == MentalStateDefOf.PanicFlee))
+            {
+                currentSuppressionInt = 0f;
+                isSuppressed = false;
+                return;
+            }
+
+            // Add suppression to global suppression counter
             currentSuppressionInt += amount;
             if (currentSuppressionInt > maxSuppression)
             {
                 currentSuppressionInt = maxSuppression;
             }
 
-            //Add suppression to current suppressor location if appropriate
+            // Add suppression to current suppressor location if appropriate
             if (suppressorLocInt == origin)
             {
                 locSuppressionAmount += amount;
@@ -152,36 +167,15 @@ namespace CombatExtended
                 locSuppressionAmount = currentSuppressionInt;
             }
 
-            //Assign suppressed status and interrupt activity if necessary
-
+            // Assign suppressed status and interrupt activity if necessary
             if (!isSuppressed && currentSuppressionInt > suppressionThreshold)
             {
                 isSuppressed = true;
-                Pawn pawn = parent as Pawn;
-                if (pawn != null)
+                if (pawn.jobs != null && (pawn.CurJob.def != CE_JobDefOf.HunkerDown || pawn.CurJob.def != CE_JobDefOf.RunForCover))
                 {
-                    if (pawn.MentalStateDef != null && (pawn.MentalState.def != MentalStateDefOf.Berserk || pawn.MentalState.def != MentalStateDefOf.PanicFlee))
-                    {
-                        if (pawn.jobs != null &&
-                            (pawn.CurJob.def != CE_JobDefOf.HunkerDown || pawn.CurJob.def != CE_JobDefOf.RunForCover))
-                        {
-                            pawn.jobs.StopAll(false);
-                        }
-                    }
-                    else 
-                    {
-                        currentSuppressionInt = 0f;
-                        isSuppressed = false;
-                    }
-                }
-                else
-                {
-                    Log.Error("Trying to suppress non-pawn " + parent.ToString() + ", this should never happen");
+                    pawn.jobs.StopAll();
                 }
             }
-            /*
-
-            */
         }
 
         public override void CompTick()
@@ -220,7 +214,15 @@ namespace CombatExtended
             }
 
             //Throw mote at set interval
-            if (Gen.IsHashIntervalTick(parent, ticksPerMote + Rand.Range(30, 300))
+            if (Gen.IsHashIntervalTick(this.parent, ticksPerMote))
+            {
+                if (this.isSuppressed)
+                {
+                    MoteMaker.ThrowText(this.parent.Position.ToVector3Shifted(), parent.Map, "CE_SuppressedMote".Translate());
+                }
+            }
+
+            /*if (Gen.IsHashIntervalTick(parent, ticksPerMote + Rand.Range(30, 300))
                 && parent.def.race.Humanlike && !robotBodyList.Contains(parent.def.race.body.defName))
             {
                 if (isHunkering || isSuppressed)
@@ -234,7 +236,7 @@ namespace CombatExtended
                     MoteMaker.ThrowText(this.parent.Position.ToVector3Shifted(), Find.VisibleMap, rndswearsuppressed);
                 }
                 //standard    MoteMaker.ThrowText(parent.Position.ToVector3Shifted(), "CE_SuppressedMote".Translate());
-            }
+            }*/
         }
     }
 }
