@@ -4,12 +4,12 @@
 	<!-- ================== 81mm mortar shell ================== -->
 
 	<ThingDef Name="Base81mmMortarShell" ParentName="BaseBullet" Abstract="true">
-		<thingClass>CombatExtended.ProjectileCE_Explosive</thingClass>
+		<thingClass>CombatExtended.ProjectileCR_Explosive</thingClass>
 		<graphicData>
       <shaderType>TransparentPostLight</shaderType>
 		</graphicData>
 		<projectile>
-			<speed>70</speed>
+			<speed>100</speed>
       <soundHitThickRoof>ArtilleryHitThickRoof</soundHitThickRoof>
       <soundImpactAnticipate>MortarRound_PreImpact</soundImpactAnticipate>
       <soundAmbient>MortarRound_Ambient</soundAmbient>
@@ -33,14 +33,14 @@
 	  <soundExplode>MortarBomb_Explode</soundExplode>
     </projectile>
 		<comps>
-			<li Class="CombatExtended.CompProperties_ExplosiveCE">
+			<li Class="CombatExtended.CompProperties_ExplosiveCR">
 				<explosionDamage>100</explosionDamage>
 				<explosionDamageDef>Bomb</explosionDamageDef>
 				<explosionRadius>2.5</explosionRadius>
 				<fragments>
-					<Fragment_MortarSmall>200</Fragment_MortarSmall>
-					<Fragment_MortarMedium>100</Fragment_MortarMedium>
-					<Fragment_MortarLarge>40</Fragment_MortarLarge>
+					<Fragment_MortarSmall>450</Fragment_MortarSmall>
+					<Fragment_MortarMedium>270</Fragment_MortarMedium>
+					<Fragment_MortarLarge>90</Fragment_MortarLarge>
 				</fragments>
 				<fragRange>10</fragRange>
 	  </li>
@@ -78,7 +78,7 @@
 	  <soundExplode>MortarBomb_Explode</soundExplode>
     </projectile>
 		<comps>
-			<li Class="CombatExtended.CompProperties_ExplosiveCE">
+			<li Class="CombatExtended.CompProperties_ExplosiveCR">
 				<explosionDamage>20</explosionDamage>
 				<explosionDamageDef>Electrical</explosionDamageDef>
 				<explosionRadius>5</explosionRadius>
@@ -114,14 +114,14 @@
 	  <armorPenetration>5.0</armorPenetration>
     </projectile>
 		<comps>
-			<li Class="CombatExtended.CompProperties_ExplosiveCE">
+			<li Class="CombatExtended.CompProperties_ExplosiveCR">
 				<explosionDamage>50</explosionDamage>
 				<explosionDamageDef>Bomb</explosionDamageDef>
 				<explosionRadius>1.5</explosionRadius>
 				<fragments>
-					<Fragment_MortarSmall>30</Fragment_MortarSmall>
-					<Fragment_MortarMedium>16</Fragment_MortarMedium>
-					<Fragment_MortarLarge>7</Fragment_MortarLarge>
+					<Fragment_MortarSmall>50</Fragment_MortarSmall>
+					<Fragment_MortarMedium>25</Fragment_MortarMedium>
+					<Fragment_MortarLarge>10</Fragment_MortarLarge>
 				</fragments>
 				<fragRange>7.5</fragRange>
 			</li>
@@ -131,7 +131,7 @@
   <ThingDef ParentName="Base90mmCannonShell">
     <defName>Bullet_90mmCannonShell_HE</defName>
     <label>90mm cannon shell (HE)</label>
-		<thingClass>CombatExtended.ProjectileCE_Explosive</thingClass>
+		<thingClass>CombatExtended.ProjectileCR_Explosive</thingClass>
     <graphicData>
       <texPath>Things/Projectile/Cannon/HE</texPath>
       <graphicClass>Graphic_Single</graphicClass>
@@ -143,14 +143,14 @@
 		<soundExplode>MortarBomb_Explode</soundExplode>
     </projectile>
 		<comps>
-			<li Class="CombatExtended.CompProperties_ExplosiveCE">
+			<li Class="CombatExtended.CompProperties_ExplosiveCR">
 				<explosionDamage>100</explosionDamage>
 				<explosionDamageDef>Bomb</explosionDamageDef>
 				<explosionRadius>2.5</explosionRadius>
 				<fragments>
-					<Fragment_MortarSmall>240</Fragment_MortarSmall>
-					<Fragment_MortarMedium>120</Fragment_MortarMedium>
-					<Fragment_MortarLarge>45</Fragment_MortarLarge>
+					<Fragment_MortarSmall>350</Fragment_MortarSmall>
+					<Fragment_MortarMedium>300</Fragment_MortarMedium>
+					<Fragment_MortarLarge>100</Fragment_MortarLarge>
 				</fragments>
 				<fragRange>10</fragRange>
 			</li>
@@ -160,7 +160,7 @@
   <ThingDef ParentName="Base90mmCannonShell">
     <defName>Bullet_90mmCannonShell_EMP</defName>
     <label>90mm cannon shell (EMP)</label>
-		<thingClass>CombatExtended.ProjectileCE_Explosive</thingClass>
+		<thingClass>CombatExtended.ProjectileCR_Explosive</thingClass>
     <graphicData>
 			<texPath>Things/Projectile/Cannon/EMP</texPath>
 			<graphicClass>Graphic_Single</graphicClass>
@@ -172,7 +172,7 @@
 		<soundExplode>Explosion_Bomb</soundExplode>
     </projectile>
 		<comps>
-			<li Class="CombatExtended.CompProperties_ExplosiveCE">
+			<li Class="CombatExtended.CompProperties_ExplosiveCR">
 				<explosionDamage>20</explosionDamage>
 				<explosionDamageDef>Electrical</explosionDamageDef>
 				<explosionRadius>5</explosionRadius>
