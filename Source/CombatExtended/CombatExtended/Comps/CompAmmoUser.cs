@@ -453,6 +453,11 @@ namespace CombatExtended
             }
         }
 
+		public override string TransformLabel(string label)
+		{
+			return label + " {" + Props.ammoSet.LabelCap + "}";
+		}
+
         public override string GetDescriptionPart()
         {
             StringBuilder stringBuilder = new StringBuilder();

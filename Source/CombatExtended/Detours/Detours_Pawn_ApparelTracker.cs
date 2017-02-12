@@ -45,12 +45,12 @@ namespace CombatExtended.Detours
             if (!ApparelUtility.HasPartsToWear(_this.pawn, newApparel.def))
             {
                 Log.Warning(string.Concat(new object[]
-        {
-            _this.pawn,
-            " tried to wear ",
-            newApparel,
-            " but he has no body parts required to wear it."
-        }));
+		        {
+		            _this.pawn,
+		            " tried to wear ",
+		            newApparel,
+		            " but he has no body parts required to wear it."
+		        }));
                 return;
             }
             for (int i = _this.WornApparel.Count - 1; i >= 0; i--)

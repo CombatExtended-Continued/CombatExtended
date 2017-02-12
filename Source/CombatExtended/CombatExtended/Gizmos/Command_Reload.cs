@@ -5,6 +5,7 @@ using System.Text;
 using RimWorld;
 using Verse;
 using UnityEngine;
+using Verse.AI;
 
 namespace CombatExtended
 {
@@ -22,7 +23,7 @@ namespace CombatExtended
             if ((ev.button == 1 && compAmmo.useAmmo && (compAmmo.compInventory != null || compAmmo.turret != null))
                 || action == null)
                 Find.WindowStack.Add(MakeAmmoMenu());
-            else
+            else if (compAmmo.selectedAmmo != compAmmo.currentAmmo || compAmmo.curMagCount < compAmmo.Props.magazineSize)
                 base.ProcessInput(ev);
         }
 
@@ -55,7 +56,21 @@ namespace CombatExtended
                 foreach (ThingDef curDef in ammoList)
                 {
                     AmmoDef ammoDef = (AmmoDef)curDef;
-                    floatOptionList.Add(new FloatMenuOption(ammoDef.ammoClass.LabelCap, new Action(delegate { compAmmo.selectedAmmo = ammoDef; })));
+                    floatOptionList.Add(new FloatMenuOption(ammoDef.ammoClass.LabelCap, new Action(delegate {
+                        bool flag = compAmmo.selectedAmmo != ammoDef;
+		               	compAmmo.selectedAmmo = ammoDef;
+		               	if (flag || compAmmo.curMagCount < compAmmo.Props.magazineSize)
+		               	{
+			               	if (compAmmo.turret != null)
+			               	{
+			               		compAmmo.turret.OrderReload();
+			               	}
+			               	else
+			               	{
+			               		compAmmo.TryStartReload();
+			               	}
+		               	}
+	               	})));
                 }
             }
             return new FloatMenu(floatOptionList);

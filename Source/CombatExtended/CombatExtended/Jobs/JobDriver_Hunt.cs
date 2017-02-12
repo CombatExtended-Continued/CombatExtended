@@ -52,17 +52,17 @@ namespace CombatExtended
 			
 			yield return Toils_Jump.JumpIfTargetDownedDistant(VictimInd, gotoCastPos);
 			
-			yield return Toils_Jump.JumpIfTargetDespawnedOrNull(CorpseInd, startCollectCorpse);
+			yield return Toils_Jump.JumpIfTargetDespawnedOrNull(VictimInd, startCollectCorpse);
 			
-			yield return Toils_Combat.CastVerb(VictimInd, false).JumpIfDespawnedOrNull(CorpseInd, startCollectCorpse).FailOn(() => Find.TickManager.TicksGame > jobStartTick + MaxHuntTicks);;
+			yield return Toils_Combat.CastVerb(VictimInd, false).JumpIfDespawnedOrNull(VictimInd, startCollectCorpse).FailOn(() => Find.TickManager.TicksGame > jobStartTick + MaxHuntTicks);;
 			
 			yield return Toils_Jump.Jump(moveIfCannotHit);
 			
 			yield return startCollectCorpse;
 			
-			yield return Toils_Goto.GotoCell(CorpseInd, PathEndMode.ClosestTouch).FailOnDespawnedNullOrForbidden(CorpseInd).FailOnSomeonePhysicallyInteracting(CorpseInd);
+			yield return Toils_Goto.GotoCell(VictimInd, PathEndMode.ClosestTouch).FailOnDespawnedNullOrForbidden(VictimInd).FailOnSomeonePhysicallyInteracting(VictimInd);
 			
-			yield return Toils_Haul.StartCarryThing(CorpseInd);
+			yield return Toils_Haul.StartCarryThing(VictimInd);
 			
 			var carryToCell = Toils_Haul.CarryHauledThingToCell(StoreCellInd);
 			
@@ -72,8 +72,6 @@ namespace CombatExtended
 		}
 		
 		const TargetIndex VictimInd = TargetIndex.A;
-
-		const TargetIndex CorpseInd = TargetIndex.A;
 
 		const TargetIndex StoreCellInd = TargetIndex.B;
 
