@@ -177,7 +177,7 @@ namespace CombatExtended
                 return true;
             }
             // If magazine is empty, return false
-            else if (curMagCountInt <= 0)
+            if (curMagCountInt <= 0)
             {
                 curMagCountInt = 0;
                 return false;
