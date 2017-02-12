@@ -8,7 +8,7 @@ namespace CombatExtended
     {
         protected override Job TryGiveJob(Pawn pawn)
         {
-
+            Log.Message("CE :: Trying to issue HunkerDown job to " + pawn.ToString());
             //if (pawn.TryGetComp<CompSuppressable>().isHunkering && pawn.GetPosture() != PawnPosture.Standing)
             //{
             //    return null;
