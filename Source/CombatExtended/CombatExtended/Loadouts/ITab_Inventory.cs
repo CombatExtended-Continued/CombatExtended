@@ -344,7 +344,10 @@ namespace CombatExtended
             else if (!t.def.destroyOnDrop)
             {
                 Thing thing;
-                this.SelPawnForGear.inventory.innerContainer.TryDrop(t, this.SelPawnForGear.Position, this.SelPawnForGear.Map, ThingPlaceMode.Near, out thing, null);
+                Thing dropThing = t;
+                if (t.def.Minifiable)
+                	dropThing = this.SelPawnForGear.inventory.innerContainer.FirstOrDefault(x => x.GetInnerIfMinified().ThingID == t.ThingID);
+                this.SelPawnForGear.inventory.innerContainer.TryDrop(dropThing, this.SelPawnForGear.Position, this.SelPawnForGear.Map, ThingPlaceMode.Near, out thing, null);
             }
         }
 
