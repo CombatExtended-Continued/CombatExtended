@@ -89,7 +89,6 @@ namespace CombatExtended.Detours
             if (Detours_AttackTargetFinder.HasRangedAttack(searcher))
             {
                 Detours_AttackTargetFinder.tmpTargets.Clear();
-                Log.Message("CE :: " + searcher.ToString() + " is searching for targets");
                 List<IAttackTarget> potentialTargetsFor = searcher.Map.attackTargetsCache.GetPotentialTargetsFor(searcher);
                 for (int i = 0; i < potentialTargetsFor.Count; i++)
                 {
