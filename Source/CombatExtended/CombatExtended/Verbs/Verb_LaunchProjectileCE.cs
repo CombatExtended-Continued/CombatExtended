@@ -274,26 +274,21 @@ namespace CombatExtended
 	           			}
 	           		}
 	           		heightDifference = targetVertical.min + (targetVertical.max - targetVertical.min) * 0.5f;
-	            	Log.Message("DEBUG/TESTING: targetVertical: " + targetVertical);
 	            }
 	            
 	            var shooterVertical = CE_Utility.GetCollisionVertical(this.caster);
 	            this.shotHeight = CasterIsPawn
 	            	? shooterVertical.min + (shooterVertical.max - shooterVertical.min) * shotHeightFactor
 	            	: shooterVertical.max;
-	            Log.Message("DEBUG/TESTING: shooterVertical: " + shooterVertical + " // coverVertical: " + coverVertical);
 	            
 	            heightDifference -= this.shotHeight;
-	            Log.Message("DEBUG/TESTING: Pre-height calculation skewVec: " + skewVec);
 	            skewVec += new Vector2(0, GetShotAngle(this.shotSpeed, (newTargetLoc - sourceLoc).magnitude, heightDifference) * (180 / (float)Math.PI));
-	            Log.Message("DEBUG/TESTING: Height calculation skewVec: " + skewVec);
         	}
         	
 	        // ----------------------------------- STEP 4: Mechanical variation
 	        
             // Get shotvariation
             Vector2 spreadVec = report.GetRandSpreadVec() + skewVec;
-	            Log.Message("DEBUG/TESTING: spreadVec: " + spreadVec);
             
             // ----------------------------------- STEP 5: Finalization
 

@@ -60,7 +60,6 @@ namespace CombatExtended
 	            		
             			//Calculates quadratic formula (g/2)t^2 + (-v_0y)t + (y-y0) for {g -> gravity, v_0y -> vSin, y -> 0, y0 -> shotHeight} to find t in fractional ticks where height equals zero.
 	            		startingTicksToImpactInt = (float)((vSin + Mathf.Sqrt(Mathf.Pow(vSin, 2) + 2 * gravity * shotHeight)) / gravity) * (float)ticksPerSecond;
-                		Log.Message("DEBUG/TESTING: startingTicksToImpact: " + startingTicksToImpactInt);
             		}
             	}
                 return startingTicksToImpactInt;
@@ -455,7 +454,6 @@ namespace CombatExtended
             if (mainThingList.Count > 0)
             {
             	float height = GetProjectileHeight();
-                Log.Message("DEBUG/TESTING: height @ ("+ (StartingTicksToImpact - ticksToImpact) +"/" + StartingTicksToImpact + ", " + shotHeight + ", " + distanceFromOrigin + ", " + shotAngle + ", " + shotSpeed + "): " + height);
                 for (int i = 0; i < mainThingList.Count; i++)
                 {
                     Thing thing = mainThingList[i];
