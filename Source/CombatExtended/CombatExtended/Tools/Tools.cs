@@ -11,7 +11,7 @@ namespace CombatExtended
     [StaticConstructorOnStartup]
     public static class RightTools
     {
-        public static void EquipRigthTool(Pawn pawn, StatDef def)
+        public static void EquipRightTool(Pawn pawn, StatDef def)
         {
             float num = -3.40282347E+38f;
             ThingWithComps thingWithComps = null;

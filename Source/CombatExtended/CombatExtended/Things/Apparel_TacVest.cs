@@ -51,7 +51,7 @@ namespace CombatExtended
                 offset += rotation == Rot4.North ? 0.018f : 0.014f;
             }*/
             List<Material> matList = wearer.Drawer.renderer.graphics.MatsBodyBaseAt(rotation);
-            foreach(Material mat in matList)
+            foreach (Material mat in matList)
             {
                 offset += YOffsetInterval_Clothes;
             }

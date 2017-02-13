@@ -177,7 +177,7 @@ namespace CombatExtended
                 return true;
             }
             // If magazine is empty, return false
-            else if (curMagCountInt <= 0)
+            if (curMagCountInt <= 0)
             {
                 curMagCountInt = 0;
                 return false;
@@ -452,6 +452,11 @@ namespace CombatExtended
                 yield return reloadCommandGizmo;
             }
         }
+
+		public override string TransformLabel(string label)
+		{
+			return label + " {" + Props.ammoSet.LabelCap + "}";
+		}
 
         public override string GetDescriptionPart()
         {

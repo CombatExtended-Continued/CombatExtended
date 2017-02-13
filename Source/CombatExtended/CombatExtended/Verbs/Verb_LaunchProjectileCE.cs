@@ -49,6 +49,9 @@ namespace CombatExtended
         private int numShotsFired = 0;                  // Stores how many shots were fired for purposes of recoil
         private float shotAngle;
         private float shotHeight;
+        private Vector2 skewVec = new Vector2(0, 0);
+        private bool pelletMechanicsOnly = false;
+        private Vector3 newTargetLoc;
 
         protected CompCharges compChargesInt = null;
         protected CompCharges compCharges
@@ -204,75 +207,83 @@ namespace CombatExtended
         /// <summary>
         /// Shifts the original target position in accordance with target leading, range estimation and weather/lighting effects
         /// </summary>
-        protected virtual Vector3 ShiftTarget(ShiftVecReport report)
+        protected virtual Vector3 ShiftTarget(ShiftVecReport report) {
+        	return ShiftTarget(report, false);
+        }
+        protected virtual Vector3 ShiftTarget(ShiftVecReport report, bool calculateMechanicalOnly)
         {
-            // ----------------------------------- STEP 0: Actual location
-
-            Vector3 targetLoc = report.targetPawn != null ? Vector3.Scale(report.targetPawn.DrawPos, new Vector3(1, 0, 1)) : report.target.Cell.ToVector3Shifted();
-            Vector3 sourceLoc = this.CasterPawn != null ? Vector3.Scale(this.CasterPawn.DrawPos, new Vector3(1, 0, 1)) : this.caster.Position.ToVector3Shifted();
-
-            // ----------------------------------- STEP 1: Shift for visibility
-
-            Vector2 circularShiftVec = report.GetRandCircularVec();
-            Vector3 newTargetLoc = targetLoc;
-            newTargetLoc.x += circularShiftVec.x;
-            newTargetLoc.z += circularShiftVec.y;
-
-            // ----------------------------------- STEP 2: Estimated shot to hit location
-
-            // On first shot of burst do a range estimate
-            if (this.estimatedTargDist < 0)
-            {
-                this.estimatedTargDist = report.GetRandDist();
-            }
-            newTargetLoc = sourceLoc + (newTargetLoc - sourceLoc).normalized * this.estimatedTargDist;
-
-            // Lead a moving target
-            newTargetLoc += report.GetRandLeadVec();
-
-            // ----------------------------------- STEP 3: Recoil, Skewing, Skill checks, Cover calculations
-
-            Vector2 skewVec = new Vector2(0, 0);
-            skewVec += this.GetSwayVec();
-            skewVec += this.GetRecoilVec();
-
-            // Height difference calculations for ShotAngle
-            float heightDifference = 0;
-            float targetableHeight = 0;
-
-            // Projectiles with flyOverhead target the ground below the target and ignore cover
-            if (!projectileDef.projectile.flyOverhead)
-            {
-                targetableHeight = CE_Utility.GetCollisionHeight(this.currentTarget.Thing);
-                if (report.cover != null)
-                {
-                    targetableHeight += CE_Utility.GetCollisionHeight(report.cover);
-                }
-                heightDifference += targetableHeight * 0.5f;    //Optimal hit level is halfway
-            }
-
-            this.shotHeight = CE_Utility.GetCollisionHeight(this.caster);
-            if (this.CasterPawn != null)
-            {
-                this.shotHeight *= shotHeightFactor;
-            }
-            heightDifference -= this.shotHeight;
-            skewVec += new Vector2(0, GetShotAngle(this.shotSpeed, (newTargetLoc - sourceLoc).magnitude, heightDifference) * (180 / (float)Math.PI));
-
-            // ----------------------------------- STEP 4: Mechanical variation
-
+	        Vector3 sourceLoc = this.CasterPawn != null ? Vector3.Scale(this.CasterPawn.DrawPos, new Vector3(1, 0, 1)) : this.caster.Position.ToVector3Shifted();
+	        
+        	if (!calculateMechanicalOnly)
+        	{
+	            // ----------------------------------- STEP 0: Actual location
+	
+	            Vector3 targetLoc = report.targetPawn != null ? Vector3.Scale(report.targetPawn.DrawPos, new Vector3(1, 0, 1)) : report.target.Cell.ToVector3Shifted();
+	
+	            // ----------------------------------- STEP 1: Shift for visibility
+	
+	            Vector2 circularShiftVec = report.GetRandCircularVec();
+	            newTargetLoc = targetLoc;
+	            newTargetLoc.x += circularShiftVec.x;
+	            newTargetLoc.z += circularShiftVec.y;
+	
+	            // ----------------------------------- STEP 2: Estimated shot to hit location
+	
+	            // On first shot of burst do a range estimate
+	            if (this.estimatedTargDist < 0)
+	            {
+	                this.estimatedTargDist = report.GetRandDist();
+	            }
+	            newTargetLoc = sourceLoc + (newTargetLoc - sourceLoc).normalized * this.estimatedTargDist;
+	
+	            // Lead a moving target
+	            newTargetLoc += report.GetRandLeadVec();
+	
+	            // ----------------------------------- STEP 3: Recoil, Skewing, Skill checks, Cover calculations
+	
+	            skewVec = new Vector2(0, 0);
+	            skewVec += this.GetSwayVec();
+	            skewVec += this.GetRecoilVec();
+	
+	            // Height difference calculations for ShotAngle
+	            float heightDifference = 0;
+	            float targetableHeight = 0;
+	
+	            // Projectiles with flyOverhead target the ground below the target and ignore cover
+	            if (!projectileDef.projectile.flyOverhead)
+	            {
+	                targetableHeight = CE_Utility.GetCollisionHeight(this.currentTarget.Thing);
+	                if (report.cover != null)
+	                {
+	                    targetableHeight += CE_Utility.GetCollisionHeight(report.cover);
+	                }
+	                heightDifference += targetableHeight * 0.5f;    //Optimal hit level is halfway
+	            }
+	
+	            this.shotHeight = CE_Utility.GetCollisionHeight(this.caster);
+	            if (this.CasterPawn != null)
+	            {
+	                this.shotHeight *= shotHeightFactor;
+	            }
+	            heightDifference -= this.shotHeight;
+	            skewVec += new Vector2(0, GetShotAngle(this.shotSpeed, (newTargetLoc - sourceLoc).magnitude, heightDifference) * (180 / (float)Math.PI));
+        	}
+        	
+	        // ----------------------------------- STEP 4: Mechanical variation
+	        
             // Get shotvariation
-            Vector2 spreadVec = report.GetRandSpreadVec();
-            skewVec += spreadVec;
+            Vector2 spreadVec = report.GetRandSpreadVec() + skewVec;
+            
+            // ----------------------------------- STEP 5: Finalization
 
             // Skewing		-		Applied after the leading calculations to not screw them up
-            float distanceTraveled = GetDistanceTraveled(this.shotSpeed, (float)(skewVec.y * (Math.PI / 180)), this.shotHeight);
-            newTargetLoc = sourceLoc + ((newTargetLoc - sourceLoc).normalized * distanceTraveled);
-            newTargetLoc = sourceLoc + (Quaternion.AngleAxis(skewVec.x, Vector3.up) * (newTargetLoc - sourceLoc));
+            float distanceTraveled = GetDistanceTraveled(this.shotSpeed, (float)(spreadVec.y * (Math.PI / 180)), this.shotHeight);
+            Vector3 finalTargetLoc = sourceLoc + ((newTargetLoc - sourceLoc).normalized * distanceTraveled);
+            finalTargetLoc = sourceLoc + (Quaternion.AngleAxis(spreadVec.x, Vector3.up) * (finalTargetLoc - sourceLoc));
 
-            this.shotAngle = (float)(skewVec.y * (Math.PI / 180));
+            this.shotAngle = (float)(spreadVec.y * (Math.PI / 180));
 
-            return newTargetLoc;
+            return finalTargetLoc;
         }
 
         /// <summary>
@@ -458,17 +469,17 @@ namespace CombatExtended
                 Log.Error(this.ownerEquipment.LabelCap + " tried firing with pelletCount less than 1.");
                 return false;
             }
+            Vector3 casterExactPosition = this.caster.DrawPos;
+            ShiftVecReport report = ShiftVecReportFor(this.currentTarget);
+           	pelletMechanicsOnly = false;
             for (int i = 0; i < this.projectilePropsCE.pelletCount; i++)
             {
-                Vector3 casterExactPosition = this.caster.DrawPos;
                 ProjectileCE projectile = (ProjectileCE)ThingMaker.MakeThing(projectileDef, null);
                 GenSpawn.Spawn(projectile, shootLine.Source, caster.Map);
-                float lengthHorizontalSquared = (this.currentTarget.Cell - this.caster.Position).LengthHorizontalSquared;
+	           	Vector3 targetVec3 = ShiftTarget(report, pelletMechanicsOnly);
 
                 //New aiming algorithm
                 projectile.canFreeIntercept = true;
-                ShiftVecReport report = ShiftVecReportFor(this.currentTarget);
-                Vector3 targetVec3 = this.ShiftTarget(report);
                 projectile.shotAngle = this.shotAngle;
                 projectile.shotHeight = this.shotHeight;
                 projectile.shotSpeed = this.shotSpeed;
@@ -480,7 +491,9 @@ namespace CombatExtended
                 {
                     projectile.Launch(this.caster, casterExactPosition, new LocalTargetInfo(shootLine.Dest), targetVec3, this.ownerEquipment);
                 }
+	           	pelletMechanicsOnly = true;
             }
+           	pelletMechanicsOnly = false;
             this.numShotsFired++;
             return true;
         }
