@@ -80,7 +80,11 @@ namespace CombatExtended
 
         public void AddSlot(LoadoutSlot slot)
         {
-            _slots.Add(slot);
+        	LoadoutSlot old = _slots.FirstOrDefault(s => s.Def == slot.Def);
+        	if (old != null)
+        		old.Count++;
+        	else
+            	_slots.Add(slot);
         }
 
         public void ExposeData()
