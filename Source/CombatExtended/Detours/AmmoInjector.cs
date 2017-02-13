@@ -38,6 +38,8 @@ namespace CombatExtended
 
         public static bool InjectAmmos()
         {
+            if (!ModSettings.enableAmmoSystem) return true;
+
             // Initialize list of all weapons so we don't have to iterate through all the defs, all the time
             CE_Utility.allWeaponDefs.Clear();
             foreach (ThingDef def in DefDatabase<ThingDef>.AllDefsListForReading)

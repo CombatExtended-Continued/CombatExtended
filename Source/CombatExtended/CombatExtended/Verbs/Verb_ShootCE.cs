@@ -9,6 +9,8 @@ namespace CombatExtended
 {
     public class Verb_ShootCE : Verb_LaunchProjectileCE
     {
+        #region Variables
+
         protected override int ShotsPerBurst
         {
             get
@@ -103,6 +105,10 @@ namespace CombatExtended
             }
         }
 
+        #endregion
+
+        #region Methods
+
         /// <summary>
         /// Handles activating aim mode at the start of the burst
         /// </summary>
@@ -175,7 +181,7 @@ namespace CombatExtended
                             xpPerTick = pawnXP;
                         }
                     }
-                    this.ShooterPawn.skills.Learn(SkillDefOf.Shooting, xpPerTick * xpTicks);
+                    this.ShooterPawn.skills.Learn(SkillDefOf.Shooting, Mathf.Max(xpPerTick * xpTicks, 1));
                 }
                 this.xpTicks = 0;
             }
@@ -229,5 +235,7 @@ namespace CombatExtended
             }
             return false;
         }
+
+        #endregion
     }
 }

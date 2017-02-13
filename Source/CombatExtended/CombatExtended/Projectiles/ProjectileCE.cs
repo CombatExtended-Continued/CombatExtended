@@ -369,7 +369,7 @@ namespace CombatExtended
                 ambientSustainer.Maintain();
             }
             // attack shooting expression
-            if (this.launcher is Building_TurretGunCE == false)
+            if (ModSettings.showTaunts && this.launcher is Building_TurretGunCE == false)
             {
                 if (Rand.Value > 0.7
                     && this.launcher.def.race.Humanlike

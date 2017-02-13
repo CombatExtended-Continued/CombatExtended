@@ -11,6 +11,8 @@ namespace CombatExtended
 {
     public class Verb_LaunchProjectileCE : Verse.Verb
     {
+        #region Variables
+
         public VerbPropertiesCE verbPropsCE
         {
             get
@@ -155,6 +157,10 @@ namespace CombatExtended
                 return this.verbPropsCE.projectileDef;
             }
         }
+
+        #endregion
+
+        #region Methods
 
         /// <summary>
         /// Highlights explosion radius of the projectile if it has one
@@ -505,5 +511,7 @@ namespace CombatExtended
         public virtual void VerbTickCE()
         {
         }
+
+        #endregion
     }
 }

@@ -92,6 +92,7 @@ namespace CombatExtended
             {
                 return mannableComp == null
                     && compAmmo != null
+                    && compAmmo.useAmmo
                     && (compAmmo.curMagCount < compAmmo.Props.magazineSize || compAmmo.selectedAmmo != compAmmo.currentAmmo);
             }
         }
@@ -99,7 +100,7 @@ namespace CombatExtended
         {
             get
             {
-                return mannableComp == null && compAmmo != null 
+                return mannableComp == null && compAmmo != null && compAmmo.useAmmo
                     && (ticksSinceLastBurst >= minTicksBeforeAutoReload || compAmmo.curMagCount <= Mathf.CeilToInt(compAmmo.Props.magazineSize / 6));
             }
         }
@@ -393,22 +394,29 @@ namespace CombatExtended
 
         public void OrderReload()
         {
-            if (mannableComp == null
-                || !mannableComp.MannedNow
-                || (compAmmo.currentAmmo == compAmmo.selectedAmmo && compAmmo.curMagCount == compAmmo.Props.magazineSize)) return;
-            Job reloadJob = null;
-            CompInventory inventory = mannableComp.ManningPawn.TryGetComp<CompInventory>();
-            if (inventory != null)
+            if (mannableComp == null)
             {
-                Thing ammo = inventory.container.FirstOrDefault(x => x.def == compAmmo.selectedAmmo);
-                if (ammo != null)
+                if (!compAmmo.useAmmo) compAmmo.LoadAmmo();
+                return;
+            }
+
+            if (!mannableComp.MannedNow || (compAmmo.currentAmmo == compAmmo.selectedAmmo && compAmmo.curMagCount == compAmmo.Props.magazineSize)) return;
+            Job reloadJob = null;
+            if (compAmmo.useAmmo)
+            {
+                CompInventory inventory = mannableComp.ManningPawn.TryGetComp<CompInventory>();
+                if (inventory != null)
                 {
-                    Thing droppedAmmo;
-                    int amount = compAmmo.Props.magazineSize;
-                    if (compAmmo.currentAmmo == compAmmo.selectedAmmo) amount -= compAmmo.curMagCount;
-                    if (inventory.container.TryDrop(ammo, this.Position, this.Map, ThingPlaceMode.Direct, Mathf.Min(ammo.stackCount, amount), out droppedAmmo))
+                    Thing ammo = inventory.container.FirstOrDefault(x => x.def == compAmmo.selectedAmmo);
+                    if (ammo != null)
                     {
-                        reloadJob = new Job(DefDatabase<JobDef>.GetNamed("ReloadTurret"), this, droppedAmmo) { count = droppedAmmo.stackCount };
+                        Thing droppedAmmo;
+                        int amount = compAmmo.Props.magazineSize;
+                        if (compAmmo.currentAmmo == compAmmo.selectedAmmo) amount -= compAmmo.curMagCount;
+                        if (inventory.container.TryDrop(ammo, this.Position, this.Map, ThingPlaceMode.Direct, Mathf.Min(ammo.stackCount, amount), out droppedAmmo))
+                        {
+                            reloadJob = new Job(DefDatabase<JobDef>.GetNamed("ReloadTurret"), this, droppedAmmo) { count = droppedAmmo.stackCount };
+                        }
                     }
                 }
             }
@@ -430,7 +438,7 @@ namespace CombatExtended
         public override IEnumerable<Gizmo> GetGizmos()
         {
             // Ammo gizmos
-            if (compAmmo != null)
+            if (compAmmo != null && (compAmmo.useAmmo || mannableComp != null))
             {
                 foreach (Command com in compAmmo.CompGetGizmosExtra())
                 {

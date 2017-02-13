@@ -97,7 +97,7 @@ namespace CombatExtended
         #region MoteThrower
         public static void ThrowEmptyCasing(Vector3 loc, Map map, ThingDef casingMoteDef, float size = 1f)
         {
-            if (!loc.ShouldSpawnMotesAt(map) || map.moteCounter.SaturatedLowPriority)
+            if (!ModSettings.showCasings || !loc.ShouldSpawnMotesAt(map) || map.moteCounter.SaturatedLowPriority)
             {
                 return;
             }

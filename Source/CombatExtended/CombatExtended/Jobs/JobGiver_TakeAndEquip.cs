@@ -99,6 +99,8 @@ namespace CombatExtended
 
         public override float GetPriority(Pawn pawn)
         {
+            if (!ModSettings.autoTakeAmmo || !ModSettings.enableAmmoSystem) return 0f;
+
             var priority = GetPriorityWork(pawn);
 
             if (priority == WorkPriority.Unloading) return 9.2f;
@@ -120,6 +122,11 @@ namespace CombatExtended
 
         protected override Job TryGiveJob(Pawn pawn)
         {
+            if (!ModSettings.enableAmmoSystem || !ModSettings.autoTakeAmmo)
+            {
+                return null;
+            }
+
             if (!pawn.RaceProps.Humanlike || (pawn.story != null && pawn.story.WorkTagIsDisabled(WorkTags.Violent)))
             {
                 return null;
