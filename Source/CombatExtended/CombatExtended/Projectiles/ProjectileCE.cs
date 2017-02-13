@@ -23,6 +23,8 @@ namespace CombatExtended
         private Sustainer ambientSustainer;
         private static List<IntVec3> checkedCells = new List<IntVec3>();
         public static readonly String[] robotBodyList = { "AIRobot", "HumanoidTerminator" };
+        
+        private const int ticksPerSecond = 100;
 
         public Thing AssignedMissTarget
         {
@@ -37,17 +39,31 @@ namespace CombatExtended
             }
         }
 
-        protected int StartingTicksToImpact
+        float startingTicksToImpactInt = -1f;
+        protected float StartingTicksToImpact
         {
             get
             {
-                int num =
-                    Mathf.RoundToInt((float)((origin - destination).magnitude / (Math.Cos(shotAngle) * shotSpeed / 100f)));
-                if (num < 1)
-                {
-                    num = 1;
-                }
-                return num;
+            	if (startingTicksToImpactInt < 0f)
+            	{
+            		//Optimization in case shotHeight is zero (for example for fragments)
+            		if (shotHeight < 0.001f)
+            		{
+            			//Multiplied by ticksPerSecond since the calculated time is actually in seconds.
+            			startingTicksToImpactInt = (float)((origin - destination).magnitude / (Mathf.Cos(shotAngle) * shotSpeed)) * (float)ticksPerSecond;
+            		}
+            		else
+            		{
+            			//Stored to decrease the amount of Math.Sin calls.
+            			const float gravity = CE_Utility.gravityConst;
+	            		float vSin = (float)(Math.Sin(shotAngle) * shotSpeed);
+	            		
+            			//Calculates quadratic formula (g/2)t^2 + (-v_0y)t + (y-y0) for {g -> gravity, v_0y -> vSin, y -> 0, y0 -> shotHeight} to find t in fractional ticks where height equals zero.
+	            		startingTicksToImpactInt = (float)((vSin + Mathf.Sqrt(Mathf.Pow(vSin, 2) + 2 * gravity * shotHeight)) / gravity) * (float)ticksPerSecond;
+                		Log.Message("DEBUG/TESTING: startingTicksToImpact: " + startingTicksToImpactInt);
+            		}
+            	}
+                return startingTicksToImpactInt;
             }
         }
 
@@ -63,7 +79,7 @@ namespace CombatExtended
         {
             get
             {
-                Vector3 b = (destination - origin) * (1f - ticksToImpact / (float)StartingTicksToImpact);
+            	Vector3 b = (destination - origin) * (1f - (float)((float)ticksToImpact / StartingTicksToImpact));
                 return origin + b + Vector3.up * def.Altitude;
             }
         }
@@ -86,6 +102,9 @@ namespace CombatExtended
 
         //New variables
         private const float treeCollisionChance = 0.5f; //Tree collision chance is multiplied by this factor
+        /// <summary>
+        /// Angle in radians
+        /// </summary>
         public float shotAngle;
         public float shotHeight = 0f;
         public float shotSpeed = -1f;
@@ -98,7 +117,6 @@ namespace CombatExtended
                 return (currentPos - origin).magnitude;
             }
         }
-
 
         /*
          * *** End of class variables ***
@@ -124,19 +142,17 @@ namespace CombatExtended
 
             //Here be new variables
             Scribe_Values.LookValue(ref shotAngle, "shotAngle", 0f, true);
-            Scribe_Values.LookValue(ref shotAngle, "shotHeight", 0f, true);
+            Scribe_Values.LookValue(ref shotHeight, "shotHeight", 0f, true);
             Scribe_Values.LookValue(ref shotSpeed, "shotSpeed", 0f, true);
         }
 
-        public static float GetProjectileHeight(float zeroheight, float distance, float angle, float velocity)
+        public float GetProjectileHeight()
         {
-            const float gravity = CE_Utility.gravityConst;
-            float height =
-                (float)
-                    (zeroheight +
-                     (distance * Math.Tan(angle) - gravity * Math.Pow(distance, 2) / (2 * Math.Pow(velocity * Math.Cos(angle), 2))));
-
-            return height;
+        	const float gravity = CE_Utility.gravityConst;
+        	float seconds = (StartingTicksToImpact - (float)ticksToImpact) / (float)ticksPerSecond;
+            //Calculates quadratic formula (g/2)t^2 + (-v_0y)t + (y-y0) for {g -> gravity, v_0y -> shotSpeed * Mathf.Sin(shotAngle), y0 -> shotHeight, t -> seconds} to find y rounded to the nearest 3 decimals.
+        	float height = (float)Math.Round(shotHeight + shotSpeed * Mathf.Sin(shotAngle) * seconds - (gravity * seconds * seconds) / 2f, 3);
+        	return height;
         }
 
         //Added new method, takes Vector3 destination as argument
@@ -175,7 +191,7 @@ namespace CombatExtended
                               new Vector3(Rand.Range(-0.3f, 0.3f), 0f, Rand.Range(-0.3f, 0.3f));
             }
 
-            ticksToImpact = StartingTicksToImpact;
+            ticksToImpact = Mathf.CeilToInt(StartingTicksToImpact);
             if (!def.projectile.soundAmbient.NullOrUndefined())
             {
                 SoundInfo info = SoundInfo.InMap(this, MaintenanceType.PerTick);
@@ -301,17 +317,21 @@ namespace CombatExtended
                 if (closestDistToPawn <= CE_Utility.GetCollisionWidth(pawn))
                 {
                     //Check vertical distance
-                    float pawnHeight = CE_Utility.GetCollisionHeight(pawn);
-                    if (height < pawnHeight)
+                    if (CE_Utility.GetCollisionVertical(thing).Includes(height))
                     {
                         Impact(thing);
                         return true;
                     }
                 }
             }
-            if (thing.def.fillPercent > 0 || thing.def.Fillage == FillCategory.Full)
+            if (thing.def.Fillage == FillCategory.Full)
             {
-                if (height < CE_Utility.GetCollisionHeight(thing) || thing.def.Fillage == FillCategory.Full)
+                Impact(thing);
+                return true;
+            }
+            if (thing.def.fillPercent > 0)
+            {
+                if (CE_Utility.GetCollisionVertical(thing).Includes(height))
                 {
                     Impact(thing);
                     return true;
@@ -344,13 +364,13 @@ namespace CombatExtended
                 return;
             }
             Vector3 exactPosition2 = ExactPosition;
-            if (!def.projectile.flyOverhead && canFreeIntercept &&
-                CheckForFreeInterceptBetween(exactPosition, exactPosition2))
+            if (ticksToImpact >= 0 && !def.projectile.flyOverhead && canFreeIntercept
+                && CheckForFreeInterceptBetween(exactPosition, exactPosition2))
             {
                 return;
             }
             Position = ExactPosition.ToIntVec3();
-            if (ticksToImpact == 60f && Find.TickManager.CurTimeSpeed == TimeSpeed.Normal &&
+            if (ticksToImpact == 60 && Find.TickManager.CurTimeSpeed == TimeSpeed.Normal &&
                 def.projectile.soundImpactAnticipate != null)
             {
                 def.projectile.soundImpactAnticipate.PlayOneShot(this);
@@ -434,13 +454,14 @@ namespace CombatExtended
             //Check for entries first so we avoid doing costly height calculations
             if (mainThingList.Count > 0)
             {
-                float height = GetProjectileHeight(shotHeight, distanceFromOrigin, shotAngle, shotSpeed);
+            	float height = GetProjectileHeight();
+                Log.Message("DEBUG/TESTING: height @ ("+ (StartingTicksToImpact - ticksToImpact) +"/" + StartingTicksToImpact + ", " + shotHeight + ", " + distanceFromOrigin + ", " + shotAngle + ", " + shotSpeed + "): " + height);
                 for (int i = 0; i < mainThingList.Count; i++)
                 {
                     Thing thing = mainThingList[i];
                     if (thing.def.Fillage == FillCategory.Full) //ignore height
                     {
-                        Impact(thing);
+                    	Impact(thing);
                         return true;
                     }
                     //Check for trees		--		HARDCODED RNG IN HERE
@@ -462,7 +483,7 @@ namespace CombatExtended
                         {
                             return false;
                         }
-                        else return ImpactThroughBodySize(thing, height);
+                        return ImpactThroughBodySize(thing, height);
                     }
 
                     //Checking for pawns/cover
@@ -504,37 +525,26 @@ namespace CombatExtended
                 }
             }
             //Modified
-            if (assignedTarget != null && assignedTarget.Position == Position)
+            if (assignedTarget != null && assignedTarget.Position == Position && ImpactThroughBodySize(assignedTarget, GetProjectileHeight()))
             //it was aimed at something and that something is still there
             {
-                ImpactThroughBodySize(assignedTarget,
-                    GetProjectileHeight(shotHeight, distanceFromOrigin, shotAngle, shotSpeed));
+            	return;
             }
-            else
+            Thing thing = base.Map.thingGrid.ThingAt(Position, ThingCategory.Pawn);
+            if (thing != null && ImpactThroughBodySize(thing, GetProjectileHeight()))
             {
-                Thing thing = base.Map.thingGrid.ThingAt(Position, ThingCategory.Pawn);
-                if (thing != null)
-                {
-                    ImpactThroughBodySize(thing,
-                        GetProjectileHeight(shotHeight, distanceFromOrigin, shotAngle, shotSpeed));
-                    return;
-                }
-                List<Thing> list = base.Map.thingGrid.ThingsListAt(Position);
-                float height = list.Count > 0
-                    ? GetProjectileHeight(shotHeight, distanceFromOrigin, shotAngle, shotSpeed)
-                    : 0;
-                if (height > 0)
-                {
-                    for (int i = 0; i < list.Count; i++)
-                    {
-                        Thing thing2 = list[i];
-                        bool impacted = ImpactThroughBodySize(thing2, height);
-                        if (impacted)
-                            return;
-                    }
-                }
-                Impact(null);
+                return;
             }
+            List<Thing> list = base.Map.thingGrid.ThingsListAt(Position);
+            if (list.Count > 0)
+            {
+            	var height = GetProjectileHeight();
+				foreach (var thing2 in list) {
+					if (ImpactThroughBodySize(thing2, height))
+						return;
+				}
+            }
+            Impact(null);
         }
 
         //Unmodified

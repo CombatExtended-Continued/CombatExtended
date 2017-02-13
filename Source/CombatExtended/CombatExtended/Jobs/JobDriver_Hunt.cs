@@ -41,6 +41,7 @@ namespace CombatExtended
 			
 			yield return Toils_Combat.TrySetJobToUseAttackVerb();
 			
+			var comp = pawn.equipment.Primary.TryGetComp<CompAmmoUser>();
 			var startCollectCorpse = StartCollectCorpseToil();
 			var gotoCastPos = GotoCastPosition(VictimInd, true).JumpIfDespawnedOrNull(VictimInd, startCollectCorpse).FailOn(() => Find.TickManager.TicksGame > jobStartTick + MaxHuntTicks);
 
@@ -54,7 +55,20 @@ namespace CombatExtended
 			
 			yield return Toils_Jump.JumpIfTargetDespawnedOrNull(VictimInd, startCollectCorpse);
 			
-			yield return Toils_Combat.CastVerb(VictimInd, false).JumpIfDespawnedOrNull(VictimInd, startCollectCorpse).FailOn(() => Find.TickManager.TicksGame > jobStartTick + MaxHuntTicks);;
+			yield return Toils_Combat.CastVerb(VictimInd, false).JumpIfDespawnedOrNull(VictimInd, startCollectCorpse)
+				.FailOn(() => {
+				        if (Find.TickManager.TicksGame <= jobStartTick + MaxHuntTicks)
+				        {
+			                if (comp == null 
+			                    || !comp.useAmmo 
+			                    || (comp.hasMagazine && comp.curMagCount > 0) 
+			                    || comp.hasAmmo)
+			                {
+			                	return false;
+			                }
+				        }
+				        return true;
+				        });
 			
 			yield return Toils_Jump.Jump(moveIfCannotHit);
 			

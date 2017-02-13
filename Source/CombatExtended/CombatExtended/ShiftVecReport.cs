@@ -206,11 +206,11 @@ namespace CombatExtended
             {
                 if (cover != null)
                 {
-                    stringBuilder.AppendLine("   " + "CE_CoverHeight".Translate() + "\t" + GenText.ToStringByStyle(CE_Utility.GetCollisionHeight(cover), ToStringStyle.FloatTwo) + " c");
+                	stringBuilder.AppendLine("   " + "CE_CoverHeight".Translate() + "\t" + CE_Utility.GetCollisionVertical(cover, true) + " c");
                 }
                 if (target.Thing != null)
                 {
-                    stringBuilder.AppendLine("   " + "CE_TargetHeight".Translate() + "\t" + GenText.ToStringByStyle(CE_Utility.GetCollisionHeight(target.Thing), ToStringStyle.FloatTwo) + " c");
+                    stringBuilder.AppendLine("   " + "CE_TargetHeight".Translate() + "\t" + CE_Utility.GetCollisionVertical(target.Thing) + " c");
                     stringBuilder.AppendLine("   " + "CE_TargetWidth".Translate() + "\t" + GenText.ToStringByStyle(CE_Utility.GetCollisionWidth(target.Thing) * 2, ToStringStyle.FloatTwo) + " c");
                 }
             }

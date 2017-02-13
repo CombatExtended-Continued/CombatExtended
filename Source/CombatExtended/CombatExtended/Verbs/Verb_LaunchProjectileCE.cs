@@ -248,46 +248,61 @@ namespace CombatExtended
 	            // ----------------------------------- STEP 3: Recoil, Skewing, Skill checks, Cover calculations
 	
 	            skewVec = new Vector2(0, 0);
-	            skewVec += this.GetSwayVec();
-	            skewVec += this.GetRecoilVec();
+	            skewVec += GetSwayVec();
+	            skewVec += GetRecoilVec();
 	
-	            // Height difference calculations for ShotAngle
-	            float heightDifference = 0;
-	            float targetableHeight = 0;
-	
+			    // Height difference calculations for ShotAngle
+			    float heightDifference = 0;
+	            
+	            var coverVertical = CE_Utility.GetCollisionVertical(report.cover, true);	//Get " " cover, assume it is the edifice
+	            
 	            // Projectiles with flyOverhead target the ground below the target and ignore cover
-	            if (!projectileDef.projectile.flyOverhead)
+	            if (projectileDef.projectile.flyOverhead)
 	            {
-	                targetableHeight = CE_Utility.GetCollisionHeight(this.currentTarget.Thing);
-	                if (report.cover != null)
-	                {
-	                    targetableHeight += CE_Utility.GetCollisionHeight(report.cover);
-	                }
-	                heightDifference += targetableHeight * 0.5f;    //Optimal hit level is halfway
+	            	heightDifference = coverVertical.max;
 	            }
-	
-	            this.shotHeight = CE_Utility.GetCollisionHeight(this.caster);
-	            if (this.CasterPawn != null)
+	            else
 	            {
-	                this.shotHeight *= shotHeightFactor;
+	           		var targetVertical = CE_Utility.GetCollisionVertical(currentTarget.Thing);	//Get lower and upper heights of the target
+	           		if (targetVertical.min < coverVertical.max)	//Some part of the target is hidden behind cover
+	           		{
+	           			//TODO : It is possible for targetVertical.max < coverVertical.max, technically, in which case the shooter will never hit until the cover is gone.
+	           			targetVertical.min = coverVertical.max;
+	           			if (targetVertical.max < coverVertical.max)
+	           			{
+	           				Log.Error("DEBUG/TESTING: Since targetVertical.max < coverVertical.max, the shooter " + caster.ToString() + " will never hit its target " + currentTarget.Thing.ToString() + ". In Verb_LaunchProjectileCE.cs");
+	           			}
+	           		}
+	           		heightDifference = targetVertical.min + (targetVertical.max - targetVertical.min) * 0.5f;
+	            	Log.Message("DEBUG/TESTING: targetVertical: " + targetVertical);
 	            }
+	            
+	            var shooterVertical = CE_Utility.GetCollisionVertical(this.caster);
+	            this.shotHeight = CasterIsPawn
+	            	? shooterVertical.min + (shooterVertical.max - shooterVertical.min) * shotHeightFactor
+	            	: shooterVertical.max;
+	            Log.Message("DEBUG/TESTING: shooterVertical: " + shooterVertical + " // coverVertical: " + coverVertical);
+	            
 	            heightDifference -= this.shotHeight;
+	            Log.Message("DEBUG/TESTING: Pre-height calculation skewVec: " + skewVec);
 	            skewVec += new Vector2(0, GetShotAngle(this.shotSpeed, (newTargetLoc - sourceLoc).magnitude, heightDifference) * (180 / (float)Math.PI));
+	            Log.Message("DEBUG/TESTING: Height calculation skewVec: " + skewVec);
         	}
         	
 	        // ----------------------------------- STEP 4: Mechanical variation
 	        
             // Get shotvariation
             Vector2 spreadVec = report.GetRandSpreadVec() + skewVec;
+	            Log.Message("DEBUG/TESTING: spreadVec: " + spreadVec);
             
             // ----------------------------------- STEP 5: Finalization
 
             // Skewing		-		Applied after the leading calculations to not screw them up
-            float distanceTraveled = GetDistanceTraveled(this.shotSpeed, (float)(spreadVec.y * (Math.PI / 180)), this.shotHeight);
+            this.shotAngle = (float)(spreadVec.y * (Math.PI / 180));
+            
+            float distanceTraveled = GetDistanceTraveled(this.shotSpeed, this.shotAngle, this.shotHeight);
             Vector3 finalTargetLoc = sourceLoc + ((newTargetLoc - sourceLoc).normalized * distanceTraveled);
             finalTargetLoc = sourceLoc + (Quaternion.AngleAxis(spreadVec.x, Vector3.up) * (finalTargetLoc - sourceLoc));
-
-            this.shotAngle = (float)(spreadVec.y * (Math.PI / 180));
 
             return finalTargetLoc;
         }
@@ -384,7 +399,7 @@ namespace CombatExtended
 
             //Raycast accross all segments to check for cover
             List<IntVec3> checkedCells = new List<IntVec3>();
-            Thing thingAtTargetLoc = GridsUtility.GetEdifice(targetLoc.ToIntVec3(), caster.Map);
+            Thing thingAtTargetLoc = targetLoc.ToIntVec3().GetEdifice(caster.Map);
             Thing newCover = null;
             for (int i = 0; i <= numSegments; i++)
             {
@@ -434,8 +449,8 @@ namespace CombatExtended
                 Thing coverTarg;
                 if (this.GetPartialCoverBetween(root.ToVector3Shifted(), targ.Cell.ToVector3Shifted(), out coverTarg))
                 {
-                    float targetHeight = CE_Utility.GetCollisionHeight(targ.Thing);
-                    if (targetHeight <= CE_Utility.GetCollisionHeight(coverTarg))
+                	var targetVertical = CE_Utility.GetCollisionVertical(targ.Thing);
+                    if (targetVertical.max < CE_Utility.GetCollisionVertical(coverTarg, true).max)
                     {
                         return false;
                     }
@@ -444,12 +459,11 @@ namespace CombatExtended
                 Thing coverShoot;
                 if (this.GetPartialCoverBetween(targ.Cell.ToVector3Shifted(), root.ToVector3Shifted(), out coverShoot))
                 {
-                    float shotHeight = CE_Utility.GetCollisionHeight(this.caster);
-                    if (this.CasterPawn != null)
-                    {
-                        shotHeight *= shotHeightFactor;
-                    }
-                    if (shotHeight <= CE_Utility.GetCollisionHeight(coverShoot))
+                	var shooterVertical = CE_Utility.GetCollisionVertical(this.caster);
+                	var shooterHeight = CasterIsPawn
+		            	? shooterVertical.min + (shooterVertical.max - shooterVertical.min) * shotHeightFactor
+		            	: shooterVertical.max;
+                    if (shooterHeight < CE_Utility.GetCollisionVertical(coverShoot, true).max)
                     {
                         return false;
                     }

@@ -119,10 +119,7 @@ namespace CombatExtended
         public const float collisionWidthFactor = 0.5f;
         public const float collisionWidthFactorHumanoid = 0.25f;
         public static readonly String[] humanoidBodyList = { "Human", "Scyther", "Orassan", "Ogre", "HumanoidTerminator" };
-        /// <summary>
-        /// Returns the collision height of a Thing
-        /// </summary>
-        public static float GetCollisionHeight(Thing thing)
+        /*public static float GetCollisionHeight(Thing thing)
         {
             if (thing == null)
             {
@@ -140,6 +137,43 @@ namespace CombatExtended
                 return collisionHeight * collisionHeightFactor;
             }
             return thing.def.fillPercent * collisionHeightFactor;
+        }*/
+        /// <summary>
+        /// Returns the vertical collision box of a Thing
+        /// </summary>
+        /// <param name="isEdifice">False by default. Set to true if thing is the edifice at the location thing.Position.</param>
+        public static FloatRange GetCollisionVertical(Thing thing, bool isEdifice = false)
+        {
+            if (thing == null)
+            {
+            	return new FloatRange(0f, 0f);
+            }
+            if (isEdifice)
+            {
+            	return new FloatRange(0f, thing.def.fillPercent * collisionHeightFactor);
+            }
+            float collisionHeight = 0f;
+            var pawn = thing as Pawn;
+            if (pawn != null)
+            {
+                collisionHeight = pawn.BodySize;
+                if (!humanoidBodyList.Contains(pawn.def.race.body.defName)) collisionHeight *= 0.5f;
+                if (pawn.GetPosture() != PawnPosture.Standing)
+                {
+                    collisionHeight = pawn.BodySize > 1 ? pawn.BodySize - 0.8f : 0.2f * pawn.BodySize;
+                }
+            }
+            else
+            {
+            	collisionHeight = thing.def.fillPercent;
+            }
+        	var edificeHeight = 0f;
+        	var edifice = thing.Position.GetEdifice(thing.Map);
+        	if (edifice != null && edifice.GetHashCode() != thing.GetHashCode())
+        	{
+        		edificeHeight = GetCollisionVertical(edifice, true).max;
+        	}
+            return new FloatRange(edificeHeight, edificeHeight + collisionHeight * collisionHeightFactor);
         }
 
         /// <summary>
