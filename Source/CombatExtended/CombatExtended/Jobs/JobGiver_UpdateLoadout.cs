@@ -66,6 +66,7 @@ namespace CombatExtended
                         {
                             if (pawn.equipment.Primary.def == curSlot.Def) numCarried++;
                         }
+                        System.Predicate<Thing> isFoodInPrison = (Thing t) => t.GetRoom().isPrisonCell && t.def.IsNutritionGivingIngestible && pawn.Faction.IsPlayer;
                         if (numCarried < curSlot.Count)
                         {
                             curThing = GenClosest.ClosestThingReachable(
@@ -75,7 +76,7 @@ namespace CombatExtended
                                 PathEndMode.ClosestTouch,
                                 TraverseParms.For(pawn, Danger.None, TraverseMode.ByPawn),
                                 proximitySearchRadius,
-                                x => !x.IsForbidden(pawn) && pawn.CanReserve(x));
+                                x => !x.IsForbidden(pawn) && pawn.CanReserve(x) && !isFoodInPrison(x));
                             if (curThing != null) curPriority = ItemPriority.Proximity;
                             else
                             {
@@ -86,7 +87,7 @@ namespace CombatExtended
                                     PathEndMode.ClosestTouch,
                                     TraverseParms.For(pawn, Danger.None, TraverseMode.ByPawn),
                                     maximumSearchRadius,
-                                    x => !x.IsForbidden(pawn) && pawn.CanReserve(x));
+                                    x => !x.IsForbidden(pawn) && pawn.CanReserve(x) && !isFoodInPrison(x));
                                 if (curThing != null)
                                 {
                                     if (!curSlot.Def.IsNutritionGivingIngestible && numCarried / curSlot.Count <= 0.5f) curPriority = ItemPriority.LowStock;
