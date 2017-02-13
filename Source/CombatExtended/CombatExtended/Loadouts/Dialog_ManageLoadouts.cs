@@ -305,12 +305,12 @@ namespace CombatExtended
             switch (source)
             {
                 case SourceSelection.Ranged:
-                    _source = _source.Where(td => td.IsRangedWeapon).ToList();
+                    _source = _source.Where(td => td.IsRangedWeapon && !td.menuHidden).ToList();
                     _sourceType = SourceSelection.Ranged;
                     break;
 
                 case SourceSelection.Melee:
-                    _source = _source.Where(td => td.IsMeleeWeapon).ToList();
+                    _source = _source.Where(td => td.IsMeleeWeapon && !td.menuHidden).ToList();
                     _sourceType = SourceSelection.Melee;
                     break;
 
