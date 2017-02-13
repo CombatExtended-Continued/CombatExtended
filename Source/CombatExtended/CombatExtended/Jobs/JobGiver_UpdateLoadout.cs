@@ -72,22 +72,22 @@ namespace CombatExtended
                             curThing = GenClosest.ClosestThingReachable(
                                 pawn.Position,
                                 pawn.Map,
-                                ThingRequest.ForDef(curSlot.Def),
+                                curSlot.Def.Minifiable ? ThingRequest.ForGroup(ThingRequestGroup.MinifiedThing) : ThingRequest.ForDef(curSlot.Def),
                                 PathEndMode.ClosestTouch,
                                 TraverseParms.For(pawn, Danger.None, TraverseMode.ByPawn),
                                 proximitySearchRadius,
-                                x => !x.IsForbidden(pawn) && pawn.CanReserve(x) && !isFoodInPrison(x));
+                                x => x.GetInnerIfMinified().def == curSlot.Def && !x.IsForbidden(pawn) && pawn.CanReserve(x) && !isFoodInPrison(x));
                             if (curThing != null) curPriority = ItemPriority.Proximity;
                             else
                             {
                                 curThing = GenClosest.ClosestThingReachable(
                                     pawn.Position, 
                                     pawn.Map,
-                                    ThingRequest.ForDef(curSlot.Def),
+                                    curSlot.Def.Minifiable ? ThingRequest.ForGroup(ThingRequestGroup.MinifiedThing) : ThingRequest.ForDef(curSlot.Def),
                                     PathEndMode.ClosestTouch,
                                     TraverseParms.For(pawn, Danger.None, TraverseMode.ByPawn),
                                     maximumSearchRadius,
-                                    x => !x.IsForbidden(pawn) && pawn.CanReserve(x) && !isFoodInPrison(x));
+                                    x => x.GetInnerIfMinified().def == curSlot.Def && !x.IsForbidden(pawn) && pawn.CanReserve(x) && !isFoodInPrison(x));
                                 if (curThing != null)
                                 {
                                     if (!curSlot.Def.IsNutritionGivingIngestible && numCarried / curSlot.Count <= 0.5f) curPriority = ItemPriority.LowStock;
@@ -127,7 +127,7 @@ namespace CombatExtended
             }
             // Check to see if there is at least one loadout slot specifying currently equipped weapon
             ThingWithComps equipment = ((pawn.equipment == null) ? null : pawn.equipment.Primary) ?? null;
-            if (equipment != null && !loadout.Slots.Any(slot => slot.Def == equipment.def && slot.Count >= 1))
+            if (equipment != null && !loadout.Slots.Any(slot => slot.Def == equipment.GetInnerIfMinified().def && slot.Count >= 1))
             {
                 return true;
             }
@@ -187,7 +187,7 @@ namespace CombatExtended
                     // Drop excess items
                     if(numContained > slot.Count)
                     {
-                        Thing thing = inventory.container.FirstOrDefault(x => x.def == slot.Def);
+                    	Thing thing = inventory.container.FirstOrDefault(x => x.GetInnerIfMinified().def == slot.Def);
                         if (thing != null)
                         {
                             Thing droppedThing;
@@ -217,7 +217,7 @@ namespace CombatExtended
                 bool allowDropRaw = Find.TickManager.TicksGame > pawn.mindState?.lastInventoryRawFoodUseTick + ticksBeforeDropRaw;
                 Thing thingToRemove = inventory.container.FirstOrDefault(t => 
                     (allowDropRaw || !t.def.IsNutritionGivingIngestible || t.def.ingestible.preferability > FoodPreferability.RawTasty)
-                    && !loadout.Slots.Any(s => s.Def == t.def));
+                    && !loadout.Slots.Any(s => s.Def == t.GetInnerIfMinified().def));
                 if (thingToRemove != null)
                 {
                     Thing droppedThing;

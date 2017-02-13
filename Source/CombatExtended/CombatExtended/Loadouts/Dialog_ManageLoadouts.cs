@@ -14,6 +14,7 @@ namespace CombatExtended
         Ranged,
         Melee,
         Ammo,
+        Minified,
         All
     }
 
@@ -33,6 +34,7 @@ namespace CombatExtended
             _iconAmmo = ContentFinder<Texture2D>.Get("UI/Icons/ammo"),
             _iconRanged = ContentFinder<Texture2D>.Get("UI/Icons/ranged"),
             _iconMelee = ContentFinder<Texture2D>.Get("UI/Icons/melee"),
+            _iconMinified = ContentFinder<Texture2D>.Get("UI/Icons/minified"),
             _iconAll = ContentFinder<Texture2D>.Get("UI/Icons/all"),
             _iconAmmoAdd = ContentFinder<Texture2D>.Get("UI/Icons/ammoAdd"),
             _iconSearch = ContentFinder<Texture2D>.Get("UI/Icons/search"),
@@ -266,6 +268,13 @@ namespace CombatExtended
                 SetSource(SourceSelection.Ammo);
             TooltipHandler.TipRegion(button, "CE_SourceAmmoTip".Translate());
             button.x += 24f + _margin;
+            
+            // Minified
+            GUI.color = _sourceType == SourceSelection.Ammo ? GenUI.MouseoverColor : Color.white;
+            if (Widgets.ButtonImage(button, _iconMinified))
+            	SetSource(SourceSelection.Minified);
+            TooltipHandler.TipRegion(button, "CE_SourceMinifiedTip".Translate());
+            button.x += 24f + _margin;
 
             // All
             GUI.color = _sourceType == SourceSelection.All ? GenUI.MouseoverColor : Color.white;
@@ -317,6 +326,11 @@ namespace CombatExtended
                 case SourceSelection.Ammo:
                     _source = _source.Where(td => td is AmmoDef).ToList();
                     _sourceType = SourceSelection.Ammo;
+                    break;
+                
+                case SourceSelection.Minified:
+                    _source = _source.Where(td => td.Minifiable).ToList();
+                    _sourceType = SourceSelection.Minified;
                     break;
 
                 case SourceSelection.All:
@@ -551,7 +565,7 @@ namespace CombatExtended
             {
                 // gray out weapons not in stock
                 Color baseColor = GUI.color;
-                if (Find.VisibleMap.listerThings.AllThings.FindAll(x => x.def == _source[i]).Count <= 0)
+                if (Find.VisibleMap.listerThings.AllThings.FindAll(x => x.GetInnerIfMinified().def == _source[i] && !x.def.Minifiable).Count <= 0)
                     GUI.color = Color.gray;
 
                 Rect row = new Rect(0f, i * _rowHeight, canvas.width, _rowHeight);
