@@ -201,14 +201,11 @@ namespace CombatExtended
         }
 
         /// <summary>
-        /// Checks to see if fire mode is set to hold fire before doing the base check
+        /// Checks to see if enemy is blind before shooting
         /// </summary>
         public override bool CanHitTargetFrom(IntVec3 root, LocalTargetInfo targ)
         {
             if (CasterIsPawn && !CasterPawn.health.capacities.CapableOf(PawnCapacityDefOf.Sight)) return false;
-            if (this.compFireModes != null && this.compFireModes.currentAimMode == AimMode.HoldFire
-                && (!CasterIsPawn || CasterPawn.CurJob == null || CasterPawn.CurJob.def != JobDefOf.Hunt))
-                return false;
             return base.CanHitTargetFrom(root, targ);
         }
 

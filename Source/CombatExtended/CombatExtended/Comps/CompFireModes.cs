@@ -54,7 +54,7 @@ namespace CombatExtended
             }
         }
         private List<FireMode> availableFireModes = new List<FireMode>();
-        private List<AimMode> availableAimModes = new List<AimMode> { AimMode.Snapshot, AimMode.AimedShot, AimMode.HoldFire };
+        private List<AimMode> availableAimModes = new List<AimMode> { AimMode.Snapshot, AimMode.AimedShot };
 
         private FireMode currentFireModeInt;
         public FireMode currentFireMode
