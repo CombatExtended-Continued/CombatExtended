@@ -535,12 +535,13 @@ namespace CombatExtended.Detours
                         }
                         else
                         {
+                            // Pick up one
                             pickUpOption = new FloatMenuOption("CE_PickUp".Translate() + " " + item.LabelShort,
                                 new Action(delegate
                                 {
                                     item.SetForbidden(false, false);
                                     Job job = new Job(JobDefOf.TakeInventory, item);
-                                    job.count = count;
+                                    job.count = 1;
                                     job.playerForced = true;
                                     pawn.jobs.TryTakeOrderedJob(job);
                                 }));
@@ -548,8 +549,24 @@ namespace CombatExtended.Detours
                         opts.Add(pickUpOption);
                         if (count > 1 && item.stackCount > 1)
                         {
-                            int numToCarry = Math.Min(count, item.stackCount);
-                            FloatMenuOption pickUpStackOption = new FloatMenuOption("CE_PickUp".Translate() + " " + item.LabelShort + " x" + numToCarry.ToString(),
+                            // Pick up half
+                            int countHalf = count / 2;
+                            if (count > 3)
+                            {
+                                FloatMenuOption pickUpHalfStackOption = new FloatMenuOption("CE_PickUpHalf".Translate() + " " + item.LabelShort + " x" + countHalf.ToString(),
+                                   new Action(delegate
+                                   {
+                                       item.SetForbidden(false, false);
+                                       Job job = new Job(JobDefOf.TakeInventory, item);
+                                       job.count = countHalf;
+                                       job.playerForced = true;
+                                       pawn.jobs.TryTakeOrderedJob(job);
+                                   }));
+                                opts.Add(pickUpHalfStackOption);
+                            }
+
+                            // Pick up all
+                            FloatMenuOption pickUpStackOption = new FloatMenuOption("CE_PickUp".Translate() + " " + item.LabelShort + " x" + count.ToString(),
                                 new Action(delegate
                                 {
                                     item.SetForbidden(false, false);
@@ -559,17 +576,6 @@ namespace CombatExtended.Detours
                                     pawn.jobs.TryTakeOrderedJob(job);
                                 }));
                             opts.Add(pickUpStackOption);
-
-                            FloatMenuOption pickUpHalfStackOption = new FloatMenuOption("CE_PickUpHalf".Translate() + " " + item.LabelShort + " x" + (numToCarry / 2).ToString(),
-                               new Action(delegate
-                               {
-                                   item.SetForbidden(false, false);
-                                   Job job = new Job(JobDefOf.TakeInventory, item);
-                                   job.count = numToCarry / 2;
-                                   job.playerForced = true;
-                                   pawn.jobs.TryTakeOrderedJob(job);
-                               }));
-                            opts.Add(pickUpHalfStackOption);
                         }
                     }
                 }
