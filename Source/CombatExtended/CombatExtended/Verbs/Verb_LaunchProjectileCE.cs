@@ -268,10 +268,6 @@ namespace CombatExtended
 	           		{
 	           			//TODO : It is possible for targetVertical.max < coverVertical.max, technically, in which case the shooter will never hit until the cover is gone.
 	           			targetVertical.min = coverVertical.max;
-	           			if (targetVertical.max < coverVertical.max)
-	           			{
-	           				Log.Error("DEBUG/TESTING: Since targetVertical.max < coverVertical.max, the shooter " + caster.ToString() + " will never hit its target " + currentTarget.Thing.ToString() + ". In Verb_LaunchProjectileCE.cs");
-	           			}
 	           		}
 	           		heightDifference = targetVertical.min + (targetVertical.max - targetVertical.min) * 0.5f;
 	            }

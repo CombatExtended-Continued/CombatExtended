@@ -118,6 +118,8 @@ namespace CombatExtended
         public const float collisionHeightFactor = 1.0f;
         public const float collisionWidthFactor = 0.5f;
         public const float collisionWidthFactorHumanoid = 0.25f;
+        public const float bodyRegionBottomHeight = 0.5f;
+        public const float bodyRegionMiddleHeight = 0.75f;
         public static readonly String[] humanoidBodyList = { "Human", "Scyther", "Orassan", "Ogre", "HumanoidTerminator" };
         /*public static float GetCollisionHeight(Thing thing)
         {
@@ -192,6 +194,25 @@ namespace CombatExtended
             return pawn.BodySize * (humanoidBodyList.Contains(pawn.RaceProps.body.defName) ? collisionWidthFactorHumanoid : collisionWidthFactor);
         }
 
+        /// <summary>
+        /// Calculates the BodyPartHeight based on how high a projectile was at time of collision with a pawn.
+        /// </summary>
+        /// <param name="thing">The Thing to check impact height on. Returns Undefined for non-pawns.</param>
+        /// <param name="projectileHeight">The height of the projectile at time of impact.</param>
+        /// <returns></returns>
+        public static BodyPartHeight GetCollisionBodyHeight(Thing thing, float projectileHeight)
+        {
+            Pawn pawn = thing as Pawn;
+            if (pawn != null)
+            {
+                FloatRange pawnHeight = GetCollisionVertical(thing);
+                if (projectileHeight < pawnHeight.max * bodyRegionBottomHeight) return BodyPartHeight.Bottom;
+                else if (projectileHeight < pawnHeight.max * bodyRegionMiddleHeight) return BodyPartHeight.Middle;
+                return BodyPartHeight.Top;
+            }
+            return BodyPartHeight.Undefined;
+        }
+
         #endregion Physics
 
         #region Armor
@@ -201,15 +222,15 @@ namespace CombatExtended
         /// <summary>
         /// Calculates deflection chance and damage through armor
         /// </summary>
-        public static int GetAfterArmorDamage(Pawn pawn, int damAmountInt, BodyPartRecord part, DamageInfo dinfo, bool damageArmor, ref bool deflected)
+        public static int GetAfterArmorDamage(Pawn pawn, int dmgAmountInt, BodyPartRecord part, DamageInfo dinfo, bool damageArmor, ref bool deflected)
         {
-            DamageDef damageDef = dinfo.Def;
-            if (damageDef.armorCategory == DamageArmorCategory.IgnoreArmor)
+            DamageDef dmgDef = dinfo.Def;
+            if (dmgDef.armorCategory == DamageArmorCategory.IgnoreArmor)
             {
-                return damAmountInt;
+                return dmgAmountInt;
             }
-            float damageAmount = (float)damAmountInt;
-            StatDef deflectionStat = damageDef.armorCategory.DeflectionStat();
+            float dmgAmount = dmgAmountInt;
+            StatDef deflectionStat = dmgDef.armorCategory.DeflectionStat();
             float pierceAmount = GetPenetrationValue(dinfo);
             
             // Run armor calculations on all apparel
@@ -222,17 +243,17 @@ namespace CombatExtended
                     {
                         Thing armorThing = damageArmor ? wornApparel[i] : null;
                         //Check for deflection
-                        if (ApplyArmor(ref damageAmount, ref pierceAmount, wornApparel[i].GetStatValue(deflectionStat, true), armorThing, damageDef))
+                        if (ApplyArmor(ref dmgAmount, ref pierceAmount, wornApparel[i].GetStatValue(deflectionStat, true), armorThing, dmgDef))
                         {
                             deflected = true;
-                            if (damageDef != absorbDamageDef)
+                            if (dmgDef != absorbDamageDef)
                             {
-                                damageDef = absorbDamageDef;
-                                deflectionStat = damageDef.armorCategory.DeflectionStat();
+                                dmgDef = absorbDamageDef;
+                                deflectionStat = dmgDef.armorCategory.DeflectionStat();
                                 i++;
                             }
                         }
-                        if (damageAmount < 0.001)
+                        if (dmgAmount < 0.001)
                         {
                             return 0;
                         }
@@ -253,19 +274,19 @@ namespace CombatExtended
                 pawnArmorAmount = pawn.GetStatValue(deflectionStat);
             }
 
-            if (pawnArmorAmount > 0 && ApplyArmor(ref damageAmount, ref pierceAmount, pawnArmorAmount, null, damageDef))
+            if (pawnArmorAmount > 0 && ApplyArmor(ref dmgAmount, ref pierceAmount, pawnArmorAmount, null, dmgDef))
             {
 
                 deflected = true;
-                if (damageAmount < 0.001)
+                if (dmgAmount < 0.001)
                 {
                     return 0;
                 }
-                damageDef = absorbDamageDef;
-                deflectionStat = damageDef.armorCategory.DeflectionStat();
-                ApplyArmor(ref damageAmount, ref pierceAmount, pawn.GetStatValue(deflectionStat, true), pawn, damageDef);
+                dmgDef = absorbDamageDef;
+                deflectionStat = dmgDef.armorCategory.DeflectionStat();
+                ApplyArmor(ref dmgAmount, ref pierceAmount, pawn.GetStatValue(deflectionStat, true), pawn, dmgDef);
             }
-            return Mathf.RoundToInt(damageAmount);
+            return Mathf.RoundToInt(dmgAmount);
         }
 
         private static float GetPenetrationValue(DamageInfo dinfo)

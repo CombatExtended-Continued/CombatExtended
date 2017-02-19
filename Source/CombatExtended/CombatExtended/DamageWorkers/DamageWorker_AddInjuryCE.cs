@@ -179,7 +179,7 @@ namespace CombatExtended
             }
 		}
 
-		private void ApplyDamagePartial(DamageInfo dinfo, Pawn pawn, ref LocalInjuryResult result)
+		private void ApplyDamagePartial(DamageInfo dinfo, Pawn pawn, ref LocalInjuryResult result, bool shotDeflected = false)
 		{
 			BodyPartRecord exactPartFromDamageInfo = GetExactPartFromDamageInfo(dinfo, pawn);
 			if (exactPartFromDamageInfo == null)
@@ -189,13 +189,13 @@ namespace CombatExtended
 
             // Only apply armor if we propagate damage to the outside or the body part itself is outside, secondary damage types should directly damage organs, bypassing armor
             bool involveArmor = !dinfo.InstantOldInjury 
-                && !result.deflected
+                && !shotDeflected
                 && (dinfo.Def.harmAllLayersUntilOutside || exactPartFromDamageInfo.depth == BodyPartDepth.Outside);
 			int damageAmount = dinfo.Amount;
 
 			if (involveArmor)
             {
-                damageAmount = CE_Utility.GetAfterArmorDamage(pawn, dinfo.Amount, exactPartFromDamageInfo, dinfo, true, ref result.deflected);
+                damageAmount = CE_Utility.GetAfterArmorDamage(pawn, dinfo.Amount, exactPartFromDamageInfo, dinfo, true, ref shotDeflected);
             }
 			if ((double)damageAmount < 0.001)
 			{
@@ -207,7 +207,7 @@ namespace CombatExtended
             DamageDef_CE damageDefCE = dinfo.Def as DamageDef_CE;
             if (damageDefCE != null 
                 && damageDefCE.deflectable 
-                && result.deflected
+                && shotDeflected
                 && dinfo.Def != CE_Utility.absorbDamageDef)
             {
                 // Get outer parent of struck part
@@ -217,7 +217,7 @@ namespace CombatExtended
                     currentPart = currentPart.parent;
                 }
                 DamageInfo dinfo2 = new DamageInfo(CE_Utility.absorbDamageDef, damageAmount, dinfo.Angle, dinfo.Instigator, currentPart, dinfo.WeaponGear);
-                ApplyDamagePartial(dinfo2, pawn, ref result);
+                ApplyDamagePartial(dinfo2, pawn, ref result, true);
                 return;
             }
 
