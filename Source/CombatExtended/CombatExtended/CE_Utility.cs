@@ -118,8 +118,8 @@ namespace CombatExtended
         public const float collisionHeightFactor = 1.0f;
         public const float collisionWidthFactor = 0.5f;
         public const float collisionWidthFactorHumanoid = 0.25f;
-        public const float bodyRegionBottomHeight = 0.5f;
-        public const float bodyRegionMiddleHeight = 0.75f;
+        public const float bodyRegionBottomHeight = 0.45f;
+        public const float bodyRegionMiddleHeight = 0.85f;
         public static readonly String[] humanoidBodyList = { "Human", "Scyther", "Orassan", "Ogre", "HumanoidTerminator" };
         /*public static float GetCollisionHeight(Thing thing)
         {

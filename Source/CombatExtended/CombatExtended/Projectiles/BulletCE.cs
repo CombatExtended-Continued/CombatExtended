@@ -31,8 +31,9 @@ namespace CombatExtended
                     null,
                     def);
 
-                if (damDefCE != null && damDefCE.harmOnlyOutsideLayers) dinfo.SetBodyRegion(CE_Utility.GetCollisionBodyHeight(hitThing, GetProjectileHeight()), BodyPartDepth.Outside);
-                else dinfo.SetBodyRegion(CE_Utility.GetCollisionBodyHeight(hitThing, GetProjectileHeight()), BodyPartDepth.Undefined);
+                // Set impact height
+                BodyPartDepth depth = damDefCE != null && damDefCE.harmOnlyOutsideLayers ? BodyPartDepth.Outside : BodyPartDepth.Undefined;
+                dinfo.SetBodyRegion(CE_Utility.GetCollisionBodyHeight(hitThing, GetProjectileHeight()), depth);
 
                 ProjectilePropertiesCE propsCE = def.projectile as ProjectilePropertiesCE;
                 if (propsCE != null && !propsCE.secondaryDamage.NullOrEmpty())
