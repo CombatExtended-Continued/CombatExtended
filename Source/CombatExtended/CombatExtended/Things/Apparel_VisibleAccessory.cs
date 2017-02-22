@@ -14,17 +14,23 @@ namespace CombatExtended
         {
             if (wearer == null || !wearer.Spawned) return;
             Vector3 drawVec = wearer.Drawer.DrawPos;
-
-            // Check if wearer is in a bed
+            
+            // Early exit if the pawn is in a bed that doesn't show their body...
             Building_Bed bed = wearer.CurrentBed();
-            if (bed != null)
+            if (bed != null && !bed.def.building.bed_showSleeperBody) return;
+            
+            /* //additional refactoring required to allow for this to work on head apparel...  Need a head based apparel for testing purposes first.
+            List<BodyPartGroupDef> parts = def.apparel.bodyPartGroups;
+            bool apparelHead = parts.Contains(BodyPartGroupDefOf.FullHead) || parts.Contains(BodyPartGroupDefOf.UpperHead) || parts.Contains(BodyPartGroupDefOf.Eyes);
+            if (bed != null && !bed.def.building.bed_showSleeperBody && !apparelHead) return;
+            */
+            
+            // Get wearer's base altitude, intentionally skip figuring this out if pawn is in a bed.
+            if (wearer.GetPosture() != PawnPosture.Standing && !wearer.Dead && wearer.CarriedBy == null)
             {
-                if (!bed.def.building.bed_showSleeperBody) return;
-                drawVec.y = Altitudes.AltitudeFor(bed.def.altitudeLayer);
-            }
-            else
-            {
-                drawVec.y = Altitudes.AltitudeFor(AltitudeLayer.Pawn);
+           		drawVec.y = Altitudes.AltitudeFor(AltitudeLayer.LayingPawn) + 0.005f;
+            } else if (bed == null) {
+            	drawVec.y = Altitudes.AltitudeFor(AltitudeLayer.Pawn);
             }
             Vector3 s = new Vector3(1.5f, 1.5f, 1.5f);
             
@@ -44,6 +50,11 @@ namespace CombatExtended
                     Rot4 bedRotation = bed.Rotation;
                     bedRotation.AsInt += 2;
                     angle = bedRotation.AsAngle;
+                    // Now that we have bed information we can calculate pawn altitude AND position for while they are in bed.
+                    AltitudeLayer altitude = (AltitudeLayer)((byte)Mathf.Max((int)bed.def.altitudeLayer, 14));
+                    drawVec = wearer.Position.ToVector3ShiftedWithAltitude(altitude);
+                    drawVec.y += 0.005f;
+                    drawVec += bedRotation.FacingCell.ToVector3() * (-wearer.Drawer.renderer.BaseHeadOffsetAt(Rot4.South).z);
                 }
                 else if (wearer.Downed || wearer.Dead)
                 {
