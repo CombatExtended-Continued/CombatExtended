@@ -57,6 +57,32 @@
 	<linkedProjectile>Bullet_32ACP_FMJ</linkedProjectile>
 	<ammoClass>FullMetalJacket</ammoClass>
   </ThingDef>
+  
+  <!-- ==================== FN5.7x28mm ========================== -->
+
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="AmmoBase">
+		<defName>Ammo_FN57x28mm</defName>
+		<label>FN 5.7x28mm cartridge</label>
+		<description>The FN 5.7×28mm is a small-caliber, high-velocity cartridge designed and manufactured by FN Herstal in Belgium. The 5.7×28mm was developed in conjunction with the FN P90 personal defense weapon (PDW) and FN Five-seven pistol.</description>
+		<tradeTags>
+			<li>CE_AutoEnableTrade</li>
+			<li>CE_AutoEnableCrafting</li>
+		</tradeTags>
+		<thingCategories>
+			<li>AmmoFN57x28mm</li>
+		</thingCategories>
+		<graphicData>
+			<texPath>Things/Ammo/Pistol/FMJ</texPath>
+			<graphicClass>Graphic_StackCount</graphicClass>
+		</graphicData>
+		<statBases>
+			<MarketValue>0.07</MarketValue>
+			<Mass>0.012</Mass>
+			<Bulk>0.01</Bulk>
+		</statBases>
+		<linkedProjectile>Bullet_FN57x28mm</linkedProjectile>
+		<ammoClass>FullMetalJacket</ammoClass>
+	</ThingDef>
 
   <!--<ThingDef Class="CombatExtended.AmmoDef" ParentName="32ACPBase">
     <defName>Ammo_32ACP_AP</defName>
@@ -321,5 +347,82 @@
 	<linkedProjectile>Bullet_45Colt_HP</linkedProjectile>
 	<ammoClass>HollowPoint</ammoClass>
   </ThingDef>
+  
+  <!-- ==================== .50AE ========================== -->
+
+	<ThingDef Class="CombatExtended.AmmoDef" Name="50AEBase" ParentName="AmmoBase" Abstract="True">
+		<description>The .50 Action Express (AE, 12.7×33mm) is a large caliber handgun cartridge. It was developed in 1988 by Evan Whildin of Action Arms. The .50 AE is one of the most powerful pistol cartridges in production.</description>
+		<statBases>
+			<Mass>0.03</Mass>
+			<Bulk>0.03</Bulk>
+		</statBases>
+		<tradeTags>
+			<li>CE_AutoEnableTrade</li>
+			<li>CE_AutoEnableCrafting</li>
+		</tradeTags>
+		<thingCategories>
+			<li>Ammo50AE</li>
+		</thingCategories>
+	</ThingDef>
+
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="50AEBase">
+		<defName>Ammo_50AE_FMJ</defName>
+		<label>.50 AE cartridge (FMJ)</label>
+		<graphicData>
+			<texPath>Things/Ammo/Pistol/FMJ</texPath>
+			<graphicClass>Graphic_StackCount</graphicClass>
+		</graphicData>
+		<statBases>
+			<MarketValue>0.13</MarketValue>
+		</statBases>
+		<linkedProjectile>Bullet_50AE_FMJ</linkedProjectile>
+		<ammoClass>FullMetalJacket</ammoClass>
+	</ThingDef>-->
+
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="50AEBase">
+		<defName>Ammo_50AE_HP</defName>
+		<label>.50 AE cartridge (HP)</label>
+		<graphicData>
+			<texPath>Things/Ammo/Pistol/HP</texPath>
+			<graphicClass>Graphic_StackCount</graphicClass>
+		</graphicData>
+		<statBases>
+			<MarketValue>0.12</MarketValue>
+		</statBases>
+		<linkedProjectile>Bullet_50AE_HP</linkedProjectile>
+		<ammoClass>HollowPoint</ammoClass>
+	</ThingDef>-->
+
+
+
+	<!-- ==================== .500 SW Magnum ========================== -->
+
+	<ThingDef Class="CombatExtended.AmmoDef" Name="500SWMagnumBase" ParentName="AmmoBase" Abstract="True">
+		<description>The .500 Smith Wessen Magnum (12.7×41mmSR) is a fifty-caliber semi-rimmed handgun cartridge developed by Cor-Bon in partnership with the Smith Wesson. Its primary design purpose was as a hunting handgun cartridge capable of taking all North American game species.</description>
+		<statBases>
+			<Mass>0.04</Mass>
+			<Bulk>0.04</Bulk>
+		</statBases>
+		<tradeTags>
+			<li>CE_AutoEnableTrade</li>
+			<li>CE_AutoEnableCrafting</li>
+		</tradeTags>
+		<thingCategories>
+			<li>Ammo500SWMagnum</li>
+		</thingCategories>
+	</ThingDef>
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="500SWMagnumBase">
+		<defName>Ammo_500SWMagnum_HP</defName>
+		<label>.500 Smith Wessen Magnum cartridge (HP)</label>
+		<graphicData>
+			<texPath>Things/Ammo/Pistol/HP</texPath>
+			<graphicClass>Graphic_StackCount</graphicClass>
+		</graphicData>
+		<statBases>
+			<MarketValue>0.16</MarketValue>
+		</statBases>
+		<linkedProjectile>Bullet_500SWMagnum_HP</linkedProjectile>
+		<ammoClass>HollowPoint</ammoClass>
+	</ThingDef>
   
 </Defs>
