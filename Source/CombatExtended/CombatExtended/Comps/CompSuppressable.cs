@@ -10,6 +10,8 @@ namespace CombatExtended
 {
     public class CompSuppressable : ThingComp
     {
+        #region Variables
+
         public CompProperties_Suppressable Props
         {
             get
@@ -123,6 +125,9 @@ namespace CombatExtended
             }
         }
 
+        #endregion
+
+        #region Methods
         // --------------- Public functions ---------------
         public override void PostExposeData()
         {
@@ -238,5 +243,6 @@ namespace CombatExtended
                 //standard    MoteMaker.ThrowText(parent.Position.ToVector3Shifted(), "CE_SuppressedMote".Translate());
             }*/
         }
+        #endregion
     }
 }

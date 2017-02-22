@@ -31,12 +31,13 @@ namespace CombatExtended
                     null,
                     def);
 
-              //  if (damDefCE != null && damDefCE.harmOnlyOutsideLayers) dinfo.ForceHitPart.depth = BodyPartDepth.Outside;
+                // Set impact height
+                BodyPartDepth depth = damDefCE != null && damDefCE.harmOnlyOutsideLayers ? BodyPartDepth.Outside : BodyPartDepth.Undefined;
+                dinfo.SetBodyRegion(CE_Utility.GetCollisionBodyHeight(hitThing, GetProjectileHeight()), depth);
 
                 ProjectilePropertiesCE propsCE = def.projectile as ProjectilePropertiesCE;
                 if (propsCE != null && !propsCE.secondaryDamage.NullOrEmpty())
                 {
-                   // Log.Message("propsCE: " + propsCE.ToString());
                     // Get the correct body part
                     Pawn pawn = hitThing as Pawn;
                     if (pawn != null && def.projectile.damageDef.workerClass == typeof(DamageWorker_AddInjuryCE))

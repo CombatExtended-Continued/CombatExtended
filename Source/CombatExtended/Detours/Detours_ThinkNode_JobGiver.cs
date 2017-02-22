@@ -27,31 +27,31 @@ namespace CombatExtended
                 {
                     if (job.def == JobDefOf.CutPlant || job.def == JobDefOf.Harvest)
                     {
-                        RightTools.EquipRigthTool(pawn, StatDefOf.PlantWorkSpeed);
+                        RightTools.EquipRightTool(pawn, StatDefOf.PlantWorkSpeed);
                     }
                     else
                     {
                         if (job.def == JobDefOf.Mine)
                         {
-                            RightTools.EquipRigthTool(pawn, StatDefOf.MiningSpeed);
+                            RightTools.EquipRightTool(pawn, StatDefOf.MiningSpeed);
                         }
                         else
                         {
                             if (job.def == JobDefOf.FinishFrame || job.def == JobDefOf.Deconstruct)
                             {
-                                RightTools.EquipRigthTool(pawn, StatDefOf.ConstructionSpeed);
+                                RightTools.EquipRightTool(pawn, StatDefOf.ConstructionSpeed);
                             }
                             else
                             {
                                 if (job.def == JobDefOf.DoBill && job.bill.recipe.workSkill == SkillDefOf.Cooking)
                                 {
-                                    RightTools.EquipRigthTool(pawn, StatDef.Named("CookSpeed"));
+                                    RightTools.EquipRightTool(pawn, StatDef.Named("CookSpeed"));
                                 }
                                 else
                                 {
                                     if (job.def == JobDefOf.TendPatient)
                                     {
-                                        RightTools.EquipRigthTool(pawn, StatDef.Named("HealingQuality"));
+                                        RightTools.EquipRightTool(pawn, StatDef.Named("HealingQuality"));
                                     }
                                 }
                             }

@@ -9,7 +9,6 @@ namespace CombatExtended
     {
         Snapshot,
         AimedShot,
-        SuppressFire,
-        HoldFire
+        SuppressFire
     }
 }

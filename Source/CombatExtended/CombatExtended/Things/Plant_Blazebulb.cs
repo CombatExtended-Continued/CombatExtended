@@ -33,7 +33,7 @@ namespace CombatExtended
             if(dinfo.Def != DamageDefOf.Rotting)
             {
                 // Find existing fuel puddle or spawn one if needed
-                Thing fuel = Position.GetThingList(this.Map).FirstOrDefault(x => x.def == CE_ThingDefOf.Napalm_Fuel);
+                Thing fuel = Position.GetThingList(this.Map).FirstOrDefault(x => x.def == ThingDefOf.FilthFuel);
                 int fuelHPFromDamage = Mathf.CeilToInt(fuel.MaxHitPoints * Mathf.Clamp01(totalDamageDealt / MaxHitPoints));
                 if (fuel != null)
                 {
@@ -41,7 +41,7 @@ namespace CombatExtended
                 }
                 else
                 {
-                    fuel = ThingMaker.MakeThing(CE_ThingDefOf.Napalm_Fuel);
+                    fuel = ThingMaker.MakeThing(ThingDefOf.FilthFuel);
                     GenSpawn.Spawn(fuel, Position, this.Map);
                     fuel.HitPoints = fuelHPFromDamage;
                 }

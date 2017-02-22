@@ -54,7 +54,7 @@ namespace CombatExtended
                 this.def.projectile.postExplosionSpawnThingDef,
                 this.def.projectile.explosionSpawnChance,
                 1,
-                false, // propsCE == null ? false : propsCE.damageAdjacentTiles,
+                propsCE == null ? false : propsCE.damageAdjacentTiles,
                 preExplosionSpawnThingDef,
                 explosionSpawnChance,
                 1);

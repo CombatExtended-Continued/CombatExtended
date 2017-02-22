@@ -9,6 +9,8 @@ namespace CombatExtended
 {
     public class Verb_ShootCE : Verb_LaunchProjectileCE
     {
+        #region Variables
+
         protected override int ShotsPerBurst
         {
             get
@@ -103,6 +105,10 @@ namespace CombatExtended
             }
         }
 
+        #endregion
+
+        #region Methods
+
         /// <summary>
         /// Handles activating aim mode at the start of the burst
         /// </summary>
@@ -175,7 +181,7 @@ namespace CombatExtended
                             xpPerTick = pawnXP;
                         }
                     }
-                    this.ShooterPawn.skills.Learn(SkillDefOf.Shooting, xpPerTick * xpTicks);
+                    this.ShooterPawn.skills.Learn(SkillDefOf.Shooting, Mathf.Max(xpPerTick * xpTicks, 1));
                 }
                 this.xpTicks = 0;
             }
@@ -195,14 +201,11 @@ namespace CombatExtended
         }
 
         /// <summary>
-        /// Checks to see if fire mode is set to hold fire before doing the base check
+        /// Checks to see if enemy is blind before shooting
         /// </summary>
         public override bool CanHitTargetFrom(IntVec3 root, LocalTargetInfo targ)
         {
             if (CasterIsPawn && !CasterPawn.health.capacities.CapableOf(PawnCapacityDefOf.Sight)) return false;
-            if (this.compFireModes != null && this.compFireModes.currentAimMode == AimMode.HoldFire
-                && (!CasterIsPawn || CasterPawn.CurJob == null || CasterPawn.CurJob.def != JobDefOf.Hunt))
-                return false;
             return base.CanHitTargetFrom(root, targ);
         }
 
@@ -229,5 +232,7 @@ namespace CombatExtended
             }
             return false;
         }
+
+        #endregion
     }
 }

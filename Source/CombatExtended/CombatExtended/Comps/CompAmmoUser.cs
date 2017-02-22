@@ -60,7 +60,7 @@ namespace CombatExtended
         {
             get
             {
-                return Props.ammoSet != null;
+                return ModSettings.enableAmmoSystem && Props.ammoSet != null;
             }
         }
         public bool hasAmmo
@@ -77,7 +77,7 @@ namespace CombatExtended
         {
             get
             {
-                return currentAmmoInt;
+                return useAmmo ? currentAmmoInt : null;
             }
         }
         public CompInventory compInventory
@@ -105,7 +105,7 @@ namespace CombatExtended
         {
             base.Initialize(vprops);
 
-            curMagCountInt = Props.spawnUnloaded ? 0 : Props.magazineSize;
+            curMagCountInt = Props.spawnUnloaded && useAmmo ? 0 : Props.magazineSize;
 
             // Initialize ammo with default if none is set
             if (useAmmo)
@@ -177,7 +177,7 @@ namespace CombatExtended
                 return true;
             }
             // If magazine is empty, return false
-            else if (curMagCountInt <= 0)
+            if (curMagCountInt <= 0)
             {
                 curMagCountInt = 0;
                 return false;
@@ -192,7 +192,7 @@ namespace CombatExtended
             return true;
         }
 
-        public void TryStartReload()
+        public void TryStartReload(bool unload = false)
         {
             if (!hasMagazine)
             {
@@ -229,6 +229,8 @@ namespace CombatExtended
                         GenThing.TryDropAndSetForbidden(ammoThing, position, Find.VisibleMap, ThingPlaceMode.Near, out outThing, turret.Faction != Faction.OfPlayer);
                     }
                 }
+                if (unload) return;
+
                 // Check for ammo
                 if (wielder != null && !hasAmmo)
                 {
@@ -438,7 +440,7 @@ namespace CombatExtended
             if ((wielder != null && wielder.Faction == Faction.OfPlayer) || (turret != null && turret.Faction == Faction.OfPlayer))
             {
                 Action action = null;
-                if (wielder != null) action = TryStartReload;
+                if (wielder != null) action = delegate { TryStartReload(); };
                 else if (turret != null && turret.GetMannableComp() != null) action = turret.OrderReload;
 
                 Command_Reload reloadCommandGizmo = new Command_Reload
@@ -453,12 +455,18 @@ namespace CombatExtended
             }
         }
 
+		public override string TransformLabel(string label)
+		{
+            string ammoSet = useAmmo && ModSettings.showCaliberOnGuns ? " {" + Props.ammoSet.LabelCap + "} " : "";
+            return  label + ammoSet;
+		}
+
         public override string GetDescriptionPart()
         {
             StringBuilder stringBuilder = new StringBuilder();
             stringBuilder.AppendLine("CE_MagazineSize".Translate() + ": " + GenText.ToStringByStyle(Props.magazineSize, ToStringStyle.Integer));
             stringBuilder.AppendLine("CE_ReloadTime".Translate() + ": " + GenText.ToStringByStyle((Props.reloadTicks / 60), ToStringStyle.Integer) + " s");
-            if (Props.ammoSet != null)
+            if (useAmmo)
                 stringBuilder.AppendLine("CE_AmmoSet".Translate() + ": " + Props.ammoSet.LabelCap);
             return stringBuilder.ToString();
         }

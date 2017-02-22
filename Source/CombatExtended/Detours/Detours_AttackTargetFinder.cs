@@ -89,7 +89,6 @@ namespace CombatExtended.Detours
             if (Detours_AttackTargetFinder.HasRangedAttack(searcher))
             {
                 Detours_AttackTargetFinder.tmpTargets.Clear();
-                Log.Message("CE :: " + searcher.ToString() + " is searching for targets");
                 List<IAttackTarget> potentialTargetsFor = searcher.Map.attackTargetsCache.GetPotentialTargetsFor(searcher);
                 for (int i = 0; i < potentialTargetsFor.Count; i++)
                 {
@@ -106,6 +105,7 @@ namespace CombatExtended.Detours
                         }
                         if (searcherPawn != null)
                         {
+                            // Added checks for searcherPawn.CanSee(t)
                             if (!(searcherPawn.CanReach(t, PathEndMode.Touch, Danger.Some, canBash, TraverseMode.ByPawn) || searcherPawn.CanSee(t)))
                             {
                                 return false;
@@ -114,6 +114,8 @@ namespace CombatExtended.Detours
                         else
                         {
                             TraverseMode mode = (!canBash) ? TraverseMode.NoPassClosedDoors : TraverseMode.PassDoors;
+
+                            // Added checks for searcherPawn.CanSee(t)
                             if (!(searcher.Map.reachability.CanReach(searcher.Position, t, PathEndMode.Touch, TraverseParms.For(mode, Danger.Deadly, false)) || searcher.CanSee(t)))
                             {
                                 return false;

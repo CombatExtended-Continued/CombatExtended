@@ -5,6 +5,7 @@ using System.Text;
 using RimWorld;
 using Verse;
 using UnityEngine;
+using Verse.AI;
 
 namespace CombatExtended
 {
@@ -19,11 +20,17 @@ namespace CombatExtended
                 Log.Error("Command_Reload without ammo comp");
                 return;
             }
-            if ((ev.button == 1 && compAmmo.useAmmo && (compAmmo.compInventory != null || compAmmo.turret != null))
+            if (((ev.button == 1 || !ModSettings.rightClickAmmoSelect) 
+                && compAmmo.useAmmo 
+                && (compAmmo.compInventory != null || compAmmo.turret != null))
                 || action == null)
+            {
                 Find.WindowStack.Add(MakeAmmoMenu());
-            else
+            }
+            else if (compAmmo.selectedAmmo != compAmmo.currentAmmo || compAmmo.curMagCount < compAmmo.Props.magazineSize)
+            {
                 base.ProcessInput(ev);
+            }
         }
 
         private FloatMenu MakeAmmoMenu()
@@ -52,10 +59,35 @@ namespace CombatExtended
             }
             else
             {
+                // Append all available ammo types
                 foreach (ThingDef curDef in ammoList)
                 {
                     AmmoDef ammoDef = (AmmoDef)curDef;
-                    floatOptionList.Add(new FloatMenuOption(ammoDef.ammoClass.LabelCap, new Action(delegate { compAmmo.selectedAmmo = ammoDef; })));
+                    floatOptionList.Add(new FloatMenuOption(ammoDef.ammoClass.LabelCap, new Action(delegate {
+                        bool shouldReload = ModSettings.autoReloadOnChangeAmmo && (compAmmo.selectedAmmo != ammoDef || compAmmo.curMagCount < compAmmo.Props.magazineSize);
+		               	compAmmo.selectedAmmo = ammoDef;
+		               	if (shouldReload)
+		               	{
+			               	if (compAmmo.turret != null)
+			               	{
+			               		compAmmo.turret.OrderReload();
+			               	}
+			               	else
+			               	{
+			               		compAmmo.TryStartReload();
+			               	}
+		               	}
+	               	})));
+                }
+                // Append unload command
+                if (compAmmo.useAmmo && compAmmo.wielder != null)
+                {
+                    floatOptionList.Add(new FloatMenuOption("CE_UnloadLabel".Translate(), new Action(delegate { compAmmo.TryStartReload(true); })));
+                }
+                // Append reload command
+                if (!ModSettings.rightClickAmmoSelect)
+                {
+                    floatOptionList.Add(new FloatMenuOption("CE_ReloadLabel".Translate(), new Action(action)));
                 }
             }
             return new FloatMenu(floatOptionList);

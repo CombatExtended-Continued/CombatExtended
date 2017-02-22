@@ -99,6 +99,8 @@ namespace CombatExtended
 
         public override float GetPriority(Pawn pawn)
         {
+            if (!ModSettings.autoTakeAmmo || !ModSettings.enableAmmoSystem) return 0f;
+
             var priority = GetPriorityWork(pawn);
 
             if (priority == WorkPriority.Unloading) return 9.2f;
@@ -120,6 +122,11 @@ namespace CombatExtended
 
         protected override Job TryGiveJob(Pawn pawn)
         {
+            if (!ModSettings.enableAmmoSystem || !ModSettings.autoTakeAmmo)
+            {
+                return null;
+            }
+
             if (!pawn.RaceProps.Humanlike || (pawn.story != null && pawn.story.WorkTagIsDisabled(WorkTags.Violent)))
             {
                 return null;
@@ -258,15 +265,18 @@ namespace CombatExtended
                         && pawn.CanReach(w, PathEndMode.Touch, Danger.Deadly, true)
                         && (!pawn.Faction.HostileTo(Faction.OfPlayer) && pawn.Map.areaManager.Home[w.Position]) || (pawn.Faction.HostileTo(Faction.OfPlayer))
                         && (w.Position.DistanceToSquared(pawn.Position) < 15f || room == RoomQuery.RoomAtFast(w.Position, pawn.Map));
-                        List<Thing> weapon = (
+						// generate a list of all weapons (this includes melee weapons)
+						List<Thing> allWeapons = (
                             from w in pawn.Map.listerThings.ThingsInGroup(ThingRequestGroup.HaulableAlways)
                             where validatorWS(w)
                             orderby w.MarketValue - w.Position.DistanceToSquared(pawn.Position) * 2f descending
                             select w
                             ).ToList();
-                        if (weapon != null && weapon.Count > 0)
+						// now just get the ranged weapons out...
+						List<Thing> rangedWeapons = allWeapons.Where(w => w.def.IsRangedWeapon).ToList();
+                        if (rangedWeapons != null && rangedWeapons.Count > 0)
                         {
-                            foreach (Thing thing in weapon)
+                            foreach (Thing thing in rangedWeapons)
                             {
                                 List<ThingDef> thingDefAmmoList = (from ThingDef g in thing.TryGetComp<CompAmmoUser>().Props.ammoSet.ammoTypes
                                                                    select g).ToList<ThingDef>();
@@ -316,7 +326,27 @@ namespace CombatExtended
                                 }
                             }
                         }
-                    }
+						// else if no ranged weapons with nearby ammo was found, lets consider a melee weapon.
+						if (allWeapons != null && allWeapons.Count > 0)
+						{
+							// since we don't need to worry about ammo, just pick one.
+							Thing meleeWeapon = allWeapons.FirstOrDefault(w => !w.def.IsRangedWeapon && w.def.IsMeleeWeapon);
+							if (meleeWeapon != null)
+							{
+								if (meleeWeapon.Position == pawn.Position || meleeWeapon.Position.AdjacentToCardinal(pawn.Position))
+								{
+									return new Job(JobDefOf.Equip, meleeWeapon)
+									{
+										checkOverrideOnExpire = true,
+										expiryInterval = 100,
+										canBash = true,
+										locomotionUrgency = LocomotionUrgency.Sprint
+									};
+								}
+								return GotoForce(pawn, meleeWeapon, PathEndMode.Touch);
+							}
+						}
+					}
                 }
                 // Find ammo
                 if ((GetPriorityWork(pawn) == WorkPriority.Ammo || GetPriorityWork(pawn) == WorkPriority.LowAmmo)

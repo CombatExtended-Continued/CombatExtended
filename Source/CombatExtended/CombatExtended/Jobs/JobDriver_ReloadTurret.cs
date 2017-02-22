@@ -26,25 +26,28 @@ namespace CombatExtended
 
         protected override IEnumerable<Toil> MakeNewToils()
         {
-            if (pawn.Faction != Faction.OfPlayer)
+            if (compReloader.useAmmo)
             {
-                TargetThingB.SetForbidden(false, false);
-                this.FailOnDestroyedOrNull(TargetIndex.A);
-                this.FailOnDestroyedOrNull(TargetIndex.B);
+                if (pawn.Faction != Faction.OfPlayer)
+                {
+                    TargetThingB.SetForbidden(false, false);
+                    this.FailOnDestroyedOrNull(TargetIndex.A);
+                    this.FailOnDestroyedOrNull(TargetIndex.B);
+                }
+                else
+                {
+                    this.FailOnDestroyedNullOrForbidden(TargetIndex.A);
+                    this.FailOnDestroyedNullOrForbidden(TargetIndex.B);
+                }
+
+                // Haul ammo
+                yield return Toils_Reserve.Reserve(TargetIndex.A, 1);
+                yield return Toils_Reserve.Reserve(TargetIndex.B, 1);
+                yield return Toils_Goto.GotoThing(TargetIndex.B, PathEndMode.ClosestTouch);
+                yield return Toils_Haul.StartCarryThing(TargetIndex.B);
+                yield return Toils_Goto.GotoThing(TargetIndex.A, PathEndMode.ClosestTouch);
+                yield return Toils_Haul.PlaceHauledThingInCell(TargetIndex.A, null, false);
             }
-            else
-            {
-                this.FailOnDestroyedNullOrForbidden(TargetIndex.A);
-                this.FailOnDestroyedNullOrForbidden(TargetIndex.B);
-            }
-            
-            // Haul ammo
-            yield return Toils_Reserve.Reserve(TargetIndex.A, 1);
-            yield return Toils_Reserve.Reserve(TargetIndex.B, 1);
-            yield return Toils_Goto.GotoThing(TargetIndex.B, PathEndMode.ClosestTouch);
-            yield return Toils_Haul.StartCarryThing(TargetIndex.B);
-            yield return Toils_Goto.GotoThing(TargetIndex.A, PathEndMode.ClosestTouch);
-            yield return Toils_Haul.PlaceHauledThingInCell(TargetIndex.A, null, false);
 
             // Wait in place
             Toil waitToil = new Toil();
@@ -68,7 +71,7 @@ namespace CombatExtended
                     compReloader.LoadAmmo(TargetThingB);
                 }
             };
-            reloadToil.EndOnDespawnedOrNull(TargetIndex.B);
+            if (compReloader.useAmmo) reloadToil.EndOnDespawnedOrNull(TargetIndex.B);
             yield return reloadToil;
         }
     }

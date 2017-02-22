@@ -133,7 +133,13 @@ namespace CombatExtended.Detours
                 resultingEq = null;
                 return false;
             }
-            if (container.TryAdd(eq, true))
+            // Need to drop stacking equipment (grenades and such) as a workaround for vanilla bug
+            ThingWithComps oldEq = eq;
+            if(eq.def.stackLimit > 1)
+            {
+                _this.TryDropEquipment(eq, out oldEq, pawn.Position);
+            }
+            if (container.TryAdd(oldEq, true))
             {
                 resultingEq = null;
             }

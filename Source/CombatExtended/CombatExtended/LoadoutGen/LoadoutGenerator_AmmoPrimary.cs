@@ -17,6 +17,8 @@ namespace CombatExtended
 
         protected override void InitAvailableDefs()
         {
+            if (!ModSettings.enableAmmoSystem) return;
+
             Pawn pawn = compInvInt.parent as Pawn;
             if(pawn == null)
             {
