@@ -8,11 +8,23 @@ using UnityEngine;
 
 namespace CombatExtended
 {
-    public abstract class Apparel_VisibleAccessory : Apparel
+    public class Apparel_VisibleAccessory : Apparel
     {
+    	/* Pawn offset reference based on Verse.PawnRenderer and method RenderPawnInternal:
+    	 * (Offsets valid for pawns facing any direction but North).
+    	 * Wounds offset: 0.02f
+    	 * Shell offset: 0.0249999985f
+    	 * Head offset: 0.03f
+    	 * Upperhead offset: 0.34
+    	 * Ceiling offset: 0449999981f
+    	 * North flips order shell/head
+    	 * Hair (if drawn gets important when north) offset: 0.035f
+    	 */
     	const float _HeadOffset = 0.032f;
     	const float _BodyOffset = 0.0269999985f;
-    	static Dictionary<string, bool> _OnHeadCache = new Dictionary<string, bool>();
+    	const float _OffsetFactor = 0.001f;
+    	static readonly Dictionary<string, bool> _OnHeadCache = new Dictionary<string, bool>();
+    	
     	
     	public override void DrawWornExtras()
         {
@@ -27,8 +39,9 @@ namespace CombatExtended
             	                            this.Label, "' will not be drawn."), this.def.debugRandomId);
             	return;
             }
+            Log.Message(string.Concat(wearer, " order: ", ((Apparel_VisibleAccessoryDef)this.def).order));
             
-            // compute angle and Rot4 vars
+            // compute drawVec, angle and Rot4 vars
             Rot4 rotation;
             Rot4 bedRotation = new Rot4();
             float angle = 0;
@@ -65,21 +78,6 @@ namespace CombatExtended
             
             drawVec.y += GetAltitudeOffset(rotation);
             
-            //if (!onHead)
-            //{
-            //	if (rotation == Rot4.North)
-            //		drawVec.y += _HeadOffset;
-            //	else
-            //		drawVec.y += _BodyOffset;
-            //} else if (onHead) {
-            //	if (rotation == Rot4.North)
-            //		drawVec.y += _BodyOffset;
-            //	else
-            //		drawVec.y += _HeadOffset;
-            //} else {
-            //	Log.ErrorOnce(string.Concat("CombatExtended :: Apparel_VisibleAccessory: Undefined state drawing apparel '", Label, "'."), def.debugRandomId);
-            //}
-            
             // Get the graphic path
             string path = def.graphicData.texPath + "_" + ((wearer == null) ? null : wearer.story.bodyType.ToString());
             Graphic graphic = GraphicDatabase.Get<Graphic_Multi>(path, ShaderDatabase.Cutout, def.graphicData.drawSize, DrawColor);
@@ -95,7 +93,27 @@ namespace CombatExtended
             Graphics.DrawMesh(rotation == Rot4.West ? MeshPool.plane10Flip : MeshPool.plane10, matrix, mat, 0);
         }
 
-        protected abstract float GetAltitudeOffset(Rot4 rotation);
+        protected float GetAltitudeOffset(Rot4 rotation)
+        {
+        	Apparel_VisibleAccessoryDef myDef = (Apparel_VisibleAccessoryDef)def;
+        	if (!myDef.isValid)
+        		myDef.validate();
+        	float offset = _OffsetFactor * myDef.order;
+        	
+        	if (!onHead)
+        	{
+        		if (rotation == Rot4.North)
+        			offset += _HeadOffset;
+        		else
+        			offset += _BodyOffset;
+        	} else {
+            	if (rotation == Rot4.North)
+            		offset += _BodyOffset;
+            	else
+            		offset += _HeadOffset;
+        	}
+        	return offset;
+        }
 
         // Copied from PawnRenderer
         private Rot4 LayingFacing()
