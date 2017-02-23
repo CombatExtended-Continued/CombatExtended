@@ -27,7 +27,7 @@ namespace CombatExtended
                 return;
             }
             pawn.CurJob.playerForced = true;
-            if ( pawn.jobs.curJob != null && pawn.jobs.curJob.JobIsSameAs( newJob ) )
+            if ( pawn.CurJob.JobIsSameAs( newJob ) )
             {
                 return;
             }
@@ -47,7 +47,7 @@ namespace CombatExtended
             }
             pawn.jobs.jobQueue.Clear();
             pawn.jobs.jobQueue.EnqueueFirst( newJob );
-            if ( pawn.jobs.curJob != null )
+            if ( pawn.CurJob != null )
             {
                 pawn.jobs.curDriver.EndJobWith( JobCondition.InterruptForced );
             }

@@ -38,7 +38,7 @@ namespace CombatExtended
             {
                 return WorkPriority.None;
             }
-            if (pawn.jobs.curJob != null && pawn.jobs.curJob.def == JobDefOf.Tame)
+            if (pawn.CurJob != null && pawn.CurJob.def == JobDefOf.Tame)
             {
                 return WorkPriority.None;
             }
@@ -526,7 +526,7 @@ namespace CombatExtended
             var inv = pawn.TryGetComp<CompInventory>();
             if (inv != null
             && !pawn.Faction.IsPlayer
-            && (pawn.jobs.curJob != null && pawn.jobs.curJob.def != JobDefOf.Steal)
+            && (pawn.CurJob != null && pawn.CurJob.def != JobDefOf.Steal)
             && ((inv.capacityWeight - inv.currentWeight < 3f)
             || (inv.capacityBulk - inv.currentBulk < 4f)))
             {

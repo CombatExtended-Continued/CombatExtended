@@ -53,7 +53,7 @@ namespace CombatExtended
                     if (this.CasterIsPawn)
                     {
                         // Check for hunting job
-                        if (CasterPawn.jobs != null && CasterPawn.jobs.curJob != null && CasterPawn.jobs.curJob.def == JobDefOf.Hunt)
+                        if (CasterPawn.CurJob != null && CasterPawn.CurJob.def == JobDefOf.Hunt)
                             return true;
 
                         // Check for suppression

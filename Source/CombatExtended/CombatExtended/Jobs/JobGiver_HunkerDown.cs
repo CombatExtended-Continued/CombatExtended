@@ -17,7 +17,10 @@ namespace CombatExtended
             {
                 return null;
             }
-
+			
+            // UNDONE: Use ThrowMetaIcon or similar attached mote for this. There is a problem with attached motes not being visible though.
+            MoteMaker.MakeColonistActionOverlay(pawn, CE_ThingDefOf.Mote_HunkerIcon);
+            //MoteMaker.ThrowMetaIcon(pawn.Position, pawn.Map, CE_ThingDefOf.Mote_HunkerIcon);
             return new Job(CE_JobDefOf.HunkerDown, pawn)
             {
 //                playerForced = true,

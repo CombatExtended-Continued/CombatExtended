@@ -33,7 +33,7 @@ namespace CombatExtended
 
                 // Set impact height
                 BodyPartDepth depth = damDefCE != null && damDefCE.harmOnlyOutsideLayers ? BodyPartDepth.Outside : BodyPartDepth.Undefined;
-                dinfo.SetBodyRegion(CE_Utility.GetCollisionBodyHeight(hitThing, GetProjectileHeight()), depth);
+                dinfo.SetBodyRegion(CE_Utility.GetCollisionBodyHeight(hitThing, Height), depth);
 
                 ProjectilePropertiesCE propsCE = def.projectile as ProjectilePropertiesCE;
                 if (propsCE != null && !propsCE.secondaryDamage.NullOrEmpty())

@@ -128,7 +128,7 @@ namespace CombatExtended
 			toil.initAction = delegate
 			{
 				Pawn actor = toil.actor;
-				Job curJob = actor.jobs.curJob;
+				Job curJob = actor.CurJob;
 				Thing thing = curJob.GetTarget(targetInd).Thing;
 				var pawnVictim = thing as Pawn;
 				IntVec3 intVec;

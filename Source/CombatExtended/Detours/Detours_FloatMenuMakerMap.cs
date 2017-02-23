@@ -942,7 +942,7 @@ namespace CombatExtended.Detours
                                                     pawnCapacityDef.label
                                                 });
                                             }
-                                            else if (pawn.jobs.curJob != null && pawn.jobs.curJob.JobIsSameAs(job))
+                                            else if (pawn.CurJob.JobIsSameAs(job))
                                             {
                                                 label = "CannotGenericAlreadyAm".Translate(new object[]
                                                 {
@@ -1080,7 +1080,7 @@ namespace CombatExtended.Detours
                                                 pawnCapacityDef2.label
                                             });
                                         }
-                                        else if (pawn.jobs.curJob != null && pawn.jobs.curJob.JobIsSameAs(job2))
+                                        else if (pawn.CurJob.JobIsSameAs(job2))
                                         {
                                             label = "CannotGenericAlreadyAm".Translate(new object[]
                                             {

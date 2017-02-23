@@ -176,7 +176,7 @@ namespace CombatExtended
             if (!isSuppressed && currentSuppressionInt > suppressionThreshold)
             {
                 isSuppressed = true;
-                if (pawn.jobs != null && (pawn.CurJob.def != CE_JobDefOf.HunkerDown || pawn.CurJob.def != CE_JobDefOf.RunForCover))
+                if (pawn.CurJob != null && (pawn.CurJob.def != CE_JobDefOf.HunkerDown || pawn.CurJob.def != CE_JobDefOf.RunForCover))
                 {
                     pawn.jobs.StopAll();
                 }
@@ -221,11 +221,11 @@ namespace CombatExtended
             //Throw mote at set interval
             if (Gen.IsHashIntervalTick(this.parent, ticksPerMote))
             {
-                if (this.isSuppressed)
-                {
-                    MoteMaker.ThrowText(this.parent.Position.ToVector3Shifted(), parent.Map, "CE_SuppressedMote".Translate());
-                }
-            }
+	            if (this.isSuppressed)
+	            {
+	            	MoteMaker.ThrowText(this.parent.Position.ToVector3Shifted(), parent.Map, "CE_SuppressedMote".Translate());
+	            }
+			}
 
             /*if (Gen.IsHashIntervalTick(parent, ticksPerMote + Rand.Range(30, 300))
                 && parent.def.race.Humanlike && !robotBodyList.Contains(parent.def.race.body.defName))

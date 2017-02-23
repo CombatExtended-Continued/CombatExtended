@@ -12,7 +12,7 @@ namespace CombatExtended
     {
         protected override bool Satisfied(Pawn pawn)
         {
-            return pawn.jobs == null || pawn.jobs.curJob == null;
+            return pawn.CurJob == null;
         }
     }
 }
