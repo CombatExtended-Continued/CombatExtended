@@ -269,7 +269,7 @@ namespace CombatExtended
 	           			//TODO : It is possible for targetVertical.max < coverVertical.max, technically, in which case the shooter will never hit until the cover is gone.
 	           			targetVertical.min = coverVertical.max;
 	           		}
-                    else if(currentTarget.Thing is Pawn)
+                    else if (currentTarget.Thing is Pawn)
                     {
                         // Aim for center of mass on an exposed target
                         targetVertical.min += CE_Utility.bodyRegionBottomHeight * targetVertical.max;

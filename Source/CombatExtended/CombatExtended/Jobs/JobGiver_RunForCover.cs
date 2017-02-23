@@ -58,7 +58,7 @@ namespace CombatExtended
                 foreach (IntVec3 cell in cellList)
                 {
                     // Check for adjacency so we don't path to the other side of a wall or some such
-                    if (adjacentRegions.Contains(cell.GetRegion(pawn.Map)))
+                    if (cell.InBounds(pawn.Map) && adjacentRegions.Contains(cell.GetRegion(pawn.Map)))
                     {
                         float cellRating = GetCellCoverRatingForPawn(pawn, cell, fromPosition);
                         if (cellRating > bestRating)
