@@ -1,7 +1,51 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ThingDefs>
 
+  <!-- ================== .338 Lapua Magnum ================== -->
 
+  <ThingDef Name="Base338LapuaBullet" ParentName="BaseBullet" Abstract="true">
+    <graphicData>
+      <texPath>Things/Projectile/Bullet_Big</texPath>
+      <graphicClass>Graphic_Single</graphicClass>
+    </graphicData>
+    <projectile>
+      <damageDef>Bullet</damageDef>
+      <speed>195</speed>
+    </projectile>
+  </ThingDef>
+
+  <ThingDef ParentName="Base338LapuaBullet">
+    <defName>Bullet_338Lapua_FMJ</defName>
+    <label>.338 Lapua Magnum bullet (FMJ)</label>
+    <projectile>
+      <damageAmountBase>50</damageAmountBase>
+	  <armorPenetration>0.75</armorPenetration>
+    </projectile>
+  </ThingDef>
+
+  <ThingDef ParentName="Base338LapuaBullet">
+    <defName>Bullet_338Lapua_Sabot</defName>
+    <label>.338 Lapua Magnum bullet (Sabot)</label>
+    <projectile>
+      <damageAmountBase>35</damageAmountBase>
+	  <armorPenetration>0.975</armorPenetration>
+       </projectile>
+  </ThingDef>
+
+  <ThingDef ParentName="Base338LapuaBullet">
+    <defName>Bullet_338Lapua_Incendiary</defName>
+    <label>.338 Lapua Magnum bullet (AP-I)</label>
+    <projectile>
+      <damageAmountBase>40</damageAmountBase>
+	  <armorPenetration>0.875</armorPenetration>
+      <secondaryDamage>
+        <li>
+          <def>Flame_Secondary</def>
+          <amount>5</amount>
+        </li>
+      </secondaryDamage>
+    </projectile>
+  </ThingDef>
 
 	<!-- ================== .50 BMG ================== -->
 

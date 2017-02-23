@@ -1,6 +1,37 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <Defs>
 
+  <!-- ==================== 25mm Grenades ========================== -->
+
+  <ThingDef Class="CombatExtended.AmmoDef" Name="25mmGrenadeBase" ParentName="AmmoBase" Abstract="True">
+    <description>Relatively small, low velocity grenade for use in grenade launchers.</description>
+    <statBases>
+	  <Mass>0.2</Mass>
+	  <Bulk>0.3</Bulk>
+    </statBases>
+	<tradeTags>
+	  <li>CE_AutoEnableTrade</li>
+	  <li>CE_AutoEnableCrafting</li>
+	</tradeTags>
+    <thingCategories>
+      <li>Ammo25x40mmGrenades</li>
+    </thingCategories>
+  </ThingDef>
+
+  <ThingDef Class="CombatExtended.AmmoDef" ParentName="25mmGrenadeBase">
+    <defName>Ammo_25x40mmGrenade_HE</defName>
+    <label>25mm grenade (HE)</label>
+    <graphicData>
+      <texPath>Things/Ammo/GrenadeLauncher/HE</texPath>
+      <graphicClass>Graphic_StackCount</graphicClass>
+    </graphicData>
+    <statBases>
+      <MarketValue>1.86</MarketValue>
+    </statBases>
+	<linkedProjectile>Bullet_25x40mmGrenade_HE</linkedProjectile>
+	<ammoClass>GrenadeHE</ammoClass>
+  </ThingDef>  
+
   <!-- ==================== 30x29mm Grenades ========================== -->
 
   <ThingDef Class="CombatExtended.AmmoDef" Name="30x29mmGrenadeBase" ParentName="AmmoBase" Abstract="True">

@@ -12,13 +12,6 @@ namespace CombatExtended
     {
         protected override float GetAltitudeOffset(Rot4 rotation)
         {
-        	/* Pawn offset reference:
-        	 * Wounds offset: 0.02f
-        	 * Shell offset: 0.0249999985f
-        	 * Head offset: 0.03f
-        	 * North flips order shell/head
-        	 * Hair (if drawn gets important when north) offset: 0.035f
-        	 */
         	return rotation == Rot4.North ? 0.032f : 0.0269999985f;
         }
     }
