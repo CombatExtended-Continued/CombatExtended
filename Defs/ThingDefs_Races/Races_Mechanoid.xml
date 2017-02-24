@@ -1,42 +1,6 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ThingDefs>
 
-  <ThingDef Name="BasePawn" Abstract="True">
-    <thingClass>Pawn</thingClass>
-    <category>Pawn</category>
-    <selectable>true</selectable>
-    <tickerType>Normal</tickerType>
-    <altitudeLayer>Pawn</altitudeLayer>
-    <useHitPoints>false</useHitPoints>
-    <hasTooltip>true</hasTooltip>
-    <soundImpactDefault>BulletImpactFlesh</soundImpactDefault>
-    <statBases>
-      <Mass>70</Mass>
-    </statBases>
-    <inspectorTabs>
-      <li>ITab_Pawn_Health</li>
-      <li>ITab_Pawn_Needs</li>
-      <li>ITab_Pawn_Character</li>
-      <li>ITab_Pawn_Training</li>
-      <li>CombatExtended.ITab_Inventory</li>
-      <li>ITab_Pawn_Guest</li>
-      <li>ITab_Pawn_Prisoner</li>
-      <li>ITab_Pawn_Social</li>
-    </inspectorTabs>
-    <comps>
-      <li>
-        <compClass>CompAttachBase</compClass>
-      </li>
-      <li>
-        <compClass>CombatExtended.CompPawnGizmo</compClass>
-      </li>
-      <li>
-        <compClass>CombatExtended.CompInventory</compClass>
-      </li>
-    </comps>
-    <drawGUIOverlay>true</drawGUIOverlay>
-  </ThingDef>
-
   <!-- ============================ Mechanoids ========================== -->
 
   <ThingDef ParentName="BasePawn" Name="BaseMechanoid" Abstract="True">
@@ -54,6 +18,14 @@
       <hasGenders>false</hasGenders>
       <foodType>None</foodType>
     </race>
+    <comps>
+      <li>
+        <compClass>CombatExtended.CompPawnGizmo</compClass>
+      </li>
+      <li>
+        <compClass>CombatExtended.CompInventory</compClass>
+      </li>
+    </comps>
   </ThingDef>
 
   <!-- Centipede -->

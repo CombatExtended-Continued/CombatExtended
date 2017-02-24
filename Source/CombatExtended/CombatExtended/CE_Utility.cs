@@ -116,11 +116,8 @@ namespace CombatExtended
 
         public const float gravityConst = 9.8f;
         public const float collisionHeightFactor = 1.0f;
-        public const float collisionWidthFactor = 0.5f;
-        public const float collisionWidthFactorHumanoid = 0.25f;
         public const float bodyRegionBottomHeight = 0.45f;
         public const float bodyRegionMiddleHeight = 0.85f;
-        public static readonly String[] humanoidBodyList = { "Human", "Scyther", "Orassan", "Ogre", "HumanoidTerminator" };
         /*public static float GetCollisionHeight(Thing thing)
         {
             if (thing == null)
@@ -158,8 +155,7 @@ namespace CombatExtended
             var pawn = thing as Pawn;
             if (pawn != null)
             {
-                collisionHeight = pawn.BodySize;
-                if (!humanoidBodyList.Contains(pawn.def.race.body.defName)) collisionHeight *= 0.5f;
+                collisionHeight = pawn.BodySize * GetCollisionBodyFactors(pawn).Second;
                 if (pawn.GetPosture() != PawnPosture.Standing)
                 {
                     collisionHeight = pawn.BodySize > 1 ? pawn.BodySize - 0.8f : 0.2f * pawn.BodySize;
@@ -169,12 +165,15 @@ namespace CombatExtended
             {
             	collisionHeight = thing.def.fillPercent;
             }
-        	var edificeHeight = 0f;
-        	var edifice = thing.Position.GetEdifice(thing.Map);
-        	if (edifice != null && edifice.GetHashCode() != thing.GetHashCode())
-        	{
-        		edificeHeight = GetCollisionVertical(edifice, true).max;
-        	}
+            var edificeHeight = 0f;
+            if (thing.Map != null)
+            {
+                var edifice = thing.Position.GetEdifice(thing.Map);
+                if (edifice != null && edifice.GetHashCode() != thing.GetHashCode())
+                {
+                    edificeHeight = GetCollisionVertical(edifice, true).max;
+                }
+            }
             return new FloatRange(edificeHeight, edificeHeight + collisionHeight * collisionHeightFactor);
         }
 
@@ -191,7 +190,47 @@ namespace CombatExtended
             {
                 return 0.5f;    //Buildings, etc. fill out half a square to each side
             }
-            return pawn.BodySize * (humanoidBodyList.Contains(pawn.RaceProps.body.defName) ? collisionWidthFactorHumanoid : collisionWidthFactor);
+            return pawn.BodySize * GetCollisionBodyFactors(pawn).First;
+        }
+
+        /// <summary>
+        /// Calculates body scale factors based on body type
+        /// </summary>
+        /// <param name="pawn">Which pawn to measure for</param>
+        /// <returns>Width factor as First, height factor as second</returns>
+        private static Pair<float, float> GetCollisionBodyFactors(Pawn pawn)
+        {
+            if (pawn == null)
+            {
+                Log.Error("CE calling GetCollisionBodyHeightFactor with nullPawn");
+                return new Pair<float, float>(1, 1);
+            }
+            BodyType type = BodyType.Undefined;
+            RaceProperties_CE props = pawn.def.race as RaceProperties_CE;
+            if (props != null)
+            {
+                type = props.bodyType;
+            }
+#if DEBUG
+            if (type == BodyType.Undefined) Log.ErrorOnce("CE returning BodyType Undefined for pawn " + pawn.ToString(),  35000198);
+#endif
+            switch (type)
+            {
+                case BodyType.Humanoid:
+                    return new Pair<float, float>(0.25f, 1);
+                case BodyType.Quadruped:
+                    return new Pair<float, float>(0.5f, 0.5f);
+                case BodyType.QuadrupedLow:
+                    return new Pair<float, float>(0.5f, 0.25f);
+                case BodyType.Serpentine:
+                    return new Pair<float, float>(0.5f, 0.125f);
+                case BodyType.Birdlike:
+                    return new Pair<float, float>(0.5f, 0.75f);
+                case BodyType.Monkey:
+                    return new Pair<float, float>(0.25f, 0.5f);
+                default:
+                    return new Pair<float, float>(1, 1);
+            }
         }
 
         /// <summary>
