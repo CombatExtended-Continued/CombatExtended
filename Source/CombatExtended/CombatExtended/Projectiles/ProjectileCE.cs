@@ -168,7 +168,7 @@ namespace CombatExtended
         /// Angle in radians
         /// </summary>
         public float shotAngle;
-        public float shotHeight = 0f;
+        public float shotHeight = 0.01f;
         public float shotSpeed = -1f;
 
         private float distanceFromOrigin
@@ -581,7 +581,7 @@ namespace CombatExtended
             {
                 return;
             }
-            List<Thing> list = base.Map.thingGrid.ThingsListAt(Position);
+            List<Thing> list = base.Map.thingGrid.ThingsListAt(Position).Where(t => !(t is ProjectileCE) && !(t is Mote)).ToList();
             if (list.Count > 0)
             {
 				foreach (var thing2 in list) {
