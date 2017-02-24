@@ -39,7 +39,6 @@ namespace CombatExtended
             	                            this.Label, "' will not be drawn."), this.def.debugRandomId);
             	return;
             }
-            Log.Message(string.Concat(wearer, " order: ", ((Apparel_VisibleAccessoryDef)this.def).order));
             
             // compute drawVec, angle and Rot4 vars
             Rot4 rotation;
