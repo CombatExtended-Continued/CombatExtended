@@ -19,6 +19,7 @@ namespace CombatExtended
 				Log.Error(string.Concat(GetType().ToString(), " :: Order value ", order, " is out of bounds for Apparel '", label, "'.  Should be between 1 and 4 inclusive.  Value will be clamped to ", clamped, "."));
 				order = clamped;
 			}
+			_Valid = true;
 		}
 		
 		public bool isValid
