@@ -226,7 +226,7 @@ namespace CombatExtended
                     return new Pair<float, float>(0.5f, 0.125f);
                 case BodyType.Birdlike:
                     return new Pair<float, float>(0.5f, 0.75f);
-                case BodyType.Monkey:
+                case BodyType.Monkeylike:
                     return new Pair<float, float>(0.25f, 0.5f);
                 default:
                     return new Pair<float, float>(1, 1);

@@ -16,6 +16,6 @@ namespace CombatExtended
         QuadrupedLow,
         Serpentine,
         Birdlike,
-        Monkey
+        Monkeylike
     }
 }
