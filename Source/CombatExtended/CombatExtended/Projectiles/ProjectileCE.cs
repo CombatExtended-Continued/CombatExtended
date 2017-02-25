@@ -436,7 +436,7 @@ namespace CombatExtended
                 ambientSustainer.Maintain();
             }
             // attack shooting expression
-            if (ModSettings.showTaunts && this.launcher is Building_TurretGunCE == false)
+			if (ModSettings.showTaunts && this.launcher is Building_TurretGunCE == false && this.launcher.Map != null)
             {
                 if (Rand.Value > 0.7
                     && this.launcher.def.race.Humanlike
@@ -448,7 +448,7 @@ namespace CombatExtended
                     {
                         goto AGAIN;
                     }
-                    MoteMaker.ThrowText(launcher.Position.ToVector3Shifted(), this.launcher.Map, rndswear);
+					MoteMaker.ThrowText(launcher.Position.ToVector3Shifted(), this.launcher.Map, rndswear);
                 }
             }
         }
