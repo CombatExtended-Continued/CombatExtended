@@ -38,9 +38,6 @@ namespace CombatExtended
             //Tell pawn to move to position
             pawn.Map.pawnDestinationManager.ReserveDestinationFor(pawn, coverPosition);
             
-            // UNDONE: Use ThrowMetaIcon or similar attached mote for this. There is a problem with attached motes not being visible though.
-            MoteMaker.ThrowMetaIcon(pawn.Position, pawn.Map, CE_ThingDefOf.Mote_SuppressIcon);
-            //MoteMaker.MakeColonistActionOverlay(pawn, CE_ThingDefOf.Mote_SuppressIcon);
             return new Job(CE_JobDefOf.RunForCover, coverPosition)
             {
                 locomotionUrgency = LocomotionUrgency.Sprint,

@@ -324,8 +324,7 @@ namespace CombatExtended
             }
             return null;
         }
-
-
+        
         private void DoOutOfAmmoAction()
         {
             if (Props.throwMote)

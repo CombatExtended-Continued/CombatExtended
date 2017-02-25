@@ -112,7 +112,7 @@
     <deflectable>true</deflectable>
   </DamageDef>
 
-  <DamageDef ParentName="LocalInjuryBase">
+  <DamageDef Name="Scratch" ParentName="LocalInjuryBase">
     <defName>Scratch</defName>
     <label>scratch</label>
     <externalViolence>true</externalViolence>
@@ -128,19 +128,11 @@
     <harmOnlyOutsideLayers>true</harmOnlyOutsideLayers>
   </DamageDef>
   
-  <DamageDef ParentName="LocalInjuryBase">
+  <!-- For scratches that have a lot of blunt force behind them, e.g. bear claws -->
+  <DamageDef ParentName="Scratch">
     <defName>Slash</defName>
     <label>slash</label>
-    <externalViolence>true</externalViolence>
-    <battleWound>true</battleWound>
-    <deathMessage>{0} has been torn to death.</deathMessage>
-    <hediff>Scratch</hediff>
-    <hediffSolid>Crack</hediffSolid>
-    <harmAllLayersUntilOutside>true</harmAllLayersUntilOutside>
-    <impactSoundType>Slice</impactSoundType>
-    <armorCategory>Sharp</armorCategory>
-    <deflectable>true</deflectable>
-    <harmOnlyOutsideLayers>true</harmOnlyOutsideLayers>
+    <absorbable>false</absorbable>
   </DamageDef>
 
   <DamageDef Name="Bite" ParentName="LocalInjuryBase">

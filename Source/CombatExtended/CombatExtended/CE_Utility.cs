@@ -212,7 +212,7 @@ namespace CombatExtended
                 type = props.bodyType;
             }
 #if DEBUG
-            if (type == BodyType.Undefined) Log.ErrorOnce("CE returning BodyType Undefined for pawn " + pawn.ToString(),  35000198);
+            if (type == BodyType.Undefined) Log.ErrorOnce("CE returning BodyType Undefined for pawn " + pawn.ToString(),  35000198 + pawn.GetHashCode());
 #endif
             switch (type)
             {

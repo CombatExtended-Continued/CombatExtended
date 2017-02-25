@@ -43,8 +43,7 @@ namespace CombatExtended
                 {
                     return false;
                 }
-                float distToSuppressor = (pawn.Position - comp.suppressorLoc).LengthHorizontal;
-                if (distToSuppressor < CompSuppressable.minSuppressionDist)
+                if (!comp.CanReactToSuppression)
                 {
                     return false;
                 }

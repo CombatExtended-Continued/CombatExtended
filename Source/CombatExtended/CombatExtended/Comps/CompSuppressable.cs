@@ -22,11 +22,10 @@ namespace CombatExtended
 
         // --------------- Global constants ---------------
 
-        public const float minSuppressionDist = 10f;        //Minimum distance to be suppressed from, so melee won't be suppressed if it closes within this distance
+        private const float minSuppressionDist = 5f;        //Minimum distance to be suppressed from, so melee won't be suppressed if it closes within this distance
         private const float maxSuppression = 100f;          //Cap to prevent suppression from building indefinitely
         private const float suppressionDecayRate = 7.5f;    //How much suppression decays per second
-        private int ticksPerMote = 200;               //How many ticks between throwing a mote
-        //public static readonly String[] robotBodyList = { "AIRobot", "HumanoidTerminator" };
+        private int ticksPerMote = 150;               //How many ticks between throwing a mote
 
         // --------------- Location calculations ---------------
 
@@ -124,6 +123,16 @@ namespace CombatExtended
                 return false;
             }
         }
+        public bool CanReactToSuppression
+        {
+            get
+            {
+                Pawn pawn = parent as Pawn;
+                return !pawn.Position.InHorDistOf(suppressorLoc, minSuppressionDist)
+                    && !pawn.Downed
+                    && !pawn.InMentalState;
+            }
+        }
 
         #endregion
 
@@ -219,12 +228,17 @@ namespace CombatExtended
             }
 
             //Throw mote at set interval
-            if (Gen.IsHashIntervalTick(this.parent, ticksPerMote))
+            if (Gen.IsHashIntervalTick(this.parent, ticksPerMote) && CanReactToSuppression)
             {
-	            if (this.isSuppressed)
-	            {
-	            	MoteMaker.ThrowText(this.parent.Position.ToVector3Shifted(), parent.Map, "CE_SuppressedMote".Translate());
-	            }
+                if (isHunkering)
+                {
+                    MoteMaker.ThrowMetaIcon(parent.Position, parent.Map, CE_ThingDefOf.Mote_HunkerIcon);
+                }
+	            else if (this.isSuppressed)
+                {
+                    //MoteMaker.ThrowText(this.parent.Position.ToVector3Shifted(), parent.Map, "CE_SuppressedMote".Translate());
+                    MoteMaker.ThrowMetaIcon(parent.Position, parent.Map, CE_ThingDefOf.Mote_SuppressIcon);
+                }
 			}
 
             /*if (Gen.IsHashIntervalTick(parent, ticksPerMote + Rand.Range(30, 300))

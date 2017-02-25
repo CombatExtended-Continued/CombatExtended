@@ -213,10 +213,7 @@ namespace CombatExtended
         /// <summary>
         /// Shifts the original target position in accordance with target leading, range estimation and weather/lighting effects
         /// </summary>
-        protected virtual Vector3 ShiftTarget(ShiftVecReport report) {
-        	return ShiftTarget(report, false);
-        }
-        protected virtual Vector3 ShiftTarget(ShiftVecReport report, bool calculateMechanicalOnly)
+        protected virtual Vector3 ShiftTarget(ShiftVecReport report, bool calculateMechanicalOnly = false)
         {
 	        Vector3 sourceLoc = this.CasterPawn != null ? Vector3.Scale(this.CasterPawn.DrawPos, new Vector3(1, 0, 1)) : this.caster.Position.ToVector3Shifted();
 	        
