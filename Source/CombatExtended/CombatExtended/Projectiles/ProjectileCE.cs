@@ -468,7 +468,7 @@ namespace CombatExtended
             {
                 return false;
             }
-            List<Thing> mainThingList = new List<Thing>(base.Map.thingGrid.ThingsListAt(cell));
+            List<Thing> mainThingList = new List<Thing>(base.Map.thingGrid.ThingsListAt(cell)).Where(t => !(t is ProjectileCE) && !(t is Mote)).ToList();
 
             //Find pawns in adjacent cells and append them to main list
             List<IntVec3> adjList = new List<IntVec3>();
