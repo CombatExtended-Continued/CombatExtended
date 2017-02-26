@@ -8,9 +8,9 @@ using UnityEngine;
 
 namespace CombatExtended
 {
-    public class DamageDef_CE : DamageDef
+    [DefOf]
+    public class CE_BodyPartGroupDefOf
     {
-        public bool noDamageOnDeflect = false;
-        public bool harmOnlyOutsideLayers = false;
+        public static BodyPartGroupDef CoveredByNaturalArmor;
     }
 }

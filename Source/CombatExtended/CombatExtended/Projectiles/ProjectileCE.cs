@@ -22,7 +22,6 @@ namespace CombatExtended
         protected int ticksToImpact;
         private Sustainer ambientSustainer;
         private static List<IntVec3> checkedCells = new List<IntVec3>();
-        public static readonly String[] robotBodyList = { "AIRobot", "HumanoidTerminator" };
         
         private const float ticksPerSecond = 100f;
 
@@ -440,7 +439,6 @@ namespace CombatExtended
             {
                 if (Rand.Value > 0.7
                     && this.launcher.def.race.Humanlike
-                    && !robotBodyList.Contains(this.launcher.def.race.body.defName)
                     && Gen.IsHashIntervalTick(launcher, Rand.Range(280, 700)))
                 {
                     AGAIN: string rndswear = RulePackDef.Named("AttackMote").Rules.RandomElement().Generate();

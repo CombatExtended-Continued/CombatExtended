@@ -456,7 +456,7 @@ namespace CombatExtended
 
 		public override string TransformLabel(string label)
 		{
-            string ammoSet = useAmmo && ModSettings.showCaliberOnGuns ? " {" + Props.ammoSet.LabelCap + "} " : "";
+            string ammoSet = useAmmo && ModSettings.showCaliberOnGuns ? " (" + Props.ammoSet.LabelCap + ") " : "";
             return  label + ammoSet;
 		}
 

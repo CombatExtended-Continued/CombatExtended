@@ -16,7 +16,6 @@
     <harmAllLayersUntilOutside>true</harmAllLayersUntilOutside>
     <impactSoundType>Slice</impactSoundType>
     <armorCategory>Sharp</armorCategory>
-    <deflectable>true</deflectable>
   </DamageDef>
 
   <DamageDef ParentName="LocalInjuryBase">
@@ -47,7 +46,6 @@
     <impactSoundType>Blunt</impactSoundType>
     <armorCategory>Blunt</armorCategory>
     <harmOnlyOutsideLayers>true</harmOnlyOutsideLayers>
-    <deflectable>true</deflectable>
   </DamageDef>
 
   <DamageDef ParentName="Blunt">
@@ -73,7 +71,6 @@
     <harmAllLayersUntilOutside>true</harmAllLayersUntilOutside>
     <impactSoundType>Slice</impactSoundType>
     <armorCategory>Sharp</armorCategory>
-    <deflectable>true</deflectable>
   </DamageDef>
 
   <DamageDef Name="DamageBulletBase" ParentName="LocalInjuryBase">
@@ -86,7 +83,6 @@
     <harmAllLayersUntilOutside>true</harmAllLayersUntilOutside>
     <impactSoundType>Bullet</impactSoundType>
     <armorCategory>Sharp</armorCategory>
-    <deflectable>true</deflectable>
   </DamageDef>
 
   <DamageDef ParentName="DamageBulletBase">
@@ -109,7 +105,6 @@
     <harmAllLayersUntilOutside>true</harmAllLayersUntilOutside>
     <impactSoundType>Bullet</impactSoundType>
     <armorCategory>Sharp</armorCategory>
-    <deflectable>true</deflectable>
   </DamageDef>
 
   <DamageDef Name="Scratch" ParentName="LocalInjuryBase">
@@ -123,8 +118,7 @@
     <harmAllLayersUntilOutside>true</harmAllLayersUntilOutside>
     <impactSoundType>Slice</impactSoundType>
     <armorCategory>Sharp</armorCategory>
-    <deflectable>true</deflectable>
-    <absorbable>true</absorbable>
+    <noDamageOnDeflect>true</noDamageOnDeflect>
     <harmOnlyOutsideLayers>true</harmOnlyOutsideLayers>
   </DamageDef>
   
@@ -132,7 +126,7 @@
   <DamageDef ParentName="Scratch">
     <defName>Slash</defName>
     <label>slash</label>
-    <absorbable>false</absorbable>
+    <noDamageOnDeflect>false</noDamageOnDeflect>
   </DamageDef>
 
   <DamageDef Name="Bite" ParentName="LocalInjuryBase">
@@ -146,7 +140,7 @@
     <harmAllLayersUntilOutside>true</harmAllLayersUntilOutside>
     <impactSoundType>Slice</impactSoundType>
     <armorCategory>Sharp</armorCategory>
-    <deflectable>true</deflectable>
+    <harmOnlyOutsideLayers>true</harmOnlyOutsideLayers>
   </DamageDef>
 
   <DamageDef ParentName="Bite">
@@ -158,8 +152,7 @@
         <severityPerDamageDealt>0.001</severityPerDamageDealt>
       </li>
     </additionalHediffs>
-    <deflectable>true</deflectable>
-    <absorbable>true</absorbable>
+    <noDamageOnDeflect>true</noDamageOnDeflect>
   </DamageDef>
 
   <DamageDef Name="DamageBombBase" ParentName="LocalInjuryBase">
@@ -186,7 +179,6 @@
     <defName>Bomb_Secondary</defName>
     <harmAllLayersUntilOutside>false</harmAllLayersUntilOutside>
     <spreadOut>false</spreadOut>
-    <deflectable>true</deflectable>
   </DamageDef>
 
   <DamageDef ParentName="DamageBombBase">
@@ -213,13 +205,13 @@
     <explosionCellMote>Mote_BlastFlame</explosionCellMote>
     <soundExplosion>Explosion_Flame</soundExplosion>
     <harmOnlyOutsideLayers>true</harmOnlyOutsideLayers>
+    <harmAllLayersUntilOutside>true</harmAllLayersUntilOutside>
   </DamageDef>
 
   <DamageDef ParentName="Flame">
     <defName>Flame_Secondary</defName>
     <harmAllLayersUntilOutside>false</harmAllLayersUntilOutside>
     <spreadOut>false</spreadOut>
-    <deflectable>true</deflectable>
   </DamageDef>
 
   <DamageDef ParentName="LocalInjuryBase">
