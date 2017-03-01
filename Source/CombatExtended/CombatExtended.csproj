@@ -85,6 +85,9 @@
     </CustomCommands>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="0Harmony">
+      <HintPath>..\..\Assemblies\0Harmony.dll</HintPath>
+    </Reference>
     <Reference Include="Assembly-CSharp">
       <HintPath>..\..\..\..\RimWorld1393Win_Data\Managed\Assembly-CSharp.dll</HintPath>
       <Private>False</Private>
@@ -231,6 +234,7 @@
     <Compile Include="Detours\Detours_VerbTracker.cs" />
     <Compile Include="Detours\Detours_WorkGiver_HunterHunt.cs" />
     <Compile Include="Detours\Detours_WorkGiver_InteractAnimal.cs" />
+    <Compile Include="Harmony\Harmony-HediffComp_TendDuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="CombatExtended\Verbs\Verb_ShootCE.cs" />
     <Compile Include="CombatExtended\Comps\CompAmmoUser.cs" />
@@ -242,6 +246,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="AI\DefOfs\" />
+    <Folder Include="Harmony" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
