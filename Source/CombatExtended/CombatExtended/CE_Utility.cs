@@ -71,6 +71,11 @@ namespace CombatExtended
             }
             return 60 / movePerTick;
         }
+        
+        public static float ClosestDistBetween(Vector2 origin, Vector2 destination, Vector2 target)
+        {
+        	return Mathf.Abs((destination.y - origin.y) * target.x - (destination.x - origin.x) * target.y + destination.x * origin.y - destination.y * origin.x) / (destination - origin).magnitude;
+        }
 
         /// <summary>
         /// Attempts to find a turret operator. Accepts any Thing as input and does a sanity check to make sure it is an actual turret.
@@ -113,34 +118,72 @@ namespace CombatExtended
         #endregion
 
         #region Physics
-
         public const float gravityConst = 9.8f;
         public const float collisionHeightFactor = 1.0f;    // Global collision height multiplier
         public const float treeCollisionHeight = 5f;        // Trees are this tall
         public const float bodyRegionBottomHeight = 0.45f;  // Hits below this percentage will impact the corresponding body region
         public const float bodyRegionMiddleHeight = 0.85f;
-        /*public static float GetCollisionHeight(Thing thing)
+        
+        /// <summary>
+        /// Calculates the range reachable with a projectile of speed <i>velocity</i> fired at <i>angle</i> from height <i>shotHeight</i>. Does not take into account air resistance.
+        /// </summary>
+        /// <param name="velocity">Projectile velocity in cells per second.</param>
+        /// <param name="angle">Shot angle in radians off the ground.</param>
+        /// <param name="shotHeight">Height from which the projectile is fired in vertical cells.</param>
+        /// <returns>Distance in cells that the projectile will fly at the given arc.</returns>
+        public static float GetDistanceTraveled(float velocity, float angle, float shotHeight)
         {
-            if (thing == null)
-            {
-                return 0;
-            }
-            Pawn pawn = thing as Pawn;
-            if (pawn != null)
-            {
-                float collisionHeight = pawn.BodySize;
-                if (!humanoidBodyList.Contains(pawn.def.race.body.defName)) collisionHeight *= 0.5f;
-                if (pawn.GetPosture() != PawnPosture.Standing)
-                {
-                    collisionHeight = pawn.BodySize > 1 ? pawn.BodySize - 0.8f : 0.2f * pawn.BodySize;
-                }
-                return collisionHeight * collisionHeightFactor;
-            }
-            return thing.def.fillPercent * collisionHeightFactor;
-        }*/
+        	if (shotHeight < 0.001f)
+        	{
+        		return (Mathf.Pow(velocity, 2f) / gravityConst) * Mathf.Sin(2f * angle);
+        	}
+        	return ((velocity * Mathf.Cos(angle)) / gravityConst) * (velocity * Mathf.Sin(angle) + Mathf.Sqrt(Mathf.Pow(velocity * Mathf.Sin(angle), 2f) + 2f * gravityConst * shotHeight));
+        }
+        
+        /// <summary>
+        /// Calculates the destination reached with a projectile of speed <i>velocity</i> fired at <i>angle</i> from height <i>shotHeight</i> starting from <i>origin</i>. Does not take into account air resistance.
+        /// </summary>
+        /// <param name="origin">Vector2 source of the projectile.</param>
+        /// <param name="angle">Shot angle in radians off the ground.</param>
+        /// <param name="rotation">Shot angle in degrees between source/target.</param>
+        /// <param name="velocity">Projectile velocity in cells per second.</param>
+        /// <param name="shotHeight">Height from which the projectile is fired in vertical cells.</param>
+        /// <returns>The Vector2 destination of the projectile, e.g the Vector2 when it hits the ground at height = 0f.</returns>
+        public static Vector2 GetDestination(Vector2 origin, float angle, float rotation, float velocity, float shotHeight)
+        {
+        	return origin + Vector2.up.RotatedBy(rotation) * GetDistanceTraveled(velocity, angle, shotHeight);
+        }
+        
+        /// <summary>
+        /// Calculates the time in seconds the arc characterized by <i>angle</i>, <i>shotHeight</i> takes to traverse at speed <i>velocity</i> - e.g until the height reaches zero. Does not take into account air resistance.
+        /// </summary>
+        /// <param name="velocity">Projectile velocity in cells per second.</param>
+        /// <param name="angle">Shot angle in radians off the ground.</param>
+        /// <param name="shotHeight">Height from which the projectile is fired in vertical cells.</param>
+        /// <returns>Time in seconds that the projectile will take to traverse the given arc.</returns>
+        public static float GetFlightTime(float velocity, float angle, float shotHeight)
+        {
+			//Calculates quadratic formula (g/2)t^2 + (-v_0y)t + (y-y0) for {g -> gravity, v_0y -> vSin, y -> 0, y0 -> shotHeight} to find t in fractional ticks where height equals zero.
+			return (Mathf.Sin(angle) * velocity + Mathf.Sqrt(Mathf.Pow(Mathf.Sin(angle) * velocity, 2f) + 2f * gravityConst * shotHeight)) / gravityConst;
+        }
+        
+        /// <summary>
+        /// Calculates the shot angle necessary to reach <i>range</i> with a projectile of speed <i>velocity</i> at a height difference of <i>heightDifference</i>, returning either the upper or lower arc in radians. Does not take into account air resistance.
+        /// </summary>
+        /// <param name="velocity">Projectile velocity in cells per second.</param>
+        /// <param name="range">Cells between shooter and target.</param>
+        /// <param name="heightDifference">Difference between initial shot height and target height in vertical cells.</param>
+        /// <param name="flyOverhead">Whether to take the lower (False) or upper (True) arc angle.</param>
+        /// <returns>Arc angle in radians off the ground.</returns>
+        public static float GetShotAngle(float velocity, float range, float heightDifference, bool flyOverhead)
+        {
+            return Mathf.Atan((Mathf.Pow(velocity, 2f) + (flyOverhead ? 1f : -1f) * Mathf.Sqrt(Mathf.Pow(velocity, 4f) - gravityConst * (gravityConst * Mathf.Pow(range, 2f) + 2f * heightDifference * Mathf.Pow(velocity, 2f)))) / (gravityConst * range));
+        }
+        
         /// <summary>
         /// Returns the vertical collision box of a Thing
         /// </summary>
+        /// <param name="thing">Thing (can be null) to have its collision vertical height returned.</param>
         /// <param name="isEdifice">False by default. Set to true if thing is the edifice at the location thing.Position.</param>
         public static FloatRange GetCollisionVertical(Thing thing, bool isEdifice = false)
         {
@@ -150,7 +193,10 @@ namespace CombatExtended
             }
             if (isEdifice)
             {
-                if (thing.def.category == ThingCategory.Plant && thing.def.altitudeLayer == AltitudeLayer.Building) return new FloatRange(0, treeCollisionHeight * collisionHeightFactor);    // Check for trees
+                if (thing.def.category == ThingCategory.Plant && thing.def.altitudeLayer == AltitudeLayer.Building)
+                {
+                	return new FloatRange(0, treeCollisionHeight * collisionHeightFactor);    // Check for trees
+                }
             	return new FloatRange(0f, thing.def.fillPercent * collisionHeightFactor);
             }
             float collisionHeight = 0f;
