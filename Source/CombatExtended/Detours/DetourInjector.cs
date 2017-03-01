@@ -145,16 +145,6 @@ namespace CombatExtended.Detours
                 typeof(Detours_TradeDeal).GetMethod("UpdateCurrencyCount", BindingFlags.Static | BindingFlags.NonPublic)))
                 return false;
 
-
-            // *************************************
-            // *** Detour additional methods ***
-            // *************************************
-
-            // RightTools
-            if (!Detours.TryDetourFromTo(typeof(ThinkNode_JobGiver).GetMethod("TryIssueJobPackage", BindingFlags.Instance | BindingFlags.Public),
-                typeof(Detours_ThinkNode_JobGiver).GetMethod("TryIssueJobPackage", BindingFlags.Instance | BindingFlags.Public)))
-                return false;
-
             return true;
         }
     }

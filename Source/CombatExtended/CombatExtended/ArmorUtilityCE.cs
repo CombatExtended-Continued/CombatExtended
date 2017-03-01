@@ -11,8 +11,17 @@ namespace CombatExtended
     public static class ArmorUtilityCE
     {
         private const float PenetrationRandVariation = 0.05f;    // Armor penetration will be randomized by +- this amount
-        private static SimpleCurve dmgMultCurve = new SimpleCurve { new CurvePoint(0.5f, 0), new CurvePoint(1, 0.5f), new CurvePoint(2, 1) };    // Used to calculate the damage reduction from the penetration / armor ratio
+        private const float SoftArmorMinDamageFactor = 0.2f;    // Soft body armor will always take at least original damage * this number from sharp attacks
+        private static readonly SimpleCurve dmgMultCurve = new SimpleCurve { new CurvePoint(0.5f, 0), new CurvePoint(1, 0.5f), new CurvePoint(2, 1) };    // Used to calculate the damage reduction from the penetration / armor ratio
+        private static readonly List<StuffCategoryDef> softStuffs = new List<StuffCategoryDef> { StuffCategoryDefOf.Fabric, DefDatabase<StuffCategoryDef>.GetNamed("Leathery") };
 
+        /// <summary>
+        /// Calculates damage through armor, depending on damage type, target and natural resistance. Also calculates deflection and adjusts damage type and impacted body part accordingly.
+        /// </summary>
+        /// <param name="origDinfo">The pre-armor damage info</param>
+        /// <param name="pawn">The damaged pawn</param>
+        /// <param name="hitPart">The pawn's body part that has been hit</param>
+        /// <returns>If shot is deflected returns a new dinfo cloned from the original with damage amount, Def and ForceHitPart adjusted for deflection, otherwise a clone with only the damage adjusted</returns>
         public static DamageInfo GetAfterArmorDamage(DamageInfo origDinfo, Pawn pawn, BodyPartRecord hitPart)
         {
             if (origDinfo.Def.armorCategory == DamageArmorCategory.IgnoreArmor) return origDinfo;
@@ -166,8 +175,9 @@ namespace CombatExtended
         private static bool TryPenetrateArmor(DamageDef def, float armorAmount, ref float penAmount, ref float dmgAmount, Thing armor = null)
         {
             // Calculate deflection
+            bool isSharpDmg = def.armorCategory == DamageArmorCategory.Sharp;
             float rand = UnityEngine.Random.Range(penAmount - PenetrationRandVariation, penAmount + PenetrationRandVariation);
-            bool deflected = def.armorCategory == DamageArmorCategory.Sharp && armorAmount > rand;
+            bool deflected = isSharpDmg && armorAmount > rand;
             float newPenAmount = penAmount * (1 - armorAmount);
 
             // Apply damage reduction
@@ -176,8 +186,23 @@ namespace CombatExtended
             if (deflected && defCE != null && defCE.noDamageOnDeflect) dmgMult = 0;
             else dmgMult = dmgMultCurve.Evaluate(penAmount / armorAmount);
             float newDmgAmount = dmgAmount * dmgMult;
-            
-            if (armor != null) armor.TakeDamage(new DamageInfo(def, Mathf.CeilToInt(dmgAmount - newDmgAmount)));
+
+            // Apply damage to armor
+            if (armor != null)
+            {
+                bool isSoftArmor = armor.Stuff != null && armor.Stuff.stuffProps.categories.Any(s => softStuffs.Contains(s));
+                if (isSoftArmor)
+                {
+                    // Soft armor takes absorbed damage from sharp and no damage from blunt
+                    if (isSharpDmg) armor.TakeDamage(new DamageInfo(def, Mathf.Max(Mathf.CeilToInt(dmgAmount * SoftArmorMinDamageFactor), Mathf.CeilToInt(dmgAmount - newDmgAmount))));
+                }
+                else
+                {
+                    // Hard armor takes damage as reduced by damage resistance and can be impervious to low-penetration attacks
+                    armor.TakeDamage(new DamageInfo(def, Mathf.CeilToInt(newDmgAmount)));
+                }
+            }
+
             dmgAmount = Mathf.Max(0, newDmgAmount);
             penAmount = Mathf.Max(0, newPenAmount);
             return !deflected;

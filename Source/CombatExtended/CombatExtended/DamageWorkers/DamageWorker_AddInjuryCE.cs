@@ -235,30 +235,25 @@ namespace CombatExtended
 
         private void CalculateOldInjuryDamageThreshold(Pawn pawn, Hediff_Injury injury)
         {
-            HediffCompProperties_GetsOld hediffCompProperties_GetsOld = injury.def.CompProps<HediffCompProperties_GetsOld>();
-            if (hediffCompProperties_GetsOld == null)
+            HediffComp_GetsOld comp = injury.TryGetComp<HediffComp_GetsOld>();
+            if (comp == null)
             {
                 return;
             }
-            if (injury.Part.def.IsSolid(injury.Part, pawn.health.hediffSet.hediffs) || pawn.health.hediffSet.PartOrAnyAncestorHasDirectlyAddedParts(injury.Part) || injury.IsOld() || injury.Part.def.oldInjuryBaseChance < 1E-05f)
+            // No permanent injuries on solid parts, prosthetics or injuries that are already old
+            if (injury.Part.def.IsSolid(injury.Part, pawn.health.hediffSet.hediffs) || pawn.health.hediffSet.PartOrAnyAncestorHasDirectlyAddedParts(injury.Part) || injury.IsOld()) return;
+
+            // Delicate parts get old instantly
+            if (injury.Part.def.IsDelicate)
             {
-                return;
+                comp.oldDamageThreshold = injury.Severity;
+                comp.IsOld = true;
             }
-            bool isDelicate = injury.Part.def.IsDelicate;
-            if ((Rand.Value <= injury.Part.def.oldInjuryBaseChance * hediffCompProperties_GetsOld.becomeOldChance && injury.Severity >= injury.Part.def.GetMaxHealth(pawn) * 0.25f && injury.Severity >= 7f) || isDelicate)
+            // Check if injury is at least 10% of part health and make a random roll
+            else if (injury.Severity >= injury.Part.def.GetMaxHealth(pawn) * 0.1f && injury.Severity > 1)
             {
-                HediffComp_GetsOld hediffComp_GetsOld = injury.TryGetComp<HediffComp_GetsOld>();
-                float num = 1f;
-                float num2 = injury.Severity / 2f;
-                if (num <= num2)
-                {
-                    hediffComp_GetsOld.oldDamageThreshold = Rand.Range(num, num2);
-                }
-                if (isDelicate)
-                {
-                    hediffComp_GetsOld.oldDamageThreshold = injury.Severity;
-                    hediffComp_GetsOld.IsOld = true;
-                }
+                float getOldChance = injury.Part.def.oldInjuryBaseChance * comp.Props.becomeOldChance * Mathf.Pow((injury.Severity / injury.Part.def.GetMaxHealth(pawn)), 2);
+                if (Rand.Value < getOldChance) comp.oldDamageThreshold = Rand.Range(1, injury.Severity);
             }
         }
 

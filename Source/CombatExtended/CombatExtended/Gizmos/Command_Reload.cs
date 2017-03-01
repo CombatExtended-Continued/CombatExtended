@@ -79,16 +79,16 @@ namespace CombatExtended
 		               	}
 	               	})));
                 }
-                // Append unload command
-                if (compAmmo.useAmmo && compAmmo.wielder != null)
-                {
-                    floatOptionList.Add(new FloatMenuOption("CE_UnloadLabel".Translate(), new Action(delegate { compAmmo.TryStartReload(true); })));
-                }
-                // Append reload command
-                if (!ModSettings.rightClickAmmoSelect)
-                {
-                    floatOptionList.Add(new FloatMenuOption("CE_ReloadLabel".Translate(), new Action(action)));
-                }
+            }
+            // Append unload command
+            if (compAmmo.useAmmo && compAmmo.wielder != null && compAmmo.curMagCount > 0)
+            {
+                floatOptionList.Add(new FloatMenuOption("CE_UnloadLabel".Translate(), new Action(delegate { compAmmo.TryStartReload(true); })));
+            }
+            // Append reload command
+            if (!ModSettings.rightClickAmmoSelect)
+            {
+                floatOptionList.Add(new FloatMenuOption("CE_ReloadLabel".Translate(), new Action(action)));
             }
             return new FloatMenu(floatOptionList);
         }
