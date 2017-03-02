@@ -137,7 +137,7 @@ namespace CombatExtended
                 workingInvList.AddRange(SelPawnForGear.inventory.innerContainer);
                 for (int i = 0; i < workingInvList.Count; i++)
                 {
-                    DrawThingRow(ref num, viewRect.width, workingInvList[i].GetInnerIfMinified());
+                    DrawThingRow(ref num, viewRect.width, workingInvList[i].GetInnerIfMinified(), true);
                 }
             }
             if (Event.current.type == EventType.Layout)
@@ -150,13 +150,13 @@ namespace CombatExtended
             Text.Anchor = TextAnchor.UpperLeft;
         }
 
-        private void DrawThingRow(ref float y, float width, Thing thing)
+        private void DrawThingRow(ref float y, float width, Thing thing, bool showDropButtonIfPrisoner = false)
         {
 
             Rect rect = new Rect(0f, y, width, _thingRowHeight);
             Widgets.InfoCardButton(rect.width - 24f, y, thing);
             rect.width -= 24f;
-            if (CanControl)
+            if (CanControl || SelPawnForGear.Faction == Faction.OfPlayer && SelPawnForGear.RaceProps.packAnimal || showDropButtonIfPrisoner && SelPawnForGear.HostFaction == Faction.OfPlayer)
             {
                 Rect dropRect = new Rect(rect.width - 24f, y, 24f, 24f);
                 TooltipHandler.TipRegion(dropRect, "DropThing".Translate());
