@@ -75,12 +75,18 @@ namespace CombatExtended
             }
             for (int i = partsToHit.Count - 1; i >= 0; i--)
             {
-                if (partsToHit[i].IsInGroup(CE_BodyPartGroupDefOf.CoveredByNaturalArmor)
-                    && !TryPenetrateArmor(dinfo.Def, pawn.GetStatValue(dinfo.Def.armorCategory.DeflectionStat()), ref penAmount, ref dmgAmount))
+                BodyPartRecord curPart = partsToHit[i];
+                bool coveredByArmor = curPart.IsInGroup(CE_BodyPartGroupDefOf.CoveredByNaturalArmor);
+                float partArmor = pawn.HealthScale * 0.05f;   // How much armor is provided by sheer meat
+                if (coveredByArmor) partArmor += pawn.GetStatValue(dinfo.Def.armorCategory.DeflectionStat());  // Get natural armor
+                if (!TryPenetrateArmor(dinfo.Def, partArmor, ref penAmount, ref dmgAmount))
                 {
-                    BodyPartRecord curPart = partsToHit[i];
-                    dinfo = GetDeflectDamageInfo(dinfo, curPart);
                     dinfo.SetForcedHitPart(curPart);
+                    if (!coveredByArmor || pawn.RaceProps.IsFlesh)
+                    {
+                        break;  // On body part deflection only convert damage if the hit part is covered by Mechanoid armor
+                    }
+                    dinfo = GetDeflectDamageInfo(dinfo, curPart);
                     i++;
                 }
                 if (dmgAmount <= 0)

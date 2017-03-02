@@ -1,0 +1,46 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<RecipeDefs>
+
+  <RecipeDef Abstract="True" Name="SurgeryFlesh">
+    <effectWorking>Surgery</effectWorking>
+    <soundWorking>Recipe_Surgery</soundWorking>
+    <workSpeedStat>MedicalOperationSpeed</workSpeedStat>
+    <workSkill>Medicine</workSkill>
+    <workSkillLearnFactor>16</workSkillLearnFactor>
+  </RecipeDef>
+  
+  <!-- removing hediffs (e.g. diseases) -->
+	
+  <RecipeDef ParentName="SurgeryFlesh">
+		<defName>GraftSynthTissue</defName>
+		<label>graft synthetic tissue</label>
+		<description>Recovers permanent damage.</description>
+		<workerClass>CombatExtended.Recipe_RemoveOldHediff</workerClass>
+		<jobString>Grafting tissue.</jobString>
+		<workAmount>4500</workAmount>
+    <surgeonSurgerySuccessChanceExponent>2</surgeonSurgerySuccessChanceExponent>
+    <surgerySuccessChanceFactor>0.625</surgerySuccessChanceFactor>
+		<ingredients>
+			<li>
+				<filter>
+          <thingDefs>
+						<li>GlitterworldMedicine</li>
+					</thingDefs>
+				</filter>
+				<count>3</count>
+			</li>
+		</ingredients>
+		<fixedIngredientFilter>
+      <thingDefs>
+        <li>GlitterworldMedicine</li>
+      </thingDefs>
+		</fixedIngredientFilter>
+		<skillRequirements>
+			<li>
+				<skill>Medicine</skill>
+				<minLevel>10</minLevel>
+			</li>
+		</skillRequirements>
+  </RecipeDef>
+  	
+</RecipeDefs>
