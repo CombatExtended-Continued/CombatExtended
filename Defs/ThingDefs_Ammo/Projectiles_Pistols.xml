@@ -1,5 +1,37 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ThingDefs>
+	
+	<!-- ==================== .22 LR ========================== -->
+	
+	<ThingDef Name="Base22LRBullet" ParentName="BaseBullet" Abstract="true">
+		<graphicData>
+			<texPath>Things/Projectile/Bullet_Small</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+		</graphicData>
+		<projectile>
+			<damageDef>Bullet</damageDef>
+			<speed>68</speed>
+			<dropsCasings>true</dropsCasings>
+		</projectile>
+	</ThingDef>
+	
+	<ThingDef ParentName="Base22LRBullet">
+		<defName>Bullet_22LR_FMJ</defName>
+		<label>.22 LR bullet (FMJ)</label>
+		<projectile>
+			<damageAmountBase>6</damageAmountBase>
+			<armorPenetration>0.25</armorPenetration>
+		</projectile>
+	</ThingDef>
+	
+	<ThingDef ParentName="Base22LRBullet">
+		<defName>Bullet_22LR_HP</defName>
+		<label>.22 LR bullet (HP)</label>
+		<projectile>
+			<damageAmountBase>8</damageAmountBase>
+			<armorPenetration>0.2</armorPenetration>
+		</projectile>
+	</ThingDef>
 
 	<!-- ================== .40 Rimfire ================== -->
 
@@ -258,7 +290,7 @@
 		<defName>Bullet_50AE_FMJ</defName>
 		<label>.50 AE bullet (FMJ)</label>
 		<projectile>
-			<damageAmountBase>27</damageAmountBase>
+			<damageAmountBase>21</damageAmountBase>
 			<armorPenetration>0.375</armorPenetration>
 		</projectile>
 	</ThingDef>
@@ -267,7 +299,7 @@
 		<defName>Bullet_50AE_HP</defName>
 		<label>.50 AE bullet (HP)</label>
 		<projectile>
-			<damageAmountBase>32</damageAmountBase>
+			<damageAmountBase>25</damageAmountBase>
 			<armorPenetration>0.275</armorPenetration>
 		</projectile>
 	</ThingDef>
@@ -283,6 +315,16 @@
 		<projectile>
 			<damageDef>Bullet</damageDef>
 			<speed>120</speed>
+			<dropsCasings>true</dropsCasings>
+		</projectile>
+	</ThingDef>
+
+	<ThingDef ParentName="Base500SWMagnumBullet">
+		<defName>Bullet_500SWMagnum_FMJ</defName>
+		<label>.500 Smith Wessen Magnum bullet (FMJ)</label>
+		<projectile>
+			<damageAmountBase>28</damageAmountBase>
+			<armorPenetration>0.40</armorPenetration>
 		</projectile>
 	</ThingDef>
 
@@ -290,7 +332,7 @@
 		<defName>Bullet_500SWMagnum_HP</defName>
 		<label>.500 Smith Wessen Magnum bullet (HP)</label>
 		<projectile>
-			<damageAmountBase>40</damageAmountBase>
+			<damageAmountBase>31</damageAmountBase>
 			<armorPenetration>0.35</armorPenetration>
 		</projectile>
 	</ThingDef>

@@ -19,6 +19,8 @@ namespace CombatExtended
         private JobDef storedJobDef = null;
         private AmmoDef currentAmmoInt = null;
         public AmmoDef selectedAmmo;
+        
+        private Thing ammoToBeDeleted;
 
         public Building_TurretGunCE turret;         // Cross-linked from CE turret
 
@@ -144,6 +146,31 @@ namespace CombatExtended
             }
         }
 
+        public bool Notify_ShotFired()
+        {
+        	if (ammoToBeDeleted != null)
+        	{
+        		ammoToBeDeleted.Destroy();
+        		ammoToBeDeleted = null;
+                compInventory.UpdateInventory();
+	            if (!hasAmmo)
+	            {
+	            	return false;
+	            }
+        	}
+            return true;
+        }
+        
+        public bool Notify_PostShotFired()
+        {
+            if (!hasAmmo)
+            {
+                DoOutOfAmmoAction();
+                return false;
+            }
+            return true;
+        }
+        
         /// <summary>
         /// Reduces ammo count and updates inventory if necessary, call this whenever ammo is consumed by the gun (e.g. firing a shot, clearing a jam)
         /// </summary>
@@ -159,20 +186,13 @@ namespace CombatExtended
             {
                 if (useAmmo)
                 {
-                    Thing ammo;
-
-                    if (!TryFindAmmoInInventory(out ammo))
+                    if (!TryFindAmmoInInventory(out ammoToBeDeleted))
                     {
                         return false;
                     }
-
-                    if (ammo.stackCount > 1)
-                        ammo = ammo.SplitOff(1);
-
-                    ammo.Destroy();
-                    compInventory.UpdateInventory();
-                    if (!hasAmmo)
-                        DoOutOfAmmoAction();
+					
+                    if (ammoToBeDeleted.stackCount > 1)
+                        ammoToBeDeleted = ammoToBeDeleted.SplitOff(1);
                 }
                 return true;
             }
@@ -213,22 +233,23 @@ namespace CombatExtended
             if (useAmmo)
             {
                 // Add remaining ammo back to inventory
-                if (curMagCountInt > 0)
-                {
-                    Thing ammoThing = ThingMaker.MakeThing(currentAmmoInt);
-                    ammoThing.stackCount = curMagCountInt;
-                    curMagCountInt = 0;
-
-                    if (compInventory != null)
-                    {
-                        compInventory.container.TryAdd(ammoThing, ammoThing.stackCount);
-                    }
-                    else
-                    {
-                        Thing outThing;
-                        GenThing.TryDropAndSetForbidden(ammoThing, position, Find.VisibleMap, ThingPlaceMode.Near, out outThing, turret.Faction != Faction.OfPlayer);
-                    }
-                }
+	            if (curMagCountInt > 0)
+	            {
+	                Thing ammoThing = ThingMaker.MakeThing(currentAmmoInt);
+	                ammoThing.stackCount = curMagCountInt;
+	                curMagCountInt = 0;
+	
+	                if (compInventory != null)
+	                {
+	                    compInventory.container.TryAdd(ammoThing, ammoThing.stackCount);
+	                }
+	                else
+	                {
+	                    Thing outThing;
+	                    GenThing.TryDropAndSetForbidden(ammoThing, position, Find.VisibleMap, ThingPlaceMode.Near, out outThing, turret.Faction != Faction.OfPlayer);
+	                }
+	            }
+                
                 if (unload) return;
 
                 // Check for ammo
@@ -269,60 +290,6 @@ namespace CombatExtended
                 }
                 AssignJobToWielder(reloadJob);
             }
-        }
-
-        public Job ReloadJob()
-        {
-            if (!hasMagazine)
-            {
-                return null;
-            }
-            IntVec3 position = wielder.Position;
-
-            if (useAmmo)
-            {
-                // Add remaining ammo back to inventory
-                if (curMagCountInt > 0)
-                {
-                    Thing ammoThing = ThingMaker.MakeThing(currentAmmoInt);
-                    ammoThing.stackCount = curMagCountInt;
-                    curMagCountInt = 0;
-
-                    if (compInventory != null)
-                    {
-                        compInventory.container.TryAdd(ammoThing, ammoThing.stackCount);
-                    }
-                    else
-                    {
-                        Thing outThing;
-                        GenThing.TryDropAndSetForbidden(ammoThing, position, Find.VisibleMap, ThingPlaceMode.Near, out outThing, turret.Faction != Faction.OfPlayer);
-                    }
-                }
-                // Check for ammo
-                if (wielder != null && !hasAmmo)
-                {
-                    DoOutOfAmmoAction();
-                    return null;
-                }
-            }
-
-            // Throw mote
-            if (Props.throwMote)
-            {
-                MoteMaker.ThrowText(position.ToVector3Shifted(), Find.VisibleMap, "CE_ReloadingMote".Translate());
-            }
-
-            // Issue reload job
-            if (wielder != null)
-            {
-                Job reloadJob = new Job(CE_JobDefOf.ReloadWeapon, wielder, parent)
-                {
-                    playerForced = true
-                };
-
-                return reloadJob;
-            }
-            return null;
         }
         
         private void DoOutOfAmmoAction()
