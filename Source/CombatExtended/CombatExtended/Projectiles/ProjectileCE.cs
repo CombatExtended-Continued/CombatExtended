@@ -10,34 +10,56 @@ namespace CombatExtended
 {
     public abstract class ProjectileCE : ThingWithComps
     {
-        protected Vector3 origin;
-        protected Vector3 destination = new Vector3(-1000, -1000, -1000);
-        protected Thing assignedTarget;
-        public bool canFreeIntercept;
+        /// <summary>
+        /// Tree collision chance is multiplied by this factor
+        /// </summary>
+        private const float treeCollisionChance = 0.5f;
+        
+        protected Vector2 origin;
+        
+        private IntVec3 originInt = new IntVec3(-1000, 0, 0);
+        protected IntVec3 OriginIV3
+        {
+        	get
+        	{
+        		if (originInt.x < 0)
+        		{
+        			originInt = new IntVec3(origin);
+        		}
+        		return originInt;
+        	}
+        }
+        
+    	protected Vector3 destinationInt = new Vector3(0f, 0f, -1f);
+        protected Vector2 Destination
+        {
+        	get
+        	{
+        		if (destinationInt.z < 0)
+        		{
+        			destinationInt = CE_Utility.GetDestination(origin, shotAngle, shotRotation, shotSpeed, shotHeight);
+        			destinationInt.z = 0f;
+        		}
+        		return destinationInt;
+        	}
+        }
+        
         protected ThingDef equipmentDef;
         protected Thing launcher;
-        private Thing assignedMissTargetInt;
+        public float minCollisionSqr;
+        
+        #region Vanilla
         protected bool landed;
-        private float suppressionAmount;
         protected int ticksToImpact;
         private Sustainer ambientSustainer;
-        private static List<IntVec3> checkedCells = new List<IntVec3>();
+        #endregion
         
-        private const float ticksPerSecond = 100f;
-
-        public Thing AssignedMissTarget
-        {
-            get { return assignedMissTargetInt; }
-            set
-            {
-                if (value.def.Fillage == FillCategory.Full)
-                {
-                    return;
-                }
-                assignedMissTargetInt = value;
-            }
-        }
-
+        private float suppressionAmount;
+        
+        #region FreeIntercept
+        private static List<IntVec3> checkedCells = new List<IntVec3>();
+        #endregion
+        
         float startingTicksToImpactInt = -1f;
         protected float StartingTicksToImpact
         {
@@ -49,30 +71,27 @@ namespace CombatExtended
             		if (shotHeight < 0.001f)
             		{
             			//Multiplied by ticksPerSecond since the calculated time is actually in seconds.
-            			startingTicksToImpactInt = (float)((origin - destination).magnitude / (Mathf.Cos(shotAngle) * shotSpeed)) * ticksPerSecond;
+            			// FIXME : DO NOT USE THIS APPROXIMATION if/until destination is defined.
+            			startingTicksToImpactInt = (float)((origin - Destination).magnitude / (Mathf.Cos(shotAngle) * shotSpeed)) * (float)GenTicks.TicksPerRealSecond;
             		}
             		else
             		{
-            			//Stored to decrease the amount of Math.Sin calls.
-            			const float gravity = CE_Utility.gravityConst;
-	            		float vSin = (float)(Mathf.Sin(shotAngle) * shotSpeed);
-	            		
-            			//Calculates quadratic formula (g/2)t^2 + (-v_0y)t + (y-y0) for {g -> gravity, v_0y -> vSin, y -> 0, y0 -> shotHeight} to find t in fractional ticks where height equals zero.
-	            		startingTicksToImpactInt = (float)((vSin + Mathf.Sqrt(Mathf.Pow(vSin, 2) + 2 * gravity * shotHeight)) / gravity) * ticksPerSecond;
+            			startingTicksToImpactInt = CE_Utility.GetFlightTime(shotSpeed, shotAngle, shotHeight) * (float)GenTicks.TicksPerRealSecond;
             		}
             	}
                 return startingTicksToImpactInt;
             }
         }
         
-        bool heightOutdated = true;
-        float heightInt = 0f;
+        #region Height
+        private bool heightOutdated = true;
+        private float heightInt = 0f;
         /// <summary>
         /// If heightOutdated is true, Height calculates the quadratic formula (g/2)t^2 + (-v_0y)t + (y-y0) for {g -> gravity, v_0y -> shotSpeed * Mathf.Sin(shotAngle), y0 -> shotHeight, t -> seconds} to find y rounded to the nearest 3 decimals.
         /// 
         /// If heightOutdated is false, it returns a locally stored value heightInt which is the product of previous calculation.
         /// </summary>
-        protected float Height
+        public float Height
         {
         	get
         	{
@@ -85,7 +104,9 @@ namespace CombatExtended
         		return heightInt;
         	}
         }
+        #endregion
         
+        #region Ticks/Seconds
         /// <summary>
         /// An integer ceil value of StartingTicksToImpact. Is equal to -1 when not initialized.
         /// </summary>
@@ -112,9 +133,16 @@ namespace CombatExtended
         		return IntTicksToImpact - ticksToImpact;
         	}
         }
+        protected float fTicks
+        {
+        	get
+        	{
+        		return (ticksToImpact == 0 ? StartingTicksToImpact : (float)Ticks);
+        	}
+        }
         
         /// <summary>
-        /// The amount of seconds (using the conversion factor ticksPerSecond) multiplied by Ticks (or float StartingTicksToImpact when int ticksToImpact == 0).
+        /// The amount of seconds multiplied by Ticks (or float StartingTicksToImpact when int ticksToImpact == 0).
         /// 
         /// This ensures that the projectile runs from 0, 1, 2, ... , n-2, n-1, n, StartingTicksToImpact with n = IntTicksToImpact = Mathf.CeilToInt(StartingTicksToImpact).
         /// </summary>
@@ -122,34 +150,36 @@ namespace CombatExtended
         {
         	get
         	{
-        		return (ticksToImpact == 0 ? StartingTicksToImpact : (float)Ticks) / ticksPerSecond;
+        		return fTicks / (float)GenTicks.TicksPerRealSecond;
         	}
         }
+        #endregion
 
-        protected IntVec3 DestinationCell
+        #region Position
+        private Vector2 Vec2Position
         {
-            get
-            {
-                return new IntVec3(destination);
-            }
+        	get
+        	{
+        		return Vector2.Lerp(origin, Destination, fTicks / StartingTicksToImpact);
+        	}
         }
-
+        
+        //FIXME : Must be calculated based on .Launch() parameters!
         public virtual Vector3 ExactPosition
         {
             get
             {
-                return (ticksToImpact == 0 
-            	        ? destination 
-            	        : origin + (destination - origin) * ((float)Ticks / StartingTicksToImpact))
-                	+ Vector3.up * def.Altitude;
+            	var v = Vec2Position;
+            	return new Vector3(v.x, 0f, v.y);
             }
         }
 
+        //FIXME : Must be calculated based on .Launch() parameters!
         public virtual Quaternion ExactRotation
         {
             get
             {
-                return Quaternion.LookRotation(destination - origin);
+            	return Quaternion.AngleAxis(shotRotation, Vector3.up);
             }
         }
 
@@ -157,86 +187,92 @@ namespace CombatExtended
         {
             get
             {
-                return ExactPosition;
+            	var v = Vec2Position;
+            	return new Vector3(v.x, def.Altitude, v.y);
+            	//return new Vector3(v.x, def.Altitude, v.y + 0.5f*Height);
             }
         }
+        #endregion
 
-        //New variables
-        private const float treeCollisionChance = 0.5f; //Tree collision chance is multiplied by this factor
         /// <summary>
-        /// Angle in radians
+        /// Angle off the ground [radians].
         /// </summary>
-        public float shotAngle;
-        public float shotHeight = 0.01f;
+        public float shotAngle = 0f;
+        /// <summary>
+        /// Angle rotation between shooter and destination [degrees].
+        /// </summary>
+        public float shotRotation = 0f;
+        /// <summary>
+        /// Shot height in vertical cells. Humans start their shot at 0.85f [vcells].
+        /// </summary>
+        public float shotHeight = 0f;
+        /// <summary>
+        /// The assigned shot speed, in general equal to the projectile.def.speed value.
+        /// </summary>
         public float shotSpeed = -1f;
-
-        private float distanceFromOrigin
-        {
-            get
-            {
-                Vector3 currentPos = Vector3.Scale(ExactPosition, new Vector3(1, 0, 1));
-                return (currentPos - origin).magnitude;
-            }
-        }
 
         /*
          * *** End of class variables ***
         */
 
-        //Keep track of new variables
+        /// <summary>
+        /// Saves new variables shotAngle, shotHeight, shotSpeed.
+        /// </summary>
         public override void ExposeData()
         {
-            base.ExposeData();
+        	//FIXME : Do a pass over the exposed things
+        	base.ExposeData();
+            
             if (Scribe.mode == LoadSaveMode.Saving && launcher != null && launcher.Destroyed)
             {
                 launcher = null;
             }
-            Scribe_Values.LookValue(ref origin, "origin", default(Vector3), false);
-            Scribe_Values.LookValue(ref destination, "destination", default(Vector3), false);
-            Scribe_References.LookReference(ref assignedTarget, "assignedTarget");
-            Scribe_Values.LookValue(ref canFreeIntercept, "canFreeIntercept", false, false);
-            Scribe_Defs.LookDef(ref equipmentDef, "equipmentDef");
-            Scribe_References.LookReference(ref launcher, "launcher");
-            Scribe_References.LookReference(ref assignedMissTargetInt, "assignedMissTarget");
-            Scribe_Values.LookValue(ref landed, "landed", false, false);
-            Scribe_Values.LookValue(ref ticksToImpact, "ticksToImpact", 0, false);
+            Scribe_Values.LookValue<Vector2>(ref origin, "ori", default(Vector2), false);
+            
+            Scribe_Defs.LookDef(ref equipmentDef, "ed");
+            Scribe_References.LookReference(ref launcher, "lcr");
+            Scribe_Values.LookValue(ref landed, "lnd", false, false);
+            Scribe_Values.LookValue(ref ticksToImpact, "tTI", 0, false);
 
             //Here be new variables
-            Scribe_Values.LookValue(ref shotAngle, "shotAngle", 0f, true);
-            Scribe_Values.LookValue(ref shotHeight, "shotHeight", 0f, true);
-            Scribe_Values.LookValue(ref shotSpeed, "shotSpeed", 0f, true);
+            Scribe_Values.LookValue<float>(ref shotAngle, "ang", 0f, true);
+            Scribe_Values.LookValue<float>(ref shotRotation, "rot", 0f, true);
+            Scribe_Values.LookValue<float>(ref shotHeight, "hgt", 0f, true);
+            Scribe_Values.LookValue<float>(ref shotSpeed, "spd", 0f, true);
         }
 
-        //Added new method, takes Vector3 destination as argument
-        public void Launch(Thing launcher, Vector3 origin, LocalTargetInfo targ, Vector3 target, Thing equipment = null)
+        /// <summary>
+        /// Physics-enabled Launch() method.
+        /// </summary>
+        /// <param name="launcher">The Thing that launched this projectile.</param>
+        /// <param name="origin">The origin of the projectile (different from the launcher for e.g grenade fragments)</param>
+        /// <param name="shotAngle">Angle off the ground [radians].</param>
+        /// <param name="shotRotation">Rotation between shooter and destination [degrees].</param>
+        /// <param name="shotHeight">The shot height, usually the max height of the non-pawn caster, a portion of the height of the pawn caster OR zero. (default: 0)</param>
+        /// <param name="shotSpeed">The shot speed (default: def.projectile.speed)</param>
+        /// <param name="equipment">TODO</param>
+        public virtual void Launch(Thing launcher, Vector2 origin, float shotAngle, float shotRotation, float shotHeight = 0f, float shotSpeed = -1f, Thing equipment = null)
         {
-            destination = target;
-            Launch(launcher, origin, targ, equipment);
-        }
-
-        //Added new calculations for downed pawns, destination
-        public virtual void Launch(Thing launcher, Vector3 origin, LocalTargetInfo targ, Thing equipment = null)
-        {
-            if (shotSpeed < 0)
+            this.shotAngle = shotAngle;
+            this.shotRotation = shotRotation;
+            this.shotHeight = shotHeight;
+            
+        	Launch(launcher, origin, equipment);
+            if (shotSpeed > 0f)
             {
-                shotSpeed = def.projectile.speed;
+                this.shotSpeed = shotSpeed;
             }
+            
+            ticksToImpact = IntTicksToImpact;
+        }
+        
+        public virtual void Launch(Thing launcher, Vector2 origin, Thing equipment = null)
+        {
+        	this.shotSpeed = def.projectile.speed;
             this.launcher = launcher;
             this.origin = origin;
             equipmentDef = (equipment != null) ? equipment.def : null;
-            //Checking if target was downed on launch
-            if (targ.Thing != null)
-            {
-                assignedTarget = targ.Thing;
-            }
-            //Checking if a new destination was set
-            if (!destination.InBounds(base.Map))
-            {
-                destination = targ.Cell.ToVector3Shifted() +
-                              new Vector3(Rand.Range(-0.3f, 0.3f), 0f, Rand.Range(-0.3f, 0.3f));
-            }
-
-            ticksToImpact = IntTicksToImpact;
+            
             if (!def.projectile.soundAmbient.NullOrUndefined())
             {
                 SoundInfo info = SoundInfo.InMap(this, MaintenanceType.PerTick);
@@ -245,10 +281,10 @@ namespace CombatExtended
         }
 
         //Removed minimum collision distance
-        private bool CheckForFreeInterceptBetween(Vector3 lastExactPos, Vector3 newExactPos)
+        private bool CheckForFreeInterceptBetween(Vector2 lastExactPos, Vector2 newExactPos)
         {
-            IntVec3 lastPos = lastExactPos.ToIntVec3();
-            IntVec3 newPos = newExactPos.ToIntVec3();
+        	var lastPos = new IntVec3(lastExactPos);
+        	var newPos = new IntVec3(newExactPos);
             if (newPos == lastPos)
             {
                 return false;
@@ -262,24 +298,22 @@ namespace CombatExtended
                 return CheckForFreeIntercept(newPos);
             }
             //Check for minimum collision distance
-            float distToTarget = assignedTarget != null
-                ? (assignedTarget.DrawPos - origin).MagnitudeHorizontal()
-                : (destination - origin).MagnitudeHorizontal();
+            float distToTarget = (Destination - origin).sqrMagnitude;
             if (def.projectile.alwaysFreeIntercept
                 || distToTarget <= 1f
-                ? origin.ToIntVec3().DistanceToSquared(newPos) > 1f
-                : origin.ToIntVec3().DistanceToSquared(newPos) > Mathf.Min(12f, distToTarget / 2))
+                ? OriginIV3.DistanceToSquared(newPos) > 1f
+                : OriginIV3.DistanceToSquared(newPos) > Mathf.Min(12f, distToTarget / 2))
             {
-                Vector3 currentExactPos = lastExactPos;
-                Vector3 flightVec = newExactPos - lastExactPos;
-                Vector3 sectionVec = flightVec.normalized * 0.2f;
-                int numSections = (int)(flightVec.MagnitudeHorizontal() / 0.2f);
+                Vector2 currentExactPos = lastExactPos;
+                Vector2 flightVec = newExactPos - lastExactPos;
+                Vector2 sectionVec = flightVec.normalized * 0.2f;
+                int numSections = (int)(flightVec.magnitude / 0.2f);
                 checkedCells.Clear();
                 int currentSection = 0;
                 while (true)
                 {
                     currentExactPos += sectionVec;
-                    IntVec3 intVec3 = currentExactPos.ToIntVec3();
+                    var intVec3 = new IntVec3(currentExactPos);
                     if (!checkedCells.Contains(intVec3))
                     {
                         if (CheckForFreeIntercept(intVec3))
@@ -302,11 +336,13 @@ namespace CombatExtended
             }
             return false;
         }
-
+        
         /// <summary>
-        ///     Takes into account the target being downed and the projectile having been fired while the target was downed, and
-        ///     the target's bodySize
+        ///  Takes into account the target being downed and the projectile having been fired while the target was downed, and the target's bodySize
         /// </summary>
+        /// <param name="thing">The Thing to be tested for impact at a given float height.</param>
+        /// <param name="height">The height in vertical cells [vcells] to test for.</param>
+        /// <returns>Whether an impact has occured (True) or not (False).</returns>
         private bool ImpactThroughBodySize(Thing thing, float height)
         {
             Pawn pawn = thing as Pawn;
@@ -321,9 +357,10 @@ namespace CombatExtended
                     List<Apparel> wornApparel = pawn.apparel.WornApparel;
                     for (int i = 0; i < wornApparel.Count; i++)
                     {
-                        if (wornApparel[i] is PersonalShield)
+						var personalShield = wornApparel[i] as PersonalShield;
+                        if (personalShield != null)
                         {
-                            shield = (PersonalShield)wornApparel[i];
+							shield = personalShield;
                             break;
                         }
                     }
@@ -345,21 +382,12 @@ namespace CombatExtended
                         ProjectilePropertiesCE propsCE = def.projectile as ProjectilePropertiesCE;
                         float penetrationAmount = propsCE == null ? 0f : propsCE.armorPenetration;
                         suppressionAmount *= 1 - Mathf.Clamp(compSuppressable.parentArmor - penetrationAmount, 0, 1);
-                        compSuppressable.AddSuppression(suppressionAmount, origin.ToIntVec3());
+                        compSuppressable.AddSuppression(suppressionAmount, OriginIV3);
                     }
                 }
 
                 //Check horizontal distance
-                Vector3 dest = destination;
-                Vector3 orig = origin;
-                Vector3 pawnPos = pawn.DrawPos;
-                float closestDistToPawn = Math.Abs((dest.z - orig.z) * pawnPos.x - (dest.x - orig.x) * pawnPos.z +
-                                                 dest.x * orig.z - dest.z * orig.x)
-                                        /
-                                        (float)
-                                            Math.Sqrt((dest.z - orig.z) * (dest.z - orig.z) +
-                                                      (dest.x - orig.x) * (dest.x - orig.x));
-                if (closestDistToPawn <= CE_Utility.GetCollisionWidth(pawn))
+                if (CE_Utility.ClosestDistBetween(origin, Destination, new Vector2(pawn.DrawPos.x, pawn.DrawPos.z)) <= CE_Utility.GetCollisionWidth(pawn))
                 {
                     //Check vertical distance
                     if (CE_Utility.GetCollisionVertical(thing).Includes(height))
@@ -386,12 +414,6 @@ namespace CombatExtended
         }
 
         //Unmodified
-        public void Launch(Thing launcher, LocalTargetInfo targ, Thing equipment = null)
-        {
-            Launch(launcher, Position.ToVector3Shifted(), targ, equipment);
-        }
-
-        //Unmodified
         public override void Tick()
         {
             base.Tick();
@@ -399,7 +421,7 @@ namespace CombatExtended
             {
                 return;
             }
-            Vector3 exactPosition = ExactPosition;
+            Vector2 exactPosition = Vec2Position;
             ticksToImpact--;
             if (!ExactPosition.InBounds(base.Map))
             {
@@ -408,9 +430,9 @@ namespace CombatExtended
                 Destroy(DestroyMode.Vanish);
                 return;
             }
-            Vector3 exactPosition2 = ExactPosition;
-            if (ticksToImpact >= 0 && !def.projectile.flyOverhead && canFreeIntercept
-                && CheckForFreeInterceptBetween(exactPosition, exactPosition2))
+            if (ticksToImpact >= 0
+                && !def.projectile.flyOverhead
+                && CheckForFreeInterceptBetween(exactPosition, Vec2Position))
             {
                 return;
             }
@@ -423,10 +445,6 @@ namespace CombatExtended
             }
             if (ticksToImpact <= 0)
             {
-                if (DestinationCell.InBounds(base.Map))
-                {
-                    Position = DestinationCell;
-                }
                 ImpactSomething();
                 return;
             }
@@ -455,14 +473,11 @@ namespace CombatExtended
         private bool CheckForFreeIntercept(IntVec3 cell)
         {
             //Check for minimum collision distance
-            float distFromOrigin = (cell.ToVector3Shifted() - origin).MagnitudeHorizontal();
-            float distToTarget = assignedTarget != null
-                ? (assignedTarget.DrawPos - origin).MagnitudeHorizontal()
-                : (destination - origin).MagnitudeHorizontal();
+            float distFromOrigin = (cell - OriginIV3).LengthHorizontalSquared;
             if (!def.projectile.alwaysFreeIntercept
-                && distToTarget <= 1f
+                && minCollisionSqr <= 1f
                 ? distFromOrigin < 1f
-                : distFromOrigin < Mathf.Min(12f, distToTarget / 2))
+                : distFromOrigin < Mathf.Min(144f, minCollisionSqr / 4))
             {
                 return false;
             }
@@ -470,10 +485,11 @@ namespace CombatExtended
 
             //Find pawns in adjacent cells and append them to main list
             List<IntVec3> adjList = new List<IntVec3>();
-            Vector3 shotVec = (destination - origin).normalized;
+            	//HACK : Potential error
+            Vector2 shotVec = Quaternion.AngleAxis(shotRotation, Vector3.up) * Vector2.down;
 
             //Check if bullet is going north-south or west-east
-            if (Math.Abs(shotVec.x) < Math.Abs(shotVec.z))
+            if (Math.Abs(shotVec.x) < Math.Abs(shotVec.y))
             {
                 adjList = GenAdj.CellsAdjacentCardinal(cell, Rotation, new IntVec2(0, 1)).ToList();
             }
@@ -552,7 +568,7 @@ namespace CombatExtended
             //Not modified, just mortar code
             if (def.projectile.flyOverhead)
             {
-                RoofDef roofDef = base.Map.roofGrid.RoofAt(base.Position);
+                RoofDef roofDef = base.Map.roofGrid.RoofAt(Position);
                 if (roofDef != null)
                 {
                     if (roofDef.isThickRoof)
@@ -569,11 +585,6 @@ namespace CombatExtended
             }
             //Modified
             var height = Height;
-            if (assignedTarget != null && assignedTarget.Position == Position && ImpactThroughBodySize(assignedTarget, height))
-            //it was aimed at something and that something is still there
-            {
-            	return;
-            }
             Thing thing = base.Map.thingGrid.ThingAt(Position, ThingCategory.Pawn);
             if (thing != null && ImpactThroughBodySize(thing, height))
             {
@@ -594,24 +605,11 @@ namespace CombatExtended
         protected virtual void Impact(Thing hitThing)
         {
             CompExplosiveCE comp = this.TryGetComp<CompExplosiveCE>();
-            if (comp != null && launcher != null && this.Position.IsValid)
+            if (comp != null && launcher != null && Position.IsValid)
             {
                 comp.Explode(launcher, Position, Find.VisibleMap);
             }
-            Destroy(DestroyMode.Vanish);
-        }
-
-        //Unmodified
-        public void ForceInstantImpact()
-        {
-            if (!this.DestinationCell.InBounds(base.Map))
-            {
-                Destroy(DestroyMode.Vanish);
-                return;
-            }
-            this.ticksToImpact = 0;
-            base.Position = DestinationCell;
-            this.ImpactSomething();
+            Destroy();
         }
     }
 }

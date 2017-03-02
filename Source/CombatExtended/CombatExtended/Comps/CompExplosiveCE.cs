@@ -37,22 +37,22 @@ namespace CombatExtended
             // Regular explosion stuff
             if (Props.explosionRadius > 0 && Props.explosionDamage > 0 && parent.def != null && GenGrid.InBounds(pos, map))
             {
-                GenExplosion.DoExplosion
+				GenExplosion.DoExplosion
                     (pos,
-                    map,
-                    Props.explosionRadius,
-                    Props.explosionDamageDef,
-                    instigator,
-                    Props.soundExplode == null ? Props.explosionDamageDef.soundExplosion : Props.soundExplode,
-                    parent.def, 
-                    null,
-                    Props.postExplosionSpawnThingDef = null,
-                    Props.postExplosionSpawnChance = 0f,
-                    Props.postExplosionSpawnThingCount = 1, 
-                    Props.applyDamageToExplosionCellsNeighbors = false, 
-                    Props.preExplosionSpawnThingDef = null, 
-                    Props.explosionSpawnChance = 0,
-                    Props.preExplosionSpawnThingCount);
+					map,
+					Props.explosionRadius,
+					Props.explosionDamageDef,
+					instigator,
+					Props.soundExplode ?? Props.explosionDamageDef.soundExplosion,
+					parent.def, 
+					null,
+					Props.postExplosionSpawnThingDef = null,
+					Props.postExplosionSpawnChance = 0f,
+					Props.postExplosionSpawnThingCount = 1, 
+					Props.applyDamageToExplosionCellsNeighbors = false, 
+					Props.preExplosionSpawnThingDef = null, 
+					Props.explosionSpawnChance = 0,
+					Props.preExplosionSpawnThingCount);
             }
             // Fragmentation stuff
             if (!Props.fragments.NullOrEmpty() && GenGrid.InBounds(pos, map))
@@ -64,19 +64,24 @@ namespace CombatExtended
 
                 else
                 {
-                    Vector3 exactOrigin = new Vector3(0, 0, 0);
-                    exactOrigin.x = parent.DrawPos.x;
-                    exactOrigin.z = parent.DrawPos.z;
+                    Vector2 exactOrigin = new Vector2(parent.DrawPos.x, parent.DrawPos.z);
+                    float height = CE_Utility.GetCollisionVertical(pos.GetEdifice(map), true).max;
+                    
                     foreach (ThingCountClass fragment in Props.fragments)
                     {
                         for (int i = 0; i < fragment.count; i++)
                         {
                             ProjectileCE projectile = (ProjectileCE)ThingMaker.MakeThing(fragment.thingDef, null);
-                            projectile.canFreeIntercept = true;
-                            Vector3 exactTarget = exactOrigin + (new Vector3(1, 0, 1) * UnityEngine.Random.Range(0, Props.fragRange)).RotatedBy(UnityEngine.Random.Range(0, 360));
-                            LocalTargetInfo targetCell = exactTarget.ToIntVec3();
-                            GenSpawn.Spawn(projectile, parent.Position, map);
-                            projectile.Launch(instigator, exactOrigin, targetCell, exactTarget, null);
+                            GenSpawn.Spawn(projectile, pos, map);
+                            
+                            var projCE = parent as ProjectileCE;
+                            if (projCE != null)
+                            {
+                            	height = Mathf.Max(height, projCE.Height);
+                            }
+                            
+                			projectile.minCollisionSqr = 1f;
+                            projectile.Launch(instigator, exactOrigin, UnityEngine.Random.Range(-Mathf.PI / 2f, Mathf.PI / 2f), UnityEngine.Random.Range(0, 360), height);
                         }
                     }
                 }

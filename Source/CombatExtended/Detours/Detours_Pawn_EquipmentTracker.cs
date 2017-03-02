@@ -172,7 +172,8 @@ namespace CombatExtended.Detours
             Verb verb = pawn.TryGetAttackVerb(allowManualCastWeapons);
 
             // Check for reload before attacking
-            if (_this.PrimaryEq != null && verb != null && verb == _this.PrimaryEq.PrimaryVerb)
+            ThingWithComps primaryInt = (ThingWithComps)primaryIntFieldInfo.GetValue(_this);
+            if (primaryInt != null && _this.PrimaryEq != null && verb != null && verb == _this.PrimaryEq.PrimaryVerb)
             {
                 if (_this.Primary != null)
                 {

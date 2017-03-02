@@ -49,11 +49,19 @@ namespace CombatExtended
         // Targeting factors
         private float estimatedTargDist = -1;           // Stores estimate target distance for each burst, so each burst shot uses the same
         private int numShotsFired = 0;                  // Stores how many shots were fired for purposes of recoil
-        private float shotAngle;
-        private float shotHeight;
-        private Vector2 skewVec = new Vector2(0, 0);
-        private bool pelletMechanicsOnly = false;
-        private Vector3 newTargetLoc;
+        /// <summary>
+        /// Angle in Vector2(degrees, radians)
+        /// </summary>
+        private Vector2 newTargetLoc = new Vector2(0, 0);
+        private Vector2 sourceLoc = new Vector2(0, 0);
+        /// <summary>
+        /// Shot angle off the ground in radians.
+        /// </summary>
+        private float shotAngle = 0f;
+        /// <summary>
+        /// Angle rotation towards target.
+        /// </summary>
+        private float shotRotation = 0f;
 
         protected CompCharges compChargesInt = null;
         protected CompCharges compCharges
@@ -72,23 +80,37 @@ namespace CombatExtended
         {
             get
             {
-                if (this.shotSpeedInt < 0)
+                if (shotSpeedInt < 0)
                 {
-                    this.shotSpeedInt = this.verbProps.projectileDef.projectile.speed;
-                    if (this.compCharges != null)
+                    if (compCharges != null)
                     {
                         Vector2 bracket;
-                        if (this.compCharges.GetChargeBracket((this.currentTarget.Cell - this.caster.Position).LengthHorizontal, out bracket))
+                        if (compCharges.GetChargeBracket((currentTarget.Cell - caster.Position).LengthHorizontal, out bracket))
                         {
-                            this.shotSpeedInt = bracket.x;
+                            shotSpeedInt = bracket.x;
                         }
                     }
                     else
                     {
-                        this.shotSpeedInt = this.verbProps.projectileDef.projectile.speed;
+                        shotSpeedInt = verbProps.projectileDef.projectile.speed;
                     }
                 }
-                return this.shotSpeedInt;
+                return shotSpeedInt;
+            }
+        }
+        private float shotHeightInt = -1;
+        private float shotHeight
+        {
+            get
+            {
+                if (shotHeightInt < 0)
+                {
+                	var shooterVertical = CE_Utility.GetCollisionVertical(caster);
+                	shotHeightInt = CasterIsPawn
+                		? shooterVertical.min + (shooterVertical.max - shooterVertical.min) * shotHeightFactor
+		            	: shooterVertical.max;
+                }
+                return shotHeightInt;
             }
         }
 
@@ -172,91 +194,65 @@ namespace CombatExtended
         }
 
         /// <summary>
-        /// Calculates the shot angle necessary to hit the designated target
-        /// </summary>
-        /// <param name="velocity">projectile velocity in cells per second</param>
-        /// <param name="range">cells between shooter and target</param>
-        /// <param name="heightDifference">difference between initial shot height and target height</param>
-        /// <returns>lower arc angle in radians</returns>
-        private float GetShotAngle(float velocity, float range, float heightDifference)
-        {
-            const float gravity = CE_Utility.gravityConst;
-            float angle = 0;
-            angle = (float)Math.Atan((Math.Pow(velocity, 2) + (projectileDef.projectile.flyOverhead ? 1 : -1) * Math.Sqrt(Math.Pow(velocity, 4) - gravity * (gravity * Math.Pow(range, 2) + 2 * heightDifference * Math.Pow(velocity, 2)))) / (gravity * range));
-            return angle;
-        }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="velocity">projectile velocity in cells per second</param>
-        /// <param name="angle">shot angle in radians</param>
-        /// <param name="shotHeight">height from which projectile is fired</param>
-        /// <returns>distance in cells projectile will fly at given arc</returns>
-        private float GetDistanceTraveled(float velocity, float angle, float shotHeight)
-        {
-            const float gravity = CE_Utility.gravityConst;
-            float distance = (float)((velocity * Math.Cos(angle)) / gravity) * (float)(velocity * Math.Sin(angle) + Math.Sqrt(Math.Pow(velocity * Math.Sin(angle), 2) + 2 * gravity * shotHeight));
-            return distance;
-        }
-
-        /// <summary>
         /// Resets current burst shot count and estimated distance at beginning of the burst
         /// </summary>
         public override void WarmupComplete()
         {
             this.numShotsFired = 0;
-            this.estimatedTargDist = -1;
             base.WarmupComplete();
         }
 
+        float rotationDegrees = 0f;
+        float angleRadians = 0f;
+        
         /// <summary>
         /// Shifts the original target position in accordance with target leading, range estimation and weather/lighting effects
         /// </summary>
-        protected virtual Vector3 ShiftTarget(ShiftVecReport report, bool calculateMechanicalOnly = false)
+        protected virtual void ShiftTarget(ShiftVecReport report, bool calculateMechanicalOnly = false)
         {
-	        Vector3 sourceLoc = this.CasterPawn != null ? Vector3.Scale(this.CasterPawn.DrawPos, new Vector3(1, 0, 1)) : this.caster.Position.ToVector3Shifted();
-	        
         	if (!calculateMechanicalOnly)
         	{
-	            // ----------------------------------- STEP 0: Actual location
+	        	Vector3 u = CasterPawn != null ? CasterPawn.DrawPos : caster.Position.ToVector3Shifted();
+	        	sourceLoc.Set(u.x, u.z);
+	        	
+        		if (this.numShotsFired == 0)
+        		{
+	            	// On first shot of burst do a range estimate
+        			estimatedTargDist = report.GetRandDist();
+        		}
+        	
+	            Vector3 v = report.targetPawn != null ? report.targetPawn.DrawPos : report.target.Cell.ToVector3Shifted();
+	            newTargetLoc.Set(v.x, v.z);
+	            
+	            // ----------------------------------- STEP 1: Actual location + Shift for visibility
 	
-	            Vector3 targetLoc = report.targetPawn != null ? Vector3.Scale(report.targetPawn.DrawPos, new Vector3(1, 0, 1)) : report.target.Cell.ToVector3Shifted();
-	
-	            // ----------------------------------- STEP 1: Shift for visibility
-	
-	            Vector2 circularShiftVec = report.GetRandCircularVec();
-	            newTargetLoc = targetLoc;
-	            newTargetLoc.x += circularShiftVec.x;
-	            newTargetLoc.z += circularShiftVec.y;
+	            	//FIXME : GetRandCircularVec may be causing recoil to be unnoticeable - each next shot in the burst has a new random circular vector around the target.
+	            newTargetLoc += report.GetRandCircularVec();
 	
 	            // ----------------------------------- STEP 2: Estimated shot to hit location
 	
-	            // On first shot of burst do a range estimate
-	            if (this.estimatedTargDist < 0)
-	            {
-	                this.estimatedTargDist = report.GetRandDist();
-	            }
-	            newTargetLoc = sourceLoc + (newTargetLoc - sourceLoc).normalized * this.estimatedTargDist;
+	            newTargetLoc = sourceLoc + (newTargetLoc - sourceLoc).normalized * estimatedTargDist;
 	
 	            // Lead a moving target
 	            newTargetLoc += report.GetRandLeadVec();
 	
 	            // ----------------------------------- STEP 3: Recoil, Skewing, Skill checks, Cover calculations
-	
-	            skewVec = new Vector2(0, 0);
-	            skewVec += GetSwayVec();
-	            skewVec += GetRecoilVec();
+				
+	            rotationDegrees = 0f;
+	            angleRadians = 0f;
+	            
+	            GetSwayVec(ref rotationDegrees, ref angleRadians);
+	            GetRecoilVec(ref rotationDegrees, ref angleRadians);
 	
 			    // Height difference calculations for ShotAngle
-			    float heightDifference = 0;
+			    float targetHeight = 0f;
 	            
 	            var coverVertical = CE_Utility.GetCollisionVertical(report.cover, true);	//Get " " cover, assume it is the edifice
 	            
 	            // Projectiles with flyOverhead target the ground below the target and ignore cover
 	            if (projectileDef.projectile.flyOverhead)
 	            {
-	            	heightDifference = coverVertical.max;
+	            	targetHeight = coverVertical.max;
 	            }
 	            else
 	            {
@@ -274,40 +270,44 @@ namespace CombatExtended
                         targetVertical.max *= CE_Utility.bodyRegionMiddleHeight;
                     }
                     */
-	           		heightDifference = targetVertical.min + (targetVertical.max - targetVertical.min) * 0.5f;
+	           		targetHeight = targetVertical.min + (targetVertical.max - targetVertical.min) * 0.5f;
 	            }
 	            
-	            var shooterVertical = CE_Utility.GetCollisionVertical(this.caster);
-	            this.shotHeight = CasterIsPawn
-	            	? shooterVertical.min + (shooterVertical.max - shooterVertical.min) * shotHeightFactor
-	            	: shooterVertical.max;
-	            
-	            heightDifference -= this.shotHeight;
-	            skewVec += new Vector2(0, GetShotAngle(this.shotSpeed, (newTargetLoc - sourceLoc).magnitude, heightDifference) * (180 / (float)Math.PI));
+	            angleRadians += CE_Utility.GetShotAngle(shotSpeed, (newTargetLoc - sourceLoc).magnitude, targetHeight - shotHeight, projectileDef.projectile.flyOverhead);
         	}
         	
 	        // ----------------------------------- STEP 4: Mechanical variation
 	        
-            // Get shotvariation
-            Vector2 spreadVec = report.GetRandSpreadVec() + skewVec;
+            // Get shotvariation, in angle Vector2 RADIANS.
+            Vector2 spreadVec = report.GetRandSpreadVec();
             
             // ----------------------------------- STEP 5: Finalization
 
+					//FIXME : Changes angle
             // Skewing		-		Applied after the leading calculations to not screw them up
-            this.shotAngle = (float)(spreadVec.y * (Math.PI / 180));
+            //shotAngle = spreadVec.y * Mathf.Deg2Rad;
             
-            float distanceTraveled = GetDistanceTraveled(this.shotSpeed, this.shotAngle, this.shotHeight);
+            var w = (newTargetLoc - sourceLoc);
+            shotRotation = (90 + Mathf.Rad2Deg * Mathf.Atan2(-w.y, w.x) + rotationDegrees + spreadVec.x) % 360;
+            shotAngle = angleRadians + spreadVec.y * Mathf.Deg2Rad;
+            
+            /*
+					//FIXME : Changes range from speed, angle, shotHeight
+            float distanceTraveled = CE_Utility.GetDistanceTraveled(shotSpeed, shotAngle, shotHeight);
             Vector3 finalTargetLoc = sourceLoc + ((newTargetLoc - sourceLoc).normalized * distanceTraveled);
+					//FIXME : Applies angle
             finalTargetLoc = sourceLoc + (Quaternion.AngleAxis(spreadVec.x, Vector3.up) * (finalTargetLoc - sourceLoc));
-
+			
             return finalTargetLoc;
+			*/
         }
 
         /// <summary>
         /// Calculates the amount of recoil at a given point in a burst, up to a maximum
         /// </summary>
-        /// <returns>Vector by which to shift the target</returns>
-        private Vector2 GetRecoilVec()
+        /// <param name="rotation">The ref float to have horizontal recoil in degrees added to.</param>
+        /// <param name="angle">The ref float to have vertical recoil in radians added to.</param>
+        private void GetRecoilVec(ref float rotation, ref float angle)
         {
             float minX = 0;
             float maxX = 0;
@@ -316,7 +316,7 @@ namespace CombatExtended
             switch (verbPropsCE.recoilPattern)
             {
                 case RecoilPattern.None:
-                    return new Vector2(0, 0);
+            		return;
                 case RecoilPattern.Regular:
                     float num = verbPropsCE.recoilAmount / 3;
                     minX = -(num / 3);
@@ -332,23 +332,22 @@ namespace CombatExtended
                     maxX = verbPropsCE.recoilAmount;
                     break;
             }
-            float recoilX = UnityEngine.Random.Range(minX, maxX);
-            float recoilY = UnityEngine.Random.Range(minY, maxY);
-            
             float recoilMagnitude = Mathf.Pow((5 - shootingAccuracy), (Mathf.Min(10, numShotsFired) / 6.25f));
-            return new Vector2(recoilX, recoilY) * recoilMagnitude;
+            
+            rotation += recoilMagnitude * UnityEngine.Random.Range(minX, maxX);
+            angle += Mathf.Deg2Rad * recoilMagnitude * UnityEngine.Random.Range(minY, maxY);
         }
 
         /// <summary>
         /// Calculates current weapon sway based on a parametric function with maximum amplitude depending on shootingAccuracy and scaled by weapon's swayFactor.
         /// </summary>
-        /// <returns>Vector2 with weapon skew in degrees</returns>
-        protected Vector2 GetSwayVec()
+        /// <param name="rotation">The ref float to have horizontal sway in degrees added to.</param>
+        /// <param name="angle">The ref float to have vertical sway in radians added to.</param>
+        protected void GetSwayVec(ref float rotation, ref float angle)
         {
-            int ticks = Find.TickManager.TicksAbs + this.caster.thingIDNumber;
-            Vector2 swayVec = new Vector2(swayAmplitude * (float)Math.Sin(ticks * (0.022f)), swayAmplitude * (float)Math.Sin(ticks * 0.0165f));
-            swayVec.y *= 0.25f;
-            return swayVec;
+        	float ticks = (float)(Find.TickManager.TicksAbs + this.caster.thingIDNumber);
+        	rotation += swayAmplitude * (float)Mathf.Sin(ticks * 0.022f);
+        	angle += Mathf.Deg2Rad * 0.25f * swayAmplitude * (float)Mathf.Sin(ticks * 0.0165f);
         }
 
         public virtual ShiftVecReport ShiftVecReportFor(LocalTargetInfo target)
@@ -443,23 +442,18 @@ namespace CombatExtended
             {
                 //Check if target is obstructed behind cover
                 Thing coverTarg;
-                if (this.GetPartialCoverBetween(root.ToVector3Shifted(), targ.Cell.ToVector3Shifted(), out coverTarg))
+                if (GetPartialCoverBetween(root.ToVector3Shifted(), targ.Cell.ToVector3Shifted(), out coverTarg))
                 {
-                	var targetVertical = CE_Utility.GetCollisionVertical(targ.Thing);
-                    if (targetVertical.max < CE_Utility.GetCollisionVertical(coverTarg, true).max)
+                    if (CE_Utility.GetCollisionVertical(targ.Thing).max < CE_Utility.GetCollisionVertical(coverTarg, true).max)
                     {
                         return false;
                     }
                 }
                 //Check if shooter is obstructed by cover
                 Thing coverShoot;
-                if (this.GetPartialCoverBetween(targ.Cell.ToVector3Shifted(), root.ToVector3Shifted(), out coverShoot))
+                if (GetPartialCoverBetween(targ.Cell.ToVector3Shifted(), root.ToVector3Shifted(), out coverShoot))
                 {
-                	var shooterVertical = CE_Utility.GetCollisionVertical(this.caster);
-                	var shooterHeight = CasterIsPawn
-		            	? shooterVertical.min + (shooterVertical.max - shooterVertical.min) * shotHeightFactor
-		            	: shooterVertical.max;
-                    if (shooterHeight < CE_Utility.GetCollisionVertical(coverShoot, true).max)
+                	if (shotHeight < CE_Utility.GetCollisionVertical(coverShoot, true).max)
                     {
                         return false;
                     }
@@ -476,27 +470,29 @@ namespace CombatExtended
         protected override bool TryCastShot()
         {
             ShootLine shootLine;
-            if (!base.TryFindShootLineFromTo(this.caster.Position, this.currentTarget, out shootLine))
+            if (!TryFindShootLineFromTo(caster.Position, currentTarget, out shootLine))
             {
                 return false;
             }
-            if (this.projectilePropsCE.pelletCount < 1)
+            if (projectilePropsCE.pelletCount < 1)
             {
-                Log.Error(this.ownerEquipment.LabelCap + " tried firing with pelletCount less than 1.");
+                Log.Error(ownerEquipment.LabelCap + " tried firing with pelletCount less than 1.");
                 return false;
             }
-            Vector3 casterExactPosition = this.caster.DrawPos;
-            ShiftVecReport report = ShiftVecReportFor(this.currentTarget);
-           	pelletMechanicsOnly = false;
-            for (int i = 0; i < this.projectilePropsCE.pelletCount; i++)
+            ShiftVecReport report = ShiftVecReportFor(currentTarget);
+           	bool pelletMechanicsOnly = false;
+            for (int i = 0; i < projectilePropsCE.pelletCount; i++)
             {
                 ProjectileCE projectile = (ProjectileCE)ThingMaker.MakeThing(projectileDef, null);
                 GenSpawn.Spawn(projectile, shootLine.Source, caster.Map);
-	           	Vector3 targetVec3 = ShiftTarget(report, pelletMechanicsOnly);
+	           	//Vector3 targetVec3 = ShiftTarget(report, pelletMechanicsOnly);
+	           	ShiftTarget(report, pelletMechanicsOnly);
 
                 //New aiming algorithm
-                projectile.canFreeIntercept = true;
-                projectile.shotAngle = this.shotAngle;
+                projectile.minCollisionSqr = (sourceLoc - newTargetLoc).sqrMagnitude;
+                projectile.Launch(caster, sourceLoc, shotAngle, shotRotation, shotHeight, shotSpeed, ownerEquipment);
+                
+                /*projectile.shotAngle = this.shotAngle;
                 projectile.shotHeight = this.shotHeight;
                 projectile.shotSpeed = this.shotSpeed;
                 if (this.currentTarget.Thing != null)
@@ -506,7 +502,7 @@ namespace CombatExtended
                 else
                 {
                     projectile.Launch(this.caster, casterExactPosition, new LocalTargetInfo(shootLine.Dest), targetVec3, this.ownerEquipment);
-                }
+                }*/
 	           	pelletMechanicsOnly = true;
             }
            	pelletMechanicsOnly = false;

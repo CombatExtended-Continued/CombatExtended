@@ -139,17 +139,17 @@ namespace CombatExtended
             return dist;
         }
 
-        public Vector3 GetRandLeadVec()
+        public Vector2 GetRandLeadVec()
         {
-            Vector3 leadVec = new Vector3();
+            Vector3 moveVec = new Vector3();
             if (targetIsMoving)
             {
-                Vector3 moveVec = (targetPawn.pather.nextCell - targetPawn.Position).ToVector3();
-                leadVec = moveVec * (leadDist + UnityEngine.Random.Range(-leadShift, leadShift));
+            	moveVec = (targetPawn.pather.nextCell - targetPawn.Position).ToVector3() * (leadDist + UnityEngine.Random.Range(-leadShift, leadShift));
             }
-            return leadVec;
+            return new Vector2(moveVec.x, moveVec.z);
         }
 
+        /// <returns>Angle Vector2 in degrees</returns>
         public Vector2 GetRandSpreadVec()
         {
             Vector2 vec = UnityEngine.Random.insideUnitCircle * spreadDegrees;
