@@ -61,7 +61,12 @@ namespace CombatExtended
             autoTakeAmmoInt.VisibilityPredicate = GetAmmoSystemEnabled;
             showCaliberOnGunsInt.VisibilityPredicate = GetAmmoSystemEnabled;
         }
-
+        
+		public override void SettingsChanged()
+		{
+			AmmoInjector.Inject();
+		}
+        
         private bool GetAmmoSystemEnabled()
         {
             return enableAmmoSystemInt;

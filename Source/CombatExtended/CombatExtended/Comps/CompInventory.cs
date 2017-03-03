@@ -192,9 +192,6 @@ namespace CombatExtended
                         // Add item weight
                         newBulk += thing.GetStatValue(CE_StatDefOf.Bulk) * thing.stackCount;
                         newWeight += thing.GetStatValue(StatDefOf.Mass) * thing.stackCount;
-                       //old newWeight += thing.GetStatValue(CE_StatDefOf.Weight) * thing.stackCount;
-
-
                     }
                     // Update ammo list
                     if (thing.def is AmmoDef)

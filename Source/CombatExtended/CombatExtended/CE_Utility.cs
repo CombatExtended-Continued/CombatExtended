@@ -324,7 +324,65 @@ namespace CombatExtended
                 TryUpdateInventory(tracker.pawn);
             }
         }
+        
+        private const int ticksBeforeDropRaw = 40000;
 
+        public static Thing RandomNonLoadoutNonEquipment(this Pawn pawn, out int stackSizeToBeRemoved)
+        {
+        	var loadout = pawn.GetLoadout();
+        	
+            CompInventory inventory = pawn.TryGetComp<CompInventory>();
+            ThingContainer container = (inventory == null)
+            	? pawn.inventory.innerContainer
+            	: inventory.container;
+            
+            if (loadout != null)
+            {
+                bool allowDropRaw = Find.TickManager.TicksGame > pawn.mindState?.lastInventoryRawFoodUseTick + ticksBeforeDropRaw;
+                Thing thingToRemove = container.FirstOrDefault(t => 
+                    (allowDropRaw || !t.def.IsNutritionGivingIngestible || t.def.ingestible.preferability > FoodPreferability.RawTasty)
+                    && !loadout.Slots.Any(s => s.Def == t.GetInnerIfMinified().def));
+                if (thingToRemove != null)
+                {
+                	stackSizeToBeRemoved = -2;
+                	return thingToRemove;
+                }
+                
+                // Find and drop excess items
+                foreach (LoadoutSlot slot in loadout.Slots)
+                {
+                    int numContained = container.TotalStackCountOfDef(slot.Def);
+
+                    // Add currently equipped gun
+                    if (pawn.equipment != null && pawn.equipment.Primary != null)
+                    {
+                        if (pawn.equipment.Primary.def == slot.Def)
+                        {
+                            numContained++;
+                        }
+                    }
+                    // Drop excess items
+                    if(numContained > slot.Count)
+                    {
+                    	Thing thing = container.FirstOrDefault(x => x.GetInnerIfMinified().def == slot.Def);
+                        if (thing != null)
+                        {
+                        	stackSizeToBeRemoved = numContained - slot.Count;
+                        	return thing;
+                        }
+                    }
+                }
+            }
+            else if (container.Count > 0)
+            {
+            	stackSizeToBeRemoved = -2;
+            	return container.RandomElement();
+            }
+            
+            stackSizeToBeRemoved = -1;
+            return null;
+        }
+        
         #endregion Inventory
     }
 }

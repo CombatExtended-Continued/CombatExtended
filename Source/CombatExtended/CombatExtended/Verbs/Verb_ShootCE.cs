@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Verse;
 using Verse.AI;
+using Verse.Sound;
 
 namespace CombatExtended
 {
@@ -208,7 +209,7 @@ namespace CombatExtended
             if (CasterIsPawn && !CasterPawn.health.capacities.CapableOf(PawnCapacityDefOf.Sight)) return false;
             return base.CanHitTargetFrom(root, targ);
         }
-
+        
         protected override bool TryCastShot()
         {
             //Reduce ammunition
@@ -226,13 +227,42 @@ namespace CombatExtended
                 //Drop casings
                 if (verbPropsCE.ejectsCasings && projectilePropsCE.dropsCasings)
                 {
-                    CE_Utility.ThrowEmptyCasing(this.caster.DrawPos, caster.Map, ThingDef.Named(this.projectilePropsCE.casingMoteDefname));
+                    CE_Utility.ThrowEmptyCasing(caster.DrawPos, caster.Map, ThingDef.Named(projectilePropsCE.casingMoteDefname));
+                }
+	            // This needs to here for weapons without magazine to ensure their last shot plays sounds
+                if (compAmmo != null)
+                {
+	                if (!compAmmo.hasMagazine && compAmmo.useAmmo)
+	                {
+	                	if (!compAmmo.Notify_ShotFired())
+	                	{
+							if (verbPropsCE.muzzleFlashScale > 0.01f)
+							{
+								MoteMaker.MakeStaticMote(caster.Position, caster.Map, ThingDefOf.Mote_ShotFlash, verbPropsCE.muzzleFlashScale);
+							}
+							if (verbPropsCE.soundCast != null)
+							{
+								verbPropsCE.soundCast.PlayOneShot(new TargetInfo(caster.Position, caster.Map));
+							}
+							if (verbPropsCE.soundCastTail != null)
+							{
+								verbPropsCE.soundCastTail.PlayOneShotOnCamera();
+							}
+							if (CasterIsPawn)
+							{
+								if (CasterPawn.thinker != null)
+								{
+									CasterPawn.mindState.lastEngageTargetTick = Find.TickManager.TicksGame;
+								}
+							}
+	                	}
+	                }
+	                return compAmmo.Notify_PostShotFired();
                 }
                 return true;
             }
             return false;
         }
-
         #endregion
     }
 }

@@ -307,19 +307,19 @@ namespace CombatExtended
 
         public void SetSource(SourceSelection source, bool preserveFilter = false)
         {
-            _source = DefDatabase<ThingDef>.AllDefsListForReading;
+        	_source = DefDatabase<ThingDef>.AllDefs.Where(x => !x.menuHidden).ToList<ThingDef>();
             if (!preserveFilter)
                 _filter = "";
 
             switch (source)
             {
                 case SourceSelection.Ranged:
-                    _source = _source.Where(td => td.IsRangedWeapon && !td.menuHidden).ToList();
+                    _source = _source.Where(td => td.IsRangedWeapon).ToList();
                     _sourceType = SourceSelection.Ranged;
                     break;
 
                 case SourceSelection.Melee:
-                    _source = _source.Where(td => td.IsMeleeWeapon && !td.menuHidden).ToList();
+                    _source = _source.Where(td => td.IsMeleeWeapon).ToList();
                     _sourceType = SourceSelection.Melee;
                     break;
 
