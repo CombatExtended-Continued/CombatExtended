@@ -108,15 +108,20 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AI\CombatRole.cs" />
     <Compile Include="AI\Defs\RaidGoalDef.cs" />
-    <Compile Include="AI\RaidGoalFinder.cs" />
-    <Compile Include="AI\RaidGoalFinder_HostilePawns.cs" />
-    <Compile Include="AI\SquadBrain.cs" />
-    <Compile Include="AI\SquadBrainManager.cs" />
-    <Compile Include="AI\SquadObjective.cs" />
-    <Compile Include="AI\SquadPath.cs" />
-    <Compile Include="AI\SquadPather.cs" />
+    <Compile Include="AI\FactionBrain\FactionBrain.cs" />
+    <Compile Include="AI\FactionBrain\FactionBrainManager.cs" />
+    <Compile Include="AI\Objectives\RaidGoalFinder.cs" />
+    <Compile Include="AI\Objectives\RaidGoalFinder_Targets.cs" />
+    <Compile Include="AI\Objectives\SquadObjective.cs" />
+    <Compile Include="AI\PathFinding\SquadPath.cs" />
+    <Compile Include="AI\PathFinding\SquadPathBrainPlus.cs" />
+    <Compile Include="AI\PathFinding\SquadPather.cs" />
+    <Compile Include="AI\PathFinding\SquadPathKMBetterPQueue.cs" />
+    <Compile Include="AI\PathFinding\SquadPathRegionAStar.cs" />
+    <Compile Include="AI\SquadBrain\CombatRole.cs" />
+    <Compile Include="AI\SquadBrain\SquadBrain.cs" />
+    <Compile Include="AI\SquadBrain\SquadBrainManager.cs" />
     <Compile Include="CombatExtended\ArmorUtilityCE.cs" />
     <Compile Include="CombatExtended\Comps\CompProperties_SquadBrain.cs" />
     <Compile Include="CombatExtended\Comps\CompSquadBrain.cs" />
@@ -125,7 +130,6 @@
     <Compile Include="CombatExtended\Comps\HediffComp_InfecterCE.cs" />
     <Compile Include="CombatExtended\Comps\HediffComp_Stabilize.cs" />
     <Compile Include="CombatExtended\DefOfs\CE_BodyPartGroupDefOf.cs" />
-    <Compile Include="CombatExtended\DefOfs\CE_HediffDefOf.cs" />
     <Compile Include="CombatExtended\DefOfs\CE_JobDefOf.cs" />
     <Compile Include="CombatExtended\DefOfs\CE_ThingDefOf.cs" />
     <Compile Include="CombatExtended\DefOfs\CE_StatDefOf.cs" />
@@ -134,6 +138,7 @@
     <Compile Include="CombatExtended\Enums\BodyType.cs" />
     <Compile Include="CombatExtended\Hediff_InjuryCE.cs" />
     <Compile Include="CombatExtended\Jobs\JobDriver_Hunt.cs" />
+    <Compile Include="CombatExtended\Jobs\JobDriver_Stabilize.cs" />
     <Compile Include="CombatExtended\Jobs\JobGiver_ConfigurableHostilityResponse.cs" />
     <Compile Include="CombatExtended\Jobs\JobGiver_TakeAndEquip.cs" />
     <Compile Include="CombatExtended\Projectiles\ProjectileCE_Explosive_RL.cs" />
@@ -187,6 +192,10 @@
     <Compile Include="CombatExtended\DamageWorkers\DamageWorker_AddInjuryCE.cs" />
     <Compile Include="CombatExtended\Defs\AmmoCategoryDef.cs" />
     <Compile Include="CombatExtended\Loadouts\Utility_Loadouts.cs" />
+    <None Include="AI\Objectives\RaidGoalFinder.cs~" />
+    <None Include="AI\Objectives\RaidGoalFinder_Targets.cs~" />
+    <None Include="AI\PathFinding\SquadPathBrainPlus.cs~" />
+    <None Include="AI\PathFinding\SquadPathRegionAStar.cs~" />
     <None Include="CombatExtended\ThinkNodes\ThinkNode_ConditionalNoJob.cs" />
     <Compile Include="CombatExtended\TurretTopCE.cs" />
     <Compile Include="CombatExtended\Comps_CCL\CompMilkableRenameable.cs" />

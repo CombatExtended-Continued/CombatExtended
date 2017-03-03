@@ -27,5 +27,12 @@ namespace CombatExtended
                 return bleedRate;
             }
         }
+
+        public bool CanBeStabilized()
+        {
+            if (this.IsTended() || this.IsOld()) return false;
+            HediffComp_Stabilize comp = this.TryGetComp<HediffComp_Stabilize>();
+            return comp != null && !comp.Stabilized;
+        }
     }
 }

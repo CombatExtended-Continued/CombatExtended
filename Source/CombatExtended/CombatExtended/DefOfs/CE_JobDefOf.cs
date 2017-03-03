@@ -11,9 +11,10 @@ namespace CombatExtended
     [DefOf]
     public static class CE_JobDefOf
     {
-        public static readonly JobDef ReloadWeapon = DefDatabase<JobDef>.GetNamed("ReloadWeapon");
-        public static readonly JobDef ReloadTurret = DefDatabase<JobDef>.GetNamed("ReloadTurret");
-        public static readonly JobDef HunkerDown = DefDatabase<JobDef>.GetNamed("HunkerDown");
-        public static readonly JobDef RunForCover = DefDatabase<JobDef>.GetNamed("RunForCover");
+        public static JobDef ReloadWeapon;
+        public static JobDef ReloadTurret;
+        public static JobDef HunkerDown;
+        public static JobDef RunForCover;
+        public static JobDef Stabilize;
     }
 }

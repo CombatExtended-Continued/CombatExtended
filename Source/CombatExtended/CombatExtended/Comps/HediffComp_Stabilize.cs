@@ -8,10 +8,13 @@ using UnityEngine;
 
 namespace CombatExtended
 {
+    [StaticConstructorOnStartup]
     public class HediffComp_Stabilize : HediffComp
     {
         private const float bleedIncreasePerSec = 0.01f;    // After stabilizing, bleed modifier is increased by this much
-        private const float internalBleedOffset = 0.5f;       // 
+        private const float internalBleedOffset = 0.5f;
+
+        private static readonly Texture2D StabilizedIcon = ContentFinder<Texture2D>.Get("UI/Icons/Medical/Stabilized_Icon");
 
         private bool stabilized = false;
         private float bleedModifier = 1;
@@ -60,9 +63,25 @@ namespace CombatExtended
                 if (bleedModifier >= 1)
                 {
                     bleedModifier = 1;
-                    stabilized = false;
+                    //stabilized = false;
                 }
             }
+        }
+
+        public override TextureAndColor CompStateIcon
+        {
+            get
+            {
+                if (stabilized && !parent.IsOld() && !parent.IsTended()) return new TextureAndColor(StabilizedIcon, Color.white);
+                return TextureAndColor.None;
+            }
+        }
+
+        public override string CompDebugString()
+        {
+            if (parent.BleedRate < 0) return "Not bleeding";
+            if (!stabilized) return "Not stabilized";
+            return String.Concat("Stabilized", parent.Part.depth == BodyPartDepth.Inside ? " internal bleeding" : "", "\nbleed rate modifier: ", bleedModifier.ToString());
         }
     }
 }
