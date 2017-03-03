@@ -54,6 +54,14 @@ namespace CombatExtended
             Scribe_Values.LookValue( ref _count, "count", _defaultCount );
             Scribe_Defs.LookDef( ref _def, "def" );
         }
+        
+        // Returns a new copy of this object.
+        // _def doesn't need to be deep copied
+        // Constructor can handle the work.
+        public LoadoutSlot Copy()
+        {
+        	return new LoadoutSlot(_def, _count);
+        }
 
         #endregion Methods
     }

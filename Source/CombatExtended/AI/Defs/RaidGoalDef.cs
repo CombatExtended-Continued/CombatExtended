@@ -10,6 +10,6 @@ namespace CombatExtended.AI
 {
     public class RaidGoalDef : Def
     {
-        RaidGoalFinder finderClass;
+        //RaidGoalFinder finderClass;
     }
 }

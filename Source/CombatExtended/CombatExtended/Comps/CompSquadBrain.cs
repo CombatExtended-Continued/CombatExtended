@@ -26,7 +26,8 @@ namespace CombatExtended
         {
             // TODO Update based on available equipment in inventory
         }
-
+		
+        /*
         public bool CanDoRole(CombatRole role)
         {
             switch (role)
@@ -43,5 +44,6 @@ namespace CombatExtended
                     return true;
             }
         }
+        */
     }
 }

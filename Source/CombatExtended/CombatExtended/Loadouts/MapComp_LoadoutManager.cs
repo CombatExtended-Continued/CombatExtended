@@ -138,14 +138,19 @@ namespace CombatExtended
             else
                 return 1;
         }
-
+        
         internal static string GetUniqueLabel()
+        {
+        	return GetUniqueLabel("CE_DefaultLoadoutName".Translate());
+        }
+
+        internal static string GetUniqueLabel(string head)
         {
             string label;
             int i = 1;
             do
             {
-                label = "CE_DefaultLoadoutName".Translate() + i++;
+                label = head + i++;
             }
             while ( Loadouts.Any( l => l.label == label ) );
             return label;

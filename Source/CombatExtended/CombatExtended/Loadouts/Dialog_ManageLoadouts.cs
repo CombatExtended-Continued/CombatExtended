@@ -62,7 +62,9 @@ namespace CombatExtended
 
         public Dialog_ManageLoadouts(Loadout loadout)
         {
-            CurrentLoadout = loadout;
+        	CurrentLoadout = null;
+        	if (!loadout.defaultLoadout)
+            	CurrentLoadout = loadout;
             SetSource(SourceSelection.Ranged);
             doCloseX = true;
             closeOnClickedOutside = true;
@@ -125,7 +127,8 @@ namespace CombatExtended
             // top buttons
             Rect selectRect = new Rect(0f, 0f, canvas.width * .2f, _topAreaHeight);
             Rect newRect = new Rect(selectRect.xMax + _margin, 0f, canvas.width * .2f, _topAreaHeight);
-            Rect deleteRect = new Rect(newRect.xMax + _margin, 0f, canvas.width * .2f, _topAreaHeight);
+            Rect copyRect = new Rect(newRect.xMax + _margin, 0f, canvas.width * .2f, _topAreaHeight);
+            Rect deleteRect = new Rect(copyRect.xMax + _margin, 0f, canvas.width * .2f, _topAreaHeight);
 
             // main areas
             Rect nameRect = new Rect(
@@ -155,7 +158,7 @@ namespace CombatExtended
                 (canvas.width - _margin) / 2f,
                 canvas.height - 24f - _topAreaHeight - _margin * 3);
 
-            List<Loadout> loadouts = LoadoutManager.Loadouts;
+            List<Loadout> loadouts = LoadoutManager.Loadouts.Where(l => !l.defaultLoadout).ToList();
 
             // DRAW CONTENTS
             // buttons
@@ -171,8 +174,8 @@ namespace CombatExtended
                     for (int i = 0; i < loadouts.Count; i++)
                     {
                         int local_i = i;
-                        options.Add(new FloatMenuOption(loadouts[i].LabelCap, delegate
-                        { CurrentLoadout = loadouts[local_i]; }));
+                    	options.Add(new FloatMenuOption(loadouts[i].LabelCap, delegate
+                    	{ CurrentLoadout = loadouts[local_i]; }));
                     }
                 }
 
@@ -184,6 +187,12 @@ namespace CombatExtended
                 Loadout loadout = new Loadout();
                 LoadoutManager.AddLoadout(loadout);
                 CurrentLoadout = loadout;
+            }
+            // copy loadout
+            if (CurrentLoadout != null && Widgets.ButtonText(copyRect, "CE_CopyLoadout".Translate()))
+            {
+            	CurrentLoadout = CurrentLoadout.Copy();
+            	LoadoutManager.AddLoadout(CurrentLoadout);
             }
             // delete loadout
             if (loadouts.Any(l => l.canBeDeleted) && Widgets.ButtonText(deleteRect, "CE_DeleteLoadout".Translate()))
@@ -202,6 +211,7 @@ namespace CombatExtended
                         {
                             if (CurrentLoadout == loadouts[local_i])
                                 CurrentLoadout = null;
+                            LoadoutManager.RemoveLoadout(loadouts[local_i]);
                             loadouts.Remove(loadouts[local_i]);
                         }));
                 }
@@ -221,7 +231,7 @@ namespace CombatExtended
                 // and stop further drawing
                 return;
             }
-
+            
             // name
             DrawNameField(nameRect);
 
