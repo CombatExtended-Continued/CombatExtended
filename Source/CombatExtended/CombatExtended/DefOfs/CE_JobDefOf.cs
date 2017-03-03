@@ -11,6 +11,7 @@ namespace CombatExtended
     [DefOf]
     public static class CE_JobDefOf
     {
+        public static readonly JobDef TakeFromOther = DefDatabase<JobDef>.GetNamed("TakeFromOther");
         public static JobDef ReloadWeapon;
         public static JobDef ReloadTurret;
         public static JobDef HunkerDown;

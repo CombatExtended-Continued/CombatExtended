@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System.Collections.Generic;
+using System.Linq;
 using RimWorld;
 using UnityEngine;
 using Verse;
@@ -29,7 +30,8 @@ namespace CombatExtended
             ItemPriority priority;
             Thing unused;
             int i;
-            LoadoutSlot slot = GetPrioritySlot(pawn, out priority, out unused, out i);
+			Pawn carriedBy;
+            LoadoutSlot slot = GetPrioritySlot(pawn, out priority, out unused, out i, out carriedBy);
             if (slot == null)
             {
                 return 0f;
@@ -42,12 +44,13 @@ namespace CombatExtended
             return 9.2f;
         }
 
-        private LoadoutSlot GetPrioritySlot(Pawn pawn, out ItemPriority priority, out Thing closestThing, out int count)
+        private LoadoutSlot GetPrioritySlot(Pawn pawn, out ItemPriority priority, out Thing closestThing, out int count, out Pawn carriedBy)
         {
             priority = ItemPriority.None;
             LoadoutSlot slot = null;
             closestThing = null;
             count = 0;
+			carriedBy = null;
 
             CompInventory inventory = pawn.TryGetComp<CompInventory>();
             if (inventory != null && inventory.container != null)
@@ -69,6 +72,7 @@ namespace CombatExtended
                         System.Predicate<Thing> isFoodInPrison = (Thing t) => t.GetRoom().isPrisonCell && t.def.IsNutritionGivingIngestible && pawn.Faction.IsPlayer;
                         if (numCarried < curSlot.Count)
                         {
+							// look for a thing near the pawn.
                             curThing = GenClosest.ClosestThingReachable(
                                 pawn.Position,
                                 pawn.Map,
@@ -80,6 +84,7 @@ namespace CombatExtended
                             if (curThing != null) curPriority = ItemPriority.Proximity;
                             else
                             {
+								// look for a thing basically anywhere on the map.
                                 curThing = GenClosest.ClosestThingReachable(
                                     pawn.Position, 
                                     pawn.Map,
@@ -88,6 +93,23 @@ namespace CombatExtended
                                     TraverseParms.For(pawn, Danger.None, TraverseMode.ByPawn),
                                     maximumSearchRadius,
                                     x => x.GetInnerIfMinified().def == curSlot.Def && !x.IsForbidden(pawn) && pawn.CanReserve(x) && !isFoodInPrison(x));
+								if (curThing == null && pawn.Map != null)
+								{
+									// look for a thing inside caravan pack animals and prisoners.  EXCLUDE other colonists to avoid looping state.
+									List<Pawn> carriers = pawn.Map.mapPawns.AllPawns.Where(
+										p => p.inventory.GetInnerContainer().Count > 0 && (p.RaceProps.packAnimal && p.Faction == pawn.Faction || p.IsPrisoner && p.HostFaction == pawn.Faction)).ToList();
+									foreach (Pawn carrier in carriers)
+									{
+										Thing thing = carrier.inventory.GetInnerContainer().FirstOrDefault(t => t.GetInnerIfMinified().def == curSlot.Def);
+										if (thing != null)
+										{
+											curThing = thing;
+											carriedBy = carrier;
+											break;
+										}
+									}
+									Log.Message(string.Concat("Carrier ", carriedBy, " has thing desired thing ", curThing.Label));
+								}
                                 if (curThing != null)
                                 {
                                     if (!curSlot.Def.IsNutritionGivingIngestible && numCarried / curSlot.Count <= 0.5f) curPriority = ItemPriority.LowStock;
@@ -95,6 +117,7 @@ namespace CombatExtended
                                 }
                             }
                         }
+                        
                         if (curPriority > priority && curThing != null && inventory.CanFitInInventory(curThing, out count))
                         {
                             priority = curPriority;
@@ -232,19 +255,32 @@ namespace CombatExtended
                 ItemPriority priority;
                 Thing closestThing;
                 int count;
-                LoadoutSlot prioritySlot = GetPrioritySlot(pawn, out priority, out closestThing, out count);
+				Pawn carriedBy;
+				bool doEquip = false;
+                LoadoutSlot prioritySlot = GetPrioritySlot(pawn, out priority, out closestThing, out count, out carriedBy);
+                // moved logic to detect if should equip vs put in inventory here...
                 if (closestThing != null)
                 {
-                    // Equip gun if unarmed or current gun is not in loadout
                     if (closestThing.TryGetComp<CompEquippable>() != null
                         && (pawn.health != null && pawn.health.capacities.CapableOf(PawnCapacityDefOf.Manipulation))
                         && (pawn.equipment == null || pawn.equipment.Primary == null || !loadout.Slots.Any(s => s.Def == pawn.equipment.Primary.def)))
-                    {
-                        return new Job(JobDefOf.Equip, closestThing);
-                    }
-                    // Take items into inventory if needed
-                    int numContained = inventory.container.TotalStackCountOfDef(prioritySlot.Def);
-                    return new Job(JobDefOf.TakeInventory, closestThing) { count = Mathf.Min(closestThing.stackCount, prioritySlot.Count - numContained, count) };
+                		doEquip = true;
+	                if (carriedBy == null)
+	                {
+	                    // Equip gun if unarmed or current gun is not in loadout
+	                    if (doEquip)
+	                    {
+	                        return new Job(JobDefOf.Equip, closestThing);
+	                    }
+	                    // Take items into inventory if needed
+	                    int numContained = inventory.container.TotalStackCountOfDef(prioritySlot.Def);
+	                    return new Job(JobDefOf.TakeInventory, closestThing) { count = Mathf.Min(closestThing.stackCount, prioritySlot.Count - numContained, count) };
+	                } else
+	                {
+	                	return new Job(CE_JobDefOf.TakeFromOther, closestThing, carriedBy, doEquip ? pawn : null) {
+	                		count = doEquip ? 1 : Mathf.Min(closestThing.stackCount, prioritySlot.Count - inventory.container.TotalStackCountOfDef(prioritySlot.Def), count)
+	                	};
+	                }
                 }
             }
             return null;
