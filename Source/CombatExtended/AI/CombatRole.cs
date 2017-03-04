@@ -10,10 +10,12 @@ namespace CombatExtended.AI
 {
     public enum CombatRole : byte
     {
-        Unassigned,
-        Suppressor,
+        Undefined,
+        Melee,
+        Assault,
         Sniper,
-        Flanker,
-        Sapper
+        Suppressor,
+        Grenadier,
+        Rocketeer
     }
 }

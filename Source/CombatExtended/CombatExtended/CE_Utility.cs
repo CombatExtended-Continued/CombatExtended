@@ -97,6 +97,17 @@ namespace CombatExtended
             return manningPawn;
         }
 
+        /// <summary>
+        /// Extension method to determine whether a ranged weapon has ammo available to it
+        /// </summary>
+        /// <returns>True if the gun has no CompAmmoUser, doesn't use ammo or has ammo in its magazine or carrier inventory, false otherwise</returns>
+        public static bool HasAmmo(this ThingWithComps gun)
+        {
+            CompAmmoUser comp = gun.TryGetComp<CompAmmoUser>();
+            if (comp == null) return true;
+            return !comp.useAmmo || comp.curMagCount > 0 || comp.hasAmmo;
+        }
+
         #endregion Misc
 
         #region MoteThrower
