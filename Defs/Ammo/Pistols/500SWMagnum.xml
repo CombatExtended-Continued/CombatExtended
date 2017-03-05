@@ -1,5 +1,11 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <Defs>
+
+	<ThingCategoryDef>
+		<defName>Ammo500SWMagnum</defName>
+		<label>.500 S&amp;W Magnum</label>
+		<parent>AmmoPistols</parent>
+	</ThingCategoryDef>
 	
 	<!-- ==================== AmmoSet ========================== -->
 
@@ -15,9 +21,9 @@
 	<!-- ==================== Ammo ========================== -->
 
 	<ThingDef Class="CombatExtended.AmmoDef" Name="500SWMagnumBase" ParentName="AmmoBase" Abstract="True">
-		<description>The .500 S&amp;W Magnum (12.7×41mmSR) is a fifty-caliber semi-rimmed handgun cartridge developed by Cor-Bon in partnership with the Smith &amp; Wesson. Its primary design purpose was as a hunting handgun cartridge capable of taking all North American game species.</description>
+		<description>Designed for big game hunting, this is one of the most powerful handgun cartridges ever designed.</description>
 		<statBases>
-			<Mass>0.04</Mass>
+			<Mass>0.035</Mass>
 			<Bulk>0.04</Bulk>
 		</statBases>
 		<tradeTags>
@@ -37,7 +43,7 @@
 			<graphicClass>Graphic_StackCount</graphicClass>
 		</graphicData>
 		<statBases>
-			<MarketValue>0.17</MarketValue>
+			<MarketValue>0.14</MarketValue>
 		</statBases>
 		<linkedProjectile>Bullet_500SWMagnum_FMJ</linkedProjectile>
 		<ammoClass>FullMetalJacket</ammoClass>
@@ -51,7 +57,7 @@
 			<graphicClass>Graphic_StackCount</graphicClass>
 		</graphicData>
 		<statBases>
-			<MarketValue>0.16</MarketValue>
+			<MarketValue>0.17</MarketValue>
 		</statBases>
 		<linkedProjectile>Bullet_500SWMagnum_HP</linkedProjectile>
 		<ammoClass>HollowPoint</ammoClass>
@@ -66,7 +72,7 @@
 		</graphicData>
 		<projectile>
 			<damageDef>Bullet</damageDef>
-			<speed>120</speed>
+			<speed>126</speed>
 			<dropsCasings>true</dropsCasings>
 		</projectile>
 	</ThingDef>
@@ -84,7 +90,7 @@
 		<defName>Bullet_500SWMagnum_HP</defName>
 		<label>.500 Smith Wessen Magnum bullet (HP)</label>
 		<projectile>
-			<damageAmountBase>31</damageAmountBase>
+			<damageAmountBase>35</damageAmountBase>
 			<armorPenetration>0.35</armorPenetration>
 		</projectile>
 	</ThingDef>
@@ -93,7 +99,7 @@
 
   <RecipeDef ParentName="AmmoRecipeBase">
     <defName>MakeAmmo_500SWMagnum_FMJ</defName>
-    <label>make .500 S&amp;W Magnum cartridge x200</label>
+    <label>make .500 S&amp;W Magnum cartridge x500</label>
     <description>Craft 200 .500 S&amp;W Magnum cartridges.</description>
     <jobString>Making .500 S&amp;W Magnum cartridges.</jobString>
     <ingredients>
@@ -103,7 +109,7 @@
             <li>Steel</li>
           </thingDefs>
         </filter>
-        <count>15</count>
+        <count>25</count>
       </li>
     </ingredients>
     <fixedIngredientFilter>
@@ -112,13 +118,13 @@
       </thingDefs>
     </fixedIngredientFilter>
     <products>
-      <Ammo_500SWMagnum_FMJ>200</Ammo_500SWMagnum_FMJ>
+      <Ammo_500SWMagnum_FMJ>500</Ammo_500SWMagnum_FMJ>
     </products>
   </RecipeDef>
 
   <RecipeDef ParentName="AmmoRecipeBase">
     <defName>MakeAmmo_500SWMagnum_HP</defName>
-    <label>make .500 S&amp;W Magnum cartridge x200</label>
+    <label>make .500 S&amp;W Magnum cartridge x500</label>
     <description>Craft 200 .500 S&amp;W Magnum cartridges.</description>
     <jobString>Making .500 S&amp;W Magnum cartridges.</jobString>
     <ingredients>
@@ -128,7 +134,7 @@
             <li>Steel</li>
           </thingDefs>
         </filter>
-        <count>14</count>
+        <count>30</count>
       </li>
     </ingredients>
     <fixedIngredientFilter>
@@ -137,7 +143,7 @@
       </thingDefs>
     </fixedIngredientFilter>
     <products>
-      <Ammo_500SWMagnum_HP>200</Ammo_500SWMagnum_HP>
+      <Ammo_500SWMagnum_HP>500</Ammo_500SWMagnum_HP>
     </products>
   </RecipeDef>
 	

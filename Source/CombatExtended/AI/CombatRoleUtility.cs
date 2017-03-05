@@ -67,13 +67,15 @@ namespace CombatExtended.AI
         private static bool CanBeAssault(Pawn pawn, CompInventory comp)
         {
             if (comp.rangedWeaponList.NullOrEmpty()) return false;
-            ThingWithComps pistol = null;
+            bool hasPistol = false;
+            bool hasNonPistol = false;
             foreach (ThingWithComps gun in comp.rangedWeaponList)
             {
                 if (gun.def.IsAssaultGun() && gun.HasAmmo()) return true;
-                if (pistol == null && gun.def.IsPistol() && gun.HasAmmo()) pistol = gun;
+                if (gun.def.IsPistol()) hasPistol = hasPistol || gun.HasAmmo();
+                else hasNonPistol = hasNonPistol || gun.HasAmmo();
             }
-            return pistol != null;
+            return hasPistol && !hasNonPistol;
         }
 
         /// <summary>

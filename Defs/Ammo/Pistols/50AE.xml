@@ -1,6 +1,12 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <Defs>
 	
+	<ThingCategoryDef>
+		<defName>Ammo50AE</defName>
+		<label>.50 AE</label>
+		<parent>AmmoPistols</parent>
+	</ThingCategoryDef>
+	
 	<!-- ==================== AmmoSet ========================== -->
 
 	<CombatExtended.AmmoSetDef>
@@ -15,10 +21,10 @@
 	<!-- ==================== Ammo ========================== -->
 
 	<ThingDef Class="CombatExtended.AmmoDef" Name="50AEBase" ParentName="AmmoBase" Abstract="True">
-		<description>The .50 Action Express (AE, 12.7×33mm) is a large caliber handgun cartridge. It was developed in 1988 by Evan Whildin of Action Arms. The .50 AE is one of the most powerful pistol cartridges in production.</description>
+		<description>This high-powered cartridge is one of the largest calibers found in handguns.</description>
 		<statBases>
 			<Mass>0.03</Mass>
-			<Bulk>0.03</Bulk>
+			<Bulk>0.05</Bulk>
 		</statBases>
 		<tradeTags>
 			<li>CE_AutoEnableTrade</li>
@@ -37,7 +43,7 @@
 			<graphicClass>Graphic_StackCount</graphicClass>
 		</graphicData>
 		<statBases>
-			<MarketValue>0.13</MarketValue>
+			<MarketValue>0.12</MarketValue>
 		</statBases>
 		<linkedProjectile>Bullet_50AE_FMJ</linkedProjectile>
 		<ammoClass>FullMetalJacket</ammoClass>
@@ -51,7 +57,7 @@
 			<graphicClass>Graphic_StackCount</graphicClass>
 		</graphicData>
 		<statBases>
-			<MarketValue>0.12</MarketValue>
+			<MarketValue>0.14</MarketValue>
 		</statBases>
 		<linkedProjectile>Bullet_50AE_HP</linkedProjectile>
 		<ammoClass>HollowPoint</ammoClass>
@@ -74,8 +80,8 @@
 		<defName>Bullet_50AE_FMJ</defName>
 		<label>.50 AE bullet (FMJ)</label>
 		<projectile>
-			<damageAmountBase>21</damageAmountBase>
-			<armorPenetration>0.375</armorPenetration>
+			<damageAmountBase>20</damageAmountBase>
+			<armorPenetration>0.35</armorPenetration>
 		</projectile>
 	</ThingDef>
 	
@@ -84,7 +90,7 @@
 		<label>.50 AE bullet (HP)</label>
 		<projectile>
 			<damageAmountBase>25</damageAmountBase>
-			<armorPenetration>0.275</armorPenetration>
+			<armorPenetration>0.25</armorPenetration>
 		</projectile>
 	</ThingDef>
   
@@ -92,7 +98,7 @@
 
   <RecipeDef ParentName="AmmoRecipeBase">
     <defName>MakeAmmo_50AE_HP</defName>
-    <label>make .50 AE cartridge x200</label>
+    <label>make .50 AE cartridge x500</label>
     <description>Craft 200 .50 AE HP cartridges.</description>
     <jobString>Making .50 AE HP cartridges.</jobString>
     <ingredients>
@@ -102,7 +108,7 @@
             <li>Steel</li>
           </thingDefs>
         </filter>
-        <count>11</count>
+        <count>30</count>
       </li>
     </ingredients>
     <fixedIngredientFilter>
@@ -111,13 +117,13 @@
       </thingDefs>
     </fixedIngredientFilter>
     <products>
-      <Ammo_50AE_HP>200</Ammo_50AE_HP>
+      <Ammo_50AE_HP>500</Ammo_50AE_HP>
     </products>
   </RecipeDef>
   
   <RecipeDef ParentName="AmmoRecipeBase">
     <defName>MakeAmmo_50AE_FMJ</defName>
-    <label>make .50 AE cartridge x200</label>
+    <label>make .50 AE cartridge x500</label>
     <description>Craft 200 .50 AE FMJ cartridges.</description>
     <jobString>Making .50 AE FMJ cartridges.</jobString>
     <ingredients>
@@ -127,7 +133,7 @@
             <li>Steel</li>
           </thingDefs>
         </filter>
-        <count>12</count>
+        <count>25</count>
       </li>
     </ingredients>
     <fixedIngredientFilter>
@@ -136,7 +142,7 @@
       </thingDefs>
     </fixedIngredientFilter>
     <products>
-      <Ammo_50AE_FMJ>200</Ammo_50AE_FMJ>
+      <Ammo_50AE_FMJ>500</Ammo_50AE_FMJ>
     </products>
   </RecipeDef>
 	
