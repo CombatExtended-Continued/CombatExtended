@@ -1,4 +1,5 @@
-﻿using RimWorld;
+﻿using System.Text.RegularExpressions;
+using RimWorld;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,7 +14,7 @@ namespace CombatExtended
         #region Fields
 
         public bool canBeDeleted = true;
-        public bool defaultLoadout = false;
+        public bool defaultLoadout = false; //NOTE: assumed that there is only ever one loadout which is marked default.
         public string label;
         internal int uniqueID;
         private List<LoadoutSlot> _slots = new List<LoadoutSlot>();
@@ -32,7 +33,7 @@ namespace CombatExtended
             // create a unique ID.
             uniqueID = LoadoutManager.GetUniqueID();
         }
-
+        
         public Loadout(string label)
         {
             this.label = label;
@@ -77,6 +78,29 @@ namespace CombatExtended
         #endregion Properties
 
         #region Methods
+        
+        // Returns a copy of this loadout slot with a new unique ID and a label based on the original name.
+		// LoadoutSlots need to be copied.     
+        static Loadout Copy(Loadout source)
+        {
+        	string newName = source.label;
+        	Regex reNum = new Regex(@"^(.*?)\d+$");
+        	if (reNum.IsMatch(newName))
+        		newName = reNum.Replace(newName, @"$1");
+        	newName = LoadoutManager.GetUniqueLabel(newName);
+        	
+        	Loadout dest = new Loadout(newName);
+        	dest.defaultLoadout = source.defaultLoadout;
+        	dest.canBeDeleted = source.canBeDeleted;
+        	foreach(LoadoutSlot slot in source._slots)
+        		dest.AddSlot(slot.Copy());
+        	return dest;
+        }
+        
+        public Loadout Copy()
+        {
+        	return Copy(this);
+        }
 
         public void AddSlot(LoadoutSlot slot)
         {

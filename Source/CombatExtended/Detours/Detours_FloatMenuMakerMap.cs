@@ -212,6 +212,7 @@ namespace CombatExtended.Detours
             foreach (Thing current in c.GetThingList(pawn.Map))
             {
                 Thing t = current;
+                // Consume command
                 if (t.def.ingestible != null && pawn.RaceProps.CanEverEat(t) && t.IngestibleNow)
                 {
                     string text;
@@ -263,6 +264,7 @@ namespace CombatExtended.Detours
                     Pawn victim = (Pawn)current2.Thing;
                     if (!victim.InBed() && pawn.CanReserveAndReach(victim, PathEndMode.OnCell, Danger.Deadly, 1))
                     {
+                        // Rescue option
                         if ((victim.Faction == Faction.OfPlayer && victim.MentalStateDef == null) || (victim.Faction != Faction.OfPlayer && victim.MentalStateDef == null && !victim.IsPrisonerOfColony && (victim.Faction == null || !victim.Faction.HostileTo(Faction.OfPlayer))))
                         {
                             Pawn victim2 = victim;
@@ -292,6 +294,7 @@ namespace CombatExtended.Detours
                                 PlayerKnowledgeDatabase.KnowledgeDemonstrated(ConceptDefOf.Rescuing, KnowledgeAmount.Total);
                             }, MenuOptionPriority.RescueOrCapture, null, victim2, 0f, null, null));
                         }
+                        // Capture option
                         if (victim.RaceProps.Humanlike && (victim.MentalStateDef != null || victim.Faction != Faction.OfPlayer || (victim.Downed && victim.guilt.IsGuilty)))
                         {
                             Pawn victim2 = victim;
@@ -314,6 +317,7 @@ namespace CombatExtended.Detours
                         }
                     }
                 }
+                // Carry to Cryosleep option
                 foreach (LocalTargetInfo current3 in GenUI.TargetsAt(clickPos, TargetingParameters.ForRescue(pawn), true))
                 {
                     LocalTargetInfo LocalTargetInfo = current3;
@@ -339,6 +343,42 @@ namespace CombatExtended.Detours
                         };
                         Pawn victim2 = victim;
                         opts.Add(new FloatMenuOption(label, action, MenuOptionPriority.Default, null, victim2, 0f, null, null));
+                    }
+                }
+                // Stabilize option
+                foreach(LocalTargetInfo curTarget in GenUI.TargetsAt(clickPos, TargetingParameters.ForRescue(pawn), true))
+                {
+                    Pawn patient = (Pawn)curTarget.Thing;
+                    if (patient.Downed 
+                        && pawn.CanReserveAndReach(patient, PathEndMode.InteractionCell, Danger.Deadly) 
+                        && patient.health.hediffSet.GetInjuriesTendable().Any(h => h as Hediff_InjuryCE != null && (h as Hediff_InjuryCE).CanBeStabilized()))
+                    {
+                        if (pawn.story.WorkTypeIsDisabled(WorkTypeDefOf.Doctor))
+                        {
+                            opts.Add(new FloatMenuOption("CE_CannotStabilize".Translate() + ": " + "IncapableOfCapacity".Translate(WorkTypeDefOf.Doctor.gerundLabel), null, MenuOptionPriority.Default));
+                        }
+                        else
+                        {
+                            string label = "CE_Stabilize".Translate(patient.LabelCap);
+                            Action action = delegate
+                            {
+                                if (pawn.inventory == null || pawn.inventory.innerContainer == null || !pawn.inventory.innerContainer.Any(t => t.def.IsMedicine))
+                                {
+                                    Messages.Message("CE_CannotStabilize".Translate() + ": " + "CE_NoMedicine".Translate(), patient, MessageSound.RejectInput);
+                                    return;
+                                }
+                                // Drop medicine from inventory
+                                Medicine medicine = (Medicine)pawn.inventory.innerContainer.OrderByDescending(t => t.GetStatValue(StatDefOf.MedicalPotency)).FirstOrDefault();
+                                Thing medThing;
+                                if (medicine != null && pawn.inventory.innerContainer.TryDrop(medicine, pawn.Position, pawn.Map, ThingPlaceMode.Direct, 1, out medThing))
+                                {
+                                    Job job = new Job(CE_JobDefOf.Stabilize, patient, medThing);
+                                    job.count = 1;
+                                    pawn.jobs.TryTakeOrderedJob(job);
+                                }
+                            };
+                            opts.Add(new FloatMenuOption(label, action, MenuOptionPriority.Default, null, patient));
+                        }
                     }
                 }
             }

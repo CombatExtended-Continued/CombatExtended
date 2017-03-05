@@ -11,6 +11,21 @@ namespace CombatExtended
 {
     public class CompInventory : ThingComp
     {
+        #region Fields
+
+        private Pawn parentPawnInt = null;
+        private bool initializedLoadouts = false;
+        private int ticksToInitLoadout = 5;         // Generate loadouts this many ticks after spawning
+        private float currentWeightCached;
+        private float currentBulkCached;
+        private List<Thing> ammoListCached = new List<Thing>();
+        private List<ThingWithComps> meleeWeaponListCached = new List<ThingWithComps>();
+        private List<ThingWithComps> rangedWeaponListCached = new List<ThingWithComps>();
+
+        #endregion
+
+        #region Properties
+
         public CompProperties_Inventory Props
         {
             get
@@ -19,8 +34,6 @@ namespace CombatExtended
             }
         }
 
-        private float currentWeightCached;
-        private float currentBulkCached;
         public float currentWeight
         {
             get
@@ -63,7 +76,6 @@ namespace CombatExtended
                 return parentPawn.GetStatValue(CE_StatDefOf.CarryWeight);
             }
         }
-        private Pawn parentPawnInt = null;
         private Pawn parentPawn
         {
             get
@@ -107,7 +119,6 @@ namespace CombatExtended
                 return null;
             }
         }
-        private List<Thing> ammoListCached = new List<Thing>();
         public List<Thing> ammoList
         {
             get
@@ -115,12 +126,12 @@ namespace CombatExtended
                 return ammoListCached;
             }
         }
-        private List<ThingWithComps> meleeWeaponListCached = new List<ThingWithComps>();
         public List<ThingWithComps> meleeWeaponList => meleeWeaponListCached;
-        private List<ThingWithComps> rangedWeaponListCached = new List<ThingWithComps>();
         public List<ThingWithComps> rangedWeaponList => rangedWeaponListCached;
-        private bool initializedLoadouts = false;
-        private int ticksToInitLoadout = 5;         // Generate loadouts this many ticks after spawning
+
+        #endregion
+
+        #region Methods
 
         public override void PostSpawnSetup()
         {
@@ -406,5 +417,7 @@ namespace CombatExtended
             }
             */
         }
+
+        #endregion
     }
 }

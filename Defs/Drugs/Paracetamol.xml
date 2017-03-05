@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Paracetamol>
+
+  <ThingDef ParentName="MakeableDrugPillBase">
+    <defName>Paracetamol</defName>
+    <label>paracetamol</label>
+    <description>A common painkiller used to treat mild pain. Has no significant side-effects when taken in proper doses.</description>
+    <graphicData>
+      <texPath>Things/Item/Drug/GoJuice</texPath>
+      <graphicClass>Graphic_StackCount</graphicClass>
+    </graphicData>
+    <rotatable>false</rotatable>
+    <statBases>
+      <WorkToMake>200</WorkToMake>
+      <MarketValue>10</MarketValue>
+      <Mass>0.04</Mass>
+    </statBases>
+    <techLevel>Industrial</techLevel>
+    <ingestible>
+      <joy>0.40</joy>
+      <drugCategory>Medical</drugCategory>
+      <baseIngestTicks>90</baseIngestTicks>
+      <ingestHoldOffsetStanding>(0.18,0,0)</ingestHoldOffsetStanding>
+      <chairSearchRadius>0</chairSearchRadius>
+      <outcomeDoers>
+        <li Class="IngestionOutcomeDoer_GiveHediff">
+          <hediffDef>ParacetamolHigh</hediffDef>
+          <severity>0.75</severity>
+          <toleranceChemical>Paracetamol</toleranceChemical>
+        </li>
+      </outcomeDoers>
+    </ingestible>
+    <recipeMaker>
+      <researchPrerequisite>MedicineProduction</researchPrerequisite>
+      <recipeUsers>
+        <li>DrugLab</li>
+      </recipeUsers>
+    </recipeMaker>
+    <costList>
+      <Neutroamine>1</Neutroamine>
+    </costList>
+    <comps>
+      <li Class="CompProperties_Drug">
+        <chemical>Paracetamol</chemical>
+        <addictiveness>0.0</addictiveness>
+        <minToleranceToAddict>1.0</minToleranceToAddict>
+        <existingAddictionSeverityOffset>0.20</existingAddictionSeverityOffset>
+        <needLevelOffset>1</needLevelOffset>
+        <listOrder>500</listOrder>
+        <overdoseSeverityOffset>
+          <min>0.18</min>
+          <max>0.35</max>
+        </overdoseSeverityOffset>
+				<largeOverdoseChance>0.0</largeOverdoseChance>
+      </li>
+    </comps>
+  </ThingDef>
+  
+  <HediffDef>
+    <defName>ParacetamolHigh</defName>
+    <hediffClass>HediffWithComps</hediffClass>
+    <label>high on paracetamol</label>
+    <defaultLabelColor>(1,0,0.5)</defaultLabelColor>
+    <scenarioCanAdd>true</scenarioCanAdd>
+    <maxSeverity>1.0</maxSeverity>
+    <comps>
+      <li Class="HediffCompProperties_SeverityPerDay">
+        <severityPerDay>-0.4</severityPerDay>
+      </li>
+    </comps>
+      <stages>
+        <li>
+          <painFactor>0.95</painFactor>
+          <painOffset>-0.1</painOffset>
+        </li>
+      </stages>
+  </HediffDef>
+  
+  <!-- Paracetamol addiction -->
+
+  <ChemicalDef>
+    <defName>Paracetamol</defName>
+    <label>paracetamol</label>
+  </ChemicalDef>
+  
+</Paracetamol>

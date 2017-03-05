@@ -1,0 +1,150 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+
+	<ThingCategoryDef>
+		<defName>Ammo500SWMagnum</defName>
+		<label>.500 S&amp;W Magnum</label>
+		<parent>AmmoPistols</parent>
+	</ThingCategoryDef>
+	
+	<!-- ==================== AmmoSet ========================== -->
+
+	<CombatExtended.AmmoSetDef>
+		<defName>AmmoSet_500SWMagnum</defName>
+		<label>.500 S&amp;W Magnum</label>
+		<ammoTypes>
+			<li>Ammo_500SWMagnum_FMJ</li>
+			<li>Ammo_500SWMagnum_HP</li>
+		</ammoTypes>
+	</CombatExtended.AmmoSetDef>
+
+	<!-- ==================== Ammo ========================== -->
+
+	<ThingDef Class="CombatExtended.AmmoDef" Name="500SWMagnumBase" ParentName="AmmoBase" Abstract="True">
+		<description>Designed for big game hunting, this is one of the most powerful handgun cartridges ever designed.</description>
+		<statBases>
+			<Mass>0.035</Mass>
+			<Bulk>0.04</Bulk>
+		</statBases>
+		<tradeTags>
+			<li>CE_AutoEnableTrade</li>
+			<li>CE_AutoEnableCrafting</li>
+		</tradeTags>
+		<thingCategories>
+			<li>Ammo500SWMagnum</li>
+		</thingCategories>
+	</ThingDef>
+	
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="500SWMagnumBase">
+		<defName>Ammo_500SWMagnum_FMJ</defName>
+		<label>.500 S&amp;W Magnum cartridge (FMJ)</label>
+		<graphicData>
+			<texPath>Things/Ammo/Pistol/FMJ</texPath>
+			<graphicClass>Graphic_StackCount</graphicClass>
+		</graphicData>
+		<statBases>
+			<MarketValue>0.14</MarketValue>
+		</statBases>
+		<linkedProjectile>Bullet_500SWMagnum_FMJ</linkedProjectile>
+		<ammoClass>FullMetalJacket</ammoClass>
+	</ThingDef>
+	
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="500SWMagnumBase">
+		<defName>Ammo_500SWMagnum_HP</defName>
+		<label>.500 S&amp;W Magnum cartridge (HP)</label>
+		<graphicData>
+			<texPath>Things/Ammo/Pistol/HP</texPath>
+			<graphicClass>Graphic_StackCount</graphicClass>
+		</graphicData>
+		<statBases>
+			<MarketValue>0.17</MarketValue>
+		</statBases>
+		<linkedProjectile>Bullet_500SWMagnum_HP</linkedProjectile>
+		<ammoClass>HollowPoint</ammoClass>
+	</ThingDef>
+
+	<!-- ================== Projectiles ================== -->
+
+	<ThingDef Name="Base500SWMagnumBullet" ParentName="BaseBullet" Abstract="true">
+		<graphicData>
+			<texPath>Things/Projectile/Bullet_Big</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+		</graphicData>
+		<projectile>
+			<damageDef>Bullet</damageDef>
+			<speed>126</speed>
+			<dropsCasings>true</dropsCasings>
+		</projectile>
+	</ThingDef>
+
+	<ThingDef ParentName="Base500SWMagnumBullet">
+		<defName>Bullet_500SWMagnum_FMJ</defName>
+		<label>.500 Smith Wessen Magnum bullet (FMJ)</label>
+		<projectile>
+			<damageAmountBase>28</damageAmountBase>
+			<armorPenetration>0.40</armorPenetration>
+		</projectile>
+	</ThingDef>
+
+	<ThingDef ParentName="Base500SWMagnumBullet">
+		<defName>Bullet_500SWMagnum_HP</defName>
+		<label>.500 Smith Wessen Magnum bullet (HP)</label>
+		<projectile>
+			<damageAmountBase>35</damageAmountBase>
+			<armorPenetration>0.35</armorPenetration>
+		</projectile>
+	</ThingDef>
+  
+ <!-- ==================== Recipes ========================== -->
+
+  <RecipeDef ParentName="AmmoRecipeBase">
+    <defName>MakeAmmo_500SWMagnum_FMJ</defName>
+    <label>make .500 S&amp;W Magnum cartridge x500</label>
+    <description>Craft 200 .500 S&amp;W Magnum cartridges.</description>
+    <jobString>Making .500 S&amp;W Magnum cartridges.</jobString>
+    <ingredients>
+      <li>
+        <filter>
+          <thingDefs>
+            <li>Steel</li>
+          </thingDefs>
+        </filter>
+        <count>25</count>
+      </li>
+    </ingredients>
+    <fixedIngredientFilter>
+      <thingDefs>
+        <li>Steel</li>
+      </thingDefs>
+    </fixedIngredientFilter>
+    <products>
+      <Ammo_500SWMagnum_FMJ>500</Ammo_500SWMagnum_FMJ>
+    </products>
+  </RecipeDef>
+
+  <RecipeDef ParentName="AmmoRecipeBase">
+    <defName>MakeAmmo_500SWMagnum_HP</defName>
+    <label>make .500 S&amp;W Magnum cartridge x500</label>
+    <description>Craft 200 .500 S&amp;W Magnum cartridges.</description>
+    <jobString>Making .500 S&amp;W Magnum cartridges.</jobString>
+    <ingredients>
+      <li>
+        <filter>
+          <thingDefs>
+            <li>Steel</li>
+          </thingDefs>
+        </filter>
+        <count>30</count>
+      </li>
+    </ingredients>
+    <fixedIngredientFilter>
+      <thingDefs>
+        <li>Steel</li>
+      </thingDefs>
+    </fixedIngredientFilter>
+    <products>
+      <Ammo_500SWMagnum_HP>500</Ammo_500SWMagnum_HP>
+    </products>
+  </RecipeDef>
+	
+</Defs>

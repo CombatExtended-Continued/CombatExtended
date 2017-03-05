@@ -1,0 +1,229 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+	
+	<ThingCategoryDef>
+      <defName>Ammo338Lapua</defName>
+      <label>.338 Lapua Magnum</label>
+      <parent>AmmoHighCaliber</parent>
+    </ThingCategoryDef>
+	
+  <!-- ==================== AmmoSet ========================== -->
+
+  <CombatExtended.AmmoSetDef>
+    <defName>AmmoSet_338Lapua</defName>
+    <label>.338 Lapua Magnum</label>
+	<ammoTypes>
+	  <li>Ammo_338Lapua_FMJ</li>
+	  <li>Ammo_338Lapua_HE</li>
+	  <li>Ammo_338Lapua_Incendiary</li>
+	</ammoTypes>
+  </CombatExtended.AmmoSetDef>
+  
+  <!-- ==================== Ammo ========================== -->
+
+  <ThingDef Class="CombatExtended.AmmoDef" Name="Ammo338LapuaBase" ParentName="AmmoBase" Abstract="True">
+    <description>The .338 Lapua Magnum (8.6×70mm or 8.58×70mm) is a rimless, bottlenecked, centerfire cartridge developed for military long-range sniper rifles.</description>
+    <statBases>
+      <Mass>0.038</Mass>
+      <Bulk>0.07</Bulk>
+    </statBases>
+  	<tradeTags>
+      <li>CE_AutoEnableTrade</li>
+      <li>CE_AutoEnableCrafting</li>
+  	</tradeTags>
+    <thingCategories>
+      <li>Ammo338Lapua</li>
+    </thingCategories>
+  </ThingDef>
+
+  <ThingDef Class="CombatExtended.AmmoDef" ParentName="Ammo338LapuaBase">
+    <defName>Ammo_338Lapua_FMJ</defName>
+    <label>.338 Lapua Magnum cartridge (FMJ)</label>
+    <graphicData>
+      <texPath>Things/Ammo/HighCaliber/FMJ</texPath>
+      <graphicClass>Graphic_StackCount</graphicClass>
+    </graphicData>
+    <statBases>
+      <MarketValue>0.23</MarketValue>
+    </statBases>
+    <linkedProjectile>Bullet_338Lapua_FMJ</linkedProjectile>
+  	<ammoClass>FullMetalJacket</ammoClass>
+  </ThingDef>
+
+  <ThingDef Class="CombatExtended.AmmoDef" ParentName="Ammo338LapuaBase">
+    <defName>Ammo_338Lapua_HE</defName>
+    <label>.338 Lapua Magnum cartridge (HE)</label>
+    <graphicData>
+      <texPath>Things/Ammo/HighCaliber/HE</texPath>
+      <graphicClass>Graphic_StackCount</graphicClass>
+    </graphicData>
+    <statBases>
+      <MarketValue>0.46</MarketValue>
+    </statBases>
+    <linkedProjectile>Bullet_338Lapua_HE</linkedProjectile>
+  	<ammoClass>ExplosiveAP</ammoClass>
+  </ThingDef>
+
+  <ThingDef Class="CombatExtended.AmmoDef" ParentName="Ammo338LapuaBase">
+    <defName>Ammo_338Lapua_Incendiary</defName>
+    <label>.338 Lapua Magnum cartridge (AP-I)</label>
+    <graphicData>
+      <texPath>Things/Ammo/HighCaliber/Incendiary</texPath>
+      <graphicClass>Graphic_StackCount</graphicClass>
+    </graphicData>
+    <statBases>
+      <MarketValue>0.37</MarketValue>
+    </statBases>
+	<linkedProjectile>Bullet_338Lapua_Incendiary</linkedProjectile>
+	<ammoClass>IncendiaryAP</ammoClass>
+  </ThingDef>
+
+  <!-- ================== Projectiles ================== -->
+
+  <ThingDef Name="Base338LapuaBullet" ParentName="BaseBullet" Abstract="true">
+    <graphicData>
+      <texPath>Things/Projectile/Bullet_Big</texPath>
+      <graphicClass>Graphic_Single</graphicClass>
+    </graphicData>
+    <projectile>
+      <damageDef>Bullet</damageDef>
+      <speed>180</speed>
+			<dropsCasings>true</dropsCasings>
+    </projectile>
+  </ThingDef>
+
+  <ThingDef ParentName="Base338LapuaBullet">
+    <defName>Bullet_338Lapua_FMJ</defName>
+    <label>.338 Lapua Magnum bullet (FMJ)</label>
+    <projectile>
+      <damageAmountBase>35</damageAmountBase>
+			<armorPenetration>0.8</armorPenetration>
+    </projectile>
+  </ThingDef>
+
+  <ThingDef ParentName="Base338LapuaBullet">
+    <defName>Bullet_338Lapua_HE</defName>
+    <label>.338 Lapua Magnum bullet (HE)</label>
+    <projectile>
+      <damageAmountBase>35</damageAmountBase>
+			<armorPenetration>0.975</armorPenetration>
+			<secondaryDamage>
+				<li>
+					<def>Bomb_Secondary</def>
+					<amount>25</amount>
+				</li>
+			</secondaryDamage>
+    </projectile>
+  </ThingDef>
+
+  <ThingDef ParentName="Base338LapuaBullet">
+    <defName>Bullet_338Lapua_Incendiary</defName>
+    <label>.338 Lapua Magnum bullet (AP-I)</label>
+    <projectile>
+      <damageAmountBase>25</damageAmountBase>
+			<armorPenetration>0.95</armorPenetration>
+      <secondaryDamage>
+        <li>
+          <def>Flame_Secondary</def>
+          <amount>5</amount>
+        </li>
+      </secondaryDamage>
+    </projectile>
+  </ThingDef>
+  
+  <!-- ==================== Recipes ========================== -->
+
+  <RecipeDef ParentName="AmmoRecipeBase">
+    <defName>MakeAmmo_338Lapua_FMJ</defName>
+    <label>make .338 Lapua Magnum (FMJ) cartridge x100</label>
+    <description>Craft 100 .338 Lapua Magnum (FMJ) cartridges.</description>
+    <jobString>Making .338 Lapua Magnum (FMJ) cartridges.</jobString>
+    <ingredients>
+      <li>
+        <filter>
+          <thingDefs>
+            <li>Steel</li>
+          </thingDefs>
+        </filter>
+        <count>24</count>
+      </li>
+    </ingredients>
+    <fixedIngredientFilter>
+      <thingDefs>
+        <li>Steel</li>
+      </thingDefs>
+    </fixedIngredientFilter>
+    <products>
+      <Ammo_338Lapua_FMJ>200</Ammo_338Lapua_FMJ>
+    </products>
+  </RecipeDef>
+
+  <RecipeDef ParentName="AmmoRecipeBase">
+    <defName>MakeAmmo_338Lapua_HE</defName>
+    <label>make .338 Lapua Magnum (HE) cartridge x100</label>
+    <description>Craft 100 .338 Lapua Magnum (HE) cartridges.</description>
+    <jobString>Making .338 Lapua Magnum (HE) cartridges.</jobString>
+    <ingredients>
+      <li>
+        <filter>
+          <thingDefs>
+            <li>Steel</li>
+          </thingDefs>
+        </filter>
+        <count>20</count>
+      </li>
+      <li>
+        <filter>
+          <thingDefs>
+            <li>FSX</li>
+          </thingDefs>
+        </filter>
+        <count>4</count>
+      </li>
+    </ingredients>
+    <fixedIngredientFilter>
+      <thingDefs>
+        <li>Steel</li>
+        <li>FSX</li>
+      </thingDefs>
+    </fixedIngredientFilter>
+    <products>
+      <Ammo_338Lapua_HE>200</Ammo_338Lapua_HE>
+    </products>
+  </RecipeDef>
+
+  <RecipeDef ParentName="AmmoRecipeBase">
+    <defName>MakeAmmo_338Lapua_Incendiary</defName>
+    <label>make .338 Lapua Magnum (AP-I) cartridge x100</label>
+    <description>Craft 100 .338 Lapua Magnum (AP-I) cartridges.</description>
+    <jobString>Making .338 Lapua Magnum (AP-I) cartridges.</jobString>
+    <ingredients>
+      <li>
+        <filter>
+          <thingDefs>
+            <li>Steel</li>
+          </thingDefs>
+        </filter>
+        <count>20</count>
+      </li>
+      <li>
+        <filter>
+          <thingDefs>
+            <li>Prometheum</li>
+          </thingDefs>
+        </filter>
+        <count>4</count>
+      </li>
+    </ingredients>
+    <fixedIngredientFilter>
+      <thingDefs>
+        <li>Steel</li>
+        <li>Prometheum</li>
+      </thingDefs>
+    </fixedIngredientFilter>
+    <products>
+      <Ammo_338Lapua_Incendiary>200</Ammo_338Lapua_Incendiary>
+    </products>
+  </RecipeDef>
+  
+</Defs>

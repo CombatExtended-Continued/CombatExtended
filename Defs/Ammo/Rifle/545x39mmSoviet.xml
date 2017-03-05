@@ -1,0 +1,199 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+	
+	<ThingCategoryDef>
+		<defName>Ammo545x39mmSoviet</defName>
+		<label>5.45x39mm Soviet</label>
+		<parent>AmmoRifles</parent>
+	</ThingCategoryDef>
+	
+	<!-- ==================== AmmoSet ========================== -->
+
+	<CombatExtended.AmmoSetDef>
+		<defName>AmmoSet_545x39mmSoviet</defName>
+		<label>5.45x39mm Soviet</label>
+		<ammoTypes>
+			<li>Ammo_545x39mmSoviet_FMJ</li>
+			<li>Ammo_545x39mmSoviet_AP</li>
+			<li>Ammo_545x39mmSoviet_HP</li>
+		</ammoTypes>
+	</CombatExtended.AmmoSetDef>
+	
+	<!-- ==================== Ammo ========================== -->
+
+	<ThingDef Class="CombatExtended.AmmoDef" Name="545x39mmSovietBase" ParentName="AmmoBase" Abstract="True">
+		<description>Small, high-velocity rifle bullet used in a variety of assault rifles.</description>
+		<statBases>
+			<Mass>0.01</Mass>
+			<Bulk>0.025</Bulk>
+		</statBases>
+		<tradeTags>
+			<li>CE_AutoEnableTrade</li>
+			<li>CE_AutoEnableCrafting</li>
+		</tradeTags>
+		<thingCategories>
+			<li>Ammo545x39mmSoviet</li>
+		</thingCategories>
+	</ThingDef>
+
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="545x39mmSovietBase">
+		<defName>Ammo_545x39mmSoviet_FMJ</defName>
+		<label>5.45x39mm Soviet cartridge (FMJ)</label>
+		<graphicData>
+			<texPath>Things/Ammo/Rifle/FMJ</texPath>
+			<graphicClass>Graphic_StackCount</graphicClass>
+		</graphicData>
+		<statBases>
+			<MarketValue>0.05</MarketValue>
+		</statBases>
+		<linkedProjectile>Bullet_545x39mmSoviet_FMJ</linkedProjectile>
+		<ammoClass>FullMetalJacket</ammoClass>
+	</ThingDef>
+
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="545x39mmSovietBase">
+		<defName>Ammo_545x39mmSoviet_AP</defName>
+		<label>5.45x39mm Soviet cartridge (AP)</label>
+		<graphicData>
+			<texPath>Things/Ammo/Rifle/AP</texPath>
+			<graphicClass>Graphic_StackCount</graphicClass>
+		</graphicData>
+		<statBases>
+			<MarketValue>0.06</MarketValue>
+		</statBases>
+		<linkedProjectile>Bullet_545x39mmSoviet_AP</linkedProjectile>
+		<ammoClass>ArmorPiercing</ammoClass>
+	</ThingDef>
+
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="545x39mmSovietBase">
+		<defName>Ammo_545x39mmSoviet_HP</defName>
+		<label>5.45x39mm Soviet cartridge (HP)</label>
+		<graphicData>
+			<texPath>Things/Ammo/Rifle/HP</texPath>
+			<graphicClass>Graphic_StackCount</graphicClass>
+		</graphicData>
+		<statBases>
+			<MarketValue>0.06</MarketValue>
+		</statBases>
+		<linkedProjectile>Bullet_545x39mmSoviet_HP</linkedProjectile>
+		<ammoClass>HollowPoint</ammoClass>
+	</ThingDef>
+
+	<!-- ================== Projectiles ================== -->
+	
+	<ThingDef Name="Base545x39mmSovietBullet" ParentName="BaseBullet" Abstract="True">
+		<graphicData>
+			<texPath>Things/Projectile/Bullet_Small</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+		</graphicData>
+		<projectile>
+			<damageDef>Bullet</damageDef>
+			<speed>176</speed>
+			<dropsCasings>true</dropsCasings>
+		</projectile>
+	</ThingDef>
+	
+	<ThingDef ParentName="Base545x39mmSovietBullet">
+		<defName>Bullet_545x39mmSoviet_FMJ</defName>
+		<label>5.45mm Soviet bullet (FMJ)</label>
+		<projectile>
+			<damageAmountBase>13</damageAmountBase>
+			<armorPenetration>0.55</armorPenetration>
+		</projectile>
+	</ThingDef>
+	
+	<ThingDef ParentName="Base545x39mmSovietBullet">
+		<defName>Bullet_545x39mmSoviet_AP</defName>
+		<label>5.45mm Soviet bullet (AP)</label>
+		<projectile>
+			<damageAmountBase>10</damageAmountBase>
+			<armorPenetration>0.65</armorPenetration>
+		</projectile>
+	</ThingDef>
+	
+	<ThingDef ParentName="Base545x39mmSovietBullet">
+		<defName>Bullet_545x39mmSoviet_HP</defName>
+		<label>5.45mm Soviet bullet (HP)</label>
+		<projectile>
+			<damageAmountBase>16</damageAmountBase>
+			<armorPenetration>0.4</armorPenetration>
+		</projectile>
+	</ThingDef>
+	
+	<!-- ==================== Recipes ========================== -->
+
+	<RecipeDef ParentName="AmmoRecipeBase">
+		<defName>MakeAmmo_545x39mmSoviet_FMJ</defName>
+		<label>make 5.45x39mm Soviet (FMJ) cartridge x500</label>
+		<description>Craft 500 5.45x39mm Soviet (FMJ) cartridges.</description>
+		<jobString>Making 5.45x39mm Soviet (FMJ) cartridges.</jobString>
+		<ingredients>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>Steel</li>
+					</thingDefs>
+				</filter>
+				<count>10</count>
+			</li>
+		</ingredients>
+		<fixedIngredientFilter>
+			<thingDefs>
+				<li>Steel</li>
+			</thingDefs>
+		</fixedIngredientFilter>
+		<products>
+			<Ammo_545x39mmSoviet_FMJ>500</Ammo_545x39mmSoviet_FMJ>
+		</products>
+	</RecipeDef>
+
+	<RecipeDef ParentName="AmmoRecipeBase">
+		<defName>MakeAmmo_545x39mmSoviet_AP</defName>
+		<label>make 5.45x39mm Soviet (AP) cartridge x500</label>
+		<description>Craft 500 5.45x39mm Soviet (AP) cartridges.</description>
+		<jobString>Making 5.45x39mm Soviet (AP) cartridges.</jobString>
+		<ingredients>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>Steel</li>
+					</thingDefs>
+				</filter>
+				<count>12</count>
+			</li>
+		</ingredients>
+		<fixedIngredientFilter>
+			<thingDefs>
+				<li>Steel</li>
+			</thingDefs>
+		</fixedIngredientFilter>
+		<products>
+			<Ammo_545x39mmSoviet_AP>500</Ammo_545x39mmSoviet_AP>
+		</products>
+	</RecipeDef>
+
+	<RecipeDef ParentName="AmmoRecipeBase">
+		<defName>MakeAmmo_545x39mmSoviet_HP</defName>
+		<label>make 5.45x39mm Soviet (HP) cartridge x500</label>
+		<description>Craft 500 5.45x39mm Soviet (HP) cartridges.</description>
+		<jobString>Making 5.45x39mm Soviet (HP) cartridges.</jobString>
+		<ingredients>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>Steel</li>
+					</thingDefs>
+				</filter>
+				<count>12</count>
+			</li>
+		</ingredients>
+		<fixedIngredientFilter>
+			<thingDefs>
+				<li>Steel</li>
+			</thingDefs>
+		</fixedIngredientFilter>
+		<products>
+			<Ammo_545x39mmSoviet_HP>500</Ammo_545x39mmSoviet_HP>
+		</products>
+	</RecipeDef>
+	
+</Defs>
