@@ -11,39 +11,14 @@ namespace CombatExtended
 {
     public class CompSquadBrain : ThingComp
     {
-        private bool canSuppress = false;
-        private bool canFlank = false;
-        private bool canSnipe = false;
-        private bool canSap = false;
+        public SquadBrain squad;
 
-        public override void Initialize(CompProperties props)
-        {
-            base.Initialize(props);
-            UpdatePawnRoles();
-        }
+        CompProperties_SquadBrain Props => props as CompProperties_SquadBrain;
 
-        public void UpdatePawnRoles()
+        public override void PostExposeData()
         {
-            // TODO Update based on available equipment in inventory
+            base.PostExposeData();
+            Scribe_Values.LookValue(ref squad, "squad", null);
         }
-		
-        /*
-        public bool CanDoRole(CombatRole role)
-        {
-            switch (role)
-            {
-                case CombatRole.Sapper:
-                    return canSap;
-                case CombatRole.Flanker:
-                    return canFlank;
-                case CombatRole.Sniper:
-                    return canSnipe;
-                case CombatRole.Suppressor:
-                    return canSuppress;
-                default:
-                    return true;
-            }
-        }
-        */
     }
 }
