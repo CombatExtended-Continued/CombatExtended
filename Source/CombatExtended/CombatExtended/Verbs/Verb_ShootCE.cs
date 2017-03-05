@@ -84,19 +84,6 @@ namespace CombatExtended
         private const float pawnXP = 0.75f;
         private const float hostileXP = 3.6f;
 
-        protected override float swayAmplitude
-        {
-            get
-            {
-                float sway = base.swayAmplitude;
-                if (this.shouldAim)
-                {
-                    sway *= Mathf.Max(0, 1 - aimingAccuracy);
-                }
-                return sway;
-            }
-        }
-
         // Whether this gun should use default AI firing modes
         private bool useDefaultModes
         {
@@ -230,34 +217,31 @@ namespace CombatExtended
                     CE_Utility.ThrowEmptyCasing(caster.DrawPos, caster.Map, ThingDef.Named(projectilePropsCE.casingMoteDefname));
                 }
 	            // This needs to here for weapons without magazine to ensure their last shot plays sounds
-                if (compAmmo != null)
+                if (compAmmo != null && !compAmmo.hasMagazine && compAmmo.useAmmo)
                 {
-	                if (!compAmmo.hasMagazine && compAmmo.useAmmo)
-	                {
-	                	if (!compAmmo.Notify_ShotFired())
-	                	{
-							if (verbPropsCE.muzzleFlashScale > 0.01f)
+                	if (!compAmmo.Notify_ShotFired())
+                	{
+						if (verbPropsCE.muzzleFlashScale > 0.01f)
+						{
+							MoteMaker.MakeStaticMote(caster.Position, caster.Map, ThingDefOf.Mote_ShotFlash, verbPropsCE.muzzleFlashScale);
+						}
+						if (verbPropsCE.soundCast != null)
+						{
+							verbPropsCE.soundCast.PlayOneShot(new TargetInfo(caster.Position, caster.Map));
+						}
+						if (verbPropsCE.soundCastTail != null)
+						{
+							verbPropsCE.soundCastTail.PlayOneShotOnCamera();
+						}
+						if (CasterIsPawn)
+						{
+							if (CasterPawn.thinker != null)
 							{
-								MoteMaker.MakeStaticMote(caster.Position, caster.Map, ThingDefOf.Mote_ShotFlash, verbPropsCE.muzzleFlashScale);
+								CasterPawn.mindState.lastEngageTargetTick = Find.TickManager.TicksGame;
 							}
-							if (verbPropsCE.soundCast != null)
-							{
-								verbPropsCE.soundCast.PlayOneShot(new TargetInfo(caster.Position, caster.Map));
-							}
-							if (verbPropsCE.soundCastTail != null)
-							{
-								verbPropsCE.soundCastTail.PlayOneShotOnCamera();
-							}
-							if (CasterIsPawn)
-							{
-								if (CasterPawn.thinker != null)
-								{
-									CasterPawn.mindState.lastEngageTargetTick = Find.TickManager.TicksGame;
-								}
-							}
-	                	}
-	                }
-	                return compAmmo.Notify_PostShotFired();
+						}
+                	}
+                	return compAmmo.Notify_PostShotFired();
                 }
                 return true;
             }

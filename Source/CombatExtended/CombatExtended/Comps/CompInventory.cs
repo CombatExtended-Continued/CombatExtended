@@ -280,13 +280,10 @@ namespace CombatExtended
             // Cycle through available ranged weapons
             foreach (ThingWithComps gun in rangedWeaponListCached)
             {
-                if (parentPawn.equipment == null || parentPawn.equipment.Primary != gun)
+                if (parentPawn.equipment != null && parentPawn.equipment.Primary != gun)
                 {
                     CompAmmoUser compAmmo = gun.TryGetComp<CompAmmoUser>();
                     if (compAmmo == null
-                        || !compAmmo.useAmmo
-                        || compAmmo.curMagCount > 0
-                        || compAmmo.hasAmmo)
                     {
                         newEq = gun;
                         break;

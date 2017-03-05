@@ -24,7 +24,8 @@ namespace CombatExtended
                 return true;
 
             CompAmmoUser comp = pawn.equipment.Primary.TryGetComp<CompAmmoUser>();
-            return comp != null && comp.useAmmo && !comp.hasAmmo;
+            //return comp != null && comp.useAmmo && !comp.hasAmmo;
+            return comp != null && !comp.hasAndUsesAmmoOrMagazine;
         }
 
         protected override IEnumerable<Toil> MakeNewToils()

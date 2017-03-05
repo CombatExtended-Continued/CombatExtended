@@ -13,6 +13,7 @@ namespace CombatExtended
         public float explosionDamage = -1;
         public List<ThingCountClass> fragments = new List<ThingCountClass>();
         public float fragRange = 0f;
+        public float fragSpeedFactor = 1f;
 
         public float explosionRadius = 0f;
         public DamageDef explosionDamageDef = DamageDefOf.Bomb;

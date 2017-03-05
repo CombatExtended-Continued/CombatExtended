@@ -17,12 +17,12 @@ namespace CombatExtended
         
         protected Vector2 origin;
         
-        private IntVec3 originInt = new IntVec3(-1000, 0, 0);
+        private IntVec3 originInt = new IntVec3(0, -1000, 0);
         protected IntVec3 OriginIV3
         {
         	get
         	{
-        		if (originInt.x < 0)
+        		if (originInt.y < 0)
         		{
         			originInt = new IntVec3(origin);
         		}
@@ -40,6 +40,7 @@ namespace CombatExtended
         			destinationInt = CE_Utility.GetDestination(origin, shotAngle, shotRotation, shotSpeed, shotHeight);
         			destinationInt.z = 0f;
         		}
+        		// Since returning as a Vector2 yields Vector2(Vector3.x, Vector3.y)!
         		return destinationInt;
         	}
         }
@@ -47,6 +48,7 @@ namespace CombatExtended
         protected ThingDef equipmentDef;
         protected Thing launcher;
         public float minCollisionSqr;
+        public bool canTargetSelf;
         
         #region Vanilla
         protected bool landed;
@@ -67,17 +69,23 @@ namespace CombatExtended
             {
             	if (startingTicksToImpactInt < 0f)
             	{
-            		//Optimization in case shotHeight is zero (for example for fragments)
+            		// Optimization in case shotHeight is zero (for example for fragments)
             		if (shotHeight < 0.001f)
             		{
-            			//Multiplied by ticksPerSecond since the calculated time is actually in seconds.
-            			// FIXME : DO NOT USE THIS APPROXIMATION if/until destination is defined.
-            			startingTicksToImpactInt = (float)((origin - Destination).magnitude / (Mathf.Cos(shotAngle) * shotSpeed)) * (float)GenTicks.TicksPerRealSecond;
+            			// Opt-out in case the projectile is to collide instantly
+            			if (shotAngle < 0f)
+            			{
+            				destinationInt = origin;
+            				startingTicksToImpactInt = 0f;
+            				ImpactSomething();
+            				return 0f;
+            			}
+        				// Multiplied by ticksPerSecond since the calculated time is actually in seconds.
+        				startingTicksToImpactInt = (float)((origin - Destination).magnitude / (Mathf.Cos(shotAngle) * shotSpeed)) * (float)GenTicks.TicksPerRealSecond;
+        				return startingTicksToImpactInt;
             		}
-            		else
-            		{
-            			startingTicksToImpactInt = CE_Utility.GetFlightTime(shotSpeed, shotAngle, shotHeight) * (float)GenTicks.TicksPerRealSecond;
-            		}
+            		
+            		startingTicksToImpactInt = CE_Utility.GetFlightTime(shotSpeed, shotAngle, shotHeight) * (float)GenTicks.TicksPerRealSecond;
             	}
                 return startingTicksToImpactInt;
             }
@@ -164,7 +172,6 @@ namespace CombatExtended
         	}
         }
         
-        //FIXME : Must be calculated based on .Launch() parameters!
         public virtual Vector3 ExactPosition
         {
             get
@@ -174,7 +181,6 @@ namespace CombatExtended
             }
         }
 
-        //FIXME : Must be calculated based on .Launch() parameters!
         public virtual Quaternion ExactRotation
         {
             get
@@ -220,25 +226,25 @@ namespace CombatExtended
         /// </summary>
         public override void ExposeData()
         {
-        	//FIXME : Do a pass over the exposed things
         	base.ExposeData();
             
             if (Scribe.mode == LoadSaveMode.Saving && launcher != null && launcher.Destroyed)
             {
                 launcher = null;
             }
-            Scribe_Values.LookValue<Vector2>(ref origin, "ori", default(Vector2), false);
+            Scribe_Values.LookValue<Vector2>(ref origin, "ori", default(Vector2), true);
             
             Scribe_Defs.LookDef(ref equipmentDef, "ed");
-            Scribe_References.LookReference(ref launcher, "lcr");
-            Scribe_Values.LookValue(ref landed, "lnd", false, false);
-            Scribe_Values.LookValue(ref ticksToImpact, "tTI", 0, false);
+            Scribe_References.LookReference<Thing>(ref launcher, "lcr");
+            Scribe_Values.LookValue<bool>(ref landed, "lnd", false, false);
+            Scribe_Values.LookValue<int>(ref ticksToImpact, "tTI", 0, true);
 
             //Here be new variables
             Scribe_Values.LookValue<float>(ref shotAngle, "ang", 0f, true);
             Scribe_Values.LookValue<float>(ref shotRotation, "rot", 0f, true);
             Scribe_Values.LookValue<float>(ref shotHeight, "hgt", 0f, true);
             Scribe_Values.LookValue<float>(ref shotSpeed, "spd", 0f, true);
+            Scribe_Values.LookValue<bool>(ref canTargetSelf, "cts", false, false);
         }
 
         /// <summary>
@@ -250,12 +256,12 @@ namespace CombatExtended
         /// <param name="shotRotation">Rotation between shooter and destination [degrees].</param>
         /// <param name="shotHeight">The shot height, usually the max height of the non-pawn caster, a portion of the height of the pawn caster OR zero. (default: 0)</param>
         /// <param name="shotSpeed">The shot speed (default: def.projectile.speed)</param>
-        /// <param name="equipment">TODO</param>
+        /// <param name="equipment">The equipment used to fire the projectile.</param>
         public virtual void Launch(Thing launcher, Vector2 origin, float shotAngle, float shotRotation, float shotHeight = 0f, float shotSpeed = -1f, Thing equipment = null)
         {
             this.shotAngle = shotAngle;
-            this.shotRotation = shotRotation;
             this.shotHeight = shotHeight;
+            this.shotRotation = shotRotation;
             
         	Launch(launcher, origin, equipment);
             if (shotSpeed > 0f)
@@ -316,7 +322,7 @@ namespace CombatExtended
                     var intVec3 = new IntVec3(currentExactPos);
                     if (!checkedCells.Contains(intVec3))
                     {
-                        if (CheckForFreeIntercept(intVec3))
+                    	if (!intVec3.InBounds(Map) || CheckForFreeIntercept(intVec3))
                         {
                             break;
                         }
@@ -430,6 +436,7 @@ namespace CombatExtended
                 Destroy(DestroyMode.Vanish);
                 return;
             }
+            heightOutdated = true;
             if (ticksToImpact >= 0
                 && !def.projectile.flyOverhead
                 && CheckForFreeInterceptBetween(exactPosition, Vec2Position))
@@ -437,7 +444,6 @@ namespace CombatExtended
                 return;
             }
             Position = ExactPosition.ToIntVec3();
-            heightOutdated = true;
             if (ticksToImpact == 60 && Find.TickManager.CurTimeSpeed == TimeSpeed.Normal &&
                 def.projectile.soundImpactAnticipate != null)
             {
@@ -481,7 +487,7 @@ namespace CombatExtended
             {
                 return false;
             }
-            List<Thing> mainThingList = new List<Thing>(base.Map.thingGrid.ThingsListAt(cell)).Where(t => !(t is ProjectileCE) && !(t is Mote)).ToList();
+            List<Thing> mainThingList = new List<Thing>(base.Map.thingGrid.ThingsListAtFast(cell)).Where(t => !(t is ProjectileCE) && !(t is Mote)).ToList();
 
             //Find pawns in adjacent cells and append them to main list
             List<IntVec3> adjList = new List<IntVec3>();
@@ -501,23 +507,18 @@ namespace CombatExtended
             //Iterate through adjacent cells and find all the pawns
             for (int i = 0; i < adjList.Count; i++)
             {
-                if (adjList[i].InBounds(base.Map) && !adjList[i].Equals(cell))
+                if (!adjList[i].Equals(cell) && adjList[i].InBounds(base.Map))
                 {
-                    List<Thing> thingList = new List<Thing>(base.Map.thingGrid.ThingsListAt(adjList[i]));
-                    List<Thing> pawns =
-                        thingList.Where(
-                            thing => thing.def.category == ThingCategory.Pawn && !mainThingList.Contains(thing))
-                            .ToList();
-                    mainThingList.AddRange(pawns);
+                    mainThingList.AddRange(Map.thingGrid.ThingsListAtFast(adjList[i])
+                    	.Where(thing => thing.def.category == ThingCategory.Pawn));
                 }
             }
-
+            
             //Check for entries first so we avoid doing costly height calculations
             if (mainThingList.Count > 0)
             {
-                for (int i = 0; i < mainThingList.Count; i++)
-                {
-                    Thing thing = mainThingList[i];
+            	foreach (Thing thing in mainThingList.Distinct())
+            	{
                     if (thing.def.Fillage == FillCategory.Full) //ignore height
                     {
                     	Impact(thing);
@@ -533,12 +534,17 @@ namespace CombatExtended
                         return true;
                     }
 
+                    if (launcher != null && thing == launcher && !canTargetSelf)
+                    {
+                    	return false;
+                    }
+                    
                     //Checking for pawns/cover
                     if (thing.def.category == ThingCategory.Pawn)
                     {
                         // Decrease chance to hit friendly target
                         Pawn pawn = thing as Pawn;
-                        if (this.launcher != null && pawn.Faction != null && this.launcher.Faction != null && !pawn.Faction.HostileTo(this.launcher.Faction) && Rand.Value > 0.3)
+                        if (launcher != null && pawn.Faction != null && launcher.Faction != null && !pawn.Faction.HostileTo(launcher.Faction) && Rand.Value > 0.3)
                         {
                             return false;
                         }
@@ -546,7 +552,7 @@ namespace CombatExtended
                     }
 
                     //Checking for pawns/cover
-                    if (ticksToImpact < StartingTicksToImpact / 2 && thing.def.fillPercent > 0) //Need to check for fillPercent here or else will be impacting things like motes, etc.
+                    if (thing.def.fillPercent > 0) //Need to check for fillPercent here or else will be impacting things like motes, etc.
                     {
                         return ImpactThroughBodySize(thing, Height);
                     }
@@ -585,12 +591,13 @@ namespace CombatExtended
             }
             //Modified
             var height = Height;
-            Thing thing = base.Map.thingGrid.ThingAt(Position, ThingCategory.Pawn);
+            // FIXME : Early opt-out
+            Thing thing = Map.thingGrid.ThingAt(Position, ThingCategory.Pawn);
             if (thing != null && ImpactThroughBodySize(thing, height))
             {
                 return;
             }
-            List<Thing> list = base.Map.thingGrid.ThingsListAt(Position).Where(t => !(t is ProjectileCE) && !(t is Mote)).ToList();
+            List<Thing> list = Map.thingGrid.ThingsListAt(Position).Where(t => !(t is ProjectileCE) && !(t is Mote)).ToList();
             if (list.Count > 0)
             {
 				foreach (var thing2 in list) {

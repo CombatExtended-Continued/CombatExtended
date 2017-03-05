@@ -197,7 +197,8 @@ namespace CombatExtended
                 {
                 	return new FloatRange(0, treeCollisionHeight * collisionHeightFactor);    // Check for trees
                 }
-            	return new FloatRange(0f, thing.def.fillPercent * collisionHeightFactor);
+                float fillPercent = thing.def.fillPercent * collisionHeightFactor;
+                return new FloatRange(Mathf.Min(0f, fillPercent), Mathf.Max(0f, fillPercent));
             }
             float collisionHeight = 0f;
             var pawn = thing as Pawn;
@@ -222,7 +223,8 @@ namespace CombatExtended
                     edificeHeight = GetCollisionVertical(edifice, true).max;
                 }
             }
-            FloatRange floatRange = new FloatRange(edificeHeight, edificeHeight + collisionHeight * collisionHeightFactor);
+            float fillPercent2 = collisionHeight * collisionHeightFactor;
+            FloatRange floatRange = new FloatRange(Mathf.Min(edificeHeight, edificeHeight + fillPercent2), Mathf.Max(edificeHeight, edificeHeight + fillPercent2));
             return floatRange;
         }
 

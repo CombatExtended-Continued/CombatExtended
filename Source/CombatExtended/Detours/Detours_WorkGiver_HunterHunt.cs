@@ -16,10 +16,7 @@ namespace CombatExtended.Detours
             if (p.equipment.Primary != null && p.equipment.Primary.def.IsRangedWeapon)
             {
                 CompAmmoUser comp = p.equipment.Primary.TryGetComp<CompAmmoUser>();
-                if (comp == null 
-                    || !comp.useAmmo 
-                    || (comp.hasMagazine && comp.curMagCount > 0) 
-                    || comp.hasAmmo)
+                if (comp == null || comp.hasAndUsesAmmoOrMagazine)
                     return true;
             }
             return false;

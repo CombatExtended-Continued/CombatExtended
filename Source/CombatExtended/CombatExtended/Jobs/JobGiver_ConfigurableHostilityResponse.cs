@@ -67,25 +67,19 @@ namespace CombatExtended
 
             // Check for reload before attacking
             Verb verb = pawn.TryGetAttackVerb();
-            if (pawn.equipment.PrimaryEq != null && verb != null && verb == pawn.equipment.PrimaryEq.PrimaryVerb)
+            if (pawn.equipment.Primary != null && pawn.equipment.PrimaryEq != null && verb != null && verb == pawn.equipment.PrimaryEq.PrimaryVerb)
             {
-                if (pawn.equipment.Primary != null)
+                CompAmmoUser compAmmo = pawn.equipment.Primary.TryGetComp<CompAmmoUser>();
+                if (compAmmo != null && !compAmmo.canBeFiredNow)
                 {
-                    CompAmmoUser compAmmo = pawn.equipment.Primary.TryGetComp<CompAmmoUser>();
-                    if (compAmmo != null)
-                    {
-                        if (!compAmmo.hasMagazine)
-                        {
-                            if (compAmmo.useAmmo && !compAmmo.hasAmmo)
-                                return new Job(JobDefOf.AttackMelee, thing);
-                        }
-                        else if (compAmmo.curMagCount <= 0)
-                        {
-                            Job job = new Job(CE_JobDefOf.ReloadWeapon, pawn, pawn.equipment.Primary);
-                            if (job != null)
-                                return job;
-                        }
-                    }
+            		if (compAmmo.hasAmmo)
+            		{
+                        Job job = new Job(CE_JobDefOf.ReloadWeapon, pawn, pawn.equipment.Primary);
+                        if (job != null)
+                            return job;
+            		}
+            		
+            		return new Job(JobDefOf.AttackMelee, thing);
                 }
             }
 

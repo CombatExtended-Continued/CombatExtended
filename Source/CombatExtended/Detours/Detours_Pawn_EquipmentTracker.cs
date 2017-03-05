@@ -171,25 +171,20 @@ namespace CombatExtended.Detours
             bool allowManualCastWeapons = !pawn.IsColonist;
             Verb verb = pawn.TryGetAttackVerb(allowManualCastWeapons);
 
-            // Check for reload before attacking
+            // Check for reload before attacking (canBeFiredNow?)
             ThingWithComps primaryInt = (ThingWithComps)primaryIntFieldInfo.GetValue(_this);
             if (primaryInt != null && _this.PrimaryEq != null && verb != null && verb == _this.PrimaryEq.PrimaryVerb)
             {
                 if (_this.Primary != null)
                 {
                     CompAmmoUser compAmmo = _this.Primary.TryGetComp<CompAmmoUser>();
-                    if (compAmmo != null)
+                    if (compAmmo != null && !compAmmo.canBeFiredNow)
                     {
-                        if (!compAmmo.hasMagazine)
-                        {
-                            if (compAmmo.useAmmo && !compAmmo.hasAmmo)
-                                return false;
-                        }
-                        else if (compAmmo.curMagCount <= 0)
-                        {
-                            compAmmo.TryStartReload();
-                            return false;
-                        }
+                		if (compAmmo.hasAmmo)
+                		{
+                			compAmmo.TryStartReload();
+                		}
+                		return false;
                     }
                 }
             }

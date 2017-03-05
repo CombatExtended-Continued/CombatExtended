@@ -57,32 +57,25 @@ namespace CombatExtended
             // Fragmentation stuff
             if (!Props.fragments.NullOrEmpty() && GenGrid.InBounds(pos, map))
             {
-                if (Props.fragRange <= 0)
+                Vector2 exactOrigin = new Vector2(parent.DrawPos.x, parent.DrawPos.z);
+                float height = CE_Utility.GetCollisionVertical(pos.GetEdifice(map), true).max;
+                
+                foreach (ThingCountClass fragment in Props.fragments)
                 {
-                    Log.Error(parent.LabelCap + " has fragments but no fragRange");
-                }
-
-                else
-                {
-                    Vector2 exactOrigin = new Vector2(parent.DrawPos.x, parent.DrawPos.z);
-                    float height = CE_Utility.GetCollisionVertical(pos.GetEdifice(map), true).max;
-                    
-                    foreach (ThingCountClass fragment in Props.fragments)
+                    for (int i = 0; i < fragment.count; i++)
                     {
-                        for (int i = 0; i < fragment.count; i++)
+                        ProjectileCE projectile = (ProjectileCE)ThingMaker.MakeThing(fragment.thingDef, null);
+                        GenSpawn.Spawn(projectile, pos, map);
+                        
+                        var projCE = parent as ProjectileCE;
+                        if (projCE != null)
                         {
-                            ProjectileCE projectile = (ProjectileCE)ThingMaker.MakeThing(fragment.thingDef, null);
-                            GenSpawn.Spawn(projectile, pos, map);
-                            
-                            var projCE = parent as ProjectileCE;
-                            if (projCE != null)
-                            {
-                            	height = Mathf.Max(height, projCE.Height);
-                            }
-                            
-                			projectile.minCollisionSqr = 1f;
-                            projectile.Launch(instigator, exactOrigin, UnityEngine.Random.Range(-Mathf.PI / 2f, Mathf.PI / 2f), UnityEngine.Random.Range(0, 360), height);
+                        	height = Mathf.Max(height, projCE.Height);
                         }
+                        
+                        projectile.canTargetSelf = true;
+            			projectile.minCollisionSqr = 1f;
+                        projectile.Launch(instigator, exactOrigin, UnityEngine.Random.Range(-Mathf.PI / 2f, Mathf.PI / 2f), UnityEngine.Random.Range(0, 360), height, Props.fragSpeedFactor * projectile.def.projectile.speed);
                     }
                 }
             }

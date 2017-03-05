@@ -282,24 +282,10 @@ namespace CombatExtended
             Vector2 spreadVec = report.GetRandSpreadVec();
             
             // ----------------------------------- STEP 5: Finalization
-
-					//FIXME : Changes angle
-            // Skewing		-		Applied after the leading calculations to not screw them up
-            //shotAngle = spreadVec.y * Mathf.Deg2Rad;
             
             var w = (newTargetLoc - sourceLoc);
             shotRotation = (90 + Mathf.Rad2Deg * Mathf.Atan2(-w.y, w.x) + rotationDegrees + spreadVec.x) % 360;
             shotAngle = angleRadians + spreadVec.y * Mathf.Deg2Rad;
-            
-            /*
-					//FIXME : Changes range from speed, angle, shotHeight
-            float distanceTraveled = CE_Utility.GetDistanceTraveled(shotSpeed, shotAngle, shotHeight);
-            Vector3 finalTargetLoc = sourceLoc + ((newTargetLoc - sourceLoc).normalized * distanceTraveled);
-					//FIXME : Applies angle
-            finalTargetLoc = sourceLoc + (Quaternion.AngleAxis(spreadVec.x, Vector3.up) * (finalTargetLoc - sourceLoc));
-			
-            return finalTargetLoc;
-			*/
         }
 
         /// <summary>
@@ -437,7 +423,6 @@ namespace CombatExtended
                 }
                 return base.CanHitTargetFrom(root, targ);
             }
-
             if (base.CanHitTargetFrom(root, targ))
             {
                 //Check if target is obstructed behind cover
@@ -489,6 +474,7 @@ namespace CombatExtended
 	           	ShiftTarget(report, pelletMechanicsOnly);
 
                 //New aiming algorithm
+                projectile.canTargetSelf = verbProps.targetParams.canTargetSelf;
                 projectile.minCollisionSqr = (sourceLoc - newTargetLoc).sqrMagnitude;
                 projectile.Launch(caster, sourceLoc, shotAngle, shotRotation, shotHeight, shotSpeed, ownerEquipment);
                 

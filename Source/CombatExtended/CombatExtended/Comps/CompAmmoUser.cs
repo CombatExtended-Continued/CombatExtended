@@ -65,13 +65,32 @@ namespace CombatExtended
                 return ModSettings.enableAmmoSystem && Props.ammoSet != null;
             }
         }
+        public bool hasAndUsesAmmoOrMagazine
+        {
+        	get
+        	{
+        		return !useAmmo || hasAmmoOrMagazine;
+        	}
+        }
+        public bool hasAmmoOrMagazine
+        {
+        	get
+        	{
+        		return (hasMagazine && curMagCount > 0) || hasAmmo;
+        	}
+        }
+        public bool canBeFiredNow
+        {
+        	get
+        	{
+        		return !useAmmo || ((hasMagazine && curMagCount > 0) || (!hasMagazine && hasAmmo));
+        	}
+        }
         public bool hasAmmo
         {
             get
             {
-                if (compInventory == null)
-                    return false;
-                return compInventory.ammoList.Any(x => Props.ammoSet.ammoTypes.Contains(x.def));
+				return compInventory != null && compInventory.ammoList.Any(x => Props.ammoSet.ammoTypes.Contains(x.def));
             }
         }
         public bool hasMagazine { get { return Props.magazineSize > 0; } }
@@ -153,7 +172,7 @@ namespace CombatExtended
         		ammoToBeDeleted.Destroy();
         		ammoToBeDeleted = null;
                 compInventory.UpdateInventory();
-	            if (!hasAmmo)
+	            if (!hasAmmoOrMagazine)
 	            {
 	            	return false;
 	            }
@@ -163,7 +182,7 @@ namespace CombatExtended
         
         public bool Notify_PostShotFired()
         {
-            if (!hasAmmo)
+            if (!hasAmmoOrMagazine)
             {
                 DoOutOfAmmoAction();
                 return false;
