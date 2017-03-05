@@ -283,7 +283,7 @@ namespace CombatExtended
                 if (parentPawn.equipment != null && parentPawn.equipment.Primary != gun)
                 {
                     CompAmmoUser compAmmo = gun.TryGetComp<CompAmmoUser>();
-                    if (compAmmo == null
+                    if (compAmmo == null || compAmmo.hasAndUsesAmmoOrMagazine)
                     {
                         newEq = gun;
                         break;
