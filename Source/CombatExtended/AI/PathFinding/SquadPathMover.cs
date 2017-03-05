@@ -5,7 +5,7 @@ using System.Text;
 using RimWorld;
 using Verse;
 using Verse.AI;
-using Reloader;
+//using Reloader;
 using UnityEngine;
 using System.Reflection;
 
@@ -287,7 +287,7 @@ namespace CombatExtended.AI
 			this.OnEnemyNearPath(region);
 		}
 
-		[Reloader.ReloadMethod("SquadPathMover", "StudyWeaponSights", new Type[1] { typeof(Region)})]
+		//[Reloader.ReloadMethod("SquadPathMover", "StudyWeaponSights", new Type[1] { typeof(Region)})]
 		private float StudyWeaponSights(Region startRegion)
 		{
 
