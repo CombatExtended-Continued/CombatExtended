@@ -20,7 +20,7 @@ namespace CombatExtended
                 return null;
             }
             Job job = comp.squad.GetJobFor(pawn);
-            if (job == null) job = new Job(JobDefOf.WaitCombat, pawn.Position);
+            //if (job == null) job = new Job(JobDefOf.WaitCombat, pawn.Position);
             return job;
         }
     }

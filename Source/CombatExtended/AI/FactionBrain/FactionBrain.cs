@@ -8,29 +8,66 @@ using UnityEngine;
 
 namespace CombatExtended
 {
+	using CombatExtended.AI;
+
 	public class FactionBrain : IExposable
 	{
-        public FactionBrainManager manager;
-        private Faction faction;
+		public FactionBrainManager manager;
+		private Faction faction;
 
-        public Map Map => manager.map;
-        internal bool ShouldDelete => Map.mapPawns.SpawnedPawnsInFaction(faction).NullOrEmpty();
-        internal int TickInterval { get { throw new NotImplementedException(); } }  // TODO this should return the amount of ticks between running BrainTick()
+		private SquadBrain brain;
 
-        public FactionBrain(FactionBrainManager manager, Faction faction)
+		public Map Map => manager.map;
+		internal bool ShouldDelete => Map.mapPawns.SpawnedPawnsInFaction(faction).NullOrEmpty();
+		internal int TickInterval { get { return 10; } }  // TODO this should return the amount of ticks between running BrainTick()
+
+		public FactionBrain(FactionBrainManager manager, Faction faction)
         {
             this.manager = manager;
-            this.faction = faction;
-        }
+			this.faction = faction;
+            //LongEventHandler.ExecuteWhenFinished(InitBrain);
+		}
 
-        public void BrainTick()
+        private void InitBrain()
         {
-            // TODO add faction brain calculations
+            try
+            {
+                List<Pawn> list = new List<Pawn>(manager.map.mapPawns.FreeHumanlikesSpawnedOfFaction(faction));
+                brain = new SquadBrain(list
+                                       , faction
+                                       , manager.map);
+
+                foreach (Pawn p in list)
+                {
+                    CompSquadBrain comp = p.TryGetComp<CompSquadBrain>();
+                    if (comp != null) comp.squad = brain;
+                }
+            }
+            catch (Exception er)
+            {
+                Log.Message(er.Message);
+            }
         }
 
-        public void ExposeData()
+		public void BrainTick()
+		{
+            if (brain == null) InitBrain();
+
+            foreach (Pawn p in manager.map.mapPawns.FreeHumanlikesSpawnedOfFaction(faction))
+			{
+                CompSquadBrain comp = p.TryGetComp<CompSquadBrain>();
+				if (comp != null && comp.squad == null)
+				{
+                    comp.squad = brain;
+				}
+			}
+
+
+		}
+
+		public void ExposeData()
         {
             Scribe_Values.LookValue(ref faction, "faction", Faction.OfPlayer);
-        }
-    }
+		}
+	}
 }

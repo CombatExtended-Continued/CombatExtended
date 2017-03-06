@@ -2,63 +2,69 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using RimWorld;
 using Verse;
+using RimWorld;
+using UnityEngine;
 
-namespace CombatExtended.AI
+namespace CombatExtended
 {
-	public enum FactionState : byte
+	using CombatExtended.AI;
+
+	public class FactionBrain : IExposable
 	{
+		public FactionBrainManager manager;
+		private Faction faction;
 
-	}
+		private SquadBrain brain;
 
-	public class FactionBrain
-	{
-		#region FACTION PRIVATE VARIABLES
+		public Map Map => manager.map;
+		internal bool ShouldDelete => Map.mapPawns.SpawnedPawnsInFaction(faction).NullOrEmpty();
+		internal int TickInterval { get { return 10; } }  // TODO this should return the amount of ticks between running BrainTick()
 
-		//These are what make a faction a faction
-		//TODO cash the all types of faction for events
-
-		private IEnumerable<Pawn> factionInjuredPawns;
-
-		private IEnumerable<Pawn> factionFreePawns;
-
-		private IEnumerable<Pawn> factionPawns;
-
-		private Dictionary<Pawn, CombatRole> factionPawnsTypes;
-
-		//TODO CleanUp and cache all DataNeeded
-
-		#endregion
-
-		//------------------------------------------------//
-		//------------------------------------------------//
-
-		#region FACTION REALONY VARIABLES
-
-		//These are what make a faction a faction
-		//TODO cash the all types of faction for events
-
-		private readonly Map map;
-
-		private readonly Faction faction;
-
-		//TODO CleanUp and cache all DataNeeded
-
-		#endregion
-
-		public FactionBrain(Map map, Faction faction)
+		public FactionBrain(FactionBrainManager manager, Faction faction)
 		{
-			this.map
-				= map;
+			this.manager = manager;
+			this.faction = faction;
 
-			this.faction
-				= faction;
+			try
+			{
+				brain = new SquadBrain(Map.mapPawns.AllPawnsSpawned.FindAll(t => faction == t.Faction)
+									   , faction
+									   , manager.map);
+
+				foreach (Pawn p in manager.map.mapPawns.AllPawnsSpawned.FindAll(t => faction == t.Faction))
+				{
+					p.GetComp<CompSquadBrain>().squad = brain;
+				}
+			}
+			catch (Exception er)
+			{
+				Log.Message(er.Message);
+			}
 		}
 
-		public void TickFaction()
+		public void BrainTick()
 		{
 
+
+			foreach (Pawn p in manager.map.mapPawns.AllPawnsSpawned.FindAll(t => faction == t.Faction))
+			{
+				if (p.TryGetComp<CompSquadBrain>() != null)
+				{
+					p.GetComp<CompSquadBrain>().squad = brain;
+				}
+				else
+				{
+
+				}
+			}
+
+
+		}
+
+		public void ExposeData()
+		{
+			Scribe_Values.LookValue(ref faction, "faction", Faction.OfPlayer);
 		}
 	}
 }

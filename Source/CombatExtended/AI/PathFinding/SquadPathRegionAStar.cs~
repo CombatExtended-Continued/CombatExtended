@@ -21,12 +21,10 @@ namespace CombatExtended.AI
 
 		private List<Pawn> pawns;
 
-		private const int TEST_CELL_CONST
-						= 5;
+		private const int TEST_CELL_CONST = 4;
 
 		private SquadPath GetPathFromTo(Region startRegion, Region targetRegion, Faction fac, float fortLimit)
 		{
-
 
 			//TODO get the list of all pawn in the map
 			//TODO (Filter Pawns that are Hostiles to the faction TODO Optimize)
@@ -39,115 +37,7 @@ namespace CombatExtended.AI
 					.FindAll((obj) => obj.Faction.HostileTo(fac))
 					.ToList();
 
-
-
-			List<Region> Path =
-				GetPathAStar(startRegion
-							 , targetRegion
-							 , fac
-							 , fortLimit).ToList();
-
-			Path.Reverse();
-
-			//Smooth Down the Path TODO Need Rework
-			if (Path.Count != 0)
-			{
-				List<int> temp =
-					new List<int>();
-
-				for (int i = 0; i < Path.Count - 2; i += 2)
-					temp.Add(i);
-
-				temp.Reverse();
-
-				foreach (int i in temp)
-					Path.RemoveAt(i);
-
-				temp.Clear();
-			}
-
-			var squadPath =
-				new SquadPath();
-
-
-			Log.Message("nodes num " + Path.Count);
-
-			squadPath.nodes = Path;
-
-			return squadPath;
-		}
-
-		private float StudyRegion(Region region, Faction fac, float fortLimit)
-		{
-			//TODO NOW ..... LOL
-
-			var temp = StudyWeaponSights(region) + (float)fac.TacticalMemory
-							 .TrapMemories()
-							 .FindAll(
-								 t => t.loc.GetRegion(t.map).Equals(region)
-								).Count;
-
-			if (Math.Abs(temp) <= 5)
-				return 0f;
-			
-			//var speed =
-			//	+StudyWalkSpeedRegion(region);
-
-			//var density =
-			//	StudyObjectsCount(region);
-
-			//if (density > speed)
-			//{
-			//	density = speed;
-			//}
-
-			//if (temp > 50f)
-			//{
-			//	temp -= density +
-			//		speed;
-			//}
-
-			return temp;
-		}
-
-		private float StudyWalkSpeedRegion(Region region)
-		{
-			//avg value of cost..
-			var sum = 0f;
-
-			//total number of cells..
-			var total = 0f;
-
-			for (int i = 0; i < TEST_CELL_CONST;i++)
-			{
-				sum += region.RandomCell.GetTerrain(map)
-						   .pathCost;
-				total += 1;
-			}
-
-			return sum / total + total;
-		}
-
-		private float StudyObjectsCount(Region region)
-		{
-			//total number of cells..
-			var total = 0f;
-
-			foreach (Thing thing in region.ListerThings.AllThings)
-			{
-				total += 1;
-			}
-
-			return total;
-		}
-
-		private float StudyWeaponSights(Region startRegion)
-		{
-
-			//avg value of cost..
-			var sum = 0f;
-
-			List<Pawn> RemoverList = 
+			List<Pawn> RemoverList =
 				new List<Pawn>();
 
 			foreach (Pawn pawn in pawns)
@@ -204,11 +94,106 @@ namespace CombatExtended.AI
 					}
 
 				}
-				catch (Exception er)
+				catch (Exception)
 				{
 					RemoverList.Add(pawn);
 
 					continue;
+				}
+			}
+
+			foreach (Pawn pawn in RemoverList)
+				pawns.Remove(pawn);
+
+			RemoverList.Clear();
+
+			List<Region> Path =
+				GetPathAStar(startRegion
+							 , targetRegion
+							 , fac
+							 , fortLimit).ToList();
+
+			Path.Reverse();
+
+			//Smooth Down the Path TODO Need Rework
+			if (Path.Count != 0)
+			{
+				List<int> temp =
+					new List<int>();
+
+				for (int i = 0; i < Path.Count - 2; i += 2)
+					temp.Add(i);
+
+				temp.Reverse();
+
+				foreach (int i in temp)
+					Path.RemoveAt(i);
+
+				temp.Clear();
+			}
+
+			var squadPath =
+				new SquadPath();
+
+
+			Log.Message("nodes num " + Path.Count);
+
+			squadPath.nodes = Path;
+
+			return squadPath;
+		}
+
+		private float StudyRegion(Region region, Faction fac, float fortLimit)
+		{
+			//TODO NOW ..... LOL
+
+			var temp = StudyWeaponSights(region) + (float)fac.TacticalMemory
+							 .TrapMemories()
+							 .FindAll(
+								 t => t.loc.GetRegion(t.map).Equals(region)
+								).Count;
+
+			var density =
+				StudyObjectsCount(region);
+
+			if (Math.Abs(temp) <= 5)
+				return density;
+
+			var speed =
+				+StudyWalkSpeedRegion(region);
+
+			if (temp > 50f)
+			{
+				temp -= density +
+					speed;
+			}
+
+			return temp;
+		}
+
+		private float StudyWalkSpeedRegion(Region region)
+		{
+			return (float)(region.Cells.Count() - region.ListerThings.AllThings.Count);
+		}
+
+		private float StudyObjectsCount(Region region)
+		{
+			return region.ListerThings.AllThings.Count;
+		}
+
+		private float StudyWeaponSights(Region startRegion)
+		{
+
+			//avg value of cost..
+			var sum = 0f;
+
+			var count = 0;
+
+			foreach (Pawn pawn in pawns)
+			{
+				if (count > pawns.Count / 2 && pawns.Count > 1)
+				{
+					break;
 				}
 
 				Region targetRegion =
@@ -236,9 +221,13 @@ namespace CombatExtended.AI
 												 , map
 												 , true))
 						{
-							sum += 100f;
+							sum += 12;
 
 							j++;
+
+							count++;
+
+							break;
 						}
 					}
 				}
@@ -278,19 +267,15 @@ namespace CombatExtended.AI
 							sum += (float)temp;
 
 							j++;
+
+							count++;
 						}
 					}
 				}
 			}
 
-			foreach (Pawn pawn in RemoverList)
-				pawns.Remove(pawn);
-
-			RemoverList.Clear();
-
 			return sum;
 		}
-
 
 		private IEnumerable<Region> GetPathAStar(Region startRegion, Region targetRegion, Faction fac, float fortLimit)
 		{
@@ -304,6 +289,8 @@ namespace CombatExtended.AI
 				RegionNode.CreateNode(startRegion, 0f, null);
 
 			Queue.Push(startnode, startnode.Score);
+
+			var breaK = false;
 
 			while (!Queue.isEmpty())
 			{
@@ -330,34 +317,164 @@ namespace CombatExtended.AI
 					this.DoneRegion.Add(node.CurrentRegion.id, 1);
 				}
 
-				foreach (RegionLink link in node.CurrentRegion.links)
+				if (node.CurrentRegion.links.Count == 2)
 				{
-					var newregion =
-						GetRegionLink(node.CurrentRegion, link);
+					List<Region> temp =
+						new List<Region>();
 
+					var region = node.CurrentRegion;
 
-					try
+					DoneRegion.Remove(region.id);
+
+					while (region.links.Count == 2)
 					{
+						if (region.id == targetRegion.id)
+						{
+							while (temp.Count != 0)
+							{
+								yield return temp.Last();
+								temp.RemoveLast();
+							}
+
+							while (node != null)
+							{
+								yield return node.CurrentRegion;
+
+								node = node.Parent;
+							}
+
+							breaK = true;
+
+							break;
+						}
+
+						if (breaK)
+							break;
+
+						if (DoneRegion.ContainsKey(region.id))
+						{
+							break;
+						}
+
+						DoneRegion.Add(region.id, 1);
+
+						if (!DoneRegion.ContainsKey(GetRegionLink(region, region.links.ToList()[0]).id))
+						{
+							temp.Add(GetRegionLink(region, region.links.First()));
+							region = GetRegionLink(region, region.links.First());
+						}
+						else if (!DoneRegion.ContainsKey(GetRegionLink(region, region.links.ToList()[1]).id))
+						{
+							temp.Add(GetRegionLink(region, region.links.First()));
+							region = GetRegionLink(region, region.links.First());
+						}
+						else
+						{
+							break;
+						}
+					}
+
+					if (!breaK)
+					{
+						if (region.links.Count > 2)
+						{
+							var sumSight = (float)pawns.FindAll((obj) => temp.Contains(obj.GetRegion())).Count * 100;
+
+							foreach (Region r in temp)
+							{
+								sumSight += StudyObjectsCount(r) + StudyWalkSpeedRegion(r);
+							}
+
+							var Rtemp = RegionNode.CreateNode(temp[0],
+															  sumSight
+															  + (float)GetOclicdianDistanceRegionAtoB(temp[0], targetRegion)
+														 + (float)GetOclicdianDistanceRegionAtoB(temp[0], node.CurrentRegion)
+															  , node);
+
+							temp.RemoveAt(0);
+
+							while (temp.Count > 0)
+							{
+								Rtemp = RegionNode.CreateNode(temp[0],
+															  sumSight
+														 + (float)GetOclicdianDistanceRegionAtoB(temp[0], targetRegion)
+														 + (float)GetOclicdianDistanceRegionAtoB(temp[0], Rtemp.CurrentRegion)
+														 , Rtemp);
+
+								temp.RemoveAt(0);
+							}
+
+							Queue.Push(Rtemp, Rtemp.Score);
+						}
+						else if (region.links.Count == 1)
+						{
+							continue;
+						}
+					}
+				}
+				else
+				{
+					foreach (RegionLink link in node.CurrentRegion.links)
+					{
+						var newregion =
+							GetRegionLink(node.CurrentRegion, link);
+
 						if (DoneRegion.ContainsKey(newregion.id))
 							continue;
+
+						var temp = RegionNode.CreateNode(newregion,
+														  StudyRegion(
+															 newregion,
+															 fac,
+															 fortLimit)
+														 + node.Score
+														 + (float)GetOclicdianDistanceRegionAtoB(newregion, targetRegion)
+														 + (float)GetOclicdianDistanceRegionAtoB(newregion, node.CurrentRegion) + 10f
+														 , node);
+
+						Queue.Push(temp, temp.Score);
 					}
-					catch (Exception er)
+
+
+					foreach (IntVec3 cell in new IntVec3[]{
+							//node.CurrentRegion.extentsLimit.TopRight
+							//,node.CurrentRegion.extentsLimit.BottomLeft
+							//,node.CurrentRegion.extentsLimit.Cells.First()
+							//,node.CurrentRegion.extentsLimit.Cells.Last(),
+						//TODO Need to be Tested for which one is right LOL
+							node.CurrentRegion.extentsClose.TopRight
+							,node.CurrentRegion.extentsClose.BottomLeft
+							,node.CurrentRegion.extentsClose.Cells.First()
+							,node.CurrentRegion.extentsClose.Cells.Last()})
 					{
-						Log.Message(er.ToString());
+						if (cell.IsValid)
+							continue;
+
+						if (!cell.Walkable(map))
+							continue;
+
+						if (cell.GetRegion(map) == null)
+							continue;
+
+						if (DoneRegion.ContainsKey(cell.GetRegion(map).id))
+							continue;
+
+						var temp = RegionNode.CreateNode(cell.GetRegion(map),
+														  StudyRegion(
+															 cell.GetRegion(map),
+															 fac,
+															 fortLimit)
+														 + node.Score
+														 + (float)GetOclicdianDistanceRegionAtoB(cell.GetRegion(map), targetRegion)
+														 + (float)GetOclicdianDistanceRegionAtoB(cell.GetRegion(map), node.CurrentRegion)
+														 , node);
+
+						Queue.Push(temp, temp.Score);
 					}
-
-					var temp = RegionNode.CreateNode(newregion,
-													  StudyRegion(
-														 newregion,
-														 fac,
-														 fortLimit)
-													 + node.Score
-													 + (float)GetOclicdianDistanceRegionAtoB(newregion, targetRegion)
-													 + 10.00f
-													 , node);
-
-					Queue.Push(temp, temp.Score);
 				}
+
+				if (breaK)
+					break;
 			}
 
 			yield return null;

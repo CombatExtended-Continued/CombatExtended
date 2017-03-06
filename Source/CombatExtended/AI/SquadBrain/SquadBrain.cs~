@@ -56,8 +56,8 @@ namespace CombatExtended.AI
 
 		public Job GetJobFor(Pawn pawn)
 		{
-            //this.squadPawns = map.mapPawns.AllPawnsSpawned.FindAll(t => faction == t.Faction);
-            if (squadPawns == null) squadPawns = map.mapPawns.FreeHumanlikesSpawnedOfFaction(faction);
+			this.squadPawns = map.mapPawns.AllPawnsSpawned.FindAll(t => faction == t.Faction);
+
 			return CombatTick(pawn);
 		}
 
@@ -143,51 +143,51 @@ namespace CombatExtended.AI
 			return temp;
 		}
 
-        private Job CombatTick(Pawn pawn)
-        {
-            if (!squadOrdersForPawns.ContainsKey(pawn))
-            {
-                squadOrdersForPawns.Add(pawn, new JobNode());
-            }
+		private Job CombatTick(Pawn pawn)
+		{
+			if (!squadOrdersForPawns.ContainsKey(pawn))
+			{
+				squadOrdersForPawns.Add(pawn, new JobNode());
+			}
 
-            var node = squadOrdersForPawns[pawn];
+			var node = squadOrdersForPawns[pawn];
 
-            if (node.jobs.Count == 0)
-            {
-                return this.Search(pawn);
-            }
+			if (node.jobs.Count == 0)
+			{
+				return this.Search(pawn);
+			}
 
-            if (node.jobs.Count > 0 && node.jobs.Count % 2 == 0)
-            {
-                var temp = node.jobs[0];
+			if (node.jobs.Count > 0 && node.jobs.Count % 2 == 0)
+			{
+				var temp = node.jobs[0];
 
-                node.jobs.RemoveAt(0);
+				node.jobs.RemoveAt(0);
 
-                return temp;
-            }
+				return temp;
+			}
 
-            var totalEnemies = 0;
+			var totalEnemies = 0;
 
-            var enemy_in_sight = FindSightAndRange(pawn, out totalEnemies);
+			var enemy_in_sight = FindSightAndRange(pawn, out totalEnemies);
 
-            if (totalEnemies > squadPawns.Count() + 3)
-            {
-                return new Job(JobDefOf.FleeAndCower);
-            }
+			if (totalEnemies > squadPawns.Count() + 3)
+			{
+				return new Job(JobDefOf.FleeAndCower);
+			}
 
-            if (totalEnemies == 0)
-            {
-                return Search(pawn);
-            }
+			if (totalEnemies == 0 && node.jobs.Count % 3 == 0)
+			{
+				return Search(pawn);
+			}
 
-            var temp_X = node.jobs[0];
+			var temp_X = node.jobs[0];
 
-            node.jobs.RemoveAt(0);
+			node.jobs.RemoveAt(0);
 
-            return temp_X;
-        }
+			return temp_X;
+		}
 
-        private Job Search(Pawn pawn)
+		private Job Search(Pawn pawn)
 		{
 			//float verbRange = pawn.equipment?.PrimaryEq?.PrimaryVerb.verbProps.range ?? 0;
 

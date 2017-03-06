@@ -165,7 +165,7 @@ namespace CombatExtended
                 return compAmmoInt;
             }
         }
-        private ThingDef projectileDef
+        public ThingDef projectileDef
         {
             get
             {

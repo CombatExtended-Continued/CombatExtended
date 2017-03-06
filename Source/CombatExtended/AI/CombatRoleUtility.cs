@@ -155,6 +155,52 @@ namespace CombatExtended.AI
 
         #endregion
 
+        /// <summary>
+        /// Finds the most damaging gun and grenade in a pawn's inventory for a given minimum range
+        /// </summary>
+        /// <param name="pawn">The Pawn whose inventory to search through</param>
+        /// <param name="range">The minimum range the returned weapons must have, set to negative for unlimited</param>
+        /// <returns>Pair where First is the highest DPS gun and Second is the highest damage/radius grenade in inventory, Pair with null values if no gun/grenade with the given range could be found or the Pawn has no CompInventory</returns>
+        internal static Pair<ThingWithComps, ThingWithComps> GetBestGunAndGrenadeFor(Pawn pawn, int range = -1)
+        {
+            CompInventory inventory = pawn.TryGetComp<CompInventory>();
+            if (inventory == null)
+            {
+                Log.Error("CE tried calculating best gun and grenade for " + pawn.ToString() + " without CompInventory");
+                return new Pair<ThingWithComps, ThingWithComps>();
+            }
+            ThingWithComps bestGun = null;
+            ThingWithComps bestGrenade = null;
+            float maxGunScore = 0f;
+            float maxGrenadeScore = 0f;
+            foreach (ThingWithComps curWeapon in inventory.rangedWeaponList)
+            {
+                CompEquippable compEq = curWeapon.TryGetComp<CompEquippable>();
+                if (compEq.PrimaryVerb.verbProps.range > range && curWeapon.def.IsLethal())
+                {
+                    float score = 0f;
+                    bool isGrenade = curWeapon.def.IsGrenade();
+                    if (isGrenade)
+                    {
+                        // Score the grenade based on damage and explosion radius and compare against stored max
+                        ThingDef grenade = compEq.PrimaryVerb.verbProps.projectileDef;
+                        score = grenade.projectile.damageAmountBase * grenade.projectile.explosionRadius * (grenade.HasComp(typeof(CompExplosiveCE)) ? 2 : 1);
+                        if (score > maxGrenadeScore) bestGrenade = curWeapon;
+                    }
+                    else
+                    {
+                        // Score the gun based on DPS and compare against stored max
+                        Verb verb = compEq.PrimaryVerb;
+                        ThingDef bullet = verb as Verb_LaunchProjectileCE == null ? verb.verbProps.projectileDef : (verb as Verb_LaunchProjectileCE).projectileDef;
+                        float secPerBurst = verb.verbProps.warmupTime + curWeapon.GetStatValue(StatDefOf.RangedWeapon_Cooldown) + (verb.verbProps.ticksBetweenBurstShots * verb.verbProps.burstShotCount);  // Overall time for one burst
+                        score = bullet.projectile.damageAmountBase * verb.verbProps.burstShotCount / secPerBurst;
+                        if (score > maxGunScore) bestGun = curWeapon;
+                    }
+                }
+            }
+            return new Pair<ThingWithComps, ThingWithComps>(bestGun, bestGrenade);
+        }
+
         #endregion
     }
 }
