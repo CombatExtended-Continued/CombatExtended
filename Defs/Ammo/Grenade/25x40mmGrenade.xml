@@ -1,0 +1,82 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+
+	<ThingCategoryDef>
+		<defName>Ammo25x40mmGrenades</defName>
+		<label>25x40mm Grenade</label>
+		<parent>AmmoGrenades</parent>
+	</ThingCategoryDef>
+	
+	<!-- ==================== AmmoSet ========================== -->
+
+  <CombatExtended.AmmoSetDef>
+    <defName>AmmoSet_25x40mmGrenade</defName>
+    <label>25x40mm Grenades</label>
+    <ammoTypes>
+    	<Ammo_25x40mmGrenade_HE>Bullet_25x40mmGrenade_HE</Ammo_25x40mmGrenade_HE>
+    </ammoTypes>
+  </CombatExtended.AmmoSetDef> 
+	
+	<!-- ==================== Ammo ========================== -->
+
+  <ThingDef Name="25mmGrenadeBase" ParentName="AmmoBase" Abstract="True">
+    <description>Relatively small, low velocity grenade for use in grenade launchers.</description>
+    <statBases>
+	  <Mass>0.2</Mass>
+	  <Bulk>0.3</Bulk>
+    </statBases>
+	<tradeTags>
+	  <li>CE_AutoEnableTrade</li>
+	  <li>CE_AutoEnableCrafting</li>
+	</tradeTags>
+    <thingCategories>
+      <li>Ammo25x40mmGrenades</li>
+    </thingCategories>
+  </ThingDef>
+
+  <ThingDef ParentName="25mmGrenadeBase">
+    <defName>Ammo_25x40mmGrenade_HE</defName>
+    <label>25mm grenade (HE)</label>
+    <graphicData>
+      <texPath>Things/Ammo/GrenadeLauncher/HE</texPath>
+      <graphicClass>Graphic_StackCount</graphicClass>
+    </graphicData>
+    <statBases>
+      <MarketValue>1.86</MarketValue>
+    </statBases>
+    <ammoClass>GrenadeHE</ammoClass>
+  </ThingDef>  
+	
+	<!-- ================== Projectiles ================== -->
+		
+	<ThingDef ParentName="BaseBullet">
+		<defName>Bullet_25x40mmGrenade_HE</defName>
+		<label>25mm grenade</label>
+		<graphicData>
+			<texPath>Things/Projectile/Bullet_Big</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+			<shaderType>TransparentPostLight</shaderType>
+		</graphicData>
+		<thingClass>CombatExtended.ProjectileCE_Explosive</thingClass>
+		<projectile>
+			<damageDef>Bomb</damageDef>
+			<damageAmountBase>30</damageAmountBase>
+			<explosionRadius>1</explosionRadius>
+			<speed>42</speed>
+			<soundExplode>Explode_XM25</soundExplode>
+		</projectile>
+		<comps>
+			<li Class="CombatExtended.CompProperties_ExplosiveCE">
+				<fragSpeedFactor>0.5</fragSpeedFactor>
+				<fragments>
+					<Fragment_GrenadeFragSmall>135</Fragment_GrenadeFragSmall>
+					<Fragment_GrenadeFragMedium>100</Fragment_GrenadeFragMedium>
+					<Fragment_GrenadeFragLarge>25</Fragment_GrenadeFragLarge>
+				</fragments>
+			</li>
+		</comps>
+	</ThingDef>
+  
+	<!-- ==================== Recipes ========================== -->
+	
+</Defs>

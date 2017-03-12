@@ -75,7 +75,7 @@ namespace CombatExtended
             	//.. else, continue the method.
             }
             
-            var ammoDefs = new HashSet<AmmoDef>();
+            var ammoDefs = new HashSet<ThingDef>();
             
             // Find all ammo using guns
             foreach (ThingDef weaponDef in CE_Utility.allWeaponDefs)
@@ -83,7 +83,7 @@ namespace CombatExtended
                 CompProperties_AmmoUser props = weaponDef.GetCompProperties<CompProperties_AmmoUser>();
                 if (props != null && props.ammoSet != null && !props.ammoSet.ammoTypes.NullOrEmpty())
                 {
-                	ammoDefs.UnionWith(props.ammoSet.ammoTypes.Where(x => x is AmmoDef).Select<ThingDef, AmmoDef>(x => x as AmmoDef));
+                    ammoDefs.UnionWith(props.ammoSet.ammoTypes.Select<AmmoLink, ThingDef>(x => x.ammo));
                 }
             }
             

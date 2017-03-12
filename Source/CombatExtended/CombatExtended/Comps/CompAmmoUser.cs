@@ -90,7 +90,7 @@ namespace CombatExtended
         {
             get
             {
-				return compInventory != null && compInventory.ammoList.Any(x => Props.ammoSet.ammoTypes.Contains(x.def));
+				return compInventory != null && compInventory.ammoList.Any(x => Props.ammoSet.ammoTypes.Any(a => a.ammo == x.def));
             }
         }
         public bool hasMagazine { get { return Props.magazineSize > 0; } }
@@ -101,6 +101,7 @@ namespace CombatExtended
                 return useAmmo ? currentAmmoInt : null;
             }
         }
+        public ThingDef CurAmmoProjectile => Props.ammoSet?.ammoTypes?.FirstOrDefault(x => x.ammo == currentAmmo).projectile;
         public CompInventory compInventory
         {
             get
@@ -138,7 +139,7 @@ namespace CombatExtended
                 else
                 {
                     if (currentAmmoInt == null)
-                        currentAmmoInt = (AmmoDef)Props.ammoSet.ammoTypes[0];
+                        currentAmmoInt = (AmmoDef)Props.ammoSet.ammoTypes[0].ammo;
                     if (selectedAmmo == null)
                         selectedAmmo = currentAmmoInt;
                 }
@@ -392,12 +393,12 @@ namespace CombatExtended
             }
 
             // Try finding ammo from different type
-            foreach (AmmoDef ammoDef in Props.ammoSet.ammoTypes)
+            foreach (AmmoLink link in Props.ammoSet.ammoTypes)
             {
-                ammoThing = compInventory.ammoList.Find(thing => thing.def == ammoDef);
+                ammoThing = compInventory.ammoList.Find(thing => thing.def == link.ammo);
                 if (ammoThing != null)
                 {
-                    selectedAmmo = ammoDef;
+                    selectedAmmo = (AmmoDef)link.ammo;
                     return true;
                 }
             }

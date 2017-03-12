@@ -173,7 +173,7 @@ namespace CombatExtended
                 {
                     if (compAmmo.currentAmmo != null)
                     {
-                        return compAmmo.currentAmmo.linkedProjectile;
+                        return compAmmo.CurAmmoProjectile;
                     }
                 }
                 return this.verbPropsCE.projectileDef;

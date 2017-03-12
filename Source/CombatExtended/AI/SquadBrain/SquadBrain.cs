@@ -29,7 +29,7 @@ namespace CombatExtended.AI
 		free_will
 	}
 
-	public class SquadBrain
+	public class SquadBrain : IExposable
 	{
 		private class JobNode
 		{
@@ -46,18 +46,17 @@ namespace CombatExtended.AI
 
 		private Dictionary<Pawn, JobNode> squadOrdersForPawns;
 
-		private IEnumerable<Pawn> squadPawns;
+		private List<Pawn> squadPawns = new List<Pawn>();
 
 		private IEnumerable<Region> squadPath;
 
-		private readonly Map map;
+		private Map map;
 
-		private readonly Faction faction;
+		private Faction faction;
 
 		public Job GetJobFor(Pawn pawn)
 		{
             //this.squadPawns = map.mapPawns.AllPawnsSpawned.FindAll(t => faction == t.Faction);
-            if (squadPawns == null) squadPawns = map.mapPawns.FreeHumanlikesSpawnedOfFaction(faction);
 			return CombatTick(pawn);
 		}
 
@@ -69,6 +68,8 @@ namespace CombatExtended.AI
 
 		private float GetScoreEnemies(Pawn pawn) => SquadHelper.StudyWeaponSights(pawn.GetRegion(), map.mapPawns.AllPawnsSpawned, map, faction);
 
+        public SquadBrain() { }
+
 		public SquadBrain(IEnumerable<Pawn> squadPawns, Faction faction, Map map)
 		{
 			this.map
@@ -77,8 +78,7 @@ namespace CombatExtended.AI
 			this.faction
 				= faction;
 
-			this.squadPawns
-				= squadPawns;
+            this.squadPawns.AddRange(squadPawns);
 
 			this.squadOrdersForPawns
 				= new Dictionary<Pawn, JobNode>();
@@ -415,5 +415,13 @@ namespace CombatExtended.AI
 
 			return temp;
 		}
-	}
+
+        public void ExposeData()
+        {
+            Scribe_Values.LookValue(ref map, "map");
+            Scribe_Values.LookValue(ref faction, "faction", Faction.OfPlayer);
+            Scribe_Collections.LookList(ref squadPawns, "squadPawns");
+            Scribe_Collections.LookDictionary(ref squadOrdersForPawns, "orders");
+        }
+    }
 }

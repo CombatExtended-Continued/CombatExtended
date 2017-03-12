@@ -13,15 +13,15 @@
 		<defName>AmmoSet_545x39mmSoviet</defName>
 		<label>5.45x39mm Soviet</label>
 		<ammoTypes>
-			<li>Ammo_545x39mmSoviet_FMJ</li>
-			<li>Ammo_545x39mmSoviet_AP</li>
-			<li>Ammo_545x39mmSoviet_HP</li>
+			<Ammo_545x39mmSoviet_FMJ>Bullet_545x39mmSoviet_FMJ</Ammo_545x39mmSoviet_FMJ>
+			<Ammo_545x39mmSoviet_AP>Bullet_545x39mmSoviet_AP</Ammo_545x39mmSoviet_AP>
+			<Ammo_545x39mmSoviet_HP>Bullet_545x39mmSoviet_HP</Ammo_545x39mmSoviet_HP>
 		</ammoTypes>
 	</CombatExtended.AmmoSetDef>
 	
 	<!-- ==================== Ammo ========================== -->
 
-	<ThingDef Class="CombatExtended.AmmoDef" Name="545x39mmSovietBase" ParentName="AmmoBase" Abstract="True">
+	<ThingDef Name="545x39mmSovietBase" ParentName="AmmoBase" Abstract="True">
 		<description>Small, high-velocity rifle bullet used in a variety of assault rifles.</description>
 		<statBases>
 			<Mass>0.01</Mass>
@@ -36,7 +36,7 @@
 		</thingCategories>
 	</ThingDef>
 
-	<ThingDef Class="CombatExtended.AmmoDef" ParentName="545x39mmSovietBase">
+	<ThingDef ParentName="545x39mmSovietBase">
 		<defName>Ammo_545x39mmSoviet_FMJ</defName>
 		<label>5.45x39mm Soviet cartridge (FMJ)</label>
 		<graphicData>
@@ -46,11 +46,10 @@
 		<statBases>
 			<MarketValue>0.05</MarketValue>
 		</statBases>
-		<linkedProjectile>Bullet_545x39mmSoviet_FMJ</linkedProjectile>
 		<ammoClass>FullMetalJacket</ammoClass>
 	</ThingDef>
 
-	<ThingDef Class="CombatExtended.AmmoDef" ParentName="545x39mmSovietBase">
+	<ThingDef ParentName="545x39mmSovietBase">
 		<defName>Ammo_545x39mmSoviet_AP</defName>
 		<label>5.45x39mm Soviet cartridge (AP)</label>
 		<graphicData>
@@ -60,11 +59,10 @@
 		<statBases>
 			<MarketValue>0.06</MarketValue>
 		</statBases>
-		<linkedProjectile>Bullet_545x39mmSoviet_AP</linkedProjectile>
 		<ammoClass>ArmorPiercing</ammoClass>
 	</ThingDef>
 
-	<ThingDef Class="CombatExtended.AmmoDef" ParentName="545x39mmSovietBase">
+	<ThingDef ParentName="545x39mmSovietBase">
 		<defName>Ammo_545x39mmSoviet_HP</defName>
 		<label>5.45x39mm Soviet cartridge (HP)</label>
 		<graphicData>
@@ -74,7 +72,6 @@
 		<statBases>
 			<MarketValue>0.06</MarketValue>
 		</statBases>
-		<linkedProjectile>Bullet_545x39mmSoviet_HP</linkedProjectile>
 		<ammoClass>HollowPoint</ammoClass>
 	</ThingDef>
 

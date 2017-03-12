@@ -41,7 +41,7 @@ namespace CombatExtended
             float penAmount = GetPenetrationValue(origDinfo);
 
             // Apply worn armor
-            if (involveArmor && pawn.apparel != null)
+            if (involveArmor && pawn.apparel != null && !pawn.apparel.WornApparel.NullOrEmpty())
             {
                 // Apparel is arranged in draw order, we run through reverse to go from Shell -> OnSkin
                 List<Apparel> apparel = pawn.apparel.WornApparel;
@@ -226,7 +226,7 @@ namespace CombatExtended
         {
             float dmgMult = 1 - pawn.GetStatValue(deflectionStat);
             if (dmgMult <= 0) return 0;
-            if (pawn.apparel != null)
+            if (pawn.apparel != null && !pawn.apparel.WornApparel.NullOrEmpty())
             {
                 List<Apparel> apparelList = pawn.apparel.WornApparel;
                 foreach (Apparel apparel in apparelList)

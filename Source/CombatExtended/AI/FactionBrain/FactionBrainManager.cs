@@ -6,11 +6,11 @@ using Verse;
 using RimWorld;
 using UnityEngine;
 
-namespace CombatExtended
+namespace CombatExtended.AI
 {
 	public class FactionBrainManager : MapComponent
 	{
-		private Dictionary<Faction, FactionBrain> brains = new Dictionary<Faction, FactionBrain>();
+        private List<FactionBrain> brains = new List<FactionBrain>();
 
 		public FactionBrainManager(Map map) : base(map)
 		{
@@ -19,12 +19,12 @@ namespace CombatExtended
 		public override void ExposeData()
 		{
 			base.ExposeData();
-			Scribe_Collections.LookDictionary(ref brains, "brains", LookMode.Deep);
+            Scribe_Collections.LookList(ref brains, "brains", LookMode.Deep);
 			Action action = delegate
 			{
-				foreach (var fac in brains)
+				foreach (var brain in brains)
 				{
-					fac.Value.manager = this;
+					brain.manager = this;
 				}
 			};
 			LongEventHandler.ExecuteWhenFinished(action);
@@ -32,24 +32,10 @@ namespace CombatExtended
 
 		public override void MapComponentTick()
 		{
-			foreach (var entry in Find.FactionManager.AllFactions)
-			{
-				var brain = this.GetBrainFor(entry);
-
-				brain.BrainTick();
-			}
-		}
-
-		public FactionBrain GetBrainFor(Faction fac)
-		{
-			FactionBrain brain;
-			if (!brains.TryGetValue(fac, out brain))
-			{
-				// Create new brain if we don't already have one
-				brain = new FactionBrain(this, fac);
-				brains.Add(fac, brain);
-			}
-			return brain;
+            foreach(var brain in brains)
+            {
+                brain.BrainTick();
+            }
 		}
 	}
 }

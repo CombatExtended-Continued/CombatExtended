@@ -12,16 +12,16 @@
   <CombatExtended.AmmoSetDef>
     <defName>AmmoSet_338Lapua</defName>
     <label>.338 Lapua Magnum</label>
-	<ammoTypes>
-	  <li>Ammo_338Lapua_FMJ</li>
-	  <li>Ammo_338Lapua_HE</li>
-	  <li>Ammo_338Lapua_Incendiary</li>
-	</ammoTypes>
+    <ammoTypes>
+      <Ammo_338Lapua_FMJ>Bullet_338Lapua_FMJ</Ammo_338Lapua_FMJ>
+      <Ammo_338Lapua_HE>Bullet_338Lapua_HE</Ammo_338Lapua_HE>
+      <Ammo_338Lapua_Incendiary>Bullet_338Lapua_Incendiary</Ammo_338Lapua_Incendiary>
+    </ammoTypes>
   </CombatExtended.AmmoSetDef>
   
   <!-- ==================== Ammo ========================== -->
 
-  <ThingDef Class="CombatExtended.AmmoDef" Name="Ammo338LapuaBase" ParentName="AmmoBase" Abstract="True">
+  <ThingDef Name="Ammo338LapuaBase" ParentName="AmmoBase" Abstract="True">
     <description>The .338 Lapua Magnum (8.6×70mm or 8.58×70mm) is a rimless, bottlenecked, centerfire cartridge developed for military long-range sniper rifles.</description>
     <statBases>
       <Mass>0.038</Mass>
@@ -36,7 +36,7 @@
     </thingCategories>
   </ThingDef>
 
-  <ThingDef Class="CombatExtended.AmmoDef" ParentName="Ammo338LapuaBase">
+  <ThingDef ParentName="Ammo338LapuaBase">
     <defName>Ammo_338Lapua_FMJ</defName>
     <label>.338 Lapua Magnum cartridge (FMJ)</label>
     <graphicData>
@@ -46,11 +46,10 @@
     <statBases>
       <MarketValue>0.23</MarketValue>
     </statBases>
-    <linkedProjectile>Bullet_338Lapua_FMJ</linkedProjectile>
   	<ammoClass>FullMetalJacket</ammoClass>
   </ThingDef>
 
-  <ThingDef Class="CombatExtended.AmmoDef" ParentName="Ammo338LapuaBase">
+  <ThingDef ParentName="Ammo338LapuaBase">
     <defName>Ammo_338Lapua_HE</defName>
     <label>.338 Lapua Magnum cartridge (HE)</label>
     <graphicData>
@@ -60,11 +59,10 @@
     <statBases>
       <MarketValue>0.46</MarketValue>
     </statBases>
-    <linkedProjectile>Bullet_338Lapua_HE</linkedProjectile>
   	<ammoClass>ExplosiveAP</ammoClass>
   </ThingDef>
 
-  <ThingDef Class="CombatExtended.AmmoDef" ParentName="Ammo338LapuaBase">
+  <ThingDef ParentName="Ammo338LapuaBase">
     <defName>Ammo_338Lapua_Incendiary</defName>
     <label>.338 Lapua Magnum cartridge (AP-I)</label>
     <graphicData>
@@ -74,8 +72,7 @@
     <statBases>
       <MarketValue>0.37</MarketValue>
     </statBases>
-	<linkedProjectile>Bullet_338Lapua_Incendiary</linkedProjectile>
-	<ammoClass>IncendiaryAP</ammoClass>
+    <ammoClass>IncendiaryAP</ammoClass>
   </ThingDef>
 
   <!-- ================== Projectiles ================== -->

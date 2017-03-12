@@ -10,7 +10,6 @@ namespace CombatExtended
 {
     public class AmmoDef : ThingDef
     {
-        public ThingDef linkedProjectile;
         public AmmoCategoryDef ammoClass;
         public int defaultAmmoCount = 1;
     }

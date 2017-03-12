@@ -447,11 +447,11 @@ namespace CombatExtended
                     {
                         List<FloatMenuOption> options = new List<FloatMenuOption>();
 
-                        foreach (ThingDef ammo in ((ammoSet == null) ? null : ammoSet.ammoTypes))
+                        foreach (AmmoLink link in ((ammoSet == null) ? null : ammoSet.ammoTypes))
                         {
-                            options.Add(new FloatMenuOption(ammo.LabelCap, delegate
+                            options.Add(new FloatMenuOption(link.ammo.LabelCap, delegate
                             {
-                                CurrentLoadout.AddSlot(new LoadoutSlot(ammo));
+                                CurrentLoadout.AddSlot(new LoadoutSlot(link.ammo));
                             }));
                         }
 

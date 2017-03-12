@@ -55,10 +55,10 @@ namespace CombatExtended
             if (pawn.equipment.Primary != null && primaryammouser != null)
             {
                 int ammocount = 0;
-                foreach (ThingDef ammoDef in primaryammouser.Props.ammoSet.ammoTypes)
+                foreach (AmmoLink link in primaryammouser.Props.ammoSet.ammoTypes)
                 {
                     Thing ammoThing;
-                    ammoThing = pawn.TryGetComp<CompInventory>().ammoList.Find(thing => thing.def == ammoDef);
+                    ammoThing = pawn.TryGetComp<CompInventory>().ammoList.Find(thing => thing.def == link.ammo);
                     if (ammoThing != null)
                     {
                         ammocount += ammoThing.stackCount;
@@ -173,9 +173,9 @@ namespace CombatExtended
                     {
                         Thing ammoListGun = null;
                         if (!ListGun.TryGetComp<CompAmmoUser>().hasAmmoOrMagazine)
-                        foreach (ThingDef ListGunDef in ListGun.TryGetComp<CompAmmoUser>().Props.ammoSet.ammoTypes)
+                        foreach (AmmoLink link in ListGun.TryGetComp<CompAmmoUser>().Props.ammoSet.ammoTypes)
                         {
-                            if (inventory.ammoList.Find(thing => thing.def == ListGunDef) == null)
+                            if (inventory.ammoList.Find(thing => thing.def == link.ammo) == null)
                             {
                                 ammoListGun = ListGun;
                                 break;
@@ -198,7 +198,7 @@ namespace CombatExtended
                 {
                 	Thing WrongammoThing = null;
 					WrongammoThing = primaryammouser != null
-						? inventory.ammoList.Find(thing => !primaryammouser.Props.ammoSet.ammoTypes.Contains(thing.def))
+						? inventory.ammoList.Find(thing => !primaryammouser.Props.ammoSet.ammoTypes.Any(a => a.ammo == thing.def))
 						: inventory.ammoList.RandomElement<Thing>();
                     
                     if (WrongammoThing != null)
@@ -207,9 +207,9 @@ namespace CombatExtended
                         if (InvListGun != null)
                         {
                             Thing ammoInvListGun = null;
-                            foreach (ThingDef InvListGunDef in InvListGun.TryGetComp<CompAmmoUser>().Props.ammoSet.ammoTypes)
+                            foreach (AmmoLink link in InvListGun.TryGetComp<CompAmmoUser>().Props.ammoSet.ammoTypes)
                             {
-                                ammoInvListGun = inventory.ammoList.Find(thing => thing.def == InvListGunDef);
+                                ammoInvListGun = inventory.ammoList.Find(thing => thing.def == link.ammo);
                                 break;
                             }
                             if (ammoInvListGun != null && ammoInvListGun != WrongammoThing)
@@ -244,9 +244,9 @@ namespace CombatExtended
                     if (InvListGun2 != null)
                     {
                         Thing ammoInvListGun2 = null;
-                        foreach (ThingDef InvListGunDef2 in InvListGun2.TryGetComp<CompAmmoUser>().Props.ammoSet.ammoTypes)
+                        foreach (AmmoLink link in InvListGun2.TryGetComp<CompAmmoUser>().Props.ammoSet.ammoTypes)
                         {
-                            ammoInvListGun2 = inventory.ammoList.Find(thing => thing.def == InvListGunDef2);
+                            ammoInvListGun2 = inventory.ammoList.Find(thing => thing.def == link.ammo);
                             break;
                         }
                         if (ammoInvListGun2 != null)

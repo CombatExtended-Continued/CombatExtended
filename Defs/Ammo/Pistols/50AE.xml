@@ -13,14 +13,14 @@
 		<defName>AmmoSet_50AE</defName>
 		<label>.50 AE</label>
 		<ammoTypes>
-			<li>Ammo_50AE_FMJ</li>
-			<li>Ammo_50AE_HP</li>
+			<Ammo_50AE_FMJ>Bullet_50AE_FMJ</Ammo_50AE_FMJ>
+			<Ammo_50AE_HP>Bullet_50AE_HP</Ammo_50AE_HP>
 		</ammoTypes>
 	</CombatExtended.AmmoSetDef>
 	
 	<!-- ==================== Ammo ========================== -->
 
-	<ThingDef Class="CombatExtended.AmmoDef" Name="50AEBase" ParentName="AmmoBase" Abstract="True">
+	<ThingDef Name="50AEBase" ParentName="AmmoBase" Abstract="True">
 		<description>This high-powered cartridge is one of the largest calibers found in handguns.</description>
 		<statBases>
 			<Mass>0.03</Mass>
@@ -35,7 +35,7 @@
 		</thingCategories>
 	</ThingDef>
 
-	<ThingDef Class="CombatExtended.AmmoDef" ParentName="50AEBase">
+	<ThingDef ParentName="50AEBase">
 		<defName>Ammo_50AE_FMJ</defName>
 		<label>.50 AE cartridge (FMJ)</label>
 		<graphicData>
@@ -45,11 +45,10 @@
 		<statBases>
 			<MarketValue>0.12</MarketValue>
 		</statBases>
-		<linkedProjectile>Bullet_50AE_FMJ</linkedProjectile>
 		<ammoClass>FullMetalJacket</ammoClass>
 	</ThingDef>
 
-	<ThingDef Class="CombatExtended.AmmoDef" ParentName="50AEBase">
+	<ThingDef ParentName="50AEBase">
 		<defName>Ammo_50AE_HP</defName>
 		<label>.50 AE cartridge (HP)</label>
 		<graphicData>
@@ -59,7 +58,6 @@
 		<statBases>
 			<MarketValue>0.14</MarketValue>
 		</statBases>
-		<linkedProjectile>Bullet_50AE_HP</linkedProjectile>
 		<ammoClass>HollowPoint</ammoClass>
 	</ThingDef>
 	

@@ -12,6 +12,7 @@ namespace CombatExtended
     {
         AmmoDef ammoDef { get { return def as AmmoDef; } }
 
+        /*
         public override string GetDescription()
         {
             if(ammoDef != null && ammoDef.ammoClass != null && ammoDef.linkedProjectile != null)
@@ -70,5 +71,6 @@ namespace CombatExtended
             }
             return base.GetDescription();
         }
+        */
     }
 }

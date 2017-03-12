@@ -6,10 +6,8 @@ using Verse;
 using RimWorld;
 using UnityEngine;
 
-namespace CombatExtended
+namespace CombatExtended.AI
 {
-	using CombatExtended.AI;
-
 	public class FactionBrain : IExposable
 	{
 		public FactionBrainManager manager;
@@ -20,6 +18,10 @@ namespace CombatExtended
 		public Map Map => manager.map;
 		internal bool ShouldDelete => Map.mapPawns.SpawnedPawnsInFaction(faction).NullOrEmpty();
 		internal int TickInterval { get { return 10; } }  // TODO this should return the amount of ticks between running BrainTick()
+
+        public FactionBrain()
+        {
+        }
 
 		public FactionBrain(FactionBrainManager manager, Faction faction)
         {

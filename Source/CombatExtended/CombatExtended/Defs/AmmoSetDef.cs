@@ -10,6 +10,6 @@ namespace CombatExtended
 {
     public class AmmoSetDef : Def
     {
-        public List<ThingDef> ammoTypes;
+        public List<AmmoLink> ammoTypes;
     }
 }

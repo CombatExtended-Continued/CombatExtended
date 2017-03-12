@@ -39,15 +39,18 @@ namespace CombatExtended
             if (compAmmo.turret != null)
             {
                 // If we have no inventory available (e.g. manned turret), add all possible ammo types to the selection
-                ammoList.AddRange(compAmmo.Props.ammoSet.ammoTypes);
+                foreach(AmmoLink link in compAmmo.Props.ammoSet.ammoTypes)
+                {
+                    ammoList.Add(link.ammo);
+                }
             }
             else
             {
                 // Iterate through all suitable ammo types and check if they're in our inventory
-                foreach (ThingDef curAmmoDef in compAmmo.Props.ammoSet.ammoTypes)
+                foreach (AmmoLink curLink in compAmmo.Props.ammoSet.ammoTypes)
                 {
-                    if (compAmmo.compInventory.ammoList.Any(x => x.def == curAmmoDef))
-                        ammoList.Add(curAmmoDef);
+                    if (compAmmo.compInventory.ammoList.Any(x => x.def == curLink.ammo))
+                        ammoList.Add(curLink.ammo);
                 }
             }
 
