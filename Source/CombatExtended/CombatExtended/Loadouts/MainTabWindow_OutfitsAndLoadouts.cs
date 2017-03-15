@@ -130,6 +130,7 @@ namespace CombatExtended
             if (Widgets.ButtonImage(editLoadoutRect, _iconEdit))
             {
                 Find.WindowStack.Add(new Dialog_ManageLoadouts(null));
+                PlayerKnowledgeDatabase.KnowledgeDemonstrated(CE_ConceptDefOf.CE_Loadouts, KnowledgeAmount.Total);
             }
             Widgets.Label(weightRect, "CE_Weight".Translate());
             Widgets.Label(bulkRect, "CE_Bulk".Translate());

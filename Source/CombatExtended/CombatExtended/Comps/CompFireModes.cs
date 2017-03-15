@@ -125,6 +125,7 @@ namespace CombatExtended
             int currentFireModeNum = availableFireModes.IndexOf(currentFireModeInt);
             currentFireModeNum = (currentFireModeNum + 1) % availableFireModes.Count;
             currentFireModeInt = availableFireModes.ElementAt(currentFireModeNum);
+            if (availableFireModes.Count > 1) PlayerKnowledgeDatabase.KnowledgeDemonstrated(CE_ConceptDefOf.CE_FireModes, KnowledgeAmount.Total);
         }
 
         public void ToggleAimMode()
@@ -132,6 +133,7 @@ namespace CombatExtended
             int currentAimModeNum = availableAimModes.IndexOf(currentAimModeInt);
             currentAimModeNum = (currentAimModeNum + 1) % availableAimModes.Count;
             currentAimModeInt = availableAimModes.ElementAt(currentAimModeNum);
+            if (availableAimModes.Count > 1) PlayerKnowledgeDatabase.KnowledgeDemonstrated(CE_ConceptDefOf.CE_AimModes, KnowledgeAmount.Total);
         }
 
         /// <summary>
@@ -161,8 +163,15 @@ namespace CombatExtended
                 action = ToggleFireMode,
                 defaultLabel = ("CE_" + currentFireMode.ToString() + "Label").Translate(),
                 defaultDesc = "CE_ToggleFireModeDesc".Translate(),
-                icon = ContentFinder<Texture2D>.Get(("UI/Buttons/" + currentFireMode.ToString()), true)
+                icon = ContentFinder<Texture2D>.Get(("UI/Buttons/" + currentFireMode.ToString()), true),
+                tutorTag = availableFireModes.Count > 1 ? "CE_FireModeToggle" : null
             };
+            if (availableFireModes.Count > 1)
+            {
+                // Teach about fire modes
+                toggleFireModeGizmo.tutorTag = "CE_FireModeToggle";
+                LessonAutoActivator.TeachOpportunity(CE_ConceptDefOf.CE_FireModes, parent, OpportunityType.GoodToKnow);
+            }
             yield return toggleFireModeGizmo;
 
             Command_Action toggleAimModeGizmo = new Command_Action
@@ -170,8 +179,14 @@ namespace CombatExtended
                 action = ToggleAimMode,
                 defaultLabel = ("CE_" + currentAimMode.ToString() + "Label").Translate(),
                 defaultDesc = "CE_ToggleAimModeDesc".Translate(),
-                icon = ContentFinder<Texture2D>.Get(("UI/Buttons/" + currentAimMode.ToString()), true)
+                icon = ContentFinder<Texture2D>.Get(("UI/Buttons/" + currentAimMode.ToString()), true),
             };
+            if (availableAimModes.Count > 1)
+            {
+                // Teach about aim modes
+                toggleAimModeGizmo.tutorTag = "CE_AimModeToggle";
+                LessonAutoActivator.TeachOpportunity(CE_ConceptDefOf.CE_AimModes, parent, OpportunityType.GoodToKnow);
+            }
             yield return toggleAimModeGizmo;
         }
 

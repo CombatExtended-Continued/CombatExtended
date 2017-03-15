@@ -31,6 +31,8 @@ namespace CombatExtended
             {
                 base.ProcessInput(ev);
             }
+            // Show we learned something by clicking this
+            if (!tutorTag.NullOrEmpty()) PlayerKnowledgeDatabase.KnowledgeDemonstrated(ConceptDef.Named(tutorTag), KnowledgeAmount.Total);
         }
 
         private FloatMenu MakeAmmoMenu()

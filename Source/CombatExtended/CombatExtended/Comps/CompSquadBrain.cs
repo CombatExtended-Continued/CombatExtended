@@ -14,11 +14,5 @@ namespace CombatExtended
         public SquadBrain squad;
 
         CompProperties_SquadBrain Props => props as CompProperties_SquadBrain;
-
-        public override void PostExposeData()
-        {
-            base.PostExposeData();
-            Scribe_Values.LookValue(ref squad, "squad", null);
-        }
     }
 }

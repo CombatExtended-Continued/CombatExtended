@@ -21,7 +21,7 @@ namespace CombatExtended
         // *** Ranged weapon stats ***
         public static readonly StatDef ShotSpread = StatDef.Named("ShotSpread"); // pawn capacity
         public static readonly StatDef SwayFactor = StatDef.Named("SwayFactor"); // pawn capacity
-        public static readonly StatDef AimEfficiency = StatDef.Named("AimEfficiency"); // pawn capacity
+        public static StatDef SightsEfficiency;
         public static readonly StatDef AimingAccuracy = StatDef.Named("AimingAccuracy"); // pawn capacity
         public static readonly StatDef ReloadSpeed = StatDef.Named("ReloadSpeed"); // pawn capacity
 

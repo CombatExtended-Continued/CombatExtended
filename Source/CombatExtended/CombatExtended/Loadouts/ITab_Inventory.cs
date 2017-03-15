@@ -85,6 +85,8 @@ namespace CombatExtended
 
             if (comp != null)
             {
+                PlayerKnowledgeDatabase.KnowledgeDemonstrated(CE_ConceptDefOf.CE_InventoryWeightBulk, KnowledgeAmount.FrameDisplayed);
+
                 // adjust rects if comp found
                 listRect.height -= (_margin / 2 + _barHeight) * 2;
                 Rect weightRect = new Rect(_margin, listRect.yMax + _margin / 2, listRect.width, _barHeight);

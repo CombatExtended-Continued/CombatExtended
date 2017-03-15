@@ -164,9 +164,10 @@ namespace CombatExtended
                 foreach (Thing apparel in parentPawn.apparel.WornApparel)
                 {
                     float apparelBulk = apparel.GetStatValue(CE_StatDefOf.WornBulk);
-                    float apparelWeight = apparel.GetStatValue(CE_StatDefOf.WornWeight);
+                    float apparelWeight = apparel.GetStatValue(StatDefOf.Mass);
                     newBulk += apparelBulk;
                     newWeight += apparelWeight;
+                    if (apparelBulk > 0 && (parentPawn?.IsColonist ?? false)) TutorUtility.DoModalDialogIfNotKnown(CE_ConceptDefOf.CE_WornBulk);
                 }
             }
 

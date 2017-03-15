@@ -42,8 +42,10 @@ namespace CombatExtended
             {
                 if (this.gun == null)
                 {
+                    Log.Message("CE turret returning null attack verb");
                     return null;
                 }
+                Log.Message("CE turret returning primary verb: " + GunCompEq.verbTracker.PrimaryVerb.ToString());
                 return this.GunCompEq.verbTracker.PrimaryVerb;
             }
         }

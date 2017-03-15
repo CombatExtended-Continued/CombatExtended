@@ -81,6 +81,72 @@
   <ChemicalDef>
     <defName>Paradol</defName>
     <label>paradol</label>
+    <addictionHediff>ParadolAddiction</addictionHediff>
+    <toleranceHediff>ParadolTolerance</toleranceHediff>
   </ChemicalDef>
+  
+  <NeedDef ParentName="DrugAddictionNeedBase">
+    <defName>Chemical_Paradol</defName>
+    <needClass>Need_Chemical</needClass>
+    <label>paradol</label>
+    <description>Because of a paradol addiction, this person needs to regularly consume the drug to avoid withdrawal symptoms.</description>
+    <listPriority>45</listPriority>
+  </NeedDef>
+
+  <HediffDef ParentName="DrugToleranceBase">
+    <defName>ParadolTolerance</defName>
+    <label>paradol tolerance</label>
+    <comps>
+      <li Class="HediffCompProperties_SeverityPerDay">
+        <severityPerDay>-0.015</severityPerDay>
+      </li>
+      <li Class="HediffCompProperties_DrugEffectFactor">
+        <chemical>Paradol</chemical>
+      </li>
+    </comps>
+  </HediffDef>
+
+  <HediffDef ParentName="AddictionBase">
+    <defName>ParadolAddiction</defName>
+    <hediffClass>Hediff_Addiction</hediffClass>
+    <label>paradol addiction</label>
+    <causesNeed>Chemical_Paradol</causesNeed>
+    <comps>
+      <li Class="HediffCompProperties_SeverityPerDay">
+        <severityPerDay>-0.12</severityPerDay>
+      </li>
+    </comps>
+    <stages>
+      <li>
+      </li>
+      <li>
+        <label>withdrawal</label>
+        <painFactor>1.2</painFactor>
+        <mentalStateGivers>
+          <li>
+            <mentalState>BingingDrugExtreme</mentalState>
+            <mtbDays>80</mtbDays>
+          </li>
+        </mentalStateGivers>
+      </li>
+    </stages>
+  </HediffDef>
+  
+  <ThoughtDef>
+    <defName>ParadolWithdrawal</defName>
+    <workerClass>ThoughtWorker_Hediff</workerClass>
+    <hediff>ParadolAddiction</hediff>
+    <validWhileDespawned>true</validWhileDespawned>
+    <stages>
+      <li>
+        <visible>false</visible>
+      </li>
+      <li>
+        <label>paradol withdrawal</label>
+        <description>My whole body aches.</description>
+        <baseMoodEffect>-15</baseMoodEffect>
+      </li>
+    </stages>
+  </ThoughtDef>
   
 </Paradol>

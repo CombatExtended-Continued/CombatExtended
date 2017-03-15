@@ -429,13 +429,28 @@ namespace CombatExtended
                 if (wielder != null) action = delegate { TryStartReload(); };
                 else if (turret != null && turret.GetMannableComp() != null) action = turret.OrderReload;
 
+                // Check for teaching opportunities
+                string tag;
+                if(turret == null)
+                {
+                    if (hasMagazine) tag = "CE_Reload"; // Teach reloading weapons with magazines
+                    else tag = "CE_ReloadNoMag";    // Teach about mag-less weapons
+                }
+                else
+                {
+                    if (turret.GetMannableComp() == null) tag = "CE_ReloadAuto";  // Teach about auto-turrets
+                    else tag = "CE_ReloadManned";    // Teach about reloading manned turrets
+                }
+                LessonAutoActivator.TeachOpportunity(ConceptDef.Named(tag), turret, OpportunityType.GoodToKnow);
+
                 Command_Reload reloadCommandGizmo = new Command_Reload
                 {
                     compAmmo = this,
                     action = action,
                     defaultLabel = hasMagazine ? "CE_ReloadLabel".Translate() : "",
                     defaultDesc = "CE_ReloadDesc".Translate(),
-                    icon = currentAmmo == null ? ContentFinder<Texture2D>.Get("UI/Buttons/Reload", true) : Def_Extensions.IconTexture(selectedAmmo)
+                    icon = currentAmmo == null ? ContentFinder<Texture2D>.Get("UI/Buttons/Reload", true) : Def_Extensions.IconTexture(selectedAmmo),
+                    tutorTag = tag
                 };
                 yield return reloadCommandGizmo;
             }

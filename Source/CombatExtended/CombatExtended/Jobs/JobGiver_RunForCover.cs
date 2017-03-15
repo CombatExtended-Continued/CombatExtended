@@ -37,7 +37,7 @@ namespace CombatExtended
 
             //Tell pawn to move to position
             pawn.Map.pawnDestinationManager.ReserveDestinationFor(pawn, coverPosition);
-            
+            TutorUtility.DoModalDialogIfNotKnown(CE_ConceptDefOf.CE_SuppressionReaction);
             return new Job(CE_JobDefOf.RunForCover, coverPosition)
             {
                 locomotionUrgency = LocomotionUrgency.Sprint,

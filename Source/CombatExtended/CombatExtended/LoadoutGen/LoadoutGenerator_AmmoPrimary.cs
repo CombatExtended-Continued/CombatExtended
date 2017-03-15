@@ -42,13 +42,12 @@ namespace CombatExtended
             CompAmmoUser compAmmo = eq.TryGetComp<CompAmmoUser>();
             if (compAmmo != null && !compAmmo.Props.ammoSet.ammoTypes.NullOrEmpty())
             {
-
-                List<ThingDef> listammo = (from ThingDef g in compAmmo.Props.ammoSet.ammoTypes
-                                           where g.canBeSpawningInventory
-                                           select g).ToList<ThingDef>();
-                if (!listammo.NullOrEmpty())
+                List<AmmoDef> listAmmo = (from link in compAmmo.Props.ammoSet.ammoTypes
+                                          where link.ammo.canBeSpawningInventory
+                                          select link.ammo).ToList();
+                if (!listAmmo.NullOrEmpty())
                 {
-                    ThingDef randomammo = GenCollection.RandomElement<ThingDef>(listammo);
+                    AmmoDef randomammo = GenCollection.RandomElement<AmmoDef>(listAmmo);
                     availableDefs.Add(randomammo);
                 }
                 else return;

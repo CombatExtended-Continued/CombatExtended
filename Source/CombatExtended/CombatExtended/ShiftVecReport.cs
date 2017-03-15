@@ -19,7 +19,7 @@ namespace CombatExtended
             }
         }
         public float aimingAccuracy = 1f;
-        public float aimEfficiency = 1f;
+        public float sightsEfficiency = 1f;
 
         private float accuracyFactorInt = -1f;
         public float accuracyFactor
@@ -28,7 +28,7 @@ namespace CombatExtended
             {
                 if (accuracyFactorInt < 0)
                 {
-                    accuracyFactorInt = (1.5f - aimingAccuracy) / aimEfficiency;
+                    accuracyFactorInt = (1.5f - aimingAccuracy) / sightsEfficiency;
                 }
                 return accuracyFactorInt;
             }
@@ -110,7 +110,7 @@ namespace CombatExtended
         public ShiftVecReport(ShiftVecReport report)
         {
             target = report.target;
-            aimEfficiency = report.aimEfficiency;
+            sightsEfficiency = report.sightsEfficiency;
             aimingAccuracy = report.aimingAccuracy;
             circularMissRadius = report.circularMissRadius;
             indirectFireShift = report.indirectFireShift;
@@ -200,6 +200,7 @@ namespace CombatExtended
                 if (indirectFireShift > 0)
                 {
                     stringBuilder.AppendLine("   " + "CE_IndirectFire".Translate() + "\t" + GenText.ToStringByStyle(indirectFireShift, ToStringStyle.FloatTwo) + " c");
+                    PlayerKnowledgeDatabase.KnowledgeDemonstrated(CE_ConceptDefOf.CE_MortarDirectFire, KnowledgeAmount.FrameDisplayed); // Show we learned about indirect fire penalties
                 }
             }
             else
@@ -210,9 +211,10 @@ namespace CombatExtended
                 }
                 if (target.Thing != null)
                 {
-                    stringBuilder.AppendLine("   " + "CE_TargetHeight".Translate() + "\t" + CE_Utility.GetCollisionVertical(target.Thing) + " c");
+                    stringBuilder.AppendLine("   " + "CE_TargetHeight".Translate() + "\t" + CE_Utility.GetCollisionVertical(target.Thing).Span + " c");
                     stringBuilder.AppendLine("   " + "CE_TargetWidth".Translate() + "\t" + GenText.ToStringByStyle(CE_Utility.GetCollisionWidth(target.Thing) * 2, ToStringStyle.FloatTwo) + " c");
                 }
+                PlayerKnowledgeDatabase.KnowledgeDemonstrated(CE_ConceptDefOf.CE_AimingSystem, KnowledgeAmount.FrameDisplayed); // Show we learned about the aiming system
             }
             return stringBuilder.ToString();
         }

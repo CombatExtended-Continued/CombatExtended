@@ -137,11 +137,11 @@ namespace CombatExtended
                 return 0.75f;
             }
         }
-        protected float aimEfficiency
+        protected float SightsEfficiency
         {
             get
             {
-                return (3 - this.ownerEquipment.GetStatValue(StatDef.Named("AimEfficiency")));
+                return (3 - ownerEquipment.GetStatValue(CE_StatDefOf.SightsEfficiency));
             }
         }
         protected virtual float swayAmplitude
@@ -342,7 +342,7 @@ namespace CombatExtended
             ShiftVecReport report = new ShiftVecReport();
             report.target = target;
             report.aimingAccuracy = this.aimingAccuracy;
-            report.aimEfficiency = this.aimEfficiency;
+            report.sightsEfficiency = this.SightsEfficiency;
             report.shotDist = (targetCell - this.caster.Position).LengthHorizontal;
 
             report.lightingShift = 1 - caster.Map.glowGrid.GameGlowAt(targetCell);
@@ -413,6 +413,8 @@ namespace CombatExtended
         /// <returns>True if shooter can hit target from root position, false otherwise</returns>
         public override bool CanHitTargetFrom(IntVec3 root, LocalTargetInfo targ)
         {
+            if (!targ.Cell.InBounds(caster.Map) || !root.InBounds(caster.Map)) return false;
+
             //Sanity check for flyOverhead projectiles, they should not attack things under thick roofs
             if (projectileDef.projectile.flyOverhead)
             {

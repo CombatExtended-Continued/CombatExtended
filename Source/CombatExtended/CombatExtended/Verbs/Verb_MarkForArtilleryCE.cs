@@ -23,7 +23,7 @@ namespace CombatExtended
         {
             ArtilleryMarker marker = ThingMaker.MakeThing(ThingDef.Named(ArtilleryMarker.MarkerDef)) as ArtilleryMarker;
             ShiftVecReport report = ShiftVecReportFor(currentTarget);
-            marker.aimEfficiency = report.aimEfficiency;
+            marker.sightsEfficiency = report.sightsEfficiency;
             marker.aimingAccuracy = report.aimingAccuracy;
             marker.lightingShift = report.lightingShift;
             marker.weatherShift = report.weatherShift;
@@ -39,7 +39,18 @@ namespace CombatExtended
                     marker.AttachTo(this.currentTarget.Thing);
                 }
             }
+            // Show we learned something
+            PlayerKnowledgeDatabase.KnowledgeDemonstrated(CE_ConceptDefOf.CE_Spotting, KnowledgeAmount.SmallInteraction);
+
             return true;
+        }
+
+        public override void VerbTickCE()
+        {
+            if (CasterPawn != null && CasterPawn.IsColonistPlayerControlled)
+            {
+                LessonAutoActivator.TeachOpportunity(CE_ConceptDefOf.CE_Spotting, OpportunityType.GoodToKnow);
+            }
         }
     }
 }

@@ -53,6 +53,7 @@ namespace CombatExtended
                         // Hit was deflected, convert damage type
                         dinfo = GetDeflectDamageInfo(dinfo, hitPart);
                         i++;    // We apply this piece of apparel twice on conversion, this means we can't use deflection on Blunt or else we get an infinite loop of eternal deflection
+                        TutorUtility.DoModalDialogIfNotKnown(CE_ConceptDefOf.CE_ArmorSystem);   // Inform the player about armor deflection
                     }
                     if (dmgAmount <= 0)
                     {
@@ -165,8 +166,10 @@ namespace CombatExtended
                     }
                 }
             }
-
-            return 0;
+#if DEBUG
+            Log.Warning("CE could not determine armor penetration, defaulting");
+#endif
+            return 9999;    // Really high default value so vanilla damage sources such as GiveInjuriesToKill always penetrate
         }
 
         /// <summary>
@@ -184,7 +187,7 @@ namespace CombatExtended
             bool isSharpDmg = def.armorCategory == DamageArmorCategory.Sharp;
             float rand = UnityEngine.Random.Range(penAmount - PenetrationRandVariation, penAmount + PenetrationRandVariation);
             bool deflected = isSharpDmg && armorAmount > rand;
-            float newPenAmount = penAmount * (1 - armorAmount);
+            float newPenAmount = penAmount * (1 - armorAmount / penAmount);
 
             // Apply damage reduction
             float dmgMult = 1;

@@ -24,20 +24,20 @@ namespace CombatExtended
             {
                 marker = (ArtilleryMarker)this.currentTarget.Thing.GetAttachment(ThingDef.Named(ArtilleryMarker.MarkerDef));
             }
-            else
+            else if (currentTarget.Cell.InBounds(caster.Map))
             {
                 marker = (ArtilleryMarker)this.currentTarget.Cell.GetFirstThing(caster.Map, ThingDef.Named(ArtilleryMarker.MarkerDef));
             }
             if (marker != null)
             {
                 report.aimingAccuracy = marker.aimingAccuracy;
-                report.aimEfficiency = marker.aimEfficiency;
+                report.sightsEfficiency = marker.sightsEfficiency;
                 report.weatherShift = marker.weatherShift;
                 report.lightingShift = marker.lightingShift;
-
+                PlayerKnowledgeDatabase.KnowledgeDemonstrated(CE_ConceptDefOf.CE_Spotting, KnowledgeAmount.SpecificInteraction);
             }
             // If we don't have a marker check for indirect fire and apply penalty
-            else if (report.shotDist > 107 || !GenSight.LineOfSight(this.caster.Position, report.target.Cell, caster.Map, true))
+            else if (report.shotDist > 75 || !GenSight.LineOfSight(this.caster.Position, report.target.Cell, caster.Map, true))
             {
                 report.indirectFireShift = this.verbPropsCE.indirectFirePenalty * report.shotDist;
                 report.weatherShift = 0f;

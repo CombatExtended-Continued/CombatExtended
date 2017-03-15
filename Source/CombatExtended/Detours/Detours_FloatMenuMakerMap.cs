@@ -485,6 +485,7 @@ namespace CombatExtended.Detours
                             pawn.jobs.TryTakeOrderedJob(new Job(JobDefOf.Equip, equipment));
                             MoteMaker.MakeStaticMote(equipment.DrawPos, equipment.Map, ThingDefOf.Mote_FeedbackEquip, 1f);
                             PlayerKnowledgeDatabase.KnowledgeDemonstrated(ConceptDefOf.EquippingWeapons, KnowledgeAmount.Total);
+                            LessonAutoActivator.TeachOpportunity(CE_ConceptDefOf.CE_AimingSystem, OpportunityType.GoodToKnow);  // Teach about the new aiming system
                         }, MenuOptionPriority.High, null, null, 0f, null, null);
                     }
                     opts.Add(item3);
@@ -584,6 +585,7 @@ namespace CombatExtended.Detours
                                     job.count = 1;
                                     job.playerForced = true;
                                     pawn.jobs.TryTakeOrderedJob(job);
+                                    PlayerKnowledgeDatabase.KnowledgeDemonstrated(CE_ConceptDefOf.CE_InventoryWeightBulk, KnowledgeAmount.SpecificInteraction);
                                 }));
                         }
                         opts.Add(pickUpOption);
@@ -601,6 +603,7 @@ namespace CombatExtended.Detours
                                        job.count = countHalf;
                                        job.playerForced = true;
                                        pawn.jobs.TryTakeOrderedJob(job);
+                                       PlayerKnowledgeDatabase.KnowledgeDemonstrated(CE_ConceptDefOf.CE_InventoryWeightBulk, KnowledgeAmount.SpecificInteraction);
                                    }));
                                 opts.Add(pickUpHalfStackOption);
                             }
@@ -614,6 +617,7 @@ namespace CombatExtended.Detours
                                     job.count = count;
                                     job.playerForced = true;
                                     pawn.jobs.TryTakeOrderedJob(job);
+                                    PlayerKnowledgeDatabase.KnowledgeDemonstrated(CE_ConceptDefOf.CE_InventoryWeightBulk, KnowledgeAmount.SpecificInteraction);
                                 }));
                             opts.Add(pickUpStackOption);
                         }

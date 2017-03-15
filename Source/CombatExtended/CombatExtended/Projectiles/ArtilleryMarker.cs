@@ -13,7 +13,7 @@ namespace CombatExtended
         public const string MarkerDef = "ArtilleryMarker";
 
         public float aimingAccuracy = 1f;
-        public float aimEfficiency = 1f;
+        public float sightsEfficiency = 1f;
         public float lightingShift = 0f;
         public float weatherShift = 0f;
 
@@ -28,7 +28,7 @@ namespace CombatExtended
         {
             base.ExposeData();
             Scribe_Values.LookValue<float>(ref this.aimingAccuracy, "aimingAccuracy");
-            Scribe_Values.LookValue<float>(ref this.aimEfficiency, "aimEfficiency");
+            Scribe_Values.LookValue<float>(ref this.sightsEfficiency, "sightsEfficiency");
             Scribe_Values.LookValue<float>(ref this.lightingShift, "lightingShift");
             Scribe_Values.LookValue<float>(ref this.weatherShift, "weatherShift");
             Scribe_Values.LookValue<int>(ref this.lifetimeTicks, "lifetimeTicks");
