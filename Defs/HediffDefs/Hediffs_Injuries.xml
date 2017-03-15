@@ -2,9 +2,12 @@
 <HediffDefs>
 
   <HediffDef Name="InjuryBase" Abstract="True">
-    <hediffClass>Hediff_Injury</hediffClass>
+    <hediffClass>CombatExtended.Hediff_InjuryCE</hediffClass>
     <tendable>true</tendable>
     <displayWound>true</displayWound>
+    <comps>
+      <li Class="CombatExtended.HediffCompProperties_Stabilize" />
+    </comps>
   </HediffDef>
 
   <!-- Missing body part -->
@@ -16,8 +19,8 @@
     <defaultLabelColor>(0.5, 0.5, 0.5, 1)</defaultLabelColor>
     <tendable>true</tendable>
     <injuryProps>
-      <bleedRate>0.05</bleedRate>
-      <painPerSeverity>0.025</painPerSeverity>
+      <bleedRate>0.08</bleedRate>
+      <painPerSeverity>0.05</painPerSeverity>
     </injuryProps>
     <comps>
       <li Class="HediffCompProperties_TendDuration" />

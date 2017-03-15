@@ -375,6 +375,7 @@ namespace CombatExtended.Detours
                                     Job job = new Job(CE_JobDefOf.Stabilize, patient, medThing);
                                     job.count = 1;
                                     pawn.jobs.TryTakeOrderedJob(job);
+                                    PlayerKnowledgeDatabase.KnowledgeDemonstrated(CE_ConceptDefOf.CE_Stabilizing, KnowledgeAmount.Total);
                                 }
                             };
                             opts.Add(new FloatMenuOption(label, action, MenuOptionPriority.Default, null, patient));

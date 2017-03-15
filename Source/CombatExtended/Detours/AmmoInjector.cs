@@ -37,11 +37,11 @@ namespace CombatExtended
         {
             if (InjectAmmos())
             {
-            	Log.Message("Combat Realism :: Ammo " + (ModSettings.enableAmmoSystem ? "injected" : "removed"));
+            	Log.Message("Combat Extended :: Ammo " + (ModSettings.enableAmmoSystem ? "injected" : "removed"));
             }
             else
             {
-            	Log.Error("Combat Realism :: Ammo injector failed to get injected");
+            	Log.Error("Combat Extended :: Ammo injector failed to get injected");
             }
         }
 

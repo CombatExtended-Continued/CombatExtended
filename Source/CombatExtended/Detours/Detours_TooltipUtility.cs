@@ -49,18 +49,15 @@ namespace CombatExtended.Detours
                     if (pawn != null && pawn != target && pawn.equipment != null &&
                         pawn.equipment.Primary != null && pawn.equipment.PrimaryEq.PrimaryVerb is Verb_LaunchProjectileCE)
                     {
-                        Log.Message("CE trying to get tooltip pawn attack verb");
                         verbCE = pawn.equipment.PrimaryEq.PrimaryVerb as Verb_LaunchProjectileCE;
                     }
                     Building_TurretGunCE turret = Find.Selector.SingleSelectedThing as Building_TurretGunCE;
                     if (turret != null && turret != target)
                     {
-                        Log.Message("CE trying to get tooltip turret attack verb");
                         verbCE = turret.AttackVerb as Verb_LaunchProjectileCE;
                     }
                     if (verbCE != null)
                     {
-                        Log.Message("CE appending verb report");
                         stringBuilder.AppendLine();
                         stringBuilder.Append("ShotBy".Translate(new object[] { Find.Selector.SingleSelectedThing.LabelShort }) + ":\n");
                         if (verbCE.CanHitTarget(target))

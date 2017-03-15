@@ -66,6 +66,11 @@ namespace CombatExtended
                     //stabilized = false;
                 }
             }
+            else if (!stabilized && parent.pawn.Downed)
+            {
+                // Teach about stabilizing
+                LessonAutoActivator.TeachOpportunity(CE_ConceptDefOf.CE_Stabilizing, parent.pawn, OpportunityType.Important);
+            }
         }
 
         public override TextureAndColor CompStateIcon

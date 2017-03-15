@@ -20,7 +20,7 @@ namespace CombatExtended.Detours
 
         public static void Inject()
         {
-            if (InjectDetours()) Log.Message("Combat Realism :: Detours successfully injected");
+            if (InjectDetours()) Log.Message("Combat Extended :: Detours successfully injected");
             else Log.Error("Combat Realism :: Failed to inject detours");
         }
 

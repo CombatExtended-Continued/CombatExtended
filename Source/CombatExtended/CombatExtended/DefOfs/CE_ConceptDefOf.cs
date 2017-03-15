@@ -29,5 +29,6 @@ namespace CombatExtended
         public static ConceptDef CE_AimModes;
         public static ConceptDef CE_Spotting;
         public static ConceptDef CE_MortarDirectFire;
+        public static ConceptDef CE_Stabilizing;
     }
 }
