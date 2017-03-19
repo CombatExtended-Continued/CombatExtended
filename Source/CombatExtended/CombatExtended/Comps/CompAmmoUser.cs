@@ -468,7 +468,14 @@ namespace CombatExtended
             stringBuilder.AppendLine("CE_MagazineSize".Translate() + ": " + GenText.ToStringByStyle(Props.magazineSize, ToStringStyle.Integer));
             stringBuilder.AppendLine("CE_ReloadTime".Translate() + ": " + GenText.ToStringByStyle((Props.reloadTicks / 60), ToStringStyle.Integer) + " s");
             if (useAmmo)
-                stringBuilder.AppendLine("CE_AmmoSet".Translate() + ": " + Props.ammoSet.LabelCap);
+            {
+                // Append various ammo stats
+                stringBuilder.AppendLine("CE_AmmoSet".Translate() + ": " + Props.ammoSet.LabelCap + "\n");
+                foreach(var cur in Props.ammoSet.ammoTypes)
+                {
+                    stringBuilder.AppendLine(cur.ammo.ammoClass.LabelCap + ":\n" + cur.projectile.GetProjectileReadout());
+                }
+            }
             return stringBuilder.ToString();
         }
 
