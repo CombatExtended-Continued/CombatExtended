@@ -11,6 +11,12 @@
     <category>Item</category>
     <resourceReadoutPriority>Middle</resourceReadoutPriority>
     <useHitPoints>true</useHitPoints>
+    <statBases>
+      <MaxHitPoints>100</MaxHitPoints>
+      <Beauty>-5</Beauty>
+      <Flammability>1</Flammability>
+			<DeteriorationRate>2</DeteriorationRate>
+    </statBases>
     <selectable>true</selectable>
     <altitudeLayer>Item</altitudeLayer>
     <stackLimit>500</stackLimit>
@@ -29,10 +35,18 @@
 			<li>CE_Ammo</li>
 		</tradeTags>
 		<tradeability>Sellable</tradeability>
+    <tickerType>Normal</tickerType>
+		<cookOffSpeed>0.2</cookOffSpeed>
+		<cookOffFlashScale>10</cookOffFlashScale>
+		<cookOffSound>ShotAssaultRifle</cookOffSound>
+		<cookOffTailSound>GunTail_Medium</cookOffTailSound>
   </ThingDef>
 	
 	<ThingDef Name="SmallAmmoBase" ParentName="AmmoBase" Abstract="True">
 		<smallVolume>true</smallVolume>
+    <statBases>
+      <MaxHitPoints>75</MaxHitPoints>
+    </statBases>
 	</ThingDef>
 	
 	<!-- ================== Projectiles ================== -->

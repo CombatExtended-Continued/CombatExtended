@@ -24,11 +24,16 @@
 
   <ThingDef Name="81mmMortarShellBase" ParentName="AmmoBase" Abstract="True">
     <description>Low-velocity shell designed to be fired from a mortar.</description>
+    <statBases>
+      <MaxHitPoints>200</MaxHitPoints>
+    </statBases>
     <thingCategories>
       <li>Ammo81mmMortarShells</li>
     </thingCategories>
     <stackLimit>25</stackLimit>
 		<Tradeability>Stockable</Tradeability>
+    <cookOffFlashScale>30</cookOffFlashScale>
+    <cookOffSound>MortarBomb_Explode</cookOffSound>
   </ThingDef>
 
   <ThingDef ParentName="81mmMortarShellBase">
@@ -43,7 +48,20 @@
 			<Mass>4.24</Mass>
 			<Bulk>5</Bulk>
     </statBases>
-	<ammoClass>GrenadeHE</ammoClass>
+    <ammoClass>GrenadeHE</ammoClass>
+    <comps>
+      <li Class="CombatExtended.CompProperties_ExplosiveCE">
+        <explosionDamage>50</explosionDamage>
+        <explosionDamageDef>Bomb</explosionDamageDef>
+        <explosionRadius>2.5</explosionRadius>
+        <fragments>
+          <Fragment_MortarSmall>225</Fragment_MortarSmall>
+          <Fragment_MortarMedium>135</Fragment_MortarMedium>
+          <Fragment_MortarLarge>45</Fragment_MortarLarge>
+        </fragments>
+        <fragSpeedFactor>0.75</fragSpeedFactor>
+    </li>
+    </comps>
   </ThingDef>
 
   <ThingDef ParentName="81mmMortarShellBase">
@@ -58,7 +76,17 @@
 			<Mass>4.1</Mass>
 			<Bulk>5.5</Bulk>
     </statBases>
-	<ammoClass>GrenadeIncendiary</ammoClass>
+    <ammoClass>GrenadeIncendiary</ammoClass>
+    <comps>
+      <li Class="CombatExtended.CompProperties_ExplosiveCE">
+        <explosionDamageDef>Flame</explosionDamageDef>
+        <explosionDamage>50</explosionDamage>
+        <explosionRadius>3.5</explosionRadius>
+        <preExplosionSpawnThingDef>FilthFuel</preExplosionSpawnThingDef>
+        <explosionSpawnChance>0.5</explosionSpawnChance>
+        <soundExplode>MortarIncendiary_Explode</soundExplode>
+    </li>
+    </comps>
   </ThingDef>
 
   <ThingDef ParentName="81mmMortarShellBase">
@@ -73,7 +101,20 @@
 			<Mass>4.5</Mass>
 			<Bulk>6</Bulk>
     </statBases>
-	<ammoClass>GrenadeEMP</ammoClass>
+    <ammoClass>GrenadeEMP</ammoClass>
+    <comps>
+      <li Class="CombatExtended.CompProperties_ExplosiveCE">
+        <explosionDamage>10</explosionDamage>
+        <explosionDamageDef>Bomb</explosionDamageDef>
+        <explosionRadius>1</explosionRadius>
+        <fragments>
+          <Fragment_MortarSmall>10</Fragment_MortarSmall>
+          <Fragment_MortarMedium>6</Fragment_MortarMedium>
+          <Fragment_MortarLarge>2</Fragment_MortarLarge>
+        </fragments>
+        <fragSpeedFactor>0.5</fragSpeedFactor>
+    </li>
+    </comps>
   </ThingDef>
 	
 	<!-- ================== Projectiles ================== -->

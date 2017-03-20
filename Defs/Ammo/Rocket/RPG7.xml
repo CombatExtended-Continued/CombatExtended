@@ -23,14 +23,19 @@
 
   <ThingDef Name="RPG7GrenadeBase" ParentName="AmmoBase" Abstract="True">
     <description>Rocket-propelled grenade designed for the RPG-7 launcher. After being fired a rocket motor kicks in to propel the grenade further.</description>
-	<tradeTags>
-	  <li>CE_AutoEnableTrade</li>
-	  <li>CE_AutoEnableCrafting</li>
-	</tradeTags>
+    <statBases>
+      <MaxHitPoints>150</MaxHitPoints>
+    </statBases>
+    <tradeTags>
+      <li>CE_AutoEnableTrade</li>
+      <li>CE_AutoEnableCrafting</li>
+    </tradeTags>
     <thingCategories>
       <li>AmmoRPG7Grenades</li>
     </thingCategories>
     <stackLimit>25</stackLimit>
+    <cookOffFlashScale>40</cookOffFlashScale>
+    <cookOffSound>MortarBomb_Explode</cookOffSound>
   </ThingDef>
 
   <ThingDef ParentName="RPG7GrenadeBase">
@@ -46,6 +51,20 @@
 	  <Bulk>4</Bulk>
     </statBases>
 	<ammoClass>RocketHEAT</ammoClass>
+    <comps>
+      <li Class="CombatExtended.CompProperties_ExplosiveCE">
+        <explosionDamage>30</explosionDamage>
+        <explosionDamageDef>Bomb</explosionDamageDef>
+        <explosionRadius>1</explosionRadius>
+        <fragRange>6</fragRange>
+        <fragments>
+          <Fragment_GrenadeFragSmall>80</Fragment_GrenadeFragSmall>
+          <Fragment_GrenadeFragMedium>32</Fragment_GrenadeFragMedium>
+          <Fragment_GrenadeFragLarge>12</Fragment_GrenadeFragLarge>
+        </fragments>
+        <soundExplode>MortarBomb_Explode</soundExplode>
+      </li>
+    </comps>
   </ThingDef>
 
   <ThingDef ParentName="RPG7GrenadeBase">
@@ -60,7 +79,22 @@
 	  <Mass>4.5</Mass>
 	  <Bulk>6</Bulk>
     </statBases>
-	<ammoClass>RocketThermobaric</ammoClass>
+    <ammoClass>RocketThermobaric</ammoClass>
+    <comps>
+      <li Class="CombatExtended.CompProperties_ExplosiveCE">
+        <explosionDamage>40</explosionDamage>
+        <explosionDamageDef>Thermobaric</explosionDamageDef>
+        <explosionRadius>4.0</explosionRadius>
+        <applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
+        <fragRange>6</fragRange>
+        <fragments>
+          <Fragment_GrenadeFragSmall>60</Fragment_GrenadeFragSmall>
+          <Fragment_GrenadeFragMedium>24</Fragment_GrenadeFragMedium>
+          <Fragment_GrenadeFragLarge>9</Fragment_GrenadeFragLarge>
+        </fragments>
+        <soundExplode>MortarBomb_Explode</soundExplode>
+      </li>
+    </comps>
   </ThingDef>
 
   <ThingDef ParentName="RPG7GrenadeBase">
@@ -75,7 +109,20 @@
 	  <Mass>4.5</Mass>
 	  <Bulk>6</Bulk>
     </statBases>
-	<ammoClass>RocketFrag</ammoClass>
+    <ammoClass>RocketFrag</ammoClass>
+    <comps>
+      <li Class="CombatExtended.CompProperties_ExplosiveCE">
+        <explosionDamage>30</explosionDamage>
+        <explosionDamageDef>Bomb</explosionDamageDef>
+        <explosionRadius>1</explosionRadius>
+        <fragments>
+          <Fragment_GrenadeFragSmall>300</Fragment_GrenadeFragSmall>
+          <Fragment_GrenadeFragMedium>180</Fragment_GrenadeFragMedium>
+          <Fragment_GrenadeFragLarge>60</Fragment_GrenadeFragLarge>
+        </fragments>
+        <soundExplode>MortarBomb_Explode</soundExplode>
+      </li>
+    </comps>
   </ThingDef>
 	
 	<!-- ================== Projectiles ================== -->

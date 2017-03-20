@@ -4,73 +4,115 @@ using System.Linq;
 using System.Text;
 using RimWorld;
 using Verse;
+using Verse.Sound;
 using UnityEngine;
 
 namespace CombatExtended
 {
     public class AmmoThing : ThingWithComps
     {
-        AmmoDef ammoDef { get { return def as AmmoDef; } }
+        private int numToCookOff;
 
-        /*
+        #region Properties
+
+        private AmmoDef AmmoDef => def as AmmoDef;
+
+        #endregion
+
+        #region Methods
+
         public override string GetDescription()
         {
-            if(ammoDef != null && ammoDef.ammoClass != null && ammoDef.linkedProjectile != null)
+            if(AmmoDef != null && AmmoDef.ammoClass != null)
             {
                 StringBuilder stringBuilder = new StringBuilder();
                 stringBuilder.AppendLine(base.GetDescription());
 
                 // Append ammo class description
-                if (!string.IsNullOrEmpty(ammoDef.ammoClass.description))
-                    stringBuilder.AppendLine("\n" + 
-                        (string.IsNullOrEmpty(ammoDef.ammoClass.LabelCap) ? "" : ammoDef.ammoClass.LabelCap + ":\n") + 
-                        ammoDef.ammoClass.description);
+                stringBuilder.AppendLine("\n" + AmmoDef.ammoClass.LabelCap + ":");
+                stringBuilder.AppendLine(AmmoDef.ammoClass.description);
 
-                // Append ammo stats
-                ProjectilePropertiesCE props = ammoDef.linkedProjectile.projectile as ProjectilePropertiesCE;
-                if (props != null)
+                // Append guns that use this caliber
+                stringBuilder.AppendLine("\n" + "CE_UsedBy".Translate() + ":");
+                foreach(var user in AmmoDef.Users)
                 {
-                    // Damage type/amount
-                    stringBuilder.AppendLine("\n" + "CE_DescDamage".Translate() + ": ");
-                    stringBuilder.AppendLine("   " + GenText.ToStringByStyle(props.damageAmountBase, ToStringStyle.Integer) + " (" + props.damageDef.LabelCap + ")");
-                    if (!props.secondaryDamage.NullOrEmpty())
-                    {
-                        foreach(SecondaryDamage sec in props.secondaryDamage)
-                        {
-                            stringBuilder.AppendLine("   " + GenText.ToStringByStyle(sec.amount, ToStringStyle.Integer) + " (" + sec.def.LabelCap + ")");
-                        }
-                    }
-                    // Explosion radius
-                    if (props.explosionRadius > 0)
-                        stringBuilder.AppendLine("CE_DescExplosionRadius".Translate() + ": " + GenText.ToStringByStyle(props.explosionRadius, ToStringStyle.FloatOne));
-
-                    // Secondary explosion
-                    CompProperties_ExplosiveCE secExpProps = ammoDef.linkedProjectile.GetCompProperties<CompProperties_ExplosiveCE>();
-                    if (secExpProps != null)
-                    {
-                        if (secExpProps.explosionRadius > 0)
-                        {
-                            stringBuilder.AppendLine("CE_DescSecondaryExplosion".Translate() + ":");
-                            stringBuilder.AppendLine("   " + "CE_DescExplosionRadius".Translate() + ": " + GenText.ToStringByStyle(secExpProps.explosionRadius, ToStringStyle.FloatOne));
-                            stringBuilder.AppendLine("   " + "CE_DescDamage".Translate() + ": " + 
-                                GenText.ToStringByStyle(secExpProps.explosionDamage, ToStringStyle.Integer) + " (" + secExpProps.explosionDamageDef.LabelCap + ")");
-                        }
-                        if (secExpProps.fragRange > 0)
-                            stringBuilder.AppendLine("CE_DescFragRange".Translate() + ": " + GenText.ToStringByStyle(secExpProps.fragRange, ToStringStyle.FloatTwo));
-                    }
-
-                    // CE stats
-                    stringBuilder.AppendLine("CE_DescArmorPenetration".Translate() + ": " + GenText.ToStringByStyle(props.armorPenetration, ToStringStyle.PercentOne));
-                    if (props.pelletCount > 1)
-                        stringBuilder.AppendLine("CE_DescPelletCount".Translate() + ": " + GenText.ToStringByStyle(props.pelletCount, ToStringStyle.Integer));
-                    if (props.spreadMult != 1)
-                        stringBuilder.AppendLine("CE_DescSpreadMult".Translate() + ": " + GenText.ToStringByStyle(props.spreadMult, ToStringStyle.PercentZero));
+                    stringBuilder.AppendLine("   -" + user.LabelCap);
                 }
 
                 return stringBuilder.ToString();
             }
             return base.GetDescription();
         }
-        */
+
+        public override void PreApplyDamage(DamageInfo dinfo, out bool absorbed)
+        {
+            absorbed = false;
+            if (dinfo.Def.externalViolence)
+            {
+                if (HitPoints - dinfo.Amount > 0)
+                {
+                    numToCookOff += Mathf.RoundToInt(def.stackLimit * ((float)dinfo.Amount / HitPoints) * (def.smallVolume ? Rand.Range(1f, 2f) : Rand.Range(0.0f, 1f)));
+                }
+                else TryDetonate(Mathf.Lerp(1, Mathf.Min(5, stackCount), stackCount / def.stackLimit));
+            }
+        }
+
+        public override void Tick()
+        {
+            base.Tick();
+
+            // Cook off ammo based on how much damage we've taken so far
+            if (numToCookOff > 0 && Rand.Chance((float)numToCookOff / def.stackLimit))
+            {
+                if(TryLaunchCookOffProjectile() || TryDetonate())
+                {
+                    // Reduce stack count
+                    if (stackCount > 1)
+                    {
+                        numToCookOff--;
+                        stackCount--;
+                    }
+                    else
+                    {
+                        numToCookOff = 0;
+                        Destroy(DestroyMode.Kill);
+                    }
+                }
+            }
+        }
+
+        private bool TryDetonate(float scale = 1)
+        {
+            CompExplosiveCE comp = this.TryGetComp<CompExplosiveCE>();
+            if (comp != null)
+            {
+                if(Rand.Chance(Mathf.Clamp01(0.75f - Mathf.Pow(HitPoints / MaxHitPoints, 2)))) comp.Explode(this, Position, Map, scale);
+                return true;
+            }
+            return false;
+        }
+
+        private bool TryLaunchCookOffProjectile()
+        {
+            if (AmmoDef.cookOffProjectile == null) return false;
+            ProjectileCE projectile = (ProjectileCE)ThingMaker.MakeThing(AmmoDef.cookOffProjectile);
+            GenSpawn.Spawn(projectile, Position, Map);
+
+            // Launch in random direction
+            projectile.canTargetSelf = true;
+            projectile.minCollisionSqr = 0f;
+            projectile.Launch(this, 
+                new Vector2(DrawPos.x, DrawPos.z), 
+                UnityEngine.Random.Range(0, Mathf.PI / 2f), 
+                UnityEngine.Random.Range(0, 360), 
+                0.1f, 
+                AmmoDef.cookOffProjectile.projectile.speed * AmmoDef.cookOffSpeed);
+            if (AmmoDef.cookOffFlashScale > 0.01) MoteMaker.MakeStaticMote(Position, Map, ThingDefOf.Mote_ShotFlash, AmmoDef.cookOffFlashScale);
+            if (AmmoDef.cookOffSound != null) AmmoDef.cookOffSound.PlayOneShot(new TargetInfo(Position, Map));
+            if (AmmoDef.cookOffTailSound != null) AmmoDef.cookOffTailSound.PlayOneShotOnCamera();
+            return true;
+        }
+
+        #endregion
     }
 }
