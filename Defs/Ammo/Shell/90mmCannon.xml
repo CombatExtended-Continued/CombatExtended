@@ -32,9 +32,12 @@
 			<li>CE_AutoEnableCrafting</li>
 		</tradeTags>
     <statBases>
+      <MaxHitPoints>200</MaxHitPoints>
 			<Mass>4.6</Mass>
 			<Bulk>7</Bulk>
     </statBases>
+    <cookOffFlashScale>30</cookOffFlashScale>
+    <cookOffSound>MortarBomb_Explode</cookOffSound>
   </ThingDef>
 
   <ThingDef ParentName="90mmCannonShellBase">
@@ -48,6 +51,19 @@
       <MarketValue>27.83</MarketValue>
     </statBases>
 		<ammoClass>RocketHEAT</ammoClass>
+    <comps>
+      <li Class="CombatExtended.CompProperties_ExplosiveCE">
+        <explosionDamage>25</explosionDamage>
+        <explosionDamageDef>Bomb</explosionDamageDef>
+        <explosionRadius>1.5</explosionRadius>
+        <fragments>
+          <Fragment_MortarSmall>25</Fragment_MortarSmall>
+          <Fragment_MortarMedium>12</Fragment_MortarMedium>
+          <Fragment_MortarLarge>5</Fragment_MortarLarge>
+        </fragments>
+        <fragRange>7.5</fragRange>
+      </li>
+    </comps>
   </ThingDef>
 
   <ThingDef ParentName="90mmCannonShellBase">
@@ -61,6 +77,19 @@
       <MarketValue>28.98</MarketValue>
     </statBases>
 		<ammoClass>GrenadeHE</ammoClass>
+    <comps>
+      <li Class="CombatExtended.CompProperties_ExplosiveCE">
+        <explosionDamage>50</explosionDamage>
+        <explosionDamageDef>Bomb</explosionDamageDef>
+        <explosionRadius>2.5</explosionRadius>
+        <fragments>
+          <Fragment_MortarSmall>175</Fragment_MortarSmall>
+          <Fragment_MortarMedium>150</Fragment_MortarMedium>
+          <Fragment_MortarLarge>50</Fragment_MortarLarge>
+        </fragments>
+        <fragRange>10</fragRange>
+      </li>
+    </comps>
   </ThingDef>
 
   <ThingDef ParentName="90mmCannonShellBase">
@@ -74,6 +103,19 @@
       <MarketValue>34.73</MarketValue>
     </statBases>
 		<ammoClass>GrenadeEMP</ammoClass>
+    <comps>
+      <li Class="CombatExtended.CompProperties_ExplosiveCE">
+        <explosionDamage>15</explosionDamage>
+        <explosionDamageDef>Bomb</explosionDamageDef>
+        <explosionRadius>1.5</explosionRadius>
+        <fragments>
+          <Fragment_MortarSmall>10</Fragment_MortarSmall>
+          <Fragment_MortarMedium>6</Fragment_MortarMedium>
+          <Fragment_MortarLarge>2</Fragment_MortarLarge>
+        </fragments>
+        <fragSpeedFactor>0.5</fragSpeedFactor>
+      </li>
+    </comps>
   </ThingDef>
 	
 	<!-- ================== Projectiles ================== -->

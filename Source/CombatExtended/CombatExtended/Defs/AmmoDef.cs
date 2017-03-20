@@ -12,6 +12,12 @@ namespace CombatExtended
     {
         public AmmoCategoryDef ammoClass;
         public int defaultAmmoCount = 1;
+        public float cookOffSpeed = 1f;
+        public float cookOffFlashScale = 1;
+        public ThingDef cookOffProjectile;
+        public SoundDef cookOffSound;
+        public SoundDef cookOffTailSound;
+
         private List<ThingDef> users;
         public List<ThingDef> Users
         {

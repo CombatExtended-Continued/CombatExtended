@@ -65,7 +65,7 @@ namespace CombatExtended
             }
 
             CompExplosiveCE comp = this.TryGetComp<CompExplosiveCE>();
-            if (comp != null && launcher != null && Position.IsValid)
+            if (comp != null && Position.IsValid)
             {
                 comp.Explode(launcher, Position, Find.VisibleMap);
             }

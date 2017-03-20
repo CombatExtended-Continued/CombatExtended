@@ -34,6 +34,7 @@
       <li>Ammo40x46mmGrenades</li>
     </thingCategories>
     <stackLimit>75</stackLimit>
+    <cookOffFlashScale>20</cookOffFlashScale>
   </ThingDef>
 
   <ThingDef ParentName="40x46mmGrenadeBase">
@@ -47,6 +48,19 @@
       <MarketValue>2.19</MarketValue>
     </statBases>
     <ammoClass>GrenadeHE</ammoClass>
+    <comps>
+      <li Class="CombatExtended.CompProperties_ExplosiveCE">
+        <explosionDamage>25</explosionDamage>
+        <explosionDamageDef>Bomb</explosionDamageDef>
+        <explosionRadius>1.8</explosionRadius>
+        <fragSpeedFactor>0.8</fragSpeedFactor>
+        <fragments>
+          <Fragment_GrenadeFragSmall>70</Fragment_GrenadeFragSmall>
+          <Fragment_GrenadeFragMedium>50</Fragment_GrenadeFragMedium>
+          <Fragment_GrenadeFragLarge>15</Fragment_GrenadeFragLarge>
+        </fragments>
+      </li>
+    </comps>
   </ThingDef>
 
   <ThingDef ParentName="40x46mmGrenadeBase">
@@ -60,6 +74,19 @@
       <MarketValue>2.65</MarketValue>
     </statBases>
     <ammoClass>GrenadeEMP</ammoClass>
+    <comps>
+      <li Class="CombatExtended.CompProperties_ExplosiveCE">
+        <explosionDamage>5</explosionDamage>
+        <explosionDamageDef>Bomb</explosionDamageDef>
+        <explosionRadius>0.5</explosionRadius>
+        <fragSpeedFactor>0.8</fragSpeedFactor>
+        <fragments>
+          <Fragment_GrenadeFragSmall>7</Fragment_GrenadeFragSmall>
+          <Fragment_GrenadeFragMedium>5</Fragment_GrenadeFragMedium>
+          <Fragment_GrenadeFragLarge>1</Fragment_GrenadeFragLarge>
+        </fragments>
+      </li>
+    </comps>
   </ThingDef>
 	
 	<!-- ================== Projectiles ================== -->

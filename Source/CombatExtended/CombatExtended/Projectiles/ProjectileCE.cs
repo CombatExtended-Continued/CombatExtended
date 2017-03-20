@@ -289,7 +289,7 @@ namespace CombatExtended
         //Removed minimum collision distance
         private bool CheckForFreeInterceptBetween(Vector2 lastExactPos, Vector2 newExactPos)
         {
-        	var lastPos = new IntVec3(lastExactPos);
+            var lastPos = new IntVec3(lastExactPos);
         	var newPos = new IntVec3(newExactPos);
             if (newPos == lastPos)
             {
@@ -303,44 +303,35 @@ namespace CombatExtended
             {
                 return CheckForFreeIntercept(newPos);
             }
-            //Check for minimum collision distance
-            float distToTarget = (Destination - origin).sqrMagnitude;
-            if (def.projectile.alwaysFreeIntercept
-                || distToTarget <= 1f
-                ? OriginIV3.DistanceToSquared(newPos) > 1f
-                : OriginIV3.DistanceToSquared(newPos) > Mathf.Min(12f, distToTarget / 2))
+            Vector2 currentExactPos = lastExactPos;
+            Vector2 flightVec = newExactPos - lastExactPos;
+            Vector2 sectionVec = flightVec.normalized * 0.2f;
+            int numSections = (int)(flightVec.magnitude / 0.2f);
+            checkedCells.Clear();
+            int currentSection = 0;
+            while (true)
             {
-                Vector2 currentExactPos = lastExactPos;
-                Vector2 flightVec = newExactPos - lastExactPos;
-                Vector2 sectionVec = flightVec.normalized * 0.2f;
-                int numSections = (int)(flightVec.magnitude / 0.2f);
-                checkedCells.Clear();
-                int currentSection = 0;
-                while (true)
+                currentExactPos += sectionVec;
+                var intVec3 = new IntVec3(currentExactPos);
+                if (!checkedCells.Contains(intVec3))
                 {
-                    currentExactPos += sectionVec;
-                    var intVec3 = new IntVec3(currentExactPos);
-                    if (!checkedCells.Contains(intVec3))
+                    if (!intVec3.InBounds(Map) || CheckForFreeIntercept(intVec3))
                     {
-                    	if (!intVec3.InBounds(Map) || CheckForFreeIntercept(intVec3))
-                        {
-                            break;
-                        }
-                        checkedCells.Add(intVec3);
+                        break;
                     }
-                    currentSection++;
-                    if (currentSection > numSections)
-                    {
-                        return false;
-                    }
-                    if (intVec3 == newPos)
-                    {
-                        return false;
-                    }
+                    checkedCells.Add(intVec3);
                 }
-                return true;
+                currentSection++;
+                if (currentSection > numSections)
+                {
+                    return false;
+                }
+                if (intVec3 == newPos)
+                {
+                    return false;
+                }
             }
-            return false;
+            return true;
         }
         
         /// <summary>
@@ -459,7 +450,7 @@ namespace CombatExtended
                 ambientSustainer.Maintain();
             }
             // attack shooting expression
-			if (ModSettings.showTaunts && this.launcher is Building_TurretGunCE == false && this.launcher.Map != null)
+			if (ModSettings.showTaunts && launcher is Pawn && this.launcher.Map != null)
             {
                 if (Rand.Value > 0.7
                     && this.launcher.def.race.Humanlike
@@ -534,17 +525,24 @@ namespace CombatExtended
                         return true;
                     }
 
+                    if ((launcher == null || thing != launcher || canTargetSelf) 
+                        && (thing.def.category == ThingCategory.Pawn || thing.def.fillPercent > 0) 
+                        && ImpactThroughBodySize(thing, Height))
+                        return true;
+
+                    /*
                     if (launcher != null && thing == launcher && !canTargetSelf)
                     {
                     	return false;
                     }
+
                     
                     //Checking for pawns/cover
                     if (thing.def.category == ThingCategory.Pawn)
                     {
                         // Decrease chance to hit friendly target
                         Pawn pawn = thing as Pawn;
-                        if (launcher != null && pawn.Faction != null && launcher.Faction != null && !pawn.Faction.HostileTo(launcher.Faction) && Rand.Value > 0.3)
+                        if (!canTargetSelf && launcher != null && pawn.Faction != null && launcher.Faction != null && !pawn.Faction.HostileTo(launcher.Faction) && Rand.Value > 0.3)
                         {
                             return false;
                         }
@@ -555,7 +553,7 @@ namespace CombatExtended
                     if (thing.def.fillPercent > 0) //Need to check for fillPercent here or else will be impacting things like motes, etc.
                     {
                         return ImpactThroughBodySize(thing, Height);
-                    }
+                    }*/
                 }
             }
             return false;
@@ -612,7 +610,7 @@ namespace CombatExtended
         protected virtual void Impact(Thing hitThing)
         {
             CompExplosiveCE comp = this.TryGetComp<CompExplosiveCE>();
-            if (comp != null && launcher != null && Position.IsValid)
+            if (comp != null && Position.IsValid)
             {
                 comp.Explode(launcher, Position, Find.VisibleMap);
             }

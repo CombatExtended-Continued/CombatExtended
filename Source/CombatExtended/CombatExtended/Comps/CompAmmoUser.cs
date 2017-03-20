@@ -473,7 +473,8 @@ namespace CombatExtended
                 stringBuilder.AppendLine("CE_AmmoSet".Translate() + ": " + Props.ammoSet.LabelCap + "\n");
                 foreach(var cur in Props.ammoSet.ammoTypes)
                 {
-                    stringBuilder.AppendLine(cur.ammo.ammoClass.LabelCap + ":\n" + cur.projectile.GetProjectileReadout());
+                    string label = string.IsNullOrEmpty(cur.ammo.ammoClass.LabelCapShort) ? cur.ammo.ammoClass.LabelCap : cur.ammo.ammoClass.LabelCapShort;
+                    stringBuilder.AppendLine(label + ":\n" + cur.projectile.GetProjectileReadout());
                 }
             }
             return stringBuilder.ToString();
