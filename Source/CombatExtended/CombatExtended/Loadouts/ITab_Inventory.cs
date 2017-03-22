@@ -274,6 +274,15 @@ namespace CombatExtended
                     }
                     floatOptionList.Add(new FloatMenuOption("DropThing".Translate(), dropApparel));
                     floatOptionList.Add(new FloatMenuOption("CE_DropThingHaul".Translate(), dropApparelHaul));
+                    if (this.CanControl && SelPawnForGear.HoldTrackerIsHeld(thing))
+                    {
+                    	Action forgetHoldTracker = delegate
+                    	{
+                    		SoundDefOf.TickHigh.PlayOneShotOnCamera();
+                    		SelPawnForGear.HoldTrackerForget(thing);
+                    	};
+                    	floatOptionList.Add(new FloatMenuOption("CE_HoldTrackerForget".Translate(), forgetHoldTracker));
+                    }
                 }
                 FloatMenu window = new FloatMenu(floatOptionList, thing.LabelCap, false);
                 Find.WindowStack.Add(window);
@@ -333,6 +342,7 @@ namespace CombatExtended
         // RimWorld.ITab_Pawn_Gear
         private void InterfaceDrop(Thing t)
         {
+        	SelPawnForGear.HoldTrackerForget(t);
             ThingWithComps thingWithComps = t as ThingWithComps;
             Apparel apparel = t as Apparel;
             if (apparel != null && this.SelPawnForGear.apparel != null && this.SelPawnForGear.apparel.WornApparel.Contains(apparel))
@@ -355,6 +365,7 @@ namespace CombatExtended
 
         private void InterfaceDropHaul(Thing t)
         {
+        	SelPawnForGear.HoldTrackerForget(t);
             ThingWithComps thingWithComps = t as ThingWithComps;
             Apparel apparel = t as Apparel;
             if (apparel != null && this.SelPawnForGear.apparel != null && this.SelPawnForGear.apparel.WornApparel.Contains(apparel))

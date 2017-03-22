@@ -176,6 +176,12 @@ namespace CombatExtended
                 (count != 1 ? " x" + count : "") +
                 "\n" + def.GetWeightTip(count) + "\n" + def.GetBulkTip(count);
         }
+        
+        public static string GetWeightAndBulkTip(this LoadoutGenericDef def, int count = 1)
+        {
+        	return "CE_Weight".Translate() + ": " + StatDefOf.Mass.ValueToString(def.mass * count, StatDefOf.Mass.toStringNumberSense) + "\n" +
+        		"CE_Bulk".Translate() + ": " + CE_StatDefOf.Bulk.ValueToString(def.bulk * count, CE_StatDefOf.Bulk.toStringNumberSense);
+        }
 
         public static string GetWeightTip(this ThingDef def, int count = 1)
         {

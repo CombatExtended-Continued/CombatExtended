@@ -81,6 +81,10 @@
           <type>Clean</type>
           <command>rm ../../Assemblies/CombatExtended.pdb</command>
         </Command>
+        <Command>
+          <type>AfterBuild</type>
+          <command>rm ../../Assemblies/Override.dll</command>
+        </Command>
       </CustomCommands>
     </CustomCommands>
   </PropertyGroup>
@@ -94,6 +98,10 @@
     </Reference>
     <Reference Include="HugsLib">
       <HintPath>..\..\..\HugsLib\Assemblies\HugsLib.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Override">
+      <HintPath>..\..\..\RimWorld-MFO-master\Assemblies\Override.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="System" />
@@ -140,8 +148,10 @@
     <Compile Include="CombatExtended\DefOfs\CE_ThingDefOf.cs" />
     <Compile Include="CombatExtended\DefOfs\CE_StatDefOf.cs" />
     <Compile Include="CombatExtended\Defs\Apparel_VisibleAccessoryDef.cs" />
+    <Compile Include="CombatExtended\Defs\LoadoutGenericDef.cs" />
     <Compile Include="CombatExtended\Defs\RaceProperties_CE.cs" />
     <Compile Include="CombatExtended\Enums\BodyType.cs" />
+    <Compile Include="CombatExtended\Enums\LoadoutCountType.cs" />
     <Compile Include="CombatExtended\Hediff_InjuryCE.cs" />
     <Compile Include="CombatExtended\Jobs\JobDriver_Hunt.cs" />
     <Compile Include="CombatExtended\Jobs\JobDriver_Stabilize.cs" />
@@ -150,6 +160,8 @@
     <Compile Include="CombatExtended\Jobs\JobGiver_ConfigurableHostilityResponse.cs" />
     <Compile Include="CombatExtended\Jobs\JobGiver_SquadDuty.cs" />
     <Compile Include="CombatExtended\Jobs\JobGiver_TakeAndEquip.cs" />
+    <Compile Include="CombatExtended\Loadouts\HoldRecord.cs" />
+    <Compile Include="CombatExtended\Loadouts\HoldTracker.cs" />
     <Compile Include="CombatExtended\Projectiles\ProjectileCE_Explosive_RL.cs" />
     <Compile Include="CombatExtended\ModSettings.cs" />
     <Compile Include="CombatExtended\Recipe_RemoveOldHediff.cs" />
@@ -256,7 +268,8 @@
     <Compile Include="Detours\Detours_VerbTracker.cs" />
     <Compile Include="Detours\Detours_WorkGiver_HunterHunt.cs" />
     <Compile Include="Detours\Detours_WorkGiver_InteractAnimal.cs" />
-    <Compile Include="Harmony\Harmony-HediffComp_TendDuration.cs" />
+    <Compile Include="Harmony\Harmony-HediffComp_TendDuration_Patch.cs" />
+    <Compile Include="Harmony\HarmonyBase.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="CombatExtended\Verbs\Verb_ShootCE.cs" />
     <Compile Include="CombatExtended\Comps\CompAmmoUser.cs" />

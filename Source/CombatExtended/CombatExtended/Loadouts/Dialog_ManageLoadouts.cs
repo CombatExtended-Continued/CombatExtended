@@ -15,7 +15,8 @@ namespace CombatExtended
         Melee,
         Ammo,
         Minified,
-        All
+        Generic,
+        All // All things, won't include generics, can include minified/able now.
     }
 
     [StaticConstructorOnStartup]
@@ -35,10 +36,13 @@ namespace CombatExtended
             _iconRanged = ContentFinder<Texture2D>.Get("UI/Icons/ranged"),
             _iconMelee = ContentFinder<Texture2D>.Get("UI/Icons/melee"),
             _iconMinified = ContentFinder<Texture2D>.Get("UI/Icons/minified"),
+            _iconGeneric = ContentFinder<Texture2D>.Get("UI/Icons/generic"),
             _iconAll = ContentFinder<Texture2D>.Get("UI/Icons/all"),
             _iconAmmoAdd = ContentFinder<Texture2D>.Get("UI/Icons/ammoAdd"),
             _iconSearch = ContentFinder<Texture2D>.Get("UI/Icons/search"),
-            _iconMove = ContentFinder<Texture2D>.Get("UI/Icons/move");
+            _iconMove = ContentFinder<Texture2D>.Get("UI/Icons/move"),
+            _iconPickupDrop = ContentFinder<Texture2D>.Get("UI/Icons/loadoutPickupDrop"),
+            _iconDropExcess = ContentFinder<Texture2D>.Get("UI/Icons/loadoutDropExcess");
 
         private static Regex validNameRegex = new Regex("^[a-zA-Z0-9 '\\-]*$");
         private Vector2 _availableScrollPosition = Vector2.zero;
@@ -53,6 +57,7 @@ namespace CombatExtended
         private float _rowHeight = 30f;
         private Vector2 _slotScrollPosition = Vector2.zero;
         private List<ThingDef> _source;
+        private List<LoadoutGenericDef> _sourceGeneric;
         private SourceSelection _sourceType = SourceSelection.Ranged;
         private float _topAreaHeight = 30f;
 
@@ -185,6 +190,7 @@ namespace CombatExtended
             if (Widgets.ButtonText(newRect, "CE_NewLoadout".Translate()))
             {
                 Loadout loadout = new Loadout();
+                loadout.AddBasicSlots();
                 LoadoutManager.AddLoadout(loadout);
                 CurrentLoadout = loadout;
             }
@@ -280,10 +286,17 @@ namespace CombatExtended
             button.x += 24f + _margin;
             
             // Minified
-            GUI.color = _sourceType == SourceSelection.Ammo ? GenUI.MouseoverColor : Color.white;
+            GUI.color = _sourceType == SourceSelection.Minified ? GenUI.MouseoverColor : Color.white;
             if (Widgets.ButtonImage(button, _iconMinified))
             	SetSource(SourceSelection.Minified);
             TooltipHandler.TipRegion(button, "CE_SourceMinifiedTip".Translate());
+            button.x += 24f + _margin;
+            
+            // Generic
+            GUI.color = _sourceType == SourceSelection.Generic ? GenUI.MouseoverColor : Color.white;
+            if (Widgets.ButtonImage(button, _iconGeneric))
+            	SetSource(SourceSelection.Generic);
+            TooltipHandler.TipRegion(button, "CE_SourceGenericTip".Translate());
             button.x += 24f + _margin;
 
             // All
@@ -318,6 +331,7 @@ namespace CombatExtended
         public void SetSource(SourceSelection source, bool preserveFilter = false)
         {
         	_source = DefDatabase<ThingDef>.AllDefs.Where(x => !x.menuHidden).ToList<ThingDef>();
+        	_sourceGeneric = DefDatabase<LoadoutGenericDef>.AllDefs.OrderBy(g => g.label).ToList<LoadoutGenericDef>();
             if (!preserveFilter)
                 _filter = "";
 
@@ -342,6 +356,10 @@ namespace CombatExtended
                     _source = _source.Where(td => td.Minifiable).ToList();
                     _sourceType = SourceSelection.Minified;
                     break;
+                
+                case SourceSelection.Generic:
+                    _sourceType = SourceSelection.Generic;
+                    break;
 
                 case SourceSelection.All:
                 default:
@@ -358,12 +376,12 @@ namespace CombatExtended
         {
             if (slot == null)
                 return;
-            string count = GUI.TextField(canvas, slot.Count.ToString());
-            TooltipHandler.TipRegion(canvas, "CE_CountFieldTip".Translate(slot.Count));
+            string count = GUI.TextField(canvas, slot.count.ToString());
+            TooltipHandler.TipRegion(canvas, "CE_CountFieldTip".Translate(slot.count));
             int countInt;
             if (int.TryParse(count, out countInt))
             {
-                slot.Count = countInt;
+                slot.count = countInt;
             }
         }
 
@@ -408,6 +426,11 @@ namespace CombatExtended
                 countRect.xMin - _iconSize - _margin,
                 row.yMin + (row.height - _iconSize) / 2f,
                 _iconSize, _iconSize);
+            
+            Rect countModeRect = new Rect(
+            	ammoRect.xMin - _iconSize - _margin,
+            	row.yMin + (row.height - _iconSize) / 2f,
+            	_iconSize, _iconSize);
 
             Rect deleteRect = new Rect(countRect.xMax + _margin, row.yMin + (row.height - _iconSize) / 2f, _iconSize, _iconSize);
 
@@ -425,19 +448,19 @@ namespace CombatExtended
             if (!Mouse.IsOver(deleteRect))
             {
                 Widgets.DrawHighlightIfMouseover(row);
-                TooltipHandler.TipRegion(row, slot.Def.GetWeightAndBulkTip(slot.Count));
+                TooltipHandler.TipRegion(row, slot.genericDef != null ? slot.genericDef.GetWeightAndBulkTip(slot.count) : slot.thingDef.GetWeightAndBulkTip(slot.count));
             }
 
             // label
             Text.Anchor = TextAnchor.MiddleLeft;
-            Widgets.Label(labelRect, slot.Def.LabelCap);
+            Widgets.Label(labelRect, slot.LabelCap);
             Text.Anchor = TextAnchor.UpperLeft;
 
             // easy ammo adder, ranged weapons only
-            if (slot.Def.IsRangedWeapon)
+            if (slot.thingDef != null && slot.thingDef.IsRangedWeapon)
             {
                 // make sure there's an ammoset defined
-                AmmoSetDef ammoSet = ((slot.Def.GetCompProperties<CompProperties_AmmoUser>() == null) ? null : slot.Def.GetCompProperties<CompProperties_AmmoUser>().ammoSet);
+                AmmoSetDef ammoSet = ((slot.thingDef.GetCompProperties<CompProperties_AmmoUser>() == null) ? null : slot.thingDef.GetCompProperties<CompProperties_AmmoUser>().ammoSet);
 
                 bool? temp = !((((ammoSet == null) ? null : ammoSet.ammoTypes)).NullOrEmpty());
 
@@ -454,14 +477,32 @@ namespace CombatExtended
                                 CurrentLoadout.AddSlot(new LoadoutSlot(link.ammo));
                             }));
                         }
+                        // Add in the generic for this gun.
+                        LoadoutGenericDef generic = DefDatabase<LoadoutGenericDef>.GetNamed("GenericAmmo-" + slot.thingDef.defName);
+                        if (generic != null)
+                        	Log.Message(generic.LabelCap);
+                        	options.Add(new FloatMenuOption(generic.LabelCap, delegate
+							{
+                        		CurrentLoadout.AddSlot(new LoadoutSlot(generic));
+                            }));
 
-                        Find.WindowStack.Add(new FloatMenu(options, "CE_AddAmmoFor".Translate(slot.Def.LabelCap)));
+                        Find.WindowStack.Add(new FloatMenu(options, "CE_AddAmmoFor".Translate(slot.thingDef.LabelCap)));
                     }
                 }
             }
 
             // count
             DrawCountField(countRect, slot);
+            
+            // toggle count mode
+            if (slot.genericDef != null)
+            {
+	            Texture2D curModeIcon = slot.countType == LoadoutCountType.dropExcess ? _iconDropExcess : _iconPickupDrop;
+	            string tipString = slot.countType == LoadoutCountType.dropExcess ? "Drop Excess" : "Pickup Missing and Drop Excess";
+	            if (Widgets.ButtonImage(countModeRect, curModeIcon))
+	            	slot.countType = slot.countType == LoadoutCountType.dropExcess ? LoadoutCountType.pickupDrop : LoadoutCountType.dropExcess;
+	            TooltipHandler.TipRegion(countModeRect, tipString);
+            }
 
             // delete
             if (Mouse.IsOver(deleteRect))
@@ -557,43 +598,60 @@ namespace CombatExtended
 
         private void DrawSlotSelection(Rect canvas)
         {
+        	int count = _sourceType == SourceSelection.Generic ? _sourceGeneric.Count : _source.Count;
             GUI.DrawTexture(canvas, _darkBackground);
-
-            if (_source.NullOrEmpty())
+            
+            if ((_sourceType != SourceSelection.Generic && _source.NullOrEmpty()) || (_sourceType == SourceSelection.Generic && _sourceGeneric.NullOrEmpty()))
                 return;
-
+            
             Rect viewRect = new Rect(canvas);
             viewRect.width -= 16f;
-            viewRect.height = _source.Count * _rowHeight;
+            viewRect.height = count * _rowHeight;
 
             Widgets.BeginScrollView(canvas, ref _availableScrollPosition, viewRect.AtZero());
             int startRow = (int)Math.Floor((decimal)(_availableScrollPosition.y / _rowHeight));
             startRow = (startRow < 0) ? 0 : startRow;
             int endRow = startRow + (int)(Math.Ceiling((decimal)(canvas.height / _rowHeight)));
-            endRow = (endRow > _source.Count) ? _source.Count : endRow;
+            endRow = (endRow > count) ? count : endRow;
             for (int i = startRow; i < endRow; i++)
             {
                 // gray out weapons not in stock
                 Color baseColor = GUI.color;
-                if (Find.VisibleMap.listerThings.AllThings.FindAll(x => x.GetInnerIfMinified().def == _source[i] && !x.def.Minifiable).Count <= 0)
-                    GUI.color = Color.gray;
+                if (_sourceType == SourceSelection.Generic)
+                {
+                	if (Find.VisibleMap.listerThings.AllThings.FindAll(x => _sourceGeneric[i].lambda(x.GetInnerIfMinified().def) && !x.def.Minifiable).Count <= 0)
+                		GUI.color = Color.gray;
+                } else {
+	                if (Find.VisibleMap.listerThings.AllThings.FindAll(x => x.GetInnerIfMinified().def == _source[i] && !x.def.Minifiable).Count <= 0)
+	                    GUI.color = Color.gray;
+                }
 
                 Rect row = new Rect(0f, i * _rowHeight, canvas.width, _rowHeight);
                 Rect labelRect = new Rect(row);
-                TooltipHandler.TipRegion(row, _source[i].GetWeightAndBulkTip());
+                if (_sourceType == SourceSelection.Generic)
+                	TooltipHandler.TipRegion(row, _sourceGeneric[i].GetWeightAndBulkTip());
+                else
+                	TooltipHandler.TipRegion(row, _source[i].GetWeightAndBulkTip());
 
                 labelRect.xMin += _margin;
                 if (i % 2 == 0)
                     GUI.DrawTexture(row, _darkBackground);
 
                 Text.Anchor = TextAnchor.MiddleLeft;
-                Widgets.Label(labelRect, _source[i].LabelCap);
+                if (_sourceType == SourceSelection.Generic)
+                	Widgets.Label(labelRect, _sourceGeneric[i].LabelCap);
+                else
+	                Widgets.Label(labelRect, _source[i].LabelCap);
                 Text.Anchor = TextAnchor.UpperLeft;
 
                 Widgets.DrawHighlightIfMouseover(row);
                 if (Widgets.ButtonInvisible(row))
                 {
-                    LoadoutSlot slot = new LoadoutSlot(_source[i], 1);
+                	LoadoutSlot slot;
+                	if (_sourceType == SourceSelection.Generic)
+                		slot = new LoadoutSlot(_sourceGeneric[i]);
+                	else
+                    	slot = new LoadoutSlot(_source[i]);
                     CurrentLoadout.AddSlot(slot);
                 }
                 // revert to original color

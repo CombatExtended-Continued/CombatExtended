@@ -338,8 +338,9 @@ namespace CombatExtended
             }
         }
         
+        //TODO: This needs to use pawn.GetExcessItem() (an incomplete interface) to pick an item.
+        // For now this code has been altered to work with static loadout entries only and doesn't know about generics nor HoldTracker stuff.
         private const int ticksBeforeDropRaw = 40000;
-
         public static Thing RandomNonLoadoutNonEquipment(this Pawn pawn, out int stackSizeToBeRemoved)
         {
         	var loadout = pawn.GetLoadout();
@@ -352,9 +353,10 @@ namespace CombatExtended
             if (loadout != null)
             {
                 bool allowDropRaw = Find.TickManager.TicksGame > pawn.mindState?.lastInventoryRawFoodUseTick + ticksBeforeDropRaw;
-                Thing thingToRemove = container.FirstOrDefault(t => 
+                //TODO: Incomplete handling.
+                Thing thingToRemove = container.FirstOrDefault(t =>
                     (allowDropRaw || !t.def.IsNutritionGivingIngestible || t.def.ingestible.preferability > FoodPreferability.RawTasty)
-                    && !loadout.Slots.Any(s => s.Def == t.GetInnerIfMinified().def));
+                    && !loadout.Slots.Any(s => s.thingDef != null && s.thingDef == t.GetInnerIfMinified().def));
                 if (thingToRemove != null)
                 {
                 	stackSizeToBeRemoved = -2;
@@ -362,25 +364,28 @@ namespace CombatExtended
                 }
                 
                 // Find and drop excess items
-                foreach (LoadoutSlot slot in loadout.Slots)
+                foreach (LoadoutSlot slot in loadout.Slots.Where(s => s.thingDef != null))
                 {
-                    int numContained = container.TotalStackCountOfDef(slot.Def);
+	                //TODO: Incomplete handling.
+                    int numContained = container.TotalStackCountOfDef(slot.thingDef);
 
                     // Add currently equipped gun
                     if (pawn.equipment != null && pawn.equipment.Primary != null)
                     {
-                        if (pawn.equipment.Primary.def == slot.Def)
+                        //TODO: Incomplete handling.
+                    	if (pawn.equipment.Primary.def == slot.thingDef)
                         {
                             numContained++;
                         }
                     }
                     // Drop excess items
-                    if(numContained > slot.Count)
+                    if(numContained > slot.count)
                     {
-                    	Thing thing = container.FirstOrDefault(x => x.GetInnerIfMinified().def == slot.Def);
+                    	//TODO: Incomplete handling.
+                    	Thing thing = container.FirstOrDefault(x => x.GetInnerIfMinified().def == slot.thingDef);
                         if (thing != null)
                         {
-                        	stackSizeToBeRemoved = numContained - slot.Count;
+                        	stackSizeToBeRemoved = numContained - slot.count;
                         	return thing;
                         }
                     }

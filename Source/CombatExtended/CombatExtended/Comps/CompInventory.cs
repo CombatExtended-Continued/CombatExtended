@@ -16,6 +16,8 @@ namespace CombatExtended
         private Pawn parentPawnInt = null;
         private bool initializedLoadouts = false;
         private int ticksToInitLoadout = 5;         // Generate loadouts this many ticks after spawning
+        private const int CLEANUPTICKINTERVAL = GenTicks.TickLongInterval;
+        private int ticksToNextCleanUp = GenTicks.TicksAbs;
         private float currentWeightCached;
         private float currentBulkCached;
         private List<Thing> ammoListCached = new List<Thing>();
@@ -177,6 +179,9 @@ namespace CombatExtended
                 ammoListCached.Clear();
                 meleeWeaponListCached.Clear();
                 rangedWeaponListCached.Clear();
+                Dictionary<ThingDef, HoldRecord> recs;
+                if (!HoldTracker.tracker.TryGetValue(parentPawn, out recs))
+                	recs = null;
                 foreach (Thing thing in parentPawn.inventory.innerContainer)
                 {
                     // Check for weapons
@@ -210,6 +215,15 @@ namespace CombatExtended
                     {
                         ammoListCached.Add(thing);
                     }
+					if (recs != null)
+					{
+						HoldRecord rec;
+						if (recs.TryGetValue(thing.def, out rec))
+						{
+							if (!rec.pickedUp)
+								rec.pickedUp = true;
+						}
+					}
                 }
             }
             currentBulkCached = newBulk;
@@ -395,6 +409,13 @@ namespace CombatExtended
                 }
                 initializedLoadouts = true;
             }
+            if (GenTicks.TicksAbs >= ticksToNextCleanUp)
+            {
+	            // Ask HoldTracker to clean itself up...
+	            parentPawn.HoldTrackerCleanUp();
+	            ticksToNextCleanUp = GenTicks.TicksAbs + CLEANUPTICKINTERVAL;
+            }
+            
             //Log.Message("CE-RD :: pre-base.comptick");
             base.CompTick();
             //Log.Message("CE-RD :: post-base.comptick");
