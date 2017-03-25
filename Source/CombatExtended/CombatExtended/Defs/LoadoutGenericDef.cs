@@ -5,23 +5,13 @@ using System.Linq.Expressions;
 using RimWorld;
 using Verse;
 
-/* Was originally designed to take information from XML and on game startup compile the string to a linq but an apt method of doing that wasn't found.
- * Now each def is generated programatically and this *should* catch new guns and ammo from other mods.
- * Unfortunately an issue remains that if you create a situation where the sets of ThingDefs that two generics create, say set1 and set2.
- *  If set1 != set2 && set1 intersect set2 != null then the loadouts won't quite function right.
- * The first pass on generics had generics define an upper bound so that if you had a specific covered by a generic and the specific's count was > generic
- *  no more items would get picked up.  If the specific count < generic count then the generic would pick up generic desired count - specific have count.
- * The current system is to count up as when the other system failed a drop/pickup loop could start.  Now with an attempt to fill out each slot
- * instead not everything desired will be picked up but not loops should start.
+/* Keep the following list up to date:
+ * Currently defined Generics:
+ * -for Meals - Pawns auto fetch a best food, generaly meals
+ * -for Raw Foodstuff - Pawns can auto fetch raw food if no meals, also will fetch for animal training.
+ * -for Drugs - Pawns can auto fetch drugs to fit a schedule.
+ * -for Ammo of each Gun that uses CombatExtended Ammo.  Created programattically so should automatically get new guns/ammo.
  */
- 
- /* Keep the following list up to date!  Try to avoid defining overlapping sets.  You will get a warning on startup if a very bad overlap occurs.
-  * Currently defined Generics:
-  * -for Meals - Pawns auto fetch a best food, generaly meals
-  * -for Raw Foodstuff - Pawns can auto fetch raw food if no meals, also will fetch for animal training.
-  * -for Drugs - Pawns can auto fetch drugs to fit a schedule.
-  * -for Ammo of each Gun that uses CombatExtended Ammo.  Created programattically so should automatically get new guns/ammo.
-  */
 namespace CombatExtended
 {
 	/// <summary>
@@ -46,9 +36,6 @@ namespace CombatExtended
 		internal static string dividingString = "CE_Generic_Divider".Translate();
 		internal bool isAmmo;
 		
-		// (ProfoundDarkness) overlaps and conflicts are better handled later on so disabled but could still prove useful.
-		// Having a key but a false value indicates that it's a perfect conflict.  True indicates imperfect conflict.  No key means no conflict.
-		//public readonly Dictionary<LoadoutGenericDef, bool> conflicts = new Dictionary<LoadoutGenericDef, bool>();
 		#endregion
 		
 		#region Constructors
@@ -77,8 +64,8 @@ namespace CombatExtended
 			generic.label = "CE_Generic_RawFood".Translate();
 			// Exclude drugs and corpses.  Also exclude any food worse than RawBad as in testing the pawns would not even pick it up for training.
 			generic._lambda = td => td.IsNutritionGivingIngestible && td.ingestible.preferability <= FoodPreferability.RawTasty && td.ingestible.HumanEdible && td.plant == null && !td.IsDrug && !td.IsCorpse;
-			//generic.defaultCount = Convert.ToInt32(Math.Floor(targetNutrition / everything.Where(td => generic.lambda(td)).Average(td => td.ingestible.nutrition)));
-			generic.defaultCount = 1;
+			generic.defaultCount = Convert.ToInt32(Math.Floor(targetNutrition / everything.Where(td => generic.lambda(td)).Average(td => td.ingestible.nutrition)));
+			//generic.defaultCount = 1;
 			generic.isBasic = true;
 			
 			defs.Add(generic);
@@ -86,6 +73,7 @@ namespace CombatExtended
 
 			generic = new LoadoutGenericDef();
 			generic.defName = "GenericDrugs";
+			generic.defaultCount = 3;
 			generic.description = "Generic Loadout for Drugs.  Intended for compatibility with pawns automatically picking up drugs in compliance with drug policies.";
 			generic.label = "CE_Generic_Drugs".Translate();
 			// not really sure what defaultCount should be so leaving unset.
@@ -114,10 +102,6 @@ namespace CombatExtended
 				generic.label = string.Format(ammoLabel, gun.LabelCap);
 				generic.itemString = gun.LabelCap;
 				generic.defaultCount = gun.GetCompProperties<CompProperties_AmmoUser>().magazineSize;
-				//Consider all ammos that the gun can fire, take the average.  Could also use the min or max...  //TODO: Decide if max or average is apt.
-				//generic.defaultCount = Convert.ToInt32(Math.Floor(DefDatabase<AmmoDef>.AllDefs
-				//                                                  .Where(ad => gun.GetCompProperties<CompProperties_AmmoUser>().ammoSet.ammoTypes.Contains(ad))
-				//                                                  .Average(ad => ad.defaultAmmoCount)));
 				generic.defaultCountType = LoadoutCountType.pickupDrop; // we want ammo to get picked up.
 				//generic._lambda = td => td is AmmoDef && gun.GetCompProperties<CompProperties_AmmoUser>().ammoSet.ammoTypes.Contains(td);
 				generic._lambda = td => gun.GetCompProperties<CompProperties_AmmoUser>().ammoSet.ammoTypes.Any(al => al.ammo == td);
@@ -125,58 +109,6 @@ namespace CombatExtended
 				defs.Add(generic);
 				//Log.Message(string.Concat("CombatExtended :: LoadoutGenericDef :: ", generic.LabelCap, " list: ", string.Join(", ", DefDatabase<ThingDef>.AllDefs.Where(t => generic.lambda(t)).Select(t => t.label).ToArray())));
 			}
-			
-			/* // (ProfoundDarkness) The methodology I'm using for LoadoutSlots allows for duplicates and partial overlaps (technically) so this code is less useful.
-			// check for overlapping case and issue a warning if there is one... (yeah this is horribly inefficient but only happens once per game.)
-			// First iteration looks for a merge-able perfect conflict and merges them when found.
-			for (int i = 0; i <= defs.Count - 1; i++)
-			{
-				IEnumerable<ThingDef> a = everything.Where(t => defs[i].lambda(t));
-				for (int j = i+1; j <= defs.Count - 1; j++)
-				{
-					IEnumerable<ThingDef> b = everything.Where(t => defs[j].lambda(t));
-					IEnumerable<ThingDef> c = a.Intersect(b);
-					if (c.Any())
-					{
-						if (a.Count() == c.Count() && b.Count() == c.Count() && defs[i].isAmmo && defs[j].isAmmo) // perfect conflict in ammo, can merge...
-						{
-							defs[i].itemString = string.Concat(defs[i].itemString, dividingString, defs[j].itemString);
-							defs[i].label = string.Format(ammoLabel, defs[i].itemString);
-							defs[i].description = string.Format(ammoDescription, defs[i].itemString);
-							defs.RemoveAt(j);
-							j--;
-						}
-					}
-				}
-			}
-			
-			// this iteration marks conflicts that couldn't be merged and issues warnings.
-			for (int i = 0; i <= defs.Count - 1; i++)
-			{
-				IEnumerable<ThingDef> a = everything.Where(t => defs[i].lambda(t));
-				for (int j = i+1; j <= defs.Count - 1; j++)
-				{
-					IEnumerable<ThingDef> b = everything.Where(t => defs[j].lambda(t));
-					IEnumerable<ThingDef> c = a.Intersect(b);
-					if (c.Any())
-					{
-						if (a.Count() != c.Count() && b.Count() != c.Count())
-						{
-							defs[i].conflicts.Add(defs[j], true);
-							defs[j].conflicts.Add(defs[i], true);
-							Log.Warning(string.Concat("CombatExtended :: LoadoutGenericDef :: ", defs[i].LabelCap, " and ", defs[j].LabelCap, 
-								" share some members but are not identical and thus may cause problems with loadouts.  The following items are contained in both: ",
-								string.Join(", ", c.Select(td => td.defName).ToArray())));
-						} else {
-							defs[i].conflicts.Add(defs[j], false);
-							defs[j].conflicts.Add(defs[i], false);
-							Log.Warning(string.Concat("CombatExtended :: LoadoutGenericDef :: ", defs[i].LabelCap, " and ", defs[j].LabelCap,
-							                          " are a perfect conflict.  At the moment the code isn't aware of dealing with these but it can be if an issue is filed."));
-						}
-					}
-				}
-			}
-			*/
 			
 			DefDatabase<LoadoutGenericDef>.Add(defs);
 		}

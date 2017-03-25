@@ -107,7 +107,9 @@ namespace CombatExtended
         	Loadout dest = new Loadout(newName);
         	dest.defaultLoadout = source.defaultLoadout;
         	dest.canBeDeleted = source.canBeDeleted;
-        	dest.Slots.RemoveAll(s => true); // since a new Loadout has some default slots, drop them during the copy.
+        	dest._slots = new List<LoadoutSlot>();
+        	foreach(LoadoutSlot slot in source.Slots)
+        		dest.AddSlot(slot.Copy());
         	return dest;
         }
         

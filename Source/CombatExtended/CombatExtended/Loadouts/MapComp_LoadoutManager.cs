@@ -15,7 +15,9 @@ namespace CombatExtended
         private Dictionary<Pawn, Loadout> _assignedLoadouts = new Dictionary<Pawn, Loadout>();
         private List<LoadoutAssignment> _assignedLoadoutsScribeHelper = new List<LoadoutAssignment>();
         private List<Loadout> _loadouts = new List<Loadout>();
-
+		private Dictionary<Pawn, List<HoldRecord>> _tracker = new Dictionary<Pawn, List<HoldRecord>>(); // track what the pawn is holding to not drop.
+		private List<HoldTrackerAssignment> _assignedHoldTrackerScribeHelper = new List<HoldTrackerAssignment>();
+		
         #endregion Fields
 
         #region Constructors
@@ -47,16 +49,48 @@ namespace CombatExtended
         public static Loadout DefaultLoadout { get { return Instance._loadouts.First( l => l.defaultLoadout ); } }
 
         public static List<Loadout> Loadouts { get { return Instance._loadouts; } }
-
+        
         #endregion Properties
 
         #region Methods
-
+        
+        public static List<HoldRecord> GetHoldRecords(Pawn pawn)
+        {
+        	List<HoldRecord> recs;
+        	if (Instance._tracker.TryGetValue(pawn, out recs))
+        		return recs;
+        	return null;
+        }
+        
+        public static void PurgeHoldTrackerRolls()
+        {
+        	List<Pawn> removeList = new List<Pawn>(Instance._tracker.Keys.Count);
+        	foreach (Pawn pawn in Instance._tracker.Keys)
+        	{
+        		if (pawn.Dead)
+    	         	removeList.Add(pawn); // remove dead pawns from the rolls
+        		else if (!Instance._tracker[pawn].Any()) // remove pawns with no HoldRecords stored.
+        			removeList.Add(pawn);
+        	}
+        	foreach (Pawn pawn in removeList)
+        		Instance._tracker.Remove(pawn);
+        }
+        
+        public static bool HasHoldRecords(Pawn pawn)
+        {
+        	return Instance._tracker.ContainsKey(pawn);
+        }
+        
+        public static void AddHoldRecords(Pawn pawn, List<HoldRecord> newRecords)
+        {
+        	Instance._tracker.Add(pawn, newRecords);
+        }
+        
         public static void AddLoadout( Loadout loadout )
         {
             Instance._loadouts.Add( loadout );
         }
-
+        
         public static void RemoveLoadout( Loadout loadout )
         {
             Instance._loadouts.Remove( loadout );
@@ -71,6 +105,32 @@ namespace CombatExtended
 
         public override void ExposeData()
         {
+        	// (ProfoundDarkness) btw I did try to just store the dictionary but that code path just doesn't seem to work very well.  I couldn't get it to work so I modeled my dictionary saving on Fluffy's method.
+        	
+        	// clear out pawns that don't fit anymore.
+        	if (Scribe.mode == LoadSaveMode.Saving)
+        		PurgeHoldTrackerRolls();
+        	
+        	// convert the dictionary to a list of key/value objects when saving.
+        	if (Scribe.mode == LoadSaveMode.Saving)
+        		Instance._assignedHoldTrackerScribeHelper = Instance._tracker.Select(pair => new HoldTrackerAssignment() { pawn = pair.Key, recs = pair.Value }).ToList();
+        	
+        	// load/save our helper list.
+        	Scribe_Collections.LookList(ref Instance._assignedHoldTrackerScribeHelper, "trackers", LookMode.Deep);
+        	
+        	// when loading, cleanup the list of invalid references and then convert it back to a dictionary.
+            if (Scribe.mode == LoadSaveMode.PostLoadInit)
+            {
+                // removes assignments that for some reason have a null value.
+                IEnumerable<HoldTrackerAssignment> temp = Instance._assignedHoldTrackerScribeHelper
+                    .Where(a => (a.Valid == true) && (!a.pawn.Dead) && (!a.pawn.DestroyedOrNull()) );
+                Instance._tracker = temp.ToDictionary(k => k.pawn, v => v.recs );
+            }
+            
+            
+            
+            // ---Original loadout scribe below code here---
+
             ////// List of pawns that are out of the map
             ////List<string> pawnsOutOfMap_IDs = new List<string>();
 

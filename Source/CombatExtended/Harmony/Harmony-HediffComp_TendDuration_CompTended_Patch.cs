@@ -1,6 +1,5 @@
-﻿//using System.Collections;
+﻿using System;
 using System.Collections.Generic;
-using System.Reflection;
 using System.Reflection.Emit;
 using Harmony;
 using Verse;
@@ -11,13 +10,13 @@ namespace CombatExtended.Harmony
 	 * Specifically the (decompiled) line this.tendQuality = Mathf.Clamp01(quality + Rand.Range(-0.25f, 0.25f));
 	 * More specifically the value -0.25f and 0.25f
 	 */ 
-	[HarmonyPatch(typeof(HediffComp_TendDuration))]
-	[HarmonyPatch("CompTended")]
-	static class HediffComp_TendDuration_Patch
+	[HarmonyPatch(typeof(HediffComp_TendDuration))] // Target class for patching, generally required.
+	[HarmonyPatch("CompTended")] // Target method for patching, generally required.
+	[HarmonyPatch(new Type[] {typeof(float), typeof(int)})] // Target method signature (arguments), not generally required if there is only one method with the target name in the target class.
+	static class HediffComp_TendDuration_CompTended_Patch
 	{
-		
-		[HarmonyTranspiler]
-		static IEnumerable<CodeInstruction> CompTended_Patch(IEnumerable<CodeInstruction> instructions)
+		// can name the method something else but then requires the attribute [HarmonyTranspiler]
+		static IEnumerable<CodeInstruction> Transpiler(IEnumerable<CodeInstruction> instructions)
 		{
 			int countReplace = 0;
 			foreach (CodeInstruction instruction in instructions)

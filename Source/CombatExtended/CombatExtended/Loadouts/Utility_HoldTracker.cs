@@ -10,25 +10,23 @@ namespace CombatExtended
     /// <summary>
     /// Just wraps an int so that the counts can be modified in the Dictionary without ending up modifying the Dictionary.
     /// </summary>
-    public class ThingDefCounter
+    public class Integer
     {
-    	public int count;
-    	public ThingDefCounter(int num)
+    	public int value;
+    	public Integer(int num)
     	{
-    		count = num;
+    		value = num;
     	}
     }
-        
-	/// <summary>
+
+    /// <summary>
 	/// Primary responsibility of HoldTracker concept is to remember any items that the Pawn was instructed (forced) to pickup while having a loadout.
 	/// </summary>
 	/// <remarks>
 	/// Secondarily is also the primary party to consult when looking to automatically drop items since it is aware of HoldTracker concept as well as Loadout(Specific/Generic) concepts.
 	/// </remarks>
-	static class HoldTracker
+	static class Utility_HoldTracker
 	{
-		internal static readonly Dictionary<Pawn, Dictionary<ThingDef, HoldRecord>> tracker = new Dictionary<Pawn, Dictionary<ThingDef, HoldRecord>>(); // track what the pawn is holding to not drop.
-		
 		/// <summary>
 		/// Used when a pawn is about to be ordered to pickup a Thing.
 		/// </summary>
@@ -45,43 +43,42 @@ namespace CombatExtended
 				return;
 			
 			// find out if we are already remembering this thing on this pawn...
-			Dictionary<ThingDef,HoldRecord> recs;
-			if (tracker.TryGetValue(pawn, out recs))
+			List<HoldRecord> recs = LoadoutManager.GetHoldRecords(pawn);
+			
+			if (recs == null)
 			{
-				HoldRecord testRec;
-				if (recs.TryGetValue(job.targetA.Thing.def, out testRec))
-				{
-					testRec.count += job.count;
-					return;
-				}
-			} else {
-				// we don't have any data for this pawn so generate the skeleton.
-				recs = new Dictionary<ThingDef, HoldRecord>();
-				tracker.Add(pawn, recs);
+				recs = new List<HoldRecord>();
+				LoadoutManager.AddHoldRecords(pawn, recs);
 			}
 			
+			// could check isHeld but that tells us if there is a record AND it's been picked up.
+			HoldRecord rec = recs.FirstOrDefault(hr => hr.thingDef == job.targetA.Thing.def);
+			if (rec != null)
+			{
+				rec.count += job.count;
+				return;
+			}
 			// if we got this far we know that there isn't a record being stored for this thingDef...
-			HoldRecord rec = new HoldRecord(job.targetA.Thing.def, job.count);
-			recs.Add(job.targetA.Thing.def, rec);
+			rec = new HoldRecord(job.targetA.Thing.def, job.count);
+			recs.Add(rec);
 			Log.Message(string.Concat("Job was issued to pickup this record: ", rec));
 		}
 		
 		/// <summary>
-		/// Simply reports back if the pawn is tracking a held item.
+		/// Simply reports back if the pawn is tracking an item by ThingDef if it's been picked up.
 		/// </summary>
 		/// <param name="pawn">Pawn to check tracking on.</param>
 		/// <param name="thing">Thing who's def should be checked if being held.</param>
 		/// <returns></returns>
 		public static bool HoldTrackerIsHeld(this Pawn pawn, Thing thing)
 		{
-			Dictionary<ThingDef, HoldRecord> recs;
-			if (tracker.TryGetValue(pawn, out recs))
-			{
-				if (recs.ContainsKey(thing.def))
-				    return true;
-			}
+			List<HoldRecord> recs = LoadoutManager.GetHoldRecords(pawn);
+			if (recs != null && recs.Any(hr => hr.thingDef == thing.def))
+			    return true;
 			return false;
 		}
+		
+		
 		
 		/// <summary>
 		/// This should be called periodically so that HoldTracker can remove items that are no longer in the inventory via a method which isn't being watched.
@@ -89,21 +86,16 @@ namespace CombatExtended
 		/// <param name="pawn">The pawn who's tracker should be checked.</param>
 		public static void HoldTrackerCleanUp(this Pawn pawn)
 		{
-			Dictionary<ThingDef, HoldRecord> recs;
+			LoadoutManager.PurgeHoldTrackerRolls(); //TODO: Have this only run once per day.
+			List<HoldRecord> recs = LoadoutManager.GetHoldRecords(pawn);
 			CompInventory inventory = pawn.TryGetComp<CompInventory>();
-			if (!tracker.TryGetValue(pawn, out recs) || inventory == null)
+			if (recs == null || inventory == null)
 				return;
 			
-			List<ThingDef> killList = new List<ThingDef>(recs.Count); // avoid delays due to expanding memory.  Could take a tiny bit longer to instantiate the list but avoids slowdowns due to growth/copying.
-			foreach (HoldRecord rec in recs.Values)
+			for (int i = recs.Count - 1; i > 0; i--)
 			{
-				if (rec.pickedUp && inventory.container.TotalStackCountOfDef(rec.thingDef) < 0)
-					killList.Add(rec.thingDef);
-			}
-			// do the removal
-			foreach (ThingDef def in killList)
-			{
-				recs.Remove(def);
+				if (recs[i].pickedUp && inventory.container.TotalStackCountOfDef(recs[i].thingDef) <= 0)
+					recs.RemoveAt(i);
 			}
 		}
 		
@@ -114,13 +106,15 @@ namespace CombatExtended
 		/// <param name="thing">Thing who's def should be forgotten.</param>
 		public static void HoldTrackerForget(this Pawn pawn, Thing thing)
 		{
-			Dictionary<ThingDef, HoldRecord> recs;
-			if (tracker.TryGetValue(pawn, out recs))
+			List<HoldRecord> recs = LoadoutManager.GetHoldRecords(pawn);
+			if (recs == null)
 			{
-				HoldRecord rec;
-				if (recs.TryGetValue(thing.def, out rec))
-					recs.Remove(rec.thingDef);
+				Log.Error(string.Concat(pawn.Name, " wasn't being tracked by HoldTracker and tried to forget a ThingDef ", thing.def, "."));
+				return;
 			}
+			HoldRecord rec = recs.FirstOrDefault(hr => hr.thingDef == thing.def);
+			if (rec != null)
+				recs.RemoveAt(recs.IndexOf(rec));
 		}
 		
 		// Methods in this region are related to dropping and need to be both HoldTracker and Loadout aware.  Above here are methods more strictly HoldTracker related.
@@ -140,6 +134,7 @@ namespace CombatExtended
         /// <summary>
         /// Similar to GetExcessThing though narrower in scope.  If there is NOT a loadout which covers the equipped item, it should be dropped. 
         /// </summary>
+		/// <param name="pawn"></param>
         /// <param name="dropEquipment">Thing which should be unequiped.</param>
         /// <returns>bool, true if there is equipment that should be unequipped.</returns>
         static public bool GetExcessEquipment(this Pawn pawn, out ThingWithComps dropEquipment)
@@ -159,6 +154,19 @@ namespace CombatExtended
     		return false;
         }
         
+        
+        /// <summary>
+        /// Shorthand to find out if there is more stuff to drop without caring about what there is to drop.
+        /// </summary>
+        /// <param name="pawn">Pawn who's inventory is to be checked against their Loadout and HoldRecord.</param>
+        /// <returns>bool true indicates something to drop.</returns>
+        public static bool HasAnythingForDrop(this Pawn pawn)
+        {
+        	Thing ignore1;
+        	int ignore2;
+        	return GetAnythingForDrop(pawn, out ignore1, out ignore2);
+        }
+        
         /// <summary>
         /// Called when trying to find something to drop (ie coming back from a caravan).  This is useful even on pawns without a loadout. 
         /// </summary>
@@ -176,15 +184,15 @@ namespace CombatExtended
         	Loadout loadout = pawn.GetLoadout();
         	if (loadout == null || loadout.Slots.NullOrEmpty())
         	{
-        		Dictionary<ThingDef, HoldRecord> recs;
-        		if (HoldTracker.tracker.TryGetValue(pawn, out recs))
+        		List<HoldRecord> recs = LoadoutManager.GetHoldRecords(pawn);
+        		if (recs != null)
         		{
 	        		// hand out any inventory item not covered by a HoldRecord.
 	        		foreach (Thing thing in pawn.inventory.innerContainer)
 	        		{
 	        			int numContained = pawn.inventory.innerContainer.TotalStackCountOfDef(thing.def);
-	        			HoldRecord rec;
-	        			if (!recs.TryGetValue(thing.def, out rec))
+	        			HoldRecord rec = recs.FirstOrDefault(hr => hr.thingDef == thing.def);
+	        			if (rec == null)
 	        			{
 	        				// we don't have a HoldRecord for this thing, drop it.
 	        				dropThing = thing;
@@ -218,27 +226,27 @@ namespace CombatExtended
         /// </summary>
         /// <param name="pawn">Pawn to get the storage information from.</param>
         /// <returns>Dictionary containing keys of ThingDef and values of InventoryCount.</returns>
-        public static Dictionary<ThingDef, ThingDefCounter> GetStorageByThingDef(this Pawn pawn)
+        public static Dictionary<ThingDef, Integer> GetStorageByThingDef(this Pawn pawn)
         {
-        	Dictionary<ThingDef, ThingDefCounter> storage = new Dictionary<ThingDef, ThingDefCounter>();
+        	Dictionary<ThingDef, Integer> storage = new Dictionary<ThingDef, Integer>();
         	CompAmmoUser gun;
 			// get the pawn's weapon.  Also want ammo in the weapon.
         	if (pawn.equipment?.Primary != null)
         	{
-				storage.Add(pawn.equipment.Primary.def, new ThingDefCounter(1));
+				storage.Add(pawn.equipment.Primary.def, new Integer(1));
 				gun = pawn.equipment.Primary.TryGetComp<CompAmmoUser>();
 				if (gun != null)
-					storage.Add(gun.currentAmmo, new ThingDefCounter(gun.curMagCount));
+					storage.Add(gun.currentAmmo, new Integer(gun.curMagCount));
         	}
 			// get the pawn's inventory
         	foreach (Thing thing in pawn.inventory.innerContainer)
 			{
 				if (!storage.ContainsKey(thing.def))
-					storage.Add(thing.def, new ThingDefCounter(0));
-				storage[thing.def].count += thing.stackCount;
+					storage.Add(thing.def, new Integer(0));
+				storage[thing.def].value += thing.stackCount;
 				gun = thing.TryGetComp<CompAmmoUser>();
 				if (gun != null)
-					storage.Add(gun.currentAmmo, new ThingDefCounter(gun.curMagCount));
+					storage.Add(gun.currentAmmo, new Integer(gun.curMagCount));
 			}
         	
 			return storage;
@@ -247,6 +255,7 @@ namespace CombatExtended
         /// <summary>
         /// Find an item that should be dropped from the pawn's inventory and how much to drop.
         /// </summary>
+		/// <param name="pawn"></param>
         /// <param name="dropThing">The thing which should be dropped.</param>
         /// <param name="dropCount">The amount to drop.</param>
         /// <returns>bool, true indicates that the out variables are filled with something to do work on (drop).</returns>
@@ -257,25 +266,22 @@ namespace CombatExtended
 	        //ProfoundDarkness: Thanks to erdelf on the RimWorldMod discord for helping me figure out some dictionary stuff and C# concepts related to 'Primitives' (pass by Value).
         	CompInventory inventory = pawn.TryGetComp<CompInventory>();
         	Loadout loadout = pawn.GetLoadout();
-        	Dictionary<ThingDef, HoldRecord> records;
+        	List<HoldRecord> records = LoadoutManager.GetHoldRecords(pawn);
         	dropThing = null;
         	dropCount = 0;
         	
         	if (inventory == null || inventory.container == null || loadout == null || loadout.Slots.NullOrEmpty())
         		return false;
         	
-        	if (!HoldTracker.tracker.TryGetValue(pawn, out records))
-        		records = new Dictionary<ThingDef, HoldRecord>();
-        	
-        	Dictionary<ThingDef, ThingDefCounter> listing = GetStorageByThingDef(pawn);
+        	Dictionary<ThingDef, Integer> listing = GetStorageByThingDef(pawn);
         	
         	// iterate over specifics and generics and Chip away at the dictionary.
         	foreach (LoadoutSlot slot in loadout.Slots)
         	{
         		if (slot.thingDef != null && listing.ContainsKey(slot.thingDef))
         		{
-					listing[slot.thingDef].count -= slot.count;
-					if (listing[slot.thingDef].count <= 0)
+					listing[slot.thingDef].value -= slot.count;
+					if (listing[slot.thingDef].value <= 0)
 						listing.Remove(slot.thingDef);
         		}
         		if (slot.genericDef != null)
@@ -285,17 +291,14 @@ namespace CombatExtended
 					// find dictionary entries which corespond to covered slot.
 					foreach (ThingDef def in listing.Keys.Where(td => slot.genericDef.lambda(td)))
         			{
-						if (listing[def].count > 0)
-						{
-	        				listing[def].count -= desiredCount;
-	        				if (listing[def].count <= 0)
-	        				{
-	        					desiredCount = 0 - listing[def].count;
-	        					killKeys.Add(def); // the thing in inventory is exausted, forget about it.
-	        				} else {
-	        					break; // we have satisifed this loadout so no need to keep enumerating.
-	        				}
-						}
+        				listing[def].value -= desiredCount;
+        				if (listing[def].value <= 0)
+        				{
+        					desiredCount = 0 - listing[def].value;
+        					killKeys.Add(def); // the thing in inventory is exausted, forget about it.
+        				} else {
+        					break; // we have satisifed this loadout so no need to keep enumerating.
+        				}
         			}
 		        	// cleanup dictionary.
 		        	foreach (ThingDef def in killKeys)
@@ -304,37 +307,50 @@ namespace CombatExtended
         	}
         	
         	// if there is something left in the dictionary, that is what is to be dropped.
+        	// Complicated by the fact that we now consider ammo in guns as part of the inventory...
+        	//TODO: Either set this up so that we don't try to drop ammo from a gun or set up the whole drop routine so it's able to unload the gun and then drop the ammo.
         	if (listing.Any())
         	{
-        		if (tracker.TryGetValue(pawn, out records))
+        		if (records != null)
         		{
         			// look at each remaining 'uneaten' thingdef in pawn's inventory.
         			foreach (ThingDef def in listing.Keys)
         			{
         				// if we have a record (HoldTracker) for that thingdef...
-        				if (records.ContainsKey(def))
+        				foreach (HoldRecord rec in records)
         				{
-        					// and it's count is over what we are holding onto, drop some of it.
-        					if (listing[def].count > records[def].count)
+        					if (rec.thingDef != def)
         					{
-	        					dropThing = pawn.inventory.innerContainer.First(t => t.def == def);
-	        					dropCount = listing[def].count - records[def].count;
-	        					dropCount = dropCount > dropThing.stackCount ? dropThing.stackCount : dropCount;
-	        					return true;
+        						// the item we have extra of has no HoldRecord, drop it.
+		    					dropThing = inventory.container.FirstOrDefault(t => t.def == def);
+		    					if (dropThing != null)
+		    					{
+			    					dropCount = listing[def].value > dropThing.stackCount ? dropThing.stackCount : listing[def].value;
+			    					return true;
+		    					}
+        					} else if (rec.thingDef == def && listing[def].value > rec.count)
+        					{
+        						// the item we have extra of HAS a HoldRecord but the amount carried is above the limit of the HoldRecord, drop extra.
+	        					dropThing = pawn.inventory.innerContainer.FirstOrDefault(t => t.def == def);
+	        					if (dropThing != null)
+	        					{
+		        					dropCount = listing[def].value - rec.count;
+		        					dropCount = dropCount > dropThing.stackCount ? dropThing.stackCount : dropCount;
+		        					return true;
+	        					}
         					}
-        				} else {
-        					// didn't have a HoldTracker record for the thingdef so it's OK to drop.
-        					dropThing = inventory.container.First(t => t.def == def);
-        					dropCount = listing[def].count > dropThing.stackCount ? dropThing.stackCount : listing[def].count;
-        					return true;
         				}
         			}
         		} else {
-	        		// normally this would be bad but at this point we know that there is a thing with a matching def in the inventory and there is something in the dictionary.
-	        		// we want the error since that indicates a violation of assumptions at this point.
-	        		dropThing = inventory.container.First(t => t.def == listing.Keys.First());
-	        		dropCount = listing[listing.Keys.First()].count > dropThing.stackCount ? dropThing.stackCount : listing[listing.Keys.First()].count;
-	        		return true;
+        			foreach (ThingDef def in listing.Keys)
+        			{
+		        		dropThing = inventory.container.FirstOrDefault(t => t.def == def);
+		        		if (dropThing != null)
+		        		{
+			        		dropCount = listing[def].value > dropThing.stackCount ? dropThing.stackCount : listing[def].value;
+			        		return true;
+	        			}
+        			}
         		}
         	} // else
        		return false;

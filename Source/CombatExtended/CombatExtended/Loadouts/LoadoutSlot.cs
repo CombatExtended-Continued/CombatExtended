@@ -24,6 +24,7 @@ namespace CombatExtended
         private const int _defaultCount = 1;
         private int _count;
         private Def _def;
+        private Type _type; // to help with save/load.
         private LoadoutCountType _countType = LoadoutCountType.pickupDrop; // default mode for new loadout slots.
 
         #endregion Fields
@@ -37,6 +38,7 @@ namespace CombatExtended
         /// <param name="count">int indicating number of items of ThingDef to store.</param>
         public LoadoutSlot( ThingDef def, int count = 1 )
         {
+        	_type = typeof(ThingDef);
             _count = count;
             _def = def;
 
@@ -54,6 +56,7 @@ namespace CombatExtended
         /// <param name="count">Optional int how many should be picked up. If left blank then the default value from the LoadoutGenericDef is used.</param>
         public LoadoutSlot(LoadoutGenericDef def, int count = 0)
         {
+        	_type = typeof(LoadoutGenericDef);
         	if ( count < 1)
         		count = def.defaultCount;
         	
@@ -101,7 +104,16 @@ namespace CombatExtended
         public void ExposeData()
         {
             Scribe_Values.LookValue( ref _count, "count", _defaultCount );
-            Scribe_Defs.LookDef( ref _def, "def" );
+            Scribe_Values.LookValue(ref _type, "DefType");
+            ThingDef td = thingDef;
+            LoadoutGenericDef gd = genericDef;
+            if (_type == typeof(ThingDef))
+            	Scribe_Defs.LookDef(ref td, "def");
+            if (_type == typeof(LoadoutGenericDef))
+            	Scribe_Defs.LookDef(ref gd, "def");
+            if (Scribe.mode == LoadSaveMode.LoadingVars)
+            	_def = (_type == typeof(ThingDef) ? td as Def : gd as Def);
+            //Scribe_Defs.LookDef( ref _def, "def" );
             
             // when saving _def is defined.  When loading _def should have gotten it's contents by now.
             if (genericDef != null)

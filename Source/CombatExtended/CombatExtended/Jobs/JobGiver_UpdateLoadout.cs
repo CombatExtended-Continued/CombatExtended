@@ -8,15 +8,6 @@ using Verse.AI;
 
 namespace CombatExtended
 {
-	/* Note (ProfoundDarkness):
-	 * The concept with Loadouts now includes both Specifics (LoadoutSlot.thingDef != null) and Generics (LoadoutSlot.genericDef != null).
-	 * As I was unable to handle an edge case (not currently present in CombatExtended) Generics do not define an upper bound for items to
-	 * carry and are instead filled out ON TOP OF Specifics rather than what was the case before of only picking up an item for a Generic
-	 * if the sum of all fulfilled Specifics were < the amount Generics wanted.
-	 * 
-	 * Pickup code is still in JobGiver_UpdateLoadout but drop code is now in HoldTracker since there are more than just Loadouts at play
-	 * when dropping. HoldTracker should be consulted for ANY dropping activities related to pawn inventory.
-	 */
     public class JobGiver_UpdateLoadout : ThinkNode_JobGiver
     {
     	#region InnerClasses
@@ -80,7 +71,6 @@ namespace CombatExtended
             closestThing = null;
             count = 0;
 			carriedBy = null;
-            int want = 0;
 			List<LoadoutSlot> processed = new List<LoadoutSlot>();  // not sure if this is worth it, probably.
 
             CompInventory inventory = pawn.TryGetComp<CompInventory>();
@@ -89,56 +79,63 @@ namespace CombatExtended
             	Loadout loadout = pawn.GetLoadout();
                 if (loadout != null && !loadout.Slots.NullOrEmpty())
                 {
-	            	// Need to generate a dictionary and nibble like when dropping in order to allow for conflicting loadouts to work properly.
-            		Dictionary<ThingDef, ThingDefCounter> listing = new Dictionary<ThingDef, ThingDefCounter>();
+					// Need to generate a dictionary and nibble like when dropping in order to allow for conflicting loadouts to work properly.
+					Dictionary<ThingDef, Integer> listing = pawn.GetStorageByThingDef();
             		
-            		// process each loadout slot...
-                	foreach (LoadoutSlot curSlot in loadout.Slots)
+					// process each loadout slot... (While the LoadoutSlot.countType property only really makes sense in the context of genericDef != null, it should be the correct value (pickupDrop) on .thingDef != null.)
+					foreach (LoadoutSlot curSlot in loadout.Slots.Where(s => s.countType != LoadoutCountType.dropExcess))
                 	{
                     	Thing curThing = null;
                     	ItemPriority curPriority = ItemPriority.None;
                     	Pawn curCarrier = null;
                    		int wantCount = curSlot.count;
-                    	
-                    	if (curSlot.genericDef != null)
+
+						if (curSlot.thingDef != null)
+						{
+							if (listing.ContainsKey(curSlot.thingDef))
+							{
+								int amount = listing[curSlot.thingDef].value >= wantCount ? wantCount : wantCount - listing[curSlot.thingDef].value;
+								listing[curSlot.thingDef].value -= amount;
+								wantCount -= amount;
+								if (listing[curSlot.thingDef].value <= 0)
+									listing.Remove(curSlot.thingDef);
+							}
+						}
+						if (curSlot.genericDef != null)
                     	{
-                    		if (curSlot.countType == LoadoutCountType.dropExcess)
-                    			continue;
-                    		foreach(ThingDef def in listing.Keys.Where(td => curSlot.genericDef.lambda(td)))
-                    		{
-                    			if (listing[def].count > 0)
-                    			{
-                    				int amount = wantCount > listing[def].count ? listing[def].count : wantCount - listing[def].count;
-                    				listing[def].count -= amount;
-                    				wantCount -= amount;
-                    				if (wantCount <= 0)
-                    					break; // stop enumerating if the loadout has been satisfied.
-                    			}
-                    		}
-                    	} else { // if (curSlot.thingDef != null)
-                    		if (listing.ContainsKey(curSlot.thingDef))
-                    		{
-                    			int amount = wantCount > listing[curSlot.thingDef].count ? listing[curSlot.thingDef].count : wantCount - listing[curSlot.thingDef].count;
-                    			listing[curSlot.thingDef].count -= amount;
-                    			wantCount -= amount;
-                    		}
+							List<ThingDef> killKeys = new List<ThingDef>();
+							int amount;
+							foreach (ThingDef def in listing.Keys.Where(td => curSlot.genericDef.lambda(td)))
+							{
+								amount = listing[def].value >= wantCount ? wantCount : wantCount - listing[def].value;
+								listing[def].value -= amount;
+								wantCount -= amount;
+								if (listing[def].value <= 0)
+									killKeys.Add(def);
+								if (wantCount <= 0)
+									break;
+							}
+							foreach (ThingDef def in killKeys) // oddly enough removing a dictionary entry while enumerating hasn't caused a problem but this is the 'correct' way based on reading.
+								listing.Remove(def);
                     	}
                     	if (wantCount > 0)
+                    	{
                				FindPickup(pawn, curSlot, wantCount, out curPriority, out curThing, out curCarrier);
                     	
-                        if (curPriority > priority && curThing != null && inventory.CanFitInInventory(curThing, out count))
-                        {
-                            priority = curPriority;
-                            slot = curSlot;
-                            count = count >= want ? want : count;
-                            closestThing = curThing;
-                            if (curCarrier != null)
-                            	carriedBy = curCarrier;
-                        }
-                        if (priority >= ItemPriority.LowStock)
-                        {
-                            break;
-                        }
+	                        if (curPriority > priority && curThing != null && inventory.CanFitInInventory(curThing, out count))
+	                        {
+	                            priority = curPriority;
+	                            slot = curSlot;
+	                            count = count >= wantCount ? wantCount : count;
+	                            closestThing = curThing;
+	                            if (curCarrier != null)
+	                            	carriedBy = curCarrier;
+	                        }
+	                        if (priority >= ItemPriority.LowStock)
+	                        {
+	                            break;
+	                        }
+                    	}
                     }
                 }
             }

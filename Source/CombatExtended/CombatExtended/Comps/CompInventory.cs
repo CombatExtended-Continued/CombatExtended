@@ -179,9 +179,7 @@ namespace CombatExtended
                 ammoListCached.Clear();
                 meleeWeaponListCached.Clear();
                 rangedWeaponListCached.Clear();
-                Dictionary<ThingDef, HoldRecord> recs;
-                if (!HoldTracker.tracker.TryGetValue(parentPawn, out recs))
-                	recs = null;
+                List<HoldRecord> recs = LoadoutManager.GetHoldRecords(parentPawn);
                 foreach (Thing thing in parentPawn.inventory.innerContainer)
                 {
                     // Check for weapons
@@ -215,14 +213,11 @@ namespace CombatExtended
                     {
                         ammoListCached.Add(thing);
                     }
-					if (recs != null)
+                    if (recs != null)
 					{
-						HoldRecord rec;
-						if (recs.TryGetValue(thing.def, out rec))
-						{
-							if (!rec.pickedUp)
-								rec.pickedUp = true;
-						}
+                    	HoldRecord rec = recs.FirstOrDefault(hr => hr.thingDef == thing.def);
+						if (rec != null && !rec.pickedUp)
+							rec.pickedUp = true;
 					}
                 }
             }

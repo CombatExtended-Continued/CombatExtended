@@ -7,15 +7,15 @@ namespace CombatExtended
 	/// HoldRecord stores key information for an individual element of HoldTracker.
 	/// </summary>
 	/// <remarks>Wow this is looking a lot like a LoadoutSlot now...  Remembering by Thing doesn't work out.</remarks>
-	public class HoldRecord
+	public class HoldRecord : IExposable
 	{
 		#region Fields
 		const int INVALIDTICKS = GenDate.TicksPerDay;
 		
-		private ThingDef def;
+		private ThingDef _def;
 		public int count;
 		public bool pickedUp;
-		private readonly int tickJobIssued;
+		private int _tickJobIssued;
 		
 		#endregion
 		
@@ -27,10 +27,17 @@ namespace CombatExtended
 		/// <param name="newCount">How much to hold onto.</param>
 		public HoldRecord(ThingDef newThingDef, int newCount)
 		{
-			def = newThingDef;
+			_def = newThingDef;
 			count = newCount;
 			pickedUp = false;
-			tickJobIssued = GenTicks.TicksAbs;
+			_tickJobIssued = GenTicks.TicksAbs;
+		}
+
+		/// <summary>
+		/// Default Constructor.  Used by Rimworld LoadSave and shouldn't be used by any other code.
+		/// </summary>
+		public HoldRecord()
+		{
 		}
 		#endregion
 		
@@ -38,9 +45,9 @@ namespace CombatExtended
 		/// <summary>
 		/// If the item hasn't been picked up is it still valid to remember?
 		/// </summary>
-		public bool isTimeValid	{ get { return !pickedUp && ((GenTicks.TicksAbs - tickJobIssued) <= INVALIDTICKS); } }
+		public bool isTimeValid	{ get { return !pickedUp && ((GenTicks.TicksAbs - _tickJobIssued) <= INVALIDTICKS); } }
 		
-		public ThingDef thingDef { get { return this.def; } }
+		public ThingDef thingDef { get { return this._def; } }
 		
 		#endregion
 		
@@ -52,9 +59,22 @@ namespace CombatExtended
 		public override string ToString()
 		{
 			return string.Concat("HoldRecord for ", thingDef, " of count ", count, " which has", (!pickedUp ? "n't" : ""), " been picked up",
-			                           (!pickedUp ? string.Concat(" with a job issue time of ", (GenTicks.TicksAbs - tickJobIssued),
-			                                                      " ago and will go invalid in ", (GenTicks.TicksAbs + INVALIDTICKS - tickJobIssued)) : "."));
+			                           (!pickedUp ? string.Concat(" with a job issue time of ", (GenTicks.TicksAbs - _tickJobIssued),
+			                                                      " ago and will go invalid in ", (GenTicks.TicksAbs + INVALIDTICKS - _tickJobIssued)) : "."));
 		}
+		#endregion
+
+		#region IExposable implementation
+
+		public void ExposeData()
+		{
+			Scribe_Defs.LookDef(ref _def, "ThingDef");
+			Scribe_Values.LookValue(ref count, "count");
+			Scribe_Values.LookValue(ref pickedUp, "pickedUp");
+			if (!pickedUp)
+				Scribe_Values.LookValue(ref _tickJobIssued, "tickOfPickupJob");
+		}
+
 		#endregion
 	}
 }
