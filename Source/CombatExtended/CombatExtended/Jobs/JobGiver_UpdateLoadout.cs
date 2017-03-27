@@ -94,7 +94,7 @@ namespace CombatExtended
 						{
 							if (listing.ContainsKey(curSlot.thingDef))
 							{
-								int amount = listing[curSlot.thingDef].value >= wantCount ? wantCount : wantCount - listing[curSlot.thingDef].value;
+								int amount = listing[curSlot.thingDef].value >= wantCount ? wantCount : listing[curSlot.thingDef].value;
 								listing[curSlot.thingDef].value -= amount;
 								wantCount -= amount;
 								if (listing[curSlot.thingDef].value <= 0)
@@ -107,7 +107,7 @@ namespace CombatExtended
 							int amount;
 							foreach (ThingDef def in listing.Keys.Where(td => curSlot.genericDef.lambda(td)))
 							{
-								amount = listing[def].value >= wantCount ? wantCount : wantCount - listing[def].value;
+								amount = listing[def].value >= wantCount ? wantCount : listing[def].value;
 								listing[def].value -= amount;
 								wantCount -= amount;
 								if (listing[def].value <= 0)
