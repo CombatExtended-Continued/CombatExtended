@@ -31,21 +31,22 @@ namespace CombatExtended
 		private float _mass;
 		private bool _cachedVars = false;
 		
-		// used in automatically merging perfect conflicted ammo defs (most likely source of conflict)
-		internal string itemString;
-		internal static string dividingString = "CE_Generic_Divider".Translate();
-		internal bool isAmmo;
-		
 		#endregion
 		
 		#region Constructors
-		//UNDONE This doesn't define weapons as yet.  Want to get various things stable first RE inventory.
-		//TODO: Need to define sane defaults for Food and Drug generics.  The defaults for Ammo come from the defs.
+		//UNDONE This doesn't define weapons as yet and the code might not handle that well.  Want to get various things stable first RE inventory.
+		
+		/// <summary>
+		/// This constructor gets run on startup of RimWorld and generates the various LoadoutGenericDef instance objects akin to having been loaded from xml.
+		/// </summary>
 		static LoadoutGenericDef()
 		{
+			// Used in a handful of places where all loaded ThingDefs are useful.
 			IEnumerable<ThingDef> everything = DefDatabase<ThingDef>.AllDefs;
 			
+			// need to generate a list as that's how new defs are taken by DefDatabase.
 			List<LoadoutGenericDef> defs = new List<LoadoutGenericDef>();
+			
 			
 			LoadoutGenericDef generic = new LoadoutGenericDef();
 			generic.defName = "GenericMeal";
@@ -56,6 +57,7 @@ namespace CombatExtended
 			
 			defs.Add(generic);
 			//Log.Message(string.Concat("CombatExtended :: LoadoutGenericDef :: ", generic.LabelCap, " list: ", string.Join(", ", DefDatabase<ThingDef>.AllDefs.Where(t => generic.lambda(t)).Select(t => t.label).ToArray())));
+			
 			
 			float targetNutrition = 0.85f;
 			generic = new LoadoutGenericDef();
@@ -70,7 +72,8 @@ namespace CombatExtended
 			
 			defs.Add(generic);
 			//Log.Message(string.Concat("CombatExtended :: LoadoutGenericDef :: ", generic.LabelCap, " list: ", string.Join(", ", DefDatabase<ThingDef>.AllDefs.Where(t => generic.lambda(t)).Select(t => t.label + " B(" + t.GetStatValueAbstract(CE_StatDefOf.Bulk) + ") M(" + t.GetStatValueAbstract(StatDefOf.Mass) + ")").ToArray())));
-
+			
+			
 			generic = new LoadoutGenericDef();
 			generic.defName = "GenericDrugs";
 			generic.defaultCount = 3;
@@ -83,12 +86,13 @@ namespace CombatExtended
 			defs.Add(generic);
 			//Log.Message(string.Concat("CombatExtended :: LoadoutGenericDef :: ", generic.LabelCap, " list: ", string.Join(", ", DefDatabase<ThingDef>.AllDefs.Where(t => generic.lambda(t)).Select(t => t.label).ToArray())));
 			
+			
 			// now for the guns and ammo...
 			
-			// Get a list of guns that are player acquireable (not menuHidden but could also go with not dropOnDeath) which are ammo users with the CE verb.
-			List<ThingDef> guns = DefDatabase<ThingDef>.AllDefs.Where(td => !td.menuHidden &&
-			                                                          td.HasComp(typeof(CompAmmoUser)) && 
-			                                                          td.Verbs.FirstOrDefault(v => v is VerbPropertiesCE) != null).ToList();
+			// Get a list of guns that are player acquireable (not menuHidden but could also go with not dropOnDeath) which have expected comps/compProperties/verbs.
+			List<ThingDef> guns = everything.Where(td => !td.menuHidden &&
+			                                       td.HasComp(typeof(CompAmmoUser)) && td.GetCompProperties<CompProperties_AmmoUser>() != null &&
+			                                       td.Verbs.FirstOrDefault(v => v is VerbPropertiesCE) != null).ToList();
 			string ammoLabel = "CE_Generic_Ammo".Translate();
 			const string ammoDescription = "Generic Loadout ammo for {0}. Intended for generic collection of ammo for given gun.";
 			foreach (ThingDef gun in guns)
@@ -100,16 +104,15 @@ namespace CombatExtended
 				generic.defName = "GenericAmmo-" + gun.defName;
 				generic.description = string.Format(ammoDescription, gun.LabelCap);
 				generic.label = string.Format(ammoLabel, gun.LabelCap);
-				generic.itemString = gun.LabelCap;
 				generic.defaultCount = gun.GetCompProperties<CompProperties_AmmoUser>().magazineSize;
 				generic.defaultCountType = LoadoutCountType.pickupDrop; // we want ammo to get picked up.
 				//generic._lambda = td => td is AmmoDef && gun.GetCompProperties<CompProperties_AmmoUser>().ammoSet.ammoTypes.Contains(td);
 				generic._lambda = td => gun.GetCompProperties<CompProperties_AmmoUser>().ammoSet.ammoTypes.Any(al => al.ammo == td);
-				generic.isAmmo = true;
 				defs.Add(generic);
 				//Log.Message(string.Concat("CombatExtended :: LoadoutGenericDef :: ", generic.LabelCap, " list: ", string.Join(", ", DefDatabase<ThingDef>.AllDefs.Where(t => generic.lambda(t)).Select(t => t.label).ToArray())));
 			}
 			
+			// finally we add all the defs generated to the DefDatabase.
 			DefDatabase<LoadoutGenericDef>.Add(defs);
 		}
 		

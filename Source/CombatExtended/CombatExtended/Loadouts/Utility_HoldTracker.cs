@@ -27,6 +27,12 @@ namespace CombatExtended
 	/// </remarks>
 	static class Utility_HoldTracker
 	{
+		#region Fields
+		static private int _tickLastPurge = 0;
+		#endregion
+		
+		#region HoldTracker Methods
+		
 		/// <summary>
 		/// Used when a pawn is about to be ordered to pickup a Thing.
 		/// </summary>
@@ -78,15 +84,17 @@ namespace CombatExtended
 			return false;
 		}
 		
-		
-		
 		/// <summary>
 		/// This should be called periodically so that HoldTracker can remove items that are no longer in the inventory via a method which isn't being watched.
 		/// </summary>
 		/// <param name="pawn">The pawn who's tracker should be checked.</param>
 		public static void HoldTrackerCleanUp(this Pawn pawn)
 		{
-			LoadoutManager.PurgeHoldTrackerRolls(); //TODO: Have this only run once per day.
+			if (_tickLastPurge <= GenTicks.TicksAbs)
+			{
+				LoadoutManager.PurgeHoldTrackerRolls();
+				_tickLastPurge = GenTicks.TicksAbs + GenDate.TicksPerDay;
+			}
 			List<HoldRecord> recs = LoadoutManager.GetHoldRecords(pawn);
 			CompInventory inventory = pawn.TryGetComp<CompInventory>();
 			if (recs == null || inventory == null)
@@ -117,8 +125,10 @@ namespace CombatExtended
 				recs.RemoveAt(recs.IndexOf(rec));
 		}
 		
-		// Methods in this region are related to dropping and need to be both HoldTracker and Loadout aware.  Above here are methods more strictly HoldTracker related.
+		#endregion
+		
 		#region Loadout/Holdtracker methods.
+		
 		/// <summary>
 		/// Does a check on the pawn's inventory to determine if there is something that should be dropped.  See GetExcessEquipment and GetExcessThing.
 		/// </summary>
@@ -308,7 +318,6 @@ namespace CombatExtended
         	
         	// if there is something left in the dictionary, that is what is to be dropped.
         	// Complicated by the fact that we now consider ammo in guns as part of the inventory...
-        	//TODO: Either set this up so that we don't try to drop ammo from a gun or set up the whole drop routine so it's able to unload the gun and then drop the ammo.
         	if (listing.Any())
         	{
         		if (records != null)

@@ -34,7 +34,7 @@ namespace CombatExtended
 		}
 
 		/// <summary>
-		/// Default Constructor.  Used by Rimworld LoadSave and shouldn't be used by any other code.
+		/// Default Constructor.  Used by Rimworld Load/Save and shouldn't be used by any other code.
 		/// </summary>
 		public HoldRecord()
 		{
@@ -66,6 +66,9 @@ namespace CombatExtended
 
 		#region IExposable implementation
 
+		/// <summary>
+		/// RimWorld Load/Save handler.
+		/// </summary>
 		public void ExposeData()
 		{
 			Scribe_Defs.LookDef(ref _def, "ThingDef");

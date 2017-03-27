@@ -144,7 +144,7 @@ namespace CombatExtended
         }
         
         /// <summary>
-        /// Used by GetPrioritySlot as this section of code could get run in multiple places and isn't small it seemed apt to split it into a method.  The workhorse of finding items.
+        /// Used by GetPrioritySlot, actually finds a requested thing.
         /// </summary>
         /// <param name="pawn">Pawn to be considered.  Used in checking equipment and position when looking for nearby things.</param>
         /// <param name="curSlot">Pawn's LoadoutSlot being considered.</param>
@@ -152,6 +152,7 @@ namespace CombatExtended
         /// <param name="curPriority">Priority of the job.</param>
         /// <param name="curThing">Thing found near pawn for potential pickup.</param>
         /// <param name="curCarrier">Pawn that is holding the curThing that 'pawn' wants.</param>
+        /// <remarks>Was split off into a sepearate method so the code could be run from multiple places in caller but that is no longer needed.</remarks>
         private void FindPickup(Pawn pawn, LoadoutSlot curSlot, int findCount, out ItemPriority curPriority, out Thing curThing, out Pawn curCarrier)
         {
         	curPriority = ItemPriority.None;

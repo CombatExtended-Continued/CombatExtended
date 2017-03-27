@@ -54,6 +54,11 @@ namespace CombatExtended
 
         #region Methods
         
+        /// <summary>
+        /// Returns a List of HoldRecords for the Pawn.
+        /// </summary>
+        /// <param name="pawn">Pawn to get the List for.</param>
+        /// <returns>List of HoldRecords or null if the pawn has none.</returns>
         public static List<HoldRecord> GetHoldRecords(Pawn pawn)
         {
         	List<HoldRecord> recs;
@@ -62,6 +67,9 @@ namespace CombatExtended
         	return null;
         }
         
+        /// <summary>
+        /// Utility to clean up HoldTracker entries for pawns which are dead or who no longer have HoldRecords.  Useful pre-save.
+        /// </summary>
         public static void PurgeHoldTrackerRolls()
         {
         	List<Pawn> removeList = new List<Pawn>(Instance._tracker.Keys.Count);
@@ -76,11 +84,11 @@ namespace CombatExtended
         		Instance._tracker.Remove(pawn);
         }
         
-        public static bool HasHoldRecords(Pawn pawn)
-        {
-        	return Instance._tracker.ContainsKey(pawn);
-        }
-        
+        /// <summary>
+        /// Adds a List of HoldRecord to the indicated Pawn.
+        /// </summary>
+        /// <param name="pawn">Pawn for whome new List should be stored.</param>
+        /// <param name="newRecords">List of HoldRecord that should be attached to pawn.</param>
         public static void AddHoldRecords(Pawn pawn, List<HoldRecord> newRecords)
         {
         	Instance._tracker.Add(pawn, newRecords);
@@ -103,6 +111,9 @@ namespace CombatExtended
             }
         }
 
+        /// <summary>
+        /// Load/Save handler.
+        /// </summary>
         public override void ExposeData()
         {
         	// (ProfoundDarkness) btw I did try to just store the dictionary but that code path just doesn't seem to work very well.  I couldn't get it to work so I modeled my dictionary saving on Fluffy's method.
