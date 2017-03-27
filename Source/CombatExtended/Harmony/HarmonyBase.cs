@@ -2,7 +2,7 @@
 using Harmony;
 using Verse;
 
-namespace CombatRealism.Harmony
+namespace CombatExtended.Harmony
 {
 	[StaticConstructorOnStartup]
 	static class HarmonyBase
