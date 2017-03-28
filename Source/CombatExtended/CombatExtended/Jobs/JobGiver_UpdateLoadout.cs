@@ -281,13 +281,11 @@ namespace CombatExtended
 	                    {
 	                        return new Job(JobDefOf.Equip, closestThing);
 	                    }
-	                    // Take items into inventory if needed
-	                    int numContained = inventory.container.TotalStackCountOfDef(closestThing.def);
-	                    return new Job(JobDefOf.TakeInventory, closestThing) { count = Mathf.Min(closestThing.stackCount, count - numContained) };
+	                    return new Job(JobDefOf.TakeInventory, closestThing) { count = Mathf.Min(closestThing.stackCount, count) };
 	                } else
 	                {
 	                	return new Job(CE_JobDefOf.TakeFromOther, closestThing, carriedBy, doEquip ? pawn : null) {
-	                		count = doEquip ? 1 : Mathf.Min(closestThing.stackCount, count - inventory.container.TotalStackCountOfDef(closestThing.def))
+	                		count = doEquip ? 1 : Mathf.Min(closestThing.stackCount, count)
 	                	};
 	                }
                 }

@@ -337,5 +337,7 @@ namespace CombatExtended
                 TryUpdateInventory(tracker.pawn);
             }
         }
+        
+        #endregion
     }
 }
