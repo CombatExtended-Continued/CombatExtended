@@ -29,11 +29,13 @@
     <tickerType>Never</tickerType>
   </ThingDef>
 
-  <ThingDef Name="BaseGrenadeEquipment" ParentName="BaseEquipment" Abstract="True">
+  <ThingDef Class="CombatExtended.AmmoDef" Name="BaseGrenadeEquipment" ParentName="BaseEquipment" Abstract="True">
+    <thingClass>CombatExtended.AmmoThing</thingClass>
     <stackLimit>75</stackLimit>
     <weaponTags>
       <li>CE_AI_Grenade</li>
     </weaponTags>
+    <tickerType>Normal</tickerType>
   </ThingDef>
 
   <ThingDef Name="BaseGrenadeProjectile" Abstract="True">
@@ -120,6 +122,17 @@
         <onlyManualCast>true</onlyManualCast>
       </li>
     </verbs>
+    <comps>
+      <li Class="CombatExtended.CompProperties_ExplosiveCE">
+        <explosionDamage>40</explosionDamage>
+        <explosionDamageDef>Bomb</explosionDamageDef>
+        <explosionRadius>1.5</explosionRadius>
+        <fragSpeedFactor>0.5</fragSpeedFactor>
+        <fragments>
+          <Fragment_GrenadeFragMedium>250</Fragment_GrenadeFragMedium>
+        </fragments>
+      </li>
+    </comps>
   </ThingDef>
 
 
@@ -139,6 +152,7 @@
       <damageDef>Flame</damageDef>
       <damageAmountBase>30</damageAmountBase>
       <preExplosionSpawnThingDef>FilthFuel</preExplosionSpawnThingDef>
+        <explosionSpawnChance>1</explosionSpawnChance>
     </projectile>
   </ThingDef>
 
@@ -182,6 +196,15 @@
         <onlyManualCast>true</onlyManualCast>
       </li>
     </verbs>
+    <comps>
+      <li Class="CombatExtended.CompProperties_ExplosiveCE">
+        <explosionDamage>1</explosionDamage>
+        <explosionDamageDef>Flame</explosionDamageDef>
+        <explosionRadius>0.5</explosionRadius>
+        <preExplosionSpawnThingDef>FilthFuel</preExplosionSpawnThingDef>
+        <explosionSpawnChance>1</explosionSpawnChance>
+      </li>
+    </comps>
   </ThingDef>
 
   <!-- ==================== EMP grenade ========================== -->
@@ -312,6 +335,81 @@
         <onlyManualCast>true</onlyManualCast>
       </li>
     </verbs>
+    <comps>
+      <li Class="CombatExtended.CompProperties_ExplosiveCE">
+        <explosionDamage>25</explosionDamage>
+        <explosionDamageDef>Stun</explosionDamageDef>
+        <explosionRadius>3.5</explosionRadius>
+        <soundExplode>Explosion_Stun</soundExplode>
+      </li>
+    </comps>
+  </ThingDef>
+
+
+  <!-- ==================== Stick bomb ========================== -->
+
+  <ThingDef ParentName="BaseGrenadeProjectile">
+    <defName>Proj_GrenadeStickBomb</defName>
+    <label>stick bomb</label>
+    <graphicData>
+      <texPath>Things/Projectile/Grenades/StickBomb</texPath>
+      <graphicClass>Graphic_Single</graphicClass>
+    </graphicData>
+    <projectile>
+      <explosionRadius>1.5</explosionRadius >
+      <damageDef>Bomb</damageDef>
+      <damageAmountBase>50</damageAmountBase>
+      <explosionDelay>90</explosionDelay>
+    </projectile>
+  </ThingDef>
+
+  <ThingDef ParentName="BaseGrenadeEquipment">
+    <defName>Weapon_GrenadeStickBomb</defName>
+    <equipmentType>Primary</equipmentType>
+    <label>stick bomb</label>
+    <description>Primitive fuse-lit explosive. A favorite of tribals who use these to fight technologically advanced enemies with heavy armor.</description>
+    <graphicData>
+      <texPath>Things/Ammo/HandGrenades/StickBomb</texPath>
+      <graphicClass>Graphic_StackCount</graphicClass>
+    </graphicData>
+    <soundInteract>InteractGrenade</soundInteract>
+    <techLevel>Industrial</techLevel>
+    <statBases>
+      <MarketValue>5.25</MarketValue>
+      <SightsEfficiency>0.15</SightsEfficiency>
+      <RangedWeapon_Cooldown>1</RangedWeapon_Cooldown>
+    </statBases>
+    <weaponTags>
+      <li>GrenadeDestructive</li>
+      <li>Neolithic</li>
+    </weaponTags>
+    <thingCategories>
+      <li>Grenades</li>
+    </thingCategories>
+    <verbs>
+      <li Class="CombatExtended.VerbPropertiesCE">
+        <label>throw stick bomb</label>
+        <verbClass>CombatExtended.Verb_ShootCEOneUse</verbClass>
+        <hasStandardCommand>true</hasStandardCommand>
+        <range>10.0</range>
+        <warmupTime>0.8</warmupTime>
+        <noiseRadius>4</noiseRadius>
+        <ai_IsBuildingDestroyer>true</ai_IsBuildingDestroyer>
+        <soundCast>ThrowGrenade</soundCast>
+        <targetParams>
+          <canTargetLocations>true</canTargetLocations>
+        </targetParams>
+        <projectileDef>Proj_GrenadeStickBomb</projectileDef>
+        <onlyManualCast>true</onlyManualCast>
+      </li>
+    </verbs>
+    <comps>
+      <li Class="CombatExtended.CompProperties_ExplosiveCE">
+        <explosionDamage>25</explosionDamage>
+        <explosionDamageDef>Bomb</explosionDamageDef>
+        <explosionRadius>1.5</explosionRadius>
+      </li>
+    </comps>
   </ThingDef>
 
 </ThingDefs>

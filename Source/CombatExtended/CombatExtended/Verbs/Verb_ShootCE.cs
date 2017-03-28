@@ -10,70 +10,7 @@ namespace CombatExtended
 {
     public class Verb_ShootCE : Verb_LaunchProjectileCE
     {
-        #region Variables
-
-        protected override int ShotsPerBurst
-        {
-            get
-            {
-                if (this.compFireModes != null)
-                {
-                    if (this.compFireModes.currentFireMode == FireMode.SingleFire)
-                    {
-                        return 1;
-                    }
-                    if ((this.compFireModes.currentFireMode == FireMode.BurstFire || (useDefaultModes && this.compFireModes.Props.aiUseBurstMode))
-                        && this.compFireModes.Props.aimedBurstShotCount > 0)
-                    {
-                        return this.compFireModes.Props.aimedBurstShotCount;
-                    }
-                }
-                return this.verbPropsCE.burstShotCount;
-            }
-        }
-
-        private CompFireModes compFireModesInt = null;
-        private CompFireModes compFireModes
-        {
-            get
-            {
-                if (this.compFireModesInt == null && this.ownerEquipment != null)
-                {
-                    this.compFireModesInt = this.ownerEquipment.TryGetComp<CompFireModes>();
-                }
-                return this.compFireModesInt;
-            }
-        }
-
-        private bool shouldAim
-        {
-            get
-            {
-                if (compFireModes != null)
-                {
-                    if (this.CasterIsPawn)
-                    {
-                        // Check for hunting job
-                        if (CasterPawn.CurJob != null && CasterPawn.CurJob.def == JobDefOf.Hunt)
-                            return true;
-
-                        // Check for suppression
-                        CompSuppressable comp = this.caster.TryGetComp<CompSuppressable>();
-                        if (comp != null)
-                        {
-                            if (comp.isSuppressed)
-                            {
-                                return false;
-                            }
-                        }
-                    }
-                    return this.compFireModes.currentAimMode == AimMode.AimedShot || (useDefaultModes && this.compFireModes.Props.aiUseAimMode);
-                }
-                return false;
-            }
-        }
-        private bool isAiming = false;
-        private int xpTicks = 0;                        // Tracker to see how much xp should be awarded for time spent aiming + bursting
+        #region Constants
 
         // How much time to spend on aiming
         private const int aimTicksMin = 30;
@@ -84,12 +21,82 @@ namespace CombatExtended
         private const float pawnXP = 0.75f;
         private const float hostileXP = 3.6f;
 
-        // Whether this gun should use default AI firing modes
-        private bool useDefaultModes
+        #endregion
+
+        #region Fields
+
+        private CompFireModes compFireModes = null;
+        private bool isAiming = false;
+        private int xpTicks = 0;                        // Tracker to see how much xp should be awarded for time spent aiming + bursting
+
+        #endregion
+
+        #region Properties
+
+        protected override int ShotsPerBurst
         {
             get
             {
-                return !(caster.Faction == Faction.OfPlayer);
+                if (this.CompFireModes != null)
+                {
+                    if (this.CompFireModes.currentFireMode == FireMode.SingleFire)
+                    {
+                        return 1;
+                    }
+                    if ((this.CompFireModes.currentFireMode == FireMode.BurstFire || (UseDefaultModes && this.CompFireModes.Props.aiUseBurstMode))
+                        && this.CompFireModes.Props.aimedBurstShotCount > 0)
+                    {
+                        return this.CompFireModes.Props.aimedBurstShotCount;
+                    }
+                }
+                return this.VerbPropsCE.burstShotCount;
+            }
+        }
+
+        private CompFireModes CompFireModes
+        {
+            get
+            {
+                if (this.compFireModes == null && this.ownerEquipment != null)
+                {
+                    this.compFireModes = this.ownerEquipment.TryGetComp<CompFireModes>();
+                }
+                return this.compFireModes;
+            }
+        }
+
+        private bool ShouldAim
+        {
+            get
+            {
+                if (CompFireModes != null)
+                {
+                    if (this.CasterIsPawn)
+                    {
+                        // Check for hunting job
+                        if (CasterPawn.CurJob != null && CasterPawn.CurJob.def == JobDefOf.Hunt)
+                            return true;
+
+                        // Check for suppression
+                        CompSuppressable comp = this.caster.TryGetComp<CompSuppressable>();
+                        if (comp != null && comp.isSuppressed) return false;
+                    }
+                    return this.CompFireModes.currentAimMode == AimMode.AimedShot || (UseDefaultModes && this.CompFireModes.Props.aiUseAimMode);
+                }
+                return false;
+            }
+        }
+        
+        // Whether this gun should use default AI firing modes
+        private bool UseDefaultModes => !(caster.Faction == Faction.OfPlayer);
+
+        protected override float SwayAmplitude
+        {
+            get
+            {
+                float sway = base.SwayAmplitude;
+                if (ShouldAim) sway *= Mathf.Max(0, 1 - AimingAccuracy);
+                return sway;
             }
         }
 
@@ -105,7 +112,7 @@ namespace CombatExtended
             if (xpTicks <= 0)
                 xpTicks = Mathf.CeilToInt(verbProps.warmupTime * 0.5f);
 
-            if (this.shouldAim && !this.isAiming)
+            if (this.ShouldAim && !this.isAiming)
             {
                 float targetDist = (this.currentTarget.Cell - this.caster.Position).LengthHorizontal;
                 int aimTicks = (int)Mathf.Lerp(aimTicksMin, aimTicksMax, (targetDist / 100));
@@ -137,7 +144,7 @@ namespace CombatExtended
             if (this.isAiming)
             {
                 this.xpTicks++;
-                if (!this.shouldAim)
+                if (!this.ShouldAim)
                 {
                     this.WarmupComplete();
                 }
@@ -181,9 +188,9 @@ namespace CombatExtended
         public override void Notify_EquipmentLost()
         {
             base.Notify_EquipmentLost();
-            if (this.compFireModes != null)
+            if (this.CompFireModes != null)
             {
-                this.compFireModes.ResetModes();
+                this.CompFireModes.ResetModes();
             }
             caster = null;
         }
@@ -200,38 +207,38 @@ namespace CombatExtended
         protected override bool TryCastShot()
         {
             //Reduce ammunition
-            if (compAmmo != null)
+            if (CompAmmo != null)
             {
-                if (!compAmmo.TryReduceAmmoCount())
+                if (!CompAmmo.TryReduceAmmoCount())
                 {
-                    if (compAmmo.hasMagazine)
-                        compAmmo.TryStartReload();
+                    if (CompAmmo.hasMagazine)
+                        CompAmmo.TryStartReload();
                     return false;
                 }
             }
             if (base.TryCastShot())
             {
                 //Drop casings
-                if (verbPropsCE.ejectsCasings && projectilePropsCE.dropsCasings)
+                if (VerbPropsCE.ejectsCasings && projectilePropsCE.dropsCasings)
                 {
                     CE_Utility.ThrowEmptyCasing(caster.DrawPos, caster.Map, ThingDef.Named(projectilePropsCE.casingMoteDefname));
                 }
 	            // This needs to here for weapons without magazine to ensure their last shot plays sounds
-                if (compAmmo != null && !compAmmo.hasMagazine && compAmmo.useAmmo)
+                if (CompAmmo != null && !CompAmmo.hasMagazine && CompAmmo.useAmmo)
                 {
-                	if (!compAmmo.Notify_ShotFired())
+                	if (!CompAmmo.Notify_ShotFired())
                 	{
-						if (verbPropsCE.muzzleFlashScale > 0.01f)
+						if (VerbPropsCE.muzzleFlashScale > 0.01f)
 						{
-							MoteMaker.MakeStaticMote(caster.Position, caster.Map, ThingDefOf.Mote_ShotFlash, verbPropsCE.muzzleFlashScale);
+							MoteMaker.MakeStaticMote(caster.Position, caster.Map, ThingDefOf.Mote_ShotFlash, VerbPropsCE.muzzleFlashScale);
 						}
-						if (verbPropsCE.soundCast != null)
+						if (VerbPropsCE.soundCast != null)
 						{
-							verbPropsCE.soundCast.PlayOneShot(new TargetInfo(caster.Position, caster.Map));
+							VerbPropsCE.soundCast.PlayOneShot(new TargetInfo(caster.Position, caster.Map));
 						}
-						if (verbPropsCE.soundCastTail != null)
+						if (VerbPropsCE.soundCastTail != null)
 						{
-							verbPropsCE.soundCastTail.PlayOneShotOnCamera();
+							VerbPropsCE.soundCastTail.PlayOneShotOnCamera();
 						}
 						if (CasterIsPawn)
 						{
@@ -241,7 +248,7 @@ namespace CombatExtended
 							}
 						}
                 	}
-                	return compAmmo.Notify_PostShotFired();
+                	return CompAmmo.Notify_PostShotFired();
                 }
                 return true;
             }

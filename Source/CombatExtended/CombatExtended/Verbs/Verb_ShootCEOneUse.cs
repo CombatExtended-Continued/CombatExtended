@@ -16,7 +16,7 @@ namespace CombatExtended
 				}
 				return true;
 			}
-            if (compAmmo != null && compAmmo.hasMagazine && compAmmo.curMagCount <= 0)
+            if (CompAmmo != null && CompAmmo.hasMagazine && CompAmmo.curMagCount <= 0)
             {
                 this.SelfConsume();
             }

@@ -27,5 +27,7 @@ namespace CombatExtended
 
         // *** Melee weapon stats ***
         public static readonly StatDef ArmorPenetration = StatDef.Named("ArmorPenetration");
+
+        public static StatDef Suppressability;
     }
 }

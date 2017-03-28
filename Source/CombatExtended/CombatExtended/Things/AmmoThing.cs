@@ -46,8 +46,8 @@ namespace CombatExtended
 
         public override void PreApplyDamage(DamageInfo dinfo, out bool absorbed)
         {
-            absorbed = false;
-            if (dinfo.Def.externalViolence)
+            base.PreApplyDamage(dinfo, out absorbed);
+            if (!absorbed && Spawned && dinfo.Def.externalViolence)
             {
                 if (HitPoints - dinfo.Amount > 0)
                 {

@@ -15,7 +15,7 @@ namespace CombatExtended
             CompSuppressable comp = p.TryGetComp<CompSuppressable>();
             if (comp != null)
             {
-                if (comp.isHunkering)
+                if (comp.IsHunkering)
                 {
                     return ThoughtState.ActiveAtStage(2);
                 }
@@ -23,7 +23,7 @@ namespace CombatExtended
                 {
                     return ThoughtState.ActiveAtStage(1);
                 }
-                else if (comp.currentSuppression > 0)
+                else if (comp.CurrentSuppression > 0)
                 {
                     return ThoughtState.ActiveAtStage(0);
                 }

@@ -364,23 +364,16 @@ namespace CombatExtended
                 }
                 //Add suppression
                 CompSuppressable compSuppressable = pawn.TryGetComp<CompSuppressable>();
-                if (compSuppressable != null)
+                if (compSuppressable != null 
+                    && pawn.Faction != launcher?.Faction
+                    && (shield == null || shield?.ShieldState == ShieldState.Resetting))
                 {
-                    if (shield == null || (shield != null && shield?.ShieldState == ShieldState.Resetting))
-                    {
-                        /*
-                        if (pawn.skills.GetSkill(SkillDefOf.Shooting).level >= 1)
-                        {
-                            suppressionAmount = (def.projectile.damageAmountBase * (1f - ((pawn.skills.GetSkill(SkillDefOf.Shooting).level) / 100) * 3));
-                        }
-                        else suppressionAmount = def.projectile.damageAmountBase;
-                        */
-                        suppressionAmount = def.projectile.damageAmountBase;
-                        ProjectilePropertiesCE propsCE = def.projectile as ProjectilePropertiesCE;
-                        float penetrationAmount = propsCE == null ? 0f : propsCE.armorPenetration;
-                        suppressionAmount *= 1 - Mathf.Clamp(compSuppressable.parentArmor - penetrationAmount, 0, 1);
-                        compSuppressable.AddSuppression(suppressionAmount, OriginIV3);
-                    }
+                    suppressionAmount = def.projectile.damageAmountBase;
+                    ProjectilePropertiesCE propsCE = def.projectile as ProjectilePropertiesCE;
+                    float penetrationAmount = propsCE == null ? 0f : propsCE.armorPenetration;
+                    Log.Message(string.Concat("CE adding suppression: ", suppressionAmount.ToString(), " * (1 - (", compSuppressable.ParentArmor.ToString(), " - ", penetrationAmount.ToString(), ")) = ", (suppressionAmount * (1 - Mathf.Clamp(compSuppressable.ParentArmor - penetrationAmount, 0, 1))).ToString(), " to Pawn ", pawn.ToString()));
+                    suppressionAmount *= 1 - Mathf.Clamp(compSuppressable.ParentArmor - penetrationAmount, 0, 1);
+                    compSuppressable.AddSuppression(suppressionAmount, OriginIV3);
                 }
 
                 //Check horizontal distance
@@ -448,21 +441,6 @@ namespace CombatExtended
             if (ambientSustainer != null)
             {
                 ambientSustainer.Maintain();
-            }
-            // attack shooting expression
-			if (ModSettings.showTaunts && launcher is Pawn && this.launcher.Map != null)
-            {
-                if (Rand.Value > 0.7
-                    && this.launcher.def.race.Humanlike
-                    && Gen.IsHashIntervalTick(launcher, Rand.Range(280, 700)))
-                {
-                    AGAIN: string rndswear = RulePackDef.Named("AttackMote").Rules.RandomElement().Generate();
-                    if (rndswear == "[swear]" || rndswear == "" || rndswear == " ")
-                    {
-                        goto AGAIN;
-                    }
-					MoteMaker.ThrowText(launcher.Position.ToVector3Shifted(), this.launcher.Map, rndswear);
-                }
             }
         }
 

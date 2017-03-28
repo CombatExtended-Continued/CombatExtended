@@ -13,7 +13,7 @@ namespace CombatExtended
         private const float PenetrationRandVariation = 0.05f;    // Armor penetration will be randomized by +- this amount
         private const float SoftArmorMinDamageFactor = 0.2f;    // Soft body armor will always take at least original damage * this number from sharp attacks
         private static readonly SimpleCurve dmgMultCurve = new SimpleCurve { new CurvePoint(0.5f, 0), new CurvePoint(1, 0.5f), new CurvePoint(2, 1) };    // Used to calculate the damage reduction from the penetration / armor ratio
-        private static readonly List<StuffCategoryDef> softStuffs = new List<StuffCategoryDef> { StuffCategoryDefOf.Fabric, DefDatabase<StuffCategoryDef>.GetNamed("Leathery") };
+        private static readonly StuffCategoryDef[] softStuffs = { StuffCategoryDefOf.Fabric, DefDatabase<StuffCategoryDef>.GetNamed("Leathery") };
 
         /// <summary>
         /// Calculates damage through armor, depending on damage type, target and natural resistance. Also calculates deflection and adjusts damage type and impacted body part accordingly.
@@ -108,6 +108,11 @@ namespace CombatExtended
         /// <returns>Armor penetration value for attack used, 0 if it can't be determined</returns>
         private static float GetPenetrationValue(DamageInfo dinfo)
         {
+            if (dinfo.Def.isExplosive)
+            {
+                return dinfo.Amount * 0.1f; // Explosions have 10% of their damage as penetration
+            }
+
             if (dinfo.WeaponGear != null)
             {
                 // Case 1: projectile attack
@@ -187,7 +192,6 @@ namespace CombatExtended
             bool isSharpDmg = def.armorCategory == DamageArmorCategory.Sharp;
             float rand = UnityEngine.Random.Range(penAmount - PenetrationRandVariation, penAmount + PenetrationRandVariation);
             bool deflected = isSharpDmg && armorAmount > rand;
-            float newPenAmount = penAmount * (1 - armorAmount / penAmount);
 
             // Apply damage reduction
             float dmgMult = 1;
@@ -195,6 +199,7 @@ namespace CombatExtended
             if (deflected && defCE != null && defCE.noDamageOnDeflect) dmgMult = 0;
             else dmgMult = dmgMultCurve.Evaluate(penAmount / armorAmount);
             float newDmgAmount = dmgAmount * dmgMult;
+            float newPenAmount = penAmount * dmgMult;
 
             // Apply damage to armor
             if (armor != null)

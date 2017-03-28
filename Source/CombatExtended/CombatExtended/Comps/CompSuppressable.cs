@@ -10,23 +10,17 @@ namespace CombatExtended
 {
     public class CompSuppressable : ThingComp
     {
-        #region Variables
-
-        public CompProperties_Suppressable Props
-        {
-            get
-            {
-                return (CompProperties_Suppressable)props;
-            }
-        }
-
-        // --------------- Global constants ---------------
+        #region Constants
 
         private const float minSuppressionDist = 5f;        //Minimum distance to be suppressed from, so melee won't be suppressed if it closes within this distance
-        private const float maxSuppression = 100f;          //Cap to prevent suppression from building indefinitely
-        private const float suppressionDecayRate = 7.5f;    //How much suppression decays per second
-        private int ticksPerMote = 150;               //How many ticks between throwing a mote
+        private const float maxSuppression = 150f;          //Cap to prevent suppression from building indefinitely
+        private const float suppressionDecayRate = 20f;    //How much suppression decays per second
+        private const int ticksPerMote = 150;               //How many ticks between throwing a mote
 
+        #endregion
+
+        #region Fields
+        
         // --------------- Location calculations ---------------
 
         /*
@@ -34,26 +28,21 @@ namespace CombatExtended
          * That way if suppression stops coming from location A but keeps coming from location B the location will get updated without bouncing 
          * pawns or having to track fire coming from multiple locations
          */
-        private IntVec3 suppressorLocInt;
-        public IntVec3 suppressorLoc
-        {
-            get
-            {
-                return suppressorLocInt;
-            }
-        }
+        private IntVec3 suppressorLoc;
         private float locSuppressionAmount = 0f;
+        
+        private float currentSuppression = 0f;
+        public bool isSuppressed = false;
 
-        // --------------- Suppression calculations ---------------
-        private float currentSuppressionInt = 0f;
-        public float currentSuppression
-        {
-            get
-            {
-                return currentSuppressionInt;
-            }
-        }
-        public float parentArmor
+        #endregion
+
+        #region Properties
+
+        public CompProperties_Suppressable Props => (CompProperties_Suppressable)props;
+        public IntVec3 SuppressorLoc => suppressorLoc;
+
+        public float CurrentSuppression => currentSuppression;
+        public float ParentArmor
         {
             get
             {
@@ -82,7 +71,7 @@ namespace CombatExtended
                 return armorValue;
             }
         }
-        private float suppressionThreshold
+        private float SuppressionThreshold
         {
             get
             {
@@ -92,7 +81,7 @@ namespace CombatExtended
                 {
                     //Get morale
                     float hardBreakThreshold = pawn.GetStatValue(StatDefOf.MentalBreakThreshold) + 0.15f;
-                    float currentMood = pawn.needs != null && pawn.needs.mood != null ? pawn.needs.mood.CurLevel : 0.5f;
+                    float currentMood = pawn.needs?.mood?.CurLevel ?? 0.5f;
                     threshold = Mathf.Max(0, currentMood - hardBreakThreshold);
                 }
                 else
@@ -103,12 +92,11 @@ namespace CombatExtended
             }
         }
 
-        public bool isSuppressed = false;
-        public bool isHunkering
+        public bool IsHunkering
         {
             get
             {
-                if (currentSuppressionInt > suppressionThreshold * 2)
+                if (currentSuppression > SuppressionThreshold * 2)
                 {
                     if (isSuppressed)
                     {
@@ -117,7 +105,7 @@ namespace CombatExtended
                     // Removing suppression log
                     else
                     {
-                        Log.Warning("Hunkering without suppression, this should never happen");
+                        Log.Error("CE hunkering without suppression, this should never happen");
                     }
                 }
                 return false;
@@ -128,7 +116,7 @@ namespace CombatExtended
             get
             {
                 Pawn pawn = parent as Pawn;
-                return !pawn.Position.InHorDistOf(suppressorLoc, minSuppressionDist)
+                return !pawn.Position.InHorDistOf(SuppressorLoc, minSuppressionDist)
                     && !pawn.Downed
                     && !pawn.InMentalState;
             }
@@ -137,12 +125,12 @@ namespace CombatExtended
         #endregion
 
         #region Methods
-        // --------------- Public functions ---------------
+        
         public override void PostExposeData()
         {
             base.PostExposeData();
-            Scribe_Values.LookValue<float>(ref currentSuppressionInt, "currentSuppression", 0f);
-            Scribe_Values.LookValue<IntVec3>(ref suppressorLocInt, "suppressorLoc");
+            Scribe_Values.LookValue<float>(ref currentSuppression, "currentSuppression", 0f);
+            Scribe_Values.LookValue<IntVec3>(ref suppressorLoc, "suppressorLoc");
             Scribe_Values.LookValue<float>(ref locSuppressionAmount, "locSuppression", 0f);
         }
 
@@ -151,41 +139,41 @@ namespace CombatExtended
             Pawn pawn = parent as Pawn;
             if (pawn == null)
             {
-                Log.Error("Trying to suppress non-pawn " + parent.ToString() + ", this should never happen");
+                Log.Error("CE trying to suppress non-pawn " + parent.ToString() + ", this should never happen");
                 return;
             }
 
             // No suppression on berserking or fleeing pawns
-            if (pawn.MentalStateDef != null && (pawn.MentalState.def == MentalStateDefOf.Berserk || pawn.MentalState.def == MentalStateDefOf.PanicFlee))
+            if (!CanReactToSuppression)
             {
-                currentSuppressionInt = 0f;
+                currentSuppression = 0f;
                 isSuppressed = false;
                 return;
             }
 
             // Add suppression to global suppression counter
-            currentSuppressionInt += amount;
-            if (currentSuppressionInt > maxSuppression)
+            currentSuppression += amount * pawn.GetStatValue(CE_StatDefOf.Suppressability);
+            if (currentSuppression > maxSuppression)
             {
-                currentSuppressionInt = maxSuppression;
+                currentSuppression = maxSuppression;
             }
 
             // Add suppression to current suppressor location if appropriate
-            if (suppressorLocInt == origin)
+            if (suppressorLoc == origin)
             {
                 locSuppressionAmount += amount;
             }
-            else if (locSuppressionAmount < suppressionThreshold)
+            else if (locSuppressionAmount < SuppressionThreshold)
             {
-                suppressorLocInt = origin;
-                locSuppressionAmount = currentSuppressionInt;
+                suppressorLoc = origin;
+                locSuppressionAmount = currentSuppression;
             }
 
             // Assign suppressed status and interrupt activity if necessary
-            if (!isSuppressed && currentSuppressionInt > suppressionThreshold)
+            if (currentSuppression > SuppressionThreshold)
             {
                 isSuppressed = true;
-                if (pawn.CurJob != null && (pawn.CurJob.def != CE_JobDefOf.HunkerDown || pawn.CurJob.def != CE_JobDefOf.RunForCover))
+                if (pawn.CurJob != null && !(pawn.CurJob.def == CE_JobDefOf.HunkerDown || pawn.CurJob.def == CE_JobDefOf.RunForCover))
                 {
                     pawn.jobs.StopAll();
                 }
@@ -200,19 +188,19 @@ namespace CombatExtended
             if (parent.IsHashIntervalTick(60))
             {
                 //Decay global suppression
-                if (currentSuppressionInt > suppressionDecayRate)
+                if (currentSuppression > suppressionDecayRate)
                 {
-                    currentSuppressionInt -= suppressionDecayRate;
+                    currentSuppression -= suppressionDecayRate;
 
                     //Check if pawn is still suppressed
-                    if (isSuppressed && currentSuppressionInt <= suppressionThreshold)
+                    if (isSuppressed && currentSuppression <= SuppressionThreshold)
                     {
                         isSuppressed = false;
                     }
                 }
-                else if (currentSuppressionInt > 0)
+                else if (currentSuppression > 0)
                 {
-                    currentSuppressionInt = 0;
+                    currentSuppression = 0;
                     isSuppressed = false;
                 }
 
@@ -230,7 +218,7 @@ namespace CombatExtended
             //Throw mote at set interval
             if (Gen.IsHashIntervalTick(this.parent, ticksPerMote) && CanReactToSuppression)
             {
-                if (isHunkering)
+                if (IsHunkering)
                 {
                     MoteMaker.ThrowMetaIcon(parent.Position, parent.Map, CE_ThingDefOf.Mote_HunkerIcon);
                 }
@@ -257,6 +245,7 @@ namespace CombatExtended
                 //standard    MoteMaker.ThrowText(parent.Position.ToVector3Shifted(), "CE_SuppressedMote".Translate());
             }*/
         }
+
         #endregion
     }
 }

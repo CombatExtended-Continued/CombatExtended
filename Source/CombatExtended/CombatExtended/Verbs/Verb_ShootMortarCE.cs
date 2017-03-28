@@ -39,7 +39,7 @@ namespace CombatExtended
             // If we don't have a marker check for indirect fire and apply penalty
             else if (report.shotDist > 75 || !GenSight.LineOfSight(this.caster.Position, report.target.Cell, caster.Map, true))
             {
-                report.indirectFireShift = this.verbPropsCE.indirectFirePenalty * report.shotDist;
+                report.indirectFireShift = this.VerbPropsCE.indirectFirePenalty * report.shotDist;
                 report.weatherShift = 0f;
                 report.lightingShift = 0f;
             }
@@ -49,10 +49,10 @@ namespace CombatExtended
         private float GetMissRadiusForDist(float targDist)
         {
             float maxRange = this.verbProps.range;
-            if (this.compCharges != null)
+            if (this.CompCharges != null)
             {
                 Vector2 bracket;
-                if (this.compCharges.GetChargeBracket(targDist, out bracket))
+                if (this.CompCharges.GetChargeBracket(targDist, out bracket))
                 {
                     maxRange = bracket.y;
                 }

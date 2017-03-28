@@ -1,0 +1,40 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<GoJuice>
+  
+  <HediffDef>
+    <defName>GoJuiceHigh</defName>
+    <hediffClass>HediffWithComps</hediffClass>
+    <label>high on go-juice</label>
+    <defaultLabelColor>(1,0,0.5)</defaultLabelColor>
+    <scenarioCanAdd>true</scenarioCanAdd>
+    <maxSeverity>1.0</maxSeverity>
+    <comps>
+      <li Class="HediffCompProperties_SeverityPerDay">
+        <severityPerDay>-0.40</severityPerDay>
+      </li>
+    </comps>
+      <stages>
+        <li>
+          <painFactor>0.1</painFactor>
+          <capMods>
+            <li>
+              <capacity>Consciousness</capacity>
+              <offset>0.10</offset>
+            </li>
+						<li>
+							<capacity>Sight</capacity>
+							<offset>0.25</offset>
+						</li>
+            <li>
+              <capacity>Moving</capacity>
+              <offset>0.30</offset>
+            </li>
+          </capMods>
+          <statOffsets>
+            <Suppressability>-0.75</Suppressability>
+          </statOffsets>
+        </li>
+      </stages>
+  </HediffDef>
+  
+</GoJuice>

@@ -53,8 +53,8 @@ namespace CombatExtended
                 return caster as Pawn;
             }
         }
-        private List<FireMode> availableFireModes = new List<FireMode>();
-        private List<AimMode> availableAimModes = new List<AimMode> { AimMode.Snapshot, AimMode.AimedShot };
+        private List<FireMode> availableFireModes = new List<FireMode>(Enum.GetNames(typeof(FireMode)).Length);
+        private List<AimMode> availableAimModes = new List<AimMode>(Enum.GetNames(typeof(AimMode)).Length) { AimMode.Snapshot, AimMode.AimedShot };
 
         private FireMode currentFireModeInt;
         public FireMode currentFireMode

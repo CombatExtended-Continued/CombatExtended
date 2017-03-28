@@ -191,7 +191,7 @@ namespace CombatExtended.AI
                     {
                         // Score the gun based on DPS and compare against stored max
                         Verb verb = compEq.PrimaryVerb;
-                        ThingDef bullet = verb as Verb_LaunchProjectileCE == null ? verb.verbProps.projectileDef : (verb as Verb_LaunchProjectileCE).projectileDef;
+                        ThingDef bullet = verb as Verb_LaunchProjectileCE == null ? verb.verbProps.projectileDef : (verb as Verb_LaunchProjectileCE).ProjectileDef;
                         float secPerBurst = verb.verbProps.warmupTime + curWeapon.GetStatValue(StatDefOf.RangedWeapon_Cooldown) + (verb.verbProps.ticksBetweenBurstShots * verb.verbProps.burstShotCount);  // Overall time for one burst
                         score = bullet.projectile.damageAmountBase * verb.verbProps.burstShotCount / secPerBurst;
                         if (score > maxGunScore) bestGun = curWeapon;

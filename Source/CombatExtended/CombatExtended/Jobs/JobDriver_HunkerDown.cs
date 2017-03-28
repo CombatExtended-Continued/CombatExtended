@@ -47,7 +47,7 @@ namespace CombatExtended
                 {
                     return false;
                 }
-                return comp.isHunkering;
+                return comp.IsHunkering;
             });
         }
     }

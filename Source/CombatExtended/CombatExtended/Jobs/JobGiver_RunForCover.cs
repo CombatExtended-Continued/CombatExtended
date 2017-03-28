@@ -19,12 +19,12 @@ namespace CombatExtended
             {
                 return null;
             }
-            float distToSuppressor = (pawn.Position - comp.suppressorLoc).LengthHorizontal;
+            float distToSuppressor = (pawn.Position - comp.SuppressorLoc).LengthHorizontal;
             Verb verb = pawn.TryGetAttackVerb(!pawn.IsColonist);
             IntVec3 coverPosition;
 
             //Try to find cover position to move up to
-            if (!GetCoverPositionFrom(pawn, comp.suppressorLoc, maxCoverDist, out coverPosition))
+            if (!GetCoverPositionFrom(pawn, comp.SuppressorLoc, maxCoverDist, out coverPosition))
             {
                 return null;
             }
