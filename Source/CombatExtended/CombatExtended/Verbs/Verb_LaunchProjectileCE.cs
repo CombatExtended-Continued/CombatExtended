@@ -342,6 +342,13 @@ namespace CombatExtended
         /// <returns>True if cover was found, false otherwise</returns>
         private bool GetPartialCoverBetween(Vector3 sourceLoc, Vector3 targetLoc, out Thing cover)
         {
+        	cover = null;
+        	return Verb_LaunchProjectileCE.GetPartialCoverBetween(caster.Map, sourceLoc, targetLoc, out cover);
+        }
+        
+        // Converted the private method to something more public and static since it doesn't rely on internal variables and could use being externally accessible.
+        public static bool GetPartialCoverBetween(Map map, Vector3 sourceLoc, Vector3 targetLoc, out Thing cover)
+        {
             sourceLoc.Scale(new Vector3(1, 0, 1));
             targetLoc.Scale(new Vector3(1, 0, 1));
 
@@ -353,7 +360,7 @@ namespace CombatExtended
 
             //Raycast accross all segments to check for cover
             List<IntVec3> checkedCells = new List<IntVec3>();
-            Thing thingAtTargetLoc = targetLoc.ToIntVec3().GetEdifice(caster.Map);
+            Thing thingAtTargetLoc = targetLoc.ToIntVec3().GetEdifice(map);
             Thing newCover = null;
             for (int i = 0; i <= numSegments; i++)
             {
@@ -361,7 +368,7 @@ namespace CombatExtended
                 if (!checkedCells.Contains(cell))
                 {
                     //Cover check, if cell has cover compare fillPercent and get the highest piece of cover, ignore if cover is the target (e.g. solar panels, crashed ship, etc)
-                    Thing coverAtCell = GridsUtility.GetCover(cell, caster.Map);
+                    Thing coverAtCell = GridsUtility.GetCover(cell, map);
                     if (coverAtCell != null
                         && (thingAtTargetLoc == null || !coverAtCell.Equals(thingAtTargetLoc))
                         && (newCover == null || newCover.def.fillPercent < coverAtCell.def.fillPercent)
@@ -377,7 +384,7 @@ namespace CombatExtended
             //Report success if found cover
             return cover != null;
         }
-
+        
         /// <summary>
         /// Checks if the shooter can hit the target from a certain position with regards to cover height
         /// </summary>
