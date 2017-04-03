@@ -34,6 +34,7 @@ namespace CombatExtended.Harmony
 	static class AttackTargetFinder_BestAttackTarget_Patch
 	{
 		static readonly string logPrefix = Assembly.GetExecutingAssembly().GetName().Name + " :: " + typeof(AttackTargetFinder_BestAttackTarget_Patch).Name + " :: ";
+		static DynamicMethod Patched_ClosestThingTarget_Global = null;
 		
 		static AttackTargetFinder_BestAttackTarget_Patch()
 		{
@@ -51,8 +52,8 @@ namespace CombatExtended.Harmony
 			// due to how this patching takes place need to make sure debug is set before running the copy or else no debug output.
 			//HarmonyInstance.DEBUG = true;
 			// get the patched original method (after the below line the original code will have the new stuff we want added to it).
-			var replacement = MethodPatcher.CreatePatchedMethod(oldMethod, empty, empty, transpilers);
-			if (replacement == null) throw new MissingMethodException("Cannot create dynamic replacement for " + oldMethod);
+			Patched_ClosestThingTarget_Global = MethodPatcher.CreatePatchedMethod(oldMethod, empty, empty, transpilers);
+			if (Patched_ClosestThingTarget_Global == null) throw new MissingMethodException("Cannot create dynamic replacement for " + oldMethod);
 			
 			// get the new method to instanciate it's IL.  Otherwise the memory call and WriteJump don't have something to work with...
 			newMethod.GetMethodBody().GetILAsByteArray();
@@ -60,7 +61,7 @@ namespace CombatExtended.Harmony
 			// get the memory location of the start of the new method.
 			var originalCodeStart = Memory.GetMethodStart(newMethod);
 			// get the memory location of the start of our patched old method.
-			var patchCodeStart = Memory.GetMethodStart(replacement);
+			var patchCodeStart = Memory.GetMethodStart(Patched_ClosestThingTarget_Global);
 			// write the jump to the new code into the old method.
 			Memory.WriteJump(originalCodeStart, patchCodeStart);
 			
@@ -73,8 +74,6 @@ namespace CombatExtended.Harmony
 		
 		static IEnumerable<CodeInstruction> CopyPatchClosestThing_Global(IEnumerable<CodeInstruction> instructions)
 		{
-			//TODO: For performance should have the continue AFTER the test if the target is within range.  Currently is before.
-
 			// This group is related to the state of finding the local variable refering to the currently being checked Thing.
 			bool foundClassCast = false;
 			int localThingIndex = -1;
