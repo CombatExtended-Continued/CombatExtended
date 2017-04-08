@@ -1,4 +1,5 @@
-﻿using RimWorld;
+﻿using System.Text.RegularExpressions;
+using RimWorld;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -134,7 +135,38 @@ namespace CombatExtended
             }
             if (SelPawnForGear.inventory != null)
             {
+                // get the loadout so we can make a decision to show a button.
+                bool showMakeLoadout = false;
+                Loadout curLoadout = SelPawnForGear.GetLoadout();
+            	if ((curLoadout == null || curLoadout.Slots.NullOrEmpty()) && (SelPawnForGear.inventory.innerContainer.Any() || SelPawnForGear.equipment?.Primary != null))
+            		showMakeLoadout = true;
+                	
+            	if (showMakeLoadout) num+=3; // make a little room for the button.
+            	
                 Widgets.ListSeparator(ref num, viewRect.width, "Inventory".Translate());
+                
+                // only offer this button if the pawn has no loadout or has the default loadout and there are things/equipment...
+                if (showMakeLoadout)
+                {
+	            	Rect loadoutButtonRect = new Rect(viewRect.width / 2, num, viewRect.width / 2, 26f); // button is half the available width...
+	                if(Widgets.ButtonText(loadoutButtonRect, "Make Loadout"))
+	                {
+	                	Loadout loadout = SelPawnForGear.GenerateLoadoutFromPawn();
+	                	LoadoutManager.AddLoadout(loadout);
+	                	SelPawnForGear.SetLoadout(loadout);
+	                	
+	                	// UNDONE ideally we'd open the assign (MainTabWindow_OutfitsAndLoadouts) tab as if the user clicked on it here.
+	                	// (ProfoundDarkness) But I have no idea how to do that just yet.  The attempts I made seem to put the RimWorld UI into a bit of a bad state.
+	                	//                     ie opening the tab like the dialog below.
+	                	//                    Need to understand how RimWorld switches tabs and see if something similar can be done here
+	                	//                     (or just remove the unfinished marker).
+	                	
+	                	// Opening this window is the same way as if from the assign tab so should be correct.
+	                	Find.WindowStack.Add(new Dialog_ManageLoadouts(SelPawnForGear.GetLoadout()));
+	                	
+	                }
+                }
+                
                 workingInvList.Clear();
                 workingInvList.AddRange(SelPawnForGear.inventory.innerContainer);
                 for (int i = 0; i < workingInvList.Count; i++)

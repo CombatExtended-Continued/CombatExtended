@@ -9,27 +9,24 @@ using Harmony.ILCopying;
 using Verse;
 using Verse.AI;
 
-/*
- * Concept is a bit nuts.  Since I (ProfoundDarkness) want to just add one line of code to an existing RimWorld method I've decided to try copying
- * one method's code into another using Harmony.  As it happens Harmony has combined copying a method and patching it into a single routine and it's public.
- * There are a couple of other steps to redirect the old method to the new patched/copied method.
- * 
- * The method to copy is Verse.GenClosest.ClosestThing_Global which looks through all things on the same map as the pawn and if a Thing's position is
- * less than 2x the firing range of the pawn's weapon (verb) or is smaller than the last thing found, it gets remembered.
- * When all Things are exhausted from the list then it hands the last remembered Thing as a return.
- * 
- * The modification is after deciding that the thing is in fact closer and within the 2x firing range we ask CE code if the target is too well covered.
- * and if so, jump to the next Thing to consider rather than remembering it.
- * 
- * After that the patch to Verse.AI.AttackTargetFinder.BestAttackTarget() is pretty standard method replacer to have it use the new method instead of RimWorld's.
- * 
- * The new method is named ClosestThingTarget_Global and must have the same call signature as the original ClosestThing_Global.
- * 
- * The method which asks CE about if the target has too much cover takes in a shooter position and a Thing.
- * 
- */
 namespace CombatExtended.Harmony
 {
+	/* Two part target.
+	 * 1> Have AttackTargetFinder_BestAttackTarget_Patch.ClosestThingTarget_Global() be a copy of GenClosest.ClosestThing_Global() with one line of added code.
+	 * 1a> This is a bit different since we use some Harmony functions to generate a patched version of ClosestThing_Global() and then insert a jump as the first
+	 *     instruction to our AttackTargetFinder_BestAttackTarget_Patch.ClosestThingTarget_Global() thus creating a copy of the original function into a new function
+	 *     with our line of code added.
+	 * 1b> The added line of code basically being a check for if the potential target thing is too close to cover, to throw it out as if it were too far away.
+	 * 
+	 * 2> Simply patch AttackTargetFinder.BestAttackTarget() to use our new method AttackTargetFinder_BestAttackTarget_Patch.ClosestThingTarget_Global()
+	 *    instead of GenClosest.ClosestThing_Global().
+	 * 
+	 * The result is that when a pawn is waiting for a target to come into range instead of wasting ammo on a target that is in range but can't be hit due to cover
+	 * or standing around doing nothing, the pawn will end up targetting something else that it can hit.
+	 * 
+	 * Purpose of the non-standard method generation is that with virtually no copy code involved this should theoretically be easier to maintain.  If the patch
+	 * code is sufficiently generic which it might not be...
+	 */ 
 	[StaticConstructorOnStartup]
 	static class AttackTargetFinder_BestAttackTarget_Patch
 	{
@@ -72,6 +69,7 @@ namespace CombatExtended.Harmony
 			
 		}
 		
+		// This patches the code to insert our line of code which will test if the target is too near cover.
 		static IEnumerable<CodeInstruction> CopyPatchClosestThing_Global(IEnumerable<CodeInstruction> instructions)
 		{
 			// This group is related to the state of finding the local variable refering to the currently being checked Thing.

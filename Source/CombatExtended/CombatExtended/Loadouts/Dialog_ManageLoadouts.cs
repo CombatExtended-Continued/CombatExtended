@@ -68,7 +68,7 @@ namespace CombatExtended
         public Dialog_ManageLoadouts(Loadout loadout)
         {
         	CurrentLoadout = null;
-        	if (!loadout.defaultLoadout)
+        	if (loadout != null && !loadout.defaultLoadout)
             	CurrentLoadout = loadout;
             SetSource(SourceSelection.Ranged);
             doCloseX = true;
@@ -163,6 +163,7 @@ namespace CombatExtended
                 (canvas.width - _margin) / 2f,
                 canvas.height - 24f - _topAreaHeight - _margin * 3);
 
+        	LoadoutManager.SortLoadouts();
             List<Loadout> loadouts = LoadoutManager.Loadouts.Where(l => !l.defaultLoadout).ToList();
 
             // DRAW CONTENTS
@@ -170,6 +171,7 @@ namespace CombatExtended
             // select loadout
             if (Widgets.ButtonText(selectRect, "CE_SelectLoadout".Translate()))
             {
+            	
                 List<FloatMenuOption> options = new List<FloatMenuOption>();
 
                 if (loadouts.Count == 0)
@@ -216,9 +218,8 @@ namespace CombatExtended
                         delegate
                         {
                             if (CurrentLoadout == loadouts[local_i])
-                                CurrentLoadout = null;
+								CurrentLoadout = LoadoutManager.DefaultLoadout;
                             LoadoutManager.RemoveLoadout(loadouts[local_i]);
-                            loadouts.Remove(loadouts[local_i]);
                         }));
                 }
 
@@ -359,6 +360,7 @@ namespace CombatExtended
                 
                 case SourceSelection.Generic:
                     _sourceType = SourceSelection.Generic;
+                    initGenericVisibilityDictionary();
                     break;
 
                 case SourceSelection.All:
@@ -469,18 +471,18 @@ namespace CombatExtended
                     if (Widgets.ButtonImage(ammoRect, _iconAmmoAdd))
                     {
                         List<FloatMenuOption> options = new List<FloatMenuOption>();
+                        int magazineSize = (slot.thingDef.GetCompProperties<CompProperties_AmmoUser>() == null) ? 0 : slot.thingDef.GetCompProperties<CompProperties_AmmoUser>().magazineSize;
 
                         foreach (AmmoLink link in ((ammoSet == null) ? null : ammoSet.ammoTypes))
                         {
                             options.Add(new FloatMenuOption(link.ammo.LabelCap, delegate
                             {
-                                CurrentLoadout.AddSlot(new LoadoutSlot(link.ammo));
+		                        CurrentLoadout.AddSlot(new LoadoutSlot(link.ammo, (magazineSize <= 1 ? link.ammo.defaultAmmoCount : magazineSize)));
                             }));
                         }
                         // Add in the generic for this gun.
                         LoadoutGenericDef generic = DefDatabase<LoadoutGenericDef>.GetNamed("GenericAmmo-" + slot.thingDef.defName);
                         if (generic != null)
-                        	Log.Message(generic.LabelCap);
                         	options.Add(new FloatMenuOption(generic.LabelCap, delegate
 							{
                         		CurrentLoadout.AddSlot(new LoadoutSlot(generic));
@@ -619,10 +621,11 @@ namespace CombatExtended
                 Color baseColor = GUI.color;
                 if (_sourceType == SourceSelection.Generic)
                 {
-                	if (Find.VisibleMap.listerThings.AllThings.FindAll(x => _sourceGeneric[i].lambda(x.GetInnerIfMinified().def) && !x.def.Minifiable).Count <= 0)
+                	if (GetVisibleGeneric(_sourceGeneric[i]))
                 		GUI.color = Color.gray;
                 } else {
-	                if (Find.VisibleMap.listerThings.AllThings.FindAll(x => x.GetInnerIfMinified().def == _source[i] && !x.def.Minifiable).Count <= 0)
+	                //if (Find.VisibleMap.listerThings.AllThings.FindAll(x => x.GetInnerIfMinified().def == _source[i] && !x.def.Minifiable).Count <= 0)
+	                if (Find.VisibleMap.listerThings.AllThings.Find(x => x.GetInnerIfMinified().def == _source[i] && !x.def.Minifiable) == null)
 	                    GUI.color = Color.gray;
                 }
 
@@ -659,7 +662,60 @@ namespace CombatExtended
             }
             Widgets.EndScrollView();
         }
-
+        
         #endregion Methods
+        
+		#region ListDrawOptimization        
+        
+		/* This region is used by DrawSlotSelection and setup by SetSource when Generics type is chosen.
+		 * Purpose is to spread the load out over time, instead of checking the state of every generic per frame, only one generic is tested in a given frame.
+         * and then some time (frames) are allowed to pass before the next check.
+         * 
+         * The reason is that checking the existence of a generic requires that we consider all possible things.
+         * A well written generic won't be too hard to test on a given frame.
+         */
+		
+        static readonly Dictionary<LoadoutGenericDef, VisibilityCache> genericVisibility = new Dictionary<LoadoutGenericDef, VisibilityCache>();
+        const int advanceTicks = 1; //	GenTicks.TicksPerRealSecond / 4;
+        
+        /// <summary>
+        /// Purpose is to handle deciding if a generic's state (something on the map or not) should be checked or not based on current frame.
+        /// </summary>
+        /// <param name="def"></param>
+        /// <returns></returns>
+        private bool GetVisibleGeneric(LoadoutGenericDef def)
+        {
+        	if (GenTicks.TicksAbs >= genericVisibility[def].ticksToRecheck)
+        	{
+        		genericVisibility[def].ticksToRecheck = GenTicks.TicksAbs + (advanceTicks * genericVisibility[def].position);
+        		genericVisibility[def].check = Find.VisibleMap.listerThings.AllThings.Find(x => def.lambda(x.GetInnerIfMinified().def) && !x.def.Minifiable) == null;
+        	}
+        	
+        	return genericVisibility[def].check;
+        }
+        
+        private void initGenericVisibilityDictionary()
+        {
+        	int tick = GenTicks.TicksAbs;
+        	int position = 1;
+        	foreach (LoadoutGenericDef def in _sourceGeneric)
+        	{
+        		if (!genericVisibility.ContainsKey(def)) genericVisibility.Add(def, new VisibilityCache());
+        		genericVisibility[def].ticksToRecheck = tick;
+        		genericVisibility[def].check = Find.VisibleMap.listerThings.AllThings.Find(x => def.lambda(x.GetInnerIfMinified().def) && !x.def.Minifiable) == null;
+        		genericVisibility[def].position = position;
+        		position++;
+        		tick += advanceTicks;
+        	}
+        }
+        
+        private class VisibilityCache
+        {
+        	public int ticksToRecheck = 0;
+        	public bool check = true;
+        	public int position = 0;
+        }
+        	
+		#endregion GenericDrawOptimization        
     }
 }

@@ -42,10 +42,6 @@ namespace CombatExtended
             _count = count;
             _def = def;
 
-            // increase default ammo count
-            if ( def is AmmoDef )
-                _count = ( (AmmoDef)def ).defaultAmmoCount;
-            
             _count = _count < 1 ? 1 : _count;
         }
         

@@ -7,13 +7,12 @@ using System.Text;
 using UnityEngine;
 using Verse;
 
-//TODO: Cause new loadouts to use the pawn's current equipment (on top of above)?
 namespace CombatExtended
 {
 	/// <summary>
 	/// Contains a series of LoadoutSlot slots which define what a pawn using this loadout should try to keep in their inventory.
 	/// </summary>
-    public class Loadout : IExposable, ILoadReferenceable
+    public class Loadout : IExposable, ILoadReferenceable, IComparable
     {
         #region Fields
 
@@ -129,6 +128,7 @@ namespace CombatExtended
         public void AddSlot(LoadoutSlot slot)
         {
         	LoadoutSlot old = _slots.FirstOrDefault(slot.isSameDef);
+        	Log.Message(string.Concat("Adding ThingDef ", slot.thingDef == null ? "Null" : slot.thingDef.LabelCap, " added, count: ", slot.count));
         	if (old != null)
         		old.count += slot.count;
         	else
@@ -213,5 +213,29 @@ namespace CombatExtended
         }
 
         #endregion Methods
+
+		#region IComparable implementation
+
+		/// <summary>
+		/// Used when sorting lists of Loadouts.
+		/// </summary>
+		/// <param name="obj">other object to compare to.</param>
+		/// <returns>int -1 indicating this is before obj, 0 indicates this is the same as obj, 1 indicates this is after obj.</returns>
+		public int CompareTo(object obj)
+		{
+			Loadout other = obj as Loadout;
+			if (other == null)
+				throw new ArgumentException("Loadout.CompareTo(obj), obj is not of type Loadout.");
+			
+			// initial case, default comes first.  Currently there aren't more than one default and should never be.
+			if (this.defaultLoadout && other.defaultLoadout) return 0;
+			if (this.defaultLoadout) return -1;
+			if (other.defaultLoadout) return 1;
+			
+			// now we just compare by name of loadout...
+			return this.label.CompareTo(other.label);
+		}
+
+		#endregion
     }
 }

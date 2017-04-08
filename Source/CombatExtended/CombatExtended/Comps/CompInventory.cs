@@ -121,20 +121,24 @@ namespace CombatExtended
                 return null;
             }
         }
-        public List<Thing> ammoList
-        {
-            get
-            {
-                return ammoListCached;
-            }
-        }
+        public List<Thing> ammoList => ammoListCached;
         public List<ThingWithComps> meleeWeaponList => meleeWeaponListCached;
         public List<ThingWithComps> rangedWeaponList => rangedWeaponListCached;
 
-        #endregion
+        #endregion Properties
 
         #region Methods
 
+        /// <summary>
+        /// Similar to ThingContainer.TotalStackCountOfDef(), returns the count of all matching AmmoDefs in AmmoList cache.
+        /// </summary>
+        /// <param name="def">ThingDef to count.</param>
+        /// <returns>int amount of AmmoDef found in AmmoList.</returns>
+        public int AmmoCountOfDef(AmmoDef def)
+        {
+        	return ammoListCached.Where(t => t.def == def).Sum(t => t.stackCount);
+        }
+        
         public override void PostSpawnSetup()
         {
             base.PostSpawnSetup();
@@ -435,6 +439,6 @@ namespace CombatExtended
             */
         }
 
-        #endregion
+        #endregion Methods
     }
 }

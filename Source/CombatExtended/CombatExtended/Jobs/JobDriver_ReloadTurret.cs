@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using RimWorld;
 using UnityEngine;
+using Verse;
 using Verse.AI;
 
 namespace CombatExtended
@@ -26,6 +27,14 @@ namespace CombatExtended
 
         protected override IEnumerable<Toil> MakeNewToils()
         {
+           	if (compReloader.turret == null)
+				throw new System.ArgumentException("JobDriver_ReloadTurret :: compReloader.turret is null.  A turret is required for this job.");
+           	
+        	compReloader.turret.isReloading = true;
+                
+            if (compReloader.Props.throwMote)
+                MoteMaker.ThrowText(compReloader.turret.Position.ToVector3Shifted(), Find.VisibleMap, "CE_ReloadingMote".Translate());
+            
             if (compReloader.useAmmo)
             {
                 if (pawn.Faction != Faction.OfPlayer)
