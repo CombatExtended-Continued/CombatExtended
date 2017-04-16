@@ -211,7 +211,7 @@ namespace CombatExtended
                 }
                 if (target.Thing != null)
                 {
-                    stringBuilder.AppendLine("   " + "CE_TargetHeight".Translate() + "\t" + CE_Utility.GetCollisionVertical(target.Thing).Span + " c");
+                    stringBuilder.AppendLine("   " + "CE_TargetHeight".Translate() + "\t" + GenText.ToStringByStyle(CE_Utility.GetCollisionVertical(target.Thing).Span, ToStringStyle.FloatTwo) + " c");
                     stringBuilder.AppendLine("   " + "CE_TargetWidth".Translate() + "\t" + GenText.ToStringByStyle(CE_Utility.GetCollisionWidth(target.Thing) * 2, ToStringStyle.FloatTwo) + " c");
                 }
                 PlayerKnowledgeDatabase.KnowledgeDemonstrated(CE_ConceptDefOf.CE_AimingSystem, KnowledgeAmount.FrameDisplayed); // Show we learned about the aiming system

@@ -134,6 +134,11 @@ namespace CombatExtended
         public const float treeCollisionHeight = 5f;        // Trees are this tall
         public const float bodyRegionBottomHeight = 0.45f;  // Hits below this percentage will impact the corresponding body region
         public const float bodyRegionMiddleHeight = 0.85f;
+        public const float ShotHeightFactor = 0.85f;   // The height at which pawns hold their guns
+
+        // These jobs will have pawns crouch down to reduce their collision height
+        // TODO: Rework this into an XML flag so we don't have to rely on a hardcoded list of jobs
+        private static readonly JobDef[] crouchJobs = { JobDefOf.AttackStatic, JobDefOf.WaitCombat, JobDefOf.ManTurret, CE_JobDefOf.ReloadTurret, CE_JobDefOf.ReloadWeapon, CE_JobDefOf.Stabilize };
         
         /// <summary>
         /// Calculates the range reachable with a projectile of speed <i>velocity</i> fired at <i>angle</i> from height <i>shotHeight</i>. Does not take into account air resistance.
@@ -220,6 +225,27 @@ namespace CombatExtended
                 {
                     collisionHeight = pawn.BodySize > 1 ? pawn.BodySize - 0.8f : 0.2f * pawn.BodySize;
                 }
+                // Humanlikes in combat crouch to reduce their profile
+                else if (pawn.RaceProps.Humanlike && crouchJobs.Contains(pawn.CurJob?.def))
+                {
+                    float crouchHeight = 0.5f * collisionHeight;  // Minimum height we can crouch down to
+
+                    // Find the highest adjacent cover
+                    Map map = pawn.Map;
+                    for (int i = 0; i < 0; i++)
+                    {
+                        IntVec3 c = pawn.Position + GenAdj.AdjacentCells[i];
+                        if (c.InBounds(map))
+                        {
+                            Thing cover = c.GetEdifice(map);
+                            if (cover?.def.Fillage == FillCategory.Partial && cover.def.fillPercent > crouchHeight)
+                            {
+                                crouchHeight = cover.def.fillPercent;
+                            }
+                        }
+                    }
+                    collisionHeight = (crouchHeight + 0.01f) / ShotHeightFactor;  // We crouch down only so far that we can still shoot over our own cover
+                }
             }
             else
             {
@@ -296,11 +322,11 @@ namespace CombatExtended
         }
 
         /// <summary>
-        /// Calculates the BodyPartHeight based on how high a projectile was at time of collision with a pawn.
+        /// Calculates the BodyPartHeight based on how high a projectile impacted in relation to overall pawn height.
         /// </summary>
-        /// <param name="thing">The Thing to check impact height on. Returns Undefined for non-pawns.</param>
+        /// <param name="thing">The Thing to check impact height on.</param>
         /// <param name="projectileHeight">The height of the projectile at time of impact.</param>
-        /// <returns></returns>
+        /// <returns>For pawns, BodyPartHeight from Bottom to Top. For non-pawns, returns BodyPartHeight.Undefined</returns>
         public static BodyPartHeight GetCollisionBodyHeight(Thing thing, float projectileHeight)
         {
             Pawn pawn = thing as Pawn;
