@@ -16,7 +16,7 @@ namespace CombatExtended
         // Cover check constants
         private const float distToCheckForCover = 3f;   // How many cells to raycast on the cover check
         private const float segmentLength = 0.2f;       // How long a single raycast segment is
-        private const float shotHeightFactor = 0.85f;   // The height at which pawns hold their guns
+        //private const float shotHeightFactor = 0.85f;   // The height at which pawns hold their guns
 
         #endregion
 
@@ -91,7 +91,7 @@ namespace CombatExtended
                 {
                 	var shooterVertical = CE_Utility.GetCollisionVertical(caster);
                 	shotHeight = CasterIsPawn
-                		? shooterVertical.min + (shooterVertical.max - shooterVertical.min) * shotHeightFactor
+                		? shooterVertical.min + (shooterVertical.max - shooterVertical.min) * CE_Utility.ShotHeightFactor
 		            	: shooterVertical.max;
                 }
                 return shotHeight;
@@ -235,14 +235,12 @@ namespace CombatExtended
 	           			//TODO : It is possible for targetVertical.max < coverVertical.max, technically, in which case the shooter will never hit until the cover is gone.
 	           			targetVertical.min = coverVertical.max;
 	           		}
-                    /*
                     else if (currentTarget.Thing is Pawn)
                     {
                         // Aim for center of mass on an exposed target
                         targetVertical.min += CE_Utility.bodyRegionBottomHeight * targetVertical.max;
                         targetVertical.max *= CE_Utility.bodyRegionMiddleHeight;
                     }
-                    */
 	           		targetHeight = targetVertical.min + (targetVertical.max - targetVertical.min) * 0.5f;
 	            }
 	            
@@ -306,7 +304,7 @@ namespace CombatExtended
         {
         	float ticks = (float)(Find.TickManager.TicksAbs + this.caster.thingIDNumber);
         	rotation += SwayAmplitude * (float)Mathf.Sin(ticks * 0.022f);
-        	angle += Mathf.Deg2Rad * 0.25f * SwayAmplitude * (float)Mathf.Sin(ticks * 0.0165f);
+        	angle += Mathf.Deg2Rad * SwayAmplitude * (float)Mathf.Sin(ticks * 0.0165f);
         }
 
         public virtual ShiftVecReport ShiftVecReportFor(LocalTargetInfo target)
