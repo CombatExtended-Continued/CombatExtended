@@ -293,6 +293,7 @@ namespace CombatExtended
             // main button
             if (Widgets.ButtonText(labelLoadoutRect, p.GetLoadout().LabelCap, true, false))
             {
+            	LoadoutManager.SortLoadouts();
                 List<FloatMenuOption> options = new List<FloatMenuOption>();
                 foreach (Loadout loadout in LoadoutManager.Loadouts)
                 {

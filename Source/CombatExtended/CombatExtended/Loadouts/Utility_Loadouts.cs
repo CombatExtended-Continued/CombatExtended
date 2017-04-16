@@ -1,4 +1,5 @@
-﻿using RimWorld;
+﻿using System.Text.RegularExpressions;
+using RimWorld;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -271,8 +272,81 @@ namespace CombatExtended
             else
                 return ys[Mathf.FloorToInt(ys.Length / 2)];
         }
-
-
+        
+        /// <summary>
+        /// Generates a loadout from a pawn's current equipment and inventory.  Attempts to put items which fit in Generics that are default/DropExcess into said Generic.
+        /// </summary>
+        /// <param name="pawn">Pawn to check equipment/inventory on and generate a Loadout from.</param>
+        /// <returns>Loadout which was generated based on Pawn's inventory.</returns>
+        public static Loadout GenerateLoadoutFromPawn(this Pawn pawn)
+        {
+        	// generate the name for this new pawn based loadout.
+        	string newName = string.Concat(pawn.NameStringShort, " ", "CE_DefaultLoadoutName".Translate());
+        	Regex reNum = new Regex(@"^(.*?)\d+$");
+        	if (reNum.IsMatch(newName))
+        		newName = reNum.Replace(newName, @"$1");
+        	newName = LoadoutManager.GetUniqueLabel(newName);
+        	
+        	// set basic loadout properties.
+        	Loadout loadout = new Loadout(newName);
+        	loadout.defaultLoadout = false;
+        	loadout.canBeDeleted = true;
+        	
+        	LoadoutSlot slot = null;
+        	
+        	// grab the pawn's current equipment as a loadoutslot.
+        	if (pawn.equipment?.Primary != null)
+        	{
+        		slot = new LoadoutSlot(pawn.equipment.Primary.def);
+        		loadout.AddSlot(slot);
+        	}
+        	
+        	// get a list of generics which are drop only.  Assumes that anything that doesn't fit here is a Specific slot later.
+        	IEnumerable<LoadoutGenericDef> generics = DefDatabase<LoadoutGenericDef>.AllDefs.Where(gd => gd.defaultCountType == LoadoutCountType.dropExcess);
+        	
+        	// enumerate each item in the pawn's inventory and add appropriate slots.
+        	foreach (Thing thing in pawn.inventory.innerContainer)
+        	{
+        		LoadoutGenericDef foundGeneric = null;
+        		// first check if it's a generic-able item...
+        		foreach(LoadoutGenericDef generic in generics)
+        		{
+        			if (generic.lambda(thing.def))
+        			{
+        				foundGeneric = generic;
+        				break;
+        			}
+        		}
+        		
+        		// assign a loadout slot that fits the thing.
+        		if (foundGeneric != null)
+        		{
+        			slot = new LoadoutSlot(foundGeneric, thing.stackCount);
+        		} else {
+        			slot = new LoadoutSlot(thing.def, thing.stackCount);
+        		}
+        		
+        		// add the slot (this also takes care of adding to existing slots)
+        		loadout.AddSlot(slot);
+        	}
+        	
+        	// finally check the loadout and make sure that it has sufficient generics like what happens with a new loadout in the management UI.
+        	foreach (LoadoutGenericDef generic in generics.Where(gd => gd.isBasic))
+        	{
+        		slot = loadout.Slots.FirstOrDefault(s => s.genericDef == generic);
+        		if (slot != null)
+        		{
+        			if (slot.count < slot.genericDef.defaultCount)
+        				slot.count = slot.genericDef.defaultCount;
+        		} else {
+        			slot = new LoadoutSlot(generic);
+        			loadout.AddSlot(slot);
+        		}
+        	}
+        	
+        	return loadout;
+        }
+        
         #endregion Methods
     }
 }

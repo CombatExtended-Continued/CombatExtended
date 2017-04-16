@@ -125,6 +125,16 @@ namespace CombatExtended
 				recs.RemoveAt(recs.IndexOf(rec));
 		}
 		
+		/// <summary>
+		/// Makes it convenient to fetch a pawn's holdTracker (List of HoldRecords).
+		/// </summary>
+		/// <param name="pawn">Pawn to fetch the records for.</param>
+		/// <returns>List of HoldRecords otherwise known as the Pawn's holdTracker.</returns>
+		public static List<HoldRecord> GetHoldRecords(this Pawn pawn)
+		{
+			return LoadoutManager.GetHoldRecords(pawn);
+		}
+		
 		#endregion
 		
 		#region Loadout/Holdtracker methods.
@@ -256,7 +266,12 @@ namespace CombatExtended
 				storage[thing.def].value += thing.stackCount;
 				gun = thing.TryGetComp<CompAmmoUser>();
 				if (gun != null)
-					storage.Add(gun.currentAmmo, new Integer(gun.curMagCount));
+				{
+					if (storage.ContainsKey(gun.currentAmmo))
+						storage[gun.currentAmmo].value += gun.curMagCount;
+					else
+						storage.Add(gun.currentAmmo, new Integer(gun.curMagCount));
+				}
 			}
         	
 			return storage;

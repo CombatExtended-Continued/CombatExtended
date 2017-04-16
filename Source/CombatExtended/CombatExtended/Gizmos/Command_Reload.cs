@@ -88,7 +88,7 @@ namespace CombatExtended
             // Append unload command
             if (compAmmo.useAmmo && compAmmo.wielder != null && compAmmo.hasMagazine && compAmmo.curMagCount > 0)
             {
-                floatOptionList.Add(new FloatMenuOption("CE_UnloadLabel".Translate(), new Action(delegate { compAmmo.TryStartReload(true); })));
+                floatOptionList.Add(new FloatMenuOption("CE_UnloadLabel".Translate(), new Action(delegate { compAmmo.TryUnload(); })));
             }
             // Append reload command
             if (compAmmo.hasMagazine && !ModSettings.rightClickAmmoSelect)

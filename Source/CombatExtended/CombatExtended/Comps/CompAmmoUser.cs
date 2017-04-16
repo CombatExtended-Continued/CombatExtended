@@ -58,6 +58,13 @@ namespace CombatExtended
                 return compEquippable.PrimaryVerb.CasterPawn;
             }
         }
+		public Pawn holder
+		{
+			get
+			{
+				return wielder ?? (compEquippable.parent.holdingContainer?.owner as Pawn_InventoryTracker)?.pawn;
+			}
+		}
         public bool useAmmo
         {
             get
@@ -106,7 +113,7 @@ namespace CombatExtended
         {
             get
             {
-                return wielder.TryGetComp<CompInventory>();
+                return holder.TryGetComp<CompInventory>();
             }
         }
         private IntVec3 position
@@ -115,11 +122,12 @@ namespace CombatExtended
             {
                 if (wielder != null) return wielder.Position;
                 else if (turret != null) return turret.Position;
+                else if (holder != null) return holder.Position;
                 else return parent.Position;
             }
         }
 
-        #endregion
+        #endregion Properties
 
         #region Methods
 
@@ -231,47 +239,24 @@ namespace CombatExtended
             if (curMagCountInt < 0) TryStartReload();
             return true;
         }
-
-        public void TryStartReload(bool unload = false)
+		
+        // really only used by pawns (JobDriver_Reload) at this point... TODO: Finish making sure this is only used by pawns and fix up the error checking.
+        /// <summary>
+        /// Overrides a Pawn's current activities to start reloading a gun or turret.  Has a code path to resume the interrupted job.
+        /// </summary>
+        public void TryStartReload()
         {
             if (!hasMagazine)
             {
                 return;
             }
-            IntVec3 position;
-            if (wielder == null)
-            {
-                if (turret == null) return;
-                turret.isReloading = true;
-                position = turret.Position;
-            }
-            else
-            {
-                position = wielder.Position;
-            }
+            if (wielder == null && turret == null)
+            	return;
 
             if (useAmmo)
             {
-                // Add remaining ammo back to inventory
-	            if (curMagCountInt > 0)
-	            {
-	                Thing ammoThing = ThingMaker.MakeThing(currentAmmoInt);
-	                ammoThing.stackCount = curMagCountInt;
-	                curMagCountInt = 0;
-	
-	                if (compInventory != null)
-	                {
-	                    compInventory.container.TryAdd(ammoThing, ammoThing.stackCount);
-	                }
-	                else
-	                {
-	                    Thing outThing;
-	                    GenThing.TryDropAndSetForbidden(ammoThing, position, Find.VisibleMap, ThingPlaceMode.Near, out outThing, turret.Faction != Faction.OfPlayer);
-	                }
-	            }
-                
-                if (unload) return;
-
+            	TryUnload();
+            	
                 // Check for ammo
                 if (wielder != null && !hasAmmo)
                 {
@@ -280,19 +265,13 @@ namespace CombatExtended
                 }
             }
 
-            // Throw mote
-            if (Props.throwMote)
-            {
-                MoteMaker.ThrowText(position.ToVector3Shifted(), Find.VisibleMap, "CE_ReloadingMote".Translate());
-            }
-
             // Issue reload job
             if (wielder != null)
             {
-                Job reloadJob = new Job(CE_JobDefOf.ReloadWeapon, wielder, parent)
-                {
-                    playerForced = true
-                };
+            	Job reloadJob = TryMakeReloadJob();
+            	if (reloadJob == null)
+            		return;
+            	reloadJob.playerForced = true;
 
                 // Store the current job so we can reassign it later
                 if (wielder.Faction == Faction.OfPlayer
@@ -303,13 +282,69 @@ namespace CombatExtended
                     else storedTarget = new LocalTargetInfo(wielder.CurJob.targetA.Cell);
                     storedJobDef = wielder.CurJob.def;
                 }
-                else
-                {
-                    storedTarget = null;
-                    storedJobDef = null;
-                }
                 AssignJobToWielder(reloadJob);
             }
+        }
+        
+        // used by both turrets (JobDriver_ReloadTurret) and pawns (JobDriver_Reload).
+        /// <summary>
+        /// Used to unload the weapon.  Ammo will be dumped to the unloading Pawn's inventory or the ground if insufficient space.  Any ammo that can't be dropped
+        /// on the ground is destroyed (with a warning).
+        /// </summary>
+        /// <returns>bool, true indicates the weapon was already in an unloaded state or the unload was successful.  False indicates an error state.</returns>
+        /// <remarks>
+        /// Failure to unload occurs if the weapon doesn't use a magazine.
+        /// </remarks>
+        public bool TryUnload()
+        {
+        	if (!hasMagazine || (holder == null && turret == null))
+        		return false; // nothing to do as we are in a bad state;
+        	
+        	if (!useAmmo || curMagCountInt == 0)
+        		return true; // nothing to do but we aren't in a bad state either.  Claim success.
+        		
+            // Add remaining ammo back to inventory
+            Thing ammoThing = ThingMaker.MakeThing(currentAmmoInt);
+            ammoThing.stackCount = curMagCountInt;
+            bool doDrop = false;
+
+            if (compInventory != null)
+            	doDrop = (curMagCountInt != compInventory.container.TryAdd(ammoThing, ammoThing.stackCount)); // TryAdd should report how many ammoThing.stackCount it stored.
+            else
+            	doDrop = true; // Inventory was null so no place to shift the ammo besides the ground.
+            
+            if (doDrop)
+            {
+            	// NOTE: If we get here from ThingContainer.TryAdd() it will have modified the ammoThing.stackCount to what it couldn't take.
+                Thing outThing;
+                if (!GenThing.TryDropAndSetForbidden(ammoThing, position, Find.VisibleMap, ThingPlaceMode.Near, out outThing, turret.Faction != Faction.OfPlayer))
+                {
+                	Log.Warning(String.Concat(this.GetType().Assembly.GetName().Name + " :: " + this.GetType().Name + " :: ",
+                	                         "Unable to drop ", ammoThing.LabelCap, " on the ground, thing was destroyed."));
+                }
+            }
+            
+            // don't forget to set the clip to empty...
+            curMagCountInt = 0;
+            
+            return true;
+        }
+        
+        /// <summary>
+        /// Used to fetch a reload job for the weapon this comp is on.  Sets storedInfo to null (as if no job being replaced).
+        /// </summary>
+        /// <returns>Job using JobDriver_Reload</returns>
+        /// <remarks>TryUnload() should be called before this in most cases.</remarks>
+        public Job TryMakeReloadJob()
+        {
+        	if (!hasMagazine || (holder == null && turret == null))
+        		return null; // the job couldn't be created.
+        	
+            // blank the stored job details so we don't try to start another job after reloading.  Up to caller to set these after getting the reload job from us.
+        	storedTarget = null;
+            storedJobDef = null;
+            
+            return new Job(CE_JobDefOf.ReloadWeapon, holder, parent);
         }
         
         private void DoOutOfAmmoAction()
@@ -323,8 +358,8 @@ namespace CombatExtended
 
         public void LoadAmmo(Thing ammo = null)
         {
-            if (wielder == null && turret == null)
-            {
+            if (holder == null && turret == null)
+			{
                 Log.Error(parent.ToString() + " tried loading ammo with no owner");
                 return;
             }
@@ -480,6 +515,6 @@ namespace CombatExtended
             return stringBuilder.ToString();
         }
 
-        #endregion
+        #endregion Methods
     }
 }

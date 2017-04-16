@@ -101,14 +101,20 @@ namespace CombatExtended
         
         public static void RemoveLoadout( Loadout loadout )
         {
-            Instance._loadouts.Remove( loadout );
+			// assign default loadout to pawns that used to use this loadout
+			List<Pawn> obsolete = AssignedLoadouts.Where(kvp => kvp.Value == loadout).Select(kvp => kvp.Key).ToList(); // ToList separates this from the dictionary, ienumerable in this case would break as we change the relationship.
+			foreach (Pawn id in obsolete)
+				AssignedLoadouts[id] = DefaultLoadout;
 
-            // assign default loadout to pawns that used to use this loadout
-            IEnumerable<Pawn> obsolete = AssignedLoadouts.Where( a => a.Value == loadout ).Select( a => a.Key );
-            foreach ( Pawn id in obsolete )
-            {
-                AssignedLoadouts[id] = DefaultLoadout;
-            }
+			Instance._loadouts.Remove(loadout);
+		}
+        
+        /// <summary>
+        /// Used to ensure that future retrievals of loadouts are sorted.  Doesn't need to be called often, just right before fetching and only when it matters.
+        /// </summary>
+        public static void SortLoadouts()
+        {
+        	Instance._loadouts.Sort();
         }
 
         /// <summary>

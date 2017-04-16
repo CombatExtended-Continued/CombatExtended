@@ -292,6 +292,7 @@ namespace CombatExtended
             }
             return null;
         }
+        
         #endregion
     }
 }
