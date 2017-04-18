@@ -81,10 +81,6 @@
           <type>Clean</type>
           <command>rm ../../Assemblies/CombatExtended.pdb</command>
         </Command>
-        <Command>
-          <type>AfterBuild</type>
-          <command>rm ../../Assemblies/Override.dll</command>
-        </Command>
       </CustomCommands>
     </CustomCommands>
   </PropertyGroup>
@@ -286,6 +282,13 @@
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PostBuildEvent>if $(ConfigurationName) == Debugger call "C:\Program Files (x86)\Mono\bin\pdb2mdb.bat" $(TargetDir)$(TargetName)$(TargetExt)</PostBuildEvent>
+  </PropertyGroup>
+  <PropertyGroup>
+    <PreBuildEvent>
+    </PreBuildEvent>
+  </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">
@@ -293,4 +296,7 @@
   <Target Name="AfterBuild">
   </Target>
   -->
+  <Target Name="AfterClean">
+    <Delete Files="$(OutDir)$(TargetName)$(TargetExt).mdb" />
+  </Target>
 </Project>
