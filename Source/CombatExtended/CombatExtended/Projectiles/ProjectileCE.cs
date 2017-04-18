@@ -14,6 +14,7 @@ namespace CombatExtended
         /// Tree collision chance is multiplied by this factor
         /// </summary>
         private const float treeCollisionChance = 0.5f;
+        private const int SuppressionRadius = 3;    // Suppression is applied within this area
         
         protected Vector2 origin;
         
@@ -346,35 +347,7 @@ namespace CombatExtended
 
             if (pawn != null)
             {
-                PersonalShield shield = null;
-                if (pawn.RaceProps.Humanlike)
-                {
-                    // check for shield user
-
-                    List<Apparel> wornApparel = pawn.apparel.WornApparel;
-                    for (int i = 0; i < wornApparel.Count; i++)
-                    {
-						var personalShield = wornApparel[i] as PersonalShield;
-                        if (personalShield != null)
-                        {
-							shield = personalShield;
-                            break;
-                        }
-                    }
-                }
-                //Add suppression
-                CompSuppressable compSuppressable = pawn.TryGetComp<CompSuppressable>();
-                if (compSuppressable != null 
-                    && pawn.Faction != launcher?.Faction
-                    && (shield == null || shield?.ShieldState == ShieldState.Resetting))
-                {
-                    suppressionAmount = def.projectile.damageAmountBase;
-                    ProjectilePropertiesCE propsCE = def.projectile as ProjectilePropertiesCE;
-                    float penetrationAmount = propsCE == null ? 0f : propsCE.armorPenetration;
-                    Log.Message(string.Concat("CE adding suppression: ", suppressionAmount.ToString(), " * (1 - (", compSuppressable.ParentArmor.ToString(), " - ", penetrationAmount.ToString(), ")) = ", (suppressionAmount * (1 - Mathf.Clamp(compSuppressable.ParentArmor - penetrationAmount, 0, 1))).ToString(), " to Pawn ", pawn.ToString()));
-                    suppressionAmount *= 1 - Mathf.Clamp(compSuppressable.ParentArmor - penetrationAmount, 0, 1);
-                    compSuppressable.AddSuppression(suppressionAmount, OriginIV3);
-                }
+                ApplySuppression(pawn);
 
                 //Check horizontal distance
                 if (CE_Utility.ClosestDistBetween(origin, Destination, new Vector2(pawn.DrawPos.x, pawn.DrawPos.z)) <= CE_Utility.GetCollisionWidth(pawn))
@@ -401,6 +374,39 @@ namespace CombatExtended
                 }
             }
             return false;
+        }
+
+        private void ApplySuppression(Pawn pawn)
+        {
+            PersonalShield shield = null;
+            if (pawn.RaceProps.Humanlike)
+            {
+                // check for shield user
+
+                List<Apparel> wornApparel = pawn.apparel.WornApparel;
+                for (int i = 0; i < wornApparel.Count; i++)
+                {
+                    var personalShield = wornApparel[i] as PersonalShield;
+                    if (personalShield != null)
+                    {
+                        shield = personalShield;
+                        break;
+                    }
+                }
+            }
+            //Add suppression
+            CompSuppressable compSuppressable = pawn.TryGetComp<CompSuppressable>();
+            if (compSuppressable != null
+                && pawn.Faction != launcher?.Faction
+                && (shield == null || shield?.ShieldState == ShieldState.Resetting))
+            {
+                suppressionAmount = def.projectile.damageAmountBase;
+                ProjectilePropertiesCE propsCE = def.projectile as ProjectilePropertiesCE;
+                float penetrationAmount = propsCE == null ? 0f : propsCE.armorPenetration;
+                //Log.Message(string.Concat("CE adding suppression: ", suppressionAmount.ToString(), " * (1 - (", compSuppressable.ParentArmor.ToString(), " - ", penetrationAmount.ToString(), ")) = ", (suppressionAmount * (1 - Mathf.Clamp(compSuppressable.ParentArmor - penetrationAmount, 0, 1))).ToString(), " to Pawn ", pawn.ToString()));
+                suppressionAmount *= 1 - Mathf.Clamp(compSuppressable.ParentArmor - penetrationAmount, 0, 1);
+                compSuppressable.AddSuppression(suppressionAmount, OriginIV3);
+            }
         }
 
         //Unmodified
@@ -460,18 +466,20 @@ namespace CombatExtended
 
             //Find pawns in adjacent cells and append them to main list
             List<IntVec3> adjList = new List<IntVec3>();
+            IntVec2 size = new IntVec2(0, 0);
             	//HACK : Potential error
             Vector2 shotVec = Quaternion.AngleAxis(shotRotation, Vector3.up) * Vector2.down;
 
             //Check if bullet is going north-south or west-east
-            if (Math.Abs(shotVec.x) < Math.Abs(shotVec.y))
+            if (Rotation.IsHorizontal)
             {
-                adjList = GenAdj.CellsAdjacentCardinal(cell, Rotation, new IntVec2(0, 1)).ToList();
+                size.x = 3;
             }
             else
             {
-                adjList = GenAdj.CellsAdjacentCardinal(cell, Rotation, new IntVec2(1, 0)).ToList();
+                size.z = 3;
             }
+            adjList.AddRange(GenAdj.CellsAdjacentCardinal(cell, Rotation, size).ToList());
 
             //Iterate through adjacent cells and find all the pawns
             for (int i = 0; i < adjList.Count; i++)
@@ -496,7 +504,7 @@ namespace CombatExtended
                     //Check for trees		--		HARDCODED RNG IN HERE
                     if (thing.def.category == ThingCategory.Plant && thing.def.altitudeLayer == AltitudeLayer.Building &&
                         Rand.Value <
-                        thing.def.fillPercent * Mathf.Clamp(distFromOrigin / 40, 0f, 1f / treeCollisionChance) *
+                        thing.def.fillPercent * Mathf.Lerp(0f, 1f / treeCollisionChance, distFromOrigin / 40) *
                         treeCollisionChance)
                     {
                         Impact(thing);
@@ -583,8 +591,7 @@ namespace CombatExtended
             }
             Impact(null);
         }
-
-        //Unmodified
+        
         protected virtual void Impact(Thing hitThing)
         {
             CompExplosiveCE comp = this.TryGetComp<CompExplosiveCE>();
@@ -592,6 +599,18 @@ namespace CombatExtended
             {
                 comp.Explode(launcher, Position, Find.VisibleMap);
             }
+
+            // Apply suppression around impact area
+            IntVec3[] suppressCells = def.projectile.damageDef.Worker.ExplosionCellsToHit(Position, Map, SuppressionRadius + def.projectile.explosionRadius).ToArray();
+            foreach (IntVec3 cell in suppressCells)
+            {
+                foreach (Thing thing in Map.thingGrid.ThingsListAtFast(cell))
+                {
+                    Pawn pawn = thing as Pawn;
+                    if (pawn != null) ApplySuppression(pawn);
+                }
+            }
+
             Destroy();
         }
     }

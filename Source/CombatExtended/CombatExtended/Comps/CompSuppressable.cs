@@ -96,7 +96,7 @@ namespace CombatExtended
         {
             get
             {
-                if (currentSuppression > SuppressionThreshold * 2)
+                if (currentSuppression > SuppressionThreshold * 2.5)
                 {
                     if (isSuppressed)
                     {
