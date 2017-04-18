@@ -283,7 +283,7 @@ namespace CombatExtended
                     break;
                 case RecoilPattern.Mounted:
                     float num2 = VerbPropsCE.recoilAmount / 3;
-                    minX = -num2;
+                    minX = -num2 / 3;
                     maxX = num2;
                     minY = -num2;
                     maxX = VerbPropsCE.recoilAmount;
@@ -304,7 +304,7 @@ namespace CombatExtended
         {
         	float ticks = (float)(Find.TickManager.TicksAbs + this.caster.thingIDNumber);
         	rotation += SwayAmplitude * (float)Mathf.Sin(ticks * 0.022f);
-        	angle += Mathf.Deg2Rad * SwayAmplitude * (float)Mathf.Sin(ticks * 0.0165f);
+        	angle += Mathf.Deg2Rad * 0.25f * SwayAmplitude * (float)Mathf.Sin(ticks * 0.0165f);
         }
 
         public virtual ShiftVecReport ShiftVecReportFor(LocalTargetInfo target)

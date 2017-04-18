@@ -232,7 +232,7 @@ namespace CombatExtended
 
                     // Find the highest adjacent cover
                     Map map = pawn.Map;
-                    for (int i = 0; i < 0; i++)
+                    for (int i = 0; i < 8; i++)
                     {
                         IntVec3 c = pawn.Position + GenAdj.AdjacentCells[i];
                         if (c.InBounds(map))
