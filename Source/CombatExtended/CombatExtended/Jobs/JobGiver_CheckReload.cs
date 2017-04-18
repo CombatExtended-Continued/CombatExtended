@@ -14,7 +14,7 @@ namespace CombatExtended
 		#region Fields
 		
 		// lower priority = less likely to be done.  Need to give this a priority below JobGiver_Update Loadout's high priority setting.
-		const float reloadPriority = 9.1f; // 9.2 is high priority, 3 is lower priority.
+		const float reloadPriority = 9.1f; // in JobGiver_UpdateLoadout, 9.2 is high priority, 3 is lower priority.
 		
 		#endregion Fields
 		
@@ -37,7 +37,7 @@ namespace CombatExtended
 			ThingWithComps ignore1;
 			AmmoDef ignore2;
 			if (!pawn.Drafted && DoReloadCheck(pawn, out ignore1, out ignore2))
-				return 9.1f;
+				return reloadPriority;
             
 			return 0.0f;
 		}
@@ -107,9 +107,9 @@ namespace CombatExtended
 			
 			if ((tmpComp = pawn.equipment?.Primary?.TryGetComp<CompAmmoUser>()) != null && tmpComp.hasMagazine && tmpComp.useAmmo)
 				guns.Add(pawn.equipment.Primary);
-			
-			// CompInventory doesn't track equipment and it's desired to check the pawn's equipped weapon before inventory items so need to copy stuff from Inventory Cache.
-			guns.AddRange(inventory.rangedWeaponList.Where(t => t.GetComp<CompAmmoUser>().hasMagazine && t.GetComp<CompAmmoUser>().useAmmo));
+
+            // CompInventory doesn't track equipment and it's desired to check the pawn's equipped weapon before inventory items so need to copy stuff from Inventory Cache.
+            guns.AddRange(inventory.rangedWeaponList.Where(t => t.TryGetComp<CompAmmoUser>() != null && t.GetComp<CompAmmoUser>().hasMagazine && t.GetComp<CompAmmoUser>().useAmmo));
 			
 			if (guns.NullOrEmpty())
 				return false; // There isn't any work to do since the pawn doesn't have any ammo using guns.
