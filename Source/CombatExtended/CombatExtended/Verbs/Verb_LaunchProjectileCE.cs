@@ -375,6 +375,7 @@ namespace CombatExtended
                     {
                         newCover = coverAtCell;
                     }
+                    checkedCells.Add(cell);
                 }
             }
             cover = newCover;

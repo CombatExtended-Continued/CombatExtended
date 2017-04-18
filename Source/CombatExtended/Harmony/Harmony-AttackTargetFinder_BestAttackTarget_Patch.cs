@@ -45,11 +45,11 @@ namespace CombatExtended.Harmony
 			List<MethodInfo> empty = new List<MethodInfo>();  // doesn't matter...
 			List<MethodInfo> transpilers = new List<MethodInfo>(); // puts the transpiler into the format expected by patcher.
 			transpilers.Add(patchMethod);
-			
-			// due to how this patching takes place need to make sure debug is set before running the copy or else no debug output.
-			//HarmonyInstance.DEBUG = true;
-			// get the patched original method (after the below line the original code will have the new stuff we want added to it).
-			Patched_ClosestThingTarget_Global = MethodPatcher.CreatePatchedMethod(oldMethod, empty, empty, transpilers);
+
+            // due to how this patching takes place need to make sure debug is set before running the copy or else no debug output.
+            //HarmonyInstance.DEBUG = true;
+            // get the patched original method (after the below line the original code will have the new stuff we want added to it).
+            Patched_ClosestThingTarget_Global = MethodPatcher.CreatePatchedMethod(oldMethod, empty, empty, transpilers);
 			if (Patched_ClosestThingTarget_Global == null) throw new MissingMethodException("Cannot create dynamic replacement for " + oldMethod);
 			
 			// get the new method to instanciate it's IL.  Otherwise the memory call and WriteJump don't have something to work with...
@@ -85,6 +85,7 @@ namespace CombatExtended.Harmony
 			bool foundBGT = false;
 			bool foundInsertion = false;
 			int instructionCount = 0;
+
 			
 			// this is the label we will use to emulate a 'continue' in a 'foreach'
 			object continueLabel = null;
@@ -138,7 +139,8 @@ namespace CombatExtended.Harmony
 				{
 					if (!patched)
 					{
-						if (instructionCount <= 0)
+                        // (ProfoundDarkness) used to use instructionCount but that was not quite right for some reason...
+						if (instruction.opcode == OpCodes.Ldstr && (instruction.operand as string) == "validator")
 						{
 							// Roughyly equivelent line of code: if (!CanShootTarget(center, thing)) continue;
 							// patched after the line float lengthHorizontalSquared = (center - thing.Position).LengthHorizontalSquared;
@@ -182,12 +184,12 @@ namespace CombatExtended.Harmony
 		{
 			//Log.Message(string.Concat(logPrefix, "Shooter at ", shooterPosition.ToString(), " is considering target ", target.LabelCap, " at ", target.Position.ToString()));
 			Thing cover;
-			if (!Verb_LaunchProjectileCE.GetPartialCoverBetween(target.Map, target.Position.ToVector3Shifted(), shooterPosition.ToVector3Shifted(), out cover))
+            if (!Verb_LaunchProjectileCE.GetPartialCoverBetween(target.Map, shooterPosition.ToVector3Shifted(), target.Position.ToVector3Shifted(), out cover))
 			{
 				//Log.Message(string.Concat(logPrefix, "Result: Can Shoot."));
 				return true;
 			}
-			//Log.Message(string.Concat(logPrefix, "Result: Cannot shoot."));
+            //Log.Message(string.Concat(logPrefix, "Result: Cannot shoot."));
 			return false;
 		}
 	}
