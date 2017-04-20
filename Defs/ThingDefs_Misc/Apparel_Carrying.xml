@@ -47,10 +47,11 @@
 
   <!-- ============= Stuffed apparel =================-->
 
-  <ThingDef ParentName="ApparelCarryGearBase">
+  <ThingDef Class="CombatExtended.Apparel_VisibleAccessoryDef" ParentName="ApparelCarryGearBase">
     <defName>Apparel_TacVest</defName>
     <label>tactical vest</label>
-    <ThingClass>Combat_Realism.Apparel_TacVest</ThingClass>
+	<ThingClass>CombatExtended.Apparel_VisibleAccessory</ThingClass>
+	<order>1</order>
     <description>A loadbearing vest with a number of pouches to store magazines and other equipment.\n\nSpeeds up reloading but is quite bulky to wear.</description>
     <graphicData>
       <texPath>Things/Apparel/TacRigging/TacRigging</texPath>
@@ -68,57 +69,6 @@
     <equippedStatOffsets>
       <CarryBulk>30</CarryBulk>
       <ReloadSpeed>0.1</ReloadSpeed>
-    </equippedStatOffsets>
-    <costList>
-      <Cloth>60</Cloth>
-    </costList>
-    <apparel>
-      <bodyPartGroups>
-        <li>Shoulders</li>
-      </bodyPartGroups>
-      <layers>
-        <li>Middle</li>
-      </layers>
-      <commonality>1</commonality>
-      <tags>
-        <li>Outlander</li>
-        <li>Military</li>
-      </tags>
-      <defaultOutfitTags>
-        <li>Soldier</li>
-      </defaultOutfitTags>
-    </apparel>
-    <!--
-    <colorGenerator Class="ColorGenerator_Options">
-      <options>
-        <li>
-          <weight>10</weight>
-          <only>RGBA(0.33,0.33,0.33,1)</only>
-        </li>
-      </options>
-    </colorGenerator>
-    -->
-  </ThingDef>
-
-  <ThingDef ParentName="ApparelCarryGearBase">
-    <defName>Apparel_Backpack</defName>
-    <label>backpack</label>
-    <ThingClass>Combat_Realism.Apparel_Backpack</ThingClass>
-    <description>A comfortable and spacious backpack for storing all kinds of items.</description>
-    <graphicData>
-      <texPath>Things/Apparel/Backpack/Milpack</texPath>
-      <graphicClass>Graphic_Single</graphicClass>
-    </graphicData>
-    <statBases>
-      <MaxHitPoints>120</MaxHitPoints>
-      <MarketValue>125</MarketValue>
-      <WorkToMake>8000</WorkToMake>
-      <Mass>1</Mass>
-      <Bulk>3</Bulk>
-      <WornWeight>0</WornWeight>
-    </statBases>
-    <equippedStatOffsets>
-      <CarryBulk>30</CarryBulk>
     </equippedStatOffsets>
     <costList>
       <Cloth>60</Cloth>
@@ -151,17 +101,18 @@
     -->
   </ThingDef>
 
-  <ThingDef ParentName="ApparelCarryGearBase">
-    <defName>Apparel_BackpackRegular</defName>
-    <label>regular backpack</label>
-    <ThingClass>Combat_Realism.Apparel_Backpack</ThingClass>
-    <description>A backpack is a bag with straps that go over your shoulders, so that you can carry things on your back when you are walking or climbing.</description>
+  <ThingDef Class="CombatExtended.Apparel_VisibleAccessoryDef" ParentName="ApparelCarryGearBase">
+    <defName>Apparel_Backpack</defName>
+    <label>backpack</label>
+	<ThingClass>CombatExtended.Apparel_VisibleAccessory</ThingClass>
+	<order>2</order>
+    <description>A comfortable and spacious backpack for storing all kinds of items.</description>
     <graphicData>
-      <texPath>Things/Apparel/BackpackReg/BackpackReg</texPath>
+      <texPath>Things/Apparel/Backpack/Milpack</texPath>
       <graphicClass>Graphic_Single</graphicClass>
     </graphicData>
     <statBases>
-      <MaxHitPoints>100</MaxHitPoints>
+      <MaxHitPoints>120</MaxHitPoints>
       <MarketValue>125</MarketValue>
       <WorkToMake>8000</WorkToMake>
       <Mass>1</Mass>
@@ -176,7 +127,7 @@
     </costList>
     <apparel>
       <bodyPartGroups>
-        <li>Shoulders</li>
+        <li>Torso</li>
       </bodyPartGroups>
       <layers>
         <li>Accessory</li>

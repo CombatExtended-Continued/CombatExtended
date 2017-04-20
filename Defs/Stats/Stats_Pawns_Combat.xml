@@ -3,7 +3,7 @@
 
   <StatDef>
     <defName>ShootingAccuracy</defName>
-    <label>shooting accuracy</label>
+    <label>weapon handling</label>
     <description>How well a shooter can hold a gun steady when aiming and compensate for recoil.\n\nThe total sway is calculated as:\n(4.5 - shooting accuracy) * weapon sway factor\n\nThe recoil per shot is determined by multiplying this value against the weapon's inherent recoil amount and increases after every shot in a burst.</description>
     <category>PawnCombat</category>
     <displayPriorityInCategory>50</displayPriorityInCategory>
@@ -115,7 +115,7 @@
     <minValue>0.001</minValue>
     <toStringStyle>PercentZero</toStringStyle>
     <showOnAnimals>false</showOnAnimals>
-    <showOnMechanoids>false</showOnMechanoids>
+    <showOnMechanoids>true</showOnMechanoids>
     <capacityFactors>
       <li>
         <capacity>Consciousness</capacity>
@@ -124,6 +124,25 @@
       <li>
         <capacity>Manipulation</capacity>
         <weight>1</weight>
+      </li>
+    </capacityFactors>
+  </StatDef>
+
+  <StatDef>
+    <defName>Suppressability</defName>
+    <label>suppressability</label>
+    <description>How susceptible this person is to suppression. Loss of conciousness and certain drugs can lower this value, making it harder to suppress this person.</description>
+    <category>PawnCombat</category>
+    <displayPriorityInCategory>60</displayPriorityInCategory>
+    <defaultBaseValue>1</defaultBaseValue>
+    <minValue>0</minValue>
+    <toStringStyle>PercentZero</toStringStyle>
+    <showOnAnimals>false</showOnAnimals>
+    <showOnMechanoids>false</showOnMechanoids>
+    <capacityFactors>
+      <li>
+        <capacity>Consciousness</capacity>
+        <weight>0.5</weight>
       </li>
     </capacityFactors>
   </StatDef>

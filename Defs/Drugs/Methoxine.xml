@@ -1,0 +1,210 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Methoxine>
+
+	<!-- Methoxine -->
+
+  <ThingDef ParentName="MakeableDrugPillBase">
+    <defName>Methoxine</defName>
+    <label>methoxine</label>
+    <description>This relatively strong analgesic is commonly used to treat moderate pain from chronic injuries.</description>
+    <graphicData>
+      <texPath>Things/Drugs/Methoxine</texPath>
+      <graphicClass>Graphic_StackCount</graphicClass>
+    </graphicData>
+    <rotatable>false</rotatable>
+    <statBases>
+      <WorkToMake>400</WorkToMake>
+      <MarketValue>45</MarketValue>
+      <Mass>0.04</Mass>
+    </statBases>
+    <techLevel>Industrial</techLevel>
+    <ingestible>
+      <joy>0.40</joy>
+      <drugCategory>Medical</drugCategory>
+      <baseIngestTicks>90</baseIngestTicks>
+      <ingestHoldOffsetStanding>(0.18,0,0)</ingestHoldOffsetStanding>
+      <chairSearchRadius>0</chairSearchRadius>
+      <outcomeDoers>
+        <li Class="IngestionOutcomeDoer_GiveHediff">
+          <hediffDef>MethoxineHigh</hediffDef>
+          <severity>0.75</severity>
+          <toleranceChemical>Methoxine</toleranceChemical>
+        </li>
+        <li Class="IngestionOutcomeDoer_GiveHediff">
+          <hediffDef>MethoxineTolerance</hediffDef>
+          <severity>0.03</severity>
+					<divideByBodySize>true</divideByBodySize>
+				</li>
+      </outcomeDoers>
+    </ingestible>
+    <recipeMaker>
+      <researchPrerequisite>MedicineProduction</researchPrerequisite>
+      <recipeUsers>
+        <li>DrugLab</li>
+      </recipeUsers>
+    </recipeMaker>
+    <costList>
+      <Neutroamine>2</Neutroamine>
+    </costList>
+    <comps>
+      <li Class="CompProperties_Drug">
+        <chemical>Methoxine</chemical>
+        <addictiveness>0.05</addictiveness>
+        <minToleranceToAddict>0.1</minToleranceToAddict>
+        <existingAddictionSeverityOffset>0.20</existingAddictionSeverityOffset>
+        <needLevelOffset>1</needLevelOffset>
+        <listOrder>550</listOrder>
+        <overdoseSeverityOffset>
+          <min>0.18</min>
+          <max>0.35</max>
+        </overdoseSeverityOffset>
+				<largeOverdoseChance>0.01</largeOverdoseChance>
+      </li>
+    </comps>
+  </ThingDef>
+  
+  <HediffDef>
+    <defName>MethoxineHigh</defName>
+    <hediffClass>HediffWithComps</hediffClass>
+    <label>high on methoxine</label>
+    <defaultLabelColor>(1,0,0.5)</defaultLabelColor>
+    <scenarioCanAdd>true</scenarioCanAdd>
+    <maxSeverity>1.0</maxSeverity>
+    <comps>
+      <li Class="HediffCompProperties_SeverityPerDay">
+        <severityPerDay>-0.25</severityPerDay>
+      </li>
+    </comps>
+      <stages>
+        <li>
+          <painFactor>0.9</painFactor>
+          <painOffset>-0.2</painOffset>
+          <capMods>
+            <li>
+              <capacity>Consciousness</capacity>
+              <offset>-0.10</offset>
+            </li>
+            <li>
+              <capacity>BloodPumping</capacity>
+              <offset>-0.10</offset>
+            </li>
+            <li>
+              <capacity>Breathing</capacity>
+              <offset>-0.10</offset>
+            </li>
+          </capMods>
+        </li>
+      </stages>
+  </HediffDef>
+  
+  <ThoughtDef>
+    <defName>MethoxineHigh</defName>
+    <workerClass>ThoughtWorker_Hediff</workerClass>
+    <hediff>MethoxineHigh</hediff>
+    <validWhileDespawned>true</validWhileDespawned>
+    <stages>
+      <li>
+        <label>high on methoxine</label>
+        <description>Feeling pumped but calm. I am the sniper bullet in flight, ready to cut through you.</description>
+        <baseMoodEffect>5</baseMoodEffect>
+      </li>
+    </stages>
+  </ThoughtDef>
+  
+  <!-- Methoxine addiction -->
+
+  <ChemicalDef>
+    <defName>Methoxine</defName>
+    <label>methoxine</label>
+    <addictionHediff>MethoxineAddiction</addictionHediff>
+    <toleranceHediff>MethoxineTolerance</toleranceHediff>
+  </ChemicalDef>
+  
+  <NeedDef ParentName="DrugAddictionNeedBase">
+    <defName>Chemical_Methoxine</defName>
+    <needClass>Need_Chemical</needClass>
+    <label>methoxine</label>
+    <description>Because of a methoxine addiction, this person needs to regularly consume the drug to avoid withdrawal symptoms.</description>
+    <listPriority>45</listPriority>
+  </NeedDef>
+
+  <HediffDef ParentName="DrugToleranceBase">
+    <defName>MethoxineTolerance</defName>
+    <label>methoxine tolerance</label>
+    <comps>
+      <li Class="HediffCompProperties_SeverityPerDay">
+        <severityPerDay>-0.015</severityPerDay>
+      </li>
+      <li Class="HediffCompProperties_DrugEffectFactor">
+        <chemical>Methoxine</chemical>
+      </li>
+    </comps>
+		<hediffGivers>
+			<li Class="HediffGiver_RandomDrugEffect">
+				<hediff>ChemicalDamageBrain</hediff>
+				<minSeverity>0.50</minSeverity>
+				<baseMtbDays>120</baseMtbDays>
+				<partsToAffect>
+					<li>Brain</li>
+				</partsToAffect>
+			</li>
+		</hediffGivers>
+  </HediffDef>
+
+  <HediffDef ParentName="AddictionBase">
+    <defName>MethoxineAddiction</defName>
+    <hediffClass>Hediff_Addiction</hediffClass>
+    <label>methoxine addiction</label>
+    <causesNeed>Chemical_Methoxine</causesNeed>
+    <comps>
+      <li Class="HediffCompProperties_SeverityPerDay">
+        <severityPerDay>-0.04</severityPerDay>
+      </li>
+    </comps>
+    <stages>
+      <li>
+      </li>
+      <li>
+        <label>withdrawal</label>
+        <vomitMtbDays>0.125</vomitMtbDays>
+        <painFactor>2</painFactor>
+        <restFallFactor>1.3</restFallFactor>
+        <hungerRateFactor>1.5</hungerRateFactor>
+        <capMods>
+          <li>
+            <capacity>Consciousness</capacity>
+            <offset>-0.10</offset>
+          </li>
+          <li>
+            <capacity>Manipulation</capacity>
+            <offset>-0.10</offset>
+          </li>
+        </capMods>
+        <mentalStateGivers>
+					<li>
+						<mentalState>BingingDrugExtreme</mentalState>
+						<mtbDays>40</mtbDays>
+					</li>
+        </mentalStateGivers>
+      </li>
+    </stages>
+  </HediffDef>
+  
+  <ThoughtDef>
+    <defName>MethoxineWithdrawal</defName>
+    <workerClass>ThoughtWorker_Hediff</workerClass>
+    <hediff>MethoxineAddiction</hediff>
+    <validWhileDespawned>true</validWhileDespawned>
+    <stages>
+      <li>
+        <visible>false</visible>
+      </li>
+      <li>
+        <label>methoxine withdrawal</label>
+        <description>My muscles ache and I can't stop vomiting.</description>
+        <baseMoodEffect>-35</baseMoodEffect>
+      </li>
+    </stages>
+  </ThoughtDef>
+  
+</Methoxine>

@@ -56,6 +56,13 @@
 						<li Class="JobGiver_Orders" />
           </subNodes>
         </li>
+
+        <!-- Take orders from squad -->
+        <!--<li Class="CombatExtended.ThinkNode_ConditionalHasSquad">
+          <subNodes>
+            <li Class="CombatExtended.JobGiver_SquadDuty" />
+          </subNodes>
+        </li>-->
         
 				<!-- Lord directives (high priority) -->
         <li Class="ThinkNode_JoinVoluntarilyJoinableLord">
@@ -234,7 +241,8 @@
 								  </subNodes>
 								</li>
 								<li Class="JobGiver_Work"/>
-								<li Class="Combat_Realism.JobGiver_UpdateLoadout"/>
+								<li Class="CombatExtended.JobGiver_UpdateLoadout"/>
+								<li Class="CombatExtended.JobGiver_CheckReload"/>
 							</subNodes>
 						</li>
 					</subNodes>
@@ -314,9 +322,9 @@
           <subNodes>
             <!-- Flee explosion -->
             <li Class="JobGiver_FleeExplosion" />
-			<li Class="Combat_Realism.JobGiver_TakeAndEquip"/>
+            <li Class="CombatExtended.JobGiver_TakeAndEquip"/>
             <!-- Hostility response -->
-            <li Class="Combat_Realism.JobGiver_ConfigurableHostilityResponse" />
+            <li Class="CombatExtended.JobGiver_ConfigurableHostilityResponse" />
 
             <!-- Lord directives -->
             <li Class="ThinkNode_Subtree">

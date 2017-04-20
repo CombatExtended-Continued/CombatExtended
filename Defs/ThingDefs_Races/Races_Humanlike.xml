@@ -13,23 +13,33 @@
       <ComfyTemperatureMax>32</ComfyTemperatureMax>
       <LeatherAmount>25</LeatherAmount>
     </statBases>
-    <verbs>
+    <comps>
       <li>
+        <compClass>CombatExtended.CompPawnGizmo</compClass>
+      </li>
+      <li Class="CombatExtended.CompProperties_Suppressable" />
+      <li Class="CombatExtended.CompProperties_SquadBrain" />
+    </comps>
+    <verbs>
+      <li Class="CombatExtended.VerbPropertiesCE">
         <verbClass>Verb_MeleeAttack</verbClass>
         <defaultCooldownTime>1.85</defaultCooldownTime>
         <meleeDamageBaseAmount>6</meleeDamageBaseAmount>
         <meleeDamageDef>Blunt</meleeDamageDef>
         <linkedBodyPartsGroup>LeftHand</linkedBodyPartsGroup>
+        <meleeArmorPenetration>0.03</meleeArmorPenetration>
       </li>
-      <li>
+      <li Class="CombatExtended.VerbPropertiesCE">
         <verbClass>Verb_MeleeAttack</verbClass>
         <defaultCooldownTime>1.85</defaultCooldownTime>
         <meleeDamageBaseAmount>6</meleeDamageBaseAmount>
         <meleeDamageDef>Blunt</meleeDamageDef>
         <linkedBodyPartsGroup>RightHand</linkedBodyPartsGroup>
+        <meleeArmorPenetration>0.03</meleeArmorPenetration>
       </li>
     </verbs>
-    <race>
+    <race Class="CombatExtended.RaceProperties_CE">
+      <bodyType>Humanoid</bodyType>
       <thinkTreeMain>Humanlike</thinkTreeMain>
       <thinkTreeConstant>HumanlikeConstant</thinkTreeConstant>
       <intelligence>Humanlike</intelligence>
@@ -114,6 +124,7 @@
       <li>InstallNaturalLung</li>
       <li>InstallNaturalKidney</li>
       <li>InstallNaturalLiver</li>
+      <li>GraftSynthTissue</li>
       <li>ExciseCarcinoma</li>
       <li>RemoveBodyPart</li>
       <li>Euthanize</li>

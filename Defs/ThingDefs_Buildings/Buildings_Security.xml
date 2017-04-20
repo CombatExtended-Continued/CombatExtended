@@ -67,20 +67,24 @@
     <menuHidden>True</menuHidden>
     <tradeability>Never</tradeability>
     <soundInteract>ArtilleryShellLoaded</soundInteract>
+    <weaponTags>
+      <li>Artillery</li>
+    </weaponTags>
     <comps>
       <li>
         <compClass>CompEquippable</compClass>
       </li>
-      <li Class="Combat_Realism.CompProperties_Charges">
+      <li Class="CombatExtended.CompProperties_Charges">
         <charges>
           <li>(29,85)</li>
-          <li>(72,300)</li>
-          <li>(92,660)</li>
+          <li>(72,200)</li>
+          <li>(92,400)</li>
+          <li>(112,660)</li>
         </charges>
       </li>
-      <li Class="Combat_Realism.CompProperties_AmmoUser">
+      <li Class="CombatExtended.CompProperties_AmmoUser">
         <magazineSize>1</magazineSize>
-        <reloadTicks>150</reloadTicks>
+        <reloadTicks>300</reloadTicks>
         <spawnUnloaded>true</spawnUnloaded>
         <ammoSet>AmmoSet_81mmMortarShell</ammoSet>
       </li>
@@ -92,7 +96,7 @@
   <ThingDef ParentName="BuildingBase">
     <defName>TurretGun</defName>
     <label>auto-turret</label>
-    <thingClass>Combat_Realism.Building_TurretGunCE</thingClass>
+    <thingClass>CombatExtended.Building_TurretGunCE</thingClass>
     <graphicData>
       <texPath>Things/Building/Security/TurretImprovised</texPath>
       <graphicClass>Graphic_Single</graphicClass>
@@ -114,7 +118,7 @@
     </statBases>
     <tickerType>Normal</tickerType>
     <comps>
-      <li Class="Combat_Realism.CompProperties_TurretInit"/>
+      <li Class="CombatExtended.CompProperties_TurretInit"/>
       <li Class="CompProperties_Explosive">
         <explosiveRadius>3.9</explosiveRadius>
         <explosiveDamageType>Bomb</explosiveDamageType>
@@ -182,7 +186,7 @@
   <ThingDef Name="BaseArtilleryBuilding" ParentName="BuildingBase" Abstract="True">
     <label>81mm mortar</label>
     <description>A mortar that launches explosive shells. Must be manned.</description>
-    <thingClass>Combat_Realism.Building_TurretGunCE</thingClass>
+    <thingClass>CombatExtended.Building_TurretGunCE</thingClass>
     <graphicData>
       <texPath>Things/Building/Security/TurretMortarBase</texPath>
       <graphicClass>Graphic_Single</graphicClass>
@@ -225,10 +229,11 @@
     </costList>
     <terrainAffordanceNeeded>Light</terrainAffordanceNeeded>
     <building>
+      <spawnedConceptLearnOpportunity>CE_MortarDirectFire</spawnedConceptLearnOpportunity>
       <turretGunDef>Artillery_MortarBomb</turretGunDef>
       <turretShellDef>MortarShell</turretShellDef>
       <turretBurstwarmupTime>4.5</turretBurstwarmupTime>
-      <turretBurstCooldownTime>20.0</turretBurstCooldownTime>
+      <turretBurstCooldownTime>2</turretBurstCooldownTime>
       <turretTopgraphicPath>Things/Building/Security/TurretMortarBomb_Top</turretTopgraphicPath>
     </building>
     <placeWorkers>
@@ -263,15 +268,15 @@
     <description>Lobs mortar shells on a high arc. Very inaccurate but long-ranged and capable of indirect fire.</description>
     <techLevel>Spacer</techLevel>
     <statBases>
-      <AimEfficiency>0.5</AimEfficiency>
+      <SightsEfficiency>0.5</SightsEfficiency>
     </statBases>
     <weaponTags>
       <li>Artillery</li>
       <li>Artillery_BaseDestroyer</li>
     </weaponTags>
     <verbs>
-      <li Class="Combat_Realism.VerbPropertiesCE">
-        <verbClass>Combat_Realism.Verb_ShootMortarCE</verbClass>
+      <li Class="CombatExtended.VerbPropertiesCE">
+        <verbClass>CombatExtended.Verb_ShootMortarCE</verbClass>
         <forceNormalTimeSpeed>false</forceNormalTimeSpeed>
         <hasStandardCommand>true</hasStandardCommand>
         <projectileDef>Bullet_81mmMortarShell_HE</projectileDef>
@@ -281,6 +286,7 @@
         <burstShotCount>1</burstShotCount>
         <soundCast>Mortar_LaunchA</soundCast>
         <muzzleFlashScale>16</muzzleFlashScale>
+        <forcedMissRadius>1</forcedMissRadius>
         <indirectFirePenalty>0.2</indirectFirePenalty>
         <targetParams>
           <canTargetLocations>true</canTargetLocations>
@@ -309,19 +315,18 @@
     <description>Incendiary mortar launcher. Lobs fire-starting bombs over walls. Very inaccurate but long-ranged.</description>
     <techLevel>Spacer</techLevel>
     <statBases>
-      <AimEfficiency>0.5</AimEfficiency>
+      <SightsEfficiency>0.5</SightsEfficiency>
     </statBases>
     <weaponTags>
       <li>Artillery</li>
       <li>Artillery_BaseDestroyer</li>
     </weaponTags>
     <verbs>
-      <li Class="Combat_Realism.VerbPropertiesCE">
-        <verbClass>Combat_Realism.Verb_ShootMortarCE</verbClass>
+      <li Class="CombatExtended.VerbPropertiesCE">
+        <verbClass>CombatExtended.Verb_ShootMortarCE</verbClass>
         <forceNormalTimeSpeed>false</forceNormalTimeSpeed>
         <hasStandardCommand>true</hasStandardCommand>
         <projectileDef>Bullet_81mmMortarShell_Incendiary</projectileDef>
-        <forcedMissRadius>10</forcedMissRadius>
         <ai_IsIncendiary>true</ai_IsIncendiary>
         <warmupTime>5.5</warmupTime>
         <minRange>32</minRange>
@@ -329,6 +334,7 @@
         <burstShotCount>1</burstShotCount>
         <soundCast>Mortar_LaunchA</soundCast>
         <muzzleFlashScale>16</muzzleFlashScale>
+        <forcedMissRadius>1</forcedMissRadius>
         <indirectFirePenalty>0.2</indirectFirePenalty>
         <targetParams>
           <canTargetLocations>true</canTargetLocations>
@@ -356,24 +362,25 @@
     <description>Mortar launcher. Lobs EMP bombs over walls. Very inaccurate but long-ranged.</description>
     <techLevel>Spacer</techLevel>
     <statBases>
-      <AimEfficiency>0.5</AimEfficiency>
+      <SightsEfficiency>0.5</SightsEfficiency>
     </statBases>
     <weaponTags>
       <li>Artillery</li>
     </weaponTags>
     <verbs>
-      <li Class="Combat_Realism.VerbPropertiesCE">
-        <verbClass>Combat_Realism.Verb_ShootMortarCE</verbClass>
+      <li Class="CombatExtended.VerbPropertiesCE">
+        <verbClass>CombatExtended.Verb_ShootMortarCE</verbClass>
         <forceNormalTimeSpeed>false</forceNormalTimeSpeed>
         <hasStandardCommand>true</hasStandardCommand>
         <projectileDef>Bullet_81mmMortarShell_EMP</projectileDef>
-        <forcedMissRadius>10</forcedMissRadius>
         <warmupTime>5.5</warmupTime>
         <minRange>32</minRange>
         <range>700</range>
         <burstShotCount>1</burstShotCount>
         <soundCast>Mortar_LaunchA</soundCast>
         <muzzleFlashScale>16</muzzleFlashScale>
+        <forcedMissRadius>1</forcedMissRadius>
+        <indirectFirePenalty>0.2</indirectFirePenalty>
         <targetParams>
           <canTargetLocations>true</canTargetLocations>
         </targetParams>
