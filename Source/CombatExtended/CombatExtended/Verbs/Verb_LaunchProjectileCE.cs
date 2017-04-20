@@ -89,9 +89,11 @@ namespace CombatExtended
             {
                 if (shotHeight < 0)
                 {
+                    // TODO Find a way to optimize this so we avoid calling GetCollisionVertical twice without duplicating code
                 	var shooterVertical = CE_Utility.GetCollisionVertical(caster);
-                	shotHeight = CasterIsPawn
-                		? shooterVertical.min + (shooterVertical.max - shooterVertical.min) * CE_Utility.ShotHeightFactor
+                    var shooterTopSpan = CE_Utility.GetCollisionVertical(caster, false, true).Span * (1 - CE_Utility.BodyRegionMiddleHeight);
+                    shotHeight = CasterIsPawn
+                        ? shooterVertical.max - shooterTopSpan
 		            	: shooterVertical.max;
                 }
                 return shotHeight;
@@ -238,8 +240,8 @@ namespace CombatExtended
                     else if (currentTarget.Thing is Pawn)
                     {
                         // Aim for center of mass on an exposed target
-                        targetVertical.min += CE_Utility.bodyRegionBottomHeight * targetVertical.max;
-                        targetVertical.max *= CE_Utility.bodyRegionMiddleHeight;
+                        targetVertical.min += CE_Utility.BodyRegionBottomHeight * targetVertical.max;
+                        targetVertical.max *= CE_Utility.BodyRegionMiddleHeight;
                     }
 	           		targetHeight = targetVertical.min + (targetVertical.max - targetVertical.min) * 0.5f;
 	            }
