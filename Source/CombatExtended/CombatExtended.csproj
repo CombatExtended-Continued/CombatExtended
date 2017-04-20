@@ -266,9 +266,9 @@
     <Compile Include="Detours\Detours_VerbTracker.cs" />
     <Compile Include="Detours\Detours_WorkGiver_HunterHunt.cs" />
     <Compile Include="Detours\Detours_WorkGiver_InteractAnimal.cs" />
-    <Compile Include="Harmony\Harmony-AttackTargetFinder_BestAttackTarget_Patch.cs" />
     <Compile Include="Harmony\Harmony-GenRadial_RadialPatternCount_Patch.cs" />
     <Compile Include="Harmony\Harmony-HediffComp_TendDuration_CompTended_Patch.cs" />
+    <Compile Include="Harmony\Harmony-JobDriverWait-CheckForAutoAttack_Patch.cs" />
     <Compile Include="Harmony\Harmony-Verb_TryStartCastOn_Patch.cs" />
     <Compile Include="Harmony\HarmonyBase.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -280,7 +280,6 @@
     <Compile Include="CombatExtended\MassBulkUtility.cs" />
     <Compile Include="Detours\Detours_MassUtility.cs" />
   </ItemGroup>
-  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <PostBuildEvent>if $(ConfigurationName) == Debugger call "C:\Program Files (x86)\Mono\bin\pdb2mdb.bat" $(TargetDir)$(TargetName)$(TargetExt)</PostBuildEvent>

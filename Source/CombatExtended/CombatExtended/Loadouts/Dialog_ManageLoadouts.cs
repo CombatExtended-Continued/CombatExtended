@@ -514,6 +514,7 @@ namespace CombatExtended
             TooltipHandler.TipRegion(deleteRect, "CE_DeleteFilter".Translate());
         }
 
+        //TODO: Research if the UI list of items can be cached (That's the Unity UI list)...
         private void DrawSlotList(Rect canvas)
         {
             // set up content canvas
