@@ -191,7 +191,7 @@ namespace CombatExtended
                     CompEquippable compEq = thing.TryGetComp<CompEquippable>();
                     if (eq != null && compEq != null)
                     {
-                        if (compEq.PrimaryVerb != null)
+                        if (eq.def.IsRangedWeapon)
                         {
                             rangedWeaponListCached.Add(eq);
                         }
@@ -244,7 +244,7 @@ namespace CombatExtended
 
             if (useApparelCalculations)
             {
-                thingWeight = thing.GetStatValue(CE_StatDefOf.WornWeight);
+                thingWeight = thing.GetStatValue(StatDefOf.Mass);
                 thingBulk = thing.GetStatValue(CE_StatDefOf.WornBulk);
                 if (thingWeight <= 0 && thingBulk <= 0)
                 {

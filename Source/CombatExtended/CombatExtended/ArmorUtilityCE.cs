@@ -12,21 +12,23 @@ namespace CombatExtended
     {
         private const float PenetrationRandVariation = 0.05f;    // Armor penetration will be randomized by +- this amount
         private const float SoftArmorMinDamageFactor = 0.2f;    // Soft body armor will always take at least original damage * this number from sharp attacks
+        public const string ShieldTag = "CE_Shield";  // Identify shields by this apparel tag
+        public const string BallisticShieldTag = "CE_BallisticShield";
         private static readonly SimpleCurve dmgMultCurve = new SimpleCurve { new CurvePoint(0.5f, 0), new CurvePoint(1, 0.5f), new CurvePoint(2, 1) };    // Used to calculate the damage reduction from the penetration / armor ratio
         private static readonly StuffCategoryDef[] softStuffs = { StuffCategoryDefOf.Fabric, DefDatabase<StuffCategoryDef>.GetNamed("Leathery") };
 
         /// <summary>
         /// Calculates damage through armor, depending on damage type, target and natural resistance. Also calculates deflection and adjusts damage type and impacted body part accordingly.
         /// </summary>
-        /// <param name="origDinfo">The pre-armor damage info</param>
+        /// <param name="originalDinfo">The pre-armor damage info</param>
         /// <param name="pawn">The damaged pawn</param>
         /// <param name="hitPart">The pawn's body part that has been hit</param>
         /// <returns>If shot is deflected returns a new dinfo cloned from the original with damage amount, Def and ForceHitPart adjusted for deflection, otherwise a clone with only the damage adjusted</returns>
-        public static DamageInfo GetAfterArmorDamage(DamageInfo origDinfo, Pawn pawn, BodyPartRecord hitPart)
+        public static DamageInfo GetAfterArmorDamage(DamageInfo originalDinfo, Pawn pawn, BodyPartRecord hitPart)
         {
-            if (origDinfo.Def.armorCategory == DamageArmorCategory.IgnoreArmor) return origDinfo;
+            if (originalDinfo.Def.armorCategory == DamageArmorCategory.IgnoreArmor) return originalDinfo;
 
-            DamageInfo dinfo = new DamageInfo(origDinfo);
+            DamageInfo dinfo = new DamageInfo(originalDinfo);
             float dmgAmount = dinfo.Amount;
             bool involveArmor = dinfo.Def.harmAllLayersUntilOutside;
             bool isAmbientDamage = dinfo.Def.armorCategory == DamageArmorCategory.Electric || dinfo.Def.armorCategory == DamageArmorCategory.Heat;
@@ -34,17 +36,49 @@ namespace CombatExtended
             // In case of ambient damage (fire, electricity) we apply a percentage reduction formula based on the sum of all applicable armor
             if (isAmbientDamage)
             {
-                dinfo.SetAmount(Mathf.CeilToInt(GetAmbientPostArmorDamage(dmgAmount, origDinfo.Def.armorCategory.DeflectionStat(), pawn, hitPart)));
+                dinfo.SetAmount(Mathf.CeilToInt(GetAmbientPostArmorDamage(dmgAmount, originalDinfo.Def.armorCategory.DeflectionStat(), pawn, hitPart)));
                 return dinfo;
             }
 
-            float penAmount = GetPenetrationValue(origDinfo);
+            float penAmount = GetPenetrationValue(originalDinfo);
 
             // Apply worn armor
             if (involveArmor && pawn.apparel != null && !pawn.apparel.WornApparel.NullOrEmpty())
             {
-                // Apparel is arranged in draw order, we run through reverse to go from Shell -> OnSkin
                 List<Apparel> apparel = pawn.apparel.WornApparel;
+
+                // Check for shields first
+                Apparel shield = apparel.FirstOrDefault(x => x.def.apparel.tags.Any(t => t == ShieldTag || t == BallisticShieldTag));
+                if (shield != null)
+                {
+                    // Determine whether the hit is blocked by the shield
+                    bool blockedByShield = false;
+                    if (dinfo.WeaponGear?.IsMeleeWeapon ?? false)
+                    {
+                        blockedByShield = Rand.Chance(0.5f);  // TODO Come up with a better formula
+                    }
+                    else
+                    {
+                        if (hitPart.height == BodyPartHeight.Middle)
+                        {
+                            // Torso hits are always deflected but right arm is vulnerable during warmup/attack/cooldown
+                            blockedByShield = !(pawn.stances?.curStance?.StanceBusy ?? false && hitPart.IsInGroup(DefDatabase<BodyPartGroupDef>.GetNamed("Arms")) && hitPart.def.defName.Contains("Right"));
+                        }
+                        else if (shield.def.apparel.tags.Contains(BallisticShieldTag))
+                        {
+                            // Feet are always vulnerable, legs and pelvis only while not crouching
+                            blockedByShield = hitPart.height != BodyPartHeight.Bottom || (!hitPart.IsInGroup(DefDatabase<BodyPartGroupDef>.GetNamed("Feet")) && pawn.IsCrouching());
+                        }
+                    }
+                    // Try to penetrate the shield
+                    if (blockedByShield && !TryPenetrateArmor(dinfo.Def, shield.GetStatValue(dinfo.Def.armorCategory.DeflectionStat()), ref penAmount, ref dmgAmount, shield))
+                    {
+                        dinfo.SetAmount(0);
+                        return dinfo;
+                    }
+                }
+
+                // Apparel is arranged in draw order, we run through reverse to go from Shell -> OnSkin
                 for (int i = apparel.Count - 1; i >= 0; i--)
                 {
                     if (apparel[i].def.apparel.CoversBodyPart(hitPart) 

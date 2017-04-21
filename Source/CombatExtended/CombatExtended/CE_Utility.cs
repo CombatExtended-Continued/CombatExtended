@@ -132,9 +132,8 @@ namespace CombatExtended
         public const float gravityConst = 9.8f;
         public const float collisionHeightFactor = 1.0f;    // Global collision height multiplier
         public const float treeCollisionHeight = 5f;        // Trees are this tall
-        public const float bodyRegionBottomHeight = 0.45f;  // Hits below this percentage will impact the corresponding body region
-        public const float bodyRegionMiddleHeight = 0.85f;
-        public const float ShotHeightFactor = 0.85f;   // The height at which pawns hold their guns
+        public const float BodyRegionBottomHeight = 0.45f;  // Hits below this percentage will impact the corresponding body region
+        public const float BodyRegionMiddleHeight = 0.85f;  // This also sets the altitude at which pawns hold their guns
 
         // These jobs will have pawns crouch down to reduce their collision height
         // TODO: Rework this into an XML flag so we don't have to rely on a hardcoded list of jobs
@@ -195,13 +194,14 @@ namespace CombatExtended
         {
             return Mathf.Atan((Mathf.Pow(velocity, 2f) + (flyOverhead ? 1f : -1f) * Mathf.Sqrt(Mathf.Pow(velocity, 4f) - gravityConst * (gravityConst * Mathf.Pow(range, 2f) + 2f * heightDifference * Mathf.Pow(velocity, 2f)))) / (gravityConst * range));
         }
-        
+
         /// <summary>
         /// Returns the vertical collision box of a Thing
         /// </summary>
         /// <param name="thing">Thing (can be null) to have its collision vertical height returned.</param>
         /// <param name="isEdifice">False by default. Set to true if thing is the edifice at the location thing.Position.</param>
-        public static FloatRange GetCollisionVertical(Thing thing, bool isEdifice = false)
+        /// <param name="isEdifice">False by default. Set to true to get the standing height of a pawn.</param>
+        public static FloatRange GetCollisionVertical(Thing thing, bool isEdifice = false, bool ignoreCrouch = false)
         {
             if (thing == null)
             {
@@ -226,9 +226,9 @@ namespace CombatExtended
                     collisionHeight = pawn.BodySize > 1 ? pawn.BodySize - 0.8f : 0.2f * pawn.BodySize;
                 }
                 // Humanlikes in combat crouch to reduce their profile
-                else if (pawn.RaceProps.Humanlike && crouchJobs.Contains(pawn.CurJob?.def))
+                else if (!ignoreCrouch && pawn.IsCrouching())
                 {
-                    float crouchHeight = 0.5f * collisionHeight;  // Minimum height we can crouch down to
+                    float crouchHeight = BodyRegionBottomHeight * collisionHeight;  // Minimum height we can crouch down to
 
                     // Find the highest adjacent cover
                     Map map = pawn.Map;
@@ -244,7 +244,7 @@ namespace CombatExtended
                             }
                         }
                     }
-                    collisionHeight = (crouchHeight + 0.01f) / ShotHeightFactor;  // We crouch down only so far that we can still shoot over our own cover
+                    collisionHeight = Mathf.Min(collisionHeight, (crouchHeight + 0.01f) + collisionHeight * (1 - BodyRegionMiddleHeight));  // We crouch down only so far that we can still shoot over our own cover and never beyond our own body size
                 }
             }
             else
@@ -333,11 +333,20 @@ namespace CombatExtended
             if (pawn != null)
             {
                 FloatRange pawnHeight = GetCollisionVertical(thing);
-                if (projectileHeight < pawnHeight.max * bodyRegionBottomHeight) return BodyPartHeight.Bottom;
-                else if (projectileHeight < pawnHeight.max * bodyRegionMiddleHeight) return BodyPartHeight.Middle;
+                if (projectileHeight < pawnHeight.max * BodyRegionBottomHeight) return BodyPartHeight.Bottom;
+                else if (projectileHeight < pawnHeight.max * BodyRegionMiddleHeight) return BodyPartHeight.Middle;
                 return BodyPartHeight.Top;
             }
             return BodyPartHeight.Undefined;
+        }
+
+        /// <summary>
+        /// Determines whether a pawn should be currently crouching down or not
+        /// </summary>
+        /// <returns>True for humanlike pawns currently doing a job during which they should be crouching down</returns>
+        public static bool IsCrouching(this Pawn pawn)
+        {
+            return pawn.RaceProps.Humanlike && crouchJobs.Contains(pawn.CurJob?.def);
         }
 
         #endregion Physics
