@@ -12,8 +12,8 @@ namespace CombatExtended
     {
         private const float PenetrationRandVariation = 0.05f;    // Armor penetration will be randomized by +- this amount
         private const float SoftArmorMinDamageFactor = 0.2f;    // Soft body armor will always take at least original damage * this number from sharp attacks
-        private const string ShieldTag = "CE_Shield";  // Identify shields by this apparel tag
-        private const string BallisticShieldTag = "CE_BallisticShield";
+        public const string ShieldTag = "CE_Shield";  // Identify shields by this apparel tag
+        public const string BallisticShieldTag = "CE_BallisticShield";
         private static readonly SimpleCurve dmgMultCurve = new SimpleCurve { new CurvePoint(0.5f, 0), new CurvePoint(1, 0.5f), new CurvePoint(2, 1) };    // Used to calculate the damage reduction from the penetration / armor ratio
         private static readonly StuffCategoryDef[] softStuffs = { StuffCategoryDefOf.Fabric, DefDatabase<StuffCategoryDef>.GetNamed("Leathery") };
 
