@@ -354,8 +354,9 @@ namespace CombatExtended
                 if ((GetPriorityWork(pawn) == WorkPriority.Ammo || GetPriorityWork(pawn) == WorkPriority.LowAmmo)
                     && primaryammouser != null)
                 {
-                    List<ThingDef> curAmmoList = (from ThingDef g in primaryammouser.Props.ammoSet.ammoTypes
-                                                  select g).ToList<ThingDef>();
+                    List<ThingDef> curAmmoList = (from AmmoLink g in primaryammouser.Props.ammoSet.ammoTypes
+                                                  select g.ammo as ThingDef).ToList();
+
                     if (curAmmoList.Count > 0)
                     {
                         Predicate<Thing> validator = (Thing t) => t is AmmoThing && pawn.CanReserve(t, 1)
