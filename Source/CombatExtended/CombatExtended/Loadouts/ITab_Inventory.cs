@@ -138,17 +138,19 @@ namespace CombatExtended
                 // get the loadout so we can make a decision to show a button.
                 bool showMakeLoadout = false;
                 Loadout curLoadout = SelPawnForGear.GetLoadout();
-            	if ((curLoadout == null || curLoadout.Slots.NullOrEmpty()) && (SelPawnForGear.inventory.innerContainer.Any() || SelPawnForGear.equipment?.Primary != null))
+            	if (SelPawnForGear.IsColonist && (curLoadout == null || curLoadout.Slots.NullOrEmpty()) && (SelPawnForGear.inventory.innerContainer.Any() || SelPawnForGear.equipment?.Primary != null))
             		showMakeLoadout = true;
                 	
-            	if (showMakeLoadout) num+=3; // make a little room for the button.
-            	
+            	if (showMakeLoadout) num+=3; // Make a little room for the button.
+
+                float buttonY = num; // Could be accomplished with seperator being after the button...
+
                 Widgets.ListSeparator(ref num, viewRect.width, "Inventory".Translate());
-                
+
                 // only offer this button if the pawn has no loadout or has the default loadout and there are things/equipment...
                 if (showMakeLoadout)
                 {
-	            	Rect loadoutButtonRect = new Rect(viewRect.width / 2, num, viewRect.width / 2, 26f); // button is half the available width...
+	            	Rect loadoutButtonRect = new Rect(viewRect.width / 2, buttonY, viewRect.width / 2, 26f); // button is half the available width...
 	                if(Widgets.ButtonText(loadoutButtonRect, "Make Loadout"))
 	                {
 	                	Loadout loadout = SelPawnForGear.GenerateLoadoutFromPawn();
@@ -166,7 +168,7 @@ namespace CombatExtended
 	                	
 	                }
                 }
-                
+
                 workingInvList.Clear();
                 workingInvList.AddRange(SelPawnForGear.inventory.innerContainer);
                 for (int i = 0; i < workingInvList.Count; i++)
