@@ -409,7 +409,6 @@ namespace CombatExtended
             curMagCountInt = newMagCount;
             if (turret != null) turret.isReloading = false;
             if (parent.def.soundInteract != null) parent.def.soundInteract.PlayOneShot(new TargetInfo(position,  Find.VisibleMap, false));
-            if (Props.throwMote) MoteMaker.ThrowText(position.ToVector3Shifted(), Find.VisibleMap, "CE_ReloadedMote".Translate());
         }
 
         private bool TryFindAmmoInInventory(out Thing ammoThing)

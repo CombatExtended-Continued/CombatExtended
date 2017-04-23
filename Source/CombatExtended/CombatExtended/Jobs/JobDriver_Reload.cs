@@ -8,7 +8,16 @@ namespace CombatExtended
 {
     public class JobDriver_Reload : JobDriver
     {
+        #region Fields
         private CompAmmoUser _compReloader;
+        private bool inEquipment = false;
+        private bool inInventory = false;
+        private ThingWithComps initEquipment = null;
+        #endregion Fields
+
+        #region Properties
+        private string errorBase => this.GetType().Assembly.GetName().Name + " :: " + this.GetType().Name + " :: ";
+
         private CompAmmoUser compReloader
         {
             get
@@ -17,10 +26,20 @@ namespace CombatExtended
                 return _compReloader;
             }
         }
+        #endregion Properties
 
-		private bool inEquipment = false;
-		private bool inInventory = false;
-		private ThingWithComps initEquipment = null;
+        #region Methods
+        public override string GetReport()
+        {
+            string text = CE_JobDefOf.ReloadWeapon.reportString;
+            string flagSource = "";
+            if (inEquipment) flagSource = "CE_ReloadingEquipment".Translate();
+            if (inInventory) flagSource = "CE_ReloadingInventory".Translate();
+            text = text.Replace("FlagSource", flagSource);
+            text = text.Replace("TargetB", TargetThingB.def.label);
+            text = text.Replace("AmmoType", compReloader.currentAmmo.label);
+            return text;
+        }
 
         private bool HasNoGunOrAmmo()
         {
@@ -64,7 +83,7 @@ namespace CombatExtended
 			
             // Throw mote
             if (compReloader.Props.throwMote)
-                MoteMaker.ThrowText(pawn.Position.ToVector3Shifted(), Find.VisibleMap, "CE_ReloadingMote".Translate());
+                MoteMaker.ThrowText(pawn.Position.ToVector3Shifted(), Find.VisibleMap, string.Format("CE_ReloadingMote".Translate(), TargetThingB.def.LabelCap));
 
 			//Toil of do-nothing		
 			Toil waitToil = new Toil() { actor = pawn }; // actor was always null in testing...
@@ -86,5 +105,6 @@ namespace CombatExtended
             };
             yield return continueToil;
         }
+        #endregion Methods
     }
 }

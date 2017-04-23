@@ -8,13 +8,16 @@ namespace CombatExtended
 {
     public class JobDriver_ReloadTurret : JobDriver
     {
+        #region Fields
+        private CompAmmoUser _compReloader;
+        #endregion Fields
+
         #region Properties
         private string errorBase => this.GetType().Assembly.GetName().Name + " :: " + this.GetType().Name + " :: ";
 
         private Building_TurretGunCE turret => TargetThingA as Building_TurretGunCE;
         private AmmoThing ammo => TargetThingB as AmmoThing;
 
-        private CompAmmoUser _compReloader;
         private CompAmmoUser compReloader
         {
             get
@@ -27,6 +30,20 @@ namespace CombatExtended
         #endregion
 
         #region Methods
+
+        public override string GetReport()
+        {
+            string text = CE_JobDefOf.ReloadTurret.reportString;
+            string turretType = (turret.def.hasInteractionCell ? "CE_MannedTurret" : "CE_AutoTurret").Translate();
+            text = text.Replace("TurretType", turretType);
+            text = text.Replace("TargetA", TargetThingA.def.label);
+            if (compReloader.useAmmo)
+                text = text.Replace("TargetB", TargetThingB.def.label);
+            else
+                text = text.Replace("TargetB", compReloader.currentAmmo.label);
+            return text;
+        }
+
         protected override IEnumerable<Toil> MakeNewToils()
         {
             // Error checking/input validation.
@@ -88,7 +105,7 @@ namespace CombatExtended
                 waitToil.actor.pather.StopDead();
                 turret.isReloading = true;
                 if (compReloader.Props.throwMote)
-                    MoteMaker.ThrowText(turret.Position.ToVector3Shifted(), Find.VisibleMap, "CE_ReloadingMote".Translate());
+                    MoteMaker.ThrowText(turret.Position.ToVector3Shifted(), Find.VisibleMap, string.Format("CE_ReloadingTurretMote".Translate(), TargetThingA.LabelCapNoCount));
                 compReloader.TryUnload();
             };
             waitToil.defaultCompleteMode = ToilCompleteMode.Delay;
