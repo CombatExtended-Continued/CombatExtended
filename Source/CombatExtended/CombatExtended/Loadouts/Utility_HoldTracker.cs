@@ -83,6 +83,25 @@ namespace CombatExtended
 			    return true;
 			return false;
 		}
+
+        /// <summary>
+        /// Is there any hold tracker records for this pawn?  This doesn't care if an item is actually present in the pawn's inventory.
+        /// </summary>
+        /// <param name="pawn">Pawn who's HoldTracker is to be polled</param>
+        /// <returns>bool indicating if the pawn has any HoldTracker records.</returns>
+        public static bool HoldTrackerAnythingHeld(this Pawn pawn)
+        {
+            List<HoldRecord> recs = LoadoutManager.GetHoldRecords(pawn);
+            if (recs == null || recs.NullOrEmpty())
+                return false;
+            return recs.Any(r => r.pickedUp);
+        }
+
+        public static void HoldTrackerClear(this Pawn pawn)
+        {
+            List<HoldRecord> recs = LoadoutManager.GetHoldRecords(pawn);
+            recs.Clear();
+        }
 		
 		/// <summary>
 		/// This should be called periodically so that HoldTracker can remove items that are no longer in the inventory via a method which isn't being watched.

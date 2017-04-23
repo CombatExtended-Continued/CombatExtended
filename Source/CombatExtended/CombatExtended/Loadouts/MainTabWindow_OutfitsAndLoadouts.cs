@@ -194,13 +194,17 @@ namespace CombatExtended
                                          rowRect.height);
             Rect labelLoadoutRect = new Rect(loadoutRect.xMin,
                                               loadoutRect.yMin,
-                                              loadoutRect.width - _margin * 2 - _buttonSize,
+                                              loadoutRect.width - _margin * 3 - _buttonSize * 2,
                                               loadoutRect.height)
                                               .ContractedBy(_margin / 2f);
             Rect editLoadoutRect = new Rect(labelLoadoutRect.xMax + _margin,
                                              loadoutRect.yMin + ((loadoutRect.height - _buttonSize) / 2),
                                              _buttonSize,
                                              _buttonSize);
+            Rect forcedHoldRect = new Rect(labelLoadoutRect.xMax + _buttonSize + _margin * 2,
+                                            loadoutRect.yMin + ((loadoutRect.height - _buttonSize) /2),
+                                            _buttonSize,
+                                            _buttonSize);
 
             // fight or flight button
             HostilityResponseModeUtility.DrawResponseButton(responsePos, p);
@@ -312,6 +316,26 @@ namespace CombatExtended
             if (Widgets.ButtonImage(editLoadoutRect, _iconEdit))
             {
                 Find.WindowStack.Add(new Dialog_ManageLoadouts(p.GetLoadout()));
+            }
+
+            // clear forced held button
+            if (p.HoldTrackerAnythingHeld())
+            {
+                TooltipHandler.TipRegion(forcedHoldRect, "ClearForcedApparel".Translate()); // "Clear forced" is sufficient and that's what this is at the moment.
+                if (Widgets.ButtonImage(forcedHoldRect, _iconClearForced)) // also can re-use the icon for clearing forced at the moment.
+                {
+                    p.HoldTrackerClear(); // yes this will also delete records that haven't been picked up and thus not shown to the player...
+                }
+                TooltipHandler.TipRegion(forcedHoldRect, new TipSignal(delegate
+                {
+                    string text = "CE_ForcedHold".Translate() + ":\n";
+                    foreach (HoldRecord rec in LoadoutManager.GetHoldRecords(p))
+                    {
+                        if (!rec.pickedUp) continue;
+                        text = text + "\n   " + rec.thingDef.LabelCap + " x" + rec.count;
+                    }
+                    return text;
+                }, p.GetHashCode() * 613));
             }
 
             // STATUS BARS

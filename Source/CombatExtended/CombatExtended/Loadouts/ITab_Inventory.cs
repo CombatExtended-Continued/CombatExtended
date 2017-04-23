@@ -231,7 +231,8 @@ namespace CombatExtended
             GUI.color = _thingLabelColor;
             Rect thingLabelRect = new Rect(_thingLeftX, y, rect.width - _thingLeftX, _thingRowHeight);
             string thingLabel = thing.LabelCap;
-            if (thing is Apparel && SelPawnForGear.outfits != null && SelPawnForGear.outfits.forcedHandler.IsForced((Apparel)thing))
+            if ((thing is Apparel && SelPawnForGear.outfits != null && SelPawnForGear.outfits.forcedHandler.IsForced((Apparel)thing))
+                || (SelPawnForGear.inventory != null && SelPawnForGear.HoldTrackerIsHeld(thing)))
             {
                 thingLabel = thingLabel + ", " + "ApparelForcedLower".Translate();
             }
