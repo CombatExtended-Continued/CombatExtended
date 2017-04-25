@@ -61,13 +61,29 @@ namespace CombatExtended
 			HoldRecord rec = recs.FirstOrDefault(hr => hr.thingDef == job.targetA.Thing.def);
 			if (rec != null)
 			{
-				rec.count += job.count;
-				return;
+                if (rec.pickedUp)
+                {
+                    // modifying a record for which the pawn should have some of that thing in their inventory.
+                    CompInventory inventory = pawn.TryGetComp<CompInventory>();
+                    if (inventory != null)
+                        rec.count = inventory.container.TotalStackCountOfDef(rec.thingDef) + job.count;
+                    else
+                        rec.count += job.count; // probably won't generally follow this code path but good not to throw an error if possible.
+                }
+                else
+                {
+                    // modifying a record that hasn't been picked up... do it blind.
+                    rec.count += job.count;
+                }
+                // useful debug message...
+                //Log.Message(string.Concat("Job was issued to pickup items for this existing record: ", rec));
+                return;
 			}
 			// if we got this far we know that there isn't a record being stored for this thingDef...
 			rec = new HoldRecord(job.targetA.Thing.def, job.count);
 			recs.Add(rec);
-			Log.Message(string.Concat("Job was issued to pickup this record: ", rec));
+            // useful debug message...
+			//Log.Message(string.Concat("Job was issued to pickup for this new record: ", rec));
 		}
 		
 		/// <summary>
@@ -83,6 +99,25 @@ namespace CombatExtended
 			    return true;
 			return false;
 		}
+
+        /// <summary>
+        /// Is there any hold tracker records for this pawn?  This doesn't care if an item is actually present in the pawn's inventory.
+        /// </summary>
+        /// <param name="pawn">Pawn who's HoldTracker is to be polled</param>
+        /// <returns>bool indicating if the pawn has any HoldTracker records.</returns>
+        public static bool HoldTrackerAnythingHeld(this Pawn pawn)
+        {
+            List<HoldRecord> recs = LoadoutManager.GetHoldRecords(pawn);
+            if (recs == null || recs.NullOrEmpty())
+                return false;
+            return recs.Any(r => r.pickedUp);
+        }
+
+        public static void HoldTrackerClear(this Pawn pawn)
+        {
+            List<HoldRecord> recs = LoadoutManager.GetHoldRecords(pawn);
+            recs.Clear();
+        }
 		
 		/// <summary>
 		/// This should be called periodically so that HoldTracker can remove items that are no longer in the inventory via a method which isn't being watched.
@@ -288,7 +323,7 @@ namespace CombatExtended
         //  Probably not efficient but was easier to handle atm.
         static public bool GetExcessThing(this Pawn pawn, out Thing dropThing, out int dropCount)
         {
-	        //ProfoundDarkness: Thanks to erdelf on the RimWorldMod discord for helping me figure out some dictionary stuff and C# concepts related to 'Primitives' (pass by Value).
+	        //(ProfoundDarkness) Thanks to erdelf on the RimWorldMod discord for helping me figure out some dictionary stuff and C# concepts related to 'Primitives' (pass by Value).
         	CompInventory inventory = pawn.TryGetComp<CompInventory>();
         	Loadout loadout = pawn.GetLoadout();
         	List<HoldRecord> records = LoadoutManager.GetHoldRecords(pawn);
@@ -335,37 +370,35 @@ namespace CombatExtended
         	// Complicated by the fact that we now consider ammo in guns as part of the inventory...
         	if (listing.Any())
         	{
-        		if (records != null)
-        		{
-        			// look at each remaining 'uneaten' thingdef in pawn's inventory.
-        			foreach (ThingDef def in listing.Keys)
-        			{
-        				// if we have a record (HoldTracker) for that thingdef...
-        				foreach (HoldRecord rec in records)
-        				{
-        					if (rec.thingDef != def)
-        					{
-        						// the item we have extra of has no HoldRecord, drop it.
-		    					dropThing = inventory.container.FirstOrDefault(t => t.def == def);
-		    					if (dropThing != null)
-		    					{
-			    					dropCount = listing[def].value > dropThing.stackCount ? dropThing.stackCount : listing[def].value;
-			    					return true;
-		    					}
-        					} else if (rec.thingDef == def && listing[def].value > rec.count)
-        					{
-        						// the item we have extra of HAS a HoldRecord but the amount carried is above the limit of the HoldRecord, drop extra.
-	        					dropThing = pawn.inventory.innerContainer.FirstOrDefault(t => t.def == def);
-	        					if (dropThing != null)
-	        					{
-		        					dropCount = listing[def].value - rec.count;
-		        					dropCount = dropCount > dropThing.stackCount ? dropThing.stackCount : dropCount;
-		        					return true;
-	        					}
-        					}
-        				}
-        			}
-        		} else {
+                if (records != null && !records.NullOrEmpty())
+                {
+                    // look at each remaining 'uneaten' thingdef in pawn's inventory.
+                    foreach (ThingDef def in listing.Keys)
+                    {
+                        HoldRecord rec = records.FirstOrDefault(r => r.thingDef == def);
+                        if (rec == null)
+                        {
+                            // the item we have extra of has no HoldRecord, drop it.
+                            dropThing = inventory.container.FirstOrDefault(t => t.def == def);
+                            if (dropThing != null)
+                            {
+                                dropCount = listing[def].value > dropThing.stackCount ? dropThing.stackCount : listing[def].value;
+                                return true;
+                            }
+                            else if (rec.count > listing[def].value)
+                            {
+                                // the item we have extra of HAS a HoldRecord but the amount carried is above the limit of the HoldRecord, drop extra.
+                                dropThing = pawn.inventory.innerContainer.FirstOrDefault(t => t.def == def);
+                                if (dropThing != null)
+                                {
+                                    dropCount = listing[def].value - rec.count;
+                                    dropCount = dropCount > dropThing.stackCount ? dropThing.stackCount : dropCount;
+                                    return true;
+                                }
+                            }
+                        }
+                    }
+                } else {
         			foreach (ThingDef def in listing.Keys)
         			{
 		        		dropThing = inventory.container.FirstOrDefault(t => t.def == def);

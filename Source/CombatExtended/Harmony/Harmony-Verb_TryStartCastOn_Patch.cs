@@ -57,7 +57,6 @@ using Verse.AI;
             	{
             		foundBranch = true;
             		branchLabel = instruction.operand;
-            		Log.Message(instruction.operand.ToString());
             	}
             	
             	if (!foundCall && instruction.opcode == OpCodes.Call && ((MethodInfo)instruction.operand).Name.Contains("TryFindShootLineFromTo"))

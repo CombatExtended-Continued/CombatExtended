@@ -71,7 +71,6 @@ namespace CombatExtended
             closestThing = null;
             count = 0;
 			carriedBy = null;
-			List<LoadoutSlot> processed = new List<LoadoutSlot>();  // not sure if this is worth it, probably.
 
             CompInventory inventory = pawn.TryGetComp<CompInventory>();
             if (inventory != null && inventory.container != null)
