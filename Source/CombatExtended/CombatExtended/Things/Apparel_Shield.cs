@@ -16,7 +16,8 @@ namespace CombatExtended
 
         public override bool AllowVerbCast(IntVec3 root, TargetInfo targ)
         {
-            return wearer.equipment?.Primary?.def.weaponTags.Contains(OneHandedTag) ?? true;
+            ThingWithComps primary = wearer.equipment?.Primary;
+            return primary == null || (primary.def.weaponTags?.Contains(OneHandedTag) ?? false);
         }
 
         public override void DrawWornExtras()
