@@ -61,13 +61,29 @@ namespace CombatExtended
 			HoldRecord rec = recs.FirstOrDefault(hr => hr.thingDef == job.targetA.Thing.def);
 			if (rec != null)
 			{
-				rec.count += job.count;
-				return;
+                if (rec.pickedUp)
+                {
+                    // modifying a record for which the pawn should have some of that thing in their inventory.
+                    CompInventory inventory = pawn.TryGetComp<CompInventory>();
+                    if (inventory != null)
+                        rec.count = inventory.container.TotalStackCountOfDef(rec.thingDef) + job.count;
+                    else
+                        rec.count += job.count; // probably won't generally follow this code path but good not to throw an error if possible.
+                }
+                else
+                {
+                    // modifying a record that hasn't been picked up... do it blind.
+                    rec.count += job.count;
+                }
+                // useful debug message...
+                //Log.Message(string.Concat("Job was issued to pickup items for this existing record: ", rec));
+                return;
 			}
 			// if we got this far we know that there isn't a record being stored for this thingDef...
 			rec = new HoldRecord(job.targetA.Thing.def, job.count);
 			recs.Add(rec);
-			Log.Message(string.Concat("Job was issued to pickup this record: ", rec));
+            // useful debug message...
+			//Log.Message(string.Concat("Job was issued to pickup for this new record: ", rec));
 		}
 		
 		/// <summary>

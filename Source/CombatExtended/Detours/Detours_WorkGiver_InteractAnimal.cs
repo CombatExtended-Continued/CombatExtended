@@ -38,10 +38,12 @@ namespace CombatExtended.Detours
                 }
             }
 
-            return new Job(JobDefOf.TakeInventory, thing)
+            Job job = new Job(JobDefOf.TakeInventory, thing)
             {
                 count = numToCarry
             };
+            pawn.Notify_HoldTrackerJob(job);
+            return job;
         }
     }
 }

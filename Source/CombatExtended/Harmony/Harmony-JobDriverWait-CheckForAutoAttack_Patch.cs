@@ -54,7 +54,7 @@ namespace CombatExtended.Harmony
                     MethodBase method = null;
                     if (code[i].opcode == OpCodes.Callvirt && (method = code[i].operand as MethodBase) != null && method.DeclaringType == typeof(Pawn) && method.Name == "TryGetAttackVerb"
                         && code.Count() >= i + 1)
-                        verbLocalIndex = OpcodeStoreIndex(code[i + 1]);
+                        verbLocalIndex = HarmonyBase.OpcodeStoreIndex(code[i + 1]);
                 }
 
                 // see if we've found the instruction index of the key call.
@@ -69,68 +69,19 @@ namespace CombatExtended.Harmony
                 }
             }
 
-            Log.Message(string.Concat("verbLocalIndex ", verbLocalIndex));
             // walk backwards from the key call to locate the null load and replace it with our call to drop in our predicate into the arg stack.
             for (int i = indexKeyCall; i >= 0; i--)
             {
                 if (code[i].opcode == OpCodes.Ldnull)
                 {
-                    CodeInstruction tmp = MakeLocalLoadInstruction(verbLocalIndex);
-                    Log.Message(string.Concat("Got hit, replacing instruction with: ", tmp.opcode, " type: ", (tmp.operand == null ? "null" : tmp.operand.GetType().ToString() + " = " + tmp.operand)));
-                    code[i++] = MakeLocalLoadInstruction(verbLocalIndex);
+                    CodeInstruction tmp = HarmonyBase.MakeLocalLoadInstruction(verbLocalIndex);
+                    code[i++] = HarmonyBase.MakeLocalLoadInstruction(verbLocalIndex);
                     code.Insert(i, new CodeInstruction(OpCodes.Call, typeof(Harmony_JobDriverWait_CheckForAutoAttack_Patch).GetMethod("GetValidTargetPredicate", AccessTools.all)));
                     break;
                 }
             }
 
             return code;
-        }
-
-        /// <summary>
-        /// Return a CodeInstruction object with the correct opcode to fetch a local variable at a specific index.
-        /// </summary>
-        /// <param name="index">int value specifying the local variable index to fetch.</param>
-        /// <returns>CodeInstruction object with the correct opcode to fetch a local variable into the evaluation stack.</returns>
-        static CodeInstruction MakeLocalLoadInstruction(int index)
-        {
-            // argument check...
-            if (index < 0 || index > UInt16.MaxValue)
-                throw new ArgumentException("Index must be greater than 0 and less than " + uint.MaxValue.ToString() + ".");
-
-            // the first 4 are easy...
-            switch (index)
-            {
-                case 0:
-                    return new CodeInstruction(OpCodes.Ldloc_0);
-                case 1:
-                    return new CodeInstruction(OpCodes.Ldloc_1);
-                case 2:
-                    return new CodeInstruction(OpCodes.Ldloc_2);
-                case 3:
-                    return new CodeInstruction(OpCodes.Ldloc_3);
-            }
-
-            // proper type info for the other items.
-            if (index > Byte.MaxValue) return new CodeInstruction(OpCodes.Ldloc, index);
-            return new CodeInstruction(OpCodes.Ldloc_S, index);
-        }
-
-        /// <summary>
-        /// Return the index of a local variable (based on storage opcode).
-        /// </summary>
-        /// <param name="instruction">CodeInstruction object from Harmony</param>
-        /// <returns>int index of the local variable the instruction refers to. -1 if the opcode wasn't a storage opcode.</returns>
-        static int OpcodeStoreIndex(CodeInstruction instruction)
-        {
-            if (instruction.opcode == OpCodes.Stloc_0) return 0;
-            if (instruction.opcode == OpCodes.Stloc_1) return 1;
-            if (instruction.opcode == OpCodes.Stloc_2) return 2;
-            if (instruction.opcode == OpCodes.Stloc_3) return 3;
-            if (instruction.opcode == OpCodes.Stloc_S) // UInt8
-                return (instruction.operand as LocalVariableInfo).LocalIndex;
-            if (instruction.opcode == OpCodes.Stloc) // UInt16
-                return (instruction.operand as LocalVariableInfo).LocalIndex;
-            return -1; // error, unrecognized opcode so can check this if we DIDN'T get an apt opcode.
         }
 
         /// <summary>
