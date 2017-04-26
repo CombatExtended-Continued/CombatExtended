@@ -75,7 +75,8 @@ namespace CombatExtended
 			generic._lambda = td => td.IsNutritionGivingIngestible && td.ingestible.preferability <= FoodPreferability.RawTasty && td.ingestible.HumanEdible && td.plant == null && !td.IsDrug && !td.IsCorpse;
 			generic.defaultCount = Convert.ToInt32(Math.Floor(targetNutrition / everything.Where(td => generic.lambda(td)).Average(td => td.ingestible.nutrition)));
 			//generic.defaultCount = 1;
-			generic.isBasic = true;
+			generic.isBasic = false; // doesn't need to be in loadouts by default as animal interaction talks to HoldTracker now.
+			//TODO: Test pawns fetching raw food if no meal is available, if so then add a patch to have that talk to HoldTracker too.
 			
 			defs.Add(generic);
 			//Log.Message(string.Concat("CombatExtended :: LoadoutGenericDef :: ", generic.LabelCap, " list: ", string.Join(", ", DefDatabase<ThingDef>.AllDefs.Where(t => generic.lambda(t)).Select(t => t.label + " B(" + t.GetStatValueAbstract(CE_StatDefOf.Bulk) + ") M(" + t.GetStatValueAbstract(StatDefOf.Mass) + ")").ToArray())));
