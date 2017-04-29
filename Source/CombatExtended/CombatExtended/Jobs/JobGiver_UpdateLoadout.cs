@@ -211,7 +211,7 @@ namespace CombatExtended
 				}
                 if (curThing != null)
                 {
-                    if (!curSlot.thingDef.IsNutritionGivingIngestible && findCount / curSlot.count <= 0.5f) curPriority = ItemPriority.LowStock;
+                    if (curThing.def.IsNutritionGivingIngestible && findCount / curSlot.count <= 0.5f) curPriority = ItemPriority.LowStock;
                     else curPriority = ItemPriority.Low;
                 }
             }
