@@ -261,7 +261,7 @@ namespace CombatExtended
                         Predicate<Thing> validatorWS = (Thing w) => w.def.IsWeapon
                         	&& w.MarketValue > 500 && pawn.CanReserve(w, 1)
                         	&& pawn.CanReach(w, PathEndMode.Touch, Danger.Deadly, true)
-                        	&& (!pawn.Faction.HostileTo(Faction.OfPlayer) && pawn.Map.areaManager.Home[w.Position]) || (pawn.Faction.HostileTo(Faction.OfPlayer))
+                        	&& ((!pawn.Faction.HostileTo(Faction.OfPlayer) && !pawn.Map.areaManager.Home[w.Position]) || pawn.Faction.HostileTo(Faction.OfPlayer))
                         	&& (w.Position.DistanceToSquared(pawn.Position) < 15f || room == RoomQuery.RoomAtFast(w.Position, pawn.Map));
                         
 						// generate a list of all weapons (this includes melee weapons)
@@ -275,15 +275,31 @@ namespace CombatExtended
 						// now just get the ranged weapons out...
 						List<Thing> rangedWeapons = allWeapons.Where(w => w.def.IsRangedWeapon).ToList();
 						
-                        if (rangedWeapons != null && rangedWeapons.Count > 0)
+                        if (!rangedWeapons.NullOrEmpty())
                         {
                             foreach (Thing thing in rangedWeapons)
                             {
-                            	//TODO : Allow non-CE weapons to be picked up too
-                            	if (thing.TryGetComp<CompAmmoUser>() != null)
-                            	{
-	                                List<ThingDef> thingDefAmmoList = (from ThingDef g in thing.TryGetComp<CompAmmoUser>().Props.ammoSet.ammoTypes
-	                                                                   select g).ToList<ThingDef>();
+                                if (thing.TryGetComp<CompAmmoUser>() == null)
+                                {
+                                    // pickup a non-CE ranged weapon...
+                                    int numToThing = 0;
+                                    if (inventory.CanFitInInventory(thing, out numToThing))
+                                    {
+                                        if (thing.Position == pawn.Position || thing.Position.AdjacentToCardinal(pawn.Position))
+                                        {
+                                            return new Job(JobDefOf.Equip, thing)
+                                            {
+                                                checkOverrideOnExpire = true,
+                                                expiryInterval = 100,
+                                                canBash = true,
+                                                locomotionUrgency = LocomotionUrgency.Sprint
+                                            };
+                                        }
+                                        return GotoForce(pawn, thing, PathEndMode.Touch);
+                                    }
+                                } else {
+                                    // pickup a CE ranged weapon...
+                                    List<ThingDef> thingDefAmmoList = thing.TryGetComp<CompAmmoUser>().Props.ammoSet.ammoTypes.Select(g => g.ammo as ThingDef).ToList();
 	                            	
 	                                Predicate<Thing> validatorA = (Thing t) => t.def.category == ThingCategory.Item
 	                                	&& t is AmmoThing && pawn.CanReserve(t, 1)
@@ -298,28 +314,26 @@ namespace CombatExtended
 	                                
 	                                if (thingAmmoList.Count > 0 && thingDefAmmoList.Count > 0)
 	                                {
-	                                	foreach (Thing th in thingAmmoList.Where(x => thingDefAmmoList.Contains(x.def)))
-	                                    {
-	                                		//TODO : List all stackCounts and pick the first with large enough stackCount
-	                                        if (th.stackCount > thing.TryGetComp<CompAmmoUser>().Props.magazineSize * 2)
-	                                        {
-	                                            int numToThing = 0;
-	                                            if (inventory.CanFitInInventory(thing, out numToThing))
-	                                            {
-	                                                if (thing.Position == pawn.Position || thing.Position.AdjacentToCardinal(pawn.Position))
-	                                                {
-	                                                    return new Job(JobDefOf.Equip, thing)
-	                                                    {
-	                                                        checkOverrideOnExpire = true,
-	                                                        expiryInterval = 100,
-	                                                        canBash = true,
-	                                                        locomotionUrgency = LocomotionUrgency.Sprint
-	                                                    };
-	                                                }
-	                                                return GotoForce(pawn, thing, PathEndMode.Touch);
-	                                            }
-	                                        }
-	                                    }
+                                        int desiredStackSize = thing.TryGetComp<CompAmmoUser>().Props.magazineSize * 2;
+                                        Thing th = thingAmmoList.FirstOrDefault(x => thingDefAmmoList.Contains(x.def) && x.stackCount > desiredStackSize);
+                                        if (th != null)
+                                        {
+                                            int numToThing = 0;
+                                            if (inventory.CanFitInInventory(thing, out numToThing))
+                                            {
+                                                if (thing.Position == pawn.Position || thing.Position.AdjacentToCardinal(pawn.Position))
+                                                {
+                                                    return new Job(JobDefOf.Equip, thing)
+                                                    {
+                                                        checkOverrideOnExpire = true,
+                                                        expiryInterval = 100,
+                                                        canBash = true,
+                                                        locomotionUrgency = LocomotionUrgency.Sprint
+                                                    };
+                                                }
+                                                return GotoForce(pawn, thing, PathEndMode.Touch);
+                                            }
+                                        }
 	                                }
                             	}
                             }
@@ -362,7 +376,7 @@ namespace CombatExtended
                         Predicate<Thing> validator = (Thing t) => t is AmmoThing && pawn.CanReserve(t, 1)
                         && pawn.CanReach(t, PathEndMode.Touch, Danger.Deadly, true)
                         && ((pawn.Faction.IsPlayer && !ForbidUtility.IsForbidden(t, pawn))
-                        || (!pawn.Faction.IsPlayer && (!pawn.Faction.HostileTo(Faction.OfPlayer) && pawn.Map.areaManager.Home[t.Position]) || (pawn.Faction.HostileTo(Faction.OfPlayer))))
+                        || (!pawn.Faction.IsPlayer && (!pawn.Faction.HostileTo(Faction.OfPlayer) && !pawn.Map.areaManager.Home[t.Position]) || (pawn.Faction.HostileTo(Faction.OfPlayer))))
                         && (t.Position.DistanceToSquared(pawn.Position) < 20f || room == RoomQuery.RoomAtFast(t.Position, pawn.Map));
                         List<Thing> curThingList = (
                             from t in pawn.Map.listerThings.ThingsInGroup(ThingRequestGroup.HaulableAlways)
