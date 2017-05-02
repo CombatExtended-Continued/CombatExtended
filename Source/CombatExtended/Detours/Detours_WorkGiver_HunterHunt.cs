@@ -2,10 +2,12 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Reflection;
 using RimWorld;
 using Verse;
 using Verse.AI;
 using UnityEngine;
+using HugsLib.Source.Detour;
 
 namespace CombatExtended.Detours
 {

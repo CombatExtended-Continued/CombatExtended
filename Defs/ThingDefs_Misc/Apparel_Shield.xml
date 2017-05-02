@@ -1,9 +1,72 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <Defs>
 
-  <ThingDef ParentName="ArmorMakeableBase">
+  <ThingDef ParentName="ArmorMakeableBase" Name="ShieldBase" Abstract="true">
     <thingClass>CombatExtended.Apparel_Shield</thingClass>
-    <defName>BallisticShield</defName>
+    <thingCategories>
+      <li>Apparel</li>
+    </thingCategories>
+    <apparel>
+      <bodyPartGroups>
+        <li>LeftHand</li>
+      </bodyPartGroups>
+      <layers>
+        <li>Accessory</li>
+      </layers>
+    </apparel>
+    <storedConceptLearnOpportunity>CE_Shields</storedConceptLearnOpportunity>
+  </ThingDef>
+
+  <ThingDef ParentName="ShieldBase">
+    <defName>Apparel_MeleeShield</defName>
+    <label>melee shield</label>
+    <description>Simple shield that can block simple projectiles and hits with melee weapons.</description>
+    <techLevel>Industrial</techLevel>
+    <graphicData>
+      <texPath>Things/Apparel/Shield/Shield</texPath>
+      <graphicClass>Graphic_Single</graphicClass>
+      <shaderType>Cutout</shaderType>
+    </graphicData>
+    <costStuffCount>60</costStuffCount>
+    <stuffCategories>
+      <li>Steeled</li>
+      <li>Woody</li>
+      <!--<li>Leathery</li>-->
+    </stuffCategories>
+    <recipeMaker>
+      <recipeUsers>
+        <!--<li>CraftingSpot</li>-->
+        <li>FueledSmithy</li>
+        <li>ElectricSmithy</li>
+      </recipeUsers>
+    </recipeMaker>
+    <statBases>
+      <WorkToMake>9500</WorkToMake>
+      <MaxHitPoints>125</MaxHitPoints>
+      <ArmorRating_Blunt>0.15</ArmorRating_Blunt>
+      <ArmorRating_Sharp>0.2</ArmorRating_Sharp>
+      <Mass>7</Mass>
+      <Bulk>8</Bulk>
+      <WornBulk>8</WornBulk>
+    </statBases>
+    <equippedStatOffsets>
+      <ReloadSpeed>-0.05</ReloadSpeed>
+      <MeleeHitChance>-0.05</MeleeHitChance>
+      <ShootingAccuracy>-0.05</ShootingAccuracy>
+      <AimingAccuracy>-0.05</AimingAccuracy>
+      <Suppressability>-0.25</Suppressability>
+    </equippedStatOffsets>
+    <apparel>
+      <commonality>1</commonality>
+      <tags>
+        <li>TribalShield</li>
+        <li>CE_Shield</li>
+      </tags>
+    </apparel>
+  </ThingDef>
+
+  <ThingDef ParentName="ShieldBase">
+    <defName>Apparel_BallisticShield</defName>
     <label>ballistic shield</label>
     <description>A heavy shield designed to protect against gunfire. It can cover most of the wearer's body but restricts use of two-handed weapons. Its heavy weight and bulk make it unwieldy in combat.</description>
     <techLevel>Industrial</techLevel>
@@ -31,24 +94,13 @@
       <AimingAccuracy>-0.2</AimingAccuracy>
       <Suppressability>-0.5</Suppressability>
     </equippedStatOffsets>
-    <thingCategories>
-      <li>Apparel</li>
-    </thingCategories>
     <apparel>
-      <bodyPartGroups>
-        <li>LeftHand</li>
-      </bodyPartGroups>
-      <layers>
-        <li>Accessory</li>
-      </layers>
       <commonality>1</commonality>
       <tags>
-        <li>Outlander</li>
-        <li>Military</li>
+        <li>OutlanderShield</li>
         <li>CE_BallisticShield</li>
       </tags>
     </apparel>
-    <storedConceptLearnOpportunity>CE_Shields</storedConceptLearnOpportunity>
   </ThingDef>
 
   <ThingDef ParentName="ApparelBase">

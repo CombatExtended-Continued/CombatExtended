@@ -20,7 +20,6 @@ namespace CombatExtended
                 return null;
             }
             float distToSuppressor = (pawn.Position - comp.SuppressorLoc).LengthHorizontal;
-            Verb verb = pawn.TryGetAttackVerb(!pawn.IsColonist);
             IntVec3 coverPosition;
 
             //Try to find cover position to move up to
@@ -56,6 +55,7 @@ namespace CombatExtended
                 // Go through each cell in radius around the pawn
                 Region pawnRegion = pawn.Position.GetRegion(pawn.Map);
                 List<Region> adjacentRegions = pawnRegion.NonPortalNeighbors.ToList();
+                adjacentRegions.Add(pawnRegion);
                 // Make sure only cells within bounds are evaluated
                 foreach (IntVec3 cell in cellList.Where(x => x.InBounds(pawn.Map)))
                 {
@@ -85,17 +85,25 @@ namespace CombatExtended
 
             float cellRating = 0;
 
-            //Check if cell has cover in desired direction
-            Vector3 coverVec = (shooterPos - cell).ToVector3().normalized;
-            IntVec3 coverCell = (cell.ToVector3Shifted() + coverVec).ToIntVec3();
-            Thing cover = coverCell.GetCover(pawn.Map);
-            cellRating += GetCoverRating(cover);
+            if (!GenSight.LineOfSight(shooterPos, cell, pawn.Map))
+            {
+                cellRating += 2f;
+            }
+            else
+            {
+                //Check if cell has cover in desired direction
+                Vector3 coverVec = (shooterPos - cell).ToVector3().normalized;
+                IntVec3 coverCell = (cell.ToVector3Shifted() + coverVec).ToIntVec3();
+                Thing cover = coverCell.GetCover(pawn.Map);
+                cellRating += GetCoverRating(cover);
+            }
 
             //Check time to path to that location
             if (!pawn.Position.Equals(cell))
             {
                 // float pathCost = pawn.Map.pathFinder.FindPath(pawn.Position, cell, TraverseMode.NoPassClosedDoors).TotalCost;
                 float pathCost = (pawn.Position - cell).LengthHorizontal;
+                if (!GenSight.LineOfSight(pawn.Position, cell, pawn.Map)) pathCost *= 5;
                 cellRating = cellRating / pathCost;
             }
             return cellRating;

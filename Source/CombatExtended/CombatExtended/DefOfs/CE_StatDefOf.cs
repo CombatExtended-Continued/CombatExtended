@@ -10,12 +10,9 @@ namespace CombatExtended
     [DefOf]
     public static class CE_StatDefOf
     {
-        // *** Inventory stats ***
+        // *** Item stats ***
         public static readonly StatDef Bulk = StatDef.Named("Bulk"); // for items in inventory
-      //  public static readonly StatDef Mass = StatDef.Named("Mass"); // items in inventory
-        public static readonly StatDef WornBulk = StatDef.Named("WornBulk"); // apparel offsets
-        public static readonly StatDef CarryBulk = StatDef.Named("CarryBulk"); // pawn capacity
-        public static readonly StatDef CarryWeight = StatDef.Named("CarryWeight"); // pawn capacity
+        public static readonly StatDef WornBulk = StatDef.Named("WornBulk"); // worn apparel
 
         // *** Ranged weapon stats ***
         public static readonly StatDef ShotSpread = StatDef.Named("ShotSpread"); // pawn capacity
@@ -25,7 +22,15 @@ namespace CombatExtended
         public static readonly StatDef ReloadSpeed = StatDef.Named("ReloadSpeed"); // pawn capacity
 
         // *** Melee weapon stats ***
-        public static readonly StatDef ArmorPenetration = StatDef.Named("ArmorPenetration");
+        public static StatDef MeleeWeapon_Penetration;
+
+        // *** Pawn stats ***
+        public static StatDef CarryBulk;    // Inventory max space
+        public static StatDef CarryWeight;  // Inventory max weight
+        public static StatDef MeleeCritChance;
+        public static StatDef MeleeDodgeChance;
+        public static StatDef MeleeParryChance;
+
 
         public static StatDef Suppressability;
     }

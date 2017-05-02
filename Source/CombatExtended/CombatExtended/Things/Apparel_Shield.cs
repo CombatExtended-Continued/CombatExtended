@@ -10,7 +10,7 @@ namespace CombatExtended
 {
     public class Apparel_Shield : Apparel
     {
-        private const string OneHandedTag = "CE_OneHandedWeapon";
+        public const string OneHandedTag = "CE_OneHandedWeapon";
         private bool drawShield => wearer.Drafted || (wearer.CurJob?.def.alwaysShowWeapon ?? false) || (wearer.mindState.duty?.def.alwaysShowWeapon ?? false);  // Copied from PawnRenderer.CarryWeaponOpenly(), we show the shield whenever weapons are drawn
         private bool isTall => def.apparel.tags.Contains(ArmorUtilityCE.BallisticShieldTag);
 

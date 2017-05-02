@@ -37,6 +37,9 @@ namespace CombatExtended
         protected CompAmmoUser compAmmo = null;
         private float shotSpeed = -1;
         private float shotHeight = -1;
+        
+        private float rotationDegrees = 0f;
+        private float angleRadians = 0f;
 
         private int lastTauntTick;
         
@@ -176,9 +179,6 @@ namespace CombatExtended
             this.numShotsFired = 0;
             base.WarmupComplete();
         }
-
-        float rotationDegrees = 0f;
-        float angleRadians = 0f;
         
         /// <summary>
         /// Shifts the original target position in accordance with target leading, range estimation and weather/lighting effects
@@ -327,7 +327,7 @@ namespace CombatExtended
             report.swayDegrees = this.SwayAmplitude;
             report.spreadDegrees = this.ownerEquipment.GetStatValue(StatDef.Named("ShotSpread")) * this.projectilePropsCE.spreadMult;
             Thing cover;
-            this.GetPartialCoverBetween(this.caster.Position.ToVector3Shifted(), targetCell.ToVector3Shifted(), out cover);
+            this.GetHighestCoverBetween(this.caster.Position.ToVector3Shifted(), targetCell.ToVector3Shifted(), out cover);
             report.cover = cover;
 
             return report;
@@ -340,7 +340,7 @@ namespace CombatExtended
         /// <param name="targetLoc">The position of the target</param>
         /// <param name="cover">Output parameter, filled with the highest cover object found</param>
         /// <returns>True if cover was found, false otherwise</returns>
-        private bool GetPartialCoverBetween(Vector3 sourceLoc, Vector3 targetLoc, out Thing cover)
+        private bool GetHighestCoverBetween(Vector3 sourceLoc, Vector3 targetLoc, out Thing cover)
         {
             sourceLoc.Scale(new Vector3(1, 0, 1));
             targetLoc.Scale(new Vector3(1, 0, 1));
@@ -348,7 +348,7 @@ namespace CombatExtended
             //Calculate segment vector and segment amount
             Vector3 shotVec = sourceLoc - targetLoc;    //Vector from target to source
             Vector3 segmentVec = shotVec.normalized * segmentLength;
-            float distToCheck = Mathf.Min(distToCheckForCover, shotVec.magnitude);  //The distance to raycast
+            float distToCheck = Mathf.Min(distToCheckForCover, Mathf.Min(shotVec.magnitude / 2));  //The distance to raycast
             float numSegments = distToCheck / segmentLength;
 
             //Raycast accross all segments to check for cover
@@ -403,7 +403,7 @@ namespace CombatExtended
             {
                 //Check if target is obstructed behind cover
                 Thing coverTarg;
-                if (GetPartialCoverBetween(root.ToVector3Shifted(), targ.Cell.ToVector3Shifted(), out coverTarg))
+                if (GetHighestCoverBetween(root.ToVector3Shifted(), targ.Cell.ToVector3Shifted(), out coverTarg))
                 {
                     if (CE_Utility.GetCollisionVertical(targ.Thing).max < CE_Utility.GetCollisionVertical(coverTarg, true).max)
                     {
@@ -412,7 +412,7 @@ namespace CombatExtended
                 }
                 //Check if shooter is obstructed by cover
                 Thing coverShoot;
-                if (GetPartialCoverBetween(targ.Cell.ToVector3Shifted(), root.ToVector3Shifted(), out coverShoot))
+                if (GetHighestCoverBetween(targ.Cell.ToVector3Shifted(), root.ToVector3Shifted(), out coverShoot))
                 {
                 	if (ShotHeight < CE_Utility.GetCollisionVertical(coverShoot, true).max)
                     {
