@@ -11,6 +11,7 @@ using System.Reflection.Emit;
  * 
  * local variable operands (ex Ldloc_s, Stloc_s) == LocalVariableInfo
  * field operands (ex ldfld) == FieldInfo
+ * method operands (ex call, callvirt) == MethodInfo
  */
 
 namespace CombatExtended.Harmony
@@ -22,7 +23,7 @@ namespace CombatExtended.Harmony
 		
 		static HarmonyBase()
 		{
-			// Unremark the following when developing new Harmony patches.  The file "harmony.log.txt" on your desktop and is always appended.  Will cause ALL patches to be debugged.
+			// Unremark the following when developing new Harmony patches (Especially Transpilers).  The file "harmony.log.txt" on your desktop and is always appended.  Will cause ALL patches to be debugged.
 			//HarmonyInstance.DEBUG = true;
 			
 			// The following line will cause all properly formatted and annotated classes to patch the target code.
