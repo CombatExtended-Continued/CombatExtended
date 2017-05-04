@@ -191,7 +191,7 @@ namespace CombatExtended
 			// if we got here, also check holdRecords.
 			List<HoldRecord> records = pawn.GetHoldRecords();
 			
-			if (records.NullOrEmpty())
+			if (!records.NullOrEmpty())
 			{
 				foreach (HoldRecord rec in records)
 				{

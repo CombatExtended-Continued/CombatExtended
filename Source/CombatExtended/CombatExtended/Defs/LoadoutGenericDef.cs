@@ -59,7 +59,8 @@ namespace CombatExtended
 			generic.defName = "GenericMeal";
 			generic.description = "Generic Loadout for Meals.  Intended for compatibility with pawns automatically picking up a meal for themself.";
 			generic.label = "CE_Generic_Meal".Translate();
-			generic._lambda = td => td.IsNutritionGivingIngestible && td.ingestible.preferability >= FoodPreferability.MealAwful && !td.IsDrug;
+            generic.defaultCountType = LoadoutCountType.pickupDrop; // Fits with disabling of RimWorld Pawn behavior of fetching meals themselves.
+            generic._lambda = td => td.IsNutritionGivingIngestible && td.ingestible.preferability >= FoodPreferability.MealAwful && !td.IsDrug;
 			generic.isBasic = true;
 			
 			defs.Add(generic);
@@ -87,14 +88,21 @@ namespace CombatExtended
 			generic.defaultCount = 3;
 			generic.description = "Generic Loadout for Drugs.  Intended for compatibility with pawns automatically picking up drugs in compliance with drug policies.";
 			generic.label = "CE_Generic_Drugs".Translate();
-			// not really sure what defaultCount should be so leaving unset.
 			generic._lambda = td => td.IsDrug;
 			generic.isBasic = true;
 			
 			defs.Add(generic);
-			//Log.Message(string.Concat("CombatExtended :: LoadoutGenericDef :: ", generic.LabelCap, " list: ", string.Join(", ", DefDatabase<ThingDef>.AllDefs.Where(t => generic.lambda(t)).Select(t => t.label).ToArray())));
-			
-			
+            //Log.Message(string.Concat("CombatExtended :: LoadoutGenericDef :: ", generic.LabelCap, " list: ", string.Join(", ", DefDatabase<ThingDef>.AllDefs.Where(t => generic.lambda(t)).Select(t => t.label).ToArray())));
+
+
+            generic = new LoadoutGenericDef();
+            generic.defName = "GenericMedicine";
+            generic.defaultCount = 5;
+            generic.defaultCountType = LoadoutCountType.pickupDrop;
+            generic.description = "Generic Loadout for Medicine.  Intended for pawns which will handle triage activities.";
+            generic.label = "CE_Generic_Medicine".Translate();
+            generic._lambda = td => td.IsMedicine;
+
 			// now for the guns and ammo...
 			
 			// Get a list of guns that are player acquireable (not menuHidden but could also go with not dropOnDeath) which have expected comps/compProperties/verbs.
