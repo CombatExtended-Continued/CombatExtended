@@ -2,6 +2,42 @@
 <RecipeDefs>
 
   <RecipeDef>
+    <defName>SmeltWeapon</defName>
+    <label>smelt weapon</label>
+    <description>Use heat and strong electromagnets to break down weapons into useful resources.</description>
+    <jobString>Smelting weapon.</jobString>
+    <workAmount>1600</workAmount>
+    <workSpeedStat>SmeltingSpeed</workSpeedStat>
+    <effectWorking>Smelt</effectWorking>
+    <soundWorking>Recipe_Smelt</soundWorking>
+    <specialProducts>
+      <li>Smelted</li>
+    </specialProducts>
+    <ingredients>
+      <li>
+        <filter>
+          <categories>
+            <li>Weapons</li>
+          </categories>
+        </filter>
+        <count>1</count>
+      </li>
+    </ingredients>
+    <fixedIngredientFilter>
+      <categories>
+        <li>WeaponsRanged</li>
+        <li>WeaponsMelee</li>
+      </categories>
+      <specialFiltersToDisallow>
+        <li>AllowNonSmeltableWeapons</li>
+      </specialFiltersToDisallow>
+    </fixedIngredientFilter>
+    <forceHiddenSpecialFilters>
+      <li>AllowSmeltable</li>
+    </forceHiddenSpecialFilters>
+  </RecipeDef>
+
+  <RecipeDef>
     <defName>MakeComponent</defName>
     <label>make component</label>
     <description>Make a component.</description>
