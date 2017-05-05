@@ -198,7 +198,6 @@ namespace CombatExtended
 			mainDinfo.SetWeaponBodyPartGroup(bodyPartGroupDef);
 			mainDinfo.SetWeaponHediff(hediffDef);
 			mainDinfo.SetAngle(direction);
-            Log.Message("CE returning main dinfo");
 			yield return mainDinfo;
 			if (this.surpriseAttack && this.verbProps.surpriseAttack != null && this.verbProps.surpriseAttack.extraMeleeDamages != null)
 			{
@@ -274,7 +273,7 @@ namespace CombatExtended
         /// <returns>True if pawn still has parries available or no parry tracker could be found, false otherwise</returns>
         private bool CanDoParry(Pawn pawn)
         {
-            if (!pawn.RaceProps.Humanlike || pawn.story.WorkTagIsDisabled(WorkTags.Violent))
+            if (pawn == null || pawn.Dead || !pawn.RaceProps.Humanlike || pawn.story.WorkTagIsDisabled(WorkTags.Violent))
             {
                 return false;
             }
@@ -309,7 +308,6 @@ namespace CombatExtended
                 if (parryThing is Apparel_Shield)
                 {
                     // Shield bash
-                    Log.Message("CE doing shield bash");
                     DamageInfo dinfo = new DamageInfo(DamageDefOf.Blunt, 6, -1, defender, null, parryThing.def);
                     caster.TakeDamage(dinfo);
                     if (!parryThing.Stuff.stuffProps.soundMeleeHitBlunt.NullOrUndefined())

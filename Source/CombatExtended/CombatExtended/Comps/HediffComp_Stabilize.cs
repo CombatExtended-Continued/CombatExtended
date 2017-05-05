@@ -12,7 +12,7 @@ namespace CombatExtended
     public class HediffComp_Stabilize : HediffComp
     {
         private const float bleedIncreasePerSec = 0.01f;    // After stabilizing, bleed modifier is increased by this much
-        private const float internalBleedOffset = 0.5f;
+        private const float internalBleedOffset = 0.2f;
 
         private static readonly Texture2D StabilizedIcon = ContentFinder<Texture2D>.Get("UI/Icons/Medical/Stabilized_Icon");
 
@@ -43,7 +43,7 @@ namespace CombatExtended
                 Log.Error("CE tried to stabilize without medicine");
                 return;
             }
-            float bleedReduction = medic.GetStatValue(StatDefOf.HealingQuality) * medicine.GetStatValue(StatDefOf.MedicalPotency);
+            float bleedReduction = 2f * medic.GetStatValue(StatDefOf.HealingQuality) * medicine.GetStatValue(StatDefOf.MedicalPotency);
             bleedModifier = 1 - bleedReduction; // Especially high treatment quality extends time at 0% bleed by setting bleedModifier to a negative number
             stabilized = true;
         }
