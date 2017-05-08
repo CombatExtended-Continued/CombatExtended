@@ -64,29 +64,31 @@ namespace CombatExtended
                 Log.Error(pawn + " tried to do reload job without compReloader");
                 yield return null;
             }
-
-			// initial location of the parent item.
-			if (compReloader.wielder != null) inEquipment = true;
+            if (compReloader.holder == null)
+            {
+                Log.Error("JobDriver_Reload :: compReloader.holder is null.  Weapon to be reloaded must be Pawn's Primary equipment or in Pawn's inventory.");
+                yield return null;
+            }
+            
+            // initial location of the parent item.
+            if (compReloader.wielder != null) inEquipment = true;
 			else if (compReloader.holder != null) inInventory = true;
 			else
 				this.EndJobWith(JobCondition.Incompletable); // can't do the job if what we are reloading isn't in inventory or equipment.
-
-			// current state of equipment, want to interrupt the reload if a pawn's equipment changes.
-			initEquipment = pawn.equipment?.Primary;
+            
+            // current state of equipment, want to interrupt the reload if a pawn's equipment changes.
+            initEquipment = pawn.equipment?.Primary;
 
             this.FailOnDespawnedOrNull(TargetIndex.A);
             this.FailOnMentalState(TargetIndex.A);
             this.FailOn(HasNoGunOrAmmo);
-            
-			if (compReloader.holder == null)
-				new System.ArgumentException("JobDriver_Reload :: compReloader.holder is null.  Weapon to be reloaded must be Pawn's Primary equipment or in Pawn's inventory.");
-			
+
             // Throw mote
             if (compReloader.Props.throwMote)
                 MoteMaker.ThrowText(pawn.Position.ToVector3Shifted(), Find.VisibleMap, string.Format("CE_ReloadingMote".Translate(), TargetThingB.def.LabelCap));
 
-			//Toil of do-nothing		
-			Toil waitToil = new Toil() { actor = pawn }; // actor was always null in testing...
+            //Toil of do-nothing		
+            Toil waitToil = new Toil() { actor = pawn }; // actor was always null in testing...
             waitToil.initAction = () => waitToil.actor.pather.StopDead();
             waitToil.defaultCompleteMode = ToilCompleteMode.Delay;
             waitToil.defaultDuration = Mathf.CeilToInt(compReloader.Props.reloadTicks / pawn.GetStatValue(CE_StatDefOf.ReloadSpeed));

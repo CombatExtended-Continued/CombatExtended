@@ -133,8 +133,8 @@ namespace CombatExtended
                 soundDef = SoundMiss();
             }
             if (!moteText.NullOrEmpty())
-                MoteMaker.ThrowText(targetThing.DrawPos, casterPawn.Map, moteText);
-            soundDef.PlayOneShot(new TargetInfo(targetThing.Position, casterPawn.Map, false));
+                MoteMaker.ThrowText(targetThing.PositionHeld.ToVector3Shifted(), casterPawn.Map, moteText);
+            soundDef.PlayOneShot(new TargetInfo(targetThing.PositionHeld, casterPawn.Map, false));
 			casterPawn.Drawer.Notify_MeleeAttackOn(targetThing);
 			if (defender != null && !defender.Dead)
 			{

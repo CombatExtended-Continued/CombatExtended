@@ -201,13 +201,13 @@ namespace CombatExtended
         /// <param name="thing">Thing (can be null) to have its collision vertical height returned.</param>
         /// <param name="isEdifice">False by default. Set to true if thing is the edifice at the location thing.Position.</param>
         /// <param name="isEdifice">False by default. Set to true to get the standing height of a pawn.</param>
-        public static FloatRange GetCollisionVertical(Thing thing, bool isEdifice = false, bool ignoreCrouch = false)
+        public static FloatRange GetCollisionVertical(Thing thing, bool ignoreCrouch = false)
         {
             if (thing == null)
             {
             	return new FloatRange(0f, 0f);
             }
-            if (isEdifice)
+            if (thing is Building)
             {
                 if (thing.def.category == ThingCategory.Plant && thing.def.altitudeLayer == AltitudeLayer.Building)
                 {
@@ -257,7 +257,7 @@ namespace CombatExtended
                 var edifice = thing.Position.GetEdifice(thing.Map);
                 if (edifice != null && edifice.GetHashCode() != thing.GetHashCode())
                 {
-                    edificeHeight = GetCollisionVertical(edifice, true).max;
+                    edificeHeight = GetCollisionVertical(edifice).max;
                 }
             }
             float fillPercent2 = collisionHeight * collisionHeightFactor;

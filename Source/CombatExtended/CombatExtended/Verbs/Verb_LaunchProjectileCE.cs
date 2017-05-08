@@ -94,7 +94,7 @@ namespace CombatExtended
                 {
                     // TODO Find a way to optimize this so we avoid calling GetCollisionVertical twice without duplicating code
                 	var shooterVertical = CE_Utility.GetCollisionVertical(caster);
-                    var shooterTopSpan = CE_Utility.GetCollisionVertical(caster, false, true).Span * (1 - CE_Utility.BodyRegionMiddleHeight);
+                    var shooterTopSpan = CE_Utility.GetCollisionVertical(caster, true).Span * (1 - CE_Utility.BodyRegionMiddleHeight);
                     shotHeight = CasterIsPawn
                         ? shooterVertical.max - shooterTopSpan
 		            	: shooterVertical.max;
@@ -106,7 +106,7 @@ namespace CombatExtended
         protected float ShootingAccuracy => CasterPawn?.GetStatValue(StatDefOf.ShootingAccuracy) ?? 2f;
         protected float AimingAccuracy => ShooterPawn?.GetStatValue(CE_StatDefOf.AimingAccuracy) ?? 0.75f;
         protected float SightsEfficiency => (3 - ownerEquipment.GetStatValue(CE_StatDefOf.SightsEfficiency));
-        protected virtual float SwayAmplitude => (4.5f - ShootingAccuracy) * this.ownerEquipment.GetStatValue(StatDef.Named("SwayFactor"));
+        protected virtual float SwayAmplitude => Mathf.Max(0, (4.5f - ShootingAccuracy * ownerEquipment.GetStatValue(CE_StatDefOf.SightsEfficiency)) * ownerEquipment.GetStatValue(StatDef.Named("SwayFactor")));
 
         // Ammo variables
         protected CompAmmoUser CompAmmo
@@ -222,7 +222,7 @@ namespace CombatExtended
 			    // Height difference calculations for ShotAngle
 			    float targetHeight = 0f;
 	            
-	            var coverVertical = CE_Utility.GetCollisionVertical(report.cover, true);	//Get " " cover, assume it is the edifice
+	            var coverVertical = CE_Utility.GetCollisionVertical(report.cover);	//Get " " cover, assume it is the edifice
 	            
 	            // Projectiles with flyOverhead target the ground below the target and ignore cover
 	            if (ProjectileDef.projectile.flyOverhead)
@@ -327,7 +327,7 @@ namespace CombatExtended
             report.swayDegrees = this.SwayAmplitude;
             report.spreadDegrees = this.ownerEquipment.GetStatValue(StatDef.Named("ShotSpread")) * this.projectilePropsCE.spreadMult;
             Thing cover;
-            this.GetHighestCoverBetween(this.caster.Position.ToVector3Shifted(), targetCell.ToVector3Shifted(), out cover);
+            this.GetHighestCoverBetween(this.caster.Position.ToVector3Shifted(), target, out cover);
             report.cover = cover;
 
             return report;
@@ -340,10 +340,12 @@ namespace CombatExtended
         /// <param name="targetLoc">The position of the target</param>
         /// <param name="cover">Output parameter, filled with the highest cover object found</param>
         /// <returns>True if cover was found, false otherwise</returns>
-        private bool GetHighestCoverBetween(Vector3 sourceLoc, Vector3 targetLoc, out Thing cover)
+        private bool GetHighestCoverBetween(Vector3 sourceLoc, LocalTargetInfo target, out Thing cover)
         {
+            Vector3 targetLoc = target.Cell.ToVector3Shifted();
             sourceLoc.Scale(new Vector3(1, 0, 1));
             targetLoc.Scale(new Vector3(1, 0, 1));
+            Map map = caster.Map;
 
             //Calculate segment vector and segment amount
             Vector3 shotVec = sourceLoc - targetLoc;    //Vector from target to source
@@ -353,27 +355,32 @@ namespace CombatExtended
 
             //Raycast accross all segments to check for cover
             HashSet<IntVec3> checkedCells = new HashSet<IntVec3>();
-            Thing thingAtTargetLoc = targetLoc.ToIntVec3().GetEdifice(caster.Map);
-            Thing newCover = null;
+            Thing targetThing = target.Thing;
+            Thing highestCover = null;
+            float highestCoverHeight = 0f;
             for (int i = 0; i <= numSegments; i++)
             {
                 IntVec3 cell = (targetLoc + segmentVec * i).ToIntVec3();
                 if (!checkedCells.Contains(cell))
                 {
-                    //Cover check, if cell has cover compare fillPercent and get the highest piece of cover, ignore if cover is the target (e.g. solar panels, crashed ship, etc)
-                    Thing coverAtCell = GridsUtility.GetCover(cell, caster.Map);
-                    if (coverAtCell != null
-                        && (thingAtTargetLoc == null || !coverAtCell.Equals(thingAtTargetLoc))
-                        && (newCover == null || newCover.def.fillPercent < coverAtCell.def.fillPercent)
-                        && coverAtCell.def.Fillage != FillCategory.Full
-                        && coverAtCell.def.category != ThingCategory.Plant)
+                    Pawn pawn = cell.GetFirstPawn(map);
+                    Thing newCover = pawn == null ? cell.GetCover(map) : pawn;
+                    float newCoverHeight = CE_Utility.GetCollisionVertical(newCover).max;
+
+                    //Cover check, if cell has cover compare collision height and get the highest piece of cover, ignore if cover is the target (e.g. solar panels, crashed ship, etc)
+                    if (newCover != null
+                        && (targetThing == null || !newCover.Equals(targetThing))
+                        && (highestCover == null || highestCoverHeight < newCoverHeight)
+                        && newCover.def.Fillage != FillCategory.Full
+                        && newCover.def.category != ThingCategory.Plant)
                     {
-                        newCover = coverAtCell;
+                        highestCover = newCover;
+                        highestCoverHeight = newCoverHeight;
                     }
                     checkedCells.Add(cell);
                 }
             }
-            cover = newCover;
+            cover = highestCover;
 
             //Report success if found cover
             return cover != null;
@@ -387,6 +394,9 @@ namespace CombatExtended
         /// <returns>True if shooter can hit target from root position, false otherwise</returns>
         public override bool CanHitTargetFrom(IntVec3 root, LocalTargetInfo targ)
         {
+            string unused;
+            return CanHitTargetFrom(root, targ, out unused);
+            /*
             if (!targ.Cell.InBounds(caster.Map) || !root.InBounds(caster.Map)) return false;
 
             //Sanity check for flyOverhead projectiles, they should not attack things under thick roofs
@@ -422,6 +432,95 @@ namespace CombatExtended
                 return true;
             }
             return false;
+            */
+        }
+
+        public bool CanHitTarget(LocalTargetInfo targ, out string report)
+        {
+            return CanHitTargetFrom(caster.Position, targ, out report);
+        }
+
+        public virtual bool CanHitTargetFrom(IntVec3 root, LocalTargetInfo targ, out string report)
+        {
+            report = "";
+            if (!targ.Cell.InBounds(caster.Map) || !root.InBounds(caster.Map))
+            {
+                report = "Out of bounds";
+                return false;
+            }
+            // Check target self
+            if (targ.Thing != null && targ.Thing == this.caster)
+            {
+                if (verbProps.targetParams.canTargetSelf)
+                {
+                    report = "Can't target self";
+                    return false;
+                }
+                return true;
+            }
+            // Check thick roofs
+            if (ProjectileDef.projectile.flyOverhead)
+            {
+                RoofDef roofDef = caster.Map.roofGrid.RoofAt(targ.Cell);
+                if (roofDef != null && roofDef.isThickRoof)
+                {
+                    report = "Blocked by roof";
+                    return false;
+                }
+            }
+            // Check for apparel
+            if (CasterIsPawn && CasterPawn.apparel != null)
+            {
+                List<Apparel> wornApparel = CasterPawn.apparel.WornApparel;
+                foreach(Apparel current in wornApparel)
+                {
+                    if (!current.AllowVerbCast(root, targ.ToTargetInfo(caster.Map)))
+                    {
+                        report = "Shooting disallowed by " + current.LabelShort;
+                        return false;
+                    }
+                }
+            }
+            // Check for line of sight
+            ShootLine shootLine;
+            if (!TryFindShootLineFromTo(root, targ, out shootLine))
+            {
+                float lengthHorizontalSquared = (root - targ.Cell).LengthHorizontalSquared;
+                if (lengthHorizontalSquared > verbProps.range * verbProps.range)
+                {
+                    report = "Out of range";
+                }
+                else if(lengthHorizontalSquared < verbProps.minRange * verbProps.minRange)
+                {
+                    report = "Within minimum range";
+                }
+                else
+                {
+                    report = "No line of sight";
+                }
+                return false;
+            }
+            //Check if target is obstructed behind cover
+            Thing coverTarg;
+            if (GetHighestCoverBetween(root.ToVector3Shifted(), targ, out coverTarg))
+            {
+                if (CE_Utility.GetCollisionVertical(targ.Thing).max < CE_Utility.GetCollisionVertical(coverTarg).max)
+                {
+                    report = "Target obstructed by " + coverTarg.LabelShort;
+                    return false;
+                }
+            }
+            //Check if shooter is obstructed by cover
+            Thing coverShoot;
+            if (GetHighestCoverBetween(targ.Cell.ToVector3Shifted(), caster, out coverShoot))
+            {
+                if (ShotHeight < CE_Utility.GetCollisionVertical(coverShoot).max)
+                {
+                    report = "Shooter obstructed by " + coverShoot.LabelShort;
+                    return false;
+                }
+            }
+            return true;
         }
 
         /// <summary>

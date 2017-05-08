@@ -51,7 +51,7 @@ namespace CombatExtended
         {
             get
             {
-                if (compEquippable == null || compEquippable.PrimaryVerb == null)
+                if (compEquippable == null || compEquippable.PrimaryVerb == null || compEquippable.PrimaryVerb.caster == null)
                 {
                     return null;
                 }

@@ -11,7 +11,7 @@ namespace CombatExtended
 {
     public class JobDriver_Stabilize : JobDriver
     {
-        private const float baseTendDuration = 120f;
+        private const float baseTendDuration = 60f;
 
         private Pawn Patient { get { return CurJob.targetA.Thing as Pawn; } }
         private Medicine Medicine { get { return CurJob.targetB.Thing as Medicine; } }

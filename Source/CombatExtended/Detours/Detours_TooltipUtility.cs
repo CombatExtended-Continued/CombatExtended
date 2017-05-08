@@ -60,7 +60,8 @@ namespace CombatExtended.Detours
                     {
                         stringBuilder.AppendLine();
                         stringBuilder.Append("ShotBy".Translate(new object[] { Find.Selector.SingleSelectedThing.LabelShort }) + ":\n");
-                        if (verbCE.CanHitTarget(target))
+                        string obstructReport;
+                        if (verbCE.CanHitTarget(target, out obstructReport))
                         {
                             ShiftVecReport report = verbCE.ShiftVecReportFor(target);
                             stringBuilder.Append(report.GetTextReadout());
@@ -68,6 +69,7 @@ namespace CombatExtended.Detours
                         else
                         {
                             stringBuilder.Append("CannotHit".Translate());
+                            if (!obstructReport.NullOrEmpty()) stringBuilder.Append(" " + obstructReport + ".");
                         }
                     }
                 }

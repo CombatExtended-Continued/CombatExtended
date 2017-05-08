@@ -207,7 +207,7 @@ namespace CombatExtended
             {
                 if (cover != null)
                 {
-                	stringBuilder.AppendLine("   " + "CE_CoverHeight".Translate() + "\t" + CE_Utility.GetCollisionVertical(cover, true).Span + " c");
+                	stringBuilder.AppendLine("   " + "CE_CoverHeight".Translate() + "\t" + CE_Utility.GetCollisionVertical(cover).max + " c");
                 }
                 if (target.Thing != null)
                 {
