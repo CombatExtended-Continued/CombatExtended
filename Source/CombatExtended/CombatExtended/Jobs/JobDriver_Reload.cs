@@ -9,44 +9,67 @@ namespace CombatExtended
     public class JobDriver_Reload : JobDriver
     {
         #region Fields
-        private CompAmmoUser _compReloader;
-        private bool inEquipment = false;
-        private bool inInventory = false;
+        private CompAmmoUser _compReloader = null;
         private ThingWithComps initEquipment = null;
+        private bool reloadingInventory = false;
+        private bool reloadingEquipment = false;
         #endregion Fields
 
         #region Properties
         private string errorBase => this.GetType().Assembly.GetName().Name + " :: " + this.GetType().Name + " :: ";
 
+        // TargetA == Pawn holder/reloader (equipment or inventory)
+        private TargetIndex indReloader => TargetIndex.A;
+        private Pawn holder => TargetThingA as Pawn;
+        // TargetB == ThingWithComps (weapon)
+        private TargetIndex indWeapon => TargetIndex.B;
+        private ThingWithComps weapon => TargetThingB as ThingWithComps; //intentionally non-caching.
+
+        private bool weaponEquipped { get { return pawn?.equipment?.Primary == weapon; } }
+        private bool weaponInInventory { get { return pawn?.inventory?.innerContainer.Contains(weapon) ?? false; } }
+
+        /// <summary>
+        /// Gets and caches the CompAmmoUser.
+        /// </summary>
         private CompAmmoUser compReloader
         {
             get
             {
-                if (_compReloader == null) _compReloader = TargetThingB.TryGetComp<CompAmmoUser>();
+                if (_compReloader == null) _compReloader = weapon.TryGetComp<CompAmmoUser>();
                 return _compReloader;
             }
         }
+
         #endregion Properties
 
         #region Methods
+        
+        /// <summary>
+        /// Generates the string which is shown in the interface when a pawn is selected while they are performing this job.
+        /// </summary>
+        /// <returns>string representing the current activity of the pawn doing this job.</returns>
         public override string GetReport()
         {
             string text = CE_JobDefOf.ReloadWeapon.reportString;
             string flagSource = "";
-            if (inEquipment) flagSource = "CE_ReloadingEquipment".Translate();
-            if (inInventory) flagSource = "CE_ReloadingInventory".Translate();
+            if (reloadingEquipment) flagSource = "CE_ReloadingEquipment".Translate();
+            if (reloadingInventory) flagSource = "CE_ReloadingInventory".Translate();
             text = text.Replace("FlagSource", flagSource);
-            text = text.Replace("TargetB", TargetThingB.def.label);
+            text = text.Replace("TargetB", weapon.def.label);
             text = text.Replace("AmmoType", compReloader.currentAmmo.label);
             return text;
         }
 
+        /// <summary>
+        /// Additional failure conditions that we want to end this job on.
+        /// </summary>
+        /// <returns>bool, true indicates the job should be halted</returns>
         private bool HasNoGunOrAmmo()
         {
             //if (TargetThingB.DestroyedOrNull() || pawn.equipment == null || pawn.equipment.Primary == null || pawn.equipment.Primary != TargetThingB)
-			if (TargetThingB.DestroyedOrNull() || (inEquipment && (pawn?.equipment?.Primary == null || pawn.equipment.Primary != TargetThingB))
-			   								   || (inInventory && (pawn.inventory == null || !pawn.inventory.innerContainer.Contains(TargetThingB)))
-			                                   || (initEquipment != pawn?.equipment?.Primary))
+			if ((reloadingEquipment && (pawn?.equipment?.Primary == null || pawn.equipment.Primary != weapon))
+			   	|| (reloadingInventory && (pawn.inventory == null || !pawn.inventory.innerContainer.Contains(weapon)))
+			    || (initEquipment != pawn?.equipment?.Primary))
                 return true;
 
 			//CompAmmoUser comp = pawn.equipment.Primary.TryGetComp<CompAmmoUser>();
@@ -57,42 +80,68 @@ namespace CombatExtended
 			return compReloader == null || !compReloader.hasAndUsesAmmoOrMagazine;
         }
 
+        /// <summary>
+        /// Generates a series of actions (toils) that the pawn should perform.
+        /// </summary>
+        /// <returns>Ienumerable of type Toil</returns>
+        /// <remarks>Remember that, in the case of jobs, effectively the entire method is executed before any actual activity occurs.</remarks>
         protected override IEnumerable<Toil> MakeNewToils()
         {
-            if (compReloader == null)
+            // Error checking and 'helpful' messages for what is wrong.
+            if (holder == null) // A later check will catch this (failon) but that fails silently.
             {
-                Log.Error(pawn + " tried to do reload job without compReloader");
+                Log.Error(errorBase + "TargetThingA is null.  A Pawn is required to perform a reload.");
                 yield return null;
             }
-            if (compReloader.holder == null)
+            if (weapon == null) // Required.
             {
-                Log.Error("JobDriver_Reload :: compReloader.holder is null.  Weapon to be reloaded must be Pawn's Primary equipment or in Pawn's inventory.");
+                Log.Error(errorBase +  "TargetThingB is null.  A weapon (ThingWithComps) is required to perform a reload.");
                 yield return null;
             }
-            
-            // initial location of the parent item.
-            if (compReloader.wielder != null) inEquipment = true;
-			else if (compReloader.holder != null) inInventory = true;
-			else
-				this.EndJobWith(JobCondition.Incompletable); // can't do the job if what we are reloading isn't in inventory or equipment.
-            
+            if (compReloader == null) // Required.
+            {
+                Log.Error(errorBase + pawn + " tried to do reload job on " + weapon.LabelCap + " which doesn't have a required CompAmmoUser.");
+                yield return null;
+            }
+            if (holder != pawn) // Helps restrict what this job does, not really necessary and may work fine (though possibly undesirable behavior) without this check.
+            {
+                Log.Error(errorBase + "TargetThingA (" + holder.Name + ") is not the same Pawn (" + pawn.Name + ") that was given the job.");
+                yield return null;
+            }
+            // get the state of the job (inventory vs other) at the start.
+            reloadingInventory = weaponInInventory;
+            reloadingEquipment = weaponEquipped;
+            // A couple more more 'helpful' error check/message.
+            if (!reloadingInventory && !reloadingEquipment) // prevent some bad states/behavior on FailOn and job text.
+            {
+                Log.Error(errorBase + "Unable to find the weapon to be reloaded (" + weapon.LabelCap + ") in the inventory nor equipment of " + pawn.Name);
+                yield return null;
+            }
+            if (reloadingInventory && reloadingEquipment) // prevent incorrect information on job text.  If somehow this was true may cause a FailOn to trip.
+            {
+                Log.Error(errorBase +  "Something went spectacularly wrong as the weapon to be reloaded was found in both the Pawn's equipment AND inventory at the same time.");
+                yield return null;
+            }
+
             // current state of equipment, want to interrupt the reload if a pawn's equipment changes.
             initEquipment = pawn.equipment?.Primary;
 
-            this.FailOnDespawnedOrNull(TargetIndex.A);
-            this.FailOnMentalState(TargetIndex.A);
+            // setup fail states, if something goes wrong with the pawn performing the reload, the weapon, or something else that we want to fail on.
+            this.FailOnDespawnedOrNull(indReloader);
+            this.FailOnMentalState(indReloader);
+            this.FailOnDestroyedOrNull(indWeapon);
             this.FailOn(HasNoGunOrAmmo);
 
             // Throw mote
             if (compReloader.Props.throwMote)
-                MoteMaker.ThrowText(pawn.Position.ToVector3Shifted(), Find.VisibleMap, string.Format("CE_ReloadingMote".Translate(), TargetThingB.def.LabelCap));
+                MoteMaker.ThrowText(pawn.Position.ToVector3Shifted(), Find.VisibleMap, string.Format("CE_ReloadingMote".Translate(), weapon.def.LabelCap));
 
             //Toil of do-nothing		
             Toil waitToil = new Toil() { actor = pawn }; // actor was always null in testing...
             waitToil.initAction = () => waitToil.actor.pather.StopDead();
             waitToil.defaultCompleteMode = ToilCompleteMode.Delay;
             waitToil.defaultDuration = Mathf.CeilToInt(compReloader.Props.reloadTicks / pawn.GetStatValue(CE_StatDefOf.ReloadSpeed));
-            yield return waitToil.WithProgressBarToilDelay(TargetIndex.A);
+            yield return waitToil.WithProgressBarToilDelay(indReloader);
 
             //Actual reloader
             Toil reloadToil = new Toil();
