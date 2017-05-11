@@ -569,7 +569,7 @@ namespace CombatExtended.Detours
                         }
                         else if (!pawn.CanReserve(item))
                         {
-                            pickUpOption = new FloatMenuOption("CE_CannotPickUp".Translate() + " " + item.LabelShort + " (" + "ReservedBy".Translate(new object[] { pawn.Map.reservationManager.FirstReserverOf(item, pawn.Faction) }), null);
+                            pickUpOption = new FloatMenuOption("CE_CannotPickUp".Translate() + " " + item.LabelShort + " (" + "ReservedBy".Translate(new object[] { pawn.Map.reservationManager.FirstReserverOf(item, pawn.Faction).LabelShort }), null);
                         }
                         else if (!compInventory.CanFitInInventory(item, out count))
                         {

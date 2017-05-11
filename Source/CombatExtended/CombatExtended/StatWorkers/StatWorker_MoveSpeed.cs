@@ -48,7 +48,7 @@ namespace CombatExtended
             CompInventory comp = thing.TryGetComp<CompInventory>();
             if (comp != null)
             {
-                factor = Mathf.Clamp(comp.moveSpeedFactor - comp.encumberPenalty, 0.01f, 1f);
+                factor = Mathf.Clamp(comp.moveSpeedFactor - comp.encumberPenalty, 0.5f, 1f);
             }
             return factor;
         }
