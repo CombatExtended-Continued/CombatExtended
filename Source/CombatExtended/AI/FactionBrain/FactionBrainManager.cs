@@ -19,7 +19,7 @@ namespace CombatExtended.AI
 		public override void ExposeData()
 		{
 			base.ExposeData();
-            Scribe_Collections.LookList(ref brains, "brains", LookMode.Deep);
+            Scribe_Collections.Look(ref brains, "brains", LookMode.Deep);
 			Action action = delegate
 			{
 				foreach (var brain in brains)

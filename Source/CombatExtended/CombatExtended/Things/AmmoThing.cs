@@ -75,7 +75,7 @@ namespace CombatExtended
                     else
                     {
                         numToCookOff = 0;
-                        Destroy(DestroyMode.Kill);
+                        Destroy(DestroyMode.KillFinalize);
                     }
                 }
             }

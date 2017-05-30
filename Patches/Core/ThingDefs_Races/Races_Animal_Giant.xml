@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+
+	<!-- ========== Elephant ========== -->
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>*/ThingDef[defName="Elephant"]/statBases/MoveSpeed</xpath>
+		<value>
+			<MoveSpeed>5</MoveSpeed>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>*/ThingDef[defName="Elephant"]/statBases</xpath>
+		<value>
+			<ArmorRating_Blunt>0.10</ArmorRating_Blunt>
+			<ArmorRating_Sharp>0.125</ArmorRating_Sharp>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>*/ThingDef[defName="Elephant"]/verbs</xpath>
+		<value>
+			<verbs>
+				<li Class="CombatExtended.VerbPropertiesCE">
+				  <verbClass>CombatExtended.Verb_MeleeAttackCE</verbClass>
+				  <defaultCooldownTime>2.0</defaultCooldownTime>
+				  <meleeDamageBaseAmount>35</meleeDamageBaseAmount>
+				  <meleeDamageDef>Stab</meleeDamageDef>
+				  <linkedBodyPartsGroup>TuskAttackTool</linkedBodyPartsGroup>
+				  <meleeArmorPenetration>0.3</meleeArmorPenetration>
+				</li>
+			</verbs>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAddModExtension">
+		<xpath>*/ThingDef[defName="Elephant"]</xpath>
+		<value>
+			<li Class="CombatExtended.RacePropertiesExtensionCE">
+				<bodyType>Quadruped</bodyType>
+			</li>
+		</value>
+	</Operation>
+
+	<!-- ========== Megasloth ========== -->
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>*/ThingDef[defName="Megasloth"]/statBases</xpath>
+		<value>
+			<ArmorRating_Blunt>0.10</ArmorRating_Blunt>
+			<ArmorRating_Sharp>0.125</ArmorRating_Sharp>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>*/ThingDef[defName="Megasloth"]/verbs</xpath>
+		<value>
+			<verbs>
+				<li Class="CombatExtended.VerbPropertiesCE">
+				  <verbClass>CombatExtended.Verb_MeleeAttackCE</verbClass>
+				  <defaultCooldownTime>2.3</defaultCooldownTime>
+				  <meleeDamageBaseAmount>22</meleeDamageBaseAmount>
+				  <meleeDamageDef>Slash</meleeDamageDef>
+				  <linkedBodyPartsGroup>LeftHand</linkedBodyPartsGroup>
+				  <meleeArmorPenetration>0.25</meleeArmorPenetration>
+				</li>
+				<li Class="CombatExtended.VerbPropertiesCE">
+				  <verbClass>CombatExtended.Verb_MeleeAttackCE</verbClass>
+				  <defaultCooldownTime>2.3</defaultCooldownTime>
+				  <meleeDamageBaseAmount>22</meleeDamageBaseAmount>
+				  <meleeDamageDef>Slash</meleeDamageDef>
+				  <linkedBodyPartsGroup>RightHand</linkedBodyPartsGroup>
+				  <meleeArmorPenetration>0.25</meleeArmorPenetration>
+				</li>
+			</verbs>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAddModExtension">
+		<xpath>*/ThingDef[defName="Megasloth"]</xpath>
+		<value>
+			<li Class="CombatExtended.RacePropertiesExtensionCE">
+				<bodyType>Quadruped</bodyType>
+			</li>
+		</value>
+	</Operation>
+
+	<!-- ========== Thrumbo ========== -->
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>*/ThingDef[defName="Thrumbo"]/statBases</xpath>
+		<value>
+			<ArmorRating_Blunt>0.2</ArmorRating_Blunt>
+			<ArmorRating_Sharp>0.3</ArmorRating_Sharp>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>*/ThingDef[defName="Thrumbo"]/verbs</xpath>
+		<value>
+			<verbs>
+				<li Class="CombatExtended.VerbPropertiesCE">
+				  <verbClass>CombatExtended.Verb_MeleeAttackCE</verbClass>
+				  <defaultCooldownTime>1.85</defaultCooldownTime>
+				  <meleeDamageBaseAmount>40</meleeDamageBaseAmount>
+				  <meleeDamageDef>Cut</meleeDamageDef>
+				  <linkedBodyPartsGroup>HornAttackTool</linkedBodyPartsGroup>
+				  <meleeArmorPenetration>0.4</meleeArmorPenetration>
+				</li>
+			</verbs>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAddModExtension">
+		<xpath>*/ThingDef[defName="Thrumbo"]</xpath>
+		<value>
+			<li Class="CombatExtended.RacePropertiesExtensionCE">
+				<bodyType>Birdlike</bodyType>
+			</li>
+		</value>
+	</Operation>
+
+</Patch>
+

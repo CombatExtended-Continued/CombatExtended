@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+
+	<!-- ========== Cobra ========== -->
+
+	<Operation Class="PatchOperationAddModExtension">
+		<xpath>*/ThingDef[defName="Cobra"]</xpath>
+		<value>
+			<li Class="CombatExtended.RacePropertiesExtensionCE">
+				<bodyType>Serpentine</bodyType>
+			</li>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>*/ThingDef[defName="Cobra"]/statBases/MoveSpeed</xpath>
+		<value>
+			<MoveSpeed>3.84</MoveSpeed>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>*/ThingDef[defName="Cobra"]/verbs</xpath>
+		<value>
+			<verbs>
+				<li Class="CombatExtended.VerbPropertiesCE">
+				  <verbClass>CombatExtended.Verb_MeleeAttackCE</verbClass>
+				  <defaultCooldownTime>1.65</defaultCooldownTime>
+				  <meleeDamageBaseAmount>10</meleeDamageBaseAmount>
+				  <meleeDamageDef>ToxicBite</meleeDamageDef>
+				  <linkedBodyPartsGroup>Mouth</linkedBodyPartsGroup>
+				  <meleeArmorPenetration>0.12</meleeArmorPenetration>
+				  <surpriseAttack>
+				    <extraMeleeDamages>
+				      <li>
+				        <def>Stun</def>
+				        <amount>20</amount>
+				      </li>
+				    </extraMeleeDamages>
+				  </surpriseAttack>
+				</li>
+			</verbs>
+		</value>
+	</Operation>
+
+	<!-- ========== Monkey ========== -->
+
+	<Operation Class="PatchOperationAddModExtension">
+		<xpath>*/ThingDef[defName="Monkey"]</xpath>
+		<value>
+			<li Class="CombatExtended.RacePropertiesExtensionCE">
+				<bodyType>Monkeylike</bodyType>
+			</li>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>*/ThingDef[defName="Monkey"]/statBases/MoveSpeed</xpath>
+		<value>
+			<MoveSpeed>5</MoveSpeed>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>*/ThingDef[defName="Monkey"]/verbs</xpath>
+		<value>
+			<verbs>
+				<li Class="CombatExtended.VerbPropertiesCE">
+				  <verbClass>CombatExtended.Verb_MeleeAttackCE</verbClass>
+				  <defaultCooldownTime>1.3</defaultCooldownTime>
+				  <meleeDamageBaseAmount>4</meleeDamageBaseAmount>
+				  <meleeDamageDef>Blunt</meleeDamageDef>
+				  <linkedBodyPartsGroup>LeftHand</linkedBodyPartsGroup>
+				  <meleeArmorPenetration>0.02</meleeArmorPenetration>
+				</li>
+				<li Class="CombatExtended.VerbPropertiesCE">
+				  <verbClass>CombatExtended.Verb_MeleeAttackCE</verbClass>
+				  <defaultCooldownTime>1.3</defaultCooldownTime>
+				  <meleeDamageBaseAmount>4</meleeDamageBaseAmount>
+				  <meleeDamageDef>Blunt</meleeDamageDef>
+				  <linkedBodyPartsGroup>RightHand</linkedBodyPartsGroup>
+				  <meleeArmorPenetration>0.02</meleeArmorPenetration>
+				</li>
+			</verbs>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>*/ThingDef[defName="Monkey"]/race/baseHealthScale</xpath>
+		<value>
+			<baseHealthScale>0.35</baseHealthScale>
+		</value>
+	</Operation>
+
+	<!-- ========== Boomalope ========== -->
+
+	<Operation Class="PatchOperationAddModExtension">
+		<xpath>*/ThingDef[defName="Boomalope"]</xpath>
+		<value>
+			<li Class="CombatExtended.RacePropertiesExtensionCE">
+				<bodyType>Quadruped</bodyType>
+			</li>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>*/ThingDef[defName="Boomalope"]/verbs</xpath>
+		<value>
+			<verbs>
+				<li Class="CombatExtended.VerbPropertiesCE">
+				  <verbClass>CombatExtended.Verb_MeleeAttackCE</verbClass>
+				  <defaultCooldownTime>1.65</defaultCooldownTime>
+				  <meleeDamageBaseAmount>20</meleeDamageBaseAmount>
+				  <meleeDamageDef>Blunt</meleeDamageDef>
+				  <linkedBodyPartsGroup>HeadAttackTool</linkedBodyPartsGroup>
+				  <meleeArmorPenetration>0.13</meleeArmorPenetration>
+				</li>
+			</verbs>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationSequence">
+  	<success>Always</success>
+  	<operations>
+    	<li Class="PatchOperationTest">
+      	<xpath>*/ThingDef[defName="Boomalope"]/comps</xpath>
+      	<success>Invert</success>
+    	</li>
+    	<li Class="PatchOperationAdd">
+      	<xpath>*/ThingDef[defName="Boomalope"]</xpath>
+      	<value>
+        	<comps />
+      	</value>
+    	</li>
+  	</operations>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>*/ThingDef[defName="Boomalope"]/comps</xpath>
+		<value>
+			<li Class="CombatExtended.CompProperties_ShearableRenameable">
+			  <compClass>CombatExtended.CompShearableRenameable</compClass>
+			  <growthLabel>Chemical fullness</growthLabel>
+			  <shearIntervalDays>5</shearIntervalDays>
+			  <woolAmount>5</woolAmount>
+			  <woolDef>FSX</woolDef>
+			</li>
+		</value>
+	</Operation>
+
+</Patch>
+

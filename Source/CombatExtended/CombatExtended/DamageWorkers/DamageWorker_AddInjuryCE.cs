@@ -74,7 +74,7 @@ namespace CombatExtended
                 }
                 if (pawn.inventory != null)
                 {
-                    ThingContainer innerContainer = pawn.inventory.innerContainer;
+                    ThingOwner innerContainer = pawn.inventory.innerContainer;
                     for (int j = innerContainer.Count - 1; j >= 0; j--)
                     {
                         this.CheckApplySpreadDamage(dinfo, innerContainer[j]);
@@ -273,7 +273,7 @@ namespace CombatExtended
                                                      where x.parent == injury.Part && x.def.IsSolid(x, pawn.health.hediffSet.hediffs) && x.depth == BodyPartDepth.Inside
                                                      select x;
                 BodyPartRecord part;
-                if (source.TryRandomElementByWeight((BodyPartRecord x) => x.absoluteFleshCoverage, out part))
+                if (source.TryRandomElementByWeight((BodyPartRecord x) => x.coverageAbs, out part))
                 {
                     HediffDef hediffDefFromDamage = HealthUtility.GetHediffDefFromDamage(dinfo.Def, pawn, part);
                     Hediff_Injury hediff_Injury = (Hediff_Injury)HediffMaker.MakeHediff(hediffDefFromDamage, pawn, null);

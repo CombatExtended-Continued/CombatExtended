@@ -11,25 +11,25 @@ namespace CombatExtended
     public class Apparel_Shield : Apparel
     {
         public const string OneHandedTag = "CE_OneHandedWeapon";
-        private bool drawShield => wearer.Drafted || (wearer.CurJob?.def.alwaysShowWeapon ?? false) || (wearer.mindState.duty?.def.alwaysShowWeapon ?? false);  // Copied from PawnRenderer.CarryWeaponOpenly(), we show the shield whenever weapons are drawn
+        private bool drawShield => Wearer.Drafted || (Wearer.CurJob?.def.alwaysShowWeapon ?? false) || (Wearer.mindState.duty?.def.alwaysShowWeapon ?? false);  // Copied from PawnRenderer.CarryWeaponOpenly(), we show the shield whenever weapons are drawn
         private bool isTall => def.apparel.tags.Contains(ArmorUtilityCE.BallisticShieldTag);
 
-        public override bool AllowVerbCast(IntVec3 root, TargetInfo targ)
+        public override bool AllowVerbCast(IntVec3 root, Map map, LocalTargetInfo targ)
         {
-            ThingWithComps primary = wearer.equipment?.Primary;
+            ThingWithComps primary = Wearer.equipment?.Primary;
             return primary == null || (primary.def.weaponTags?.Contains(OneHandedTag) ?? false);
         }
 
         public override void DrawWornExtras()
         {
-            if (wearer == null || !wearer.Spawned) return;
+            if (Wearer == null || !Wearer.Spawned) return;
             if (!drawShield) return;
 
             float num = 0f;
-            Vector3 vector = this.wearer.Drawer.DrawPos;
+            Vector3 vector = this.Wearer.Drawer.DrawPos;
             vector.y = Altitudes.AltitudeFor(AltitudeLayer.Pawn);
             Vector3 s = new Vector3(1f, 1f, 1f);
-            if (this.wearer.Rotation == Rot4.North)
+            if (this.Wearer.Rotation == Rot4.North)
             {
                 //vector.y = Altitudes.AltitudeFor(AltitudeLayer.Pawn);
                 vector.x -= 0.1f;
@@ -37,7 +37,7 @@ namespace CombatExtended
             }
             else
             {
-                if (this.wearer.Rotation == Rot4.South)
+                if (this.Wearer.Rotation == Rot4.South)
                 {
                     //vector.y = Altitudes.AltitudeFor(AltitudeLayer.MoteOverhead);
                     vector.y += 0.0375f;
@@ -46,7 +46,7 @@ namespace CombatExtended
                 }
                 else
                 {
-                    if (this.wearer.Rotation == Rot4.East)
+                    if (this.Wearer.Rotation == Rot4.East)
                     {
                         //vector.y = Altitudes.AltitudeFor(AltitudeLayer.Pawn);
                         if (isTall) vector.x += 0.1f;
@@ -55,7 +55,7 @@ namespace CombatExtended
                     }
                     else
                     {
-                        if (this.wearer.Rotation == Rot4.West)
+                        if (this.Wearer.Rotation == Rot4.West)
                         {
                             //vector.y = Altitudes.AltitudeFor(AltitudeLayer.MoteOverhead);
                             vector.y += 0.0425f;

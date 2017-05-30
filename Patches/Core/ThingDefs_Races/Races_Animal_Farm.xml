@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+
+	<!-- ========== Chicken ========== -->
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>*/ThingDef[defName="Chicken"]/verbs</xpath>
+		<value>
+			<verbs>
+				<li Class="CombatExtended.VerbPropertiesCE">
+				  <verbClass>CombatExtended.Verb_MeleeAttackCE</verbClass>
+				  <defaultCooldownTime>1.65</defaultCooldownTime>
+				  <meleeDamageBaseAmount>3</meleeDamageBaseAmount>
+				  <meleeDamageDef>Bite</meleeDamageDef>
+				  <linkedBodyPartsGroup>Beak</linkedBodyPartsGroup>
+				  <meleeArmorPenetration>0.02</meleeArmorPenetration>
+				</li>
+			</verbs>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>*/ThingDef[defName="Chicken"]/race/baseBodySize</xpath>
+		<value>
+			<baseBodySize>0.25</baseBodySize>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>*/ThingDef[defName="Chicken"]/race/baseHealthScale</xpath>
+		<value>
+			<baseHealthScale>0.2</baseHealthScale>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAddModExtension">
+		<xpath>*/ThingDef[defName="Chicken"]</xpath>
+		<value>
+			<li Class="CombatExtended.RacePropertiesExtensionCE">
+				<bodyType>Birdlike</bodyType>
+			</li>
+		</value>
+	</Operation>
+
+	<!-- ========== Pig ========== -->
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>*/ThingDef[defName="Pig"]/statBases/MoveSpeed</xpath>
+		<value>
+			<MoveSpeed>2.6</MoveSpeed>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>*/ThingDef[defName="Pig"]/verbs</xpath>
+		<value>
+			<verbs>
+				<li Class="CombatExtended.VerbPropertiesCE">
+				  <verbClass>CombatExtended.Verb_MeleeAttackCE</verbClass>
+				  <defaultCooldownTime>1.65</defaultCooldownTime>
+				  <meleeDamageBaseAmount>7</meleeDamageBaseAmount>
+				  <meleeDamageDef>Bite</meleeDamageDef>
+				  <linkedBodyPartsGroup>Teeth</linkedBodyPartsGroup>
+				  <meleeArmorPenetration>0.1</meleeArmorPenetration>
+				</li>
+			</verbs>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>*/ThingDef[defName="Pig"]/race/baseHealthScale</xpath>
+		<value>
+			<baseHealthScale>0.85</baseHealthScale>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAddModExtension">
+		<xpath>*/ThingDef[defName="Pig"]</xpath>
+		<value>
+			<li Class="CombatExtended.RacePropertiesExtensionCE">
+				<bodyType>Quadruped</bodyType>
+			</li>
+		</value>
+	</Operation>
+
+	<!-- ========== Cow ========== -->
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>*/ThingDef[defName="Cow"]/verbs</xpath>
+		<value>
+			<verbs>
+				<li Class="CombatExtended.VerbPropertiesCE">
+				  <verbClass>CombatExtended.Verb_MeleeAttackCE</verbClass>
+				  <defaultCooldownTime>1.65</defaultCooldownTime>
+				  <meleeDamageBaseAmount>13</meleeDamageBaseAmount>
+				  <meleeDamageDef>Blunt</meleeDamageDef>
+				  <linkedBodyPartsGroup>HeadAttackTool</linkedBodyPartsGroup>
+				  <meleeArmorPenetration>0.1</meleeArmorPenetration>
+				</li>
+			</verbs>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>*/ThingDef[defName="Cow"]/race/baseBodySize</xpath>
+		<value>
+			<baseBodySize>1.8</baseBodySize>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAddModExtension">
+		<xpath>*/ThingDef[defName="Cow"]</xpath>
+		<value>
+			<li Class="CombatExtended.RacePropertiesExtensionCE">
+				<bodyType>Quadruped</bodyType>
+			</li>
+		</value>
+	</Operation>
+
+	<!-- ========== Alpaca ========== -->
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>*/ThingDef[defName="Alpaca"]/verbs</xpath>
+		<value>
+			<verbs>
+				<li Class="CombatExtended.VerbPropertiesCE">
+				  <verbClass>CombatExtended.Verb_MeleeAttackCE</verbClass>
+				  <defaultCooldownTime>1.65</defaultCooldownTime>
+				  <meleeDamageBaseAmount>7</meleeDamageBaseAmount>
+				  <meleeDamageDef>Blunt</meleeDamageDef>
+				  <linkedBodyPartsGroup>FrontLeftLeg</linkedBodyPartsGroup>
+				  <meleeArmorPenetration>0.06</meleeArmorPenetration>
+				</li>
+				<li Class="CombatExtended.VerbPropertiesCE">
+				  <verbClass>CombatExtended.Verb_MeleeAttackCE</verbClass>
+				  <defaultCooldownTime>1.65</defaultCooldownTime>
+				  <meleeDamageBaseAmount>7</meleeDamageBaseAmount>
+				  <meleeDamageDef>Blunt</meleeDamageDef>
+				  <linkedBodyPartsGroup>FrontRightLeg</linkedBodyPartsGroup>
+				  <meleeArmorPenetration>0.06</meleeArmorPenetration>
+				</li>
+			</verbs>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAddModExtension">
+		<xpath>*/ThingDef[defName="Alpaca"]</xpath>
+		<value>
+			<li Class="CombatExtended.RacePropertiesExtensionCE">
+				<bodyType>Quadruped</bodyType>
+			</li>
+		</value>
+	</Operation>
+
+</Patch>
+

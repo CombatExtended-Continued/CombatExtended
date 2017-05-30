@@ -54,10 +54,10 @@ namespace CombatExtended
 			yield return new Toil {
 				initAction = delegate
 				{
-					takePawn.inventory.GetInnerContainer().TransferToContainer(targetItem, this.pawn.inventory.GetInnerContainer(), base.CurJob.count);
+					takePawn.inventory.innerContainer.TryTransferToContainer(targetItem, pawn.inventory.innerContainer, CurJob.count);
 					if (doEquip)
 					{
-						CompInventory compInventory = this.pawn.TryGetComp<CompInventory>();
+						CompInventory compInventory = pawn.TryGetComp<CompInventory>();
 						if (compInventory != null)
 							compInventory.TrySwitchToWeapon((ThingWithComps)targetItem);
 					}

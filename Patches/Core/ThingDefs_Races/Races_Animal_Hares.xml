@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+
+	<!-- ========== Base Hare ========== -->
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>*/ThingDef[@Name="BaseHare"]/statBases/MoveSpeed</xpath>
+		<value>
+			<MoveSpeed>4.8</MoveSpeed>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>*/ThingDef[@Name="BaseHare"]/verbs</xpath>
+		<value>
+			<verbs>
+				<li Class="CombatExtended.VerbPropertiesCE">
+				  <verbClass>CombatExtended.Verb_MeleeAttackCE</verbClass>
+				  <defaultCooldownTime>1.65</defaultCooldownTime>
+				  <meleeDamageBaseAmount>3</meleeDamageBaseAmount>
+				  <meleeDamageDef>Bite</meleeDamageDef>
+				  <linkedBodyPartsGroup>Teeth</linkedBodyPartsGroup>
+				  <meleeArmorPenetration>0.02</meleeArmorPenetration>
+				</li>
+			</verbs>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>*/ThingDef[@Name="BaseHare"]/race/baseHealthScale</xpath>
+		<value>
+			<baseHealthScale>0.15</baseHealthScale>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAddModExtension">
+		<xpath>*/ThingDef[@Name="BaseHare"]</xpath>
+		<value>
+			<li Class="CombatExtended.RacePropertiesExtensionCE">
+				<bodyType>QuadrupedLow</bodyType>
+			</li>
+		</value>
+	</Operation>
+
+</Patch>
+

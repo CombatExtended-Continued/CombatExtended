@@ -99,21 +99,21 @@ namespace CombatExtended
         /// <remarks>passed by ref since during load the contents of the variable is restored from the save.</remarks>
         public void ExposeData()
         {
-            Scribe_Values.LookValue( ref _count, "count", _defaultCount );
-            Scribe_Values.LookValue(ref _type, "DefType");
+            Scribe_Values.Look( ref _count, "count", _defaultCount );
+            Scribe_Values.Look(ref _type, "DefType");
             ThingDef td = thingDef;
             LoadoutGenericDef gd = genericDef;
             if (_type == typeof(ThingDef))
-            	Scribe_Defs.LookDef(ref td, "def");
+            	Scribe_Defs.Look(ref td, "def");
             if (_type == typeof(LoadoutGenericDef))
-            	Scribe_Defs.LookDef(ref gd, "def");
+            	Scribe_Defs.Look(ref gd, "def");
             if (Scribe.mode == LoadSaveMode.LoadingVars)
             	_def = (_type == typeof(ThingDef) ? td as Def : gd as Def);
             //Scribe_Defs.LookDef( ref _def, "def" );
             
             // when saving _def is defined.  When loading _def should have gotten it's contents by now.
             if (genericDef != null)
-            	Scribe_Values.LookValue(ref _countType, "countType", LoadoutCountType.pickupDrop);
+            	Scribe_Values.Look(ref _countType, "countType", LoadoutCountType.pickupDrop);
         }
         
         /// <summary>

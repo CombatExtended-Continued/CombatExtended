@@ -28,8 +28,8 @@ namespace CombatExtended
 
         public void ExposeData()
         {
-            Scribe_References.LookReference( ref pawn, "pawn" );
-            Scribe_Collections.LookList( ref recs, "holdRecords" );
+            Scribe_References.Look( ref pawn, "pawn" );
+            Scribe_Collections.Look( ref recs, "holdRecords" );
 
 #if DEBUG
 Log.Message( Scribe.mode + ", pawn: " + ( pawn == null ? "NULL" : pawn.NameStringShort ) + ", holdRecords: " + ( recs == null ? "NULL" : string.Join(", ", recs.Select(hr => hr.thingDef.ToString()).ToArray()) ) );

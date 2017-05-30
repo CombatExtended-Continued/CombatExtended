@@ -20,7 +20,7 @@ namespace CombatExtended
                 Log.Error("Command_Reload without ammo comp");
                 return;
             }
-            if (((ev.button == 1 || !ModSettings.rightClickAmmoSelect) 
+            if (((ev.button == 1 || !Controller.settings.RightClickAmmoSelect) 
                 && compAmmo.useAmmo 
                 && (compAmmo.compInventory != null || compAmmo.turret != null))
                 || action == null)
@@ -69,7 +69,7 @@ namespace CombatExtended
                 {
                     AmmoDef ammoDef = (AmmoDef)curDef;
                     floatOptionList.Add(new FloatMenuOption(ammoDef.ammoClass.LabelCap, new Action(delegate {
-                        bool shouldReload = ModSettings.autoReloadOnChangeAmmo && (compAmmo.selectedAmmo != ammoDef || compAmmo.curMagCount < compAmmo.Props.magazineSize) && compAmmo.turret?.GetMannableComp() == null;
+                        bool shouldReload = Controller.settings.AutoReloadOnChangeAmmo && (compAmmo.selectedAmmo != ammoDef || compAmmo.curMagCount < compAmmo.Props.magazineSize) && compAmmo.turret?.MannableComp == null;
 		               	compAmmo.selectedAmmo = ammoDef;
 		               	if (shouldReload)
 		               	{
@@ -86,14 +86,14 @@ namespace CombatExtended
                 }
             }
             // Append unload command
-            if (compAmmo.turret?.GetMannableComp() != null)
+            if (compAmmo.turret?.MannableComp != null)
             {
                 if (compAmmo.useAmmo && compAmmo.wielder != null && compAmmo.hasMagazine && compAmmo.curMagCount > 0)
                 {
                     floatOptionList.Add(new FloatMenuOption("CE_UnloadLabel".Translate(), new Action(delegate { compAmmo.TryUnload(); })));
                 }
                 // Append reload command
-                if (compAmmo.hasMagazine && !ModSettings.rightClickAmmoSelect)
+                if (compAmmo.hasMagazine && !Controller.settings.RightClickAmmoSelect)
                 {
                     floatOptionList.Add(new FloatMenuOption("CE_ReloadLabel".Translate(), new Action(action)));
                 }

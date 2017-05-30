@@ -12,9 +12,9 @@ namespace CombatExtended
     {
         private const int ignitionTemp = 28;                    // Temperature (in Celsius) above which the plant will start catching fire
 
-        public override void SpawnSetup(Map map)
+        public override void SpawnSetup(Map map, bool respawningAfterLoad)
         {
-            base.SpawnSetup(map);
+            base.SpawnSetup(map, respawningAfterLoad);
             PlayerKnowledgeDatabase.KnowledgeDemonstrated(CE_ConceptDefOf.CE_ObtainingPrometheum, KnowledgeAmount.Total);
         }
 

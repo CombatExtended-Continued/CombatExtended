@@ -110,7 +110,7 @@ namespace CombatExtended
 		public override void ExposeData()
 		{
 			base.ExposeData();
-			Scribe_Values.LookValue<int>(ref jobStartTick, "jobStartTick", 0);
+			Scribe_Values.Look(ref jobStartTick, "jobStartTick", 0);
 		}
 
 		public override string GetReport()

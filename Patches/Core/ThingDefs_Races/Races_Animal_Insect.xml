@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+
+	<!-- ========== Base Insect ========== -->
+
+	<Operation Class="PatchOperationAddModExtension">
+		<xpath>*/ThingDef[@Name="BaseInsect"]</xpath>
+		<value>
+			<li Class="CombatExtended.RacePropertiesExtensionCE">
+				<bodyType>QuadrupedLow</bodyType>
+			</li>
+		</value>
+	</Operation>
+
+	<!-- ========== Megascarab ========== -->
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>*/ThingDef[defName="Megascarab"]/statBases/MoveSpeed</xpath>
+		<value>
+			<MoveSpeed>3.7</MoveSpeed>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>*/ThingDef[defName="Megascarab"]/verbs</xpath>
+		<value>
+			<verbs>
+				<li Class="CombatExtended.VerbPropertiesCE">
+				  <verbClass>CombatExtended.Verb_MeleeAttackCE</verbClass>
+				  <defaultCooldownTime>1.85</defaultCooldownTime>
+				  <meleeDamageBaseAmount>7</meleeDamageBaseAmount>
+				  <meleeDamageDef>Bite</meleeDamageDef>
+				  <linkedBodyPartsGroup>Mouth</linkedBodyPartsGroup>
+				  <meleeArmorPenetration>0.12</meleeArmorPenetration>
+				</li>
+			</verbs>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>*/ThingDef[defName="Megascarab"]/statBases/ArmorRating_Blunt</xpath>
+		<value>
+			<ArmorRating_Blunt>0.05</ArmorRating_Blunt>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>*/ThingDef[defName="Megascarab"]/statBases/ArmorRating_Sharp</xpath>
+		<value>
+			<ArmorRating_Sharp>0.05</ArmorRating_Sharp>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>*/ThingDef[defName="Megascarab"]/race/baseHealthScale</xpath>
+		<value>
+			<baseHealthScale>0.3</baseHealthScale>
+		</value>
+	</Operation>
+
+	<!-- ========== Spelopede ========== -->
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>*/ThingDef[defName="Spelopede"]/statBases/MoveSpeed</xpath>
+		<value>
+			<MoveSpeed>3.7</MoveSpeed>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>*/ThingDef[defName="Spelopede"]/verbs</xpath>
+		<value>
+			<verbs>
+				<li Class="CombatExtended.VerbPropertiesCE">
+				  <verbClass>CombatExtended.Verb_MeleeAttackCE</verbClass>
+				  <defaultCooldownTime>1.9</defaultCooldownTime>
+				  <meleeDamageBaseAmount>18</meleeDamageBaseAmount>
+				  <meleeDamageDef>Cut</meleeDamageDef>
+				  <linkedBodyPartsGroup>HeadClaw</linkedBodyPartsGroup>
+				  <meleeArmorPenetration>0.25</meleeArmorPenetration>
+				</li>
+			</verbs>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>*/ThingDef[defName="Spelopede"]/statBases/ArmorRating_Blunt</xpath>
+		<value>
+			<ArmorRating_Blunt>0.2</ArmorRating_Blunt>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>*/ThingDef[defName="Spelopede"]/statBases/ArmorRating_Sharp</xpath>
+		<value>
+			<ArmorRating_Sharp>0.2</ArmorRating_Sharp>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>*/ThingDef[defName="Spelopede"]/race/baseHealthScale</xpath>
+		<value>
+			<baseHealthScale>1.2</baseHealthScale>
+		</value>
+	</Operation>
+
+	<!-- ========== Megaspider ========== -->
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>*/ThingDef[defName="Megaspider"]/statBases/MoveSpeed</xpath>
+		<value>
+			<MoveSpeed>4</MoveSpeed>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>*/ThingDef[defName="Megaspider"]/verbs</xpath>
+		<value>
+			<verbs>
+				<li Class="CombatExtended.VerbPropertiesCE">
+				  <verbClass>CombatExtended.Verb_MeleeAttackCE</verbClass>
+				  <defaultCooldownTime>1.9</defaultCooldownTime>
+				  <meleeDamageBaseAmount>30</meleeDamageBaseAmount>
+				  <meleeDamageDef>Cut</meleeDamageDef>
+				  <linkedBodyPartsGroup>HeadClaw</linkedBodyPartsGroup>
+				  <meleeArmorPenetration>0.35</meleeArmorPenetration>
+				</li>
+			</verbs>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>*/ThingDef[defName="Megaspider"]/statBases/ArmorRating_Blunt</xpath>
+		<value>
+			<ArmorRating_Blunt>0.3</ArmorRating_Blunt>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>*/ThingDef[defName="Megaspider"]/statBases/ArmorRating_Sharp</xpath>
+		<value>
+			<ArmorRating_Sharp>0.3</ArmorRating_Sharp>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>*/ThingDef[defName="Megaspider"]/race/baseHealthScale</xpath>
+		<value>
+			<baseHealthScale>1.8</baseHealthScale>
+		</value>
+	</Operation>
+
+</Patch>
+

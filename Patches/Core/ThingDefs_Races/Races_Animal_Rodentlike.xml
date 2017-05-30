@@ -1,0 +1,408 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+
+	<!-- ========== Squirrel ========== -->
+
+	<Operation Class="PatchOperationAddModExtension">
+		<xpath>*/ThingDef[defName="Squirrel"]</xpath>
+		<value>
+			<li Class="CombatExtended.RacePropertiesExtensionCE">
+				<bodyType>QuadrupedLow</bodyType>
+			</li>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>*/ThingDef[defName="Squirrel"]/statBases/MoveSpeed</xpath>
+		<value>
+			<MoveSpeed>2.4</MoveSpeed>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>*/ThingDef[defName="Squirrel"]/verbs</xpath>
+		<value>
+			<verbs>
+				<li Class="CombatExtended.VerbPropertiesCE">
+				  <verbClass>CombatExtended.Verb_MeleeAttackCE</verbClass>
+				  <defaultCooldownTime>1.85</defaultCooldownTime>
+				  <meleeDamageBaseAmount>3</meleeDamageBaseAmount>
+				  <meleeDamageDef>Scratch</meleeDamageDef>
+				  <linkedBodyPartsGroup>FrontLeftPaw</linkedBodyPartsGroup>
+				  <meleeArmorPenetration>0.05</meleeArmorPenetration>
+				</li>
+				<li Class="CombatExtended.VerbPropertiesCE">
+				  <verbClass>CombatExtended.Verb_MeleeAttackCE</verbClass>
+				  <defaultCooldownTime>1.85</defaultCooldownTime>
+				  <meleeDamageBaseAmount>3</meleeDamageBaseAmount>
+				  <meleeDamageDef>Scratch</meleeDamageDef>
+				  <linkedBodyPartsGroup>FrontRightPaw</linkedBodyPartsGroup>
+				  <meleeArmorPenetration>0.05</meleeArmorPenetration>
+				</li>
+				<li Class="CombatExtended.VerbPropertiesCE">
+				  <verbClass>CombatExtended.Verb_MeleeAttackCE</verbClass>
+				  <defaultCooldownTime>2.0</defaultCooldownTime>
+				  <meleeDamageBaseAmount>4</meleeDamageBaseAmount>
+				  <meleeDamageDef>Bite</meleeDamageDef>
+				  <linkedBodyPartsGroup>Teeth</linkedBodyPartsGroup>
+				  <meleeArmorPenetration>0.06</meleeArmorPenetration>
+				</li>
+			</verbs>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>*/ThingDef[defName="Squirrel"]/race/baseHealthScale</xpath>
+		<value>
+			<baseHealthScale>0.12</baseHealthScale>
+		</value>
+	</Operation>
+
+	<!-- ========== Alphabeaver ========== -->
+
+	<Operation Class="PatchOperationAddModExtension">
+		<xpath>*/ThingDef[defName="Alphabeaver"]</xpath>
+		<value>
+			<li Class="CombatExtended.RacePropertiesExtensionCE">
+				<bodyType>QuadrupedLow</bodyType>
+			</li>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>*/ThingDef[defName="Alphabeaver"]/statBases/MoveSpeed</xpath>
+		<value>
+			<MoveSpeed>5</MoveSpeed>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>*/ThingDef[defName="Alphabeaver"]/verbs</xpath>
+		<value>
+			<verbs>
+				<li Class="CombatExtended.VerbPropertiesCE">
+				  <verbClass>CombatExtended.Verb_MeleeAttackCE</verbClass>
+				  <defaultCooldownTime>1.65</defaultCooldownTime>
+				  <meleeDamageBaseAmount>6</meleeDamageBaseAmount>
+				  <meleeDamageDef>Scratch</meleeDamageDef>
+				  <linkedBodyPartsGroup>FrontLeftPaw</linkedBodyPartsGroup>
+				  <meleeArmorPenetration>0.08</meleeArmorPenetration>
+				</li>
+				<li Class="CombatExtended.VerbPropertiesCE">
+				  <verbClass>CombatExtended.Verb_MeleeAttackCE</verbClass>
+				  <defaultCooldownTime>1.65</defaultCooldownTime>
+				  <meleeDamageBaseAmount>6</meleeDamageBaseAmount>
+				  <meleeDamageDef>Scratch</meleeDamageDef>
+				  <linkedBodyPartsGroup>FrontRightPaw</linkedBodyPartsGroup>
+				  <meleeArmorPenetration>0.08</meleeArmorPenetration>
+				</li>
+				<li Class="CombatExtended.VerbPropertiesCE">
+				  <verbClass>CombatExtended.Verb_MeleeAttackCE</verbClass>
+				  <defaultCooldownTime>1.65</defaultCooldownTime>
+				  <meleeDamageBaseAmount>10</meleeDamageBaseAmount>
+				  <meleeDamageDef>Bite</meleeDamageDef>
+				  <linkedBodyPartsGroup>Teeth</linkedBodyPartsGroup>
+				  <meleeArmorPenetration>0.15</meleeArmorPenetration>
+				</li>
+			</verbs>
+		</value>
+	</Operation>
+
+	<!-- ========== Capybara ========== -->
+
+	<Operation Class="PatchOperationAddModExtension">
+		<xpath>*/ThingDef[defName="Capybara"]</xpath>
+		<value>
+			<li Class="CombatExtended.RacePropertiesExtensionCE">
+				<bodyType>Quadruped</bodyType>
+			</li>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>*/ThingDef[defName="Capybara"]/verbs</xpath>
+		<value>
+			<verbs>
+				<li Class="CombatExtended.VerbPropertiesCE">
+				  <verbClass>CombatExtended.Verb_MeleeAttackCE</verbClass>
+				  <defaultCooldownTime>1.65</defaultCooldownTime>
+				  <meleeDamageBaseAmount>7</meleeDamageBaseAmount>
+				  <meleeDamageDef>Scratch</meleeDamageDef>
+				  <linkedBodyPartsGroup>FrontLeftPaw</linkedBodyPartsGroup>
+				  <meleeArmorPenetration>0.1</meleeArmorPenetration>
+				</li>
+				<li Class="CombatExtended.VerbPropertiesCE">
+				  <verbClass>CombatExtended.Verb_MeleeAttackCE</verbClass>
+				  <defaultCooldownTime>1.65</defaultCooldownTime>
+				  <meleeDamageBaseAmount>7</meleeDamageBaseAmount>
+				  <meleeDamageDef>Scratch</meleeDamageDef>
+				  <linkedBodyPartsGroup>FrontRightPaw</linkedBodyPartsGroup>
+				  <meleeArmorPenetration>0.1</meleeArmorPenetration>
+				</li>
+				<li Class="CombatExtended.VerbPropertiesCE">
+				  <verbClass>CombatExtended.Verb_MeleeAttackCE</verbClass>
+				  <defaultCooldownTime>1.65</defaultCooldownTime>
+				  <meleeDamageBaseAmount>8</meleeDamageBaseAmount>
+				  <meleeDamageDef>Bite</meleeDamageDef>
+				  <linkedBodyPartsGroup>Teeth</linkedBodyPartsGroup>
+				  <meleeArmorPenetration>0.13</meleeArmorPenetration>
+				</li>
+			</verbs>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>*/ThingDef[defName="Capybara"]/race/baseBodySize</xpath>
+		<value>
+			<baseBodySize>0.7</baseBodySize>
+		</value>
+	</Operation>
+
+	<!-- ========== Chinchilla ========== -->
+
+	<Operation Class="PatchOperationAddModExtension">
+		<xpath>*/ThingDef[defName="Chinchilla"]</xpath>
+		<value>
+			<li Class="CombatExtended.RacePropertiesExtensionCE">
+				<bodyType>QuadrupedLow</bodyType>
+			</li>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>*/ThingDef[defName="Chinchilla"]/statBases/MoveSpeed</xpath>
+		<value>
+			<MoveSpeed>2.84</MoveSpeed>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>*/ThingDef[defName="Chinchilla"]/verbs</xpath>
+		<value>
+			<verbs>
+				<li>
+				  <verbClass>CombatExtended.Verb_MeleeAttackCE</verbClass>
+				  <defaultCooldownTime>1.65</defaultCooldownTime>
+				  <meleeDamageBaseAmount>2</meleeDamageBaseAmount>
+				  <meleeDamageDef>Scratch</meleeDamageDef>
+				  <linkedBodyPartsGroup>FrontLeftPaw</linkedBodyPartsGroup>
+				</li>
+				<li>
+				  <verbClass>CombatExtended.Verb_MeleeAttackCE</verbClass>
+				  <defaultCooldownTime>1.65</defaultCooldownTime>
+				  <meleeDamageBaseAmount>2</meleeDamageBaseAmount>
+				  <meleeDamageDef>Scratch</meleeDamageDef>
+				  <linkedBodyPartsGroup>FrontRightPaw</linkedBodyPartsGroup>
+				</li>
+				<li>
+				  <verbClass>CombatExtended.Verb_MeleeAttackCE</verbClass>
+				  <defaultCooldownTime>1.65</defaultCooldownTime>
+				  <meleeDamageBaseAmount>3</meleeDamageBaseAmount>
+				  <meleeDamageDef>Bite</meleeDamageDef>
+				  <linkedBodyPartsGroup>Teeth</linkedBodyPartsGroup>
+				</li>
+			</verbs>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>*/ThingDef[defName="Chinchilla"]/race/baseBodySize</xpath>
+		<value>
+			<baseBodySize>0.17</baseBodySize>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>*/ThingDef[defName="Chinchilla"]/race/baseHealthScale</xpath>
+		<value>
+			<baseHealthScale>0.12</baseHealthScale>
+		</value>
+	</Operation>
+
+	<!-- ========== Boomrat ========== -->
+
+	<Operation Class="PatchOperationAddModExtension">
+		<xpath>*/ThingDef[defName="Boomrat"]</xpath>
+		<value>
+			<li Class="CombatExtended.RacePropertiesExtensionCE">
+				<bodyType>QuadrupedLow</bodyType>
+			</li>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>*/ThingDef[defName="Boomrat"]/statBases/MoveSpeed</xpath>
+		<value>
+			<MoveSpeed>3.0</MoveSpeed>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>*/ThingDef[defName="Boomrat"]/verbs</xpath>
+		<value>
+			<verbs>
+				<li Class="CombatExtended.VerbPropertiesCE">
+				  <verbClass>CombatExtended.Verb_MeleeAttackCE</verbClass>
+				  <defaultCooldownTime>1.65</defaultCooldownTime>
+				  <meleeDamageBaseAmount>3</meleeDamageBaseAmount>
+				  <meleeDamageDef>Scratch</meleeDamageDef>
+				  <linkedBodyPartsGroup>FrontLeftPaw</linkedBodyPartsGroup>
+				  <meleeArmorPenetration>0.03</meleeArmorPenetration>
+				</li>
+				<li Class="CombatExtended.VerbPropertiesCE">
+				  <verbClass>CombatExtended.Verb_MeleeAttackCE</verbClass>
+				  <defaultCooldownTime>1.65</defaultCooldownTime>
+				  <meleeDamageBaseAmount>3</meleeDamageBaseAmount>
+				  <meleeDamageDef>Scratch</meleeDamageDef>
+				  <linkedBodyPartsGroup>FrontRightPaw</linkedBodyPartsGroup>
+				  <meleeArmorPenetration>0.03</meleeArmorPenetration>
+				</li>
+				<li Class="CombatExtended.VerbPropertiesCE">
+				  <verbClass>CombatExtended.Verb_MeleeAttackCE</verbClass>
+				  <defaultCooldownTime>1.65</defaultCooldownTime>
+				  <meleeDamageBaseAmount>4</meleeDamageBaseAmount>
+				  <meleeDamageDef>Bite</meleeDamageDef>
+				  <linkedBodyPartsGroup>Teeth</linkedBodyPartsGroup>
+				  <meleeArmorPenetration>0.05</meleeArmorPenetration>
+				</li>
+			</verbs>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>*/ThingDef[defName="Boomrat"]/race/baseHealthScale</xpath>
+		<value>
+			<baseHealthScale>0.2</baseHealthScale>
+		</value>
+	</Operation>
+
+	<!-- ========== Raccoon ========== -->
+
+	<Operation Class="PatchOperationAddModExtension">
+		<xpath>*/ThingDef[defName="Raccoon"]</xpath>
+		<value>
+			<li Class="CombatExtended.RacePropertiesExtensionCE">
+				<bodyType>QuadrupedLow</bodyType>
+			</li>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>*/ThingDef[defName="Raccoon"]/statBases/MoveSpeed</xpath>
+		<value>
+			<MoveSpeed>3</MoveSpeed>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>*/ThingDef[defName="Raccoon"]/verbs</xpath>
+		<value>
+			<verbs>
+				<li Class="CombatExtended.VerbPropertiesCE">
+				  <verbClass>CombatExtended.Verb_MeleeAttackCE</verbClass>
+				  <defaultCooldownTime>1.65</defaultCooldownTime>
+				  <meleeDamageBaseAmount>5</meleeDamageBaseAmount>
+				  <meleeDamageDef>Scratch</meleeDamageDef>
+				  <linkedBodyPartsGroup>FrontLeftPaw</linkedBodyPartsGroup>
+				  <meleeArmorPenetration>0.05</meleeArmorPenetration>
+				</li>
+				<li Class="CombatExtended.VerbPropertiesCE">
+				  <verbClass>CombatExtended.Verb_MeleeAttackCE</verbClass>
+				  <defaultCooldownTime>1.65</defaultCooldownTime>
+				  <meleeDamageBaseAmount>5</meleeDamageBaseAmount>
+				  <meleeDamageDef>Scratch</meleeDamageDef>
+				  <linkedBodyPartsGroup>FrontRightPaw</linkedBodyPartsGroup>
+				  <meleeArmorPenetration>0.05</meleeArmorPenetration>
+				</li>
+				<li Class="CombatExtended.VerbPropertiesCE">
+				  <verbClass>CombatExtended.Verb_MeleeAttackCE</verbClass>
+				  <defaultCooldownTime>1.65</defaultCooldownTime>
+				  <meleeDamageBaseAmount>10</meleeDamageBaseAmount>
+				  <meleeDamageDef>Bite</meleeDamageDef>
+				  <linkedBodyPartsGroup>Teeth</linkedBodyPartsGroup>
+				  <meleeArmorPenetration>0.07</meleeArmorPenetration>
+				</li>
+			</verbs>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>*/ThingDef[defName="Raccoon"]/race/baseBodySize</xpath>
+		<value>
+			<baseBodySize>0.35</baseBodySize>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>*/ThingDef[defName="Raccoon"]/race/baseHealthScale</xpath>
+		<value>
+			<baseHealthScale>0.35</baseHealthScale>
+		</value>
+	</Operation>
+
+	<!-- ========== Rat ========== -->
+
+	<Operation Class="PatchOperationAddModExtension">
+		<xpath>*/ThingDef[defName="Rat"]</xpath>
+		<value>
+			<li Class="CombatExtended.RacePropertiesExtensionCE">
+				<bodyType>QuadrupedLow</bodyType>
+			</li>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>*/ThingDef[defName="Rat"]/statBases/MoveSpeed</xpath>
+		<value>
+			<MoveSpeed>2.3</MoveSpeed>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>*/ThingDef[defName="Rat"]/verbs</xpath>
+		<value>
+			<verbs>
+				<li Class="CombatExtended.VerbPropertiesCE">
+				  <verbClass>CombatExtended.Verb_MeleeAttackCE</verbClass>
+				  <defaultCooldownTime>1.65</defaultCooldownTime>
+				  <meleeDamageBaseAmount>4</meleeDamageBaseAmount>
+				  <meleeDamageDef>Scratch</meleeDamageDef>
+				  <linkedBodyPartsGroup>FrontLeftPaw</linkedBodyPartsGroup>
+				  <meleeArmorPenetration>0.05</meleeArmorPenetration>
+				</li>
+				<li Class="CombatExtended.VerbPropertiesCE">
+				  <verbClass>CombatExtended.Verb_MeleeAttackCE</verbClass>
+				  <defaultCooldownTime>1.65</defaultCooldownTime>
+				  <meleeDamageBaseAmount>4</meleeDamageBaseAmount>
+				  <meleeDamageDef>Scratch</meleeDamageDef>
+				  <linkedBodyPartsGroup>FrontRightPaw</linkedBodyPartsGroup>
+				  <meleeArmorPenetration>0.05</meleeArmorPenetration>
+				</li>
+				<li Class="CombatExtended.VerbPropertiesCE">
+				  <verbClass>CombatExtended.Verb_MeleeAttackCE</verbClass>
+				  <defaultCooldownTime>1.65</defaultCooldownTime>
+				  <meleeDamageBaseAmount>5</meleeDamageBaseAmount>
+				  <meleeDamageDef>Bite</meleeDamageDef>
+				  <linkedBodyPartsGroup>Teeth</linkedBodyPartsGroup>
+				  <meleeArmorPenetration>0.06</meleeArmorPenetration>
+				</li>
+			</verbs>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>*/ThingDef[defName="Rat"]/race/baseBodySize</xpath>
+		<value>
+			<baseBodySize>0.2</baseBodySize>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>*/ThingDef[defName="Rat"]/race/baseHealthScale</xpath>
+		<value>
+			<baseHealthScale>0.2</baseHealthScale>
+		</value>
+	</Operation>
+
+</Patch>
+

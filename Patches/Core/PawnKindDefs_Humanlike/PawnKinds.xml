@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+
+	<!-- ========== Mechanoid ========== -->
+
+  <Operation Class="PatchOperationRemove">
+  	<xpath>/PawnKindDefs/PawnKindDef[defName="Scyther"]/aiAvoidCover</xpath>
+  </Operation>
+
+  <Operation Class="PatchOperationReplace">
+  	<xpath>/PawnKindDefs/PawnKindDef[defName="Centipede"]/combatPower</xpath>
+  	<value>
+  		<combatPower>580</combatPower>
+  	</value>
+  </Operation>
+
+  <Operation Class="PatchOperationAdd">
+  	<xpath>/PawnKindDefs/PawnKindDef[defName="Scyther" or defName="Centipede"]</xpath>
+  	<value>
+    	<fixedInventory>
+      	<LoadoutGen_MechanoidAmmo>1</LoadoutGen_MechanoidAmmo>
+    	</fixedInventory>
+  	</value>
+  </Operation>
+
+  <!-- ========== Mercenary ========== -->
+
+  <Operation Class="PatchOperationAdd">
+  	<xpath>/PawnKindDefs/PawnKindDef[defName="MercenaryGunner"]</xpath>
+  	<value>
+    	<fixedInventory>
+      	<LoadoutGen_MercAmmoPrimary>1</LoadoutGen_MercAmmoPrimary>
+      	<LoadoutGen_MercSidearmMelee>1</LoadoutGen_MercSidearmMelee>
+    	</fixedInventory>
+  	</value>
+  </Operation>
+
+  <Operation Class="PatchOperationAdd">
+  	<xpath>/PawnKindDefs/PawnKindDef[defName="MercenarySniper"]</xpath>
+  	<value>
+  		<fixedInventory>
+  		  <LoadoutGen_MercAmmoPrimary>1</LoadoutGen_MercAmmoPrimary>
+  		  <LoadoutGen_MercSidearmMelee>1</LoadoutGen_MercSidearmMelee>
+  		  <LoadoutGen_MercSidearm>1</LoadoutGen_MercSidearm>
+  		  <LoadoutGen_MercSidearmAmmo>1</LoadoutGen_MercSidearmAmmo>
+  		</fixedInventory>
+  	</value>
+  </Operation>
+
+  <Operation Class="PatchOperationAdd">
+  	<xpath>/PawnKindDefs/PawnKindDef[defName="MercenaryHeavy"]</xpath>
+  	<value>
+  		<fixedInventory>
+  		  <LoadoutGen_MercSidearmSMG>1</LoadoutGen_MercSidearmSMG>
+  		  <LoadoutGen_MercSidearmSMGAmmo>1</LoadoutGen_MercSidearmSMGAmmo>
+  		  <LoadoutGen_MercHeavyAmmoPrimary>1</LoadoutGen_MercHeavyAmmoPrimary>
+  		</fixedInventory>
+  	</value>
+  </Operation>
+
+  <Operation Class="PatchOperationAdd">
+  	<xpath>/PawnKindDefs/PawnKindDef[@Name = "EliteBase"]</xpath>
+  	<value>
+  		<fixedInventory>
+  		  <LoadoutGen_MercAmmoPrimary>1</LoadoutGen_MercAmmoPrimary>
+  		  <LoadoutGen_MercSidearmMelee>1</LoadoutGen_MercSidearmMelee>
+  		  <LoadoutGen_MercSidearm>1</LoadoutGen_MercSidearm>
+  		  <LoadoutGen_MercSidearmAmmo>1</LoadoutGen_MercSidearmAmmo>
+  		</fixedInventory>
+  	</value>
+  </Operation>
+
+  <!-- ========== Outlander ========== -->
+
+  <Operation Class="PatchOperationAdd">
+  	<xpath>/PawnKindDefs/PawnKindDef[defName="Villager"]</xpath>
+  	<value>
+  		<fixedInventory>
+  		  <LoadoutGen_OutlanderAmmoPrimary>1</LoadoutGen_OutlanderAmmoPrimary>
+  		  <LoadoutGen_OutlanderSidearmMelee>1</LoadoutGen_OutlanderSidearmMelee>
+  		</fixedInventory>
+  	</value>
+  </Operation>
+
+  <Operation Class="PatchOperationAdd">
+  	<xpath>/PawnKindDefs/PawnKindDef[defName="TownGuard"]</xpath>
+  	<value>
+    	<fixedInventory>
+      	<LoadoutGen_MercAmmoPrimary>1</LoadoutGen_MercAmmoPrimary>
+      	<LoadoutGen_MercSidearmMelee>1</LoadoutGen_MercSidearmMelee>
+      	<LoadoutGen_OutlanderSilver>1</LoadoutGen_OutlanderSilver>
+    	</fixedInventory>
+  	</value>
+  </Operation>
+
+  <!-- ========== Pirate ========== -->
+
+  <Operation Class="PatchOperationAdd">
+  	<xpath>/PawnKindDefs/PawnKindDef[defName="Drifter" or defName="Scavenger"]</xpath>
+  	<value>
+  		<fixedInventory>
+  		  <LoadoutGen_PirateAmmoPrimary>1</LoadoutGen_PirateAmmoPrimary>
+  		</fixedInventory>
+  	</value>
+  </Operation>
+
+  <Operation Class="PatchOperationAdd">
+  	<xpath>/PawnKindDefs/PawnKindDef[defName="Pirate"]</xpath>
+  	<value>
+  		<fixedInventory>
+  		  <LoadoutGen_MercAmmoPrimary>1</LoadoutGen_MercAmmoPrimary>
+  		  <LoadoutGen_MercSidearmMelee>1</LoadoutGen_MercSidearmMelee>
+  		</fixedInventory>
+  	</value>
+  </Operation>
+
+  <!-- ========== Spacer ========== -->
+
+  <Operation Class="PatchOperationAdd">
+    <xpath>/PawnKindDefs/PawnKindDef[defName="SpaceSoldier"]</xpath>
+    <value>
+      <fixedInventory>
+        <LoadoutGen_MercAmmoPrimary>1</LoadoutGen_MercAmmoPrimary>
+        <LoadoutGen_MercSidearmMelee>1</LoadoutGen_MercSidearmMelee>
+        <LoadoutGen_MercSidearm>1</LoadoutGen_MercSidearm>
+        <LoadoutGen_MercSidearmAmmo>1</LoadoutGen_MercSidearmAmmo>
+      </fixedInventory>
+    </value>
+  </Operation>
+
+  <!-- ========== Tribal ========== -->
+
+  <Operation Class="PatchOperationAdd">
+    <xpath>/PawnKindDefs/PawnKindDef[defName="TribalArcher"]</xpath>
+    <value>
+      <fixedInventory>
+        <LoadoutGen_TribalSidearm>1</LoadoutGen_TribalSidearm>
+        <LoadoutGen_TribalAmmo>1</LoadoutGen_TribalAmmo>
+      </fixedInventory>
+    </value>
+  </Operation>
+
+  <Operation Class="PatchOperationAdd">
+    <xpath>/PawnKindDefs/PawnKindDef[defName="TribalChief"]</xpath>
+    <value>
+      <fixedInventory>
+        <LoadoutGen_TribalAmmo>1</LoadoutGen_TribalAmmo>
+        <LoadoutGen_TribalSidearm>1</LoadoutGen_TribalSidearm>
+        <LoadoutGen_TribalPila>1</LoadoutGen_TribalPila>
+      </fixedInventory>
+    </value>
+  </Operation>
+
+</Patch>
+

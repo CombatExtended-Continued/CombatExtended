@@ -44,7 +44,7 @@ namespace CombatExtended
             if (!Props.fragments.NullOrEmpty() && GenGrid.InBounds(pos, map))
             {
                 Vector2 exactOrigin = new Vector2(parent.DrawPos.x, parent.DrawPos.z);
-                float height = CE_Utility.GetCollisionVertical(pos.GetEdifice(map)).max;
+                float height = (new CollisionVertical(pos.GetEdifice(map))).Max;
                 
                 foreach (ThingCountClass fragment in Props.fragments)
                 {
@@ -69,24 +69,7 @@ namespace CombatExtended
             if (Props.explosionRadius > 0 && Props.explosionDamage > 0 && parent.def != null && GenGrid.InBounds(pos, map))
             {
                 // Can't use GenExplosion because it no longer allows setting damage amount
-                /*
-				GenExplosion.DoExplosion
-                    (pos,
-					map,
-					Props.explosionRadius * scaleFactor,
-					Props.explosionDamageDef,
-					instigator,
-					Props.soundExplode ?? Props.explosionDamageDef.soundExplosion,
-					parent.def, 
-					null,
-					Props.postExplosionSpawnThingDef,
-					Props.postExplosionSpawnChance,
-					Props.postExplosionSpawnThingCount, 
-					Props.applyDamageToExplosionCellsNeighbors, 
-					Props.preExplosionSpawnThingDef, 
-					Props.explosionSpawnChance,
-					Props.preExplosionSpawnThingCount);
-                */
+
                 // Copy-paste from GenExplosion
                 Explosion explosion = new Explosion();
                 explosion.position = pos;

@@ -27,11 +27,11 @@ namespace CombatExtended
         public override void ExposeData()
         {
             base.ExposeData();
-            Scribe_Values.LookValue<float>(ref this.aimingAccuracy, "aimingAccuracy");
-            Scribe_Values.LookValue<float>(ref this.sightsEfficiency, "sightsEfficiency");
-            Scribe_Values.LookValue<float>(ref this.lightingShift, "lightingShift");
-            Scribe_Values.LookValue<float>(ref this.weatherShift, "weatherShift");
-            Scribe_Values.LookValue<int>(ref this.lifetimeTicks, "lifetimeTicks");
+            Scribe_Values.Look(ref this.aimingAccuracy, "aimingAccuracy");
+            Scribe_Values.Look(ref this.sightsEfficiency, "sightsEfficiency");
+            Scribe_Values.Look(ref this.lightingShift, "lightingShift");
+            Scribe_Values.Look(ref this.weatherShift, "weatherShift");
+            Scribe_Values.Look(ref this.lifetimeTicks, "lifetimeTicks");
         }
 
         public override void Tick()

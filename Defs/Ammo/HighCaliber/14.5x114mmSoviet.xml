@@ -24,8 +24,8 @@
   <ThingDef Name="Ammo145x114mmBase" ParentName="SmallAmmoBase" Abstract="True">
     <description>Old-school anti-tank cartridge originally designed for AT rifles, it is also used by a number of heavy machine guns.</description>
     <statBases>
-    <Mass>0.2</Mass>
-    <Bulk>0.25</Bulk>
+    <Mass>0.19</Mass>
+    <Bulk>0.24</Bulk>
     </statBases>
   <tradeTags>
     <li>CE_AutoEnableTrade</li>
@@ -45,7 +45,7 @@
       <graphicClass>Graphic_StackCount</graphicClass>
     </graphicData>
     <statBases>
-      <MarketValue>0.92</MarketValue>
+      <MarketValue>0.62</MarketValue>
     </statBases>
     <ammoClass>FullMetalJacket</ammoClass>
     <cookOffProjectile>Bullet_145x114mm_FMJ</cookOffProjectile>
@@ -73,7 +73,7 @@
       <graphicClass>Graphic_StackCount</graphicClass>
     </graphicData>
     <statBases>
-      <MarketValue>1.06</MarketValue>
+      <MarketValue>0.94</MarketValue>
     </statBases>
     <ammoClass>IncendiaryAP</ammoClass>
     <cookOffProjectile>Bullet_145x114mm_Incendiary</cookOffProjectile>
@@ -88,7 +88,7 @@
     </graphicData>
     <projectile>
       <damageDef>Bullet</damageDef>
-      <speed>186</speed>
+      <speed>250</speed>
       <dropsCasings>true</dropsCasings>
     </projectile>
   </ThingDef>
@@ -97,8 +97,8 @@
     <defName>Bullet_145x114mm_FMJ</defName>
     <label>14.5x114mm bullet (FMJ)</label>
     <projectile>
-      <damageAmountBase>60</damageAmountBase>
-      <armorPenetration>1.2</armorPenetration>
+      <damageAmountBase>59</damageAmountBase>
+      <armorPenetration>1.033</armorPenetration>
     </projectile>
   </ThingDef>
 
@@ -106,12 +106,12 @@
     <defName>Bullet_145x114mm_HE</defName>
     <label>14.5x114mm bullet (HE)</label>
     <projectile>
-      <damageAmountBase>40</damageAmountBase>
-      <armorPenetration>1.2</armorPenetration>
+      <damageAmountBase>35</damageAmountBase>
+      <armorPenetration>1.183</armorPenetration>
       <secondaryDamage>
         <li>
           <def>Bomb_Secondary</def>
-          <amount>30</amount>
+          <amount>24</amount>
         </li>
       </secondaryDamage>
     </projectile>
@@ -121,12 +121,12 @@
     <defName>Bullet_145x114mm_Incendiary</defName>
     <label>14.5x114mm bullet (AP-I)</label>
     <projectile>
-      <damageAmountBase>50</damageAmountBase>
-      <armorPenetration>1.5</armorPenetration>
+      <damageAmountBase>35</damageAmountBase>
+      <armorPenetration>1.183</armorPenetration>
       <secondaryDamage>
         <li>
           <def>Flame_Secondary</def>
-          <amount>5</amount>
+          <amount>12</amount>
         </li>
       </secondaryDamage>
     </projectile>
@@ -146,7 +146,7 @@
             <li>Steel</li>
           </thingDefs>
         </filter>
-        <count>80</count>
+        <count>48</count>
       </li>
     </ingredients>
     <fixedIngredientFilter>
@@ -157,6 +157,7 @@
     <products>
       <Ammo_145x114mm_FMJ>200</Ammo_145x114mm_FMJ>
     </products>
+    <workAmount>7000</workAmount>
   </RecipeDef>
 
   <RecipeDef ParentName="AmmoRecipeBase">
@@ -171,7 +172,7 @@
             <li>Steel</li>
           </thingDefs>
         </filter>
-        <count>58</count>
+        <count>44</count>
       </li>
       <li>
         <filter>
@@ -179,7 +180,7 @@
             <li>FSX</li>
           </thingDefs>
         </filter>
-        <count>8</count>
+        <count>6</count>
       </li>
     </ingredients>
     <fixedIngredientFilter>
@@ -191,6 +192,7 @@
     <products>
       <Ammo_145x114mm_HE>200</Ammo_145x114mm_HE>
     </products>
+    <workAmount>20500</workAmount>
   </RecipeDef>
 
   <RecipeDef ParentName="AmmoRecipeBase">
@@ -205,7 +207,7 @@
             <li>Steel</li>
           </thingDefs>
         </filter>
-        <count>68</count>
+        <count>42</count>
       </li>
       <li>
         <filter>
@@ -213,7 +215,7 @@
             <li>Prometheum</li>
           </thingDefs>
         </filter>
-        <count>8</count>
+        <count>4</count>
       </li>
     </ingredients>
     <fixedIngredientFilter>
@@ -225,6 +227,7 @@
     <products>
       <Ammo_145x114mm_Incendiary>200</Ammo_145x114mm_Incendiary>
     </products>
+    <workAmount>18750</workAmount>
   </RecipeDef>
 
 </ThingCategoryDefs>

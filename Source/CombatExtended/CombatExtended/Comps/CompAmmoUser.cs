@@ -15,8 +15,6 @@ namespace CombatExtended
         #region Fields
 
         private int curMagCountInt;
-        private LocalTargetInfo storedTarget = null;
-        private JobDef storedJobDef = null;
         private AmmoDef currentAmmoInt = null;
         public AmmoDef selectedAmmo;
         
@@ -62,14 +60,14 @@ namespace CombatExtended
 		{
 			get
 			{
-				return wielder ?? (compEquippable.parent.holdingContainer?.owner as Pawn_InventoryTracker)?.pawn;
+				return wielder ?? (compEquippable.parent.ParentHolder as Pawn_InventoryTracker)?.pawn;
 			}
 		}
         public bool useAmmo
         {
             get
             {
-                return ModSettings.enableAmmoSystem && Props.ammoSet != null;
+                return Controller.settings.EnableAmmoSystem && Props.ammoSet != null;
             }
         }
         public bool hasAndUsesAmmoOrMagazine
@@ -116,7 +114,7 @@ namespace CombatExtended
                 return holder.TryGetComp<CompInventory>();
             }
         }
-        private IntVec3 position
+        private IntVec3 Position
         {
             get
             {
@@ -124,6 +122,15 @@ namespace CombatExtended
                 else if (turret != null) return turret.Position;
                 else if (holder != null) return holder.Position;
                 else return parent.Position;
+            }
+        }
+        private Map Map
+        {
+            get
+            {
+                if (holder != null) return holder.MapHeld;
+                else if (turret != null) return turret.MapHeld;
+                else return parent.MapHeld;
             }
         }
 
@@ -157,9 +164,9 @@ namespace CombatExtended
         public override void PostExposeData()
         {
             base.PostExposeData();
-            Scribe_Values.LookValue(ref curMagCountInt, "count", 0);
-            Scribe_Defs.LookDef(ref currentAmmoInt, "currentAmmo");
-            Scribe_Defs.LookDef(ref selectedAmmo, "selectedAmmo");
+            Scribe_Values.Look(ref curMagCountInt, "count", 0);
+            Scribe_Defs.Look(ref currentAmmoInt, "currentAmmo");
+            Scribe_Defs.Look(ref selectedAmmo, "selectedAmmo");
         }
 
         private void AssignJobToWielder(Job job)
@@ -272,17 +279,7 @@ namespace CombatExtended
             	if (reloadJob == null)
             		return;
             	reloadJob.playerForced = true;
-
-                // Store the current job so we can reassign it later
-                if (wielder.Faction == Faction.OfPlayer
-                    && wielder.CurJob != null
-                       && (wielder.CurJob.def == JobDefOf.AttackStatic || wielder.CurJob.def == JobDefOf.Goto || wielder.CurJob.def == JobDefOf.Hunt))
-                {
-                    if (wielder.CurJob.targetA.HasThing) storedTarget = new LocalTargetInfo(wielder.CurJob.targetA.Thing);
-                    else storedTarget = new LocalTargetInfo(wielder.CurJob.targetA.Cell);
-                    storedJobDef = wielder.CurJob.def;
-                }
-                AssignJobToWielder(reloadJob);
+                wielder.jobs.StartJob(reloadJob, JobCondition.InterruptForced, null, true, false);
             }
         }
         
@@ -317,7 +314,7 @@ namespace CombatExtended
             {
             	// NOTE: If we get here from ThingContainer.TryAdd() it will have modified the ammoThing.stackCount to what it couldn't take.
                 Thing outThing;
-                if (!GenThing.TryDropAndSetForbidden(ammoThing, position, Find.VisibleMap, ThingPlaceMode.Near, out outThing, turret.Faction != Faction.OfPlayer))
+                if (!GenThing.TryDropAndSetForbidden(ammoThing, Position, Map, ThingPlaceMode.Near, out outThing, turret.Faction != Faction.OfPlayer))
                 {
                 	Log.Warning(String.Concat(this.GetType().Assembly.GetName().Name + " :: " + this.GetType().Name + " :: ",
                 	                         "Unable to drop ", ammoThing.LabelCap, " on the ground, thing was destroyed."));
@@ -339,10 +336,6 @@ namespace CombatExtended
         {
         	if (!hasMagazine || (holder == null && turret == null))
         		return null; // the job couldn't be created.
-        	
-            // blank the stored job details so we don't try to start another job after reloading.  Up to caller to set these after getting the reload job from us.
-        	storedTarget = null;
-            storedJobDef = null;
             
             return new Job(CE_JobDefOf.ReloadWeapon, holder, parent);
         }
@@ -351,7 +344,7 @@ namespace CombatExtended
         {
             if (Props.throwMote)
             {
-                MoteMaker.ThrowText(position.ToVector3Shifted(), Find.VisibleMap, "CE_OutOfAmmo".Translate() + "!");
+                MoteMaker.ThrowText(Position.ToVector3Shifted(), Find.VisibleMap, "CE_OutOfAmmo".Translate() + "!");
             }
             if (wielder != null && compInventory != null && (wielder.CurJob == null || wielder.CurJob.def != JobDefOf.Hunt)) compInventory.SwitchToNextViableWeapon();
         }
@@ -408,7 +401,7 @@ namespace CombatExtended
             }
             curMagCountInt = newMagCount;
             if (turret != null) turret.isReloading = false;
-            if (parent.def.soundInteract != null) parent.def.soundInteract.PlayOneShot(new TargetInfo(position,  Find.VisibleMap, false));
+            if (parent.def.soundInteract != null) parent.def.soundInteract.PlayOneShot(new TargetInfo(Position,  Find.VisibleMap, false));
         }
 
         private bool TryFindAmmoInInventory(out Thing ammoThing)
@@ -439,19 +432,6 @@ namespace CombatExtended
             return false;
         }
 
-        public void TryContinuePreviousJob()
-        {
-            //If a job is stored, assign it
-            if (storedTarget != null && storedJobDef != null)
-            {
-                AssignJobToWielder(new Job(storedJobDef, storedTarget));
-
-                //Clear out stored job after assignment
-                storedTarget = null;
-                storedJobDef = null;
-            }
-        }
-
         public override IEnumerable<Gizmo> CompGetGizmosExtra()
         {
             GizmoAmmoStatus ammoStatusGizmo = new GizmoAmmoStatus { compAmmo = this };
@@ -461,7 +441,7 @@ namespace CombatExtended
             {
                 Action action = null;
                 if (wielder != null) action = delegate { TryStartReload(); };
-                else if (turret != null && turret.GetMannableComp() != null) action = turret.OrderReload;
+                else if (turret != null && turret.MannableComp != null) action = turret.OrderReload;
 
                 // Check for teaching opportunities
                 string tag;
@@ -472,7 +452,7 @@ namespace CombatExtended
                 }
                 else
                 {
-                    if (turret.GetMannableComp() == null) tag = "CE_ReloadAuto";  // Teach about auto-turrets
+                    if (turret.MannableComp == null) tag = "CE_ReloadAuto";  // Teach about auto-turrets
                     else tag = "CE_ReloadManned";    // Teach about reloading manned turrets
                 }
                 LessonAutoActivator.TeachOpportunity(ConceptDef.Named(tag), turret, OpportunityType.GoodToKnow);
@@ -492,7 +472,7 @@ namespace CombatExtended
 
 		public override string TransformLabel(string label)
 		{
-            string ammoSet = useAmmo && ModSettings.showCaliberOnGuns ? " (" + Props.ammoSet.LabelCap + ") " : "";
+            string ammoSet = useAmmo && Controller.settings.ShowCaliberOnGuns ? " (" + Props.ammoSet.LabelCap + ") " : "";
             return  label + ammoSet;
 		}
 

@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using RimWorld;
 using Verse;
+using Verse.AI;
 using UnityEngine;
 
 namespace CombatExtended
@@ -129,9 +130,9 @@ namespace CombatExtended
         public override void PostExposeData()
         {
             base.PostExposeData();
-            Scribe_Values.LookValue<float>(ref currentSuppression, "currentSuppression", 0f);
-            Scribe_Values.LookValue<IntVec3>(ref suppressorLoc, "suppressorLoc");
-            Scribe_Values.LookValue<float>(ref locSuppressionAmount, "locSuppression", 0f);
+            Scribe_Values.Look(ref currentSuppression, "currentSuppression", 0f);
+            Scribe_Values.Look(ref suppressorLoc, "suppressorLoc");
+            Scribe_Values.Look(ref locSuppressionAmount, "locSuppression", 0f);
         }
 
         public void AddSuppression(float amount, IntVec3 origin)
@@ -169,14 +170,20 @@ namespace CombatExtended
                 locSuppressionAmount = currentSuppression;
             }
 
-            // Assign suppressed status and interrupt activity if necessary
+            // Assign suppressed status and assign reaction job
             if (currentSuppression > SuppressionThreshold)
             {
                 isSuppressed = true;
-                if (pawn.CurJob != null && !(pawn.CurJob.def == CE_JobDefOf.HunkerDown || pawn.CurJob.def == CE_JobDefOf.RunForCover))
+                Job reactJob;
+                if (IsHunkering)
                 {
-                    pawn.jobs.StopAll();
+                    reactJob = new Job(CE_JobDefOf.HunkerDown, pawn);
                 }
+                else
+                {
+                    reactJob = SuppressionUtility.GetRunForCoverJob(pawn);
+                }
+                if (reactJob != null) pawn.jobs.StartJob(reactJob, JobCondition.InterruptForced, null, true);
             }
         }
 

@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+
+	<Operation Class="PatchOperationAddModExtension">
+		<xpath>*/ThingDef[defName="Human"]</xpath>
+		<value>
+			<li Class="CombatExtended.RacePropertiesExtensionCE">
+				<bodyType>Humanoid</bodyType>
+			</li>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>*/ThingDef[defName="Human"]/verbs</xpath>
+		<value>
+			<verbs>
+			  <li Class="CombatExtended.VerbPropertiesCE">
+			    <verbClass>CombatExtended.Verb_MeleeAttackCE</verbClass>
+			    <defaultCooldownTime>1.85</defaultCooldownTime>
+			    <meleeDamageBaseAmount>6</meleeDamageBaseAmount>
+			    <meleeDamageDef>Blunt</meleeDamageDef>
+			    <linkedBodyPartsGroup>LeftHand</linkedBodyPartsGroup>
+			    <meleeArmorPenetration>0.08</meleeArmorPenetration>
+			  </li>
+			  <li Class="CombatExtended.VerbPropertiesCE">
+			    <verbClass>CombatExtended.Verb_MeleeAttackCE</verbClass>
+			    <defaultCooldownTime>1.85</defaultCooldownTime>
+			    <meleeDamageBaseAmount>6</meleeDamageBaseAmount>
+			    <meleeDamageDef>Blunt</meleeDamageDef>
+			    <linkedBodyPartsGroup>RightHand</linkedBodyPartsGroup>
+			    <meleeArmorPenetration>0.08</meleeArmorPenetration>
+			  </li>
+			</verbs>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationSequence">
+  	<success>Always</success>
+  	<operations>
+    	<li Class="PatchOperationTest">
+      	<xpath>*/ThingDef[defName="Human"]/comps</xpath>
+      	<success>Invert</success>
+    	</li>
+    	<li Class="PatchOperationAdd">
+      	<xpath>*/ThingDef[defName="Human"]</xpath>
+      	<value>
+        	<comps />
+      	</value>
+    	</li>
+  	</operations>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>*/ThingDef[defName="Human"]/comps</xpath>
+		<value>
+			<li>
+			  <compClass>CombatExtended.CompPawnGizmo</compClass>
+			</li>
+			<li Class="CombatExtended.CompProperties_Suppressable" />
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>*/ThingDef[defName="Human"]/recipes</xpath>
+		<value>
+			<li>GraftSynthTissue</li>
+		</value>
+	</Operation>
+
+</Patch>
+

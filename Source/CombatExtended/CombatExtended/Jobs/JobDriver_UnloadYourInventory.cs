@@ -71,7 +71,7 @@ namespace CombatExtended
 					}
 					else
 					{
-						this.pawn.inventory.innerContainer.TransferToContainer(thing, this.pawn.carryTracker.innerContainer, amountToDrop, out thing);
+						this.pawn.inventory.innerContainer.TryTransferToContainer(thing, this.pawn.carryTracker.innerContainer, amountToDrop, out thing);
 						this.CurJob.count = amountToDrop;
 						this.CurJob.SetTarget(TargetIndex.A, thing);
 					}

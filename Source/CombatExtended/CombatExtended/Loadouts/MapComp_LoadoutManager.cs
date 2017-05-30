@@ -133,7 +133,7 @@ namespace CombatExtended
         		Instance._assignedHoldTrackerScribeHelper = Instance._tracker.Select(pair => new HoldTrackerAssignment() { pawn = pair.Key, recs = pair.Value }).ToList();
         	
         	// load/save our helper list.
-        	Scribe_Collections.LookList(ref Instance._assignedHoldTrackerScribeHelper, "trackers", LookMode.Deep);
+        	Scribe_Collections.Look(ref Instance._assignedHoldTrackerScribeHelper, "trackers", LookMode.Deep);
         	
         	// when loading, cleanup the list of invalid references and then convert it back to a dictionary.
             if (Scribe.mode == LoadSaveMode.PostLoadInit)
@@ -152,7 +152,7 @@ namespace CombatExtended
             ////List<string> pawnsOutOfMap_IDs = new List<string>();
 
             // scribe available loadouts
-            Scribe_Collections.LookList<Loadout>( ref Instance._loadouts, "loadouts", LookMode.Deep );
+            Scribe_Collections.Look( ref Instance._loadouts, "loadouts", LookMode.Deep );
 
             //scribe loadout assignments (for some reason using the dictionary directly doesn't work -- Fluffy)
             // create list of scribe helper objects
@@ -160,7 +160,7 @@ namespace CombatExtended
                 Instance._assignedLoadoutsScribeHelper = Instance._assignedLoadouts.Select(pair => new LoadoutAssignment() { pawn = pair.Key, loadout = pair.Value }).ToList();
 
             //scribe that list
-            Scribe_Collections.LookList( ref Instance._assignedLoadoutsScribeHelper, "assignments", LookMode.Deep );
+            Scribe_Collections.Look( ref Instance._assignedLoadoutsScribeHelper, "assignments", LookMode.Deep );
 
 
             ////if (Scribe.mode == LoadSaveMode.LoadingVars)

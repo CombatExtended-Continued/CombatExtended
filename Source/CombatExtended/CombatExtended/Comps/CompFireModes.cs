@@ -82,8 +82,8 @@ namespace CombatExtended
         public override void PostExposeData()
         {
             base.PostExposeData();
-            Scribe_Values.LookValue(ref currentFireModeInt, "currentFireMode", FireMode.AutoFire);
-            Scribe_Values.LookValue(ref currentAimModeInt, "currentAimMode", AimMode.Snapshot);
+            Scribe_Values.Look(ref currentFireModeInt, "currentFireMode", FireMode.AutoFire);
+            Scribe_Values.Look(ref currentAimModeInt, "currentAimMode", AimMode.Snapshot);
         }
 
         private void InitAvailableFireModes()

@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+
+	<!-- ========== Big Cat Base ========== -->
+
+	<Operation Class="PatchOperationAddModExtension">
+		<xpath>*/ThingDef[@Name="BigCatThingBase"]</xpath>
+		<value>
+			<li Class="CombatExtended.RacePropertiesExtensionCE">
+				<bodyType>Quadruped</bodyType>
+			</li>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>*/ThingDef[@Name="BigCatThingBase"]/verbs</xpath>
+		<value>
+			<verbs>
+			  <li Class="CombatExtended.VerbPropertiesCE">
+			    <verbClass>CombatExtended.Verb_MeleeAttackCE</verbClass>
+			    <defaultCooldownTime>1.5</defaultCooldownTime>
+			    <meleeDamageBaseAmount>11</meleeDamageBaseAmount>
+			    <meleeDamageDef>Slash</meleeDamageDef>
+			    <linkedBodyPartsGroup>FrontLeftPaw</linkedBodyPartsGroup>
+			    <meleeArmorPenetration>0.15</meleeArmorPenetration>
+			    <surpriseAttack>
+			      <extraMeleeDamages>
+			        <li>
+			          <def>Stun</def>
+			          <amount>20</amount>
+			        </li>
+			      </extraMeleeDamages>
+			    </surpriseAttack>
+			    <commonality>0.25</commonality>
+			  </li>
+			  <li Class="CombatExtended.VerbPropertiesCE">
+			    <verbClass>CombatExtended.Verb_MeleeAttackCE</verbClass>
+			    <defaultCooldownTime>1.5</defaultCooldownTime>
+			    <meleeDamageBaseAmount>11</meleeDamageBaseAmount>
+			    <meleeDamageDef>Slash</meleeDamageDef>
+			    <linkedBodyPartsGroup>FrontRightPaw</linkedBodyPartsGroup>
+			    <meleeArmorPenetration>0.15</meleeArmorPenetration>
+			    <surpriseAttack>
+			      <extraMeleeDamages>
+			        <li>
+			          <def>Stun</def>
+			          <amount>20</amount>
+			        </li>
+			      </extraMeleeDamages>
+			    </surpriseAttack>
+			    <commonality>0.25</commonality>
+			  </li>
+			  <li Class="CombatExtended.VerbPropertiesCE">
+			    <verbClass>CombatExtended.Verb_MeleeAttackCE</verbClass>
+			    <defaultCooldownTime>1.85</defaultCooldownTime>
+			    <meleeDamageBaseAmount>20</meleeDamageBaseAmount>
+			    <meleeDamageDef>Bite</meleeDamageDef>
+			    <linkedBodyPartsGroup>Teeth</linkedBodyPartsGroup>
+			    <meleeArmorPenetration>0.2</meleeArmorPenetration>
+			    <surpriseAttack>
+			      <extraMeleeDamages>
+			        <li>
+			          <def>Stun</def>
+			          <amount>20</amount>
+			        </li>
+			      </extraMeleeDamages>
+			    </surpriseAttack>
+			  </li>
+			</verbs>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>*/ThingDef[@Name="BigCatThingBase"]/race/baseBodySize</xpath>
+		<value>
+			<baseBodySize>0.85</baseBodySize>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>*/ThingDef[@Name="BigCatThingBase"]/race/baseHealthScale</xpath>
+		<value>
+			<baseHealthScale>0.8</baseHealthScale>
+		</value>
+	</Operation>
+
+	<!-- ========== Lynx ========== -->
+
+	<Operation Class="PatchOperationAddModExtension">
+		<xpath>*/ThingDef[defName="Lynx"]</xpath>
+		<value>
+			<li Class="CombatExtended.RacePropertiesExtensionCE">
+				<bodyType>Quadruped</bodyType>
+			</li>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>*/ThingDef[defName="Lynx"]/verbs</xpath>
+		<value>
+			<verbs>
+			  <li Class="CombatExtended.VerbPropertiesCE">
+			    <verbClass>CombatExtended.Verb_MeleeAttackCE</verbClass>
+			    <defaultCooldownTime>1.5</defaultCooldownTime>
+			    <meleeDamageBaseAmount>9</meleeDamageBaseAmount>
+			    <meleeDamageDef>Scratch</meleeDamageDef>
+			    <linkedBodyPartsGroup>FrontLeftPaw</linkedBodyPartsGroup>
+			    <meleeArmorPenetration>0.1</meleeArmorPenetration>
+			    <surpriseAttack>
+			      <extraMeleeDamages>
+			        <li>
+			          <def>Stun</def>
+			          <amount>20</amount>
+			        </li>
+			      </extraMeleeDamages>
+			    </surpriseAttack>
+			    <commonality>0.25</commonality>
+			  </li>
+			  <li Class="CombatExtended.VerbPropertiesCE">
+			    <verbClass>CombatExtended.Verb_MeleeAttackCE</verbClass>
+			    <defaultCooldownTime>1.5</defaultCooldownTime>
+			    <meleeDamageBaseAmount>9</meleeDamageBaseAmount>
+			    <meleeDamageDef>Scratch</meleeDamageDef>
+			    <linkedBodyPartsGroup>FrontRightPaw</linkedBodyPartsGroup>
+			    <meleeArmorPenetration>0.1</meleeArmorPenetration>
+			    <surpriseAttack>
+			      <extraMeleeDamages>
+			        <li>
+			          <def>Stun</def>
+			          <amount>20</amount>
+			        </li>
+			      </extraMeleeDamages>
+			    </surpriseAttack>
+			    <commonality>0.25</commonality>
+			  </li>
+			  <li Class="CombatExtended.VerbPropertiesCE">
+			    <verbClass>CombatExtended.Verb_MeleeAttackCE</verbClass>
+			    <defaultCooldownTime>1.85</defaultCooldownTime>
+			    <meleeDamageBaseAmount>11</meleeDamageBaseAmount>
+			    <meleeDamageDef>Bite</meleeDamageDef>
+			    <linkedBodyPartsGroup>Teeth</linkedBodyPartsGroup>
+			    <meleeArmorPenetration>0.2</meleeArmorPenetration>
+			    <surpriseAttack>
+			      <extraMeleeDamages>
+			        <li>
+			          <def>Stun</def>
+			          <amount>20</amount>
+			        </li>
+			      </extraMeleeDamages>
+			    </surpriseAttack>
+			  </li>
+			</verbs>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>*/ThingDef[defName="Lynx"]/race/baseHealthScale</xpath>
+		<value>
+			<baseHealthScale>0.75</baseHealthScale>
+		</value>
+	</Operation>
+
+</Patch>
+

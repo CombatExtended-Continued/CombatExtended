@@ -71,11 +71,11 @@ namespace CombatExtended
 		/// </summary>
 		public void ExposeData()
 		{
-			Scribe_Defs.LookDef(ref _def, "ThingDef");
-			Scribe_Values.LookValue(ref count, "count");
-			Scribe_Values.LookValue(ref pickedUp, "pickedUp");
+			Scribe_Defs.Look(ref _def, "ThingDef");
+			Scribe_Values.Look(ref count, "count");
+			Scribe_Values.Look(ref pickedUp, "pickedUp");
 			if (!pickedUp)
-				Scribe_Values.LookValue(ref _tickJobIssued, "tickOfPickupJob");
+				Scribe_Values.Look(ref _tickJobIssued, "tickOfPickupJob");
 		}
 
 		#endregion

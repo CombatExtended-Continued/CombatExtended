@@ -69,7 +69,7 @@ namespace CombatExtended.AI
 
 		public void ExposeData()
         {
-            Scribe_Values.LookValue(ref faction, "faction", Faction.OfPlayer);
+            Scribe_Values.Look(ref faction, "faction", Faction.OfPlayer);
 		}
 	}
 }

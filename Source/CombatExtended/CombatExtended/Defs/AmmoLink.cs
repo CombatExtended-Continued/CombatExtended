@@ -29,8 +29,8 @@ namespace CombatExtended
                 Log.Error("Misconfigured AmmoLink: " + xmlRoot.OuterXml);
                 return;
             }
-            CrossRefLoader.RegisterObjectWantsCrossRef(this, "ammo", xmlRoot.Name);
-            CrossRefLoader.RegisterObjectWantsCrossRef(this, "projectile", (string)ParseHelper.FromString(xmlRoot.FirstChild.Value, typeof(string)));
+            DirectXmlCrossRefLoader.RegisterObjectWantsCrossRef(this, "ammo", xmlRoot.Name);
+            DirectXmlCrossRefLoader.RegisterObjectWantsCrossRef(this, "projectile", (string)ParseHelper.FromString(xmlRoot.FirstChild.Value, typeof(string)));
         }
 
         public override string ToString()

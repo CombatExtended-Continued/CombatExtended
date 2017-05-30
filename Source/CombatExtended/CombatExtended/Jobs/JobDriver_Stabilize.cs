@@ -24,7 +24,7 @@ namespace CombatExtended
             this.FailOnNotDowned(TargetIndex.A);
             this.AddEndCondition(delegate 
             {
-                if (Patient.health.hediffSet.GetInjuriesTendable().Any(h => h as Hediff_InjuryCE != null && (h as Hediff_InjuryCE).CanBeStabilized())) return JobCondition.Ongoing;
+                if (Patient.health.hediffSet.GetHediffsTendable().Any(h => h.CanBeStabilizied())) return JobCondition.Ongoing;
                 Medicine.Destroy();
                 return JobCondition.Incompletable;
             });
@@ -38,7 +38,7 @@ namespace CombatExtended
             yield return Toils_Haul.PlaceHauledThingInCell(TargetIndex.A, null, false);
 
             // Stabilize patient
-            int duration = (int)(1f / this.pawn.GetStatValue(StatDefOf.HealingSpeed, true) * baseTendDuration);
+            int duration = (int)(1f / this.pawn.GetStatValue(StatDefOf.MedicalTendSpeed, true) * baseTendDuration);
             Toil waitToil = Toils_General.Wait(duration).WithProgressBarToilDelay(TargetIndex.A).PlaySustainerOrSound(SoundDefOf.Interact_Tend);
             yield return waitToil;
             Toil stabilizeToil = new Toil();
@@ -46,9 +46,9 @@ namespace CombatExtended
             {
                 float xp = (!Patient.RaceProps.Animal) ? 125f : 50f * Medicine.def.MedicineTendXpGainFactor;
                 pawn.skills.Learn(SkillDefOf.Medicine, xp);
-                foreach(Hediff_InjuryCE curInjury in from x in Patient.health.hediffSet.GetInjuriesTendable() orderby x.BleedRate descending select x)
+                foreach(Hediff curInjury in from x in Patient.health.hediffSet.GetHediffsTendable() orderby x.BleedRate descending select x)
                 {
-                    if (curInjury.CanBeStabilized())
+                    if (curInjury.CanBeStabilizied())
                     {
                         HediffComp_Stabilize comp = curInjury.TryGetComp<HediffComp_Stabilize>();
                         comp.Stabilize(pawn, Medicine);

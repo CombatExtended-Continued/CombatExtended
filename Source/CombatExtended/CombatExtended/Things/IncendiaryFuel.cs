@@ -12,9 +12,9 @@ namespace CombatExtended
     {
         private const float maxFireSize = 1.75f;
 
-        public override void SpawnSetup(Map map)
+        public override void SpawnSetup(Map map, bool respawningAfterLoad)
         {
-            base.SpawnSetup(map);
+            base.SpawnSetup(map, respawningAfterLoad);
             List<Thing> list = new List<Thing>(Position.GetThingList(map));
             foreach (Thing thing in list)
             {

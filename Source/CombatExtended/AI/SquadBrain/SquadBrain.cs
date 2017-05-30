@@ -418,10 +418,10 @@ namespace CombatExtended.AI
 
         public void ExposeData()
         {
-            Scribe_Values.LookValue(ref map, "map");
-            Scribe_Values.LookValue(ref faction, "faction", Faction.OfPlayer);
-            Scribe_Collections.LookList(ref squadPawns, "squadPawns");
-            Scribe_Collections.LookDictionary(ref squadOrdersForPawns, "orders");
+            Scribe_Values.Look(ref map, "map");
+            Scribe_Values.Look(ref faction, "faction", Faction.OfPlayer);
+            Scribe_Collections.Look(ref squadPawns, "squadPawns");
+            Scribe_Collections.Look(ref squadOrdersForPawns, "orders");
         }
     }
 }

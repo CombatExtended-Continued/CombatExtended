@@ -141,13 +141,13 @@ namespace CombatExtended
         public void ExposeData()
         {
             // basic info about this loadout
-            Scribe_Values.LookValue(ref label, "label");
-            Scribe_Values.LookValue(ref uniqueID, "uniqueID");
-            Scribe_Values.LookValue(ref canBeDeleted, "canBeDeleted", true);
-            Scribe_Values.LookValue(ref defaultLoadout, "defaultLoadout", false);
+            Scribe_Values.Look(ref label, "label");
+            Scribe_Values.Look(ref uniqueID, "uniqueID");
+            Scribe_Values.Look(ref canBeDeleted, "canBeDeleted", true);
+            Scribe_Values.Look(ref defaultLoadout, "defaultLoadout", false);
 
             // slots
-            Scribe_Collections.LookList(ref _slots, "slots", LookMode.Deep);
+            Scribe_Collections.Look(ref _slots, "slots", LookMode.Deep);
         }
 
         public string GetUniqueLoadID()

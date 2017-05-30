@@ -19,7 +19,7 @@ namespace CombatExtended
             TaleRecorder.RecordTale(TaleDefOf.DidSurgery, new object[] { billDoer, pawn });
 
             // Calculate how much damage we reduced
-            float amountReduced = Mathf.Max(0, BaseSeverityReduction + Rand.Range(-reductionVariance, reductionVariance)) * billDoer.GetStatValue(StatDefOf.HealingQuality);
+            float amountReduced = Mathf.Max(0, BaseSeverityReduction + Rand.Range(-reductionVariance, reductionVariance)) * billDoer.GetStatValue(StatDefOf.MedicalTendQuality);
 
             // Find all scars
             List<Hediff> scars = pawn.health.hediffSet.hediffs.FindAll(h => h.Part == part && h.IsOld());

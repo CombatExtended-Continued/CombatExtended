@@ -5,6 +5,7 @@ using System.Text;
 
 using RimWorld;
 using Verse;
+using Verse.AI;
 using UnityEngine;
 
 namespace CombatExtended
@@ -36,7 +37,6 @@ namespace CombatExtended
         protected CompCharges compCharges = null;
         protected CompAmmoUser compAmmo = null;
         private float shotSpeed = -1;
-        private float shotHeight = -1;
         
         private float rotationDegrees = 0f;
         private float angleRadians = 0f;
@@ -86,20 +86,13 @@ namespace CombatExtended
                 return shotSpeed;
             }
         }
-        private float ShotHeight
+        private float ShotHeight => (new CollisionVertical(caster)).shotHeight;
+        private Vector3 ShotSource
         {
             get
             {
-                if (shotHeight < 0)
-                {
-                    // TODO Find a way to optimize this so we avoid calling GetCollisionVertical twice without duplicating code
-                	var shooterVertical = CE_Utility.GetCollisionVertical(caster);
-                    var shooterTopSpan = CE_Utility.GetCollisionVertical(caster, true).Span * (1 - CE_Utility.BodyRegionMiddleHeight);
-                    shotHeight = CasterIsPawn
-                        ? shooterVertical.max - shooterTopSpan
-		            	: shooterVertical.max;
-                }
-                return shotHeight;
+                var casterPos = caster.DrawPos;
+                return new Vector3(casterPos.x, ShotHeight, casterPos.z);
             }
         }
 
@@ -155,7 +148,7 @@ namespace CombatExtended
         {
             // attack shooting expression
             Pawn shooter = ShooterPawn;
-            if (ModSettings.showTaunts 
+            if (Controller.settings.ShowTaunts 
                 && shooter != null 
                 && shooter.Map != null 
                 && shooter.def.race.Humanlike 
@@ -222,7 +215,7 @@ namespace CombatExtended
 			    // Height difference calculations for ShotAngle
 			    float targetHeight = 0f;
 	            
-	            var coverVertical = CE_Utility.GetCollisionVertical(report.cover);	//Get " " cover, assume it is the edifice
+	            var coverVertical = new CollisionVertical(report.cover).HeightRange;	//Get " " cover, assume it is the edifice
 	            
 	            // Projectiles with flyOverhead target the ground below the target and ignore cover
 	            if (ProjectileDef.projectile.flyOverhead)
@@ -231,7 +224,7 @@ namespace CombatExtended
 	            }
 	            else
 	            {
-	           		var targetVertical = CE_Utility.GetCollisionVertical(currentTarget.Thing);	//Get lower and upper heights of the target
+	           		var targetVertical = new CollisionVertical(currentTarget.Thing).HeightRange;	//Get lower and upper heights of the target
 	           		if (targetVertical.min < coverVertical.max)	//Some part of the target is hidden behind cover
 	           		{
 	           			//TODO : It is possible for targetVertical.max < coverVertical.max, technically, in which case the shooter will never hit until the cover is gone.
@@ -240,8 +233,8 @@ namespace CombatExtended
                     else if (currentTarget.Thing is Pawn)
                     {
                         // Aim for center of mass on an exposed target
-                        targetVertical.min += CE_Utility.BodyRegionBottomHeight * targetVertical.max;
-                        targetVertical.max *= CE_Utility.BodyRegionMiddleHeight;
+                        targetVertical.min += CollisionVertical.BodyRegionBottomHeight * targetVertical.max;
+                        targetVertical.max *= CollisionVertical.BodyRegionMiddleHeight;
                     }
 	           		targetHeight = targetVertical.min + (targetVertical.max - targetVertical.min) * 0.5f;
 	            }
@@ -327,57 +320,47 @@ namespace CombatExtended
             report.swayDegrees = this.SwayAmplitude;
             report.spreadDegrees = this.ownerEquipment.GetStatValue(StatDef.Named("ShotSpread")) * this.projectilePropsCE.spreadMult;
             Thing cover;
-            this.GetHighestCoverBetween(this.caster.Position.ToVector3Shifted(), target, out cover);
+            this.GetHighestCoverForTarget(target, out cover);
             report.cover = cover;
 
             return report;
         }
 
         /// <summary>
-        /// Checks for cover along the flight path of the bullet, doesn't check for walls or plants, only intended for cover with partial fillPercent
+        /// Checks for cover along the flight path of the bullet, doesn't check for walls or trees, only intended for cover with partial fillPercent
         /// </summary>
-        /// <param name="sourceLoc">The position from which to start checking</param>
-        /// <param name="targetLoc">The position of the target</param>
+        /// <param name="target">The target of which to find cover of</param>
         /// <param name="cover">Output parameter, filled with the highest cover object found</param>
         /// <returns>True if cover was found, false otherwise</returns>
-        private bool GetHighestCoverBetween(Vector3 sourceLoc, LocalTargetInfo target, out Thing cover)
+        private bool GetHighestCoverForTarget(LocalTargetInfo target, out Thing cover)
         {
-            Vector3 targetLoc = target.Cell.ToVector3Shifted();
-            sourceLoc.Scale(new Vector3(1, 0, 1));
-            targetLoc.Scale(new Vector3(1, 0, 1));
             Map map = caster.Map;
-
-            //Calculate segment vector and segment amount
-            Vector3 shotVec = sourceLoc - targetLoc;    //Vector from target to source
-            Vector3 segmentVec = shotVec.normalized * segmentLength;
-            float distToCheck = Mathf.Min(distToCheckForCover, Mathf.Min(shotVec.magnitude / 2));  //The distance to raycast
-            float numSegments = distToCheck / segmentLength;
-
-            //Raycast accross all segments to check for cover
-            HashSet<IntVec3> checkedCells = new HashSet<IntVec3>();
             Thing targetThing = target.Thing;
             Thing highestCover = null;
             float highestCoverHeight = 0f;
-            for (int i = 0; i <= numSegments; i++)
-            {
-                IntVec3 cell = (targetLoc + segmentVec * i).ToIntVec3();
-                if (!checkedCells.Contains(cell))
-                {
-                    Pawn pawn = cell.GetFirstPawn(map);
-                    Thing newCover = pawn == null ? cell.GetCover(map) : pawn;
-                    float newCoverHeight = CE_Utility.GetCollisionVertical(newCover).max;
 
-                    //Cover check, if cell has cover compare collision height and get the highest piece of cover, ignore if cover is the target (e.g. solar panels, crashed ship, etc)
-                    if (newCover != null
-                        && (targetThing == null || !newCover.Equals(targetThing))
-                        && (highestCover == null || highestCoverHeight < newCoverHeight)
-                        && newCover.def.Fillage != FillCategory.Full
-                        && newCover.def.category != ThingCategory.Plant)
-                    {
-                        highestCover = newCover;
-                        highestCoverHeight = newCoverHeight;
-                    }
-                    checkedCells.Add(cell);
+            // Iterate through all cells on second half of line of sight and check for cover
+            var cells = GenSight.PointsOnLineOfSight(target.Cell, caster.Position).ToArray();
+            for (int i = 0; i <= cells.Length / 2; i++)
+            {
+                var cell = cells[i];
+
+                if (cell.AdjacentTo8Way(caster.Position)) continue;
+
+                Pawn pawn = cell.GetFirstPawn(map);
+                Thing newCover = pawn == null ? cell.GetCover(map) : pawn;
+                float newCoverHeight = new CollisionVertical(newCover).Max;
+                
+                // Cover check, if cell has cover compare collision height and get the highest piece of cover, ignore if cover is the target (e.g. solar panels, crashed ship, etc)
+                if (newCover != null
+                    && (targetThing == null || !newCover.Equals(targetThing))
+                    && (highestCover == null || highestCoverHeight < newCoverHeight)
+                    && newCover.def.Fillage == FillCategory.Partial
+                    && !newCover.IsTree())
+                {
+                    highestCover = newCover;
+                    highestCoverHeight = newCoverHeight;
+                    if (Controller.settings.DebugDrawTargetCoverChecks) map.debugDrawer.FlashCell(cell, highestCoverHeight, highestCoverHeight.ToString());
                 }
             }
             cover = highestCover;
@@ -385,7 +368,7 @@ namespace CombatExtended
             //Report success if found cover
             return cover != null;
         }
-        
+
         /// <summary>
         /// Checks if the shooter can hit the target from a certain position with regards to cover height
         /// </summary>
@@ -396,43 +379,6 @@ namespace CombatExtended
         {
             string unused;
             return CanHitTargetFrom(root, targ, out unused);
-            /*
-            if (!targ.Cell.InBounds(caster.Map) || !root.InBounds(caster.Map)) return false;
-
-            //Sanity check for flyOverhead projectiles, they should not attack things under thick roofs
-            if (ProjectileDef.projectile.flyOverhead)
-            {
-                RoofDef roofDef = caster.Map.roofGrid.RoofAt(targ.Cell);
-                if (roofDef != null && roofDef.isThickRoof)
-                {
-                    return false;
-                }
-                return base.CanHitTargetFrom(root, targ);
-            }
-            if (base.CanHitTargetFrom(root, targ))
-            {
-                //Check if target is obstructed behind cover
-                Thing coverTarg;
-                if (GetHighestCoverBetween(root.ToVector3Shifted(), targ.Cell.ToVector3Shifted(), out coverTarg))
-                {
-                    if (CE_Utility.GetCollisionVertical(targ.Thing).max < CE_Utility.GetCollisionVertical(coverTarg, true).max)
-                    {
-                        return false;
-                    }
-                }
-                //Check if shooter is obstructed by cover
-                Thing coverShoot;
-                if (GetHighestCoverBetween(targ.Cell.ToVector3Shifted(), root.ToVector3Shifted(), out coverShoot))
-                {
-                	if (ShotHeight < CE_Utility.GetCollisionVertical(coverShoot, true).max)
-                    {
-                        return false;
-                    }
-                }
-                return true;
-            }
-            return false;
-            */
         }
 
         public bool CanHitTarget(LocalTargetInfo targ, out string report)
@@ -474,7 +420,7 @@ namespace CombatExtended
                 List<Apparel> wornApparel = CasterPawn.apparel.WornApparel;
                 foreach(Apparel current in wornApparel)
                 {
-                    if (!current.AllowVerbCast(root, targ.ToTargetInfo(caster.Map)))
+                    if (!current.AllowVerbCast(root, caster.Map, targ))
                     {
                         report = "Shooting disallowed by " + current.LabelShort;
                         return false;
@@ -483,7 +429,7 @@ namespace CombatExtended
             }
             // Check for line of sight
             ShootLine shootLine;
-            if (!TryFindShootLineFromTo(root, targ, out shootLine))
+            if (!TryFindCEShootLineFromTo(root, targ, out shootLine))
             {
                 float lengthHorizontalSquared = (root - targ.Cell).LengthHorizontalSquared;
                 if (lengthHorizontalSquared > verbProps.range * verbProps.range)
@@ -500,11 +446,12 @@ namespace CombatExtended
                 }
                 return false;
             }
+            /*
             //Check if target is obstructed behind cover
             Thing coverTarg;
             if (GetHighestCoverBetween(root.ToVector3Shifted(), targ, out coverTarg))
             {
-                if (CE_Utility.GetCollisionVertical(targ.Thing).max < CE_Utility.GetCollisionVertical(coverTarg).max)
+                if (new CollisionVertical(targ.Thing).Max < new CollisionVertical(coverTarg).Max)
                 {
                     report = "Target obstructed by " + coverTarg.LabelShort;
                     return false;
@@ -514,12 +461,13 @@ namespace CombatExtended
             Thing coverShoot;
             if (GetHighestCoverBetween(targ.Cell.ToVector3Shifted(), caster, out coverShoot))
             {
-                if (ShotHeight < CE_Utility.GetCollisionVertical(coverShoot).max)
+                if (ShotHeight < new CollisionVertical(coverShoot).Max)
                 {
                     report = "Shooter obstructed by " + coverShoot.LabelShort;
                     return false;
                 }
             }
+            */
             return true;
         }
 
@@ -530,7 +478,7 @@ namespace CombatExtended
         protected override bool TryCastShot()
         {
             ShootLine shootLine;
-            if (!TryFindShootLineFromTo(caster.Position, currentTarget, out shootLine))
+            if (!TryFindCEShootLineFromTo(caster.Position, currentTarget, out shootLine))
             {
                 return false;
             }
@@ -577,6 +525,177 @@ namespace CombatExtended
         /// </summary>
         public virtual void VerbTickCE()
         {
+        }
+
+        #endregion
+
+        #region Line of Sight Utility
+
+        /* Line of sight calculating methods
+         * 
+         * Copied from vanilla Verse.Verb class, the only change here is usage of our own validator for partial cover checks. Copy-paste should be kept up to date with vanilla
+         * and if possible replaced with a cleaner solution.
+         * 
+         * -NIA
+         */
+
+        private static List<IntVec3> tempDestList = new List<IntVec3>();
+        private static List<IntVec3> tempLeanShootSources = new List<IntVec3>();
+
+        public bool TryFindCEShootLineFromTo(IntVec3 root, LocalTargetInfo targ, out ShootLine resultingLine)
+        {
+            if (targ.HasThing && targ.Thing.Map != this.caster.Map)
+            {
+                resultingLine = default(ShootLine);
+                return false;
+            }
+            if (this.verbProps.MeleeRange)
+            {
+                resultingLine = new ShootLine(root, targ.Cell);
+                return ReachabilityImmediate.CanReachImmediate(root, targ, this.caster.Map, PathEndMode.Touch, null);
+            }
+            CellRect cellRect = (!targ.HasThing) ? CellRect.SingleCell(targ.Cell) : targ.Thing.OccupiedRect();
+            float num = cellRect.ClosestDistSquaredTo(root);
+            if (num > this.verbProps.range * this.verbProps.range || num < this.verbProps.minRange * this.verbProps.minRange)
+            {
+                resultingLine = new ShootLine(root, targ.Cell);
+                return false;
+            }
+            if (!this.verbProps.NeedsLineOfSight)
+            {
+                resultingLine = new ShootLine(root, targ.Cell);
+                return true;
+            }
+            if (this.CasterIsPawn)
+            {
+                IntVec3 dest;
+                if (this.CanHitFromCellIgnoringRange(root, targ, out dest))
+                {
+                    resultingLine = new ShootLine(root, dest);
+                    return true;
+                }
+                ShootLeanUtility.LeanShootingSourcesFromTo(root, cellRect.ClosestCellTo(root), this.caster.Map, tempLeanShootSources);
+                for (int i = 0; i < tempLeanShootSources.Count; i++)
+                {
+                    IntVec3 intVec = tempLeanShootSources[i];
+                    if (this.CanHitFromCellIgnoringRange(intVec, targ, out dest))
+                    {
+                        resultingLine = new ShootLine(intVec, dest);
+                        return true;
+                    }
+                }
+            }
+            else
+            {
+                CellRect.CellRectIterator iterator = this.caster.OccupiedRect().GetIterator();
+                while (!iterator.Done())
+                {
+                    IntVec3 current = iterator.Current;
+                    IntVec3 dest;
+                    if (this.CanHitFromCellIgnoringRange(current, targ, out dest))
+                    {
+                        resultingLine = new ShootLine(current, dest);
+                        return true;
+                    }
+                    iterator.MoveNext();
+                }
+            }
+            resultingLine = new ShootLine(root, targ.Cell);
+            return false;
+        }
+
+        private bool CanHitFromCellIgnoringRange(IntVec3 sourceCell, LocalTargetInfo targ, out IntVec3 goodDest)
+        {
+            if (targ.Thing != null)
+            {
+                if (targ.Thing.Map != this.caster.Map)
+                {
+                    goodDest = IntVec3.Invalid;
+                    return false;
+                }
+                ShootLeanUtility.CalcShootableCellsOf(tempDestList, targ.Thing);
+                for (int i = 0; i < tempDestList.Count; i++)
+                {
+                    if (this.CanHitCellFromCellIgnoringRange(sourceCell, tempDestList[i], targ.Thing, targ.Thing.def.Fillage == FillCategory.Full))
+                    {
+                        goodDest = tempDestList[i];
+                        return true;
+                    }
+                }
+            }
+            else if (this.CanHitCellFromCellIgnoringRange(sourceCell, targ.Cell, targ.Thing))
+            {
+                goodDest = targ.Cell;
+                return true;
+            }
+            goodDest = IntVec3.Invalid;
+            return false;
+        }
+
+        // Added targetThing to parameters so we can calculate its height
+        private bool CanHitCellFromCellIgnoringRange(IntVec3 sourceSq, IntVec3 targetLoc, Thing targetThing = null, bool includeCorners = false)
+        {
+            // Vanilla checks
+            if (this.verbProps.mustCastOnOpenGround && (!targetLoc.Standable(this.caster.Map) || this.caster.Map.thingGrid.CellContains(targetLoc, ThingCategory.Pawn)))
+            {
+                return false;
+            }
+            if (this.verbProps.requireLineOfSight)
+            {
+                // Calculate shot vector
+                Vector3 shotSource = ShotSource;
+
+                Vector3 targetPos;
+                if (targetThing != null)
+                {
+                    Vector3 targDrawPos = targetThing.DrawPos;
+                    targetPos = new Vector3(targDrawPos.x, new CollisionVertical(targetThing).Max, targDrawPos.z);
+                }
+                else
+                {
+                    targetPos = targetLoc.ToVector3Shifted();
+                }
+                Ray shotLine = new Ray(shotSource, (targetPos - shotSource));
+
+                // Create validator to check for intersection with partial cover
+                Func<IntVec3, bool> validator = delegate (IntVec3 cell)
+                {
+                    Thing cover = cell.GetFirstPawn(caster.Map);
+                    if (cover == null)
+                    {
+                        cover = cell.GetCover(caster.Map);
+                    }
+                    if (cover != null && !cover.IsTree() && !cover.Position.AdjacentTo8Way(sourceSq))
+                    {
+                        Bounds bounds = CE_Utility.GetBoundsFor(cover);
+
+                        // Check for intersect
+                        if (bounds.IntersectRay(shotLine))
+                        {
+                            if (Controller.settings.DebugDrawPartialLoSChecks) caster.Map.debugDrawer.FlashCell(cell, 0, bounds.size.y.ToString());
+                            return false;
+                        }
+                        else if (Controller.settings.DebugDrawPartialLoSChecks)
+                        {
+                            caster.Map.debugDrawer.FlashCell(cell, 0.7f, bounds.size.y.ToString());
+                        }
+                    }
+                    return true;
+                };
+                // Add validator to parameters
+                if (!includeCorners)
+                {
+                    if (!GenSight.LineOfSight(sourceSq, targetLoc, this.caster.Map, true, validator, 0, 0))
+                    {
+                        return false;
+                    }
+                }
+                else if (!GenSight.LineOfSightToEdges(sourceSq, targetLoc, this.caster.Map, true, validator))
+                {
+                    return false;
+                }
+            }
+            return true;
         }
 
         #endregion

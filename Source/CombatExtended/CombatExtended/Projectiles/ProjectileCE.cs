@@ -10,11 +10,8 @@ namespace CombatExtended
 {
     public abstract class ProjectileCE : ThingWithComps
     {
-        /// <summary>
-        /// Tree collision chance is multiplied by this factor
-        /// </summary>
-        private const float treeCollisionChance = 0.5f;
         private const int SuppressionRadius = 3;    // Suppression is applied within this area
+        private const int collisionCheckSize = 5;    // Check for collision with multi-cell pawns and apply suppression in area of this size, centered on flight path.
         
         protected Vector2 origin;
         
@@ -106,8 +103,7 @@ namespace CombatExtended
         	{
         		if (heightOutdated)
         		{
-		        	float seconds = Seconds;
-		        	heightInt = (float)Math.Round(shotHeight + shotSpeed * Mathf.Sin(shotAngle) * seconds - (CE_Utility.gravityConst * seconds * seconds) / 2f, 3);
+		        	heightInt = GetHeightAtTicks(FlightTicks);
 		        	heightOutdated = false;
         		}
         		return heightInt;
@@ -135,7 +131,7 @@ namespace CombatExtended
         /// <summary>
         /// The amount of ticks this projectile has remained in the air for.
         /// </summary>
-        protected int Ticks
+        protected int FlightTicks
         {
         	get
         	{
@@ -146,20 +142,7 @@ namespace CombatExtended
         {
         	get
         	{
-        		return (ticksToImpact == 0 ? StartingTicksToImpact : (float)Ticks);
-        	}
-        }
-        
-        /// <summary>
-        /// The amount of seconds multiplied by Ticks (or float StartingTicksToImpact when int ticksToImpact == 0).
-        /// 
-        /// This ensures that the projectile runs from 0, 1, 2, ... , n-2, n-1, n, StartingTicksToImpact with n = IntTicksToImpact = Mathf.CeilToInt(StartingTicksToImpact).
-        /// </summary>
-        protected float Seconds
-        {
-        	get
-        	{
-        		return fTicks / (float)GenTicks.TicksPerRealSecond;
+        		return (ticksToImpact == 0 ? StartingTicksToImpact : (float)FlightTicks);
         	}
         }
         #endregion
@@ -233,19 +216,19 @@ namespace CombatExtended
             {
                 launcher = null;
             }
-            Scribe_Values.LookValue<Vector2>(ref origin, "ori", default(Vector2), true);
+            Scribe_Values.Look(ref origin, "ori", default(Vector2), true);
             
-            Scribe_Defs.LookDef(ref equipmentDef, "ed");
-            Scribe_References.LookReference<Thing>(ref launcher, "lcr");
-            Scribe_Values.LookValue<bool>(ref landed, "lnd", false, false);
-            Scribe_Values.LookValue<int>(ref ticksToImpact, "tTI", 0, true);
+            Scribe_Defs.Look(ref equipmentDef, "ed");
+            Scribe_References.Look(ref launcher, "lcr");
+            Scribe_Values.Look(ref landed, "lnd", false, false);
+            Scribe_Values.Look(ref ticksToImpact, "tTI", 0, true);
 
             //Here be new variables
-            Scribe_Values.LookValue<float>(ref shotAngle, "ang", 0f, true);
-            Scribe_Values.LookValue<float>(ref shotRotation, "rot", 0f, true);
-            Scribe_Values.LookValue<float>(ref shotHeight, "hgt", 0f, true);
-            Scribe_Values.LookValue<float>(ref shotSpeed, "spd", 0f, true);
-            Scribe_Values.LookValue<bool>(ref canTargetSelf, "cts", false, false);
+            Scribe_Values.Look(ref shotAngle, "ang", 0f, true);
+            Scribe_Values.Look(ref shotRotation, "rot", 0f, true);
+            Scribe_Values.Look(ref shotHeight, "hgt", 0f, true);
+            Scribe_Values.Look(ref shotSpeed, "spd", 0f, true);
+            Scribe_Values.Look(ref canTargetSelf, "cts", false, false);
         }
 
         /// <summary>
@@ -288,10 +271,11 @@ namespace CombatExtended
         }
 
         //Removed minimum collision distance
-        private bool CheckForFreeInterceptBetween(Vector2 lastExactPos, Vector2 newExactPos)
+        private bool CheckForCollisionBetween(Vector2 lastExactPos, Vector2 newExactPos)
         {
             var lastPos = new IntVec3(lastExactPos);
         	var newPos = new IntVec3(newExactPos);
+            // Sanity checks
             if (newPos == lastPos)
             {
                 return false;
@@ -300,85 +284,139 @@ namespace CombatExtended
             {
                 return false;
             }
+
+            if (DebugViewSettings.drawInterceptChecks)
+            {
+                Map.debugDrawer.FlashLine(lastPos, newPos);
+            }
+
+            // Determine flight path
+            var from = new Vector3(lastExactPos.x, GetHeightAtTicks(FlightTicks - 1), lastExactPos.y);
+            var dest = new Vector3(newExactPos.x, GetHeightAtTicks(FlightTicks), newExactPos.y);
+            var shotLine = new Ray(from, (dest - from));
+
+            // Early opt-out, if we only moved by one cell only check the new cell
             if ((newPos - lastPos).LengthManhattan == 1)
             {
-                return CheckForFreeIntercept(newPos);
+                if (DebugViewSettings.drawInterceptChecks)
+                {
+                    Map.debugDrawer.FlashCell(newPos, 1, "1");
+                }
+                return CheckCellForCollision(newPos, shotLine);
             }
-            Vector2 currentExactPos = lastExactPos;
-            Vector2 flightVec = newExactPos - lastExactPos;
-            Vector2 sectionVec = flightVec.normalized * 0.2f;
-            int numSections = (int)(flightVec.magnitude / 0.2f);
-            checkedCells.Clear();
-            int currentSection = 0;
-            while (true)
-            {
-                currentExactPos += sectionVec;
-                var intVec3 = new IntVec3(currentExactPos);
-                if (!checkedCells.Contains(intVec3))
-                {
-                    if (!intVec3.InBounds(Map) || CheckForFreeIntercept(intVec3))
-                    {
-                        break;
-                    }
-                    checkedCells.Add(intVec3);
-                }
-                currentSection++;
-                if (currentSection > numSections)
-                {
-                    return false;
-                }
-                if (intVec3 == newPos)
-                {
-                    return false;
-                }
-            }
-            return true;
-        }
-        
-        /// <summary>
-        ///  Takes into account the target being downed and the projectile having been fired while the target was downed, and the target's bodySize
-        /// </summary>
-        /// <param name="thing">The Thing to be tested for impact at a given float height.</param>
-        /// <param name="height">The height in vertical cells [vcells] to test for.</param>
-        /// <returns>Whether an impact has occured (True) or not (False).</returns>
-        private bool ImpactThroughBodySize(Thing thing, float height)
-        {
-            Pawn pawn = thing as Pawn;
 
-            if (pawn != null)
+            // Iterate through all cells between the last and the new position
+            var cells = GenSight.PointsOnLineOfSight(lastPos, newPos);
+            foreach(IntVec3 cell in cells)
             {
-                ApplySuppression(pawn);
-
-                //Check horizontal distance
-                if (CE_Utility.ClosestDistBetween(origin, Destination, new Vector2(pawn.DrawPos.x, pawn.DrawPos.z)) <= CE_Utility.GetCollisionWidth(pawn))
+                if (CheckCellForCollision(cell, shotLine))
                 {
-                    //Check vertical distance
-                    if (CE_Utility.GetCollisionVertical(thing).Includes(height))
-                    {
-                        Impact(thing);
-                        return true;
-                    }
-                }
-            }
-            if (thing.def.Fillage == FillCategory.Full)
-            {
-                Impact(thing);
-                return true;
-            }
-            if (thing.def.fillPercent > 0)
-            {
-                if (CE_Utility.GetCollisionVertical(thing).Includes(height))
-                {
-                    Impact(thing);
                     return true;
+                }
+
+                if (DebugViewSettings.drawInterceptChecks)
+                {
+                    Map.debugDrawer.FlashCell(cell, 1, "o");
                 }
             }
             return false;
         }
 
+        /// <summary>
+        /// Checks whether a collision occurs along flight path within this cell.
+        /// </summary>
+        /// <param name="cell">Where to check for collisions in</param>
+        /// <param name="shotLine">Projectile's flight path</param>
+        /// <returns>True if collision occured, false otherwise</returns>
+        private bool CheckCellForCollision(IntVec3 cell, Ray shotLine)
+        {
+            //Check for minimum collision distance
+            float distFromOrigin = (cell - OriginIV3).LengthHorizontalSquared;
+            if (!def.projectile.alwaysFreeIntercept
+                && minCollisionSqr <= 1f
+                ? distFromOrigin < 1f
+                : distFromOrigin < Mathf.Min(144f, minCollisionSqr / 4))
+            {
+                return false;
+            }
+            List<Thing> mainThingList = new List<Thing>(base.Map.thingGrid.ThingsListAtFast(cell)).Where(t => t.def.useHitPoints && (t is Pawn || t.def.Fillage != FillCategory.None)).ToList();
+
+            //Find pawns in adjacent cells and append them to main list
+            List<IntVec3> adjList = new List<IntVec3>();
+            adjList.AddRange(GenAdj.CellsAdjacentCardinal(cell, Rot4.FromAngleFlat(shotRotation), new IntVec2(collisionCheckSize, 0)).ToList());
+
+            //Iterate through adjacent cells and find all the pawns
+            foreach (IntVec3 curCell in adjList)
+            {
+                if (curCell != cell && curCell.InBounds(base.Map))
+                {
+                    mainThingList.AddRange(Map.thingGrid.ThingsListAtFast(curCell)
+                        .Where(thing => thing.def.category == ThingCategory.Pawn));
+
+                    if (DebugViewSettings.drawInterceptChecks)
+                    {
+                        Map.debugDrawer.FlashCell(curCell, 0.7f);
+                    }
+                }
+            }
+
+            foreach (Thing thing in mainThingList.Distinct())
+            {
+                if (thing == launcher && !canTargetSelf) continue;
+
+                // Skip collision detection for walls and such
+                if (thing.def.Fillage == FillCategory.Full)
+                {
+                    Impact(thing);
+                    return true;
+                }
+
+                // Apply suppression
+                Pawn pawn = thing as Pawn;
+                if (pawn != null)
+                {
+                    ApplySuppression(pawn);
+                }
+
+                // Check for collision
+                if (TryCollideWith(thing, shotLine)) return true;
+            }
+            return false;
+        }
+
+        /// <summary>
+        /// Tries to impact the thing based on whether it intersects the given flight path. Trees have RNG chance to not collide even on intersection. 
+        /// </summary>
+        /// <param name="thing">What to impact</param>
+        /// <param name="shotLine">Projectile's path of travel</param>
+        /// <returns>True if impact occured, false otherwise</returns>
+        private bool TryCollideWith(Thing thing, Ray shotLine)
+        {
+            // Trees have RNG chance to collide
+            if (thing.IsTree())
+            {
+                float chance = thing.def.fillPercent * ((thing.Position - OriginIV3).LengthHorizontal / 40);
+                if (Controller.settings.DebugShowTreeCollisionChance) MoteMaker.ThrowText(thing.Position.ToVector3Shifted(), thing.Map, chance.ToString());
+                if (!Rand.Chance(chance)) return false;
+            }
+            else
+            {
+                var bounds = CE_Utility.GetBoundsFor(thing);
+                if (!bounds.IntersectRay(shotLine))
+                {
+                    return false;
+                }
+            }
+
+
+            if (DebugViewSettings.drawInterceptChecks) MoteMaker.ThrowText(thing.Position.ToVector3Shifted(), thing.Map, "x", Color.red);
+            Impact(thing);
+            return true;
+        }
+
         private void ApplySuppression(Pawn pawn)
         {
-            PersonalShield shield = null;
+            ShieldBelt shield = null;
             if (pawn.RaceProps.Humanlike)
             {
                 // check for shield user
@@ -386,7 +424,7 @@ namespace CombatExtended
                 List<Apparel> wornApparel = pawn.apparel.WornApparel;
                 for (int i = 0; i < wornApparel.Count; i++)
                 {
-                    var personalShield = wornApparel[i] as PersonalShield;
+                    var personalShield = wornApparel[i] as ShieldBelt;
                     if (personalShield != null)
                     {
                         shield = personalShield;
@@ -403,7 +441,6 @@ namespace CombatExtended
                 suppressionAmount = def.projectile.damageAmountBase;
                 ProjectilePropertiesCE propsCE = def.projectile as ProjectilePropertiesCE;
                 float penetrationAmount = propsCE == null ? 0f : propsCE.armorPenetration;
-                //Log.Message(string.Concat("CE adding suppression: ", suppressionAmount.ToString(), " * (1 - (", compSuppressable.ParentArmor.ToString(), " - ", penetrationAmount.ToString(), ")) = ", (suppressionAmount * (1 - Mathf.Clamp(compSuppressable.ParentArmor - penetrationAmount, 0, 1))).ToString(), " to Pawn ", pawn.ToString()));
                 suppressionAmount *= 1 - Mathf.Clamp(compSuppressable.ParentArmor - penetrationAmount, 0, 1);
                 compSuppressable.AddSuppression(suppressionAmount, OriginIV3);
             }
@@ -417,7 +454,7 @@ namespace CombatExtended
             {
                 return;
             }
-            Vector2 exactPosition = Vec2Position;
+            Vector2 lastExactPosition = Vec2Position;
             ticksToImpact--;
             if (!ExactPosition.InBounds(base.Map))
             {
@@ -429,7 +466,7 @@ namespace CombatExtended
             heightOutdated = true;
             if (ticksToImpact >= 0
                 && !def.projectile.flyOverhead
-                && CheckForFreeInterceptBetween(exactPosition, Vec2Position))
+                && CheckForCollisionBetween(lastExactPosition, Vec2Position))
             {
                 return;
             }
@@ -448,101 +485,6 @@ namespace CombatExtended
             {
                 ambientSustainer.Maintain();
             }
-        }
-
-        //Added collision detection for cover objects, changed pawn collateral chances
-        private bool CheckForFreeIntercept(IntVec3 cell)
-        {
-            //Check for minimum collision distance
-            float distFromOrigin = (cell - OriginIV3).LengthHorizontalSquared;
-            if (!def.projectile.alwaysFreeIntercept
-                && minCollisionSqr <= 1f
-                ? distFromOrigin < 1f
-                : distFromOrigin < Mathf.Min(144f, minCollisionSqr / 4))
-            {
-                return false;
-            }
-            List<Thing> mainThingList = new List<Thing>(base.Map.thingGrid.ThingsListAtFast(cell)).Where(t => !(t is ProjectileCE) && !(t is Mote)).ToList();
-
-            //Find pawns in adjacent cells and append them to main list
-            List<IntVec3> adjList = new List<IntVec3>();
-            IntVec2 size = new IntVec2(0, 0);
-            	//HACK : Potential error
-            Vector2 shotVec = Quaternion.AngleAxis(shotRotation, Vector3.up) * Vector2.down;
-
-            //Check if bullet is going north-south or west-east
-            if (Rotation.IsHorizontal)
-            {
-                size.x = 3;
-            }
-            else
-            {
-                size.z = 3;
-            }
-            adjList.AddRange(GenAdj.CellsAdjacentCardinal(cell, Rotation, size).ToList());
-
-            //Iterate through adjacent cells and find all the pawns
-            for (int i = 0; i < adjList.Count; i++)
-            {
-                if (!adjList[i].Equals(cell) && adjList[i].InBounds(base.Map))
-                {
-                    mainThingList.AddRange(Map.thingGrid.ThingsListAtFast(adjList[i])
-                    	.Where(thing => thing.def.category == ThingCategory.Pawn));
-                }
-            }
-            
-            //Check for entries first so we avoid doing costly height calculations
-            if (mainThingList.Count > 0)
-            {
-            	foreach (Thing thing in mainThingList.Distinct())
-            	{
-                    if (thing.def.Fillage == FillCategory.Full) //ignore height
-                    {
-                    	Impact(thing);
-                        return true;
-                    }
-                    //Check for trees		--		HARDCODED RNG IN HERE
-                    if (thing.def.category == ThingCategory.Plant && thing.def.altitudeLayer == AltitudeLayer.Building &&
-                        Rand.Value <
-                        thing.def.fillPercent * Mathf.Lerp(0f, 1f / treeCollisionChance, distFromOrigin / 40) *
-                        treeCollisionChance)
-                    {
-                        Impact(thing);
-                        return true;
-                    }
-
-                    if ((launcher == null || thing != launcher || canTargetSelf) 
-                        && (thing.def.category == ThingCategory.Pawn || thing.def.fillPercent > 0) 
-                        && ImpactThroughBodySize(thing, Height))
-                        return true;
-
-                    /*
-                    if (launcher != null && thing == launcher && !canTargetSelf)
-                    {
-                    	return false;
-                    }
-
-                    
-                    //Checking for pawns/cover
-                    if (thing.def.category == ThingCategory.Pawn)
-                    {
-                        // Decrease chance to hit friendly target
-                        Pawn pawn = thing as Pawn;
-                        if (!canTargetSelf && launcher != null && pawn.Faction != null && launcher.Faction != null && !pawn.Faction.HostileTo(launcher.Faction) && Rand.Value > 0.3)
-                        {
-                            return false;
-                        }
-                        return ImpactThroughBodySize(thing, Height);
-                    }
-
-                    //Checking for pawns/cover
-                    if (thing.def.fillPercent > 0) //Need to check for fillPercent here or else will be impacting things like motes, etc.
-                    {
-                        return ImpactThroughBodySize(thing, Height);
-                    }*/
-                }
-            }
-            return false;
         }
 
         //Unmodified
@@ -575,9 +517,18 @@ namespace CombatExtended
             }
             //Modified
             var height = Height;
+
+            // Determine flight path - Need to refactor this to be less hacky
+            var pos = Vec2Position;
+            var nextPos = Vector2.Lerp(origin, Destination, (fTicks + 1) / StartingTicksToImpact);
+
+            var curPos = new Vector3(pos.x, GetHeightAtTicks(FlightTicks), pos.y);
+            var dest = new Vector3(nextPos.x, GetHeightAtTicks(FlightTicks + 1), nextPos.y);
+            var shotLine = new Ray(origin, (dest - curPos));
+
             // FIXME : Early opt-out
-            Thing thing = Map.thingGrid.ThingAt(Position, ThingCategory.Pawn);
-            if (thing != null && ImpactThroughBodySize(thing, height))
+            Thing thing = Position.GetFirstPawn(Map);
+            if (thing != null && TryCollideWith(thing, shotLine))
             {
                 return;
             }
@@ -585,7 +536,7 @@ namespace CombatExtended
             if (list.Count > 0)
             {
 				foreach (var thing2 in list) {
-					if (ImpactThroughBodySize(thing2, height))
+					if (TryCollideWith(thing2, shotLine))
 						return;
 				}
             }
@@ -612,6 +563,12 @@ namespace CombatExtended
             }
 
             Destroy();
+        }
+
+        private float GetHeightAtTicks(int ticks)
+        {
+            float seconds = ticks.TicksToSeconds();
+            return (float)Math.Round(shotHeight + shotSpeed * Mathf.Sin(shotAngle) * seconds - (CE_Utility.gravityConst * seconds * seconds) / 2f, 3);
         }
     }
 }

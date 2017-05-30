@@ -23,7 +23,7 @@ namespace CombatExtended
             get
             {
                 if (_compReloader == null && turret != null)
-                    _compReloader = turret.compAmmo;
+                    _compReloader = turret.CompAmmo;
                 return _compReloader;
             }
         }
@@ -105,7 +105,7 @@ namespace CombatExtended
                 waitToil.actor.pather.StopDead();
                 turret.isReloading = true;
                 if (compReloader.Props.throwMote)
-                    MoteMaker.ThrowText(turret.Position.ToVector3Shifted(), Find.VisibleMap, string.Format("CE_ReloadingTurretMote".Translate(), TargetThingA.LabelCapNoCount));
+                    MoteMaker.ThrowText(turret.Position.ToVector3Shifted(), turret.Map, string.Format("CE_ReloadingTurretMote".Translate(), TargetThingA.LabelCapNoCount));
                 compReloader.TryUnload();
             };
             waitToil.defaultCompleteMode = ToilCompleteMode.Delay;

@@ -23,11 +23,6 @@
     <tickerType>Never</tickerType>
     <comps>
       <li Class="CompProperties_Forbiddable"/>
-      <!--
-      <li>
-        <compClass>CompColorable</compClass>
-      </li>
-      -->
     </comps>
     <recipeMaker>
       <workSpeedStat>TailoringSpeed</workSpeedStat>
@@ -43,15 +38,15 @@
     <thingCategories>
       <li>Loadout</li>
     </thingCategories>
+    <generateAllowChance>0.67</generateAllowChance>
   </ThingDef>
 
   <!-- ============= Stuffed apparel =================-->
 
-  <ThingDef Class="CombatExtended.Apparel_VisibleAccessoryDef" ParentName="ApparelCarryGearBase">
+  <ThingDef ParentName="ApparelCarryGearBase">
     <defName>Apparel_TacVest</defName>
     <label>tactical vest</label>
-	<ThingClass>CombatExtended.Apparel_VisibleAccessory</ThingClass>
-	<order>1</order>
+    <ThingClass>CombatExtended.Apparel_VisibleAccessory</ThingClass>
     <description>A loadbearing vest with a number of pouches to store magazines and other equipment.\n\nSpeeds up reloading but is quite bulky to wear.</description>
     <graphicData>
       <texPath>Things/Apparel/TacRigging/TacRigging</texPath>
@@ -73,38 +68,31 @@
       <Cloth>60</Cloth>
     </costList>
     <apparel>
+      <careIfWornByCorpse>false</careIfWornByCorpse>
       <bodyPartGroups>
         <li>Shoulders</li>
       </bodyPartGroups>
       <layers>
-        <li>Accessory</li>
+        <li>Belt</li>
       </layers>
-      <commonality>1</commonality>
       <tags>
-        <li>Outlander</li>
         <li>Military</li>
       </tags>
       <defaultOutfitTags>
         <li>Soldier</li>
       </defaultOutfitTags>
     </apparel>
-    <!--
-    <colorGenerator Class="ColorGenerator_Options">
-      <options>
-        <li>
-          <weight>10</weight>
-          <only>RGBA(0.33,0.33,0.33,1)</only>
-        </li>
-      </options>
-    </colorGenerator>
-    -->
+    <modExtensions>
+      <li Class="CombatExtended.VisibleAccessoryDefExtension">
+        <order>1</order>
+      </li>
+    </modExtensions>
   </ThingDef>
 
-  <ThingDef Class="CombatExtended.Apparel_VisibleAccessoryDef" ParentName="ApparelCarryGearBase">
+  <ThingDef ParentName="ApparelCarryGearBase">
     <defName>Apparel_Backpack</defName>
     <label>backpack</label>
 	<ThingClass>CombatExtended.Apparel_VisibleAccessory</ThingClass>
-	<order>2</order>
     <description>A comfortable and spacious backpack for storing all kinds of items.</description>
     <graphicData>
       <texPath>Things/Apparel/Backpack/Milpack</texPath>
@@ -124,13 +112,13 @@
       <Cloth>60</Cloth>
     </costList>
     <apparel>
+      <careIfWornByCorpse>false</careIfWornByCorpse>
       <bodyPartGroups>
         <li>Torso</li>
       </bodyPartGroups>
       <layers>
-        <li>Accessory</li>
+        <li>Belt</li>
       </layers>
-      <commonality>1</commonality>
       <tags>
         <li>Outlander</li>
         <li>Military</li>
@@ -139,16 +127,11 @@
         <li>Soldier</li>
       </defaultOutfitTags>
     </apparel>
-    <!--
-    <colorGenerator Class="ColorGenerator_Options">
-      <options>
-        <li>
-          <weight>10</weight>
-          <only>RGBA(0.33,0.33,0.33,1)</only>
-        </li>
-      </options>
-    </colorGenerator>
-    -->
+    <modExtensions>
+      <li Class="CombatExtended.VisibleAccessoryDefExtension">
+        <order>2</order>
+      </li>
+    </modExtensions>
   </ThingDef>
 
 </ThingDefs>

@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+
+	<!-- ========== Base Bear ========== -->
+
+	<Operation Class="PatchOperationAddModExtension">
+		<xpath>*/ThingDef[@Name="BaseBear"]</xpath>
+		<value>
+			<li Class="CombatExtended.RacePropertiesExtensionCE">
+				<bodyType>Quadruped</bodyType>
+			</li>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>*/ThingDef[@Name="BaseBear"]/statBases/MoveSpeed</xpath>
+		<value>
+			<MoveSpeed>5.6</MoveSpeed>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>*/ThingDef[@Name="BaseBear"]/statBases</xpath>
+		<value>
+			<ArmorRating_Blunt>0.13</ArmorRating_Blunt>
+			<ArmorRating_Sharp>0.15</ArmorRating_Sharp>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>*/ThingDef[@Name="BaseBear"]/verbs</xpath>
+		<value>
+			<verbs>
+				<li Class="CombatExtended.VerbPropertiesCE">
+				  <verbClass>CombatExtended.Verb_MeleeAttackCE</verbClass>
+				  <defaultCooldownTime>2.0</defaultCooldownTime>
+				  <meleeDamageBaseAmount>25</meleeDamageBaseAmount>
+				  <meleeDamageDef>Slash</meleeDamageDef>
+				  <linkedBodyPartsGroup>FrontLeftPaw</linkedBodyPartsGroup>
+				  <meleeArmorPenetration>0.18</meleeArmorPenetration>
+				  <surpriseAttack>
+				    <extraMeleeDamages>
+				      <li>
+				        <def>Stun</def>
+				        <amount>21</amount>
+				      </li>
+				    </extraMeleeDamages>
+				  </surpriseAttack>
+				</li>
+				<li Class="CombatExtended.VerbPropertiesCE">
+				  <verbClass>CombatExtended.Verb_MeleeAttackCE</verbClass>
+				  <defaultCooldownTime>2.0</defaultCooldownTime>
+				  <meleeDamageBaseAmount>25</meleeDamageBaseAmount>
+				  <meleeDamageDef>Slash</meleeDamageDef>
+				  <linkedBodyPartsGroup>FrontRightPaw</linkedBodyPartsGroup>
+				  <meleeArmorPenetration>0.18</meleeArmorPenetration>
+				  <surpriseAttack>
+				    <extraMeleeDamages>
+				      <li>
+				        <def>Stun</def>
+				        <amount>21</amount>
+				      </li>
+				    </extraMeleeDamages>
+				  </surpriseAttack>
+				</li>
+				<li Class="CombatExtended.VerbPropertiesCE">
+				  <verbClass>CombatExtended.Verb_MeleeAttackCE</verbClass>
+				  <defaultCooldownTime>1.65</defaultCooldownTime>
+				  <meleeDamageBaseAmount>30</meleeDamageBaseAmount>
+				  <meleeDamageDef>Bite</meleeDamageDef>
+				  <linkedBodyPartsGroup>Teeth</linkedBodyPartsGroup>
+				  <meleeArmorPenetration>0.22</meleeArmorPenetration>
+				  <surpriseAttack>
+				    <extraMeleeDamages>
+				      <li>
+				        <def>Stun</def>
+				        <amount>21</amount>
+				      </li>
+				    </extraMeleeDamages>
+				  </surpriseAttack>
+				</li>
+			</verbs>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>*/ThingDef[@Name="BaseBear"]/race/baseBodySize</xpath>
+		<value>
+			<baseBodySize>1.15</baseBodySize>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>*/ThingDef[@Name="BaseBear"]/race/baseHealthScale</xpath>
+		<value>
+			<baseHealthScale>1.3</baseHealthScale>
+		</value>
+	</Operation>
+
+	<!-- ========== Polar Bear ========== -->
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>*/ThingDef[defName="PolarBear"]/statBases</xpath>
+		<value>
+			<MoveSpeed>4.0</MoveSpeed>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>*/ThingDef[defName="PolarBear"]/race</xpath>
+		<value>
+			<baseBodySize>1.55</baseBodySize>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>*/ThingDef[defName="PolarBear"]/race</xpath>
+		<value>
+			<baseHealthScale>1.75</baseHealthScale>
+		</value>
+	</Operation>
+
+</Patch>
+

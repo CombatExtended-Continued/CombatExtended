@@ -99,7 +99,7 @@ namespace CombatExtended
 
         public override float GetPriority(Pawn pawn)
         {
-            if (!ModSettings.autoTakeAmmo || !ModSettings.enableAmmoSystem) return 0f;
+            if (!Controller.settings.AutoTakeAmmo || !Controller.settings.EnableAmmoSystem) return 0f;
 
             var priority = GetPriorityWork(pawn);
 
@@ -122,7 +122,7 @@ namespace CombatExtended
 
         protected override Job TryGiveJob(Pawn pawn)
         {
-            if (!ModSettings.enableAmmoSystem || !ModSettings.autoTakeAmmo)
+            if (!Controller.settings.EnableAmmoSystem || !Controller.settings.AutoTakeAmmo)
             {
                 return null;
             }
@@ -234,7 +234,7 @@ namespace CombatExtended
                     }
                 }
                 
-                Room room = RoomQuery.RoomAtFast(pawn.Position, pawn.Map);
+                Room room = RegionAndRoomQuery.RoomAtFast(pawn.Position, pawn.Map);
                 
                 // Find weapon in inventory and try to switch if any ammo in inventory.
                 if (GetPriorityWork(pawn) == WorkPriority.Weapon && !hasPrimary)
@@ -262,7 +262,7 @@ namespace CombatExtended
                         	&& w.MarketValue > 500 && pawn.CanReserve(w, 1)
                         	&& pawn.CanReach(w, PathEndMode.Touch, Danger.Deadly, true)
                         	&& ((!pawn.Faction.HostileTo(Faction.OfPlayer) && !pawn.Map.areaManager.Home[w.Position]) || pawn.Faction.HostileTo(Faction.OfPlayer))
-                        	&& (w.Position.DistanceToSquared(pawn.Position) < 15f || room == RoomQuery.RoomAtFast(w.Position, pawn.Map));
+                        	&& (w.Position.DistanceToSquared(pawn.Position) < 15f || room == RegionAndRoomQuery.RoomAtFast(w.Position, pawn.Map));
                         
 						// generate a list of all weapons (this includes melee weapons)
 						List<Thing> allWeapons = (
@@ -304,7 +304,7 @@ namespace CombatExtended
 	                                Predicate<Thing> validatorA = (Thing t) => t.def.category == ThingCategory.Item
 	                                	&& t is AmmoThing && pawn.CanReserve(t, 1)
 	                                	&& pawn.CanReach(t, PathEndMode.Touch, Danger.Deadly, true)
-	                                	&& (t.Position.DistanceToSquared(pawn.Position) < 20f || room == RoomQuery.RoomAtFast(t.Position, pawn.Map));
+	                                	&& (t.Position.DistanceToSquared(pawn.Position) < 20f || room == RegionAndRoomQuery.RoomAtFast(t.Position, pawn.Map));
 	
 	                                List<Thing> thingAmmoList = (
 	                                    from t in pawn.Map.listerThings.ThingsInGroup(ThingRequestGroup.HaulableAlways)
@@ -377,7 +377,7 @@ namespace CombatExtended
                         && pawn.CanReach(t, PathEndMode.Touch, Danger.Deadly, true)
                         && ((pawn.Faction.IsPlayer && !ForbidUtility.IsForbidden(t, pawn))
                         || (!pawn.Faction.IsPlayer && (!pawn.Faction.HostileTo(Faction.OfPlayer) && !pawn.Map.areaManager.Home[t.Position]) || (pawn.Faction.HostileTo(Faction.OfPlayer))))
-                        && (t.Position.DistanceToSquared(pawn.Position) < 20f || room == RoomQuery.RoomAtFast(t.Position, pawn.Map));
+                        && (t.Position.DistanceToSquared(pawn.Position) < 20f || room == RegionAndRoomQuery.RoomAtFast(t.Position, pawn.Map));
                         List<Thing> curThingList = (
                             from t in pawn.Map.listerThings.ThingsInGroup(ThingRequestGroup.HaulableAlways)
                             where validator(t)
@@ -506,7 +506,7 @@ namespace CombatExtended
 
         private static Job GotoForce(Pawn pawn, LocalTargetInfo target, PathEndMode pathEndMode)
         {
-            using (PawnPath pawnPath = pawn.Map.pathFinder.FindPath(pawn.Position, target, TraverseParms.For(pawn, Danger.Deadly, TraverseMode.PassAnything, false), pathEndMode))
+            using (PawnPath pawnPath = pawn.Map.pathFinder.FindPath(pawn.Position, target, TraverseParms.For(pawn, Danger.Deadly, TraverseMode.PassAllDestroyableThings, false), pathEndMode))
             {
                 IntVec3 cellBeforeBlocker;
                 Thing thing = pawnPath.FirstBlockingBuilding(out cellBeforeBlocker, pawn);
@@ -572,7 +572,7 @@ namespace CombatExtended
             Room room = pawn.GetRoom();
             Predicate<Thing> validator = (Thing t) => pawn.CanReserve(t, 1) 
             && pawn.CanReach(t, PathEndMode.Touch, Danger.Deadly, true) 
-            && (t.Position.DistanceToSquared(pawn.Position) < 12f || room == RoomQuery.RoomAtFast(t.Position, t.Map));
+            && (t.Position.DistanceToSquared(pawn.Position) < 12f || room == RegionAndRoomQuery.RoomAtFast(t.Position, t.Map));
             List<Thing> aList = (
                 from t in pawn.Map.listerThings.ThingsInGroup(ThingRequestGroup.Apparel)
                 orderby t.MarketValue - t.Position.DistanceToSquared(pawn.Position) * 2f descending

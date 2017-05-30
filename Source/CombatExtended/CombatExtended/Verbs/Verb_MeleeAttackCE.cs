@@ -349,7 +349,9 @@ namespace CombatExtended
         {
             Pawn pawn = target.Thing as Pawn;
             if (pawn == null || CasterPawn == null) return BodyPartHeight.Undefined;
-            BodyPartHeight maxHeight = CE_Utility.GetCollisionBodyHeight(pawn, CE_Utility.GetCollisionVertical(CasterPawn).max * 1.2f);
+            var casterReach = new CollisionVertical(CasterPawn).Max * 1.2f;
+            var targetHeight = new CollisionVertical(pawn);
+            BodyPartHeight maxHeight = targetHeight.GetCollisionBodyHeight(casterReach);
             BodyPartHeight height = (BodyPartHeight)Rand.RangeInclusive(1, (int)maxHeight);
             return height;
         }
@@ -359,7 +361,7 @@ namespace CombatExtended
 		{
 			if (this.ownerEquipment != null && this.ownerEquipment.Stuff != null)
 			{
-				if (this.verbProps.meleeDamageDef.armorCategory == DamageArmorCategory.Sharp)
+				if (this.verbProps.meleeDamageDef.armorCategory == DamageArmorCategoryDefOf.Sharp)
 				{
 					if (!this.ownerEquipment.Stuff.stuffProps.soundMeleeHitSharp.NullOrUndefined())
 					{
@@ -383,7 +385,7 @@ namespace CombatExtended
 		{
 			if (this.ownerEquipment != null && this.ownerEquipment.Stuff != null)
 			{
-				if (this.verbProps.meleeDamageDef.armorCategory == DamageArmorCategory.Sharp)
+				if (this.verbProps.meleeDamageDef.armorCategory == DamageArmorCategoryDefOf.Sharp)
 				{
 					if (!this.ownerEquipment.Stuff.stuffProps.soundMeleeHitSharp.NullOrUndefined())
 					{

@@ -20,19 +20,8 @@
       <Beauty>-60</Beauty>
     </statBases>
     <comps>
-      <li Class="CombatExtended.CompProperties_TurretInit"/>
       <li Class="CompProperties_Forbiddable"/>
     </comps>
-    <recipeMaker>
-      <workSpeedStat>SmithingSpeed</workSpeedStat>
-      <workSkill>Crafting</workSkill>
-      <effectWorking>Smith</effectWorking>
-      <soundWorking>Recipe_Smith</soundWorking>
-      <recipeUsers>
-        <li>TableMachining</li>
-      </recipeUsers>
-      <unfinishedThingDef>UnfinishedTurretGun</unfinishedThingDef>
-    </recipeMaker>
     <tickerType>Normal</tickerType>
     <passability>PassThroughOnly</passability>
     <pathCost>50</pathCost>
@@ -49,6 +38,14 @@
     </tradeTags>
   </ThingDef>
 
+  <ThingDef Name="TurretAutoBase" ParentName="TurretBase" Abstract="True">
+    <designationCategory>Security</designationCategory>
+    <comps>
+      <li Class="CompProperties_Flickable"/>
+      <li Class="CompProperties_Breakdownable"/>
+    </comps>
+  </ThingDef>
+
   <ThingDef Name="TurretMannedBase" ParentName="TurretBase" Abstract="True">
     <hasInteractionCell>True</hasInteractionCell>
     <interactionCellOffset>(0,0,-1)</interactionCellOffset>
@@ -57,11 +54,34 @@
         <manWorkType>Violent</manWorkType>
       </li>
     </comps>
+    <recipeMaker>
+      <workSpeedStat>SmithingSpeed</workSpeedStat>
+      <workSkill>Crafting</workSkill>
+      <effectWorking>Smith</effectWorking>
+      <soundWorking>Recipe_Smith</soundWorking>
+      <recipeUsers>
+        <li>TableMachining</li>
+      </recipeUsers>
+      <unfinishedThingDef>UnfinishedTurretGun</unfinishedThingDef>
+    </recipeMaker>
+  </ThingDef>
+
+  <ThingDef Name="TurretMannedCraftableBase" ParentName="TurretMannedBase" Abstract="True">
+    <recipeMaker>
+      <workSpeedStat>SmithingSpeed</workSpeedStat>
+      <workSkill>Crafting</workSkill>
+      <effectWorking>Smith</effectWorking>
+      <soundWorking>Recipe_Smith</soundWorking>
+      <recipeUsers>
+        <li>TableMachining</li>
+      </recipeUsers>
+      <unfinishedThingDef>UnfinishedTurretGun</unfinishedThingDef>
+    </recipeMaker>
   </ThingDef>
 
   <!--=============== Blaster Turret ===============-->
 
-  <ThingDef ParentName="TurretBase">
+  <ThingDef ParentName="TurretAutoBase">
     <defName>Turret_Blaster</defName>
     <label>charge blaster auto-turret</label>
     <graphicData>
@@ -80,8 +100,6 @@
         <compClass>CompPowerTrader</compClass>
         <basePowerConsumption>950</basePowerConsumption>
       </li>
-      <li Class="CompProperties_Flickable"/>
-      <li Class="CompProperties_Breakdownable"/>
     </comps>
     <description>Automatic turret equipped with a charge blaster.</description>
     <costList>
@@ -93,22 +111,16 @@
       <turretGunDef>Gun_BlasterTurret</turretGunDef>
       <turretTopgraphicPath>Things/Building/Turrets/BlasterTurret_Top</turretTopgraphicPath>
     </building>
-    <recipeMaker>
-      <researchPrerequisite>CE_ChargeTurret</researchPrerequisite>
-      <skillRequirements>
-        <li>
-          <skill>Crafting</skill>
-          <minLevel>10</minLevel>
-        </li>
-      </skillRequirements>
-    </recipeMaker>
+    <researchPrerequisites>
+      <li>CE_ChargeTurret</li>
+    </researchPrerequisites>
     <specialDisplayRadius>40</specialDisplayRadius>
     <minifiedDef>MinifiedTurret_Blaster</minifiedDef>
   </ThingDef>
 
   <!--=============== Heavy Turret ===============-->
 
-  <ThingDef ParentName="TurretBase">
+  <ThingDef ParentName="TurretAutoBase">
     <defName>Turret_Heavy</defName>
     <label>heavy auto-turret</label>
     <graphicData>
@@ -133,30 +145,22 @@
       <turretGunDef>Gun_HeavyTurret</turretGunDef>
       <turretTopgraphicPath>Things/Building/Turrets/HeavyTurret_Top</turretTopgraphicPath>
     </building>
-    <recipeMaker>
-      <researchPrerequisite>CE_HeavyTurret</researchPrerequisite>
-      <skillRequirements>
-        <li>
-          <skill>Crafting</skill>
-          <minLevel>10</minLevel>
-        </li>
-      </skillRequirements>
-    </recipeMaker>
     <specialDisplayRadius>40</specialDisplayRadius>
     <comps>
       <li Class="CompProperties_Power">
         <compClass>CompPowerTrader</compClass>
         <basePowerConsumption>700</basePowerConsumption>
       </li>
-      <li Class="CompProperties_Flickable"/>
-      <li Class="CompProperties_Breakdownable"/>
     </comps>
     <minifiedDef>MinifiedTurret_Heavy</minifiedDef>
+    <researchPrerequisites>
+      <li>CE_ChargeTurret</li>
+    </researchPrerequisites>
   </ThingDef>
 
   <!--=============== M240B ===============-->
 
-  <ThingDef ParentName="TurretMannedBase">
+  <ThingDef ParentName="TurretMannedCraftableBase">
     <defName>Turret_M240B</defName>
     <label>M240B</label>
     <graphicData>
@@ -182,7 +186,7 @@
 
   <!--=============== KPV ===============-->
 
-  <ThingDef ParentName="TurretMannedBase">
+  <ThingDef ParentName="TurretMannedCraftableBase">
     <defName>Turret_KPV</defName>
     <label>KPV machine gun</label>
     <graphicData>
@@ -204,45 +208,14 @@
       <turretTopgraphicPath>Things/Building/Turrets/KPVT_Top</turretTopgraphicPath>
     </building>
     <recipeMaker>
-      <researchPrerequisite>MultibarrelWeapons</researchPrerequisite>
+      <researchPrerequisite>CE_TurretHeavyWeapons</researchPrerequisite>
     </recipeMaker>
     <minifiedDef>MinifiedTurret_KPV</minifiedDef>
   </ThingDef>
 
-  <!--=============== Flak cannon ===============-->
-
-  <ThingDef ParentName="TurretMannedBase">
-    <defName>Turret_Flak</defName>
-    <label>90mm flak turret</label>
-    <graphicData>
-      <texPath>Things/Building/Turrets/FlakTurret_Base</texPath>
-    </graphicData>
-    <statBases>
-      <MaxHitPoints>250</MaxHitPoints>
-      <WorkToMake>50000</WorkToMake>
-      <Mass>1000</Mass>
-      <Bulk>1000</Bulk>
-    </statBases>
-    <description>Old school anti-aircraft cannon. Ineffective against modern aviation but still popular on rimworlds for use against entrenched enemies and vehicles.</description>
-    <costList>
-      <Steel>1000</Steel>
-      <Component>15</Component>
-    </costList>
-    <specialDisplayRadius>16</specialDisplayRadius>
-    <building>
-      <turretGunDef>Gun_FlakTurret</turretGunDef>
-      <turretTopgraphicPath>Things/Building/Turrets/FlakTurret_Top</turretTopgraphicPath>
-    </building>
-    <size>(2,2)</size>
-    <recipeMaker>
-      <researchPrerequisite>MultibarrelWeapons</researchPrerequisite>
-    </recipeMaker>
-    <minifiedDef>MinifiedTurret_Flak</minifiedDef>
-  </ThingDef>
-
   <!--=============== AGS-30 ===============-->
 
-  <ThingDef ParentName="TurretMannedBase">
+  <ThingDef ParentName="TurretMannedCraftableBase">
     <defName>Turret_AGSThirty</defName>
     <label>AGS-30</label>
     <graphicData>
@@ -264,9 +237,41 @@
       <turretTopgraphicPath>Things/Building/Turrets/TurretGun_AGS30</turretTopgraphicPath>
     </building>
     <recipeMaker>
-      <researchPrerequisite>MultibarrelWeapons</researchPrerequisite>
+      <researchPrerequisite>CE_TurretHeavyWeapons</researchPrerequisite>
     </recipeMaker>
     <minifiedDef>MinifiedTurret_AGSThirty</minifiedDef>
+  </ThingDef>
+
+  <!--=============== Flak cannon ===============-->
+
+  <ThingDef ParentName="TurretMannedBase">
+    <defName>Turret_Flak</defName>
+    <label>90mm flak turret</label>
+    <graphicData>
+      <texPath>Things/Building/Turrets/FlakTurret_Base</texPath>
+    </graphicData>
+    <statBases>
+      <MaxHitPoints>250</MaxHitPoints>
+      <WorkToMake>50000</WorkToMake>
+      <Mass>1000</Mass>
+      <Bulk>1000</Bulk>
+    </statBases>
+    <description>Old school anti-aircraft cannon. Ineffective against modern aviation but still popular on rimworlds for use against entrenched enemies and vehicles.</description>
+    <costList>
+      <Steel>700</Steel>
+      <Component>6</Component>
+    </costList>
+    <specialDisplayRadius>16</specialDisplayRadius>
+    <building>
+      <turretGunDef>Gun_FlakTurret</turretGunDef>
+      <turretTopgraphicPath>Things/Building/Turrets/FlakTurret_Top</turretTopgraphicPath>
+    </building>
+    <size>(2,2)</size>
+    <minifiedDef>MinifiedTurret_Flak</minifiedDef>
+    <researchPrerequisites>
+      <li>CE_TurretHeavyWeapons</li>
+    </researchPrerequisites>
+    <designationCategory>Security</designationCategory>
   </ThingDef>
 
 </ThingDefs>

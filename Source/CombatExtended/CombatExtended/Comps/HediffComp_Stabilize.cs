@@ -26,6 +26,7 @@ namespace CombatExtended
             get
             {
                 float mod = bleedModifier;
+                if (parent is Hediff_MissingPart) mod *= 0.5f;
                 if (parent.Part.depth == BodyPartDepth.Inside) mod += internalBleedOffset;
                 return Mathf.Clamp01(mod);
             }
@@ -43,18 +44,18 @@ namespace CombatExtended
                 Log.Error("CE tried to stabilize without medicine");
                 return;
             }
-            float bleedReduction = 2f * medic.GetStatValue(StatDefOf.HealingQuality) * medicine.GetStatValue(StatDefOf.MedicalPotency);
+            float bleedReduction = 2f * medic.GetStatValue(StatDefOf.MedicalTendQuality) * medicine.GetStatValue(StatDefOf.MedicalPotency);
             bleedModifier = 1 - bleedReduction; // Especially high treatment quality extends time at 0% bleed by setting bleedModifier to a negative number
             stabilized = true;
         }
 
         public override void CompExposeData()
         {
-            Scribe_Values.LookValue(ref stabilized, "stabilized", false);
-            Scribe_Values.LookValue(ref bleedModifier, "bleedModifier", 1);
+            Scribe_Values.Look(ref stabilized, "stabilized", false);
+            Scribe_Values.Look(ref bleedModifier, "bleedModifier", 1);
         }
 
-        public override void CompPostTick()
+        public override void CompPostTick(ref float severityAdjustment)
         {
             // Increase bleed modifier once per second
             if (stabilized && bleedModifier < 1 && parent.ageTicks % 60 == 0)
@@ -77,7 +78,7 @@ namespace CombatExtended
         {
             get
             {
-                if (stabilized && !parent.IsOld() && !parent.IsTended()) return new TextureAndColor(StabilizedIcon, Color.white);
+                if (bleedModifier < 1 && !parent.IsOld() && !parent.IsTended()) return new TextureAndColor(StabilizedIcon, Color.white);
                 return TextureAndColor.None;
             }
         }

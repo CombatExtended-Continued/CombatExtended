@@ -26,8 +26,8 @@
   <ThingDef Name="12GaugeBase" ParentName="SmallAmmoBase" Abstract="True">
     <description>Extremely common shotgun caliber used in almost every application, from hunting over riot control to military firearms.</description>
     <statBases>
-	  <Mass>0.08</Mass>
-	  <Bulk>0.15</Bulk>
+	  <Mass>0.05</Mass>
+	  <Bulk>0.07</Bulk>
     </statBases>
 	<tradeTags>
 	  <li>CE_AutoEnableTrade</li>
@@ -36,7 +36,7 @@
     <thingCategories>
       <li>Ammo12Gauge</li>
     </thingCategories>
-    <stackLimit>200</stackLimit>
+    <stackLimit>350</stackLimit>
   </ThingDef>
 
   <ThingDef ParentName="12GaugeBase">
@@ -47,7 +47,7 @@
       <graphicClass>Graphic_StackCount</graphicClass>
     </graphicData>
     <statBases>
-      <MarketValue>0.23</MarketValue>
+      <MarketValue>0.15</MarketValue>
     </statBases>
     <ammoClass>BuckShot</ammoClass>
     <cookOffProjectile>Bullet_12Gauge_Buck</cookOffProjectile>
@@ -61,7 +61,7 @@
       <graphicClass>Graphic_StackCount</graphicClass>
     </graphicData>
     <statBases>
-      <MarketValue>0.23</MarketValue>
+      <MarketValue>0.15</MarketValue>
     </statBases>
     <ammoClass>BirdShot</ammoClass>
     <cookOffProjectile>Bullet_12Gauge_Bird</cookOffProjectile>
@@ -76,7 +76,7 @@
     </graphicData>
     <statBases>
 	  <Mass>0.1</Mass>
-      <MarketValue>0.30</MarketValue>
+      <MarketValue>0.15</MarketValue>
     </statBases>
     <ammoClass>Slug</ammoClass>
     <cookOffProjectile>Bullet_12Gauge_Slug</cookOffProjectile>
@@ -105,7 +105,7 @@
       <graphicClass>Graphic_StackCount</graphicClass>
     </graphicData>
     <statBases>
-      <MarketValue>0.48</MarketValue>
+      <MarketValue>0.43</MarketValue>
     </statBases>
     <ammoClass>ElectroSlug</ammoClass>
     <cookOffProjectile>Bullet_12Gauge_ElectroSlug</cookOffProjectile>
@@ -116,7 +116,7 @@
 	<ThingDef Name="Base12GaugeBullet" ParentName="BaseBullet" Abstract="true">
 		<projectile>
 			<damageDef>Bullet</damageDef>
-			<speed>70</speed>
+			<speed>101</speed>
 			<dropsCasings>true</dropsCasings>
 			<casingMoteDefName>Mote_ShotgunShell</casingMoteDefName>
 		</projectile>
@@ -130,10 +130,10 @@
 			<graphicClass>Graphic_Single</graphicClass>
 		</graphicData>
 		<projectile>
-			<damageAmountBase>10</damageAmountBase>
-			<pelletCount>8</pelletCount>
-			<armorPenetration>0.25</armorPenetration>
-			<spreadMult>5</spreadMult>
+			<damageAmountBase>7</damageAmountBase>
+			<pelletCount>9</pelletCount>
+			<armorPenetration>0.227</armorPenetration>
+			<spreadMult>17.8</spreadMult>
 		</projectile>
 	</ThingDef>
 
@@ -145,10 +145,10 @@
 			<graphicClass>Graphic_Single</graphicClass>
 		</graphicData>
 		<projectile>
-			<damageAmountBase>2</damageAmountBase>
-			<pelletCount>40</pelletCount>
-			<spreadMult>10</spreadMult>
-			<armorPenetration>0.1</armorPenetration>
+			<damageAmountBase>1</damageAmountBase>
+			<pelletCount>50</pelletCount>
+			<spreadMult>71.4</spreadMult>
+			<armorPenetration>0.089</armorPenetration>
 		</projectile>
 	</ThingDef>
 
@@ -160,9 +160,9 @@
 			<graphicClass>Graphic_Single</graphicClass>
 		</graphicData>
 		<projectile>
-			<speed>110</speed>
-			<damageAmountBase>30</damageAmountBase>
-			<armorPenetration>0.35</armorPenetration>
+			<speed>103</speed>
+			<damageAmountBase>37</damageAmountBase>
+			<armorPenetration>0.45</armorPenetration>
 		</projectile>
 	</ThingDef>
 
@@ -176,7 +176,8 @@
 		<projectile>
 			<damageDef>Beanbag</damageDef>
 			<damageAmountBase>6</damageAmountBase>
-			<armorPenetration>0.15</armorPenetration>
+			<armorPenetration>0.151</armorPenetration>
+			<spreadMult>2</spreadMult>
 		</projectile>
 	</ThingDef>
 
@@ -189,11 +190,11 @@
 		</graphicData>
 		<projectile>
 			<damageDef>EMP</damageDef>
-			<damageAmountBase>20</damageAmountBase>
+			<damageAmountBase>25</damageAmountBase>
 			<secondaryDamage>
 				<li>
 					<def>Electrical</def>
-					<amount>5</amount>
+					<amount>7</amount>
 				</li>
 			</secondaryDamage>
 		</projectile>
@@ -213,7 +214,7 @@
             <li>Steel</li>
           </thingDefs>
         </filter>
-        <count>20</count>
+        <count>17</count>
       </li>
     </ingredients>
     <fixedIngredientFilter>
@@ -224,6 +225,7 @@
     <products>
       <Ammo_12Gauge_Buck>200</Ammo_12Gauge_Buck>
     </products>
+    <workAmount>5000</workAmount>
   </RecipeDef>
 
   <RecipeDef ParentName="AmmoRecipeBase">
@@ -238,7 +240,7 @@
             <li>Steel</li>
           </thingDefs>
         </filter>
-        <count>20</count>
+        <count>17</count>
       </li>
     </ingredients>
     <fixedIngredientFilter>
@@ -249,6 +251,7 @@
     <products>
       <Ammo_12Gauge_Bird>200</Ammo_12Gauge_Bird>
     </products>
+    <workAmount>5000</workAmount>
   </RecipeDef>
 
   <RecipeDef ParentName="AmmoRecipeBase">
@@ -263,7 +266,7 @@
             <li>Steel</li>
           </thingDefs>
         </filter>
-        <count>26</count>
+        <count>17</count>
       </li>
     </ingredients>
     <fixedIngredientFilter>
@@ -274,6 +277,7 @@
     <products>
       <Ammo_12Gauge_Slug>200</Ammo_12Gauge_Slug>
     </products>
+    <workAmount>4500</workAmount>
   </RecipeDef>
 
   <RecipeDef ParentName="AmmoRecipeBase">
@@ -288,7 +292,7 @@
             <li>Steel</li>
           </thingDefs>
         </filter>
-        <count>12</count>
+        <count>18</count>
       </li>
       <li>
         <filter>
@@ -296,7 +300,7 @@
             <li>Cloth</li>
           </thingDefs>
         </filter>
-        <count>6</count>
+        <count>3</count>
       </li>
     </ingredients>
     <fixedIngredientFilter>
@@ -308,6 +312,7 @@
     <products>
       <Ammo_12Gauge_Beanbag>200</Ammo_12Gauge_Beanbag>
     </products>
+    <workAmount>4250</workAmount>
   </RecipeDef>
 
   <RecipeDef ParentName="AmmoRecipeBase">
@@ -322,7 +327,7 @@
             <li>Steel</li>
           </thingDefs>
         </filter>
-        <count>12</count>
+        <count>18</count>
       </li>
       <li>
         <filter>
@@ -342,6 +347,7 @@
     <products>
       <Ammo_12Gauge_ElectroSlug>200</Ammo_12Gauge_ElectroSlug>
     </products>
+    <workAmount>7250</workAmount>
   </RecipeDef>
 	
 </Defs>

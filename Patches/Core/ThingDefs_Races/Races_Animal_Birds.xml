@@ -1,0 +1,257 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+
+	<!-- ========== Big Bird Base ========== -->
+
+	<Operation Class="PatchOperationAddModExtension">
+		<xpath>*/ThingDef[@Name="BigBirdThingBase"]</xpath>
+		<value>
+			<li Class="CombatExtended.RacePropertiesExtensionCE">
+				<bodyType>Birdlike</bodyType>
+			</li>
+		</value>
+	</Operation>
+
+	<!-- ========== Cassowary ========== -->
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>*/ThingDef[defName="Cassowary"]/statBases/MoveSpeed</xpath>
+		<value>
+			<MoveSpeed>5</MoveSpeed>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>*/ThingDef[defName="Cassowary"]/verbs</xpath>
+		<value>
+			<verbs>
+			  <li Class="CombatExtended.VerbPropertiesCE">
+			    <verbClass>CombatExtended.Verb_MeleeAttackCE</verbClass>
+			    <defaultCooldownTime>1.65</defaultCooldownTime>
+			    <meleeDamageBaseAmount>15</meleeDamageBaseAmount>
+			    <meleeDamageDef>Cut</meleeDamageDef>
+			    <linkedBodyPartsGroup>Feet</linkedBodyPartsGroup>
+			    <meleeArmorPenetration>0.15</meleeArmorPenetration>
+			    <surpriseAttack>
+			      <extraMeleeDamages>
+			        <li>
+			          <def>Stun</def>
+			          <amount>20</amount>
+			        </li>
+			      </extraMeleeDamages>
+			    </surpriseAttack>
+			  </li>
+			  <li Class="CombatExtended.VerbPropertiesCE">
+			    <verbClass>CombatExtended.Verb_MeleeAttackCE</verbClass>
+			    <defaultCooldownTime>0.6</defaultCooldownTime>
+			    <meleeDamageBaseAmount>5</meleeDamageBaseAmount>
+			    <meleeDamageDef>Bite</meleeDamageDef>
+			    <linkedBodyPartsGroup>Beak</linkedBodyPartsGroup>
+			    <meleeArmorPenetration>0.05</meleeArmorPenetration>
+			    <surpriseAttack>
+			      <extraMeleeDamages>
+			        <li>
+			          <def>Stun</def>
+			          <amount>20</amount>
+			        </li>
+			      </extraMeleeDamages>
+			    </surpriseAttack>
+			    <commonality>0.1</commonality>
+			  </li>
+			</verbs>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>*/ThingDef[defName="Cassowary"]/race/baseBodySize</xpath>
+		<value>
+			<baseBodySize>0.9</baseBodySize>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>*/ThingDef[defName="Cassowary"]/race/baseHealthScale</xpath>
+		<value>
+			<baseHealthScale>0.7</baseHealthScale>
+		</value>
+	</Operation>
+
+	<!-- ========== Emu ========== -->
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>*/ThingDef[defName="Emu"]/statBases/MoveSpeed</xpath>
+		<value>
+			<MoveSpeed>4.8</MoveSpeed>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>*/ThingDef[defName="Emu"]/verbs</xpath>
+		<value>
+			<verbs>
+			  <li Class="CombatExtended.VerbPropertiesCE">
+			    <verbClass>CombatExtended.Verb_MeleeAttackCE</verbClass>
+			    <defaultCooldownTime>1.65</defaultCooldownTime>
+			    <meleeDamageBaseAmount>19</meleeDamageBaseAmount>
+			    <meleeDamageDef>Cut</meleeDamageDef>
+			    <linkedBodyPartsGroup>Feet</linkedBodyPartsGroup>
+			    <meleeArmorPenetration>0.15</meleeArmorPenetration>
+			    <surpriseAttack>
+			      <extraMeleeDamages>
+			        <li>
+			          <def>Stun</def>
+			          <amount>20</amount>
+			        </li>
+			      </extraMeleeDamages>
+			    </surpriseAttack>
+			  </li>
+			  <li Class="CombatExtended.VerbPropertiesCE">
+			    <verbClass>CombatExtended.Verb_MeleeAttackCE</verbClass>
+			    <defaultCooldownTime>0.6</defaultCooldownTime>
+			    <meleeDamageBaseAmount>6</meleeDamageBaseAmount>
+			    <meleeDamageDef>Bite</meleeDamageDef>
+			    <linkedBodyPartsGroup>Beak</linkedBodyPartsGroup>
+			    <meleeArmorPenetration>0.05</meleeArmorPenetration>
+			    <surpriseAttack>
+			      <extraMeleeDamages>
+			        <li>
+			          <def>Stun</def>
+			          <amount>20</amount>
+			        </li>
+			      </extraMeleeDamages>
+			    </surpriseAttack>
+			    <commonality>0.1</commonality>
+			  </li>
+			</verbs>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>*/ThingDef[defName="Emu"]/race/baseBodySize</xpath>
+		<value>
+			<baseBodySize>1</baseBodySize>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>*/ThingDef[defName="Emu"]/race/baseHealthScale</xpath>
+		<value>
+			<baseHealthScale>0.8</baseHealthScale>
+		</value>
+	</Operation>
+
+	<!-- ========== Ostrich ========== -->
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>*/ThingDef[defName="Ostrich"]/verbs</xpath>
+		<value>
+			<verbs>
+			  <li Class="CombatExtended.VerbPropertiesCE">
+			    <verbClass>CombatExtended.Verb_MeleeAttackCE</verbClass>
+			    <defaultCooldownTime>1.65</defaultCooldownTime>
+			    <meleeDamageBaseAmount>19</meleeDamageBaseAmount>
+			    <meleeDamageDef>Cut</meleeDamageDef>
+			    <linkedBodyPartsGroup>Feet</linkedBodyPartsGroup>
+			    <meleeArmorPenetration>0.15</meleeArmorPenetration>
+			    <surpriseAttack>
+			      <extraMeleeDamages>
+			        <li>
+			          <def>Stun</def>
+			          <amount>20</amount>
+			        </li>
+			      </extraMeleeDamages>
+			    </surpriseAttack>
+			  </li>
+			  <li Class="CombatExtended.VerbPropertiesCE">
+			    <verbClass>CombatExtended.Verb_MeleeAttackCE</verbClass>
+			    <defaultCooldownTime>0.6</defaultCooldownTime>
+			    <meleeDamageBaseAmount>6</meleeDamageBaseAmount>
+			    <meleeDamageDef>Bite</meleeDamageDef>
+			    <linkedBodyPartsGroup>Beak</linkedBodyPartsGroup>
+			    <meleeArmorPenetration>0.05</meleeArmorPenetration>
+			    <surpriseAttack>
+			      <extraMeleeDamages>
+			        <li>
+			          <def>Stun</def>
+			          <amount>20</amount>
+			        </li>
+			      </extraMeleeDamages>
+			    </surpriseAttack>
+			    <commonality>0.1</commonality>
+			  </li>
+			</verbs>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>*/ThingDef[defName="Ostrich"]/race/baseBodySize</xpath>
+		<value>
+			<baseBodySize>1.2</baseBodySize>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>*/ThingDef[defName="Ostrich"]/race/baseHealthScale</xpath>
+		<value>
+			<baseHealthScale>0.95</baseHealthScale>
+		</value>
+	</Operation>
+
+	<!-- ========== Turkey ========== -->
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>*/ThingDef[defName="Turkey"]/verbs</xpath>
+		<value>
+			<verbs>
+			  <li Class="CombatExtended.VerbPropertiesCE">
+			    <verbClass>CombatExtended.Verb_MeleeAttackCE</verbClass>
+			    <defaultCooldownTime>1.65</defaultCooldownTime>
+			    <meleeDamageBaseAmount>6</meleeDamageBaseAmount>
+			    <meleeDamageDef>Scratch</meleeDamageDef>
+			    <linkedBodyPartsGroup>Feet</linkedBodyPartsGroup>
+			    <meleeArmorPenetration>0.06</meleeArmorPenetration>
+			    <surpriseAttack>
+			      <extraMeleeDamages>
+			        <li>
+			          <def>Stun</def>
+			          <amount>20</amount>
+			        </li>
+			      </extraMeleeDamages>
+			    </surpriseAttack>
+			  </li>
+			  <li Class="CombatExtended.VerbPropertiesCE">
+			    <verbClass>CombatExtended.Verb_MeleeAttackCE</verbClass>
+			    <defaultCooldownTime>1.85</defaultCooldownTime>
+			    <meleeDamageBaseAmount>5</meleeDamageBaseAmount>
+			    <meleeDamageDef>Bite</meleeDamageDef>
+			    <linkedBodyPartsGroup>Beak</linkedBodyPartsGroup>
+			    <meleeArmorPenetration>0.04</meleeArmorPenetration>
+			    <surpriseAttack>
+			      <extraMeleeDamages>
+			        <li>
+			          <def>Stun</def>
+			          <amount>20</amount>
+			        </li>
+			      </extraMeleeDamages>
+			    </surpriseAttack>
+			  </li>
+			</verbs>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>*/ThingDef[defName="Turkey"]/race/baseBodySize</xpath>
+		<value>
+			<baseBodySize>0.6</baseBodySize>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>*/ThingDef[defName="Turkey"]/race/baseHealthScale</xpath>
+		<value>
+			<baseHealthScale>0.5</baseHealthScale>
+		</value>
+	</Operation>
+
+</Patch>
+

@@ -21,7 +21,7 @@ namespace CombatExtended
             {
                 int damageAmountBase = def.projectile.damageAmountBase;
                 ThingDef equipmentDef = this.equipmentDef;
-                DamageDef_CE damDefCE = def.projectile.damageDef as DamageDef_CE;
+                DamageDefExtensionCE damDefCE = def.projectile.damageDef.GetModExtension<DamageDefExtensionCE>() ?? new DamageDefExtensionCE();
 
                 DamageInfo dinfo = new DamageInfo(
                     def.projectile.damageDef,

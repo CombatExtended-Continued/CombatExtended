@@ -110,7 +110,7 @@ namespace CombatExtended
                 return MassBulkUtility.EncumberPenalty(currentWeight, capacityWeight);
             }
         }
-        public ThingContainer container
+        public ThingOwner container
         {
             get
             {
@@ -138,10 +138,10 @@ namespace CombatExtended
         {
         	return ammoListCached.Where(t => t.def == def).Sum(t => t.stackCount);
         }
-        
-        public override void PostSpawnSetup()
+
+        public override void PostSpawnSetup(bool respawningAfterLoad)
         {
-            base.PostSpawnSetup();
+            base.PostSpawnSetup(respawningAfterLoad);
             UpdateInventory();
         }
 
@@ -324,24 +324,26 @@ namespace CombatExtended
             {
                 TrySwitchToWeapon(newEq);
             }
-            else if (useFists && parentPawn.equipment?.Primary != null)
+            else if (useFists)
             {
-                ThingWithComps oldEq;
-                if (!parentPawn.equipment.TryTransferEquipmentToContainer(parentPawn.equipment.Primary, container, out oldEq))
+                // Put away current weapon
+                ThingWithComps eq = parentPawn.equipment?.Primary;
+                if (eq != null && !parentPawn.equipment.TryTransferEquipmentToContainer(eq, container))
                 {
+                    // If we can't put it into our inventory, drop it
                     if (parentPawn.Position.InBounds(parentPawn.Map))
                     {
                         ThingWithComps unused;
-                        parentPawn.equipment.TryDropEquipment(oldEq, out unused, parentPawn.Position);
+                        parentPawn.equipment.TryDropEquipment(eq, out unused, parentPawn.Position);
                     }
                     else
                     {
 #if DEBUG
-                        Log.Warning("CE :: CompInventory :: SwitchToNextViableWeapon :: destroying out of bounds equipment" + oldEq.ToString());
+                        Log.Warning("CE :: CompInventory :: SwitchToNextViableWeapon :: destroying out of bounds equipment" + eq.ToString());
 #endif
-                        if (!oldEq.Destroyed)
+                        if (!eq.Destroyed)
                         {
-                            oldEq.Destroy();
+                            eq.Destroy();
                         }
                     }
                 }
@@ -356,12 +358,10 @@ namespace CombatExtended
             }
             if (parentPawn.equipment.Primary != null)
             {
-
-                ThingWithComps oldEq;
                 int count;
                 if (CanFitInInventory(parentPawn.equipment.Primary, out count, true))
                 {
-                    parentPawn.equipment.TryTransferEquipmentToContainer(parentPawn.equipment.Primary, container, out oldEq);
+                    parentPawn.equipment.TryTransferEquipmentToContainer(parentPawn.equipment.Primary, container);
                 }
                 else
                 {
@@ -371,7 +371,7 @@ namespace CombatExtended
                     parentPawn.equipment.MakeRoomFor(newEq);
                 }
             }
-            parentPawn.equipment.AddEquipment((ThingWithComps)container.Get(newEq, 1));
+            parentPawn.equipment.AddEquipment((ThingWithComps)container.Take(newEq, 1));
             if (newEq.def.soundInteract != null)
                 newEq.def.soundInteract.PlayOneShot(new TargetInfo(parent.Position, parent.MapHeld, false));
         }
@@ -414,10 +414,7 @@ namespace CombatExtended
 	            parentPawn.HoldTrackerCleanUp();
 	            ticksToNextCleanUp = GenTicks.TicksAbs + CLEANUPTICKINTERVAL;
             }
-            
-            //Log.Message("CE-RD :: pre-base.comptick");
             base.CompTick();
-            //Log.Message("CE-RD :: post-base.comptick");
             // Remove items from inventory if we're over the bulk limit
             /*
             while (availableBulk < 0 && container.Count > 0)
@@ -437,6 +434,22 @@ namespace CombatExtended
                 }
             }
             */
+
+            if (Controller.settings.DebugEnableInventoryValidation) ValidateCache();
+        }
+
+        /// <summary>
+        /// Debug method to catch cases where inventory cache isn't being updated properly on pawn inventory change. ONLY FOR DEBUGGING, DON'T CALL THIS IN ANY KIND OF RELEASE BUILD.
+        /// </summary>
+        private void ValidateCache()
+        {
+            float oldWeight = currentWeight;
+            float oldBulk = currentBulk;
+            UpdateInventory();
+            if (oldWeight != currentWeight || oldBulk != currentBulk)
+            {
+                Log.Error("CE :: CompInventory :: " + parent.ToString() + " failed inventory validation");
+            }
         }
 
         #endregion Methods

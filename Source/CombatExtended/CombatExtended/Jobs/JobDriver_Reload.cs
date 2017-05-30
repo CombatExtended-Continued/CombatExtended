@@ -151,7 +151,6 @@ namespace CombatExtended
             //Continue previous job if possible
             Toil continueToil = new Toil
             {
-                initAction = () => compReloader.TryContinuePreviousJob(),
                 defaultCompleteMode = ToilCompleteMode.Instant
             };
             yield return continueToil;

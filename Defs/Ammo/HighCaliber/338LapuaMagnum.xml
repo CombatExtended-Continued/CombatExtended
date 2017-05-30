@@ -24,8 +24,8 @@
   <ThingDef Name="Ammo338LapuaBase" ParentName="AmmoBase" Abstract="True">
     <description>The .338 Lapua Magnum (8.6×70mm or 8.58×70mm) is a rimless, bottlenecked, centerfire cartridge developed for military long-range sniper rifles.</description>
     <statBases>
-      <Mass>0.038</Mass>
-      <Bulk>0.07</Bulk>
+      <Mass>0.04</Mass>
+      <Bulk>0.08</Bulk>
     </statBases>
   	<tradeTags>
       <li>CE_AutoEnableTrade</li>
@@ -44,7 +44,7 @@
       <graphicClass>Graphic_StackCount</graphicClass>
     </graphicData>
     <statBases>
-      <MarketValue>0.23</MarketValue>
+      <MarketValue>0.19</MarketValue>
     </statBases>
   	<ammoClass>FullMetalJacket</ammoClass>
     <cookOffProjectile>Bullet_338Lapua_FMJ</cookOffProjectile>
@@ -72,7 +72,7 @@
       <graphicClass>Graphic_StackCount</graphicClass>
     </graphicData>
     <statBases>
-      <MarketValue>0.37</MarketValue>
+      <MarketValue>0.28</MarketValue>
     </statBases>
     <ammoClass>IncendiaryAP</ammoClass>
     <cookOffProjectile>Bullet_338Lapua_Incendiary</cookOffProjectile>
@@ -87,7 +87,7 @@
     </graphicData>
     <projectile>
       <damageDef>Bullet</damageDef>
-      <speed>180</speed>
+      <speed>228</speed>
 			<dropsCasings>true</dropsCasings>
     </projectile>
   </ThingDef>
@@ -96,8 +96,8 @@
     <defName>Bullet_338Lapua_FMJ</defName>
     <label>.338 Lapua Magnum bullet (FMJ)</label>
     <projectile>
-      <damageAmountBase>35</damageAmountBase>
-			<armorPenetration>0.8</armorPenetration>
+      <damageAmountBase>25</damageAmountBase>
+			<armorPenetration>0.731</armorPenetration>
     </projectile>
   </ThingDef>
 
@@ -120,8 +120,8 @@
     <defName>Bullet_338Lapua_Incendiary</defName>
     <label>.338 Lapua Magnum bullet (AP-I)</label>
     <projectile>
-      <damageAmountBase>25</damageAmountBase>
-			<armorPenetration>0.95</armorPenetration>
+      <damageAmountBase>15</damageAmountBase>
+			<armorPenetration>0.881</armorPenetration>
       <secondaryDamage>
         <li>
           <def>Flame_Secondary</def>
@@ -135,7 +135,7 @@
 
   <RecipeDef ParentName="AmmoRecipeBase">
     <defName>MakeAmmo_338Lapua_FMJ</defName>
-    <label>make .338 Lapua Magnum (FMJ) cartridge x100</label>
+    <label>make .338 Lapua Magnum (FMJ) cartridge x200</label>
     <description>Craft 100 .338 Lapua Magnum (FMJ) cartridges.</description>
     <jobString>Making .338 Lapua Magnum (FMJ) cartridges.</jobString>
     <ingredients>
@@ -156,11 +156,12 @@
     <products>
       <Ammo_338Lapua_FMJ>200</Ammo_338Lapua_FMJ>
     </products>
+    <workAmount>4250</workAmount>
   </RecipeDef>
 
   <RecipeDef ParentName="AmmoRecipeBase">
     <defName>MakeAmmo_338Lapua_HE</defName>
-    <label>make .338 Lapua Magnum (HE) cartridge x100</label>
+    <label>make .338 Lapua Magnum (HE) cartridge x200</label>
     <description>Craft 100 .338 Lapua Magnum (HE) cartridges.</description>
     <jobString>Making .338 Lapua Magnum (HE) cartridges.</jobString>
     <ingredients>
@@ -170,7 +171,7 @@
             <li>Steel</li>
           </thingDefs>
         </filter>
-        <count>20</count>
+        <count>24</count>
       </li>
       <li>
         <filter>
@@ -190,11 +191,12 @@
     <products>
       <Ammo_338Lapua_HE>200</Ammo_338Lapua_HE>
     </products>
+    <workAmount>10250</workAmount>
   </RecipeDef>
 
   <RecipeDef ParentName="AmmoRecipeBase">
     <defName>MakeAmmo_338Lapua_Incendiary</defName>
-    <label>make .338 Lapua Magnum (AP-I) cartridge x100</label>
+    <label>make .338 Lapua Magnum (AP-I) cartridge x200</label>
     <description>Craft 100 .338 Lapua Magnum (AP-I) cartridges.</description>
     <jobString>Making .338 Lapua Magnum (AP-I) cartridges.</jobString>
     <ingredients>
@@ -204,7 +206,7 @@
             <li>Steel</li>
           </thingDefs>
         </filter>
-        <count>20</count>
+        <count>22</count>
       </li>
       <li>
         <filter>
@@ -212,7 +214,7 @@
             <li>Prometheum</li>
           </thingDefs>
         </filter>
-        <count>4</count>
+        <count>2</count>
       </li>
     </ingredients>
     <fixedIngredientFilter>
@@ -224,6 +226,7 @@
     <products>
       <Ammo_338Lapua_Incendiary>200</Ammo_338Lapua_Incendiary>
     </products>
+    <workAmount>10250</workAmount>
   </RecipeDef>
   
 </Defs>

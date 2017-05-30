@@ -19,18 +19,20 @@ namespace CombatExtended
             }
         }
 
-        public override bool HasJobOnThingForced(Pawn pawn, Thing t)
+        public override bool HasJobOnThing(Pawn pawn, Thing t, bool forced = false)
         {
             Building_TurretGunCE turret = t as Building_TurretGunCE;
-            if (turret == null 
-                || !turret.needsReload 
-                || !pawn.CanReserveAndReach(turret, PathEndMode.ClosestTouch, Danger.Deadly) 
+            if (!forced && (turret == null || !turret.AllowAutomaticReload)) return false;
+            
+            if (turret == null
+                || !turret.NeedsReload
+                || !pawn.CanReserveAndReach(turret, PathEndMode.ClosestTouch, Danger.Deadly)
                 || turret.IsForbidden(pawn.Faction))
             {
                 return false;
             }
             Thing ammo = GenClosest.ClosestThingReachable(pawn.Position, pawn.Map,
-                            ThingRequest.ForDef(turret.compAmmo.selectedAmmo),
+                            ThingRequest.ForDef(turret.CompAmmo.selectedAmmo),
                             PathEndMode.ClosestTouch,
                             TraverseParms.For(pawn, Danger.Deadly, TraverseMode.ByPawn),
                             80,
@@ -38,34 +40,27 @@ namespace CombatExtended
             return ammo != null;
         }
 
-        public override bool HasJobOnThing(Pawn pawn, Thing t)
+        public override Job JobOnThing(Pawn pawn, Thing t, bool forced = false)
         {
             Building_TurretGunCE turret = t as Building_TurretGunCE;
-            if (turret == null || !turret.allowAutomaticReload) return false;
-            return HasJobOnThingForced(pawn, t);
-        }
+            if (turret == null || turret.CompAmmo == null) return null;
 
-        public override Job JobOnThing(Pawn pawn, Thing t)
-        {
-            Building_TurretGunCE turret = t as Building_TurretGunCE;
-            if (turret == null || turret.compAmmo == null) return null;
-
-            if (!turret.compAmmo.useAmmo)
+            if (!turret.CompAmmo.useAmmo)
             {
                 //return new Job(DefDatabase<JobDef>.GetNamed("ReloadTurret"), t, null);
                 return null;
             }
 
             Thing ammo = GenClosest.ClosestThingReachable(pawn.Position, pawn.Map,
-                            ThingRequest.ForDef(turret.compAmmo.selectedAmmo),
+                            ThingRequest.ForDef(turret.CompAmmo.selectedAmmo),
                             PathEndMode.ClosestTouch,
                             TraverseParms.For(pawn, Danger.Deadly, TraverseMode.ByPawn),
                             80,
                             x => !x.IsForbidden(pawn) && pawn.CanReserve(x));
 
             if (ammo == null) return null;
-            int amountNeeded = turret.compAmmo.Props.magazineSize;
-            if (turret.compAmmo.currentAmmo == turret.compAmmo.selectedAmmo) amountNeeded -= turret.compAmmo.curMagCount;
+            int amountNeeded = turret.CompAmmo.Props.magazineSize;
+            if (turret.CompAmmo.currentAmmo == turret.CompAmmo.selectedAmmo) amountNeeded -= turret.CompAmmo.curMagCount;
             return new Job(DefDatabase<JobDef>.GetNamed("ReloadTurret"), t, ammo) { count = Mathf.Min(amountNeeded, ammo.stackCount) };
         }
 

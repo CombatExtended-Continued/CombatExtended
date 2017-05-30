@@ -28,8 +28,8 @@ namespace CombatExtended
 
         public void ExposeData()
         {
-            Scribe_References.LookReference( ref pawn, "pawn" );
-            Scribe_References.LookReference( ref loadout, "loadout" );
+            Scribe_References.Look( ref pawn, "pawn" );
+            Scribe_References.Look( ref loadout, "loadout" );
 
 #if DEBUG
             Log.Message( Scribe.mode + ", pawn: " + ( pawn == null ? "NULL" : pawn.NameStringShort ) + ", loadout: " + ( loadout == null ? "NULL" : loadout.label ) );

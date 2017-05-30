@@ -118,7 +118,7 @@ namespace CombatExtended
             if (SelPawnForGear.equipment != null)
             {
                 Widgets.ListSeparator(ref num, viewRect.width, "Equipment".Translate());
-                foreach (ThingWithComps current in SelPawnForGear.equipment.AllEquipment)
+                foreach (ThingWithComps current in SelPawnForGear.equipment.AllEquipmentListForReading)
                 {
                     DrawThingRow(ref num, viewRect.width, current);
                 }
@@ -259,13 +259,12 @@ namespace CombatExtended
                         {
                             FloatMenuOption equipOption;
                             string eqLabel = GenLabel.ThingLabel(eq.def, eq.Stuff, 1);
-                            if (SelPawnForGear.equipment.AllEquipment.Contains(eq) && SelPawnForGear.inventory != null)
+                            if (SelPawnForGear.equipment.AllEquipmentListForReading.Contains(eq) && SelPawnForGear.inventory != null)
                             {
                                 equipOption = new FloatMenuOption("CE_PutAway".Translate(new object[] { eqLabel }),
                                     new Action(delegate
                                     {
-                                        ThingWithComps oldEq;
-                                        SelPawnForGear.equipment.TryTransferEquipmentToContainer(SelPawnForGear.equipment.Primary, SelPawnForGear.inventory.innerContainer, out oldEq);
+                                        SelPawnForGear.equipment.TryTransferEquipmentToContainer(SelPawnForGear.equipment.Primary, SelPawnForGear.inventory.innerContainer);
                                     }));
                             }
                             else if (!SelPawnForGear.health.capacities.CapableOf(PawnCapacityDefOf.Manipulation))
@@ -385,7 +384,7 @@ namespace CombatExtended
             {
                 this.SelPawnForGear.jobs.TryTakeOrderedJob(new Job(JobDefOf.RemoveApparel, apparel));
             }
-            else if (thingWithComps != null && this.SelPawnForGear.equipment != null && this.SelPawnForGear.equipment.AllEquipment.Contains(thingWithComps))
+            else if (thingWithComps != null && this.SelPawnForGear.equipment != null && this.SelPawnForGear.equipment.AllEquipmentListForReading.Contains(thingWithComps))
             {
                 this.SelPawnForGear.jobs.TryTakeOrderedJob(new Job(JobDefOf.DropEquipment, thingWithComps));
             }
@@ -409,7 +408,7 @@ namespace CombatExtended
             {
                 this.SelPawnForGear.jobs.TryTakeOrderedJob(new Job(JobDefOf.RemoveApparel, apparel) { haulDroppedApparel = true });
             }
-            else if (thingWithComps != null && this.SelPawnForGear.equipment != null && this.SelPawnForGear.equipment.AllEquipment.Contains(thingWithComps))
+            else if (thingWithComps != null && this.SelPawnForGear.equipment != null && this.SelPawnForGear.equipment.AllEquipmentListForReading.Contains(thingWithComps))
             {
                 this.SelPawnForGear.jobs.TryTakeOrderedJob(new Job(JobDefOf.DropEquipment, thingWithComps));
             }
@@ -422,19 +421,9 @@ namespace CombatExtended
 
         private void InterfaceEatThis(Thing t)
         {
-            ThingWithComps thingWithComps = t as ThingWithComps;
-            Thing food = t as Thing;
-            if (food != null && food.def.ingestible != null && food.def.ingestible.nutrition > 0)
-            {
-                Pawn selPawnForGear = SelPawn;
-                if (selPawnForGear.jobs.CanTakeOrderedJob() && selPawnForGear.RaceProps.EatsFood)
-                {
-                    Job job = new Job(JobDefOf.Ingest, food);
-                    job.count = FoodUtility.WillIngestStackCountOf(selPawnForGear, food.def);
-                    job.playerForced = true;
-                    selPawnForGear.jobs.TryTakeOrderedJob(job);
-                }
-            }
+            Job job = new Job(JobDefOf.Ingest, t);
+            job.count = Mathf.Min(t.stackCount, t.def.ingestible.maxNumToIngestAtOnce);
+            SelPawnForGear.jobs.TryTakeOrderedJob(job, JobTag.Misc);
         }
 
         #endregion Methods

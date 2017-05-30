@@ -21,6 +21,9 @@ namespace CombatExtended
         private const float pawnXP = 0.75f;
         private const float hostileXP = 3.6f;
 
+        // Suppression aim penalty
+        private const float SuppressionSwayFactor = 1.5f;
+
         #endregion
 
         #region Fields
@@ -78,8 +81,7 @@ namespace CombatExtended
                             return true;
 
                         // Check for suppression
-                        CompSuppressable comp = this.caster.TryGetComp<CompSuppressable>();
-                        if (comp != null && comp.isSuppressed) return false;
+                        if (IsSuppressed) return false;
                     }
                     return this.CompFireModes.currentAimMode == AimMode.AimedShot || (UseDefaultModes && this.CompFireModes.Props.aiUseAimMode);
                 }
@@ -96,9 +98,13 @@ namespace CombatExtended
             {
                 float sway = base.SwayAmplitude;
                 if (ShouldAim) sway *= Mathf.Max(0, 1 - AimingAccuracy);
+                else if (IsSuppressed) sway *= SuppressionSwayFactor;
                 return sway;
             }
         }
+
+        // Whether our shooter is currently under suppressive fire
+        private bool IsSuppressed => CasterPawn?.TryGetComp<CompSuppressable>()?.isSuppressed ?? false;
 
         #endregion
 
