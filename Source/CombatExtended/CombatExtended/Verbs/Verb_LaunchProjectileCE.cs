@@ -239,7 +239,7 @@ namespace CombatExtended
 	           		targetHeight = targetVertical.min + (targetVertical.max - targetVertical.min) * 0.5f;
 	            }
 	            
-	            angleRadians += CE_Utility.GetShotAngle(ShotSpeed, (newTargetLoc - sourceLoc).magnitude, targetHeight - ShotHeight, ProjectileDef.projectile.flyOverhead);
+	            angleRadians += ProjectileCE.GetShotAngle(ShotSpeed, (newTargetLoc - sourceLoc).magnitude, targetHeight - ShotHeight, ProjectileDef.projectile.flyOverhead, projectilePropsCE.Gravity);
         	}
         	
 	        // ----------------------------------- STEP 4: Mechanical variation

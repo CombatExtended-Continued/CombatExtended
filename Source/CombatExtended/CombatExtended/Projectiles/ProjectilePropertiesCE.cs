@@ -17,5 +17,8 @@ namespace CombatExtended
         public bool damageAdjacentTiles = false;
         public bool dropsCasings = false;
         public string casingMoteDefname = "Mote_EmptyCasing";
+        public float gravityFactor = 1;
+
+        public float Gravity => CE_Utility.gravityConst * gravityFactor;
     }
 }

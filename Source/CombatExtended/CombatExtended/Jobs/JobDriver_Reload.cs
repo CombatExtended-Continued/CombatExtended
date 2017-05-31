@@ -56,10 +56,7 @@ namespace CombatExtended
             if (reloadingInventory) flagSource = "CE_ReloadingInventory".Translate();
             text = text.Replace("FlagSource", flagSource);
             text = text.Replace("TargetB", weapon.def.label);
-            if (Controller.settings.EnableAmmoSystem)
-                text = text.Replace("AmmoType", compReloader.currentAmmo.label);
-            else
-                text = text.Replace("AmmoType", "CE_ReloadingGenericAmmo".Translate());
+            text = text.Replace("AmmoType", compReloader.currentAmmo.label);
             return text;
         }
 

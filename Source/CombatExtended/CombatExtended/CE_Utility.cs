@@ -145,62 +145,6 @@ namespace CombatExtended
 
         #region Physics
         public const float gravityConst = 9.8f;
-        
-        /// <summary>
-        /// Calculates the range reachable with a projectile of speed <i>velocity</i> fired at <i>angle</i> from height <i>shotHeight</i>. Does not take into account air resistance.
-        /// </summary>
-        /// <param name="velocity">Projectile velocity in cells per second.</param>
-        /// <param name="angle">Shot angle in radians off the ground.</param>
-        /// <param name="shotHeight">Height from which the projectile is fired in vertical cells.</param>
-        /// <returns>Distance in cells that the projectile will fly at the given arc.</returns>
-        public static float GetDistanceTraveled(float velocity, float angle, float shotHeight)
-        {
-        	if (shotHeight < 0.001f)
-        	{
-        		return (Mathf.Pow(velocity, 2f) / gravityConst) * Mathf.Sin(2f * angle);
-        	}
-        	return ((velocity * Mathf.Cos(angle)) / gravityConst) * (velocity * Mathf.Sin(angle) + Mathf.Sqrt(Mathf.Pow(velocity * Mathf.Sin(angle), 2f) + 2f * gravityConst * shotHeight));
-        }
-        
-        /// <summary>
-        /// Calculates the destination reached with a projectile of speed <i>velocity</i> fired at <i>angle</i> from height <i>shotHeight</i> starting from <i>origin</i>. Does not take into account air resistance.
-        /// </summary>
-        /// <param name="origin">Vector2 source of the projectile.</param>
-        /// <param name="angle">Shot angle in radians off the ground.</param>
-        /// <param name="rotation">Shot angle in degrees between source/target.</param>
-        /// <param name="velocity">Projectile velocity in cells per second.</param>
-        /// <param name="shotHeight">Height from which the projectile is fired in vertical cells.</param>
-        /// <returns>The Vector2 destination of the projectile, e.g the Vector2 when it hits the ground at height = 0f.</returns>
-        public static Vector2 GetDestination(Vector2 origin, float angle, float rotation, float velocity, float shotHeight)
-        {
-        	return origin + Vector2.up.RotatedBy(rotation) * GetDistanceTraveled(velocity, angle, shotHeight);
-        }
-        
-        /// <summary>
-        /// Calculates the time in seconds the arc characterized by <i>angle</i>, <i>shotHeight</i> takes to traverse at speed <i>velocity</i> - e.g until the height reaches zero. Does not take into account air resistance.
-        /// </summary>
-        /// <param name="velocity">Projectile velocity in cells per second.</param>
-        /// <param name="angle">Shot angle in radians off the ground.</param>
-        /// <param name="shotHeight">Height from which the projectile is fired in vertical cells.</param>
-        /// <returns>Time in seconds that the projectile will take to traverse the given arc.</returns>
-        public static float GetFlightTime(float velocity, float angle, float shotHeight)
-        {
-			//Calculates quadratic formula (g/2)t^2 + (-v_0y)t + (y-y0) for {g -> gravity, v_0y -> vSin, y -> 0, y0 -> shotHeight} to find t in fractional ticks where height equals zero.
-			return (Mathf.Sin(angle) * velocity + Mathf.Sqrt(Mathf.Pow(Mathf.Sin(angle) * velocity, 2f) + 2f * gravityConst * shotHeight)) / gravityConst;
-        }
-        
-        /// <summary>
-        /// Calculates the shot angle necessary to reach <i>range</i> with a projectile of speed <i>velocity</i> at a height difference of <i>heightDifference</i>, returning either the upper or lower arc in radians. Does not take into account air resistance.
-        /// </summary>
-        /// <param name="velocity">Projectile velocity in cells per second.</param>
-        /// <param name="range">Cells between shooter and target.</param>
-        /// <param name="heightDifference">Difference between initial shot height and target height in vertical cells.</param>
-        /// <param name="flyOverhead">Whether to take the lower (False) or upper (True) arc angle.</param>
-        /// <returns>Arc angle in radians off the ground.</returns>
-        public static float GetShotAngle(float velocity, float range, float heightDifference, bool flyOverhead)
-        {
-            return Mathf.Atan((Mathf.Pow(velocity, 2f) + (flyOverhead ? 1f : -1f) * Mathf.Sqrt(Mathf.Pow(velocity, 4f) - gravityConst * (gravityConst * Mathf.Pow(range, 2f) + 2f * heightDifference * Mathf.Pow(velocity, 2f)))) / (gravityConst * range));
-        }
 
         public static Bounds GetBoundsFor(Thing thing)
         {

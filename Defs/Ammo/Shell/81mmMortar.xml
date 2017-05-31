@@ -30,8 +30,11 @@
     <thingCategories>
       <li>Ammo81mmMortarShells</li>
     </thingCategories>
+    <tradeTags>
+      <li>CE_AutoEnableTrade</li>
+      <li>CE_AutoEnableCrafting</li>
+    </tradeTags>
     <stackLimit>25</stackLimit>
-		<Tradeability>Stockable</Tradeability>
     <cookOffFlashScale>30</cookOffFlashScale>
     <cookOffSound>MortarBomb_Explode</cookOffSound>
   </ThingDef>
@@ -56,11 +59,8 @@
         <explosionDamageDef>Bomb</explosionDamageDef>
         <explosionRadius>2.5</explosionRadius>
         <fragments>
-          <Fragment_MortarSmall>225</Fragment_MortarSmall>
-          <Fragment_MortarMedium>135</Fragment_MortarMedium>
-          <Fragment_MortarLarge>45</Fragment_MortarLarge>
+          <Fragment_Shell>300</Fragment_Shell>
         </fragments>
-        <fragSpeedFactor>0.75</fragSpeedFactor>
     </li>
     </comps>
   </ThingDef>
@@ -86,6 +86,9 @@
         <preExplosionSpawnThingDef>FilthFuel</preExplosionSpawnThingDef>
         <explosionSpawnChance>0.5</explosionSpawnChance>
         <soundExplode>MortarIncendiary_Explode</soundExplode>
+        <fragments>
+          <Fragment_Shell>20</Fragment_Shell>
+        </fragments>
     </li>
     </comps>
   </ThingDef>
@@ -109,12 +112,9 @@
         <explosionDamageDef>Bomb</explosionDamageDef>
         <explosionRadius>1</explosionRadius>
         <fragments>
-          <Fragment_MortarSmall>10</Fragment_MortarSmall>
-          <Fragment_MortarMedium>6</Fragment_MortarMedium>
-          <Fragment_MortarLarge>2</Fragment_MortarLarge>
+          <Fragment_Shell>20</Fragment_Shell>
         </fragments>
-        <fragSpeedFactor>0.5</fragSpeedFactor>
-    </li>
+      </li>
     </comps>
   </ThingDef>
 	
@@ -155,11 +155,8 @@
 				<explosionDamageDef>Bomb</explosionDamageDef>
 				<explosionRadius>2.5</explosionRadius>
 				<fragments>
-					<Fragment_MortarSmall>225</Fragment_MortarSmall>
-					<Fragment_MortarMedium>135</Fragment_MortarMedium>
-					<Fragment_MortarLarge>45</Fragment_MortarLarge>
+          <Fragment_Shell>300</Fragment_Shell>
 				</fragments>
-				<fragSpeedFactor>0.75</fragSpeedFactor>
 	  </li>
 	</comps>
   </ThingDef>
@@ -206,7 +203,7 @@
 	<!-- ==================== Recipes ========================== -->
 
   <RecipeDef ParentName="GrenadeRecipeBase">
-    <defName>MakeAmmo_81mmMortarShell_HE</defName>
+    <defName>MakeMortarShell</defName>
     <label>make 81mm HE mortar shells x5</label>
     <description>Craft 5 81mm HE mortar shells.</description>
     <jobString>Making 81mm HE mortar shells.</jobString>
