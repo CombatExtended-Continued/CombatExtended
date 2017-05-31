@@ -47,8 +47,8 @@ namespace CombatExtended
 
             if (!turret.CompAmmo.useAmmo)
             {
-                //return new Job(DefDatabase<JobDef>.GetNamed("ReloadTurret"), t, null);
-                return null;
+                return new Job(DefDatabase<JobDef>.GetNamed("ReloadTurret"), t, null);
+                //return null;
             }
 
             Thing ammo = GenClosest.ClosestThingReachable(pawn.Position, pawn.Map,

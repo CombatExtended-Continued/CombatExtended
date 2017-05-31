@@ -40,7 +40,7 @@ namespace CombatExtended
             if (compReloader.useAmmo)
                 text = text.Replace("TargetB", TargetThingB.def.label);
             else
-                text = text.Replace("TargetB", compReloader.currentAmmo.label);
+                text = text.Replace("TargetB", "CE_ReloadingGenericAmmo".Translate());
             return text;
         }
 
@@ -57,7 +57,7 @@ namespace CombatExtended
                 Log.Error(string.Concat(errorBase, "TargetThingA (Building_TurretGunCE) is missing it's CompAmmoUser."));
                 yield return null;
             }
-            if (ammo == null)
+            if (compReloader.useAmmo && ammo == null)
             {
                 Log.Error(string.Concat(errorBase, "TargetThingB is either null or not an AmmoThing."));
                 yield return null;

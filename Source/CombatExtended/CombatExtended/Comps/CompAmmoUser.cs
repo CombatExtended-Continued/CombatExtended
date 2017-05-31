@@ -272,6 +272,10 @@ namespace CombatExtended
                 }
             }
 
+            // secondary branch for if we ended up being called up by a turret somehow...
+            if (turret != null)
+                turret.OrderReload();
+
             // Issue reload job
             if (wielder != null)
             {
