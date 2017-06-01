@@ -341,6 +341,11 @@ namespace CombatExtended
 
             // Iterate through all cells on second half of line of sight and check for cover
             var cells = GenSight.PointsOnLineOfSight(target.Cell, caster.Position).ToArray();
+            if (cells.Length < 3)
+            {
+                cover = null;
+                return false;
+            }
             for (int i = 0; i <= cells.Length / 2; i++)
             {
                 var cell = cells[i];

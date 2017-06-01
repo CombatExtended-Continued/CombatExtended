@@ -174,16 +174,12 @@ namespace CombatExtended
             if (currentSuppression > SuppressionThreshold)
             {
                 isSuppressed = true;
-                Job reactJob;
-                if (IsHunkering)
+                Job reactJob = SuppressionUtility.GetRunForCoverJob(pawn);
+                if (reactJob == null && IsHunkering)
                 {
                     reactJob = new Job(CE_JobDefOf.HunkerDown, pawn);
                 }
-                else
-                {
-                    reactJob = SuppressionUtility.GetRunForCoverJob(pawn);
-                }
-                if (reactJob != null) pawn.jobs.StartJob(reactJob, JobCondition.InterruptForced, null, true);
+                if (reactJob != null && reactJob.def != pawn.CurJob?.def) pawn.jobs.StartJob(reactJob, JobCondition.InterruptForced, null, true);
             }
         }
 

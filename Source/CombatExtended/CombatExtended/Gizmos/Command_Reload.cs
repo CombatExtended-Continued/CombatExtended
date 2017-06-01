@@ -86,17 +86,14 @@ namespace CombatExtended
                 }
             }
             // Append unload command
-            if (compAmmo.turret?.MannableComp != null)
+            if (compAmmo.useAmmo && (compAmmo.wielder != null || compAmmo.turret?.MannableComp != null) && compAmmo.hasMagazine && compAmmo.curMagCount > 0)
             {
-                if (compAmmo.useAmmo && compAmmo.wielder != null && compAmmo.hasMagazine && compAmmo.curMagCount > 0)
-                {
-                    floatOptionList.Add(new FloatMenuOption("CE_UnloadLabel".Translate(), new Action(delegate { compAmmo.TryUnload(); })));
-                }
-                // Append reload command
-                if (compAmmo.hasMagazine && !Controller.settings.RightClickAmmoSelect)
-                {
-                    floatOptionList.Add(new FloatMenuOption("CE_ReloadLabel".Translate(), new Action(action)));
-                }
+                floatOptionList.Add(new FloatMenuOption("CE_UnloadLabel".Translate(), new Action(delegate { compAmmo.TryUnload(); })));
+            }
+            // Append reload command
+            if (compAmmo.hasMagazine && !Controller.settings.RightClickAmmoSelect)
+            {
+                floatOptionList.Add(new FloatMenuOption("CE_ReloadLabel".Translate(), new Action(action)));
             }
             return new FloatMenu(floatOptionList);
         }

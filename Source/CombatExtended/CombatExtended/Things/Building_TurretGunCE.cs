@@ -295,7 +295,7 @@ namespace CombatExtended
                 }
             }
             */
-            return stringBuilder.ToString();
+            return stringBuilder.ToString().TrimEndNewlines();
         }
 
         private bool IsValidTarget(Thing t)

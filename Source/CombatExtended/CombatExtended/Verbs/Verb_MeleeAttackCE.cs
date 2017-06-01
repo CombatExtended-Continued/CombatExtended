@@ -273,7 +273,12 @@ namespace CombatExtended
         /// <returns>True if pawn still has parries available or no parry tracker could be found, false otherwise</returns>
         private bool CanDoParry(Pawn pawn)
         {
-            if (pawn == null || pawn.Dead || !pawn.RaceProps.Humanlike || pawn.story.WorkTagIsDisabled(WorkTags.Violent))
+            if (pawn == null 
+                || pawn.Dead 
+                || !pawn.RaceProps.Humanlike 
+                || pawn.story.WorkTagIsDisabled(WorkTags.Violent) 
+                || pawn.health.capacities.CapableOf(PawnCapacityDefOf.Manipulation) 
+                || IsTargetImmobile(pawn))
             {
                 return false;
             }
