@@ -51,7 +51,7 @@ namespace CombatExtended
         public ProjectilePropertiesCE projectilePropsCE => this.ProjectileDef.projectile as ProjectilePropertiesCE;
 
         // Returns either the pawn aiming the weapon or in case of turret guns the turret operator or null if neither exists
-        public Pawn ShooterPawn => CasterPawn == null ? CasterPawn : CE_Utility.TryGetTurretOperator(this.caster);
+        public Pawn ShooterPawn => CasterPawn != null ? CasterPawn : CE_Utility.TryGetTurretOperator(this.caster);
 
         protected CompCharges CompCharges
         {

@@ -16,7 +16,7 @@ namespace CombatExtended
         private const int aimTicksMin = 30;
         private const int aimTicksMax = 240;
 
-        // XP amounts
+        // XP amounts  As of A17 non-hostile pawns/objects are (per shot) worth 6xp and hostile pawns are worth 240 xp.
         private const float objectXP = 0.1f;
         private const float pawnXP = 0.75f;
         private const float hostileXP = 3.6f;
@@ -31,6 +31,7 @@ namespace CombatExtended
         private CompFireModes compFireModes = null;
         private bool isAiming = false;
         private int xpTicks = 0;                        // Tracker to see how much xp should be awarded for time spent aiming + bursting
+        const float BaseXPMultiplyer = 0.5f;            // the amount warmup time is multiplied by for the quickshot fire mode (initial XP)
 
         #endregion
 
@@ -116,7 +117,7 @@ namespace CombatExtended
         public override void WarmupComplete()
         {
             if (xpTicks <= 0)
-                xpTicks = Mathf.CeilToInt(verbProps.warmupTime * 0.5f);
+                xpTicks = Mathf.CeilToInt(verbProps.warmupTime * BaseXPMultiplyer);
 
             if (this.ShouldAim && !this.isAiming)
             {
