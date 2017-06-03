@@ -37,42 +37,8 @@ namespace CombatExtended
                 dinfo.SetBodyRegion(partHeight, partDepth);
                 if (damDefCE != null && damDefCE.harmOnlyOutsideLayers) dinfo.SetBodyRegion(BodyPartHeight.Undefined, BodyPartDepth.Outside);
 
-                ProjectilePropertiesCE propsCE = def.projectile as ProjectilePropertiesCE;
-                if (propsCE != null && !propsCE.secondaryDamage.NullOrEmpty())
-                {
-                    // Get the correct body part
-                    Pawn pawn = hitThing as Pawn;
-                    if (pawn != null && def.projectile.damageDef.workerClass == typeof(DamageWorker_AddInjuryCE))
-                    {
-                        //BodyPartRecord exactPartFromDamageInfo = DamageWorker_AddInjuryCE.GetExactPartFromDamageInfo(dinfo, pawn);
-                        dinfo = new DamageInfo(
-                            dinfo.Def,
-                            dinfo.Amount,
-                            dinfo.Angle,
-                            dinfo.Instigator,
-                            DamageWorker_AddInjuryCE.GetExactPartFromDamageInfo(dinfo, pawn),
-                            dinfo.WeaponGear);
-                    }
-                    List<DamageInfo> dinfoList = new List<DamageInfo>() { dinfo };
-                    foreach (SecondaryDamage secDamage in propsCE.secondaryDamage)
-                    {
-                        dinfoList.Add(new DamageInfo(
-                            secDamage.def,
-                            secDamage.amount,
-                            dinfo.Angle,
-                            dinfo.Instigator,
-                            dinfo.ForceHitPart,
-                            dinfo.WeaponGear));
-                    }
-                    foreach (DamageInfo curDinfo in dinfoList)
-                    {
-                        hitThing.TakeDamage(curDinfo);
-                    }
-                }
-                else
-                {
-                    hitThing.TakeDamage(dinfo);
-                }
+                // Apply primary damage
+                hitThing.TakeDamage(dinfo);
             }
             else
             {

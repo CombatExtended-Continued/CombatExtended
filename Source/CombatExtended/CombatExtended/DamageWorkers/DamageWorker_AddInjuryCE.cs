@@ -83,7 +83,7 @@ namespace CombatExtended
             }
             if (!this.FragmentDamageForDamageType(dinfo, pawn, ref localInjuryResult))
             {
-                this.ApplyDamagePartial(dinfo, pawn, ref localInjuryResult);
+                this.ApplyDamageToPart(dinfo, pawn, ref localInjuryResult);
                 this.CheckDuplicateSmallPawnDamageToPartParent(dinfo, pawn, ref localInjuryResult);
             }
             if (localInjuryResult.wounded)
@@ -121,6 +121,10 @@ namespace CombatExtended
 
         private void CheckApplySpreadDamage(DamageInfo dinfo, Thing t)
         {
+            if (dinfo.Def == DamageDefOf.Flame && !t.FlammableNow)
+            {
+                return;
+            }
             if (UnityEngine.Random.value < 0.5f)
             {
                 dinfo.SetAmount(Mathf.CeilToInt((float)dinfo.Amount * Rand.Range(0.35f, 0.7f)));
@@ -130,26 +134,7 @@ namespace CombatExtended
 
         private bool FragmentDamageForDamageType(DamageInfo dinfo, Pawn pawn, ref DamageWorker_AddInjuryCE.LocalInjuryResult result)
         {
-            if (!dinfo.AllowDamagePropagation)
-            {
-                return false;
-            }
-            if (dinfo.Amount < 9)
-            {
-                return false;
-            }
-            if (!dinfo.Def.spreadOut)
-            {
-                return false;
-            }
-            int num = Rand.RangeInclusive(3, 4);
-            for (int i = 0; i < num; i++)
-            {
-                DamageInfo dinfo2 = dinfo;
-                dinfo2.SetAmount(dinfo.Amount / num);
-                this.ApplyDamagePartial(dinfo2, pawn, ref result);
-            }
-            return true;
+            return dinfo.AllowDamagePropagation && dinfo.Amount >= 9 && dinfo.Def.spreadOut;
         }
 
         private void CheckDuplicateSmallPawnDamageToPartParent(DamageInfo dinfo, Pawn pawn, ref DamageWorker_AddInjuryCE.LocalInjuryResult result)
@@ -162,11 +147,11 @@ namespace CombatExtended
             {
                 DamageInfo dinfo2 = dinfo;
                 dinfo2.SetForcedHitPart(result.lastHitPart.parent);
-                this.ApplyDamagePartial(dinfo2, pawn, ref result);
+                this.ApplyDamageToPart(dinfo2, pawn, ref result);
             }
         }
 
-        private void ApplyDamagePartial(DamageInfo dinfo, Pawn pawn, ref DamageWorker_AddInjuryCE.LocalInjuryResult result)
+        private void ApplyDamageToPart(DamageInfo dinfo, Pawn pawn, ref DamageWorker_AddInjuryCE.LocalInjuryResult result)
         {
             BodyPartRecord exactPartFromDamageInfo = DamageWorker_AddInjuryCE.GetExactPartFromDamageInfo(dinfo, pawn);
             if (exactPartFromDamageInfo == null)
@@ -175,12 +160,14 @@ namespace CombatExtended
             }
             bool involveArmor = !dinfo.InstantOldInjury;
             DamageInfo postArmorDinfo = dinfo;
+            bool shieldAbsorbed = false;
             if (involveArmor)
             {
-                //dmgAmount = ArmorUtility.GetAfterArmorDamage(pawn, postArmorDinfo.Amount, exactPartFromDamageInfo, postArmorDinfo.Def);
-                postArmorDinfo = ArmorUtilityCE.GetAfterArmorDamage(dinfo, pawn, exactPartFromDamageInfo);
+                postArmorDinfo = ArmorUtilityCE.GetAfterArmorDamage(dinfo, pawn, exactPartFromDamageInfo, out shieldAbsorbed);
                 if (postArmorDinfo.ForceHitPart != null && exactPartFromDamageInfo != postArmorDinfo.ForceHitPart) exactPartFromDamageInfo = postArmorDinfo.ForceHitPart;   // If the shot was deflected, update our body part
             }
+
+            // Vanilla code - apply hediff
             if ((double)postArmorDinfo.Amount < 0.001)
             {
                 result.deflected = true;
@@ -224,6 +211,22 @@ namespace CombatExtended
             this.FinalizeAndAddInjury(pawn, hediff_Injury, postArmorDinfo, ref result);
             this.CheckPropagateDamageToInnerSolidParts(postArmorDinfo, pawn, hediff_Injury, involveArmor, ref result);
             this.CheckDuplicateDamageToOuterParts(postArmorDinfo, pawn, hediff_Injury, involveArmor, ref result);
+
+            // Apply secondary damage
+            if (!shieldAbsorbed)
+            {
+                var props = dinfo.WeaponGear?.projectile as ProjectilePropertiesCE;
+                if (props != null && !props.secondaryDamage.NullOrEmpty() && dinfo.Def == props.damageDef)
+                {
+                    foreach (SecondaryDamage sec in props.secondaryDamage)
+                    {
+                        if (pawn.Dead) return;
+                        var secDinfo = sec.GetDinfo(postArmorDinfo);
+                        secDinfo.SetForcedHitPart(exactPartFromDamageInfo);
+                        pawn.TakeDamage(secDinfo);
+                    }
+                }
+            }
         }
 
         private void FinalizeAndAddInjury(Pawn pawn, Hediff_Injury injury, DamageInfo dinfo, ref DamageWorker_AddInjuryCE.LocalInjuryResult result)

@@ -484,7 +484,7 @@ namespace CombatExtended
         {
             StringBuilder stringBuilder = new StringBuilder();
             stringBuilder.AppendLine("CE_MagazineSize".Translate() + ": " + GenText.ToStringByStyle(Props.magazineSize, ToStringStyle.Integer));
-            stringBuilder.AppendLine("CE_ReloadTime".Translate() + ": " + GenText.ToStringByStyle((Props.reloadTicks / 60), ToStringStyle.Integer) + " s");
+            stringBuilder.AppendLine("CE_ReloadTime".Translate() + ": " + GenText.ToStringByStyle((Props.reloadTime), ToStringStyle.Integer) + " s");
             if (useAmmo)
             {
                 // Append various ammo stats
@@ -495,7 +495,7 @@ namespace CombatExtended
                     stringBuilder.AppendLine(label + ":\n" + cur.projectile.GetProjectileReadout());
                 }
             }
-            return stringBuilder.ToString();
+            return stringBuilder.ToString().TrimEndNewlines();
         }
 
         #endregion Methods

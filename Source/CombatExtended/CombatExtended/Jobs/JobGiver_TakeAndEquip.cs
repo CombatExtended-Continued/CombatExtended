@@ -99,7 +99,7 @@ namespace CombatExtended
 
         public override float GetPriority(Pawn pawn)
         {
-            if (!Controller.settings.AutoTakeAmmo || !Controller.settings.EnableAmmoSystem) return 0f;
+            if ((!Controller.settings.AutoTakeAmmo && pawn.IsColonist) || !Controller.settings.EnableAmmoSystem) return 0f;
 
             var priority = GetPriorityWork(pawn);
 
@@ -285,17 +285,11 @@ namespace CombatExtended
                                     int numToThing = 0;
                                     if (inventory.CanFitInInventory(thing, out numToThing))
                                     {
-                                        if (thing.Position == pawn.Position || thing.Position.AdjacentToCardinal(pawn.Position))
+                                        return new Job(JobDefOf.Equip, thing)
                                         {
-                                            return new Job(JobDefOf.Equip, thing)
-                                            {
-                                                checkOverrideOnExpire = true,
-                                                expiryInterval = 100,
-                                                canBash = true,
-                                                locomotionUrgency = LocomotionUrgency.Sprint
-                                            };
-                                        }
-                                        return GotoForce(pawn, thing, PathEndMode.Touch);
+                                            checkOverrideOnExpire = true,
+                                            expiryInterval = 100
+                                        };
                                     }
                                 } else {
                                     // pickup a CE ranged weapon...
@@ -321,17 +315,11 @@ namespace CombatExtended
                                             int numToThing = 0;
                                             if (inventory.CanFitInInventory(thing, out numToThing))
                                             {
-                                                if (thing.Position == pawn.Position || thing.Position.AdjacentToCardinal(pawn.Position))
+                                                return new Job(JobDefOf.Equip, thing)
                                                 {
-                                                    return new Job(JobDefOf.Equip, thing)
-                                                    {
-                                                        checkOverrideOnExpire = true,
-                                                        expiryInterval = 100,
-                                                        canBash = true,
-                                                        locomotionUrgency = LocomotionUrgency.Sprint
-                                                    };
-                                                }
-                                                return GotoForce(pawn, thing, PathEndMode.Touch);
+                                                    checkOverrideOnExpire = true,
+                                                    expiryInterval = 100
+                                                };
                                             }
                                         }
 	                                }
@@ -346,20 +334,13 @@ namespace CombatExtended
 							Thing meleeWeapon = allWeapons.FirstOrDefault(w => !w.def.IsRangedWeapon && w.def.IsMeleeWeapon);
 							
 							if (meleeWeapon != null)
-							{
-								if (meleeWeapon.Position == pawn.Position || meleeWeapon.Position.AdjacentToCardinal(pawn.Position))
-								{
-									return new Job(JobDefOf.Equip, meleeWeapon)
-									{
-										checkOverrideOnExpire = true,
-										expiryInterval = 100,
-										canBash = true,
-										locomotionUrgency = LocomotionUrgency.Sprint
-									};
-								}
-								
-								return GotoForce(pawn, meleeWeapon, PathEndMode.Touch);
-							}
+                            {
+                                return new Job(JobDefOf.Equip, meleeWeapon)
+                                {
+                                    checkOverrideOnExpire = true,
+                                    expiryInterval = 100
+                                };
+                            }
 						}
 					}
                 }
@@ -422,22 +403,16 @@ namespace CombatExtended
                                         }
                                         else
                                         {
-                                            if (th.Position == pawn.Position || th.Position.AdjacentToCardinal(pawn.Position))
+                                            int numToCarry = 0;
+                                            if (inventory.CanFitInInventory(th, out numToCarry))
                                             {
-                                                int numToCarry = 0;
-                                                if (inventory.CanFitInInventory(th, out numToCarry))
+                                                return new Job(JobDefOf.TakeInventory, th)
                                                 {
-                                                    return new Job(JobDefOf.TakeInventory, th)
-                                                    {
-                                                        count = Mathf.RoundToInt(numToCarry * 0.8f),
-                                                        expiryInterval = 150,
-                                                        checkOverrideOnExpire = true,
-                                                        canBash = true,
-                                                        locomotionUrgency = LocomotionUrgency.Sprint
-                                                    };
-                                                }
+                                                    count = Mathf.RoundToInt(numToCarry * 0.8f),
+                                                    expiryInterval = 150,
+                                                    checkOverrideOnExpire = true
+                                                };
                                             }
-                                            return GotoForce(pawn, th, PathEndMode.Touch);
                                         }
                                     }
                                 }

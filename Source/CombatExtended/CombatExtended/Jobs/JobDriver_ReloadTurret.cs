@@ -109,7 +109,7 @@ namespace CombatExtended
                 compReloader.TryUnload();
             };
             waitToil.defaultCompleteMode = ToilCompleteMode.Delay;
-            waitToil.defaultDuration = Mathf.CeilToInt(compReloader.Props.reloadTicks / pawn.GetStatValue(CE_StatDefOf.ReloadSpeed));
+            waitToil.defaultDuration = Mathf.CeilToInt(compReloader.Props.reloadTime.SecondsToTicks() / pawn.GetStatValue(CE_StatDefOf.ReloadSpeed));
             yield return waitToil.WithProgressBarToilDelay(TargetIndex.A);
 
             //Actual reloader

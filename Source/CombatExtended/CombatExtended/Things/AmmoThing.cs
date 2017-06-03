@@ -39,7 +39,7 @@ namespace CombatExtended
                     stringBuilder.AppendLine("   -" + user.LabelCap);
                 }
 
-                return stringBuilder.ToString();
+                return stringBuilder.ToString().TrimEndNewlines();
             }
             return base.GetDescription();
         }

@@ -251,6 +251,7 @@ namespace CombatExtended
             Scribe_Values.Look(ref burstWarmupTicksLeft, "burstWarmupTicksLeft", 0);
             Scribe_Values.Look(ref isReloading, "isReloading", false);
             Scribe_Values.Look(ref ticksUntilAutoReload, "ticksUntilAutoReload", 0);
+            // gunInt saving disabled until we can figure out a fix for the bug where it'll lose track of its verbs -NIA
             //Scribe_Deep.Look(ref gunInt, "gunInt");
         }
 

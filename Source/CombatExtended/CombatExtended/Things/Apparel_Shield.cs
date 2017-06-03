@@ -12,7 +12,7 @@ namespace CombatExtended
     {
         public const string OneHandedTag = "CE_OneHandedWeapon";
         private bool drawShield => Wearer.Drafted || (Wearer.CurJob?.def.alwaysShowWeapon ?? false) || (Wearer.mindState.duty?.def.alwaysShowWeapon ?? false);  // Copied from PawnRenderer.CarryWeaponOpenly(), we show the shield whenever weapons are drawn
-        private bool isTall => def.apparel.tags.Contains(ArmorUtilityCE.BallisticShieldTag);
+        private bool IsTall => def.GetModExtension<ShieldDefExtension>()?.drawAsTall ?? false;
 
         public override bool AllowVerbCast(IntVec3 root, Map map, LocalTargetInfo targ)
         {
@@ -33,7 +33,7 @@ namespace CombatExtended
             {
                 //vector.y = Altitudes.AltitudeFor(AltitudeLayer.Pawn);
                 vector.x -= 0.1f;
-                vector.z -= isTall ? -0.1f : 0.2f;
+                vector.z -= IsTall ? -0.1f : 0.2f;
             }
             else
             {
@@ -42,15 +42,15 @@ namespace CombatExtended
                     //vector.y = Altitudes.AltitudeFor(AltitudeLayer.MoteOverhead);
                     vector.y += 0.0375f;
                     vector.x += 0.1f;
-                    vector.z -= isTall ? -0.05f : 0.2f;
+                    vector.z -= IsTall ? -0.05f : 0.2f;
                 }
                 else
                 {
                     if (this.Wearer.Rotation == Rot4.East)
                     {
                         //vector.y = Altitudes.AltitudeFor(AltitudeLayer.Pawn);
-                        if (isTall) vector.x += 0.1f;
-                        vector.z -= isTall ? -0.05f : 0.2f;
+                        if (IsTall) vector.x += 0.1f;
+                        vector.z -= IsTall ? -0.05f : 0.2f;
                         num = 22.5f;
                     }
                     else
@@ -59,8 +59,8 @@ namespace CombatExtended
                         {
                             //vector.y = Altitudes.AltitudeFor(AltitudeLayer.MoteOverhead);
                             vector.y += 0.0425f;
-                            if (isTall) vector.x -= 0.1f;
-                            vector.z -= isTall ? -0.05f : 0.2f;
+                            if (IsTall) vector.x -= 0.1f;
+                            vector.z -= IsTall ? -0.05f : 0.2f;
                             num = 337.5f;
                         }
                     }
