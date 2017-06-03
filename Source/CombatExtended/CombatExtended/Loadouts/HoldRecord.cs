@@ -62,22 +62,27 @@ namespace CombatExtended
 			                           (!pickedUp ? string.Concat(" with a job issue time of ", (GenTicks.TicksAbs - _tickJobIssued),
 			                                                      " ago and will go invalid in ", (GenTicks.TicksAbs + INVALIDTICKS - _tickJobIssued)) : "."));
 		}
-		#endregion
+        #endregion
 
-		#region IExposable implementation
+        #region IExposable implementation
 
-		/// <summary>
-		/// RimWorld Load/Save handler.
-		/// </summary>
-		public void ExposeData()
-		{
-			Scribe_Defs.Look(ref _def, "ThingDef");
-			Scribe_Values.Look(ref count, "count");
-			Scribe_Values.Look(ref pickedUp, "pickedUp");
-			if (!pickedUp)
-				Scribe_Values.Look(ref _tickJobIssued, "tickOfPickupJob");
-		}
-
-		#endregion
-	}
+        /// <summary>
+        /// RimWorld Load/Save handler.
+        /// </summary>
+        public void ExposeData()
+        {
+            Log.Message("Saving _def");
+            Scribe_Defs.Look(ref _def, "ThingDef");
+            Log.Message("Saving count");
+            Scribe_Values.Look(ref count, "count");
+            Log.Message("Saving pickedUp");
+            Scribe_Values.Look(ref pickedUp, "pickedUp");
+            if (!pickedUp)
+            {
+                Log.Message("Saving tickOfPickedupJob");
+                Scribe_Values.Look(ref _tickJobIssued, "tickOfPickupJob");
+            }
+        }
+            #endregion
+    }
 }

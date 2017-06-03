@@ -34,7 +34,7 @@ namespace CombatExtended
             label = LoadoutManager.GetUniqueLabel();
 
             // create a unique ID.
-            uniqueID = LoadoutManager.GetUniqueID();
+            uniqueID = LoadoutManager.GetUniqueLoadoutID();
         }
         
         public Loadout(string label)
@@ -42,7 +42,7 @@ namespace CombatExtended
             this.label = label;
 
             // create a unique ID.
-            uniqueID = LoadoutManager.GetUniqueID();
+            uniqueID = LoadoutManager.GetUniqueLoadoutID();
         }
 
         /// <summary>

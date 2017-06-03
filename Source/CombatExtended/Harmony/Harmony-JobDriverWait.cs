@@ -30,7 +30,7 @@ namespace CombatExtended.Harmony
     static class Harmony_JobDriverWait_CheckForAutoAttack
     {
         static readonly string logPrefix = Assembly.GetExecutingAssembly().GetName().Name + " :: " + typeof(Harmony_JobDriverWait_CheckForAutoAttack).Name + " :: ";
-        static DynamicMethod Patched_ClosestThingTarget_Global = null;
+        //static DynamicMethod Patched_ClosestThingTarget_Global = null;
 
         /// <summary>
         /// Transpiler runs through the IL code of the method CheckForAutoAttack and makes some tweaks to a call so as to avoid having the pawn attack a target it can't hit.

@@ -183,6 +183,7 @@ namespace CombatExtended
                 ammoListCached.Clear();
                 meleeWeaponListCached.Clear();
                 rangedWeaponListCached.Clear();
+
                 List<HoldRecord> recs = LoadoutManager.GetHoldRecords(parentPawn);
                 foreach (Thing thing in parentPawn.inventory.innerContainer)
                 {

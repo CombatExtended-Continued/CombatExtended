@@ -16,6 +16,9 @@ using System.Collections.Generic;
  * method operands (ex call, callvirt) == MethodInfo
  * For branching, if the operand is a branch the label will be a Label? (Label isn't nullable but since it's in an object it must be nullable).
  * -Labels tend to look the same, use <instance_label>.GetHashCode() to determine WHICH label it is...
+ * 
+ * A useful IL instruction reference (for me): https://stackoverflow.com/questions/7212255/cecil-instruction-operand-types-corresponding-to-instruction-opcode-code-value#7215711
+ * 
  */
 
 namespace CombatExtended.Harmony
