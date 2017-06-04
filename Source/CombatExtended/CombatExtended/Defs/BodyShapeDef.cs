@@ -8,14 +8,11 @@ using UnityEngine;
 
 namespace CombatExtended
 {
-    public enum BodyType : byte
+    public class BodyShapeDef : Def
     {
-        Undefined,
-        Humanoid,
-        Quadruped,
-        QuadrupedLow,
-        Serpentine,
-        Birdlike,
-        Monkeylike
+        public float width = 1;
+        public float widthLaying = 1;
+        public float height = 1;
+        public float heightLaying = 1;
     }
 }

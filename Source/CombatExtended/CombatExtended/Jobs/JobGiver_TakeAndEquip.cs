@@ -433,8 +433,7 @@ namespace CombatExtended
                             {
                                 return new Job(JobDefOf.Wear, apparel)
                                 {
-                                    ignoreForbidden = true,
-                                    locomotionUrgency = LocomotionUrgency.Sprint
+                                    ignoreForbidden = true
                                 };
                             }
                         }
@@ -449,8 +448,7 @@ namespace CombatExtended
                             {
                                 return new Job(JobDefOf.Wear, apparel2)
                                 {
-                                    ignoreForbidden = true,
-                                    locomotionUrgency = LocomotionUrgency.Sprint
+                                    ignoreForbidden = true
                                 };
                             }
                         }

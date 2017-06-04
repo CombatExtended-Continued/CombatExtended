@@ -135,7 +135,7 @@ namespace CombatExtended
             this.FailOn(HasNoGunOrAmmo);
 
             // Throw mote
-            if (compReloader.Props.throwMote)
+            if (compReloader.ShouldThrowMote)
                 MoteMaker.ThrowText(pawn.Position.ToVector3Shifted(), Find.VisibleMap, string.Format("CE_ReloadingMote".Translate(), weapon.def.LabelCap));
 
             //Toil of do-nothing		

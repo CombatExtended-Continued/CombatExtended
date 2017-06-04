@@ -189,29 +189,17 @@ namespace CombatExtended
                 return new Pair<float, float>(1, 1);
             }
             RacePropertiesExtensionCE props = pawn.def.GetModExtension<RacePropertiesExtensionCE>() ?? new RacePropertiesExtensionCE();
-            BodyType type = props.bodyType;
+            var shape = props.bodyShape;
 #if DEBUG
-            if (type == BodyType.Undefined) Log.ErrorOnce("CE returning BodyType Undefined for pawn " + pawn.ToString(),  35000198 + pawn.GetHashCode());
+            if (shape == CE_BodyShapeDefOf.Invalid) Log.ErrorOnce("CE returning BodyType Undefined for pawn " + pawn.ToString(),  35000198 + pawn.GetHashCode());
 #else
-            if (type == BodyType.Undefined) Log.Warning("CE returning BodyType Undefined for pawn " + pawn.ToString());
+            if (shape == CE_BodyShapeDefOf.Invalid) Log.Warning("CE returning BodyType Undefined for pawn " + pawn.ToString());
 #endif
-            switch (type)
+            if (pawn.GetPosture() != PawnPosture.Standing)
             {
-                case BodyType.Humanoid:
-                    return new Pair<float, float>(0.25f, 1);
-                case BodyType.Quadruped:
-                    return new Pair<float, float>(0.5f, 0.5f);
-                case BodyType.QuadrupedLow:
-                    return new Pair<float, float>(0.5f, 0.25f);
-                case BodyType.Serpentine:
-                    return new Pair<float, float>(0.5f, 0.125f);
-                case BodyType.Birdlike:
-                    return new Pair<float, float>(0.5f, 0.75f);
-                case BodyType.Monkeylike:
-                    return new Pair<float, float>(0.25f, 0.5f);
-                default:
-                    return new Pair<float, float>(1, 1);
+                return new Pair<float, float>(shape.widthLaying, shape.heightLaying);
             }
+            return new Pair<float, float>(shape.width, shape.height);
         }
 
         /// <summary>

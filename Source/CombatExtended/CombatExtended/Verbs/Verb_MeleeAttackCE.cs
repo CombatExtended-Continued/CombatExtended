@@ -356,7 +356,7 @@ namespace CombatExtended
             if (pawn == null || CasterPawn == null) return BodyPartHeight.Undefined;
             var casterReach = new CollisionVertical(CasterPawn).Max * 1.2f;
             var targetHeight = new CollisionVertical(pawn);
-            BodyPartHeight maxHeight = targetHeight.GetCollisionBodyHeight(casterReach);
+            BodyPartHeight maxHeight = targetHeight.GetRandWeightedBodyHeightBelow(casterReach);
             BodyPartHeight height = (BodyPartHeight)Rand.RangeInclusive(1, (int)maxHeight);
             return height;
         }

@@ -8,9 +8,9 @@ using UnityEngine;
 
 namespace CombatExtended
 {
-
-    public class RacePropertiesExtensionCE : DefModExtension
+    [DefOf]
+    public class CE_BodyShapeDefOf
     {
-        public BodyShapeDef bodyShape = CE_BodyShapeDefOf.Invalid;
+        public static BodyShapeDef Invalid;
     }
 }

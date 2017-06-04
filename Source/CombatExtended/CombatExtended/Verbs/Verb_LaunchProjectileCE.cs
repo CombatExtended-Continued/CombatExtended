@@ -36,6 +36,7 @@ namespace CombatExtended
 
         protected CompCharges compCharges = null;
         protected CompAmmoUser compAmmo = null;
+        protected CompFireModes compFireModes = null;
         private float shotSpeed = -1;
         
         private float rotationDegrees = 0f;
@@ -127,6 +128,18 @@ namespace CombatExtended
                 return this.VerbPropsCE.projectileDef;
             }
         }
+        
+        protected CompFireModes CompFireModes
+        {
+            get
+            {
+                if (this.compFireModes == null && this.ownerEquipment != null)
+                {
+                    this.compFireModes = this.ownerEquipment.TryGetComp<CompFireModes>();
+                }
+                return this.compFireModes;
+            }
+        }
 
         #endregion
 
@@ -215,28 +228,37 @@ namespace CombatExtended
 			    // Height difference calculations for ShotAngle
 			    float targetHeight = 0f;
 	            
-	            var coverVertical = new CollisionVertical(report.cover).HeightRange;	//Get " " cover, assume it is the edifice
+	            var coverRange = new CollisionVertical(report.cover).HeightRange;	//Get " " cover, assume it is the edifice
 	            
 	            // Projectiles with flyOverhead target the ground below the target and ignore cover
 	            if (ProjectileDef.projectile.flyOverhead)
 	            {
-	            	targetHeight = coverVertical.max;
+	            	targetHeight = coverRange.max;
 	            }
 	            else
 	            {
-	           		var targetVertical = new CollisionVertical(currentTarget.Thing).HeightRange;	//Get lower and upper heights of the target
-	           		if (targetVertical.min < coverVertical.max)	//Some part of the target is hidden behind cover
+                    var VictimVert = new CollisionVertical(currentTarget.Thing);
+                    var targetRange = VictimVert.HeightRange;	//Get lower and upper heights of the target
+	           		if (targetRange.min < coverRange.max)	//Some part of the target is hidden behind cover
 	           		{
-	           			//TODO : It is possible for targetVertical.max < coverVertical.max, technically, in which case the shooter will never hit until the cover is gone.
-	           			targetVertical.min = coverVertical.max;
+	           			// - It is possible for targetVertical.max < coverVertical.max, technically, in which case the shooter will never hit until the cover is gone.
+                        // - This should be checked for in LoS -NIA
+	           			targetRange.min = coverRange.max;
+
+                        // Shift aim upwards if we're doing suppressive fire
+                        if (targetRange.max <= coverRange.max && CompFireModes?.CurrentAimMode == AimMode.SuppressFire)
+                        {
+                            targetRange.max = coverRange.max * 2;
+                            targetRange.min = coverRange.max;
+                        }
 	           		}
                     else if (currentTarget.Thing is Pawn)
                     {
                         // Aim for center of mass on an exposed target
-                        targetVertical.min += CollisionVertical.BodyRegionBottomHeight * targetVertical.max;
-                        targetVertical.max *= CollisionVertical.BodyRegionMiddleHeight;
+                        targetRange.min = VictimVert.BottomHeight;
+                        targetRange.max = VictimVert.MiddleHeight;
                     }
-	           		targetHeight = targetVertical.min + (targetVertical.max - targetVertical.min) * 0.5f;
+	           		targetHeight = targetRange.Average;
 	            }
 	            
 	            angleRadians += ProjectileCE.GetShotAngle(ShotSpeed, (newTargetLoc - sourceLoc).magnitude, targetHeight - ShotHeight, ProjectileDef.projectile.flyOverhead, projectilePropsCE.Gravity);
@@ -261,10 +283,11 @@ namespace CombatExtended
         /// <param name="angle">The ref float to have vertical recoil in radians added to.</param>
         private void GetRecoilVec(ref float rotation, ref float angle)
         {
-            float minX = 0;
+            var recoil = VerbPropsCE.recoilAmount;
             float maxX = 0;
-            float minY = 0;
+            float minX = 0;
             float maxY = 0;
+            float minY = 0;
             switch (VerbPropsCE.recoilPattern)
             {
                 case RecoilPattern.None:
@@ -278,10 +301,10 @@ namespace CombatExtended
                     break;
                 case RecoilPattern.Mounted:
                     float num2 = VerbPropsCE.recoilAmount / 3;
-                    minX = -num2 / 3;
+                    minX = -num2;
                     maxX = num2;
                     minY = -num2;
-                    maxX = VerbPropsCE.recoilAmount;
+                    maxY = VerbPropsCE.recoilAmount;
                     break;
             }
             float recoilMagnitude = Mathf.Pow((5 - ShootingAccuracy), (Mathf.Min(10, numShotsFired) / 6.25f));
@@ -402,7 +425,7 @@ namespace CombatExtended
             // Check target self
             if (targ.Thing != null && targ.Thing == this.caster)
             {
-                if (verbProps.targetParams.canTargetSelf)
+                if (!verbProps.targetParams.canTargetSelf)
                 {
                     report = "Can't target self";
                     return false;
@@ -451,28 +474,6 @@ namespace CombatExtended
                 }
                 return false;
             }
-            /*
-            //Check if target is obstructed behind cover
-            Thing coverTarg;
-            if (GetHighestCoverBetween(root.ToVector3Shifted(), targ, out coverTarg))
-            {
-                if (new CollisionVertical(targ.Thing).Max < new CollisionVertical(coverTarg).Max)
-                {
-                    report = "Target obstructed by " + coverTarg.LabelShort;
-                    return false;
-                }
-            }
-            //Check if shooter is obstructed by cover
-            Thing coverShoot;
-            if (GetHighestCoverBetween(targ.Cell.ToVector3Shifted(), caster, out coverShoot))
-            {
-                if (ShotHeight < new CollisionVertical(coverShoot).Max)
-                {
-                    report = "Shooter obstructed by " + coverShoot.LabelShort;
-                    return false;
-                }
-            }
-            */
             return true;
         }
 
@@ -498,25 +499,12 @@ namespace CombatExtended
             {
                 ProjectileCE projectile = (ProjectileCE)ThingMaker.MakeThing(ProjectileDef, null);
                 GenSpawn.Spawn(projectile, shootLine.Source, caster.Map);
-	           	//Vector3 targetVec3 = ShiftTarget(report, pelletMechanicsOnly);
 	           	ShiftTarget(report, pelletMechanicsOnly);
 
                 //New aiming algorithm
                 projectile.canTargetSelf = verbProps.targetParams.canTargetSelf;
                 projectile.minCollisionSqr = (sourceLoc - newTargetLoc).sqrMagnitude;
                 projectile.Launch(caster, sourceLoc, shotAngle, shotRotation, ShotHeight, ShotSpeed, ownerEquipment);
-                
-                /*projectile.shotAngle = this.shotAngle;
-                projectile.shotHeight = this.shotHeight;
-                projectile.shotSpeed = this.shotSpeed;
-                if (this.currentTarget.Thing != null)
-                {
-                    projectile.Launch(this.caster, casterExactPosition, new LocalTargetInfo(this.currentTarget.Thing), targetVec3, this.ownerEquipment);
-                }
-                else
-                {
-                    projectile.Launch(this.caster, casterExactPosition, new LocalTargetInfo(shootLine.Dest), targetVec3, this.ownerEquipment);
-                }*/
 	           	pelletMechanicsOnly = true;
             }
            	pelletMechanicsOnly = false;
@@ -531,8 +519,6 @@ namespace CombatExtended
         public virtual void VerbTickCE()
         {
         }
-
-        #endregion
 
         #region Line of Sight Utility
 
@@ -663,8 +649,13 @@ namespace CombatExtended
                 Ray shotLine = new Ray(shotSource, (targetPos - shotSource));
 
                 // Create validator to check for intersection with partial cover
+                var aimMode = CompFireModes?.CurrentAimMode;
                 Func<IntVec3, bool> validator = delegate (IntVec3 cell)
                 {
+                    // Skip this check entirely if we're doing suppressive fire and cell is adjacent to target
+                    if (aimMode == AimMode.SuppressFire)
+                        return true;
+
                     Thing cover = cell.GetFirstPawn(caster.Map);
                     if (cover == null)
                     {
@@ -702,6 +693,8 @@ namespace CombatExtended
             }
             return true;
         }
+
+        #endregion
 
         #endregion
     }

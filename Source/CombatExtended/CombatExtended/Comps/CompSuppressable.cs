@@ -14,8 +14,9 @@ namespace CombatExtended
         #region Constants
 
         private const float minSuppressionDist = 5f;        //Minimum distance to be suppressed from, so melee won't be suppressed if it closes within this distance
-        private const float maxSuppression = 150f;          //Cap to prevent suppression from building indefinitely
-        private const float suppressionDecayRate = 20f;    //How much suppression decays per second
+        private const float maxSuppression = 1050f;          //Cap to prevent suppression from building indefinitely
+        private const int TicksForDecayStart = 120;          // How long since last suppression before decay starts
+        private const float suppressionDecayRate = 5f;    // How much suppression decays per tick
         private const int ticksPerMote = 150;               //How many ticks between throwing a mote
 
         #endregion
@@ -34,6 +35,8 @@ namespace CombatExtended
         
         private float currentSuppression = 0f;
         public bool isSuppressed = false;
+
+        private int ticksUntilDecay = 0;
 
         #endregion
 
@@ -81,15 +84,15 @@ namespace CombatExtended
                 if (pawn != null)
                 {
                     //Get morale
-                    float hardBreakThreshold = pawn.GetStatValue(StatDefOf.MentalBreakThreshold) + 0.15f;
+                    float hardBreakThreshold = pawn.mindState?.mentalBreaker?.BreakThresholdMajor ?? 0;
                     float currentMood = pawn.needs?.mood?.CurLevel ?? 0.5f;
-                    threshold = Mathf.Max(0, currentMood - hardBreakThreshold);
+                    threshold = Mathf.Sqrt(Mathf.Max(0, currentMood - hardBreakThreshold)) * maxSuppression * 0.125f;
                 }
                 else
                 {
-                    Log.Error("Tried to get suppression threshold of non-pawn");
+                    Log.Error("CE tried to get suppression threshold of non-pawn");
                 }
-                return threshold * maxSuppression * 0.5f;
+                return threshold;
             }
         }
 
@@ -97,7 +100,7 @@ namespace CombatExtended
         {
             get
             {
-                if (currentSuppression > SuppressionThreshold * 2.5)
+                if (currentSuppression > (SuppressionThreshold * 10))
                 {
                     if (isSuppressed)
                     {
@@ -133,6 +136,8 @@ namespace CombatExtended
             Scribe_Values.Look(ref currentSuppression, "currentSuppression", 0f);
             Scribe_Values.Look(ref suppressorLoc, "suppressorLoc");
             Scribe_Values.Look(ref locSuppressionAmount, "locSuppression", 0f);
+            Scribe_Values.Look(ref isSuppressed, "isSuppressed", false);
+            Scribe_Values.Look(ref ticksUntilDecay, "ticksUntilDecay", 0);
         }
 
         public void AddSuppression(float amount, IntVec3 origin)
@@ -153,7 +158,13 @@ namespace CombatExtended
             }
 
             // Add suppression to global suppression counter
-            currentSuppression += amount * pawn.GetStatValue(CE_StatDefOf.Suppressability);
+            var suppressAmount = amount * pawn.GetStatValue(CE_StatDefOf.Suppressability);
+            currentSuppression += suppressAmount;
+            if (Controller.settings.DebugShowSuppressionBuildup)
+            {
+                MoteMaker.ThrowText(pawn.DrawPos, pawn.Map, suppressAmount.ToString());
+            }
+            ticksUntilDecay = TicksForDecayStart;
             if (currentSuppression > maxSuppression)
             {
                 currentSuppression = maxSuppression;
@@ -188,34 +199,22 @@ namespace CombatExtended
             base.CompTick();
 
             //Apply decay once per second
-            if (parent.IsHashIntervalTick(60))
+            if(ticksUntilDecay > 0)
+            {
+                ticksUntilDecay--;
+            }
+            else if (currentSuppression > 0)
             {
                 //Decay global suppression
-                if (currentSuppression > suppressionDecayRate)
+                if (Controller.settings.DebugShowSuppressionBuildup && Gen.IsHashIntervalTick(parent, 30))
                 {
-                    currentSuppression -= suppressionDecayRate;
-
-                    //Check if pawn is still suppressed
-                    if (isSuppressed && currentSuppression <= SuppressionThreshold)
-                    {
-                        isSuppressed = false;
-                    }
+                    MoteMaker.ThrowText(parent.DrawPos, parent.Map, "-" + (suppressionDecayRate * 30).ToString(), Color.red);
                 }
-                else if (currentSuppression > 0)
-                {
-                    currentSuppression = 0;
-                    isSuppressed = false;
-                }
+                currentSuppression -= Mathf.Min(suppressionDecayRate, currentSuppression);
+                isSuppressed = currentSuppression > 0;
 
                 //Decay location suppression
-                if (locSuppressionAmount > suppressionDecayRate)
-                {
-                    locSuppressionAmount -= suppressionDecayRate;
-                }
-                else if (locSuppressionAmount > 0)
-                {
-                    locSuppressionAmount = 0;
-                }
+                locSuppressionAmount -= Mathf.Min(suppressionDecayRate, locSuppressionAmount);
             }
 
             //Throw mote at set interval

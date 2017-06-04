@@ -104,7 +104,7 @@ namespace CombatExtended
                 // Initial relaod process activities.
                 waitToil.actor.pather.StopDead();
                 turret.isReloading = true;
-                if (compReloader.Props.throwMote)
+                if (compReloader.ShouldThrowMote)
                     MoteMaker.ThrowText(turret.Position.ToVector3Shifted(), turret.Map, string.Format("CE_ReloadingTurretMote".Translate(), TargetThingA.LabelCapNoCount));
                 compReloader.TryUnload();
             };

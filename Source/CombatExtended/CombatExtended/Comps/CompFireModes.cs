@@ -10,6 +10,19 @@ namespace CombatExtended
 {
     public class CompFireModes : CompRangedGizmoGiver
     {
+
+        #region Fields
+
+        private Verb verbInt = null;
+        private List<FireMode> availableFireModes = new List<FireMode>(Enum.GetNames(typeof(FireMode)).Length);
+        private List<AimMode> availableAimModes = new List<AimMode>(Enum.GetNames(typeof(AimMode)).Length) { AimMode.AimedShot };
+        private FireMode currentFireModeInt;
+        private AimMode currentAimModeInt;
+
+        #endregion
+
+        #region Properties
+
         public CompProperties_FireModes Props
         {
             get
@@ -19,8 +32,7 @@ namespace CombatExtended
         }
 
         // Fire mode variables
-        private Verb verbInt = null;
-        private Verb verb
+        private Verb Verb
         {
             get
             {
@@ -39,39 +51,41 @@ namespace CombatExtended
                 return verbInt;
             }
         }
-        public Thing caster
+        public Thing Caster
         {
             get
             {
-                return verb.caster;
+                return Verb.caster;
             }
         }
-        public Pawn casterPawn
+        public Pawn CasterPawn
         {
             get
             {
-                return caster as Pawn;
+                return Caster as Pawn;
             }
         }
-        private List<FireMode> availableFireModes = new List<FireMode>(Enum.GetNames(typeof(FireMode)).Length);
-        private List<AimMode> availableAimModes = new List<AimMode>(Enum.GetNames(typeof(AimMode)).Length) { AimMode.Snapshot, AimMode.AimedShot };
-
-        private FireMode currentFireModeInt;
-        public FireMode currentFireMode
+        public FireMode CurrentFireMode
         {
             get
             {
+                if (useAIModes && Props.aiUseBurstMode && availableFireModes.Contains(FireMode.BurstFire)) return FireMode.BurstFire;
                 return currentFireModeInt;
             }
         }
-        private AimMode currentAimModeInt;
-        public AimMode currentAimMode
+        public AimMode CurrentAimMode
         {
             get
             {
+                if (useAIModes && availableAimModes.Contains(Props.aiAimMode)) return Props.aiAimMode;
                 return currentAimModeInt;
             }
         }
+        private bool useAIModes => Caster.Faction != Faction.OfPlayer;
+
+        #endregion
+
+        #region Methods
 
         public override void Initialize(CompProperties props)
         {
@@ -89,13 +103,13 @@ namespace CombatExtended
         private void InitAvailableFireModes()
         {
             // Calculate available fire modes
-            if (verb.verbProps.burstShotCount > 1 || Props.noSingleShot)
+            if (Verb.verbProps.burstShotCount > 1 || Props.noSingleShot)
             {
                 availableFireModes.Add(FireMode.AutoFire);
             }
             if (Props.aimedBurstShotCount > 1)
             {
-                if (Props.aimedBurstShotCount >= verb.verbProps.burstShotCount)
+                if (Props.aimedBurstShotCount >= Verb.verbProps.burstShotCount)
                 {
                     Log.Warning(parent.LabelCap + " burst fire shot count is same or higher than auto fire");
                 }
@@ -108,10 +122,14 @@ namespace CombatExtended
             {
                 availableFireModes.Add(FireMode.SingleFire);
             }
-            if (Props.noSnapshot) availableAimModes.Remove(AimMode.Snapshot);
+            if (!Props.noSnapshot)
+            {
+                availableAimModes.Insert(0, AimMode.Snapshot);
+                availableAimModes.Add(AimMode.SuppressFire);
+            }
 
             // Sanity check in case def changed
-            if (!availableFireModes.Contains(currentFireModeInt) || !availableAimModes.Contains(currentAimMode))
+            if (!availableFireModes.Contains(currentFireModeInt) || !availableAimModes.Contains(currentAimModeInt))
             {
                 ResetModes();
             }
@@ -147,7 +165,7 @@ namespace CombatExtended
 
         public override IEnumerable<Gizmo> CompGetGizmosExtra()
         {
-            if (casterPawn != null && casterPawn.Faction.Equals(Faction.OfPlayer))
+            if (CasterPawn != null && CasterPawn.Faction.Equals(Faction.OfPlayer))
             {
                 foreach(Command com in GenerateGizmos())
                 {
@@ -161,9 +179,9 @@ namespace CombatExtended
             Command_Action toggleFireModeGizmo = new Command_Action
             {
                 action = ToggleFireMode,
-                defaultLabel = ("CE_" + currentFireMode.ToString() + "Label").Translate(),
+                defaultLabel = ("CE_" + currentFireModeInt.ToString() + "Label").Translate(),
                 defaultDesc = "CE_ToggleFireModeDesc".Translate(),
-                icon = ContentFinder<Texture2D>.Get(("UI/Buttons/" + currentFireMode.ToString()), true),
+                icon = ContentFinder<Texture2D>.Get(("UI/Buttons/" + currentFireModeInt.ToString()), true),
                 tutorTag = availableFireModes.Count > 1 ? "CE_FireModeToggle" : null
             };
             if (availableFireModes.Count > 1)
@@ -177,9 +195,9 @@ namespace CombatExtended
             Command_Action toggleAimModeGizmo = new Command_Action
             {
                 action = ToggleAimMode,
-                defaultLabel = ("CE_" + currentAimMode.ToString() + "Label").Translate(),
+                defaultLabel = ("CE_" + currentAimModeInt.ToString() + "Label").Translate(),
                 defaultDesc = "CE_ToggleAimModeDesc".Translate(),
-                icon = ContentFinder<Texture2D>.Get(("UI/Buttons/" + currentAimMode.ToString()), true),
+                icon = ContentFinder<Texture2D>.Get(("UI/Buttons/" + currentAimModeInt.ToString()), true),
             };
             if (availableAimModes.Count > 1)
             {
@@ -207,5 +225,7 @@ namespace CombatExtended
             }
             return stringBuilder.ToString().TrimEndNewlines();
         }
-	}
+
+        #endregion
+    }
 }

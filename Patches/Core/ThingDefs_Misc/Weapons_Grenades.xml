@@ -85,6 +85,13 @@
 	<!-- Grenade -->
 
 	<Operation Class="PatchOperationReplace">
+		<xpath>*/ThingDef[defName="Weapon_GrenadeFrag"]/label</xpath>
+		<value>
+			<label>frag grenade</label>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
 		<xpath>*/ThingDef[defName="Weapon_GrenadeFrag"]/graphicData</xpath>
 		<value>
 			<graphicData>
@@ -103,6 +110,12 @@
 			<tickerType>Normal</tickerType>
 			<resourceReadoutPriority>First</resourceReadoutPriority>
 		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAttributeSet">
+		<xpath>*/ThingDef[defName="Weapon_GrenadeFrag"]</xpath>
+		<attribute>Class</attribute>
+		<value>CombatExtended.AmmoDef</value>
 	</Operation>
 
 	<Operation Class="PatchOperationAdd">
@@ -225,6 +238,13 @@
 	<!-- Grenade -->
 
 	<Operation Class="PatchOperationReplace">
+		<xpath>*/ThingDef[defName="Weapon_GrenadeMolotov"]/label</xpath>
+		<value>
+			<label>Molotov cocktail</label>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
 		<xpath>*/ThingDef[defName="Weapon_GrenadeMolotov"]/graphicData</xpath>
 		<value>
 			<graphicData>
@@ -245,8 +265,14 @@
 		</value>
 	</Operation>
 
+	<Operation Class="PatchOperationAttributeSet">
+		<xpath>*/ThingDef[defName="Weapon_GrenadeMolotov"]</xpath>
+		<attribute>Class</attribute>
+		<value>CombatExtended.AmmoDef</value>
+	</Operation>
+
 	<Operation Class="PatchOperationAdd">
-		<xpath>*/ThingDef[defName="Weapon_GrenadeFrag"]/weaponTags</xpath>
+		<xpath>*/ThingDef[defName="Weapon_GrenadeMolotov"]/weaponTags</xpath>
 		<value>
 			<li>CE_AI_Grenade</li>
 			<li>CE_OneHandedWeapon</li>
@@ -390,6 +416,13 @@
 	<!-- Grenade -->
 
 	<Operation Class="PatchOperationReplace">
+		<xpath>*/ThingDef[defName="Weapon_GrenadeEMP"]/label</xpath>
+		<value>
+			<label>EMP grenade</label>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
 		<xpath>*/ThingDef[defName="Weapon_GrenadeEMP"]/graphicData</xpath>
 		<value>
 			<graphicData>
@@ -408,6 +441,12 @@
 			<tickerType>Normal</tickerType>
 			<resourceReadoutPriority>First</resourceReadoutPriority>
 		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAttributeSet">
+		<xpath>*/ThingDef[defName="Weapon_GrenadeEMP"]</xpath>
+		<attribute>Class</attribute>
+		<value>CombatExtended.AmmoDef</value>
 	</Operation>
 
 	<Operation Class="PatchOperationAdd">

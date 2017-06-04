@@ -21,6 +21,8 @@ namespace CombatExtended
         public FloatRange HeightRange => new FloatRange(heightRange.min, heightRange.max);
         public float Min => heightRange.min;
         public float Max => heightRange.max;
+        public float BottomHeight => Max * BodyRegionBottomHeight;
+        public float MiddleHeight => Max * BodyRegionMiddleHeight;
 
         public CollisionVertical(Thing thing)
         {
@@ -59,12 +61,9 @@ namespace CombatExtended
             {
                 collisionHeight = pawn.BodySize * CE_Utility.GetCollisionBodyFactors(pawn).Second;
                 shotHeightOffset = collisionHeight * (1 - BodyRegionMiddleHeight);
-                if (pawn.GetPosture() != PawnPosture.Standing)
-                {
-                    collisionHeight = pawn.BodySize > 1 ? pawn.BodySize - 0.8f : 0.2f * pawn.BodySize;
-                }
+
                 // Humanlikes in combat crouch to reduce their profile
-                else if (pawn.IsCrouching())
+                if (pawn.IsCrouching())
                 {
                     float crouchHeight = BodyRegionBottomHeight * collisionHeight;  // Minimum height we can crouch down to
 
@@ -110,9 +109,14 @@ namespace CombatExtended
         /// <returns>BodyPartHeight between Bottom and Top.</returns>
         public BodyPartHeight GetCollisionBodyHeight(float projectileHeight)
         {
-            if (projectileHeight < heightRange.max * BodyRegionBottomHeight) return BodyPartHeight.Bottom;
-            else if (projectileHeight < heightRange.max * BodyRegionMiddleHeight) return BodyPartHeight.Middle;
+            if (projectileHeight < BottomHeight) return BodyPartHeight.Bottom;
+            else if (projectileHeight < MiddleHeight) return BodyPartHeight.Middle;
             return BodyPartHeight.Top;
+        }
+
+        public BodyPartHeight GetRandWeightedBodyHeightBelow(float threshold)
+        {
+            return GetCollisionBodyHeight(Rand.Range(Min, threshold));
         }
     }
 }

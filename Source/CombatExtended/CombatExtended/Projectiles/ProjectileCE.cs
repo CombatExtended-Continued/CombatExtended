@@ -570,14 +570,11 @@ namespace CombatExtended
             }
 
             // Apply suppression around impact area
-            IntVec3[] suppressCells = def.projectile.damageDef.Worker.ExplosionCellsToHit(Position, Map, SuppressionRadius + def.projectile.explosionRadius).ToArray();
-            foreach (IntVec3 cell in suppressCells)
+            var suppressThings = GenRadial.RadialDistinctThingsAround(Position, Map, SuppressionRadius + def.projectile.explosionRadius, true);
+            foreach (Thing thing in suppressThings)
             {
-                foreach (Thing thing in Map.thingGrid.ThingsListAtFast(cell))
-                {
-                    Pawn pawn = thing as Pawn;
-                    if (pawn != null) ApplySuppression(pawn);
-                }
+                Pawn pawn = thing as Pawn;
+                if (pawn != null) ApplySuppression(pawn);
             }
 
             Destroy();

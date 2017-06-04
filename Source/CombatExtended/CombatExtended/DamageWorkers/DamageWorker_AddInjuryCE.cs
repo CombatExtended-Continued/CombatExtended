@@ -56,8 +56,9 @@ namespace CombatExtended
             {
                 return 0f;
             }
-            DamageWorker_AddInjuryCE.LocalInjuryResult localInjuryResult = DamageWorker_AddInjuryCE.LocalInjuryResult.MakeNew();
+            LocalInjuryResult localInjuryResult = LocalInjuryResult.MakeNew();
             Map mapHeld = pawn.MapHeld;
+            bool spawnedOrAnyParentSpawned = pawn.SpawnedOrAnyParentSpawned;
             if (dinfo.Def.spreadOut)
             {
                 if (pawn.apparel != null)
@@ -74,23 +75,33 @@ namespace CombatExtended
                 }
                 if (pawn.inventory != null)
                 {
-                    ThingOwner innerContainer = pawn.inventory.innerContainer;
+                    ThingOwner<Thing> innerContainer = pawn.inventory.innerContainer;
                     for (int j = innerContainer.Count - 1; j >= 0; j--)
                     {
                         this.CheckApplySpreadDamage(dinfo, innerContainer[j]);
                     }
                 }
             }
-            if (!this.FragmentDamageForDamageType(dinfo, pawn, ref localInjuryResult))
+            if (this.ShouldFragmentDamageForDamageType(dinfo))
+            {
+                int num = Rand.RangeInclusive(3, 4);
+                for (int k = 0; k < num; k++)
+                {
+                    DamageInfo dinfo2 = dinfo;
+                    dinfo2.SetAmount(dinfo.Amount / num);
+                    this.ApplyDamageToPart(dinfo2, pawn, ref localInjuryResult);
+                }
+            }
+            else
             {
                 this.ApplyDamageToPart(dinfo, pawn, ref localInjuryResult);
                 this.CheckDuplicateSmallPawnDamageToPartParent(dinfo, pawn, ref localInjuryResult);
             }
             if (localInjuryResult.wounded)
             {
-                DamageWorker_AddInjuryCE.PlayWoundedVoiceSound(dinfo, pawn);
+                PlayWoundedVoiceSound(dinfo, pawn);
                 pawn.Drawer.Notify_DamageApplied(dinfo);
-                DamageWorker_AddInjuryCE.InformPsychology(dinfo, pawn);
+                InformPsychology(dinfo, pawn);
             }
             if (localInjuryResult.headshot && pawn.Spawned)
             {
@@ -112,7 +123,7 @@ namespace CombatExtended
                 }
                 pawn.health.deflectionEffecter.Trigger(pawn, pawn);
             }
-            else if (mapHeld != null)
+            else if (spawnedOrAnyParentSpawned)
             {
                 ImpactSoundUtility.PlayImpactSound(pawn, dinfo.Def.impactSoundType, mapHeld);
             }
@@ -132,7 +143,7 @@ namespace CombatExtended
             }
         }
 
-        private bool FragmentDamageForDamageType(DamageInfo dinfo, Pawn pawn, ref DamageWorker_AddInjuryCE.LocalInjuryResult result)
+        private bool ShouldFragmentDamageForDamageType(DamageInfo dinfo)
         {
             return dinfo.AllowDamagePropagation && dinfo.Amount >= 9 && dinfo.Def.spreadOut;
         }
@@ -164,7 +175,13 @@ namespace CombatExtended
             if (involveArmor)
             {
                 postArmorDinfo = ArmorUtilityCE.GetAfterArmorDamage(dinfo, pawn, exactPartFromDamageInfo, out shieldAbsorbed);
-                if (postArmorDinfo.ForceHitPart != null && exactPartFromDamageInfo != postArmorDinfo.ForceHitPart) exactPartFromDamageInfo = postArmorDinfo.ForceHitPart;   // If the shot was deflected, update our body part
+                if (dinfo.ForceHitPart == null 
+                    && postArmorDinfo.ForceHitPart != null 
+                    && exactPartFromDamageInfo != postArmorDinfo.ForceHitPart)
+                {
+                    exactPartFromDamageInfo = postArmorDinfo.ForceHitPart;   // If the shot was deflected, update our body part
+                    //dinfo.SetForcedHitPart(postArmorDinfo.ForceHitPart);
+                }
             }
 
             // Vanilla code - apply hediff

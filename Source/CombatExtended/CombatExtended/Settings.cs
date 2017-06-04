@@ -39,11 +39,13 @@ namespace CombatExtended
         private bool debugEnableInventoryValidation = false;
         private bool debugDrawTargetCoverChecks = false;
         private bool debugShowTreeCollisionChance = false;
+        private bool debugShowSuppressionBuildup = false;
 
         public bool DebugDrawPartialLoSChecks => debugDrawPartialLoSChecks;
         public bool DebugEnableInventoryValidation => debugEnableInventoryValidation;
         public bool DebugDrawTargetCoverChecks => debugDrawTargetCoverChecks;
         public bool DebugShowTreeCollisionChance => debugShowTreeCollisionChance;
+        public bool DebugShowSuppressionBuildup => debugShowSuppressionBuildup;
 
         #endregion
 
@@ -64,6 +66,7 @@ namespace CombatExtended
             Scribe_Values.Look(ref debugEnableInventoryValidation, "enableInventoryValidation", false);
             Scribe_Values.Look(ref debugDrawTargetCoverChecks, "debugDrawTargetCoverChecks", false);
             Scribe_Values.Look(ref debugShowTreeCollisionChance, "debugShowTreeCollisionChance", false);
+            Scribe_Values.Look(ref debugShowSuppressionBuildup, "debugShowSuppressionBuildup", false);
 #endif
 
             // Ammo settings
@@ -104,6 +107,7 @@ namespace CombatExtended
             list.CheckboxLabeled("Draw target cover checks", ref debugDrawTargetCoverChecks, "Displays highest cover of target as it is selected.");
             list.CheckboxLabeled("Enable inventory validation", ref debugEnableInventoryValidation, "Inventory will refresh its cache every tick and log any discrepancies.");
             list.CheckboxLabeled("Display tree collision chances", ref debugShowTreeCollisionChance, "Projectiles will display chances of coliding with trees as they pass by.");
+            list.CheckboxLabeled("Display suppression buildup", ref debugShowSuppressionBuildup, "Pawns will display buildup numbers when taking suppression.");
 #endif
 
             // Do ammo settings

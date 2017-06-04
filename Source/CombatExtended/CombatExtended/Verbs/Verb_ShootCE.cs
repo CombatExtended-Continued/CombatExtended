@@ -28,7 +28,6 @@ namespace CombatExtended
 
         #region Fields
 
-        private CompFireModes compFireModes = null;
         private bool isAiming = false;
         private int xpTicks = 0;                        // Tracker to see how much xp should be awarded for time spent aiming + bursting
         const float BaseXPMultiplyer = 0.5f;            // the amount warmup time is multiplied by for the quickshot fire mode (initial XP)
@@ -43,29 +42,17 @@ namespace CombatExtended
             {
                 if (this.CompFireModes != null)
                 {
-                    if (this.CompFireModes.currentFireMode == FireMode.SingleFire)
+                    if (this.CompFireModes.CurrentFireMode == FireMode.SingleFire)
                     {
                         return 1;
                     }
-                    if ((this.CompFireModes.currentFireMode == FireMode.BurstFire || (UseDefaultModes && this.CompFireModes.Props.aiUseBurstMode))
+                    if (this.CompFireModes.CurrentFireMode == FireMode.BurstFire
                         && this.CompFireModes.Props.aimedBurstShotCount > 0)
                     {
                         return this.CompFireModes.Props.aimedBurstShotCount;
                     }
                 }
                 return this.VerbPropsCE.burstShotCount;
-            }
-        }
-
-        private CompFireModes CompFireModes
-        {
-            get
-            {
-                if (this.compFireModes == null && this.ownerEquipment != null)
-                {
-                    this.compFireModes = this.ownerEquipment.TryGetComp<CompFireModes>();
-                }
-                return this.compFireModes;
             }
         }
 
@@ -84,14 +71,11 @@ namespace CombatExtended
                         // Check for suppression
                         if (IsSuppressed) return false;
                     }
-                    return this.CompFireModes.currentAimMode == AimMode.AimedShot || (UseDefaultModes && this.CompFireModes.Props.aiUseAimMode);
+                    return this.CompFireModes.CurrentAimMode == AimMode.AimedShot;
                 }
                 return false;
             }
         }
-        
-        // Whether this gun should use default AI firing modes
-        private bool UseDefaultModes => !(caster.Faction == Faction.OfPlayer);
 
         protected override float SwayAmplitude
         {
