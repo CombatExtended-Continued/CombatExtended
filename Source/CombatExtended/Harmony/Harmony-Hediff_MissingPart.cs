@@ -9,6 +9,7 @@ using Harmony;
 
 namespace CombatExtended.Harmony
 {
+    // FIXME: Destructive detour
     [HarmonyPatch(typeof(Hediff_MissingPart))]
     [HarmonyPatch("IsFreshNonSolidExtremity", PropertyMethod.Getter)]
     static class Harmony_Hediff_MissingPart_IsFresh_Patch

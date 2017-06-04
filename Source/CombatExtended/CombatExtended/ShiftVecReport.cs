@@ -47,7 +47,7 @@ namespace CombatExtended
             {
                 if (visibilityShiftInt < 0)
                 {
-                    visibilityShiftInt = (lightingShift + weatherShift) * (shotDist / 50) * (2 - aimingAccuracy);
+                    visibilityShiftInt = (lightingShift + weatherShift + smokeDensity) * (shotDist / 50) * (2 - aimingAccuracy);
                 }
                 return visibilityShiftInt;
             }
@@ -105,6 +105,7 @@ namespace CombatExtended
         public float swayDegrees = 0f;
         public float spreadDegrees = 0f;
         public Thing cover = null;
+        public float smokeDensity = 0f;
 
         // Copy-constructor
         public ShiftVecReport(ShiftVecReport report)
@@ -121,6 +122,7 @@ namespace CombatExtended
             swayDegrees = report.swayDegrees;
             spreadDegrees = report.spreadDegrees;
             cover = report.cover;
+            smokeDensity = report.smokeDensity;
         }
 
         public ShiftVecReport()
@@ -175,6 +177,10 @@ namespace CombatExtended
                 if (weatherShift > 0)
                 {
                     stringBuilder.AppendLine("      " + "Weather".Translate() + "\t" + AsPercent(weatherShift));
+                }
+                if (smokeDensity > 0)
+                {
+                    stringBuilder.AppendLine("      " + "CE_SmokeDensity".Translate() + "\t" + AsPercent(smokeDensity));
                 }
             }
             if (leadShift > 0)

@@ -343,8 +343,10 @@ namespace CombatExtended
             report.swayDegrees = this.SwayAmplitude;
             report.spreadDegrees = this.ownerEquipment.GetStatValue(StatDef.Named("ShotSpread")) * this.projectilePropsCE.spreadMult;
             Thing cover;
-            this.GetHighestCoverForTarget(target, out cover);
+            float smokeDensity;
+            this.GetHighestCoverAndSmokeForTarget(target, out cover, out smokeDensity);
             report.cover = cover;
+            report.smokeDensity = smokeDensity;
 
             return report;
         }
@@ -355,14 +357,16 @@ namespace CombatExtended
         /// <param name="target">The target of which to find cover of</param>
         /// <param name="cover">Output parameter, filled with the highest cover object found</param>
         /// <returns>True if cover was found, false otherwise</returns>
-        private bool GetHighestCoverForTarget(LocalTargetInfo target, out Thing cover)
+        private bool GetHighestCoverAndSmokeForTarget(LocalTargetInfo target, out Thing cover, out float smokeDensity)
         {
             Map map = caster.Map;
             Thing targetThing = target.Thing;
             Thing highestCover = null;
             float highestCoverHeight = 0f;
 
-            // Iterate through all cells on second half of line of sight and check for cover
+            smokeDensity = 0;
+
+            // Iterate through all cells on line of sight and check for cover and smoke
             var cells = GenSight.PointsOnLineOfSight(target.Cell, caster.Position).ToArray();
             if (cells.Length < 3)
             {
@@ -375,20 +379,31 @@ namespace CombatExtended
 
                 if (cell.AdjacentTo8Way(caster.Position)) continue;
 
-                Pawn pawn = cell.GetFirstPawn(map);
-                Thing newCover = pawn == null ? cell.GetCover(map) : pawn;
-                float newCoverHeight = new CollisionVertical(newCover).Max;
-                
-                // Cover check, if cell has cover compare collision height and get the highest piece of cover, ignore if cover is the target (e.g. solar panels, crashed ship, etc)
-                if (newCover != null
-                    && (targetThing == null || !newCover.Equals(targetThing))
-                    && (highestCover == null || highestCoverHeight < newCoverHeight)
-                    && newCover.def.Fillage == FillCategory.Partial
-                    && !newCover.IsTree())
+                // Check for smoke
+                var gas = cell.GetGas(map);
+                if (gas != null)
                 {
-                    highestCover = newCover;
-                    highestCoverHeight = newCoverHeight;
-                    if (Controller.settings.DebugDrawTargetCoverChecks) map.debugDrawer.FlashCell(cell, highestCoverHeight, highestCoverHeight.ToString());
+                    smokeDensity += gas.def.gas.accuracyPenalty;
+                }
+
+                // Check for cover in the second half of LoS
+                if (i <= cells.Length / 2)
+                {
+                    Pawn pawn = cell.GetFirstPawn(map);
+                    Thing newCover = pawn == null ? cell.GetCover(map) : pawn;
+                    float newCoverHeight = new CollisionVertical(newCover).Max;
+
+                    // Cover check, if cell has cover compare collision height and get the highest piece of cover, ignore if cover is the target (e.g. solar panels, crashed ship, etc)
+                    if (newCover != null
+                        && (targetThing == null || !newCover.Equals(targetThing))
+                        && (highestCover == null || highestCoverHeight < newCoverHeight)
+                        && newCover.def.Fillage == FillCategory.Partial
+                        && !newCover.IsTree())
+                    {
+                        highestCover = newCover;
+                        highestCoverHeight = newCoverHeight;
+                        if (Controller.settings.DebugDrawTargetCoverChecks) map.debugDrawer.FlashCell(cell, highestCoverHeight, highestCoverHeight.ToString());
+                    }
                 }
             }
             cover = highestCover;
