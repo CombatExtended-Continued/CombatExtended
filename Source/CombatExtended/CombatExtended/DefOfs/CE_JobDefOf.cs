@@ -17,5 +17,6 @@ namespace CombatExtended
         public static JobDef HunkerDown;
         public static JobDef RunForCover;
         public static JobDef Stabilize;
+        public static JobDef WaitKnockdown;
     }
 }

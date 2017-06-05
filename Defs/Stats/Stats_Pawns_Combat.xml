@@ -97,40 +97,20 @@
 
   <StatDef>
     <defName>MeleeCritChance</defName>
-    <label>critical hit chance</label>
-    <description>Base chance to critically hit a target in melee.</description>
+    <label>melee critical chance</label>
+    <description>Base chance to critically hit a target in melee.\n\nThe final chance depends on the opponent's critical skill and equal opponents will always have a 10% chance to crit.</description>
     <category>PawnCombat</category>
-    <displayPriorityInCategory>0</displayPriorityInCategory>
-    <defaultBaseValue>0.25</defaultBaseValue>
+    <displayPriorityInCategory>99</displayPriorityInCategory>
+    <defaultBaseValue>1</defaultBaseValue>
     <showOnPawns>true</showOnPawns>
     <minValue>0.0</minValue>
+    <maxValue>3.2</maxValue>
     <toStringStyle>PercentZero</toStringStyle>
     <skillNeedFactors>
-      <li Class="SkillNeed_Direct">
+      <li Class="SkillNeed_BaseBonus">
         <skill>Melee</skill>
-        <factorsPerLevel>
-          <li>0.20</li>
-          <li>0.5</li>
-          <li>0.80</li>
-          <li>0.9</li>
-          <li>1.00</li>
-          <li>1.1</li>
-          <li>1.20</li>
-          <li>1.266</li>
-          <li>1.332</li>
-          <li>1.4</li>
-          <li>1.466</li>
-          <li>1.532</li>
-          <li>1.6</li>
-          <li>1.65</li>
-          <li>1.7</li>
-          <li>1.75</li>
-          <li>1.8</li>
-          <li>1.84</li>
-          <li>1.88</li>
-          <li>1.92</li>
-          <li>1.96</li>
-        </factorsPerLevel>
+        <baseFactor>0.1</baseFactor>
+        <bonusFactor>0.01</bonusFactor>
       </li>
     </skillNeedFactors>
     <capacityFactors>
@@ -140,103 +120,82 @@
       </li>
       <li>
         <capacity>Sight</capacity>
-        <weight>0.4</weight>
+        <weight>0.7</weight>
+        <max>1</max>
+      </li>
+      <li>
+        <capacity>Manipulation</capacity>
+        <weight>1</weight>
       </li>
     </capacityFactors>
+    <postProcessCurve>
+      <points>
+        <li>(0.0, 0.0)</li>
+        <li>(0.3, 0.3)</li>
+        <li>(0.6, 0.45)</li>
+        <li>(1.2, 0.6)</li>
+        <li>(2.4, 0.75)</li>
+        <li>(3.2, 0.8)</li>
+      </points>
+    </postProcessCurve>
   </StatDef>
 
-<!--
   <StatDef>
     <defName>MeleeDodgeChance</defName>
-    <label>dodge chance</label>
-    <description>Base chance to avoid incoming melee attacks.</description>
+    <label>melee dodge chance</label>
+    <description>Chance to dodge a melee attack that would've otherwise hit. Characters will not dodge while aiming or firing a ranged weapon.\n\nThe final chance depends on the opponent's dodge skill and equal opponents will always have a 10% chance to dodge.</description>
     <category>PawnCombat</category>
-    <displayPriorityInCategory>0</displayPriorityInCategory>
-    <defaultBaseValue>0.25</defaultBaseValue>
-    <showOnPawns>true</showOnPawns>
-    <minValue>0.0</minValue>
+    <workerClass>CombatExtended.StatWorker_MoveSpeed</workerClass>
+    <displayPriorityInCategory>99</displayPriorityInCategory>
+    <defaultBaseValue>1</defaultBaseValue>
+    <minValue>0</minValue>
+    <maxValue>1.6</maxValue>
     <toStringStyle>PercentZero</toStringStyle>
     <skillNeedFactors>
-      <li Class="SkillNeed_Direct">
+      <li Class="SkillNeed_BaseBonus">
         <skill>Melee</skill>
-        <factorsPerLevel>
-          <li>0.20</li>
-          <li>0.5</li>
-          <li>0.80</li>
-          <li>0.9</li>
-          <li>1.00</li>
-          <li>1.1</li>
-          <li>1.20</li>
-          <li>1.266</li>
-          <li>1.332</li>
-          <li>1.4</li>
-          <li>1.466</li>
-          <li>1.532</li>
-          <li>1.6</li>
-          <li>1.65</li>
-          <li>1.7</li>
-          <li>1.75</li>
-          <li>1.8</li>
-          <li>1.84</li>
-          <li>1.88</li>
-          <li>1.92</li>
-          <li>1.96</li>
-        </factorsPerLevel>
+        <baseFactor>0.1</baseFactor>
+        <bonusFactor>0.02</bonusFactor>
       </li>
     </skillNeedFactors>
     <capacityFactors>
-      <li>
-        <capacity>Consciousness</capacity>
-        <weight>1</weight>
-      </li>
       <li>
         <capacity>Moving</capacity>
         <weight>1</weight>
       </li>
       <li>
         <capacity>Sight</capacity>
-        <weight>0.4</weight>
+        <weight>0.7</weight>
+        <max>1</max>
       </li>
     </capacityFactors>
+    <postProcessCurve>
+      <points>
+        <li>(0.0, 0.0)</li>
+        <li>(0.4, 0.4)</li>
+        <li>(0.8, 0.6)</li>
+        <li>(1.6, 0.8)</li>
+      </points>
+    </postProcessCurve>
   </StatDef>
--->
 
   <StatDef>
     <defName>MeleeParryChance</defName>
-    <label>parry chance</label>
-    <description>Base chance to parry a melee attack.</description>
+    <label>melee parry chance</label>
+    <description>Base chance to parry a melee attack. When a parry is performed the equipped weapon or shield will take damage instead of the wielder. If the parrying pawn passes a critical chance check they will automatically riposte their attacker.\n\nThe final chance depends on the opponent's parry skill and equal opponents will always have a 20% chance to crit.</description>
     <category>PawnCombat</category>
-    <displayPriorityInCategory>0</displayPriorityInCategory>
-    <defaultBaseValue>0.25</defaultBaseValue>
+    <displayPriorityInCategory>99</displayPriorityInCategory>
+    <defaultBaseValue>1</defaultBaseValue>
     <showOnPawns>true</showOnPawns>
     <minValue>0.0</minValue>
+    <maxValue>3.2</maxValue>
     <toStringStyle>PercentZero</toStringStyle>
+    <noSkillFactor>0</noSkillFactor>
     <skillNeedFactors>
-      <li Class="SkillNeed_Direct">
+      <li Class="SkillNeed_BaseBonus">
         <skill>Melee</skill>
-        <factorsPerLevel>
-          <li>0.20</li>
-          <li>0.5</li>
-          <li>0.80</li>
-          <li>0.9</li>
-          <li>1.00</li>
-          <li>1.1</li>
-          <li>1.20</li>
-          <li>1.266</li>
-          <li>1.332</li>
-          <li>1.4</li>
-          <li>1.466</li>
-          <li>1.532</li>
-          <li>1.6</li>
-          <li>1.65</li>
-          <li>1.7</li>
-          <li>1.75</li>
-          <li>1.8</li>
-          <li>1.84</li>
-          <li>1.88</li>
-          <li>1.92</li>
-          <li>1.96</li>
-        </factorsPerLevel>
+        <baseFactor>0.2</baseFactor>
+        <bonusFactor>0.005</bonusFactor>
       </li>
     </skillNeedFactors>
     <capacityFactors>
@@ -246,9 +205,24 @@
       </li>
       <li>
         <capacity>Sight</capacity>
-        <weight>0.4</weight>
+        <weight>0.7</weight>
+        <max>1</max>
+      </li>
+      <li>
+        <capacity>Manipulation</capacity>
+        <weight>1</weight>
       </li>
     </capacityFactors>
+    <postProcessCurve>
+      <points>
+        <li>(0.0, 0.0)</li>
+        <li>(0.3, 0.3)</li>
+        <li>(0.6, 0.45)</li>
+        <li>(1.2, 0.6)</li>
+        <li>(2.4, 0.75)</li>
+        <li>(3.2, 0.8)</li>
+      </points>
+    </postProcessCurve>
   </StatDef>
 
 </Defs>

@@ -16,8 +16,8 @@ namespace CombatExtended
             Unloading,
             LowAmmo,
             Weapon,
-            Ammo,
-            Apparel
+            Ammo
+            //Apparel
         }
 
         private WorkPriority GetPriorityWork(Pawn pawn)
@@ -85,7 +85,7 @@ namespace CombatExtended
                     }
                 }
             }
-
+            /*
             if (!pawn.Faction.IsPlayer && pawn.equipment.Primary != null
                 && !PawnUtility.EnemiesAreNearby(pawn, 30, true)
                 || (!pawn.apparel.BodyPartGroupIsCovered(BodyPartGroupDefOf.Torso)
@@ -93,8 +93,9 @@ namespace CombatExtended
             {
                 return WorkPriority.Apparel;
             }
+            */
 
-            else return WorkPriority.None;
+            return WorkPriority.None;
         }
 
         public override float GetPriority(Pawn pawn)
@@ -107,7 +108,7 @@ namespace CombatExtended
             else if (priority == WorkPriority.LowAmmo) return 9f;
             else if (priority == WorkPriority.Weapon) return 8f;
             else if (priority == WorkPriority.Ammo) return 6f;
-            else if (priority == WorkPriority.Apparel) return 5f;
+            //else if (priority == WorkPriority.Apparel) return 5f;
             else if(priority == WorkPriority.None) return 0f;
 
             TimeAssignmentDef assignment = (pawn.timetable != null) ? pawn.timetable.CurrentAssignment : TimeAssignmentDefOf.Anything;
@@ -420,7 +421,7 @@ namespace CombatExtended
                         }
                     }
                 }
-                
+                /*
                 if (!pawn.Faction.IsPlayer && pawn.apparel != null && GetPriorityWork(pawn) == WorkPriority.Apparel)
                 {
                     if (!pawn.apparel.BodyPartGroupIsCovered(BodyPartGroupDefOf.Torso))
@@ -453,7 +454,6 @@ namespace CombatExtended
                             }
                         }
                     }
-                    /*
                     if (!pawn.apparel.BodyPartGroupIsCovered(BodyPartGroupDefOf.FullHead))
                     {
                         Apparel apparel3 = this.FindGarmentCoveringPart(pawn, BodyPartGroupDefOf.FullHead);
@@ -470,13 +470,14 @@ namespace CombatExtended
                             }
                         }
                     }
-                    */
                 }
+                */
                 return null;
             }
             return null;
         }
 
+        /*
         private static Job GotoForce(Pawn pawn, LocalTargetInfo target, PathEndMode pathEndMode)
         {
             using (PawnPath pawnPath = pawn.Map.pathFinder.FindPath(pawn.Position, target, TraverseParms.For(pawn, Danger.Deadly, TraverseMode.PassAllDestroyableThings, false), pathEndMode))
@@ -511,6 +512,7 @@ namespace CombatExtended
                 return MeleeOrWaitJob(pawn, thing, cellBeforeBlocker);
             }
         }
+        */
 
         private static bool Unload(Pawn pawn)
         {
@@ -540,6 +542,7 @@ namespace CombatExtended
             };
         }
 
+        /*
         private Apparel FindGarmentCoveringPart(Pawn pawn, BodyPartGroupDef bodyPartGroupDef)
         {
             Room room = pawn.GetRoom();
@@ -562,5 +565,6 @@ namespace CombatExtended
             }
             return null;
         }
+        */
     }
 }

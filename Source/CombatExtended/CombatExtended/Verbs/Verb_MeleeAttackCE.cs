@@ -4,6 +4,7 @@ using System.Linq;
 using UnityEngine;
 using RimWorld;
 using Verse;
+using Verse.AI;
 using Verse.Sound;
 
 namespace CombatExtended
@@ -25,7 +26,44 @@ namespace CombatExtended
         private const int TargetCooldown = 50;
 		private const float DefaultHitChance = 0.6f;
         private const float ShieldBlockChance = 0.75f;   // If we have a shield equipped, this is the chance a parry will be a shield block
-        private const float CritFactor = 1.5f;  // Criticals will do normal damage times this
+        private const int KnockdownDuration = 120;   // Animal knockdown lasts for this long
+
+        // XP variables
+        private const float HitXP = 200;    // Vanilla is 250
+        private const float DodgeXP = 50;
+        private const float ParryXP = 50;
+        private const float CritXP = 100;
+
+        /* Base stats
+         * 
+         * These are the baseline stats we want for crit/dodge/parry for pawns of equal skill. These need to be the same as set in the base factors set in the
+         * stat defs. Ideally we would access them from the defs but the relevant values are all set to private and there is no real way to get at them that I
+         * can see.
+         * 
+         * -NIA
+         */
+
+        private const float BaseCritChance = 0.1f;
+        private const float BaseDodgeChance = 0.1f;
+        private const float BaseParryChance = 0.2f;
+
+        #endregion
+
+        #region Properties
+
+        DamageDef CritDamageDef
+        {
+            get
+            {
+                if (CasterPawn.def.race.Animal)
+                    return verbProps.meleeDamageDef;
+                if (verbProps.meleeDamageDef.armorCategory == CE_DamageArmorCategoryDefOf.Blunt)
+                {
+                    return DamageDefOf.Stun;
+                }
+                return DefDatabase<DamageDef>.GetNamed(verbProps.meleeDamageDef.defName + "_Critical");
+            }
+        }
 
         #endregion
 
@@ -59,7 +97,7 @@ namespace CombatExtended
             bool targetImmobile = IsTargetImmobile(currentTarget);
             if (!targetImmobile && casterPawn.skills != null)
             {
-                casterPawn.skills.Learn(SkillDefOf.Melee, 250f, false);
+                casterPawn.skills.Learn(SkillDefOf.Melee, HitXP, false);
             }
 
             // Hit calculations
@@ -71,18 +109,19 @@ namespace CombatExtended
             if (hitRoll < GetHitChance(targetThing))
             {
                 // Check for dodge
-                if (!targetImmobile && !surpriseAttack && hitRoll < targetThing.GetStatValue(CE_StatDefOf.MeleeDodgeChance))
+                if (!targetImmobile && !surpriseAttack && hitRoll < GetDodgeChanceAgainst(casterPawn, defender))
                 {
                     // Attack is evaded
                     moteText = "Dodged";
                     result = false;
                     soundDef = SoundMiss();
+                    defender.skills?.Learn(SkillDefOf.Melee, DodgeXP, false);
                 }
                 else
                 {
                     // Attack connects, calculate resolution
                     var resultRoll = Rand.Value;
-                    var parryChance = targetThing.GetStatValue(CE_StatDefOf.MeleeParryChance);
+                    var parryChance = GetParryChanceAgainst(casterPawn, defender);
                     if (!surpriseAttack && defender != null && CanDoParry(defender) && resultRoll < parryChance)
                     {
                         // Attack is parried
@@ -91,17 +130,19 @@ namespace CombatExtended
                         Thing parryThing = isShieldBlock ? shield
                             : defender.equipment?.Primary != null ? defender.equipment.Primary : defender;
 
-                        if (resultRoll < parryChance * targetThing.GetStatValue(CE_StatDefOf.MeleeCritChance))
+                        if (resultRoll < parryChance * GetCritChanceAgainst(defender, casterPawn))
                         {
                             // Do a riposte
                             DoParry(defender, parryThing, true);
                             moteText = "Riposted";
+                            defender.skills?.Learn(SkillDefOf.Melee, CritXP + ParryXP, false);
                         }
                         else
                         {
                             // Do a parry
                             DoParry(defender, parryThing);
                             moteText = "Parried";
+                            defender.skills?.Learn(SkillDefOf.Melee, ParryXP, false);
                         }
 
                         result = false;
@@ -110,7 +151,7 @@ namespace CombatExtended
                     else
                     {
                         // Attack connects
-                        if (!surpriseAttack && resultRoll < (1 - casterPawn.GetStatValue(CE_StatDefOf.MeleeCritChance)))
+                        if (!surpriseAttack && resultRoll < (1 - GetCritChanceAgainst(casterPawn, defender)))
                         {
                             // Do a regular hit as per vanilla
                             ApplyMeleeDamageToTarget(currentTarget);
@@ -120,6 +161,7 @@ namespace CombatExtended
                             // Do a critical hit
                             ApplyMeleeDamageToTarget(currentTarget, true);
                             moteText = "Critical hit";
+                            casterPawn.skills?.Learn(SkillDefOf.Melee, CritXP, false);
                         }
                         result = true;
                         soundDef = targetThing.def.category == ThingCategory.Building ? SoundHitBuilding() : SoundHitPawn();
@@ -159,10 +201,11 @@ namespace CombatExtended
         /// </summary>
         /// <param name="target">The target damage is to be applied to</param>
         /// <returns>Collection with primary DamageInfo, followed by secondary types</returns>
-		private IEnumerable<DamageInfo> DamageInfosToApply(LocalTargetInfo target)
+		private IEnumerable<DamageInfo> DamageInfosToApply(LocalTargetInfo target, bool isCrit = false)
 		{
 			float damAmount = (float)this.verbProps.AdjustedMeleeDamageAmount(this, base.CasterPawn, this.ownerEquipment);
-			DamageDef damDef = this.verbProps.meleeDamageDef;
+            var critDamDef = CritDamageDef;
+			DamageDef damDef = isCrit && critDamDef != DamageDefOf.Stun ? critDamDef : verbProps.meleeDamageDef;
 			BodyPartGroupDef bodyPartGroupDef = null;
 			HediffDef hediffDef = null;
 			if (base.CasterIsPawn)
@@ -199,6 +242,8 @@ namespace CombatExtended
 			mainDinfo.SetWeaponHediff(hediffDef);
 			mainDinfo.SetAngle(direction);
 			yield return mainDinfo;
+
+            // Apply secondary damage on surprise attack
 			if (this.surpriseAttack && this.verbProps.surpriseAttack != null && this.verbProps.surpriseAttack.extraMeleeDamages != null)
 			{
 				List<ExtraMeleeDamage> extraDamages = this.verbProps.surpriseAttack.extraMeleeDamages;
@@ -215,6 +260,18 @@ namespace CombatExtended
 					yield return extraDinfo;
 				}
 			}
+
+            // Apply critical damage
+            if (isCrit && critDamDef == DamageDefOf.Stun)
+            {
+                var critAmount = GenMath.RoundRandom(mainDinfo.Amount * 0.25f);
+                var critDinfo = new DamageInfo(critDamDef, critAmount, -1, caster, null, source);
+                critDinfo.SetBodyRegion(bodyRegion, BodyPartDepth.Outside);
+                critDinfo.SetWeaponBodyPartGroup(bodyPartGroupDef);
+                critDinfo.SetWeaponHediff(hediffDef);
+                critDinfo.SetAngle(direction);
+                yield return critDinfo;
+            }
 		}
 
         // unmodified
@@ -255,15 +312,25 @@ namespace CombatExtended
         /// <param name="isCrit">Whether we should apply critical damage</param>
 		private void ApplyMeleeDamageToTarget(LocalTargetInfo target, bool isCrit = false)
 		{
-			foreach (DamageInfo current in DamageInfosToApply(target))
+			foreach (DamageInfo current in DamageInfosToApply(target, isCrit))
 			{
 				if (target.ThingDestroyed)
 				{
-					break;
+					return;
 				}
-                if (isCrit) current.SetAmount(Mathf.CeilToInt(current.Amount * CritFactor));    // Apply crit factor
 				target.Thing.TakeDamage(current);
 			}
+            // Apply animal knockdown
+            if (isCrit && CasterPawn.def.race.Animal)
+            {
+                var pawn = target.Thing as Pawn;
+                if (pawn != null)
+                {
+                    //pawn.stances?.stunner.StunFor(KnockdownDuration);
+                    pawn.stances.SetStance(new Stance_Cooldown(KnockdownDuration, pawn, null));
+                    pawn.jobs?.StartJob(new Job(CE_JobDefOf.WaitKnockdown) { expiryInterval = KnockdownDuration }, JobCondition.InterruptForced, null, false, false);
+                }
+            }
 		}
 
         /// <summary>
@@ -277,7 +344,7 @@ namespace CombatExtended
                 || pawn.Dead 
                 || !pawn.RaceProps.Humanlike 
                 || pawn.story.WorkTagIsDisabled(WorkTags.Violent) 
-                || pawn.health.capacities.CapableOf(PawnCapacityDefOf.Manipulation) 
+                || !pawn.health.capacities.CapableOf(PawnCapacityDefOf.Manipulation) 
                 || IsTargetImmobile(pawn))
             {
                 return false;
@@ -418,6 +485,43 @@ namespace CombatExtended
 			}
 			return SoundDefOf.Pawn_Melee_Punch_Miss;
         }
+
+        #region Stat calculations
+
+        private static float GetCritChanceAgainst(Pawn attacker,  Pawn defender)
+        {
+            if (attacker == null || defender == null)
+                return 0;
+            var stat = CE_StatDefOf.MeleeCritChance;
+            var offSkill = attacker.GetStatValue(stat);
+            var defSkill = defender.GetStatValue(stat);
+            var chance = Mathf.Clamp01(BaseCritChance + offSkill - defSkill);
+            return chance;
+        }
+
+        private static float GetParryChanceAgainst(Pawn attacker,  Pawn defender)
+        {
+            if (attacker == null || defender == null)
+                return 0;
+            var stat = CE_StatDefOf.MeleeParryChance;
+            var offSkill = attacker.GetStatValue(stat);
+            var defSkill = defender.GetStatValue(stat);
+            var chance = Mathf.Clamp01(BaseParryChance + defSkill - offSkill);
+            return chance;
+        }
+
+        private static float GetDodgeChanceAgainst(Pawn attacker, Pawn defender)
+        {
+            if (attacker == null || defender == null)
+                return 0;
+            var stat = StatDefOf.MeleeDodgeChance;
+            var offSkill = attacker.GetStatValue(stat);
+            var defSkill = defender.GetStatValue(stat);
+            var chance = Mathf.Clamp01(BaseDodgeChance + defSkill - offSkill);
+            return chance;
+        }
+
+        #endregion
 
         #endregion
     }
