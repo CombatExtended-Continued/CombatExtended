@@ -173,7 +173,8 @@ namespace CombatExtended
                     float apparelWeight = apparel.GetStatValue(StatDefOf.Mass);
                     newBulk += apparelBulk;
                     newWeight += apparelWeight;
-                    if (apparelBulk > 0 && (parentPawn?.IsColonist ?? false)) TutorUtility.DoModalDialogIfNotKnown(CE_ConceptDefOf.CE_WornBulk);
+                    if (apparelBulk > 0 && parentPawn != null && parentPawn.IsColonist && parentPawn.Spawned)
+                        LessonAutoActivator.TeachOpportunity(CE_ConceptDefOf.CE_WornBulk, OpportunityType.GoodToKnow);
                 }
             }
 

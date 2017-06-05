@@ -144,6 +144,7 @@ namespace CombatExtended
             {
                 AmmoInjector.Inject();
                 lastAmmoSystemStatus = enableAmmoSystem;
+                TutorUtility.DoModalDialogIfNotKnown(CE_ConceptDefOf.CE_AmmoSettings);
             }
         }
 

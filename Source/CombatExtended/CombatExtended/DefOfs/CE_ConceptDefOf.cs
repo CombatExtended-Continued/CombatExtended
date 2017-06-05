@@ -12,10 +12,7 @@ namespace CombatExtended
     public class CE_ConceptDefOf
     {
         // *** Modal dialog concepts ***
-        public static ConceptDef CE_ArmorSystem;
-        public static ConceptDef CE_SuppressionReaction;
-        public static ConceptDef CE_Hunkering;
-        public static ConceptDef CE_WornBulk;
+        public static ConceptDef CE_AmmoSettings;
 
         // *** Self-activated concepts ***
         public static ConceptDef CE_InventoryWeightBulk;
@@ -30,5 +27,9 @@ namespace CombatExtended
         public static ConceptDef CE_Spotting;
         public static ConceptDef CE_MortarDirectFire;
         public static ConceptDef CE_Stabilizing;
+        public static ConceptDef CE_ArmorSystem;
+        public static ConceptDef CE_SuppressionReaction;
+        public static ConceptDef CE_Hunkering;
+        public static ConceptDef CE_WornBulk;
     }
 }

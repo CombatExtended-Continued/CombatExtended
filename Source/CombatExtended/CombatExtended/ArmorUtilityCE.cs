@@ -333,8 +333,6 @@ namespace CombatExtended
             newDinfo.SetInstantOldInjury(dinfo.InstantOldInjury);
             newDinfo.SetAllowDamagePropagation(dinfo.AllowDamagePropagation);
 
-            TutorUtility.DoModalDialogIfNotKnown(CE_ConceptDefOf.CE_ArmorSystem);   // Inform the player about armor deflection
-
             return newDinfo;
         }
 

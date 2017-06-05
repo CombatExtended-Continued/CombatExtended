@@ -17,7 +17,6 @@ namespace CombatExtended
             {
                 return null;
             }
-            TutorUtility.DoModalDialogIfNotKnown(CE_ConceptDefOf.CE_Hunkering);
             return new Job(CE_JobDefOf.HunkerDown, pawn);
         }
     }

@@ -189,8 +189,13 @@ namespace CombatExtended
                 if (reactJob == null && IsHunkering)
                 {
                     reactJob = new Job(CE_JobDefOf.HunkerDown, pawn);
+                    LessonAutoActivator.TeachOpportunity(CE_ConceptDefOf.CE_Hunkering, pawn, OpportunityType.Critical);
                 }
-                if (reactJob != null && reactJob.def != pawn.CurJob?.def) pawn.jobs.StartJob(reactJob, JobCondition.InterruptForced, null, true);
+                if (reactJob != null && reactJob.def != pawn.CurJob?.def)
+                {
+                    pawn.jobs.StartJob(reactJob, JobCondition.InterruptForced, null, true);
+                    LessonAutoActivator.TeachOpportunity(CE_ConceptDefOf.CE_SuppressionReaction, pawn, OpportunityType.Critical);
+                }
             }
         }
 

@@ -180,7 +180,7 @@ namespace CombatExtended
                     && exactPartFromDamageInfo != postArmorDinfo.ForceHitPart)
                 {
                     exactPartFromDamageInfo = postArmorDinfo.ForceHitPart;   // If the shot was deflected, update our body part
-                    //dinfo.SetForcedHitPart(postArmorDinfo.ForceHitPart);
+                    if (pawn.Spawned) LessonAutoActivator.TeachOpportunity(CE_ConceptDefOf.CE_ArmorSystem, OpportunityType.Critical);   // Inform the player about armor deflection
                 }
             }
 
