@@ -103,13 +103,7 @@ namespace CombatExtended
                 if (this.gunInt == null)
                 {
                     this.gunInt = ThingMaker.MakeThing(this.def.building.turretGunDef, null);
-                    List<Verb> allVerbs = this.gunInt.TryGetComp<CompEquippable>().AllVerbs;
-                    for (int i = 0; i < allVerbs.Count; i++)
-                    {
-                        Verb verb = allVerbs[i];
-                        verb.caster = this;
-                        verb.castCompleteCallback = new Action(this.BurstComplete);
-                    }
+                    InitGun();
                 }
                 return this.gunInt;
             }
@@ -242,17 +236,34 @@ namespace CombatExtended
         public override void ExposeData()
         {
             base.ExposeData();
+
+            // Look new variables
+            Scribe_Deep.Look(ref gunInt, "gunInt");
+            InitGun();
+            Scribe_Values.Look(ref isReloading, "isReloading", false);
+            Scribe_Values.Look(ref ticksUntilAutoReload, "ticksUntilAutoReload", 0);
+
             Scribe_Values.Look<int>(ref this.burstCooldownTicksLeft, "burstCooldownTicksLeft", 0, false);
             Scribe_Values.Look<int>(ref this.burstWarmupTicksLeft, "burstWarmupTicksLeft", 0, false);
             Scribe_TargetInfo.Look(ref this.currentTargetInt, "currentTarget");
             Scribe_Values.Look<bool>(ref this.holdFire, "holdFire", false, false);
+        }
 
-            // Look new variables
-            Scribe_Values.Look(ref burstWarmupTicksLeft, "burstWarmupTicksLeft", 0);
-            Scribe_Values.Look(ref isReloading, "isReloading", false);
-            Scribe_Values.Look(ref ticksUntilAutoReload, "ticksUntilAutoReload", 0);
-            // gunInt saving disabled until we can figure out a fix for the bug where it'll lose track of its verbs -NIA
-            //Scribe_Deep.Look(ref gunInt, "gunInt");
+        private void InitGun()
+        {
+            // Callback for ammo comp
+            if (CompAmmo != null)
+            {
+                CompAmmo.turret = this;
+                //if (def.building.turretShellDef != null && def.building.turretShellDef is AmmoDef) CompAmmo.selectedAmmo = (AmmoDef)def.building.turretShellDef;
+            }
+            List<Verb> allVerbs = this.gunInt.TryGetComp<CompEquippable>().AllVerbs;
+            for (int i = 0; i < allVerbs.Count; i++)
+            {
+                Verb verb = allVerbs[i];
+                verb.caster = this;
+                verb.castCompleteCallback = new Action(this.BurstComplete);
+            }
         }
 
         // Replaced vanilla loaded text with CE reloading
@@ -376,13 +387,6 @@ namespace CombatExtended
             base.SpawnSetup(map, respawningAfterLoad);
             powerComp = base.GetComp<CompPowerTrader>();
             mannableComp = base.GetComp<CompMannable>();
-
-            // Callback for ammo comp
-            if (CompAmmo != null)
-            {
-                CompAmmo.turret = this;
-                //if (def.building.turretShellDef != null && def.building.turretShellDef is AmmoDef) CompAmmo.selectedAmmo = (AmmoDef)def.building.turretShellDef;
-            }
         }
         
         private IAttackTargetSearcher TargSearcher()
