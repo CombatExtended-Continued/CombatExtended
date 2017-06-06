@@ -112,7 +112,7 @@ namespace CombatExtended
                 if (!targetImmobile && !surpriseAttack && hitRoll < GetDodgeChanceAgainst(casterPawn, defender))
                 {
                     // Attack is evaded
-                    moteText = "Dodged";
+                    moteText = "TextMote_Dodge".Translate();
                     result = false;
                     soundDef = SoundMiss();
                     defender.skills?.Learn(SkillDefOf.Melee, DodgeXP, false);
@@ -134,14 +134,14 @@ namespace CombatExtended
                         {
                             // Do a riposte
                             DoParry(defender, parryThing, true);
-                            moteText = "Riposted";
+                            moteText = "CE_TextMote_Riposted".Translate();
                             defender.skills?.Learn(SkillDefOf.Melee, CritXP + ParryXP, false);
                         }
                         else
                         {
                             // Do a parry
                             DoParry(defender, parryThing);
-                            moteText = "Parried";
+                            moteText = "CE_TextMote_Parried".Translate();
                             defender.skills?.Learn(SkillDefOf.Melee, ParryXP, false);
                         }
 
@@ -160,7 +160,7 @@ namespace CombatExtended
                         {
                             // Do a critical hit
                             ApplyMeleeDamageToTarget(currentTarget, true);
-                            moteText = "Critical hit";
+                            moteText = casterPawn.def.race.Animal ? "CE_TextMote_Knockdown".Translate() : "CE_TextMote_CriticalHit".ToString();
                             casterPawn.skills?.Learn(SkillDefOf.Melee, CritXP, false);
                         }
                         result = true;

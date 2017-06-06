@@ -70,7 +70,7 @@
       <explosionRadius>3.5</explosionRadius>
       <damageDef>Stun</damageDef>
       <damageAmountBase>50</damageAmountBase>
-      <explosionDelay>60</explosionDelay>
+      <explosionDelay>30</explosionDelay>
       <soundExplode>Explosion_Stun</soundExplode>
       <dropsCasings>true</dropsCasings>
       <casingMoteDefname>Mote_GrenadePin</casingMoteDefname>
@@ -190,6 +190,146 @@
         <explosionDamage>25</explosionDamage>
         <explosionDamageDef>Bomb</explosionDamageDef>
         <explosionRadius>1.5</explosionRadius>
+      </li>
+    </comps>
+  </ThingDef>
+
+  <!-- ==================== Smoke grenade ========================== -->
+
+  <ThingDef ParentName="BaseGrenadeProjectile">
+    <defName>Proj_GrenadeSmoke</defName>
+    <label>smoke grenade</label>
+    <graphicData>
+      <texPath>Things/Projectile/Grenades/Smoke</texPath>
+      <graphicClass>Graphic_Single</graphicClass>
+    </graphicData>
+    <projectile>
+      <explosionRadius>4</explosionRadius>
+      <damageDef>Smoke</damageDef>
+      <explosionDelay>30</explosionDelay>
+      <dropsCasings>true</dropsCasings>
+      <casingMoteDefname>Mote_GrenadePin</casingMoteDefname>
+      <postExplosionSpawnThingDef>Gas_Smoke</postExplosionSpawnThingDef>
+      <explosionSpawnChance>1</explosionSpawnChance>
+    </projectile>
+  </ThingDef>
+
+  <ThingDef ParentName="BaseGrenadeEquipment">
+    <defName>Weapon_GrenadeSmoke</defName>
+    <equipmentType>Primary</equipmentType>
+    <label>smoke grenade</label>
+    <description>Releases a large cloud of defensive smoke, providing concealment against gunfire.</description>
+    <graphicData>
+      <texPath>Things/Ammo/HandGrenades/Smoke</texPath>
+      <graphicClass>Graphic_StackCount</graphicClass>
+    </graphicData>
+    <soundInteract>InteractGrenade</soundInteract>
+    <techLevel>Industrial</techLevel>
+    <statBases>
+      <MarketValue>4.85</MarketValue>
+      <SightsEfficiency>0.15</SightsEfficiency>
+      <RangedWeapon_Cooldown>1</RangedWeapon_Cooldown>
+    </statBases>
+    <weaponTags>
+      <li>CE_GrenadeSmoke</li>
+      <li>CE_AI_Nonlethal</li>
+    </weaponTags>
+    <thingCategories>
+      <li>Grenades</li>
+    </thingCategories>
+    <verbs>
+      <li Class="CombatExtended.VerbPropertiesCE">
+        <label>throw smoke grenade</label>
+        <verbClass>CombatExtended.Verb_ShootCEOneUse</verbClass>
+        <hasStandardCommand>true</hasStandardCommand>
+        <range>10</range>
+        <warmupTime>0.8</warmupTime>
+        <noiseRadius>4</noiseRadius>
+        <ai_IsBuildingDestroyer>false</ai_IsBuildingDestroyer>
+        <soundCast>ThrowGrenade</soundCast>
+        <targetParams>
+          <canTargetLocations>true</canTargetLocations>
+        </targetParams>
+        <projectileDef>Proj_GrenadeSmoke</projectileDef>
+        <onlyManualCast>true</onlyManualCast>
+      </li>
+    </verbs>
+    <comps>
+      <li Class="CombatExtended.CompProperties_ExplosiveCE">
+        <explosionDamageDef>Smoke</explosionDamageDef>
+        <explosionRadius>3.5</explosionRadius>
+        <postExplosionSpawnThingDef>Gas_Smoke</postExplosionSpawnThingDef>
+        <explosionSpawnChance>1</explosionSpawnChance>
+      </li>
+    </comps>
+  </ThingDef>
+
+  <!-- ==================== Firefoam grenade ========================== -->
+
+  <ThingDef ParentName="BaseGrenadeProjectile">
+    <defName>Proj_GrenadeFirefoam</defName>
+    <label>firefoam grenade</label>
+    <graphicData>
+      <texPath>Things/Projectile/Grenades/Firefoam</texPath>
+      <graphicClass>Graphic_Single</graphicClass>
+    </graphicData>
+    <projectile>
+      <explosionRadius>4</explosionRadius>
+      <damageAmountBase>50</damageAmountBase>
+      <damageDef>Extinguish</damageDef>
+      <explosionDelay>30</explosionDelay>
+      <dropsCasings>true</dropsCasings>
+      <casingMoteDefname>Mote_GrenadePin</casingMoteDefname>
+      <postExplosionSpawnThingDef>FilthFireFoam</postExplosionSpawnThingDef>
+      <explosionSpawnChance>1</explosionSpawnChance>
+    </projectile>
+  </ThingDef>
+
+  <ThingDef ParentName="BaseGrenadeEquipment">
+    <defName>Weapon_GrenadeFirefoam</defName>
+    <equipmentType>Primary</equipmentType>
+    <label>firefoam grenade</label>
+    <description>Special firefighting grenade. Releases a cloud of firefoam upon impact.</description>
+    <graphicData>
+      <texPath>Things/Ammo/HandGrenades/Firefoam</texPath>
+      <graphicClass>Graphic_StackCount</graphicClass>
+    </graphicData>
+    <soundInteract>InteractGrenade</soundInteract>
+    <techLevel>Industrial</techLevel>
+    <statBases>
+      <MarketValue>4.85</MarketValue>
+      <SightsEfficiency>0.15</SightsEfficiency>
+      <RangedWeapon_Cooldown>1</RangedWeapon_Cooldown>
+    </statBases>
+    <weaponTags>
+      <li>CE_AI_Nonlethal</li>
+    </weaponTags>
+    <thingCategories>
+      <li>Grenades</li>
+    </thingCategories>
+    <verbs>
+      <li Class="CombatExtended.VerbPropertiesCE">
+        <label>throw firefoam grenade</label>
+        <verbClass>CombatExtended.Verb_ShootCEOneUse</verbClass>
+        <hasStandardCommand>true</hasStandardCommand>
+        <range>10</range>
+        <warmupTime>0.8</warmupTime>
+        <noiseRadius>4</noiseRadius>
+        <ai_IsBuildingDestroyer>false</ai_IsBuildingDestroyer>
+        <soundCast>ThrowGrenade</soundCast>
+        <targetParams>
+          <canTargetLocations>true</canTargetLocations>
+        </targetParams>
+        <projectileDef>Proj_GrenadeFirefoam</projectileDef>
+        <onlyManualCast>true</onlyManualCast>
+      </li>
+    </verbs>
+    <comps>
+      <li Class="CombatExtended.CompProperties_ExplosiveCE">
+        <explosionDamageDef>Extinguish</explosionDamageDef>
+        <explosionRadius>4</explosionRadius>
+        <postExplosionSpawnThingDef>FilthFireFoam</postExplosionSpawnThingDef>
+        <explosionSpawnChance>1</explosionSpawnChance>
       </li>
     </comps>
   </ThingDef>

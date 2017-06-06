@@ -237,6 +237,12 @@
 		<xpath>*/ThingDef[@Name = "BaseArtilleryBuilding"]/costStuffCount</xpath>
 	</Operation>
 
+	<!-- Remove designation category to disable EMP mortar -->
+
+	<Operation Class="PatchOperationRemove">
+		<xpath>*/ThingDef[@Name = "BaseArtilleryBuilding"]/designationCategory</xpath>
+	</Operation>
+
 	<!-- ========== Actual Mortars ========== -->
 
 	<Operation Class="PatchOperationReplace">
@@ -248,6 +254,13 @@
 
 	<Operation Class="PatchOperationRemove">
 		<xpath>*/ThingDef[defName="Turret_MortarBomb"]/comps</xpath>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>*/ThingDef[defName="Turret_MortarBomb"]/designationCategory</xpath>
+		<value>
+			<designationCategory>Security</designationCategory>
+		</value>
 	</Operation>
 
 	<!-- Remove unneeded incendiary mortar -->

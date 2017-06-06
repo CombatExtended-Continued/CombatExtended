@@ -142,22 +142,25 @@ namespace CombatExtended
 				// Remove all bills which contain removed ammo types
 				if (!enabled)
 				{
-					IEnumerable<Building> enumerable = Find.Maps.SelectMany(x => x.listerBuildings.AllBuildingsColonistOfDef(ammoCraftingStation));
-					foreach (Building current in enumerable)
-					{
-						var billGiver = current as IBillGiver;
-						if (billGiver != null)
-						{
-							for (int i = 0; i < billGiver.BillStack.Count; i++)
-							{
-								Bill bill = billGiver.BillStack[i];
-								if (!ammoCraftingStation.AllRecipes.Exists(r => bill.recipe == r))
-								{
-									billGiver.BillStack.Delete(bill);
-								}
-							}
-						}
-					}
+                    if (Current.Game != null)
+                    {
+                        IEnumerable<Building> enumerable = Find.Maps.SelectMany(x => x.listerBuildings.AllBuildingsColonistOfDef(ammoCraftingStation));
+                        foreach (Building current in enumerable)
+                        {
+                            var billGiver = current as IBillGiver;
+                            if (billGiver != null)
+                            {
+                                for (int i = 0; i < billGiver.BillStack.Count; i++)
+                                {
+                                    Bill bill = billGiver.BillStack[i];
+                                    if (!ammoCraftingStation.AllRecipes.Exists(r => bill.recipe == r))
+                                    {
+                                        billGiver.BillStack.Delete(bill);
+                                    }
+                                }
+                            }
+                        }
+                    }
 					
             		CE_Utility.allWeaponDefs.Clear();
 				}
