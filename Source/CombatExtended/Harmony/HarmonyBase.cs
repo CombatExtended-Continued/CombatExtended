@@ -53,6 +53,7 @@ namespace CombatExtended.Harmony
             PatchThingOwner();
             PatchHediffWithComps();
             Harmony_GenRadial_RadialPatternCount.Patch();
+            PatchCoreWorkers.Patch();
         }
 
         #region Patch helper methods
