@@ -16,7 +16,7 @@ namespace CombatExtended
 
         private int curMagCountInt;
         private AmmoDef currentAmmoInt = null;
-        public AmmoDef selectedAmmo;
+        private AmmoDef selectedAmmo;
         
         private Thing ammoToBeDeleted;
 
@@ -95,7 +95,7 @@ namespace CombatExtended
         {
             get
             {
-				return compInventory != null && compInventory.ammoList.Any(x => Props.ammoSet.ammoTypes.Any(a => a.ammo == x.def));
+                return compInventory != null && compInventory.ammoList.Any(x => Props.ammoSet.ammoTypes.Any(a => a.ammo == x.def));
             }
         }
         public bool hasMagazine { get { return Props.magazineSize > 0; } }
@@ -134,6 +134,22 @@ namespace CombatExtended
             }
         }
         public bool ShouldThrowMote => Props.throwMote && Props.magazineSize > 1;
+
+        public AmmoDef SelectedAmmo
+        {
+            get
+            {
+                return selectedAmmo;
+            }
+            set
+            {
+                selectedAmmo = value;
+                if (!hasMagazine && currentAmmo != value)
+                {
+                    currentAmmoInt = value;
+                }
+            }
+        }
 
         #endregion Properties
 
@@ -226,6 +242,10 @@ namespace CombatExtended
                     {
                         return false;
                     }
+                    if (ammoToBeDeleted.def != currentAmmo)
+                    {
+                        currentAmmoInt = ammoToBeDeleted.def as AmmoDef;
+                    }
 					
                     if (ammoToBeDeleted.stackCount > 1)
                         ammoToBeDeleted = ammoToBeDeleted.SplitOff(1);
@@ -275,7 +295,7 @@ namespace CombatExtended
 
             // secondary branch for if we ended up being called up by a turret somehow...
             if (turret != null)
-                turret.OrderReload();
+                turret.TryOrderReload();
 
             // Issue reload job
             if (wielder != null)
@@ -287,7 +307,7 @@ namespace CombatExtended
                 wielder.jobs.StartJob(reloadJob, JobCondition.InterruptForced, null, wielder.CurJob?.def != reloadJob.def, false);
             }
         }
-        
+
         // used by both turrets (JobDriver_ReloadTurret) and pawns (JobDriver_Reload).
         /// <summary>
         /// Used to unload the weapon.  Ammo will be dumped to the unloading Pawn's inventory or the ground if insufficient space.  Any ammo that can't be dropped
@@ -299,6 +319,13 @@ namespace CombatExtended
         /// </remarks>
         public bool TryUnload()
         {
+            Thing outThing;
+            return TryUnload(out outThing);
+        }
+
+        public bool TryUnload(out Thing droppedAmmo)
+        {
+            droppedAmmo = null;
         	if (!hasMagazine || (holder == null && turret == null))
         		return false; // nothing to do as we are in a bad state;
         	
@@ -318,8 +345,8 @@ namespace CombatExtended
             if (doDrop)
             {
             	// NOTE: If we get here from ThingContainer.TryAdd() it will have modified the ammoThing.stackCount to what it couldn't take.
-                Thing outThing;
-                if (!GenThing.TryDropAndSetForbidden(ammoThing, Position, Map, ThingPlaceMode.Near, out outThing, turret.Faction != Faction.OfPlayer))
+                //Thing outThing;
+                if (!GenThing.TryDropAndSetForbidden(ammoThing, Position, Map, ThingPlaceMode.Near, out droppedAmmo, turret.Faction != Faction.OfPlayer))
                 {
                 	Log.Warning(String.Concat(this.GetType().Assembly.GetName().Name + " :: " + this.GetType().Name + " :: ",
                 	                         "Unable to drop ", ammoThing.LabelCap, " on the ground, thing was destroyed."));
@@ -446,7 +473,7 @@ namespace CombatExtended
             {
                 Action action = null;
                 if (wielder != null) action = delegate { TryStartReload(); };
-                else if (turret != null && turret.MannableComp != null) action = turret.OrderReload;
+                else if (turret != null && turret.MannableComp != null) action = turret.TryOrderReload;
 
                 // Check for teaching opportunities
                 string tag;

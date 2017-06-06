@@ -63,7 +63,7 @@ namespace CombatExtended
 				
 				// change ammo type if necessary.
 				if (comp.useAmmo && comp.currentAmmo != ammo)
-					comp.selectedAmmo = ammo;
+					comp.SelectedAmmo = ammo;
 				
 	            // Get the reload job from the comp.
 	            reloadJob = comp.TryMakeReloadJob();

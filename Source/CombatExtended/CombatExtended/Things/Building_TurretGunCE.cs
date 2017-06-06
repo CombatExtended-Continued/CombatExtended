@@ -133,7 +133,7 @@ namespace CombatExtended
                 return mannableComp == null
                     && CompAmmo != null
                     && CompAmmo.hasMagazine
-                    && (CompAmmo.curMagCount < CompAmmo.Props.magazineSize || CompAmmo.selectedAmmo != CompAmmo.currentAmmo);
+                    && (CompAmmo.curMagCount < CompAmmo.Props.magazineSize || CompAmmo.SelectedAmmo != CompAmmo.currentAmmo);
             }
         }
         public bool AllowAutomaticReload
@@ -182,7 +182,7 @@ namespace CombatExtended
             }
             if (CompAmmo != null && CompAmmo.curMagCount <= 0)
             {
-                OrderReload();
+                TryOrderReload();
             }
         }
 
@@ -403,7 +403,7 @@ namespace CombatExtended
         {
             base.Tick();
             if (ticksUntilAutoReload > 0) ticksUntilAutoReload--;   // Reduce time until we can auto-reload
-            if (CompAmmo?.curMagCount == 0 && (MannableComp?.MannedNow ?? false)) OrderReload();
+            if (CompAmmo?.curMagCount == 0 && (MannableComp?.MannedNow ?? false)) TryOrderReload();
             /*
             if (!CanSetForcedTarget && forcedTarget.IsValid)
             {
@@ -529,7 +529,7 @@ namespace CombatExtended
 
         // New methods
 
-        public void OrderReload()
+        public void TryOrderReload()
         {
             /*
             if (mannableComp == null)
@@ -539,19 +539,19 @@ namespace CombatExtended
             }
             */
 
-            if ((!mannableComp?.MannedNow ?? true) || (CompAmmo.currentAmmo == CompAmmo.selectedAmmo && CompAmmo.curMagCount == CompAmmo.Props.magazineSize)) return;
+            if ((!mannableComp?.MannedNow ?? true) || (CompAmmo.currentAmmo == CompAmmo.SelectedAmmo && CompAmmo.curMagCount == CompAmmo.Props.magazineSize)) return;
             Job reloadJob = null;
             if (CompAmmo.useAmmo)
             {
                 CompInventory inventory = mannableComp.ManningPawn.TryGetComp<CompInventory>();
                 if (inventory != null)
                 {
-                    Thing ammo = inventory.container.FirstOrDefault(x => x.def == CompAmmo.selectedAmmo);
+                    Thing ammo = inventory.container.FirstOrDefault(x => x.def == CompAmmo.SelectedAmmo);
                     if (ammo != null)
                     {
                         Thing droppedAmmo;
                         int amount = CompAmmo.Props.magazineSize;
-                        if (CompAmmo.currentAmmo == CompAmmo.selectedAmmo) amount -= CompAmmo.curMagCount;
+                        if (CompAmmo.currentAmmo == CompAmmo.SelectedAmmo) amount -= CompAmmo.curMagCount;
                         if (inventory.container.TryDrop(ammo, this.Position, this.Map, ThingPlaceMode.Direct, Mathf.Min(ammo.stackCount, amount), out droppedAmmo))
                         {
                             reloadJob = new Job(CE_JobDefOf.ReloadTurret, this, droppedAmmo) { count = droppedAmmo.stackCount };

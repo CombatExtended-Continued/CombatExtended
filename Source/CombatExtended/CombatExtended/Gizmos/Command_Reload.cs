@@ -27,7 +27,7 @@ namespace CombatExtended
             {
                 Find.WindowStack.Add(MakeAmmoMenu());
             }
-            else if (compAmmo.selectedAmmo != compAmmo.currentAmmo || compAmmo.curMagCount < compAmmo.Props.magazineSize)
+            else if (compAmmo.SelectedAmmo != compAmmo.currentAmmo || compAmmo.curMagCount < compAmmo.Props.magazineSize)
             {
                 base.ProcessInput(ev);
             }
@@ -69,13 +69,13 @@ namespace CombatExtended
                 {
                     AmmoDef ammoDef = (AmmoDef)curDef;
                     floatOptionList.Add(new FloatMenuOption(ammoDef.ammoClass.LabelCap, new Action(delegate {
-                        bool shouldReload = Controller.settings.AutoReloadOnChangeAmmo && (compAmmo.selectedAmmo != ammoDef || compAmmo.curMagCount < compAmmo.Props.magazineSize) && compAmmo.turret?.MannableComp == null;
-		               	compAmmo.selectedAmmo = ammoDef;
+                        bool shouldReload = Controller.settings.AutoReloadOnChangeAmmo && (compAmmo.SelectedAmmo != ammoDef || compAmmo.curMagCount < compAmmo.Props.magazineSize) && compAmmo.turret?.MannableComp == null;
+		               	compAmmo.SelectedAmmo = ammoDef;
 		               	if (shouldReload)
 		               	{
 			               	if (compAmmo.turret != null)
 			               	{
-			               		compAmmo.turret.OrderReload();
+			               		compAmmo.turret.TryOrderReload();
 			               	}
 			               	else
 			               	{

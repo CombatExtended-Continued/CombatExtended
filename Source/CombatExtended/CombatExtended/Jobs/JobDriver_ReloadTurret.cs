@@ -90,7 +90,7 @@ namespace CombatExtended
                 yield return Toils_Goto.GotoCell(ammo.Position, PathEndMode.ClosestTouch);
                 yield return Toils_Haul.StartCarryThing(TargetIndex.B);
                 yield return Toils_Goto.GotoCell(turret.Position, PathEndMode.ClosestTouch);
-                yield return Toils_Haul.PlaceHauledThingInCell(TargetIndex.A, null, false);
+                //yield return Toils_Haul.PlaceHauledThingInCell(TargetIndex.A, null, false);
             } else
             {
                 // If ammo system is turned off we just need to go to the turret.
@@ -106,7 +106,10 @@ namespace CombatExtended
                 turret.isReloading = true;
                 if (compReloader.ShouldThrowMote)
                     MoteMaker.ThrowText(turret.Position.ToVector3Shifted(), turret.Map, string.Format("CE_ReloadingTurretMote".Translate(), TargetThingA.LabelCapNoCount));
-                compReloader.TryUnload();
+                Thing newAmmo;
+                compReloader.TryUnload(out newAmmo);
+                if (newAmmo?.CanStackWith(ammo) ?? false)
+                    pawn.carryTracker.TryStartCarry(newAmmo, Mathf.Min(newAmmo.stackCount, compReloader.Props.magazineSize - ammo.stackCount));
             };
             waitToil.AddFinishAction(() => turret.isReloading = false);
             waitToil.defaultCompleteMode = ToilCompleteMode.Delay;
@@ -120,7 +123,7 @@ namespace CombatExtended
             {
                 compReloader.LoadAmmo(ammo);
             };
-            if (compReloader.useAmmo) reloadToil.EndOnDespawnedOrNull(TargetIndex.B);
+            //if (compReloader.useAmmo) reloadToil.EndOnDespawnedOrNull(TargetIndex.B);
             yield return reloadToil;
         }
         #endregion Methods
