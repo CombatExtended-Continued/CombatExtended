@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <Defs>
 
+  <!-- ================================== Shooting =======================================-->
+
   <StatDef>
     <defName>AimingAccuracy</defName>
     <label>aiming accuracy</label>
@@ -93,6 +95,21 @@
         <weight>0.5</weight>
       </li>
     </capacityFactors>
+  </StatDef>
+
+  <!-- ================================== Melee =======================================-->
+
+  <!-- Doesn't do anything, just for display -->
+  <StatDef>
+    <defName>MeleeArmorPenetration</defName>
+    <workerClass>CombatExtended.StatWorker_MeleeArmorPenetration</workerClass>
+    <label>melee armor penetration</label>
+    <description>Average armor penetration in melee. Determines how much damage is lost to enemy armor.</description>
+    <category>PawnCombat</category>
+    <displayPriorityInCategory>99</displayPriorityInCategory>
+    <defaultBaseValue>0</defaultBaseValue>
+    <minValue>0</minValue>
+    <toStringStyle>FloatTwo</toStringStyle>
   </StatDef>
 
   <StatDef>

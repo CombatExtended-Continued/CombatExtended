@@ -304,7 +304,7 @@ namespace CombatExtended
             	if (reloadJob == null)
             		return;
             	reloadJob.playerForced = true;
-                wielder.jobs.StartJob(reloadJob, JobCondition.InterruptForced, null, wielder.CurJob?.def != reloadJob.def, false);
+                wielder.jobs.StartJob(reloadJob, JobCondition.InterruptForced, null, wielder.CurJob?.def != reloadJob.def, true);
             }
         }
 
