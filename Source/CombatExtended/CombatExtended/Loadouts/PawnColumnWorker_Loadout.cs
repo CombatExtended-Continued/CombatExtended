@@ -15,6 +15,9 @@ namespace CombatExtended
 
         private const int ManageOutfitsButtonHeight = 32;
 
+        internal static float _MinWidth = 97f;  //194f default
+        internal static float _OptimalWidth = 177;  //354f default
+
         public override void DoHeader(Rect rect, PawnTable table)
         {
             base.DoHeader(rect, table);
@@ -87,7 +90,6 @@ namespace CombatExtended
                 num3 += 4f;
             }
 
-            // Edit loadout button
             Rect assignTabRect = new Rect(num3, rect.y + 2f, (float)num2, rect.height - 4f);
             if (Widgets.ButtonText(assignTabRect, "AssignTabEdit".Translate(), true, false, true))
             {
@@ -98,12 +100,12 @@ namespace CombatExtended
 
         public override int GetMinWidth(PawnTable table)
         {
-            return Mathf.Max(base.GetMinWidth(table), Mathf.CeilToInt(194f));
+            return Mathf.Max(base.GetMinWidth(table), Mathf.CeilToInt(_MinWidth));
         }
 
         public override int GetOptimalWidth(PawnTable table)
         {
-            return Mathf.Clamp(Mathf.CeilToInt(354f), this.GetMinWidth(table), this.GetMaxWidth(table));
+            return Mathf.Clamp(Mathf.CeilToInt(_OptimalWidth), this.GetMinWidth(table), this.GetMaxWidth(table));
         }
 
         public override int GetMinHeaderHeight(PawnTable table)
