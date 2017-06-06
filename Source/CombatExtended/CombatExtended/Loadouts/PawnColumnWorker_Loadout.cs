@@ -15,8 +15,8 @@ namespace CombatExtended
 
         private const int ManageOutfitsButtonHeight = 32;
 
-        internal static float _MinWidth = 97f;  //194f default
-        internal static float _OptimalWidth = 177;  //354f default
+        internal static float _MinWidth = 197f;  //194f default
+        internal static float _OptimalWidth = 214;  //354f default
 
         public override void DoHeader(Rect rect, PawnTable table)
         {

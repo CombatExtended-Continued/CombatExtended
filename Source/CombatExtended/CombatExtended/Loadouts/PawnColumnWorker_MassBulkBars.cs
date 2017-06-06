@@ -14,8 +14,8 @@ namespace CombatExtended
         private const int TopAreaHeight = 65;
         private const string BarMass = "CEMass";
         private const string BarBulk = "CEBulk";
-        private static int _MinWidth = 50;
-        private static int _OptimalWidth = 150;
+        private static int _MinWidth = 40;
+        private static int _OptimalWidth = 50;
 
         public override void DoHeader(Rect rect, PawnTable table)
         {
