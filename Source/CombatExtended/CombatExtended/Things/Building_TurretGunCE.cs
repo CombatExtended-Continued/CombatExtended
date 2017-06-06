@@ -132,7 +132,7 @@ namespace CombatExtended
             {
                 return mannableComp == null
                     && CompAmmo != null
-                    && CompAmmo.useAmmo
+                    && CompAmmo.hasMagazine
                     && (CompAmmo.curMagCount < CompAmmo.Props.magazineSize || CompAmmo.selectedAmmo != CompAmmo.currentAmmo);
             }
         }
@@ -140,7 +140,8 @@ namespace CombatExtended
         {
             get
             {
-                return mannableComp == null && CompAmmo != null && CompAmmo.useAmmo
+                return mannableComp == null && CompAmmo != null
+                    && CompAmmo.hasMagazine
                     && (ticksUntilAutoReload == 0 || CompAmmo.curMagCount <= Mathf.CeilToInt(CompAmmo.Props.magazineSize / 6));
             }
         }
@@ -402,6 +403,7 @@ namespace CombatExtended
         {
             base.Tick();
             if (ticksUntilAutoReload > 0) ticksUntilAutoReload--;   // Reduce time until we can auto-reload
+            if (CompAmmo?.curMagCount == 0 && (MannableComp?.MannedNow ?? false)) OrderReload();
             /*
             if (!CanSetForcedTarget && forcedTarget.IsValid)
             {
@@ -529,13 +531,15 @@ namespace CombatExtended
 
         public void OrderReload()
         {
+            /*
             if (mannableComp == null)
             {
                 if (!CompAmmo.useAmmo) CompAmmo.LoadAmmo();
                 return;
             }
+            */
 
-            if (!mannableComp.MannedNow || (CompAmmo.currentAmmo == CompAmmo.selectedAmmo && CompAmmo.curMagCount == CompAmmo.Props.magazineSize)) return;
+            if ((!mannableComp?.MannedNow ?? true) || (CompAmmo.currentAmmo == CompAmmo.selectedAmmo && CompAmmo.curMagCount == CompAmmo.Props.magazineSize)) return;
             Job reloadJob = null;
             if (CompAmmo.useAmmo)
             {
@@ -561,7 +565,8 @@ namespace CombatExtended
             }
             if (reloadJob != null)
             {
-                mannableComp.ManningPawn.jobs.StartJob(reloadJob, JobCondition.Ongoing, null, true);
+                var pawn = mannableComp.ManningPawn;
+                pawn.jobs.StartJob(reloadJob, JobCondition.Ongoing, null, pawn.CurJob?.def != reloadJob.def);
             }
         }
 
@@ -572,7 +577,7 @@ namespace CombatExtended
                 yield return gizmo;
             }
             // Ammo gizmos
-            if (CompAmmo != null && (CompAmmo.useAmmo || mannableComp != null))
+            if (CompAmmo != null)
             {
                 foreach (Command com in CompAmmo.CompGetGizmosExtra())
                 {

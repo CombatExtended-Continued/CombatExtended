@@ -22,15 +22,15 @@ namespace CombatExtended
         public override bool HasJobOnThing(Pawn pawn, Thing t, bool forced = false)
         {
             Building_TurretGunCE turret = t as Building_TurretGunCE;
-            if (!forced && (turret == null || !turret.AllowAutomaticReload)) return false;
+            if (turret == null || (!forced && !turret.AllowAutomaticReload)) return false;
             
-            if (turret == null
-                || !turret.NeedsReload
+            if (!turret.NeedsReload
                 || !pawn.CanReserveAndReach(turret, PathEndMode.ClosestTouch, Danger.Deadly)
                 || turret.IsForbidden(pawn.Faction))
             {
                 return false;
             }
+            if (!turret.CompAmmo.useAmmo) return true;
             Thing ammo = GenClosest.ClosestThingReachable(pawn.Position, pawn.Map,
                             ThingRequest.ForDef(turret.CompAmmo.selectedAmmo),
                             PathEndMode.ClosestTouch,
@@ -47,8 +47,7 @@ namespace CombatExtended
 
             if (!turret.CompAmmo.useAmmo)
             {
-                return new Job(DefDatabase<JobDef>.GetNamed("ReloadTurret"), t, null);
-                //return null;
+                return new Job(CE_JobDefOf.ReloadTurret, t, null);
             }
 
             Thing ammo = GenClosest.ClosestThingReachable(pawn.Position, pawn.Map,
