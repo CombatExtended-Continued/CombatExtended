@@ -105,11 +105,11 @@ namespace CombatExtended
             string moteText = "";
             SoundDef soundDef;
             Pawn defender = targetThing as Pawn;
-            var hitRoll = Rand.Value;
-            if (hitRoll < GetHitChance(targetThing))
+            //var hitRoll = Rand.Value;
+            if (Rand.Chance(GetHitChance(targetThing)))
             {
                 // Check for dodge
-                if (!targetImmobile && !surpriseAttack && hitRoll < defender.GetStatValue(StatDefOf.MeleeDodgeChance))
+                if (!targetImmobile && !surpriseAttack && Rand.Chance(defender.GetStatValue(StatDefOf.MeleeDodgeChance)))
                 {
                     // Attack is evaded
                     moteText = "TextMote_Dodge".Translate();
@@ -120,9 +120,9 @@ namespace CombatExtended
                 else
                 {
                     // Attack connects, calculate resolution
-                    var resultRoll = Rand.Value;
+                    //var resultRoll = Rand.Value;
                     var parryChance = GetParryChanceAgainst(casterPawn, defender);
-                    if (!surpriseAttack && defender != null && CanDoParry(defender) && resultRoll < parryChance)
+                    if (!surpriseAttack && defender != null && CanDoParry(defender) && Rand.Chance(parryChance))
                     {
                         // Attack is parried
                         Apparel shield = defender.apparel.WornApparel.FirstOrDefault(x => x is Apparel_Shield);
@@ -130,7 +130,7 @@ namespace CombatExtended
                         Thing parryThing = isShieldBlock ? shield
                             : defender.equipment?.Primary != null ? defender.equipment.Primary : defender;
 
-                        if (resultRoll < parryChance * GetCritChanceAgainst(defender, casterPawn))
+                        if (Rand.Chance(GetCritChanceAgainst(defender, casterPawn)))
                         {
                             // Do a riposte
                             DoParry(defender, parryThing, true);
@@ -151,17 +151,17 @@ namespace CombatExtended
                     else
                     {
                         // Attack connects
-                        if (!surpriseAttack && resultRoll < (1 - GetCritChanceAgainst(casterPawn, defender)))
-                        {
-                            // Do a regular hit as per vanilla
-                            ApplyMeleeDamageToTarget(currentTarget);
-                        }
-                        else
+                        if (!surpriseAttack && Rand.Chance(GetCritChanceAgainst(casterPawn, defender)))
                         {
                             // Do a critical hit
                             ApplyMeleeDamageToTarget(currentTarget, true);
                             moteText = casterPawn.def.race.Animal ? "CE_TextMote_Knockdown".Translate() : "CE_TextMote_CriticalHit".Translate();
                             casterPawn.skills?.Learn(SkillDefOf.Melee, CritXP, false);
+                        }
+                        else
+                        {
+                            // Do a regular hit as per vanilla
+                            ApplyMeleeDamageToTarget(currentTarget);
                         }
                         result = true;
                         soundDef = targetThing.def.category == ThingCategory.Building ? SoundHitBuilding() : SoundHitPawn();
