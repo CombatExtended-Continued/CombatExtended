@@ -314,7 +314,6 @@ namespace CombatExtended
             var shotLine = new Ray(from, (dest - from));
 
             // Early opt-out, if we only moved by one cell only check the new cell
-            /*
             if ((newPos - lastPos).LengthManhattan == 1)
             {
                 if (DebugViewSettings.drawInterceptChecks)
@@ -323,7 +322,6 @@ namespace CombatExtended
                 }
                 return CheckCellForCollision(newPos, shotLine);
             }
-            */
 
             // Iterate through all cells between the last and the new position
             var cells = GenSight.PointsOnLineOfSight(lastPos, newPos);
@@ -359,7 +357,7 @@ namespace CombatExtended
             {
                 return false;
             }
-            List<Thing> mainThingList = new List<Thing>(base.Map.thingGrid.ThingsListAtFast(cell)).Where(t => t.def.useHitPoints && (t is Pawn || t.def.fillPercent > 0)).ToList();
+            List<Thing> mainThingList = new List<Thing>(base.Map.thingGrid.ThingsListAtFast(cell)).Where(t => t is Pawn || t.def.Fillage != FillCategory.None).ToList();
 
             //Find pawns in adjacent cells and append them to main list
             List<IntVec3> adjList = new List<IntVec3>();
@@ -540,11 +538,11 @@ namespace CombatExtended
 
             // Determine flight path - Need to refactor this to be less hacky
             var pos = Vec2Position;
-            var nextPos = Vector2.Lerp(origin, Destination, (fTicks + 1) / StartingTicksToImpact);
+            var lastPos = Vector2.Lerp(this.origin, Destination, (fTicks - 1) / StartingTicksToImpact);
 
-            var curPos = new Vector3(pos.x, GetHeightAtTicks(FlightTicks), pos.y);
-            var dest = new Vector3(nextPos.x, GetHeightAtTicks(FlightTicks + 1), nextPos.y);
-            var shotLine = new Ray(origin, (dest - curPos));
+            var vec3dest = new Vector3(pos.x, GetHeightAtTicks(FlightTicks), pos.y);
+            var vec3lastPos = new Vector3(lastPos.x, GetHeightAtTicks(FlightTicks - 1), lastPos.y);
+            var shotLine = new Ray(vec3lastPos, (vec3dest - vec3lastPos));
 
             // FIXME : Early opt-out
             Thing thing = Position.GetFirstPawn(Map);
@@ -552,7 +550,7 @@ namespace CombatExtended
             {
                 return;
             }
-            List<Thing> list = Map.thingGrid.ThingsListAt(Position).Where(t => !(t is ProjectileCE) && !(t is Mote)).ToList();
+            List<Thing> list = Map.thingGrid.ThingsListAt(Position).Where(t => t is Pawn || t.def.Fillage != FillCategory.None).ToList();
             if (list.Count > 0)
             {
 				foreach (var thing2 in list) {
