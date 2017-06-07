@@ -260,13 +260,14 @@ namespace CombatExtended
                     if (!pawn.Faction.IsPlayer)
                     {
                         Predicate<Thing> validatorWS = (Thing w) => w.def.IsWeapon
-                        	&& w.MarketValue > 500 && pawn.CanReserve(w, 1)
-                        	&& pawn.CanReach(w, PathEndMode.Touch, Danger.Deadly, true)
-                        	&& ((!pawn.Faction.HostileTo(Faction.OfPlayer) && !pawn.Map.areaManager.Home[w.Position]) || pawn.Faction.HostileTo(Faction.OfPlayer))
-                        	&& (w.Position.DistanceToSquared(pawn.Position) < 15f || room == RegionAndRoomQuery.RoomAtFast(w.Position, pawn.Map));
-                        
-						// generate a list of all weapons (this includes melee weapons)
-						List<Thing> allWeapons = (
+                            && w.MarketValue > 500 && pawn.CanReserve(w, 1)
+                            && (DangerInPosRadius(pawn, w.Position, Find.VisibleMap, 30f).Count() <= 0
+                                                    ? pawn.Position.InHorDistOf(w.Position, 25f)
+                                                    : pawn.Position.InHorDistOf(w.Position, 6f))
+                            && pawn.CanReach(w, PathEndMode.Touch, Danger.Deadly, true);
+
+                        // generate a list of all weapons (this includes melee weapons)
+                        List<Thing> allWeapons = (
                             from w in pawn.Map.listerThings.ThingsInGroup(ThingRequestGroup.HaulableAlways)
                             where validatorWS(w)
                             orderby w.MarketValue - w.Position.DistanceToSquared(pawn.Position) * 2f descending
@@ -295,13 +296,15 @@ namespace CombatExtended
                                 } else {
                                     // pickup a CE ranged weapon...
                                     List<ThingDef> thingDefAmmoList = thing.TryGetComp<CompAmmoUser>().Props.ammoSet.ammoTypes.Select(g => g.ammo as ThingDef).ToList();
-	                            	
-	                                Predicate<Thing> validatorA = (Thing t) => t.def.category == ThingCategory.Item
-	                                	&& t is AmmoThing && pawn.CanReserve(t, 1)
-	                                	&& pawn.CanReach(t, PathEndMode.Touch, Danger.Deadly, true)
-	                                	&& (t.Position.DistanceToSquared(pawn.Position) < 20f || room == RegionAndRoomQuery.RoomAtFast(t.Position, pawn.Map));
-	
-	                                List<Thing> thingAmmoList = (
+
+                                    Predicate<Thing> validatorA = (Thing t) => t.def.category == ThingCategory.Item
+                                        && t is AmmoThing && pawn.CanReserve(t, 1)
+                                        && (DangerInPosRadius(pawn, t.Position, Find.VisibleMap, 30f).Count() <= 0
+                                                                ? pawn.Position.InHorDistOf(t.Position, 25f)
+                                                                : pawn.Position.InHorDistOf(t.Position, 6f))
+                                        && pawn.CanReach(t, PathEndMode.Touch, Danger.Deadly, true);
+
+                                    List<Thing> thingAmmoList = (
 	                                    from t in pawn.Map.listerThings.ThingsInGroup(ThingRequestGroup.HaulableAlways)
 	                                    where validatorA(t)
 	                                    select t
@@ -356,10 +359,10 @@ namespace CombatExtended
                     if (curAmmoList.Count > 0)
                     {
                         Predicate<Thing> validator = (Thing t) => t is AmmoThing && pawn.CanReserve(t, 1)
-                        && pawn.CanReach(t, PathEndMode.Touch, Danger.Deadly, true)
-                        && ((pawn.Faction.IsPlayer && !ForbidUtility.IsForbidden(t, pawn))
-                        || (!pawn.Faction.IsPlayer && (!pawn.Faction.HostileTo(Faction.OfPlayer) && !pawn.Map.areaManager.Home[t.Position]) || (pawn.Faction.HostileTo(Faction.OfPlayer))))
-                        && (t.Position.DistanceToSquared(pawn.Position) < 20f || room == RegionAndRoomQuery.RoomAtFast(t.Position, pawn.Map));
+                                        && pawn.CanReach(t, PathEndMode.Touch, Danger.Deadly, true)
+                                        && ((pawn.Faction.IsPlayer && !ForbidUtility.IsForbidden(t, pawn)) || (!pawn.Faction.IsPlayer && DangerInPosRadius(pawn, t.Position, Find.VisibleMap, 30f).Count() <= 0
+                                                                ? pawn.Position.InHorDistOf(t.Position, 25f)
+                                                                : pawn.Position.InHorDistOf(t.Position, 6f)));
                         List<Thing> curThingList = (
                             from t in pawn.Map.listerThings.ThingsInGroup(ThingRequestGroup.HaulableAlways)
                             where validator(t)
@@ -526,6 +529,11 @@ namespace CombatExtended
                 return true;
             }
             else return false;
+        }
+
+        private static IEnumerable<Pawn> DangerInPosRadius(Pawn pawn, IntVec3 position, Map map, float distance)
+        {
+            return Enumerable.Where<Pawn>(map.mapPawns.AllPawns, (p => p.Position.InHorDistOf(position, distance) && !p.RaceProps.Animal && !p.Downed && !p.Dead && FactionUtility.HostileTo(p.Faction, pawn.Faction)));
         }
 
         private static Job MeleeOrWaitJob(Pawn pawn, Thing blocker, IntVec3 cellBeforeBlocker)
