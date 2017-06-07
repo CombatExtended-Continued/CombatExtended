@@ -109,7 +109,7 @@ namespace CombatExtended
             if (hitRoll < GetHitChance(targetThing))
             {
                 // Check for dodge
-                if (!targetImmobile && !surpriseAttack && hitRoll < GetDodgeChanceAgainst(casterPawn, defender))
+                if (!targetImmobile && !surpriseAttack && hitRoll < defender.GetStatValue(StatDefOf.MeleeDodgeChance))
                 {
                     // Attack is evaded
                     moteText = "TextMote_Dodge".Translate();

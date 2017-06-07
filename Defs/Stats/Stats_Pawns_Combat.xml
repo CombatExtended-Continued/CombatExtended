@@ -160,19 +160,19 @@
   <StatDef>
     <defName>MeleeDodgeChance</defName>
     <label>melee dodge chance</label>
-    <description>Chance to dodge a melee attack that would've otherwise hit. Characters will not dodge while aiming or firing a ranged weapon.\n\nThe final chance depends on the opponent's dodge skill and equal opponents will always have a 10% chance to dodge.</description>
+    <description>Chance to dodge a melee attack that would've otherwise hit. Characters will not dodge while aiming or firing a ranged weapon.</description>
     <category>PawnCombat</category>
     <workerClass>CombatExtended.StatWorker_MoveSpeed</workerClass>
     <displayPriorityInCategory>99</displayPriorityInCategory>
     <defaultBaseValue>1</defaultBaseValue>
     <minValue>0</minValue>
-    <maxValue>1.6</maxValue>
+    <maxValue>3.2</maxValue>
     <toStringStyle>PercentZero</toStringStyle>
     <skillNeedFactors>
       <li Class="SkillNeed_BaseBonus">
         <skill>Melee</skill>
         <baseFactor>0.1</baseFactor>
-        <bonusFactor>0.02</bonusFactor>
+        <bonusFactor>0.015</bonusFactor>
       </li>
     </skillNeedFactors>
     <capacityFactors>
@@ -189,9 +189,11 @@
     <postProcessCurve>
       <points>
         <li>(0.0, 0.0)</li>
-        <li>(0.4, 0.4)</li>
-        <li>(0.8, 0.6)</li>
-        <li>(1.6, 0.8)</li>
+        <li>(0.3, 0.3)</li>
+        <li>(0.6, 0.45)</li>
+        <li>(1.2, 0.6)</li>
+        <li>(2.4, 0.75)</li>
+        <li>(3.2, 0.8)</li>
       </points>
     </postProcessCurve>
   </StatDef>
