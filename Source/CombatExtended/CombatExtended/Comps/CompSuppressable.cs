@@ -193,7 +193,7 @@ namespace CombatExtended
                 }
                 if (reactJob != null && reactJob.def != pawn.CurJob?.def)
                 {
-                    pawn.jobs.StartJob(reactJob, JobCondition.InterruptForced, null, true);
+                    pawn.jobs.StartJob(reactJob, JobCondition.InterruptForced, null, pawn.jobs.curJob?.def==JobDefOf.ManTurret);
                     LessonAutoActivator.TeachOpportunity(CE_ConceptDefOf.CE_SuppressionReaction, pawn, OpportunityType.Critical);
                 }
             }

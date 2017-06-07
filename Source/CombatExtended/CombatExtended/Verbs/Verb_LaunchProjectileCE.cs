@@ -624,7 +624,7 @@ namespace CombatExtended
 
                 // If the target is near something they might have to lean around to shoot then calculate their leans.
                 // NOTE: CellsAdjacent8Way includes the check for if a location is in map bounds so can use CanBeSeenOverFast.  The alternative is fast 8way and slow (bounds checking) CanBeSeenOver.
-                if ((targ.Thing as Pawn)?.CurJob?.def != CE_JobDefOf.HunkerDown && GenAdj.CellsAdjacent8Way(targ.Thing).FirstOrDefault(c => !c.CanBeSeenOver(targ.Thing.Map)) != null)
+                if ((targ.Thing as Pawn)?.CurJob?.def != CE_JobDefOf.HunkerDown && GenAdjFast.AdjacentCells8Way(targ.Thing).FirstOrDefault(c => !c.CanBeSeenOver(targ.Thing.Map)) != null)
                 {
                     ShootLeanUtility.CalcShootableCellsOf(tempDestList, targ.Thing);
                 } else // otherwise just assume that the target won't lean...

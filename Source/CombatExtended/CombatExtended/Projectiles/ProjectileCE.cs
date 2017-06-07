@@ -314,6 +314,7 @@ namespace CombatExtended
             var shotLine = new Ray(from, (dest - from));
 
             // Early opt-out, if we only moved by one cell only check the new cell
+            /*
             if ((newPos - lastPos).LengthManhattan == 1)
             {
                 if (DebugViewSettings.drawInterceptChecks)
@@ -322,6 +323,7 @@ namespace CombatExtended
                 }
                 return CheckCellForCollision(newPos, shotLine);
             }
+            */
 
             // Iterate through all cells between the last and the new position
             var cells = GenSight.PointsOnLineOfSight(lastPos, newPos);
@@ -582,7 +584,7 @@ namespace CombatExtended
 
         private float GetHeightAtTicks(int ticks)
         {
-            float seconds = ticks.TicksToSeconds();
+            float seconds = ((float)ticks) / GenTicks.TicksPerRealSecond;
             return (float)Math.Round(shotHeight + shotSpeed * Mathf.Sin(shotAngle) * seconds - (GravityFactor * seconds * seconds) / 2f, 3);
         }
 
