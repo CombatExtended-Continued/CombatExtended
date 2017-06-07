@@ -160,7 +160,7 @@ namespace CombatExtended
                         {
                             // Do a critical hit
                             ApplyMeleeDamageToTarget(currentTarget, true);
-                            moteText = casterPawn.def.race.Animal ? "CE_TextMote_Knockdown".Translate() : "CE_TextMote_CriticalHit".ToString();
+                            moteText = casterPawn.def.race.Animal ? "CE_TextMote_Knockdown".Translate() : "CE_TextMote_CriticalHit".Translate();
                             casterPawn.skills?.Learn(SkillDefOf.Melee, CritXP, false);
                         }
                         result = true;
@@ -327,7 +327,7 @@ namespace CombatExtended
                 if (pawn != null)
                 {
                     //pawn.stances?.stunner.StunFor(KnockdownDuration);
-                    pawn.stances.SetStance(new Stance_Cooldown(KnockdownDuration, pawn, null));
+                    pawn.stances?.SetStance(new Stance_Cooldown(KnockdownDuration, pawn, null));
                     pawn.jobs?.StartJob(new Job(CE_JobDefOf.WaitKnockdown) { expiryInterval = KnockdownDuration }, JobCondition.InterruptForced, null, false, false);
                 }
             }

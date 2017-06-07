@@ -357,7 +357,7 @@ namespace CombatExtended
             {
                 return false;
             }
-            List<Thing> mainThingList = new List<Thing>(base.Map.thingGrid.ThingsListAtFast(cell)).Where(t => t.def.useHitPoints && (t is Pawn || t.def.Fillage != FillCategory.None)).ToList();
+            List<Thing> mainThingList = new List<Thing>(base.Map.thingGrid.ThingsListAtFast(cell)).Where(t => t.def.useHitPoints && (t is Pawn || t.def.fillPercent > 0)).ToList();
 
             //Find pawns in adjacent cells and append them to main list
             List<IntVec3> adjList = new List<IntVec3>();

@@ -237,8 +237,8 @@ namespace CombatExtended
 	            }
 	            else
 	            {
-                    var VictimVert = new CollisionVertical(currentTarget.Thing);
-                    var targetRange = VictimVert.HeightRange;	//Get lower and upper heights of the target
+                    var victimVert = new CollisionVertical(currentTarget.Thing);
+                    var targetRange = victimVert.HeightRange;	//Get lower and upper heights of the target
 	           		if (targetRange.min < coverRange.max)	//Some part of the target is hidden behind cover
 	           		{
 	           			// - It is possible for targetVertical.max < coverVertical.max, technically, in which case the shooter will never hit until the cover is gone.
@@ -255,12 +255,11 @@ namespace CombatExtended
                     else if (currentTarget.Thing is Pawn)
                     {
                         // Aim for center of mass on an exposed target
-                        targetRange.min = VictimVert.BottomHeight;
-                        targetRange.max = VictimVert.MiddleHeight;
+                        targetRange.min = victimVert.BottomHeight;
+                        targetRange.max = victimVert.MiddleHeight;
                     }
 	           		targetHeight = targetRange.Average;
 	            }
-	            
 	            angleRadians += ProjectileCE.GetShotAngle(ShotSpeed, (newTargetLoc - sourceLoc).magnitude, targetHeight - ShotHeight, ProjectileDef.projectile.flyOverhead, projectilePropsCE.Gravity);
         	}
         	
@@ -518,7 +517,7 @@ namespace CombatExtended
 
                 //New aiming algorithm
                 projectile.canTargetSelf = verbProps.targetParams.canTargetSelf;
-                projectile.minCollisionSqr = (sourceLoc - newTargetLoc).sqrMagnitude;
+                projectile.minCollisionSqr = (sourceLoc - currentTarget.Cell.ToIntVec2.ToVector2Shifted()).sqrMagnitude;
                 projectile.Launch(caster, sourceLoc, shotAngle, shotRotation, ShotHeight, ShotSpeed, ownerEquipment);
 	           	pelletMechanicsOnly = true;
             }
@@ -625,7 +624,7 @@ namespace CombatExtended
 
                 // If the target is near something they might have to lean around to shoot then calculate their leans.
                 // NOTE: CellsAdjacent8Way includes the check for if a location is in map bounds so can use CanBeSeenOverFast.  The alternative is fast 8way and slow (bounds checking) CanBeSeenOver.
-                if ((targ.Thing as Pawn).CurJob.def != CE_JobDefOf.HunkerDown && GenAdj.CellsAdjacent8Way(targ.Thing).FirstOrDefault(c => !c.CanBeSeenOverFast(targ.Thing.Map)) != null)
+                if ((targ.Thing as Pawn)?.CurJob?.def != CE_JobDefOf.HunkerDown && GenAdj.CellsAdjacent8Way(targ.Thing).FirstOrDefault(c => !c.CanBeSeenOver(targ.Thing.Map)) != null)
                 {
                     ShootLeanUtility.CalcShootableCellsOf(tempDestList, targ.Thing);
                 } else // otherwise just assume that the target won't lean...
