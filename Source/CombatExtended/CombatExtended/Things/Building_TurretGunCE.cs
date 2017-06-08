@@ -104,6 +104,15 @@ namespace CombatExtended
                 {
                     this.gunInt = ThingMaker.MakeThing(this.def.building.turretGunDef, null);
                     InitGun();
+                    // FIXME: Hack to make player-crafted turrets spawn unloaded
+                    if (Faction == Faction.OfPlayer)
+                    {
+                        Thing ammo;
+                        if (CompAmmo != null && CompAmmo.TryUnload(out ammo) && !ammo.DestroyedOrNull())
+                        {
+                            ammo.Destroy();
+                        }
+                    }
                 }
                 return this.gunInt;
             }
