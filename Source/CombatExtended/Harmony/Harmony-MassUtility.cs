@@ -13,7 +13,7 @@ namespace CombatExtended.Harmony
     [HarmonyPatch(typeof(MassUtility), "Capacity")]
     static class Harmony_MassUtility_Capacity
     {
-        static void Postfix(float __result, Pawn p)
+        static void Postfix(ref float __result, Pawn p)
         {
             if (__result != 0)
                 __result = p.GetStatValue(CE_StatDefOf.CarryWeight);
