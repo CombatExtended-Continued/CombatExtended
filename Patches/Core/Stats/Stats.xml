@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+
+	<!-- ========== Apparel ========== -->
+
+	<!-- Armor Rating -->
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>*/StatDef[@Name = "ArmorRatingBase"]/parts/li[@Class = "StatPart_Quality"]</xpath>
+		<value>
+			<li Class="StatPart_Quality">
+			  <factorAwful>0.7</factorAwful>
+			  <factorShoddy>0.8</factorShoddy>
+			  <factorPoor>0.9</factorPoor>
+			  <factorNormal>1</factorNormal>
+			  <factorGood>1.06</factorGood>
+			  <factorSuperior>1.12</factorSuperior>
+			  <factorExcellent>1.18</factorExcellent>
+			  <factorMasterwork>1.24</factorMasterwork>
+			  <factorLegendary>1.3</factorLegendary>
+			</li>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>*/StatDef[defName="ArmorRating_Blunt" or defName="ArmorRating_Sharp"]</xpath>
+		<value>
+			<toStringStyle>FloatTwo</toStringStyle>
+		</value>
+	</Operation>
+
+	<!-- ========== Pawn stats ========== -->
+
+	<!-- Shooting Accuracy -->
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>*/StatDef[defName="ShootingAccuracy"]/label</xpath>
+		<value>
+			<label>weapon handling</label>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>*/StatDef[defName="ShootingAccuracy"]/description</xpath>
+		<value>
+			<description>How well a shooter can hold a gun steady when aiming and compensate for recoil.\n\nThe total sway is calculated as:\n(4.5 - shooting accuracy) * weapon sway factor\n\nThe recoil per shot is determined by multiplying this value against the weapon's inherent recoil amount and increases after every shot in a burst.</description>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>*/StatDef[defName="ShootingAccuracy"]/minValue</xpath>
+		<value>
+			<minValue>0</minValue>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>*/StatDef[defName="ShootingAccuracy"]/maxValue</xpath>
+		<value>
+			<maxValue>4.5</maxValue>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>*/StatDef[defName="ShootingAccuracy"]/skillNeedFactors/li[@Class = "SkillNeed_BaseBonus"]</xpath>
+		<value>
+			<li Class="SkillNeed_Direct">
+			  <skill>Shooting</skill>
+			  <reportInverse>true</reportInverse>
+			  <factorsPerLevel>
+			    <li>1.0</li>
+			    <li>1.2</li>
+			    <li>1.4</li>
+			    <li>1.6</li>
+			    <li>1.8</li>
+			    <li>2.0</li>
+			    <li>2.1</li>
+			    <li>2.2</li>
+			    <li>2.3</li>
+			    <li>2.4</li>
+			    <li>2.5</li>
+			    <li>2.56</li>
+			    <li>2.62</li>
+			    <li>2.68</li>
+			    <li>2.74</li>
+			    <li>2.8</li>
+			    <li>2.84</li>
+			    <li>2.88</li>
+			    <li>2.92</li>
+			    <li>2.96</li>
+			    <li>3.0</li>
+			  </factorsPerLevel>
+			</li>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>*/StatDef[defName="ShootingAccuracy"]/capacityFactors/li[capacity = "Manipulation"]/weight</xpath>
+		<value>
+			<weight>1</weight>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationRemove">
+		<xpath>*/StatDef[defName="ShootingAccuracy"]/postProcessCurve</xpath>
+	</Operation>
+
+	<!-- Move speed -->
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>/StatDefs/StatDef[defName="MoveSpeed"]</xpath>
+		<value>
+			<workerClass>CombatExtended.StatWorker_MoveSpeed</workerClass>
+		</value>
+	</Operation>
+
+	<!-- Work speed -->
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>*/StatDef[defName="WorkSpeedGlobal"]</xpath>
+		<value>
+			<workerClass>CombatExtended.StatWorker_WorkSpeedGlobal</workerClass>
+		</value>
+	</Operation>
+
+</Patch>
+

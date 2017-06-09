@@ -1,219 +1,154 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ThingDefs>
 
-  <ThingDef Name="BaseWeaponNeolithic" Abstract="True">
-    <category>Item</category>
-    <thingClass>ThingWithComps</thingClass>
-    <equipmentType>Primary</equipmentType>
-    <pathCost>10</pathCost>
-    <useHitPoints>True</useHitPoints>
-    <selectable>True</selectable>
-    <graphicData>
-      <onGroundRandomRotateAngle>35</onGroundRandomRotateAngle>
-    </graphicData>
-    <drawGUIOverlay>true</drawGUIOverlay>
-    <statBases>
-      <MaxHitPoints>100</MaxHitPoints>
-      <Flammability>1.0</Flammability>
-      <DeteriorationRate>2</DeteriorationRate>
-      <SellPriceFactor>0.5</SellPriceFactor>
-    </statBases>
-    <altitudeLayer>Item</altitudeLayer>
-    <alwaysHaulable>True</alwaysHaulable>
-    <tickerType>Never</tickerType>
-    <techLevel>Neolithic</techLevel>
-    <weaponTags>
-      <li>Neolithic</li>
-    </weaponTags>
-    <thingCategories>
-      <li>WeaponsRanged</li>
-    </thingCategories>
-    <comps>
-      <li Class="CompProperties_Forbiddable" />
-      <li>
-        <compClass>CompEquippable</compClass>
-      </li>
-      <li>
-        <compClass>CompQuality</compClass>
-      </li>
-    </comps>
-    <recipeMaker>
-      <workSpeedStat>SmithingSpeed</workSpeedStat>
-      <workSkill>Crafting</workSkill>
-      <recipeUsers>
-        <li>ElectricSmithy</li>
-        <li>FueledSmithy</li>
-      </recipeUsers>
-      <effectWorking>Smelt</effectWorking>
-      <unfinishedThingDef>UnfinishedWeapon</unfinishedThingDef>
-    </recipeMaker>
-  </ThingDef>
+	<ThingDef Name="BaseWeaponNeolithic" Abstract="True">
+		<category>Item</category>
+		<thingClass>ThingWithComps</thingClass>
+		<equipmentType>Primary</equipmentType>
+		<pathCost>10</pathCost>
+		<useHitPoints>True</useHitPoints>
+		<selectable>True</selectable>
+		<graphicData>
+			<onGroundRandomRotateAngle>35</onGroundRandomRotateAngle>
+		</graphicData>
+		<drawGUIOverlay>true</drawGUIOverlay>
+		<statBases>
+			<MaxHitPoints>100</MaxHitPoints>
+			<Flammability>1.0</Flammability>
+			<DeteriorationRate>2</DeteriorationRate>
+			<SellPriceFactor>0.5</SellPriceFactor>
+		</statBases>
+		<altitudeLayer>Item</altitudeLayer>
+		<alwaysHaulable>True</alwaysHaulable>
+		<tickerType>Never</tickerType>
+		<techLevel>Neolithic</techLevel>
+		<weaponTags>
+			<li>Neolithic</li>
+		</weaponTags>
+		<thingCategories>
+			<li>WeaponsRanged</li>
+		</thingCategories>
+		<comps>
+			<li Class="CompProperties_Forbiddable" />
+			<li>
+				<compClass>CompEquippable</compClass>
+			</li>
+			<li>
+				<compClass>CompQuality</compClass>
+			</li>
+		</comps>
+		<recipeMaker>
+			<workSpeedStat>SmithingSpeed</workSpeedStat>
+			<workSkill>Crafting</workSkill>
+			<recipeUsers>
+				<li>ElectricSmithy</li>
+				<li>FueledSmithy</li>
+			</recipeUsers>
+			<effectWorking>Smelt</effectWorking>
+			<unfinishedThingDef>UnfinishedWeapon</unfinishedThingDef>
+		</recipeMaker>
+	</ThingDef>
 
-  <ThingDef Name="BaseWeaponBow" ParentName="BaseWeaponNeolithic" Abstract="True">
-    <comps>
-      <li>
-        <compClass>CompQuality</compClass>
-      </li>
-    </comps>
-  </ThingDef>
+	<ThingDef Name="BaseProjectileNeolithic" Abstract="True">
+		<category>Projectile</category>
+		<tickerType>Normal</tickerType>
+		<altitudeLayer>Projectile</altitudeLayer>
+		<thingClass>CombatExtended.BulletCE</thingClass>
+		<label>arrow</label>
+		<useHitPoints>False</useHitPoints>
+		<neverMultiSelect>True</neverMultiSelect>
+		<graphicData>
+			<shaderType>Transparent</shaderType>
+		</graphicData>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE" />
+	</ThingDef>
 
-  <ThingDef Name="BaseProjectileNeolithic" Abstract="True">
-    <category>Projectile</category>
-    <tickerType>Normal</tickerType>
-    <altitudeLayer>Projectile</altitudeLayer>
-    <thingClass>Combat_Realism.BulletCE</thingClass>
-    <label>arrow</label>
-    <useHitPoints>False</useHitPoints>
-    <neverMultiSelect>True</neverMultiSelect>
-    <graphicData>
-      <shaderType>Transparent</shaderType>
-    </graphicData>
-    <projectile Class="Combat_Realism.ProjectilePropertiesCE" />
-  </ThingDef>
+	<!-- Pilum-specific base (both ammo and weapon) -->
+	<ThingDef ParentName="AmmoBase" Name="BaseWeaponAndAmmoNeolithic" Abstract="True">
+		<equipmentType>Primary</equipmentType>
+		<pathCost>10</pathCost>
+		<graphicData>
+			<onGroundRandomRotateAngle>35</onGroundRandomRotateAngle>
+		</graphicData>
+		<statBases>
+			<MaxHitPoints>100</MaxHitPoints>
+			<Flammability>1.0</Flammability>
+			<DeteriorationRate>2</DeteriorationRate>
+			<SellPriceFactor>0.5</SellPriceFactor>
+		</statBases>
+		<techLevel>Neolithic</techLevel>
+		<menuHidden>False</menuHidden>
+		<destroyOnDrop>False</destroyOnDrop>
+		<weaponTags>
+			<li>Neolithic</li>
+		</weaponTags>
+		<thingCategories>
+			<li>WeaponsRanged</li>
+		</thingCategories>
+		<comps>
+			<li>
+				<compClass>CompEquippable</compClass>
+			</li>
+		</comps>
+		<recipeMaker>
+			<workSpeedStat>SmithingSpeed</workSpeedStat>
+			<workSkill>Crafting</workSkill>
+			<recipeUsers>
+				<li>ElectricSmithy</li>
+				<li>FueledSmithy</li>
+			</recipeUsers>
+			<effectWorking>Smelt</effectWorking>
+			<unfinishedThingDef>UnfinishedWeapon</unfinishedThingDef>
+		</recipeMaker>
+	</ThingDef>
 
-  <!-- ========================== SPECIFICS ============================== -->
+	<!-- ========================== SPECIFICS ============================== -->
 
-  <ThingDef ParentName="BaseWeaponBow">
-    <defName>Bow_Short</defName>
-    <label>short bow</label>
-    <description>A simple short bow, made with skill, but using only the most primitive technologies.</description>
-    <graphicData>
-      <texPath>Things/Item/Equipment/WeaponRanged/BowShort</texPath>
-      <graphicClass>Graphic_Single</graphicClass>
-    </graphicData>
-    <soundInteract>BowSmall</soundInteract>
-    <costList>
-      <WoodLog>40</WoodLog>
-    </costList>
-    <statBases>
-      <WorkToMake>1200</WorkToMake>
-      <MarketValue>60</MarketValue>
-      <AimEfficiency>0.35</AimEfficiency>
-      <ShotSpread>1</ShotSpread>
-      <SwayFactor>2</SwayFactor>
-      <Bulk>3.00</Bulk>
-      <Mass>2.00</Mass>
-      <RangedWeapon_Cooldown>1</RangedWeapon_Cooldown>
-    </statBases>
-    <weaponTags>
-      <li>NeolithicRanged</li>
-      <li>CE_Bow</li>
-    </weaponTags>
-    <recipeMaker>
-      <recipeUsers>
-        <li>ElectricSmithy</li>
-        <li>FueledSmithy</li>
-        <li>CraftingSpot</li>
-      </recipeUsers>
-    </recipeMaker>
-    <verbs>
-      <li Class="Combat_Realism.VerbPropertiesCE">
-        <verbClass>Combat_Realism.Verb_ShootCE</verbClass>
-        <hasStandardCommand>true</hasStandardCommand>
-        <projectileDef>Projectile_Arrow_Stone</projectileDef>
-        <warmupTime>0.8</warmupTime>
-        <range>23</range>
-        <soundCast>BowSmall</soundCast>
-      </li>
-    </verbs>
-    <comps>
-      <li Class="Combat_Realism.CompProperties_AmmoUser">
-        <ammoSet>AmmoSet_Arrow</ammoSet>
-      </li>
-      <li Class="Combat_Realism.CompProperties_FireModes">
-        <aiUseBurstMode>false</aiUseBurstMode>
-        <aiUseAimMode>false</aiUseAimMode>
-      </li>
-    </comps>
-  </ThingDef>
-
-  <ThingDef ParentName="BaseWeaponNeolithic">
-    <defName>Pila</defName>
-    <label>pilum</label>
-    <description>A non-reusable throwing spear.</description>
-    <graphicData>
-      <texPath>Things/Ammo/Neolithic/Pilum</texPath>
-      <graphicClass>Graphic_StackCount</graphicClass>
-      <onGroundRandomRotateAngle>0</onGroundRandomRotateAngle>
-    </graphicData>
-    <soundInteract>Interact_BeatFire</soundInteract>
-    <costList>
-      <WoodLog>1</WoodLog>
-      <Steel>1</Steel>
-    </costList>
-    <statBases>
-      <WorkToMake>1400</WorkToMake>
-      <MarketValue>3.7</MarketValue>
-      <AimEfficiency>0.25</AimEfficiency>
-      <ShotSpread>2.5</ShotSpread>
-      <SwayFactor>2</SwayFactor>
-      <Bulk>4.00</Bulk>
-      <Mass>3.00</Mass>
-      <RangedWeapon_Cooldown>1</RangedWeapon_Cooldown>
-    </statBases>
-    <equippedAngleOffset>30</equippedAngleOffset>
-    <stackLimit>75</stackLimit>
-    <weaponTags>
-      <li>NeolithicRanged</li>
-      <li>CE_Pila</li>
-    </weaponTags>
-    <verbs>
-      <li Class="Combat_Realism.VerbPropertiesCE">
-        <verbClass>Combat_Realism.Verb_ShootCEOneUse</verbClass>
-        <hasStandardCommand>true</hasStandardCommand>
-        <projectileDef>Pilum_Thrown</projectileDef>
-        <warmupTime>1.0</warmupTime>
-        <range>6</range>
-        <!--<soundCast>Interact_BeatFire</soundCast>-->
-      </li>
-    </verbs>
-  </ThingDef>
-
-  <ThingDef ParentName="BaseWeaponBow">
-    <defName>Bow_Great</defName>
-    <label>great bow</label>
-    <description>A powerful greatbow. Fires a heavy arrow long distances.</description>
-    <graphicData>
-      <texPath>Things/Item/Equipment/WeaponRanged/BowGreat</texPath>
-      <graphicClass>Graphic_Single</graphicClass>
-    </graphicData>
-    <soundInteract>BowLarge</soundInteract>
-    <costList>
-      <WoodLog>180</WoodLog>
-    </costList>
-    <statBases>
-      <WorkToMake>1700</WorkToMake>
-      <MarketValue>110</MarketValue>
-      <AimEfficiency>0.35</AimEfficiency>
-      <ShotSpread>1</ShotSpread>
-      <SwayFactor>2</SwayFactor>
-      <Bulk>5.00</Bulk>
-      <Mass>2.00</Mass>
-      <RangedWeapon_Cooldown>1</RangedWeapon_Cooldown>
-    </statBases>
-    <weaponTags>
-      <li>NeolithicRanged</li>
-      <li>CE_Bow</li>
-    </weaponTags>
-    <verbs>
-      <li Class="Combat_Realism.VerbPropertiesCE">
-        <verbClass>Combat_Realism.Verb_ShootCE</verbClass>
-        <hasStandardCommand>true</hasStandardCommand>
-        <projectileDef>Projectile_GreatArrow_Stone</projectileDef>
-        <warmupTime>0.9</warmupTime>
-        <range>30</range>
-        <soundCast>BowLarge</soundCast>
-      </li>
-    </verbs>
-    <comps>
-      <li Class="Combat_Realism.CompProperties_AmmoUser">
-        <ammoSet>AmmoSet_GreatArrow</ammoSet>
-      </li>
-      <li Class="Combat_Realism.CompProperties_FireModes">
-        <aiUseBurstMode>false</aiUseBurstMode>
-        <aiUseAimMode>false</aiUseAimMode>
-      </li>
-    </comps>
-  </ThingDef>
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="BaseWeaponAndAmmoNeolithic">
+		<defName>Pila</defName>
+		<label>javelins</label>
+		<description>A non-reusable throwing spear which may be thrown on its own or using an atlatl.</description>
+		<graphicData>
+			<texPath>Things/Ammo/Neolithic/Pilum</texPath>
+			<graphicClass>Graphic_StackCount</graphicClass>
+			<onGroundRandomRotateAngle>0</onGroundRandomRotateAngle>
+		</graphicData>
+		<soundInteract>Interact_BeatFire</soundInteract>
+		<costList>
+			<WoodLog>1</WoodLog>
+			<Steel>1</Steel>
+		</costList>
+		<statBases>
+			<WorkToMake>1400</WorkToMake>
+			<MarketValue>3.7</MarketValue>
+			<SightsEfficiency>0.25</SightsEfficiency>
+			<ShotSpread>1.5</ShotSpread>
+			<SwayFactor>2.5</SwayFactor>
+			<Bulk>5.00</Bulk>
+			<Mass>3.00</Mass>
+			<RangedWeapon_Cooldown>1</RangedWeapon_Cooldown>
+		</statBases>
+		<equippedAngleOffset>30</equippedAngleOffset>
+		<stackLimit>75</stackLimit>
+		<weaponTags>
+			<li>NeolithicRanged</li>
+			<li>CR_Pila</li>
+			<li>CE_AI_Rifle</li>
+		</weaponTags>
+		<tradeTags>
+			<li>CR_AutoEnableTrade</li>
+		</tradeTags>
+		<verbs>
+			<li Class="CombatExtended.VerbPropertiesCE">
+				<verbClass>CombatExtended.Verb_ShootCEOneUse</verbClass>
+				<hasStandardCommand>true</hasStandardCommand>
+				<projectileDef>Pilum_Thrown</projectileDef>
+				<warmupTime>1.5</warmupTime>
+				<range>9</range>
+				<!--<soundCast>Interact_BeatFire</soundCast>-->
+			</li>
+		</verbs>
+		<ammoClass>Javelin</ammoClass>
+	</ThingDef>
 
 </ThingDefs>

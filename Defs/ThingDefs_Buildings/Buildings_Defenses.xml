@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <Buildings>
-
+  
   <ThingDef Name="BuildingBase" Abstract="True">
     <category>Building</category>
     <thingClass>Building</thingClass>
@@ -11,32 +11,9 @@
     <repairEffect>Repair</repairEffect>
     <leaveResourcesWhenKilled>true</leaveResourcesWhenKilled>
     <filthLeaving>BuildingRubble</filthLeaving>
-    <damageMultipliers>
-      <li>
-        <damageDef>Bomb</damageDef>
-        <multiplier>2.5</multiplier>
-      </li>
-      <li>
-        <damageDef>Thermobaric</damageDef>
-        <multiplier>2.5</multiplier>
-      </li>
-      <li>
-        <damageDef>Bullet</damageDef>
-        <multiplier>0.2</multiplier>
-      </li>
-      <li>
-        <damageDef>Fragment</damageDef>
-        <multiplier>0.1</multiplier>
-      </li>
-      <li>
-        <damageDef>Arrow</damageDef>
-        <multiplier>0.05</multiplier>
-      </li>
-      <li>
-        <damageDef>Electrical</damageDef>
-        <multiplier>0.2</multiplier>
-      </li>
-    </damageMultipliers>
+    <statBases>
+      <SellPriceFactor>0.70</SellPriceFactor>
+    </statBases>
   </ThingDef>
 
   <!--========================= Barbed Wire =============================-->
@@ -130,7 +107,7 @@
     <altitudeLayer>Building</altitudeLayer>
     <passability>Impassable</passability>
     <castEdgeShadows>true</castEdgeShadows>
-    <fillPercent>0.73</fillPercent>
+    <fillPercent>0.7</fillPercent>
     <coversFloor>true</coversFloor>
     <placingDraggableDimensions>1</placingDraggableDimensions>
     <tickerType>Never</tickerType>

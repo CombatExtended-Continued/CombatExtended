@@ -23,11 +23,6 @@
     <tickerType>Never</tickerType>
     <comps>
       <li Class="CompProperties_Forbiddable"/>
-      <!--
-      <li>
-        <compClass>CompColorable</compClass>
-      </li>
-      -->
     </comps>
     <recipeMaker>
       <workSpeedStat>TailoringSpeed</workSpeedStat>
@@ -43,6 +38,7 @@
     <thingCategories>
       <li>Loadout</li>
     </thingCategories>
+    <generateAllowChance>0.67</generateAllowChance>
   </ThingDef>
 
   <!-- ============= Stuffed apparel =================-->
@@ -50,7 +46,7 @@
   <ThingDef ParentName="ApparelCarryGearBase">
     <defName>Apparel_TacVest</defName>
     <label>tactical vest</label>
-    <ThingClass>Combat_Realism.Apparel_TacVest</ThingClass>
+    <ThingClass>CombatExtended.Apparel_VisibleAccessory</ThingClass>
     <description>A loadbearing vest with a number of pouches to store magazines and other equipment.\n\nSpeeds up reloading but is quite bulky to wear.</description>
     <graphicData>
       <texPath>Things/Apparel/TacRigging/TacRigging</texPath>
@@ -62,7 +58,6 @@
       <WorkToMake>8000</WorkToMake>
       <Mass>2</Mass>
       <Bulk>10</Bulk>
-      <WornWeight>2</WornWeight>
       <WornBulk>8</WornBulk>
     </statBases>
     <equippedStatOffsets>
@@ -73,37 +68,31 @@
       <Cloth>60</Cloth>
     </costList>
     <apparel>
+      <careIfWornByCorpse>false</careIfWornByCorpse>
       <bodyPartGroups>
         <li>Shoulders</li>
       </bodyPartGroups>
       <layers>
-        <li>Middle</li>
+        <li>Belt</li>
       </layers>
-      <commonality>1</commonality>
       <tags>
-        <li>Outlander</li>
         <li>Military</li>
       </tags>
       <defaultOutfitTags>
         <li>Soldier</li>
       </defaultOutfitTags>
     </apparel>
-    <!--
-    <colorGenerator Class="ColorGenerator_Options">
-      <options>
-        <li>
-          <weight>10</weight>
-          <only>RGBA(0.33,0.33,0.33,1)</only>
-        </li>
-      </options>
-    </colorGenerator>
-    -->
+    <modExtensions>
+      <li Class="CombatExtended.VisibleAccessoryDefExtension">
+        <order>1</order>
+      </li>
+    </modExtensions>
   </ThingDef>
 
   <ThingDef ParentName="ApparelCarryGearBase">
     <defName>Apparel_Backpack</defName>
     <label>backpack</label>
-    <ThingClass>Combat_Realism.Apparel_Backpack</ThingClass>
+	<ThingClass>CombatExtended.Apparel_VisibleAccessory</ThingClass>
     <description>A comfortable and spacious backpack for storing all kinds of items.</description>
     <graphicData>
       <texPath>Things/Apparel/Backpack/Milpack</texPath>
@@ -115,7 +104,6 @@
       <WorkToMake>8000</WorkToMake>
       <Mass>1</Mass>
       <Bulk>3</Bulk>
-      <WornWeight>0</WornWeight>
     </statBases>
     <equippedStatOffsets>
       <CarryBulk>30</CarryBulk>
@@ -124,13 +112,13 @@
       <Cloth>60</Cloth>
     </costList>
     <apparel>
+      <careIfWornByCorpse>false</careIfWornByCorpse>
       <bodyPartGroups>
-        <li>Shoulders</li>
+        <li>Torso</li>
       </bodyPartGroups>
       <layers>
-        <li>Accessory</li>
+        <li>Belt</li>
       </layers>
-      <commonality>1</commonality>
       <tags>
         <li>Outlander</li>
         <li>Military</li>
@@ -139,67 +127,11 @@
         <li>Soldier</li>
       </defaultOutfitTags>
     </apparel>
-    <!--
-    <colorGenerator Class="ColorGenerator_Options">
-      <options>
-        <li>
-          <weight>10</weight>
-          <only>RGBA(0.33,0.33,0.33,1)</only>
-        </li>
-      </options>
-    </colorGenerator>
-    -->
-  </ThingDef>
-
-  <ThingDef ParentName="ApparelCarryGearBase">
-    <defName>Apparel_BackpackRegular</defName>
-    <label>regular backpack</label>
-    <ThingClass>Combat_Realism.Apparel_Backpack</ThingClass>
-    <description>A backpack is a bag with straps that go over your shoulders, so that you can carry things on your back when you are walking or climbing.</description>
-    <graphicData>
-      <texPath>Things/Apparel/BackpackReg/BackpackReg</texPath>
-      <graphicClass>Graphic_Single</graphicClass>
-    </graphicData>
-    <statBases>
-      <MaxHitPoints>100</MaxHitPoints>
-      <MarketValue>125</MarketValue>
-      <WorkToMake>8000</WorkToMake>
-      <Mass>1</Mass>
-      <Bulk>3</Bulk>
-      <WornWeight>0</WornWeight>
-    </statBases>
-    <equippedStatOffsets>
-      <CarryBulk>30</CarryBulk>
-    </equippedStatOffsets>
-    <costList>
-      <Cloth>60</Cloth>
-    </costList>
-    <apparel>
-      <bodyPartGroups>
-        <li>Shoulders</li>
-      </bodyPartGroups>
-      <layers>
-        <li>Accessory</li>
-      </layers>
-      <commonality>1</commonality>
-      <tags>
-        <li>Outlander</li>
-        <li>Military</li>
-      </tags>
-      <defaultOutfitTags>
-        <li>Soldier</li>
-      </defaultOutfitTags>
-    </apparel>
-    <!--
-    <colorGenerator Class="ColorGenerator_Options">
-      <options>
-        <li>
-          <weight>10</weight>
-          <only>RGBA(0.33,0.33,0.33,1)</only>
-        </li>
-      </options>
-    </colorGenerator>
-    -->
+    <modExtensions>
+      <li Class="CombatExtended.VisibleAccessoryDefExtension">
+        <order>2</order>
+      </li>
+    </modExtensions>
   </ThingDef>
 
 </ThingDefs>
