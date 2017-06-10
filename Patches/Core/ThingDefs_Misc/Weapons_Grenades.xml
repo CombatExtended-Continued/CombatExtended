@@ -118,58 +118,6 @@
 		<value>CombatExtended.AmmoDef</value>
 	</Operation>
 
-	<Operation Class="PatchOperationAdd">
-		<xpath>*/ThingDef[defName="Weapon_GrenadeFrag"]/weaponTags</xpath>
-		<value>
-			<li>CE_AI_Grenade</li>
-			<li>CE_OneHandedWeapon</li>
-		</value>
-	</Operation>
-
-	<Operation Class="PatchOperationReplace">
-		<xpath>*/ThingDef[defName="Weapon_GrenadeFrag"]/statBases/MarketValue</xpath>
-		<value>
-			<MarketValue>5.25</MarketValue>
-		</value>
-	</Operation>
-
-	<Operation Class="PatchOperationReplace">
-		<xpath>*/ThingDef[defName="Weapon_GrenadeFrag"]/statBases/RangedWeapon_Cooldown</xpath>
-		<value>
-			<RangedWeapon_Cooldown>1</RangedWeapon_Cooldown>
-		</value>
-	</Operation>
-
-	<Operation Class="PatchOperationAdd">
-		<xpath>*/ThingDef[defName="Weapon_GrenadeFrag"]/statBases</xpath>
-		<value>
-			<SightsEfficiency>0.15</SightsEfficiency>
-		</value>
-	</Operation>
-
-	<Operation Class="PatchOperationReplace">
-		<xpath>*/ThingDef[defName="Weapon_GrenadeFrag"]/verbs</xpath>
-		<value>
-			<verbs>
-			  <li Class="CombatExtended.VerbPropertiesCE">
-			    <label>throw frag grenade</label>
-			    <verbClass>CombatExtended.Verb_ShootCEOneUse</verbClass>
-			    <hasStandardCommand>true</hasStandardCommand>
-			    <range>10.0</range>
-			    <warmupTime>0.8</warmupTime>
-			    <noiseRadius>4</noiseRadius>
-			    <ai_IsBuildingDestroyer>true</ai_IsBuildingDestroyer>
-			    <soundCast>ThrowGrenade</soundCast>
-			    <targetParams>
-			      <canTargetLocations>true</canTargetLocations>
-			    </targetParams>
-			    <projectileDef>Proj_GrenadeFrag</projectileDef>
-			    <onlyManualCast>true</onlyManualCast>
-			  </li>
-			</verbs>
-		</value>
-	</Operation>
-
 	<Operation Class="PatchOperationRemove">
 		<xpath>*/ThingDef[defName="Weapon_GrenadeFrag"]/smeltProducts</xpath>
 	</Operation>
@@ -203,6 +151,34 @@
 			</li>
 		</value>
 	</Operation>
+
+  <Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
+    <defName>Weapon_GrenadeFrag</defName>
+    <statBases>
+			<MarketValue>5.25</MarketValue>
+			<RangedWeapon_Cooldown>1</RangedWeapon_Cooldown>
+			<SightsEfficiency>0.15</SightsEfficiency>
+    </statBases>
+    <Properties>
+    	<label>throw frag grenade</label>
+    	<verbClass>CombatExtended.Verb_ShootCEOneUse</verbClass>
+    	<hasStandardCommand>true</hasStandardCommand>
+    	<range>10.0</range>
+    	<warmupTime>0.8</warmupTime>
+    	<noiseRadius>4</noiseRadius>
+    	<ai_IsBuildingDestroyer>true</ai_IsBuildingDestroyer>
+    	<soundCast>ThrowGrenade</soundCast>
+    	<targetParams>
+    	  <canTargetLocations>true</canTargetLocations>
+    	</targetParams>
+    	<projectileDef>Proj_GrenadeFrag</projectileDef>
+    	<onlyManualCast>true</onlyManualCast>
+    </Properties>
+    <weaponTags>
+			<li>CE_AI_Grenade</li>
+			<li>CE_OneHandedWeapon</li>
+    </weaponTags>
+  </Operation>
 
 	<!-- ========== Molotov cocktail ========== -->
 
@@ -271,59 +247,6 @@
 		<value>CombatExtended.AmmoDef</value>
 	</Operation>
 
-	<Operation Class="PatchOperationAdd">
-		<xpath>*/ThingDef[defName="Weapon_GrenadeMolotov"]/weaponTags</xpath>
-		<value>
-			<li>CE_AI_Grenade</li>
-			<li>CE_OneHandedWeapon</li>
-		</value>
-	</Operation>
-
-	<Operation Class="PatchOperationReplace">
-		<xpath>*/ThingDef[defName="Weapon_GrenadeMolotov"]/statBases/MarketValue</xpath>
-		<value>
-			<MarketValue>2.10</MarketValue>
-		</value>
-	</Operation>
-
-	<Operation Class="PatchOperationReplace">
-		<xpath>*/ThingDef[defName="Weapon_GrenadeMolotov"]/statBases/RangedWeapon_Cooldown</xpath>
-		<value>
-			<RangedWeapon_Cooldown>1</RangedWeapon_Cooldown>
-		</value>
-	</Operation>
-
-	<Operation Class="PatchOperationAdd">
-		<xpath>*/ThingDef[defName="Weapon_GrenadeMolotov"]/statBases</xpath>
-		<value>
-			<SightsEfficiency>0.15</SightsEfficiency>
-		</value>
-	</Operation>
-
-	<Operation Class="PatchOperationReplace">
-		<xpath>*/ThingDef[defName="Weapon_GrenadeMolotov"]/verbs</xpath>
-		<value>
-			<verbs>
-				<li Class="CombatExtended.VerbPropertiesCE">
-				  <label>throw molotov</label>
-				  <verbClass>CombatExtended.Verb_ShootCEOneUse</verbClass>
-				  <hasStandardCommand>true</hasStandardCommand>
-				  <range>10</range>
-				  <warmupTime>0.8</warmupTime>
-				  <noiseRadius>4</noiseRadius>
-				  <ai_IsBuildingDestroyer>true</ai_IsBuildingDestroyer>
-				  <ai_IsIncendiary>true</ai_IsIncendiary>
-				  <soundCast>ThrowMolotovCocktail</soundCast>
-				  <targetParams>
-				    <canTargetLocations>true</canTargetLocations>
-				  </targetParams>
-				  <projectileDef>Proj_GrenadeMolotov</projectileDef>
-				  <onlyManualCast>true</onlyManualCast>
-				</li>
-			</verbs>
-		</value>
-	</Operation>
-
 	<Operation Class="PatchOperationSequence">
   	<success>Always</success>
   	<operations>
@@ -352,6 +275,35 @@
 			</li>
 		</value>
 	</Operation>
+
+  <Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
+    <defName>Weapon_GrenadeMolotov</defName>
+    <statBases>
+			<MarketValue>2.1</MarketValue>
+			<RangedWeapon_Cooldown>1</RangedWeapon_Cooldown>
+			<SightsEfficiency>0.15</SightsEfficiency>
+    </statBases>
+    <Properties>
+    	<label>throw molotov</label>
+    	<verbClass>CombatExtended.Verb_ShootCEOneUse</verbClass>
+    	<hasStandardCommand>true</hasStandardCommand>
+    	<range>10</range>
+    	<warmupTime>0.8</warmupTime>
+    	<noiseRadius>4</noiseRadius>
+    	<ai_IsBuildingDestroyer>true</ai_IsBuildingDestroyer>
+    	<ai_IsIncendiary>true</ai_IsIncendiary>
+    	<soundCast>ThrowMolotovCocktail</soundCast>
+    	<targetParams>
+    	  <canTargetLocations>true</canTargetLocations>
+    	</targetParams>
+    	<projectileDef>Proj_GrenadeMolotov</projectileDef>
+    	<onlyManualCast>true</onlyManualCast>
+    </Properties>
+    <weaponTags>
+			<li>CE_AI_Grenade</li>
+			<li>CE_OneHandedWeapon</li>
+    </weaponTags>
+  </Operation>
 
 	<!-- ========== EMP Grenade ========== -->
 
@@ -408,7 +360,6 @@
 			  <explosionDamage>10</explosionDamage>
 			  <explosionDamageDef>Electrical</explosionDamageDef>
 			  <explosionRadius>4</explosionRadius>
-			  <soundExplode>Explosion_Bomb</soundExplode>
 			</li>
 		</value>
 	</Operation>
@@ -449,61 +400,37 @@
 		<value>CombatExtended.AmmoDef</value>
 	</Operation>
 
-	<Operation Class="PatchOperationAdd">
-		<xpath>*/ThingDef[defName="Weapon_GrenadeEMP"]/weaponTags</xpath>
-		<value>
-			<li>CE_AI_Grenade</li>
-			<li>CE_OneHandedWeapon</li>
-		</value>
-	</Operation>
-
-	<Operation Class="PatchOperationReplace">
-		<xpath>*/ThingDef[defName="Weapon_GrenadeEMP"]/statBases/MarketValue</xpath>
-		<value>
-			<MarketValue>7.65</MarketValue>
-		</value>
-	</Operation>
-
-	<Operation Class="PatchOperationReplace">
-		<xpath>*/ThingDef[defName="Weapon_GrenadeEMP"]/statBases/RangedWeapon_Cooldown</xpath>
-		<value>
-			<RangedWeapon_Cooldown>1</RangedWeapon_Cooldown>
-		</value>
-	</Operation>
-
-	<Operation Class="PatchOperationAdd">
-		<xpath>*/ThingDef[defName="Weapon_GrenadeEMP"]/statBases</xpath>
-		<value>
-			<SightsEfficiency>0.15</SightsEfficiency>
-		</value>
-	</Operation>
-
-	<Operation Class="PatchOperationReplace">
-		<xpath>*/ThingDef[defName="Weapon_GrenadeEMP"]/verbs</xpath>
-		<value>
-			<verbs>
-				<li Class="CombatExtended.VerbPropertiesCE">
-				  <label>throw EMP grenade</label>
-				  <verbClass>CombatExtended.Verb_ShootCEOneUse</verbClass>
-				  <hasStandardCommand>true</hasStandardCommand>
-				  <range>10</range>
-				  <warmupTime>0.8</warmupTime>
-				  <noiseRadius>4</noiseRadius>
-				  <ai_IsBuildingDestroyer>false</ai_IsBuildingDestroyer>
-				  <soundCast>ThrowGrenade</soundCast>
-				  <targetParams>
-				    <canTargetLocations>true</canTargetLocations>
-				  </targetParams>
-				  <projectileDef>Proj_GrenadeEMP</projectileDef>
-				  <onlyManualCast>true</onlyManualCast>
-				</li>
-			</verbs>
-		</value>
-	</Operation>
-
 	<Operation Class="PatchOperationRemove">
 		<xpath>*/ThingDef[defName="Weapon_GrenadeEMP"]/smeltProducts</xpath>
 	</Operation>
+
+  <Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
+    <defName>Weapon_GrenadeEMP</defName>
+    <statBases>
+			<MarketValue>7.65</MarketValue>
+			<RangedWeapon_Cooldown>1</RangedWeapon_Cooldown>
+			<SightsEfficiency>0.15</SightsEfficiency>
+    </statBases>
+    <Properties>
+    	<label>throw EMP grenade</label>
+    	<verbClass>CombatExtended.Verb_ShootCEOneUse</verbClass>
+    	<hasStandardCommand>true</hasStandardCommand>
+    	<range>10</range>
+    	<warmupTime>0.8</warmupTime>
+    	<noiseRadius>4</noiseRadius>
+    	<ai_IsBuildingDestroyer>false</ai_IsBuildingDestroyer>
+    	<soundCast>ThrowGrenade</soundCast>
+    	<targetParams>
+    	  <canTargetLocations>true</canTargetLocations>
+    	</targetParams>
+    	<projectileDef>Proj_GrenadeEMP</projectileDef>
+    	<onlyManualCast>true</onlyManualCast>
+    </Properties>
+    <weaponTags>
+			<li>CE_AI_Grenade</li>
+			<li>CE_OneHandedWeapon</li>
+    </weaponTags>
+  </Operation>
 
 </Patch>
 

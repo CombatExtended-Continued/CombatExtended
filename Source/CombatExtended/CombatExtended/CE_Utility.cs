@@ -190,11 +190,7 @@ namespace CombatExtended
             }
             RacePropertiesExtensionCE props = pawn.def.GetModExtension<RacePropertiesExtensionCE>() ?? new RacePropertiesExtensionCE();
             var shape = props.bodyShape;
-#if DEBUG
             if (shape == CE_BodyShapeDefOf.Invalid) Log.ErrorOnce("CE returning BodyType Undefined for pawn " + pawn.ToString(),  35000198 + pawn.GetHashCode());
-#else
-            if (shape == CE_BodyShapeDefOf.Invalid) Log.Warning("CE returning BodyType Undefined for pawn " + pawn.ToString());
-#endif
             if (pawn.GetPosture() != PawnPosture.Standing)
             {
                 return new Pair<float, float>(shape.widthLaying, shape.heightLaying);

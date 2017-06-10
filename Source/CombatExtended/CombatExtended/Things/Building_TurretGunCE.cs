@@ -58,7 +58,7 @@ namespace CombatExtended
         {
             get
             {
-                return mannableComp == null || MannedByColonist;    // Add check for mannableComp == null since we allow auto-turrets to manually target stuff
+                return MannedByColonist;
             }
         }
         public override LocalTargetInfo CurrentTarget

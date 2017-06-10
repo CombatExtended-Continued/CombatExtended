@@ -1,1593 +1,569 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <Patch>
 
-	<!-- ========== Remove unused vanilla stats ========== -->
-
-	<Operation Class="PatchOperationRemove">
-		<xpath>*/ThingDef[@ParentName="BaseGun" or @ParentName="BaseHumanMakeableGun" or @ParentName="BaseWeaponNeolithic"]/statBases/AccuracyTouch</xpath>
-	</Operation>
-
-	<Operation Class="PatchOperationRemove">
-		<xpath>*/ThingDef[@ParentName="BaseGun" or @ParentName="BaseHumanMakeableGun" or @ParentName="BaseWeaponNeolithic"]/statBases/AccuracyShort</xpath>
-	</Operation>
-
-	<Operation Class="PatchOperationRemove">
-		<xpath>*/ThingDef[@ParentName="BaseGun" or @ParentName="BaseHumanMakeableGun" or @ParentName="BaseWeaponNeolithic"]/statBases/AccuracyMedium</xpath>
-	</Operation>
-
-	<Operation Class="PatchOperationRemove">
-		<xpath>*/ThingDef[@ParentName="BaseGun" or @ParentName="BaseHumanMakeableGun" or @ParentName="BaseWeaponNeolithic"]/statBases/AccuracyLong</xpath>
-	</Operation>
-
 	<!-- ========== Pistol ========== -->
 
-	<!-- Patch stats -->
-
-	<Operation Class="PatchOperationReplace">
-		<xpath>*/ThingDef[defName="Gun_Pistol"]/statBases/Mass</xpath>
-		<value>
-			<Mass>1.11</Mass>
-		</value>
-	</Operation>
-
-	<Operation Class="PatchOperationReplace">
-		<xpath>*/ThingDef[defName="Gun_Pistol"]/statBases/RangedWeapon_Cooldown</xpath>
-		<value>
-			<RangedWeapon_Cooldown>0.38</RangedWeapon_Cooldown>
-		</value>
-	</Operation>
-
-	<Operation Class="PatchOperationAdd">
-		<xpath>*/ThingDef[defName="Gun_Pistol"]/statBases</xpath>
-		<value>
-			<SightsEfficiency>0.35</SightsEfficiency>
-			<ShotSpread>0.17</ShotSpread>
-			<SwayFactor>1.32</SwayFactor>
-			<Bulk>2.10</Bulk>
-		</value>
-	</Operation>
-
-	<Operation Class="PatchOperationReplace">
-		<xpath>*/ThingDef[defName="Gun_Pistol"]/verbs</xpath>
-		<value>
-			<verbs>
-				<li Class="CombatExtended.VerbPropertiesCE">
-				  <verbClass>CombatExtended.Verb_ShootCE</verbClass>
-				  <hasStandardCommand>true</hasStandardCommand>
-				  <projectileDef>Bullet_45ACP_FMJ</projectileDef>
-				  <warmupTime>0.6</warmupTime>
-				  <range>12</range>
-				  <soundCast>ShotPistol</soundCast>
-				  <soundCastTail>GunTail_Light</soundCastTail>
-				  <muzzleFlashScale>9</muzzleFlashScale>
-				</li>
-			</verbs>
-		</value>
-	</Operation>
-
-	<!-- Add comps -->
-
-	<Operation Class="PatchOperationSequence">
-  	<success>Always</success>
-  	<operations>
-    	<li Class="PatchOperationTest">
-      	<xpath>*/ThingDef[defName="Gun_Pistol"]/comps</xpath>
-      	<success>Invert</success>
-    	</li>
-    	<li Class="PatchOperationAdd">
-      	<xpath>*/ThingDef[defName="Gun_Pistol"]</xpath>
-      	<value>
-        	<comps />
-      	</value>
-    	</li>
-  	</operations>
-	</Operation>
-
-	<Operation Class="PatchOperationAdd">
-		<xpath>*/ThingDef[defName="Gun_Pistol"]/comps</xpath>
-		<value>
-			<li Class="CombatExtended.CompProperties_AmmoUser">
-			  <magazineSize>7</magazineSize>
-			  <reloadTime>4</reloadTime>
-			  <ammoSet>AmmoSet_45ACP</ammoSet>
-			</li>
-			<li Class="CombatExtended.CompProperties_FireModes">
-			  <aiUseBurstMode>FALSE</aiUseBurstMode>
-			</li>
-		</value>
-	</Operation>
-
-	<!-- Add tags -->
-
-	<Operation Class="PatchOperationSequence">
-  	<success>Always</success>
-  	<operations>
-    	<li Class="PatchOperationTest">
-      	<xpath>*/ThingDef[defName="Gun_Pistol"]/weaponTags</xpath>
-      	<success>Invert</success>
-    	</li>
-    	<li Class="PatchOperationAdd">
-      	<xpath>*/ThingDef[defName="Gun_Pistol"]</xpath>
-      	<value>
-        	<weaponTags />
-      	</value>
-    	</li>
-  	</operations>
-	</Operation>
-
-	<Operation Class="PatchOperationAdd">
-		<xpath>*/ThingDef[defName="Gun_Pistol"]/weaponTags</xpath>
-		<value>
-			<li>CE_Sidearm</li>
-			<li>CE_AI_Pistol</li>
-			<li>CE_OneHandedWeapon</li>
-		</value>
-	</Operation>
-
-	<!-- Patch recipe -->
-
-	<Operation Class="PatchOperationReplace">
-		<xpath>*/ThingDef[defName="Gun_Pistol"]/statBases/WorkToMake</xpath>
-		<value>
-			<WorkToMake>5000</WorkToMake>
-		</value>
-	</Operation>
-
-	<Operation Class="PatchOperationReplace">
-		<xpath>*/ThingDef[defName="Gun_Pistol"]/costList</xpath>
-		<value>
-			<costList>
-				<Steel>25</Steel>
-				<Component>2</Component>
-			</costList>
-		</value>
-	</Operation>
+  <Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
+    <defName>Gun_Pistol</defName>
+    <statBases>
+      <Mass>1.11</Mass>
+      <RangedWeapon_Cooldown>0.38</RangedWeapon_Cooldown>
+      <SightsEfficiency>0.35</SightsEfficiency>
+      <ShotSpread>0.17</ShotSpread>
+      <SwayFactor>1.32</SwayFactor>
+      <Bulk>2.10</Bulk>
+      <WorkToMake>5000</WorkToMake>
+    </statBases>
+    <costList>
+      <Steel>25</Steel>
+      <Component>2</Component>
+    </costList>
+    <Properties>
+      <verbClass>CombatExtended.Verb_ShootCE</verbClass>
+      <hasStandardCommand>true</hasStandardCommand>
+      <projectileDef>Bullet_45ACP_FMJ</projectileDef>
+      <warmupTime>0.6</warmupTime>
+      <range>12</range>
+      <soundCast>ShotPistol</soundCast>
+      <soundCastTail>GunTail_Light</soundCastTail>
+      <muzzleFlashScale>9</muzzleFlashScale>
+    </Properties>
+    <AmmoUser>
+      <magazineSize>7</magazineSize>
+      <reloadTime>4</reloadTime>
+      <ammoSet>AmmoSet_45ACP</ammoSet>
+    </AmmoUser>
+    <FireModes>
+      <aiUseBurstMode>FALSE</aiUseBurstMode>
+    </FireModes>
+    <weaponTags>
+      <li>CE_Sidearm</li>
+      <li>CE_AI_Pistol</li>
+      <li>CE_OneHandedWeapon</li>
+    </weaponTags>
+  </Operation>
 
 	<!-- ========== Pump Shotgun ========== -->
 
-	<!-- Patch stats -->
-
-	<Operation Class="PatchOperationReplace">
-		<xpath>*/ThingDef[defName="Gun_PumpShotgun"]/statBases/Mass</xpath>
-		<value>
+  <Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
+    <defName>Gun_PumpShotgun</defName>
+    <statBases>
       <Mass>3.00</Mass>
-		</value>
-	</Operation>
-
-	<Operation Class="PatchOperationReplace">
-		<xpath>*/ThingDef[defName="Gun_PumpShotgun"]/statBases/RangedWeapon_Cooldown</xpath>
-		<value>
       <RangedWeapon_Cooldown>1.0</RangedWeapon_Cooldown>
-		</value>
-	</Operation>
-
-	<Operation Class="PatchOperationAdd">
-		<xpath>*/ThingDef[defName="Gun_PumpShotgun"]/statBases</xpath>
-		<value>
       <ShotSpread>0.14</ShotSpread>
       <SwayFactor>1.20</SwayFactor>
       <Bulk>9.0</Bulk>
 			<SightsEfficiency>0.5</SightsEfficiency>
-		</value>
-	</Operation>
-
-	<Operation Class="PatchOperationReplace">
-		<xpath>*/ThingDef[defName="Gun_PumpShotgun"]/verbs</xpath>
-		<value>
-			<verbs>
-				<li Class="CombatExtended.VerbPropertiesCE">
-				  <verbClass>CombatExtended.Verb_ShootCE</verbClass>
-				  <hasStandardCommand>true</hasStandardCommand>
-				  <projectileDef>Bullet_12Gauge_Buck</projectileDef>
-				  <warmupTime>0.6</warmupTime>
-				  <range>16</range>
-				  <soundCast>ShotShotgun</soundCast>
-				  <soundCastTail>GunTail_Heavy</soundCastTail>
-				  <muzzleFlashScale>9</muzzleFlashScale>
-				</li>
-			</verbs>
-		</value>
-	</Operation>
-
-	<!-- Add comps -->
-
-	<Operation Class="PatchOperationSequence">
-  	<success>Always</success>
-  	<operations>
-    	<li Class="PatchOperationTest">
-      	<xpath>*/ThingDef[defName="Gun_PumpShotgun"]/comps</xpath>
-      	<success>Invert</success>
-    	</li>
-    	<li Class="PatchOperationAdd">
-      	<xpath>*/ThingDef[defName="Gun_PumpShotgun"]</xpath>
-      	<value>
-        	<comps />
-      	</value>
-    	</li>
-  	</operations>
-	</Operation>
-
-	<Operation Class="PatchOperationAdd">
-		<xpath>*/ThingDef[defName="Gun_PumpShotgun"]/comps</xpath>
-		<value>
-			<li Class="CombatExtended.CompProperties_AmmoUser">
-			  <magazineSize>5</magazineSize>
-			  <reloadTime>4.25</reloadTime>
-			  <ammoSet>AmmoSet_12Gauge</ammoSet>
-			</li>
-			<li Class="CombatExtended.CompProperties_FireModes" />
-		</value>
-	</Operation>
-
-	<!-- Add tags -->
-
-	<Operation Class="PatchOperationSequence">
-  	<success>Always</success>
-  	<operations>
-    	<li Class="PatchOperationTest">
-      	<xpath>*/ThingDef[defName="Gun_PumpShotgun"]/weaponTags</xpath>
-      	<success>Invert</success>
-    	</li>
-    	<li Class="PatchOperationAdd">
-      	<xpath>*/ThingDef[defName="Gun_PumpShotgun"]</xpath>
-      	<value>
-        	<weaponTags />
-      	</value>
-    	</li>
-  	</operations>
-	</Operation>
-
-	<Operation Class="PatchOperationAdd">
-		<xpath>*/ThingDef[defName="Gun_PumpShotgun"]/weaponTags</xpath>
-		<value>
-			<li>CE_AI_AssaultWeapon</li>
-		</value>
-	</Operation>
-
-	<!-- Patch recipe -->
-
-	<Operation Class="PatchOperationReplace">
-		<xpath>*/ThingDef[defName="Gun_PumpShotgun"]/statBases/WorkToMake</xpath>
-		<value>
 			<WorkToMake>8500</WorkToMake>
-		</value>
-	</Operation>
-
-	<Operation Class="PatchOperationReplace">
-		<xpath>*/ThingDef[defName="Gun_PumpShotgun"]/costList</xpath>
-		<value>
-			<costList>
-				<Steel>40</Steel>
-				<WoodLog>10</WoodLog>
-				<Component>1</Component>
-			</costList>
-		</value>
-	</Operation>
+    </statBases>
+    <costList>
+    	<Steel>40</Steel>
+    	<WoodLog>10</WoodLog>
+    	<Component>1</Component>
+    </costList>
+    <Properties>
+    	<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+    	<hasStandardCommand>true</hasStandardCommand>
+    	<projectileDef>Bullet_12Gauge_Buck</projectileDef>
+    	<warmupTime>0.6</warmupTime>
+    	<range>16</range>
+    	<soundCast>ShotShotgun</soundCast>
+    	<soundCastTail>GunTail_Heavy</soundCastTail>
+    	<muzzleFlashScale>9</muzzleFlashScale>
+    </Properties>
+    <AmmoUser>
+    	<magazineSize>5</magazineSize>
+    	<reloadTime>4.25</reloadTime>
+    	<ammoSet>AmmoSet_12Gauge</ammoSet>
+    </AmmoUser>
+    <FireModes />
+    <weaponTags>
+			<li>CE_AI_AssaultWeapon</li>
+    </weaponTags>
+  </Operation>
 
 	<!-- ========== Chain Shotgun ========== -->
 
-	<!-- Patch stats -->
-
-	<Operation Class="PatchOperationReplace">
-		<xpath>*/ThingDef[defName="Gun_ChainShotgun"]/statBases/Mass</xpath>
-		<value>
+  <Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
+    <defName>Gun_ChainShotgun</defName>
+    <statBases>
       <Mass>3.50</Mass>
-		</value>
-	</Operation>
-
-	<Operation Class="PatchOperationReplace">
-		<xpath>*/ThingDef[defName="Gun_ChainShotgun"]/statBases/RangedWeapon_Cooldown</xpath>
-		<value>
       <RangedWeapon_Cooldown>0.39</RangedWeapon_Cooldown>
-		</value>
-	</Operation>
-
-	<Operation Class="PatchOperationAdd">
-		<xpath>*/ThingDef[defName="Gun_ChainShotgun"]/statBases</xpath>
-		<value>
       <ShotSpread>0.15</ShotSpread>
       <SwayFactor>1.26</SwayFactor>
       <Bulk>6.7</Bulk>
 			<SightsEfficiency>0.5</SightsEfficiency>
-		</value>
-	</Operation>
-
-	<Operation Class="PatchOperationReplace">
-		<xpath>*/ThingDef[defName="Gun_ChainShotgun"]/verbs</xpath>
-		<value>
-			<verbs>
-				<li Class="CombatExtended.VerbPropertiesCE">
-				  <verbClass>CombatExtended.Verb_ShootCE</verbClass>
-				  <hasStandardCommand>true</hasStandardCommand>
-				  <projectileDef>Bullet_12Gauge_Buck</projectileDef>
-				  <warmupTime>0.6</warmupTime>
-				  <range>16</range>
-				  <soundCast>ShotShotgun</soundCast>
-				  <soundCastTail>GunTail_Heavy</soundCastTail>
-				  <muzzleFlashScale>9</muzzleFlashScale>
-				  <ticksBetweenBurstShots>15</ticksBetweenBurstShots>
-				  <recoilAmount>4.34</recoilAmount>
-				</li>
-			</verbs>
-		</value>
-	</Operation>
-
-	<!-- Add comps -->
-
-	<Operation Class="PatchOperationSequence">
-  	<success>Always</success>
-  	<operations>
-    	<li Class="PatchOperationTest">
-      	<xpath>*/ThingDef[defName="Gun_ChainShotgun"]/comps</xpath>
-      	<success>Invert</success>
-    	</li>
-    	<li Class="PatchOperationAdd">
-      	<xpath>*/ThingDef[defName="Gun_ChainShotgun"]</xpath>
-      	<value>
-        	<comps />
-      	</value>
-    	</li>
-  	</operations>
-	</Operation>
-
-	<Operation Class="PatchOperationAdd">
-		<xpath>*/ThingDef[defName="Gun_ChainShotgun"]/comps</xpath>
-		<value>
-			<li Class="CombatExtended.CompProperties_AmmoUser">
-			  <magazineSize>8</magazineSize>
-			  <reloadTime>4</reloadTime>
-			  <ammoSet>AmmoSet_12Gauge</ammoSet>
-			</li>
-			<li Class="CombatExtended.CompProperties_FireModes" />
-		</value>
-	</Operation>
-
-	<!-- Add tags -->
-
-	<Operation Class="PatchOperationSequence">
-  	<success>Always</success>
-  	<operations>
-    	<li Class="PatchOperationTest">
-      	<xpath>*/ThingDef[defName="Gun_ChainShotgun"]/weaponTags</xpath>
-      	<success>Invert</success>
-    	</li>
-    	<li Class="PatchOperationAdd">
-      	<xpath>*/ThingDef[defName="Gun_ChainShotgun"]</xpath>
-      	<value>
-        	<weaponTags />
-      	</value>
-    	</li>
-  	</operations>
-	</Operation>
-
-	<Operation Class="PatchOperationAdd">
-		<xpath>*/ThingDef[defName="Gun_ChainShotgun"]/weaponTags</xpath>
-		<value>
-			<li>CE_AI_AssaultWeapon</li>
-		</value>
-	</Operation>
-
-	<!-- Patch recipe -->
-
-	<Operation Class="PatchOperationReplace">
-		<xpath>*/ThingDef[defName="Gun_ChainShotgun"]/statBases/WorkToMake</xpath>
-		<value>
 			<WorkToMake>13500</WorkToMake>
-		</value>
-	</Operation>
-
-	<Operation Class="PatchOperationReplace">
-		<xpath>*/ThingDef[defName="Gun_ChainShotgun"]/costList</xpath>
-		<value>
-			<costList>
-				<Steel>40</Steel>
-				<Component>2</Component>
-			</costList>
-		</value>
-	</Operation>
+    </statBases>
+    <costList>
+    	<Steel>40</Steel>
+    	<Component>2</Component>
+    </costList>
+    <Properties>
+    	<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+    	<hasStandardCommand>true</hasStandardCommand>
+    	<projectileDef>Bullet_12Gauge_Buck</projectileDef>
+    	<warmupTime>0.6</warmupTime>
+    	<range>16</range>
+    	<soundCast>ShotShotgun</soundCast>
+    	<soundCastTail>GunTail_Heavy</soundCastTail>
+    	<muzzleFlashScale>9</muzzleFlashScale>
+    	<ticksBetweenBurstShots>15</ticksBetweenBurstShots>
+    	<recoilAmount>4.34</recoilAmount>
+    </Properties>
+    <AmmoUser>
+    	<magazineSize>8</magazineSize>
+    	<reloadTime>4</reloadTime>
+    	<ammoSet>AmmoSet_12Gauge</ammoSet>
+    </AmmoUser>
+    <FireModes />
+    <weaponTags>
+			<li>CE_AI_AssaultWeapon</li>
+    </weaponTags>
+  </Operation>
 
 	<!-- ========== Bolt-action rifle ========== -->
 
-	<!-- Patch stats -->
-
-	<Operation Class="PatchOperationReplace">
-		<xpath>*/ThingDef[defName="Gun_BoltActionRifle"]/statBases/Mass</xpath>
-		<value>
+  <Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
+    <defName>Gun_BoltActionRifle</defName>
+    <statBases>
       <Mass>4.19</Mass>
-		</value>
-	</Operation>
-
-	<Operation Class="PatchOperationReplace">
-		<xpath>*/ThingDef[defName="Gun_BoltActionRifle"]/statBases/RangedWeapon_Cooldown</xpath>
-		<value>
       <RangedWeapon_Cooldown>1.17</RangedWeapon_Cooldown>
-		</value>
-	</Operation>
-
-	<Operation Class="PatchOperationAdd">
-		<xpath>*/ThingDef[defName="Gun_BoltActionRifle"]/statBases</xpath>
-		<value>
       <SightsEfficiency>0.50</SightsEfficiency>
       <ShotSpread>0.02</ShotSpread>
       <SwayFactor>1.68</SwayFactor>
       <Bulk>12.60</Bulk>
-		</value>
-	</Operation>
-
-	<Operation Class="PatchOperationReplace">
-		<xpath>*/ThingDef[defName="Gun_BoltActionRifle"]/verbs</xpath>
-		<value>
-			<verbs>
-				<li Class="CombatExtended.VerbPropertiesCE">
-				  <verbClass>CombatExtended.Verb_ShootCE</verbClass>
-				  <hasStandardCommand>true</hasStandardCommand>
-				  <projectileDef>Bullet_303British_FMJ</projectileDef>
-				  <warmupTime>1.4</warmupTime>
-				  <range>55</range>
-				  <soundCast>ShotBoltActionRifle</soundCast>
-				  <soundCastTail>GunTail_Heavy</soundCastTail>
-				  <muzzleFlashScale>9</muzzleFlashScale>
-				</li>
-			</verbs>
-		</value>
-	</Operation>
-
-	<!-- Add comps -->
-
-	<Operation Class="PatchOperationSequence">
-  	<success>Always</success>
-  	<operations>
-    	<li Class="PatchOperationTest">
-      	<xpath>*/ThingDef[defName="Gun_BoltActionRifle"]/comps</xpath>
-      	<success>Invert</success>
-    	</li>
-    	<li Class="PatchOperationAdd">
-      	<xpath>*/ThingDef[defName="Gun_BoltActionRifle"]</xpath>
-      	<value>
-        	<comps />
-      	</value>
-    	</li>
-  	</operations>
-	</Operation>
-
-	<Operation Class="PatchOperationAdd">
-		<xpath>*/ThingDef[defName="Gun_BoltActionRifle"]/comps</xpath>
-		<value>
-			<li Class="CombatExtended.CompProperties_AmmoUser">
-			  <magazineSize>10</magazineSize>
-			  <reloadTime>4.3</reloadTime>
-			  <ammoSet>AmmoSet_303British</ammoSet>
-			</li>
-			<li Class="CombatExtended.CompProperties_FireModes">
-			  <aiAimMode>AimedShot</aiAimMode>
-			</li>
-		</value>
-	</Operation>
-
-	<!-- Add tags -->
-
-	<Operation Class="PatchOperationSequence">
-  	<success>Always</success>
-  	<operations>
-    	<li Class="PatchOperationTest">
-      	<xpath>*/ThingDef[defName="Gun_BoltActionRifle"]/weaponTags</xpath>
-      	<success>Invert</success>
-    	</li>
-    	<li Class="PatchOperationAdd">
-      	<xpath>*/ThingDef[defName="Gun_BoltActionRifle"]</xpath>
-      	<value>
-        	<weaponTags />
-      	</value>
-    	</li>
-  	</operations>
-	</Operation>
-
-	<Operation Class="PatchOperationAdd">
-		<xpath>*/ThingDef[defName="Gun_BoltActionRifle"]/weaponTags</xpath>
-		<value>
-			<li>CE_AI_Rifle</li>
-		</value>
-	</Operation>
-
-	<!-- Patch recipe -->
-
-	<Operation Class="PatchOperationReplace">
-		<xpath>*/ThingDef[defName="Gun_BoltActionRifle"]/statBases/WorkToMake</xpath>
-		<value>
 			<WorkToMake>10500</WorkToMake>
-		</value>
-	</Operation>
-
-	<Operation Class="PatchOperationReplace">
-		<xpath>*/ThingDef[defName="Gun_BoltActionRifle"]/costList</xpath>
-		<value>
-			<costList>
-				<Steel>50</Steel>
-				<WoodLog>15</WoodLog>
-				<Component>1</Component>
-			</costList>
-		</value>
-	</Operation>
+    </statBases>
+    <costList>
+    	<Steel>50</Steel>
+    	<WoodLog>15</WoodLog>
+    	<Component>1</Component>
+    </costList>
+    <Properties>
+    	<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+    	<hasStandardCommand>true</hasStandardCommand>
+    	<projectileDef>Bullet_303British_FMJ</projectileDef>
+    	<warmupTime>1.4</warmupTime>
+    	<range>55</range>
+    	<soundCast>ShotBoltActionRifle</soundCast>
+    	<soundCastTail>GunTail_Heavy</soundCastTail>
+    	<muzzleFlashScale>9</muzzleFlashScale>
+    </Properties>
+    <AmmoUser>
+    	<magazineSize>10</magazineSize>
+    	<reloadTime>4.3</reloadTime>
+    	<ammoSet>AmmoSet_303British</ammoSet>
+    </AmmoUser>
+    <FireModes>
+    	<aiAimMode>AimedShot</aiAimMode>
+    </FireModes>
+    <weaponTags>
+			<li>CE_AI_Rifle</li>
+    </weaponTags>
+  </Operation>
 
 	<!-- ========== Assault rifle ========== -->
 
-	<!-- Patch stats -->
-
-	<Operation Class="PatchOperationReplace">
-		<xpath>*/ThingDef[defName="Gun_AssaultRifle"]/statBases/Mass</xpath>
-		<value>
+  <Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
+    <defName>Gun_AssaultRifle</defName>
+    <statBases>
       <Mass>3.26</Mass>
-		</value>
-	</Operation>
-
-	<Operation Class="PatchOperationReplace">
-		<xpath>*/ThingDef[defName="Gun_AssaultRifle"]/statBases/RangedWeapon_Cooldown</xpath>
-		<value>
       <RangedWeapon_Cooldown>0.36</RangedWeapon_Cooldown>
-		</value>
-	</Operation>
-
-	<Operation Class="PatchOperationAdd">
-		<xpath>*/ThingDef[defName="Gun_AssaultRifle"]/statBases</xpath>
-		<value>
       <SightsEfficiency>0.50</SightsEfficiency>
       <ShotSpread>0.07</ShotSpread>
       <SwayFactor>1.33</SwayFactor>
       <Bulk>10.03</Bulk>
-		</value>
-	</Operation>
-
-	<Operation Class="PatchOperationReplace">
-		<xpath>*/ThingDef[defName="Gun_AssaultRifle"]/verbs</xpath>
-		<value>
-			<verbs>
-				<li Class="CombatExtended.VerbPropertiesCE">
-				  <recoilAmount>1.18</recoilAmount>
-				  <verbClass>CombatExtended.Verb_ShootCE</verbClass>
-				  <hasStandardCommand>true</hasStandardCommand>
-				  <projectileDef>Bullet_556x45mmNATO_FMJ</projectileDef>
-				  <warmupTime>1.1</warmupTime>
-				  <range>55</range>
-				  <burstShotCount>6</burstShotCount>
-				  <ticksBetweenBurstShots>4</ticksBetweenBurstShots>
-				  <soundCast>ShotAssaultRifle</soundCast>
-				  <soundCastTail>GunTail_Medium</soundCastTail>
-				  <muzzleFlashScale>9</muzzleFlashScale>
-				</li>
-			</verbs>
-		</value>
-	</Operation>
-
-	<!-- Add comps -->
-
-	<Operation Class="PatchOperationSequence">
-  	<success>Always</success>
-  	<operations>
-    	<li Class="PatchOperationTest">
-      	<xpath>*/ThingDef[defName="Gun_AssaultRifle"]/comps</xpath>
-      	<success>Invert</success>
-    	</li>
-    	<li Class="PatchOperationAdd">
-      	<xpath>*/ThingDef[defName="Gun_AssaultRifle"]</xpath>
-      	<value>
-        	<comps />
-      	</value>
-    	</li>
-  	</operations>
-	</Operation>
-
-	<Operation Class="PatchOperationAdd">
-		<xpath>*/ThingDef[defName="Gun_AssaultRifle"]/comps</xpath>
-		<value>
-			<li Class="CombatExtended.CompProperties_AmmoUser">
-			  <magazineSize>30</magazineSize>
-			  <reloadTime>4</reloadTime>
-			  <ammoSet>AmmoSet_556x45mmNATO</ammoSet>
-			</li>
-			<li Class="CombatExtended.CompProperties_FireModes">
-			  <aimedBurstShotCount>3</aimedBurstShotCount>
-			  <aiUseBurstMode>TRUE</aiUseBurstMode>
-			  <aiAimMode>AimedShot</aiAimMode>
-			</li>
-		</value>
-	</Operation>
-
-	<!-- Add tags -->
-
-	<Operation Class="PatchOperationSequence">
-  	<success>Always</success>
-  	<operations>
-    	<li Class="PatchOperationTest">
-      	<xpath>*/ThingDef[defName="Gun_AssaultRifle"]/weaponTags</xpath>
-      	<success>Invert</success>
-    	</li>
-    	<li Class="PatchOperationAdd">
-      	<xpath>*/ThingDef[defName="Gun_AssaultRifle"]</xpath>
-      	<value>
-        	<weaponTags />
-      	</value>
-    	</li>
-  	</operations>
-	</Operation>
-
-	<Operation Class="PatchOperationAdd">
-		<xpath>*/ThingDef[defName="Gun_AssaultRifle"]/weaponTags</xpath>
-		<value>
-			<li>CE_AI_Rifle</li>
-		</value>
-	</Operation>
-
-	<!-- Patch recipe -->
-
-	<Operation Class="PatchOperationReplace">
-		<xpath>*/ThingDef[defName="Gun_AssaultRifle"]/statBases/WorkToMake</xpath>
-		<value>
 			<WorkToMake>23500</WorkToMake>
-		</value>
-	</Operation>
-
-	<Operation Class="PatchOperationReplace">
-		<xpath>*/ThingDef[defName="Gun_AssaultRifle"]/costList</xpath>
-		<value>
-			<costList>
-				<Steel>60</Steel>
-				<Component>4</Component>
-			</costList>
-		</value>
-	</Operation>
+    </statBases>
+    <costList>
+    	<Steel>60</Steel>
+    	<Component>4</Component>
+    </costList>
+    <Properties>
+    	<recoilAmount>1.18</recoilAmount>
+    	<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+    	<hasStandardCommand>true</hasStandardCommand>
+    	<projectileDef>Bullet_556x45mmNATO_FMJ</projectileDef>
+    	<warmupTime>1.1</warmupTime>
+    	<range>55</range>
+    	<burstShotCount>6</burstShotCount>
+    	<ticksBetweenBurstShots>4</ticksBetweenBurstShots>
+    	<soundCast>ShotAssaultRifle</soundCast>
+    	<soundCastTail>GunTail_Medium</soundCastTail>
+    	<muzzleFlashScale>9</muzzleFlashScale>
+    </Properties>
+    <AmmoUser>
+    	<magazineSize>30</magazineSize>
+    	<reloadTime>4</reloadTime>
+    	<ammoSet>AmmoSet_556x45mmNATO</ammoSet>
+    </AmmoUser>
+    <FireModes>
+    	<aimedBurstShotCount>3</aimedBurstShotCount>
+    	<aiUseBurstMode>TRUE</aiUseBurstMode>
+    	<aiAimMode>AimedShot</aiAimMode>
+    </FireModes>
+    <weaponTags>
+			<li>CE_AI_Rifle</li>
+    </weaponTags>
+  </Operation>
 
 	<!-- ========== Sniper rifle ========== -->
 
-	<!-- Patch stats -->
-
-	<Operation Class="PatchOperationReplace">
-		<xpath>*/ThingDef[defName="Gun_SniperRifle"]/statBases/Mass</xpath>
-		<value>
-      <Mass>7.30</Mass>
-		</value>
-	</Operation>
-
-	<Operation Class="PatchOperationReplace">
-		<xpath>*/ThingDef[defName="Gun_SniperRifle"]/statBases/RangedWeapon_Cooldown</xpath>
-		<value>
-      <RangedWeapon_Cooldown>1.16</RangedWeapon_Cooldown>
-		</value>
-	</Operation>
-
-	<Operation Class="PatchOperationAdd">
-		<xpath>*/ThingDef[defName="Gun_SniperRifle"]/statBases</xpath>
-		<value>
-      <SightsEfficiency>1.6</SightsEfficiency>
-      <ShotSpread>0.05</ShotSpread>
-      <SwayFactor>1.92</SwayFactor>
-      <Bulk>10.92</Bulk>
-		</value>
-	</Operation>
-
-	<Operation Class="PatchOperationReplace">
-		<xpath>*/ThingDef[defName="Gun_SniperRifle"]/verbs</xpath>
-		<value>
-			<verbs>
-				<li Class="CombatExtended.VerbPropertiesCE">
-				  <verbClass>CombatExtended.Verb_ShootCE</verbClass>
-				  <hasStandardCommand>true</hasStandardCommand>
-				  <projectileDef>Bullet_762x51mmNATO_FMJ</projectileDef>
-				  <warmupTime>2.1</warmupTime>
-				  <range>75</range>
-				  <soundCast>ShotSniperRifle</soundCast>
-				  <soundCastTail>GunTail_Heavy</soundCastTail>
-				  <muzzleFlashScale>9</muzzleFlashScale>
-				</li>
-			</verbs>
-		</value>
-	</Operation>
-
-	<!-- Add comps -->
-
-	<Operation Class="PatchOperationSequence">
-  	<success>Always</success>
-  	<operations>
-    	<li Class="PatchOperationTest">
-      	<xpath>*/ThingDef[defName="Gun_SniperRifle"]/comps</xpath>
-      	<success>Invert</success>
-    	</li>
-    	<li Class="PatchOperationAdd">
-      	<xpath>*/ThingDef[defName="Gun_SniperRifle"]</xpath>
-      	<value>
-        	<comps />
-      	</value>
-    	</li>
-  	</operations>
-	</Operation>
-
-	<Operation Class="PatchOperationAdd">
-		<xpath>*/ThingDef[defName="Gun_SniperRifle"]/comps</xpath>
-		<value>
-			<li Class="CombatExtended.CompProperties_AmmoUser">
-			  <magazineSize>5</magazineSize>
-			  <reloadTime>4</reloadTime>
-			  <ammoSet>AmmoSet_762x51mmNATO</ammoSet>
-			</li>
-			<li Class="CombatExtended.CompProperties_FireModes">
-			  <aiAimMode>AimedShot</aiAimMode>
-			</li>
-		</value>
-	</Operation>
-
-	<!-- Add tags -->
-
-	<Operation Class="PatchOperationSequence">
-  	<success>Always</success>
-  	<operations>
-    	<li Class="PatchOperationTest">
-      	<xpath>*/ThingDef[defName="Gun_SniperRifle"]/weaponTags</xpath>
-      	<success>Invert</success>
-    	</li>
-    	<li Class="PatchOperationAdd">
-      	<xpath>*/ThingDef[defName="Gun_SniperRifle"]</xpath>
-      	<value>
-        	<weaponTags />
-      	</value>
-    	</li>
-  	</operations>
-	</Operation>
-
-	<Operation Class="PatchOperationAdd">
-		<xpath>*/ThingDef[defName="Gun_SniperRifle"]/weaponTags</xpath>
-		<value>
-			<li>CE_AI_Rifle</li>
-		</value>
-	</Operation>
-
-	<!-- Patch recipe -->
-
-	<Operation Class="PatchOperationReplace">
-		<xpath>*/ThingDef[defName="Gun_SniperRifle"]/statBases/WorkToMake</xpath>
-		<value>
+  <Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
+    <defName>Gun_SniperRifle</defName>
+    <statBases>
+    	<Mass>7.30</Mass>
+    	<RangedWeapon_Cooldown>1.16</RangedWeapon_Cooldown>
+    	<SightsEfficiency>1.6</SightsEfficiency>
+    	<ShotSpread>0.05</ShotSpread>
+    	<SwayFactor>1.92</SwayFactor>
+    	<Bulk>10.92</Bulk>
 			<WorkToMake>22500</WorkToMake>
-		</value>
-	</Operation>
-
-	<Operation Class="PatchOperationReplace">
-		<xpath>*/ThingDef[defName="Gun_SniperRifle"]/costList</xpath>
-		<value>
-			<costList>
-				<Steel>75</Steel>
-				<Component>4</Component>
-			</costList>
-		</value>
-	</Operation>
+    </statBases>
+    <costList>
+    	<Steel>75</Steel>
+    	<Component>4</Component>
+    </costList>
+    <Properties>
+    	<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+    	<hasStandardCommand>true</hasStandardCommand>
+    	<projectileDef>Bullet_762x51mmNATO_FMJ</projectileDef>
+    	<warmupTime>2.1</warmupTime>
+    	<range>75</range>
+    	<soundCast>ShotSniperRifle</soundCast>
+    	<soundCastTail>GunTail_Heavy</soundCastTail>
+    	<muzzleFlashScale>9</muzzleFlashScale>
+    </Properties>
+    <AmmoUser>
+    	<magazineSize>5</magazineSize>
+    	<reloadTime>4</reloadTime>
+    	<ammoSet>AmmoSet_762x51mmNATO</ammoSet>
+    </AmmoUser>
+    <FireModes>
+    	<aiAimMode>AimedShot</aiAimMode>
+    </FireModes>
+    <weaponTags>
+			<li>CE_AI_Rifle</li>
+    </weaponTags>
+  </Operation>
 
 	<!-- ========== Machine pistol ========== -->
 
-	<!-- Patch stats -->
-
-	<Operation Class="PatchOperationReplace">
-		<xpath>*/ThingDef[defName="Gun_MachinePistol"]/statBases/Mass</xpath>
-		<value>
+  <Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
+    <defName>Gun_MachinePistol</defName>
+    <statBases>
       <Mass>3.50</Mass>
-		</value>
-	</Operation>
-
-	<Operation Class="PatchOperationReplace">
-		<xpath>*/ThingDef[defName="Gun_MachinePistol"]/statBases/RangedWeapon_Cooldown</xpath>
-		<value>
       <RangedWeapon_Cooldown>0.36</RangedWeapon_Cooldown>
-		</value>
-	</Operation>
-
-	<Operation Class="PatchOperationAdd">
-		<xpath>*/ThingDef[defName="Gun_MachinePistol"]/statBases</xpath>
-		<value>
       <SightsEfficiency>0.50</SightsEfficiency>
       <ShotSpread>0.12</ShotSpread>
       <SwayFactor>0.99</SwayFactor>
       <Bulk>4.7</Bulk>
-		</value>
-	</Operation>
-
-	<Operation Class="PatchOperationReplace">
-		<xpath>*/ThingDef[defName="Gun_MachinePistol"]/verbs</xpath>
-		<value>
-			<verbs>
-				<li Class="CombatExtended.VerbPropertiesCE">
-				  <recoilAmount>0.91</recoilAmount>
-				  <verbClass>CombatExtended.Verb_ShootCE</verbClass>
-				  <hasStandardCommand>true</hasStandardCommand>
-				  <projectileDef>Bullet_9x19mmPara_FMJ</projectileDef>
-				  <warmupTime>0.6</warmupTime>
-				  <range>20</range>
-				  <burstShotCount>6</burstShotCount>
-				  <ticksBetweenBurstShots>6</ticksBetweenBurstShots>
-				  <soundCast>ShotMachinePistol</soundCast>
-				  <soundCastTail>GunTail_Light</soundCastTail>
-				  <muzzleFlashScale>9</muzzleFlashScale>
-				</li>
-			</verbs>
-		</value>
-	</Operation>
-
-	<!-- Add comps -->
-
-	<Operation Class="PatchOperationSequence">
-  	<success>Always</success>
-  	<operations>
-    	<li Class="PatchOperationTest">
-      	<xpath>*/ThingDef[defName="Gun_MachinePistol"]/comps</xpath>
-      	<success>Invert</success>
-    	</li>
-    	<li Class="PatchOperationAdd">
-      	<xpath>*/ThingDef[defName="Gun_MachinePistol"]</xpath>
-      	<value>
-        	<comps />
-      	</value>
-    	</li>
-  	</operations>
-	</Operation>
-
-	<Operation Class="PatchOperationAdd">
-		<xpath>*/ThingDef[defName="Gun_MachinePistol"]/comps</xpath>
-		<value>
-			<li Class="CombatExtended.CompProperties_AmmoUser">
-			  <magazineSize>32</magazineSize>
-			  <reloadTime>4</reloadTime>
-			  <ammoSet>AmmoSet_9x19mmPara</ammoSet>
-			</li>
-			<li Class="CombatExtended.CompProperties_FireModes">
-			  <aimedBurstShotCount>3</aimedBurstShotCount>
-			  <aiUseBurstMode>FALSE</aiUseBurstMode>
-			</li>
-		</value>
-	</Operation>
-
-	<!-- Add tags -->
-
-	<Operation Class="PatchOperationSequence">
-  	<success>Always</success>
-  	<operations>
-    	<li Class="PatchOperationTest">
-      	<xpath>*/ThingDef[defName="Gun_MachinePistol"]/weaponTags</xpath>
-      	<success>Invert</success>
-    	</li>
-    	<li Class="PatchOperationAdd">
-      	<xpath>*/ThingDef[defName="Gun_MachinePistol"]</xpath>
-      	<value>
-        	<weaponTags />
-      	</value>
-    	</li>
-  	</operations>
-	</Operation>
-
-	<Operation Class="PatchOperationAdd">
-		<xpath>*/ThingDef[defName="Gun_MachinePistol"]/weaponTags</xpath>
-		<value>
-			<li>CE_SMG</li>
-			<li>CE_AI_AssaultWeapon</li>
-			<li>CE_OneHandedWeapon</li>
-		</value>
-	</Operation>
-
-	<!-- Patch recipe -->
-
-	<Operation Class="PatchOperationReplace">
-		<xpath>*/ThingDef[defName="Gun_MachinePistol"]/statBases/WorkToMake</xpath>
-		<value>
 			<WorkToMake>21500</WorkToMake>
-		</value>
-	</Operation>
-
-	<Operation Class="PatchOperationReplace">
-		<xpath>*/ThingDef[defName="Gun_MachinePistol"]/costList</xpath>
-		<value>
-			<costList>
-				<Steel>45</Steel>
-				<Component>4</Component>
-			</costList>
-		</value>
-	</Operation>
+    </statBases>
+    <costList>
+    	<Steel>45</Steel>
+    	<Component>4</Component>
+    </costList>
+    <Properties>
+    	<recoilAmount>0.91</recoilAmount>
+    	<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+    	<hasStandardCommand>true</hasStandardCommand>
+    	<projectileDef>Bullet_9x19mmPara_FMJ</projectileDef>
+    	<warmupTime>0.6</warmupTime>
+    	<range>20</range>
+    	<burstShotCount>6</burstShotCount>
+    	<ticksBetweenBurstShots>6</ticksBetweenBurstShots>
+    	<soundCast>ShotMachinePistol</soundCast>
+    	<soundCastTail>GunTail_Light</soundCastTail>
+    	<muzzleFlashScale>9</muzzleFlashScale>
+    </Properties>
+    <AmmoUser>
+    	<magazineSize>32</magazineSize>
+    	<reloadTime>4</reloadTime>
+    	<ammoSet>AmmoSet_9x19mmPara</ammoSet>
+    </AmmoUser>
+    <FireModes>
+    	<aimedBurstShotCount>3</aimedBurstShotCount>
+    	<aiUseBurstMode>FALSE</aiUseBurstMode>
+    </FireModes>
+    <weaponTags>
+    	<li>CE_SMG</li>
+    	<li>CE_AI_AssaultWeapon</li>
+    	<li>CE_OneHandedWeapon</li>
+    </weaponTags>
+  </Operation>
 
 	<!-- ========== Heavy SMG ========== -->
 
-	<!-- Patch stats -->
-
-	<Operation Class="PatchOperationReplace">
-		<xpath>*/ThingDef[defName="Gun_HeavySMG"]/statBases/Mass</xpath>
-		<value>
+  <Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
+    <defName>Gun_HeavySMG</defName>
+    <statBases>
       <Mass>1.40</Mass>
-		</value>
-	</Operation>
-
-	<Operation Class="PatchOperationReplace">
-		<xpath>*/ThingDef[defName="Gun_HeavySMG"]/statBases/RangedWeapon_Cooldown</xpath>
-		<value>
       <RangedWeapon_Cooldown>0.37</RangedWeapon_Cooldown>
-		</value>
-	</Operation>
-
-	<Operation Class="PatchOperationAdd">
-		<xpath>*/ThingDef[defName="Gun_HeavySMG"]/statBases</xpath>
-		<value>
       <SightsEfficiency>0.35</SightsEfficiency>
       <ShotSpread>0.17</ShotSpread>
       <SwayFactor>1.46</SwayFactor>
       <Bulk>3.17</Bulk>
-		</value>
-	</Operation>
-
-	<Operation Class="PatchOperationReplace">
-		<xpath>*/ThingDef[defName="Gun_HeavySMG"]/verbs</xpath>
-		<value>
-			<verbs>
-				<li Class="CombatExtended.VerbPropertiesCE">
-				  <recoilAmount>2.16</recoilAmount>
-				  <verbClass>CombatExtended.Verb_ShootCE</verbClass>
-				  <hasStandardCommand>true</hasStandardCommand>
-				  <projectileDef>Bullet_45ACP_FMJ</projectileDef>
-				  <warmupTime>0.6</warmupTime>
-				  <range>16</range>
-				  <burstShotCount>6</burstShotCount>
-				  <ticksBetweenBurstShots>9</ticksBetweenBurstShots>
-				  <soundCast>ShotHeavySMG</soundCast>
-				  <soundCastTail>GunTail_Heavy</soundCastTail>
-				  <muzzleFlashScale>9</muzzleFlashScale>
-				</li>
-			</verbs>
-		</value>
-	</Operation>
-
-	<!-- Add comps -->
-
-	<Operation Class="PatchOperationSequence">
-  	<success>Always</success>
-  	<operations>
-    	<li Class="PatchOperationTest">
-      	<xpath>*/ThingDef[defName="Gun_HeavySMG"]/comps</xpath>
-      	<success>Invert</success>
-    	</li>
-    	<li Class="PatchOperationAdd">
-      	<xpath>*/ThingDef[defName="Gun_HeavySMG"]</xpath>
-      	<value>
-        	<comps />
-      	</value>
-    	</li>
-  	</operations>
-	</Operation>
-
-	<Operation Class="PatchOperationAdd">
-		<xpath>*/ThingDef[defName="Gun_HeavySMG"]/comps</xpath>
-		<value>
-			<li Class="CombatExtended.CompProperties_AmmoUser">
-			  <magazineSize>20</magazineSize>
-			  <reloadTime>4</reloadTime>
-			  <ammoSet>AmmoSet_9x19mmPara</ammoSet>
-			</li>
-			<li Class="CombatExtended.CompProperties_FireModes">
-			  <aimedBurstShotCount>3</aimedBurstShotCount>
-			  <aiUseBurstMode>FALSE</aiUseBurstMode>
-			</li>
-		</value>
-	</Operation>
-
-	<!-- Add tags -->
-
-	<Operation Class="PatchOperationSequence">
-  	<success>Always</success>
-  	<operations>
-    	<li Class="PatchOperationTest">
-      	<xpath>*/ThingDef[defName="Gun_HeavySMG"]/weaponTags</xpath>
-      	<success>Invert</success>
-    	</li>
-    	<li Class="PatchOperationAdd">
-      	<xpath>*/ThingDef[defName="Gun_HeavySMG"]</xpath>
-      	<value>
-        	<weaponTags />
-      	</value>
-    	</li>
-  	</operations>
-	</Operation>
-
-	<Operation Class="PatchOperationAdd">
-		<xpath>*/ThingDef[defName="Gun_HeavySMG"]/weaponTags</xpath>
-		<value>
+			<WorkToMake>20000</WorkToMake>
+    </statBases>
+    <costList>
+    	<Steel>45</Steel>
+    	<Component>4</Component>
+    </costList>
+    <Properties>
+    	<recoilAmount>2.16</recoilAmount>
+    	<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+    	<hasStandardCommand>true</hasStandardCommand>
+    	<projectileDef>Bullet_45ACP_FMJ</projectileDef>
+    	<warmupTime>0.6</warmupTime>
+    	<range>16</range>
+    	<burstShotCount>6</burstShotCount>
+    	<ticksBetweenBurstShots>9</ticksBetweenBurstShots>
+    	<soundCast>ShotHeavySMG</soundCast>
+    	<soundCastTail>GunTail_Heavy</soundCastTail>
+    	<muzzleFlashScale>9</muzzleFlashScale>
+    </Properties>
+    <AmmoUser>
+    	<magazineSize>20</magazineSize>
+    	<reloadTime>4</reloadTime>
+    	<ammoSet>AmmoSet_9x19mmPara</ammoSet>
+    </AmmoUser>
+    <FireModes>
+    	<aimedBurstShotCount>3</aimedBurstShotCount>
+    	<aiUseBurstMode>FALSE</aiUseBurstMode>
+    </FireModes>
+    <weaponTags>
 			<li>CE_SMG</li>
 			<li>CE_AI_AssaultWeapon</li>
 			<li>CE_OneHandedWeapon</li>
-		</value>
-	</Operation>
-
-	<!-- Patch recipe -->
-
-	<Operation Class="PatchOperationReplace">
-		<xpath>*/ThingDef[defName="Gun_HeavySMG"]/statBases/WorkToMake</xpath>
-		<value>
-			<WorkToMake>20000</WorkToMake>
-		</value>
-	</Operation>
-
-	<Operation Class="PatchOperationReplace">
-		<xpath>*/ThingDef[defName="Gun_HeavySMG"]/costList</xpath>
-		<value>
-			<costList>
-				<Steel>45</Steel>
-				<Component>4</Component>
-			</costList>
-		</value>
-	</Operation>
+    </weaponTags>
+  </Operation>
 
 	<!-- ========== Incendiary launcher ========== -->
 
-	<!-- Patch stats -->
-
-	<Operation Class="PatchOperationReplace">
-		<xpath>*/ThingDef[defName="Gun_IncendiaryLauncher"]/statBases/Mass</xpath>
-		<value>
+  <Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
+    <defName>Gun_IncendiaryLauncher</defName>
+    <statBases>
       <Mass>8</Mass>
-		</value>
-	</Operation>
-
-	<Operation Class="PatchOperationReplace">
-		<xpath>*/ThingDef[defName="Gun_IncendiaryLauncher"]/statBases/RangedWeapon_Cooldown</xpath>
-		<value>
       <RangedWeapon_Cooldown>0.43</RangedWeapon_Cooldown>
-		</value>
-	</Operation>
-
-	<Operation Class="PatchOperationAdd">
-		<xpath>*/ThingDef[defName="Gun_IncendiaryLauncher"]/statBases</xpath>
-		<value>
       <SightsEfficiency>0.50</SightsEfficiency>
       <ShotSpread>0.15</ShotSpread>
       <SwayFactor>1.8</SwayFactor>
       <Bulk>10</Bulk>
-		</value>
-	</Operation>
-
-	<Operation Class="PatchOperationReplace">
-		<xpath>*/ThingDef[defName="Gun_IncendiaryLauncher"]/verbs</xpath>
-		<value>
-			<verbs>
-				<li Class="CombatExtended.VerbPropertiesCE">
-				  <verbClass>CombatExtended.Verb_ShootCE</verbClass>
-				  <hasStandardCommand>true</hasStandardCommand>
-				  <projectileDef>Bullet_30x64mmFuel_Incendiary</projectileDef>
-				  <ai_IsIncendiary>true</ai_IsIncendiary>
-				  <warmupTime>1.1</warmupTime>
-				  <range>40</range>
-				  <burstShotCount>0</burstShotCount>
-				  <soundCast>ShotIncendiaryLauncher</soundCast>
-				  <soundCastTail>GunTail_Medium</soundCastTail>
-				  <muzzleFlashScale>14</muzzleFlashScale>
-				  <targetParams>
-				    <canTargetLocations>true</canTargetLocations>
-				  </targetParams>
-				</li>
-			</verbs>
-		</value>
-	</Operation>
-
-	<!-- Add comps -->
-
-	<Operation Class="PatchOperationSequence">
-  	<success>Always</success>
-  	<operations>
-    	<li Class="PatchOperationTest">
-      	<xpath>*/ThingDef[defName="Gun_IncendiaryLauncher"]/comps</xpath>
-      	<success>Invert</success>
-    	</li>
-    	<li Class="PatchOperationAdd">
-      	<xpath>*/ThingDef[defName="Gun_IncendiaryLauncher"]</xpath>
-      	<value>
-        	<comps />
-      	</value>
-    	</li>
-  	</operations>
-	</Operation>
-
-	<Operation Class="PatchOperationAdd">
-		<xpath>*/ThingDef[defName="Gun_IncendiaryLauncher"]/comps</xpath>
-		<value>
-			<li Class="CombatExtended.CompProperties_AmmoUser">
-			  <magazineSize>5</magazineSize>
-			  <reloadTime>4</reloadTime>
-			  <ammoSet>AmmoSet_30x64mmFuel</ammoSet>
-			</li>
-			<li Class="CombatExtended.CompProperties_FireModes">
-			  <aiUseBurstMode>FALSE</aiUseBurstMode>
-			  <aiAimMode>SuppressFire</aiAimMode>
-			</li>
-		</value>
-	</Operation>
-
-	<!-- Add tags -->
-
-	<Operation Class="PatchOperationSequence">
-  	<success>Always</success>
-  	<operations>
-    	<li Class="PatchOperationTest">
-      	<xpath>*/ThingDef[defName="Gun_IncendiaryLauncher"]/weaponTags</xpath>
-      	<success>Invert</success>
-    	</li>
-    	<li Class="PatchOperationAdd">
-      	<xpath>*/ThingDef[defName="Gun_IncendiaryLauncher"]</xpath>
-      	<value>
-        	<weaponTags />
-      	</value>
-    	</li>
-  	</operations>
-	</Operation>
-
-	<Operation Class="PatchOperationAdd">
-		<xpath>*/ThingDef[defName="Gun_IncendiaryLauncher"]/weaponTags</xpath>
-		<value>
+			<WorkToMake>33000</WorkToMake>
+    </statBases>
+    <costList>
+    	<Steel>75</Steel>
+    	<Plasteel>30</Plasteel>
+    	<Component>6</Component>
+    </costList>
+    <Properties>
+    	<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+    	<hasStandardCommand>true</hasStandardCommand>
+    	<projectileDef>Bullet_30x64mmFuel_Incendiary</projectileDef>
+    	<ai_IsIncendiary>true</ai_IsIncendiary>
+    	<warmupTime>1.1</warmupTime>
+    	<range>40</range>
+    	<burstShotCount>0</burstShotCount>
+    	<soundCast>ShotIncendiaryLauncher</soundCast>
+    	<soundCastTail>GunTail_Medium</soundCastTail>
+    	<muzzleFlashScale>14</muzzleFlashScale>
+    	<targetParams>
+    	  <canTargetLocations>true</canTargetLocations>
+    	</targetParams>
+    </Properties>
+    <AmmoUser>
+    	<magazineSize>5</magazineSize>
+    	<reloadTime>4</reloadTime>
+    	<ammoSet>AmmoSet_30x64mmFuel</ammoSet>
+    </AmmoUser>
+    <FireModes>
+    	<aiUseBurstMode>FALSE</aiUseBurstMode>
+    	<aiAimMode>SuppressFire</aiAimMode>
+    </FireModes>
+    <weaponTags>
 			<li>CE_AI_Rifle</li>
 			<li>CE_AI_Launcher</li>
-		</value>
-	</Operation>
-
-	<!-- Patch recipe -->
-
-	<Operation Class="PatchOperationReplace">
-		<xpath>*/ThingDef[defName="Gun_IncendiaryLauncher"]/statBases/WorkToMake</xpath>
-		<value>
-			<WorkToMake>33000</WorkToMake>
-		</value>
-	</Operation>
-
-	<Operation Class="PatchOperationReplace">
-		<xpath>*/ThingDef[defName="Gun_IncendiaryLauncher"]/costList</xpath>
-		<value>
-			<costList>
-				<Steel>75</Steel>
-				<Plasteel>30</Plasteel>
-				<Component>6</Component>
-			</costList>
-		</value>
-	</Operation>
+    </weaponTags>
+  </Operation>
 
 	<!-- ========== LMG ========== -->
 
-	<!-- Patch stats -->
-
-	<Operation Class="PatchOperationReplace">
-		<xpath>*/ThingDef[defName="Gun_LMG"]/statBases/Mass</xpath>
-		<value>
+  <Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
+    <defName>Gun_LMG</defName>
+    <statBases>
       <Mass>9.12</Mass>
-		</value>
-	</Operation>
-
-	<Operation Class="PatchOperationReplace">
-		<xpath>*/ThingDef[defName="Gun_LMG"]/statBases/RangedWeapon_Cooldown</xpath>
-		<value>
       <RangedWeapon_Cooldown>0.56</RangedWeapon_Cooldown>
-		</value>
-	</Operation>
-
-	<Operation Class="PatchOperationAdd">
-		<xpath>*/ThingDef[defName="Gun_LMG"]/statBases</xpath>
-		<value>
       <SightsEfficiency>0.50</SightsEfficiency>
       <ShotSpread>0.05</ShotSpread>
       <SwayFactor>1.53</SwayFactor>
       <Bulk>13.7</Bulk>
-		</value>
-	</Operation>
-
-	<Operation Class="PatchOperationReplace">
-		<xpath>*/ThingDef[defName="Gun_LMG"]/verbs</xpath>
-		<value>
-			<verbs>
-				<li Class="CombatExtended.VerbPropertiesCE">
-				  <recoilAmount>0.82</recoilAmount>
-				  <verbClass>CombatExtended.Verb_ShootCE</verbClass>
-				  <hasStandardCommand>true</hasStandardCommand>
-				  <projectileDef>Bullet_762x54mmR_FMJ</projectileDef>
-				  <warmupTime>1.25</warmupTime>
-				  <range>75</range>
-				  <ticksBetweenBurstShots>7</ticksBetweenBurstShots>
-				  <burstShotCount>10</burstShotCount>
-				  <soundCast>ShotMinigun</soundCast>
-				  <soundCastTail>GunTail_Medium</soundCastTail>
-				  <muzzleFlashScale>9</muzzleFlashScale>
-				  <targetParams>
-				    <canTargetLocations>true</canTargetLocations>
-				  </targetParams>
-				  <recoilPattern>Mounted</recoilPattern>
-				</li>
-			</verbs>
-		</value>
-	</Operation>
-
-	<!-- Add comps -->
-
-	<Operation Class="PatchOperationSequence">
-  	<success>Always</success>
-  	<operations>
-    	<li Class="PatchOperationTest">
-      	<xpath>*/ThingDef[defName="Gun_LMG"]/comps</xpath>
-      	<success>Invert</success>
-    	</li>
-    	<li Class="PatchOperationAdd">
-      	<xpath>*/ThingDef[defName="Gun_LMG"]</xpath>
-      	<value>
-        	<comps />
-      	</value>
-    	</li>
-  	</operations>
-	</Operation>
-
-	<Operation Class="PatchOperationAdd">
-		<xpath>*/ThingDef[defName="Gun_LMG"]/comps</xpath>
-		<value>
-			<li Class="CombatExtended.CompProperties_AmmoUser">
-			  <magazineSize>47</magazineSize>
-			  <reloadTime>4.9</reloadTime>
-			  <ammoSet>AmmoSet_762x54mmR</ammoSet>
-			</li>
-			<li Class="CombatExtended.CompProperties_FireModes">
-			  <aimedBurstShotCount>5</aimedBurstShotCount>
-			  <aiUseBurstMode>FALSE</aiUseBurstMode>
-			  <aiAimMode>SuppressFire</aiAimMode>
-			</li>
-		</value>
-	</Operation>
-
-	<!-- Add tags -->
-
-	<Operation Class="PatchOperationSequence">
-  	<success>Always</success>
-  	<operations>
-    	<li Class="PatchOperationTest">
-      	<xpath>*/ThingDef[defName="Gun_LMG"]/weaponTags</xpath>
-      	<success>Invert</success>
-    	</li>
-    	<li Class="PatchOperationAdd">
-      	<xpath>*/ThingDef[defName="Gun_LMG"]</xpath>
-      	<value>
-        	<weaponTags />
-      	</value>
-    	</li>
-  	</operations>
-	</Operation>
-
-	<Operation Class="PatchOperationAdd">
-		<xpath>*/ThingDef[defName="Gun_LMG"]/weaponTags</xpath>
-		<value>
+    </statBases>
+    <costList>
+    	<Steel>80</Steel>
+    	<WoodLog>10</WoodLog>
+    	<Component>4</Component>
+    </costList>
+    <Properties>
+    	<recoilAmount>0.82</recoilAmount>
+    	<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+    	<hasStandardCommand>true</hasStandardCommand>
+    	<projectileDef>Bullet_762x54mmR_FMJ</projectileDef>
+    	<warmupTime>1.25</warmupTime>
+    	<range>75</range>
+    	<ticksBetweenBurstShots>7</ticksBetweenBurstShots>
+    	<burstShotCount>10</burstShotCount>
+    	<soundCast>ShotMinigun</soundCast>
+    	<soundCastTail>GunTail_Medium</soundCastTail>
+    	<muzzleFlashScale>9</muzzleFlashScale>
+    	<targetParams>
+    	  <canTargetLocations>true</canTargetLocations>
+    	</targetParams>
+    	<recoilPattern>Mounted</recoilPattern>
+    </Properties>
+    <AmmoUser>
+    	<magazineSize>47</magazineSize>
+    	<reloadTime>4.9</reloadTime>
+    	<ammoSet>AmmoSet_762x54mmR</ammoSet>
+    </AmmoUser>
+    <FireModes>
+    	<aimedBurstShotCount>5</aimedBurstShotCount>
+    	<aiUseBurstMode>FALSE</aiUseBurstMode>
+    	<aiAimMode>SuppressFire</aiAimMode>
+    </FireModes>
+    <weaponTags>
 			<li>CE_MachineGun</li>
 			<li>CE_AI_Suppressive</li>
-		</value>
-	</Operation>
-
-	<!-- Patch recipe -->
-
-	<Operation Class="PatchOperationReplace">
-		<xpath>*/ThingDef[defName="Gun_LMG"]/statBases/WorkToMake</xpath>
-		<value>
-			<WorkToMake>27000</WorkToMake>
-		</value>
-	</Operation>
-
-	<Operation Class="PatchOperationReplace">
-		<xpath>*/ThingDef[defName="Gun_LMG"]/costList</xpath>
-		<value>
-			<costList>
-				<Steel>80</Steel>
-				<WoodLog>10</WoodLog>
-				<Component>4</Component>
-			</costList>
-		</value>
-	</Operation>
+    </weaponTags>
+  </Operation>
 
 	<!-- ========== Charge rifle ========== -->
 
-	<!-- Patch stats -->
-
-	<Operation Class="PatchOperationReplace">
-		<xpath>*/ThingDef[defName="Gun_ChargeRifle"]/statBases/Mass</xpath>
-		<value>
+  <Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
+    <defName>Gun_ChargeRifle</defName>
+    <statBases>
       <Mass>3.0</Mass>
-		</value>
-	</Operation>
-
-	<Operation Class="PatchOperationReplace">
-		<xpath>*/ThingDef[defName="Gun_ChargeRifle"]/statBases/RangedWeapon_Cooldown</xpath>
-		<value>
       <RangedWeapon_Cooldown>0.36</RangedWeapon_Cooldown>
-		</value>
-	</Operation>
-
-	<Operation Class="PatchOperationAdd">
-		<xpath>*/ThingDef[defName="Gun_ChargeRifle"]/statBases</xpath>
-		<value>
       <SightsEfficiency>0.60</SightsEfficiency>
       <ShotSpread>0.08</ShotSpread>
       <SwayFactor>1.20</SwayFactor>
       <Bulk>9.00</Bulk>
-		</value>
-	</Operation>
-
-	<Operation Class="PatchOperationReplace">
-		<xpath>*/ThingDef[defName="Gun_ChargeRifle"]/verbs</xpath>
-		<value>
-			<verbs>
-				<li Class="CombatExtended.VerbPropertiesCE">
-				  <recoilAmount>1.13</recoilAmount>
-				  <verbClass>CombatExtended.Verb_ShootCE</verbClass>
-				  <hasStandardCommand>true</hasStandardCommand>
-				  <projectileDef>Bullet_6x24mmCharged</projectileDef>
-				  <warmupTime>1.0</warmupTime>
-				  <range>55</range>
-				  <ticksBetweenBurstShots>5</ticksBetweenBurstShots>
-				  <burstShotCount>6</burstShotCount>
-				  <soundCast>ShotChargeRifle</soundCast>
-				  <soundCastTail>GunTail_Medium</soundCastTail>
-				  <muzzleFlashScale>9</muzzleFlashScale>
-				</li>
-			</verbs>
-		</value>
-	</Operation>
-
-	<!-- Add comps -->
-
-	<Operation Class="PatchOperationSequence">
-  	<success>Always</success>
-  	<operations>
-    	<li Class="PatchOperationTest">
-      	<xpath>*/ThingDef[defName="Gun_ChargeRifle"]/comps</xpath>
-      	<success>Invert</success>
-    	</li>
-    	<li Class="PatchOperationAdd">
-      	<xpath>*/ThingDef[defName="Gun_ChargeRifle"]</xpath>
-      	<value>
-        	<comps />
-      	</value>
-    	</li>
-  	</operations>
-	</Operation>
-
-	<Operation Class="PatchOperationAdd">
-		<xpath>*/ThingDef[defName="Gun_ChargeRifle"]/comps</xpath>
-		<value>
-			<li Class="CombatExtended.CompProperties_AmmoUser">
-			  <magazineSize>30</magazineSize>
-			  <reloadTime>4</reloadTime>
-			  <ammoSet>AmmoSet_6x24mmCharged</ammoSet>
-			</li>
-			<li Class="CombatExtended.CompProperties_FireModes">
-			  <aimedBurstShotCount>3</aimedBurstShotCount>
-			  <aiUseBurstMode>TRUE</aiUseBurstMode>
-			  <aiAimMode>AimedShot</aiAimMode>
-			</li>
-		</value>
-	</Operation>
-
-	<!-- Add tags -->
-
-	<Operation Class="PatchOperationSequence">
-  	<success>Always</success>
-  	<operations>
-    	<li Class="PatchOperationTest">
-      	<xpath>*/ThingDef[defName="Gun_ChargeRifle"]/weaponTags</xpath>
-      	<success>Invert</success>
-    	</li>
-    	<li Class="PatchOperationAdd">
-      	<xpath>*/ThingDef[defName="Gun_ChargeRifle"]</xpath>
-      	<value>
-        	<weaponTags />
-      	</value>
-    	</li>
-  	</operations>
-	</Operation>
-
-	<Operation Class="PatchOperationAdd">
-		<xpath>*/ThingDef[defName="Gun_ChargeRifle"]/weaponTags</xpath>
-		<value>
-			<li>CE_AI_Rifle</li>
-		</value>
-	</Operation>
-
-	<!-- Patch recipe -->
-
-	<Operation Class="PatchOperationReplace">
-		<xpath>*/ThingDef[defName="Gun_ChargeRifle"]/statBases/WorkToMake</xpath>
-		<value>
 			<WorkToMake>42500</WorkToMake>
-		</value>
-	</Operation>
-
-	<Operation Class="PatchOperationReplace">
-		<xpath>*/ThingDef[defName="Gun_ChargeRifle"]/costList</xpath>
-		<value>
-			<costList>
-				<Steel>55</Steel>
-				<Plasteel>25</Plasteel>
-				<Component>9</Component>
-			</costList>
-		</value>
-	</Operation>
+    </statBases>
+    <costList>
+    	<Steel>55</Steel>
+    	<Plasteel>25</Plasteel>
+    	<Component>9</Component>
+    </costList>
+    <Properties>
+    	<recoilAmount>1.13</recoilAmount>
+    	<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+    	<hasStandardCommand>true</hasStandardCommand>
+    	<projectileDef>Bullet_6x24mmCharged</projectileDef>
+    	<warmupTime>1.0</warmupTime>
+    	<range>55</range>
+    	<ticksBetweenBurstShots>5</ticksBetweenBurstShots>
+    	<burstShotCount>6</burstShotCount>
+    	<soundCast>ShotChargeRifle</soundCast>
+    	<soundCastTail>GunTail_Medium</soundCastTail>
+    	<muzzleFlashScale>9</muzzleFlashScale>
+    </Properties>
+    <AmmoUser>
+    	<magazineSize>30</magazineSize>
+    	<reloadTime>4</reloadTime>
+    	<ammoSet>AmmoSet_6x24mmCharged</ammoSet>
+    </AmmoUser>
+    <FireModes>
+    	<aimedBurstShotCount>3</aimedBurstShotCount>
+    	<aiUseBurstMode>TRUE</aiUseBurstMode>
+    	<aiAimMode>AimedShot</aiAimMode>
+    </FireModes>
+    <weaponTags>
+			<li>CE_AI_Rifle</li>
+    </weaponTags>
+  </Operation>
 
 	<!-- ========== Improvised turret gun ========== -->
 
-	<!-- Patch stats -->
-
-	<Operation Class="PatchOperationReplace">
-		<xpath>*/ThingDef[defName="Gun_TurretImprovised"]/statBases/RangedWeapon_Cooldown</xpath>
-		<value>
+  <Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
+    <defName>Gun_TurretImprovised</defName>
+    <statBases>
 			<RangedWeapon_Cooldown>0.35</RangedWeapon_Cooldown>
-		</value>
-	</Operation>
-
-	<Operation Class="PatchOperationAdd">
-		<xpath>*/ThingDef[defName="Gun_TurretImprovised"]/statBases</xpath>
-		<value>
 			<SightsEfficiency>0.5</SightsEfficiency>
 			<ShotSpread>0.07</ShotSpread>
 			<SwayFactor>1.80</SwayFactor>
 			<Bulk>8.00</Bulk>
-		</value>
-	</Operation>
-
-	<Operation Class="PatchOperationReplace">
-		<xpath>*/ThingDef[defName="Gun_TurretImprovised"]/verbs</xpath>
-		<value>
-			<verbs>
-				<li Class="CombatExtended.VerbPropertiesCE">
-					<recoilAmount>0.22</recoilAmount>
-					<verbClass>CombatExtended.Verb_ShootCE</verbClass>
-					<hasStandardCommand>true</hasStandardCommand>
-					<projectileDef>Bullet_556x45mmNATO_FMJ</projectileDef>
-					<warmupTime>1.1</warmupTime>
-					<range>48</range>
-					<ticksBetweenBurstShots>5</ticksBetweenBurstShots>
-					<burstShotCount>10</burstShotCount>
-					<soundCast>GunShotA</soundCast>
-					<soundCastTail>GunTail_Light</soundCastTail>
-					<muzzleFlashScale>9</muzzleFlashScale>
-				  <recoilPattern>Mounted</recoilPattern>
-				</li>
-			</verbs>
-		</value>
-	</Operation>
-
-	<!-- Add comps -->
-
-	<Operation Class="PatchOperationSequence">
-  	<success>Always</success>
-  	<operations>
-    	<li Class="PatchOperationTest">
-      	<xpath>*/ThingDef[defName="Gun_TurretImprovised"]/comps</xpath>
-      	<success>Invert</success>
-    	</li>
-    	<li Class="PatchOperationAdd">
-      	<xpath>*/ThingDef[defName="Gun_TurretImprovised"]</xpath>
-      	<value>
-        	<comps />
-      	</value>
-    	</li>
-  	</operations>
-	</Operation>
-
-	<Operation Class="PatchOperationAdd">
-		<xpath>*/ThingDef[defName="Gun_TurretImprovised"]/comps</xpath>
-		<value>
-			<li Class="CombatExtended.CompProperties_AmmoUser">
-				<magazineSize>200</magazineSize>
-				<reloadTime>7.8</reloadTime>
-				<spawnUnloaded>false</spawnUnloaded>
-				<ammoSet>AmmoSet_556x45mmNATO</ammoSet>
-			</li>
-			<li Class="CombatExtended.CompProperties_FireModes">
-				<aiAimMode>AimedShot</aiAimMode>
-				<noSnapshot>true</noSnapshot>
-				<noSingleShot>true</noSingleShot>
-			</li>
-		</value>
-	</Operation>
+    </statBases>
+    <costList>
+    	<Steel>55</Steel>
+    	<Plasteel>25</Plasteel>
+    	<Component>9</Component>
+    </costList>
+    <Properties>
+    	<recoilAmount>0.22</recoilAmount>
+    	<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+    	<hasStandardCommand>true</hasStandardCommand>
+    	<projectileDef>Bullet_556x45mmNATO_FMJ</projectileDef>
+    	<warmupTime>1.1</warmupTime>
+    	<range>48</range>
+    	<ticksBetweenBurstShots>5</ticksBetweenBurstShots>
+    	<burstShotCount>10</burstShotCount>
+    	<soundCast>GunShotA</soundCast>
+    	<soundCastTail>GunTail_Light</soundCastTail>
+    	<muzzleFlashScale>9</muzzleFlashScale>
+    	<recoilPattern>Mounted</recoilPattern>
+    </Properties>
+    <AmmoUser>
+    	<magazineSize>200</magazineSize>
+    	<reloadTime>7.8</reloadTime>
+    	<spawnUnloaded>false</spawnUnloaded>
+    	<ammoSet>AmmoSet_556x45mmNATO</ammoSet>
+    </AmmoUser>
+    <FireModes>
+    	<aiAimMode>AimedShot</aiAimMode>
+    	<noSnapshot>true</noSnapshot>
+    	<noSingleShot>true</noSingleShot>
+    </FireModes>
+  </Operation>
 
 	<!-- ========== Minigun ========== -->
 
-	<!-- Patch stats -->
-
-	<Operation Class="PatchOperationReplace">
-		<xpath>*/ThingDef[defName="Gun_Minigun"]/statBases/Mass</xpath>
-		<value>
-      <Mass>39.00</Mass>
-		</value>
-	</Operation>
-
-	<Operation Class="PatchOperationReplace">
-		<xpath>*/ThingDef[defName="Gun_Minigun"]/statBases/RangedWeapon_Cooldown</xpath>
-		<value>
-      <RangedWeapon_Cooldown>0.35</RangedWeapon_Cooldown>
-		</value>
-	</Operation>
-
-	<Operation Class="PatchOperationAdd">
-		<xpath>*/ThingDef[defName="Gun_Minigun"]/statBases</xpath>
-		<value>
-      <SightsEfficiency>50</SightsEfficiency>
-      <ShotSpread>0.06</ShotSpread>
-      <SwayFactor>4.70</SwayFactor>
-      <Bulk>8.02</Bulk>
-		</value>
-	</Operation>
-
-	<Operation Class="PatchOperationReplace">
-		<xpath>*/ThingDef[defName="Gun_Minigun"]/verbs</xpath>
-		<value>
-			<verbs>
-				<li Class="CombatExtended.VerbPropertiesCE">
-				  <recoilAmount>0.09</recoilAmount>
-				  <verbClass>CombatExtended.Verb_ShootCE</verbClass>
-				  <hasStandardCommand>true</hasStandardCommand>
-				  <projectileDef>Bullet_762x51mmNATO_FMJ</projectileDef>
-				  <warmupTime>1.1</warmupTime>
-				  <range>75</range>
-				  <burstShotCount>300</burstShotCount>
-				  <ticksBetweenBurstShots>1</ticksBetweenBurstShots>
-				  <soundCast>ShotMinigun</soundCast>
-				  <soundCastTail>GunTail_Medium</soundCastTail>
-				  <muzzleFlashScale>9</muzzleFlashScale>
-				</li>
-			</verbs>
-		</value>
-	</Operation>
-
-	<!-- Add comps -->
-
-	<Operation Class="PatchOperationSequence">
-  	<success>Always</success>
-  	<operations>
-    	<li Class="PatchOperationTest">
-      	<xpath>*/ThingDef[defName="Gun_Minigun"]/comps</xpath>
-      	<success>Invert</success>
-    	</li>
-    	<li Class="PatchOperationAdd">
-      	<xpath>*/ThingDef[defName="Gun_Minigun"]</xpath>
-      	<value>
-        	<comps />
-      	</value>
-    	</li>
-  	</operations>
-	</Operation>
-
-	<Operation Class="PatchOperationAdd">
-		<xpath>*/ThingDef[defName="Gun_Minigun"]/comps</xpath>
-		<value>
-      <li Class="CombatExtended.CompProperties_AmmoUser">
-        <magazineSize>600</magazineSize>
-        <reloadTime>9.2</reloadTime>
-        <ammoSet>AmmoSet_762x51mmNATO</ammoSet>
-      </li>
-      <li Class="CombatExtended.CompProperties_FireModes">
-        <aiAimMode>AimedShot</aiAimMode>
-      </li>
-		</value>
-	</Operation>
-
-	<!-- Add tags -->
-
-	<Operation Class="PatchOperationSequence">
-  	<success>Always</success>
-  	<operations>
-    	<li Class="PatchOperationTest">
-      	<xpath>*/ThingDef[defName="Gun_Minigun"]/weaponTags</xpath>
-      	<success>Invert</success>
-    	</li>
-    	<li Class="PatchOperationAdd">
-      	<xpath>*/ThingDef[defName="Gun_Minigun"]</xpath>
-      	<value>
-        	<weaponTags />
-      	</value>
-    	</li>
-  	</operations>
-	</Operation>
-
-	<Operation Class="PatchOperationAdd">
-		<xpath>*/ThingDef[defName="Gun_Minigun"]/weaponTags</xpath>
-		<value>
-      <li>CE_AI_Suppressive</li>
-		</value>
-	</Operation>
+  <Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
+    <defName>Gun_Minigun</defName>
+    <statBases>
+    	<Mass>39.00</Mass>
+    	<RangedWeapon_Cooldown>0.35</RangedWeapon_Cooldown>
+    	<SightsEfficiency>50</SightsEfficiency>
+    	<ShotSpread>0.06</ShotSpread>
+    	<SwayFactor>4.70</SwayFactor>
+    	<Bulk>8.02</Bulk>
+    </statBases>
+    <Properties>
+    	<recoilAmount>0.09</recoilAmount>
+    	<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+    	<hasStandardCommand>true</hasStandardCommand>
+    	<projectileDef>Bullet_762x51mmNATO_FMJ</projectileDef>
+    	<warmupTime>1.1</warmupTime>
+    	<range>75</range>
+    	<burstShotCount>300</burstShotCount>
+    	<ticksBetweenBurstShots>1</ticksBetweenBurstShots>
+    	<soundCast>ShotMinigun</soundCast>
+    	<soundCastTail>GunTail_Medium</soundCastTail>
+    	<muzzleFlashScale>9</muzzleFlashScale>
+    </Properties>
+    <AmmoUser>
+    	<magazineSize>600</magazineSize>
+    	<reloadTime>9.2</reloadTime>
+    	<ammoSet>AmmoSet_762x51mmNATO</ammoSet>
+    </AmmoUser>
+    <FireModes>
+    	<aiAimMode>AimedShot</aiAimMode>
+    </FireModes>
+    <weaponTags>
+    	<li>CE_AI_Suppressive</li>
+    </weaponTags>
+  </Operation>
 
 	<!-- Disable for player -->
 
@@ -1633,6 +609,19 @@
 		<xpath>*/ThingDef[defName="Gun_DoomsdayRocket" or defName="Gun_TripleRocket"]</xpath>
 		<attribute>ParentName</attribute>
 		<value>BaseMakeableGun</value>
+	</Operation>
+
+	<Operation Class="PatchOperationRemove">
+		<xpath>*/ThingDef[defName="Gun_DoomsdayRocket" or defName="Gun_TripleRocket"]/statBases/MarketValue</xpath>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>*/ThingDef[defName="Gun_DoomsdayRocket" or defName="Gun_TripleRocket"]</xpath>
+		<value>
+			<recipeMaker>
+			  <researchPrerequisite>LargeRockets</researchPrerequisite>
+			</recipeMaker>
+		</value>
 	</Operation>
 
 	<!-- Patch projectile -->
@@ -1686,125 +675,45 @@
 
 	<!-- Patch stats -->
 
-	<Operation Class="PatchOperationReplace">
-		<xpath>*/ThingDef[defName="Gun_DoomsdayRocket"]/statBases/Mass</xpath>
-		<value>
+  <Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
+    <defName>Gun_DoomsdayRocket</defName>
+    <statBases>
       <Mass>20.00</Mass>
-		</value>
-	</Operation>
-
-	<Operation Class="PatchOperationReplace">
-		<xpath>*/ThingDef[defName="Gun_DoomsdayRocket"]/statBases/RangedWeapon_Cooldown</xpath>
-		<value>
       <RangedWeapon_Cooldown>1.5</RangedWeapon_Cooldown>
-		</value>
-	</Operation>
-
-	<Operation Class="PatchOperationAdd">
-		<xpath>*/ThingDef[defName="Gun_DoomsdayRocket"]/statBases</xpath>
-		<value>
       <SightsEfficiency>1.24</SightsEfficiency>
       <ShotSpread>0.2</ShotSpread>
       <SwayFactor>3.24</SwayFactor>
       <Bulk>13.0</Bulk>
-		</value>
-	</Operation>
-
-	<Operation Class="PatchOperationReplace">
-		<xpath>*/ThingDef[defName="Gun_DoomsdayRocket"]/verbs</xpath>
-		<value>
-			<verbs>
-				<li Class="CombatExtended.VerbPropertiesCE">
-				  <verbClass>CombatExtended.Verb_ShootCEOneUse</verbClass>
-				  <hasStandardCommand>true</hasStandardCommand>
-				  <projectileDef>Bullet_DoomsdayRocket</projectileDef>
-				  <forcedMissRadius>0.0</forcedMissRadius>
-				  <warmupTime>2.3</warmupTime>
-				  <range>48</range>
-				  <burstShotCount>1</burstShotCount>
-				  <soundCast>InfernoCannon_Fire</soundCast>
-				  <soundCastTail>GunTail_Heavy</soundCastTail>
-				  <onlyManualCast>true</onlyManualCast>
-				  <targetParams>
-				    <canTargetLocations>true</canTargetLocations>
-				  </targetParams>
-				  <muzzleFlashScale>14</muzzleFlashScale>
-				</li>
-			</verbs>
-		</value>
-	</Operation>
-
-	<!-- Add comps -->
-
-	<Operation Class="PatchOperationSequence">
-  	<success>Always</success>
-  	<operations>
-    	<li Class="PatchOperationTest">
-      	<xpath>*/ThingDef[defName="Gun_DoomsdayRocket"]/comps</xpath>
-      	<success>Invert</success>
-    	</li>
-    	<li Class="PatchOperationAdd">
-      	<xpath>*/ThingDef[defName="Gun_DoomsdayRocket"]</xpath>
-      	<value>
-        	<comps />
-      	</value>
-    	</li>
-  	</operations>
-	</Operation>
-
-	<Operation Class="PatchOperationAdd">
-		<xpath>*/ThingDef[defName="Gun_DoomsdayRocket"]/comps</xpath>
-		<value>
-			<li Class="CombatExtended.CompProperties_FireModes">
-			  <aiAimMode>AimedShot</aiAimMode>
-			</li>
-		</value>
-	</Operation>
-
-	<!-- Add tags -->
-
-	<Operation Class="PatchOperationSequence">
-  	<success>Always</success>
-  	<operations>
-    	<li Class="PatchOperationTest">
-      	<xpath>*/ThingDef[defName="Gun_DoomsdayRocket"]/weaponTags</xpath>
-      	<success>Invert</success>
-    	</li>
-    	<li Class="PatchOperationAdd">
-      	<xpath>*/ThingDef[defName="Gun_DoomsdayRocket"]</xpath>
-      	<value>
-        	<weaponTags />
-      	</value>
-    	</li>
-  	</operations>
-	</Operation>
-
-	<Operation Class="PatchOperationAdd">
-		<xpath>*/ThingDef[defName="Gun_DoomsdayRocket"]/weaponTags</xpath>
-		<value>
+      <WorkToMake>46000</WorkToMake>
+    </statBases>
+    <costList>
+      <Steel>125</Steel>
+      <Component>7</Component>
+      <FSX>5</FSX>
+    </costList>
+    <Properties>
+    	<verbClass>CombatExtended.Verb_ShootCEOneUse</verbClass>
+    	<hasStandardCommand>true</hasStandardCommand>
+    	<projectileDef>Bullet_DoomsdayRocket</projectileDef>
+    	<forcedMissRadius>0.0</forcedMissRadius>
+    	<warmupTime>2.3</warmupTime>
+    	<range>48</range>
+    	<burstShotCount>1</burstShotCount>
+    	<soundCast>InfernoCannon_Fire</soundCast>
+    	<soundCastTail>GunTail_Heavy</soundCastTail>
+    	<onlyManualCast>true</onlyManualCast>
+    	<targetParams>
+    	  <canTargetLocations>true</canTargetLocations>
+    	</targetParams>
+    	<muzzleFlashScale>14</muzzleFlashScale>
+    </Properties>
+    <FireModes>
+    	<aiAimMode>AimedShot</aiAimMode>
+    </FireModes>
+    <weaponTags>
 			<li>CE_AI_Launcher</li>
-		</value>
-	</Operation>
-
-	<!-- Add recipe -->
-
-	<Operation Class="PatchOperationRemove">
-		<xpath>*/ThingDef[defName="Gun_DoomsdayRocket"]/statBases/MarketValue</xpath>
-	</Operation>
-
-	<Operation Class="PatchOperationAdd">
-		<xpath>*/ThingDef[defName="Gun_DoomsdayRocket"]</xpath>
-		<value>
-			<recipeMaker>
-			  <researchPrerequisite>LargeRockets</researchPrerequisite>
-			</recipeMaker>
-			<costList>
-			  <Steel>125</Steel>
-			  <Component>7</Component>
-			  <FSX>5</FSX>
-			</costList>
-		</value>
-	</Operation>
+    </weaponTags>
+  </Operation>
 
 	<!-- ========== Triple rocket launcher ========== -->
 
@@ -1859,447 +768,162 @@
 
 	<!-- Patch stats -->
 
-	<Operation Class="PatchOperationReplace">
-		<xpath>*/ThingDef[defName="Gun_TripleRocket"]/statBases/Mass</xpath>
-		<value>
+  <Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
+    <defName>Gun_TripleRocket</defName>
+    <statBases>
       <Mass>12.00</Mass>
-		</value>
-	</Operation>
-
-	<Operation Class="PatchOperationReplace">
-		<xpath>*/ThingDef[defName="Gun_TripleRocket"]/statBases/RangedWeapon_Cooldown</xpath>
-		<value>
       <RangedWeapon_Cooldown>1.5</RangedWeapon_Cooldown>
-		</value>
-	</Operation>
-
-	<Operation Class="PatchOperationAdd">
-		<xpath>*/ThingDef[defName="Gun_TripleRocket"]/statBases</xpath>
-		<value>
       <SightsEfficiency>0.5</SightsEfficiency>
       <ShotSpread>0.2</ShotSpread>
       <SwayFactor>2.20</SwayFactor>
       <Bulk>13.00</Bulk>
-		</value>
-	</Operation>
-
-	<Operation Class="PatchOperationReplace">
-		<xpath>*/ThingDef[defName="Gun_TripleRocket"]/verbs</xpath>
-		<value>
-			<verbs>
-				<li Class="CombatExtended.VerbPropertiesCE">
-				  <verbClass>CombatExtended.Verb_ShootCEOneUse</verbClass>
-				  <hasStandardCommand>true</hasStandardCommand>
-				  <projectileDef>Bullet_Rocket</projectileDef>
-				  <forcedMissRadius>2.0</forcedMissRadius>
-				  <warmupTime>1.9</warmupTime>
-				  <range>40</range>
-				  <ticksBetweenBurstShots>20</ticksBetweenBurstShots>
-				  <burstShotCount>3</burstShotCount>
-				  <soundCast>InfernoCannon_Fire</soundCast>
-				  <soundCastTail>GunTail_Heavy</soundCastTail>
-				  <onlyManualCast>true</onlyManualCast>
-				  <stopBurstWithoutLos>false</stopBurstWithoutLos>
-				  <targetParams>
-				    <canTargetLocations>true</canTargetLocations>
-				  </targetParams>
-				  <muzzleFlashScale>14</muzzleFlashScale>
-				</li>
-			</verbs>
-		</value>
-	</Operation>
-
-	<!-- Add comps -->
-
-	<Operation Class="PatchOperationSequence">
-  	<success>Always</success>
-  	<operations>
-    	<li Class="PatchOperationTest">
-      	<xpath>*/ThingDef[defName="Gun_TripleRocket"]/comps</xpath>
-      	<success>Invert</success>
-    	</li>
-    	<li Class="PatchOperationAdd">
-      	<xpath>*/ThingDef[defName="Gun_TripleRocket"]</xpath>
-      	<value>
-        	<comps />
-      	</value>
-    	</li>
-  	</operations>
-	</Operation>
-
-	<Operation Class="PatchOperationAdd">
-		<xpath>*/ThingDef[defName="Gun_TripleRocket"]/comps</xpath>
-		<value>
-			<li Class="CombatExtended.CompProperties_FireModes">
-			  <aiUseBurstMode>FALSE</aiUseBurstMode>
-			  <aiAimMode>AimedShot</aiAimMode>
-			  <noSingleShot>true</noSingleShot>
-			</li>
-		</value>
-	</Operation>
-
-	<!-- Add tags -->
-
-	<Operation Class="PatchOperationSequence">
-  	<success>Always</success>
-  	<operations>
-    	<li Class="PatchOperationTest">
-      	<xpath>*/ThingDef[defName="Gun_TripleRocket"]/weaponTags</xpath>
-      	<success>Invert</success>
-    	</li>
-    	<li Class="PatchOperationAdd">
-      	<xpath>*/ThingDef[defName="Gun_TripleRocket"]</xpath>
-      	<value>
-        	<weaponTags />
-      	</value>
-    	</li>
-  	</operations>
-	</Operation>
-
-	<Operation Class="PatchOperationAdd">
-		<xpath>*/ThingDef[defName="Gun_TripleRocket"]/weaponTags</xpath>
-		<value>
+      <WorkToMake>39000</WorkToMake>
+    </statBases>
+    <costList>
+      <Steel>90</Steel>
+      <Component>6</Component>
+      <FSX>3</FSX>
+    </costList>
+    <Properties>
+    	<verbClass>CombatExtended.Verb_ShootCEOneUse</verbClass>
+    	<hasStandardCommand>true</hasStandardCommand>
+    	<projectileDef>Bullet_Rocket</projectileDef>
+    	<forcedMissRadius>2.0</forcedMissRadius>
+    	<warmupTime>1.9</warmupTime>
+    	<range>40</range>
+    	<ticksBetweenBurstShots>20</ticksBetweenBurstShots>
+    	<burstShotCount>3</burstShotCount>
+    	<soundCast>InfernoCannon_Fire</soundCast>
+    	<soundCastTail>GunTail_Heavy</soundCastTail>
+    	<onlyManualCast>true</onlyManualCast>
+    	<stopBurstWithoutLos>false</stopBurstWithoutLos>
+    	<targetParams>
+    	  <canTargetLocations>true</canTargetLocations>
+    	</targetParams>
+    	<muzzleFlashScale>14</muzzleFlashScale>
+    </Properties>
+    <FireModes>
+    	<aiAimMode>AimedShot</aiAimMode>
+    	<noSingleShot>true</noSingleShot>
+    </FireModes>
+    <weaponTags>
 			<li>CE_AI_Launcher</li>
-		</value>
-	</Operation>
-
-	<!-- Add recipe -->
-
-	<Operation Class="PatchOperationRemove">
-		<xpath>*/ThingDef[defName="Gun_TripleRocket"]/statBases/MarketValue</xpath>
-	</Operation>
-
-	<Operation Class="PatchOperationAdd">
-		<xpath>*/ThingDef[defName="Gun_TripleRocket"]</xpath>
-		<value>
-			<recipeMaker>
-			  <researchPrerequisite>LargeRockets</researchPrerequisite>
-			</recipeMaker>
-			<costList>
-			  <Steel>90</Steel>
-			  <Component>6</Component>
-			  <FSX>3</FSX>
-			</costList>
-		</value>
-	</Operation>
+    </weaponTags>
+  </Operation>
 
 	<!-- ========== Heavy charge blaster ========== -->
 
-	<!-- Patch stats -->
-
-	<Operation Class="PatchOperationReplace">
-		<xpath>*/ThingDef[defName="Gun_ChargeBlasterHeavy"]/statBases/Mass</xpath>
-		<value>
+  <Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
+    <defName>Gun_ChargeBlasterHeavy</defName>
+    <statBases>
       <Mass>35.00</Mass>
-		</value>
-	</Operation>
-
-	<Operation Class="PatchOperationReplace">
-		<xpath>*/ThingDef[defName="Gun_ChargeBlasterHeavy"]/statBases/RangedWeapon_Cooldown</xpath>
-		<value>
       <RangedWeapon_Cooldown>0.36</RangedWeapon_Cooldown>
-		</value>
-	</Operation>
-
-	<Operation Class="PatchOperationAdd">
-		<xpath>*/ThingDef[defName="Gun_ChargeBlasterHeavy"]/statBases</xpath>
-		<value>
       <SightsEfficiency>0.5</SightsEfficiency>
       <ShotSpread>0.01</ShotSpread>
       <SwayFactor>4.80</SwayFactor>
       <Bulk>13.00</Bulk>
-		</value>
-	</Operation>
-
-	<Operation Class="PatchOperationReplace">
-		<xpath>*/ThingDef[defName="Gun_ChargeBlasterHeavy"]/verbs</xpath>
-		<value>
-			<verbs>
-				<li Class="CombatExtended.VerbPropertiesCE">
-				  <recoilAmount>0.75</recoilAmount>
-				  <verbClass>CombatExtended.Verb_ShootCE</verbClass>
-				  <hasStandardCommand>true</hasStandardCommand>
-				  <projectileDef>Bullet_12x64mmCharged</projectileDef>
-				  <forcedMissRadius>2.9</forcedMissRadius>
-				  <warmupTime>1.1</warmupTime>
-				  <range>86</range>
-				  <ticksBetweenBurstShots>6</ticksBetweenBurstShots>
-				  <burstShotCount>20</burstShotCount>
-				  <soundCast>ShotChargeBlaster</soundCast>
-				  <soundCastTail>GunTail_Heavy</soundCastTail>
-				  <muzzleFlashScale>9</muzzleFlashScale>
-				  <recoilPattern>Mounted</recoilPattern>
-				</li>
-			</verbs>
-		</value>
-	</Operation>
-
-	<!-- Add comps -->
-
-	<Operation Class="PatchOperationSequence">
-  	<success>Always</success>
-  	<operations>
-    	<li Class="PatchOperationTest">
-      	<xpath>*/ThingDef[defName="Gun_ChargeBlasterHeavy"]/comps</xpath>
-      	<success>Invert</success>
-    	</li>
-    	<li Class="PatchOperationAdd">
-      	<xpath>*/ThingDef[defName="Gun_ChargeBlasterHeavy"]</xpath>
-      	<value>
-        	<comps />
-      	</value>
-    	</li>
-  	</operations>
-	</Operation>
-
-	<Operation Class="PatchOperationAdd">
-		<xpath>*/ThingDef[defName="Gun_ChargeBlasterHeavy"]/comps</xpath>
-		<value>
-      <li Class="CombatExtended.CompProperties_AmmoUser">
-        <magazineSize>100</magazineSize>
-        <reloadTime>9.2</reloadTime>
-        <ammoSet>AmmoSet_12x64mmCharged</ammoSet>
-      </li>
-      <li Class="CombatExtended.CompProperties_FireModes">
-        <aimedBurstShotCount>5</aimedBurstShotCount>
-        <aiAimMode>AimedShot</aiAimMode>
-      </li>
-		</value>
-	</Operation>
-
-	<!-- Add tags -->
-
-	<Operation Class="PatchOperationSequence">
-  	<success>Always</success>
-  	<operations>
-    	<li Class="PatchOperationTest">
-      	<xpath>*/ThingDef[defName="Gun_ChargeBlasterHeavy"]/weaponTags</xpath>
-      	<success>Invert</success>
-    	</li>
-    	<li Class="PatchOperationAdd">
-      	<xpath>*/ThingDef[defName="Gun_ChargeBlasterHeavy"]</xpath>
-      	<value>
-        	<weaponTags />
-      	</value>
-    	</li>
-  	</operations>
-	</Operation>
-
-	<Operation Class="PatchOperationAdd">
-		<xpath>*/ThingDef[defName="Gun_ChargeBlasterHeavy"]/weaponTags</xpath>
-		<value>
+    </statBases>
+    <Properties>
+    	<recoilAmount>0.75</recoilAmount>
+    	<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+    	<hasStandardCommand>true</hasStandardCommand>
+    	<projectileDef>Bullet_12x64mmCharged</projectileDef>
+    	<forcedMissRadius>2.9</forcedMissRadius>
+    	<warmupTime>1.1</warmupTime>
+    	<range>86</range>
+    	<ticksBetweenBurstShots>6</ticksBetweenBurstShots>
+    	<burstShotCount>20</burstShotCount>
+    	<soundCast>ShotChargeBlaster</soundCast>
+    	<soundCastTail>GunTail_Heavy</soundCastTail>
+    	<muzzleFlashScale>9</muzzleFlashScale>
+    	<recoilPattern>Mounted</recoilPattern>
+    </Properties>
+    <AmmoUser>
+    	<magazineSize>100</magazineSize>
+    	<reloadTime>9.2</reloadTime>
+    	<ammoSet>AmmoSet_12x64mmCharged</ammoSet>
+    </AmmoUser>
+    <FireModes>
+    	<aimedBurstShotCount>5</aimedBurstShotCount>
+    	<aiAimMode>AimedShot</aiAimMode>
+    </FireModes>
+    <weaponTags>
 			<li>CE_AI_Suppressive</li>
-		</value>
-	</Operation>
+    </weaponTags>
+  </Operation>
 
 	<!-- ========== Inferno cannon ========== -->
 
-	<!-- Patch stats -->
-
-	<Operation Class="PatchOperationReplace">
-		<xpath>*/ThingDef[defName="Gun_InfernoCannon"]/statBases/Mass</xpath>
-		<value>
+  <Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
+    <defName>Gun_InfernoCannon</defName>
+    <statBases>
       <Mass>300.00</Mass>
-		</value>
-	</Operation>
-
-	<Operation Class="PatchOperationReplace">
-		<xpath>*/ThingDef[defName="Gun_InfernoCannon"]/statBases/RangedWeapon_Cooldown</xpath>
-		<value>
       <RangedWeapon_Cooldown>2.53</RangedWeapon_Cooldown>
-		</value>
-	</Operation>
-
-	<Operation Class="PatchOperationAdd">
-		<xpath>*/ThingDef[defName="Gun_InfernoCannon"]/statBases</xpath>
-		<value>
       <SightsEfficiency>0.5</SightsEfficiency>
       <ShotSpread>0.01</ShotSpread>
       <SwayFactor>0.82</SwayFactor>
       <Bulk>20.00</Bulk>
-		</value>
-	</Operation>
-
-	<Operation Class="PatchOperationReplace">
-		<xpath>*/ThingDef[defName="Gun_InfernoCannon"]/verbs</xpath>
-		<value>
-			<verbs>
-				<li Class="CombatExtended.VerbPropertiesCE">
-				  <verbClass>CombatExtended.Verb_ShootCE</verbClass>
-				  <hasStandardCommand>true</hasStandardCommand>
-				  <projectileDef>Bullet_80x256mmFuel_Thermobaric</projectileDef>
-				  <ai_IsIncendiary>true</ai_IsIncendiary>
-				  <warmupTime>4.1</warmupTime>
-				  <range>86</range>
-				  <burstShotCount>1</burstShotCount>
-				  <soundCast>InfernoCannon_Fire</soundCast>
-				  <soundCastTail>GunTail_Light</soundCastTail>
-				  <muzzleFlashScale>14</muzzleFlashScale>
-				</li>
-			</verbs>
-		</value>
-	</Operation>
-
-	<!-- Add comps -->
-
-	<Operation Class="PatchOperationSequence">
-  	<success>Always</success>
-  	<operations>
-    	<li Class="PatchOperationTest">
-      	<xpath>*/ThingDef[defName="Gun_InfernoCannon"]/comps</xpath>
-      	<success>Invert</success>
-    	</li>
-    	<li Class="PatchOperationAdd">
-      	<xpath>*/ThingDef[defName="Gun_InfernoCannon"]</xpath>
-      	<value>
-        	<comps />
-      	</value>
-    	</li>
-  	</operations>
-	</Operation>
-
-	<Operation Class="PatchOperationAdd">
-		<xpath>*/ThingDef[defName="Gun_InfernoCannon"]/comps</xpath>
-		<value>
-			<li Class="CombatExtended.CompProperties_AmmoUser">
-			  <magazineSize>1</magazineSize>
-			  <reloadTime>9.8</reloadTime>
-			  <ammoSet>AmmoSet_80x256mmFuel</ammoSet>
-			</li>
-			<li Class="CombatExtended.CompProperties_FireModes">
-			  <aiAimMode>AimedShot</aiAimMode>
-			</li>
-		</value>
-	</Operation>
-
-	<!-- Add tags -->
-
-	<Operation Class="PatchOperationSequence">
-  	<success>Always</success>
-  	<operations>
-    	<li Class="PatchOperationTest">
-      	<xpath>*/ThingDef[defName="Gun_InfernoCannon"]/weaponTags</xpath>
-      	<success>Invert</success>
-    	</li>
-    	<li Class="PatchOperationAdd">
-      	<xpath>*/ThingDef[defName="Gun_InfernoCannon"]</xpath>
-      	<value>
-        	<weaponTags />
-      	</value>
-    	</li>
-  	</operations>
-	</Operation>
-
-	<Operation Class="PatchOperationAdd">
-		<xpath>*/ThingDef[defName="Gun_InfernoCannon"]/weaponTags</xpath>
-		<value>
+    </statBases>
+    <Properties>
+    	<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+    	<hasStandardCommand>true</hasStandardCommand>
+    	<projectileDef>Bullet_80x256mmFuel_Thermobaric</projectileDef>
+    	<ai_IsIncendiary>true</ai_IsIncendiary>
+    	<warmupTime>4.1</warmupTime>
+    	<range>86</range>
+    	<burstShotCount>1</burstShotCount>
+    	<soundCast>InfernoCannon_Fire</soundCast>
+    	<soundCastTail>GunTail_Light</soundCastTail>
+    	<muzzleFlashScale>14</muzzleFlashScale>
+    </Properties>
+    <AmmoUser>
+    	<magazineSize>1</magazineSize>
+    	<reloadTime>9.8</reloadTime>
+    	<ammoSet>AmmoSet_80x256mmFuel</ammoSet>
+    </AmmoUser>
+    <FireModes>
+    	<aiAimMode>AimedShot</aiAimMode>
+    </FireModes>
+    <weaponTags>
 			<li>CE_AI_Launcher</li>
-		</value>
-	</Operation>
+    </weaponTags>
+  </Operation>
 
 	<!-- ========== Charge lance ========== -->
 
-	<!-- Patch stats -->
-
-	<Operation Class="PatchOperationReplace">
-		<xpath>*/ThingDef[defName="Gun_ChargeLance"]/statBases/Mass</xpath>
-		<value>
+  <Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
+    <defName>Gun_ChargeLance</defName>
+    <statBases>
       <Mass>8.00</Mass>
-		</value>
-	</Operation>
-
-	<Operation Class="PatchOperationReplace">
-		<xpath>*/ThingDef[defName="Gun_ChargeLance"]/statBases/RangedWeapon_Cooldown</xpath>
-		<value>
       <RangedWeapon_Cooldown>0.35</RangedWeapon_Cooldown>
-		</value>
-	</Operation>
-
-	<Operation Class="PatchOperationAdd">
-		<xpath>*/ThingDef[defName="Gun_ChargeLance"]/statBases</xpath>
-		<value>
       <SightsEfficiency>0.5</SightsEfficiency>
       <ShotSpread>0.01</ShotSpread>
       <SwayFactor>2.10</SwayFactor>
       <Bulk>13.00</Bulk>
-		</value>
-	</Operation>
-
-	<Operation Class="PatchOperationReplace">
-		<xpath>*/ThingDef[defName="Gun_ChargeLance"]/verbs</xpath>
-		<value>
-			<verbs>
-				<li Class="CombatExtended.VerbPropertiesCE">
-				  <verbClass>CombatExtended.Verb_ShootCE</verbClass>
-				  <hasStandardCommand>true</hasStandardCommand>
-				  <projectileDef>Bullet_5x35mmCharged</projectileDef>
-				  <warmupTime>1.1</warmupTime>
-				  <range>62</range>
-				  <burstShotCount>1</burstShotCount>
-				  <soundCast>ChargeLance_Fire</soundCast>
-				  <soundCastTail>GunTail_Heavy</soundCastTail>
-				  <muzzleFlashScale>9</muzzleFlashScale>
-				</li>
-			</verbs>
-		</value>
-	</Operation>
-
-	<!-- Add comps -->
-
-	<Operation Class="PatchOperationSequence">
-  	<success>Always</success>
-  	<operations>
-    	<li Class="PatchOperationTest">
-      	<xpath>*/ThingDef[defName="Gun_ChargeLance"]/comps</xpath>
-      	<success>Invert</success>
-    	</li>
-    	<li Class="PatchOperationAdd">
-      	<xpath>*/ThingDef[defName="Gun_ChargeLance"]</xpath>
-      	<value>
-        	<comps />
-      	</value>
-    	</li>
-  	</operations>
-	</Operation>
-
-	<Operation Class="PatchOperationAdd">
-		<xpath>*/ThingDef[defName="Gun_ChargeLance"]/comps</xpath>
-		<value>
-			<li Class="CombatExtended.CompProperties_AmmoUser">
-			  <magazineSize>1</magazineSize>
-			  <reloadTime>1.6</reloadTime>
-			  <ammoSet>AmmoSet_5x35mmCharged</ammoSet>
-			</li>
-			<li Class="CombatExtended.CompProperties_FireModes">
-			  <aiAimMode>AimedShot</aiAimMode>
-			</li>
-		</value>
-	</Operation>
-
-	<!-- Add tags -->
-
-	<Operation Class="PatchOperationSequence">
-  	<success>Always</success>
-  	<operations>
-    	<li Class="PatchOperationTest">
-      	<xpath>*/ThingDef[defName="Gun_ChargeLance"]/weaponTags</xpath>
-      	<success>Invert</success>
-    	</li>
-    	<li Class="PatchOperationAdd">
-      	<xpath>*/ThingDef[defName="Gun_ChargeLance"]</xpath>
-      	<value>
-        	<weaponTags />
-      	</value>
-    	</li>
-  	</operations>
-	</Operation>
-
-	<Operation Class="PatchOperationAdd">
-		<xpath>*/ThingDef[defName="Gun_ChargeLance"]/weaponTags</xpath>
-		<value>
+    </statBases>
+    <Properties>
+    	<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+    	<hasStandardCommand>true</hasStandardCommand>
+    	<projectileDef>Bullet_5x35mmCharged</projectileDef>
+    	<warmupTime>1.1</warmupTime>
+    	<range>62</range>
+    	<burstShotCount>1</burstShotCount>
+    	<soundCast>ChargeLance_Fire</soundCast>
+    	<soundCastTail>GunTail_Heavy</soundCastTail>
+    	<muzzleFlashScale>9</muzzleFlashScale>
+    </Properties>
+    <AmmoUser>
+    	<magazineSize>1</magazineSize>
+    	<reloadTime>1.6</reloadTime>
+    	<ammoSet>AmmoSet_5x35mmCharged</ammoSet>
+    </AmmoUser>
+    <FireModes>
+    	<aiAimMode>AimedShot</aiAimMode>
+    </FireModes>
+    <weaponTags>
 			<li>CE_AI_Rifle</li>
-		</value>
-	</Operation>
+    </weaponTags>
+  </Operation>
 
 </Patch>
 
