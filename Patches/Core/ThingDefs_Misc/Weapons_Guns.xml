@@ -1623,6 +1623,18 @@
 
 	<!-- ========== Doomsday launcher ========== -->
 
+	<!-- Patch both launchers -->
+
+	<Operation Class="PatchOperationRemove">
+		<xpath>*/ThingDef[defName="Gun_DoomsdayRocket" or defName="Gun_TripleRocket"]/weaponTags/li[.="Gun"]</xpath>
+	</Operation>
+
+	<Operation Class="PatchOperationAttributeSet">
+		<xpath>*/ThingDef[defName="Gun_DoomsdayRocket" or defName="Gun_TripleRocket"]</xpath>
+		<attribute>ParentName</attribute>
+		<value>BaseMakeableGun</value>
+	</Operation>
+
 	<!-- Patch projectile -->
 
 	<Operation Class="PatchOperationReplace">
