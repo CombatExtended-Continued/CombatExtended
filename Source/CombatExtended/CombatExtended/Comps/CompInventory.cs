@@ -385,7 +385,7 @@ namespace CombatExtended
             {
                 ticksToInitLoadout--;
             }
-            else if (!initializedLoadouts)
+            else if (!initializedLoadouts && parent.Spawned)
             {
                 // Find all loadout generators
                 List<LoadoutGeneratorThing> genList = new List<LoadoutGeneratorThing>();
