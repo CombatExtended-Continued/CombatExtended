@@ -385,16 +385,16 @@ namespace CombatExtended
                                 dropCount = listing[def].value > dropThing.stackCount ? dropThing.stackCount : listing[def].value;
                                 return true;
                             }
-                            else if (rec.count > listing[def].value)
+                        }
+                        else if (rec.count > listing[def].value)
+                        {
+                            // the item we have extra of HAS a HoldRecord but the amount carried is above the limit of the HoldRecord, drop extra.
+                            dropThing = pawn.inventory.innerContainer.FirstOrDefault(t => t.def == def);
+                            if (dropThing != null)
                             {
-                                // the item we have extra of HAS a HoldRecord but the amount carried is above the limit of the HoldRecord, drop extra.
-                                dropThing = pawn.inventory.innerContainer.FirstOrDefault(t => t.def == def);
-                                if (dropThing != null)
-                                {
-                                    dropCount = listing[def].value - rec.count;
-                                    dropCount = dropCount > dropThing.stackCount ? dropThing.stackCount : dropCount;
-                                    return true;
-                                }
+                                dropCount = listing[def].value - rec.count;
+                                dropCount = dropCount > dropThing.stackCount ? dropThing.stackCount : dropCount;
+                                return true;
                             }
                         }
                     }
