@@ -46,9 +46,19 @@ namespace CombatExtended
 			var gotoCastPos = GotoCastPosition(VictimInd, true).JumpIfDespawnedOrNull(VictimInd, startCollectCorpse).FailOn(() => Find.TickManager.TicksGame > jobStartTick + MaxHuntTicks);
 			
 			yield return gotoCastPos;
-			
-			var moveIfCannotHit = Toils_Jump.JumpIfTargetNotHittable(VictimInd, gotoCastPos);
-			
+
+            //var moveIfCannotHit = Toils_Jump.JumpIfTargetNotHittable(VictimInd, gotoCastPos);
+            var moveIfCannotHit = Toils_Jump.JumpIf(gotoCastPos, delegate
+            {
+                var verb = CurJob.verbToUse;
+                var optimalRange = HuntRangePerBodysize(Victim.RaceProps.baseBodySize, Victim.RaceProps.executionRange, verb.verbProps.range);
+                if (pawn.Position.DistanceTo(Victim.Position) > optimalRange)
+                {
+                    return true;
+                }
+                return !verb.CanHitTarget(Victim);
+            });
+
 			yield return moveIfCannotHit;
 			
 			//yield return Toils_Jump.JumpIfTargetDownedDistant(VictimInd, gotoCastPos);
@@ -82,7 +92,7 @@ namespace CombatExtended
             {
                 initAction = delegate
                 {
-                    ExecutionUtility.DoExecutionByCut(GetActor(), Victim);
+                    ExecutionUtility.DoExecutionByCut(pawn, Victim);
                 },
                 defaultCompleteMode = ToilCompleteMode.Instant
             };
