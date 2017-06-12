@@ -63,7 +63,7 @@ namespace CombatExtended
 			
 			yield return Toils_Jump.JumpIfTargetDespawnedOrNull(VictimInd, startCollectCorpse);
 
-            var startExecuteDowned = Toils_Goto.GotoThing(VictimInd, PathEndMode.Touch).JumpIfDespawnedOrNull(VictimInd, startCollectCorpse).FailOnSomeonePhysicallyInteracting(VictimInd);
+            var startExecuteDowned = Toils_Goto.GotoThing(VictimInd, PathEndMode.Touch).JumpIfDespawnedOrNull(VictimInd, startCollectCorpse);
 
             yield return Toils_Jump.JumpIf(startExecuteDowned, () => Victim.Downed && Victim.RaceProps.executionRange <= 2);
 
@@ -86,7 +86,7 @@ namespace CombatExtended
             // Execute downed animal - adapted from JobDriver_Slaughter
             yield return startExecuteDowned;
 
-            yield return Toils_General.WaitWith(VictimInd, 180, true).JumpIfDespawnedOrNull(VictimInd, startCollectCorpse).FailOnSomeonePhysicallyInteracting(VictimInd);
+            yield return Toils_General.WaitWith(VictimInd, 180, true).JumpIfDespawnedOrNull(VictimInd, startCollectCorpse);
 
             yield return new Toil
             {
