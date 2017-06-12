@@ -51,9 +51,13 @@ namespace CombatExtended
 			
 			yield return moveIfCannotHit;
 			
-			yield return Toils_Jump.JumpIfTargetDownedDistant(VictimInd, gotoCastPos);
+			//yield return Toils_Jump.JumpIfTargetDownedDistant(VictimInd, gotoCastPos);
 			
 			yield return Toils_Jump.JumpIfTargetDespawnedOrNull(VictimInd, startCollectCorpse);
+
+            var startExecuteDowned = Toils_Goto.GotoThing(VictimInd, PathEndMode.Touch).JumpIfDespawnedOrNull(VictimInd, startCollectCorpse).FailOnSomeonePhysicallyInteracting(VictimInd);
+
+            yield return Toils_Jump.JumpIf(startExecuteDowned, () => Victim.Downed);
 			
 			yield return Toils_Combat.CastVerb(VictimInd, false).JumpIfDespawnedOrNull(VictimInd, startCollectCorpse)
 				.FailOn(() => {
@@ -68,8 +72,23 @@ namespace CombatExtended
 				        });
 			
 			yield return Toils_Jump.Jump(moveIfCannotHit);
-			
-			yield return startCollectCorpse;
+
+            // Execute downed animal - adapted from JobDriver_Slaughter
+            yield return startExecuteDowned;
+
+            yield return Toils_General.WaitWith(VictimInd, 180, true).JumpIfDespawnedOrNull(VictimInd, startCollectCorpse).FailOnSomeonePhysicallyInteracting(VictimInd);
+
+            yield return new Toil
+            {
+                initAction = delegate
+                {
+                    ExecutionUtility.DoExecutionByCut(GetActor(), Victim);
+                },
+                defaultCompleteMode = ToilCompleteMode.Instant
+            };
+
+            // Haul corpse to stockpile
+            yield return startCollectCorpse;
 			
 			yield return Toils_Goto.GotoCell(VictimInd, PathEndMode.ClosestTouch).FailOnDespawnedNullOrForbidden(VictimInd).FailOnSomeonePhysicallyInteracting(VictimInd);
 			
