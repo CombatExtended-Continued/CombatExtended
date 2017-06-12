@@ -93,11 +93,12 @@ namespace CombatExtended
 
         // Range variables
         public float shotDist = 0f;
+        public float maxRange;
         public float distShift
         {
             get
             {
-                return shotDist * Mathf.Min(accuracyFactor * 0.25f, 0.8f);
+                return shotDist * (shotDist / maxRange) * Mathf.Min(accuracyFactor * 0.5f, 1.6f);
             }
         }
 
@@ -118,6 +119,7 @@ namespace CombatExtended
             lightingShift = report.lightingShift;
             shotSpeed = report.shotSpeed;
             shotDist = report.shotDist;
+            maxRange = report.maxRange;
             isAiming = report.isAiming;
             swayDegrees = report.swayDegrees;
             spreadDegrees = report.spreadDegrees;
