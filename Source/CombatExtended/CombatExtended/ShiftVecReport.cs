@@ -87,7 +87,7 @@ namespace CombatExtended
         {
             get
             {
-                return leadDist * Mathf.Min(accuracyFactor, 3);
+                return leadDist * Mathf.Min(accuracyFactor * 0.25f, 3);
             }
         }
 
