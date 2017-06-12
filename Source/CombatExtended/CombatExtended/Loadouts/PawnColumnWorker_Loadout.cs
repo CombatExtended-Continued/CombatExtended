@@ -15,8 +15,20 @@ namespace CombatExtended
 
         private const int ManageOutfitsButtonHeight = 32;
 
-        internal static float _MinWidth = 197f;  //194f default
-        internal static float _OptimalWidth = 214;  //354f default
+        // Transpiler referenced items should be changed with extreme caution.  Values can be changed but visibility, type, and name should not be.
+        #region TranspilerReferencedItems
+        internal const float _MinWidth = 197f;  //194f default
+        internal const float _OptimalWidth = 214;  //354f default
+
+        internal static float IconSize = 16f;
+        // using property format since I don't know what the lambda expression '=>' gets compiled into in this context.
+        public static Texture2D EditImage { get { return ContentFinder<Texture2D>.Get("UI/Icons/edit"); } }
+        public static Texture2D ClearImage { get { return ContentFinder<Texture2D>.Get("UI/Icons/clear"); } }
+        internal static string textGetter(string untranslatedString)
+        {
+            return "CE_EditX".Translate(untranslatedString.Translate());
+        }
+        #endregion TranspilerReferencedItems
 
         public override void DoHeader(Rect rect, PawnTable table)
         {
@@ -30,15 +42,22 @@ namespace CombatExtended
             UIHighlighter.HighlightOpportunity(rect2, "CE_ManageLoadouts");
         }
 
+        /* (ProfoundDarkness) I've intentionally left some code remarked in the following code because it's a useful guide on how to create
+         * and maintain the transpilers that will do nearly identical changes to RimWorld's code for the other 2 PawnColumnWorkers.
+         */
         public override void DoCell(Rect rect, Pawn pawn, PawnTable table)
         {
             if (pawn.outfits == null)
             {
                 return;
             }
-            int num = Mathf.FloorToInt((rect.width - 4f) * 0.714285731f);
-            int num2 = Mathf.FloorToInt((rect.width - 4f) * 0.2857143f);
+            //changed: int num = Mathf.FloorToInt((rect.width - 4f) * 0.714285731f);
+            int num = Mathf.FloorToInt((rect.width - 4f) - IconSize);
+            //changed: int num2 = Mathf.FloorToInt((rect.width - 4f) * 0.2857143f);
+            int num2 = Mathf.FloorToInt(IconSize);
             float num3 = rect.x;
+            //added:
+            float num4 = rect.y + ((rect.height - IconSize) / 2);
 
             // Reduce width if we're adding a clear forced button
             bool somethingIsForced = pawn.HoldTrackerAnythingHeld();
@@ -69,10 +88,12 @@ namespace CombatExtended
             // Clear forced button
             num3 += loadoutButtonRect.width;
             num3 += 4f;
-            Rect forcedHoldRect = new Rect(num3, rect.y + 2f, (float)num2, rect.height - 4f);
+            //changed: Rect forcedHoldRect = new Rect(num3, rect.y + 2f, (float)num2, rect.height - 4f);
+            Rect forcedHoldRect = new Rect(num3, num4, (float)num2, (float)num2);
             if (somethingIsForced)
             {
-                if (Widgets.ButtonText(forcedHoldRect, "ClearForcedApparel".Translate(), true, false, true)) // "Clear forced" is sufficient and that's what this is at the moment.
+                //changed: if (Widgets.ButtonText(forcedHoldRect, "ClearForcedApparel".Translate(), true, false, true)) // "Clear forced" is sufficient and that's what this is at the moment.
+                if (Widgets.ButtonImage(forcedHoldRect, ClearImage))
                 {
                     pawn.HoldTrackerClear(); // yes this will also delete records that haven't been picked up and thus not shown to the player...
                 }
@@ -90,11 +111,15 @@ namespace CombatExtended
                 num3 += 4f;
             }
 
-            Rect assignTabRect = new Rect(num3, rect.y + 2f, (float)num2, rect.height - 4f);
-            if (Widgets.ButtonText(assignTabRect, "AssignTabEdit".Translate(), true, false, true))
+            //changed: Rect assignTabRect = new Rect(num3, rect.y + 2f, (float)num2, rect.height - 4f);
+            Rect assignTabRect = new Rect(num3, num4, (float)num2, (float)num2);
+            //changed: if (Widgets.ButtonText(assignTabRect, "AssignTabEdit".Translate(), true, false, true))
+            if (Widgets.ButtonImage(assignTabRect, EditImage))
             {
                 Find.WindowStack.Add(new Dialog_ManageLoadouts(pawn.GetLoadout()));
             }
+            // Added this next line.
+            TooltipHandler.TipRegion(assignTabRect, new TipSignal(textGetter("CE_Loadouts"), pawn.GetHashCode() * 613));
             num3 += (float)num2;
         }
 
