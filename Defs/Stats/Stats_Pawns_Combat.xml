@@ -11,9 +11,10 @@
     <displayPriorityInCategory>50</displayPriorityInCategory>
     <defaultBaseValue>1.0</defaultBaseValue>
     <minValue>0.0</minValue>
-    <maxValue>1.5</maxValue>
+    <maxValue>6.5</maxValue> <!-- should post-process to 1.5 -->
     <toStringStyle>PercentTwo</toStringStyle>
     <showOnAnimals>false</showOnAnimals>
+    <!--
     <skillNeedFactors>
       <li Class="SkillNeed_Direct">
         <skill>Shooting</skill>
@@ -43,6 +44,14 @@
         </factorsPerLevel>
       </li>
     </skillNeedFactors>
+    -->
+    <skillNeedFactors>
+      <li Class="SkillNeed_BaseBonus">
+        <skill>Shooting</skill>
+        <baseFactor>0.2</baseFactor>
+        <bonusFactor>0.1</bonusFactor>
+      </li>
+    </skillNeedFactors>
     <capacityFactors>
       <li>
         <capacity>Consciousness</capacity>
@@ -53,6 +62,15 @@
         <weight>1</weight>
       </li>
     </capacityFactors>
+    <postProcessCurve>
+      <points>
+        <li>(0.0, 0.0)</li>
+        <li>(0.5, 0.5)</li>
+        <li>(1.0, 0.75)</li>
+        <li>(1.5, 0.875)</li>
+        <li>(2.0, 0.9375)</li>
+      </points>
+    </postProcessCurve>
   </StatDef>
 
   <StatDef>
