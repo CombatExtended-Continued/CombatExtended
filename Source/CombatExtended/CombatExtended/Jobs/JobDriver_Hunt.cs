@@ -61,15 +61,15 @@ namespace CombatExtended
 
 			yield return moveIfCannotHit;
 			
-			//yield return Toils_Jump.JumpIfTargetDownedDistant(VictimInd, gotoCastPos);
-			
 			yield return Toils_Jump.JumpIfTargetDespawnedOrNull(VictimInd, startCollectCorpse);
 
             var startExecuteDowned = Toils_Goto.GotoThing(VictimInd, PathEndMode.Touch).JumpIfDespawnedOrNull(VictimInd, startCollectCorpse).FailOnSomeonePhysicallyInteracting(VictimInd);
 
-            yield return Toils_Jump.JumpIf(startExecuteDowned, () => Victim.Downed);
-			
-			yield return Toils_Combat.CastVerb(VictimInd, false).JumpIfDespawnedOrNull(VictimInd, startCollectCorpse)
+            yield return Toils_Jump.JumpIf(startExecuteDowned, () => Victim.Downed && Victim.RaceProps.executionRange <= 2);
+
+            yield return Toils_Jump.JumpIfTargetDownedDistant(VictimInd, gotoCastPos);
+
+            yield return Toils_Combat.CastVerb(VictimInd, false).JumpIfDespawnedOrNull(VictimInd, startCollectCorpse)
 				.FailOn(() => {
 				        if (Find.TickManager.TicksGame <= jobStartTick + MaxHuntTicks)
 				        {
