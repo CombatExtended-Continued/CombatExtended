@@ -197,7 +197,8 @@ namespace CombatExtended
 				{
 					// look for a thing inside caravan pack animals and prisoners.  EXCLUDE other colonists to avoid looping state.
 					List<Pawn> carriers = pawn.Map.mapPawns.AllPawns.Where(
-						p => p.inventory.innerContainer.Count > 0 && (p.RaceProps.packAnimal && p.Faction == pawn.Faction || p.IsPrisoner && p.HostFaction == pawn.Faction)).ToList();
+						p => p.inventory.innerContainer.Count > 0 && (p.RaceProps.packAnimal && p.Faction == pawn.Faction || p.IsPrisoner && p.HostFaction == pawn.Faction)
+                        && pawn.CanReserveAndReach(p, PathEndMode.ClosestTouch, Danger.Deadly, int.MaxValue, 0)).ToList();
 					foreach (Pawn carrier in carriers)
 					{
 						Thing thing = carrier.inventory.innerContainer.FirstOrDefault(t => findItem(t));
