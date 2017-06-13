@@ -98,7 +98,7 @@ namespace CombatExtended
         {
             get
             {
-                return shotDist * (shotDist / maxRange) * Mathf.Min(accuracyFactor * 0.5f, 1.6f);
+                return shotDist * (shotDist / maxRange) * Mathf.Min(accuracyFactor * 0.5f, 0.8f);
             }
         }
 

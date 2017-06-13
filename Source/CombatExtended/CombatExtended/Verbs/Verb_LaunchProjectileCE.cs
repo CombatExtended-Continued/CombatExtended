@@ -517,10 +517,7 @@ namespace CombatExtended
 	           	ShiftTarget(report, pelletMechanicsOnly);
 
                 //New aiming algorithm
-                if (verbProps.targetParams.canTargetSelf)
-                {
-                    projectile.canTargetSelf = true;
-                }
+                projectile.canTargetSelf = false;
                 projectile.minCollisionSqr = (sourceLoc - currentTarget.Cell.ToIntVec2.ToVector2Shifted()).sqrMagnitude;
                 projectile.Launch(caster, sourceLoc, shotAngle, shotRotation, ShotHeight, ShotSpeed, ownerEquipment);
 	           	pelletMechanicsOnly = true;
