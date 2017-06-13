@@ -1,14 +1,13 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <Patch>
 
-	<!-- ========== Tribal ========== -->
-
 	<Operation Class="PatchOperationSequence">
 		<success>Always</success>
 		<operations>
 			<li Class="CombatExtended.PatchOperationFindMod">
 				<modName>Vanilla-Friendly Weapon Expansion</modName>
 			</li>
+			<!-- ========== Tribal ========== -->
 			<li Class="PatchOperationAdd">
 				<xpath>/PawnKindDefs/PawnKindDef[defName = "TribalSlinger"]</xpath>
 				<value>
@@ -20,6 +19,22 @@
 		</operations>
 	</Operation>
 
-
+	<Operation Class="PatchOperationSequence">
+		<success>Always</success>
+		<operations>
+			<li Class="CombatExtended.PatchOperationFindMod">
+				<modName>XeoNovaDan's Mod Compendium</modName>
+			</li>
+			<!-- ========== Tribal ========== -->
+			<li Class="PatchOperationAdd">
+				<xpath>/PawnKindDefs/PawnKindDef[defName = "TribalSlinger"]</xpath>
+				<value>
+					<fixedInventory>
+						<LoadoutGen_TribalAmmo>1</LoadoutGen_TribalAmmo>
+					</fixedInventory>
+				</value>
+			</li>
+		</operations>
+	</Operation>
 
 </Patch>
