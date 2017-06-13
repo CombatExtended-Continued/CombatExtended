@@ -410,6 +410,11 @@ namespace CombatExtended
         /// <returns>True if impact occured, false otherwise</returns>
         private bool TryCollideWith(Thing thing, Ray shotLine)
         {
+            if (thing == launcher && !canTargetSelf)
+            {
+                return false;
+            }
+
             // Trees have RNG chance to collide
             if (thing.IsTree())
             {
