@@ -1,6 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <HediffDefs>
 
+  <!-- Global -->
+
   <HediffDef>
     <defName>MuscleSpasms</defName>
     <label>muscle spasms</label>
@@ -73,6 +75,48 @@
             <setMax>0.0</setMax>
           </li>
         </capMods>
+      </li>
+    </stages>
+  </HediffDef>
+
+  <HediffDef>
+    <defName>PrometheumSoaked</defName>
+    <label>Prometheum-soaked</label>
+    <hediffClass>HediffWithComps</hediffClass>
+    <comps>
+      <li Class="HediffCompProperties_SeverityPerDay">
+        <severityPerDay>-12</severityPerDay>
+      </li>
+      <li Class="CombatExtended.HediffCompProperties_Prometheum" />
+    </comps>
+    <stages>
+      <li>
+        <minSeverity>0.2</minSeverity>
+        <label>minor</label>
+        <statOffsets>
+          <Flammability>0.4</Flammability>
+        </statOffsets>
+      </li>
+      <li>
+        <minSeverity>0.40</minSeverity>
+        <label>dripping</label>
+        <statOffsets>
+          <Flammability>0.8</Flammability>
+        </statOffsets>
+      </li>
+      <li>
+        <minSeverity>0.6</minSeverity>
+        <label>soaked</label>
+        <statOffsets>
+          <Flammability>1.2</Flammability>
+        </statOffsets>
+      </li>
+      <li>
+        <minSeverity>0.8</minSeverity>
+        <label>drenched</label>
+        <statOffsets>
+          <Flammability>1.5</Flammability>
+        </statOffsets>
       </li>
     </stages>
   </HediffDef>

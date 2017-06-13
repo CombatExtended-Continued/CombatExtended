@@ -34,7 +34,7 @@ namespace CombatExtended
             }
             this.landed = true;
             this.ticksToDetonation = this.def.projectile.explosionDelay;
-            GenExplosion.NotifyNearbyPawnsOfDangerousExplosive(this, this.def.projectile.damageDef, this.launcher.Faction);
+            GenExplosion.NotifyNearbyPawnsOfDangerousExplosive(this, this.def.projectile.damageDef, this.launcher?.Faction);
         }
         protected virtual void Explode()
         {
