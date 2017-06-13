@@ -14,6 +14,7 @@ using System.Collections.Generic;
  * local variable operands (ex Ldloc_s, Stloc_s) == LocalVariableInfo
  * field operands (ex ldfld) == FieldInfo
  * method operands (ex call, callvirt) == MethodInfo
+ * argument operands (ex Ldarga_S) == byte? (that's not asking a question but the actual type)
  * For branching, if the operand is a branch the label will be a Label? (Label isn't nullable but since it's in an object it must be nullable).
  * -Labels tend to look the same, use <instance_label>.GetHashCode() to determine WHICH label it is...
  * 
@@ -53,7 +54,8 @@ namespace CombatExtended.Harmony
             PatchThingOwner();
             PatchHediffWithComps();
             Harmony_GenRadial_RadialPatternCount.Patch();
-            PatchCoreWorkers.Patch();
+            PawnColumnWorkers_Resize.Patch();
+            PawnColumnWorkers_SwapButtons.Patch();
         }
 
         #region Patch helper methods
