@@ -37,7 +37,7 @@ namespace CombatExtended
             string turretType = (turret.def.hasInteractionCell ? "CE_MannedTurret" : "CE_AutoTurret").Translate();
             text = text.Replace("TurretType", turretType);
             text = text.Replace("TargetA", TargetThingA.def.label);
-            if (compReloader.useAmmo)
+            if (compReloader.UseAmmo)
                 text = text.Replace("TargetB", TargetThingB.def.label);
             else
                 text = text.Replace("TargetB", "CE_ReloadingGenericAmmo".Translate());
@@ -57,7 +57,7 @@ namespace CombatExtended
                 Log.Error(string.Concat(errorBase, "TargetThingA (Building_TurretGunCE) is missing it's CompAmmoUser."));
                 yield return null;
             }
-            if (compReloader.useAmmo && ammo == null)
+            if (compReloader.UseAmmo && ammo == null)
             {
                 Log.Error(string.Concat(errorBase, "TargetThingB is either null or not an AmmoThing."));
                 yield return null;
@@ -72,7 +72,7 @@ namespace CombatExtended
             // Reserve the turret
             yield return Toils_Reserve.Reserve(TargetIndex.A, 1);
 
-            if (compReloader.useAmmo)
+            if (compReloader.UseAmmo)
             {
                 // Perform ammo system specific activities, failure condition and hauling
                 if (pawn.Faction != Faction.OfPlayer)

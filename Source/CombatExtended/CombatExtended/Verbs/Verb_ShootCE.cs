@@ -202,7 +202,7 @@ namespace CombatExtended
             {
                 if (!CompAmmo.TryReduceAmmoCount())
                 {
-                    if (CompAmmo.hasMagazine)
+                    if (CompAmmo.HasMagazine)
                         CompAmmo.TryStartReload();
                     return false;
                 }
@@ -215,7 +215,7 @@ namespace CombatExtended
                     CE_Utility.ThrowEmptyCasing(caster.DrawPos, caster.Map, ThingDef.Named(projectilePropsCE.casingMoteDefname));
                 }
 	            // This needs to here for weapons without magazine to ensure their last shot plays sounds
-                if (CompAmmo != null && !CompAmmo.hasMagazine && CompAmmo.useAmmo)
+                if (CompAmmo != null && !CompAmmo.HasMagazine && CompAmmo.UseAmmo)
                 {
                 	if (!CompAmmo.Notify_ShotFired())
                 	{

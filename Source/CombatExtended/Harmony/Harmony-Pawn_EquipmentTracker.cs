@@ -107,9 +107,9 @@ namespace CombatExtended.Harmony
                 if (__instance.Primary != null)
                 {
                     CompAmmoUser compAmmo = __instance.Primary.TryGetComp<CompAmmoUser>();
-                    if (compAmmo != null && !compAmmo.canBeFiredNow)
+                    if (compAmmo != null && !compAmmo.CanBeFiredNow)
                     {
-                        if (compAmmo.hasAmmo)
+                        if (compAmmo.HasAmmo)
                         {
                             compAmmo.TryStartReload();
                         }

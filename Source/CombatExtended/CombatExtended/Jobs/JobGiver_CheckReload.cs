@@ -62,7 +62,7 @@ namespace CombatExtended
 				if (!comp.TryUnload()) return null; // unload the weapon or stop trying if there was a problem.
 				
 				// change ammo type if necessary.
-				if (comp.useAmmo && comp.currentAmmo != ammo)
+				if (comp.UseAmmo && comp.CurrentAmmo != ammo)
 					comp.SelectedAmmo = ammo;
 				
 	            // Get the reload job from the comp.
@@ -106,11 +106,11 @@ namespace CombatExtended
             if (inventory == null)
 				return false; // There isn't any work to do since the pawn doesn't have a CE Inventory.
 			
-			if ((tmpComp = pawn.equipment?.Primary?.TryGetComp<CompAmmoUser>()) != null && tmpComp.hasMagazine)
+			if ((tmpComp = pawn.equipment?.Primary?.TryGetComp<CompAmmoUser>()) != null && tmpComp.HasMagazine)
 				guns.Add(pawn.equipment.Primary);
 
             // CompInventory doesn't track equipment and it's desired to check the pawn's equipped weapon before inventory items so need to copy stuff from Inventory Cache.
-            guns.AddRange(inventory.rangedWeaponList.Where(t => t.TryGetComp<CompAmmoUser>() != null && t.GetComp<CompAmmoUser>().hasMagazine));
+            guns.AddRange(inventory.rangedWeaponList.Where(t => t.TryGetComp<CompAmmoUser>() != null && t.GetComp<CompAmmoUser>().HasMagazine));
 			
 			if (guns.NullOrEmpty())
 				return false; // There isn't any work to do since the pawn doesn't have any ammo using guns.
@@ -120,12 +120,12 @@ namespace CombatExtended
 			{
 				// Get key stats of the weapon.
 				tmpComp = gun.TryGetComp<CompAmmoUser>();
-				AmmoDef ammoType = tmpComp.currentAmmo;
-				int ammoAmount = tmpComp.curMagCount;
+				AmmoDef ammoType = tmpComp.CurrentAmmo;
+				int ammoAmount = tmpComp.CurMagCount;
 				int magazineSize = tmpComp.Props.magazineSize;
 
                 // Is the gun loaded with ammo not in a Loadout/HoldTracker?
-                if (tmpComp.useAmmo && pawnHasLoadout && !TrackingSatisfied(pawn, ammoType, magazineSize))
+                if (tmpComp.UseAmmo && pawnHasLoadout && !TrackingSatisfied(pawn, ammoType, magazineSize))
 				{
 					// Do we have ammo in the inventory that the gun uses which satisfies requirements? (expensive)
 					AmmoDef matchAmmo = tmpComp.Props.ammoSet.ammoTypes
@@ -143,10 +143,10 @@ namespace CombatExtended
 				}
 				
 				// Is the gun low on ammo?
-				if (tmpComp.curMagCount < magazineSize)
+				if (tmpComp.CurMagCount < magazineSize)
 				{
 					// Do we have enough ammo in the inventory to top it off?
-					if (!tmpComp.useAmmo || inventory.AmmoCountOfDef(ammoType) >= (magazineSize - tmpComp.curMagCount))
+					if (!tmpComp.UseAmmo || inventory.AmmoCountOfDef(ammoType) >= (magazineSize - tmpComp.CurMagCount))
 					{
 						reloadWeapon = gun;
 						reloadAmmo = ammoType;

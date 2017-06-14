@@ -73,7 +73,7 @@ namespace CombatExtended
 				.FailOn(() => {
 				        if (Find.TickManager.TicksGame <= jobStartTick + MaxHuntTicks)
 				        {
-			                if (comp == null || comp.hasAndUsesAmmoOrMagazine)
+			                if (comp == null || comp.HasAndUsesAmmoOrMagazine)
 			                {
 			                	return false;
 			                }

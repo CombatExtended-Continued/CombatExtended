@@ -21,13 +21,13 @@ namespace CombatExtended
                 return;
             }
             if (((ev.button == 1 || !Controller.settings.RightClickAmmoSelect) 
-                && compAmmo.useAmmo 
-                && (compAmmo.compInventory != null || compAmmo.turret != null))
+                && compAmmo.UseAmmo 
+                && (compAmmo.CompInventory != null || compAmmo.turret != null))
                 || action == null)
             {
                 Find.WindowStack.Add(MakeAmmoMenu());
             }
-            else if (compAmmo.SelectedAmmo != compAmmo.currentAmmo || compAmmo.curMagCount < compAmmo.Props.magazineSize)
+            else if (compAmmo.SelectedAmmo != compAmmo.CurrentAmmo || compAmmo.CurMagCount < compAmmo.Props.magazineSize)
             {
                 base.ProcessInput(ev);
             }
@@ -51,7 +51,7 @@ namespace CombatExtended
                 // Iterate through all suitable ammo types and check if they're in our inventory
                 foreach (AmmoLink curLink in compAmmo.Props.ammoSet.ammoTypes)
                 {
-                    if (compAmmo.compInventory.ammoList.Any(x => x.def == curLink.ammo))
+                    if (compAmmo.CompInventory.ammoList.Any(x => x.def == curLink.ammo))
                         ammoList.Add(curLink.ammo);
                 }
             }
@@ -69,7 +69,7 @@ namespace CombatExtended
                 {
                     AmmoDef ammoDef = (AmmoDef)curDef;
                     floatOptionList.Add(new FloatMenuOption(ammoDef.ammoClass.LabelCap, new Action(delegate {
-                        bool shouldReload = Controller.settings.AutoReloadOnChangeAmmo && (compAmmo.SelectedAmmo != ammoDef || compAmmo.curMagCount < compAmmo.Props.magazineSize) && compAmmo.turret?.MannableComp == null;
+                        bool shouldReload = Controller.settings.AutoReloadOnChangeAmmo && (compAmmo.SelectedAmmo != ammoDef || compAmmo.CurMagCount < compAmmo.Props.magazineSize) && compAmmo.turret?.MannableComp == null;
 		               	compAmmo.SelectedAmmo = ammoDef;
 		               	if (shouldReload)
 		               	{
@@ -86,12 +86,12 @@ namespace CombatExtended
                 }
             }
             // Append unload command
-            if (compAmmo.useAmmo && (compAmmo.wielder != null || compAmmo.turret?.MannableComp != null) && compAmmo.hasMagazine && compAmmo.curMagCount > 0)
+            if (compAmmo.UseAmmo && (compAmmo.Wielder != null || compAmmo.turret?.MannableComp != null) && compAmmo.HasMagazine && compAmmo.CurMagCount > 0)
             {
                 floatOptionList.Add(new FloatMenuOption("CE_UnloadLabel".Translate(), new Action(delegate { compAmmo.TryUnload(); })));
             }
             // Append reload command
-            if (compAmmo.hasMagazine && !Controller.settings.RightClickAmmoSelect)
+            if (compAmmo.HasMagazine && !Controller.settings.RightClickAmmoSelect)
             {
                 floatOptionList.Add(new FloatMenuOption("CE_ReloadLabel".Translate(), new Action(action)));
             }

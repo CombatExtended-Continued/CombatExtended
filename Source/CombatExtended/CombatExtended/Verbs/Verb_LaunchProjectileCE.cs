@@ -120,7 +120,7 @@ namespace CombatExtended
             {
                 if (CompAmmo != null)
                 {
-                    if (CompAmmo.currentAmmo != null)
+                    if (CompAmmo.CurrentAmmo != null)
                     {
                         return CompAmmo.CurAmmoProjectile;
                     }

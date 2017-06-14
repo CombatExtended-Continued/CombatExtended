@@ -42,18 +42,18 @@ namespace CombatExtended
             Rect textRect = inRect;
             textRect.height = overRect.height / 2;
             Text.Font = GameFont.Tiny;
-            Widgets.Label(textRect, compAmmo.currentAmmo == null ? compAmmo.parent.def.LabelCap : compAmmo.currentAmmo.ammoClass.LabelCap);
+            Widgets.Label(textRect, compAmmo.CurrentAmmo == null ? compAmmo.parent.def.LabelCap : compAmmo.CurrentAmmo.ammoClass.LabelCap);
 
             // Bar
-            if (compAmmo.hasMagazine)
+            if (compAmmo.HasMagazine)
             {
                 Rect barRect = inRect;
                 barRect.yMin = overRect.y + overRect.height / 2f;
-                float ePct = (float)compAmmo.curMagCount / compAmmo.Props.magazineSize;
+                float ePct = (float)compAmmo.CurMagCount / compAmmo.Props.magazineSize;
                 Widgets.FillableBar(barRect, ePct);
                 Text.Font = GameFont.Small;
                 Text.Anchor = TextAnchor.MiddleCenter;
-                Widgets.Label(barRect, compAmmo.curMagCount + " / " + compAmmo.Props.magazineSize);
+                Widgets.Label(barRect, compAmmo.CurMagCount + " / " + compAmmo.Props.magazineSize);
                 Text.Anchor = TextAnchor.UpperLeft;
             }
 

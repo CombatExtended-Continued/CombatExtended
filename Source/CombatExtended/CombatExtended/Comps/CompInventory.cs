@@ -284,11 +284,11 @@ namespace CombatExtended
             //old     weight = eq.GetStatValue(CE_StatDefOf.Weight);
                  bulk = eq.GetStatValue(CE_StatDefOf.Bulk);
             CompAmmoUser comp = eq.TryGetComp<CompAmmoUser>();
-            if (comp != null && comp.currentAmmo != null)
+            if (comp != null && comp.CurrentAmmo != null)
             {
-                weight += comp.currentAmmo.GetStatValueAbstract(StatDefOf.Mass) * comp.curMagCount;
+                weight += comp.CurrentAmmo.GetStatValueAbstract(StatDefOf.Mass) * comp.CurMagCount;
                 //old     weight += comp.currentAmmo.GetStatValueAbstract(CE_StatDefOf.Weight) * comp.curMagCount;
-                bulk += comp.currentAmmo.GetStatValueAbstract(CE_StatDefOf.Bulk) * comp.curMagCount;
+                bulk += comp.CurrentAmmo.GetStatValueAbstract(CE_StatDefOf.Bulk) * comp.CurMagCount;
             }
         }
 
@@ -310,7 +310,7 @@ namespace CombatExtended
                 if (parentPawn.equipment != null && parentPawn.equipment.Primary != gun)
                 {
                     CompAmmoUser compAmmo = gun.TryGetComp<CompAmmoUser>();
-                    if (compAmmo == null || compAmmo.hasAndUsesAmmoOrMagazine)
+                    if (compAmmo == null || compAmmo.HasAndUsesAmmoOrMagazine)
                     {
                         newEq = gun;
                         break;
