@@ -41,7 +41,7 @@ namespace CombatExtended
             if (compAmmo.turret != null)
             {
                 // If we have no inventory available (e.g. manned turret), add all possible ammo types to the selection
-                foreach(AmmoLink link in compAmmo.Props.ammoSet.ammoTypes)
+                foreach (AmmoLink link in compAmmo.Props.ammoSet.ammoTypes)
                 {
                     ammoList.Add(link.ammo);
                 }
@@ -86,12 +86,13 @@ namespace CombatExtended
                 }
             }
             // Append unload command
-            if (compAmmo.UseAmmo && (compAmmo.Wielder != null || compAmmo.turret?.MannableComp != null) && compAmmo.HasMagazine && compAmmo.CurMagCount > 0)
+            var hasOperator = compAmmo.Wielder != null || (compAmmo.turret?.MannableComp?.MannedNow ?? false);
+            if (compAmmo.UseAmmo && hasOperator && compAmmo.HasMagazine && compAmmo.CurMagCount > 0)
             {
                 floatOptionList.Add(new FloatMenuOption("CE_UnloadLabel".Translate(), new Action(delegate { compAmmo.TryUnload(); })));
             }
             // Append reload command
-            if (compAmmo.HasMagazine && !Controller.settings.RightClickAmmoSelect)
+            if (compAmmo.HasMagazine && !Controller.settings.RightClickAmmoSelect && hasOperator)
             {
                 floatOptionList.Add(new FloatMenuOption("CE_ReloadLabel".Translate(), new Action(action)));
             }
