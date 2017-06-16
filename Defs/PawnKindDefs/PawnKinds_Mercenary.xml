@@ -25,9 +25,6 @@
       <li>Outlander</li>
       <li>Military</li>
     </apparelTags>
-    <apparelRequired>
-      <li>Apparel_BallisticShield</li>
-    </apparelRequired>
     <apparelMoney>
       <min>1000</min>
       <max>2600</max>
@@ -71,9 +68,46 @@
         </li>
       </subOptionsChooseOne>
     </inventoryOptions>
-    <fixedInventory>
-      <LoadoutGen_MercAmmoPrimary>1</LoadoutGen_MercAmmoPrimary>
-    </fixedInventory>
+    <ModExtensions>
+      <li Class="CombatExtended.LoadoutPropertiesExtension">
+        <shieldMoney>
+          <min>300</min>
+          <max>1000</max>
+        </shieldMoney>
+        <shieldTags>
+          <li>OutlanderShield</li>
+        </shieldTags>
+        <shieldChance>1</shieldChance>
+        <primaryMagazineCount>
+          <min>1</min>
+          <max>3</max>
+        </primaryMagazineCount>
+        <forcedSidearm>
+          <sidearmMoney>
+            <min>100</min>
+            <max>200</max>
+          </sidearmMoney>
+          <weaponTags>
+            <li>CE_Sidearm_Melee</li>
+          </weaponTags>
+        </forcedSidearm>
+        <sidearms>
+          <li>
+            <sidearmMoney>
+              <min>100</min>
+              <max>200</max>
+            </sidearmMoney>
+            <weaponTags>
+              <li>CE_Sidearm</li>
+            </weaponTags>
+            <magazineCount>
+              <min>1</min>
+              <max>2</max>
+            </magazineCount>
+          </li>
+        </sidearms>
+      </li>
+    </ModExtensions>
   </PawnKindDef>
 
   <PawnKindDef ParentName="MercenaryBase">
@@ -131,10 +165,38 @@
         </li>
       </subOptionsChooseOne>
     </inventoryOptions>
-    <fixedInventory>
-      <LoadoutGen_MercAmmoPrimaryDouble>1</LoadoutGen_MercAmmoPrimaryDouble>
-      <LoadoutGen_MercSidearmMelee>1</LoadoutGen_MercSidearmMelee>
-    </fixedInventory>
+    <ModExtensions>
+      <li Class="CombatExtended.LoadoutPropertiesExtension">
+        <primaryMagazineCount>
+          <min>1</min>
+          <max>3</max>
+        </primaryMagazineCount>
+        <forcedSidearm>
+          <sidearmMoney>
+            <min>100</min>
+            <max>200</max>
+          </sidearmMoney>
+          <weaponTags>
+            <li>CE_Sidearm_Melee</li>
+          </weaponTags>
+        </forcedSidearm>
+        <sidearms>
+          <li>
+            <sidearmMoney>
+              <min>100</min>
+              <max>200</max>
+            </sidearmMoney>
+            <weaponTags>
+              <li>CE_Sidearm</li>
+            </weaponTags>
+            <magazineCount>
+              <min>1</min>
+              <max>2</max>
+            </magazineCount>
+          </li>
+        </sidearms>
+      </li>
+    </ModExtensions>
   </PawnKindDef>
 
 </PawnKindDefs>

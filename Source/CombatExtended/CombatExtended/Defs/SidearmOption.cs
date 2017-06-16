@@ -10,10 +10,9 @@ namespace CombatExtended
 {
     public class SidearmOption
     {
-        FloatRange sidearmCount = FloatRange.One;
-        FloatRange sidearmMoney = FloatRange.Zero;
-        FloatRange magazineCount = FloatRange.Zero;
-        List<string> weaponTags;
-        float generateChance = 1;
+        public FloatRange sidearmMoney = FloatRange.Zero;
+        public FloatRange magazineCount = FloatRange.Zero;
+        public List<string> weaponTags;
+        public float generateChance = 1;
     }
 }
