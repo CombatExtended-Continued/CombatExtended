@@ -14,8 +14,6 @@ namespace CombatExtended
         #region Fields
 
         private Pawn parentPawnInt = null;
-        private bool initializedLoadouts = false;
-        private int ticksToInitLoadout = 5;         // Generate loadouts this many ticks after spawning
         private const int CLEANUPTICKINTERVAL = GenTicks.TickLongInterval;
         private int ticksToNextCleanUp = GenTicks.TicksAbs;
         private float currentWeightCached;
@@ -380,36 +378,6 @@ namespace CombatExtended
 
         public override void CompTick()
         {
-            // Initialize loadouts on first tick
-            if (ticksToInitLoadout > 0)
-            {
-                ticksToInitLoadout--;
-            }
-            else if (!initializedLoadouts && parent.Spawned)
-            {
-                // Find all loadout generators
-                List<LoadoutGeneratorThing> genList = new List<LoadoutGeneratorThing>();
-                foreach (Thing thing in container)
-                {
-                    LoadoutGeneratorThing lGenThing = thing as LoadoutGeneratorThing;
-                    if (lGenThing != null && lGenThing.loadoutGenerator != null)
-                        genList.Add(lGenThing);
-                }
-
-                // Sort list by execution priority
-                genList.Sort(delegate (LoadoutGeneratorThing x, LoadoutGeneratorThing y)
-                {
-                    return x.priority.CompareTo(y.priority);
-                });
-
-                // Generate loadouts
-                foreach (LoadoutGeneratorThing thing in genList)
-                {
-                    thing.loadoutGenerator.GenerateLoadout(this);
-                    container.Remove(thing);
-                }
-                initializedLoadouts = true;
-            }
             if (GenTicks.TicksAbs >= ticksToNextCleanUp)
             {
 	            // Ask HoldTracker to clean itself up...

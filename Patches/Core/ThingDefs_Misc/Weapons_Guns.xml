@@ -1,6 +1,12 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <Patch>
 
+  <!-- ========== Remove elite gun tag from inappropriate weapons ========== -->
+
+  <Operation Class="PatchOperationRemove">
+    <xpath>*/ThingDef[defName="Gun_LMG" or "Gun_AssaultRifle"]/weaponTags/li[.="EliteGun"]</xpath>
+  </Operation>
+
 	<!-- ========== Pistol ========== -->
 
   <Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
@@ -393,6 +399,7 @@
     <weaponTags>
 			<li>CE_AI_Rifle</li>
 			<li>CE_AI_Launcher</li>
+      <li>EliteGun</li>
     </weaponTags>
     <researchPrerequisite>CE_AdvancedFirearms</researchPrerequisite>
   </Operation>
