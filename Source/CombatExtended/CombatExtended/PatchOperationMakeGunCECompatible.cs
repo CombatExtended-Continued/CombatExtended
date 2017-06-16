@@ -14,6 +14,7 @@ namespace CombatExtended
 		public XmlContainer FireModes;
 		public XmlContainer weaponTags;
         public XmlContainer costList;
+        public XmlContainer researchPrerequisite;
 
 		protected override bool ApplyWorker (XmlDocument xml)
 		{
@@ -48,6 +49,11 @@ namespace CombatExtended
 				if (weaponTags != null && weaponTags.node.HasChildNodes) {
 					AddOrReplaceWeaponTags (xml, xmlNode);
 				}
+
+                if (researchPrerequisite != null)
+                {
+                    AddOrReplaceResearchPrereq(xml, xmlNode);
+                }
 			}
 
 			return result;
@@ -163,6 +169,21 @@ namespace CombatExtended
             }
 
             Populate(xml, costList.node, ref costListElement);
+        }
+
+        private void AddOrReplaceResearchPrereq(XmlDocument xml, XmlNode xmlNode)
+        {
+            XmlElement recipeMakerElement;
+            GetOrCreateNode(xml, xmlNode, "recipeMaker", out recipeMakerElement);
+            var existingNode = recipeMakerElement.SelectSingleNode(researchPrerequisite.node.Name);
+            if (existingNode != null)
+            {
+                recipeMakerElement.ReplaceChild(xml.ImportNode(researchPrerequisite.node, true), existingNode);
+            }
+            else
+            {
+                recipeMakerElement.AppendChild(xml.ImportNode(researchPrerequisite.node, true));
+            }
         }
     }
 }

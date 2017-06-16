@@ -54,10 +54,10 @@
       <SwayFactor>1.20</SwayFactor>
       <Bulk>9.0</Bulk>
 			<SightsEfficiency>0.5</SightsEfficiency>
-			<WorkToMake>8500</WorkToMake>
+			<WorkToMake>9500</WorkToMake>
     </statBases>
     <costList>
-    	<Steel>40</Steel>
+    	<Steel>45</Steel>
     	<WoodLog>10</WoodLog>
     	<Component>1</Component>
     </costList>
@@ -93,11 +93,12 @@
       <SwayFactor>1.26</SwayFactor>
       <Bulk>6.7</Bulk>
 			<SightsEfficiency>0.5</SightsEfficiency>
-			<WorkToMake>13500</WorkToMake>
+			<WorkToMake>13000</WorkToMake>
     </statBases>
     <costList>
     	<Steel>40</Steel>
     	<Component>2</Component>
+      <Chemfuel>10</Chemfuel>
     </costList>
     <Properties>
     	<verbClass>CombatExtended.Verb_ShootCE</verbClass>
@@ -120,6 +121,7 @@
     <weaponTags>
 			<li>CE_AI_AssaultWeapon</li>
     </weaponTags>
+    <researchPrerequisite>CE_AdvancedFirearms</researchPrerequisite>
   </Operation>
 
 	<!-- ========== Bolt-action rifle ========== -->
@@ -133,10 +135,10 @@
       <ShotSpread>0.02</ShotSpread>
       <SwayFactor>1.68</SwayFactor>
       <Bulk>12.60</Bulk>
-			<WorkToMake>10500</WorkToMake>
+			<WorkToMake>14000</WorkToMake>
     </statBases>
     <costList>
-    	<Steel>50</Steel>
+    	<Steel>55</Steel>
     	<WoodLog>15</WoodLog>
     	<Component>1</Component>
     </costList>
@@ -174,11 +176,12 @@
       <ShotSpread>0.07</ShotSpread>
       <SwayFactor>1.33</SwayFactor>
       <Bulk>10.03</Bulk>
-			<WorkToMake>23500</WorkToMake>
+			<WorkToMake>24000</WorkToMake>
     </statBases>
     <costList>
-    	<Steel>60</Steel>
+    	<Steel>50</Steel>
     	<Component>4</Component>
+      <Chemfuel>10</Chemfuel>
     </costList>
     <Properties>
     	<recoilAmount>1.18</recoilAmount>
@@ -206,6 +209,7 @@
     <weaponTags>
 			<li>CE_AI_Rifle</li>
     </weaponTags>
+    <researchPrerequisite>CE_AdvancedFirearms</researchPrerequisite>
   </Operation>
 
 	<!-- ========== Sniper rifle ========== -->
@@ -219,11 +223,12 @@
     	<ShotSpread>0.05</ShotSpread>
     	<SwayFactor>1.92</SwayFactor>
     	<Bulk>10.92</Bulk>
-			<WorkToMake>22500</WorkToMake>
+			<WorkToMake>23000</WorkToMake>
     </statBases>
     <costList>
-    	<Steel>75</Steel>
+    	<Steel>60</Steel>
     	<Component>4</Component>
+      <Chemfuel>15</Chemfuel>
     </costList>
     <Properties>
     	<verbClass>CombatExtended.Verb_ShootCE</verbClass>
@@ -246,6 +251,7 @@
     <weaponTags>
 			<li>CE_AI_Rifle</li>
     </weaponTags>
+    <researchPrerequisite>CE_AdvancedFirearms</researchPrerequisite>
   </Operation>
 
 	<!-- ========== Machine pistol ========== -->
@@ -292,6 +298,7 @@
     	<li>CE_AI_AssaultWeapon</li>
     	<li>CE_OneHandedWeapon</li>
     </weaponTags>
+    <researchPrerequisite>CE_AdvancedFirearms</researchPrerequisite>
   </Operation>
 
 	<!-- ========== Heavy SMG ========== -->
@@ -351,12 +358,13 @@
       <ShotSpread>0.15</ShotSpread>
       <SwayFactor>1.8</SwayFactor>
       <Bulk>10</Bulk>
-			<WorkToMake>33000</WorkToMake>
+			<WorkToMake>33500</WorkToMake>
     </statBases>
     <costList>
-    	<Steel>75</Steel>
+    	<Steel>65</Steel>
     	<Plasteel>30</Plasteel>
     	<Component>6</Component>
+      <Chemfuel>10</Chemfuel>
     </costList>
     <Properties>
     	<verbClass>CombatExtended.Verb_ShootCE</verbClass>
@@ -386,6 +394,7 @@
 			<li>CE_AI_Rifle</li>
 			<li>CE_AI_Launcher</li>
     </weaponTags>
+    <researchPrerequisite>CE_AdvancedFirearms</researchPrerequisite>
   </Operation>
 
 	<!-- ========== LMG ========== -->
@@ -399,9 +408,10 @@
       <ShotSpread>0.05</ShotSpread>
       <SwayFactor>1.53</SwayFactor>
       <Bulk>13.7</Bulk>
+      <WorkToMake>27500</WorkToMake>
     </statBases>
     <costList>
-    	<Steel>80</Steel>
+    	<Steel>85</Steel>
     	<WoodLog>10</WoodLog>
     	<Component>4</Component>
     </costList>
@@ -449,12 +459,13 @@
       <ShotSpread>0.08</ShotSpread>
       <SwayFactor>1.20</SwayFactor>
       <Bulk>9.00</Bulk>
-			<WorkToMake>42500</WorkToMake>
+			<WorkToMake>42000</WorkToMake>
     </statBases>
     <costList>
-    	<Steel>55</Steel>
+    	<Steel>45</Steel>
     	<Plasteel>25</Plasteel>
     	<Component>9</Component>
+      <Chemfuel>10</Chemfuel>
     </costList>
     <Properties>
     	<recoilAmount>1.13</recoilAmount>
@@ -615,15 +626,6 @@
 		<xpath>*/ThingDef[defName="Gun_DoomsdayRocket" or defName="Gun_TripleRocket"]/statBases/MarketValue</xpath>
 	</Operation>
 
-	<Operation Class="PatchOperationAdd">
-		<xpath>*/ThingDef[defName="Gun_DoomsdayRocket" or defName="Gun_TripleRocket"]</xpath>
-		<value>
-			<recipeMaker>
-			  <researchPrerequisite>LargeRockets</researchPrerequisite>
-			</recipeMaker>
-		</value>
-	</Operation>
-
 	<!-- Patch projectile -->
 
 	<Operation Class="PatchOperationReplace">
@@ -713,6 +715,7 @@
     <weaponTags>
 			<li>CE_AI_Launcher</li>
     </weaponTags>
+    <researchPrerequisite>LargeRockets</researchPrerequisite>
   </Operation>
 
 	<!-- ========== Triple rocket launcher ========== -->
@@ -809,6 +812,7 @@
     <weaponTags>
 			<li>CE_AI_Launcher</li>
     </weaponTags>
+    <researchPrerequisite>LargeRockets</researchPrerequisite>
   </Operation>
 
 	<!-- ========== Heavy charge blaster ========== -->
