@@ -10,6 +10,8 @@ namespace CombatExtended
 {
     public class LoadoutPropertiesExtension : DefModExtension
     {
+        #region Fields
+
         public FloatRange primaryMagazineCount = FloatRange.Zero;
         public FloatRange shieldMoney = FloatRange.Zero;
         public List<string> shieldTags;
@@ -22,8 +24,12 @@ namespace CombatExtended
         private static List<ThingStuffPair> workingWeapons = new List<ThingStuffPair>();
         private static List<ThingStuffPair> workingShields = new List<ThingStuffPair>();
 
+        #endregion
+
+        #region Methods
+
         // Copied from PawnWeaponGenerator.Reset()
-        public static void InitWeaponPairs()
+        public static void Reset()
         {
             // Initialize weapons
             Predicate<ThingDef> isWeapon = (ThingDef td) => td.equipmentType == EquipmentType.Primary && td.canBeSpawningInventory && !td.weaponTags.NullOrEmpty<string>();
@@ -63,7 +69,6 @@ namespace CombatExtended
                 Log.Error("CE tried generating loadout for " + pawn.ToStringSafe() + " without CompInventory");
                 return;
             }
-            inventory.UpdateInventory();
 
             // Generate forced sidearm
             if (forcedSidearm != null)
@@ -76,6 +81,7 @@ namespace CombatExtended
             if (primary != null)
             {
                 LoadWeaponWithRandAmmo(primary);
+                inventory.UpdateInventory();    // Inventory load changed, need to update
                 TryGenerateAmmoFor(pawn.equipment.Primary, inventory, Mathf.RoundToInt(primaryMagazineCount.RandomInRange));
             }
 
@@ -190,6 +196,7 @@ namespace CombatExtended
             {
                 if(cur.Price < money
                     && shieldTags.Any(t => cur.thing.apparel.tags.Contains(t))
+                    && (cur.thing.generateAllowChance >= 1f || Rand.ValueSeeded(pawn.thingIDNumber ^ 68715844) <= cur.thing.generateAllowChance)
                     && pawn.apparel.CanWearWithoutDroppingAnything(cur.thing))
                 {
                     workingShields.Add(cur);
@@ -208,5 +215,7 @@ namespace CombatExtended
             }
             workingShields.Clear();
         }
+
+        #endregion
     }
 }
