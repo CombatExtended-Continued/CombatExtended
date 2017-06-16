@@ -120,10 +120,10 @@
 			<comps>
 			  <li Class="CombatExtended.CompProperties_Charges">
 			    <charges>
-			      <li>(30,80)</li>
-			      <li>(50,220)</li>
-			      <li>(70,440)</li>
-			      <li>(90,730)</li>
+			      <li>(30,60)</li>
+			      <li>(50,180)</li>
+			      <li>(70,360)</li>
+			      <li>(90,720)</li>
 			    </charges>
 			  </li>
 			  <li Class="CombatExtended.CompProperties_AmmoUser">
@@ -197,31 +197,6 @@
 	</Operation>
 -->
 
-	<!-- Add trade tags -->
-
-	<Operation Class="PatchOperationSequence">
-  	<success>Always</success>
-  	<operations>
-    	<li Class="PatchOperationTest">
-      	<xpath>*/ThingDef[@Name = "BaseArtilleryBuilding"]/tradeTags</xpath>
-      	<success>Invert</success>
-    	</li>
-    	<li Class="PatchOperationAdd">
-      	<xpath>*/ThingDef[@Name = "BaseArtilleryBuilding"]</xpath>
-      	<value>
-        	<tradeTags />
-      	</value>
-    	</li>
-  	</operations>
-	</Operation>
-
-	<Operation Class="PatchOperationAdd">
-		<xpath>*/ThingDef[@Name = "BaseArtilleryBuilding"]/tradeTags</xpath>
-		<value>
-			<li>CE_Turret</li>
-		</value>
-	</Operation>
-
 	<!-- Patch build costs -->
 
 	<Operation Class="PatchOperationReplace">
@@ -262,6 +237,31 @@
 		<xpath>*/ThingDef[defName="Turret_MortarBomb"]</xpath>
 		<value>
 			<designationCategory>Security</designationCategory>
+		</value>
+	</Operation>
+
+	<!-- Add trade tags -->
+
+	<Operation Class="PatchOperationSequence">
+  	<success>Always</success>
+  	<operations>
+    	<li Class="PatchOperationTest">
+      	<xpath>*/ThingDef[defName="Turret_MortarBomb"]/tradeTags</xpath>
+      	<success>Invert</success>
+    	</li>
+    	<li Class="PatchOperationAdd">
+      	<xpath>*/ThingDef[defName="Turret_MortarBomb"]</xpath>
+      	<value>
+        	<tradeTags />
+      	</value>
+    	</li>
+  	</operations>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>*/ThingDef[defName="Turret_MortarBomb"]/tradeTags</xpath>
+		<value>
+			<li>CE_Turret</li>
 		</value>
 	</Operation>
 

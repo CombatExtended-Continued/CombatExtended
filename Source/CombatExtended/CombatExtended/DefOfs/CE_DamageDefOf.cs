@@ -8,9 +8,9 @@ using UnityEngine;
 
 namespace CombatExtended
 {
-    public class LoadoutGeneratorDef : ThingDef
+    [DefOf]
+    public class CE_DamageDefOf
     {
-        public LoadoutGenerator loadoutGenerator;
-        public int priority = 0;
+        public static DamageDef Electrical;
     }
 }

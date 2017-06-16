@@ -581,24 +581,25 @@ namespace CombatExtended
             {
                 yield return gizmo;
             }
-            // Ammo gizmos
-            if (CompAmmo != null)
+            // Don't show gizmos on enemy turrets
+            if (Faction == Faction.OfPlayer || MannedByColonist)
             {
-                foreach (Command com in CompAmmo.CompGetGizmosExtra())
+                // Ammo gizmos
+                if (CompAmmo != null)
                 {
-                    yield return com;
+                    foreach (Command com in CompAmmo.CompGetGizmosExtra())
+                    {
+                        yield return com;
+                    }
                 }
-            }
-            // Fire mode gizmos
-            if (CompFireModes != null)
-            {
-                foreach (Command com in CompFireModes.GenerateGizmos())
+                // Fire mode gizmos
+                if (CompFireModes != null)
                 {
-                    yield return com;
+                    foreach (Command com in CompFireModes.GenerateGizmos())
+                    {
+                        yield return com;
+                    }
                 }
-            }
-            if (Faction == Faction.OfPlayer)
-            {
                 // Set forced target gizmo
                 if (CanSetForcedTarget)
                 {
@@ -651,7 +652,6 @@ namespace CombatExtended
                     };
                 }
             }
-
         }
 
         #endregion
