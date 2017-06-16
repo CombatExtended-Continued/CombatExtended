@@ -13,105 +13,6 @@
     <maxGenerationAge>65</maxGenerationAge>
   </PawnKindDef>
 
-<!--
-  <PawnKindDef ParentName="MercenaryBase">
-    <defName>MercenaryShieldBearer</defName>
-    <label>mercenary shield bearer</label>
-    <combatPower>140</combatPower>
-    <gearHealthRange>
-      <min>0.5</min>
-      <max>2.3</max>
-    </gearHealthRange>
-    <apparelTags>
-      <li>Outlander</li>
-      <li>Military</li>
-    </apparelTags>
-    <apparelMoney>
-      <min>1000</min>
-      <max>2600</max>
-    </apparelMoney>
-    <apparelAllowHeadwearChance>0.75</apparelAllowHeadwearChance>
-    <weaponMoney>
-      <min>1200</min>
-      <max>2000</max>
-    </weaponMoney>
-    <weaponTags>
-      <li>Melee</li>
-    </weaponTags>
-    <techHediffsMoney>
-      <min>2000</min>
-      <max>3000</max>
-    </techHediffsMoney>
-    <combatEnhancingDrugsCount>
-      <min>0</min>
-      <max>2</max>
-    </combatEnhancingDrugsCount>
-    <techHediffsTags>
-      <li>Advanced</li>
-    </techHediffsTags>
-    <techHediffsChance>0.08</techHediffsChance>
-    <inventoryOptions>
-      <skipChance>0.8</skipChance>
-      <subOptionsChooseOne>
-        <li>
-          <thingDef>Silver</thingDef>
-          <countRange>
-            <min>180</min>
-            <max>400</max>
-          </countRange>
-        </li>
-        <li>
-          <thingDef>Medicine</thingDef>
-          <countRange>
-            <min>1</min>
-            <max>2</max>
-          </countRange>
-        </li>
-      </subOptionsChooseOne>
-    </inventoryOptions>
-    <ModExtensions>
-      <li Class="CombatExtended.LoadoutPropertiesExtension">
-        <shieldMoney>
-          <min>300</min>
-          <max>1000</max>
-        </shieldMoney>
-        <shieldTags>
-          <li>OutlanderShield</li>
-        </shieldTags>
-        <shieldChance>1</shieldChance>
-        <primaryMagazineCount>
-          <min>1</min>
-          <max>3</max>
-        </primaryMagazineCount>
-        <forcedSidearm>
-          <sidearmMoney>
-            <min>100</min>
-            <max>200</max>
-          </sidearmMoney>
-          <weaponTags>
-            <li>CE_Sidearm_Melee</li>
-          </weaponTags>
-        </forcedSidearm>
-        <sidearms>
-          <li>
-            <sidearmMoney>
-              <min>100</min>
-              <max>200</max>
-            </sidearmMoney>
-            <weaponTags>
-              <li>CE_Sidearm</li>
-            </weaponTags>
-            <magazineCount>
-              <min>1</min>
-              <max>2</max>
-            </magazineCount>
-          </li>
-        </sidearms>
-      </li>
-    </ModExtensions>
-  </PawnKindDef>
--->
-
   <PawnKindDef ParentName="MercenaryBase">
     <defName>MercenaryMachineGunner</defName>
     <label>mercenary machine gunner</label>
@@ -161,6 +62,60 @@
           </sidearmMoney>
           <weaponTags>
             <li>CE_Sidearm_Melee</li>
+          </weaponTags>
+        </forcedSidearm>
+      </li>
+    </ModExtensions>
+  </PawnKindDef>
+
+  <!-- ========== Tribals ========== -->
+
+  <PawnKindDef Name="TribalBase" Abstract="True">
+    <race>Human</race>
+    <defaultFactionType>Tribe</defaultFactionType>
+    <backstoryCategory>Tribal</backstoryCategory>
+    <baseRecruitDifficulty>0.65</baseRecruitDifficulty>
+    <chemicalAddictionChance>0.05</chemicalAddictionChance>
+    <invNutrition>2.55</invNutrition>
+    <invFoodDef>Pemmican</invFoodDef>
+  </PawnKindDef>
+
+  <PawnKindDef ParentName="TribalBase">
+    <defName>TribalGrenadier</defName>
+    <label>stick bomber</label>
+    <combatPower>76</combatPower>
+    <maxGenerationAge>40</maxGenerationAge>
+    <gearHealthRange>
+      <min>0.5</min>
+      <max>1.8</max>
+    </gearHealthRange>
+    <apparelMoney>
+      <min>180</min>
+      <max>350</max>
+    </apparelMoney>
+    <apparelTags>
+      <li>Tribal</li>
+    </apparelTags>
+    <weaponMoney>
+      <min>60</min>
+      <max>400</max>
+    </weaponMoney>
+    <weaponTags>
+      <li>CE_GrenadeNeolithic</li>
+    </weaponTags>
+    <ModExtensions>
+      <li Class="CombatExtended.LoadoutPropertiesExtension">
+        <primaryMagazineCount>
+          <min>10</min>
+          <max>30</max>
+        </primaryMagazineCount>
+        <forcedSidearm>
+          <sidearmMoney>
+            <min>80</min>
+            <max>160</max>
+          </sidearmMoney>
+          <weaponTags>
+            <li>CE_Sidearm_Tribal</li>
           </weaponTags>
         </forcedSidearm>
       </li>

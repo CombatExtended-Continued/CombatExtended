@@ -17,7 +17,7 @@
     </value>
   </Operation>
 
-  <!-- ========== Remove all grenadiers ========== -->
+  <!-- ========== Remove EMP grenadiers ========== -->
 
 <!--
   <Operation Class="PatchOperationRemove">
@@ -27,6 +27,15 @@
 
   <Operation Class="PatchOperationRemove">
   	<xpath>/FactionDefs/FactionDef[defName="Outlander" or defName="Pirate"]/pawnGroupMakers/li/*/GrenadierEMP</xpath>
+  </Operation>
+
+  <!-- ========== Add tribal grenadies ========== -->
+
+  <Operation Class="PatchOperationAdd">
+    <xpath>/FactionDefs/FactionDef[defName="Tribe"]/pawnGroupMakers/li[1]/options</xpath>
+    <value>
+      <TribalGrenadier>30</TribalGrenadier>
+    </value>
   </Operation>
 
   <!-- ========== Add machine gunners ========== -->
