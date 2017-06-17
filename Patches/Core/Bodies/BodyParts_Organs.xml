@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <Patch>
 
+  <!-- ========== Modify bleed rates ========== -->
+
   <Operation Class="PatchOperationReplace">
     <xpath>*/BodyPartDef[defName="Heart"]/bleedingRateMultiplier</xpath>
     <value>
@@ -61,6 +63,15 @@
     <xpath>*/BodyPartDef[defName="Stomach"]</xpath>
     <value>
       <bleedingRateMultiplier>3.0</bleedingRateMultiplier>
+    </value>
+  </Operation>
+
+  <!-- ========== Modify old injury chance ========== -->
+
+  <Operation Class="PatchOperationReplace">
+    <xpath>*/BodyPartDef[defName="Heart" or "LeftLung" or "RightLung" or "LeftKidney" or "RightKidney" or "Liver" or "Stomach"]/oldInjuryBaseChance</xpath>
+    <value>
+      <oldInjuryBaseChance>0.5</oldInjuryBaseChance>
     </value>
   </Operation>
 
