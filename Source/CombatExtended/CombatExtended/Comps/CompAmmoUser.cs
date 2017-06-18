@@ -522,6 +522,7 @@ namespace CombatExtended
             return  label + ammoSet;
 		}
 
+        /*
         public override string GetDescriptionPart()
         {
             StringBuilder stringBuilder = new StringBuilder();
@@ -539,6 +540,7 @@ namespace CombatExtended
             }
             return stringBuilder.ToString().TrimEndNewlines();
         }
+        */
 
         #endregion Methods
     }
