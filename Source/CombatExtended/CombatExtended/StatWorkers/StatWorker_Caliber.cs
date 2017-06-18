@@ -23,6 +23,7 @@ namespace CombatExtended
             if (ammoComp != null)
             {
                 // Append various ammo stats
+                stringBuilder.AppendLine(ammoComp.Props.ammoSet.LabelCap + "\n");
                 foreach (var cur in ammoComp.Props.ammoSet.ammoTypes)
                 {
                     string label = string.IsNullOrEmpty(cur.ammo.ammoClass.LabelCapShort) ? cur.ammo.ammoClass.LabelCap : cur.ammo.ammoClass.LabelCapShort;
