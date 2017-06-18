@@ -276,12 +276,17 @@ namespace CombatExtended
                 if (isSoftArmor)
                 {
                     // Soft armor takes absorbed damage from sharp and no damage from blunt
-                    if (isSharpDmg) armor.TakeDamage(new DamageInfo(def, Mathf.Max(Mathf.CeilToInt(dmgAmount * SoftArmorMinDamageFactor), Mathf.CeilToInt(dmgAmount - newDmgAmount))));
+                    if (isSharpDmg)
+                    {
+                        float armorDamage = Mathf.Max(dmgAmount * SoftArmorMinDamageFactor, dmgAmount - newDmgAmount);
+                        armor.TakeDamage(new DamageInfo(def, Mathf.CeilToInt(armorDamage)));
+                    }
                 }
                 else
                 {
-                    // Hard armor takes damage as reduced by damage resistance and can be impervious to low-penetration attacks
-                    armor.TakeDamage(new DamageInfo(def, Mathf.CeilToInt(newDmgAmount)));
+                    // Hard armor takes damage as reduced by damage resistance and can be almost impervious to low-penetration attacks
+                    float armorDamage = Mathf.Max(1, newDmgAmount);
+                    armor.TakeDamage(new DamageInfo(def, Mathf.CeilToInt(armorDamage)));
                 }
             }
 
