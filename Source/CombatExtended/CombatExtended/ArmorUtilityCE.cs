@@ -78,7 +78,7 @@ namespace CombatExtended
                             if (hasCoverage)
                             {
                                 // Right arm is vulnerable during warmup/attack/cooldown
-                                blockedByShield = !((pawn.stances?.curStance as Stance_Busy)?.verb != null && hitPart.IsInGroup(DefDatabase<BodyPartGroupDef>.GetNamed("Arms")) && hitPart.def.defName.Contains("Right"));
+                                blockedByShield = !((pawn.stances?.curStance as Stance_Busy)?.verb != null && hitPart.IsInGroup(CE_BodyPartGroupDefOf.RightArm));
                             }
                         }
                     }
