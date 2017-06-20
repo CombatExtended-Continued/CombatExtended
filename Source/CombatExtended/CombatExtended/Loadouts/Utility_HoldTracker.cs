@@ -386,7 +386,7 @@ namespace CombatExtended
                                 return true;
                             }
                         }
-                        else if (rec.count > listing[def].value)
+                        else if (rec.count < listing[def].value)
                         {
                             // the item we have extra of HAS a HoldRecord but the amount carried is above the limit of the HoldRecord, drop extra.
                             dropThing = pawn.inventory.innerContainer.FirstOrDefault(t => t.def == def);
