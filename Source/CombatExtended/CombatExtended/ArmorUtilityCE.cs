@@ -388,7 +388,7 @@ namespace CombatExtended
             }
             else
             {
-                float dmgAmount = dinfo.Amount * 0.5f;
+                float dmgAmount = dinfo.Amount * 0.1f;
                 float penAmount = GetPenetrationValue(dinfo);
                 TryPenetrateArmor(dinfo.Def, parryThing.GetStatValue(dinfo.Def.armorCategory.deflectionStat), ref penAmount, ref dmgAmount, parryThing);
             }
