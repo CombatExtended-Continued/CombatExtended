@@ -18,22 +18,22 @@ namespace CombatExtended
 
         public override float GetValueUnfinalized(StatRequest req, bool applyPostProcess = true)
         {
-            return req.Thing.TryGetComp<CompAmmoUser>().Props.magazineSize;
+            return req.Thing?.TryGetComp<CompAmmoUser>().Props.magazineSize ?? 0;
         }
 
         public override string GetExplanation(StatRequest req, ToStringNumberSense numberSense)
         {
             StringBuilder stringBuilder = new StringBuilder();
-            var ammoComp = req.Thing.TryGetComp<CompAmmoUser>();
-            stringBuilder.AppendLine("CE_MagazineSize".Translate() + ": " + GenText.ToStringByStyle(ammoComp.Props.magazineSize, ToStringStyle.Integer));
-            stringBuilder.AppendLine("CE_ReloadTime".Translate() + ": " + GenText.ToStringByStyle((ammoComp.Props.reloadTime), ToStringStyle.FloatTwo) + " s");
+            var ammoProps = (req.Def as ThingDef)?.GetCompProperties<CompProperties_AmmoUser>();
+            stringBuilder.AppendLine("CE_MagazineSize".Translate() + ": " + GenText.ToStringByStyle(ammoProps.magazineSize, ToStringStyle.Integer));
+            stringBuilder.AppendLine("CE_ReloadTime".Translate() + ": " + GenText.ToStringByStyle((ammoProps.reloadTime), ToStringStyle.FloatTwo) + " s");
             return stringBuilder.ToString().TrimEndNewlines();
         }
 
         public override string GetStatDrawEntryLabel(StatDef stat, float value, ToStringNumberSense numberSense, StatRequest optionalReq)
         {
-            var ammoComp = optionalReq.Thing.TryGetComp<CompAmmoUser>();
-            return ammoComp.Props.magazineSize + " / " + GenText.ToStringByStyle((ammoComp.Props.reloadTime), ToStringStyle.FloatTwo) + " s";
+            var ammoProps = (optionalReq.Def as ThingDef)?.GetCompProperties<CompProperties_AmmoUser>();
+            return ammoProps.magazineSize + " / " + GenText.ToStringByStyle((ammoProps.reloadTime), ToStringStyle.FloatTwo) + " s";
         }
 
         public override void FinalizeExplanation(StringBuilder sb, StatRequest req, ToStringNumberSense numberSense, float finalVal)

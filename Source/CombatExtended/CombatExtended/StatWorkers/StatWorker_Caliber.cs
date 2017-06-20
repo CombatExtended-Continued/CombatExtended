@@ -19,12 +19,12 @@ namespace CombatExtended
         public override string GetExplanation(StatRequest req, ToStringNumberSense numberSense)
         {
             StringBuilder stringBuilder = new StringBuilder();
-            var ammoComp = req.Thing.TryGetComp<CompAmmoUser>();
-            if (ammoComp != null)
+            var ammoProps = (req.Def as ThingDef)?.GetCompProperties<CompProperties_AmmoUser>();
+            if (ammoProps != null)
             {
                 // Append various ammo stats
-                stringBuilder.AppendLine(ammoComp.Props.ammoSet.LabelCap + "\n");
-                foreach (var cur in ammoComp.Props.ammoSet.ammoTypes)
+                stringBuilder.AppendLine(ammoProps.ammoSet.LabelCap + "\n");
+                foreach (var cur in ammoProps.ammoSet.ammoTypes)
                 {
                     string label = string.IsNullOrEmpty(cur.ammo.ammoClass.LabelCapShort) ? cur.ammo.ammoClass.LabelCap : cur.ammo.ammoClass.LabelCapShort;
                     stringBuilder.AppendLine(label + ":\n" + cur.projectile.GetProjectileReadout());
@@ -35,7 +35,7 @@ namespace CombatExtended
 
         public override string GetStatDrawEntryLabel(StatDef stat, float value, ToStringNumberSense numberSense, StatRequest optionalReq)
         {
-            return optionalReq.Thing.TryGetComp<CompAmmoUser>().Props.ammoSet.LabelCap;
+            return (optionalReq.Def as ThingDef)?.GetCompProperties<CompProperties_AmmoUser>().ammoSet.LabelCap;
         }
 
         public override void FinalizeExplanation(StringBuilder sb, StatRequest req, ToStringNumberSense numberSense, float finalVal)
