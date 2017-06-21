@@ -15,5 +15,6 @@ namespace CombatExtended
         public float indirectFirePenalty = 0;
         public float meleeArmorPenetration = 0;
         public bool ejectsCasings = true;
+        public bool ignorePartialLoSBlocker = false;
     }
 }

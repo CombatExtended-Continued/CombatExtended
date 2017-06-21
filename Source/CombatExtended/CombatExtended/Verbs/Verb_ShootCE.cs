@@ -139,7 +139,7 @@ namespace CombatExtended
                 {
                     this.WarmupComplete();
                 }
-                if (CasterIsPawn && this.CasterPawn.stances.curStance.GetType() != typeof(Stance_Warmup))
+                if (CasterIsPawn && this.CasterPawn.stances.curStance?.GetType() != typeof(Stance_Warmup))
                 {
                     this.isAiming = false;
                 }

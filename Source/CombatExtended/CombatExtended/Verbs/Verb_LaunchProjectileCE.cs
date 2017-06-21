@@ -684,7 +684,7 @@ namespace CombatExtended
                 Func<IntVec3, bool> validator = delegate (IntVec3 cell)
                 {
                     // Skip this check entirely if we're doing suppressive fire and cell is adjacent to target
-                    if (aimMode == AimMode.SuppressFire)
+                    if (VerbPropsCE.ignorePartialLoSBlocker || aimMode == AimMode.SuppressFire)
                         return true;
 
                     Thing cover = cell.GetFirstPawn(caster.Map);
