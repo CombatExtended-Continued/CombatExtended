@@ -16,7 +16,7 @@ namespace CombatExtended
             if (Pawn.IsHashIntervalTick(GenTicks.TicksPerRealSecond))
             {
                 Fire fire = Pawn.GetAttachment(ThingDefOf.Fire) as Fire;
-                if (fire == null)
+                if (fire == null && Pawn.Spawned)
                 {
                     Pawn.TryAttachFire(parent.Severity * 0.5f);
                 }
