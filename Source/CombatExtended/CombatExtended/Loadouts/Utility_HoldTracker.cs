@@ -290,8 +290,8 @@ namespace CombatExtended
         	{
 				storage.Add(pawn.equipment.Primary.def, new Integer(1));
 				gun = pawn.equipment.Primary.TryGetComp<CompAmmoUser>();
-				if (gun != null && gun.useAmmo)
-					storage.Add(gun.currentAmmo, new Integer(gun.curMagCount));
+				if (gun != null && gun.UseAmmo)
+					storage.Add(gun.CurrentAmmo, new Integer(gun.CurMagCount));
         	}
 			// get the pawn's inventory
         	foreach (Thing thing in pawn.inventory.innerContainer)
@@ -300,12 +300,12 @@ namespace CombatExtended
 					storage.Add(thing.def, new Integer(0));
 				storage[thing.def].value += thing.stackCount;
 				gun = thing.TryGetComp<CompAmmoUser>();
-				if (gun != null && gun.useAmmo)
+				if (gun != null && gun.UseAmmo)
 				{
-					if (storage.ContainsKey(gun.currentAmmo))
-						storage[gun.currentAmmo].value += gun.curMagCount;
+					if (storage.ContainsKey(gun.CurrentAmmo))
+						storage[gun.CurrentAmmo].value += gun.CurMagCount;
 					else
-						storage.Add(gun.currentAmmo, new Integer(gun.curMagCount));
+						storage.Add(gun.CurrentAmmo, new Integer(gun.CurMagCount));
 				}
 			}
         	
@@ -385,16 +385,16 @@ namespace CombatExtended
                                 dropCount = listing[def].value > dropThing.stackCount ? dropThing.stackCount : listing[def].value;
                                 return true;
                             }
-                            else if (rec.count > listing[def].value)
+                        }
+                        else if (rec.count < listing[def].value)
+                        {
+                            // the item we have extra of HAS a HoldRecord but the amount carried is above the limit of the HoldRecord, drop extra.
+                            dropThing = pawn.inventory.innerContainer.FirstOrDefault(t => t.def == def);
+                            if (dropThing != null)
                             {
-                                // the item we have extra of HAS a HoldRecord but the amount carried is above the limit of the HoldRecord, drop extra.
-                                dropThing = pawn.inventory.innerContainer.FirstOrDefault(t => t.def == def);
-                                if (dropThing != null)
-                                {
-                                    dropCount = listing[def].value - rec.count;
-                                    dropCount = dropCount > dropThing.stackCount ? dropThing.stackCount : dropCount;
-                                    return true;
-                                }
+                                dropCount = listing[def].value - rec.count;
+                                dropCount = dropCount > dropThing.stackCount ? dropThing.stackCount : dropCount;
+                                return true;
                             }
                         }
                     }

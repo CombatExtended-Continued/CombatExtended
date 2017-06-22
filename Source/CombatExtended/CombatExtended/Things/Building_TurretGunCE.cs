@@ -105,13 +105,9 @@ namespace CombatExtended
                     this.gunInt = ThingMaker.MakeThing(this.def.building.turretGunDef, null);
                     InitGun();
                     // FIXME: Hack to make player-crafted turrets spawn unloaded
-                    if (Faction == Faction.OfPlayer)
+                    if (Faction != Faction.OfPlayer && CompAmmo != null)
                     {
-                        Thing ammo;
-                        if (CompAmmo != null && CompAmmo.TryUnload(out ammo) && !ammo.DestroyedOrNull())
-                        {
-                            ammo.Destroy();
-                        }
+                        CompAmmo.ResetAmmoCount();
                     }
                 }
                 return this.gunInt;
@@ -141,8 +137,8 @@ namespace CombatExtended
             {
                 return mannableComp == null
                     && CompAmmo != null
-                    && CompAmmo.hasMagazine
-                    && (CompAmmo.curMagCount < CompAmmo.Props.magazineSize || CompAmmo.SelectedAmmo != CompAmmo.currentAmmo);
+                    && CompAmmo.HasMagazine
+                    && (CompAmmo.CurMagCount < CompAmmo.Props.magazineSize || CompAmmo.SelectedAmmo != CompAmmo.CurrentAmmo);
             }
         }
         public bool AllowAutomaticReload
@@ -150,8 +146,8 @@ namespace CombatExtended
             get
             {
                 return mannableComp == null && CompAmmo != null
-                    && CompAmmo.hasMagazine
-                    && (ticksUntilAutoReload == 0 || CompAmmo.curMagCount <= Mathf.CeilToInt(CompAmmo.Props.magazineSize / 6));
+                    && CompAmmo.HasMagazine
+                    && (ticksUntilAutoReload == 0 || CompAmmo.CurMagCount <= Mathf.CeilToInt(CompAmmo.Props.magazineSize / 6));
             }
         }
         public CompMannable MannableComp => mannableComp;
@@ -189,7 +185,7 @@ namespace CombatExtended
             {
                 this.burstCooldownTicksLeft = this.GunCompEq.PrimaryVerb.verbProps.defaultCooldownTime.SecondsToTicks();
             }
-            if (CompAmmo != null && CompAmmo.curMagCount <= 0)
+            if (CompAmmo != null && CompAmmo.CurMagCount <= 0)
             {
                 TryOrderReload();
             }
@@ -412,7 +408,7 @@ namespace CombatExtended
         {
             base.Tick();
             if (ticksUntilAutoReload > 0) ticksUntilAutoReload--;   // Reduce time until we can auto-reload
-            if (CompAmmo?.curMagCount == 0 && (MannableComp?.MannedNow ?? false)) TryOrderReload();
+            if (CompAmmo?.CurMagCount == 0 && (MannableComp?.MannedNow ?? false)) TryOrderReload();
             /*
             if (!CanSetForcedTarget && forcedTarget.IsValid)
             {
@@ -496,7 +492,7 @@ namespace CombatExtended
             if (!base.Spawned 
                 || (this.holdFire && this.CanToggleHoldFire) 
                 || (this.GunCompEq.PrimaryVerb.verbProps.projectileDef.projectile.flyOverhead && base.Map.roofGrid.Roofed(base.Position))
-                || (CompAmmo != null && (isReloading || (mannableComp == null && CompAmmo.curMagCount <= 0))))
+                || (CompAmmo != null && (isReloading || (mannableComp == null && CompAmmo.CurMagCount <= 0))))
             {
                 this.ResetCurrentTarget();
                 return;
@@ -548,9 +544,9 @@ namespace CombatExtended
             }
             */
 
-            if ((!mannableComp?.MannedNow ?? true) || (CompAmmo.currentAmmo == CompAmmo.SelectedAmmo && CompAmmo.curMagCount == CompAmmo.Props.magazineSize)) return;
+            if ((!mannableComp?.MannedNow ?? true) || (CompAmmo.CurrentAmmo == CompAmmo.SelectedAmmo && CompAmmo.CurMagCount == CompAmmo.Props.magazineSize)) return;
             Job reloadJob = null;
-            if (CompAmmo.useAmmo)
+            if (CompAmmo.UseAmmo)
             {
                 CompInventory inventory = mannableComp.ManningPawn.TryGetComp<CompInventory>();
                 if (inventory != null)
@@ -560,7 +556,7 @@ namespace CombatExtended
                     {
                         Thing droppedAmmo;
                         int amount = CompAmmo.Props.magazineSize;
-                        if (CompAmmo.currentAmmo == CompAmmo.SelectedAmmo) amount -= CompAmmo.curMagCount;
+                        if (CompAmmo.CurrentAmmo == CompAmmo.SelectedAmmo) amount -= CompAmmo.CurMagCount;
                         if (inventory.container.TryDrop(ammo, this.Position, this.Map, ThingPlaceMode.Direct, Mathf.Min(ammo.stackCount, amount), out droppedAmmo))
                         {
                             reloadJob = new Job(CE_JobDefOf.ReloadTurret, this, droppedAmmo) { count = droppedAmmo.stackCount };
@@ -585,24 +581,25 @@ namespace CombatExtended
             {
                 yield return gizmo;
             }
-            // Ammo gizmos
-            if (CompAmmo != null)
+            // Don't show gizmos on enemy turrets
+            if (Faction == Faction.OfPlayer || MannedByColonist)
             {
-                foreach (Command com in CompAmmo.CompGetGizmosExtra())
+                // Ammo gizmos
+                if (CompAmmo != null)
                 {
-                    yield return com;
+                    foreach (Command com in CompAmmo.CompGetGizmosExtra())
+                    {
+                        yield return com;
+                    }
                 }
-            }
-            // Fire mode gizmos
-            if (CompFireModes != null)
-            {
-                foreach (Command com in CompFireModes.GenerateGizmos())
+                // Fire mode gizmos
+                if (CompFireModes != null)
                 {
-                    yield return com;
+                    foreach (Command com in CompFireModes.GenerateGizmos())
+                    {
+                        yield return com;
+                    }
                 }
-            }
-            if (Faction == Faction.OfPlayer)
-            {
                 // Set forced target gizmo
                 if (CanSetForcedTarget)
                 {
@@ -655,7 +652,6 @@ namespace CombatExtended
                     };
                 }
             }
-
         }
 
         #endregion

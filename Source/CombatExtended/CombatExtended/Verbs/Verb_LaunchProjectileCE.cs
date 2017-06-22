@@ -97,8 +97,8 @@ namespace CombatExtended
             }
         }
 
-        protected float ShootingAccuracy => CasterPawn?.GetStatValue(StatDefOf.ShootingAccuracy) ?? 2f;
-        protected float AimingAccuracy => ShooterPawn?.GetStatValue(CE_StatDefOf.AimingAccuracy) ?? 0.75f;
+        protected float ShootingAccuracy => Mathf.Min(caster.GetStatValue(StatDefOf.ShootingAccuracy), 4.5f);
+        protected float AimingAccuracy => Mathf.Min(ShooterPawn?.GetStatValue(CE_StatDefOf.AimingAccuracy) ?? caster.GetStatValue(CE_StatDefOf.AimingAccuracy), 1.5f);
         protected float SightsEfficiency => ownerEquipment.GetStatValue(CE_StatDefOf.SightsEfficiency);
         protected virtual float SwayAmplitude => Mathf.Max(0, (4.5f - ShootingAccuracy) * ownerEquipment.GetStatValue(StatDef.Named("SwayFactor")));
 
@@ -120,7 +120,7 @@ namespace CombatExtended
             {
                 if (CompAmmo != null)
                 {
-                    if (CompAmmo.currentAmmo != null)
+                    if (CompAmmo.CurrentAmmo != null)
                     {
                         return CompAmmo.CurAmmoProjectile;
                     }
@@ -283,10 +283,11 @@ namespace CombatExtended
         private void GetRecoilVec(ref float rotation, ref float angle)
         {
             var recoil = VerbPropsCE.recoilAmount;
-            float maxX = 0;
-            float minX = 0;
-            float maxY = 0;
-            float minY = 0;
+            float maxX = recoil * 0.5f;
+            float minX = -maxX;
+            float maxY = recoil;
+            float minY = -recoil / 3;
+            /*
             switch (VerbPropsCE.recoilPattern)
             {
                 case RecoilPattern.None:
@@ -306,6 +307,7 @@ namespace CombatExtended
                     maxY = VerbPropsCE.recoilAmount;
                     break;
             }
+            */
             float recoilMagnitude = Mathf.Pow((5 - ShootingAccuracy), (Mathf.Min(10, numShotsFired) / 6.25f));
             
             rotation += recoilMagnitude * UnityEngine.Random.Range(minX, maxX);
@@ -332,6 +334,7 @@ namespace CombatExtended
             report.aimingAccuracy = this.AimingAccuracy;
             report.sightsEfficiency = this.SightsEfficiency;
             report.shotDist = (targetCell - this.caster.Position).LengthHorizontal;
+            report.maxRange = verbProps.range;
 
             report.lightingShift = 1 - caster.Map.glowGrid.GameGlowAt(targetCell);
             if (!this.caster.Position.Roofed(caster.Map) || !targetCell.Roofed(caster.Map))  //Change to more accurate algorithm?
@@ -516,10 +519,7 @@ namespace CombatExtended
 	           	ShiftTarget(report, pelletMechanicsOnly);
 
                 //New aiming algorithm
-                if (verbProps.targetParams.canTargetSelf)
-                {
-                    projectile.canTargetSelf = true;
-                }
+                projectile.canTargetSelf = false;
                 projectile.minCollisionSqr = (sourceLoc - currentTarget.Cell.ToIntVec2.ToVector2Shifted()).sqrMagnitude;
                 projectile.Launch(caster, sourceLoc, shotAngle, shotRotation, ShotHeight, ShotSpeed, ownerEquipment);
 	           	pelletMechanicsOnly = true;
@@ -684,7 +684,7 @@ namespace CombatExtended
                 Func<IntVec3, bool> validator = delegate (IntVec3 cell)
                 {
                     // Skip this check entirely if we're doing suppressive fire and cell is adjacent to target
-                    if (aimMode == AimMode.SuppressFire)
+                    if (VerbPropsCE.ignorePartialLoSBlocker || aimMode == AimMode.SuppressFire)
                         return true;
 
                     Thing cover = cell.GetFirstPawn(caster.Map);

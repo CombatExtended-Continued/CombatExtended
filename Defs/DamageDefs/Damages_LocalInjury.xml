@@ -8,7 +8,7 @@
     <additionalHediffs>
       <li>
         <hediff>MuscleSpasms</hediff>
-        <severityPerDamageDealt>0.07</severityPerDamageDealt>
+        <severityPerDamageDealt>0.05</severityPerDamageDealt>
       </li>
     </additionalHediffs>
   </DamageDef>
@@ -20,6 +20,16 @@
     <hediff>Shredded</hediff>
     <hediffSolid>Crack</hediffSolid>
     <spreadOut>true</spreadOut>
+  </DamageDef>
+
+  <DamageDef ParentName="Flame">
+    <defName>PrometheumFlame</defName>
+    <additionalHediffs>
+      <li>
+        <hediff>PrometheumSoaked</hediff>
+        <severityPerDamageDealt>0.025</severityPerDamageDealt>
+      </li>
+    </additionalHediffs>
   </DamageDef>
   
   <!-- For scratches that have a lot of blunt force behind them, e.g. bear claws -->
@@ -75,6 +85,11 @@
     <explosionInteriorMote>Mote_ElectricalSpark</explosionInteriorMote>
     <soundExplosion>Explosion_EMP</soundExplosion>
     <harmAllLayersUntilOutside>true</harmAllLayersUntilOutside>
+    <modExtensions>
+      <li Class="CombatExtended.DamageDefExtensionCE">
+        <isAmbientDamage>true</isAmbientDamage>
+      </li>
+    </modExtensions>
   </DamageDef>
 
 </Defs>

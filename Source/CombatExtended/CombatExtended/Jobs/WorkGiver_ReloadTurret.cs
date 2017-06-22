@@ -30,7 +30,7 @@ namespace CombatExtended
             {
                 return false;
             }
-            if (!turret.CompAmmo.useAmmo) return true;
+            if (!turret.CompAmmo.UseAmmo) return true;
             Thing ammo = GenClosest.ClosestThingReachable(pawn.Position, pawn.Map,
                             ThingRequest.ForDef(turret.CompAmmo.SelectedAmmo),
                             PathEndMode.ClosestTouch,
@@ -45,7 +45,7 @@ namespace CombatExtended
             Building_TurretGunCE turret = t as Building_TurretGunCE;
             if (turret == null || turret.CompAmmo == null) return null;
 
-            if (!turret.CompAmmo.useAmmo)
+            if (!turret.CompAmmo.UseAmmo)
             {
                 return new Job(CE_JobDefOf.ReloadTurret, t, null);
             }
@@ -59,7 +59,7 @@ namespace CombatExtended
 
             if (ammo == null) return null;
             int amountNeeded = turret.CompAmmo.Props.magazineSize;
-            if (turret.CompAmmo.currentAmmo == turret.CompAmmo.SelectedAmmo) amountNeeded -= turret.CompAmmo.curMagCount;
+            if (turret.CompAmmo.CurrentAmmo == turret.CompAmmo.SelectedAmmo) amountNeeded -= turret.CompAmmo.CurMagCount;
             return new Job(DefDatabase<JobDef>.GetNamed("ReloadTurret"), t, ammo) { count = Mathf.Min(amountNeeded, ammo.stackCount) };
         }
 

@@ -20,6 +20,9 @@ namespace CombatExtended
             // Apply Harmony patches
             HarmonyBase.InitPatches();
 
+            // Initialize loadout generator
+            LongEventHandler.QueueLongEvent(LoadoutPropertiesExtension.Reset, "Other def binding, resetting and global operations.", false, null);
+
             // Inject ammo
             LongEventHandler.QueueLongEvent(AmmoInjector.Inject, "LibraryStartup", false, null);
 

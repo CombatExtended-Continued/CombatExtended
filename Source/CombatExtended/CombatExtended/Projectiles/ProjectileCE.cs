@@ -314,6 +314,7 @@ namespace CombatExtended
             var shotLine = new Ray(from, (dest - from));
 
             // Early opt-out, if we only moved by one cell only check the new cell
+            /*
             if ((newPos - lastPos).LengthManhattan == 1)
             {
                 if (DebugViewSettings.drawInterceptChecks)
@@ -322,6 +323,7 @@ namespace CombatExtended
                 }
                 return CheckCellForCollision(newPos, shotLine);
             }
+            */
 
             // Iterate through all cells between the last and the new position
             var cells = GenSight.PointsOnLineOfSight(lastPos, newPos);
@@ -410,6 +412,11 @@ namespace CombatExtended
         /// <returns>True if impact occured, false otherwise</returns>
         private bool TryCollideWith(Thing thing, Ray shotLine)
         {
+            if (thing == launcher && !canTargetSelf)
+            {
+                return false;
+            }
+
             // Trees have RNG chance to collide
             if (thing.IsTree())
             {

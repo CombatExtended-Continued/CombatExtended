@@ -33,10 +33,14 @@ namespace CombatExtended
                 stringBuilder.AppendLine(AmmoDef.ammoClass.description);
 
                 // Append guns that use this caliber
-                stringBuilder.AppendLine("\n" + "CE_UsedBy".Translate() + ":");
-                foreach(var user in AmmoDef.Users)
+                var users = AmmoDef.Users;
+                if (!users.NullOrEmpty())
                 {
-                    stringBuilder.AppendLine("   -" + user.LabelCap);
+                    stringBuilder.AppendLine("\n" + "CE_UsedBy".Translate() + ":");
+                    foreach (var user in users)
+                    {
+                        stringBuilder.AppendLine("   -" + user.LabelCap);
+                    }
                 }
 
                 return stringBuilder.ToString().TrimEndNewlines();

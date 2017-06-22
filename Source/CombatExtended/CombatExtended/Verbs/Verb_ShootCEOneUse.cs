@@ -1,4 +1,5 @@
 using System;
+using System.Linq;
 using Verse;
 using RimWorld;
 
@@ -16,7 +17,7 @@ namespace CombatExtended
 				}
 				return true;
 			}
-            if (CompAmmo != null && CompAmmo.hasMagazine && CompAmmo.curMagCount <= 0)
+            if (CompAmmo != null && CompAmmo.HasMagazine && CompAmmo.CurMagCount <= 0)
             {
                 this.SelfConsume();
             }
@@ -35,10 +36,23 @@ namespace CombatExtended
 		}
 		private void SelfConsume()
 		{
+            var inventory = ShooterPawn?.TryGetComp<CompInventory>();
 			if (this.ownerEquipment != null && !this.ownerEquipment.Destroyed)
             {
                 this.ownerEquipment.Destroy(DestroyMode.Vanish);
 			}
+            if (inventory != null)
+            {
+                var newGun = inventory.rangedWeaponList.FirstOrDefault(t => t.def == ownerEquipment.def);
+                if (newGun != null)
+                {
+                    inventory.TrySwitchToWeapon(newGun);
+                }
+                else
+                {
+                    inventory.SwitchToNextViableWeapon();
+                }
+            }
 		}
 	}
 }

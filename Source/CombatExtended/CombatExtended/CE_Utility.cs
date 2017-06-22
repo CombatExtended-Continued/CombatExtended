@@ -105,7 +105,7 @@ namespace CombatExtended
         {
             CompAmmoUser comp = gun.TryGetComp<CompAmmoUser>();
             if (comp == null) return true;
-            return !comp.useAmmo || comp.curMagCount > 0 || comp.hasAmmo;
+            return !comp.UseAmmo || comp.CurMagCount > 0 || comp.HasAmmo;
         }
 
         public static bool CanBeStabilizied(this Hediff diff)

@@ -12,5 +12,6 @@ namespace CombatExtended
     public class CE_BodyPartGroupDefOf
     {
         public static BodyPartGroupDef CoveredByNaturalArmor;
+        public static BodyPartGroupDef RightArm;
     }
 }

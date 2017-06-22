@@ -208,6 +208,7 @@ namespace CombatExtended
             yield return toggleAimModeGizmo;
         }
 
+        /*
         public override string GetDescriptionPart()
         {
             StringBuilder stringBuilder = new StringBuilder();
@@ -225,6 +226,7 @@ namespace CombatExtended
             }
             return stringBuilder.ToString().TrimEndNewlines();
         }
+        */
 
         #endregion
     }

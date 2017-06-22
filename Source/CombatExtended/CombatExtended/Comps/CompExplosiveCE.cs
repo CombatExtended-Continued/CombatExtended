@@ -61,7 +61,7 @@ namespace CombatExtended
                         
                         projectile.canTargetSelf = true;
             			projectile.minCollisionSqr = 1f;
-                        projectile.Launch(instigator, exactOrigin, UnityEngine.Random.Range(0, Mathf.PI / 4f), UnityEngine.Random.Range(0, 360), height, Props.fragSpeedFactor * projectile.def.projectile.speed);
+                        projectile.Launch(instigator, exactOrigin, UnityEngine.Random.Range(0, Mathf.PI / 8f), UnityEngine.Random.Range(0, 360), height, Props.fragSpeedFactor * projectile.def.projectile.speed);
                     }
                 }
             }

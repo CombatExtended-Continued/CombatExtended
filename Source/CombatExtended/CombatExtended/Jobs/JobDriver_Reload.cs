@@ -57,7 +57,7 @@ namespace CombatExtended
             text = text.Replace("FlagSource", flagSource);
             text = text.Replace("TargetB", weapon.def.label);
             if (Controller.settings.EnableAmmoSystem)
-                text = text.Replace("AmmoType", compReloader.currentAmmo.label);
+                text = text.Replace("AmmoType", compReloader.CurrentAmmo.label);
             else
                 text = text.Replace("AmmoType", "CE_ReloadingGenericAmmo".Translate()); return text;
         }
@@ -79,7 +79,7 @@ namespace CombatExtended
 			//return comp != null && !comp.hasAndUsesAmmoOrMagazine;
 			// expecting true ends the job.  if comp == null then will return false from the first part and not test the second.  Job will continue (bad).
 
-			return compReloader == null || !compReloader.hasAndUsesAmmoOrMagazine;
+			return compReloader == null || !compReloader.HasAndUsesAmmoOrMagazine;
         }
 
         /// <summary>

@@ -28,7 +28,7 @@ namespace CombatExtended
             StringBuilder stringBuilder = new StringBuilder();
 
             // Damage type/amount
-            string dmgList = "CE_DescDamage".Translate() + ": ";
+            string dmgList = "   " + "CE_DescDamage".Translate() + ": ";
             if (!props.secondaryDamage.NullOrEmpty())
             {
                 // If we have multiple damage types, put every one in its own line
@@ -45,7 +45,7 @@ namespace CombatExtended
             }
             // Explosion radius
             if (props.explosionRadius > 0)
-                stringBuilder.AppendLine("CE_DescExplosionRadius".Translate() + ": " + GenText.ToStringByStyle(props.explosionRadius, ToStringStyle.FloatOne));
+                stringBuilder.AppendLine("   " + "CE_DescExplosionRadius".Translate() + ": " + GenText.ToStringByStyle(props.explosionRadius, ToStringStyle.FloatOne));
 
             // Secondary explosion
             CompProperties_ExplosiveCE secExpProps = projectileDef.GetCompProperties<CompProperties_ExplosiveCE>();
@@ -53,21 +53,21 @@ namespace CombatExtended
             {
                 if (secExpProps.explosionRadius > 0)
                 {
-                    stringBuilder.AppendLine("CE_DescSecondaryExplosion".Translate() + ":");
-                    stringBuilder.AppendLine("   " + "CE_DescExplosionRadius".Translate() + ": " + GenText.ToStringByStyle(secExpProps.explosionRadius, ToStringStyle.FloatOne));
-                    stringBuilder.AppendLine("   " + "CE_DescDamage".Translate() + ": " +
+                    stringBuilder.AppendLine("   " + "CE_DescSecondaryExplosion".Translate() + ":");
+                    stringBuilder.AppendLine("   " + "   " + "CE_DescExplosionRadius".Translate() + ": " + GenText.ToStringByStyle(secExpProps.explosionRadius, ToStringStyle.FloatOne));
+                    stringBuilder.AppendLine("   " + "   " + "CE_DescDamage".Translate() + ": " +
                         GenText.ToStringByStyle(secExpProps.explosionDamage, ToStringStyle.Integer) + " (" + secExpProps.explosionDamageDef.LabelCap + ")");
                 }
                 if (secExpProps.fragRange > 0)
-                    stringBuilder.AppendLine("CE_DescFragRange".Translate() + ": " + GenText.ToStringByStyle(secExpProps.fragRange, ToStringStyle.FloatTwo));
+                    stringBuilder.AppendLine("   " + "CE_DescFragRange".Translate() + ": " + GenText.ToStringByStyle(secExpProps.fragRange, ToStringStyle.FloatTwo));
             }
 
             // CE stats
-            stringBuilder.AppendLine("CE_DescArmorPenetration".Translate() + ": " + GenText.ToStringByStyle(props.armorPenetration, ToStringStyle.PercentOne));
+            stringBuilder.AppendLine("   " + "CE_DescArmorPenetration".Translate() + ": " + GenText.ToStringByStyle(props.armorPenetration, ToStringStyle.PercentOne));
             if (props.pelletCount > 1)
-                stringBuilder.AppendLine("CE_DescPelletCount".Translate() + ": " + GenText.ToStringByStyle(props.pelletCount, ToStringStyle.Integer));
+                stringBuilder.AppendLine("   " + "CE_DescPelletCount".Translate() + ": " + GenText.ToStringByStyle(props.pelletCount, ToStringStyle.Integer));
             if (props.spreadMult != 1)
-                stringBuilder.AppendLine("CE_DescSpreadMult".Translate() + ": " + GenText.ToStringByStyle(props.spreadMult, ToStringStyle.PercentZero));
+                stringBuilder.AppendLine("   " + "CE_DescSpreadMult".Translate() + ": " + GenText.ToStringByStyle(props.spreadMult, ToStringStyle.PercentZero));
 
             return stringBuilder.ToString();
         }

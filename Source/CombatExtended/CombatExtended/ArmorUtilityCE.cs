@@ -78,7 +78,7 @@ namespace CombatExtended
                             if (hasCoverage)
                             {
                                 // Right arm is vulnerable during warmup/attack/cooldown
-                                blockedByShield = !((pawn.stances?.curStance as Stance_Busy)?.verb != null && hitPart.IsInGroup(DefDatabase<BodyPartGroupDef>.GetNamed("Arms")) && hitPart.def.defName.Contains("Right"));
+                                blockedByShield = !((pawn.stances?.curStance as Stance_Busy)?.verb != null && hitPart.IsInGroup(CE_BodyPartGroupDefOf.RightArm));
                             }
                         }
                     }
@@ -276,12 +276,17 @@ namespace CombatExtended
                 if (isSoftArmor)
                 {
                     // Soft armor takes absorbed damage from sharp and no damage from blunt
-                    if (isSharpDmg) armor.TakeDamage(new DamageInfo(def, Mathf.Max(Mathf.CeilToInt(dmgAmount * SoftArmorMinDamageFactor), Mathf.CeilToInt(dmgAmount - newDmgAmount))));
+                    if (isSharpDmg)
+                    {
+                        float armorDamage = Mathf.Max(dmgAmount * SoftArmorMinDamageFactor, dmgAmount - newDmgAmount);
+                        armor.TakeDamage(new DamageInfo(def, Mathf.CeilToInt(armorDamage)));
+                    }
                 }
                 else
                 {
-                    // Hard armor takes damage as reduced by damage resistance and can be impervious to low-penetration attacks
-                    armor.TakeDamage(new DamageInfo(def, Mathf.CeilToInt(newDmgAmount)));
+                    // Hard armor takes damage as reduced by damage resistance and can be almost impervious to low-penetration attacks
+                    float armorDamage = Mathf.Max(1, newDmgAmount);
+                    armor.TakeDamage(new DamageInfo(def, Mathf.CeilToInt(armorDamage)));
                 }
             }
 
@@ -383,7 +388,7 @@ namespace CombatExtended
             }
             else
             {
-                float dmgAmount = dinfo.Amount * 0.5f;
+                float dmgAmount = dinfo.Amount * 0.1f;
                 float penAmount = GetPenetrationValue(dinfo);
                 TryPenetrateArmor(dinfo.Def, parryThing.GetStatValue(dinfo.Def.armorCategory.deflectionStat), ref penAmount, ref dmgAmount, parryThing);
             }

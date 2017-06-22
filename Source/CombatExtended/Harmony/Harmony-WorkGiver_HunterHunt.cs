@@ -18,7 +18,7 @@ namespace CombatExtended.Harmony
             {
                 // Check if gun has ammo first
                 CompAmmoUser comp = p.equipment.Primary.TryGetComp<CompAmmoUser>();
-                __result = comp == null || comp.canBeFiredNow || comp.hasAmmo;
+                __result = comp == null || comp.CanBeFiredNow || comp.HasAmmo;
             }
             else
             {

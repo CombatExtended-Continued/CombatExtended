@@ -203,13 +203,11 @@ namespace CombatExtended
                 }
                 rect.width -= 24f;
             }
-            if (this.CanControl && thing.def.IsNutritionGivingIngestible && thing.IngestibleNow && base.SelPawn.RaceProps.CanEverEat(thing))
+            if (this.CanControl && thing.IngestibleNow && base.SelPawn.RaceProps.CanEverEat(thing))
             {
                 Rect rect3 = new Rect(rect.width - 24f, y, 24f, 24f);
-                TooltipHandler.TipRegion(rect3, "ConsumeThing".Translate(new object[]
-                {
-                    thing.LabelNoCount
-                }));
+                string tipString = thing.def.ingestible.ingestCommandString.NullOrEmpty() ? "ConsumeThing".Translate(new object[] { thing.LabelShort }) : string.Format(thing.def.ingestible.ingestCommandString, thing.LabelShort);
+                TooltipHandler.TipRegion(rect3, tipString);
                 if (Widgets.ButtonImage(rect3, TexButton.Ingest))
                 {
                     SoundDefOf.TickHigh.PlayOneShotOnCamera();
@@ -297,14 +295,15 @@ namespace CombatExtended
                         SoundDefOf.TickHigh.PlayOneShotOnCamera();
                         InterfaceDropHaul(thing);
                     };
-                    if (this.CanControl && thing.def.IsNutritionGivingIngestible && thing.IngestibleNow && base.SelPawn.RaceProps.CanEverEat(thing))
+                    if (this.CanControl && thing.IngestibleNow && base.SelPawn.RaceProps.CanEverEat(thing))
                     {
                         Action eatFood = delegate
                         {
                             SoundDefOf.TickHigh.PlayOneShotOnCamera();
                             InterfaceEatThis(thing);
                         };
-                        floatOptionList.Add(new FloatMenuOption("CE_Eat".Translate(), eatFood));
+                        string label = thing.def.ingestible.ingestCommandString.NullOrEmpty() ? "ConsumeThing".Translate(new object[] { thing.LabelShort }) : string.Format(thing.def.ingestible.ingestCommandString, thing.LabelShort);
+                        floatOptionList.Add(new FloatMenuOption(label, eatFood));
                     }
                     floatOptionList.Add(new FloatMenuOption("DropThing".Translate(), dropApparel));
                     floatOptionList.Add(new FloatMenuOption("CE_DropThingHaul".Translate(), dropApparelHaul));

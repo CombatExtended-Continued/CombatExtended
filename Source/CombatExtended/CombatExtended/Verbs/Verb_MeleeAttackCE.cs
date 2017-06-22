@@ -324,7 +324,7 @@ namespace CombatExtended
             if (isCrit && CasterPawn.def.race.Animal)
             {
                 var pawn = target.Thing as Pawn;
-                if (pawn != null)
+                if (pawn != null && !pawn.Dead)
                 {
                     //pawn.stances?.stunner.StunFor(KnockdownDuration);
                     pawn.stances?.SetStance(new Stance_Cooldown(KnockdownDuration, pawn, null));

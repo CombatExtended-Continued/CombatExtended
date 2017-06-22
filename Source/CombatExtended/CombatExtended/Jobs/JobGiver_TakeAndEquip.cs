@@ -64,7 +64,7 @@ namespace CombatExtended
                         ammocount += ammoThing.stackCount;
                     }
                 }
-                float atw = primaryammouser.currentAmmo.GetStatValueAbstract(CE_StatDefOf.Bulk);
+                float atw = primaryammouser.CurrentAmmo.GetStatValueAbstract(CE_StatDefOf.Bulk);
                 if ((ammocount < (1.5f / atw)) && ((1.5f / atw) > 3))
                 {
                     if (Unload(pawn))
@@ -158,7 +158,7 @@ namespace CombatExtended
                     if ((pawn.skills.GetSkill(SkillDefOf.Shooting).Level >= pawn.skills.GetSkill(SkillDefOf.Melee).Level
                 	     || pawn.skills.GetSkill(SkillDefOf.Shooting).Level >= 6))
                     {
-                        ThingWithComps InvListGun3 = inventory.rangedWeaponList.Find(thing => thing.TryGetComp<CompAmmoUser>() != null && thing.TryGetComp<CompAmmoUser>().hasAmmoOrMagazine);
+                        ThingWithComps InvListGun3 = inventory.rangedWeaponList.Find(thing => thing.TryGetComp<CompAmmoUser>() != null && thing.TryGetComp<CompAmmoUser>().HasAmmoOrMagazine);
                         if (InvListGun3 != null)
                         {
                             inventory.TrySwitchToWeapon(InvListGun3);
@@ -173,7 +173,7 @@ namespace CombatExtended
                     if (ListGun != null)
                     {
                         Thing ammoListGun = null;
-                        if (!ListGun.TryGetComp<CompAmmoUser>().hasAmmoOrMagazine)
+                        if (!ListGun.TryGetComp<CompAmmoUser>().HasAmmoOrMagazine)
                         foreach (AmmoLink link in ListGun.TryGetComp<CompAmmoUser>().Props.ammoSet.ammoTypes)
                         {
                             if (inventory.ammoList.Find(thing => thing.def == link.ammo) == null)
