@@ -14,17 +14,14 @@ namespace CombatExtended.Harmony
     {
         public static bool Prefix(JobGiver_DropUnusedInventory __instance, Pawn pawn, Thing thing)
         {
-            var loadout = pawn.GetLoadout();
-            if (loadout == null)
-            {
-                return true;
-            }
             // Remove forced hold from timed out tamer food
             if (thing.def.IsIngestible && !thing.def.IsDrug && thing.def.ingestible.preferability <= FoodPreferability.RawTasty)
             {
-                Utility_HoldTracker.HoldTrackerForget(pawn, thing);
+                pawn.HoldTrackerForget(thing);
+                return true;
             }
-            return false;
+            var loadout = pawn.GetLoadout();
+            return loadout == null;
         }
     }
 }
