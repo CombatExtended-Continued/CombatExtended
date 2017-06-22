@@ -13,21 +13,22 @@
 				<statBases>
 					<Mass>14</Mass>
 					<RangedWeapon_Cooldown>1.38</RangedWeapon_Cooldown>
-					<SightsEfficiency>2.5</SightsEfficiency>
+					<SightsEfficiency>3</SightsEfficiency>
 					<ShotSpread>0.07</ShotSpread>
 					<SwayFactor>1.87</SwayFactor>
 					<Bulk>12.5</Bulk>
-					<WorkToMake>35500</WorkToMake>
+					<WorkToMake>43500</WorkToMake>
 				</statBases>
 				<costList>
-					<Steel>105</Steel>
-					<Component>5</Component>
+					<Chemfuel>20</Chemfuel>
+					<Steel>85</Steel>
+					<Component>6</Component>
 				</costList>
 				<Properties>
 					<verbClass>CombatExtended.Verb_ShootCE</verbClass>
 					<hasStandardCommand>true</hasStandardCommand>
 					<projectileDef>Bullet_50BMG_FMJ</projectileDef>
-					<warmupTime>5.25</warmupTime>
+					<warmupTime>5.1</warmupTime>
 					<range>86</range>
 					<soundCast>ShotSniperRifle</soundCast>
 					<soundCastTail>GunTail_Heavy</soundCastTail>
@@ -44,9 +45,10 @@
 				<weaponTags>
 					<li>CE_AI_Rifle</li>
 				</weaponTags>
+				<researchPrerequisite>CE_AdvancedFirearms</researchPrerequisite>
 			</li>
 			<li Class="PatchOperationRemove">
-				<xpath>/ThingDefs/ThingDef[defName = "Gun_FiftyCalRifle"]/equippedStatOffsets</xpath>
+				<xpath>/ThingDefs/ThingDef[defName="Gun_FiftyCalRifle"]/equippedStatOffsets</xpath>
 			</li>
 			<!-- ========== Improvised Pistol ========== -->
 			<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
@@ -55,11 +57,11 @@
 					<Mass>0.97</Mass>
 					<MarketValue>72.499</MarketValue>
 					<RangedWeapon_Cooldown>0.36</RangedWeapon_Cooldown>
-					<SightsEfficiency>0.35</SightsEfficiency>
+					<SightsEfficiency>0.7</SightsEfficiency>
 					<ShotSpread>0.2</ShotSpread>
 					<SwayFactor>1.11</SwayFactor>
 					<Bulk>2.35</Bulk>
-					<WorkToMake>4500</WorkToMake>
+					<WorkToMake>5000</WorkToMake>
 				</statBases>
 				<costList>
 					<WoodLog>5</WoodLog>
@@ -88,52 +90,17 @@
 					<li>CE_OneHandedWeapon</li>
 				</weaponTags>
 			</li>
-			<!-- Enable improvised ammo recipe -->
-			<li Class="PatchOperationInsert">
-				<xpath>*/RecipeDef[defName="MakeAmmo_38Special_FMJ"]</xpath>
-				<value>
-					<RecipeDef ParentName="AmmoRecipeBase">
-					  <defName>MakeAmmo_38Special_FMJ_Alt</defName>
-					  <label>make .38 Special (FMJ) cartridge x50 (inefficient)</label>
-					  <description>Craft 50 .38 Special (FMJ) cartridges.\n\nTakes longer, and is proportionally more expensive.</description>
-					  <jobString>Making .38 Special (FMJ) cartridges.</jobString>
-					  <ingredients>
-					    <li>
-					      <filter>
-					        <thingDefs>
-					          <li>Steel</li>
-					        </thingDefs>
-					      </filter>
-					      <count>3</count>
-					    </li>
-					  </ingredients>
-					  <fixedIngredientFilter>
-					    <thingDefs>
-					      <li>Steel</li>
-					    </thingDefs>
-					  </fixedIngredientFilter>
-					  <products>
-					    <Ammo_38Special_FMJ>50</Ammo_38Special_FMJ>
-					  </products>
-					  <researchPrerequisite>Smithing</researchPrerequisite>
-					  <recipeUsers>
-					  	<li>CraftingSpot</li>
-					  </recipeUsers>
-					  <workAmount>3000</workAmount>
-					</RecipeDef>
-				</value>
-			</li>
 			<!-- ========== Repeater Rifle ========== -->
 			<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
 				<defName>Gun_RepeaterRifle</defName>
 				<statBases>
 					<Mass>4.3</Mass>
 					<RangedWeapon_Cooldown>0.76</RangedWeapon_Cooldown>
-					<SightsEfficiency>0.5</SightsEfficiency>
+					<SightsEfficiency>1</SightsEfficiency>
 					<ShotSpread>0.02</ShotSpread>
 					<SwayFactor>1.68</SwayFactor>
 					<Bulk>12.5</Bulk>
-					<WorkToMake>11000</WorkToMake>
+					<WorkToMake>11500</WorkToMake>
 				</statBases>
 				<costList>
 					<WoodLog>10</WoodLog>
@@ -168,11 +135,11 @@
 				<statBases>
 					<Mass>1.37</Mass>
 					<RangedWeapon_Cooldown>0.39</RangedWeapon_Cooldown>
-					<SightsEfficiency>0.35</SightsEfficiency>
+					<SightsEfficiency>0.7</SightsEfficiency>
 					<ShotSpread>0.16</ShotSpread>
 					<SwayFactor>1.65</SwayFactor>
 					<Bulk>3.57</Bulk>
-					<WorkToMake>4500</WorkToMake>
+					<WorkToMake>5000</WorkToMake>
 				</statBases>
 				<costList>
 					<Steel>30</Steel>
@@ -206,14 +173,15 @@
 				<statBases>
 					<Mass>2.3</Mass>
 					<RangedWeapon_Cooldown>0.4</RangedWeapon_Cooldown>
-					<SightsEfficiency>0.5</SightsEfficiency>
+					<SightsEfficiency>1</SightsEfficiency>
 					<ShotSpread>0.16</ShotSpread>
 					<SwayFactor>0.81</SwayFactor>
 					<Bulk>5.84</Bulk>
-					<WorkToMake>12000</WorkToMake>
+					<WorkToMake>12500</WorkToMake>
 				</statBases>
 				<costList>
-					<Steel>45</Steel>
+					<WoodLog>5</WoodLog>
+					<Steel>40</Steel>
 					<Component>2</Component>
 				</costList>
 				<Properties>
@@ -228,7 +196,7 @@
 				</Properties>
 				<AmmoUser>
 					<magazineSize>2</magazineSize>
-					<reloadTime>1.7</reloadTime>
+					<reloadTime>1.6</reloadTime>
 					<ammoSet>AmmoSet_12Gauge</ammoSet>
 				</AmmoUser>
 				<FireModes />
@@ -246,15 +214,15 @@
 					<ShotSpread>0.09</ShotSpread>
 					<SwayFactor>1.23</SwayFactor>
 					<Bulk>8.8</Bulk>
-					<WorkToMake>22500</WorkToMake>
+					<WorkToMake>27000</WorkToMake>
 				</statBases>
 				<costList>
 					<WoodLog>10</WoodLog>
 					<Steel>45</Steel>
-					<Component>4</Component>
+					<Component>5</Component>
 				</costList>
 				<Properties>
-					<recoilAmount>1.65</recoilAmount>
+					<recoilAmount>1.82</recoilAmount>
 					<verbClass>CombatExtended.Verb_ShootCE</verbClass>
 					<hasStandardCommand>true</hasStandardCommand>
 					<projectileDef>Bullet_762x39mmSoviet_FMJ</projectileDef>
@@ -278,6 +246,7 @@
 					<li>CE_AI_AssaultWeapon</li>
 					<li>CE_AI_Rifle</li>
 				</weaponTags>
+				<researchPrerequisite>CE_AdvancedFirearms</researchPrerequisite>
 			</li>
 		</operations>
 	</Operation>
@@ -294,21 +263,22 @@
 				<statBases>
 					<Mass>14</Mass>
 					<RangedWeapon_Cooldown>1.38</RangedWeapon_Cooldown>
-					<SightsEfficiency>2.5</SightsEfficiency>
+					<SightsEfficiency>3</SightsEfficiency>
 					<ShotSpread>0.07</ShotSpread>
 					<SwayFactor>1.87</SwayFactor>
 					<Bulk>12.5</Bulk>
-					<WorkToMake>35500</WorkToMake>
+					<WorkToMake>43500</WorkToMake>
 				</statBases>
 				<costList>
-					<Steel>105</Steel>
-					<Component>5</Component>
+					<Chemfuel>20</Chemfuel>
+					<Steel>85</Steel>
+					<Component>6</Component>
 				</costList>
 				<Properties>
 					<verbClass>CombatExtended.Verb_ShootCE</verbClass>
 					<hasStandardCommand>true</hasStandardCommand>
 					<projectileDef>Bullet_50BMG_FMJ</projectileDef>
-					<warmupTime>5.25</warmupTime>
+					<warmupTime>5.1</warmupTime>
 					<range>86</range>
 					<soundCast>ShotSniperRifle</soundCast>
 					<soundCastTail>GunTail_Heavy</soundCastTail>
@@ -325,6 +295,7 @@
 				<weaponTags>
 					<li>CE_AI_Rifle</li>
 				</weaponTags>
+				<researchPrerequisite>CE_AdvancedFirearms</researchPrerequisite>
 			</li>
 			<li Class="PatchOperationRemove">
 				<xpath>/ThingDefs/ThingDef[defName = "Gun_FiftyCalRifle"]/equippedStatOffsets</xpath>
@@ -336,11 +307,11 @@
 					<Mass>0.97</Mass>
 					<MarketValue>72.499</MarketValue>
 					<RangedWeapon_Cooldown>0.36</RangedWeapon_Cooldown>
-					<SightsEfficiency>0.35</SightsEfficiency>
+					<SightsEfficiency>0.7</SightsEfficiency>
 					<ShotSpread>0.2</ShotSpread>
 					<SwayFactor>1.11</SwayFactor>
 					<Bulk>2.35</Bulk>
-					<WorkToMake>4500</WorkToMake>
+					<WorkToMake>5000</WorkToMake>
 				</statBases>
 				<costList>
 					<WoodLog>5</WoodLog>
@@ -375,11 +346,11 @@
 				<statBases>
 					<Mass>4.3</Mass>
 					<RangedWeapon_Cooldown>0.76</RangedWeapon_Cooldown>
-					<SightsEfficiency>0.5</SightsEfficiency>
+					<SightsEfficiency>1</SightsEfficiency>
 					<ShotSpread>0.02</ShotSpread>
 					<SwayFactor>1.68</SwayFactor>
 					<Bulk>12.5</Bulk>
-					<WorkToMake>11000</WorkToMake>
+					<WorkToMake>11500</WorkToMake>
 				</statBases>
 				<costList>
 					<WoodLog>10</WoodLog>
@@ -414,11 +385,11 @@
 				<statBases>
 					<Mass>1.37</Mass>
 					<RangedWeapon_Cooldown>0.39</RangedWeapon_Cooldown>
-					<SightsEfficiency>0.35</SightsEfficiency>
+					<SightsEfficiency>0.7</SightsEfficiency>
 					<ShotSpread>0.16</ShotSpread>
 					<SwayFactor>1.65</SwayFactor>
 					<Bulk>3.57</Bulk>
-					<WorkToMake>4500</WorkToMake>
+					<WorkToMake>5000</WorkToMake>
 				</statBases>
 				<costList>
 					<Steel>30</Steel>
@@ -452,14 +423,15 @@
 				<statBases>
 					<Mass>2.3</Mass>
 					<RangedWeapon_Cooldown>0.4</RangedWeapon_Cooldown>
-					<SightsEfficiency>0.5</SightsEfficiency>
+					<SightsEfficiency>1</SightsEfficiency>
 					<ShotSpread>0.16</ShotSpread>
 					<SwayFactor>0.81</SwayFactor>
 					<Bulk>5.84</Bulk>
-					<WorkToMake>12000</WorkToMake>
+					<WorkToMake>12500</WorkToMake>
 				</statBases>
 				<costList>
-					<Steel>45</Steel>
+					<WoodLog>5</WoodLog>
+					<Steel>40</Steel>
 					<Component>2</Component>
 				</costList>
 				<Properties>
@@ -474,7 +446,7 @@
 				</Properties>
 				<AmmoUser>
 					<magazineSize>2</magazineSize>
-					<reloadTime>1.7</reloadTime>
+					<reloadTime>1.6</reloadTime>
 					<ammoSet>AmmoSet_12Gauge</ammoSet>
 				</AmmoUser>
 				<FireModes />
@@ -492,15 +464,15 @@
 					<ShotSpread>0.09</ShotSpread>
 					<SwayFactor>1.23</SwayFactor>
 					<Bulk>8.8</Bulk>
-					<WorkToMake>22500</WorkToMake>
+					<WorkToMake>27000</WorkToMake>
 				</statBases>
 				<costList>
 					<WoodLog>10</WoodLog>
 					<Steel>45</Steel>
-					<Component>4</Component>
+					<Component>5</Component>
 				</costList>
 				<Properties>
-					<recoilAmount>1.65</recoilAmount>
+					<recoilAmount>1.82</recoilAmount>
 					<verbClass>CombatExtended.Verb_ShootCE</verbClass>
 					<hasStandardCommand>true</hasStandardCommand>
 					<projectileDef>Bullet_762x39mmSoviet_FMJ</projectileDef>
@@ -524,6 +496,7 @@
 					<li>CE_AI_AssaultWeapon</li>
 					<li>CE_AI_Rifle</li>
 				</weaponTags>
+				<researchPrerequisite>CE_AdvancedFirearms</researchPrerequisite>
 			</li>
 		</operations>
 	</Operation>

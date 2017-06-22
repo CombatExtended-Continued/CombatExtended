@@ -13,9 +13,9 @@
 				<statBases>
 					<Mass>8.4</Mass>
 					<RangedWeapon_Cooldown>0.38</RangedWeapon_Cooldown>
-					<SightsEfficiency>0.5</SightsEfficiency>
+					<SightsEfficiency>1</SightsEfficiency>
 					<ShotSpread>0.06</ShotSpread>
-					<SwayFactor>1.99</SwayFactor>
+					<SwayFactor>0.86</SwayFactor>
 					<Bulk>11.5</Bulk>
 				</statBases>
 				<Properties>
@@ -44,11 +44,11 @@
 			<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
 				<defName>Gun_RadiationCannon</defName>
 				<statBases>
-					<Mass>350</Mass>
-					<RangedWeapon_Cooldown>0.38</RangedWeapon_Cooldown>
-					<SightsEfficiency>0.5</SightsEfficiency>
+					<Mass>300</Mass>
+					<RangedWeapon_Cooldown>2.53</RangedWeapon_Cooldown>
+					<SightsEfficiency>1</SightsEfficiency>
 					<ShotSpread>0.01</ShotSpread>
-					<SwayFactor>0.85</SwayFactor>
+					<SwayFactor>0.82</SwayFactor>
 					<Bulk>24</Bulk>
 				</statBases>
 				<Properties>
@@ -88,9 +88,9 @@
 				<statBases>
 					<Mass>8.4</Mass>
 					<RangedWeapon_Cooldown>0.38</RangedWeapon_Cooldown>
-					<SightsEfficiency>0.5</SightsEfficiency>
+					<SightsEfficiency>1</SightsEfficiency>
 					<ShotSpread>0.06</ShotSpread>
-					<SwayFactor>1.99</SwayFactor>
+					<SwayFactor>0.86</SwayFactor>
 					<Bulk>11.5</Bulk>
 				</statBases>
 				<Properties>
@@ -119,11 +119,11 @@
 			<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
 				<defName>Gun_RadiationCannon</defName>
 				<statBases>
-					<Mass>350</Mass>
-					<RangedWeapon_Cooldown>0.38</RangedWeapon_Cooldown>
-					<SightsEfficiency>0.5</SightsEfficiency>
+					<Mass>300</Mass>
+					<RangedWeapon_Cooldown>2.53</RangedWeapon_Cooldown>
+					<SightsEfficiency>1</SightsEfficiency>
 					<ShotSpread>0.01</ShotSpread>
-					<SwayFactor>0.85</SwayFactor>
+					<SwayFactor>0.82</SwayFactor>
 					<Bulk>24</Bulk>
 				</statBases>
 				<Properties>
@@ -158,6 +158,27 @@
 		<operations>
 			<li Class="CombatExtended.PatchOperationFindMod">
 				<modName>Vanilla-Friendly Weapon Expansion</modName>
+			</li>
+			<li Class="PatchOperationReplace">
+				<xpath>*/ThingDef[defName="Ammo_60x225mmGamma_Standard"]/comps/li[@Class="CombatExtended.CompProperties_ExplosiveCE"]/explosionDamageDef</xpath>
+				<value>
+					<explosionDamageDef>ExplosionRadioactive</explosionDamageDef>
+				</value>
+			</li>
+			<li Class="PatchOperationReplace">
+				<xpath>*/ThingDef[defName="Bullet_60x225mmGamma_Standard"]/projectile/damageDef</xpath>
+				<value>
+					<damageDef>ExplosionRadioactive</damageDef>
+				</value>
+			</li>
+		</operations>
+	</Operation>
+
+	<Operation Class="PatchOperationSequence">
+		<success>Always</success>
+		<operations>
+			<li Class="CombatExtended.PatchOperationFindMod">
+				<modName>XeoNovaDan's Mod Compendium</modName>
 			</li>
 			<li Class="PatchOperationReplace">
 				<xpath>*/ThingDef[defName="Ammo_60x225mmGamma_Standard"]/comps/li[@Class="CombatExtended.CompProperties_ExplosiveCE"]/explosionDamageDef</xpath>
