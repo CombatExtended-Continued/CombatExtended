@@ -6,6 +6,7 @@ using System.Text;
 using RimWorld;
 using Verse;
 using Verse.AI;
+using Verse.Grammar;
 using UnityEngine;
 
 namespace CombatExtended
@@ -160,26 +161,10 @@ namespace CombatExtended
         public override void WarmupComplete()
         {
             // attack shooting expression
-            Pawn shooter = ShooterPawn;
-            if (Controller.settings.ShowTaunts 
-                && shooter != null 
-                && shooter.Map != null 
-                && shooter.def.race.Humanlike 
-                && currentTarget != null
-                && currentTarget.Thing is Pawn
-                && Find.TickManager.TicksGame - lastTauntTick >= 120
-                && Rand.Chance(0.25f))
+            if ((ShooterPawn?.Spawned ?? false) && currentTarget.Thing is Pawn && Rand.Chance(0.25f))
             {
-                string rndswear = RulePackDef.Named("AttackMote").Rules.RandomElement().Generate();
-                if (rndswear == "[swear]" || rndswear == "" || rndswear == " ")
-                {
-                    Log.Warning("CE tried throwing invalid taunt for " + shooter.ToString());
-                }
-                else
-                {
-                    MoteMaker.ThrowText(shooter.Position.ToVector3Shifted(), shooter.Map, rndswear);
-                }
-                lastTauntTick = Find.TickManager.TicksGame;
+                var tauntThrower = (TauntThrower)ShooterPawn.Map.GetComponent(typeof(TauntThrower));
+                tauntThrower?.TryThrowTaunt(CE_RulePackDefOf.AttackMote, ShooterPawn);
             }
 
             this.numShotsFired = 0;

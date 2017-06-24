@@ -196,6 +196,12 @@ namespace CombatExtended
                     pawn.jobs.StartJob(reactJob, JobCondition.InterruptForced, null, pawn.jobs.curJob?.def==JobDefOf.ManTurret);
                     LessonAutoActivator.TeachOpportunity(CE_ConceptDefOf.CE_SuppressionReaction, pawn, OpportunityType.Critical);
                 }
+                // Throw taunt
+                if (Rand.Chance(0.01f))
+                {
+                    var tauntThrower = (TauntThrower)(pawn.Map.GetComponent(typeof(TauntThrower)));
+                    tauntThrower?.TryThrowTaunt(CE_RulePackDefOf.SuppressedMote, pawn);
+                }
             }
         }
 
