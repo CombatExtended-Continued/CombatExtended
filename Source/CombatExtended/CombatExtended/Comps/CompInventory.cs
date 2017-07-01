@@ -356,6 +356,11 @@ namespace CombatExtended
             {
                 return;
             }
+
+            // Stop current job
+            if (parentPawn.jobs != null)
+                parentPawn.jobs.StopAll();
+
             if (parentPawn.equipment.Primary != null)
             {
                 int count;
