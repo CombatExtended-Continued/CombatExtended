@@ -14,5 +14,7 @@ namespace CombatExtended
         public static readonly ThingDef Mote_HunkerIcon = ThingDef.Named("Mote_HunkerIcon");
 
         public static ThingDef FSX;
+
+        public static ThingDef AmmoBench;
 	}
 }

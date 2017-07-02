@@ -25,8 +25,9 @@ namespace CombatExtended
     	
         private const string enableTradeTag = "CE_AutoEnableTrade";             // The trade tag which designates ammo defs for being automatically switched to Tradeability.Stockable
         private const string enableCraftingTag = "CE_AutoEnableCrafting";        // The trade tag which designates ammo defs for having their crafting recipes automatically added to the crafting table
+        /*
         private static ThingDef ammoCraftingStationInt;                         // The crafting station to which ammo will be automatically added
-        private static ThingDef ammoCraftingStation
+        private static ThingDef AmmoCraftingStation
         {
             get
             {
@@ -35,6 +36,7 @@ namespace CombatExtended
                 return ammoCraftingStationInt;
             }
         }
+        */
 
         public static void Inject()
         {
@@ -91,14 +93,16 @@ namespace CombatExtended
             }
             
             // Make sure to exclude all ammo things which double as weapons
-			ammoDefs.RemoveWhere(CE_Utility.allWeaponDefs.Contains);
+			ammoDefs.RemoveWhere(x => x.IsWeapon);
             
-            bool canCraft = (ammoCraftingStation != null);
+            /*
+            bool canCraft = (AmmoCraftingStation != null);
             
             if (!canCraft)
             {
             	Log.ErrorOnce("CE ammo injector crafting station is null", 84653201);
             }
+            */
             
             foreach (AmmoDef ammoDef in ammoDefs)
             {
@@ -111,9 +115,10 @@ namespace CombatExtended
                 {
                 	ammoDef.tradeability = enabled ? Tradeability.Stockable : Tradeability.Sellable;
                 }
-                
+
                 // Toggle craftability
-                if (canCraft && ammoDef.tradeTags.Contains(enableCraftingTag))
+                var craftingTags = ammoDef.tradeTags.Where(t => t.StartsWith(enableCraftingTag));
+                if (craftingTags.Count() != 0)
                 {
                     RecipeDef recipe = DefDatabase<RecipeDef>.GetNamed(("Make" + ammoDef.defName), false);
                     if (recipe == null)
@@ -122,29 +127,59 @@ namespace CombatExtended
                     }
                     else
                     {
-                    	if (enabled)
-                    	{
-                    		recipe.recipeUsers.Add(ammoCraftingStation);
-                    	}
-                    	else
-                    	{
-                    		recipe.recipeUsers.RemoveAll(x => x.defName == ammoCraftingStation.defName);
-                    	}
+                        // Go through all crafting tags and add to the appropriate benches
+                        foreach (string curTag in craftingTags)
+                        {
+                            ThingDef bench;
+                            if (curTag == enableCraftingTag)
+                            {
+                                bench = CE_ThingDefOf.AmmoBench;
+                            }
+                            else
+                            {
+                                // Parse tag for bench def
+                                if (curTag.Length <= enableCraftingTag.Length + 1)
+                                {
+                                    Log.Error("CE :: AmmoInjector trying to inject " + ammoDef.ToString() + " but " + curTag + " is not a valid crafting tag, valid formats are: " + enableCraftingTag + " and " + enableCraftingTag + "_defNameOfCraftingBench");
+                                    continue;
+                                }
+                                var benchName = curTag.Remove(0, enableCraftingTag.Length + 1);
+                                bench = DefDatabase<ThingDef>.GetNamed(benchName, false);
+                                if (bench == null)
+                                {
+                                    Log.Error("CE :: AmmoInjector trying to inject " + ammoDef.ToString() + " but no crafting bench with defName=" + benchName + " could be found for tag " + curTag);
+                                    continue;
+                                }
+                            }
+                            ToggleRecipeOnBench(recipe, bench);
+                            /*
+                            // Toggle recipe
+                            if (enabled)
+                            {
+                                recipe.recipeUsers.Add(bench);
+                            }
+                            else
+                            {
+                                recipe.recipeUsers.RemoveAll(x => x.defName == bench.defName);
+                            }
+                            */
+                        }
                     }
                 }
             }
             
+            /*
         	if (canCraft)
         	{
             	// Set ammoCraftingStation.AllRecipes to null so it will reset
-				_allRecipesCached.SetValue(ammoCraftingStation, null);
+				_allRecipesCached.SetValue(AmmoCraftingStation, null);
 				
 				// Remove all bills which contain removed ammo types
 				if (!enabled)
 				{
                     if (Current.Game != null)
                     {
-                        IEnumerable<Building> enumerable = Find.Maps.SelectMany(x => x.listerBuildings.AllBuildingsColonistOfDef(ammoCraftingStation));
+                        IEnumerable<Building> enumerable = Find.Maps.SelectMany(x => x.listerBuildings.AllBuildingsColonistOfDef(AmmoCraftingStation));
                         foreach (Building current in enumerable)
                         {
                             var billGiver = current as IBillGiver;
@@ -153,7 +188,7 @@ namespace CombatExtended
                                 for (int i = 0; i < billGiver.BillStack.Count; i++)
                                 {
                                     Bill bill = billGiver.BillStack[i];
-                                    if (!ammoCraftingStation.AllRecipes.Exists(r => bill.recipe == r))
+                                    if (!AmmoCraftingStation.AllRecipes.Exists(r => bill.recipe == r))
                                     {
                                         billGiver.BillStack.Delete(bill);
                                     }
@@ -165,8 +200,45 @@ namespace CombatExtended
             		CE_Utility.allWeaponDefs.Clear();
 				}
             }
+            */
             
             return true;
+        }
+
+        private static void ToggleRecipeOnBench(RecipeDef recipeDef, ThingDef benchDef)
+        {
+            if (Controller.settings.EnableAmmoSystem)
+            {
+                if (recipeDef.recipeUsers == null)
+                    recipeDef.recipeUsers = new List<ThingDef>();
+                recipeDef.recipeUsers.Add(benchDef);
+            }
+            else
+            {
+                recipeDef.recipeUsers?.RemoveAll(x => x.defName == benchDef.defName);
+
+                // Remove all bills for disabled recipes
+                if (Current.Game != null)
+                {
+                    IEnumerable<Building> enumerable = Find.Maps.SelectMany(x => x.listerBuildings.AllBuildingsColonistOfDef(benchDef));
+                    foreach (Building current in enumerable)
+                    {
+                        var billGiver = current as IBillGiver;
+                        if (billGiver != null)
+                        {
+                            for (int i = 0; i < billGiver.BillStack.Count; i++)
+                            {
+                                Bill bill = billGiver.BillStack[i];
+                                if (!benchDef.AllRecipes.Exists(r => bill.recipe == r))
+                                {
+                                    billGiver.BillStack.Delete(bill);
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            _allRecipesCached.SetValue(benchDef, null);  // Set ammoCraftingStation.AllRecipes to null so it will reset
         }
     }
 }
