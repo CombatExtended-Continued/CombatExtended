@@ -20,10 +20,12 @@ namespace CombatExtended
         }
         #endregion
         
-		#region Fields        
-        private const int proximitySearchRadius = 20;
-        private const int maximumSearchRadius = 80;
-        private const int ticksBeforeDropRaw = 40000;
+		#region Constants  
+              
+        private const int ProximitySearchRadius = 20;
+        private const int MaximumSearchRadius = 80;
+        private const int TicksBeforeDropRaw = 40000;
+
         #endregion
         
         #region Methods
@@ -179,7 +181,7 @@ namespace CombatExtended
 				req,
                 PathEndMode.ClosestTouch,
                 TraverseParms.For(pawn, Danger.None, TraverseMode.ByPawn),
-                proximitySearchRadius,
+                ProximitySearchRadius,
                 search);
             if (curThing != null) curPriority = ItemPriority.Proximity;
             else
@@ -191,7 +193,7 @@ namespace CombatExtended
                     req,
                     PathEndMode.ClosestTouch,
                     TraverseParms.For(pawn, Danger.None, TraverseMode.ByPawn),
-                    maximumSearchRadius,
+                    MaximumSearchRadius,
                     search);
 				if (curThing == null && pawn.Map != null)
 				{
