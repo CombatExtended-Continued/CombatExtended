@@ -17,11 +17,14 @@ namespace CombatExtended.Harmony
             // Remove forced hold from timed out tamer food
             if (thing.def.IsIngestible && !thing.def.IsDrug && thing.def.ingestible.preferability <= FoodPreferability.RawTasty)
             {
-                pawn.HoldTrackerForget(thing);
+                if (pawn.HoldTrackerIsHeld(thing))
+                {
+                    pawn.HoldTrackerForget(thing);
+                }
                 return true;
             }
             var loadout = pawn.GetLoadout();
-            return loadout == null;
+            return !(loadout != null && loadout.SlotCount > 0);
         }
     }
 }
