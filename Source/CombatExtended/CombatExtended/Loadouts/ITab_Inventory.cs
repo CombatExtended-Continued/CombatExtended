@@ -192,7 +192,7 @@ namespace CombatExtended
             Rect rect = new Rect(0f, y, width, _thingRowHeight);
             Widgets.InfoCardButton(rect.width - 24f, y, thing);
             rect.width -= 24f;
-            if (CanControl || SelPawnForGear.Faction == Faction.OfPlayer && SelPawnForGear.RaceProps.packAnimal || showDropButtonIfPrisoner && SelPawnForGear.HostFaction == Faction.OfPlayer)
+            if (CanControl || (SelPawnForGear.Faction == Faction.OfPlayer && SelPawnForGear.RaceProps.packAnimal) || (showDropButtonIfPrisoner && SelPawnForGear.IsPrisonerOfColony))
             {
                 Rect dropRect = new Rect(rect.width - 24f, y, 24f, 24f);
                 TooltipHandler.TipRegion(dropRect, "DropThing".Translate());
