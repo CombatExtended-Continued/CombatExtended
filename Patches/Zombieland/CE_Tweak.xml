@@ -30,7 +30,7 @@
 							<verbClass>CombatExtended.Verb_MeleeAttackCE</verbClass>
 							<defaultCooldownTime>2.0</defaultCooldownTime>
 							<meleeDamageBaseAmount>4</meleeDamageBaseAmount>
-							<meleeDamageDef>Slash</meleeDamageDef>
+							<meleeDamageDef>ZombieBite</meleeDamageDef>
 							<linkedBodyPartsGroup>Teeth</linkedBodyPartsGroup>
 							<meleeArmorPenetration>0.2</meleeArmorPenetration>
 						</li>
@@ -52,6 +52,23 @@
 						</li>
 					</verbs>
 				</value>
+			</li>
+		</operations>
+	</Operation>
+
+	<Operation Class="PatchOperationSequence">
+		<success>Always</success>
+		<operations>
+			<li Class="CombatExtended.PatchOperationFindMod">
+				<modName>Zombieland</modName>
+			</li>
+			<li Class="PatchOperationAddModExtension">
+			  <xpath>*/DamageDef[defName="ZombieBite"]</xpath>
+			  <value>
+			      <li Class="CombatExtended.DamageDefExtensionCE">
+			          <harmOnlyOutsideLayers>true</harmOnlyOutsideLayers>
+			      </li>
+			  </value>
 			</li>
 		</operations>
 	</Operation>
