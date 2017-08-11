@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <Plants>
 
-  <ThingDef ParentName="CRPlantBase">
+  <ThingDef id="PlantBlazebulb" ParentName="PlantBase">
     <defName>PlantBlazebulb</defName>
-    <thingClass>Combat_Realism.Plant_Blazebulb</thingClass>
+    <thingClass>CombatExtended.Plant_Blazebulb</thingClass>
     <label>Blazebulb</label>
-    <description>Genetically engineered plant designed to yield pyrophoric compounds for use in incendiary weapons.\n\nGreat care must be taken in cultivating these as the incendiary compounds inside the bulbs can self-ignite at room temperature, requiring constant cooling to maintain optimal growth temperatures.</description>
+    <description>Genetically engineered plant designed to yield pyrophoric compounds for use in incendiary weapons.\n\nGreat care must be taken in cultivating these as the incendiary compounds inside the bulbs can self-ignite at temperatures above 28°C/82F, requiring constant cooling to maintain optimal growth temperatures.</description>
     <statBases>
       <MaxHitPoints>65</MaxHitPoints>
-      <Beauty>1</Beauty>
+      <Beauty>-1</Beauty>
       <Flammability>1</Flammability>
     </statBases>
     <graphicData>
@@ -27,7 +27,6 @@
       <harvestTag>Standard</harvestTag>
       <reproduces>false</reproduces>
       <harvestedThingDef>Prometheum</harvestedThingDef>
-      <harvestDestroys>true</harvestDestroys>
       <harvestYield>5</harvestYield>
       <sowTags>
         <li>Ground</li>
