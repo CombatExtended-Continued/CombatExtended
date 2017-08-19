@@ -125,66 +125,10 @@ namespace CombatExtended.Harmony
                         {
                             opts.Add(new FloatMenuOption("CannotPickUp".Translate() + " " + item.LabelShort + " (" + "NoPath".Translate() + ")", null));
                         }
-                        /* else if (!pawn.CanReserve(item))
-                        {
-                            pickUpOption = new FloatMenuOption("CE_CannotPickUp".Translate() + " " + item.LabelShort + " (" + "ReservedBy".Translate(new object[] { pawn.Map.reservationManager.FirstReserverOf(item, pawn.Faction).LabelShort }), null);
-                        } */
                         else if (!compInventory.CanFitInInventory(item, out count))
                         {
                             opts.Add(new FloatMenuOption("CannotPickUp".Translate(new object[] { item.LabelShort }) + " (" + "CE_InventoryFull".Translate() + ")", null));
                         }
-                        /*
-                        else
-                        {
-                            // Pick up one
-                            pickUpOption = FloatMenuUtility.DecoratePrioritizedTask(new FloatMenuOption("CE_PickUp".Translate() + " " + item.LabelShort,
-                                new Action(delegate
-                                {
-                                    item.SetForbidden(false, false);
-                                    Job job = new Job(JobDefOf.TakeInventory, item);
-                                    job.count = 1;
-                                    job.playerForced = true;
-                                    pawn.Notify_HoldTrackerJob(job);
-                                    pawn.jobs.TryTakeOrderedJob(job);
-                                    PlayerKnowledgeDatabase.KnowledgeDemonstrated(CE_ConceptDefOf.CE_InventoryWeightBulk, KnowledgeAmount.SpecificInteraction);
-                                })), pawn, item, "ReservedBy");
-                        }
-                        opts.Add(pickUpOption);
-                        if (count > 1 && item.stackCount > 1)
-                        {
-                            // Pick up half
-                            int countHalf = item.def.stackLimit / 2;
-                            if (count > 3 && count > countHalf)
-                            {
-                                FloatMenuOption pickUpHalfStackOption = FloatMenuUtility.DecoratePrioritizedTask( new FloatMenuOption("CE_PickUpHalf".Translate() + " " + item.LabelShort + " x" + countHalf.ToString(),
-                                   new Action(delegate
-                                   {
-                                       item.SetForbidden(false, false);
-                                       Job job = new Job(JobDefOf.TakeInventory, item);
-                                       job.count = countHalf;
-                                       job.playerForced = true;
-                                       pawn.Notify_HoldTrackerJob(job);
-                                       pawn.jobs.TryTakeOrderedJob(job);
-                                       PlayerKnowledgeDatabase.KnowledgeDemonstrated(CE_ConceptDefOf.CE_InventoryWeightBulk, KnowledgeAmount.SpecificInteraction);
-                                   })), pawn, item, "ReservedBy");
-                                opts.Add(pickUpHalfStackOption);
-                            }
-
-                            // Pick up all
-                            FloatMenuOption pickUpStackOption = FloatMenuUtility.DecoratePrioritizedTask(new FloatMenuOption("CE_PickUp".Translate() + " " + item.LabelShort + " x" + count.ToString(),
-                                new Action(delegate
-                                {
-                                    item.SetForbidden(false, false);
-                                    Job job = new Job(JobDefOf.TakeInventory, item);
-                                    job.count = count;
-                                    job.playerForced = true;
-                                    pawn.Notify_HoldTrackerJob(job);
-                                    pawn.jobs.TryTakeOrderedJob(job);
-                                    PlayerKnowledgeDatabase.KnowledgeDemonstrated(CE_ConceptDefOf.CE_InventoryWeightBulk, KnowledgeAmount.SpecificInteraction);
-                                })), pawn, item, "ReservedBy");
-                            opts.Add(pickUpStackOption);
-                        }
-                        */
                         // Pick up x
                         else if (count == 1)
                         {
@@ -474,7 +418,7 @@ namespace CombatExtended.Harmony
                     var code = codes[i];
                     if (code.opcode == OpCodes.Callvirt && code.operand as MethodInfo != null && (code.operand as MethodInfo).Name == "get_IsPlayerHome")
                     {
-                        // Set return value to always true
+                        // Change value to always true
                         code.opcode = OpCodes.Ldc_I4_1;
                         code.operand = null;
                         return codes;
