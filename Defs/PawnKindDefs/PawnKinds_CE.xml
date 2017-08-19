@@ -82,8 +82,8 @@
 
   <PawnKindDef ParentName="TribalBase">
     <defName>TribalGrenadier</defName>
-    <label>tribal boomer</label>
-    <combatPower>76</combatPower>
+    <label>boomer</label>
+    <combatPower>60</combatPower>
     <maxGenerationAge>40</maxGenerationAge>
     <gearHealthRange>
       <min>0.5</min>
@@ -118,6 +118,59 @@
             <li>CE_Sidearm_Tribal</li>
           </weaponTags>
         </forcedSidearm>
+      </li>
+    </ModExtensions>
+  </PawnKindDef>
+
+  <PawnKindDef ParentName="TribalBase">
+    <defName>TribalGunner</defName>
+    <label>thunderer</label>
+    <combatPower>50</combatPower>
+    <minGenerationAge>25</minGenerationAge>
+    <maxGenerationAge>45</maxGenerationAge>
+    <gearHealthRange>
+      <min>0.5</min>
+      <max>1.8</max>
+    </gearHealthRange>
+    <apparelMoney>
+      <min>180</min>
+      <max>350</max>
+    </apparelMoney>
+    <apparelTags>
+      <li>Tribal</li>
+    </apparelTags>
+    <weaponMoney>
+      <min>180</min>
+      <max>290</max>
+    </weaponMoney>
+    <weaponTags>
+      <li>Gun</li>
+    </weaponTags>
+    <ModExtensions>
+      <li Class="CombatExtended.LoadoutPropertiesExtension">
+        <primaryMagazineCount>
+          <min>2</min>
+          <max>4</max>
+        </primaryMagazineCount>
+        <shieldMoney>
+          <min>120</min>
+          <max>160</max>
+        </shieldMoney>
+        <shieldTags>
+          <li>TribalShield</li>
+        </shieldTags>
+        <shieldChance>0.9</shieldChance>
+        <sidearms>
+          <li>
+            <sidearmMoney>
+              <min>100</min>
+              <max>600</max>
+            </sidearmMoney>
+            <weaponTags>
+              <li>CE_Sidearm_Tribal</li>
+            </weaponTags>
+          </li>
+        </sidearms>
       </li>
     </ModExtensions>
   </PawnKindDef>

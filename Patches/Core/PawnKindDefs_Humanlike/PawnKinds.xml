@@ -435,6 +435,13 @@
     </value>
   </Operation>
 
+  <Operation Class="PatchOperationReplace">
+    <xpath>/PawnKindDefs/PawnKindDef[defName="TribalWarrior"]/combatPower</xpath>
+    <value>
+      <combatPower>19</combatPower>
+    </value>
+  </Operation>
+
   <Operation Class="PatchOperationAddModExtension">
     <xpath>/PawnKindDefs/PawnKindDef[defName="TribalArcher"]</xpath>
     <value>
@@ -466,13 +473,20 @@
     </value>
   </Operation>
 
+  <Operation Class="PatchOperationReplace">
+    <xpath>/PawnKindDefs/PawnKindDef[defName="TribalArcher"]/combatPower</xpath>
+    <value>
+      <combatPower>24</combatPower>
+    </value>
+  </Operation>
+
   <Operation Class="PatchOperationAddModExtension">
     <xpath>/PawnKindDefs/PawnKindDef[defName="TribalChief"]</xpath>
     <value>
       <li Class="CombatExtended.LoadoutPropertiesExtension">
         <primaryMagazineCount>
-          <min>20</min>
-          <max>40</max>
+          <min>3</min>
+          <max>6</max>
         </primaryMagazineCount>
         <shieldMoney>
           <min>120</min>
@@ -494,6 +508,23 @@
           </li>
         </sidearms>
       </li>
+    </value>
+  </Operation>
+
+  <Operation Class="PatchOperationReplace">
+    <xpath>/PawnKindDefs/PawnKindDef[defName="TribalChief"]/weaponTags/li[.="NeolithicRanged"]</xpath>
+    <value>
+      <li>Gun</li>
+    </value>
+  </Operation>
+
+  <Operation Class="PatchOperationReplace">
+    <xpath>/PawnKindDefs/PawnKindDef[defName="TribalChief"]/weaponMoney</xpath>
+    <value>
+      <weaponMoney>
+        <min>230</min>
+        <max>300</max>
+      </weaponMoney>
     </value>
   </Operation>
 
