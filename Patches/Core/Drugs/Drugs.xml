@@ -37,5 +37,27 @@
   	</value>
   </Operation>
 
+  <!-- ========== Patch beer ========== -->
+
+  <Operation Class="PatchOperationReplace">
+    <xpath>/Beer/ThingDef[defName="Beer"]/verbs</xpath>
+    <value>
+      <verbs>
+        <li>
+          <verbClass>CombatExtended.Verb_MeleeAttackCE</verbClass>
+          <hasStandardCommand>true</hasStandardCommand>
+          <meleeDamageDef>Blunt</meleeDamageDef>
+        </li>
+      </verbs>
+    </value>
+  </Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>/Beer/ThingDef[defName="Beer"]/statBases</xpath>
+		<value>
+			<MeleeWeapon_Penetration>0.1</MeleeWeapon_Penetration>
+		</value>
+	</Operation>
+
 </Patch>
 
