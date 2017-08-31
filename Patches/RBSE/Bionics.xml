@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+
+  <!-- ========== Simple prosthetics ========== -->
+
+  <Operation Class="PatchOperationSequence">
+    <success>Always</success>
+    <operations>
+      <li Class="CombatExtended.PatchOperationFindMod">
+        <modName>RBSE Lite Edition</modName>
+      </li>
+      <li Class="PatchOperationRemove">
+      	<xpath>*/HediffDef[defName="SimpleProstheticHand" or defName="SimpleProstheticArm"]/comps/li[@Class="HediffCompProperties_VerbGiver"]</xpath>
+      </li>
+    </operations>
+  </Operation>
+
+	  <Operation Class="PatchOperationSequence">
+    <success>Always</success>
+    <operations>
+      <li Class="CombatExtended.PatchOperationFindMod">
+        <modName>RBSE Hardcore Edition</modName>
+      </li>
+      <li Class="PatchOperationRemove">
+      	<xpath>*/HediffDef[defName="SimpleProstheticHand" or defName="SimpleProstheticArm"]/comps/li[@Class="HediffCompProperties_VerbGiver"]</xpath>
+      </li>
+    </operations>
+  </Operation>
+
+  <!-- ========== Bionics ========== -->
+
+  <Operation Class="PatchOperationSequence">
+    <success>Always</success>
+    <operations>
+      <li Class="CombatExtended.PatchOperationFindMod">
+        <modName>RBSE Lite Edition</modName>
+      </li>
+      <li Class="PatchOperationReplace">
+      	<xpath>*/HediffDef[defName="BionicHand"]/comps/li[@Class="HediffCompProperties_VerbGiver"]/verbs</xpath>
+      	<value>
+      		<verbs>
+      			<li Class="CombatExtended.VerbPropertiesCE">
+      				<verbClass>CombatExtended.Verb_MeleeAttackCE</verbClass>
+      				<defaultCooldownTime>1.65</defaultCooldownTime>
+      				<meleeDamageBaseAmount>9</meleeDamageBaseAmount>
+      				<meleeDamageDef>Blunt</meleeDamageDef>
+      				<meleeArmorPenetration>0.15</meleeArmorPenetration>
+      			</li>
+      		</verbs> 
+      	</value>
+      </li>
+      <li Class="PatchOperationReplace">
+      	<xpath>*/HediffDef[defName="PowerArm"]/comps/li[@Class="HediffCompProperties_VerbGiver"]/verbs</xpath>
+      	<value>
+      		<verbs>
+      			<li Class="CombatExtended.VerbPropertiesCE">
+      				<verbClass>CombatExtended.Verb_MeleeAttackCE</verbClass>
+      				<defaultCooldownTime>1.2</defaultCooldownTime>
+      				<meleeDamageBaseAmount>99</meleeDamageBaseAmount>
+      				<meleeDamageDef>Slash</meleeDamageDef>
+      				<meleeArmorPenetration>0.3</meleeArmorPenetration>
+      			</li>
+      		</verbs> 
+      	</value>
+      </li>
+    </operations>
+  </Operation>
+
+	  <Operation Class="PatchOperationSequence">
+    <success>Always</success>
+    <operations>
+      <li Class="CombatExtended.PatchOperationFindMod">
+        <modName>RBSE Hardcore Edition</modName>
+      </li>
+      <li Class="PatchOperationReplace">
+      	<xpath>*/HediffDef[defName="BionicHand"]/comps/li[@Class="HediffCompProperties_VerbGiver"]/verbs</xpath>
+      	<value>
+      		<verbs>
+      			<li Class="CombatExtended.VerbPropertiesCE">
+      				<verbClass>CombatExtended.Verb_MeleeAttackCE</verbClass>
+      				<defaultCooldownTime>1.65</defaultCooldownTime>
+      				<meleeDamageBaseAmount>9</meleeDamageBaseAmount>
+      				<meleeDamageDef>Blunt</meleeDamageDef>
+      				<meleeArmorPenetration>0.15</meleeArmorPenetration>
+      			</li>
+      		</verbs> 
+      	</value>
+      </li>
+      <li Class="PatchOperationReplace">
+      	<xpath>*/HediffDef[defName="PowerArm"]/comps/li[@Class="HediffCompProperties_VerbGiver"]/verbs</xpath>
+      	<value>
+      		<verbs>
+      			<li Class="CombatExtended.VerbPropertiesCE">
+      				<verbClass>CombatExtended.Verb_MeleeAttackCE</verbClass>
+      				<defaultCooldownTime>1.2</defaultCooldownTime>
+      				<meleeDamageBaseAmount>15</meleeDamageBaseAmount>
+      				<meleeDamageDef>Slash</meleeDamageDef>
+      				<meleeArmorPenetration>0.3</meleeArmorPenetration>
+      			</li>
+      		</verbs> 
+      	</value>
+      </li>
+    </operations>
+  </Operation>
+
+  <!-- ========== Advanced Bionics ========== -->
+
+  <Operation Class="PatchOperationSequence">
+    <success>Always</success>
+    <operations>
+      <li Class="CombatExtended.PatchOperationFindMod">
+        <modName>RBSE Lite Edition</modName>
+      </li>
+      <li Class="PatchOperationReplace">
+      	<xpath>*/HediffDef[defName="AdvancedPowerArm"]/comps/li[@Class="HediffCompProperties_VerbGiver"]/verbs</xpath>
+      	<value>
+      		<verbs>
+      			<li Class="CombatExtended.VerbPropertiesCE">
+      				<verbClass>CombatExtended.Verb_MeleeAttackCE</verbClass>
+      				<defaultCooldownTime>0.9</defaultCooldownTime>
+      				<meleeDamageBaseAmount>20</meleeDamageBaseAmount>
+      				<meleeDamageDef>Slash</meleeDamageDef>
+      				<meleeArmorPenetration>0.4</meleeArmorPenetration>
+      			</li>
+      		</verbs> 
+      	</value>
+      </li>
+      <li Class="PatchOperationReplace">
+      	<xpath>*/HediffDef[defName="AdvancedBionicArm" or defName="AdvancedBionicHand"]/comps/li[@Class="HediffCompProperties_VerbGiver"]/verbs</xpath>
+      	<value>
+      		<verbs>
+      			<li Class="CombatExtended.VerbPropertiesCE">
+      				<verbClass>CombatExtended.Verb_MeleeAttackCE</verbClass>
+      				<defaultCooldownTime>1.65</defaultCooldownTime>
+      				<meleeDamageBaseAmount>12</meleeDamageBaseAmount>
+      				<meleeDamageDef>Blunt</meleeDamageDef>
+      				<meleeArmorPenetration>0.2</meleeArmorPenetration>
+      			</li>
+      		</verbs> 
+      	</value>
+      </li>
+    </operations>
+  </Operation>
+
+	  <Operation Class="PatchOperationSequence">
+    <success>Always</success>
+    <operations>
+      <li Class="CombatExtended.PatchOperationFindMod">
+        <modName>RBSE Hardcore Edition</modName>
+      </li>
+      <li Class="PatchOperationReplace">
+      	<xpath>*/HediffDef[defName="AdvancedPowerArm"]/comps/li[@Class="HediffCompProperties_VerbGiver"]/verbs</xpath>
+      	<value>
+      		<verbs>
+      			<li Class="CombatExtended.VerbPropertiesCE">
+      				<verbClass>CombatExtended.Verb_MeleeAttackCE</verbClass>
+      				<defaultCooldownTime>0.9</defaultCooldownTime>
+      				<meleeDamageBaseAmount>20</meleeDamageBaseAmount>
+      				<meleeDamageDef>Slash</meleeDamageDef>
+      				<meleeArmorPenetration>0.4</meleeArmorPenetration>
+      			</li>
+      		</verbs> 
+      	</value>
+      </li>
+      <li Class="PatchOperationReplace">
+      	<xpath>*/HediffDef[defName="AdvancedBionicArm" or defName="AdvancedBionicHand"]/comps/li[@Class="HediffCompProperties_VerbGiver"]/verbs</xpath>
+      	<value>
+      		<verbs>
+      			<li Class="CombatExtended.VerbPropertiesCE">
+      				<verbClass>CombatExtended.Verb_MeleeAttackCE</verbClass>
+      				<defaultCooldownTime>1.65</defaultCooldownTime>
+      				<meleeDamageBaseAmount>12</meleeDamageBaseAmount>
+      				<meleeDamageDef>Blunt</meleeDamageDef>
+      				<meleeArmorPenetration>0.2</meleeArmorPenetration>
+      			</li>
+      		</verbs> 
+      	</value>
+      </li>
+    </operations>
+  </Operation>
+
+</Patch>
+
