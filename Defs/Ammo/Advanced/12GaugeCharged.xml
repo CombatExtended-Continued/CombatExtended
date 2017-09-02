@@ -1,0 +1,244 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+
+    <ThingCategoryDef>
+      <defName>Ammo12GaugeCharged</defName>
+      <label>12Gauge Charged</label>
+      <parent>AmmoAdvanced</parent>
+      <iconPath>UI/Icons/ThingCategories/CaliberCharge</iconPath>
+    </ThingCategoryDef>
+	
+	<!-- ==================== AmmoSet ========================== -->
+
+  <CombatExtended.AmmoSetDef>
+    <defName>AmmoSet_12GaugeCharged</defName>
+    <label>12 Gauge Charged</label>
+    <ammoTypes>
+      <Ammo_12GaugeCharged>Bullet_12GaugeCharged</Ammo_12GaugeCharged>
+      <Ammo_12GaugeCharged_Slug>Bullet_12GaugeCharged_Slug</Ammo_12GaugeCharged_Slug>
+      <Ammo_12GaugeCharged_Ion>Bullet_12GaugeCharged_Ion</Ammo_12GaugeCharged_Ion>
+    </ammoTypes>
+  </CombatExtended.AmmoSetDef>
+	
+	<!-- ==================== Ammo ========================== -->
+
+  <ThingDef Name="12GaugeChargedBase" ParentName="SmallAmmoBase" Abstract="True">
+    <description>Multi-pellet charge shot cartridge designed for shotgun-type weapons.</description>
+    <statBases>
+	  <Mass>0.05</Mass>
+	  <Bulk>0.07</Bulk>
+    </statBases>
+    <tradeTags>
+      <li>CE_AutoEnableTrade</li>
+      <li>CE_AutoEnableCrafting</li>
+    </tradeTags>
+    <thingCategories>
+      <li>Ammo12GaugeCharged</li>
+    </thingCategories>
+  </ThingDef>
+
+  <ThingDef ParentName="12GaugeChargedBase">
+    <defName>Ammo_12GaugeCharged</defName>
+    <label>12 gauge charged shell</label>
+    <graphicData>
+      <texPath>Things/Ammo/Charged/Regular</texPath>
+      <graphicClass>Graphic_StackCount</graphicClass>
+    </graphicData>
+    <statBases>
+      <MarketValue>1.94</MarketValue>
+    </statBases>
+    <ammoClass>BuckShot</ammoClass>
+  </ThingDef>
+
+  <ThingDef ParentName="12GaugeChargedBase">
+    <defName>Ammo_12GaugeCharged_Slug</defName>
+    <label>12 gauge charged shell (Slug)</label>
+    <graphicData>
+      <texPath>Things/Ammo/Charged/Concentrated</texPath>
+      <graphicClass>Graphic_StackCount</graphicClass>
+    </graphicData>
+    <statBases>
+      <MarketValue>1.94</MarketValue>
+    </statBases>
+    <ammoClass>Slug</ammoClass>
+  </ThingDef>
+
+  <ThingDef ParentName="12GaugeChargedBase">
+    <defName>Ammo_12GaugeCharged_Ion</defName>
+    <label>12 gauge charged shell (Ion slug)</label>
+    <graphicData>
+      <texPath>Things/Ammo/Charged/Ion</texPath>
+      <graphicClass>Graphic_StackCount</graphicClass>
+    </graphicData>
+    <statBases>
+      <MarketValue>1.94</MarketValue>
+    </statBases>
+    <ammoClass>Ionized</ammoClass>
+    <canBeSpawningInventory>false</canBeSpawningInventory>
+  </ThingDef>
+	
+	<!-- ================== Projectiles ================== -->
+
+  <ThingDef Name="Base12GaugeChargedBullet" ParentName="BaseBullet" Abstract="true">
+    <graphicData>
+      <texPath>Things/Projectile/Charge_Small</texPath>
+      <graphicClass>Graphic_Single</graphicClass>
+    </graphicData>
+    <projectile>
+      <damageDef>Bullet</damageDef>
+      <speed>100</speed>
+    </projectile>
+  </ThingDef>
+
+  <ThingDef ParentName="Base12GaugeChargedBullet">
+    <defName>Bullet_12GaugeCharged</defName>
+    <label>charge pellet</label>
+    <projectile>
+      <damageAmountBase>7</damageAmountBase>
+      <secondaryDamage>
+        <li>
+          <def>Bomb_Secondary</def>
+          <amount>4</amount>
+        </li>
+      </secondaryDamage>
+      <armorPenetration>0.35</armorPenetration>
+      <pelletCount>9</pelletCount>
+      <spreadMult>17.8</spreadMult>
+    </projectile>
+  </ThingDef>
+
+  <ThingDef ParentName="Base12GaugeChargedBullet">
+    <defName>Bullet_12GaugeCharged_Slug</defName>
+    <label>charge shot (Slug)</label>
+    <projectile>
+      <damageAmountBase>37</damageAmountBase>
+      <secondaryDamage>
+        <li>
+          <def>Bomb_Secondary</def>
+          <amount>15</amount>
+        </li>
+      </secondaryDamage>
+      <armorPenetration>0.6</armorPenetration>
+    </projectile>
+  </ThingDef>
+
+  <ThingDef ParentName="Base12GaugeChargedBullet">
+    <defName>Bullet_12GaugeCharged_Ion</defName>
+    <label>charge shot (Ion slug)</label>
+    <projectile>
+      <damageAmountBase>37</damageAmountBase>
+      <secondaryDamage>
+        <li>
+          <def>EMP</def>
+          <amount>15</amount>
+        </li>
+      </secondaryDamage>
+      <armorPenetration>0.4</armorPenetration>
+    </projectile>
+  </ThingDef>
+  
+	<!-- ==================== Recipes ========================== -->
+
+  <RecipeDef ParentName="ChargeAmmoRecipeBase">
+    <defName>MakeAmmo_12GaugeCharged</defName>
+    <label>make 12 gauge Charged shell x100</label>
+    <description>Craft 100 12Gauge Charged shells.</description>
+    <jobString>Making 12Gauge Charged shells.</jobString>
+    <ingredients>
+      <li>
+        <filter>
+          <thingDefs>
+            <li>Plasteel</li>
+          </thingDefs>
+        </filter>
+        <count>3</count>
+      </li>
+      <li>
+        <filter>
+          <thingDefs>
+            <li>Component</li>
+          </thingDefs>
+        </filter>
+        <count>3</count>
+      </li>
+    </ingredients>
+    <fixedIngredientFilter>
+      <thingDefs>
+        <li>Plasteel</li>
+        <li>Component</li>
+      </thingDefs>
+    </fixedIngredientFilter>
+    <products>
+      <Ammo_12GaugeCharged>100</Ammo_12GaugeCharged>
+    </products>
+  </RecipeDef>
+
+  <RecipeDef ParentName="ChargeAmmoRecipeBase">
+    <defName>MakeAmmo_12GaugeCharged_Slug</defName>
+    <label>make 12 gauge Charged (Slug) shell x100</label>
+    <description>Craft 100 12 gauge Charged (Slug) shells.</description>
+    <jobString>Making 12Gauge Charged (Slug) shells.</jobString>
+    <ingredients>
+      <li>
+        <filter>
+          <thingDefs>
+            <li>Plasteel</li>
+          </thingDefs>
+        </filter>
+        <count>3</count>
+      </li>
+      <li>
+        <filter>
+          <thingDefs>
+            <li>Component</li>
+          </thingDefs>
+        </filter>
+        <count>3</count>
+      </li>
+    </ingredients>
+    <fixedIngredientFilter>
+      <thingDefs>
+        <li>Plasteel</li>
+        <li>Component</li>
+      </thingDefs>
+    </fixedIngredientFilter>
+    <products>
+      <Ammo_12GaugeCharged_Slug>100</Ammo_12GaugeCharged_Slug>
+    </products>
+  </RecipeDef>
+
+  <RecipeDef ParentName="ChargeAmmoRecipeBase">
+    <defName>MakeAmmo_12GaugeCharged_Ion</defName>
+    <label>make 12 gauge Charged (Ion slug) shell x100</label>
+    <description>Craft 100 12 gauge Charged (Ion) shells.</description>
+    <jobString>Making 12 gauge Charged (Ion) shells.</jobString>
+    <ingredients>
+      <li>
+        <filter>
+          <thingDefs>
+            <li>Plasteel</li>
+          </thingDefs>
+        </filter>
+        <count>3</count>
+      </li>
+      <li>
+        <filter>
+          <thingDefs>
+            <li>Component</li>
+          </thingDefs>
+        </filter>
+        <count>3</count>
+      </li>
+    </ingredients>
+    <fixedIngredientFilter>
+      <thingDefs>
+        <li>Plasteel</li>
+        <li>Component</li>
+      </thingDefs>
+    </fixedIngredientFilter>
+    <products>
+      <Ammo_12GaugeCharged_Ion>100</Ammo_12GaugeCharged_Ion>
+    </products>
+  </RecipeDef>
+	
+</Defs>
