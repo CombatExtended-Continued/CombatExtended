@@ -1,0 +1,146 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+
+    <ThingCategoryDef>
+      <defName>Ammo6x24mmCharged_Shotgun</defName>
+      <label>6x24mm Charged Shotgun</label>
+      <parent>AmmoAdvanced</parent>
+      <iconPath>UI/Icons/ThingCategories/CaliberCharge</iconPath>
+    </ThingCategoryDef>
+	
+	<!-- ==================== AmmoSet ========================== -->
+
+  <CombatExtended.AmmoSetDef>
+    <defName>AmmoSet_6x24mmCharged_Shotgun</defName>
+    <label>6x24mm ChargedShotgun</label>
+    <ammoTypes>
+      <Ammo_6x24mmCharged>Bullet_6x24mmCharged_Shotgun</Ammo_6x24mmCharged>
+      <Ammo_6x24mmCharged_AP>Bullet_6x24mmCharged_AP_Shotgun</Ammo_6x24mmCharged_AP>
+      <Ammo_6x24mmCharged_Ion>Bullet_6x24mmCharged_Ion_Shotgun</Ammo_6x24mmCharged_Ion>
+    </ammoTypes>
+  </CombatExtended.AmmoSetDef>
+	
+	<!-- ==================== Ammo ========================== -->
+
+  <!-- <ThingDef Name="6x24mmChargedBase" ParentName="SmallAmmoBase" Abstract="True">
+    <description>Charged shot ammo used by advanced assault rifle designs.</description>
+    <statBases>
+	  <Mass>0.01</Mass>
+	  <Bulk>0.03</Bulk>
+    </statBases>
+    <tradeTags>
+      <li>CE_AutoEnableTrade</li>
+      <li>CE_AutoEnableCrafting</li>
+    </tradeTags>
+    <thingCategories>
+      <li>Ammo6x24mmCharged</li>
+    </thingCategories>
+  </ThingDef>
+
+  <ThingDef ParentName="6x24mmChargedBase">
+    <defName>Ammo_6x24mmCharged</defName>
+    <label>6x24mm Charged cartridge</label>
+    <graphicData>
+      <texPath>Things/Ammo/Charged/Regular</texPath>
+      <graphicClass>Graphic_StackCount</graphicClass>
+    </graphicData>
+    <statBases>
+      <MarketValue>0.97</MarketValue>
+    </statBases>
+    <ammoClass>Charged</ammoClass>
+  </ThingDef>
+
+  <ThingDef ParentName="6x24mmChargedBase">
+    <defName>Ammo_6x24mmCharged_AP</defName>
+    <label>6x24mm Charged cartridge (Conc.)</label>
+    <graphicData>
+      <texPath>Things/Ammo/Charged/Concentrated</texPath>
+      <graphicClass>Graphic_StackCount</graphicClass>
+    </graphicData>
+    <statBases>
+      <MarketValue>0.97</MarketValue>
+    </statBases>
+    <ammoClass>ChargedAP</ammoClass>
+  </ThingDef>
+
+  <ThingDef ParentName="6x24mmChargedBase">
+    <defName>Ammo_6x24mmCharged_Ion</defName>
+    <label>6x24mm Charged cartridge (Ion)</label>
+    <graphicData>
+      <texPath>Things/Ammo/Charged/Ion</texPath>
+      <graphicClass>Graphic_StackCount</graphicClass>
+    </graphicData>
+    <statBases>
+      <MarketValue>0.97</MarketValue>
+    </statBases>
+    <ammoClass>Ionized</ammoClass>
+    <canBeSpawningInventory>false</canBeSpawningInventory>
+  </ThingDef>
+  -->
+	
+	<!-- ================== Projectiles ================== -->
+
+  <ThingDef Name="Base6x24mmChargedBullet" ParentName="BaseBullet" Abstract="true">
+    <graphicData>
+      <texPath>Things/Projectile/Charge_Small</texPath>
+      <graphicClass>Graphic_Single</graphicClass>
+    </graphicData>
+    <projectile>
+      <damageDef>Bullet</damageDef>
+      <speed>170</speed>
+    </projectile>
+  </ThingDef>
+
+  <ThingDef ParentName="Base6x24mmChargedBullet">
+    <defName>Bullet_6x24mmCharged_Shotgun</defName>
+    <label>charge shot</label>
+    <projectile>
+      <damageAmountBase>11</damageAmountBase>
+	  <pelletCount>9</pelletCount>
+	  <spreadMult>70.8</spreadMult>
+      <secondaryDamage>
+        <li>
+          <def>Bomb_Secondary</def>
+          <amount>7</amount>
+        </li>
+      </secondaryDamage>
+      
+    </projectile>
+  </ThingDef>
+
+  <ThingDef ParentName="Base6x24mmChargedBullet">
+    <defName>Bullet_6x24mmCharged_AP_Shotgun</defName>
+    <label>charge shot (Conc.)</label>
+    <projectile>
+      <damageAmountBase>11</damageAmountBase>
+	  <pelletCount>9</pelletCount>
+	  <spreadMult>70.8</spreadMult>
+      <secondaryDamage>
+        <li>
+          <def>Bomb_Secondary</def>
+          <amount>3</amount>
+        </li>
+      </secondaryDamage>
+      <armorPenetration>0.7</armorPenetration>
+    </projectile>
+  </ThingDef>
+
+  <ThingDef ParentName="Base6x24mmChargedBullet">
+    <defName>Bullet_6x24mmCharged_Ion_Shotgun</defName>
+    <label>charge shot (Ion)</label>
+    <projectile>
+      <damageAmountBase>11</damageAmountBase>
+	  <pelletCount>9</pelletCount>
+	  <spreadMult>70.8</spreadMult>
+      <secondaryDamage>
+        <li>
+          <def>EMP</def>
+          <amount>8</amount>
+        </li>
+      </secondaryDamage>
+      <armorPenetration>0.5</armorPenetration>
+    </projectile>
+  </ThingDef>
+  
+	<!-- ==================== Recipes ========================== -->
+</Defs>
