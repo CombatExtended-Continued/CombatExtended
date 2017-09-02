@@ -57,8 +57,23 @@
 	<Operation Class="PatchOperationReplace">
 		<xpath>*/StatDef[defName="ShootingAccuracy"]/maxValue</xpath>
 		<value>
-			<maxValue>13</maxValue> <!-- should post-process to 4.5 -->
+			<maxValue>13</maxValue>
 		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationSequence"> <!-- compatibility with any mod that redefines ShootingAccuracy and changes SkillNeed back to the traditional pre-A17 values per skill level (e.g. Shooting Skill Rebalanced) -->
+		<success>Always</success>
+		<operations>
+			<li Class="PatchOperationTest">
+				<xpath>*/StatDef[defName="ShootingAccuracy"]/skillNeedFactors/li[@Class = "SkillNeed_Direct"]</xpath>
+			</li>
+			<li Class="PatchOperationReplace">
+				<xpath>*/StatDef[defName="ShootingAccuracy"]/skillNeedFactors/li[@Class = "SkillNeed_Direct"]</xpath>
+				<value>
+					<li Class="SkillNeed_BaseBonus" />
+				</value>
+			</li>
+		</operations>
 	</Operation>
 
 	<Operation Class="PatchOperationReplace">
@@ -73,9 +88,14 @@
 	</Operation>
 
 	<Operation Class="PatchOperationReplace">
-		<xpath>*/StatDef[defName="ShootingAccuracy"]/capacityFactors/li[capacity = "Manipulation"]/weight</xpath>
+		<xpath>*/StatDef[defName="ShootingAccuracy"]/capacityFactors</xpath>
 		<value>
-			<weight>1</weight>
+			<capacityFactors>
+				<li>
+					<capacity>Manipulation</capacity>
+					<weight>1</weight>
+				</li>
+			</capacityFactors>
 		</value>
 	</Operation>
 
@@ -89,6 +109,7 @@
 			    <li>(3.0, 2.5)</li>
 			    <li>(4.0, 2.75)</li>
 			    <li>(5.0, 2.875)</li>
+			    <li>(13, 4.5)</li>
 			  </points>
 			</postProcessCurve>
 		</value>
