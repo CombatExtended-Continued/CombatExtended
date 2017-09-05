@@ -408,13 +408,11 @@ namespace CombatExtended
         {
             base.Tick();
             if (ticksUntilAutoReload > 0) ticksUntilAutoReload--;   // Reduce time until we can auto-reload
-            if (CompAmmo?.CurMagCount == 0 && (MannableComp?.MannedNow ?? false)) TryOrderReload();
-            /*
-            if (!CanSetForcedTarget && forcedTarget.IsValid)
+            if (CompAmmo?.CurMagCount == 0 && !isReloading && (MannableComp?.MannedNow ?? false)) TryOrderReload();
+            if (!CanSetForcedTarget && !isReloading && forcedTarget.IsValid)
             {
                 ResetForcedTarget();
             }
-            */
             if (!CanToggleHoldFire)
             {
                 holdFire = false;

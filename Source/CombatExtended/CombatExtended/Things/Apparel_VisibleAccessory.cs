@@ -79,14 +79,14 @@ namespace CombatExtended
             
             // Get the graphic path
             string path = def.graphicData.texPath + "_" + ((Wearer == null) ? null : Wearer.story.bodyType.ToString());
-            Graphic graphic = GraphicDatabase.Get<Graphic_Multi>(path, ShaderDatabase.Cutout, def.graphicData.drawSize, DrawColor);
+            Graphic graphic = GraphicDatabase.Get<Graphic_Multi>(path, ShaderDatabase.CutoutComplex, def.graphicData.drawSize, DrawColor);
             ApparelGraphicRecord apparelGraphic = new ApparelGraphicRecord(graphic, this);
 
             Material mat = apparelGraphic.graphic.MatAt(rotation);
             Vector3 s = new Vector3(1.5f, 1.5f, 1.5f);
 
-            mat.shader = ShaderDatabase.CutoutComplex;
-            mat.color = DrawColor;
+            //mat.shader = ShaderDatabase.CutoutComplex;
+            //mat.color = DrawColor;
             Matrix4x4 matrix = default(Matrix4x4);
             matrix.SetTRS(drawVec, Quaternion.AngleAxis(angle, Vector3.up), s);
             Graphics.DrawMesh(rotation == Rot4.West ? MeshPool.plane10Flip : MeshPool.plane10, matrix, mat, 0);

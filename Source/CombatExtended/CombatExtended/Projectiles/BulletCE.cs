@@ -39,6 +39,24 @@ namespace CombatExtended
 
                 // Apply primary damage
                 hitThing.TakeDamage(dinfo);
+
+                // Apply secondary to non-pawns (pawn secondary damage is handled in the damage worker)
+                var projectilePropsCE = def.projectile as ProjectilePropertiesCE;
+                if(!(hitThing is Pawn) && projectilePropsCE != null && !projectilePropsCE.secondaryDamage.NullOrEmpty())
+                {
+                    foreach(SecondaryDamage cur in projectilePropsCE.secondaryDamage)
+                    {
+                        if (hitThing.Destroyed) break;
+                        var secDinfo = new DamageInfo(
+                            cur.def,
+                            cur.amount,
+                            ExactRotation.eulerAngles.y,
+                            launcher,
+                            null,
+                            def);
+                        hitThing.TakeDamage(secDinfo);
+                    }
+                }
             }
             else
             {

@@ -186,8 +186,7 @@ namespace CombatExtended
 	            	// On first shot of burst do a range estimate
         			estimatedTargDist = report.GetRandDist();
         		}
-        	
-	            Vector3 v = report.targetPawn != null ? report.targetPawn.DrawPos : report.target.Cell.ToVector3Shifted();
+	            Vector3 v = report.targetPawn != null ? report.targetPawn.DrawPos + report.targetPawn.Drawer.leaner.LeanOffset * 0.5f : report.target.Cell.ToVector3Shifted();
 	            newTargetLoc.Set(v.x, v.z);
 	            
 	            // ----------------------------------- STEP 1: Actual location + Shift for visibility
@@ -612,6 +611,7 @@ namespace CombatExtended
 
                 // If the target is near something they might have to lean around to shoot then calculate their leans.
                 // NOTE: CellsAdjacent8Way includes the check for if a location is in map bounds so can use CanBeSeenOverFast.  The alternative is fast 8way and slow (bounds checking) CanBeSeenOver.
+                /*
                 if ((targ.Thing as Pawn)?.CurJob?.def != CE_JobDefOf.HunkerDown && GenAdjFast.AdjacentCells8Way(targ.Thing).FirstOrDefault(c => !c.CanBeSeenOver(targ.Thing.Map)) != null)
                 {
                     ShootLeanUtility.CalcShootableCellsOf(tempDestList, targ.Thing);
@@ -620,6 +620,9 @@ namespace CombatExtended
                     tempDestList.Clear();
                     tempDestList.Add(targ.Cell);
                 }
+                */
+                tempDestList.Clear();
+                tempDestList.Add(targ.Cell);
 
                 for (int i = 0; i < tempDestList.Count; i++)
                 {
@@ -657,6 +660,11 @@ namespace CombatExtended
                 {
                     Vector3 targDrawPos = targetThing.DrawPos;
                     targetPos = new Vector3(targDrawPos.x, new CollisionVertical(targetThing).Max, targDrawPos.z);
+                    var targPawn = targetThing as Pawn;
+                    if (targPawn != null)
+                    {
+                        targetPos += targPawn.Drawer.leaner.LeanOffset * 0.5f;
+                    }
                 }
                 else
                 {
@@ -677,7 +685,7 @@ namespace CombatExtended
                     {
                         cover = cell.GetCover(caster.Map);
                     }
-                    if (cover != null && !cover.IsTree() && !cover.Position.AdjacentTo8Way(sourceSq))
+                    if (cover != null && cover != caster && cover != targetThing && !cover.IsTree() && !cover.Position.AdjacentTo8Way(sourceSq))
                     {
                         Bounds bounds = CE_Utility.GetBoundsFor(cover);
 
@@ -695,6 +703,7 @@ namespace CombatExtended
                     return true;
                 };
                 // Add validator to parameters
+                /*
                 if (!includeCorners)
                 {
                     if (!GenSight.LineOfSight(sourceSq, targetLoc, this.caster.Map, true, validator, 0, 0))
@@ -705,6 +714,15 @@ namespace CombatExtended
                 else if (!GenSight.LineOfSightToEdges(sourceSq, targetLoc, this.caster.Map, true, validator))
                 {
                     return false;
+                }
+                */
+                var exactTargetSq = targetPos.ToIntVec3();
+                foreach (IntVec3 curCell in GenSight.PointsOnLineOfSight(sourceSq, exactTargetSq))
+                {
+                    if (curCell != sourceSq && curCell != exactTargetSq && !validator(curCell))
+                    {
+                        return false;
+                    }
                 }
             }
             return true;
