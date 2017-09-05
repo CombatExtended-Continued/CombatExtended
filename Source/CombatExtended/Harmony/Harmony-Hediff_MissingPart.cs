@@ -20,7 +20,8 @@ namespace CombatExtended.Harmony
             __result = Current.ProgramState != ProgramState.Entry
                 && __instance.IsFresh
                 && !__instance.Part.def.IsSolid(__instance.Part, __instance.pawn.health.hediffSet.hediffs) 
-                && !hediff.Property("ParentIsMissing").GetValue<bool>();
+                && !hediff.Property("ParentIsMissing").GetValue<bool>()
+                && __instance.lastInjury != HediffDefOf.SurgicalCut;
             return false;
         }
     }

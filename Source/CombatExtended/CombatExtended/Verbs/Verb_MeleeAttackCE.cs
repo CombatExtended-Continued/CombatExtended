@@ -381,6 +381,8 @@ namespace CombatExtended
                 {
                     // Shield bash
                     DamageInfo dinfo = new DamageInfo(DamageDefOf.Blunt, 6, -1, defender, null, parryThing.def);
+                    dinfo.SetBodyRegion(BodyPartHeight.Undefined, BodyPartDepth.Outside);
+                    dinfo.SetAngle((CasterPawn.Position - defender.Position).ToVector3());
                     caster.TakeDamage(dinfo);
                     if (!parryThing.Stuff.stuffProps.soundMeleeHitBlunt.NullOrUndefined())
                         sound = parryThing.Stuff.stuffProps.soundMeleeHitBlunt;

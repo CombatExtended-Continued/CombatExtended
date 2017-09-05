@@ -203,7 +203,9 @@ namespace CombatExtended
                 if (!CompAmmo.TryReduceAmmoCount())
                 {
                     if (CompAmmo.HasMagazine)
+                    {
                         CompAmmo.TryStartReload();
+                    }
                     return false;
                 }
             }
