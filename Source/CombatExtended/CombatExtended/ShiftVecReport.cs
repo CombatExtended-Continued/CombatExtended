@@ -47,7 +47,7 @@ namespace CombatExtended
             {
                 if (visibilityShiftInt < 0)
                 {
-                    visibilityShiftInt = (lightingShift + weatherShift + smokeDensity) * (shotDist / 50) * (2 - aimingAccuracy);
+                    visibilityShiftInt = (lightingShift + weatherShift + smokeDensity) * (shotDist / 50 / sightsEfficiency) * (2 - aimingAccuracy);
                 }
                 return visibilityShiftInt;
             }
