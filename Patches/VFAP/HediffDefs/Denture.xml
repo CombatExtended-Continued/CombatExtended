@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Patch>
+
+	<Operation Class="PatchOperationSequence">
+		<success>Always</success>
+		<operations>
+			<li Class="CombatExtended.PatchOperationFindMod">
+				<modName>Vanilla-Friendly Animal Prosthetics</modName>
+			</li>
+			<!-- tiny -->
+			<li Class="PatchOperationReplace">
+				<xpath>*/HediffDef[defName="AnimalDentureTiny"]/comps/verbs</xpath>
+				<value>
+					<verbs>
+						<li Class="CombatExtended.VerbPropertiesCE">
+							<verbClass>CombatExtended.Verb_MeleeAttackCE</verbClass>
+							<defaultCooldownTime>1.65</defaultCooldownTime>
+							<meleeDamageBaseAmount>4</meleeDamageBaseAmount>
+							<meleeDamageDef>Bite</meleeDamageDef>
+							<meleeArmorPenetration>0.05</meleeArmorPenetration>
+							<commonality>0.09</commonality>
+						</li>
+					</verbs>
+				</value>
+			</li>
+			<!-- small -->
+			<li Class="PatchOperationReplace">
+				<xpath>*/HediffDef[defName="AnimalDentureSmall"]/comps/verbs</xpath>
+				<value>
+					<verbs>
+						<li Class="CombatExtended.VerbPropertiesCE">
+							<verbClass>CombatExtended.Verb_MeleeAttackCE</verbClass>
+							<defaultCooldownTime>1.75</defaultCooldownTime>
+							<meleeDamageBaseAmount>6</meleeDamageBaseAmount>
+							<meleeDamageDef>Bite</meleeDamageDef>
+							<meleeArmorPenetration>0.08</meleeArmorPenetration>
+							<commonality>0.09</commonality>
+						</li>
+					</verbs>
+				</value>
+			</li>
+			<!-- medium -->
+			<li Class="PatchOperationReplace">
+				<xpath>*/HediffDef[defName="AnimalDentureMedium"]/comps/verbs</xpath>
+				<value>
+					<verbs>
+						<li Class="CombatExtended.VerbPropertiesCE">
+							<verbClass>CombatExtended.Verb_MeleeAttackCE</verbClass>
+							<defaultCooldownTime>1.85</defaultCooldownTime>
+							<meleeDamageBaseAmount>8</meleeDamageBaseAmount>
+							<meleeDamageDef>Bite</meleeDamageDef>
+							<meleeArmorPenetration>0.12</meleeArmorPenetration>
+							<commonality>0.09</commonality>
+						</li>
+					</verbs>
+				</value>
+			</li>
+			<!-- large -->
+			<li Class="PatchOperationReplace">
+				<xpath>*/HediffDef[defName="AnimalDentureLarge"]/comps/verbs</xpath>
+				<value>
+					<verbs>
+						<li Class="CombatExtended.VerbPropertiesCE">
+							<verbClass>CombatExtended.Verb_MeleeAttackCE</verbClass>
+							<defaultCooldownTime>1.95</defaultCooldownTime>
+							<meleeDamageBaseAmount>11</meleeDamageBaseAmount>
+							<meleeDamageDef>Bite</meleeDamageDef>
+							<meleeArmorPenetration>0.16</meleeArmorPenetration>
+							<commonality>0.09</commonality>
+						</li>
+					</verbs>
+				</value>
+			</li>
+			<!-- huge -->
+			<li Class="PatchOperationReplace">
+				<xpath>*/HediffDef[defName="AnimalDentureHuge"]/comps/verbs</xpath>
+				<value>
+					<verbs>
+						<li Class="CombatExtended.VerbPropertiesCE">
+							<verbClass>CombatExtended.Verb_MeleeAttackCE</verbClass>
+							<defaultCooldownTime>2.05</defaultCooldownTime>
+							<meleeDamageBaseAmount>14</meleeDamageBaseAmount>
+							<meleeDamageDef>Bite</meleeDamageDef>
+							<meleeArmorPenetration>0.2</meleeArmorPenetration>
+							<commonality>0.09</commonality>
+						</li>
+					</verbs>
+				</value>
+			</li>
+		</operations>
+	</Operation>
+
+</Patch>
