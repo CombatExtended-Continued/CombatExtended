@@ -1,0 +1,200 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+
+	<ThingCategoryDef>
+		<defName>Ammo4570Gov</defName>
+		<label>.45-70 Government</label>
+		<parent>AmmoRifles</parent>
+    <iconPath>UI/Icons/ThingCategories/CaliberRifle</iconPath>
+	</ThingCategoryDef>
+	
+	<!-- ==================== AmmoSet ========================== -->
+
+	<CombatExtended.AmmoSetDef>
+		<defName>AmmoSet_4570Gov</defName>
+		<label>.45-70 Government</label>
+		<ammoTypes>
+			<Ammo_4570Gov_FMJ>Bullet_4570Gov_FMJ</Ammo_4570Gov_FMJ>
+			<Ammo_4570Gov_AP>Bullet_4570Gov_AP</Ammo_4570Gov_AP>
+			<Ammo_4570Gov_HP>Bullet_4570Gov_HP</Ammo_4570Gov_HP>
+		</ammoTypes>
+	</CombatExtended.AmmoSetDef>
+	
+	<!-- ==================== Ammo ========================== -->
+
+	<ThingDef Name="4570GovBase" ParentName="SmallAmmoBase" Abstract="True">
+		<description>Rather large and bulky rifle cartridge propelled by a 'black powder'. Good for making people imitate sacks when they are hit.</description>
+		<statBases>
+		<Mass>0.033</Mass>
+		<Bulk>0.06</Bulk>
+		</statBases>
+	<tradeTags>
+		<li>CE_AutoEnableTrade</li>
+		<li>CE_AutoEnableCrafting</li>
+	</tradeTags>
+		<thingCategories>
+			<li>Ammo4570Gov</li>
+		</thingCategories>
+	</ThingDef>
+
+	<ThingDef ParentName="4570GovBase">
+		<defName>Ammo_4570Gov_FMJ</defName>
+		<label>.45-70 Government Cartridge (FMJ)</label>
+		<graphicData>
+			<texPath>Things/Ammo/Rifle/FMJ</texPath>
+			<graphicClass>Graphic_StackCount</graphicClass>
+		</graphicData>
+		<statBases>
+			<MarketValue>0.14</MarketValue>
+		</statBases>
+		<ammoClass>FullMetalJacket</ammoClass>
+		<cookOffProjectile>Bullet_4570Gov_FMJ</cookOffProjectile>
+	</ThingDef>
+
+	<ThingDef ParentName="4570GovBase">
+		<defName>Ammo_4570Gov_AP</defName>
+		<label>.45-70 Government Cartridge (AP)</label>
+		<graphicData>
+			<texPath>Things/Ammo/Rifle/AP</texPath>
+			<graphicClass>Graphic_StackCount</graphicClass>
+		</graphicData>
+		<statBases>
+			<MarketValue>0.2</MarketValue>
+		</statBases>
+		<ammoClass>ArmorPiercing</ammoClass>
+		<cookOffProjectile>Bullet_4570Gov_AP</cookOffProjectile>
+	</ThingDef>
+
+	<ThingDef ParentName="4570GovBase">
+		<defName>Ammo_4570Gov_HP</defName>
+		<label>.45-70 Government Cartridge (HP)</label>
+		<graphicData>
+			<texPath>Things/Ammo/Rifle/HP</texPath>
+			<graphicClass>Graphic_StackCount</graphicClass>
+		</graphicData>
+		<statBases>
+			<MarketValue>0.2</MarketValue>
+		</statBases>
+		<ammoClass>HollowPoint</ammoClass>
+		<cookOffProjectile>Bullet_4570Gov_HP</cookOffProjectile>
+	</ThingDef>
+	
+	<!-- ================== Projectiles ================== -->
+
+	<ThingDef Name="Base4570GovBullet" ParentName="BaseBullet" Abstract="true">
+		<graphicData>
+			<texPath>Things/Projectile/Bullet_Small</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+		</graphicData>
+		<projectile>
+			<damageDef>Bullet</damageDef>
+			<speed>113</speed>
+			<dropsCasings>true</dropsCasings>
+		</projectile>
+	</ThingDef>
+
+	<ThingDef ParentName="Base4570GovBullet">
+		<defName>Bullet_4570Gov_FMJ</defName>
+		<label>.45-70 Government Cartridge (FMJ)</label>
+		<projectile>
+			<damageAmountBase>25</damageAmountBase>
+			<armorPenetration>0.56</armorPenetration>
+		</projectile>
+	</ThingDef>
+
+	<ThingDef ParentName="Base4570GovBullet">
+		<defName>Bullet_4570Gov_AP</defName>
+		<label>.45-70 Government Cartridge (AP)</label>
+		<projectile>
+			<damageAmountBase>15</damageAmountBase>
+			<armorPenetration>0.71</armorPenetration>
+		</projectile>
+	</ThingDef>
+
+	<ThingDef ParentName="Base4570GovBullet">
+		<defName>Bullet_4570Gov_HP</defName>
+		<label>.45-70 Government Cartridge (HP)</label>
+		<projectile>
+			<damageAmountBase>35</damageAmountBase>
+			<armorPenetration>0.41</armorPenetration>
+		</projectile>
+	</ThingDef>
+  
+	<!-- ==================== Recipes ========================== -->
+
+	<RecipeDef ParentName="AmmoRecipeBase">
+		<defName>MakeAmmo_4570Gov_FMJ</defName>
+		<label>make .45-70 Government Cartridge (FMJ) cartridge x350</label>
+		<description>Craft 350 .45-70 Government Cartridge (FMJ) cartridges.</description>
+		<jobString>Making .45-70 Government Cartridge (FMJ) cartridges.</jobString>
+		<ingredients>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>Steel</li>
+					</thingDefs>
+				</filter>
+				<count>18</count>
+			</li>
+		</ingredients>
+		<fixedIngredientFilter>
+			<thingDefs>
+				<li>Steel</li>
+			</thingDefs>
+		</fixedIngredientFilter>
+		<products>
+			<Ammo_4570Gov_FMJ>350</Ammo_4570Gov_FMJ>
+		</products>
+	</RecipeDef>
+
+	<RecipeDef ParentName="AmmoRecipeBase">
+		<defName>MakeAmmo_4570Gov_AP</defName>
+		<label>make .45-70 Government Cartridge (AP) cartridge x350</label>
+		<description>Craft 350 .45-70 Government Cartridge (AP) cartridges.</description>
+		<jobString>Making .45-70 Government Cartridge (AP) cartridges.</jobString>
+		<ingredients>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>Steel</li>
+					</thingDefs>
+				</filter>
+				<count>23</count>
+			</li>
+		</ingredients>
+		<fixedIngredientFilter>
+			<thingDefs>
+				<li>Steel</li>
+			</thingDefs>
+		</fixedIngredientFilter>
+		<products>
+			<Ammo_4570Gov_AP>350</Ammo_4570Gov_AP>
+		</products>
+	</RecipeDef>
+
+	<RecipeDef ParentName="AmmoRecipeBase">
+		<defName>MakeAmmo_4570Gov_HP</defName>
+		<label>make .45-70 Government Cartridge (HP) cartridge x350</label>
+		<description>Craft 350 .45-70 Government Cartridge (HP) cartridges.</description>
+		<jobString>Making .45-70 Government Cartridge (HP) cartridges.</jobString>
+		<ingredients>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>Steel</li>
+					</thingDefs>
+				</filter>
+				<count>18</count>
+			</li>
+		</ingredients>
+		<fixedIngredientFilter>
+			<thingDefs>
+				<li>Steel</li>
+			</thingDefs>
+		</fixedIngredientFilter>
+		<products>
+			<Ammo_4570Gov_HP>350</Ammo_4570Gov_HP>
+		</products>
+	</RecipeDef>
+	
+</Defs>

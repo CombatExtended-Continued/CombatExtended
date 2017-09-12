@@ -1,0 +1,200 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+
+	<ThingCategoryDef>
+		<defName>Ammo357SIG</defName>
+		<label>.357 SIG</label>
+		<parent>AmmoRifles</parent>
+    <iconPath>UI/Icons/ThingCategories/CaliberRifle</iconPath>
+	</ThingCategoryDef>
+	
+	<!-- ==================== AmmoSet ========================== -->
+
+	<CombatExtended.AmmoSetDef>
+		<defName>AmmoSet_357SIG</defName>
+		<label>.357 SIG</label>
+		<ammoTypes>
+			<Ammo_357SIG_FMJ>Bullet_357SIG_FMJ</Ammo_357SIG_FMJ>
+			<Ammo_357SIG_AP>Bullet_357SIG_AP</Ammo_357SIG_AP>
+			<Ammo_357SIG_HP>Bullet_357SIG_HP</Ammo_357SIG_HP>
+		</ammoTypes>
+	</CombatExtended.AmmoSetDef>
+	
+	<!-- ==================== Ammo ========================== -->
+
+	<ThingDef Name="357SIGBase" ParentName="SmallAmmoBase" Abstract="True">
+		<description>A powerful cartridge designed to bring the performance of .357 Magnum to autoloaders.</description>
+		<statBases>
+		<Mass>0.014</Mass>
+		<Bulk>0.02</Bulk>
+		</statBases>
+	<tradeTags>
+		<li>CE_AutoEnableTrade</li>
+		<li>CE_AutoEnableCrafting</li>
+	</tradeTags>
+		<thingCategories>
+			<li>Ammo357SIG</li>
+		</thingCategories>
+	</ThingDef>
+
+	<ThingDef ParentName="357SIGBase">
+		<defName>Ammo_357SIG_FMJ</defName>
+		<label>.357 SIG cartridge (FMJ)</label>
+		<graphicData>
+			<texPath>Things/Ammo/Rifle/FMJ</texPath>
+			<graphicClass>Graphic_StackCount</graphicClass>
+		</graphicData>
+		<statBases>
+			<MarketValue>0.06</MarketValue>
+		</statBases>
+		<ammoClass>FullMetalJacket</ammoClass>
+		<cookOffProjectile>Bullet_357SIG_FMJ</cookOffProjectile>
+	</ThingDef>
+
+	<ThingDef ParentName="357SIGBase">
+		<defName>Ammo_357SIG_AP</defName>
+		<label>.357 SIG cartridge (AP)</label>
+		<graphicData>
+			<texPath>Things/Ammo/Rifle/AP</texPath>
+			<graphicClass>Graphic_StackCount</graphicClass>
+		</graphicData>
+		<statBases>
+			<MarketValue>0.07</MarketValue>
+		</statBases>
+		<ammoClass>ArmorPiercing</ammoClass>
+		<cookOffProjectile>Bullet_357SIG_AP</cookOffProjectile>
+	</ThingDef>
+
+	<ThingDef ParentName="357SIGBase">
+		<defName>Ammo_357SIG_HP</defName>
+		<label>.357 SIG cartridge (HP)</label>
+		<graphicData>
+			<texPath>Things/Ammo/Rifle/HP</texPath>
+			<graphicClass>Graphic_StackCount</graphicClass>
+		</graphicData>
+		<statBases>
+			<MarketValue>0.08</MarketValue>
+		</statBases>
+		<ammoClass>HollowPoint</ammoClass>
+		<cookOffProjectile>Bullet_357SIG_HP</cookOffProjectile>
+	</ThingDef>
+	
+	<!-- ================== Projectiles ================== -->
+
+	<ThingDef Name="Base357SIGBullet" ParentName="BaseBullet" Abstract="true">
+		<graphicData>
+			<texPath>Things/Projectile/Bullet_Small</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+		</graphicData>
+		<projectile>
+			<damageDef>Bullet</damageDef>
+			<speed>110</speed>
+			<dropsCasings>true</dropsCasings>
+		</projectile>
+	</ThingDef>
+
+	<ThingDef ParentName="Base357SIGBullet">
+		<defName>Bullet_357SIG_FMJ</defName>
+		<label>.357 SIG bullet (FMJ)</label>
+		<projectile>
+			<damageAmountBase>14</damageAmountBase>
+			<armorPenetration>0.372</armorPenetration>
+		</projectile>
+	</ThingDef>
+
+	<ThingDef ParentName="Base357SIGBullet">
+		<defName>Bullet_357SIG_AP</defName>
+		<label>.357 SIG bullet (AP)</label>
+		<projectile>
+			<damageAmountBase>10</damageAmountBase>
+			<armorPenetration>0.529</armorPenetration>
+		</projectile>
+	</ThingDef>
+
+	<ThingDef ParentName="Base357SIGBullet">
+		<defName>Bullet_357SIG_HP</defName>
+		<label>.357 SIG bullet (HP)</label>
+		<projectile>
+			<damageAmountBase>19</damageAmountBase>
+			<armorPenetration>0.229</armorPenetration>
+		</projectile>
+	</ThingDef>
+  
+	<!-- ==================== Recipes ========================== -->
+
+	<RecipeDef ParentName="AmmoRecipeBase">
+		<defName>MakeAmmo_357SIG_FMJ</defName>
+		<label>make .357 SIG (FMJ) cartridge x500</label>
+		<description>Craft 500 .357 SIG (FMJ) cartridges.</description>
+		<jobString>Making .357 SIG (FMJ) cartridges.</jobString>
+		<ingredients>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>Steel</li>
+					</thingDefs>
+				</filter>
+				<count>10</count>
+			</li>
+		</ingredients>
+		<fixedIngredientFilter>
+			<thingDefs>
+				<li>Steel</li>
+			</thingDefs>
+		</fixedIngredientFilter>
+		<products>
+			<Ammo_357SIG_FMJ>500</Ammo_357SIG_FMJ>
+		</products>
+	</RecipeDef>
+
+	<RecipeDef ParentName="AmmoRecipeBase">
+		<defName>MakeAmmo_357SIG_AP</defName>
+		<label>make .357 SIG (AP) cartridge x500</label>
+		<description>Craft 500 .357 SIG (AP) cartridges.</description>
+		<jobString>Making .357 SIG (AP) cartridges.</jobString>
+		<ingredients>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>Steel</li>
+					</thingDefs>
+				</filter>
+				<count>12</count>
+			</li>
+		</ingredients>
+		<fixedIngredientFilter>
+			<thingDefs>
+				<li>Steel</li>
+			</thingDefs>
+		</fixedIngredientFilter>
+		<products>
+			<Ammo_357SIG_AP>500</Ammo_357SIG_AP>
+		</products>
+	</RecipeDef>
+
+	<RecipeDef ParentName="AmmoRecipeBase">
+		<defName>MakeAmmo_357SIG_HP</defName>
+		<label>make .357 SIG (HP) cartridge x500</label>
+		<description>Craft 500 .357 SIG (HP) cartridges.</description>
+		<jobString>Making .357 SIG (HP) cartridges.</jobString>
+		<ingredients>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>Steel</li>
+					</thingDefs>
+				</filter>
+				<count>10</count>
+			</li>
+		</ingredients>
+		<fixedIngredientFilter>
+			<thingDefs>
+				<li>Steel</li>
+			</thingDefs>
+		</fixedIngredientFilter>
+		<products>
+			<Ammo_357SIG_HP>500</Ammo_357SIG_HP>
+		</products>
+	</RecipeDef>
+	
+</Defs>
