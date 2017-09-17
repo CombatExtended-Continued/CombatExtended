@@ -1,0 +1,314 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+
+	<Operation Class="PatchOperationSequence">
+		<success>Always</success>
+		<operations>
+			<li Class="CombatExtended.PatchOperationFindMod">
+				<modName>Mechanoids Extraordinaire</modName>
+			</li>
+			<!-- ========== Add armor coverage ========== -->
+			<li Class="PatchOperationAdd">
+				<xpath>/Defs/BodyDef[defName = "Hound"]/corePart</xpath>
+				<value>
+					<groups>
+						<li>CoveredByNaturalArmor</li>
+					</groups>
+				</value>
+			</li>
+			<li Class="PatchOperationAdd">
+				<xpath>/Defs/BodyDef[defName = "Hound"]/corePart/parts/li[def = "LeftExtensionPort"]</xpath>
+				<value>
+					<groups>
+						<li>CoveredByNaturalArmor</li>
+					</groups>
+				</value>
+			</li>
+			<li Class="PatchOperationAdd">
+				<xpath>/Defs/BodyDef[defName = "Hound"]/corePart/parts/li[def = "LeftExtensionPort"]/parts/li[def = "LeftGunHolder"]</xpath>
+				<value>
+					<groups>
+						<li>CoveredByNaturalArmor</li>
+					</groups>
+				</value>
+			</li>
+			<li Class="PatchOperationAdd">
+				<xpath>/Defs/BodyDef[defName = "Hound"]/corePart/parts/li[def = "RightExtensionPort"]</xpath>
+				<value>
+					<groups>
+						<li>CoveredByNaturalArmor</li>
+					</groups>
+				</value>
+			</li>
+			<li Class="PatchOperationAdd">
+				<xpath>/Defs/BodyDef[defName = "Hound"]/corePart/parts/li[def = "RightExtensionPort"]/parts/li[def = "RightGunHolder"]</xpath>
+				<value>
+					<groups>
+						<li>CoveredByNaturalArmor</li>
+					</groups>
+				</value>
+			</li>
+			<li Class="PatchOperationAdd">
+				<xpath>/Defs/BodyDef[defName = "Hound"]/corePart/parts/li[def = "MechanicalNeck"]</xpath>
+				<value>
+					<groups>
+						<li>CoveredByNaturalArmor</li>
+					</groups>
+				</value>
+			</li>
+			<li Class="PatchOperationAdd">
+				<xpath>/Defs/BodyDef[defName = "Hound"]/corePart/parts/li[def = "MechanicalNeck"]/parts/li[def="MechanicalHead"]/groups</xpath>
+				<value>
+					<li>CoveredByNaturalArmor</li>
+				</value>
+			</li>
+			<li Class="PatchOperationAdd">
+				<xpath>/Defs/BodyDef[defName = "Hound"]/corePart/parts/li[def = "FrontLeftMechanicalLeg"]</xpath>
+				<value>
+					<groups>
+						<li>CoveredByNaturalArmor</li>
+					</groups>
+				</value>
+			</li>
+			<li Class="PatchOperationAdd">
+				<xpath>/Defs/BodyDef[defName = "Hound"]/corePart/parts/li[def = "FrontLeftMechanicalLeg"]/parts/li[def = "FrontLeftMechanicalPaw"]/groups</xpath>
+				<value>
+					<li>CoveredByNaturalArmor</li>
+				</value>
+			</li>
+			<li Class="PatchOperationAdd">
+				<xpath>/Defs/BodyDef[defName = "Hound"]/corePart/parts/li[def = "FrontRightMechanicalLeg"]</xpath>
+				<value>
+					<groups>
+						<li>CoveredByNaturalArmor</li>
+					</groups>
+				</value>
+			</li>
+			<li Class="PatchOperationAdd">
+				<xpath>/Defs/BodyDef[defName = "Hound"]/corePart/parts/li[def = "FrontRightMechanicalLeg"]/parts/li[def = "FrontRightMechanicalPaw"]/groups</xpath>
+				<value>
+					<li>CoveredByNaturalArmor</li>
+				</value>
+			</li>
+			<li Class="PatchOperationAdd">
+				<xpath>/Defs/BodyDef[defName = "Hound"]/corePart/parts/li[def = "RearLeftMechanicalLeg"]</xpath>
+				<value>
+					<groups>
+						<li>CoveredByNaturalArmor</li>
+					</groups>
+				</value>
+			</li>
+			<li Class="PatchOperationAdd">
+				<xpath>/Defs/BodyDef[defName = "Hound"]/corePart/parts/li[def = "RearLeftMechanicalLeg"]/parts/li[def = "RearLeftMechanicalPaw"]</xpath>
+				<value>
+					<groups>
+						<li>CoveredByNaturalArmor</li>
+					</groups>
+				</value>
+			</li>
+			<li Class="PatchOperationAdd">
+				<xpath>/Defs/BodyDef[defName = "Hound"]/corePart/parts/li[def = "RearRightMechanicalLeg"]</xpath>
+				<value>
+					<groups>
+						<li>CoveredByNaturalArmor</li>
+					</groups>
+				</value>
+			</li>
+			<li Class="PatchOperationAdd">
+				<xpath>/Defs/BodyDef[defName = "Hound"]/corePart/parts/li[def = "RearRightMechanicalLeg"]/parts/li[def = "RearRightMechanicalPaw"]</xpath>
+				<value>
+					<groups>
+						<li>CoveredByNaturalArmor</li>
+					</groups>
+				</value>
+			</li>
+			<!-- ========== Modify coverage ========== -->
+			<li Class="PatchOperationReplace">
+				<xpath>/Defs/BodyDef[defName = "Hound"]/corePart/parts/li[def = "FrontLeftMechanicalLeg"]/coverage</xpath>
+				<value>
+					<coverage>0.15</coverage>
+				</value>
+			</li>
+			<li Class="PatchOperationReplace">
+				<xpath>/Defs/BodyDef[defName = "Hound"]/corePart/parts/li[def = "FrontRightMechanicalLeg"]/coverage</xpath>
+				<value>
+					<coverage>0.15</coverage>
+				</value>
+			</li>
+			<li Class="PatchOperationReplace">
+				<xpath>/Defs/BodyDef[defName = "Hound"]/corePart/parts/li[def = "RearLeftMechanicalLeg"]/coverage</xpath>
+				<value>
+					<coverage>0.08</coverage>
+				</value>
+			</li>
+			<li Class="PatchOperationReplace">
+				<xpath>/Defs/BodyDef[defName = "Hound"]/corePart/parts/li[def = "RearRightMechanicalLeg"]/coverage</xpath>
+				<value>
+					<coverage>0.08</coverage>
+				</value>
+			</li>
+			<li Class="PatchOperationReplace">
+				<xpath>/Defs/BodyDef[defName = "Hound"]/corePart/parts/li[def = "MechanicalTail"]/coverage</xpath>
+				<value>
+					<coverage>0.04</coverage>
+				</value>
+			</li>
+			<!-- ========== Add new body parts ========== -->
+			<li Class="PatchOperationAdd">
+				<xpath>/Defs/BodyDef[defName = "Hound"]/corePart/parts</xpath>
+				<value>
+					<li>
+						<def>MechanicalPrimaryPowerCore</def>
+						<coverage>0.06</coverage>
+						<depth>Inside</depth>
+					</li>
+				</value>
+			</li>
+			<li Class="PatchOperationAdd">
+				<xpath>/Defs/BodyDef[defName = "Hound"]/corePart/parts</xpath>
+				<value>
+					<li>
+						<def>MechanicalPrimaryCapacitor</def>
+						<coverage>0.01</coverage>
+						<depth>Inside</depth>
+					</li>
+				</value>
+			</li>
+			<li Class="PatchOperationAdd">
+				<xpath>/Defs/BodyDef[defName = "Hound"]/corePart/parts</xpath>
+				<value>
+					<li>
+						<def>MechanicalLeftHeatSink</def>
+						<coverage>0.03</coverage>
+						<depth>Inside</depth>
+					</li>
+				</value>
+			</li>
+			<li Class="PatchOperationAdd">
+				<xpath>/Defs/BodyDef[defName = "Hound"]/corePart/parts</xpath>
+				<value>
+					<li>
+						<def>MechanicalRightHeatSink</def>
+						<coverage>0.03</coverage>
+						<depth>Inside</depth>
+					</li>
+				</value>
+			</li>
+			<li Class="PatchOperationAdd">
+				<xpath>/Defs/BodyDef[defName = "Hound"]/corePart/parts</xpath>
+				<value>
+					<li>
+						<def>MechanicalCoolantTank</def>
+						<coverage>0.06</coverage>
+						<depth>Inside</depth>
+					</li>
+				</value>
+			</li>
+			<li Class="PatchOperationAdd">
+				<xpath>/Defs/BodyDef[defName = "Hound"]/corePart/parts/li[def = "LeftExtensionPort"]/parts/li[def = "LeftGunHolder"]</xpath>
+				<value>
+					<parts>
+						<li>
+							<def>MechanicalLeftWeaponActuator</def>
+							<coverage>0.15</coverage>
+							<depth>Inside</depth>
+						</li>
+					</parts>
+				</value>
+			</li>
+			<li Class="PatchOperationAdd">
+				<xpath>/Defs/BodyDef[defName = "Hound"]/corePart/parts/li[def = "RightExtensionPort"]/parts/li[def = "RightGunHolder"]</xpath>
+				<value>
+					<parts>
+						<li>
+							<def>MechanicalRightWeaponActuator</def>
+							<coverage>0.15</coverage>
+							<depth>Inside</depth>
+						</li>
+					</parts>
+				</value>
+			</li>
+			<li Class="PatchOperationAdd">
+				<xpath>/Defs/BodyDef[defName = "Hound"]/corePart/parts/li[def = "FrontLeftMechanicalLeg"]/parts</xpath>
+				<value>
+					<li>
+						<def>MechanicalFrontLeftLowerActuator</def>
+						<coverage>0.15</coverage>
+						<depth>Inside</depth>
+					</li>
+				</value>
+			</li>
+			<li Class="PatchOperationAdd">
+				<xpath>/Defs/BodyDef[defName = "Hound"]/corePart/parts/li[def = "FrontLeftMechanicalLeg"]/parts</xpath>
+				<value>
+					<li>
+						<def>MechanicalFrontLeftLowerPiston</def>
+						<coverage>0.25</coverage>
+						<depth>Inside</depth>
+					</li>
+				</value>
+			</li>
+			<li Class="PatchOperationAdd">
+				<xpath>/Defs/BodyDef[defName = "Hound"]/corePart/parts/li[def = "FrontRightMechanicalLeg"]/parts</xpath>
+				<value>
+					<li>
+						<def>MechanicalFrontRightLowerActuator</def>
+						<coverage>0.15</coverage>
+						<depth>Inside</depth>
+					</li>
+				</value>
+			</li>
+			<li Class="PatchOperationAdd">
+				<xpath>/Defs/BodyDef[defName = "Hound"]/corePart/parts/li[def = "FrontRightMechanicalLeg"]/parts</xpath>
+				<value>
+					<li>
+						<def>MechanicalFrontRightLowerPiston</def>
+						<coverage>0.25</coverage>
+						<depth>Inside</depth>
+					</li>
+				</value>
+			</li>
+			<li Class="PatchOperationAdd">
+				<xpath>/Defs/BodyDef[defName = "Hound"]/corePart/parts/li[def = "RearLeftMechanicalLeg"]/parts</xpath>
+				<value>
+					<li>
+						<def>MechanicalRearLeftLowerActuator</def>
+						<coverage>0.15</coverage>
+						<depth>Inside</depth>
+					</li>
+				</value>
+			</li>
+			<li Class="PatchOperationAdd">
+				<xpath>/Defs/BodyDef[defName = "Hound"]/corePart/parts/li[def = "RearLeftMechanicalLeg"]/parts</xpath>
+				<value>
+					<li>
+						<def>MechanicalRearLeftLowerPiston</def>
+						<coverage>0.25</coverage>
+						<depth>Inside</depth>
+					</li>
+				</value>
+			</li>
+			<li Class="PatchOperationAdd">
+				<xpath>/Defs/BodyDef[defName = "Hound"]/corePart/parts/li[def = "RearRightMechanicalLeg"]/parts</xpath>
+				<value>
+					<li>
+						<def>MechanicalRearRightLowerActuator</def>
+						<coverage>0.15</coverage>
+						<depth>Inside</depth>
+					</li>
+				</value>
+			</li>
+			<li Class="PatchOperationAdd">
+				<xpath>/Defs/BodyDef[defName = "Hound"]/corePart/parts/li[def = "RearRightMechanicalLeg"]/parts</xpath>
+				<value>
+					<li>
+						<def>MechanicalRearRightLowerPiston</def>
+						<coverage>0.25</coverage>
+						<depth>Inside</depth>
+					</li>
+				</value>
+			</li>
+		</operations>
+	</Operation>
+
+</Patch>
