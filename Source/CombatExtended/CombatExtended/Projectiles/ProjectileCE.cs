@@ -129,7 +129,7 @@ namespace CombatExtended
         }
         
         /// <summary>
-        /// The amount of ticks this projectile has remained in the air for.
+        /// The amount of integer ticks this projectile has remained in the air for, ignoring impact.
         /// </summary>
         protected int FlightTicks
         {
@@ -138,6 +138,9 @@ namespace CombatExtended
         		return IntTicksToImpact - ticksToImpact;
         	}
         }
+        /// <summary>
+        /// The amount of float ticks the projectile has remained in the air for, including impact.
+        /// </summary>
         protected float fTicks
         {
         	get
@@ -461,22 +464,20 @@ namespace CombatExtended
             }
 
             // Trees have RNG chance to collide
+            var bounds = CE_Utility.GetBoundsFor(thing);
+            if (!bounds.IntersectRay(shotLine))
+            {
+                return false;
+            }
             if (thing.IsTree())
             {
+            	var plant = thing as Plant;
+            	//TODO: Remove fillPercent dependency because all fillPercents on trees are 0.25
                 float chance = thing.def.fillPercent * ((thing.Position - OriginIV3).LengthHorizontal / 40);
                 if (Controller.settings.DebugShowTreeCollisionChance) MoteMaker.ThrowText(thing.Position.ToVector3Shifted(), thing.Map, chance.ToString());
                 if (!Rand.Chance(chance)) return false;
             }
-            else
-            {
-                var bounds = CE_Utility.GetBoundsFor(thing);
-                if (!bounds.IntersectRay(shotLine))
-                {
-                    return false;
-                }
-            }
-
-
+            
             if (DebugViewSettings.drawInterceptChecks) MoteMaker.ThrowText(thing.Position.ToVector3Shifted(), thing.Map, "x", Color.red);
             Impact(thing);
             return true;

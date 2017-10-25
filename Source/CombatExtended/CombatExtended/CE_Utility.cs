@@ -168,6 +168,11 @@ namespace CombatExtended
         /// <returns>Distance from center of Thing to its edge in cells</returns>
         public static float GetCollisionWidth(Thing thing)
         {
+        	/* TODO: Possible solution for fixing tree widths
+			if (thing.IsTree())
+        	{
+        		return (thing as Plant).def.graphicData.shadowData.volume.x;
+        	}*/
             Pawn pawn = thing as Pawn;
             if (pawn == null)
             {
