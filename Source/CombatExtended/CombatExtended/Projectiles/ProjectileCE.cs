@@ -172,18 +172,59 @@ namespace CombatExtended
             	return Quaternion.AngleAxis(shotRotation, Vector3.up);
             }
         }
-
+        
+        /*
+		private float heightFactor = -1f;
+        public float HeightFactor
+        {
+        	get
+        	{
+        		if (heightFactor < 0f)
+        		{
+        			
+        		}
+        		return heightFactor;
+        	}
+        }*/
+        
+        public Vector2 DrawPosV2
+        {
+        	get
+        	{
+        		return Vec2Position + new Vector2(0, Height - shotHeight * ((StartingTicksToImpact - fTicks) / StartingTicksToImpact));
+        	}
+        }
+        
         public override Vector3 DrawPos
         {
             get
             {
-            	var v = Vec2Position;
+            	var v = DrawPosV2;
             	return new Vector3(v.x, def.Altitude, v.y);
             	//return new Vector3(v.x, def.Altitude, v.y + 0.5f*Height);
+            	//v.y + 
+            	//
+            	//Height - 
             }
         }
         #endregion
-
+		
+        private float drawnShotAngle = 1000f;
+        /// <summary>
+        /// Drawn shot angle in degrees for input in the Draw() method. Takes into account the displayed arc corrections.
+        /// </summary>
+        public float DrawnShotAngleCorrection
+        {
+        	get
+        	{
+        		if (drawnShotAngle > 999f)
+        		{
+        			drawnShotAngle = Mathf.Rad2Deg*Mathf.Sin(Mathf.Deg2Rad * shotRotation)*(shotAngle + Mathf.Tan(shotHeight / GetDistanceTraveled(shotSpeed, shotAngle, shotHeight)));
+        		}
+        		return drawnShotAngle;
+        	}
+        }
+        
         /// <summary>
         /// Angle off the ground [radians].
         /// </summary>
@@ -197,7 +238,7 @@ namespace CombatExtended
         /// </summary>
         public float shotHeight = 0f;
         /// <summary>
-        /// The assigned shot speed, in general equal to the projectile.def.speed value.
+        /// The assigned shot speed (not speed in z axis or x-y plane), in general equal to the projectile.def.speed value.
         /// </summary>
         public float shotSpeed = -1f;
 
@@ -248,7 +289,8 @@ namespace CombatExtended
             Scribe_Values.Look(ref shotSpeed, "spd", 0f, true);
             Scribe_Values.Look(ref canTargetSelf, "cts", false, false);
         }
-
+		
+        #region Launch
         /// <summary>
         /// Physics-enabled Launch() method.
         /// </summary>
@@ -287,6 +329,7 @@ namespace CombatExtended
                 ambientSustainer = def.projectile.soundAmbient.TrySpawnSustainer(info);
             }
         }
+        #endregion
 
         //Removed minimum collision distance
         private bool CheckForCollisionBetween(Vector2 lastExactPos, Vector2 newExactPos)
@@ -511,14 +554,32 @@ namespace CombatExtended
                 ambientSustainer.Maintain();
             }
         }
-
-        //Unmodified
+        
+        public Quaternion DrawRotation
+        {
+            get
+            {
+            	return Quaternion.AngleAxis(shotRotation + Mathf.Lerp(-DrawnShotAngleCorrection, DrawnShotAngleCorrection, fTicks / StartingTicksToImpact) , Vector3.up);
+            }
+        }
+        
+        /// <summary>
+        /// Draws projectile if at least a tick away from caster (or always if no caster)
+        /// </summary>
         public override void Draw()
         {
-            Graphics.DrawMesh(MeshPool.plane10, DrawPos, ExactRotation, def.DrawMatSingle, 0);
-            Comps_PostDraw();
+        	if (IntTicksToImpact == 0 && launcher != null)
+        	{
+        	}
+        	else
+        	{
+	        	//Graphics.DrawMesh(MeshPool.plane10, DrawPos, ExactRotation, def.DrawMatSingle, 0);
+	            Graphics.DrawMesh(MeshPool.plane10, DrawPos, DrawRotation, def.DrawMatSingle, 0);
+	            Comps_PostDraw();
+        	}
         }
 
+        #region Impact
         //Modified collision with downed pawns
         private void ImpactSomething()
         {
@@ -586,7 +647,13 @@ namespace CombatExtended
 
             Destroy();
         }
-
+		#endregion
+        
+		/// <summary>
+		/// Calculated rounding to three decimales the output of h0 + v * sin(a0) * t - g/2 * t^2 with {h0 -> shotHeight, v -> shotSpeed, a0 -> shotAngle, t -> ticks/GenTicks.TicksPerRealSecond, g -> GravityFactor}. Called roughly each tick for impact checks and for drawing.
+		/// </summary>
+		/// <param name="ticks">Integer ticks, since the only time value which is not an integer (accessed by StartingTicksToImpact) has height zero by definition.</param>
+		/// <returns>Projectile height at time ticks in ticks.</returns>
         private float GetHeightAtTicks(int ticks)
         {
             float seconds = ((float)ticks) / GenTicks.TicksPerRealSecond;
