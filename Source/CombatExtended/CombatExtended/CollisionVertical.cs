@@ -10,13 +10,16 @@ namespace CombatExtended
 {
     public struct CollisionVertical
     {
-    	private const float WallCollisionHeight = 2f;       // Walls are this tall
+    	public const float ThickRoofThicknessMultiplier = 2f;
+    	public const float NaturalRoofThicknessMultiplier = 2f;
+    	public const float WallCollisionHeight = 2f;       // Walls are this tall
         public const float BodyRegionBottomHeight = 0.45f;  // Hits below this percentage will impact the corresponding body region
         public const float BodyRegionMiddleHeight = 0.85f;  // This also sets the altitude at which pawns hold their guns
 
         private readonly FloatRange heightRange;
         public readonly float shotHeight;
 
+        public Plane RoofCollisionPlane => new Plane(Vector3.up, new Vector3(0f, WallCollisionHeight, 0f));
         public FloatRange HeightRange => new FloatRange(heightRange.min, heightRange.max);
         public float Min => heightRange.min;
         public float Max => heightRange.max;
@@ -27,7 +30,7 @@ namespace CombatExtended
         {
             CalculateHeightRange(thing, out heightRange, out shotHeight);
         }
-
+        
         private static void CalculateHeightRange(Thing thing, out FloatRange heightRange, out float shotHeight)
         {
             shotHeight = 0;
@@ -36,18 +39,19 @@ namespace CombatExtended
                 heightRange = new FloatRange(0, 0);
                 return;
             }
+            
+            var plant = thing as Plant;
+            if (plant != null)
+            {
+            		//Height matches up exactly with visual size
+        		heightRange = new FloatRange(0, plant.def.plant.visualSizeRange.LerpThroughRange(plant.Growth));
+                return;
+            }
             if (thing is Building)
             {
                 if (thing.def.Fillage == FillCategory.Full)
                 {
                     heightRange = new FloatRange(0, WallCollisionHeight);
-                    return;
-                }
-                if (thing.IsTree())
-                {
-            		var plant = (thing as Plant);
-            		//Height matches up exactly with visual size
-            		heightRange = new FloatRange(0, plant.def.plant.visualSizeRange.LerpThroughRange(plant.Growth));    // Check for trees
                     return;
                 }
                 float fillPercent = thing.def.fillPercent;

@@ -43,8 +43,32 @@ namespace CombatExtended
             // Fragmentation stuff
             if (!Props.fragments.NullOrEmpty() && GenGrid.InBounds(pos, map))
             {
-                Vector2 exactOrigin = new Vector2(parent.DrawPos.x, parent.DrawPos.z);
-                float height = (new CollisionVertical(pos.GetEdifice(map))).Max;
+            	
+                float edificeHeight = (new CollisionVertical(pos.GetEdifice(map))).Max;
+                Vector2 exactOrigin;
+                float height;
+                
+                //Fragments fly from a 0 to 45 degree angle away from the explosion
+                var range = new FloatRange(0, Mathf.PI / 8f);
+                
+                var projCE = parent as ProjectileCE;
+                
+                if (projCE != null)
+                {
+                	exactOrigin = new Vector2(projCE.ExactPosition.x, projCE.ExactPosition.z);
+                	height = Mathf.Max(edificeHeight, projCE.ExactPosition.y);
+                	if (edificeHeight < height)
+                	{
+                		//If the projectile exploded above the ground, they can fly 45 degree away at the bottom as well
+                		range.min = -Mathf.PI / 8f;
+                	}
+                	// TODO : Check for hitting the bottom or top of a roof
+                }
+                else
+                {
+                	exactOrigin = new Vector2(pos.ToVector3Shifted().x, pos.ToVector3Shifted().z);
+                	height = edificeHeight;
+                }
                 
                 foreach (ThingCountClass fragment in Props.fragments)
                 {
@@ -53,15 +77,9 @@ namespace CombatExtended
                         ProjectileCE projectile = (ProjectileCE)ThingMaker.MakeThing(fragment.thingDef, null);
                         GenSpawn.Spawn(projectile, pos, map);
                         
-                        var projCE = parent as ProjectileCE;
-                        if (projCE != null)
-                        {
-                        	height = Mathf.Max(height, projCE.Height);
-                        }
-                        
                         projectile.canTargetSelf = true;
-            			projectile.minCollisionSqr = 1f;
-                        projectile.Launch(instigator, exactOrigin, UnityEngine.Random.Range(0, Mathf.PI / 8f), UnityEngine.Random.Range(0, 360), height, Props.fragSpeedFactor * projectile.def.projectile.speed);
+            			projectile.minCollisionSqr = 0f;
+            			projectile.Launch(instigator, exactOrigin, range.RandomInRange, UnityEngine.Random.Range(0, 360), height, Props.fragSpeedFactor * projectile.def.projectile.speed);
                     }
                 }
             }

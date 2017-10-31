@@ -12,6 +12,13 @@ namespace CombatExtended
 {
     static class CE_Utility
     {
+    	/*struct TextureBoundFactor
+    	{
+    		
+    	}
+    	
+    	static Dictionary<ThingDef, TextureBoundFactor>*/
+    	
         #region Misc
 
         public static List<ThingDef> allWeaponDefs = new List<ThingDef>();
@@ -145,7 +152,24 @@ namespace CombatExtended
 
         #region Physics
         public const float gravityConst = 9.8f;
-
+		
+        public static Bounds GetBoundsFor(IntVec3 cell, RoofDef roof)
+        {
+        	if (roof == null)
+        		return new Bounds();
+        	
+        	float height = CollisionVertical.WallCollisionHeight;
+        	
+        	if (roof.isNatural)
+        		height *= CollisionVertical.NaturalRoofThicknessMultiplier;
+        	
+        	if (roof.isThickRoof)
+        		height *= CollisionVertical.ThickRoofThicknessMultiplier;
+        	
+        	return new Bounds(cell.ToVector3Shifted(),
+        	                  new Vector3(1f, height - CollisionVertical.WallCollisionHeight, 1f));
+        }
+        
         public static Bounds GetBoundsFor(Thing thing)
         {
             if (thing == null)

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using RimWorld;
 using UnityEngine;
 using Verse;
@@ -8,11 +9,23 @@ using Verse.Sound;
 
 namespace CombatExtended
 {
+	[StaticConstructorOnStartup]
     public abstract class ProjectileCE : ThingWithComps
     {
-        private const int SuppressionRadius = 3;    // Suppression is applied within this area
-        private const int collisionCheckSize = 5;    // Check for collision with multi-cell pawns and apply suppression in area of this size, centered on flight path.
+    	private static readonly Material ShadowMat = MaterialPool.MatFrom("Things/Projectile/BulletShadow", ShaderDatabase.Transparent);
+    	
+    	#region ClassVariables
+    	/// <summary>
+    	/// Suppression is applied within this radius (x-y and z)
+    	/// </summary>
+        private const int SuppressionRadius = 3;
         
+        /// <summary>
+        /// Check for collision with multi-cell pawns and apply suppression in radius of this size, centered on flight path.
+        /// </summary>
+        private const int collisionCheckSize = 5;
+        
+        #region Origin destination
         protected Vector2 origin;
         
         private IntVec3 originInt = new IntVec3(0, -1000, 0);
@@ -42,6 +55,7 @@ namespace CombatExtended
         		return destinationInt;
         	}
         }
+        #endregion
         
         protected ThingDef equipmentDef;
         protected Thing launcher;
@@ -60,6 +74,29 @@ namespace CombatExtended
         private static List<IntVec3> checkedCells = new List<IntVec3>();
         #endregion
         
+        #region Height
+        private int lastHeightTick = -1;
+        private float heightInt = 0f;
+        /// <summary>
+        /// If lastHeightTick is not FlightTicks, Height calculates the quadratic formula (g/2)t^2 + (-v_0y)t + (y-y0) for {g -> gravity, v_0y -> shotSpeed * Mathf.Sin(shotAngle), y0 -> shotHeight, t -> seconds} to find y rounded to the nearest 3 decimals.
+        /// 
+        /// If lastHeightTick equals FlightTicks, it returns a locally stored value heightInt which is the product of previous calculation.
+        /// </summary>
+        public float Height
+        {
+        	get
+        	{
+        		if (lastHeightTick != FlightTicks)
+        		{
+        			heightInt = ticksToImpact > 0 ? GetHeightAtTicks(FlightTicks) : 0f;
+		        	lastHeightTick = FlightTicks;
+        		}
+        		return heightInt;
+        	}
+        }
+        #endregion
+        
+        #region Ticks/Seconds
         float startingTicksToImpactInt = -1f;
         protected float StartingTicksToImpact
         {
@@ -89,33 +126,10 @@ namespace CombatExtended
             }
         }
         
-        #region Height
-        private bool heightOutdated = true;
-        private float heightInt = 0f;
-        /// <summary>
-        /// If heightOutdated is true, Height calculates the quadratic formula (g/2)t^2 + (-v_0y)t + (y-y0) for {g -> gravity, v_0y -> shotSpeed * Mathf.Sin(shotAngle), y0 -> shotHeight, t -> seconds} to find y rounded to the nearest 3 decimals.
-        /// 
-        /// If heightOutdated is false, it returns a locally stored value heightInt which is the product of previous calculation.
-        /// </summary>
-        public float Height
-        {
-        	get
-        	{
-        		if (heightOutdated)
-        		{
-		        	heightInt = GetHeightAtTicks(FlightTicks);
-		        	heightOutdated = false;
-        		}
-        		return heightInt;
-        	}
-        }
-        #endregion
-        
-        #region Ticks/Seconds
-        /// <summary>
-        /// An integer ceil value of StartingTicksToImpact. Is equal to -1 when not initialized.
-        /// </summary>
         int intTicksToImpact = -1;
+        /// <summary>
+        /// An integer ceil value of StartingTicksToImpact. intTicksToImpact is equal to -1 when not initialized.
+        /// </summary>
         protected int IntTicksToImpact
         {
         	get
@@ -151,50 +165,42 @@ namespace CombatExtended
         #endregion
 
         #region Position
-        private Vector2 Vec2Position
+        private Vector2 Vec2Position(float ticks = -1f)
         {
-        	get
+        	if (ticks < 0)
         	{
-        		return Vector2.Lerp(origin, Destination, fTicks / StartingTicksToImpact);
+        		ticks = fTicks;
         	}
+        	return Vector2.Lerp(origin, Destination, ticks / StartingTicksToImpact);
         }
         
+        private Vector3 impactPosition = new Vector3();
+        /// <summary>
+        /// Exact x,y,z (x,height,y) position in terms of Vec2Position.x, .y (lerped origin to Destination) and Height.
+        /// </summary>
         public virtual Vector3 ExactPosition
         {
-            get
-            {
-            	var v = Vec2Position;
-            	return new Vector3(v.x, 0f, v.y);
-            }
-        }
-
-        public virtual Quaternion ExactRotation
-        {
-            get
-            {
-            	return Quaternion.AngleAxis(shotRotation, Vector3.up);
-            }
-        }
-        
-        /*
-		private float heightFactor = -1f;
-        public float HeightFactor
-        {
-        	get
+        	set
         	{
-        		if (heightFactor < 0f)
-        		{
-        			
-        		}
-        		return heightFactor;
+        		impactPosition = new Vector3(value.x, value.y, value.z);
+        		Position = impactPosition.ToIntVec3();
         	}
-        }*/
+            get
+            {
+            	if (landed)
+            	{
+            		return impactPosition;
+            	}
+	        	var v = Vec2Position();
+	        	return new Vector3(v.x, Height, v.y);
+            }
+        }
         
         public Vector2 DrawPosV2
         {
         	get
         	{
-        		return Vec2Position + new Vector2(0, Height - shotHeight * ((StartingTicksToImpact - fTicks) / StartingTicksToImpact));
+        		return Vec2Position() + new Vector2(0, Height - shotHeight * ((StartingTicksToImpact - fTicks) / StartingTicksToImpact));
         	}
         }
         
@@ -204,17 +210,47 @@ namespace CombatExtended
             {
             	var v = DrawPosV2;
             	return new Vector3(v.x, def.Altitude, v.y);
-            	//return new Vector3(v.x, def.Altitude, v.y + 0.5f*Height);
-            	//v.y + 
-            	//
-            	//Height - 
             }
         }
+        
+        private Vector3 lastExactPos = new Vector3(-1000, 0, 0);
+        private Vector3 LastPos
+        {
+        	set
+        	{
+        		lastExactPos = value;
+        	}
+        	get
+        	{
+        		if (lastExactPos.x <-999)
+        		{
+	        		var lastPos = Vec2Position(FlightTicks - 1);
+	        		lastExactPos = new Vector3(lastPos.x, GetHeightAtTicks(FlightTicks - 1), lastPos.y);
+        		}
+        		return lastExactPos;
+        	}
+        }
+        
+        private int lastShotLine = -1;
+        private Ray shotLine;
+        public Ray ShotLine
+        {
+        	get
+        	{
+        		if (lastShotLine != FlightTicks)
+        		{
+		            shotLine = new Ray(LastPos, (ExactPosition - LastPos));
+		            lastShotLine = FlightTicks;
+        		}
+        		return shotLine;
+        	}
+        }
         #endregion
-		
+        
+        #region Angle
         private float drawnShotAngle = 1000f;
         /// <summary>
-        /// Drawn shot angle in degrees for input in the Draw() method. Takes into account the displayed arc corrections.
+        /// Drawn shot angle [degrees] for input in the Draw() method. Takes into account the displayed arc corrections.
         /// </summary>
         public float DrawnShotAngleCorrection
         {
@@ -222,11 +258,28 @@ namespace CombatExtended
         	{
         		if (drawnShotAngle > 999f)
         		{
-        			drawnShotAngle = Mathf.Rad2Deg*Mathf.Sin(Mathf.Deg2Rad * shotRotation)*(shotAngle + Mathf.Tan(shotHeight / GetDistanceTraveled(shotSpeed, shotAngle, shotHeight)));
+        			drawnShotAngle = Mathf.Rad2Deg*(Mathf.Sin(Mathf.Deg2Rad * shotRotation)*(shotAngle + Mathf.Atan2(shotHeight, GetDistanceTraveled(shotSpeed, shotAngle, shotHeight))));
         		}
         		return drawnShotAngle;
         	}
         }
+        
+        public Quaternion DrawRotation
+        {
+            get
+            {
+            	return Quaternion.AngleAxis(shotRotation + Mathf.Lerp(-DrawnShotAngleCorrection, DrawnShotAngleCorrection, fTicks / StartingTicksToImpact) , Vector3.up);
+            }
+        }
+        
+        public virtual Quaternion ExactRotation
+        {
+            get
+            {
+            	return Quaternion.AngleAxis(shotRotation, Vector3.up);
+            }
+        }
+        #endregion
         
         /// <summary>
         /// Angle off the ground [radians].
@@ -260,13 +313,15 @@ namespace CombatExtended
                 return _gravityFactor;
             }
         }
-
+		#endregion
+        
         /*
          * *** End of class variables ***
         */
 
         #region Methods
 
+        #region Expose
         /// <summary>
         /// Saves new variables shotAngle, shotHeight, shotSpeed.
         /// </summary>
@@ -292,6 +347,7 @@ namespace CombatExtended
             Scribe_Values.Look(ref shotSpeed, "spd", 0f, true);
             Scribe_Values.Look(ref canTargetSelf, "cts", false, false);
         }
+        #endregion
 		
         #region Launch
         /// <summary>
@@ -324,6 +380,7 @@ namespace CombatExtended
         	this.shotSpeed = def.projectile.speed;
             this.launcher = launcher;
             this.origin = origin;
+            	//For explosives/bullets, equipmentDef is important
             equipmentDef = (equipment != null) ? equipment.def : null;
             
             if (!def.projectile.soundAmbient.NullOrUndefined())
@@ -333,34 +390,30 @@ namespace CombatExtended
             }
         }
         #endregion
-
+		
+        #region Collisions
         //Removed minimum collision distance
-        private bool CheckForCollisionBetween(Vector2 lastExactPos, Vector2 newExactPos)
+        private bool CheckForCollisionBetween()
         {
-            var lastPos = new IntVec3(lastExactPos);
-        	var newPos = new IntVec3(newExactPos);
+        	var lastPosIV3 = LastPos.ToIntVec3();
+        	var newPosIV3 = ExactPosition.ToIntVec3();
+        	
             // Sanity checks
-            if (newPos == lastPos)
+            if (newPosIV3 == lastPosIV3)
             {
                 return false;
             }
-            if (!lastPos.InBounds(base.Map) || !newPos.InBounds(base.Map))
+            if (!lastPosIV3.InBounds(base.Map) || !newPosIV3.InBounds(base.Map))
             {
                 return false;
             }
 
             if (DebugViewSettings.drawInterceptChecks)
             {
-                Map.debugDrawer.FlashLine(lastPos, newPos);
+                Map.debugDrawer.FlashLine(lastPosIV3, newPosIV3);
             }
 
-            // Determine flight path
-            var from = new Vector3(lastExactPos.x, GetHeightAtTicks(FlightTicks - 1), lastExactPos.y);
-            var dest = new Vector3(newExactPos.x, GetHeightAtTicks(FlightTicks), newExactPos.y);
-            var shotLine = new Ray(from, (dest - from));
-
-            // Early opt-out, if we only moved by one cell only check the new cell
-            /*
+            /* Early opt-out, if we only moved by one cell only check the new cell
             if ((newPos - lastPos).LengthManhattan == 1)
             {
                 if (DebugViewSettings.drawInterceptChecks)
@@ -371,11 +424,28 @@ namespace CombatExtended
             }
             */
 
+           	/*
+        	//Set to Vector3.left (-1,0,0) as a sort of Vector3.Invalid (namely x < 0)
+        	Vector3 roofCollision = Vector3.left;
+        	
+        	//If there's a sign change, e.g intersection of height with WallCollisionHeight
+        	if (Mathf.Sign(LastPos.y - CollisionVertical.WallCollisionHeight)
+        	    != Mathf.Sign(ExactPosition.y - CollisionVertical.WallCollisionHeight))
+        	{
+        		float enter;
+        		//Find the exact intersection coordinates
+        		CollisionVertical.RoofCollisionPlane.Raycast(ShotLine, out enter);
+        		//Check if the tile is roofed
+        		roofCollision = ShotLine.GetPoint(enter);
+        	}*/
+        	
             // Iterate through all cells between the last and the new position
-            var cells = GenSight.PointsOnLineOfSight(lastPos, newPos);
+            var cells = GenSight.PointsOnLineOfSight(lastPosIV3, newPosIV3).OrderBy(x => (x.ToVector3Shifted() - LastPos).MagnitudeHorizontalSquared());
+			
+    		//Order cells by distance from the last position
             foreach(IntVec3 cell in cells)
             {
-                if (CheckCellForCollision(cell, shotLine))
+            	if (CheckCellForCollision(cell))
                 {
                     return true;
                 }
@@ -392,9 +462,8 @@ namespace CombatExtended
         /// Checks whether a collision occurs along flight path within this cell.
         /// </summary>
         /// <param name="cell">Where to check for collisions in</param>
-        /// <param name="shotLine">Projectile's flight path</param>
         /// <returns>True if collision occured, false otherwise</returns>
-        private bool CheckCellForCollision(IntVec3 cell, Ray shotLine)
+        private bool CheckCellForCollision(IntVec3 cell)
         {
             //Check for minimum collision distance
             float distFromOrigin = (cell - OriginIV3).LengthHorizontalSquared;
@@ -405,7 +474,8 @@ namespace CombatExtended
             {
                 return false;
             }
-            List<Thing> mainThingList = new List<Thing>(base.Map.thingGrid.ThingsListAtFast(cell)).Where(t => t is Pawn || t.def.Fillage != FillCategory.None).ToList();
+            List<Thing> mainThingList = new List<Thing>(base.Map.thingGrid.ThingsListAtFast(cell))
+            	.Where(t => t is Pawn || t.def.Fillage != FillCategory.None).ToList();
 
             //Find pawns in adjacent cells and append them to main list
             List<IntVec3> adjList = new List<IntVec3>();
@@ -425,63 +495,107 @@ namespace CombatExtended
                     }
                 }
             }
-
-            foreach (Thing thing in mainThingList.Distinct())
+			
+            //If the last position is above the wallCollisionHeight, we should check for roof intersections first
+            if (LastPos.y > CollisionVertical.WallCollisionHeight
+               && TryCollideWithRoof(cell))
+            	return true;
+            
+            foreach (Thing thing in mainThingList.Distinct().OrderBy(x => (x.DrawPos - LastPos).sqrMagnitude))
             {
                 if (thing == launcher && !canTargetSelf) continue;
 
-                // Skip collision detection for walls and such
+                /* Skip collision detection for walls and such
                 if (thing.def.Fillage == FillCategory.Full)
                 {
                     Impact(thing);
                     return true;
-                }
+                }*/
 
-                // Apply suppression
-                Pawn pawn = thing as Pawn;
-                if (pawn != null)
+                // Apply suppression. The height here is NOT that of the bullet in CELL,
+                // it is the height at the END OF THE PATH. This is because SuppressionRadius
+                // is not considered an EXACT limit.
+                if (ExactPosition.y < SuppressionRadius)
                 {
-                    ApplySuppression(pawn);
+	                Pawn pawn = thing as Pawn;
+	                if (pawn != null)
+	                {
+	                    ApplySuppression(pawn);
+	                }
                 }
-
+				
                 // Check for collision
-                if (TryCollideWith(thing, shotLine)) return true;
+                if (TryCollideWith(thing)) return true;
             }
-            return false;
+            
+            //Finally check for intersecting with (a) roof.
+			return TryCollideWithRoof(cell);
         }
 
+        private bool TryCollideWithRoof(IntVec3 cell)
+        {
+        	if (!cell.Roofed(Map)) return false;
+        	
+        	var bounds = CE_Utility.GetBoundsFor(cell, cell.GetRoof(Map));
+            float dist;
+            if (!bounds.IntersectRay(ShotLine, out dist))
+            {
+                return false;
+            }
+            
+            var point = ShotLine.GetPoint(dist);
+            ExactPosition = point;
+        	landed = true;
+        	
+            if (DebugViewSettings.drawInterceptChecks) MoteMaker.ThrowText(cell.ToVector3Shifted(), Map, "x", Color.red);
+            
+            Impact(null);
+            return true;
+        }
+        
         /// <summary>
         /// Tries to impact the thing based on whether it intersects the given flight path. Trees have RNG chance to not collide even on intersection. 
         /// </summary>
         /// <param name="thing">What to impact</param>
-        /// <param name="shotLine">Projectile's path of travel</param>
         /// <returns>True if impact occured, false otherwise</returns>
-        private bool TryCollideWith(Thing thing, Ray shotLine)
+        private bool TryCollideWith(Thing thing)
         {
             if (thing == launcher && !canTargetSelf)
             {
                 return false;
             }
 
-            // Trees have RNG chance to collide
             var bounds = CE_Utility.GetBoundsFor(thing);
-            if (!bounds.IntersectRay(shotLine))
+            float dist;
+            if (!bounds.IntersectRay(ShotLine, out dist))
             {
                 return false;
             }
-            if (thing.IsTree())
+            
+            // Trees and bushes have RNG chance to collide
+			var plant = thing as Plant;
+            if (plant != null)
             {
-            	var plant = thing as Plant;
             	//TODO: Remove fillPercent dependency because all fillPercents on trees are 0.25
+            	//Prevents trees near the shooter (e.g the shooter's cover) to be hit
                 float chance = thing.def.fillPercent * ((thing.Position - OriginIV3).LengthHorizontal / 40);
                 if (Controller.settings.DebugShowTreeCollisionChance) MoteMaker.ThrowText(thing.Position.ToVector3Shifted(), thing.Map, chance.ToString());
                 if (!Rand.Chance(chance)) return false;
             }
             
+            var point = ShotLine.GetPoint(dist);
+            if (!point.InBounds(this.Map))
+            	Log.Error("TryCollideWith out of bounds point from ShotLine: obj " + thing.ThingID + ", proj " + this.ThingID + ", dist " + dist + ", point " + point);
+            	
+            ExactPosition = point;
+        	landed = true;
+        	
             if (DebugViewSettings.drawInterceptChecks) MoteMaker.ThrowText(thing.Position.ToVector3Shifted(), thing.Map, "x", Color.red);
+            
             Impact(thing);
             return true;
         }
+        #endregion
 
         private void ApplySuppression(Pawn pawn)
         {
@@ -515,7 +629,6 @@ namespace CombatExtended
             }
         }
 
-        //Unmodified
         public override void Tick()
         {
             base.Tick();
@@ -523,19 +636,17 @@ namespace CombatExtended
             {
                 return;
             }
-            Vector2 lastExactPosition = Vec2Position;
+            LastPos = ExactPosition;
             ticksToImpact--;
             if (!ExactPosition.InBounds(base.Map))
             {
-                ticksToImpact++;
-                Position = ExactPosition.ToIntVec3();
+                Position = LastPos.ToIntVec3();
                 Destroy(DestroyMode.Vanish);
                 return;
             }
-            heightOutdated = true;
             if (ticksToImpact >= 0
                 && !def.projectile.flyOverhead
-                && CheckForCollisionBetween(lastExactPosition, Vec2Position))
+                && CheckForCollisionBetween())
             {
                 return;
             }
@@ -545,6 +656,7 @@ namespace CombatExtended
             {
                 def.projectile.soundImpactAnticipate.PlayOneShot(this);
             }
+            	//TODO : It appears that the final step in the arc doesn't CheckForCollisionBetween.
             if (ticksToImpact <= 0)
             {
                 ImpactSomething();
@@ -556,26 +668,28 @@ namespace CombatExtended
             }
         }
         
-        public Quaternion DrawRotation
-        {
-            get
-            {
-            	return Quaternion.AngleAxis(shotRotation + Mathf.Lerp(-DrawnShotAngleCorrection, DrawnShotAngleCorrection, fTicks / StartingTicksToImpact) , Vector3.up);
-            }
-        }
-        
         /// <summary>
         /// Draws projectile if at least a tick away from caster (or always if no caster)
         /// </summary>
         public override void Draw()
         {
-        	if (IntTicksToImpact == 0 && launcher != null)
+        	if (FlightTicks == 0 && launcher != null)
         	{
+        		//Draw at the end of the barrel on the pawn
         	}
         	else
         	{
-	        	//Graphics.DrawMesh(MeshPool.plane10, DrawPos, ExactRotation, def.DrawMatSingle, 0);
-	            Graphics.DrawMesh(MeshPool.plane10, DrawPos, DrawRotation, def.DrawMatSingle, 0);
+	        	Graphics.DrawMesh(MeshPool.plane10, DrawPos, DrawRotation, def.DrawMatSingle, 0);
+	            
+	            //Add edifice height
+	            var shadowPos = new Vector3(ExactPosition.x,
+	                                        def.Altitude - 0.01f,
+	                                        ExactPosition.z - Mathf.Lerp(shotHeight, 0f, fTicks / StartingTicksToImpact));
+	                                        		//EXPERIMENTAL: + (new CollisionVertical(ExactPosition.ToIntVec3().GetEdifice(Map))).Max);
+	            
+	            //Vary ShadowMat plane by projectile size/type/damage or something
+	            Graphics.DrawMesh(MeshPool.plane08, shadowPos, ExactRotation, ShadowMat, 0);
+	            
 	            Comps_PostDraw();
         	}
         }
@@ -584,46 +698,38 @@ namespace CombatExtended
         //Modified collision with downed pawns
         private void ImpactSomething()
         {
+            var pos = ExactPosition.ToIntVec3();
+            
             //Not modified, just mortar code
             if (def.projectile.flyOverhead)
             {
-                RoofDef roofDef = base.Map.roofGrid.RoofAt(Position);
+            	RoofDef roofDef = base.Map.roofGrid.RoofAt(pos);
                 if (roofDef != null)
                 {
                     if (roofDef.isThickRoof)
                     {
-                        this.def.projectile.soundHitThickRoof.PlayOneShot(new TargetInfo(base.Position, base.Map, false));
+                        this.def.projectile.soundHitThickRoof.PlayOneShot(new TargetInfo(pos, base.Map, false));
                         this.Destroy(DestroyMode.Vanish);
                         return;
                     }
-                    if (base.Position.GetEdifice(base.Map) == null || base.Position.GetEdifice(base.Map).def.Fillage != FillCategory.Full)
+                    if (pos.GetEdifice(base.Map) == null || pos.GetEdifice(base.Map).def.Fillage != FillCategory.Full)
                     {
-                        RoofCollapserImmediate.DropRoofInCells(base.Position, base.Map);
+                        RoofCollapserImmediate.DropRoofInCells(pos, base.Map);
                     }
                 }
             }
-            //Modified
-            var height = Height;
-
-            // Determine flight path - Need to refactor this to be less hacky
-            var pos = Vec2Position;
-            var lastPos = Vector2.Lerp(this.origin, Destination, (fTicks - 1) / StartingTicksToImpact);
-
-            var vec3dest = new Vector3(pos.x, GetHeightAtTicks(FlightTicks), pos.y);
-            var vec3lastPos = new Vector3(lastPos.x, GetHeightAtTicks(FlightTicks - 1), lastPos.y);
-            var shotLine = new Ray(vec3lastPos, (vec3dest - vec3lastPos));
 
             // FIXME : Early opt-out
-            Thing thing = Position.GetFirstPawn(Map);
-            if (thing != null && TryCollideWith(thing, shotLine))
+            Thing thing = pos.GetFirstPawn(Map);
+            if (thing != null && TryCollideWith(thing))
             {
                 return;
             }
-            List<Thing> list = Map.thingGrid.ThingsListAt(Position).Where(t => t is Pawn || t.def.Fillage != FillCategory.None).ToList();
+            List<Thing> list = Map.thingGrid.ThingsListAt(pos).Where(t => t is Pawn || t.def.Fillage != FillCategory.None).ToList();
             if (list.Count > 0)
             {
 				foreach (var thing2 in list) {
-					if (TryCollideWith(thing2, shotLine))
+					if (TryCollideWith(thing2))
 						return;
 				}
             }
@@ -633,23 +739,33 @@ namespace CombatExtended
         protected virtual void Impact(Thing hitThing)
         {
             CompExplosiveCE comp = this.TryGetComp<CompExplosiveCE>();
-            if (comp != null && Position.IsValid)
+            if (comp != null && ExactPosition.ToIntVec3().IsValid)
             {
-                comp.Explode(launcher, Position, Find.VisibleMap);
+                comp.Explode(launcher, ExactPosition.ToIntVec3(), Find.VisibleMap);
             }
-
-            // Apply suppression around impact area
-            var suppressThings = GenRadial.RadialDistinctThingsAround(Position, Map, SuppressionRadius + def.projectile.explosionRadius, true);
-            foreach (Thing thing in suppressThings)
+			
+            // Opt-out for things without explosionRadius
+            if (def.projectile.explosionRadius > 0 && ExactPosition.y < SuppressionRadius)
             {
-                Pawn pawn = thing as Pawn;
-                if (pawn != null) ApplySuppression(pawn);
+            	// Apply suppression around impact area
+	            var suppressThings = GenRadial.RadialDistinctThingsAround(ExactPosition.ToIntVec3(), Map, SuppressionRadius + def.projectile.explosionRadius, true);
+	            foreach (Thing thing in suppressThings)
+	            {
+	                Pawn pawn = thing as Pawn;
+	                if (pawn != null) ApplySuppression(pawn);
+	            }
             }
 
             Destroy();
         }
-		#endregion
         
+        private void ImpactRoof(IntVec3 cell)
+        {
+        	
+        }
+		#endregion
+
+        #region Ballistics
 		/// <summary>
 		/// Calculated rounding to three decimales the output of h0 + v * sin(a0) * t - g/2 * t^2 with {h0 -> shotHeight, v -> shotSpeed, a0 -> shotAngle, t -> ticks/GenTicks.TicksPerRealSecond, g -> GravityFactor}. Called roughly each tick for impact checks and for drawing.
 		/// </summary>
@@ -660,8 +776,7 @@ namespace CombatExtended
             float seconds = ((float)ticks) / GenTicks.TicksPerRealSecond;
             return (float)Math.Round(shotHeight + shotSpeed * Mathf.Sin(shotAngle) * seconds - (GravityFactor * seconds * seconds) / 2f, 3);
         }
-
-        #region Ballistics
+        
         /// <summary>
         /// Calculates the time in seconds the arc characterized by <i>angle</i>, <i>shotHeight</i> takes to traverse at speed <i>velocity</i> - e.g until the height reaches zero. Does not take into account air resistance.
         /// </summary>

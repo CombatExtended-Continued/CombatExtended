@@ -214,7 +214,7 @@ namespace CombatExtended
 	            
 	            var coverRange = new CollisionVertical(report.cover).HeightRange;	//Get " " cover, assume it is the edifice
 	            
-	            // Projectiles with flyOverhead target the ground below the target and ignore cover
+	            // Projectiles with flyOverhead target the surface in front of the target
 	            if (ProjectileDef.projectile.flyOverhead)
 	            {
 	            	targetHeight = coverRange.max;
@@ -223,17 +223,21 @@ namespace CombatExtended
 	            {
                     var victimVert = new CollisionVertical(currentTarget.Thing);
                     var targetRange = victimVert.HeightRange;	//Get lower and upper heights of the target
-	           		if (targetRange.min < coverRange.max)	//Some part of the target is hidden behind cover
+                    /*if (currentTarget.Thing is Building && CompFireModes?.CurrentAimMode == AimMode.SuppressFire)
+                    {
+                    	targetRange.min = targetRange.max;
+                    	targetRange.max = targetRange.min + 1f;
+                    }*/
+	           		if (targetRange.min < coverRange.max)	//Some part of the target is hidden behind some cover
 	           		{
-	           			// - It is possible for targetVertical.max < coverVertical.max, technically, in which case the shooter will never hit until the cover is gone.
+	           			// - It is possible for targetRange.max < coverRange.max, technically, in which case the shooter will never hit until the cover is gone.
                         // - This should be checked for in LoS -NIA
 	           			targetRange.min = coverRange.max;
 
-                        // Shift aim upwards if we're doing suppressive fire
+                        // Target fully hidden, shift aim upwards if we're doing suppressive fire
                         if (targetRange.max <= coverRange.max && CompFireModes?.CurrentAimMode == AimMode.SuppressFire)
                         {
                             targetRange.max = coverRange.max * 2;
-                            targetRange.min = coverRange.max;
                         }
 	           		}
                     else if (currentTarget.Thing is Pawn)
