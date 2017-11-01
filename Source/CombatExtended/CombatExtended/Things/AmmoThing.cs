@@ -93,7 +93,7 @@ namespace CombatExtended
             CompExplosiveCE comp = this.TryGetComp<CompExplosiveCE>();
             if (comp != null)
             {
-                if(Rand.Chance(Mathf.Clamp01(0.75f - Mathf.Pow(HitPoints / MaxHitPoints, 2)))) comp.Explode(this, Position, Map, scale);
+            	if(Rand.Chance(Mathf.Clamp01(0.75f - Mathf.Pow(HitPoints / MaxHitPoints, 2)))) comp.Explode(this, Position.ToVector3Shifted(), Map, scale);
                 return true;
             }
             return false;

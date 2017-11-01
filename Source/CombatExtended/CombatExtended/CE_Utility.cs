@@ -12,15 +12,64 @@ namespace CombatExtended
 {
     static class CE_Utility
     {
-    	/*struct TextureBoundFactor
-    	{
-    		
-    	}
     	
-    	static Dictionary<ThingDef, TextureBoundFactor>*/
+    	#region Blitting
+		/// <summary>
+		/// Code from https://gamedev.stackexchange.com/questions/92285/unity3d-resize-texture-without-corruption
+		/// </summary>
+		/// <param name="texture"></param>
+		/// <returns></returns>
+    	public static Color[] Blit(this Texture2D texture)
+		{
+			Color[] color = null;
+			try
+			{
+				color = texture.GetPixels();
+			}
+			catch
+			{
+				var prevFilterMode = texture.filterMode;
+				texture.filterMode = FilterMode.Point;
+															   //prev width,    prev height, no depth buffer, default color mode,          default r/w mode, 1 (= none) anti-aliasing
+				RenderTexture rt = RenderTexture.GetTemporary(texture.width, texture.height, 0, RenderTextureFormat.Default, RenderTextureReadWrite.Default, 1);
+				rt.filterMode = FilterMode.Point;
+				RenderTexture.active = rt;
+				Graphics.Blit(texture, rt);
+				
+				Texture2D blit = new Texture2D(texture.width, texture.height);
+				blit.ReadPixels(new Rect(0, 0, texture.width, texture.height), 0, 0);
+				blit.Apply();
+				
+				RenderTexture.active = null;
+				texture.filterMode = prevFilterMode;
+				
+				color = blit.GetPixels();
+			}
+			return color;
+		}
+    	
+    	public static Texture2D BlitCrop(this Texture2D texture, IntRange horz, IntRange vert)
+		{
+			var prevFilterMode = texture.filterMode;
+			texture.filterMode = FilterMode.Point;
+														   //prev width,    prev height, no depth buffer, default color mode,          default r/w mode, 1 (= none) anti-aliasing
+			RenderTexture rt = RenderTexture.GetTemporary(texture.width, texture.height, 0, RenderTextureFormat.Default, RenderTextureReadWrite.Default, 1);
+			rt.filterMode = FilterMode.Point;
+			RenderTexture.active = rt;
+			Graphics.Blit(texture, rt);
+			
+			Texture2D blit = new Texture2D(horz.max - horz.min, vert.max - vert.min);
+			blit.ReadPixels(new Rect(horz.min, vert.min, horz.max - horz.min, vert.max - vert.min), 0, 0);
+			blit.Apply();
+			
+			RenderTexture.active = null;
+			texture.filterMode = prevFilterMode;
+			
+			return blit;
+		}
+    	#endregion
     	
         #region Misc
-
         public static List<ThingDef> allWeaponDefs = new List<ThingDef>();
 
         /// <summary>
@@ -115,14 +164,14 @@ namespace CombatExtended
             return !comp.UseAmmo || comp.CurMagCount > 0 || comp.HasAmmo;
         }
 
-        public static bool CanBeStabilizied(this Hediff diff)
+        public static bool CanBeStabilized(this Hediff diff)
         {
             HediffWithComps hediff = diff as HediffWithComps;
             if (hediff == null)
             {
                 return false;
             }
-            if (hediff.BleedRate == 0 || hediff.IsTended() || hediff.IsOld())
+            if (hediff.BleedRate == 0f || hediff.IsTended() || hediff.IsOld())
             {
                 return false;
             }
@@ -151,6 +200,9 @@ namespace CombatExtended
         #endregion
 
         #region Physics
+        /// <summary>
+        /// Gravity constant in meters per second squared
+        /// </summary>
         public const float gravityConst = 9.8f;
 		
         public static Bounds GetBoundsFor(IntVec3 cell, RoofDef roof)
@@ -166,8 +218,13 @@ namespace CombatExtended
         	if (roof.isThickRoof)
         		height *= CollisionVertical.ThickRoofThicknessMultiplier;
         	
-        	return new Bounds(cell.ToVector3Shifted(),
-        	                  new Vector3(1f, height - CollisionVertical.WallCollisionHeight, 1f));
+        	height = Mathf.Max(0.1f, height - CollisionVertical.WallCollisionHeight);
+        	
+        	Vector3 center = cell.ToVector3Shifted();
+        	center.y = CollisionVertical.WallCollisionHeight + height / 2f;
+        	
+        	return new Bounds(center,
+        	                  new Vector3(1f, height, 1f));
         }
         
         public static Bounds GetBoundsFor(Thing thing)
@@ -177,7 +234,7 @@ namespace CombatExtended
                 return new Bounds();
             }
             var height = new CollisionVertical(thing);
-            var width = GetCollisionWidth(thing) * 2;
+            var width = GetCollisionWidth(thing);
             var thingPos = thing.DrawPos;
             thingPos.y = height.Max - height.HeightRange.Span / 2;
             Bounds bounds = new Bounds(thingPos, new Vector3(width, height.HeightRange.Span, width));
@@ -192,17 +249,21 @@ namespace CombatExtended
         /// <returns>Distance from center of Thing to its edge in cells</returns>
         public static float GetCollisionWidth(Thing thing)
         {
-        	/* TODO: Possible solution for fixing tree widths
+        	/* Possible solution for fixing tree widths
 			if (thing.IsTree())
         	{
         		return (thing as Plant).def.graphicData.shadowData.volume.x;
         	}*/
-            Pawn pawn = thing as Pawn;
-            if (pawn == null)
+        	
+            var pawn = thing as Pawn;
+            if (pawn != null)
             {
-                return 0.5f;    //Buildings, etc. fill out half a square to each side
+            	return pawn.RaceProps.Humanlike
+            		? pawn.BodySize * GetCollisionBodyFactors(pawn).First * 2f
+            		: BoundsInjector.ForPawn(pawn).First;
             }
-            return pawn.BodySize * GetCollisionBodyFactors(pawn).First;
+            
+            return 1f;    //Buildings, etc. fill out a full square
         }
 
         /// <summary>

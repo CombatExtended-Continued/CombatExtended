@@ -19,7 +19,6 @@ namespace CombatExtended
         private readonly FloatRange heightRange;
         public readonly float shotHeight;
 
-        public Plane RoofCollisionPlane => new Plane(Vector3.up, new Vector3(0f, WallCollisionHeight, 0f));
         public FloatRange HeightRange => new FloatRange(heightRange.min, heightRange.max);
         public float Min => heightRange.min;
         public float Max => heightRange.max;
@@ -44,7 +43,7 @@ namespace CombatExtended
             if (plant != null)
             {
             		//Height matches up exactly with visual size
-        		heightRange = new FloatRange(0, plant.def.plant.visualSizeRange.LerpThroughRange(plant.Growth));
+            	heightRange = new FloatRange(0f, BoundsInjector.ForPlant(plant).Second);
                 return;
             }
             if (thing is Building)
@@ -64,9 +63,17 @@ namespace CombatExtended
             var pawn = thing as Pawn;
             if (pawn != null)
             {
-                collisionHeight = pawn.BodySize * CE_Utility.GetCollisionBodyFactors(pawn).Second;
+            		// .... TODO
+            		//
+            		// Consider CollisionBodyFactors in the BoundsInjector calculations
+            		//
+            		// ....
+                collisionHeight = pawn.RaceProps.Humanlike
+                	? pawn.BodySize * CE_Utility.GetCollisionBodyFactors(pawn).Second
+                	: BoundsInjector.ForPawn(pawn).Second;
+                
                 shotHeightOffset = collisionHeight * (1 - BodyRegionMiddleHeight);
-
+				
                 // Humanlikes in combat crouch to reduce their profile
                 if (pawn.IsCrouching())
                 {

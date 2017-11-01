@@ -25,10 +25,13 @@ namespace CombatExtended
 
             // Inject ammo
             LongEventHandler.QueueLongEvent(AmmoInjector.Inject, "LibraryStartup", false, null);
-
+			
+            // Inject pawn and plant bounds
+            LongEventHandler.QueueLongEvent(BoundsInjector.Inject, "CE_LongEvent_BoundingBoxes", false, null);
+            
             Log.Message("Combat Extended :: initialized");
         }
-
+		
         public override string SettingsCategory()
         {
             return "Combat Extended";
