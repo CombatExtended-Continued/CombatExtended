@@ -1,0 +1,103 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+
+	<ThingCategoryDef>
+		<defName>Ammo8x50mmRLebel</defName>
+		<label>8x50mmR Lebel</label>
+		<parent>AmmoRifles</parent>
+    <iconPath>UI/Icons/ThingCategories/CaliberRifle</iconPath>
+	</ThingCategoryDef>
+	
+	<!-- ==================== AmmoSet ========================== -->
+
+	<CombatExtended.AmmoSetDef>
+		<defName>AmmoSet_8x50mmRLebel</defName>
+		<label>8x50mmR Lebel</label>
+		<ammoTypes>
+			<Ammo_8x50mmRLebel_FMJ>Bullet_8x50mmRLebel_FMJ</Ammo_8x50mmRLebel_FMJ>
+		</ammoTypes>
+	</CombatExtended.AmmoSetDef>
+	
+	<!-- ==================== Ammo ========================== -->
+
+	<ThingDef Name="8x50mmRLebelBase" ParentName="SmallAmmoBase" Abstract="True">
+		<description>Rimmed rifle cartridge found mostly in outdated bolt-action firearms.</description>
+		<statBases>
+		<Mass>0.024</Mass>
+		<Bulk>0.06</Bulk>
+		</statBases>
+	<tradeTags>
+		<li>CE_AutoEnableTrade</li>
+		<li>CE_AutoEnableCrafting</li>
+	</tradeTags>
+		<thingCategories>
+			<li>Ammo8x50mmRLebel</li>
+		</thingCategories>
+	</ThingDef>
+
+	<ThingDef ParentName="8x50mmRLebelBase">
+		<defName>Ammo_8x50mmRLebel_FMJ</defName>
+		<label>8x50mmR Lebel cartridge (FMJ)</label>
+		<graphicData>
+			<texPath>Things/Ammo/Rifle/FMJ</texPath>
+			<graphicClass>Graphic_StackCount</graphicClass>
+		</graphicData>
+		<statBases>
+			<MarketValue>0.13</MarketValue>
+		</statBases>
+		<ammoClass>FullMetalJacket</ammoClass>
+		<cookOffProjectile>Bullet_8x50mmRLebel_FMJ</cookOffProjectile>
+	</ThingDef>
+	
+	<!-- ================== Projectiles ================== -->
+	
+	<ThingDef Name="Base8x50mmRLebelBullet" ParentName="BaseBullet" Abstract="true">
+		<graphicData>
+			<texPath>Things/Projectile/Bullet_Small</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+		</graphicData>
+		<projectile>
+			<damageDef>Bullet</damageDef>
+			<speed>183</speed>
+			<dropsCasings>true</dropsCasings>
+		</projectile>
+	</ThingDef>
+
+	<ThingDef ParentName="Base8x50mmRLebelBullet">
+		<defName>Bullet_8x50mmRLebel_FMJ</defName>
+		<label>8mmR Lebel bullet (FMJ)</label>
+		<projectile>
+			<damageAmountBase>20</damageAmountBase>
+			<armorPenetration>0.605</armorPenetration>
+		</projectile>
+	</ThingDef>
+  
+	<!-- ==================== Recipes ========================== -->
+
+	<RecipeDef ParentName="AmmoRecipeBase">
+		<defName>MakeAmmo_8x50mmRLebel_FMJ</defName>
+		<label>make 8x50mmR Lebel (FMJ) cartridge x500</label>
+		<description>Craft 500 8x50mmR Lebel (FMJ) cartridges.</description>
+		<jobString>Making 8x50mmR Lebel (FMJ) cartridges.</jobString>
+		<ingredients>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>Steel</li>
+					</thingDefs>
+				</filter>
+				<count>24</count>
+			</li>
+		</ingredients>
+		<fixedIngredientFilter>
+			<thingDefs>
+				<li>Steel</li>
+			</thingDefs>
+		</fixedIngredientFilter>
+		<products>
+			<Ammo_8x50mmRLebel_FMJ>500</Ammo_8x50mmRLebel_FMJ>
+		</products>
+    <workAmount>4000</workAmount>
+	</RecipeDef>
+	
+</Defs>

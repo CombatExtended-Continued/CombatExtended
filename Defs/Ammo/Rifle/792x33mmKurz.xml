@@ -1,0 +1,104 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+
+	<ThingCategoryDef>
+		<defName>Ammo792x33mmKurz</defName>
+		<label>7.92x33mm Kurz</label>
+		<parent>AmmoRifles</parent>
+    <iconPath>UI/Icons/ThingCategories/CaliberRifle</iconPath>
+	</ThingCategoryDef>
+	
+	<!-- ==================== AmmoSet ========================== -->
+
+	<CombatExtended.AmmoSetDef>
+		<defName>AmmoSet_792x33mmKurz</defName>
+		<label>7.92x33mm Kurz</label>
+		<ammoTypes>
+			<Ammo_792x33mmKurz_FMJ>Bullet_792x33mmKurz_FMJ</Ammo_792x33mmKurz_FMJ>
+		</ammoTypes>
+	</CombatExtended.AmmoSetDef>
+	
+	<!-- ==================== Ammo ========================== -->
+
+	<ThingDef Name="792x33mmKurzBase" ParentName="SmallAmmoBase" Abstract="True">
+		<description>Intermediate rifle cartridge used by certain older assault rifles.</description>
+		<statBases>
+		<Mass>0.012</Mass>
+		<Bulk>0.03</Bulk>
+		</statBases>
+	<tradeTags>
+		<li>CE_AutoEnableTrade</li>
+		<li>CE_AutoEnableCrafting</li>
+	</tradeTags>
+		<thingCategories>
+			<li>Ammo792x33mmKurz</li>
+		</thingCategories>
+	</ThingDef>
+
+	<ThingDef ParentName="792x33mmKurzBase">
+		<defName>Ammo_792x33mmKurz_FMJ</defName>
+		<label>7.92x33mm Kurz cartridge (FMJ)</label>
+		<graphicData>
+			<texPath>Things/Ammo/Rifle/FMJ</texPath>
+			<graphicClass>Graphic_StackCount</graphicClass>
+		</graphicData>
+		<statBases>
+			<MarketValue>0.07</MarketValue>
+		</statBases>
+		<ammoClass>FullMetalJacket</ammoClass>
+		<cookOffProjectile>Bullet_792x33mmKurz_FMJ</cookOffProjectile>
+	</ThingDef>
+	
+	<!-- ================== Projectiles ================== -->
+
+	<ThingDef Name="Base792x33mmKurzBullet" ParentName="BaseBullet" Abstract="true">
+		<graphicData>
+			<texPath>Things/Projectile/Bullet_Small</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+		</graphicData>
+		<projectile>
+			<damageDef>Bullet</damageDef>
+			<speed>171</speed>
+			<dropsCasings>true</dropsCasings>
+		</projectile>
+	</ThingDef>
+
+
+	<ThingDef ParentName="Base792x33mmKurzBullet">
+		<defName>Bullet_792x33mmKurz_FMJ</defName>
+		<label>7.92mm Kurz bullet (FMJ)</label>
+		<projectile>
+			<damageAmountBase>16</damageAmountBase>
+			<armorPenetration>0.501</armorPenetration>
+		</projectile>
+	</ThingDef>
+  
+	<!-- ==================== Recipes ========================== -->
+
+	<RecipeDef ParentName="AmmoRecipeBase">
+		<defName>MakeAmmo_792x33mmKurz_FMJ</defName>
+		<label>make 7.92x33mm Kurz (FMJ) cartridge x500</label>
+		<description>Craft 500 7.92x33mm Kurz (FMJ) cartridges.</description>
+		<jobString>Making 7.92x33mm Kurz (FMJ) cartridges.</jobString>
+		<ingredients>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>Steel</li>
+					</thingDefs>
+				</filter>
+				<count>12</count>
+			</li>
+		</ingredients>
+		<fixedIngredientFilter>
+			<thingDefs>
+				<li>Steel</li>
+			</thingDefs>
+		</fixedIngredientFilter>
+		<products>
+			<Ammo_792x33mmKurz_FMJ>500</Ammo_792x33mmKurz_FMJ>
+		</products>
+    <workAmount>3000</workAmount>
+	</RecipeDef>
+	
+</Defs>

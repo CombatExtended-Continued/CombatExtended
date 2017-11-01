@@ -1,0 +1,205 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+
+	<ThingCategoryDef>
+		<defName>Ammo127x55mmAR</defName>
+		<label>12.7x55mm AR</label>
+		<parent>AmmoRifles</parent>
+    <iconPath>UI/Icons/ThingCategories/CaliberRifle</iconPath>
+	</ThingCategoryDef>
+	
+	<!-- ==================== AmmoSet ========================== -->
+
+	<CombatExtended.AmmoSetDef>
+		<defName>AmmoSet_127x55mmAR</defName>
+		<label>12.7x55mm AR</label>
+		<ammoTypes>
+			<Ammo_127x55mmAR_FMJ>Bullet_127x55mmAR_FMJ</Ammo_127x55mmAR_FMJ>
+			<Ammo_127x55mmAR_AP>Bullet_127x55mmAR_AP</Ammo_127x55mmAR_AP>
+			<Ammo_127x55mmAR_HP>Bullet_127x55mmAR_HP</Ammo_127x55mmAR_HP>
+		</ammoTypes>
+	</CombatExtended.AmmoSetDef>
+	
+	<!-- ==================== Ammo ========================== -->
+
+	<ThingDef Name="127x55mmARBase" ParentName="SmallAmmoBase" Abstract="True">
+		<description>High caliber subsonic assault rifle cartridge designed for suppressed fire.</description>
+		<statBases>
+		<Mass>0.02</Mass>
+		<Bulk>0.05</Bulk>
+		</statBases>
+	<tradeTags>
+		<li>CE_AutoEnableTrade</li>
+		<li>CE_AutoEnableCrafting</li>
+	</tradeTags>
+		<thingCategories>
+			<li>Ammo127x55mmAR</li>
+		</thingCategories>
+    <stackLimit>350</stackLimit>
+	</ThingDef>
+
+	<ThingDef ParentName="127x55mmARBase">
+		<defName>Ammo_127x55mmAR_FMJ</defName>
+		<label>12.7x55mm AR cartridge (FMJ)</label>
+		<graphicData>
+			<texPath>Things/Ammo/Rifle/FMJ</texPath>
+			<graphicClass>Graphic_StackCount</graphicClass>
+		</graphicData>
+		<statBases>
+			<MarketValue>0.11</MarketValue>
+		</statBases>
+		<ammoClass>FullMetalJacket</ammoClass>
+		<cookOffProjectile>Bullet_127x55mmAR_FMJ</cookOffProjectile>
+	</ThingDef>
+
+	<ThingDef ParentName="127x55mmARBase">
+		<defName>Ammo_127x55mmAR_AP</defName>
+		<label>12.7x55mm AR cartridge (AP)</label>
+		<graphicData>
+			<texPath>Things/Ammo/Rifle/AP</texPath>
+			<graphicClass>Graphic_StackCount</graphicClass>
+		</graphicData>
+		<statBases>
+			<MarketValue>0.15</MarketValue>
+		</statBases>
+		<ammoClass>ArmorPiercing</ammoClass>
+		<cookOffProjectile>Bullet_127x55mmAR_AP</cookOffProjectile>
+	</ThingDef>
+
+	<ThingDef ParentName="127x55mmARBase">
+		<defName>Ammo_127x55mmAR_HP</defName>
+		<label>12.7x55mm AR cartridge (HP)</label>
+		<graphicData>
+			<texPath>Things/Ammo/Rifle/HP</texPath>
+			<graphicClass>Graphic_StackCount</graphicClass>
+		</graphicData>
+		<statBases>
+			<MarketValue>0.15</MarketValue>
+		</statBases>
+		<ammoClass>HollowPoint</ammoClass>
+		<cookOffProjectile>Bullet_127x55mmAR_HP</cookOffProjectile>
+	</ThingDef>
+	
+	<!-- ================== Projectiles ================== -->
+
+	<ThingDef Name="Base127x55mmARBullet" ParentName="BaseBullet" Abstract="true">
+		<graphicData>
+			<texPath>Things/Projectile/Bullet_Small</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+		</graphicData>
+		<projectile>
+			<damageDef>Bullet</damageDef>
+			<speed>79</speed>
+			<dropsCasings>true</dropsCasings>
+		</projectile>
+	</ThingDef>
+
+
+	<ThingDef ParentName="Base127x55mmARBullet">
+		<defName>Bullet_127x55mmAR_FMJ</defName>
+		<label>12.7mm AR bullet (FMJ)</label>
+		<projectile>
+			<damageAmountBase>23</damageAmountBase>
+			<armorPenetration>0.478</armorPenetration>
+		</projectile>
+	</ThingDef>
+
+	<ThingDef ParentName="Base127x55mmARBullet">
+		<defName>Bullet_127x55mmAR_AP</defName>
+		<label>12.7mm AR bullet (AP)</label>
+		<projectile>
+			<damageAmountBase>14</damageAmountBase>
+			<armorPenetration>0.628</armorPenetration>
+		</projectile>
+	</ThingDef>
+
+	<ThingDef ParentName="Base127x55mmARBullet">
+		<defName>Bullet_127x55mmAR_HP</defName>
+		<label>12.7mm AR bullet (HP)</label>
+		<projectile>
+			<damageAmountBase>32</damageAmountBase>
+			<armorPenetration>0.328</armorPenetration>
+		</projectile>
+	</ThingDef>
+  
+	<!-- ==================== Recipes ========================== -->
+
+	<RecipeDef ParentName="AmmoRecipeBase">
+		<defName>MakeAmmo_127x55mmAR_FMJ</defName>
+		<label>make 12.7x55mm AR (FMJ) cartridge x350</label>
+		<description>Craft 350 12.7x55mm AR (FMJ) cartridges.</description>
+		<jobString>Making 12.7x55mm AR (FMJ) cartridges.</jobString>
+		<ingredients>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>Steel</li>
+					</thingDefs>
+				</filter>
+				<count>14</count>
+			</li>
+		</ingredients>
+		<fixedIngredientFilter>
+			<thingDefs>
+				<li>Steel</li>
+			</thingDefs>
+		</fixedIngredientFilter>
+		<products>
+			<Ammo_127x55mmAR_FMJ>350</Ammo_127x55mmAR_FMJ>
+		</products>
+    <workAmount>3000</workAmount>
+	</RecipeDef>
+
+	<RecipeDef ParentName="AmmoRecipeBase">
+		<defName>MakeAmmo_127x55mmAR_AP</defName>
+		<label>make 12.7x55mm AR (AP) cartridge x350</label>
+		<description>Craft 350 12.7x55mm AR (AP) cartridges.</description>
+		<jobString>Making 12.7x55mm AR (AP) cartridges.</jobString>
+		<ingredients>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>Steel</li>
+					</thingDefs>
+				</filter>
+				<count>17</count>
+			</li>
+		</ingredients>
+		<fixedIngredientFilter>
+			<thingDefs>
+				<li>Steel</li>
+			</thingDefs>
+		</fixedIngredientFilter>
+		<products>
+			<Ammo_127x55mmAR_AP>350</Ammo_127x55mmAR_AP>
+		</products>
+    <workAmount>4750</workAmount>
+	</RecipeDef>
+
+	<RecipeDef ParentName="AmmoRecipeBase">
+		<defName>MakeAmmo_127x55mmAR_HP</defName>
+		<label>make 12.7x55mm AR (HP) cartridge x350</label>
+		<description>Craft 350 12.7x55mm AR (HP) cartridges.</description>
+		<jobString>Making 12.7x55mm AR (HP) cartridges.</jobString>
+		<ingredients>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>Steel</li>
+					</thingDefs>
+				</filter>
+				<count>14</count>
+			</li>
+		</ingredients>
+		<fixedIngredientFilter>
+			<thingDefs>
+				<li>Steel</li>
+			</thingDefs>
+		</fixedIngredientFilter>
+		<products>
+			<Ammo_127x55mmAR_HP>350</Ammo_127x55mmAR_HP>
+		</products>
+    <workAmount>6500</workAmount>
+	</RecipeDef>
+	
+</Defs>

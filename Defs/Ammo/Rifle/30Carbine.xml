@@ -1,0 +1,154 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+
+	<ThingCategoryDef>
+		<defName>Ammo30Carbine</defName>
+		<label>.30 Carbine</label>
+		<parent>AmmoRifles</parent>
+    <iconPath>UI/Icons/ThingCategories/CaliberRifle</iconPath>
+	</ThingCategoryDef>
+	
+	<!-- ==================== AmmoSet ========================== -->
+
+	<CombatExtended.AmmoSetDef>
+		<defName>AmmoSet_30Carbine</defName>
+		<label>.30 Carbine</label>
+		<ammoTypes>
+			<Ammo_30Carbine_FMJ>Bullet_30Carbine_FMJ</Ammo_30Carbine_FMJ>
+			<Ammo_30Carbine_HP>Bullet_30Carbine_HP</Ammo_30Carbine_HP>
+		</ammoTypes>
+	</CombatExtended.AmmoSetDef>
+	
+	<!-- ==================== Ammo ========================== -->
+
+	<ThingDef Name="30CarbineBase" ParentName="SmallAmmoBase" Abstract="True">
+		<description>Small, light rifle cartridge most commonly found in carbines.</description>
+		<statBases>
+		<Mass>0.012</Mass>
+		<Bulk>0.02</Bulk>
+		</statBases>
+	<tradeTags>
+		<li>CE_AutoEnableTrade</li>
+		<li>CE_AutoEnableCrafting</li>
+	</tradeTags>
+		<thingCategories>
+			<li>Ammo30Carbine</li>
+		</thingCategories>
+	</ThingDef>
+
+	<ThingDef ParentName="30CarbineBase">
+		<defName>Ammo_30Carbine_FMJ</defName>
+		<label>.30 Carbine cartridge (FMJ)</label>
+		<graphicData>
+			<texPath>Things/Ammo/Rifle/FMJ</texPath>
+			<graphicClass>Graphic_StackCount</graphicClass>
+		</graphicData>
+		<statBases>
+			<MarketValue>0.06</MarketValue>
+		</statBases>
+		<ammoClass>FullMetalJacket</ammoClass>
+		<cookOffProjectile>Bullet_30Carbine_FMJ</cookOffProjectile>
+	</ThingDef>
+
+	<ThingDef ParentName="30CarbineBase">
+		<defName>Ammo_30Carbine_HP</defName>
+		<label>.30 Carbine cartridge (HP)</label>
+		<graphicData>
+			<texPath>Things/Ammo/Rifle/HP</texPath>
+			<graphicClass>Graphic_StackCount</graphicClass>
+		</graphicData>
+		<statBases>
+			<MarketValue>0.08</MarketValue>
+		</statBases>
+		<ammoClass>HollowPoint</ammoClass>
+		<cookOffProjectile>Bullet_30Carbine_HP</cookOffProjectile>
+	</ThingDef>
+	
+	<!-- ================== Projectiles ================== -->
+
+	<ThingDef Name="Base30CarbineBullet" ParentName="BaseBullet" Abstract="true">
+		<graphicData>
+			<texPath>Things/Projectile/Bullet_Small</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+		</graphicData>
+		<projectile>
+			<damageDef>Bullet</damageDef>
+			<speed>152</speed>
+			<dropsCasings>true</dropsCasings>
+		</projectile>
+	</ThingDef>
+
+
+	<ThingDef ParentName="Base30CarbineBullet">
+		<defName>Bullet_30Carbine_FMJ</defName>
+		<label>.30 Carbine bullet (FMJ)</label>
+		<projectile>
+			<damageAmountBase>13</damageAmountBase>
+			<armorPenetration>0.442</armorPenetration>
+		</projectile>
+	</ThingDef>
+
+	<ThingDef ParentName="Base30CarbineBullet">
+		<defName>Bullet_30Carbine_HP</defName>
+		<label>.30 Carbine bullet (HP)</label>
+		<projectile>
+			<damageAmountBase>18</damageAmountBase>
+			<armorPenetration>0.292</armorPenetration>
+		</projectile>
+	</ThingDef>
+  
+	<!-- ==================== Recipes ========================== -->
+
+	<RecipeDef ParentName="AmmoRecipeBase">
+		<defName>MakeAmmo_30Carbine_FMJ</defName>
+		<label>make .30 Carbine (FMJ) cartridge x500</label>
+		<description>Craft 500 .30 Carbine (FMJ) cartridges.</description>
+		<jobString>Making .30 Carbine (FMJ) cartridges.</jobString>
+		<ingredients>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>Steel</li>
+					</thingDefs>
+				</filter>
+				<count>9</count>
+			</li>
+		</ingredients>
+		<fixedIngredientFilter>
+			<thingDefs>
+				<li>Steel</li>
+			</thingDefs>
+		</fixedIngredientFilter>
+		<products>
+			<Ammo_30Carbine_FMJ>500</Ammo_30Carbine_FMJ>
+		</products>
+    <workAmount>2500</workAmount>
+	</RecipeDef>
+
+	<RecipeDef ParentName="AmmoRecipeBase">
+		<defName>MakeAmmo_30Carbine_HP</defName>
+		<label>make .30 Carbine (HP) cartridge x500</label>
+		<description>Craft 500 .30 Carbine (HP) cartridges.</description>
+		<jobString>Making .30 Carbine (HP) cartridges.</jobString>
+		<ingredients>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>Steel</li>
+					</thingDefs>
+				</filter>
+				<count>9</count>
+			</li>
+		</ingredients>
+		<fixedIngredientFilter>
+			<thingDefs>
+				<li>Steel</li>
+			</thingDefs>
+		</fixedIngredientFilter>
+		<products>
+			<Ammo_30Carbine_HP>500</Ammo_30Carbine_HP>
+		</products>
+    <workAmount>5250</workAmount>
+	</RecipeDef>
+	
+</Defs>
