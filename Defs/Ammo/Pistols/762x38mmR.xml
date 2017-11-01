@@ -1,0 +1,103 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+
+	<ThingCategoryDef>
+		<defName>Ammo762x38mmR</defName>
+		<label>7.62x38mmR</label>
+		<parent>AmmoPistols</parent>
+    <iconPath>UI/Icons/ThingCategories/CaliberPistol</iconPath>
+	</ThingCategoryDef>
+	
+	<!-- ==================== AmmoSet ========================== -->
+
+	<CombatExtended.AmmoSetDef>
+		<defName>AmmoSet_762x38mmR</defName>
+		<label>7.62x38mmR</label>
+		<ammoTypes>
+			<Ammo_762x38mmR_FMJ>Bullet_762x38mmR_FMJ</Ammo_762x38mmR_FMJ>
+		</ammoTypes>
+	</CombatExtended.AmmoSetDef>
+	
+	<!-- ==================== Ammo ========================== -->
+
+	<ThingDef Name="762x38mmRBase" ParentName="SmallAmmoBase" Abstract="True">
+		<description>Uncommon rimmed pistol cartridge with the bullet seated further down the casing.</description>
+		<statBases>
+		<Mass>0.008</Mass>
+		<Bulk>0.02</Bulk>
+		</statBases>
+	<tradeTags>
+		<li>CE_AutoEnableTrade</li>
+		<li>CE_AutoEnableCrafting</li>
+	</tradeTags>
+		<thingCategories>
+			<li>Ammo762x38mmR</li>
+		</thingCategories>
+	</ThingDef>
+
+	<ThingDef ParentName="762x38mmRBase">
+		<defName>Ammo_762x38mmR_FMJ</defName>
+		<label>7.62x38mmR cartridge (FMJ)</label>
+		<graphicData>
+			<texPath>Things/Ammo/Pistol/FMJ</texPath>
+			<graphicClass>Graphic_StackCount</graphicClass>
+		</graphicData>
+		<statBases>
+			<MarketValue>0.05</MarketValue>
+		</statBases>
+		<ammoClass>FullMetalJacket</ammoClass>
+		<cookOffProjectile>Bullet_762x38mmR_FMJ</cookOffProjectile>
+	</ThingDef>
+	
+	<!-- ================== Projectiles ================== -->
+
+	<ThingDef Name="Base762x38mmRBullet" ParentName="BaseBullet" Abstract="true">
+		<graphicData>
+			<texPath>Things/Projectile/Bullet_Small</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+		</graphicData>
+		<projectile>
+			<damageDef>Bullet</damageDef>
+			<speed>83</speed>
+			<dropsCasings>true</dropsCasings>
+		</projectile>
+	</ThingDef>
+
+	<ThingDef ParentName="Base762x38mmRBullet">
+		<defName>Bullet_762x38mmR_FMJ</defName>
+		<label>7.62mmR pistol bullet (FMJ)</label>
+		<projectile>
+			<damageAmountBase>8</damageAmountBase>
+			<armorPenetration>0.253</armorPenetration>
+		</projectile>
+	</ThingDef>
+  
+	<!-- ==================== Recipes ========================== -->
+
+  <RecipeDef ParentName="AmmoRecipeBase">
+    <defName>MakeAmmo_762x38mmR_FMJ</defName>
+    <label>make 7.62x38mmR (FMJ) cartridge x500</label>
+    <description>Craft 500 7.62x38mmR (FMJ) cartridges.</description>
+    <jobString>Making 7.62x38mmR (FMJ) cartridges.</jobString>
+    <ingredients>
+      <li>
+        <filter>
+          <thingDefs>
+            <li>Steel</li>
+          </thingDefs>
+        </filter>
+        <count>8</count>
+      </li>
+    </ingredients>
+    <fixedIngredientFilter>
+      <thingDefs>
+        <li>Steel</li>
+      </thingDefs>
+    </fixedIngredientFilter>
+    <products>
+      <Ammo_762x38mmR_FMJ>500</Ammo_762x38mmR_FMJ>
+    </products>
+    <workAmount>1500</workAmount>
+  </RecipeDef>
+	
+</Defs>
