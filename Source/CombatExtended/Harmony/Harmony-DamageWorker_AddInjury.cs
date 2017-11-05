@@ -31,7 +31,7 @@ namespace CombatExtended.Harmony
             var codes = instructions.ToList();
 
             // Find armor block
-            var armorBlockEnd = codes.FirstIndexOf(c => c.operand == typeof(ArmorUtility).GetField(nameof(ArmorUtility.GetPostArmorDamage)));
+            var armorBlockEnd = codes.FirstIndexOf(c => c.operand == typeof(ArmorUtility).GetMethod(nameof(ArmorUtility.GetPostArmorDamage)));
             int armorBlockStart = -1;
             for (int i = armorBlockEnd; i > 0; i--)
             {
@@ -44,6 +44,7 @@ namespace CombatExtended.Harmony
             if (armorBlockStart == -1)
             {
                 Log.Error("CE failed to transpile DamageWorker_AddInjury: could not identify armor block start");
+                return instructions;
             }
 
             // Replace armor block with our new instructions
@@ -54,15 +55,19 @@ namespace CombatExtended.Harmony
 
             curCode = codes[armorBlockStart + 2];
             curCode.opcode = OpCodes.Call;
-            curCode.operand = typeof(Harmony_DamageWorker_AddInjury_ApplyDamageToPart).GetField(nameof(Harmony_DamageWorker_AddInjury_ApplyDamageToPart.ArmorReroute));
+            curCode.operand = typeof(Harmony_DamageWorker_AddInjury_ApplyDamageToPart).GetMethod(nameof(Harmony_DamageWorker_AddInjury_ApplyDamageToPart.ArmorReroute), AccessTools.all);
 
             // OpCode + 3 loads the dinfo we just modified and we want to access its damage value to store in the vanilla local variable at the end of the block
             curCode = codes[armorBlockStart + 4];
             curCode.opcode = OpCodes.Call;
-            curCode.operand = typeof(DamageInfo).GetProperty(nameof(DamageInfo.Amount));
+            curCode.operand = typeof(DamageInfo).GetMethod("get_" + nameof(DamageInfo.Amount), AccessTools.all);
+
+            curCode = codes[armorBlockStart + 5];
+            curCode.opcode = OpCodes.Stloc_1;
+            curCode.operand = null;
 
             // Null out the rest
-            for (int i = 5; i <= armorBlockEnd; i++)
+            for (int i = 6; i <= armorBlockEnd + 1; i++)
             {
                 curCode = codes[i];
                 curCode.opcode = OpCodes.Nop;

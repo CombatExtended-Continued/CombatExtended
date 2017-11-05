@@ -332,7 +332,7 @@ namespace CombatExtended.Harmony
                     previous = instruction;
             }
 
-            if (branchLabel != null)
+            if (!branchLabel.NullOrEmpty())
             {
                 // search succeeded, find our insertion point again and insert the patch.
                 foreach (CodeInstruction instruction in instructions)
