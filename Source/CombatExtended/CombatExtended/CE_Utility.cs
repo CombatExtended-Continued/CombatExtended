@@ -14,58 +14,97 @@ namespace CombatExtended
     {
     	
     	#region Blitting
+    	private const int blitMaxDimensions = 64;
+    	
 		/// <summary>
 		/// Code from https://gamedev.stackexchange.com/questions/92285/unity3d-resize-texture-without-corruption
 		/// </summary>
-		/// <param name="texture"></param>
-		/// <returns></returns>
-    	public static Color[] Blit(this Texture2D texture)
+		/// <param name="texture">Any texture with or without read-write protection</param>
+		/// <param name="blitRect">The Rect to be extracted from the <i>rtSize</i>'d render of <i>texture</i> (.x+.width, .y+.height smaller than <i>rtSize</i>)</param>
+		/// <param name="rtSize">The size that <i>texture</i> is to be rendered at</param>
+		/// <returns>Texture2D of size <i>blitRect</i>.width, <i>blitRect</i>.height extracted from a <i>rtSize</i>[0] width, <i>rtSize</i>[1] height render of <i>texture</i> starting at position (<i>blitRect</i>.x, <i>blitRect</i>.y).</returns>
+    	public static Texture2D Blit(this Texture2D texture, Rect blitRect, int[] rtSize)
+    	{
+			var prevFilterMode = texture.filterMode;
+			texture.filterMode = FilterMode.Point;
+			
+		   	RenderTexture rt = RenderTexture
+		   		.GetTemporary(rtSize[0],						//render width
+		   		              rtSize[1],						//render height
+		   		              0,								//no depth buffer
+		   		              RenderTextureFormat.Default,		//default (=automatic) color mode
+		   		              RenderTextureReadWrite.Default,	//default (=automatic) r/w mode
+		   		              1);								//no anti-aliasing (1=none,2=2x,4=4x,8=8x)
+			
+		   	rt.filterMode = FilterMode.Point;
+		   	
+			RenderTexture.active = rt;
+			
+			Graphics.Blit(texture, rt);
+			Texture2D blit = new Texture2D((int)blitRect.width, (int)blitRect.height);
+			blit.ReadPixels(blitRect, 0, 0);
+			blit.Apply();
+			
+			RenderTexture.active = null;
+			
+			texture.filterMode = prevFilterMode;
+			
+			return blit;
+    	}
+    	
+    	/// <summary>
+    	/// Texture2D.GetPixels() method circumventing the read-write protection and taking into account <i>blitMaxDimensions</i>.
+    	/// </summary>
+    	/// <param name="texture">Any texture with/without read-write protection, of any size (but will be scaled to blitMaxDimensions if larger than those)</param>
+    	/// <param name="width">Final width of Color[]</param>
+    	/// <param name="height">Final height of Color[]</param>
+    	/// <returns>Color[] array after resizing to fit blitMaxDimensions</returns>
+    	public static Color[] GetColorSafe(this Texture2D texture, out int width, out int height)
 		{
+    		width = texture.width;
+    		height = texture.height;
+    		if (texture.width > texture.height)
+    		{
+    			width = Math.Min(width, blitMaxDimensions);
+    			height = (int)((float)width * ((float)texture.height / (float)texture.width));
+    		}
+    		else if (texture.height > texture.width)
+    		{
+    			height = Math.Min(height, blitMaxDimensions);
+    			width = (int)((float)height * ((float)texture.width / (float)texture.height));
+    		}
+    		else
+    		{
+    			width = Math.Min(width, blitMaxDimensions);
+    			height = Math.Min(height, blitMaxDimensions);
+    		}
+    		
 			Color[] color = null;
-			try
+			
+			var blitRect = new Rect(0, 0, width, height);
+			var rtSize = new []{width, height};
+			
+			if (width == texture.width && height == texture.height)
 			{
-				color = texture.GetPixels();
+				try
+				{
+					color = texture.GetPixels();
+				}
+				catch
+				{
+					color = texture.Blit(blitRect, rtSize).GetPixels();
+				}
 			}
-			catch
+			else
 			{
-				var prevFilterMode = texture.filterMode;
-				texture.filterMode = FilterMode.Point;
-															   //prev width,    prev height, no depth buffer, default color mode,          default r/w mode, 1 (= none) anti-aliasing
-				RenderTexture rt = RenderTexture.GetTemporary(texture.width, texture.height, 0, RenderTextureFormat.Default, RenderTextureReadWrite.Default, 1);
-				rt.filterMode = FilterMode.Point;
-				RenderTexture.active = rt;
-				Graphics.Blit(texture, rt);
-				
-				Texture2D blit = new Texture2D(texture.width, texture.height);
-				blit.ReadPixels(new Rect(0, 0, texture.width, texture.height), 0, 0);
-				blit.Apply();
-				
-				RenderTexture.active = null;
-				texture.filterMode = prevFilterMode;
-				
-				color = blit.GetPixels();
+				color = texture.Blit(blitRect, rtSize).GetPixels();
 			}
 			return color;
 		}
     	
-    	public static Texture2D BlitCrop(this Texture2D texture, IntRange horz, IntRange vert)
+    	public static Texture2D BlitCrop(this Texture2D texture, Rect blitRect)
 		{
-			var prevFilterMode = texture.filterMode;
-			texture.filterMode = FilterMode.Point;
-														   //prev width,    prev height, no depth buffer, default color mode,          default r/w mode, 1 (= none) anti-aliasing
-			RenderTexture rt = RenderTexture.GetTemporary(texture.width, texture.height, 0, RenderTextureFormat.Default, RenderTextureReadWrite.Default, 1);
-			rt.filterMode = FilterMode.Point;
-			RenderTexture.active = rt;
-			Graphics.Blit(texture, rt);
-			
-			Texture2D blit = new Texture2D(horz.max - horz.min, vert.max - vert.min);
-			blit.ReadPixels(new Rect(horz.min, vert.min, horz.max - horz.min, vert.max - vert.min), 0, 0);
-			blit.Apply();
-			
-			RenderTexture.active = null;
-			texture.filterMode = prevFilterMode;
-			
-			return blit;
+    		return texture.Blit(blitRect, new int[]{texture.width, texture.height});
 		}
     	#endregion
     	
@@ -258,9 +297,7 @@ namespace CombatExtended
             var pawn = thing as Pawn;
             if (pawn != null)
             {
-            	return pawn.RaceProps.Humanlike
-            		? pawn.BodySize * GetCollisionBodyFactors(pawn).First * 2f
-            		: BoundsInjector.ForPawn(pawn).First;
+            	return GetCollisionBodyFactors(pawn).First;
             }
             
             return 1f;    //Buildings, etc. fill out a full square
@@ -276,30 +313,66 @@ namespace CombatExtended
             if (pawn == null)
             {
                 Log.Error("CE calling GetCollisionBodyHeightFactor with nullPawn");
-                return new Pair<float, float>(1, 1);
+                return new Pair<float,float>(1, 1);
             }
-            RacePropertiesExtensionCE props = pawn.def.GetModExtension<RacePropertiesExtensionCE>() ?? new RacePropertiesExtensionCE();
-            var shape = props.bodyShape;
-            if (shape == CE_BodyShapeDefOf.Invalid) Log.ErrorOnce("CE returning BodyType Undefined for pawn " + pawn.ToString(),  35000198 + pawn.GetHashCode());
-            if (pawn.GetPosture() != PawnPosture.Standing)
+            
+            float w = 1;
+            float h = 1;
+            bool isHumanLike = pawn.RaceProps.Humanlike;
+            
+            /*				std			!std
+             * Humanlike	props		props
+             * !Humnlike	p, return	p, props
+             */
+            
+            if (!isHumanLike)
             {
-                return new Pair<float, float>(shape.widthLaying, shape.heightLaying);
+            	var pair = BoundsInjector.ForPawn(pawn);
+            	w = pair.First;
+            	h = pair.Second;
             }
-            return new Pair<float, float>(shape.width, shape.height);
+            
+            bool isLaying = pawn.GetPosture() != PawnPosture.Standing;
+            
+            if (isLaying || isHumanLike)
+            {
+	            RacePropertiesExtensionCE props = pawn.def.GetModExtension<RacePropertiesExtensionCE>() ?? new RacePropertiesExtensionCE();
+	            
+	            var shape = props.bodyShape;
+	            
+	            if (shape == CE_BodyShapeDefOf.Invalid)
+	            {
+	            	Log.ErrorOnce("CE returning BodyType Undefined for pawn " + pawn.ToString(),  35000198 + pawn.GetHashCode());
+	            }
+	            
+	            if (isHumanLike)
+	            {
+	            	w = pawn.BodySize * shape.width;
+	            	h = pawn.BodySize * shape.height;
+	            }
+	            
+	            if (isLaying)
+	            {
+		            w *= shape.widthLaying/shape.width;
+		            h *= shape.heightLaying/shape.height;
+	            }
+            }
+            
+            return new Pair<float, float>(w, h);
         }
-
+		
         /// <summary>
         /// Determines whether a pawn should be currently crouching down or not
         /// </summary>
         /// <returns>True for humanlike pawns currently doing a job during which they should be crouching down</returns>
         public static bool IsCrouching(this Pawn pawn)
         {
-            return pawn.RaceProps.Humanlike && (pawn.CurJob?.def.GetModExtension<JobDefExtensionCE>()?.isCrouchJob ?? false);
+            return pawn.RaceProps.Humanlike && !pawn.Downed && (pawn.CurJob?.def.GetModExtension<JobDefExtensionCE>()?.isCrouchJob ?? false);
         }
 
-        public static bool IsTree(this Thing thing)
+        public static bool IsPlant(this Thing thing)
         {
-            return thing.def.category == ThingCategory.Plant && thing.def.altitudeLayer == AltitudeLayer.Building;
+            return thing.def.category == ThingCategory.Plant;
         }
 
         #endregion Physics

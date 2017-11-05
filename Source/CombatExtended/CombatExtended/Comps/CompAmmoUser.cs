@@ -154,38 +154,6 @@ namespace CombatExtended
         #endregion Properties
 
         #region Methods
-
-        public override void Initialize(CompProperties vprops)
-        {
-            base.Initialize(vprops);
-
-            //curMagCountInt = Props.spawnUnloaded && UseAmmo ? 0 : Props.magazineSize;
-
-            // Initialize ammo with default if none is set
-            if (UseAmmo)
-            {
-                if (Props.ammoSet.ammoTypes.NullOrEmpty())
-                {
-                    Log.Error(parent.Label + " has no available ammo types");
-                }
-                else
-                {
-                    if (currentAmmoInt == null)
-                        currentAmmoInt = (AmmoDef)Props.ammoSet.ammoTypes[0].ammo;
-                    if (selectedAmmo == null)
-                        selectedAmmo = currentAmmoInt;
-                }
-            }
-        }
-
-        public override void PostExposeData()
-        {
-            base.PostExposeData();
-            Scribe_Values.Look(ref curMagCountInt, "count", 0);
-            Scribe_Defs.Look(ref currentAmmoInt, "currentAmmo");
-            Scribe_Defs.Look(ref selectedAmmo, "selectedAmmo");
-        }
-
         private void AssignJobToWielder(Job job)
         {
             if (Wielder.drafter != null)
@@ -198,6 +166,7 @@ namespace CombatExtended
             }
         }
 
+        #region Notify
         public bool Notify_ShotFired()
         {
         	if (ammoToBeDeleted != null)
@@ -222,7 +191,9 @@ namespace CombatExtended
             }
             return true;
         }
+        #endregion
         
+        #region Reloading
         /// <summary>
         /// Reduces ammo count and updates inventory if necessary, call this whenever ammo is consumed by the gun (e.g. firing a shot, clearing a jam)
         /// </summary>
@@ -438,7 +409,8 @@ namespace CombatExtended
             if (turret != null) turret.isReloading = false;
             if (parent.def.soundInteract != null) parent.def.soundInteract.PlayOneShot(new TargetInfo(Position,  Find.VisibleMap, false));
         }
-
+		#endregion
+        
         /// <summary>
         /// Resets current ammo count to a full magazine. Intended use is pawn/turret generation where we want raiders/enemy turrets to spawn with loaded magazines. DO NOT
         /// use for regular reloads, those should be handled through LoadAmmo() instead.
@@ -479,6 +451,38 @@ namespace CombatExtended
                 }
             }
             return false;
+        }
+
+        #region Overrides
+        public override void Initialize(CompProperties vprops)
+        {
+            base.Initialize(vprops);
+
+            //curMagCountInt = Props.spawnUnloaded && UseAmmo ? 0 : Props.magazineSize;
+
+            // Initialize ammo with default if none is set
+            if (UseAmmo)
+            {
+                if (Props.ammoSet.ammoTypes.NullOrEmpty())
+                {
+                    Log.Error(parent.Label + " has no available ammo types");
+                }
+                else
+                {
+                    if (currentAmmoInt == null)
+                        currentAmmoInt = (AmmoDef)Props.ammoSet.ammoTypes[0].ammo;
+                    if (selectedAmmo == null)
+                        selectedAmmo = currentAmmoInt;
+                }
+            }
+        }
+
+        public override void PostExposeData()
+        {
+            base.PostExposeData();
+            Scribe_Values.Look(ref curMagCountInt, "count", 0);
+            Scribe_Defs.Look(ref currentAmmoInt, "currentAmmo");
+            Scribe_Defs.Look(ref selectedAmmo, "selectedAmmo");
         }
 
         public override IEnumerable<Gizmo> CompGetGizmosExtra()
@@ -544,6 +548,7 @@ namespace CombatExtended
             return stringBuilder.ToString().TrimEndNewlines();
         }
         */
+       	#endregion
 
         #endregion Methods
     }

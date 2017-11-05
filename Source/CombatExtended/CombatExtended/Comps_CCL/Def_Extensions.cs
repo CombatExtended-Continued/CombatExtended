@@ -135,14 +135,19 @@ namespace CombatExtended
         	return widthRange;
         }
         
+        public static Rect CropHorizontalVertical(Color[] array, int width, int height)
+        {
+        	var h = CropHorizontal(array, width, height);
+        	var v = CropVertical(array, width, height);
+        	return Rect.MinMaxRect(h.min, v.min, h.max, v.max);
+        }
+        
         public static Texture2D Crop(this Texture2D tex)
         {
-        	var array = tex.Blit();
+        	int w; int h;
+        	var array = tex.GetColorSafe(out w, out h);
         	
-        	var vert = CropVertical(array, tex.width, tex.height);
-        	var horz = CropHorizontal(array, tex.width, tex.height);
-        	
-            return tex.BlitCrop(horz, vert);
+        	return tex.BlitCrop(CropHorizontalVertical(array, w, h));
         }
     }
 }

@@ -29,11 +29,6 @@ namespace CombatExtended
     		
     		public Dictionary<string, Pair<float, float>> dict = new Dictionary<string, Pair<float, float>>();
     		
-    		public TextureBoundFactor()
-    		{
-    			
-    		}
-    		
     		public TextureBoundFactor(PawnKindDef pawnKindDef)
     		{
     			int i = 0;
@@ -114,8 +109,9 @@ namespace CombatExtended
     		
     		private void ExtractBounds(Graphic graphic, GraphicType type, int lifeStageIndex = 0)
     		{
+    			int vW; int vH;
     			var vertTex = graphic.MatSide.mainTexture as Texture2D;
-    			var vertBounds = Def_Extensions.CropVertical(vertTex.Blit(), vertTex.width, vertTex.height);
+    			var vertBounds = Def_Extensions.CropVertical(vertTex.GetColorSafe(out vW, out vH), vW, vH);
     			
 					//Plants only care for verts
 					//This is assuming PLANTS TAKE UP A FULL TILE!!
@@ -123,18 +119,19 @@ namespace CombatExtended
     			if (type == GraphicType.Plant || type == GraphicType.LeaflessPlant || type == GraphicType.ImmaturePlant)
     			{
     				dict.Add(type.ToString(),
-    			         new Pair<float, float>(0f, (float)(vertBounds.max - vertBounds.min) / (float)vertTex.height));
+    			         new Pair<float, float>(1f, (float)(vertBounds.max - vertBounds.min) / (float)vH));
     				return;
     			}
     			
+    			int hW; int hH;
     			var horzTex = graphic.MatFront.mainTexture as Texture2D;
-    			var horzBounds = Def_Extensions.CropHorizontal(horzTex.Blit(), horzTex.width, horzTex.height);
+    			var horzBounds = Def_Extensions.CropHorizontal(horzTex.GetColorSafe(out hW, out hH), hW, hH);
     			
     				//drawSize is added (and not Lerped!) because it is constant with lifeStageIndex (A17)
     			dict.Add(type.ToString() + "." + lifeStageIndex,
     			         new Pair<float, float>(
-    				         	graphic.drawSize.x * (float)(horzBounds.max - horzBounds.min) / (float)horzTex.width,
-    				         	graphic.drawSize.y * (float)(vertBounds.max - vertBounds.min) / (float)vertTex.height));
+    				         	graphic.drawSize.x * (float)(horzBounds.max - horzBounds.min) / (float)hW,
+    				         	graphic.drawSize.y * (float)(vertBounds.max - vertBounds.min) / (float)vH));
     		}
     	}
     	
@@ -170,6 +167,31 @@ namespace CombatExtended
     	public static Pair<float, float> ForPlant(Plant plant)
     	{
     		return boundMap[plant.def.defName].PlantFor(plant);
+    	}
+    	
+    	public static void LogDatabase()
+    	{
+    		var str = new StringBuilder();
+    		
+    		str.AppendLine("PAWNS");
+    		
+    		foreach (PawnKindDef kindDef in DefDatabase<PawnKindDef>.AllDefs.Where(x => !x.race.race.Humanlike))
+    		{
+    			str.AppendLine(kindDef.ToString() + ", " + kindDef.race.race.baseBodySize +", " + String.Join(", ", boundMap[kindDef.defName].dict.Select(x => x.Key+"="+x.Value.First+","+x.Key+"="+x.Value.Second).ToArray()));
+    		}
+    		
+    		str.AppendLine();
+    		str.AppendLine("PLANTS");
+    		
+    		//Fire is dummy name for a sowing plant's texture
+    		str.AppendLine("Sowing Plant, " + String.Join(", ", boundMap[ThingDefOf.Fire.defName].dict.Select(x => x.Key+"="+x.Value.First+","+x.Key+"="+x.Value.Second).ToArray()));
+    		
+    		foreach (ThingDef plantDef in DefDatabase<ThingDef>.AllDefs.Where(x => x.plant != null))
+    		{
+    			str.AppendLine(plantDef.ToString() + ", " + plantDef.fillPercent + ", " +plantDef.plant.visualSizeRange.ToString() +", " + String.Join(", ", boundMap[plantDef.defName].dict.Select(x => x.Key+"="+x.Value.First+","+x.Value.Second).ToArray()));
+    		}
+    		
+    		Log.Message(str.ToString());
     	}
 	}
 }

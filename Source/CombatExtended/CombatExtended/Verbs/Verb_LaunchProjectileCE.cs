@@ -80,6 +80,10 @@ namespace CombatExtended
                             shotSpeed = bracket.x;
                         }
                     }
+                    else if (CompAmmo != null && CompAmmo.CurrentAmmo != null)
+                    {
+                    	shotSpeed = CompAmmo.CurAmmoProjectile.projectile.speed;
+                    }
                     else
                     {
                         shotSpeed = verbProps.projectileDef.projectile.speed;
@@ -119,12 +123,9 @@ namespace CombatExtended
         {
             get
             {
-                if (CompAmmo != null)
+                if (CompAmmo != null && CompAmmo.CurrentAmmo != null)
                 {
-                    if (CompAmmo.CurrentAmmo != null)
-                    {
-                        return CompAmmo.CurAmmoProjectile;
-                    }
+                	return CompAmmo.CurAmmoProjectile;
                 }
                 return this.VerbPropsCE.projectileDef;
             }
@@ -388,7 +389,7 @@ namespace CombatExtended
                         && (targetThing == null || !newCover.Equals(targetThing))
                         && (highestCover == null || highestCoverHeight < newCoverHeight)
                         && newCover.def.Fillage == FillCategory.Partial
-                        && !newCover.IsTree())
+                        && !newCover.IsPlant())
                     {
                         highestCover = newCover;
                         highestCoverHeight = newCoverHeight;
@@ -557,7 +558,8 @@ namespace CombatExtended
                 resultingLine = new ShootLine(root, targ.Cell);
                 return false;
             }
-            if (!this.verbProps.NeedsLineOfSight)
+            //if (!this.verbProps.NeedsLineOfSight) This method doesn't consider the currently loaded projectile
+            if (ProjectileDef.projectile.flyOverhead)
             {
                 resultingLine = new ShootLine(root, targ.Cell);
                 return true;
@@ -689,7 +691,7 @@ namespace CombatExtended
                     {
                         cover = cell.GetCover(caster.Map);
                     }
-                    if (cover != null && cover != caster && cover != targetThing && !cover.IsTree() && !cover.Position.AdjacentTo8Way(sourceSq))
+                    if (cover != null && cover != caster && cover != targetThing && !cover.IsPlant() && !cover.Position.AdjacentTo8Way(sourceSq))
                     {
                         Bounds bounds = CE_Utility.GetBoundsFor(cover);
 
