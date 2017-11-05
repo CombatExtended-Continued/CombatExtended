@@ -10,10 +10,10 @@ namespace CombatExtended
 {
     class StatWorker_MoveSpeed : StatWorker
     {
-        public override string GetExplanation(StatRequest req, ToStringNumberSense numberSense)
+        public override string GetExplanationUnfinalized(StatRequest req, ToStringNumberSense numberSense)
         {
             StringBuilder stringBuilder = new StringBuilder();
-            stringBuilder.Append(base.GetExplanation(req, numberSense));
+            stringBuilder.Append(base.GetExplanationUnfinalized(req, numberSense));
             if (req.HasThing)
             {
                 CompInventory comp = req.Thing.TryGetComp<CompInventory>();

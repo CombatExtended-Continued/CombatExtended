@@ -82,7 +82,7 @@ namespace CombatExtended
                     }
                     else
                     {
-                        shotSpeed = verbProps.projectileDef.projectile.speed;
+                        shotSpeed = ProjectileDef.projectile.speed;
                     }
                 }
                 return shotSpeed;
@@ -126,7 +126,7 @@ namespace CombatExtended
                         return CompAmmo.CurAmmoProjectile;
                     }
                 }
-                return this.VerbPropsCE.projectileDef;
+                return this.VerbPropsCE.defaultProjectile;
             }
         }
         
@@ -150,8 +150,9 @@ namespace CombatExtended
         /// Highlights explosion radius of the projectile if it has one
         /// </summary>
         /// <returns>Projectile explosion radius</returns>
-        public override float HighlightFieldRadiusAroundTarget()
+        public override float HighlightFieldRadiusAroundTarget(out bool needLOSToCenter)
         {
+            needLOSToCenter = true;
             return ProjectileDef.projectile.explosionRadius;
         }
 
@@ -553,7 +554,7 @@ namespace CombatExtended
                 resultingLine = new ShootLine(root, targ.Cell);
                 return false;
             }
-            if (!this.verbProps.NeedsLineOfSight)
+            if (!this.verbProps.requireLineOfSight)
             {
                 resultingLine = new ShootLine(root, targ.Cell);
                 return true;
