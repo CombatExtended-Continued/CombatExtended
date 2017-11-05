@@ -71,13 +71,12 @@ namespace CombatExtended
                 // Can't use GenExplosion because it no longer allows setting damage amount
 
                 // Copy-paste from GenExplosion
-                Explosion explosion = new Explosion();
-                explosion.position = pos;
+                Explosion explosion = (Explosion)GenSpawn.Spawn(ThingDefOf.Explosion, pos, map);
                 explosion.radius = Props.explosionRadius * scaleFactor;
                 explosion.damType = Props.explosionDamageDef;
                 explosion.instigator = instigator;
                 explosion.damAmount = GenMath.RoundRandom(Props.explosionDamage * scaleFactor);
-                explosion.weaponGear = null;
+                explosion.weapon = null;
                 explosion.preExplosionSpawnThingDef = Props.preExplosionSpawnThingDef;
                 explosion.preExplosionSpawnChance = Props.explosionSpawnChance;
                 explosion.preExplosionSpawnThingCount = Props.preExplosionSpawnThingCount;
@@ -85,7 +84,9 @@ namespace CombatExtended
                 explosion.postExplosionSpawnChance = Props.postExplosionSpawnChance;
                 explosion.postExplosionSpawnThingCount = Props.postExplosionSpawnThingCount;
                 explosion.applyDamageToExplosionCellsNeighbors = Props.applyDamageToExplosionCellsNeighbors;
-                map.GetComponent<ExplosionManager>().StartExplosion(explosion, Props.soundExplode ?? Props.explosionDamageDef.soundExplosion);
+                explosion.dealMoreDamageAtCenter = true;
+
+                explosion.StartExplosion(Props.soundExplode ?? Props.explosionDamageDef.soundExplosion);
             }
         }
     }

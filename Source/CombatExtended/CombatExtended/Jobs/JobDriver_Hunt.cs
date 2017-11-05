@@ -213,8 +213,9 @@ namespace CombatExtended
 					pawn.jobs.EndCurrentJob(JobCondition.Incompletable);
 					return;
 				}
-				corpse.SetForbidden(false, true);
-                if (StoreUtility.TryFindBestBetterStoreCellFor(corpse, pawn, Map, StoragePriority.Unstored, pawn.Faction, out IntVec3 c))
+				corpse.SetForbidden(false);
+                IntVec3 c;
+                if (StoreUtility.TryFindBestBetterStoreCellFor(corpse, pawn, Map, StoragePriority.Unstored, pawn.Faction, out c))
                 {
                     pawn.Reserve(corpse, job, 1);
                     pawn.Reserve(c, job, 1);

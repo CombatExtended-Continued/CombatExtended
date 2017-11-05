@@ -88,7 +88,7 @@ namespace CombatExtended.Harmony
                             {
                                 if (pawn.inventory == null || pawn.inventory.innerContainer == null || !pawn.inventory.innerContainer.Any(t => t.def.IsMedicine))
                                 {
-                                    Messages.Message("CE_CannotStabilize".Translate() + ": " + "CE_NoMedicine".Translate(pawn), patient, MessageSound.RejectInput);
+                                    Messages.Message("CE_CannotStabilize".Translate() + ": " + "CE_NoMedicine".Translate(pawn), patient, MessageTypeDefOf.RejectInput);
                                     return;
                                 }
                                 // Drop medicine from inventory

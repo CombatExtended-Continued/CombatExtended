@@ -32,10 +32,10 @@ namespace CombatExtended
                 return;
             }
             pawn.stances.CancelBusyStanceSoft();
-            pawn.Map.pawnDestinationManager.UnreserveAllFor( pawn );
+            pawn.Map.pawnDestinationReservationManager.ReleaseAllClaimedBy(pawn);
             if ( newJob.def == JobDefOf.Goto )
             {
-                pawn.Map.pawnDestinationManager.ReserveDestinationFor( pawn, newJob.targetA.Cell );
+                pawn.Map.pawnDestinationReservationManager.Reserve( pawn, newJob, newJob.targetA.Cell );
             }
             if ( pawn.jobs.debugLog )
             {
@@ -45,7 +45,7 @@ namespace CombatExtended
             {
                 pawn.jobs.jobQueue = new JobQueue();
             }
-            pawn.jobs.jobQueue.Clear();
+            pawn.jobs.ClearQueuedJobs();
             pawn.jobs.jobQueue.EnqueueFirst( newJob );
             if ( pawn.CurJob != null )
             {

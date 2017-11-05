@@ -321,7 +321,7 @@ namespace CombatExtended
             Pawn pawn = t as Pawn;
             if (pawn != null)
             {
-                if (this.GunCompEq.PrimaryVerb.verbProps.projectileDef.projectile.flyOverhead)
+                if (this.GunCompEq.PrimaryVerb.verbProps.defaultProjectile.projectile.flyOverhead)
                 {
                     RoofDef roofDef = base.Map.roofGrid.RoofAt(t.Position);
                     if (roofDef != null && roofDef.isThickRoof)
@@ -353,12 +353,12 @@ namespace CombatExtended
             }
             if ((targ.Cell - base.Position).LengthHorizontal < this.GunCompEq.PrimaryVerb.verbProps.minRange)
             {
-                Messages.Message("MessageTargetBelowMinimumRange".Translate(), this, MessageSound.RejectInput);
+                Messages.Message("MessageTargetBelowMinimumRange".Translate(), this, MessageTypeDefOf.RejectInput);
                 return;
             }
             if ((targ.Cell - base.Position).LengthHorizontal > this.GunCompEq.PrimaryVerb.verbProps.range)
             {
-                Messages.Message("MessageTargetBeyondMaximumRange".Translate(), this, MessageSound.RejectInput);
+                Messages.Message("MessageTargetBeyondMaximumRange".Translate(), this, MessageTypeDefOf.RejectInput);
                 return;
             }
             if (this.forcedTarget != targ)
@@ -462,7 +462,7 @@ namespace CombatExtended
             float range = this.GunCompEq.PrimaryVerb.verbProps.range;
             float minRange = this.GunCompEq.PrimaryVerb.verbProps.minRange;
             Building t;
-            if (Rand.Value < 0.5f && this.GunCompEq.PrimaryVerb.verbProps.projectileDef.projectile.flyOverhead && faction.HostileTo(Faction.OfPlayer) && base.Map.listerBuildings.allBuildingsColonist.Where(delegate (Building x)
+            if (Rand.Value < 0.5f && this.GunCompEq.PrimaryVerb.verbProps.defaultProjectile.projectile.flyOverhead && faction.HostileTo(Faction.OfPlayer) && base.Map.listerBuildings.allBuildingsColonist.Where(delegate (Building x)
             {
                 float num = (float)x.Position.DistanceToSquared(this.Position);
                 return num > minRange * minRange && num < range * range;
@@ -471,12 +471,12 @@ namespace CombatExtended
                 return t;
             }
             TargetScanFlags targetScanFlags = TargetScanFlags.NeedThreat;
-            if (!this.GunCompEq.PrimaryVerb.verbProps.projectileDef.projectile.flyOverhead)
+            if (!this.GunCompEq.PrimaryVerb.verbProps.defaultProjectile.projectile.flyOverhead)
             {
                 targetScanFlags |= TargetScanFlags.NeedLOSToAll;
                 targetScanFlags |= TargetScanFlags.LOSBlockableByGas;
             }
-            if (this.GunCompEq.PrimaryVerb.verbProps.ai_IsIncendiary)
+            if (this.GunCompEq.PrimaryVerb.IsIncendiary())
             {
                 targetScanFlags |= TargetScanFlags.NeedNonBurning;
             }
@@ -489,7 +489,7 @@ namespace CombatExtended
             // Check for ammo first
             if (!base.Spawned 
                 || (this.holdFire && this.CanToggleHoldFire) 
-                || (this.GunCompEq.PrimaryVerb.verbProps.projectileDef.projectile.flyOverhead && base.Map.roofGrid.Roofed(base.Position))
+                || (this.GunCompEq.PrimaryVerb.verbProps.defaultProjectile.projectile.flyOverhead && base.Map.roofGrid.Roofed(base.Position))
                 || (CompAmmo != null && (isReloading || (mannableComp == null && CompAmmo.CurMagCount <= 0))))
             {
                 this.ResetCurrentTarget();

@@ -91,7 +91,7 @@ namespace CombatExtended
 					" from out of melee position."
 				}));
 			}
-			casterPawn.Drawer.rotator.Face(targetThing.DrawPos);
+			casterPawn.rotationTracker.Face(targetThing.DrawPos);
 
             // Award XP as per vanilla
             bool targetImmobile = IsTargetImmobile(currentTarget);
@@ -187,7 +187,7 @@ namespace CombatExtended
 					defender.mindState.lastMeleeThreatHarmTick = Find.TickManager.TicksGame;
 				}
 			}
-			casterPawn.Drawer.rotator.FaceCell(targetThing.Position);
+			casterPawn.rotationTracker.FaceCell(targetThing.Position);
 			if (casterPawn.caller != null)
 			{
 				casterPawn.caller.Notify_DidMeleeAttack();
@@ -410,7 +410,7 @@ namespace CombatExtended
             }
             else
             {
-                tracker.RegisterParryFor(defender, verbProps.AdjustedCooldownTicks(ownerEquipment));
+                tracker.RegisterParryFor(defender, verbProps.AdjustedCooldownTicks(this, defender, ownerEquipment));
             }
         }
 

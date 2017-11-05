@@ -21,7 +21,7 @@ namespace CombatExtended
                     impactSoundType = current.impactSoundType,
                     spreadOut = current.spreadOut,
                     harmAllLayersUntilOutside = current.harmAllLayersUntilOutside,
-                    hasChanceToAdditionallyDamageInnerSolidParts = current.hasChanceToAdditionallyDamageInnerSolidParts,
+                    //hasChanceToAdditionallyDamageInnerSolidParts = current.hasChanceToAdditionallyDamageInnerSolidParts,
                     hediff = current.hediff,
                     hediffSkin = current.hediffSkin,
                     hediffSolid = current.hediffSolid

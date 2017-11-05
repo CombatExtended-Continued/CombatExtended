@@ -53,9 +53,11 @@ namespace CombatExtended.Harmony
             // Manual patches
             PatchThingOwner();
             PatchHediffWithComps();
+            /*
             Harmony_GenRadial_RadialPatternCount.Patch();
             PawnColumnWorkers_Resize.Patch();
             PawnColumnWorkers_SwapButtons.Patch();
+            */
         }
 
         #region Patch helper methods
@@ -63,6 +65,7 @@ namespace CombatExtended.Harmony
         private static void PatchThingOwner()
         {
             // Need to patch ThingOwner<T> manually for all child classes of Thing
+            /*
             var postfixTryAdd = typeof(Harmony_ThingOwner_TryAdd_Patch).GetMethod("Postfix");
             var postfixTake = typeof(Harmony_ThingOwner_Take_Patch).GetMethod("Postfix");
             var postfixRemove = typeof(Harmony_ThingOwner_Remove_Patch).GetMethod("Postfix");
@@ -76,10 +79,12 @@ namespace CombatExtended.Harmony
                 instance.Patch(type.GetMethod("Take", new Type[] { typeof(Thing), typeof(int) }), null, new HarmonyMethod(postfixTake));
                 instance.Patch(type.GetMethod("Remove", new Type[] { typeof(Thing) }), null, new HarmonyMethod(postfixRemove));
             }
+            */
         }
 
         private static void PatchHediffWithComps()
         {
+            /*
             var postfixBleedRate = typeof(Harmony_HediffWithComps_BleedRate_Patch).GetMethod("Postfix");
             var baseType = typeof(HediffWithComps);
             var types = baseType.AllSubclassesNonAbstract().Add(baseType);
@@ -87,6 +92,7 @@ namespace CombatExtended.Harmony
             {
                 instance.Patch(cur.GetProperty("BleedRate").GetGetMethod(), null, new HarmonyMethod(postfixBleedRate));
             }
+            */
         }
 
         #endregion

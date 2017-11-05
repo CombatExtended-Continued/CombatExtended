@@ -25,10 +25,10 @@ namespace CombatExtended
             {
                 return false;
             }
-            return timedOut(pawn);
+            return TimedOut(pawn);
         }
 
-        private bool timedOut(Pawn pawn)
+        private bool TimedOut(Pawn pawn)
         {
             int lastTauntTick;
             tauntTickTracker.TryGetValue(pawn, out lastTauntTick);
@@ -40,7 +40,7 @@ namespace CombatExtended
             if (!AllowThrowTauntNow(pawn))
                 return;
 
-            string taunt = GrammarResolver.Resolve(rulePack.Rules[0].keyword, rulePack.Rules);
+            string taunt = GrammarResolver.Resolve(rulePack.RulesPlusIncludes[0].keyword, new GrammarRequest { Includes = { rulePack } });
             if (taunt.NullOrEmpty())
             {
                 Log.Warning("CE tried throwing invalid taunt for " + pawn.ToString());
@@ -64,7 +64,7 @@ namespace CombatExtended
         {
             if ((Find.TickManager.TicksGame + GetHashCode()) % 10 == 0)
             {
-                foreach (var entry in tauntTickTracker.Where(kvp => timedOut(kvp.Key)).ToArray())
+                foreach (var entry in tauntTickTracker.Where(kvp => TimedOut(kvp.Key)).ToArray())
                 {
                     tauntTickTracker.Remove(entry.Key);
                 }
