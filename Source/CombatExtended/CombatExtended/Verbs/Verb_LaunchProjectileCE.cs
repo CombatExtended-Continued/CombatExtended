@@ -103,8 +103,8 @@ namespace CombatExtended
             }
         }
 
-        protected float ShootingAccuracy => Mathf.Min(Shooter.GetStatValue(StatDefOf.ShootingAccuracy), 4.5f);
-        protected float AimingAccuracy => Mathf.Min(Shooter.GetStatValue(CE_StatDefOf.AimingAccuracy), 1.5f);
+        protected float ShootingAccuracy => Mathf.Min(caster.GetStatValue(StatDefOf.ShootingAccuracy), 4.5f);
+        protected float AimingAccuracy => Mathf.Min(Shooter.GetStatValue(CE_StatDefOf.AimingAccuracy), 1.5f); //equivalent of ShooterPawn?.GetStatValue(CE_StatDefOf.AimingAccuracy) ?? caster.GetStatValue(CE_StatDefOf.AimingAccuracy)
         protected float SightsEfficiency => ownerEquipment.GetStatValue(CE_StatDefOf.SightsEfficiency);
         protected virtual float SwayAmplitude => Mathf.Max(0, (4.5f - ShootingAccuracy) * ownerEquipment.GetStatValue(StatDef.Named("SwayFactor")));
 
@@ -511,7 +511,7 @@ namespace CombatExtended
                 //New aiming algorithm
                 projectile.canTargetSelf = false;
                 projectile.minCollisionSqr = (sourceLoc - currentTarget.Cell.ToIntVec2.ToVector2Shifted()).sqrMagnitude;
-                projectile.Launch(Shooter, sourceLoc, shotAngle, shotRotation, ShotHeight, ShotSpeed, ownerEquipment);
+                projectile.Launch(Shooter, sourceLoc, shotAngle, shotRotation, ShotHeight, ShotSpeed, ownerEquipment); //Shooter instead of caster to give turret operators' records the damage/kills obtained
 	           	pelletMechanicsOnly = true;
             }
            	pelletMechanicsOnly = false;
@@ -565,7 +565,7 @@ namespace CombatExtended
                 resultingLine = new ShootLine(root, targ.Cell);
                 return true;
             }
-            if (ShooterPawn != null)
+            if (this.CasterIsPawn)
             {
                 IntVec3 dest;
                 if (this.CanHitFromCellIgnoringRange(root, targ, out dest))
