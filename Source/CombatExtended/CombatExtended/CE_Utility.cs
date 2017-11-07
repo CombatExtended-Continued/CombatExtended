@@ -179,17 +179,16 @@ namespace CombatExtended
         /// <returns>Turret operator if one is found, null if not</returns>
         public static Pawn TryGetTurretOperator(Thing thing)
         {
-            Pawn manningPawn = null;
-            Building_TurretGun turret = thing as Building_TurretGun;
-            if (turret != null)
+        	// Building_TurretGunCE DOES NOT inherit from Building_TurretGun!!!
+            if (thing is Building_Turret)
             {
-                CompMannable comp = turret.TryGetComp<CompMannable>();
-                if (comp != null && comp.MannedNow)
+                CompMannable comp = thing.TryGetComp<CompMannable>();
+                if (comp != null)
                 {
-                    manningPawn = comp.ManningPawn;
+                    return comp.ManningPawn;
                 }
             }
-            return manningPawn;
+            return null;
         }
 
         /// <summary>

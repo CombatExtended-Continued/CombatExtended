@@ -688,7 +688,7 @@ namespace CombatExtended
         /// </summary>
         public override void Draw()
         {
-        	if (FlightTicks == 0 && launcher != null)
+        	if (FlightTicks == 0 && launcher != null && launcher is Pawn)
         	{
         		//TODO: Draw at the end of the barrel on the pawn
         	}
