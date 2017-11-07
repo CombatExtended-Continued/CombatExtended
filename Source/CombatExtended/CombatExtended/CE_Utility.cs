@@ -204,7 +204,7 @@ namespace CombatExtended
         /// <returns>True for humanlike pawns currently doing a job during which they should be crouching down</returns>
         public static bool IsCrouching(this Pawn pawn)
         {
-            return pawn.RaceProps.Humanlike && (pawn.CurJob?.def.GetModExtension<JobDefExtensionCE>()?.isCrouchJob ?? false);
+            return pawn.RaceProps.Humanlike && !pawn.Downed && (pawn.CurJob?.def.GetModExtension<JobDefExtensionCE>()?.isCrouchJob ?? false);
         }
 
         public static bool IsTree(this Thing thing)
