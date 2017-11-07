@@ -57,6 +57,7 @@ namespace CombatExtended
 				this.def.projectile.explosionSpawnChance,
 				1);
 			
+		//This code was disabled because it didn't run under previous circumstances. Could be enabled if necessary
             /*
             if (map != null && base.ExactPosition.ToIntVec3().IsValid)
             {
@@ -64,7 +65,7 @@ namespace CombatExtended
             }
             */
             
-            base.Impact(null);
+            base.Impact(null); // base.Impact() handles this.Destroy() and comp.Explode()
         }
 
         public static void ThrowBigExplode(Vector3 loc, Map map, float size)
