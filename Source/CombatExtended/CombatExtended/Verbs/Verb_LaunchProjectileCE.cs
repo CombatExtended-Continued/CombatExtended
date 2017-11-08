@@ -80,6 +80,10 @@ namespace CombatExtended
                             shotSpeed = bracket.x;
                         }
                     }
+                    else if (CompAmmo != null && CompAmmo.CurrentAmmo != null)
+                    {
+                    	shotSpeed = CompAmmo.CurAmmoProjectile.projectile.speed;
+                    }
                     else
                     {
                         shotSpeed = verbProps.projectileDef.projectile.speed;
@@ -119,12 +123,9 @@ namespace CombatExtended
         {
             get
             {
-                if (CompAmmo != null)
+                if (CompAmmo != null && CompAmmo.CurrentAmmo != null)
                 {
-                    if (CompAmmo.CurrentAmmo != null)
-                    {
-                        return CompAmmo.CurAmmoProjectile;
-                    }
+                	return CompAmmo.CurAmmoProjectile;
                 }
                 return this.VerbPropsCE.projectileDef;
             }
@@ -553,7 +554,8 @@ namespace CombatExtended
                 resultingLine = new ShootLine(root, targ.Cell);
                 return false;
             }
-            if (!this.verbProps.NeedsLineOfSight)
+            //if (!this.verbProps.NeedsLineOfSight) This method doesn't consider the currently loaded projectile
+            if (ProjectileDef.projectile.flyOverhead)
             {
                 resultingLine = new ShootLine(root, targ.Cell);
                 return true;
