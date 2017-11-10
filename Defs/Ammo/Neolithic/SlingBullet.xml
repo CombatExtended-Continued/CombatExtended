@@ -95,12 +95,19 @@
 		</projectile>
 	</ThingDef>
 
+	<!-- The amount of arrows usable over the ammo lifetime for each resource cost is equal to
+		[r / (1 - x)];
+			x = explosionSpawnChance,
+			r = resource cost. -->
+
 	<ThingDef ParentName="BaseSlingBullet">
 		<defName>Projectile_SlingBullet_Stone</defName>
 		<label>sling bullet (stone)</label>
 		<projectile>
 			<damageAmountBase>7</damageAmountBase>
 			<armorPenetration>0.15</armorPenetration>
+			<explosionSpawnChance>0.5</explosionSpawnChance>
+			<preExplosionSpawnThingDef>Ammo_SlingBullet_Stone</preExplosionSpawnThingDef>
 		</projectile>
 	</ThingDef>
 
@@ -110,6 +117,8 @@
 		<projectile>
 			<damageAmountBase>8</damageAmountBase>
 			<armorPenetration>0.175</armorPenetration>
+			<explosionSpawnChance>0.5</explosionSpawnChance>
+			<preExplosionSpawnThingDef>Ammo_SlingBullet_Steel</preExplosionSpawnThingDef>
 		</projectile>
 	</ThingDef>
 
@@ -119,6 +128,8 @@
 		<projectile>
 			<damageAmountBase>8</damageAmountBase>
 			<armorPenetration>0.225</armorPenetration>
+			<explosionSpawnChance>0.5</explosionSpawnChance>
+			<preExplosionSpawnThingDef>Ammo_SlingBullet_Plasteel</preExplosionSpawnThingDef>
 		</projectile>
 	</ThingDef>
   
