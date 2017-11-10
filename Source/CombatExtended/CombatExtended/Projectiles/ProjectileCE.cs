@@ -576,8 +576,10 @@ namespace CombatExtended
                 comp.Explode(launcher, Position, Find.VisibleMap);
             }
 	    
-	    //Spawn things if not an explosive but preExplosionSpawnThingDef != null
-            if (comp == null
+			//Spawn things if not an explosive but preExplosionSpawnThingDef != null
+            if (Controller.settings.EnableAmmoSystem
+	        	&& Controller.settings.ReuseNeolithicProjectiles
+	    		&& comp == null
 		    	&& Position.IsValid
 				&& def.projectile.explosionSpawnChance > 0
 				&& def.projectile.preExplosionSpawnThingDef != null
@@ -595,6 +597,7 @@ namespace CombatExtended
 					reusableAmmo.stackCount = 1;
 					reusableAmmo.SetForbidden(true, false);
 					GenPlace.TryPlaceThing(reusableAmmo, Position, Map, ThingPlaceMode.Near, null);
+					LessonAutoActivator.TeachOpportunity(CE_ConceptDefOf.CE_ReusableNeolithicProjectiles, reusableAmmo, OpportunityType.GoodToKnow);
 				}
             }
 
