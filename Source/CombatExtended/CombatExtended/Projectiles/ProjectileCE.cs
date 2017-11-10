@@ -575,6 +575,28 @@ namespace CombatExtended
             {
                 comp.Explode(launcher, Position, Find.VisibleMap);
             }
+	    
+	    //Spawn things if not an explosive but preExplosionSpawnThingDef != null
+            if (comp == null
+	    	&& Position.IsValid
+		&& def.projectile.explosionSpawnChance > 0
+		&& def.projectile.preExplosionSpawnThingDef != null
+		&& Rand.Value < def.projectile.explosionSpawnChance)
+            {
+	    	var thingDef = def.projectile.preExplosionSpawnThingDef;
+		
+	    	//Exact contents of // Verse.Explosion.TrySpawnExplosionThing(ThingDef thingDef, IntVec3 c, int count)
+		if (thingDef.IsFilth)
+		{
+			FilthMaker.MakeFilth(Position, Map, thingDef, 1);
+		}
+		else
+		{
+			Thing thing = ThingMaker.MakeThing(thingDef, null);
+			thing.stackCount = 1;
+			GenSpawn.Spawn(thing, Position, Map);
+		}
+            }
 
             // Apply suppression around impact area
             var suppressThings = GenRadial.RadialDistinctThingsAround(Position, Map, SuppressionRadius + def.projectile.explosionRadius, true);
