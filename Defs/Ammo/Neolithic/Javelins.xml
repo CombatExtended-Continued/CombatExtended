@@ -25,6 +25,11 @@
 		</projectile>
 	</ThingDef>
 	
+	<!-- The amount of arrows usable over the ammo lifetime for each resource cost is equal to
+	[r / (1 - x)];
+		x = explosionSpawnChance,
+		r = resource cost. -->
+	
 	<ThingDef ParentName="BasePilumProjectile">
 		<defName>Pilum_Thrown</defName>
 		<label>pilum (thrown)</label>
@@ -32,6 +37,8 @@
 			<damageAmountBase>16</damageAmountBase>
 			<speed>26</speed>
 			<armorPenetration>0.3</armorPenetration>
+			<explosionSpawnChance>0.5</explosionSpawnChance>
+			<preExplosionSpawnThingDef>Pila</preExplosionSpawnThingDef>
 		</projectile>
 	</ThingDef>
 	
@@ -42,6 +49,8 @@
 			<damageAmountBase>22</damageAmountBase>
 			<speed>38</speed>
 			<armorPenetration>0.35</armorPenetration>
+			<explosionSpawnChance>0.5</explosionSpawnChance>
+			<preExplosionSpawnThingDef>Pila</preExplosionSpawnThingDef>
 		</projectile>
 	</ThingDef>
   
