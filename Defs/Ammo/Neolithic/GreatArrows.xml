@@ -95,13 +95,20 @@
 			<speed>49</speed>
 		</projectile>
 	</ThingDef>
-
+	
+	<!-- The amount of arrows usable over the ammo lifetime for each resource cost is equal to
+		[r / (1 - x)];
+			x = explosionSpawnChance,
+			r = resource cost. -->
+	
 	<ThingDef ParentName="BaseGreatArrowProjectile">
 		<defName>Projectile_GreatArrow_Stone</defName>
 		<label>great arrow (stone)</label>
 		<projectile>
 			<damageAmountBase>15</damageAmountBase>
 			<armorPenetration>0.2</armorPenetration>
+			<explosionSpawnChance>0.2</explosionSpawnChance>	<!-- 12.5 arrows per resource -->
+			<preExplosionSpawnThingDef>Ammo_GreatArrow_Stone</preExplosionSpawnThingDef>
 		</projectile>
 	</ThingDef>
 
@@ -111,6 +118,8 @@
 		<projectile>
 			<damageAmountBase>15</damageAmountBase>
 			<armorPenetration>0.275</armorPenetration>
+			<explosionSpawnChance>0.6</explosionSpawnChance>	<!-- 25 arrows per resource -->
+			<preExplosionSpawnThingDef>Ammo_GreatArrow_Steel</preExplosionSpawnThingDef>
 		</projectile>
 	</ThingDef>
 
@@ -120,6 +129,8 @@
 		<projectile>
 			<damageAmountBase>15</damageAmountBase>
 			<armorPenetration>0.35</armorPenetration>
+			<explosionSpawnChance>0.75</explosionSpawnChance>	<!-- 40 arrows per resource -->
+			<preExplosionSpawnThingDef>Ammo_GreatArrow_Plasteel</preExplosionSpawnThingDef>
 		</projectile>
 	</ThingDef>
   

@@ -96,12 +96,19 @@
 		</projectile>
 	</ThingDef>
 
+	<!-- The amount of arrows usable over the ammo lifetime for each resource cost is equal to
+		[r / (1 - x)];
+			x = explosionSpawnChance,
+			r = resource cost. -->
+	
 	<ThingDef ParentName="BaseArrowProjectile">
 		<defName>Projectile_Arrow_Stone</defName>
 		<label>arrow (stone)</label>
 		<projectile>
 			<damageAmountBase>11</damageAmountBase>
 			<armorPenetration>0.15</armorPenetration>
+			<explosionSpawnChance>0.333</explosionSpawnChance>	<!-- 14.99 arrows per resource -->
+			<preExplosionSpawnThingDef>Ammo_Arrow_Stone</preExplosionSpawnThingDef>
 		</projectile>
 	</ThingDef>
 
@@ -111,6 +118,8 @@
 		<projectile>
 			<damageAmountBase>11</damageAmountBase>
 			<armorPenetration>0.20</armorPenetration>
+			<explosionSpawnChance>0.666</explosionSpawnChance>	<!-- 29.94 arrows per resource -->
+			<preExplosionSpawnThingDef>Ammo_Arrow_Steel</preExplosionSpawnThingDef>
 		</projectile>
 	</ThingDef>
 
@@ -120,6 +129,8 @@
 		<projectile>
 			<damageAmountBase>11</damageAmountBase>
 			<armorPenetration>0.25</armorPenetration>
+			<explosionSpawnChance>0.8</explosionSpawnChance>	<!-- 50 arrows per resource -->
+			<preExplosionSpawnThingDef>Ammo_Arrow_Plasteel</preExplosionSpawnThingDef>
 		</projectile>
 	</ThingDef>
   
