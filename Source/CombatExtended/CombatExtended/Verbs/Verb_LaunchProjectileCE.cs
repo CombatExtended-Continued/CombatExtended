@@ -688,7 +688,7 @@ namespace CombatExtended
                     {
                         cover = cell.GetCover(caster.Map);
                     }
-                    if (cover != null && cover != ShooterPawn && cover != caster && cover != targetThing && !cover.IsPlant() && !cover.Position.AdjacentTo8Way(sourceSq))
+                    if (cover != null && cover != ShooterPawn && cover != caster && cover != targetThing && !cover.IsTree() && !cover.Position.AdjacentTo8Way(sourceSq))
                     {
                         Bounds bounds = CE_Utility.GetBoundsFor(cover);
 
