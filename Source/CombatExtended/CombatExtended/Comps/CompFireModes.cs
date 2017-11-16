@@ -159,8 +159,11 @@ namespace CombatExtended
         /// </summary>
         public void ResetModes()
         {
-            currentFireModeInt = availableFireModes.ElementAt(0);
-            currentAimModeInt = availableAimModes.ElementAt(0);
+        		//Required since availableFireModes.Capacity is set but its contents aren't so ElementAt(0) causes errors in some instances
+        	if (availableFireModes.Count > 0)
+            	currentFireModeInt = availableFireModes.ElementAt(0);
+            
+        	currentAimModeInt = availableAimModes.ElementAt(0);
         }
 
         public override IEnumerable<Gizmo> CompGetGizmosExtra()

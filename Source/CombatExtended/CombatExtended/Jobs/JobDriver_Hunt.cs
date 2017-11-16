@@ -83,11 +83,25 @@ namespace CombatExtended
 			
 			yield return Toils_Jump.Jump(moveIfCannotHit);
 
+				//This to prevent victim bleeding to death or similar (!victim.Dead) FailOn state
+			this.FailOn(delegate
+			{
+				if (!CurJob.ignoreDesignations)
+				{
+					Pawn victim = Victim;
+					if (victim != null && Map.designationManager.DesignationOn(victim, DesignationDefOf.Hunt) == null)
+					{
+						return true;
+					}
+				}
+				return false;
+			});
+			
             // Execute downed animal - adapted from JobDriver_Slaughter
             yield return startExecuteDowned;
 
             yield return Toils_General.WaitWith(VictimInd, 180, true).JumpIfDespawnedOrNull(VictimInd, startCollectCorpse);
-
+            
             yield return new Toil
             {
                 initAction = delegate

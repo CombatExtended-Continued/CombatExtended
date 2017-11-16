@@ -84,17 +84,16 @@ namespace CombatExtended
         /// <returns>Turret operator if one is found, null if not</returns>
         public static Pawn TryGetTurretOperator(Thing thing)
         {
-            Pawn manningPawn = null;
-            Building_TurretGun turret = thing as Building_TurretGun;
-            if (turret != null)
+        	// Building_TurretGunCE DOES NOT inherit from Building_TurretGun!!!
+            if (thing is Building_Turret)
             {
-                CompMannable comp = turret.TryGetComp<CompMannable>();
-                if (comp != null && comp.MannedNow)
+                CompMannable comp = thing.TryGetComp<CompMannable>();
+                if (comp != null)
                 {
-                    manningPawn = comp.ManningPawn;
+                    return comp.ManningPawn;
                 }
             }
-            return manningPawn;
+            return null;
         }
 
         /// <summary>
@@ -204,7 +203,7 @@ namespace CombatExtended
         /// <returns>True for humanlike pawns currently doing a job during which they should be crouching down</returns>
         public static bool IsCrouching(this Pawn pawn)
         {
-            return pawn.RaceProps.Humanlike && (pawn.CurJob?.def.GetModExtension<JobDefExtensionCE>()?.isCrouchJob ?? false);
+            return pawn.RaceProps.Humanlike && !pawn.Downed && (pawn.CurJob?.def.GetModExtension<JobDefExtensionCE>()?.isCrouchJob ?? false);
         }
 
         public static bool IsTree(this Thing thing)

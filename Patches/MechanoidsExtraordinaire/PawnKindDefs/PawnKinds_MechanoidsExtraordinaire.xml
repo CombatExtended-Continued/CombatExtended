@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+
+	<Operation Class="PatchOperationSequence">
+		<success>Always</success>
+		<operations>
+			<li Class="CombatExtended.PatchOperationFindMod">
+				<modName>Mechanoids Extraordinaire</modName>
+			</li>
+			<li Class="PatchOperationAdd">
+				<xpath>/PawnKindDefs/PawnKindDef[defName="Scyther"]</xpath>
+				<value>
+					<aiAvoidCover>true</aiAvoidCover>
+				</value>
+			</li>
+			<li Class="PatchOperationReplace">
+				<xpath>/PawnKindDefs/PawnKindDef[defName="Centipede"]/combatPower</xpath>
+				<value>
+					<combatPower>550</combatPower>
+				</value>
+			</li>
+			<li Class="PatchOperationReplace">
+				<xpath>/PawnKindDefs/PawnKindDef[defName="Hound"]/combatPower</xpath>
+				<value>
+					<combatPower>550</combatPower>
+				</value>
+			</li>
+			<li Class="PatchOperationReplace">
+				<xpath>/PawnKindDefs/PawnKindDef[defName="Chimera"]/combatPower</xpath>
+				<value>
+					<combatPower>550</combatPower>
+				</value>
+			</li>
+			<li Class="PatchOperationReplace">
+				<xpath>/PawnKindDefs/PawnKindDef[defName="Kraken"]/combatPower</xpath>
+				<value>
+					<combatPower>650</combatPower>
+				</value>
+			</li>
+			<li Class="PatchOperationAddModExtension">
+				<xpath>/PawnKindDefs/PawnKindDef[defName="Vespa" or defName="Hound" or defName="Chimera" or defName="Goliath" or defName="Kraken"]</xpath>
+				<value>
+					<li Class="CombatExtended.LoadoutPropertiesExtension">
+						<primaryMagazineCount>
+							<min>100</min>
+							<max>100</max>
+						</primaryMagazineCount>
+					</li>
+				</value>
+			</li>
+		</operations>
+	</Operation>
+
+</Patch>

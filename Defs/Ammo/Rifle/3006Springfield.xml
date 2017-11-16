@@ -1,0 +1,200 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+
+	<ThingCategoryDef>
+		<defName>Ammo3006Springfield</defName>
+		<label>.30-06 Springfield</label>
+		<parent>AmmoRifles</parent>
+    <iconPath>UI/Icons/ThingCategories/CaliberRifle</iconPath>
+	</ThingCategoryDef>
+	
+	<!-- ==================== AmmoSet ========================== -->
+
+	<CombatExtended.AmmoSetDef>
+		<defName>AmmoSet_3006Springfield</defName>
+		<label>.30-06 Springfield</label>
+		<ammoTypes>
+			<Ammo_3006Springfield_FMJ>Bullet_3006Springfield_FMJ</Ammo_3006Springfield_FMJ>
+			<Ammo_3006Springfield_AP>Bullet_3006Springfield_AP</Ammo_3006Springfield_AP>
+			<Ammo_3006Springfield_HP>Bullet_3006Springfield_HP</Ammo_3006Springfield_HP>
+		</ammoTypes>
+	</CombatExtended.AmmoSetDef>
+	
+	<!-- ==================== Ammo ========================== -->
+
+	<ThingDef Name="3006SpringfieldBase" ParentName="SmallAmmoBase" Abstract="True">
+		<description>Large rifle bullet used in machine guns and battle rifles.</description>
+		<statBases>
+		<Mass>0.027</Mass>
+		<Bulk>0.06</Bulk>
+		</statBases>
+	<tradeTags>
+		<li>CE_AutoEnableTrade</li>
+		<li>CE_AutoEnableCrafting</li>
+	</tradeTags>
+		<thingCategories>
+			<li>Ammo3006Springfield</li>
+		</thingCategories>
+	</ThingDef>
+
+	<ThingDef ParentName="3006SpringfieldBase">
+		<defName>Ammo_3006Springfield_FMJ</defName>
+		<label>.30-06 Springfield Cartridge (FMJ)</label>
+		<graphicData>
+			<texPath>Things/Ammo/Rifle/FMJ</texPath>
+			<graphicClass>Graphic_StackCount</graphicClass>
+		</graphicData>
+		<statBases>
+			<MarketValue>0.13</MarketValue>
+		</statBases>
+		<ammoClass>FullMetalJacket</ammoClass>
+		<cookOffProjectile>Bullet_3006Springfield_FMJ</cookOffProjectile>
+	</ThingDef>
+
+	<ThingDef ParentName="3006SpringfieldBase">
+		<defName>Ammo_3006Springfield_AP</defName>
+		<label>.30-06 Springfield Cartridge (AP)</label>
+		<graphicData>
+			<texPath>Things/Ammo/Rifle/AP</texPath>
+			<graphicClass>Graphic_StackCount</graphicClass>
+		</graphicData>
+		<statBases>
+			<MarketValue>0.17</MarketValue>
+		</statBases>
+		<ammoClass>ArmorPiercing</ammoClass>
+		<cookOffProjectile>Bullet_3006Springfield_AP</cookOffProjectile>
+	</ThingDef>
+
+	<ThingDef ParentName="3006SpringfieldBase">
+		<defName>Ammo_3006Springfield_HP</defName>
+		<label>.30-06 Springfield Cartridge (HP)</label>
+		<graphicData>
+			<texPath>Things/Ammo/Rifle/HP</texPath>
+			<graphicClass>Graphic_StackCount</graphicClass>
+		</graphicData>
+		<statBases>
+			<MarketValue>0.18</MarketValue>
+		</statBases>
+		<ammoClass>HollowPoint</ammoClass>
+		<cookOffProjectile>Bullet_3006Springfield_HP</cookOffProjectile>
+	</ThingDef>
+	
+	<!-- ================== Projectiles ================== -->
+
+	<ThingDef Name="Base3006SpringfieldBullet" ParentName="BaseBullet" Abstract="true">
+		<graphicData>
+			<texPath>Things/Projectile/Bullet_Small</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+		</graphicData>
+		<projectile>
+			<damageDef>Bullet</damageDef>
+			<speed>213</speed>
+			<dropsCasings>true</dropsCasings>
+		</projectile>
+	</ThingDef>
+
+	<ThingDef ParentName="Base3006SpringfieldBullet">
+		<defName>Bullet_3006Springfield_FMJ</defName>
+		<label>.30-06 Springfield Cartridge (FMJ)</label>
+		<projectile>
+			<damageAmountBase>19</damageAmountBase>
+			<armorPenetration>0.633</armorPenetration>
+		</projectile>
+	</ThingDef>
+
+	<ThingDef ParentName="Base3006SpringfieldBullet">
+		<defName>Bullet_3006Springfield_AP</defName>
+		<label>.30-06 Springfield Cartridge (AP)</label>
+		<projectile>
+			<damageAmountBase>11</damageAmountBase>
+			<armorPenetration>0.783</armorPenetration>
+		</projectile>
+	</ThingDef>
+
+	<ThingDef ParentName="Base3006SpringfieldBullet">
+		<defName>Bullet_3006Springfield_HP</defName>
+		<label>.30-06 Springfield Cartridge (HP)</label>
+		<projectile>
+			<damageAmountBase>27</damageAmountBase>
+			<armorPenetration>0.483</armorPenetration>
+		</projectile>
+	</ThingDef>
+  
+	<!-- ==================== Recipes ========================== -->
+
+	<RecipeDef ParentName="AmmoRecipeBase">
+		<defName>MakeAmmo_3006Springfield_FMJ</defName>
+		<label>make .30-06 Springfield Cartridge (FMJ) cartridge x500</label>
+		<description>Craft 500 .30-06 Springfield Cartridge (FMJ) cartridges.</description>
+		<jobString>Making .30-06 Springfield Cartridge (FMJ) cartridges.</jobString>
+		<ingredients>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>Steel</li>
+					</thingDefs>
+				</filter>
+				<count>25</count>
+			</li>
+		</ingredients>
+		<fixedIngredientFilter>
+			<thingDefs>
+				<li>Steel</li>
+			</thingDefs>
+		</fixedIngredientFilter>
+		<products>
+			<Ammo_3006Springfield_FMJ>500</Ammo_3006Springfield_FMJ>
+		</products>
+	</RecipeDef>
+
+	<RecipeDef ParentName="AmmoRecipeBase">
+		<defName>MakeAmmo_3006Springfield_AP</defName>
+		<label>make .30-06 Springfield Cartridge (AP) cartridge x500</label>
+		<description>Craft 500 .30-06 Springfield Cartridge (AP) cartridges.</description>
+		<jobString>Making .30-06 Springfield Cartridge (AP) cartridges.</jobString>
+		<ingredients>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>Steel</li>
+					</thingDefs>
+				</filter>
+				<count>30</count>
+			</li>
+		</ingredients>
+		<fixedIngredientFilter>
+			<thingDefs>
+				<li>Steel</li>
+			</thingDefs>
+		</fixedIngredientFilter>
+		<products>
+			<Ammo_3006Springfield_AP>500</Ammo_3006Springfield_AP>
+		</products>
+	</RecipeDef>
+
+	<RecipeDef ParentName="AmmoRecipeBase">
+		<defName>MakeAmmo_3006Springfield_HP</defName>
+		<label>make .30-06 Springfield Cartridge (HP) cartridge x500</label>
+		<description>Craft 500 .30-06 Springfield Cartridge (HP) cartridges.</description>
+		<jobString>Making .30-06 Springfield Cartridge (HP) cartridges.</jobString>
+		<ingredients>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>Steel</li>
+					</thingDefs>
+				</filter>
+				<count>25</count>
+			</li>
+		</ingredients>
+		<fixedIngredientFilter>
+			<thingDefs>
+				<li>Steel</li>
+			</thingDefs>
+		</fixedIngredientFilter>
+		<products>
+			<Ammo_3006Springfield_HP>500</Ammo_3006Springfield_HP>
+		</products>
+	</RecipeDef>
+	
+</Defs>

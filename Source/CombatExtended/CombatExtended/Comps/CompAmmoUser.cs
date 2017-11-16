@@ -453,7 +453,7 @@ namespace CombatExtended
             curMagCountInt = Props.magazineSize;
         }
 
-        private bool TryFindAmmoInInventory(out Thing ammoThing)
+        public bool TryFindAmmoInInventory(out Thing ammoThing)
         {
             ammoThing = null;
             if (CompInventory == null)

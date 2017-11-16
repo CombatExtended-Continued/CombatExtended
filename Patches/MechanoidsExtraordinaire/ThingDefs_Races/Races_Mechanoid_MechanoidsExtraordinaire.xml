@@ -1,0 +1,304 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+
+	<Operation Class="PatchOperationSequence">
+		<success>Always</success>
+		<operations>
+			<li Class="CombatExtended.PatchOperationFindMod">
+				<modName>Mechanoids Extraordinaire</modName>
+			</li>
+			<!-- ========== Vespa ========== -->
+			<li Class="PatchOperationAddModExtension">
+				<xpath>*/ThingDef[defName="Mechanoid_Vespa"]</xpath>
+				<value>
+					<li Class="CombatExtended.RacePropertiesExtensionCE">
+						<bodyShape>Humanoid</bodyShape>
+					</li>
+				</value>
+			</li>
+			<li Class="PatchOperationAdd">
+				<xpath>*/ThingDef[defName="Mechanoid_Vespa"]/statBases</xpath>
+				<value>
+					<CarryWeight>55</CarryWeight>
+					<CarryBulk>22</CarryBulk>
+					<AimingAccuracy>1.0</AimingAccuracy>
+					<ShootingAccuracy>2.5</ShootingAccuracy>
+					<MeleeDodgeChance>0.25</MeleeDodgeChance>
+					<MeleeCritChance>0.25</MeleeCritChance>
+				</value>
+			</li>
+			<li Class="PatchOperationReplace">
+				<xpath>*/ThingDef[defName="Mechanoid_Vespa"]/statBases/ArmorRating_Blunt</xpath>
+				<value>
+					<ArmorRating_Blunt>0.2</ArmorRating_Blunt>
+				</value>
+			</li>
+			<li Class="PatchOperationReplace">
+				<xpath>*/ThingDef[defName="Mechanoid_Vespa"]/statBases/ArmorRating_Sharp</xpath>
+				<value>
+					<ArmorRating_Sharp>0.25</ArmorRating_Sharp>
+				</value>
+			</li>
+			<li Class="PatchOperationReplace">
+				<xpath>*/ThingDef[defName="Mechanoid_Vespa"]/verbs</xpath>
+				<value>
+					<verbs>
+						<li Class="CombatExtended.VerbPropertiesCE">
+							<verbClass>CombatExtended.Verb_MeleeAttackCE</verbClass>
+							<defaultCooldownTime>1.35</defaultCooldownTime>
+							<meleeDamageBaseAmount>10</meleeDamageBaseAmount>
+							<meleeDamageDef>Blunt</meleeDamageDef>
+							<linkedBodyPartsGroup>LeftHand</linkedBodyPartsGroup>
+							<meleeArmorPenetration>0.13</meleeArmorPenetration>
+						</li>
+						<li Class="CombatExtended.VerbPropertiesCE">
+							<verbClass>CombatExtended.Verb_MeleeAttackCE</verbClass>
+							<defaultCooldownTime>1.35</defaultCooldownTime>
+							<meleeDamageBaseAmount>10</meleeDamageBaseAmount>
+							<meleeDamageDef>Blunt</meleeDamageDef>
+							<linkedBodyPartsGroup>RightHand</linkedBodyPartsGroup>
+							<meleeArmorPenetration>0.13</meleeArmorPenetration>
+						</li>
+					</verbs>
+				</value>
+			</li>
+			<!-- ========== Hound ========== -->
+			<li Class="PatchOperationAddModExtension">
+				<xpath>*/ThingDef[defName="Mechanoid_Hound"]</xpath>
+				<value>
+					<li Class="CombatExtended.RacePropertiesExtensionCE">
+						<bodyShape>Quadruped</bodyShape>
+					</li>
+				</value>
+			</li>
+			<li Class="PatchOperationAdd">
+				<xpath>*/ThingDef[defName="Mechanoid_Hound"]/statBases</xpath>
+				<value>
+					<CarryWeight>350</CarryWeight>
+					<CarryBulk>100</CarryBulk>
+					<AimingAccuracy>0.8</AimingAccuracy>
+					<ShootingAccuracy>0.8</ShootingAccuracy>
+					<MeleeDodgeChance>0.05</MeleeDodgeChance>
+					<MeleeCritChance>0.15</MeleeCritChance>
+				</value>
+			</li>
+			<li Class="PatchOperationReplace">
+				<xpath>*/ThingDef[defName="Mechanoid_Hound"]/statBases/ArmorRating_Blunt</xpath>
+				<value>
+					<ArmorRating_Blunt>0.35</ArmorRating_Blunt>
+				</value>
+			</li>
+			<li Class="PatchOperationReplace">
+				<xpath>*/ThingDef[defName="Mechanoid_Hound"]/statBases/ArmorRating_Sharp</xpath>
+				<value>
+					<ArmorRating_Sharp>0.80</ArmorRating_Sharp>
+				</value>
+			</li>
+			<li Class="PatchOperationReplace">
+				<xpath>*/ThingDef[defName="Mechanoid_Hound"]/verbs</xpath>
+				<value>
+					<verbs>
+						<li Class="CombatExtended.VerbPropertiesCE">
+							<verbClass>CombatExtended.Verb_MeleeAttackCE</verbClass>
+							<defaultCooldownTime>1.65</defaultCooldownTime>
+							<meleeDamageBaseAmount>18</meleeDamageBaseAmount>
+							<meleeDamageDef>Slash</meleeDamageDef>
+							<linkedBodyPartsGroup>FrontLeftPaw</linkedBodyPartsGroup>
+							<meleeArmorPenetration>0.35</meleeArmorPenetration>
+						</li>
+						<li Class="CombatExtended.VerbPropertiesCE">
+							<verbClass>CombatExtended.Verb_MeleeAttackCE</verbClass>
+							<defaultCooldownTime>1.65</defaultCooldownTime>
+							<meleeDamageBaseAmount>18</meleeDamageBaseAmount>
+							<meleeDamageDef>Slash</meleeDamageDef>
+							<meleeArmorPenetration>0.35</meleeArmorPenetration>
+						</li>
+					</verbs>
+				</value>
+			</li>
+			<!-- ========== Chimera ========== -->
+			<li Class="PatchOperationAddModExtension">
+				<xpath>*/ThingDef[defName="Mechanoid_Chimera"]</xpath>
+				<value>
+					<li Class="CombatExtended.RacePropertiesExtensionCE">
+						<bodyShape>Birdlike</bodyShape>
+					</li>
+				</value>
+			</li>
+			<li Class="PatchOperationAdd">
+				<xpath>*/ThingDef[defName="Mechanoid_Chimera"]/statBases</xpath>
+				<value>
+					<CarryWeight>380</CarryWeight>
+					<CarryBulk>120</CarryBulk>
+					<AimingAccuracy>1.0</AimingAccuracy>
+					<ShootingAccuracy>1.5</ShootingAccuracy>
+					<MeleeDodgeChance>0.10</MeleeDodgeChance>
+					<MeleeCritChance>0.15</MeleeCritChance>
+				</value>
+			</li>
+			<li Class="PatchOperationReplace">
+				<xpath>*/ThingDef[defName="Mechanoid_Chimera"]/statBases/ArmorRating_Blunt</xpath>
+				<value>
+					<ArmorRating_Blunt>0.30</ArmorRating_Blunt>
+				</value>
+			</li>
+			<li Class="PatchOperationReplace">
+				<xpath>*/ThingDef[defName="Mechanoid_Chimera"]/statBases/ArmorRating_Sharp</xpath>
+				<value>
+					<ArmorRating_Sharp>0.55</ArmorRating_Sharp>
+				</value>
+			</li>
+			<li Class="PatchOperationReplace">
+				<xpath>*/ThingDef[defName="Mechanoid_Chimera"]/verbs</xpath>
+				<value>
+					<verbs>
+						<li Class="CombatExtended.VerbPropertiesCE">
+							<verbClass>CombatExtended.Verb_MeleeAttackCE</verbClass>
+							<defaultCooldownTime>1.7</defaultCooldownTime>
+							<meleeDamageBaseAmount>22</meleeDamageBaseAmount>
+							<meleeDamageDef>Slash</meleeDamageDef>
+							<linkedBodyPartsGroup>TailBlade</linkedBodyPartsGroup>
+							<meleeArmorPenetration>0.40</meleeArmorPenetration>
+						</li>
+						<li Class="CombatExtended.VerbPropertiesCE">
+							<verbClass>CombatExtended.Verb_MeleeAttackCE</verbClass>
+							<defaultCooldownTime>1.45</defaultCooldownTime>
+							<meleeDamageBaseAmount>10</meleeDamageBaseAmount>
+							<meleeDamageDef>Slash</meleeDamageDef>
+							<commonality>0.01</commonality>
+							<linkedBodyPartsGroup>HeadAttackTool</linkedBodyPartsGroup>
+							<meleeArmorPenetration>0.13</meleeArmorPenetration>
+						</li>
+					</verbs>
+				</value>
+			</li>
+			<!-- ========== Goliath ========== -->
+			<li Class="PatchOperationAddModExtension">
+				<xpath>*/ThingDef[defName="Mechanoid_Goliath"]</xpath>
+				<value>
+					<li Class="CombatExtended.RacePropertiesExtensionCE">
+						<bodyShape>Quadruped</bodyShape>
+					</li>
+				</value>
+			</li>
+			<li Class="PatchOperationAdd">
+				<xpath>*/ThingDef[defName="Mechanoid_Goliath"]/statBases</xpath>
+				<value>
+					<CarryWeight>550</CarryWeight>
+					<CarryBulk>140</CarryBulk>
+					<AimingAccuracy>0.5</AimingAccuracy>
+					<ShootingAccuracy>0.5</ShootingAccuracy>
+					<MeleeDodgeChance>0.15</MeleeDodgeChance>
+					<MeleeCritChance>0.50</MeleeCritChance>
+				</value>
+			</li>
+			<li Class="PatchOperationReplace">
+				<xpath>*/ThingDef[defName="Mechanoid_Goliath"]/statBases/ArmorRating_Blunt</xpath>
+				<value>
+					<ArmorRating_Blunt>0.65</ArmorRating_Blunt>
+				</value>
+			</li>
+			<li Class="PatchOperationReplace">
+				<xpath>*/ThingDef[defName="Mechanoid_Goliath"]/statBases/ArmorRating_Sharp</xpath>
+				<value>
+					<ArmorRating_Sharp>1.05</ArmorRating_Sharp>
+				</value>
+			</li>
+			<li Class="PatchOperationReplace">
+				<xpath>*/ThingDef[defName="Mechanoid_Goliath"]/verbs</xpath>
+				<value>
+					<verbs>
+						<li Class="CombatExtended.VerbPropertiesCE">
+							<verbClass>CombatExtended.Verb_MeleeAttackCE</verbClass>
+							<defaultCooldownTime>1.65</defaultCooldownTime>
+							<meleeDamageBaseAmount>17</meleeDamageBaseAmount>
+							<meleeDamageDef>Blunt</meleeDamageDef>
+							<linkedBodyPartsGroup>LeftHand</linkedBodyPartsGroup>
+							<meleeArmorPenetration>0.25</meleeArmorPenetration>
+						</li>
+						<li Class="CombatExtended.VerbPropertiesCE">
+							<verbClass>CombatExtended.Verb_MeleeAttackCE</verbClass>
+							<defaultCooldownTime>1.65</defaultCooldownTime>
+							<meleeDamageBaseAmount>17</meleeDamageBaseAmount>
+							<meleeDamageDef>Blunt</meleeDamageDef>
+							<linkedBodyPartsGroup>RightHand</linkedBodyPartsGroup>
+							<meleeArmorPenetration>0.25</meleeArmorPenetration>
+						</li>
+					</verbs>
+				</value>
+			</li>
+			<!-- ========== Kraken ========== -->
+			<li Class="PatchOperationAddModExtension">
+				<xpath>*/ThingDef[defName="Mechanoid_Kraken"]</xpath>
+				<value>
+					<li Class="CombatExtended.RacePropertiesExtensionCE">
+						<bodyShape>QuadrupedLow</bodyShape>
+					</li>
+				</value>
+			</li>
+			<li Class="PatchOperationAdd">
+				<xpath>*/ThingDef[defName="Mechanoid_Kraken"]/statBases</xpath>
+				<value>
+					<CarryWeight>750</CarryWeight>
+					<CarryBulk>200</CarryBulk>
+					<AimingAccuracy>1.5</AimingAccuracy>
+					<ShootingAccuracy>2.5</ShootingAccuracy>
+					<MeleeDodgeChance>0.15</MeleeDodgeChance>
+					<MeleeCritChance>0.40</MeleeCritChance>
+				</value>
+			</li>
+			<li Class="PatchOperationReplace">
+				<xpath>*/ThingDef[defName="Mechanoid_Kraken"]/statBases/ArmorRating_Blunt</xpath>
+				<value>
+					<ArmorRating_Blunt>0.20</ArmorRating_Blunt>
+				</value>
+			</li>
+			<li Class="PatchOperationReplace">
+				<xpath>*/ThingDef[defName="Mechanoid_Kraken"]/statBases/ArmorRating_Sharp</xpath>
+				<value>
+					<ArmorRating_Sharp>1.10</ArmorRating_Sharp>
+				</value>
+			</li>
+			<li Class="PatchOperationReplace">
+				<xpath>*/ThingDef[defName="Mechanoid_Kraken"]/verbs</xpath>
+				<value>
+					<verbs>
+						<li Class="CombatExtended.VerbPropertiesCE">
+							<verbClass>CombatExtended.Verb_MeleeAttackCE</verbClass>
+							<defaultCooldownTime>1.1</defaultCooldownTime>
+							<meleeDamageBaseAmount>15</meleeDamageBaseAmount>
+							<meleeDamageDef>Blunt</meleeDamageDef>
+							<linkedBodyPartsGroup>UpperLeftMechaTentacle</linkedBodyPartsGroup>
+							<meleeArmorPenetration>0.20</meleeArmorPenetration>
+						</li>
+						<li Class="CombatExtended.VerbPropertiesCE">
+							<verbClass>CombatExtended.Verb_MeleeAttackCE</verbClass>
+							<defaultCooldownTime>1.1</defaultCooldownTime>
+							<meleeDamageBaseAmount>15</meleeDamageBaseAmount>
+							<meleeDamageDef>Blunt</meleeDamageDef>
+							<linkedBodyPartsGroup>UpperRightMechaTentacle</linkedBodyPartsGroup>
+							<meleeArmorPenetration>0.20</meleeArmorPenetration>
+						</li>
+						<li Class="CombatExtended.VerbPropertiesCE">
+							<verbClass>CombatExtended.Verb_MeleeAttackCE</verbClass>
+							<defaultCooldownTime>1.1</defaultCooldownTime>
+							<meleeDamageBaseAmount>15</meleeDamageBaseAmount>
+							<meleeDamageDef>Blunt</meleeDamageDef>
+							<linkedBodyPartsGroup>LowerLeftMechaTentacle</linkedBodyPartsGroup>
+							<meleeArmorPenetration>0.20</meleeArmorPenetration>
+						</li>
+						<li Class="CombatExtended.VerbPropertiesCE">
+							<verbClass>CombatExtended.Verb_MeleeAttackCE</verbClass>
+							<defaultCooldownTime>1.1</defaultCooldownTime>
+							<meleeDamageBaseAmount>15</meleeDamageBaseAmount>
+							<meleeDamageDef>Blunt</meleeDamageDef>
+							<linkedBodyPartsGroup>LowerRightMechaTentacle</linkedBodyPartsGroup>
+							<meleeArmorPenetration>0.20</meleeArmorPenetration>
+						</li>
+					</verbs>
+				</value>
+			</li>
+		</operations>
+	</Operation>
+
+</Patch>
