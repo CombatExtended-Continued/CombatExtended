@@ -41,6 +41,7 @@ namespace CombatExtended
 			RenderTexture.active = rt;
 			
 			Graphics.Blit(texture, rt);
+			
 			Texture2D blit = new Texture2D((int)blitRect.width, (int)blitRect.height);
 			blit.ReadPixels(blitRect, 0, 0);
 			blit.Apply();
@@ -296,7 +297,7 @@ namespace CombatExtended
             var pawn = thing as Pawn;
             if (pawn != null)
             {
-            	return GetCollisionBodyFactors(pawn).First;
+            	return GetCollisionBodyFactors(pawn).x;
             }
             
             return 1f;    //Buildings, etc. fill out a full square
@@ -307,33 +308,17 @@ namespace CombatExtended
         /// </summary>
         /// <param name="pawn">Which pawn to measure for</param>
         /// <returns>Width factor as First, height factor as second</returns>
-        public static Pair<float, float> GetCollisionBodyFactors(Pawn pawn)
+        public static Vector2 GetCollisionBodyFactors(Pawn pawn)
         {
             if (pawn == null)
             {
                 Log.Error("CE calling GetCollisionBodyHeightFactor with nullPawn");
-                return new Pair<float,float>(1, 1);
+                return new Vector2(1, 1);
             }
             
-            float w = 1;
-            float h = 1;
-            bool isHumanLike = pawn.RaceProps.Humanlike;
+        	var factors = BoundsInjector.ForPawn(pawn);
             
-            /*				std			!std
-             * Humanlike	props		props
-             * !Humnlike	p, return	p, props
-             */
-            
-            if (!isHumanLike)
-            {
-            	var pair = BoundsInjector.ForPawn(pawn);
-            	w = pair.First;
-            	h = pair.Second;
-            }
-            
-            bool isLaying = pawn.GetPosture() != PawnPosture.Standing;
-            
-            if (isLaying || isHumanLike)
+            if (pawn.GetPosture() != PawnPosture.Standing)
             {
 	            RacePropertiesExtensionCE props = pawn.def.GetModExtension<RacePropertiesExtensionCE>() ?? new RacePropertiesExtensionCE();
 	            
@@ -344,20 +329,11 @@ namespace CombatExtended
 	            	Log.ErrorOnce("CE returning BodyType Undefined for pawn " + pawn.ToString(),  35000198 + pawn.GetHashCode());
 	            }
 	            
-	            if (isHumanLike)
-	            {
-	            	w = pawn.BodySize * shape.width;
-	            	h = pawn.BodySize * shape.height;
-	            }
-	            
-	            if (isLaying)
-	            {
-		            w *= shape.widthLaying/shape.width;
-		            h *= shape.heightLaying/shape.height;
-	            }
+	            factors.x *= shape.widthLaying/shape.width;
+	            factors.y *= shape.heightLaying/shape.height;
             }
             
-            return new Pair<float, float>(w, h);
+            return factors;
         }
 		
         /// <summary>

@@ -43,7 +43,7 @@ namespace CombatExtended
             if (plant != null)
             {
             		//Height matches up exactly with visual size
-            	heightRange = new FloatRange(0f, BoundsInjector.ForPlant(plant).Second);
+            	heightRange = new FloatRange(0f, BoundsInjector.ForPlant(plant).y);
                 return;
             }
             
@@ -65,12 +65,8 @@ namespace CombatExtended
             var pawn = thing as Pawn;
             if (pawn != null)
             {
-            	collisionHeight = CE_Utility.GetCollisionBodyFactors(pawn).Second;
-            	if (pawn.RaceProps.Humanlike)
-            	{
-            		collisionHeight *= pawn.BodySize;
-            	}
-                
+            	collisionHeight = CE_Utility.GetCollisionBodyFactors(pawn).y;
+            	
                 shotHeightOffset = collisionHeight * (1 - BodyRegionMiddleHeight);
 				
                 // Humanlikes in combat crouch to reduce their profile

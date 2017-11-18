@@ -13,163 +13,203 @@ namespace CombatExtended
 {
 	public static class BoundsInjector
 	{
-		private static FieldInfo sowingPlantMatInfo = typeof(Plant).GetField("GraphicSowing", BindingFlags.NonPublic | BindingFlags.Static);
-		
-    	public class TextureBoundFactor
+		public enum GraphicType
+		{
+			Pawn,
+			Plant
+		}
+    	
+    	private static Dictionary<string, Vector2> boundMap = new Dictionary<string, Vector2>();
+    	
+    	public static Vector2 BoundMap(Graphic graphic, GraphicType type, Graphic headGraphic, Vector2 headOffset)
     	{
-    		enum GraphicType
+    		string path = graphic.path + (headGraphic == null ? "" : "+"+headGraphic.path);
+    		if (!boundMap.ContainsKey(path))
     		{
-    			Male,
-    			Female,
-    			Dessicated,
-    			Plant,
-    			LeaflessPlant,
-    			ImmaturePlant
+    			boundMap[path] = ExtractBounds(graphic, type, headGraphic, headOffset);
     		}
-    		
-    		public Dictionary<string, Pair<float, float>> dict = new Dictionary<string, Pair<float, float>>();
-    		
-    		public TextureBoundFactor(PawnKindDef pawnKindDef)
-    		{
-    			int i = 0;
-    			foreach (PawnKindLifeStage lifeStage in pawnKindDef.lifeStages)
-    			{
-	    			if (lifeStage.bodyGraphicData != null)
-	    				ExtractBounds(lifeStage.bodyGraphicData.Graphic, GraphicType.Male, i);
-	    			
-	    			if (lifeStage.femaleGraphicData != null)
-	    				ExtractBounds(lifeStage.femaleGraphicData.Graphic, GraphicType.Female, i);
-	    			
-	    			if (lifeStage.dessicatedBodyGraphicData != null)
-	    				ExtractBounds(lifeStage.dessicatedBodyGraphicData.Graphic, GraphicType.Dessicated, i);
-    				i++;
-    			}
-    		}
-    		
-    			//Used for the sowing plant graphic
-    		public TextureBoundFactor(Graphic graphic)
-    		{
-    			if (graphic != null)
-    				ExtractBounds(graphic, GraphicType.Plant);
-    		}
-    		
-    		public TextureBoundFactor(ThingDef plantDef)
-    		{
-    			if (plantDef.graphicData.Graphic != null)
-	    			ExtractBounds(plantDef.graphicData.Graphic, GraphicType.Plant);
-    			
-    			if (plantDef.plant.leaflessGraphic != null)
-	    			ExtractBounds(plantDef.plant.leaflessGraphic, GraphicType.LeaflessPlant);
-    			
-    			if (plantDef.plant.immatureGraphic != null)
-	    			ExtractBounds(plantDef.plant.immatureGraphic, GraphicType.ImmaturePlant);
-    		}
-    		
-    		public Pair<float, float> PawnFor(Pawn pawn)
-    		{
-    			int i = pawn.ageTracker.CurLifeStageIndex;
-    			if (pawn.IsDessicated() && pawn.kindDef.lifeStages[i].dessicatedBodyGraphicData != null)
-    			{
-    				return dict[GraphicType.Dessicated.ToString() + "." + i];
-    			}
-    			if (pawn.gender == Gender.Female && pawn.kindDef.lifeStages[i].femaleGraphicData != null)
-    			{
-    				return dict[GraphicType.Female.ToString() + "." + i];
-    			}
-    			return dict[GraphicType.Male.ToString() + "." + i];
-    		}
-    		
-    		public Pair<float, float> PlantFor(Plant plant)
-    		{
-    			Pair<float, float> pair;
-    			if (plant.LifeStage == PlantLifeStage.Sowing)
-    			{
-    				return new Pair<float, float>
-    					(0f, plant.def.plant.visualSizeRange.min
-    					 * boundMap[ThingDefOf.Fire.defName].dict[GraphicType.Plant.ToString()].Second);
-    			}
-    			
-    			if (plant.LeaflessNow && plant.def.plant.leaflessGraphic != null)
-    			{
-    				pair = dict[GraphicType.LeaflessPlant.ToString()];
-    			}
-    			else if (!plant.HarvestableNow && plant.def.plant.immatureGraphic != null)
-    			{
-    				pair = dict[GraphicType.ImmaturePlant.ToString()];
-    			}
-    			else
-    			{
-    				pair = dict[GraphicType.Plant.ToString()];
-    			}
-    			
-    			float size = plant.def.plant.visualSizeRange.LerpThroughRange(plant.Growth);
-    			
-				return new Pair<float, float>(pair.First * size, pair.Second * size);
-    		}
-    		
-    		private void ExtractBounds(Graphic graphic, GraphicType type, int lifeStageIndex = 0)
-    		{
-    			int vW; int vH;
-    			var vertTex = graphic.MatSide.mainTexture as Texture2D;
-    			var vertBounds = Def_Extensions.CropVertical(vertTex.GetColorSafe(out vW, out vH), vW, vH);
-    			
-					//Plants only care for verts
-					//This is assuming PLANTS TAKE UP A FULL TILE!!
-					// TODO : Refactor
-    			if (type == GraphicType.Plant || type == GraphicType.LeaflessPlant || type == GraphicType.ImmaturePlant)
-    			{
-    				dict.Add(type.ToString(),
-    			         new Pair<float, float>(1f, (float)(vertBounds.max - vertBounds.min) / (float)vH));
-    				return;
-    			}
-    			
-    			int hW; int hH;
-    			var horzTex = graphic.MatFront.mainTexture as Texture2D;
-    			var horzBounds = Def_Extensions.CropHorizontal(horzTex.GetColorSafe(out hW, out hH), hW, hH);
-    			
-    				//drawSize is added (and not Lerped!) because it is constant with lifeStageIndex (A17)
-    			dict.Add(type.ToString() + "." + lifeStageIndex,
-    			         new Pair<float, float>(
-    				         	graphic.drawSize.x * (float)(horzBounds.max - horzBounds.min) / (float)hW,
-    				         	graphic.drawSize.y * (float)(vertBounds.max - vertBounds.min) / (float)vH));
-    		}
+    		return boundMap[path];
     	}
     	
-    	private static Dictionary<string, TextureBoundFactor> boundMap = new Dictionary<string, TextureBoundFactor>();
+    	public static Vector2 BoundMap(Graphic graphic, GraphicType type)
+    	{
+    		if (!boundMap.ContainsKey(graphic.path))
+    		{
+    			boundMap[graphic.path] = ExtractBounds(graphic, type);
+    		}
+    		return boundMap[graphic.path];
+    	}
+    	
+    	private static Vector2 ExtractBounds(Graphic graphic, GraphicType type, Graphic headGraphic, Vector2 headOffset)
+    	{
+			int vWidth; int vHeight;
+			
+			var vBounds = Def_Extensions.CropVertical((graphic.MatSide.mainTexture as Texture2D).GetColorSafe(out vWidth, out vHeight), vWidth, vHeight);
+			
+			int hWidth; int hHeight;
+			
+			var hBounds = Def_Extensions.CropHorizontal((graphic.MatFront.mainTexture as Texture2D).GetColorSafe(out hWidth, out hHeight), hWidth, hHeight);
+			
+			int vWidthHead; int vHeightHead;
+			
+			var vTexHead = headGraphic.MatSide.mainTexture as Texture2D;
+			var vBoundsHead = Def_Extensions.CropVertical(vTexHead.GetColorSafe(out vWidthHead, out vHeightHead), vWidthHead, vHeightHead);
+			
+			vBoundsHead.min += (int)(headOffset.y * (float)vHeightHead);
+			vBoundsHead.max += (int)(headOffset.y * (float)vHeightHead);
+			
+			vBounds.max = Math.Max(vBounds.max, (int)((float)vBoundsHead.max * (float)vHeight / (float)vHeightHead));
+			vBounds.min = Math.Min(vBounds.min, (int)((float)vBoundsHead.min * (float)vHeight / (float)vHeightHead));
+			
+			int hWidthHead; int hHeightHead;
+			
+			var hTexHead = headGraphic.MatFront.mainTexture as Texture2D;
+			var hBoundsHead = Def_Extensions.CropVertical(hTexHead.GetColorSafe(out hWidthHead, out hHeightHead), hWidthHead, hHeightHead);
+			
+			hBoundsHead.min += (int)(headOffset.x * (float)hWidthHead);
+			hBoundsHead.max += (int)(headOffset.x * (float)hWidthHead);
+			
+			hBounds.max = Math.Max(hBounds.max, (int)((float)hBoundsHead.max * (float)hWidth / (float)hWidthHead));
+			hBounds.min = Math.Min(hBounds.min, (int)((float)hBoundsHead.min * (float)hWidth / (float)hWidthHead));
+			
+			return new Vector2(
+					(float)(hBounds.max - hBounds.min) / (float)hWidth,
+					(float)(vBounds.max - vBounds.min) / (float)vHeight);
+    	}
+    	
+    	private static Vector2 ExtractBounds(Graphic graphic, GraphicType type)
+    	{
+			int vWidth; int vHeight;
+			
+			var vBounds = Def_Extensions.CropVertical((graphic.MatSide.mainTexture as Texture2D).GetColorSafe(out vWidth, out vHeight), vWidth, vHeight);
+			
+				//Plants only care for verts
+				//This is assuming PLANTS TAKE UP A FULL TILE!!
+				// TODO : Refactor
+			if (type == GraphicType.Plant)
+			{
+				return new Vector2(
+					1f,
+					(float)(vBounds.max - vBounds.min) / (float)vHeight);
+			}
+			
+			int hWidth; int hHeight;
+			
+			var hBounds = Def_Extensions.CropHorizontal((graphic.MatFront.mainTexture as Texture2D).GetColorSafe(out hWidth, out hHeight), hWidth, hHeight);
+			
+			return new Vector2(
+					(float)(hBounds.max - hBounds.min) / (float)hWidth,
+					(float)(vBounds.max - vBounds.min) / (float)vHeight);
+    	}
     	
     	public static void Inject()
     	{
-    		foreach (PawnKindDef kindDef in DefDatabase<PawnKindDef>.AllDefs.Where(x => !x.race.race.Humanlike))
+    		IEnumerable<Graphic> allPawnGraphics = DefDatabase<PawnKindDef>.AllDefs
+    			.Where(x => !x.RaceProps.Humanlike)
+    			.SelectMany<PawnKindDef, Graphic>(
+    				x => x.lifeStages.SelectMany<PawnKindLifeStage, Graphic>(
+    					y => {
+			            	var a = new List<Graphic>();
+			            	
+			    			if (y.bodyGraphicData != null)
+			    				a.Add(y.bodyGraphicData.Graphic);
+			    			
+			    			if (y.femaleGraphicData != null)
+			    				a.Add(y.femaleGraphicData.Graphic);
+			    			
+			    			if (y.dessicatedBodyGraphicData != null)
+			    				a.Add(y.dessicatedBodyGraphicData.Graphic);
+			    			
+			            	return a;
+	    				 }))
+    			.Distinct();
+    		
+    		foreach (Graphic graphic in allPawnGraphics)
     		{
-    			boundMap[kindDef.defName] = new TextureBoundFactor(kindDef);
-    			//Log.Message(kindDef.ToString() + ", " + kindDef.race.race.baseBodySize +", " + String.Join(", ", boundMap[kindDef.defName].dict.Select(x => x.Key+"="+x.Value.First+","+x.Key+"="+x.Value.Second).ToArray()));
+    			boundMap[graphic.path] = ExtractBounds(graphic, GraphicType.Pawn);
     		}
     		
-    		//Fire is dummy name for a sowing plant's texture
-    		boundMap[ThingDefOf.Fire.defName] = new TextureBoundFactor((Graphic)(sowingPlantMatInfo.GetValue(null)));
-    		//Log.Message("Sowing Plant, " + String.Join(", ", boundMap[ThingDefOf.Fire.defName].dict.Select(x => x.Key+"="+x.Value.First+","+x.Key+"="+x.Value.Second).ToArray()));
+    		IEnumerable<Graphic> allPlantGraphics = DefDatabase<ThingDef>.AllDefs
+    			.Where<ThingDef>(x => x.plant != null)
+    			.SelectMany<ThingDef, Graphic>(y => {
+    			            	var a = new List<Graphic>();
+				    			if (y.graphicData.Graphic != null)
+				    				a.Add(y.graphicData.Graphic);
+				    			if (y.plant.leaflessGraphic != null)
+				    				a.Add(y.plant.leaflessGraphic);
+				    			if (y.plant.immatureGraphic != null)
+				    				a.Add(y.plant.immatureGraphic);
+    			            	return a;
+    			            })
+    			.Distinct()
+    			.Concat(new []{
+    			        	(Graphic)(typeof(Plant).GetField("GraphicSowing", BindingFlags.NonPublic | BindingFlags.Static).GetValue(null))
+    			        });
     		
-    		
-    		foreach (ThingDef plantDef in DefDatabase<ThingDef>.AllDefs.Where(x => x.plant != null))
+    		foreach (Graphic graphic in allPlantGraphics)
     		{
-    			boundMap[plantDef.defName] = new TextureBoundFactor(plantDef);
-    			//Log.Message(plantDef.ToString() + ", " + plantDef.fillPercent + ", " +plantDef.plant.visualSizeRange.ToString() +", " + String.Join(", ", boundMap[plantDef.defName].dict.Select(x => x.Key+"="+x.Value.First+","+x.Key+"="+x.Value.Second).ToArray()));
+    			boundMap[graphic.path] = ExtractBounds(graphic, GraphicType.Plant);
     		}
     		
-    		Log.Message("Combat Extended :: Bounds injected");
+    		Log.Message("Combat Extended :: Bounds pre-generated");
     	}
     	
-    	public static Pair<float, float> ForPawn(Pawn pawn)
+    	public static Vector2 ForPawn(Pawn pawn)
     	{
-    		return boundMap[pawn.kindDef.defName].PawnFor(pawn);
+			if (pawn.RaceProps.Humanlike)
+			{
+				PawnRenderer renderer = pawn.Drawer.renderer;
+				PawnGraphicSet graphicSet = renderer.graphics;
+				
+				if (!graphicSet.AllResolved)
+					graphicSet.ResolveAllGraphics();
+				
+				if (pawn.IsDessicated() && graphicSet.dessicatedGraphic != null)
+				{
+					return BoundMap(
+						graphicSet.dessicatedGraphic,
+						GraphicType.Pawn,
+						graphicSet.desiccatedHeadGraphic,
+						new Vector2(renderer.BaseHeadOffsetAt(Rot4.South).x,
+						            renderer.BaseHeadOffsetAt(Rot4.East).z));
+				}
+				
+				return BoundMap(
+					graphicSet.nakedGraphic,
+					GraphicType.Pawn,
+					graphicSet.headGraphic,
+					new Vector2(renderer.BaseHeadOffsetAt(Rot4.South).x,
+					            renderer.BaseHeadOffsetAt(Rot4.East).z));
+			}
+			else
+			{
+	    		PawnKindLifeStage lifeStage = pawn.ageTracker.CurKindLifeStage;
+	    		
+	    		GraphicData graphicData;
+	    		
+	    		if (pawn.IsDessicated() && lifeStage.dessicatedBodyGraphicData != null)
+	    		{
+	    			graphicData = lifeStage.dessicatedBodyGraphicData;
+	    		}
+	    		else if (pawn.gender == Gender.Female && lifeStage.femaleGraphicData != null)
+	    		{
+	    			graphicData = lifeStage.femaleGraphicData;
+	    		}
+	    		else
+	    		{
+	    			graphicData = lifeStage.bodyGraphicData;
+	    		}
+	    		
+	    		return Vector2.Scale(BoundMap(graphicData.Graphic, GraphicType.Pawn), graphicData.drawSize);
+			}
     	}
     	
-    	public static Pair<float, float> ForPlant(Plant plant)
+    	public static Vector2 ForPlant(Plant plant)
     	{
-    		return boundMap[plant.def.defName].PlantFor(plant);
+    		return plant.def.plant.visualSizeRange.LerpThroughRange(plant.Growth) * BoundMap(plant.Graphic, GraphicType.Plant);
     	}
     	
-    	public static void LogDatabase()
+    	/*public static void LogDatabase()
     	{
     		var str = new StringBuilder();
     		
@@ -192,6 +232,6 @@ namespace CombatExtended
     		}
     		
     		Log.Message(str.ToString());
-    	}
+    	}*/
 	}
 }
