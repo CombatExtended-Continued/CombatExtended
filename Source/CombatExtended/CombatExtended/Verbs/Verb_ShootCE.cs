@@ -211,10 +211,11 @@ namespace CombatExtended
             }
             if (base.TryCastShot())
             {
-		if (ShooterPawn != null)
-		{
-			ShooterPawn.records.Increment(RecordDefOf.ShotsFired);
-		}
+				//Required since Verb_Shoot does this but Verb_LaunchProjectileCE doesn't when calling base.TryCastShot() because Shoot isn't its base
+				if (ShooterPawn != null)
+				{
+					ShooterPawn.records.Increment(RecordDefOf.ShotsFired);
+				}
                 //Drop casings
                 if (VerbPropsCE.ejectsCasings && projectilePropsCE.dropsCasings)
                 {

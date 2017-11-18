@@ -220,7 +220,7 @@ namespace CombatExtended
                 if (target.Thing != null)
                 {
                     stringBuilder.AppendLine("   " + "CE_TargetHeight".Translate() + "\t" + GenText.ToStringByStyle(new CollisionVertical(target.Thing).HeightRange.Span, ToStringStyle.FloatTwo) + " c");
-                    stringBuilder.AppendLine("   " + "CE_TargetWidth".Translate() + "\t" + GenText.ToStringByStyle(CE_Utility.GetCollisionWidth(target.Thing) * 2, ToStringStyle.FloatTwo) + " c");
+                    stringBuilder.AppendLine("   " + "CE_TargetWidth".Translate() + "\t" + GenText.ToStringByStyle(CE_Utility.GetCollisionWidth(target.Thing), ToStringStyle.FloatTwo) + " c");
                     var pawn = target.Thing as Pawn;
                     if (pawn != null && pawn.IsCrouching())
                     {
