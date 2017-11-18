@@ -29,7 +29,7 @@ namespace CombatExtended
             this.FailOnNotDowned(TargetIndex.A);
             this.AddEndCondition(delegate 
             {
-                if (Patient.health.hediffSet.GetHediffsTendable().Any(h => h.CanBeStabilizied())) return JobCondition.Ongoing;
+                if (Patient.health.hediffSet.GetHediffsTendable().Any(h => h.CanBeStabilized())) return JobCondition.Ongoing;
                 Medicine.Destroy();
                 return JobCondition.Incompletable;
             });
@@ -51,7 +51,7 @@ namespace CombatExtended
                 pawn.skills.Learn(SkillDefOf.Medicine, xp);
                 foreach(Hediff curInjury in from x in Patient.health.hediffSet.GetHediffsTendable() orderby x.BleedRate descending select x)
                 {
-                    if (curInjury.CanBeStabilizied())
+                    if (curInjury.CanBeStabilized())
                     {
                         HediffComp_Stabilize comp = curInjury.TryGetComp<HediffComp_Stabilize>();
                         comp.Stabilize(pawn, Medicine);

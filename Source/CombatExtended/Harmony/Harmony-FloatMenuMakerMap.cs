@@ -75,7 +75,7 @@ namespace CombatExtended.Harmony
                     if (patient.Downed
                         //&& pawn.CanReserveAndReach(patient, PathEndMode.InteractionCell, Danger.Deadly)
                         && pawn.CanReach(patient, PathEndMode.InteractionCell, Danger.Deadly)
-                        && patient.health.hediffSet.GetHediffsTendable().Any(h => h.CanBeStabilizied()))
+                        && patient.health.hediffSet.GetHediffsTendable().Any(h => h.CanBeStabilized()))
                     {
                         if (pawn.story.WorkTypeIsDisabled(WorkTypeDefOf.Doctor))
                         {

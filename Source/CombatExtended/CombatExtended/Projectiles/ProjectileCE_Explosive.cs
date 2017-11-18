@@ -39,37 +39,33 @@ namespace CombatExtended
         protected virtual void Explode()
         {
             Map map = base.Map;
-            Destroy(DestroyMode.Vanish);
-
-            GenExplosion.DoExplosion(Position, 
-                map,
-                def.projectile.explosionRadius,
-                def.projectile.damageDef, 
-                launcher,
-                def.projectile.damageAmountBase,
-                def.projectile.soundExplode, 
-                equipmentDef, 
-                def,
-                def.projectile.postExplosionSpawnThingDef,
-                def.projectile.postExplosionSpawnChance,
-                def.projectile.postExplosionSpawnThingCount, 
-                def.projectile.applyDamageToExplosionCellsNeighbors,
-                def.projectile.preExplosionSpawnThingDef, 
-                def.projectile.preExplosionSpawnChance, 
-                def.projectile.preExplosionSpawnThingCount, 
-                def.projectile.explosionChanceToStartFire, 
-                def.projectile.explosionDealMoreDamageAtCenter);
-
-            if (map != null && Position.IsValid)
+            //this.Destroy(DestroyMode.Vanish);
+            ProjectilePropertiesCE propsCE = def.projectile as ProjectilePropertiesCE;
+			GenExplosion.DoExplosion(ExactPosition.ToIntVec3(),
+				map,
+				this.def.projectile.explosionRadius,
+				this.def.projectile.damageDef,
+				this.launcher,
+				this.def.projectile.soundExplode,
+				this.def,
+				this.equipmentDef,
+				this.def.projectile.postExplosionSpawnThingDef,
+				this.def.projectile.explosionSpawnChance,
+				1,
+				propsCE != null && propsCE.damageAdjacentTiles,
+				this.def.projectile.preExplosionSpawnThingDef,
+				this.def.projectile.explosionSpawnChance,
+				1);
+			
+		//This code was disabled because it didn't run under previous circumstances. Could be enabled if necessary
+            /*
+            if (map != null && base.ExactPosition.ToIntVec3().IsValid)
             {
-                ThrowBigExplode(Position.ToVector3Shifted() + Gen.RandomHorizontalVector(def.projectile.explosionRadius * 0.5f), Map, def.projectile.explosionRadius * 0.4f);
+                ThrowBigExplode(base.ExactPosition + Gen.RandomHorizontalVector(def.projectile.explosionRadius * 0.5f), base.Map, def.projectile.explosionRadius * 0.4f);
             }
-
-            CompExplosiveCE comp = this.TryGetComp<CompExplosiveCE>();
-            if (comp != null && Position.IsValid)
-            {
-                comp.Explode(launcher, Position, Find.VisibleMap);
-            }
+            */
+            
+            base.Impact(null); // base.Impact() handles this.Destroy() and comp.Explode()
         }
 
         public static void ThrowBigExplode(Vector3 loc, Map map, float size)

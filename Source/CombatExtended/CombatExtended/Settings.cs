@@ -27,12 +27,16 @@ namespace CombatExtended
         private bool autoReloadOnChangeAmmo = true;
         private bool autoTakeAmmo = true;
         private bool showCaliberOnGuns = true;
+        private bool reuseNeolithicProjectiles = true;
+        private bool realisticCookOff = false;
 
         public bool EnableAmmoSystem => enableAmmoSystem;
         public bool RightClickAmmoSelect => rightClickAmmoSelect;
         public bool AutoReloadOnChangeAmmo => autoReloadOnChangeAmmo;
         public bool AutoTakeAmmo => autoTakeAmmo;
         public bool ShowCaliberOnGuns => showCaliberOnGuns;
+        public bool ReuseNeolithicProjectiles => reuseNeolithicProjectiles;
+        public bool RealisticCookOff => realisticCookOff;
 
         // Debug settings - make sure all of these default to false for the release build
         private bool debugDrawPartialLoSChecks = false;
@@ -75,6 +79,8 @@ namespace CombatExtended
             Scribe_Values.Look(ref autoReloadOnChangeAmmo, "autoReloadOnChangeAmmo", true);
             Scribe_Values.Look(ref autoTakeAmmo, "autoTakeAmmo", true);
             Scribe_Values.Look(ref showCaliberOnGuns, "showCaliberOnGuns", true);
+            Scribe_Values.Look(ref reuseNeolithicProjectiles, "reuseNeolithicProjectiles", true);
+            Scribe_Values.Look(ref realisticCookOff, "realisticCookOff", false);
 
             lastAmmoSystemStatus = enableAmmoSystem;    // Store this now so we can monitor for changes
         }
@@ -126,6 +132,8 @@ namespace CombatExtended
                 list.CheckboxLabeled("CE_Settings_AutoReloadOnChangeAmmo_Title".Translate(), ref autoReloadOnChangeAmmo, "CE_Settings_AutoReloadOnChangeAmmo_Desc".Translate());
                 list.CheckboxLabeled("CE_Settings_AutoTakeAmmo_Title".Translate(), ref autoTakeAmmo, "CE_Settings_AutoTakeAmmo_Desc".Translate());
                 list.CheckboxLabeled("CE_Settings_ShowCaliberOnGuns_Title".Translate(), ref showCaliberOnGuns, "CE_Settings_ShowCaliberOnGuns_Desc".Translate());
+                list.CheckboxLabeled("CE_Settings_ReuseNeolithicProjectiles_Title".Translate(), ref reuseNeolithicProjectiles, "CE_Settings_ReuseNeolithicProjectiles_Desc".Translate());
+                list.CheckboxLabeled("CE_Settings_RealisticCookOff_Title".Translate(), ref realisticCookOff, "CE_Settings_RealisticCookOff_Desc".Translate());
             }
             else
             {
@@ -134,6 +142,8 @@ namespace CombatExtended
                 list.Label("CE_Settings_AutoReloadOnChangeAmmo_Title".Translate());
                 list.Label("CE_Settings_AutoTakeAmmo_Title".Translate());
                 list.Label("CE_Settings_ShowCaliberOnGuns_Title".Translate());
+                list.Label("CE_Settings_ReuseNeolithicProjectiles_Title".Translate());
+                list.Label("CE_Settings_RealisticCookOff_Title".Translate());
                 GUI.contentColor = Color.white;
             }
 
