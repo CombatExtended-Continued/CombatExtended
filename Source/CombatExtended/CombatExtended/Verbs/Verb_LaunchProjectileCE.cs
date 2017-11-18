@@ -55,7 +55,7 @@ namespace CombatExtended
         // Returns either the pawn aiming the weapon or in case of turret guns the turret operator or null if neither exists
         public Pawn ShooterPawn => CasterPawn ?? CE_Utility.TryGetTurretOperator(this.caster);
         public Thing Shooter => ShooterPawn ?? caster;
-        
+		
         protected CompCharges CompCharges
         {
             get
@@ -692,10 +692,11 @@ namespace CombatExtended
                     {
                         cover = cell.GetCover(caster.Map);
                     }
+					
                     if (cover != null && cover != ShooterPawn && cover != caster && cover != targetThing && !cover.IsPlant() && !cover.Position.AdjacentTo8Way(sourceSq))
                     {
                         Bounds bounds = CE_Utility.GetBoundsFor(cover);
-
+						
                         // Check for intersect
                         if (bounds.IntersectRay(shotLine))
                         {

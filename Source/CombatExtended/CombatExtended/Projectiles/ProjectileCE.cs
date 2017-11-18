@@ -769,6 +769,31 @@ namespace CombatExtended
                 comp.Explode(launcher, ExactPosition, Find.VisibleMap);
             }
 			
+			//Spawn things if not an explosive but preExplosionSpawnThingDef != null
+            if (Controller.settings.EnableAmmoSystem
+	        	&& Controller.settings.ReuseNeolithicProjectiles
+	    		&& comp == null
+		    	&& Position.IsValid
+				&& def.projectile.explosionSpawnChance > 0
+				&& def.projectile.preExplosionSpawnThingDef != null
+				&& Rand.Value < def.projectile.explosionSpawnChance)
+            {
+		    	var thingDef = def.projectile.preExplosionSpawnThingDef;
+				
+			    if (thingDef.IsFilth && Position.Walkable(this.Map))
+				{
+					FilthMaker.MakeFilth(Position, Map, thingDef, 1);
+				}
+				else
+				{
+					Thing reusableAmmo = ThingMaker.MakeThing(thingDef, null);
+					reusableAmmo.stackCount = 1;
+					reusableAmmo.SetForbidden(true, false);
+					GenPlace.TryPlaceThing(reusableAmmo, Position, Map, ThingPlaceMode.Near, null);
+					LessonAutoActivator.TeachOpportunity(CE_ConceptDefOf.CE_ReusableNeolithicProjectiles, reusableAmmo, OpportunityType.GoodToKnow);
+				}
+            }
+			
             // Opt-out for things without explosionRadius
             if (def.projectile.explosionRadius > 0 && ExactPosition.y < SuppressionRadius)
             {

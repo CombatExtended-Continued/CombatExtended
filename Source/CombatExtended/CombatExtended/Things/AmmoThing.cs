@@ -102,21 +102,28 @@ namespace CombatExtended
         private bool TryLaunchCookOffProjectile()
         {
             if (AmmoDef.cookOffProjectile == null) return false;
-            ProjectileCE projectile = (ProjectileCE)ThingMaker.MakeThing(AmmoDef.cookOffProjectile);
-            GenSpawn.Spawn(projectile, Position, Map);
 
-            // Launch in random direction
-            projectile.canTargetSelf = true;
-            projectile.minCollisionSqr = 0f;
-            projectile.Launch(this, 
-                new Vector2(DrawPos.x, DrawPos.z), 
-                UnityEngine.Random.Range(0, Mathf.PI / 2f), 
-                UnityEngine.Random.Range(0, 360), 
-                0.1f, 
-                AmmoDef.cookOffProjectile.projectile.speed * AmmoDef.cookOffSpeed);
+            // Spawn projectile if enabled
+            if (!Controller.settings.RealisticCookOff)
+            {
+                ProjectileCE projectile = (ProjectileCE)ThingMaker.MakeThing(AmmoDef.cookOffProjectile);
+                GenSpawn.Spawn(projectile, Position, Map);
+
+                // Launch in random direction
+                projectile.canTargetSelf = true;
+                projectile.minCollisionSqr = 0f;
+                projectile.Launch(this,
+                    new Vector2(DrawPos.x, DrawPos.z),
+                    UnityEngine.Random.Range(0, Mathf.PI / 2f),
+                    UnityEngine.Random.Range(0, 360),
+                    0.1f,
+                    AmmoDef.cookOffProjectile.projectile.speed * AmmoDef.cookOffSpeed);
+            }
+            // Create sound and flash effects
             if (AmmoDef.cookOffFlashScale > 0.01) MoteMaker.MakeStaticMote(Position, Map, ThingDefOf.Mote_ShotFlash, AmmoDef.cookOffFlashScale);
             if (AmmoDef.cookOffSound != null) AmmoDef.cookOffSound.PlayOneShot(new TargetInfo(Position, Map));
             if (AmmoDef.cookOffTailSound != null) AmmoDef.cookOffTailSound.PlayOneShotOnCamera();
+
             return true;
         }
 

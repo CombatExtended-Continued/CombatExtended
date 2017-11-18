@@ -21,6 +21,7 @@ namespace CombatExtended
         public static ConceptDef CE_ObtainingPrometheum;
 
         // *** Opportunistic concepts ***
+        public static ConceptDef CE_ReusableNeolithicProjectiles;
         public static ConceptDef CE_AimingSystem;
         public static ConceptDef CE_FireModes;
         public static ConceptDef CE_AimModes;
