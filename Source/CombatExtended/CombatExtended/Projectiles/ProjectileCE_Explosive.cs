@@ -50,7 +50,7 @@ namespace CombatExtended
 				this.def,
 				this.equipmentDef,
 				this.def.projectile.postExplosionSpawnThingDef,
-				this.def.projectile.explosionSpawnChance,
+				this.def.projectile.preExplosionSpawnChance,
 				1,
 				propsCE != null && propsCE.damageAdjacentTiles,
 				this.def.projectile.preExplosionSpawnThingDef,

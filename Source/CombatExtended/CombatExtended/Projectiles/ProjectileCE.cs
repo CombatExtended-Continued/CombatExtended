@@ -774,9 +774,9 @@ namespace CombatExtended
 	        	&& Controller.settings.ReuseNeolithicProjectiles
 	    		&& comp == null
 		    	&& Position.IsValid
-				&& def.projectile.explosionSpawnChance > 0
+				&& def.projectile.preExplosionSpawnChance > 0
 				&& def.projectile.preExplosionSpawnThingDef != null
-				&& Rand.Value < def.projectile.explosionSpawnChance)
+				&& Rand.Value < def.projectile.preExplosionSpawnChance)
             {
 		    	var thingDef = def.projectile.preExplosionSpawnThingDef;
 				

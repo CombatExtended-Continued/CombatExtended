@@ -87,7 +87,7 @@ namespace CombatExtended
                     }
                     else
                     {
-                        shotSpeed = verbProps.projectileDef.projectile.speed;
+                        shotSpeed = verbProps.defaultProjectile.projectile.speed;
                     }
                 }
                 return shotSpeed;
@@ -128,7 +128,7 @@ namespace CombatExtended
                 {
                 	return CompAmmo.CurAmmoProjectile;
                 }
-                return this.VerbPropsCE.projectileDef;
+                return this.VerbPropsCE.defaultProjectile;
             }
         }
         
@@ -147,15 +147,6 @@ namespace CombatExtended
         #endregion
 
         #region Methods
-
-        /// <summary>
-        /// Highlights explosion radius of the projectile if it has one
-        /// </summary>
-        /// <returns>Projectile explosion radius</returns>
-        public override float HighlightFieldRadiusAroundTarget()
-        {
-            return ProjectileDef.projectile.explosionRadius;
-        }
 
         /// <summary>
         /// Resets current burst shot count and estimated distance at beginning of the burst

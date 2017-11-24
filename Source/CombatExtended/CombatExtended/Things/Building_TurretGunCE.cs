@@ -123,7 +123,7 @@ namespace CombatExtended
                 {
                 	return CompAmmo.CurAmmoProjectile;
                 }
-                return this.GunCompEq.PrimaryVerb.verbProps.projectileDef;
+                return this.GunCompEq.PrimaryVerb.verbProps.defaultProjectile;
             }
         }
         
@@ -366,12 +366,12 @@ namespace CombatExtended
             }
             if ((targ.Cell - base.Position).LengthHorizontal < this.GunCompEq.PrimaryVerb.verbProps.minRange)
             {
-                Messages.Message("MessageTargetBelowMinimumRange".Translate(), this, MessageSound.RejectInput);
+                Messages.Message("MessageTargetBelowMinimumRange".Translate(), this, MessageTypeDefOf.RejectInput);
                 return;
             }
             if ((targ.Cell - base.Position).LengthHorizontal > this.GunCompEq.PrimaryVerb.verbProps.range)
             {
-                Messages.Message("MessageTargetBeyondMaximumRange".Translate(), this, MessageSound.RejectInput);
+                Messages.Message("MessageTargetBeyondMaximumRange".Translate(), this, MessageTypeDefOf.RejectInput);
                 return;
             }
             if (this.forcedTarget != targ)
@@ -484,14 +484,10 @@ namespace CombatExtended
                 return t;
             }
             TargetScanFlags targetScanFlags = TargetScanFlags.NeedThreat;
-            if (!this.GunCompEq.PrimaryVerb.verbProps.projectileDef.projectile.flyOverhead)
+            if (!this.GunCompEq.PrimaryVerb.verbProps.defaultProjectile.projectile.flyOverhead)
             {
                 targetScanFlags |= TargetScanFlags.NeedLOSToAll;
                 targetScanFlags |= TargetScanFlags.LOSBlockableByGas;
-            }
-            if (this.GunCompEq.PrimaryVerb.verbProps.ai_IsIncendiary)
-            {
-                targetScanFlags |= TargetScanFlags.NeedNonBurning;
             }
             return (Thing)AttackTargetFinder.BestShootTargetFromCurrentPosition(attackTargetSearcher, new Predicate<Thing>(this.IsValidTarget), range, minRange, targetScanFlags);
         }
