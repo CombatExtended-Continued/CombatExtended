@@ -91,7 +91,7 @@ namespace CombatExtended
 				//This to prevent victim bleeding to death or similar (!victim.Dead) FailOn state
 			this.FailOn(delegate
 			{
-				if (!CurJob.ignoreDesignations)
+				if (!job.ignoreDesignations)
 				{
 					Pawn victim = Victim;
 					if (victim != null && Map.designationManager.DesignationOn(victim, DesignationDefOf.Hunt) == null)
