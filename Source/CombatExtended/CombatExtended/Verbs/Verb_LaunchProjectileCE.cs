@@ -53,8 +53,9 @@ namespace CombatExtended
         public ProjectilePropertiesCE projectilePropsCE => this.ProjectileDef.projectile as ProjectilePropertiesCE;
 
         // Returns either the pawn aiming the weapon or in case of turret guns the turret operator or null if neither exists
-        public Pawn ShooterPawn => CasterPawn != null ? CasterPawn : CE_Utility.TryGetTurretOperator(this.caster);
-
+        public Pawn ShooterPawn => CasterPawn ?? CE_Utility.TryGetTurretOperator(this.caster);
+        public Thing Shooter => ShooterPawn ?? caster;
+		
         protected CompCharges CompCharges
         {
             get
@@ -80,6 +81,10 @@ namespace CombatExtended
                             shotSpeed = bracket.x;
                         }
                     }
+                    else if (CompAmmo != null && CompAmmo.CurrentAmmo != null)
+                    {
+                    	shotSpeed = CompAmmo.CurAmmoProjectile.projectile.speed;
+                    }
                     else
                     {
                         shotSpeed = verbProps.projectileDef.projectile.speed;
@@ -99,7 +104,7 @@ namespace CombatExtended
         }
 
         protected float ShootingAccuracy => Mathf.Min(caster.GetStatValue(StatDefOf.ShootingAccuracy), 4.5f);
-        protected float AimingAccuracy => Mathf.Min(ShooterPawn?.GetStatValue(CE_StatDefOf.AimingAccuracy) ?? caster.GetStatValue(CE_StatDefOf.AimingAccuracy), 1.5f);
+        protected float AimingAccuracy => Mathf.Min(Shooter.GetStatValue(CE_StatDefOf.AimingAccuracy), 1.5f); //equivalent of ShooterPawn?.GetStatValue(CE_StatDefOf.AimingAccuracy) ?? caster.GetStatValue(CE_StatDefOf.AimingAccuracy)
         protected float SightsEfficiency => ownerEquipment.GetStatValue(CE_StatDefOf.SightsEfficiency);
         protected virtual float SwayAmplitude => Mathf.Max(0, (4.5f - ShootingAccuracy) * ownerEquipment.GetStatValue(StatDef.Named("SwayFactor")));
 
@@ -119,12 +124,9 @@ namespace CombatExtended
         {
             get
             {
-                if (CompAmmo != null)
+                if (CompAmmo != null && CompAmmo.CurrentAmmo != null)
                 {
-                    if (CompAmmo.CurrentAmmo != null)
-                    {
-                        return CompAmmo.CurAmmoProjectile;
-                    }
+                	return CompAmmo.CurAmmoProjectile;
                 }
                 return this.VerbPropsCE.projectileDef;
             }
@@ -214,7 +216,7 @@ namespace CombatExtended
 	            
 	            var coverRange = new CollisionVertical(report.cover).HeightRange;	//Get " " cover, assume it is the edifice
 	            
-	            // Projectiles with flyOverhead target the ground below the target and ignore cover
+	            // Projectiles with flyOverhead target the surface in front of the target
 	            if (ProjectileDef.projectile.flyOverhead)
 	            {
 	            	targetHeight = coverRange.max;
@@ -223,17 +225,21 @@ namespace CombatExtended
 	            {
                     var victimVert = new CollisionVertical(currentTarget.Thing);
                     var targetRange = victimVert.HeightRange;	//Get lower and upper heights of the target
-	           		if (targetRange.min < coverRange.max)	//Some part of the target is hidden behind cover
+                    /*if (currentTarget.Thing is Building && CompFireModes?.CurrentAimMode == AimMode.SuppressFire)
+                    {
+                    	targetRange.min = targetRange.max;
+                    	targetRange.max = targetRange.min + 1f;
+                    }*/
+	           		if (targetRange.min < coverRange.max)	//Some part of the target is hidden behind some cover
 	           		{
-	           			// - It is possible for targetVertical.max < coverVertical.max, technically, in which case the shooter will never hit until the cover is gone.
+	           			// - It is possible for targetRange.max < coverRange.max, technically, in which case the shooter will never hit until the cover is gone.
                         // - This should be checked for in LoS -NIA
 	           			targetRange.min = coverRange.max;
 
-                        // Shift aim upwards if we're doing suppressive fire
+                        // Target fully hidden, shift aim upwards if we're doing suppressive fire
                         if (targetRange.max <= coverRange.max && CompFireModes?.CurrentAimMode == AimMode.SuppressFire)
                         {
                             targetRange.max = coverRange.max * 2;
-                            targetRange.min = coverRange.max;
                         }
 	           		}
                     else if (currentTarget.Thing is Pawn)
@@ -305,7 +311,7 @@ namespace CombatExtended
         /// <param name="angle">The ref float to have vertical sway in radians added to.</param>
         protected void GetSwayVec(ref float rotation, ref float angle)
         {
-        	float ticks = (float)(Find.TickManager.TicksAbs + this.caster.thingIDNumber);
+        	float ticks = (float)(Find.TickManager.TicksAbs + Shooter.thingIDNumber);
         	rotation += SwayAmplitude * (float)Mathf.Sin(ticks * 0.022f);
         	angle += Mathf.Deg2Rad * 0.25f * SwayAmplitude * (float)Mathf.Sin(ticks * 0.0165f);
         }
@@ -384,7 +390,7 @@ namespace CombatExtended
                         && (targetThing == null || !newCover.Equals(targetThing))
                         && (highestCover == null || highestCoverHeight < newCoverHeight)
                         && newCover.def.Fillage == FillCategory.Partial
-                        && !newCover.IsTree())
+                        && !newCover.IsPlant())
                     {
                         highestCover = newCover;
                         highestCoverHeight = newCoverHeight;
@@ -444,9 +450,9 @@ namespace CombatExtended
                 }
             }
             // Check for apparel
-            if (CasterIsPawn && CasterPawn.apparel != null)
+            if (ShooterPawn != null && ShooterPawn.apparel != null)
             {
-                List<Apparel> wornApparel = CasterPawn.apparel.WornApparel;
+                List<Apparel> wornApparel = ShooterPawn.apparel.WornApparel;
                 foreach(Apparel current in wornApparel)
                 {
                     if (!current.AllowVerbCast(root, caster.Map, targ))
@@ -505,7 +511,7 @@ namespace CombatExtended
                 //New aiming algorithm
                 projectile.canTargetSelf = false;
                 projectile.minCollisionSqr = (sourceLoc - currentTarget.Cell.ToIntVec2.ToVector2Shifted()).sqrMagnitude;
-                projectile.Launch(caster, sourceLoc, shotAngle, shotRotation, ShotHeight, ShotSpeed, ownerEquipment);
+                projectile.Launch(Shooter, sourceLoc, shotAngle, shotRotation, ShotHeight, ShotSpeed, ownerEquipment); //Shooter instead of caster to give turret operators' records the damage/kills obtained
 	           	pelletMechanicsOnly = true;
             }
            	pelletMechanicsOnly = false;
@@ -553,7 +559,8 @@ namespace CombatExtended
                 resultingLine = new ShootLine(root, targ.Cell);
                 return false;
             }
-            if (!this.verbProps.NeedsLineOfSight)
+            //if (!this.verbProps.NeedsLineOfSight) This method doesn't consider the currently loaded projectile
+            if (ProjectileDef.projectile.flyOverhead)
             {
                 resultingLine = new ShootLine(root, targ.Cell);
                 return true;
@@ -685,10 +692,11 @@ namespace CombatExtended
                     {
                         cover = cell.GetCover(caster.Map);
                     }
-                    if (cover != null && cover != caster && cover != targetThing && !cover.IsTree() && !cover.Position.AdjacentTo8Way(sourceSq))
+					
+                    if (cover != null && cover != ShooterPawn && cover != caster && cover != targetThing && !cover.IsPlant() && !cover.Position.AdjacentTo8Way(sourceSq))
                     {
                         Bounds bounds = CE_Utility.GetBoundsFor(cover);
-
+						
                         // Check for intersect
                         if (bounds.IntersectRay(shotLine))
                         {

@@ -16,7 +16,6 @@ namespace CombatExtended
         protected override void Impact(Thing hitThing)
         {
             Map map = base.Map;
-            base.Impact(hitThing);
             if (hitThing != null)
             {
                 int damageAmountBase = def.projectile.damageAmountBase;
@@ -33,7 +32,8 @@ namespace CombatExtended
                 
                 // Set impact height
                 BodyPartDepth partDepth = damDefCE != null && damDefCE.harmOnlyOutsideLayers ? BodyPartDepth.Outside : BodyPartDepth.Undefined;
-                BodyPartHeight partHeight = new CollisionVertical(hitThing).GetCollisionBodyHeight(Height);
+                	//NOTE: ExactPosition.y isn't always Height at the point of Impact!
+                BodyPartHeight partHeight = new CollisionVertical(hitThing).GetCollisionBodyHeight(ExactPosition.y);
                 dinfo.SetBodyRegion(partHeight, partDepth);
                 if (damDefCE != null && damDefCE.harmOnlyOutsideLayers) dinfo.SetBodyRegion(BodyPartHeight.Undefined, BodyPartDepth.Outside);
 
@@ -61,8 +61,12 @@ namespace CombatExtended
             else
             {
                 SoundDefOf.BulletImpactGround.PlayOneShot(new TargetInfo(base.Position, map, false));
-                MoteMaker.MakeStaticMote(ExactPosition, map, ThingDefOf.Mote_ShotHit_Dirt, 1f);
+                
+                //Only display a dirt hit for projectiles with a dropshadow
+                if (base.castShadow)
+                	MoteMaker.MakeStaticMote(ExactPosition, map, ThingDefOf.Mote_ShotHit_Dirt, 1f);
             }
+            base.Impact(hitThing);
         }
     }
 }

@@ -294,14 +294,25 @@
 
 	<!-- ========== Traps ========== -->
 
-	<Operation Class="PatchOperationRemove">
-		<xpath>*/ThingDef[defName="TrapIEDBomb" or defName="TrapIEDIncendiary"]/costList/Component</xpath>
+	<Operation Class="PatchOperationReplace">
+		<xpath>*/ThingDef[defName="TrapIEDBomb"]/costList</xpath>
+		<value>
+			<costList>
+				<Steel>10</Steel>
+				<FSX>2</FSX>
+				<Component>1</Component>
+			</costList>
+		</value>
 	</Operation>
 
 	<Operation Class="PatchOperationReplace">
-		<xpath>*/ThingDef[defName="TrapIEDIncendiary"]/costList/Chemfuel</xpath>
+		<xpath>*/ThingDef[defName="TrapIEDIncendiary"]/costList</xpath>
 		<value>
-			<Ammo_81mmMortarShell_Incendiary>1</Ammo_81mmMortarShell_Incendiary>
+			<costList>
+				<Steel>10</Steel>
+				<Prometheum>2</Prometheum>
+				<Component>1</Component>
+			</costList>
 		</value>
 	</Operation>
 
@@ -310,7 +321,7 @@
 		<value>
 			<li Class="CompProperties_Explosive">
 				<explosiveDamageType>Bomb</explosiveDamageType>
-				<explosiveRadius>2.5</explosiveRadius>
+				<explosiveRadius>5</explosiveRadius>
 				<wickTicks>
 				  <min>5</min>
 				  <max>30</max>
@@ -324,9 +335,9 @@
 		<value>
 			<li Class="CompProperties_Explosive">
 				<explosiveDamageType>PrometheumFlame</explosiveDamageType>
-				<explosiveRadius>3.5</explosiveRadius>
+				<explosiveRadius>7</explosiveRadius>
 				<preExplosionSpawnThingDef>FilthPrometheum</preExplosionSpawnThingDef>
-				<preExplosionSpawnChance>0.5</preExplosionSpawnChance>
+				<preExplosionSpawnChance>0.75</preExplosionSpawnChance>
 				<wickTicks>
 				  <min>5</min>
 				  <max>20</max>

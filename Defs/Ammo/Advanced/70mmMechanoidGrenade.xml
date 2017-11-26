@@ -1,0 +1,121 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+
+	<ThingCategoryDef>
+		<defName>Ammo70mmMechanoidGrenades</defName>
+		<label>70mmMechanoid Grenade</label>
+		<parent>AmmoGrenades</parent>
+		<iconPath>UI/Icons/ThingCategories/CaliberGrenade</iconPath>
+	</ThingCategoryDef>
+
+	<!-- ==================== AmmoSet ========================== -->
+
+	<CombatExtended.AmmoSetDef>
+		<defName>AmmoSet_70mmMechanoidGrenade</defName>
+		<label>70mmMechanoid Grenades</label>
+		<ammoTypes>
+			<Ammo_70mmMechanoidGrenade_HE>Bullet_70mmMechanoidGrenade_HE</Ammo_70mmMechanoidGrenade_HE>
+			<Ammo_70mmMechanoidGrenade_EMP>Bullet_70mmMechanoidGrenade_EMP</Ammo_70mmMechanoidGrenade_EMP>
+		</ammoTypes>
+	</CombatExtended.AmmoSetDef>
+
+	<!-- ==================== Ammo ========================== -->
+
+	<ThingDef Name="70mmMechanoidGrenadeBase" ParentName="AmmoBase" Abstract="True">
+		<description>Low velocity, large bore grenade fired from mechanoid grenade launchers.</description>
+		<statBases>
+			<Mass>2.8</Mass>
+			<Bulk>4</Bulk>
+		</statBases>
+		<thingCategories>
+			<li>Ammo70mmMechanoidGrenades</li>
+		</thingCategories>
+		<stackLimit>30</stackLimit>
+		<cookOffFlashScale>25</cookOffFlashScale>
+	</ThingDef>
+
+	<ThingDef ParentName="70mmMechanoidGrenadeBase">
+		<defName>Ammo_70mmMechanoidGrenade_HE</defName>
+		<label>70mm mechanoid grenade (HE)</label>
+		<graphicData>
+			<texPath>Things/Ammo/GrenadeLauncher/HE</texPath>
+			<graphicClass>Graphic_StackCount</graphicClass>
+		</graphicData>
+		<ammoClass>GrenadeHE</ammoClass>
+		<comps>
+			<li Class="CombatExtended.CompProperties_ExplosiveCE">
+				<explosionDamage>50</explosionDamage>
+				<explosionDamageDef>Bomb</explosionDamageDef>
+				<explosionRadius>2.5</explosionRadius>
+				<fragments>
+					<Fragment_Shell>300</Fragment_Shell>
+				</fragments>
+			</li>
+		</comps>
+	</ThingDef>
+
+	<ThingDef ParentName="70mmMechanoidGrenadeBase">
+		<defName>Ammo_70mmMechanoidGrenade_EMP</defName>
+		<label>70mm mechanoid grenade (EMP)</label>
+		<graphicData>
+			<texPath>Things/Ammo/GrenadeLauncher/EMP</texPath>
+			<graphicClass>Graphic_StackCount</graphicClass>
+		</graphicData>
+		<ammoClass>GrenadeEMP</ammoClass>
+		<comps>
+			<li Class="CombatExtended.CompProperties_ExplosiveCE">
+				<explosionDamage>10</explosionDamage>
+				<explosionDamageDef>Bomb</explosionDamageDef>
+				<explosionRadius>1</explosionRadius>
+				<fragments>
+					<Fragment_Shell>20</Fragment_Shell>
+				</fragments>
+			</li>
+		</comps>
+	</ThingDef>
+
+	<!-- ================== Projectiles ================== -->
+
+	<ThingDef Name="Base70mmMechanoidGrenadeBullet" ParentName="BaseBullet" Abstract="true">
+		<thingClass>CombatExtended.ProjectileCE_Explosive</thingClass>
+		<graphicData>
+			<texPath>Things/Projectile/Bullet_Big</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+		</graphicData>
+		<projectile>
+			<speed>50</speed>
+		</projectile>
+	</ThingDef>
+
+	<ThingDef ParentName="Base70mmMechanoidGrenadeBullet">
+		<defName>Bullet_70mmMechanoidGrenade_HE</defName>
+		<label>70mm mechanoid grenade (HE)</label>
+		<projectile>
+			<damageDef>Bomb</damageDef>
+			<damageAmountBase>100</damageAmountBase>
+			<explosionRadius>1</explosionRadius>
+			<soundExplode>MortarBomb_Explode</soundExplode>
+		</projectile>
+		<comps>
+			<li Class="CombatExtended.CompProperties_ExplosiveCE">
+				<explosionDamage>75</explosionDamage>
+				<explosionDamageDef>Bomb</explosionDamageDef>
+				<explosionRadius>2.5</explosionRadius>
+				<fragments>
+					<Fragment_Shell>300</Fragment_Shell>
+				</fragments>
+			</li>
+		</comps>
+	</ThingDef>
+
+	<ThingDef ParentName="Base70mmMechanoidGrenadeBullet">
+		<defName>Bullet_70mmMechanoidGrenade_EMP</defName>
+		<label>70mm mechanoid grenade (EMP)</label>
+		<projectile>
+			<explosionRadius>3.0</explosionRadius>
+			<damageDef>EMP</damageDef>
+			<damageAmountBase>70</damageAmountBase>
+		</projectile>
+	</ThingDef>
+
+</Defs>

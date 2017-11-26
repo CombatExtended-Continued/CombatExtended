@@ -1,0 +1,260 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+
+	<Operation Class="PatchOperationSequence">
+		<success>Always</success>
+		<operations>
+			<li Class="CombatExtended.PatchOperationFindMod">
+				<modName>Mechanoids Extraordinaire</modName>
+			</li>
+			<!-- ========== Add armor coverage ========== -->
+			<li Class="PatchOperationAdd">
+				<xpath>/Defs/BodyDef[defName = "Kraken"]/corePart</xpath>
+				<value>
+					<groups>
+						<li>CoveredByNaturalArmor</li>
+					</groups>
+				</value>
+			</li>
+			<li Class="PatchOperationAdd">
+				<xpath>/Defs/BodyDef[defName = "Kraken"]/corePart/parts/li[def = "MechanicalHead"]/groups</xpath>
+				<value>
+					<li>CoveredByNaturalArmor</li>
+				</value>
+			</li>
+			<li Class="PatchOperationAdd">
+				<xpath>/Defs/BodyDef[defName = "Kraken"]/corePart/parts/li[def = "UpperLeftLimbPort"]</xpath>
+				<value>
+					<groups>
+						<li>CoveredByNaturalArmor</li>
+					</groups>
+				</value>
+			</li>
+			<li Class="PatchOperationAdd">
+				<xpath>/Defs/BodyDef[defName = "Kraken"]/corePart/parts/li[def = "UpperLeftLimbPort"]/parts/li[def = "UpperLeftMechaTentacle"]/groups</xpath>
+				<value>
+					<li>CoveredByNaturalArmor</li>
+				</value>
+			</li>
+			<li Class="PatchOperationAdd">
+				<xpath>/Defs/BodyDef[defName = "Kraken"]/corePart/parts/li[def = "UpperRightLimbPort"]</xpath>
+				<value>
+					<groups>
+						<li>CoveredByNaturalArmor</li>
+					</groups>
+				</value>
+			</li>
+			<li Class="PatchOperationAdd">
+				<xpath>/Defs/BodyDef[defName = "Kraken"]/corePart/parts/li[def = "UpperRightLimbPort"]/parts/li[def = "UpperRightMechaTentacle"]/groups</xpath>
+				<value>
+					<li>CoveredByNaturalArmor</li>
+				</value>
+			</li>
+			<li Class="PatchOperationAdd">
+				<xpath>/Defs/BodyDef[defName = "Kraken"]/corePart/parts/li[def = "LowerLeftLimbPort"]</xpath>
+				<value>
+					<groups>
+						<li>CoveredByNaturalArmor</li>
+					</groups>
+				</value>
+			</li>
+			<li Class="PatchOperationAdd">
+				<xpath>/Defs/BodyDef[defName = "Kraken"]/corePart/parts/li[def = "LowerLeftLimbPort"]/parts/li[def = "LowerLeftMechaTentacle"]/groups</xpath>
+				<value>
+					<li>CoveredByNaturalArmor</li>
+				</value>
+			</li>
+			<li Class="PatchOperationAdd">
+				<xpath>/Defs/BodyDef[defName = "Kraken"]/corePart/parts/li[def = "LowerRightLimbPort"]</xpath>
+				<value>
+					<groups>
+						<li>CoveredByNaturalArmor</li>
+					</groups>
+				</value>
+			</li>
+			<li Class="PatchOperationAdd">
+				<xpath>/Defs/BodyDef[defName = "Kraken"]/corePart/parts/li[def = "LowerRightLimbPort"]/parts/li[def = "LowerRightMechaTentacle"]/groups</xpath>
+				<value>
+					<li>CoveredByNaturalArmor</li>
+				</value>
+			</li>
+			<!-- ========== Modify coverage ========== -->
+			<li Class="PatchOperationReplace">
+				<xpath>/Defs/BodyDef[defName = "Kraken"]/corePart/parts/li[def = "LowerLeftLimbPort"]/coverage</xpath>
+				<value>
+					<coverage>0.1</coverage>
+				</value>
+			</li>
+			<li Class="PatchOperationReplace">
+				<xpath>/Defs/BodyDef[defName = "Kraken"]/corePart/parts/li[def = "LowerRightLimbPort"]/coverage</xpath>
+				<value>
+					<coverage>0.1</coverage>
+				</value>
+			</li>
+			<li Class="PatchOperationReplace">
+				<xpath>/Defs/BodyDef[defName = "Kraken"]/corePart/parts/li[def = "UpperLeftLimbPort"]/parts/li[def = "UpperLeftMechaTentacle"]/coverage</xpath>
+				<value>
+					<coverage>0.7</coverage>
+				</value>
+			</li>
+			<li Class="PatchOperationReplace">
+				<xpath>/Defs/BodyDef[defName = "Kraken"]/corePart/parts/li[def = "UpperRightLimbPort"]/parts/li[def = "UpperRightMechaTentacle"]/coverage</xpath>
+				<value>
+					<coverage>0.7</coverage>
+				</value>
+			</li>
+			<li Class="PatchOperationReplace">
+				<xpath>/Defs/BodyDef[defName = "Kraken"]/corePart/parts/li[def = "LowerLeftLimbPort"]/parts/li[def = "LowerLeftMechaTentacle"]/coverage</xpath>
+				<value>
+					<coverage>0.7</coverage>
+				</value>
+			</li>
+			<li Class="PatchOperationReplace">
+				<xpath>/Defs/BodyDef[defName = "Kraken"]/corePart/parts/li[def = "LowerRightLimbPort"]/parts/li[def = "LowerRightMechaTentacle"]/coverage</xpath>
+				<value>
+					<coverage>0.7</coverage>
+				</value>
+			</li>
+			<!-- ========== Add new body parts ========== -->
+			<li Class="PatchOperationAdd">
+				<xpath>/Defs/BodyDef[defName = "Kraken"]/corePart/parts</xpath>
+				<value>
+					<li>
+						<def>MechanicalPrimaryPowerCore</def>
+						<coverage>0.04</coverage>
+						<depth>Inside</depth>
+					</li>
+				</value>
+			</li>
+			<li Class="PatchOperationAdd">
+				<xpath>/Defs/BodyDef[defName = "Kraken"]/corePart/parts</xpath>
+				<value>
+					<li>
+						<def>MechanicalAuxiliaryPowerCore</def>
+						<coverage>0.04</coverage>
+						<depth>Inside</depth>
+					</li>
+				</value>
+			</li>
+			<li Class="PatchOperationAdd">
+				<xpath>/Defs/BodyDef[defName = "Kraken"]/corePart/parts</xpath>
+				<value>
+					<li>
+						<def>MechanicalPrimaryCapacitor</def>
+						<coverage>0.01</coverage>
+						<depth>Inside</depth>
+					</li>
+				</value>
+			</li>
+			<li Class="PatchOperationAdd">
+				<xpath>/Defs/BodyDef[defName = "Kraken"]/corePart/parts</xpath>
+				<value>
+					<li>
+						<def>MechanicalSecondaryCapacitor</def>
+						<coverage>0.01</coverage>
+						<depth>Inside</depth>
+					</li>
+				</value>
+			</li>
+			<li Class="PatchOperationAdd">
+				<xpath>/Defs/BodyDef[defName = "Kraken"]/corePart/parts</xpath>
+				<value>
+					<li>
+						<def>MechanicalLeftHeatSink</def>
+						<coverage>0.02</coverage>
+						<depth>Inside</depth>
+					</li>
+				</value>
+			</li>
+			<li Class="PatchOperationAdd">
+				<xpath>/Defs/BodyDef[defName = "Kraken"]/corePart/parts</xpath>
+				<value>
+					<li>
+						<def>MechanicalRightHeatSink</def>
+						<coverage>0.02</coverage>
+						<depth>Inside</depth>
+					</li>
+				</value>
+			</li>
+			<li Class="PatchOperationAdd">
+				<xpath>/Defs/BodyDef[defName = "Kraken"]/corePart/parts</xpath>
+				<value>
+					<li>
+						<def>MechanicalCoolantTank</def>
+						<coverage>0.03</coverage>
+						<depth>Inside</depth>
+					</li>
+				</value>
+			</li>
+			<li Class="PatchOperationAdd">
+				<xpath>/Defs/BodyDef[defName = "Kraken"]/corePart/parts/li[def = "UpperLeftLimbPort"]/parts/li[def = "UpperLeftMechaTentacle"]</xpath>
+				<value>
+					<parts>
+						<li>
+							<def>MechanicalLeftUpperActuator</def>
+							<coverage>0.15</coverage>
+							<depth>Inside</depth>
+						</li>
+						<li>
+							<def>MechanicalLeftUpperPiston</def>
+							<coverage>0.25</coverage>
+							<depth>Inside</depth>
+						</li>
+					</parts>
+				</value>
+			</li>
+			<li Class="PatchOperationAdd">
+				<xpath>/Defs/BodyDef[defName = "Kraken"]/corePart/parts/li[def = "UpperRightLimbPort"]/parts/li[def = "UpperRightMechaTentacle"]</xpath>
+				<value>
+					<parts>
+						<li>
+							<def>MechanicalRightUpperActuator</def>
+							<coverage>0.15</coverage>
+							<depth>Inside</depth>
+						</li>
+						<li>
+							<def>MechanicalRightUpperPiston</def>
+							<coverage>0.25</coverage>
+							<depth>Inside</depth>
+						</li>
+					</parts>
+				</value>
+			</li>
+			<li Class="PatchOperationAdd">
+				<xpath>/Defs/BodyDef[defName = "Kraken"]/corePart/parts/li[def = "LowerLeftLimbPort"]/parts/li[def = "LowerLeftMechaTentacle"]</xpath>
+				<value>
+					<parts>
+						<li>
+							<def>MechanicalLeftLowerActuator</def>
+							<coverage>0.15</coverage>
+							<depth>Inside</depth>
+						</li>
+						<li>
+							<def>MechanicalLeftLowerPiston</def>
+							<coverage>0.25</coverage>
+							<depth>Inside</depth>
+						</li>
+					</parts>
+				</value>
+			</li>
+			<li Class="PatchOperationAdd">
+				<xpath>/Defs/BodyDef[defName = "Kraken"]/corePart/parts/li[def = "LowerRightLimbPort"]/parts/li[def = "LowerRightMechaTentacle"]</xpath>
+				<value>
+					<parts>
+						<li>
+							<def>MechanicalRightLowerActuator</def>
+							<coverage>0.15</coverage>
+							<depth>Inside</depth>
+						</li>
+						<li>
+							<def>MechanicalRightLowerPiston</def>
+							<coverage>0.25</coverage>
+							<depth>Inside</depth>
+						</li>
+					</parts>
+				</value>
+			</li>
+		</operations>
+	</Operation>
+
+</Patch>
