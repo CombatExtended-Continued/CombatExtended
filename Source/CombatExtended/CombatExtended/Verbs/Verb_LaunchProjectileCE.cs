@@ -162,6 +162,14 @@ namespace CombatExtended
 
             this.numShotsFired = 0;
             base.WarmupComplete();
+            Find.BattleLog.Add(
+            	new BattleLogEntry_RangedFire(
+            		Shooter,
+            		(!currentTarget.HasThing) ? null : currentTarget.Thing,
+            		(ownerEquipment == null) ? null : ownerEquipment.def,
+            		ProjectileDef,
+            		VerbPropsCE.burstShotCount > 1)
+            );
         }
         
         /// <summary>
@@ -502,7 +510,16 @@ namespace CombatExtended
                 //New aiming algorithm
                 projectile.canTargetSelf = false;
                 projectile.minCollisionSqr = (sourceLoc - currentTarget.Cell.ToIntVec2.ToVector2Shifted()).sqrMagnitude;
-                projectile.Launch(Shooter, sourceLoc, shotAngle, shotRotation, ShotHeight, ShotSpeed, ownerEquipment); //Shooter instead of caster to give turret operators' records the damage/kills obtained
+                projectile.intendedTarget = currentTarget.Thing;
+                projectile.Launch(
+                	Shooter,	//Shooter instead of caster to give turret operators' records the damage/kills obtained
+                	sourceLoc,
+                	shotAngle,
+                	shotRotation,
+                	ShotHeight,
+                	ShotSpeed,
+                	ownerEquipment
+                );
 	           	pelletMechanicsOnly = true;
             }
            	pelletMechanicsOnly = false;

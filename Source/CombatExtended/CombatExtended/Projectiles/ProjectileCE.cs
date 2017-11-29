@@ -60,9 +60,11 @@ namespace CombatExtended
         
         protected ThingDef equipmentDef;
         protected Thing launcher;
+        public Thing intendedTarget;
         public float minCollisionSqr;
         public bool canTargetSelf;
         public bool castShadow = true;
+        public bool logMisses = true;
         
         #region Vanilla
         protected bool landed;
@@ -357,19 +359,21 @@ namespace CombatExtended
             {
                 launcher = null;
             }
-            Scribe_Values.Look(ref origin, "ori", default(Vector2), true);
-            
-            Scribe_Defs.Look(ref equipmentDef, "ed");
-            Scribe_References.Look(ref launcher, "lcr");
-            Scribe_Values.Look(ref landed, "lnd", false, false);
-            Scribe_Values.Look(ref ticksToImpact, "tTI", 0, true);
+            Scribe_Values.Look<Vector2>(ref origin, "ori", default(Vector2), true);
+            Scribe_Values.Look<int>(ref ticksToImpact, "tTI", 0, true);
+            Scribe_References.Look<Thing>(ref intendedTarget, "iT");
+            Scribe_References.Look<Thing>(ref launcher, "lcr");
+            Scribe_Defs.Look<ThingDef>(ref equipmentDef, "ed");
+            Scribe_Values.Look<bool>(ref landed, "lnd", false, false);
 
             //Here be new variables
             Scribe_Values.Look(ref shotAngle, "ang", 0f, true);
             Scribe_Values.Look(ref shotRotation, "rot", 0f, true);
             Scribe_Values.Look(ref shotHeight, "hgt", 0f, true);
             Scribe_Values.Look(ref shotSpeed, "spd", 0f, true);
-            Scribe_Values.Look(ref canTargetSelf, "cts", false, false);
+            Scribe_Values.Look<bool>(ref canTargetSelf, "cts", false, false);
+            Scribe_Values.Look<bool>(ref logMisses, "lM", true, false);
+            Scribe_Values.Look<bool>(ref castShadow, "cS", true, false);
         }
         #endregion
 		
