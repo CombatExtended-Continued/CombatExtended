@@ -13,18 +13,30 @@
 	</Operation>
 
 	<Operation Class="PatchOperationReplace">
-		<xpath>*/ThingDef[@Name="BaseHare"]/verbs</xpath>
+		<xpath>*/ThingDef[@Name="BaseHare"]/tools</xpath>
 		<value>
-			<verbs>
-				<li Class="CombatExtended.VerbPropertiesCE">
-				  <verbClass>CombatExtended.Verb_MeleeAttackCE</verbClass>
-				  <defaultCooldownTime>1.65</defaultCooldownTime>
-				  <meleeDamageBaseAmount>3</meleeDamageBaseAmount>
-				  <meleeDamageDef>Bite</meleeDamageDef>
-				  <linkedBodyPartsGroup>Teeth</linkedBodyPartsGroup>
-				  <meleeArmorPenetration>0.02</meleeArmorPenetration>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<capacities>
+						<li>Bite</li>
+					</capacities>
+					<power>3</power>
+					<cooldownTime>1.65</cooldownTime>
+					<linkedBodyPartsGroup>Teeth</linkedBodyPartsGroup>
+					<armorPenetration>0.02</armorPenetration>
 				</li>
-			</verbs>
+				<li Class="CombatExtended.ToolCE">
+					<label>head</label>
+					<capacities>
+						<li>Blunt</li>
+					</capacities>
+					<power>1</power>
+					<cooldownTime>1.65</cooldownTime>
+					<linkedBodyPartsGroup>HeadAttackTool</linkedBodyPartsGroup>
+					<commonality>0.2</commonality>
+					<armorPenetration>0.02</armorPenetration>
+				</li>
+			</tools>
 		</value>
 	</Operation>
 
