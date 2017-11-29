@@ -51,6 +51,8 @@ namespace CombatExtended
 
         #region Properties
 
+        bool isCrit;
+        
         DamageDef CritDamageDef
         {
             get
@@ -112,9 +114,11 @@ namespace CombatExtended
                 if (!targetImmobile && !surpriseAttack && Rand.Chance(defender.GetStatValue(StatDefOf.MeleeDodgeChance)))
                 {
                     // Attack is evaded
-                    moteText = "TextMote_Dodge".Translate();
                     result = false;
                     soundDef = SoundMiss();
+					CreateCombatLog(RulePackDefOf.Combat_Dodge);
+					
+                    moteText = "TextMote_Dodge".Translate();
                     defender.skills?.Learn(SkillDefOf.Melee, DodgeXP, false);
                 }
                 else
@@ -135,6 +139,8 @@ namespace CombatExtended
                             // Do a riposte
                             DoParry(defender, parryThing, true);
                             moteText = "CE_TextMote_Riposted".Translate();
+                            CreateCombatLog(RulePackDefOf.Combat_Miss);	//placeholder
+                            
                             defender.skills?.Learn(SkillDefOf.Melee, CritXP + ParryXP, false);
                         }
                         else
@@ -142,6 +148,8 @@ namespace CombatExtended
                             // Do a parry
                             DoParry(defender, parryThing);
                             moteText = "CE_TextMote_Parried".Translate();
+                			CreateCombatLog(RulePackDefOf.Combat_Miss);	//placeholder
+                            
                             defender.skills?.Learn(SkillDefOf.Melee, ParryXP, false);
                         }
 
@@ -150,18 +158,21 @@ namespace CombatExtended
                     }
                     else
                     {
+						BattleLogEntry_MeleeCombat log = this.CreateCombatLog(RulePackDefOf.Combat_Hit);
+						
                         // Attack connects
                         if (!surpriseAttack && Rand.Chance(GetCritChanceAgainst(casterPawn, defender)))
                         {
                             // Do a critical hit
-                            ApplyMeleeDamageToTarget(currentTarget, true);
+                            isCrit = true;
+                            ApplyMeleeDamageToTarget(currentTarget).InsertIntoLog(log);
                             moteText = casterPawn.def.race.Animal ? "CE_TextMote_Knockdown".Translate() : "CE_TextMote_CriticalHit".Translate();
                             casterPawn.skills?.Learn(SkillDefOf.Melee, CritXP, false);
                         }
                         else
                         {
                             // Do a regular hit as per vanilla
-                            ApplyMeleeDamageToTarget(currentTarget);
+                            ApplyMeleeDamageToTarget(currentTarget).InsertIntoLog(log);
                         }
                         result = true;
                         soundDef = targetThing.def.category == ThingCategory.Building ? SoundHitBuilding() : SoundHitPawn();
@@ -173,6 +184,7 @@ namespace CombatExtended
                 // Attack missed
                 result = false;
                 soundDef = SoundMiss();
+                CreateCombatLog(RulePackDefOf.Combat_Miss);
             }
             if (!moteText.NullOrEmpty())
                 MoteMaker.ThrowText(targetThing.PositionHeld.ToVector3Shifted(), casterPawn.Map, moteText);
@@ -208,11 +220,12 @@ namespace CombatExtended
 			DamageDef damDef = isCrit && critDamDef != DamageDefOf.Stun ? critDamDef : verbProps.meleeDamageDef;
 			BodyPartGroupDef bodyPartGroupDef = null;
 			HediffDef hediffDef = null;
+			damAmount = UnityEngine.Random.Range(damAmount * 0.8f, damAmount * 1.2f);
 			if (base.CasterIsPawn)
 			{
+				bodyPartGroupDef = this.verbProps.linkedBodyPartsGroup;
 				if (damAmount >= 1f)
 				{
-					bodyPartGroupDef = this.verbProps.linkedBodyPartsGroup;
 					if (this.ownerHediffComp != null)
 					{
 						hediffDef = this.ownerHediffComp.Def;
@@ -244,15 +257,26 @@ namespace CombatExtended
 			yield return mainDinfo;
 
             // Apply secondary damage on surprise attack
-			if (this.surpriseAttack && this.verbProps.surpriseAttack != null && this.verbProps.surpriseAttack.extraMeleeDamages != null)
+			if (!surpriseAttack
+            	    || ((verbProps.surpriseAttack == null || verbProps.surpriseAttack.extraMeleeDamages.NullOrEmpty<ExtraMeleeDamage>())
+	            	    && tool != null
+	            	    && tool.surpriseAttack != null
+	            	    && !tool.surpriseAttack.extraMeleeDamages.NullOrEmpty<ExtraMeleeDamage>())
+               )
 			{
-				List<ExtraMeleeDamage> extraDamages = this.verbProps.surpriseAttack.extraMeleeDamages;
-				for (int i = 0; i < extraDamages.Count; i++)
+            	IEnumerable<ExtraMeleeDamage> extraDamages = Enumerable.Empty<ExtraMeleeDamage>();
+            	if (verbProps.surpriseAttack != null && verbProps.surpriseAttack.extraMeleeDamages != null)
+            	{
+            		extraDamages = extraDamages.Concat(tool.surpriseAttack.extraMeleeDamages);
+            	}
+            	if (tool != null && tool.surpriseAttack != null && !tool.surpriseAttack.extraMeleeDamages.NullOrEmpty<ExtraMeleeDamage>())
 				{
-					ExtraMeleeDamage extraDamage = extraDamages[i];
+					extraDamages = extraDamages.Concat(tool.surpriseAttack.extraMeleeDamages);
+				}
+            	foreach (ExtraMeleeDamage extraDamage in extraDamages)
+            	{
 					int amount = GenMath.RoundRandom((float)extraDamage.amount * base.GetDamageFactorFor(base.CasterPawn));
-					caster = this.caster;
-					DamageInfo extraDinfo = new DamageInfo(extraDamage.def, amount, -1f, caster, null, source);
+					DamageInfo extraDinfo = new DamageInfo(extraDamage.def, amount, -1f, this.caster, null, source);
 					extraDinfo.SetBodyRegion(bodyRegion, BodyPartDepth.Outside);
 					extraDinfo.SetWeaponBodyPartGroup(bodyPartGroupDef);
 					extraDinfo.SetWeaponHediff(hediffDef);
@@ -309,16 +333,16 @@ namespace CombatExtended
         /// Applies all DamageInfosToApply to the target. Increases damage on critical hits.
         /// </summary>
         /// <param name="target">Target to apply damage to</param>
-        /// <param name="isCrit">Whether we should apply critical damage</param>
-		private void ApplyMeleeDamageToTarget(LocalTargetInfo target, bool isCrit = false)
+		protected override DamageWorker.DamageResult ApplyMeleeDamageToTarget(LocalTargetInfo target)
 		{
+			DamageWorker.DamageResult result = DamageWorker.DamageResult.MakeNew();
 			foreach (DamageInfo current in DamageInfosToApply(target, isCrit))
 			{
 				if (target.ThingDestroyed)
 				{
-					return;
+					break;
 				}
-				target.Thing.TakeDamage(current);
+				result = target.Thing.TakeDamage(current);
 			}
             // Apply animal knockdown
             if (isCrit && CasterPawn.def.race.Animal)
@@ -331,6 +355,8 @@ namespace CombatExtended
                     pawn.jobs?.StartJob(new Job(CE_JobDefOf.WaitKnockdown) { expiryInterval = KnockdownDuration }, JobCondition.InterruptForced, null, false, false);
                 }
             }
+            isCrit = false;
+            return result;
 		}
 
         /// <summary>
