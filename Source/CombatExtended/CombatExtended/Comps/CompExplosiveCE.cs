@@ -82,7 +82,16 @@ namespace CombatExtended
             			projectile.minCollisionSqr = 1f;
             				//TODO : Don't hardcode at FragmentShadowChance, make XML-modifiable
             			projectile.castShadow = (UnityEngine.Random.value < FragmentShadowChance);
-            			projectile.Launch(instigator, exactOrigin, range.RandomInRange, UnityEngine.Random.Range(0, 360), height, Props.fragSpeedFactor * projectile.def.projectile.speed);
+            			projectile.logMisses = false;
+            			projectile.Launch(
+            				instigator,
+            				exactOrigin,
+            				range.RandomInRange,
+            				UnityEngine.Random.Range(0, 360),
+            				height,
+            				Props.fragSpeedFactor * projectile.def.projectile.speed,
+            				projCE
+            			);
                     }
                 }
             }

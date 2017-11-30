@@ -13,13 +13,38 @@ namespace CombatExtended
     {
         private const float StunChance = 0.1f;
 
+        private void LogImpact(Thing hitThing, out BattleLogEntry_RangedImpact logEntry)
+        {
+			logEntry =
+				new BattleLogEntry_RangedImpact(
+					launcher,
+					hitThing,
+					intendedTarget,
+					equipmentDef,
+					def);
+			
+			Find.BattleLog.Add(logEntry);
+        }
+        
         protected override void Impact(Thing hitThing)
         {
             Map map = base.Map;
+            BattleLogEntry_RangedImpact logEntry = null;
+			
+            if (logMisses
+                || 
+                (!logMisses
+                    && hitThing != null
+                    && (hitThing is Pawn
+                        || hitThing is Building_Turret)
+                 ))
+            {
+            	LogImpact(hitThing, out logEntry);
+            }
+            
             if (hitThing != null)
             {
                 int damageAmountBase = def.projectile.damageAmountBase;
-                ThingDef equipmentDef = this.equipmentDef;
                 DamageDefExtensionCE damDefCE = def.projectile.damageDef.GetModExtension<DamageDefExtensionCE>() ?? new DamageDefExtensionCE();
 
                 DamageInfo dinfo = new DamageInfo(
@@ -38,7 +63,7 @@ namespace CombatExtended
                 if (damDefCE != null && damDefCE.harmOnlyOutsideLayers) dinfo.SetBodyRegion(BodyPartHeight.Undefined, BodyPartDepth.Outside);
 
                 // Apply primary damage
-                hitThing.TakeDamage(dinfo);
+                hitThing.TakeDamage(dinfo).InsertIntoLog(logEntry);
 
                 // Apply secondary to non-pawns (pawn secondary damage is handled in the damage worker)
                 var projectilePropsCE = def.projectile as ProjectilePropertiesCE;
@@ -54,7 +79,7 @@ namespace CombatExtended
                             launcher,
                             null,
                             def);
-                        hitThing.TakeDamage(secDinfo);
+                        hitThing.TakeDamage(secDinfo).InsertIntoLog(logEntry);
                     }
                 }
             }

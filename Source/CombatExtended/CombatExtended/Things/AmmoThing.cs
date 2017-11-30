@@ -112,12 +112,14 @@ namespace CombatExtended
                 // Launch in random direction
                 projectile.canTargetSelf = true;
                 projectile.minCollisionSqr = 0f;
+                projectile.logMisses = false;
                 projectile.Launch(this,
                     new Vector2(DrawPos.x, DrawPos.z),
                     UnityEngine.Random.Range(0, Mathf.PI / 2f),
                     UnityEngine.Random.Range(0, 360),
                     0.1f,
-                    AmmoDef.cookOffProjectile.projectile.speed * AmmoDef.cookOffSpeed);
+                    AmmoDef.cookOffProjectile.projectile.speed * AmmoDef.cookOffSpeed,
+                    this);
             }
             // Create sound and flash effects
             if (AmmoDef.cookOffFlashScale > 0.01) MoteMaker.MakeStaticMote(Position, Map, ThingDefOf.Mote_ShotFlash, AmmoDef.cookOffFlashScale);
