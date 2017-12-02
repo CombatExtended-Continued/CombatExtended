@@ -50,8 +50,8 @@ namespace CombatExtended.Harmony
             // Replace armor block with our new instructions
             // First, load arguments for ArmorReroute method onto stack (pawn is already loaded by vanilla)
             var curCode = codes[armorBlockStart + 1];
-            curCode.opcode = OpCodes.Ldarg_1;
-            curCode.operand = null;
+            curCode.opcode = OpCodes.Ldarga_S;
+            curCode.operand = 1;
 
             curCode = codes[armorBlockStart + 2];
             curCode.opcode = OpCodes.Call;
@@ -67,7 +67,7 @@ namespace CombatExtended.Harmony
             curCode.operand = null;
 
             // Null out the rest
-            for (int i = 6; i <= armorBlockEnd + 1; i++)
+            for (int i = armorBlockStart + 6; i <= armorBlockEnd + 1; i++)
             {
                 curCode = codes[i];
                 curCode.opcode = OpCodes.Nop;
@@ -75,6 +75,24 @@ namespace CombatExtended.Harmony
             }
 
             return codes;
+        }
+
+        internal static void Postfix(DamageInfo dinfo, Pawn pawn)
+        {
+            if (!armorAbsorbed)
+            {
+                var props = dinfo.Weapon?.projectile as ProjectilePropertiesCE;
+                if (props != null && !props.secondaryDamage.NullOrEmpty() && dinfo.Def == props.damageDef)
+                {
+                    foreach (SecondaryDamage sec in props.secondaryDamage)
+                    {
+                        if (pawn.Dead) return;
+                        var secDinfo = sec.GetDinfo(dinfo);
+                        pawn.TakeDamage(secDinfo);
+                    }
+                }
+            }
+            armorAbsorbed = false;
         }
     }
 }
