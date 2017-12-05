@@ -15,7 +15,7 @@ namespace CombatExtended.Harmony
     {
         static MethodBase TargetMethod()
         {
-            var type = AccessTools.Inner(typeof(ThingDefGenerator_Meat), "<ImpliedMeatDefs>c__Iterator75");
+            var type = AccessTools.Inner(typeof(ThingDefGenerator_Meat), "<ImpliedMeatDefs>c__Iterator0");
             return AccessTools.Method(type, "MoveNext");
         }
         

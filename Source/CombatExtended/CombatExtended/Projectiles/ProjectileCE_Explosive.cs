@@ -41,30 +41,33 @@ namespace CombatExtended
             Map map = base.Map;
             //this.Destroy(DestroyMode.Vanish);
             ProjectilePropertiesCE propsCE = def.projectile as ProjectilePropertiesCE;
-			GenExplosion.DoExplosion(ExactPosition.ToIntVec3(),
-				map,
-				this.def.projectile.explosionRadius,
-				this.def.projectile.damageDef,
-				this.launcher,
-				this.def.projectile.soundExplode,
-				this.def,
-				this.equipmentDef,
-				this.def.projectile.postExplosionSpawnThingDef,
-				this.def.projectile.explosionSpawnChance,
-				1,
-				propsCE != null && propsCE.damageAdjacentTiles,
-				this.def.projectile.preExplosionSpawnThingDef,
-				this.def.projectile.explosionSpawnChance,
-				1);
-			
-		//This code was disabled because it didn't run under previous circumstances. Could be enabled if necessary
+            GenExplosion.DoExplosion(ExactPosition.ToIntVec3(), 
+                map,
+                def.projectile.explosionRadius,
+                def.projectile.damageDef, 
+                launcher,
+                def.projectile.damageAmountBase,
+                def.projectile.soundExplode, 
+                equipmentDef, 
+                def,
+                def.projectile.postExplosionSpawnThingDef,
+                def.projectile.postExplosionSpawnChance,
+                def.projectile.postExplosionSpawnThingCount, 
+                def.projectile.applyDamageToExplosionCellsNeighbors,
+                def.projectile.preExplosionSpawnThingDef, 
+                def.projectile.preExplosionSpawnChance, 
+                def.projectile.preExplosionSpawnThingCount, 
+                def.projectile.explosionChanceToStartFire, 
+                def.projectile.explosionDealMoreDamageAtCenter);
+
+            //This code was disabled because it didn't run under previous circumstances. Could be enabled if necessary
             /*
             if (map != null && base.ExactPosition.ToIntVec3().IsValid)
             {
                 ThrowBigExplode(base.ExactPosition + Gen.RandomHorizontalVector(def.projectile.explosionRadius * 0.5f), base.Map, def.projectile.explosionRadius * 0.4f);
             }
             */
-            
+
             base.Impact(null); // base.Impact() handles this.Destroy() and comp.Explode()
         }
 

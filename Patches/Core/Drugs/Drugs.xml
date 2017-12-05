@@ -11,7 +11,7 @@
   </Operation>
 
   <Operation Class="PatchOperationReplace">
-    <xpath>/GoJuice/HediffDef[defName="GoJuiceHigh"]/comps/li[@Class="HediffCompProperties_SeverityPerDay"]/severityPerDay</xpath>
+    <xpath>*/HediffDef[defName="GoJuiceHigh"]/comps/li[@Class="HediffCompProperties_SeverityPerDay"]/severityPerDay</xpath>
     <value>
       <severityPerDay>-0.8</severityPerDay>
     </value>
@@ -20,7 +20,7 @@
   <!-- ========== Patch statOffsets ========== -->
 
   <Operation Class="PatchOperationAdd">
-  	<xpath>/GoJuice/HediffDef[defName="GoJuiceHigh"]/stages/li[1]</xpath>
+  	<xpath>*/HediffDef[defName="GoJuiceHigh"]/stages/li[1]</xpath>
   	<value>
       <statOffsets>
         <Suppressability>-0.5</Suppressability>
@@ -29,7 +29,7 @@
   </Operation>
 
   <Operation Class="PatchOperationAdd">
-  	<xpath>/Yayo/HediffDef[defName="YayoHigh"]/stages/li[1]</xpath>
+  	<xpath>*/HediffDef[defName="YayoHigh"]/stages/li[1]</xpath>
   	<value>
       <statOffsets>
         <Suppressability>-0.5</Suppressability>
@@ -40,7 +40,7 @@
   <!-- ========== Patch beer ========== -->
 
   <Operation Class="PatchOperationReplace">
-    <xpath>/Beer/ThingDef[defName="Beer"]/verbs</xpath>
+    <xpath>*/ThingDef[defName="Beer"]/verbs</xpath>
     <value>
       <verbs>
         <li>
@@ -53,7 +53,7 @@
   </Operation>
 
 	<Operation Class="PatchOperationAdd">
-		<xpath>/Beer/ThingDef[defName="Beer"]/statBases</xpath>
+		<xpath>*/ThingDef[defName="Beer"]/statBases</xpath>
 		<value>
 			<MeleeWeapon_Penetration>0.1</MeleeWeapon_Penetration>
 		</value>

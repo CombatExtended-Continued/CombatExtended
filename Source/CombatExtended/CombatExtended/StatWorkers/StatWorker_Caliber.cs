@@ -16,7 +16,7 @@ namespace CombatExtended
             return thingDef?.GetCompProperties<CompProperties_AmmoUser>()?.ammoSet != null;
         }
 
-        public override string GetExplanation(StatRequest req, ToStringNumberSense numberSense)
+        public override string GetExplanationUnfinalized(StatRequest req, ToStringNumberSense numberSense)
         {
             StringBuilder stringBuilder = new StringBuilder();
             var ammoProps = (req.Def as ThingDef)?.GetCompProperties<CompProperties_AmmoUser>();
@@ -36,10 +36,6 @@ namespace CombatExtended
         public override string GetStatDrawEntryLabel(StatDef stat, float value, ToStringNumberSense numberSense, StatRequest optionalReq)
         {
             return (optionalReq.Def as ThingDef)?.GetCompProperties<CompProperties_AmmoUser>().ammoSet.LabelCap;
-        }
-
-        public override void FinalizeExplanation(StringBuilder sb, StatRequest req, ToStringNumberSense numberSense, float finalVal)
-        {
         }
     }
 }

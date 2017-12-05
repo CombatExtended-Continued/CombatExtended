@@ -26,7 +26,7 @@ namespace CombatExtended
 		private Thing targetItem
 		{
 			get {
-				return CurJob.GetTarget(thingInd).Thing;
+				return pawn.CurJob.GetTarget(thingInd).Thing;
 			}
 		}
         /// <summary>
@@ -35,7 +35,7 @@ namespace CombatExtended
 		private Pawn takePawn
 		{
 			get {
-				return (Pawn)CurJob.GetTarget(sourceInd).Thing;
+				return (Pawn)pawn.CurJob.GetTarget(sourceInd).Thing;
 			}
 		}
         /// <summary>
@@ -50,7 +50,7 @@ namespace CombatExtended
 		{
 			get
 			{
-				return CurJob.GetTarget(flagInd).HasThing;
+				return pawn.CurJob.GetTarget(flagInd).HasThing;
 			}
 		}
 
@@ -109,7 +109,7 @@ namespace CombatExtended
                     // if the targetItem is no longer in the takePawn's inventory then another pawn already took it and we fail...
                     if (takePawn == RootHolder(targetItem.holdingOwner.Owner))
                     {
-                        int amount = targetItem.stackCount < CurJob.count ? targetItem.stackCount : CurJob.count;
+                        int amount = targetItem.stackCount < pawn.CurJob.count ? targetItem.stackCount : pawn.CurJob.count;
                         takePawn.inventory.innerContainer.TryTransferToContainer(targetItem, pawn.inventory.innerContainer, amount);
                         if (doEquip)
                         {
@@ -125,5 +125,10 @@ namespace CombatExtended
 			};
             yield return Toils_Reserve.Release(sourceInd);
 		}
-	}
+
+        public override bool TryMakePreToilReservations()
+        {
+            return true;
+        }
+    }
 }

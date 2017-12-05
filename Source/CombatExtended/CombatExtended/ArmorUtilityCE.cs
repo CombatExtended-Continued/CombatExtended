@@ -65,7 +65,7 @@ namespace CombatExtended
                 {
                     // Determine whether the hit is blocked by the shield
                     bool blockedByShield = false;
-                    if (!(dinfo.WeaponGear?.IsMeleeWeapon ?? false))
+                    if (!(dinfo.Weapon?.IsMeleeWeapon ?? false))
                     {
                         var shieldDef = shield.def.GetModExtension<ShieldDefExtension>();
                         if (shieldDef == null)
@@ -89,7 +89,7 @@ namespace CombatExtended
                         dinfo.SetAmount(0);
 
                         // Apply secondary damage to shield
-                        var props = dinfo.WeaponGear.projectile as ProjectilePropertiesCE;
+                        var props = dinfo.Weapon.projectile as ProjectilePropertiesCE;
                         if (props != null && !props.secondaryDamage.NullOrEmpty())
                         {
                             foreach(SecondaryDamage sec in props.secondaryDamage)
@@ -147,7 +147,7 @@ namespace CombatExtended
                 // Only apply damage reduction when penetrating armored body parts
                 if (coveredByArmor ? !TryPenetrateArmor(dinfo.Def, partArmor, ref penAmount, ref dmgAmount) : !TryPenetrateArmor(dinfo.Def, partArmor, ref penAmount, ref unused))
                 {
-                    dinfo.SetForcedHitPart(curPart);
+                    dinfo.SetHitPart(curPart);
                     /*
                     if(coveredByArmor && pawn.RaceProps.IsMechanoid)
                     {
@@ -180,11 +180,11 @@ namespace CombatExtended
             {
                 return dinfo.Amount * 0.1f; // Explosions have 10% of their damage as penetration
             }
-
-            if (dinfo.WeaponGear != null)
+            
+            if (dinfo.Weapon != null)
             {
                 // Case 1: projectile attack
-                ProjectilePropertiesCE projectileProps = dinfo.WeaponGear.projectile as ProjectilePropertiesCE;
+                ProjectilePropertiesCE projectileProps = dinfo.Weapon.projectile as ProjectilePropertiesCE;
                 if (projectileProps != null)
                 {
                     return projectileProps.armorPenetration;
@@ -195,20 +195,36 @@ namespace CombatExtended
                 if (instigatorPawn != null)
                 {
                     // Pawn is using melee weapon
-                    if (dinfo.WeaponGear.IsMeleeWeapon)
+                    if (dinfo.Weapon.IsWeapon)
                     {
-                        if (instigatorPawn.equipment == null
-                            || instigatorPawn.equipment.Primary == null
-                            || instigatorPawn.equipment.Primary.def != dinfo.WeaponGear)
+                        var equipment = instigatorPawn.equipment?.Primary;
+                        if (equipment == null || equipment.def != dinfo.Weapon)
                         {
-                            Log.Error("CE tried getting armor penetration from melee weapon " + dinfo.WeaponGear.defName + " but instigator " + dinfo.Instigator.ToString() + " equipment does not match");
+                            Log.Error("CE tried getting armor penetration from melee weapon " + dinfo.Weapon.defName + " but instigator " + dinfo.Instigator.ToString() + " equipment does not match");
                             return 0;
                         }
-                        return instigatorPawn.equipment.Primary.GetStatValue(CE_StatDefOf.MeleeWeapon_Penetration);
+                        var penetrationMult = equipment.GetStatValue(CE_StatDefOf.MeleeWeapon_Penetration);
+                        var tool = equipment.def.tools.FirstOrDefault(t => t.linkedBodyPartsGroup == dinfo.WeaponBodyPartGroup) as ToolCE;
+                        return tool.armorPenetration * penetrationMult;
                     }
 
+                    // Get penetration from tool
+                    if (instigatorPawn.verbTracker != null
+                    && !instigatorPawn.verbTracker.AllVerbs.NullOrEmpty())
+                    {
+                        Verb verb = instigatorPawn.verbTracker.AllVerbs.FirstOrDefault(v => v.verbProps.linkedBodyPartsGroup == dinfo.WeaponBodyPartGroup);
+                        if (verb == null)
+                        {
+                            Log.Error("CE could not find matching verb on Pawn " + instigatorPawn.ToString() + " for BodyPartGroup " + dinfo.WeaponBodyPartGroup.ToString());
+                            return 0;
+                        }
+                        var tool = verb.tool as ToolCE;
+                        if (tool != null) return tool.armorPenetration;
+                    }
+
+                    /*
                     // Pawn is using body parts
-                    if (instigatorPawn.def == dinfo.WeaponGear)
+                    if (instigatorPawn.def == dinfo.Weapon)
                     {
                         // Pawn is augmented
                         if (dinfo.WeaponLinkedHediff != null)
@@ -233,10 +249,11 @@ namespace CombatExtended
                                 Log.Error("CE could not find matching verb on Pawn " + instigatorPawn.ToString() + " for BodyPartGroup " + dinfo.WeaponBodyPartGroup.ToString());
                                 return 0;
                             }
-                            VerbPropertiesCE verbProps = verb.verbProps as VerbPropertiesCE;
-                            if (verbProps != null) return verbProps.meleeArmorPenetration;
+                            var tool = verb.tool as ToolCE;
+                            if (tool != null) return tool.armorPenetration;
                         }
                     }
+                    */
                 }
             }
 #if DEBUG
@@ -331,7 +348,7 @@ namespace CombatExtended
         /// <returns>DamageInfo copied from dinfo with Def and forceHitPart adjusted</returns>
         private static DamageInfo GetDeflectDamageInfo(DamageInfo dinfo, BodyPartRecord hitPart)
         {
-            DamageInfo newDinfo = new DamageInfo(DamageDefOf.Blunt, dinfo.Amount, dinfo.Angle, dinfo.Instigator, GetOuterMostParent(hitPart), dinfo.WeaponGear);
+            DamageInfo newDinfo = new DamageInfo(DamageDefOf.Blunt, dinfo.Amount, dinfo.Angle, dinfo.Instigator, GetOuterMostParent(hitPart), dinfo.Weapon);
             newDinfo.SetBodyRegion(dinfo.Height, dinfo.Depth);
             newDinfo.SetWeaponBodyPartGroup(dinfo.WeaponBodyPartGroup);
             newDinfo.SetWeaponHediff(dinfo.WeaponLinkedHediff);

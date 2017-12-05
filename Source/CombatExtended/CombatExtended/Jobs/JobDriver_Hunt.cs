@@ -13,12 +13,17 @@ namespace CombatExtended
 	/// Description of JobDriver_Hunt.
 	/// </summary>
 	public class JobDriver_Hunt : JobDriver
-	{
-		protected override IEnumerable<Toil> MakeNewToils()
+    {
+        public override bool TryMakePreToilReservations()
+        {
+            return pawn.Reserve(Victim, job, 1, -1, null);
+        }
+
+        protected override IEnumerable<Toil> MakeNewToils()
 		{
 			this.FailOn(delegate
 			{
-				if (!CurJob.ignoreDesignations)
+				if (!pawn.CurJob.ignoreDesignations)
 				{
 					Pawn victim = Victim;
 					if (victim != null && !victim.Dead && Map.designationManager.DesignationOn(victim, DesignationDefOf.Hunt) == null)
@@ -50,7 +55,7 @@ namespace CombatExtended
             //var moveIfCannotHit = Toils_Jump.JumpIfTargetNotHittable(VictimInd, gotoCastPos);
             var moveIfCannotHit = Toils_Jump.JumpIf(gotoCastPos, delegate
             {
-                var verb = CurJob.verbToUse;
+                var verb = pawn.CurJob.verbToUse;
                 var optimalRange = HuntRangePerBodysize(Victim.RaceProps.baseBodySize, Victim.RaceProps.executionRange, verb.verbProps.range);
                 if (pawn.Position.DistanceTo(Victim.Position) > optimalRange)
                 {
@@ -86,7 +91,7 @@ namespace CombatExtended
 				//This to prevent victim bleeding to death or similar (!victim.Dead) FailOn state
 			this.FailOn(delegate
 			{
-				if (!CurJob.ignoreDesignations)
+				if (!job.ignoreDesignations)
 				{
 					Pawn victim = Victim;
 					if (victim != null && Map.designationManager.DesignationOn(victim, DesignationDefOf.Hunt) == null)
@@ -138,7 +143,7 @@ namespace CombatExtended
 			get
 			{
 				Corpse corpse = Corpse;
-				return corpse != null ? corpse.InnerPawn : (Pawn)CurJob.GetTarget(TargetIndex.A).Thing;
+				return corpse != null ? corpse.InnerPawn : (Pawn)pawn.CurJob.GetTarget(TargetIndex.A).Thing;
 			}
 		}
 
@@ -146,7 +151,7 @@ namespace CombatExtended
 		{
 			get
 			{
-				return CurJob.GetTarget(TargetIndex.A).Thing as Corpse;
+				return pawn.CurJob.GetTarget(TargetIndex.A).Thing as Corpse;
 			}
 		}
 
@@ -158,7 +163,7 @@ namespace CombatExtended
 
 		public override string GetReport()
 		{
-			return CurJob.def.reportString.Replace("TargetA", Victim.LabelShort);
+			return pawn.CurJob.def.reportString.Replace("TargetA", Victim.LabelShort);
 		}
 
 		//Copy of Verse.AI.Toils_CombatGotoCastPosition
@@ -188,7 +193,7 @@ namespace CombatExtended
 					return;
 				}
 				toil.actor.pather.StartPath(intVec, PathEndMode.OnCell);
-				actor.Map.pawnDestinationManager.ReserveDestinationFor(actor, intVec);
+				actor.Map.pawnDestinationReservationManager.Reserve(actor, job, intVec);
 			};
 			toil.FailOnDespawnedOrNull(targetInd);
 			toil.defaultCompleteMode = ToilCompleteMode.PatherArrival;
@@ -222,19 +227,19 @@ namespace CombatExtended
 					pawn.jobs.EndCurrentJob(JobCondition.Incompletable);
 					return;
 				}
-				corpse.SetForbidden(false, true);
-				IntVec3 c;
-				if (StoreUtility.TryFindBestBetterStoreCellFor(corpse, pawn, Map, StoragePriority.Unstored, pawn.Faction, out c))
-				{
-					pawn.Reserve(corpse, 1);
-					pawn.Reserve(c, 1);
-					pawn.CurJob.SetTarget(TargetIndex.B, c);
-					pawn.CurJob.SetTarget(TargetIndex.A, corpse);
-					pawn.CurJob.count = 1;
-					pawn.CurJob.haulMode = HaulMode.ToCellStorage;
-					return;
-				}
-				pawn.jobs.EndCurrentJob(JobCondition.Succeeded, true);
+				corpse.SetForbidden(false);
+                IntVec3 c;
+                if (StoreUtility.TryFindBestBetterStoreCellFor(corpse, pawn, Map, StoragePriority.Unstored, pawn.Faction, out c))
+                {
+                    pawn.Reserve(corpse, job, 1);
+                    pawn.Reserve(c, job, 1);
+                    pawn.CurJob.SetTarget(TargetIndex.B, c);
+                    pawn.CurJob.SetTarget(TargetIndex.A, corpse);
+                    pawn.CurJob.count = 1;
+                    pawn.CurJob.haulMode = HaulMode.ToCellStorage;
+                    return;
+                }
+                pawn.jobs.EndCurrentJob(JobCondition.Succeeded, true);
 			};
 			return toil;
 		}

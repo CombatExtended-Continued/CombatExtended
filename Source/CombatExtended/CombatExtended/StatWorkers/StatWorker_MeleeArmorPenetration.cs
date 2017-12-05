@@ -52,11 +52,11 @@ namespace CombatExtended
             return GetMeleePenetration(req);
         }
 
-        public override string GetExplanation(StatRequest req, ToStringNumberSense numberSense)
+        public override string GetExplanationUnfinalized(StatRequest req, ToStringNumberSense numberSense)
         {
             var pawn = req.Thing as Pawn;
             if (pawn == null)
-                return base.GetExplanation(req, numberSense);
+                return base.GetExplanationUnfinalized(req, numberSense);
 
             // Find all damage types of our verbs
             List<DamageDef> allDamageTypes = new List<DamageDef>();

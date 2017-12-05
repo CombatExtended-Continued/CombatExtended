@@ -31,6 +31,11 @@ namespace CombatExtended
 
         #region Methods
 
+        public override bool TryMakePreToilReservations()
+        {
+            return pawn.Reserve(TargetA, job);
+        }
+
         public override string GetReport()
         {
             string text = CE_JobDefOf.ReloadTurret.reportString;
@@ -68,9 +73,6 @@ namespace CombatExtended
                 this.FailOnDestroyedOrNull(TargetIndex.A);
             else
                 this.FailOnDestroyedNullOrForbidden(TargetIndex.A);
-
-            // Reserve the turret
-            yield return Toils_Reserve.Reserve(TargetIndex.A, 1);
 
             if (compReloader.UseAmmo)
             {

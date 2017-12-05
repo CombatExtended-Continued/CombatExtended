@@ -81,8 +81,8 @@
 		<value>
 			<li Class="SkillNeed_BaseBonus">
 			  <skill>Shooting</skill>
-			  <baseFactor>1</baseFactor>
-			  <bonusFactor>0.2</bonusFactor>
+			  <baseValue>1</baseValue>
+			  <bonusPerLevel>0.2</bonusPerLevel>
 			</li>
 		</value>
 	</Operation>
@@ -125,7 +125,7 @@
 	<!-- Move speed -->
 
 	<Operation Class="PatchOperationAdd">
-		<xpath>/StatDefs/StatDef[defName="MoveSpeed"]</xpath>
+		<xpath>*/StatDef[defName="MoveSpeed"]</xpath>
 		<value>
 			<workerClass>CombatExtended.StatWorker_MoveSpeed</workerClass>
 		</value>

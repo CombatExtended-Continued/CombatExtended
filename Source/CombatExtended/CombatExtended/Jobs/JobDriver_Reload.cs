@@ -161,6 +161,12 @@ namespace CombatExtended
             };
             yield return continueToil;
         }
+
+        public override bool TryMakePreToilReservations()
+        {
+            return true;
+        }
+
         #endregion Methods
     }
 }
