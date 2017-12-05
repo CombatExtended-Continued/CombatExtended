@@ -194,19 +194,23 @@ namespace CombatExtended
                 Pawn instigatorPawn = dinfo.Instigator as Pawn;
                 if (instigatorPawn != null)
                 {
-                    var penetrationMult = 1f;
-
                     // Pawn is using melee weapon
                     if (dinfo.Weapon.IsWeapon)
                     {
-                        if (instigatorPawn.equipment == null
-                            || instigatorPawn.equipment.Primary == null
-                            || instigatorPawn.equipment.Primary.def != dinfo.Weapon)
+                        var equipment = instigatorPawn.equipment?.Primary;
+                        if (equipment == null || equipment.def != dinfo.Weapon)
                         {
                             Log.Error("CE tried getting armor penetration from melee weapon " + dinfo.Weapon.defName + " but instigator " + dinfo.Instigator.ToString() + " equipment does not match");
                             return 0;
                         }
-                        penetrationMult = instigatorPawn.equipment.Primary.GetStatValue(CE_StatDefOf.MeleeWeapon_Penetration);
+                        var penetrationMult = equipment.GetStatValue(CE_StatDefOf.MeleeWeapon_Penetration);
+                        var verb = instigatorPawn.verbTracker.AllVerbs.FirstOrDefault
+                            (
+                            v => v.tool.linkedBodyPartsGroup == dinfo.WeaponBodyPartGroup 
+                            && v.ownerEquipment == instigatorPawn.equipment.Primary
+                            );
+                        Debug.Log("Verb=" + verb.ToStringSafe());
+                        return (verb.verbProps as VerbPropertiesCE)?.meleeArmorPenetration * penetrationMult ?? 0f;
                     }
 
                     // Get penetration from tool
@@ -220,7 +224,6 @@ namespace CombatExtended
                             return 0;
                         }
                         var tool = verb.tool as ToolCE;
-                        Log.Message("CE found tool " + verb.tool.ToStringSafe() + " with penetration " + tool?.armorPenetration.ToString());
                         if (tool != null) return tool.armorPenetration;
                     }
 

@@ -11,5 +11,6 @@ namespace CombatExtended
     public class ToolCE : Tool
     {
         public float armorPenetration = 0;
+        public Gender restrictedGender = Gender.None;
     }
 }

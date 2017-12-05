@@ -19,23 +19,34 @@
 	<!-- Patch stats -->
 
 	<Operation Class="PatchOperationReplace">
-		<xpath>*/ThingDef[defName="MeleeWeapon_Shiv"]/statBases/MeleeWeapon_DamageAmount</xpath>
+		<xpath>*/ThingDef[defName="MeleeWeapon_Shiv"]/tools</xpath>
 		<value>
-      <MeleeWeapon_DamageAmount>10</MeleeWeapon_DamageAmount>
-		</value>
-	</Operation>
-
-	<Operation Class="PatchOperationReplace">
-		<xpath>*/ThingDef[defName="MeleeWeapon_Shiv"]/statBases/MeleeWeapon_Cooldown</xpath>
-		<value>
-      <MeleeWeapon_Cooldown>0.83</MeleeWeapon_Cooldown>
+      <tools>
+        <li Class="CombatExtended.ToolCE">
+          <label>handle</label>
+          <capacities>
+            <li>Blunt</li>
+          </capacities>
+          <power>4</power>
+          <cooldownTime>0.83</cooldownTime>
+					<armorPenetration>0.09</armorPenetration>
+        </li>
+        <li Class="CombatExtended.ToolCE">
+          <label>point</label>
+          <capacities>
+            <li>Stab</li>
+          </capacities>
+          <power>9.7</power>
+          <cooldownTime>0.83</cooldownTime>
+					<armorPenetration>0.125</armorPenetration>
+        </li>
+      </tools>
 		</value>
 	</Operation>
 
 	<Operation Class="PatchOperationAdd">
 		<xpath>*/ThingDef[defName="MeleeWeapon_Shiv"]/statBases</xpath>
 		<value>
-      <MeleeWeapon_Penetration>0.125</MeleeWeapon_Penetration>
       <Bulk>1</Bulk>
 		</value>
 	</Operation>
@@ -47,19 +58,6 @@
 				<MeleeCritChance>0.1</MeleeCritChance>
 				<MeleeParryChance>0.1</MeleeParryChance>
 			</equippedStatOffsets>
-		</value>
-	</Operation>
-
-	<Operation Class="PatchOperationReplace">
-		<xpath>*/ThingDef[defName="MeleeWeapon_Shiv"]/verbs</xpath>
-		<value>
-			<verbs>
-				<li>
-				  <verbClass>CombatExtended.Verb_MeleeAttackCE</verbClass>
-				  <hasStandardCommand>true</hasStandardCommand>
-				  <meleeDamageDef>Stab</meleeDamageDef>
-				</li>
-			</verbs>
 		</value>
 	</Operation>
 
@@ -94,23 +92,43 @@
 	<!-- Patch stats -->
 
 	<Operation Class="PatchOperationReplace">
-		<xpath>*/ThingDef[defName="MeleeWeapon_Knife"]/statBases/MeleeWeapon_DamageAmount</xpath>
+		<xpath>*/ThingDef[defName="MeleeWeapon_Knife"]/tools</xpath>
 		<value>
-      <MeleeWeapon_DamageAmount>12</MeleeWeapon_DamageAmount>
-		</value>
-	</Operation>
-
-	<Operation Class="PatchOperationReplace">
-		<xpath>*/ThingDef[defName="MeleeWeapon_Knife"]/statBases/MeleeWeapon_Cooldown</xpath>
-		<value>
-      <MeleeWeapon_Cooldown>0.83</MeleeWeapon_Cooldown>
+			<tools>
+			  <li Class="CombatExtended.ToolCE">
+			    <label>handle</label>
+			    <capacities>
+			      <li>Blunt</li>
+			    </capacities>
+			    <power>6</power>
+			    <cooldownTime>0.83</cooldownTime>
+					<armorPenetration>0.1</armorPenetration>
+			  </li>
+			  <li Class="CombatExtended.ToolCE">
+			    <label>blade</label>
+			    <capacities>
+			      <li>Cut</li>
+			    </capacities>
+			    <power>9</power>
+			    <cooldownTime>0.83</cooldownTime>
+					<armorPenetration>0.175</armorPenetration>
+			  </li>
+			  <li Class="CombatExtended.ToolCE">
+			    <label>point</label>
+			    <capacities>
+			      <li>Stab</li>
+			    </capacities>
+			    <power>12</power>
+			    <cooldownTime>0.83</cooldownTime>
+					<armorPenetration>0.175</armorPenetration>
+			  </li>
+			</tools>
 		</value>
 	</Operation>
 
 	<Operation Class="PatchOperationAdd">
 		<xpath>*/ThingDef[defName="MeleeWeapon_Knife"]/statBases</xpath>
 		<value>
-      <MeleeWeapon_Penetration>0.175</MeleeWeapon_Penetration>
       <Bulk>1</Bulk>
 		</value>
 	</Operation>
