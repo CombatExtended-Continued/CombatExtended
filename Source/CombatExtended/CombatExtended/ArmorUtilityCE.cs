@@ -180,7 +180,7 @@ namespace CombatExtended
             {
                 return dinfo.Amount * 0.1f; // Explosions have 10% of their damage as penetration
             }
-
+            
             if (dinfo.Weapon != null)
             {
                 // Case 1: projectile attack
@@ -204,13 +204,8 @@ namespace CombatExtended
                             return 0;
                         }
                         var penetrationMult = equipment.GetStatValue(CE_StatDefOf.MeleeWeapon_Penetration);
-                        var verb = instigatorPawn.verbTracker.AllVerbs.FirstOrDefault
-                            (
-                            v => v.tool.linkedBodyPartsGroup == dinfo.WeaponBodyPartGroup 
-                            && v.ownerEquipment == instigatorPawn.equipment.Primary
-                            );
-                        Debug.Log("Verb=" + verb.ToStringSafe());
-                        return (verb.verbProps as VerbPropertiesCE)?.meleeArmorPenetration * penetrationMult ?? 0f;
+                        var tool = equipment.def.tools.FirstOrDefault(t => t.linkedBodyPartsGroup == dinfo.WeaponBodyPartGroup) as ToolCE;
+                        return tool.armorPenetration * penetrationMult;
                     }
 
                     // Get penetration from tool
