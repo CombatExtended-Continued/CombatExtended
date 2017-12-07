@@ -7,6 +7,48 @@
     <xpath>*/ThingDef[defName="Gun_LMG" or "Gun_AssaultRifle"]/weaponTags/li[.="EliteGun"]</xpath>
   </Operation>
 
+  <!-- ========== Revolver ========== -->
+
+  <Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
+    <defName>Gun_Revolver</defName>
+    <statBases>
+      <Mass>1.39</Mass>
+      <RangedWeapon_Cooldown>0.39</RangedWeapon_Cooldown>
+      <SightsEfficiency>0.7</SightsEfficiency>
+      <ShotSpread>0.16</ShotSpread>
+      <SwayFactor>1.46</SwayFactor>
+      <Bulk>3</Bulk>
+      <WorkToMake>7000</WorkToMake>
+    </statBases>
+    <costList>
+      <Steel>30</Steel>
+      <Component>2</Component>
+    </costList>
+    <Properties>
+      <verbClass>CombatExtended.Verb_ShootCE</verbClass>
+      <hasStandardCommand>true</hasStandardCommand>
+      <defaultProjectile>Bullet_45ACP_FMJ</defaultProjectile>
+      <warmupTime>0.6</warmupTime>
+      <range>12</range>
+      <soundCast>ShotPistol</soundCast>
+      <soundCastTail>GunTail_Light</soundCastTail>
+      <muzzleFlashScale>9</muzzleFlashScale>
+    </Properties>
+    <AmmoUser>
+      <magazineSize>6</magazineSize>
+      <reloadTime>3.5</reloadTime>
+      <ammoSet>AmmoSet_44Magnum</ammoSet>
+    </AmmoUser>
+    <FireModes>
+      <aiUseBurstMode>FALSE</aiUseBurstMode>
+    </FireModes>
+    <weaponTags>
+      <li>CE_Sidearm</li>
+      <li>CE_AI_Pistol</li>
+      <li>CE_OneHandedWeapon</li>
+    </weaponTags>
+  </Operation>
+
 	<!-- ========== Pistol ========== -->
 
   <Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
