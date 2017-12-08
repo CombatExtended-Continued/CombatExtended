@@ -21,7 +21,7 @@ namespace CombatExtended
             return req.Thing?.TryGetComp<CompAmmoUser>().Props.magazineSize ?? 0;
         }
 
-        public override string GetExplanation(StatRequest req, ToStringNumberSense numberSense)
+        public override string GetExplanationUnfinalized(StatRequest req, ToStringNumberSense numberSense)
         {
             StringBuilder stringBuilder = new StringBuilder();
             var ammoProps = (req.Def as ThingDef)?.GetCompProperties<CompProperties_AmmoUser>();
@@ -34,10 +34,6 @@ namespace CombatExtended
         {
             var ammoProps = (optionalReq.Def as ThingDef)?.GetCompProperties<CompProperties_AmmoUser>();
             return ammoProps.magazineSize + " / " + GenText.ToStringByStyle((ammoProps.reloadTime), ToStringStyle.FloatTwo) + " s";
-        }
-
-        public override void FinalizeExplanation(StringBuilder sb, StatRequest req, ToStringNumberSense numberSense, float finalVal)
-        {
         }
     }
 }

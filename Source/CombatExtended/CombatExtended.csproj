@@ -91,7 +91,7 @@
       <Private>False</Private>
     </Reference>
     <Reference Include="Assembly-CSharp">
-      <HintPath>..\..\..\..\RimWorld1557Win_Data\Managed\Assembly-CSharp.dll</HintPath>
+      <HintPath>..\..\..\..\RimWorld1722Win_Data\Managed\Assembly-CSharp.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="System" />
@@ -101,7 +101,7 @@
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
     <Reference Include="UnityEngine">
-      <HintPath>..\..\..\..\RimWorld1557Win_Data\Managed\UnityEngine.dll</HintPath>
+      <HintPath>..\..\..\..\RimWorld1722Win_Data\Managed\UnityEngine.dll</HintPath>
       <Private>False</Private>
     </Reference>
   </ItemGroup>
@@ -166,9 +166,9 @@
     <Compile Include="CombatExtended\Enums\AimMode.cs" />
     <Compile Include="CombatExtended\Things\Apparel_Shield.cs" />
     <Compile Include="CombatExtended\ThinkNodes\ThinkNode_ConditionalHasLoadout.cs" />
+    <Compile Include="CombatExtended\ToolCE.cs" />
     <Compile Include="CombatExtended\Verbs\Verb_MeleeAttackCE.cs" />
     <Compile Include="CombatExtended\WorkGivers\WorkGiver_HunterHuntCE.cs" />
-    <Compile Include="CombatExtended\DamageWorkers\DamageWorker_FlameCE.cs" />
     <Compile Include="CombatExtended\Defs\DamageDefExtensionCE.cs" />
     <Compile Include="CombatExtended\Gizmos\Command_VerbTarget.cs" />
     <Compile Include="CombatExtended\Jobs\JobDriver_ReloadTurret.cs" />
@@ -194,7 +194,6 @@
     <Compile Include="CombatExtended\Comps\CompProperties_Inventory.cs" />
     <Compile Include="CombatExtended\Comps\CompProperties_AmmoUser.cs" />
     <Compile Include="CombatExtended\Comps\CompProperties_Charges.cs" />
-    <Compile Include="CombatExtended\DamageWorkers\DamageWorker_AddInjuryCE.cs" />
     <Compile Include="CombatExtended\Defs\AmmoCategoryDef.cs" />
     <Compile Include="CombatExtended\Loadouts\Utility_Loadouts.cs" />
     <Compile Include="CombatExtended\TauntThrower.cs" />
@@ -232,6 +231,7 @@
     <Compile Include="CombatExtended\Verbs\Verb_MarkForArtilleryCE.cs" />
     <Compile Include="CombatExtended\Verbs\Verb_ShootMortarCE.cs" />
     <Compile Include="CombatExtended\Verbs\Verb_ShootCEOneUse.cs" />
+    <Compile Include="Harmony\Harmony-DamageWorker_AddInjury.cs" />
     <Compile Include="Harmony\Harmony-DefGenerator.cs" />
     <Compile Include="Harmony\Harmony-Fire.cs" />
     <Compile Include="Harmony\Harmony-FloatMenuMakerMap.cs" />
@@ -244,10 +244,10 @@
     <Compile Include="Harmony\Harmony-JobGiver_DropUnusedInventory.cs" />
     <Compile Include="Harmony\Harmony-JobGiver_UnloadYourInventory.cs" />
     <Compile Include="Harmony\Harmony-MassUtility.cs" />
+    <Compile Include="Harmony\Harmony-PawnColumnWorkers.cs" />
     <Compile Include="Harmony\Harmony-PawnInventoryGenerator.cs" />
     <Compile Include="Harmony\Harmony-Pawn_EquipmentTracker.cs" />
     <Compile Include="Harmony\Harmony-Pawn_HealthTracker.cs" />
-    <Compile Include="Harmony\Harmony-PawnColumnWorkers.cs" />
     <Compile Include="Harmony\Harmony-RaidStrategyWorker_ImmediateAttackSappers.cs" />
     <Compile Include="Harmony\Harmony-SmokepopBelt.cs" />
     <Compile Include="Harmony\Harmony-StunHandler.cs" />
@@ -255,8 +255,9 @@
     <Compile Include="Harmony\Harmony-ThingOwner.cs" />
     <Compile Include="Harmony\Harmony-TooltipUtility.cs" />
     <Compile Include="Harmony\Harmony-TradeDeal.cs" />
-    <Compile Include="Harmony\Harmony-Verb_TryStartCastOn.cs" />
+    <Compile Include="Harmony\Harmony-Verb.cs" />
     <Compile Include="Harmony\Harmony-VerbTracker.cs" />
+    <Compile Include="Harmony\Harmony-Verb_TryStartCastOn.cs" />
     <Compile Include="Harmony\Harmony-WorkGiver_HunterHunt.cs" />
     <Compile Include="Harmony\Harmony-WorkGiver_InteractAnimal.cs" />
     <Compile Include="Harmony\HarmonyBase.cs" />

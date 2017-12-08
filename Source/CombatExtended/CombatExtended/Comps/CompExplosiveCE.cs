@@ -82,7 +82,16 @@ namespace CombatExtended
             			projectile.minCollisionSqr = 1f;
             				//TODO : Don't hardcode at FragmentShadowChance, make XML-modifiable
             			projectile.castShadow = (UnityEngine.Random.value < FragmentShadowChance);
-            			projectile.Launch(instigator, exactOrigin, range.RandomInRange, UnityEngine.Random.Range(0, 360), height, Props.fragSpeedFactor * projectile.def.projectile.speed);
+            			projectile.logMisses = false;
+            			projectile.Launch(
+            				instigator,
+            				exactOrigin,
+            				range.RandomInRange,
+            				UnityEngine.Random.Range(0, 360),
+            				height,
+            				Props.fragSpeedFactor * projectile.def.projectile.speed,
+            				projCE
+            			);
                     }
                 }
             }
@@ -92,21 +101,20 @@ namespace CombatExtended
                 // Can't use GenExplosion because it no longer allows setting damage amount
 
                 // Copy-paste from GenExplosion
-                Explosion explosion = new Explosion();
-                explosion.position = posIV;
+                Explosion explosion = (Explosion)GenSpawn.Spawn(ThingDefOf.Explosion, posIV, map);
                 explosion.radius = Props.explosionRadius * scaleFactor;
                 explosion.damType = Props.explosionDamageDef;
                 explosion.instigator = instigator;
                 explosion.damAmount = GenMath.RoundRandom(Props.explosionDamage * scaleFactor);
-                explosion.weaponGear = null;
+                explosion.weapon = null;
                 explosion.preExplosionSpawnThingDef = Props.preExplosionSpawnThingDef;
-                explosion.preExplosionSpawnChance = Props.explosionSpawnChance;
+                explosion.preExplosionSpawnChance = Props.preExplosionSpawnChance;
                 explosion.preExplosionSpawnThingCount = Props.preExplosionSpawnThingCount;
                 explosion.postExplosionSpawnThingDef = Props.postExplosionSpawnThingDef;
                 explosion.postExplosionSpawnChance = Props.postExplosionSpawnChance;
                 explosion.postExplosionSpawnThingCount = Props.postExplosionSpawnThingCount;
                 explosion.applyDamageToExplosionCellsNeighbors = Props.applyDamageToExplosionCellsNeighbors;
-                map.GetComponent<ExplosionManager>().StartExplosion(explosion, Props.soundExplode ?? Props.explosionDamageDef.soundExplosion);
+                explosion.StartExplosion(Props.explosionDamageDef.soundExplosion);
             }
         }
     }

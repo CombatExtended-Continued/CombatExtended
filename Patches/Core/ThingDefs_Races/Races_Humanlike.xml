@@ -11,26 +11,41 @@
 	</Operation>
 
 	<Operation Class="PatchOperationReplace">
-		<xpath>*/ThingDef[defName="Human"]/verbs</xpath>
+		<xpath>*/ThingDef[defName="Human"]/tools</xpath>
 		<value>
-			<verbs>
-			  <li Class="CombatExtended.VerbPropertiesCE">
-			    <verbClass>CombatExtended.Verb_MeleeAttackCE</verbClass>
-			    <defaultCooldownTime>1.85</defaultCooldownTime>
-			    <meleeDamageBaseAmount>6</meleeDamageBaseAmount>
-			    <meleeDamageDef>Blunt</meleeDamageDef>
-			    <linkedBodyPartsGroup>LeftHand</linkedBodyPartsGroup>
-			    <meleeArmorPenetration>0.08</meleeArmorPenetration>
-			  </li>
-			  <li Class="CombatExtended.VerbPropertiesCE">
-			    <verbClass>CombatExtended.Verb_MeleeAttackCE</verbClass>
-			    <defaultCooldownTime>1.85</defaultCooldownTime>
-			    <meleeDamageBaseAmount>6</meleeDamageBaseAmount>
-			    <meleeDamageDef>Blunt</meleeDamageDef>
-			    <linkedBodyPartsGroup>RightHand</linkedBodyPartsGroup>
-			    <meleeArmorPenetration>0.08</meleeArmorPenetration>
-			  </li>
-			</verbs>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<label>left fist</label>
+					<capacities>
+						<li>Blunt</li>
+					</capacities>
+					<power>7</power>
+					<cooldownTime>1.65</cooldownTime>
+					<linkedBodyPartsGroup>LeftHand</linkedBodyPartsGroup>
+					<armorPenetration>0.095</armorPenetration>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>right fist</label>
+					<capacities>
+						<li>Blunt</li>
+					</capacities>
+					<power>7</power>
+					<cooldownTime>1.65</cooldownTime>
+					<linkedBodyPartsGroup>RightHand</linkedBodyPartsGroup>
+					<armorPenetration>0.095</armorPenetration>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>head</label>
+					<capacities>
+						<li>Blunt</li>
+					</capacities>
+					<power>5</power>
+					<cooldownTime>1.85</cooldownTime>
+					<linkedBodyPartsGroup>HeadAttackTool</linkedBodyPartsGroup>
+					<commonality>0.2</commonality>
+					<armorPenetration>0.079</armorPenetration>
+				</li>
+			</tools>
 		</value>
 	</Operation>
 

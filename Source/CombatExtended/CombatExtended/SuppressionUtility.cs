@@ -35,12 +35,13 @@ namespace CombatExtended
             }
 
             //Tell pawn to move to position
-            pawn.Map.pawnDestinationManager.ReserveDestinationFor(pawn, coverPosition);
-            return new Job(CE_JobDefOf.RunForCover, coverPosition)
+            var job = new Job(CE_JobDefOf.RunForCover, coverPosition)
             {
                 locomotionUrgency = LocomotionUrgency.Sprint,
                 playerForced = true
             };
+            pawn.Map.pawnDestinationReservationManager.Reserve(pawn, job, coverPosition);
+            return job;
         }
 
         private static bool GetCoverPositionFrom(Pawn pawn, IntVec3 fromPosition, float maxDist, out IntVec3 coverPosition)

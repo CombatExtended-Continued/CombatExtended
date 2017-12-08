@@ -150,7 +150,7 @@ namespace CombatExtended
                             {
                                 num4 *= 0.05f;
                             }
-                            if (pawn.Map.pawnDestinationManager.DestinationIsReserved(current, pawn))
+                            if (pawn.Map.pawnDestinationReservationManager.IsReserved(current))
                             {
                                 num4 *= 0.5f;
                             }

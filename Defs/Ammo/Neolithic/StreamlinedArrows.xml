@@ -1,0 +1,235 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+
+    <ThingCategoryDef>
+      <defName>AmmoStreamlinedArrows</defName>
+      <label>streamlined arrows</label>
+      <parent>AmmoNeolithic</parent>
+      <iconPath>UI/Icons/ThingCategories/CaliberArrow</iconPath>
+    </ThingCategoryDef>
+	
+	<!-- ==================== AmmoSet ========================== -->
+
+	<CombatExtended.AmmoSetDef>
+		<defName>AmmoSet_StreamlinedArrow</defName>
+		<label>streamlined arrows</label>
+		<ammoTypes>
+			<Ammo_StreamlinedArrow_Stone>Projectile_StreamlinedArrow_Stone</Ammo_StreamlinedArrow_Stone>
+			<Ammo_StreamlinedArrow_Steel>Projectile_StreamlinedArrow_Steel</Ammo_StreamlinedArrow_Steel>
+			<Ammo_StreamlinedArrow_Plasteel>Projectile_StreamlinedArrow_Plasteel</Ammo_StreamlinedArrow_Plasteel>
+		</ammoTypes>
+	</CombatExtended.AmmoSetDef>
+	
+	<!-- ==================== Ammo ========================== -->
+
+  <ThingDef Name="AmmoStreamlinedArrowBase" ParentName="NeolithicAmmoBase" Abstract="True">
+    <description>Arrow designed for higher velocity flight, being suitable to fire from a recurve bow.</description>
+    <statBases>
+      <Mass>0.09</Mass>
+      <Bulk>0.13</Bulk>
+      <Flammability>1</Flammability>
+    </statBases>
+    <thingCategories>
+      <li>AmmoArrows</li>
+    </thingCategories>
+    <stackLimit>200</stackLimit>
+    <tradeTags>
+      <li>CE_AutoEnableTrade</li>
+      <li>CE_AutoEnableCrafting_FueledSmithy</li>
+      <li>CE_AutoEnableCrafting_ElectricSmithy</li>
+    </tradeTags>
+  </ThingDef>
+
+  <ThingDef ParentName="AmmoStreamlinedArrowBase">
+    <defName>Ammo_StreamlinedArrow_Stone</defName>
+    <label>streamlined arrow (stone)</label>
+    <graphicData>
+      <texPath>Things/Ammo/Neolithic/Arrow/Stone</texPath>
+      <graphicClass>Graphic_StackCount</graphicClass>
+    </graphicData>
+    <statBases>
+      <MarketValue>0.13</MarketValue>
+    </statBases>
+		<ammoClass>StoneArrow</ammoClass>
+    <tradeTags>
+      <li>CE_AutoEnableCrafting_CraftingSpot</li>
+    </tradeTags>
+  </ThingDef>
+
+  <ThingDef ParentName="AmmoStreamlinedArrowBase">
+    <defName>Ammo_StreamlinedArrow_Steel</defName>
+    <label>streamlined arrow (steel)</label>
+    <graphicData>
+      <texPath>Things/Ammo/Neolithic/Arrow/Steel</texPath>
+      <graphicClass>Graphic_StackCount</graphicClass>
+    </graphicData>
+    <statBases>
+      <MarketValue>0.43</MarketValue>
+    </statBases>
+		<ammoClass>SteelArrow</ammoClass>
+  </ThingDef>
+
+  <ThingDef ParentName="AmmoStreamlinedArrowBase">
+    <defName>Ammo_StreamlinedArrow_Plasteel</defName>
+    <label>streamlined arrow (plasteel)</label>
+    <graphicData>
+      <texPath>Things/Ammo/Neolithic/Arrow/Plasteel</texPath>
+      <graphicClass>Graphic_StackCount</graphicClass>
+    </graphicData>
+    <statBases>
+      <MarketValue>3.38</MarketValue>
+    </statBases>
+		<ammoClass>PlasteelArrow</ammoClass>
+		<canBeSpawningInventory>false</canBeSpawningInventory>
+  </ThingDef>
+	
+	<!-- ================== Projectiles ================== -->
+
+	<ThingDef Name="BaseStreamlinedArrowProjectile" ParentName="BaseBullet" Abstract="true">
+		<graphicData>
+			<texPath>Things/Projectile/Arrow_Small</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+		</graphicData>
+		<projectile>
+			<damageDef>ArrowHighVelocity</damageDef>
+			<speed>56</speed>
+		</projectile>
+	</ThingDef>
+
+	<!-- The amount of arrows usable over the ammo lifetime for each resource cost is equal to
+		[r / (1 - x)];
+			x = preExplosionSpawnChance,
+			r = resource cost. -->
+
+	<!-- I'll leave it to Alistaire or somebody else who is more familiar with the above formula to balance the spawn chances. :P
+		The 'arrows per resource' for these should probably be slightly lower than those of the great bow due to higher velocities. -->
+	
+	<ThingDef ParentName="BaseStreamlinedArrowProjectile">
+		<defName>Projectile_StreamlinedArrow_Stone</defName>
+		<label>streamlined arrow (stone)</label>
+		<projectile>
+			<damageAmountBase>13</damageAmountBase>
+			<armorPenetration>0.22</armorPenetration>
+			<preExplosionSpawnChance>0.2</preExplosionSpawnChance>
+			<preExplosionSpawnThingDef>Ammo_StreamlinedArrow_Stone</preExplosionSpawnThingDef>
+		</projectile>
+	</ThingDef>
+
+	<ThingDef ParentName="BaseStreamlinedArrowProjectile">
+		<defName>Projectile_StreamlinedArrow_Steel</defName>
+		<label>streamlined arrow (steel)</label>
+		<projectile>
+			<damageAmountBase>13</damageAmountBase>
+			<armorPenetration>0.3025</armorPenetration>
+			<preExplosionSpawnChance>0.6</preExplosionSpawnChance>
+			<preExplosionSpawnThingDef>Ammo_StreamlinedArrow_Steel</preExplosionSpawnThingDef>
+		</projectile>
+	</ThingDef>
+
+	<ThingDef ParentName="BaseStreamlinedArrowProjectile">
+		<defName>Projectile_StreamlinedArrow_Plasteel</defName>
+		<label>streamlined arrow (plasteel)</label>
+		<projectile>
+			<damageAmountBase>13</damageAmountBase>
+			<armorPenetration>0.385</armorPenetration>
+			<preExplosionSpawnChance>0.75</preExplosionSpawnChance>
+			<preExplosionSpawnThingDef>Ammo_StreamlinedArrow_Plasteel</preExplosionSpawnThingDef>
+		</projectile>
+	</ThingDef>
+  
+	<!-- ==================== Recipes ========================== -->
+
+  <RecipeDef ParentName="AmmoRecipeNeolithicBase">
+    <defName>MakeAmmo_StreamlinedArrow_Stone</defName>
+    <label>make stone streamlined arrows x15</label>
+    <description>Craft 15 stone streamlined arrows.</description>
+    <jobString>Making stone streamlined arrows.</jobString>
+    <ingredients>
+      <li>
+        <filter>
+          <thingDefs>
+            <li>WoodLog</li>
+          </thingDefs>
+        </filter>
+        <count>2</count>
+      </li>
+    </ingredients>
+    <fixedIngredientFilter>
+      <thingDefs>
+        <li>WoodLog</li>
+      </thingDefs>
+    </fixedIngredientFilter>
+    <products>
+      <Ammo_StreamlinedArrow_Stone>15</Ammo_StreamlinedArrow_Stone>
+    </products>
+  </RecipeDef>
+
+  <RecipeDef ParentName="AmmoRecipeNeolithicBase">
+    <defName>MakeAmmo_StreamlinedArrow_Steel</defName>
+    <label>make steel streamlined arrows x15</label>
+    <description>Craft 15 steel streamlined arrows.</description>
+    <jobString>Making steel streamlined arrows.</jobString>
+    <ingredients>
+      <li>
+        <filter>
+          <thingDefs>
+            <li>WoodLog</li>
+          </thingDefs>
+        </filter>
+        <count>2</count>
+      </li>
+      <li>
+        <filter>
+          <thingDefs>
+            <li>Steel</li>
+          </thingDefs>
+        </filter>
+        <count>1</count>
+      </li>
+    </ingredients>
+    <fixedIngredientFilter>
+      <thingDefs>
+        <li>WoodLog</li>
+        <li>Steel</li>
+      </thingDefs>
+    </fixedIngredientFilter>
+    <products>
+      <Ammo_StreamlinedArrow_Steel>15</Ammo_StreamlinedArrow_Steel>
+    </products>
+  </RecipeDef>
+
+  <RecipeDef ParentName="AmmoRecipeNeolithicBase">
+    <defName>MakeAmmo_StreamlinedArrow_Plasteel</defName>
+    <label>make plasteel streamlined arrows x15</label>
+    <description>Craft 15 plasteel streamlined arrows.</description>
+    <jobString>Making plasteel streamlined arrows.</jobString>
+    <ingredients>
+      <li>
+        <filter>
+          <thingDefs>
+            <li>WoodLog</li>
+          </thingDefs>
+        </filter>
+        <count>2</count>
+      </li>
+      <li>
+        <filter>
+          <thingDefs>
+            <li>Plasteel</li>
+          </thingDefs>
+        </filter>
+        <count>1</count>
+      </li>
+    </ingredients>
+    <fixedIngredientFilter>
+      <thingDefs>
+        <li>WoodLog</li>
+        <li>Plasteel</li>
+      </thingDefs>
+    </fixedIngredientFilter>
+    <products>
+      <Ammo_StreamlinedArrow_Plasteel>15</Ammo_StreamlinedArrow_Plasteel>
+    </products>
+  </RecipeDef>
+	
+</Defs>

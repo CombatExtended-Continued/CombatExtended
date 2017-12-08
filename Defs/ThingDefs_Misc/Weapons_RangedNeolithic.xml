@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<ThingDefs>
+<Defs>
 
 	<ThingDef Name="BaseWeaponNeolithic" Abstract="True">
 		<category>Item</category>
@@ -143,13 +143,36 @@
 			<li Class="CombatExtended.VerbPropertiesCE">
 				<verbClass>CombatExtended.Verb_ShootCEOneUse</verbClass>
 				<hasStandardCommand>true</hasStandardCommand>
-				<projectileDef>Pilum_Thrown</projectileDef>
+				<defaultProjectile>Pilum_Thrown</defaultProjectile>
 				<warmupTime>1.5</warmupTime>
 				<range>9</range>
 				<!--<soundCast>Interact_BeatFire</soundCast>-->
 			</li>
 		</verbs>
+		<tools>
+			<li Class="CombatExtended.ToolCE">
+				<label>shaft</label>
+				<capacities>
+					<li>Blunt</li>
+				</capacities>
+				<power>8</power>
+				<cooldownTime>1.6</cooldownTime>
+				<armorPenetration>0.102</armorPenetration>
+				<linkedBodyPartsGroup>Shaft</linkedBodyPartsGroup>
+			</li>
+			<li Class="CombatExtended.ToolCE">
+				<label>point</label>
+				<capacities>
+					<li>Stab</li>
+				</capacities>
+				<power>12</power>
+				<cooldownTime>2.3</cooldownTime>
+				<commonality>1.5</commonality>
+				<armorPenetration>0.241</armorPenetration>
+				<linkedBodyPartsGroup>Point</linkedBodyPartsGroup>
+			</li>
+		</tools>
 		<ammoClass>Javelin</ammoClass>
 	</ThingDef>
 
-</ThingDefs>
+</Defs>

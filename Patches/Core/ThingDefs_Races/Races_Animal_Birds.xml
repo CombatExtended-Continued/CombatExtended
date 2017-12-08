@@ -24,43 +24,49 @@
 	</Operation>
 
 	<Operation Class="PatchOperationReplace">
-		<xpath>*/ThingDef[defName="Cassowary"]/verbs</xpath>
+		<xpath>*/ThingDef[defName="Cassowary"]/tools</xpath>
 		<value>
-			<verbs>
-			  <li Class="CombatExtended.VerbPropertiesCE">
-			    <verbClass>CombatExtended.Verb_MeleeAttackCE</verbClass>
-			    <defaultCooldownTime>1.65</defaultCooldownTime>
-			    <meleeDamageBaseAmount>15</meleeDamageBaseAmount>
-			    <meleeDamageDef>Cut</meleeDamageDef>
-			    <linkedBodyPartsGroup>Feet</linkedBodyPartsGroup>
-			    <meleeArmorPenetration>0.15</meleeArmorPenetration>
-			    <surpriseAttack>
-			      <extraMeleeDamages>
-			        <li>
-			          <def>Stun</def>
-			          <amount>20</amount>
-			        </li>
-			      </extraMeleeDamages>
-			    </surpriseAttack>
-			  </li>
-			  <li Class="CombatExtended.VerbPropertiesCE">
-			    <verbClass>CombatExtended.Verb_MeleeAttackCE</verbClass>
-			    <defaultCooldownTime>0.6</defaultCooldownTime>
-			    <meleeDamageBaseAmount>5</meleeDamageBaseAmount>
-			    <meleeDamageDef>Bite</meleeDamageDef>
-			    <linkedBodyPartsGroup>Beak</linkedBodyPartsGroup>
-			    <meleeArmorPenetration>0.05</meleeArmorPenetration>
-			    <surpriseAttack>
-			      <extraMeleeDamages>
-			        <li>
-			          <def>Stun</def>
-			          <amount>20</amount>
-			        </li>
-			      </extraMeleeDamages>
-			    </surpriseAttack>
-			    <commonality>0.1</commonality>
-			  </li>
-			</verbs>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<label>claws</label>
+					<capacities>
+						<li>Cut</li>
+					</capacities>
+					<power>9</power>
+					<cooldownTime>1.65</cooldownTime>
+					<linkedBodyPartsGroup>Feet</linkedBodyPartsGroup>
+					<surpriseAttack>
+						<extraMeleeDamages>
+							<li>
+								<def>Stun</def>
+								<amount>20</amount>
+							</li>
+						</extraMeleeDamages>
+					</surpriseAttack>
+					<armorPenetration>0.107</armorPenetration>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<capacities>
+						<li>Bite</li>
+					</capacities>
+					<power>5</power>
+					<cooldownTime>0.6</cooldownTime>
+					<linkedBodyPartsGroup>Beak</linkedBodyPartsGroup>
+					<commonality>0.5</commonality>
+					<armorPenetration>0.117</armorPenetration>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>head</label>
+					<capacities>
+						<li>Blunt</li>
+					</capacities>
+					<power>3</power>
+					<cooldownTime>1.65</cooldownTime>
+					<linkedBodyPartsGroup>HeadAttackTool</linkedBodyPartsGroup>
+					<commonality>0.2</commonality>
+					<armorPenetration>0.08</armorPenetration>
+				</li>
+			</tools>
 		</value>
 	</Operation>
 
@@ -90,43 +96,49 @@
 	</Operation>
 
 	<Operation Class="PatchOperationReplace">
-		<xpath>*/ThingDef[defName="Emu"]/verbs</xpath>
+		<xpath>*/ThingDef[defName="Emu"]/tools</xpath>
 		<value>
-			<verbs>
-			  <li Class="CombatExtended.VerbPropertiesCE">
-			    <verbClass>CombatExtended.Verb_MeleeAttackCE</verbClass>
-			    <defaultCooldownTime>1.65</defaultCooldownTime>
-			    <meleeDamageBaseAmount>19</meleeDamageBaseAmount>
-			    <meleeDamageDef>Cut</meleeDamageDef>
-			    <linkedBodyPartsGroup>Feet</linkedBodyPartsGroup>
-			    <meleeArmorPenetration>0.15</meleeArmorPenetration>
-			    <surpriseAttack>
-			      <extraMeleeDamages>
-			        <li>
-			          <def>Stun</def>
-			          <amount>20</amount>
-			        </li>
-			      </extraMeleeDamages>
-			    </surpriseAttack>
-			  </li>
-			  <li Class="CombatExtended.VerbPropertiesCE">
-			    <verbClass>CombatExtended.Verb_MeleeAttackCE</verbClass>
-			    <defaultCooldownTime>0.6</defaultCooldownTime>
-			    <meleeDamageBaseAmount>6</meleeDamageBaseAmount>
-			    <meleeDamageDef>Bite</meleeDamageDef>
-			    <linkedBodyPartsGroup>Beak</linkedBodyPartsGroup>
-			    <meleeArmorPenetration>0.05</meleeArmorPenetration>
-			    <surpriseAttack>
-			      <extraMeleeDamages>
-			        <li>
-			          <def>Stun</def>
-			          <amount>20</amount>
-			        </li>
-			      </extraMeleeDamages>
-			    </surpriseAttack>
-			    <commonality>0.1</commonality>
-			  </li>
-			</verbs>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<label>claws</label>
+					<capacities>
+						<li>Cut</li>
+					</capacities>
+					<power>11</power>
+					<cooldownTime>1.65</cooldownTime>
+					<linkedBodyPartsGroup>Feet</linkedBodyPartsGroup>
+					<surpriseAttack>
+						<extraMeleeDamages>
+							<li>
+								<def>Stun</def>
+								<amount>20</amount>
+							</li>
+						</extraMeleeDamages>
+					</surpriseAttack>
+					<armorPenetration>0.121</armorPenetration>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<capacities>
+						<li>Bite</li>
+					</capacities>
+					<power>6</power>
+					<cooldownTime>0.6</cooldownTime>
+					<linkedBodyPartsGroup>Beak</linkedBodyPartsGroup>
+					<commonality>0.5</commonality>
+					<armorPenetration>0.128</armorPenetration>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>head</label>
+					<capacities>
+						<li>Blunt</li>
+					</capacities>
+					<power>3</power>
+					<cooldownTime>1.65</cooldownTime>
+					<linkedBodyPartsGroup>HeadAttackTool</linkedBodyPartsGroup>
+					<commonality>0.2</commonality>
+					<armorPenetration>0.08</armorPenetration>
+				</li>
+			</tools>
 		</value>
 	</Operation>
 
@@ -155,43 +167,49 @@
 	</Operation>
 
 	<Operation Class="PatchOperationReplace">
-		<xpath>*/ThingDef[defName="Ostrich"]/verbs</xpath>
+		<xpath>*/ThingDef[defName="Ostrich"]/tools</xpath>
 		<value>
-			<verbs>
-			  <li Class="CombatExtended.VerbPropertiesCE">
-			    <verbClass>CombatExtended.Verb_MeleeAttackCE</verbClass>
-			    <defaultCooldownTime>1.65</defaultCooldownTime>
-			    <meleeDamageBaseAmount>19</meleeDamageBaseAmount>
-			    <meleeDamageDef>Cut</meleeDamageDef>
-			    <linkedBodyPartsGroup>Feet</linkedBodyPartsGroup>
-			    <meleeArmorPenetration>0.15</meleeArmorPenetration>
-			    <surpriseAttack>
-			      <extraMeleeDamages>
-			        <li>
-			          <def>Stun</def>
-			          <amount>20</amount>
-			        </li>
-			      </extraMeleeDamages>
-			    </surpriseAttack>
-			  </li>
-			  <li Class="CombatExtended.VerbPropertiesCE">
-			    <verbClass>CombatExtended.Verb_MeleeAttackCE</verbClass>
-			    <defaultCooldownTime>0.6</defaultCooldownTime>
-			    <meleeDamageBaseAmount>6</meleeDamageBaseAmount>
-			    <meleeDamageDef>Bite</meleeDamageDef>
-			    <linkedBodyPartsGroup>Beak</linkedBodyPartsGroup>
-			    <meleeArmorPenetration>0.05</meleeArmorPenetration>
-			    <surpriseAttack>
-			      <extraMeleeDamages>
-			        <li>
-			          <def>Stun</def>
-			          <amount>20</amount>
-			        </li>
-			      </extraMeleeDamages>
-			    </surpriseAttack>
-			    <commonality>0.1</commonality>
-			  </li>
-			</verbs>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<label>claws</label>
+					<capacities>
+						<li>Cut</li>
+					</capacities>
+					<power>13</power>
+					<cooldownTime>1.65</cooldownTime>
+					<linkedBodyPartsGroup>Feet</linkedBodyPartsGroup>
+					<surpriseAttack>
+						<extraMeleeDamages>
+							<li>
+								<def>Stun</def>
+								<amount>20</amount>
+							</li>
+						</extraMeleeDamages>
+					</surpriseAttack>
+					<armorPenetration>0.135</armorPenetration>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<capacities>
+						<li>Bite</li>
+					</capacities>
+					<power>6</power>
+					<cooldownTime>0.6</cooldownTime>
+					<linkedBodyPartsGroup>Beak</linkedBodyPartsGroup>
+					<commonality>0.5</commonality>
+					<armorPenetration>0.128</armorPenetration>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>head</label>
+					<capacities>
+						<li>Blunt</li>
+					</capacities>
+					<power>3</power>
+					<cooldownTime>1.65</cooldownTime>
+					<linkedBodyPartsGroup>HeadAttackTool</linkedBodyPartsGroup>
+					<commonality>0.2</commonality>
+					<armorPenetration>0.071</armorPenetration>
+				</li>
+			</tools>
 		</value>
 	</Operation>
 
@@ -220,42 +238,48 @@
 	</Operation>
 
 	<Operation Class="PatchOperationReplace">
-		<xpath>*/ThingDef[defName="Turkey"]/verbs</xpath>
+		<xpath>*/ThingDef[defName="Turkey"]/tools</xpath>
 		<value>
-			<verbs>
-			  <li Class="CombatExtended.VerbPropertiesCE">
-			    <verbClass>CombatExtended.Verb_MeleeAttackCE</verbClass>
-			    <defaultCooldownTime>1.65</defaultCooldownTime>
-			    <meleeDamageBaseAmount>6</meleeDamageBaseAmount>
-			    <meleeDamageDef>Scratch</meleeDamageDef>
-			    <linkedBodyPartsGroup>Feet</linkedBodyPartsGroup>
-			    <meleeArmorPenetration>0.06</meleeArmorPenetration>
-			    <surpriseAttack>
-			      <extraMeleeDamages>
-			        <li>
-			          <def>Stun</def>
-			          <amount>20</amount>
-			        </li>
-			      </extraMeleeDamages>
-			    </surpriseAttack>
-			  </li>
-			  <li Class="CombatExtended.VerbPropertiesCE">
-			    <verbClass>CombatExtended.Verb_MeleeAttackCE</verbClass>
-			    <defaultCooldownTime>1.85</defaultCooldownTime>
-			    <meleeDamageBaseAmount>5</meleeDamageBaseAmount>
-			    <meleeDamageDef>Bite</meleeDamageDef>
-			    <linkedBodyPartsGroup>Beak</linkedBodyPartsGroup>
-			    <meleeArmorPenetration>0.04</meleeArmorPenetration>
-			    <surpriseAttack>
-			      <extraMeleeDamages>
-			        <li>
-			          <def>Stun</def>
-			          <amount>20</amount>
-			        </li>
-			      </extraMeleeDamages>
-			    </surpriseAttack>
-			  </li>
-			</verbs>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<label>claws</label>
+					<capacities>
+						<li>Scratch</li>
+					</capacities>
+					<power>6</power>
+					<cooldownTime>1.65</cooldownTime>
+					<linkedBodyPartsGroup>Feet</linkedBodyPartsGroup>
+					<surpriseAttack>
+						<extraMeleeDamages>
+							<li>
+								<def>Stun</def>
+								<amount>20</amount>
+							</li>
+						</extraMeleeDamages>
+					</surpriseAttack>
+					<armorPenetration>0.062</armorPenetration>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<capacities>
+						<li>Bite</li>
+					</capacities>
+					<power>5</power>
+					<cooldownTime>1.85</cooldownTime>
+					<linkedBodyPartsGroup>Beak</linkedBodyPartsGroup>
+					<armorPenetration>0.117</armorPenetration>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>head</label>
+					<capacities>
+						<li>Blunt</li>
+					</capacities>
+					<power>3</power>
+					<cooldownTime>1.65</cooldownTime>
+					<linkedBodyPartsGroup>HeadAttackTool</linkedBodyPartsGroup>
+					<commonality>0.2</commonality>
+					<armorPenetration>0.064</armorPenetration>
+				</li>
+			</tools>
 		</value>
 	</Operation>
 

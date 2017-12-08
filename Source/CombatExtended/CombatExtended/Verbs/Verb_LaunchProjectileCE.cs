@@ -87,7 +87,7 @@ namespace CombatExtended
                     }
                     else
                     {
-                        shotSpeed = verbProps.projectileDef.projectile.speed;
+                        shotSpeed = verbProps.defaultProjectile.projectile.speed;
                     }
                 }
                 return shotSpeed;
@@ -128,7 +128,7 @@ namespace CombatExtended
                 {
                 	return CompAmmo.CurAmmoProjectile;
                 }
-                return this.VerbPropsCE.projectileDef;
+                return this.VerbPropsCE.defaultProjectile;
             }
         }
         
@@ -149,15 +149,6 @@ namespace CombatExtended
         #region Methods
 
         /// <summary>
-        /// Highlights explosion radius of the projectile if it has one
-        /// </summary>
-        /// <returns>Projectile explosion radius</returns>
-        public override float HighlightFieldRadiusAroundTarget()
-        {
-            return ProjectileDef.projectile.explosionRadius;
-        }
-
-        /// <summary>
         /// Resets current burst shot count and estimated distance at beginning of the burst
         /// </summary>
         public override void WarmupComplete()
@@ -171,6 +162,14 @@ namespace CombatExtended
 
             this.numShotsFired = 0;
             base.WarmupComplete();
+            Find.BattleLog.Add(
+            	new BattleLogEntry_RangedFire(
+            		Shooter,
+            		(!currentTarget.HasThing) ? null : currentTarget.Thing,
+            		(ownerEquipment == null) ? null : ownerEquipment.def,
+            		ProjectileDef,
+            		VerbPropsCE.burstShotCount > 1)
+            );
         }
         
         /// <summary>
@@ -511,7 +510,16 @@ namespace CombatExtended
                 //New aiming algorithm
                 projectile.canTargetSelf = false;
                 projectile.minCollisionSqr = (sourceLoc - currentTarget.Cell.ToIntVec2.ToVector2Shifted()).sqrMagnitude;
-                projectile.Launch(Shooter, sourceLoc, shotAngle, shotRotation, ShotHeight, ShotSpeed, ownerEquipment); //Shooter instead of caster to give turret operators' records the damage/kills obtained
+                projectile.intendedTarget = currentTarget.Thing;
+                projectile.Launch(
+                	Shooter,	//Shooter instead of caster to give turret operators' records the damage/kills obtained
+                	sourceLoc,
+                	shotAngle,
+                	shotRotation,
+                	ShotHeight,
+                	ShotSpeed,
+                	ownerEquipment
+                );
 	           	pelletMechanicsOnly = true;
             }
            	pelletMechanicsOnly = false;

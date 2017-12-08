@@ -13,8 +13,13 @@ namespace CombatExtended
     {
         private const float baseTendDuration = 60f;
 
-        private Pawn Patient { get { return CurJob.targetA.Thing as Pawn; } }
-        private Medicine Medicine { get { return CurJob.targetB.Thing as Medicine; } }
+        private Pawn Patient { get { return pawn.CurJob.targetA.Thing as Pawn; } }
+        private Medicine Medicine { get { return pawn.CurJob.targetB.Thing as Medicine; } }
+
+        public override bool TryMakePreToilReservations()
+        {
+            return pawn.Reserve(TargetA, job) && pawn.Reserve(TargetB, job);
+        }
 
         protected override IEnumerable<Toil> MakeNewToils()
         {
@@ -30,8 +35,6 @@ namespace CombatExtended
             });
 
             // Pick up medicine and haul to patient
-            yield return Toils_Reserve.Reserve(TargetIndex.A);
-            yield return Toils_Reserve.Reserve(TargetIndex.B);
             yield return Toils_Goto.GotoThing(TargetIndex.B, PathEndMode.ClosestTouch);
             yield return Toils_Haul.StartCarryThing(TargetIndex.B);
             yield return Toils_Goto.GotoThing(TargetIndex.A, PathEndMode.InteractionCell);

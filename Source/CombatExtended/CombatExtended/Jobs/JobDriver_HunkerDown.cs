@@ -17,6 +17,11 @@ namespace CombatExtended
             }
         }
 
+        public override bool TryMakePreToilReservations()
+        {
+            return true;
+        }
+
         protected override IEnumerable<Toil> MakeNewToils()
         {
             this.FailOnDespawnedOrNull(TargetIndex.A);

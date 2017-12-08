@@ -15,16 +15,48 @@
 	<!-- Thrumbo Horn -->
 
 	<Operation Class="PatchOperationReplace">
-		<xpath>*/ThingDef[defName="ThrumboHorn"]/statBases/MeleeWeapon_DamageAmount</xpath>
+		<xpath>*/ThingDef[defName="ThrumboHorn"]/tools</xpath>
 		<value>
-      <MeleeWeapon_DamageAmount>19</MeleeWeapon_DamageAmount>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<id>pointcut</id>
+					<label>point</label>
+					<capacities>
+						<li>Cut</li>
+					</capacities>
+					<power>17</power>
+					<cooldownTime>1.85</cooldownTime>
+					<armorPenetration>0.162</armorPenetration>
+					<linkedBodyPartsGroup>Point</linkedBodyPartsGroup>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<id>pointstab</id>
+					<label>point</label>
+					<capacities>
+						<li>Stab</li>
+					</capacities>
+					<power>17</power>
+					<cooldownTime>1.85</cooldownTime>
+					<armorPenetration>0.304</armorPenetration>
+					<linkedBodyPartsGroup>Point</linkedBodyPartsGroup>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>base</label>
+					<capacities>
+						<li>Blunt</li>
+					</capacities>
+					<power>8</power>
+					<cooldownTime>1.85</cooldownTime>
+					<armorPenetration>0.102</armorPenetration>
+					<linkedBodyPartsGroup>Base</linkedBodyPartsGroup>
+				</li>
+			</tools>
 		</value>
 	</Operation>
 
 	<Operation Class="PatchOperationAdd">
 		<xpath>*/ThingDef[defName="ThrumboHorn"]/statBases</xpath>
 		<value>
-      <MeleeWeapon_Penetration>0.3</MeleeWeapon_Penetration>
       <Bulk>10</Bulk>
 		</value>
 	</Operation>
@@ -39,32 +71,51 @@
 		</value>
 	</Operation>
 
-	<Operation Class="PatchOperationReplace">
-		<xpath>*/ThingDef[defName="ThrumboHorn"]/verbs</xpath>
-		<value>
-			<verbs>
-				<li>
-				  <verbClass>CombatExtended.Verb_MeleeAttackCE</verbClass>
-				  <hasStandardCommand>true</hasStandardCommand>
-				  <meleeDamageDef>Stab</meleeDamageDef>
-				</li>
-			</verbs>
-		</value>
-	</Operation>
-
 	<!-- Elephant Tusk -->
 
 	<Operation Class="PatchOperationReplace">
-		<xpath>*/ThingDef[defName="ElephantTusk"]/statBases/MeleeWeapon_DamageAmount</xpath>
+		<xpath>*/ThingDef[defName="ElephantTusk"]/tools</xpath>
 		<value>
-      <MeleeWeapon_DamageAmount>19</MeleeWeapon_DamageAmount>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<id>pointcut</id>
+					<label>point</label>
+					<capacities>
+						<li>Cut</li>
+					</capacities>
+					<power>20</power>
+					<cooldownTime>2.5</cooldownTime>
+					<armorPenetration>0.182</armorPenetration>
+					<linkedBodyPartsGroup>Point</linkedBodyPartsGroup>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<id>pointstab</id>
+					<label>point</label>
+					<capacities>
+						<li>Stab</li>
+					</capacities>
+					<power>20</power>
+					<cooldownTime>2.5</cooldownTime>
+					<armorPenetration>0.341</armorPenetration>
+					<linkedBodyPartsGroup>Point</linkedBodyPartsGroup>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>base</label>
+					<capacities>
+						<li>Blunt</li>
+					</capacities>
+					<power>9</power>
+					<cooldownTime>2.5</cooldownTime>
+					<armorPenetration>0.11</armorPenetration>
+					<linkedBodyPartsGroup>Base</linkedBodyPartsGroup>
+				</li>
+			</tools>
 		</value>
 	</Operation>
 
 	<Operation Class="PatchOperationAdd">
 		<xpath>*/ThingDef[defName="ElephantTusk"]/statBases</xpath>
 		<value>
-      <MeleeWeapon_Penetration>0.175</MeleeWeapon_Penetration>
       <Bulk>10</Bulk>
 		</value>
 	</Operation>
@@ -76,19 +127,6 @@
 				<MeleeCritChance>0.25</MeleeCritChance>
 				<MeleeParryChance>0.5</MeleeParryChance>
 			</equippedStatOffsets>
-		</value>
-	</Operation>
-
-	<Operation Class="PatchOperationReplace">
-		<xpath>*/ThingDef[defName="ElephantTusk"]/verbs</xpath>
-		<value>
-			<verbs>
-				<li>
-				  <verbClass>CombatExtended.Verb_MeleeAttackCE</verbClass>
-				  <hasStandardCommand>true</hasStandardCommand>
-				  <meleeDamageDef>Stab</meleeDamageDef>
-				</li>
-			</verbs>
 		</value>
 	</Operation>
 
@@ -166,10 +204,25 @@
 
 	<!-- Wood -->
 
+	<Operation Class="PatchOperationReplace">
+		<xpath>*/ThingDef[defName="WoodLog"]/tools</xpath>
+		<value>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<capacities>
+						<li>Blunt</li>
+					</capacities>
+					<power>9.7</power>
+					<cooldownTime>2.2</cooldownTime>
+					<armorPenetration>0.115</armorPenetration>
+				</li>
+			</tools>
+		</value>
+	</Operation>
+
 	<Operation Class="PatchOperationAdd">
 		<xpath>*/ThingDef[defName="WoodLog"]/statBases</xpath>
 		<value>
-			<MeleeWeapon_Penetration>0.1</MeleeWeapon_Penetration>
 			<Bulk>0.07</Bulk>
 		</value>
 	</Operation>
@@ -193,13 +246,6 @@
 		<value>
 			<Mass>0.3</Mass>
 			<MeleeWeapon_Penetration>0.3</MeleeWeapon_Penetration>
-		</value>
-	</Operation>
-
-	<Operation Class="PatchOperationReplace">
-		<xpath>*/ThingDef[defName="WoodLog"]/verbs/li[1]/verbClass</xpath>
-		<value>
-			<verbClass>CombatExtended.Verb_MeleeAttackCE</verbClass>
 		</value>
 	</Operation>
 
