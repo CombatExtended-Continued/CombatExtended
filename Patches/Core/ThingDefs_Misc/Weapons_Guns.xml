@@ -6,7 +6,7 @@
   <Operation Class="PatchOperationRemove">
     <xpath>*/ThingDef[defName="Gun_LMG" or "Gun_AssaultRifle"]/weaponTags/li[.="EliteGun"]</xpath>
   </Operation>
-	<!-- ========== Autopistol ========== -->
+
   <!-- ========== Revolver ========== -->
 
   <Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
@@ -27,10 +27,10 @@
     <Properties>
       <verbClass>CombatExtended.Verb_ShootCE</verbClass>
       <hasStandardCommand>true</hasStandardCommand>
-      <defaultProjectile>Bullet_45ACP_FMJ</defaultProjectile>
+      <defaultProjectile>Bullet_44Magnum_FMJ</defaultProjectile>
       <warmupTime>0.6</warmupTime>
       <range>12</range>
-      <soundCast>ShotPistol</soundCast>
+      <soundCast>ShotAutopistol</soundCast>
       <soundCastTail>GunTail_Light</soundCastTail>
       <muzzleFlashScale>9</muzzleFlashScale>
     </Properties>
@@ -49,7 +49,48 @@
     </weaponTags>
   </Operation>
 
-	<!-- ========== Pistol ========== -->
+  <Operation Class="PatchOperationReplace">
+    <xpath>*/ThingDef[defName="Gun_Revolver"]/tools</xpath>
+    <value>
+      <tools>
+        <li Class="CombatExtended.ToolCE">
+          <label>grip</label>
+          <capacities>
+            <li>Blunt</li>
+          </capacities>
+          <power>8</power>
+          <cooldownTime>1.6</cooldownTime>
+          <commonality>1.5</commonality>
+          <armorPenetration>0.102</armorPenetration>
+          <linkedBodyPartsGroup>Grip</linkedBodyPartsGroup>
+        </li>
+        <li Class="CombatExtended.ToolCE">
+        	<id>barrelblunt</id>
+          <label>barrel</label>
+          <capacities>
+            <li>Blunt</li>
+          </capacities>
+          <power>8</power>
+          <cooldownTime>1.6</cooldownTime>
+          <armorPenetration>0.102</armorPenetration>
+          <linkedBodyPartsGroup>Barrel</linkedBodyPartsGroup>
+        </li>
+        <li Class="CombatExtended.ToolCE">
+        	<id>barrelpoke</id>
+          <label>barrel</label>
+          <capacities>
+            <li>Poke</li>
+          </capacities>
+          <power>8</power>
+          <cooldownTime>1.6</cooldownTime>
+          <armorPenetration>0.075</armorPenetration>
+          <linkedBodyPartsGroup>Barrel</linkedBodyPartsGroup>
+        </li>
+      </tools>
+    </value>
+  </Operation>
+
+	<!-- ========== Autopistol ========== -->
 
   <Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
     <defName>Gun_Autopistol</defName>
@@ -72,7 +113,7 @@
       <defaultProjectile>Bullet_45ACP_FMJ</defaultProjectile>
       <warmupTime>0.6</warmupTime>
       <range>12</range>
-      <soundCast>ShotPistol</soundCast>
+      <soundCast>ShotRevolver</soundCast>
       <soundCastTail>GunTail_Light</soundCastTail>
       <muzzleFlashScale>9</muzzleFlashScale>
     </Properties>
@@ -107,7 +148,7 @@
           <linkedBodyPartsGroup>Grip</linkedBodyPartsGroup>
         </li>
         <li Class="CombatExtended.ToolCE">
-          <id>barrelblunt</id>
+        	<id>barrelblunt</id>
           <label>barrel</label>
           <capacities>
             <li>Blunt</li>
@@ -118,7 +159,7 @@
           <linkedBodyPartsGroup>Barrel</linkedBodyPartsGroup>
         </li>
         <li Class="CombatExtended.ToolCE">
-          <id>barrelpoke</id>
+        	<id>barrelpoke</id>
           <label>barrel</label>
           <capacities>
             <li>Poke</li>
@@ -187,7 +228,7 @@
           <linkedBodyPartsGroup>Stock</linkedBodyPartsGroup>
         </li>
         <li Class="CombatExtended.ToolCE">
-          <id>barrelblunt</id>
+        	<id>barrelblunt</id>
           <label>barrel</label>
           <capacities>
             <li>Blunt</li>
@@ -198,7 +239,7 @@
           <linkedBodyPartsGroup>Barrel</linkedBodyPartsGroup>
         </li>
         <li Class="CombatExtended.ToolCE">
-          <id>barrelpoke</id>
+        	<id>barrelpoke</id>
           <label>barrel</label>
           <capacities>
             <li>Poke</li>
@@ -269,7 +310,7 @@
           <linkedBodyPartsGroup>Stock</linkedBodyPartsGroup>
         </li>
         <li Class="CombatExtended.ToolCE">
-          <id>barrelblunt</id>
+        	<id>barrelblunt</id>
           <label>barrel</label>
           <capacities>
             <li>Blunt</li>
@@ -280,7 +321,7 @@
           <linkedBodyPartsGroup>Barrel</linkedBodyPartsGroup>
         </li>
         <li Class="CombatExtended.ToolCE">
-          <id>barrelpoke</id>
+        	<id>barrelpoke</id>
           <label>barrel</label>
           <capacities>
             <li>Poke</li>
@@ -351,7 +392,7 @@
           <linkedBodyPartsGroup>Stock</linkedBodyPartsGroup>
         </li>
         <li Class="CombatExtended.ToolCE">
-          <id>barrelblunt</id>
+        	<id>barrelblunt</id>
           <label>barrel</label>
           <capacities>
             <li>Blunt</li>
@@ -362,7 +403,7 @@
           <linkedBodyPartsGroup>Barrel</linkedBodyPartsGroup>
         </li>
         <li Class="CombatExtended.ToolCE">
-          <id>barrelpoke</id>
+        	<id>barrelpoke</id>
           <label>barrel</label>
           <capacities>
             <li>Poke</li>
@@ -439,7 +480,7 @@
           <linkedBodyPartsGroup>Stock</linkedBodyPartsGroup>
         </li>
         <li Class="CombatExtended.ToolCE">
-          <id>barrelblunt</id>
+        	<id>barrelblunt</id>
           <label>barrel</label>
           <capacities>
             <li>Blunt</li>
@@ -450,7 +491,7 @@
           <linkedBodyPartsGroup>Barrel</linkedBodyPartsGroup>
         </li>
         <li Class="CombatExtended.ToolCE">
-          <id>barrelpoke</id>
+        	<id>barrelpoke</id>
           <label>barrel</label>
           <capacities>
             <li>Poke</li>
@@ -522,7 +563,7 @@
           <linkedBodyPartsGroup>Stock</linkedBodyPartsGroup>
         </li>
         <li Class="CombatExtended.ToolCE">
-          <id>barrelblunt</id>
+        	<id>barrelblunt</id>
           <label>barrel</label>
           <capacities>
             <li>Blunt</li>
@@ -533,7 +574,7 @@
           <linkedBodyPartsGroup>Barrel</linkedBodyPartsGroup>
         </li>
         <li Class="CombatExtended.ToolCE">
-          <id>barrelpoke</id>
+        	<id>barrelpoke</id>
           <label>barrel</label>
           <capacities>
             <li>Poke</li>
@@ -610,7 +651,7 @@
           <linkedBodyPartsGroup>Grip</linkedBodyPartsGroup>
         </li>
         <li Class="CombatExtended.ToolCE">
-          <id>barrelblunt</id>
+        	<id>barrelblunt</id>
           <label>barrel</label>
           <capacities>
             <li>Blunt</li>
@@ -621,7 +662,7 @@
           <linkedBodyPartsGroup>Barrel</linkedBodyPartsGroup>
         </li>
         <li Class="CombatExtended.ToolCE">
-          <id>barrelpoke</id>
+        	<id>barrelpoke</id>
           <label>barrel</label>
           <capacities>
             <li>Poke</li>
@@ -697,7 +738,7 @@
           <linkedBodyPartsGroup>Grip</linkedBodyPartsGroup>
         </li>
         <li Class="CombatExtended.ToolCE">
-          <id>barrelblunt</id>
+        	<id>barrelblunt</id>
           <label>barrel</label>
           <capacities>
             <li>Blunt</li>
@@ -708,7 +749,7 @@
           <linkedBodyPartsGroup>Barrel</linkedBodyPartsGroup>
         </li>
         <li Class="CombatExtended.ToolCE">
-          <id>barrelpoke</id>
+        	<id>barrelpoke</id>
           <label>barrel</label>
           <capacities>
             <li>Poke</li>
@@ -788,7 +829,7 @@
           <linkedBodyPartsGroup>Stock</linkedBodyPartsGroup>
         </li>
         <li Class="CombatExtended.ToolCE">
-          <id>barrelblunt</id>
+        	<id>barrelblunt</id>
           <label>barrel</label>
           <capacities>
             <li>Blunt</li>
@@ -799,7 +840,7 @@
           <linkedBodyPartsGroup>Barrel</linkedBodyPartsGroup>
         </li>
         <li Class="CombatExtended.ToolCE">
-          <id>barrelpoke</id>
+        	<id>barrelpoke</id>
           <label>barrel</label>
           <capacities>
             <li>Poke</li>
@@ -880,7 +921,7 @@
           <linkedBodyPartsGroup>Stock</linkedBodyPartsGroup>
         </li>
         <li Class="CombatExtended.ToolCE">
-          <id>barrelblunt</id>
+        	<id>barrelblunt</id>
           <label>barrel</label>
           <capacities>
             <li>Blunt</li>
@@ -891,7 +932,7 @@
           <linkedBodyPartsGroup>Barrel</linkedBodyPartsGroup>
         </li>
         <li Class="CombatExtended.ToolCE">
-          <id>barrelpoke</id>
+        	<id>barrelpoke</id>
           <label>barrel</label>
           <capacities>
             <li>Poke</li>
@@ -968,7 +1009,7 @@
           <linkedBodyPartsGroup>Stock</linkedBodyPartsGroup>
         </li>
         <li Class="CombatExtended.ToolCE">
-          <id>barrelblunt</id>
+        	<id>barrelblunt</id>
           <label>barrel</label>
           <capacities>
             <li>Blunt</li>
@@ -979,7 +1020,7 @@
           <linkedBodyPartsGroup>Barrel</linkedBodyPartsGroup>
         </li>
         <li Class="CombatExtended.ToolCE">
-          <id>barrelpoke</id>
+        	<id>barrelpoke</id>
           <label>barrel</label>
           <capacities>
             <li>Poke</li>
