@@ -103,7 +103,7 @@
     <xpath>*/PawnKindDef[defName="MercenarySniper"]/weaponMoney</xpath>
     <value>
       <weaponMoney>
-        <min>360</min>
+        <min>370</min>
         <max>550</max>
       </weaponMoney>
     </value>
@@ -200,7 +200,7 @@
     <xpath>*/PawnKindDef[@Name = "EliteBase"]/weaponMoney</xpath>
     <value>
       <weaponMoney>
-        <min>820</min>
+        <min>850</min>
         <max>1100</max>
       </weaponMoney>
     </value>
@@ -438,7 +438,7 @@
   <Operation Class="PatchOperationReplace">
     <xpath>*/PawnKindDef[defName="TribalWarrior"]/combatPower</xpath>
     <value>
-      <combatPower>19</combatPower>
+      <combatPower>24</combatPower>
     </value>
   </Operation>
 
@@ -476,7 +476,106 @@
   <Operation Class="PatchOperationReplace">
     <xpath>*/PawnKindDef[defName="TribalArcher"]/combatPower</xpath>
     <value>
-      <combatPower>24</combatPower>
+      <combatPower>30</combatPower>
+    </value>
+  </Operation>
+
+  <Operation Class="PatchOperationAddModExtension">
+    <xpath>*/PawnKindDef[defName="TribalHunter"]</xpath>
+    <value>
+      <li Class="CombatExtended.LoadoutPropertiesExtension">
+        <primaryMagazineCount>
+          <min>25</min>
+          <max>50</max>
+        </primaryMagazineCount>
+        <shieldMoney>
+          <min>100</min>
+          <max>140</max>
+        </shieldMoney>
+        <shieldTags>
+          <li>TribalShield</li>
+        </shieldTags>
+        <shieldChance>0.6</shieldChance>
+        <sidearms>
+          <li>
+            <sidearmMoney>
+              <min>80</min>
+              <max>240</max>
+            </sidearmMoney>
+            <weaponTags>
+              <li>CE_Sidearm_Tribal</li>
+            </weaponTags>
+          </li>
+        </sidearms>
+      </li>
+    </value>
+  </Operation>
+
+  <Operation Class="PatchOperationReplace">
+    <xpath>*/PawnKindDef[defName="TribalHunter"]/combatPower</xpath>
+    <value>
+      <combatPower>45</combatPower>
+    </value>
+  </Operation>
+
+  <Operation Class="PatchOperationAddModExtension">
+    <xpath>*/PawnKindDef[defName="TribalHeavyArcher"]</xpath>
+    <value>
+      <li Class="CombatExtended.LoadoutPropertiesExtension">
+        <primaryMagazineCount>
+          <min>3</min>
+          <max>6</max>
+        </primaryMagazineCount>
+        <shieldMoney>
+          <min>100</min>
+          <max>160</max>
+        </shieldMoney>
+        <shieldTags>
+          <li>TribalShield</li>
+        </shieldTags>
+        <shieldChance>0.6</shieldChance>
+        <sidearms>
+          <li>
+            <sidearmMoney>
+              <min>80</min>
+              <max>300</max>
+            </sidearmMoney>
+            <weaponTags>
+              <li>CE_Sidearm_Tribal</li>
+            </weaponTags>
+          </li>
+        </sidearms>
+      </li>
+    </value>
+  </Operation>
+
+  <Operation Class="PatchOperationReplace">
+    <xpath>*/PawnKindDef[defName="TribalHeavyArcher"]/combatPower</xpath>
+    <value>
+      <combatPower>60</combatPower>
+    </value>
+  </Operation>
+
+  <Operation Class="PatchOperationAddModExtension">
+    <xpath>*/PawnKindDef[defName="TribalBerserker"]</xpath>
+    <value>
+      <li Class="CombatExtended.LoadoutPropertiesExtension">
+        <shieldMoney>
+          <min>120</min>
+          <max>160</max>
+        </shieldMoney>
+        <shieldTags>
+          <li>TribalShield</li>
+        </shieldTags>
+        <shieldChance>0.9</shieldChance>
+      </li>
+    </value>
+  </Operation>
+
+  <Operation Class="PatchOperationReplace">
+    <xpath>*/PawnKindDef[defName="TribalBerserker"]/combatPower</xpath>
+    <value>
+      <combatPower>60</combatPower>
     </value>
   </Operation>
 
@@ -485,8 +584,8 @@
     <value>
       <li Class="CombatExtended.LoadoutPropertiesExtension">
         <primaryMagazineCount>
-          <min>3</min>
-          <max>6</max>
+          <min>30</min>
+          <max>60</max>
         </primaryMagazineCount>
         <shieldMoney>
           <min>120</min>
