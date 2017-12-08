@@ -125,7 +125,7 @@ namespace CombatExtended
                 {
                     // Attack connects, calculate resolution
                     //var resultRoll = Rand.Value;
-                    var parryChance = GetParryChanceAgainst(casterPawn, defender);
+                    var parryChance = GetComparativeChanceAgainst(casterPawn, defender, CE_StatDefOf.MeleeParryChance, BaseParryChance);
                     if (!surpriseAttack && defender != null && CanDoParry(defender) && Rand.Chance(parryChance))
                     {
                         // Attack is parried
@@ -134,7 +134,7 @@ namespace CombatExtended
                         Thing parryThing = isShieldBlock ? shield
                             : defender.equipment?.Primary != null ? defender.equipment.Primary : defender;
 
-                        if (Rand.Chance(GetCritChanceAgainst(defender, casterPawn)))
+                        if (Rand.Chance(GetComparativeChanceAgainst(defender, casterPawn, CE_StatDefOf.MeleeCritChance, BaseCritChance)))
                         {
                             // Do a riposte
                             DoParry(defender, parryThing, true);
@@ -161,7 +161,7 @@ namespace CombatExtended
 						BattleLogEntry_MeleeCombat log = this.CreateCombatLog(RulePackDefOf.Combat_Hit);
 						
                         // Attack connects
-                        if (!surpriseAttack && Rand.Chance(GetCritChanceAgainst(casterPawn, defender)))
+                        if (!surpriseAttack && Rand.Chance(GetComparativeChanceAgainst(casterPawn, defender, CE_StatDefOf.MeleeCritChance, BaseCritChance)))
                         {
                             // Do a critical hit
                             isCrit = true;
@@ -513,42 +513,15 @@ namespace CombatExtended
 			return SoundDefOf.Pawn_Melee_Punch_Miss;
         }
 
-        #region Stat calculations
-
-        private static float GetCritChanceAgainst(Pawn attacker,  Pawn defender)
+        private static float GetComparativeChanceAgainst(Pawn attacker, Pawn defender, StatDef stat, float baseChance)
         {
             if (attacker == null || defender == null)
                 return 0;
-            var stat = CE_StatDefOf.MeleeCritChance;
-            var offSkill = attacker.GetStatValue(stat);
-            var defSkill = defender.GetStatValue(stat);
-            var chance = Mathf.Clamp01(BaseCritChance + offSkill - defSkill);
+            var offSkill = stat.Worker.IsDisabledFor(attacker) ? 0 : attacker.GetStatValue(stat);
+            var defSkill = stat.Worker.IsDisabledFor(defender) ? 0 : defender.GetStatValue(stat);
+            var chance = Mathf.Clamp01(baseChance + defSkill - offSkill);
             return chance;
         }
-
-        private static float GetParryChanceAgainst(Pawn attacker,  Pawn defender)
-        {
-            if (attacker == null || defender == null)
-                return 0;
-            var stat = CE_StatDefOf.MeleeParryChance;
-            var offSkill = attacker.GetStatValue(stat);
-            var defSkill = defender.GetStatValue(stat);
-            var chance = Mathf.Clamp01(BaseParryChance + defSkill - offSkill);
-            return chance;
-        }
-
-        private static float GetDodgeChanceAgainst(Pawn attacker, Pawn defender)
-        {
-            if (attacker == null || defender == null)
-                return 0;
-            var stat = StatDefOf.MeleeDodgeChance;
-            var offSkill = attacker.GetStatValue(stat);
-            var defSkill = defender.GetStatValue(stat);
-            var chance = Mathf.Clamp01(BaseDodgeChance + defSkill - offSkill);
-            return chance;
-        }
-
-        #endregion
 
         #endregion
     }
