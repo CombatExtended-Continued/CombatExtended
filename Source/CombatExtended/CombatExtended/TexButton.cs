@@ -128,7 +128,7 @@ namespace CombatExtended
 
         public static readonly Texture2D UsePlanetDayNightSystem = ContentFinder<Texture2D>.Get("UI/Buttons/UsePlanetDayNightSystem", true);
 
-        public static readonly Texture2D ExpandingIcons = ContentFinder<Texture2D>.Get("UI/Buttons/ExpandingIcons", true);
+        //public static readonly Texture2D ExpandingIcons = ContentFinder<Texture2D>.Get("UI/Buttons/ExpandingIcons", true);
 
         public static readonly Texture2D[] SpeedButtonTextures = new Texture2D[]
         {
