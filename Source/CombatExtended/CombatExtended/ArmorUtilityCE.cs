@@ -212,7 +212,7 @@ namespace CombatExtended
                     if (instigatorPawn.verbTracker != null
                     && !instigatorPawn.verbTracker.AllVerbs.NullOrEmpty())
                     {
-                        Verb verb = instigatorPawn.verbTracker.AllVerbs.FirstOrDefault(v => v.verbProps.linkedBodyPartsGroup == dinfo.WeaponBodyPartGroup);
+                        Verb verb = instigatorPawn.verbTracker.AllVerbs.FirstOrDefault(v => v.tool.linkedBodyPartsGroup == dinfo.WeaponBodyPartGroup);
                         if (verb == null)
                         {
                             Log.Error("CE could not find matching verb on Pawn " + instigatorPawn.ToString() + " for BodyPartGroup " + dinfo.WeaponBodyPartGroup.ToString());
