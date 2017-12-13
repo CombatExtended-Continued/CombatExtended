@@ -215,21 +215,6 @@ namespace CombatExtended
         /// <returns>Collection with primary DamageInfo, followed by secondary types</returns>
         private IEnumerable<DamageInfo> DamageInfosToApply(LocalTargetInfo target, bool isCrit = false)
         {
-            Log.Message("OwnerEquipment=" + ownerEquipment.ToStringSafe() + ", tool=" + tool.ToStringSafe());
-            var knife = DefDatabase<ThingDef>.GetNamed("MeleeWeapon_Knife");
-            Log.Message("Knife tool count=" + knife.tools.Count + ", verb count=" + knife.Verbs.Count);
-            foreach (var knifeTool in knife.tools)
-            {
-                Log.Message("Tool=" + knifeTool.ToString());
-                foreach (ManeuverDef current in from maneuver in DefDatabase<ManeuverDef>.AllDefsListForReading
-                                                where knifeTool.capacities.Contains(maneuver.requiredCapacity)
-                                                select maneuver)
-                {
-                    Log.Message("Maneuver=" + current.ToStringSafe());
-                }
-            }
-
-
             float damAmount = (float)this.verbProps.AdjustedMeleeDamageAmount(this, base.CasterPawn, this.ownerEquipment);
             var critDamDef = CritDamageDef;
             DamageDef damDef = isCrit && critDamDef != DamageDefOf.Stun ? critDamDef : verbProps.meleeDamageDef;
