@@ -203,7 +203,7 @@ namespace CombatExtended
                             Log.Error("CE tried getting armor penetration from melee weapon " + dinfo.Weapon.defName + " but instigator " + dinfo.Instigator.ToString() + " equipment does not match");
                             return 0;
                         }
-                        var penetrationMult = equipment.GetStatValue(CE_StatDefOf.MeleeWeapon_Penetration);
+                        var penetrationMult = equipment.GetStatValue(CE_StatDefOf.MeleePenetrationFactor);
                         var tool = equipment.def.tools.FirstOrDefault(t => t.linkedBodyPartsGroup == dinfo.WeaponBodyPartGroup) as ToolCE;
                         return tool.armorPenetration * penetrationMult;
                     }
