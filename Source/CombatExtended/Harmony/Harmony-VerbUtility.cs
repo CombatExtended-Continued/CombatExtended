@@ -18,7 +18,6 @@ namespace CombatExtended.Harmony
             {
                 var verbCE = verb as Verb_LaunchProjectileCE;
                 __result = verbCE?.ProjectileDef;
-                Log.Message("Set result to " + __result.ToStringSafe());
             }
         }
     }

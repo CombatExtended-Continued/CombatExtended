@@ -143,7 +143,7 @@ namespace CombatExtended
 			get
 			{
 				Corpse corpse = Corpse;
-				return corpse != null ? corpse.InnerPawn : (Pawn)pawn.CurJob.GetTarget(TargetIndex.A).Thing;
+				return corpse != null ? corpse.InnerPawn : (Pawn)job.GetTarget(TargetIndex.A).Thing;
 			}
 		}
 
@@ -151,7 +151,7 @@ namespace CombatExtended
 		{
 			get
 			{
-				return pawn.CurJob.GetTarget(TargetIndex.A).Thing as Corpse;
+				return job.GetTarget(TargetIndex.A).Thing as Corpse;
 			}
 		}
 

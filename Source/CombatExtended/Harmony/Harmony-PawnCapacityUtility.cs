@@ -14,7 +14,7 @@ namespace CombatExtended.Harmony
         internal static bool Prefix(ref float __result, HediffSet diffSet, BodyPartGroupDef bodyPartGroup)
         {
             var primary = diffSet.pawn.equipment?.Primary;
-            if (primary != null && primary.def.tools.Any(t => t.linkedBodyPartsGroup == bodyPartGroup))
+            if (primary?.def.tools != null && primary.def.tools.Any(t => t.linkedBodyPartsGroup == bodyPartGroup))
             {
                 __result = 1;
                 return false;
