@@ -132,14 +132,17 @@ namespace CombatExtended
     		IEnumerable<Graphic> allPlantGraphics = DefDatabase<ThingDef>.AllDefs
     			.Where<ThingDef>(x => x.plant != null)
     			.SelectMany<ThingDef, Graphic>(y => {
-    			            	var a = new List<Graphic>();
-				    			if (y.graphicData.Graphic != null)
-				    				a.Add(y.graphicData.Graphic);
-				    			if (y.plant.leaflessGraphic != null)
-				    				a.Add(y.plant.leaflessGraphic);
-				    			if (y.plant.immatureGraphic != null)
-				    				a.Add(y.plant.immatureGraphic);
-    			            	return a;
+					    var a = new List<Graphic>();
+					    if (y != null)
+					    {
+						if (y.graphicData != null && y.graphicData.Graphic != null)
+						    a.Add(y.graphicData.Graphic);
+						if (y.plant.leaflessGraphic != null)
+						    a.Add(y.plant.leaflessGraphic);
+						if (y.plant.immatureGraphic != null)
+						    a.Add(y.plant.immatureGraphic);
+					    }
+					    return a;
     			            })
     			.Distinct()
     			.Concat(new []{

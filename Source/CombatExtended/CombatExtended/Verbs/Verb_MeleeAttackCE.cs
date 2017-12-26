@@ -161,7 +161,7 @@ namespace CombatExtended
                         BattleLogEntry_MeleeCombat log = this.CreateCombatLog(RulePackDefOf.Combat_Hit);
 
                         // Attack connects
-                        if (!surpriseAttack && Rand.Chance(GetComparativeChanceAgainst(casterPawn, defender, CE_StatDefOf.MeleeCritChance, BaseCritChance)))
+                        if (surpriseAttack || Rand.Chance(GetComparativeChanceAgainst(casterPawn, defender, CE_StatDefOf.MeleeCritChance, BaseCritChance)))
                         {
                             // Do a critical hit
                             isCrit = true;
@@ -256,6 +256,7 @@ namespace CombatExtended
             yield return mainDinfo;
 
             // Apply secondary damage on surprise attack
+            /*
             if (!surpriseAttack
                     || ((verbProps.surpriseAttack == null || verbProps.surpriseAttack.extraMeleeDamages.NullOrEmpty<ExtraMeleeDamage>())
                         && tool != null
@@ -283,6 +284,7 @@ namespace CombatExtended
                     yield return extraDinfo;
                 }
             }
+            */
 
             // Apply critical damage
             if (isCrit && critDamDef == DamageDefOf.Stun)
