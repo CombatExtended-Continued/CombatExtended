@@ -1,14 +1,15 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <Defs>
+  <ThingCategoryDef>
+    <defName>Ammo81mmMortarShells</defName>
+    <label>81mm mortar shell</label>
+    <parent>AmmoShells</parent>
+    <iconPath>UI/Icons/ThingCategories/CaliberMortar</iconPath>
+  </ThingCategoryDef>
 
-    <ThingCategoryDef>
-      <defName>Ammo81mmMortarShells</defName>
-      <label>81mm mortar shell</label>
-      <parent>AmmoShells</parent>
-      <iconPath>UI/Icons/ThingCategories/CaliberMortar</iconPath>
-    </ThingCategoryDef>
-	
-	<!-- ==================== AmmoSet ========================== -->
+
+  <!-- ==================== AmmoSet ========================== -->
+
 
   <CombatExtended.AmmoSetDef>
     <defName>AmmoSet_81mmMortarShell</defName>
@@ -20,8 +21,10 @@
       <Shell_EMP>Bullet_81mmMortarShell_EMP</Shell_EMP>
     </ammoTypes>
   </CombatExtended.AmmoSetDef>
-	
-	<!-- ==================== Ammo ========================== -->
+
+
+  <!-- ==================== Ammo ========================== -->
+
 
   <ThingDef Name="81mmMortarShellBase" ParentName="AmmoBase" Abstract="True">
     <description>Low-velocity shell designed to be fired from a mortar.</description>
@@ -50,8 +53,8 @@
     </graphicData>
     <statBases>
       <MarketValue>28.52</MarketValue>
-			<Mass>4.24</Mass>
-			<Bulk>5</Bulk>
+      <Mass>4.24</Mass>
+      <Bulk>5</Bulk>
     </statBases>
     <ammoClass>GrenadeHE</ammoClass>
     <comps>
@@ -75,8 +78,8 @@
     </graphicData>
     <statBases>
       <MarketValue>23.92</MarketValue>
-			<Mass>4.1</Mass>
-			<Bulk>5.5</Bulk>
+      <Mass>4.1</Mass>
+      <Bulk>5.5</Bulk>
     </statBases>
     <ammoClass>GrenadeIncendiary</ammoClass>
     <comps>
@@ -103,8 +106,8 @@
     </graphicData>
     <statBases>
       <MarketValue>19.78</MarketValue>
-			<Mass>4.5</Mass>
-			<Bulk>6</Bulk>
+      <Mass>4.5</Mass>
+      <Bulk>6</Bulk>
     </statBases>
     <ammoClass>GrenadeEMP</ammoClass>
     <comps>
@@ -118,24 +121,26 @@
       </li>
     </comps>
   </ThingDef>
-	
-	<!-- ================== Projectiles ================== -->
 
-	<ThingDef Name="Base81mmMortarShell" ParentName="BaseBullet" Abstract="true">
-		<thingClass>CombatExtended.ProjectileCE_Explosive</thingClass>
-		<graphicData>
+
+  <!-- ================== Projectiles ================== -->
+
+
+  <ThingDef Name="Base81mmMortarShell" ParentName="BaseBullet" Abstract="true">
+    <thingClass>CombatExtended.ProjectileCE_Explosive</thingClass>
+    <graphicData>
       <shaderType>TransparentPostLight</shaderType>
-		</graphicData>
-		<projectile>
-			<speed>100</speed>
+    </graphicData>
+    <projectile>
+      <speed>100</speed>
       <soundHitThickRoof>ArtilleryHitThickRoof</soundHitThickRoof>
       <soundImpactAnticipate>MortarRound_PreImpact</soundImpactAnticipate>
       <soundAmbient>MortarRound_Ambient</soundAmbient>
       <flyOverhead>true</flyOverhead>
-	  <dropsCasings>true</dropsCasings>
-	  <casingMoteDefname>Mote_BigShell</casingMoteDefname>
-		</projectile>
-	</ThingDef>
+      <dropsCasings>true</dropsCasings>
+      <casingMoteDefname>Mote_BigShell</casingMoteDefname>
+    </projectile>
+  </ThingDef>
 
   <ThingDef ParentName="Base81mmMortarShell">
     <defName>Bullet_81mmMortarShell_HE</defName>
@@ -143,32 +148,32 @@
     <graphicData>
       <texPath>Things/Projectile/Mortar/HE</texPath>
       <graphicClass>Graphic_Single</graphicClass>
-	</graphicData>
+    </graphicData>
     <projectile>
       <damageDef>Bomb</damageDef>
       <damageAmountBase>150</damageAmountBase>
       <explosionRadius>1</explosionRadius>
-	  <soundExplode>MortarBomb_Explode</soundExplode>
+      <soundExplode>MortarBomb_Explode</soundExplode>
     </projectile>
-		<comps>
-			<li Class="CombatExtended.CompProperties_ExplosiveCE">
-				<explosionDamage>100</explosionDamage>
-				<explosionDamageDef>Bomb</explosionDamageDef>
-				<explosionRadius>2.5</explosionRadius>
-				<fragments>
+    <comps>
+      <li Class="CombatExtended.CompProperties_ExplosiveCE">
+        <explosionDamage>100</explosionDamage>
+        <explosionDamageDef>Bomb</explosionDamageDef>
+        <explosionRadius>2.5</explosionRadius>
+        <fragments>
           <Fragment_Shell>300</Fragment_Shell>
-				</fragments>
-	  </li>
-	</comps>
+        </fragments>
+      </li>
+    </comps>
   </ThingDef>
 
   <ThingDef ParentName="Base81mmMortarShell">
     <defName>Bullet_81mmMortarShell_Incendiary</defName>
     <label>81mm mortar shell (Incendiary)</label>
     <graphicData>
-			<texPath>Things/Projectile/Mortar/Incendiary</texPath>
-			<graphicClass>Graphic_Single</graphicClass>
-		</graphicData>
+      <texPath>Things/Projectile/Mortar/Incendiary</texPath>
+      <graphicClass>Graphic_Single</graphicClass>
+    </graphicData>
     <projectile>
       <damageDef>PrometheumFlame</damageDef>
       <damageAmountBase>50</damageAmountBase>
@@ -183,17 +188,19 @@
     <defName>Bullet_81mmMortarShell_EMP</defName>
     <label>81mm mortar shell (EMP)</label>
     <graphicData>
-			<texPath>Things/Projectile/Mortar/EMP</texPath>
-			<graphicClass>Graphic_Single</graphicClass>
-		</graphicData>
+      <texPath>Things/Projectile/Mortar/EMP</texPath>
+      <graphicClass>Graphic_Single</graphicClass>
+    </graphicData>
     <projectile>
       <damageDef>EMP</damageDef>
       <damageAmountBase>80</damageAmountBase>
       <explosionRadius>5</explosionRadius>
     </projectile>
   </ThingDef>
-  
-	<!-- ==================== Recipes ========================== -->
+
+
+  <!-- ==================== Recipes ========================== -->
+
 
   <RecipeDef ParentName="AmmoRecipeBase">
     <defName>MakeShell_HighExplosive</defName>
@@ -314,5 +321,4 @@
       <Shell_EMP>5</Shell_EMP>
     </products>
   </RecipeDef>
-	
 </Defs>
