@@ -40,7 +40,6 @@ namespace CombatExtended
                 locomotionUrgency = LocomotionUrgency.Sprint,
                 playerForced = true
             };
-            pawn.Map.pawnDestinationReservationManager.Reserve(pawn, job, coverPosition);
             return job;
         }
 
