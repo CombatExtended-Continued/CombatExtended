@@ -448,18 +448,31 @@ namespace CombatExtended
                     return false;
                 }
             }
-            // Check for apparel
-            if (ShooterPawn != null && ShooterPawn.apparel != null)
+            if (ShooterPawn != null)
             {
-                List<Apparel> wornApparel = ShooterPawn.apparel.WornApparel;
-                foreach(Apparel current in wornApparel)
-                {
-                    if (!current.AllowVerbCast(root, caster.Map, targ))
-                    {
-                        report = "Shooting disallowed by " + current.LabelShort;
-                        return false;
-                    }
-                }
+            	// Check for capable of violence
+            	if (ShooterPawn.story.WorkTagIsDisabled(WorkTags.Violent))
+        	    {
+					report = "IsIncapableOfViolenceLower".Translate(new object[]
+					{
+						ShooterPawn.NameStringShort
+					});
+            		return false;
+        	    }
+            	
+           		// Check for apparel
+            	if (ShooterPawn.apparel != null)
+            	{
+	                List<Apparel> wornApparel = ShooterPawn.apparel.WornApparel;
+	                foreach(Apparel current in wornApparel)
+	                {
+	                    if (!current.AllowVerbCast(root, caster.Map, targ))
+	                    {
+	                        report = "Shooting disallowed by " + current.LabelShort;
+	                        return false;
+	                    }
+	                }
+            	}
             }
             // Check for line of sight
             ShootLine shootLine;
