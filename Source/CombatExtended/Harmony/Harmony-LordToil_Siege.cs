@@ -12,7 +12,7 @@ namespace CombatExtended.Harmony
         internal static IEnumerable<CodeInstruction> Transpiler(IEnumerable<CodeInstruction> instructions)
         {
             return instructions.MethodReplacer(typeof(ThingDef).GetMethod("get_IsShell"),
-                typeof(AmmoUtility).GetMethod(nameof(AmmoUtility.IsShell), BindingFlags.Public | BindingFlags.Static));
+                typeof(AmmoUtility).GetMethod(nameof(AmmoUtility.IsVanillaSiegeShell), BindingFlags.Public | BindingFlags.Static));
         }
     }
 }
