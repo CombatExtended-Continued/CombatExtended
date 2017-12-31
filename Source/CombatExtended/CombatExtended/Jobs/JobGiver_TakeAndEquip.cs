@@ -10,6 +10,8 @@ namespace CombatExtended
 {
     public class JobGiver_TakeAndEquip : ThinkNode_JobGiver
     {
+    	private const float ammoFractionOfNonAmmoInventory = 0.666f;
+        
         private enum WorkPriority
         {
             None,
@@ -22,10 +24,29 @@ namespace CombatExtended
 
         private WorkPriority GetPriorityWork(Pawn pawn)
         {
-            CompAmmoUser primaryammouser = pawn.equipment.Primary.TryGetComp<CompAmmoUser>();
-            CompInventory compammo = pawn.TryGetComp<CompInventory>();
-
-            if (pawn.Faction.IsPlayer && pawn.equipment.Primary != null && pawn.equipment.Primary.TryGetComp<CompAmmoUser>() != null)
+            #region Traders have no work priority
+            if (pawn.kindDef.trader)
+            {
+                return WorkPriority.None;
+            }
+            #endregion
+            
+            #region Pawns with non-idle jobs have no work priority
+            bool hasCurJob = pawn.CurJob != null;
+            JobDef jobDef = hasCurJob ? pawn.CurJob.def : null;
+            
+            if (hasCurJob && !jobDef.isIdle)
+            {
+                return WorkPriority.None;
+            }
+            #endregion
+           	
+			bool hasPrimary = (pawn.equipment != null && pawn.equipment.Primary != null);
+            CompAmmoUser primaryAmmoUser = hasPrimary ? pawn.equipment.Primary.TryGetComp<CompAmmoUser>() : null;
+            
+            #region Colonists with primary ammo-user and a loadout have no work priority
+            if (pawn.Faction.IsPlayer
+              && primaryAmmoUser != null)
             {
                 Loadout loadout = pawn.GetLoadout();
                 // if (loadout != null && !loadout.Slots.NullOrEmpty())
@@ -34,77 +55,71 @@ namespace CombatExtended
                     return WorkPriority.None;
                 }
             }
-
-            if (pawn.kindDef.trader)
+            #endregion
+			
+            // Pawns without weapon..
+            if (!hasPrimary)
             {
-                return WorkPriority.None;
-            }
-            if (pawn.CurJob != null && pawn.CurJob.def == JobDefOf.Tame)
-            {
-                return WorkPriority.None;
-            }
-
-            if (pawn.equipment.Primary == null)
-            {
+            	// With inventory && non-colonist && not stealing && little space left
                 if (Unload(pawn))
                 {
                     return WorkPriority.Unloading;
                 }
-                else return WorkPriority.Weapon;
+                // Without inventory || colonist || stealing || lots of space left
+                return WorkPriority.Weapon;
             }
-
-            if (pawn.equipment.Primary != null && primaryammouser != null)
+			
+            CompInventory compInventory = pawn.TryGetComp<CompInventory>();
+            
+            // Pawn with ammo-using weapon..
+            if (primaryAmmoUser != null && primaryAmmoUser.UseAmmo)
             {
-                int ammocount = 0;
-                foreach (AmmoLink link in primaryammouser.Props.ammoSet.ammoTypes)
+                // Magazine size
+                FloatRange magazineSize = new FloatRange(1f, 2f);
+                LoadoutPropertiesExtension loadoutPropertiesExtension = (LoadoutPropertiesExtension)(pawn.kindDef.modExtensions?.FirstOrDefault(x => x is LoadoutPropertiesExtension));
+                bool hasWeaponTags = pawn.kindDef.weaponTags?.Any() ?? false;
+                
+            	if (hasWeaponTags
+                  && primaryAmmoUser.parent.def.weaponTags.Any(pawn.kindDef.weaponTags.Contains)
+            	  && loadoutPropertiesExtension?.primaryMagazineCount != FloatRange.Zero)
+            	{
+                	magazineSize.min = loadoutPropertiesExtension.primaryMagazineCount.min;
+                	magazineSize.max = loadoutPropertiesExtension.primaryMagazineCount.max;
+            	}
+                
+                magazineSize.min *= primaryAmmoUser.Props.magazineSize;
+                magazineSize.max *= primaryAmmoUser.Props.magazineSize;
+                
+            	// Number of things in inventory that could be put in the weapon
+                int viableAmmoCarried = 0;
+                float viableAmmoBulk = 0;
+                foreach (AmmoLink link in primaryAmmoUser.Props.ammoSet.ammoTypes)
                 {
-                    Thing ammoThing;
-                    ammoThing = compammo.ammoList.Find(thing => thing.def == link.ammo);
-                    if (ammoThing != null)
-                    {
-                        ammocount += ammoThing.stackCount;
-                    }
+                	var count = compInventory.AmmoCountOfDef(link.ammo);
+                	viableAmmoCarried += count;
+                	viableAmmoBulk += count * link.ammo.GetStatValueAbstract(CE_StatDefOf.Bulk);
                 }
-
-                // current ammo bulk 
-                float currentAmmoBulk = primaryammouser.CurrentAmmo.GetStatValueAbstract(CE_StatDefOf.Bulk);
-
-                // weapon magazine size 
-                float stackSize = primaryammouser.Props.magazineSize;
-
-                // weight projectile ratio to free bulk with x1.5 reserve
-                float weightProjectileRatio = Mathf.RoundToInt(((compammo.capacityBulk - compammo.currentBulk) / 1.5f) / currentAmmoBulk);
-
-                if (ammocount < stackSize * 1 && (ammocount < weightProjectileRatio))
+                
+                // ~2/3rds of the inventory bulk minus non-usable and non-ammo bulk could be filled with ammo
+                float potentialAmmoBulk = ammoFractionOfNonAmmoInventory * (compInventory.capacityBulk - compInventory.currentBulk + viableAmmoBulk);
+                
+                // There's less ammo [bulk] than fits the potential ammo bulk [bulk]
+                if (viableAmmoBulk < potentialAmmoBulk)
                 {
-                    if (Unload(pawn))
-                    {
-                        return WorkPriority.Unloading;
-                    }
-                    else return WorkPriority.LowAmmo;
-                }
-
-                if (!PawnUtility.EnemiesAreNearby(pawn, 30, true))
-                {
-                    if (ammocount < stackSize * 2 && (ammocount < weightProjectileRatio))
-                    {
-                        if (Unload(pawn))
-                        {
-                            return WorkPriority.Unloading;
-                        }
-                        else return WorkPriority.Ammo;
-                    }
+	                // There's less ammo [nr] than fits a clip [nr]
+	                if (primaryAmmoUser.Props.magazineSize == 0 || viableAmmoCarried < magazineSize.min)
+	                {
+	                	return Unload(pawn) ? WorkPriority.Unloading : WorkPriority.LowAmmo;
+	                }
+	                
+	                // There's less ammo [nr] than fits two clips [nr] && no enemies are close
+	                if (viableAmmoCarried < magazineSize.max
+	                 && !PawnUtility.EnemiesAreNearby(pawn, 30, true))
+	                {
+	                	return Unload(pawn) ? WorkPriority.Unloading : WorkPriority.Ammo;
+	                }
                 }
             }
-            /*
-            if (!pawn.Faction.IsPlayer && pawn.equipment.Primary != null
-                && !PawnUtility.EnemiesAreNearby(pawn, 30, true)
-                || (!pawn.apparel.BodyPartGroupIsCovered(BodyPartGroupDefOf.Torso)
-                || !pawn.apparel.BodyPartGroupIsCovered(BodyPartGroupDefOf.Legs)))
-            {
-                return WorkPriority.Apparel;
-            }
-            */
 
             return WorkPriority.None;
         }
