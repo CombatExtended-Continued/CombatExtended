@@ -33,9 +33,9 @@ namespace CombatExtended
         private static void CalculateHeightRange(Thing thing, out FloatRange heightRange, out float shotHeight)
         {
             shotHeight = 0;
+            heightRange = new FloatRange(0, 0);
             if (thing == null)
             {
-                heightRange = new FloatRange(0, 0);
                 return;
             }
             
