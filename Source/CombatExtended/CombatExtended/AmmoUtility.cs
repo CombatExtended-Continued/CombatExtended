@@ -78,7 +78,7 @@ namespace CombatExtended
 
 		public static bool IsVanillaSiegeShell(ThingDef def)
 		{
-			var ammo = ThingDef.Named("Artillery_Mortar").GetCompProperties<CompProperties_AmmoUser>();
+			var ammo = ThingDefOf.Turret_Mortar.building.turretGunDef.GetCompProperties<CompProperties_AmmoUser>();
 			return ammo != null && ammo.ammoSet.ammoTypes.Any(l => l.ammo == def);
 		}
         
