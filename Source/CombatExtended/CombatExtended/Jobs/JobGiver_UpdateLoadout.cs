@@ -271,6 +271,7 @@ namespace CombatExtended
                 if (closestThing != null)
                 {
                 	if (closestThing.TryGetComp<CompEquippable>() != null
+                        && !(pawn.story != null && pawn.story.WorkTagIsDisabled(WorkTags.Violent))
                         && (pawn.health != null && pawn.health.capacities.CapableOf(PawnCapacityDefOf.Manipulation))
                         && (pawn.equipment == null || pawn.equipment.Primary == null || !loadout.Slots.Any(s => s.thingDef == pawn.equipment.Primary.def
                                                                                                            || (s.genericDef != null && s.countType == LoadoutCountType.pickupDrop 
