@@ -194,7 +194,44 @@ namespace CombatExtended.Harmony
                 }
             }
         }
-
+        
+        static IEnumerable<CodeInstruction> Transpiler(IEnumerable<CodeInstruction> instructions)
+        {
+            string targetString = "CannotPickUp";
+            int stringIndex = -1;
+            List<CodeInstruction> codes = Modify_ForceWear(instructions).ToList();
+            // Find Ldstr "CannotPickUp"
+            for (int i = 0; i < codes.Count; i++)
+            {
+                var code = codes[i];
+                if (code.opcode == OpCodes.Ldstr && code.operand as string != null && (code.operand as string).Equals(targetString))
+                {
+                    stringIndex = i;
+                    break;
+                }
+            }
+            // Find get_IsPlayerHome
+            if (stringIndex < 0)
+            {
+                Log.Error("CE failed to patch FloatMenuMakerMap: invalid string index");
+            }
+            else
+            {
+                for (int i = stringIndex; i > 0; i--)
+                {
+                    var code = codes[i];
+                    if (code.opcode == OpCodes.Callvirt && code.operand as MethodInfo != null && (code.operand as MethodInfo).Name == "get_IsPlayerHome")
+                    {
+                        // Change value to always true
+                        code.opcode = OpCodes.Ldc_I4_1;
+                        code.operand = null;
+                        return codes;
+                    }
+                }
+                Log.Error("CE failed to patch FloatMenuMakerMap: get_IsPlayerHome not found");
+            }
+            return instructions;
+        }
 
         /* Dev Notes (Don't need to read this, a short explanation is just before the method below):
          * The IL of the region I'm interested in (As of RimWorld 0.17.6351.26908, generated via Harmony debug mode):
@@ -282,8 +319,7 @@ namespace CombatExtended.Harmony
          * FloatMenuMakerMap.AddHumanlikeOrders doesn't change in logic significantly.
          * The label relocation is a little soft.
          */
-        [HarmonyTranspiler]
-        static IEnumerable<CodeInstruction> Modify_ForceWear(IEnumerable<CodeInstruction> instructions, ILGenerator generator)
+        static IEnumerable<CodeInstruction> Modify_ForceWear(IEnumerable<CodeInstruction> instructions)
         {
             int searchPhase = 0;
             bool patched = false;
@@ -310,7 +346,9 @@ namespace CombatExtended.Harmony
                 // -Locate callvirt Void Add(Verse.FloatMenuOption)
                 if (searchPhase == 2 && instruction.opcode == OpCodes.Callvirt && (instruction.operand as MethodInfo) != null && (instruction.operand as MethodInfo).Name == "Add"
                     && (previous.operand as LocalVariableInfo) != null && (previous.operand as LocalVariableInfo).LocalType == typeof(FloatMenuOption))
+                {
                     searchPhase = 3;
+                }
 
                 // -Locate ldfld RimWorld.Apparel apparel
                 if (searchPhase == 1 && instruction.opcode == OpCodes.Ldfld && (instruction.operand as FieldInfo) != null && (instruction.operand as FieldInfo).Name == "apparel")
@@ -331,7 +369,6 @@ namespace CombatExtended.Harmony
                 if (searchPhase > 0 && searchPhase < 3)
                     previous = instruction;
             }
-
             if (!branchLabel.NullOrEmpty())
             {
                 // search succeeded, find our insertion point again and insert the patch.
@@ -386,50 +423,6 @@ namespace CombatExtended.Harmony
                 return false;
             }
             return true;
-        }
-    }
-
-    [HarmonyPatch(typeof(FloatMenuMakerMap))]
-    [HarmonyPatch("AddHumanlikeOrders")]
-    [HarmonyPatch(new Type[] { typeof(Vector3), typeof(Pawn), typeof(List<FloatMenuOption>) })]
-    static class FloatMenuMakerMap_AddHumanlikeOrders_Patch
-    {
-        static IEnumerable<CodeInstruction> Transpiler(IEnumerable<CodeInstruction> instructions)
-        {
-            string targetString = "CannotPickUp";
-            int stringIndex = -1;
-            List<CodeInstruction> codes = instructions.ToList();
-            // Find Ldstr "CannotPickUp"
-            for (int i = 0; i < codes.Count; i++)
-            {
-                var code = codes[i];
-                if (code.opcode == OpCodes.Ldstr && code.operand as string != null && (code.operand as string).Equals(targetString))
-                {
-                    stringIndex = i;
-                    break;
-                }
-            }
-            // Find get_IsPlayerHome
-            if (stringIndex < 0)
-            {
-                Log.Error("CE failed to patch FloatMenuMakerMap: invalid string index");
-            }
-            else
-            {
-                for (int i = stringIndex; i > 0; i--)
-                {
-                    var code = codes[i];
-                    if (code.opcode == OpCodes.Callvirt && code.operand as MethodInfo != null && (code.operand as MethodInfo).Name == "get_IsPlayerHome")
-                    {
-                        // Change value to always true
-                        code.opcode = OpCodes.Ldc_I4_1;
-                        code.operand = null;
-                        return codes;
-                    }
-                }
-                Log.Error("CE failed to patch FloatMenuMakerMap: get_IsPlayerHome not found");
-            }
-            return instructions;
         }
     }
 }
