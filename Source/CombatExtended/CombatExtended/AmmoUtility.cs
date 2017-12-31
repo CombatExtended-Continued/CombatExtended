@@ -76,10 +76,15 @@ namespace CombatExtended
             return stringBuilder.ToString();
         }
 
+		public static bool IsVanillaSiegeShell(ThingDef def)
+		{
+			var ammo = ThingDef.Named("Artillery_Mortar").GetCompProperties<CompProperties_AmmoUser>();
+			return ammo != null && ammo.ammoSet.ammoTypes.Any(l => l.ammo == def);
+		}
+        
         public static bool IsShell(ThingDef def)
         {
-            var ammo = ThingDef.Named("Artillery_Mortar").GetCompProperties<CompProperties_AmmoUser>();
-            return ammo?.ammoSet.ammoTypes.Any(l => l.ammo == def) ?? false;
+			return def is AmmoDef || def.IsShell;
         }
     }
 }
