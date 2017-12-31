@@ -601,13 +601,6 @@ namespace CombatExtended
                 if (!Rand.Chance(chance)) return false;
             }
             
-            // Doors don't collide when Building_Door.Open
-            var door = thing as Building_Door;
-            if (door != null && door.Open)
-            {
-            	return false;
-            }
-            
             var point = ShotLine.GetPoint(dist);
             if (!point.InBounds(this.Map))
             	Log.Error("TryCollideWith out of bounds point from ShotLine: obj " + thing.ThingID + ", proj " + this.ThingID + ", dist " + dist + ", point " + point);
