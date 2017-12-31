@@ -38,20 +38,22 @@ namespace CombatExtended
         /// <remarks>Copied from <see cref="JobDriver_ManTurret.FindAmmoForTurret" />.</remarks>
         private static Thing FindAmmoForTurret(Pawn pawn, Thing turret)
         {
-            var allowedShellsSettings = pawn.IsColonist
-                ? null
-                : turret.TryGetComp<CompChangeableProjectile>()?.allowedShellsSettings;
+            var compAmmo = (turret as Building_TurretGunCE)?.CompAmmo;
+            if (compAmmo == null || !compAmmo.UseAmmo)
+            {
+                return null;
+            }
 
             return GenClosest.ClosestThingReachable(
                 turret.Position,
                 turret.Map,
-                ThingRequest.ForGroup(ThingRequestGroup.Shell),
+                ThingRequest.ForGroup(ThingRequestGroup.HaulableEver),
                 PathEndMode.OnCell,
                 TraverseParms.For(pawn),
                 40f,
                 t => !t.IsForbidden(pawn) &&
                      pawn.CanReserve(t, 10, 1) &&
-                     (allowedShellsSettings == null || allowedShellsSettings.AllowedToAccept(t)));
+                     compAmmo.Props.ammoSet.ammoTypes.Any(l => l.ammo == t.def));
         }
     }
 }

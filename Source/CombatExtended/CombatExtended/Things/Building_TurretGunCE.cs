@@ -105,7 +105,7 @@ namespace CombatExtended
                     this.gunInt = ThingMaker.MakeThing(this.def.building.turretGunDef, null);
                     InitGun();
                     // FIXME: Hack to make player-crafted turrets spawn unloaded
-                    if (Faction != Faction.OfPlayer && CompAmmo != null)
+                    if (Map.IsPlayerHome && CompAmmo != null)
                     {
                         CompAmmo.ResetAmmoCount();
                     }
@@ -559,8 +559,18 @@ namespace CombatExtended
                 if (inventory != null)
                 {
                     Thing ammo = inventory.container.FirstOrDefault(x => x.def == CompAmmo.SelectedAmmo);
+
+                    // NPC's switch ammo types
+                    if (ammo == null)
+                    {
+                        ammo = inventory.container.FirstOrDefault(x => CompAmmo.Props.ammoSet.ammoTypes.Any(a => a.ammo == x.def));
+                    }
                     if (ammo != null)
                     {
+                        if (ammo.def != CompAmmo.SelectedAmmo)
+                        {
+                            CompAmmo.SelectedAmmo = ammo.def as AmmoDef;
+                        }
                         Thing droppedAmmo;
                         int amount = CompAmmo.Props.magazineSize;
                         if (CompAmmo.CurrentAmmo == CompAmmo.SelectedAmmo) amount -= CompAmmo.CurMagCount;
