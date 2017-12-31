@@ -130,7 +130,7 @@ namespace CombatExtended
             initEquipment = pawn.equipment?.Primary;
             
             // choose ammo to be loaded and set failstate for no ammo in inventory
-            this.FailOn(() => !compReloader.TryFindAmmoInInventory(out initAmmo));
+            this.FailOn(() => compReloader.UseAmmo && !compReloader.TryFindAmmoInInventory(out initAmmo));
 
             // setup fail states, if something goes wrong with the pawn performing the reload, the weapon, or something else that we want to fail on.
             this.FailOnDespawnedOrNull(indReloader);

@@ -23,7 +23,7 @@ namespace CombatExtended
 		{
 			this.FailOn(delegate
 			{
-				if (!pawn.CurJob.ignoreDesignations)
+				if (!job.ignoreDesignations)
 				{
 					Pawn victim = Victim;
 					if (victim != null && !victim.Dead && Map.designationManager.DesignationOn(victim, DesignationDefOf.Hunt) == null)
@@ -90,16 +90,10 @@ namespace CombatExtended
 
 				//This to prevent victim bleeding to death or similar (!victim.Dead) FailOn state
 			this.FailOn(delegate
-			{
-				if (!job.ignoreDesignations)
-				{
-					Pawn victim = Victim;
-					if (victim != null && Map.designationManager.DesignationOn(victim, DesignationDefOf.Hunt) == null)
-					{
-						return true;
-					}
-				}
-				return false;
+            {
+                return !job.ignoreDesignations 
+                && Corpse == null 
+                && Map.designationManager.DesignationOn(Victim, DesignationDefOf.Hunt) == null;
 			});
 			
             // Execute downed animal - adapted from JobDriver_Slaughter
@@ -233,10 +227,10 @@ namespace CombatExtended
                 {
                     pawn.Reserve(corpse, job, 1);
                     pawn.Reserve(c, job, 1);
-                    pawn.CurJob.SetTarget(TargetIndex.B, c);
-                    pawn.CurJob.SetTarget(TargetIndex.A, corpse);
-                    pawn.CurJob.count = 1;
-                    pawn.CurJob.haulMode = HaulMode.ToCellStorage;
+                    job.SetTarget(TargetIndex.B, c);
+                    job.SetTarget(TargetIndex.A, corpse);
+                    job.count = 1;
+                    job.haulMode = HaulMode.ToCellStorage;
                     return;
                 }
                 pawn.jobs.EndCurrentJob(JobCondition.Succeeded, true);
