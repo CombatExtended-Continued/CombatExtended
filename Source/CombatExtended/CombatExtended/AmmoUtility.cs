@@ -1,4 +1,5 @@
 ﻿using System.Text;
+using RimWorld;
 using Verse;
 
 namespace CombatExtended

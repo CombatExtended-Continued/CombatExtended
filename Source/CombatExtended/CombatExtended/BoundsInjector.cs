@@ -55,11 +55,11 @@ namespace CombatExtended
 			var vTexHead = headGraphic.MatSide.mainTexture as Texture2D;
 			var vBoundsHead = Def_Extensions.CropVertical(vTexHead.GetColorSafe(out vWidthHead, out vHeightHead), vWidthHead, vHeightHead);
 			
-			vBoundsHead.min += (int)(headOffset.y * (float)vHeightHead);
-			vBoundsHead.max += (int)(headOffset.y * (float)vHeightHead);
+			vBoundsHead.min -= (int)(headOffset.y * (float)vHeightHead);
+			vBoundsHead.max -= (int)(headOffset.y * (float)vHeightHead);
 			
-			vBounds.max = Math.Max(vBounds.max, (int)((float)vBoundsHead.max * (float)vHeight / (float)vHeightHead));
 			vBounds.min = Math.Min(vBounds.min, (int)((float)vBoundsHead.min * (float)vHeight / (float)vHeightHead));
+			vBounds.max = Math.Max(vBounds.max, (int)((float)vBoundsHead.max * (float)vHeight / (float)vHeightHead));
 			
 			int hWidthHead; int hHeightHead;
 			
