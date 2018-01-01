@@ -217,12 +217,13 @@ namespace CombatExtended
         {
             float damAmount = (float)this.verbProps.AdjustedMeleeDamageAmount(this, base.CasterPawn, this.ownerEquipment);
             var critDamDef = CritDamageDef;
-            DamageDef damDef = isCrit && critDamDef != DamageDefOf.Stun ? critDamDef : verbProps.meleeDamageDef;
-            BodyPartGroupDef bodyPartGroupDef = tool?.linkedBodyPartsGroup;
+            DamageDef damDef = isCrit && critDamDef != DamageDefOf.Stun ? critDamDef : verbProps.meleeDamageDef;	//Added isCrit check
+            BodyPartGroupDef bodyPartGroupDef = null;
             HediffDef hediffDef = null;
             damAmount = UnityEngine.Random.Range(damAmount * 0.8f, damAmount * 1.2f);
             if (base.CasterIsPawn)
             {
+            	bodyPartGroupDef = LinkedBodyPartsGroup;
                 if (damAmount >= 1f)
                 {
                     if (this.ownerHediffComp != null)

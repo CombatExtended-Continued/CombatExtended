@@ -169,8 +169,51 @@ namespace CombatExtended
             return dinfo;
         }
 
+        private static ToolCE GetUsedTool(this IEnumerable<ToolCE> tools, DamageInfo dinfo)
+        {
+        	if (tools.Count() == 1)
+        	{
+        		if (dinfo.WeaponBodyPartGroup != null && tools.First().linkedBodyPartsGroup != dinfo.WeaponBodyPartGroup)
+        		{
+        			Log.ErrorOnce("CE :: WeaponBodyPartGroup was specified for DamageInfo "+dinfo.ToString()+", but none of the tools "+String.Join(",", tools.Select(t => t.ToString()).ToArray())+" have this linkedBodyPartsGroup.", dinfo.GetHashCode() + 3473534);
+        		}
+        	}
+        	else if (!tools.Any())
+        	{
+        		Log.Warning("No ToolCE could be found for "+dinfo.ToString()+", but GetUsedTool was called.");
+        	}
+        	else
+        	{
+            	if (dinfo.WeaponBodyPartGroup != null)
+            	{
+            		var linkedTools = tools.Where(t => t.linkedBodyPartsGroup == dinfo.WeaponBodyPartGroup);
+            		
+            		if (linkedTools.Count() > 1)
+            		{
+            			Log.ErrorOnce("CE :: "+dinfo.Weapon+" has multiple ToolCE with linkedBodyPartsGroup="+dinfo.WeaponBodyPartGroup+", and they can not be distinguished because of it. [While evaluating DamageInfo "+dinfo.ToString()+"]", dinfo.Weapon.GetHashCode() + dinfo.WeaponBodyPartGroup.GetHashCode() + 84827378);
+            		}
+            		
+            		if (linkedTools.Any())
+            			return linkedTools.First();
+            	}
+            	else
+            	{
+	            	var nonLinkedTools = tools.Where(t => t.linkedBodyPartsGroup == null);
+	            	
+	        		if (nonLinkedTools.Count() > 1)
+	        		{
+	            		Log.ErrorOnce("CE :: "+dinfo.Weapon+" has multiple ToolCE without linkedBodyPartsGroup, and they can not be distinguished because of it. [While evaluating DamageInfo "+dinfo.ToString()+"]", dinfo.Weapon.GetHashCode() + 5481278);
+	        		}
+	        		
+	        		if (nonLinkedTools.Any())
+	        			return nonLinkedTools.First();
+            	}
+        	}
+        	return tools.FirstOrDefault();
+        }
+        
         /// <summary>
-        /// Determines the armor penetration value of a given dinfo. Checks WeaponGear to see if it is a projectile, melee weapon or pawn and tries to retrieve the penetration value accordingly.
+        /// Determines the armor penetration value of a given dinfo. Attempts to extract the tool/verb from the damage info.
         /// </summary>
         /// <param name="dinfo">DamageInfo to determine penetration for</param>
         /// <returns>Armor penetration value for attack used, 0 if it can't be determined</returns>
@@ -194,66 +237,84 @@ namespace CombatExtended
                 Pawn instigatorPawn = dinfo.Instigator as Pawn;
                 if (instigatorPawn != null)
                 {
-                    // Pawn is using melee weapon
-                    if (dinfo.Weapon.IsWeapon)
+                    // Case 2.1: .. of an equiped melee weapon
+                    if (dinfo.Weapon.IsMeleeWeapon)
                     {
-                        var equipment = instigatorPawn.equipment?.Primary;
+                    	ThingWithComps equipment = instigatorPawn.equipment?.Primary;
+                    	
                         if (equipment == null || equipment.def != dinfo.Weapon)
                         {
                             Log.Error("CE tried getting armor penetration from melee weapon " + dinfo.Weapon.defName + " but instigator " + dinfo.Instigator.ToString() + " equipment does not match");
                             return 0;
                         }
                         var penetrationMult = equipment.GetStatValue(CE_StatDefOf.MeleePenetrationFactor);
-                        var tool = equipment.def.tools.FirstOrDefault(t => t.linkedBodyPartsGroup == dinfo.WeaponBodyPartGroup) as ToolCE;
+                        var tool = equipment.def.tools.OfType<ToolCE>().GetUsedTool(dinfo);
+                        
                         return tool.armorPenetration * penetrationMult;
                     }
-
-                    // Get penetration from tool
-                    if (instigatorPawn.verbTracker != null
-                    && !instigatorPawn.verbTracker.AllVerbs.NullOrEmpty())
+                    
+                    // Case 2.2: .. of a ranged weapon
+                    if (dinfo.Weapon.IsRangedWeapon)
                     {
-                        Verb verb = instigatorPawn.verbTracker.AllVerbs.FirstOrDefault(v => v.tool.linkedBodyPartsGroup == dinfo.WeaponBodyPartGroup);
-                        if (verb == null)
-                        {
-                            Log.Error("CE could not find matching verb on Pawn " + instigatorPawn.ToString() + " for BodyPartGroup " + dinfo.WeaponBodyPartGroup.ToString());
-                            return 0;
-                        }
-                        var tool = verb.tool as ToolCE;
-                        if (tool != null) return tool.armorPenetration;
+                    	var tool = dinfo.Weapon.tools.OfType<ToolCE>().GetUsedTool(dinfo);
+                    	return tool.armorPenetration;
                     }
-
-                    /*
-                    // Pawn is using body parts
+                    
+                    // Case 2.3: .. of the pawn
                     if (instigatorPawn.def == dinfo.Weapon)
                     {
-                        // Pawn is augmented
-                        if (dinfo.WeaponLinkedHediff != null)
+                    	Verb availableVerb = instigatorPawn.meleeVerbs.TryGetMeleeVerb();
+                    	
+	                    // Case 2.3.1: .. of a weaponized hediff (power claw, scyther blade)
+                        HediffCompProperties_VerbGiver compProps = dinfo.WeaponLinkedHediff?.CompPropsFor(typeof(HediffComp_VerbGiver)) as HediffCompProperties_VerbGiver;
+                        if (compProps != null)
                         {
-                            HediffCompProperties_VerbGiver compProps = dinfo.WeaponLinkedHediff.CompPropsFor(typeof(HediffComp_VerbGiver)) as HediffCompProperties_VerbGiver;
-                            if (compProps != null)
-                            {
-                                VerbPropertiesCE verbProps = compProps.verbs.FirstOrDefault(v => v as VerbPropertiesCE != null) as VerbPropertiesCE;
-                                if (verbProps != null) return verbProps.meleeArmorPenetration;
-                            }
-                            return 0;
+                        	var tool = compProps.tools.OfType<ToolCE>().GetUsedTool(dinfo);
+                        	
+                        	if (tool != null)
+                        		return tool.armorPenetration;
+                        	
+                        	VerbPropertiesCE verbProps = compProps.verbs?.FirstOrDefault(v => v is VerbPropertiesCE) as VerbPropertiesCE;
+                        	
+                        	var verbs = compProps.verbs;
+                        	
+                        	if (verbs.Count() > 1)
+                        	{
+                        		Log.ErrorOnce("CE :: HediffCompProperties_VerbGiver for "+dinfo.WeaponLinkedHediff+" has multiple VerbPropertiesCE. [While evaluating DamageInfo "+dinfo.ToString()+"]", dinfo.WeaponLinkedHediff.GetHashCode() + 128937921);
+                        		
+                        	}
+                        	
+                        	if (verbProps != null)
+                        	{
+                            	Log.ErrorOnce("CE :: HediffCompProperties_VerbGiver from DamageInfo "+dinfo.ToString()+" has VerbPropertiesCE, but these should be moved to <tools> for B18", dinfo.WeaponLinkedHediff.GetHashCode() + 128937921);
+                        		
+                            	return verbProps.meleeArmorPenetration;
+                        	}
                         }
-
-                        // Regular pawn melee
-                        if (dinfo.WeaponBodyPartGroup != null
-                        && instigatorPawn.verbTracker != null
-                        && !instigatorPawn.verbTracker.AllVerbs.NullOrEmpty())
-                        {
-                            Verb verb = instigatorPawn.verbTracker.AllVerbs.FirstOrDefault(v => v.verbProps.linkedBodyPartsGroup == dinfo.WeaponBodyPartGroup);
-                            if (verb == null)
-                            {
-                                Log.Error("CE could not find matching verb on Pawn " + instigatorPawn.ToString() + " for BodyPartGroup " + dinfo.WeaponBodyPartGroup.ToString());
-                                return 0;
-                            }
-                            var tool = verb.tool as ToolCE;
-                            if (tool != null) return tool.armorPenetration;
-                        }
+						
+	                	// AllVerbs: bodyparts of the pawn
+	                	// meleeVerbs: all verbs considered "melee worthy"
+                		
+	                    // Case 2.4: .. of a tool naturally on the body (hands/fist, head)
+	                    if (instigatorPawn.verbTracker != null
+	                    && !instigatorPawn.verbTracker.AllVerbs.NullOrEmpty())
+	                    {
+	                        var verbs = instigatorPawn.verbTracker.AllVerbs.Where(v => v.tool is ToolCE && v.tool.linkedBodyPartsGroup == dinfo.WeaponBodyPartGroup);
+	                        
+	                        if (verbs.Count() > 1)
+	                        {
+                            	Log.ErrorOnce("CE :: Race "+instigatorPawn.def+" has multiple ToolCE with linkedBodyPartsGroup="+dinfo.WeaponBodyPartGroup.ToString()+" which can not be distunguished between. Consider using different linkedBodyPartsGroups. [While evaluating DamageInfo "+dinfo.ToString()+"]", instigatorPawn.def.GetHashCode() + 128937921);
+	                        }
+	                        
+	                        if (!verbs.Any())
+	                        {
+	                        	Log.ErrorOnce("CE :: Pawn " + instigatorPawn.ToString() + " for BodyPartGroup " + dinfo.WeaponBodyPartGroup.ToString()+" could not find matching verb (in AllVerbs: " + String.Join(",",instigatorPawn.verbTracker.AllVerbs.Select(x => x.ToString()).ToArray()) + ") [While evaluating DamageInfo "+dinfo.ToString()+"]", instigatorPawn.def.GetHashCode() + 128937921);
+	                        	return 0;
+	                        }
+	                        
+	                        return (verbs.First().tool as ToolCE).armorPenetration;
+	                    }
                     }
-                    */
                 }
             }
 #if DEBUG
