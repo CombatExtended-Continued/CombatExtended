@@ -169,13 +169,26 @@ namespace CombatExtended
             return dinfo;
         }
 
+        private static ToolCE DistinguishBodyPartGroups(this IEnumerable<ToolCE> tools, DamageInfo dinfo)
+        {
+        	var potentialTools = tools.Where(x => DefDatabase<ManeuverDef>.AllDefs.Any(y => x.capacities.Contains(y.requiredCapacity) && y.verb.meleeDamageDef == dinfo.Def));
+        	
+        	if (potentialTools.Count() == 1)
+        		return potentialTools.First();
+        	
+        	if (!potentialTools.Any())
+        		Log.ErrorOnce("CE :: Distinguishing tools based on damageDef failed - at some point the damageinfo changed damageDef (which is as expected). This is an issue because "+dinfo.Weapon+" has multiple ToolCE with the same linkedBodyPartsGroup (or multiple without one), and they can not be distinguished because of it. [While evaluating DamageInfo "+dinfo.ToString()+"]", dinfo.Weapon.GetHashCode() + dinfo.WeaponBodyPartGroup.GetHashCode() + 84827378);
+        		
+        	return potentialTools.FirstOrDefault();
+        }
+        
         private static ToolCE GetUsedTool(this IEnumerable<ToolCE> tools, DamageInfo dinfo)
         {
         	if (tools.Count() == 1)
         	{
         		if (dinfo.WeaponBodyPartGroup != null && tools.First().linkedBodyPartsGroup != dinfo.WeaponBodyPartGroup)
         		{
-        			Log.ErrorOnce("CE :: WeaponBodyPartGroup was specified for DamageInfo "+dinfo.ToString()+", but none of the tools "+String.Join(",", tools.Select(t => t.ToString()).ToArray())+" have this linkedBodyPartsGroup.", dinfo.GetHashCode() + 3473534);
+        			Log.ErrorOnce("CE :: For "+dinfo.Weapon+", WeaponBodyPartGroup was specified for DamageInfo "+dinfo.ToString()+", but none of the tools "+String.Join(",", tools.Select(t => t.ToString()).ToArray())+" have this linkedBodyPartsGroup.", dinfo.GetHashCode() + 3473534);
         		}
         	}
         	else if (!tools.Any())
@@ -190,7 +203,8 @@ namespace CombatExtended
             		
             		if (linkedTools.Count() > 1)
             		{
-            			Log.ErrorOnce("CE :: "+dinfo.Weapon+" has multiple ToolCE with linkedBodyPartsGroup="+dinfo.WeaponBodyPartGroup+", and they can not be distinguished because of it. [While evaluating DamageInfo "+dinfo.ToString()+"]", dinfo.Weapon.GetHashCode() + dinfo.WeaponBodyPartGroup.GetHashCode() + 84827378);
+            			Log.ErrorOnce("CE :: "+dinfo.Weapon+" has multiple ToolCE with linkedBodyPartsGroup="+dinfo.WeaponBodyPartGroup+", and they can not be fully distinguished because of it. [While evaluating DamageInfo "+dinfo.ToString()+"]", dinfo.Weapon.GetHashCode() + dinfo.WeaponBodyPartGroup.GetHashCode() + 84827378);
+            			return linkedTools.DistinguishBodyPartGroups(dinfo);
             		}
             		
             		if (linkedTools.Any())
@@ -202,7 +216,8 @@ namespace CombatExtended
 	            	
 	        		if (nonLinkedTools.Count() > 1)
 	        		{
-	            		Log.ErrorOnce("CE :: "+dinfo.Weapon+" has multiple ToolCE without linkedBodyPartsGroup, and they can not be distinguished because of it. [While evaluating DamageInfo "+dinfo.ToString()+"]", dinfo.Weapon.GetHashCode() + 5481278);
+	        			Log.ErrorOnce("CE :: "+dinfo.Weapon+" has multiple ToolCE without linkedBodyPartsGroup, and they can not be fully distinguished because of it. [While evaluating DamageInfo "+dinfo.ToString()+"]", dinfo.Weapon.GetHashCode() + 5481278);
+	        			return nonLinkedTools.DistinguishBodyPartGroups(dinfo);
 	        		}
 	        		
 	        		if (nonLinkedTools.Any())
