@@ -164,7 +164,7 @@ namespace CombatExtended
         	// Hint: The following block defines how to find items... pay special attention to the Predicates below.
         	ThingRequest req;
         	if (curSlot.genericDef != null)
-        		req = ThingRequest.ForGroup(ThingRequestGroup.HaulableEver);
+        		req = ThingRequest.ForGroup(curSlot.genericDef.thingRequestGroup);
         	else
         		req = curSlot.thingDef.Minifiable ? ThingRequest.ForGroup(ThingRequestGroup.MinifiedThing) : ThingRequest.ForDef(curSlot.thingDef);
         	Predicate<Thing> findItem;
