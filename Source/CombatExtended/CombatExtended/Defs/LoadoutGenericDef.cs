@@ -23,7 +23,8 @@ namespace CombatExtended
 		#region Fields
 		public LoadoutCountType defaultCountType = LoadoutCountType.dropExcess; // default: drop anything more than (default)Count.
 		public int defaultCount = 1;
-		private Predicate<ThingDef> _lambda;
+		private Predicate<ThingDef> _lambda = td => true;
+		public ThingRequestGroup thingRequestGroup = ThingRequestGroup.HaulableEver;
 		public bool isBasic = false;
 		
 		// The following group are intentionally left unsaved so that if the game state changes between saves the new value is calculated.
@@ -88,7 +89,7 @@ namespace CombatExtended
 			generic.defaultCount = 3;
 			generic.description = "Generic Loadout for Drugs.  Intended for compatibility with pawns automatically picking up drugs in compliance with drug policies.";
 			generic.label = "CE_Generic_Drugs".Translate();
-			generic._lambda = td => td.IsDrug;
+			generic.thingRequestGroup = ThingRequestGroup.Drug;
 			generic.isBasic = true;
 			
 			defs.Add(generic);
@@ -101,7 +102,7 @@ namespace CombatExtended
             generic.defaultCountType = LoadoutCountType.pickupDrop;
             generic.description = "Generic Loadout for Medicine.  Intended for pawns which will handle triage activities.";
             generic.label = "CE_Generic_Medicine".Translate();
-            generic._lambda = td => td.IsMedicine;
+            generic.thingRequestGroup = ThingRequestGroup.Medicine;
 
 			// now for the guns and ammo...
 			
@@ -123,7 +124,8 @@ namespace CombatExtended
 				generic.defaultCount = gun.GetCompProperties<CompProperties_AmmoUser>().magazineSize;
 				generic.defaultCountType = LoadoutCountType.pickupDrop; // we want ammo to get picked up.
 				//generic._lambda = td => td is AmmoDef && gun.GetCompProperties<CompProperties_AmmoUser>().ammoSet.ammoTypes.Contains(td);
-				generic._lambda = td => td is AmmoDef && gun.GetCompProperties<CompProperties_AmmoUser>().ammoSet.ammoTypes.Any(al => al.ammo == td);
+				generic.thingRequestGroup = ThingRequestGroup.Shell;
+				generic._lambda = td => gun.GetCompProperties<CompProperties_AmmoUser>().ammoSet.ammoTypes.Any(al => al.ammo == td);
 				defs.Add(generic);
 				//Log.Message(string.Concat("CombatExtended :: LoadoutGenericDef :: ", generic.LabelCap, " list: ", string.Join(", ", DefDatabase<ThingDef>.AllDefs.Where(t => generic.lambda(t)).Select(t => t.label).ToArray())));
 			}
@@ -176,7 +178,7 @@ namespace CombatExtended
 		private void updateVars()
 		{
 			IEnumerable<ThingDef> matches;
-			matches = DefDatabase<ThingDef>.AllDefs.Where(td => lambda(td));
+			matches = DefDatabase<ThingDef>.AllDefs.Where(td => lambda(td) && thingRequestGroup.Includes(td));
         	_bulk = matches.Max(t => t.GetStatValueAbstract(CE_StatDefOf.Bulk));
         	_mass = matches.Max(t => t.GetStatValueAbstract(StatDefOf.Mass));
         	_cachedVars = true;
