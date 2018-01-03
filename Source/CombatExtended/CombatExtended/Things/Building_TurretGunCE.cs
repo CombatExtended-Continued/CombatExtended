@@ -36,6 +36,7 @@ namespace CombatExtended
         // New fields
         private CompAmmoUser compAmmo = null;
         private CompFireModes compFireModes = null;
+        private CompChangeableProjectile compChangeable = null;
         public bool isReloading = false;
         private int ticksUntilAutoReload = 0;
         
@@ -118,7 +119,7 @@ namespace CombatExtended
         }
 
         // New properties
-        public ThingDef ProjectileDef
+        public ThingDef Projectile
         {
             get
             {
@@ -126,10 +127,23 @@ namespace CombatExtended
                 {
                 	return CompAmmo.CurAmmoProjectile;
                 }
+                if (CompChangeable != null && CompChangeable.Loaded)
+                {
+                	return CompChangeable.Projectile;
+                }
                 return this.GunCompEq.PrimaryVerb.verbProps.defaultProjectile;
             }
         }
         
+        
+        public CompChangeableProjectile CompChangeable
+        {
+        	get
+        	{
+	            if (compChangeable == null && Gun != null) compChangeable = Gun.TryGetComp<CompChangeableProjectile>();
+	            return compChangeable;
+        	}
+        }
         public CompAmmoUser CompAmmo
         {
             get
@@ -337,7 +351,7 @@ namespace CombatExtended
             if (pawn != null)
             {
                 //if (this.GunCompEq.PrimaryVerb.verbProps.projectileDef.projectile.flyOverhead)
-            	if (ProjectileDef.projectile.flyOverhead)
+            	if (Projectile.projectile.flyOverhead)
                 {
                     RoofDef roofDef = base.Map.roofGrid.RoofAt(t.Position);
                     if (roofDef != null && roofDef.isThickRoof)
@@ -478,7 +492,7 @@ namespace CombatExtended
             float range = this.GunCompEq.PrimaryVerb.verbProps.range;
             float minRange = this.GunCompEq.PrimaryVerb.verbProps.minRange;
             Building t;
-            if (Rand.Value < 0.5f && ProjectileDef.projectile.flyOverhead && faction.HostileTo(Faction.OfPlayer) && base.Map.listerBuildings.allBuildingsColonist.Where(delegate (Building x)
+            if (Rand.Value < 0.5f && Projectile.projectile.flyOverhead && faction.HostileTo(Faction.OfPlayer) && base.Map.listerBuildings.allBuildingsColonist.Where(delegate (Building x)
             {
                 float num = (float)x.Position.DistanceToSquared(this.Position);
                 return num > minRange * minRange && num < range * range;
@@ -487,7 +501,7 @@ namespace CombatExtended
                 return t;
             }
             TargetScanFlags targetScanFlags = TargetScanFlags.NeedThreat;
-            if (!this.GunCompEq.PrimaryVerb.verbProps.defaultProjectile.projectile.flyOverhead)
+            if (!Projectile.projectile.flyOverhead)
             {
                 targetScanFlags |= TargetScanFlags.NeedLOSToAll;
                 targetScanFlags |= TargetScanFlags.LOSBlockableByGas;
@@ -501,7 +515,7 @@ namespace CombatExtended
             // Check for ammo first
             if (!base.Spawned
                 || (this.holdFire && this.CanToggleHoldFire) 
-                || (ProjectileDef.projectile.flyOverhead && base.Map.roofGrid.Roofed(base.Position))
+                || (Projectile.projectile.flyOverhead && base.Map.roofGrid.Roofed(base.Position))
                 || (CompAmmo != null && (isReloading || (mannableComp == null && CompAmmo.CurMagCount <= 0))))
             {
                 this.ResetCurrentTarget();
