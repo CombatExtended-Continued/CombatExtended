@@ -42,11 +42,13 @@ namespace CombatExtended
                 try
                 {
         			_cachedDefIcons[def.defName] = (pdef.lifeStages.Last().bodyGraphicData.Graphic.MatFront.mainTexture as Texture2D).Crop();
-                    
                     return _cachedDefIcons[def.defName];
                 }
-                catch
+                catch (Exception e)
                 {
+                	Log.Error("CombatExtended :: IconTexture("+def.ToString()+") - pawnKindDef check - resulted in the following error [defaulting to non-cropped texture]: "+e.ToString());
+        			_cachedDefIcons[def.defName] = (pdef.lifeStages.Last().bodyGraphicData.Graphic.MatFront.mainTexture as Texture2D);
+                    return _cachedDefIcons[def.defName];
                 }
             }
 
@@ -62,8 +64,17 @@ namespace CombatExtended
                 (tdef.entityDefToBuild != null)
             )
             {
-        		_cachedDefIcons[def.defName]= tdef.entityDefToBuild.IconTexture().Crop();
-                return _cachedDefIcons[def.defName];
+            	try
+            	{
+	        		_cachedDefIcons[def.defName]= tdef.entityDefToBuild.IconTexture().Crop();
+	                return _cachedDefIcons[def.defName];
+                }
+                catch (Exception e)
+                {
+                	Log.Error("CombatExtended :: IconTexture("+def.ToString()+") - entityDefToBuild check - resulted in the following error [defaulting to non-cropped texture]: "+e.ToString());
+                	_cachedDefIcons[def.defName]= tdef.entityDefToBuild.IconTexture();
+                	return _cachedDefIcons[def.defName];
+                }
             }
 			
             _cachedDefIcons[def.defName] = bdef.uiIcon;
@@ -118,6 +129,10 @@ namespace CombatExtended
         		if (i % width == 0)		// previous pixel was the last in the row (m)
         		{
         			heightRange.max--;	// nothing found in this row, shift one up (B-t-T) / down (T-t-B)
+        			if (i > width * height - 1)
+        			{
+        				throw new ArgumentException("Color[] has no pixels with alpha < "+alphaThreshold);
+        			}
         		}
         	}
         	
@@ -143,10 +158,14 @@ namespace CombatExtended
         	while (array[i].a < alphaThreshold)
         	{
         		i += width; 			// pixel one above (w, v, .. , a)
-        		if (i >= array.Length)	// last pixel was highest in the column (a)
+        		if (i >  width * height - 1)	// last pixel was highest in the column (a)
         		{
         			widthRange.min++;	// nothing found in this column, shift one to the right
         			i = widthRange.min;	// pixel one to the right of the lowest in the previous column (1)
+        			if (i > width - 1)
+        			{
+        				throw new ArgumentException("Color[] has no pixels with alpha >= "+alphaThreshold);
+        			}
         		}
         	}
         	
@@ -167,8 +186,12 @@ namespace CombatExtended
         
         public static Rect CropHorizontalVertical(Color[] array, int width, int height)
         {
-        	var h = CropHorizontal(array, width, height);
         	var v = CropVertical(array, width, height);
+        	if (v == IntRange.zero)
+        	{
+        		return Rect.zero;
+        	}
+        	var h = CropHorizontal(array, width, height);
         	return Rect.MinMaxRect(h.min, v.min, h.max, v.max);
         }
         
@@ -176,8 +199,12 @@ namespace CombatExtended
         {
         	int w; int h;
         	var array = tex.GetColorSafe(out w, out h);
+        	var rect = CropHorizontalVertical(array, w, h);
         	
-        	return tex.BlitCrop(CropHorizontalVertical(array, w, h));
+        	if (rect == Rect.zero)
+        		throw new ArgumentException("Texture2D has no pixels with alpha >= "+alphaThreshold, "tex");
+        	
+        	return tex.BlitCrop(rect);
         }
     }
 }
