@@ -1,5 +1,6 @@
 using System;
 using Verse;
+using RimWorld;
 using UnityEngine;
 
 namespace CombatExtended
@@ -27,38 +28,35 @@ namespace CombatExtended
         }
         protected override void Impact(Thing hitThing)
         {
-            if (this.def.projectile.explosionDelay == 0)
+            if (def.projectile.explosionDelay == 0)
             {
-                this.Explode();
+                Explode();
                 return;
             }
-            this.landed = true;
-            this.ticksToDetonation = this.def.projectile.explosionDelay;
+            landed = true;
+            ticksToDetonation = def.projectile.explosionDelay;
             GenExplosion.NotifyNearbyPawnsOfDangerousExplosive(this, this.def.projectile.damageDef, this.launcher?.Faction);
         }
         protected virtual void Explode()
         {
-            Map map = base.Map;
-            //this.Destroy(DestroyMode.Vanish);
-            ProjectilePropertiesCE propsCE = def.projectile as ProjectilePropertiesCE;
-            GenExplosion.DoExplosion(ExactPosition.ToIntVec3(), 
-                map,
-                def.projectile.explosionRadius,
-                def.projectile.damageDef, 
-                launcher,
-                def.projectile.damageAmountBase,
-                def.projectile.soundExplode, 
-                equipmentDef, 
-                def,
-                def.projectile.postExplosionSpawnThingDef,
-                def.projectile.postExplosionSpawnChance,
-                def.projectile.postExplosionSpawnThingCount, 
-                def.projectile.applyDamageToExplosionCellsNeighbors,
-                def.projectile.preExplosionSpawnThingDef, 
-                def.projectile.preExplosionSpawnChance, 
-                def.projectile.preExplosionSpawnThingCount, 
-                def.projectile.explosionChanceToStartFire, 
-                def.projectile.explosionDealMoreDamageAtCenter);
+            ExplosionCE explosion = GenSpawn.Spawn(CE_ThingDefOf.ExplosionCE, ExactPosition.ToIntVec3(), Map) as ExplosionCE;
+            explosion.height = ExactPosition.y;
+            explosion.radius = def.projectile.explosionRadius;
+            explosion.damType = def.projectile.damageDef;
+            explosion.instigator = launcher;
+            explosion.damAmount = def.projectile.damageAmountBase;
+            explosion.weapon = equipmentDef;
+            explosion.projectile = def;
+            explosion.preExplosionSpawnThingDef = def.projectile.preExplosionSpawnThingDef;
+            explosion.preExplosionSpawnChance = def.projectile.preExplosionSpawnChance;
+            explosion.preExplosionSpawnThingCount = def.projectile.preExplosionSpawnThingCount;
+            explosion.postExplosionSpawnThingDef = def.projectile.postExplosionSpawnThingDef;
+            explosion.postExplosionSpawnChance = def.projectile.postExplosionSpawnChance;
+            explosion.postExplosionSpawnThingCount = def.projectile.postExplosionSpawnThingCount;
+            explosion.applyDamageToExplosionCellsNeighbors = def.projectile.applyDamageToExplosionCellsNeighbors;
+            explosion.chanceToStartFire = def.projectile.explosionChanceToStartFire;
+            explosion.dealMoreDamageAtCenter = def.projectile.explosionDealMoreDamageAtCenter;
+            explosion.StartExplosion(def.projectile.soundExplode);
 
             //This code was disabled because it didn't run under previous circumstances. Could be enabled if necessary
             /*
@@ -71,7 +69,7 @@ namespace CombatExtended
             base.Impact(null); // base.Impact() handles this.Destroy() and comp.Explode()
         }
 
-        public static void ThrowBigExplode(Vector3 loc, Map map, float size)
+      /*public static void ThrowBigExplode(Vector3 loc, Map map, float size)
         {
             if (!loc.ShouldSpawnMotesAt(map))
             {
@@ -83,6 +81,6 @@ namespace CombatExtended
             moteThrown.exactPosition = loc;
             moteThrown.SetVelocity((float)Rand.Range(6, 8), Rand.Range(0.002f, 0.003f));
             GenSpawn.Spawn(moteThrown, loc.ToIntVec3(), map);
-        }
+        }*/
     }
 }
