@@ -60,7 +60,10 @@ namespace CombatExtended
             	
 	            foreach (ThingDef def in DefDatabase<ThingDef>.AllDefsListForReading)
 	            {
-	                if (def.IsWeapon && (def.canBeSpawningInventory || def.tradeability == Tradeability.Stockable || def.weaponTags.Contains("TurretGun")))
+	            	if (def.IsWeapon
+	            	    && (def.canBeSpawningInventory
+	            	        || def.tradeability == Tradeability.Stockable
+	            	        || (def.weaponTags != null && def.weaponTags.Contains("TurretGun"))))
 	                    CE_Utility.allWeaponDefs.Add(def);
 	            }
 	            if (CE_Utility.allWeaponDefs.NullOrEmpty())
@@ -118,7 +121,7 @@ namespace CombatExtended
 
                 // Toggle craftability
                 var craftingTags = ammoDef.tradeTags.Where(t => t.StartsWith(enableCraftingTag));
-                if (craftingTags.Count() != 0)
+                if (craftingTags.Any())
                 {
                     RecipeDef recipe = DefDatabase<RecipeDef>.GetNamed(("Make" + ammoDef.defName), false);
                     if (recipe == null)
