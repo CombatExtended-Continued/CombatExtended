@@ -17,7 +17,7 @@ namespace CombatExtended.Harmony
             if (__result == null)
             {
                 var verbCE = verb as Verb_LaunchProjectileCE;
-                __result = verbCE?.ProjectileDef;
+                __result = verbCE?.Projectile;
             }
         }
     }

@@ -1,0 +1,512 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Patch>
+
+	<Operation Class="PatchOperationSequence">
+		<success>Always</success>
+		<operations>
+			<li Class="CombatExtended.PatchOperationFindMod">
+				<modName>[XND] Vanilla-Friendly Weapon Expansion</modName>
+			</li>
+
+			<!-- Improvised Pistol -->
+			<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+				<defName>Gun_ImprovisedPistol</defName>
+				<statBases>
+					<Mass>0.97</Mass>
+					<SightsEfficiency>0.7</SightsEfficiency>
+					<ShotSpread>0.2</ShotSpread>
+					<SwayFactor>1.11</SwayFactor>
+					<Bulk>2.35</Bulk>
+					<RangedWeapon_Cooldown>0.36</RangedWeapon_Cooldown>
+					<WorkToMake>5000</WorkToMake>
+				</statBases>
+				<costList>
+					<Component>2</Component>
+				</costList>
+				<Properties>
+					<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+					<hasStandardCommand>true</hasStandardCommand>
+					<defaultProjectile>Bullet_38Special_FMJ</defaultProjectile>
+					<warmupTime>0.6</warmupTime>
+					<range>10</range>
+					<soundCast>ShotAutopistol</soundCast>
+					<soundCastTail>GunTail_Light</soundCastTail>
+					<muzzleFlashScale>9</muzzleFlashScale>
+				</Properties>
+				<AmmoUser>
+					<magazineSize>5</magazineSize>
+					<reloadTime>4.25</reloadTime>
+					<ammoSet>AmmoSet_38Special</ammoSet>
+				</AmmoUser>
+				<FireModes />
+				<weaponTags>
+					<li>CE_Sidearm</li>
+					<li>CE_AI_Pistol</li>
+					<li>CE_OneHandedWeapon</li>
+				</weaponTags>
+				<researchPrerequisite>Machining</researchPrerequisite>
+			</li>
+			<li Class="PatchOperationReplace">
+				<xpath>*/ThingDef[defName="Gun_ImprovisedPistol"]/tools</xpath>
+				<value>
+					<tools>
+						<li Class="CombatExtended.ToolCE">
+							<label>grip</label>
+							<capacities>
+								<li>Blunt</li>
+							</capacities>
+							<power>8</power>
+							<cooldownTime>1.6</cooldownTime>
+							<commonality>1.5</commonality>
+							<armorPenetration>0.102</armorPenetration>
+							<linkedBodyPartsGroup>Grip</linkedBodyPartsGroup>
+						</li>
+						<li Class="CombatExtended.ToolCE">
+							<label>barrel</label>
+							<capacities>
+								<li>Blunt</li>
+							</capacities>
+							<power>8</power>
+							<cooldownTime>1.6</cooldownTime>
+							<armorPenetration>0.102</armorPenetration>
+							<linkedBodyPartsGroup>Barrel</linkedBodyPartsGroup>
+						</li>
+						<li Class="CombatExtended.ToolCE">
+							<label>muzzle</label>
+							<capacities>
+								<li>Poke</li>
+							</capacities>
+							<power>8</power>
+							<cooldownTime>1.6</cooldownTime>
+							<armorPenetration>0.075</armorPenetration>
+							<linkedBodyPartsGroup>Muzzle</linkedBodyPartsGroup>
+						</li>
+					</tools>
+				</value>
+			</li>
+
+			<!-- Sawed-Off Shotgun -->
+			<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+				<defName>Gun_SawedOffShotgun</defName>
+				<statBases>
+					<Mass>2.3</Mass>
+					<SightsEfficiency>1</SightsEfficiency>
+					<ShotSpread>0.16</ShotSpread>
+					<SwayFactor>0.81</SwayFactor>
+					<Bulk>5.84</Bulk>
+					<RangedWeapon_Cooldown>0.4</RangedWeapon_Cooldown>
+					<WorkToMake>12500</WorkToMake>
+				</statBases>
+				<costList>
+					<Steel>40</Steel>
+					<WoodLog>5</WoodLog>
+					<Component>2</Component>
+				</costList>
+				<Properties>
+					<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+					<hasStandardCommand>true</hasStandardCommand>
+					<defaultProjectile>Bullet_12Gauge_Buck</defaultProjectile>
+					<warmupTime>0.6</warmupTime>
+					<range>14</range>
+					<soundCast>ShotShotgun</soundCast>
+					<soundCastTail>GunTail_Heavy</soundCastTail>
+					<muzzleFlashScale>9</muzzleFlashScale>
+				</Properties>
+				<AmmoUser>
+					<magazineSize>2</magazineSize>
+					<reloadTime>1.7</reloadTime>
+					<ammoSet>AmmoSet_12Gauge</ammoSet>
+				</AmmoUser>
+				<FireModes />
+				<weaponTags>
+					<li>CE_AI_AssaultWeapon</li>
+				</weaponTags>
+				<researchPrerequisite>Gunsmithing</researchPrerequisite>
+			</li>
+			<li Class="PatchOperationReplace">
+				<xpath>*/ThingDef[defName="Gun_SawedOffShotgun"]/tools</xpath>
+				<value>
+					<tools>
+						<li Class="CombatExtended.ToolCE">
+							<label>grip</label>
+							<capacities>
+								<li>Blunt</li>
+							</capacities>
+							<power>8</power>
+							<cooldownTime>1.6</cooldownTime>
+							<commonality>1.5</commonality>
+							<armorPenetration>0.102</armorPenetration>
+							<linkedBodyPartsGroup>Grip</linkedBodyPartsGroup>
+						</li>
+						<li Class="CombatExtended.ToolCE">
+							<label>barrel</label>
+							<capacities>
+								<li>Blunt</li>
+							</capacities>
+							<power>8</power>
+							<cooldownTime>1.6</cooldownTime>
+							<armorPenetration>0.102</armorPenetration>
+							<linkedBodyPartsGroup>Barrel</linkedBodyPartsGroup>
+						</li>
+						<li Class="CombatExtended.ToolCE">
+							<label>muzzle</label>
+							<capacities>
+								<li>Poke</li>
+							</capacities>
+							<power>8</power>
+							<cooldownTime>1.6</cooldownTime>
+							<armorPenetration>0.075</armorPenetration>
+							<linkedBodyPartsGroup>Muzzle</linkedBodyPartsGroup>
+						</li>
+					</tools>
+				</value>
+			</li>
+
+			<!-- Lever-Action Rifle -->
+			<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+				<defName>Gun_LeverActionRifle</defName>
+				<statBases>
+					<Mass>4.3</Mass>
+					<SightsEfficiency>1</SightsEfficiency>
+					<ShotSpread>0.02</ShotSpread>
+					<SwayFactor>1.68</SwayFactor>
+					<Bulk>12.5</Bulk>
+					<RangedWeapon_Cooldown>0.76</RangedWeapon_Cooldown>
+					<WorkToMake>11500</WorkToMake>
+				</statBases>
+				<costList>
+					<Steel>60</Steel>
+					<WoodLog>10</WoodLog>
+					<Component>1</Component>
+				</costList>
+				<Properties>
+					<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+					<hasStandardCommand>true</hasStandardCommand>
+					<defaultProjectile>Bullet_44-40Winchester_FMJ</defaultProjectile>
+					<warmupTime>1.1</warmupTime>
+					<range>29</range>
+					<soundCast>ShotBoltActionRifle</soundCast>
+					<soundCastTail>GunTail_Heavy</soundCastTail>
+					<muzzleFlashScale>9</muzzleFlashScale>
+				</Properties>
+				<AmmoUser>
+					<magazineSize>10</magazineSize>
+					<reloadTime>8.5</reloadTime>
+					<ammoSet>AmmoSet_44-40Winchester</ammoSet>
+				</AmmoUser>
+				<FireModes>
+					<aiAimMode>AimedShot</aiAimMode>
+				</FireModes>
+				<weaponTags>
+					<li>CE_AI_AssaultWeapon</li>
+				</weaponTags>
+				<researchPrerequisite>Gunsmithing</researchPrerequisite>
+			</li>
+			<li Class="PatchOperationReplace">
+				<xpath>*/ThingDef[defName="Gun_LeverActionRifle"]/tools</xpath>
+				<value>
+					<tools>
+						<li Class="CombatExtended.ToolCE">
+							<label>stock</label>
+							<capacities>
+								<li>Blunt</li>
+							</capacities>
+							<power>9</power>
+							<cooldownTime>1.8</cooldownTime>
+							<commonality>1.5</commonality>
+							<armorPenetration>0.11</armorPenetration>
+							<linkedBodyPartsGroup>Stock</linkedBodyPartsGroup>
+						</li>
+						<li Class="CombatExtended.ToolCE">
+							<label>barrel</label>
+							<capacities>
+								<li>Blunt</li>
+							</capacities>
+							<power>10</power>
+							<cooldownTime>1.9</cooldownTime>
+							<armorPenetration>0.118</armorPenetration>
+							<linkedBodyPartsGroup>Barrel</linkedBodyPartsGroup>
+						</li>
+						<li Class="CombatExtended.ToolCE">
+							<label>muzzle</label>
+							<capacities>
+								<li>Poke</li>
+							</capacities>
+							<power>10</power>
+							<cooldownTime>1.9</cooldownTime>
+							<armorPenetration>0.086</armorPenetration>
+							<linkedBodyPartsGroup>Muzzle</linkedBodyPartsGroup>
+						</li>
+					</tools>
+				</value>
+			</li>
+
+			<!-- Anti-Materiel Rifle -->
+			<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+				<defName>Gun_AntiMaterielRifle</defName>
+				<statBases>
+					<Mass>14</Mass>
+					<SightsEfficiency>3.5</SightsEfficiency>
+					<ShotSpread>0.07</ShotSpread>
+					<SwayFactor>1.87</SwayFactor>
+					<Bulk>12.5</Bulk>
+					<RangedWeapon_Cooldown>1.38</RangedWeapon_Cooldown>
+					<WorkToMake>43500</WorkToMake>
+				</statBases>
+				<costList>
+					<Steel>85</Steel>
+					<Chemfuel>20</Chemfuel>
+					<Component>6</Component>
+				</costList>
+				<Properties>
+					<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+					<hasStandardCommand>true</hasStandardCommand>
+					<defaultProjectile>Bullet_50BMG_FMJ</defaultProjectile>
+					<warmupTime>5.1</warmupTime>
+					<range>86</range>
+					<soundCast>ShotSniperRifle</soundCast>
+					<soundCastTail>GunTail_Heavy</soundCastTail>
+					<muzzleFlashScale>9</muzzleFlashScale>
+				</Properties>
+				<AmmoUser>
+					<magazineSize>10</magazineSize>
+					<reloadTime>4</reloadTime>
+					<ammoSet>AmmoSet_50BMG</ammoSet>
+				</AmmoUser>
+				<FireModes>
+					<aiAimMode>AimedShot</aiAimMode>
+				</FireModes>
+				<weaponTags>
+					<li>CE_AI_Rifle</li>
+				</weaponTags>
+				<researchPrerequisite>PrecisionRifling</researchPrerequisite>
+			</li>
+			<li Class="PatchOperationRemove">
+				<xpath>*/ThingDef[defName="Gun_AntiMaterielRifle"]/equippedStatOffsets</xpath>
+			</li>
+			<li Class="PatchOperationReplace">
+				<xpath>*/ThingDef[defName="Gun_AntiMaterielRifle"]/tools</xpath>
+				<value>
+					<tools>
+						<li Class="CombatExtended.ToolCE">
+							<label>stock</label>
+							<capacities>
+								<li>Blunt</li>
+							</capacities>
+							<power>9</power>
+							<cooldownTime>1.8</cooldownTime>
+							<commonality>1.5</commonality>
+							<armorPenetration>0.11</armorPenetration>
+							<linkedBodyPartsGroup>Stock</linkedBodyPartsGroup>
+						</li>
+						<li Class="CombatExtended.ToolCE">
+							<label>barrel</label>
+							<capacities>
+								<li>Blunt</li>
+							</capacities>
+							<power>10</power>
+							<cooldownTime>1.9</cooldownTime>
+							<armorPenetration>0.118</armorPenetration>
+							<linkedBodyPartsGroup>Barrel</linkedBodyPartsGroup>
+						</li>
+						<li Class="CombatExtended.ToolCE">
+							<label>muzzle</label>
+							<capacities>
+								<li>Poke</li>
+							</capacities>
+							<power>10</power>
+							<cooldownTime>1.9</cooldownTime>
+							<armorPenetration>0.086</armorPenetration>
+							<linkedBodyPartsGroup>Muzzle</linkedBodyPartsGroup>
+						</li>
+					</tools>
+				</value>
+			</li>
+
+			<!-- Guided Pulse SMG -->
+			<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+				<defName>Gun_GuidedPulseSMG</defName>
+				<statBases>
+					<Mass>2</Mass>
+					<SightsEfficiency>1.6</SightsEfficiency>
+					<ShotSpread>0.13</ShotSpread>
+					<SwayFactor>0.79</SwayFactor>
+					<Bulk>4.35</Bulk>
+					<RangedWeapon_Cooldown>0.36</RangedWeapon_Cooldown>
+					<MarketValue>735</MarketValue>
+				</statBases>
+				<Properties>
+					<recoilAmount>1.28</recoilAmount>
+					<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+					<hasStandardCommand>true</hasStandardCommand>
+					<defaultProjectile>Bullet_6x18mmCharged</defaultProjectile>
+					<warmupTime>0.5</warmupTime>
+					<range>20</range>
+					<burstShotCount>6</burstShotCount>
+					<ticksBetweenBurstShots>4</ticksBetweenBurstShots>
+					<soundCast>ShotIncendiaryLauncher</soundCast>
+					<soundCastTail>GunTail_Light</soundCastTail>
+					<muzzleFlashScale>9</muzzleFlashScale>
+				</Properties>
+				<AmmoUser>
+					<magazineSize>24</magazineSize>
+					<reloadTime>4</reloadTime>
+					<ammoSet>AmmoSet_6x18mmCharged</ammoSet>
+				</AmmoUser>
+				<FireModes>
+					<aimedBurstShotCount>3</aimedBurstShotCount>
+					<aiUseBurstMode>FALSE</aiUseBurstMode>
+					<aiAimMode>AimedShot</aiAimMode>
+				</FireModes>
+				<weaponTags>
+					<li>CE_AI_SMG</li>
+					<li>CE_AI_AssaultWeapon</li>
+				</weaponTags>
+			</li>
+			<li Class="PatchOperationRemove">
+				<xpath>*/ThingDef[defName="Gun_GuidedPulseSMG"]/equippedStatOffsets</xpath>
+			</li>
+			<li Class="PatchOperationReplace">
+				<xpath>*/ThingDef[defName="Gun_GuidedPulseSMG"]/tools</xpath>
+				<value>
+					<tools>
+						<li Class="CombatExtended.ToolCE">
+							<label>stock</label>
+							<capacities>
+								<li>Blunt</li>
+							</capacities>
+							<power>9</power>
+							<cooldownTime>1.8</cooldownTime>
+							<commonality>1.5</commonality>
+							<armorPenetration>0.11</armorPenetration>
+							<linkedBodyPartsGroup>Stock</linkedBodyPartsGroup>
+						</li>
+						<li Class="CombatExtended.ToolCE">
+							<label>barrel</label>
+							<capacities>
+								<li>Blunt</li>
+							</capacities>
+							<power>8</power>
+							<cooldownTime>1.6</cooldownTime>
+							<armorPenetration>0.102</armorPenetration>
+							<linkedBodyPartsGroup>Barrel</linkedBodyPartsGroup>
+						</li>
+						<li Class="CombatExtended.ToolCE">
+							<label>muzzle</label>
+							<capacities>
+								<li>Poke</li>
+							</capacities>
+							<power>8</power>
+							<cooldownTime>1.6</cooldownTime>
+							<armorPenetration>0.075</armorPenetration>
+							<linkedBodyPartsGroup>Muzzle</linkedBodyPartsGroup>
+						</li>
+					</tools>
+				</value>
+			</li>
+
+			<!-- Charge Scattergun -->
+			<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+				<defName>Gun_ChargeScattergun</defName>
+				<statBases>
+					<Mass>8.4</Mass>
+					<SightsEfficiency>1</SightsEfficiency>
+					<ShotSpread>0.13</ShotSpread>
+					<SwayFactor>0.86</SwayFactor>
+					<Bulk>11.5</Bulk>
+					<RangedWeapon_Cooldown>0.38</RangedWeapon_Cooldown>
+				</statBases>
+				<Properties>
+					<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+					<hasStandardCommand>true</hasStandardCommand>
+					<defaultProjectile>Bullet_15x65mmDiffusingCharged_Buck</defaultProjectile>
+					<warmupTime>0.6</warmupTime>
+					<range>16</range>
+					<soundCast>ShotChargeBlaster</soundCast>
+					<soundCastTail>GunTail_Heavy</soundCastTail>
+					<muzzleFlashScale>9</muzzleFlashScale>
+				</Properties>
+				<AmmoUser>
+					<magazineSize>1</magazineSize>
+					<reloadTime>1.6</reloadTime>
+					<ammoSet>AmmoSet_15x65mmDiffusingCharged</ammoSet>
+				</AmmoUser>
+				<FireModes>
+					<aiAimMode>AimedShot</aiAimMode>
+				</FireModes>
+				<weaponTags>
+					<li>CE_AI_AssaultWeapon</li>
+				</weaponTags>
+			</li>
+			<li Class="PatchOperationReplace">
+				<xpath>*/ThingDef[defName="Gun_ChargeScattergun"]/tools</xpath>
+				<value>
+					<tools>
+						<li Class="CombatExtended.ToolCE">
+							<label>barrel</label>
+							<capacities>
+								<li>Blunt</li>
+							</capacities>
+							<power>10</power>
+							<cooldownTime>1.9</cooldownTime>
+							<armorPenetration>0.118</armorPenetration>
+							<linkedBodyPartsGroup>Barrel</linkedBodyPartsGroup>
+						</li>
+					</tools>
+				</value>
+			</li>
+
+			<!-- Radiation Cannon -->
+			<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+				<defName>Gun_RadiationCannon</defName>
+				<statBases>
+					<Mass>300</Mass>
+					<SightsEfficiency>1</SightsEfficiency>
+					<ShotSpread>0.01</ShotSpread>
+					<SwayFactor>0.82</SwayFactor>
+					<Bulk>25</Bulk>
+					<RangedWeapon_Cooldown>2.53</RangedWeapon_Cooldown>
+				</statBases>
+				<Properties>
+					<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+					<hasStandardCommand>true</hasStandardCommand>
+					<defaultProjectile>Bullet_60x225mmGamma_Standard</defaultProjectile>
+					<warmupTime>4.1</warmupTime>
+					<range>86</range>
+					<soundCast>InfernoCannon_Fire</soundCast>
+					<soundCastTail>GunTail_Heavy</soundCastTail>
+					<muzzleFlashScale>14</muzzleFlashScale>
+				</Properties>
+				<AmmoUser>
+					<magazineSize>1</magazineSize>
+					<reloadTime>9.8</reloadTime>
+					<ammoSet>AmmoSet_60x225mmGamma</ammoSet>
+				</AmmoUser>
+				<FireModes>
+					<aiAimMode>AimedShot</aiAimMode>
+				</FireModes>
+				<weaponTags>
+					<li>CE_AI_Launcher</li>
+				</weaponTags>
+			</li>
+			<li Class="PatchOperationReplace">
+				<xpath>*/ThingDef[defName="Gun_RadiationCannon"]/tools</xpath>
+				<value>
+					<tools>
+						<li Class="CombatExtended.ToolCE">
+							<label>barrel</label>
+							<capacities>
+								<li>Blunt</li>
+							</capacities>
+							<power>10</power>
+							<cooldownTime>1.9</cooldownTime>
+							<armorPenetration>0.118</armorPenetration>
+							<linkedBodyPartsGroup>Barrel</linkedBodyPartsGroup>
+						</li>
+					</tools>
+				</value>
+			</li>
+		</operations>
+	</Operation>
+
+</Patch>
