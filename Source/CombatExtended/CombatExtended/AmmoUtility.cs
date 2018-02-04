@@ -1,4 +1,5 @@
 ﻿using System.Text;
+using RimWorld;
 using Verse;
 
 namespace CombatExtended
@@ -63,7 +64,7 @@ namespace CombatExtended
             }
 
             // CE stats
-            stringBuilder.AppendLine("   " + "CE_DescArmorPenetration".Translate() + ": " + props.armorPenetration.ToStringByStyle(ToStringStyle.PercentOne));
+            stringBuilder.AppendLine("   " + "CE_DescArmorPenetration".Translate() + ": " + props.armorPenetration.ToStringByStyle(ToStringStyle.FloatTwo));
             if (props.pelletCount > 1)
             {
                 stringBuilder.AppendLine("   " + "CE_DescPelletCount".Translate() + ": " + GenText.ToStringByStyle(props.pelletCount, ToStringStyle.Integer));
@@ -78,7 +79,7 @@ namespace CombatExtended
 
         public static bool IsShell(ThingDef def)
         {
-            var ammo = ThingDef.Named("Artillery_Mortar").GetCompProperties<CompProperties_AmmoUser>();
+            var ammo = ThingDefOf.Turret_Mortar.building.turretGunDef.GetCompProperties<CompProperties_AmmoUser>();
             return ammo?.ammoSet.ammoTypes.Any(l => l.ammo == def) ?? false;
         }
     }
