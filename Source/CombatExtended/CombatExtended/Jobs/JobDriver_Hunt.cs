@@ -87,13 +87,6 @@ namespace CombatExtended
                 });
             
             yield return Toils_Jump.Jump(moveIfCannotHit);
-            
-            this.FailOn(delegate
-            {
-                return !job.ignoreDesignations
-                && !Victim.Dead
-                && Map.designationManager.DesignationOn(Victim, DesignationDefOf.Hunt) == null;
-            });
 
             // Execute downed animal - adapted from JobDriver_Slaughter
             yield return startExecuteDowned;

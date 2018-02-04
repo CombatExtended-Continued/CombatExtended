@@ -64,7 +64,7 @@ namespace CombatExtended
             }
 
             // CE stats
-            stringBuilder.AppendLine("   " + "CE_DescArmorPenetration".Translate() + ": " + props.armorPenetration.ToStringByStyle(ToStringStyle.PercentOne));
+            stringBuilder.AppendLine("   " + "CE_DescArmorPenetration".Translate() + ": " + props.armorPenetration.ToStringByStyle(ToStringStyle.FloatTwo));
             if (props.pelletCount > 1)
             {
                 stringBuilder.AppendLine("   " + "CE_DescPelletCount".Translate() + ": " + GenText.ToStringByStyle(props.pelletCount, ToStringStyle.Integer));
@@ -77,15 +77,10 @@ namespace CombatExtended
             return stringBuilder.ToString();
         }
 
-		public static bool IsVanillaSiegeShell(ThingDef def)
-		{
-			var ammo = ThingDefOf.Turret_Mortar.building.turretGunDef.GetCompProperties<CompProperties_AmmoUser>();
-			return ammo != null && ammo.ammoSet.ammoTypes.Any(l => l.ammo == def);
-		}
-        
         public static bool IsShell(ThingDef def)
         {
-			return def is AmmoDef || def.IsShell;
+            var ammo = ThingDefOf.Turret_Mortar.building.turretGunDef.GetCompProperties<CompProperties_AmmoUser>();
+            return ammo?.ammoSet.ammoTypes.Any(l => l.ammo == def) ?? false;
         }
     }
 }
