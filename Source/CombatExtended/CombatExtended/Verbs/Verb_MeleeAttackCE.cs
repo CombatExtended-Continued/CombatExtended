@@ -125,7 +125,8 @@ namespace CombatExtended
                 {
                     // Attack connects, calculate resolution
                     //var resultRoll = Rand.Value;
-                    var parryChance = GetComparativeChanceAgainst(casterPawn, defender, CE_StatDefOf.MeleeParryChance, BaseParryChance);
+                    var parryBonus = 1 / ownerEquipment?.GetStatValue(CE_StatDefOf.MeleeCounterParryBonus) ?? 1;
+                    var parryChance = GetComparativeChanceAgainst(defender, casterPawn, CE_StatDefOf.MeleeParryChance, BaseParryChance, parryBonus);
                     if (!surpriseAttack && defender != null && CanDoParry(defender) && Rand.Chance(parryChance))
                     {
                         // Attack is parried
@@ -516,13 +517,13 @@ namespace CombatExtended
             return SoundDefOf.Pawn_Melee_Punch_Miss;
         }
 
-        private static float GetComparativeChanceAgainst(Pawn attacker, Pawn defender, StatDef stat, float baseChance)
+        private static float GetComparativeChanceAgainst(Pawn attacker, Pawn defender, StatDef stat, float baseChance, float defenderSkillMult = 1)
         {
             if (attacker == null || defender == null)
                 return 0;
             var offSkill = stat.Worker.IsDisabledFor(attacker) ? 0 : attacker.GetStatValue(stat);
-            var defSkill = stat.Worker.IsDisabledFor(defender) ? 0 : defender.GetStatValue(stat);
-            var chance = Mathf.Clamp01(baseChance + defSkill - offSkill);
+            var defSkill = stat.Worker.IsDisabledFor(defender) ? 0 : defender.GetStatValue(stat) * defenderSkillMult;
+            var chance = Mathf.Clamp01(baseChance + offSkill - defSkill);
             return chance;
         }
 
