@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+
+	<Operation Class="PatchOperationSequence">
+		<success>Always</success>
+		<operations>
+			<li Class="PatchOperationRemove">
+				<xpath>*/TraitDef[defName="ShootingAccuracy"]/degreeDatas/li[label="careful shooter"]/statOffsets/ShootingAccuracy</xpath>
+			</li>
+			<li Class="PatchOperationAdd">
+				<xpath>*/TraitDef[defName="ShootingAccuracy"]/degreeDatas/li[label="careful shooter"]</xpath>
+				<value>
+					<statFactors>
+						<ShootingAccuracy>1.5</ShootingAccuracy>
+					</statFactors>
+				</value>
+			</li>
+			<li Class="PatchOperationRemove">
+				<xpath>*/TraitDef[defName="ShootingAccuracy"]/degreeDatas/li[label="trigger-happy"]/statOffsets/ShootingAccuracy</xpath>
+			</li>
+			<li Class="PatchOperationAdd">
+				<xpath>*/TraitDef[defName="ShootingAccuracy"]/degreeDatas/li[label="trigger-happy"]</xpath>
+				<value>
+					<statFactors>
+						<ShootingAccuracy>0.5</ShootingAccuracy>
+					</statFactors>
+				</value>
+			</li>
+		</operations>
+	</Operation>
+
+</Patch>
