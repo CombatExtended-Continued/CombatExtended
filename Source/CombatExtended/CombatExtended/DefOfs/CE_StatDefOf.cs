@@ -23,6 +23,7 @@ namespace CombatExtended
 
         // *** Melee weapon stats ***
         public static StatDef MeleePenetrationFactor;
+        public static StatDef MeleeCounterParryBonus;
 
         // *** Pawn stats ***
         public static StatDef CarryBulk;    // Inventory max space
