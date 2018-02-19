@@ -580,6 +580,7 @@ namespace CombatExtended
             }
 
             var bounds = CE_Utility.GetBoundsFor(thing);
+            Log.Message($"Bounds: {bounds.center}, {bounds.extents}");
             float dist;
             if (!bounds.IntersectRay(ShotLine, out dist))
             {
@@ -609,6 +610,7 @@ namespace CombatExtended
         	landed = true;
         	
             if (DebugViewSettings.drawInterceptChecks) MoteMaker.ThrowText(thing.Position.ToVector3Shifted(), thing.Map, "x", Color.red);
+            Log.Message($"{this} impacting {thing} at {ExactPosition}");
             
             Impact(thing);
             return true;

@@ -2,33 +2,34 @@
 <Defs>
 
   <ResearchProjectDef>
-    <defName>LargeRockets</defName>
-    <label>large rockets</label>
-    <description>Allows you to build doomsday rocket launchers and triple rocket launchers, one-shot assault weapons that pack a massive punch.</description>
-    <baseCost>2200</baseCost>
+    <defName>CE_Launchers</defName>
+    <label>simple launchers</label>
+    <description>Allows production of basic grenade and rocket launchers.</description>
+    <baseCost>1000</baseCost>
     <techLevel>Industrial</techLevel>
     <prerequisites>
-      <li>MicroelectronicsBasics</li>
+      <li>GasOperation</li>
     </prerequisites>
+    <researchViewX>8</researchViewX>
+    <researchViewY>5.7</researchViewY>
+  </ResearchProjectDef>
+
+  <ResearchProjectDef>
+    <defName>CE_AdvancedLaunchers</defName>
+    <label>advanced launchers</label>
+    <description>Allows production of more advanced launchers like the incendiary, triple rocket or doomsday launcher.</description>
+    <baseCost>1000</baseCost>
+    <techLevel>Spacer</techLevel>
     <requiredResearchBuilding>HiTechResearchBench</requiredResearchBuilding>
     <requiredResearchFacilities>
       <li>MultiAnalyzer</li>
     </requiredResearchFacilities>
-    <researchViewX>9</researchViewX>
-    <researchViewY>3</researchViewY>
-  </ResearchProjectDef>
-
-  <ResearchProjectDef>
-    <defName>CE_AdvancedFirearms</defName>
-    <label>advanced firearms</label>
-    <description>Allows production of more advanced firearms.</description>
-    <baseCost>1500</baseCost>
-    <techLevel>Industrial</techLevel>
     <prerequisites>
-      <li>Machining</li>
+      <li>CE_Launchers</li>
+      <li>MultiAnalyzer</li>
     </prerequisites>
-    <researchViewX>5</researchViewX>
-    <researchViewY>6</researchViewY>
+    <researchViewX>9</researchViewX>
+    <researchViewY>5.7</researchViewY>
   </ResearchProjectDef>
   
 </Defs>
