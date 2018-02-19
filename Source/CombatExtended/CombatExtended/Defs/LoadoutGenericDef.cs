@@ -124,8 +124,8 @@ namespace CombatExtended
 				generic.defaultCount = gun.GetCompProperties<CompProperties_AmmoUser>().magazineSize;
 				generic.defaultCountType = LoadoutCountType.pickupDrop; // we want ammo to get picked up.
 				//generic._lambda = td => td is AmmoDef && gun.GetCompProperties<CompProperties_AmmoUser>().ammoSet.ammoTypes.Contains(td);
-				generic.thingRequestGroup = ThingRequestGroup.Shell;
-				generic._lambda = td => gun.GetCompProperties<CompProperties_AmmoUser>().ammoSet.ammoTypes.Any(al => al.ammo == td);
+				generic.thingRequestGroup = ThingRequestGroup.HaulableEver;
+				generic._lambda = td => td is AmmoDef && gun.GetCompProperties<CompProperties_AmmoUser>().ammoSet.ammoTypes.Any(al => al.ammo == td);
 				defs.Add(generic);
 				//Log.Message(string.Concat("CombatExtended :: LoadoutGenericDef :: ", generic.LabelCap, " list: ", string.Join(", ", DefDatabase<ThingDef>.AllDefs.Where(t => generic.lambda(t)).Select(t => t.label).ToArray())));
 			}
