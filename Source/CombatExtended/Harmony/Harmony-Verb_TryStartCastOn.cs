@@ -70,7 +70,6 @@ using Verse.AI;
             // we got work to do at this point.
             // Try starting the reload job.
             gun.TryStartReload();
-			
 			return false;
 		}
 	}

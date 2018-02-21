@@ -276,7 +276,11 @@ namespace CombatExtended
                                 {
                                     equipOptionLabel = equipOptionLabel + " " + "EquipWarningBrawler".Translate();
                                 }
-                                equipOption = new FloatMenuOption(equipOptionLabel, new Action(delegate
+                                equipOption = new FloatMenuOption(
+                                	equipOptionLabel,
+                                	(SelPawnForGear.story != null && SelPawnForGear.story.WorkTagIsDisabled(WorkTags.Violent))
+                                	? null
+                                	: new Action(delegate
                                 {
                                     compInventory.TrySwitchToWeapon(eq);
                                 }));

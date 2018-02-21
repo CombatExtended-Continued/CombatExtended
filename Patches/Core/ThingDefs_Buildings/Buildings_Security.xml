@@ -122,7 +122,7 @@
 	<!-- Patch weapon -->
 
 	<Operation Class="PatchOperationAdd">
-		<xpath>*/ThingDef[defName = "Artillery_MortarBomb"]</xpath>
+		<xpath>*/ThingDef[defName = "Artillery_Mortar"]</xpath>
 		<value>
 			<statBases>
 				<SightsEfficiency>0.5</SightsEfficiency>
@@ -147,14 +147,14 @@
 	</Operation>
 
 	<Operation Class="PatchOperationAdd">
-		<xpath>*/ThingDef[defName = "Artillery_MortarBomb"]/weaponTags</xpath>
+		<xpath>*/ThingDef[defName = "Artillery_Mortar"]/weaponTags</xpath>
 		<value>
 			<li>TurretGun</li>
 		</value>
 	</Operation>
 
 	<Operation Class="PatchOperationReplace">
-		<xpath>*/ThingDef[defName = "Artillery_MortarBomb"]/verbs</xpath>
+		<xpath>*/ThingDef[defName = "Artillery_Mortar"]/verbs</xpath>
 		<value>
 			<verbs>
 			  <li Class="CombatExtended.VerbPropertiesCE">
@@ -201,55 +201,21 @@
 		</value>
 	</Operation>
 
-<!--
 	<Operation Class="PatchOperationRemove">
-		<xpath>*/ThingDef[@Name = "BaseArtilleryBuilding"]/building/turretShellDef</xpath>
-	</Operation>
--->
-
-	<!-- Patch build costs -->
-
-<!--
-	<Operation Class="PatchOperationReplace">
-		<xpath>*/ThingDef[@Name = "BaseArtilleryBuilding"]/costList/Steel</xpath>
-		<value>
-			<Steel>200</Steel>
-		</value>
-	</Operation>
-
-	<Operation Class="PatchOperationRemove">
-		<xpath>*/ThingDef[@Name = "BaseArtilleryBuilding"]/stuffCategories</xpath>
-	</Operation>
-
-	<Operation Class="PatchOperationRemove">
-		<xpath>*/ThingDef[@Name = "BaseArtilleryBuilding"]/costStuffCount</xpath>
-	</Operation>
--->
-
-	<!-- Remove designation category to disable EMP mortar -->
-
-	<Operation Class="PatchOperationRemove">
-		<xpath>*/ThingDef[@Name = "BaseArtilleryBuilding"]/designationCategory</xpath>
+		<xpath>*/ThingDef[@Name = "BaseArtilleryBuilding"]/inspectorTabs</xpath>
 	</Operation>
 
 	<!-- ========== Actual Mortars ========== -->
 
 	<Operation Class="PatchOperationReplace">
-		<xpath>*/ThingDef[defName="Turret_MortarBomb"]/label</xpath>
+		<xpath>*/ThingDef[defName="Turret_Mortar"]/label</xpath>
 		<value>
 			<label>81mm mortar</label>
 		</value>
 	</Operation>
 
 	<Operation Class="PatchOperationRemove">
-		<xpath>*/ThingDef[defName="Turret_MortarBomb"]/comps</xpath>
-	</Operation>
-
-	<Operation Class="PatchOperationAdd">
-		<xpath>*/ThingDef[defName="Turret_MortarBomb"]</xpath>
-		<value>
-			<designationCategory>Security</designationCategory>
-		</value>
+		<xpath>*/ThingDef[defName="Turret_Mortar"]/comps</xpath>
 	</Operation>
 
 	<!-- Add trade tags -->
@@ -258,11 +224,11 @@
   	<success>Always</success>
   	<operations>
     	<li Class="PatchOperationTest">
-      	<xpath>*/ThingDef[defName="Turret_MortarBomb"]/tradeTags</xpath>
+      	<xpath>*/ThingDef[defName="Turret_Mortar"]/tradeTags</xpath>
       	<success>Invert</success>
     	</li>
     	<li Class="PatchOperationAdd">
-      	<xpath>*/ThingDef[defName="Turret_MortarBomb"]</xpath>
+      	<xpath>*/ThingDef[defName="Turret_Mortar"]</xpath>
       	<value>
         	<tradeTags />
       	</value>
@@ -271,31 +237,16 @@
 	</Operation>
 
 	<Operation Class="PatchOperationAdd">
-		<xpath>*/ThingDef[defName="Turret_MortarBomb"]/tradeTags</xpath>
+		<xpath>*/ThingDef[defName="Turret_Mortar"]/tradeTags</xpath>
 		<value>
 			<li>CE_Turret</li>
-		</value>
-	</Operation>
-
-	<!-- Remove unneeded incendiary mortar -->
-
-	<Operation Class="PatchOperationRemove">
-		<xpath>*/ThingDef[defName="Turret_MortarIncendiary"]</xpath>
-	</Operation>
-
-	<!-- Disable EMP mortar (can't remove because hardcoded references in vanilla) -->
-
-	<Operation Class="PatchOperationAdd">
-		<xpath>*/ThingDef[defName="Turret_MortarEMP"]</xpath>
-		<value>
-			<menuHidden>true</menuHidden>
 		</value>
 	</Operation>
 
 	<!-- ========== Traps ========== -->
 
 	<Operation Class="PatchOperationReplace">
-		<xpath>*/ThingDef[defName="TrapIEDBomb"]/costList</xpath>
+		<xpath>*/ThingDef[defName="TrapIED_HighExplosive"]/costList</xpath>
 		<value>
 			<costList>
 				<Steel>10</Steel>
@@ -306,7 +257,7 @@
 	</Operation>
 
 	<Operation Class="PatchOperationReplace">
-		<xpath>*/ThingDef[defName="TrapIEDIncendiary"]/costList</xpath>
+		<xpath>*/ThingDef[defName="TrapIED_Incendiary"]/costList</xpath>
 		<value>
 			<costList>
 				<Steel>10</Steel>
@@ -317,7 +268,7 @@
 	</Operation>
 
 	<Operation Class="PatchOperationReplace">
-		<xpath>*/ThingDef[defName="TrapIEDBomb"]/comps/li[@Class="CompProperties_Explosive"]</xpath>
+		<xpath>*/ThingDef[defName="TrapIED_HighExplosive"]/comps/li[@Class="CompProperties_Explosive"]</xpath>
 		<value>
 			<li Class="CompProperties_Explosive">
 				<explosiveDamageType>Bomb</explosiveDamageType>
@@ -331,13 +282,13 @@
 	</Operation>
 
 	<Operation Class="PatchOperationReplace">
-		<xpath>*/ThingDef[defName="TrapIEDIncendiary"]/comps/li[@Class="CompProperties_Explosive"]</xpath>
+		<xpath>*/ThingDef[defName="TrapIED_Incendiary"]/comps/li[@Class="CompProperties_Explosive"]</xpath>
 		<value>
 			<li Class="CompProperties_Explosive">
 				<explosiveDamageType>PrometheumFlame</explosiveDamageType>
 				<explosiveRadius>7</explosiveRadius>
 				<preExplosionSpawnThingDef>FilthPrometheum</preExplosionSpawnThingDef>
-				<prepreExplosionSpawnChance>0.75</prepreExplosionSpawnChance>
+				<preExplosionSpawnChance>0.75</preExplosionSpawnChance>
 				<wickTicks>
 				  <min>5</min>
 				  <max>20</max>

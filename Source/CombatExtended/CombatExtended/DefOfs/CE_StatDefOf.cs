@@ -22,7 +22,8 @@ namespace CombatExtended
         public static readonly StatDef ReloadSpeed = StatDef.Named("ReloadSpeed"); // pawn capacity
 
         // *** Melee weapon stats ***
-        public static StatDef MeleeWeapon_Penetration;
+        public static StatDef MeleePenetrationFactor;
+        public static StatDef MeleeCounterParryBonus;
 
         // *** Pawn stats ***
         public static StatDef CarryBulk;    // Inventory max space
