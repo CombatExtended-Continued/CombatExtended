@@ -1,0 +1,46 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+
+	<Operation Class="PatchOperationSequence">
+		<success>Always</success>
+		<operations>
+			<li Class="CombatExtended.PatchOperationFindMod">
+				<modName>Mechanoids Extraordinaire</modName>
+			</li>
+			<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+				<defName>Gun_InfernoCannonChimera</defName>
+				<statBases>
+					<Mass>300.00</Mass>
+					<RangedWeapon_Cooldown>2.53</RangedWeapon_Cooldown>
+					<SightsEfficiency>1</SightsEfficiency>
+					<ShotSpread>0.01</ShotSpread>
+					<SwayFactor>0.82</SwayFactor>
+					<Bulk>20.00</Bulk>
+				</statBases>
+				<Properties>
+					<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+					<hasStandardCommand>true</hasStandardCommand>
+					<defaultProjectile>Bullet_80x256mmFuel_Thermobaric</defaultProjectile>
+					<warmupTime>4.1</warmupTime>
+					<range>86</range>
+					<burstShotCount>1</burstShotCount>
+					<soundCast>InfernoCannon_Fire</soundCast>
+					<soundCastTail>GunTail_Light</soundCastTail>
+					<muzzleFlashScale>14</muzzleFlashScale>
+				</Properties>
+				<AmmoUser>
+					<magazineSize>1</magazineSize>
+					<reloadTime>9.8</reloadTime>
+					<ammoSet>AmmoSet_80x256mmFuel</ammoSet>
+				</AmmoUser>
+				<FireModes>
+					<aiAimMode>AimedShot</aiAimMode>
+				</FireModes>
+				<weaponTags>
+					<li>CE_AI_Launcher</li>
+				</weaponTags>
+			</li>
+		</operations>
+	</Operation>
+
+</Patch>

@@ -22,7 +22,7 @@
 	
 	<!-- ==================== Ammo ========================== -->
 
-  <ThingDef Name="AmmoGreatArrowBase" ParentName="AmmoBase" Abstract="True">
+  <ThingDef Name="AmmoGreatArrowBase" ParentName="NeolithicAmmoBase" Abstract="True">
     <description>Heavy arrow designed to be fired from a great bow.</description>
     <statBases>
       <Mass>0.17</Mass>
@@ -42,13 +42,13 @@
 
   <ThingDef ParentName="AmmoGreatArrowBase">
     <defName>Ammo_GreatArrow_Stone</defName>
-    <label>great arrow</label>
+    <label>great arrow (stone)</label>
     <graphicData>
       <texPath>Things/Ammo/Neolithic/Arrow/Stone</texPath>
       <graphicClass>Graphic_StackCount</graphicClass>
     </graphicData>
     <statBases>
-      <MarketValue>0.11</MarketValue>
+      <MarketValue>0.17</MarketValue>
     </statBases>
     <ammoClass>StoneArrow</ammoClass>
     <tradeTags>
@@ -95,31 +95,54 @@
 			<speed>49</speed>
 		</projectile>
 	</ThingDef>
-
+	
+	<!-- The amount of arrows usable over the ammo lifetime for each resource cost is equal to
+		[r / (1 - x)];
+			x = preExplosionSpawnChance,
+			r = resource cost. -->
+	
 	<ThingDef ParentName="BaseGreatArrowProjectile">
 		<defName>Projectile_GreatArrow_Stone</defName>
 		<label>great arrow (stone)</label>
+		<graphicData>
+			<texPath>Things/Projectile/Arrows/Arrow_Stone</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+		</graphicData>
 		<projectile>
 			<damageAmountBase>15</damageAmountBase>
 			<armorPenetration>0.2</armorPenetration>
+			<preExplosionSpawnChance>0.2</preExplosionSpawnChance>	<!-- 12.5 arrows per resource -->
+			<preExplosionSpawnThingDef>Ammo_GreatArrow_Stone</preExplosionSpawnThingDef>
 		</projectile>
 	</ThingDef>
 
 	<ThingDef ParentName="BaseGreatArrowProjectile">
 		<defName>Projectile_GreatArrow_Steel</defName>
 		<label>great arrow (steel)</label>
+		<graphicData>
+			<texPath>Things/Projectile/Arrows/Arrow_Steel</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+		</graphicData>
 		<projectile>
 			<damageAmountBase>15</damageAmountBase>
 			<armorPenetration>0.275</armorPenetration>
+			<preExplosionSpawnChance>0.6</preExplosionSpawnChance>	<!-- 25 arrows per resource -->
+			<preExplosionSpawnThingDef>Ammo_GreatArrow_Steel</preExplosionSpawnThingDef>
 		</projectile>
 	</ThingDef>
 
 	<ThingDef ParentName="BaseGreatArrowProjectile">
 		<defName>Projectile_GreatArrow_Plasteel</defName>
 		<label>great arrow (plasteel)</label>
+		<graphicData>
+			<texPath>Things/Projectile/Arrows/Arrow_Plasteel</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+		</graphicData>
 		<projectile>
 			<damageAmountBase>15</damageAmountBase>
 			<armorPenetration>0.35</armorPenetration>
+			<preExplosionSpawnChance>0.75</preExplosionSpawnChance>	<!-- 40 arrows per resource -->
+			<preExplosionSpawnThingDef>Ammo_GreatArrow_Plasteel</preExplosionSpawnThingDef>
 		</projectile>
 	</ThingDef>
   

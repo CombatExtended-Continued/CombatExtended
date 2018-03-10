@@ -17,6 +17,9 @@ namespace CombatExtended.Harmony
 
     // Question from ProfoundDarkness: Are the "Cancel current job (use verb, etc.)" necessary?
 
+    // They're needed to avoid bugs where pawns switch to another weapon but still use the old one 
+    // -NIA
+
 
     [HarmonyPatch(typeof(Pawn_EquipmentTracker), "Notify_PrimaryDestroyed")]
     static class Pawn_EquipmentTracker_AddEquipment
@@ -64,6 +67,13 @@ namespace CombatExtended.Harmony
      * The return does verb.TryStartCastOn() which changes game state.
      * On the other hand should be do-able with a method replacer...
      */
+
+     /*
+      * Commented out for A18 as the method seems to have been removed. Need to figure out where it went/whether this patch is still needed
+      * -NIA
+      */
+
+    /*
     [HarmonyPatch(typeof(Pawn_EquipmentTracker), "TryStartAttack")]
     static class Pawn_EquipmentTracker_TryStartAttack
     {
@@ -120,4 +130,5 @@ namespace CombatExtended.Harmony
             return verb != null && verb.TryStartCastOn(targ, surpriseAttack, canFreeIntercept);
         }
     }
+    */
 }

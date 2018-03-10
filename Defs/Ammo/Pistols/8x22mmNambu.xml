@@ -1,0 +1,103 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+
+	<ThingCategoryDef>
+		<defName>Ammo8x22mmNambu</defName>
+		<label>8x22mm Nambu</label>
+		<parent>AmmoRifles</parent>
+    <iconPath>UI/Icons/ThingCategories/CaliberRifle</iconPath>
+	</ThingCategoryDef>
+	
+	<!-- ==================== AmmoSet ========================== -->
+
+	<CombatExtended.AmmoSetDef>
+		<defName>AmmoSet_8x22mmNambu</defName>
+		<label>8x22mm Nambu</label>
+		<ammoTypes>
+			<Ammo_8x22mmNambu_FMJ>Bullet_8x22mmNambu_FMJ</Ammo_8x22mmNambu_FMJ>
+		</ammoTypes>
+	</CombatExtended.AmmoSetDef>
+	
+	<!-- ==================== Ammo ========================== -->
+
+	<ThingDef Name="8x22mmNambuBase" ParentName="SmallAmmoBase" Abstract="True">
+		<description>Low caliber handgun cartridge lacking in stopping power.</description>
+		<statBases>
+		<Mass>0.008</Mass>
+		<Bulk>0.02</Bulk>
+		</statBases>
+	<tradeTags>
+		<li>CE_AutoEnableTrade</li>
+		<li>CE_AutoEnableCrafting</li>
+	</tradeTags>
+		<thingCategories>
+			<li>Ammo8x22mmNambu</li>
+		</thingCategories>
+	</ThingDef>
+
+	<ThingDef ParentName="8x22mmNambuBase">
+		<defName>Ammo_8x22mmNambu_FMJ</defName>
+		<label>8x22mm Nambu cartridge (FMJ)</label>
+		<graphicData>
+			<texPath>Things/Ammo/Rifle/FMJ</texPath>
+			<graphicClass>Graphic_StackCount</graphicClass>
+		</graphicData>
+		<statBases>
+			<MarketValue>0.04</MarketValue>
+		</statBases>
+		<ammoClass>FullMetalJacket</ammoClass>
+		<cookOffProjectile>Bullet_8x22mmNambu_FMJ</cookOffProjectile>
+	</ThingDef>
+	
+	<!-- ================== Projectiles ================== -->
+	
+	<ThingDef Name="Base8x22mmNambuBullet" ParentName="BaseBullet" Abstract="true">
+		<graphicData>
+			<texPath>Things/Projectile/Bullet_Small</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+		</graphicData>
+		<projectile>
+			<damageDef>Bullet</damageDef>
+			<speed>73</speed>
+			<dropsCasings>true</dropsCasings>
+		</projectile>
+	</ThingDef>
+
+	<ThingDef ParentName="Base8x22mmNambuBullet">
+		<defName>Bullet_8x22mmNambu_FMJ</defName>
+		<label>8mm Nambu bullet (FMJ)</label>
+		<projectile>
+			<damageAmountBase>7</damageAmountBase>
+			<armorPenetration>0.224</armorPenetration>
+		</projectile>
+	</ThingDef>
+  
+	<!-- ==================== Recipes ========================== -->
+
+	<RecipeDef ParentName="AmmoRecipeBase">
+		<defName>MakeAmmo_8x22mmNambu_FMJ</defName>
+		<label>make 8x22mm Nambu (FMJ) cartridge x500</label>
+		<description>Craft 500 8x22mm Nambu (FMJ) cartridges.</description>
+		<jobString>Making 8x22mm Nambu (FMJ) cartridges.</jobString>
+		<ingredients>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>Steel</li>
+					</thingDefs>
+				</filter>
+				<count>8</count>
+			</li>
+		</ingredients>
+		<fixedIngredientFilter>
+			<thingDefs>
+				<li>Steel</li>
+			</thingDefs>
+		</fixedIngredientFilter>
+		<products>
+			<Ammo_8x22mmNambu_FMJ>500</Ammo_8x22mmNambu_FMJ>
+		</products>
+    <workAmount>1500</workAmount>
+	</RecipeDef>
+	
+</Defs>

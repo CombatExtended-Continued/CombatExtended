@@ -14,6 +14,7 @@ namespace CombatExtended.Harmony
     {
         public static void Postfix()
         {
+            // Resolve implied crit defs
             var enumerable = CritDefGenerator.ImpliedCritDefs().ToArray();
             foreach (DamageDef current in enumerable)
             {

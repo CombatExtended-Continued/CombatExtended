@@ -1,0 +1,203 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+
+	<ThingCategoryDef>
+		<defName>Ammo77x58mmArisaka</defName>
+		<label>7.7x58mm Arisaka</label>
+		<parent>AmmoRifles</parent>
+    <iconPath>UI/Icons/ThingCategories/CaliberRifle</iconPath>
+	</ThingCategoryDef>
+	
+	<!-- ==================== AmmoSet ========================== -->
+
+	<CombatExtended.AmmoSetDef>
+		<defName>AmmoSet_77x58mmArisaka</defName>
+		<label>7.7x58mm Arisaka</label>
+		<ammoTypes>
+			<Ammo_77x58mmArisaka_FMJ>Bullet_77x58mmArisaka_FMJ</Ammo_77x58mmArisaka_FMJ>
+			<Ammo_77x58mmArisaka_AP>Bullet_77x58mmArisaka_AP</Ammo_77x58mmArisaka_AP>
+			<Ammo_77x58mmArisaka_HP>Bullet_77x58mmArisaka_HP</Ammo_77x58mmArisaka_HP>
+		</ammoTypes>
+	</CombatExtended.AmmoSetDef>
+	
+	<!-- ==================== Ammo ========================== -->
+
+	<ThingDef Name="77x58mmArisakaBase" ParentName="SmallAmmoBase" Abstract="True">
+		<description>Large rifle bullet found mostly in outdated bolt-action firearms.</description>
+		<statBases>
+		<Mass>0.02</Mass>
+		<Bulk>0.05</Bulk>
+		</statBases>
+	<tradeTags>
+		<li>CE_AutoEnableTrade</li>
+		<li>CE_AutoEnableCrafting</li>
+	</tradeTags>
+		<thingCategories>
+			<li>Ammo77x58mmArisaka</li>
+		</thingCategories>
+	</ThingDef>
+
+	<ThingDef ParentName="77x58mmArisakaBase">
+		<defName>Ammo_77x58mmArisaka_FMJ</defName>
+		<label>7.7x58mm Arisaka cartridge (FMJ)</label>
+		<graphicData>
+			<texPath>Things/Ammo/Rifle/FMJ</texPath>
+			<graphicClass>Graphic_StackCount</graphicClass>
+		</graphicData>
+		<statBases>
+			<MarketValue>0.11</MarketValue>
+		</statBases>
+		<ammoClass>FullMetalJacket</ammoClass>
+		<cookOffProjectile>Bullet_77x58mmArisaka_FMJ</cookOffProjectile>
+	</ThingDef>
+
+	<ThingDef ParentName="77x58mmArisakaBase">
+		<defName>Ammo_77x58mmArisaka_AP</defName>
+		<label>7.7x58mm Arisaka cartridge (AP)</label>
+		<graphicData>
+			<texPath>Things/Ammo/Rifle/AP</texPath>
+			<graphicClass>Graphic_StackCount</graphicClass>
+		</graphicData>
+		<statBases>
+			<MarketValue>0.14</MarketValue>
+		</statBases>
+		<ammoClass>ArmorPiercing</ammoClass>
+		<cookOffProjectile>Bullet_77x58mmArisaka_AP</cookOffProjectile>
+	</ThingDef>
+
+	<ThingDef ParentName="77x58mmArisakaBase">
+		<defName>Ammo_77x58mmArisaka_HP</defName>
+		<label>7.7x58mm Arisaka cartridge (HP)</label>
+		<graphicData>
+			<texPath>Things/Ammo/Rifle/HP</texPath>
+			<graphicClass>Graphic_StackCount</graphicClass>
+		</graphicData>
+		<statBases>
+			<MarketValue>0.15</MarketValue>
+		</statBases>
+		<ammoClass>HollowPoint</ammoClass>
+		<cookOffProjectile>Bullet_77x58mmArisaka_HP</cookOffProjectile>
+	</ThingDef>
+	
+	<!-- ================== Projectiles ================== -->
+	
+	<ThingDef Name="Base77x58mmArisakaBullet" ParentName="BaseBullet" Abstract="true">
+		<graphicData>
+			<texPath>Things/Projectile/Bullet_Small</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+		</graphicData>
+		<projectile>
+			<damageDef>Bullet</damageDef>
+			<speed>185</speed>
+			<dropsCasings>true</dropsCasings>
+		</projectile>
+	</ThingDef>
+
+	<ThingDef ParentName="Base77x58mmArisakaBullet">
+		<defName>Bullet_77x58mmArisaka_FMJ</defName>
+		<label>7.7mm Arisaka bullet (FMJ)</label>
+		<projectile>
+			<damageAmountBase>18</damageAmountBase>
+			<armorPenetration>0.583</armorPenetration>
+		</projectile>
+	</ThingDef>
+
+	<ThingDef ParentName="Base77x58mmArisakaBullet">
+		<defName>Bullet_77x58mmArisaka_AP</defName>
+		<label>7.7mm Arisaka bullet (AP)</label>
+		<projectile>
+			<damageAmountBase>11</damageAmountBase>
+			<armorPenetration>0.733</armorPenetration>
+		</projectile>
+	</ThingDef>
+
+	<ThingDef ParentName="Base77x58mmArisakaBullet">
+		<defName>Bullet_77x58mmArisaka_HP</defName>
+		<label>7.7mm Arisaka bullet (HP)</label>
+		<projectile>
+			<damageAmountBase>25</damageAmountBase>
+			<armorPenetration>0.433</armorPenetration>
+		</projectile>
+	</ThingDef>
+  
+	<!-- ==================== Recipes ========================== -->
+
+	<RecipeDef ParentName="AmmoRecipeBase">
+		<defName>MakeAmmo_77x58mmArisaka_FMJ</defName>
+		<label>make 7.7x58mm Arisaka (FMJ) cartridge x500</label>
+		<description>Craft 500 7.7x58mm Arisaka (FMJ) cartridges.</description>
+		<jobString>Making 7.7x58mm Arisaka (FMJ) cartridges.</jobString>
+		<ingredients>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>Steel</li>
+					</thingDefs>
+				</filter>
+				<count>20</count>
+			</li>
+		</ingredients>
+		<fixedIngredientFilter>
+			<thingDefs>
+				<li>Steel</li>
+			</thingDefs>
+		</fixedIngredientFilter>
+		<products>
+			<Ammo_77x58mmArisaka_FMJ>500</Ammo_77x58mmArisaka_FMJ>
+		</products>
+    <workAmount>3500</workAmount>
+	</RecipeDef>
+
+	<RecipeDef ParentName="AmmoRecipeBase">
+		<defName>MakeAmmo_77x58mmArisaka_AP</defName>
+		<label>make 7.7x58mm Arisaka (AP) cartridge x500</label>
+		<description>Craft 500 7.7x58mm Arisaka (AP) cartridges.</description>
+		<jobString>Making 7.7x58mm Arisaka (AP) cartridges.</jobString>
+		<ingredients>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>Steel</li>
+					</thingDefs>
+				</filter>
+				<count>24</count>
+			</li>
+		</ingredients>
+		<fixedIngredientFilter>
+			<thingDefs>
+				<li>Steel</li>
+			</thingDefs>
+		</fixedIngredientFilter>
+		<products>
+			<Ammo_77x58mmArisaka_AP>500</Ammo_77x58mmArisaka_AP>
+		</products>
+    <workAmount>6000</workAmount>
+	</RecipeDef>
+
+	<RecipeDef ParentName="AmmoRecipeBase">
+		<defName>MakeAmmo_77x58mmArisaka_HP</defName>
+		<label>make 7.7x58mm Arisaka (HP) cartridge x500</label>
+		<description>Craft 500 7.7x58mm Arisaka (HP) cartridges.</description>
+		<jobString>Making 7.7x58mm Arisaka (HP) cartridges.</jobString>
+		<ingredients>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>Steel</li>
+					</thingDefs>
+				</filter>
+				<count>20</count>
+			</li>
+		</ingredients>
+		<fixedIngredientFilter>
+			<thingDefs>
+				<li>Steel</li>
+			</thingDefs>
+		</fixedIngredientFilter>
+		<products>
+			<Ammo_77x58mmArisaka_HP>500</Ammo_77x58mmArisaka_HP>
+		</products>
+    <workAmount>8750</workAmount>
+	</RecipeDef>
+	
+</Defs>

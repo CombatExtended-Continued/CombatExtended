@@ -31,7 +31,7 @@ namespace CombatExtended.Harmony
                     }
                     else
                     {
-                        Messages.Message("CE_TamerInventoryFull".Translate(), pawn, MessageSound.RejectInput);
+                        Messages.Message("CE_TamerInventoryFull".Translate(), pawn, MessageTypeDefOf.RejectInput);
                         __result = null;
                     }
                 }

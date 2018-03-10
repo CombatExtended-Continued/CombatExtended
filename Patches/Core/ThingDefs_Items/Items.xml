@@ -15,17 +15,50 @@
 	<!-- Thrumbo Horn -->
 
 	<Operation Class="PatchOperationReplace">
-		<xpath>*/ThingDef[defName="ThrumboHorn"]/statBases/MeleeWeapon_DamageAmount</xpath>
+		<xpath>*/ThingDef[defName="ThrumboHorn"]/tools</xpath>
 		<value>
-      <MeleeWeapon_DamageAmount>19</MeleeWeapon_DamageAmount>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<id>edge</id>
+					<label>edge</label>
+					<capacities>
+						<li>Cut</li>
+					</capacities>
+					<power>22</power>
+					<cooldownTime>1.55</cooldownTime>
+					<armorPenetration>0.195</armorPenetration>
+					<linkedBodyPartsGroup>Edge</linkedBodyPartsGroup>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<id>point</id>
+					<label>point</label>
+					<capacities>
+						<li>Stab</li>
+					</capacities>
+					<power>22</power>
+					<cooldownTime>1.55</cooldownTime>
+					<armorPenetration>0.365</armorPenetration>
+					<linkedBodyPartsGroup>Point</linkedBodyPartsGroup>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>base</label>
+					<capacities>
+						<li>Blunt</li>
+					</capacities>
+					<power>9</power>
+					<cooldownTime>1.55</cooldownTime>
+					<armorPenetration>0.11</armorPenetration>
+					<linkedBodyPartsGroup>Base</linkedBodyPartsGroup>
+				</li>
+			</tools>
 		</value>
 	</Operation>
 
 	<Operation Class="PatchOperationAdd">
 		<xpath>*/ThingDef[defName="ThrumboHorn"]/statBases</xpath>
 		<value>
-      <MeleeWeapon_Penetration>0.3</MeleeWeapon_Penetration>
-      <Bulk>10</Bulk>
+    		<Bulk>10</Bulk>
+    		<MeleeCounterParryBonus>2</MeleeCounterParryBonus>
 		</value>
 	</Operation>
 
@@ -34,38 +67,58 @@
 		<value>
 			<equippedStatOffsets>
 				<MeleeCritChance>1</MeleeCritChance>
-				<MeleeParryChance>0.75</MeleeParryChance>
+				<MeleeParryChance>0.5</MeleeParryChance>
 			</equippedStatOffsets>
-		</value>
-	</Operation>
-
-	<Operation Class="PatchOperationReplace">
-		<xpath>*/ThingDef[defName="ThrumboHorn"]/verbs</xpath>
-		<value>
-			<verbs>
-				<li>
-				  <verbClass>CombatExtended.Verb_MeleeAttackCE</verbClass>
-				  <hasStandardCommand>true</hasStandardCommand>
-				  <meleeDamageDef>Stab</meleeDamageDef>
-				</li>
-			</verbs>
 		</value>
 	</Operation>
 
 	<!-- Elephant Tusk -->
 
 	<Operation Class="PatchOperationReplace">
-		<xpath>*/ThingDef[defName="ElephantTusk"]/statBases/MeleeWeapon_DamageAmount</xpath>
+		<xpath>*/ThingDef[defName="ElephantTusk"]/tools</xpath>
 		<value>
-      <MeleeWeapon_DamageAmount>19</MeleeWeapon_DamageAmount>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<id>edge</id>
+					<label>edge</label>
+					<capacities>
+						<li>Cut</li>
+					</capacities>
+					<power>24.1</power>
+					<cooldownTime>2.1</cooldownTime>
+					<armorPenetration>0.208</armorPenetration>
+					<linkedBodyPartsGroup>Edge</linkedBodyPartsGroup>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<id>point</id>
+					<label>point</label>
+					<capacities>
+						<li>Stab</li>
+					</capacities>
+					<power>24.1</power>
+					<cooldownTime>2.1</cooldownTime>
+					<armorPenetration>0.39</armorPenetration>
+					<linkedBodyPartsGroup>Point</linkedBodyPartsGroup>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>base</label>
+					<capacities>
+						<li>Blunt</li>
+					</capacities>
+					<power>10</power>
+					<cooldownTime>2.1</cooldownTime>
+					<armorPenetration>0.118</armorPenetration>
+					<linkedBodyPartsGroup>Base</linkedBodyPartsGroup>
+				</li>
+			</tools>
 		</value>
 	</Operation>
 
 	<Operation Class="PatchOperationAdd">
 		<xpath>*/ThingDef[defName="ElephantTusk"]/statBases</xpath>
 		<value>
-      <MeleeWeapon_Penetration>0.175</MeleeWeapon_Penetration>
-      <Bulk>10</Bulk>
+    		<Bulk>10</Bulk>
+    		<MeleeCounterParryBonus>1.375</MeleeCounterParryBonus>
 		</value>
 	</Operation>
 
@@ -76,19 +129,6 @@
 				<MeleeCritChance>0.25</MeleeCritChance>
 				<MeleeParryChance>0.5</MeleeParryChance>
 			</equippedStatOffsets>
-		</value>
-	</Operation>
-
-	<Operation Class="PatchOperationReplace">
-		<xpath>*/ThingDef[defName="ElephantTusk"]/verbs</xpath>
-		<value>
-			<verbs>
-				<li>
-				  <verbClass>CombatExtended.Verb_MeleeAttackCE</verbClass>
-				  <hasStandardCommand>true</hasStandardCommand>
-				  <meleeDamageDef>Stab</meleeDamageDef>
-				</li>
-			</verbs>
 		</value>
 	</Operation>
 
@@ -160,16 +200,43 @@
 			<Mass>0.8</Mass>
 			<ArmorRating_Blunt>1.0</ArmorRating_Blunt>
       <ArmorRating_Sharp>1.15</ArmorRating_Sharp>
-			<MeleeWeapon_Penetration>1.3</MeleeWeapon_Penetration>
+			<MeleePenetrationFactor>1.3</MeleePenetrationFactor>
 		</value>
 	</Operation>
 
 	<!-- Wood -->
 
+	<Operation Class="PatchOperationReplace">
+		<xpath>*/ThingDef[defName="WoodLog"]/tools</xpath>
+		<value>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<capacities>
+						<li>Blunt</li>
+					</capacities>
+					<power>10</power>
+					<cooldownTime>1.85</cooldownTime>
+					<armorPenetration>0.118</armorPenetration>
+				</li>
+			</tools>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>*/ThingDef[defName="WoodLog"]</xpath>
+		<value>
+			<equippedStatOffsets>
+				<MeleeCritChance>0.1</MeleeCritChance>
+				<MeleeParryChance>0.175</MeleeParryChance>
+			</equippedStatOffsets>
+		</value>
+	</Operation>
+
 	<Operation Class="PatchOperationAdd">
 		<xpath>*/ThingDef[defName="WoodLog"]/statBases</xpath>
 		<value>
 			<Bulk>0.07</Bulk>
+			<MeleeCounterParryBonus>1.25</MeleeCounterParryBonus>
 		</value>
 	</Operation>
 
@@ -191,14 +258,7 @@
 		<xpath>*/ThingDef[defName="WoodLog"]/stuffProps/statFactors</xpath>
 		<value>
 			<Mass>0.3</Mass>
-			<MeleeWeapon_Penetration>0.3</MeleeWeapon_Penetration>
-		</value>
-	</Operation>
-
-	<Operation Class="PatchOperationReplace">
-		<xpath>*/ThingDef[defName="WoodLog"]/verbs/li[1]/verbClass</xpath>
-		<value>
-			<verbClass>CombatExtended.Verb_MeleeAttackCE</verbClass>
+			<MeleePenetrationFactor>0.3</MeleePenetrationFactor>
 		</value>
 	</Operation>
 
@@ -222,7 +282,7 @@
 		<xpath>*/ThingDef[defName="Uranium"]/stuffProps/statFactors</xpath>
 		<value>
 			<Mass>2</Mass>
-			<MeleeWeapon_Penetration>1.4</MeleeWeapon_Penetration>
+			<MeleePenetrationFactor>1.4</MeleePenetrationFactor>
 		</value>
 	</Operation>
 

@@ -75,7 +75,7 @@ namespace CombatExtended.Harmony
                     if (patient.Downed
                         //&& pawn.CanReserveAndReach(patient, PathEndMode.InteractionCell, Danger.Deadly)
                         && pawn.CanReach(patient, PathEndMode.InteractionCell, Danger.Deadly)
-                        && patient.health.hediffSet.GetHediffsTendable().Any(h => h.CanBeStabilizied()))
+                        && patient.health.hediffSet.GetHediffsTendable().Any(h => h.CanBeStabilized()))
                     {
                         if (pawn.story.WorkTypeIsDisabled(WorkTypeDefOf.Doctor))
                         {
@@ -88,7 +88,7 @@ namespace CombatExtended.Harmony
                             {
                                 if (pawn.inventory == null || pawn.inventory.innerContainer == null || !pawn.inventory.innerContainer.Any(t => t.def.IsMedicine))
                                 {
-                                    Messages.Message("CE_CannotStabilize".Translate() + ": " + "CE_NoMedicine".Translate(pawn), patient, MessageSound.RejectInput);
+                                    Messages.Message("CE_CannotStabilize".Translate() + ": " + "CE_NoMedicine".Translate(pawn), patient, MessageTypeDefOf.RejectInput);
                                     return;
                                 }
                                 // Drop medicine from inventory
@@ -119,75 +119,119 @@ namespace CombatExtended.Harmony
                     Thing item = thingList.FirstOrDefault(thing => thing.def.alwaysHaulable && !(thing is Corpse));
                     if (item != null)
                     {
-                        FloatMenuOption pickUpOption;
+                        //FloatMenuOption pickUpOption;
                         int count = 0;
                         if (!pawn.CanReach(item, PathEndMode.Touch, Danger.Deadly))
                         {
-                            pickUpOption = new FloatMenuOption("CE_CannotPickUp".Translate() + " " + item.LabelShort + " (" + "NoPath".Translate() + ")", null);
+                            opts.Add(new FloatMenuOption("CannotPickUp".Translate() + " " + item.LabelShort + " (" + "NoPath".Translate() + ")", null));
                         }
-                        /* else if (!pawn.CanReserve(item))
-                        {
-                            pickUpOption = new FloatMenuOption("CE_CannotPickUp".Translate() + " " + item.LabelShort + " (" + "ReservedBy".Translate(new object[] { pawn.Map.reservationManager.FirstReserverOf(item, pawn.Faction).LabelShort }), null);
-                        } */
                         else if (!compInventory.CanFitInInventory(item, out count))
                         {
-                            pickUpOption = new FloatMenuOption("CE_CannotPickUp".Translate() + " " + item.LabelShort + " (" + "CE_InventoryFull".Translate() + ")", null);
+                            opts.Add(new FloatMenuOption("CannotPickUp".Translate(new object[] { item.LabelShort }) + " (" + "CE_InventoryFull".Translate() + ")", null));
+                        }
+                        // Pick up x
+                        else if (count == 1)
+                        {
+                            opts.Add(FloatMenuUtility.DecoratePrioritizedTask(new FloatMenuOption("PickUp".Translate(new object[]
+                            {
+                    item.Label
+                            }), delegate
+                            {
+                                item.SetForbidden(false, false);
+                                Job job = new Job(JobDefOf.TakeInventory, item);
+                                job.count = 1;
+                                pawn.jobs.TryTakeOrderedJob(job, JobTag.Misc);
+                                pawn.Notify_HoldTrackerJob(job);
+                                PlayerKnowledgeDatabase.KnowledgeDemonstrated(CE_ConceptDefOf.CE_InventoryWeightBulk, KnowledgeAmount.SpecificInteraction);
+                            }, MenuOptionPriority.High, null, null, 0f, null, null), pawn, item, "ReservedBy"));
                         }
                         else
                         {
-                            // Pick up one
-                            pickUpOption = FloatMenuUtility.DecoratePrioritizedTask(new FloatMenuOption("CE_PickUp".Translate() + " " + item.LabelShort,
-                                new Action(delegate
-                                {
-                                    item.SetForbidden(false, false);
-                                    Job job = new Job(JobDefOf.TakeInventory, item);
-                                    job.count = 1;
-                                    job.playerForced = true;
-                                    pawn.Notify_HoldTrackerJob(job);
-                                    pawn.jobs.TryTakeOrderedJob(job);
-                                    PlayerKnowledgeDatabase.KnowledgeDemonstrated(CE_ConceptDefOf.CE_InventoryWeightBulk, KnowledgeAmount.SpecificInteraction);
-                                })), pawn, item, "ReservedBy");
-                        }
-                        opts.Add(pickUpOption);
-                        if (count > 1 && item.stackCount > 1)
-                        {
-                            // Pick up half
-                            int countHalf = item.def.stackLimit / 2;
-                            if (count > 3 && count > countHalf)
+                            if (count < item.stackCount)
                             {
-                                FloatMenuOption pickUpHalfStackOption = FloatMenuUtility.DecoratePrioritizedTask( new FloatMenuOption("CE_PickUpHalf".Translate() + " " + item.LabelShort + " x" + countHalf.ToString(),
-                                   new Action(delegate
-                                   {
-                                       item.SetForbidden(false, false);
-                                       Job job = new Job(JobDefOf.TakeInventory, item);
-                                       job.count = countHalf;
-                                       job.playerForced = true;
-                                       pawn.Notify_HoldTrackerJob(job);
-                                       pawn.jobs.TryTakeOrderedJob(job);
-                                       PlayerKnowledgeDatabase.KnowledgeDemonstrated(CE_ConceptDefOf.CE_InventoryWeightBulk, KnowledgeAmount.SpecificInteraction);
-                                   })), pawn, item, "ReservedBy");
-                                opts.Add(pickUpHalfStackOption);
+                                opts.Add(new FloatMenuOption("CannotPickUpAll".Translate(new object[]
+                                {
+                        item.Label
+                                }) + " (" + "CE_InventoryFull".Translate() + ")", null, MenuOptionPriority.Default, null, null, 0f, null, null));
                             }
-
-                            // Pick up all
-                            FloatMenuOption pickUpStackOption = FloatMenuUtility.DecoratePrioritizedTask(new FloatMenuOption("CE_PickUp".Translate() + " " + item.LabelShort + " x" + count.ToString(),
-                                new Action(delegate
+                            else
+                            {
+                                opts.Add(FloatMenuUtility.DecoratePrioritizedTask(new FloatMenuOption("PickUpAll".Translate(new object[]
+                                {
+                        item.Label
+                                }), delegate
                                 {
                                     item.SetForbidden(false, false);
                                     Job job = new Job(JobDefOf.TakeInventory, item);
-                                    job.count = count;
-                                    job.playerForced = true;
+                                    job.count = item.stackCount;
+                                    pawn.jobs.TryTakeOrderedJob(job, JobTag.Misc);
                                     pawn.Notify_HoldTrackerJob(job);
-                                    pawn.jobs.TryTakeOrderedJob(job);
                                     PlayerKnowledgeDatabase.KnowledgeDemonstrated(CE_ConceptDefOf.CE_InventoryWeightBulk, KnowledgeAmount.SpecificInteraction);
-                                })), pawn, item, "ReservedBy");
-                            opts.Add(pickUpStackOption);
+                                }, MenuOptionPriority.High, null, null, 0f, null, null), pawn, item, "ReservedBy"));
+                            }
+                            opts.Add(FloatMenuUtility.DecoratePrioritizedTask(new FloatMenuOption("PickUpSome".Translate(new object[]
+                            {
+                    item.Label
+                            }), delegate
+                            {
+                                int to = Mathf.Min(count, item.stackCount);
+                                Dialog_Slider window = new Dialog_Slider("PickUpCount".Translate(new object[]
+                                {
+                        item.LabelShort
+                                }), 1, to, delegate (int selectCount)
+                                {
+                                    item.SetForbidden(false, false);
+                                    Job job = new Job(JobDefOf.TakeInventory, item);
+                                    job.count = selectCount;
+                                    pawn.jobs.TryTakeOrderedJob(job, JobTag.Misc);
+                                    pawn.Notify_HoldTrackerJob(job);
+                                }, -2147483648);
+                                Find.WindowStack.Add(window);
+                                PlayerKnowledgeDatabase.KnowledgeDemonstrated(CE_ConceptDefOf.CE_InventoryWeightBulk, KnowledgeAmount.SpecificInteraction);
+                            }, MenuOptionPriority.High, null, null, 0f, null, null), pawn, item, "ReservedBy"));
                         }
                     }
                 }
             }
         }
-
+        
+        static IEnumerable<CodeInstruction> Transpiler(IEnumerable<CodeInstruction> instructions)
+        {
+            string targetString = "CannotPickUp";
+            int stringIndex = -1;
+            List<CodeInstruction> codes = Modify_ForceWear(instructions).ToList();
+            // Find Ldstr "CannotPickUp"
+            for (int i = 0; i < codes.Count; i++)
+            {
+                var code = codes[i];
+                if (code.opcode == OpCodes.Ldstr && code.operand as string != null && (code.operand as string).Equals(targetString))
+                {
+                    stringIndex = i;
+                    break;
+                }
+            }
+            // Find get_IsPlayerHome
+            if (stringIndex < 0)
+            {
+                Log.Error("CE failed to patch FloatMenuMakerMap: invalid string index");
+            }
+            else
+            {
+                for (int i = stringIndex; i > 0; i--)
+                {
+                    var code = codes[i];
+                    if (code.opcode == OpCodes.Callvirt && code.operand as MethodInfo != null && (code.operand as MethodInfo).Name == "get_IsPlayerHome")
+                    {
+                        // Change value to always true
+                        code.opcode = OpCodes.Ldc_I4_1;
+                        code.operand = null;
+                        return codes;
+                    }
+                }
+                Log.Error("CE failed to patch FloatMenuMakerMap: get_IsPlayerHome not found");
+            }
+            return instructions;
+        }
 
         /* Dev Notes (Don't need to read this, a short explanation is just before the method below):
          * The IL of the region I'm interested in (As of RimWorld 0.17.6351.26908, generated via Harmony debug mode):
@@ -275,8 +319,7 @@ namespace CombatExtended.Harmony
          * FloatMenuMakerMap.AddHumanlikeOrders doesn't change in logic significantly.
          * The label relocation is a little soft.
          */
-        [HarmonyTranspiler]
-        static IEnumerable<CodeInstruction> Modify_ForceWear(IEnumerable<CodeInstruction> instructions, ILGenerator generator)
+        static IEnumerable<CodeInstruction> Modify_ForceWear(IEnumerable<CodeInstruction> instructions)
         {
             int searchPhase = 0;
             bool patched = false;
@@ -303,7 +346,9 @@ namespace CombatExtended.Harmony
                 // -Locate callvirt Void Add(Verse.FloatMenuOption)
                 if (searchPhase == 2 && instruction.opcode == OpCodes.Callvirt && (instruction.operand as MethodInfo) != null && (instruction.operand as MethodInfo).Name == "Add"
                     && (previous.operand as LocalVariableInfo) != null && (previous.operand as LocalVariableInfo).LocalType == typeof(FloatMenuOption))
+                {
                     searchPhase = 3;
+                }
 
                 // -Locate ldfld RimWorld.Apparel apparel
                 if (searchPhase == 1 && instruction.opcode == OpCodes.Ldfld && (instruction.operand as FieldInfo) != null && (instruction.operand as FieldInfo).Name == "apparel")
@@ -324,8 +369,7 @@ namespace CombatExtended.Harmony
                 if (searchPhase > 0 && searchPhase < 3)
                     previous = instruction;
             }
-
-            if (branchLabel != null)
+            if (!branchLabel.NullOrEmpty())
             {
                 // search succeeded, find our insertion point again and insert the patch.
                 foreach (CodeInstruction instruction in instructions)
@@ -380,6 +424,5 @@ namespace CombatExtended.Harmony
             }
             return true;
         }
-
     }
 }

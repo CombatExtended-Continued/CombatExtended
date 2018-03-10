@@ -21,7 +21,12 @@ namespace CombatExtended
 		
 		private int amountToDrop;
 
-		[DebuggerHidden]
+        public override bool TryMakePreToilReservations()
+        {
+            return true;
+        }
+
+        [DebuggerHidden]
 		protected override IEnumerable<Toil> MakeNewToils()
 		{
 			yield return Toils_General.Wait(10);
@@ -45,8 +50,8 @@ namespace CombatExtended
 						}
 						else
 						{
-							this.CurJob.SetTarget(TargetIndex.A, dropThing);
-							this.CurJob.SetTarget(TargetIndex.B, c);
+							pawn.CurJob.SetTarget(TargetIndex.A, dropThing);
+							pawn.CurJob.SetTarget(TargetIndex.B, c);
 							amountToDrop = dropCount;
 						}
 					}
@@ -58,7 +63,7 @@ namespace CombatExtended
 			{
 				initAction = delegate
 				{
-					Thing thing = this.CurJob.GetTarget(TargetIndex.A).Thing;
+					Thing thing = pawn.CurJob.GetTarget(TargetIndex.A).Thing;
 					if (thing == null || !this.pawn.inventory.innerContainer.Contains(thing))
 					{
 						this.EndJobWith(JobCondition.Incompletable);
@@ -72,8 +77,8 @@ namespace CombatExtended
 					else
 					{
 						this.pawn.inventory.innerContainer.TryTransferToContainer(thing, this.pawn.carryTracker.innerContainer, amountToDrop, out thing);
-						this.CurJob.count = amountToDrop;
-						this.CurJob.SetTarget(TargetIndex.A, thing);
+						pawn.CurJob.count = amountToDrop;
+						pawn.CurJob.SetTarget(TargetIndex.A, thing);
 					}
 					thing.SetForbidden(false, false);
 					

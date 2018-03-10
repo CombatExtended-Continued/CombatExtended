@@ -11,7 +11,7 @@
   </Operation>
 
   <Operation Class="PatchOperationReplace">
-    <xpath>/GoJuice/HediffDef[defName="GoJuiceHigh"]/comps/li[@Class="HediffCompProperties_SeverityPerDay"]/severityPerDay</xpath>
+    <xpath>*/HediffDef[defName="GoJuiceHigh"]/comps/li[@Class="HediffCompProperties_SeverityPerDay"]/severityPerDay</xpath>
     <value>
       <severityPerDay>-0.8</severityPerDay>
     </value>
@@ -20,7 +20,7 @@
   <!-- ========== Patch statOffsets ========== -->
 
   <Operation Class="PatchOperationAdd">
-  	<xpath>/GoJuice/HediffDef[defName="GoJuiceHigh"]/stages/li[1]</xpath>
+  	<xpath>*/HediffDef[defName="GoJuiceHigh"]/stages/li[1]</xpath>
   	<value>
       <statOffsets>
         <Suppressability>-0.5</Suppressability>
@@ -29,12 +29,75 @@
   </Operation>
 
   <Operation Class="PatchOperationAdd">
-  	<xpath>/Yayo/HediffDef[defName="YayoHigh"]/stages/li[1]</xpath>
+  	<xpath>*/HediffDef[defName="YayoHigh"]/stages/li[1]</xpath>
   	<value>
       <statOffsets>
         <Suppressability>-0.5</Suppressability>
       </statOffsets>
   	</value>
+  </Operation>
+
+  <!-- ========== Patch beer ========== -->
+
+  <Operation Class="PatchOperationReplace">
+    <xpath>*/ThingDef[defName="Beer"]/tools</xpath>
+    <value>
+      <tools>
+        <li Class="CombatExtended.ToolCE">
+          <capacities>
+            <li>Blunt</li>
+          </capacities>
+          <power>8.3</power>
+          <cooldownTime>1.5</cooldownTime>
+          <commonality>1.33</commonality>
+          <armorPenetration>0.105</armorPenetration>
+          <linkedBodyPartsGroup>Base</linkedBodyPartsGroup>
+        </li>
+        <li Class="CombatExtended.ToolCE">
+          <label>neck</label>
+          <capacities>
+            <li>Poke</li>
+          </capacities>
+          <power>5.3</power>
+          <cooldownTime>1.5</cooldownTime>
+          <armorPenetration>0.06</armorPenetration>
+          <linkedBodyPartsGroup>Neck</linkedBodyPartsGroup>
+        </li>
+      </tools>
+    </value>
+  </Operation>
+
+  <Operation Class="PatchOperationAdd">
+    <xpath>*/ThingDef[defName="Beer"]</xpath>
+    <value>
+      <equippedStatOffsets>
+        <MeleeCritChance>0.175</MeleeCritChance>
+        <MeleeParryChance>0.1</MeleeParryChance>
+      </equippedStatOffsets>
+    </value>
+  </Operation>
+
+  <Operation Class="PatchOperationSequence">
+    <success>Always</success>
+    <operations>
+      <li Class="PatchOperationTest">
+        <xpath>*/ThingDef[defName="Beer"]/weaponTags</xpath>
+        <success>Invert</success>
+      </li>
+      <li Class="PatchOperationAdd">
+        <xpath>*/ThingDef[defName="Beer"]</xpath>
+        <value>
+          <weaponTags />
+        </value>
+      </li>
+    </operations>
+  </Operation>
+
+  <Operation Class="PatchOperationAdd">
+    <xpath>*/ThingDef[defName="Beer"]/weaponTags</xpath>
+    <value>
+      <li>CE_OneHandedWeapon</li>
+    </value>
   </Operation>
 
 </Patch>

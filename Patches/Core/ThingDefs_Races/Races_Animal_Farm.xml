@@ -12,18 +12,40 @@
 	</Operation>
 
 	<Operation Class="PatchOperationReplace">
-		<xpath>*/ThingDef[defName="Chicken"]/verbs</xpath>
+		<xpath>*/ThingDef[defName="Chicken"]/tools</xpath>
 		<value>
-			<verbs>
-				<li Class="CombatExtended.VerbPropertiesCE">
-				  <verbClass>CombatExtended.Verb_MeleeAttackCE</verbClass>
-				  <defaultCooldownTime>1.65</defaultCooldownTime>
-				  <meleeDamageBaseAmount>3</meleeDamageBaseAmount>
-				  <meleeDamageDef>Bite</meleeDamageDef>
-				  <linkedBodyPartsGroup>Beak</linkedBodyPartsGroup>
-				  <meleeArmorPenetration>0.02</meleeArmorPenetration>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<label>claws</label>
+					<capacities>
+						<li>Scratch</li>
+					</capacities>
+					<power>2</power>
+					<cooldownTime>1.65</cooldownTime>
+					<linkedBodyPartsGroup>Feet</linkedBodyPartsGroup>
+					<armorPenetration>0.041</armorPenetration>
 				</li>
-			</verbs>
+				<li Class="CombatExtended.ToolCE">
+					<capacities>
+						<li>Bite</li>
+					</capacities>
+					<power>3</power>
+					<cooldownTime>1.65</cooldownTime>
+					<linkedBodyPartsGroup>Beak</linkedBodyPartsGroup>
+					<armorPenetration>0.095</armorPenetration>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>head</label>
+					<capacities>
+						<li>Blunt</li>
+					</capacities>
+					<power>1</power>
+					<cooldownTime>1.65</cooldownTime>
+					<linkedBodyPartsGroup>HeadAttackTool</linkedBodyPartsGroup>
+					<commonality>0.2</commonality>
+					<armorPenetration>0.048</armorPenetration>
+				</li>
+			</tools>
 		</value>
 	</Operation>
 
@@ -58,22 +80,35 @@
 			<MoveSpeed>2.6</MoveSpeed>
 			<MeleeDodgeChance>0.07</MeleeDodgeChance>
 			<MeleeCritChance>0.06</MeleeCritChance>
+			<MeleeParryChance>0.08</MeleeParryChance>
 		</value>
 	</Operation>
 
 	<Operation Class="PatchOperationReplace">
-		<xpath>*/ThingDef[defName="Pig"]/verbs</xpath>
+		<xpath>*/ThingDef[defName="Pig"]/tools</xpath>
 		<value>
-			<verbs>
-				<li Class="CombatExtended.VerbPropertiesCE">
-				  <verbClass>CombatExtended.Verb_MeleeAttackCE</verbClass>
-				  <defaultCooldownTime>1.65</defaultCooldownTime>
-				  <meleeDamageBaseAmount>7</meleeDamageBaseAmount>
-				  <meleeDamageDef>Bite</meleeDamageDef>
-				  <linkedBodyPartsGroup>Teeth</linkedBodyPartsGroup>
-				  <meleeArmorPenetration>0.1</meleeArmorPenetration>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<capacities>
+						<li>Bite</li>
+					</capacities>
+					<power>7</power>
+					<cooldownTime>1.65</cooldownTime>
+					<linkedBodyPartsGroup>Teeth</linkedBodyPartsGroup>
+					<armorPenetration>0.139</armorPenetration>
 				</li>
-			</verbs>
+				<li Class="CombatExtended.ToolCE">
+					<label>head</label>
+					<capacities>
+						<li>Blunt</li>
+					</capacities>
+					<power>3</power>
+					<cooldownTime>1.65</cooldownTime>
+					<linkedBodyPartsGroup>HeadAttackTool</linkedBodyPartsGroup>
+					<commonality>0.2</commonality>
+					<armorPenetration>0.064</armorPenetration>
+				</li>
+			</tools>
 		</value>
 	</Operation>
 
@@ -100,22 +135,47 @@
 		<value>
 			<MeleeDodgeChance>0.15</MeleeDodgeChance>
 			<MeleeCritChance>0.13</MeleeCritChance>
+			<MeleeParryChance>0.18</MeleeParryChance>
 		</value>
 	</Operation>
 
 	<Operation Class="PatchOperationReplace">
-		<xpath>*/ThingDef[defName="Cow"]/verbs</xpath>
+		<xpath>*/ThingDef[defName="Cow"]/tools</xpath>
 		<value>
-			<verbs>
-				<li Class="CombatExtended.VerbPropertiesCE">
-				  <verbClass>CombatExtended.Verb_MeleeAttackCE</verbClass>
-				  <defaultCooldownTime>1.65</defaultCooldownTime>
-				  <meleeDamageBaseAmount>13</meleeDamageBaseAmount>
-				  <meleeDamageDef>Blunt</meleeDamageDef>
-				  <linkedBodyPartsGroup>HeadAttackTool</linkedBodyPartsGroup>
-				  <meleeArmorPenetration>0.1</meleeArmorPenetration>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<capacities>
+						<li>Bite</li>
+					</capacities>
+					<power>6</power>
+					<cooldownTime>1.65</cooldownTime>
+					<linkedBodyPartsGroup>Teeth</linkedBodyPartsGroup>
+					<armorPenetration>0.128</armorPenetration>
 				</li>
-			</verbs>
+				<li Class="CombatExtended.ToolCE">
+					<label>head</label>
+					<capacities>
+						<li>Blunt</li>
+					</capacities>
+					<power>5</power>
+					<cooldownTime>1.65</cooldownTime>
+					<commonality>0.2</commonality>
+					<linkedBodyPartsGroup>HeadAttackTool</linkedBodyPartsGroup>
+					<armorPenetration>0.079</armorPenetration>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>horns</label>
+					<capacities>
+						<li>Stab</li>
+					</capacities>
+					<power>13</power>
+					<cooldownTime>1.65</cooldownTime>
+					<commonality>0.65</commonality>
+					<restrictedGender>Male</restrictedGender>
+					<linkedBodyPartsGroup>HeadAttackTool</linkedBodyPartsGroup>
+					<armorPenetration>0.254</armorPenetration>
+				</li>
+			</tools>
 		</value>
 	</Operation>
 
@@ -142,30 +202,79 @@
 		<value>
 			<MeleeDodgeChance>0.14</MeleeDodgeChance>
 			<MeleeCritChance>0.06</MeleeCritChance>
+			<MeleeParryChance>0.07</MeleeParryChance>
 		</value>
 	</Operation>
 
 	<Operation Class="PatchOperationReplace">
-		<xpath>*/ThingDef[defName="Alpaca"]/verbs</xpath>
+		<xpath>*/ThingDef[defName="Alpaca"]/tools</xpath>
 		<value>
-			<verbs>
-				<li Class="CombatExtended.VerbPropertiesCE">
-				  <verbClass>CombatExtended.Verb_MeleeAttackCE</verbClass>
-				  <defaultCooldownTime>1.65</defaultCooldownTime>
-				  <meleeDamageBaseAmount>7</meleeDamageBaseAmount>
-				  <meleeDamageDef>Blunt</meleeDamageDef>
-				  <linkedBodyPartsGroup>FrontLeftLeg</linkedBodyPartsGroup>
-				  <meleeArmorPenetration>0.06</meleeArmorPenetration>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<id>lefthoofblunt</id>
+					<label>left hoof</label>
+					<capacities>
+						<li>Blunt</li>
+					</capacities>
+					<power>8</power>
+					<cooldownTime>1.65</cooldownTime>
+					<linkedBodyPartsGroup>FrontLeftLeg</linkedBodyPartsGroup>
+					<armorPenetration>0.102</armorPenetration>
 				</li>
-				<li Class="CombatExtended.VerbPropertiesCE">
-				  <verbClass>CombatExtended.Verb_MeleeAttackCE</verbClass>
-				  <defaultCooldownTime>1.65</defaultCooldownTime>
-				  <meleeDamageBaseAmount>7</meleeDamageBaseAmount>
-				  <meleeDamageDef>Blunt</meleeDamageDef>
-				  <linkedBodyPartsGroup>FrontRightLeg</linkedBodyPartsGroup>
-				  <meleeArmorPenetration>0.06</meleeArmorPenetration>
+				<li Class="CombatExtended.ToolCE">
+					<id>lefthoofpoke</id>
+					<label>left hoof</label>
+					<capacities>
+						<li>Poke</li>
+					</capacities>
+					<power>8</power>
+					<cooldownTime>1.65</cooldownTime>
+					<linkedBodyPartsGroup>FrontLeftLeg_2</linkedBodyPartsGroup>
+					<armorPenetration>0.075</armorPenetration>
 				</li>
-			</verbs>
+				<li Class="CombatExtended.ToolCE">
+					<id>righthoofblunt</id>
+					<label>right hoof</label>
+					<capacities>
+						<li>Blunt</li>
+					</capacities>
+					<power>8</power>
+					<cooldownTime>1.65</cooldownTime>
+					<linkedBodyPartsGroup>FrontRightLeg</linkedBodyPartsGroup>
+					<armorPenetration>0.102</armorPenetration>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<id>righthoofpoke</id>
+					<label>right hoof</label>
+					<capacities>
+						<li>Poke</li>
+					</capacities>
+					<power>8</power>
+					<cooldownTime>1.65</cooldownTime>
+					<linkedBodyPartsGroup>FrontRightLeg_2</linkedBodyPartsGroup>
+					<armorPenetration>0.075</armorPenetration>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<capacities>
+						<li>Bite</li>
+					</capacities>
+					<power>4</power>
+					<cooldownTime>1.65</cooldownTime>
+					<linkedBodyPartsGroup>Teeth</linkedBodyPartsGroup>
+					<armorPenetration>0.117</armorPenetration>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>head</label>
+					<capacities>
+						<li>Blunt</li>
+					</capacities>
+					<power>2</power>
+					<cooldownTime>1.65</cooldownTime>
+					<linkedBodyPartsGroup>HeadAttackTool</linkedBodyPartsGroup>
+					<commonality>0.2</commonality>
+					<armorPenetration>0.064</armorPenetration>
+				</li>
+			</tools>
 		</value>
 	</Operation>
 

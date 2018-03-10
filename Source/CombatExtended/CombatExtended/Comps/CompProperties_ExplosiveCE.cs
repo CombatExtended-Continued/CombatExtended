@@ -26,7 +26,7 @@ namespace CombatExtended
         public int postExplosionSpawnThingCount = 1;
         public bool applyDamageToExplosionCellsNeighbors = false;
         public ThingDef preExplosionSpawnThingDef = null;
-        public float explosionSpawnChance = 0;
+        public float preExplosionSpawnChance = 0;
         public int preExplosionSpawnThingCount = 1;
 
         public CompProperties_ExplosiveCE()

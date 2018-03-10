@@ -36,18 +36,18 @@ namespace CombatExtended
         public override void PostApplyDamage(DamageInfo dinfo, float totalDamageDealt)
         {
             base.PostApplyDamage(dinfo, totalDamageDealt);
-            if(dinfo.Def != DamageDefOf.Rotting)
+            if (dinfo.Def != DamageDefOf.Rotting)
             {
                 // Find existing fuel puddle or spawn one if needed
-                Thing fuel = Position.GetThingList(this.Map).FirstOrDefault(x => x.def == ThingDefOf.FilthFuel);
-                int fuelHPFromDamage = Mathf.CeilToInt(fuel.MaxHitPoints * Mathf.Clamp01(totalDamageDealt / MaxHitPoints));
+                Thing fuel = Position.GetThingList(this.Map).FirstOrDefault(x => x.def == CE_ThingDefOf.FilthPrometheum);
+                int fuelHPFromDamage = Mathf.CeilToInt(CE_ThingDefOf.FilthPrometheum.BaseMaxHitPoints * Mathf.Clamp01(totalDamageDealt / MaxHitPoints));
                 if (fuel != null)
                 {
                     fuel.HitPoints = Mathf.Min(fuel.MaxHitPoints, fuel.HitPoints + fuelHPFromDamage);
                 }
                 else
                 {
-                    fuel = ThingMaker.MakeThing(ThingDefOf.FilthFuel);
+                    fuel = ThingMaker.MakeThing(CE_ThingDefOf.FilthPrometheum);
                     GenSpawn.Spawn(fuel, Position, this.Map);
                     fuel.HitPoints = fuelHPFromDamage;
                 }

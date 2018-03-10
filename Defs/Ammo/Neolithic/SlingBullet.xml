@@ -22,7 +22,7 @@
 	
 	<!-- ==================== Ammo ========================== -->
 
-  <ThingDef Name="AmmoSlingBulletBase" ParentName="AmmoBase" Abstract="True">
+  <ThingDef Name="AmmoSlingBulletBase" ParentName="NeolithicAmmoBase" Abstract="True">
     <description>An aerodynamic stone or metal pellet. Perfect for being launched by a sling.</description>
     <statBases>
       <Mass>0.05</Mass>
@@ -86,21 +86,28 @@
 
 	<ThingDef Name="BaseSlingBullet" ParentName="BaseBullet" Abstract="true">
 		<graphicData>
-			<texPath>Things/Projectile/Stone</texPath>
+			<texPath>Things/Mote/Stone</texPath>
 			<graphicClass>Graphic_Single</graphicClass>
 		</graphicData>
 		<projectile>
 			<damageDef>Blunt</damageDef>
-			<speed>40</speed>
+			<speed>44</speed>
 		</projectile>
 	</ThingDef>
+
+	<!-- The amount of arrows usable over the ammo lifetime for each resource cost is equal to
+		[r / (1 - x)];
+			x = preExplosionSpawnChance,
+			r = resource cost. -->
 
 	<ThingDef ParentName="BaseSlingBullet">
 		<defName>Projectile_SlingBullet_Stone</defName>
 		<label>sling bullet (stone)</label>
 		<projectile>
 			<damageAmountBase>7</damageAmountBase>
-			<armorPenetration>0.15</armorPenetration>
+			<armorPenetration>0.125</armorPenetration>
+			<preExplosionSpawnChance>0.166</preExplosionSpawnChance>	<!-- 11.99 stones per resource -->
+			<preExplosionSpawnThingDef>Ammo_SlingBullet_Stone</preExplosionSpawnThingDef>
 		</projectile>
 	</ThingDef>
 
@@ -108,8 +115,10 @@
 		<defName>Projectile_SlingBullet_Steel</defName>
 		<label>sling bullet (steel)</label>
 		<projectile>
-			<damageAmountBase>8</damageAmountBase>
-			<armorPenetration>0.175</armorPenetration>
+			<damageAmountBase>7</damageAmountBase>
+			<armorPenetration>0.1625</armorPenetration>
+			<preExplosionSpawnChance>0.5</preExplosionSpawnChance>	<!-- 20 stones per resource -->
+			<preExplosionSpawnThingDef>Ammo_SlingBullet_Steel</preExplosionSpawnThingDef>
 		</projectile>
 	</ThingDef>
 
@@ -117,8 +126,10 @@
 		<defName>Projectile_SlingBullet_Plasteel</defName>
 		<label>sling bullet (plasteel)</label>
 		<projectile>
-			<damageAmountBase>8</damageAmountBase>
-			<armorPenetration>0.225</armorPenetration>
+			<damageAmountBase>7</damageAmountBase>
+			<armorPenetration>0.2</armorPenetration>
+			<preExplosionSpawnChance>0.7</preExplosionSpawnChance>	<!-- 33.33 stones per resource -->
+			<preExplosionSpawnThingDef>Ammo_SlingBullet_Plasteel</preExplosionSpawnThingDef>
 		</projectile>
 	</ThingDef>
   

@@ -62,10 +62,10 @@ namespace CombatExtended
             {
                 if (CompFireModes != null)
                 {
-                    if (this.CasterIsPawn)
+                    if (ShooterPawn != null)
                     {
                         // Check for hunting job
-                        if (CasterPawn.CurJob != null && CasterPawn.CurJob.def == JobDefOf.Hunt)
+                        if (ShooterPawn.CurJob != null && ShooterPawn.CurJob.def == JobDefOf.Hunt)
                             return true;
 
                         // Check for suppression
@@ -89,7 +89,7 @@ namespace CombatExtended
         }
 
         // Whether our shooter is currently under suppressive fire
-        private bool IsSuppressed => CasterPawn?.TryGetComp<CompSuppressable>()?.isSuppressed ?? false;
+        private bool IsSuppressed => ShooterPawn?.TryGetComp<CompSuppressable>()?.isSuppressed ?? false;
 
         #endregion
 
@@ -107,9 +107,9 @@ namespace CombatExtended
             {
                 float targetDist = (this.currentTarget.Cell - this.caster.Position).LengthHorizontal;
                 int aimTicks = (int)Mathf.Lerp(aimTicksMin, aimTicksMax, (targetDist / 100));
-                if (CasterIsPawn)
+                if (ShooterPawn != null)
                 {
-                    this.CasterPawn.stances.SetStance(new Stance_Warmup(aimTicks, this.currentTarget, this));
+                    this.ShooterPawn.stances.SetStance(new Stance_Warmup(aimTicks, this.currentTarget, this));
                     this.isAiming = true;
                     return;
                 }
@@ -139,7 +139,7 @@ namespace CombatExtended
                 {
                     this.WarmupComplete();
                 }
-                if (CasterIsPawn && this.CasterPawn.stances.curStance?.GetType() != typeof(Stance_Warmup))
+                if (ShooterPawn != null && this.ShooterPawn.stances.curStance?.GetType() != typeof(Stance_Warmup))
                 {
                     this.isAiming = false;
                 }
@@ -158,7 +158,7 @@ namespace CombatExtended
                     Pawn targetPawn = this.currentTarget.Thing as Pawn;
                     if (targetPawn != null)
                     {
-                        if (targetPawn.HostileTo(this.caster.Faction))
+                        if (targetPawn.HostileTo(Shooter.Faction))
                         {
                             xpPerTick = hostileXP;
                         }
@@ -191,7 +191,7 @@ namespace CombatExtended
         /// </summary>
         public override bool CanHitTargetFrom(IntVec3 root, LocalTargetInfo targ)
         {
-            if (CasterIsPawn && !CasterPawn.health.capacities.CapableOf(PawnCapacityDefOf.Sight)) return false;
+            if (ShooterPawn != null && !ShooterPawn.health.capacities.CapableOf(PawnCapacityDefOf.Sight)) return false;
             return base.CanHitTargetFrom(root, targ);
         }
         
@@ -203,12 +203,19 @@ namespace CombatExtended
                 if (!CompAmmo.TryReduceAmmoCount())
                 {
                     if (CompAmmo.HasMagazine)
+                    {
                         CompAmmo.TryStartReload();
+                    }
                     return false;
                 }
             }
             if (base.TryCastShot())
             {
+				//Required since Verb_Shoot does this but Verb_LaunchProjectileCE doesn't when calling base.TryCastShot() because Shoot isn't its base
+				if (ShooterPawn != null)
+				{
+					ShooterPawn.records.Increment(RecordDefOf.ShotsFired);
+				}
                 //Drop casings
                 if (VerbPropsCE.ejectsCasings && projectilePropsCE.dropsCasings)
                 {
@@ -231,11 +238,11 @@ namespace CombatExtended
 						{
 							VerbPropsCE.soundCastTail.PlayOneShotOnCamera();
 						}
-						if (CasterIsPawn)
+						if (ShooterPawn != null)
 						{
-							if (CasterPawn.thinker != null)
+							if (ShooterPawn.thinker != null)
 							{
-								CasterPawn.mindState.lastEngageTargetTick = Find.TickManager.TicksGame;
+								ShooterPawn.mindState.lastEngageTargetTick = Find.TickManager.TicksGame;
 							}
 						}
                 	}

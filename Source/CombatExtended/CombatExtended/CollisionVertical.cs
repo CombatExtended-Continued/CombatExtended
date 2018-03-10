@@ -10,8 +10,9 @@ namespace CombatExtended
 {
     public struct CollisionVertical
     {
-        private const float TreeCollisionHeight = 5f;        // Trees are this tall
-        private const float WallCollisionHeight = 2f;       // Walls are this tall
+    	public const float ThickRoofThicknessMultiplier = 2f;
+    	public const float NaturalRoofThicknessMultiplier = 2f;
+    	public const float WallCollisionHeight = 2f;       // Walls are this tall
         public const float BodyRegionBottomHeight = 0.45f;  // Hits below this percentage will impact the corresponding body region
         public const float BodyRegionMiddleHeight = 0.85f;  // This also sets the altitude at which pawns hold their guns
 
@@ -28,25 +29,35 @@ namespace CombatExtended
         {
             CalculateHeightRange(thing, out heightRange, out shotHeight);
         }
-
+        
         private static void CalculateHeightRange(Thing thing, out FloatRange heightRange, out float shotHeight)
         {
             shotHeight = 0;
+            heightRange = new FloatRange(0, 0);
             if (thing == null)
             {
-                heightRange = new FloatRange(0, 0);
                 return;
             }
+            
+            var plant = thing as Plant;
+            if (plant != null)
+            {
+            		//Height matches up exactly with visual size
+            	heightRange = new FloatRange(0f, BoundsInjector.ForPlant(plant).y);
+                return;
+            }
+            
             if (thing is Building)
             {
+            	var door = thing as Building_Door;
+            	if (door != null && door.Open)
+            	{
+            		return;		//returns heightRange = (0,0) & shotHeight = 0. If not open, doors have FillCategory.Full so returns (0, WallCollisionHeight)
+            	}
+            	
                 if (thing.def.Fillage == FillCategory.Full)
                 {
                     heightRange = new FloatRange(0, WallCollisionHeight);
-                    return;
-                }
-                if (thing.IsTree())
-                {
-                    heightRange = new FloatRange(0, TreeCollisionHeight);    // Check for trees
                     return;
                 }
                 float fillPercent = thing.def.fillPercent;
@@ -54,19 +65,21 @@ namespace CombatExtended
                 shotHeight = fillPercent;
                 return;
             }
+            
             float collisionHeight = 0f;
             float shotHeightOffset = 0;
             var pawn = thing as Pawn;
             if (pawn != null)
             {
-                collisionHeight = pawn.BodySize * CE_Utility.GetCollisionBodyFactors(pawn).Second;
+            	collisionHeight = CE_Utility.GetCollisionBodyFactors(pawn).y;
+            	
                 shotHeightOffset = collisionHeight * (1 - BodyRegionMiddleHeight);
-
+				
                 // Humanlikes in combat crouch to reduce their profile
                 if (pawn.IsCrouching())
                 {
                     float crouchHeight = BodyRegionBottomHeight * collisionHeight;  // Minimum height we can crouch down to
-
+                    
                     // Find the highest adjacent cover
                     Map map = pawn.Map;
                     foreach(IntVec3 curCell in GenAdjFast.AdjacentCells8Way(pawn.Position))
@@ -74,7 +87,7 @@ namespace CombatExtended
                         if (curCell.InBounds(map))
                         {
                             Thing cover = curCell.GetCover(map);
-                            if (cover != null && cover.def.Fillage == FillCategory.Partial && !cover.IsTree())
+                            if (cover != null && cover.def.Fillage == FillCategory.Partial && !cover.IsPlant())
                             {
                                 var coverHeight = new CollisionVertical(cover).Max;
                                 if (coverHeight > crouchHeight) crouchHeight = coverHeight;
@@ -92,7 +105,7 @@ namespace CombatExtended
             if (thing.Map != null)
             {
                 var edifice = thing.Position.GetCover(thing.Map);
-                if (edifice != null && edifice.GetHashCode() != thing.GetHashCode() && !edifice.IsTree())
+                if (edifice != null && edifice.GetHashCode() != thing.GetHashCode() && !edifice.IsPlant())
                 {
                     edificeHeight = new CollisionVertical(edifice).heightRange.max;
                 }

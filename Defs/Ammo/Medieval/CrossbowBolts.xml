@@ -1,0 +1,244 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+
+    <ThingCategoryDef>
+      <defName>AmmoCrossbowBolts</defName>
+      <label>crossbow bolts</label>
+      <parent>AmmoNeolithic</parent>
+      <iconPath>UI/Icons/ThingCategories/CaliberArrow</iconPath>
+    </ThingCategoryDef>
+	
+	<!-- ==================== AmmoSet ========================== -->
+
+	<CombatExtended.AmmoSetDef>
+		<defName>AmmoSet_CrossbowBolt</defName>
+		<label>crossbow bolts</label>
+		<ammoTypes>
+			<Ammo_CrossbowBolt_Stone>Projectile_CrossbowBolt_Stone</Ammo_CrossbowBolt_Stone>
+			<Ammo_CrossbowBolt_Steel>Projectile_CrossbowBolt_Steel</Ammo_CrossbowBolt_Steel>
+			<Ammo_CrossbowBolt_Plasteel>Projectile_CrossbowBolt_Plasteel</Ammo_CrossbowBolt_Plasteel>
+		</ammoTypes>
+	</CombatExtended.AmmoSetDef>
+	
+	<!-- ==================== Ammo ========================== -->
+
+  <ThingDef Name="AmmoCrossbowBoltBase" ParentName="NeolithicAmmoBase" Abstract="True">
+    <description>A crossbow bolt.</description>
+    <statBases>
+      <Mass>0.1</Mass>
+      <Bulk>0.1</Bulk>
+      <Flammability>1</Flammability>
+    </statBases>
+    <thingCategories>
+      <li>AmmoCrossbowBolts</li>
+    </thingCategories>
+    <stackLimit>200</stackLimit>
+    <tradeTags>
+      <li>CE_AutoEnableTrade</li>
+      <li>CE_AutoEnableCrafting_FueledSmithy</li>
+      <li>CE_AutoEnableCrafting_ElectricSmithy</li>
+    </tradeTags>
+  </ThingDef>
+
+  <ThingDef ParentName="AmmoCrossbowBoltBase">
+    <defName>Ammo_CrossbowBolt_Stone</defName>
+    <label>crossbow bolt</label>
+    <graphicData>
+      <texPath>Things/Ammo/Neolithic/Arrow/Stone</texPath>
+      <graphicClass>Graphic_StackCount</graphicClass>
+    </graphicData>
+    <statBases>
+      <MarketValue>0.13</MarketValue>
+    </statBases>
+    <ammoClass>StoneCrossbowBolt</ammoClass>
+    <tradeTags>
+      <li>CE_AutoEnableCrafting_CraftingSpot</li>
+    </tradeTags>
+  </ThingDef>
+
+  <ThingDef ParentName="AmmoCrossbowBoltBase">
+    <defName>Ammo_CrossbowBolt_Steel</defName>
+    <label>crossbow bolt (steel)</label>
+    <graphicData>
+      <texPath>Things/Ammo/Neolithic/Arrow/Steel</texPath>
+      <graphicClass>Graphic_StackCount</graphicClass>
+    </graphicData>
+    <statBases>
+      <MarketValue>0.61</MarketValue>
+    </statBases>
+		<ammoClass>SteelCrossbowBolt</ammoClass>
+  </ThingDef>
+
+  <ThingDef ParentName="AmmoCrossbowBoltBase">
+    <defName>Ammo_CrossbowBolt_Plasteel</defName>
+    <label>crossbow bolt (plasteel)</label>
+    <graphicData>
+      <texPath>Things/Ammo/Neolithic/Arrow/Plasteel</texPath>
+      <graphicClass>Graphic_StackCount</graphicClass>
+    </graphicData>
+    <statBases>
+      <MarketValue>3.63</MarketValue>
+    </statBases>
+		<ammoClass>PlasteelCrossbowBolt</ammoClass>
+		<canBeSpawningInventory>false</canBeSpawningInventory>
+  </ThingDef>
+	
+	<!-- ================== Projectiles ================== -->
+
+	<ThingDef Name="BaseCrossbowBoltProjectile" ParentName="BaseBullet" Abstract="true">
+		<graphicData>
+			<texPath>Things/Projectile/Arrow_Small</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+		</graphicData>
+		<projectile>
+			<damageDef>Arrow</damageDef>
+			<speed>55</speed>
+		</projectile>
+	</ThingDef>
+
+	<!-- The amount of arrows usable over the ammo lifetime for each resource cost is equal to
+		[r / (1 - x)];
+			x = preExplosionSpawnChance,
+			r = resource cost. -->
+
+	<ThingDef ParentName="BaseCrossbowBoltProjectile">
+		<defName>Projectile_CrossbowBolt_Stone</defName>
+		<label>crossbow bolt (stone)</label>
+		<graphicData>
+			<texPath>Things/Projectile/Arrows/Arrow_Stone</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+		</graphicData>
+		<projectile>
+			<damageAmountBase>18</damageAmountBase>
+			<armorPenetration>0.25</armorPenetration>
+			<preExplosionSpawnChance>0.1</preExplosionSpawnChance>	<!-- 11.11 bolts per resource -->
+			<preExplosionSpawnThingDef>Ammo_CrossbowBolt_Stone</preExplosionSpawnThingDef>
+		</projectile>
+	</ThingDef>
+
+	<ThingDef ParentName="BaseCrossbowBoltProjectile">
+		<defName>Projectile_CrossbowBolt_Steel</defName>
+		<label>crossbow bolt (steel)</label>
+		<graphicData>
+			<texPath>Things/Projectile/Arrows/Arrow_Steel</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+		</graphicData>
+		<projectile>
+			<damageAmountBase>18</damageAmountBase>
+			<armorPenetration>0.35</armorPenetration>
+			<preExplosionSpawnChance>0.333</preExplosionSpawnChance>	<!-- 14.99 bolts per resource -->
+			<preExplosionSpawnThingDef>Ammo_CrossbowBolt_Steel</preExplosionSpawnThingDef>
+		</projectile>
+	</ThingDef>
+
+	<ThingDef ParentName="BaseCrossbowBoltProjectile">
+		<defName>Projectile_CrossbowBolt_Plasteel</defName>
+		<label>crossbow bolt (plasteel)</label>
+		<graphicData>
+			<texPath>Things/Projectile/Arrows/Arrow_Plasteel</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+		</graphicData>
+		<projectile>
+			<damageAmountBase>18</damageAmountBase>
+			<armorPenetration>0.45</armorPenetration>
+			<preExplosionSpawnChance>0.6</preExplosionSpawnChance>	<!-- 25 bolts per resource -->
+			<preExplosionSpawnThingDef>Ammo_CrossbowBolt_Plasteel</preExplosionSpawnThingDef>
+		</projectile>
+	</ThingDef>
+  
+	<!-- ==================== Recipes ========================== -->
+
+  <RecipeDef ParentName="AmmoRecipeNeolithicBase">
+    <defName>MakeAmmo_CrossbowBolt_Stone</defName>
+    <label>make stone crossbow bolts x10</label>
+    <description>Craft 10 stone crossbow bolts.</description>
+    <jobString>Making stone crossbow bolts.</jobString>
+    <ingredients>
+      <li>
+        <filter>
+          <thingDefs>
+            <li>WoodLog</li>
+          </thingDefs>
+        </filter>
+        <count>3</count>
+      </li>
+    </ingredients>
+    <fixedIngredientFilter>
+      <thingDefs>
+        <li>WoodLog</li>
+      </thingDefs>
+    </fixedIngredientFilter>
+    <products>
+      <Ammo_CrossbowBolt_Stone>10</Ammo_CrossbowBolt_Stone>
+    </products>
+  </RecipeDef>
+
+  <RecipeDef ParentName="AmmoRecipeNeolithicBase">
+    <defName>MakeAmmo_CrossbowBolt_Steel</defName>
+    <label>make steel crossbow bolts x10</label>
+    <description>Craft 10 steel crossbow bolts.</description>
+    <jobString>Making steel crossbow bolts.</jobString>
+    <ingredients>
+      <li>
+        <filter>
+          <thingDefs>
+            <li>WoodLog</li>
+          </thingDefs>
+        </filter>
+        <count>3</count>
+      </li>
+      <li>
+        <filter>
+          <thingDefs>
+            <li>Steel</li>
+          </thingDefs>
+        </filter>
+        <count>1</count>
+      </li>
+    </ingredients>
+    <fixedIngredientFilter>
+      <thingDefs>
+        <li>WoodLog</li>
+        <li>Steel</li>
+      </thingDefs>
+    </fixedIngredientFilter>
+    <products>
+      <Ammo_CrossbowBolt_Steel>10</Ammo_CrossbowBolt_Steel>
+    </products>
+  </RecipeDef>
+
+  <RecipeDef ParentName="AmmoRecipeNeolithicBase">
+    <defName>MakeAmmo_CrossbowBolt_Plasteel</defName>
+    <label>make plasteel crossbow bolts x10</label>
+    <description>Craft 10 plasteel crossbow bolts.</description>
+    <jobString>Making plasteel crossbow bolts.</jobString>
+    <ingredients>
+      <li>
+        <filter>
+          <thingDefs>
+            <li>WoodLog</li>
+          </thingDefs>
+        </filter>
+        <count>3</count>
+      </li>
+      <li>
+        <filter>
+          <thingDefs>
+            <li>Plasteel</li>
+          </thingDefs>
+        </filter>
+        <count>1</count>
+      </li>
+    </ingredients>
+    <fixedIngredientFilter>
+      <thingDefs>
+        <li>WoodLog</li>
+        <li>Plasteel</li>
+      </thingDefs>
+    </fixedIngredientFilter>
+    <products>
+      <Ammo_CrossbowBolt_Plasteel>10</Ammo_CrossbowBolt_Plasteel>
+    </products>
+  </RecipeDef>
+	
+</Defs>

@@ -9,6 +9,7 @@
 			<MoveSpeed>5</MoveSpeed>
 			<MeleeDodgeChance>0.08</MeleeDodgeChance>
 			<MeleeCritChance>0.79</MeleeCritChance>
+			<MeleeParryChance>0.51</MeleeParryChance>
 			<ArmorRating_Blunt>0.10</ArmorRating_Blunt>
 			<ArmorRating_Sharp>0.125</ArmorRating_Sharp>
 		</value>
@@ -21,18 +22,64 @@
 	</Operation>
 
 	<Operation Class="PatchOperationReplace">
-		<xpath>*/ThingDef[defName="Elephant"]/verbs</xpath>
+		<xpath>*/ThingDef[defName="Elephant"]/tools</xpath>
 		<value>
-			<verbs>
-				<li Class="CombatExtended.VerbPropertiesCE">
-				  <verbClass>CombatExtended.Verb_MeleeAttackCE</verbClass>
-				  <defaultCooldownTime>2.0</defaultCooldownTime>
-				  <meleeDamageBaseAmount>35</meleeDamageBaseAmount>
-				  <meleeDamageDef>Stab</meleeDamageDef>
-				  <linkedBodyPartsGroup>TuskAttackTool</linkedBodyPartsGroup>
-				  <meleeArmorPenetration>0.3</meleeArmorPenetration>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<id>tuskcut</id>
+					<label>tusk</label>
+					<capacities>
+						<li>Cut</li>
+					</capacities>
+					<power>33</power>
+					<cooldownTime>2</cooldownTime>
+					<linkedBodyPartsGroup>TuskAttackTool</linkedBodyPartsGroup>
+					<armorPenetration>0.261</armorPenetration>
 				</li>
-			</verbs>
+				<li Class="CombatExtended.ToolCE">
+					<id>tuskstab</id>
+					<label>tusk</label>
+					<capacities>
+						<li>Stab</li>
+					</capacities>
+					<power>33</power>
+					<cooldownTime>2</cooldownTime>
+					<commonality>0.65</commonality>
+					<linkedBodyPartsGroup>TuskAttackTool_2</linkedBodyPartsGroup>
+					<armorPenetration>0.489</armorPenetration>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>left foot</label>
+					<capacities>
+						<li>Blunt</li>
+					</capacities>
+					<power>17</power>
+					<cooldownTime>1.65</cooldownTime>
+					<linkedBodyPartsGroup>FrontLeftLeg</linkedBodyPartsGroup>
+					<armorPenetration>0.17</armorPenetration>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>right foot</label>
+					<capacities>
+						<li>Blunt</li>
+					</capacities>
+					<power>17</power>
+					<cooldownTime>1.65</cooldownTime>
+					<linkedBodyPartsGroup>FrontRightLeg</linkedBodyPartsGroup>
+					<armorPenetration>0.17</armorPenetration>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>head</label>
+					<capacities>
+						<li>Blunt</li>
+					</capacities>
+					<power>12</power>
+					<cooldownTime>1.65</cooldownTime>
+					<linkedBodyPartsGroup>HeadAttackTool</linkedBodyPartsGroup>
+					<commonality>0.2</commonality>
+					<armorPenetration>0.133</armorPenetration>
+				</li>
+			</tools>
 		</value>
 	</Operation>
 
@@ -52,32 +99,57 @@
 		<value>
 			<MeleeDodgeChance>0.06</MeleeDodgeChance>
 			<MeleeCritChance>0.41</MeleeCritChance>
+			<MeleeParryChance>0.48</MeleeParryChance>
 			<ArmorRating_Blunt>0.10</ArmorRating_Blunt>
 			<ArmorRating_Sharp>0.125</ArmorRating_Sharp>
 		</value>
 	</Operation>
 
 	<Operation Class="PatchOperationReplace">
-		<xpath>*/ThingDef[defName="Megasloth"]/verbs</xpath>
+		<xpath>*/ThingDef[defName="Megasloth"]/tools</xpath>
 		<value>
-			<verbs>
-				<li Class="CombatExtended.VerbPropertiesCE">
-				  <verbClass>CombatExtended.Verb_MeleeAttackCE</verbClass>
-				  <defaultCooldownTime>2.3</defaultCooldownTime>
-				  <meleeDamageBaseAmount>22</meleeDamageBaseAmount>
-				  <meleeDamageDef>Slash</meleeDamageDef>
-				  <linkedBodyPartsGroup>LeftHand</linkedBodyPartsGroup>
-				  <meleeArmorPenetration>0.25</meleeArmorPenetration>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<label>left claw</label>
+					<capacities>
+						<li>Slash</li>
+					</capacities>
+					<power>27</power>
+					<cooldownTime>2.3</cooldownTime>
+					<linkedBodyPartsGroup>FrontLeftPaw</linkedBodyPartsGroup>
+					<armorPenetration>0.282</armorPenetration>
 				</li>
-				<li Class="CombatExtended.VerbPropertiesCE">
-				  <verbClass>CombatExtended.Verb_MeleeAttackCE</verbClass>
-				  <defaultCooldownTime>2.3</defaultCooldownTime>
-				  <meleeDamageBaseAmount>22</meleeDamageBaseAmount>
-				  <meleeDamageDef>Slash</meleeDamageDef>
-				  <linkedBodyPartsGroup>RightHand</linkedBodyPartsGroup>
-				  <meleeArmorPenetration>0.25</meleeArmorPenetration>
+				<li Class="CombatExtended.ToolCE">
+					<label>right claw</label>
+					<capacities>
+						<li>Slash</li>
+					</capacities>
+					<power>27</power>
+					<cooldownTime>2.3</cooldownTime>
+					<linkedBodyPartsGroup>FrontRightPaw</linkedBodyPartsGroup>
+					<armorPenetration>0.282</armorPenetration>
 				</li>
-			</verbs>
+				<li Class="CombatExtended.ToolCE">
+					<capacities>
+						<li>Bite</li>
+					</capacities>
+					<power>21</power>
+					<cooldownTime>2.2</cooldownTime>
+					<linkedBodyPartsGroup>Teeth</linkedBodyPartsGroup>
+					<armorPenetration>0.282</armorPenetration>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>head</label>
+					<capacities>
+						<li>Blunt</li>
+					</capacities>
+					<power>13</power>
+					<cooldownTime>1.65</cooldownTime>
+					<linkedBodyPartsGroup>HeadAttackTool</linkedBodyPartsGroup>
+					<commonality>0.2</commonality>
+					<armorPenetration>0.14</armorPenetration>
+				</li>
+			</tools>
 		</value>
 	</Operation>
 
@@ -97,24 +169,80 @@
 		<value>
 			<MeleeDodgeChance>0.09</MeleeDodgeChance>
 			<MeleeCritChance>0.76</MeleeCritChance>
+			<MeleeParryChance>0.45</MeleeParryChance>
 			<ArmorRating_Blunt>0.2</ArmorRating_Blunt>
 			<ArmorRating_Sharp>0.3</ArmorRating_Sharp>
 		</value>
 	</Operation>
 
 	<Operation Class="PatchOperationReplace">
-		<xpath>*/ThingDef[defName="Thrumbo"]/verbs</xpath>
+		<xpath>*/ThingDef[defName="Thrumbo"]/tools</xpath>
 		<value>
-			<verbs>
-				<li Class="CombatExtended.VerbPropertiesCE">
-				  <verbClass>CombatExtended.Verb_MeleeAttackCE</verbClass>
-				  <defaultCooldownTime>1.85</defaultCooldownTime>
-				  <meleeDamageBaseAmount>40</meleeDamageBaseAmount>
-				  <meleeDamageDef>Cut</meleeDamageDef>
-				  <linkedBodyPartsGroup>HornAttackTool</linkedBodyPartsGroup>
-				  <meleeArmorPenetration>0.4</meleeArmorPenetration>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<id>horncut</id>
+					<label>horn</label>
+					<capacities>
+						<li>Cut</li>
+					</capacities>
+					<power>30</power>
+					<cooldownTime>1.85</cooldownTime>
+					<linkedBodyPartsGroup>HornAttackTool</linkedBodyPartsGroup>
+					<armorPenetration>0.243</armorPenetration>
 				</li>
-			</verbs>
+				<li Class="CombatExtended.ToolCE">
+					<id>hornstab</id>
+					<label>horn</label>
+					<capacities>
+						<li>Stab</li>
+					</capacities>
+					<power>30</power>
+					<cooldownTime>1.85</cooldownTime>
+					<commonality>0.65</commonality>
+					<linkedBodyPartsGroup>HornAttackTool_2</linkedBodyPartsGroup>
+					<armorPenetration>0.457</armorPenetration>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>left foot</label>
+					<capacities>
+						<li>Blunt</li>
+					</capacities>
+					<power>16</power>
+					<cooldownTime>1.65</cooldownTime>
+					<linkedBodyPartsGroup>FrontLeftLeg</linkedBodyPartsGroup>
+					<armorPenetration>0.163</armorPenetration>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>right foot</label>
+					<capacities>
+						<li>Blunt</li>
+					</capacities>
+					<power>16</power>
+					<cooldownTime>1.65</cooldownTime>
+					<linkedBodyPartsGroup>FrontRightLeg</linkedBodyPartsGroup>
+					<armorPenetration>0.163</armorPenetration>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<capacities>
+						<li>Bite</li>
+					</capacities>
+					<power>20</power>
+					<cooldownTime>2</cooldownTime>
+					<linkedBodyPartsGroup>Teeth</linkedBodyPartsGroup>
+					<armorPenetration>0.273</armorPenetration>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>head</label>
+					<capacities>
+						<li>Blunt</li>
+					</capacities>
+					<power>11</power>
+					<cooldownTime>1.65</cooldownTime>
+					<linkedBodyPartsGroup>HeadAttackTool</linkedBodyPartsGroup>
+					<commonality>0.2</commonality>
+					<armorPenetration>0.125</armorPenetration>
+				</li>
+			</tools>
 		</value>
 	</Operation>
 

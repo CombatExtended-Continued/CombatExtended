@@ -1,0 +1,203 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+
+	<ThingCategoryDef>
+		<defName>Ammo357Magnum</defName>
+		<label>.357 Magnum</label>
+		<parent>AmmoPistols</parent>
+    <iconPath>UI/Icons/ThingCategories/CaliberPistol</iconPath>
+	</ThingCategoryDef>
+	
+	<!-- ==================== AmmoSet ========================== -->
+
+	<CombatExtended.AmmoSetDef>
+		<defName>AmmoSet_357Magnum</defName>
+		<label>.357 Magnum</label>
+		<ammoTypes>
+			<Ammo_357Magnum_FMJ>Bullet_357Magnum_FMJ</Ammo_357Magnum_FMJ>
+			<Ammo_357Magnum_AP>Bullet_357Magnum_AP</Ammo_357Magnum_AP>
+			<Ammo_357Magnum_HP>Bullet_357Magnum_HP</Ammo_357Magnum_HP>
+		</ammoTypes>
+	</CombatExtended.AmmoSetDef>
+	
+	<!-- ==================== Ammo ========================== -->
+
+	<ThingDef Name="357MagnumBase" ParentName="SmallAmmoBase" Abstract="True">
+		<description>Ancient pistol cartridge originally designed for revolvers.</description>
+		<statBases>
+		<Mass>0.023</Mass>
+		<Bulk>0.03</Bulk>
+		</statBases>
+	<tradeTags>
+		<li>CE_AutoEnableTrade</li>
+		<li>CE_AutoEnableCrafting</li>
+	</tradeTags>
+		<thingCategories>
+			<li>Ammo357Magnum</li>
+		</thingCategories>
+	</ThingDef>
+
+	<ThingDef ParentName="357MagnumBase">
+		<defName>Ammo_357Magnum_FMJ</defName>
+		<label>.357 Magnum cartridge (FMJ)</label>
+		<graphicData>
+			<texPath>Things/Ammo/Pistol/FMJ</texPath>
+			<graphicClass>Graphic_StackCount</graphicClass>
+		</graphicData>
+		<statBases>
+			<MarketValue>0.06</MarketValue>
+		</statBases>
+		<ammoClass>FullMetalJacket</ammoClass>
+		<cookOffProjectile>Bullet_357Magnum_FMJ</cookOffProjectile>
+	</ThingDef>
+
+	<ThingDef ParentName="357MagnumBase">
+		<defName>Ammo_357Magnum_AP</defName>
+		<label>.357 Magnum cartridge (AP)</label>
+		<graphicData>
+			<texPath>Things/Ammo/Pistol/AP</texPath>
+			<graphicClass>Graphic_StackCount</graphicClass>
+		</graphicData>
+		<statBases>
+			<MarketValue>0.08</MarketValue>
+		</statBases>
+		<ammoClass>ArmorPiercing</ammoClass>
+		<cookOffProjectile>Bullet_357Magnum_AP</cookOffProjectile>
+	</ThingDef>
+
+	<ThingDef ParentName="357MagnumBase">
+		<defName>Ammo_357Magnum_HP</defName>
+		<label>.357 Magnum cartridge (HP)</label>
+		<graphicData>
+			<texPath>Things/Ammo/Pistol/HP</texPath>
+			<graphicClass>Graphic_StackCount</graphicClass>
+		</graphicData>
+		<statBases>
+			<MarketValue>0.08</MarketValue>
+		</statBases>
+		<ammoClass>HollowPoint</ammoClass>
+		<cookOffProjectile>Bullet_357Magnum_HP</cookOffProjectile>
+	</ThingDef>
+	
+	<!-- ================== Projectiles ================== -->
+
+	<ThingDef Name="Base357MagnumBullet" ParentName="BaseBullet" Abstract="true">
+		<graphicData>
+			<texPath>Things/Projectile/Bullet_Small</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+		</graphicData>
+		<projectile>
+			<damageDef>Bullet</damageDef>
+			<speed>107</speed>
+			<dropsCasings>true</dropsCasings>
+		</projectile>
+	</ThingDef>
+
+	<ThingDef ParentName="Base357MagnumBullet">
+		<defName>Bullet_357Magnum_FMJ</defName>
+		<label>.357 Magnum bullet (FMJ)</label>
+		<projectile>
+			<damageAmountBase>14</damageAmountBase>
+			<armorPenetration>0.388</armorPenetration>
+		</projectile>
+	</ThingDef>
+
+	<ThingDef ParentName="Base357MagnumBullet">
+		<defName>Bullet_357Magnum_AP</defName>
+		<label>.357 Magnum bullet (AP)</label>
+		<projectile>
+			<damageAmountBase>8</damageAmountBase>
+			<armorPenetration>0.538</armorPenetration>
+		</projectile>
+	</ThingDef>
+
+	<ThingDef ParentName="Base357MagnumBullet">
+		<defName>Bullet_357Magnum_HP</defName>
+		<label>.357 Magnum bullet (HP)</label>
+		<projectile>
+			<damageAmountBase>20</damageAmountBase>
+			<armorPenetration>0.238</armorPenetration>
+		</projectile>
+	</ThingDef>
+  
+	<!-- ==================== Recipes ========================== -->
+
+  <RecipeDef ParentName="AmmoRecipeBase">
+    <defName>MakeAmmo_357Magnum_FMJ</defName>
+    <label>make .357 Magnum (FMJ) cartridge x500</label>
+    <description>Craft 500 .357 Magnum (FMJ) cartridges.</description>
+    <jobString>Making .357 Magnum (FMJ) cartridges.</jobString>
+    <ingredients>
+      <li>
+        <filter>
+          <thingDefs>
+            <li>Steel</li>
+          </thingDefs>
+        </filter>
+        <count>10</count>
+      </li>
+    </ingredients>
+    <fixedIngredientFilter>
+      <thingDefs>
+        <li>Steel</li>
+      </thingDefs>
+    </fixedIngredientFilter>
+    <products>
+      <Ammo_357Magnum_FMJ>500</Ammo_357Magnum_FMJ>
+    </products>
+    <workAmount>2250</workAmount>
+  </RecipeDef>
+
+  <RecipeDef ParentName="AmmoRecipeBase">
+    <defName>MakeAmmo_357Magnum_AP</defName>
+    <label>make .357 Magnum (AP) cartridge x500</label>
+    <description>Craft 500 .357 Magnum (AP) cartridges.</description>
+    <jobString>Making .357 Magnum (AP) cartridges.</jobString>
+    <ingredients>
+      <li>
+        <filter>
+          <thingDefs>
+            <li>Steel</li>
+          </thingDefs>
+        </filter>
+        <count>12</count>
+      </li>
+    </ingredients>
+    <fixedIngredientFilter>
+      <thingDefs>
+        <li>Steel</li>
+      </thingDefs>
+    </fixedIngredientFilter>
+    <products>
+      <Ammo_357Magnum_AP>500</Ammo_357Magnum_AP>
+    </products>
+    <workAmount>3500</workAmount>
+  </RecipeDef>
+
+  <RecipeDef ParentName="AmmoRecipeBase">
+    <defName>MakeAmmo_357Magnum_HP</defName>
+    <label>make .357 Magnum (HP) cartridge x500</label>
+    <description>Craft 500 .357 Magnum (HP) cartridges.</description>
+    <jobString>Making .357 Magnum (HP) cartridges.</jobString>
+    <ingredients>
+      <li>
+        <filter>
+          <thingDefs>
+            <li>Steel</li>
+          </thingDefs>
+        </filter>
+        <count>10</count>
+      </li>
+    </ingredients>
+    <fixedIngredientFilter>
+      <thingDefs>
+        <li>Steel</li>
+      </thingDefs>
+    </fixedIngredientFilter>
+    <products>
+      <Ammo_357Magnum_HP>500</Ammo_357Magnum_HP>
+    </products>
+    <workAmount>5000</workAmount>
+  </RecipeDef>
+	
+</Defs>

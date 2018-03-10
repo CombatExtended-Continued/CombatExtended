@@ -22,7 +22,7 @@
 	
 	<!-- ==================== Ammo ========================== -->
 
-  <ThingDef Name="AmmoArrowBase" ParentName="AmmoBase" Abstract="True">
+  <ThingDef Name="AmmoArrowBase" ParentName="NeolithicAmmoBase" Abstract="True">
     <description>Simple arrow design with a cutting head attached to a wooden shaft.</description>
     <statBases>
       <Mass>0.11</Mass>
@@ -48,7 +48,7 @@
       <graphicClass>Graphic_StackCount</graphicClass>
     </graphicData>
     <statBases>
-      <MarketValue>0.17</MarketValue>
+      <MarketValue>0.11</MarketValue>
     </statBases>
 		<ammoClass>StoneArrow</ammoClass>
     <tradeTags>
@@ -96,30 +96,53 @@
 		</projectile>
 	</ThingDef>
 
+	<!-- The amount of arrows usable over the ammo lifetime for each resource cost is equal to
+		[r / (1 - x)];
+			x = preExplosionSpawnChance,
+			r = resource cost. -->
+	
 	<ThingDef ParentName="BaseArrowProjectile">
 		<defName>Projectile_Arrow_Stone</defName>
 		<label>arrow (stone)</label>
+		<graphicData>
+			<texPath>Things/Projectile/Arrows/Arrow_Stone</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+		</graphicData>
 		<projectile>
 			<damageAmountBase>11</damageAmountBase>
 			<armorPenetration>0.15</armorPenetration>
+			<preExplosionSpawnChance>0.333</preExplosionSpawnChance>	<!-- 14.99 arrows per resource -->
+			<preExplosionSpawnThingDef>Ammo_Arrow_Stone</preExplosionSpawnThingDef>
 		</projectile>
 	</ThingDef>
 
 	<ThingDef ParentName="BaseArrowProjectile">
 		<defName>Projectile_Arrow_Steel</defName>
 		<label>arrow (steel)</label>
+		<graphicData>
+			<texPath>Things/Projectile/Arrows/Arrow_Steel</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+		</graphicData>
 		<projectile>
 			<damageAmountBase>11</damageAmountBase>
 			<armorPenetration>0.20</armorPenetration>
+			<preExplosionSpawnChance>0.666</preExplosionSpawnChance>	<!-- 29.94 arrows per resource -->
+			<preExplosionSpawnThingDef>Ammo_Arrow_Steel</preExplosionSpawnThingDef>
 		</projectile>
 	</ThingDef>
 
 	<ThingDef ParentName="BaseArrowProjectile">
 		<defName>Projectile_Arrow_Plasteel</defName>
 		<label>arrow (plasteel)</label>
+		<graphicData>
+			<texPath>Things/Projectile/Arrows/Arrow_Plasteel</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+		</graphicData>
 		<projectile>
 			<damageAmountBase>11</damageAmountBase>
 			<armorPenetration>0.25</armorPenetration>
+			<preExplosionSpawnChance>0.8</preExplosionSpawnChance>	<!-- 50 arrows per resource -->
+			<preExplosionSpawnThingDef>Ammo_Arrow_Plasteel</preExplosionSpawnThingDef>
 		</projectile>
 	</ThingDef>
   

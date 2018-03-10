@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8" ?>
-<ThingDefs>
+<Defs>
 
   <ThingDef Name="ApparelCarryGearBase" Abstract="True">
-    <thingClass>Apparel</thingClass>
+    <thingClass>CombatExtended.Apparel_VisibleAccessory</thingClass>
     <techLevel>Industrial</techLevel>
     <category>Item</category>
     <selectable>True</selectable>
@@ -44,7 +44,6 @@
   <ThingDef ParentName="ApparelCarryGearBase">
     <defName>Apparel_TacVest</defName>
     <label>tactical vest</label>
-    <ThingClass>CombatExtended.Apparel_VisibleAccessory</ThingClass>
     <description>A loadbearing vest with a number of pouches to store magazines and other equipment.\n\nSpeeds up reloading but is quite bulky to wear.</description>
     <graphicData>
       <texPath>Things/Apparel/TacRigging/TacRigging</texPath>
@@ -89,7 +88,6 @@
   <ThingDef ParentName="ApparelCarryGearBase">
     <defName>Apparel_Backpack</defName>
     <label>backpack</label>
-	<ThingClass>CombatExtended.Apparel_VisibleAccessory</ThingClass>
     <description>A comfortable and spacious backpack for storing all kinds of items.</description>
     <graphicData>
       <texPath>Things/Apparel/Backpack/Milpack</texPath>
@@ -130,4 +128,70 @@
     </modExtensions>
   </ThingDef>
 
-</ThingDefs>
+  <ThingDef ParentName="ApparelCarryGearBase">
+    <defName>Apparel_TribalBackpack</defName>
+    <label>tribal backpack</label>
+    <description>Primitive backpack made from animal furs, useful for storing items when travelling.</description>
+    <techLevel>Neolithic</techLevel>
+    <graphicData>
+      <texPath>Things/Apparel/TribalPack/Tribalpack</texPath>
+      <graphicClass>Graphic_Single</graphicClass>
+    </graphicData>
+    <tradeability>Sellable</tradeability>
+    <statBases>
+      <MaxHitPoints>100</MaxHitPoints>
+      <WorkToMake>5000</WorkToMake>
+      <Mass>1</Mass>
+      <Bulk>3</Bulk>
+    </statBases>
+    <equippedStatOffsets>
+      <CarryBulk>15</CarryBulk>
+    </equippedStatOffsets>
+    <costStuffCount>20</costStuffCount>
+    <stuffCategories>
+      <li>Fabric</li>
+      <li>Leathery</li>
+    </stuffCategories>
+    <recipeMaker>
+      <recipeUsers>
+        <li>CraftingSpot</li>
+        <li>HandTailoringBench</li>
+        <li>ElectricTailoringBench</li>
+      </recipeUsers>
+    </recipeMaker>
+    <apparel>
+      <careIfWornByCorpse>false</careIfWornByCorpse>
+      <bodyPartGroups>
+        <li>Torso</li>
+      </bodyPartGroups>
+      <layers>
+        <li>Belt</li>
+      </layers>
+      <tags>
+        <li>Tribal</li>
+      </tags>
+    </apparel>
+    <colorGenerator Class="ColorGenerator_Options">
+      <options>
+        <li>
+          <weight>10</weight>
+          <only>RGBA(0.4,0.3,0.15,1)</only>
+        </li>
+        <li>
+          <weight>15</weight>
+          <only>RGBA(0.6,0.45,0.18,1)</only>
+        </li>
+        <li>
+          <weight>20</weight>
+          <only>RGBA(0.8,0.6,0.23,1)</only>
+        </li>
+      </options>
+    </colorGenerator>
+    <modExtensions>
+      <li Class="CombatExtended.VisibleAccessoryDefExtension">
+        <order>2</order>
+      </li>
+    </modExtensions>
+  </ThingDef>
+
+</Defs>

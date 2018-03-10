@@ -13,14 +13,38 @@ namespace CombatExtended
     {
         private const float StunChance = 0.1f;
 
+        private void LogImpact(Thing hitThing, out BattleLogEntry_RangedImpact logEntry)
+        {
+			logEntry =
+				new BattleLogEntry_RangedImpact(
+					launcher,
+					hitThing,
+					intendedTarget,
+					equipmentDef,
+					def);
+			
+			Find.BattleLog.Add(logEntry);
+        }
+        
         protected override void Impact(Thing hitThing)
         {
             Map map = base.Map;
-            base.Impact(hitThing);
+            BattleLogEntry_RangedImpact logEntry = null;
+			
+            if (logMisses
+                || 
+                (!logMisses
+                    && hitThing != null
+                    && (hitThing is Pawn
+                        || hitThing is Building_Turret)
+                 ))
+            {
+            	LogImpact(hitThing, out logEntry);
+            }
+            
             if (hitThing != null)
             {
                 int damageAmountBase = def.projectile.damageAmountBase;
-                ThingDef equipmentDef = this.equipmentDef;
                 DamageDefExtensionCE damDefCE = def.projectile.damageDef.GetModExtension<DamageDefExtensionCE>() ?? new DamageDefExtensionCE();
 
                 DamageInfo dinfo = new DamageInfo(
@@ -33,18 +57,41 @@ namespace CombatExtended
                 
                 // Set impact height
                 BodyPartDepth partDepth = damDefCE != null && damDefCE.harmOnlyOutsideLayers ? BodyPartDepth.Outside : BodyPartDepth.Undefined;
-                BodyPartHeight partHeight = new CollisionVertical(hitThing).GetCollisionBodyHeight(Height);
+                	//NOTE: ExactPosition.y isn't always Height at the point of Impact!
+                BodyPartHeight partHeight = new CollisionVertical(hitThing).GetCollisionBodyHeight(ExactPosition.y);
                 dinfo.SetBodyRegion(partHeight, partDepth);
                 if (damDefCE != null && damDefCE.harmOnlyOutsideLayers) dinfo.SetBodyRegion(BodyPartHeight.Undefined, BodyPartDepth.Outside);
 
                 // Apply primary damage
-                hitThing.TakeDamage(dinfo);
+                hitThing.TakeDamage(dinfo).InsertIntoLog(logEntry);
+
+                // Apply secondary to non-pawns (pawn secondary damage is handled in the damage worker)
+                var projectilePropsCE = def.projectile as ProjectilePropertiesCE;
+                if(!(hitThing is Pawn) && projectilePropsCE != null && !projectilePropsCE.secondaryDamage.NullOrEmpty())
+                {
+                    foreach(SecondaryDamage cur in projectilePropsCE.secondaryDamage)
+                    {
+                        if (hitThing.Destroyed) break;
+                        var secDinfo = new DamageInfo(
+                            cur.def,
+                            cur.amount,
+                            ExactRotation.eulerAngles.y,
+                            launcher,
+                            null,
+                            def);
+                        hitThing.TakeDamage(secDinfo).InsertIntoLog(logEntry);
+                    }
+                }
             }
             else
             {
                 SoundDefOf.BulletImpactGround.PlayOneShot(new TargetInfo(base.Position, map, false));
-                MoteMaker.MakeStaticMote(ExactPosition, map, ThingDefOf.Mote_ShotHit_Dirt, 1f);
+                
+                //Only display a dirt hit for projectiles with a dropshadow
+                if (base.castShadow)
+                	MoteMaker.MakeStaticMote(ExactPosition, map, ThingDefOf.Mote_ShotHit_Dirt, 1f);
             }
+            base.Impact(hitThing);
         }
     }
 }

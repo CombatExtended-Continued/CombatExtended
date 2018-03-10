@@ -18,11 +18,16 @@ namespace CombatExtended.Harmony
             if (!dinfo.Def.isExplosive 
                 && dinfo.Def.harmsHealth 
                 && dinfo.Def.externalViolence 
-                && dinfo.WeaponGear != null 
-                && (dinfo.WeaponGear.IsRangedWeapon || dinfo.WeaponGear.projectile is ProjectilePropertiesCE))  // Add a check for CE projectiles since we're using them as weaponGear to pass data to our ArmorUtility
+                && dinfo.Weapon != null 
+                && (dinfo.Weapon.IsRangedWeapon || dinfo.Weapon.projectile is ProjectilePropertiesCE))  // Add a check for CE projectiles since we're using them as weaponGear to pass data to our ArmorUtility
             {
+                IntVec3 position = __instance.Wearer.Position;
+                Map map = __instance.Wearer.Map;
+                float statValue = __instance.GetStatValue(StatDefOf.SmokepopBeltRadius, true);
+                DamageDef smoke = DamageDefOf.Smoke;
+                Thing instigator = null;
                 ThingDef gas_Smoke = ThingDefOf.Gas_Smoke;
-                GenExplosion.DoExplosion(__instance.Wearer.Position, __instance.Wearer.Map, __instance.GetStatValue(StatDefOf.SmokepopBeltRadius, true), DamageDefOf.Smoke, null, null, null, null, gas_Smoke, 1f, 1, false, null, 0f, 1);
+                GenExplosion.DoExplosion(position, map, statValue, smoke, instigator, -1, null, null, null, gas_Smoke, 1f, 1, false, null, 0f, 1, 0f, false);
                 __instance.Destroy(DestroyMode.Vanish);
             }
             return false;

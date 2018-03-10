@@ -38,6 +38,7 @@ namespace CombatExtended
         protected CompCharges compCharges = null;
         protected CompAmmoUser compAmmo = null;
         protected CompFireModes compFireModes = null;
+        protected CompChangeableProjectile compChangeable = null;
         private float shotSpeed = -1;
         
         private float rotationDegrees = 0f;
@@ -50,11 +51,12 @@ namespace CombatExtended
         #region Properties
 
         public VerbPropertiesCE VerbPropsCE => this.verbProps as VerbPropertiesCE;
-        public ProjectilePropertiesCE projectilePropsCE => this.ProjectileDef.projectile as ProjectilePropertiesCE;
+        public ProjectilePropertiesCE projectilePropsCE => this.Projectile.projectile as ProjectilePropertiesCE;
 
         // Returns either the pawn aiming the weapon or in case of turret guns the turret operator or null if neither exists
-        public Pawn ShooterPawn => CasterPawn != null ? CasterPawn : CE_Utility.TryGetTurretOperator(this.caster);
-
+        public Pawn ShooterPawn => CasterPawn ?? CE_Utility.TryGetTurretOperator(this.caster);
+        public Thing Shooter => ShooterPawn ?? caster;
+		
         protected CompCharges CompCharges
         {
             get
@@ -82,7 +84,7 @@ namespace CombatExtended
                     }
                     else
                     {
-                        shotSpeed = verbProps.projectileDef.projectile.speed;
+                    	shotSpeed = Projectile.projectile.speed;
                     }
                 }
                 return shotSpeed;
@@ -99,7 +101,7 @@ namespace CombatExtended
         }
 
         protected float ShootingAccuracy => Mathf.Min(caster.GetStatValue(StatDefOf.ShootingAccuracy), 4.5f);
-        protected float AimingAccuracy => Mathf.Min(ShooterPawn?.GetStatValue(CE_StatDefOf.AimingAccuracy) ?? caster.GetStatValue(CE_StatDefOf.AimingAccuracy), 1.5f);
+        protected float AimingAccuracy => Mathf.Min(Shooter.GetStatValue(CE_StatDefOf.AimingAccuracy), 1.5f); //equivalent of ShooterPawn?.GetStatValue(CE_StatDefOf.AimingAccuracy) ?? caster.GetStatValue(CE_StatDefOf.AimingAccuracy)
         protected float SightsEfficiency => ownerEquipment.GetStatValue(CE_StatDefOf.SightsEfficiency);
         protected virtual float SwayAmplitude => Mathf.Max(0, (4.5f - ShootingAccuracy) * ownerEquipment.GetStatValue(StatDef.Named("SwayFactor")));
 
@@ -115,19 +117,32 @@ namespace CombatExtended
                 return compAmmo;
             }
         }
-        public ThingDef ProjectileDef
+        public ThingDef Projectile
         {
             get
             {
-                if (CompAmmo != null)
+                if (CompAmmo != null && CompAmmo.CurrentAmmo != null)
                 {
-                    if (CompAmmo.CurrentAmmo != null)
-                    {
-                        return CompAmmo.CurAmmoProjectile;
-                    }
+                	return CompAmmo.CurAmmoProjectile;
                 }
-                return this.VerbPropsCE.projectileDef;
+                if (CompChangeable != null && CompChangeable.Loaded)
+                {
+                	return CompChangeable.Projectile;
+                }
+                return this.VerbPropsCE.defaultProjectile;
             }
+        }
+        
+        protected CompChangeableProjectile CompChangeable
+        {
+        	get
+        	{
+	            if (compChangeable == null && ownerEquipment != null)
+	            {
+	                compChangeable = ownerEquipment.TryGetComp<CompChangeableProjectile>();
+	            }
+	            return compChangeable;
+        	}
         }
         
         protected CompFireModes CompFireModes
@@ -147,15 +162,6 @@ namespace CombatExtended
         #region Methods
 
         /// <summary>
-        /// Highlights explosion radius of the projectile if it has one
-        /// </summary>
-        /// <returns>Projectile explosion radius</returns>
-        public override float HighlightFieldRadiusAroundTarget()
-        {
-            return ProjectileDef.projectile.explosionRadius;
-        }
-
-        /// <summary>
         /// Resets current burst shot count and estimated distance at beginning of the burst
         /// </summary>
         public override void WarmupComplete()
@@ -169,6 +175,14 @@ namespace CombatExtended
 
             this.numShotsFired = 0;
             base.WarmupComplete();
+            Find.BattleLog.Add(
+            	new BattleLogEntry_RangedFire(
+            		Shooter,
+            		(!currentTarget.HasThing) ? null : currentTarget.Thing,
+            		(ownerEquipment == null) ? null : ownerEquipment.def,
+            		Projectile,
+            		VerbPropsCE.burstShotCount > 1)
+            );
         }
         
         /// <summary>
@@ -186,8 +200,7 @@ namespace CombatExtended
 	            	// On first shot of burst do a range estimate
         			estimatedTargDist = report.GetRandDist();
         		}
-        	
-	            Vector3 v = report.targetPawn != null ? report.targetPawn.DrawPos : report.target.Cell.ToVector3Shifted();
+	            Vector3 v = report.targetPawn != null ? report.targetPawn.DrawPos + report.targetPawn.Drawer.leaner.LeanOffset * 0.5f : report.target.Cell.ToVector3Shifted();
 	            newTargetLoc.Set(v.x, v.z);
 	            
 	            // ----------------------------------- STEP 1: Actual location + Shift for visibility
@@ -215,8 +228,8 @@ namespace CombatExtended
 	            
 	            var coverRange = new CollisionVertical(report.cover).HeightRange;	//Get " " cover, assume it is the edifice
 	            
-	            // Projectiles with flyOverhead target the ground below the target and ignore cover
-	            if (ProjectileDef.projectile.flyOverhead)
+	            // Projectiles with flyOverhead target the surface in front of the target
+	            if (Projectile.projectile.flyOverhead)
 	            {
 	            	targetHeight = coverRange.max;
 	            }
@@ -224,17 +237,21 @@ namespace CombatExtended
 	            {
                     var victimVert = new CollisionVertical(currentTarget.Thing);
                     var targetRange = victimVert.HeightRange;	//Get lower and upper heights of the target
-	           		if (targetRange.min < coverRange.max)	//Some part of the target is hidden behind cover
+                    /*if (currentTarget.Thing is Building && CompFireModes?.CurrentAimMode == AimMode.SuppressFire)
+                    {
+                    	targetRange.min = targetRange.max;
+                    	targetRange.max = targetRange.min + 1f;
+                    }*/
+	           		if (targetRange.min < coverRange.max)	//Some part of the target is hidden behind some cover
 	           		{
-	           			// - It is possible for targetVertical.max < coverVertical.max, technically, in which case the shooter will never hit until the cover is gone.
+	           			// - It is possible for targetRange.max < coverRange.max, technically, in which case the shooter will never hit until the cover is gone.
                         // - This should be checked for in LoS -NIA
 	           			targetRange.min = coverRange.max;
 
-                        // Shift aim upwards if we're doing suppressive fire
+                        // Target fully hidden, shift aim upwards if we're doing suppressive fire
                         if (targetRange.max <= coverRange.max && CompFireModes?.CurrentAimMode == AimMode.SuppressFire)
                         {
                             targetRange.max = coverRange.max * 2;
-                            targetRange.min = coverRange.max;
                         }
 	           		}
                     else if (currentTarget.Thing is Pawn)
@@ -245,7 +262,7 @@ namespace CombatExtended
                     }
 	           		targetHeight = targetRange.Average;
 	            }
-	            angleRadians += ProjectileCE.GetShotAngle(ShotSpeed, (newTargetLoc - sourceLoc).magnitude, targetHeight - ShotHeight, ProjectileDef.projectile.flyOverhead, projectilePropsCE.Gravity);
+	            angleRadians += ProjectileCE.GetShotAngle(ShotSpeed, (newTargetLoc - sourceLoc).magnitude, targetHeight - ShotHeight, Projectile.projectile.flyOverhead, projectilePropsCE.Gravity);
         	}
         	
 	        // ----------------------------------- STEP 4: Mechanical variation
@@ -306,7 +323,7 @@ namespace CombatExtended
         /// <param name="angle">The ref float to have vertical sway in radians added to.</param>
         protected void GetSwayVec(ref float rotation, ref float angle)
         {
-        	float ticks = (float)(Find.TickManager.TicksAbs + this.caster.thingIDNumber);
+        	float ticks = (float)(Find.TickManager.TicksAbs + Shooter.thingIDNumber);
         	rotation += SwayAmplitude * (float)Mathf.Sin(ticks * 0.022f);
         	angle += Mathf.Deg2Rad * 0.25f * SwayAmplitude * (float)Mathf.Sin(ticks * 0.0165f);
         }
@@ -385,7 +402,7 @@ namespace CombatExtended
                         && (targetThing == null || !newCover.Equals(targetThing))
                         && (highestCover == null || highestCoverHeight < newCoverHeight)
                         && newCover.def.Fillage == FillCategory.Partial
-                        && !newCover.IsTree())
+                        && !newCover.IsPlant())
                     {
                         highestCover = newCover;
                         highestCoverHeight = newCoverHeight;
@@ -435,7 +452,7 @@ namespace CombatExtended
                 return true;
             }
             // Check thick roofs
-            if (ProjectileDef.projectile.flyOverhead)
+            if (Projectile.projectile.flyOverhead)
             {
                 RoofDef roofDef = caster.Map.roofGrid.RoofAt(targ.Cell);
                 if (roofDef != null && roofDef.isThickRoof)
@@ -444,18 +461,32 @@ namespace CombatExtended
                     return false;
                 }
             }
-            // Check for apparel
-            if (CasterIsPawn && CasterPawn.apparel != null)
+            if (ShooterPawn != null)
             {
-                List<Apparel> wornApparel = CasterPawn.apparel.WornApparel;
-                foreach(Apparel current in wornApparel)
-                {
-                    if (!current.AllowVerbCast(root, caster.Map, targ))
-                    {
-                        report = "Shooting disallowed by " + current.LabelShort;
-                        return false;
-                    }
-                }
+            	// Check for capable of violence
+            	if (ShooterPawn.story != null
+		  && ShooterPawn.story.WorkTagIsDisabled(WorkTags.Violent))
+        	    {
+					report = "IsIncapableOfViolenceLower".Translate(new object[]
+					{
+						ShooterPawn.NameStringShort
+					});
+            		return false;
+        	    }
+            	
+           		// Check for apparel
+            	if (ShooterPawn.apparel != null)
+            	{
+	                List<Apparel> wornApparel = ShooterPawn.apparel.WornApparel;
+	                foreach(Apparel current in wornApparel)
+	                {
+	                    if (!current.AllowVerbCast(root, caster.Map, targ))
+	                    {
+	                        report = "Shooting disallowed by " + current.LabelShort;
+	                        return false;
+	                    }
+	                }
+            	}
             }
             // Check for line of sight
             ShootLine shootLine;
@@ -499,14 +530,23 @@ namespace CombatExtended
            	bool pelletMechanicsOnly = false;
             for (int i = 0; i < projectilePropsCE.pelletCount; i++)
             {
-                ProjectileCE projectile = (ProjectileCE)ThingMaker.MakeThing(ProjectileDef, null);
+                ProjectileCE projectile = (ProjectileCE)ThingMaker.MakeThing(Projectile, null);
                 GenSpawn.Spawn(projectile, shootLine.Source, caster.Map);
 	           	ShiftTarget(report, pelletMechanicsOnly);
 
                 //New aiming algorithm
                 projectile.canTargetSelf = false;
                 projectile.minCollisionSqr = (sourceLoc - currentTarget.Cell.ToIntVec2.ToVector2Shifted()).sqrMagnitude;
-                projectile.Launch(caster, sourceLoc, shotAngle, shotRotation, ShotHeight, ShotSpeed, ownerEquipment);
+                projectile.intendedTarget = currentTarget.Thing;
+                projectile.Launch(
+                	Shooter,	//Shooter instead of caster to give turret operators' records the damage/kills obtained
+                	sourceLoc,
+                	shotAngle,
+                	shotRotation,
+                	ShotHeight,
+                	ShotSpeed,
+                	ownerEquipment
+                );
 	           	pelletMechanicsOnly = true;
             }
            	pelletMechanicsOnly = false;
@@ -554,7 +594,8 @@ namespace CombatExtended
                 resultingLine = new ShootLine(root, targ.Cell);
                 return false;
             }
-            if (!this.verbProps.NeedsLineOfSight)
+            //if (!this.verbProps.NeedsLineOfSight) This method doesn't consider the currently loaded projectile
+            if (Projectile.projectile.flyOverhead)
             {
                 resultingLine = new ShootLine(root, targ.Cell);
                 return true;
@@ -612,6 +653,7 @@ namespace CombatExtended
 
                 // If the target is near something they might have to lean around to shoot then calculate their leans.
                 // NOTE: CellsAdjacent8Way includes the check for if a location is in map bounds so can use CanBeSeenOverFast.  The alternative is fast 8way and slow (bounds checking) CanBeSeenOver.
+                /*
                 if ((targ.Thing as Pawn)?.CurJob?.def != CE_JobDefOf.HunkerDown && GenAdjFast.AdjacentCells8Way(targ.Thing).FirstOrDefault(c => !c.CanBeSeenOver(targ.Thing.Map)) != null)
                 {
                     ShootLeanUtility.CalcShootableCellsOf(tempDestList, targ.Thing);
@@ -620,6 +662,9 @@ namespace CombatExtended
                     tempDestList.Clear();
                     tempDestList.Add(targ.Cell);
                 }
+                */
+                tempDestList.Clear();
+                tempDestList.Add(targ.Cell);
 
                 for (int i = 0; i < tempDestList.Count; i++)
                 {
@@ -657,6 +702,11 @@ namespace CombatExtended
                 {
                     Vector3 targDrawPos = targetThing.DrawPos;
                     targetPos = new Vector3(targDrawPos.x, new CollisionVertical(targetThing).Max, targDrawPos.z);
+                    var targPawn = targetThing as Pawn;
+                    if (targPawn != null)
+                    {
+                        targetPos += targPawn.Drawer.leaner.LeanOffset * 0.5f;
+                    }
                 }
                 else
                 {
@@ -677,10 +727,11 @@ namespace CombatExtended
                     {
                         cover = cell.GetCover(caster.Map);
                     }
-                    if (cover != null && !cover.IsTree() && !cover.Position.AdjacentTo8Way(sourceSq))
+					
+                    if (cover != null && cover != ShooterPawn && cover != caster && cover != targetThing && !cover.IsPlant() && !cover.Position.AdjacentTo8Way(sourceSq))
                     {
                         Bounds bounds = CE_Utility.GetBoundsFor(cover);
-
+						
                         // Check for intersect
                         if (bounds.IntersectRay(shotLine))
                         {
@@ -695,6 +746,7 @@ namespace CombatExtended
                     return true;
                 };
                 // Add validator to parameters
+                /*
                 if (!includeCorners)
                 {
                     if (!GenSight.LineOfSight(sourceSq, targetLoc, this.caster.Map, true, validator, 0, 0))
@@ -705,6 +757,15 @@ namespace CombatExtended
                 else if (!GenSight.LineOfSightToEdges(sourceSq, targetLoc, this.caster.Map, true, validator))
                 {
                     return false;
+                }
+                */
+                var exactTargetSq = targetPos.ToIntVec3();
+                foreach (IntVec3 curCell in GenSight.PointsOnLineOfSight(sourceSq, exactTargetSq))
+                {
+                    if (curCell != sourceSq && curCell != exactTargetSq && !validator(curCell))
+                    {
+                        return false;
+                    }
                 }
             }
             return true;

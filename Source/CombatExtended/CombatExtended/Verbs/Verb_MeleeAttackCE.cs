@@ -18,13 +18,13 @@ namespace CombatExtended
      * 
      * -NIA
      */
-	public class Verb_MeleeAttackCE : Verb_MeleeAttack
-	{
+    public class Verb_MeleeAttackCE : Verb_MeleeAttack
+    {
 
         #region Constants
 
         private const int TargetCooldown = 50;
-		private const float DefaultHitChance = 0.6f;
+        private const float DefaultHitChance = 0.6f;
         private const float ShieldBlockChance = 0.75f;   // If we have a shield equipped, this is the chance a parry will be a shield block
         private const int KnockdownDuration = 120;   // Animal knockdown lasts for this long
 
@@ -51,6 +51,8 @@ namespace CombatExtended
 
         #region Properties
 
+        bool isCrit;
+
         DamageDef CritDamageDef
         {
             get
@@ -74,24 +76,24 @@ namespace CombatExtended
         /// </summary>
         /// <returns>True if the attack connected, false otherwise</returns>
         protected override bool TryCastShot()
-		{
-			Pawn casterPawn = CasterPawn;
-			if (casterPawn.stances.FullBodyBusy)
-			{
-				return false;
-			}
-			Thing targetThing = currentTarget.Thing;
-			if (!CanHitTarget(targetThing))
-			{
-				Log.Warning(string.Concat(new object[]
-				{
-					casterPawn,
-					" meleed ",
-					targetThing,
-					" from out of melee position."
-				}));
-			}
-			casterPawn.Drawer.rotator.Face(targetThing.DrawPos);
+        {
+            Pawn casterPawn = CasterPawn;
+            if (casterPawn.stances.FullBodyBusy)
+            {
+                return false;
+            }
+            Thing targetThing = currentTarget.Thing;
+            if (!CanHitTarget(targetThing))
+            {
+                Log.Warning(string.Concat(new object[]
+                {
+                    casterPawn,
+                    " meleed ",
+                    targetThing,
+                    " from out of melee position."
+                }));
+            }
+            casterPawn.rotationTracker.Face(targetThing.DrawPos);
 
             // Award XP as per vanilla
             bool targetImmobile = IsTargetImmobile(currentTarget);
@@ -112,16 +114,19 @@ namespace CombatExtended
                 if (!targetImmobile && !surpriseAttack && Rand.Chance(defender.GetStatValue(StatDefOf.MeleeDodgeChance)))
                 {
                     // Attack is evaded
-                    moteText = "TextMote_Dodge".Translate();
                     result = false;
                     soundDef = SoundMiss();
+                    CreateCombatLog(RulePackDefOf.Combat_Dodge);
+
+                    moteText = "TextMote_Dodge".Translate();
                     defender.skills?.Learn(SkillDefOf.Melee, DodgeXP, false);
                 }
                 else
                 {
                     // Attack connects, calculate resolution
                     //var resultRoll = Rand.Value;
-                    var parryChance = GetParryChanceAgainst(casterPawn, defender);
+                    var parryBonus = 1 / ownerEquipment?.GetStatValue(CE_StatDefOf.MeleeCounterParryBonus) ?? 1;
+                    var parryChance = GetComparativeChanceAgainst(defender, casterPawn, CE_StatDefOf.MeleeParryChance, BaseParryChance, parryBonus);
                     if (!surpriseAttack && defender != null && CanDoParry(defender) && Rand.Chance(parryChance))
                     {
                         // Attack is parried
@@ -130,11 +135,13 @@ namespace CombatExtended
                         Thing parryThing = isShieldBlock ? shield
                             : defender.equipment?.Primary != null ? defender.equipment.Primary : defender;
 
-                        if (Rand.Chance(GetCritChanceAgainst(defender, casterPawn)))
+                        if (Rand.Chance(GetComparativeChanceAgainst(defender, casterPawn, CE_StatDefOf.MeleeCritChance, BaseCritChance)))
                         {
                             // Do a riposte
                             DoParry(defender, parryThing, true);
                             moteText = "CE_TextMote_Riposted".Translate();
+                            CreateCombatLog(RulePackDefOf.Combat_Miss); //placeholder
+
                             defender.skills?.Learn(SkillDefOf.Melee, CritXP + ParryXP, false);
                         }
                         else
@@ -142,6 +149,8 @@ namespace CombatExtended
                             // Do a parry
                             DoParry(defender, parryThing);
                             moteText = "CE_TextMote_Parried".Translate();
+                            CreateCombatLog(RulePackDefOf.Combat_Miss); //placeholder
+
                             defender.skills?.Learn(SkillDefOf.Melee, ParryXP, false);
                         }
 
@@ -150,18 +159,21 @@ namespace CombatExtended
                     }
                     else
                     {
+                        BattleLogEntry_MeleeCombat log = this.CreateCombatLog(RulePackDefOf.Combat_Hit);
+
                         // Attack connects
-                        if (!surpriseAttack && Rand.Chance(GetCritChanceAgainst(casterPawn, defender)))
+                        if (surpriseAttack || Rand.Chance(GetComparativeChanceAgainst(casterPawn, defender, CE_StatDefOf.MeleeCritChance, BaseCritChance)))
                         {
                             // Do a critical hit
-                            ApplyMeleeDamageToTarget(currentTarget, true);
+                            isCrit = true;
+                            ApplyMeleeDamageToTarget(currentTarget).InsertIntoLog(log);
                             moteText = casterPawn.def.race.Animal ? "CE_TextMote_Knockdown".Translate() : "CE_TextMote_CriticalHit".Translate();
                             casterPawn.skills?.Learn(SkillDefOf.Melee, CritXP, false);
                         }
                         else
                         {
                             // Do a regular hit as per vanilla
-                            ApplyMeleeDamageToTarget(currentTarget);
+                            ApplyMeleeDamageToTarget(currentTarget).InsertIntoLog(log);
                         }
                         result = true;
                         soundDef = targetThing.def.category == ThingCategory.Building ? SoundHitBuilding() : SoundHitPawn();
@@ -173,93 +185,108 @@ namespace CombatExtended
                 // Attack missed
                 result = false;
                 soundDef = SoundMiss();
+                CreateCombatLog(RulePackDefOf.Combat_Miss);
             }
             if (!moteText.NullOrEmpty())
                 MoteMaker.ThrowText(targetThing.PositionHeld.ToVector3Shifted(), casterPawn.Map, moteText);
             soundDef.PlayOneShot(new TargetInfo(targetThing.PositionHeld, casterPawn.Map, false));
-			casterPawn.Drawer.Notify_MeleeAttackOn(targetThing);
-			if (defender != null && !defender.Dead)
-			{
-				defender.stances.StaggerFor(95);
-				if (casterPawn.MentalStateDef != MentalStateDefOf.SocialFighting || defender.MentalStateDef != MentalStateDefOf.SocialFighting)
-				{
-					defender.mindState.meleeThreat = casterPawn;
-					defender.mindState.lastMeleeThreatHarmTick = Find.TickManager.TicksGame;
-				}
-			}
-			casterPawn.Drawer.rotator.FaceCell(targetThing.Position);
-			if (casterPawn.caller != null)
-			{
-				casterPawn.caller.Notify_DidMeleeAttack();
-			}
-			return result;
-		}
-        
+            casterPawn.Drawer.Notify_MeleeAttackOn(targetThing);
+            if (defender != null && !defender.Dead)
+            {
+                defender.stances.StaggerFor(95);
+                if (casterPawn.MentalStateDef != MentalStateDefOf.SocialFighting || defender.MentalStateDef != MentalStateDefOf.SocialFighting)
+                {
+                    defender.mindState.meleeThreat = casterPawn;
+                    defender.mindState.lastMeleeThreatHarmTick = Find.TickManager.TicksGame;
+                }
+            }
+            casterPawn.rotationTracker.FaceCell(targetThing.Position);
+            if (casterPawn.caller != null)
+            {
+                casterPawn.caller.Notify_DidMeleeAttack();
+            }
+            return result;
+        }
+
         /// <summary>
         /// Calculates primary DamageInfo from verb, as well as secondary DamageInfos to apply (i.e. surprise attack stun damage).
         /// Also calculates the maximum body height an attack can target, so we don't get rabbits biting out a colonist's eye or something.
         /// </summary>
         /// <param name="target">The target damage is to be applied to</param>
         /// <returns>Collection with primary DamageInfo, followed by secondary types</returns>
-		private IEnumerable<DamageInfo> DamageInfosToApply(LocalTargetInfo target, bool isCrit = false)
-		{
-			float damAmount = (float)this.verbProps.AdjustedMeleeDamageAmount(this, base.CasterPawn, this.ownerEquipment);
+        private IEnumerable<DamageInfo> DamageInfosToApply(LocalTargetInfo target, bool isCrit = false)
+        {
+            float damAmount = (float)this.verbProps.AdjustedMeleeDamageAmount(this, base.CasterPawn, this.ownerEquipment);
             var critDamDef = CritDamageDef;
-			DamageDef damDef = isCrit && critDamDef != DamageDefOf.Stun ? critDamDef : verbProps.meleeDamageDef;
-			BodyPartGroupDef bodyPartGroupDef = null;
-			HediffDef hediffDef = null;
-			if (base.CasterIsPawn)
-			{
-				if (damAmount >= 1f)
-				{
-					bodyPartGroupDef = this.verbProps.linkedBodyPartsGroup;
-					if (this.ownerHediffComp != null)
-					{
-						hediffDef = this.ownerHediffComp.Def;
-					}
-				}
-				else
-				{
-					damAmount = 1f;
-					damDef = DamageDefOf.Blunt;
-				}
-			}
-			ThingDef source;
-			if (this.ownerEquipment != null)
-			{
-				source = this.ownerEquipment.def;
-			}
-			else
-			{
-				source = base.CasterPawn.def;
-			}
-			Vector3 direction = (target.Thing.Position - base.CasterPawn.Position).ToVector3();
-			Thing caster = this.caster;
+            DamageDef damDef = isCrit && critDamDef != DamageDefOf.Stun ? critDamDef : verbProps.meleeDamageDef;	//Added isCrit check
+            BodyPartGroupDef bodyPartGroupDef = null;
+            HediffDef hediffDef = null;
+            damAmount = UnityEngine.Random.Range(damAmount * 0.8f, damAmount * 1.2f);
+            if (base.CasterIsPawn)
+            {
+            	bodyPartGroupDef = LinkedBodyPartsGroup;
+                if (damAmount >= 1f)
+                {
+                    if (this.ownerHediffComp != null)
+                    {
+                        hediffDef = this.ownerHediffComp.Def;
+                    }
+                }
+                else
+                {
+                    damAmount = 1f;
+                    damDef = DamageDefOf.Blunt;
+                }
+            }
+            ThingDef source;
+            if (this.ownerEquipment != null)
+            {
+                source = this.ownerEquipment.def;
+            }
+            else
+            {
+                source = base.CasterPawn.def;
+            }
+            Vector3 direction = (target.Thing.Position - base.CasterPawn.Position).ToVector3();
+            Thing caster = this.caster;
             BodyPartHeight bodyRegion = GetBodyPartHeightFor(target);   // Add check for body height
-			DamageInfo mainDinfo = new DamageInfo(damDef, GenMath.RoundRandom(damAmount), -1f, caster, null, source);
-			mainDinfo.SetBodyRegion(bodyRegion, BodyPartDepth.Outside);
-			mainDinfo.SetWeaponBodyPartGroup(bodyPartGroupDef);
-			mainDinfo.SetWeaponHediff(hediffDef);
-			mainDinfo.SetAngle(direction);
-			yield return mainDinfo;
+            DamageInfo mainDinfo = new DamageInfo(damDef, GenMath.RoundRandom(damAmount), -1f, caster, null, source);
+            mainDinfo.SetBodyRegion(bodyRegion, BodyPartDepth.Outside);
+            mainDinfo.SetWeaponBodyPartGroup(bodyPartGroupDef);
+            mainDinfo.SetWeaponHediff(hediffDef);
+            mainDinfo.SetAngle(direction);
+            yield return mainDinfo;
 
             // Apply secondary damage on surprise attack
-			if (this.surpriseAttack && this.verbProps.surpriseAttack != null && this.verbProps.surpriseAttack.extraMeleeDamages != null)
-			{
-				List<ExtraMeleeDamage> extraDamages = this.verbProps.surpriseAttack.extraMeleeDamages;
-				for (int i = 0; i < extraDamages.Count; i++)
-				{
-					ExtraMeleeDamage extraDamage = extraDamages[i];
-					int amount = GenMath.RoundRandom((float)extraDamage.amount * base.GetDamageFactorFor(base.CasterPawn));
-					caster = this.caster;
-					DamageInfo extraDinfo = new DamageInfo(extraDamage.def, amount, -1f, caster, null, source);
-					extraDinfo.SetBodyRegion(bodyRegion, BodyPartDepth.Outside);
-					extraDinfo.SetWeaponBodyPartGroup(bodyPartGroupDef);
-					extraDinfo.SetWeaponHediff(hediffDef);
-					extraDinfo.SetAngle(direction);
-					yield return extraDinfo;
-				}
-			}
+            /*
+            if (!surpriseAttack
+                    || ((verbProps.surpriseAttack == null || verbProps.surpriseAttack.extraMeleeDamages.NullOrEmpty<ExtraMeleeDamage>())
+                        && tool != null
+                        && tool.surpriseAttack != null
+                        && !tool.surpriseAttack.extraMeleeDamages.NullOrEmpty<ExtraMeleeDamage>())
+               )
+            {
+                IEnumerable<ExtraMeleeDamage> extraDamages = Enumerable.Empty<ExtraMeleeDamage>();
+                if (verbProps.surpriseAttack != null && verbProps.surpriseAttack.extraMeleeDamages != null)
+                {
+                    extraDamages = extraDamages.Concat(tool.surpriseAttack.extraMeleeDamages);
+                }
+                if (tool != null && tool.surpriseAttack != null && !tool.surpriseAttack.extraMeleeDamages.NullOrEmpty<ExtraMeleeDamage>())
+                {
+                    extraDamages = extraDamages.Concat(tool.surpriseAttack.extraMeleeDamages);
+                }
+                foreach (ExtraMeleeDamage extraDamage in extraDamages)
+                {
+                    int amount = GenMath.RoundRandom((float)extraDamage.amount * base.GetDamageFactorFor(base.CasterPawn));
+                    DamageInfo extraDinfo = new DamageInfo(extraDamage.def, amount, -1f, this.caster, null, source);
+                    extraDinfo.SetBodyRegion(bodyRegion, BodyPartDepth.Outside);
+                    extraDinfo.SetWeaponBodyPartGroup(bodyPartGroupDef);
+                    extraDinfo.SetWeaponHediff(hediffDef);
+                    extraDinfo.SetAngle(direction);
+                    yield return extraDinfo;
+                }
+            }
+            */
 
             // Apply critical damage
             if (isCrit && critDamDef == DamageDefOf.Stun)
@@ -272,25 +299,25 @@ namespace CombatExtended
                 critDinfo.SetAngle(direction);
                 yield return critDinfo;
             }
-		}
+        }
 
         // unmodified
-		private float GetHitChance(LocalTargetInfo target)
-		{
-			if (this.surpriseAttack)
-			{
-				return 1f;
-			}
-			if (this.IsTargetImmobile(target))
-			{
-				return 1f;
-			}
-			if (base.CasterPawn.skills != null)
-			{
-				return base.CasterPawn.GetStatValue(StatDefOf.MeleeHitChance, true);
-			}
-			return DefaultHitChance;
-		}
+        private float GetHitChance(LocalTargetInfo target)
+        {
+            if (this.surpriseAttack)
+            {
+                return 1f;
+            }
+            if (this.IsTargetImmobile(target))
+            {
+                return 1f;
+            }
+            if (base.CasterPawn.skills != null)
+            {
+                return base.CasterPawn.GetStatValue(StatDefOf.MeleeHitChance, true);
+            }
+            return DefaultHitChance;
+        }
 
         /// <summary>
         /// Checks whether a target can move. Immobile targets include anything that's not a pawn and pawns that are lying down/incapacitated.
@@ -299,27 +326,27 @@ namespace CombatExtended
         /// <param name="target"></param>
         /// <returns></returns>
 		private bool IsTargetImmobile(LocalTargetInfo target)
-		{
-			Thing thing = target.Thing;
-			Pawn pawn = thing as Pawn;
-			return thing.def.category != ThingCategory.Pawn || pawn.Downed || pawn.GetPosture() != PawnPosture.Standing || pawn.stances.stunner.Stunned;    // Added check for stunned
-		}
+        {
+            Thing thing = target.Thing;
+            Pawn pawn = thing as Pawn;
+            return thing.def.category != ThingCategory.Pawn || pawn.Downed || pawn.GetPosture() != PawnPosture.Standing || pawn.stances.stunner.Stunned;    // Added check for stunned
+        }
 
         /// <summary>
         /// Applies all DamageInfosToApply to the target. Increases damage on critical hits.
         /// </summary>
         /// <param name="target">Target to apply damage to</param>
-        /// <param name="isCrit">Whether we should apply critical damage</param>
-		private void ApplyMeleeDamageToTarget(LocalTargetInfo target, bool isCrit = false)
-		{
-			foreach (DamageInfo current in DamageInfosToApply(target, isCrit))
-			{
-				if (target.ThingDestroyed)
-				{
-					return;
-				}
-				target.Thing.TakeDamage(current);
-			}
+		protected override DamageWorker.DamageResult ApplyMeleeDamageToTarget(LocalTargetInfo target)
+        {
+            DamageWorker.DamageResult result = DamageWorker.DamageResult.MakeNew();
+            foreach (DamageInfo current in DamageInfosToApply(target, isCrit))
+            {
+                if (target.ThingDestroyed)
+                {
+                    break;
+                }
+                result = target.Thing.TakeDamage(current);
+            }
             // Apply animal knockdown
             if (isCrit && CasterPawn.def.race.Animal)
             {
@@ -331,7 +358,9 @@ namespace CombatExtended
                     pawn.jobs?.StartJob(new Job(CE_JobDefOf.WaitKnockdown) { expiryInterval = KnockdownDuration }, JobCondition.InterruptForced, null, false, false);
                 }
             }
-		}
+            isCrit = false;
+            return result;
+        }
 
         /// <summary>
         /// Checks ParryTracker for whether the specified pawn can currently perform a parry.
@@ -340,11 +369,11 @@ namespace CombatExtended
         /// <returns>True if pawn still has parries available or no parry tracker could be found, false otherwise</returns>
         private bool CanDoParry(Pawn pawn)
         {
-            if (pawn == null 
-                || pawn.Dead 
-                || !pawn.RaceProps.Humanlike 
-                || pawn.story.WorkTagIsDisabled(WorkTags.Violent) 
-                || !pawn.health.capacities.CapableOf(PawnCapacityDefOf.Manipulation) 
+            if (pawn == null
+                || pawn.Dead
+                || !pawn.RaceProps.Humanlike
+                || pawn.story.WorkTagIsDisabled(WorkTags.Violent)
+                || !pawn.health.capacities.CapableOf(PawnCapacityDefOf.Manipulation)
                 || IsTargetImmobile(pawn))
             {
                 return false;
@@ -369,7 +398,7 @@ namespace CombatExtended
         {
             if (parryThing != null)
             {
-                foreach(var dinfo in DamageInfosToApply(defender))
+                foreach (var dinfo in DamageInfosToApply(defender))
                 {
                     ArmorUtilityCE.ApplyParryDamage(dinfo, parryThing);
                 }
@@ -381,6 +410,8 @@ namespace CombatExtended
                 {
                     // Shield bash
                     DamageInfo dinfo = new DamageInfo(DamageDefOf.Blunt, 6, -1, defender, null, parryThing.def);
+                    dinfo.SetBodyRegion(BodyPartHeight.Undefined, BodyPartDepth.Outside);
+                    dinfo.SetAngle((CasterPawn.Position - defender.Position).ToVector3());
                     caster.TakeDamage(dinfo);
                     if (!parryThing.Stuff.stuffProps.soundMeleeHitBlunt.NullOrUndefined())
                         sound = parryThing.Stuff.stuffProps.soundMeleeHitBlunt;
@@ -408,7 +439,7 @@ namespace CombatExtended
             }
             else
             {
-                tracker.RegisterParryFor(defender, verbProps.AdjustedCooldownTicks(ownerEquipment));
+                tracker.RegisterParryFor(defender, verbProps.AdjustedCooldownTicks(this, defender, ownerEquipment));
             }
         }
 
@@ -429,99 +460,72 @@ namespace CombatExtended
         }
 
         // unmodified
-		private SoundDef SoundHitPawn()
-		{
-			if (this.ownerEquipment != null && this.ownerEquipment.Stuff != null)
-			{
-				if (this.verbProps.meleeDamageDef.armorCategory == DamageArmorCategoryDefOf.Sharp)
-				{
-					if (!this.ownerEquipment.Stuff.stuffProps.soundMeleeHitSharp.NullOrUndefined())
-					{
-						return this.ownerEquipment.Stuff.stuffProps.soundMeleeHitSharp;
-					}
-				}
-				else if (!this.ownerEquipment.Stuff.stuffProps.soundMeleeHitBlunt.NullOrUndefined())
-				{
-					return this.ownerEquipment.Stuff.stuffProps.soundMeleeHitBlunt;
-				}
-			}
-			if (base.CasterPawn != null && !base.CasterPawn.def.race.soundMeleeHitPawn.NullOrUndefined())
-			{
-				return base.CasterPawn.def.race.soundMeleeHitPawn;
-			}
-			return SoundDefOf.Pawn_Melee_Punch_HitPawn;
-		}
+        private SoundDef SoundHitPawn()
+        {
+            if (this.ownerEquipment != null && this.ownerEquipment.Stuff != null)
+            {
+                if (this.verbProps.meleeDamageDef.armorCategory == DamageArmorCategoryDefOf.Sharp)
+                {
+                    if (!this.ownerEquipment.Stuff.stuffProps.soundMeleeHitSharp.NullOrUndefined())
+                    {
+                        return this.ownerEquipment.Stuff.stuffProps.soundMeleeHitSharp;
+                    }
+                }
+                else if (!this.ownerEquipment.Stuff.stuffProps.soundMeleeHitBlunt.NullOrUndefined())
+                {
+                    return this.ownerEquipment.Stuff.stuffProps.soundMeleeHitBlunt;
+                }
+            }
+            if (base.CasterPawn != null && !base.CasterPawn.def.race.soundMeleeHitPawn.NullOrUndefined())
+            {
+                return base.CasterPawn.def.race.soundMeleeHitPawn;
+            }
+            return SoundDefOf.Pawn_Melee_Punch_HitPawn;
+        }
 
         // unmodified
-		private SoundDef SoundHitBuilding()
-		{
-			if (this.ownerEquipment != null && this.ownerEquipment.Stuff != null)
-			{
-				if (this.verbProps.meleeDamageDef.armorCategory == DamageArmorCategoryDefOf.Sharp)
-				{
-					if (!this.ownerEquipment.Stuff.stuffProps.soundMeleeHitSharp.NullOrUndefined())
-					{
-						return this.ownerEquipment.Stuff.stuffProps.soundMeleeHitSharp;
-					}
-				}
-				else if (!this.ownerEquipment.Stuff.stuffProps.soundMeleeHitBlunt.NullOrUndefined())
-				{
-					return this.ownerEquipment.Stuff.stuffProps.soundMeleeHitBlunt;
-				}
-			}
-			if (base.CasterPawn != null && !base.CasterPawn.def.race.soundMeleeHitBuilding.NullOrUndefined())
-			{
-				return base.CasterPawn.def.race.soundMeleeHitBuilding;
-			}
-			return SoundDefOf.Pawn_Melee_Punch_HitBuilding;
-		}
+        private SoundDef SoundHitBuilding()
+        {
+            if (this.ownerEquipment != null && this.ownerEquipment.Stuff != null)
+            {
+                if (this.verbProps.meleeDamageDef.armorCategory == DamageArmorCategoryDefOf.Sharp)
+                {
+                    if (!this.ownerEquipment.Stuff.stuffProps.soundMeleeHitSharp.NullOrUndefined())
+                    {
+                        return this.ownerEquipment.Stuff.stuffProps.soundMeleeHitSharp;
+                    }
+                }
+                else if (!this.ownerEquipment.Stuff.stuffProps.soundMeleeHitBlunt.NullOrUndefined())
+                {
+                    return this.ownerEquipment.Stuff.stuffProps.soundMeleeHitBlunt;
+                }
+            }
+            if (base.CasterPawn != null && !base.CasterPawn.def.race.soundMeleeHitBuilding.NullOrUndefined())
+            {
+                return base.CasterPawn.def.race.soundMeleeHitBuilding;
+            }
+            return SoundDefOf.Pawn_Melee_Punch_HitBuilding;
+        }
 
         // unmodified
-		private SoundDef SoundMiss()
-		{
-			if (base.CasterPawn != null && !base.CasterPawn.def.race.soundMeleeMiss.NullOrUndefined())
-			{
-				return base.CasterPawn.def.race.soundMeleeMiss;
-			}
-			return SoundDefOf.Pawn_Melee_Punch_Miss;
+        private SoundDef SoundMiss()
+        {
+            if (base.CasterPawn != null && !base.CasterPawn.def.race.soundMeleeMiss.NullOrUndefined())
+            {
+                return base.CasterPawn.def.race.soundMeleeMiss;
+            }
+            return SoundDefOf.Pawn_Melee_Punch_Miss;
         }
 
-        #region Stat calculations
-
-        private static float GetCritChanceAgainst(Pawn attacker,  Pawn defender)
+        private static float GetComparativeChanceAgainst(Pawn attacker, Pawn defender, StatDef stat, float baseChance, float defenderSkillMult = 1)
         {
             if (attacker == null || defender == null)
                 return 0;
-            var stat = CE_StatDefOf.MeleeCritChance;
-            var offSkill = attacker.GetStatValue(stat);
-            var defSkill = defender.GetStatValue(stat);
-            var chance = Mathf.Clamp01(BaseCritChance + offSkill - defSkill);
+            var offSkill = stat.Worker.IsDisabledFor(attacker) ? 0 : attacker.GetStatValue(stat);
+            var defSkill = stat.Worker.IsDisabledFor(defender) ? 0 : defender.GetStatValue(stat) * defenderSkillMult;
+            var chance = Mathf.Clamp01(baseChance + offSkill - defSkill);
             return chance;
         }
-
-        private static float GetParryChanceAgainst(Pawn attacker,  Pawn defender)
-        {
-            if (attacker == null || defender == null)
-                return 0;
-            var stat = CE_StatDefOf.MeleeParryChance;
-            var offSkill = attacker.GetStatValue(stat);
-            var defSkill = defender.GetStatValue(stat);
-            var chance = Mathf.Clamp01(BaseParryChance + defSkill - offSkill);
-            return chance;
-        }
-
-        private static float GetDodgeChanceAgainst(Pawn attacker, Pawn defender)
-        {
-            if (attacker == null || defender == null)
-                return 0;
-            var stat = StatDefOf.MeleeDodgeChance;
-            var offSkill = attacker.GetStatValue(stat);
-            var defSkill = defender.GetStatValue(stat);
-            var chance = Mathf.Clamp01(BaseDodgeChance + defSkill - offSkill);
-            return chance;
-        }
-
-        #endregion
 
         #endregion
     }

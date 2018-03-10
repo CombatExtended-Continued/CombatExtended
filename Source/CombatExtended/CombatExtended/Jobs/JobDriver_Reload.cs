@@ -11,6 +11,7 @@ namespace CombatExtended
         #region Fields
         private CompAmmoUser _compReloader = null;
         private ThingWithComps initEquipment = null;
+        private Thing initAmmo = null;
         private bool reloadingInventory = false;
         private bool reloadingEquipment = false;
         #endregion Fields
@@ -56,8 +57,8 @@ namespace CombatExtended
             if (reloadingInventory) flagSource = "CE_ReloadingInventory".Translate();
             text = text.Replace("FlagSource", flagSource);
             text = text.Replace("TargetB", weapon.def.label);
-            if (Controller.settings.EnableAmmoSystem)
-                text = text.Replace("AmmoType", compReloader.CurrentAmmo.label);
+            if (Controller.settings.EnableAmmoSystem && initAmmo != null)
+                text = text.Replace("AmmoType", initAmmo.LabelNoCount);
             else
                 text = text.Replace("AmmoType", "CE_ReloadingGenericAmmo".Translate()); return text;
         }
@@ -69,7 +70,7 @@ namespace CombatExtended
         private bool HasNoGunOrAmmo()
         {
             //if (TargetThingB.DestroyedOrNull() || pawn.equipment == null || pawn.equipment.Primary == null || pawn.equipment.Primary != TargetThingB)
-			if ((reloadingEquipment && (pawn?.equipment?.Primary == null || pawn.equipment.Primary != weapon))
+            if ((reloadingEquipment && (pawn?.equipment?.Primary == null || pawn.equipment.Primary != weapon))
 			   	|| (reloadingInventory && (pawn.inventory == null || !pawn.inventory.innerContainer.Contains(weapon)))
 			    || (initEquipment != pawn?.equipment?.Primary))
                 return true;
@@ -128,6 +129,12 @@ namespace CombatExtended
             // current state of equipment, want to interrupt the reload if a pawn's equipment changes.
             initEquipment = pawn.equipment?.Primary;
 
+            // choose ammo to be loaded and set failstate for no ammo in inventory
+            if (compReloader.UseAmmo)
+            {
+                this.FailOn(() => !compReloader.TryFindAmmoInInventory(out initAmmo));
+            }
+
             // setup fail states, if something goes wrong with the pawn performing the reload, the weapon, or something else that we want to fail on.
             this.FailOnDespawnedOrNull(indReloader);
             this.FailOnMentalState(indReloader);
@@ -147,7 +154,7 @@ namespace CombatExtended
 
             //Actual reloader
             Toil reloadToil = new Toil();
-            reloadToil.AddFinishAction(() => compReloader.LoadAmmo());
+            reloadToil.AddFinishAction(() => compReloader.LoadAmmo(initAmmo));
             yield return reloadToil;
 
             //Continue previous job if possible
@@ -157,6 +164,12 @@ namespace CombatExtended
             };
             yield return continueToil;
         }
+
+        public override bool TryMakePreToilReservations()
+        {
+            return true;
+        }
+
         #endregion Methods
     }
 }

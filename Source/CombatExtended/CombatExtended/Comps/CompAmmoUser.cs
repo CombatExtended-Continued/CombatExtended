@@ -281,6 +281,13 @@ namespace CombatExtended
             if (Wielder == null && turret == null)
             	return;
 
+            // secondary branch for if we ended up being called up by a turret somehow...
+            if (turret != null)
+            {
+                turret.TryOrderReload();
+                return;
+            }
+
             if (UseAmmo)
             {
             	TryUnload();
@@ -292,10 +299,6 @@ namespace CombatExtended
                     return;
                 }
             }
-
-            // secondary branch for if we ended up being called up by a turret somehow...
-            if (turret != null)
-                turret.TryOrderReload();
 
             // Issue reload job
             if (Wielder != null)
@@ -450,7 +453,7 @@ namespace CombatExtended
             curMagCountInt = Props.magazineSize;
         }
 
-        private bool TryFindAmmoInInventory(out Thing ammoThing)
+        public bool TryFindAmmoInInventory(out Thing ammoThing)
         {
             ammoThing = null;
             if (CompInventory == null)

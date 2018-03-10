@@ -31,6 +31,28 @@
 
 	<!-- ========== Pawn stats ========== -->
 
+	<!-- Melee Hit Chance -->
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>*/StatDef[defName="MeleeHitChance"]/postProcessCurve/points</xpath>
+		<value>
+			<points>
+				<li>(-20, 0.10)</li>
+				<li>(-10, 0.20)</li>
+				<li>(0, 0.60)</li>
+				<li>(10, 0.90)</li>
+				<li>(20, 1.00)</li>
+			</points>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>*/StatDef[defName="MeleeHitChance"]/noSkillOffset</xpath>
+		<value>
+			<noSkillOffset>6.7</noSkillOffset>
+		</value>
+	</Operation>
+
 	<!-- Shooting Accuracy -->
 
 	<Operation Class="PatchOperationReplace">
@@ -47,35 +69,55 @@
 		</value>
 	</Operation>
 
-	<Operation Class="PatchOperationReplace">
-		<xpath>*/StatDef[defName="ShootingAccuracy"]/minValue</xpath>
+	<Operation Class="PatchOperationAdd">
+		<xpath>*/StatDef[defName="ShootingAccuracy"]</xpath>
 		<value>
 			<minValue>0</minValue>
 		</value>
 	</Operation>
 
-	<Operation Class="PatchOperationReplace">
-		<xpath>*/StatDef[defName="ShootingAccuracy"]/maxValue</xpath>
+	<Operation Class="PatchOperationAdd">
+		<xpath>*/StatDef[defName="ShootingAccuracy"]</xpath>
 		<value>
-			<maxValue>13</maxValue> <!-- should post-process to 4.5 -->
+			<maxValue>13</maxValue>
 		</value>
 	</Operation>
 
+	<Operation Class="PatchOperationSequence"> <!-- compatibility with any mod that redefines ShootingAccuracy and changes SkillNeed back to the traditional pre-A17 values per skill level (e.g. Shooting Skill Rebalanced) -->
+		<success>Always</success>
+		<operations>
+			<li Class="PatchOperationTest">
+				<xpath>*/StatDef[defName="ShootingAccuracy"]/skillNeedOffsets/li[@Class = "SkillNeed_Direct"]</xpath>
+			</li>
+			<li Class="PatchOperationReplace">
+				<xpath>*/StatDef[defName="ShootingAccuracy"]/skillNeedOffsets/li[@Class = "SkillNeed_Direct"]</xpath>
+				<value>
+					<li Class="SkillNeed_BaseBonus" />
+				</value>
+			</li>
+		</operations>
+	</Operation>
+
 	<Operation Class="PatchOperationReplace">
-		<xpath>*/StatDef[defName="ShootingAccuracy"]/skillNeedFactors/li[@Class = "SkillNeed_BaseBonus"]</xpath>
+		<xpath>*/StatDef[defName="ShootingAccuracy"]/skillNeedOffsets/li[@Class = "SkillNeed_BaseBonus"]</xpath>
 		<value>
 			<li Class="SkillNeed_BaseBonus">
 			  <skill>Shooting</skill>
-			  <baseFactor>1</baseFactor>
-			  <bonusFactor>0.2</bonusFactor>
+			  <baseValue>1</baseValue>
+			  <bonusPerLevel>0.2</bonusPerLevel>
 			</li>
 		</value>
 	</Operation>
 
 	<Operation Class="PatchOperationReplace">
-		<xpath>*/StatDef[defName="ShootingAccuracy"]/capacityFactors/li[capacity = "Manipulation"]/weight</xpath>
+		<xpath>*/StatDef[defName="ShootingAccuracy"]/capacityOffsets</xpath>
 		<value>
-			<weight>1</weight>
+			<capacityOffsets>
+				<li>
+					<capacity>Manipulation</capacity>
+					<scale>1.6</scale>
+				</li>
+			</capacityOffsets>
 		</value>
 	</Operation>
 
@@ -89,13 +131,14 @@
 			    <li>(3.0, 2.5)</li>
 			    <li>(4.0, 2.75)</li>
 			    <li>(5.0, 2.875)</li>
+			    <li>(13, 4.5)</li>
 			  </points>
 			</postProcessCurve>
 		</value>
 	</Operation>
 
 	<Operation Class="PatchOperationReplace">
-		<xpath>*/StatDef[defName="ShootingAccuracy"]/noSkillFactor</xpath>
+		<xpath>*/StatDef[defName="ShootingAccuracy"]/noSkillOffset</xpath>
 		<value>
 			<noSkillFactor>2.6</noSkillFactor>
 		</value>
@@ -104,7 +147,7 @@
 	<!-- Move speed -->
 
 	<Operation Class="PatchOperationAdd">
-		<xpath>/StatDefs/StatDef[defName="MoveSpeed"]</xpath>
+		<xpath>*/StatDef[defName="MoveSpeed"]</xpath>
 		<value>
 			<workerClass>CombatExtended.StatWorker_MoveSpeed</workerClass>
 		</value>

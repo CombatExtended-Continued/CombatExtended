@@ -55,6 +55,7 @@
 			<ShootingAccuracy>1</ShootingAccuracy>
 			<MeleeDodgeChance>0.02</MeleeDodgeChance>
 			<MeleeCritChance>0.15</MeleeCritChance>
+			<MeleeParryChance>0.41</MeleeParryChance>
 		</value>
 	</Operation>
 
@@ -73,25 +74,21 @@
 	</Operation>
 
 	<Operation Class="PatchOperationReplace">
-		<xpath>*/ThingDef[defName="Mechanoid_Centipede"]/verbs</xpath>
+		<xpath>*/ThingDef[defName="Mechanoid_Centipede"]/tools</xpath>
 		<value>
-			<verbs>
-			  <li Class="CombatExtended.VerbPropertiesCE">
-			    <verbClass>CombatExtended.Verb_MeleeAttackCE</verbClass>
-			    <defaultCooldownTime>2.0</defaultCooldownTime>
-			    <meleeDamageBaseAmount>50</meleeDamageBaseAmount>
-			    <meleeDamageDef>Blunt</meleeDamageDef>
-			    <linkedBodyPartsGroup>HeadAttackTool</linkedBodyPartsGroup>
-			    <meleeArmorPenetration>0.3</meleeArmorPenetration>
-			  </li>
-			</verbs>
-		</value>
-	</Operation>
-
-	<Operation Class="PatchOperationReplace">
-		<xpath>*/ThingDef[defName="Mechanoid_Centipede"]/race/baseHealthScale</xpath>
-		<value>
-			<baseHealthScale>2</baseHealthScale>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<label>head</label>
+					<capacities>
+						<li>Blunt</li>
+					</capacities>
+					<power>27</power>
+					<cooldownTime>2.4</cooldownTime>
+					<linkedBodyPartsGroup>HeadAttackTool</linkedBodyPartsGroup>
+					<armorPenetration>0.243</armorPenetration>
+					<alwaysTreatAsWeapon>true</alwaysTreatAsWeapon>
+				</li>
+			</tools>
 		</value>
 	</Operation>
 
@@ -115,6 +112,7 @@
 			<ShootingAccuracy>2.6</ShootingAccuracy>
 			<MeleeDodgeChance>0.19</MeleeDodgeChance>
 			<MeleeCritChance>0.22</MeleeCritChance>
+			<MeleeParryChance>0.09</MeleeParryChance>
 		</value>
 	</Operation>
 
@@ -133,26 +131,69 @@
 	</Operation>
 
 	<Operation Class="PatchOperationReplace">
-		<xpath>*/ThingDef[defName="Mechanoid_Scyther"]/verbs</xpath>
+		<xpath>*/ThingDef[defName="Mechanoid_Scyther"]/tools</xpath>
 		<value>
-			<verbs>
-			  <li Class="CombatExtended.VerbPropertiesCE">
-			    <verbClass>CombatExtended.Verb_MeleeAttackCE</verbClass>
-			    <defaultCooldownTime>1.65</defaultCooldownTime>
-			    <meleeDamageBaseAmount>24</meleeDamageBaseAmount>
-			    <meleeDamageDef>Cut</meleeDamageDef>
-			    <linkedBodyPartsGroup>LeftBlade</linkedBodyPartsGroup>
-			    <meleeArmorPenetration>0.4</meleeArmorPenetration>
-			  </li>
-			  <li Class="CombatExtended.VerbPropertiesCE">
-			    <verbClass>CombatExtended.Verb_MeleeAttackCE</verbClass>
-			    <defaultCooldownTime>1.65</defaultCooldownTime>
-			    <meleeDamageBaseAmount>24</meleeDamageBaseAmount>
-			    <meleeDamageDef>Cut</meleeDamageDef>
-			    <linkedBodyPartsGroup>RightBlade</linkedBodyPartsGroup>
-			    <meleeArmorPenetration>0.4</meleeArmorPenetration>
-			  </li>
-			</verbs>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<id>leftbladecut</id>
+					<label>left blade</label>
+					<capacities>
+						<li>Cut</li>
+					</capacities>
+					<power>24</power>
+					<cooldownTime>1.65</cooldownTime>
+					<linkedBodyPartsGroup>LeftBlade</linkedBodyPartsGroup>
+					<armorPenetration>0.207</armorPenetration>
+					<alwaysTreatAsWeapon>true</alwaysTreatAsWeapon>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<id>leftbladestab</id>
+					<label>left blade</label>
+					<capacities>
+						<li>Stab</li>
+					</capacities>
+					<power>24</power>
+					<cooldownTime>1.65</cooldownTime>
+					<linkedBodyPartsGroup>LeftBlade</linkedBodyPartsGroup>
+					<armorPenetration>0.388</armorPenetration>
+					<alwaysTreatAsWeapon>true</alwaysTreatAsWeapon>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<id>rightbladecut</id>
+					<label>right blade</label>
+					<capacities>
+						<li>Cut</li>
+					</capacities>
+					<power>24</power>
+					<cooldownTime>1.65</cooldownTime>
+					<linkedBodyPartsGroup>RightBlade</linkedBodyPartsGroup>
+					<armorPenetration>0.207</armorPenetration>
+					<alwaysTreatAsWeapon>true</alwaysTreatAsWeapon>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<id>rightbladestab</id>
+					<label>right blade</label>
+					<capacities>
+						<li>Stab</li>
+					</capacities>
+					<power>24</power>
+					<cooldownTime>1.65</cooldownTime>
+					<linkedBodyPartsGroup>RightBlade</linkedBodyPartsGroup>
+					<armorPenetration>0.388</armorPenetration>
+					<alwaysTreatAsWeapon>true</alwaysTreatAsWeapon>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>head</label>
+					<capacities>
+						<li>Blunt</li>
+					</capacities>
+					<power>7</power>
+					<cooldownTime>1.65</cooldownTime>
+					<linkedBodyPartsGroup>HeadAttackTool</linkedBodyPartsGroup>
+					<commonality>0.2</commonality>
+					<armorPenetration>0.095</armorPenetration>
+				</li>
+			</tools>
 		</value>
 	</Operation>
 

@@ -3,6 +3,7 @@
 
 	<!-- ========== Replace damage workers with CE ones ========== -->
 
+<!--
 	<Operation Class="PatchOperationReplace">
   	<xpath>*/DamageDef[workerClass = "DamageWorker_AddInjury"]/workerClass</xpath>
   	<value>
@@ -16,6 +17,7 @@
       <workerClass>CombatExtended.DamageWorker_FlameCE</workerClass>
   	</value>
 	</Operation>
+-->
 
 	<!-- ========== Add DefModExtension ========== -->
 
@@ -78,11 +80,13 @@
 
 	<!-- ========== Add Names for secondary damage inheritance ========== -->
 
+<!--
 	<Operation Class="PatchOperationAttributeSet">
   	<xpath>*/DamageDef[defName="Blunt"]</xpath>
     <attribute>Name</attribute>
     <value>BluntDamage</value>
 	</Operation>
+-->
 
 	<Operation Class="PatchOperationAttributeSet">
   	<xpath>*/DamageDef[defName="Bullet"]</xpath>
@@ -108,6 +112,15 @@
     <xpath>*/DamageDef[defName="Bomb"]/hediff</xpath>
     <value>
       <hediff>Blast</hediff>
+    </value>
+  </Operation>
+
+  <!-- ========== Replace redundant DamageWorker ========== -->
+
+  <Operation Class="PatchOperationReplace">
+    <xpath>*/DamageDef/workerClass[.="DamageWorker_Stab"]</xpath>
+    <value>
+      <workerClass>DamageWorker_AddInjury</workerClass>
     </value>
   </Operation>
 

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+	<Operation Class="PatchOperationSequence">
+	  <success>Always</success>
+	  <operations>
+	    <li Class="CombatExtended.PatchOperationFindMod">
+	      <modName>ExtendedStorageFluffyHarmonised</modName>
+	    </li>
+	    <li Class="PatchOperationAdd">
+	    	<xpath>*/ThingDef[defName="Storage_WoodenPallet"]/building/fixedStorageSettings/filter/categories</xpath>
+	    	<value>
+	    		<li>Ammo</li>
+	    	</value>
+	    </li>
+	    <li Class="PatchOperationRemove">
+	    	<xpath>*/ThingDef[defName="Storage_WoodenPallet"]/building/fixedStorageSettings/filter/thingDefs/li[.="MortarShell"]</xpath>
+	    </li>
+	  </operations>
+	</Operation>
+</Patch>
+

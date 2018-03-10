@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+
+	<Operation Class="PatchOperationSequence">
+		<success>Always</success>
+		<operations>
+			<li Class="CombatExtended.PatchOperationFindMod">
+				<modName>Mechanoids Extraordinaire</modName>
+			</li>
+			<li Class="PatchOperationReplace">
+				<xpath>*/HediffDef[defName="MechaTentacle"]/comps/li[@Class="HediffCompProperties_VerbGiver"]/verbs</xpath>
+				<value>
+					<verbs>
+						<li Class="CombatExtended.VerbPropertiesCE">
+							<verbClass>CombatExtended.Verb_MeleeAttackCE</verbClass>
+							<defaultCooldownTime>1.2</defaultCooldownTime>
+							<meleeDamageBaseAmount>13</meleeDamageBaseAmount>
+							<meleeDamageDef>Blunt</meleeDamageDef>
+							<meleeArmorPenetration>0.18</meleeArmorPenetration>
+						</li>
+					</verbs> 
+				</value>
+			</li>
+		</operations>
+	</Operation>
+
+</Patch>
