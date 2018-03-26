@@ -36,8 +36,35 @@
 					</tools>
 				</value>
 			</li>
-			
-		<!-- ========== Stone Shovel ========== -->
+			<li Class="PatchOperationAdd">
+				<xpath>*/ThingDef[defName="RTFTJ_Neo_Pick"]/statBases</xpath>
+				<value>
+					<Bulk>3</Bulk>
+				</value>
+			</li>
+			<li Class="PatchOperationSequence">
+				<success>Always</success>
+				<operations>
+					<li Class="PatchOperationTest">
+						<xpath>*/ThingDef[defName="RTFTJ_Neo_Pick"]/weaponTags</xpath>
+						<success>Invert</success>
+					</li>
+					<li Class="PatchOperationAdd">
+						<xpath>*/ThingDef[defName="RTFTJ_Neo_Pick"]</xpath>
+						<value>
+							<weaponTags />
+						</value>
+					</li>
+				</operations>
+			</li>
+			<li Class="PatchOperationAdd">
+				<xpath>*/ThingDef[defName="RTFTJ_Neo_Pick"]/weaponTags</xpath>
+				<value>
+					<li>CE_Sidearm_Melee</li>
+					<li>CE_OneHandedWeapon</li>
+				</value>
+			</li>
+			<!-- ========== Stone Shovel ========== -->
 			<li Class="PatchOperationReplace">
 				<xpath>*/ThingDef[defName="RTFTJ_Neo_Shovel"]/tools</xpath>
 				<value>
@@ -66,55 +93,35 @@
 					</tools>
 				</value>
 			</li>
-		</operations>
-	</Operation>		
-			<Operation Class="PatchOperationAdd">
-				<xpath>*/ThingDef[defName="RTFTJ_Neo_Pick"]/statBases</xpath>
-					<value>
-						<Bulk>3</Bulk>
-					</value>
-			</Operation>
-			<Operation Class="PatchOperationTest">
-				<xpath>*/ThingDef[defName="RTFTJ_Neo_Pick"]/weaponTags</xpath>
-				<success>Invert</success>
-			</Operation>
-			<Operation Class="PatchOperationAdd">
-				<xpath>*/ThingDef[defName="RTFTJ_Neo_Pick"]</xpath>
-					<value>
-						<weaponTags />
-					</value>
-			</Operation>
-			<Operation Class="PatchOperationAdd">
-				<xpath>*/ThingDef[defName="RTFTJ_Neo_Pick"]/weaponTags</xpath>
-					<value>
-						<li>CE_Sidearm_Melee</li>
-						<li>CE_OneHandedWeapon</li>
-					</value>
-			</Operation>
-			
-			<Operation Class="PatchOperationAdd">
+			<li Class="PatchOperationAdd">
 				<xpath>*/ThingDef[defName="RTFTJ_Neo_Shovel"]/statBases</xpath>
-					<value>
-						<Bulk>3</Bulk>
-					</value>
-			</Operation>
-			<Operation Class="PatchOperationTest">
+				<value>
+					<Bulk>3</Bulk>
+				</value>
+			</li>
+			<li Class="PatchOperationSequence">
+				<success>Always</success>
+				<operations>
+					<li Class="PatchOperationTest">
+						<xpath>*/ThingDef[defName="RTFTJ_Neo_Shovel"]/weaponTags</xpath>
+						<success>Invert</success>
+					</li>
+					<li Class="PatchOperationAdd">
+						<xpath>*/ThingDef[defName="RTFTJ_Neo_Shovel"]</xpath>
+						<value>
+							<weaponTags />
+						</value>
+					</li>
+				</operations>
+			</li>
+			<li Class="PatchOperationAdd">
 				<xpath>*/ThingDef[defName="RTFTJ_Neo_Shovel"]/weaponTags</xpath>
-					<success>Invert</success>
-			</Operation>
-			<Operation Class="PatchOperationAdd">
-				<xpath>*/ThingDef[defName="RTFTJ_Neo_Shovel"]</xpath>
-					<value>
-						<weaponTags />
-					</value>
-			</Operation>
-			<Operation Class="PatchOperationAdd">
-				<xpath>*/ThingDef[defName="RTFTJ_Neo_Shovel"]/weaponTags</xpath>
-					<value>
-						<li>CE_Sidearm_Melee</li>
-						<li>CE_OneHandedWeapon</li>
-					</value>
-			</Operation>
-		
+				<value>
+					<li>CE_Sidearm_Melee</li>
+					<li>CE_OneHandedWeapon</li>
+				</value>
+			</li>
+		</operations>
+	</Operation>
 
 </Patch>
