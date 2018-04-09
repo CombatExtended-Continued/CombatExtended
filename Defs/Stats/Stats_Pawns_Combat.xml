@@ -21,16 +21,16 @@
         <bonusPerLevel>0.1</bonusPerLevel>
       </li>
     </skillNeedFactors>
-    <capacityFactors>
+    <capacityOffsets>
       <li>
         <capacity>Consciousness</capacity>
-        <weight>1</weight>
+        <scale>1.2</scale>
       </li>
       <li>
         <capacity>Sight</capacity>
-        <weight>1</weight>
+        <scale>1.2</scale>
       </li>
-    </capacityFactors>
+    </capacityOffsets>
     <postProcessCurve>
       <points>
         <li>(0.0, 0.0)</li>
@@ -121,11 +121,11 @@
   <!-- ================================== Melee =======================================-->
 
   <!-- Doesn't do anything, just for display -->
-  <StatDef>
+  <StatDef Name="MeleeArmorPenetrationBase">
     <defName>MeleeArmorPenetration</defName>
     <workerClass>CombatExtended.StatWorker_MeleeArmorPenetration</workerClass>
     <label>melee armor penetration</label>
-    <description>Average armor penetration in melee. Determines how much damage is lost to enemy armor.</description>
+    <description>Armor penetration in melee. Determines how much damage is lost to enemy armor.</description>
     <category>PawnCombat</category>
     <displayPriorityInCategory>99</displayPriorityInCategory>
     <defaultBaseValue>0</defaultBaseValue>
@@ -147,15 +147,15 @@
     <skillNeedFactors>
       <li Class="SkillNeed_BaseBonus">
         <skill>Melee</skill>
-        <baseValue>0.1</baseValue>
+        <baseValue>0.08</baseValue>
         <bonusPerLevel>0.01</bonusPerLevel>
       </li>
     </skillNeedFactors>
     <capacityFactors>
-      <li>
+      <!-- <li>
         <capacity>Consciousness</capacity>
         <weight>1</weight>
-      </li>
+      </li> -->
       <li>
         <capacity>Sight</capacity>
         <weight>0.7</weight>
@@ -189,11 +189,12 @@
     <minValue>0</minValue>
     <maxValue>3.2</maxValue>
     <toStringStyle>PercentZero</toStringStyle>
+    <neverDisabled>true</neverDisabled>
     <skillNeedFactors>
       <li Class="SkillNeed_BaseBonus">
         <skill>Melee</skill>
-        <baseValue>0.1</baseValue>
-        <bonusPerLevel>0.015</bonusPerLevel>
+        <baseValue>0.05</baseValue>
+        <bonusPerLevel>0.0175</bonusPerLevel>
       </li>
     </skillNeedFactors>
     <capacityFactors>
@@ -230,19 +231,18 @@
     <minValue>0.0</minValue>
     <maxValue>3.2</maxValue>
     <toStringStyle>PercentZero</toStringStyle>
-    <noSkillFactor>0</noSkillFactor>
     <skillNeedFactors>
       <li Class="SkillNeed_BaseBonus">
         <skill>Melee</skill>
-        <baseValue>0.2</baseValue>
-        <bonusPerLevel>0.005</bonusPerLevel>
+        <baseValue>0.1</baseValue>
+        <bonusPerLevel>0.0125</bonusPerLevel>
       </li>
     </skillNeedFactors>
     <capacityFactors>
-      <li>
+      <!-- <li>
         <capacity>Consciousness</capacity>
         <weight>1</weight>
-      </li>
+      </li> -->
       <li>
         <capacity>Sight</capacity>
         <weight>0.7</weight>

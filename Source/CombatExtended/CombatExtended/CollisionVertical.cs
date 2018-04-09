@@ -33,9 +33,9 @@ namespace CombatExtended
         private static void CalculateHeightRange(Thing thing, out FloatRange heightRange, out float shotHeight)
         {
             shotHeight = 0;
+            heightRange = new FloatRange(0, 0);
             if (thing == null)
             {
-                heightRange = new FloatRange(0, 0);
                 return;
             }
             
@@ -49,6 +49,12 @@ namespace CombatExtended
             
             if (thing is Building)
             {
+            	var door = thing as Building_Door;
+            	if (door != null && door.Open)
+            	{
+            		return;		//returns heightRange = (0,0) & shotHeight = 0. If not open, doors have FillCategory.Full so returns (0, WallCollisionHeight)
+            	}
+            	
                 if (thing.def.Fillage == FillCategory.Full)
                 {
                     heightRange = new FloatRange(0, WallCollisionHeight);

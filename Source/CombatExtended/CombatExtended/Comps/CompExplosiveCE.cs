@@ -43,18 +43,17 @@ namespace CombatExtended
                 return;
             }
 			
-            // Fragmentation stuff
-            if (!Props.fragments.NullOrEmpty() && GenGrid.InBounds(posIV, map))
+            var projCE = parent as ProjectileCE;
+            
+            #region Fragmentation
+            if (!Props.fragments.NullOrEmpty())
             {
-            	
                 float edificeHeight = (new CollisionVertical(posIV.GetEdifice(map))).Max;
                 Vector2 exactOrigin = new Vector2(pos.x, pos.z);
                 float height;
                 
                 //Fragments fly from a 0 to 45 degree angle away from the explosion
                 var range = new FloatRange(0, Mathf.PI / 8f);
-                
-                var projCE = parent as ProjectileCE;
                 
                 if (projCE != null)
                 {
@@ -68,6 +67,7 @@ namespace CombatExtended
                 }
                 else
                 {
+                	//Height is not tracked on non-CE projectiles, so we assume this one's on top of the edifice
                 	height = edificeHeight;
                 }
                 
@@ -95,18 +95,20 @@ namespace CombatExtended
                     }
                 }
             }
+            #endregion
+            
             // Regular explosion stuff
             if (Props.explosionRadius > 0 && Props.explosionDamage > 0 && parent.def != null && GenGrid.InBounds(posIV, map))
             {
-                // Can't use GenExplosion because it no longer allows setting damage amount
-
                 // Copy-paste from GenExplosion
-                Explosion explosion = (Explosion)GenSpawn.Spawn(ThingDefOf.Explosion, posIV, map);
+                ExplosionCE explosion = GenSpawn.Spawn(CE_ThingDefOf.ExplosionCE, posIV, map) as ExplosionCE;
+                explosion.height = pos.y;
                 explosion.radius = Props.explosionRadius * scaleFactor;
                 explosion.damType = Props.explosionDamageDef;
                 explosion.instigator = instigator;
                 explosion.damAmount = GenMath.RoundRandom(Props.explosionDamage * scaleFactor);
                 explosion.weapon = null;
+                explosion.projectile = parent.def;
                 explosion.preExplosionSpawnThingDef = Props.preExplosionSpawnThingDef;
                 explosion.preExplosionSpawnChance = Props.preExplosionSpawnChance;
                 explosion.preExplosionSpawnThingCount = Props.preExplosionSpawnThingCount;
@@ -114,6 +116,13 @@ namespace CombatExtended
                 explosion.postExplosionSpawnChance = Props.postExplosionSpawnChance;
                 explosion.postExplosionSpawnThingCount = Props.postExplosionSpawnThingCount;
                 explosion.applyDamageToExplosionCellsNeighbors = Props.applyDamageToExplosionCellsNeighbors;
+		
+		// TODO: for some reason projectile goes to null
+                if (parent.def.projectile != null)
+                {
+                    explosion.chanceToStartFire = parent.def.projectile.explosionChanceToStartFire;
+                    explosion.dealMoreDamageAtCenter = parent.def.projectile.explosionDealMoreDamageAtCenter;
+                }
                 explosion.StartExplosion(Props.explosionDamageDef.soundExplosion);
             }
         }

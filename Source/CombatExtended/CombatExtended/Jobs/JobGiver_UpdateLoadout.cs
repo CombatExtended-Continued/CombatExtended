@@ -164,7 +164,7 @@ namespace CombatExtended
         	// Hint: The following block defines how to find items... pay special attention to the Predicates below.
         	ThingRequest req;
         	if (curSlot.genericDef != null)
-        		req = ThingRequest.ForGroup(ThingRequestGroup.HaulableEver);
+        		req = ThingRequest.ForGroup(curSlot.genericDef.thingRequestGroup);
         	else
         		req = curSlot.thingDef.Minifiable ? ThingRequest.ForGroup(ThingRequestGroup.MinifiedThing) : ThingRequest.ForDef(curSlot.thingDef);
         	Predicate<Thing> findItem;
@@ -199,7 +199,7 @@ namespace CombatExtended
 				{
 					// look for a thing inside caravan pack animals and prisoners.  EXCLUDE other colonists to avoid looping state.
 					List<Pawn> carriers = pawn.Map.mapPawns.AllPawns.Where(
-						p => p.inventory.innerContainer.Count > 0 && (p.RaceProps.packAnimal && p.Faction == pawn.Faction || p.IsPrisoner && p.HostFaction == pawn.Faction)
+						p => p.inventory.innerContainer.InnerListForReading.Any() && (p.RaceProps.packAnimal && p.Faction == pawn.Faction || p.IsPrisoner && p.HostFaction == pawn.Faction)
                         && pawn.CanReserveAndReach(p, PathEndMode.ClosestTouch, Danger.Deadly, int.MaxValue, 0)).ToList();
 					foreach (Pawn carrier in carriers)
 					{
@@ -214,7 +214,7 @@ namespace CombatExtended
 				}
                 if (curThing != null)
                 {
-                    if (!curThing.def.IsNutritionGivingIngestible && findCount / curSlot.count <= 0.5f) curPriority = ItemPriority.LowStock;
+                    if (!curThing.def.IsNutritionGivingIngestible && findCount / curSlot.count >= 0.5f) curPriority = ItemPriority.LowStock;
                     else curPriority = ItemPriority.Low;
                 }
             }
@@ -271,6 +271,7 @@ namespace CombatExtended
                 if (closestThing != null)
                 {
                 	if (closestThing.TryGetComp<CompEquippable>() != null
+                        && !(pawn.story != null && pawn.story.WorkTagIsDisabled(WorkTags.Violent))
                         && (pawn.health != null && pawn.health.capacities.CapableOf(PawnCapacityDefOf.Manipulation))
                         && (pawn.equipment == null || pawn.equipment.Primary == null || !loadout.Slots.Any(s => s.thingDef == pawn.equipment.Primary.def
                                                                                                            || (s.genericDef != null && s.countType == LoadoutCountType.pickupDrop 

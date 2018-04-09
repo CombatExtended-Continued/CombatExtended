@@ -193,6 +193,8 @@ namespace CombatExtended
                 }
                 if (reactJob != null && reactJob.def != pawn.CurJob?.def)
                 {
+                	//only reserve destination when we know for certain the pawn isn't already running for cover
+                	pawn.Map.pawnDestinationReservationManager.Reserve(pawn, reactJob, reactJob.GetTarget(TargetIndex.A).Cell);
                     pawn.jobs.StartJob(reactJob, JobCondition.InterruptForced, null, pawn.jobs.curJob?.def==JobDefOf.ManTurret);
                     LessonAutoActivator.TeachOpportunity(CE_ConceptDefOf.CE_SuppressionReaction, pawn, OpportunityType.Critical);
                 }

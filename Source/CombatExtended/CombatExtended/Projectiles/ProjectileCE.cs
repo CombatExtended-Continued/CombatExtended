@@ -260,27 +260,24 @@ namespace CombatExtended
         #endregion
         
         #region Angle
-        private float drawnShotAngle = 1000f;
         /// <summary>
-        /// Drawn shot angle [degrees] for input in the Draw() method. Takes into account the displayed arc corrections.
+        /// Based on equations of motion
         /// </summary>
-        public float DrawnShotAngleCorrection
-        {
-        	get
-        	{
-        		if (drawnShotAngle > 999f)
-        		{
-        			drawnShotAngle = Mathf.Rad2Deg*(Mathf.Sin(Mathf.Deg2Rad * shotRotation)*(shotAngle + Mathf.Atan2(shotHeight, DistanceTraveled)));
-        		}
-        		return drawnShotAngle;
-        	}
-        }
-        
         public Quaternion DrawRotation
         {
             get
             {
-            	return Quaternion.AngleAxis(shotRotation + Mathf.Lerp(-DrawnShotAngleCorrection, DrawnShotAngleCorrection, fTicks / StartingTicksToImpact) , Vector3.up);
+        		var w = (Destination - origin);
+        		
+        		float vx = w.x / StartingTicksToImpact;
+        		
+        		float vy = (w.y - shotHeight) / StartingTicksToImpact
+        			+ shotSpeed * Mathf.Sin(shotAngle) / GenTicks.TicksPerRealSecond
+        			- (GravityFactor * fTicks) / (GenTicks.TicksPerRealSecond * GenTicks.TicksPerRealSecond);
+        		
+        		return Quaternion.AngleAxis(
+            		Mathf.Rad2Deg*Mathf.Atan2(-vy, vx) + 90f
+            		, Vector3.up);
             }
         }
         
@@ -298,7 +295,7 @@ namespace CombatExtended
         /// </summary>
         public float shotAngle = 0f;
         /// <summary>
-        /// Angle rotation between shooter and destination [degrees].
+        /// Angle rotation between shooter and positive y-vector [degrees]. North: 0f, East: 90f, South: 180f, West: 270f.
         /// </summary>
         public float shotRotation = 0f;
         /// <summary>
@@ -312,6 +309,9 @@ namespace CombatExtended
         
         private float _gravityFactor = -1;
 
+        /// <summary>
+        /// Gravity factor in meters(cells) per second squared
+        /// </summary>
         private float GravityFactor
         {
             get
@@ -480,9 +480,9 @@ namespace CombatExtended
             List<Thing> mainThingList = new List<Thing>(base.Map.thingGrid.ThingsListAtFast(cell))
             	.Where(t => justWallsRoofs ? t.def.Fillage == FillCategory.Full : (t is Pawn || t.def.Fillage != FillCategory.None)).ToList();
 			
+	        //Find pawns in adjacent cells and append them to main list
             if (!justWallsRoofs)
             {
-	            //Find pawns in adjacent cells and append them to main list
 	            List<IntVec3> adjList = new List<IntVec3>();
 	            adjList.AddRange(GenAdj.CellsAdjacentCardinal(cell, Rot4.FromAngleFlat(shotRotation), new IntVec2(collisionCheckSize, 0)).ToList());
 	

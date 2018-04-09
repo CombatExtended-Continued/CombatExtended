@@ -38,6 +38,7 @@ namespace CombatExtended
         protected CompCharges compCharges = null;
         protected CompAmmoUser compAmmo = null;
         protected CompFireModes compFireModes = null;
+        protected CompChangeableProjectile compChangeable = null;
         private float shotSpeed = -1;
         
         private float rotationDegrees = 0f;
@@ -50,7 +51,7 @@ namespace CombatExtended
         #region Properties
 
         public VerbPropertiesCE VerbPropsCE => this.verbProps as VerbPropertiesCE;
-        public ProjectilePropertiesCE projectilePropsCE => this.ProjectileDef.projectile as ProjectilePropertiesCE;
+        public ProjectilePropertiesCE projectilePropsCE => this.Projectile.projectile as ProjectilePropertiesCE;
 
         // Returns either the pawn aiming the weapon or in case of turret guns the turret operator or null if neither exists
         public Pawn ShooterPawn => CasterPawn ?? CE_Utility.TryGetTurretOperator(this.caster);
@@ -81,13 +82,9 @@ namespace CombatExtended
                             shotSpeed = bracket.x;
                         }
                     }
-                    else if (CompAmmo != null && CompAmmo.CurrentAmmo != null)
-                    {
-                    	shotSpeed = CompAmmo.CurAmmoProjectile.projectile.speed;
-                    }
                     else
                     {
-                        shotSpeed = verbProps.defaultProjectile.projectile.speed;
+                    	shotSpeed = Projectile.projectile.speed;
                     }
                 }
                 return shotSpeed;
@@ -120,7 +117,7 @@ namespace CombatExtended
                 return compAmmo;
             }
         }
-        public ThingDef ProjectileDef
+        public ThingDef Projectile
         {
             get
             {
@@ -128,8 +125,24 @@ namespace CombatExtended
                 {
                 	return CompAmmo.CurAmmoProjectile;
                 }
+                if (CompChangeable != null && CompChangeable.Loaded)
+                {
+                	return CompChangeable.Projectile;
+                }
                 return this.VerbPropsCE.defaultProjectile;
             }
+        }
+        
+        protected CompChangeableProjectile CompChangeable
+        {
+        	get
+        	{
+	            if (compChangeable == null && ownerEquipment != null)
+	            {
+	                compChangeable = ownerEquipment.TryGetComp<CompChangeableProjectile>();
+	            }
+	            return compChangeable;
+        	}
         }
         
         protected CompFireModes CompFireModes
@@ -167,7 +180,7 @@ namespace CombatExtended
             		Shooter,
             		(!currentTarget.HasThing) ? null : currentTarget.Thing,
             		(ownerEquipment == null) ? null : ownerEquipment.def,
-            		ProjectileDef,
+            		Projectile,
             		VerbPropsCE.burstShotCount > 1)
             );
         }
@@ -216,7 +229,7 @@ namespace CombatExtended
 	            var coverRange = new CollisionVertical(report.cover).HeightRange;	//Get " " cover, assume it is the edifice
 	            
 	            // Projectiles with flyOverhead target the surface in front of the target
-	            if (ProjectileDef.projectile.flyOverhead)
+	            if (Projectile.projectile.flyOverhead)
 	            {
 	            	targetHeight = coverRange.max;
 	            }
@@ -249,7 +262,7 @@ namespace CombatExtended
                     }
 	           		targetHeight = targetRange.Average;
 	            }
-	            angleRadians += ProjectileCE.GetShotAngle(ShotSpeed, (newTargetLoc - sourceLoc).magnitude, targetHeight - ShotHeight, ProjectileDef.projectile.flyOverhead, projectilePropsCE.Gravity);
+	            angleRadians += ProjectileCE.GetShotAngle(ShotSpeed, (newTargetLoc - sourceLoc).magnitude, targetHeight - ShotHeight, Projectile.projectile.flyOverhead, projectilePropsCE.Gravity);
         	}
         	
 	        // ----------------------------------- STEP 4: Mechanical variation
@@ -332,7 +345,8 @@ namespace CombatExtended
             }
             report.shotSpeed = this.ShotSpeed;
             report.swayDegrees = this.SwayAmplitude;
-            report.spreadDegrees = this.ownerEquipment.GetStatValue(StatDef.Named("ShotSpread")) * this.projectilePropsCE.spreadMult;
+            var spreadmult = this.projectilePropsCE != null ? this.projectilePropsCE.spreadMult : 0f;
+            report.spreadDegrees = this.ownerEquipment.GetStatValue(StatDef.Named("ShotSpread")) * spreadmult;
             Thing cover;
             float smokeDensity;
             this.GetHighestCoverAndSmokeForTarget(target, out cover, out smokeDensity);
@@ -439,7 +453,7 @@ namespace CombatExtended
                 return true;
             }
             // Check thick roofs
-            if (ProjectileDef.projectile.flyOverhead)
+            if (Projectile.projectile.flyOverhead)
             {
                 RoofDef roofDef = caster.Map.roofGrid.RoofAt(targ.Cell);
                 if (roofDef != null && roofDef.isThickRoof)
@@ -448,18 +462,32 @@ namespace CombatExtended
                     return false;
                 }
             }
-            // Check for apparel
-            if (ShooterPawn != null && ShooterPawn.apparel != null)
+            if (ShooterPawn != null)
             {
-                List<Apparel> wornApparel = ShooterPawn.apparel.WornApparel;
-                foreach(Apparel current in wornApparel)
-                {
-                    if (!current.AllowVerbCast(root, caster.Map, targ))
-                    {
-                        report = "Shooting disallowed by " + current.LabelShort;
-                        return false;
-                    }
-                }
+            	// Check for capable of violence
+            	if (ShooterPawn.story != null
+		  && ShooterPawn.story.WorkTagIsDisabled(WorkTags.Violent))
+        	    {
+					report = "IsIncapableOfViolenceLower".Translate(new object[]
+					{
+						ShooterPawn.NameStringShort
+					});
+            		return false;
+        	    }
+            	
+           		// Check for apparel
+            	if (ShooterPawn.apparel != null)
+            	{
+	                List<Apparel> wornApparel = ShooterPawn.apparel.WornApparel;
+	                foreach(Apparel current in wornApparel)
+	                {
+	                    if (!current.AllowVerbCast(root, caster.Map, targ))
+	                    {
+	                        report = "Shooting disallowed by " + current.LabelShort;
+	                        return false;
+	                    }
+	                }
+            	}
             }
             // Check for line of sight
             ShootLine shootLine;
@@ -503,7 +531,7 @@ namespace CombatExtended
            	bool pelletMechanicsOnly = false;
             for (int i = 0; i < projectilePropsCE.pelletCount; i++)
             {
-                ProjectileCE projectile = (ProjectileCE)ThingMaker.MakeThing(ProjectileDef, null);
+                ProjectileCE projectile = (ProjectileCE)ThingMaker.MakeThing(Projectile, null);
                 GenSpawn.Spawn(projectile, shootLine.Source, caster.Map);
 	           	ShiftTarget(report, pelletMechanicsOnly);
 
@@ -568,7 +596,7 @@ namespace CombatExtended
                 return false;
             }
             //if (!this.verbProps.NeedsLineOfSight) This method doesn't consider the currently loaded projectile
-            if (ProjectileDef.projectile.flyOverhead)
+            if (Projectile.projectile.flyOverhead)
             {
                 resultingLine = new ShootLine(root, targ.Cell);
                 return true;
