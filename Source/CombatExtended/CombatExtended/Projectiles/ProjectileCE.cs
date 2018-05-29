@@ -775,7 +775,6 @@ namespace CombatExtended
 			
 			//Spawn things if not an explosive but preExplosionSpawnThingDef != null
             if (Controller.settings.EnableAmmoSystem
-	        	&& Controller.settings.ReuseNeolithicProjectiles
 	    		&& comp == null
 		    	&& Position.IsValid
 				&& def.projectile.preExplosionSpawnChance > 0
@@ -788,7 +787,7 @@ namespace CombatExtended
 				{
 					FilthMaker.MakeFilth(Position, Map, thingDef, 1);
 				}
-				else
+				else if (Controller.settings.ReuseNeolithicProjectiles)
 				{
 					Thing reusableAmmo = ThingMaker.MakeThing(thingDef, null);
 					reusableAmmo.stackCount = 1;
