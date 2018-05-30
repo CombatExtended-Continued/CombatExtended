@@ -245,7 +245,7 @@ namespace CombatExtended
 
             if (dinfo.Weapon != null)
             {
-                // Case 1: projectile attack
+                // Case 1: projectile attack (Weapon.projectile indicates that Weapon IS a projectile)
                 ProjectilePropertiesCE projectileProps = dinfo.Weapon.projectile as ProjectilePropertiesCE;
                 if (projectileProps != null)
                 {
@@ -267,16 +267,19 @@ namespace CombatExtended
                             return 0;
                         }
                         var penetrationMult = equipment.GetStatValue(CE_StatDefOf.MeleePenetrationFactor);
-                        var tool = equipment.def.tools.OfType<ToolCE>().GetUsedTool(dinfo);
-                        
-                        return tool.armorPenetration * penetrationMult;
+                        var tool = equipment.def.tools?.OfType<ToolCE>().GetUsedTool(dinfo);
+
+                        if (tool != null)
+                            return tool.armorPenetration * penetrationMult;
                     }
                     
                     // Case 2.2: .. of a ranged weapon
                     if (dinfo.Weapon.IsRangedWeapon)
                     {
-                    	var tool = dinfo.Weapon.tools.OfType<ToolCE>().GetUsedTool(dinfo);
-                    	return tool.armorPenetration;
+                    	var tool = dinfo.Weapon.tools?.OfType<ToolCE>().GetUsedTool(dinfo);
+
+                        if (tool != null)
+                            return tool.armorPenetration;
                     }
                     
                     // Case 2.3: .. of the pawn
@@ -289,7 +292,7 @@ namespace CombatExtended
                         HediffCompProperties_VerbGiver compProps = dinfo.WeaponLinkedHediff?.CompPropsFor(typeof(HediffComp_VerbGiver)) as HediffCompProperties_VerbGiver;
                         if (compProps != null)
                         {
-                        	var tool = compProps.tools.OfType<ToolCE>().GetUsedTool(dinfo);
+                        	var tool = compProps.tools?.OfType<ToolCE>().GetUsedTool(dinfo);
                         	
                         	if (tool != null)
                         		return tool.armorPenetration;
