@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+	
+	<Operation Class="PatchOperationSequence">
+		<success>Always</success>
+		<operations>
+			<li Class="CombatExtended.PatchOperationFindMod">
+				<modName>Jernfalk's Standalone Horses</modName>
+			</li>
+			<li Class="PatchOperationAddModExtension">
+				<xpath>*/ThingDef[defName="Jernfalk_Horse"]</xpath>
+				<value>
+					<li Class="CombatExtended.RacePropertiesExtensionCE">
+						<bodyShape>Quadruped</bodyShape>
+					</li>
+				</value>
+			</li>
+			<li Class="PatchOperationAdd">
+				<xpath>*/ThingDef[defName="Jernfalk_Horse"]/statBases</xpath>
+				<value>
+					<MeleeDodgeChance>0.15</MeleeDodgeChance>
+					<MeleeCritChance>0.12</MeleeCritChance>
+					<MeleeParryChance>0.1</MeleeParryChance>
+				</value>
+			</li>
+			<li Class="PatchOperationReplace">
+				<xpath>*/ThingDef[defName="Jernfalk_Horse"]/verbs</xpath>
+				<value>
+					<verbs>
+						<li Class="CombatExtended.VerbPropertiesCE">
+							<verbClass>CombatExtended.Verb_MeleeAttackCE</verbClass>
+							<defaultCooldownTime>1.65</defaultCooldownTime>
+							<meleeDamageBaseAmount>9</meleeDamageBaseAmount>
+							<meleeDamageDef>Blunt</meleeDamageDef>
+							<linkedBodyPartsGroup>FrontLeftLeg</linkedBodyPartsGroup>
+							<meleeArmorPenetration>0.102</meleeArmorPenetration>
+						</li>
+						<li Class="CombatExtended.VerbPropertiesCE">
+							<verbClass>CombatExtended.Verb_MeleeAttackCE</verbClass>
+							<defaultCooldownTime>1.65</defaultCooldownTime>
+							<meleeDamageBaseAmount>9</meleeDamageBaseAmount>
+							<meleeDamageDef>Blunt</meleeDamageDef>
+							<linkedBodyPartsGroup>FrontRightLeg</linkedBodyPartsGroup>
+							<meleeArmorPenetration>0.102</meleeArmorPenetration>
+						</li>
+						<li Class="CombatExtended.VerbPropertiesCE">
+							<verbClass>CombatExtended.Verb_MeleeAttackCE</verbClass>
+							<defaultCooldownTime>1</defaultCooldownTime>
+							<meleeDamageBaseAmount>4</meleeDamageBaseAmount>
+							<meleeDamageDef>Bite</meleeDamageDef>
+							<linkedBodyPartsGroup>Teeth</linkedBodyPartsGroup>
+							<meleeArmorPenetration>0.128</meleeArmorPenetration>
+						</li>
+					</verbs>
+				</value>
+			</li>
+			<li Class="PatchOperationAddModExtension">
+				<xpath>*/ThingDef[defName="Jernfalk_WoolyHorse"]</xpath>
+				<value>
+					<li Class="CombatExtended.RacePropertiesExtensionCE">
+						<bodyShape>Quadruped</bodyShape>
+					</li>
+				</value>
+			</li>
+			<li Class="PatchOperationAdd">
+				<xpath>*/ThingDef[defName="Jernfalk_WoolyHorse"]/statBases</xpath>
+				<value>
+					<MeleeDodgeChance>0.19</MeleeDodgeChance>
+					<MeleeCritChance>0.15</MeleeCritChance>
+					<MeleeParryChance>0.11</MeleeParryChance>
+				</value>
+			</li>
+			<li Class="PatchOperationReplace">
+				<xpath>*/ThingDef[defName="Jernfalk_WoolyHorse"]/verbs</xpath>
+				<value>
+					<verbs>
+						<li Class="CombatExtended.VerbPropertiesCE">
+							<verbClass>CombatExtended.Verb_MeleeAttackCE</verbClass>
+							<defaultCooldownTime>1.65</defaultCooldownTime>
+							<meleeDamageBaseAmount>8</meleeDamageBaseAmount>
+							<meleeDamageDef>Scratch</meleeDamageDef>
+							<linkedBodyPartsGroup>FrontLeftPaw</linkedBodyPartsGroup>
+							<surpriseAttack>
+								<extraMeleeDamages>
+									<li>
+										<def>Stun</def>
+										<amount>15</amount>
+									</li>
+								</extraMeleeDamages>
+							</surpriseAttack>
+							<meleeArmorPenetration>0.115</meleeArmorPenetration>
+						</li>
+						<li Class="CombatExtended.VerbPropertiesCE">
+							<verbClass>CombatExtended.Verb_MeleeAttackCE</verbClass>
+							<defaultCooldownTime>1.65</defaultCooldownTime>
+							<meleeDamageBaseAmount>8</meleeDamageBaseAmount>
+							<meleeDamageDef>Scratch</meleeDamageDef>
+							<linkedBodyPartsGroup>FrontRightPaw</linkedBodyPartsGroup>
+							<surpriseAttack>
+								<extraMeleeDamages>
+									<li>
+										<def>Stun</def>
+										<amount>15</amount>
+									</li>
+								</extraMeleeDamages>
+							</surpriseAttack>
+							<meleeArmorPenetration>0.115</meleeArmorPenetration>
+						</li>
+						<li Class="CombatExtended.VerbPropertiesCE">
+							<verbClass>CombatExtended.Verb_MeleeAttackCE</verbClass>
+							<defaultCooldownTime>1.65</defaultCooldownTime>
+							<meleeDamageBaseAmount>11</meleeDamageBaseAmount>
+							<meleeDamageDef>Bite</meleeDamageDef>
+							<linkedBodyPartsGroup>Teeth</linkedBodyPartsGroup>
+							<surpriseAttack>
+								<extraMeleeDamages>
+									<li>
+										<def>Stun</def>
+										<amount>20</amount>
+									</li>
+								</extraMeleeDamages>
+							</surpriseAttack>
+							<meleeArmorPenetration>0.205</meleeArmorPenetration>
+						</li>
+					</verbs>
+				</value>
+			</li>
+		</operations>
+	</Operation>
+	
+</Patch>
