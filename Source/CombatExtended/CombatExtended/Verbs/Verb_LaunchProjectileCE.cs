@@ -345,7 +345,8 @@ namespace CombatExtended
             }
             report.shotSpeed = this.ShotSpeed;
             report.swayDegrees = this.SwayAmplitude;
-            report.spreadDegrees = this.ownerEquipment.GetStatValue(StatDef.Named("ShotSpread")) * this.projectilePropsCE.spreadMult;
+            var spreadmult = this.projectilePropsCE != null ? this.projectilePropsCE.spreadMult : 0f;
+            report.spreadDegrees = this.ownerEquipment.GetStatValue(StatDef.Named("ShotSpread")) * spreadmult;
             Thing cover;
             float smokeDensity;
             this.GetHighestCoverAndSmokeForTarget(target, out cover, out smokeDensity);
