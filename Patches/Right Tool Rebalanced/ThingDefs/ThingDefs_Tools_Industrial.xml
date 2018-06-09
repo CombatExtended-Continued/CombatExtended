@@ -183,162 +183,183 @@
 		</li>
 	</operations>
 </Operation>
-		<Operation Class="PatchOperationAdd">
-			<xpath>*/ThingDef[defName="RTFTJ_Pickaxe"]/statBases</xpath>
-			<value>
-		  <Bulk>2.72</Bulk>
-			</value>
-		</Operation>
-    	<Operation Class="PatchOperationTest">
-			<xpath>*/ThingDef[defName="RTFTJ_Pickaxe"]/weaponTags</xpath>
-			<success>Invert</success>
-    	</Operation>
-    	<Operation Class="PatchOperationAdd">
-			<xpath>*/ThingDef[defName="RTFTJ_Pickaxe"]</xpath>
-			<value>
-				<weaponTags />
-			</value>
-    	</Operation>
-		<Operation Class="PatchOperationAdd">
-			<xpath>*/ThingDef[defName="RTFTJ_Pickaxe"]/weaponTags</xpath>
-			<value>
-		  <li>CE_Sidearm_Melee</li>
-		  <li>CE_OneHandedWeapon</li>
-			</value>
-		</Operation>
-		
-		
-		<Operation Class="PatchOperationAdd">
-			<xpath>*/ThingDef[defName="RTFTJ_HandAxe"]/statBases</xpath>
-			<value>
-		  <Bulk>2.27</Bulk>
-			</value>
-		</Operation>
-    	<Operation Class="PatchOperationTest">
-			<xpath>*/ThingDef[defName="RTFTJ_HandAxe"]/weaponTags</xpath>
-			<success>Invert</success>
-    	</Operation>
-    	<Operation Class="PatchOperationAdd">
-			<xpath>*/ThingDef[defName="RTFTJ_HandAxe"]</xpath>
+
+	<Operation Class="PatchOperationSequence">
+		<success>Always</success>
+		<operations>
+			<li Class="CombatExtended.PatchOperationFindMod">
+				<modName>Right Tool Rebalanced</modName>
+			</li>
+
+			<li Class="PatchOperationAdd">
+				<xpath>*/ThingDef[defName="RTFTJ_Pickaxe"]/statBases</xpath>
+				<value>
+			  <Bulk>2.72</Bulk>
+				</value>
+			</li>
+
+	    <li Class="PatchOperationTest">
+				<xpath>*/ThingDef[defName="RTFTJ_Pickaxe"]/weaponTags</xpath>
+				<success>Invert</success>
+	    </li>
+
+	    <li Class="PatchOperationAdd">
+				<xpath>*/ThingDef[defName="RTFTJ_Pickaxe"]</xpath>
 				<value>
 					<weaponTags />
 				</value>
-    	</Operation>
+	    </li>
 
-		<Operation Class="PatchOperationAdd">
-			<xpath>*/ThingDef[defName="RTFTJ_HandAxe"]/weaponTags</xpath>
-			<value>
-				<li>CE_Sidearm_Melee</li>
-				<li>CE_OneHandedWeapon</li>
-			</value>
-		</Operation>
-		
-		<Operation Class="PatchOperationAdd">
-			<xpath>*/ThingDef[defName="RTFTJ_Hammer"]/statBases</xpath>
-			<value>
-				<Bulk>1.82</Bulk>
-			</value>
-		</Operation>
-    	<Operation Class="PatchOperationTest">
-			<xpath>*/ThingDef[defName="RTFTJ_Hammer"]/weaponTags</xpath>
-			<success>Invert</success>
-    	</Operation>
-    	<Operation Class="PatchOperationAdd">
-			<xpath>*/ThingDef[defName="RTFTJ_Hammer"]</xpath>
-			<value>
-				<weaponTags />
-			</value>
-    	</Operation>
-		<Operation Class="PatchOperationAdd">
-			<xpath>*/ThingDef[defName="RTFTJ_Hammer"]/weaponTags</xpath>
-			<value>
-		  <li>CE_Sidearm_Melee</li>
-		  <li>CE_OneHandedWeapon</li>
-			</value>
-		</Operation>
-		
-		<Operation Class="PatchOperationAdd">
-			<xpath>*/ThingDef[defName="RTFTJ_Drill"]/statBases</xpath>
-			<value>
-				<Bulk>3.63</Bulk>
-			</value>
-		</Operation>
-    	<Operation Class="PatchOperationTest">
-			<xpath>*/ThingDef[defName="RTFTJ_Drill"]/weaponTags</xpath>
-			<success>Invert</success>
-    	</Operation>
-    	<Operation Class="PatchOperationAdd">
-			<xpath>*/ThingDef[defName="RTFTJ_Drill"]</xpath>
-			<value>
-				<weaponTags />
-			</value>
-    	</Operation>
-		<Operation Class="PatchOperationAdd">
-			<xpath>*/ThingDef[defName="RTFTJ_Drill"]/weaponTags</xpath>
-			<value>
-				<li>CE_Sidearm_Melee</li>
-			</value>
-		</Operation>
-		
-		<Operation Class="PatchOperationAdd">
-			<xpath>*/ThingDef[defName="RTFTJ_Chainsaw"]/statBases</xpath>
-			<value>
-				<Bulk>2.82</Bulk>
-			</value>
-		</Operation>
-		<Operation Class="PatchOperationTest">
-			<xpath>*/ThingDef[defName="RTFTJ_Chainsaw"]/weaponTags</xpath>
-			<success>Invert</success>
-    	</Operation>
-    	<Operation Class="PatchOperationAdd">
-			<xpath>*/ThingDef[defName="RTFTJ_Chainsaw"]</xpath>
-			<value>
-				<weaponTags />
-			</value>
-    	</Operation>
-		<Operation Class="PatchOperationAdd">
-			<xpath>*/ThingDef[defName="RTFTJ_Chainsaw"]/weaponTags</xpath>
-			<value>
-				<li>CE_Sidearm_Melee</li>
-			</value>
-		</Operation>
-		
-		<Operation Class="PatchOperationAdd">
-			<xpath>*/ThingDef[defName="RTFTJ_Autohammer"]/statBases</xpath>
-			<value>
-			<Bulk>3</Bulk>
-			</value>
-		</Operation>
-    	<Operation Class="PatchOperationTest">
-			<xpath>*/ThingDef[defName="RTFTJ_Autohammer"]/weaponTags</xpath>
-			<success>Invert</success>
-    	</Operation>
-    	<Operation Class="PatchOperationAdd">
-			<xpath>*/ThingDef[defName="RTFTJ_Autohammer"]</xpath>
-			<value>
-				<weaponTags />
-			</value>
-    	</Operation>
-		<Operation Class="PatchOperationAdd">
-			<xpath>*/ThingDef[defName="RTFTJ_Autohammer"]/weaponTags</xpath>
-			<value>
-		  <li>CE_Sidearm_Melee</li>
-			</value>
-		</Operation>
-		<!-- ========== Belts ========== -->
-		<Operation Class="PatchOperationAdd">
-			<xpath>*/ThingDef[defName="RTFTJ_Toolbelt"]/statBases</xpath>
-			<value>
-		  <Bulk>7.5</Bulk>
-			</value>
-		</Operation>
-		
-		<Operation Class="PatchOperationAdd">
-			<xpath>*/ThingDef[defName="RTFTJ_ToolbeltAdv"]/statBases</xpath>
-			<value>
-		  <Bulk>10</Bulk>
-			</value>
-		</Operation>
+			<li Class="PatchOperationAdd">
+				<xpath>*/ThingDef[defName="RTFTJ_Pickaxe"]/weaponTags</xpath>
+				<value>
+			  	<li>CE_Sidearm_Melee</li>
+			  	<li>CE_OneHandedWeapon</li>
+				</value>
+			</li>
+			
+			
+			<li Class="PatchOperationAdd">
+				<xpath>*/ThingDef[defName="RTFTJ_HandAxe"]/statBases</xpath>
+				<value>
+			  	<Bulk>2.27</Bulk>
+				</value>
+			</li>
+
+	    <li Class="PatchOperationTest">
+				<xpath>*/ThingDef[defName="RTFTJ_HandAxe"]/weaponTags</xpath>
+				<success>Invert</success>
+	    </li>
+
+	    <li Class="PatchOperationAdd">
+				<xpath>*/ThingDef[defName="RTFTJ_HandAxe"]</xpath>
+				<value>
+					<weaponTags />
+				</value>
+	    </li>
+
+			<li Class="PatchOperationAdd">
+				<xpath>*/ThingDef[defName="RTFTJ_HandAxe"]/weaponTags</xpath>
+				<value>
+					<li>CE_Sidearm_Melee</li>
+					<li>CE_OneHandedWeapon</li>
+				</value>
+			</li>
+			
+			<li Class="PatchOperationAdd">
+				<xpath>*/ThingDef[defName="RTFTJ_Hammer"]/statBases</xpath>
+				<value>
+					<Bulk>1.82</Bulk>
+				</value>
+			</li>
+	    	
+	    <li Class="PatchOperationTest">
+				<xpath>*/ThingDef[defName="RTFTJ_Hammer"]/weaponTags</xpath>
+				<success>Invert</success>
+	    </li>
+
+	    <li Class="PatchOperationAdd">
+				<xpath>*/ThingDef[defName="RTFTJ_Hammer"]</xpath>
+				<value>
+					<weaponTags />
+				</value>
+	    </li>
+
+			<li Class="PatchOperationAdd">
+				<xpath>*/ThingDef[defName="RTFTJ_Hammer"]/weaponTags</xpath>
+				<value>
+			  <li>CE_Sidearm_Melee</li>
+			  <li>CE_OneHandedWeapon</li>
+				</value>
+			</li>
+			
+			<li Class="PatchOperationAdd">
+				<xpath>*/ThingDef[defName="RTFTJ_Drill"]/statBases</xpath>
+				<value>
+					<Bulk>3.63</Bulk>
+				</value>
+			</li>
+
+	    <li Class="PatchOperationTest">
+				<xpath>*/ThingDef[defName="RTFTJ_Drill"]/weaponTags</xpath>
+				<success>Invert</success>
+	    </li>
+
+	    <li Class="PatchOperationAdd">
+				<xpath>*/ThingDef[defName="RTFTJ_Drill"]</xpath>
+				<value>
+					<weaponTags />
+				</value>
+	    </li>
+
+			<li Class="PatchOperationAdd">
+				<xpath>*/ThingDef[defName="RTFTJ_Drill"]/weaponTags</xpath>
+				<value>
+					<li>CE_Sidearm_Melee</li>
+				</value>
+			</li>
+			
+			<li Class="PatchOperationAdd">
+				<xpath>*/ThingDef[defName="RTFTJ_Chainsaw"]/statBases</xpath>
+				<value>
+					<Bulk>2.82</Bulk>
+				</value>
+			</li>
+			<li Class="PatchOperationTest">
+				<xpath>*/ThingDef[defName="RTFTJ_Chainsaw"]/weaponTags</xpath>
+				<success>Invert</success>
+	    	</li>
+	    	<li Class="PatchOperationAdd">
+				<xpath>*/ThingDef[defName="RTFTJ_Chainsaw"]</xpath>
+				<value>
+					<weaponTags />
+				</value>
+	    	</li>
+			<li Class="PatchOperationAdd">
+				<xpath>*/ThingDef[defName="RTFTJ_Chainsaw"]/weaponTags</xpath>
+				<value>
+					<li>CE_Sidearm_Melee</li>
+				</value>
+			</li>
+			
+			<li Class="PatchOperationAdd">
+				<xpath>*/ThingDef[defName="RTFTJ_Autohammer"]/statBases</xpath>
+				<value>
+				<Bulk>3</Bulk>
+				</value>
+			</li>
+	    	<li Class="PatchOperationTest">
+				<xpath>*/ThingDef[defName="RTFTJ_Autohammer"]/weaponTags</xpath>
+				<success>Invert</success>
+	    	</li>
+	    	<li Class="PatchOperationAdd">
+				<xpath>*/ThingDef[defName="RTFTJ_Autohammer"]</xpath>
+				<value>
+					<weaponTags />
+				</value>
+	    	</li>
+			<li Class="PatchOperationAdd">
+				<xpath>*/ThingDef[defName="RTFTJ_Autohammer"]/weaponTags</xpath>
+				<value>
+			  <li>CE_Sidearm_Melee</li>
+				</value>
+			</li>
+			<!-- ========== Belts ========== -->
+			<li Class="PatchOperationAdd">
+				<xpath>*/ThingDef[defName="RTFTJ_Toolbelt"]/statBases</xpath>
+				<value>
+			  <Bulk>7.5</Bulk>
+				</value>
+			</li>
+			
+			<li Class="PatchOperationAdd">
+				<xpath>*/ThingDef[defName="RTFTJ_ToolbeltAdv"]/statBases</xpath>
+				<value>
+			  <Bulk>10</Bulk>
+				</value>
+			</li>
+		</operations>
+	</Operation>
 	
 
 </Patch>
