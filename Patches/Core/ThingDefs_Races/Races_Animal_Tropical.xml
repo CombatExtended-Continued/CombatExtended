@@ -171,30 +171,14 @@
 		</value>
 	</Operation>
 
-	<Operation Class="PatchOperationSequence">
-  	<success>Always</success>
-  	<operations>
-    	<li Class="PatchOperationTest">
-      	<xpath>*/ThingDef[defName="Boomalope"]/comps</xpath>
-      	<success>Invert</success>
-    	</li>
-    	<li Class="PatchOperationAdd">
-      	<xpath>*/ThingDef[defName="Boomalope"]</xpath>
-      	<value>
-        	<comps />
-      	</value>
-    	</li>
-  	</operations>
-	</Operation>
-
-	<Operation Class="PatchOperationAdd">
-		<xpath>*/ThingDef[defName="Boomalope"]/comps</xpath>
+	<Operation Class="PatchOperationReplace">
+		<xpath>*/ThingDef[defName="Boomalope"]/comps/li[@Class="CompProperties_Milkable"]</xpath>
 		<value>
 			<li Class="CombatExtended.CompProperties_ShearableRenameable">
 			  <compClass>CombatExtended.CompShearableRenameable</compClass>
 			  <growthLabel>Chemical fullness</growthLabel>
-			  <shearIntervalDays>20</shearIntervalDays>
-			  <woolAmount>20</woolAmount>
+			  <shearIntervalDays>10</shearIntervalDays>
+			  <woolAmount>10</woolAmount>
 			  <woolDef>FSX</woolDef>
 			</li>
 		</value>

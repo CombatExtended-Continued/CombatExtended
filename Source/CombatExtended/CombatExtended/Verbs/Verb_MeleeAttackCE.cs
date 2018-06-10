@@ -133,7 +133,7 @@ namespace CombatExtended
                         Apparel shield = defender.apparel.WornApparel.FirstOrDefault(x => x is Apparel_Shield);
                         bool isShieldBlock = shield != null && Rand.Chance(ShieldBlockChance);
                         Thing parryThing = isShieldBlock ? shield
-                            : defender.equipment?.Primary != null ? defender.equipment.Primary : defender;
+                            : defender.equipment?.Primary ?? defender;
 
                         if (Rand.Chance(GetComparativeChanceAgainst(defender, casterPawn, CE_StatDefOf.MeleeCritChance, BaseCritChance)))
                         {
@@ -188,8 +188,8 @@ namespace CombatExtended
                 CreateCombatLog(RulePackDefOf.Combat_Miss);
             }
             if (!moteText.NullOrEmpty())
-                MoteMaker.ThrowText(targetThing.PositionHeld.ToVector3Shifted(), casterPawn.Map, moteText);
-            soundDef.PlayOneShot(new TargetInfo(targetThing.PositionHeld, casterPawn.Map, false));
+                MoteMaker.ThrowText(targetThing.PositionHeld.ToVector3Shifted(), targetThing.MapHeld, moteText);
+            soundDef.PlayOneShot(new TargetInfo(targetThing.PositionHeld, targetThing.MapHeld));
             casterPawn.Drawer.Notify_MeleeAttackOn(targetThing);
             if (defender != null && !defender.Dead)
             {
