@@ -126,6 +126,8 @@ namespace CombatExtended
             }
         }
 
+        public bool IsCrouchWalking { get; private set; }
+
         #endregion
 
         #region Methods
@@ -198,6 +200,11 @@ namespace CombatExtended
                     pawn.jobs.StartJob(reactJob, JobCondition.InterruptForced, null, pawn.jobs.curJob?.def==JobDefOf.ManTurret);
                     LessonAutoActivator.TeachOpportunity(CE_ConceptDefOf.CE_SuppressionReaction, pawn, OpportunityType.Critical);
                 }
+                else
+                {
+                    // Crouch-walk
+                    IsCrouchWalking = true;
+                }
                 // Throw taunt
                 if (Rand.Chance(0.01f))
                 {
@@ -225,6 +232,9 @@ namespace CombatExtended
                 }
                 currentSuppression -= Mathf.Min(suppressionDecayRate, currentSuppression);
                 isSuppressed = currentSuppression > 0;
+
+                // Clear crouch-walking
+                if (!isSuppressed) IsCrouchWalking = false;
 
                 //Decay location suppression
                 locSuppressionAmount -= Mathf.Min(suppressionDecayRate, locSuppressionAmount);
