@@ -16,6 +16,13 @@
 		<value>CombatExtended.ProjectilePropertiesCE</value>
 	</Operation>
 
+	<Operation Class="PatchOperationAdd">
+		<xpath>*/ThingDef[@Name="BaseGrenadeProjectile"]/projectile</xpath>
+		<value>
+      <explosionDealMoreDamageAtCenter>true</explosionDealMoreDamageAtCenter>
+    </value>
+	</Operation>
+
 	<Operation Class="PatchOperationReplace">
 		<xpath>*/ThingDef[@Name="BaseGrenadeProjectile"]/projectile/speed</xpath>
 		<value>
@@ -51,6 +58,7 @@
 			  <explosionDelay>60</explosionDelay>
 			  <dropsCasings>true</dropsCasings>
 			  <casingMoteDefname>Mote_GrenadePin</casingMoteDefname>
+      	<applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
 			</projectile>
 		</value>
 	</Operation>
