@@ -114,5 +114,30 @@ namespace CombatExtended
             if (cover.def.category == ThingCategory.Plant) return cover.def.fillPercent; // Plant cover only has a random chance to block gunfire and is rated lower
             return 1;
         }
+
+        public static List<MentalStateDef> GetPossibleBreaks(Pawn pawn)
+        {
+            var breaks = new List<MentalStateDef>();
+            var traits = pawn.story.traits;
+
+            // Panic break
+            if (!(traits.HasTrait(TraitDefOf.Bloodlust)
+                || traits.DegreeOfTrait(TraitDefOf.Nerves) > 0
+                || traits.DegreeOfTrait((CE_TraitDefOf.Bravery)) > 1))
+            {
+                breaks.Add(pawn.IsColonist?CE_MentalStateDefOf.WanderOwnRoom : MentalStateDefOf.PanicFlee);
+                breaks.Add(CE_MentalStateDefOf.ShellShock);
+            }
+
+            // Attack break
+            if (!(pawn.story.WorkTagIsDisabled(WorkTags.Violent)
+                  || traits.DegreeOfTrait(TraitDefOf.Nerves) < 0
+                  || traits.DegreeOfTrait(CE_TraitDefOf.Bravery) < 0))
+            {
+                breaks.Add(CE_MentalStateDefOf.CombatFrenzy);
+            }
+
+            return breaks;
+        }
     }
 }

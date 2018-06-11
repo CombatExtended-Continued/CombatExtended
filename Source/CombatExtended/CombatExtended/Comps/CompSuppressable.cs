@@ -16,8 +16,11 @@ namespace CombatExtended
         private const float minSuppressionDist = 5f;        //Minimum distance to be suppressed from, so melee won't be suppressed if it closes within this distance
         private const float maxSuppression = 1050f;          //Cap to prevent suppression from building indefinitely
         private const int TicksForDecayStart = 120;          // How long since last suppression before decay starts
-        private const float suppressionDecayRate = 5f;    // How much suppression decays per tick
-        private const int ticksPerMote = 150;               //How many ticks between throwing a mote
+        private const float SuppressionDecayRate = 5f;    // How much suppression decays per tick
+        private const int TicksPerMote = 150;               // How many ticks between throwing a mote
+
+        private const int MinTicksUntilMentalBreak = 1800;  // How long until pawn can have a mental break
+        private const float ChanceBreakPerTick = 0.001f;    // How likely we are to break each tick above the threshold
 
         #endregion
 
@@ -37,6 +40,7 @@ namespace CombatExtended
         public bool isSuppressed = false;
 
         private int ticksUntilDecay = 0;
+        private int ticksHunkered;
 
         #endregion
 
@@ -218,6 +222,25 @@ namespace CombatExtended
         {
             base.CompTick();
 
+            // Update suppressed tick counter and check for mental breaks
+            if (!isSuppressed)
+                ticksHunkered = 0;
+            else if (IsHunkering)
+                ticksHunkered++;
+
+            if (ticksHunkered > MinTicksUntilMentalBreak && Rand.Chance(ChanceBreakPerTick))
+            {
+                var pawn = (Pawn) parent;
+                if (pawn.mindState != null && !pawn.mindState.mentalStateHandler.InMentalState)
+                {
+                    var possibleBreaks = SuppressionUtility.GetPossibleBreaks(pawn);
+                    if (possibleBreaks.Any())
+                    {
+                        pawn.mindState.mentalStateHandler.TryStartMentalState(possibleBreaks.RandomElement());
+                    }
+                }
+            }
+
             //Apply decay once per second
             if(ticksUntilDecay > 0)
             {
@@ -228,20 +251,20 @@ namespace CombatExtended
                 //Decay global suppression
                 if (Controller.settings.DebugShowSuppressionBuildup && Gen.IsHashIntervalTick(parent, 30))
                 {
-                    MoteMaker.ThrowText(parent.DrawPos, parent.Map, "-" + (suppressionDecayRate * 30).ToString(), Color.red);
+                    MoteMaker.ThrowText(parent.DrawPos, parent.Map, "-" + (SuppressionDecayRate * 30), Color.red);
                 }
-                currentSuppression -= Mathf.Min(suppressionDecayRate, currentSuppression);
+                currentSuppression -= Mathf.Min(SuppressionDecayRate, currentSuppression);
                 isSuppressed = currentSuppression > 0;
 
                 // Clear crouch-walking
                 if (!isSuppressed) IsCrouchWalking = false;
 
                 //Decay location suppression
-                locSuppressionAmount -= Mathf.Min(suppressionDecayRate, locSuppressionAmount);
+                locSuppressionAmount -= Mathf.Min(SuppressionDecayRate, locSuppressionAmount);
             }
 
             //Throw mote at set interval
-            if (Gen.IsHashIntervalTick(this.parent, ticksPerMote) && CanReactToSuppression)
+            if (Gen.IsHashIntervalTick(this.parent, TicksPerMote) && CanReactToSuppression)
             {
                 if (IsHunkering)
                 {
