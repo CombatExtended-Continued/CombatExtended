@@ -19,7 +19,7 @@ namespace CombatExtended
         private const float SuppressionDecayRate = 5f;    // How much suppression decays per tick
         private const int TicksPerMote = 150;               // How many ticks between throwing a mote
 
-        private const int MinTicksUntilMentalBreak = 1800;  // How long until pawn can have a mental break
+        private const int MinTicksUntilMentalBreak = 600;  // How long until pawn can have a mental break
         private const float ChanceBreakPerTick = 0.001f;    // How likely we are to break each tick above the threshold
 
         #endregion
@@ -41,6 +41,8 @@ namespace CombatExtended
 
         private int ticksUntilDecay = 0;
         private int ticksHunkered;
+
+        private bool isCrouchWalking;
 
         #endregion
 
@@ -130,7 +132,7 @@ namespace CombatExtended
             }
         }
 
-        public bool IsCrouchWalking { get; private set; }
+        public bool IsCrouchWalking => CanReactToSuppression && isCrouchWalking;
 
         #endregion
 
@@ -207,7 +209,7 @@ namespace CombatExtended
                 else
                 {
                     // Crouch-walk
-                    IsCrouchWalking = true;
+                    isCrouchWalking = true;
                 }
                 // Throw taunt
                 if (Rand.Chance(0.01f))
@@ -257,14 +259,14 @@ namespace CombatExtended
                 isSuppressed = currentSuppression > 0;
 
                 // Clear crouch-walking
-                if (!isSuppressed) IsCrouchWalking = false;
+                if (!isSuppressed) isCrouchWalking = false;
 
                 //Decay location suppression
                 locSuppressionAmount -= Mathf.Min(SuppressionDecayRate, locSuppressionAmount);
             }
 
             //Throw mote at set interval
-            if (Gen.IsHashIntervalTick(this.parent, TicksPerMote) && CanReactToSuppression)
+            if (parent.IsHashIntervalTick(TicksPerMote) && CanReactToSuppression)
             {
                 if (IsHunkering)
                 {
