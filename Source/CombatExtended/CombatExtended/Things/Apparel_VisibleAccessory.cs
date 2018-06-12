@@ -20,10 +20,10 @@ namespace CombatExtended
     	 * North flips order shell/head
     	 * Hair (if drawn gets important when north) offset: 0.035f
     	 */
-    	const float _HeadOffset = 0.032f;
-    	const float _BodyOffset = 0.0269999985f;
-    	const float _OffsetFactor = 0.001f;
-    	static readonly Dictionary<string, bool> _OnHeadCache = new Dictionary<string, bool>();
+    	const float _HeadOffset = 0.02734375f;       // Must be same as PawnRenderer.YOffset_Head
+        const float _BodyOffset = 0.0234375f;   // Must be same as PawnRenderer.YOffset_Shell
+        const float _OffsetFactor = 0.001f;
+        static readonly Dictionary<string, bool> _OnHeadCache = new Dictionary<string, bool>();
     	
     	
     	public override void DrawWornExtras()
