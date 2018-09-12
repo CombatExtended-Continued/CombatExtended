@@ -10,10 +10,9 @@ namespace CombatExtended
 {
     public class StatWorker_Caliber : StatWorker
     {
-        public override bool ShouldShowFor(BuildableDef eDef)
+        public override bool ShouldShowFor(StatRequest req)
         {
-            var thingDef = eDef as ThingDef;
-            return thingDef?.GetCompProperties<CompProperties_AmmoUser>()?.ammoSet != null;
+            return base.ShouldShowFor(req) && req.Thing?.TryGetComp<CompAmmoUser>()?.Props.ammoSet != null;
         }
 
         public override string GetExplanationUnfinalized(StatRequest req, ToStringNumberSense numberSense)

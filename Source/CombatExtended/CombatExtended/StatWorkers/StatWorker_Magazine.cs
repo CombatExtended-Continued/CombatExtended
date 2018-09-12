@@ -10,10 +10,9 @@ namespace CombatExtended
 {
     public class StatWorker_Magazine : StatWorker
     {
-        public override bool ShouldShowFor(BuildableDef eDef)
+        public override bool ShouldShowFor(StatRequest req)
         {
-            var thingDef = eDef as ThingDef;
-            return thingDef?.GetCompProperties<CompProperties_AmmoUser>()?.magazineSize > 0;
+            return base.ShouldShowFor(req) && req.Thing?.TryGetComp<CompAmmoUser>()?.Props.magazineSize > 0;
         }
 
         public override float GetValueUnfinalized(StatRequest req, bool applyPostProcess = true)

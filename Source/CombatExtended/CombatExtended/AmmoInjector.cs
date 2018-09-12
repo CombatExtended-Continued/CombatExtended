@@ -61,8 +61,8 @@ namespace CombatExtended
 	            foreach (ThingDef def in DefDatabase<ThingDef>.AllDefsListForReading)
 	            {
 	            	if (def.IsWeapon
-	            	    && (def.canBeSpawningInventory
-	            	        || def.tradeability == Tradeability.Stockable
+	            	    && (def.generateAllowChance <= 0
+	            	        || def.tradeability == Tradeability.Buyable
 	            	        || (def.weaponTags != null && def.weaponTags.Contains("TurretGun"))))
 	                    CE_Utility.allWeaponDefs.Add(def);
 	            }
@@ -116,7 +116,7 @@ namespace CombatExtended
                 // Toggle trading
                 if (ammoDef.tradeTags.Contains(enableTradeTag))
                 {
-                	ammoDef.tradeability = enabled ? Tradeability.Stockable : Tradeability.Sellable;
+                	ammoDef.tradeability = enabled ? Tradeability.Buyable : Tradeability.Sellable;
                 }
 
                 // Toggle craftability

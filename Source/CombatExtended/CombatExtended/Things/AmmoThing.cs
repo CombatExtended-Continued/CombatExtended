@@ -21,37 +21,41 @@ namespace CombatExtended
 
         #region Methods
 
-        public override string GetDescription()
+        public override string DescriptionFlavor
         {
-            if(AmmoDef != null && AmmoDef.ammoClass != null)
+            get
             {
-                StringBuilder stringBuilder = new StringBuilder();
-                stringBuilder.AppendLine(base.GetDescription());
-
-                // Append ammo class description
-                stringBuilder.AppendLine("\n" + AmmoDef.ammoClass.LabelCap + ":");
-                stringBuilder.AppendLine(AmmoDef.ammoClass.description);
-
-                // Append guns that use this caliber
-                var users = AmmoDef.Users;
-                if (!users.NullOrEmpty())
+                if (AmmoDef != null && AmmoDef.ammoClass != null)
                 {
-                    stringBuilder.AppendLine("\n" + "CE_UsedBy".Translate() + ":");
-                    foreach (var user in users)
+                    StringBuilder stringBuilder = new StringBuilder();
+                    stringBuilder.AppendLine(base.DescriptionFlavor);
+
+                    // Append ammo class description
+                    stringBuilder.AppendLine("\n" + AmmoDef.ammoClass.LabelCap + ":");
+                    stringBuilder.AppendLine(AmmoDef.ammoClass.description);
+
+                    // Append guns that use this caliber
+                    var users = AmmoDef.Users;
+                    if (!users.NullOrEmpty())
                     {
-                        stringBuilder.AppendLine("   -" + user.LabelCap);
+                        stringBuilder.AppendLine("\n" + "CE_UsedBy".Translate() + ":");
+                        foreach (var user in users)
+                        {
+                            stringBuilder.AppendLine("   -" + user.LabelCap);
+                        }
                     }
+
+                    return stringBuilder.ToString().TrimEndNewlines();
                 }
 
-                return stringBuilder.ToString().TrimEndNewlines();
+                return base.DescriptionFlavor;
             }
-            return base.GetDescription();
         }
 
-        public override void PreApplyDamage(DamageInfo dinfo, out bool absorbed)
+        public override void PreApplyDamage(ref DamageInfo dinfo, out bool absorbed)
         {
-            base.PreApplyDamage(dinfo, out absorbed);
-            if (!absorbed && Spawned && dinfo.Def.externalViolence)
+            base.PreApplyDamage(ref dinfo, out absorbed);
+            if (!absorbed && Spawned && dinfo.Def.ExternalViolenceFor(this))
             {
                 if (HitPoints - dinfo.Amount > 0)
                 {

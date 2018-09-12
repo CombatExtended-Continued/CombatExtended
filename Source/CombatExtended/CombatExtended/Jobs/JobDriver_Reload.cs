@@ -143,7 +143,7 @@ namespace CombatExtended
 
             // Throw mote
             if (compReloader.ShouldThrowMote)
-                MoteMaker.ThrowText(pawn.Position.ToVector3Shifted(), Find.VisibleMap, string.Format("CE_ReloadingMote".Translate(), weapon.def.LabelCap));
+                MoteMaker.ThrowText(pawn.Position.ToVector3Shifted(), Find.CurrentMap, string.Format("CE_ReloadingMote".Translate(), weapon.def.LabelCap));
 
             //Toil of do-nothing		
             Toil waitToil = new Toil() { actor = pawn }; // actor was always null in testing...
@@ -165,7 +165,7 @@ namespace CombatExtended
             yield return continueToil;
         }
 
-        public override bool TryMakePreToilReservations()
+        public override bool TryMakePreToilReservations(bool errorOnFailed)
         {
             return true;
         }
