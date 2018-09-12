@@ -26,7 +26,8 @@ namespace CombatExtended
                 foreach (var cur in ammoProps.ammoSet.ammoTypes)
                 {
                     string label = string.IsNullOrEmpty(cur.ammo.ammoClass.LabelCapShort) ? cur.ammo.ammoClass.LabelCap : cur.ammo.ammoClass.LabelCapShort;
-                    stringBuilder.AppendLine(label + ":\n" + cur.projectile.GetProjectileReadout());
+                    // Now passes req.Thing as a parameter since damage scales with quality in B19
+                    stringBuilder.AppendLine(label + ":\n" + cur.projectile.GetProjectileReadout(req.Thing));
                 }
             }
             return stringBuilder.ToString().TrimEndNewlines();
