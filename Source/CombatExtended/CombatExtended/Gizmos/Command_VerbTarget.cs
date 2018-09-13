@@ -18,9 +18,9 @@ namespace CombatExtended
         {
             get
             {
-                if (verb.EquipmentSource != null)
+                if (verb.ownerEquipment != null)
                 {
-                    return verb.EquipmentSource.DrawColor;
+                    return verb.ownerEquipment.DrawColor;
                 }
                 return base.IconDrawColor;
             }

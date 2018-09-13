@@ -47,9 +47,6 @@ namespace CombatExtended
         private const float BaseDodgeChance = 0.1f;
         private const float BaseParryChance = 0.2f;
 
-        // Moved to a const
-        private const int ShieldBashDamageAmount = 6;
-
         #endregion
 
         #region Properties
@@ -119,7 +116,7 @@ namespace CombatExtended
                     // Attack is evaded
                     result = false;
                     soundDef = SoundMiss();
-                    CreateCombatLog((ManeuverDef maneuver) => maneuver.combatLogRulesDodge, false);
+                    CreateCombatLog(RulePackDefOf.Combat_Dodge);
 
                     moteText = "TextMote_Dodge".Translate();
                     defender.skills?.Learn(SkillDefOf.Melee, DodgeXP, false);
@@ -128,7 +125,7 @@ namespace CombatExtended
                 {
                     // Attack connects, calculate resolution
                     //var resultRoll = Rand.Value;
-                    var parryBonus = 1 / EquipmentSource?.GetStatValue(CE_StatDefOf.MeleeCounterParryBonus) ?? 1;
+                    var parryBonus = 1 / ownerEquipment?.GetStatValue(CE_StatDefOf.MeleeCounterParryBonus) ?? 1;
                     var parryChance = GetComparativeChanceAgainst(defender, casterPawn, CE_StatDefOf.MeleeParryChance, BaseParryChance, parryBonus);
                     if (!surpriseAttack && defender != null && CanDoParry(defender) && Rand.Chance(parryChance))
                     {
@@ -143,7 +140,7 @@ namespace CombatExtended
                             // Do a riposte
                             DoParry(defender, parryThing, true);
                             moteText = "CE_TextMote_Riposted".Translate();
-                            CreateCombatLog((ManeuverDef maneuver) => maneuver.combatLogRulesMiss, false); //placeholder
+                            CreateCombatLog(RulePackDefOf.Combat_Miss); //placeholder
 
                             defender.skills?.Learn(SkillDefOf.Melee, CritXP + ParryXP, false);
                         }
@@ -152,7 +149,7 @@ namespace CombatExtended
                             // Do a parry
                             DoParry(defender, parryThing);
                             moteText = "CE_TextMote_Parried".Translate();
-                            CreateCombatLog((ManeuverDef maneuver) => maneuver.combatLogRulesMiss, false); ; //placeholder
+                            CreateCombatLog(RulePackDefOf.Combat_Miss); //placeholder
 
                             defender.skills?.Learn(SkillDefOf.Melee, ParryXP, false);
                         }
@@ -162,21 +159,21 @@ namespace CombatExtended
                     }
                     else
                     {
-                        BattleLogEntry_MeleeCombat log = this.CreateCombatLog((ManeuverDef maneuver) => maneuver.combatLogRulesHit, false);
+                        BattleLogEntry_MeleeCombat log = this.CreateCombatLog(RulePackDefOf.Combat_Hit);
 
                         // Attack connects
                         if (surpriseAttack || Rand.Chance(GetComparativeChanceAgainst(casterPawn, defender, CE_StatDefOf.MeleeCritChance, BaseCritChance)))
                         {
                             // Do a critical hit
                             isCrit = true;
-                            ApplyMeleeDamageToTarget(currentTarget).AssociateWithLog(log);
+                            ApplyMeleeDamageToTarget(currentTarget).InsertIntoLog(log);
                             moteText = casterPawn.def.race.Animal ? "CE_TextMote_Knockdown".Translate() : "CE_TextMote_CriticalHit".Translate();
                             casterPawn.skills?.Learn(SkillDefOf.Melee, CritXP, false);
                         }
                         else
                         {
                             // Do a regular hit as per vanilla
-                            ApplyMeleeDamageToTarget(currentTarget).AssociateWithLog(log);
+                            ApplyMeleeDamageToTarget(currentTarget).InsertIntoLog(log);
                         }
                         result = true;
                         soundDef = targetThing.def.category == ThingCategory.Building ? SoundHitBuilding() : SoundHitPawn();
@@ -188,7 +185,7 @@ namespace CombatExtended
                 // Attack missed
                 result = false;
                 soundDef = SoundMiss();
-                CreateCombatLog((ManeuverDef maneuver) => maneuver.combatLogRulesMiss, false);
+                CreateCombatLog(RulePackDefOf.Combat_Miss);
             }
             if (!moteText.NullOrEmpty())
                 MoteMaker.ThrowText(targetThing.PositionHeld.ToVector3Shifted(), targetThing.MapHeld, moteText);
@@ -219,8 +216,7 @@ namespace CombatExtended
         /// <returns>Collection with primary DamageInfo, followed by secondary types</returns>
         private IEnumerable<DamageInfo> DamageInfosToApply(LocalTargetInfo target, bool isCrit = false)
         {
-            float damAmount = this.verbProps.AdjustedMeleeDamageAmount(this, base.CasterPawn);
-            float armorPenetration = this.verbProps.AdjustedArmorPenetration(this, base.CasterPawn);
+            float damAmount = (float)this.verbProps.AdjustedMeleeDamageAmount(this, base.CasterPawn, this.ownerEquipment);
             var critDamDef = CritDamageDef;
             DamageDef damDef = isCrit && critDamDef != DamageDefOf.Stun ? critDamDef : verbProps.meleeDamageDef;	//Added isCrit check
             BodyPartGroupDef bodyPartGroupDef = null;
@@ -228,12 +224,12 @@ namespace CombatExtended
             damAmount = UnityEngine.Random.Range(damAmount * 0.8f, damAmount * 1.2f);
             if (base.CasterIsPawn)
             {
-            	bodyPartGroupDef = this.verbProps.AdjustedLinkedBodyPartsGroup(this.tool);
+            	bodyPartGroupDef = LinkedBodyPartsGroup;
                 if (damAmount >= 1f)
                 {
-                    if (base.HediffCompSource != null)
+                    if (this.ownerHediffComp != null)
                     {
-                        hediffDef = base.HediffCompSource.Def;
+                        hediffDef = this.ownerHediffComp.Def;
                     }
                 }
                 else
@@ -243,9 +239,9 @@ namespace CombatExtended
                 }
             }
             ThingDef source;
-            if (this.EquipmentSource != null)
+            if (this.ownerEquipment != null)
             {
-                source = this.EquipmentSource.def;
+                source = this.ownerEquipment.def;
             }
             else
             {
@@ -254,7 +250,7 @@ namespace CombatExtended
             Vector3 direction = (target.Thing.Position - base.CasterPawn.Position).ToVector3();
             Thing caster = this.caster;
             BodyPartHeight bodyRegion = GetBodyPartHeightFor(target);   // Add check for body height
-            DamageInfo mainDinfo = new DamageInfo(damDef, GenMath.RoundRandom(damAmount), armorPenetration, -1f, caster, null, source);
+            DamageInfo mainDinfo = new DamageInfo(damDef, GenMath.RoundRandom(damAmount), -1f, caster, null, source);
             mainDinfo.SetBodyRegion(bodyRegion, BodyPartDepth.Outside);
             mainDinfo.SetWeaponBodyPartGroup(bodyPartGroupDef);
             mainDinfo.SetWeaponHediff(hediffDef);
@@ -296,7 +292,7 @@ namespace CombatExtended
             if (isCrit && critDamDef == DamageDefOf.Stun)
             {
                 var critAmount = GenMath.RoundRandom(mainDinfo.Amount * 0.25f);
-                var critDinfo = new DamageInfo(critDamDef, this.tool.armorPenetration, critAmount, -1, caster, null, source);
+                var critDinfo = new DamageInfo(critDamDef, critAmount, -1, caster, null, source);
                 critDinfo.SetBodyRegion(bodyRegion, BodyPartDepth.Outside);
                 critDinfo.SetWeaponBodyPartGroup(bodyPartGroupDef);
                 critDinfo.SetWeaponHediff(hediffDef);
@@ -342,7 +338,6 @@ namespace CombatExtended
         /// <param name="target">Target to apply damage to</param>
 		protected override DamageWorker.DamageResult ApplyMeleeDamageToTarget(LocalTargetInfo target)
         {
-            // Not sure how to approach this one; it seems to have been split into AddPart and AddHediff, as shown in Verb_MeleeAttackDamage and Verb_MeleeApplyHediff
             DamageWorker.DamageResult result = DamageWorker.DamageResult.MakeNew();
             foreach (DamageInfo current in DamageInfosToApply(target, isCrit))
             {
@@ -414,8 +409,7 @@ namespace CombatExtended
                 if (parryThing is Apparel_Shield)
                 {
                     // Shield bash
-                    DamageInfo dinfo = new DamageInfo(DamageDefOf.Blunt, ShieldBashDamageAmount, ShieldBashDamageAmount * VerbProperties.DefaultArmorPenetrationPerDamage,
-                        -1, defender, null, parryThing.def);
+                    DamageInfo dinfo = new DamageInfo(DamageDefOf.Blunt, 6, -1, defender, null, parryThing.def);
                     dinfo.SetBodyRegion(BodyPartHeight.Undefined, BodyPartDepth.Outside);
                     dinfo.SetAngle((CasterPawn.Position - defender.Position).ToVector3());
                     caster.TakeDamage(dinfo);
@@ -424,8 +418,7 @@ namespace CombatExtended
                 }
                 else
                 {
-                    // Recursion - hope this isn't a massive screw-up
-                    Verb_MeleeAttackCE verb = defender.meleeVerbs.TryGetMeleeVerb(defender) as Verb_MeleeAttackCE;
+                    Verb_MeleeAttackCE verb = defender.meleeVerbs.TryGetMeleeVerb() as Verb_MeleeAttackCE;
                     if (verb == null)
                     {
                         Log.Error("CE failed to get attack verb for riposte from Pawn " + defender.ToString());
@@ -446,7 +439,7 @@ namespace CombatExtended
             }
             else
             {
-                tracker.RegisterParryFor(defender, verbProps.AdjustedCooldownTicks(this, CasterPawn));
+                tracker.RegisterParryFor(defender, verbProps.AdjustedCooldownTicks(this, defender, ownerEquipment));
             }
         }
 
@@ -469,18 +462,18 @@ namespace CombatExtended
         // unmodified
         private SoundDef SoundHitPawn()
         {
-            if (this.EquipmentSource != null && this.EquipmentSource.Stuff != null)
+            if (this.ownerEquipment != null && this.ownerEquipment.Stuff != null)
             {
                 if (this.verbProps.meleeDamageDef.armorCategory == DamageArmorCategoryDefOf.Sharp)
                 {
-                    if (!this.EquipmentSource.Stuff.stuffProps.soundMeleeHitSharp.NullOrUndefined())
+                    if (!this.ownerEquipment.Stuff.stuffProps.soundMeleeHitSharp.NullOrUndefined())
                     {
-                        return this.EquipmentSource.Stuff.stuffProps.soundMeleeHitSharp;
+                        return this.ownerEquipment.Stuff.stuffProps.soundMeleeHitSharp;
                     }
                 }
-                else if (!this.EquipmentSource.Stuff.stuffProps.soundMeleeHitBlunt.NullOrUndefined())
+                else if (!this.ownerEquipment.Stuff.stuffProps.soundMeleeHitBlunt.NullOrUndefined())
                 {
-                    return this.EquipmentSource.Stuff.stuffProps.soundMeleeHitBlunt;
+                    return this.ownerEquipment.Stuff.stuffProps.soundMeleeHitBlunt;
                 }
             }
             if (base.CasterPawn != null && !base.CasterPawn.def.race.soundMeleeHitPawn.NullOrUndefined())
@@ -493,18 +486,18 @@ namespace CombatExtended
         // unmodified
         private SoundDef SoundHitBuilding()
         {
-            if (this.EquipmentSource != null && this.EquipmentSource.Stuff != null)
+            if (this.ownerEquipment != null && this.ownerEquipment.Stuff != null)
             {
                 if (this.verbProps.meleeDamageDef.armorCategory == DamageArmorCategoryDefOf.Sharp)
                 {
-                    if (!this.EquipmentSource.Stuff.stuffProps.soundMeleeHitSharp.NullOrUndefined())
+                    if (!this.ownerEquipment.Stuff.stuffProps.soundMeleeHitSharp.NullOrUndefined())
                     {
-                        return this.EquipmentSource.Stuff.stuffProps.soundMeleeHitSharp;
+                        return this.ownerEquipment.Stuff.stuffProps.soundMeleeHitSharp;
                     }
                 }
-                else if (!this.EquipmentSource.Stuff.stuffProps.soundMeleeHitBlunt.NullOrUndefined())
+                else if (!this.ownerEquipment.Stuff.stuffProps.soundMeleeHitBlunt.NullOrUndefined())
                 {
-                    return this.EquipmentSource.Stuff.stuffProps.soundMeleeHitBlunt;
+                    return this.ownerEquipment.Stuff.stuffProps.soundMeleeHitBlunt;
                 }
             }
             if (base.CasterPawn != null && !base.CasterPawn.def.race.soundMeleeHitBuilding.NullOrUndefined())

@@ -5,7 +5,6 @@ using System.Text;
 using RimWorld;
 using Verse;
 using UnityEngine;
-using Harmony;
 
 namespace CombatExtended
 {
@@ -13,22 +12,20 @@ namespace CombatExtended
     {
         public static IEnumerable<DamageDef> ImpliedCritDefs()
         {
-            foreach(DamageDef current in DefDatabase<DamageDef>.AllDefs.Where(d => d.harmsHealth))
+            foreach(DamageDef current in from def in DefDatabase<DamageDef>.AllDefs where def.externalViolence select def)
             {
                 var critDef = new DamageDef() {
                     defName = current.defName + "_Critical",
                     workerClass = current.workerClass,
+                    externalViolence = true,
                     impactSoundType = current.impactSoundType,
-                    minDamageToFragment = current.minDamageToFragment,
+                    spreadOut = current.spreadOut,
                     harmAllLayersUntilOutside = current.harmAllLayersUntilOutside,
                     //hasChanceToAdditionallyDamageInnerSolidParts = current.hasChanceToAdditionallyDamageInnerSolidParts,
                     hediff = current.hediff,
                     hediffSkin = current.hediffSkin,
                     hediffSolid = current.hediffSolid
                 };
-                // Private fields now :V
-                Traverse.Create(critDef).Field("externalViolence").SetValue(Traverse.Create(current).Field("externalViolence").GetValue());
-                Traverse.Create(critDef).Field("externalViolenceForMechanoids").SetValue(Traverse.Create(current).Field("externalViolenceForMechanoids").GetValue());
                 yield return critDef;
             }
         }

@@ -48,7 +48,7 @@ namespace CombatExtended
             // In case of ambient damage (fire, electricity) we apply a percentage reduction formula based on the sum of all applicable armor
             if (isAmbientDamage)
             {
-                dinfo.SetAmount(Mathf.CeilToInt(GetAmbientPostArmorDamage(dmgAmount, originalDinfo.Def.armorCategory.armorRatingStat, pawn, hitPart)));
+                dinfo.SetAmount(Mathf.CeilToInt(GetAmbientPostArmorDamage(dmgAmount, originalDinfo.Def.armorCategory.deflectionStat, pawn, hitPart)));
                 return dinfo;
             }
 
@@ -83,7 +83,7 @@ namespace CombatExtended
                         }
                     }
                     // Try to penetrate the shield
-                    if (blockedByShield && !TryPenetrateArmor(dinfo.Def, shield.GetStatValue(dinfo.Def.armorCategory.armorRatingStat), ref penAmount, ref dmgAmount, shield))
+                    if (blockedByShield && !TryPenetrateArmor(dinfo.Def, shield.GetStatValue(dinfo.Def.armorCategory.deflectionStat), ref penAmount, ref dmgAmount, shield))
                     {
                         shieldAbsorbed = true;
                         dinfo.SetAmount(0);
@@ -98,7 +98,7 @@ namespace CombatExtended
                                 var secDinfo = sec.GetDinfo();
                                 var pen = GetPenetrationValue(originalDinfo);
                                 var dmg = (float)secDinfo.Amount;
-                                TryPenetrateArmor(secDinfo.Def, shield.GetStatValue(secDinfo.Def.armorCategory.armorRatingStat), ref pen, ref dmg, shield);
+                                TryPenetrateArmor(secDinfo.Def, shield.GetStatValue(secDinfo.Def.armorCategory.deflectionStat), ref pen, ref dmg, shield);
                             }
                         }
 
@@ -110,7 +110,7 @@ namespace CombatExtended
                 for (int i = apparel.Count - 1; i >= 0; i--)
                 {
                     if (apparel[i].def.apparel.CoversBodyPart(hitPart) 
-                        && !TryPenetrateArmor(dinfo.Def, apparel[i].GetStatValue(dinfo.Def.armorCategory.armorRatingStat), ref penAmount, ref dmgAmount, apparel[i]))
+                        && !TryPenetrateArmor(dinfo.Def, apparel[i].GetStatValue(dinfo.Def.armorCategory.deflectionStat), ref penAmount, ref dmgAmount, apparel[i]))
                     {
                         // Hit was deflected, convert damage type
                         dinfo = GetDeflectDamageInfo(dinfo, hitPart);
@@ -141,7 +141,7 @@ namespace CombatExtended
                 bool coveredByArmor = curPart.IsInGroup(CE_BodyPartGroupDefOf.CoveredByNaturalArmor);
                 float partArmor = pawn.HealthScale * 0.05f;   // How much armor is provided by sheer meat
                 if (coveredByArmor)
-                    partArmor += pawn.GetStatValue(dinfo.Def.armorCategory.armorRatingStat);
+                    partArmor += pawn.GetStatValue(dinfo.Def.armorCategory.deflectionStat);
                 float unused = dmgAmount;
 
                 // Only apply damage reduction when penetrating armored body parts
@@ -286,7 +286,7 @@ namespace CombatExtended
                     if (instigatorPawn.def == dinfo.Weapon)
                     {
                         // meleeVerbs: all verbs considered "melee worthy"
-                        Verb availableVerb = instigatorPawn.meleeVerbs.TryGetMeleeVerb(dinfo.IntendedTarget);
+                        Verb availableVerb = instigatorPawn.meleeVerbs.TryGetMeleeVerb();
                     	
 	                    // Case 2.3.1: .. of a weaponized hediff (power claw, scyther blade)
                         HediffCompProperties_VerbGiver compProps = dinfo.WeaponLinkedHediff?.CompPropsFor(typeof(HediffComp_VerbGiver)) as HediffCompProperties_VerbGiver;
@@ -324,7 +324,7 @@ namespace CombatExtended
 	                    	        var toolCE = v.tool as ToolCE;
                                     var propsCE = v.verbProps as VerbPropertiesCE;
                                     // Case 2.4.1: .. of a tool restricted by gender
-                                    return v.verbProps.AdjustedLinkedBodyPartsGroup(v.tool) == dinfo.WeaponBodyPartGroup
+                                    return v.LinkedBodyPartsGroup == dinfo.WeaponBodyPartGroup
                                          && ((toolCE != null && (toolCE.restrictedGender == Gender.None || toolCE.restrictedGender == instigatorPawn.gender)
                                             || propsCE != null));
 	                    	    });
@@ -443,11 +443,11 @@ namespace CombatExtended
         /// <returns>DamageInfo copied from dinfo with Def and forceHitPart adjusted</returns>
         private static DamageInfo GetDeflectDamageInfo(DamageInfo dinfo, BodyPartRecord hitPart)
         {
-            DamageInfo newDinfo = new DamageInfo(DamageDefOf.Blunt, dinfo.Amount, dinfo.ArmorPenetrationInt, dinfo.Angle, dinfo.Instigator, GetOuterMostParent(hitPart), dinfo.Weapon);
+            DamageInfo newDinfo = new DamageInfo(DamageDefOf.Blunt, dinfo.Amount, dinfo.Angle, dinfo.Instigator, GetOuterMostParent(hitPart), dinfo.Weapon);
             newDinfo.SetBodyRegion(dinfo.Height, dinfo.Depth);
             newDinfo.SetWeaponBodyPartGroup(dinfo.WeaponBodyPartGroup);
             newDinfo.SetWeaponHediff(dinfo.WeaponLinkedHediff);
-            newDinfo.SetInstantPermanentInjury(dinfo.InstantPermanentInjury);
+            newDinfo.SetInstantOldInjury(dinfo.InstantOldInjury);
             newDinfo.SetAllowDamagePropagation(dinfo.AllowDamagePropagation);
 
             return newDinfo;
@@ -494,7 +494,7 @@ namespace CombatExtended
             }
             else if (dinfo.IsAmbientDamage())
             {
-                int dmgAmount = Mathf.CeilToInt(dinfo.Amount * Mathf.Clamp01(parryThing.GetStatValue(dinfo.Def.armorCategory.armorRatingStat)));
+                int dmgAmount = Mathf.CeilToInt(dinfo.Amount * Mathf.Clamp01(parryThing.GetStatValue(dinfo.Def.armorCategory.deflectionStat)));
                 dinfo.SetAmount(dmgAmount);
                 parryThing.TakeDamage(dinfo);
             }
@@ -502,7 +502,7 @@ namespace CombatExtended
             {
                 float dmgAmount = dinfo.Amount * 0.1f;
                 float penAmount = GetPenetrationValue(dinfo);
-                TryPenetrateArmor(dinfo.Def, parryThing.GetStatValue(dinfo.Def.armorCategory.armorRatingStat), ref penAmount, ref dmgAmount, parryThing);
+                TryPenetrateArmor(dinfo.Def, parryThing.GetStatValue(dinfo.Def.armorCategory.deflectionStat), ref penAmount, ref dmgAmount, parryThing);
             }
         }
 
