@@ -48,7 +48,7 @@ namespace CombatExtended
             // In case of ambient damage (fire, electricity) we apply a percentage reduction formula based on the sum of all applicable armor
             if (isAmbientDamage)
             {
-                dinfo.SetAmount(Mathf.CeilToInt(GetAmbientPostArmorDamage(dmgAmount, originalDinfo.Def.armorCategory.deflectionStat, pawn, hitPart)));
+                dinfo.SetAmount(Mathf.CeilToInt(GetAmbientPostArmorDamage(dmgAmount, originalDinfo.Def.armorCategory.armorRatingStat, pawn, hitPart)));
                 return dinfo;
             }
 
@@ -83,7 +83,7 @@ namespace CombatExtended
                         }
                     }
                     // Try to penetrate the shield
-                    if (blockedByShield && !TryPenetrateArmor(dinfo.Def, shield.GetStatValue(dinfo.Def.armorCategory.deflectionStat), ref penAmount, ref dmgAmount, shield))
+                    if (blockedByShield && !TryPenetrateArmor(dinfo.Def, shield.GetStatValue(dinfo.Def.armorCategory.armorRatingStat), ref penAmount, ref dmgAmount, shield))
                     {
                         shieldAbsorbed = true;
                         dinfo.SetAmount(0);
@@ -98,7 +98,7 @@ namespace CombatExtended
                                 var secDinfo = sec.GetDinfo();
                                 var pen = GetPenetrationValue(originalDinfo);
                                 var dmg = (float)secDinfo.Amount;
-                                TryPenetrateArmor(secDinfo.Def, shield.GetStatValue(secDinfo.Def.armorCategory.deflectionStat), ref pen, ref dmg, shield);
+                                TryPenetrateArmor(secDinfo.Def, shield.GetStatValue(secDinfo.Def.armorCategory.armorRatingStat), ref pen, ref dmg, shield);
                             }
                         }
 
@@ -110,7 +110,7 @@ namespace CombatExtended
                 for (int i = apparel.Count - 1; i >= 0; i--)
                 {
                     if (apparel[i].def.apparel.CoversBodyPart(hitPart) 
-                        && !TryPenetrateArmor(dinfo.Def, apparel[i].GetStatValue(dinfo.Def.armorCategory.deflectionStat), ref penAmount, ref dmgAmount, apparel[i]))
+                        && !TryPenetrateArmor(dinfo.Def, apparel[i].GetStatValue(dinfo.Def.armorCategory.armorRatingStat), ref penAmount, ref dmgAmount, apparel[i]))
                     {
                         // Hit was deflected, convert damage type
                         dinfo = GetDeflectDamageInfo(dinfo, hitPart);
@@ -141,7 +141,7 @@ namespace CombatExtended
                 bool coveredByArmor = curPart.IsInGroup(CE_BodyPartGroupDefOf.CoveredByNaturalArmor);
                 float partArmor = pawn.HealthScale * 0.05f;   // How much armor is provided by sheer meat
                 if (coveredByArmor)
-                    partArmor += pawn.GetStatValue(dinfo.Def.armorCategory.deflectionStat);
+                    partArmor += pawn.GetStatValue(dinfo.Def.armorCategory.armorRatingStat);
                 float unused = dmgAmount;
 
                 // Only apply damage reduction when penetrating armored body parts
@@ -411,20 +411,20 @@ namespace CombatExtended
         /// Calculates damage reduction for ambient damage types (fire, electricity) versus natural and worn armor of a pawn. Adds up the total armor percentage (clamped at 0-100%) and multiplies damage by that amount.
         /// </summary>
         /// <param name="dmgAmount">The original amount of damage</param>
-        /// <param name="deflectionStat">The armor stat to use for damage reduction</param>
+        /// <param name="armorRatingStat">The armor stat to use for damage reduction</param>
         /// <param name="pawn">The damaged pawn</param>
         /// <param name="part">The body part affected</param>
         /// <returns>The post-armor damage ranging from 0 to the original amount</returns>
-        private static float GetAmbientPostArmorDamage(float dmgAmount, StatDef deflectionStat, Pawn pawn, BodyPartRecord part)
+        private static float GetAmbientPostArmorDamage(float dmgAmount, StatDef armorRatingStat, Pawn pawn, BodyPartRecord part)
         {
-            float dmgMult = 1 - pawn.GetStatValue(deflectionStat);
+            float dmgMult = 1 - pawn.GetStatValue(armorRatingStat);
             if (dmgMult <= 0) return 0;
             if (pawn.apparel != null && !pawn.apparel.WornApparel.NullOrEmpty())
             {
                 List<Apparel> apparelList = pawn.apparel.WornApparel;
                 foreach (Apparel apparel in apparelList)
                 {
-                    if (apparel.def.apparel.CoversBodyPart(part)) dmgMult -= apparel.GetStatValue(deflectionStat);
+                    if (apparel.def.apparel.CoversBodyPart(part)) dmgMult -= apparel.GetStatValue(armorRatingStat);
                     if (dmgMult <= 0)
                     {
                         dmgMult = 0;
@@ -447,7 +447,7 @@ namespace CombatExtended
             newDinfo.SetBodyRegion(dinfo.Height, dinfo.Depth);
             newDinfo.SetWeaponBodyPartGroup(dinfo.WeaponBodyPartGroup);
             newDinfo.SetWeaponHediff(dinfo.WeaponLinkedHediff);
-            newDinfo.SetInstantOldInjury(dinfo.InstantOldInjury);
+            newDinfo.SetInstantPermanentInjury(dinfo.InstantPermanentInjury);
             newDinfo.SetAllowDamagePropagation(dinfo.AllowDamagePropagation);
 
             return newDinfo;
@@ -494,7 +494,7 @@ namespace CombatExtended
             }
             else if (dinfo.IsAmbientDamage())
             {
-                int dmgAmount = Mathf.CeilToInt(dinfo.Amount * Mathf.Clamp01(parryThing.GetStatValue(dinfo.Def.armorCategory.deflectionStat)));
+                int dmgAmount = Mathf.CeilToInt(dinfo.Amount * Mathf.Clamp01(parryThing.GetStatValue(dinfo.Def.armorCategory.armorRatingStat)));
                 dinfo.SetAmount(dmgAmount);
                 parryThing.TakeDamage(dinfo);
             }
@@ -502,7 +502,7 @@ namespace CombatExtended
             {
                 float dmgAmount = dinfo.Amount * 0.1f;
                 float penAmount = GetPenetrationValue(dinfo);
-                TryPenetrateArmor(dinfo.Def, parryThing.GetStatValue(dinfo.Def.armorCategory.deflectionStat), ref penAmount, ref dmgAmount, parryThing);
+                TryPenetrateArmor(dinfo.Def, parryThing.GetStatValue(dinfo.Def.armorCategory.armorRatingStat), ref penAmount, ref dmgAmount, parryThing);
             }
         }
 

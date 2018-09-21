@@ -38,8 +38,8 @@ namespace CombatExtended
                                           where isWeapon(td)
                                           select td)
             {
-                float num = allWeaponPairs.Where((ThingStuffPair pa) => pa.thing == thingDef).Sum((ThingStuffPair pa) => pa.Commonality);
-                float num2 = thingDef.generateCommonality / num;
+                float num = allWeaponPairs.Where((ThingStuffPair pa) => pa.thing == thingDef).Sum((ThingStuffPair pa) => pa.chanceFactor);
+                float num2 = thingDef.generatechanceFactor / num;
                 if (num2 != 1f)
                 {
                     for (int i = 0; i < allWeaponPairs.Count; i++)
@@ -47,7 +47,7 @@ namespace CombatExtended
                         ThingStuffPair thingStuffPair = allWeaponPairs[i];
                         if (thingStuffPair.thing == thingDef)
                         {
-                            allWeaponPairs[i] = new ThingStuffPair(thingStuffPair.thing, thingStuffPair.stuff, thingStuffPair.commonalityMultiplier * num2);
+                            allWeaponPairs[i] = new ThingStuffPair(thingStuffPair.thing, thingStuffPair.stuff, thingStuffPair.chanceFactorMultiplier * num2);
                         }
                     }
                 }
@@ -117,7 +117,7 @@ namespace CombatExtended
             }
             if (workingWeapons.Count == 0) return;
             ThingStuffPair pair;
-            if(workingWeapons.TryRandomElementByWeight(p => p.Commonality * p.Price, out pair))
+            if(workingWeapons.TryRandomElementByWeight(p => p.chanceFactor * p.Price, out pair))
             {
                 // Create the actual weapon and put it into inventory
                 var eq = (ThingWithComps)ThingMaker.MakeThing(pair.thing, pair.stuff);
@@ -146,7 +146,7 @@ namespace CombatExtended
             }
             // Determine ammo
             var availableAmmo = compAmmo.Props.ammoSet.ammoTypes.Where(a => a.ammo.canBeSpawningInventory).Select(a => a.ammo);
-            var ammoToLoad = availableAmmo.RandomElementByWeight(a => a.generateCommonality);
+            var ammoToLoad = availableAmmo.RandomElementByWeight(a => a.generatechanceFactor);
             compAmmo.ResetAmmoCount(ammoToLoad);
         }
 
@@ -204,7 +204,7 @@ namespace CombatExtended
             }
             if (workingShields.Count == 0) return;
             ThingStuffPair pair;
-            if (workingShields.TryRandomElementByWeight(p => p.Commonality * p.Price, out pair))
+            if (workingShields.TryRandomElementByWeight(p => p.chanceFactor * p.Price, out pair))
             {
                 var shield = (Apparel)ThingMaker.MakeThing(pair.thing, pair.stuff);
                 int count;

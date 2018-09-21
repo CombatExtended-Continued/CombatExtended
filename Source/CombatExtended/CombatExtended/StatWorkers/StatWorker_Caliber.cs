@@ -26,7 +26,7 @@ namespace CombatExtended
                 foreach (var cur in ammoProps.ammoSet.ammoTypes)
                 {
                     string label = string.IsNullOrEmpty(cur.ammo.ammoClass.LabelCapShort) ? cur.ammo.ammoClass.LabelCap : cur.ammo.ammoClass.LabelCapShort;
-                    stringBuilder.AppendLine(label + ":\n" + cur.projectile.GetProjectileReadout());
+                    stringBuilder.AppendLine(label + ":\n" + cur.projectile.GetProjectileReadout(req.Thing));
                 }
             }
             return stringBuilder.ToString().TrimEndNewlines();

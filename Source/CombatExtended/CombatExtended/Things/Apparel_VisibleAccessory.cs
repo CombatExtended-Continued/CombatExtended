@@ -121,7 +121,7 @@ namespace CombatExtended
             {
                 return Rot4.Random;
             }
-            if (Wearer.GetPosture() == PawnPosture.LayingFaceUp)
+            if (Wearer.GetPosture() == PawnPosture.LayingOnGroundFaceUp)
             {
                 return Rot4.South;
             }

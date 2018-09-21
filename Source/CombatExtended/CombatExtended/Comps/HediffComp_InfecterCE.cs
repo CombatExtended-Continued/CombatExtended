@@ -67,7 +67,7 @@ namespace CombatExtended
             if (!alreadyCausedInfection 
                 && !parent.Part.def.IsSolid(parent.Part, Pawn.health.hediffSet.hediffs) 
                 && !Pawn.health.hediffSet.PartOrAnyAncestorHasDirectlyAddedParts(parent.Part) 
-                && !parent.IsOld())
+                && !parent.IsPermanent())
             {
                 ticksUntilInfect = InfectionDelayHours.RandomInRange * GenDate.TicksPerHour;
             }

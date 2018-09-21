@@ -33,7 +33,7 @@ namespace CombatExtended
 
         public override void Tick()
         {
-            if (Position.GetThingList(base.Map).Any(x => x.def == ThingDefOf.FilthFireFoam))
+            if (Position.GetThingList(base.Map).Any(x => x.def == ThingDefOf.Filth_FireFoam))
             {
                 if (!Destroyed)
                     Destroy();
