@@ -770,7 +770,7 @@ namespace CombatExtended
             CompExplosiveCE comp = this.TryGetComp<CompExplosiveCE>();
             if (comp != null && ExactPosition.ToIntVec3().IsValid)
             {
-                comp.Explode(launcher, ExactPosition, Find.VisibleMap);
+                comp.Explode(launcher, ExactPosition, Find.CurrentMap);
             }
 			
 			//Spawn things if not an explosive but preExplosionSpawnThingDef != null

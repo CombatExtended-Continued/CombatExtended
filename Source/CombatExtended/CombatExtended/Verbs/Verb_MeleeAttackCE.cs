@@ -125,7 +125,7 @@ namespace CombatExtended
                 {
                     // Attack connects, calculate resolution
                     //var resultRoll = Rand.Value;
-                    var parryBonus = 1 / ownerEquipment?.GetStatValue(CE_StatDefOf.MeleeCounterParryBonus) ?? 1;
+                    var parryBonus = 1 / EquipmentSource?.GetStatValue(CE_StatDefOf.MeleeCounterParryBonus) ?? 1;
                     var parryChance = GetComparativeChanceAgainst(defender, casterPawn, CE_StatDefOf.MeleeParryChance, BaseParryChance, parryBonus);
                     if (!surpriseAttack && defender != null && CanDoParry(defender) && Rand.Chance(parryChance))
                     {
@@ -216,7 +216,7 @@ namespace CombatExtended
         /// <returns>Collection with primary DamageInfo, followed by secondary types</returns>
         private IEnumerable<DamageInfo> DamageInfosToApply(LocalTargetInfo target, bool isCrit = false)
         {
-            float damAmount = (float)this.verbProps.AdjustedMeleeDamageAmount(this, base.CasterPawn, this.ownerEquipment);
+            float damAmount = (float)this.verbProps.AdjustedMeleeDamageAmount(this, base.CasterPawn, this.EquipmentSource);
             var critDamDef = CritDamageDef;
             DamageDef damDef = isCrit && critDamDef != DamageDefOf.Stun ? critDamDef : verbProps.meleeDamageDef;	//Added isCrit check
             BodyPartGroupDef bodyPartGroupDef = null;
@@ -239,9 +239,9 @@ namespace CombatExtended
                 }
             }
             ThingDef source;
-            if (this.ownerEquipment != null)
+            if (this.EquipmentSource != null)
             {
-                source = this.ownerEquipment.def;
+                source = this.EquipmentSource.def;
             }
             else
             {
@@ -439,7 +439,7 @@ namespace CombatExtended
             }
             else
             {
-                tracker.RegisterParryFor(defender, verbProps.AdjustedCooldownTicks(this, defender, ownerEquipment));
+                tracker.RegisterParryFor(defender, verbProps.AdjustedCooldownTicks(this, defender, EquipmentSource));
             }
         }
 
@@ -462,18 +462,18 @@ namespace CombatExtended
         // unmodified
         private SoundDef SoundHitPawn()
         {
-            if (this.ownerEquipment != null && this.ownerEquipment.Stuff != null)
+            if (this.EquipmentSource != null && this.EquipmentSource.Stuff != null)
             {
                 if (this.verbProps.meleeDamageDef.armorCategory == DamageArmorCategoryDefOf.Sharp)
                 {
-                    if (!this.ownerEquipment.Stuff.stuffProps.soundMeleeHitSharp.NullOrUndefined())
+                    if (!this.EquipmentSource.Stuff.stuffProps.soundMeleeHitSharp.NullOrUndefined())
                     {
-                        return this.ownerEquipment.Stuff.stuffProps.soundMeleeHitSharp;
+                        return this.EquipmentSource.Stuff.stuffProps.soundMeleeHitSharp;
                     }
                 }
-                else if (!this.ownerEquipment.Stuff.stuffProps.soundMeleeHitBlunt.NullOrUndefined())
+                else if (!this.EquipmentSource.Stuff.stuffProps.soundMeleeHitBlunt.NullOrUndefined())
                 {
-                    return this.ownerEquipment.Stuff.stuffProps.soundMeleeHitBlunt;
+                    return this.EquipmentSource.Stuff.stuffProps.soundMeleeHitBlunt;
                 }
             }
             if (base.CasterPawn != null && !base.CasterPawn.def.race.soundMeleeHitPawn.NullOrUndefined())
@@ -486,18 +486,18 @@ namespace CombatExtended
         // unmodified
         private SoundDef SoundHitBuilding()
         {
-            if (this.ownerEquipment != null && this.ownerEquipment.Stuff != null)
+            if (this.EquipmentSource != null && this.EquipmentSource.Stuff != null)
             {
                 if (this.verbProps.meleeDamageDef.armorCategory == DamageArmorCategoryDefOf.Sharp)
                 {
-                    if (!this.ownerEquipment.Stuff.stuffProps.soundMeleeHitSharp.NullOrUndefined())
+                    if (!this.EquipmentSource.Stuff.stuffProps.soundMeleeHitSharp.NullOrUndefined())
                     {
-                        return this.ownerEquipment.Stuff.stuffProps.soundMeleeHitSharp;
+                        return this.EquipmentSource.Stuff.stuffProps.soundMeleeHitSharp;
                     }
                 }
-                else if (!this.ownerEquipment.Stuff.stuffProps.soundMeleeHitBlunt.NullOrUndefined())
+                else if (!this.EquipmentSource.Stuff.stuffProps.soundMeleeHitBlunt.NullOrUndefined())
                 {
-                    return this.ownerEquipment.Stuff.stuffProps.soundMeleeHitBlunt;
+                    return this.EquipmentSource.Stuff.stuffProps.soundMeleeHitBlunt;
                 }
             }
             if (base.CasterPawn != null && !base.CasterPawn.def.race.soundMeleeHitBuilding.NullOrUndefined())

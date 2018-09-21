@@ -17,7 +17,7 @@ namespace CombatExtended.Harmony
         {
             if (!dinfo.Def.isExplosive 
                 && dinfo.Def.harmsHealth 
-                && dinfo.Def.externalViolence 
+                && dinfo.Def.ExternalViolenceFor(dinfo.IntendedTarget) 
                 && dinfo.Weapon != null 
                 && (dinfo.Weapon.IsRangedWeapon || dinfo.Weapon.projectile is ProjectilePropertiesCE))  // Add a check for CE projectiles since we're using them as weaponGear to pass data to our ArmorUtility
             {

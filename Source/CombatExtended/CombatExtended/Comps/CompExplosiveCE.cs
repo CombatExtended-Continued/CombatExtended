@@ -73,9 +73,9 @@ namespace CombatExtended
                 
                 foreach (ThingCountClass fragment in Props.fragments)
                 {
-                    for (int i = 0; i < fragment.count; i++)
+                    for (int i = 0; i < fragment.Count; i++)
                     {
-                        ProjectileCE projectile = (ProjectileCE)ThingMaker.MakeThing(fragment.thingDef, null);
+                        ProjectileCE projectile = (ProjectileCE)ThingMaker.MakeThing(fragment.thing.def, null);
                         GenSpawn.Spawn(projectile, posIV, map);
                         
                         projectile.canTargetSelf = true;

@@ -290,7 +290,7 @@ namespace CombatExtended
                     {
                         goto AGAIN;
                     }
-                    MoteMaker.ThrowText(this.parent.Position.ToVector3Shifted(), Find.VisibleMap, rndswearsuppressed);
+                    MoteMaker.ThrowText(this.parent.Position.ToVector3Shifted(), Find.CurrentMap, rndswearsuppressed);
                 }
                 //standard    MoteMaker.ThrowText(parent.Position.ToVector3Shifted(), "CE_SuppressedMote".Translate());
             }*/

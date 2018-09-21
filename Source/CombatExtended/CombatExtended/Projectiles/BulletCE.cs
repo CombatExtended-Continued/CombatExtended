@@ -44,7 +44,8 @@ namespace CombatExtended
             
             if (hitThing != null)
             {
-                int damageAmountBase = def.projectile.damageAmountBase;
+                // launcher being the pawn equipping the weapon, not the weapon itself
+                int damageAmountBase = def.projectile.GetDamageAmount(CE_Utility.GetWeaponFromLauncher(launcher));
                 DamageDefExtensionCE damDefCE = def.projectile.damageDef.GetModExtension<DamageDefExtensionCE>() ?? new DamageDefExtensionCE();
 
                 DamageInfo dinfo = new DamageInfo(
@@ -85,7 +86,7 @@ namespace CombatExtended
             }
             else
             {
-                SoundDefOf.BulletImpactGround.PlayOneShot(new TargetInfo(base.Position, map, false));
+                SoundDefOf.BulletImpact_Ground.PlayOneShot(new TargetInfo(base.Position, map, false));
                 
                 //Only display a dirt hit for projectiles with a dropshadow
                 if (base.castShadow)

@@ -78,7 +78,7 @@ namespace CombatExtended
         {
             get
             {
-                if (bleedModifier < 1 && !parent.IsOld() && !parent.IsTended()) return new TextureAndColor(StabilizedIcon, Color.white);
+                if (bleedModifier < 1 && !parent.IsPermanent() && !parent.IsTended()) return new TextureAndColor(StabilizedIcon, Color.white);
                 return TextureAndColor.None;
             }
         }
