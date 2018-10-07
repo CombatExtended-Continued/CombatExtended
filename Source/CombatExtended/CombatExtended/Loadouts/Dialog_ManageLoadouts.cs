@@ -73,7 +73,9 @@ namespace CombatExtended
             SetSource(SourceSelection.Ranged);
             doCloseX = true;
             closeOnClickedOutside = true;
-            closeOnEscapeKey = true;
+            closeOnCancel = true;
+            closeOnAccept = true; //TODO: Necessary?
+            //closeOnEscapeKey = true;
             Utility_Loadouts.UpdateColonistCapacities();
         }
 
