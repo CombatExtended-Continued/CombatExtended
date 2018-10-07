@@ -421,6 +421,7 @@ namespace CombatExtended
                 }
                 else
                 {
+                    //TODO: Who is attacking us?
                     Verb_MeleeAttackCE verb = defender.meleeVerbs.TryGetMeleeVerb() as Verb_MeleeAttackCE;
                     if (verb == null)
                     {
