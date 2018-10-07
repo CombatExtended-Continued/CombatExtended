@@ -227,7 +227,7 @@ namespace CombatExtended
             	bodyPartGroupDef = LinkedBodyPartsGroup;
                 if (damAmount >= 1f)
                 {
-                    if (this.ownerHediffComp != null)
+                    if (this.ownerHediffComp != null) //Could be "if (this.HediffCompSource != null)"
                     {
                         hediffDef = this.ownerHediffComp.Def;
                     }
@@ -340,7 +340,7 @@ namespace CombatExtended
         /// <param name="target">Target to apply damage to</param>
 		protected override DamageWorker.DamageResult ApplyMeleeDamageToTarget(LocalTargetInfo target)
         {
-            DamageWorker.DamageResult result = DamageWorker.DamageResult.MakeNew();
+            DamageWorker.DamageResult result = new DamageWorker.DamageResult();
             foreach (DamageInfo current in DamageInfosToApply(target, isCrit))
             {
                 if (target.ThingDestroyed)
