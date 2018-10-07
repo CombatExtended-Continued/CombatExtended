@@ -18,7 +18,8 @@ namespace CombatExtended.Harmony
             {
                 var dmgAmount = dinfo.Amount;
                 if (!affectedByEMP) dmgAmount = Mathf.RoundToInt(dmgAmount * 0.25f);
-                var newDinfo = new DamageInfo(CE_DamageDefOf.Electrical, dmgAmount, dinfo.Angle, dinfo.Instigator, dinfo.HitPart, dinfo.Weapon, dinfo.Category);
+                var newDinfo = new DamageInfo(CE_DamageDefOf.Electrical, dmgAmount, 0, //Armor Penetration
+                    dinfo.Angle, dinfo.Instigator, dinfo.HitPart, dinfo.Weapon, dinfo.Category);
                 __instance.parent.TakeDamage(newDinfo);
             }
         }
