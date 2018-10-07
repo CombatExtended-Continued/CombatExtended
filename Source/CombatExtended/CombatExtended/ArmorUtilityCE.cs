@@ -286,7 +286,7 @@ namespace CombatExtended
                     if (instigatorPawn.def == dinfo.Weapon)
                     {
                         // meleeVerbs: all verbs considered "melee worthy"
-                        Verb availableVerb = instigatorPawn.meleeVerbs.TryGetMeleeVerb();
+                        Verb availableVerb = instigatorPawn.meleeVerbs.TryGetMeleeVerb(dinfo.IntendedTarget);
                     	
 	                    // Case 2.3.1: .. of a weaponized hediff (power claw, scyther blade)
                         HediffCompProperties_VerbGiver compProps = dinfo.WeaponLinkedHediff?.CompPropsFor(typeof(HediffComp_VerbGiver)) as HediffCompProperties_VerbGiver;
