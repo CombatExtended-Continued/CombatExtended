@@ -116,7 +116,7 @@ namespace CombatExtended
                     // Attack is evaded
                     result = false;
                     soundDef = SoundMiss();
-                    CreateCombatLog(RulePackDefOf.Combat_Dodge);
+                    CreateCombatLog((ManeuverDef maneuver) => maneuver.combatLogRulesDodge, false);
 
                     moteText = "TextMote_Dodge".Translate();
                     defender.skills?.Learn(SkillDefOf.Melee, DodgeXP, false);
@@ -140,7 +140,7 @@ namespace CombatExtended
                             // Do a riposte
                             DoParry(defender, parryThing, true);
                             moteText = "CE_TextMote_Riposted".Translate();
-                            CreateCombatLog(RulePackDefOf.Combat_Miss); //placeholder
+                            CreateCombatLog((ManeuverDef maneuver) => maneuver.combatLogRulesDeflect, false); //placeholder
 
                             defender.skills?.Learn(SkillDefOf.Melee, CritXP + ParryXP, false);
                         }
@@ -149,7 +149,7 @@ namespace CombatExtended
                             // Do a parry
                             DoParry(defender, parryThing);
                             moteText = "CE_TextMote_Parried".Translate();
-                            CreateCombatLog(RulePackDefOf.Combat_Miss); //placeholder
+                            CreateCombatLog((ManeuverDef maneuver) => maneuver.combatLogRulesMiss, false); //placeholder
 
                             defender.skills?.Learn(SkillDefOf.Melee, ParryXP, false);
                         }
@@ -159,7 +159,7 @@ namespace CombatExtended
                     }
                     else
                     {
-                        BattleLogEntry_MeleeCombat log = this.CreateCombatLog(RulePackDefOf.Combat_Hit);
+                        BattleLogEntry_MeleeCombat log = this.CreateCombatLog((ManeuverDef maneuver) => maneuver.combatLogRulesHit, false);
 
                         // Attack connects
                         if (surpriseAttack || Rand.Chance(GetComparativeChanceAgainst(casterPawn, defender, CE_StatDefOf.MeleeCritChance, BaseCritChance)))
@@ -185,7 +185,7 @@ namespace CombatExtended
                 // Attack missed
                 result = false;
                 soundDef = SoundMiss();
-                CreateCombatLog(RulePackDefOf.Combat_Miss);
+                CreateCombatLog((ManeuverDef maneuver) => maneuver.combatLogRulesMiss, false);
             }
             if (!moteText.NullOrEmpty())
                 MoteMaker.ThrowText(targetThing.PositionHeld.ToVector3Shifted(), targetThing.MapHeld, moteText);
@@ -216,7 +216,7 @@ namespace CombatExtended
         /// <returns>Collection with primary DamageInfo, followed by secondary types</returns>
         private IEnumerable<DamageInfo> DamageInfosToApply(LocalTargetInfo target, bool isCrit = false)
         {
-            float damAmount = (float)this.verbProps.AdjustedMeleeDamageAmount(this, base.CasterPawn, this.EquipmentSource);
+            float damAmount = (float)this.verbProps.AdjustedMeleeDamageAmount(this, base.CasterPawn);
             var critDamDef = CritDamageDef;
             DamageDef damDef = isCrit && critDamDef != DamageDefOf.Stun ? critDamDef : verbProps.meleeDamageDef;	//Added isCrit check
             BodyPartGroupDef bodyPartGroupDef = null;
@@ -442,7 +442,7 @@ namespace CombatExtended
             }
             else
             {
-                tracker.RegisterParryFor(defender, verbProps.AdjustedCooldownTicks(this, defender, EquipmentSource));
+                tracker.RegisterParryFor(defender, verbProps.AdjustedCooldownTicks(this, defender));
             }
         }
 
