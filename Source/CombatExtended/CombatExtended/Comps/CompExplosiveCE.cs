@@ -121,7 +121,7 @@ namespace CombatExtended
                 if (parent.def.projectile != null)
                 {
                     explosion.chanceToStartFire = parent.def.projectile.explosionChanceToStartFire;
-                    explosion.dealMoreDamageAtCenter = parent.def.projectile.explosionDealMoreDamageAtCenter;
+                    explosion.damageFalloff = parent.def.projectile.explosionDamageFalloff;
                 }
                 explosion.StartExplosion(Props.explosionDamageDef.soundExplosion);
             }
