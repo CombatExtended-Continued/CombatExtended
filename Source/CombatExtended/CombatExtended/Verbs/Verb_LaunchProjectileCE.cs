@@ -477,8 +477,8 @@ namespace CombatExtended
         	    {
 					report = "IsIncapableOfViolenceLower".Translate(new object[]
 					{
-						ShooterPawn.NameStringShort
-					});
+						ShooterPawn.Name.ToStringShort
+                    });
             		return false;
         	    }
             	

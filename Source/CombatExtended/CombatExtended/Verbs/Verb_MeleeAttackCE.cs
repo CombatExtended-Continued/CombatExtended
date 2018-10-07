@@ -166,14 +166,14 @@ namespace CombatExtended
                         {
                             // Do a critical hit
                             isCrit = true;
-                            ApplyMeleeDamageToTarget(currentTarget).InsertIntoLog(log);
+                            ApplyMeleeDamageToTarget(currentTarget).AssociateWithLog(log);
                             moteText = casterPawn.def.race.Animal ? "CE_TextMote_Knockdown".Translate() : "CE_TextMote_CriticalHit".Translate();
                             casterPawn.skills?.Learn(SkillDefOf.Melee, CritXP, false);
                         }
                         else
                         {
                             // Do a regular hit as per vanilla
-                            ApplyMeleeDamageToTarget(currentTarget).InsertIntoLog(log);
+                            ApplyMeleeDamageToTarget(currentTarget).AssociateWithLog(log);
                         }
                         result = true;
                         soundDef = targetThing.def.category == ThingCategory.Building ? SoundHitBuilding() : SoundHitPawn();
@@ -250,7 +250,8 @@ namespace CombatExtended
             Vector3 direction = (target.Thing.Position - base.CasterPawn.Position).ToVector3();
             Thing caster = this.caster;
             BodyPartHeight bodyRegion = GetBodyPartHeightFor(target);   // Add check for body height
-            DamageInfo mainDinfo = new DamageInfo(damDef, GenMath.RoundRandom(damAmount), -1f, caster, null, source);
+            DamageInfo mainDinfo = new DamageInfo(damDef, GenMath.RoundRandom(damAmount), 0, //Armor Penetration
+                -1f, caster, null, source);
             mainDinfo.SetBodyRegion(bodyRegion, BodyPartDepth.Outside);
             mainDinfo.SetWeaponBodyPartGroup(bodyPartGroupDef);
             mainDinfo.SetWeaponHediff(hediffDef);
@@ -292,7 +293,8 @@ namespace CombatExtended
             if (isCrit && critDamDef == DamageDefOf.Stun)
             {
                 var critAmount = GenMath.RoundRandom(mainDinfo.Amount * 0.25f);
-                var critDinfo = new DamageInfo(critDamDef, critAmount, -1, caster, null, source);
+                var critDinfo = new DamageInfo(critDamDef, critAmount, 0, //Armor Penetration
+                    -1, caster, null, source);
                 critDinfo.SetBodyRegion(bodyRegion, BodyPartDepth.Outside);
                 critDinfo.SetWeaponBodyPartGroup(bodyPartGroupDef);
                 critDinfo.SetWeaponHediff(hediffDef);
@@ -409,7 +411,8 @@ namespace CombatExtended
                 if (parryThing is Apparel_Shield)
                 {
                     // Shield bash
-                    DamageInfo dinfo = new DamageInfo(DamageDefOf.Blunt, 6, -1, defender, null, parryThing.def);
+                    DamageInfo dinfo = new DamageInfo(DamageDefOf.Blunt, 6, 0, //Armor Penetration
+                        -1, defender, null, parryThing.def);
                     dinfo.SetBodyRegion(BodyPartHeight.Undefined, BodyPartDepth.Outside);
                     dinfo.SetAngle((CasterPawn.Position - defender.Position).ToVector3());
                     caster.TakeDamage(dinfo);

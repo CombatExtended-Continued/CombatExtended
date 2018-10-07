@@ -21,7 +21,9 @@ namespace CombatExtended
 					hitThing,
 					intendedTarget,
 					equipmentDef,
-					def);
+					def
+                    //CoverDef Missing!
+                    );
 			
 			Find.BattleLog.Add(logEntry);
         }
@@ -51,6 +53,7 @@ namespace CombatExtended
                 DamageInfo dinfo = new DamageInfo(
                     def.projectile.damageDef,
                     damageAmountBase,
+                    0, //Armor Penetration
                     ExactRotation.eulerAngles.y,
                     launcher,
                     null,
@@ -64,7 +67,7 @@ namespace CombatExtended
                 if (damDefCE != null && damDefCE.harmOnlyOutsideLayers) dinfo.SetBodyRegion(BodyPartHeight.Undefined, BodyPartDepth.Outside);
 
                 // Apply primary damage
-                hitThing.TakeDamage(dinfo).InsertIntoLog(logEntry);
+                hitThing.TakeDamage(dinfo).AssociateWithLog(logEntry);
 
                 // Apply secondary to non-pawns (pawn secondary damage is handled in the damage worker)
                 var projectilePropsCE = def.projectile as ProjectilePropertiesCE;
@@ -76,11 +79,13 @@ namespace CombatExtended
                         var secDinfo = new DamageInfo(
                             cur.def,
                             cur.amount,
+                            0, //Armor Penetration
                             ExactRotation.eulerAngles.y,
                             launcher,
                             null,
-                            def);
-                        hitThing.TakeDamage(secDinfo).InsertIntoLog(logEntry);
+                            def
+                        );
+                        hitThing.TakeDamage(secDinfo).AssociateWithLog(logEntry);
                     }
                 }
             }
