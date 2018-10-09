@@ -49,11 +49,12 @@ namespace CombatExtended
                 // launcher being the pawn equipping the weapon, not the weapon itself
                 int damageAmountBase = def.projectile.GetDamageAmount(CE_Utility.GetWeaponFromLauncher(launcher));
                 DamageDefExtensionCE damDefCE = def.projectile.damageDef.GetModExtension<DamageDefExtensionCE>() ?? new DamageDefExtensionCE();
+                float armorPenetration = def.projectile.GetArmorPenetration(CE_Utility.GetWeaponFromLauncher(launcher));
 
                 DamageInfo dinfo = new DamageInfo(
                     def.projectile.damageDef,
                     damageAmountBase,
-                    0, //Armor Penetration
+                    armorPenetration, //Armor Penetration
                     ExactRotation.eulerAngles.y,
                     launcher,
                     null,

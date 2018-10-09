@@ -250,7 +250,7 @@ namespace CombatExtended
             Vector3 direction = (target.Thing.Position - base.CasterPawn.Position).ToVector3();
             Thing caster = this.caster;
             BodyPartHeight bodyRegion = GetBodyPartHeightFor(target);   // Add check for body height
-            DamageInfo mainDinfo = new DamageInfo(damDef, GenMath.RoundRandom(damAmount), 0, //Armor Penetration
+            DamageInfo mainDinfo = new DamageInfo(damDef, GenMath.RoundRandom(damAmount), damDef.defaultArmorPenetration, //Armor Penetration
                 -1f, caster, null, source);
             mainDinfo.SetBodyRegion(bodyRegion, BodyPartDepth.Outside);
             mainDinfo.SetWeaponBodyPartGroup(bodyPartGroupDef);
@@ -293,7 +293,7 @@ namespace CombatExtended
             if (isCrit && critDamDef == DamageDefOf.Stun)
             {
                 var critAmount = GenMath.RoundRandom(mainDinfo.Amount * 0.25f);
-                var critDinfo = new DamageInfo(critDamDef, critAmount, 0, //Armor Penetration
+                var critDinfo = new DamageInfo(critDamDef, critAmount, critDamDef.defaultArmorPenetration, //Armor Penetration
                     -1, caster, null, source);
                 critDinfo.SetBodyRegion(bodyRegion, BodyPartDepth.Outside);
                 critDinfo.SetWeaponBodyPartGroup(bodyPartGroupDef);
