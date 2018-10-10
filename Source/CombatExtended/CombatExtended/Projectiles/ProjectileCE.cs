@@ -639,7 +639,7 @@ namespace CombatExtended
                 && pawn.Faction != launcher?.Faction
                 && (shield == null || shield?.ShieldState == ShieldState.Resetting))
             {
-                suppressionAmount = def.projectile.damageDef.defaultDamage;
+                suppressionAmount = def.projectile.GetDamageAmount(CE_Utility.GetWeaponFromLauncher(launcher));
                 var propsCE = def.projectile as ProjectilePropertiesCE;
                 float penetrationAmount = propsCE == null ? 0f : propsCE.armorPenetration;
                 suppressionAmount *= 1 - Mathf.Clamp(compSuppressable.ParentArmor - penetrationAmount, 0, 1);
