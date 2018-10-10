@@ -49,12 +49,12 @@ namespace CombatExtended
                 // launcher being the pawn equipping the weapon, not the weapon itself
                 int damageAmountBase = def.projectile.GetDamageAmount(CE_Utility.GetWeaponFromLauncher(launcher));
                 DamageDefExtensionCE damDefCE = def.projectile.damageDef.GetModExtension<DamageDefExtensionCE>() ?? new DamageDefExtensionCE();
-                float armorPenetration = def.projectile.GetArmorPenetration(CE_Utility.GetWeaponFromLauncher(launcher));
+                var projectilePropsCE = def.projectile as ProjectilePropertiesCE;
 
                 DamageInfo dinfo = new DamageInfo(
                     def.projectile.damageDef,
                     damageAmountBase,
-                    armorPenetration, //Armor Penetration
+                    projectilePropsCE.armorPenetration, //Armor Penetration
                     ExactRotation.eulerAngles.y,
                     launcher,
                     null,
@@ -71,7 +71,7 @@ namespace CombatExtended
                 hitThing.TakeDamage(dinfo).AssociateWithLog(logEntry);
 
                 // Apply secondary to non-pawns (pawn secondary damage is handled in the damage worker)
-                var projectilePropsCE = def.projectile as ProjectilePropertiesCE;
+                
                 if(!(hitThing is Pawn) && projectilePropsCE != null && !projectilePropsCE.secondaryDamage.NullOrEmpty())
                 {
                     foreach(SecondaryDamage cur in projectilePropsCE.secondaryDamage)
@@ -80,7 +80,7 @@ namespace CombatExtended
                         var secDinfo = new DamageInfo(
                             cur.def,
                             cur.amount,
-                            0, //Armor Penetration
+                            projectilePropsCE.armorPenetration, //Armor Penetration
                             ExactRotation.eulerAngles.y,
                             launcher,
                             null,
