@@ -44,7 +44,7 @@ namespace CombatExtended
         private float rotationDegrees = 0f;
         private float angleRadians = 0f;
 
-        private int lastTauntTick;
+        //private int lastTauntTick;
         
         #endregion
 
