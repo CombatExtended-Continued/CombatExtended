@@ -421,8 +421,7 @@ namespace CombatExtended
                 }
                 else
                 {
-                    //TODO: Who is attacking us?
-                    Verb_MeleeAttackCE verb = defender.meleeVerbs.TryGetMeleeVerb() as Verb_MeleeAttackCE;
+                    Verb_MeleeAttackCE verb = defender.meleeVerbs.TryGetMeleeVerb(caster) as Verb_MeleeAttackCE;
                     if (verb == null)
                     {
                         Log.Error("CE failed to get attack verb for riposte from Pawn " + defender.ToString());
