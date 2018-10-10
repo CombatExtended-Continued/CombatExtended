@@ -21,8 +21,8 @@ namespace CombatExtended
 					hitThing,
 					intendedTarget,
 					equipmentDef,
-					def
-                    //CoverDef Missing!
+					def,
+                    null //CoverDef Missing!
                     );
 			
 			Find.BattleLog.Add(logEntry);
