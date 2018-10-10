@@ -22,7 +22,7 @@ namespace CombatExtended
         {
             var dinfo = new DamageInfo(def,
                             amount,
-                            0, //Armor Penetration
+                            primaryDinfo.ArmorPenetrationInt, //Armor Penetration
                             primaryDinfo.Angle,
                             primaryDinfo.Instigator,
                             primaryDinfo.HitPart,
