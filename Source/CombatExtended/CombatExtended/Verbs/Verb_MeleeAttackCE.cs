@@ -216,20 +216,22 @@ namespace CombatExtended
         /// <returns>Collection with primary DamageInfo, followed by secondary types</returns>
         private IEnumerable<DamageInfo> DamageInfosToApply(LocalTargetInfo target, bool isCrit = false)
         {
-            float damAmount = (float)this.verbProps.AdjustedMeleeDamageAmount(this, base.CasterPawn);
             var critDamDef = CritDamageDef;
-            DamageDef damDef = isCrit && critDamDef != DamageDefOf.Stun ? critDamDef : verbProps.meleeDamageDef;	//Added isCrit check
+            //START 1:1 COPY Verb_MeleeAttack.DamageInfosToApply
+            float damAmount = this.verbProps.AdjustedMeleeDamageAmount(this, base.CasterPawn);
+            float armorPenetration = this.verbProps.AdjustedArmorPenetration(this, base.CasterPawn);
+            DamageDef damDef = isCrit && critDamDef != DamageDefOf.Stun ? critDamDef : verbProps.meleeDamageDef; //Alteration	//Added isCrit check
             BodyPartGroupDef bodyPartGroupDef = null;
             HediffDef hediffDef = null;
-            damAmount = UnityEngine.Random.Range(damAmount * 0.8f, damAmount * 1.2f);
+            damAmount = Rand.Range(damAmount * 0.8f, damAmount * 1.2f);
             if (base.CasterIsPawn)
             {
-            	bodyPartGroupDef = LinkedBodyPartsGroup;
+                bodyPartGroupDef = this.verbProps.AdjustedLinkedBodyPartsGroup(this.tool);
                 if (damAmount >= 1f)
                 {
-                    if (this.ownerHediffComp != null) //Could be "if (this.HediffCompSource != null)"
+                    if (base.HediffCompSource != null)
                     {
-                        hediffDef = this.ownerHediffComp.Def;
+                        hediffDef = base.HediffCompSource.Def;
                     }
                 }
                 else
@@ -239,20 +241,22 @@ namespace CombatExtended
                 }
             }
             ThingDef source;
-            if (this.EquipmentSource != null)
+            if (base.EquipmentSource != null)
             {
-                source = this.EquipmentSource.def;
+                source = base.EquipmentSource.def;
             }
             else
             {
                 source = base.CasterPawn.def;
             }
             Vector3 direction = (target.Thing.Position - base.CasterPawn.Position).ToVector3();
+            DamageDef def = damDef;
+            //END 1:1 COPY
+            BodyPartHeight bodyRegion = GetBodyPartHeightFor(target);   //Custom // Add check for body height
+            //START 1:1 COPY
             Thing caster = this.caster;
-            BodyPartHeight bodyRegion = GetBodyPartHeightFor(target);   // Add check for body height
-            DamageInfo mainDinfo = new DamageInfo(damDef, GenMath.RoundRandom(damAmount), this.verbProps.meleeArmorPenetrationBase, //damDef.defaultArmorPenetration //Armor Penetration
-                - 1f, caster, null, source);
-            mainDinfo.SetBodyRegion(bodyRegion, BodyPartDepth.Outside);
+            DamageInfo mainDinfo = new DamageInfo(def, damAmount, armorPenetration, -1f, caster, null, source, DamageInfo.SourceCategory.ThingOrUnknown, null); //Alteration
+            mainDinfo.SetBodyRegion(bodyRegion, BodyPartDepth.Outside); //Alteration
             mainDinfo.SetWeaponBodyPartGroup(bodyPartGroupDef);
             mainDinfo.SetWeaponHediff(hediffDef);
             mainDinfo.SetAngle(direction);
@@ -260,40 +264,40 @@ namespace CombatExtended
 
             // Apply secondary damage on surprise attack
             /*
-            if (!surpriseAttack
-                    || ((verbProps.surpriseAttack == null || verbProps.surpriseAttack.extraMeleeDamages.NullOrEmpty<ExtraMeleeDamage>())
-                        && tool != null
-                        && tool.surpriseAttack != null
-                        && !tool.surpriseAttack.extraMeleeDamages.NullOrEmpty<ExtraMeleeDamage>())
-               )
-            {
-                IEnumerable<ExtraMeleeDamage> extraDamages = Enumerable.Empty<ExtraMeleeDamage>();
-                if (verbProps.surpriseAttack != null && verbProps.surpriseAttack.extraMeleeDamages != null)
-                {
-                    extraDamages = extraDamages.Concat(tool.surpriseAttack.extraMeleeDamages);
-                }
-                if (tool != null && tool.surpriseAttack != null && !tool.surpriseAttack.extraMeleeDamages.NullOrEmpty<ExtraMeleeDamage>())
-                {
-                    extraDamages = extraDamages.Concat(tool.surpriseAttack.extraMeleeDamages);
-                }
-                foreach (ExtraMeleeDamage extraDamage in extraDamages)
-                {
-                    int amount = GenMath.RoundRandom((float)extraDamage.amount * base.GetDamageFactorFor(base.CasterPawn));
-                    DamageInfo extraDinfo = new DamageInfo(extraDamage.def, amount, -1f, this.caster, null, source);
-                    extraDinfo.SetBodyRegion(bodyRegion, BodyPartDepth.Outside);
-                    extraDinfo.SetWeaponBodyPartGroup(bodyPartGroupDef);
-                    extraDinfo.SetWeaponHediff(hediffDef);
-                    extraDinfo.SetAngle(direction);
-                    yield return extraDinfo;
-                }
-            }
+            if (this.surpriseAttack && ((this.verbProps.surpriseAttack != null && !this.verbProps.surpriseAttack.extraMeleeDamages.NullOrEmpty<ExtraMeleeDamage>()) || this.tool == null || this.tool.surpriseAttack == null || this.tool.surpriseAttack.extraMeleeDamages.NullOrEmpty<ExtraMeleeDamage>()))
+			{
+				IEnumerable<ExtraMeleeDamage> extraDamages = Enumerable.Empty<ExtraMeleeDamage>();
+				if (this.verbProps.surpriseAttack != null && this.verbProps.surpriseAttack.extraMeleeDamages != null)
+				{
+					extraDamages = extraDamages.Concat(this.verbProps.surpriseAttack.extraMeleeDamages);
+				}
+				if (this.tool != null && this.tool.surpriseAttack != null && !this.tool.surpriseAttack.extraMeleeDamages.NullOrEmpty<ExtraMeleeDamage>())
+				{
+					extraDamages = extraDamages.Concat(this.tool.surpriseAttack.extraMeleeDamages);
+				}
+				foreach (ExtraMeleeDamage extraDamage in extraDamages)
+				{
+					int extraDamageAmount = GenMath.RoundRandom(extraDamage.AdjustedDamageAmount(this, base.CasterPawn));
+					float extraDamageArmorPenetration = extraDamage.AdjustedArmorPenetration(this, base.CasterPawn);
+					def = extraDamage.def;
+					num2 = (float)extraDamageAmount;
+					num = extraDamageArmorPenetration;
+					caster = this.caster;
+					DamageInfo extraDinfo = new DamageInfo(def, num2, num, -1f, caster, null, source, DamageInfo.SourceCategory.ThingOrUnknown, null);
+					extraDinfo.SetBodyRegion(BodyPartHeight.Undefined, BodyPartDepth.Outside);
+					extraDinfo.SetWeaponBodyPartGroup(bodyPartGroupDef);
+					extraDinfo.SetWeaponHediff(hediffDef);
+					extraDinfo.SetAngle(direction);
+					yield return extraDinfo;
+				}
+			}
             */
-
+            //END 1:1 COPY
             // Apply critical damage
             if (isCrit && critDamDef == DamageDefOf.Stun)
             {
                 var critAmount = GenMath.RoundRandom(mainDinfo.Amount * 0.25f);
-                var critDinfo = new DamageInfo(critDamDef, critAmount, critDamDef.defaultArmorPenetration, //Armor Penetration
+                var critDinfo = new DamageInfo(critDamDef, critAmount, float.MaxValue, //Ignore armor //armorPenetration, //Armor Penetration
                     -1, caster, null, source);
                 critDinfo.SetBodyRegion(bodyRegion, BodyPartDepth.Outside);
                 critDinfo.SetWeaponBodyPartGroup(bodyPartGroupDef);
