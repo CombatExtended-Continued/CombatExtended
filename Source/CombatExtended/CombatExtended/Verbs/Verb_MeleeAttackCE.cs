@@ -250,8 +250,8 @@ namespace CombatExtended
             Vector3 direction = (target.Thing.Position - base.CasterPawn.Position).ToVector3();
             Thing caster = this.caster;
             BodyPartHeight bodyRegion = GetBodyPartHeightFor(target);   // Add check for body height
-            DamageInfo mainDinfo = new DamageInfo(damDef, GenMath.RoundRandom(damAmount), damDef.defaultArmorPenetration, //Armor Penetration
-                -1f, caster, null, source);
+            DamageInfo mainDinfo = new DamageInfo(damDef, GenMath.RoundRandom(damAmount), this.verbProps.meleeArmorPenetrationBase, //damDef.defaultArmorPenetration //Armor Penetration
+                - 1f, caster, null, source);
             mainDinfo.SetBodyRegion(bodyRegion, BodyPartDepth.Outside);
             mainDinfo.SetWeaponBodyPartGroup(bodyPartGroupDef);
             mainDinfo.SetWeaponHediff(hediffDef);
