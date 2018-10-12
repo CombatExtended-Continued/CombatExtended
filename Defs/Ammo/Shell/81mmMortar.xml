@@ -28,7 +28,7 @@
   <!-- ==================== Ammo ========================== -->
 
 
-  <ThingDef Name="81mmMortarShellBase" ParentName="AmmoBase" Abstract="True">
+  <ThingDef Class="CombatExtended.AmmoDef" Name="81mmMortarShellBase" ParentName="AmmoBase" Abstract="True">
     <description>Low-velocity shell designed to be fired from a mortar.</description>
     <statBases>
       <MaxHitPoints>200</MaxHitPoints>
@@ -41,7 +41,7 @@
     <cookOffSound>MortarBomb_Explode</cookOffSound>
   </ThingDef>
 
-  <ThingDef Name="81mmMortarShellBaseCraftableBase" ParentName="81mmMortarShellBase" Abstract="True">
+  <ThingDef Class="CombatExtended.AmmoDef" Name="81mmMortarShellBaseCraftableBase" ParentName="81mmMortarShellBase" Abstract="True">
     <tradeTags>
       <li>CE_AutoEnableTrade</li>
       <li>CE_AutoEnableCrafting_TableMachining</li>
@@ -49,7 +49,7 @@
   </ThingDef>
 
   <!-- Need to override mortar shell because of hardcoded vanilla references -->
-  <ThingDef ParentName="81mmMortarShellBaseCraftableBase">
+  <ThingDef Class="CombatExtended.AmmoDef" ParentName="81mmMortarShellBaseCraftableBase">
     <defName>Shell_HighExplosive</defName>
     <label>81mm mortar shell (HE)</label>
     <graphicData>
@@ -75,7 +75,7 @@
     </comps>
   </ThingDef>
 
-  <ThingDef ParentName="81mmMortarShellBaseCraftableBase">
+  <ThingDef Class="CombatExtended.AmmoDef" ParentName="81mmMortarShellBaseCraftableBase">
     <defName>Shell_Incendiary</defName>
     <label>81mm mortar shell (Incendiary)</label>
     <graphicData>
@@ -103,7 +103,7 @@
     </comps>
   </ThingDef>
 
-  <ThingDef ParentName="81mmMortarShellBaseCraftableBase">
+  <ThingDef Class="CombatExtended.AmmoDef" ParentName="81mmMortarShellBaseCraftableBase">
     <defName>Shell_EMP</defName>
     <label>81mm mortar shell (EMP)</label>
     <graphicData>
@@ -128,7 +128,7 @@
     </comps>
   </ThingDef>
 
-  <ThingDef ParentName="81mmMortarShellBaseCraftableBase">
+  <ThingDef Class="CombatExtended.AmmoDef" ParentName="81mmMortarShellBaseCraftableBase">
     <defName>Shell_Firefoam</defName>
     <label>81mm mortar shell (Foam)</label>
     <graphicData>
@@ -153,7 +153,7 @@
     </comps>
   </ThingDef>
 
-  <ThingDef ParentName="81mmMortarShellBase">
+  <ThingDef Class="CombatExtended.AmmoDef" ParentName="81mmMortarShellBase">
     <defName>Shell_AntigrainWarhead</defName>
     <label>81mm mortar shell (Anti)</label>
     <graphicData>
@@ -184,7 +184,7 @@
   <!-- ================== Projectiles ================== -->
 
 
-  <ThingDef Name="Base81mmMortarShell" ParentName="BaseBullet" Abstract="true">
+  <ThingDef Class="CombatExtended.AmmoDef" Name="Base81mmMortarShell" ParentName="BaseBullet" Abstract="true">
     <thingClass>CombatExtended.ProjectileCE_Explosive</thingClass>
     <graphicData>
       <shaderType>TransparentPostLight</shaderType>
@@ -200,7 +200,7 @@
     </projectile>
   </ThingDef>
 
-  <ThingDef ParentName="Base81mmMortarShell">
+  <ThingDef Class="CombatExtended.AmmoDef" ParentName="Base81mmMortarShell">
     <defName>Bullet_81mmMortarShell_HE</defName>
     <label>81mm mortar shell (HE)</label>
     <graphicData>
@@ -223,7 +223,7 @@
     </comps>
   </ThingDef>
 
-  <ThingDef ParentName="Base81mmMortarShell">
+  <ThingDef Class="CombatExtended.AmmoDef" ParentName="Base81mmMortarShell">
     <defName>Bullet_81mmMortarShell_Incendiary</defName>
     <label>81mm mortar shell (Incendiary)</label>
     <graphicData>
@@ -240,7 +240,7 @@
     </projectile>
   </ThingDef>
 
-  <ThingDef ParentName="Base81mmMortarShell">
+  <ThingDef Class="CombatExtended.AmmoDef" ParentName="Base81mmMortarShell">
     <defName>Bullet_81mmMortarShell_EMP</defName>
     <label>81mm mortar shell (EMP)</label>
     <graphicData>
@@ -254,7 +254,7 @@
     </projectile>
   </ThingDef>
 
-  <ThingDef ParentName="Base81mmMortarShell">
+  <ThingDef Class="CombatExtended.AmmoDef" ParentName="Base81mmMortarShell">
     <defName>Bullet_81mmMortarShell_Firefoam</defName>
     <label>81mm mortar shell (Foam)</label>
     <graphicData>
@@ -277,7 +277,7 @@
     </projectile>
   </ThingDef>
 
-  <ThingDef ParentName="Base81mmMortarShell">
+  <ThingDef Class="CombatExtended.AmmoDef" ParentName="Base81mmMortarShell">
     <defName>Bullet_81mmMortarShell_Antigrain</defName>
     <label>81mm mortar shell (Anti)</label>
     <graphicData>
