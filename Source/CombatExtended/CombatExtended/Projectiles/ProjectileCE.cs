@@ -432,10 +432,10 @@ namespace CombatExtended
                 return false;
             }
 
-            /*if (DebugViewSettings.drawInterceptChecks)
+            if (Controller.settings.DebugDrawInterceptChecks)
             {
                 Map.debugDrawer.FlashLine(lastPosIV3, newPosIV3);
-            }*/
+            }
             #endregion
         	
             // Iterate through all cells between the last and the new position
@@ -450,8 +450,8 @@ namespace CombatExtended
                     return true;
             	}
 
-                //if (DebugViewSettings.drawInterceptChecks)
-                //    Map.debugDrawer.FlashCell(cell, 1, "o");
+                if (Controller.settings.DebugDrawInterceptChecks)
+                    Map.debugDrawer.FlashCell(cell, 1, "o");
             }
             
             return false;
@@ -494,10 +494,10 @@ namespace CombatExtended
 	                    mainThingList.AddRange(Map.thingGrid.ThingsListAtFast(curCell)
 	                	.Where(x => x is Pawn));
 						
-	                    /*if (DebugViewSettings.drawInterceptChecks)
+	                    if (Controller.settings.DebugDrawInterceptChecks)
 	                    {
 	                        Map.debugDrawer.FlashCell(curCell, 0.7f);
-	                    }*/
+	                    }
 	                }
 	            }
             }
@@ -561,7 +561,7 @@ namespace CombatExtended
             ExactPosition = point;
         	landed = true;
         	
-            //if (DebugViewSettings.drawInterceptChecks) MoteMaker.ThrowText(cell.ToVector3Shifted(), Map, "x", Color.red);
+            if (Controller.settings.DebugDrawInterceptChecks) MoteMaker.ThrowText(cell.ToVector3Shifted(), Map, "x", Color.red);
             
             Impact(null);
             return true;
@@ -608,7 +608,7 @@ namespace CombatExtended
             ExactPosition = point;
         	landed = true;
         	
-            //if (DebugViewSettings.drawInterceptChecks) MoteMaker.ThrowText(thing.Position.ToVector3Shifted(), thing.Map, "x", Color.red);
+            if (Controller.settings.DebugDrawInterceptChecks) MoteMaker.ThrowText(thing.Position.ToVector3Shifted(), thing.Map, "x", Color.red);
             
             Impact(thing);
             return true;
