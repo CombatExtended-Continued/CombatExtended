@@ -72,10 +72,8 @@ namespace CombatExtended
             	CurrentLoadout = loadout;
             SetSource(SourceSelection.Ranged);
             doCloseX = true;
-            closeOnClickedOutside = true;
-            closeOnCancel = true;
-            closeOnAccept = true; //TODO: Necessary?
-            //closeOnEscapeKey = true;
+			doCloseButton = true;
+			closeOnClickedOutside = true;
             Utility_Loadouts.UpdateColonistCapacities();
         }
 
