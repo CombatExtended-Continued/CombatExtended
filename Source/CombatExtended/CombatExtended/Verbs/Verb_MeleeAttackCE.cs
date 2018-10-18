@@ -415,7 +415,7 @@ namespace CombatExtended
                 if (parryThing is Apparel_Shield)
                 {
                     // Shield bash
-                    DamageInfo dinfo = new DamageInfo(DamageDefOf.Blunt, 6, 0, //Armor Penetration
+                    DamageInfo dinfo = new DamageInfo(DamageDefOf.Blunt, 6, (float.MaxValue*0.9f), //Armor Penetration
                         -1, defender, null, parryThing.def);
                     dinfo.SetBodyRegion(BodyPartHeight.Undefined, BodyPartDepth.Outside);
                     dinfo.SetAngle((CasterPawn.Position - defender.Position).ToVector3());
