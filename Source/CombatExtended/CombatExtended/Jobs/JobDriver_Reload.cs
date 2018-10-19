@@ -161,7 +161,7 @@ namespace CombatExtended
             System.Func<bool> jumpCondition =
                 () => compReloader.Props.reloadOneAtATime &&
                       compReloader.CurMagCount < compReloader.Props.magazineSize &&
-                      compReloader.TryFindAmmoInInventory(out initAmmo);
+                      (!compReloader.UseAmmo || compReloader.TryFindAmmoInInventory(out initAmmo));
             Toil jumpToil = Toils_Jump.JumpIf(waitToil, jumpCondition);
             yield return jumpToil;
 
