@@ -12,6 +12,7 @@ namespace CombatExtended
     {
         public int magazineSize = 0;
         public float reloadTime = 1;
+        public bool reloadOneAtATime = false;
         public bool throwMote = true;
         public AmmoSetDef ammoSet = null;
         public bool spawnUnloaded = false;
