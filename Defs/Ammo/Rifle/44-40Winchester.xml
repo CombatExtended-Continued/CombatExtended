@@ -20,7 +20,7 @@
 	
 	<!-- ==================== Ammo ========================== -->
 
-	<ThingDef Name="44-40WinchesterBase" ParentName="SmallAmmoBase" Abstract="True">
+	<ThingDef Class="CombatExtended.AmmoDef" Name="44-40WinchesterBase" ParentName="SmallAmmoBase" Abstract="True">
 		<description>Ancient mid-late 19th century bullet traditionally loaded with 40 grains of blackpowder, typically used in repeating arms.</description>
 		<statBases>
 		<Mass>0.01</Mass>
@@ -35,7 +35,7 @@
 		</thingCategories>
 	</ThingDef>
 
-	<ThingDef ParentName="44-40WinchesterBase">
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="44-40WinchesterBase">
 		<defName>Ammo_44-40Winchester_FMJ</defName>
 		<label>.44-40 Winchester cartridge (FMJ)</label>
 		<graphicData>
@@ -51,7 +51,7 @@
 	
 	<!-- ================== Projectiles ================== -->
 	
-	<ThingDef Name="Base44-40WinchesterBullet" ParentName="BaseBullet" Abstract="true">
+	<ThingDef Class="CombatExtended.AmmoDef" Name="Base44-40WinchesterBullet" ParentName="BaseBullet" Abstract="true">
 		<graphicData>
 			<texPath>Things/Projectile/Bullet_Small</texPath>
 			<graphicClass>Graphic_Single</graphicClass>
@@ -59,16 +59,16 @@
 		<projectile>
 			<damageDef>Bullet</damageDef>
 			<speed>95</speed>
-			<dropsCasings>true</dropsCasings>
+			<!-- <dropsCasings>true</dropsCasings> -->
 		</projectile>
 	</ThingDef>
 
-	<ThingDef ParentName="Base44-40WinchesterBullet">
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="Base44-40WinchesterBullet">
 		<defName>Bullet_44-40Winchester_FMJ</defName>
 		<label>.44-40 Winchester bullet (FMJ)</label>
 		<projectile>
 			<damageAmountBase>16</damageAmountBase>
-			<armorPenetration>0.389</armorPenetration>
+			<armorPenetrationBase>0.389</armorPenetrationBase>
 		</projectile>
 	</ThingDef>
   

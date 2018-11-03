@@ -22,7 +22,7 @@
 	
 	<!-- ==================== Ammo ========================== -->
 
-	<ThingDef Name="357SIGBase" ParentName="SmallAmmoBase" Abstract="True">
+	<ThingDef Class="CombatExtended.AmmoDef" Name="357SIGBase" ParentName="SmallAmmoBase" Abstract="True">
 		<description>A powerful cartridge designed to bring the performance of .357 Magnum to autoloaders.</description>
 		<statBases>
 		<Mass>0.014</Mass>
@@ -37,7 +37,7 @@
 		</thingCategories>
 	</ThingDef>
 
-	<ThingDef ParentName="357SIGBase">
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="357SIGBase">
 		<defName>Ammo_357SIG_FMJ</defName>
 		<label>.357 SIG cartridge (FMJ)</label>
 		<graphicData>
@@ -51,7 +51,7 @@
 		<cookOffProjectile>Bullet_357SIG_FMJ</cookOffProjectile>
 	</ThingDef>
 
-	<ThingDef ParentName="357SIGBase">
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="357SIGBase">
 		<defName>Ammo_357SIG_AP</defName>
 		<label>.357 SIG cartridge (AP)</label>
 		<graphicData>
@@ -65,7 +65,7 @@
 		<cookOffProjectile>Bullet_357SIG_AP</cookOffProjectile>
 	</ThingDef>
 
-	<ThingDef ParentName="357SIGBase">
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="357SIGBase">
 		<defName>Ammo_357SIG_HP</defName>
 		<label>.357 SIG cartridge (HP)</label>
 		<graphicData>
@@ -81,7 +81,7 @@
 	
 	<!-- ================== Projectiles ================== -->
 
-	<ThingDef Name="Base357SIGBullet" ParentName="BaseBullet" Abstract="true">
+	<ThingDef Class="CombatExtended.AmmoDef" Name="Base357SIGBullet" ParentName="BaseBullet" Abstract="true">
 		<graphicData>
 			<texPath>Things/Projectile/Bullet_Small</texPath>
 			<graphicClass>Graphic_Single</graphicClass>
@@ -89,34 +89,34 @@
 		<projectile>
 			<damageDef>Bullet</damageDef>
 			<speed>110</speed>
-			<dropsCasings>true</dropsCasings>
+			<!-- <dropsCasings>true</dropsCasings> -->
 		</projectile>
 	</ThingDef>
 
-	<ThingDef ParentName="Base357SIGBullet">
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="Base357SIGBullet">
 		<defName>Bullet_357SIG_FMJ</defName>
 		<label>.357 SIG bullet (FMJ)</label>
 		<projectile>
 			<damageAmountBase>14</damageAmountBase>
-			<armorPenetration>0.372</armorPenetration>
+			<armorPenetrationBase>0.372</armorPenetrationBase>
 		</projectile>
 	</ThingDef>
 
-	<ThingDef ParentName="Base357SIGBullet">
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="Base357SIGBullet">
 		<defName>Bullet_357SIG_AP</defName>
 		<label>.357 SIG bullet (AP)</label>
 		<projectile>
 			<damageAmountBase>10</damageAmountBase>
-			<armorPenetration>0.529</armorPenetration>
+			<armorPenetrationBase>0.529</armorPenetrationBase>
 		</projectile>
 	</ThingDef>
 
-	<ThingDef ParentName="Base357SIGBullet">
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="Base357SIGBullet">
 		<defName>Bullet_357SIG_HP</defName>
 		<label>.357 SIG bullet (HP)</label>
 		<projectile>
 			<damageAmountBase>19</damageAmountBase>
-			<armorPenetration>0.229</armorPenetration>
+			<armorPenetrationBase>0.229</armorPenetrationBase>
 		</projectile>
 	</ThingDef>
   

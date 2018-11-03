@@ -23,7 +23,7 @@
   
   <!-- ==================== Ammo ========================== -->
 
-  <ThingDef Name="Ammo50BMGBase" ParentName="SmallAmmoBase" Abstract="True">
+  <ThingDef Class="CombatExtended.AmmoDef" Name="Ammo50BMGBase" ParentName="SmallAmmoBase" Abstract="True">
     <description>Large caliber bullet used by many heavy machine guns and anti-materiel rifles.</description>
     <statBases>
     <Mass>0.12</Mass>
@@ -39,7 +39,7 @@
     <stackLimit>200</stackLimit>
   </ThingDef>
 
-  <ThingDef ParentName="Ammo50BMGBase">
+  <ThingDef Class="CombatExtended.AmmoDef" ParentName="Ammo50BMGBase">
     <defName>Ammo_50BMG_FMJ</defName>
     <label>.50 BMG cartridge (FMJ)</label>
     <graphicData>
@@ -53,7 +53,7 @@
     <cookOffProjectile>Bullet_50BMG_FMJ</cookOffProjectile>
   </ThingDef>
 
-  <ThingDef ParentName="Ammo50BMGBase">
+  <ThingDef Class="CombatExtended.AmmoDef" ParentName="Ammo50BMGBase">
     <defName>Ammo_50BMG_Sabot</defName>
     <label>.50 BMG cartridge (Sabot)</label>
     <graphicData>
@@ -67,7 +67,7 @@
     <cookOffProjectile>Bullet_50BMG_Sabot</cookOffProjectile>
   </ThingDef>
 
-  <ThingDef ParentName="Ammo50BMGBase">
+  <ThingDef Class="CombatExtended.AmmoDef" ParentName="Ammo50BMGBase">
     <defName>Ammo_50BMG_HE</defName>
     <label>.50 BMG cartridge (HE)</label>
     <graphicData>
@@ -81,7 +81,7 @@
     <cookOffProjectile>Bullet_50BMG_HE</cookOffProjectile>
   </ThingDef>
 
-  <ThingDef ParentName="Ammo50BMGBase">
+  <ThingDef Class="CombatExtended.AmmoDef" ParentName="Ammo50BMGBase">
     <defName>Ammo_50BMG_Incendiary</defName>
     <label>.50 BMG cartridge (AP-I)</label>
     <graphicData>
@@ -97,7 +97,7 @@
 
   <!-- ================== Projectiles ================== -->
 
-  <ThingDef Name="Base50BMGBullet" ParentName="BaseBullet" Abstract="true">
+  <ThingDef Class="CombatExtended.AmmoDef" Name="Base50BMGBullet" ParentName="BaseBullet" Abstract="true">
     <graphicData>
       <texPath>Things/Projectile/Bullet_Big</texPath>
       <graphicClass>Graphic_Single</graphicClass>
@@ -105,35 +105,35 @@
     <projectile>
       <damageDef>Bullet</damageDef>
       <speed>222</speed>
-      <dropsCasings>true</dropsCasings>
+      <!-- <dropsCasings>true</dropsCasings> -->
     </projectile>
   </ThingDef>
 
-  <ThingDef ParentName="Base50BMGBullet">
+  <ThingDef Class="CombatExtended.AmmoDef" ParentName="Base50BMGBullet">
     <defName>Bullet_50BMG_FMJ</defName>
     <label>.50 BMG bullet (FMJ)</label>
     <projectile>
       <damageAmountBase>46</damageAmountBase>
-      <armorPenetration>0.909</armorPenetration>
+      <armorPenetrationBase>0.909</armorPenetrationBase>
     </projectile>
   </ThingDef>
 
-  <ThingDef ParentName="Base50BMGBullet">
+  <ThingDef Class="CombatExtended.AmmoDef" ParentName="Base50BMGBullet">
     <defName>Bullet_50BMG_Sabot</defName>
     <label>.50 BMG bullet (Sabot)</label>
     <projectile>
       <damageAmountBase>19</damageAmountBase>
-      <armorPenetration>1.109</armorPenetration>
+      <armorPenetrationBase>1.109</armorPenetrationBase>
       <speed>250</speed>
     </projectile>
   </ThingDef>
 
-  <ThingDef ParentName="Base50BMGBullet">
+  <ThingDef Class="CombatExtended.AmmoDef" ParentName="Base50BMGBullet">
     <defName>Bullet_50BMG_HE</defName>
     <label>.50 BMG bullet (HE)</label>
     <projectile>
       <damageAmountBase>28</damageAmountBase>
-      <armorPenetration>1.059</armorPenetration>
+      <armorPenetrationBase>1.059</armorPenetrationBase>
       <secondaryDamage>
         <li>
           <def>Bomb_Secondary</def>
@@ -143,12 +143,12 @@
     </projectile>
   </ThingDef>
 
-  <ThingDef ParentName="Base50BMGBullet">
+  <ThingDef Class="CombatExtended.AmmoDef" ParentName="Base50BMGBullet">
     <defName>Bullet_50BMG_Incendiary</defName>
     <label>.50 BMG bullet (AP-I)</label>
     <projectile>
       <damageAmountBase>28</damageAmountBase>
-      <armorPenetration>1.059</armorPenetration>
+      <armorPenetrationBase>1.059</armorPenetrationBase>
       <secondaryDamage>
         <li>
           <def>Flame_Secondary</def>

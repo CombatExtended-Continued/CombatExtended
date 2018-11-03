@@ -22,7 +22,7 @@
 	
 	<!-- ==================== Ammo ========================== -->
 
-  <ThingDef Name="RPG7GrenadeBase" ParentName="AmmoBase" Abstract="True">
+  <ThingDef Class="CombatExtended.AmmoDef" Name="RPG7GrenadeBase" ParentName="AmmoBase" Abstract="True">
     <description>Rocket-propelled grenade designed for the RPG-7 launcher. After being fired a rocket motor kicks in to propel the grenade further.</description>
     <statBases>
       <MaxHitPoints>150</MaxHitPoints>
@@ -39,7 +39,7 @@
     <cookOffSound>MortarBomb_Explode</cookOffSound>
   </ThingDef>
 
-  <ThingDef ParentName="RPG7GrenadeBase">
+  <ThingDef Class="CombatExtended.AmmoDef" ParentName="RPG7GrenadeBase">
     <defName>Ammo_RPG7Grenade_HEAT</defName>
     <label>RPG-7 grenade (HEAT)</label>
     <graphicData>
@@ -62,11 +62,12 @@
           <Fragment_RocketFrag>30</Fragment_RocketFrag>
         </fragments>
         <soundExplode>MortarBomb_Explode</soundExplode>
+        <applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
       </li>
     </comps>
   </ThingDef>
 
-  <ThingDef ParentName="RPG7GrenadeBase">
+  <ThingDef Class="CombatExtended.AmmoDef" ParentName="RPG7GrenadeBase">
     <defName>Ammo_RPG7Grenade_Thermobaric</defName>
     <label>RPG-7 grenade (Thermobaric)</label>
     <graphicData>
@@ -81,7 +82,7 @@
     <ammoClass>RocketThermobaric</ammoClass>
     <comps>
       <li Class="CombatExtended.CompProperties_ExplosiveCE">
-        <explosionDamage>40</explosionDamage>
+        <explosionDamage>80</explosionDamage>
         <explosionDamageDef>Thermobaric</explosionDamageDef>
         <explosionRadius>4.0</explosionRadius>
         <applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
@@ -90,7 +91,7 @@
     </comps>
   </ThingDef>
 
-  <ThingDef ParentName="RPG7GrenadeBase">
+  <ThingDef Class="CombatExtended.AmmoDef" ParentName="RPG7GrenadeBase">
     <defName>Ammo_RPG7Grenade_Frag</defName>
     <label>RPG-7 grenade (Frag)</label>
     <graphicData>
@@ -118,7 +119,7 @@
 	
 	<!-- ================== Projectiles ================== -->
 
-	<ThingDef Name="BaseRPG7Grenade" ParentName="BaseBullet" Abstract="true">
+	<ThingDef Class="CombatExtended.AmmoDef" Name="BaseRPG7Grenade" ParentName="BaseBullet" Abstract="true">
 		<graphicData>
 			<shaderType>TransparentPostLight</shaderType>
 		</graphicData>
@@ -128,7 +129,7 @@
 		</projectile>
 	</ThingDef>	
 
-	<ThingDef ParentName="BaseRPG7Grenade">
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="BaseRPG7Grenade">
 		<defName>Bullet_RPG7Grenade_HEAT</defName>
 		<label>RPG-7 grenade (HEAT)</label>
 		<graphicData>
@@ -138,7 +139,7 @@
 		<projectile>
 			<damageDef>Bullet</damageDef>
 			<damageAmountBase>150</damageAmountBase>
-			<armorPenetration>3.0</armorPenetration>
+			<armorPenetrationBase>3.0</armorPenetrationBase>
 		</projectile>
 		<comps>
 			<li Class="CombatExtended.CompProperties_ExplosiveCE">
@@ -149,11 +150,12 @@
           <Fragment_RocketFrag>30</Fragment_RocketFrag>
 				</fragments>
 				<soundExplode>MortarBomb_Explode</soundExplode>
+        <applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
 			</li>
 		</comps>
 	</ThingDef>
 
-	<ThingDef ParentName="BaseRPG7Grenade">
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="BaseRPG7Grenade">
 		<defName>Bullet_RPG7Grenade_Thermobaric</defName>
 		<label>RPG-7 grenade (Thermobaric)</label>
 		<graphicData>
@@ -161,22 +163,14 @@
 			<graphicClass>Graphic_Single</graphicClass>
 		</graphicData>
 		<projectile>
-			<explosionRadius>1.7</explosionRadius>
+			<explosionRadius>4</explosionRadius>
 			<damageDef>Thermobaric</damageDef>
-			<damageAmountBase>100</damageAmountBase>
+			<damageAmountBase>180</damageAmountBase>
+      <applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
 		</projectile>
-		<comps>
-			<li Class="CombatExtended.CompProperties_ExplosiveCE">
-				<explosionDamage>80</explosionDamage>
-				<explosionDamageDef>Thermobaric</explosionDamageDef>
-				<explosionRadius>4.0</explosionRadius>
-				<applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
-				<soundExplode>MortarBomb_Explode</soundExplode>
-			</li>
-		</comps>
 	</ThingDef>
 
-	<ThingDef ParentName="BaseRPG7Grenade">
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="BaseRPG7Grenade">
 		<defName>Bullet_RPG7Grenade_Frag</defName>
 		<thingClass>CombatExtended.ProjectileCE_Explosive</thingClass>
 		<label>RPG-7 grenade (Frag)</label>
@@ -188,6 +182,7 @@
 			<explosionRadius>1</explosionRadius>
 			<damageDef>Bomb</damageDef>
 			<damageAmountBase>50</damageAmountBase>
+      <applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
 		</projectile>
 		<comps>
 			<li Class="CombatExtended.CompProperties_ExplosiveCE">
@@ -228,7 +223,7 @@
       <li>
         <filter>
           <thingDefs>
-            <li>Component</li>
+            <li>ComponentIndustrial</li>
           </thingDefs>
         </filter>
         <count>3</count>
@@ -238,7 +233,7 @@
       <thingDefs>
         <li>Steel</li>
         <li>FSX</li>
-        <li>Component</li>
+        <li>ComponentIndustrial</li>
       </thingDefs>
     </fixedIngredientFilter>
     <products>
@@ -272,7 +267,7 @@
       <li>
         <filter>
           <thingDefs>
-            <li>Component</li>
+            <li>ComponentIndustrial</li>
           </thingDefs>
         </filter>
         <count>3</count>
@@ -282,7 +277,7 @@
       <thingDefs>
         <li>Steel</li>
         <li>FSX</li>
-        <li>Component</li>
+        <li>ComponentIndustrial</li>
       </thingDefs>
     </fixedIngredientFilter>
     <products>
@@ -316,7 +311,7 @@
       <li>
         <filter>
           <thingDefs>
-            <li>Component</li>
+            <li>ComponentIndustrial</li>
           </thingDefs>
         </filter>
         <count>3</count>
@@ -326,7 +321,7 @@
       <thingDefs>
         <li>Steel</li>
         <li>FSX</li>
-        <li>Component</li>
+        <li>ComponentIndustrial</li>
       </thingDefs>
     </fixedIngredientFilter>
     <products>

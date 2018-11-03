@@ -9,7 +9,7 @@
 	
 	<!-- ================== Projectiles ================== -->
 
-	<ThingDef Name="BaseRPOGrenade" ParentName="BaseBullet" Abstract="true">
+	<ThingDef Class="CombatExtended.AmmoDef" Name="BaseRPOGrenade" ParentName="BaseBullet" Abstract="true">
 		<graphicData>
       <texPath>Things/Projectile/Rocket_Big</texPath>
       <graphicClass>Graphic_Single</graphicClass>
@@ -21,26 +21,18 @@
 		</projectile>
 	</ThingDef>	
 
-	<ThingDef ParentName="BaseRPOGrenade">
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="BaseRPOGrenade">
 		<defName>Bullet_RPO_A_Grenade</defName>
 		<label>RPO-A grenade</label>
     <projectile>
-      <explosionRadius>2.5</explosionRadius>
+      <explosionRadius>4</explosionRadius>
       <damageDef>Thermobaric</damageDef>
-      <damageAmountBase>100</damageAmountBase>
+      <damageAmountBase>180</damageAmountBase>
+      <applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
     </projectile>
-    <comps>
-      <li Class="CombatExtended.CompProperties_ExplosiveCE">
-        <explosionDamage>80</explosionDamage>
-        <explosionDamageDef>Thermobaric</explosionDamageDef>
-        <explosionRadius>5.0</explosionRadius>
-        <applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
-        <soundExplode>MortarBomb_Explode</soundExplode>
-      </li>
-    </comps>
 	</ThingDef>
 
-  <ThingDef ParentName="BaseRPOGrenade">
+  <ThingDef Class="CombatExtended.AmmoDef" ParentName="BaseRPOGrenade">
     <defName>Bullet_RPO_Z_Grenade</defName>
     <label>RPO-Z grenade</label>
     <projectile>
@@ -53,7 +45,7 @@
     </projectile>
   </ThingDef>
 
-  <ThingDef ParentName="BaseRPOGrenade">
+  <ThingDef Class="CombatExtended.AmmoDef" ParentName="BaseRPOGrenade">
     <defName>Bullet_RPO_D_Grenade</defName>
     <label>RPO-D grenade</label>
     <projectile>

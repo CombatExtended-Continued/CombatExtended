@@ -22,7 +22,7 @@
 	
 	<!-- ==================== Ammo ========================== -->
 
-	<ThingDef Name="762x25mmTokarevBase" ParentName="SmallAmmoBase" Abstract="True">
+	<ThingDef Class="CombatExtended.AmmoDef" Name="762x25mmTokarevBase" ParentName="SmallAmmoBase" Abstract="True">
 		<description>Common pistol cartridge used by a variety of handguns and SMGs.</description>
 		<statBases>
 		<Mass>0.01</Mass>
@@ -37,7 +37,7 @@
 		</thingCategories>
 	</ThingDef>
 
-	<ThingDef ParentName="762x25mmTokarevBase">
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="762x25mmTokarevBase">
 		<defName>Ammo_762x25mmTokarev_FMJ</defName>
 		<label>7.62x25mm Tokarev cartridge (FMJ)</label>
 		<graphicData>
@@ -51,7 +51,7 @@
 		<cookOffProjectile>Bullet_762x25mmTokarev_FMJ</cookOffProjectile>
 	</ThingDef>
 
-	<ThingDef ParentName="762x25mmTokarevBase">
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="762x25mmTokarevBase">
 		<defName>Ammo_762x25mmTokarev_AP</defName>
 		<label>7.62x25mm Tokarev cartridge (AP)</label>
 		<graphicData>
@@ -65,7 +65,7 @@
 		<cookOffProjectile>Bullet_762x25mmTokarev_AP</cookOffProjectile>
 	</ThingDef>
 
-	<ThingDef ParentName="762x25mmTokarevBase">
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="762x25mmTokarevBase">
 		<defName>Ammo_762x25mmTokarev_HP</defName>
 		<label>7.62x25mm Tokarev cartridge (HP)</label>
 		<graphicData>
@@ -81,7 +81,7 @@
 	
 	<!-- ================== Projectiles ================== -->
 
-	<ThingDef Name="Base762x25mmTokarevBullet" ParentName="BaseBullet" Abstract="true">
+	<ThingDef Class="CombatExtended.AmmoDef" Name="Base762x25mmTokarevBullet" ParentName="BaseBullet" Abstract="true">
 		<graphicData>
 			<texPath>Things/Projectile/Bullet_Small</texPath>
 			<graphicClass>Graphic_Single</graphicClass>
@@ -89,34 +89,34 @@
 		<projectile>
 			<damageDef>Bullet</damageDef>
 			<speed>131</speed>
-			<dropsCasings>true</dropsCasings>
+			<!-- <dropsCasings>true</dropsCasings> -->
 		</projectile>
 	</ThingDef>
 
-	<ThingDef ParentName="Base762x25mmTokarevBullet">
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="Base762x25mmTokarevBullet">
 		<defName>Bullet_762x25mmTokarev_FMJ</defName>
 		<label>7.62mm Tokarev bullet (FMJ)</label>
 		<projectile>
 			<damageAmountBase>11</damageAmountBase>
-			<armorPenetration>0.357</armorPenetration>
+			<armorPenetrationBase>0.357</armorPenetrationBase>
 		</projectile>
 	</ThingDef>
 
-	<ThingDef ParentName="Base762x25mmTokarevBullet">
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="Base762x25mmTokarevBullet">
 		<defName>Bullet_762x25mmTokarev_AP</defName>
 		<label>7.62mm Tokarev bullet (AP)</label>
 		<projectile>
 			<damageAmountBase>7</damageAmountBase>
-			<armorPenetration>0.507</armorPenetration>
+			<armorPenetrationBase>0.507</armorPenetrationBase>
 		</projectile>
 	</ThingDef>
 
-	<ThingDef ParentName="Base762x25mmTokarevBullet">
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="Base762x25mmTokarevBullet">
 		<defName>Bullet_762x25mmTokarev_HP</defName>
 		<label>7.62mm Tokarev bullet (HP)</label>
 		<projectile>
 			<damageAmountBase>15</damageAmountBase>
-			<armorPenetration>0.207</armorPenetration>
+			<armorPenetrationBase>0.207</armorPenetrationBase>
 		</projectile>
 	</ThingDef>
   

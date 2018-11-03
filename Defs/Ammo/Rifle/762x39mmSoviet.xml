@@ -22,7 +22,7 @@
 	
 	<!-- ==================== Ammo ========================== -->
 
-	<ThingDef Name="762x39mmSovietBase" ParentName="SmallAmmoBase" Abstract="True">
+	<ThingDef Class="CombatExtended.AmmoDef" Name="762x39mmSovietBase" ParentName="SmallAmmoBase" Abstract="True">
 		<description>Intermediate rifle cartridge used by certain older assault rifles.</description>
 		<statBases>
 		<Mass>0.02</Mass>
@@ -37,7 +37,7 @@
 		</thingCategories>
 	</ThingDef>
 
-	<ThingDef ParentName="762x39mmSovietBase">
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="762x39mmSovietBase">
 		<defName>Ammo_762x39mmSoviet_FMJ</defName>
 		<label>7.62x39mm Soviet cartridge (FMJ)</label>
 		<graphicData>
@@ -51,7 +51,7 @@
 		<cookOffProjectile>Bullet_762x39mmSoviet_FMJ</cookOffProjectile>
 	</ThingDef>
 
-	<ThingDef ParentName="762x39mmSovietBase">
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="762x39mmSovietBase">
 		<defName>Ammo_762x39mmSoviet_AP</defName>
 		<label>7.62x39mm Soviet cartridge (AP)</label>
 		<graphicData>
@@ -65,7 +65,7 @@
 		<cookOffProjectile>Bullet_762x39mmSoviet_AP</cookOffProjectile>
 	</ThingDef>
 
-	<ThingDef ParentName="762x39mmSovietBase">
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="762x39mmSovietBase">
 		<defName>Ammo_762x39mmSoviet_HP</defName>
 		<label>7.62x39mm Soviet cartridge (HP)</label>
 		<graphicData>
@@ -81,7 +81,7 @@
 	
 	<!-- ================== Projectiles ================== -->
 	
-	<ThingDef Name="Base762x39mmSovietBullet" ParentName="BaseBullet" Abstract="true">
+	<ThingDef Class="CombatExtended.AmmoDef" Name="Base762x39mmSovietBullet" ParentName="BaseBullet" Abstract="true">
 		<graphicData>
 			<texPath>Things/Projectile/Bullet_Small</texPath>
 			<graphicClass>Graphic_Single</graphicClass>
@@ -89,11 +89,11 @@
 		<projectile>
 			<damageDef>Bullet</damageDef>
 			<speed>180</speed>
-			<dropsCasings>true</dropsCasings>
+			<!-- <dropsCasings>true</dropsCasings> -->
 		</projectile>
 	</ThingDef>
 	
-	<ThingDef ParentName="Base762x39mmSovietBullet">
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="Base762x39mmSovietBullet">
 		<defName>Bullet_762x39mmSoviet_FMJ</defName>
 		<label>7.62mm Soviet bullet (FMJ)</label>
 		<graphicData>
@@ -102,11 +102,11 @@
 		</graphicData>
 		<projectile>
 			<damageAmountBase>16</damageAmountBase>
-			<armorPenetration>0.516</armorPenetration>
+			<armorPenetrationBase>0.516</armorPenetrationBase>
 		</projectile>
 	</ThingDef>
 
-	<ThingDef ParentName="Base762x39mmSovietBullet">
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="Base762x39mmSovietBullet">
 		<defName>Bullet_762x39mmSoviet_AP</defName>
 		<label>7.62mm Soviet bullet (AP)</label>
 		<graphicData>
@@ -115,11 +115,11 @@
 		</graphicData>
 		<projectile>
 			<damageAmountBase>10</damageAmountBase>
-			<armorPenetration>0.666</armorPenetration>
+			<armorPenetrationBase>0.666</armorPenetrationBase>
 		</projectile>
 	</ThingDef>
 
-	<ThingDef ParentName="Base762x39mmSovietBullet">
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="Base762x39mmSovietBullet">
 		<defName>Bullet_762x39mmSoviet_HP</defName>
 		<label>7.62mm Soviet bullet (HP)</label>
 		<graphicData>
@@ -128,7 +128,7 @@
 		</graphicData>
 		<projectile>
 			<damageAmountBase>22</damageAmountBase>
-			<armorPenetration>0.366</armorPenetration>
+			<armorPenetrationBase>0.366</armorPenetrationBase>
 		</projectile>
 	</ThingDef>
   

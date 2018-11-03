@@ -12,7 +12,7 @@ namespace CombatExtended
         /// </summary>
         /// <param name="projectileDef">The projectile's ThingDef</param>
         /// <returns>Formatted string listing projectile stats</returns>
-        public static string GetProjectileReadout(this ThingDef projectileDef)
+        public static string GetProjectileReadout(this ThingDef projectileDef, Thing weapon)
         {
             // Append ammo stats
             var props = projectileDef?.projectile as ProjectilePropertiesCE;
@@ -30,7 +30,7 @@ namespace CombatExtended
             {
                 // If we have multiple damage types, put every one in its own line
                 stringBuilder.AppendLine(dmgList);
-                stringBuilder.AppendLine("   " + GenText.ToStringByStyle(props.damageAmountBase, ToStringStyle.Integer) + " (" + props.damageDef.LabelCap + ")");
+                stringBuilder.AppendLine("   " + GenText.ToStringByStyle(props.GetDamageAmount(weapon), ToStringStyle.Integer) + " (" + props.damageDef.LabelCap + ")");
                 foreach (var sec in props.secondaryDamage)
                 {
                     stringBuilder.AppendLine("   " + GenText.ToStringByStyle(sec.amount, ToStringStyle.Integer) + " (" + sec.def.LabelCap + ")");
@@ -38,7 +38,7 @@ namespace CombatExtended
             }
             else
             {
-                stringBuilder.AppendLine(dmgList + GenText.ToStringByStyle(props.damageAmountBase, ToStringStyle.Integer) + " (" + props.damageDef.LabelCap + ")");
+                stringBuilder.AppendLine(dmgList + GenText.ToStringByStyle(props.GetDamageAmount(weapon), ToStringStyle.Integer) + " (" + props.damageDef.LabelCap + ")");
             }
             // Explosion radius
             if (props.explosionRadius > 0)

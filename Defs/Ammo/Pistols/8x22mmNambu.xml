@@ -20,7 +20,7 @@
 	
 	<!-- ==================== Ammo ========================== -->
 
-	<ThingDef Name="8x22mmNambuBase" ParentName="SmallAmmoBase" Abstract="True">
+	<ThingDef Class="CombatExtended.AmmoDef" Name="8x22mmNambuBase" ParentName="SmallAmmoBase" Abstract="True">
 		<description>Low caliber handgun cartridge lacking in stopping power.</description>
 		<statBases>
 		<Mass>0.008</Mass>
@@ -35,7 +35,7 @@
 		</thingCategories>
 	</ThingDef>
 
-	<ThingDef ParentName="8x22mmNambuBase">
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="8x22mmNambuBase">
 		<defName>Ammo_8x22mmNambu_FMJ</defName>
 		<label>8x22mm Nambu cartridge (FMJ)</label>
 		<graphicData>
@@ -51,7 +51,7 @@
 	
 	<!-- ================== Projectiles ================== -->
 	
-	<ThingDef Name="Base8x22mmNambuBullet" ParentName="BaseBullet" Abstract="true">
+	<ThingDef Class="CombatExtended.AmmoDef" Name="Base8x22mmNambuBullet" ParentName="BaseBullet" Abstract="true">
 		<graphicData>
 			<texPath>Things/Projectile/Bullet_Small</texPath>
 			<graphicClass>Graphic_Single</graphicClass>
@@ -59,16 +59,16 @@
 		<projectile>
 			<damageDef>Bullet</damageDef>
 			<speed>73</speed>
-			<dropsCasings>true</dropsCasings>
+			<!-- <dropsCasings>true</dropsCasings> -->
 		</projectile>
 	</ThingDef>
 
-	<ThingDef ParentName="Base8x22mmNambuBullet">
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="Base8x22mmNambuBullet">
 		<defName>Bullet_8x22mmNambu_FMJ</defName>
 		<label>8mm Nambu bullet (FMJ)</label>
 		<projectile>
 			<damageAmountBase>7</damageAmountBase>
-			<armorPenetration>0.224</armorPenetration>
+			<armorPenetrationBase>0.224</armorPenetrationBase>
 		</projectile>
 	</ThingDef>
   

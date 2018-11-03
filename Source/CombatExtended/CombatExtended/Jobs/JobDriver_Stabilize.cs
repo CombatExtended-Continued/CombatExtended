@@ -16,7 +16,7 @@ namespace CombatExtended
         private Pawn Patient { get { return pawn.CurJob.targetA.Thing as Pawn; } }
         private Medicine Medicine { get { return pawn.CurJob.targetB.Thing as Medicine; } }
 
-        public override bool TryMakePreToilReservations()
+        public override bool TryMakePreToilReservations(bool errorOnFailed)
         {
             return pawn.Reserve(TargetA, job) && pawn.Reserve(TargetB, job);
         }

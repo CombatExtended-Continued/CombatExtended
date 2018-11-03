@@ -22,7 +22,7 @@
 	
 	<!-- ==================== Ammo ========================== -->
 
-	<ThingDef Name="40SWBase" ParentName="SmallAmmoBase" Abstract="True">
+	<ThingDef Class="CombatExtended.AmmoDef" Name="40SWBase" ParentName="SmallAmmoBase" Abstract="True">
 		<description>A pistol cartridge designed to match the performance of .38 Special +P in an automatic.</description>
 		<statBases>
 		<Mass>0.015</Mass>
@@ -37,7 +37,7 @@
 		</thingCategories>
 	</ThingDef>
 
-	<ThingDef ParentName="40SWBase">
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="40SWBase">
 		<defName>Ammo_40SW_FMJ</defName>
 		<label>.40 SW cartridge (FMJ)</label>
 		<graphicData>
@@ -51,7 +51,7 @@
 		<cookOffProjectile>Bullet_40SW_FMJ</cookOffProjectile>
 	</ThingDef>
 
-	<ThingDef ParentName="40SWBase">
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="40SWBase">
 		<defName>Ammo_40SW_AP</defName>
 		<label>.40 SW cartridge (AP)</label>
 		<graphicData>
@@ -65,7 +65,7 @@
 		<cookOffProjectile>Bullet_40SW_AP</cookOffProjectile>
 	</ThingDef>
 
-	<ThingDef ParentName="40SWBase">
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="40SWBase">
 		<defName>Ammo_40SW_HP</defName>
 		<label>.40 SW cartridge (HP)</label>
 		<graphicData>
@@ -81,7 +81,7 @@
 	
 	<!-- ================== Projectiles ================== -->
 
-	<ThingDef Name="Base40SWBullet" ParentName="BaseBullet" Abstract="true">
+	<ThingDef Class="CombatExtended.AmmoDef" Name="Base40SWBullet" ParentName="BaseBullet" Abstract="true">
 		<graphicData>
 			<texPath>Things/Projectile/Bullet_Small</texPath>
 			<graphicClass>Graphic_Single</graphicClass>
@@ -89,34 +89,34 @@
 		<projectile>
 			<damageDef>Bullet</damageDef>
 			<speed>93</speed>
-			<dropsCasings>true</dropsCasings>
+			<!-- <dropsCasings>true</dropsCasings> -->
 		</projectile>
 	</ThingDef>
 
-	<ThingDef ParentName="Base40SWBullet">
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="Base40SWBullet">
 		<defName>Bullet_40SW_FMJ</defName>
 		<label>.40 SW bullet (FMJ)</label>
 		<projectile>
 			<damageAmountBase>13</damageAmountBase>
-			<armorPenetration>0.343</armorPenetration>
+			<armorPenetrationBase>0.343</armorPenetrationBase>
 		</projectile>
 	</ThingDef>
 
-	<ThingDef ParentName="Base40SWBullet">
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="Base40SWBullet">
 		<defName>Bullet_40SW_AP</defName>
 		<label>.40 SW bullet (AP)</label>
 		<projectile>
 			<damageAmountBase>8</damageAmountBase>
-			<armorPenetration>0.493</armorPenetration>
+			<armorPenetrationBase>0.493</armorPenetrationBase>
 		</projectile>
 	</ThingDef>
 
-	<ThingDef ParentName="Base40SWBullet">
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="Base40SWBullet">
 		<defName>Bullet_40SW_HP</defName>
 		<label>.40 SW bullet (HP)</label>
 		<projectile>
 			<damageAmountBase>18</damageAmountBase>
-			<armorPenetration>0.193</armorPenetration>
+			<armorPenetrationBase>0.193</armorPenetrationBase>
 		</projectile>
 	</ThingDef>
   

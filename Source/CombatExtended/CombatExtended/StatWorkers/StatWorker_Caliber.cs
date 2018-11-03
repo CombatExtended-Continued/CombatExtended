@@ -10,10 +10,9 @@ namespace CombatExtended
 {
     public class StatWorker_Caliber : StatWorker
     {
-        public override bool ShouldShowFor(BuildableDef eDef)
+        public override bool ShouldShowFor(StatRequest req)
         {
-            var thingDef = eDef as ThingDef;
-            return thingDef?.GetCompProperties<CompProperties_AmmoUser>()?.ammoSet != null;
+            return base.ShouldShowFor(req) && req.Thing?.TryGetComp<CompAmmoUser>()?.Props.ammoSet != null;
         }
 
         public override string GetExplanationUnfinalized(StatRequest req, ToStringNumberSense numberSense)
@@ -27,7 +26,7 @@ namespace CombatExtended
                 foreach (var cur in ammoProps.ammoSet.ammoTypes)
                 {
                     string label = string.IsNullOrEmpty(cur.ammo.ammoClass.LabelCapShort) ? cur.ammo.ammoClass.LabelCap : cur.ammo.ammoClass.LabelCapShort;
-                    stringBuilder.AppendLine(label + ":\n" + cur.projectile.GetProjectileReadout());
+                    stringBuilder.AppendLine(label + ":\n" + cur.projectile.GetProjectileReadout(req.Thing));
                 }
             }
             return stringBuilder.ToString().TrimEndNewlines();

@@ -28,30 +28,31 @@ namespace CombatExtended
 
         #region Methods
 
-        // Copied from PawnWeaponGenerator.Reset()
+        // Copied from PawnWeaponGenerator.Reset() - 1:1 COPY!!! (Plus Shields)
         public static void Reset()
-        {
+		{
             // Initialize weapons
-            Predicate<ThingDef> isWeapon = (ThingDef td) => td.equipmentType == EquipmentType.Primary && td.canBeSpawningInventory && !td.weaponTags.NullOrEmpty<string>();
+			Predicate<ThingDef> isWeapon = (ThingDef td) => td.equipmentType == EquipmentType.Primary && !td.weaponTags.NullOrEmpty<string>();
             allWeaponPairs = ThingStuffPair.AllWith(isWeapon);
-            foreach (ThingDef thingDef in from td in DefDatabase<ThingDef>.AllDefs
-                                          where isWeapon(td)
-                                          select td)
-            {
-                float num = allWeaponPairs.Where((ThingStuffPair pa) => pa.thing == thingDef).Sum((ThingStuffPair pa) => pa.Commonality);
-                float num2 = thingDef.generateCommonality / num;
-                if (num2 != 1f)
-                {
-                    for (int i = 0; i < allWeaponPairs.Count; i++)
-                    {
-                        ThingStuffPair thingStuffPair = allWeaponPairs[i];
-                        if (thingStuffPair.thing == thingDef)
-                        {
+			foreach (ThingDef thingDef in from td in DefDatabase<ThingDef>.AllDefs
+			where isWeapon(td)
+			select td)
+			{
+				float num = allWeaponPairs.Where((ThingStuffPair pa) => pa.thing == thingDef).Sum((ThingStuffPair pa) => pa.Commonality);
+				float num2 = thingDef.generateCommonality / num;
+				if (num2 != 1f)
+				{
+					for (int i = 0; i < allWeaponPairs.Count; i++)
+					{
+						ThingStuffPair thingStuffPair = allWeaponPairs[i];
+						if (thingStuffPair.thing == thingDef)
+						{
                             allWeaponPairs[i] = new ThingStuffPair(thingStuffPair.thing, thingStuffPair.stuff, thingStuffPair.commonalityMultiplier * num2);
-                        }
-                    }
-                }
-            }
+						}
+					}
+				}
+			}
+
             // Initialize shields
             allShieldPairs = ThingStuffPair.AllWith(td => td.thingClass == typeof(Apparel_Shield));
         }
@@ -105,30 +106,42 @@ namespace CombatExtended
                 return;
             }
             // Generate weapon - mostly based on PawnWeaponGenerator.TryGenerateWeaponFor()
-            float money = option.sidearmMoney.RandomInRange;
-            foreach (ThingStuffPair cur in allWeaponPairs)
+            // START 1:1 COPY
+            float randomInRange = pawn.kindDef.weaponMoney.RandomInRange;
+            for (int i = 0; i < allWeaponPairs.Count; i++)
             {
-                if (cur.Price <= money 
-                    && option.weaponTags.Any(t => cur.thing.weaponTags.Contains(t))
-                    && (cur.thing.generateAllowChance >= 1f || Rand.ValueSeeded(pawn.thingIDNumber ^ 28554635) <= cur.thing.generateAllowChance))
+                ThingStuffPair w = allWeaponPairs[i];
+                if (w.Price <= randomInRange)
                 {
-                    workingWeapons.Add(cur);
+                    if (pawn.kindDef.weaponTags == null || pawn.kindDef.weaponTags.Any((string tag) => w.thing.weaponTags.Contains(tag)))
+                    {
+                        if (w.thing.generateAllowChance >= 1f || Rand.ChanceSeeded(w.thing.generateAllowChance, pawn.thingIDNumber ^ (int)w.thing.shortHash ^ 28554824))
+                        {
+                            workingWeapons.Add(w);
+                        }
+                    }
                 }
             }
-            if (workingWeapons.Count == 0) return;
-            ThingStuffPair pair;
-            if(workingWeapons.TryRandomElementByWeight(p => p.Commonality * p.Price, out pair))
+            if (workingWeapons.Count == 0)
+            {
+                return;
+            }
+            // END 1:1 COPY
+            // pawn.equipment.DestroyAllEquipment(DestroyMode.Vanish); --removed compared to sourcecode
+            // Some 1:1 COPY below
+            ThingStuffPair thingStuffPair;
+            if (workingWeapons.TryRandomElementByWeight((ThingStuffPair w) => w.Commonality * w.Price, out thingStuffPair))
             {
                 // Create the actual weapon and put it into inventory
-                var eq = (ThingWithComps)ThingMaker.MakeThing(pair.thing, pair.stuff);
-                LoadWeaponWithRandAmmo(eq);
-                int count;
-                if (inventory.CanFitInInventory(eq, out count))
+                ThingWithComps thingWithComps = (ThingWithComps)ThingMaker.MakeThing(thingStuffPair.thing, thingStuffPair.stuff);
+                LoadWeaponWithRandAmmo(thingWithComps); //Custom
+                int count; //Custom
+                if (inventory.CanFitInInventory(thingWithComps, out count)) //Custom
                 {
-                    PawnGenerator.PostProcessGeneratedGear(eq, pawn);
-                    if (inventory.container.TryAdd(eq))
+                    PawnGenerator.PostProcessGeneratedGear(thingWithComps, pawn);
+                    if (inventory.container.TryAdd(thingWithComps)) //Custom
                     {
-                        TryGenerateAmmoFor(eq, inventory, Mathf.RoundToInt(option.magazineCount.RandomInRange));
+                        TryGenerateAmmoFor(thingWithComps, inventory, Mathf.RoundToInt(option.magazineCount.RandomInRange)); //Custom
                     }
                 }
             }
@@ -137,7 +150,7 @@ namespace CombatExtended
 
         private void LoadWeaponWithRandAmmo(ThingWithComps gun)
         {
-            var compAmmo = gun.TryGetComp<CompAmmoUser>();
+            CompAmmoUser compAmmo = gun.TryGetComp<CompAmmoUser>();
             if (compAmmo == null) return;
             if (!compAmmo.UseAmmo)
             {
@@ -145,8 +158,8 @@ namespace CombatExtended
                 return;
             }
             // Determine ammo
-            var availableAmmo = compAmmo.Props.ammoSet.ammoTypes.Where(a => a.ammo.canBeSpawningInventory).Select(a => a.ammo);
-            var ammoToLoad = availableAmmo.RandomElementByWeight(a => a.generateCommonality);
+            IEnumerable<AmmoDef> availableAmmo = compAmmo.Props.ammoSet.ammoTypes.Where(a => a.ammo.alwaysHaulable).Select(a => a.ammo); //Running out of options. alwaysHaulable does exist in xml.
+            AmmoDef ammoToLoad = availableAmmo.RandomElementByWeight(a => a.generateCommonality);
             compAmmo.ResetAmmoCount(ammoToLoad);
         }
 

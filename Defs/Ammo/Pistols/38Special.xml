@@ -22,7 +22,7 @@
 	
 	<!-- ==================== Ammo ========================== -->
 
-	<ThingDef Name="38SpecialBase" ParentName="SmallAmmoBase" Abstract="True">
+	<ThingDef Class="CombatExtended.AmmoDef" Name="38SpecialBase" ParentName="SmallAmmoBase" Abstract="True">
 		<description>Ancient low-power revolver cartridge renowned for its manageability.</description>
 		<statBases>
 		<Mass>0.01</Mass>
@@ -37,7 +37,7 @@
 		</thingCategories>
 	</ThingDef>
 
-	<ThingDef ParentName="38SpecialBase">
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="38SpecialBase">
 		<defName>Ammo_38Special_FMJ</defName>
 		<label>.38 Special cartridge (FMJ)</label>
 		<graphicData>
@@ -51,7 +51,7 @@
 		<cookOffProjectile>Bullet_38Special_FMJ</cookOffProjectile>
 	</ThingDef>
 
-	<ThingDef ParentName="38SpecialBase">
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="38SpecialBase">
 		<defName>Ammo_38Special_AP</defName>
 		<label>.38 Special cartridge (AP)</label>
 		<graphicData>
@@ -65,7 +65,7 @@
 		<cookOffProjectile>Bullet_38Special_AP</cookOffProjectile>
 	</ThingDef>
 
-	<ThingDef ParentName="38SpecialBase">
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="38SpecialBase">
 		<defName>Ammo_38Special_HP</defName>
 		<label>.38 Special cartridge (HP)</label>
 		<graphicData>
@@ -81,7 +81,7 @@
 	
 	<!-- ================== Projectiles ================== -->
 
-	<ThingDef Name="Base38SpecialBullet" ParentName="BaseBullet" Abstract="true">
+	<ThingDef Class="CombatExtended.AmmoDef" Name="Base38SpecialBullet" ParentName="BaseBullet" Abstract="true">
 		<graphicData>
 			<texPath>Things/Projectile/Bullet_Small</texPath>
 			<graphicClass>Graphic_Single</graphicClass>
@@ -89,34 +89,34 @@
 		<projectile>
 			<damageDef>Bullet</damageDef>
 			<speed>75</speed>
-			<dropsCasings>true</dropsCasings>
+			<!-- <dropsCasings>true</dropsCasings> -->
 		</projectile>
 	</ThingDef>
 
-	<ThingDef ParentName="Base38SpecialBullet">
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="Base38SpecialBullet">
 		<defName>Bullet_38Special_FMJ</defName>
 		<label>.38 Special bullet (FMJ)</label>
 		<projectile>
 			<damageAmountBase>9</damageAmountBase>
-			<armorPenetration>0.257</armorPenetration>
+			<armorPenetrationBase>0.257</armorPenetrationBase>
 		</projectile>
 	</ThingDef>
 
-	<ThingDef ParentName="Base38SpecialBullet">
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="Base38SpecialBullet">
 		<defName>Bullet_38Special_AP</defName>
 		<label>.38 Special bullet (AP)</label>
 		<projectile>
 			<damageAmountBase>5</damageAmountBase>
-			<armorPenetration>0.407</armorPenetration>
+			<armorPenetrationBase>0.407</armorPenetrationBase>
 		</projectile>
 	</ThingDef>
 
-	<ThingDef ParentName="Base38SpecialBullet">
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="Base38SpecialBullet">
 		<defName>Bullet_38Special_HP</defName>
 		<label>.38 Special bullet (HP)</label>
 		<projectile>
 			<damageAmountBase>13</damageAmountBase>
-			<armorPenetration>0.107</armorPenetration>
+			<armorPenetrationBase>0.107</armorPenetrationBase>
 		</projectile>
 	</ThingDef>
   

@@ -20,7 +20,7 @@
 	
 	<!-- ==================== Ammo ========================== -->
 
-  <ThingDef Name="12x64mmChargedBase" ParentName="SpacerSmallAmmoBase" Abstract="True">
+  <ThingDef Class="CombatExtended.AmmoDef" Name="12x64mmChargedBase" ParentName="SpacerSmallAmmoBase" Abstract="True">
     <description>Mechanoid-built high-caliber charged shot ammo used in heavy weapons.</description>
     <statBases>
 	  <Mass>0.1</Mass>
@@ -32,7 +32,7 @@
     <stackLimit>200</stackLimit>
   </ThingDef>
 
-  <ThingDef ParentName="12x64mmChargedBase">
+  <ThingDef Class="CombatExtended.AmmoDef" ParentName="12x64mmChargedBase">
     <defName>Ammo_12x64mmCharged</defName>
     <label>12x64mm Charged cartridge</label>
     <graphicData>
@@ -47,7 +47,7 @@
 	
 	<!-- ================== Projectiles ================== -->
 
-  <ThingDef ParentName="BaseBullet">
+  <ThingDef Class="CombatExtended.AmmoDef" ParentName="BaseBullet">
     <defName>Bullet_12x64mmCharged</defName>
     <label>charge blaster shot</label>
     <graphicData>
@@ -65,7 +65,7 @@
           <amount>15</amount>
         </li>
       </secondaryDamage>
-      <armorPenetration>1.2</armorPenetration>
+      <armorPenetrationBase>1.2</armorPenetrationBase>
     </projectile>
   </ThingDef>
   

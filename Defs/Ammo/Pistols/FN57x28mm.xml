@@ -22,7 +22,7 @@
 	
 	<!-- ==================== Ammo ========================== -->
 
-	<ThingDef Name="FN57x29mmBase" ParentName="SmallAmmoBase" Abstract="True">
+	<ThingDef Class="CombatExtended.AmmoDef" Name="FN57x29mmBase" ParentName="SmallAmmoBase" Abstract="True">
 		<description>This high-velocity handgun cartridge was specifically designed for military personnel to defeat body armor.</description>
 		<statBases>
 		<Mass>0.01</Mass>
@@ -37,7 +37,7 @@
 		</thingCategories>
 	</ThingDef>
 
-	<ThingDef ParentName="FN57x29mmBase">
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="FN57x29mmBase">
 		<defName>Ammo_FN57x28mm_FMJ</defName>
 		<label>FN 5.7x28mm cartridge (FMJ)</label>
 		<graphicData>
@@ -51,7 +51,7 @@
 		<cookOffProjectile>Bullet_FN57x28mm_FMJ</cookOffProjectile>
 	</ThingDef>
 
-	<ThingDef ParentName="FN57x29mmBase">
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="FN57x29mmBase">
 		<defName>Ammo_FN57x28mm_AP</defName>
 		<label>FN 5.7x28mm cartridge (AP)</label>
 		<graphicData>
@@ -65,7 +65,7 @@
 		<cookOffProjectile>Bullet_FN57x28mm_AP</cookOffProjectile>
 	</ThingDef>
 
-	<ThingDef ParentName="FN57x29mmBase">
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="FN57x29mmBase">
 		<defName>Ammo_FN57x28mm_HP</defName>
 		<label>FN 5.7x28mm cartridge (HP)</label>
 		<graphicData>
@@ -81,7 +81,7 @@
 	
 	<!-- ================== Projectiles ================== -->
 
-	<ThingDef Name="BaseFN57x28mmBullet" ParentName="BaseBullet" Abstract="true">
+	<ThingDef Class="CombatExtended.AmmoDef" Name="BaseFN57x28mmBullet" ParentName="BaseBullet" Abstract="true">
 		<graphicData>
 			<texPath>Things/Projectile/Bullet_Small</texPath>
 			<graphicClass>Graphic_Single</graphicClass>
@@ -89,34 +89,34 @@
 		<projectile>
 			<damageDef>Bullet</damageDef>
 			<speed>163</speed>
-			<dropsCasings>true</dropsCasings>
+			<!-- <dropsCasings>true</dropsCasings> -->
 		</projectile>
 	</ThingDef>
 
-	<ThingDef ParentName="BaseFN57x28mmBullet">
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="BaseFN57x28mmBullet">
 		<defName>Bullet_FN57x28mm_FMJ</defName>
 		<label>FN 5.7mm bullet (FMJ)</label>
 		<projectile>
 			<damageAmountBase>7</damageAmountBase>
-			<armorPenetration>0.312</armorPenetration>
+			<armorPenetrationBase>0.312</armorPenetrationBase>
 		</projectile>
 	</ThingDef>
 
-	<ThingDef ParentName="BaseFN57x28mmBullet">
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="BaseFN57x28mmBullet">
 		<defName>Bullet_FN57x28mm_AP</defName>
 		<label>FN 5.7mm bullet (AP)</label>
 		<projectile>
 			<damageAmountBase>4</damageAmountBase>
-			<armorPenetration>0.462</armorPenetration>
+			<armorPenetrationBase>0.462</armorPenetrationBase>
 		</projectile>
 	</ThingDef>
 
-	<ThingDef ParentName="BaseFN57x28mmBullet">
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="BaseFN57x28mmBullet">
 		<defName>Bullet_FN57x28mm_HP</defName>
 		<label>FN 5.7mm bullet (HP)</label>
 		<projectile>
 			<damageAmountBase>10</damageAmountBase>
-			<armorPenetration>0.162</armorPenetration>
+			<armorPenetrationBase>0.162</armorPenetrationBase>
 		</projectile>
 	</ThingDef>
   

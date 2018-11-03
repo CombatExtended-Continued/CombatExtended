@@ -22,7 +22,7 @@
 	
 	<!-- ==================== Ammo ========================== -->
 
-	<ThingDef Name="357MagnumBase" ParentName="SmallAmmoBase" Abstract="True">
+	<ThingDef Class="CombatExtended.AmmoDef" Name="357MagnumBase" ParentName="SmallAmmoBase" Abstract="True">
 		<description>Ancient pistol cartridge originally designed for revolvers.</description>
 		<statBases>
 		<Mass>0.023</Mass>
@@ -37,7 +37,7 @@
 		</thingCategories>
 	</ThingDef>
 
-	<ThingDef ParentName="357MagnumBase">
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="357MagnumBase">
 		<defName>Ammo_357Magnum_FMJ</defName>
 		<label>.357 Magnum cartridge (FMJ)</label>
 		<graphicData>
@@ -51,7 +51,7 @@
 		<cookOffProjectile>Bullet_357Magnum_FMJ</cookOffProjectile>
 	</ThingDef>
 
-	<ThingDef ParentName="357MagnumBase">
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="357MagnumBase">
 		<defName>Ammo_357Magnum_AP</defName>
 		<label>.357 Magnum cartridge (AP)</label>
 		<graphicData>
@@ -65,7 +65,7 @@
 		<cookOffProjectile>Bullet_357Magnum_AP</cookOffProjectile>
 	</ThingDef>
 
-	<ThingDef ParentName="357MagnumBase">
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="357MagnumBase">
 		<defName>Ammo_357Magnum_HP</defName>
 		<label>.357 Magnum cartridge (HP)</label>
 		<graphicData>
@@ -81,7 +81,7 @@
 	
 	<!-- ================== Projectiles ================== -->
 
-	<ThingDef Name="Base357MagnumBullet" ParentName="BaseBullet" Abstract="true">
+	<ThingDef Class="CombatExtended.AmmoDef" Name="Base357MagnumBullet" ParentName="BaseBullet" Abstract="true">
 		<graphicData>
 			<texPath>Things/Projectile/Bullet_Small</texPath>
 			<graphicClass>Graphic_Single</graphicClass>
@@ -89,34 +89,34 @@
 		<projectile>
 			<damageDef>Bullet</damageDef>
 			<speed>107</speed>
-			<dropsCasings>true</dropsCasings>
+			<!-- <dropsCasings>true</dropsCasings> -->
 		</projectile>
 	</ThingDef>
 
-	<ThingDef ParentName="Base357MagnumBullet">
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="Base357MagnumBullet">
 		<defName>Bullet_357Magnum_FMJ</defName>
 		<label>.357 Magnum bullet (FMJ)</label>
 		<projectile>
 			<damageAmountBase>14</damageAmountBase>
-			<armorPenetration>0.388</armorPenetration>
+			<armorPenetrationBase>0.388</armorPenetrationBase>
 		</projectile>
 	</ThingDef>
 
-	<ThingDef ParentName="Base357MagnumBullet">
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="Base357MagnumBullet">
 		<defName>Bullet_357Magnum_AP</defName>
 		<label>.357 Magnum bullet (AP)</label>
 		<projectile>
 			<damageAmountBase>8</damageAmountBase>
-			<armorPenetration>0.538</armorPenetration>
+			<armorPenetrationBase>0.538</armorPenetrationBase>
 		</projectile>
 	</ThingDef>
 
-	<ThingDef ParentName="Base357MagnumBullet">
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="Base357MagnumBullet">
 		<defName>Bullet_357Magnum_HP</defName>
 		<label>.357 Magnum bullet (HP)</label>
 		<projectile>
 			<damageAmountBase>20</damageAmountBase>
-			<armorPenetration>0.238</armorPenetration>
+			<armorPenetrationBase>0.238</armorPenetrationBase>
 		</projectile>
 	</ThingDef>
   

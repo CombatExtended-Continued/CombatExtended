@@ -22,7 +22,7 @@
 	
 	<!-- ==================== Ammo ========================== -->
 
-	<ThingDef Name="556x45mmNATOBase" ParentName="SmallAmmoBase" Abstract="True">
+	<ThingDef Class="CombatExtended.AmmoDef" Name="556x45mmNATOBase" ParentName="SmallAmmoBase" Abstract="True">
 		<description>Small, high-velocity rifle bullet used in a variety of assault rifles.</description>
 		<statBases>
 		<Mass>0.012</Mass>
@@ -37,7 +37,7 @@
 		</thingCategories>
 	</ThingDef>
 
-	<ThingDef ParentName="556x45mmNATOBase">
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="556x45mmNATOBase">
 		<defName>Ammo_556x45mmNATO_FMJ</defName>
 		<label>5.56x45mm NATO cartridge (FMJ)</label>
 		<graphicData>
@@ -51,7 +51,7 @@
 		<cookOffProjectile>Bullet_556x45mmNATO_FMJ</cookOffProjectile>
 	</ThingDef>
 
-	<ThingDef ParentName="556x45mmNATOBase">
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="556x45mmNATOBase">
 		<defName>Ammo_556x45mmNATO_AP</defName>
 		<label>5.56x45mm NATO cartridge (AP)</label>
 		<graphicData>
@@ -65,7 +65,7 @@
 		<cookOffProjectile>Bullet_556x45mmNATO_AP</cookOffProjectile>
 	</ThingDef>
 
-	<ThingDef ParentName="556x45mmNATOBase">
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="556x45mmNATOBase">
 		<defName>Ammo_556x45mmNATO_HP</defName>
 		<label>5.56x45mm NATO cartridge (HP)</label>
 		<graphicData>
@@ -81,7 +81,7 @@
 	
 	<!-- ================== Projectiles ================== -->
 
-	<ThingDef Name="Base556x45mmNATOBullet" ParentName="BaseBullet" Abstract="true">
+	<ThingDef Class="CombatExtended.AmmoDef" Name="Base556x45mmNATOBullet" ParentName="BaseBullet" Abstract="true">
 		<graphicData>
 			<texPath>Things/Projectile/Bullet_Small</texPath>
 			<graphicClass>Graphic_Single</graphicClass>
@@ -89,35 +89,35 @@
 		<projectile>
 			<damageDef>Bullet</damageDef>
 			<speed>231</speed>
-			<dropsCasings>true</dropsCasings>
+			<!-- <dropsCasings>true</dropsCasings> -->
 		</projectile>
 	</ThingDef>
 
 
-	<ThingDef ParentName="Base556x45mmNATOBullet">
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="Base556x45mmNATOBullet">
 		<defName>Bullet_556x45mmNATO_FMJ</defName>
 		<label>5.56mm NATO bullet (FMJ)</label>
 		<projectile>
 			<damageAmountBase>11</damageAmountBase>
-			<armorPenetration>0.485</armorPenetration>
+			<armorPenetrationBase>0.485</armorPenetrationBase>
 		</projectile>
 	</ThingDef>
 
-	<ThingDef ParentName="Base556x45mmNATOBullet">
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="Base556x45mmNATOBullet">
 		<defName>Bullet_556x45mmNATO_AP</defName>
 		<label>5.56mm NATO bullet (AP)</label>
 		<projectile>
 			<damageAmountBase>7</damageAmountBase>
-			<armorPenetration>0.635</armorPenetration>
+			<armorPenetrationBase>0.635</armorPenetrationBase>
 		</projectile>
 	</ThingDef>
 
-	<ThingDef ParentName="Base556x45mmNATOBullet">
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="Base556x45mmNATOBullet">
 		<defName>Bullet_556x45mmNATO_HP</defName>
 		<label>5.56mm NATO bullet (HP)</label>
 		<projectile>
 			<damageAmountBase>15</damageAmountBase>
-			<armorPenetration>0.335</armorPenetration>
+			<armorPenetrationBase>0.335</armorPenetrationBase>
 		</projectile>
 	</ThingDef>
   

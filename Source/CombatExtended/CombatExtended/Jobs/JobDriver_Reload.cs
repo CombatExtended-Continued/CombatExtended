@@ -143,7 +143,7 @@ namespace CombatExtended
 
             // Throw mote
             if (compReloader.ShouldThrowMote)
-                MoteMaker.ThrowText(pawn.Position.ToVector3Shifted(), Find.VisibleMap, string.Format("CE_ReloadingMote".Translate(), weapon.def.LabelCap));
+                MoteMaker.ThrowText(pawn.Position.ToVector3Shifted(), Find.CurrentMap, string.Format("CE_ReloadingMote".Translate(), weapon.def.LabelCap));
 
             //Toil of do-nothing		
             Toil waitToil = new Toil() { actor = pawn }; // actor was always null in testing...
@@ -157,6 +157,14 @@ namespace CombatExtended
             reloadToil.AddFinishAction(() => compReloader.LoadAmmo(initAmmo));
             yield return reloadToil;
 
+            // If reloading one shot at a time and if possible to reload, jump back to do-nothing toil
+            System.Func<bool> jumpCondition =
+                () => compReloader.Props.reloadOneAtATime &&
+                      compReloader.CurMagCount < compReloader.Props.magazineSize &&
+                      (!compReloader.UseAmmo || compReloader.TryFindAmmoInInventory(out initAmmo));
+            Toil jumpToil = Toils_Jump.JumpIf(waitToil, jumpCondition);
+            yield return jumpToil;
+
             //Continue previous job if possible
             Toil continueToil = new Toil
             {
@@ -165,7 +173,7 @@ namespace CombatExtended
             yield return continueToil;
         }
 
-        public override bool TryMakePreToilReservations()
+        public override bool TryMakePreToilReservations(bool errorOnFailed)
         {
             return true;
         }

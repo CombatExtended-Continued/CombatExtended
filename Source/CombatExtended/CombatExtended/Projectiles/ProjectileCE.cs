@@ -432,7 +432,7 @@ namespace CombatExtended
                 return false;
             }
 
-            if (DebugViewSettings.drawInterceptChecks)
+            if (Controller.settings.DebugDrawInterceptChecks)
             {
                 Map.debugDrawer.FlashLine(lastPosIV3, newPosIV3);
             }
@@ -450,7 +450,7 @@ namespace CombatExtended
                     return true;
             	}
 
-                if (DebugViewSettings.drawInterceptChecks)
+                if (Controller.settings.DebugDrawInterceptChecks)
                     Map.debugDrawer.FlashCell(cell, 1, "o");
             }
             
@@ -494,7 +494,7 @@ namespace CombatExtended
 	                    mainThingList.AddRange(Map.thingGrid.ThingsListAtFast(curCell)
 	                	.Where(x => x is Pawn));
 						
-	                    if (DebugViewSettings.drawInterceptChecks)
+	                    if (Controller.settings.DebugDrawInterceptChecks)
 	                    {
 	                        Map.debugDrawer.FlashCell(curCell, 0.7f);
 	                    }
@@ -561,7 +561,7 @@ namespace CombatExtended
             ExactPosition = point;
         	landed = true;
         	
-            if (DebugViewSettings.drawInterceptChecks) MoteMaker.ThrowText(cell.ToVector3Shifted(), Map, "x", Color.red);
+            if (Controller.settings.DebugDrawInterceptChecks) MoteMaker.ThrowText(cell.ToVector3Shifted(), Map, "x", Color.red);
             
             Impact(null);
             return true;
@@ -608,7 +608,7 @@ namespace CombatExtended
             ExactPosition = point;
         	landed = true;
         	
-            if (DebugViewSettings.drawInterceptChecks) MoteMaker.ThrowText(thing.Position.ToVector3Shifted(), thing.Map, "x", Color.red);
+            if (Controller.settings.DebugDrawInterceptChecks) MoteMaker.ThrowText(thing.Position.ToVector3Shifted(), thing.Map, "x", Color.red);
             
             Impact(thing);
             return true;
@@ -639,7 +639,7 @@ namespace CombatExtended
                 && pawn.Faction != launcher?.Faction
                 && (shield == null || shield?.ShieldState == ShieldState.Resetting))
             {
-                suppressionAmount = def.projectile.damageAmountBase;
+                suppressionAmount = def.projectile.GetDamageAmount(CE_Utility.GetWeaponFromLauncher(launcher));
                 var propsCE = def.projectile as ProjectilePropertiesCE;
                 float penetrationAmount = propsCE == null ? 0f : propsCE.armorPenetration;
                 suppressionAmount *= 1 - Mathf.Clamp(compSuppressable.ParentArmor - penetrationAmount, 0, 1);
@@ -770,7 +770,7 @@ namespace CombatExtended
             CompExplosiveCE comp = this.TryGetComp<CompExplosiveCE>();
             if (comp != null && ExactPosition.ToIntVec3().IsValid)
             {
-                comp.Explode(launcher, ExactPosition, Find.VisibleMap);
+                comp.Explode(launcher, ExactPosition, Find.CurrentMap);
             }
 			
 			//Spawn things if not an explosive but preExplosionSpawnThingDef != null
