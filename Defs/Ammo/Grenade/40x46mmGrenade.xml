@@ -21,7 +21,7 @@
 	
 	<!-- ==================== Ammo ========================== -->
 
-  <ThingDef Name="40x46mmGrenadeBase" ParentName="AmmoBase" Abstract="True">
+  <ThingDef Class="CombatExtended.AmmoDef" Name="40x46mmGrenadeBase" ParentName="AmmoBase" Abstract="True">
     <description>Low velocity grenade fired from handheld grenade launchers.</description>
     <statBases>
 	  <Mass>0.3</Mass>
@@ -38,7 +38,7 @@
     <cookOffFlashScale>20</cookOffFlashScale>
   </ThingDef>
 
-  <ThingDef ParentName="40x46mmGrenadeBase">
+  <ThingDef Class="CombatExtended.AmmoDef" ParentName="40x46mmGrenadeBase">
     <defName>Ammo_40x46mmGrenade_HE</defName>
     <label>40x46mm grenade (HE)</label>
     <graphicData>
@@ -62,7 +62,7 @@
     </comps>
   </ThingDef>
 
-  <ThingDef ParentName="40x46mmGrenadeBase">
+  <ThingDef Class="CombatExtended.AmmoDef" ParentName="40x46mmGrenadeBase">
     <defName>Ammo_40x46mmGrenade_EMP</defName>
     <label>40x46mm grenade (EMP)</label>
     <graphicData>
@@ -87,7 +87,7 @@
 	
 	<!-- ================== Projectiles ================== -->
 
-	<ThingDef Name="Base40x46mmGrenadeBullet" ParentName="BaseBullet" Abstract="true">
+	<ThingDef Class="CombatExtended.AmmoDef" Name="Base40x46mmGrenadeBullet" ParentName="BaseBullet" Abstract="true">
 		<thingClass>CombatExtended.ProjectileCE_Explosive</thingClass>
 		<graphicData>
 			<texPath>Things/Projectile/Bullet_Big</texPath>
@@ -98,7 +98,7 @@
 		</projectile>
 	</ThingDef>
 
-	<ThingDef ParentName="Base40x46mmGrenadeBullet">
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="Base40x46mmGrenadeBullet">
 		<defName>Bullet_40x46mmGrenade_HE</defName>
 		<label>40x46mm grenade (HE)</label>
 		<projectile>
@@ -116,7 +116,7 @@
 		</comps>
 		</ThingDef>
 
-	<ThingDef ParentName="Base40x46mmGrenadeBullet">
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="Base40x46mmGrenadeBullet">
 		<defName>Bullet_40x46mmGrenade_EMP</defName>
 		<label>40x46mm grenade (EMP)</label>
 		<projectile>
@@ -153,7 +153,7 @@
       <li>
         <filter>
           <thingDefs>
-            <li>Component</li>
+            <li>ComponentIndustrial</li>
           </thingDefs>
         </filter>
         <count>1</count>
@@ -163,7 +163,7 @@
       <thingDefs>
         <li>Steel</li>
         <li>FSX</li>
-        <li>Component</li>
+        <li>ComponentIndustrial</li>
       </thingDefs>
     </fixedIngredientFilter>
     <products>
@@ -188,7 +188,7 @@
       <li>
         <filter>
           <thingDefs>
-            <li>Component</li>
+            <li>ComponentIndustrial</li>
           </thingDefs>
         </filter>
         <count>5</count>
@@ -197,7 +197,7 @@
     <fixedIngredientFilter>
       <thingDefs>
         <li>Steel</li>
-        <li>Component</li>
+        <li>ComponentIndustrial</li>
       </thingDefs>
     </fixedIngredientFilter>
     <products>

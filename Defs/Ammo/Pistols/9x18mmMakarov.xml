@@ -22,7 +22,7 @@
 	
 	<!-- ==================== Ammo ========================== -->
 
-	<ThingDef Name="9x18mmMakarovBase" ParentName="SmallAmmoBase" Abstract="True">
+	<ThingDef Class="CombatExtended.AmmoDef" Name="9x18mmMakarovBase" ParentName="SmallAmmoBase" Abstract="True">
 		<description>Common pistol cartridge used by a variety of handguns and SMGs.</description>
 		<statBases>
 		<Mass>0.01</Mass>
@@ -37,7 +37,7 @@
 		</thingCategories>
 	</ThingDef>
 
-	<ThingDef ParentName="9x18mmMakarovBase">
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="9x18mmMakarovBase">
 		<defName>Ammo_9x18mmMakarov_FMJ</defName>
 		<label>9x18mm Makarov cartridge (FMJ)</label>
 		<graphicData>
@@ -51,7 +51,7 @@
 		<cookOffProjectile>Bullet_9x18mmMakarov_FMJ</cookOffProjectile>
 	</ThingDef>
 
-	<ThingDef ParentName="9x18mmMakarovBase">
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="9x18mmMakarovBase">
 		<defName>Ammo_9x18mmMakarov_AP</defName>
 		<label>9x18mm Makarov cartridge (AP)</label>
 		<graphicData>
@@ -65,7 +65,7 @@
 		<cookOffProjectile>Bullet_9x18mmMakarov_AP</cookOffProjectile>
 	</ThingDef>
 
-	<ThingDef ParentName="9x18mmMakarovBase">
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="9x18mmMakarovBase">
 		<defName>Ammo_9x18mmMakarov_HP</defName>
 		<label>9x18mm Makarov cartridge (HP)</label>
 		<graphicData>
@@ -81,7 +81,7 @@
 	
 	<!-- ================== Projectiles ================== -->
 
-	<ThingDef Name="Base9x18mmMakarovBullet" ParentName="BaseBullet" Abstract="true">
+	<ThingDef Class="CombatExtended.AmmoDef" Name="Base9x18mmMakarovBullet" ParentName="BaseBullet" Abstract="true">
 		<graphicData>
 			<texPath>Things/Projectile/Bullet_Small</texPath>
 			<graphicClass>Graphic_Single</graphicClass>
@@ -89,34 +89,34 @@
 		<projectile>
 			<damageDef>Bullet</damageDef>
 			<speed>80</speed>
-			<dropsCasings>true</dropsCasings>
+			<!-- <dropsCasings>true</dropsCasings> -->
 		</projectile>
 	</ThingDef>
 
-	<ThingDef ParentName="Base9x18mmMakarovBullet">
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="Base9x18mmMakarovBullet">
 		<defName>Bullet_9x18mmMakarov_FMJ</defName>
 		<label>9mm Makarov bullet (FMJ)</label>
 		<projectile>
 			<damageAmountBase>8</damageAmountBase>
-			<armorPenetration>0.235</armorPenetration>
+			<armorPenetrationBase>0.235</armorPenetrationBase>
 		</projectile>
 	</ThingDef>
 
-	<ThingDef ParentName="Base9x18mmMakarovBullet">
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="Base9x18mmMakarovBullet">
 		<defName>Bullet_9x18mmMakarov_AP</defName>
 		<label>9mm Makarov bullet (AP)</label>
 		<projectile>
 			<damageAmountBase>5</damageAmountBase>
-			<armorPenetration>0.385</armorPenetration>
+			<armorPenetrationBase>0.385</armorPenetrationBase>
 		</projectile>
 	</ThingDef>
 
-	<ThingDef ParentName="Base9x18mmMakarovBullet">
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="Base9x18mmMakarovBullet">
 		<defName>Bullet_9x18mmMakarov_HP</defName>
 		<label>9mm Makarov bullet (HP)</label>
 		<projectile>
 			<damageAmountBase>11</damageAmountBase>
-			<armorPenetration>0.085</armorPenetration>
+			<armorPenetrationBase>0.085</armorPenetrationBase>
 		</projectile>
 	</ThingDef>
   

@@ -22,7 +22,7 @@
 	
 	<!-- ==================== Ammo ========================== -->
 
-	<ThingDef Name="9x19mmParaBase" ParentName="SmallAmmoBase" Abstract="True">
+	<ThingDef Class="CombatExtended.AmmoDef" Name="9x19mmParaBase" ParentName="SmallAmmoBase" Abstract="True">
 		<description>Common pistol cartridge used by a variety of handguns and SMGs.</description>
 		<statBases>
 		<Mass>0.01</Mass>
@@ -37,7 +37,7 @@
 		</thingCategories>
 	</ThingDef>
 
-	<ThingDef ParentName="9x19mmParaBase">
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="9x19mmParaBase">
 		<defName>Ammo_9x19mmPara_FMJ</defName>
 		<label>9x19mm Para cartridge (FMJ)</label>
 		<graphicData>
@@ -51,7 +51,7 @@
 		<cookOffProjectile>Bullet_9x19mmPara_FMJ</cookOffProjectile>
 	</ThingDef>
 
-	<ThingDef ParentName="9x19mmParaBase">
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="9x19mmParaBase">
 		<defName>Ammo_9x19mmPara_AP</defName>
 		<label>9x19mm Para cartridge (AP)</label>
 		<graphicData>
@@ -65,7 +65,7 @@
 		<cookOffProjectile>Bullet_9x19mmPara_AP</cookOffProjectile>
 	</ThingDef>
 
-	<ThingDef ParentName="9x19mmParaBase">
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="9x19mmParaBase">
 		<defName>Ammo_9x19mmPara_HP</defName>
 		<label>9x19mm Para cartridge (HP)</label>
 		<graphicData>
@@ -81,7 +81,7 @@
 	
 	<!-- ================== Projectiles ================== -->
 
-	<ThingDef Name="Base9x19mmParaBullet" ParentName="BaseBullet" Abstract="true">
+	<ThingDef Class="CombatExtended.AmmoDef" Name="Base9x19mmParaBullet" ParentName="BaseBullet" Abstract="true">
 		<graphicData>
 			<texPath>Things/Projectile/Bullet_Small</texPath>
 			<graphicClass>Graphic_Single</graphicClass>
@@ -89,34 +89,34 @@
 		<projectile>
 			<damageDef>Bullet</damageDef>
 			<speed>95</speed>
-			<dropsCasings>true</dropsCasings>
+			<!-- <dropsCasings>true</dropsCasings> -->
 		</projectile>
 	</ThingDef>
 
-	<ThingDef ParentName="Base9x19mmParaBullet">
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="Base9x19mmParaBullet">
 		<defName>Bullet_9x19mmPara_FMJ</defName>
 		<label>9mm Para bullet (FMJ)</label>
 		<projectile>
 			<damageAmountBase>11</damageAmountBase>
-			<armorPenetration>0.31</armorPenetration>
+			<armorPenetrationBase>0.31</armorPenetrationBase>
 		</projectile>
 	</ThingDef>
 
-	<ThingDef ParentName="Base9x19mmParaBullet">
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="Base9x19mmParaBullet">
 		<defName>Bullet_9x19mmPara_AP</defName>
 		<label>9mm Para bullet (AP)</label>
 		<projectile>
 			<damageAmountBase>7</damageAmountBase>
-			<armorPenetration>0.46</armorPenetration>
+			<armorPenetrationBase>0.46</armorPenetrationBase>
 		</projectile>
 	</ThingDef>
 
-	<ThingDef ParentName="Base9x19mmParaBullet">
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="Base9x19mmParaBullet">
 		<defName>Bullet_9x19mmPara_HP</defName>
 		<label>9mm Para bullet (HP)</label>
 		<projectile>
 			<damageAmountBase>15</damageAmountBase>
-			<armorPenetration>0.16</armorPenetration>
+			<armorPenetrationBase>0.16</armorPenetrationBase>
 		</projectile>
 	</ThingDef>
   

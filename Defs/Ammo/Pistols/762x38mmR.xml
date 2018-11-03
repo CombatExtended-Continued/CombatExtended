@@ -20,7 +20,7 @@
 	
 	<!-- ==================== Ammo ========================== -->
 
-	<ThingDef Name="762x38mmRBase" ParentName="SmallAmmoBase" Abstract="True">
+	<ThingDef Class="CombatExtended.AmmoDef" Name="762x38mmRBase" ParentName="SmallAmmoBase" Abstract="True">
 		<description>Uncommon rimmed pistol cartridge with the bullet seated further down the casing.</description>
 		<statBases>
 		<Mass>0.008</Mass>
@@ -35,7 +35,7 @@
 		</thingCategories>
 	</ThingDef>
 
-	<ThingDef ParentName="762x38mmRBase">
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="762x38mmRBase">
 		<defName>Ammo_762x38mmR_FMJ</defName>
 		<label>7.62x38mmR cartridge (FMJ)</label>
 		<graphicData>
@@ -51,7 +51,7 @@
 	
 	<!-- ================== Projectiles ================== -->
 
-	<ThingDef Name="Base762x38mmRBullet" ParentName="BaseBullet" Abstract="true">
+	<ThingDef Class="CombatExtended.AmmoDef" Name="Base762x38mmRBullet" ParentName="BaseBullet" Abstract="true">
 		<graphicData>
 			<texPath>Things/Projectile/Bullet_Small</texPath>
 			<graphicClass>Graphic_Single</graphicClass>
@@ -59,16 +59,16 @@
 		<projectile>
 			<damageDef>Bullet</damageDef>
 			<speed>83</speed>
-			<dropsCasings>true</dropsCasings>
+			<!-- <dropsCasings>true</dropsCasings> -->
 		</projectile>
 	</ThingDef>
 
-	<ThingDef ParentName="Base762x38mmRBullet">
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="Base762x38mmRBullet">
 		<defName>Bullet_762x38mmR_FMJ</defName>
 		<label>7.62mmR pistol bullet (FMJ)</label>
 		<projectile>
 			<damageAmountBase>8</damageAmountBase>
-			<armorPenetration>0.253</armorPenetration>
+			<armorPenetrationBase>0.253</armorPenetrationBase>
 		</projectile>
 	</ThingDef>
   

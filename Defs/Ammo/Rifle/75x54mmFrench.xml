@@ -22,7 +22,7 @@
 	
 	<!-- ==================== Ammo ========================== -->
 
-	<ThingDef Name="75x54mmFrenchBase" ParentName="SmallAmmoBase" Abstract="True">
+	<ThingDef Class="CombatExtended.AmmoDef" Name="75x54mmFrenchBase" ParentName="SmallAmmoBase" Abstract="True">
 		<description>Large rifle bullet found mostly in outdated bolt-action firearms.</description>
 		<statBases>
 		<Mass>0.02</Mass>
@@ -37,7 +37,7 @@
 		</thingCategories>
 	</ThingDef>
 
-	<ThingDef ParentName="75x54mmFrenchBase">
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="75x54mmFrenchBase">
 		<defName>Ammo_75x54mmFrench_FMJ</defName>
 		<label>7.5x54mm French cartridge (FMJ)</label>
 		<graphicData>
@@ -51,7 +51,7 @@
 		<cookOffProjectile>Bullet_75x54mmFrench_FMJ</cookOffProjectile>
 	</ThingDef>
 
-	<ThingDef ParentName="75x54mmFrenchBase">
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="75x54mmFrenchBase">
 		<defName>Ammo_75x54mmFrench_AP</defName>
 		<label>7.5x54mm French cartridge (AP)</label>
 		<graphicData>
@@ -65,7 +65,7 @@
 		<cookOffProjectile>Bullet_75x54mmFrench_AP</cookOffProjectile>
 	</ThingDef>
 
-	<ThingDef ParentName="75x54mmFrenchBase">
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="75x54mmFrenchBase">
 		<defName>Ammo_75x54mmFrench_HP</defName>
 		<label>7.5x54mm French cartridge (HP)</label>
 		<graphicData>
@@ -81,7 +81,7 @@
 	
 	<!-- ================== Projectiles ================== -->
 	
-	<ThingDef Name="Base75x54mmFrenchBullet" ParentName="BaseBullet" Abstract="true">
+	<ThingDef Class="CombatExtended.AmmoDef" Name="Base75x54mmFrenchBullet" ParentName="BaseBullet" Abstract="true">
 		<graphicData>
 			<texPath>Things/Projectile/Bullet_Small</texPath>
 			<graphicClass>Graphic_Single</graphicClass>
@@ -89,34 +89,34 @@
 		<projectile>
 			<damageDef>Bullet</damageDef>
 			<speed>208</speed>
-			<dropsCasings>true</dropsCasings>
+			<!-- <dropsCasings>true</dropsCasings> -->
 		</projectile>
 	</ThingDef>
 
-	<ThingDef ParentName="Base75x54mmFrenchBullet">
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="Base75x54mmFrenchBullet">
 		<defName>Bullet_75x54mmFrench_FMJ</defName>
 		<label>7.5mm French bullet (FMJ)</label>
 		<projectile>
 			<damageAmountBase>18</damageAmountBase>
-			<armorPenetration>0.588</armorPenetration>
+			<armorPenetrationBase>0.588</armorPenetrationBase>
 		</projectile>
 	</ThingDef>
 
-	<ThingDef ParentName="Base75x54mmFrenchBullet">
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="Base75x54mmFrenchBullet">
 		<defName>Bullet_75x54mmFrench_AP</defName>
 		<label>7.5mm French bullet (AP)</label>
 		<projectile>
 			<damageAmountBase>11</damageAmountBase>
-			<armorPenetration>0.738</armorPenetration>
+			<armorPenetrationBase>0.738</armorPenetrationBase>
 		</projectile>
 	</ThingDef>
 
-	<ThingDef ParentName="Base75x54mmFrenchBullet">
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="Base75x54mmFrenchBullet">
 		<defName>Bullet_75x54mmFrench_HP</defName>
 		<label>7.5mm French bullet (HP)</label>
 		<projectile>
 			<damageAmountBase>25</damageAmountBase>
-			<armorPenetration>0.438</armorPenetration>
+			<armorPenetrationBase>0.438</armorPenetrationBase>
 		</projectile>
 	</ThingDef>
   

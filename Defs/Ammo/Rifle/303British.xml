@@ -22,7 +22,7 @@
 	
 	<!-- ==================== Ammo ========================== -->
 
-	<ThingDef Name="303BritishBase" ParentName="SmallAmmoBase" Abstract="True">
+	<ThingDef Class="CombatExtended.AmmoDef" Name="303BritishBase" ParentName="SmallAmmoBase" Abstract="True">
 		<description>Large rifle bullet found mostly in outdated bolt-action firearms.</description>
 		<statBases>
 		<Mass>0.03</Mass>
@@ -37,7 +37,7 @@
 		</thingCategories>
 	</ThingDef>
 
-	<ThingDef ParentName="303BritishBase">
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="303BritishBase">
 		<defName>Ammo_303British_FMJ</defName>
 		<label>.303 British cartridge (FMJ)</label>
 		<graphicData>
@@ -51,7 +51,7 @@
 		<cookOffProjectile>Bullet_303British_FMJ</cookOffProjectile>
 	</ThingDef>
 
-	<ThingDef ParentName="303BritishBase">
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="303BritishBase">
 		<defName>Ammo_303British_AP</defName>
 		<label>.303 British cartridge (AP)</label>
 		<graphicData>
@@ -65,7 +65,7 @@
 		<cookOffProjectile>Bullet_303British_AP</cookOffProjectile>
 	</ThingDef>
 
-	<ThingDef ParentName="303BritishBase">
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="303BritishBase">
 		<defName>Ammo_303British_HP</defName>
 		<label>.303 British cartridge (HP)</label>
 		<graphicData>
@@ -81,7 +81,7 @@
 	
 	<!-- ================== Projectiles ================== -->
 	
-	<ThingDef Name="Base303BritishBullet" ParentName="BaseBullet" Abstract="true">
+	<ThingDef Class="CombatExtended.AmmoDef" Name="Base303BritishBullet" ParentName="BaseBullet" Abstract="true">
 		<graphicData>
 			<texPath>Things/Projectile/Bullet_Small</texPath>
 			<graphicClass>Graphic_Single</graphicClass>
@@ -89,34 +89,34 @@
 		<projectile>
 			<damageDef>Bullet</damageDef>
 			<speed>186</speed>
-			<dropsCasings>true</dropsCasings>
+			<!-- <dropsCasings>true</dropsCasings> -->
 		</projectile>
 	</ThingDef>
 
-	<ThingDef ParentName="Base303BritishBullet">
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="Base303BritishBullet">
 		<defName>Bullet_303British_FMJ</defName>
 		<label>.303 British bullet (FMJ)</label>
 		<projectile>
 			<damageAmountBase>18</damageAmountBase>
-			<armorPenetration>0.589</armorPenetration>
+			<armorPenetrationBase>0.589</armorPenetrationBase>
 		</projectile>
 	</ThingDef>
 
-	<ThingDef ParentName="Base303BritishBullet">
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="Base303BritishBullet">
 		<defName>Bullet_303British_AP</defName>
 		<label>.303 British bullet (AP)</label>
 		<projectile>
 			<damageAmountBase>11</damageAmountBase>
-			<armorPenetration>0.739</armorPenetration>
+			<armorPenetrationBase>0.739</armorPenetrationBase>
 		</projectile>
 	</ThingDef>
 
-	<ThingDef ParentName="Base303BritishBullet">
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="Base303BritishBullet">
 		<defName>Bullet_303British_HP</defName>
 		<label>.303 British bullet (HP)</label>
 		<projectile>
 			<damageAmountBase>25</damageAmountBase>
-			<armorPenetration>0.439</armorPenetration>
+			<armorPenetrationBase>0.439</armorPenetrationBase>
 		</projectile>
 	</ThingDef>
   

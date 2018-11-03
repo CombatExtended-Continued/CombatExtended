@@ -20,7 +20,7 @@
 	
 	<!-- ==================== Ammo ========================== -->
 
-	<ThingDef Name="792x33mmKurzBase" ParentName="SmallAmmoBase" Abstract="True">
+	<ThingDef Class="CombatExtended.AmmoDef" Name="792x33mmKurzBase" ParentName="SmallAmmoBase" Abstract="True">
 		<description>Intermediate rifle cartridge used by certain older assault rifles.</description>
 		<statBases>
 		<Mass>0.012</Mass>
@@ -35,7 +35,7 @@
 		</thingCategories>
 	</ThingDef>
 
-	<ThingDef ParentName="792x33mmKurzBase">
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="792x33mmKurzBase">
 		<defName>Ammo_792x33mmKurz_FMJ</defName>
 		<label>7.92x33mm Kurz cartridge (FMJ)</label>
 		<graphicData>
@@ -51,7 +51,7 @@
 	
 	<!-- ================== Projectiles ================== -->
 
-	<ThingDef Name="Base792x33mmKurzBullet" ParentName="BaseBullet" Abstract="true">
+	<ThingDef Class="CombatExtended.AmmoDef" Name="Base792x33mmKurzBullet" ParentName="BaseBullet" Abstract="true">
 		<graphicData>
 			<texPath>Things/Projectile/Bullet_Small</texPath>
 			<graphicClass>Graphic_Single</graphicClass>
@@ -59,17 +59,17 @@
 		<projectile>
 			<damageDef>Bullet</damageDef>
 			<speed>171</speed>
-			<dropsCasings>true</dropsCasings>
+			<!-- <dropsCasings>true</dropsCasings> -->
 		</projectile>
 	</ThingDef>
 
 
-	<ThingDef ParentName="Base792x33mmKurzBullet">
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="Base792x33mmKurzBullet">
 		<defName>Bullet_792x33mmKurz_FMJ</defName>
 		<label>7.92mm Kurz bullet (FMJ)</label>
 		<projectile>
 			<damageAmountBase>16</damageAmountBase>
-			<armorPenetration>0.501</armorPenetration>
+			<armorPenetrationBase>0.501</armorPenetrationBase>
 		</projectile>
 	</ThingDef>
   

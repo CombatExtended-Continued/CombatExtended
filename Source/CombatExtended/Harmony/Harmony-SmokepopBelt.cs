@@ -27,7 +27,7 @@ namespace CombatExtended.Harmony
                 DamageDef smoke = DamageDefOf.Smoke;
                 Thing instigator = null;
                 ThingDef gas_Smoke = ThingDefOf.Gas_Smoke;
-                GenExplosion.DoExplosion(position, map, statValue, smoke, instigator, -1, null, null, null, gas_Smoke, 1f, 1, false, null, 0f, 1, 0f, false);
+                GenExplosion.DoExplosion(position, map, statValue, smoke, instigator, -1, -1, null, null, gas_Smoke, null, null, 1f, 1, false, null, 0f, 1, 0f, false);
                 __instance.Destroy(DestroyMode.Vanish);
             }
             return false;

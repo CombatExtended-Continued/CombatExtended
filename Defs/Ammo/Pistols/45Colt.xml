@@ -23,7 +23,7 @@
 	
 	<!-- ==================== Ammo ========================== -->
 
-	<ThingDef Name="45ColtBase" ParentName="SmallAmmoBase" Abstract="True">
+	<ThingDef Class="CombatExtended.AmmoDef" Name="45ColtBase" ParentName="SmallAmmoBase" Abstract="True">
 		<description>Ancient pistol cartridge originally designed for revolvers.</description>
 		<statBases>
 		<Mass>0.02</Mass>
@@ -38,7 +38,7 @@
 		</thingCategories>
 	</ThingDef>
 
-	<ThingDef ParentName="45ColtBase">
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="45ColtBase">
 		<defName>Ammo_45Colt_FMJ</defName>
 		<label>.45 Colt cartridge (FMJ)</label>
 		<graphicData>
@@ -52,7 +52,7 @@
 		<cookOffProjectile>Bullet_45Colt_FMJ</cookOffProjectile>
 	</ThingDef>
 
-	<ThingDef ParentName="45ColtBase">
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="45ColtBase">
 		<defName>Ammo_45Colt_AP</defName>
 		<label>.45 Colt cartridge (AP)</label>
 		<graphicData>
@@ -66,7 +66,7 @@
 		<cookOffProjectile>Bullet_45Colt_AP</cookOffProjectile>
 	</ThingDef>
 
-	<ThingDef ParentName="45ColtBase">
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="45ColtBase">
 		<defName>Ammo_45Colt_HP</defName>
 		<label>.45 Colt cartridge (HP)</label>
 		<graphicData>
@@ -82,7 +82,7 @@
 	
 	<!-- ================== Projectiles ================== -->
 
-	<ThingDef Name="Base45ColtBullet" ParentName="BaseBullet" Abstract="true">
+	<ThingDef Class="CombatExtended.AmmoDef" Name="Base45ColtBullet" ParentName="BaseBullet" Abstract="true">
 		<graphicData>
 			<texPath>Things/Projectile/Bullet_Small</texPath>
 			<graphicClass>Graphic_Single</graphicClass>
@@ -90,34 +90,34 @@
 		<projectile>
 			<damageDef>Bullet</damageDef>
 			<speed>70</speed>
-			<dropsCasings>true</dropsCasings>
+			<!-- <dropsCasings>true</dropsCasings> -->
 		</projectile>
 	</ThingDef>
 
-	<ThingDef ParentName="Base45ColtBullet">
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="Base45ColtBullet">
 		<defName>Bullet_45Colt_FMJ</defName>
 		<label>.45 Colt bullet (FMJ)</label>
 		<projectile>
 			<damageAmountBase>14</damageAmountBase>
-			<armorPenetration>0.317</armorPenetration>
+			<armorPenetrationBase>0.317</armorPenetrationBase>
 		</projectile>
 	</ThingDef>
 
-	<ThingDef ParentName="Base45ColtBullet">
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="Base45ColtBullet">
 		<defName>Bullet_45Colt_AP</defName>
 		<label>.45 Colt bullet (AP)</label>
 		<projectile>
 			<damageAmountBase>8</damageAmountBase>
-			<armorPenetration>0.467</armorPenetration>
+			<armorPenetrationBase>0.467</armorPenetrationBase>
 		</projectile>
 	</ThingDef>
 
-	<ThingDef ParentName="Base45ColtBullet">
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="Base45ColtBullet">
 		<defName>Bullet_45Colt_HP</defName>
 		<label>.45 Colt bullet (HP)</label>
 		<projectile>
 			<damageAmountBase>20</damageAmountBase>
-			<armorPenetration>0.167</armorPenetration>
+			<armorPenetrationBase>0.167</armorPenetrationBase>
 		</projectile>
 	</ThingDef>
   

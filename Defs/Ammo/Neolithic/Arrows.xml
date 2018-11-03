@@ -22,7 +22,7 @@
 	
 	<!-- ==================== Ammo ========================== -->
 
-  <ThingDef Name="AmmoArrowBase" ParentName="NeolithicAmmoBase" Abstract="True">
+  <ThingDef Class="CombatExtended.AmmoDef" Name="AmmoArrowBase" ParentName="NeolithicAmmoBase" Abstract="True">
     <description>Simple arrow design with a cutting head attached to a wooden shaft.</description>
     <statBases>
       <Mass>0.11</Mass>
@@ -40,7 +40,7 @@
     </tradeTags>
   </ThingDef>
 
-  <ThingDef ParentName="AmmoArrowBase">
+  <ThingDef Class="CombatExtended.AmmoDef" ParentName="AmmoArrowBase">
     <defName>Ammo_Arrow_Stone</defName>
     <label>arrow (stone)</label>
     <graphicData>
@@ -56,7 +56,7 @@
     </tradeTags>
   </ThingDef>
 
-  <ThingDef ParentName="AmmoArrowBase">
+  <ThingDef Class="CombatExtended.AmmoDef" ParentName="AmmoArrowBase">
     <defName>Ammo_Arrow_Steel</defName>
     <label>arrow (steel)</label>
     <graphicData>
@@ -69,7 +69,7 @@
 		<ammoClass>SteelArrow</ammoClass>
   </ThingDef>
 
-  <ThingDef ParentName="AmmoArrowBase">
+  <ThingDef Class="CombatExtended.AmmoDef" ParentName="AmmoArrowBase">
     <defName>Ammo_Arrow_Plasteel</defName>
     <label>arrow (plasteel)</label>
     <graphicData>
@@ -85,7 +85,7 @@
 	
 	<!-- ================== Projectiles ================== -->
 
-	<ThingDef Name="BaseArrowProjectile" ParentName="BaseBullet" Abstract="true">
+	<ThingDef Class="CombatExtended.AmmoDef" Name="BaseArrowProjectile" ParentName="BaseBullet" Abstract="true">
 		<graphicData>
 			<texPath>Things/Projectile/Arrow_Small</texPath>
 			<graphicClass>Graphic_Single</graphicClass>
@@ -101,7 +101,7 @@
 			x = preExplosionSpawnChance,
 			r = resource cost. -->
 	
-	<ThingDef ParentName="BaseArrowProjectile">
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="BaseArrowProjectile">
 		<defName>Projectile_Arrow_Stone</defName>
 		<label>arrow (stone)</label>
 		<graphicData>
@@ -110,13 +110,13 @@
 		</graphicData>
 		<projectile>
 			<damageAmountBase>11</damageAmountBase>
-			<armorPenetration>0.15</armorPenetration>
+			<armorPenetrationBase>0.15</armorPenetrationBase>
 			<preExplosionSpawnChance>0.333</preExplosionSpawnChance>	<!-- 14.99 arrows per resource -->
 			<preExplosionSpawnThingDef>Ammo_Arrow_Stone</preExplosionSpawnThingDef>
 		</projectile>
 	</ThingDef>
 
-	<ThingDef ParentName="BaseArrowProjectile">
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="BaseArrowProjectile">
 		<defName>Projectile_Arrow_Steel</defName>
 		<label>arrow (steel)</label>
 		<graphicData>
@@ -125,13 +125,13 @@
 		</graphicData>
 		<projectile>
 			<damageAmountBase>11</damageAmountBase>
-			<armorPenetration>0.20</armorPenetration>
+			<armorPenetrationBase>0.20</armorPenetrationBase>
 			<preExplosionSpawnChance>0.666</preExplosionSpawnChance>	<!-- 29.94 arrows per resource -->
 			<preExplosionSpawnThingDef>Ammo_Arrow_Steel</preExplosionSpawnThingDef>
 		</projectile>
 	</ThingDef>
 
-	<ThingDef ParentName="BaseArrowProjectile">
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="BaseArrowProjectile">
 		<defName>Projectile_Arrow_Plasteel</defName>
 		<label>arrow (plasteel)</label>
 		<graphicData>
@@ -140,7 +140,7 @@
 		</graphicData>
 		<projectile>
 			<damageAmountBase>11</damageAmountBase>
-			<armorPenetration>0.25</armorPenetration>
+			<armorPenetrationBase>0.25</armorPenetrationBase>
 			<preExplosionSpawnChance>0.8</preExplosionSpawnChance>	<!-- 50 arrows per resource -->
 			<preExplosionSpawnThingDef>Ammo_Arrow_Plasteel</preExplosionSpawnThingDef>
 		</projectile>

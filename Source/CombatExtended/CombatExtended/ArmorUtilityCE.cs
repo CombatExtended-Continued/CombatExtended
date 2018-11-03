@@ -52,7 +52,7 @@ namespace CombatExtended
                 return dinfo;
             }
 
-            float penAmount = GetPenetrationValue(originalDinfo);
+            float penAmount = originalDinfo.ArmorPenetrationInt; //GetPenetrationValue(originalDinfo);
 
             // Apply worn armor
             if (involveArmor && pawn.apparel != null && !pawn.apparel.WornApparel.NullOrEmpty())
@@ -96,7 +96,7 @@ namespace CombatExtended
                             {
                                 if (shield.Destroyed) break;
                                 var secDinfo = sec.GetDinfo();
-                                var pen = GetPenetrationValue(originalDinfo);
+                                var pen = originalDinfo.ArmorPenetrationInt; //GetPenetrationValue(originalDinfo);
                                 var dmg = (float)secDinfo.Amount;
                                 TryPenetrateArmor(secDinfo.Def, shield.GetStatValue(secDinfo.Def.armorCategory.armorRatingStat), ref pen, ref dmg, shield);
                             }
@@ -236,8 +236,10 @@ namespace CombatExtended
         /// </summary>
         /// <param name="dinfo">DamageInfo to determine penetration for</param>
         /// <returns>Armor penetration value for attack used, 0 if it can't be determined</returns>
+        /*
         private static float GetPenetrationValue(DamageInfo dinfo)
         {
+            
             if (dinfo.Def.isExplosive)
             {
                 return dinfo.Amount * 0.1f; // Explosions have 10% of their damage as penetration
@@ -286,7 +288,7 @@ namespace CombatExtended
                     if (instigatorPawn.def == dinfo.Weapon)
                     {
                         // meleeVerbs: all verbs considered "melee worthy"
-                        Verb availableVerb = instigatorPawn.meleeVerbs.TryGetMeleeVerb();
+                        Verb availableVerb = instigatorPawn.meleeVerbs.TryGetMeleeVerb(dinfo.IntendedTarget);
                     	
 	                    // Case 2.3.1: .. of a weaponized hediff (power claw, scyther blade)
                         HediffCompProperties_VerbGiver compProps = dinfo.WeaponLinkedHediff?.CompPropsFor(typeof(HediffComp_VerbGiver)) as HediffCompProperties_VerbGiver;
@@ -355,7 +357,9 @@ namespace CombatExtended
             Log.Warning("CE could not determine armor penetration, defaulting");
 #endif
             return 9999;    // Really high default value so vanilla damage sources such as GiveInjuriesToKill always penetrate
-        }
+
+    
+        }*/
 
         /// <summary>
         /// Calculates armor for penetrating damage types (Blunt, Sharp). Applies damage reduction based on armor penetration to armor ratio and calculates damage accordingly, with the difference being applied to the armor Thing. Also calculates whether a Sharp attack is deflected.
@@ -443,7 +447,8 @@ namespace CombatExtended
         /// <returns>DamageInfo copied from dinfo with Def and forceHitPart adjusted</returns>
         private static DamageInfo GetDeflectDamageInfo(DamageInfo dinfo, BodyPartRecord hitPart)
         {
-            DamageInfo newDinfo = new DamageInfo(DamageDefOf.Blunt, dinfo.Amount, dinfo.Angle, dinfo.Instigator, GetOuterMostParent(hitPart), dinfo.Weapon);
+            DamageInfo newDinfo = new DamageInfo(DamageDefOf.Blunt, dinfo.Amount, 0, //Armor Penetration
+                dinfo.Angle, dinfo.Instigator, GetOuterMostParent(hitPart), dinfo.Weapon);
             newDinfo.SetBodyRegion(dinfo.Height, dinfo.Depth);
             newDinfo.SetWeaponBodyPartGroup(dinfo.WeaponBodyPartGroup);
             newDinfo.SetWeaponHediff(dinfo.WeaponLinkedHediff);
@@ -501,7 +506,7 @@ namespace CombatExtended
             else
             {
                 float dmgAmount = dinfo.Amount * 0.1f;
-                float penAmount = GetPenetrationValue(dinfo);
+                float penAmount = dinfo.ArmorPenetrationInt; //GetPenetrationValue(dinfo);
                 TryPenetrateArmor(dinfo.Def, parryThing.GetStatValue(dinfo.Def.armorCategory.armorRatingStat), ref penAmount, ref dmgAmount, parryThing);
             }
         }

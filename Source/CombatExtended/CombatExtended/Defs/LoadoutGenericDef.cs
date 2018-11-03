@@ -75,7 +75,7 @@ namespace CombatExtended
 			generic.label = "CE_Generic_RawFood".Translate();
 			// Exclude drugs and corpses.  Also exclude any food worse than RawBad as in testing the pawns would not even pick it up for training.
 			generic._lambda = td => td.IsNutritionGivingIngestible && td.ingestible.preferability <= FoodPreferability.RawTasty && td.ingestible.HumanEdible && td.plant == null && !td.IsDrug && !td.IsCorpse;
-			generic.defaultCount = Convert.ToInt32(Math.Floor(targetNutrition / everything.Where(td => generic.lambda(td)).Average(td => td.ingestible.nutrition)));
+			generic.defaultCount = Convert.ToInt32(Math.Floor(targetNutrition / everything.Where(td => generic.lambda(td)).Average(td => td.ingestible.CachedNutrition)));
 			//generic.defaultCount = 1;
 			generic.isBasic = false; // doesn't need to be in loadouts by default as animal interaction talks to HoldTracker now.
 			//TODO: Test pawns fetching raw food if no meal is available, if so then add a patch to have that talk to HoldTracker too.

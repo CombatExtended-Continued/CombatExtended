@@ -23,7 +23,7 @@
 	
 	<!-- ==================== Ammo ========================== -->
 
-  <ThingDef Name="23x75mmRBase" ParentName="SmallAmmoBase" Abstract="True">
+  <ThingDef Class="CombatExtended.AmmoDef" Name="23x75mmRBase" ParentName="SmallAmmoBase" Abstract="True">
     <description>Large 6.27 gauge shotgun caliber designed to be fired by the KS-23 shotgun.</description>
     <statBases>
 	  <Mass>0.069</Mass>
@@ -39,7 +39,7 @@
     <stackLimit>200</stackLimit>
   </ThingDef>
   
-  <ThingDef ParentName="23x75mmRBase">
+  <ThingDef Class="CombatExtended.AmmoDef" ParentName="23x75mmRBase">
     <defName>Ammo_23x75mmR_Buck</defName>
     <label>23x75mmR shell (Buck)</label>
     <graphicData>
@@ -53,7 +53,7 @@
     <cookOffProjectile>Bullet_23x75mmR_Buck</cookOffProjectile>
   </ThingDef>
 
-  <ThingDef ParentName="23x75mmRBase">
+  <ThingDef Class="CombatExtended.AmmoDef" ParentName="23x75mmRBase">
     <defName>Ammo_23x75mmR_Slug</defName>
     <label>23x75mmR shell (Slug)</label>
     <graphicData>
@@ -67,7 +67,7 @@
     <cookOffProjectile>Bullet_23x75mmR_Slug</cookOffProjectile>
   </ThingDef>
 
-  <ThingDef ParentName="23x75mmRBase">
+  <ThingDef Class="CombatExtended.AmmoDef" ParentName="23x75mmRBase">
     <defName>Ammo_23x75mmR_Beanbag</defName>
     <label>23x75mmR shell (Bean)</label>
 	<canBeSpawningInventory>false</canBeSpawningInventory>
@@ -82,7 +82,7 @@
     <cookOffProjectile>Bullet_23x75mmR_Beanbag</cookOffProjectile>
   </ThingDef>
   
-  <ThingDef ParentName="23x75mmRBase">
+  <ThingDef Class="CombatExtended.AmmoDef" ParentName="23x75mmRBase">
     <defName>Ammo_23x75mmR_ElectroSlug</defName>
     <label>23x75mmR shell (EMP)</label>
     <graphicData>
@@ -98,16 +98,16 @@
 	
 	<!-- ================== Projectiles ================== -->
 
-	<ThingDef Name="Base23x75mmRBullet" ParentName="BaseBullet" Abstract="true">
+	<ThingDef Class="CombatExtended.AmmoDef" Name="Base23x75mmRBullet" ParentName="BaseBullet" Abstract="true">
 		<projectile>
 			<damageDef>Bullet</damageDef>
 			<speed>83</speed>
-			<dropsCasings>true</dropsCasings>
-			<casingMoteDefname>Mote_ShotgunShell</casingMoteDefname>
+			<!-- <dropsCasings>true</dropsCasings> -->
+			<!-- <casingMoteDefname>Mote_ShotgunShell</casingMoteDefname> -->
 		</projectile>
 	</ThingDef>
 	
-	<ThingDef ParentName="Base23x75mmRBullet">
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="Base23x75mmRBullet">
 		<defName>Bullet_23x75mmR_Buck</defName>
 		<label>buckshot pellet</label>
 		<graphicData>
@@ -117,12 +117,12 @@
 		<projectile>
 			<damageAmountBase>9</damageAmountBase>
 			<pelletCount>12</pelletCount>
-			<armorPenetration>0.249</armorPenetration>
+			<armorPenetrationBase>0.249</armorPenetrationBase>
 			<spreadMult>17.8</spreadMult>
 		</projectile>
 	</ThingDef>
 
-	<ThingDef ParentName="Base23x75mmRBullet">
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="Base23x75mmRBullet">
 		<defName>Bullet_23x75mmR_Slug</defName>
 		<label>shotgun slug</label>
 		<graphicData>
@@ -131,11 +131,11 @@
 		</graphicData>
 		<projectile>
 			<damageAmountBase>53</damageAmountBase>
-			<armorPenetration>0.503</armorPenetration>
+			<armorPenetrationBase>0.503</armorPenetrationBase>
 		</projectile>
 	</ThingDef>
 
-	<ThingDef ParentName="Base23x75mmRBullet">
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="Base23x75mmRBullet">
 		<defName>Bullet_23x75mmR_Beanbag</defName>
 		<label>beanbag</label>
 		<graphicData>
@@ -146,12 +146,12 @@
 			<speed>20</speed>
 			<damageDef>Beanbag</damageDef>
 			<damageAmountBase>7</damageAmountBase>
-			<armorPenetration>0.141</armorPenetration>
+			<armorPenetrationBase>0.141</armorPenetrationBase>
 			<spreadMult>2</spreadMult>
 		</projectile>
 	</ThingDef>
 	
-	<ThingDef ParentName="Base23x75mmRBullet">
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="Base23x75mmRBullet">
 		<defName>Bullet_23x75mmR_ElectroSlug</defName>
 		<label>EMP slug</label>
 		<graphicData>
@@ -270,7 +270,7 @@
       <li>
         <filter>
           <thingDefs>
-            <li>Component</li>
+            <li>ComponentIndustrial</li>
           </thingDefs>
         </filter>
         <count>4</count>
@@ -279,7 +279,7 @@
     <fixedIngredientFilter>
       <thingDefs>
         <li>Steel</li>
-        <li>Component</li>
+        <li>ComponentIndustrial</li>
       </thingDefs>
     </fixedIngredientFilter>
     <products>

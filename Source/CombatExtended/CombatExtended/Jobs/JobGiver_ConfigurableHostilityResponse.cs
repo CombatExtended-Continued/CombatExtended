@@ -67,7 +67,8 @@ namespace CombatExtended
             }
 
             // Check for reload before attacking
-            Verb verb = pawn.TryGetAttackVerb();
+            bool allowManualCastWeapons = !pawn.IsColonist;  //TODO: Is this correct?
+            Verb verb = pawn.TryGetAttackVerb(thing, allowManualCastWeapons);
             if (pawn.equipment.Primary != null && pawn.equipment.PrimaryEq != null && verb != null && verb == pawn.equipment.PrimaryEq.PrimaryVerb)
             {
                 CompAmmoUser compAmmo = pawn.equipment.Primary.TryGetComp<CompAmmoUser>();
@@ -98,7 +99,7 @@ namespace CombatExtended
             for (int i = 0; i < potentialTargetsFor.Count; i++)
             {
                 IAttackTarget attackTarget = potentialTargetsFor[i];
-                if (!attackTarget.ThreatDisabled())
+                if (!attackTarget.ThreatDisabled(pawn))
                 {
                     tmpThreats.Add((Thing)attackTarget);
                 }
@@ -113,62 +114,65 @@ namespace CombatExtended
             return new Job(JobDefOf.FleeAndCower, fleeDest);
         }
 
+
+        //1:1 COPY from CellFinderLoose.GetFleeDestToolUser
         private IntVec3 GetFleeDest(Pawn pawn, List<Thing> threats)
         {
 			IntVec3 bestPos = pawn.Position;
 			float bestScore = -1f;
 			TraverseParms traverseParms = TraverseParms.For(pawn, Danger.Deadly, TraverseMode.ByPawn, false);
-			RegionTraverser.BreadthFirstTraverse(pawn.GetRegion(), (Region from, Region reg) => reg.Allows(traverseParms, false), delegate(Region reg)
+			RegionTraverser.BreadthFirstTraverse(pawn.GetRegion(RegionType.Set_Passable), (Region from, Region reg) => reg.Allows(traverseParms, false), delegate(Region reg)
 			{
-                Danger danger = reg.DangerFor(pawn);
-                foreach (IntVec3 current in reg.Cells)
-                {
-                    if (current.Standable(pawn.Map))
-                    {
-                        if (reg.portal == null)
-                        {
-                            Thing thing = null;
-                            float num = 0f;
-                            for (int i = 0; i < threats.Count; i++)
-                            {
-                                float num2 = current.DistanceToSquared(threats[i].Position);
-                                if (thing == null || num2 < num)
-                                {
-                                    thing = threats[i];
-                                    num = num2;
-                                }
-                            }
-                            float num3 = Mathf.Sqrt(num);
-                            float f = Mathf.Min(num3, 23f);
-                            float num4 = Mathf.Pow(f, 1.2f);
-                            num4 *= Mathf.InverseLerp(50f, 0f, (current - pawn.Position).LengthHorizontal);
-                            if (current.GetRoom(pawn.Map) != thing.GetRoom())
-                            {
-                                num4 *= 4.2f;
-                            }
-                            else if (num3 < 8f)
-                            {
-                                num4 *= 0.05f;
-                            }
-                            if (pawn.Map.pawnDestinationReservationManager.IsReserved(current))
-                            {
-                                num4 *= 0.5f;
-                            }
-                            if (danger == Danger.Deadly)
-                            {
-                                num4 *= 0.8f;
-                            }
-                            if (num4 > bestScore)
-                            {
-                                bestPos = current;
-                                bestScore = num4;
-                            }
-                        }
-                    }
-                }
-                return false;
-            }, 20);
-            return bestPos;
+				Danger danger = reg.DangerFor(pawn);
+				Map map = pawn.Map;
+				foreach (IntVec3 current in reg.Cells)
+				{
+					if (current.Standable(map))
+					{
+						if (!reg.IsDoorway)
+						{
+							Thing thing = null;
+							float num = 0f;
+							for (int i = 0; i < threats.Count; i++)
+							{
+								float num2 = (float)current.DistanceToSquared(threats[i].Position);
+								if (thing == null || num2 < num)
+								{
+									thing = threats[i];
+									num = num2;
+								}
+							}
+							float num3 = Mathf.Sqrt(num);
+							float f = Mathf.Min(num3, 23f); //Slight alteration
+							float num4 = Mathf.Pow(f, 1.2f);
+							num4 *= Mathf.InverseLerp(50f, 0f, (current - pawn.Position).LengthHorizontal);
+							if (current.GetRoom(map, RegionType.Set_Passable) != thing.GetRoom(RegionType.Set_Passable))
+							{
+								num4 *= 4.2f;
+							}
+							else if (num3 < 8f)
+							{
+								num4 *= 0.05f;
+							}
+							if (!map.pawnDestinationReservationManager.CanReserve(current, pawn, false))
+							{
+								num4 *= 0.5f;
+							}
+							if (danger == Danger.Deadly)
+							{
+								num4 *= 0.8f;
+							}
+							if (num4 > bestScore)
+							{
+								bestPos = current;
+								bestScore = num4;
+							}
+						}
+					}
+				}
+				return false;
+			}, 20, RegionType.Set_Passable);
+			return bestPos;
         }
     }
 }

@@ -55,7 +55,7 @@ namespace CombatExtended
             explosion.postExplosionSpawnThingCount = def.projectile.postExplosionSpawnThingCount;
             explosion.applyDamageToExplosionCellsNeighbors = def.projectile.applyDamageToExplosionCellsNeighbors;
             explosion.chanceToStartFire = def.projectile.explosionChanceToStartFire;
-            explosion.dealMoreDamageAtCenter = def.projectile.explosionDealMoreDamageAtCenter;
+            explosion.damageFalloff = def.projectile.explosionDamageFalloff;
             explosion.StartExplosion(def.projectile.soundExplode);
 
             //This code was disabled because it didn't run under previous circumstances. Could be enabled if necessary

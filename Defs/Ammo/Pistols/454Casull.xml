@@ -26,7 +26,7 @@
 	
 	<!-- ==================== Ammo ========================== -->
 
-	<ThingDef Name="454CasullBase" ParentName="SmallAmmoBase" Abstract="True">
+	<ThingDef Class="CombatExtended.AmmoDef" Name="454CasullBase" ParentName="SmallAmmoBase" Abstract="True">
 		<description>A lengthened and reinforced .45 Colt cartridge. Very potent.</description>
 		<statBases>
 		<Mass>0.025</Mass>
@@ -41,7 +41,7 @@
 		</thingCategories>
 	</ThingDef>
 
-	<ThingDef ParentName="454CasullBase">
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="454CasullBase">
 		<defName>Ammo_454Casull_FMJ</defName>
 		<label>.454 Casull cartridge (FMJ)</label>
 		<graphicData>
@@ -55,7 +55,7 @@
 		<cookOffProjectile>Bullet_454Casull_FMJ</cookOffProjectile>
 	</ThingDef>
 
-	<ThingDef ParentName="454CasullBase">
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="454CasullBase">
 		<defName>Ammo_454Casull_AP</defName>
 		<label>.454 Casull cartridge (AP)</label>
 		<graphicData>
@@ -69,7 +69,7 @@
 		<cookOffProjectile>Bullet_454Casull_AP</cookOffProjectile>
 	</ThingDef>
 
-	<ThingDef ParentName="454CasullBase">
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="454CasullBase">
 		<defName>Ammo_454Casull_HP</defName>
 		<label>.454 Casull cartridge (HP)</label>
 		<graphicData>
@@ -85,7 +85,7 @@
 	
 	<!-- ================== Projectiles ================== -->
 
-	<ThingDef Name="Base454CasullBullet" ParentName="BaseBullet" Abstract="true">
+	<ThingDef Class="CombatExtended.AmmoDef" Name="Base454CasullBullet" ParentName="BaseBullet" Abstract="true">
 		<graphicData>
 			<texPath>Things/Projectile/Bullet_Small</texPath>
 			<graphicClass>Graphic_Single</graphicClass>
@@ -93,34 +93,34 @@
 		<projectile>
 			<damageDef>Bullet</damageDef>
 			<speed>135</speed>
-			<dropsCasings>true</dropsCasings>
+			<!-- <dropsCasings>true</dropsCasings> -->
 		</projectile>
 	</ThingDef>
 
-	<ThingDef ParentName="Base454CasullBullet">
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="Base454CasullBullet">
 		<defName>Bullet_454Casull_FMJ</defName>
 		<label>.454 Casull bullet (FMJ)</label>
 		<projectile>
 			<damageAmountBase>25</damageAmountBase>
-			<armorPenetration>0.548</armorPenetration>
+			<armorPenetrationBase>0.548</armorPenetrationBase>
 		</projectile>
 	</ThingDef>
 
-	<ThingDef ParentName="Base454CasullBullet">
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="Base454CasullBullet">
 		<defName>Bullet_454Casull_AP</defName>
 		<label>.454 Casull bullet (AP)</label>
 		<projectile>
 			<damageAmountBase>15</damageAmountBase>
-			<armorPenetration>0.698</armorPenetration>
+			<armorPenetrationBase>0.698</armorPenetrationBase>
 		</projectile>
 	</ThingDef>
 
-	<ThingDef ParentName="Base454CasullBullet">
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="Base454CasullBullet">
 		<defName>Bullet_454Casull_HP</defName>
 		<label>.454 Casull bullet (HP)</label>
 		<projectile>
 			<damageAmountBase>35</damageAmountBase>
-			<armorPenetration>0.398</armorPenetration>
+			<armorPenetrationBase>0.398</armorPenetrationBase>
 		</projectile>
 	</ThingDef>
   

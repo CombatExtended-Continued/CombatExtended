@@ -21,7 +21,7 @@
 	
 	<!-- ==================== Ammo ========================== -->
 
-  <ThingDef Name="SPG9GrenadeBase" ParentName="AmmoBase" Abstract="True">
+  <ThingDef Class="CombatExtended.AmmoDef" Name="SPG9GrenadeBase" ParentName="AmmoBase" Abstract="True">
     <description>Rocket-assisted projectile for use with the SPG-9 launcher.</description>
     <statBases>
       <MaxHitPoints>150</MaxHitPoints>
@@ -38,7 +38,7 @@
     <cookOffSound>MortarBomb_Explode</cookOffSound>
   </ThingDef>
 
-  <ThingDef ParentName="SPG9GrenadeBase">
+  <ThingDef Class="CombatExtended.AmmoDef" ParentName="SPG9GrenadeBase">
     <defName>Ammo_SPG9Grenade_HEAT</defName>
     <label>SPG-9 grenade (HEAT)</label>
     <graphicData>
@@ -66,7 +66,7 @@
     </comps>
   </ThingDef>
 
-  <ThingDef ParentName="SPG9GrenadeBase">
+  <ThingDef Class="CombatExtended.AmmoDef" ParentName="SPG9GrenadeBase">
     <defName>Ammo_SPG9Grenade_Frag</defName>
     <label>SPG-9 grenade (Frag)</label>
     <graphicData>
@@ -95,7 +95,7 @@
 	
 	<!-- ================== Projectiles ================== -->
 
-	<ThingDef Name="BaseSPG9Grenade" ParentName="BaseBullet" Abstract="true">
+	<ThingDef Class="CombatExtended.AmmoDef" Name="BaseSPG9Grenade" ParentName="BaseBullet" Abstract="true">
 		<graphicData>
 			<shaderType>TransparentPostLight</shaderType>
 		</graphicData>
@@ -105,7 +105,7 @@
 		</projectile>
 	</ThingDef>	
 
-	<ThingDef ParentName="BaseSPG9Grenade">
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="BaseSPG9Grenade">
 		<defName>Bullet_SPG9Grenade_HEAT</defName>
 		<label>SPG-9 grenade (HEAT)</label>
 		<graphicData>
@@ -115,7 +115,7 @@
 		<projectile>
 			<damageDef>Bullet</damageDef>
 			<damageAmountBase>150</damageAmountBase>
-			<armorPenetration>3.0</armorPenetration>
+			<armorPenetrationBase>3.0</armorPenetrationBase>
 		</projectile>
 		<comps>
 			<li Class="CombatExtended.CompProperties_ExplosiveCE">
@@ -131,7 +131,7 @@
 		</comps>
 	</ThingDef>
 
-	<ThingDef ParentName="BaseSPG9Grenade">
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="BaseSPG9Grenade">
 		<defName>Bullet_SPG9Grenade_Frag</defName>
 		<thingClass>CombatExtended.ProjectileCE_Explosive</thingClass>
 		<label>SPG-9 grenade (Frag)</label>
@@ -183,7 +183,7 @@
       <li>
         <filter>
           <thingDefs>
-            <li>Component</li>
+            <li>ComponentIndustrial</li>
           </thingDefs>
         </filter>
         <count>3</count>
@@ -193,7 +193,7 @@
       <thingDefs>
         <li>Steel</li>
         <li>FSX</li>
-        <li>Component</li>
+        <li>ComponentIndustrial</li>
       </thingDefs>
     </fixedIngredientFilter>
     <products>
@@ -227,7 +227,7 @@
       <li>
         <filter>
           <thingDefs>
-            <li>Component</li>
+            <li>ComponentIndustrial</li>
           </thingDefs>
         </filter>
         <count>3</count>
@@ -237,7 +237,7 @@
       <thingDefs>
         <li>Steel</li>
         <li>FSX</li>
-        <li>Component</li>
+        <li>ComponentIndustrial</li>
       </thingDefs>
     </fixedIngredientFilter>
     <products>

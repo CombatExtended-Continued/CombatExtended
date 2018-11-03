@@ -20,7 +20,7 @@
 	
 	<!-- ==================== Ammo ========================== -->
 
-	<ThingDef Name="8x50mmRLebelBase" ParentName="SmallAmmoBase" Abstract="True">
+	<ThingDef Class="CombatExtended.AmmoDef" Name="8x50mmRLebelBase" ParentName="SmallAmmoBase" Abstract="True">
 		<description>Rimmed rifle cartridge found mostly in outdated bolt-action firearms.</description>
 		<statBases>
 		<Mass>0.024</Mass>
@@ -35,7 +35,7 @@
 		</thingCategories>
 	</ThingDef>
 
-	<ThingDef ParentName="8x50mmRLebelBase">
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="8x50mmRLebelBase">
 		<defName>Ammo_8x50mmRLebel_FMJ</defName>
 		<label>8x50mmR Lebel cartridge (FMJ)</label>
 		<graphicData>
@@ -51,7 +51,7 @@
 	
 	<!-- ================== Projectiles ================== -->
 	
-	<ThingDef Name="Base8x50mmRLebelBullet" ParentName="BaseBullet" Abstract="true">
+	<ThingDef Class="CombatExtended.AmmoDef" Name="Base8x50mmRLebelBullet" ParentName="BaseBullet" Abstract="true">
 		<graphicData>
 			<texPath>Things/Projectile/Bullet_Small</texPath>
 			<graphicClass>Graphic_Single</graphicClass>
@@ -59,16 +59,16 @@
 		<projectile>
 			<damageDef>Bullet</damageDef>
 			<speed>183</speed>
-			<dropsCasings>true</dropsCasings>
+			<!-- <dropsCasings>true</dropsCasings> -->
 		</projectile>
 	</ThingDef>
 
-	<ThingDef ParentName="Base8x50mmRLebelBullet">
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="Base8x50mmRLebelBullet">
 		<defName>Bullet_8x50mmRLebel_FMJ</defName>
 		<label>8mmR Lebel bullet (FMJ)</label>
 		<projectile>
 			<damageAmountBase>20</damageAmountBase>
-			<armorPenetration>0.605</armorPenetration>
+			<armorPenetrationBase>0.605</armorPenetrationBase>
 		</projectile>
 	</ThingDef>
   

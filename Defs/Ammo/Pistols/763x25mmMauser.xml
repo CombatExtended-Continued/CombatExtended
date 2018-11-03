@@ -22,7 +22,7 @@
 	
 	<!-- ==================== Ammo ========================== -->
 
-	<ThingDef Name="763x25mmMauserBase" ParentName="SmallAmmoBase" Abstract="True">
+	<ThingDef Class="CombatExtended.AmmoDef" Name="763x25mmMauserBase" ParentName="SmallAmmoBase" Abstract="True">
 		<description>Uncommon pistol cartridge used by a few handguns.</description>
 		<statBases>
 		<Mass>0.008</Mass>
@@ -37,7 +37,7 @@
 		</thingCategories>
 	</ThingDef>
 
-	<ThingDef ParentName="763x25mmMauserBase">
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="763x25mmMauserBase">
 		<defName>Ammo_763x25mmMauser_FMJ</defName>
 		<label>7.63x25mm Mauser cartridge (FMJ)</label>
 		<graphicData>
@@ -51,7 +51,7 @@
 		<cookOffProjectile>Bullet_763x25mmMauser_FMJ</cookOffProjectile>
 	</ThingDef>
 
-	<!--<ThingDef ParentName="763x25mmMauserBase">
+	<!--<ThingDef Class="CombatExtended.AmmoDef" ParentName="763x25mmMauserBase">
 		<defName>Ammo_763x25mmMauser_AP</defName>
 		<label>7.63x25mm Mauser cartridge (AP)</label>
 		<graphicData>
@@ -65,7 +65,7 @@
 		<cookOffProjectile>Bullet_763x25mmMauser_AP</cookOffProjectile>
 	</ThingDef>
 
-	<ThingDef ParentName="763x25mmMauserBase">
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="763x25mmMauserBase">
 		<defName>Ammo_763x25mmMauser_HP</defName>
 		<label>7.63x25mm Mauser cartridge (HP)</label>
 		<graphicData>
@@ -81,7 +81,7 @@
 
 	<!-- ================== Projectiles ================== -->
 
-	<ThingDef Name="Base763x25mmMauserBullet" ParentName="BaseBullet" Abstract="true">
+	<ThingDef Class="CombatExtended.AmmoDef" Name="Base763x25mmMauserBullet" ParentName="BaseBullet" Abstract="true">
 		<graphicData>
 			<texPath>Things/Projectile/Bullet_Small</texPath>
 			<graphicClass>Graphic_Single</graphicClass>
@@ -89,34 +89,34 @@
 		<projectile>
 			<damageDef>Bullet</damageDef>
 			<speed>110</speed>
-			<dropsCasings>true</dropsCasings>
+			<!-- <dropsCasings>true</dropsCasings> -->
 		</projectile>
 	</ThingDef>
 
-	<ThingDef ParentName="Base763x25mmMauserBullet">
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="Base763x25mmMauserBullet">
 		<defName>Bullet_763x25mmMauser_FMJ</defName>
 		<label>7.63mm Mauser bullet (FMJ)</label>
 		<projectile>
 			<damageAmountBase>9</damageAmountBase>
-			<armorPenetration>0.311</armorPenetration>
+			<armorPenetrationBase>0.311</armorPenetrationBase>
 		</projectile>
 	</ThingDef>
 
-	<!--<ThingDef ParentName="Base763x25mmMauserBullet">
+	<!--<ThingDef Class="CombatExtended.AmmoDef" ParentName="Base763x25mmMauserBullet">
 		<defName>Bullet_763x25mmMauser_AP</defName>
 		<label>7.63mm Mauser bullet (AP)</label>
 		<projectile>
 			<damageAmountBase>5</damageAmountBase>
-			<armorPenetration>0.461</armorPenetration>
+			<armorPenetrationBase>0.461</armorPenetrationBase>
 		</projectile>
 	</ThingDef>
 
-	<ThingDef ParentName="Base763x25mmMauserBullet">
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="Base763x25mmMauserBullet">
 		<defName>Bullet_763x25mmMauser_HP</defName>
 		<label>7.63mm Mauser bullet (HP)</label>
 		<projectile>
 			<damageAmountBase>13</damageAmountBase>
-			<armorPenetration>0.161</armorPenetration>
+			<armorPenetrationBase>0.161</armorPenetrationBase>
 		</projectile>
 	</ThingDef>-->
 

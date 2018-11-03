@@ -44,7 +44,7 @@ namespace CombatExtended
         private float rotationDegrees = 0f;
         private float angleRadians = 0f;
 
-        private int lastTauntTick;
+        //private int lastTauntTick;
         
         #endregion
 
@@ -477,8 +477,8 @@ namespace CombatExtended
         	    {
 					report = "IsIncapableOfViolenceLower".Translate(new object[]
 					{
-						ShooterPawn.NameStringShort
-					});
+						ShooterPawn.Name.ToStringShort
+                    });
             		return false;
         	    }
             	
@@ -488,7 +488,7 @@ namespace CombatExtended
 	                List<Apparel> wornApparel = ShooterPawn.apparel.WornApparel;
 	                foreach(Apparel current in wornApparel)
 	                {
-	                    if (!current.AllowVerbCast(root, caster.Map, targ))
+	                    if (!current.AllowVerbCast(root, caster.Map, targ, this))
 	                    {
 	                        report = "Shooting disallowed by " + current.LabelShort;
 	                        return false;
@@ -590,7 +590,7 @@ namespace CombatExtended
                 resultingLine = default(ShootLine);
                 return false;
             }
-            if (this.verbProps.MeleeRange)
+            if (this.verbProps.EffectiveMinRange(targ, this.caster) <= ShootTuning.MeleeRange) //This means we are in melee range!
             {
                 resultingLine = new ShootLine(root, targ.Cell);
                 return ReachabilityImmediate.CanReachImmediate(root, targ, this.caster.Map, PathEndMode.Touch, null);

@@ -22,7 +22,7 @@
 	
 	<!-- ==================== Ammo ========================== -->
 
-	<ThingDef Name="77x58mmArisakaBase" ParentName="SmallAmmoBase" Abstract="True">
+	<ThingDef Class="CombatExtended.AmmoDef" Name="77x58mmArisakaBase" ParentName="SmallAmmoBase" Abstract="True">
 		<description>Large rifle bullet found mostly in outdated bolt-action firearms.</description>
 		<statBases>
 		<Mass>0.02</Mass>
@@ -37,7 +37,7 @@
 		</thingCategories>
 	</ThingDef>
 
-	<ThingDef ParentName="77x58mmArisakaBase">
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="77x58mmArisakaBase">
 		<defName>Ammo_77x58mmArisaka_FMJ</defName>
 		<label>7.7x58mm Arisaka cartridge (FMJ)</label>
 		<graphicData>
@@ -51,7 +51,7 @@
 		<cookOffProjectile>Bullet_77x58mmArisaka_FMJ</cookOffProjectile>
 	</ThingDef>
 
-	<ThingDef ParentName="77x58mmArisakaBase">
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="77x58mmArisakaBase">
 		<defName>Ammo_77x58mmArisaka_AP</defName>
 		<label>7.7x58mm Arisaka cartridge (AP)</label>
 		<graphicData>
@@ -65,7 +65,7 @@
 		<cookOffProjectile>Bullet_77x58mmArisaka_AP</cookOffProjectile>
 	</ThingDef>
 
-	<ThingDef ParentName="77x58mmArisakaBase">
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="77x58mmArisakaBase">
 		<defName>Ammo_77x58mmArisaka_HP</defName>
 		<label>7.7x58mm Arisaka cartridge (HP)</label>
 		<graphicData>
@@ -81,7 +81,7 @@
 	
 	<!-- ================== Projectiles ================== -->
 	
-	<ThingDef Name="Base77x58mmArisakaBullet" ParentName="BaseBullet" Abstract="true">
+	<ThingDef Class="CombatExtended.AmmoDef" Name="Base77x58mmArisakaBullet" ParentName="BaseBullet" Abstract="true">
 		<graphicData>
 			<texPath>Things/Projectile/Bullet_Small</texPath>
 			<graphicClass>Graphic_Single</graphicClass>
@@ -89,34 +89,34 @@
 		<projectile>
 			<damageDef>Bullet</damageDef>
 			<speed>185</speed>
-			<dropsCasings>true</dropsCasings>
+			<!-- <dropsCasings>true</dropsCasings> -->
 		</projectile>
 	</ThingDef>
 
-	<ThingDef ParentName="Base77x58mmArisakaBullet">
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="Base77x58mmArisakaBullet">
 		<defName>Bullet_77x58mmArisaka_FMJ</defName>
 		<label>7.7mm Arisaka bullet (FMJ)</label>
 		<projectile>
 			<damageAmountBase>18</damageAmountBase>
-			<armorPenetration>0.583</armorPenetration>
+			<armorPenetrationBase>0.583</armorPenetrationBase>
 		</projectile>
 	</ThingDef>
 
-	<ThingDef ParentName="Base77x58mmArisakaBullet">
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="Base77x58mmArisakaBullet">
 		<defName>Bullet_77x58mmArisaka_AP</defName>
 		<label>7.7mm Arisaka bullet (AP)</label>
 		<projectile>
 			<damageAmountBase>11</damageAmountBase>
-			<armorPenetration>0.733</armorPenetration>
+			<armorPenetrationBase>0.733</armorPenetrationBase>
 		</projectile>
 	</ThingDef>
 
-	<ThingDef ParentName="Base77x58mmArisakaBullet">
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="Base77x58mmArisakaBullet">
 		<defName>Bullet_77x58mmArisaka_HP</defName>
 		<label>7.7mm Arisaka bullet (HP)</label>
 		<projectile>
 			<damageAmountBase>25</damageAmountBase>
-			<armorPenetration>0.433</armorPenetration>
+			<armorPenetrationBase>0.433</armorPenetrationBase>
 		</projectile>
 	</ThingDef>
   

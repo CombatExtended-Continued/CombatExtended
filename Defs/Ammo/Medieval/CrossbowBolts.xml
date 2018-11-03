@@ -22,7 +22,7 @@
 	
 	<!-- ==================== Ammo ========================== -->
 
-  <ThingDef Name="AmmoCrossbowBoltBase" ParentName="NeolithicAmmoBase" Abstract="True">
+  <ThingDef Class="CombatExtended.AmmoDef" Name="AmmoCrossbowBoltBase" ParentName="NeolithicAmmoBase" Abstract="True">
     <description>A crossbow bolt.</description>
     <statBases>
       <Mass>0.1</Mass>
@@ -40,7 +40,7 @@
     </tradeTags>
   </ThingDef>
 
-  <ThingDef ParentName="AmmoCrossbowBoltBase">
+  <ThingDef Class="CombatExtended.AmmoDef" ParentName="AmmoCrossbowBoltBase">
     <defName>Ammo_CrossbowBolt_Stone</defName>
     <label>crossbow bolt</label>
     <graphicData>
@@ -56,7 +56,7 @@
     </tradeTags>
   </ThingDef>
 
-  <ThingDef ParentName="AmmoCrossbowBoltBase">
+  <ThingDef Class="CombatExtended.AmmoDef" ParentName="AmmoCrossbowBoltBase">
     <defName>Ammo_CrossbowBolt_Steel</defName>
     <label>crossbow bolt (steel)</label>
     <graphicData>
@@ -69,7 +69,7 @@
 		<ammoClass>SteelCrossbowBolt</ammoClass>
   </ThingDef>
 
-  <ThingDef ParentName="AmmoCrossbowBoltBase">
+  <ThingDef Class="CombatExtended.AmmoDef" ParentName="AmmoCrossbowBoltBase">
     <defName>Ammo_CrossbowBolt_Plasteel</defName>
     <label>crossbow bolt (plasteel)</label>
     <graphicData>
@@ -85,7 +85,7 @@
 	
 	<!-- ================== Projectiles ================== -->
 
-	<ThingDef Name="BaseCrossbowBoltProjectile" ParentName="BaseBullet" Abstract="true">
+	<ThingDef Class="CombatExtended.AmmoDef" Name="BaseCrossbowBoltProjectile" ParentName="BaseBullet" Abstract="true">
 		<graphicData>
 			<texPath>Things/Projectile/Arrow_Small</texPath>
 			<graphicClass>Graphic_Single</graphicClass>
@@ -101,7 +101,7 @@
 			x = preExplosionSpawnChance,
 			r = resource cost. -->
 
-	<ThingDef ParentName="BaseCrossbowBoltProjectile">
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="BaseCrossbowBoltProjectile">
 		<defName>Projectile_CrossbowBolt_Stone</defName>
 		<label>crossbow bolt (stone)</label>
 		<graphicData>
@@ -110,13 +110,13 @@
 		</graphicData>
 		<projectile>
 			<damageAmountBase>18</damageAmountBase>
-			<armorPenetration>0.25</armorPenetration>
+			<armorPenetrationBase>0.25</armorPenetrationBase>
 			<preExplosionSpawnChance>0.1</preExplosionSpawnChance>	<!-- 11.11 bolts per resource -->
 			<preExplosionSpawnThingDef>Ammo_CrossbowBolt_Stone</preExplosionSpawnThingDef>
 		</projectile>
 	</ThingDef>
 
-	<ThingDef ParentName="BaseCrossbowBoltProjectile">
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="BaseCrossbowBoltProjectile">
 		<defName>Projectile_CrossbowBolt_Steel</defName>
 		<label>crossbow bolt (steel)</label>
 		<graphicData>
@@ -125,13 +125,13 @@
 		</graphicData>
 		<projectile>
 			<damageAmountBase>18</damageAmountBase>
-			<armorPenetration>0.35</armorPenetration>
+			<armorPenetrationBase>0.35</armorPenetrationBase>
 			<preExplosionSpawnChance>0.333</preExplosionSpawnChance>	<!-- 14.99 bolts per resource -->
 			<preExplosionSpawnThingDef>Ammo_CrossbowBolt_Steel</preExplosionSpawnThingDef>
 		</projectile>
 	</ThingDef>
 
-	<ThingDef ParentName="BaseCrossbowBoltProjectile">
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="BaseCrossbowBoltProjectile">
 		<defName>Projectile_CrossbowBolt_Plasteel</defName>
 		<label>crossbow bolt (plasteel)</label>
 		<graphicData>
@@ -140,7 +140,7 @@
 		</graphicData>
 		<projectile>
 			<damageAmountBase>18</damageAmountBase>
-			<armorPenetration>0.45</armorPenetration>
+			<armorPenetrationBase>0.45</armorPenetrationBase>
 			<preExplosionSpawnChance>0.6</preExplosionSpawnChance>	<!-- 25 bolts per resource -->
 			<preExplosionSpawnThingDef>Ammo_CrossbowBolt_Plasteel</preExplosionSpawnThingDef>
 		</projectile>

@@ -21,7 +21,7 @@
 	
 	<!-- ==================== Ammo ========================== -->
 	
-	<ThingDef Name="22LRBase" ParentName="SmallAmmoBase" Abstract="True">
+	<ThingDef Class="CombatExtended.AmmoDef" Name="22LRBase" ParentName="SmallAmmoBase" Abstract="True">
 		<description>Low caliber handgun cartridge massively lacking in stopping power.</description>
 		<statBases>
 			<Mass>0.01</Mass>
@@ -36,7 +36,7 @@
 		</thingCategories>
 	</ThingDef>
 
-	<ThingDef ParentName="22LRBase">
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="22LRBase">
 		<defName>Ammo_22LR_FMJ</defName>
 		<label>.22 LR cartridge (FMJ)</label>
 		<graphicData>
@@ -50,7 +50,7 @@
 		<cookOffProjectile>Bullet_22LR_FMJ</cookOffProjectile>
 	</ThingDef>
 	
-	<!--<ThingDef ParentName="22LRBase">
+	<!--<ThingDef Class="CombatExtended.AmmoDef" ParentName="22LRBase">
 		<defName>Ammo_22LR_HP</defName>
 		<label>.22 LR cartridge (HP)</label>
 		<graphicData>
@@ -65,7 +65,7 @@
 	
 	<!-- ================== Projectiles ================== -->
 	
-	<ThingDef Name="Base22LRBullet" ParentName="BaseBullet" Abstract="true">
+	<ThingDef Class="CombatExtended.AmmoDef" Name="Base22LRBullet" ParentName="BaseBullet" Abstract="true">
 		<graphicData>
 			<texPath>Things/Projectile/Bullet_Small</texPath>
 			<graphicClass>Graphic_Single</graphicClass>
@@ -73,25 +73,25 @@
 		<projectile>
 			<damageDef>Bullet</damageDef>
 			<speed>110</speed>
-			<dropsCasings>true</dropsCasings>
+			<!-- <dropsCasings>true</dropsCasings> -->
 		</projectile>
 	</ThingDef>
 	
-	<ThingDef ParentName="Base22LRBullet">
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="Base22LRBullet">
 		<defName>Bullet_22LR_FMJ</defName>
 		<label>.22 LR bullet (FMJ)</label>
 		<projectile>
 			<damageAmountBase>4</damageAmountBase>
-			<armorPenetration>0.189</armorPenetration>
+			<armorPenetrationBase>0.189</armorPenetrationBase>
 		</projectile>
 	</ThingDef>
 	
-	<!--<ThingDef ParentName="Base22LRBullet">
+	<!--<ThingDef Class="CombatExtended.AmmoDef" ParentName="Base22LRBullet">
 		<defName>Bullet_22LR_HP</defName>
 		<label>.22 LR bullet (HP)</label>
 		<projectile>
 			<damageAmountBase>6</damageAmountBase>
-			<armorPenetration>0.039</armorPenetration>
+			<armorPenetrationBase>0.039</armorPenetrationBase>
 		</projectile>
 	</ThingDef>-->
   

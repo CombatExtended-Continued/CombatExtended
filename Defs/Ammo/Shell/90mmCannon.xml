@@ -22,7 +22,7 @@
 	
 	<!-- ==================== Ammo ========================== -->
 
-  <ThingDef Name="90mmCannonShellBase" ParentName="AmmoBase" Abstract="True">
+  <ThingDef Class="CombatExtended.AmmoDef" Name="90mmCannonShellBase" ParentName="AmmoBase" Abstract="True">
     <description>Relatively small cannon shell.</description>
     <thingCategories>
       <li>Ammo90mmCannonShells</li>
@@ -41,7 +41,7 @@
     <cookOffSound>MortarBomb_Explode</cookOffSound>
   </ThingDef>
 
-  <ThingDef ParentName="90mmCannonShellBase">
+  <ThingDef Class="CombatExtended.AmmoDef" ParentName="90mmCannonShellBase">
     <defName>Ammo_90mmCannonShell_HEAT</defName>
     <label>90mm cannon shell (HEAT)</label>
     <graphicData>
@@ -65,7 +65,7 @@
     </comps>
   </ThingDef>
 
-  <ThingDef ParentName="90mmCannonShellBase">
+  <ThingDef Class="CombatExtended.AmmoDef" ParentName="90mmCannonShellBase">
     <defName>Ammo_90mmCannonShell_HE</defName>
     <label>90mm cannon shell (HE)</label>
     <graphicData>
@@ -90,7 +90,7 @@
     </comps>
   </ThingDef>
 
-  <ThingDef ParentName="90mmCannonShellBase">
+  <ThingDef Class="CombatExtended.AmmoDef" ParentName="90mmCannonShellBase">
     <defName>Ammo_90mmCannonShell_EMP</defName>
     <label>90mm cannon shell (EMP)</label>
     <graphicData>
@@ -115,7 +115,7 @@
 	
 	<!-- ================== Projectiles ================== -->
 
-	<ThingDef Name="Base90mmCannonShell" ParentName="BaseBullet" Abstract="true">
+	<ThingDef Class="CombatExtended.AmmoDef" Name="Base90mmCannonShell" ParentName="BaseBullet" Abstract="true">
 		<graphicData>
       <shaderType>TransparentPostLight</shaderType>
 		</graphicData>
@@ -123,12 +123,12 @@
 			<speed>155</speed>
 			<soundExplode>MortarBomb_Explode</soundExplode>
 	  		<flyOverhead>false</flyOverhead>
-			<dropsCasings>true</dropsCasings>
-			<casingMoteDefname>Mote_BigShell</casingMoteDefname>
+			<!-- <dropsCasings>true</dropsCasings> -->
+			<!-- <casingMoteDefname>Mote_BigShell</casingMoteDefname> -->
 		</projectile>
 	</ThingDef>
 
-  <ThingDef ParentName="Base90mmCannonShell">
+  <ThingDef Class="CombatExtended.AmmoDef" ParentName="Base90mmCannonShell">
     <defName>Bullet_90mmCannonShell_HEAT</defName>
     <label>90mm cannon shell (HEAT)</label>
     <graphicData>
@@ -139,7 +139,7 @@
       <damageDef>Bullet</damageDef>
       <damageAmountBase>200</damageAmountBase>
 	  <soundExplode>MortarBomb_Explode</soundExplode>
-	  <armorPenetration>5.0</armorPenetration>
+	  <armorPenetrationBase>5.0</armorPenetrationBase>
     </projectile>
 		<comps>
 			<li Class="CombatExtended.CompProperties_ExplosiveCE">
@@ -155,7 +155,7 @@
 		</comps>
   </ThingDef>
 
-  <ThingDef ParentName="Base90mmCannonShell">
+  <ThingDef Class="CombatExtended.AmmoDef" ParentName="Base90mmCannonShell">
     <defName>Bullet_90mmCannonShell_HE</defName>
     <label>90mm cannon shell (HE)</label>
 		<thingClass>CombatExtended.ProjectileCE_Explosive</thingClass>
@@ -179,7 +179,7 @@
 		</comps>
   </ThingDef>
 
-  <ThingDef ParentName="Base90mmCannonShell">
+  <ThingDef Class="CombatExtended.AmmoDef" ParentName="Base90mmCannonShell">
     <defName>Bullet_90mmCannonShell_EMP</defName>
     <label>90mm cannon shell (EMP)</label>
 		<thingClass>CombatExtended.ProjectileCE_Explosive</thingClass>
@@ -221,7 +221,7 @@
       <li>
         <filter>
           <thingDefs>
-            <li>Component</li>
+            <li>ComponentIndustrial</li>
           </thingDefs>
         </filter>
         <count>3</count>
@@ -231,7 +231,7 @@
       <thingDefs>
         <li>Steel</li>
         <li>FSX</li>
-        <li>Component</li>
+        <li>ComponentIndustrial</li>
       </thingDefs>
     </fixedIngredientFilter>
     <products>
@@ -264,7 +264,7 @@
       <li>
         <filter>
           <thingDefs>
-            <li>Component</li>
+            <li>ComponentIndustrial</li>
           </thingDefs>
         </filter>
         <count>2</count>
@@ -274,7 +274,7 @@
       <thingDefs>
         <li>Steel</li>
         <li>FSX</li>
-        <li>Component</li>
+        <li>ComponentIndustrial</li>
       </thingDefs>
     </fixedIngredientFilter>
     <products>
@@ -299,7 +299,7 @@
       <li>
         <filter>
           <thingDefs>
-            <li>Component</li>
+            <li>ComponentIndustrial</li>
           </thingDefs>
         </filter>
         <count>7</count>
@@ -308,7 +308,7 @@
     <fixedIngredientFilter>
       <thingDefs>
         <li>Steel</li>
-        <li>Component</li>
+        <li>ComponentIndustrial</li>
       </thingDefs>
     </fixedIngredientFilter>
     <products>
