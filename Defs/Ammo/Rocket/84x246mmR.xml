@@ -21,7 +21,7 @@
 	
 	<!-- ==================== Ammo ========================== -->
 
-  <ThingDef Name="84x246mmRBase" ParentName="AmmoBase" Abstract="True">
+  <ThingDef Class="CombatExtended.AmmoDef" Name="84x246mmRBase" ParentName="AmmoBase" Abstract="True">
     <description>Recoilless cartridge designed for use with the Carl Gustav rifle.</description>
     <statBases>
       <MaxHitPoints>150</MaxHitPoints>
@@ -38,7 +38,7 @@
     <cookOffSound>MortarBomb_Explode</cookOffSound>
   </ThingDef>
 
-  <ThingDef ParentName="84x246mmRBase">
+  <ThingDef Class="CombatExtended.AmmoDef" ParentName="84x246mmRBase">
     <defName>Ammo_84x246mmR_HEAT</defName>
     <label>84x246mmR cartridge (HEAT)</label>
     <graphicData>
@@ -65,7 +65,7 @@
     </comps>
   </ThingDef>
 
-  <ThingDef ParentName="84x246mmRBase">
+  <ThingDef Class="CombatExtended.AmmoDef" ParentName="84x246mmRBase">
     <defName>Ammo_84x246mmR_HE</defName>
     <label>84x246mmR cartridge (HE)</label>
     <graphicData>
@@ -91,7 +91,7 @@
 	
 	<!-- ================== Projectiles ================== -->
 
-	<ThingDef Name="Base84x246mmR" ParentName="BaseBullet" Abstract="true">
+	<ThingDef Class="CombatExtended.AmmoDef" Name="Base84x246mmR" ParentName="BaseBullet" Abstract="true">
 		<graphicData>
       <texPath>Things/Projectile/Rocket_Big</texPath>
       <graphicClass>Graphic_Single</graphicClass>
@@ -103,13 +103,13 @@
 		</projectile>
 	</ThingDef>	
 
-	<ThingDef ParentName="Base84x246mmR">
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="Base84x246mmR">
 		<defName>Bullet_84x246mmR_HEAT</defName>
 		<label>84x246mmR shell (HEAT)</label>
 		<projectile>
 			<damageDef>Bullet</damageDef>
 			<damageAmountBase>150</damageAmountBase>
-			<armorPenetration>3.0</armorPenetration>
+			<armorPenetrationBase>3.0</armorPenetrationBase>
 		</projectile>
 		<comps>
 			<li Class="CombatExtended.CompProperties_ExplosiveCE">
@@ -125,7 +125,7 @@
 		</comps>
 	</ThingDef>
 
-	<ThingDef ParentName="Base84x246mmR">
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="Base84x246mmR">
 		<defName>Bullet_84x246mmR_HE</defName>
 		<label>84x246mmR shell (HE)</label>
 		<projectile>
@@ -175,7 +175,7 @@
       <li>
         <filter>
           <thingDefs>
-            <li>Component</li>
+            <li>ComponentIndustrial</li>
           </thingDefs>
         </filter>
         <count>3</count>
@@ -185,7 +185,7 @@
       <thingDefs>
         <li>Steel</li>
         <li>FSX</li>
-        <li>Component</li>
+        <li>ComponentIndustrial</li>
       </thingDefs>
     </fixedIngredientFilter>
     <products>
@@ -219,7 +219,7 @@
       <li>
         <filter>
           <thingDefs>
-            <li>Component</li>
+            <li>ComponentIndustrial</li>
           </thingDefs>
         </filter>
         <count>3</count>
@@ -229,7 +229,7 @@
       <thingDefs>
         <li>Steel</li>
         <li>FSX</li>
-        <li>Component</li>
+        <li>ComponentIndustrial</li>
       </thingDefs>
     </fixedIngredientFilter>
     <products>

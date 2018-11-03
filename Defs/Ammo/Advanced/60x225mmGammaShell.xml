@@ -20,7 +20,7 @@
 	
 	<!-- ==================== Ammo ========================== -->
 
-  <ThingDef Name="60x225mmGammaBase" ParentName="SpacerSmallAmmoBase" Abstract="True">
+  <ThingDef Class="CombatExtended.AmmoDef" Name="60x225mmGammaBase" ParentName="SpacerSmallAmmoBase" Abstract="True">
     <description>Shell containing large amounts of ionising gamma radiation.</description>
     <statBases>
 	  <Mass>2.5</Mass>
@@ -32,7 +32,7 @@
     <stackLimit>25</stackLimit>
   </ThingDef>
 
-  <ThingDef ParentName="60x225mmGammaBase">
+  <ThingDef Class="CombatExtended.AmmoDef" ParentName="60x225mmGammaBase">
     <defName>Ammo_60x225mmGamma_Standard</defName>
     <label>60x225mm Gamma Shell (Standard)</label>
     <graphicData>
@@ -55,7 +55,7 @@
 	
 	<!-- ================== Projectiles ================== -->
 
-  <ThingDef ParentName="BaseBullet">
+  <ThingDef Class="CombatExtended.AmmoDef" ParentName="BaseBullet">
     <defName>Bullet_60x225mmGamma_Standard</defName>
     <thingClass>CombatExtended.ProjectileCE_Explosive</thingClass>
     <label>radiation cannon shell</label>
@@ -71,7 +71,7 @@
       <flyOverhead>false</flyOverhead>
       <explosionRadius>3.5</explosionRadius>
       <soundExplode>MortarIncendiary_Explode</soundExplode>
-      <soundHitThickRoof>ArtilleryHitThickRoof</soundHitThickRoof>
+      <soundHitThickRoof>Artillery_HitThickRoof</soundHitThickRoof>
       <soundImpactAnticipate>MortarRound_PreImpact</soundImpactAnticipate>
       <soundAmbient>MortarRound_Ambient</soundAmbient>
     </projectile>

@@ -22,7 +22,7 @@
 	
 	<!-- ==================== Ammo ========================== -->
 
-	<ThingDef Name="4570GovBase" ParentName="SmallAmmoBase" Abstract="True">
+	<ThingDef Class="CombatExtended.AmmoDef" Name="4570GovBase" ParentName="SmallAmmoBase" Abstract="True">
 		<description>Rather large and bulky rifle cartridge propelled by a 'black powder'. Good for making people imitate sacks when they are hit.</description>
 		<statBases>
 		<Mass>0.033</Mass>
@@ -37,7 +37,7 @@
 		</thingCategories>
 	</ThingDef>
 
-	<ThingDef ParentName="4570GovBase">
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="4570GovBase">
 		<defName>Ammo_4570Gov_FMJ</defName>
 		<label>.45-70 Government Cartridge (FMJ)</label>
 		<graphicData>
@@ -51,7 +51,7 @@
 		<cookOffProjectile>Bullet_4570Gov_FMJ</cookOffProjectile>
 	</ThingDef>
 
-	<ThingDef ParentName="4570GovBase">
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="4570GovBase">
 		<defName>Ammo_4570Gov_AP</defName>
 		<label>.45-70 Government Cartridge (AP)</label>
 		<graphicData>
@@ -65,7 +65,7 @@
 		<cookOffProjectile>Bullet_4570Gov_AP</cookOffProjectile>
 	</ThingDef>
 
-	<ThingDef ParentName="4570GovBase">
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="4570GovBase">
 		<defName>Ammo_4570Gov_HP</defName>
 		<label>.45-70 Government Cartridge (HP)</label>
 		<graphicData>
@@ -81,7 +81,7 @@
 	
 	<!-- ================== Projectiles ================== -->
 
-	<ThingDef Name="Base4570GovBullet" ParentName="BaseBullet" Abstract="true">
+	<ThingDef Class="CombatExtended.AmmoDef" Name="Base4570GovBullet" ParentName="BaseBullet" Abstract="true">
 		<graphicData>
 			<texPath>Things/Projectile/Bullet_Small</texPath>
 			<graphicClass>Graphic_Single</graphicClass>
@@ -89,34 +89,34 @@
 		<projectile>
 			<damageDef>Bullet</damageDef>
 			<speed>113</speed>
-			<dropsCasings>true</dropsCasings>
+			<!-- <dropsCasings>true</dropsCasings> -->
 		</projectile>
 	</ThingDef>
 
-	<ThingDef ParentName="Base4570GovBullet">
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="Base4570GovBullet">
 		<defName>Bullet_4570Gov_FMJ</defName>
 		<label>.45-70 Government Cartridge (FMJ)</label>
 		<projectile>
 			<damageAmountBase>25</damageAmountBase>
-			<armorPenetration>0.56</armorPenetration>
+			<armorPenetrationBase>0.56</armorPenetrationBase>
 		</projectile>
 	</ThingDef>
 
-	<ThingDef ParentName="Base4570GovBullet">
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="Base4570GovBullet">
 		<defName>Bullet_4570Gov_AP</defName>
 		<label>.45-70 Government Cartridge (AP)</label>
 		<projectile>
 			<damageAmountBase>15</damageAmountBase>
-			<armorPenetration>0.71</armorPenetration>
+			<armorPenetrationBase>0.71</armorPenetrationBase>
 		</projectile>
 	</ThingDef>
 
-	<ThingDef ParentName="Base4570GovBullet">
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="Base4570GovBullet">
 		<defName>Bullet_4570Gov_HP</defName>
 		<label>.45-70 Government Cartridge (HP)</label>
 		<projectile>
 			<damageAmountBase>35</damageAmountBase>
-			<armorPenetration>0.41</armorPenetration>
+			<armorPenetrationBase>0.41</armorPenetrationBase>
 		</projectile>
 	</ThingDef>
   

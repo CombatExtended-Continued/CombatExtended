@@ -26,7 +26,7 @@ namespace CombatExtended.Harmony
      *  and instead assign single the value from a function call for easier tweaking in the future.
      */
 
-    [HarmonyPatch(typeof(HediffComp_GetsOld), "CompPostInjuryHeal")]
+    [HarmonyPatch(typeof(HediffComp_GetsPermanent), "CompPostInjuryHeal")]
     static class HediffComp_GetsOld_CompPostInjuryHeal_Patch
     {
         static readonly string logPrefix = Assembly.GetExecutingAssembly().GetName().Name + " :: " + typeof(HediffComp_GetsOld_CompPostInjuryHeal_Patch).Name + " :: ";

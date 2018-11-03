@@ -22,7 +22,7 @@
   
   <!-- ==================== Ammo ========================== -->
 
-  <ThingDef Name="Ammo127x108mmBase" ParentName="SmallAmmoBase" Abstract="True">
+  <ThingDef Class="CombatExtended.AmmoDef" Name="Ammo127x108mmBase" ParentName="SmallAmmoBase" Abstract="True">
     <description>Large caliber bullet used by many heavy machine guns and anti-materiel rifles.</description>
     <statBases>
     <Mass>0.17</Mass>
@@ -38,7 +38,7 @@
     <stackLimit>200</stackLimit>
   </ThingDef>
 
-  <ThingDef ParentName="Ammo127x108mmBase">
+  <ThingDef Class="CombatExtended.AmmoDef" ParentName="Ammo127x108mmBase">
     <defName>Ammo_127x108mm_FMJ</defName>
     <label>12.7x108mm cartridge (FMJ)</label>
     <graphicData>
@@ -52,7 +52,7 @@
     <cookOffProjectile>Bullet_127x108mm_FMJ</cookOffProjectile>
   </ThingDef>
 
-  <ThingDef ParentName="Ammo127x108mmBase">
+  <ThingDef Class="CombatExtended.AmmoDef" ParentName="Ammo127x108mmBase">
     <defName>Ammo_127x108mm_HE</defName>
     <label>12.7x108mm cartridge (HE)</label>
     <graphicData>
@@ -66,7 +66,7 @@
     <cookOffProjectile>Bullet_127x108mm_HE</cookOffProjectile>
   </ThingDef>
 
-  <ThingDef ParentName="Ammo127x108mmBase">
+  <ThingDef Class="CombatExtended.AmmoDef" ParentName="Ammo127x108mmBase">
     <defName>Ammo_127x108mm_Incendiary</defName>
     <label>12.7x108mm cartridge (AP-I)</label>
     <graphicData>
@@ -82,7 +82,7 @@
 
   <!-- ================== Projectiles ================== -->
 
-  <ThingDef Name="Base127x108mmBullet" ParentName="BaseBullet" Abstract="true">
+  <ThingDef Class="CombatExtended.AmmoDef" Name="Base127x108mmBullet" ParentName="BaseBullet" Abstract="true">
     <graphicData>
       <texPath>Things/Projectile/Bullet_Big</texPath>
       <graphicClass>Graphic_Single</graphicClass>
@@ -90,25 +90,25 @@
     <projectile>
       <damageDef>Bullet</damageDef>
       <speed>205</speed>
-      <dropsCasings>true</dropsCasings>
+      <!-- <dropsCasings>true</dropsCasings> -->
     </projectile>
   </ThingDef>
 
-  <ThingDef ParentName="Base127x108mmBullet">
+  <ThingDef Class="CombatExtended.AmmoDef" ParentName="Base127x108mmBullet">
     <defName>Bullet_127x108mm_FMJ</defName>
     <label>12.7x108mm bullet (FMJ)</label>
     <projectile>
       <damageAmountBase>45</damageAmountBase>
-      <armorPenetration>0.90</armorPenetration>
+      <armorPenetrationBase>0.90</armorPenetrationBase>
     </projectile>
   </ThingDef>
 
-  <ThingDef ParentName="Base127x108mmBullet">
+  <ThingDef Class="CombatExtended.AmmoDef" ParentName="Base127x108mmBullet">
     <defName>Bullet_127x108mm_HE</defName>
     <label>12.7x108mm bullet (HE)</label>
     <projectile>
       <damageAmountBase>28</damageAmountBase>
-      <armorPenetration>1.05</armorPenetration>
+      <armorPenetrationBase>1.05</armorPenetrationBase>
       <secondaryDamage>
         <li>
           <def>Bomb_Secondary</def>
@@ -118,12 +118,12 @@
     </projectile>
   </ThingDef>
 
-  <ThingDef ParentName="Base127x108mmBullet">
+  <ThingDef Class="CombatExtended.AmmoDef" ParentName="Base127x108mmBullet">
     <defName>Bullet_127x108mm_Incendiary</defName>
     <label>12.7x108mm bullet (AP-I)</label>
     <projectile>
       <damageAmountBase>27</damageAmountBase>
-      <armorPenetration>1.05</armorPenetration>
+      <armorPenetrationBase>1.05</armorPenetrationBase>
       <secondaryDamage>
         <li>
           <def>Flame_Secondary</def>

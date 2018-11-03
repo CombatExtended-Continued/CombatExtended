@@ -22,7 +22,7 @@
 	
 	<!-- ==================== Ammo ========================== -->
 
-  <ThingDef Name="8x35mmChargedBase" ParentName="SpacerSmallAmmoBase" Abstract="True">
+  <ThingDef Class="CombatExtended.AmmoDef" Name="8x35mmChargedBase" ParentName="SpacerSmallAmmoBase" Abstract="True">
     <description>Charged shot ammo used by advanced assault rifle designs.</description>
     <statBases>
 	  <Mass>0.01</Mass>
@@ -37,7 +37,7 @@
     </thingCategories>
   </ThingDef>
 
-  <ThingDef ParentName="8x35mmChargedBase">
+  <ThingDef Class="CombatExtended.AmmoDef" ParentName="8x35mmChargedBase">
     <defName>Ammo_8x35mmCharged</defName>
     <label>8x35mm Charged cartridge</label>
     <graphicData>
@@ -50,7 +50,7 @@
     <ammoClass>Charged</ammoClass>
   </ThingDef>
 
-  <ThingDef ParentName="8x35mmChargedBase">
+  <ThingDef Class="CombatExtended.AmmoDef" ParentName="8x35mmChargedBase">
     <defName>Ammo_8x35mmCharged_AP</defName>
     <label>8x35mm Charged cartridge (Conc.)</label>
     <graphicData>
@@ -63,7 +63,7 @@
     <ammoClass>ChargedAP</ammoClass>
   </ThingDef>
 
-  <ThingDef ParentName="8x35mmChargedBase">
+  <ThingDef Class="CombatExtended.AmmoDef" ParentName="8x35mmChargedBase">
     <defName>Ammo_8x35mmCharged_Ion</defName>
     <label>8x35mm Charged cartridge (Ion)</label>
     <graphicData>
@@ -79,7 +79,7 @@
 	
 	<!-- ================== Projectiles ================== -->
 
-  <ThingDef Name="Base8x35mmChargedBullet" ParentName="BaseBullet" Abstract="true">
+  <ThingDef Class="CombatExtended.AmmoDef" Name="Base8x35mmChargedBullet" ParentName="BaseBullet" Abstract="true">
     <graphicData>
       <texPath>Things/Projectile/Charge_Small</texPath>
       <graphicClass>Graphic_Single</graphicClass>
@@ -90,7 +90,7 @@
     </projectile>
   </ThingDef>
 
-  <ThingDef ParentName="Base8x35mmChargedBullet">
+  <ThingDef Class="CombatExtended.AmmoDef" ParentName="Base8x35mmChargedBullet">
     <defName>Bullet_8x35mmCharged</defName>
     <label>charge shot</label>
     <projectile>
@@ -101,11 +101,11 @@
           <amount>10</amount>
         </li>
       </secondaryDamage>
-      <armorPenetration>0.8</armorPenetration>
+      <armorPenetrationBase>0.8</armorPenetrationBase>
     </projectile>
   </ThingDef>
 
-  <ThingDef ParentName="Base8x35mmChargedBullet">
+  <ThingDef Class="CombatExtended.AmmoDef" ParentName="Base8x35mmChargedBullet">
     <defName>Bullet_8x35mmCharged_AP</defName>
     <label>charge shot (Conc.)</label>
     <projectile>
@@ -116,11 +116,11 @@
           <amount>5</amount>
         </li>
       </secondaryDamage>
-      <armorPenetration>1.0</armorPenetration>
+      <armorPenetrationBase>1.0</armorPenetrationBase>
     </projectile>
   </ThingDef>
 
-  <ThingDef ParentName="Base8x35mmChargedBullet">
+  <ThingDef Class="CombatExtended.AmmoDef" ParentName="Base8x35mmChargedBullet">
     <defName>Bullet_8x35mmCharged_Ion</defName>
     <label>charge shot (Ion)</label>
     <projectile>
@@ -131,7 +131,7 @@
           <amount>11</amount>
         </li>
       </secondaryDamage>
-      <armorPenetration>0.8</armorPenetration>
+      <armorPenetrationBase>0.8</armorPenetrationBase>
     </projectile>
   </ThingDef>
   
@@ -154,7 +154,7 @@
       <li>
         <filter>
           <thingDefs>
-            <li>Component</li>
+            <li>ComponentIndustrial</li>
           </thingDefs>
         </filter>
         <count>3</count>
@@ -163,7 +163,7 @@
     <fixedIngredientFilter>
       <thingDefs>
         <li>Plasteel</li>
-        <li>Component</li>
+        <li>ComponentIndustrial</li>
       </thingDefs>
     </fixedIngredientFilter>
     <products>
@@ -188,7 +188,7 @@
       <li>
         <filter>
           <thingDefs>
-            <li>Component</li>
+            <li>ComponentIndustrial</li>
           </thingDefs>
         </filter>
         <count>3</count>
@@ -197,7 +197,7 @@
     <fixedIngredientFilter>
       <thingDefs>
         <li>Plasteel</li>
-        <li>Component</li>
+        <li>ComponentIndustrial</li>
       </thingDefs>
     </fixedIngredientFilter>
     <products>
@@ -222,7 +222,7 @@
       <li>
         <filter>
           <thingDefs>
-            <li>Component</li>
+            <li>ComponentIndustrial</li>
           </thingDefs>
         </filter>
         <count>3</count>
@@ -231,7 +231,7 @@
     <fixedIngredientFilter>
       <thingDefs>
         <li>Plasteel</li>
-        <li>Component</li>
+        <li>ComponentIndustrial</li>
       </thingDefs>
     </fixedIngredientFilter>
     <products>

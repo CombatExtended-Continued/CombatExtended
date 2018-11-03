@@ -28,7 +28,7 @@
   <!-- ==================== Ammo ========================== -->
 
 
-  <ThingDef Name="81mmMortarShellBase" ParentName="AmmoBase" Abstract="True">
+  <ThingDef Class="CombatExtended.AmmoDef" Name="81mmMortarShellBase" ParentName="AmmoBase" Abstract="True">
     <description>Low-velocity shell designed to be fired from a mortar.</description>
     <statBases>
       <MaxHitPoints>200</MaxHitPoints>
@@ -41,7 +41,7 @@
     <cookOffSound>MortarBomb_Explode</cookOffSound>
   </ThingDef>
 
-  <ThingDef Name="81mmMortarShellBaseCraftableBase" ParentName="81mmMortarShellBase" Abstract="True">
+  <ThingDef Class="CombatExtended.AmmoDef" Name="81mmMortarShellBaseCraftableBase" ParentName="81mmMortarShellBase" Abstract="True">
     <tradeTags>
       <li>CE_AutoEnableTrade</li>
       <li>CE_AutoEnableCrafting_TableMachining</li>
@@ -49,7 +49,7 @@
   </ThingDef>
 
   <!-- Need to override mortar shell because of hardcoded vanilla references -->
-  <ThingDef ParentName="81mmMortarShellBaseCraftableBase">
+  <ThingDef Class="CombatExtended.AmmoDef" ParentName="81mmMortarShellBaseCraftableBase">
     <defName>Shell_HighExplosive</defName>
     <label>81mm mortar shell (HE)</label>
     <graphicData>
@@ -75,7 +75,7 @@
     </comps>
   </ThingDef>
 
-  <ThingDef ParentName="81mmMortarShellBaseCraftableBase">
+  <ThingDef Class="CombatExtended.AmmoDef" ParentName="81mmMortarShellBaseCraftableBase">
     <defName>Shell_Incendiary</defName>
     <label>81mm mortar shell (Incendiary)</label>
     <graphicData>
@@ -103,7 +103,7 @@
     </comps>
   </ThingDef>
 
-  <ThingDef ParentName="81mmMortarShellBaseCraftableBase">
+  <ThingDef Class="CombatExtended.AmmoDef" ParentName="81mmMortarShellBaseCraftableBase">
     <defName>Shell_EMP</defName>
     <label>81mm mortar shell (EMP)</label>
     <graphicData>
@@ -128,7 +128,7 @@
     </comps>
   </ThingDef>
 
-  <ThingDef ParentName="81mmMortarShellBaseCraftableBase">
+  <ThingDef Class="CombatExtended.AmmoDef" ParentName="81mmMortarShellBaseCraftableBase">
     <defName>Shell_Firefoam</defName>
     <label>81mm mortar shell (Foam)</label>
     <graphicData>
@@ -145,7 +145,7 @@
       <li Class="CombatExtended.CompProperties_ExplosiveCE">
         <explosionRadius>5</explosionRadius>
         <explosionDamageDef>Extinguish</explosionDamageDef>
-        <postExplosionSpawnThingDef>FilthFireFoam</postExplosionSpawnThingDef>
+        <postExplosionSpawnThingDef>Filth_FireFoam</postExplosionSpawnThingDef>
         <postExplosionSpawnChance>1</postExplosionSpawnChance>
         <postExplosionSpawnThingCount>3</postExplosionSpawnThingCount>
         <applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
@@ -153,7 +153,7 @@
     </comps>
   </ThingDef>
 
-  <ThingDef ParentName="81mmMortarShellBase">
+  <ThingDef Class="CombatExtended.AmmoDef" ParentName="81mmMortarShellBase">
     <defName>Shell_AntigrainWarhead</defName>
     <label>81mm mortar shell (Anti)</label>
     <graphicData>
@@ -184,23 +184,23 @@
   <!-- ================== Projectiles ================== -->
 
 
-  <ThingDef Name="Base81mmMortarShell" ParentName="BaseBullet" Abstract="true">
+  <ThingDef Class="CombatExtended.AmmoDef" Name="Base81mmMortarShell" ParentName="BaseBullet" Abstract="true">
     <thingClass>CombatExtended.ProjectileCE_Explosive</thingClass>
     <graphicData>
       <shaderType>TransparentPostLight</shaderType>
     </graphicData>
     <projectile>
       <speed>100</speed>
-      <soundHitThickRoof>ArtilleryHitThickRoof</soundHitThickRoof>
+      <soundHitThickRoof>Artillery_HitThickRoof</soundHitThickRoof>
       <soundImpactAnticipate>MortarRound_PreImpact</soundImpactAnticipate>
       <soundAmbient>MortarRound_Ambient</soundAmbient>
       <flyOverhead>true</flyOverhead>
-      <dropsCasings>true</dropsCasings>
-      <casingMoteDefname>Mote_BigShell</casingMoteDefname>
+      <!-- <dropsCasings>true</dropsCasings> -->
+      <!-- <casingMoteDefname>Mote_BigShell</casingMoteDefname> -->
     </projectile>
   </ThingDef>
 
-  <ThingDef ParentName="Base81mmMortarShell">
+  <ThingDef Class="CombatExtended.AmmoDef" ParentName="Base81mmMortarShell">
     <defName>Bullet_81mmMortarShell_HE</defName>
     <label>81mm mortar shell (HE)</label>
     <graphicData>
@@ -223,7 +223,7 @@
     </comps>
   </ThingDef>
 
-  <ThingDef ParentName="Base81mmMortarShell">
+  <ThingDef Class="CombatExtended.AmmoDef" ParentName="Base81mmMortarShell">
     <defName>Bullet_81mmMortarShell_Incendiary</defName>
     <label>81mm mortar shell (Incendiary)</label>
     <graphicData>
@@ -240,7 +240,7 @@
     </projectile>
   </ThingDef>
 
-  <ThingDef ParentName="Base81mmMortarShell">
+  <ThingDef Class="CombatExtended.AmmoDef" ParentName="Base81mmMortarShell">
     <defName>Bullet_81mmMortarShell_EMP</defName>
     <label>81mm mortar shell (EMP)</label>
     <graphicData>
@@ -254,7 +254,7 @@
     </projectile>
   </ThingDef>
 
-  <ThingDef ParentName="Base81mmMortarShell">
+  <ThingDef Class="CombatExtended.AmmoDef" ParentName="Base81mmMortarShell">
     <defName>Bullet_81mmMortarShell_Firefoam</defName>
     <label>81mm mortar shell (Foam)</label>
     <graphicData>
@@ -265,11 +265,11 @@
       <damageDef>Extinguish</damageDef>
       <explosionRadius>10</explosionRadius>
       <flyOverhead>true</flyOverhead>
-      <soundHitThickRoof>ArtilleryHitThickRoof</soundHitThickRoof>
+      <soundHitThickRoof>Artillery_HitThickRoof</soundHitThickRoof>
       <soundExplode>Explosion_EMP</soundExplode>
       <soundImpactAnticipate>MortarRound_PreImpact</soundImpactAnticipate>
       <soundAmbient>MortarRound_Ambient</soundAmbient>
-      <postExplosionSpawnThingDef>FilthFireFoam</postExplosionSpawnThingDef>
+      <postExplosionSpawnThingDef>Filth_FireFoam</postExplosionSpawnThingDef>
       <postExplosionSpawnChance>1</postExplosionSpawnChance>
       <postExplosionSpawnThingCount>3</postExplosionSpawnThingCount>
       <applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
@@ -277,7 +277,7 @@
     </projectile>
   </ThingDef>
 
-  <ThingDef ParentName="Base81mmMortarShell">
+  <ThingDef Class="CombatExtended.AmmoDef" ParentName="Base81mmMortarShell">
     <defName>Bullet_81mmMortarShell_Antigrain</defName>
     <label>81mm mortar shell (Anti)</label>
     <graphicData>
@@ -291,7 +291,7 @@
       <explosionChanceToStartFire>0.22</explosionChanceToStartFire>
       <applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
       <explosionEffect>GiantExplosion</explosionEffect>
-      <soundHitThickRoof>ArtilleryHitThickRoof</soundHitThickRoof>
+      <soundHitThickRoof>Artillery_HitThickRoof</soundHitThickRoof>
       <soundExplode>Explosion_GiantBomb</soundExplode>
       <soundImpactAnticipate>MortarRound_PreImpact</soundImpactAnticipate>
       <soundAmbient>MortarRound_Ambient</soundAmbient>
@@ -327,7 +327,7 @@
       <li>
         <filter>
           <thingDefs>
-            <li>Component</li>
+            <li>ComponentIndustrial</li>
           </thingDefs>
         </filter>
         <count>2</count>
@@ -337,7 +337,7 @@
       <thingDefs>
         <li>Steel</li>
         <li>FSX</li>
-        <li>Component</li>
+        <li>ComponentIndustrial</li>
       </thingDefs>
     </fixedIngredientFilter>
     <products>
@@ -370,7 +370,7 @@
       <li>
         <filter>
           <thingDefs>
-            <li>Component</li>
+            <li>ComponentIndustrial</li>
           </thingDefs>
         </filter>
         <count>2</count>
@@ -380,7 +380,7 @@
       <thingDefs>
         <li>Steel</li>
         <li>Prometheum</li>
-        <li>Component</li>
+        <li>ComponentIndustrial</li>
       </thingDefs>
     </fixedIngredientFilter>
     <products>
@@ -405,7 +405,7 @@
       <li>
         <filter>
           <thingDefs>
-            <li>Component</li>
+            <li>ComponentIndustrial</li>
           </thingDefs>
         </filter>
         <count>7</count>
@@ -414,7 +414,7 @@
     <fixedIngredientFilter>
       <thingDefs>
         <li>Steel</li>
-        <li>Component</li>
+        <li>ComponentIndustrial</li>
       </thingDefs>
     </fixedIngredientFilter>
     <products>
@@ -439,7 +439,7 @@
       <li>
         <filter>
           <thingDefs>
-            <li>Component</li>
+            <li>ComponentIndustrial</li>
           </thingDefs>
         </filter>
         <count>2</count>
@@ -456,7 +456,7 @@
     <fixedIngredientFilter>
       <thingDefs>
         <li>Steel</li>
-        <li>Component</li>
+        <li>ComponentIndustrial</li>
       </thingDefs>
       <categories>
         <li>MeatRaw</li>

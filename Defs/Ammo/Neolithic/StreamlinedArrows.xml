@@ -22,7 +22,7 @@
 	
 	<!-- ==================== Ammo ========================== -->
 
-  <ThingDef Name="AmmoStreamlinedArrowBase" ParentName="NeolithicAmmoBase" Abstract="True">
+  <ThingDef Class="CombatExtended.AmmoDef" Name="AmmoStreamlinedArrowBase" ParentName="NeolithicAmmoBase" Abstract="True">
     <description>Arrow designed for higher velocity flight, being suitable to fire from a recurve bow.</description>
     <statBases>
       <Mass>0.09</Mass>
@@ -40,7 +40,7 @@
     </tradeTags>
   </ThingDef>
 
-  <ThingDef ParentName="AmmoStreamlinedArrowBase">
+  <ThingDef Class="CombatExtended.AmmoDef" ParentName="AmmoStreamlinedArrowBase">
     <defName>Ammo_StreamlinedArrow_Stone</defName>
     <label>streamlined arrow (stone)</label>
     <graphicData>
@@ -56,7 +56,7 @@
     </tradeTags>
   </ThingDef>
 
-  <ThingDef ParentName="AmmoStreamlinedArrowBase">
+  <ThingDef Class="CombatExtended.AmmoDef" ParentName="AmmoStreamlinedArrowBase">
     <defName>Ammo_StreamlinedArrow_Steel</defName>
     <label>streamlined arrow (steel)</label>
     <graphicData>
@@ -69,7 +69,7 @@
 		<ammoClass>SteelArrow</ammoClass>
   </ThingDef>
 
-  <ThingDef ParentName="AmmoStreamlinedArrowBase">
+  <ThingDef Class="CombatExtended.AmmoDef" ParentName="AmmoStreamlinedArrowBase">
     <defName>Ammo_StreamlinedArrow_Plasteel</defName>
     <label>streamlined arrow (plasteel)</label>
     <graphicData>
@@ -85,7 +85,7 @@
 	
 	<!-- ================== Projectiles ================== -->
 
-	<ThingDef Name="BaseStreamlinedArrowProjectile" ParentName="BaseBullet" Abstract="true">
+	<ThingDef Class="CombatExtended.AmmoDef" Name="BaseStreamlinedArrowProjectile" ParentName="BaseBullet" Abstract="true">
 		<graphicData>
 			<texPath>Things/Projectile/Arrow_Small</texPath>
 			<graphicClass>Graphic_Single</graphicClass>
@@ -104,7 +104,7 @@
 	<!-- I'll leave it to Alistaire or somebody else who is more familiar with the above formula to balance the spawn chances. :P
 		The 'arrows per resource' for these should probably be slightly lower than those of the great bow due to higher velocities. -->
 	
-	<ThingDef ParentName="BaseStreamlinedArrowProjectile">
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="BaseStreamlinedArrowProjectile">
 		<defName>Projectile_StreamlinedArrow_Stone</defName>
 		<label>streamlined arrow (stone)</label>
 		<graphicData>
@@ -113,13 +113,13 @@
 		</graphicData>
 		<projectile>
 			<damageAmountBase>13</damageAmountBase>
-			<armorPenetration>0.22</armorPenetration>
+			<armorPenetrationBase>0.22</armorPenetrationBase>
 			<preExplosionSpawnChance>0.2</preExplosionSpawnChance>
 			<preExplosionSpawnThingDef>Ammo_StreamlinedArrow_Stone</preExplosionSpawnThingDef>
 		</projectile>
 	</ThingDef>
 
-	<ThingDef ParentName="BaseStreamlinedArrowProjectile">
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="BaseStreamlinedArrowProjectile">
 		<defName>Projectile_StreamlinedArrow_Steel</defName>
 		<label>streamlined arrow (steel)</label>
 		<graphicData>
@@ -128,13 +128,13 @@
 		</graphicData>
 		<projectile>
 			<damageAmountBase>13</damageAmountBase>
-			<armorPenetration>0.3025</armorPenetration>
+			<armorPenetrationBase>0.3025</armorPenetrationBase>
 			<preExplosionSpawnChance>0.6</preExplosionSpawnChance>
 			<preExplosionSpawnThingDef>Ammo_StreamlinedArrow_Steel</preExplosionSpawnThingDef>
 		</projectile>
 	</ThingDef>
 
-	<ThingDef ParentName="BaseStreamlinedArrowProjectile">
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="BaseStreamlinedArrowProjectile">
 		<defName>Projectile_StreamlinedArrow_Plasteel</defName>
 		<label>streamlined arrow (plasteel)</label>
 		<graphicData>
@@ -143,7 +143,7 @@
 		</graphicData>
 		<projectile>
 			<damageAmountBase>13</damageAmountBase>
-			<armorPenetration>0.385</armorPenetration>
+			<armorPenetrationBase>0.385</armorPenetrationBase>
 			<preExplosionSpawnChance>0.75</preExplosionSpawnChance>
 			<preExplosionSpawnThingDef>Ammo_StreamlinedArrow_Plasteel</preExplosionSpawnThingDef>
 		</projectile>

@@ -389,7 +389,7 @@ namespace CombatExtended
                     {
                         Predicate<Thing> validator = (Thing t) => t is AmmoThing && pawn.CanReserve(t, 1)
                                         && pawn.CanReach(t, PathEndMode.Touch, Danger.Deadly, true)
-                                        && ((pawn.Faction.IsPlayer && !ForbidUtility.IsForbidden(t, pawn)) || (!pawn.Faction.IsPlayer && DangerInPosRadius(pawn, t.Position, Find.VisibleMap, 30f).Count() <= 0
+                                        && ((pawn.Faction.IsPlayer && !ForbidUtility.IsForbidden(t, pawn)) || (!pawn.Faction.IsPlayer && DangerInPosRadius(pawn, t.Position, Find.CurrentMap, 30f).Count() <= 0
                                                                 ? pawn.Position.InHorDistOf(t.Position, 25f)
                                                                 : pawn.Position.InHorDistOf(t.Position, 6f)))
                                         && (pawn.Faction.HostileTo(Faction.OfPlayer) || pawn.Faction == Faction.OfPlayer || !pawn.Map.areaManager.Home[t.Position]);

@@ -22,7 +22,7 @@
 	
 	<!-- ==================== Ammo ========================== -->
 
-	<ThingDef Name="10mmAutoBase" ParentName="SmallAmmoBase" Abstract="True">
+	<ThingDef Class="CombatExtended.AmmoDef" Name="10mmAutoBase" ParentName="SmallAmmoBase" Abstract="True">
 		<description>A large and powerful cartridge designed for automatic pistols.</description>
 		<statBases>
 		<Mass>0.016</Mass>
@@ -37,7 +37,7 @@
 		</thingCategories>
 	</ThingDef>
 
-	<ThingDef ParentName="10mmAutoBase">
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="10mmAutoBase">
 		<defName>Ammo_10mmAuto_FMJ</defName>
 		<label>10mm Auto cartridge (FMJ)</label>
 		<graphicData>
@@ -51,7 +51,7 @@
 		<cookOffProjectile>Bullet_10mmAuto_FMJ</cookOffProjectile>
 	</ThingDef>
 
-	<ThingDef ParentName="10mmAutoBase">
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="10mmAutoBase">
 		<defName>Ammo_10mmAuto_AP</defName>
 		<label>10mm Auto cartridge (AP)</label>
 		<graphicData>
@@ -65,7 +65,7 @@
 		<cookOffProjectile>Bullet_10mmAuto_AP</cookOffProjectile>
 	</ThingDef>
 
-	<ThingDef ParentName="10mmAutoBase">
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="10mmAutoBase">
 		<defName>Ammo_10mmAuto_HP</defName>
 		<label>10mm Auto cartridge (HP)</label>
 		<graphicData>
@@ -81,7 +81,7 @@
 	
 	<!-- ================== Projectiles ================== -->
 
-	<ThingDef Name="Base10mmAutoBullet" ParentName="BaseBullet" Abstract="true">
+	<ThingDef Class="CombatExtended.AmmoDef" Name="Base10mmAutoBullet" ParentName="BaseBullet" Abstract="true">
 		<graphicData>
 			<texPath>Things/Projectile/Bullet_Small</texPath>
 			<graphicClass>Graphic_Single</graphicClass>
@@ -89,34 +89,34 @@
 		<projectile>
 			<damageDef>Bullet</damageDef>
 			<speed>108</speed>
-			<dropsCasings>true</dropsCasings>
+			<!-- <dropsCasings>true</dropsCasings> -->
 		</projectile>
 	</ThingDef>
 
-	<ThingDef ParentName="Base10mmAutoBullet">
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="Base10mmAutoBullet">
 		<defName>Bullet_10mmAuto_FMJ</defName>
 		<label>10mm Auto bullet (FMJ)</label>
 		<projectile>
 			<damageAmountBase>17</damageAmountBase>
-			<armorPenetration>0.402</armorPenetration>
+			<armorPenetrationBase>0.402</armorPenetrationBase>
 		</projectile>
 	</ThingDef>
 
-	<ThingDef ParentName="Base10mmAutoBullet">
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="Base10mmAutoBullet">
 		<defName>Bullet_10mmAuto_AP</defName>
 		<label>10mm Auto bullet (AP)</label>
 		<projectile>
 			<damageAmountBase>10</damageAmountBase>
-			<armorPenetration>0.552</armorPenetration>
+			<armorPenetrationBase>0.552</armorPenetrationBase>
 		</projectile>
 	</ThingDef>
 
-	<ThingDef ParentName="Base10mmAutoBullet">
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="Base10mmAutoBullet">
 		<defName>Bullet_10mmAuto_HP</defName>
 		<label>10mm Auto bullet (HP)</label>
 		<projectile>
 			<damageAmountBase>24</damageAmountBase>
-			<armorPenetration>0.252</armorPenetration>
+			<armorPenetrationBase>0.252</armorPenetrationBase>
 		</projectile>
 	</ThingDef>
   

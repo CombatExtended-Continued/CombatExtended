@@ -22,7 +22,7 @@
 	
 	<!-- ==================== Ammo ========================== -->
 
-	<ThingDef Name="65x50mmSRArisakaBase" ParentName="SmallAmmoBase" Abstract="True">
+	<ThingDef Class="CombatExtended.AmmoDef" Name="65x50mmSRArisakaBase" ParentName="SmallAmmoBase" Abstract="True">
 		<description>Semi-rimmed, intermediate rifle cartridge found mostly in outdated bolt-action firearms.</description>
 		<statBases>
 		<Mass>0.02</Mass>
@@ -37,7 +37,7 @@
 		</thingCategories>
 	</ThingDef>
 
-	<ThingDef ParentName="65x50mmSRArisakaBase">
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="65x50mmSRArisakaBase">
 		<defName>Ammo_65x50mmSRArisaka_FMJ</defName>
 		<label>6.5x50mmSR Arisaka cartridge (FMJ)</label>
 		<graphicData>
@@ -51,7 +51,7 @@
 		<cookOffProjectile>Bullet_65x50mmSRArisaka_FMJ</cookOffProjectile>
 	</ThingDef>
 
-	<ThingDef ParentName="65x50mmSRArisakaBase">
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="65x50mmSRArisakaBase">
 		<defName>Ammo_65x50mmSRArisaka_AP</defName>
 		<label>6.5x50mmSR Arisaka cartridge (AP)</label>
 		<graphicData>
@@ -65,7 +65,7 @@
 		<cookOffProjectile>Bullet_65x50mmSRArisaka_AP</cookOffProjectile>
 	</ThingDef>
 
-	<ThingDef ParentName="65x50mmSRArisakaBase">
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="65x50mmSRArisakaBase">
 		<defName>Ammo_65x50mmSRArisaka_HP</defName>
 		<label>6.5x50mmSR Arisaka cartridge (HP)</label>
 		<graphicData>
@@ -81,7 +81,7 @@
 	
 	<!-- ================== Projectiles ================== -->
 	
-	<ThingDef Name="Base65x50mmSRArisakaBullet" ParentName="BaseBullet" Abstract="true">
+	<ThingDef Class="CombatExtended.AmmoDef" Name="Base65x50mmSRArisakaBullet" ParentName="BaseBullet" Abstract="true">
 		<graphicData>
 			<texPath>Things/Projectile/Bullet_Small</texPath>
 			<graphicClass>Graphic_Single</graphicClass>
@@ -89,34 +89,34 @@
 		<projectile>
 			<damageDef>Bullet</damageDef>
 			<speed>193</speed>
-			<dropsCasings>true</dropsCasings>
+			<!-- <dropsCasings>true</dropsCasings> -->
 		</projectile>
 	</ThingDef>
 
-	<ThingDef ParentName="Base65x50mmSRArisakaBullet">
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="Base65x50mmSRArisakaBullet">
 		<defName>Bullet_65x50mmSRArisaka_FMJ</defName>
 		<label>6.5mmSR Arisaka bullet (FMJ)</label>
 		<projectile>
 			<damageAmountBase>15</damageAmountBase>
-			<armorPenetration>0.561</armorPenetration>
+			<armorPenetrationBase>0.561</armorPenetrationBase>
 		</projectile>
 	</ThingDef>
 
-	<ThingDef ParentName="Base65x50mmSRArisakaBullet">
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="Base65x50mmSRArisakaBullet">
 		<defName>Bullet_65x50mmSRArisaka_AP</defName>
 		<label>6.5mmSR Arisaka bullet (AP)</label>
 		<projectile>
 			<damageAmountBase>9</damageAmountBase>
-			<armorPenetration>0.711</armorPenetration>
+			<armorPenetrationBase>0.711</armorPenetrationBase>
 		</projectile>
 	</ThingDef>
 
-	<ThingDef ParentName="Base65x50mmSRArisakaBullet">
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="Base65x50mmSRArisakaBullet">
 		<defName>Bullet_65x50mmSRArisaka_HP</defName>
 		<label>6.5mmSR Arisaka bullet (HP)</label>
 		<projectile>
 			<damageAmountBase>21</damageAmountBase>
-			<armorPenetration>0.411</armorPenetration>
+			<armorPenetrationBase>0.411</armorPenetrationBase>
 		</projectile>
 	</ThingDef>
   

@@ -21,7 +21,7 @@
 	
 	<!-- ==================== Ammo ========================== -->
 
-	<ThingDef Name="30CarbineBase" ParentName="SmallAmmoBase" Abstract="True">
+	<ThingDef Class="CombatExtended.AmmoDef" Name="30CarbineBase" ParentName="SmallAmmoBase" Abstract="True">
 		<description>Small, light rifle cartridge most commonly found in carbines.</description>
 		<statBases>
 		<Mass>0.012</Mass>
@@ -36,7 +36,7 @@
 		</thingCategories>
 	</ThingDef>
 
-	<ThingDef ParentName="30CarbineBase">
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="30CarbineBase">
 		<defName>Ammo_30Carbine_FMJ</defName>
 		<label>.30 Carbine cartridge (FMJ)</label>
 		<graphicData>
@@ -50,7 +50,7 @@
 		<cookOffProjectile>Bullet_30Carbine_FMJ</cookOffProjectile>
 	</ThingDef>
 
-	<ThingDef ParentName="30CarbineBase">
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="30CarbineBase">
 		<defName>Ammo_30Carbine_HP</defName>
 		<label>.30 Carbine cartridge (HP)</label>
 		<graphicData>
@@ -66,7 +66,7 @@
 	
 	<!-- ================== Projectiles ================== -->
 
-	<ThingDef Name="Base30CarbineBullet" ParentName="BaseBullet" Abstract="true">
+	<ThingDef Class="CombatExtended.AmmoDef" Name="Base30CarbineBullet" ParentName="BaseBullet" Abstract="true">
 		<graphicData>
 			<texPath>Things/Projectile/Bullet_Small</texPath>
 			<graphicClass>Graphic_Single</graphicClass>
@@ -74,26 +74,26 @@
 		<projectile>
 			<damageDef>Bullet</damageDef>
 			<speed>152</speed>
-			<dropsCasings>true</dropsCasings>
+			<!-- <dropsCasings>true</dropsCasings> -->
 		</projectile>
 	</ThingDef>
 
 
-	<ThingDef ParentName="Base30CarbineBullet">
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="Base30CarbineBullet">
 		<defName>Bullet_30Carbine_FMJ</defName>
 		<label>.30 Carbine bullet (FMJ)</label>
 		<projectile>
 			<damageAmountBase>13</damageAmountBase>
-			<armorPenetration>0.442</armorPenetration>
+			<armorPenetrationBase>0.442</armorPenetrationBase>
 		</projectile>
 	</ThingDef>
 
-	<ThingDef ParentName="Base30CarbineBullet">
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="Base30CarbineBullet">
 		<defName>Bullet_30Carbine_HP</defName>
 		<label>.30 Carbine bullet (HP)</label>
 		<projectile>
 			<damageAmountBase>18</damageAmountBase>
-			<armorPenetration>0.292</armorPenetration>
+			<armorPenetrationBase>0.292</armorPenetrationBase>
 		</projectile>
 	</ThingDef>
   

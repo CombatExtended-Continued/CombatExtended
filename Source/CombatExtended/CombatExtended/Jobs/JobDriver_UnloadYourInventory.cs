@@ -21,7 +21,7 @@ namespace CombatExtended
 		
 		private int amountToDrop;
 
-        public override bool TryMakePreToilReservations()
+        public override bool TryMakePreToilReservations(bool errorOnFailed)
         {
             return true;
         }
@@ -69,7 +69,7 @@ namespace CombatExtended
 						this.EndJobWith(JobCondition.Incompletable);
 						return;
 					}
-					if (!this.pawn.health.capacities.CapableOf(PawnCapacityDefOf.Manipulation) || !thing.def.EverStoreable)
+					if (!this.pawn.health.capacities.CapableOf(PawnCapacityDefOf.Manipulation) || !thing.def.EverStorable(true))
 					{
 						this.pawn.inventory.innerContainer.TryDrop(thing, this.pawn.Position, this.pawn.Map, ThingPlaceMode.Near, amountToDrop, out thing);
 						this.EndJobWith(JobCondition.Succeeded);

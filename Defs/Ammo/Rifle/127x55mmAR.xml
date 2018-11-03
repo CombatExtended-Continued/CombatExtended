@@ -22,7 +22,7 @@
 	
 	<!-- ==================== Ammo ========================== -->
 
-	<ThingDef Name="127x55mmARBase" ParentName="SmallAmmoBase" Abstract="True">
+	<ThingDef Class="CombatExtended.AmmoDef" Name="127x55mmARBase" ParentName="SmallAmmoBase" Abstract="True">
 		<description>High caliber subsonic assault rifle cartridge designed for suppressed fire.</description>
 		<statBases>
 		<Mass>0.02</Mass>
@@ -38,7 +38,7 @@
     <stackLimit>350</stackLimit>
 	</ThingDef>
 
-	<ThingDef ParentName="127x55mmARBase">
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="127x55mmARBase">
 		<defName>Ammo_127x55mmAR_FMJ</defName>
 		<label>12.7x55mm AR cartridge (FMJ)</label>
 		<graphicData>
@@ -52,7 +52,7 @@
 		<cookOffProjectile>Bullet_127x55mmAR_FMJ</cookOffProjectile>
 	</ThingDef>
 
-	<ThingDef ParentName="127x55mmARBase">
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="127x55mmARBase">
 		<defName>Ammo_127x55mmAR_AP</defName>
 		<label>12.7x55mm AR cartridge (AP)</label>
 		<graphicData>
@@ -66,7 +66,7 @@
 		<cookOffProjectile>Bullet_127x55mmAR_AP</cookOffProjectile>
 	</ThingDef>
 
-	<ThingDef ParentName="127x55mmARBase">
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="127x55mmARBase">
 		<defName>Ammo_127x55mmAR_HP</defName>
 		<label>12.7x55mm AR cartridge (HP)</label>
 		<graphicData>
@@ -82,7 +82,7 @@
 	
 	<!-- ================== Projectiles ================== -->
 
-	<ThingDef Name="Base127x55mmARBullet" ParentName="BaseBullet" Abstract="true">
+	<ThingDef Class="CombatExtended.AmmoDef" Name="Base127x55mmARBullet" ParentName="BaseBullet" Abstract="true">
 		<graphicData>
 			<texPath>Things/Projectile/Bullet_Small</texPath>
 			<graphicClass>Graphic_Single</graphicClass>
@@ -90,35 +90,35 @@
 		<projectile>
 			<damageDef>Bullet</damageDef>
 			<speed>79</speed>
-			<dropsCasings>true</dropsCasings>
+			<!-- <dropsCasings>true</dropsCasings> -->
 		</projectile>
 	</ThingDef>
 
 
-	<ThingDef ParentName="Base127x55mmARBullet">
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="Base127x55mmARBullet">
 		<defName>Bullet_127x55mmAR_FMJ</defName>
 		<label>12.7mm AR bullet (FMJ)</label>
 		<projectile>
 			<damageAmountBase>23</damageAmountBase>
-			<armorPenetration>0.478</armorPenetration>
+			<armorPenetrationBase>0.478</armorPenetrationBase>
 		</projectile>
 	</ThingDef>
 
-	<ThingDef ParentName="Base127x55mmARBullet">
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="Base127x55mmARBullet">
 		<defName>Bullet_127x55mmAR_AP</defName>
 		<label>12.7mm AR bullet (AP)</label>
 		<projectile>
 			<damageAmountBase>14</damageAmountBase>
-			<armorPenetration>0.628</armorPenetration>
+			<armorPenetrationBase>0.628</armorPenetrationBase>
 		</projectile>
 	</ThingDef>
 
-	<ThingDef ParentName="Base127x55mmARBullet">
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="Base127x55mmARBullet">
 		<defName>Bullet_127x55mmAR_HP</defName>
 		<label>12.7mm AR bullet (HP)</label>
 		<projectile>
 			<damageAmountBase>32</damageAmountBase>
-			<armorPenetration>0.328</armorPenetration>
+			<armorPenetrationBase>0.328</armorPenetrationBase>
 		</projectile>
 	</ThingDef>
   

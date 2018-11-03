@@ -24,7 +24,7 @@
 	
 	<!-- ==================== Ammo ========================== -->
 
-  <ThingDef Name="12GaugeBase" ParentName="SmallAmmoBase" Abstract="True">
+  <ThingDef Class="CombatExtended.AmmoDef" Name="12GaugeBase" ParentName="SmallAmmoBase" Abstract="True">
     <description>Extremely common shotgun caliber used in almost every application, from hunting over riot control to military firearms.</description>
     <statBases>
 	  <Mass>0.05</Mass>
@@ -40,7 +40,7 @@
     <stackLimit>350</stackLimit>
   </ThingDef>
 
-  <ThingDef ParentName="12GaugeBase">
+  <ThingDef Class="CombatExtended.AmmoDef" ParentName="12GaugeBase">
     <defName>Ammo_12Gauge_Buck</defName>
     <label>12 gauge shell (Buck)</label>
     <graphicData>
@@ -54,7 +54,7 @@
     <cookOffProjectile>Bullet_12Gauge_Buck</cookOffProjectile>
   </ThingDef>
 
-  <ThingDef ParentName="12GaugeBase">
+  <ThingDef Class="CombatExtended.AmmoDef" ParentName="12GaugeBase">
     <defName>Ammo_12Gauge_Bird</defName>
     <label>12 gauge shell (Bird)</label>
     <graphicData>
@@ -68,7 +68,7 @@
     <cookOffProjectile>Bullet_12Gauge_Bird</cookOffProjectile>
   </ThingDef>
 
-  <ThingDef ParentName="12GaugeBase">
+  <ThingDef Class="CombatExtended.AmmoDef" ParentName="12GaugeBase">
     <defName>Ammo_12Gauge_Slug</defName>
     <label>12 gauge shell (Slug)</label>
     <graphicData>
@@ -83,7 +83,7 @@
     <cookOffProjectile>Bullet_12Gauge_Slug</cookOffProjectile>
   </ThingDef>
 
-  <ThingDef ParentName="12GaugeBase">
+  <ThingDef Class="CombatExtended.AmmoDef" ParentName="12GaugeBase">
     <defName>Ammo_12Gauge_Beanbag</defName>
     <label>12 gauge shell (Bean)</label>
 	<canBeSpawningInventory>false</canBeSpawningInventory>
@@ -98,7 +98,7 @@
     <cookOffProjectile>Bullet_12Gauge_Beanbag</cookOffProjectile>
   </ThingDef>
 
-  <ThingDef ParentName="12GaugeBase">
+  <ThingDef Class="CombatExtended.AmmoDef" ParentName="12GaugeBase">
     <defName>Ammo_12Gauge_ElectroSlug</defName>
     <label>12 gauge shell (EMP)</label>
     <graphicData>
@@ -114,16 +114,16 @@
 	
 	<!-- ================== Projectiles ================== -->
 
-	<ThingDef Name="Base12GaugeBullet" ParentName="BaseBullet" Abstract="true">
+	<ThingDef Class="CombatExtended.AmmoDef" Name="Base12GaugeBullet" ParentName="BaseBullet" Abstract="true">
 		<projectile>
 			<damageDef>Bullet</damageDef>
 			<speed>101</speed>
-			<dropsCasings>true</dropsCasings>
-			<casingMoteDefname>Mote_ShotgunShell</casingMoteDefname>
+			<!-- <dropsCasings>true</dropsCasings> -->
+			<!-- <casingMoteDefname>Mote_ShotgunShell</casingMoteDefname> -->
 		</projectile>
 	</ThingDef>
 
-	<ThingDef ParentName="Base12GaugeBullet">
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="Base12GaugeBullet">
 		<defName>Bullet_12Gauge_Buck</defName>
 		<label>buckshot pellet</label>
 		<graphicData>
@@ -133,12 +133,12 @@
 		<projectile>
 			<damageAmountBase>7</damageAmountBase>
 			<pelletCount>9</pelletCount>
-			<armorPenetration>0.227</armorPenetration>
+			<armorPenetrationBase>0.227</armorPenetrationBase>
 			<spreadMult>17.8</spreadMult>
 		</projectile>
 	</ThingDef>
 
-	<ThingDef ParentName="Base12GaugeBullet">
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="Base12GaugeBullet">
 		<defName>Bullet_12Gauge_Bird</defName>
 		<label>birdshot pellet</label>
 		<graphicData>
@@ -149,11 +149,11 @@
 			<damageAmountBase>1</damageAmountBase>
 			<pelletCount>50</pelletCount>
 			<spreadMult>71.4</spreadMult>
-			<armorPenetration>0.089</armorPenetration>
+			<armorPenetrationBase>0.089</armorPenetrationBase>
 		</projectile>
 	</ThingDef>
 
-	<ThingDef ParentName="Base12GaugeBullet">
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="Base12GaugeBullet">
 		<defName>Bullet_12Gauge_Slug</defName>
 		<label>shotgun slug</label>
 		<graphicData>
@@ -163,11 +163,11 @@
 		<projectile>
 			<speed>103</speed>
 			<damageAmountBase>37</damageAmountBase>
-			<armorPenetration>0.45</armorPenetration>
+			<armorPenetrationBase>0.45</armorPenetrationBase>
 		</projectile>
 	</ThingDef>
 
-	<ThingDef ParentName="Base12GaugeBullet">
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="Base12GaugeBullet">
 		<defName>Bullet_12Gauge_Beanbag</defName>
 		<label>beanbag</label>
 		<graphicData>
@@ -177,12 +177,12 @@
 		<projectile>
 			<damageDef>Beanbag</damageDef>
 			<damageAmountBase>6</damageAmountBase>
-			<armorPenetration>0.151</armorPenetration>
+			<armorPenetrationBase>0.151</armorPenetrationBase>
 			<spreadMult>2</spreadMult>
 		</projectile>
 	</ThingDef>
 
-	<ThingDef ParentName="Base12GaugeBullet">
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="Base12GaugeBullet">
 		<defName>Bullet_12Gauge_ElectroSlug</defName>
 		<label>EMP slug</label>
 		<graphicData>
@@ -327,7 +327,7 @@
       <li>
         <filter>
           <thingDefs>
-            <li>Component</li>
+            <li>ComponentIndustrial</li>
           </thingDefs>
         </filter>
         <count>4</count>
@@ -336,7 +336,7 @@
     <fixedIngredientFilter>
       <thingDefs>
         <li>Steel</li>
-        <li>Component</li>
+        <li>ComponentIndustrial</li>
       </thingDefs>
     </fixedIngredientFilter>
     <products>

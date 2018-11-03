@@ -41,13 +41,13 @@ namespace CombatExtended
             {
                 try
                 {
-        			_cachedDefIcons[def.defName] = (pdef.lifeStages.Last().bodyGraphicData.Graphic.MatFront.mainTexture as Texture2D).Crop();
+        			_cachedDefIcons[def.defName] = (pdef.lifeStages.Last().bodyGraphicData.Graphic.MatSouth.mainTexture as Texture2D).Crop();
                     return _cachedDefIcons[def.defName];
                 }
                 catch (Exception e)
                 {
                 	Log.Error("CombatExtended :: IconTexture("+def.ToString()+") - pawnKindDef check - resulted in the following error [defaulting to non-cropped texture]: "+e.ToString());
-        			_cachedDefIcons[def.defName] = (pdef.lifeStages.Last().bodyGraphicData.Graphic.MatFront.mainTexture as Texture2D);
+        			_cachedDefIcons[def.defName] = (pdef.lifeStages.Last().bodyGraphicData.Graphic.MatSouth.mainTexture as Texture2D);
                     return _cachedDefIcons[def.defName];
                 }
             }

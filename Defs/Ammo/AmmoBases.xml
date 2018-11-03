@@ -5,6 +5,7 @@
 	
 	<!-- ==================== Ammo ========================== -->
 
+	<!-- CONTAINED >Class="CombatExtended.AmmoDef"< BEFORE -->
   <ThingDef Class="CombatExtended.AmmoDef" Name="AmmoBase" Abstract="True">
     <thingClass>CombatExtended.AmmoThing</thingClass>
     <label>unspecified ammunition</label>
@@ -23,7 +24,7 @@
     <soundInteract>Metal_Drop</soundInteract>
     <soundDrop>Metal_Drop</soundDrop>
 		<menuHidden>True</menuHidden>		<!-- Toggled by AmmoInjector.cs -->
-		<destroyOnDrop>True</destroyOnDrop>	<!-- Toggled by AmmoInjector.cs -->
+		<destroyOnDrop>False</destroyOnDrop>	<!-- Was True. Toggled by AmmoInjector.cs -->  
     <comps>
       <li Class="CompProperties_Forbiddable"/>
     </comps>
@@ -38,29 +39,29 @@
     <tickerType>Normal</tickerType>
 		<cookOffSpeed>0.2</cookOffSpeed>
 		<cookOffFlashScale>10</cookOffFlashScale>
-		<cookOffSound>ShotAssaultRifle</cookOffSound>
+		<cookOffSound>Shot_AssaultRifle</cookOffSound>
 		<cookOffTailSound>GunTail_Medium</cookOffTailSound>
     <techLevel>Industrial</techLevel>
   </ThingDef>
 	
-	<ThingDef Name="SmallAmmoBase" ParentName="AmmoBase" Abstract="True">
+	<ThingDef Class="CombatExtended.AmmoDef" Name="SmallAmmoBase" ParentName="AmmoBase" Abstract="True">
 		<smallVolume>true</smallVolume>
     <statBases>
       <MaxHitPoints>75</MaxHitPoints>
     </statBases>
 	</ThingDef>
 
-  <ThingDef Name="NeolithicAmmoBase" ParentName="AmmoBase" Abstract="True">
+  <ThingDef Class="CombatExtended.AmmoDef" Name="NeolithicAmmoBase" ParentName="AmmoBase" Abstract="True">
     <techLevel>Neolithic</techLevel>
   </ThingDef>
 
-  <ThingDef Name="SpacerSmallAmmoBase" ParentName="SmallAmmoBase" Abstract="True">
+  <ThingDef Class="CombatExtended.AmmoDef" Name="SpacerSmallAmmoBase" ParentName="SmallAmmoBase" Abstract="True">
     <techLevel>Spacer</techLevel>
   </ThingDef>
 	
 	<!-- ================== Projectiles ================== -->
 
-	<ThingDef Name="BaseBullet" Abstract="True">
+	<ThingDef Class="CombatExtended.AmmoDef" Name="BaseBullet" Abstract="True">
 		<category>Projectile</category>
 		<tickerType>Normal</tickerType>
 		<altitudeLayer>Projectile</altitudeLayer>
@@ -72,11 +73,11 @@
 			<shaderType>Transparent</shaderType>
 		</graphicData>
 		<projectile Class="CombatExtended.ProjectilePropertiesCE">
-      <explosionDealMoreDamageAtCenter>true</explosionDealMoreDamageAtCenter>
+      <explosionDamageFalloff>true</explosionDamageFalloff>
     </projectile>
 	</ThingDef>
 
-	<ThingDef Name="BaseFragment" ParentName="BaseBullet" Abstract="True">
+	<ThingDef Class="CombatExtended.AmmoDef" Name="BaseFragment" ParentName="BaseBullet" Abstract="True">
 	<projectile>
 		<alwaysFreeIntercept>true</alwaysFreeIntercept>
 	</projectile>

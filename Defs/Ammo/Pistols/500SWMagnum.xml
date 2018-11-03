@@ -21,7 +21,7 @@
 
 	<!-- ==================== Ammo ========================== -->
 
-	<ThingDef Name="500SWMagnumBase" ParentName="AmmoBase" Abstract="True">
+	<ThingDef Class="CombatExtended.AmmoDef" Name="500SWMagnumBase" ParentName="AmmoBase" Abstract="True">
 		<description>Designed for big game hunting, this is one of the most powerful handgun cartridges ever designed.</description>
 		<statBases>
 			<Mass>0.04</Mass>
@@ -36,7 +36,7 @@
 		</thingCategories>
 	</ThingDef>
 	
-	<ThingDef ParentName="500SWMagnumBase">
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="500SWMagnumBase">
 		<defName>Ammo_500SWMagnum_FMJ</defName>
 		<label>.500 S&amp;W Magnum cartridge (FMJ)</label>
 		<graphicData>
@@ -50,7 +50,7 @@
 		<cookOffProjectile>Bullet_500SWMagnum_FMJ</cookOffProjectile>
 	</ThingDef>
 	
-	<ThingDef ParentName="500SWMagnumBase">
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="500SWMagnumBase">
 		<defName>Ammo_500SWMagnum_HP</defName>
 		<label>.500 S&amp;W Magnum cartridge (HP)</label>
 		<graphicData>
@@ -66,7 +66,7 @@
 
 	<!-- ================== Projectiles ================== -->
 
-	<ThingDef Name="Base500SWMagnumBullet" ParentName="BaseBullet" Abstract="true">
+	<ThingDef Class="CombatExtended.AmmoDef" Name="Base500SWMagnumBullet" ParentName="BaseBullet" Abstract="true">
 		<graphicData>
 			<texPath>Things/Projectile/Bullet_Big</texPath>
 			<graphicClass>Graphic_Single</graphicClass>
@@ -74,25 +74,25 @@
 		<projectile>
 			<damageDef>Bullet</damageDef>
 			<speed>122</speed>
-			<dropsCasings>true</dropsCasings>
+			<!-- <dropsCasings>true</dropsCasings> -->
 		</projectile>
 	</ThingDef>
 
-	<ThingDef ParentName="Base500SWMagnumBullet">
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="Base500SWMagnumBullet">
 		<defName>Bullet_500SWMagnum_FMJ</defName>
 		<label>.500 Smith Wessen Magnum bullet (FMJ)</label>
 		<projectile>
 			<damageAmountBase>28</damageAmountBase>
-			<armorPenetration>0.563</armorPenetration>
+			<armorPenetrationBase>0.563</armorPenetrationBase>
 		</projectile>
 	</ThingDef>
 
-	<ThingDef ParentName="Base500SWMagnumBullet">
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="Base500SWMagnumBullet">
 		<defName>Bullet_500SWMagnum_HP</defName>
 		<label>.500 Smith Wessen Magnum bullet (HP)</label>
 		<projectile>
 			<damageAmountBase>39</damageAmountBase>
-			<armorPenetration>0.413</armorPenetration>
+			<armorPenetrationBase>0.413</armorPenetrationBase>
 		</projectile>
 	</ThingDef>
   

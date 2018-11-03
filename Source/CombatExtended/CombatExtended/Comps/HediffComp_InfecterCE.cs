@@ -16,6 +16,7 @@ namespace CombatExtended
         private bool alreadyCausedInfection = false;
         private int ticksUntilInfect = -1;
         private float infectionModifier = 1;
+        private int ticksTended = 0;
 
         public HediffCompProperties_InfecterCE Props { get { return (HediffCompProperties_InfecterCE)props; } }
 
@@ -33,7 +34,6 @@ namespace CombatExtended
             int ticksUntended = parent.ageTicks;
             if (compTended != null && compTended.IsTended)
             {
-                int ticksTended = Find.TickManager.TicksGame - compTended.tendTick;
                 ticksUntended -= ticksTended;
 
                 infectionModifier /= Mathf.Pow(compTended.tendQuality + 0.75f, 2);  // Adjust infection chance based on tend quality
@@ -67,7 +67,7 @@ namespace CombatExtended
             if (!alreadyCausedInfection 
                 && !parent.Part.def.IsSolid(parent.Part, Pawn.health.hediffSet.hediffs) 
                 && !Pawn.health.hediffSet.PartOrAnyAncestorHasDirectlyAddedParts(parent.Part) 
-                && !parent.IsOld())
+                && !parent.IsPermanent())
             {
                 ticksUntilInfect = InfectionDelayHours.RandomInRange * GenDate.TicksPerHour;
             }
@@ -75,10 +75,16 @@ namespace CombatExtended
 
         public override void CompPostTick(ref float severityAdjustment)
         {
+            if (parent.TryGetComp<HediffComp_TendDuration>().IsTended)
+            {
+                ticksTended++;
+            }
+
             if (!alreadyCausedInfection && ticksUntilInfect > 0)
             {
                 ticksUntilInfect--;
                 if (ticksUntilInfect == 0) CheckMakeInfection();
+
             }
         }
 

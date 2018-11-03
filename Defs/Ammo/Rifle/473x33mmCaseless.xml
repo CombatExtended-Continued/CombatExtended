@@ -22,7 +22,7 @@
 	
 	<!-- ==================== Ammo ========================== -->
 
-	<ThingDef Name="473x33mmCaselessBase" ParentName="SmallAmmoBase" Abstract="True">
+	<ThingDef Class="CombatExtended.AmmoDef" Name="473x33mmCaselessBase" ParentName="SmallAmmoBase" Abstract="True">
 		<description>Caseless bullet with a solid propellant enveloping the bullet.</description>
 		<statBases>
 		<Mass>0.005</Mass>
@@ -37,7 +37,7 @@
 		</thingCategories>
 	</ThingDef>
 
-	<ThingDef ParentName="473x33mmCaselessBase">
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="473x33mmCaselessBase">
 		<defName>Ammo_473x33mmCaseless_FMJ</defName>
 		<label>4.73x33mm Caseless cartridge (FMJ)</label>
 		<graphicData>
@@ -51,7 +51,7 @@
 		<cookOffProjectile>Bullet_473x33mmCaseless_FMJ</cookOffProjectile>
 	</ThingDef>
 
-	<ThingDef ParentName="473x33mmCaselessBase">
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="473x33mmCaselessBase">
 		<defName>Ammo_473x33mmCaseless_AP</defName>
 		<label>4.73x33mm Caseless cartridge (AP)</label>
 		<graphicData>
@@ -65,7 +65,7 @@
 		<cookOffProjectile>Bullet_473x33mmCaseless_AP</cookOffProjectile>
 	</ThingDef>
 
-	<ThingDef ParentName="473x33mmCaselessBase">
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="473x33mmCaselessBase">
 		<defName>Ammo_473x33mmCaseless_HP</defName>
 		<label>4.73x33mm Caseless cartridge (HP)</label>
 		<graphicData>
@@ -81,7 +81,7 @@
 	
 	<!-- ================== Projectiles ================== -->
 	
-	<ThingDef Name="Base473x33mmCaselessBullet" ParentName="BaseBullet" Abstract="true">
+	<ThingDef Class="CombatExtended.AmmoDef" Name="Base473x33mmCaselessBullet" ParentName="BaseBullet" Abstract="true">
 		<graphicData>
 			<texPath>Things/Projectile/Bullet_Small</texPath>
 			<graphicClass>Graphic_Single</graphicClass>
@@ -92,30 +92,30 @@
 		</projectile>
 	</ThingDef>
 
-	<ThingDef ParentName="Base473x33mmCaselessBullet">
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="Base473x33mmCaselessBullet">
 		<defName>Bullet_473x33mmCaseless_FMJ</defName>
 		<label>4.73mm Caseless bullet (FMJ)</label>
 		<projectile>
 			<damageAmountBase>8</damageAmountBase>
-			<armorPenetration>0.453</armorPenetration>
+			<armorPenetrationBase>0.453</armorPenetrationBase>
 		</projectile>
 	</ThingDef>
 
-	<ThingDef ParentName="Base473x33mmCaselessBullet">
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="Base473x33mmCaselessBullet">
 		<defName>Bullet_473x33mmCaseless_AP</defName>
 		<label>4.73mm Caseless bullet (AP)</label>
 		<projectile>
 			<damageAmountBase>5</damageAmountBase>
-			<armorPenetration>0.603</armorPenetration>
+			<armorPenetrationBase>0.603</armorPenetrationBase>
 		</projectile>
 	</ThingDef>
 
-	<ThingDef ParentName="Base473x33mmCaselessBullet">
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="Base473x33mmCaselessBullet">
 		<defName>Bullet_473x33mmCaseless_HP</defName>
 		<label>4.73mm Caseless bullet (HP)</label>
 		<projectile>
 			<damageAmountBase>11</damageAmountBase>
-			<armorPenetration>0.303</armorPenetration>
+			<armorPenetrationBase>0.303</armorPenetrationBase>
 		</projectile>
 	</ThingDef>
   

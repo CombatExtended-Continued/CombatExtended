@@ -22,7 +22,7 @@
 	
 	<!-- ==================== Ammo ========================== -->
 
-  <ThingDef Name="AmmoSlingBulletBase" ParentName="NeolithicAmmoBase" Abstract="True">
+  <ThingDef Class="CombatExtended.AmmoDef" Name="AmmoSlingBulletBase" ParentName="NeolithicAmmoBase" Abstract="True">
     <description>An aerodynamic stone or metal pellet. Perfect for being launched by a sling.</description>
     <statBases>
       <Mass>0.05</Mass>
@@ -39,7 +39,7 @@
     </tradeTags>
   </ThingDef>
 
-  <ThingDef ParentName="AmmoSlingBulletBase">
+  <ThingDef Class="CombatExtended.AmmoDef" ParentName="AmmoSlingBulletBase">
     <defName>Ammo_SlingBullet_Stone</defName>
     <label>sling bullet (stone)</label>
     <graphicData>
@@ -55,7 +55,7 @@
     </tradeTags>
   </ThingDef>
 
-  <ThingDef ParentName="AmmoSlingBulletBase">
+  <ThingDef Class="CombatExtended.AmmoDef" ParentName="AmmoSlingBulletBase">
     <defName>Ammo_SlingBullet_Steel</defName>
     <label>sling bullet (steel)</label>
     <graphicData>
@@ -68,7 +68,7 @@
 		<ammoClass>SteelSlingBullet</ammoClass>
   </ThingDef>
 
-  <ThingDef ParentName="AmmoSlingBulletBase">
+  <ThingDef Class="CombatExtended.AmmoDef" ParentName="AmmoSlingBulletBase">
     <defName>Ammo_SlingBullet_Plasteel</defName>
     <label>sling bullet (plasteel)</label>
     <graphicData>
@@ -84,7 +84,7 @@
 	
 	<!-- ================== Projectiles ================== -->
 
-	<ThingDef Name="BaseSlingBullet" ParentName="BaseBullet" Abstract="true">
+	<ThingDef Class="CombatExtended.AmmoDef" Name="BaseSlingBullet" ParentName="BaseBullet" Abstract="true">
 		<graphicData>
 			<texPath>Things/Mote/Stone</texPath>
 			<graphicClass>Graphic_Single</graphicClass>
@@ -100,34 +100,34 @@
 			x = preExplosionSpawnChance,
 			r = resource cost. -->
 
-	<ThingDef ParentName="BaseSlingBullet">
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="BaseSlingBullet">
 		<defName>Projectile_SlingBullet_Stone</defName>
 		<label>sling bullet (stone)</label>
 		<projectile>
 			<damageAmountBase>7</damageAmountBase>
-			<armorPenetration>0.125</armorPenetration>
+			<armorPenetrationBase>0.125</armorPenetrationBase>
 			<preExplosionSpawnChance>0.166</preExplosionSpawnChance>	<!-- 11.99 stones per resource -->
 			<preExplosionSpawnThingDef>Ammo_SlingBullet_Stone</preExplosionSpawnThingDef>
 		</projectile>
 	</ThingDef>
 
-	<ThingDef ParentName="BaseSlingBullet">
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="BaseSlingBullet">
 		<defName>Projectile_SlingBullet_Steel</defName>
 		<label>sling bullet (steel)</label>
 		<projectile>
 			<damageAmountBase>7</damageAmountBase>
-			<armorPenetration>0.1625</armorPenetration>
+			<armorPenetrationBase>0.1625</armorPenetrationBase>
 			<preExplosionSpawnChance>0.5</preExplosionSpawnChance>	<!-- 20 stones per resource -->
 			<preExplosionSpawnThingDef>Ammo_SlingBullet_Steel</preExplosionSpawnThingDef>
 		</projectile>
 	</ThingDef>
 
-	<ThingDef ParentName="BaseSlingBullet">
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="BaseSlingBullet">
 		<defName>Projectile_SlingBullet_Plasteel</defName>
 		<label>sling bullet (plasteel)</label>
 		<projectile>
 			<damageAmountBase>7</damageAmountBase>
-			<armorPenetration>0.2</armorPenetration>
+			<armorPenetrationBase>0.2</armorPenetrationBase>
 			<preExplosionSpawnChance>0.7</preExplosionSpawnChance>	<!-- 33.33 stones per resource -->
 			<preExplosionSpawnThingDef>Ammo_SlingBullet_Plasteel</preExplosionSpawnThingDef>
 		</projectile>

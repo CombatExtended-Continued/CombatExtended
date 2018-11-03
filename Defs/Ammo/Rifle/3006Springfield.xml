@@ -22,7 +22,7 @@
 	
 	<!-- ==================== Ammo ========================== -->
 
-	<ThingDef Name="3006SpringfieldBase" ParentName="SmallAmmoBase" Abstract="True">
+	<ThingDef Class="CombatExtended.AmmoDef" Name="3006SpringfieldBase" ParentName="SmallAmmoBase" Abstract="True">
 		<description>Large rifle bullet used in machine guns and battle rifles.</description>
 		<statBases>
 		<Mass>0.027</Mass>
@@ -37,7 +37,7 @@
 		</thingCategories>
 	</ThingDef>
 
-	<ThingDef ParentName="3006SpringfieldBase">
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="3006SpringfieldBase">
 		<defName>Ammo_3006Springfield_FMJ</defName>
 		<label>.30-06 Springfield Cartridge (FMJ)</label>
 		<graphicData>
@@ -51,7 +51,7 @@
 		<cookOffProjectile>Bullet_3006Springfield_FMJ</cookOffProjectile>
 	</ThingDef>
 
-	<ThingDef ParentName="3006SpringfieldBase">
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="3006SpringfieldBase">
 		<defName>Ammo_3006Springfield_AP</defName>
 		<label>.30-06 Springfield Cartridge (AP)</label>
 		<graphicData>
@@ -65,7 +65,7 @@
 		<cookOffProjectile>Bullet_3006Springfield_AP</cookOffProjectile>
 	</ThingDef>
 
-	<ThingDef ParentName="3006SpringfieldBase">
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="3006SpringfieldBase">
 		<defName>Ammo_3006Springfield_HP</defName>
 		<label>.30-06 Springfield Cartridge (HP)</label>
 		<graphicData>
@@ -81,7 +81,7 @@
 	
 	<!-- ================== Projectiles ================== -->
 
-	<ThingDef Name="Base3006SpringfieldBullet" ParentName="BaseBullet" Abstract="true">
+	<ThingDef Class="CombatExtended.AmmoDef" Name="Base3006SpringfieldBullet" ParentName="BaseBullet" Abstract="true">
 		<graphicData>
 			<texPath>Things/Projectile/Bullet_Small</texPath>
 			<graphicClass>Graphic_Single</graphicClass>
@@ -89,34 +89,34 @@
 		<projectile>
 			<damageDef>Bullet</damageDef>
 			<speed>213</speed>
-			<dropsCasings>true</dropsCasings>
+			<!-- <dropsCasings>true</dropsCasings> -->
 		</projectile>
 	</ThingDef>
 
-	<ThingDef ParentName="Base3006SpringfieldBullet">
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="Base3006SpringfieldBullet">
 		<defName>Bullet_3006Springfield_FMJ</defName>
 		<label>.30-06 Springfield Cartridge (FMJ)</label>
 		<projectile>
 			<damageAmountBase>19</damageAmountBase>
-			<armorPenetration>0.633</armorPenetration>
+			<armorPenetrationBase>0.633</armorPenetrationBase>
 		</projectile>
 	</ThingDef>
 
-	<ThingDef ParentName="Base3006SpringfieldBullet">
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="Base3006SpringfieldBullet">
 		<defName>Bullet_3006Springfield_AP</defName>
 		<label>.30-06 Springfield Cartridge (AP)</label>
 		<projectile>
 			<damageAmountBase>11</damageAmountBase>
-			<armorPenetration>0.783</armorPenetration>
+			<armorPenetrationBase>0.783</armorPenetrationBase>
 		</projectile>
 	</ThingDef>
 
-	<ThingDef ParentName="Base3006SpringfieldBullet">
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="Base3006SpringfieldBullet">
 		<defName>Bullet_3006Springfield_HP</defName>
 		<label>.30-06 Springfield Cartridge (HP)</label>
 		<projectile>
 			<damageAmountBase>27</damageAmountBase>
-			<armorPenetration>0.483</armorPenetration>
+			<armorPenetrationBase>0.483</armorPenetrationBase>
 		</projectile>
 	</ThingDef>
   

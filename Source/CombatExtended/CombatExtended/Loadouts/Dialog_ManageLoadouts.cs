@@ -72,8 +72,8 @@ namespace CombatExtended
             	CurrentLoadout = loadout;
             SetSource(SourceSelection.Ranged);
             doCloseX = true;
-            closeOnClickedOutside = true;
-            closeOnEscapeKey = true;
+			doCloseButton = true;
+			closeOnClickedOutside = true;
             Utility_Loadouts.UpdateColonistCapacities();
         }
 
@@ -625,8 +625,8 @@ namespace CombatExtended
                 	if (GetVisibleGeneric(_sourceGeneric[i]))
                 		GUI.color = Color.gray;
                 } else {
-	                //if (Find.VisibleMap.listerThings.AllThings.FindAll(x => x.GetInnerIfMinified().def == _source[i] && !x.def.Minifiable).Count <= 0)
-	                if (Find.VisibleMap.listerThings.AllThings.Find(x => x.GetInnerIfMinified().def == _source[i] && !x.def.Minifiable) == null)
+	                //if (Find.CurrentMap.listerThings.AllThings.FindAll(x => x.GetInnerIfMinified().def == _source[i] && !x.def.Minifiable).Count <= 0)
+	                if (Find.CurrentMap.listerThings.AllThings.Find(x => x.GetInnerIfMinified().def == _source[i] && !x.def.Minifiable) == null)
 	                    GUI.color = Color.gray;
                 }
 
@@ -689,7 +689,7 @@ namespace CombatExtended
         	if (GenTicks.TicksAbs >= genericVisibility[def].ticksToRecheck)
         	{
         		genericVisibility[def].ticksToRecheck = GenTicks.TicksAbs + (advanceTicks * genericVisibility[def].position);
-        		genericVisibility[def].check = Find.VisibleMap.listerThings.AllThings.Find(x => def.lambda(x.GetInnerIfMinified().def) && !x.def.Minifiable) == null;
+        		genericVisibility[def].check = Find.CurrentMap.listerThings.AllThings.Find(x => def.lambda(x.GetInnerIfMinified().def) && !x.def.Minifiable) == null;
         	}
         	
         	return genericVisibility[def].check;
@@ -703,7 +703,7 @@ namespace CombatExtended
         	{
         		if (!genericVisibility.ContainsKey(def)) genericVisibility.Add(def, new VisibilityCache());
         		genericVisibility[def].ticksToRecheck = tick;
-        		genericVisibility[def].check = Find.VisibleMap.listerThings.AllThings.Find(x => def.lambda(x.GetInnerIfMinified().def) && !x.def.Minifiable) == null;
+        		genericVisibility[def].check = Find.CurrentMap.listerThings.AllThings.Find(x => def.lambda(x.GetInnerIfMinified().def) && !x.def.Minifiable) == null;
         		genericVisibility[def].position = position;
         		position++;
         		tick += advanceTicks;
