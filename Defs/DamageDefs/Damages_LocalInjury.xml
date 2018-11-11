@@ -36,15 +36,16 @@
   <DamageDef>
     <defName>Slash</defName>
     <label>slash</label>
-	<workerClass>DamageWorker_AddInjury</workerClass>
+    <workerClass>DamageWorker_Scratch</workerClass>
     <externalViolence>true</externalViolence>
     <deathMessage>{0} has been torn to death.</deathMessage>
     <hediff>Scratch</hediff>
-    <hediffSkin>Scratch</hediffSkin>
     <hediffSolid>Crack</hediffSolid>
     <harmAllLayersUntilOutside>true</harmAllLayersUntilOutside>
     <impactSoundType>Slice</impactSoundType>
     <armorCategory>Sharp</armorCategory>
+    <overkillPctToDestroyPart>0~0.7</overkillPctToDestroyPart>
+    <scratchSplitPercentage>0.67</scratchSplitPercentage>
     <modExtensions>
       <li Class="CombatExtended.DamageDefExtensionCE">
         <harmOnlyOutsideLayers>true</harmOnlyOutsideLayers>
@@ -72,22 +73,29 @@
 
   <DamageDef>
     <defName>Electrical</defName>
-	<workerClass>DamageWorker_AddInjury</workerClass>
     <label>electrical</label>
+    <workerClass>DamageWorker_AddInjury</workerClass>
+    <externalViolence>true</externalViolence>
+    <isExplosive>true</isExplosive>
     <hasForcefulImpact>false</hasForcefulImpact>
     <makesBlood>false</makesBlood>
-    <externalViolence>true</externalViolence>
     <deathMessage>{0} has been electrocuted.</deathMessage>
     <hediff>ElectricalBurn</hediff>
-    <impactSoundType>Electric</impactSoundType>
+    <harmAllLayersUntilOutside>true</harmAllLayersUntilOutside>
+    <impactSoundType>Blunt</impactSoundType>
     <armorCategory>Electric</armorCategory>
-	<minDamageToFragment>15</minDamageToFragment>
-    <defaultDamage>10</defaultDamage>
-    <explosionHeatEnergyPerCell>10</explosionHeatEnergyPerCell>
+    <minDamageToFragment>15</minDamageToFragment>
+    <defaultDamage>50</defaultDamage>
+    <defaultStoppingPower>0.5</defaultStoppingPower>
+    <defaultArmorPenetration>0.0</defaultArmorPenetration>
+    <buildingDamageFactor>0</buildingDamageFactor>
+    <explosionAffectOutsidePartsOnly>true</explosionAffectOutsidePartsOnly>
+    <explosionHeatEnergyPerCell>5</explosionHeatEnergyPerCell>
     <explosionCellMote>Mote_BlastEMP</explosionCellMote>
+    <explosionColorEdge>(0.8, 0.8, 0.8, 0.8)</explosionColorEdge>
     <explosionInteriorMote>Mote_ElectricalSpark</explosionInteriorMote>
     <soundExplosion>Explosion_EMP</soundExplosion>
-    <harmAllLayersUntilOutside>true</harmAllLayersUntilOutside>
+    <combatLogRules>Damage_EMP</combatLogRules>
     <modExtensions>
       <li Class="CombatExtended.DamageDefExtensionCE">
         <isAmbientDamage>true</isAmbientDamage>
