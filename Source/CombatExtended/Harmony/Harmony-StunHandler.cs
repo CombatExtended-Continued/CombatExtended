@@ -18,7 +18,7 @@ namespace CombatExtended.Harmony
             {
                 var dmgAmount = dinfo.Amount;
                 if (!affectedByEMP) dmgAmount = Mathf.RoundToInt(dmgAmount * 0.25f);
-                var newDinfo = new DamageInfo(CE_DamageDefOf.Electrical, dmgAmount, 0, //Armor Penetration
+                var newDinfo = new DamageInfo(CE_DamageDefOf.Electrical, dmgAmount, 9999, // Hack to avoid double-armor application (EMP damage reduced -> proportional electric damage reduced again)
                     dinfo.Angle, dinfo.Instigator, dinfo.HitPart, dinfo.Weapon, dinfo.Category);
                 __instance.parent.TakeDamage(newDinfo);
             }
