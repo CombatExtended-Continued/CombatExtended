@@ -45,6 +45,10 @@
 		<xpath>*/ThingDef[defName="Turret_MiniTurret"]/comps/li[@Class = "CompProperties_Explosive"]</xpath>
 	</Operation>
 
+	<Operation Class="PatchOperationRemove">
+		<xpath>*/ThingDef[defName="Turret_MiniTurret"]/comps/li[@Class = "CompProperties_Refuelable"]</xpath>
+	</Operation>
+
 	<Operation Class="PatchOperationReplace">
 		<xpath>*/ThingDef[defName="Turret_MiniTurret"]/fillPercent</xpath>
 		<value>
@@ -119,106 +123,14 @@
 
 	<!-- ========== Sniper turret ========== -->
 
-	<Operation Class="PatchOperationReplace">
-		<xpath>*/ThingDef[defName="Turret_Sniper"]/thingClass</xpath>
-		<value>
-			<thingClass>CombatExtended.Building_TurretGunCE</thingClass>
-		</value>
-	</Operation>
-
-	<Operation Class="PatchOperationReplace">
-		<xpath>*/ThingDef[defName="Turret_Sniper"]/statBases/Mass</xpath>
-		<value>
-			<Mass>25</Mass>
-		</value>
-	</Operation>
-
-	<Operation Class="PatchOperationRemove">
-		<xpath>*/ThingDef[defName="Turret_Sniper"]/comps/li[@Class = "CompProperties_Explosive"]</xpath>
-	</Operation>
-
-	<Operation Class="PatchOperationReplace">
-		<xpath>*/ThingDef[defName="Turret_Sniper"]/fillPercent</xpath>
-		<value>
-			<fillPercent>0.85</fillPercent>
-		</value>
-	</Operation>
-
-	<!-- Add trade tags -->
-
-	<Operation Class="PatchOperationSequence">
-  	<success>Always</success>
-  	<operations>
-    	<li Class="PatchOperationTest">
-      	<xpath>*/ThingDef[defName="Turret_Sniper"]/tradeTags</xpath>
-      	<success>Invert</success>
-    	</li>
-    	<li Class="PatchOperationAdd">
-      	<xpath>*/ThingDef[defName="Turret_Sniper"]</xpath>
-      	<value>
-        	<tradeTags />
-      	</value>
-    	</li>
-  	</operations>
-	</Operation>
-
-	<Operation Class="PatchOperationAdd">
-		<xpath>*/ThingDef[defName="Turret_Sniper"]/tradeTags</xpath>
-		<value>
-			<li>CE_Turret</li>
-		</value>
+ 	<Operation Class="PatchOperationRemove">
+		<xpath>*/ThingDef[defName="Turret_Sniper"]</xpath>
 	</Operation>
 
 	<!-- ========== Autocannon turret ========== -->
 
-	<Operation Class="PatchOperationReplace">
-		<xpath>*/ThingDef[defName="Turret_Autocannon"]/thingClass</xpath>
-		<value>
-			<thingClass>CombatExtended.Building_TurretGunCE</thingClass>
-		</value>
-	</Operation>
-
-	<Operation Class="PatchOperationReplace">
-		<xpath>*/ThingDef[defName="Turret_Autocannon"]/statBases/Mass</xpath>
-		<value>
-			<Mass>25</Mass>
-		</value>
-	</Operation>
-
 	<Operation Class="PatchOperationRemove">
-		<xpath>*/ThingDef[defName="Turret_Autocannon"]/comps/li[@Class = "CompProperties_Explosive"]</xpath>
-	</Operation>
-
-	<Operation Class="PatchOperationReplace">
-		<xpath>*/ThingDef[defName="Turret_Autocannon"]/fillPercent</xpath>
-		<value>
-			<fillPercent>0.85</fillPercent>
-		</value>
-	</Operation>
-
-	<!-- Add trade tags -->
-
-	<Operation Class="PatchOperationSequence">
-  	<success>Always</success>
-  	<operations>
-    	<li Class="PatchOperationTest">
-      	<xpath>*/ThingDef[defName="Turret_Autocannon"]/tradeTags</xpath>
-      	<success>Invert</success>
-    	</li>
-    	<li Class="PatchOperationAdd">
-      	<xpath>*/ThingDef[defName="Turret_Autocannon"]</xpath>
-      	<value>
-        	<tradeTags />
-      	</value>
-    	</li>
-  	</operations>
-	</Operation>
-
-	<Operation Class="PatchOperationAdd">
-		<xpath>*/ThingDef[defName="Turret_Autocannon"]/tradeTags</xpath>
-		<value>
-			<li>CE_Turret</li>
-		</value>
+		<xpath>*/ThingDef[defName="Turret_Autocannon"]</xpath>
 	</Operation>
 	
 	<!-- ========== Mortar Base ========== -->
