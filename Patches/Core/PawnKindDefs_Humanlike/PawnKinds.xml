@@ -3,19 +3,21 @@
 
 	<!-- ========== Mechanoid ========== -->
 
-  <Operation Class="PatchOperationRemove">
-  	<xpath>*/PawnKindDef[defName="Scyther"]/aiAvoidCover</xpath>
+  <Operation Class="PatchOperationAdd">
+  	<xpath>*/PawnKindDef[defName="Mech_Lancer"]</xpath>
+    <value>
+      <aiAvoidCover>false</aiAvoidCover>
+    </value>
   </Operation>
 
   <Operation Class="PatchOperationReplace">
-  	<xpath>*/PawnKindDef[defName="Centipede"]/combatPower</xpath>
+  	<xpath>*/PawnKindDef[defName="Mech_Centipede"]/combatPower</xpath>
   	<value>
   		<combatPower>580</combatPower>
   	</value>
   </Operation>
 
   <Operation Class="PatchOperationAddModExtension">
-  	<xpath>*/PawnKindDef[defName="Scyther" or defName="Centipede"]</xpath>
   	<value>
       <li Class="CombatExtended.LoadoutPropertiesExtension">
         <primaryMagazineCount>
