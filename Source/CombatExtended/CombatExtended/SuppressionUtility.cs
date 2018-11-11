@@ -125,7 +125,7 @@ namespace CombatExtended
                 || traits.DegreeOfTrait(TraitDefOf.Nerves) > 0
                 || traits.DegreeOfTrait((CE_TraitDefOf.Bravery)) > 1))
             {
-                breaks.Add(pawn.IsColonist?CE_MentalStateDefOf.WanderOwnRoom : MentalStateDefOf.PanicFlee);
+                breaks.Add(pawn.IsColonist? MentalStateDefOf.Wander_OwnRoom : MentalStateDefOf.PanicFlee);
                 breaks.Add(CE_MentalStateDefOf.ShellShock);
             }
 
