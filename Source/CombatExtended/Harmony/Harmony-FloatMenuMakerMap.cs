@@ -146,10 +146,7 @@ namespace CombatExtended.Harmony
                         {
                             if (count < item.stackCount)
                             {
-                                opts.Add(new FloatMenuOption("CannotPickUpAll".Translate(new object[]
-                                {
-                        item.Label
-                                }) + " (" + "CE_InventoryFull".Translate() + ")", null, MenuOptionPriority.Default, null, null, 0f, null, null));
+                                opts.Add(new FloatMenuOption("CannotPickUpAll".Translate(item.Label) + " (" + "CE_InventoryFull".Translate() + ")", null, MenuOptionPriority.Default, null, null, 0f, null, null));
                             }
                             else
                             {
