@@ -71,11 +71,11 @@ namespace CombatExtended
                 	height = edificeHeight;
                 }
                 
-                foreach (ThingCountClass fragment in Props.fragments)
+                foreach (ThingDefCountClass fragment in Props.fragments)
                 {
-                    for (int i = 0; i < fragment.Count; i++)
+                    for (int i = 0; i < fragment.count; i++)
                     {
-                        ProjectileCE projectile = (ProjectileCE)ThingMaker.MakeThing(fragment.thing.def, null);
+                        ProjectileCE projectile = (ProjectileCE)ThingMaker.MakeThing(fragment.thingDef, null);
                         GenSpawn.Spawn(projectile, posIV, map);
                         
                         projectile.canTargetSelf = true;
