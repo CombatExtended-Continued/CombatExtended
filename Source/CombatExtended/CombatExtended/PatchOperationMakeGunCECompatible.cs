@@ -89,11 +89,13 @@ namespace CombatExtended
             {
                 if (overrideExisting)
                 {
-                    var existingNode = destination.SelectSingleNode(current.Name);
-                    if (existingNode != null && existingNode.Value != null)
+                    var nodes = destination.SelectNodes(current.Name);
+                    if (nodes != null)
                     {
-                        existingNode.Value = current.Value;
-                        continue;
+                        foreach (XmlNode node in nodes)
+                        {
+                            destination.RemoveChild(node);
+                        }
                     }
                 }
                 destination.AppendChild(xml.ImportNode(current, true));
