@@ -475,10 +475,7 @@ namespace CombatExtended
             	if (ShooterPawn.story != null
 		  && ShooterPawn.story.WorkTagIsDisabled(WorkTags.Violent))
         	    {
-					report = "IsIncapableOfViolenceLower".Translate(new object[]
-					{
-						ShooterPawn.Name.ToStringShort
-                    });
+					report = "IsIncapableOfViolenceLower".Translate(ShooterPawn.Name.ToStringShort);
             		return false;
         	    }
             	

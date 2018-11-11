@@ -33,7 +33,7 @@ namespace CombatExtended.Harmony
                 if (verbCE != null)
                 {
                     stringBuilder.AppendLine();
-                    stringBuilder.Append("ShotBy".Translate(new object[] { Find.Selector.SingleSelectedThing.LabelShort }) + ":\n");
+                    stringBuilder.Append("ShotBy".Translate(Find.Selector.SingleSelectedThing.LabelShort) + ":\n");
                     string obstructReport;
                     if (verbCE.CanHitTarget(target, out obstructReport))
                     {
