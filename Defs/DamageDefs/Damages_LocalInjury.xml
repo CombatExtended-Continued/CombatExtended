@@ -13,13 +13,13 @@
     </additionalHediffs>
   </DamageDef>
 
-  <DamageDef ParentName="BulletDamage">
+  <DamageDef ParentName="Bullet">
     <defName>Fragment</defName>
     <label>fragment</label>
     <deathMessage>{0} has been shredded to death.</deathMessage>
     <hediff>Shredded</hediff>
     <hediffSolid>Crack</hediffSolid>
-    <spreadOut>true</spreadOut>
+	<minDamageToFragment>15</minDamageToFragment>
   </DamageDef>
 
   <DamageDef ParentName="Flame">
@@ -46,24 +46,29 @@
     <armorCategory>Sharp</armorCategory>
     <overkillPctToDestroyPart>0~0.7</overkillPctToDestroyPart>
     <scratchSplitPercentage>0.67</scratchSplitPercentage>
+    <modExtensions>
+      <li Class="CombatExtended.DamageDefExtensionCE">
+        <harmOnlyOutsideLayers>true</harmOnlyOutsideLayers>
+      </li>
+    </modExtensions>
   </DamageDef>
 
-  <DamageDef ParentName="BombDamage">
+  <DamageDef ParentName="Bomb">
     <defName>Bomb_Secondary</defName>
     <harmAllLayersUntilOutside>false</harmAllLayersUntilOutside>
-    <spreadOut>false</spreadOut>
   </DamageDef>
 
-  <DamageDef ParentName="BombDamage">
+  <DamageDef ParentName="Bomb">
     <defName>Thermobaric</defName>
     <label>thermobaric</label>
     <workerClass>DamageWorker_Flame</workerClass>
   </DamageDef>
 
-  <DamageDef ParentName="BurnDamage">
+  <DamageDef ParentName="Flame">
     <defName>Flame_Secondary</defName>
+    <label>burn</label>
+    <workerClass>DamageWorker_AddInjury</workerClass>
     <harmAllLayersUntilOutside>false</harmAllLayersUntilOutside>
-    <spreadOut>false</spreadOut>
   </DamageDef>
 
   <DamageDef>
