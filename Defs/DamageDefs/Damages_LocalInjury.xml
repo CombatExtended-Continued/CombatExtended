@@ -13,7 +13,7 @@
     </additionalHediffs>
   </DamageDef>
 
-  <DamageDef ParentName="BulletDamage">
+  <DamageDef ParentName="Bullet">
     <defName>Fragment</defName>
     <label>fragment</label>
     <deathMessage>{0} has been shredded to death.</deathMessage>
@@ -33,12 +33,14 @@
   </DamageDef>
   
   <!-- For scratches that have a lot of blunt force behind them, e.g. bear claws -->
-  <DamageDef ParentName="LocalInjuryBase">
+  <DamageDef>
     <defName>Slash</defName>
     <label>slash</label>
+	<workerClass>DamageWorker_AddInjury</workerClass>
     <externalViolence>true</externalViolence>
     <deathMessage>{0} has been torn to death.</deathMessage>
     <hediff>Scratch</hediff>
+    <hediffSkin>Scratch</hediffSkin>
     <hediffSolid>Crack</hediffSolid>
     <harmAllLayersUntilOutside>true</harmAllLayersUntilOutside>
     <impactSoundType>Slice</impactSoundType>
@@ -50,24 +52,27 @@
     </modExtensions>
   </DamageDef>
 
-  <DamageDef ParentName="BombDamage">
+  <DamageDef ParentName="Bomb">
     <defName>Bomb_Secondary</defName>
     <harmAllLayersUntilOutside>false</harmAllLayersUntilOutside>
   </DamageDef>
 
-  <DamageDef ParentName="BombDamage">
+  <DamageDef ParentName="Bomb">
     <defName>Thermobaric</defName>
     <label>thermobaric</label>
     <workerClass>DamageWorker_Flame</workerClass>
   </DamageDef>
 
-  <DamageDef ParentName="BurnDamage">
+  <DamageDef ParentName="Flame">
     <defName>Flame_Secondary</defName>
+    <label>burn</label>
+    <workerClass>DamageWorker_AddInjury</workerClass>
     <harmAllLayersUntilOutside>false</harmAllLayersUntilOutside>
   </DamageDef>
 
-  <DamageDef ParentName="LocalInjuryBase">
+  <DamageDef>
     <defName>Electrical</defName>
+	<workerClass>DamageWorker_AddInjury</workerClass>
     <label>electrical</label>
     <hasForcefulImpact>false</hasForcefulImpact>
     <makesBlood>false</makesBlood>
