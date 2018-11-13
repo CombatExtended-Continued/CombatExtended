@@ -43,23 +43,23 @@ namespace CombatExtended.Harmony
             int indexKeyCall = 0;
 
             // turn instructions into a list so we can walk through it variably (instead of forward only).
-            List<CodeInstruction> code = instructions.ToList();
-
+            List<CodeInstruction> codes = instructions.ToList();
+            
             // walk forward to find some key information.
-            for (int i = 0; i < code.Count(); i++)
+            for (int i = 0; i < codes.Count(); i++)
             {
                 // look for the verb instantiation/storage.
                 {
                     MethodBase method = null;
-                    if (code[i].opcode == OpCodes.Callvirt && (method = code[i].operand as MethodBase) != null && method.DeclaringType == typeof(Pawn) && method.Name == "TryGetAttackVerb"
-                        && code.Count() >= i + 1)
-                        verbLocalIndex = HarmonyBase.OpcodeStoreIndex(code[i + 1]);
+                    if (codes[i].opcode == OpCodes.Callvirt && (method = codes[i].operand as MethodBase) != null && method.DeclaringType == typeof(Pawn) && method.Name == $"get_{nameof(Pawn.CurrentEffectiveVerb)}"
+                        && codes.Count() >= i + 1)
+                        verbLocalIndex = HarmonyBase.OpcodeStoreIndex(codes[i + 1]);
                 }
 
                 // see if we've found the instruction index of the key call.
-                if (code[i].opcode == OpCodes.Call && (code[i].operand as MethodInfo) != null)
+                if (codes[i].opcode == OpCodes.Call && (codes[i].operand as MethodInfo) != null)
                 {
-                   MethodInfo method = code[i].operand as MethodInfo;
+                    MethodInfo method = codes[i].operand as MethodInfo;
                     if (method.DeclaringType == typeof(AttackTargetFinder) && method.Name == "BestShootTargetFromCurrentPosition")
                     {
                         indexKeyCall = i;
@@ -71,16 +71,16 @@ namespace CombatExtended.Harmony
             // walk backwards from the key call to locate the null load and replace it with our call to drop in our predicate into the arg stack.
             for (int i = indexKeyCall; i >= 0; i--)
             {
-                if (code[i].opcode == OpCodes.Ldnull)
+                if (codes[i].opcode == OpCodes.Ldnull)
                 {
                     CodeInstruction tmp = HarmonyBase.MakeLocalLoadInstruction(verbLocalIndex);
-                    code[i++] = HarmonyBase.MakeLocalLoadInstruction(verbLocalIndex);
-                    code.Insert(i, new CodeInstruction(OpCodes.Call, typeof(Harmony_JobDriverWait_CheckForAutoAttack).GetMethod("GetValidTargetPredicate", AccessTools.all)));
+                    codes[i++] = HarmonyBase.MakeLocalLoadInstruction(verbLocalIndex);
+                    codes.Insert(i, new CodeInstruction(OpCodes.Call, typeof(Harmony_JobDriverWait_CheckForAutoAttack).GetMethod("GetValidTargetPredicate", AccessTools.all)));
                     break;
                 }
             }
 
-            return code;
+            return codes;
         }
 
         /// <summary>

@@ -151,7 +151,9 @@ namespace CombatExtended.Harmony
          *  Using the label is important as otherwise the tooltip would only show up when the user clicked on the button.
          */
 
+        // Temporarily disabled until we can fix it for 1.0 -NIA
         // concept here is to replicate the changes in PawnColumnWorker_Loadout.DoCell but in IL.
+        /*
         [HarmonyTranspiler]
         static IEnumerable<CodeInstruction> Transpiler(IEnumerable<CodeInstruction> instructions, ILGenerator il, MethodBase orgMethod)
         {
@@ -397,6 +399,7 @@ namespace CombatExtended.Harmony
                     yield return instruction;
             }
         }
+        */
 
         /// <summary>
         /// This is a helper method inserted by the transpiler above.  This handles creating the tooltip since doing that in IL would be hard for others to maintain.
