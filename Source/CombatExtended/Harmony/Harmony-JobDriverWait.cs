@@ -51,7 +51,7 @@ namespace CombatExtended.Harmony
                 // look for the verb instantiation/storage.
                 {
                     MethodBase method = null;
-                    if (codes[i].opcode == OpCodes.Callvirt && (method = codes[i].operand as MethodBase) != null && method.DeclaringType == typeof(Pawn) && method.Name == "get_CurrentEffectiveVerb"
+                    if (codes[i].opcode == OpCodes.Callvirt && (method = codes[i].operand as MethodBase) != null && method.DeclaringType == typeof(Pawn) && method.Name == $"get_{nameof(Pawn.CurrentEffectiveVerb)}"
                         && codes.Count() >= i + 1)
                         verbLocalIndex = HarmonyBase.OpcodeStoreIndex(codes[i + 1]);
                 }
