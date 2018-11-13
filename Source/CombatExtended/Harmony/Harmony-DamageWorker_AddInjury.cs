@@ -19,7 +19,6 @@ namespace CombatExtended.Harmony
 
         private static void ArmorReroute(Pawn pawn, ref DamageInfo dinfo, out bool deflectedByArmor, out bool diminishedByArmor)
         {
-            Log.Message("CE :: ArmorReroute");
             var newDinfo = ArmorUtilityCE.GetAfterArmorDamage(dinfo, pawn, dinfo.HitPart, out deflectedByArmor, out diminishedByArmor, out shieldAbsorbed);
             if (dinfo.HitPart != newDinfo.HitPart)
             {

@@ -127,12 +127,12 @@ namespace CombatExtended.Harmony
                         }
                         else if (!compInventory.CanFitInInventory(item, out count))
                         {
-                            opts.Add(new FloatMenuOption("CannotPickUp".Translate(item.LabelShort) + " (" + "CE_InventoryFull".Translate() + ")", null));
+                            opts.Add(new FloatMenuOption("CannotPickUp".Translate(item.LabelShort, item) + " (" + "CE_InventoryFull".Translate() + ")", null));
                         }
                         // Pick up x
                         else if (count == 1)
                         {
-                            opts.Add(FloatMenuUtility.DecoratePrioritizedTask(new FloatMenuOption("PickUp".Translate(item.Label), delegate
+                            opts.Add(FloatMenuUtility.DecoratePrioritizedTask(new FloatMenuOption("PickUp".Translate(item.Label, item), delegate
                             {
                                 item.SetForbidden(false, false);
                                 Job job = new Job(JobDefOf.TakeInventory, item);
@@ -146,11 +146,11 @@ namespace CombatExtended.Harmony
                         {
                             if (count < item.stackCount)
                             {
-                                opts.Add(new FloatMenuOption("CannotPickUpAll".Translate(item.Label) + " (" + "CE_InventoryFull".Translate() + ")", null, MenuOptionPriority.Default, null, null, 0f, null, null));
+                                opts.Add(new FloatMenuOption("CannotPickUpAll".Translate(item.Label, item) + " (" + "CE_InventoryFull".Translate() + ")", null, MenuOptionPriority.Default, null, null, 0f, null, null));
                             }
                             else
                             {
-                                opts.Add(FloatMenuUtility.DecoratePrioritizedTask(new FloatMenuOption("PickUpAll".Translate(item.Label), delegate
+                                opts.Add(FloatMenuUtility.DecoratePrioritizedTask(new FloatMenuOption("PickUpAll".Translate(item.Label, item), delegate
                                 {
                                     item.SetForbidden(false, false);
                                     Job job = new Job(JobDefOf.TakeInventory, item);
@@ -160,10 +160,10 @@ namespace CombatExtended.Harmony
                                     PlayerKnowledgeDatabase.KnowledgeDemonstrated(CE_ConceptDefOf.CE_InventoryWeightBulk, KnowledgeAmount.SpecificInteraction);
                                 }, MenuOptionPriority.High, null, null, 0f, null, null), pawn, item, "ReservedBy"));
                             }
-                            opts.Add(FloatMenuUtility.DecoratePrioritizedTask(new FloatMenuOption("PickUpSome".Translate(item.Label), delegate
+                            opts.Add(FloatMenuUtility.DecoratePrioritizedTask(new FloatMenuOption("PickUpSome".Translate(item.Label, item), delegate
                             {
                                 int to = Mathf.Min(count, item.stackCount);
-                                Dialog_Slider window = new Dialog_Slider("PickUpCount".Translate(item.LabelShort), 1, to, delegate (int selectCount)
+                                Dialog_Slider window = new Dialog_Slider("PickUpCount".Translate(item.LabelShort, item), 1, to, delegate (int selectCount)
                                 {
                                     item.SetForbidden(false, false);
                                     Job job = new Job(JobDefOf.TakeInventory, item);
