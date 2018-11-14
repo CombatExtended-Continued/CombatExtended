@@ -280,7 +280,7 @@ namespace CombatExtended
             // ----------------------------------- STEP 5: Finalization
             
             var w = (newTargetLoc - sourceLoc);
-            shotRotation = (90 + Mathf.Rad2Deg * Mathf.Atan2(-w.y, w.x) + rotationDegrees + spreadVec.x) % 360;
+            shotRotation = (-90 + Mathf.Rad2Deg * Mathf.Atan2(-w.y, w.x) + rotationDegrees + spreadVec.x) % 360;
             shotAngle = angleRadians + spreadVec.y * Mathf.Deg2Rad;
         }
 
@@ -587,7 +587,7 @@ namespace CombatExtended
                 resultingLine = default(ShootLine);
                 return false;
             }
-            if (this.verbProps.EffectiveMinRange(targ, this.caster) <= ShootTuning.MeleeRange) //This means we are in melee range!
+            if (this.verbProps.range <= ShootTuning.MeleeRange) // If this verb has a MAX range up to melee range (NOT a MIN RANGE!)
             {
                 resultingLine = new ShootLine(root, targ.Cell);
                 return ReachabilityImmediate.CanReachImmediate(root, targ, this.caster.Map, PathEndMode.Touch, null);
@@ -640,6 +640,7 @@ namespace CombatExtended
                 }
             }
             resultingLine = new ShootLine(root, targ.Cell);
+
             return false;
         }
 
