@@ -285,7 +285,7 @@ namespace CombatExtended
         {
             get
             {
-            	return Quaternion.AngleAxis(shotRotation, Vector3.up);
+            	return Quaternion.AngleAxis(shotRotation, Vector3.down);
             }
         }
         #endregion

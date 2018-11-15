@@ -93,10 +93,16 @@ namespace CombatExtended
             else
             {
                 SoundDefOf.BulletImpact_Ground.PlayOneShot(new TargetInfo(base.Position, map, false));
-                
-                //Only display a dirt hit for projectiles with a dropshadow
+
+                //Only display a dirt/water hit for projectiles with a dropshadow
                 if (base.castShadow)
-                	MoteMaker.MakeStaticMote(ExactPosition, map, ThingDefOf.Mote_ShotHit_Dirt, 1f);
+                { 
+                    MoteMaker.MakeStaticMote(this.ExactPosition, map, ThingDefOf.Mote_ShotHit_Dirt, 1f);
+                    if (base.Position.GetTerrain(map).takeSplashes)
+                    {
+                        MoteMaker.MakeWaterSplash(this.ExactPosition, map, Mathf.Sqrt(def.projectile.GetDamageAmount(this.launcher)) * 1f, 4f);
+                    }
+                }
             }
             base.Impact(hitThing);
         }
