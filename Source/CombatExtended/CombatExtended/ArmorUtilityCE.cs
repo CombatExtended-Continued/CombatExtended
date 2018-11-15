@@ -32,9 +32,9 @@ namespace CombatExtended
         /// <param name="originalDinfo">The pre-armor damage info</param>
         /// <param name="pawn">The damaged pawn</param>
         /// <param name="hitPart">The pawn's body part that has been hit</param>
-        /// <param name="armorReduced">Whether original damage was reduced by armor</param>
+        /// <param name="armorReduced">Whether sharp damage was deflected by armor</param>
         /// <param name="shieldAbsorbed">Returns true if attack did not penetrate pawn's melee shield</param>
-        /// <param name="armorDeflected">Whether the attack was deflected or completely absorbed by the armor</param>
+        /// <param name="armorDeflected">Whether the attack was completely absorbed by the armor</param>
         /// <returns>If shot is deflected returns a new dinfo cloned from the original with damage amount, Def and ForceHitPart adjusted for deflection, otherwise a clone with only the damage adjusted</returns>
         public static DamageInfo GetAfterArmorDamage(DamageInfo originalDinfo, Pawn pawn, BodyPartRecord hitPart, out bool armorDeflected, out bool armorReduced, out bool shieldAbsorbed)
         {
@@ -53,7 +53,7 @@ namespace CombatExtended
             if (isAmbientDamage)
             {
                 dinfo.SetAmount(Mathf.CeilToInt(GetAmbientPostArmorDamage(dmgAmount, originalDinfo.Def.armorCategory.armorRatingStat, pawn, hitPart)));
-                armorReduced = dinfo.Amount < originalDinfo.Amount;
+                armorDeflected = dinfo.Amount <= 0;
                 return dinfo;
             }
 
@@ -119,7 +119,7 @@ namespace CombatExtended
                         && !TryPenetrateArmor(dinfo.Def, apparel[i].GetStatValue(dinfo.Def.armorCategory.armorRatingStat), ref penAmount, ref dmgAmount, apparel[i]))
                     {
                         // Hit was deflected, convert damage type
-                        armorDeflected = true;
+                        //armorReduced = true;
                         dinfo = GetDeflectDamageInfo(dinfo, hitPart);
                         i++;    // We apply this piece of apparel twice on conversion, this means we can't use deflection on Blunt or else we get an infinite loop of eternal deflection
                     }
@@ -175,7 +175,6 @@ namespace CombatExtended
             }
 
             dinfo.SetAmount(Mathf.CeilToInt(dmgAmount));
-            armorReduced = dinfo.Amount < originalDinfo.Amount;
             return dinfo;
         }
 

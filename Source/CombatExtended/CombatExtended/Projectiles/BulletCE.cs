@@ -47,14 +47,14 @@ namespace CombatExtended
             if (hitThing != null)
             {
                 // launcher being the pawn equipping the weapon, not the weapon itself
-                int damageAmountBase = def.projectile.GetDamageAmount(CE_Utility.GetWeaponFromLauncher(launcher));
+                int damageAmountBase = def.projectile.GetDamageAmount(1);
                 DamageDefExtensionCE damDefCE = def.projectile.damageDef.GetModExtension<DamageDefExtensionCE>() ?? new DamageDefExtensionCE();
-                var projectilePropsCE = def.projectile as ProjectilePropertiesCE;
+                var projectilePropsCE = (ProjectilePropertiesCE)def.projectile;
 
                 DamageInfo dinfo = new DamageInfo(
                     def.projectile.damageDef,
                     damageAmountBase,
-                    projectilePropsCE.armorPenetration, //Armor Penetration
+                    projectilePropsCE.GetArmorPenetration(1), //Armor Penetration
                     ExactRotation.eulerAngles.y,
                     launcher,
                     null,
@@ -80,7 +80,7 @@ namespace CombatExtended
                         var secDinfo = new DamageInfo(
                             cur.def,
                             cur.amount,
-                            projectilePropsCE.armorPenetration, //Armor Penetration
+                            projectilePropsCE.GetArmorPenetration(1), //Armor Penetration
                             ExactRotation.eulerAngles.y,
                             launcher,
                             null,
