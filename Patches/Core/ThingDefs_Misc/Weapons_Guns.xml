@@ -1579,17 +1579,12 @@
 
 <!-- Disable Charge Lance for Player -->
 	<Operation Class="PatchOperationRemove">
-		<xpath>*/ThingDef[defName="Gun_ChargeLance"]/recipeMaker</xpath>
+		<xpath>/Defs/ThingDef[defName="Gun_ChargeLance"]/recipeMaker</xpath>
 	</Operation>
 
-	<Operation Class="PatchOperationReplace">
-		<xpath>*/ThingDef[defName="Gun_ChargeLance"]/weaponTags</xpath>
-			<value>
-				<weaponTags>
-				  <li>MechanoidGunMedium</li>
-				</weaponTags>
-			</value>
-	</Operation>	
+	<Operation Class="PatchOperationRemove">
+		<xpath>/Defs/ThingDef[defName="Gun_ChargeLance"]/weaponTags/li[contains(.,"SpacerGun")]</xpath>
+	</Operation>
 	
 </Patch>
 
