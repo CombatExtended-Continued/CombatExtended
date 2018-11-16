@@ -1548,5 +1548,14 @@
     </value>
   </Operation>
 
+<!-- Disable Charge Lance for Player -->
+	<Operation Class="PatchOperationRemove">
+		<xpath>/Defs/ThingDef[defName="Gun_ChargeLance"]/recipeMaker</xpath>
+	</Operation>
+
+	<Operation Class="PatchOperationRemove">
+		<xpath>/Defs/ThingDef[defName="Gun_ChargeLance"]/weaponTags/li[contains(.,"SpacerGun")]</xpath>
+	</Operation>
+	
 </Patch>
 
