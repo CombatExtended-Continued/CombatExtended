@@ -119,7 +119,7 @@ namespace CombatExtended
                 projectile.logMisses = false;
                 projectile.Launch(this,
                     new Vector2(DrawPos.x, DrawPos.z),
-                    UnityEngine.Random.Range(0, Mathf.PI / 2f),
+                    Mathf.Acos(2 * UnityEngine.Random.Range(0.5f, 1f) - 1),
                     UnityEngine.Random.Range(0, 360),
                     0.1f,
                     AmmoDef.cookOffProjectile.projectile.speed * AmmoDef.cookOffSpeed,
