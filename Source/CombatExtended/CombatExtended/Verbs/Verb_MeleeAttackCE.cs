@@ -279,7 +279,7 @@ namespace CombatExtended
             */
             //END 1:1 COPY
             // Apply critical damage
-            if (isCrit && verbProps.meleeDamageDef.armorCategory == CE_DamageArmorCategoryDefOf.Blunt)
+            if (isCrit && !CasterPawn.def.race.Animal && !(verbProps.meleeDamageDef.armorCategory == DamageArmorCategoryDefOf.Sharp))
             {
                 var critAmount = GenMath.RoundRandom(mainDinfo.Amount * 0.25f);
                 var critDinfo = new DamageInfo(DamageDefOf.Stun, critAmount, armorPenetration, //Ignore armor //armorPenetration, //Armor Penetration
