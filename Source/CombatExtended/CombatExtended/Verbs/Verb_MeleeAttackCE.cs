@@ -202,11 +202,9 @@ namespace CombatExtended
         /// <returns>Collection with primary DamageInfo, followed by secondary types</returns>
         private IEnumerable<DamageInfo> DamageInfosToApply(LocalTargetInfo target, bool isCrit = false)
         {
-            var isSharpCrit = verbProps.meleeDamageDef.armorCategory == DamageArmorCategoryDefOf.Sharp;
-
             //START 1:1 COPY Verb_MeleeAttack.DamageInfosToApply
             float damAmount = this.verbProps.AdjustedMeleeDamageAmount(this, base.CasterPawn);
-            float armorPenetration = (isSharpCrit ? 2 : 1) * this.verbProps.AdjustedArmorPenetration(this, base.CasterPawn);
+            float armorPenetration = (isCrit && verbProps.meleeDamageDef.armorCategory == DamageArmorCategoryDefOf.Sharp ? 2 : 1) * this.verbProps.AdjustedArmorPenetration(this, base.CasterPawn);
             DamageDef damDef = verbProps.meleeDamageDef;
             BodyPartGroupDef bodyPartGroupDef = null;
             HediffDef hediffDef = null;
@@ -281,7 +279,7 @@ namespace CombatExtended
             */
             //END 1:1 COPY
             // Apply critical damage
-            if (isCrit && !isSharpCrit)
+            if (isCrit && verbProps.meleeDamageDef.armorCategory == CE_DamageArmorCategoryDefOf.Blunt)
             {
                 var critAmount = GenMath.RoundRandom(mainDinfo.Amount * 0.25f);
                 var critDinfo = new DamageInfo(DamageDefOf.Stun, critAmount, armorPenetration, //Ignore armor //armorPenetration, //Armor Penetration
