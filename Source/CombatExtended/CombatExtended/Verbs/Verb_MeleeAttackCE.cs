@@ -53,20 +53,6 @@ namespace CombatExtended
 
         bool isCrit;
 
-        DamageDef CritDamageDef
-        {
-            get
-            {
-                if (CasterPawn.def.race.Animal)
-                    return verbProps.meleeDamageDef;
-                if (verbProps.meleeDamageDef.armorCategory == CE_DamageArmorCategoryDefOf.Blunt)
-                {
-                    return DamageDefOf.Stun;
-                }
-                return DefDatabase<DamageDef>.GetNamed(verbProps.meleeDamageDef.defName + "_Critical");
-            }
-        }
-
         #endregion
 
         #region Methods
@@ -216,11 +202,10 @@ namespace CombatExtended
         /// <returns>Collection with primary DamageInfo, followed by secondary types</returns>
         private IEnumerable<DamageInfo> DamageInfosToApply(LocalTargetInfo target, bool isCrit = false)
         {
-            var critDamDef = CritDamageDef;
             //START 1:1 COPY Verb_MeleeAttack.DamageInfosToApply
             float damAmount = this.verbProps.AdjustedMeleeDamageAmount(this, base.CasterPawn);
-            float armorPenetration = this.verbProps.AdjustedArmorPenetration(this, base.CasterPawn);
-            DamageDef damDef = isCrit && critDamDef != DamageDefOf.Stun ? critDamDef : verbProps.meleeDamageDef; //Alteration	//Added isCrit check
+            float armorPenetration = (isCrit && verbProps.meleeDamageDef.armorCategory == DamageArmorCategoryDefOf.Sharp && !CasterPawn.def.race.Animal ? 2 : 1) * this.verbProps.AdjustedArmorPenetration(this, base.CasterPawn);
+            DamageDef damDef = verbProps.meleeDamageDef;
             BodyPartGroupDef bodyPartGroupDef = null;
             HediffDef hediffDef = null;
             damAmount = Rand.Range(damAmount * 0.8f, damAmount * 1.2f);
@@ -294,10 +279,10 @@ namespace CombatExtended
             */
             //END 1:1 COPY
             // Apply critical damage
-            if (isCrit && critDamDef == DamageDefOf.Stun)
+            if (isCrit && !CasterPawn.def.race.Animal && !(verbProps.meleeDamageDef.armorCategory == DamageArmorCategoryDefOf.Sharp))
             {
                 var critAmount = GenMath.RoundRandom(mainDinfo.Amount * 0.25f);
-                var critDinfo = new DamageInfo(critDamDef, critAmount, float.MaxValue, //Ignore armor //armorPenetration, //Armor Penetration
+                var critDinfo = new DamageInfo(DamageDefOf.Stun, critAmount, armorPenetration, //Ignore armor //armorPenetration, //Armor Penetration
                     -1, caster, null, source);
                 critDinfo.SetBodyRegion(bodyRegion, BodyPartDepth.Outside);
                 critDinfo.SetWeaponBodyPartGroup(bodyPartGroupDef);
