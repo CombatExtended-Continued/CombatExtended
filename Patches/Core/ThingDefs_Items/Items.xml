@@ -19,7 +19,6 @@
 		<value>
 			<tools>
 				<li Class="CombatExtended.ToolCE">
-					<id>edge</id>
 					<label>edge</label>
 					<capacities>
 						<li>Cut</li>
@@ -30,7 +29,6 @@
 					<linkedBodyPartsGroup>Edge</linkedBodyPartsGroup>
 				</li>
 				<li Class="CombatExtended.ToolCE">
-					<id>point</id>
 					<label>point</label>
 					<capacities>
 						<li>Stab</li>
@@ -79,7 +77,6 @@
 		<value>
 			<tools>
 				<li Class="CombatExtended.ToolCE">
-					<id>edge</id>
 					<label>edge</label>
 					<capacities>
 						<li>Cut</li>
@@ -90,7 +87,6 @@
 					<linkedBodyPartsGroup>Edge</linkedBodyPartsGroup>
 				</li>
 				<li Class="CombatExtended.ToolCE">
-					<id>point</id>
 					<label>point</label>
 					<capacities>
 						<li>Stab</li>
@@ -186,10 +182,7 @@
 		<xpath>*/ThingDef[defName="Plasteel"]/stuffProps</xpath>
 		<value>
 			<statOffsets>
-			  <ArmorRating_Blunt>0.0</ArmorRating_Blunt>
 			  <ArmorRating_Sharp>0.18</ArmorRating_Sharp>
-			  <ArmorRating_Heat>0</ArmorRating_Heat>
-			  <ArmorRating_Electric>0.0</ArmorRating_Electric>
 			</statOffsets>
 		</value>
 	</Operation>
@@ -312,10 +305,12 @@
 	</Operation>
 
 	<Operation Class="PatchOperationAdd">
-		<xpath>*/ThingDef[defName="DevilstrandCloth"]/stuffProps/statOffsets</xpath>
+		<xpath>*/ThingDef[defName="DevilstrandCloth"]/stuffProps</xpath>
 		<value>
-			<Mass>0.5</Mass>
-			<WornBulk>0.5</WornBulk>
+			<statOffsets>
+				<Mass>0.5</Mass>
+				<WornBulk>0.5</WornBulk>
+			</statOffsets>
 		</value>
 	</Operation>
 
@@ -337,10 +332,12 @@
 	</Operation>
 
 	<Operation Class="PatchOperationAdd">
-		<xpath>*/ThingDef[defName="Hyperweave"]/stuffProps/statOffsets</xpath>
+		<xpath>*/ThingDef[defName="Hyperweave"]/stuffProps</xpath>
 		<value>
-			<Mass>0.75</Mass>
-			<WornBulk>0.5</WornBulk>
+			<statOffsets>
+				<Mass>0.75</Mass>
+				<WornBulk>0.5</WornBulk>
+			</statOffsets>
 		</value>
 	</Operation>
 

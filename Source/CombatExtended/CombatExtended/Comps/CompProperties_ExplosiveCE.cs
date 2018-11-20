@@ -11,12 +11,12 @@ namespace CombatExtended
     public class CompProperties_ExplosiveCE : CompProperties
     {
         public float explosionDamage = -1;
-        public List<ThingCountClass> fragments = new List<ThingCountClass>();
+        public List<ThingDefCountClass> fragments = new List<ThingDefCountClass>();
         public float fragRange = 0f;
         public float fragSpeedFactor = 1f;
 
         public float explosionRadius = 0f;
-        public DamageDef explosionDamageDef = DamageDefOf.Bomb;
+        public DamageDef explosionDamageDef;
         // instigator
         public SoundDef soundExplode = null;
         // projectile = parent.def
@@ -33,5 +33,14 @@ namespace CombatExtended
         {
             compClass = typeof(CompExplosiveCE);
         }
+		
+		public override void ResolveReferences(ThingDef parentDef)
+		{
+			base.ResolveReferences(parentDef);
+			if (this.explosionDamageDef == null)
+			{
+				this.explosionDamageDef = DamageDefOf.Bomb;
+			}
+		}
     }
 }

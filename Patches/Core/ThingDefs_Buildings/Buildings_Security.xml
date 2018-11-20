@@ -17,57 +17,60 @@
 		</value>
 	</Operation>
 
-	<!-- ========== Improvised turret ========== -->
+	<!-- ========== Mini-turret ========== -->
 
 	<Operation Class="PatchOperationReplace">
-		<xpath>*/ThingDef[defName="TurretGun"]/thingClass</xpath>
+		<xpath>*/ThingDef[defName="Turret_MiniTurret"]/thingClass</xpath>
 		<value>
 			<thingClass>CombatExtended.Building_TurretGunCE</thingClass>
 		</value>
 	</Operation>
 
 	<Operation Class="PatchOperationAdd">
-		<xpath>*/ThingDef[defName="TurretGun"]/statBases</xpath>
+		<xpath>*/ThingDef[defName="Turret_MiniTurret"]/statBases</xpath>
 		<value>
 			<AimingAccuracy>0.25</AimingAccuracy>
-			<ShootingAccuracy>0.5</ShootingAccuracy>
 		</value>
 	</Operation>
 
 	<Operation Class="PatchOperationReplace">
-		<xpath>*/ThingDef[defName="TurretGun"]/statBases/Mass</xpath>
+		<xpath>*/ThingDef[defName="Turret_MiniTurret"]/statBases/ShootingAccuracyTurret</xpath>
+		<value>
+			<ShootingAccuracyTurret>0.5</ShootingAccuracyTurret>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>*/ThingDef[defName="Turret_MiniTurret"]/statBases/Mass</xpath>
 		<value>
 			<Mass>25</Mass>
 		</value>
 	</Operation>
 
-	<Operation Class="PatchOperationReplace">
-		<xpath>*/ThingDef[defName="TurretGun"]/label</xpath>
-		<value>
-			<label>auto-turret</label>
-		</value>
+	<Operation Class="PatchOperationRemove">
+		<xpath>*/ThingDef[defName="Turret_MiniTurret"]/comps/li[@Class = "CompProperties_Explosive"]</xpath>
 	</Operation>
 
 	<Operation Class="PatchOperationRemove">
-		<xpath>*/ThingDef[defName="TurretGun"]/comps/li[@Class = "CompProperties_Explosive"]</xpath>
+		<xpath>*/ThingDef[defName="Turret_MiniTurret"]/comps/li[@Class = "CompProperties_Refuelable"]</xpath>
 	</Operation>
 
 	<Operation Class="PatchOperationReplace">
-		<xpath>*/ThingDef[defName="TurretGun"]/fillPercent</xpath>
+		<xpath>*/ThingDef[defName="Turret_MiniTurret"]/fillPercent</xpath>
 		<value>
 			<fillPercent>0.85</fillPercent>
 		</value>
 	</Operation>
 
 	<Operation Class="PatchOperationReplace">
-		<xpath>*/ThingDef[defName="TurretGun"]/specialDisplayRadius</xpath>
+		<xpath>*/ThingDef[defName="Turret_MiniTurret"]/specialDisplayRadius</xpath>
 		<value>
 			<specialDisplayRadius>27</specialDisplayRadius>
 		</value>
 	</Operation>
 
 	<Operation Class="PatchOperationReplace">
-		<xpath>*/ThingDef[defName="TurretGun"]/building/turretBurstCooldownTime</xpath>
+		<xpath>*/ThingDef[defName="Turret_MiniTurret"]/building/turretBurstCooldownTime</xpath>
 		<value>
 			<turretBurstCooldownTime>1.1</turretBurstCooldownTime>
 		</value>
@@ -79,11 +82,11 @@
   	<success>Always</success>
   	<operations>
     	<li Class="PatchOperationTest">
-      	<xpath>*/ThingDef[defName="TurretGun"]/tradeTags</xpath>
+      	<xpath>*/ThingDef[defName="Turret_MiniTurret"]/tradeTags</xpath>
       	<success>Invert</success>
     	</li>
     	<li Class="PatchOperationAdd">
-      	<xpath>*/ThingDef[defName="TurretGun"]</xpath>
+      	<xpath>*/ThingDef[defName="Turret_MiniTurret"]</xpath>
       	<value>
         	<tradeTags />
       	</value>
@@ -92,7 +95,7 @@
 	</Operation>
 
 	<Operation Class="PatchOperationAdd">
-		<xpath>*/ThingDef[defName="TurretGun"]/tradeTags</xpath>
+		<xpath>*/ThingDef[defName="Turret_MiniTurret"]/tradeTags</xpath>
 		<value>
 			<li>CE_Turret</li>
 		</value>
@@ -102,28 +105,40 @@
 
 <!--
 	<Operation Class="PatchOperationReplace">
-		<xpath>*/ThingDef[defName="TurretGun"]/costList/Steel</xpath>
+		<xpath>*/ThingDef[defName="Turret_MiniTurret"]/costList/Steel</xpath>
 		<value>
 			<Steel>175</Steel>
 		</value>
 	</Operation>
 
 	<Operation Class="PatchOperationReplace">
-		<xpath>*/ThingDef[defName="TurretGun"]/costList/ComponentIndustrial</xpath>
+		<xpath>*/ThingDef[defName="Turret_MiniTurret"]/costList/ComponentIndustrial</xpath>
 		<value>
 			<ComponentIndustrial>8</ComponentIndustrial>
 		</value>
 	</Operation>
 
 	<Operation Class="PatchOperationRemove">
-		<xpath>*/ThingDef[defName="TurretGun"]/stuffCategories</xpath>
+		<xpath>*/ThingDef[defName="Turret_MiniTurret"]/stuffCategories</xpath>
 	</Operation>
 
 	<Operation Class="PatchOperationRemove">
-		<xpath>*/ThingDef[defName="TurretGun"]/costStuffCount</xpath>
+		<xpath>*/ThingDef[defName="Turret_MiniTurret"]/costStuffCount</xpath>
 	</Operation>
 -->
 
+	<!-- ========== Sniper turret ========== -->
+
+ 	<Operation Class="PatchOperationRemove">
+		<xpath>*/ThingDef[defName="Turret_Sniper"]</xpath>
+	</Operation>
+
+	<!-- ========== Autocannon turret ========== -->
+
+	<Operation Class="PatchOperationRemove">
+		<xpath>*/ThingDef[defName="Turret_Autocannon"]</xpath>
+	</Operation>
+	
 	<!-- ========== Mortar Base ========== -->
 
 	<!-- Patch weapon -->

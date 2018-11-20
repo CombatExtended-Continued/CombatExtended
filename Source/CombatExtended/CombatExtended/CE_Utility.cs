@@ -223,6 +223,8 @@ namespace CombatExtended
         /// </summary>
         /// <param name="launcher">The equipper of the weapon that launched the projectile</param>
         /// <returns>Weapon if one is found, null if not</returns>
+        /*
+         * Fundamentally broken - will null ref if launcher pawn drops equipment in-between firing the projectile and it impacting -NIA
         public static Thing GetWeaponFromLauncher(Thing launcher)
         {
             if (launcher is Pawn pawn)
@@ -231,6 +233,7 @@ namespace CombatExtended
                 return turretCE.Gun;
             return null;
         }
+        */
 
         #endregion Misc
 

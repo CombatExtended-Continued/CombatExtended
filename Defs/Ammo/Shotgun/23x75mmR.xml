@@ -70,7 +70,7 @@
   <ThingDef Class="CombatExtended.AmmoDef" ParentName="23x75mmRBase">
     <defName>Ammo_23x75mmR_Beanbag</defName>
     <label>23x75mmR shell (Bean)</label>
-	<canBeSpawningInventory>false</canBeSpawningInventory>
+	<generateAllowChance>0</generateAllowChance>
     <graphicData>
       <texPath>Things/Ammo/Shotgun/Beanbag</texPath>
       <graphicClass>Graphic_StackCount</graphicClass>
@@ -99,11 +99,11 @@
 	<!-- ================== Projectiles ================== -->
 
 	<ThingDef Class="CombatExtended.AmmoDef" Name="Base23x75mmRBullet" ParentName="BaseBullet" Abstract="true">
-		<projectile>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
 			<damageDef>Bullet</damageDef>
 			<speed>83</speed>
-			<!-- <dropsCasings>true</dropsCasings> -->
-			<!-- <casingMoteDefname>Mote_ShotgunShell</casingMoteDefname> -->
+			<dropsCasings>true</dropsCasings>
+			<casingMoteDefname>Mote_ShotgunShell</casingMoteDefname>
 		</projectile>
 	</ThingDef>
 	
@@ -114,7 +114,7 @@
 			<texPath>Things/Projectile/Shotgun_Pellet</texPath>
 			<graphicClass>Graphic_Single</graphicClass>
 		</graphicData>
-		<projectile>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
 			<damageAmountBase>9</damageAmountBase>
 			<pelletCount>12</pelletCount>
 			<armorPenetrationBase>0.249</armorPenetrationBase>
@@ -129,7 +129,7 @@
 			<texPath>Things/Projectile/Bullet_big</texPath>
 			<graphicClass>Graphic_Single</graphicClass>
 		</graphicData>
-		<projectile>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
 			<damageAmountBase>53</damageAmountBase>
 			<armorPenetrationBase>0.503</armorPenetrationBase>
 		</projectile>
@@ -142,7 +142,7 @@
 			<texPath>Things/Projectile/Bullet_big</texPath>
 			<graphicClass>Graphic_Single</graphicClass>
 		</graphicData>
-		<projectile>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
 			<speed>20</speed>
 			<damageDef>Beanbag</damageDef>
 			<damageAmountBase>7</damageAmountBase>
@@ -158,7 +158,7 @@
 			<texPath>Things/Projectile/Bullet_big</texPath>
 			<graphicClass>Graphic_Single</graphicClass>
 		</graphicData>
-		<projectile>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
 			<damageDef>EMP</damageDef>
 			<damageAmountBase>21</damageAmountBase>
 		</projectile>

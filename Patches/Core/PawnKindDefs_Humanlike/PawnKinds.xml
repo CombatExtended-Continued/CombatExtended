@@ -3,19 +3,22 @@
 
 	<!-- ========== Mechanoid ========== -->
 
-  <Operation Class="PatchOperationRemove">
-  	<xpath>*/PawnKindDef[defName="Scyther"]/aiAvoidCover</xpath>
+  <Operation Class="PatchOperationAdd">
+  	<xpath>*/PawnKindDef[defName="Mech_Lancer"]</xpath>
+    <value>
+      <aiAvoidCover>false</aiAvoidCover>
+    </value>
   </Operation>
 
   <Operation Class="PatchOperationReplace">
-  	<xpath>*/PawnKindDef[defName="Centipede"]/combatPower</xpath>
+  	<xpath>*/PawnKindDef[defName="Mech_Centipede"]/combatPower</xpath>
   	<value>
   		<combatPower>580</combatPower>
   	</value>
   </Operation>
 
   <Operation Class="PatchOperationAddModExtension">
-  	<xpath>*/PawnKindDef[defName="Scyther" or defName="Centipede"]</xpath>
+  	<xpath>*/PawnKindDef[defName="Mech_Lancer" or defName="Mech_Centipede"]</xpath>
   	<value>
       <li Class="CombatExtended.LoadoutPropertiesExtension">
         <primaryMagazineCount>
@@ -103,7 +106,7 @@
     <xpath>*/PawnKindDef[defName="Mercenary_Sniper"]/weaponMoney</xpath>
     <value>
       <weaponMoney>
-        <min>370</min>
+        <min>415</min>
         <max>550</max>
       </weaponMoney>
     </value>
@@ -205,6 +208,14 @@
       </weaponMoney>
     </value>
   </Operation>
+	
+   <!-- Gives all elite-tier pirates and mercs access to charge weapons. -->
+   <Operation Class="PatchOperationAdd">
+   <xpath>/Defs/PawnKindDef[@Name="MercenaryEliteTierBase"]/weaponTags</xpath>
+   <value>
+	<li>SpacerGun</li>
+   </value>
+   </Operation>	
 
   <Operation Class="PatchOperationAddModExtension">
   	<xpath>*/PawnKindDef[@Name = "MercenaryEliteTierBase"]</xpath>
@@ -303,7 +314,7 @@
     <xpath>*/PawnKindDef[defName="Scavenger"]/weaponMoney</xpath>
     <value>
       <weaponMoney>
-        <min>135</min>
+        <min>147</min>
         <max>250</max>
       </weaponMoney>
     </value>
@@ -634,7 +645,7 @@
   </Operation>
 
   <Operation Class="PatchOperationReplace">
-    <xpath>*/PawnKindDef[defName="TribalChiefBase"]/weaponMoney</xpath>
+    <xpath>*/PawnKindDef[@Name="TribalChiefBase"]/weaponMoney</xpath>
     <value>
       <weaponMoney>
         <min>230</min>

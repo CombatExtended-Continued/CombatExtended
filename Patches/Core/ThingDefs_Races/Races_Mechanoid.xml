@@ -38,7 +38,7 @@
 	<!-- ========== Centipede ========== -->
 
 	<Operation Class="PatchOperationAddModExtension">
-		<xpath>*/ThingDef[defName="Mechanoid_Centipede"]</xpath>
+		<xpath>*/ThingDef[defName="Mech_Centipede"]</xpath>
 		<value>
 			<li Class="CombatExtended.RacePropertiesExtensionCE">
 				<bodyShape>Quadruped</bodyShape>
@@ -47,12 +47,12 @@
 	</Operation>
 
 	<Operation Class="PatchOperationAdd">
-		<xpath>*/ThingDef[defName="Mechanoid_Centipede"]/statBases</xpath>
+		<xpath>*/ThingDef[defName="Mech_Centipede"]/statBases</xpath>
 		<value>
 			<CarryWeight>400</CarryWeight>
 			<CarryBulk>80</CarryBulk>
 			<AimingAccuracy>1.0</AimingAccuracy>
-			<ShootingAccuracy>1</ShootingAccuracy>
+			<ShootingAccuracyPawn>1</ShootingAccuracyPawn>
 			<MeleeDodgeChance>0.02</MeleeDodgeChance>
 			<MeleeCritChance>0.15</MeleeCritChance>
 			<MeleeParryChance>0.41</MeleeParryChance>
@@ -60,21 +60,21 @@
 	</Operation>
 
 	<Operation Class="PatchOperationReplace">
-		<xpath>*/ThingDef[defName="Mechanoid_Centipede"]/statBases/ArmorRating_Blunt</xpath>
+		<xpath>*/ThingDef[defName="Mech_Centipede"]/statBases/ArmorRating_Blunt</xpath>
 		<value>
 			<ArmorRating_Blunt>0.4</ArmorRating_Blunt>
 		</value>
 	</Operation>
 
 	<Operation Class="PatchOperationReplace">
-		<xpath>*/ThingDef[defName="Mechanoid_Centipede"]/statBases/ArmorRating_Sharp</xpath>
+		<xpath>*/ThingDef[defName="Mech_Centipede"]/statBases/ArmorRating_Sharp</xpath>
 		<value>
 			<ArmorRating_Sharp>1</ArmorRating_Sharp>
 		</value>
 	</Operation>
 
 	<Operation Class="PatchOperationReplace">
-		<xpath>*/ThingDef[defName="Mechanoid_Centipede"]/tools</xpath>
+		<xpath>*/ThingDef[defName="Mech_Centipede"]/tools</xpath>
 		<value>
 			<tools>
 				<li Class="CombatExtended.ToolCE">
@@ -95,7 +95,7 @@
 	<!-- ========== Scyther ========== -->
 
 	<Operation Class="PatchOperationAddModExtension">
-		<xpath>*/ThingDef[defName="Mechanoid_Scyther"]</xpath>
+		<xpath>*/ThingDef[defName="Mech_Scyther" or defName="Mech_Lancer"]</xpath>
 		<value>
 			<li Class="CombatExtended.RacePropertiesExtensionCE">
 				<bodyShape>Humanoid</bodyShape>
@@ -104,12 +104,12 @@
 	</Operation>
 
 	<Operation Class="PatchOperationAdd">
-		<xpath>*/ThingDef[defName="Mechanoid_Scyther"]/statBases</xpath>
+		<xpath>*/ThingDef[defName="Mech_Scyther" or defName="Mech_Lancer"]/statBases</xpath>
 		<value>
 			<CarryWeight>50</CarryWeight>
 			<CarryBulk>20</CarryBulk>
 			<AimingAccuracy>1.0</AimingAccuracy>
-			<ShootingAccuracy>2.6</ShootingAccuracy>
+			<ShootingAccuracyPawn>2.6</ShootingAccuracyPawn>
 			<MeleeDodgeChance>0.19</MeleeDodgeChance>
 			<MeleeCritChance>0.22</MeleeCritChance>
 			<MeleeParryChance>0.09</MeleeParryChance>
@@ -117,25 +117,17 @@
 	</Operation>
 
 	<Operation Class="PatchOperationReplace">
-		<xpath>*/ThingDef[defName="Mechanoid_Scyther"]/statBases/ArmorRating_Blunt</xpath>
-		<value>
-			<ArmorRating_Blunt>0.2</ArmorRating_Blunt>
-		</value>
-	</Operation>
-
-	<Operation Class="PatchOperationReplace">
-		<xpath>*/ThingDef[defName="Mechanoid_Scyther"]/statBases/ArmorRating_Sharp</xpath>
+		<xpath>*/ThingDef[defName="Mech_Scyther" or defName="Mech_Lancer"]/statBases/ArmorRating_Sharp</xpath>
 		<value>
 			<ArmorRating_Sharp>0.45</ArmorRating_Sharp>
 		</value>
 	</Operation>
 
 	<Operation Class="PatchOperationReplace">
-		<xpath>*/ThingDef[defName="Mechanoid_Scyther"]/tools</xpath>
+		<xpath>*/ThingDef[defName="Mech_Scyther"]/tools</xpath>
 		<value>
 			<tools>
 				<li Class="CombatExtended.ToolCE">
-					<id>leftbladecut</id>
 					<label>left blade</label>
 					<capacities>
 						<li>Cut</li>
@@ -147,7 +139,6 @@
 					<alwaysTreatAsWeapon>true</alwaysTreatAsWeapon>
 				</li>
 				<li Class="CombatExtended.ToolCE">
-					<id>leftbladestab</id>
 					<label>left blade</label>
 					<capacities>
 						<li>Stab</li>
@@ -159,7 +150,6 @@
 					<alwaysTreatAsWeapon>true</alwaysTreatAsWeapon>
 				</li>
 				<li Class="CombatExtended.ToolCE">
-					<id>rightbladecut</id>
 					<label>right blade</label>
 					<capacities>
 						<li>Cut</li>
@@ -171,7 +161,6 @@
 					<alwaysTreatAsWeapon>true</alwaysTreatAsWeapon>
 				</li>
 				<li Class="CombatExtended.ToolCE">
-					<id>rightbladestab</id>
 					<label>right blade</label>
 					<capacities>
 						<li>Stab</li>
@@ -180,6 +169,47 @@
 					<cooldownTime>1.65</cooldownTime>
 					<linkedBodyPartsGroup>RightBlade</linkedBodyPartsGroup>
 					<armorPenetration>0.388</armorPenetration>
+					<alwaysTreatAsWeapon>true</alwaysTreatAsWeapon>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>head</label>
+					<capacities>
+						<li>Blunt</li>
+					</capacities>
+					<power>7</power>
+					<cooldownTime>1.65</cooldownTime>
+					<linkedBodyPartsGroup>HeadAttackTool</linkedBodyPartsGroup>
+					<chanceFactor>0.2</chanceFactor>
+					<armorPenetration>0.095</armorPenetration>
+				</li>
+			</tools>
+		</value>
+	</Operation>
+	
+	<Operation Class="PatchOperationReplace">
+		<xpath>*/ThingDef[defName="Mech_Lancer"]/tools</xpath>
+		<value>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<label>left fist</label>
+					<capacities>
+						<li>Blunt</li>
+					</capacities>
+					<power>12</power>
+					<cooldownTime>1.65</cooldownTime>
+					<linkedBodyPartsGroup>LeftHand</linkedBodyPartsGroup>
+					<armorPenetration>0.095</armorPenetration>
+					<alwaysTreatAsWeapon>true</alwaysTreatAsWeapon>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>right fist</label>
+					<capacities>
+						<li>Blunt</li>
+					</capacities>
+					<power>12</power>
+					<cooldownTime>1.65</cooldownTime>
+					<linkedBodyPartsGroup>RightHand</linkedBodyPartsGroup>
+					<armorPenetration>0.095</armorPenetration>
 					<alwaysTreatAsWeapon>true</alwaysTreatAsWeapon>
 				</li>
 				<li Class="CombatExtended.ToolCE">

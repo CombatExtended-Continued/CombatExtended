@@ -65,7 +65,6 @@
 		<value>
 			<tools>
 				<li Class="CombatExtended.ToolCE">
-					<id>lefthoofblunt</id>
 					<label>left hoof</label>
 					<capacities>
 						<li>Blunt</li>
@@ -76,7 +75,6 @@
 					<armorPenetration>0.095</armorPenetration>
 				</li>
 				<li Class="CombatExtended.ToolCE">
-					<id>lefthoofpoke</id>
 					<label>left hoof</label>
 					<capacities>
 						<li>Poke</li>
@@ -87,7 +85,6 @@
 					<armorPenetration>0.07</armorPenetration>
 				</li>
 				<li Class="CombatExtended.ToolCE">
-					<id>righthoofblunt</id>
 					<label>right hoof</label>
 					<capacities>
 						<li>Blunt</li>
@@ -98,7 +95,6 @@
 					<armorPenetration>0.095</armorPenetration>
 				</li>
 				<li Class="CombatExtended.ToolCE">
-					<id>righthoofpoke</id>
 					<label>right hoof</label>
 					<capacities>
 						<li>Poke</li>
@@ -255,7 +251,6 @@
 		<value>
 			<tools>
 				<li Class="CombatExtended.ToolCE">
-					<id>hornStab</id>
 					<label>horn</label>
 					<capacities>
 						<li>Stab</li>
@@ -266,7 +261,6 @@
 					<armorPenetration>0.341</armorPenetration>
 				</li>
 				<li Class="CombatExtended.ToolCE">
-					<id>hornBlunt</id>
 					<label>horn</label>
 					<capacities>
 						<li>Blunt</li>
@@ -313,18 +307,18 @@
 			<baseHealthScale>2.3</baseHealthScale>
 		</value>
 	</Operation>
-
-	<Operation Class="PatchOperationReplace">
-		<xpath>*/ThingDef[defName="Rhinoceros"]/race/leatherStatFactors/ArmorRating_Blunt</xpath>
+	
+	<Operation Class="PatchOperationAdd">
+		<xpath>*/ThingDef[defName="Leather_Rhinoceros"]/statBases</xpath>
 		<value>
-			<ArmorRating_Blunt>1.2</ArmorRating_Blunt>
+			<StuffPower_Armor_Blunt>1.2</StuffPower_Armor_Blunt>
 		</value>
 	</Operation>
-
+	
 	<Operation Class="PatchOperationReplace">
-		<xpath>*/ThingDef[defName="Rhinoceros"]/race/leatherStatFactors/ArmorRating_Sharp</xpath>
+		<xpath>*/ThingDef[defName="Leather_Rhinoceros"]/statBases/StuffPower_Armor_Sharp</xpath>
 		<value>
-			<ArmorRating_Sharp>1.5</ArmorRating_Sharp>
+			<StuffPower_Armor_Sharp>1.5</StuffPower_Armor_Sharp>
 		</value>
 	</Operation>
 
@@ -353,7 +347,6 @@
 		<value>
 			<tools>
 				<li Class="CombatExtended.ToolCE">
-					<id>lefthoofblunt</id>
 					<label>left hoof</label>
 					<capacities>
 						<li>Blunt</li>
@@ -364,7 +357,6 @@
 					<armorPenetration>0.14</armorPenetration>
 				</li>
 				<li Class="CombatExtended.ToolCE">
-					<id>lefthoofpoke</id>
 					<label>left hoof</label>
 					<capacities>
 						<li>Poke</li>
@@ -375,7 +367,6 @@
 					<armorPenetration>0.101</armorPenetration>
 				</li>
 				<li Class="CombatExtended.ToolCE">
-					<id>righthoofblunt</id>
 					<label>right hoof</label>
 					<capacities>
 						<li>Blunt</li>
@@ -386,7 +377,6 @@
 					<armorPenetration>0.14</armorPenetration>
 				</li>
 				<li Class="CombatExtended.ToolCE">
-					<id>righthoofpoke</id>
 					<label>right hoof</label>
 					<capacities>
 						<li>Poke</li>

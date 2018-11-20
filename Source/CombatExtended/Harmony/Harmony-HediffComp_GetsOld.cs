@@ -26,6 +26,9 @@ namespace CombatExtended.Harmony
      *  and instead assign single the value from a function call for easier tweaking in the future.
      */
 
+    /*
+     * Original function unclear, possibly obsolete in 1.0, disabling for now -NIA
+     *
     [HarmonyPatch(typeof(HediffComp_GetsPermanent), "CompPostInjuryHeal")]
     static class HediffComp_GetsOld_CompPostInjuryHeal_Patch
     {
@@ -125,4 +128,5 @@ namespace CombatExtended.Harmony
             return Mathf.Clamp01(chance / Mathf.Pow(tendQuality + 0.75f, 2));
         }
     }
+    */
 }

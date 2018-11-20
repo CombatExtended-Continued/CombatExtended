@@ -285,7 +285,7 @@ namespace CombatExtended
         {
             get
             {
-            	return Quaternion.AngleAxis(shotRotation, Vector3.up);
+            	return Quaternion.AngleAxis(shotRotation, Vector3.down);
             }
         }
         #endregion
@@ -639,9 +639,9 @@ namespace CombatExtended
                 && pawn.Faction != launcher?.Faction
                 && (shield == null || shield?.ShieldState == ShieldState.Resetting))
             {
-                suppressionAmount = def.projectile.GetDamageAmount(CE_Utility.GetWeaponFromLauncher(launcher));
+                suppressionAmount = def.projectile.GetDamageAmount(1);
                 var propsCE = def.projectile as ProjectilePropertiesCE;
-                float penetrationAmount = propsCE == null ? 0f : propsCE.armorPenetration;
+                float penetrationAmount = propsCE == null ? 0f : propsCE.GetArmorPenetration(1);
                 suppressionAmount *= 1 - Mathf.Clamp(compSuppressable.ParentArmor - penetrationAmount, 0, 1);
                 compSuppressable.AddSuppression(suppressionAmount, OriginIV3);
             }

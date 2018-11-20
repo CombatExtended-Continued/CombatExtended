@@ -75,7 +75,7 @@
       <MarketValue>0.61</MarketValue>
     </statBases>
     <ammoClass>FoamFuel</ammoClass>
-    <canBeSpawningInventory>false</canBeSpawningInventory>
+	<generateAllowChance>0</generateAllowChance>
   </ThingDef>
 	
 	<!-- ================== Projectiles ================== -->
@@ -86,7 +86,7 @@
       <graphicClass>Graphic_Single</graphicClass>
       <shaderType>TransparentPostLight</shaderType>
     </graphicData>
-    <projectile>
+    <projectile Class="CombatExtended.ProjectilePropertiesCE">
       <speed>40</speed>
       <flyOverhead>false</flyOverhead>
     </projectile>
@@ -96,7 +96,7 @@
     <defName>Bullet_30x64mmFuel_Incendiary</defName>
     <thingClass>CombatExtended.ProjectileCE_Explosive</thingClass>
     <label>incendiary bolt</label>
-    <projectile>
+    <projectile Class="CombatExtended.ProjectilePropertiesCE">
       <damageDef>PrometheumFlame</damageDef>
       <damageAmountBase>15</damageAmountBase>
       <explosionRadius>1.5</explosionRadius>
@@ -107,7 +107,7 @@
   <ThingDef Class="CombatExtended.AmmoDef" ParentName="Base30x64mmFuelBullet">
     <defName>Bullet_30x64mmFuel_Thermobaric</defName>
     <label>thermobaric bolt</label>
-    <projectile>
+    <projectile Class="CombatExtended.ProjectilePropertiesCE">
       <explosionRadius>2.5</explosionRadius>
       <damageDef>Thermobaric</damageDef>
       <damageAmountBase>50</damageAmountBase>
@@ -120,7 +120,7 @@
     <defName>Bullet_30x64mmFuel_Foam</defName>
     <thingClass>CombatExtended.ProjectileCE_Explosive</thingClass>
     <label>foam bolt</label>
-    <projectile>
+    <projectile Class="CombatExtended.ProjectilePropertiesCE">
       <damageDef>Extinguish</damageDef>
       <damageAmountBase>50</damageAmountBase>
       <explosionRadius>5.0</explosionRadius>

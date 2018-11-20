@@ -44,7 +44,7 @@ namespace CombatExtended
             explosion.radius = def.projectile.explosionRadius;
             explosion.damType = def.projectile.damageDef;
             explosion.instigator = launcher;
-            explosion.damAmount = def.projectile.GetDamageAmount(CE_Utility.GetWeaponFromLauncher(launcher));
+            explosion.damAmount = def.projectile.GetDamageAmount(1);
             explosion.weapon = equipmentDef;
             explosion.projectile = def;
             explosion.preExplosionSpawnThingDef = def.projectile.preExplosionSpawnThingDef;
