@@ -61,7 +61,7 @@ namespace CombatExtended
 	            foreach (ThingDef def in DefDatabase<ThingDef>.AllDefsListForReading)
 	            {
 	            	if (def.IsWeapon
-	            	    && (def.generateAllowChance <= 0
+	            	    && (def.generateAllowChance > 0
 	            	        || def.tradeability == Tradeability.Buyable
 	            	        || (def.weaponTags != null && def.weaponTags.Contains("TurretGun"))))
 	                    CE_Utility.allWeaponDefs.Add(def);
