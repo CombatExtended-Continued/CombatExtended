@@ -62,7 +62,7 @@ namespace CombatExtended
 	            {
 	            	if (def.IsWeapon
 	            	    && (def.generateAllowChance > 0
-	            	        || def.tradeability == Tradeability.Buyable
+	            	        || def.tradeability.TraderCanSell()
 	            	        || (def.weaponTags != null && def.weaponTags.Contains("TurretGun"))))
 	                    CE_Utility.allWeaponDefs.Add(def);
 	            }
