@@ -128,6 +128,8 @@ namespace CombatExtended
         {
             if ((!Controller.settings.AutoTakeAmmo && pawn.IsColonist) || !Controller.settings.EnableAmmoSystem) return 0f;
 
+            if (pawn.Faction == null) return 0f;
+
             var priority = GetPriorityWork(pawn);
 
             if (priority == WorkPriority.Unloading) return 9.2f;
@@ -150,6 +152,11 @@ namespace CombatExtended
         protected override Job TryGiveJob(Pawn pawn)
         {
             if (!Controller.settings.EnableAmmoSystem || !Controller.settings.AutoTakeAmmo)
+            {
+                return null;
+            }
+
+            if (pawn.Faction == null) //Wild man (b19 incident added) Faction is null
             {
                 return null;
             }
