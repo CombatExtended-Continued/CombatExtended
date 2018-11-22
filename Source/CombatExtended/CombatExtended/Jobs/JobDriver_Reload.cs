@@ -143,7 +143,7 @@ namespace CombatExtended
 
             // Throw mote
             if (compReloader.ShouldThrowMote)
-                MoteMaker.ThrowText(pawn.Position.ToVector3Shifted(), Find.CurrentMap, string.Format("CE_ReloadingMote".Translate(), weapon.def.LabelCap));
+                MoteMaker.ThrowText(pawn.Position.ToVector3Shifted(), holder.Map, string.Format("CE_ReloadingMote".Translate(), weapon.def.LabelCap));
 
             //Toil of do-nothing		
             Toil waitToil = new Toil() { actor = pawn }; // actor was always null in testing...

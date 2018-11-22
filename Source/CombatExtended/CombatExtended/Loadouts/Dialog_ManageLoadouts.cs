@@ -44,7 +44,7 @@ namespace CombatExtended
             _iconPickupDrop = ContentFinder<Texture2D>.Get("UI/Icons/loadoutPickupDrop"),
             _iconDropExcess = ContentFinder<Texture2D>.Get("UI/Icons/loadoutDropExcess");
 
-        private static Regex validNameRegex = new Regex("^[a-zA-Z0-9 '\\-]*$");
+        private static Regex validNameRegex = Outfit.ValidNameRegex;
         private Vector2 _availableScrollPosition = Vector2.zero;
         private float _barHeight = 24f;
         private Vector2 _countFieldSize = new Vector2(40f, 24f);
@@ -72,7 +72,7 @@ namespace CombatExtended
             	CurrentLoadout = loadout;
             SetSource(SourceSelection.Ranged);
             doCloseX = true;
-			doCloseButton = true;
+			//doCloseButton = true; //Close button is awkward 
 			closeOnClickedOutside = true;
             Utility_Loadouts.UpdateColonistCapacities();
         }
