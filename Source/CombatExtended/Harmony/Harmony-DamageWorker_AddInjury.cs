@@ -92,7 +92,7 @@ namespace CombatExtended.Harmony
     static class Patch_ShouldReduceDamageToPreservePart
     {
         [HarmonyPrefix]
-        static bool Prefix(bool __result, BodyPartRecord bodyPart)
+        static bool Prefix(ref bool __result, BodyPartRecord bodyPart)
         {
             __result = false;
             return false;
