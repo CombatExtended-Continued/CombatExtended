@@ -4,27 +4,27 @@
 	<!-- ========== Base Grenade Projectile ========== -->
 
 	<Operation Class="PatchOperationReplace">
-		<xpath>*/ThingDef[@Name="BaseGrenadeProjectile"]/thingClass</xpath>
+		<xpath>Defs/ThingDef[@Name="BaseGrenadeProjectile"]/thingClass</xpath>
 		<value>
 			<thingClass>CombatExtended.ProjectileCE_Explosive</thingClass>
 		</value>
 	</Operation>
 
 	<Operation Class="PatchOperationAttributeSet">
-		<xpath>*/ThingDef[@Name="BaseGrenadeProjectile"]/projectile</xpath>
+		<xpath>Defs/ThingDef[@Name="BaseGrenadeProjectile"]/projectile</xpath>
 		<attribute>Class</attribute>
 		<value>CombatExtended.ProjectilePropertiesCE</value>
 	</Operation>
 
 	<Operation Class="PatchOperationAdd">
-		<xpath>*/ThingDef[@Name="BaseGrenadeProjectile"]/projectile</xpath>
+		<xpath>Defs/ThingDef[@Name="BaseGrenadeProjectile"]/projectile</xpath>
 		<value>
       <explosionDamageFalloff>true</explosionDamageFalloff>
     </value>
 	</Operation>
 
 	<Operation Class="PatchOperationReplace">
-		<xpath>*/ThingDef[@Name="BaseGrenadeProjectile"]/projectile/speed</xpath>
+		<xpath>Defs/ThingDef[@Name="BaseGrenadeProjectile"]/projectile/speed</xpath>
 		<value>
 			<speed>24</speed>
 		</value>
@@ -35,21 +35,21 @@
 	<!-- Projectile -->
 
 	<Operation Class="PatchOperationReplace">
-		<xpath>*/ThingDef[defName="Proj_GrenadeFrag"]/thingClass</xpath>
+		<xpath>Defs/ThingDef[defName="Proj_GrenadeFrag"]/thingClass</xpath>
 		<value>
 			<thingClass>CombatExtended.ProjectileCE_Explosive</thingClass>
 		</value>
 	</Operation>
 
 	<Operation Class="PatchOperationReplace">
-		<xpath>*/ThingDef[defName="Proj_GrenadeFrag"]/graphicData/texPath</xpath>
+		<xpath>Defs/ThingDef[defName="Proj_GrenadeFrag"]/graphicData/texPath</xpath>
 		<value>
 			<texPath>Things/Projectile/Grenades/Frag</texPath>
 		</value>
 	</Operation>
 
 	<Operation Class="PatchOperationReplace">
-		<xpath>*/ThingDef[defName="Proj_GrenadeFrag"]/projectile</xpath>
+		<xpath>Defs/ThingDef[defName="Proj_GrenadeFrag"]/projectile</xpath>
 		<value>
 			<projectile Class="CombatExtended.ProjectilePropertiesCE">
 			  <explosionRadius>1.5</explosionRadius>
@@ -67,11 +67,11 @@
   	<success>Always</success>
   	<operations>
     	<li Class="PatchOperationTest">
-      	<xpath>*/ThingDef[defName="Proj_GrenadeFrag"]/comps</xpath>
+      	<xpath>Defs/ThingDef[defName="Proj_GrenadeFrag"]/comps</xpath>
       	<success>Invert</success>
     	</li>
     	<li Class="PatchOperationAdd">
-      	<xpath>*/ThingDef[defName="Proj_GrenadeFrag"]</xpath>
+      	<xpath>Defs/ThingDef[defName="Proj_GrenadeFrag"]</xpath>
       	<value>
         	<comps />
       	</value>
@@ -80,7 +80,7 @@
 	</Operation>
 
 	<Operation Class="PatchOperationAdd">
-		<xpath>*/ThingDef[defName="Proj_GrenadeFrag"]/comps</xpath>
+		<xpath>Defs/ThingDef[defName="Proj_GrenadeFrag"]/comps</xpath>
 		<value>
 			<li Class="CombatExtended.CompProperties_ExplosiveCE">
 			  <fragments>
@@ -93,14 +93,14 @@
 	<!-- Grenade -->
 
 	<Operation Class="PatchOperationReplace">
-		<xpath>*/ThingDef[defName="Weapon_GrenadeFrag"]/label</xpath>
+		<xpath>Defs/ThingDef[defName="Weapon_GrenadeFrag"]/label</xpath>
 		<value>
 			<label>frag grenade</label>
 		</value>
 	</Operation>
 
 	<Operation Class="PatchOperationReplace">
-		<xpath>*/ThingDef[defName="Weapon_GrenadeFrag"]/graphicData</xpath>
+		<xpath>Defs/ThingDef[defName="Weapon_GrenadeFrag"]/graphicData</xpath>
 		<value>
 			<graphicData>
 			  <texPath>Things/Ammo/HandGrenades/Frag</texPath>
@@ -111,7 +111,7 @@
 	</Operation>
 
 	<Operation Class="PatchOperationAdd">
-		<xpath>*/ThingDef[defName="Weapon_GrenadeFrag"]</xpath>
+		<xpath>Defs/ThingDef[defName="Weapon_GrenadeFrag"]</xpath>
 		<value>
 			<thingClass>CombatExtended.AmmoThing</thingClass>
 			<stackLimit>75</stackLimit>
@@ -120,7 +120,7 @@
 	</Operation>
 
 	<Operation Class="PatchOperationAttributeSet">
-		<xpath>*/ThingDef[defName="Weapon_GrenadeFrag"]</xpath>
+		<xpath>Defs/ThingDef[defName="Weapon_GrenadeFrag"]</xpath>
 		<attribute>Class</attribute>
 		<value>CombatExtended.AmmoDef</value>
 	</Operation>
@@ -129,11 +129,11 @@
   	<success>Always</success>
   	<operations>
     	<li Class="PatchOperationTest">
-      	<xpath>*/ThingDef[defName="Weapon_GrenadeFrag"]/comps</xpath>
+      	<xpath>Defs/ThingDef[defName="Weapon_GrenadeFrag"]/comps</xpath>
       	<success>Invert</success>
     	</li>
     	<li Class="PatchOperationAdd">
-      	<xpath>*/ThingDef[defName="Weapon_GrenadeFrag"]</xpath>
+      	<xpath>Defs/ThingDef[defName="Weapon_GrenadeFrag"]</xpath>
       	<value>
         	<comps />
       	</value>
@@ -142,7 +142,7 @@
 	</Operation>
 
 	<Operation Class="PatchOperationAdd">
-		<xpath>*/ThingDef[defName="Weapon_GrenadeFrag"]/comps</xpath>
+		<xpath>Defs/ThingDef[defName="Weapon_GrenadeFrag"]/comps</xpath>
 		<value>
 			<li Class="CombatExtended.CompProperties_ExplosiveCE">
 			  <explosionDamage>40</explosionDamage>
@@ -191,14 +191,14 @@
 	<!-- Projectile -->
 
 	<Operation Class="PatchOperationReplace">
-		<xpath>*/ThingDef[defName="Proj_GrenadeMolotov"]/graphicData/texPath</xpath>
+		<xpath>Defs/ThingDef[defName="Proj_GrenadeMolotov"]/graphicData/texPath</xpath>
 		<value>
 			<texPath>Things/Projectile/Grenades/Molotov</texPath>
 		</value>
 	</Operation>
 
 	<Operation Class="PatchOperationReplace">
-		<xpath>*/ThingDef[defName="Proj_GrenadeMolotov"]/projectile</xpath>
+		<xpath>Defs/ThingDef[defName="Proj_GrenadeMolotov"]/projectile</xpath>
 		<value>
 			<projectile>
 			  <explosionRadius>1.5</explosionRadius>
@@ -211,7 +211,7 @@
 	</Operation>
 
 	<Operation Class="PatchOperationAdd">
-		<xpath>*/ThingDef[defName="Proj_GrenadeMolotov"]</xpath>
+		<xpath>Defs/ThingDef[defName="Proj_GrenadeMolotov"]</xpath>
 		<value>
 			<thingClass>CombatExtended.Projectile_FireTrail</thingClass>
 		</value>
@@ -220,14 +220,14 @@
 	<!-- Grenade -->
 
 	<Operation Class="PatchOperationReplace">
-		<xpath>*/ThingDef[defName="Weapon_GrenadeMolotov"]/label</xpath>
+		<xpath>Defs/ThingDef[defName="Weapon_GrenadeMolotov"]/label</xpath>
 		<value>
 			<label>Molotov cocktail</label>
 		</value>
 	</Operation>
 
 	<Operation Class="PatchOperationReplace">
-		<xpath>*/ThingDef[defName="Weapon_GrenadeMolotov"]/graphicData</xpath>
+		<xpath>Defs/ThingDef[defName="Weapon_GrenadeMolotov"]/graphicData</xpath>
 		<value>
 			<graphicData>
 			  <texPath>Things/Ammo/HandGrenades/Molotov</texPath>
@@ -238,7 +238,7 @@
 	</Operation>
 
 	<Operation Class="PatchOperationAdd">
-		<xpath>*/ThingDef[defName="Weapon_GrenadeMolotov"]</xpath>
+		<xpath>Defs/ThingDef[defName="Weapon_GrenadeMolotov"]</xpath>
 		<value>
 			<thingClass>CombatExtended.AmmoThing</thingClass>
 			<stackLimit>75</stackLimit>
@@ -247,7 +247,7 @@
 	</Operation>
 
 	<Operation Class="PatchOperationAttributeSet">
-		<xpath>*/ThingDef[defName="Weapon_GrenadeMolotov"]</xpath>
+		<xpath>Defs/ThingDef[defName="Weapon_GrenadeMolotov"]</xpath>
 		<attribute>Class</attribute>
 		<value>CombatExtended.AmmoDef</value>
 	</Operation>
@@ -256,11 +256,11 @@
   	<success>Always</success>
   	<operations>
     	<li Class="PatchOperationTest">
-      	<xpath>*/ThingDef[defName="Weapon_GrenadeMolotov"]/comps</xpath>
+      	<xpath>Defs/ThingDef[defName="Weapon_GrenadeMolotov"]/comps</xpath>
       	<success>Invert</success>
     	</li>
     	<li Class="PatchOperationAdd">
-      	<xpath>*/ThingDef[defName="Weapon_GrenadeMolotov"]</xpath>
+      	<xpath>Defs/ThingDef[defName="Weapon_GrenadeMolotov"]</xpath>
       	<value>
         	<comps />
       	</value>
@@ -269,7 +269,7 @@
 	</Operation>
 
 	<Operation Class="PatchOperationAdd">
-		<xpath>*/ThingDef[defName="Weapon_GrenadeMolotov"]/comps</xpath>
+		<xpath>Defs/ThingDef[defName="Weapon_GrenadeMolotov"]/comps</xpath>
 		<value>
 			<li Class="CombatExtended.CompProperties_ExplosiveCE">
 			  <explosionDamage>1</explosionDamage>
@@ -317,21 +317,21 @@
 	<!-- Projectile -->
 
 	<Operation Class="PatchOperationReplace">
-		<xpath>*/ThingDef[defName="Proj_GrenadeEMP"]/thingClass</xpath>
+		<xpath>Defs/ThingDef[defName="Proj_GrenadeEMP"]/thingClass</xpath>
 		<value>
 			<thingClass>CombatExtended.ProjectileCE_Explosive</thingClass>
 		</value>
 	</Operation>
 
 	<Operation Class="PatchOperationReplace">
-		<xpath>*/ThingDef[defName="Proj_GrenadeEMP"]/graphicData/texPath</xpath>
+		<xpath>Defs/ThingDef[defName="Proj_GrenadeEMP"]/graphicData/texPath</xpath>
 		<value>
 			<texPath>Things/Projectile/Grenades/EMP</texPath>
 		</value>
 	</Operation>
 
 	<Operation Class="PatchOperationReplace">
-		<xpath>*/ThingDef[defName="Proj_GrenadeEMP"]/projectile</xpath>
+		<xpath>Defs/ThingDef[defName="Proj_GrenadeEMP"]/projectile</xpath>
 		<value>
 			<projectile Class="CombatExtended.ProjectilePropertiesCE">
 			  <explosionRadius>3</explosionRadius>
@@ -348,11 +348,11 @@
   	<success>Always</success>
   	<operations>
     	<li Class="PatchOperationTest">
-      	<xpath>*/ThingDef[defName="Proj_GrenadeEMP"]/comps</xpath>
+      	<xpath>Defs/ThingDef[defName="Proj_GrenadeEMP"]/comps</xpath>
       	<success>Invert</success>
     	</li>
     	<li Class="PatchOperationAdd">
-      	<xpath>*/ThingDef[defName="Proj_GrenadeEMP"]</xpath>
+      	<xpath>Defs/ThingDef[defName="Proj_GrenadeEMP"]</xpath>
       	<value>
         	<comps />
       	</value>
@@ -363,14 +363,14 @@
 	<!-- Grenade -->
 
 	<Operation Class="PatchOperationReplace">
-		<xpath>*/ThingDef[defName="Weapon_GrenadeEMP"]/label</xpath>
+		<xpath>Defs/ThingDef[defName="Weapon_GrenadeEMP"]/label</xpath>
 		<value>
 			<label>EMP grenade</label>
 		</value>
 	</Operation>
 
 	<Operation Class="PatchOperationReplace">
-		<xpath>*/ThingDef[defName="Weapon_GrenadeEMP"]/graphicData</xpath>
+		<xpath>Defs/ThingDef[defName="Weapon_GrenadeEMP"]/graphicData</xpath>
 		<value>
 			<graphicData>
 			  <texPath>Things/Ammo/HandGrenades/EMP</texPath>
@@ -381,7 +381,7 @@
 	</Operation>
 
 	<Operation Class="PatchOperationAdd">
-		<xpath>*/ThingDef[defName="Weapon_GrenadeEMP"]</xpath>
+		<xpath>Defs/ThingDef[defName="Weapon_GrenadeEMP"]</xpath>
 		<value>
 			<thingClass>CombatExtended.AmmoThing</thingClass>
 			<stackLimit>75</stackLimit>
@@ -390,13 +390,13 @@
 	</Operation>
 
 	<Operation Class="PatchOperationAttributeSet">
-		<xpath>*/ThingDef[defName="Weapon_GrenadeEMP"]</xpath>
+		<xpath>Defs/ThingDef[defName="Weapon_GrenadeEMP"]</xpath>
 		<attribute>Class</attribute>
 		<value>CombatExtended.AmmoDef</value>
 	</Operation>
 
 	<Operation Class="PatchOperationRemove">
-		<xpath>*/ThingDef[defName="Weapon_GrenadeEMP"]/smeltProducts</xpath>
+		<xpath>Defs/ThingDef[defName="Weapon_GrenadeEMP"]/smeltProducts</xpath>
 	</Operation>
 
   <Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
