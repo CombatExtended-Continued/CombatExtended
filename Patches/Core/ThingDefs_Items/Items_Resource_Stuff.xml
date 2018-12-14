@@ -1,146 +1,49 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <Patch>
 
-	<!-- ========== Resource RawPlant ========== -->
+	<!-- Silver -->
 
 	<Operation Class="PatchOperationAdd">
-		<xpath>*/ThingDef[@Name="OrganicProductBase"]/statBases</xpath>
-		<value>
-			<Bulk>0.2</Bulk>
-		</value>
-	</Operation>
-
-	<!-- ========== Resource Exotic ========== -->
-
-	<!-- Thrumbo Horn -->
-
-	<Operation Class="PatchOperationReplace">
-		<xpath>*/ThingDef[defName="ThrumboHorn"]/tools</xpath>
-		<value>
-			<tools>
-				<li Class="CombatExtended.ToolCE">
-					<label>edge</label>
-					<capacities>
-						<li>Cut</li>
-					</capacities>
-					<power>22</power>
-					<cooldownTime>1.55</cooldownTime>
-					<armorPenetration>0.195</armorPenetration>
-					<linkedBodyPartsGroup>Edge</linkedBodyPartsGroup>
-				</li>
-				<li Class="CombatExtended.ToolCE">
-					<label>point</label>
-					<capacities>
-						<li>Stab</li>
-					</capacities>
-					<power>22</power>
-					<cooldownTime>1.55</cooldownTime>
-					<armorPenetration>0.365</armorPenetration>
-					<linkedBodyPartsGroup>Point</linkedBodyPartsGroup>
-				</li>
-				<li Class="CombatExtended.ToolCE">
-					<label>base</label>
-					<capacities>
-						<li>Blunt</li>
-					</capacities>
-					<power>9</power>
-					<cooldownTime>1.55</cooldownTime>
-					<armorPenetration>0.11</armorPenetration>
-					<linkedBodyPartsGroup>Base</linkedBodyPartsGroup>
-				</li>
-			</tools>
-		</value>
-	</Operation>
-
-	<Operation Class="PatchOperationAdd">
-		<xpath>*/ThingDef[defName="ThrumboHorn"]/statBases</xpath>
-		<value>
-    		<Bulk>10</Bulk>
-    		<MeleeCounterParryBonus>2</MeleeCounterParryBonus>
-		</value>
-	</Operation>
-
-	<Operation Class="PatchOperationAdd">
-		<xpath>*/ThingDef[defName="ThrumboHorn"]</xpath>
-		<value>
-			<equippedStatOffsets>
-				<MeleeCritChance>1</MeleeCritChance>
-				<MeleeParryChance>0.5</MeleeParryChance>
-			</equippedStatOffsets>
-		</value>
-	</Operation>
-
-	<!-- Elephant Tusk -->
-
-	<Operation Class="PatchOperationReplace">
-		<xpath>*/ThingDef[defName="ElephantTusk"]/tools</xpath>
-		<value>
-			<tools>
-				<li Class="CombatExtended.ToolCE">
-					<label>edge</label>
-					<capacities>
-						<li>Cut</li>
-					</capacities>
-					<power>24.1</power>
-					<cooldownTime>2.1</cooldownTime>
-					<armorPenetration>0.208</armorPenetration>
-					<linkedBodyPartsGroup>Edge</linkedBodyPartsGroup>
-				</li>
-				<li Class="CombatExtended.ToolCE">
-					<label>point</label>
-					<capacities>
-						<li>Stab</li>
-					</capacities>
-					<power>24.1</power>
-					<cooldownTime>2.1</cooldownTime>
-					<armorPenetration>0.39</armorPenetration>
-					<linkedBodyPartsGroup>Point</linkedBodyPartsGroup>
-				</li>
-				<li Class="CombatExtended.ToolCE">
-					<label>base</label>
-					<capacities>
-						<li>Blunt</li>
-					</capacities>
-					<power>10</power>
-					<cooldownTime>2.1</cooldownTime>
-					<armorPenetration>0.118</armorPenetration>
-					<linkedBodyPartsGroup>Base</linkedBodyPartsGroup>
-				</li>
-			</tools>
-		</value>
-	</Operation>
-
-	<Operation Class="PatchOperationAdd">
-		<xpath>*/ThingDef[defName="ElephantTusk"]/statBases</xpath>
-		<value>
-    		<Bulk>10</Bulk>
-    		<MeleeCounterParryBonus>1.375</MeleeCounterParryBonus>
-		</value>
-	</Operation>
-
-	<Operation Class="PatchOperationAdd">
-		<xpath>*/ThingDef[defName="ElephantTusk"]</xpath>
-		<value>
-			<equippedStatOffsets>
-				<MeleeCritChance>0.25</MeleeCritChance>
-				<MeleeParryChance>0.5</MeleeParryChance>
-			</equippedStatOffsets>
-		</value>
-	</Operation>
-
-	<!-- ========== Resource Stuff ========== -->
-
-	<Operation Class="PatchOperationAdd">
-		<xpath>*/ThingDef[defName="Silver"]/statBases</xpath>
+		<xpath>Defs/ThingDef[defName="Silver"]/statBases</xpath>
 		<value>
 			<Bulk>0.007</Bulk>
 		</value>
 	</Operation>
 
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Silver"]/statBases/StuffPower_Armor_Sharp</xpath>
+		<value>
+			<StuffPower_Armor_Sharp>0.7</StuffPower_Armor_Sharp>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Silver"]/statBases/StuffPower_Armor_Blunt</xpath>
+		<value>
+			<StuffPower_Armor_Sharp>0.25</StuffPower_Armor_Sharp>
+		</value>
+	</Operation>
+
+	<!-- Gold -->
+
 	<Operation Class="PatchOperationAdd">
 		<xpath>*/ThingDef[defName="Gold"]/statBases</xpath>
 		<value>
 			<Bulk>0.01</Bulk>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Gold"]/statBases/StuffPower_Armor_Sharp</xpath>
+		<value>
+			<StuffPower_Armor_Sharp>0.5</StuffPower_Armor_Sharp>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Gold"]/statBases/StuffPower_Armor_Blunt</xpath>
+		<value>
+			<StuffPower_Armor_Sharp>0.25</StuffPower_Armor_Sharp>
 		</value>
 	</Operation>
 
@@ -162,14 +65,14 @@
 	</Operation>
 
 	<Operation Class="PatchOperationReplace">
-		<xpath>/Defs/ThingDef[defName="Steel"]/statBases/StuffPower_Armor_Sharp</xpath>
+		<xpath>Defs/ThingDef[defName="Steel"]/statBases/StuffPower_Armor_Sharp</xpath>
 		<value>
 			<StuffPower_Armor_Sharp>1</StuffPower_Armor_Sharp>
 		</value>
 	</Operation>
 
 	<Operation Class="PatchOperationReplace">
-		<xpath>/Defs/ThingDef[defName="Steel"]/statBases/StuffPower_Armor_Blunt</xpath>
+		<xpath>Defs/ThingDef[defName="Steel"]/statBases/StuffPower_Armor_Blunt</xpath>
 		<value>
 			<StuffPower_Armor_Blunt>0.35</StuffPower_Armor_Blunt>
 		</value>
@@ -193,14 +96,14 @@
 	</Operation>
 
 	<Operation Class="PatchOperationReplace">
-		<xpath>*/ThingDef[defName="Plasteel"]/stuffProps/StuffPower_Armor_Sharp</xpath>
+		<xpath>Defs/ThingDef[defName="Plasteel"]/statBases/StuffPower_Armor_Sharp</xpath>
 		<value>
 			<StuffPower_Armor_Sharp>1.5</StuffPower_Armor_Sharp>
 		</value>
 	</Operation>
 
 	<Operation Class="PatchOperationReplace">
-		<xpath>*/ThingDef[defName="Plasteel"]/stuffProps/StuffPower_Armor_Blunt</xpath>
+		<xpath>Defs/ThingDef[defName="Plasteel"]/statBases/StuffPower_Armor_Blunt</xpath>
 		<value>
 			<StuffPower_Armor_Blunt>0.5</StuffPower_Armor_Blunt>
 		</value>
@@ -211,7 +114,7 @@
 		<value>
 			<Mass>0.8</Mass>
 			<ArmorRating_Blunt>1.0</ArmorRating_Blunt>
-      <ArmorRating_Sharp>1.15</ArmorRating_Sharp>
+      		<ArmorRating_Sharp>1.15</ArmorRating_Sharp>
 			<MeleePenetrationFactor>1.3</MeleePenetrationFactor>
 		</value>
 	</Operation>
@@ -257,6 +160,20 @@
 	</Operation>
 
 	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="WoodLog"]/statBases/StuffPower_Armor_Sharp</xpath>
+		<value>
+			<StuffPower_Armor_Sharp>0.5</StuffPower_Armor_Sharp>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="WoodLog"]/statBases/StuffPower_Armor_Blunt</xpath>
+		<value>
+			<StuffPower_Armor_Blunt>0.25</StuffPower_Armor_Blunt>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
 		<xpath>*/ThingDef[defName="WoodLog"]/statBases/SharpDamageMultiplier</xpath>
 		<value>
 			<SharpDamageMultiplier>0.7</SharpDamageMultiplier>
@@ -294,6 +211,20 @@
 		</value>
 	</Operation>
 
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Uranium"]/statBases/StuffPower_Armor_Sharp</xpath>
+		<value>
+			<StuffPower_Armor_Sharp>1.2</StuffPower_Armor_Sharp>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Uranium"]/statBases/StuffPower_Armor_Blunt</xpath>
+		<value>
+			<StuffPower_Armor_Blunt>0.6</StuffPower_Armor_Blunt>
+		</value>
+	</Operation>
+
 	<Operation Class="PatchOperationAdd">
 		<xpath>*/ThingDef[defName="Uranium"]/stuffProps/statFactors</xpath>
 		<value>
@@ -311,6 +242,20 @@
 		</value>
 	</Operation>
 
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Jade"]/statBases/StuffPower_Armor_Sharp</xpath>
+		<value>
+			<StuffPower_Armor_Sharp>0.6</StuffPower_Armor_Sharp>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Jade"]/statBases/StuffPower_Armor_Blunt</xpath>
+		<value>
+			<StuffPower_Armor_Blunt>0.3</StuffPower_Armor_Blunt>
+		</value>
+	</Operation>
+
 	<Operation Class="PatchOperationAdd">
 		<xpath>*/ThingDef[defName="Jade"]/stuffProps/statFactors</xpath>
 		<value>
@@ -324,6 +269,29 @@
 		<xpath>*/ThingDef[defName="Cloth"]/statBases/StuffPower_Armor_Sharp</xpath>
 		<value>
 			<StuffPower_Armor_Sharp>0.2</StuffPower_Armor_Sharp>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>*/ThingDef[defName="Cloth"]/statBases/StuffPower_Armor_Blunt</xpath>
+		<value>
+			<StuffPower_Armor_Blunt>0.1</StuffPower_Armor_Blunt>
+		</value>
+	</Operation>
+
+	<!-- Synthread -->
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>*/ThingDef[defName="Synthread"]/statBases/StuffPower_Armor_Sharp</xpath>
+		<value>
+			<StuffPower_Armor_Sharp>0.28</StuffPower_Armor_Sharp>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>*/ThingDef[defName="Synthread"]/statBases/StuffPower_Armor_Blunt</xpath>
+		<value>
+			<StuffPower_Armor_Blunt>0.14</StuffPower_Armor_Blunt>
 		</value>
 	</Operation>
 
@@ -355,9 +323,16 @@
 	</Operation>
 
 	<Operation Class="PatchOperationReplace">
-		<xpath>*/ThingDef[defName="Cloth"]/statBases/StuffPower_Armor_Sharp</xpath>
+		<xpath>*/ThingDef[defName="DevilstrandCloth"]/statBases/StuffPower_Armor_Sharp</xpath>
 		<value>
 			<StuffPower_Armor_Sharp>0.44</StuffPower_Armor_Sharp>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>*/ThingDef[defName="DevilstrandCloth"]/statBases/StuffPower_Armor_Blunt</xpath>
+		<value>
+			<StuffPower_Armor_Blunt>0.22</StuffPower_Armor_Blunt>
 		</value>
 	</Operation>
 
@@ -367,6 +342,20 @@
 		<xpath>*/ThingDef[defName="Hyperweave"]/statBases</xpath>
 		<value>
 			<Bulk>0.3</Bulk>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>*/ThingDef[defName="Hyperweave"]/statBases/StuffPower_Armor_Sharp</xpath>
+		<value>
+			<StuffPower_Armor_Sharp>0.52</StuffPower_Armor_Sharp>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>*/ThingDef[defName="Hyperweave"]/statBases/StuffPower_Armor_Blunt</xpath>
+		<value>
+			<StuffPower_Armor_Blunt>0.26</StuffPower_Armor_Blunt>
 		</value>
 	</Operation>
 
@@ -385,6 +374,52 @@
 		<value>
 			<Mass>1.8</Mass>
 			<WornBulk>1.8</WornBulk>
+		</value>
+	</Operation>
+
+	<!-- Wool (Base) -->
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[@Name="WoolBase"]/statBases</xpath>
+		<value>
+			<Bulk>0.3</Bulk>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[@Name="WoolBase"]/statBases/StuffPower_Armor_Sharp</xpath>
+		<value>
+			<StuffPower_Armor_Sharp>0.2</StuffPower_Armor_Sharp>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[@Name="WoolBase"]/statBases/StuffPower_Armor_Blunt</xpath>
+		<value>
+			<StuffPower_Armor_Blunt>0.1</StuffPower_Armor_Blunt>
+		</value>
+	</Operation>
+
+	<!-- Megasloth Wool -->
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="WoolMegasloth"]/statBases</xpath>
+		<value>
+			<Bulk>0.3</Bulk>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="WoolMegasloth"]/statBases/StuffPower_Armor_Sharp</xpath>
+		<value>
+			<StuffPower_Armor_Sharp>0.28</StuffPower_Armor_Sharp>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="WoolMegasloth"]/statBases/StuffPower_Armor_Blunt</xpath>
+		<value>
+			<StuffPower_Armor_Blunt>0.14</StuffPower_Armor_Blunt>
 		</value>
 	</Operation>
 
