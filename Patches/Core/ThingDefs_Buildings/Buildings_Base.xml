@@ -6,11 +6,11 @@
 	<!-- BuildingBase -->
 
 	<Operation Class="PatchOperationRemove">
-		<xpath>*/ThingDef[defName="Wall"]/damageMultipliers</xpath>
+		<xpath>Defs/ThingDef[defName="Wall"]/damageMultipliers</xpath>
 	</Operation>
 
 	<Operation Class="PatchOperationAdd">
-		<xpath>*/ThingDef[@Name="BuildingBase"]</xpath>
+		<xpath>Defs/ThingDef[@Name="BuildingBase"]</xpath>
 		<value>
 			<damageMultipliers>
 				<li>
@@ -48,11 +48,11 @@
   	<success>Always</success>
   	<operations>
     	<li Class="PatchOperationTest">
-      	<xpath>*/ThingDef[@Name="FurnitureBase"]/damageMultipliers</xpath>
+      	<xpath>Defs/ThingDef[@Name="FurnitureBase"]/damageMultipliers</xpath>
       	<success>Invert</success>
     	</li>
     	<li Class="PatchOperationAdd">
-      	<xpath>*/ThingDef[@Name="FurnitureBase"]</xpath>
+      	<xpath>Defs/ThingDef[@Name="FurnitureBase"]</xpath>
       	<value>
         	<damageMultipliers />
       	</value>
@@ -61,7 +61,7 @@
 	</Operation>
 
 	<Operation Class="PatchOperationAdd">
-		<xpath>*/ThingDef[@Name="FurnitureBase"]/damageMultipliers</xpath>
+		<xpath>Defs/ThingDef[@Name="FurnitureBase"]/damageMultipliers</xpath>
 		<value>
 			<li>
 			  <damageDef>Bomb</damageDef>
@@ -94,7 +94,7 @@
 	<!-- BuildingNaturalBase and ChunkBase -->
 
 	<Operation Class="PatchOperationAdd">
-		<xpath>*/ThingDef[@Name="BuildingNaturalBase"]</xpath>
+		<xpath>Defs/ThingDef[@Name="BuildingNaturalBase"]</xpath>
 		<value>
 			<damageMultipliers>
 				<li>
@@ -126,7 +126,7 @@
 	</Operation>
 
 	<Operation Class="PatchOperationAdd">
-		<xpath>*/ThingDef[@Name="ChunkBase"]</xpath>
+		<xpath>Defs/ThingDef[@Name="ChunkBase"]</xpath>
 		<value>
 			<damageMultipliers>
 				<li>
