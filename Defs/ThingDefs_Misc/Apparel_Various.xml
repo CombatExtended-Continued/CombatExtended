@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <Defs>
 
-  <ThingDef Name="ApparelBase" Abstract="True">
+  <!-- <ThingDef Name="ApparelBase" Abstract="True">
     <thingClass>Apparel</thingClass>
     <category>Item</category>
     <selectable>True</selectable>
@@ -44,15 +44,23 @@
       </recipeUsers>
       <unfinishedThingDef>UnfinishedApparel</unfinishedThingDef>
     </recipeMaker>
-  </ThingDef>
+  </ThingDef> -->
 
   <!-- ======================================= Armor vests =======================================-->
+
+  <!-- Convert to xpath? -->
 
   <ThingDef ParentName="ArmorMakeableBase">
     <defName>Apparel_FlakJacket</defName>
     <label>flak jacket</label>
     <description>Padded vest made from bullet-resistant materials. Provides limited protection against shrapnel and gunfire at relatively low weight.</description>
     <techLevel>Industrial</techLevel>
+    <recipeMaker>
+      <researchPrerequisite>FlakArmor</researchPrerequisite>
+      <skillRequirements>
+        <Crafting>5</Crafting>
+      </skillRequirements>
+    </recipeMaker>
     <graphicData>
       <texPath>Things/Apparel/FlakVest/FlakVest</texPath>
       <graphicClass>Graphic_Single</graphicClass>
@@ -70,6 +78,7 @@
       <Mass>4</Mass>
       <Bulk>5</Bulk>
       <WornBulk>2.5</WornBulk>
+      <EquipDelay>3</EquipDelay>
     </statBases>
     <thingCategories>
       <li>Apparel</li>
@@ -99,6 +108,10 @@
     <description>A vest with armor plates inserted on the chest and back. The composite ceramics offer better protection than steel but aren't as durable.</description>
     <techLevel>Industrial</techLevel>
     <recipeMaker>
+      <researchPrerequisite>FlakArmor</researchPrerequisite>
+      <skillRequirements>
+        <Crafting>5</Crafting>
+      </skillRequirements>
       <unfinishedThingDef>UnfinishedTechArmor</unfinishedThingDef>
     </recipeMaker>
     <graphicData>
@@ -108,8 +121,9 @@
     <statBases>
       <WorkToMake>24000</WorkToMake>
       <MaxHitPoints>75</MaxHitPoints>
-      <ArmorRating_Blunt>0.3</ArmorRating_Blunt>
       <ArmorRating_Sharp>0.7</ArmorRating_Sharp>
+      <ArmorRating_Blunt>0.25</ArmorRating_Blunt>
+      <ArmorRating_Heat>0.36</ArmorRating_Heat>
       <Mass>12</Mass>
       <Bulk>5</Bulk>
       <WornBulk>5</WornBulk>
@@ -132,8 +146,7 @@
         <li>Middle</li>
       </layers>
       <tags>
-        <li>Outlander</li>
-        <li>Military</li>
+        <li>IndustrialMilitaryBasic</li>
       </tags>
       <defaultOutfitTags>
         <li>Soldier</li>
