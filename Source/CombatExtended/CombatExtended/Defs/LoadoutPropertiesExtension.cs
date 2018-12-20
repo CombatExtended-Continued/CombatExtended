@@ -113,7 +113,7 @@ namespace CombatExtended
                 ThingStuffPair w = allWeaponPairs[i];
                 if (w.Price <= randomInRange)
                 {
-                    if (pawn.kindDef.weaponTags == null || pawn.kindDef.weaponTags.Any((string tag) => w.thing.weaponTags.Contains(tag)))
+                    if (option.weaponTags == null || option.weaponTags.Any((string tag) => w.thing.weaponTags.Contains(tag)))
                     {
                         if (w.thing.generateAllowChance >= 1f || Rand.ChanceSeeded(w.thing.generateAllowChance, pawn.thingIDNumber ^ (int)w.thing.shortHash ^ 28554824))
                         {
