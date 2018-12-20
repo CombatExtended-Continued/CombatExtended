@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <Defs>
 
-  <!-- <ThingDef Name="ApparelBase" Abstract="True">
+  <ThingDef Name="ApparelBase" Abstract="True">
     <thingClass>Apparel</thingClass>
     <category>Item</category>
     <selectable>True</selectable>
@@ -16,8 +16,7 @@
       <MaxHitPoints>100</MaxHitPoints>
       <Flammability>1.0</Flammability>
       <DeteriorationRate>2</DeteriorationRate>
-      <Beauty>-4</Beauty>
-      <SellPriceFactor>0.70</SellPriceFactor>
+      <Beauty>-3</Beauty>
     </statBases>
     <altitudeLayer>Item</altitudeLayer>
     <alwaysHaulable>True</alwaysHaulable>
@@ -32,7 +31,7 @@
       </li>
     </comps>
   </ThingDef>
-  
+
   <ThingDef Name="ArmorMakeableBase" ParentName="ApparelBase" Abstract="True">
     <recipeMaker>
       <workSpeedStat>SmithingSpeed</workSpeedStat>
@@ -44,13 +43,13 @@
       </recipeUsers>
       <unfinishedThingDef>UnfinishedApparel</unfinishedThingDef>
     </recipeMaker>
-  </ThingDef> -->
+  </ThingDef>
 
   <!-- ======================================= Armor vests =======================================-->
 
   <!-- Convert to xpath? -->
 
-  <ThingDef ParentName="ArmorMakeableBase">
+  <ThingDef ParentName="ArmorMachineableBase">
     <defName>Apparel_FlakJacket</defName>
     <label>flak jacket</label>
     <description>Padded vest made from bullet-resistant materials. Provides limited protection against shrapnel and gunfire at relatively low weight.</description>
@@ -102,7 +101,7 @@
     </apparel>
   </ThingDef>
 
-  <ThingDef ParentName="ArmorMakeableBase">
+  <ThingDef ParentName="ArmorMachineableBase">
     <defName>Apparel_CompositeVest</defName>
     <label>composite vest</label>
     <description>A vest with armor plates inserted on the chest and back. The composite ceramics offer better protection than steel but aren't as durable.</description>

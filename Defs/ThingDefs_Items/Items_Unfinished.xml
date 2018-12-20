@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <Defs>
 
-  <!-- <ThingDef Name="UnfinishedBase" Abstract="True">
+  <ThingDef Name="UnfinishedBase" Abstract="True">
     <thingClass>UnfinishedThing</thingClass>
     <category>Item</category>
     <label>unfinished thing</label>
@@ -16,11 +16,13 @@
     <selectable>true</selectable>
     <tradeability>None</tradeability>
     <drawerType>RealtimeOnly</drawerType>
+    <!-- For CompForbiddable -->
     <statBases>
       <MaxHitPoints>50</MaxHitPoints>
       <DeteriorationRate>2.0</DeteriorationRate>
-      <Beauty>-4</Beauty>
+      <Beauty>-8</Beauty>
       <Mass>1</Mass>
+      <!-- ingredients are added to this value -->
     </statBases>
     <comps>
       <li Class="CompProperties_Forbiddable"/>
@@ -36,7 +38,7 @@
       <li>Woody</li>
       <li>Stony</li>
     </stuffCategories>
-  </ThingDef> -->
+  </ThingDef>
 
   <ThingDef ParentName="UnfinishedBase">
     <defName>UnfinishedAmmo</defName>
@@ -72,17 +74,23 @@
   <!-- ======================= Minified things ========================= -->
 
   <ThingDef Name="MinifiedBase" Abstract="True">
+    <defName>MinifiedThing</defName>
+    <label>minified thing</label>
     <thingClass>MinifiedThing</thingClass>
     <category>Item</category>
     <useHitPoints>true</useHitPoints>
     <selectable>true</selectable>
     <altitudeLayer>Item</altitudeLayer>
     <scatterableOnMapGen>false</scatterableOnMapGen>
+    <tickerType>Normal</tickerType>
     <!-- for CompForbiddable -->
     <drawerType>RealtimeOnly</drawerType>
     <comps>
       <li Class="CompProperties_Forbiddable"/>
     </comps>
+    <inspectorTabs>
+      <li>ITab_Art</li>
+    </inspectorTabs>
     <alwaysHaulable>true</alwaysHaulable>
     <rotatable>false</rotatable>
     <pathCost>15</pathCost>
