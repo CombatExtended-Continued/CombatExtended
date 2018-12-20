@@ -27,6 +27,29 @@
 		</value>
 	</Operation>
 
+	<!-- Armor Descriptions -->
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/StatDef[defName = "ArmorRating_Sharp"]/description</xpath>
+		<value>
+			<description>The chance to affect sharp damage like bullets, knife stabs, explosions, and animal bites.\n\nUpon taking damage, the attack's armor penetration value is compared against this armor rating to form the penetration/armor ratio r = penetration / armor.\n\nDamage is then scaled based on r, where remaining damage is\n- 0% for r &lt;= 0.5\n- 50% for r = 1\n- 100% for r &gt;= 2\n\nArmor penetration is scaled by the same factor, making it harder to penetrate subsequent layers of armor.\n\nAfterwards, the attack has to pass a deflection check, where the remaining armor penetration is randomized by +-0.05 and compared against the armor. If the randomized penetration value is higher than the armor value it will penetrate, else it will be converted into blunt damage and checked again against this apparel's blunt armor.</description>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/StatDef[defName = "ArmorRating_Blunt"]/description</xpath>
+		<value>
+			<description>The chance to affect blunt damage like fists, club impacts and rock falls.\n\nUpon taking damage, the attack's armor penetration value is compared against this armor rating to form the penetration/armor ratio r = penetration / armor.\n\nDamage is then scaled based on r, where remaining damage is\n- 0% for r &lt;= 0.5\n- 50% for r = 1\n- 100% for r &gt;= 2\n\nArmor penetration is scaled by the same factor, making it harder to penetrate subsequent layers of armor.</description>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/StatDef[defName = "ArmorRating_Heat"]/description</xpath>
+		<value>
+			<description>The chance to affect temperature-related damage like burns.\n\nUpon taking damage, first this armor rating is reduced by the attack's armor penetration value. The remaining armor forms a percentage reduction of damage.</description>
+		</value>
+	</Operation>
+
 	<!-- ========== Pawn stats ========== -->
 
 	<!-- Melee Hit Chance -->
