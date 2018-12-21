@@ -22,7 +22,7 @@ namespace CombatExtended
         #region Fields
         
         private const int _defaultCount = 1;
-        private int _count;
+        public int _count;
         private Def _def;
         private Type _type; // to help with save/load.
         private LoadoutCountType _countType = LoadoutCountType.pickupDrop; // default mode for new loadout slots.
