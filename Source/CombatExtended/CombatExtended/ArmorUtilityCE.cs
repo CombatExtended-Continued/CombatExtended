@@ -95,7 +95,7 @@ namespace CombatExtended
                         dinfo.SetAmount(0);
 
                         // Apply secondary damage to shield
-                        var props = dinfo.Weapon.projectile as ProjectilePropertiesCE;
+                        var props = dinfo.Weapon?.projectile as ProjectilePropertiesCE;
                         if (props != null && !props.secondaryDamage.NullOrEmpty())
                         {
                             foreach(SecondaryDamage sec in props.secondaryDamage)

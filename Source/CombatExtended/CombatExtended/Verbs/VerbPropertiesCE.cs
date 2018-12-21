@@ -13,6 +13,7 @@ namespace CombatExtended
         public RecoilPattern recoilPattern = RecoilPattern.None;
         public float recoilAmount = 0;
         public float indirectFirePenalty = 0;
+        public float circularError = 0;
         public float meleeArmorPenetration = 0;
         public bool ejectsCasings = true;
         public bool ignorePartialLoSBlocker = false;

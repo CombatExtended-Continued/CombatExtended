@@ -8,7 +8,7 @@ using UnityEngine;
 
 namespace CombatExtended
 {
-    class Verb_MarkForArtillery : Verb_LaunchProjectileCE
+    public class Verb_MarkForArtillery : Verb_LaunchProjectileCE
     {
         public override void WarmupComplete()
         {
