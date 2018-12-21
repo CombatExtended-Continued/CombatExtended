@@ -378,7 +378,7 @@ namespace CombatExtended
         {
             if (slot == null)
                 return;
-            Widgets.TextFieldNumeric<int>(canvas, ref slot.count, ref slot.countFieldBuffer);
+            Widgets.TextFieldNumeric<int>(canvas, ref slot._count, ref slot.countFieldBuffer);
             TooltipHandler.TipRegion(canvas, "CE_CountFieldTip".Translate(slot.count));
         }
 
