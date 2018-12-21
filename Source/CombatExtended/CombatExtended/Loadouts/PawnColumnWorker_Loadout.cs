@@ -29,6 +29,7 @@ namespace CombatExtended
             return "CE_EditX".Translate(untranslatedString.Translate());
         }
         #endregion TranspilerReferencedItems
+        
         private IEnumerable<Widgets.DropdownMenuElement<Loadout>> Button_GenerateMenu(Pawn pawn)
         {
             using (List<Loadout>.Enumerator enu = LoadoutManager.Loadouts.GetEnumerator())
