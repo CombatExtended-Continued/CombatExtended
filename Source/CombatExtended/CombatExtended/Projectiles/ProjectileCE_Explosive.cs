@@ -57,6 +57,7 @@ namespace CombatExtended
             explosion.chanceToStartFire = def.projectile.explosionChanceToStartFire;
             explosion.damageFalloff = def.projectile.explosionDamageFalloff;
             explosion.StartExplosion(def.projectile.soundExplode);
+            explosion.armorPenetration = explosion.damAmount * 0.1f;
 
             //This code was disabled because it didn't run under previous circumstances. Could be enabled if necessary
             /*
