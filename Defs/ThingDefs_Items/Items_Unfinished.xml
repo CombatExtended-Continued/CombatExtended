@@ -20,8 +20,9 @@
     <statBases>
       <MaxHitPoints>50</MaxHitPoints>
       <DeteriorationRate>2.0</DeteriorationRate>
-      <Beauty>-4</Beauty>
-      <Mass>1</Mass> <!-- ingredients are added to this value -->
+      <Beauty>-8</Beauty>
+      <Mass>1</Mass>
+      <!-- ingredients are added to this value -->
     </statBases>
     <comps>
       <li Class="CompProperties_Forbiddable"/>
@@ -73,17 +74,23 @@
   <!-- ======================= Minified things ========================= -->
 
   <ThingDef Name="MinifiedBase" Abstract="True">
+    <defName>MinifiedThing</defName>
+    <label>minified thing</label>
     <thingClass>MinifiedThing</thingClass>
     <category>Item</category>
     <useHitPoints>true</useHitPoints>
     <selectable>true</selectable>
     <altitudeLayer>Item</altitudeLayer>
     <scatterableOnMapGen>false</scatterableOnMapGen>
+    <tickerType>Normal</tickerType>
     <!-- for CompForbiddable -->
     <drawerType>RealtimeOnly</drawerType>
     <comps>
       <li Class="CompProperties_Forbiddable"/>
     </comps>
+    <inspectorTabs>
+      <li>ITab_Art</li>
+    </inspectorTabs>
     <alwaysHaulable>true</alwaysHaulable>
     <rotatable>false</rotatable>
     <pathCost>15</pathCost>
