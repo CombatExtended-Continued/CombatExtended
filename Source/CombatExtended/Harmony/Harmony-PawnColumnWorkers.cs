@@ -109,7 +109,6 @@ namespace CombatExtended.Harmony
 
             foreach (var method in targetMethods)
             {
-                Log.Message($"CE :: Patching {method.Name}");
                 HarmonyBase.instance.Patch(method, null, null, transpiler);
             }
         }
