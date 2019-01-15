@@ -17,13 +17,14 @@ namespace CombatExtended
 
         // Transpiler referenced items should be changed with extreme caution.  Values can be changed but visibility, type, and name should not be.
         #region TranspilerReferencedItems
-        internal const float _MinWidth = 197f;  //194f default
-        internal const float _OptimalWidth = 214;  //354f default
+        internal const float _MinWidth = 158f;  //194f default
+        internal const float _OptimalWidth = 188;  //251f default
 
         internal static float IconSize = 16f;
         // using property format since I don't know what the lambda expression '=>' gets compiled into in this context.
-        public static Texture2D EditImage { get { return ContentFinder<Texture2D>.Get("UI/Icons/edit"); } }
-        public static Texture2D ClearImage { get { return ContentFinder<Texture2D>.Get("UI/Icons/clear"); } }
+        public static Texture2D EditImage => ContentFinder<Texture2D>.Get("UI/Icons/edit");
+        public static Texture2D ClearImage => ContentFinder<Texture2D>.Get("UI/Icons/clear");
+
         internal static string textGetter(string untranslatedString)
         {
             return "CE_EditX".Translate(untranslatedString.Translate());
@@ -92,7 +93,6 @@ namespace CombatExtended
             Rect forcedHoldRect = new Rect(num3, num4, (float)num2, (float)num2);
             if (somethingIsForced)
             {
-                //changed: if (Widgets.ButtonText(forcedHoldRect, "ClearForcedApparel".Translate(), true, false, true)) // "Clear forced" is sufficient and that's what this is at the moment.
                 if (Widgets.ButtonImage(forcedHoldRect, ClearImage))
                 {
                     pawn.HoldTrackerClear(); // yes this will also delete records that haven't been picked up and thus not shown to the player...
