@@ -44,84 +44,69 @@
   	<xpath>Defs/FactionDef[defName="OutlanderFactionBase" or defName="Pirate"]/pawnGroupMakers/li/*/Grenadier_EMP</xpath>
   </Operation>
 
-  <!-- ========== Add tribal grenadies ========== -->   <!-- TODO: Check Balancing for Combat options. (li[1], li[2], li[3]) -->
+  <!-- ========== Add tribal grenadies ========== -->
 
   <Operation Class="PatchOperationAdd"> <!-- Combat -->
     <xpath>Defs/FactionDef[@Name="TribeBase"]/pawnGroupMakers/li[1]/options</xpath>
     <value>
-      <TribalGrenadier>20</TribalGrenadier>
-      <TribalGunner>20</TribalGunner>
+      <TribalGrenadier>10</TribalGrenadier>
+      <TribalGunner>5</TribalGunner>
     </value>
   </Operation>
   
   <Operation Class="PatchOperationAdd"> <!-- Combat -->
     <xpath>Defs/FactionDef[@Name="TribeBase"]/pawnGroupMakers/li[2]/options</xpath>
     <value>
-      <TribalGrenadier>20</TribalGrenadier>
-      <TribalGunner>20</TribalGunner>
-    </value>
-  </Operation>
-  
-  <Operation Class="PatchOperationAdd"> <!-- Combat -->
-    <xpath>Defs/FactionDef[@Name="TribeBase"]/pawnGroupMakers/li[3]/options</xpath>
-    <value>
-      <TribalGrenadier>20</TribalGrenadier>
-      <TribalGunner>20</TribalGunner>
+      <TribalGrenadier>5</TribalGrenadier>
+      <TribalGunner>10</TribalGunner>
     </value>
   </Operation>
   
     <Operation Class="PatchOperationAdd"> <!-- Peaceful -->
     <xpath>Defs/FactionDef[@Name="TribeBase"]/pawnGroupMakers/li[4]/options</xpath>
     <value>
-      <TribalGrenadier>20</TribalGrenadier>
-      <TribalGunner>20</TribalGunner>
+      <TribalGrenadier>10</TribalGrenadier>
+      <TribalGunner>5</TribalGunner>
     </value>
   </Operation>
 
   <Operation Class="PatchOperationAdd"> <!-- Trader -->
     <xpath>Defs/FactionDef[@Name="TribeBase"]/pawnGroupMakers/li[5]/guards</xpath>
     <value>
-      <TribalGrenadier>10</TribalGrenadier>
-      <TribalGunner>10</TribalGunner>
+      <TribalGrenadier>5</TribalGrenadier>
+      <TribalGunner>15</TribalGunner>
     </value>
   </Operation>
 
   <Operation Class="PatchOperationAdd"> <!-- Settlement -->
     <xpath>Defs/FactionDef[@Name="TribeBase"]/pawnGroupMakers/li[6]/options</xpath>
     <value>
-      <TribalGrenadier>20</TribalGrenadier>
-      <TribalGunner>40</TribalGunner>
+      <TribalGrenadier>10</TribalGrenadier>
+      <TribalGunner>10</TribalGunner>
     </value>
   </Operation>
 
   <!-- ========== Add machine gunners ========== -->
 
-  <!-- Outlanders -->  <!-- TODO: Check Balancing for Combat options. (li[1]) -->
+  <!-- Outlanders -->
     <Operation Class="PatchOperationAdd"> <!-- Combat -->
   	<xpath>Defs/FactionDef[@Name="OutlanderFactionBase"]/pawnGroupMakers/li[1]/options</xpath>
   	<value>
-  		<MercenaryMachineGunner>70</MercenaryMachineGunner>
-  	</value>
-  </Operation>
-  
-  <Operation Class="PatchOperationAdd"> <!-- Peaceful -->
-  	<xpath>Defs/FactionDef[@Name="OutlanderFactionBase"]/pawnGroupMakers/li[2]/options</xpath>
-  	<value>
-  		<MercenaryMachineGunner>70</MercenaryMachineGunner>
+  		<MercenaryMachineGunner>5</MercenaryMachineGunner>
   	</value>
   </Operation>
 
   <Operation Class="PatchOperationAdd"> <!-- Trader -->
   	<xpath>Defs/FactionDef[@Name="OutlanderFactionBase"]/pawnGroupMakers/li[3]/guards</xpath>
   	<value>
-  		<MercenaryMachineGunner>50</MercenaryMachineGunner>
+  		<MercenaryMachineGunner>5</MercenaryMachineGunner>
   	</value>
   </Operation>
 
   <Operation Class="PatchOperationAdd"> <!-- Settlement -->
   	<xpath>Defs/FactionDef[@Name="OutlanderFactionBase"]/pawnGroupMakers/li[4]/options</xpath>
   	<value>
-  		<MercenaryMachineGunner>50</MercenaryMachineGunner>
+  		<MercenaryMachineGunner>10</MercenaryMachineGunner>
   	</value>
   </Operation>
 
@@ -129,15 +114,29 @@
   <Operation Class="PatchOperationAdd">
   	<xpath>Defs/FactionDef[defName="Pirate"]/pawnGroupMakers/li[1]/options</xpath>
   	<value>
-  		<MercenaryMachineGunner>80</MercenaryMachineGunner>
+  		<MercenaryMachineGunner>7</MercenaryMachineGunner>
   	</value>
   </Operation>
 
   <Operation Class="PatchOperationAdd">
   	<xpath>Defs/FactionDef[defName="Pirate"]/pawnGroupMakers/li[3]/options</xpath>
   	<value>
-  		<MercenaryMachineGunner>80</MercenaryMachineGunner>
+  		<MercenaryMachineGunner>7</MercenaryMachineGunner>
   	</value>
+  </Operation>
+
+  <Operation Class="PatchOperationAdd">
+    <xpath>Defs/FactionDef[defName="Pirate"]/pawnGroupMakers/li[4]/options</xpath>
+    <value>
+      <MercenaryMachineGunner>1</MercenaryMachineGunner>
+    </value>
+  </Operation>
+
+  <Operation Class="PatchOperationAdd">
+    <xpath>Defs/FactionDef[defName="Pirate"]/pawnGroupMakers/li[7]/options</xpath>
+    <value>
+      <MercenaryMachineGunner>10</MercenaryMachineGunner>
+    </value>
   </Operation>
 
 </Patch>
