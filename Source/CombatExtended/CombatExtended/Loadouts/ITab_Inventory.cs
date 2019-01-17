@@ -205,7 +205,7 @@ namespace CombatExtended
             if (this.CanControl && thing.IngestibleNow && base.SelPawn.RaceProps.CanEverEat(thing))
             {
                 Rect rect3 = new Rect(rect.width - 24f, y, 24f, 24f);
-                string tipString = thing.def.ingestible.ingestCommandString.NullOrEmpty() ? "ConsumeThing".Translate(thing.LabelShort) : string.Format(thing.def.ingestible.ingestCommandString, thing.LabelShort);
+                string tipString = thing.def.ingestible.ingestCommandString.NullOrEmpty() ? "ConsumeThing".Translate(thing.LabelShort, thing) : string.Format(thing.def.ingestible.ingestCommandString, thing.LabelShort);
                 TooltipHandler.TipRegion(rect3, tipString);
                 if (Widgets.ButtonImage(rect3, TexButton.Ingest))
                 {
@@ -305,7 +305,7 @@ namespace CombatExtended
                             SoundDefOf.Tick_High.PlayOneShotOnCamera();
                             InterfaceEatThis(thing);
                         };
-                        string label = thing.def.ingestible.ingestCommandString.NullOrEmpty() ? "ConsumeThing".Translate(thing.LabelShort) : string.Format(thing.def.ingestible.ingestCommandString, thing.LabelShort);
+                        string label = thing.def.ingestible.ingestCommandString.NullOrEmpty() ? "ConsumeThing".Translate(thing.LabelShort, thing) : string.Format(thing.def.ingestible.ingestCommandString, thing.LabelShort);
                         floatOptionList.Add(new FloatMenuOption(label, eatFood));
                     }
                     floatOptionList.Add(new FloatMenuOption("DropThing".Translate(), dropApparel));
