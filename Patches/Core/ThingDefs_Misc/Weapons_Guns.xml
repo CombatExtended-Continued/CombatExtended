@@ -1545,10 +1545,37 @@
     </value>
   </Operation>
 
-<!-- Disable Charge Lance for Player -->
-	<Operation Class="PatchOperationRemove">
-		<xpath>/Defs/ThingDef[defName="Gun_ChargeLance"]/recipeMaker</xpath>
-	</Operation>
+  <!-- Disable for player -->
+
+  <Operation Class="PatchOperationAttributeSet">
+    <xpath>Defs/ThingDef[defName="Gun_ChargeLance"]</xpath>
+    <attribute>ParentName</attribute>
+    <value>BaseGun</value>
+  </Operation>
+
+  <Operation Class="PatchOperationRemove">
+    <xpath>Defs/ThingDef[defName="Gun_ChargeLance"]/costList</xpath>
+  </Operation>
+
+  <Operation Class="PatchOperationRemove">
+    <xpath>Defs/ThingDef[defName="Gun_ChargeLance"]/recipeMaker</xpath>
+  </Operation>
+
+  <Operation Class="PatchOperationAdd">
+    <xpath>Defs/ThingDef[defName="Gun_ChargeLance"]/statBases</xpath>
+    <value>
+      <MarketValue>2200</MarketValue>
+    </value>
+  </Operation>
+
+  <Operation Class="PatchOperationAdd">
+    <xpath>Defs/ThingDef[defName="Gun_ChargeLance"]</xpath>
+    <value>
+      <tradeability>None</tradeability>
+      <destroyOnDrop>True</destroyOnDrop>
+      <menuHidden>True</menuHidden>
+    </value>
+  </Operation>
 
 	<Operation Class="PatchOperationRemove">
 		<xpath>/Defs/ThingDef[defName="Gun_ChargeLance"]/weaponTags/li[contains(.,"SpacerGun")]</xpath>
