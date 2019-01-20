@@ -251,7 +251,7 @@
   <!-- ========== Outlander ========== -->
 
   <Operation Class="PatchOperationAddModExtension">
-  	<xpath>Defs/PawnKindDef[defName="Villager"]</xpath>
+  	<xpath>Defs/PawnKindDef[defName="Villager" or defName="Town_Trader" or defName="Town_Councilman"]</xpath>
   	<value>
       <li Class="CombatExtended.LoadoutPropertiesExtension">
         <primaryMagazineCount>
@@ -274,7 +274,7 @@
   	</value>
   </Operation>
 
-  <Operation Class="PatchOperationReplace">
+  <!--<Operation Class="PatchOperationReplace">
     <xpath>Defs/PawnKindDef[defName="Town_Guard"]/weaponMoney</xpath>
     <value>
       <weaponMoney>
@@ -282,7 +282,7 @@
         <max>350</max>
       </weaponMoney>
     </value>
-  </Operation>
+  </Operation>-->
 
   <Operation Class="PatchOperationAddModExtension">
   	<xpath>Defs/PawnKindDef[defName="Town_Guard"]</xpath>

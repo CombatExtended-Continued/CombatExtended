@@ -70,6 +70,12 @@ namespace CombatExtended
 
                         // Check for suppression
                         if (IsSuppressed) return false;
+
+                        // Check for RunAndGun mod
+                        if (ShooterPawn.pather.Moving)
+                        {
+                            return false;
+                        }
                     }
                     return this.CompFireModes.CurrentAimMode == AimMode.AimedShot;
                 }

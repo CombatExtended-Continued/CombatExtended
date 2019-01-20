@@ -521,8 +521,7 @@ namespace CombatExtended
         /// <returns>True for successful shot, false otherwise</returns>
         protected override bool TryCastShot()
         {
-            ShootLine shootLine;
-            if (!TryFindCEShootLineFromTo(caster.Position, currentTarget, out shootLine))
+            if (!TryFindCEShootLineFromTo(caster.Position, currentTarget, out var shootLine))
             {
                 return false;
             }
@@ -543,6 +542,7 @@ namespace CombatExtended
                 projectile.canTargetSelf = false;
                 projectile.minCollisionSqr = (sourceLoc - currentTarget.Cell.ToIntVec2.ToVector2Shifted()).sqrMagnitude;
                 projectile.intendedTarget = currentTarget.Thing;
+                projectile.mount = caster.Position.GetFirstPawn(caster.Map);
                 projectile.Launch(
                 	Shooter,	//Shooter instead of caster to give turret operators' records the damage/kills obtained
                 	sourceLoc,
