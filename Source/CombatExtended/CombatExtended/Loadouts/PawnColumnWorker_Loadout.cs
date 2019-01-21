@@ -30,6 +30,25 @@ namespace CombatExtended
             return "CE_EditX".Translate(untranslatedString.Translate());
         }
         #endregion TranspilerReferencedItems
+        
+        private IEnumerable<Widgets.DropdownMenuElement<Loadout>> Button_GenerateMenu(Pawn pawn)
+        {
+            using (List<Loadout>.Enumerator enu = LoadoutManager.Loadouts.GetEnumerator())
+            {
+                while (enu.MoveNext())
+                {
+                    Loadout loadout = enu.Current;
+                    yield return new Widgets.DropdownMenuElement<Loadout>
+                    {
+                        option = new FloatMenuOption(loadout.LabelCap, delegate ()
+                        {
+                            pawn.SetLoadout(loadout);
+                        }),
+                        payload = loadout
+                    };
+                }
+            }
+        }
 
         public override void DoHeader(Rect rect, PawnTable table)
         {
@@ -70,21 +89,7 @@ namespace CombatExtended
 
             // Main loadout button
             string label = pawn.GetLoadout().label.Truncate(loadoutButtonRect.width, null);
-            if (Widgets.ButtonText(loadoutButtonRect, label, true, false, true))
-            {
-                LoadoutManager.SortLoadouts();
-                List<FloatMenuOption> options = new List<FloatMenuOption>();
-                foreach (Loadout loadout in LoadoutManager.Loadouts)
-                {
-                    // need to create a local copy for delegate
-                    Loadout localLoadout = loadout;
-                    options.Add(new FloatMenuOption(localLoadout.LabelCap, delegate
-                    {
-                        pawn.SetLoadout(localLoadout);
-                    }, MenuOptionPriority.Default, null, null));
-                }
-                Find.WindowStack.Add(new FloatMenu(options));
-            }
+            Widgets.Dropdown<Pawn, Loadout>(loadoutButtonRect, pawn, (Pawn p) => p.GetLoadout(), new Func<Pawn, IEnumerable<Widgets.DropdownMenuElement<Loadout>>>(Button_GenerateMenu), label, null, null, null, null, true);
 
             // Clear forced button
             num3 += loadoutButtonRect.width;
