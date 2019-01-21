@@ -1,0 +1,342 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Patch>
+	<Operation Class="PatchOperationSequence">
+		<success>Always</success>
+		<operations>
+			<li Class="CombatExtended.PatchOperationFindMod">
+				<modName>Defensive Machine Gun Turret Pack</modName>
+			</li>
+
+			<!-- ========== Mounted DP-28 Turret ========== -->
+
+			<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+				<defName>Gun_DP28MG</defName>
+				<statBases>
+					<RangedWeapon_Cooldown>0.56</RangedWeapon_Cooldown>
+					<SightsEfficiency>1</SightsEfficiency>
+					<ShotSpread>0.05</ShotSpread>
+					<SwayFactor>1.19</SwayFactor>
+					<Bulk>8.00</Bulk>
+				</statBases>
+				<Properties>
+					<recoilAmount>0.71</recoilAmount>
+					<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+					<hasStandardCommand>true</hasStandardCommand>
+					<defaultProjectile>Bullet_762x54mmR_FMJ</defaultProjectile>
+					<warmupTime>1.25</warmupTime>
+					<range>75</range>
+					<ticksBetweenBurstShots>7</ticksBetweenBurstShots>
+					<burstShotCount>10</burstShotCount>
+					<soundCast>Shot_Minigun</soundCast>
+					<soundCastTail>GunTail_Medium</soundCastTail>
+					<targetParams>
+						<canTargetLocations>true</canTargetLocations>
+					</targetParams>
+					<muzzleFlashScale>9</muzzleFlashScale>
+					<recoilPattern>Mounted</recoilPattern>
+				</Properties>
+				<AmmoUser>
+					<magazineSize>47</magazineSize>
+					<reloadTime>4.9</reloadTime>
+					<ammoSet>AmmoSet_762x54mmR</ammoSet>
+				</AmmoUser>
+				<FireModes>
+					<aiUseBurstMode>FALSE</aiUseBurstMode>
+					<aiAimMode>SuppressFire</aiAimMode>
+					<aimedBurstShotCount>10</aimedBurstShotCount>
+				</FireModes>
+				<weaponTags>
+					<li>TurretGun</li>
+				</weaponTags>
+			</li>
+
+			<!-- ========== Mounted M2HB Turret ========== -->
+
+			<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+				<defName>Gun_M2HB</defName>
+				<statBases>
+					<RangedWeapon_Cooldown>0.36</RangedWeapon_Cooldown>
+					<SightsEfficiency>1</SightsEfficiency>
+					<ShotSpread>0.01</ShotSpread>
+					<SwayFactor>1.59</SwayFactor>
+					<Bulk>18.54</Bulk>
+				</statBases>
+				<Properties>
+					<recoilAmount>1.25</recoilAmount>
+					<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+					<hasStandardCommand>true</hasStandardCommand>
+					<defaultProjectile>Bullet_50BMG_FMJ</defaultProjectile>
+					<warmupTime>1.1</warmupTime>
+					<range>126</range>
+					<ticksBetweenBurstShots>6</ticksBetweenBurstShots>
+					<burstShotCount>10</burstShotCount>
+					<soundCast>ShotM2</soundCast>
+					<soundCastTail>GunTail_Heavy</soundCastTail>
+					<targetParams>
+						<canTargetLocations>true</canTargetLocations>
+					</targetParams>
+					<muzzleFlashScale>13</muzzleFlashScale>
+					<recoilPattern>Mounted</recoilPattern>
+				</Properties>
+				<AmmoUser>
+					<magazineSize>100</magazineSize>
+					<reloadTime>7.8</reloadTime>
+					<ammoSet>AmmoSet_50BMG</ammoSet>
+				</AmmoUser>
+				<FireModes>
+					<aiUseBurstMode>FALSE</aiUseBurstMode>
+					<aiAimMode>SuppressFire</aiAimMode>
+					<aimedBurstShotCount>5</aimedBurstShotCount>
+				</FireModes>
+				<weaponTags>
+					<li>TurretGun</li>
+				</weaponTags>
+			</li>
+
+			<!-- ========== Mounted Twin M2HB Turret ========== -->
+
+			<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+				<defName>Gun_M2HBT</defName>
+				<statBases>
+					<RangedWeapon_Cooldown>0.36</RangedWeapon_Cooldown>
+					<SightsEfficiency>1</SightsEfficiency>
+					<ShotSpread>0.02</ShotSpread>
+					<SwayFactor>2.13</SwayFactor>
+					<Bulk>37.08</Bulk>
+				</statBases>
+				<Properties>
+					<recoilAmount>0.83</recoilAmount>
+					<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+					<hasStandardCommand>true</hasStandardCommand>
+					<defaultProjectile>Bullet_50BMG_FMJ</defaultProjectile>
+					<warmupTime>1.1</warmupTime>
+					<range>126</range>
+					<ticksBetweenBurstShots>6</ticksBetweenBurstShots>
+					<burstShotCount>20</burstShotCount>
+					<soundCast>ShotM2</soundCast>
+					<soundCastTail>GunTail_Heavy</soundCastTail>
+					<targetParams>
+						<canTargetLocations>true</canTargetLocations>
+					</targetParams>
+					<muzzleFlashScale>13</muzzleFlashScale>
+					<recoilPattern>Mounted</recoilPattern>
+				</Properties>
+				<AmmoUser>
+					<magazineSize>200</magazineSize>
+					<reloadTime>15.6</reloadTime>
+					<ammoSet>AmmoSet_50BMG</ammoSet>
+				</AmmoUser>
+				<FireModes>
+					<aiUseBurstMode>FALSE</aiUseBurstMode>
+					<aiAimMode>SuppressFire</aiAimMode>
+					<aimedBurstShotCount>10</aimedBurstShotCount>
+				</FireModes>
+				<weaponTags>
+					<li>TurretGun</li>
+				</weaponTags>
+			</li>
+
+			<!-- ========== Mounted M134 Turret ========== -->
+
+			<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+				<defName>Gun_M134MG</defName>
+				<statBases>
+					<RangedWeapon_Cooldown>0.36</RangedWeapon_Cooldown>
+					<SightsEfficiency>1</SightsEfficiency>
+					<ShotSpread>0.06</ShotSpread>
+					<SwayFactor>1.23</SwayFactor>
+					<Bulk>8.02</Bulk>
+				</statBases>
+				<Properties>
+					<recoilAmount>0.65</recoilAmount>
+					<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+					<hasStandardCommand>true</hasStandardCommand>
+					<defaultProjectile>Bullet_762x51mmNATO_FMJ</defaultProjectile>
+					<warmupTime>1.1</warmupTime>
+					<range>86</range>
+					<ticksBetweenBurstShots>1</ticksBetweenBurstShots>
+					<burstShotCount>100</burstShotCount>
+					<soundCast>Shot_Minigun</soundCast>
+					<soundCastTail>GunTail_Heavy</soundCastTail>
+					<targetParams>
+						<canTargetLocations>true</canTargetLocations>
+					</targetParams>
+					<muzzleFlashScale>10</muzzleFlashScale>
+					<recoilPattern>Mounted</recoilPattern>
+				</Properties>
+				<AmmoUser>
+					<magazineSize>500</magazineSize>
+					<reloadTime>7.8</reloadTime>
+					<ammoSet>AmmoSet_762x51mmNATO</ammoSet>
+				</AmmoUser>
+				<FireModes>
+					<aiUseBurstMode>FALSE</aiUseBurstMode>
+					<aiAimMode>SuppressFire</aiAimMode>
+					<aimedBurstShotCount>200</aimedBurstShotCount>
+					<noSnapshot>true</noSnapshot>
+					<noSingleShot>true</noSingleShot>
+				</FireModes>
+				<weaponTags>
+					<li>TurretGun</li>
+				</weaponTags>
+			</li>
+
+			<!-- ========== Mounted Mk 19 Turret ========== -->
+
+			<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+				<defName>Gun_Mk19MGL</defName>
+				<statBases>
+					<RangedWeapon_Cooldown>0.36</RangedWeapon_Cooldown>
+					<SightsEfficiency>1</SightsEfficiency>
+					<ShotSpread>0.09</ShotSpread>
+					<SwayFactor>1.49</SwayFactor>
+					<Bulk>12.9</Bulk>
+				</statBases>
+				<Properties>
+					<recoilAmount>1.67</recoilAmount>
+					<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+					<hasStandardCommand>true</hasStandardCommand>
+					<defaultProjectile>Bullet_40x53mmGrenade_HE</defaultProjectile>
+					<warmupTime>1.1</warmupTime>
+					<range>112</range>
+					<ticksBetweenBurstShots>6</ticksBetweenBurstShots>
+					<burstShotCount>6</burstShotCount>
+					<soundCast>InfernoCannon_Fire</soundCast>
+					<soundCastTail>GunTail_Heavy</soundCastTail>
+					<targetParams>
+						<canTargetLocations>true</canTargetLocations>
+					</targetParams>
+					<muzzleFlashScale>16</muzzleFlashScale>
+					<recoilPattern>Mounted</recoilPattern>
+				</Properties>
+				<AmmoUser>
+					<magazineSize>48</magazineSize>
+					<reloadTime>7.8</reloadTime>
+					<ammoSet>AmmoSet_40x53mmGrenade</ammoSet>
+				</AmmoUser>
+				<FireModes>
+					<aiUseBurstMode>FALSE</aiUseBurstMode>
+					<aiAimMode>SuppressFire</aiAimMode>
+					<aimedBurstShotCount>3</aimedBurstShotCount>
+				</FireModes>
+				<weaponTags>
+					<li>TurretGun</li>
+				</weaponTags>
+			</li>
+
+			<!-- ========== Work To Build ========== -->
+
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[
+					defName="Turret_DP28MG"
+				]/statBases/WorkToBuild</xpath>
+				<value>
+					<WorkToBuild>41000</WorkToBuild>
+				</value>
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[
+					defName="Turret_M2HB"
+				]/statBases/WorkToBuild</xpath>
+				<value>
+					<WorkToBuild>60500</WorkToBuild>
+				</value>
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[
+					defName="Turret_M2HBT"
+				]/statBases/WorkToBuild</xpath>
+				<value>
+					<WorkToBuild>83500</WorkToBuild>
+				</value>
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[
+					defName="Turret_M134MG"
+				]/statBases/WorkToBuild</xpath>
+				<value>
+					<WorkToBuild>54000</WorkToBuild>
+				</value>
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[
+					defName="Turret_Mk19MGL"
+				]/statBases/WorkToBuild</xpath>
+				<value>
+					<WorkToBuild>57000</WorkToBuild>
+				</value>
+			</li>
+
+			<!-- ========== Common to all Defensive Turrets ========== -->
+
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[
+					defName="Turret_DP28MG" or
+					defName="Turret_M2HB" or
+					defName="Turret_M2HBT" or
+					defName="Turret_M134MG" or
+					defName="Turret_Mk19MGL"
+				]/thingClass</xpath>
+				<value>
+					<thingClass>CombatExtended.Building_TurretGunCE</thingClass>
+				</value>
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[
+					defName="Turret_M2HB" or
+					defName="Turret_M2HBT" or
+					defName="Turret_M134MG" or
+					defName="Turret_Mk19MGL"
+				]/researchPrerequisites</xpath>
+				<value>
+					<researchPrerequisites>
+						<li>CE_TurretHeavyWeapons</li>
+					</researchPrerequisites>
+				</value>
+			</li>
+
+			<li Class="PatchOperationRemove">
+				<xpath>Defs/ThingDef[
+					defName="Turret_DP28MG" or
+					defName="Turret_M2HB" or
+					defName="Turret_M2HBT" or
+					defName="Turret_M134MG" or
+					defName="Turret_Mk19MGL"
+				]/comps/li[@Class = "CompProperties_Refuelable"]</xpath>
+			</li>
+
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[
+					defName="Turret_DP28MG" or
+					defName="Turret_M2HB" or
+					defName="Turret_M2HBT" or
+					defName="Turret_M134MG" or
+					defName="Turret_Mk19MGL"
+				]/statBases</xpath>
+				<value>
+					<AimingAccuracy>0.5</AimingAccuracy>
+				</value>
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[
+					defName="Turret_DP28MG" or
+					defName="Turret_M2HB" or
+					defName="Turret_M2HBT" or
+					defName="Turret_M134MG" or
+					defName="Turret_Mk19MGL"
+				]/statBases/ShootingAccuracy</xpath>
+				<value>
+					<ShootingAccuracy>1</ShootingAccuracy>
+				</value>
+			</li>
+
+		</operations>	
+	</Operation>
+
+</Patch>

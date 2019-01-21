@@ -2,15 +2,18 @@
 <Defs>
 
   <ThingDef Name="BaseTurretGun" ParentName="BaseGun" Abstract="True">
-    <soundInteract>InteractRifle</soundInteract>
+    <statBases>
+      <Mass>1</Mass>
+    </statBases>
+    <soundInteract>Interact_Rifle</soundInteract>
     <weaponTags>
       <li>Gun</li>
       <li>TurretGun</li>
     </weaponTags>
-    <tradeability>Never</tradeability>
+    <tradeability>None</tradeability>
     <destroyOnDrop>True</destroyOnDrop>
     <menuHidden>True</menuHidden>
-    <canBeSpawningInventory>false</canBeSpawningInventory>
+    <generateAllowChance>0</generateAllowChance>
     <smeltable>false</smeltable>
   </ThingDef>
 
@@ -35,7 +38,7 @@
       <graphicClass>Graphic_Single</graphicClass>
     </graphicData>
     <description>Charge blaster attached to a turret mount.</description>
-    <soundInteract>InteractChargeRifle</soundInteract>
+    <soundInteract>Interact_ChargeRifle</soundInteract>
     <statBases>
       <MarketValue>2000</MarketValue>
       <SightsEfficiency>1</SightsEfficiency>
@@ -53,7 +56,7 @@
         <range>55</range>
         <ticksBetweenBurstShots>5</ticksBetweenBurstShots>
         <burstShotCount>10</burstShotCount>
-        <soundCast>ShotChargeBlaster</soundCast>
+        <soundCast>Shot_ChargeBlaster</soundCast>
         <soundCastTail>GunTail_Heavy</soundCastTail>
         <muzzleFlashScale>9</muzzleFlashScale>
         <recoilPattern>Mounted</recoilPattern>
@@ -216,7 +219,7 @@
       <graphicClass>Graphic_Single</graphicClass>
     </graphicData>
     <description>90mm Flak cannon on a stationary emplacement.</description>
-    <soundInteract>ArtilleryShellLoaded</soundInteract>
+    <soundInteract>Artillery_ShellLoaded</soundInteract>
     <statBases>
       <MarketValue>2000</MarketValue>
       <SightsEfficiency>1.1</SightsEfficiency>

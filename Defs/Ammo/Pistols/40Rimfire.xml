@@ -20,7 +20,7 @@
 	
 	<!-- ==================== Ammo ========================== -->
 
-	<ThingDef ParentName="SmallAmmoBase">
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="SmallAmmoBase">
 		<defName>Ammo_40Rimfire</defName>
 		<label>.40 Rimfire cartridge</label>
 		<description>Ultra-light cartridge for use in derringer pistols.</description>
@@ -46,18 +46,18 @@
 	
 	<!-- ================== Projectiles ================== -->
 
-	<ThingDef ParentName="BaseBullet">
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="BaseBullet">
 		<defName>Bullet_40Rimfire</defName>
 		<label>.40 Rimfire bullet</label>
 		<graphicData>
 			<texPath>Things/Projectile/Bullet_Small</texPath>
 			<graphicClass>Graphic_Single</graphicClass>
 		</graphicData>
-		<projectile>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
 			<damageDef>Bullet</damageDef>
 			<speed>33</speed>
 			<damageAmountBase>4</damageAmountBase>
-			<armorPenetration>0.098</armorPenetration>
+			<armorPenetrationBase>0.098</armorPenetrationBase>
 			<dropsCasings>true</dropsCasings>
 		</projectile>
 	</ThingDef>

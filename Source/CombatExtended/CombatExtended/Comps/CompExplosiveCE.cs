@@ -51,17 +51,17 @@ namespace CombatExtended
                 float edificeHeight = (new CollisionVertical(posIV.GetEdifice(map))).Max;
                 Vector2 exactOrigin = new Vector2(pos.x, pos.z);
                 float height;
-                
-                //Fragments fly from a 0 to 45 degree angle away from the explosion
-                var range = new FloatRange(0, Mathf.PI / 8f);
+
+                //Fragments fly from a 0 (half of a circle) to 45 (3/4 of a circle) degree angle away from the explosion
+                var range = new FloatRange(0.5f, 0.75f);
                 
                 if (projCE != null)
                 {
                 	height = Mathf.Max(edificeHeight, pos.y);
                 	if (edificeHeight < height)
                 	{
-                		//If the projectile exploded above the ground, they can fly 45 degree away at the bottom as well
-                		range.min = -Mathf.PI / 8f;
+                        //If the projectile exploded above the ground, they can fly 45 degree away (1/4 of a circle) at the bottom as well
+                        range.min = 0.25f;
                 	}
                 	// TODO : Check for hitting the bottom or top of a roof
                 }
@@ -71,7 +71,7 @@ namespace CombatExtended
                 	height = edificeHeight;
                 }
                 
-                foreach (ThingCountClass fragment in Props.fragments)
+                foreach (ThingDefCountClass fragment in Props.fragments)
                 {
                     for (int i = 0; i < fragment.count; i++)
                     {
@@ -86,7 +86,7 @@ namespace CombatExtended
             			projectile.Launch(
             				instigator,
             				exactOrigin,
-            				range.RandomInRange,
+                            Mathf.Acos(2 * range.RandomInRange - 1),
             				UnityEngine.Random.Range(0, 360),
             				height,
             				Props.fragSpeedFactor * projectile.def.projectile.speed,
@@ -121,7 +121,7 @@ namespace CombatExtended
                 if (parent.def.projectile != null)
                 {
                     explosion.chanceToStartFire = parent.def.projectile.explosionChanceToStartFire;
-                    explosion.dealMoreDamageAtCenter = parent.def.projectile.explosionDealMoreDamageAtCenter;
+                    explosion.damageFalloff = parent.def.projectile.explosionDamageFalloff;
                 }
                 explosion.StartExplosion(Props.explosionDamageDef.soundExplosion);
             }

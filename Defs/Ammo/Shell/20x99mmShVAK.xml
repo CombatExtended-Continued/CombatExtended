@@ -1,0 +1,234 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+
+    <ThingCategoryDef>
+      <defName>Ammo20x99mmRShVAK</defName>
+      <label>20x99mmR ShVAK</label>
+      <parent>AmmoHighCaliber</parent>
+      <iconPath>UI/Icons/ThingCategories/CaliberHighCaliber</iconPath>
+    </ThingCategoryDef>
+  
+  <!-- ==================== AmmoSet ========================== -->
+
+  <CombatExtended.AmmoSetDef>
+    <defName>AmmoSet_20x99mmRShVAK</defName>
+    <label>20x99mmR ShVAK</label>
+    <ammoTypes>
+      <Ammo_20x99mmRShVAK_FMJ>Bullet_20x99mmRShVAK_FMJ</Ammo_20x99mmRShVAK_FMJ>
+      <Ammo_20x99mmRShVAK_HE>Bullet_20x99mmRShVAK_HE</Ammo_20x99mmRShVAK_HE>
+      <Ammo_20x99mmRShVAK_Incendiary>Bullet_20x99mmRShVAK_Incendiary</Ammo_20x99mmRShVAK_Incendiary>
+    </ammoTypes>
+  </CombatExtended.AmmoSetDef>
+  
+  <!-- ==================== Ammo ========================== -->
+
+  <ThingDef Class="CombatExtended.AmmoDef" Name="Ammo20x99mmRShVAKBase" ParentName="SmallAmmoBase" Abstract="True">
+    <description>Large caliber cartridge used by autocannons and a handful of anti-tank rifles.</description>
+    <statBases>
+    <Mass>0.196</Mass>
+    <Bulk>0.21</Bulk>
+    </statBases>
+    <tradeTags>
+      <li>CE_AutoEnableTrade</li>
+      <li>CE_AutoEnableCrafting</li>
+    </tradeTags>
+    <thingCategories>
+      <li>Ammo20x99mmRShVAK</li>
+    </thingCategories>
+    <stackLimit>100</stackLimit>
+  </ThingDef>
+
+  <ThingDef Class="CombatExtended.AmmoDef" ParentName="Ammo20x99mmRShVAKBase">
+    <defName>Ammo_20x99mmRShVAK_FMJ</defName>
+    <label>20x99mmR ShVAK cartridge (FMJ)</label>
+    <graphicData>
+      <texPath>Things/Ammo/HighCaliber/FMJ</texPath>
+      <graphicClass>Graphic_StackCount</graphicClass>
+    </graphicData>
+    <statBases>
+      <MarketValue>0.66</MarketValue>
+    </statBases>
+    <ammoClass>FullMetalJacket</ammoClass>
+    <cookOffProjectile>Bullet_20x99mmRShVAK_FMJ</cookOffProjectile>
+  </ThingDef>
+
+  <ThingDef Class="CombatExtended.AmmoDef" ParentName="Ammo20x99mmRShVAKBase">
+    <defName>Ammo_20x99mmRShVAK_HE</defName>
+    <label>20x99mmR ShVAK cartridge (HE)</label>
+    <graphicData>
+      <texPath>Things/Ammo/HighCaliber/HE</texPath>
+      <graphicClass>Graphic_StackCount</graphicClass>
+    </graphicData>
+    <statBases>
+      <MarketValue>1.25</MarketValue>
+    </statBases>
+    <ammoClass>ExplosiveAP</ammoClass>
+    <cookOffProjectile>Bullet_20x99mmRShVAK_HE</cookOffProjectile>
+  </ThingDef>
+
+  <ThingDef Class="CombatExtended.AmmoDef" ParentName="Ammo20x99mmRShVAKBase">
+    <defName>Ammo_20x99mmRShVAK_Incendiary</defName>
+    <label>20x99mmR ShVAK cartridge (AP-I)</label>
+    <graphicData>
+      <texPath>Things/Ammo/HighCaliber/Incendiary</texPath>
+      <graphicClass>Graphic_StackCount</graphicClass>
+    </graphicData>
+    <statBases>
+      <MarketValue>1.04</MarketValue>
+    </statBases>
+    <ammoClass>IncendiaryAP</ammoClass>
+    <cookOffProjectile>Bullet_20x99mmRShVAK_Incendiary</cookOffProjectile>
+  </ThingDef>
+
+  <!-- ================== Projectiles ================== -->
+
+  <ThingDef Class="CombatExtended.AmmoDef" Name="Base20x99mmRShVAKBullet" ParentName="BaseBullet" Abstract="true">
+    <graphicData>
+      <texPath>Things/Projectile/Bullet_Big</texPath>
+      <graphicClass>Graphic_Single</graphicClass>
+    </graphicData>
+    <projectile Class="CombatExtended.ProjectilePropertiesCE">
+      <damageDef>Bullet</damageDef>
+      <speed>193</speed>
+      <dropsCasings>true</dropsCasings>
+    </projectile>
+  </ThingDef>
+
+  <ThingDef Class="CombatExtended.AmmoDef" ParentName="Base20x99mmRShVAKBullet">
+    <defName>Bullet_20x99mmRShVAK_FMJ</defName>
+    <label>20mmR ShVAK bullet (FMJ)</label>
+    <projectile Class="CombatExtended.ProjectilePropertiesCE">
+      <damageAmountBase>78</damageAmountBase>
+      <armorPenetrationBase>1.012</armorPenetrationBase>
+    </projectile>
+  </ThingDef>
+
+  <ThingDef Class="CombatExtended.AmmoDef" ParentName="Base20x99mmRShVAKBullet">
+    <defName>Bullet_20x99mmRShVAK_HE</defName>
+    <label>20mmR ShVAK bullet (HE)</label>
+    <projectile Class="CombatExtended.ProjectilePropertiesCE">
+      <damageAmountBase>47</damageAmountBase>
+      <armorPenetrationBase>1.162</armorPenetrationBase>
+      <secondaryDamage>
+        <li>
+          <def>Bomb_Secondary</def>
+          <amount>31</amount>
+        </li>
+      </secondaryDamage>
+    </projectile>
+  </ThingDef>
+
+  <ThingDef Class="CombatExtended.AmmoDef" ParentName="Base20x99mmRShVAKBullet">
+    <defName>Bullet_20x99mmRShVAK_Incendiary</defName>
+    <label>20mmR ShVAK bullet (AP-I)</label>
+    <projectile Class="CombatExtended.ProjectilePropertiesCE">
+      <damageAmountBase>47</damageAmountBase>
+      <armorPenetrationBase>1.162</armorPenetrationBase>
+      <secondaryDamage>
+        <li>
+          <def>Flame_Secondary</def>
+          <amount>16</amount>
+        </li>
+      </secondaryDamage>
+    </projectile>
+  </ThingDef>
+  
+  <!-- ==================== Recipes ========================== -->
+
+  <RecipeDef ParentName="AmmoRecipeBase">
+    <defName>MakeAmmo_20x99mmRShVAK_FMJ</defName>
+    <label>make 20x99mmR ShVAK (FMJ) cartridge x100</label>
+    <description>Craft 100 20x99mmR ShVAK (FMJ) cartridges.</description>
+    <jobString>Making 20x99mmR ShVAK (FMJ) cartridges.</jobString>
+    <ingredients>
+      <li>
+        <filter>
+          <thingDefs>
+            <li>Steel</li>
+          </thingDefs>
+        </filter>
+        <count>23</count>
+      </li>
+    </ingredients>
+    <fixedIngredientFilter>
+      <thingDefs>
+        <li>Steel</li>
+      </thingDefs>
+    </fixedIngredientFilter>
+    <products>
+      <Ammo_20x99mmRShVAK_FMJ>100</Ammo_20x99mmRShVAK_FMJ>
+    </products>
+    <workAmount>5000</workAmount>
+  </RecipeDef>
+
+  <RecipeDef ParentName="AmmoRecipeBase">
+    <defName>MakeAmmo_20x99mmRShVAK_HE</defName>
+    <label>make 20x99mmR ShVAK (HE) cartridge x100</label>
+    <description>Craft 100 20x99mmR ShVAK (HE) cartridges.</description>
+    <jobString>Making 20x99mmR ShVAK (HE) cartridges.</jobString>
+    <ingredients>
+      <li>
+        <filter>
+          <thingDefs>
+            <li>Steel</li>
+          </thingDefs>
+        </filter>
+        <count>21</count>
+      </li>
+      <li>
+        <filter>
+          <thingDefs>
+            <li>FSX</li>
+          </thingDefs>
+        </filter>
+        <count>3</count>
+      </li>
+    </ingredients>
+    <fixedIngredientFilter>
+      <thingDefs>
+        <li>Steel</li>
+        <li>FSX</li>
+      </thingDefs>
+    </fixedIngredientFilter>
+    <products>
+      <Ammo_20x99mmRShVAK_HE>100</Ammo_20x99mmRShVAK_HE>
+    </products>
+    <workAmount>12500</workAmount>
+  </RecipeDef>
+
+  <RecipeDef ParentName="AmmoRecipeBase">
+    <defName>MakeAmmo_20x99mmRShVAK_Incendiary</defName>
+    <label>make 20x99mmR ShVAK (AP-I) cartridge x100</label>
+    <description>Craft 100 20x99mmR ShVAK (AP-I) cartridges.</description>
+    <jobString>Making 20x99mmR ShVAK (AP-I) cartridges.</jobString>
+    <ingredients>
+      <li>
+        <filter>
+          <thingDefs>
+            <li>Steel</li>
+          </thingDefs>
+        </filter>
+        <count>20</count>
+      </li>
+      <li>
+        <filter>
+          <thingDefs>
+            <li>Prometheum</li>
+          </thingDefs>
+        </filter>
+        <count>2</count>
+      </li>
+    </ingredients>
+    <fixedIngredientFilter>
+      <thingDefs>
+        <li>Steel</li>
+        <li>Prometheum</li>
+      </thingDefs>
+    </fixedIngredientFilter>
+    <products>
+      <Ammo_20x99mmRShVAK_Incendiary>100</Ammo_20x99mmRShVAK_Incendiary>
+    </products>
+    <workAmount>13750</workAmount>
+  </RecipeDef>
+
+</Defs>

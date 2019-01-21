@@ -1,0 +1,154 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+
+	<ThingCategoryDef>
+		<defName>Ammo132x92mmSRTuF</defName>
+		<label>13.2x92mmSR TuF</label>
+		<parent>AmmoRifles</parent>
+		<iconPath>UI/Icons/ThingCategories/CaliberHighCaliber</iconPath>
+	</ThingCategoryDef>
+	
+	<!-- ==================== AmmoSet ========================== -->
+
+	<CombatExtended.AmmoSetDef>
+		<defName>AmmoSet_132x92mmSRTuF</defName>
+		<label>13.2x92mmSR TuF</label>
+		<ammoTypes>
+			<Ammo_132x92mmSRTuF_FMJ>Bullet_132x92mmSRTuF_FMJ</Ammo_132x92mmSRTuF_FMJ>
+			<Ammo_132x92mmSRTuF_AP>Bullet_132x92mmSRTuF_AP</Ammo_132x92mmSRTuF_AP>
+		</ammoTypes>
+	</CombatExtended.AmmoSetDef>
+	
+	<!-- ==================== Ammo ========================== -->
+
+	<ThingDef Class="CombatExtended.AmmoDef" Name="132x92mmSRTuFBase" ParentName="SmallAmmoBase" Abstract="True">
+		<description>Outdated large caliber bullet used in anti-materiel rifles.</description>
+		<statBases>
+		<Mass>0.122</Mass>
+		<Bulk>0.13</Bulk>
+		</statBases>
+	<tradeTags>
+		<li>CE_AutoEnableTrade</li>
+		<li>CE_AutoEnableCrafting</li>
+	</tradeTags>
+		<thingCategories>
+			<li>Ammo132x92mmSRTuF</li>
+		</thingCategories>
+    <stackLimit>350</stackLimit>
+	</ThingDef>
+	
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="132x92mmSRTuFBase">
+		<defName>Ammo_132x92mmSRTuF_FMJ</defName>
+		<label>13.2x92mmSR TuF cartridge (FMJ)</label>
+		<graphicData>
+			<texPath>Things/Ammo/HighCaliber/FMJ</texPath>
+			<graphicClass>Graphic_StackCount</graphicClass>
+		</graphicData>
+		<statBases>
+			<MarketValue>0.38</MarketValue>
+		</statBases>
+		<ammoClass>FullMetalJacket</ammoClass>
+		<cookOffProjectile>Bullet_132x92mmSRTuF_FMJ</cookOffProjectile>
+	</ThingDef>
+
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="132x92mmSRTuFBase">
+		<defName>Ammo_132x92mmSRTuF_AP</defName>
+		<label>13.2x92mmSR TuF cartridge (AP)</label>
+		<graphicData>
+			<texPath>Things/Ammo/HighCaliber/FMJ</texPath>
+			<graphicClass>Graphic_StackCount</graphicClass>
+		</graphicData>
+		<statBases>
+			<MarketValue>0.52</MarketValue>
+		</statBases>
+		<ammoClass>ArmorPiercing</ammoClass>
+		<cookOffProjectile>Bullet_132x92mmSRTuF_AP</cookOffProjectile>
+	</ThingDef>
+	
+	<!-- ================== Projectiles ================== -->
+
+	<ThingDef Class="CombatExtended.AmmoDef" Name="Base132x92mmSRTuFBullet" ParentName="BaseBullet" Abstract="true">
+		<graphicData>
+			<texPath>Things/Projectile/Bullet_Big</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+		</graphicData>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageDef>Bullet</damageDef>
+			<speed>196</speed>
+			<dropsCasings>true</dropsCasings>
+		</projectile>
+	</ThingDef>
+	
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="Base132x92mmSRTuFBullet">
+		<defName>Bullet_132x92mmSRTuF_FMJ</defName>
+		<label>13.2mm TuF bullet (FMJ)</label>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageAmountBase>46</damageAmountBase>
+			<armorPenetrationBase>0.898</armorPenetrationBase>
+		</projectile>
+	</ThingDef>
+
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="Base132x92mmSRTuFBullet">
+		<defName>Bullet_132x92mmSRTuF_AP</defName>
+		<label>13.2mm TuF bullet (AP)</label>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageAmountBase>28</damageAmountBase>
+			<armorPenetrationBase>1.048</armorPenetrationBase>
+		</projectile>
+	</ThingDef>
+  
+	<!-- ==================== Recipes ========================== -->
+
+	<RecipeDef ParentName="AmmoRecipeBase">
+		<defName>MakeAmmo_132x92mmSRTuF_FMJ</defName>
+		<label>make 13.2x92mmSR TuF (FMJ) cartridge x350</label>
+		<description>Craft 350 13.2x92mmSR TuF (FMJ) cartridges.</description>
+		<jobString>Making 13.2x92mmSR TuF (FMJ) cartridges.</jobString>
+		<ingredients>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>Steel</li>
+					</thingDefs>
+				</filter>
+				<count>50</count>
+			</li>
+		</ingredients>
+		<fixedIngredientFilter>
+			<thingDefs>
+				<li>Steel</li>
+			</thingDefs>
+		</fixedIngredientFilter>
+		<products>
+			<Ammo_132x92mmSRTuF_FMJ>350</Ammo_132x92mmSRTuF_FMJ>
+		</products>
+		<workAmount>8250</workAmount>
+	</RecipeDef>
+
+	<RecipeDef ParentName="AmmoRecipeBase">
+		<defName>MakeAmmo_132x92mmSRTuF_AP</defName>
+		<label>make 13.2x92mmSR TuF (AP) cartridge x350</label>
+		<description>Craft 350 13.2x92mmSR TuF (AP) cartridges.</description>
+		<jobString>Making 13.2x92mmSR TuF (AP) cartridges.</jobString>
+		<ingredients>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>Steel</li>
+					</thingDefs>
+				</filter>
+				<count>61</count>
+			</li>
+		</ingredients>
+		<fixedIngredientFilter>
+			<thingDefs>
+				<li>Steel</li>
+			</thingDefs>
+		</fixedIngredientFilter>
+		<products>
+			<Ammo_132x92mmSRTuF_AP>350</Ammo_132x92mmSRTuF_AP>
+		</products>
+		<workAmount>14750</workAmount>
+	</RecipeDef>
+	
+</Defs>

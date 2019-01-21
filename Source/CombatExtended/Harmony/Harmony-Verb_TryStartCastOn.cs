@@ -63,7 +63,7 @@ using Verse.AI;
 			if (!(__instance is Verb_ShootCE || __instance is Verb_ShootCEOneUse))
 				return true; // no work to do as the verb isn't the right kind.
 
-			CompAmmoUser gun = __instance.ownerEquipment.TryGetComp<CompAmmoUser>();
+			CompAmmoUser gun = __instance.EquipmentSource.TryGetComp<CompAmmoUser>();
 			if (gun == null || !gun.HasMagazine || gun.CurMagCount > 0)
 				return true; // gun isn't an ammo user that stores ammo internally or isn't out of bullets.
 

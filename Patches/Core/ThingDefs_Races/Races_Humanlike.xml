@@ -2,7 +2,7 @@
 <Patch>
 
 	<Operation Class="PatchOperationAddModExtension">
-		<xpath>*/ThingDef[defName="Human"]</xpath>
+		<xpath>Defs/ThingDef[defName="Human"]</xpath>
 		<value>
 			<li Class="CombatExtended.RacePropertiesExtensionCE">
 				<bodyShape>Humanoid</bodyShape>
@@ -11,7 +11,7 @@
 	</Operation>
 
 	<Operation Class="PatchOperationAdd">
-		<xpath>*/ThingDef[defName="Human"]/statBases</xpath>
+		<xpath>Defs/ThingDef[defName="Human"]/statBases</xpath>
 		<value>
 			<MeleeDodgeChance>1</MeleeDodgeChance>
 			<MeleeCritChance>1</MeleeCritChance>
@@ -20,7 +20,7 @@
 	</Operation>
 
 	<Operation Class="PatchOperationReplace">
-		<xpath>*/ThingDef[defName="Human"]/tools</xpath>
+		<xpath>Defs/ThingDef[defName="Human"]/tools</xpath>
 		<value>
 			<tools>
 				<li Class="CombatExtended.ToolCE">
@@ -51,7 +51,7 @@
 					<power>5</power>
 					<cooldownTime>1.85</cooldownTime>
 					<linkedBodyPartsGroup>HeadAttackTool</linkedBodyPartsGroup>
-					<commonality>0.2</commonality>
+					<chanceFactor>0.2</chanceFactor>
 					<armorPenetration>0.079</armorPenetration>
 				</li>
 			</tools>
@@ -62,11 +62,11 @@
   	<success>Always</success>
   	<operations>
     	<li Class="PatchOperationTest">
-      	<xpath>*/ThingDef[defName="Human"]/comps</xpath>
+      	<xpath>Defs/ThingDef[defName="Human"]/comps</xpath>
       	<success>Invert</success>
     	</li>
     	<li Class="PatchOperationAdd">
-      	<xpath>*/ThingDef[defName="Human"]</xpath>
+      	<xpath>Defs/ThingDef[defName="Human"]</xpath>
       	<value>
         	<comps />
       	</value>
@@ -75,7 +75,7 @@
 	</Operation>
 
 	<Operation Class="PatchOperationAdd">
-		<xpath>*/ThingDef[defName="Human"]/comps</xpath>
+		<xpath>Defs/ThingDef[defName="Human"]/comps</xpath>
 		<value>
 			<li>
 			  <compClass>CombatExtended.CompPawnGizmo</compClass>

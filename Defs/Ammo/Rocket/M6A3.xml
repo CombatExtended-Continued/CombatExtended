@@ -1,0 +1,264 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+
+    <ThingCategoryDef>
+      <defName>AmmoM6A3Rockets</defName>
+      <label>M6A3 Rockets</label>
+      <parent>AmmoRockets</parent>
+      <iconPath>UI/Icons/ThingCategories/CaliberRocket</iconPath>
+    </ThingCategoryDef>
+	
+	<!-- ==================== AmmoSet ========================== -->
+
+  <CombatExtended.AmmoSetDef>
+    <defName>AmmoSet_M6A3Rocket</defName>
+    <label>M6A3 Rockets</label>
+	<ammoTypes>
+	  <Ammo_M6A3_HEAT>Bullet_M6A3_HEAT</Ammo_M6A3_HEAT>
+	  <Ammo_M6A3_Incendiary>Bullet_M6A3_Incendiary</Ammo_M6A3_Incendiary>
+	</ammoTypes>
+  </CombatExtended.AmmoSetDef>
+	
+	<!-- ==================== Ammo ========================== -->
+
+  <ThingDef Class="CombatExtended.AmmoDef" Name="M6A3RocketBase" ParentName="AmmoBase" Abstract="True">
+    <description>Outdated 60mm rocket-propelled grenade designed for the M9 Bazooka.</description>
+    <statBases>
+      <MaxHitPoints>150</MaxHitPoints>
+    </statBases>
+    <tradeTags>
+      <li>CE_AutoEnableTrade</li>
+      <li>CE_AutoEnableCrafting_TableMachining</li>
+    </tradeTags>
+    <thingCategories>
+      <li>AmmoM6A3Rockets</li>
+    </thingCategories>
+    <stackLimit>25</stackLimit>
+    <cookOffFlashScale>40</cookOffFlashScale>
+    <cookOffSound>MortarBomb_Explode</cookOffSound>
+  </ThingDef>
+
+  <ThingDef Class="CombatExtended.AmmoDef" ParentName="M6A3RocketBase">
+    <defName>Ammo_M6A3_HEAT</defName>
+    <label>M6A3 Rocket (HEAT)</label>
+    <graphicData>
+      <texPath>Things/Ammo/RPG/HEAT</texPath>
+      <graphicClass>Graphic_StackCount</graphicClass>
+    </graphicData>
+    <statBases>
+      <MarketValue>21.54</MarketValue>
+	  <Mass>2.6</Mass>
+	  <Bulk>4</Bulk>
+    </statBases>
+	<ammoClass>RocketHEAT</ammoClass>
+    <comps>
+      <li Class="CombatExtended.CompProperties_ExplosiveCE">
+        <explosionDamage>17</explosionDamage>
+        <explosionDamageDef>Bomb</explosionDamageDef>
+        <explosionRadius>1</explosionRadius>
+        <fragRange>6</fragRange>
+        <fragments>
+          <Fragment_RocketFrag>16</Fragment_RocketFrag>
+        </fragments>
+		<applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
+        <soundExplode>MortarBomb_Explode</soundExplode>
+      </li>
+    </comps>
+  </ThingDef>
+  
+  <ThingDef Class="CombatExtended.AmmoDef" ParentName="M6A3RocketBase">
+    <defName>Ammo_M6A3_Incendiary</defName>
+    <label>M6A3 Rocket (Incendiary)</label>
+    <graphicData>
+      <texPath>Things/Ammo/RPG/Thermobaric</texPath>
+      <graphicClass>Graphic_StackCount</graphicClass>
+    </graphicData>
+    <statBases>
+      <MarketValue>19.94</MarketValue>
+	  <Mass>2.6</Mass>
+	  <Bulk>2.5</Bulk>
+    </statBases>
+	<ammoClass>GrenadeIncendiary</ammoClass>
+    <comps>
+      <li Class="CombatExtended.CompProperties_ExplosiveCE">
+        <explosionDamage>12</explosionDamage>
+        <explosionDamageDef>PrometheumFlame</explosionDamageDef>
+        <explosionRadius>2.4</explosionRadius>
+		<preExplosionSpawnThingDef>FilthPrometheum</preExplosionSpawnThingDef>
+		<preExplosionSpawnChance>0.4</preExplosionSpawnChance>
+		<applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
+        <soundExplode>MortarBomb_Explode</soundExplode>
+      </li>
+    </comps>
+  </ThingDef>
+	
+	<!-- ================== Projectiles ================== -->
+
+	<ThingDef Class="CombatExtended.AmmoDef" Name="BaseM6A3Rocket" ParentName="BaseBullet" Abstract="true">
+		<graphicData>
+			<shaderType>TransparentPostLight</shaderType>
+		</graphicData>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<speed>29</speed>
+			<soundAmbient>RocketPropelledLoop_Small</soundAmbient>
+		</projectile>
+	</ThingDef>	
+
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="BaseM6A3Rocket">
+		<defName>Bullet_M6A3_HEAT</defName>
+		<label>M6A3 rocket (HEAT)</label>
+		<graphicData>
+			<texPath>Things/Projectile/RPG/HEAT</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+		</graphicData>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageDef>Bullet</damageDef>
+			<damageAmountBase>92</damageAmountBase>
+			<armorPenetrationBase>1.78</armorPenetrationBase>
+		</projectile>
+		<comps>
+			<li Class="CombatExtended.CompProperties_ExplosiveCE">
+				<explosionDamage>17</explosionDamage>
+				<explosionDamageDef>Bomb</explosionDamageDef>
+				<explosionRadius>1</explosionRadius>
+				<fragments>
+					<Fragment_RocketFrag>16</Fragment_RocketFrag>
+				</fragments>
+				<applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
+				<soundExplode>MortarBomb_Explode</soundExplode>
+			</li>
+		</comps>
+	</ThingDef>
+	
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="BaseM6A3Rocket">
+		<defName>Bullet_M6A3_Incendiary</defName>
+		<thingClass>CombatExtended.ProjectileCE_Explosive</thingClass>
+		<label>M6A3 rocket (Incendiary)</label>
+		<graphicData>
+			<texPath>Things/Projectile/RPG/Thermobaric</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+		</graphicData>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageDef>PrometheumFlame</damageDef>
+			<damageAmountBase>12</damageAmountBase>
+			<explosionRadius>2.4</explosionRadius>
+			<preExplosionSpawnThingDef>FilthPrometheum</preExplosionSpawnThingDef>
+			<preExplosionSpawnChance>0.25</preExplosionSpawnChance>
+			<soundExplode>MortarBomb_Explode</soundExplode>
+		</projectile>
+	</ThingDef>
+
+<!-- 	<ThingDef Class="CombatExtended.AmmoDef" ParentName="BaseM6A3Rocket">
+		<defName>Bullet_M6A3_Incendiary</defName>
+		<label>M6A3 rocket (Incendiary)</label>
+		<graphicData>
+			<texPath>Things/Projectile/RPG/Thermobaric</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+		</graphicData>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageDef>PrometheumFlame</damageDef>
+			<damageAmountBase>20</damageAmountBase>
+		</projectile>
+		<comps>
+			<li Class="CombatExtended.CompProperties_ExplosiveCE">
+				<explosionDamage>30</explosionDamage>
+				<explosionDamageDef>Bomb</explosionDamageDef>
+				<explosionRadius>2</explosionRadius>
+				<preExplosionSpawnThingDef>Gas_Smoke</preExplosionSpawnThingDef>
+				<preExplosionSpawnChance>1</preExplosionSpawnChance>
+				<soundExplode>MortarBomb_Explode</soundExplode>
+			</li>
+		</comps>
+	</ThingDef> -->
+  
+	<!-- ==================== Recipes ========================== -->
+
+  <RecipeDef ParentName="AmmoRecipeBase">
+    <defName>MakeAmmo_M6A3_HEAT</defName>
+    <label>make M6A3 HEAT rockets x5</label>
+    <description>Craft 5 M6A3 HEAT rockets.</description>
+    <jobString>Making M6A3 HEAT rockets.</jobString>
+    <workAmount>15000</workAmount>
+    <ingredients>
+      <li>
+        <filter>
+          <thingDefs>
+            <li>Steel</li>
+          </thingDefs>
+        </filter>
+        <count>13</count>
+      </li>
+      <li>
+        <filter>
+          <thingDefs>
+            <li>FSX</li>
+          </thingDefs>
+        </filter>
+        <count>2</count>
+      </li>
+      <li>
+        <filter>
+          <thingDefs>
+            <li>ComponentIndustrial</li>
+          </thingDefs>
+        </filter>
+        <count>3</count>
+      </li>
+    </ingredients>
+    <fixedIngredientFilter>
+      <thingDefs>
+        <li>Steel</li>
+        <li>FSX</li>
+        <li>ComponentIndustrial</li>
+      </thingDefs>
+    </fixedIngredientFilter>
+    <products>
+      <Ammo_M6A3_HEAT>5</Ammo_M6A3_HEAT>
+    </products>
+  </RecipeDef>
+  
+  <RecipeDef ParentName="AmmoRecipeBase">
+    <defName>MakeAmmo_M6A3_Incendiary</defName>
+    <label>make M6A3 Incendiary rockets x5</label>
+    <description>Craft 5 M6A3 Incendiary rockets.</description>
+    <jobString>Making M6A3 Incendiary rockets.</jobString>
+    <workAmount>15000</workAmount>
+    <ingredients>
+      <li>
+        <filter>
+          <thingDefs>
+            <li>Steel</li>
+          </thingDefs>
+        </filter>
+        <count>13</count>
+      </li>
+      <li>
+        <filter>
+          <thingDefs>
+            <li>Prometheum</li>
+          </thingDefs>
+        </filter>
+        <count>2</count>
+      </li>
+      <li>
+        <filter>
+          <thingDefs>
+            <li>ComponentIndustrial</li>
+          </thingDefs>
+        </filter>
+        <count>3</count>
+      </li>
+    </ingredients>
+    <fixedIngredientFilter>
+      <thingDefs>
+        <li>Steel</li>
+        <li>FSX</li>
+        <li>ComponentIndustrial</li>
+      </thingDefs>
+    </fixedIngredientFilter>
+    <products>
+      <Ammo_M6A3_Incendiary>5</Ammo_M6A3_Incendiary>
+    </products>
+  </RecipeDef>
+	
+</Defs>

@@ -4,34 +4,43 @@
   <PawnKindDef Name="MercenaryBase" Abstract="True">
     <race>Human</race>
     <defaultFactionType>Pirate</defaultFactionType>
-    <baseRecruitDifficulty>0.70</baseRecruitDifficulty>
-    <backstoryCategory>Raider</backstoryCategory>
+    <backstoryCategories>
+      <li>Raider</li>
+    </backstoryCategories>
     <chemicalAddictionChance>0.1</chemicalAddictionChance>
     <invNutrition>2.55</invNutrition>
     <itemQuality>Normal</itemQuality>
-    <backstoryCryptosleepCommonality>0.25</backstoryCryptosleepCommonality>
+    <backstoryCryptosleepCommonality>0.08</backstoryCryptosleepCommonality>
     <maxGenerationAge>65</maxGenerationAge>
+    <combatEnhancingDrugsChance>0.15</combatEnhancingDrugsChance>
+    <combatEnhancingDrugsCount>
+      <min>0</min>
+      <max>2</max>
+    </combatEnhancingDrugsCount>
   </PawnKindDef>
 
   <PawnKindDef ParentName="MercenaryBase">
     <defName>MercenaryMachineGunner</defName>
     <label>mercenary machine gunner</label>
-    <combatPower>95</combatPower>
+    <combatPower>110</combatPower>
     <gearHealthRange>
       <min>0.7</min>
       <max>2.3</max>
     </gearHealthRange>
     <apparelTags>
-      <li>Outlander</li>
-      <li>Military</li>
+      <li>IndustrialBasic</li>
+      <li>IndustrialAdvanced</li>
+      <li>IndustrialMilitaryBasic</li>
+      <li>IndustrialMilitaryAdvanced</li>
+      <li>BeltDefensePop</li>
     </apparelTags>
     <apparelMoney>
       <min>1500</min>
       <max>2500</max>
     </apparelMoney>
-    <apparelAllowHeadwearChance>0.5</apparelAllowHeadwearChance>
+    <apparelAllowHeadgearChance>0.5</apparelAllowHeadgearChance>
     <weaponMoney>
-      <min>400</min>
+      <min>450</min>
       <max>500</max>
     </weaponMoney>
     <weaponTags>
@@ -72,12 +81,17 @@
 
   <PawnKindDef Name="TribalBase" Abstract="True">
     <race>Human</race>
-    <defaultFactionType>Tribe</defaultFactionType>
-    <backstoryCategory>Tribal</backstoryCategory>
-    <baseRecruitDifficulty>0.65</baseRecruitDifficulty>
+    <defaultFactionType>TribeCivil</defaultFactionType>
+    <backstoryCategories>
+      <li>Tribal</li>
+    </backstoryCategories>
+    <maxGenerationAge>60</maxGenerationAge>
     <chemicalAddictionChance>0.05</chemicalAddictionChance>
     <invNutrition>2.55</invNutrition>
     <invFoodDef>Pemmican</invFoodDef>
+    <apparelTags>
+      <li>Neolithic</li>
+    </apparelTags>
   </PawnKindDef>
 
   <PawnKindDef ParentName="TribalBase">
@@ -85,6 +99,7 @@
     <label>boomer</label>
     <combatPower>60</combatPower>
     <maxGenerationAge>40</maxGenerationAge>
+    <canBeSapper>true</canBeSapper>
     <gearHealthRange>
       <min>0.5</min>
       <max>1.8</max>
@@ -93,6 +108,9 @@
       <min>180</min>
       <max>350</max>
     </apparelMoney>
+    <apparelRequired>
+      <li>Apparel_WarVeil</li>
+    </apparelRequired>
     <apparelTags>
       <li>Tribal</li>
     </apparelTags>
@@ -125,7 +143,7 @@
   <PawnKindDef ParentName="TribalBase">
     <defName>TribalGunner</defName>
     <label>thunderer</label>
-    <combatPower>50</combatPower>
+    <combatPower>60</combatPower>
     <minGenerationAge>25</minGenerationAge>
     <maxGenerationAge>45</maxGenerationAge>
     <gearHealthRange>
@@ -139,6 +157,9 @@
     <apparelTags>
       <li>Tribal</li>
     </apparelTags>
+    <apparelRequired>
+      <li>Apparel_WarMask</li>
+    </apparelRequired>
     <weaponMoney>
       <min>180</min>
       <max>290</max>

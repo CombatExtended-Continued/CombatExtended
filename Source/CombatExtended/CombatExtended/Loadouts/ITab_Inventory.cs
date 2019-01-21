@@ -113,7 +113,6 @@ namespace CombatExtended
                 TryDrawAverageArmor(ref num, viewRect.width, StatDefOf.ArmorRating_Blunt, "ArmorBlunt".Translate(), ref flag);
                 TryDrawAverageArmor(ref num, viewRect.width, StatDefOf.ArmorRating_Sharp, "ArmorSharp".Translate(), ref flag);
                 TryDrawAverageArmor(ref num, viewRect.width, StatDefOf.ArmorRating_Heat, "ArmorHeat".Translate(), ref flag);
-                TryDrawAverageArmor(ref num, viewRect.width, StatDefOf.ArmorRating_Electric, "ArmorElectric".Translate(), ref flag);
             }
             if (SelPawnForGear.equipment != null)
             {
@@ -198,7 +197,7 @@ namespace CombatExtended
                 TooltipHandler.TipRegion(dropRect, "DropThing".Translate());
                 if (Widgets.ButtonImage(dropRect, TexButton.Drop))
                 {
-                    SoundDefOf.TickHigh.PlayOneShotOnCamera();
+                    SoundDefOf.Tick_High.PlayOneShotOnCamera();
                     InterfaceDrop(thing);
                 }
                 rect.width -= 24f;
@@ -206,11 +205,11 @@ namespace CombatExtended
             if (this.CanControl && thing.IngestibleNow && base.SelPawn.RaceProps.CanEverEat(thing))
             {
                 Rect rect3 = new Rect(rect.width - 24f, y, 24f, 24f);
-                string tipString = thing.def.ingestible.ingestCommandString.NullOrEmpty() ? "ConsumeThing".Translate(new object[] { thing.LabelShort }) : string.Format(thing.def.ingestible.ingestCommandString, thing.LabelShort);
+                string tipString = thing.def.ingestible.ingestCommandString.NullOrEmpty() ? "ConsumeThing".Translate(thing.LabelShort, thing) : string.Format(thing.def.ingestible.ingestCommandString, thing.LabelShort);
                 TooltipHandler.TipRegion(rect3, tipString);
                 if (Widgets.ButtonImage(rect3, TexButton.Ingest))
                 {
-                    SoundDefOf.TickHigh.PlayOneShotOnCamera();
+                    SoundDefOf.Tick_High.PlayOneShotOnCamera();
                     this.InterfaceEatThis(thing);
                 }
                 rect.width -= 24f;
@@ -259,7 +258,7 @@ namespace CombatExtended
                             string eqLabel = GenLabel.ThingLabel(eq.def, eq.Stuff, 1);
                             if (SelPawnForGear.equipment.AllEquipmentListForReading.Contains(eq) && SelPawnForGear.inventory != null)
                             {
-                                equipOption = new FloatMenuOption("CE_PutAway".Translate(new object[] { eqLabel }),
+                                equipOption = new FloatMenuOption("CE_PutAway".Translate(eqLabel),
                                     new Action(delegate
                                     {
                                         SelPawnForGear.equipment.TryTransferEquipmentToContainer(SelPawnForGear.equipment.Primary, SelPawnForGear.inventory.innerContainer);
@@ -267,11 +266,11 @@ namespace CombatExtended
                             }
                             else if (!SelPawnForGear.health.capacities.CapableOf(PawnCapacityDefOf.Manipulation))
                             {
-                                equipOption = new FloatMenuOption("CannotEquip".Translate(new object[] { eqLabel }), null);
+                                equipOption = new FloatMenuOption("CannotEquip".Translate(eqLabel), null);
                             }
                             else
                             {
-                                string equipOptionLabel = "Equip".Translate(new object[] { eqLabel });
+                                string equipOptionLabel = "Equip".Translate(eqLabel);
                                 if (eq.def.IsRangedWeapon && SelPawnForGear.story != null && SelPawnForGear.story.traits.HasTrait(TraitDefOf.Brawler))
                                 {
                                     equipOptionLabel = equipOptionLabel + " " + "EquipWarningBrawler".Translate();
@@ -291,22 +290,22 @@ namespace CombatExtended
                     // Drop option
                     Action dropApparel = delegate
                     {
-                        SoundDefOf.TickHigh.PlayOneShotOnCamera();
+                        SoundDefOf.Tick_High.PlayOneShotOnCamera();
                         InterfaceDrop(thing);
                     };
                     Action dropApparelHaul = delegate
                     {
-                        SoundDefOf.TickHigh.PlayOneShotOnCamera();
+                        SoundDefOf.Tick_High.PlayOneShotOnCamera();
                         InterfaceDropHaul(thing);
                     };
                     if (this.CanControl && thing.IngestibleNow && base.SelPawn.RaceProps.CanEverEat(thing))
                     {
                         Action eatFood = delegate
                         {
-                            SoundDefOf.TickHigh.PlayOneShotOnCamera();
+                            SoundDefOf.Tick_High.PlayOneShotOnCamera();
                             InterfaceEatThis(thing);
                         };
-                        string label = thing.def.ingestible.ingestCommandString.NullOrEmpty() ? "ConsumeThing".Translate(new object[] { thing.LabelShort }) : string.Format(thing.def.ingestible.ingestCommandString, thing.LabelShort);
+                        string label = thing.def.ingestible.ingestCommandString.NullOrEmpty() ? "ConsumeThing".Translate(thing.LabelShort, thing) : string.Format(thing.def.ingestible.ingestCommandString, thing.LabelShort);
                         floatOptionList.Add(new FloatMenuOption(label, eatFood));
                     }
                     floatOptionList.Add(new FloatMenuOption("DropThing".Translate(), dropApparel));
@@ -315,7 +314,7 @@ namespace CombatExtended
                     {
                     	Action forgetHoldTracker = delegate
                     	{
-                    		SoundDefOf.TickHigh.PlayOneShotOnCamera();
+                    		SoundDefOf.Tick_High.PlayOneShotOnCamera();
                     		SelPawnForGear.HoldTrackerForget(thing);
                     	};
                     	floatOptionList.Add(new FloatMenuOption("CE_HoldTrackerForget".Translate(), forgetHoldTracker));

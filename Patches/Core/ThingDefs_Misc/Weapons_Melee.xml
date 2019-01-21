@@ -4,22 +4,22 @@
 	<!-- ========== Replace stuff category for crafting ========== -->
 
 	<Operation Class="PatchOperationReplace">
-		<xpath>*/ThingDef[@ParentName="BaseMeleeWeapon_Sharp" or @ParentName="BaseMeleeWeapon_Blunt" or @ParentName="BaseMeleeWeapon_Sharp_Quality" or @ParentName="BaseMeleeWeapon_Blunt_Quality"]/stuffCategories/li[.="Metallic"]</xpath>
+		<xpath>Defs/ThingDef[@ParentName="BaseMeleeWeapon_Sharp" or @ParentName="BaseMeleeWeapon_Blunt" or @ParentName="BaseMeleeWeapon_Sharp_Quality" or @ParentName="BaseMeleeWeapon_Blunt_Quality"]/stuffCategories/li[.="Metallic"]</xpath>
 		<value>
 			<li>Metallic_Weapon</li>
 		</value>
 	</Operation>
 
 	<Operation Class="PatchOperationRemove">
-		<xpath>*/ThingDef[defName="MeleeWeapon_Knife" or defName="MeleeWeapon_Mace" or defName="MeleeWeapon_Gladius" or defName="MeleeWeapon_LongSword"]/stuffCategories/li[.="Woody"]</xpath>
+		<xpath>Defs/ThingDef[defName="MeleeWeapon_Knife" or defName="MeleeWeapon_Mace" or defName="MeleeWeapon_Gladius" or defName="MeleeWeapon_LongSword"]/stuffCategories/li[.="Woody"]</xpath>
 	</Operation>
 
 	<!-- ========== Shiv ========== -->
 
-	<!-- Patch stats -->
-
+	<!-- 1.0: Shiv removed from game
+	
 	<Operation Class="PatchOperationReplace">
-		<xpath>*/ThingDef[defName="MeleeWeapon_Shiv"]/tools</xpath>
+		<xpath>Defs/ThingDef[defName="MeleeWeapon_Shiv"]/tools</xpath>
 		<value>
 			<tools>
 				<li Class="CombatExtended.ToolCE">
@@ -39,7 +39,7 @@
 					</capacities>
 					<power>9.5</power>
 					<cooldownTime>1.2</cooldownTime>
-					<commonality>1.33</commonality>
+					<chanceFactor>1.33</chanceFactor>
 					<armorPenetration>0.208</armorPenetration>
 					<linkedBodyPartsGroup>Point</linkedBodyPartsGroup>
 				</li>
@@ -48,14 +48,14 @@
 	</Operation>
 
 	<Operation Class="PatchOperationAdd">
-		<xpath>*/ThingDef[defName="MeleeWeapon_Shiv"]/statBases</xpath>
+		<xpath>Defs/ThingDef[defName="MeleeWeapon_Shiv"]/statBases</xpath>
 		<value>
       		<Bulk>1</Bulk>
 		</value>
 	</Operation>
 
 	<Operation Class="PatchOperationAdd">
-		<xpath>*/ThingDef[defName="MeleeWeapon_Shiv"]</xpath>
+		<xpath>Defs/ThingDef[defName="MeleeWeapon_Shiv"]</xpath>
 		<value>
 			<equippedStatOffsets>
 				<MeleeCritChance>0.1</MeleeCritChance>
@@ -64,17 +64,15 @@
 		</value>
 	</Operation>
 
-	<!-- Add tags -->
-
 	<Operation Class="PatchOperationSequence">
   	<success>Always</success>
   	<operations>
     	<li Class="PatchOperationTest">
-      	<xpath>*/ThingDef[defName="MeleeWeapon_Shiv"]/weaponTags</xpath>
+      	<xpath>Defs/ThingDef[defName="MeleeWeapon_Shiv"]/weaponTags</xpath>
       	<success>Invert</success>
     	</li>
     	<li Class="PatchOperationAdd">
-      	<xpath>*/ThingDef[defName="MeleeWeapon_Shiv"]</xpath>
+      	<xpath>Defs/ThingDef[defName="MeleeWeapon_Shiv"]</xpath>
       	<value>
         	<weaponTags />
       	</value>
@@ -83,19 +81,19 @@
 	</Operation>
 
 	<Operation Class="PatchOperationAdd">
-		<xpath>*/ThingDef[defName="MeleeWeapon_Shiv"]/weaponTags</xpath>
+		<xpath>Defs/ThingDef[defName="MeleeWeapon_Shiv"]/weaponTags</xpath>
 		<value>
       <li>CE_Sidearm_Melee</li>
       <li>CE_OneHandedWeapon</li>
 		</value>
-	</Operation>
+	</Operation> -->
 
 	<!-- ========== Knife ========== -->
 
 	<!-- Patch stats -->
 
 	<Operation Class="PatchOperationReplace">
-		<xpath>*/ThingDef[defName="MeleeWeapon_Knife"]/tools</xpath>
+		<xpath>Defs/ThingDef[defName="MeleeWeapon_Knife"]/tools</xpath>
 		<value>
 			<tools>
 				<li Class="CombatExtended.ToolCE">
@@ -125,7 +123,7 @@
 					</capacities>
 					<power>11.3</power>
 					<cooldownTime>1.2</cooldownTime>
-					<commonality>1.33</commonality>
+					<chanceFactor>1.33</chanceFactor>
 					<armorPenetration>0.231</armorPenetration>
 					<linkedBodyPartsGroup>Point</linkedBodyPartsGroup>
 				</li>
@@ -134,14 +132,14 @@
 	</Operation>
 
 	<Operation Class="PatchOperationAdd">
-		<xpath>*/ThingDef[defName="MeleeWeapon_Knife"]/statBases</xpath>
+		<xpath>Defs/ThingDef[defName="MeleeWeapon_Knife"]/statBases</xpath>
 		<value>
       		<Bulk>1</Bulk>
 		</value>
 	</Operation>
 
 	<Operation Class="PatchOperationAdd">
-		<xpath>*/ThingDef[defName="MeleeWeapon_Knife"]</xpath>
+		<xpath>Defs/ThingDef[defName="MeleeWeapon_Knife"]</xpath>
 		<value>
 			<equippedStatOffsets>
 				<MeleeCritChance>0.25</MeleeCritChance>
@@ -156,11 +154,11 @@
   	<success>Always</success>
   	<operations>
     	<li Class="PatchOperationTest">
-      	<xpath>*/ThingDef[defName="MeleeWeapon_Knife"]/weaponTags</xpath>
+      	<xpath>Defs/ThingDef[defName="MeleeWeapon_Knife"]/weaponTags</xpath>
       	<success>Invert</success>
     	</li>
     	<li Class="PatchOperationAdd">
-      	<xpath>*/ThingDef[defName="MeleeWeapon_Knife"]</xpath>
+      	<xpath>Defs/ThingDef[defName="MeleeWeapon_Knife"]</xpath>
       	<value>
         	<weaponTags />
       	</value>
@@ -169,7 +167,7 @@
 	</Operation>
 
 	<Operation Class="PatchOperationAdd">
-		<xpath>*/ThingDef[defName="MeleeWeapon_Knife"]/weaponTags</xpath>
+		<xpath>Defs/ThingDef[defName="MeleeWeapon_Knife"]/weaponTags</xpath>
 		<value>
 			<li>CE_Sidearm_Melee</li>
 			<li>CE_OneHandedWeapon</li>
@@ -181,7 +179,7 @@
 	<!-- Patch stats -->
 
 	<Operation Class="PatchOperationReplace">
-		<xpath>*/ThingDef[defName="MeleeWeapon_Club"]/tools</xpath>
+		<xpath>Defs/ThingDef[defName="MeleeWeapon_Club"]/tools</xpath>
 		<value>
 			<tools>
 				<li Class="CombatExtended.ToolCE">
@@ -201,7 +199,7 @@
 					</capacities>
 					<power>14</power>
 					<cooldownTime>1.6</cooldownTime>
-					<commonality>1.33</commonality>
+					<chanceFactor>1.33</chanceFactor>
 					<armorPenetration>0.148</armorPenetration>
 					<linkedBodyPartsGroup>Head</linkedBodyPartsGroup>
 				</li>
@@ -210,7 +208,7 @@
 	</Operation>
 
 	<Operation Class="PatchOperationAdd">
-		<xpath>*/ThingDef[defName="MeleeWeapon_Club"]/statBases</xpath>
+		<xpath>Defs/ThingDef[defName="MeleeWeapon_Club"]/statBases</xpath>
 		<value>
       		<Bulk>4</Bulk>
       		<MeleeCounterParryBonus>1.125</MeleeCounterParryBonus>
@@ -218,7 +216,7 @@
 	</Operation>
 
 	<Operation Class="PatchOperationAdd">
-		<xpath>*/ThingDef[defName="MeleeWeapon_Club"]</xpath>
+		<xpath>Defs/ThingDef[defName="MeleeWeapon_Club"]</xpath>
 		<value>
 			<equippedStatOffsets>
 				<MeleeCritChance>0.25</MeleeCritChance>
@@ -233,11 +231,11 @@
   	<success>Always</success>
   	<operations>
     	<li Class="PatchOperationTest">
-      	<xpath>*/ThingDef[defName="MeleeWeapon_Club"]/weaponTags</xpath>
+      	<xpath>Defs/ThingDef[defName="MeleeWeapon_Club"]/weaponTags</xpath>
       	<success>Invert</success>
     	</li>
     	<li Class="PatchOperationAdd">
-      	<xpath>*/ThingDef[defName="MeleeWeapon_Club"]</xpath>
+      	<xpath>Defs/ThingDef[defName="MeleeWeapon_Club"]</xpath>
       	<value>
         	<weaponTags />
       	</value>
@@ -246,7 +244,7 @@
 	</Operation>
 
 	<Operation Class="PatchOperationAdd">
-		<xpath>*/ThingDef[defName="MeleeWeapon_Club"]/weaponTags</xpath>
+		<xpath>Defs/ThingDef[defName="MeleeWeapon_Club"]/weaponTags</xpath>
 		<value>
 			<li>CE_Sidearm_Tribal</li>
 			<li>CE_OneHandedWeapon</li>
@@ -258,7 +256,7 @@
 	<!-- Patch stats -->
 
 	<Operation Class="PatchOperationReplace">
-		<xpath>*/ThingDef[defName="MeleeWeapon_Mace"]/tools</xpath>
+		<xpath>Defs/ThingDef[defName="MeleeWeapon_Mace"]/tools</xpath>
 		<value>
 			<tools>
 				<li Class="CombatExtended.ToolCE">
@@ -278,7 +276,7 @@
 					</capacities>
 					<power>14.7</power>
 					<cooldownTime>1.5</cooldownTime>
-					<commonality>1.33</commonality>
+					<chanceFactor>1.33</chanceFactor>
 					<armorPenetration>0.153</armorPenetration>
 					<linkedBodyPartsGroup>Head</linkedBodyPartsGroup>
 				</li>
@@ -287,7 +285,7 @@
 	</Operation>
 
 	<Operation Class="PatchOperationAdd">
-		<xpath>*/ThingDef[defName="MeleeWeapon_Mace"]/statBases</xpath>
+		<xpath>Defs/ThingDef[defName="MeleeWeapon_Mace"]/statBases</xpath>
 		<value>
     		<Bulk>3.5</Bulk>
     		<MeleeCounterParryBonus>1.25</MeleeCounterParryBonus>
@@ -295,7 +293,7 @@
 	</Operation>
 
 	<Operation Class="PatchOperationAdd">
-		<xpath>*/ThingDef[defName="MeleeWeapon_Mace"]</xpath>
+		<xpath>Defs/ThingDef[defName="MeleeWeapon_Mace"]</xpath>
 		<value>
 			<equippedStatOffsets>
 				<MeleeCritChance>0.5</MeleeCritChance>
@@ -310,11 +308,11 @@
   	<success>Always</success>
   	<operations>
     	<li Class="PatchOperationTest">
-      	<xpath>*/ThingDef[defName="MeleeWeapon_Mace"]/weaponTags</xpath>
+      	<xpath>Defs/ThingDef[defName="MeleeWeapon_Mace"]/weaponTags</xpath>
       	<success>Invert</success>
     	</li>
     	<li Class="PatchOperationAdd">
-      	<xpath>*/ThingDef[defName="MeleeWeapon_Mace"]</xpath>
+      	<xpath>Defs/ThingDef[defName="MeleeWeapon_Mace"]</xpath>
       	<value>
         	<weaponTags />
       	</value>
@@ -323,7 +321,7 @@
 	</Operation>
 
 	<Operation Class="PatchOperationAdd">
-		<xpath>*/ThingDef[defName="MeleeWeapon_Mace"]/weaponTags</xpath>
+		<xpath>Defs/ThingDef[defName="MeleeWeapon_Mace"]/weaponTags</xpath>
 		<value>
       <li>CE_OneHandedWeapon</li>
 		</value>
@@ -334,7 +332,7 @@
 	<!-- Patch stats -->
 
 	<Operation Class="PatchOperationReplace">
-		<xpath>*/ThingDef[defName="MeleeWeapon_Gladius"]/tools</xpath>
+		<xpath>Defs/ThingDef[defName="MeleeWeapon_Gladius"]/tools</xpath>
 		<value>
 			<tools>
 				<li Class="CombatExtended.ToolCE">
@@ -364,7 +362,7 @@
 					</capacities>
 					<power>14.8</power>
 					<cooldownTime>1.4</cooldownTime>
-					<commonality>1.33</commonality>
+					<chanceFactor>1.33</chanceFactor>
 					<armorPenetration>0.147</armorPenetration>
 					<linkedBodyPartsGroup>Edge</linkedBodyPartsGroup>
 				</li>
@@ -373,14 +371,14 @@
 	</Operation>
 
 	<Operation Class="PatchOperationAdd">
-		<xpath>*/ThingDef[defName="MeleeWeapon_Gladius"]/statBases</xpath>
+		<xpath>Defs/ThingDef[defName="MeleeWeapon_Gladius"]/statBases</xpath>
 		<value>
       <Bulk>3.5</Bulk>
 		</value>
 	</Operation>
 
 	<Operation Class="PatchOperationAdd">
-		<xpath>*/ThingDef[defName="MeleeWeapon_Gladius"]</xpath>
+		<xpath>Defs/ThingDef[defName="MeleeWeapon_Gladius"]</xpath>
 		<value>
 			<equippedStatOffsets>
 				<MeleeCritChance>0.5</MeleeCritChance>
@@ -395,11 +393,11 @@
   	<success>Always</success>
   	<operations>
     	<li Class="PatchOperationTest">
-      	<xpath>*/ThingDef[defName="MeleeWeapon_Gladius"]/weaponTags</xpath>
+      	<xpath>Defs/ThingDef[defName="MeleeWeapon_Gladius"]/weaponTags</xpath>
       	<success>Invert</success>
     	</li>
     	<li Class="PatchOperationAdd">
-      	<xpath>*/ThingDef[defName="MeleeWeapon_Gladius"]</xpath>
+      	<xpath>Defs/ThingDef[defName="MeleeWeapon_Gladius"]</xpath>
       	<value>
         	<weaponTags />
       	</value>
@@ -408,7 +406,7 @@
 	</Operation>
 
 	<Operation Class="PatchOperationAdd">
-		<xpath>*/ThingDef[defName="MeleeWeapon_Gladius"]/weaponTags</xpath>
+		<xpath>Defs/ThingDef[defName="MeleeWeapon_Gladius"]/weaponTags</xpath>
 		<value>
       <li>CE_OneHandedWeapon</li>
 		</value>
@@ -419,11 +417,10 @@
 	<!-- Patch stats -->
 
 	<Operation Class="PatchOperationReplace">
-		<xpath>*/ThingDef[defName="MeleeWeapon_Ikwa"]/tools</xpath>
+		<xpath>Defs/ThingDef[defName="MeleeWeapon_Ikwa"]/tools</xpath>
 		<value>
 			<tools>
 				<li Class="CombatExtended.ToolCE">
-					<id>shaftblunt</id>
 					<label>shaft</label>
 					<capacities>
 						<li>Blunt</li>
@@ -434,7 +431,6 @@
 					<linkedBodyPartsGroup>Shaft</linkedBodyPartsGroup>
 				</li>
 				<li Class="CombatExtended.ToolCE">
-					<id>shaftpoke</id>
 					<label>point</label>
 					<capacities>
 						<li>Poke</li>
@@ -451,7 +447,7 @@
 					</capacities>
 					<power>15.1</power>
 					<cooldownTime>1.35</cooldownTime>
-					<commonality>1.33</commonality>
+					<chanceFactor>1.33</chanceFactor>
 					<armorPenetration>0.28</armorPenetration>
 					<linkedBodyPartsGroup>Head</linkedBodyPartsGroup>
 				</li>
@@ -470,14 +466,14 @@
 	</Operation>
 
 	<Operation Class="PatchOperationAdd">
-		<xpath>*/ThingDef[defName="MeleeWeapon_Ikwa"]/statBases</xpath>
+		<xpath>Defs/ThingDef[defName="MeleeWeapon_Ikwa"]/statBases</xpath>
 		<value>
     		<Bulk>4</Bulk>
 		</value>
 	</Operation>
 
 	<Operation Class="PatchOperationAdd">
-		<xpath>*/ThingDef[defName="MeleeWeapon_Ikwa"]</xpath>
+		<xpath>Defs/ThingDef[defName="MeleeWeapon_Ikwa"]</xpath>
 		<value>
 			<equippedStatOffsets>
 				<MeleeCritChance>0.625</MeleeCritChance>
@@ -487,7 +483,7 @@
 	</Operation>
 
 	<Operation Class="PatchOperationAdd">
-		<xpath>*/ThingDef[defName="MeleeWeapon_Ikwa"]/weaponTags</xpath>
+		<xpath>Defs/ThingDef[defName="MeleeWeapon_Ikwa"]/weaponTags</xpath>
 		<value>
      		<li>CE_OneHandedWeapon</li>
 		</value>
@@ -498,11 +494,10 @@
 	<!-- Patch stats -->
 
 	<Operation Class="PatchOperationReplace">
-		<xpath>*/ThingDef[defName="MeleeWeapon_Spear"]/tools</xpath>
+		<xpath>Defs/ThingDef[defName="MeleeWeapon_Spear"]/tools</xpath>
 		<value>
 			<tools>
 				<li Class="CombatExtended.ToolCE">
-					<id>shaftblunt</id>
 					<label>shaft</label>
 					<capacities>
 						<li>Blunt</li>
@@ -513,7 +508,6 @@
 					<linkedBodyPartsGroup>Shaft</linkedBodyPartsGroup>
 				</li>
 				<li Class="CombatExtended.ToolCE">
-					<id>shaftpoke</id>
 					<label>point</label>
 					<capacities>
 						<li>Poke</li>
@@ -530,7 +524,7 @@
 					</capacities>
 					<power>24.1</power>
 					<cooldownTime>1.75</cooldownTime>
-					<commonality>1.33</commonality>
+					<chanceFactor>1.33</chanceFactor>
 					<armorPenetration>0.39</armorPenetration>
 					<linkedBodyPartsGroup>Head</linkedBodyPartsGroup>
 				</li>
@@ -539,7 +533,7 @@
 	</Operation>
 
 	<Operation Class="PatchOperationAdd">
-		<xpath>*/ThingDef[defName="MeleeWeapon_Spear"]/statBases</xpath>
+		<xpath>Defs/ThingDef[defName="MeleeWeapon_Spear"]/statBases</xpath>
 		<value>
     		<Bulk>10</Bulk>
     		<MeleeCounterParryBonus>1.5</MeleeCounterParryBonus>
@@ -547,7 +541,7 @@
 	</Operation>
 
 	<Operation Class="PatchOperationAdd">
-		<xpath>*/ThingDef[defName="MeleeWeapon_Spear"]</xpath>
+		<xpath>Defs/ThingDef[defName="MeleeWeapon_Spear"]</xpath>
 		<value>
 			<equippedStatOffsets>
 				<MeleeCritChance>0.625</MeleeCritChance>
@@ -562,7 +556,7 @@
 	<!-- Patch stats -->
 
 	<Operation Class="PatchOperationReplace">
-		<xpath>*/ThingDef[defName="MeleeWeapon_LongSword"]/tools</xpath>
+		<xpath>Defs/ThingDef[defName="MeleeWeapon_LongSword"]/tools</xpath>
 		<value>
 			<tools>
 				<li Class="CombatExtended.ToolCE">
@@ -592,7 +586,7 @@
 					</capacities>
 					<power>27.3</power>
 					<cooldownTime>1.9</cooldownTime>
-					<commonality>1.33</commonality>
+					<chanceFactor>1.33</chanceFactor>
 					<armorPenetration>0.227</armorPenetration>
 					<linkedBodyPartsGroup>Edge</linkedBodyPartsGroup>
 				</li>
@@ -601,7 +595,7 @@
 	</Operation>
 
 	<Operation Class="PatchOperationAdd">
-		<xpath>*/ThingDef[defName="MeleeWeapon_LongSword"]</xpath>
+		<xpath>Defs/ThingDef[defName="MeleeWeapon_LongSword"]</xpath>
 		<value>
 			<equippedStatOffsets>
 				<MeleeCritChance>0.75</MeleeCritChance>
@@ -611,7 +605,7 @@
 	</Operation>
 
 	<Operation Class="PatchOperationAdd">
-		<xpath>*/ThingDef[defName="MeleeWeapon_LongSword"]/statBases</xpath>
+		<xpath>Defs/ThingDef[defName="MeleeWeapon_LongSword"]/statBases</xpath>
 		<value>
       		<Bulk>8</Bulk>
       		<MeleeCounterParryBonus>2</MeleeCounterParryBonus>

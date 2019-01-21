@@ -49,21 +49,21 @@ namespace CombatExtended
 			
 			IntRange vBounds;
 			
-			try {	vBounds = Def_Extensions.CropVertical((graphic.MatSide.mainTexture as Texture2D).GetColorSafe(out vWidth, out vHeight), vWidth, vHeight);	}
+			try {	vBounds = Def_Extensions.CropVertical((graphic.MatEast.mainTexture as Texture2D).GetColorSafe(out vWidth, out vHeight), vWidth, vHeight);	}
     		catch(Exception ex) {	throw new Exception("CombatExtended :: CropVertical error while cropping Textures/"+graphic.path+"_side",ex);	}
 			
 			int hWidth; int hHeight;
 			
 			IntRange hBounds;
 			
-			try {	hBounds = Def_Extensions.CropHorizontal((graphic.MatFront.mainTexture as Texture2D).GetColorSafe(out hWidth, out hHeight), hWidth, hHeight);	}
+			try {	hBounds = Def_Extensions.CropHorizontal((graphic.MatSouth.mainTexture as Texture2D).GetColorSafe(out hWidth, out hHeight), hWidth, hHeight);	}
     		catch(Exception ex) {	throw new Exception("CombatExtended :: CropHorizontal error while cropping Textures/"+graphic.path+"_front",ex);	}
 			
 			int vWidthHead; int vHeightHead;
 			
 			IntRange vBoundsHead;
 			
-    		try {	vBoundsHead = Def_Extensions.CropVertical((headGraphic.MatSide.mainTexture as Texture2D).GetColorSafe(out vWidthHead, out vHeightHead), vWidthHead, vHeightHead);	}
+    		try {	vBoundsHead = Def_Extensions.CropVertical((headGraphic.MatEast.mainTexture as Texture2D).GetColorSafe(out vWidthHead, out vHeightHead), vWidthHead, vHeightHead);	}
     		catch(Exception ex) {	throw new Exception("CombatExtended :: CropVertical error while cropping Textures/"+headGraphic.path+"_side",ex);	}
 			
 			vBoundsHead.min -= (int)(headOffset.y * (float)vHeightHead);
@@ -76,7 +76,7 @@ namespace CombatExtended
 			
 			IntRange hBoundsHead;
 			
-    		try {	hBoundsHead = Def_Extensions.CropHorizontal((headGraphic.MatFront.mainTexture as Texture2D).GetColorSafe(out hWidthHead, out hHeightHead), hWidthHead, hHeightHead);	}
+    		try {	hBoundsHead = Def_Extensions.CropHorizontal((headGraphic.MatSouth.mainTexture as Texture2D).GetColorSafe(out hWidthHead, out hHeightHead), hWidthHead, hHeightHead);	}
     		catch(Exception ex) {	throw new Exception("CombatExtended :: CropHorizontal error while cropping Textures/"+headGraphic.path+"_front",ex);	}
 			
 			hBoundsHead.min += (int)(headOffset.x * (float)hWidthHead);
@@ -96,7 +96,7 @@ namespace CombatExtended
 			
 			IntRange vBounds;
 			
-			try {	vBounds = Def_Extensions.CropVertical((graphic.MatSide.mainTexture as Texture2D).GetColorSafe(out vWidth, out vHeight), vWidth, vHeight);	}
+			try {	vBounds = Def_Extensions.CropVertical((graphic.MatEast.mainTexture as Texture2D).GetColorSafe(out vWidth, out vHeight), vWidth, vHeight);	}
     		catch(Exception ex) {	throw new Exception("CombatExtended :: CropVertical error while cropping Textures/"+graphic.path+"_side",ex);	}
 			
 				//Plants only care for verts
@@ -113,7 +113,7 @@ namespace CombatExtended
 			
 			IntRange hBounds;
 			
-			try {	hBounds = Def_Extensions.CropHorizontal((graphic.MatFront.mainTexture as Texture2D).GetColorSafe(out hWidth, out hHeight), hWidth, hHeight);	}
+			try {	hBounds = Def_Extensions.CropHorizontal((graphic.MatSouth.mainTexture as Texture2D).GetColorSafe(out hWidth, out hHeight), hWidth, hHeight);	}
     		catch(Exception ex) {	throw new Exception("CombatExtended :: CropHorizontal error while cropping Textures/"+graphic.path+"_front",ex);	}
 			
 			return new Vector2(

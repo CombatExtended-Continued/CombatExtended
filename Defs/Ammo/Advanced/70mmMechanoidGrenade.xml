@@ -21,7 +21,7 @@
 
 	<!-- ==================== Ammo ========================== -->
 
-	<ThingDef Name="70mmMechanoidGrenadeBase" ParentName="AmmoBase" Abstract="True">
+	<ThingDef Class="CombatExtended.AmmoDef" Name="70mmMechanoidGrenadeBase" ParentName="AmmoBase" Abstract="True">
 		<description>Low velocity, large bore grenade fired from mechanoid grenade launchers.</description>
 		<statBases>
 			<Mass>2.8</Mass>
@@ -34,7 +34,7 @@
 		<cookOffFlashScale>25</cookOffFlashScale>
 	</ThingDef>
 
-	<ThingDef ParentName="70mmMechanoidGrenadeBase">
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="70mmMechanoidGrenadeBase">
 		<defName>Ammo_70mmMechanoidGrenade_HE</defName>
 		<label>70mm mechanoid grenade (HE)</label>
 		<graphicData>
@@ -50,11 +50,12 @@
 				<fragments>
 					<Fragment_Shell>300</Fragment_Shell>
 				</fragments>
+      	<applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
 			</li>
 		</comps>
 	</ThingDef>
 
-	<ThingDef ParentName="70mmMechanoidGrenadeBase">
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="70mmMechanoidGrenadeBase">
 		<defName>Ammo_70mmMechanoidGrenade_EMP</defName>
 		<label>70mm mechanoid grenade (EMP)</label>
 		<graphicData>
@@ -76,31 +77,29 @@
 
 	<!-- ================== Projectiles ================== -->
 
-	<ThingDef Name="Base70mmMechanoidGrenadeBullet" ParentName="BaseBullet" Abstract="true">
+	<ThingDef Class="CombatExtended.AmmoDef" Name="Base70mmMechanoidGrenadeBullet" ParentName="BaseBullet" Abstract="true">
 		<thingClass>CombatExtended.ProjectileCE_Explosive</thingClass>
 		<graphicData>
 			<texPath>Things/Projectile/Bullet_Big</texPath>
 			<graphicClass>Graphic_Single</graphicClass>
 		</graphicData>
-		<projectile>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
 			<speed>50</speed>
 		</projectile>
 	</ThingDef>
 
-	<ThingDef ParentName="Base70mmMechanoidGrenadeBullet">
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="Base70mmMechanoidGrenadeBullet">
 		<defName>Bullet_70mmMechanoidGrenade_HE</defName>
 		<label>70mm mechanoid grenade (HE)</label>
-		<projectile>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
 			<damageDef>Bomb</damageDef>
-			<damageAmountBase>100</damageAmountBase>
-			<explosionRadius>1</explosionRadius>
+			<damageAmountBase>175</damageAmountBase>
+			<explosionRadius>2.5</explosionRadius>
 			<soundExplode>MortarBomb_Explode</soundExplode>
+      <applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
 		</projectile>
 		<comps>
 			<li Class="CombatExtended.CompProperties_ExplosiveCE">
-				<explosionDamage>75</explosionDamage>
-				<explosionDamageDef>Bomb</explosionDamageDef>
-				<explosionRadius>2.5</explosionRadius>
 				<fragments>
 					<Fragment_Shell>300</Fragment_Shell>
 				</fragments>
@@ -108,10 +107,10 @@
 		</comps>
 	</ThingDef>
 
-	<ThingDef ParentName="Base70mmMechanoidGrenadeBullet">
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="Base70mmMechanoidGrenadeBullet">
 		<defName>Bullet_70mmMechanoidGrenade_EMP</defName>
 		<label>70mm mechanoid grenade (EMP)</label>
-		<projectile>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
 			<explosionRadius>3.0</explosionRadius>
 			<damageDef>EMP</damageDef>
 			<damageAmountBase>70</damageAmountBase>

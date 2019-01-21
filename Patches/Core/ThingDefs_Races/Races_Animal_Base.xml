@@ -5,11 +5,11 @@
 		<success>Always</success>
 		<operations>
 			<li Class="PatchOperationTest">
-				<xpath>*/ThingDef[@Name="BasePawn"]/statBases</xpath>
+				<xpath>Defs/ThingDef[@Name="BasePawn"]/statBases</xpath>
 				<success>Invert</success>
 			</li>
 			<li Class="PatchOperationAdd">
-				<xpath>*/ThingDef[@Name="BasePawn"]</xpath>
+				<xpath>Defs/ThingDef[@Name="BasePawn"]</xpath>
 				<value>
 					<statBases/>
 				</value>
@@ -18,7 +18,7 @@
 	</Operation>
 
 	<Operation Class="PatchOperationAdd">
-		<xpath>*/ThingDef[@Name="BasePawn"]/statBases</xpath>
+		<xpath>Defs/ThingDef[@Name="BasePawn"]/statBases</xpath>
 		<value>
 			<MeleeDodgeChance>0</MeleeDodgeChance>
 			<MeleeCritChance>0</MeleeCritChance>
@@ -27,14 +27,14 @@
 	</Operation>
 
 	<Operation Class="PatchOperationReplace">
-		<xpath>*/ThingDef[@Name="BasePawn"]/inspectorTabs/li[.="ITab_Pawn_Gear"]</xpath>
+		<xpath>Defs/ThingDef[@Name="BasePawn"]/inspectorTabs/li[.="ITab_Pawn_Gear"]</xpath>
 		<value>
 			<li>CombatExtended.ITab_Inventory</li>
 		</value>
 	</Operation>
 
 	<Operation Class="PatchOperationAdd">
-		<xpath>*/ThingDef[@Name="BasePawn"]/comps</xpath>
+		<xpath>Defs/ThingDef[@Name="BasePawn"]/comps</xpath>
 		<value>
 			<li Class="CombatExtended.CompProperties_Inventory" />
 		</value>

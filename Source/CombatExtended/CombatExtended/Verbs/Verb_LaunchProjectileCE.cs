@@ -44,7 +44,7 @@ namespace CombatExtended
         private float rotationDegrees = 0f;
         private float angleRadians = 0f;
 
-        private int lastTauntTick;
+        //private int lastTauntTick;
         
         #endregion
 
@@ -61,9 +61,9 @@ namespace CombatExtended
         {
             get
             {
-                if (this.compCharges == null && this.ownerEquipment != null)
+                if (this.compCharges == null && this.EquipmentSource != null)
                 {
-                    this.compCharges = this.ownerEquipment.TryGetComp<CompCharges>();
+                    this.compCharges = this.EquipmentSource.TryGetComp<CompCharges>();
                 }
                 return this.compCharges;
             }
@@ -100,19 +100,19 @@ namespace CombatExtended
             }
         }
 
-        protected float ShootingAccuracy => Mathf.Min(caster.GetStatValue(StatDefOf.ShootingAccuracy), 4.5f);
+        protected float ShootingAccuracy => Mathf.Min(CasterShootingAccuracyValue(caster), 4.5f);
         protected float AimingAccuracy => Mathf.Min(Shooter.GetStatValue(CE_StatDefOf.AimingAccuracy), 1.5f); //equivalent of ShooterPawn?.GetStatValue(CE_StatDefOf.AimingAccuracy) ?? caster.GetStatValue(CE_StatDefOf.AimingAccuracy)
-        protected float SightsEfficiency => ownerEquipment.GetStatValue(CE_StatDefOf.SightsEfficiency);
-        protected virtual float SwayAmplitude => Mathf.Max(0, (4.5f - ShootingAccuracy) * ownerEquipment.GetStatValue(StatDef.Named("SwayFactor")));
+        protected float SightsEfficiency => EquipmentSource.GetStatValue(CE_StatDefOf.SightsEfficiency);
+        protected virtual float SwayAmplitude => Mathf.Max(0, (4.5f - ShootingAccuracy) * EquipmentSource.GetStatValue(StatDef.Named("SwayFactor")));
 
         // Ammo variables
         protected CompAmmoUser CompAmmo
         {
             get
             {
-                if (compAmmo == null && this.ownerEquipment != null)
+                if (compAmmo == null && this.EquipmentSource != null)
                 {
-                    compAmmo = this.ownerEquipment.TryGetComp<CompAmmoUser>();
+                    compAmmo = this.EquipmentSource.TryGetComp<CompAmmoUser>();
                 }
                 return compAmmo;
             }
@@ -137,9 +137,9 @@ namespace CombatExtended
         {
         	get
         	{
-	            if (compChangeable == null && ownerEquipment != null)
+	            if (compChangeable == null && EquipmentSource != null)
 	            {
-	                compChangeable = ownerEquipment.TryGetComp<CompChangeableProjectile>();
+	                compChangeable = EquipmentSource.TryGetComp<CompChangeableProjectile>();
 	            }
 	            return compChangeable;
         	}
@@ -149,9 +149,9 @@ namespace CombatExtended
         {
             get
             {
-                if (this.compFireModes == null && this.ownerEquipment != null)
+                if (this.compFireModes == null && this.EquipmentSource != null)
                 {
-                    this.compFireModes = this.ownerEquipment.TryGetComp<CompFireModes>();
+                    this.compFireModes = this.EquipmentSource.TryGetComp<CompFireModes>();
                 }
                 return this.compFireModes;
             }
@@ -160,6 +160,13 @@ namespace CombatExtended
         #endregion
 
         #region Methods
+
+        /// <summary>
+        /// Gets caster's weapon handling based on if it's a pawn or a turret
+        /// </summary>
+        /// <param name="caster">What thing is equipping the projectile launcher</param>
+        private float CasterShootingAccuracyValue(Thing caster) => // ShootingAccuracy was split into ShootingAccuracyPawn and ShootingAccuracyTurret
+            (caster as Pawn != null) ? caster.GetStatValue(StatDefOf.ShootingAccuracyPawn) : caster.GetStatValue(StatDefOf.ShootingAccuracyTurret);
 
         /// <summary>
         /// Resets current burst shot count and estimated distance at beginning of the burst
@@ -179,7 +186,7 @@ namespace CombatExtended
             	new BattleLogEntry_RangedFire(
             		Shooter,
             		(!currentTarget.HasThing) ? null : currentTarget.Thing,
-            		(ownerEquipment == null) ? null : ownerEquipment.def,
+            		(EquipmentSource == null) ? null : EquipmentSource.def,
             		Projectile,
             		VerbPropsCE.burstShotCount > 1)
             );
@@ -273,7 +280,7 @@ namespace CombatExtended
             // ----------------------------------- STEP 5: Finalization
             
             var w = (newTargetLoc - sourceLoc);
-            shotRotation = (90 + Mathf.Rad2Deg * Mathf.Atan2(-w.y, w.x) + rotationDegrees + spreadVec.x) % 360;
+            shotRotation = (-90 + Mathf.Rad2Deg * Mathf.Atan2(w.y, w.x) + rotationDegrees + spreadVec.x) % 360;
             shotAngle = angleRadians + spreadVec.y * Mathf.Deg2Rad;
         }
 
@@ -346,7 +353,7 @@ namespace CombatExtended
             report.shotSpeed = this.ShotSpeed;
             report.swayDegrees = this.SwayAmplitude;
             var spreadmult = this.projectilePropsCE != null ? this.projectilePropsCE.spreadMult : 0f;
-            report.spreadDegrees = this.ownerEquipment.GetStatValue(StatDef.Named("ShotSpread")) * spreadmult;
+            report.spreadDegrees = this.EquipmentSource.GetStatValue(StatDef.Named("ShotSpread")) * spreadmult;
             Thing cover;
             float smokeDensity;
             this.GetHighestCoverAndSmokeForTarget(target, out cover, out smokeDensity);
@@ -468,10 +475,7 @@ namespace CombatExtended
             	if (ShooterPawn.story != null
 		  && ShooterPawn.story.WorkTagIsDisabled(WorkTags.Violent))
         	    {
-					report = "IsIncapableOfViolenceLower".Translate(new object[]
-					{
-						ShooterPawn.NameStringShort
-					});
+					report = "IsIncapableOfViolenceLower".Translate(ShooterPawn.Name.ToStringShort);
             		return false;
         	    }
             	
@@ -481,7 +485,7 @@ namespace CombatExtended
 	                List<Apparel> wornApparel = ShooterPawn.apparel.WornApparel;
 	                foreach(Apparel current in wornApparel)
 	                {
-	                    if (!current.AllowVerbCast(root, caster.Map, targ))
+	                    if (!current.AllowVerbCast(root, caster.Map, targ, this))
 	                    {
 	                        report = "Shooting disallowed by " + current.LabelShort;
 	                        return false;
@@ -517,14 +521,13 @@ namespace CombatExtended
         /// <returns>True for successful shot, false otherwise</returns>
         protected override bool TryCastShot()
         {
-            ShootLine shootLine;
-            if (!TryFindCEShootLineFromTo(caster.Position, currentTarget, out shootLine))
+            if (!TryFindCEShootLineFromTo(caster.Position, currentTarget, out var shootLine))
             {
                 return false;
             }
             if (projectilePropsCE.pelletCount < 1)
             {
-                Log.Error(ownerEquipment.LabelCap + " tried firing with pelletCount less than 1.");
+                Log.Error(EquipmentSource.LabelCap + " tried firing with pelletCount less than 1.");
                 return false;
             }
             ShiftVecReport report = ShiftVecReportFor(currentTarget);
@@ -539,6 +542,7 @@ namespace CombatExtended
                 projectile.canTargetSelf = false;
                 projectile.minCollisionSqr = (sourceLoc - currentTarget.Cell.ToIntVec2.ToVector2Shifted()).sqrMagnitude;
                 projectile.intendedTarget = currentTarget.Thing;
+                projectile.mount = caster.Position.GetFirstPawn(caster.Map);
                 projectile.Launch(
                 	Shooter,	//Shooter instead of caster to give turret operators' records the damage/kills obtained
                 	sourceLoc,
@@ -546,7 +550,7 @@ namespace CombatExtended
                 	shotRotation,
                 	ShotHeight,
                 	ShotSpeed,
-                	ownerEquipment
+                	EquipmentSource
                 );
 	           	pelletMechanicsOnly = true;
             }
@@ -583,7 +587,7 @@ namespace CombatExtended
                 resultingLine = default(ShootLine);
                 return false;
             }
-            if (this.verbProps.MeleeRange)
+            if (this.verbProps.range <= ShootTuning.MeleeRange) // If this verb has a MAX range up to melee range (NOT a MIN RANGE!)
             {
                 resultingLine = new ShootLine(root, targ.Cell);
                 return ReachabilityImmediate.CanReachImmediate(root, targ, this.caster.Map, PathEndMode.Touch, null);
@@ -636,6 +640,7 @@ namespace CombatExtended
                 }
             }
             resultingLine = new ShootLine(root, targ.Cell);
+
             return false;
         }
 

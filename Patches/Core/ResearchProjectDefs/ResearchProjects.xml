@@ -3,29 +3,38 @@
 
 	<!-- Remove Multibarrel Weapons (no Minigun means no point in researching this) -->
 	<Operation Class="PatchOperationRemove">
-		<xpath>*/ResearchProjectDef[defName="MultibarrelWeapons"]</xpath>
+		<xpath>Defs/ResearchProjectDef[defName="MultibarrelWeapons"]</xpath>
 	</Operation>
 
 	<!-- Move auto-turret research to turrets tab -->
 	<Operation Class="PatchOperationAdd">
-		<xpath>*/ResearchProjectDef[defName="GunTurrets"]</xpath>
+		<xpath>Defs/ResearchProjectDef[defName="GunTurrets"]</xpath>
 		<value>
 			<tab>CE_Turrets</tab>
 		</value>
 	</Operation>
 
 	<Operation Class="PatchOperationReplace">
-		<xpath>*/ResearchProjectDef[defName="GunTurrets"]/researchViewX</xpath>
+		<xpath>Defs/ResearchProjectDef[defName="GunTurrets"]/researchViewX</xpath>
 		<value>
 			<researchViewX>1</researchViewX>
 		</value>
 	</Operation>
 
 	<Operation Class="PatchOperationReplace">
-		<xpath>*/ResearchProjectDef[defName="GunTurrets"]/researchViewY</xpath>
+		<xpath>Defs/ResearchProjectDef[defName="GunTurrets"]/researchViewY</xpath>
 		<value>
 			<researchViewY>0</researchViewY>
 		</value>
+	</Operation>
+	
+	<!-- Remove Sniper & Autoturret -->
+	<Operation Class="PatchOperationRemove">
+		<xpath>Defs/ResearchProjectDef[defName="HeavyTurrets"]</xpath>
+	</Operation>
+	
+	<Operation Class="PatchOperationRemove">
+		<xpath>Defs/ResearchProjectDef[defName="SniperTurret"]</xpath>
 	</Operation>
 
 </Patch>

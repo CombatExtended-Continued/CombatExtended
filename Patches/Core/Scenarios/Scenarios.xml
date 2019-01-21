@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <Patch>
 	<Operation Class="PatchOperationAdd">
-		<xpath>*/ScenarioDef[defName="Crashlanded"]/scenario/parts</xpath>
+		<xpath>Defs/ScenarioDef[defName="Crashlanded"]/scenario/parts</xpath>
 		<value>
 			<li Class="ScenPart_StartingThing_Defined">
 			  <def>StartingThing_Defined</def>
@@ -15,9 +15,21 @@
 			</li>
 		</value>
 	</Operation>
+	
+	<Operation Class="PatchOperationRemove">
+		<xpath>Defs/ScenarioDef[defName="Crashlanded"]/scenario/parts/li[thingDef="Apparel_AdvancedHelmet"]</xpath>
+	</Operation>
+	
+	<Operation Class="PatchOperationRemove">
+		<xpath>Defs/ScenarioDef[defName="Crashlanded"]/scenario/parts/li[thingDef="Apparel_FlakVest"]</xpath>
+	</Operation>
+	
+	<Operation Class="PatchOperationRemove">
+		<xpath>Defs/ScenarioDef[defName="Crashlanded"]/scenario/parts/li[thingDef="Apparel_FlakPants"]</xpath>
+	</Operation>
 
 	<Operation Class="PatchOperationAdd">
-		<xpath>*/ScenarioDef[defName="TheRichExplorer"]/scenario/parts</xpath>
+		<xpath>Defs/ScenarioDef[defName="TheRichExplorer"]/scenario/parts</xpath>
 		<value>
 			<li Class="ScenPart_StartingThing_Defined">
 			  <def>StartingThing_Defined</def>
@@ -28,7 +40,7 @@
 	</Operation>
 
 	<Operation Class="PatchOperationAdd">
-		<xpath>*/ScenarioDef[defName="LostTribe"]/scenario/parts</xpath>
+		<xpath>Defs/ScenarioDef[defName="LostTribe"]/scenario/parts</xpath>
 		<value>
 			<li Class="ScenPart_StartingThing_Defined">
 			  <def>StartingThing_Defined</def>
@@ -37,5 +49,6 @@
 			</li>
 		</value>
 	</Operation>
+
 </Patch>
 
