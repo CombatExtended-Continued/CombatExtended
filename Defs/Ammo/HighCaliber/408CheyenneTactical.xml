@@ -1,0 +1,218 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+	
+	<ThingCategoryDef>
+      <defName>Ammo408CheyenneTactical</defName>
+      <label>.408 Cheyenne Tactical</label>
+      <parent>AmmoHighCaliber</parent>
+      <iconPath>UI/Icons/ThingCategories/CaliberHighCaliber</iconPath>
+    </ThingCategoryDef>
+	
+  <!-- ==================== AmmoSet ========================== -->
+
+  <CombatExtended.AmmoSetDef>
+    <defName>AmmoSet_408CheyenneTactical</defName>
+    <label>.408 Cheyenne Tactical</label>
+    <ammoTypes>
+      <Ammo_408CheyenneTactical_FMJ>Bullet_408CheyenneTactical_FMJ</Ammo_408CheyenneTactical_FMJ>
+      <Ammo_408CheyenneTactical_HP>Bullet_408CheyenneTactical_HP</Ammo_408CheyenneTactical_HP>
+      <Ammo_408CheyenneTactical_Incendiary>Bullet_408CheyenneTactical_Incendiary</Ammo_408CheyenneTactical_Incendiary>
+    </ammoTypes>
+  </CombatExtended.AmmoSetDef>
+  
+  <!-- ==================== Ammo ========================== -->
+
+  <ThingDef Class="CombatExtended.AmmoDef" Name="Ammo408CheyenneTacticalBase" ParentName="AmmoBase" Abstract="True">
+    <description>Large cartridge developed for military long-range sniper rifles.</description>
+    <statBases>
+      <Mass>0.044</Mass>
+      <Bulk>0.011</Bulk>
+    </statBases>
+  	<tradeTags>
+      <li>CE_AutoEnableTrade</li>
+      <li>CE_AutoEnableCrafting</li>
+  	</tradeTags>
+    <thingCategories>
+      <li>Ammo408CheyenneTactical</li>
+    </thingCategories>
+  </ThingDef>
+
+  <ThingDef Class="CombatExtended.AmmoDef" ParentName="Ammo408CheyenneTacticalBase">
+    <defName>Ammo_408CheyenneTactical_FMJ</defName>
+    <label>.408 Cheyenne Tactical cartridge (FMJ)</label>
+    <graphicData>
+      <texPath>Things/Ammo/HighCaliber/FMJ</texPath>
+      <graphicClass>Graphic_StackCount</graphicClass>
+    </graphicData>
+    <statBases>
+      <MarketValue>0.24</MarketValue>
+    </statBases>
+  	<ammoClass>FullMetalJacket</ammoClass>
+    <cookOffProjectile>Bullet_408CheyenneTactical_FMJ</cookOffProjectile>
+  </ThingDef>
+
+  <ThingDef Class="CombatExtended.AmmoDef" ParentName="Ammo408CheyenneTacticalBase">
+    <defName>Ammo_408CheyenneTactical_HP</defName>
+    <label>.408 Cheyenne Tactical cartridge (HP)</label>
+    <graphicData>
+      <texPath>Things/Ammo/HighCaliber/HE</texPath>
+      <graphicClass>Graphic_StackCount</graphicClass>
+    </graphicData>
+    <statBases>
+      <MarketValue>0.35</MarketValue>
+    </statBases>
+  	<ammoClass>HollowPoint</ammoClass>
+    <cookOffProjectile>Bullet_408CheyenneTactical_HP</cookOffProjectile>
+  </ThingDef>
+
+  <ThingDef Class="CombatExtended.AmmoDef" ParentName="Ammo408CheyenneTacticalBase">
+    <defName>Ammo_408CheyenneTactical_Incendiary</defName>
+    <label>.408 Cheyenne Tactical cartridge (AP-I)</label>
+    <graphicData>
+      <texPath>Things/Ammo/HighCaliber/Incendiary</texPath>
+      <graphicClass>Graphic_StackCount</graphicClass>
+    </graphicData>
+    <statBases>
+      <MarketValue>0.37</MarketValue>
+    </statBases>
+    <ammoClass>IncendiaryAP</ammoClass>
+    <cookOffProjectile>Bullet_408CheyenneTactical_Incendiary</cookOffProjectile>
+  </ThingDef>
+
+  <!-- ================== Projectiles ================== -->
+
+  <ThingDef Class="CombatExtended.AmmoDef" Name="Base408CheyenneTacticalBullet" ParentName="BaseBullet" Abstract="true">
+    <graphicData>
+      <texPath>Things/Projectile/Bullet_Big</texPath>
+      <graphicClass>Graphic_Single</graphicClass>
+    </graphicData>
+    <projectile Class="CombatExtended.ProjectilePropertiesCE">
+      <damageDef>Bullet</damageDef>
+      <speed>275</speed>
+	  <dropsCasings>true</dropsCasings>
+    </projectile>
+  </ThingDef>
+
+  <ThingDef Class="CombatExtended.AmmoDef" ParentName="Base408CheyenneTacticalBullet">
+    <defName>Bullet_408CheyenneTactical_FMJ</defName>
+    <label>.408 Cheyenne Tactical bullet (FMJ)</label>
+    <projectile Class="CombatExtended.ProjectilePropertiesCE">
+      <damageAmountBase>34</damageAmountBase>
+	  <armorPenetrationBase>0.843</armorPenetrationBase>
+    </projectile>
+  </ThingDef>
+
+  <ThingDef Class="CombatExtended.AmmoDef" ParentName="Base408CheyenneTacticalBullet">
+    <defName>Bullet_408CheyenneTactical_HP</defName>
+    <label>.408 Cheyenne Tactical bullet (HP)</label>
+    <projectile Class="CombatExtended.ProjectilePropertiesCE">
+      <damageAmountBase>48</damageAmountBase>
+	  <armorPenetrationBase>0.693</armorPenetrationBase>
+    </projectile>
+  </ThingDef>
+
+  <ThingDef Class="CombatExtended.AmmoDef" ParentName="Base408CheyenneTacticalBullet">
+    <defName>Bullet_408CheyenneTactical_Incendiary</defName>
+    <label>.408 Cheyenne Tactical bullet (AP-I)</label>
+    <projectile Class="CombatExtended.ProjectilePropertiesCE">
+      <damageAmountBase>20</damageAmountBase>
+	  <armorPenetrationBase>0.993</armorPenetrationBase>
+      <secondaryDamage>
+        <li>
+          <def>Flame_Secondary</def>
+          <amount>7</amount>
+        </li>
+      </secondaryDamage>
+    </projectile>
+  </ThingDef>
+  
+  <!-- ==================== Recipes ========================== -->
+
+  <RecipeDef ParentName="AmmoRecipeBase">
+    <defName>MakeAmmo_408CheyenneTactical_FMJ</defName>
+    <label>make .408 Cheyenne Tactical (FMJ) cartridge x350</label>
+    <description>Craft 350 .408 Cheyenne Tactical (FMJ) cartridges.</description>
+    <jobString>Making .408 Cheyenne Tactical (FMJ) cartridges.</jobString>
+    <ingredients>
+      <li>
+        <filter>
+          <thingDefs>
+            <li>Steel</li>
+          </thingDefs>
+        </filter>
+        <count>30</count>
+      </li>
+    </ingredients>
+    <fixedIngredientFilter>
+      <thingDefs>
+        <li>Steel</li>
+      </thingDefs>
+    </fixedIngredientFilter>
+    <products>
+      <Ammo_408CheyenneTactical_FMJ>350</Ammo_408CheyenneTactical_FMJ>
+    </products>
+    <workAmount>6000</workAmount>
+  </RecipeDef>
+
+  <RecipeDef ParentName="AmmoRecipeBase">
+    <defName>MakeAmmo_408CheyenneTactical_HP</defName>
+    <label>make .408 Cheyenne Tactical (HP) cartridge x350</label>
+    <description>Craft 350 .408 Cheyenne Tactical (HP) cartridges.</description>
+    <jobString>Making .408 Cheyenne Tactical (HP) cartridges.</jobString>
+    <ingredients>
+      <li>
+        <filter>
+          <thingDefs>
+            <li>Steel</li>
+          </thingDefs>
+        </filter>
+        <count>30</count>
+      </li>
+    </ingredients>
+    <fixedIngredientFilter>
+      <thingDefs>
+        <li>Steel</li>
+      </thingDefs>
+    </fixedIngredientFilter>
+    <products>
+      <Ammo_408CheyenneTactical_HP>350</Ammo_408CheyenneTactical_HP>
+    </products>
+    <workAmount>15500</workAmount>
+  </RecipeDef>
+
+  <RecipeDef ParentName="AmmoRecipeBase">
+    <defName>MakeAmmo_408CheyenneTactical_Incendiary</defName>
+    <label>make .408 Cheyenne Tactical (AP-I) cartridge x350</label>
+    <description>Craft 350 .408 Cheyenne Tactical (AP-I) cartridges.</description>
+    <jobString>Making .408 Cheyenne Tactical (AP-I) cartridges.</jobString>
+    <ingredients>
+      <li>
+        <filter>
+          <thingDefs>
+            <li>Steel</li>
+          </thingDefs>
+        </filter>
+        <count>28</count>
+      </li>
+      <li>
+        <filter>
+          <thingDefs>
+            <li>Prometheum</li>
+          </thingDefs>
+        </filter>
+        <count>2</count>
+      </li>
+    </ingredients>
+    <fixedIngredientFilter>
+      <thingDefs>
+        <li>Steel</li>
+        <li>Prometheum</li>
+      </thingDefs>
+    </fixedIngredientFilter>
+    <products>
+      <Ammo_408CheyenneTactical_Incendiary>350</Ammo_408CheyenneTactical_Incendiary>
+    </products>
+    <workAmount>15500</workAmount>
+  </RecipeDef>
+  
+</Defs>

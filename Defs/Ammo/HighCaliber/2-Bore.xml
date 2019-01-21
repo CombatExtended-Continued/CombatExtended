@@ -1,0 +1,104 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+
+	<ThingCategoryDef>
+		<defName>Ammo2Bore</defName>
+		<label>2-Bore</label>
+		<parent>AmmoRifles</parent>
+		<iconPath>UI/Icons/ThingCategories/CaliberHighCaliber</iconPath>
+	</ThingCategoryDef>
+	
+	<!-- ==================== AmmoSet ========================== -->
+
+	<CombatExtended.AmmoSetDef>
+		<defName>AmmoSet_2Bore</defName>
+		<label>2-Bore</label>
+		<ammoTypes>
+			<Ammo_2Bore_FMJ>Bullet_2Bore_FMJ</Ammo_2Bore_FMJ>
+		</ammoTypes>
+	</CombatExtended.AmmoSetDef>
+	
+	<!-- ==================== Ammo ========================== -->
+
+	<ThingDef Class="CombatExtended.AmmoDef" Name="2BoreBase" ParentName="SmallAmmoBase" Abstract="True">
+		<description>An extremely large caliber cartridge designed to be fired at large game, like elephants or rhinoceroses.</description>
+		<statBases>
+		<Mass>0.727</Mass>
+		<Bulk>0.22</Bulk>
+		</statBases>
+	<tradeTags>
+		<li>CE_AutoEnableTrade</li>
+		<li>CE_AutoEnableCrafting</li>
+	</tradeTags>
+		<thingCategories>
+			<li>Ammo2Bore</li>
+		</thingCategories>
+    <stackLimit>100</stackLimit>
+	</ThingDef>
+	
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="2BoreBase">
+		<defName>Ammo_2Bore_FMJ</defName>
+		<label>2-Bore cartridge (FMJ)</label>
+		<graphicData>
+			<texPath>Things/Ammo/HighCaliber/FMJ</texPath>
+			<graphicClass>Graphic_StackCount</graphicClass>
+		</graphicData>
+		<statBases>
+			<MarketValue>1.35</MarketValue>
+		</statBases>
+		<ammoClass>FullMetalJacket</ammoClass>
+		<cookOffProjectile>Bullet_2Bore_FMJ</cookOffProjectile>
+	</ThingDef>
+	
+	<!-- ================== Projectiles ================== -->
+
+	<ThingDef Class="CombatExtended.AmmoDef" Name="Base2BoreBullet" ParentName="BaseBullet" Abstract="true">
+		<graphicData>
+			<texPath>Things/Projectile/Bullet_Big</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+		</graphicData>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageDef>Bullet</damageDef>
+			<speed>114</speed>
+			<dropsCasings>true</dropsCasings>
+		</projectile>
+	</ThingDef>
+	
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="Base2BoreBullet">
+		<defName>Bullet_2Bore_FMJ</defName>
+		<label>2-Bore bullet (FMJ)</label>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageAmountBase>128</damageAmountBase>
+			<armorPenetrationBase>0.977</armorPenetrationBase>
+		</projectile>
+	</ThingDef>
+  
+	<!-- ==================== Recipes ========================== -->
+
+	<RecipeDef ParentName="AmmoRecipeBase">
+		<defName>MakeAmmo_2Bore_FMJ</defName>
+		<label>make 2-Bore (FMJ) cartridge x100</label>
+		<description>Craft 100 2-Bore (FMJ) cartridges.</description>
+		<jobString>Making 2-Bore (FMJ) cartridges.</jobString>
+		<ingredients>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>Steel</li>
+					</thingDefs>
+				</filter>
+				<count>53</count>
+			</li>
+		</ingredients>
+		<fixedIngredientFilter>
+			<thingDefs>
+				<li>Steel</li>
+			</thingDefs>
+		</fixedIngredientFilter>
+		<products>
+			<Ammo_2Bore_FMJ>100</Ammo_2Bore_FMJ>
+		</products>
+    <workAmount>7250</workAmount>
+	</RecipeDef>
+	
+</Defs>
