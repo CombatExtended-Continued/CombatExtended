@@ -378,10 +378,20 @@ namespace CombatExtended
         {
             if (slot == null)
                 return;
-            int countInt = slot.count;
-            Widgets.TextFieldNumeric<int>(canvas, ref countInt, ref slot.countFieldBuffer);
+            /*
+            var count = GUI.TextField(canvas, slot.count.ToString());
             TooltipHandler.TipRegion(canvas, "CE_CountFieldTip".Translate(slot.count));
-	    slot.count = countInt;
+            if (int.TryParse(count, out var countInt))
+            {
+                slot.count = countInt;
+            }
+            */
+
+            int countInt = slot.count;
+            string buffer = countInt.ToString();
+            Widgets.TextFieldNumeric<int>(canvas, ref countInt, ref buffer);
+            TooltipHandler.TipRegion(canvas, "CE_CountFieldTip".Translate(slot.count));
+            slot.count = countInt;
         }
 
         private void DrawFilterField(Rect canvas)
