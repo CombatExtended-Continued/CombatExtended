@@ -26,9 +26,7 @@ namespace CombatExtended
         private Def _def;
         private Type _type; // to help with save/load.
         private LoadoutCountType _countType = LoadoutCountType.pickupDrop; // default mode for new loadout slots.
-        
-        public string countFieldBuffer = "";
-        
+
         #endregion Fields
 
         #region Constructors
