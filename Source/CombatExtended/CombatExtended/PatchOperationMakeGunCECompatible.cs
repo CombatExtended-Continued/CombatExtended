@@ -8,7 +8,7 @@ namespace CombatExtended
     public class PatchOperationMakeGunCECompatible : PatchOperation
     {
         public string defName;
-        public bool AllowWithRunAndGun = false;
+        public bool AllowWithRunAndGun = true;
         public XmlContainer statBases;
         public XmlContainer Properties;
         public XmlContainer AmmoUser;
@@ -62,7 +62,7 @@ namespace CombatExtended
                 }
 
                 // RunAndGun compatibility
-                if (ModLister.HasActiveModWithName("RunAndGun"))
+                if (ModLister.HasActiveModWithName("RunAndGun") && !AllowWithRunAndGun)
                 {
                     AddRunAndGunExtension(xml, xmlNode);
                 }
@@ -223,7 +223,7 @@ namespace CombatExtended
 
             // Add weaponForbidden to list element
             var weaponElement = xml.CreateElement("weaponForbidden");
-            weaponElement.InnerText = (!AllowWithRunAndGun).ToString();
+            weaponElement.InnerText = "true";
             listElement.AppendChild(weaponElement);
         }
     }
