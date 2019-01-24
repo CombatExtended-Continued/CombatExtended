@@ -14,14 +14,15 @@
     <isUnfinishedThing>true</isUnfinishedThing>
     <scatterableOnMapGen>false</scatterableOnMapGen>
     <selectable>true</selectable>
-    <tradeability>Never</tradeability>
+    <tradeability>None</tradeability>
     <drawerType>RealtimeOnly</drawerType>
     <!-- For CompForbiddable -->
     <statBases>
       <MaxHitPoints>50</MaxHitPoints>
       <DeteriorationRate>2.0</DeteriorationRate>
-      <Beauty>-4</Beauty>
-      <Mass>1</Mass> <!-- ingredients are added to this value -->
+      <Beauty>-8</Beauty>
+      <Mass>1</Mass>
+      <!-- ingredients are added to this value -->
     </statBases>
     <comps>
       <li Class="CompProperties_Forbiddable"/>
@@ -46,7 +47,7 @@
       <texPath>Things/Item/Unfinished/UnfinishedComponent</texPath>
       <graphicClass>Graphic_Single</graphicClass>
     </graphicData>
-    <stuffCategories />
+    <stuffCategories Inherit="false" />
   </ThingDef>
 
   <ThingDef ParentName="UnfinishedBase">
@@ -65,7 +66,7 @@
       <texPath>Things/Item/Unfinished/UnfinishedGun</texPath>
       <graphicClass>Graphic_Single</graphicClass>
     </graphicData>
-    <stuffCategories>
+    <stuffCategories Inherit="false">
       <li>Metallic</li>
     </stuffCategories>
   </ThingDef>
@@ -73,17 +74,23 @@
   <!-- ======================= Minified things ========================= -->
 
   <ThingDef Name="MinifiedBase" Abstract="True">
+    <defName>MinifiedThing</defName>
+    <label>minified thing</label>
     <thingClass>MinifiedThing</thingClass>
     <category>Item</category>
     <useHitPoints>true</useHitPoints>
     <selectable>true</selectable>
     <altitudeLayer>Item</altitudeLayer>
     <scatterableOnMapGen>false</scatterableOnMapGen>
+    <tickerType>Normal</tickerType>
     <!-- for CompForbiddable -->
     <drawerType>RealtimeOnly</drawerType>
     <comps>
       <li Class="CompProperties_Forbiddable"/>
     </comps>
+    <inspectorTabs>
+      <li>ITab_Art</li>
+    </inspectorTabs>
     <alwaysHaulable>true</alwaysHaulable>
     <rotatable>false</rotatable>
     <pathCost>15</pathCost>

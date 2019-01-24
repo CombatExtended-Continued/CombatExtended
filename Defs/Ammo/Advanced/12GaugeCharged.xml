@@ -22,7 +22,7 @@
 	
 	<!-- ==================== Ammo ========================== -->
 
-  <ThingDef Name="12GaugeChargedBase" ParentName="SmallAmmoBase" Abstract="True">
+  <ThingDef Class="CombatExtended.AmmoDef" Name="12GaugeChargedBase" ParentName="SmallAmmoBase" Abstract="True">
     <description>Multi-pellet charge shot cartridge designed for shotgun-type weapons.</description>
     <statBases>
 	  <Mass>0.05</Mass>
@@ -37,7 +37,7 @@
     </thingCategories>
   </ThingDef>
 
-  <ThingDef ParentName="12GaugeChargedBase">
+  <ThingDef Class="CombatExtended.AmmoDef" ParentName="12GaugeChargedBase">
     <defName>Ammo_12GaugeCharged</defName>
     <label>12 gauge charged shell</label>
     <graphicData>
@@ -50,7 +50,7 @@
     <ammoClass>BuckShot</ammoClass>
   </ThingDef>
 
-  <ThingDef ParentName="12GaugeChargedBase">
+  <ThingDef Class="CombatExtended.AmmoDef" ParentName="12GaugeChargedBase">
     <defName>Ammo_12GaugeCharged_Slug</defName>
     <label>12 gauge charged shell (Slug)</label>
     <graphicData>
@@ -63,7 +63,7 @@
     <ammoClass>Slug</ammoClass>
   </ThingDef>
 
-  <ThingDef ParentName="12GaugeChargedBase">
+  <ThingDef Class="CombatExtended.AmmoDef" ParentName="12GaugeChargedBase">
     <defName>Ammo_12GaugeCharged_Ion</defName>
     <label>12 gauge charged shell (Ion slug)</label>
     <graphicData>
@@ -74,26 +74,26 @@
       <MarketValue>1.94</MarketValue>
     </statBases>
     <ammoClass>Ionized</ammoClass>
-    <canBeSpawningInventory>false</canBeSpawningInventory>
+	<generateAllowChance>0</generateAllowChance>
   </ThingDef>
 	
 	<!-- ================== Projectiles ================== -->
 
-  <ThingDef Name="Base12GaugeChargedBullet" ParentName="BaseBullet" Abstract="true">
+  <ThingDef Class="CombatExtended.AmmoDef" Name="Base12GaugeChargedBullet" ParentName="BaseBullet" Abstract="true">
     <graphicData>
       <texPath>Things/Projectile/Charge_Small</texPath>
       <graphicClass>Graphic_Single</graphicClass>
     </graphicData>
-    <projectile>
+    <projectile Class="CombatExtended.ProjectilePropertiesCE">
       <damageDef>Bullet</damageDef>
       <speed>100</speed>
     </projectile>
   </ThingDef>
 
-  <ThingDef ParentName="Base12GaugeChargedBullet">
+  <ThingDef Class="CombatExtended.AmmoDef" ParentName="Base12GaugeChargedBullet">
     <defName>Bullet_12GaugeCharged</defName>
     <label>charge pellet</label>
-    <projectile>
+    <projectile Class="CombatExtended.ProjectilePropertiesCE">
       <damageAmountBase>7</damageAmountBase>
       <secondaryDamage>
         <li>
@@ -101,16 +101,16 @@
           <amount>4</amount>
         </li>
       </secondaryDamage>
-      <armorPenetration>0.35</armorPenetration>
+      <armorPenetrationBase>0.35</armorPenetrationBase>
       <pelletCount>9</pelletCount>
       <spreadMult>17.8</spreadMult>
     </projectile>
   </ThingDef>
 
-  <ThingDef ParentName="Base12GaugeChargedBullet">
+  <ThingDef Class="CombatExtended.AmmoDef" ParentName="Base12GaugeChargedBullet">
     <defName>Bullet_12GaugeCharged_Slug</defName>
     <label>charge shot (Slug)</label>
-    <projectile>
+    <projectile Class="CombatExtended.ProjectilePropertiesCE">
       <damageAmountBase>37</damageAmountBase>
       <secondaryDamage>
         <li>
@@ -118,14 +118,14 @@
           <amount>15</amount>
         </li>
       </secondaryDamage>
-      <armorPenetration>0.6</armorPenetration>
+      <armorPenetrationBase>0.6</armorPenetrationBase>
     </projectile>
   </ThingDef>
 
-  <ThingDef ParentName="Base12GaugeChargedBullet">
+  <ThingDef Class="CombatExtended.AmmoDef" ParentName="Base12GaugeChargedBullet">
     <defName>Bullet_12GaugeCharged_Ion</defName>
     <label>charge shot (Ion slug)</label>
-    <projectile>
+    <projectile Class="CombatExtended.ProjectilePropertiesCE">
       <damageAmountBase>37</damageAmountBase>
       <secondaryDamage>
         <li>
@@ -133,7 +133,7 @@
           <amount>15</amount>
         </li>
       </secondaryDamage>
-      <armorPenetration>0.4</armorPenetration>
+      <armorPenetrationBase>0.4</armorPenetrationBase>
     </projectile>
   </ThingDef>
   
@@ -156,7 +156,7 @@
       <li>
         <filter>
           <thingDefs>
-            <li>Component</li>
+            <li>ComponentIndustrial</li>
           </thingDefs>
         </filter>
         <count>3</count>
@@ -165,7 +165,7 @@
     <fixedIngredientFilter>
       <thingDefs>
         <li>Plasteel</li>
-        <li>Component</li>
+        <li>ComponentIndustrial</li>
       </thingDefs>
     </fixedIngredientFilter>
     <products>
@@ -190,7 +190,7 @@
       <li>
         <filter>
           <thingDefs>
-            <li>Component</li>
+            <li>ComponentIndustrial</li>
           </thingDefs>
         </filter>
         <count>3</count>
@@ -199,7 +199,7 @@
     <fixedIngredientFilter>
       <thingDefs>
         <li>Plasteel</li>
-        <li>Component</li>
+        <li>ComponentIndustrial</li>
       </thingDefs>
     </fixedIngredientFilter>
     <products>
@@ -224,7 +224,7 @@
       <li>
         <filter>
           <thingDefs>
-            <li>Component</li>
+            <li>ComponentIndustrial</li>
           </thingDefs>
         </filter>
         <count>3</count>
@@ -233,7 +233,7 @@
     <fixedIngredientFilter>
       <thingDefs>
         <li>Plasteel</li>
-        <li>Component</li>
+        <li>ComponentIndustrial</li>
       </thingDefs>
     </fixedIngredientFilter>
     <products>

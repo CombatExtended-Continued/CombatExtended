@@ -90,7 +90,7 @@
       <Private>False</Private>
     </Reference>
     <Reference Include="Assembly-CSharp">
-      <HintPath>..\..\..\..\RimWorld1722Win_Data\Managed\Assembly-CSharp.dll</HintPath>
+      <HintPath>..\..\..\..\RimWorld2150Win64_Data\Managed\Assembly-CSharp.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="System" />
@@ -100,7 +100,7 @@
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
     <Reference Include="UnityEngine">
-      <HintPath>..\..\..\..\RimWorld1722Win_Data\Managed\UnityEngine.dll</HintPath>
+      <HintPath>..\..\..\..\RimWorld2150Win64_Data\Managed\UnityEngine.dll</HintPath>
       <Private>False</Private>
     </Reference>
   </ItemGroup>
@@ -113,12 +113,13 @@
     <Compile Include="CombatExtended\Comps\HediffCompProperties_Prometheum.cs" />
     <Compile Include="CombatExtended\Comps\HediffComp_Prometheum.cs" />
     <Compile Include="CombatExtended\Controller.cs" />
-    <Compile Include="CombatExtended\CritDefGenerator.cs" />
     <Compile Include="CombatExtended\DefOfs\CE_BodyShapeDefOf.cs" />
     <Compile Include="CombatExtended\DefOfs\CE_ConceptDefOf.cs" />
     <Compile Include="CombatExtended\DefOfs\CE_DamageArmorCategoryDefOf.cs" />
     <Compile Include="CombatExtended\DefOfs\CE_DamageDefOf.cs" />
+    <Compile Include="CombatExtended\DefOfs\CE_MentalStateDefOf.cs" />
     <Compile Include="CombatExtended\DefOfs\CE_RulePackDefOf.cs" />
+    <Compile Include="CombatExtended\DefOfs\CE_TraitDefOf.cs" />
     <Compile Include="CombatExtended\Defs\AmmoLink.cs" />
     <Compile Include="CombatExtended\ArmorUtilityCE.cs" />
     <Compile Include="CombatExtended\Comps\HediffCompProperties_InfecterCE.cs" />
@@ -148,12 +149,15 @@
     <Compile Include="CombatExtended\Jobs\JobGiver_ConfigurableHostilityResponse.cs" />
     <Compile Include="CombatExtended\Jobs\JobGiver_ManTurretsNearPointCE.cs" />
     <Compile Include="CombatExtended\Jobs\JobGiver_ManTurretsNearSelfCE.cs" />
+    <Compile Include="CombatExtended\Jobs\JobGiver_ReactToSuppression.cs" />
     <Compile Include="CombatExtended\Jobs\JobGiver_TakeAndEquip.cs" />
     <Compile Include="CombatExtended\Loadouts\HoldRecord.cs" />
     <Compile Include="CombatExtended\Loadouts\PawnColumnWorker_MassBulkBars.cs" />
     <Compile Include="CombatExtended\Loadouts\Tracker.cs" />
     <Compile Include="CombatExtended\Loadouts\PawnColumnWorker_Loadout.cs" />
     <Compile Include="CombatExtended\Loadouts\Utility_HoldTracker.cs" />
+    <Compile Include="CombatExtended\MentalState_ShellShock.cs" />
+    <Compile Include="CombatExtended\MentalState_CombatFrenzy.cs" />
     <Compile Include="CombatExtended\ParryTracker.cs" />
     <Compile Include="CombatExtended\PatchOperationFindMod.cs" />
     <Compile Include="CombatExtended\PatchOperationMakeGunCECompatible.cs" />
@@ -234,11 +238,9 @@
     <Compile Include="CombatExtended\Verbs\Verb_ShootMortarCE.cs" />
     <Compile Include="CombatExtended\Verbs\Verb_ShootCEOneUse.cs" />
     <Compile Include="Harmony\Harmony-DamageWorker_AddInjury.cs" />
-    <Compile Include="Harmony\Harmony-DefGenerator.cs" />
     <Compile Include="Harmony\Harmony-Fire.cs" />
     <Compile Include="Harmony\Harmony-FloatMenuMakerMap.cs" />
     <Compile Include="Harmony\Harmony-GenRadial.cs" />
-    <Compile Include="Harmony\Harmony-HediffComp_GetsOld.cs" />
     <Compile Include="Harmony\Harmony-HediffComp_TendDuration.cs" />
     <Compile Include="Harmony\Harmony-HediffWithComps.cs" />
     <Compile Include="Harmony\Harmony-Hediff_MissingPart.cs" />
@@ -252,7 +254,6 @@
     <Compile Include="Harmony\Harmony-PawnInventoryGenerator.cs" />
     <Compile Include="Harmony\Harmony-Pawn_EquipmentTracker.cs" />
     <Compile Include="Harmony\Harmony-Pawn_HealthTracker.cs" />
-    <Compile Include="Harmony\Harmony-RaidStrategyWorker_ImmediateAttackSappers.cs" />
     <Compile Include="Harmony\Harmony-SmokepopBelt.cs" />
     <Compile Include="Harmony\Harmony-StunHandler.cs" />
     <Compile Include="Harmony\Harmony-ThingDefGenerator_Meat.cs" />
@@ -264,6 +265,7 @@
     <Compile Include="Harmony\Harmony-VerbTracker.cs" />
     <Compile Include="Harmony\Harmony-VerbUtility.cs" />
     <Compile Include="Harmony\Harmony-Verb_TryStartCastOn.cs" />
+    <Compile Include="Harmony\Harmony_PathFinder.cs" />
     <Compile Include="Harmony\Harmony-WorkGiver_HunterHunt.cs" />
     <Compile Include="Harmony\Harmony-WorkGiver_InteractAnimal.cs" />
     <Compile Include="Harmony\HarmonyBase.cs" />

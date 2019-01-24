@@ -14,7 +14,7 @@ namespace CombatExtended
     /// </summary>
     public class JobDriver_Hunt : JobDriver
     {
-        public override bool TryMakePreToilReservations()
+        public override bool TryMakePreToilReservations(bool errorOnFailed)
         {
             return pawn.Reserve(Victim, job, 1, -1, null);
         }
@@ -43,7 +43,7 @@ namespace CombatExtended
             };
             yield return init;
             
-            yield return Toils_Combat.TrySetJobToUseAttackVerb();
+            yield return Toils_Combat.TrySetJobToUseAttackVerb(TargetIndex.A);
 
             var comp = (pawn.equipment != null && pawn.equipment.Primary != null) ? pawn.equipment.Primary.TryGetComp<CompAmmoUser>() : null;
             var startCollectCorpse = StartCollectCorpseToil();
@@ -71,7 +71,7 @@ namespace CombatExtended
             
             yield return Toils_Jump.JumpIf(startExecuteDowned, () => Victim.Downed && Victim.RaceProps.executionRange <= 2);
             
-            yield return Toils_Jump.JumpIfTargetDownedDistant(VictimInd, gotoCastPos);
+            yield return Toils_Jump.JumpIfTargetDowned(VictimInd, gotoCastPos);
             
             yield return Toils_Combat.CastVerb(VictimInd, false).JumpIfDespawnedOrNull(VictimInd, startCollectCorpse)
                 .FailOn(() =>

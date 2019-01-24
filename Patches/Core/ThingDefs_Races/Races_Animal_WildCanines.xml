@@ -4,7 +4,7 @@
 	<!-- ========== Warg ========== -->
 
 	<Operation Class="PatchOperationAddModExtension">
-		<xpath>*/ThingDef[defName="Warg"]</xpath>
+		<xpath>Defs/ThingDef[defName="Warg"]</xpath>
 		<value>
 			<li Class="CombatExtended.RacePropertiesExtensionCE">
 				<bodyShape>Quadruped</bodyShape>
@@ -13,14 +13,14 @@
 	</Operation>
 
 	<Operation Class="PatchOperationReplace">
-		<xpath>*/ThingDef[defName="Warg"]/statBases/MoveSpeed</xpath>
+		<xpath>Defs/ThingDef[defName="Warg"]/statBases/MoveSpeed</xpath>
 		<value>
 			<MoveSpeed>7</MoveSpeed>
 		</value>
 	</Operation>
 
 	<Operation Class="PatchOperationAdd">
-		<xpath>*/ThingDef[defName="Warg"]/statBases</xpath>
+		<xpath>Defs/ThingDef[defName="Warg"]/statBases</xpath>
 		<value>
 			<ArmorRating_Blunt>0.075</ArmorRating_Blunt>
 			<ArmorRating_Sharp>0.125</ArmorRating_Sharp>
@@ -31,7 +31,7 @@
 	</Operation>
 
 	<Operation Class="PatchOperationReplace">
-		<xpath>*/ThingDef[defName="Warg"]/tools</xpath>
+		<xpath>Defs/ThingDef[defName="Warg"]/tools</xpath>
 		<value>
 			<tools>
 				<li Class="CombatExtended.ToolCE">
@@ -85,7 +85,7 @@
 							</li>
 						</extraMeleeDamages>
 					</surpriseAttack>
-					<commonality>2</commonality>
+					<chanceFactor>2</chanceFactor>
 					<armorPenetration>0.282</armorPenetration>
 				</li>
 				<li Class="CombatExtended.ToolCE">
@@ -96,7 +96,7 @@
 					<power>3</power>
 					<cooldownTime>1.65</cooldownTime>
 					<linkedBodyPartsGroup>HeadAttackTool</linkedBodyPartsGroup>
-					<commonality>0.2</commonality>
+					<chanceFactor>0.2</chanceFactor>
 					<armorPenetration>0.064</armorPenetration>
 				</li>
 			</tools>
@@ -104,7 +104,7 @@
 	</Operation>
 
 	<Operation Class="PatchOperationReplace">
-		<xpath>*/ThingDef[defName="Warg"]/race/baseHealthScale</xpath>
+		<xpath>Defs/ThingDef[defName="Warg"]/race/baseHealthScale</xpath>
 		<value>
 			<baseHealthScale>1.25</baseHealthScale>
 		</value>
@@ -113,7 +113,7 @@
 	<!-- ========== Base Wolf ========== -->
 
 	<Operation Class="PatchOperationAddModExtension">
-		<xpath>*/ThingDef[@Name="ThingBaseWolf"]</xpath>
+		<xpath>Defs/ThingDef[@Name="ThingBaseWolf"]</xpath>
 		<value>
 			<li Class="CombatExtended.RacePropertiesExtensionCE">
 				<bodyShape>Quadruped</bodyShape>
@@ -122,7 +122,7 @@
 	</Operation>
 
 	<Operation Class="PatchOperationReplace">
-		<xpath>*/ThingDef[@Name="ThingBaseWolf"]/statBases/MoveSpeed</xpath>
+		<xpath>Defs/ThingDef[@Name="ThingBaseWolf"]/statBases/MoveSpeed</xpath>
 		<value>
 			<MoveSpeed>6.25</MoveSpeed>
 			<MeleeDodgeChance>0.26</MeleeDodgeChance>
@@ -132,7 +132,7 @@
 	</Operation>
 
 	<Operation Class="PatchOperationReplace">
-		<xpath>*/ThingDef[@Name="ThingBaseWolf"]/tools</xpath>
+		<xpath>Defs/ThingDef[@Name="ThingBaseWolf"]/tools</xpath>
 		<value>
 			<tools>
 				<li Class="CombatExtended.ToolCE">
@@ -196,7 +196,7 @@
 					<power>3</power>
 					<cooldownTime>1.65</cooldownTime>
 					<linkedBodyPartsGroup>HeadAttackTool</linkedBodyPartsGroup>
-					<commonality>0.2</commonality>
+					<chanceFactor>0.2</chanceFactor>
 					<armorPenetration>0.064</armorPenetration>
 				</li>
 			</tools>
@@ -204,7 +204,7 @@
 	</Operation>
 
 	<Operation Class="PatchOperationReplace">
-		<xpath>*/ThingDef[@Name="ThingBaseWolf"]/race/baseHealthScale</xpath>
+		<xpath>Defs/ThingDef[@Name="ThingBaseWolf"]/race/baseHealthScale</xpath>
 		<value>
 			<baseHealthScale>0.85</baseHealthScale>
 		</value>
@@ -213,7 +213,7 @@
 	<!-- ========== Base Fox ========== -->
 
 	<Operation Class="PatchOperationAddModExtension">
-		<xpath>*/ThingDef[@Name="ThingBaseFox"]</xpath>
+		<xpath>Defs/ThingDef[@Name="ThingBaseFox"]</xpath>
 		<value>
 			<li Class="CombatExtended.RacePropertiesExtensionCE">
 				<bodyShape>Quadruped</bodyShape>
@@ -222,7 +222,7 @@
 	</Operation>
 
 	<Operation Class="PatchOperationAdd">
-		<xpath>*/ThingDef[@Name="ThingBaseFox"]/statBases</xpath>
+		<xpath>Defs/ThingDef[@Name="ThingBaseFox"]/statBases</xpath>
 		<value>
 			<MeleeDodgeChance>0.27</MeleeDodgeChance>
 			<MeleeCritChance>0.02</MeleeCritChance>
@@ -231,7 +231,7 @@
 	</Operation>
 
 	<Operation Class="PatchOperationReplace">
-		<xpath>*/ThingDef[@Name="ThingBaseFox"]/tools</xpath>
+		<xpath>Defs/ThingDef[@Name="ThingBaseFox"]/tools</xpath>
 		<value>
 			<tools>
 				<li Class="CombatExtended.ToolCE">
@@ -295,7 +295,7 @@
 					<power>2</power>
 					<cooldownTime>1.65</cooldownTime>
 					<linkedBodyPartsGroup>HeadAttackTool</linkedBodyPartsGroup>
-					<commonality>0.2</commonality>
+					<chanceFactor>0.2</chanceFactor>
 					<armorPenetration>0.056</armorPenetration>
 				</li>
 			</tools>
@@ -303,14 +303,14 @@
 	</Operation>
 
 	<Operation Class="PatchOperationReplace">
-		<xpath>*/ThingDef[@Name="ThingBaseFox"]/race/baseBodySize</xpath>
+		<xpath>Defs/ThingDef[@Name="ThingBaseFox"]/race/baseBodySize</xpath>
 		<value>
 			<baseBodySize>0.35</baseBodySize>
 		</value>
 	</Operation>
 
 	<Operation Class="PatchOperationReplace">
-		<xpath>*/ThingDef[@Name="ThingBaseFox"]/race/baseHealthScale</xpath>
+		<xpath>Defs/ThingDef[@Name="ThingBaseFox"]/race/baseHealthScale</xpath>
 		<value>
 			<baseHealthScale>0.35</baseHealthScale>
 		</value>

@@ -1,0 +1,348 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+
+    <ThingCategoryDef>
+      <defName>Ammo20Gauge</defName>
+      <label>20 gauge</label>
+      <parent>AmmoShotguns</parent>
+      <iconPath>UI/Icons/ThingCategories/CaliberShotgun</iconPath>
+    </ThingCategoryDef>
+	
+	<!-- ==================== AmmoSet ========================== -->
+
+  <CombatExtended.AmmoSetDef>
+    <defName>AmmoSet_20Gauge</defName>
+    <label>20 Gauge</label>
+    <ammoTypes>
+      <Ammo_20Gauge_Buck>Bullet_20Gauge_Buck</Ammo_20Gauge_Buck>
+      <!-- <Ammo_20Gauge_Bird>Bullet_20Gauge_Bird</Ammo_20Gauge_Bird> -->
+      <Ammo_20Gauge_Slug>Bullet_20Gauge_Slug</Ammo_20Gauge_Slug>
+      <Ammo_20Gauge_Beanbag>Bullet_20Gauge_Beanbag</Ammo_20Gauge_Beanbag>
+      <Ammo_20Gauge_ElectroSlug>Bullet_20Gauge_ElectroSlug</Ammo_20Gauge_ElectroSlug>
+    </ammoTypes>
+  </CombatExtended.AmmoSetDef>
+	
+	<!-- ==================== Ammo ========================== -->
+
+  <ThingDef Class="CombatExtended.AmmoDef" Name="20GaugeBase" ParentName="SmallAmmoBase" Abstract="True">
+    <description>Very common shotgun caliber used mostly for hunting.</description>
+    <statBases>
+	  <Mass>0.043</Mass>
+	  <Bulk>0.06</Bulk>
+    </statBases>
+	<tradeTags>
+	  <li>CE_AutoEnableTrade</li>
+	  <li>CE_AutoEnableCrafting</li>
+	</tradeTags>
+    <thingCategories>
+      <li>Ammo20Gauge</li>
+    </thingCategories>
+    <stackLimit>350</stackLimit>
+  </ThingDef>
+
+  <ThingDef Class="CombatExtended.AmmoDef" ParentName="20GaugeBase">
+    <defName>Ammo_20Gauge_Buck</defName>
+    <label>20 gauge shell (Buck)</label>
+    <graphicData>
+      <texPath>Things/Ammo/Shotgun/Shot</texPath>
+      <graphicClass>Graphic_StackCount</graphicClass>
+    </graphicData>
+    <statBases>
+      <MarketValue>0.12</MarketValue>
+    </statBases>
+    <ammoClass>BuckShot</ammoClass>
+    <cookOffProjectile>Bullet_20Gauge_Buck</cookOffProjectile>
+  </ThingDef>
+
+  <!-- <ThingDef Class="CombatExtended.AmmoDef" ParentName="20GaugeBase">
+    <defName>Ammo_20Gauge_Bird</defName>
+    <label>20 gauge shell (Bird)</label>
+    <graphicData>
+      <texPath>Things/Ammo/Shotgun/Shot</texPath>
+      <graphicClass>Graphic_StackCount</graphicClass>
+    </graphicData>
+    <statBases>
+      <MarketValue>0.13</MarketValue>
+    </statBases>
+    <ammoClass>BirdShot</ammoClass>
+    <cookOffProjectile>Bullet_20Gauge_Bird</cookOffProjectile>
+  </ThingDef> -->
+
+  <ThingDef Class="CombatExtended.AmmoDef" ParentName="20GaugeBase">
+    <defName>Ammo_20Gauge_Slug</defName>
+    <label>20 gauge shell (Slug)</label>
+    <graphicData>
+      <texPath>Things/Ammo/Shotgun/Slug</texPath>
+      <graphicClass>Graphic_StackCount</graphicClass>
+    </graphicData>
+    <statBases>
+	  <Mass>0.08</Mass>
+      <MarketValue>0.12</MarketValue>
+    </statBases>
+    <ammoClass>Slug</ammoClass>
+    <cookOffProjectile>Bullet_20Gauge_Slug</cookOffProjectile>
+  </ThingDef>
+
+  <ThingDef Class="CombatExtended.AmmoDef" ParentName="20GaugeBase">
+    <defName>Ammo_20Gauge_Beanbag</defName>
+    <label>20 gauge shell (Bean)</label>
+	<generateAllowChance>0</generateAllowChance>
+    <graphicData>
+      <texPath>Things/Ammo/Shotgun/Beanbag</texPath>
+      <graphicClass>Graphic_StackCount</graphicClass>
+    </graphicData>
+    <statBases>
+      <MarketValue>0.12</MarketValue>
+    </statBases>
+    <ammoClass>Beanbag</ammoClass>
+    <cookOffProjectile>Bullet_20Gauge_Beanbag</cookOffProjectile>
+  </ThingDef>
+
+  <ThingDef Class="CombatExtended.AmmoDef" ParentName="20GaugeBase">
+    <defName>Ammo_20Gauge_ElectroSlug</defName>
+    <label>20 gauge shell (EMP)</label>
+    <graphicData>
+      <texPath>Things/Ammo/Shotgun/EMP</texPath>
+      <graphicClass>Graphic_StackCount</graphicClass>
+    </graphicData>
+    <statBases>
+      <MarketValue>0.33</MarketValue>
+    </statBases>
+    <ammoClass>ElectroSlug</ammoClass>
+    <cookOffProjectile>Bullet_20Gauge_ElectroSlug</cookOffProjectile>
+  </ThingDef>
+	
+	<!-- ================== Projectiles ================== -->
+
+	<ThingDef Class="CombatExtended.AmmoDef" Name="Base20GaugeBullet" ParentName="BaseBullet" Abstract="true">
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageDef>Bullet</damageDef>
+			<speed>84</speed>
+			<dropsCasings>true</dropsCasings>
+			<casingMoteDefname>Mote_ShotgunShell</casingMoteDefname>
+		</projectile>
+	</ThingDef>
+
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="Base20GaugeBullet">
+		<defName>Bullet_20Gauge_Buck</defName>
+		<label>buckshot pellet</label>
+		<graphicData>
+			<texPath>Things/Projectile/Shotgun_Pellet</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+		</graphicData>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageAmountBase>6</damageAmountBase>
+			<pelletCount>7</pelletCount>
+			<armorPenetrationBase>0.185</armorPenetrationBase>
+			<spreadMult>17.8</spreadMult>
+		</projectile>
+	</ThingDef>
+
+	<!-- <ThingDef Class="CombatExtended.AmmoDef" ParentName="Base20GaugeBullet">
+		<defName>Bullet_20Gauge_Bird</defName>
+		<label>birdshot pellet</label>
+		<graphicData>
+			<texPath>Things/Projectile/Shotgun_Pellet</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+		</graphicData>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageAmountBase>1</damageAmountBase>
+			<pelletCount>45</pelletCount>
+			<spreadMult>71.4</spreadMult>
+			<armorPenetrationBase>0.077</armorPenetrationBase>
+		</projectile>
+	</ThingDef> -->
+
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="Base20GaugeBullet">
+		<defName>Bullet_20Gauge_Slug</defName>
+		<label>shotgun slug</label>
+		<graphicData>
+			<texPath>Things/Projectile/Bullet_big</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+		</graphicData>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<speed>120</speed>
+			<damageAmountBase>31</damageAmountBase>
+			<armorPenetrationBase>0.423</armorPenetrationBase>
+		</projectile>
+	</ThingDef>
+
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="Base20GaugeBullet">
+		<defName>Bullet_20Gauge_Beanbag</defName>
+		<label>beanbag</label>
+		<graphicData>
+			<texPath>Things/Projectile/Bullet_big</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+		</graphicData>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageDef>Beanbag</damageDef>
+			<damageAmountBase>4</damageAmountBase>
+			<armorPenetrationBase>0.107</armorPenetrationBase>
+			<spreadMult>2</spreadMult>
+		</projectile>
+	</ThingDef>
+
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="Base20GaugeBullet">
+		<defName>Bullet_20Gauge_ElectroSlug</defName>
+		<label>EMP slug</label>
+		<graphicData>
+			<texPath>Things/Projectile/Bullet_big</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+		</graphicData>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageDef>EMP</damageDef>
+			<damageAmountBase>11</damageAmountBase>
+		</projectile>
+	</ThingDef>
+  
+	<!-- ==================== Recipes ========================== -->
+
+  <RecipeDef ParentName="AmmoRecipeBase">
+    <defName>MakeAmmo_20Gauge_Buck</defName>
+    <label>make 20 gauge (Buck) shell x200</label>
+    <description>Craft 200 20 gauge (Buck) shells.</description>
+    <jobString>Making 20 gauge (Buck) shells.</jobString>
+    <ingredients>
+      <li>
+        <filter>
+          <thingDefs>
+            <li>Steel</li>
+          </thingDefs>
+        </filter>
+        <count>15</count>
+      </li>
+    </ingredients>
+    <fixedIngredientFilter>
+      <thingDefs>
+        <li>Steel</li>
+      </thingDefs>
+    </fixedIngredientFilter>
+    <products>
+      <Ammo_20Gauge_Buck>200</Ammo_20Gauge_Buck>
+    </products>
+    <workAmount>3250</workAmount>
+  </RecipeDef>
+
+  <!-- <RecipeDef ParentName="AmmoRecipeBase">
+    <defName>MakeAmmo_20Gauge_Bird</defName>
+    <label>make 20 gauge (Bird) shell x200</label>
+    <description>Craft 200 20 gauge (Bird) shells.</description>
+    <jobString>Making 20 gauge (Bird) shells.</jobString>
+    <ingredients>
+      <li>
+        <filter>
+          <thingDefs>
+            <li>Steel</li>
+          </thingDefs>
+        </filter>
+        <count>15</count>
+      </li>
+    </ingredients>
+    <fixedIngredientFilter>
+      <thingDefs>
+        <li>Steel</li>
+      </thingDefs>
+    </fixedIngredientFilter>
+    <products>
+      <Ammo_20Gauge_Bird>200</Ammo_20Gauge_Bird>
+    </products>
+    <workAmount>4000</workAmount>
+  </RecipeDef> -->
+
+  <RecipeDef ParentName="AmmoRecipeBase">
+    <defName>MakeAmmo_20Gauge_Slug</defName>
+    <label>make 20 gauge (Slug) shell x200</label>
+    <description>Craft 200 20 gauge (Slug) shells.</description>
+    <jobString>Making 20 gauge (Slug) shells.</jobString>
+    <ingredients>
+      <li>
+        <filter>
+          <thingDefs>
+            <li>Steel</li>
+          </thingDefs>
+        </filter>
+        <count>14</count>
+      </li>
+    </ingredients>
+    <fixedIngredientFilter>
+      <thingDefs>
+        <li>Steel</li>
+      </thingDefs>
+    </fixedIngredientFilter>
+    <products>
+      <Ammo_20Gauge_Slug>200</Ammo_20Gauge_Slug>
+    </products>
+    <workAmount>3750</workAmount>
+  </RecipeDef>
+
+  <RecipeDef ParentName="AmmoRecipeBase">
+    <defName>MakeAmmo_20Gauge_Beanbag</defName>
+    <label>make 20 gauge (Beanbag) shell x200</label>
+    <description>Craft 200 20 gauge (Beanbag) shells.</description>
+    <jobString>Making 20 gauge (Beanbag) shells.</jobString>
+    <ingredients>
+      <li>
+        <filter>
+          <thingDefs>
+            <li>Steel</li>
+          </thingDefs>
+        </filter>
+        <count>14</count>
+      </li>
+      <li>
+        <filter>
+          <thingDefs>
+            <li>Cloth</li>
+          </thingDefs>
+        </filter>
+        <count>2</count>
+      </li>
+    </ingredients>
+    <fixedIngredientFilter>
+      <thingDefs>
+        <li>Steel</li>
+        <li>Cloth</li>
+      </thingDefs>
+    </fixedIngredientFilter>
+    <products>
+      <Ammo_20Gauge_Beanbag>200</Ammo_20Gauge_Beanbag>
+    </products>
+    <workAmount>2500</workAmount>
+  </RecipeDef>
+
+  <RecipeDef ParentName="AmmoRecipeBase">
+    <defName>MakeAmmo_20Gauge_ElectroSlug</defName>
+    <label>make 20 gauge (EMP) shell x200</label>
+    <description>Craft 200 20 gauge (EMP) shells.</description>
+    <jobString>Making 20 gauge (EMP) shells.</jobString>
+    <ingredients>
+      <li>
+        <filter>
+          <thingDefs>
+            <li>Steel</li>
+          </thingDefs>
+        </filter>
+        <count>14</count>
+      </li>
+      <li>
+        <filter>
+          <thingDefs>
+            <li>ComponentIndustrial</li>
+          </thingDefs>
+        </filter>
+        <count>3</count>
+      </li>
+    </ingredients>
+    <fixedIngredientFilter>
+      <thingDefs>
+        <li>Steel</li>
+        <li>ComponentIndustrial</li>
+      </thingDefs>
+    </fixedIngredientFilter>
+    <products>
+      <Ammo_20Gauge_ElectroSlug>200</Ammo_20Gauge_ElectroSlug>
+    </products>
+    <workAmount>5750</workAmount>
+  </RecipeDef>
+	
+</Defs>

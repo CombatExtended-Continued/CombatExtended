@@ -22,6 +22,7 @@ namespace CombatExtended
         {
             var dinfo = new DamageInfo(def,
                             amount,
+                            primaryDinfo.ArmorPenetrationInt, //Armor Penetration TODO: Fix this after DamageWorker restructuring.
                             primaryDinfo.Angle,
                             primaryDinfo.Instigator,
                             primaryDinfo.HitPart,

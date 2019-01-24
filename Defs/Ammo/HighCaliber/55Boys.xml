@@ -1,0 +1,154 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+
+	<ThingCategoryDef>
+		<defName>Ammo55Boys</defName>
+		<label>.55 Boys</label>
+		<parent>AmmoRifles</parent>
+		<iconPath>UI/Icons/ThingCategories/CaliberHighCaliber</iconPath>
+	</ThingCategoryDef>
+	
+	<!-- ==================== AmmoSet ========================== -->
+
+	<CombatExtended.AmmoSetDef>
+		<defName>AmmoSet_55Boys</defName>
+		<label>.55 Boys</label>
+		<ammoTypes>
+			<Ammo_55Boys_FMJ>Bullet_55Boys_FMJ</Ammo_55Boys_FMJ>
+			<Ammo_55Boys_AP>Bullet_55Boys_AP</Ammo_55Boys_AP>
+		</ammoTypes>
+	</CombatExtended.AmmoSetDef>
+	
+	<!-- ==================== Ammo ========================== -->
+
+	<ThingDef Class="CombatExtended.AmmoDef" Name="55BoysBase" ParentName="SmallAmmoBase" Abstract="True">
+		<description>Outdated large caliber bullet used in anti-materiel rifles.</description>
+		<statBases>
+		<Mass>0.173</Mass>
+		<Bulk>0.15</Bulk>
+		</statBases>
+	<tradeTags>
+		<li>CE_AutoEnableTrade</li>
+		<li>CE_AutoEnableCrafting</li>
+	</tradeTags>
+		<thingCategories>
+			<li>Ammo55Boys</li>
+		</thingCategories>
+    <stackLimit>200</stackLimit>
+	</ThingDef>
+	
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="55BoysBase">
+		<defName>Ammo_55Boys_FMJ</defName>
+		<label>.55 Boys cartridge (FMJ)</label>
+		<graphicData>
+			<texPath>Things/Ammo/HighCaliber/FMJ</texPath>
+			<graphicClass>Graphic_StackCount</graphicClass>
+		</graphicData>
+		<statBases>
+			<MarketValue>0.48</MarketValue>
+		</statBases>
+		<ammoClass>FullMetalJacket</ammoClass>
+		<cookOffProjectile>Bullet_55Boys_FMJ</cookOffProjectile>
+	</ThingDef>
+
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="55BoysBase">
+		<defName>Ammo_55Boys_AP</defName>
+		<label>.55 Boys cartridge (AP)</label>
+		<graphicData>
+			<texPath>Things/Ammo/HighCaliber/FMJ</texPath>
+			<graphicClass>Graphic_StackCount</graphicClass>
+		</graphicData>
+		<statBases>
+			<MarketValue>0.65</MarketValue>
+		</statBases>
+		<ammoClass>ArmorPiercing</ammoClass>
+		<cookOffProjectile>Bullet_55Boys_AP</cookOffProjectile>
+	</ThingDef>
+	
+	<!-- ================== Projectiles ================== -->
+
+	<ThingDef Class="CombatExtended.AmmoDef" Name="Base55BoysBullet" ParentName="BaseBullet" Abstract="true">
+		<graphicData>
+			<texPath>Things/Projectile/Bullet_Big</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+		</graphicData>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageDef>Bullet</damageDef>
+			<speed>190</speed>
+			<dropsCasings>true</dropsCasings>
+		</projectile>
+	</ThingDef>
+	
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="Base55BoysBullet">
+		<defName>Bullet_55Boys_FMJ</defName>
+		<label>.55 Boys bullet (FMJ)</label>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageAmountBase>51</damageAmountBase>
+			<armorPenetrationBase>0.92</armorPenetrationBase>
+		</projectile>
+	</ThingDef>
+
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="Base55BoysBullet">
+		<defName>Bullet_55Boys_AP</defName>
+		<label>.55 Boys bullet (AP)</label>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageAmountBase>31</damageAmountBase>
+			<armorPenetrationBase>1.07</armorPenetrationBase>
+		</projectile>
+	</ThingDef>
+  
+	<!-- ==================== Recipes ========================== -->
+
+	<RecipeDef ParentName="AmmoRecipeBase">
+		<defName>MakeAmmo_55Boys_FMJ</defName>
+		<label>make .55 Boys (FMJ) cartridge x200</label>
+		<description>Craft 200 .55 Boys (FMJ) cartridges.</description>
+		<jobString>Making .55 Boys (FMJ) cartridges.</jobString>
+		<ingredients>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>Steel</li>
+					</thingDefs>
+				</filter>
+				<count>36</count>
+			</li>
+		</ingredients>
+		<fixedIngredientFilter>
+			<thingDefs>
+				<li>Steel</li>
+			</thingDefs>
+		</fixedIngredientFilter>
+		<products>
+			<Ammo_55Boys_FMJ>200</Ammo_55Boys_FMJ>
+		</products>
+    <workAmount>5750</workAmount>
+	</RecipeDef>
+
+	<RecipeDef ParentName="AmmoRecipeBase">
+		<defName>MakeAmmo_55Boys_AP</defName>
+		<label>make .55 Boys (AP) cartridge x200</label>
+		<description>Craft 200 .55 Boys (AP) cartridges.</description>
+		<jobString>Making .55 Boys (AP) cartridges.</jobString>
+		<ingredients>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>Steel</li>
+					</thingDefs>
+				</filter>
+				<count>45</count>
+			</li>
+		</ingredients>
+		<fixedIngredientFilter>
+			<thingDefs>
+				<li>Steel</li>
+			</thingDefs>
+		</fixedIngredientFilter>
+		<products>
+			<Ammo_55Boys_AP>200</Ammo_55Boys_AP>
+		</products>
+    <workAmount>10000</workAmount>
+	</RecipeDef>
+	
+</Defs>

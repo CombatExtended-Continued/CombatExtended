@@ -44,7 +44,9 @@ namespace CombatExtended
         private bool debugDrawTargetCoverChecks = false;
         private bool debugShowTreeCollisionChance = false;
         private bool debugShowSuppressionBuildup = false;
+        private bool debugDrawInterceptChecks = false;
 
+        public bool DebugDrawInterceptChecks => debugDrawInterceptChecks;
         public bool DebugDrawPartialLoSChecks => debugDrawPartialLoSChecks;
         public bool DebugEnableInventoryValidation => debugEnableInventoryValidation;
         public bool DebugDrawTargetCoverChecks => debugDrawTargetCoverChecks;
@@ -66,6 +68,7 @@ namespace CombatExtended
 
 #if DEBUG
             // Debug settings
+            Scribe_Values.Look(ref debugDrawInterceptChecks, "drawPartialLoSChecks", false);
             Scribe_Values.Look(ref debugDrawPartialLoSChecks, "drawPartialLoSChecks", false);
             Scribe_Values.Look(ref debugEnableInventoryValidation, "enableInventoryValidation", false);
             Scribe_Values.Look(ref debugDrawTargetCoverChecks, "debugDrawTargetCoverChecks", false);
@@ -109,6 +112,7 @@ namespace CombatExtended
             Text.Font = GameFont.Small;
             list.Gap();
 
+            list.CheckboxLabeled("Draw intercept checks", ref debugDrawInterceptChecks, "Displays projectile checks for intercept.");
             list.CheckboxLabeled("Draw partial LoS checks", ref debugDrawPartialLoSChecks, "Displays line of sight checks against partial cover.");
             list.CheckboxLabeled("Draw target cover checks", ref debugDrawTargetCoverChecks, "Displays highest cover of target as it is selected.");
             list.CheckboxLabeled("Enable inventory validation", ref debugEnableInventoryValidation, "Inventory will refresh its cache every tick and log any discrepancies.");

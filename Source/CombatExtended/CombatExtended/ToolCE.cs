@@ -10,7 +10,7 @@ namespace CombatExtended
 {
     public class ToolCE : Tool
     {
-        public float armorPenetration = 0;
+        new public float armorPenetration = 0; //Armor Penetration standard value is -1f.
         public Gender restrictedGender = Gender.None;
     }
 }

@@ -14,11 +14,12 @@ namespace CombatExtended.Harmony
     [HarmonyPatch(typeof(DamageWorker_AddInjury), "ApplyDamageToPart")]
     internal static class Harmony_DamageWorker_AddInjury_ApplyDamageToPart
     {
-        private static bool armorAbsorbed = false;
+        private static bool shieldAbsorbed = false;
+        private static readonly int[] ArmorBlockNullOps = { 1, 3, 4, 5, 6 };  // Lines in armor block that need to be nulled out
 
-        private static void ArmorReroute(Pawn pawn, ref DamageInfo dinfo)
+        private static void ArmorReroute(Pawn pawn, ref DamageInfo dinfo, out bool deflectedByArmor, out bool diminishedByArmor)
         {
-            var newDinfo = ArmorUtilityCE.GetAfterArmorDamage(dinfo, pawn, dinfo.HitPart, out armorAbsorbed);
+            var newDinfo = ArmorUtilityCE.GetAfterArmorDamage(dinfo, pawn, dinfo.HitPart, out deflectedByArmor, out diminishedByArmor, out shieldAbsorbed);
             if (dinfo.HitPart != newDinfo.HitPart)
             {
                 if (pawn.Spawned) LessonAutoActivator.TeachOpportunity(CE_ConceptDefOf.CE_ArmorSystem, OpportunityType.Critical);   // Inform the player about armor deflection
@@ -35,6 +36,7 @@ namespace CombatExtended.Harmony
             int armorBlockStart = -1;
             for (int i = armorBlockEnd; i > 0; i--)
             {
+                // Find OpCode loading up first argument for GetPostArmorDamage (Pawn)
                 if (codes[i].opcode == OpCodes.Ldarg_2)
                 {
                     armorBlockStart = i;
@@ -48,51 +50,52 @@ namespace CombatExtended.Harmony
             }
 
             // Replace armor block with our new instructions
-            // First, load arguments for ArmorReroute method onto stack (pawn is already loaded by vanilla)
-            var curCode = codes[armorBlockStart + 1];
-            curCode.opcode = OpCodes.Ldarga_S;
-            curCode.operand = 1;
+            var armorCodes = codes.GetRange(armorBlockStart, armorBlockEnd - armorBlockStart);
 
-            curCode = codes[armorBlockStart + 2];
-            curCode.opcode = OpCodes.Call;
-            curCode.operand = typeof(Harmony_DamageWorker_AddInjury_ApplyDamageToPart).GetMethod(nameof(Harmony_DamageWorker_AddInjury_ApplyDamageToPart.ArmorReroute), AccessTools.all);
-
-            // OpCode + 3 loads the dinfo we just modified and we want to access its damage value to store in the vanilla local variable at the end of the block
-            curCode = codes[armorBlockStart + 4];
-            curCode.opcode = OpCodes.Call;
-            curCode.operand = typeof(DamageInfo).GetMethod("get_" + nameof(DamageInfo.Amount), AccessTools.all);
-
-            curCode = codes[armorBlockStart + 5];
-            curCode.opcode = OpCodes.Stloc_1;
-            curCode.operand = null;
-
-            // Null out the rest
-            for (int i = armorBlockStart + 6; i <= armorBlockEnd + 1; i++)
+            foreach (var index in ArmorBlockNullOps)
             {
-                curCode = codes[i];
-                curCode.opcode = OpCodes.Nop;
-                curCode.operand = null;
+                armorCodes[index].opcode = OpCodes.Nop;
+                armorCodes[index].operand = null;
             }
+
+            // Override armor method call
+            codes[armorBlockEnd].operand = typeof(Harmony_DamageWorker_AddInjury_ApplyDamageToPart).GetMethod(nameof(ArmorReroute), AccessTools.all);
+
+            // Our method returns a Dinfo instead of float, we want to insert a call to Dinfo.Amount before stloc at ArmorBlockEnd+1
+            codes.InsertRange(armorBlockEnd + 1, new[]
+            {
+                new CodeInstruction(OpCodes.Ldarga_S, 1),
+                new CodeInstruction(OpCodes.Call, typeof(DamageInfo).GetMethod($"get_{nameof(DamageInfo.Amount)}"))
+            });
 
             return codes;
         }
 
         internal static void Postfix(DamageInfo dinfo, Pawn pawn)
         {
-            if (!armorAbsorbed)
+            if (shieldAbsorbed) return;
+
+            var props = dinfo.Weapon?.projectile as ProjectilePropertiesCE;
+            if (props != null && !props.secondaryDamage.NullOrEmpty() && dinfo.Def == props.damageDef)
             {
-                var props = dinfo.Weapon?.projectile as ProjectilePropertiesCE;
-                if (props != null && !props.secondaryDamage.NullOrEmpty() && dinfo.Def == props.damageDef)
+                foreach (var sec in props.secondaryDamage)
                 {
-                    foreach (SecondaryDamage sec in props.secondaryDamage)
-                    {
-                        if (pawn.Dead) return;
-                        var secDinfo = sec.GetDinfo(dinfo);
-                        pawn.TakeDamage(secDinfo);
-                    }
+                    if (pawn.Dead) return;
+                    var secDinfo = sec.GetDinfo(dinfo);
+                    pawn.TakeDamage(secDinfo);
                 }
             }
-            armorAbsorbed = false;
+        }
+    }
+
+    [HarmonyPatch(typeof(DamageWorker_AddInjury), nameof(DamageWorker_AddInjury.ShouldReduceDamageToPreservePart))]
+    static class Patch_ShouldReduceDamageToPreservePart
+    {
+        [HarmonyPrefix]
+        static bool Prefix(ref bool __result, BodyPartRecord bodyPart)
+        {
+            __result = false;
+            return false;
         }
     }
 }

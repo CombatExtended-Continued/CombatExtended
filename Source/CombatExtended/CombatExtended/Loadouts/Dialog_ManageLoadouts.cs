@@ -44,7 +44,7 @@ namespace CombatExtended
             _iconPickupDrop = ContentFinder<Texture2D>.Get("UI/Icons/loadoutPickupDrop"),
             _iconDropExcess = ContentFinder<Texture2D>.Get("UI/Icons/loadoutDropExcess");
 
-        private static Regex validNameRegex = new Regex("^[a-zA-Z0-9 '\\-]*$");
+        private static Regex validNameRegex = Outfit.ValidNameRegex;
         private Vector2 _availableScrollPosition = Vector2.zero;
         private float _barHeight = 24f;
         private Vector2 _countFieldSize = new Vector2(40f, 24f);
@@ -72,8 +72,8 @@ namespace CombatExtended
             	CurrentLoadout = loadout;
             SetSource(SourceSelection.Ranged);
             doCloseX = true;
-            closeOnClickedOutside = true;
-            closeOnEscapeKey = true;
+			//doCloseButton = true; //Close button is awkward 
+			closeOnClickedOutside = true;
             Utility_Loadouts.UpdateColonistCapacities();
         }
 
@@ -378,13 +378,20 @@ namespace CombatExtended
         {
             if (slot == null)
                 return;
-            string count = GUI.TextField(canvas, slot.count.ToString());
+            /*
+            var count = GUI.TextField(canvas, slot.count.ToString());
             TooltipHandler.TipRegion(canvas, "CE_CountFieldTip".Translate(slot.count));
-            int countInt;
-            if (int.TryParse(count, out countInt))
+            if (int.TryParse(count, out var countInt))
             {
                 slot.count = countInt;
             }
+            */
+
+            int countInt = slot.count;
+            string buffer = countInt.ToString();
+            Widgets.TextFieldNumeric<int>(canvas, ref countInt, ref buffer);
+            TooltipHandler.TipRegion(canvas, "CE_CountFieldTip".Translate(slot.count));
+            slot.count = countInt;
         }
 
         private void DrawFilterField(Rect canvas)
@@ -625,8 +632,8 @@ namespace CombatExtended
                 	if (GetVisibleGeneric(_sourceGeneric[i]))
                 		GUI.color = Color.gray;
                 } else {
-	                //if (Find.VisibleMap.listerThings.AllThings.FindAll(x => x.GetInnerIfMinified().def == _source[i] && !x.def.Minifiable).Count <= 0)
-	                if (Find.VisibleMap.listerThings.AllThings.Find(x => x.GetInnerIfMinified().def == _source[i] && !x.def.Minifiable) == null)
+	                //if (Find.CurrentMap.listerThings.AllThings.FindAll(x => x.GetInnerIfMinified().def == _source[i] && !x.def.Minifiable).Count <= 0)
+	                if (Find.CurrentMap.listerThings.AllThings.Find(x => x.GetInnerIfMinified().def == _source[i] && !x.def.Minifiable) == null)
 	                    GUI.color = Color.gray;
                 }
 
@@ -689,7 +696,7 @@ namespace CombatExtended
         	if (GenTicks.TicksAbs >= genericVisibility[def].ticksToRecheck)
         	{
         		genericVisibility[def].ticksToRecheck = GenTicks.TicksAbs + (advanceTicks * genericVisibility[def].position);
-        		genericVisibility[def].check = Find.VisibleMap.listerThings.AllThings.Find(x => def.lambda(x.GetInnerIfMinified().def) && !x.def.Minifiable) == null;
+        		genericVisibility[def].check = Find.CurrentMap.listerThings.AllThings.Find(x => def.lambda(x.GetInnerIfMinified().def) && !x.def.Minifiable) == null;
         	}
         	
         	return genericVisibility[def].check;
@@ -703,7 +710,7 @@ namespace CombatExtended
         	{
         		if (!genericVisibility.ContainsKey(def)) genericVisibility.Add(def, new VisibilityCache());
         		genericVisibility[def].ticksToRecheck = tick;
-        		genericVisibility[def].check = Find.VisibleMap.listerThings.AllThings.Find(x => def.lambda(x.GetInnerIfMinified().def) && !x.def.Minifiable) == null;
+        		genericVisibility[def].check = Find.CurrentMap.listerThings.AllThings.Find(x => def.lambda(x.GetInnerIfMinified().def) && !x.def.Minifiable) == null;
         		genericVisibility[def].position = position;
         		position++;
         		tick += advanceTicks;

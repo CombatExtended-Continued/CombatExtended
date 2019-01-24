@@ -32,9 +32,9 @@ namespace CombatExtended
 			}
 		}
 
-		public override void DeSpawn()
+		public override void DeSpawn(DestroyMode mode = DestroyMode.Vanish)
 		{
-			base.DeSpawn();
+			base.DeSpawn(mode);
 			this.cellsToAffect.Clear();
 			SimplePool<List<IntVec3>>.Return(this.cellsToAffect);
 			this.cellsToAffect = null;
@@ -180,7 +180,7 @@ namespace CombatExtended
 				this.TrySpawnExplosionThing(this.postExplosionSpawnThingDef, c, this.postExplosionSpawnThingCount);
 			}
 			float num = this.chanceToStartFire;
-			if (this.dealMoreDamageAtCenter) {
+			if (this.damageFalloff) {
 				num *= Mathf.Lerp(1f, 0.2f, c.DistanceTo(base.Position) / this.radius);
 			}
 			if (Rand.Chance(num)) {

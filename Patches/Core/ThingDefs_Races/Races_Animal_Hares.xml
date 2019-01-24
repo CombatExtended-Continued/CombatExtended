@@ -4,7 +4,7 @@
 	<!-- ========== Base Hare ========== -->
 
 	<Operation Class="PatchOperationReplace">
-		<xpath>*/ThingDef[@Name="BaseHare"]/statBases/MoveSpeed</xpath>
+		<xpath>Defs/ThingDef[@Name="BaseHare"]/statBases/MoveSpeed</xpath>
 		<value>
 			<MoveSpeed>4.8</MoveSpeed>
 			<MeleeDodgeChance>0.24</MeleeDodgeChance>
@@ -13,7 +13,7 @@
 	</Operation>
 
 	<Operation Class="PatchOperationReplace">
-		<xpath>*/ThingDef[@Name="BaseHare"]/tools</xpath>
+		<xpath>Defs/ThingDef[@Name="BaseHare"]/tools</xpath>
 		<value>
 			<tools>
 				<li Class="CombatExtended.ToolCE">
@@ -33,7 +33,7 @@
 					<power>1</power>
 					<cooldownTime>1.65</cooldownTime>
 					<linkedBodyPartsGroup>HeadAttackTool</linkedBodyPartsGroup>
-					<commonality>0.2</commonality>
+					<chanceFactor>0.2</chanceFactor>
 					<armorPenetration>0.048</armorPenetration>
 				</li>
 			</tools>
@@ -41,14 +41,14 @@
 	</Operation>
 
 	<Operation Class="PatchOperationReplace">
-		<xpath>*/ThingDef[@Name="BaseHare"]/race/baseHealthScale</xpath>
+		<xpath>Defs/ThingDef[@Name="BaseHare"]/race/baseHealthScale</xpath>
 		<value>
 			<baseHealthScale>0.15</baseHealthScale>
 		</value>
 	</Operation>
 
 	<Operation Class="PatchOperationAddModExtension">
-		<xpath>*/ThingDef[@Name="BaseHare"]</xpath>
+		<xpath>Defs/ThingDef[@Name="BaseHare"]</xpath>
 		<value>
 			<li Class="CombatExtended.RacePropertiesExtensionCE">
 				<bodyShape>QuadrupedLow</bodyShape>

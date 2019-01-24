@@ -281,7 +281,7 @@ namespace CombatExtended
         public static Loadout GenerateLoadoutFromPawn(this Pawn pawn)
         {
         	// generate the name for this new pawn based loadout.
-        	string newName = string.Concat(pawn.NameStringShort, " ", "CE_DefaultLoadoutName".Translate());
+        	string newName = string.Concat(pawn.Name.ToStringShort, " ", "CE_DefaultLoadoutName".Translate());
         	Regex reNum = new Regex(@"^(.*?)\d+$");
         	if (reNum.IsMatch(newName))
         		newName = reNum.Replace(newName, @"$1");

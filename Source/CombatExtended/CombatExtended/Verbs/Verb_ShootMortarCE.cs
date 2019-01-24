@@ -59,7 +59,7 @@ namespace CombatExtended
             }
             float rangePercent = targDist / maxRange;
             float missRadiusFactor = rangePercent <= 0.5f ? 1 - rangePercent : 0.5f + ((rangePercent - 0.5f) / 2);
-            return this.verbProps.forcedMissRadius * missRadiusFactor;
+            return VerbPropsCE.circularError * missRadiusFactor;
         }
 	}
 }

@@ -210,13 +210,30 @@ namespace CombatExtended
             {
                 return false;
             }
-            if (hediff.BleedRate == 0f || hediff.IsTended() || hediff.IsOld())
+            if (hediff.BleedRate == 0f || hediff.IsTended() || hediff.IsPermanent())
             {
                 return false;
             }
             HediffComp_Stabilize comp = hediff.TryGetComp<HediffComp_Stabilize>();
             return comp != null && !comp.Stabilized;
         }
+
+        /// <summary>
+        /// Attempts to get the weapon from the equipper of the weapon that launched the projectile
+        /// </summary>
+        /// <param name="launcher">The equipper of the weapon that launched the projectile</param>
+        /// <returns>Weapon if one is found, null if not</returns>
+        /*
+         * Fundamentally broken - will null ref if launcher pawn drops equipment in-between firing the projectile and it impacting -NIA
+        public static Thing GetWeaponFromLauncher(Thing launcher)
+        {
+            if (launcher is Pawn pawn)
+                return pawn.equipment?.Primary;
+            if (launcher is Building_TurretGunCE turretCE)
+                return turretCE.Gun;
+            return null;
+        }
+        */
 
         #endregion Misc
 
