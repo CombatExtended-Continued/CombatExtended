@@ -17,5 +17,16 @@ namespace CombatExtended
         public float meleeArmorPenetration = 0;
         public bool ejectsCasings = true;
         public bool ignorePartialLoSBlocker = false;
+
+        public float AdjustedArmorPenetrationCE(Verb ownerVerb, Pawn attacker)
+        {
+            var toolCE = (ToolCE)ownerVerb.tool;
+            if (ownerVerb.verbProps != this)
+            {
+                Log.ErrorOnce("Tried to calculate armor penetration for a verb with different verb props. verb=" + ownerVerb, 9865767, false);
+                return 0f;
+            }
+            return toolCE.armorPenetration;
+        }
     }
 }
