@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+
+	<Operation Class="PatchOperationSequence">
+		<success>Always</success>
+		<operations>
+			<li Class="CombatExtended.PatchOperationFindMod">
+				<modName>Ni'Hal 1.0</modName>
+			</li>
+			<!-- ========== Ni'Hal 1.0 Power Armor ========== -->
+			<li Class="PatchOperationAdd">
+				<xpath>*/ThingDef[defName = "Apparel_CatfishArmor"]/statBases</xpath>
+				<value>
+					<Bulk>90</Bulk>
+					<WornBulk>6</WornBulk>
+				</value>
+			</li>
+			<li Class="PatchOperationAdd">
+				<xpath>*/ThingDef[defName="Apparel_CatfishArmor"]/equippedStatOffsets</xpath>
+				<value>
+					<CarryWeight>90</CarryWeight>
+					<CarryBulk>15</CarryBulk>
+				</value>
+			</li>
+			<li Class="PatchOperationReplace">
+				<xpath>*/ThingDef[defName="Apparel_CatfishArmor"]/statBases/Mass</xpath>
+				<value>
+					<Mass>45</Mass>
+				</value>
+			</li>
+			<li Class="PatchOperationReplace">
+				<xpath>*/ThingDef[defName="Apparel_CatfishArmor"]/statBases/ArmorRating_Sharp</xpath>
+				<value>
+					<ArmorRating_Sharp>1</ArmorRating_Sharp>
+			</value>
+			</li>
+			<li Class="PatchOperationReplace">
+				<xpath>*/ThingDef[defName="Apparel_CatfishArmor"]/statBases/ArmorRating_Blunt</xpath>
+				<value>
+					<ArmorRating_Blunt>0.6</ArmorRating_Blunt>
+			</value>
+		    </li>
+			<li Class="PatchOperationAdd">
+				<xpath>*/ThingDef[defName="Apparel_CatfishArmor"]/apparel/bodyPartGroups</xpath>
+				<value>
+					<li>Hands</li>
+					<li>Feet</li>
+			</value>
+			</li>
+		</operations>
+	</Operation>
+
+</Patch>
+

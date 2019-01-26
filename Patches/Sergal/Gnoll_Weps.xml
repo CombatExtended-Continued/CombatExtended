@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+
+  <Operation Class="PatchOperationSequence">
+    <success>Always</success>
+    <operations>
+      <li Class="CombatExtended.PatchOperationFindMod">
+        <modName>Sergals and Gnolls</modName>
+      </li>
+	  
+      <!-- Scythe -->
+		<li Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Gnythe"]/tools</xpath>
+		<value>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<label>point</label>
+					<capacities>
+						<li>Stab</li>
+					</capacities>
+					<power>23</power>
+					<cooldownTime>1.7</cooldownTime>
+					<armorPenetration>0.45</armorPenetration>
+					<linkedBodyPartsGroup>Point</linkedBodyPartsGroup>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>edge</label>
+					<capacities>
+						<li>Slash</li>
+					</capacities>
+					<power>29</power>
+					<cooldownTime>1.7</cooldownTime>
+					<chanceFactor>1.33</chanceFactor>
+					<armorPenetration>0.227</armorPenetration>
+					<linkedBodyPartsGroup>Edge</linkedBodyPartsGroup>
+				</li>
+			</tools>
+		</value>
+	</li>
+
+	<li Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="Gnythe"]</xpath>
+		<value>
+			<equippedStatOffsets>
+				<MeleeCritChance>1</MeleeCritChance>
+				<MeleeParryChance>1.5</MeleeParryChance>
+			</equippedStatOffsets>
+		</value>
+	</li>
+
+	<li Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="Gnythe"]/statBases</xpath>
+		<value>
+      		<Bulk>8</Bulk>
+      		<MeleeCounterParryBonus>2.25</MeleeCounterParryBonus>
+		</value>
+	</li>
+
+    <!-- GNOT A GNYTHE -->
+	<li Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Gnythewar"]/tools</xpath>
+		<value>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<label>point</label>
+					<capacities>
+						<li>Stab</li>
+					</capacities>
+					<power>28</power>
+					<cooldownTime>1.5</cooldownTime>
+					<armorPenetration>0.75</armorPenetration>
+					<linkedBodyPartsGroup>Point</linkedBodyPartsGroup>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>edge</label>
+					<capacities>
+						<li>Slash</li>
+					</capacities>
+					<power>35</power>
+					<cooldownTime>1.5</cooldownTime>
+					<chanceFactor>1.33</chanceFactor>
+					<armorPenetration>0.35</armorPenetration>
+					<linkedBodyPartsGroup>Edge</linkedBodyPartsGroup>
+				</li>
+			</tools>
+		</value>
+	</li>
+
+	<li Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="Gnythewar"]</xpath>
+		<value>
+			<equippedStatOffsets>
+				<MeleeCritChance>1</MeleeCritChance>
+				<MeleeParryChance>1.5</MeleeParryChance>
+			</equippedStatOffsets>
+		</value>
+	</li>
+
+	<li Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="Gnythewar"]/statBases</xpath>
+		<value>
+      		<Bulk>8</Bulk>
+      		<MeleeCounterParryBonus>2.25</MeleeCounterParryBonus>
+		</value>
+	</li>
+	  
+      <!-- etc.. -->
+    </operations>
+  </Operation>
+
+</Patch>

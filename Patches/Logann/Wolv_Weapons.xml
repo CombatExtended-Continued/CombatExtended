@@ -1,0 +1,245 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+
+  <Operation Class="PatchOperationSequence">
+    <success>Always</success>
+    <operations>
+      <li Class="CombatExtended.PatchOperationFindMod">
+        <modName>Logann Race</modName>
+      </li>
+
+		<!-- Wolverine Supershotgun -->
+		<!-- Big dumb shotgun for big dumb animals -->
+		<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+		<defName>Gun_WolvShotgun</defName>
+				<statBases>
+					<Bulk>8</Bulk>
+					<Mass>5</Mass>
+					<SwayFactor>0.5</SwayFactor>
+					<ShotSpread>0.16</ShotSpread>
+					<SightsEfficiency>1</SightsEfficiency>
+					<RangedWeapon_Cooldown>0.39</RangedWeapon_Cooldown>
+					<WorkToMake>31000</WorkToMake>
+				</statBases>
+				<costList>
+					<Chemfuel>5</Chemfuel>
+					<Steel>45</Steel>
+					<ComponentIndustrial>5</ComponentIndustrial>
+				</costList>
+				<Properties>
+					<recoilAmount>4</recoilAmount>
+					<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+					<hasStandardCommand>true</hasStandardCommand>
+					<defaultProjectile>Bullet_12Gauge_Buck</defaultProjectile>
+					<warmupTime>0.6</warmupTime>
+					<range>16</range>
+					<burstShotCount>10</burstShotCount>
+					<ticksBetweenBurstShots>3</ticksBetweenBurstShots>
+					<soundCast>Shot_Shotgun</soundCast>
+					<muzzleFlashScale>9</muzzleFlashScale>
+				</Properties>
+				<AmmoUser>
+					<magazineSize>40</magazineSize>
+					<reloadTime>5.2</reloadTime>
+					<ammoSet>AmmoSet_12Gauge</ammoSet>
+				</AmmoUser>
+				<FireModes>
+					<aimedBurstShotCount>5</aimedBurstShotCount>
+				</FireModes>
+				<weaponTags>
+					<li>CE_AI_AssaultWeapon</li>
+				</weaponTags>
+			</li>
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="Gun_WolvShotgun"]/tools</xpath>
+				<value>
+					<tools>
+						<li Class="CombatExtended.ToolCE">
+							<label>stock</label>
+							<capacities>
+								<li>Blunt</li>
+							</capacities>
+							<power>9</power>
+							<cooldownTime>1.8</cooldownTime>
+							<chanceFactor>1.5</chanceFactor>
+							<armorPenetration>0.11</armorPenetration>
+							<linkedBodyPartsGroup>Stock</linkedBodyPartsGroup>
+						</li>
+						<li Class="CombatExtended.ToolCE">
+							
+							<label>blade</label>
+							<capacities>
+								<li>Slash</li>
+							</capacities>
+							<power>10</power>
+							<cooldownTime>1</cooldownTime>
+							<armorPenetration>0.250</armorPenetration>
+							<linkedBodyPartsGroup>Barrel</linkedBodyPartsGroup>
+						</li>
+					</tools>
+				</value>
+			</li>
+		<!-- To be expected from a gun designed by wild animals -->
+	  
+		<!-- ========== Wolverine Katana ========== -->
+		<li Class="PatchOperationAdd">
+			<xpath>/ThingDefs/ThingDef[defName = "Wolv_Katana"]/statBases</xpath>
+			<value>
+				<MeleeWeapon_Penetration>0.2</MeleeWeapon_Penetration>
+				<Bulk>6</Bulk>
+			</value>
+		</li>
+		<li Class="PatchOperationAdd">
+			<xpath>/ThingDefs/ThingDef[defName = "Wolv_Katana"]</xpath>
+			<value>
+				<equippedStatOffsets>
+					<MeleeCritChance>1</MeleeCritChance>
+					<MeleeParryChance>0.8</MeleeParryChance>
+				</equippedStatOffsets>
+			</value>
+		</li>
+			<li Class="PatchOperationReplace">
+			<xpath>Defs/ThingDef[defName="Wolv_Katana"]/tools</xpath>
+			<value>
+				<tools>
+					<li Class="CombatExtended.ToolCE">
+						<label>edge</label>
+						<capacities>
+							<li>Cut</li>
+						</capacities>
+						<power>15</power>
+						<cooldownTime>1</cooldownTime>
+						<armorPenetration>0.15</armorPenetration>
+						<linkedBodyPartsGroup>Blade</linkedBodyPartsGroup>
+					</li>
+				</tools>
+			</value>
+		</li>
+		
+	  
+		<!-- ========== Wolverine Axe ========== -->
+		<li Class="PatchOperationAdd">
+			<xpath>/ThingDefs/ThingDef[defName = "Wolv_Axe"]/statBases</xpath>
+			<value>
+				<MeleeWeapon_Penetration>0.6</MeleeWeapon_Penetration>
+				<Bulk>6</Bulk>
+			</value>
+		</li>
+		<li Class="PatchOperationAdd">
+			<xpath>/ThingDefs/ThingDef[defName = "Wolv_Axe"]</xpath>
+			<value>
+				<equippedStatOffsets>
+					<MeleeCritChance>1.3</MeleeCritChance>
+					<MeleeParryChance>0.8</MeleeParryChance>
+				</equippedStatOffsets>
+			</value>
+		</li>
+			<li Class="PatchOperationReplace">
+			<xpath>Defs/ThingDef[defName="Wolv_Axe"]/tools</xpath>
+			<value>
+				<tools>
+					<li Class="CombatExtended.ToolCE">
+						<label>edge</label>
+						<capacities>
+							<li>Slash</li>
+						</capacities>
+						<power>12</power>
+						<cooldownTime>1</cooldownTime>
+						<armorPenetration>0.25</armorPenetration>
+						<linkedBodyPartsGroup>Blade</linkedBodyPartsGroup>
+					</li>
+				</tools>
+			</value>
+			</li>
+		
+		<!-- ========== Wolverine Mace ========== -->
+		<li Class="PatchOperationAdd">
+			<xpath>/ThingDefs/ThingDef[defName = "Wolv_Mace"]/statBases</xpath>
+			<value>
+				<MeleeWeapon_Penetration>0.2</MeleeWeapon_Penetration>
+				<Bulk>6</Bulk>
+			</value>
+		</li>
+		<li Class="PatchOperationAdd">
+			<xpath>/ThingDefs/ThingDef[defName = "Wolv_Mace"]</xpath>
+			<value>
+				<equippedStatOffsets>
+					<MeleeCritChance>1.8</MeleeCritChance>
+					<MeleeParryChance>0.7</MeleeParryChance>
+				</equippedStatOffsets>
+			</value>
+		</li>
+			<li Class="PatchOperationReplace">
+			<xpath>Defs/ThingDef[defName="Wolv_Mace"]/tools</xpath>
+			<value>
+				<tools>
+					<li Class="CombatExtended.ToolCE">
+						<label>head</label>
+						<capacities>
+							<li>blunt</li>
+						</capacities>
+						<power>20</power>
+						<cooldownTime>1</cooldownTime>
+						<armorPenetration>0.50</armorPenetration>
+						<linkedBodyPartsGroup>Head</linkedBodyPartsGroup>
+					</li>
+				</tools>
+			</value>
+			</li>
+		
+		<!-- ========== Wolverine Sword ========== -->
+		<li Class="PatchOperationAdd">
+			<xpath>/ThingDefs/ThingDef[defName = "Wolv_Sword"]/statBases</xpath>
+			<value>
+				<MeleeWeapon_Penetration>0.2</MeleeWeapon_Penetration>
+				<Bulk>6</Bulk>
+			</value>
+		</li>
+		<li Class="PatchOperationAdd">
+			<xpath>/ThingDefs/ThingDef[defName = "Wolv_Sword"]</xpath>
+			<value>
+				<equippedStatOffsets>
+					<MeleeCritChance>1</MeleeCritChance>
+					<MeleeParryChance>1.5</MeleeParryChance>
+				</equippedStatOffsets>
+			</value>
+		</li>
+			<li Class="PatchOperationReplace">
+			<xpath>Defs/ThingDef[defName="Wolv_Sword"]/tools</xpath>
+			<value>
+				<tools>
+					<li Class="CombatExtended.ToolCE">
+						<label>edge</label>
+						<capacities>
+							<li>Slash</li>
+						</capacities>
+						<power>12</power>
+						<cooldownTime>1</cooldownTime>
+						<armorPenetration>0.25</armorPenetration>
+						<linkedBodyPartsGroup>Blade</linkedBodyPartsGroup>
+					</li>
+				</tools>
+			</value>
+			</li>
+			<li Class="PatchOperationReplace">
+			<xpath>Defs/ThingDef[defName="Wolv_Sword"]/tools</xpath>
+			<value>
+				<tools>
+					<li Class="CombatExtended.ToolCE">
+						<label>point</label>
+						<capacities>
+							<li>Stab</li>
+						</capacities>
+						<power>20</power>
+						<cooldownTime>1.5</cooldownTime>
+						<armorPenetration>0.75</armorPenetration>
+						<linkedBodyPartsGroup>Blade</linkedBodyPartsGroup>
+					</li>
+				</tools>
+			</value>
+			</li>
+		
+    </operations>
+  </Operation>
+
+</Patch>
