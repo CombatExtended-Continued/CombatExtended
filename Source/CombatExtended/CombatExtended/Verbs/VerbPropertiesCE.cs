@@ -26,7 +26,14 @@ namespace CombatExtended
                 Log.ErrorOnce("Tried to calculate armor penetration for a verb with different verb props. verb=" + ownerVerb, 9865767, false);
                 return 0f;
             }
-            return toolCE.armorPenetration;
+            if (ownerVerb.EquipmentSource != null && ownerVerb.EquipmentSource.def.IsWeapon)
+            {
+                return toolCE.armorPenetration * ownerVerb.EquipmentSource.GetStatValue(CE_StatDefOf.MeleePenetrationFactor);
+            }
+            else
+            {
+                return toolCE.armorPenetration;
+            }
         }
     }
 }
