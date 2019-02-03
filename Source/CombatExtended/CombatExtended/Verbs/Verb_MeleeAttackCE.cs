@@ -204,8 +204,8 @@ namespace CombatExtended
         {
             //START 1:1 COPY Verb_MeleeAttack.DamageInfosToApply
             float damAmount = this.verbProps.AdjustedMeleeDamageAmount(this, base.CasterPawn);
-            Log.Message($"CE :: penetration for tool {tool.LabelCap}={tool.armorPenetration}");
-            float armorPenetration = (isCrit && verbProps.meleeDamageDef.armorCategory == DamageArmorCategoryDefOf.Sharp && !CasterPawn.def.race.Animal ? 2 : 1) * tool.armorPenetration;
+            var verbPropsCE = (VerbPropertiesCE)this.verbProps;
+            float armorPenetration = (isCrit && verbProps.meleeDamageDef.armorCategory == DamageArmorCategoryDefOf.Sharp && !CasterPawn.def.race.Animal ? 2 : 1) * verbPropsCE.AdjustedArmorPenetrationCE(this, base.CasterPawn);
             DamageDef damDef = verbProps.meleeDamageDef;
             BodyPartGroupDef bodyPartGroupDef = null;
             HediffDef hediffDef = null;

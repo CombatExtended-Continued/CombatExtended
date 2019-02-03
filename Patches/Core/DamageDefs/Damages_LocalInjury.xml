@@ -117,14 +117,21 @@
     </value>
   </Operation>
 
-  <!-- ========== Replace redundant DamageWorker ========== -->
+  <!-- ========== Stabs and pokes no longer ignore armor ========== -->
 
-  <Operation Class="PatchOperationReplace">
-    <xpath>Defs/DamageDef/workerClass[.="DamageWorker_Stab"]</xpath>
-    <value>
-      <workerClass>DamageWorker_AddInjury</workerClass>
-    </value>
-  </Operation>
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/DamageDef[defName="Poke"]</xpath>
+		<value>
+			<harmAllLayersUntilOutside>true</harmAllLayersUntilOutside>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/DamageDef[defName="Stab"]</xpath>
+		<value>
+			<harmAllLayersUntilOutside>true</harmAllLayersUntilOutside>
+		</value>
+	</Operation>
 
 <!-- Patch-out vanilla melee stun mechanic from blunt damage -->
 	<Operation Class="PatchOperationRemove">
