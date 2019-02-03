@@ -20,20 +20,13 @@ namespace CombatExtended
                 Log.Error("Command_Reload without ammo comp");
                 return;
             }
-            /*
-            if (((ev.button == 1 || !Controller.settings.RightClickAmmoSelect) 
-                && compAmmo.UseAmmo 
-                && (compAmmo.CompInventory != null || compAmmo.turret != null))
+            if (compAmmo.UseAmmo 
+                && (compAmmo.CompInventory != null || compAmmo.turret != null)
                 || action == null)
             {
                 Find.WindowStack.Add(MakeAmmoMenu());
             }
             else if (compAmmo.SelectedAmmo != compAmmo.CurrentAmmo || compAmmo.CurMagCount < compAmmo.Props.magazineSize)
-            {
-                base.ProcessInput(ev);
-            }
-            */
-            if (compAmmo.SelectedAmmo != compAmmo.CurrentAmmo || compAmmo.CurMagCount < compAmmo.Props.magazineSize)
             {
                 base.ProcessInput(ev);
             }
