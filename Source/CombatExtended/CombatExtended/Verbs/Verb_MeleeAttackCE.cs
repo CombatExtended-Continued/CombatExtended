@@ -204,8 +204,11 @@ namespace CombatExtended
         {
             //START 1:1 COPY Verb_MeleeAttack.DamageInfosToApply
             float damAmount = this.verbProps.AdjustedMeleeDamageAmount(this, base.CasterPawn);
-            var verbPropsCE = (VerbPropertiesCE)this.verbProps;
-            float armorPenetration = (isCrit && verbProps.meleeDamageDef.armorCategory == DamageArmorCategoryDefOf.Sharp && !CasterPawn.def.race.Animal ? 2 : 1) * verbPropsCE.AdjustedArmorPenetrationCE(this, base.CasterPawn);
+            var critModifier = isCrit && verbProps.meleeDamageDef.armorCategory == DamageArmorCategoryDefOf.Sharp &&
+                               !CasterPawn.def.race.Animal
+                ? 2
+                : 1;
+            var armorPenetration = verbProps.AdjustedArmorPenetration(this, CasterPawn) * EquipmentSource.GetStatValue(CE_StatDefOf.MeleePenetrationFactor) * critModifier;
             DamageDef damDef = verbProps.meleeDamageDef;
             BodyPartGroupDef bodyPartGroupDef = null;
             HediffDef hediffDef = null;
@@ -240,7 +243,6 @@ namespace CombatExtended
             //END 1:1 COPY
             BodyPartHeight bodyRegion = GetBodyPartHeightFor(target);   //Custom // Add check for body height
             //START 1:1 COPY
-            Thing caster = this.caster;
             DamageInfo mainDinfo = new DamageInfo(def, damAmount, armorPenetration, -1f, caster, null, source, DamageInfo.SourceCategory.ThingOrUnknown, null); //Alteration
             mainDinfo.SetBodyRegion(bodyRegion, BodyPartDepth.Outside); //Alteration
             mainDinfo.SetWeaponBodyPartGroup(bodyPartGroupDef);
@@ -248,39 +250,8 @@ namespace CombatExtended
             mainDinfo.SetAngle(direction);
             yield return mainDinfo;
 
-            // Apply secondary damage on surprise attack
-            /*
-            if (this.surpriseAttack && ((this.verbProps.surpriseAttack != null && !this.verbProps.surpriseAttack.extraMeleeDamages.NullOrEmpty<ExtraMeleeDamage>()) || this.tool == null || this.tool.surpriseAttack == null || this.tool.surpriseAttack.extraMeleeDamages.NullOrEmpty<ExtraMeleeDamage>()))
-			{
-				IEnumerable<ExtraMeleeDamage> extraDamages = Enumerable.Empty<ExtraMeleeDamage>();
-				if (this.verbProps.surpriseAttack != null && this.verbProps.surpriseAttack.extraMeleeDamages != null)
-				{
-					extraDamages = extraDamages.Concat(this.verbProps.surpriseAttack.extraMeleeDamages);
-				}
-				if (this.tool != null && this.tool.surpriseAttack != null && !this.tool.surpriseAttack.extraMeleeDamages.NullOrEmpty<ExtraMeleeDamage>())
-				{
-					extraDamages = extraDamages.Concat(this.tool.surpriseAttack.extraMeleeDamages);
-				}
-				foreach (ExtraMeleeDamage extraDamage in extraDamages)
-				{
-					int extraDamageAmount = GenMath.RoundRandom(extraDamage.AdjustedDamageAmount(this, base.CasterPawn));
-					float extraDamageArmorPenetration = extraDamage.AdjustedArmorPenetration(this, base.CasterPawn);
-					def = extraDamage.def;
-					num2 = (float)extraDamageAmount;
-					num = extraDamageArmorPenetration;
-					caster = this.caster;
-					DamageInfo extraDinfo = new DamageInfo(def, num2, num, -1f, caster, null, source, DamageInfo.SourceCategory.ThingOrUnknown, null);
-					extraDinfo.SetBodyRegion(BodyPartHeight.Undefined, BodyPartDepth.Outside);
-					extraDinfo.SetWeaponBodyPartGroup(bodyPartGroupDef);
-					extraDinfo.SetWeaponHediff(hediffDef);
-					extraDinfo.SetAngle(direction);
-					yield return extraDinfo;
-				}
-			}
-            */
-            //END 1:1 COPY
             // Apply critical damage
-            if (isCrit && !CasterPawn.def.race.Animal && !(verbProps.meleeDamageDef.armorCategory == DamageArmorCategoryDefOf.Sharp))
+            if (isCrit && !CasterPawn.def.race.Animal && verbProps.meleeDamageDef.armorCategory != DamageArmorCategoryDefOf.Sharp)
             {
                 var critAmount = GenMath.RoundRandom(mainDinfo.Amount * 0.25f);
                 var critDinfo = new DamageInfo(DamageDefOf.Stun, critAmount, armorPenetration, //Ignore armor //armorPenetration, //Armor Penetration
