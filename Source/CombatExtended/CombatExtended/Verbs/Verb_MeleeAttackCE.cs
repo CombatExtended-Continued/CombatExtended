@@ -208,7 +208,7 @@ namespace CombatExtended
                                !CasterPawn.def.race.Animal
                 ? 2
                 : 1;
-            var armorPenetration = verbProps.AdjustedArmorPenetration(this, CasterPawn) * EquipmentSource.GetStatValue(CE_StatDefOf.MeleePenetrationFactor) * critModifier;
+            var armorPenetration = verbProps.AdjustedArmorPenetration(this, CasterPawn) * (EquipmentSource?.GetStatValue(CE_StatDefOf.MeleePenetrationFactor) ?? 1) * critModifier;
             DamageDef damDef = verbProps.meleeDamageDef;
             BodyPartGroupDef bodyPartGroupDef = null;
             HediffDef hediffDef = null;
