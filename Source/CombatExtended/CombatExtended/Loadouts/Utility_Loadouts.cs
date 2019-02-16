@@ -168,7 +168,7 @@ namespace CombatExtended
 
         public static string GetWeightAndBulkTip(this Thing thing)
         {
-            return thing.LabelCap + "\n" + thing.GetWeightTip(thing.stackCount) + "\n" + thing.GetBulkTip(thing.stackCount);
+            return thing.GetWeightTip(thing.stackCount) + "\n" + thing.GetBulkTip(thing.stackCount);
         }
 
         public static string GetWeightAndBulkTip(this ThingDef def, int count = 1)
@@ -270,7 +270,7 @@ namespace CombatExtended
             else if (ys.Length % 2 == 0)
                 return (ys[(int)(ys.Length / 2) - 1] + ys[(int)(ys.Length / 2)])/2;
             else
-                return ys[Mathf.FloorToInt(ys.Length / 2)];
+                return ys[Mathf.FloorToInt(ys.Length / 2f)];
         }
         
         /// <summary>
