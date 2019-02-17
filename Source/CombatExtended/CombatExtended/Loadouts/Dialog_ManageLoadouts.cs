@@ -81,7 +81,7 @@ namespace CombatExtended
                 _selectableItems.Add(new SelectableItem()
                 {
                     thingDef = td,
-                    isGreyedOut = (Find.CurrentMap.listerThings.AllThings.Find(thing => (thing.def == td)) == null)
+                    isGreyedOut = (Find.CurrentMap.listerThings.AllThings.Find(thing => thing.GetInnerIfMinified().def == td && !thing.def.Minifiable) == null)
                         //!thing.PositionHeld.Fogged(thing.MapHeld) //check Thing is visible on map. CPU expensive!
                 });
             }
