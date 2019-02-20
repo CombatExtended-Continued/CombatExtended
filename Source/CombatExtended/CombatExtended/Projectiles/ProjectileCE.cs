@@ -74,6 +74,7 @@ namespace CombatExtended
 
         private float suppressionAmount;
         public Thing mount; // GiddyUp compatibility, ignore collisions with pawns the launcher is mounting
+        public float AccuracyFactor;
 
         #region FreeIntercept
         private static List<IntVec3> checkedCells = new List<IntVec3>();
@@ -595,9 +596,9 @@ namespace CombatExtended
             var plant = thing as Plant;
             if (plant != null)
             {
-                //TODO: Remove fillPercent dependency because all fillPercents on trees are 0.25
                 //Prevents trees near the shooter (e.g the shooter's cover) to be hit
-                var chance = thing.def.fillPercent * ((thing.Position - OriginIV3).LengthHorizontal / 40);
+                var accuracyFactor = def.projectile.alwaysFreeIntercept ? 1 : (thing.Position - OriginIV3).LengthHorizontal / 40 * AccuracyFactor;
+                var chance = thing.def.fillPercent * accuracyFactor;
                 if (Controller.settings.DebugShowTreeCollisionChance) MoteMaker.ThrowText(thing.Position.ToVector3Shifted(), thing.Map, chance.ToString());
                 if (!Rand.Chance(chance)) return false;
             }

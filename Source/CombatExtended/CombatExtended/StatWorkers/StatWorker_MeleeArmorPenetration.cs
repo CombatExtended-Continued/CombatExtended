@@ -17,7 +17,7 @@ namespace CombatExtended
             {
                 return 0;
             }
-            if (tools.Any(x=> !(x is ToolCE))
+            if (tools.Any(x=> !(x is ToolCE)))
             {
                 Log.Error($"Trying to get stat MeleePenetration from {req.Thing.def.defName} which has no support for Combat Extended.");
                 return 0;

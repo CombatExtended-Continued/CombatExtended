@@ -543,6 +543,7 @@ namespace CombatExtended
                 projectile.minCollisionSqr = (sourceLoc - currentTarget.Cell.ToIntVec2.ToVector2Shifted()).sqrMagnitude;
                 projectile.intendedTarget = currentTarget.Thing;
                 projectile.mount = caster.Position.GetThingList(caster.Map).FirstOrDefault(t => t is Pawn && t != caster);
+                projectile.AccuracyFactor = report.accuracyFactor * report.swayDegrees * ((numShotsFired + 1) * 0.75f);
                 projectile.Launch(
                     Shooter,    //Shooter instead of caster to give turret operators' records the damage/kills obtained
                     sourceLoc,
