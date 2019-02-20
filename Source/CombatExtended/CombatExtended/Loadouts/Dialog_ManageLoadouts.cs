@@ -46,20 +46,23 @@ namespace CombatExtended
 
         private static Regex validNameRegex = Outfit.ValidNameRegex;
         private Vector2 _availableScrollPosition = Vector2.zero;
-        private float _barHeight = 24f;
+        private const float _barHeight = 24f;
         private Vector2 _countFieldSize = new Vector2(40f, 24f);
         private Loadout _currentLoadout;
         private LoadoutSlot _draggedSlot;
         private bool _dragging;
         private string _filter = "";
-        private float _iconSize = 16f;
-        private float _margin = 6f;
-        private float _rowHeight = 30f;
+        private const float _iconSize = 16f;
+        private const float _margin = 6f;
+        private const float _rowHeight = 28f;
+        private const float _topAreaHeight = 30f;
         private Vector2 _slotScrollPosition = Vector2.zero;
-        private List<ThingDef> _source;
+        private List<SelectableItem> _source;
         private List<LoadoutGenericDef> _sourceGeneric;
         private SourceSelection _sourceType = SourceSelection.Ranged;
-        private float _topAreaHeight = 30f;
+        private readonly List<ThingDef> _allSuitableDefs;
+        private readonly List<LoadoutGenericDef> _allDefsGeneric;
+        private readonly List<SelectableItem> _selectableItems;
 
         #endregion Fields
 
@@ -70,10 +73,24 @@ namespace CombatExtended
         	CurrentLoadout = null;
         	if (loadout != null && !loadout.defaultLoadout)
             	CurrentLoadout = loadout;
+            _allSuitableDefs = DefDatabase<ThingDef>.AllDefs.Where(td => !td.menuHidden && IsSuitableThingDef(td)).ToList();
+            _allDefsGeneric = DefDatabase<LoadoutGenericDef>.AllDefs.OrderBy(g => g.label).ToList();
+            _selectableItems = new List<SelectableItem>();
+            foreach (var td in _allSuitableDefs)
+            {
+                _selectableItems.Add(new SelectableItem()
+                {
+                    thingDef = td,
+                    isGreyedOut = (Find.CurrentMap.listerThings.AllThings.Find(thing => thing.GetInnerIfMinified().def == td && !thing.def.Minifiable) == null)
+                        //!thing.PositionHeld.Fogged(thing.MapHeld) //check Thing is visible on map. CPU expensive!
+                });
+            }
             SetSource(SourceSelection.Ranged);
             doCloseX = true;
-			//doCloseButton = true; //Close button is awkward 
-			closeOnClickedOutside = true;
+            forcePause = true;
+            absorbInputAroundWindow = true;
+            //doCloseButton = true; //Close button is awkward 
+            closeOnClickedOutside = true;
             Utility_Loadouts.UpdateColonistCapacities();
         }
 
@@ -123,6 +140,18 @@ namespace CombatExtended
 
         #region Methods
 
+        private bool IsSuitableThingDef(ThingDef td)
+        {
+            return (td.thingClass != typeof(Corpse) &&
+                    !td.IsBlueprint && !td.IsFrame &&
+                    td != ThingDefOf.ActiveDropPod &&
+                    td.thingClass != typeof(MinifiedThing) &&
+                    td.thingClass != typeof(UnfinishedThing) &&
+                    !td.destroyOnDrop &&
+                    td.category == ThingCategory.Item) 
+                    ||
+                    td.Minifiable;
+        }
         public override void DoWindowContents(Rect canvas)
         {
             // fix weird zooming bug
@@ -256,8 +285,16 @@ namespace CombatExtended
             {
                 Utility_Loadouts.DrawBar(weightBarRect, CurrentLoadout.Weight, Utility_Loadouts.medianWeightCapacity, "CE_Weight".Translate(), CurrentLoadout.GetWeightTip());
                 Utility_Loadouts.DrawBar(bulkBarRect, CurrentLoadout.Bulk, Utility_Loadouts.medianBulkCapacity, "CE_Bulk".Translate(), CurrentLoadout.GetBulkTip());
+                // draw text overlays on bars
+                Text.Font = GameFont.Small;
+                Text.Anchor = TextAnchor.MiddleCenter;
+                var currentBulk = CE_StatDefOf.CarryBulk.ValueToString(CurrentLoadout.Bulk, CE_StatDefOf.CarryBulk.toStringNumberSense);
+                var capacityBulk = CE_StatDefOf.CarryBulk.ValueToString(Utility_Loadouts.medianBulkCapacity, CE_StatDefOf.CarryBulk.toStringNumberSense);
+                Widgets.Label(bulkBarRect, currentBulk + "/" + capacityBulk);
+                Widgets.Label(weightBarRect, CurrentLoadout.Weight.ToString("0.#") + "/" + Utility_Loadouts.medianWeightCapacity.ToStringMass());
+                GUI.color = Color.white;
+                Text.Anchor = TextAnchor.UpperLeft;
             }
-
             // done!
         }
 
@@ -326,35 +363,34 @@ namespace CombatExtended
             SetSource(_sourceType, true);
 
             // filter
-            _source = _source.Where(td => td.label.ToUpperInvariant().Contains(_filter.ToUpperInvariant())).ToList();
+            _source = _source.Where(td => td.thingDef.label.ToUpperInvariant().Contains(_filter.ToUpperInvariant())).ToList();
         }
 
         public void SetSource(SourceSelection source, bool preserveFilter = false)
         {
-        	_source = DefDatabase<ThingDef>.AllDefs.Where(x => !x.menuHidden).ToList<ThingDef>();
-        	_sourceGeneric = DefDatabase<LoadoutGenericDef>.AllDefs.OrderBy(g => g.label).ToList<LoadoutGenericDef>();
+            _sourceGeneric = _allDefsGeneric;
             if (!preserveFilter)
                 _filter = "";
 
             switch (source)
             {
                 case SourceSelection.Ranged:
-                    _source = _source.Where(td => td.IsRangedWeapon).ToList();
-                    _sourceType = SourceSelection.Ranged;
+                    _source = _selectableItems.Where(row => row.thingDef.IsRangedWeapon).ToList();
+                    _sourceType = SourceSelection.Ranged;                   
                     break;
 
                 case SourceSelection.Melee:
-                    _source = _source.Where(td => td.IsMeleeWeapon).ToList();
+                    _source = _selectableItems.Where(row => row.thingDef.IsMeleeWeapon).ToList();
                     _sourceType = SourceSelection.Melee;
                     break;
 
                 case SourceSelection.Ammo:
-                    _source = _source.Where(td => td is AmmoDef).ToList();
+                    _source = _selectableItems.Where(row => row.thingDef is AmmoDef).ToList();
                     _sourceType = SourceSelection.Ammo;
                     break;
-                
+
                 case SourceSelection.Minified:
-                    _source = _source.Where(td => td.Minifiable).ToList();
+                    _source = _selectableItems.Where(row => row.thingDef.Minifiable).ToList();
                     _sourceType = SourceSelection.Minified;
                     break;
                 
@@ -365,13 +401,15 @@ namespace CombatExtended
 
                 case SourceSelection.All:
                 default:
-                    _source = _source.Where(td => td.alwaysHaulable && td.thingClass != typeof(Corpse)).ToList();
+                    _source = _selectableItems;
                     _sourceType = SourceSelection.All;
                     break;
             }
 
             if (!_source.NullOrEmpty())
-                _source = _source.OrderBy(td => td.label).ToList();
+            {
+                _source = _source.OrderBy(td => td.thingDef.label).ToList();
+            }            
         }
 
         private void DrawCountField(Rect canvas, LoadoutSlot slot)
@@ -454,7 +492,9 @@ namespace CombatExtended
 
             // label
             Text.Anchor = TextAnchor.MiddleLeft;
+            Text.WordWrap = false;
             Widgets.Label(labelRect, slot.LabelCap);
+            Text.WordWrap = true;
             Text.Anchor = TextAnchor.UpperLeft;
 
             // easy ammo adder, ranged weapons only
@@ -499,7 +539,7 @@ namespace CombatExtended
             if (slot.genericDef != null)
             {
 	            Texture2D curModeIcon = slot.countType == LoadoutCountType.dropExcess ? _iconDropExcess : _iconPickupDrop;
-	            string tipString = slot.countType == LoadoutCountType.dropExcess ? "Drop Excess" : "Pickup Missing and Drop Excess";
+	            string tipString = slot.countType == LoadoutCountType.dropExcess ? "CE_DropExcess".Translate() : "CE_PickupMissingAndDropExcess".Translate();
 	            if (Widgets.ButtonImage(countModeRect, curModeIcon))
 	            	slot.countType = slot.countType == LoadoutCountType.dropExcess ? LoadoutCountType.pickupDrop : LoadoutCountType.dropExcess;
 	            TooltipHandler.TipRegion(countModeRect, tipString);
@@ -624,9 +664,8 @@ namespace CombatExtended
                 	if (GetVisibleGeneric(_sourceGeneric[i]))
                 		GUI.color = Color.gray;
                 } else {
-	                //if (Find.CurrentMap.listerThings.AllThings.FindAll(x => x.GetInnerIfMinified().def == _source[i] && !x.def.Minifiable).Count <= 0)
-	                if (Find.CurrentMap.listerThings.AllThings.Find(x => x.GetInnerIfMinified().def == _source[i] && !x.def.Minifiable) == null)
-	                    GUI.color = Color.gray;
+                    if(_source[i].isGreyedOut)
+                        GUI.color = Color.gray;
                 }
 
                 Rect row = new Rect(0f, i * _rowHeight, canvas.width, _rowHeight);
@@ -634,17 +673,19 @@ namespace CombatExtended
                 if (_sourceType == SourceSelection.Generic)
                 	TooltipHandler.TipRegion(row, _sourceGeneric[i].GetWeightAndBulkTip());
                 else
-                	TooltipHandler.TipRegion(row, _source[i].GetWeightAndBulkTip());
+                	TooltipHandler.TipRegion(row, _source[i].thingDef.GetWeightAndBulkTip());
 
                 labelRect.xMin += _margin;
                 if (i % 2 == 0)
                     GUI.DrawTexture(row, _darkBackground);
 
                 Text.Anchor = TextAnchor.MiddleLeft;
+                Text.WordWrap = false;
                 if (_sourceType == SourceSelection.Generic)
                 	Widgets.Label(labelRect, _sourceGeneric[i].LabelCap);
                 else
-	                Widgets.Label(labelRect, _source[i].LabelCap);
+	                Widgets.Label(labelRect, _source[i].thingDef.LabelCap);
+                Text.WordWrap = true;
                 Text.Anchor = TextAnchor.UpperLeft;
 
                 Widgets.DrawHighlightIfMouseover(row);
@@ -654,7 +695,7 @@ namespace CombatExtended
                 	if (_sourceType == SourceSelection.Generic)
                 		slot = new LoadoutSlot(_sourceGeneric[i]);
                 	else
-                    	slot = new LoadoutSlot(_source[i]);
+                    	slot = new LoadoutSlot(_source[i].thingDef);
                     CurrentLoadout.AddSlot(slot);
                 }
                 // revert to original color
@@ -716,6 +757,12 @@ namespace CombatExtended
         	public int position = 0;
         }
         	
-		#endregion GenericDrawOptimization        
+		#endregion GenericDrawOptimization     
+        
+        private class SelectableItem
+        {
+            public ThingDef thingDef;
+            public bool isGreyedOut;
+        }
     }
 }
