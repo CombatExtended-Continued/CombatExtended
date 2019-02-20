@@ -542,7 +542,7 @@ namespace CombatExtended
                 projectile.canTargetSelf = false;
                 projectile.minCollisionSqr = (sourceLoc - currentTarget.Cell.ToIntVec2.ToVector2Shifted()).sqrMagnitude;
                 projectile.intendedTarget = currentTarget.Thing;
-                projectile.mount = caster.Position.GetFirstPawn(caster.Map);
+                projectile.mount = caster.Position.GetThingList(caster.Map).FirstOrDefault(t => t is Pawn && t != caster);
                 projectile.Launch(
                     Shooter,    //Shooter instead of caster to give turret operators' records the damage/kills obtained
                     sourceLoc,
@@ -728,12 +728,6 @@ namespace CombatExtended
                 };
                 // Add validator to parameters
                 var exactTargetSq = targetPos.ToIntVec3();
-                var cellsOnLine = SightUtility.GetCellsOnLine(shotSource, targetPos);
-                foreach (var cell in cellsOnLine)
-                {
-                    caster.Map.debugDrawer.FlashCell(cell,0.5f);
-                }
-
                 foreach (IntVec3 curCell in SightUtility.GetCellsOnLine(shotSource, targetPos))
                 {
                     if (curCell != shotSource.ToIntVec3() && curCell != exactTargetSq && !validator(curCell))
