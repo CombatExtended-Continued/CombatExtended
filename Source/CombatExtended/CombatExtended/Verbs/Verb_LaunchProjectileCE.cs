@@ -76,8 +76,7 @@ namespace CombatExtended
                 {
                     if (CompCharges != null)
                     {
-                        Vector2 bracket;
-                        if (CompCharges.GetChargeBracket((currentTarget.Cell - caster.Position).LengthHorizontal, out bracket))
+                        if (CompCharges.GetChargeBracket((currentTarget.Cell - caster.Position).LengthHorizontal, ShotHeight, projectilePropsCE.Gravity, out var bracket))
                         {
                             shotSpeed = bracket.x;
                         }
@@ -90,7 +89,7 @@ namespace CombatExtended
                 return shotSpeed;
             }
         }
-        private float ShotHeight => (new CollisionVertical(caster)).shotHeight;
+        protected float ShotHeight => (new CollisionVertical(caster)).shotHeight;
         private Vector3 ShotSource
         {
             get
@@ -717,12 +716,12 @@ namespace CombatExtended
                         // Check for intersect
                         if (bounds.IntersectRay(shotLine))
                         {
-                            if (Controller.settings.DebugDrawPartialLoSChecks) caster.Map.debugDrawer.FlashCell(cell, 0, bounds.size.y.ToString());
+                            if (Controller.settings.DebugDrawPartialLoSChecks) caster.Map.debugDrawer.FlashCell(cell, 0, bounds.extents.y.ToString());
                             return false;
                         }
                         else if (Controller.settings.DebugDrawPartialLoSChecks)
                         {
-                            caster.Map.debugDrawer.FlashCell(cell, 0.7f, bounds.size.y.ToString());
+                            caster.Map.debugDrawer.FlashCell(cell, 0.7f, bounds.extents.y.ToString());
                         }
                     }
                     return true;

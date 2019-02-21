@@ -8,29 +8,27 @@ using UnityEngine;
 
 namespace CombatExtended
 {
+    [StaticConstructorOnStartup]
     public class CompCharges : ThingComp
     {
-        public CompProperties_Charges Props
-        {
-            get
-            {
-                return (CompProperties_Charges)props;
-            }
-        }
+        private static float MaxRangeAngle = Mathf.Deg2Rad * 45;
 
-        public bool GetChargeBracket(float range, out Vector2 bracket)
+        public CompProperties_Charges Props => (CompProperties_Charges)props;
+
+        public bool GetChargeBracket(float range, float shotHeight, float gravityFactor, out Vector2 bracket)
         {
             bracket = new Vector2(0, 0);
-            if (Props.charges.Count <= 0)
+            if (Props.chargeSpeeds.Count <= 0)
             {
                 Log.Error("Tried getting charge bracket from empty list.");
                 return false;
             }
-            foreach (Vector2 vec in Props.charges)
+            foreach (var speed in Props.chargeSpeeds)
             {
-                if (range <= vec.y)
+                var curRange = CE_Utility.MaxProjectileRange(shotHeight, speed, MaxRangeAngle, gravityFactor);
+                if (range <= curRange)
                 {
-                    bracket = vec;
+                    bracket = new Vector2(speed, curRange);
                     return true;
                 }
             }
