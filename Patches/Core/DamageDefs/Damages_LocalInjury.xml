@@ -78,6 +78,15 @@
   	</value>
 	</Operation>
 
+  <Operation Class="PatchOperationAddModExtension">
+    <xpath>Defs/DamageDef[defName="EMP"]</xpath>
+    <value>
+      <li Class="CombatExtended.DamageDefExtensionCE">
+        <isAmbientDamage>true</isAmbientDamage>
+      </li>
+    </value>
+  </Operation>
+
 	<!-- ========== Add Names for secondary damage inheritance ========== -->
 
 <!--
@@ -133,10 +142,20 @@
 		</value>
 	</Operation>
 
-<!-- Patch-out vanilla melee stun mechanic from blunt damage -->
+<!-- ========== Patch-out vanilla melee stun mechanic from blunt damage ========== -->
+
 	<Operation Class="PatchOperationRemove">
 		<xpath>/Defs/DamageDef[@Name="BluntBase"]/*[self::bluntStunDuration or self::bluntStunChancePerDamagePctOfCorePartToHeadCurve or self::bluntStunChancePerDamagePctOfCorePartToBodyCurve]</xpath>
 	</Operation>	
+
+  <!-- ========== Add electric armor to EMP damage ========== -->
+
+  <Operation Class="PatchOperationAdd">
+    <xpath>Defs/DamageDef[defName="EMP"]</xpath>
+    <value>
+      <armorCategory>Electric</armorCategory>
+    </value>
+  </Operation>
 	
 </Patch>
 
