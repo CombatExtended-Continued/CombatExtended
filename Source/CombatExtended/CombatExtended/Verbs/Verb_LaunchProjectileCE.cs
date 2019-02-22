@@ -714,10 +714,14 @@ namespace CombatExtended
                         && cover != caster
                         && cover != targetThing
                         && !cover.IsPlant()
-                        && !cover.HostileTo(caster)
-                        && (cover.def.Fillage == FillCategory.Full || !cover.AdjacentTo8WayOrInside(caster)))
+                        && !cover.HostileTo(caster))
                     {
                         Bounds bounds = CE_Utility.GetBoundsFor(cover);
+
+                        if (cover.def.Fillage != FillCategory.Full && cover.AdjacentTo8WayOrInside(caster))
+                        {
+                            return bounds.size.y < shotSource.y;
+                        }
 
                         // Check for intersect
                         if (bounds.IntersectRay(shotLine))
