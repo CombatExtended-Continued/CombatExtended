@@ -699,9 +699,6 @@ namespace CombatExtended
                 var aimMode = CompFireModes?.CurrentAimMode;
                 Func<IntVec3, bool> validator = delegate (IntVec3 cell)
                 {
-                    // Skip this check entirely if we're doing suppressive fire and cell is adjacent to target
-                    if (VerbPropsCE.ignorePartialLoSBlocker || aimMode == AimMode.SuppressFire)
-                        return true;
 
                     Thing cover = cell.GetFirstPawn(caster.Map);
                     if (cover == null)
@@ -716,8 +713,13 @@ namespace CombatExtended
                         && !cover.IsPlant()
                         && !cover.HostileTo(caster))
                     {
+                        // Skip this check entirely if we're doing suppressive fire and cell is adjacent to target
+                        if ((VerbPropsCE.ignorePartialLoSBlocker || aimMode == AimMode.SuppressFire) && cover.def.Fillage != FillCategory.Full)
+                            return true;
+
                         Bounds bounds = CE_Utility.GetBoundsFor(cover);
 
+                        // Simplified calculations for adjacent cover for gameplay purposes
                         if (cover.def.Fillage != FillCategory.Full && cover.AdjacentTo8WayOrInside(caster))
                         {
                             return bounds.size.y < shotSource.y;
