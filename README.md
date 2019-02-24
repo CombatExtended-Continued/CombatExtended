@@ -19,7 +19,7 @@ Combat Extended completely overhauls combat. It adds completely new shooting and
 ## Melee
 **New melee system:**
 - New melee stats: critical hit and parry chance.
-- Critical hits produce different effects depending on the source of the attack: blunt weapons will stun the opponent, sharp weapons bypass all enemy armor and animals cause knockdown.
+- Critical hits produce different effects depending on the source of the attack: blunt weapons will stun the opponent, sharp weapons have twice as much armor penetration and animals cause knockdown.
 - On a successful parry, the defender's weapon/shield will absorb the attack. Unarmed parries do half damage. A pawn can only parry a limited amount of times, depending on his melee skill and attack speed.
 - Parries can roll for a critical hit to turn into a riposte. If successful the defender gets a free non-critical hit against the attacker.
 - In combat, critical hit and parry chance are compared against the opponent's to determine final hit chances. Don't expect your level 1 fighter to parry a level 20.
