@@ -696,25 +696,15 @@ namespace CombatExtended
 
                 // Create validator to check for intersection with partial cover
                 var aimMode = CompFireModes?.CurrentAimMode;
-                Func<IntVec3, bool> validator = delegate (IntVec3 cell)
+
+                bool CanShootThroughCell(IntVec3 cell)
                 {
+                    Thing cover = cell.GetFirstPawn(caster.Map) ?? cell.GetCover(caster.Map);
 
-                    Thing cover = cell.GetFirstPawn(caster.Map);
-                    if (cover == null)
-                    {
-                        cover = cell.GetCover(caster.Map);
-                    }
-
-                    if (cover != null
-                        && cover != ShooterPawn
-                        && cover != caster
-                        && cover != targetThing
-                        && !cover.IsPlant()
-                        && !cover.HostileTo(caster))
+                    if (cover != null && cover != ShooterPawn && cover != caster && cover != targetThing && !cover.IsPlant() && !cover.HostileTo(caster))
                     {
                         // Skip this check entirely if we're doing suppressive fire and cell is adjacent to target
-                        if ((VerbPropsCE.ignorePartialLoSBlocker || aimMode == AimMode.SuppressFire) && cover.def.Fillage != FillCategory.Full)
-                            return true;
+                        if ((VerbPropsCE.ignorePartialLoSBlocker || aimMode == AimMode.SuppressFire) && cover.def.Fillage != FillCategory.Full) return true;
 
                         Bounds bounds = CE_Utility.GetBoundsFor(cover);
 
@@ -730,18 +720,22 @@ namespace CombatExtended
                             if (Controller.settings.DebugDrawPartialLoSChecks) caster.Map.debugDrawer.FlashCell(cell, 0, bounds.extents.y.ToString());
                             return false;
                         }
-                        else if (Controller.settings.DebugDrawPartialLoSChecks)
+
+                        if (Controller.settings.DebugDrawPartialLoSChecks)
                         {
                             caster.Map.debugDrawer.FlashCell(cell, 0.7f, bounds.extents.y.ToString());
                         }
                     }
+                    
                     return true;
-                };
+                }
+
                 // Add validator to parameters
                 var exactTargetSq = targetPos.ToIntVec3();
-                foreach (IntVec3 curCell in SightUtility.GetCellsOnLine(shotSource, targetPos))
+                foreach (IntVec3 curCell in SightUtility.GetCellsOnLine(shotSource, targetLoc.ToVector3()))
                 {
-                    if (curCell != shotSource.ToIntVec3() && curCell != exactTargetSq && !validator(curCell))
+                    if (Controller.settings.DebugDrawPartialLoSChecks) caster.Map.debugDrawer.FlashCell(curCell, 0.4f);
+                    if (curCell != shotSource.ToIntVec3() && curCell != targetLoc && !CanShootThroughCell(curCell))
                     {
                         return false;
                     }
