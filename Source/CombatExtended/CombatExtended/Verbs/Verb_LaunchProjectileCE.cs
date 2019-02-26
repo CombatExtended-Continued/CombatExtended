@@ -623,9 +623,8 @@ namespace CombatExtended
                 foreach (var leanLoc in tempLeanShootSources)
                 {
                     var leanOffset = (leanLoc - root).ToVector3() * 0.5f;
-                    shotSource += leanOffset;
 
-                    if (CanHitFromCellIgnoringRange(shotSource, targ, out dest))
+                    if (CanHitFromCellIgnoringRange(shotSource + leanOffset, targ, out dest))
                     {
                         resultingLine = new ShootLine(leanLoc, dest);
                         return true;
