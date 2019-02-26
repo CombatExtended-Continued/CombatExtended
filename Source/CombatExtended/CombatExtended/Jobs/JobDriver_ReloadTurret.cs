@@ -89,14 +89,14 @@ namespace CombatExtended
 
                 // Haul ammo
                 yield return Toils_Reserve.Reserve(TargetIndex.B, 1);
-                yield return Toils_Goto.GotoCell(ammo.Position, PathEndMode.ClosestTouch);
+                yield return Toils_Goto.GotoCell(ammo.Position, PathEndMode.Touch);
                 yield return Toils_Haul.StartCarryThing(TargetIndex.B);
-                yield return Toils_Goto.GotoCell(turret.Position, PathEndMode.ClosestTouch);
+                yield return Toils_Goto.GotoCell(turret.Position, PathEndMode.Touch);
                 //yield return Toils_Haul.PlaceHauledThingInCell(TargetIndex.A, null, false);
             } else
             {
                 // If ammo system is turned off we just need to go to the turret.
-                yield return Toils_Goto.GotoCell(turret.Position, PathEndMode.ClosestTouch);
+                yield return Toils_Goto.GotoCell(turret.Position, PathEndMode.Touch);
             }
 
             // Wait in place
