@@ -711,7 +711,7 @@ namespace CombatExtended
                         // Simplified calculations for adjacent cover for gameplay purposes
                         if (cover.def.Fillage != FillCategory.Full && cover.AdjacentTo8WayOrInside(caster))
                         {
-                            return bounds.size.y < shotSource.y;
+                            return cover is Pawn || bounds.size.y < shotSource.y;
                         }
 
                         // Check for intersect
@@ -731,7 +731,6 @@ namespace CombatExtended
                 }
 
                 // Add validator to parameters
-                var exactTargetSq = targetPos.ToIntVec3();
                 foreach (IntVec3 curCell in SightUtility.GetCellsOnLine(shotSource, targetLoc.ToVector3()))
                 {
                     if (Controller.settings.DebugDrawPartialLoSChecks) caster.Map.debugDrawer.FlashCell(curCell, 0.4f);
