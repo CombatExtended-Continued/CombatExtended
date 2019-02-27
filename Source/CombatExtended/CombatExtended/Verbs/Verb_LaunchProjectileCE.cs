@@ -711,7 +711,12 @@ namespace CombatExtended
                         // Simplified calculations for adjacent cover for gameplay purposes
                         if (cover.def.Fillage != FillCategory.Full && cover.AdjacentTo8WayOrInside(caster))
                         {
-                            return cover is Pawn || bounds.size.y < shotSource.y;
+                            // Sanity check to prevent stuff behind us blocking LoS
+                            var cellTargDist = cell.DistanceTo(targetLoc);
+                            var shotTargDist = shotSource.ToIntVec3().DistanceTo(targetLoc);
+
+                            if (shotTargDist > cellTargDist)
+                                return cover is Pawn || bounds.size.y < shotSource.y;
                         }
 
                         // Check for intersect
@@ -726,7 +731,7 @@ namespace CombatExtended
                             caster.Map.debugDrawer.FlashCell(cell, 0.7f, bounds.extents.y.ToString());
                         }
                     }
-                    
+
                     return true;
                 }
 
