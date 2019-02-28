@@ -30,11 +30,11 @@ namespace CombatExtended
                 return;
             }
             Rect barRect = new Rect(rect.x, rect.y + 2f, rect.width, rect.height - 4f);
-            if (this.def.defName.Equals(BarMass))
+            if (def.defName.Equals(BarBulk))
             {
                 Utility_Loadouts.DrawBar(barRect, inventory.currentBulk, inventory.capacityBulk, "", pawn.GetBulkTip());
             }
-            if (this.def.defName.Equals(BarBulk))
+            if (def.defName.Equals(BarMass))
             {
                 Utility_Loadouts.DrawBar(barRect, inventory.currentWeight, inventory.capacityWeight, "", pawn.GetWeightTip());
             }
@@ -62,11 +62,11 @@ namespace CombatExtended
             if (inventoryA == null || inventoryB == null)
                 return 0;
 
-            if (this.def.defName.Equals(BarMass))
+            if (def.defName.Equals(BarBulk))
             {
                 return (inventoryA.capacityBulk - inventoryA.currentBulk).CompareTo(inventoryB.capacityBulk - inventoryB.currentBulk);
             }
-            if (this.def.defName.Equals(BarBulk))
+            if (def.defName.Equals(BarMass))
             {
                 return (inventoryA.capacityWeight - inventoryA.currentWeight).CompareTo(inventoryB.capacityWeight - inventoryB.currentWeight);
             }
