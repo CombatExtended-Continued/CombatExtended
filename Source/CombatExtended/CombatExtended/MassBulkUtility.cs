@@ -25,8 +25,10 @@ namespace CombatExtended
 
         public static float MoveSpeedFactor(float weight, float weightCapacity)
         {
-            return Mathf.Lerp(1f, 0.75f, weight / weightCapacity);
-        }
+			float t = weight / weightCapacity;
+			if (float.IsNaN(t)) t = 1f;
+			return Mathf.Lerp(1f, 0.75f, t);
+		}
 
         public static float WorkSpeedFactor(float bulk, float bulkCapacity)
         {

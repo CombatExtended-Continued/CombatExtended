@@ -110,14 +110,16 @@ namespace CombatExtended
                 // draw text overlays on bars
                 Text.Font = GameFont.Small;
                 Text.Anchor = TextAnchor.MiddleCenter;
-                var currentBulk = CE_StatDefOf.CarryBulk.ValueToString(comp.currentBulk, CE_StatDefOf.CarryBulk.toStringNumberSense);
-                var capacityBulk = CE_StatDefOf.CarryBulk.ValueToString(comp.capacityBulk, CE_StatDefOf.CarryBulk.toStringNumberSense);
-                Widgets.Label(bulkRect, currentBulk + "/" + capacityBulk);             
-                Text.Font = GameFont.Small;
-                Text.Anchor = TextAnchor.MiddleCenter;
-                Widgets.Label(weightRect, comp.currentWeight.ToString("0.#") + "/" + comp.capacityWeight.ToStringMass());
 
-                Text.Anchor = TextAnchor.UpperLeft;
+                string currentBulk = CE_StatDefOf.CarryBulk.ValueToString(comp.currentBulk, CE_StatDefOf.CarryBulk.toStringNumberSense);
+                string capacityBulk = CE_StatDefOf.CarryBulk.ValueToString(comp.capacityBulk, CE_StatDefOf.CarryBulk.toStringNumberSense);
+				Widgets.Label(bulkRect, currentBulk + "/" + capacityBulk);
+
+				string currentWeight = comp.currentWeight.ToString("0.#");
+				string capacityWeight = CE_StatDefOf.CarryWeight.ValueToString(comp.capacityWeight, CE_StatDefOf.CarryWeight.toStringNumberSense);
+				Widgets.Label(weightRect, currentWeight + "/" + capacityWeight);
+
+				Text.Anchor = TextAnchor.UpperLeft;
             }
 
             // start drawing list (rip from ITab_Pawn_Gear)

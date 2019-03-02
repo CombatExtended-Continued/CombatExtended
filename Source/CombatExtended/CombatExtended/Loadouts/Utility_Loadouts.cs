@@ -71,8 +71,8 @@ namespace CombatExtended
 
             // bar
             bool overburdened = current > capacity;
-            float fillPercentage = overburdened ? 1f : current / capacity;
-            if (overburdened)
+			float fillPercentage = overburdened ? 1f : (float.IsNaN(current / capacity) ? 1f : current / capacity);
+			if (overburdened)
             {
                 Widgets.FillableBar(barRect, fillPercentage, OverburdenedTex);
                 DrawBarThreshold(barRect, capacity / current, 1f);
