@@ -111,7 +111,7 @@ namespace CombatExtended
             if (!Controller.settings.RealisticCookOff)
             {
                 ProjectileCE projectile = (ProjectileCE)ThingMaker.MakeThing(AmmoDef.cookOffProjectile);
-                GenSpawn.Spawn(projectile, Position, Map);
+                GenSpawn.Spawn(projectile, PositionHeld, MapHeld);
 
                 // Launch in random direction
                 projectile.canTargetSelf = true;
