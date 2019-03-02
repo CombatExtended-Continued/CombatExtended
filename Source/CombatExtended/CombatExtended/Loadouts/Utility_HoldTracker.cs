@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using RimWorld;
@@ -296,10 +296,11 @@ namespace CombatExtended
 			// get the pawn's inventory
         	foreach (Thing thing in pawn.inventory.innerContainer)
 			{
-				if (!storage.ContainsKey(thing.def))
-					storage.Add(thing.def, new Integer(0));
-				storage[thing.def].value += thing.stackCount;
-				gun = thing.TryGetComp<CompAmmoUser>();
+                Thing thing2 = thing.GetInnerIfMinified();
+				if (!storage.ContainsKey(thing2.def))
+					storage.Add(thing2.def, new Integer(0));
+				storage[thing2.def].value += thing2.stackCount;
+				gun = thing2.TryGetComp<CompAmmoUser>();
 				if (gun != null && gun.UseAmmo)
 				{
 					if (storage.ContainsKey(gun.CurrentAmmo))
@@ -401,7 +402,7 @@ namespace CombatExtended
                 } else {
         			foreach (ThingDef def in listing.Keys)
         			{
-		        		dropThing = inventory.container.FirstOrDefault(t => t.def == def);
+		        		dropThing = inventory.container.FirstOrDefault(t => t.GetInnerIfMinified().def == def);
 		        		if (dropThing != null)
 		        		{
 			        		dropCount = listing[def].value > dropThing.stackCount ? dropThing.stackCount : listing[def].value;

@@ -49,8 +49,7 @@ namespace CombatExtended
             
             if (thing is Building)
             {
-            	var door = thing as Building_Door;
-            	if (door != null && door.Open)
+                if (thing is Building_Door door && door.Open)
             	{
             		return;		//returns heightRange = (0,0) & shotHeight = 0. If not open, doors have FillCategory.Full so returns (0, WallCollisionHeight)
             	}

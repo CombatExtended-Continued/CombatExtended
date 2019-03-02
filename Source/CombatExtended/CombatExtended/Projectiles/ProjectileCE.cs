@@ -74,6 +74,7 @@ namespace CombatExtended
 
         private float suppressionAmount;
         public Thing mount; // GiddyUp compatibility, ignore collisions with pawns the launcher is mounting
+        public float AccuracyFactor;
 
         #region FreeIntercept
         private static List<IntVec3> checkedCells = new List<IntVec3>();
@@ -581,8 +582,7 @@ namespace CombatExtended
             }
 
             var bounds = CE_Utility.GetBoundsFor(thing);
-            float dist;
-            if (!bounds.IntersectRay(ShotLine, out dist))
+            if (!bounds.IntersectRay(ShotLine, out var dist))
             {
                 return false;
             }
@@ -592,12 +592,11 @@ namespace CombatExtended
             }
 
             // Trees and bushes have RNG chance to collide
-            var plant = thing as Plant;
-            if (plant != null)
+            if (thing is Plant)
             {
-                //TODO: Remove fillPercent dependency because all fillPercents on trees are 0.25
                 //Prevents trees near the shooter (e.g the shooter's cover) to be hit
-                var chance = thing.def.fillPercent * ((thing.Position - OriginIV3).LengthHorizontal / 40);
+                var accuracyFactor = def.projectile.alwaysFreeIntercept ? 1 : (thing.Position - OriginIV3).LengthHorizontal / 40 * AccuracyFactor;
+                var chance = thing.def.fillPercent * accuracyFactor;
                 if (Controller.settings.DebugShowTreeCollisionChance) MoteMaker.ThrowText(thing.Position.ToVector3Shifted(), thing.Map, chance.ToString());
                 if (!Rand.Chance(chance)) return false;
             }
@@ -847,18 +846,7 @@ namespace CombatExtended
         /// <param name="angle">Shot angle in radians off the ground.</param>
         /// <param name="shotHeight">Height from which the projectile is fired in vertical cells.</param>
         /// <returns>Distance in cells that the projectile will fly at the given arc.</returns>
-        private float DistanceTraveled
-        {
-            get
-            {
-                //Fragment at 0f height early opt-out
-                if (shotHeight < 0.001f)
-                {
-                    return (Mathf.Pow(shotSpeed, 2f) / GravityFactor) * Mathf.Sin(2f * shotAngle);
-                }
-                return ((shotSpeed * Mathf.Cos(shotAngle)) / GravityFactor) * (shotSpeed * Mathf.Sin(shotAngle) + Mathf.Sqrt(Mathf.Pow(shotSpeed * Mathf.Sin(shotAngle), 2f) + 2f * GravityFactor * shotHeight));
-            }
-        }
+        private float DistanceTraveled => CE_Utility.MaxProjectileRange(shotHeight, shotSpeed, shotAngle, GravityFactor);
 
         /// <summary>
         /// Calculates the shot angle necessary to reach <i>range</i> with a projectile of speed <i>velocity</i> at a height difference of <i>heightDifference</i>, returning either the upper or lower arc in radians. Does not take into account air resistance.

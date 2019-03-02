@@ -52,7 +52,7 @@ namespace CombatExtended
             if (this.CompCharges != null)
             {
                 Vector2 bracket;
-                if (this.CompCharges.GetChargeBracket(targDist, out bracket))
+                if (this.CompCharges.GetChargeBracket(targDist, ShotHeight, projectilePropsCE.Gravity, out bracket))
                 {
                     maxRange = bracket.y;
                 }

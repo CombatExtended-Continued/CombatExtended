@@ -403,7 +403,7 @@ namespace CombatExtended.Harmony
             int count;
             if (compInventory != null && !compInventory.CanFitInInventory(apparel, out count, false, true))
             {
-                FloatMenuOption item4 = new FloatMenuOption("CannotWear".Translate(apparel.Label) + " (" + "CE_InventoryFull".Translate() + ")", null);
+                FloatMenuOption item4 = new FloatMenuOption("CannotWear".Translate(apparel.Label, apparel) + " (" + "CE_InventoryFull".Translate() + ")", null);
                 opts.Add(item4);
                 return false;
             }

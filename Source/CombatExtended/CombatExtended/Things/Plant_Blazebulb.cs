@@ -10,7 +10,7 @@ namespace CombatExtended
 {
     class Plant_Blazebulb : Plant
     {
-        private const int ignitionTemp = 28;                    // Temperature (in Celsius) above which the plant will start catching fire
+        private const int IgnitionTemp = 28;                    // Temperature (in Celsius) above which the plant will start catching fire
 
         public override void SpawnSetup(Map map, bool respawningAfterLoad)
         {
@@ -22,9 +22,9 @@ namespace CombatExtended
         {
             base.TickLong();
             float temperature = Position.GetTemperature(base.Map);
-            if (temperature > ignitionTemp)
+            if (temperature > IgnitionTemp)
             {
-                float ignitionChance = 0.005f * Mathf.Pow((temperature - ignitionTemp), 2);
+                float ignitionChance = 0.005f * Mathf.Pow((temperature - IgnitionTemp), 2);
                 float rand = UnityEngine.Random.value;
                 if(UnityEngine.Random.value < ignitionChance)
                 {
@@ -35,23 +35,23 @@ namespace CombatExtended
 
         public override void PostApplyDamage(DamageInfo dinfo, float totalDamageDealt)
         {
-            base.PostApplyDamage(dinfo, totalDamageDealt);
-            if (dinfo.Def != DamageDefOf.Rotting)
+            if (dinfo.Def != DamageDefOf.Rotting && SpawnedOrAnyParentSpawned)
             {
                 // Find existing fuel puddle or spawn one if needed
-                Thing fuel = Position.GetThingList(this.Map).FirstOrDefault(x => x.def == CE_ThingDefOf.FilthPrometheum);
-                int fuelHPFromDamage = Mathf.CeilToInt(CE_ThingDefOf.FilthPrometheum.BaseMaxHitPoints * Mathf.Clamp01(totalDamageDealt / MaxHitPoints));
+                Thing fuel = PositionHeld.GetThingList(MapHeld).FirstOrDefault(x => x.def == CE_ThingDefOf.FilthPrometheum);
+                int fuelHpFromDamage = Mathf.CeilToInt(CE_ThingDefOf.FilthPrometheum.BaseMaxHitPoints * Mathf.Clamp01(totalDamageDealt / MaxHitPoints));
                 if (fuel != null)
                 {
-                    fuel.HitPoints = Mathf.Min(fuel.MaxHitPoints, fuel.HitPoints + fuelHPFromDamage);
+                    fuel.HitPoints = Mathf.Min(fuel.MaxHitPoints, fuel.HitPoints + fuelHpFromDamage);
                 }
                 else
                 {
                     fuel = ThingMaker.MakeThing(CE_ThingDefOf.FilthPrometheum);
-                    GenSpawn.Spawn(fuel, Position, this.Map);
-                    fuel.HitPoints = fuelHPFromDamage;
+                    GenSpawn.Spawn(fuel, PositionHeld, MapHeld);
+                    fuel.HitPoints = fuelHpFromDamage;
                 }
             }
+            base.PostApplyDamage(dinfo, totalDamageDealt);
         }
     }
 }

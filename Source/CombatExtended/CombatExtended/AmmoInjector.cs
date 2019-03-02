@@ -116,7 +116,7 @@ namespace CombatExtended
                 // Toggle trading
                 if (ammoDef.tradeTags.Contains(enableTradeTag))
                 {
-                	ammoDef.tradeability = enabled ? Tradeability.All : Tradeability.Sellable;
+                	ammoDef.tradeability = enabled ? Tradeability.All : Tradeability.None;
                 }
 
                 // Toggle craftability

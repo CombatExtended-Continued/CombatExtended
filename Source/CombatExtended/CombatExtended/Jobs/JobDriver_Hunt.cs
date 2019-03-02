@@ -71,8 +71,6 @@ namespace CombatExtended
             
             yield return Toils_Jump.JumpIf(startExecuteDowned, () => Victim.Downed && Victim.RaceProps.executionRange <= 2);
             
-            yield return Toils_Jump.JumpIfTargetDowned(VictimInd, gotoCastPos);
-            
             yield return Toils_Combat.CastVerb(VictimInd, false).JumpIfDespawnedOrNull(VictimInd, startCollectCorpse)
                 .FailOn(() =>
                 {

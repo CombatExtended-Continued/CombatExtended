@@ -29,7 +29,7 @@ namespace CombatExtended
         private bool holdFire;
         protected CompMannable mannableComp;
         protected CompPowerTrader powerComp;
-        protected TurretTopCE top;
+        protected TurretTop top;
 
         public static Material ForcedTargetLineMat = MaterialPool.MatFrom(GenDraw.LineTexPath, ShaderDatabase.Transparent, new Color(1f, 0.5f, 0.5f));
 
@@ -188,7 +188,7 @@ namespace CombatExtended
         // Uses new TurretTopCE class
         public Building_TurretGunCE()
         {
-            this.top = new TurretTopCE(this);
+            this.top = new TurretTop(this);
         }
 
         #endregion

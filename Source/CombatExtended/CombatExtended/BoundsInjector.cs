@@ -171,6 +171,10 @@ namespace CombatExtended
     	{
 			if (pawn.RaceProps.Humanlike)
 			{
+                return new Vector2(0.5f,1);
+
+                // Disabling sprite bounds for humans for balance and game design reasons -NIA
+                /*
 				PawnRenderer renderer = pawn.Drawer.renderer;
 				PawnGraphicSet graphicSet = renderer.graphics;
 				
@@ -197,6 +201,7 @@ namespace CombatExtended
 						            renderer.BaseHeadOffsetAt(Rot4.East).z));
 				}
 				catch (ArgumentException e) {	throw new ArgumentException(pawn+".graphics."+(pawn.IsDessicated() ? "dessicated/dessicatedHead" : "naked/head")+"Graphic", e);	}
+                */
 			}
 			else
 			{
