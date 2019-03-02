@@ -26,7 +26,7 @@ namespace CombatExtended
         public static float MoveSpeedFactor(float weight, float weightCapacity)
         {
 			float t = weight / weightCapacity;
-			if (float.IsNaN(t)) t = 0f;
+			if (float.IsNaN(t)) t = 1f;
 			return Mathf.Lerp(1f, 0.75f, t);
 		}
 
