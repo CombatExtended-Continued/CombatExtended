@@ -114,10 +114,9 @@ namespace CombatExtended.Harmony
             if (compInventory != null)
             {
                 List<Thing> thingList = c.GetThingList(pawn.Map);
-                if (!thingList.NullOrEmpty<Thing>())
+                foreach (Thing item in thingList)
                 {
-                    Thing item = thingList.FirstOrDefault(thing => thing.def.alwaysHaulable && !(thing is Corpse));
-                    if (item != null)
+                    if (item != null && item.def.alwaysHaulable && !(item is Corpse))
                     {
                         //FloatMenuOption pickUpOption;
                         int count = 0;
