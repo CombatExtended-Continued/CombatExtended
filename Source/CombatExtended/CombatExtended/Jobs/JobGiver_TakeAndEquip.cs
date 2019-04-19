@@ -81,7 +81,8 @@ namespace CombatExtended
                 
             	if (hasWeaponTags
                   && primaryAmmoUser.parent.def.weaponTags.Any(pawn.kindDef.weaponTags.Contains)
-            	  && loadoutPropertiesExtension?.primaryMagazineCount != FloatRange.Zero)
+                  && loadoutPropertiesExtension != null
+                  && loadoutPropertiesExtension?.primaryMagazineCount != FloatRange.Zero)
             	{
                 	magazineSize.min = loadoutPropertiesExtension.primaryMagazineCount.min;
                 	magazineSize.max = loadoutPropertiesExtension.primaryMagazineCount.max;
@@ -198,8 +199,10 @@ namespace CombatExtended
                     }
                 }
 
+                var priority = GetPriorityWork(pawn);
+
                 // Drop excess ranged weapon
-                if (!pawn.Faction.IsPlayer && primaryammouser != null && GetPriorityWork(pawn) == WorkPriority.Unloading && inventory.rangedWeaponList.Count >= 1)
+                if (!pawn.Faction.IsPlayer && primaryammouser != null && priority == WorkPriority.Unloading && inventory.rangedWeaponList.Count >= 1)
                 {
                     Thing ListGun = inventory.rangedWeaponList.Find(thing => thing.TryGetComp<CompAmmoUser>() != null && thing.def != pawn.equipment.Primary.def);
                     if (ListGun != null)
@@ -227,7 +230,7 @@ namespace CombatExtended
                 }
 
                 // Find and drop not need ammo from inventory
-                if (!pawn.Faction.IsPlayer && hasPrimary && inventory.ammoList.Count > 1 && GetPriorityWork(pawn) == WorkPriority.Unloading)
+                if (!pawn.Faction.IsPlayer && hasPrimary && inventory.ammoList.Count > 1 && priority == WorkPriority.Unloading)
                 {
                     Thing WrongammoThing = null;
                     WrongammoThing = primaryammouser != null
@@ -270,7 +273,7 @@ namespace CombatExtended
                 Room room = RegionAndRoomQuery.RoomAtFast(pawn.Position, pawn.Map);
 
                 // Find weapon in inventory and try to switch if any ammo in inventory.
-                if (GetPriorityWork(pawn) == WorkPriority.Weapon && !hasPrimary)
+                if (priority == WorkPriority.Weapon && !hasPrimary)
                 {
                     ThingWithComps InvListGun2 = inventory.rangedWeaponList.Find(thing => thing.TryGetComp<CompAmmoUser>() != null);
 
@@ -386,7 +389,7 @@ namespace CombatExtended
                 }
 
                 // Find ammo
-                if ((GetPriorityWork(pawn) == WorkPriority.Ammo || GetPriorityWork(pawn) == WorkPriority.LowAmmo)
+                if ((priority == WorkPriority.Ammo || priority == WorkPriority.LowAmmo)
                     && primaryammouser != null)
                 {
                     List<ThingDef> curAmmoList = (from AmmoLink g in primaryammouser.Props.ammoSet.ammoTypes
@@ -418,7 +421,7 @@ namespace CombatExtended
                                         if (pawn.Faction.IsPlayer)
                                         {
                                             int SearchRadius = 0;
-                                            if (GetPriorityWork(pawn) == WorkPriority.LowAmmo) SearchRadius = 70;
+                                            if (priority == WorkPriority.LowAmmo) SearchRadius = 70;
                                             else SearchRadius = 30;
 
                                             Thing closestThing = GenClosest.ClosestThingReachable(
@@ -462,7 +465,7 @@ namespace CombatExtended
                     }
                 }
                 /*
-                if (!pawn.Faction.IsPlayer && pawn.apparel != null && GetPriorityWork(pawn) == WorkPriority.Apparel)
+                if (!pawn.Faction.IsPlayer && pawn.apparel != null && priority == WorkPriority.Apparel)
                 {
                     if (!pawn.apparel.BodyPartGroupIsCovered(BodyPartGroupDefOf.Torso))
                     {
