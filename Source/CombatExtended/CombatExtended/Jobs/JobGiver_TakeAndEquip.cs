@@ -82,7 +82,7 @@ namespace CombatExtended
             	if (hasWeaponTags
                   && primaryAmmoUser.parent.def.weaponTags.Any(pawn.kindDef.weaponTags.Contains)
                   && loadoutPropertiesExtension != null
-                  && loadoutPropertiesExtension?.primaryMagazineCount != FloatRange.Zero)
+                  && loadoutPropertiesExtension.primaryMagazineCount != FloatRange.Zero)
             	{
                 	magazineSize.min = loadoutPropertiesExtension.primaryMagazineCount.min;
                 	magazineSize.max = loadoutPropertiesExtension.primaryMagazineCount.max;
