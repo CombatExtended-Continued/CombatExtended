@@ -144,7 +144,7 @@ namespace CombatExtended
             }
         }
 
-        protected CompFireModes CompFireModes
+        public CompFireModes CompFireModes
         {
             get
             {
