@@ -12,13 +12,15 @@ namespace CombatExtended.Harmony
     [HarmonyPatch(typeof(VerbUtility), "GetProjectile")]
     internal static class Harmony_VerbUtility
     {
-        internal static void Postfix(ref ThingDef __result, Verb verb)
+        internal static bool Prefix(Verb verb, ref ThingDef __result)
         {
-            if (__result == null)
+            if (verb is Verb_LaunchProjectileCE verbCE)
             {
-                var verbCE = verb as Verb_LaunchProjectileCE;
-                __result = verbCE?.Projectile;
+                __result = verbCE.Projectile;
+                return false;
             }
+
+            return true;
         }
     }
 }
