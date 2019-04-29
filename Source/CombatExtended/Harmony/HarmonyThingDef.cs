@@ -14,6 +14,7 @@ namespace CombatExtended.Harmony
     {
         private static readonly string[] StatsToCull = { "ArmorPenetration", "StoppingPower", "Damage" };
         private const string BurstShotStatName = "BurstShotCount";
+        private const string CoverStatName = "CoverEffectiveness";
 
         static MethodBase TargetMethod()
         {
@@ -44,6 +45,26 @@ namespace CombatExtended.Harmony
                         }
                     }
                 }
+                // Override cover effectiveness with collision height
+                else if (entry.LabelCap.Contains(CoverStatName.Translate().CapitalizeFirst()))
+                {
+                    // Determine collision height
+                    var def = (ThingDef)AccessTools.Field(__instance.GetType(), "$this").GetValue(__instance);
+                    if (def.plant?.IsTree ?? false)
+                        return;
+
+                    var height = def.Fillage == FillCategory.Full
+                        ? CollisionVertical.WallCollisionHeight
+                        : def.fillPercent;
+
+                    var newEntry = new StatDrawEntry(entry.category, "CE_CoverHeight".Translate(), height.ToStringByStyle(ToStringStyle.FloatMaxTwo), entry.DisplayPriorityWithinCategory)
+                    {
+                        overrideReportText = "CE_CoverHeightExplanation".Translate()
+                    };
+
+                    AccessTools.Field(__instance.GetType(), "$current").SetValue(__instance, newEntry);
+                }
+                // Remove obsolete vanilla stats
                 else if (StatsToCull.Select(s => s.Translate().CapitalizeFirst()).Contains(entry.LabelCap))
                 {
                     __result = __instance.MoveNext();
