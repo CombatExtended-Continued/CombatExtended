@@ -22,7 +22,7 @@ namespace CombatExtended
     internal static class AmmoInjector
     {
         public static readonly FieldInfo _allRecipesCached = typeof(ThingDef).GetField("allRecipesCached", BindingFlags.Instance | BindingFlags.NonPublic);
-    	
+
         private const string enableTradeTag = "CE_AutoEnableTrade";             // The trade tag which designates ammo defs for being automatically switched to Tradeability.Stockable
         private const string enableCraftingTag = "CE_AutoEnableCrafting";        // The trade tag which designates ammo defs for having their crafting recipes automatically added to the crafting table
         /*
@@ -42,49 +42,50 @@ namespace CombatExtended
         {
             if (InjectAmmos())
             {
-            	Log.Message("Combat Extended :: Ammo " + (Controller.settings.EnableAmmoSystem ? "injected" : "removed"));
+                Log.Message("Combat Extended :: Ammo " + (Controller.settings.EnableAmmoSystem ? "injected" : "removed"));
             }
             else
             {
-            	Log.Error("Combat Extended :: Ammo injector failed to get injected");
+                Log.Error("Combat Extended :: Ammo injector failed to get injected");
             }
+            ThingSetMakerUtility.Reset();   // Reset pool of spawnable ammos for quests, etc.
         }
 
         public static bool InjectAmmos()
         {
-        	bool enabled = Controller.settings.EnableAmmoSystem;
+            bool enabled = Controller.settings.EnableAmmoSystem;
             if (enabled)
             {
-            	// Initialize list of all weapons
-            	CE_Utility.allWeaponDefs.Clear();
-            	
-	            foreach (ThingDef def in DefDatabase<ThingDef>.AllDefsListForReading)
-	            {
-	            	if (def.IsWeapon
-	            	    && (def.generateAllowChance > 0
-	            	        || def.tradeability.TraderCanSell()
-	            	        || (def.weaponTags != null && def.weaponTags.Contains("TurretGun"))))
-	                    CE_Utility.allWeaponDefs.Add(def);
-	            }
-	            if (CE_Utility.allWeaponDefs.NullOrEmpty())
-	            {
-	                Log.Warning("CE Ammo Injector found no weapon defs");
-	                return true;
-	            }
+                // Initialize list of all weapons
+                CE_Utility.allWeaponDefs.Clear();
+
+                foreach (ThingDef def in DefDatabase<ThingDef>.AllDefsListForReading)
+                {
+                    if (def.IsWeapon
+                        && (def.generateAllowChance > 0
+                            || def.tradeability.TraderCanSell()
+                            || (def.weaponTags != null && def.weaponTags.Contains("TurretGun"))))
+                        CE_Utility.allWeaponDefs.Add(def);
+                }
+                if (CE_Utility.allWeaponDefs.NullOrEmpty())
+                {
+                    Log.Warning("CE Ammo Injector found no weapon defs");
+                    return true;
+                }
             }
             else
             {
-        		//If the ammo system is not enabled and it appears that there are no weaponDefs at all ..
-            	if (CE_Utility.allWeaponDefs.NullOrEmpty())
-            	{
-            		//.. return out of the method early because nothing has to be reversed ..
-            		return true;
-            	}
-            	//.. else, continue the method.
+                //If the ammo system is not enabled and it appears that there are no weaponDefs at all ..
+                if (CE_Utility.allWeaponDefs.NullOrEmpty())
+                {
+                    //.. return out of the method early because nothing has to be reversed ..
+                    return true;
+                }
+                //.. else, continue the method.
             }
-            
+
             var ammoDefs = new HashSet<ThingDef>();
-            
+
             // Find all ammo using guns
             foreach (ThingDef weaponDef in CE_Utility.allWeaponDefs)
             {
@@ -94,10 +95,10 @@ namespace CombatExtended
                     ammoDefs.UnionWith(props.ammoSet.ammoTypes.Select<AmmoLink, ThingDef>(x => x.ammo));
                 }
             }
-            
+
             // Make sure to exclude all ammo things which double as weapons
-			ammoDefs.RemoveWhere(x => x.IsWeapon);
-            
+            ammoDefs.RemoveWhere(x => x.IsWeapon);
+
             /*
             bool canCraft = (AmmoCraftingStation != null);
             
@@ -106,17 +107,17 @@ namespace CombatExtended
             	Log.ErrorOnce("CE ammo injector crafting station is null", 84653201);
             }
             */
-            
+
             foreach (AmmoDef ammoDef in ammoDefs)
             {
-            	// Toggle ammo visibility in the debug menu
+                // Toggle ammo visibility in the debug menu
                 ammoDef.menuHidden = !enabled;
                 ammoDef.destroyOnDrop = !enabled;
-                
+
                 // Toggle trading
                 if (ammoDef.tradeTags.Contains(enableTradeTag))
                 {
-                	ammoDef.tradeability = enabled ? Tradeability.All : Tradeability.None;
+                    ammoDef.tradeability = enabled ? Tradeability.All : Tradeability.None;
                 }
 
                 // Toggle craftability
@@ -170,7 +171,7 @@ namespace CombatExtended
                     }
                 }
             }
-            
+
             /*
         	if (canCraft)
         	{
@@ -204,7 +205,7 @@ namespace CombatExtended
 				}
             }
             */
-            
+
             return true;
         }
 
