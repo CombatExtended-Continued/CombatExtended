@@ -28,6 +28,14 @@ namespace CombatExtended
         }
         protected override void Impact(Thing hitThing)
         {
+            // Snap to target so we hit multi-tile pawns with our explosion
+            if (hitThing is Pawn)
+            {
+                var newPos = hitThing.DrawPos;
+                newPos.y = ExactPosition.y;
+                ExactPosition = newPos;
+                Position = ExactPosition.ToIntVec3();
+            }
             if (def.projectile.explosionDelay == 0)
             {
                 Explode();
@@ -70,18 +78,18 @@ namespace CombatExtended
             base.Impact(null); // base.Impact() handles this.Destroy() and comp.Explode()
         }
 
-      /*public static void ThrowBigExplode(Vector3 loc, Map map, float size)
-        {
-            if (!loc.ShouldSpawnMotesAt(map))
-            {
-                return;
-            }
-            MoteThrown moteThrown = (MoteThrown)ThingMaker.MakeThing(ThingDef.Named("Mote_BigExplode"), null);
-            moteThrown.Scale = Rand.Range(5f, 6f) * size;
-            moteThrown.exactRotation = Rand.Range(0f, 0f);
-            moteThrown.exactPosition = loc;
-            moteThrown.SetVelocity((float)Rand.Range(6, 8), Rand.Range(0.002f, 0.003f));
-            GenSpawn.Spawn(moteThrown, loc.ToIntVec3(), map);
-        }*/
+        /*public static void ThrowBigExplode(Vector3 loc, Map map, float size)
+          {
+              if (!loc.ShouldSpawnMotesAt(map))
+              {
+                  return;
+              }
+              MoteThrown moteThrown = (MoteThrown)ThingMaker.MakeThing(ThingDef.Named("Mote_BigExplode"), null);
+              moteThrown.Scale = Rand.Range(5f, 6f) * size;
+              moteThrown.exactRotation = Rand.Range(0f, 0f);
+              moteThrown.exactPosition = loc;
+              moteThrown.SetVelocity((float)Rand.Range(6, 8), Rand.Range(0.002f, 0.003f));
+              GenSpawn.Spawn(moteThrown, loc.ToIntVec3(), map);
+          }*/
     }
 }
