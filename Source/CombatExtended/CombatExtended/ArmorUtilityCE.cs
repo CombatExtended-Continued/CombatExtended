@@ -147,7 +147,7 @@ namespace CombatExtended
             {
                 BodyPartRecord curPart = partsToHit[i];
                 bool coveredByArmor = curPart.IsInGroup(CE_BodyPartGroupDefOf.CoveredByNaturalArmor);
-                float partArmor = pawn.HealthScale * 0.05f;   // How much armor is provided by sheer meat
+                float partArmor = pawn.GetStatValue(CE_StatDefOf.BodyPartDensity);   // How much armor is provided by sheer meat
                 if (coveredByArmor)
                     partArmor += pawn.GetStatValue(dinfo.Def.armorCategory.armorRatingStat);
                 float unused = dmgAmount;
