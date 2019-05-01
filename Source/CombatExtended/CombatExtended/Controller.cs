@@ -38,7 +38,21 @@ namespace CombatExtended
 
         private static void DoTutorialPopup()
         {
-            Find.WindowStack.Add(new Dialog_EnableTutor());
+            var enableAction = new Action(() =>
+            {
+                Prefs.AdaptiveTrainingEnabled = true;
+                settings.ShowTutorialPopup = false;
+                settings.Write();
+            });
+            var disableAction = new Action(() =>
+            {
+                settings.ShowTutorialPopup = false;
+                settings.Write();
+            });
+
+            var dialog = new Dialog_MessageBox("CE_EnableTutorText".Translate(), "CE_EnableTutorDisable".Translate(), disableAction, "CE_EnableTutorEnable".Translate(),
+                enableAction, null, true);
+            Find.WindowStack.Add(dialog);
         }
 
         public override string SettingsCategory()
