@@ -21,6 +21,8 @@ namespace CombatExtended
         public bool ShowTaunts => showTaunts;
         public bool AllowMeleeHunting => allowMeleeHunting;
 
+        public bool ShowTutorialPopup = true;
+
         // Ammo settings
         private bool enableAmmoSystem = true;
         // private bool rightClickAmmoSelect = false;
@@ -84,6 +86,8 @@ namespace CombatExtended
             Scribe_Values.Look(ref showCaliberOnGuns, "showCaliberOnGuns", true);
             Scribe_Values.Look(ref reuseNeolithicProjectiles, "reuseNeolithicProjectiles", true);
             Scribe_Values.Look(ref realisticCookOff, "realisticCookOff", false);
+
+            Scribe_Values.Look(ref ShowTutorialPopup, "ShowTutorialPopup", true);
 
             lastAmmoSystemStatus = enableAmmoSystem;    // Store this now so we can monitor for changes
         }
