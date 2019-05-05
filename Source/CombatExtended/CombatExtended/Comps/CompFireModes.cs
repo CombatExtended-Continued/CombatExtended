@@ -97,7 +97,7 @@ namespace CombatExtended
         {
             base.PostExposeData();
             Scribe_Values.Look(ref currentFireModeInt, "currentFireMode", FireMode.AutoFire);
-            Scribe_Values.Look(ref currentAimModeInt, "currentAimMode", AimMode.Snapshot);
+            Scribe_Values.Look(ref currentAimModeInt, "currentAimMode", AimMode.AimedShot);
         }
 
         private void InitAvailableFireModes()
@@ -124,7 +124,7 @@ namespace CombatExtended
             }
             if (!Props.noSnapshot)
             {
-                availableAimModes.Insert(0, AimMode.Snapshot);
+                availableAimModes.Add(AimMode.Snapshot);
                 availableAimModes.Add(AimMode.SuppressFire);
             }
 
