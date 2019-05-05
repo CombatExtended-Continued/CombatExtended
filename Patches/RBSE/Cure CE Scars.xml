@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+	<Operation Class="PatchOperationSequence">
+    <success>Always</success>
+		<operations>
+			<li Class="CombatExtended.PatchOperationFindMod">
+			<modName>Rah's Bionics and Surgery Expansion</modName>
+		  </li>
+		
+		<li Class="PatchOperationAdd">
+			<xpath>/Defs</xpath>
+			<value>
+				<RecipeDef ParentName="SurgeryOld">
+			<defName>CureInjuryBlast</defName>
+			<label>cure blast</label>
+			<description>Cure blast.</description>
+	<workerClass>ScarRemoving.Recipe_RemoveHediff_noBrain</workerClass>
+			<jobString>Curing blast.</jobString>
+			<workAmount>2000</workAmount>
+	  <surgerySuccessChanceFactor>1.55</surgerySuccessChanceFactor>
+			<ingredients>
+				<li>
+						<filter>
+			  <thingDefs>
+				<li>MedicineUltratech</li>
+			  </thingDefs>
+					</filter>
+					<count>3</count>
+				</li>
+			</ingredients>
+			<fixedIngredientFilter>
+				  <thingDefs>
+					  <li>MedicineUltratech</li>
+			</thingDefs>
+			</fixedIngredientFilter>
+			<skillRequirements>
+				<Medicine>10</Medicine>
+			</skillRequirements>
+			<removesHediff>Blast</removesHediff>
+		  <researchPrerequisite>RegenerativeMedicine</researchPrerequisite>
+		</RecipeDef>
+			</value>
+		</li>
+		</operations>
+	</Operation>
+</Patch>

@@ -147,7 +147,7 @@ namespace CombatExtended
             {
                 BodyPartRecord curPart = partsToHit[i];
                 bool coveredByArmor = curPart.IsInGroup(CE_BodyPartGroupDefOf.CoveredByNaturalArmor);
-                float partArmor = pawn.HealthScale * 0.05f;   // How much armor is provided by sheer meat
+                float partArmor = pawn.GetStatValue(CE_StatDefOf.BodyPartDensity);   // How much armor is provided by sheer meat
                 if (coveredByArmor)
                     partArmor += pawn.GetStatValue(dinfo.Def.armorCategory.armorRatingStat);
                 float unused = dmgAmount;
@@ -156,14 +156,12 @@ namespace CombatExtended
                 if (coveredByArmor ? !TryPenetrateArmor(dinfo.Def, partArmor, ref penAmount, ref dmgAmount) : !TryPenetrateArmor(dinfo.Def, partArmor, ref penAmount, ref unused))
                 {
                     dinfo.SetHitPart(curPart);
-                    /*
                     if(coveredByArmor && pawn.RaceProps.IsMechanoid)
                     {
                         // For Mechanoid natural armor, apply deflection and blunt armor
                         dinfo = GetDeflectDamageInfo(dinfo, curPart);
                         TryPenetrateArmor(dinfo.Def, partArmor, ref penAmount, ref dmgAmount);
                     }
-                    */
                     break;
                 }
                 if (dmgAmount <= 0)
@@ -176,21 +174,6 @@ namespace CombatExtended
 
             dinfo.SetAmount(Mathf.CeilToInt(dmgAmount));
             return dinfo;
-        }
-
-        private static ToolCE DistinguishBodyPartGroups(this IEnumerable<ToolCE> tools, DamageInfo dinfo)
-        {
-        	var potentialTools = tools
-                .Where(x => DefDatabase<ManeuverDef>.AllDefs
-                    .Any(y => x.capacities.Contains(y.requiredCapacity) && y.verb.meleeDamageDef.defName == dinfo.Def.defName.Replace("_Critical","")));
-        	
-        	if (!potentialTools.Any())
-        		Log.ErrorOnce("CE :: Distinguishing tools based on damageDef failed - at some point the damageinfo changed damageDef (which is as expected). This is an issue because "+dinfo.Weapon+" has multiple ToolCE with the same linkedBodyPartsGroup (or multiple without one), and they can not be distinguished because of it. [While evaluating DamageInfo "+dinfo.ToString()+"]", dinfo.Weapon.GetHashCode() + dinfo.WeaponBodyPartGroup.GetHashCode() + 84827378);
-
-            if (potentialTools.Count() > 1)
-                Log.ErrorOnce("CE :: Distinguishing tools based on damageDef failed. There are multiple ToolCE with the same linkedBodyPartsGroup, the same restricted gender and the same maneuver (and thus the same damageDef) [While evaluating DamageInfo " + dinfo.ToString() + "]", dinfo.Weapon.GetHashCode() + dinfo.WeaponBodyPartGroup.GetHashCode() + 1298379123);
-
-        	return potentialTools.FirstOrDefault();
         }
 
         /// <summary>

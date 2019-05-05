@@ -144,7 +144,7 @@ namespace CombatExtended
             }
         }
 
-        protected CompFireModes CompFireModes
+        public CompFireModes CompFireModes
         {
             get
             {
@@ -685,7 +685,7 @@ namespace CombatExtended
                     var targPawn = targetThing as Pawn;
                     if (targPawn != null)
                     {
-                        targetPos += targPawn.Drawer.leaner.LeanOffset * 0.5f;
+                        targetPos += targPawn.Drawer.leaner.LeanOffset * 0.6f;
                     }
                 }
                 else
@@ -701,7 +701,7 @@ namespace CombatExtended
                 {
                     Thing cover = cell.GetFirstPawn(caster.Map) ?? cell.GetCover(caster.Map);
 
-                    if (cover != null && cover != ShooterPawn && cover != caster && cover != targetThing && !cover.IsPlant() && !cover.HostileTo(caster))
+                    if (cover != null && cover != ShooterPawn && cover != caster && cover != targetThing && !cover.IsPlant() && !(cover is Pawn && cover.HostileTo(caster)))
                     {
                         // Skip this check entirely if we're doing suppressive fire and cell is adjacent to target
                         if ((VerbPropsCE.ignorePartialLoSBlocker || aimMode == AimMode.SuppressFire) && cover.def.Fillage != FillCategory.Full) return true;

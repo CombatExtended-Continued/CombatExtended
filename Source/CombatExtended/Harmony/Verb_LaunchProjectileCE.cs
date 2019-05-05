@@ -10,10 +10,10 @@ namespace CombatExtended.Harmony
     {
         internal static IEnumerable<CodeInstruction> Transpiler(IEnumerable<CodeInstruction> instructions)
         {
-            var targetMethod = AccessTools.Method(typeof(Verb), nameof(Verb.TryFindShootLineFromTo));
+            var targetMethod = AccessTools.Method(typeof(Verb_LaunchProjectileCE), nameof(Verb_LaunchProjectileCE.TryFindShootLineFromTo));
             if (targetMethod == null)
             {
-                Log.Error($"CE :: Transpiler could not find method info for {typeof(Verb).Name}.{nameof(Verb.TryStartCastOn)}");
+                Log.Error($"CE :: Transpiler could not find method info for {typeof(Verb_LaunchProjectileCE).Name}.{nameof(Verb_LaunchProjectileCE.TryStartCastOn)}");
             }
             
             foreach (var code in instructions)
