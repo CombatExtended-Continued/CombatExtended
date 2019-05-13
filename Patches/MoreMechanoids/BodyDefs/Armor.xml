@@ -55,9 +55,17 @@
         <modName>More Mechanoids</modName>
       </li>
       <li Class="PatchOperationAdd">
-        <xpath>Defs/BodyDef[defName="MechanicalMammoth"]//*[def="MechanicalBody" or def="ArmorPlating" or def="InternalMetalPlate" or def="MechanicalHead" or def="MetalTusk" or def="MechanicalMammothLeg" or def="MechanicalMammothHoof"]/groups</xpath>
+        <xpath>Defs/BodyDef[defName="MechanicalMammoth"]//*[def="MechanicalHead" or def="MetalTusk" or def="MechanicalMammothLeg"]/groups</xpath>
         <value>
           <li>CoveredByNaturalArmor</li>
+        </value>
+      </li>
+      <li Class="PatchOperationAdd">
+        <xpath>Defs/BodyDef[defName="MechanicalMammoth"]//*[def="MechanicalBody" or def="ArmorPlating" or def="InternalMetalPlate" or (def="MechanicalMammothLeg" and not(groups)) or def="MechanicalMammothHoof"]</xpath>
+        <value>
+          <groups>
+            <li>CoveredByNaturalArmor</li>
+          </groups>
         </value>
       </li>
     </operations>
