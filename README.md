@@ -9,7 +9,7 @@ Combat Extended: FastTrack Edition is a fork of the [original Combat Extended mo
 
 ## Supported Third-Party Mods
 Mod | CE (original) | CE: FastTrack Edition
---- | --- | ---
+--- | :---: | :---:
 A Dog Said | &#x2705; | &#x2705;
 
 
