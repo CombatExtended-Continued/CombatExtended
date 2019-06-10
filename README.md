@@ -52,7 +52,7 @@ Xenn Race 											| &#x2705; 	| &#x2705;
 Xenohumans 										|  			| &#x2705;
 Zombieland 										| &#x2705; 	| &#x2705;
 **Total** | **30** | **41**
- | **CE (original)** | **CE: FastTrack Edition**
+&nbsp; | **CE (original)** | **CE: FastTrack Edition**
 
 ## Contributing Your Patches
 - We welcome patches for any and all third-party mods!
