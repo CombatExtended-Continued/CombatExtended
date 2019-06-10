@@ -13,7 +13,14 @@ Mod | CE (original) | CE: FastTrack Edition
 A Dog Said... | &#x2705; | &#x2705;
 Apparello 2 | &#x2705; | &#x2705;
 Defensive Machine Gun Turret Pack | &#x2705; | &#x2705;
-Expanded Prosthetics and Organ Engineering | &#x2705; | &#x2705;
+Expanded Prosthetics and Organ Engineering (EPOE) | &#x2705; | &#x2705;
+Equiums Horse Race | &#x2705; | &#x2705;
+Extended Storage | &#x2705; | &#x2705;
+Fallout Traits | &#x2705; | &#x2705;
+FashionRIMsta | &#x2705; | &#x2705;
+Ferrex Race | &#x2705; | &#x2705;
+Flommel | &#x2705; | 
+Hand 'n' Footwear | &#x2705; | &#x2705;
 
 ## Contributing Your Patches
 - We welcome patches for any and all third-party mods!
