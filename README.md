@@ -66,6 +66,7 @@ Zombieland 										| &#x2705; 	| &#x2705;
 
 ## License
 ![alt text](https://mirrors.creativecommons.org/presskit/buttons/88x31/png/by-nc-sa.png "Attribution-NonCommercial-ShareAlike 4.0 International (CC BY-NC-SA 4.0)")
+
 Combat Extended: FastTrack Edition is maintained by the CE FastTrack Team, and licensed under Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International (CC BY-NC-SA 4.0).
 
 This is the same license as the [original Combat Extended mod](https://github.com/NoImageAvailable/CombatExtended/) developed by the original CE Team.
