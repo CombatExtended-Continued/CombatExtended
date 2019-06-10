@@ -19,7 +19,7 @@ Extended Storage | &#x2705; | &#x2705;
 Fallout Traits | &#x2705; | &#x2705;
 FashionRIMsta | &#x2705; | &#x2705;
 Ferrex Race | &#x2705; | &#x2705;
-Flommel | &#x2705; | 
+Flommel |  | &#x2705;
 Hand 'n' Footwear | &#x2705; | &#x2705;
 
 ## Contributing Your Patches
