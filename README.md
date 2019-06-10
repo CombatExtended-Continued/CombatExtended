@@ -10,8 +10,10 @@ Combat Extended: FastTrack Edition is a fork of the [original Combat Extended mo
 ## Supported Third-Party Mods
 Mod | CE (original) | CE: FastTrack Edition
 --- | :---: | :---:
-A Dog Said | &#x2705; | &#x2705;
-
+A Dog Said... | &#x2705; | &#x2705;
+Apparello 2 | &#x2705; | &#x2705;
+Defensive Machine Gun Turret Pack | &#x2705; | &#x2705;
+Expanded Prosthetics and Organ Engineering | &#x2705; | &#x2705;
 
 ## Contributing Your Patches
 - We welcome patches for any and all third-party mods!
