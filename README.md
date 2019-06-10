@@ -12,6 +12,7 @@ Mod | CE (original) | CE: FastTrack Edition
 --- | :---: | :---:
 A Dog Said... | &#x2705; | &#x2705;
 Apparello 2 | &#x2705; | &#x2705;
+Cute Penguin | &#x2705; | &#x2705;
 Defensive Machine Gun Turret Pack | &#x2705; | &#x2705;
 Expanded Prosthetics and Organ Engineering (EPOE) | &#x2705; | &#x2705;
 Equiums Horse Race | &#x2705; | &#x2705;
@@ -21,6 +22,18 @@ FashionRIMsta | &#x2705; | &#x2705;
 Ferrex Race | &#x2705; | &#x2705;
 Flommel |  | &#x2705;
 Hand 'n' Footwear | &#x2705; | &#x2705;
+Jernfalk's Standalone Horses | &#x2705; | &#x2705;
+Leeani Playable Race | &#x2705; | &#x2705;
+Let's Have a Cat! |  | &#x2705;
+Logann Race | &#x2705; | &#x2705;
+Mechanoids Extraordinaire | &#x2705; | &#x2705;
+Ni'Hal | &#x2705; | &#x2705;
+Orassans | &#x2705; | &#x2705;
+Orion's More Mechanoids | &#x2705; | &#x2705;
+Rah's Bionics and Surgery Expansion (RBSE) | &#x2705; | &#x2705;
+Racc Race | &#x2705; | &#x2705;
+Red Horse Furniture |  | &#x2705;
+[RH] Faction: Militaires Sans Frontieres |  | &#x2705;
 
 ## Contributing Your Patches
 - We welcome patches for any and all third-party mods!
