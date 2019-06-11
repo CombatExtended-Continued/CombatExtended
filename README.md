@@ -62,7 +62,7 @@ Zombieland 										| &#x2705; 	| &#x2705;
 
 ## Fork Policy
 - CE:FT will be constantly updated to keep up with any new features, bugfixes and tweaks from the upstream CE project
-- Each release will have the same version/tag number as the corresponding CE update, plus a FT-specific suffix (e.g. v1.0.1.4-FT003 = base CE version v1.0.1.4 + FastTrack patch #3)
+- Each release will have the same version/tag number as the corresponding CE update, plus a FT-specific suffix (e.g. v1.0.1.4-FT-003 = base CE version v1.0.1.4 + FastTrack patch #3)
 
 ## License
 ![alt text](https://mirrors.creativecommons.org/presskit/buttons/88x31/png/by-nc-sa.png "Attribution-NonCommercial-ShareAlike 4.0 International (CC BY-NC-SA 4.0)")
