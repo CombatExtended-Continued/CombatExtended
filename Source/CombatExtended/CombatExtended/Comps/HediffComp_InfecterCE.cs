@@ -20,6 +20,7 @@ namespace CombatExtended
         private bool _tendedOutside;
 
         public HediffCompProperties_InfecterCE Props => (HediffCompProperties_InfecterCE)props;
+        private bool IsInternal => parent.Part.depth == BodyPartDepth.Inside;
 
         private void CheckMakeInfection()
         {
@@ -40,7 +41,7 @@ namespace CombatExtended
                 _infectionModifier /= Mathf.Pow(compTended.tendQuality + 0.75f, 2);  // Adjust infection chance based on tend quality
             }
             var infectChance = Props.infectionChancePerHourUntended * ((float)ticksUntended / GenDate.TicksPerHour); // Calculate base chance from time untreated
-            if (parent.Part.depth == BodyPartDepth.Inside) infectChance *= InfectionInnerModifier;  // Increase chance of infection for inner organs
+            if (IsInternal) infectChance *= InfectionInnerModifier;  // Increase chance of infection for inner organs
             if (Rand.Value < infectChance * _infectionModifier)
             {
                 _alreadyCausedInfection = true;
@@ -76,7 +77,7 @@ namespace CombatExtended
 
         public override void CompPostTick(ref float severityAdjustment)
         {
-            if (!_tendedOutside && parent.TryGetComp<HediffComp_TendDuration>().IsTended)
+            if (!(_tendedOutside && IsInternal) && parent.TryGetComp<HediffComp_TendDuration>().IsTended)
             {
                 _ticksTended++;
             }
@@ -85,7 +86,6 @@ namespace CombatExtended
             {
                 _ticksUntilInfect--;
                 if (_ticksUntilInfect == 0) CheckMakeInfection();
-
             }
         }
 
