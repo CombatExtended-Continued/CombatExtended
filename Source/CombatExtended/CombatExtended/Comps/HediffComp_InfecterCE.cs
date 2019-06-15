@@ -11,6 +11,9 @@ namespace CombatExtended
     public class HediffComp_InfecterCE : HediffComp
     {
         private const float InfectionInnerModifier = 3f;                            // Injuries to inner body parts will be this much more likely to get infected
+        private const float TreatmentQualityExponential = 3f;                       // Treatment factor = (TendQuality + base) ^ exponential
+        private const float TreatmentQualityBase = 0.75f;
+        private const float DamageThreshold = 10f;                                  // Wounds below this severity will decrease chance of infection, above increase
         private static readonly IntRange InfectionDelayHours = new IntRange(6, 12); // Infections will appear somewhere within this timeframe
 
         private bool _alreadyCausedInfection = false;
@@ -37,11 +40,15 @@ namespace CombatExtended
             if (compTended != null && compTended.IsTended)
             {
                 ticksUntended -= _ticksTended;
-
-                _infectionModifier /= Mathf.Pow(compTended.tendQuality + 0.75f, 2);  // Adjust infection chance based on tend quality
+                _infectionModifier /= Mathf.Pow(compTended.tendQuality + TreatmentQualityBase, TreatmentQualityExponential);  // Adjust infection chance based on tend quality
             }
             var infectChance = Props.infectionChancePerHourUntended * ((float)ticksUntended / GenDate.TicksPerHour); // Calculate base chance from time untreated
+
             if (IsInternal) infectChance *= InfectionInnerModifier;  // Increase chance of infection for inner organs
+
+            infectChance *= parent.Severity / DamageThreshold;
+
+            // Infection check
             if (Rand.Value < infectChance * _infectionModifier)
             {
                 _alreadyCausedInfection = true;
@@ -95,7 +102,7 @@ namespace CombatExtended
             {
                 var room = Pawn.GetRoom();
                 _tendedOutside = room == null;
-                _infectionModifier *= room?.GetStat(RoomStatDefOf.InfectionChanceFactor) ?? 1.5f;
+                _infectionModifier *= room == null ? RoomStatDefOf.InfectionChanceFactor.roomlessScore : RoomStatDefOf.InfectionChanceFactor.Worker.GetScore(room);
             }
         }
     }
