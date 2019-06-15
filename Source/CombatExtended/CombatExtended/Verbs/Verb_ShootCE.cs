@@ -17,9 +17,10 @@ namespace CombatExtended
         private const int aimTicksMax = 240;
 
         // XP amounts  As of A17 non-hostile pawns/objects are (per shot) worth 6xp and hostile pawns are worth 240 xp.
+        // Update as of 1.0 XP values are 20 and 170, adjusted pawnXP 0.75 -> 2.5 hostileXP 3.6 -> 21.25
         private const float objectXP = 0.1f;
-        private const float pawnXP = 0.75f;
-        private const float hostileXP = 3.6f;
+        private const float pawnXP = 2.5f;
+        private const float hostileXP = 21.25f;
 
         // Suppression aim penalty
         private const float SuppressionSwayFactor = 1.5f;
