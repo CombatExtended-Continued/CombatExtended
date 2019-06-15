@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+	<Operation Class="PatchOperationSequence">
+		<success>Always</success>
+		<operations>
+
+			<li Class="CombatExtended.PatchOperationFindMod">
+				<modName>[RH] Faction: Elite Crew (1.0)</modName>
+			</li>
+
+			<li Class="PatchOperationAddModExtension">
+				<xpath>/Defs/PawnKindDef[defName="RH_EliteCrew_Grunt" or
+					defName="RH_EliteCrew_CQB" or
+					defName="RH_EliteCrew_CQB_TierII" or
+					defName="RH_EliteCrew_Assault" or
+					defName="RH_EliteCrew_Assault_TierII" or
+					defName="RH_EliteCrew_Marksman" or
+					defName="RH_EliteCrew_Marksman_TierII" or
+					defName="RH_EliteCrew_Gunner" or
+					defName="RH_EliteCrew_Grenadier" or
+					defName="RH_EliteCrew_Boss" or
+					defName="RH_EliteCrew_Elite" or
+					defName="RH_EliteCrew_Trader" or
+					defName="RH_EliteCrew_Sniper"]</xpath>
+				<value>
+					<li Class="CombatExtended.LoadoutPropertiesExtension">
+						<primaryMagazineCount>
+							<min>2</min>
+							<max>5</max>
+						</primaryMagazineCount>
+					</li>
+				</value>
+			</li>
+
+			<li Class="PatchOperationAdd">
+				<xpath>/Defs/PawnKindDef[defName="RH_EliteCrew_Grunt" or
+					defName="RH_EliteCrew_CQB" or
+					defName="RH_EliteCrew_CQB_TierII" or
+					defName="RH_EliteCrew_Assault" or
+					defName="RH_EliteCrew_Assault_TierII" or
+					defName="RH_EliteCrew_Marksman" or
+					defName="RH_EliteCrew_Marksman_TierII" or
+					defName="RH_EliteCrew_Gunner" or
+					defName="RH_EliteCrew_Grenadier" or
+					defName="RH_EliteCrew_Boss" or
+					defName="RH_EliteCrew_Elite" or
+					defName="RH_EliteCrew_Trader" or
+					defName="RH_EliteCrew_Sniper"]/apparelRequired</xpath>
+				<value>
+					<li>Apparel_Backpack</li>
+				</value>
+			</li>
+			
+			<!-- ========== Remove RN holsters, since we are already adding backpacks in the preceding patch operation, and holsters cannot coexist with them ========== -->
+			
+			<li Class="PatchOperationRemove">
+				<xpath>/Defs/PawnKindDef[defName="RH_EliteCrew_Grunt" or
+					defName="RH_EliteCrew_CQB" or
+					defName="RH_EliteCrew_CQB_TierII" or
+					defName="RH_EliteCrew_Assault" or
+					defName="RH_EliteCrew_Assault_TierII" or
+					defName="RH_EliteCrew_Marksman" or
+					defName="RH_EliteCrew_Marksman_TierII" or
+					defName="RH_EliteCrew_Gunner"]/apparelRequired/li[text()="RNApparel_Holsters_Shoulder"]</xpath>
+			</li>
+			
+			<!-- ========== Spawn standard CE-patched vanilla grenades instead of RN grenades for Grenadiers ========== -->
+
+			<li Class="PatchOperationReplace">
+				<xpath>/Defs/PawnKindDef[defName="RH_EliteCrew_Grenadier"]/weaponTags</xpath>
+				<value>
+					<weaponTags>
+						<li>RN_RPG7</li>
+						<li>GrenadeDestructive</li>
+					</weaponTags>
+				</value>
+			</li>
+			
+			<!-- ========== Tweak minimum weaponMoney for selected pawn types, so that they actually spawn with weapons ========== -->
+
+			<li Class="PatchOperationReplace">
+				<xpath>/Defs/PawnKindDef[defName="RH_EliteCrew_Grunt"]/weaponMoney/min</xpath>
+				<value>
+					<min>180</min>
+				</value>
+			</li>
+			
+			<li Class="PatchOperationReplace">
+				<xpath>/Defs/PawnKindDef[defName="RH_EliteCrew_Gunner"]/weaponMoney/min</xpath>
+				<value>
+					<min>1000</min>
+				</value>
+			</li>
+			
+			<li Class="PatchOperationReplace">
+				<xpath>/Defs/PawnKindDef[defName="RH_EliteCrew_Gunner"]/weaponMoney/max</xpath>
+				<value>
+					<max>2500</max>
+				</value>
+			</li>
+
+		</operations>
+	</Operation>
+</Patch>
