@@ -1,0 +1,199 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- 
+Chicken Plucker's Project Red Horse mods often have duplicate items, apparels and defs shared between them,
+so this patch will only be applied if:
+
+Task Force 141 is active && Rimmu-Nation Weapons is NOT active
+
+If both mods are active, the CE patch from Rimmu-Nation Weapons should automatically take over
+-->
+<Patch>
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+			<li>[RH] Faction: Task Force 141 (1.0)</li>
+		</mods>
+		<match Class="PatchOperationFindMod">
+			<mods>
+				<li>[CP] Rimmu-Nation - Weapons (1.0)</li>
+			</mods>
+			<nomatch Class="PatchOperationSequence">
+				<operations>
+
+					<!-- ========== AA12 ========== -->
+
+					<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+						<defName>RNGun_AA12S</defName>
+						<statBases>
+							<Mass>5.20</Mass>
+							<RangedWeapon_Cooldown>0.38</RangedWeapon_Cooldown>
+							<SightsEfficiency>1</SightsEfficiency>
+							<ShotSpread>0.14</ShotSpread>
+							<SwayFactor>1.49</SwayFactor>
+							<Bulk>10.66</Bulk>
+							<WorkToMake>32000</WorkToMake>
+						</statBases>
+						<costList>
+							<Chemfuel>15</Chemfuel>
+							<Steel>55</Steel>
+							<ComponentIndustrial>5</ComponentIndustrial>
+						</costList>
+						<Properties>
+							<recoilAmount>2.26</recoilAmount>
+							<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+							<hasStandardCommand>true</hasStandardCommand>
+							<defaultProjectile>Bullet_12Gauge_Buck</defaultProjectile>
+							<warmupTime>0.6</warmupTime>
+							<range>20</range>
+							<burstShotCount>2</burstShotCount>
+							<ticksBetweenBurstShots>12</ticksBetweenBurstShots>
+							<soundCast>RNShotAutoShotgun</soundCast>
+							<soundCastTail>GunTail_Heavy</soundCastTail>
+							<muzzleFlashScale>9</muzzleFlashScale>
+							<recoilPattern>Regular</recoilPattern>
+						</Properties>
+
+						<AmmoUser>
+							<magazineSize>32</magazineSize>
+							<reloadTime>4.9</reloadTime>
+							<ammoSet>AmmoSet_12Gauge</ammoSet>
+						</AmmoUser>
+
+						<FireModes>
+							<aiUseBurstMode>FALSE</aiUseBurstMode>
+							<aiAimMode>Snapshot</aiAimMode>
+							<aimedBurstShotCount>2</aimedBurstShotCount>
+						</FireModes>
+
+						<weaponTags>
+							<li>CE_AI_AssaultWeapon</li>
+						</weaponTags>
+					</li>
+
+					<li Class="PatchOperationReplace">
+						<xpath>Defs/ThingDef[defName="RNGun_AA12S"]/tools</xpath>
+						<value>
+							<tools>
+								<li Class="CombatExtended.ToolCE">
+									<label>stock</label>
+									<capacities>
+										<li>Blunt</li>
+									</capacities>
+									<power>9</power>
+									<cooldownTime>1.6</cooldownTime>
+									<armorPenetration>0.12</armorPenetration>
+									<linkedBodyPartsGroup>Stock</linkedBodyPartsGroup>
+								</li>
+								<li Class="CombatExtended.ToolCE">
+									<label>barrel</label>
+									<capacities>
+										<li>Blunt</li>
+									</capacities>
+									<power>9</power>
+									<cooldownTime>1.7</cooldownTime>
+									<armorPenetration>0.15</armorPenetration>
+									<linkedBodyPartsGroup>Barrel</linkedBodyPartsGroup>
+								</li>
+								<li Class="CombatExtended.ToolCE">
+									<label>muzzle</label>
+									<capacities>
+										<li>Poke</li>
+									</capacities>
+									<power>9</power>
+									<cooldownTime>1.4</cooldownTime>
+									<armorPenetration>0.1</armorPenetration>
+									<linkedBodyPartsGroup>Muzzle</linkedBodyPartsGroup>
+								</li>
+							</tools>
+						</value>
+					</li>
+
+					<!-- ========== M1014 / Benelli M4 Super 90 ========== -->
+
+					<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+						<defName>RNGun_M1014S</defName>
+						<statBases>
+							<Mass>3.82</Mass>
+							<RangedWeapon_Cooldown>0.39</RangedWeapon_Cooldown>
+							<SightsEfficiency>1</SightsEfficiency>
+							<ShotSpread>0.14</ShotSpread>
+							<SwayFactor>1.27</SwayFactor>
+							<Bulk>6.82</Bulk>
+							<WorkToMake>18000</WorkToMake>
+						</statBases>
+						<costList>
+							<Chemfuel>10</Chemfuel>
+							<Steel>40</Steel>
+							<ComponentIndustrial>2</ComponentIndustrial>
+						</costList>
+						<Properties>
+							<recoilAmount>2.81</recoilAmount>
+							<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+							<hasStandardCommand>true</hasStandardCommand>
+							<defaultProjectile>Bullet_12Gauge_Buck</defaultProjectile>
+							<warmupTime>0.6</warmupTime>
+							<range>12</range>
+							<soundCast>RNShotM1014S</soundCast>
+							<soundCastTail>GunTail_Heavy</soundCastTail>
+							<muzzleFlashScale>9</muzzleFlashScale>
+							<recoilPattern>Regular</recoilPattern>
+						</Properties>
+
+						<AmmoUser>
+							<magazineSize>8</magazineSize>
+							<reloadTime>6.8</reloadTime>
+							<ammoSet>AmmoSet_12Gauge</ammoSet>
+						</AmmoUser>
+
+						<FireModes>
+							<aiUseBurstMode>FALSE</aiUseBurstMode>
+							<aiAimMode>Snapshot</aiAimMode>
+						</FireModes>
+
+						<weaponTags>
+							<li>CE_AI_AssaultWeapon</li>
+						</weaponTags>
+					</li>
+
+					<li Class="PatchOperationReplace">
+						<xpath>Defs/ThingDef[defName="RNGun_M1014S"]/tools</xpath>
+						<value>
+							<tools>
+								<li Class="CombatExtended.ToolCE">
+									<label>stock</label>
+									<capacities>
+										<li>Blunt</li>
+									</capacities>
+									<power>9</power>
+									<cooldownTime>1.6</cooldownTime>
+									<armorPenetration>0.12</armorPenetration>
+									<linkedBodyPartsGroup>Stock</linkedBodyPartsGroup>
+								</li>
+								<li Class="CombatExtended.ToolCE">
+									<label>barrel</label>
+									<capacities>
+										<li>Blunt</li>
+									</capacities>
+									<power>9</power>
+									<cooldownTime>1.7</cooldownTime>
+									<armorPenetration>0.15</armorPenetration>
+									<linkedBodyPartsGroup>Barrel</linkedBodyPartsGroup>
+								</li>
+								<li Class="CombatExtended.ToolCE">
+									<label>muzzle</label>
+									<capacities>
+										<li>Poke</li>
+									</capacities>
+									<power>9</power>
+									<cooldownTime>1.4</cooldownTime>
+									<armorPenetration>0.1</armorPenetration>
+									<linkedBodyPartsGroup>Muzzle</linkedBodyPartsGroup>
+								</li>
+							</tools>
+						</value>
+					</li>
+
+				</operations>
+			</nomatch>
+		</match>
+	</Operation>
+</Patch>

@@ -1,0 +1,195 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- 
+Chicken Plucker's Project Red Horse mods often have duplicate items, apparels and defs shared between them,
+so this patch will only be applied if:
+
+Task Force 141 is active && Rimmu-Nation Weapons is NOT active
+
+If both mods are active, the CE patch from Rimmu-Nation Weapons should automatically take over
+-->
+<Patch>
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+			<li>[RH] Faction: Task Force 141 (1.0)</li>
+		</mods>
+		<match Class="PatchOperationFindMod">
+			<mods>
+				<li>[CP] Rimmu-Nation - Weapons (1.0)</li>
+			</mods>
+			<nomatch Class="PatchOperationSequence">
+				<operations>
+
+					<!-- ========== CheyTac Intervention ========== -->
+
+					<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+						<defName>RNGun_InterventionSn</defName>
+						<statBases>
+							<Mass>15.20</Mass>
+							<RangedWeapon_Cooldown>1.36</RangedWeapon_Cooldown>
+							<SightsEfficiency>3.32</SightsEfficiency>
+							<ShotSpread>0.02</ShotSpread>
+							<SwayFactor>2.06</SwayFactor>
+							<Bulk>12.87</Bulk>
+							<WorkToMake>42500</WorkToMake>
+						</statBases>
+						<costList>
+							<Steel>110</Steel>
+							<ComponentIndustrial>6</ComponentIndustrial>
+						</costList>
+						<Properties>
+							<recoilAmount>1.49</recoilAmount>
+							<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+							<hasStandardCommand>true</hasStandardCommand>
+							<defaultProjectile>Bullet_408CheyenneTactical_FMJ</defaultProjectile>
+							<warmupTime>2.2</warmupTime>
+							<range>156</range>
+							<soundCast>RNShotIntervention</soundCast>
+							<soundCastTail>GunTail_Heavy</soundCastTail>
+							<muzzleFlashScale>9</muzzleFlashScale>
+							<recoilPattern>Mounted</recoilPattern>
+						</Properties>
+
+						<AmmoUser>
+							<magazineSize>7</magazineSize>
+							<reloadTime>4</reloadTime>
+							<ammoSet>AmmoSet_408CheyenneTactical</ammoSet>
+						</AmmoUser>
+
+						<FireModes>
+							<aiUseBurstMode>FALSE</aiUseBurstMode>
+							<aiAimMode>AimedShot</aiAimMode>
+						</FireModes>
+
+						<!-- No additional CE weaponTags needed -->
+
+						<AllowWithRunAndGun>false</AllowWithRunAndGun>
+					</li>
+
+					<li Class="PatchOperationReplace">
+						<xpath>Defs/ThingDef[defName="RNGun_InterventionSn"]/tools</xpath>
+						<value>
+							<tools>
+								<li Class="CombatExtended.ToolCE">
+									<label>stock</label>
+									<capacities>
+										<li>Blunt</li>
+									</capacities>
+									<power>9</power>
+									<cooldownTime>2</cooldownTime>
+									<armorPenetration>0.12</armorPenetration>
+									<linkedBodyPartsGroup>Stock</linkedBodyPartsGroup>
+								</li>
+								<li Class="CombatExtended.ToolCE">
+									<label>barrel</label>
+									<capacities>
+										<li>Blunt</li>
+									</capacities>
+									<power>9</power>
+									<cooldownTime>2</cooldownTime>
+									<armorPenetration>0.15</armorPenetration>
+									<linkedBodyPartsGroup>Barrel</linkedBodyPartsGroup>
+								</li>
+								<li Class="CombatExtended.ToolCE">
+									<label>muzzle</label>
+									<capacities>
+										<li>Poke</li>
+									</capacities>
+									<power>9</power>
+									<cooldownTime>2</cooldownTime>
+									<armorPenetration>0.1</armorPenetration>
+									<linkedBodyPartsGroup>Muzzle</linkedBodyPartsGroup>
+								</li>
+							</tools>
+						</value>
+					</li>
+
+					<!-- ========== McMillan TAC-50 ========== -->
+
+					<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+						<defName>RNGun_TAC50Sn</defName>
+						<statBases>
+							<Mass>11.80</Mass>
+							<RangedWeapon_Cooldown>1.38</RangedWeapon_Cooldown>
+							<SightsEfficiency>3.50</SightsEfficiency>
+							<ShotSpread>0.02</ShotSpread>
+							<SwayFactor>1.92</SwayFactor>
+							<Bulk>15.48</Bulk>
+							<WorkToMake>44500</WorkToMake>
+						</statBases>
+						<costList>
+							<Chemfuel>20</Chemfuel>
+							<Steel>90</Steel>
+							<ComponentIndustrial>6</ComponentIndustrial>
+						</costList>
+						<Properties>
+							<recoilAmount>2.59</recoilAmount>
+							<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+							<hasStandardCommand>true</hasStandardCommand>
+							<defaultProjectile>Bullet_50BMG_FMJ</defaultProjectile>
+							<warmupTime>3.85</warmupTime>
+							<range>126</range>
+							<soundCast>RNTac50Shot</soundCast>
+							<soundCastTail>GunTail_Heavy</soundCastTail>
+							<muzzleFlashScale>9</muzzleFlashScale>
+							<recoilPattern>Mounted</recoilPattern>
+						</Properties>
+
+						<AmmoUser>
+							<magazineSize>5</magazineSize>
+							<reloadTime>4</reloadTime>
+							<ammoSet>AmmoSet_50BMG</ammoSet>
+						</AmmoUser>
+
+						<FireModes>
+							<aiUseBurstMode>FALSE</aiUseBurstMode>
+							<aiAimMode>AimedShot</aiAimMode>
+						</FireModes>
+
+						<!-- No additional CE weaponTags needed -->
+
+						<AllowWithRunAndGun>false</AllowWithRunAndGun>
+					</li>
+
+					<li Class="PatchOperationReplace">
+						<xpath>Defs/ThingDef[defName="RNGun_TAC50Sn"]/tools</xpath>
+						<value>
+							<tools>
+								<li Class="CombatExtended.ToolCE">
+									<label>stock</label>
+									<capacities>
+										<li>Blunt</li>
+									</capacities>
+									<power>9</power>
+									<cooldownTime>2</cooldownTime>
+									<armorPenetration>0.12</armorPenetration>
+									<linkedBodyPartsGroup>Stock</linkedBodyPartsGroup>
+								</li>
+								<li Class="CombatExtended.ToolCE">
+									<label>barrel</label>
+									<capacities>
+										<li>Blunt</li>
+									</capacities>
+									<power>9</power>
+									<cooldownTime>2</cooldownTime>
+									<armorPenetration>0.15</armorPenetration>
+									<linkedBodyPartsGroup>Barrel</linkedBodyPartsGroup>
+								</li>
+								<li Class="CombatExtended.ToolCE">
+									<label>muzzle</label>
+									<capacities>
+										<li>Poke</li>
+									</capacities>
+									<power>9</power>
+									<cooldownTime>2</cooldownTime>
+									<armorPenetration>0.1</armorPenetration>
+									<linkedBodyPartsGroup>Muzzle</linkedBodyPartsGroup>
+								</li>
+							</tools>
+						</value>
+					</li>
+
+				</operations>
+			</nomatch>
+		</match>
+	</Operation>
+</Patch>
