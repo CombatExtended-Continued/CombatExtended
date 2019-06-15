@@ -7,21 +7,11 @@
 			<li Class="CombatExtended.PatchOperationFindMod">
 				<modName>[RH] Faction: Elite Crew (1.0)</modName>
 			</li>
+			
+			<!-- ========== Elite Crew faction pawns should spawn with ammo appropriate to their primary weapon ========== -->
 
 			<li Class="PatchOperationAddModExtension">
-				<xpath>/Defs/PawnKindDef[defName="RH_EliteCrew_Grunt" or
-					defName="RH_EliteCrew_CQB" or
-					defName="RH_EliteCrew_CQB_TierII" or
-					defName="RH_EliteCrew_Assault" or
-					defName="RH_EliteCrew_Assault_TierII" or
-					defName="RH_EliteCrew_Marksman" or
-					defName="RH_EliteCrew_Marksman_TierII" or
-					defName="RH_EliteCrew_Gunner" or
-					defName="RH_EliteCrew_Grenadier" or
-					defName="RH_EliteCrew_Boss" or
-					defName="RH_EliteCrew_Elite" or
-					defName="RH_EliteCrew_Trader" or
-					defName="RH_EliteCrew_Sniper"]</xpath>
+				<xpath>/Defs/PawnKindDef[@Name="RH_EliteCrew_Base"]</xpath>
 				<value>
 					<li Class="CombatExtended.LoadoutPropertiesExtension">
 						<primaryMagazineCount>
@@ -31,6 +21,8 @@
 					</li>
 				</value>
 			</li>
+			
+			<!-- ========== Elite Crew faction pawns should spawn backpacks, allowing them to carry their (huge) inventory ========== -->
 
 			<li Class="PatchOperationAdd">
 				<xpath>/Defs/PawnKindDef[defName="RH_EliteCrew_Grunt" or

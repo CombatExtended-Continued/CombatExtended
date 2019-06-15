@@ -7,20 +7,11 @@
 			<li Class="CombatExtended.PatchOperationFindMod">
 				<modName>[RH] Faction: Task Force 141 (1.0)</modName>
 			</li>
+			
+			<!-- ========== TF 141 faction pawns should spawn with ammo appropriate to their primary weapon ========== -->
 
 			<li Class="PatchOperationAddModExtension">
-				<xpath>/Defs/PawnKindDef[defName="RH_141TaskForce_CQB" or
-					defName="RH_141TaskForce_CQB_TierII" or
-					defName="RH_141TaskForce_Marksman" or
-					defName="RH_141TaskForce_Marksman_TierII" or
-					defName="RH_141TaskForce_Sniper" or
-					defName="RH_141TaskForce_Assault" or
-					defName="RH_141TaskForce_Assault_TierII" or
-					defName="RH_141TaskForce_Gunner" or
-					defName="RH_141TaskForce_Grenadier" or
-					defName="RH_141TaskForce_Boss" or
-					defName="RH_141TaskForce_Elite" or
-					defName="RH_141TaskForce_Trader"]</xpath>
+				<xpath>/Defs/PawnKindDef[@Name="RH_141TaskForce_Base"]</xpath>
 				<value>
 					<li Class="CombatExtended.LoadoutPropertiesExtension">
 						<primaryMagazineCount>
@@ -30,6 +21,8 @@
 					</li>
 				</value>
 			</li>
+			
+			<!-- ========== TF 141 faction pawns should spawn backpacks, allowing them to carry their (huge) inventory ========== -->
 
 			<li Class="PatchOperationAdd">
 				<xpath>/Defs/PawnKindDef[defName="RH_141TaskForce_CQB" or
