@@ -1,0 +1,32 @@
+<?xml version='1.0' encoding='utf-8'?>
+<Patch>
+  <Operation Class="PatchOperationSequence">
+    <success></success>
+    <operations>
+      <li Class="CombatExtended.PatchOperationFindMod">
+        <modName>Weapons+</modName>
+      </li>
+
+	    <!-- Kunai_Thrown -->
+      <li Class="PatchOperationAttributeAdd">
+        <xpath>/Defs/ThingDef[defName="Kunai_Thrown"]</xpath>
+        <attribute>Class</attribute>
+        <value>CombatExtended.AmmoDef</value>
+		  </li>
+
+      <li Class="PatchOperationReplace">
+        <xpath>/Defs/ThingDef[defName="Kunai_Thrown"]/projectile</xpath>
+        <value>
+          <projectile Class="CombatExtended.ProjectilePropertiesCE">
+            <damageDef>Stab</damageDef>
+            <damageAmountBase>12</damageAmountBase>
+            <speed>55</speed>
+            <armorPenetrationBase>0.15</armorPenetrationBase>
+            <preExplosionSpawnChance>0.6</preExplosionSpawnChance>
+            <preExplosionSpawnThingDef>RangedWeapon_Kunai</preExplosionSpawnThingDef>
+          </projectile>
+        </value>
+      </li>
+    </operations>
+  </Operation>
+</Patch>
