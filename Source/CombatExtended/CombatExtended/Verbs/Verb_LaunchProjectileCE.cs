@@ -633,6 +633,13 @@ namespace CombatExtended
             IntVec3 dest;
             var shotSource = root.ToVector3Shifted();
             shotSource.y = ShotHeight;
+
+            // Adjust for multi-tile turrets
+            if (caster.def.building?.IsTurret ?? false)
+            {
+                shotSource = ShotSource;
+            }
+
             if (CanHitFromCellIgnoringRange(shotSource, targ, out dest))
             {
                 resultingLine = new ShootLine(root, dest);
