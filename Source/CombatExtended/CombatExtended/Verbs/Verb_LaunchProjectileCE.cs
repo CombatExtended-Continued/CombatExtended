@@ -443,7 +443,7 @@ namespace CombatExtended
         public virtual bool CanHitTargetFrom(IntVec3 root, LocalTargetInfo targ, out string report)
         {
             report = "";
-            if (!targ.Cell.InBounds(caster.Map) || !root.InBounds(caster.Map))
+            if (caster?.Map == null || !targ.Cell.InBounds(caster.Map) || !root.InBounds(caster.Map))
             {
                 report = "Out of bounds";
                 return false;

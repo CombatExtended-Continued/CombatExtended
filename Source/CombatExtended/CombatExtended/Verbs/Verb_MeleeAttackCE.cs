@@ -85,7 +85,7 @@ namespace CombatExtended
             bool targetImmobile = IsTargetImmobile(currentTarget);
             if (!targetImmobile && casterPawn.skills != null)
             {
-                casterPawn.skills.Learn(SkillDefOf.Melee, HitXP, false);
+                casterPawn.skills.Learn(SkillDefOf.Melee, HitXP * verbProps.AdjustedFullCycleTime(this, casterPawn), false);
             }
 
             // Hit calculations
@@ -105,7 +105,7 @@ namespace CombatExtended
                     CreateCombatLog((ManeuverDef maneuver) => maneuver.combatLogRulesDodge, false);
 
                     moteText = "TextMote_Dodge".Translate();
-                    defender.skills?.Learn(SkillDefOf.Melee, DodgeXP, false);
+                    defender.skills?.Learn(SkillDefOf.Melee, DodgeXP * verbProps.AdjustedFullCycleTime(this, casterPawn), false);
                 }
                 else
                 {
@@ -128,7 +128,7 @@ namespace CombatExtended
                             moteText = "CE_TextMote_Riposted".Translate();
                             CreateCombatLog((ManeuverDef maneuver) => maneuver.combatLogRulesDeflect, false); //placeholder
 
-                            defender.skills?.Learn(SkillDefOf.Melee, CritXP + ParryXP, false);
+                            defender.skills?.Learn(SkillDefOf.Melee, (CritXP + ParryXP) * verbProps.AdjustedFullCycleTime(this, casterPawn), false);
                         }
                         else
                         {
@@ -137,7 +137,7 @@ namespace CombatExtended
                             moteText = "CE_TextMote_Parried".Translate();
                             CreateCombatLog((ManeuverDef maneuver) => maneuver.combatLogRulesMiss, false); //placeholder
 
-                            defender.skills?.Learn(SkillDefOf.Melee, ParryXP, false);
+                            defender.skills?.Learn(SkillDefOf.Melee, ParryXP * verbProps.AdjustedFullCycleTime(this, casterPawn), false);
                         }
 
                         result = false;
@@ -154,7 +154,7 @@ namespace CombatExtended
                             isCrit = true;
                             ApplyMeleeDamageToTarget(currentTarget).AssociateWithLog(log);
                             moteText = casterPawn.def.race.Animal ? "CE_TextMote_Knockdown".Translate() : "CE_TextMote_CriticalHit".Translate();
-                            casterPawn.skills?.Learn(SkillDefOf.Melee, CritXP, false);
+                            casterPawn.skills?.Learn(SkillDefOf.Melee, CritXP * verbProps.AdjustedFullCycleTime(this, casterPawn), false);
                         }
                         else
                         {
