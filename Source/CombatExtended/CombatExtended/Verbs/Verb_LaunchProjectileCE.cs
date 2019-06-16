@@ -156,6 +156,29 @@ namespace CombatExtended
             }
         }
 
+        public override bool Available()
+        {
+            // This part copied from vanilla Verb_LaunchProjectile
+            if (!base.Available())
+                return false;
+
+            if (CasterIsPawn)
+            {
+                return CasterPawn.Faction == Faction.OfPlayer
+                       || !CasterPawn.mindState.MeleeThreatStillThreat
+                       || !CasterPawn.mindState.meleeThreat.AdjacentTo8WayOrInside(CasterPawn);
+            }
+
+            // Add check for reload
+            if (Projectile == null)
+            {
+                CompAmmo?.TryStartReload();
+                return false;
+            }
+
+            return true;
+        }
+
         #endregion
 
         #region Methods
