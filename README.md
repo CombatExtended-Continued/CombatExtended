@@ -4,7 +4,7 @@ Combat Extended: FastTrack Edition is a fork of the [original Combat Extended mo
 ## Features
 - Same [core features as the original mod](https://github.com/NoImageAvailable/CombatExtended/blob/master/README.md) - shooting, melee, armor, inventory and medical overhauls
 - Fully compatible with existing CE savegames - delete CE completely, drop in CE:FT and go!
-- 44 supported third-party mods (compared with 30 for CE)
+- 45 supported third-party mods (compared with 31 for CE)
 - Additional ammo and projectile definitions and textures
 
 ## Supported Third-Party Mods
@@ -51,10 +51,11 @@ Vanilla-Friendly Animal Surgery 					| &#x2705; 	| &#x2705;
 Vanilla-Friendly Weapon Expansion 					| &#x2705; 	| &#x2705;
 Vulpine Race Pack 									| &#x2705; 	| &#x2705;
 Warhammer: Gor 									|  			| &#x2705;
+Weapons+ 											| &#x2705; 	| &#x2705;
 Xenn Race 											| &#x2705; 	| &#x2705;
 Xenohumans 										|  			| &#x2705;
 Zombieland 										| &#x2705; 	| &#x2705;
-**Total** | **30** | **44**
+**Total** | **31** | **45**
 &nbsp; | **CE (original)** | **CE: FastTrack Edition**
 
 ## Contributing Your Patches
