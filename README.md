@@ -4,7 +4,7 @@ Combat Extended: FastTrack Edition is a fork of the [original Combat Extended mo
 ## Features
 - Same [core features as the original mod](https://github.com/NoImageAvailable/CombatExtended/blob/master/README.md) - shooting, melee, armor, inventory and medical overhauls
 - Fully compatible with existing CE savegames - delete CE completely, drop in CE:FT and go!
-- 41 supported third-party mods (compared with 30 for CE)
+- 44 supported third-party mods (compared with 30 for CE)
 - Additional ammo and projectile definitions and textures
 
 ## Supported Third-Party Mods
@@ -32,10 +32,13 @@ Orassans 											| &#x2705; 	| &#x2705;
 Orion's More Mechanoids 							| &#x2705; 	| &#x2705;
 Rah's Bionics and Surgery Expansion 				| &#x2705; 	| &#x2705;
 Racc Race 											| &#x2705; 	| &#x2705;
-Red Horse Furniture								|  			| &#x2705;
+[RH] Faction: Elite Crew 			        |  			| &#x2705;
+[RH] Faction: Last Man Mercs	        |  			| &#x2705;
 [RH] Faction: Militaires Sans Frontieres 			|  			| &#x2705;
+[RH] Faction: Task Force 141 			|  			| &#x2705;
 [RH] Faction: The Ghosts 							|  			| &#x2705;
 [RH] Faction: Umbra Company 						|  			| &#x2705;
+Red Horse Furniture								|  			| &#x2705;
 Right Tool: Rebalanced 							| &#x2705; 	| &#x2705;
 Rimefeller 										| &#x2705; 	| &#x2705;
 Rimfire 											| &#x2705; 	| &#x2705;
@@ -51,7 +54,7 @@ Warhammer: Gor 									|  			| &#x2705;
 Xenn Race 											| &#x2705; 	| &#x2705;
 Xenohumans 										|  			| &#x2705;
 Zombieland 										| &#x2705; 	| &#x2705;
-**Total** | **30** | **41**
+**Total** | **30** | **44**
 &nbsp; | **CE (original)** | **CE: FastTrack Edition**
 
 ## Contributing Your Patches
