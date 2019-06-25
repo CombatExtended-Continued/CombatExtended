@@ -1,0 +1,41 @@
+<!-- made by steamuser togo -->
+<?xml version="1.0" encoding="utf-8" ?>
+
+<Patch>
+	<Operation Class="PatchOperationSequence">
+		<success>Always</success>
+		<operations>
+		
+			<li Class="ModCheck.isModLoaded">
+				<modName>A RimWorld of Magic</modName>
+				<yourMod>Rimworld of Magic CE Patch</yourMod>
+			</li>
+			
+			<li Class="PatchOperationAddModExtension">
+				<xpath>Defs/PawnDefs[defName="TM_Poppi"]</xpath>
+				<value>
+					<li Class="CombatExtended.RacePropertiesExtensionCE">
+						<bodyShape>QuadrupedLow</bodyShape>
+					</li>
+				</value>
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/PawnDefs[defName="TM_Poppi"]/tools</xpath>
+				<value>
+					<tools>
+					  <li Class="CombatExtended.ToolCE">
+						<label>snuggle</label>
+						<capacities>
+						  <li>Snuggle</li>
+						</capacities>
+						<power>5</power>
+						<cooldownTime>.4</cooldownTime>
+						<armorPenetration>0.32</armorPenetration>
+					  </li>
+					</tools>
+				</value>
+			</li>
+		</operations>
+	</Operation>
+</Patch>

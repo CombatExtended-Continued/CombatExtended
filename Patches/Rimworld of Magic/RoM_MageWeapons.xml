@@ -1,0 +1,542 @@
+<!-- made by steamuser togo -->
+<?xml version="1.0" encoding="utf-8" ?>
+
+<Patch>
+	<Operation Class="PatchOperationSequence">
+		<success>Always</success>
+		<operations>
+		
+			<li Class="ModCheck.isModLoaded">
+				<modName>A RimWorld of Magic</modName>
+				<yourMod>Rimworld of Magic CE Patch</yourMod>
+			</li>
+
+			<!-- ThrumboAxe -->
+
+			  <li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="TM_ThrumboAxe"]/tools</xpath>
+				<value>
+					<tools>
+					  <li Class="CombatExtended.ToolCE">
+						<label>handle</label>
+						<capacities>
+						  <li>Blunt</li>
+						</capacities>
+						<power>9</power>
+						<cooldownTime>.9</cooldownTime>
+						<armorPenetration>0.18</armorPenetration>
+					  </li>
+					  <li Class="CombatExtended.ToolCE">
+						<label>cleave</label>
+						<capacities>
+						  <li>TM_ThrumboCleave</li>
+						</capacities>
+						<power>18</power>
+						<cooldownTime>1.6</cooldownTime>
+						<armorPenetration>0.32</armorPenetration>
+					  </li>
+					  <li Class="CombatExtended.ToolCE">
+						<label>horns</label>
+						<capacities>
+						  <li>Stab</li>
+						</capacities>
+						<power>26</power>
+						<cooldownTime>2</cooldownTime>
+						<armorPenetration>0.50</armorPenetration>
+					  </li>
+					</tools>
+				</value>
+			</li>
+			
+			<!-- ElephantSpear -->
+			
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="TM_ElephantSpear"]/tools</xpath>
+				<value>
+					<tools>
+					  <li Class="CombatExtended.ToolCE">
+						<label>shaft</label>
+						<capacities>
+						  <li>Blunt</li>
+						</capacities>
+						<power>14</power>
+						<cooldownTime>2</cooldownTime>
+						<armorPenetration>0.18</armorPenetration>
+					  </li>
+					  <li Class="CombatExtended.ToolCE">
+						<label>point</label>
+						<capacities>
+						  <li>Stab</li>
+						  <li>Poke</li>
+						</capacities>
+						<power>20</power>
+						<cooldownTime>2.1</cooldownTime>
+						<armorPenetration>0.75</armorPenetration>
+					  </li>
+					  <li Class="CombatExtended.ToolCE">
+						<label>slash</label>
+						<capacities>
+						  <li>Cut</li>
+						</capacities>
+						<power>22</power>
+						<cooldownTime>1.8</cooldownTime>
+						<armorPenetration>0.42</armorPenetration>
+					  </li>
+					</tools>
+				</value>
+			</li>
+
+			<!-- Fire Wand -
+
+			<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+				<defName>TM_FireWand</defName>
+				<statBases>
+					<SightsEfficiency>0.90</SightsEfficiency>
+					<ShotSpread>1</ShotSpread>
+					<SwayFactor>5</SwayFactor>
+					<Bulk>3</Bulk>
+					<RangedWeapon_Cooldown>1.9</RangedWeapon_Cooldown>
+				</statBases>
+				<Properties>
+					<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+					<hasStandardCommand>true</hasStandardCommand>
+					<defaultProjectile>Projectile_FireWand</defaultProjectile>
+					<warmupTime>1.5</warmupTime>
+					<range>32</range>
+					<soundCast>TM_Woosh</soundCast>
+				</Properties>
+				<FireModes>
+					<aiAimMode>AimedShot</aiAimMode>
+				</FireModes>
+				<AmmoUser>
+				</AmmoUser>
+			</li>
+			
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="TM_FireWand"]/tools</xpath>
+				<value>
+					<tools>
+					  <li Class="CombatExtended.ToolCE">
+						<label>wand</label>
+						<capacities>
+						  <li>Blunt</li>
+						</capacities>
+						<power>6</power>
+						<cooldownTime>1.2</cooldownTime>
+						<armorPenetration>0.1</armorPenetration>
+					  </li>
+					</tools>
+				</value>
+			</li>
+			
+			<!- Ice Wand -
+
+			<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+				<defName>TM_IceWand</defName>
+				<statBases>
+					<SightsEfficiency>0.90</SightsEfficiency>
+					<ShotSpread>1</ShotSpread>
+					<SwayFactor>1</SwayFactor>
+					<Bulk>3</Bulk>
+					<RangedWeapon_Cooldown>.6</RangedWeapon_Cooldown>
+				</statBases>
+				<Properties>
+					<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+					<hasStandardCommand>true</hasStandardCommand>
+					<defaultProjectile>Projectile_IceWand</defaultProjectile>
+					<warmupTime>.5</warmupTime>
+					<range>40</range>
+					<soundCast>TM_Woosh</soundCast>
+				</Properties>
+				<FireModes>
+					<aiAimMode>AimedShot</aiAimMode>
+				</FireModes>
+				<AmmoUser>
+				</AmmoUser>
+			</li>
+			
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="TM_IceWand"]/tools</xpath>
+				<value>
+					<tools>
+					  <li Class="CombatExtended.ToolCE">
+						<label>wand</label>
+						<capacities>
+						  <li>Blunt</li>
+						</capacities>
+						<power>6</power>
+						<cooldownTime>1</cooldownTime>
+						<armorPenetration>0.1</armorPenetration>
+					  </li>
+					</tools>
+				</value>
+			</li>
+			
+			<!- Lightning Wand -
+
+			<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+				<defName>TM_LightningWand</defName>
+				<statBases>
+					<SightsEfficiency>1</SightsEfficiency>
+					<ShotSpread>0</ShotSpread>
+					<SwayFactor>0</SwayFactor>
+					<Bulk>3</Bulk>
+					<RangedWeapon_Cooldown>1.6</RangedWeapon_Cooldown>
+				</statBases>
+				<Properties>
+					<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+					<hasStandardCommand>true</hasStandardCommand>
+					<defaultProjectile>Projectile_LightningWand</defaultProjectile>
+					<warmupTime>2.8</warmupTime>
+					<range>32</range>
+					<soundCast>TM_Thunder_OnMap</soundCast>
+				</Properties>
+				<FireModes>
+					<aiAimMode>AimedShot</aiAimMode>
+				</FireModes>
+				<AmmoUser>
+				</AmmoUser>
+			</li>
+			
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="TM_LightningWand"]/tools</xpath>
+				<value>
+					<tools>
+					  <li Class="CombatExtended.ToolCE">
+						<label>wand</label>
+						<capacities>
+						  <li>Blunt</li>
+						</capacities>
+						<power>6</power>
+						<cooldownTime>1.2</cooldownTime>
+						<armorPenetration>0.1</armorPenetration>
+					  </li>
+					</tools>
+				</value>
+			</li>
+			
+			<!- Staff of Blazing Power -
+			
+			<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+				<defName>TM_BlazingPowerStaff</defName>
+				<statBases>
+					<SightsEfficiency>0.85</SightsEfficiency>
+					<ShotSpread>1</ShotSpread>
+					<SwayFactor>3</SwayFactor>
+					<Bulk>6</Bulk>
+					<RangedWeapon_Cooldown>3.5</RangedWeapon_Cooldown>
+				</statBases>
+				<Properties>
+					<verbClass>TorannMagic.Weapon.Verb_BlazingPower</verbClass>
+					<hasStandardCommand>true</hasStandardCommand>
+					<defaultProjectile>Projectile_BlazingPower</defaultProjectile>
+					<warmupTime>1</warmupTime>
+					<range>40</range>
+					<soundCast>TM_Woosh</soundCast>
+				</Properties>
+				<FireModes>
+					<aiAimMode>AimedShot</aiAimMode>
+				</FireModes>
+				<AmmoUser>
+				</AmmoUser>
+			</li>
+			
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="TM_BlazingPowerStaff"]/tools</xpath>
+				<value>
+					<tools>
+					  <li Class="CombatExtended.ToolCE">
+						<label>rod</label>
+						<capacities>
+						  <li>Blunt</li>
+						</capacities>
+						<power>13</power>
+						<cooldownTime>1.6</cooldownTime>
+						<armorPenetration>0.1</armorPenetration>
+					  </li>
+					  <li Class="CombatExtended.ToolCE">
+						<label>staff head</label>
+						<capacities>
+						  <li>Blunt</li>
+						</capacities>
+						<power>18</power>
+						<cooldownTime>1.9</cooldownTime>
+						<armorPenetration>0.1</armorPenetration>
+					  </li>
+					</tools>
+				</value>
+			</li>
+			
+			<!- Staff of the Defender -
+			
+			<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+				<defName>TM_DefenderStaff</defName>
+				<statBases>
+					<SightsEfficiency>0.85</SightsEfficiency>
+					<ShotSpread>1</ShotSpread>
+					<SwayFactor>3</SwayFactor>
+					<Bulk>6</Bulk>
+					<RangedWeapon_Cooldown>2.6</RangedWeapon_Cooldown>
+				</statBases>
+				<Properties>
+					<verbClass>TorannMagic.Weapon.Verb_BlazingPower</verbClass>
+					<hasStandardCommand>true</hasStandardCommand>
+					<defaultProjectile>Projectile_BlazingPower</defaultProjectile>
+					<warmupTime>1</warmupTime>
+					<range>40</range>
+					<soundCast>TM_Woosh</soundCast>
+				</Properties>
+				<FireModes>
+					<aiAimMode>AimedShot</aiAimMode>
+				</FireModes>
+				<AmmoUser>
+				</AmmoUser>
+			</li>
+			
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="TM_DefenderStaff"]/tools</xpath>
+				<value>
+					<tools>
+					  <li Class="CombatExtended.ToolCE">
+						<label>rod</label>
+						<capacities>
+						  <li>Blunt</li>
+						</capacities>
+						<power>15</power>
+						<cooldownTime>1.6</cooldownTime>
+						<armorPenetration>0.1</armorPenetration>
+					  </li>
+					  <li Class="CombatExtended.ToolCE">
+						<label>staff head</label>
+						<capacities>
+						  <li>Blunt</li>
+						</capacities>
+						<power>22</power>
+						<cooldownTime>1.9</cooldownTime>
+						<armorPenetration>0.1</armorPenetration>
+					  </li>
+					</tools>
+				</value>
+			</li>
+			
+			<!- Ring of Elemental Fire -
+
+			<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+				<defName>Seer_FireRing</defName>
+				<statBases>
+					<SightsEfficiency>0.90</SightsEfficiency>
+					<ShotSpread>1</ShotSpread>
+					<SwayFactor>5</SwayFactor>
+					<Bulk>2</Bulk>
+					<RangedWeapon_Cooldown>1.38</RangedWeapon_Cooldown>
+				</statBases>
+				<Properties>
+					<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+					<hasStandardCommand>true</hasStandardCommand>
+					<defaultProjectile>Projectile_SeerRing_Fire</defaultProjectile>
+					<warmupTime>1.5</warmupTime>
+					<range>40</range>
+					<soundCast>DropPod_Leaving</soundCast>
+				</Properties>
+				<FireModes>
+					<aiAimMode>AimedShot</aiAimMode>
+				</FireModes>
+				<AmmoUser>
+				</AmmoUser>
+			</li>
+			
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="Seer_FireRing"]/tools</xpath>
+				<value>
+					<tools>
+					  <li Class="CombatExtended.ToolCE">
+						<label>elemental fist</label>
+						<capacities>
+						  <li>Blunt</li>
+						</capacities>
+						<power>18</power>
+						<cooldownTime>1.6</cooldownTime>
+						<armorPenetration>0.1</armorPenetration>
+					  </li>
+					</tools>
+				</value>
+			</li>
+			
+			<!- Ring of Elemental Ice -
+			
+			<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+				<defName>Seer_IceRing</defName>
+				<statBases>
+					<SightsEfficiency>0.90</SightsEfficiency>
+					<ShotSpread>1</ShotSpread>
+					<SwayFactor>1</SwayFactor>
+					<Bulk>2</Bulk>
+					<RangedWeapon_Cooldown>0.68</RangedWeapon_Cooldown>
+				</statBases>
+				<Properties>
+					<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+					<hasStandardCommand>true</hasStandardCommand>
+					<defaultProjectile>Projectile_SeerRing_Ice</defaultProjectile>
+					<warmupTime>1.2</warmupTime>
+					<range>36</range>
+					<soundCast>Shot_ChargeRifle</soundCast>
+				</Properties>
+				<FireModes>
+					<aiAimMode>AimedShot</aiAimMode>
+				</FireModes>
+				<AmmoUser>
+				</AmmoUser>
+			</li>
+			
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="Seer_IceRing"]/tools</xpath>
+				<value>
+					<tools>
+					  <li Class="CombatExtended.ToolCE">
+						<label>elemental fist</label>
+						<capacities>
+						  <li>Blunt</li>
+						</capacities>
+						<power>18</power>
+						<cooldownTime>1.6</cooldownTime>
+						<armorPenetration>0.1</armorPenetration>
+					  </li>
+					</tools>
+				</value>
+			</li>
+			
+			<!- Ring of Elemental Lightning -
+			
+			<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+				<defName>Seer_LightningRing</defName>
+				<statBases>
+					<SightsEfficiency>1</SightsEfficiency>
+					<ShotSpread>1</ShotSpread>
+					<SwayFactor>1</SwayFactor>
+					<Bulk>2</Bulk>
+					<RangedWeapon_Cooldown>1.11</RangedWeapon_Cooldown>
+				</statBases>
+				<Properties>
+					<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+					<hasStandardCommand>true</hasStandardCommand>
+					<defaultProjectile>Laser_SeerRing_Lightning</defaultProjectile>
+					<warmupTime>1</warmupTime>
+					<range>32</range>
+					<soundCastTail>GunTail_Light</soundCastTail>
+				</Properties>
+				<FireModes>
+					<aiAimMode>AimedShot</aiAimMode>
+				</FireModes>
+				<AmmoUser>
+				</AmmoUser>
+			</li>
+			
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="Seer_LightningRing"]/tools</xpath>
+				<value>
+					<tools>
+					  <li Class="CombatExtended.ToolCE">
+						<label>elemental fist</label>
+						<capacities>
+						  <li>Blunt</li>
+						</capacities>
+						<power>18</power>
+						<cooldownTime>1.6</cooldownTime>
+						<armorPenetration>0.1</armorPenetration>
+					  </li>
+					</tools>
+				</value>
+			</li>
+			
+			<!- Thrum Bow -->
+			
+			<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+				<defName>TM_ThrumBow</defName>
+				<statBases>
+					<SightsEfficiency>0.9</SightsEfficiency>
+					<ShotSpread>0.5</ShotSpread>
+					<SwayFactor>1</SwayFactor>
+					<Bulk>3</Bulk>
+					<RangedWeapon_Cooldown>1</RangedWeapon_Cooldown>
+				</statBases>
+				<Properties>
+					<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+					<hasStandardCommand>true</hasStandardCommand>
+					<defaultProjectile>Projectile_ThrumArrow</defaultProjectile>
+					<warmupTime>1.7</warmupTime>
+					<range>45</range>
+					<soundCast>TM_ThrumBow</soundCast>
+				</Properties>
+				<AmmoUser>
+					<ammoSet>AmmoSet_Arrow</ammoSet>
+				</AmmoUser>
+				<FireModes>
+					<aiAimMode>AimedShot</aiAimMode>
+				</FireModes>
+			</li>
+			
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="TM_ThrumBow"]/tools</xpath>
+				<value>
+					<tools>
+					  <li Class="CombatExtended.ToolCE">
+						<label>limb</label>
+						<capacities>
+						  <li>Blunt</li>
+						  <li>Poke</li>
+						</capacities>
+						<power>14</power>
+						<cooldownTime>2.2</cooldownTime>
+						<armorPenetration>0.32</armorPenetration>
+					  </li>
+					</tools>
+				</value>
+			</li>
+			
+			<!-- Elephant Bow -->
+			
+			<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+				<defName>TM_ElephantBow</defName>
+				<statBases>
+					<SightsEfficiency>0.85</SightsEfficiency>
+					<ShotSpread>1</ShotSpread>
+					<SwayFactor>1</SwayFactor>
+					<Bulk>6</Bulk>
+					<RangedWeapon_Cooldown>1.5</RangedWeapon_Cooldown>
+				</statBases>
+				<Properties>
+					<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+					<hasStandardCommand>true</hasStandardCommand>
+					<defaultProjectile>Projectile_ElephantBow</defaultProjectile>
+					<warmupTime>2</warmupTime>
+					<range>38</range>
+					<soundCast>TM_ThrumBow</soundCast>
+				</Properties>
+				<AmmoUser>
+					<ammoSet>AmmoSet_Arrow</ammoSet>
+				</AmmoUser>
+				<FireModes>
+					<aiAimMode>AimedShot</aiAimMode>
+				</FireModes>
+			</li>
+			
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="TM_ElephantBow"]/tools</xpath>
+				<value>
+					<tools>
+					  <li Class="CombatExtended.ToolCE">
+						<label>limb</label>
+						<capacities>
+						  <li>Blunt</li>
+						  <li>Poke</li>
+						</capacities>
+						<power>12</power>
+						<cooldownTime>2.4</cooldownTime>
+						<armorPenetration>0.32</armorPenetration>
+					  </li>
+					</tools>
+				</value>
+			</li>
+		</operations>
+	</Operation>
+</Patch>

@@ -1,0 +1,93 @@
+<!-- made by steamuser togo -->
+<?xml version="1.0" encoding="utf-8" ?>
+
+<Patch>
+	<Operation Class="PatchOperationSequence">
+		<success>Always</success>
+		<operations>
+		
+			<li Class="ModCheck.isModLoaded">
+				<modName>A RimWorld of Magic</modName>
+				<yourMod>Rimworld of Magic CE Patch</yourMod>
+			</li>
+			
+			<!-- minion -->
+			
+			<li Class="PatchOperationAddModExtension">
+				<xpath>Defs/PawnDefs[defName="TM_MinionR"]</xpath>
+				<value>
+					<li Class="CombatExtended.RacePropertiesExtensionCE">
+						<bodyShape>Humanoid</bodyShape>
+					</li>
+				</value>
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/PawnDefs[defName="TM_MinionR"]/tools</xpath>
+				<value>
+					<tools>
+					  <li Class="CombatExtended.ToolCE">
+						<label>horn</label>
+						<capacities>
+						  <li>Stab</li>
+						</capacities>
+						<power>6</power>
+						<cooldownTime>1.8</cooldownTime>
+						<linkedBodyPartsGroup>Minion_Horns</linkedBodyPartsGroup>
+						<armorPenetration>0.50</armorPenetration>
+					  </li>
+					  <li Class="CombatExtended.ToolCE">
+						<label>teeth</label>
+						<capacities>
+						  <li>Bite</li>
+						</capacities>
+						<power>8</power>
+						<cooldownTime>2.2</cooldownTime>
+						<linkedBodyPartsGroup>Minion_Teeth</linkedBodyPartsGroup>
+						<armorPenetration>0.42</armorPenetration>
+					  </li>
+					</tools>
+				</value>
+			</li>
+			
+			<!-- greater minion -->
+			
+			<li Class="PatchOperationAddModExtension">
+				<xpath>Defs/PawnDefs[defName="TM_GreaterMinionR"]</xpath>
+				<value>
+					<li Class="CombatExtended.RacePropertiesExtensionCE">
+						<bodyShape>Humanoid</bodyShape>
+					</li>
+				</value>
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/PawnDefs[defName="TM_GreaterMinionR"]/tools</xpath>
+				<value>
+					<tools>
+					  <li Class="CombatExtended.ToolCE">
+						<label>horn</label>
+						<capacities>
+						  <li>Stab</li>
+						</capacities>
+						<power>7</power>
+						<cooldownTime>1.8</cooldownTime>
+						<linkedBodyPartsGroup>Minion_Horns</linkedBodyPartsGroup>
+						<armorPenetration>0.50</armorPenetration>
+					  </li>
+					  <li Class="CombatExtended.ToolCE">
+						<label>teeth</label>
+						<capacities>
+						  <li>Bite</li>
+						</capacities>
+						<power>9</power>
+						<cooldownTime>2.2</cooldownTime>
+						<linkedBodyPartsGroup>Minion_Teeth</linkedBodyPartsGroup>
+						<armorPenetration>0.42</armorPenetration>
+					  </li>
+					</tools>
+				</value>
+			</li>
+		</operations>
+	</Operation>
+</Patch>
