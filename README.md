@@ -55,8 +55,8 @@ Weapons+ 				| OverlordZeni							| &#x2705; 	| &#x2705;
 Xenn Race 			| Superlagg							| &#x2705; 	| &#x2705;
 Xenohumans 				| AthenaSulisMinerva						|  			| &#x2705;
 Zombieland 				| NoImageAvailable						| &#x2705; 	| &#x2705;
-**Total** | **31** | **45**
-&nbsp; | **CE (original)** | **CE: FastTrack Edition**
+**Total** | &nbsp; | **31** | **45**
+&nbsp; | &nbsp; | **CE (original)** | **CE: FastTrack Edition**
 
 ## Contributing Your Patches
 - We welcome patches for any and all third-party mods!
