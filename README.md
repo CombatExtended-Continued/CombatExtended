@@ -10,18 +10,18 @@ Combat Extended: FastTrack Edition is a fork of the [original Combat Extended mo
 ## Supported Third-Party Mods
 Mod | Patch author(s) | CE (original) | CE: FastTrack Edition
 --- | --- | :---: | :---:
-A Dog Said...	| boundir	| &#x2705; 	| &#x2705;
-Apparello 2 	| DoomOfMax									| &#x2705; 	| &#x2705;
-Cute Penguin 	| DoomOfMax									| &#x2705; 	| &#x2705;
-Defensive Machine Gun Turret Pack 	| sumghai				| &#x2705; 	| &#x2705;
-Expanded Prosthetics and Organ Engineering (EPOE) | Alicecomma	| &#x2705; 	| &#x2705;
+A Dog Said...	| boundir	| &#x2705; | &#x2705;
+Apparello 2 | NoImageAvailable | &#x2705; | &#x2705;
+Cute Penguin | NoImageAvailable | &#x2705; | &#x2705;
+Defensive Machine Gun Turret Pack | sumghai | &#x2705; 	| &#x2705;
+Expanded Prosthetics and Organ Engineering (EPOE) | Alicecomma, NoImageAvailable	| &#x2705; 	| &#x2705;
 Equiums Horse Race 	| Superlagg							| &#x2705; 	| &#x2705;
-Extended Storage 		| N7Huntsman							| &#x2705; 	| &#x2705;
-Fallout Traits 			| Valerate						| &#x2705; 	| &#x2705;
-FashionRIMsta 			| jetpack-maniac 							| &#x2705; 	| &#x2705;
-Ferrex Race 				| Superlagg						| &#x2705; 	| &#x2705;
-Flommel 						| sumghai, Freedom187 					|  			| &#x2705;
-Hand 'n' Footwear 	| NoImageAvailable								| &#x2705; 	| &#x2705;
+Extended Storage 		| NoImageAvailable	| &#x2705; 	| &#x2705;
+Fallout Traits 			| Valerate	| &#x2705; 	| &#x2705;
+FashionRIMsta 			| jetpack-maniac 	| &#x2705; 	| &#x2705;
+Ferrex Race 				| Superlagg		| &#x2705; 	| &#x2705;
+Flommel 						| sumghai, Freedom187 	|  			| &#x2705;
+Hand 'n' Footwear 	| NoImageAvailable	| &#x2705; 	| &#x2705;
 Jernfalk's Standalone Horses 	| Alicecomma		| &#x2705; 	| &#x2705;
 Leeani Playable Race 		| Superlagg													| &#x2705; 	| &#x2705;
 Let's Have a Cat! 			| AthenaSulisMinerva	|  			| &#x2705;
@@ -41,7 +41,7 @@ Racc Race 					| Superlagg							| &#x2705; 	| &#x2705;
 Red Horse Furniture				| sumghai, Freedom187				|  			| &#x2705;
 Right Tool: Rebalanced 		| Valerate, XeoNovaDan, DoomOfMax					| &#x2705; 	| &#x2705;
 Rimefeller 				| adiep2501 		| &#x2705; 	| &#x2705;
-Rimfire 		| Valerate, NoImageAvailable, Aliceomma, DoomOfMax	| &#x2705; 	| &#x2705;
+Rimfire 		| Valerate, NoImageAvailable, Alicecomma, DoomOfMax	| &#x2705; 	| &#x2705;
 Rimmu-Nation - Clothing 		| sumghai, Freedom187					|  			| &#x2705;
 Rimmu-Nation - Weapons 			| sumghai, Freedom187				|  			| &#x2705;
 Sergals and Gnolls 			| Superlagg					| &#x2705; 	| &#x2705;
