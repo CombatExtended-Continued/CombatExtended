@@ -8,55 +8,55 @@ Combat Extended: FastTrack Edition is a fork of the [original Combat Extended mo
 - Additional ammo and projectile definitions and textures
 
 ## Supported Third-Party Mods
-Mod | Patch author(s) | CE (original) | CE: FastTrack Edition
---- | --- | :---: | :---:
-A Dog Said...	| boundir	| &#x2705; | &#x2705;
-Apparello 2 | NoImageAvailable | &#x2705; | &#x2705;
-Cute Penguin | NoImageAvailable | &#x2705; | &#x2705;
-Defensive Machine Gun Turret Pack | sumghai | &#x2705; 	| &#x2705;
-Expanded Prosthetics and Organ Engineering (EPOE) | Alicecomma, NoImageAvailable	| &#x2705; 	| &#x2705;
-Equiums Horse Race 	| Superlagg							| &#x2705; 	| &#x2705;
-Extended Storage 		| NoImageAvailable	| &#x2705; 	| &#x2705;
-Fallout Traits 			| Valerate	| &#x2705; 	| &#x2705;
-FashionRIMsta 			| jetpack-maniac 	| &#x2705; 	| &#x2705;
-Ferrex Race 				| Superlagg		| &#x2705; 	| &#x2705;
-Flommel 						| sumghai, Freedom187 	|  			| &#x2705;
-Hand 'n' Footwear 	| NoImageAvailable	| &#x2705; 	| &#x2705;
-Jernfalk's Standalone Horses 	| Alicecomma		| &#x2705; 	| &#x2705;
-Leeani Playable Race 		| Superlagg													| &#x2705; 	| &#x2705;
-Let's Have a Cat! 			| AthenaSulisMinerva	|  			| &#x2705;
-Logann Race 						| Superlagg				| &#x2705; 	| &#x2705;
-Mechanoids Extraordinaire 	| noooooo4499						| &#x2705; 	| &#x2705;
-Ni'Hal 							| Superlagg					| &#x2705; 	| &#x2705;
-Orassans 						| Superlagg						| &#x2705; 	| &#x2705;
-Orion's More Mechanoids 		| NoImageAvailable					| &#x2705; 	| &#x2705;
-Rah's Bionics and Surgery Expansion 	| jetpack-maniac. CombinedAutism | &#x2705; 	| &#x2705;
-Racc Race 					| Superlagg							| &#x2705; 	| &#x2705;
-[RH] Faction: Elite Crew 		| sumghai, Freedom187	        |  			| &#x2705;
-[RH] Faction: Last Man Mercs	| sumghai, Freedom187        |  			| &#x2705;
-[RH] Faction: Militaires Sans Frontieres 	| sumghai, Freedom187		|  			| &#x2705;
-[RH] Faction: Task Force 141 	| sumghai, Freedom187		|  			| &#x2705;
-[RH] Faction: The Ghosts 			| sumghai, Freedom187				|  			| &#x2705;
-[RH] Faction: Umbra Company 	| sumghai, Freedom187					|  			| &#x2705;
-Red Horse Furniture				| sumghai, Freedom187				|  			| &#x2705;
-Right Tool: Rebalanced 		| Valerate, XeoNovaDan, DoomOfMax					| &#x2705; 	| &#x2705;
-Rimefeller 				| adiep2501 		| &#x2705; 	| &#x2705;
-Rimfire 		| Valerate, NoImageAvailable, Alicecomma, DoomOfMax	| &#x2705; 	| &#x2705;
-Rimmu-Nation - Clothing 		| sumghai, Freedom187					|  			| &#x2705;
-Rimmu-Nation - Weapons 			| sumghai, Freedom187				|  			| &#x2705;
-Sergals and Gnolls 			| Superlagg					| &#x2705; 	| &#x2705;
-Spidercamp's Dog Pack 		| AthenaSulisMinerva						|  			| &#x2705;
-Trading Economy 		| NoImageAvailable							| &#x2705; 	| &#x2705;
-Vanilla-Friendly Animal Surgery 	| XeoNovaDan				| &#x2705; 	| &#x2705;
-Vanilla-Friendly Weapon Expansion | XeoNovaDan, DoomOfMax, Alicecomma					| &#x2705; 	| &#x2705;
-Vulpine Race Pack 	| Superlagg								| &#x2705; 	| &#x2705;
-Warhammer: Gor 			| AthenaSulisMinerva						|  			| &#x2705;
-Weapons+ 				| OverlordZeni							| &#x2705; 	| &#x2705;
-Xenn Race 			| Superlagg							| &#x2705; 	| &#x2705;
-Xenohumans 				| AthenaSulisMinerva						|  			| &#x2705;
-Zombieland 				| NoImageAvailable						| &#x2705; 	| &#x2705;
-**Total** | &nbsp; | **31** | **45**
-&nbsp; | &nbsp; | **CE (original)** | **CE: FastTrack Edition**
+Mod | CE (original) | CE: FastTrack Edition
+--- | :---: | :---:
+A Dog Said... 										| &#x2705; 	| &#x2705;
+Apparello 2 										| &#x2705; 	| &#x2705;
+Cute Penguin 										| &#x2705; 	| &#x2705;
+Defensive Machine Gun Turret Pack 					| &#x2705; 	| &#x2705;
+Expanded Prosthetics and Organ Engineering (EPOE) 	| &#x2705; 	| &#x2705;
+Equiums Horse Race 								| &#x2705; 	| &#x2705;
+Extended Storage 									| &#x2705; 	| &#x2705;
+Fallout Traits 									| &#x2705; 	| &#x2705;
+FashionRIMsta 										| &#x2705; 	| &#x2705;
+Ferrex Race 										| &#x2705; 	| &#x2705;
+Flommel 											|  			| &#x2705;
+Hand 'n' Footwear 									| &#x2705; 	| &#x2705;
+Jernfalk's Standalone Horses 						| &#x2705; 	| &#x2705;
+Leeani Playable Race 								| &#x2705; 	| &#x2705;
+Let's Have a Cat! 									|  			| &#x2705;
+Logann Race 										| &#x2705; 	| &#x2705;
+Mechanoids Extraordinaire 							| &#x2705; 	| &#x2705;
+Ni'Hal 											| &#x2705; 	| &#x2705;
+Orassans 											| &#x2705; 	| &#x2705;
+Orion's More Mechanoids 							| &#x2705; 	| &#x2705;
+Rah's Bionics and Surgery Expansion 				| &#x2705; 	| &#x2705;
+Racc Race 											| &#x2705; 	| &#x2705;
+[RH] Faction: Elite Crew 			        |  			| &#x2705;
+[RH] Faction: Last Man Mercs	        |  			| &#x2705;
+[RH] Faction: Militaires Sans Frontieres 			|  			| &#x2705;
+[RH] Faction: Task Force 141 			|  			| &#x2705;
+[RH] Faction: The Ghosts 							|  			| &#x2705;
+[RH] Faction: Umbra Company 						|  			| &#x2705;
+Red Horse Furniture								|  			| &#x2705;
+Right Tool: Rebalanced 							| &#x2705; 	| &#x2705;
+Rimefeller 										| &#x2705; 	| &#x2705;
+Rimfire 											| &#x2705; 	| &#x2705;
+Rimmu-Nation - Clothing 							|  			| &#x2705;
+Rimmu-Nation - Weapons 							|  			| &#x2705;
+Sergals and Gnolls 								| &#x2705; 	| &#x2705;
+Spidercamp's Dog Pack 								|  			| &#x2705;
+Trading Economy 									| &#x2705; 	| &#x2705;
+Vanilla-Friendly Animal Surgery 					| &#x2705; 	| &#x2705;
+Vanilla-Friendly Weapon Expansion 					| &#x2705; 	| &#x2705;
+Vulpine Race Pack 									| &#x2705; 	| &#x2705;
+Warhammer: Gor 									|  			| &#x2705;
+Weapons+ 											| &#x2705; 	| &#x2705;
+Xenn Race 											| &#x2705; 	| &#x2705;
+Xenohumans 										|  			| &#x2705;
+Zombieland 										| &#x2705; 	| &#x2705;
+**Total** | **31** | **45**
+&nbsp; | **CE (original)** | **CE: FastTrack Edition**
 
 ## Contributing Your Patches
 - We welcome patches for any and all third-party mods!
@@ -67,6 +67,13 @@ Zombieland 				| NoImageAvailable						| &#x2705; 	| &#x2705;
 ## Fork Policy
 - CE:FT will be constantly updated to keep up with any new features, bugfixes and tweaks from the upstream CE project
 - Each release will have the same version/tag number as the corresponding CE update, plus a FT-specific suffix (e.g. v1.0.1.4-FT-003 = base CE version v1.0.1.4 + FastTrack patch #3)
+
+## Patch Acknowledgements
+The CE:FT team would like the thank the following individuals for contributing compatibility patches to this repository:
+- Kik0hi
+- Freedom187/RaptorX
+- sumghai
+- Togoasl
 
 ## License
 ![alt text](https://mirrors.creativecommons.org/presskit/buttons/88x31/png/by-nc-sa.png "Attribution-NonCommercial-ShareAlike 4.0 International (CC BY-NC-SA 4.0)")
