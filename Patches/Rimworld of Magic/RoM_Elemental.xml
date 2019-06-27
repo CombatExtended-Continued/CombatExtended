@@ -1,20 +1,18 @@
-<!-- made by steamuser togo -->
 <?xml version="1.0" encoding="utf-8" ?>
-
+<!-- made by steamuser togo -->
 <Patch>
 	<Operation Class="PatchOperationSequence">
 		<success>Always</success>
 		<operations>
-		
-			<li Class="ModCheck.isModLoaded">
+
+			<li Class="CombatExtended.PatchOperationFindMod">
 				<modName>A RimWorld of Magic</modName>
-				<yourMod>Rimworld of Magic CE Patch</yourMod>
 			</li>
-			
+
 			<!-- lesser earth elemental -->
-			
+
 			<li Class="PatchOperationAddModExtension">
-				<xpath>Defs/PawnDefs[defName="TM_LesserEarth_ElementalR"]</xpath>
+				<xpath>Defs/ThingDef[defName="TM_LesserEarth_ElementalR"]</xpath>
 				<value>
 					<li Class="CombatExtended.RacePropertiesExtensionCE">
 						<bodyShape>Humanoid</bodyShape>
@@ -22,48 +20,57 @@
 				</value>
 			</li>
 
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName="TM_LesserEarth_ElementalR"]/statBases</xpath>
+				<value>
+					<MeleeDodgeChance>0.11</MeleeDodgeChance>
+					<MeleeCritChance>0.08</MeleeCritChance>
+					<MeleeParryChance>0.15</MeleeParryChance>
+				</value>
+			</li>
+
 			<li Class="PatchOperationReplace">
-				<xpath>Defs/PawnDefs[defName="TM_LesserEarth_ElementalR"]/tools</xpath>
+				<xpath>Defs/ThingDef[defName="TM_LesserEarth_ElementalR"]/tools</xpath>
 				<value>
 					<tools>
-					  <li Class="CombatExtended.ToolCE">
-						<label>left arm</label>
-						<capacities>
-						  <li>Blunt</li>
-						</capacities>
-						<power>10</power>
-						<cooldownTime>1.8</cooldownTime>
-						<linkedBodyPartsGroup>Ele_LeftArm</linkedBodyPartsGroup>
-						<armorPenetration>0.18</armorPenetration>
-					  </li>
-					  <li Class="CombatExtended.ToolCE">
-						<label>right arm</label>
-						<capacities>
-						  <li>Blunt</li>
-						</capacities>
-						<power>16</power>
-						<cooldownTime>2.2</cooldownTime>
-						<linkedBodyPartsGroup>Ele_RightArm</linkedBodyPartsGroup>
-						<armorPenetration>0.18</armorPenetration>
-					  </li>
-					  <li Class="CombatExtended.ToolCE">
-						<label>horn</label>
-						<capacities>
-						  <li>Stab</li>
-						</capacities>
-						<power>22</power>
-						<cooldownTime>2.8</cooldownTime>
-						<linkedBodyPartsGroup>Ele_Horn</linkedBodyPartsGroup>
-						<armorPenetration>0.50</armorPenetration>
-					  </li>
+						<li Class="CombatExtended.ToolCE">
+							<label>left arm</label>
+							<capacities>
+								<li>Blunt</li>
+							</capacities>
+							<power>10</power>
+							<cooldownTime>1.8</cooldownTime>
+							<linkedBodyPartsGroup>Ele_LeftArm</linkedBodyPartsGroup>
+							<armorPenetration>0.18</armorPenetration>
+						</li>
+						<li Class="CombatExtended.ToolCE">
+							<label>right arm</label>
+							<capacities>
+								<li>Blunt</li>
+							</capacities>
+							<power>16</power>
+							<cooldownTime>2.2</cooldownTime>
+							<linkedBodyPartsGroup>Ele_RightArm</linkedBodyPartsGroup>
+							<armorPenetration>0.18</armorPenetration>
+						</li>
+						<li Class="CombatExtended.ToolCE">
+							<label>horn</label>
+							<capacities>
+								<li>Stab</li>
+							</capacities>
+							<power>22</power>
+							<cooldownTime>2.8</cooldownTime>
+							<linkedBodyPartsGroup>Ele_Horn</linkedBodyPartsGroup>
+							<armorPenetration>0.50</armorPenetration>
+						</li>
 					</tools>
 				</value>
 			</li>
-			
+
 			<!-- earth elemental -->
-			
+
 			<li Class="PatchOperationAddModExtension">
-				<xpath>Defs/PawnDefs[defName="TM_Earth_ElementalR"]</xpath>
+				<xpath>Defs/ThingDef[defName="TM_Earth_ElementalR"]</xpath>
 				<value>
 					<li Class="CombatExtended.RacePropertiesExtensionCE">
 						<bodyShape>Humanoid</bodyShape>
@@ -71,48 +78,57 @@
 				</value>
 			</li>
 
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName="TM_Earth_ElementalR"]/statBases</xpath>
+				<value>
+					<MeleeDodgeChance>0.12</MeleeDodgeChance>
+					<MeleeCritChance>0.10</MeleeCritChance>
+					<MeleeParryChance>0.24</MeleeParryChance>
+				</value>
+			</li>
+
 			<li Class="PatchOperationReplace">
-				<xpath>Defs/PawnDefs[defName="TM_Earth_ElementalR"]/tools</xpath>
+				<xpath>Defs/ThingDef[defName="TM_Earth_ElementalR"]/tools</xpath>
 				<value>
 					<tools>
-					  <li Class="CombatExtended.ToolCE">
-						<label>left arm</label>
-						<capacities>
-						  <li>Blunt</li>
-						</capacities>
-						<power>14</power>
-						<cooldownTime>1.8</cooldownTime>
-						<linkedBodyPartsGroup>Ele_LeftArm</linkedBodyPartsGroup>
-						<armorPenetration>0.18</armorPenetration>
-					  </li>
-					  <li Class="CombatExtended.ToolCE">
-						<label>right arm</label>
-						<capacities>
-						  <li>Blunt</li>
-						</capacities>
-						<power>22</power>
-						<cooldownTime>2.2</cooldownTime>
-						<linkedBodyPartsGroup>Ele_RightArm</linkedBodyPartsGroup>
-						<armorPenetration>0.18</armorPenetration>
-					  </li>
-					  <li Class="CombatExtended.ToolCE">
-						<label>horn</label>
-						<capacities>
-						  <li>Stab</li>
-						</capacities>
-						<power>34</power>
-						<cooldownTime>2.8</cooldownTime>
-						<linkedBodyPartsGroup>Ele_Horn</linkedBodyPartsGroup>
-						<armorPenetration>0.50</armorPenetration>
-					  </li>
+						<li Class="CombatExtended.ToolCE">
+							<label>left arm</label>
+							<capacities>
+								<li>Blunt</li>
+							</capacities>
+							<power>14</power>
+							<cooldownTime>1.8</cooldownTime>
+							<linkedBodyPartsGroup>Ele_LeftArm</linkedBodyPartsGroup>
+							<armorPenetration>0.18</armorPenetration>
+						</li>
+						<li Class="CombatExtended.ToolCE">
+							<label>right arm</label>
+							<capacities>
+								<li>Blunt</li>
+							</capacities>
+							<power>22</power>
+							<cooldownTime>2.2</cooldownTime>
+							<linkedBodyPartsGroup>Ele_RightArm</linkedBodyPartsGroup>
+							<armorPenetration>0.18</armorPenetration>
+						</li>
+						<li Class="CombatExtended.ToolCE">
+							<label>horn</label>
+							<capacities>
+								<li>Stab</li>
+							</capacities>
+							<power>34</power>
+							<cooldownTime>2.8</cooldownTime>
+							<linkedBodyPartsGroup>Ele_Horn</linkedBodyPartsGroup>
+							<armorPenetration>0.50</armorPenetration>
+						</li>
 					</tools>
 				</value>
 			</li>
-			
+
 			<!-- greater earth elemental -->
-			
+
 			<li Class="PatchOperationAddModExtension">
-				<xpath>Defs/PawnDefs[defName="TM_GreaterEarth_ElementalR"]</xpath>
+				<xpath>Defs/ThingDef[defName="TM_GreaterEarth_ElementalR"]</xpath>
 				<value>
 					<li Class="CombatExtended.RacePropertiesExtensionCE">
 						<bodyShape>Humanoid</bodyShape>
@@ -120,48 +136,57 @@
 				</value>
 			</li>
 
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName="TM_GreaterEarth_ElementalR"]/statBases</xpath>
+				<value>
+					<MeleeDodgeChance>0.13</MeleeDodgeChance>
+					<MeleeCritChance>0.11</MeleeCritChance>
+					<MeleeParryChance>0.31</MeleeParryChance>
+				</value>
+			</li>
+
 			<li Class="PatchOperationReplace">
-				<xpath>Defs/PawnDefs[defName="TM_GreaterEarth_ElementalR"]/tools</xpath>
+				<xpath>Defs/ThingDef[defName="TM_GreaterEarth_ElementalR"]/tools</xpath>
 				<value>
 					<tools>
-					  <li Class="CombatExtended.ToolCE">
-						<label>left arm</label>
-						<capacities>
-						  <li>Blunt</li>
-						</capacities>
-						<power>18</power>
-						<cooldownTime>1.8</cooldownTime>
-						<linkedBodyPartsGroup>Ele_LeftArm</linkedBodyPartsGroup>
-						<armorPenetration>0.18</armorPenetration>
-					  </li>
-					  <li Class="CombatExtended.ToolCE">
-						<label>right arm</label>
-						<capacities>
-						  <li>Blunt</li>
-						</capacities>
-						<power>26</power>
-						<cooldownTime>2.2</cooldownTime>
-						<linkedBodyPartsGroup>Ele_RightArm</linkedBodyPartsGroup>
-						<armorPenetration>0.18</armorPenetration>
-					  </li>
-					  <li Class="CombatExtended.ToolCE">
-						<label>horn</label>
-						<capacities>
-						  <li>Stab</li>
-						</capacities>
-						<power>38</power>
-						<cooldownTime>2.8</cooldownTime>
-						<linkedBodyPartsGroup>Ele_Horn</linkedBodyPartsGroup>
-						<armorPenetration>0.50</armorPenetration>
-					  </li>
+						<li Class="CombatExtended.ToolCE">
+							<label>left arm</label>
+							<capacities>
+								<li>Blunt</li>
+							</capacities>
+							<power>18</power>
+							<cooldownTime>1.8</cooldownTime>
+							<linkedBodyPartsGroup>Ele_LeftArm</linkedBodyPartsGroup>
+							<armorPenetration>0.18</armorPenetration>
+						</li>
+						<li Class="CombatExtended.ToolCE">
+							<label>right arm</label>
+							<capacities>
+								<li>Blunt</li>
+							</capacities>
+							<power>26</power>
+							<cooldownTime>2.2</cooldownTime>
+							<linkedBodyPartsGroup>Ele_RightArm</linkedBodyPartsGroup>
+							<armorPenetration>0.18</armorPenetration>
+						</li>
+						<li Class="CombatExtended.ToolCE">
+							<label>horn</label>
+							<capacities>
+								<li>Stab</li>
+							</capacities>
+							<power>38</power>
+							<cooldownTime>2.8</cooldownTime>
+							<linkedBodyPartsGroup>Ele_Horn</linkedBodyPartsGroup>
+							<armorPenetration>0.50</armorPenetration>
+						</li>
 					</tools>
 				</value>
 			</li>
-			
+
 			<!-- lesser fire elemental -->
-			
+
 			<li Class="PatchOperationAddModExtension">
-				<xpath>Defs/PawnDefs[defName="TM_LesserFire_ElementalR"]</xpath>
+				<xpath>Defs/ThingDef[defName="TM_LesserFire_ElementalR"]</xpath>
 				<value>
 					<li Class="CombatExtended.RacePropertiesExtensionCE">
 						<bodyShape>Humanoid</bodyShape>
@@ -169,48 +194,57 @@
 				</value>
 			</li>
 
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName="TM_LesserFire_ElementalR"]/statBases</xpath>
+				<value>
+					<MeleeDodgeChance>0.17</MeleeDodgeChance>
+					<MeleeCritChance>0.14</MeleeCritChance>
+					<MeleeParryChance>0.14</MeleeParryChance>
+				</value>
+			</li>
+
 			<li Class="PatchOperationReplace">
-				<xpath>Defs/PawnDefs[defName="TM_LesserFire_ElementalR"]/tools</xpath>
+				<xpath>Defs/ThingDef[defName="TM_LesserFire_ElementalR"]/tools</xpath>
 				<value>
 					<tools>
-					  <li Class="CombatExtended.ToolCE">
-						<label>left arm</label>
-						<capacities>
-						  <li>Blunt</li>
-						</capacities>
-						<power>5</power>
-						<cooldownTime>1</cooldownTime>
-						<linkedBodyPartsGroup>Ele_LeftArm</linkedBodyPartsGroup>
-						<armorPenetration>0.18</armorPenetration>
-					  </li>
-					  <li Class="CombatExtended.ToolCE">
-						<label>right arm</label>
-						<capacities>
-						  <li>Blunt</li>
-						</capacities>
-						<power>9</power>
-						<cooldownTime>1.4</cooldownTime>
-						<linkedBodyPartsGroup>Ele_RightArm</linkedBodyPartsGroup>
-						<armorPenetration>0.18</armorPenetration>
-					  </li>
-					  <li Class="CombatExtended.ToolCE">
-						<label>horn</label>
-						<capacities>
-						  <li>Stab</li>
-						</capacities>
-						<power>20</power>
-						<cooldownTime>2.2</cooldownTime>
-						<linkedBodyPartsGroup>Ele_Horn</linkedBodyPartsGroup>
-						<armorPenetration>0.50</armorPenetration>
-					  </li>
+						<li Class="CombatExtended.ToolCE">
+							<label>left arm</label>
+							<capacities>
+								<li>Blunt</li>
+							</capacities>
+							<power>5</power>
+							<cooldownTime>1</cooldownTime>
+							<linkedBodyPartsGroup>Ele_LeftArm</linkedBodyPartsGroup>
+							<armorPenetration>0.18</armorPenetration>
+						</li>
+						<li Class="CombatExtended.ToolCE">
+							<label>right arm</label>
+							<capacities>
+								<li>Blunt</li>
+							</capacities>
+							<power>9</power>
+							<cooldownTime>1.4</cooldownTime>
+							<linkedBodyPartsGroup>Ele_RightArm</linkedBodyPartsGroup>
+							<armorPenetration>0.18</armorPenetration>
+						</li>
+						<li Class="CombatExtended.ToolCE">
+							<label>horn</label>
+							<capacities>
+								<li>Stab</li>
+							</capacities>
+							<power>20</power>
+							<cooldownTime>2.2</cooldownTime>
+							<linkedBodyPartsGroup>Ele_Horn</linkedBodyPartsGroup>
+							<armorPenetration>0.50</armorPenetration>
+						</li>
 					</tools>
 				</value>
 			</li>
-			
+
 			<!-- fire elemental -->
-			
+
 			<li Class="PatchOperationAddModExtension">
-				<xpath>Defs/PawnDefs[defName="TM_Fire_ElementalR"]</xpath>
+				<xpath>Defs/ThingDef[defName="TM_Fire_ElementalR"]</xpath>
 				<value>
 					<li Class="CombatExtended.RacePropertiesExtensionCE">
 						<bodyShape>Humanoid</bodyShape>
@@ -218,48 +252,57 @@
 				</value>
 			</li>
 
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName="TM_Fire_ElementalR"]/statBases</xpath>
+				<value>
+					<MeleeDodgeChance>0.19</MeleeDodgeChance>
+					<MeleeCritChance>0.15</MeleeCritChance>
+					<MeleeParryChance>0.22</MeleeParryChance>
+				</value>
+			</li>
+
 			<li Class="PatchOperationReplace">
-				<xpath>Defs/PawnDefs[defName="TM_Fire_ElementalR"]/tools</xpath>
+				<xpath>Defs/ThingDef[defName="TM_Fire_ElementalR"]/tools</xpath>
 				<value>
 					<tools>
-					  <li Class="CombatExtended.ToolCE">
-						<label>left arm</label>
-						<capacities>
-						  <li>Blunt</li>
-						</capacities>
-						<power>6</power>
-						<cooldownTime>.9</cooldownTime>
-						<linkedBodyPartsGroup>Ele_LeftArm</linkedBodyPartsGroup>
-						<armorPenetration>0.18</armorPenetration>
-					  </li>
-					  <li Class="CombatExtended.ToolCE">
-						<label>right arm</label>
-						<capacities>
-						  <li>Blunt</li>
-						</capacities>
-						<power>12</power>
-						<cooldownTime>1.3</cooldownTime>
-						<linkedBodyPartsGroup>Ele_RightArm</linkedBodyPartsGroup>
-						<armorPenetration>0.18</armorPenetration>
-					  </li>
-					  <li Class="CombatExtended.ToolCE">
-						<label>horn</label>
-						<capacities>
-						  <li>Stab</li>
-						</capacities>
-						<power>22</power>
-						<cooldownTime>2</cooldownTime>
-						<linkedBodyPartsGroup>Ele_Horn</linkedBodyPartsGroup>
-						<armorPenetration>0.50</armorPenetration>
-					  </li>
+						<li Class="CombatExtended.ToolCE">
+							<label>left arm</label>
+							<capacities>
+								<li>Blunt</li>
+							</capacities>
+							<power>6</power>
+							<cooldownTime>.9</cooldownTime>
+							<linkedBodyPartsGroup>Ele_LeftArm</linkedBodyPartsGroup>
+							<armorPenetration>0.18</armorPenetration>
+						</li>
+						<li Class="CombatExtended.ToolCE">
+							<label>right arm</label>
+							<capacities>
+								<li>Blunt</li>
+							</capacities>
+							<power>12</power>
+							<cooldownTime>1.3</cooldownTime>
+							<linkedBodyPartsGroup>Ele_RightArm</linkedBodyPartsGroup>
+							<armorPenetration>0.18</armorPenetration>
+						</li>
+						<li Class="CombatExtended.ToolCE">
+							<label>horn</label>
+							<capacities>
+								<li>Stab</li>
+							</capacities>
+							<power>22</power>
+							<cooldownTime>2</cooldownTime>
+							<linkedBodyPartsGroup>Ele_Horn</linkedBodyPartsGroup>
+							<armorPenetration>0.50</armorPenetration>
+						</li>
 					</tools>
 				</value>
 			</li>
-			
+
 			<!-- greater fire elemental -->
-			
+
 			<li Class="PatchOperationAddModExtension">
-				<xpath>Defs/PawnDefs[defName="TM_GreaterFire_ElementalR"]</xpath>
+				<xpath>Defs/ThingDef[defName="TM_GreaterFire_ElementalR"]</xpath>
 				<value>
 					<li Class="CombatExtended.RacePropertiesExtensionCE">
 						<bodyShape>Humanoid</bodyShape>
@@ -267,48 +310,57 @@
 				</value>
 			</li>
 
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName="TM_GreaterFire_ElementalR"]/statBases</xpath>
+				<value>
+					<MeleeDodgeChance>0.20</MeleeDodgeChance>
+					<MeleeCritChance>0.17</MeleeCritChance>
+					<MeleeParryChance>0.30</MeleeParryChance>
+				</value>
+			</li>
+
 			<li Class="PatchOperationReplace">
-				<xpath>Defs/PawnDefs[defName="TM_GreaterFire_ElementalR"]/tools</xpath>
+				<xpath>Defs/ThingDef[defName="TM_GreaterFire_ElementalR"]/tools</xpath>
 				<value>
 					<tools>
-					  <li Class="CombatExtended.ToolCE">
-						<label>left arm</label>
-						<capacities>
-						  <li>Blunt</li>
-						</capacities>
-						<power>7</power>
-						<cooldownTime>.9</cooldownTime>
-						<linkedBodyPartsGroup>Ele_LeftArm</linkedBodyPartsGroup>
-						<armorPenetration>0.18</armorPenetration>
-					  </li>
-					  <li Class="CombatExtended.ToolCE">
-						<label>right arm</label>
-						<capacities>
-						  <li>Blunt</li>
-						</capacities>
-						<power>14</power>
-						<cooldownTime>1.3</cooldownTime>
-						<linkedBodyPartsGroup>Ele_RightArm</linkedBodyPartsGroup>
-						<armorPenetration>0.18</armorPenetration>
-					  </li>
-					  <li Class="CombatExtended.ToolCE">
-						<label>horn</label>
-						<capacities>
-						  <li>Stab</li>
-						</capacities>
-						<power>25</power>
-						<cooldownTime>2</cooldownTime>
-						<linkedBodyPartsGroup>Ele_Horn</linkedBodyPartsGroup>
-						<armorPenetration>0.50</armorPenetration>
-					  </li>
+						<li Class="CombatExtended.ToolCE">
+							<label>left arm</label>
+							<capacities>
+								<li>Blunt</li>
+							</capacities>
+							<power>7</power>
+							<cooldownTime>.9</cooldownTime>
+							<linkedBodyPartsGroup>Ele_LeftArm</linkedBodyPartsGroup>
+							<armorPenetration>0.18</armorPenetration>
+						</li>
+						<li Class="CombatExtended.ToolCE">
+							<label>right arm</label>
+							<capacities>
+								<li>Blunt</li>
+							</capacities>
+							<power>14</power>
+							<cooldownTime>1.3</cooldownTime>
+							<linkedBodyPartsGroup>Ele_RightArm</linkedBodyPartsGroup>
+							<armorPenetration>0.18</armorPenetration>
+						</li>
+						<li Class="CombatExtended.ToolCE">
+							<label>horn</label>
+							<capacities>
+								<li>Stab</li>
+							</capacities>
+							<power>25</power>
+							<cooldownTime>2</cooldownTime>
+							<linkedBodyPartsGroup>Ele_Horn</linkedBodyPartsGroup>
+							<armorPenetration>0.50</armorPenetration>
+						</li>
 					</tools>
 				</value>
 			</li>
-			
+
 			<!-- lesser water elemental -->
-			
+
 			<li Class="PatchOperationAddModExtension">
-				<xpath>Defs/PawnDefs[defName="TM_LesserWater_ElementalR"]</xpath>
+				<xpath>Defs/ThingDef[defName="TM_LesserWater_ElementalR"]</xpath>
 				<value>
 					<li Class="CombatExtended.RacePropertiesExtensionCE">
 						<bodyShape>Humanoid</bodyShape>
@@ -316,48 +368,57 @@
 				</value>
 			</li>
 
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName="TM_LesserWater_ElementalR"]/statBases</xpath>
+				<value>
+					<MeleeDodgeChance>0.19</MeleeDodgeChance>
+					<MeleeCritChance>0.16</MeleeCritChance>
+					<MeleeParryChance>0.14</MeleeParryChance>
+				</value>
+			</li>
+
 			<li Class="PatchOperationReplace">
-				<xpath>Defs/PawnDefs[defName="TM_LesserWater_ElementalR"]/tools</xpath>
+				<xpath>Defs/ThingDef[defName="TM_LesserWater_ElementalR"]/tools</xpath>
 				<value>
 					<tools>
-					  <li Class="CombatExtended.ToolCE">
-						<label>left arm</label>
-						<capacities>
-						  <li>Blunt</li>
-						</capacities>
-						<power>5</power>
-						<cooldownTime>1.3</cooldownTime>
-						<linkedBodyPartsGroup>Ele_LeftArm</linkedBodyPartsGroup>
-						<armorPenetration>0.18</armorPenetration>
-					  </li>
-					  <li Class="CombatExtended.ToolCE">
-						<label>right arm</label>
-						<capacities>
-						  <li>Blunt</li>
-						</capacities>
-						<power>9</power>
-						<cooldownTime>1.8</cooldownTime>
-						<linkedBodyPartsGroup>Ele_RightArm</linkedBodyPartsGroup>
-						<armorPenetration>0.18</armorPenetration>
-					  </li>
-					  <li Class="CombatExtended.ToolCE">
-						<label>horn</label>
-						<capacities>
-						  <li>Stab</li>
-						</capacities>
-						<power>18</power>
-						<cooldownTime>2.8</cooldownTime>
-						<linkedBodyPartsGroup>Ele_Horn</linkedBodyPartsGroup>
-						<armorPenetration>0.50</armorPenetration>
-					  </li>
+						<li Class="CombatExtended.ToolCE">
+							<label>left arm</label>
+							<capacities>
+								<li>Blunt</li>
+							</capacities>
+							<power>5</power>
+							<cooldownTime>1.3</cooldownTime>
+							<linkedBodyPartsGroup>Ele_LeftArm</linkedBodyPartsGroup>
+							<armorPenetration>0.18</armorPenetration>
+						</li>
+						<li Class="CombatExtended.ToolCE">
+							<label>right arm</label>
+							<capacities>
+								<li>Blunt</li>
+							</capacities>
+							<power>9</power>
+							<cooldownTime>1.8</cooldownTime>
+							<linkedBodyPartsGroup>Ele_RightArm</linkedBodyPartsGroup>
+							<armorPenetration>0.18</armorPenetration>
+						</li>
+						<li Class="CombatExtended.ToolCE">
+							<label>horn</label>
+							<capacities>
+								<li>Stab</li>
+							</capacities>
+							<power>18</power>
+							<cooldownTime>2.8</cooldownTime>
+							<linkedBodyPartsGroup>Ele_Horn</linkedBodyPartsGroup>
+							<armorPenetration>0.50</armorPenetration>
+						</li>
 					</tools>
 				</value>
 			</li>
-			
+
 			<!-- water elemental -->
-			
+
 			<li Class="PatchOperationAddModExtension">
-				<xpath>Defs/PawnDefs[defName="TM_Water_ElementalR"]</xpath>
+				<xpath>Defs/ThingDef[defName="TM_Water_ElementalR"]</xpath>
 				<value>
 					<li Class="CombatExtended.RacePropertiesExtensionCE">
 						<bodyShape>Humanoid</bodyShape>
@@ -365,48 +426,57 @@
 				</value>
 			</li>
 
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName="TM_Water_ElementalR"]/statBases</xpath>
+				<value>
+					<MeleeDodgeChance>0.22</MeleeDodgeChance>
+					<MeleeCritChance>0.18</MeleeCritChance>
+					<MeleeParryChance>0.22</MeleeParryChance>
+				</value>
+			</li>
+
 			<li Class="PatchOperationReplace">
-				<xpath>Defs/PawnDefs[defName="TM_Water_ElementalR"]/tools</xpath>
+				<xpath>Defs/ThingDef[defName="TM_Water_ElementalR"]/tools</xpath>
 				<value>
 					<tools>
-					  <li Class="CombatExtended.ToolCE">
-						<label>left arm</label>
-						<capacities>
-						  <li>Blunt</li>
-						</capacities>
-						<power>6</power>
-						<cooldownTime>1.2</cooldownTime>
-						<linkedBodyPartsGroup>Ele_LeftArm</linkedBodyPartsGroup>
-						<armorPenetration>0.18</armorPenetration>
-					  </li>
-					  <li Class="CombatExtended.ToolCE">
-						<label>right arm</label>
-						<capacities>
-						  <li>Blunt</li>
-						</capacities>
-						<power>8</power>
-						<cooldownTime>1.7</cooldownTime>
-						<linkedBodyPartsGroup>Ele_RightArm</linkedBodyPartsGroup>
-						<armorPenetration>0.18</armorPenetration>
-					  </li>
-					  <li Class="CombatExtended.ToolCE">
-						<label>horn</label>
-						<capacities>
-						  <li>Stab</li>
-						</capacities>
-						<power>20</power>
-						<cooldownTime>2</cooldownTime>
-						<linkedBodyPartsGroup>Ele_Horn</linkedBodyPartsGroup>
-						<armorPenetration>0.50</armorPenetration>
-					  </li>
+						<li Class="CombatExtended.ToolCE">
+							<label>left arm</label>
+							<capacities>
+								<li>Blunt</li>
+							</capacities>
+							<power>6</power>
+							<cooldownTime>1.2</cooldownTime>
+							<linkedBodyPartsGroup>Ele_LeftArm</linkedBodyPartsGroup>
+							<armorPenetration>0.18</armorPenetration>
+						</li>
+						<li Class="CombatExtended.ToolCE">
+							<label>right arm</label>
+							<capacities>
+								<li>Blunt</li>
+							</capacities>
+							<power>8</power>
+							<cooldownTime>1.7</cooldownTime>
+							<linkedBodyPartsGroup>Ele_RightArm</linkedBodyPartsGroup>
+							<armorPenetration>0.18</armorPenetration>
+						</li>
+						<li Class="CombatExtended.ToolCE">
+							<label>horn</label>
+							<capacities>
+								<li>Stab</li>
+							</capacities>
+							<power>20</power>
+							<cooldownTime>2</cooldownTime>
+							<linkedBodyPartsGroup>Ele_Horn</linkedBodyPartsGroup>
+							<armorPenetration>0.50</armorPenetration>
+						</li>
 					</tools>
 				</value>
 			</li>
-			
+
 			<!-- greater water elemental -->
-			
+
 			<li Class="PatchOperationAddModExtension">
-				<xpath>Defs/PawnDefs[defName="TM_GreaterWater_ElementalR"]</xpath>
+				<xpath>Defs/ThingDef[defName="TM_GreaterWater_ElementalR"]</xpath>
 				<value>
 					<li Class="CombatExtended.RacePropertiesExtensionCE">
 						<bodyShape>Humanoid</bodyShape>
@@ -414,48 +484,57 @@
 				</value>
 			</li>
 
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName="TM_GreaterWater_ElementalR"]/statBases</xpath>
+				<value>
+					<MeleeDodgeChance>0.22</MeleeDodgeChance>
+					<MeleeCritChance>0.21</MeleeCritChance>
+					<MeleeParryChance>0.30</MeleeParryChance>
+				</value>
+			</li>
+
 			<li Class="PatchOperationReplace">
-				<xpath>Defs/PawnDefs[defName="TM_GreaterWater_ElementalR"]/tools</xpath>
+				<xpath>Defs/ThingDef[defName="TM_GreaterWater_ElementalR"]/tools</xpath>
 				<value>
 					<tools>
-					  <li Class="CombatExtended.ToolCE">
-						<label>left arm</label>
-						<capacities>
-						  <li>Blunt</li>
-						</capacities>
-						<power>8</power>
-						<cooldownTime>1.2</cooldownTime>
-						<linkedBodyPartsGroup>Ele_LeftArm</linkedBodyPartsGroup>
-						<armorPenetration>0.18</armorPenetration>
-					  </li>
-					  <li Class="CombatExtended.ToolCE">
-						<label>right arm</label>
-						<capacities>
-						  <li>Blunt</li>
-						</capacities>
-						<power>14</power>
-						<cooldownTime>1.7</cooldownTime>
-						<linkedBodyPartsGroup>Ele_RightArm</linkedBodyPartsGroup>
-						<armorPenetration>0.18</armorPenetration>
-					  </li>
-					  <li Class="CombatExtended.ToolCE">
-						<label>horn</label>
-						<capacities>
-						  <li>Stab</li>
-						</capacities>
-						<power>30</power>
-						<cooldownTime>2.8</cooldownTime>
-						<linkedBodyPartsGroup>Ele_Horn</linkedBodyPartsGroup>
-						<armorPenetration>0.50</armorPenetration>
-					  </li>
+						<li Class="CombatExtended.ToolCE">
+							<label>left arm</label>
+							<capacities>
+								<li>Blunt</li>
+							</capacities>
+							<power>8</power>
+							<cooldownTime>1.2</cooldownTime>
+							<linkedBodyPartsGroup>Ele_LeftArm</linkedBodyPartsGroup>
+							<armorPenetration>0.18</armorPenetration>
+						</li>
+						<li Class="CombatExtended.ToolCE">
+							<label>right arm</label>
+							<capacities>
+								<li>Blunt</li>
+							</capacities>
+							<power>14</power>
+							<cooldownTime>1.7</cooldownTime>
+							<linkedBodyPartsGroup>Ele_RightArm</linkedBodyPartsGroup>
+							<armorPenetration>0.18</armorPenetration>
+						</li>
+						<li Class="CombatExtended.ToolCE">
+							<label>horn</label>
+							<capacities>
+								<li>Stab</li>
+							</capacities>
+							<power>30</power>
+							<cooldownTime>2.8</cooldownTime>
+							<linkedBodyPartsGroup>Ele_Horn</linkedBodyPartsGroup>
+							<armorPenetration>0.50</armorPenetration>
+						</li>
 					</tools>
 				</value>
 			</li>
-			
+
 			<!-- lesser air elemental -->
-			
+
 			<li Class="PatchOperationAddModExtension">
-				<xpath>Defs/PawnDefs[defName="TM_LesserWind_ElementalR"]</xpath>
+				<xpath>Defs/ThingDef[defName="TM_LesserWind_ElementalR"]</xpath>
 				<value>
 					<li Class="CombatExtended.RacePropertiesExtensionCE">
 						<bodyShape>Humanoid</bodyShape>
@@ -463,50 +542,59 @@
 				</value>
 			</li>
 
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName="TM_LesserWind_ElementalR"]/statBases</xpath>
+				<value>
+					<MeleeDodgeChance>0.36</MeleeDodgeChance>
+					<MeleeCritChance>0.16</MeleeCritChance>
+					<MeleeParryChance>0.11</MeleeParryChance>
+				</value>
+			</li>
+
 			<li Class="PatchOperationReplace">
-				<xpath>Defs/PawnDefs[defName="TM_LesserWind_ElementalR"]/tools</xpath>
+				<xpath>Defs/ThingDef[defName="TM_LesserWind_ElementalR"]/tools</xpath>
 				<value>
 					<tools>
-					  <li Class="CombatExtended.ToolCE">
-						<label>left arm</label>
-						<capacities>
-						  <li>Blunt</li>
-						  <li>Scratch</li>
-						</capacities>
-						<power>4</power>
-						<cooldownTime>.6</cooldownTime>
-						<linkedBodyPartsGroup>Ele_LeftArm</linkedBodyPartsGroup>
-						<armorPenetration>0.32</armorPenetration>
-					  </li>
-					  <li Class="CombatExtended.ToolCE">
-						<label>right arm</label>
-						<capacities>
-						  <li>Blunt</li>
-						  <li>Scratch</li>
-						</capacities>
-						<power>6</power>
-						<cooldownTime>1</cooldownTime>
-						<linkedBodyPartsGroup>Ele_RightArm</linkedBodyPartsGroup>
-						<armorPenetration>0.32</armorPenetration>
-					  </li>
-					  <li Class="CombatExtended.ToolCE">
-						<label>horn</label>
-						<capacities>
-						  <li>Stab</li>
-						</capacities>
-						<power>14</power>
-						<cooldownTime>1.2</cooldownTime>
-						<linkedBodyPartsGroup>Ele_Horn</linkedBodyPartsGroup>
-						<armorPenetration>0.50</armorPenetration>
-					  </li>
+						<li Class="CombatExtended.ToolCE">
+							<label>left arm</label>
+							<capacities>
+								<li>Blunt</li>
+								<li>Scratch</li>
+							</capacities>
+							<power>4</power>
+							<cooldownTime>.6</cooldownTime>
+							<linkedBodyPartsGroup>Ele_LeftArm</linkedBodyPartsGroup>
+							<armorPenetration>0.32</armorPenetration>
+						</li>
+						<li Class="CombatExtended.ToolCE">
+							<label>right arm</label>
+							<capacities>
+								<li>Blunt</li>
+								<li>Scratch</li>
+							</capacities>
+							<power>6</power>
+							<cooldownTime>1</cooldownTime>
+							<linkedBodyPartsGroup>Ele_RightArm</linkedBodyPartsGroup>
+							<armorPenetration>0.32</armorPenetration>
+						</li>
+						<li Class="CombatExtended.ToolCE">
+							<label>horn</label>
+							<capacities>
+								<li>Stab</li>
+							</capacities>
+							<power>14</power>
+							<cooldownTime>1.2</cooldownTime>
+							<linkedBodyPartsGroup>Ele_Horn</linkedBodyPartsGroup>
+							<armorPenetration>0.50</armorPenetration>
+						</li>
 					</tools>
 				</value>
 			</li>
-			
+
 			<!-- air elemental -->
-			
+
 			<li Class="PatchOperationAddModExtension">
-				<xpath>Defs/PawnDefs[defName="TM_Wind_ElementalR"]</xpath>
+				<xpath>Defs/ThingDef[defName="TM_Wind_ElementalR"]</xpath>
 				<value>
 					<li Class="CombatExtended.RacePropertiesExtensionCE">
 						<bodyShape>Humanoid</bodyShape>
@@ -514,50 +602,59 @@
 				</value>
 			</li>
 
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName="TM_Wind_ElementalR"]/statBases</xpath>
+				<value>
+					<MeleeDodgeChance>0.41</MeleeDodgeChance>
+					<MeleeCritChance>0.18</MeleeCritChance>
+					<MeleeParryChance>0.17</MeleeParryChance>
+				</value>
+			</li>
+
 			<li Class="PatchOperationReplace">
-				<xpath>Defs/PawnDefs[defName="TM_Wind_ElementalR"]/tools</xpath>
+				<xpath>Defs/ThingDef[defName="TM_Wind_ElementalR"]/tools</xpath>
 				<value>
 					<tools>
-					  <li Class="CombatExtended.ToolCE">
-						<label>left arm</label>
-						<capacities>
-						  <li>Blunt</li>
-						  <li>Scratch</li>
-						</capacities>
-						<power>5</power>
-						<cooldownTime>.6</cooldownTime>
-						<linkedBodyPartsGroup>Ele_LeftArm</linkedBodyPartsGroup>
-						<armorPenetration>0.32</armorPenetration>
-					  </li>
-					  <li Class="CombatExtended.ToolCE">
-						<label>right arm</label>
-						<capacities>
-						  <li>Blunt</li>
-						  <li>Scratch</li>
-						</capacities>
-						<power>8</power>
-						<cooldownTime>1</cooldownTime>
-						<linkedBodyPartsGroup>Ele_RightArm</linkedBodyPartsGroup>
-						<armorPenetration>0.32</armorPenetration>
-					  </li>
-					  <li Class="CombatExtended.ToolCE">
-						<label>horn</label>
-						<capacities>
-						  <li>Stab</li>
-						</capacities>
-						<power>16</power>
-						<cooldownTime>1.2</cooldownTime>
-						<linkedBodyPartsGroup>Ele_Horn</linkedBodyPartsGroup>
-						<armorPenetration>0.50</armorPenetration>
-					  </li>
+						<li Class="CombatExtended.ToolCE">
+							<label>left arm</label>
+							<capacities>
+								<li>Blunt</li>
+								<li>Scratch</li>
+							</capacities>
+							<power>5</power>
+							<cooldownTime>.6</cooldownTime>
+							<linkedBodyPartsGroup>Ele_LeftArm</linkedBodyPartsGroup>
+							<armorPenetration>0.32</armorPenetration>
+						</li>
+						<li Class="CombatExtended.ToolCE">
+							<label>right arm</label>
+							<capacities>
+								<li>Blunt</li>
+								<li>Scratch</li>
+							</capacities>
+							<power>8</power>
+							<cooldownTime>1</cooldownTime>
+							<linkedBodyPartsGroup>Ele_RightArm</linkedBodyPartsGroup>
+							<armorPenetration>0.32</armorPenetration>
+						</li>
+						<li Class="CombatExtended.ToolCE">
+							<label>horn</label>
+							<capacities>
+								<li>Stab</li>
+							</capacities>
+							<power>16</power>
+							<cooldownTime>1.2</cooldownTime>
+							<linkedBodyPartsGroup>Ele_Horn</linkedBodyPartsGroup>
+							<armorPenetration>0.50</armorPenetration>
+						</li>
 					</tools>
 				</value>
 			</li>
-			
+
 			<!-- greater air elemental -->
-			
+
 			<li Class="PatchOperationAddModExtension">
-				<xpath>Defs/PawnDefs[defName="TM_GreaterWind_ElementalR"]</xpath>
+				<xpath>Defs/ThingDef[defName="TM_GreaterWind_ElementalR"]</xpath>
 				<value>
 					<li Class="CombatExtended.RacePropertiesExtensionCE">
 						<bodyShape>Humanoid</bodyShape>
@@ -565,45 +662,55 @@
 				</value>
 			</li>
 
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName="TM_GreaterWind_ElementalR"]/statBases</xpath>
+				<value>
+					<MeleeDodgeChance>0.43</MeleeDodgeChance>
+					<MeleeCritChance>0.19</MeleeCritChance>
+					<MeleeParryChance>0.22</MeleeParryChance>
+				</value>
+			</li>
+
 			<li Class="PatchOperationReplace">
-				<xpath>Defs/PawnDefs[defName="TM_GreaterWind_ElementalR"]/tools</xpath>
+				<xpath>Defs/ThingDef[defName="TM_GreaterWind_ElementalR"]/tools</xpath>
 				<value>
 					<tools>
-					  <li Class="CombatExtended.ToolCE">
-						<label>left arm</label>
-						<capacities>
-						  <li>Blunt</li>
-						  <li>Scratch</li>
-						</capacities>
-						<power>7</power>
-						<cooldownTime>.6</cooldownTime>
-						<linkedBodyPartsGroup>Ele_LeftArm</linkedBodyPartsGroup>
-						<armorPenetration>0.32</armorPenetration>
-					  </li>
-					  <li Class="CombatExtended.ToolCE">
-						<label>right arm</label>
-						<capacities>
-						  <li>Blunt</li>
-						  <li>Scratch</li>
-						</capacities>
-						<power>11</power>
-						<cooldownTime>.9</cooldownTime>
-						<linkedBodyPartsGroup>Ele_RightArm</linkedBodyPartsGroup>
-						<armorPenetration>0.32</armorPenetration>
-					  </li>
-					  <li Class="CombatExtended.ToolCE">
-						<label>horn</label>
-						<capacities>
-						  <li>Stab</li>
-						</capacities>
-						<power>20</power>
-						<cooldownTime>1.2</cooldownTime>
-						<linkedBodyPartsGroup>Ele_Horn</linkedBodyPartsGroup>
-						<armorPenetration>0.50</armorPenetration>
-					  </li>
+						<li Class="CombatExtended.ToolCE">
+							<label>left arm</label>
+							<capacities>
+								<li>Blunt</li>
+								<li>Scratch</li>
+							</capacities>
+							<power>7</power>
+							<cooldownTime>.6</cooldownTime>
+							<linkedBodyPartsGroup>Ele_LeftArm</linkedBodyPartsGroup>
+							<armorPenetration>0.32</armorPenetration>
+						</li>
+						<li Class="CombatExtended.ToolCE">
+							<label>right arm</label>
+							<capacities>
+								<li>Blunt</li>
+								<li>Scratch</li>
+							</capacities>
+							<power>11</power>
+							<cooldownTime>.9</cooldownTime>
+							<linkedBodyPartsGroup>Ele_RightArm</linkedBodyPartsGroup>
+							<armorPenetration>0.32</armorPenetration>
+						</li>
+						<li Class="CombatExtended.ToolCE">
+							<label>horn</label>
+							<capacities>
+								<li>Stab</li>
+							</capacities>
+							<power>20</power>
+							<cooldownTime>1.2</cooldownTime>
+							<linkedBodyPartsGroup>Ele_Horn</linkedBodyPartsGroup>
+							<armorPenetration>0.50</armorPenetration>
+						</li>
 					</tools>
 				</value>
 			</li>
+
 		</operations>
 	</Operation>
 </Patch>

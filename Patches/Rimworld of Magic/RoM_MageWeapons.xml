@@ -1,87 +1,85 @@
-<!-- made by steamuser togo -->
 <?xml version="1.0" encoding="utf-8" ?>
-
+<!-- made by steamuser togo -->
 <Patch>
 	<Operation Class="PatchOperationSequence">
 		<success>Always</success>
 		<operations>
-		
-			<li Class="ModCheck.isModLoaded">
+
+			<li Class="CombatExtended.PatchOperationFindMod">
 				<modName>A RimWorld of Magic</modName>
-				<yourMod>Rimworld of Magic CE Patch</yourMod>
 			</li>
 
 			<!-- ThrumboAxe -->
 
-			  <li Class="PatchOperationReplace">
+			<li Class="PatchOperationReplace">
 				<xpath>Defs/ThingDef[defName="TM_ThrumboAxe"]/tools</xpath>
 				<value>
 					<tools>
-					  <li Class="CombatExtended.ToolCE">
-						<label>handle</label>
-						<capacities>
-						  <li>Blunt</li>
-						</capacities>
-						<power>9</power>
-						<cooldownTime>.9</cooldownTime>
-						<armorPenetration>0.18</armorPenetration>
-					  </li>
-					  <li Class="CombatExtended.ToolCE">
-						<label>cleave</label>
-						<capacities>
-						  <li>TM_ThrumboCleave</li>
-						</capacities>
-						<power>18</power>
-						<cooldownTime>1.6</cooldownTime>
-						<armorPenetration>0.32</armorPenetration>
-					  </li>
-					  <li Class="CombatExtended.ToolCE">
-						<label>horns</label>
-						<capacities>
-						  <li>Stab</li>
-						</capacities>
-						<power>26</power>
-						<cooldownTime>2</cooldownTime>
-						<armorPenetration>0.50</armorPenetration>
-					  </li>
+						<li Class="CombatExtended.ToolCE">
+							<label>handle</label>
+							<capacities>
+								<li>Blunt</li>
+							</capacities>
+							<power>9</power>
+							<cooldownTime>.9</cooldownTime>
+							<armorPenetration>0.18</armorPenetration>
+						</li>
+						<li Class="CombatExtended.ToolCE">
+							<label>cleave</label>
+							<capacities>
+								<li>TM_ThrumboCleave</li>
+							</capacities>
+							<power>18</power>
+							<cooldownTime>1.6</cooldownTime>
+							<armorPenetration>0.32</armorPenetration>
+						</li>
+						<li Class="CombatExtended.ToolCE">
+							<label>horns</label>
+							<capacities>
+								<li>Stab</li>
+							</capacities>
+							<power>26</power>
+							<cooldownTime>2</cooldownTime>
+							<armorPenetration>0.50</armorPenetration>
+						</li>
 					</tools>
 				</value>
 			</li>
-			
+
 			<!-- ElephantSpear -->
-			
+
 			<li Class="PatchOperationReplace">
 				<xpath>Defs/ThingDef[defName="TM_ElephantSpear"]/tools</xpath>
 				<value>
 					<tools>
-					  <li Class="CombatExtended.ToolCE">
-						<label>shaft</label>
-						<capacities>
-						  <li>Blunt</li>
-						</capacities>
-						<power>14</power>
-						<cooldownTime>2</cooldownTime>
-						<armorPenetration>0.18</armorPenetration>
-					  </li>
-					  <li Class="CombatExtended.ToolCE">
-						<label>point</label>
-						<capacities>
-						  <li>Stab</li>
-						  <li>Poke</li>
-						</capacities>
-						<power>20</power>
-						<cooldownTime>2.1</cooldownTime>
-						<armorPenetration>0.75</armorPenetration>
-					  </li>
-					  <li Class="CombatExtended.ToolCE">
-						<label>slash</label>
-						<capacities>
-						  <li>Cut</li>
-						</capacities>
-						<power>22</power>
-						<cooldownTime>1.8</cooldownTime>
-						<armorPenetration>0.42</armorPenetration>
-					  </li>
+						<li Class="CombatExtended.ToolCE">
+							<label>shaft</label>
+							<capacities>
+								<li>Blunt</li>
+							</capacities>
+							<power>14</power>
+							<cooldownTime>2</cooldownTime>
+							<armorPenetration>0.18</armorPenetration>
+						</li>
+						<li Class="CombatExtended.ToolCE">
+							<label>point</label>
+							<capacities>
+								<li>Stab</li>
+								<li>Poke</li>
+							</capacities>
+							<power>20</power>
+							<cooldownTime>2.1</cooldownTime>
+							<armorPenetration>0.75</armorPenetration>
+						</li>
+						<li Class="CombatExtended.ToolCE">
+							<label>slash</label>
+							<capacities>
+								<li>Cut</li>
+							</capacities>
+							<power>22</power>
+							<cooldownTime>1.8</cooldownTime>
+							<armorPenetration>0.42</armorPenetration>
+						</li>
 					</tools>
 				</value>
 			</li>
@@ -449,7 +447,7 @@
 			</li>
 			
 			<!- Thrum Bow -->
-			
+
 			<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
 				<defName>TM_ThrumBow</defName>
 				<statBases>
@@ -474,27 +472,27 @@
 					<aiAimMode>AimedShot</aiAimMode>
 				</FireModes>
 			</li>
-			
+
 			<li Class="PatchOperationReplace">
 				<xpath>Defs/ThingDef[defName="TM_ThrumBow"]/tools</xpath>
 				<value>
 					<tools>
-					  <li Class="CombatExtended.ToolCE">
-						<label>limb</label>
-						<capacities>
-						  <li>Blunt</li>
-						  <li>Poke</li>
-						</capacities>
-						<power>14</power>
-						<cooldownTime>2.2</cooldownTime>
-						<armorPenetration>0.32</armorPenetration>
-					  </li>
+						<li Class="CombatExtended.ToolCE">
+							<label>limb</label>
+							<capacities>
+								<li>Blunt</li>
+								<li>Poke</li>
+							</capacities>
+							<power>14</power>
+							<cooldownTime>2.2</cooldownTime>
+							<armorPenetration>0.32</armorPenetration>
+						</li>
 					</tools>
 				</value>
 			</li>
-			
+
 			<!-- Elephant Bow -->
-			
+
 			<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
 				<defName>TM_ElephantBow</defName>
 				<statBases>
@@ -519,24 +517,25 @@
 					<aiAimMode>AimedShot</aiAimMode>
 				</FireModes>
 			</li>
-			
+
 			<li Class="PatchOperationReplace">
 				<xpath>Defs/ThingDef[defName="TM_ElephantBow"]/tools</xpath>
 				<value>
 					<tools>
-					  <li Class="CombatExtended.ToolCE">
-						<label>limb</label>
-						<capacities>
-						  <li>Blunt</li>
-						  <li>Poke</li>
-						</capacities>
-						<power>12</power>
-						<cooldownTime>2.4</cooldownTime>
-						<armorPenetration>0.32</armorPenetration>
-					  </li>
+						<li Class="CombatExtended.ToolCE">
+							<label>limb</label>
+							<capacities>
+								<li>Blunt</li>
+								<li>Poke</li>
+							</capacities>
+							<power>12</power>
+							<cooldownTime>2.4</cooldownTime>
+							<armorPenetration>0.32</armorPenetration>
+						</li>
 					</tools>
 				</value>
 			</li>
+
 		</operations>
 	</Operation>
 </Patch>
