@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+	<Operation Class="PatchOperationSequence">
+		<success>Always</success>
+		<operations>
+
+			<li Class="CombatExtended.PatchOperationFindMod">
+				<modName>[RH] Faction: Umbra Company (1.0)</modName>
+			</li>
+
+			<!-- ========== Umbra Company faction pawns should spawn with ammo appropriate to their primary weapon ========== -->
+
+			<li Class="PatchOperationAddModExtension">
+				<xpath>/Defs/PawnKindDef[@Name="RH_UmbraCompany_Base"]</xpath>
+				<value>
+					<li Class="CombatExtended.LoadoutPropertiesExtension">
+						<primaryMagazineCount>
+							<min>2</min>
+							<max>5</max>
+						</primaryMagazineCount>
+					</li>
+				</value>
+			</li>
+
+			<!-- ========== Umbra Company faction pawns should spawn backpacks, allowing them to carry their (huge) inventory ========== -->
+
+			<li Class="PatchOperationAdd">
+				<xpath>/Defs/PawnKindDef[
+						defName="RH_UmbraCompany_CQB" or
+						defName="RH_UmbraCompany_CQB_TierII" or
+						defName="RH_UmbraCompany_Marksman" or
+						defName="RH_UmbraCompany_Marksman_TierII" or
+						defName="RH_UmbraCompany_Sniper" or
+						defName="RH_UmbraCompany_Assault" or
+						defName="RH_UmbraCompany_Assault_TierII" or
+						defName="RH_UmbraCompany_Gunner" or
+						defName="RH_UmbraCompany_Grenadier" or
+						defName="RH_UmbraCompany_Boss" or
+						defName="RH_UmbraCompany_Elite" or
+						defName="RH_UmbraCompany_Trader"
+						]/apparelRequired</xpath>
+				<value>
+					<li>Apparel_Backpack</li>
+				</value>
+			</li>
+
+			<!-- ========== Tweak minimum weaponMoney for selected pawn types, so that they actually spawn with weapons ========== -->
+
+			<li Class="PatchOperationReplace">
+				<xpath>/Defs/PawnKindDef[defName="RH_UmbraCompany_Gunner"]/weaponMoney/min</xpath>
+				<value>
+					<min>480</min>
+				</value>
+			</li>
+
+		</operations>
+	</Operation>
+</Patch>

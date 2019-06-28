@@ -57,7 +57,7 @@ namespace CombatExtended
 
         public override string SettingsCategory()
         {
-            return "Combat Extended";
+            return "Combat Extended: FastTrack Edition";
         }
 
         public override void DoSettingsWindowContents(Rect inRect)

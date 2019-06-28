@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- made by steamuser togo -->
+<Patch>
+	<Operation Class="PatchOperationSequence">
+		<success>Always</success>
+		<operations>
+
+			<li Class="CombatExtended.PatchOperationFindMod">
+				<modName>A RimWorld of Magic</modName>
+			</li>
+
+			<!-- minion -->
+
+			<li Class="PatchOperationAddModExtension">
+				<xpath>Defs/ThingDef[defName="TM_MinionR"]</xpath>
+				<value>
+					<li Class="CombatExtended.RacePropertiesExtensionCE">
+						<bodyShape>Humanoid</bodyShape>
+					</li>
+				</value>
+			</li>
+
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName="TM_MinionR"]/statBases</xpath>
+				<value>
+					<MeleeDodgeChance>0.19</MeleeDodgeChance>
+					<MeleeCritChance>0.05</MeleeCritChance>
+					<MeleeParryChance>0.10</MeleeParryChance>
+				</value>
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="TM_MinionR"]/tools</xpath>
+				<value>
+					<tools>
+						<li Class="CombatExtended.ToolCE">
+							<label>horn</label>
+							<capacities>
+								<li>Stab</li>
+							</capacities>
+							<power>6</power>
+							<cooldownTime>1.8</cooldownTime>
+							<linkedBodyPartsGroup>Minion_Horns</linkedBodyPartsGroup>
+							<armorPenetration>0.50</armorPenetration>
+						</li>
+						<li Class="CombatExtended.ToolCE">
+							<label>teeth</label>
+							<capacities>
+								<li>Bite</li>
+							</capacities>
+							<power>8</power>
+							<cooldownTime>2.2</cooldownTime>
+							<linkedBodyPartsGroup>Minion_Teeth</linkedBodyPartsGroup>
+							<armorPenetration>0.42</armorPenetration>
+						</li>
+					</tools>
+				</value>
+			</li>
+
+			<!-- greater minion -->
+
+			<li Class="PatchOperationAddModExtension">
+				<xpath>Defs/ThingDef[defName="TM_GreaterMinionR"]</xpath>
+				<value>
+					<li Class="CombatExtended.RacePropertiesExtensionCE">
+						<bodyShape>Humanoid</bodyShape>
+					</li>
+				</value>
+			</li>
+
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName="TM_GreaterMinionR"]/statBases</xpath>
+				<value>
+					<MeleeDodgeChance>0.21</MeleeDodgeChance>
+					<MeleeCritChance>0.06</MeleeCritChance>
+					<MeleeParryChance>0.10</MeleeParryChance>
+				</value>
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="TM_GreaterMinionR"]/tools</xpath>
+				<value>
+					<tools>
+						<li Class="CombatExtended.ToolCE">
+							<label>horn</label>
+							<capacities>
+								<li>Stab</li>
+							</capacities>
+							<power>7</power>
+							<cooldownTime>1.8</cooldownTime>
+							<linkedBodyPartsGroup>Minion_Horns</linkedBodyPartsGroup>
+							<armorPenetration>0.50</armorPenetration>
+						</li>
+						<li Class="CombatExtended.ToolCE">
+							<label>teeth</label>
+							<capacities>
+								<li>Bite</li>
+							</capacities>
+							<power>9</power>
+							<cooldownTime>2.2</cooldownTime>
+							<linkedBodyPartsGroup>Minion_Teeth</linkedBodyPartsGroup>
+							<armorPenetration>0.42</armorPenetration>
+						</li>
+					</tools>
+				</value>
+			</li>
+
+		</operations>
+	</Operation>
+</Patch>

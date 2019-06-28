@@ -1,0 +1,365 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- 
+Chicken Plucker's Project Red Horse mods often have duplicate items, apparels and defs shared between them,
+so this patch will only be applied if:
+
+The Ghosts is active && Rimmu-Nation Weapons is NOT active
+
+If both mods are active, the CE patch from Rimmu-Nation Weapons should automatically take over
+-->
+<Patch>
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+			<li>[RH] Faction: The Ghosts (1.0)</li>
+		</mods>
+		<match Class="PatchOperationFindMod">
+			<mods>
+				<li>[CP] Rimmu-Nation - Weapons (1.0)</li>
+			</mods>
+			<nomatch Class="PatchOperationSequence">
+				<operations>
+
+					<!-- ========== Barrett M107 ========== -->
+
+					<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+						<defName>RNGun_M107AMR</defName>
+						<statBases>
+							<Mass>14.00</Mass>
+							<RangedWeapon_Cooldown>0.58</RangedWeapon_Cooldown>
+							<SightsEfficiency>2.84</SightsEfficiency>
+							<ShotSpread>0.02</ShotSpread>
+							<SwayFactor>2.04</SwayFactor>
+							<Bulk>15.00</Bulk>
+							<WorkToMake>39500</WorkToMake>
+						</statBases>
+						<costList>
+							<Steel>115</Steel>
+							<ComponentIndustrial>7</ComponentIndustrial>
+						</costList>
+						<Properties>
+							<recoilAmount>2.45</recoilAmount>
+							<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+							<hasStandardCommand>true</hasStandardCommand>
+							<defaultProjectile>Bullet_50BMG_FMJ</defaultProjectile>
+							<warmupTime>3.3</warmupTime>
+							<range>126</range>
+							<soundCast>RNShot50Cal</soundCast>
+							<soundCastTail>GunTail_Heavy</soundCastTail>
+							<muzzleFlashScale>9</muzzleFlashScale>
+							<recoilPattern>Mounted</recoilPattern>
+						</Properties>
+
+						<AmmoUser>
+							<magazineSize>10</magazineSize>
+							<reloadTime>4</reloadTime>
+							<ammoSet>AmmoSet_50BMG</ammoSet>
+						</AmmoUser>
+
+						<FireModes>
+							<aiUseBurstMode>FALSE</aiUseBurstMode>
+							<aiAimMode>AimedShot</aiAimMode>
+						</FireModes>
+
+						<!-- No additional CE weaponTags needed -->
+
+						<AllowWithRunAndGun>false</AllowWithRunAndGun>
+					</li>
+
+					<li Class="PatchOperationReplace">
+						<xpath>Defs/ThingDef[defName="RNGun_M107AMR"]/tools</xpath>
+						<value>
+							<tools>
+								<li Class="CombatExtended.ToolCE">
+									<label>stock</label>
+									<capacities>
+										<li>Blunt</li>
+									</capacities>
+									<power>9</power>
+									<cooldownTime>2</cooldownTime>
+									<armorPenetration>0.12</armorPenetration>
+									<linkedBodyPartsGroup>Stock</linkedBodyPartsGroup>
+								</li>
+								<li Class="CombatExtended.ToolCE">
+									<label>barrel</label>
+									<capacities>
+										<li>Blunt</li>
+									</capacities>
+									<power>9</power>
+									<cooldownTime>2</cooldownTime>
+									<armorPenetration>0.15</armorPenetration>
+									<linkedBodyPartsGroup>Barrel</linkedBodyPartsGroup>
+								</li>
+								<li Class="CombatExtended.ToolCE">
+									<label>muzzle</label>
+									<capacities>
+										<li>Poke</li>
+									</capacities>
+									<power>9</power>
+									<cooldownTime>2</cooldownTime>
+									<armorPenetration>0.1</armorPenetration>
+									<linkedBodyPartsGroup>Muzzle</linkedBodyPartsGroup>
+								</li>
+							</tools>
+						</value>
+					</li>
+
+					<!-- ========== Heckler & Koch HK417 ========== -->
+
+					<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+						<defName>RNGun_HK417DMR</defName>
+						<statBases>
+							<Mass>4.23</Mass>
+							<RangedWeapon_Cooldown>0.57</RangedWeapon_Cooldown>
+							<SightsEfficiency>2.36</SightsEfficiency>
+							<ShotSpread>0.07</ShotSpread>
+							<SwayFactor>1.10</SwayFactor>
+							<Bulk>11.05</Bulk>
+							<WorkToMake>30000</WorkToMake>
+						</statBases>
+						<costList>
+							<Chemfuel>5</Chemfuel>
+							<Steel>60</Steel>
+							<ComponentIndustrial>5</ComponentIndustrial>
+						</costList>
+						<Properties>
+							<recoilAmount>2.04</recoilAmount>
+							<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+							<hasStandardCommand>true</hasStandardCommand>
+							<defaultProjectile>Bullet_762x51mmNATO_FMJ</defaultProjectile>
+							<warmupTime>1.4</warmupTime>
+							<range>75</range>
+							<soundCast>RNShot_GenericDMR</soundCast>
+							<soundCastTail>GunTail_Heavy</soundCastTail>
+							<muzzleFlashScale>9</muzzleFlashScale>
+							<recoilPattern>Mounted</recoilPattern>
+						</Properties>
+
+						<AmmoUser>
+							<magazineSize>20</magazineSize>
+							<reloadTime>4</reloadTime>
+							<ammoSet>AmmoSet_762x51mmNATO</ammoSet>
+						</AmmoUser>
+
+						<FireModes>
+							<aiUseBurstMode>FALSE</aiUseBurstMode>
+							<aiAimMode>AimedShot</aiAimMode>
+						</FireModes>
+
+						<!-- No additional CE weaponTags needed -->
+
+						<AllowWithRunAndGun>false</AllowWithRunAndGun>
+					</li>
+
+					<li Class="PatchOperationReplace">
+						<xpath>Defs/ThingDef[defName="RNGun_HK417DMR"]/tools</xpath>
+						<value>
+							<tools>
+								<li Class="CombatExtended.ToolCE">
+									<label>stock</label>
+									<capacities>
+										<li>Blunt</li>
+									</capacities>
+									<power>9</power>
+									<cooldownTime>2</cooldownTime>
+									<armorPenetration>0.12</armorPenetration>
+									<linkedBodyPartsGroup>Stock</linkedBodyPartsGroup>
+								</li>
+								<li Class="CombatExtended.ToolCE">
+									<label>barrel</label>
+									<capacities>
+										<li>Blunt</li>
+									</capacities>
+									<power>9</power>
+									<cooldownTime>2</cooldownTime>
+									<armorPenetration>0.15</armorPenetration>
+									<linkedBodyPartsGroup>Barrel</linkedBodyPartsGroup>
+								</li>
+								<li Class="CombatExtended.ToolCE">
+									<label>muzzle</label>
+									<capacities>
+										<li>Poke</li>
+									</capacities>
+									<power>9</power>
+									<cooldownTime>2</cooldownTime>
+									<armorPenetration>0.1</armorPenetration>
+									<linkedBodyPartsGroup>Muzzle</linkedBodyPartsGroup>
+								</li>
+							</tools>
+						</value>
+					</li>
+
+					<!-- ========== M14 EBR MIL-SPEC ========== -->
+
+					<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+						<defName>RNGun_M14EBRMilSpec</defName>
+						<statBases>
+							<Mass>6.75</Mass>
+							<RangedWeapon_Cooldown>0.56</RangedWeapon_Cooldown>
+							<SightsEfficiency>2.60</SightsEfficiency>
+							<ShotSpread>0.08</ShotSpread>
+							<SwayFactor>1.33</SwayFactor>
+							<Bulk>9.89</Bulk>
+							<WorkToMake>33500</WorkToMake>
+						</statBases>
+						<costList>
+							<Steel>70</Steel>
+							<ComponentIndustrial>6</ComponentIndustrial>
+						</costList>
+						<Properties>
+							<recoilAmount>1.64</recoilAmount>
+							<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+							<hasStandardCommand>true</hasStandardCommand>
+							<defaultProjectile>Bullet_762x51mmNATO_FMJ</defaultProjectile>
+							<warmupTime>1.6</warmupTime>
+							<range>75</range>
+							<soundCast>RNShot_EBRGeneric</soundCast>
+							<soundCastTail>GunTail_Heavy</soundCastTail>
+							<muzzleFlashScale>9</muzzleFlashScale>
+							<recoilPattern>Mounted</recoilPattern>
+						</Properties>
+
+						<AmmoUser>
+							<magazineSize>20</magazineSize>
+							<reloadTime>4</reloadTime>
+							<ammoSet>AmmoSet_762x51mmNATO</ammoSet>
+						</AmmoUser>
+
+						<FireModes>
+							<aiUseBurstMode>FALSE</aiUseBurstMode>
+							<aiAimMode>AimedShot</aiAimMode>
+						</FireModes>
+
+						<weaponTags>
+							<li>CE_AI_Rifle</li>
+						</weaponTags>
+
+						<AllowWithRunAndGun>false</AllowWithRunAndGun>
+					</li>
+
+					<li Class="PatchOperationReplace">
+						<xpath>Defs/ThingDef[defName="RNGun_M14EBRMilSpec"]/tools</xpath>
+						<value>
+							<tools>
+								<li Class="CombatExtended.ToolCE">
+									<label>stock</label>
+									<capacities>
+										<li>Blunt</li>
+									</capacities>
+									<power>9</power>
+									<cooldownTime>2</cooldownTime>
+									<armorPenetration>0.12</armorPenetration>
+									<linkedBodyPartsGroup>Stock</linkedBodyPartsGroup>
+								</li>
+								<li Class="CombatExtended.ToolCE">
+									<label>barrel</label>
+									<capacities>
+										<li>Blunt</li>
+									</capacities>
+									<power>9</power>
+									<cooldownTime>2</cooldownTime>
+									<armorPenetration>0.15</armorPenetration>
+									<linkedBodyPartsGroup>Barrel</linkedBodyPartsGroup>
+								</li>
+								<li Class="CombatExtended.ToolCE">
+									<label>muzzle</label>
+									<capacities>
+										<li>Poke</li>
+									</capacities>
+									<power>9</power>
+									<cooldownTime>2</cooldownTime>
+									<armorPenetration>0.1</armorPenetration>
+									<linkedBodyPartsGroup>Muzzle</linkedBodyPartsGroup>
+								</li>
+							</tools>
+						</value>
+					</li>
+
+					<!-- ========== M39 EMR MIL-SPEC ========== -->
+
+					<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+						<defName>RNGun_M39EMRMilSpec</defName>
+						<statBases>
+							<Mass>7.50</Mass>
+							<RangedWeapon_Cooldown>0.56</RangedWeapon_Cooldown>
+							<SightsEfficiency>2.72</SightsEfficiency>
+							<ShotSpread>0.06</ShotSpread>
+							<SwayFactor>1.39</SwayFactor>
+							<Bulk>11.37</Bulk>
+							<WorkToMake>35500</WorkToMake>
+						</statBases>
+						<costList>
+							<Steel>80</Steel>
+							<ComponentIndustrial>6</ComponentIndustrial>
+						</costList>
+						<Properties>
+							<recoilAmount>1.56</recoilAmount>
+							<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+							<hasStandardCommand>true</hasStandardCommand>
+							<defaultProjectile>Bullet_762x51mmNATO_FMJ</defaultProjectile>
+							<warmupTime>1.7</warmupTime>
+							<range>73</range>
+							<soundCast>RNShot_EBRGeneric</soundCast>
+							<soundCastTail>GunTail_Heavy</soundCastTail>
+							<muzzleFlashScale>9</muzzleFlashScale>
+							<recoilPattern>Mounted</recoilPattern>
+						</Properties>
+
+						<AmmoUser>
+							<magazineSize>20</magazineSize>
+							<reloadTime>4</reloadTime>
+							<ammoSet>AmmoSet_762x51mmNATO</ammoSet>
+						</AmmoUser>
+
+						<FireModes>
+							<aiUseBurstMode>FALSE</aiUseBurstMode>
+							<aiAimMode>AimedShot</aiAimMode>
+						</FireModes>
+
+						<!-- No additional CE weaponTags needed -->
+
+						<AllowWithRunAndGun>false</AllowWithRunAndGun>
+					</li>
+
+					<li Class="PatchOperationReplace">
+						<xpath>Defs/ThingDef[defName="RNGun_M39EMRMilSpec"]/tools</xpath>
+						<value>
+							<tools>
+								<li Class="CombatExtended.ToolCE">
+									<label>stock</label>
+									<capacities>
+										<li>Blunt</li>
+									</capacities>
+									<power>9</power>
+									<cooldownTime>2</cooldownTime>
+									<armorPenetration>0.12</armorPenetration>
+									<linkedBodyPartsGroup>Stock</linkedBodyPartsGroup>
+								</li>
+								<li Class="CombatExtended.ToolCE">
+									<label>barrel</label>
+									<capacities>
+										<li>Blunt</li>
+									</capacities>
+									<power>9</power>
+									<cooldownTime>2</cooldownTime>
+									<armorPenetration>0.15</armorPenetration>
+									<linkedBodyPartsGroup>Barrel</linkedBodyPartsGroup>
+								</li>
+								<li Class="CombatExtended.ToolCE">
+									<label>muzzle</label>
+									<capacities>
+										<li>Poke</li>
+									</capacities>
+									<power>9</power>
+									<cooldownTime>2</cooldownTime>
+									<armorPenetration>0.1</armorPenetration>
+									<linkedBodyPartsGroup>Muzzle</linkedBodyPartsGroup>
+								</li>
+							</tools>
+						</value>
+					</li>
+
+				</operations>
+			</nomatch>
+		</match>
+	</Operation>
+</Patch>

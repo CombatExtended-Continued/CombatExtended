@@ -1,0 +1,1 @@
+NOTE: Included CE patches are automatically compatible with both the standard and All Craftable versions of Rimmu-Nation Clothing

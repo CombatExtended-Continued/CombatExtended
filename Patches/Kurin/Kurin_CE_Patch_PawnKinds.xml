@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- made by steamuser togo, with edits from sumghai -->
+<Patch>
+	<Operation Class="PatchOperationSequence">
+		<success>Always</success>
+		<operations>
+		
+			<li Class="CombatExtended.PatchOperationFindMod">
+				<modName>Kurin, The Three Tailed Fox</modName>
+			</li>
+			
+			<!-- ========== Kurin player colonists and NPC faction pawns should spawn with ammo appropriate to their primary weapon ========== -->
+
+			<li Class="PatchOperationAddModExtension">
+				<xpath>/Defs/PawnKindDef[defName="DRNTF_Colonist" or @Name="DRNTF_NPCBase"]</xpath>
+				<value>
+					<li Class="CombatExtended.LoadoutPropertiesExtension">
+						<primaryMagazineCount>
+							<min>2</min>
+							<max>5</max>
+						</primaryMagazineCount>
+					</li>
+				</value>
+			</li>
+			
+			<!-- ========== Kurin player colonists and NPC faction pawns should spawn with backpacks, allowing them to carry additional inventory ========== -->
+
+			<li Class="PatchOperationAdd">
+				<xpath>/Defs/PawnKindDef[defName="DRNTF_Colonist" or @Name="DRNTF_NPCBase"]/apparelRequired</xpath>
+				<value>
+					<li>Apparel_Backpack</li>
+				</value>
+			</li>
+
+		</operations>
+	</Operation>
+</Patch>
