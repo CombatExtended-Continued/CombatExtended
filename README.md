@@ -4,13 +4,14 @@ Combat Extended: FastTrack Edition is a fork of the [original Combat Extended mo
 ## Features
 - Same [core features as the original mod](https://github.com/NoImageAvailable/CombatExtended/blob/master/README.md) - shooting, melee, armor, inventory and medical overhauls
 - Fully compatible with existing CE savegames - delete CE completely, drop in CE:FT and go!
-- 45 supported third-party mods (compared with 31 for CE)
+- 48 supported third-party mods (compared with 31 for CE)
 - Additional ammo and projectile definitions and textures
 
 ## Supported Third-Party Mods
 Mod | CE (original) | CE: FastTrack Edition
 --- | :---: | :---:
 A Dog Said... 										| &#x2705; 	| &#x2705;
+A RimWorld of Magic 											|  			| &#x2705;
 Apparello 2 										| &#x2705; 	| &#x2705;
 Cute Penguin 										| &#x2705; 	| &#x2705;
 Defensive Machine Gun Turret Pack 					| &#x2705; 	| &#x2705;
@@ -21,8 +22,10 @@ Fallout Traits 									| &#x2705; 	| &#x2705;
 FashionRIMsta 										| &#x2705; 	| &#x2705;
 Ferrex Race 										| &#x2705; 	| &#x2705;
 Flommel 											|  			| &#x2705;
+Forsakens											|  			| &#x2705;
 Hand 'n' Footwear 									| &#x2705; 	| &#x2705;
 Jernfalk's Standalone Horses 						| &#x2705; 	| &#x2705;
+Kurin, The Three Tailed Fox 									|  			| &#x2705;
 Leeani Playable Race 								| &#x2705; 	| &#x2705;
 Let's Have a Cat! 									|  			| &#x2705;
 Logann Race 										| &#x2705; 	| &#x2705;
@@ -55,7 +58,7 @@ Weapons+ 											| &#x2705; 	| &#x2705;
 Xenn Race 											| &#x2705; 	| &#x2705;
 Xenohumans 										|  			| &#x2705;
 Zombieland 										| &#x2705; 	| &#x2705;
-**Total** | **31** | **45**
+**Total** | **31** | **48**
 &nbsp; | **CE (original)** | **CE: FastTrack Edition**
 
 ## Contributing Your Patches
@@ -66,7 +69,7 @@ Zombieland 										| &#x2705; 	| &#x2705;
 
 ## Fork Policy
 - CE:FT will be constantly updated to keep up with any new features, bugfixes and tweaks from the upstream CE project
-- Each release will have the same version/tag number as the corresponding CE update, plus a FT-specific suffix (e.g. v1.0.1.4-FT-003 = base CE version v1.0.1.4 + FastTrack patch #3)
+- Each release will have the same version/tag number as the corresponding CE update, plus a FT-specific suffix (e.g. v1.0.1.5-FT-003 = base CE version v1.0.1.5 + FastTrack patch #3)
 
 ## Patch Acknowledgements
 The CE:FT team would like the thank the following individuals for contributing compatibility patches to this repository:
