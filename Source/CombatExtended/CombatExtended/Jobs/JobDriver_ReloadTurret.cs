@@ -104,8 +104,8 @@ namespace CombatExtended
             waitToil.initAction = delegate
             {
                 // Initial relaod process activities.
-                waitToil.actor.pather.StopDead();
                 turret.isReloading = true;
+                waitToil.actor.pather.StopDead();
                 if (compReloader.ShouldThrowMote)
                     MoteMaker.ThrowText(turret.Position.ToVector3Shifted(), turret.Map, string.Format("CE_ReloadingTurretMote".Translate(), TargetThingA.LabelCapNoCount));
                 Thing newAmmo;
@@ -113,7 +113,6 @@ namespace CombatExtended
                 if (newAmmo?.CanStackWith(ammo) ?? false)
                     pawn.carryTracker.TryStartCarry(newAmmo, Mathf.Min(newAmmo.stackCount, compReloader.Props.magazineSize - ammo.stackCount));
             };
-            waitToil.AddFinishAction(() => turret.isReloading = false);
             waitToil.defaultCompleteMode = ToilCompleteMode.Delay;
             waitToil.defaultDuration = Mathf.CeilToInt(compReloader.Props.reloadTime.SecondsToTicks() / pawn.GetStatValue(CE_StatDefOf.ReloadSpeed));
             yield return waitToil.WithProgressBarToilDelay(TargetIndex.A);
@@ -124,6 +123,7 @@ namespace CombatExtended
             reloadToil.initAction = delegate
             {
                 compReloader.LoadAmmo(ammo);
+                turret.isReloading = false;
             };
             //if (compReloader.useAmmo) reloadToil.EndOnDespawnedOrNull(TargetIndex.B);
             yield return reloadToil;

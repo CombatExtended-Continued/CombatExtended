@@ -156,6 +156,30 @@ namespace CombatExtended
             }
         }
 
+        public override bool Available()
+        {
+            // This part copied from vanilla Verb_LaunchProjectile
+            if (!base.Available())
+                return false;
+
+            if (CasterIsPawn)
+            {
+                if (CasterPawn.Faction != Faction.OfPlayer
+                    && CasterPawn.mindState.MeleeThreatStillThreat
+                    && CasterPawn.mindState.meleeThreat.AdjacentTo8WayOrInside(CasterPawn))
+                    return false;
+            }
+
+            // Add check for reload
+            if (Projectile == null)
+            {
+                CompAmmo?.TryStartReload();
+                return false;
+            }
+
+            return true;
+        }
+
         #endregion
 
         #region Methods
@@ -443,7 +467,7 @@ namespace CombatExtended
         public virtual bool CanHitTargetFrom(IntVec3 root, LocalTargetInfo targ, out string report)
         {
             report = "";
-            if (!targ.Cell.InBounds(caster.Map) || !root.InBounds(caster.Map))
+            if (caster?.Map == null || !targ.Cell.InBounds(caster.Map) || !root.InBounds(caster.Map))
             {
                 report = "Out of bounds";
                 return false;
@@ -610,6 +634,13 @@ namespace CombatExtended
             IntVec3 dest;
             var shotSource = root.ToVector3Shifted();
             shotSource.y = ShotHeight;
+
+            // Adjust for multi-tile turrets
+            if (caster.def.building?.IsTurret ?? false)
+            {
+                shotSource = ShotSource;
+            }
+
             if (CanHitFromCellIgnoringRange(shotSource, targ, out dest))
             {
                 resultingLine = new ShootLine(root, dest);
