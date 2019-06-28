@@ -164,9 +164,10 @@ namespace CombatExtended
 
             if (CasterIsPawn)
             {
-                return CasterPawn.Faction == Faction.OfPlayer
-                       || !CasterPawn.mindState.MeleeThreatStillThreat
-                       || !CasterPawn.mindState.meleeThreat.AdjacentTo8WayOrInside(CasterPawn);
+                if (CasterPawn.Faction != Faction.OfPlayer
+                    && CasterPawn.mindState.MeleeThreatStillThreat
+                    && CasterPawn.mindState.meleeThreat.AdjacentTo8WayOrInside(CasterPawn))
+                    return false;
             }
 
             // Add check for reload

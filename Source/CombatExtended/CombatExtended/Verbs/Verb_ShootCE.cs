@@ -107,20 +107,17 @@ namespace CombatExtended
             var aimTicks = (int)Mathf.Lerp(AimTicksMin, AimTicksMax, (targetDist / 100));
             if (ShouldAim && !_isAiming)
             {
+                if (caster is Building_TurretGunCE turret)
+                {
+                    turret.burstWarmupTicksLeft += aimTicks;
+                    _isAiming = true;
+                    return;
+                }
                 if (ShooterPawn != null)
                 {
                     ShooterPawn.stances.SetStance(new Stance_Warmup(aimTicks, currentTarget, this));
                     _isAiming = true;
                     return;
-                }
-                else
-                {
-                    if (caster is Building_TurretGunCE turret)
-                    {
-                        turret.burstWarmupTicksLeft = aimTicks;
-                        _isAiming = true;
-                        return;
-                    }
                 }
             }
 
@@ -149,7 +146,7 @@ namespace CombatExtended
                 {
                     WarmupComplete();
                 }
-                if (ShooterPawn?.stances.curStance?.GetType() != typeof(Stance_Warmup))
+                if (!(caster is Building_TurretGunCE) && ShooterPawn?.stances.curStance?.GetType() != typeof(Stance_Warmup))
                 {
                     _isAiming = false;
                 }
