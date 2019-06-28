@@ -439,7 +439,7 @@ namespace CombatExtended
             base.Tick();
             if (ticksUntilAutoReload > 0) ticksUntilAutoReload--;   // Reduce time until we can auto-reload
             if (CompAmmo?.CurMagCount == 0 && !isReloading && (MannableComp?.MannedNow ?? false)) TryOrderReload();
-            if (!CanSetForcedTarget && !isReloading && forcedTarget.IsValid)
+            if (!CanSetForcedTarget && !isReloading && forcedTarget.IsValid && burstCooldownTicksLeft <= 0)
             {
                 ResetForcedTarget();
             }
