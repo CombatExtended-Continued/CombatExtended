@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- 
+Chicken Plucker's Project Red Horse mods often have duplicate items, apparels and defs shared between them,
+so this patch will only be applied if:
+
+Elite Crew is active && Rimmu-Nation Weapons is NOT active
+
+If both mods are active, the CE patch from Rimmu-Nation Weapons should automatically take over
+-->
+<Patch>
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+			<li>[RH] Faction: Elite Crew (1.0)</li>
+		</mods>
+		<match Class="PatchOperationFindMod">
+			<mods>
+				<li>[CP] Rimmu-Nation - Weapons (1.0)</li>
+			</mods>
+			<nomatch Class="PatchOperationSequence">
+				<operations>		
+
+					<!-- ========== Patch C4 ========== -->
+
+					<!-- Projectile def -->
+
+					<li Class="PatchOperationReplace">
+						<xpath>Defs/ThingDef[defName="RNProj_C4CSGO"]/thingClass</xpath>
+						<value>
+							<thingClass>CombatExtended.ProjectileCE_Explosive</thingClass>
+						</value>
+					</li>
+
+					<li Class="PatchOperationReplace">
+						<xpath>Defs/ThingDef[defName="RNProj_C4CSGO"]/graphicData/texPath</xpath>
+						<value>
+							<texPath>Things/Projectile/Proj_CSGOC4</texPath>
+						</value>
+					</li>
+
+					<li Class="PatchOperationReplace">
+						<xpath>Defs/ThingDef[defName="RNProj_C4CSGO"]/projectile</xpath>
+						<value>
+							<projectile Class="CombatExtended.ProjectilePropertiesCE">
+								<explosionRadius>8</explosionRadius>
+								<damageDef>Bomb</damageDef>
+								<damageAmountBase>250</damageAmountBase>
+								<explosionDelay>500</explosionDelay>
+								<dropsCasings>true</dropsCasings>
+								<casingMoteDefname>Mote_GrenadePin</casingMoteDefname>
+								<stoppingPower>4</stoppingPower>
+								<preExplosionSpawnThingDef>Gas_Smoke</preExplosionSpawnThingDef>
+								<applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
+							</projectile>
+						</value>
+					</li>
+
+					<li Class="PatchOperationSequence">
+						<success>Always</success>
+						<operations>
+							<li Class="PatchOperationTest">
+								<xpath>Defs/ThingDef[defName="RNProj_C4CSGO"]/comps</xpath>
+								<success>Invert</success>
+							</li>
+							<li Class="PatchOperationAdd">
+								<xpath>Defs/ThingDef[defName="RNProj_C4CSGO"]</xpath>
+								<value>
+									<comps />
+								</value>
+							</li>
+						</operations>
+					</li>
+
+					<li Class="PatchOperationAdd">
+						<xpath>Defs/ThingDef[defName="RNProj_C4CSGO"]/comps</xpath>
+						<value>
+							<li Class="CombatExtended.CompProperties_ExplosiveCE">
+								<fragments>
+									<Fragment_GrenadeFrag>250</Fragment_GrenadeFrag>
+									<!-- Might not be enough for this explosive, 250 was for a standard grenade -->
+								</fragments>
+							</li>
+						</value>
+					</li>
+
+					<!-- Weapon def -->
+
+					<li Class="PatchOperationAdd">
+						<xpath>Defs/ThingDef[defName="RNThrown_C4CSGO"]</xpath>
+						<value>
+							<thingClass>CombatExtended.AmmoThing</thingClass>
+							<stackLimit>10</stackLimit>
+							<!-- Arbitrary number for now but seems appropriate -->
+							<resourceReadoutPriority>First</resourceReadoutPriority>
+							<drawGUIOverlay>true</drawGUIOverlay>
+						</value>
+					</li>
+
+					<li Class="PatchOperationAttributeSet">
+						<xpath>Defs/ThingDef[defName="RNThrown_C4CSGO"]</xpath>
+						<attribute>Class</attribute>
+						<value>CombatExtended.AmmoDef</value>
+					</li>
+
+					<li Class="PatchOperationSequence">
+						<success>Always</success>
+						<operations>
+							<li Class="PatchOperationTest">
+								<xpath>Defs/ThingDef[defName="RNThrown_C4CSGO"]/comps</xpath>
+								<success>Invert</success>
+							</li>
+							<li Class="PatchOperationAdd">
+								<xpath>Defs/ThingDef[defName="RNThrown_C4CSGO"]</xpath>
+								<value>
+									<comps />
+								</value>
+							</li>
+						</operations>
+					</li>
+
+					<li Class="PatchOperationAdd">
+						<xpath>Defs/ThingDef[defName="RNThrown_C4CSGO"]/comps</xpath>
+						<value>
+							<li Class="CombatExtended.CompProperties_ExplosiveCE">
+								<explosionDamage>250</explosionDamage>
+								<!-- Might need more dmg-->
+								<explosionDamageDef>Bomb</explosionDamageDef>
+								<explosionRadius>8</explosionRadius>
+								<fragments>
+									<Fragment_GrenadeFrag>250</Fragment_GrenadeFrag>
+								</fragments>
+							</li>
+						</value>
+					</li>
+					<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+						<defName>RNThrown_C4CSGO</defName>
+						<statBases>
+							<MarketValue>5.25</MarketValue>
+							<SightsEfficiency>0.45</SightsEfficiency>
+						</statBases>
+						<Properties>
+							<label>arm and throw C4</label>
+							<verbClass>CombatExtended.Verb_ShootCEOneUse</verbClass>
+							<hasStandardCommand>true</hasStandardCommand>
+							<range>3</range>
+							<warmupTime>2.5</warmupTime>
+							<noiseRadius>4</noiseRadius>
+							<ai_IsBuildingDestroyer>true</ai_IsBuildingDestroyer>
+							<soundCast>CSGOC4Shot</soundCast>
+							<soundAiming>CSGOC4_Aiming</soundAiming>
+							<targetParams>
+								<canTargetLocations>true</canTargetLocations>
+							</targetParams>
+							<defaultProjectile>RNProj_C4CSGO</defaultProjectile>
+							<onlyManualCast>true</onlyManualCast>
+							<ignorePartialLoSBlocker>true</ignorePartialLoSBlocker>
+						</Properties>
+						<weaponTags>
+							<li>RN_CSGOC4</li>
+						</weaponTags>
+					</li>
+
+				</operations>
+			</nomatch>
+		</match>		
+	</Operation>
+</Patch>
