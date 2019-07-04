@@ -26,7 +26,7 @@ namespace CombatExtended
 		private Thing targetItem
 		{
 			get {
-				return pawn.CurJob.GetTarget(thingInd).Thing;
+				return job.GetTarget(thingInd).Thing;
 			}
 		}
         /// <summary>
@@ -35,9 +35,10 @@ namespace CombatExtended
 		private Pawn takePawn
 		{
 			get {
-				return (Pawn)pawn.CurJob.GetTarget(sourceInd).Thing;
+				return (Pawn) job.GetTarget(sourceInd).Thing;
 			}
 		}
+
         /// <summary>
         /// Property which is used to indicate that the job was created with the expectation that the Pawn doing the job is to equip the thing they are taking.
         /// </summary>
@@ -50,7 +51,7 @@ namespace CombatExtended
 		{
 			get
 			{
-				return pawn.CurJob.GetTarget(flagInd).HasThing;
+				return job.GetTarget(flagInd).HasThing;
 			}
 		}
 
@@ -103,7 +104,16 @@ namespace CombatExtended
 			yield return Toils_Reserve.Reserve(sourceInd, int.MaxValue, 0, null);
 			yield return Toils_Goto.GotoThing(sourceInd, PathEndMode.Touch);
 			yield return Toils_General.Wait(10);
-			yield return new Toil {
+
+            if (targetItem is AmmoThing)
+            {
+                //For ammo items, this job is flagged with JobCondition.Incompletable, for unknown reasons.
+                //Removing the fail conditions allows the job to be carried out successfully, so the flag is likely being added by mistake at some point.
+                this.globalFailConditions.Clear();
+                //TODO : Find the root cause for ammo getting set as Incompletable
+            }
+
+            yield return new Toil {
 				initAction = delegate
 				{
                     // if the targetItem is no longer in the takePawn's inventory then another pawn already took it and we fail...
