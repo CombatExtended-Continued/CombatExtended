@@ -32,23 +32,30 @@
 					<!-- This value gets multipled by 10 (for body size) -->
 					<AimingAccuracy>1.0</AimingAccuracy>
 					<ShootingAccuracyPawn>1</ShootingAccuracyPawn>
-					<MeleeDodgeChance>0.0</MeleeDodgeChance>
-					<MeleeCritChance>0.0</MeleeCritChance>
-					<MeleeParryChance>0.0</MeleeParryChance>
+					<MeleeDodgeChance>0.02</MeleeDodgeChance>
+					<MeleeCritChance>0.15</MeleeCritChance>
+					<MeleeParryChance>0.41</MeleeParryChance>
 				</value>
 			</li>
 
 			<li Class="PatchOperationReplace">
 				<xpath>Defs/ThingDef[defName="RHRace_T55_MBT"]/statBases/ArmorRating_Blunt</xpath>
 				<value>
-					<ArmorRating_Blunt>1</ArmorRating_Blunt>
+					<ArmorRating_Blunt>2</ArmorRating_Blunt>
 				</value>
 			</li>
 
 			<li Class="PatchOperationReplace">
 				<xpath>Defs/ThingDef[defName="RHRace_T55_MBT"]/statBases/ArmorRating_Sharp</xpath>
 				<value>
-					<ArmorRating_Sharp>1</ArmorRating_Sharp>
+					<ArmorRating_Sharp>2</ArmorRating_Sharp>
+				</value>
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="RHRace_T55_MBT"]/race/baseHealthScale</xpath>
+				<value>
+					<baseHealthScale>5</baseHealthScale>
 				</value>
 			</li>
 
@@ -71,10 +78,63 @@
 				</value>
 			</li>
 
-			<li Class="PatchOperationReplace">
-				<xpath>Defs/PawnKindDef[defName="RHMech_T55_MBT_LMM"]/combatPower</xpath>
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName="RHRace_T55_MBT"]</xpath>
 				<value>
-					<combatPower>350</combatPower>
+					<damageMultipliers>
+						<li>
+							<damageDef>Blunt</damageDef>
+							<multiplier>0.0</multiplier>
+						</li>
+						<li>
+							<damageDef>Cut</damageDef>
+							<multiplier>0.0</multiplier>
+						</li>
+						<li>
+							<damageDef>Stab</damageDef>
+							<multiplier>0.0</multiplier>
+						</li>
+						<li>
+							<damageDef>Poke</damageDef>
+							<multiplier>0.0</multiplier>
+						</li>
+						<li>
+							<damageDef>Slash</damageDef>
+							<multiplier>0.0</multiplier>
+						</li>
+						<li>
+							<damageDef>Bomb</damageDef>
+							<multiplier>2</multiplier>
+						</li>
+						<li>
+							<damageDef>Thermobaric</damageDef>
+							<multiplier>2.5</multiplier>
+						</li>
+						<li>
+							<damageDef>Bullet</damageDef>
+							<multiplier>0.02</multiplier>
+						</li>
+						<li>
+							<damageDef>Fragment</damageDef>
+							<multiplier>0.02</multiplier>
+						</li>
+						<li>
+							<damageDef>Arrow</damageDef>
+							<multiplier>0.0</multiplier>
+						</li>
+						<li>
+							<damageDef>Electrical</damageDef>
+							<multiplier>0.0</multiplier>
+						</li>
+						<li>
+							<damageDef>Beanbag</damageDef>
+							<multiplier>0.0</multiplier>
+						</li>
+						<li>
+							<damageDef>Tranquilizer</damageDef>
+							<multiplier>0.0</multiplier>
+						</li>
+					</damageMultipliers>
 				</value>
 			</li>
 
