@@ -564,10 +564,10 @@ namespace CombatExtended
                 //New aiming algorithm
                 projectile.canTargetSelf = false;
 
-                var targDist = sourceLoc - currentTarget.Cell.ToIntVec2.ToVector2Shifted();
-                if (targDist.magnitude <= 2)
+                var targDist = (sourceLoc - currentTarget.Cell.ToIntVec2.ToVector2Shifted()).magnitude;
+                if (targDist <= 2)
                     targDist *= 2;  // Double to account for divide by 4 in ProjectileCE minimum collision distance calculations
-                projectile.minCollisionSqr = targDist.sqrMagnitude;
+                projectile.minCollisionSqr = Mathf.Pow(targDist, 2);
                 projectile.intendedTarget = currentTarget.Thing;
                 projectile.mount = caster.Position.GetThingList(caster.Map).FirstOrDefault(t => t is Pawn && t != caster);
                 projectile.AccuracyFactor = report.accuracyFactor * report.swayDegrees * ((numShotsFired + 1) * 0.75f);

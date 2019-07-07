@@ -470,11 +470,11 @@ namespace CombatExtended
             var justWallsRoofs = false;
 
             //Check for minimum PAWN collision distance
-            float distFromOrigin = (cell - OriginIV3).LengthHorizontalSquared;
+            float distFromOrigin = cell.DistanceToSquared(OriginIV3);
             if (!def.projectile.alwaysFreeIntercept
                 && minCollisionSqr <= 1f
                 ? distFromOrigin < 1f
-                : distFromOrigin < Mathf.Min(144f, minCollisionSqr / 4))
+                : distFromOrigin <= Mathf.Min(144f, minCollisionSqr / 4))
             {
                 justWallsRoofs = true;
             }
