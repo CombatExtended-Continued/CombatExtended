@@ -4,7 +4,7 @@ Combat Extended: FastTrack Edition is a fork of the [original Combat Extended mo
 ## Features
 - Same [core features as the original mod](https://github.com/NoImageAvailable/CombatExtended/blob/master/README.md) - shooting, melee, armor, inventory and medical overhauls
 - Fully compatible with existing CE savegames - delete CE completely, drop in CE:FT and go!
-- 48 supported third-party mods (compared with 31 for CE)
+- 51 supported third-party mods (compared with 31 for CE)
 - Additional ammo and projectile definitions and textures
 
 ## Supported Third-Party Mods
@@ -12,6 +12,7 @@ Mod | CE (original) | CE: FastTrack Edition
 --- | :---: | :---:
 A Dog Said... 										| &#x2705; 	| &#x2705;
 A RimWorld of Magic 											|  			| &#x2705;
+AnimalCollabProj 											|  			| &#x2705;
 Apparello 2 										| &#x2705; 	| &#x2705;
 Cute Penguin 										| &#x2705; 	| &#x2705;
 Defensive Machine Gun Turret Pack 					| &#x2705; 	| &#x2705;
@@ -24,6 +25,7 @@ Ferrex Race 										| &#x2705; 	| &#x2705;
 Flommel 											|  			| &#x2705;
 Forsakens											|  			| &#x2705;
 Hand 'n' Footwear 									| &#x2705; 	| &#x2705;
+High Caliber											|  			| &#x2705;
 Jernfalk's Standalone Horses 						| &#x2705; 	| &#x2705;
 Kurin, The Three Tailed Fox 									|  			| &#x2705;
 Leeani Playable Race 								| &#x2705; 	| &#x2705;
@@ -49,6 +51,7 @@ Rimmu-Nation - Clothing 							|  			| &#x2705;
 Rimmu-Nation - Weapons 							|  			| &#x2705;
 Sergals and Gnolls 								| &#x2705; 	| &#x2705;
 Spidercamp's Dog Pack 								|  			| &#x2705;
+T-45b Power Armor 								|  			| &#x2705;
 Trading Economy 									| &#x2705; 	| &#x2705;
 Vanilla-Friendly Animal Surgery 					| &#x2705; 	| &#x2705;
 Vanilla-Friendly Weapon Expansion 					| &#x2705; 	| &#x2705;
@@ -58,7 +61,7 @@ Weapons+ 											| &#x2705; 	| &#x2705;
 Xenn Race 											| &#x2705; 	| &#x2705;
 Xenohumans 										|  			| &#x2705;
 Zombieland 										| &#x2705; 	| &#x2705;
-**Total** | **31** | **48**
+**Total** | **31** | **51**
 &nbsp; | **CE (original)** | **CE: FastTrack Edition**
 
 ## Contributing Your Patches
@@ -75,6 +78,7 @@ Zombieland 										| &#x2705; 	| &#x2705;
 The CE:FT team would like the thank the following individuals for contributing compatibility patches to this repository:
 - Kik0hi
 - Freedom187/RaptorX
+- Owlchemist
 - sumghai
 - Togoasl
 
