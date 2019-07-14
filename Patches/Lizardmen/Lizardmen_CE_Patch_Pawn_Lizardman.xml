@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+	<Operation Class="PatchOperationSequence">
+		<success>Always</success>
+		<operations>
+
+			<li Class="CombatExtended.PatchOperationFindMod">
+				<modName>Lizardmen</modName>
+			</li>
+
+			<li Class="PatchOperationAddModExtension">
+				<xpath>Defs/PawnKindDef[defName="LizardmanWarrior"]</xpath>
+				<value>
+					<li Class="CombatExtended.LoadoutPropertiesExtension">
+						<shieldMoney>
+							<min>100</min>
+							<max>150</max>
+						</shieldMoney>
+						<shieldTags>
+							<li>TribalShield</li>
+						</shieldTags>
+						<shieldChance>0.9</shieldChance>
+					</li>
+				</value>
+			</li>
+
+			<li Class="PatchOperationAddModExtension">
+				<xpath>Defs/PawnKindDef[defName="LizardmanKnight"]</xpath>
+				<value>
+					<li Class="CombatExtended.LoadoutPropertiesExtension">
+						<shieldMoney>
+							<min>100</min>
+							<max>650</max>
+						</shieldMoney>
+						<shieldTags>
+							<li>TribalShield</li>
+						</shieldTags>
+						<shieldChance>0.9</shieldChance>
+					</li>
+				</value>
+			</li>
+
+			<li Class="PatchOperationAddModExtension">
+				<xpath>Defs/PawnKindDef[defName="LizardmanArcher"]</xpath>
+				<value>
+					<li Class="CombatExtended.LoadoutPropertiesExtension">
+						<primaryMagazineCount>
+							<min>20</min>
+							<max>40</max>
+						</primaryMagazineCount>
+					</li>
+				</value>
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/PawnKindDef[defName="LizardmanArcher"]/weaponTags</xpath>
+				<value>
+					<weaponTags>
+						<li>CE_Bow</li>
+					</weaponTags>
+				</value>
+			</li>
+
+			<li Class="PatchOperationAddModExtension">
+				<xpath>Defs/PawnKindDef[defName="LizardmanThunderer"]</xpath>
+				<value>
+					<li Class="CombatExtended.LoadoutPropertiesExtension">
+						<primaryMagazineCount>
+							<min>5</min>
+							<max>14</max>
+						</primaryMagazineCount>
+					</li>
+				</value>
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/PawnKindDef[defName="LizardmanThunderer"]/weaponTags</xpath>
+				<value>
+					<weaponTags>
+						<li>CE_AI_AssaultWeapon</li>
+					</weaponTags>
+				</value>
+			</li>
+
+			<li Class="PatchOperationAddModExtension">
+				<xpath>Defs/PawnKindDef[defName="LizardmanBomber"]</xpath>
+				<value>
+					<li Class="CombatExtended.LoadoutPropertiesExtension">
+						<primaryMagazineCount>
+							<min>2</min>
+							<max>6</max>
+						</primaryMagazineCount>
+					</li>
+				</value>
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/PawnKindDef[defName="LizardmanBomber"]/weaponTags</xpath>
+				<value>
+					<weaponTags>
+						<li>CE_AI_Grenade</li>
+					</weaponTags>
+				</value>
+			</li>
+
+		</operations>
+	</Operation>
+</Patch>

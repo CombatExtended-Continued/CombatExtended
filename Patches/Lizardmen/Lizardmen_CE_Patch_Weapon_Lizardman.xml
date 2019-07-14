@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+	<Operation Class="PatchOperationSequence">
+		<success>Always</success>
+		<operations>
+
+			<li Class="CombatExtended.PatchOperationFindMod">
+				<modName>Lizardmen</modName>
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="Lizardman_Sword"]/tools</xpath>
+				<value>
+					<tools>
+						<li Class="CombatExtended.ToolCE">
+							<label>point</label>
+							<capacities>
+								<li>Stab</li>
+							</capacities>
+							<power>10</power>
+							<cooldownTime>1.7</cooldownTime>
+							<armorPenetration>0.45</armorPenetration>
+							<linkedBodyPartsGroup>Point</linkedBodyPartsGroup>
+						</li>
+						<li Class="CombatExtended.ToolCE">
+							<label>edge</label>
+							<capacities>
+								<li>Cut</li>
+							</capacities>
+							<power>22</power>
+							<cooldownTime>1.7</cooldownTime>
+							<armorPenetration>0.25</armorPenetration>
+							<linkedBodyPartsGroup>Edge</linkedBodyPartsGroup>
+						</li>
+					</tools>
+				</value>
+			</li>
+
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName="Lizardman_Sword"]/statBases</xpath>
+				<value>
+					<Bulk>13</Bulk>
+					<MeleeCounterParryBonus>1.5</MeleeCounterParryBonus>
+				</value>
+			</li>
+
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName="Lizardman_Sword"]</xpath>
+				<value>
+					<equippedStatOffsets>
+						<MeleeCritChance>0.625</MeleeCritChance>
+						<MeleeParryChance>0.5</MeleeParryChance>
+						<MeleeDodgeChance>0.5</MeleeDodgeChance>
+					</equippedStatOffsets>
+				</value>
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="Lizardman_Club"]/tools</xpath>
+				<value>
+					<tools>
+						<li Class="CombatExtended.ToolCE">
+							<label>handle</label>
+							<capacities>
+								<li>Poke</li>
+							</capacities>
+							<power>11</power>
+							<cooldownTime>2.0</cooldownTime>
+							<armorPenetration>0.45</armorPenetration>
+							<linkedBodyPartsGroup>Handle</linkedBodyPartsGroup>
+						</li>
+						<li Class="CombatExtended.ToolCE">
+							<label>head</label>
+							<labelUsedInLogging>false</labelUsedInLogging>
+							<capacities>
+								<li>Blunt</li>
+							</capacities>
+							<power>19.3</power>
+							<cooldownTime>2.0</cooldownTime>
+							<armorPenetration>0.25</armorPenetration>
+							<linkedBodyPartsGroup>Head</linkedBodyPartsGroup>
+						</li>
+					</tools>
+				</value>
+			</li>
+
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName="Lizardman_Club"]/statBases</xpath>
+				<value>
+					<Bulk>16</Bulk>
+					<MeleeCounterParryBonus>1.25</MeleeCounterParryBonus>
+				</value>
+			</li>
+
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName="Lizardman_Club"]</xpath>
+				<value>
+					<equippedStatOffsets>
+						<MeleeCritChance>0.5</MeleeCritChance>
+						<MeleeParryChance>0.375</MeleeParryChance>
+					</equippedStatOffsets>
+				</value>
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="Lizardman_Spear"]/tools</xpath>
+				<value>
+					<tools>
+						<li Class="CombatExtended.ToolCE">
+							<label>shaft</label>
+							<capacities>
+								<li>Blunt</li>
+								<li>Poke</li>
+							</capacities>
+							<power>12</power>
+							<cooldownTime>2.3</cooldownTime>
+							<armorPenetration>0.1</armorPenetration>
+							<linkedBodyPartsGroup>Shaft</linkedBodyPartsGroup>
+						</li>
+						<li Class="CombatExtended.ToolCE">
+							<label>point</label>
+							<capacities>
+								<li>Stab</li>
+							</capacities>
+							<power>22</power>
+							<cooldownTime>2.3</cooldownTime>
+							<armorPenetration>0.5</armorPenetration>
+							<linkedBodyPartsGroup>Point</linkedBodyPartsGroup>
+						</li>
+					</tools>
+				</value>
+			</li>
+
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName="Lizardman_Spear"]/statBases</xpath>
+				<value>
+					<Bulk>10</Bulk>
+					<MeleeCounterParryBonus>1.25</MeleeCounterParryBonus>
+				</value>
+			</li>
+
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName="Lizardman_Spear"]</xpath>
+				<value>
+					<equippedStatOffsets>
+						<MeleeCritChance>0.625</MeleeCritChance>
+						<MeleeParryChance>0.5</MeleeParryChance>
+						<MeleeDodgeChance>0.5</MeleeDodgeChance>
+					</equippedStatOffsets>
+				</value>
+			</li>
+
+		</operations>
+	</Operation>
+</Patch>	
