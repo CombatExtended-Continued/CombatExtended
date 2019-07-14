@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+	<Operation Class="PatchOperationSequence">
+		<success>Always</success>
+		<operations>
+
+			<li Class="CombatExtended.PatchOperationFindMod">
+				<modName>Yabils: Space Gremlins</modName>
+			</li>
+
+			<li Class="PatchOperationAddModExtension">
+				<xpath>Defs/PawnKindDef[
+						defName="Yabil_Scorcher" or 
+						defName="VillagerYabil" or 
+						defName="Town_GuardYabil" or 
+						defName="Yabil_Trader" or 
+						defName="Yabil_Trader"]
+				</xpath>
+				<value>
+					<li Class="CombatExtended.LoadoutPropertiesExtension">
+						<primaryMagazineCount>
+							<min>7</min>
+							<max>15</max>
+						</primaryMagazineCount>
+					</li>
+				</value>
+			</li>
+
+			<li Class="PatchOperationAddModExtension">
+				<xpath>Defs/PawnKindDef[
+						defName="Yabil_Boss" or 
+						defName="Yabil_Gunner" or 
+						defName="Yabil_Veteran"]
+				</xpath>
+				<value>
+					<li Class="CombatExtended.LoadoutPropertiesExtension">
+						<primaryMagazineCount>
+							<min>10</min>
+							<max>20</max>
+						</primaryMagazineCount>
+					</li>
+				</value>
+			</li>
+
+			<li Class="PatchOperationAddModExtension">
+				<xpath>Defs/PawnKindDef[defName="Yabil_Demo"]</xpath>
+				<value>
+					<li Class="CombatExtended.LoadoutPropertiesExtension">
+						<primaryMagazineCount>
+							<min>3</min>
+							<max>6</max>
+						</primaryMagazineCount>
+					</li>
+				</value>
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/PawnKindDef[defName="Yabil_Demo"]/weaponTags</xpath>
+				<value>
+					<weaponTags>
+						<li>CE_AI_Grenade</li>
+					</weaponTags>
+				</value>
+			</li>
+
+		</operations>
+	</Operation>
+</Patch>
