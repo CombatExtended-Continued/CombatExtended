@@ -7,286 +7,53 @@
 			<li Class="CombatExtended.PatchOperationFindMod">
 				<modName>Equiums</modName>
 			</li>
-			<!-- ========== Scoot ========== -->
+			
 			<li Class="PatchOperationAddModExtension">
-				<xpath>/Defs/PawnKindDef[defName="EquiumRecruitUnarmed"]</xpath>
+				<xpath>/Defs/PawnKindDef[@Name="EquiumMilitaryBase"]</xpath>
 				<value>
-				  <li Class="CombatExtended.LoadoutPropertiesExtension">
-					<primaryMagazineCount>
-					  <min>3</min>
-					  <max>5</max>
-					</primaryMagazineCount>
-					<shieldMoney>
-					  <min>500</min>
-					  <max>1400</max>
-					</shieldMoney>
-					<shieldTags>
-					  <li>OutlanderShield</li>
-					</shieldTags>
-					<shieldChance>0.5</shieldChance>
-					<sidearms>
-					  <li>
-						<generateChance>0.5</generateChance>
-						<sidearmMoney>
-						  <min>100</min>
-						  <max>300</max>
-						</sidearmMoney>
-						<weaponTags>
-						  <li>CE_Sidearm_Melee</li>
-						</weaponTags>
-					  </li>
-					</sidearms>
-				  </li>
+					<li Class="CombatExtended.LoadoutPropertiesExtension">
+						<primaryMagazineCount>
+							<min>3</min>
+							<max>5</max>
+						</primaryMagazineCount>
+						<shieldMoney>
+							<min>500</min>
+							<max>1400</max>
+						</shieldMoney>
+						<shieldTags>
+							<li>OutlanderShield</li>
+						</shieldTags>
+						<shieldChance>0.5</shieldChance>
+					</li>
 				</value>
 			</li>
+			
+			<!-- Temporary workaround to fix bug in main Equium mod where some Military Equiums have no Parent Def defined -->
+			
 			<li Class="PatchOperationAddModExtension">
-				<xpath>/Defs/PawnKindDef[defName="EquiumRecruit"]</xpath>
+				<xpath>/Defs/PawnKindDef[
+					defName="EquiumMilitaryTrader" or
+					defName="EquiumSniper" or
+					defName="EquiumXO" or
+					defName="EquiumCommander"]</xpath>
 				<value>
-				  <li Class="CombatExtended.LoadoutPropertiesExtension">
-					<primaryMagazineCount>
-					  <min>3</min>
-					  <max>5</max>
-					</primaryMagazineCount>
-					<shieldMoney>
-					  <min>500</min>
-					  <max>1400</max>
-					</shieldMoney>
-					<shieldTags>
-					  <li>OutlanderShield</li>
-					</shieldTags>
-					<shieldChance>0.5</shieldChance>
-					<sidearms>
-					  <li>
-						<generateChance>0.5</generateChance>
-						<sidearmMoney>
-						  <min>100</min>
-						  <max>300</max>
-						</sidearmMoney>
-						<weaponTags>
-						  <li>CE_Sidearm_Melee</li>
-						</weaponTags>
-					  </li>
-					</sidearms>
-				  </li>
+					<li Class="CombatExtended.LoadoutPropertiesExtension">
+						<primaryMagazineCount>
+							<min>3</min>
+							<max>5</max>
+						</primaryMagazineCount>
+						<shieldMoney>
+							<min>500</min>
+							<max>1400</max>
+						</shieldMoney>
+						<shieldTags>
+							<li>OutlanderShield</li>
+						</shieldTags>
+						<shieldChance>0.5</shieldChance>
+					</li>
 				</value>
 			</li>
-			<li Class="PatchOperationAddModExtension">
-				<xpath>/Defs/PawnKindDef[defName="EquiumPrivateUnarmed"]</xpath>
-				<value>
-				  <li Class="CombatExtended.LoadoutPropertiesExtension">
-					<primaryMagazineCount>
-					  <min>3</min>
-					  <max>5</max>
-					</primaryMagazineCount>
-					<shieldMoney>
-					  <min>500</min>
-					  <max>1400</max>
-					</shieldMoney>
-					<shieldTags>
-					  <li>OutlanderShield</li>
-					</shieldTags>
-					<shieldChance>0.5</shieldChance>
-					<sidearms>
-					  <li>
-						<generateChance>0.5</generateChance>
-						<sidearmMoney>
-						  <min>100</min>
-						  <max>300</max>
-						</sidearmMoney>
-						<weaponTags>
-						  <li>CE_Sidearm_Melee</li>
-						</weaponTags>
-					  </li>
-					</sidearms>
-				  </li>
-				</value>
-			</li>
-			<li Class="PatchOperationAddModExtension">
-				<xpath>/Defs/PawnKindDef[defName="EquiumPrivate"]</xpath>
-				<value>
-				  <li Class="CombatExtended.LoadoutPropertiesExtension">
-					<primaryMagazineCount>
-					  <min>3</min>
-					  <max>5</max>
-					</primaryMagazineCount>
-					<shieldMoney>
-					  <min>500</min>
-					  <max>1400</max>
-					</shieldMoney>
-					<shieldTags>
-					  <li>OutlanderShield</li>
-					</shieldTags>
-					<shieldChance>0.5</shieldChance>
-					<sidearms>
-					  <li>
-						<generateChance>0.5</generateChance>
-						<sidearmMoney>
-						  <min>100</min>
-						  <max>300</max>
-						</sidearmMoney>
-						<weaponTags>
-						  <li>CE_Sidearm_Melee</li>
-						</weaponTags>
-					  </li>
-					</sidearms>
-				  </li>
-				</value>
-			</li>
-			<li Class="PatchOperationAddModExtension">
-				<xpath>/Defs/PawnKindDef[defName="EquiumCombatSpecialist"]</xpath>
-				<value>
-				  <li Class="CombatExtended.LoadoutPropertiesExtension">
-					<primaryMagazineCount>
-					  <min>3</min>
-					  <max>5</max>
-					</primaryMagazineCount>
-					<shieldMoney>
-					  <min>500</min>
-					  <max>1400</max>
-					</shieldMoney>
-					<shieldTags>
-					  <li>OutlanderShield</li>
-					</shieldTags>
-					<shieldChance>0.5</shieldChance>
-					<sidearms>
-					  <li>
-						<generateChance>0.5</generateChance>
-						<sidearmMoney>
-						  <min>100</min>
-						  <max>300</max>
-						</sidearmMoney>
-						<weaponTags>
-						  <li>CE_Sidearm_Melee</li>
-						</weaponTags>
-					  </li>
-					</sidearms>
-				  </li>
-				</value>
-			</li>
-			<li Class="PatchOperationAddModExtension">
-				<xpath>/Defs/PawnKindDef[defName="EquiumMilitaryTrader"]</xpath>
-				<value>
-				  <li Class="CombatExtended.LoadoutPropertiesExtension">
-					<primaryMagazineCount>
-					  <min>8</min>
-					  <max>9</max>
-					</primaryMagazineCount>
-					<shieldMoney>
-					  <min>500</min>
-					  <max>1400</max>
-					</shieldMoney>
-					<shieldTags>
-					  <li>OutlanderShield</li>
-					</shieldTags>
-					<shieldChance>0.5</shieldChance>
-					<sidearms>
-					  <li>
-						<generateChance>0.5</generateChance>
-						<sidearmMoney>
-						  <min>100</min>
-						  <max>300</max>
-						</sidearmMoney>
-						<weaponTags>
-						  <li>CE_Sidearm_Melee</li>
-						</weaponTags>
-					  </li>
-					</sidearms>
-				  </li>
-				</value>
-			</li>
-			<li Class="PatchOperationAddModExtension">
-				<xpath>/Defs/PawnKindDef[defName="EquiumExplosiveSpecialist"]</xpath>
-				<value>
-				  <li Class="CombatExtended.LoadoutPropertiesExtension">
-					<primaryMagazineCount>
-					  <min>3</min>
-					  <max>5</max>
-					</primaryMagazineCount>
-					<shieldMoney>
-					  <min>500</min>
-					  <max>1400</max>
-					</shieldMoney>
-					<shieldTags>
-					  <li>OutlanderShield</li>
-					</shieldTags>
-					<shieldChance>0.5</shieldChance>
-					<sidearms>
-					  <li>
-						<generateChance>0.5</generateChance>
-						<sidearmMoney>
-						  <min>100</min>
-						  <max>300</max>
-						</sidearmMoney>
-						<weaponTags>
-						  <li>CE_Sidearm_Melee</li>
-						</weaponTags>
-					  </li>
-					</sidearms>
-				  </li>
-				</value>
-			</li>
-			<li Class="PatchOperationAddModExtension">
-				<xpath>/Defs/PawnKindDef[defName="EquiumXO"]</xpath>
-				<value>
-				  <li Class="CombatExtended.LoadoutPropertiesExtension">
-					<primaryMagazineCount>
-					  <min>3</min>
-					  <max>5</max>
-					</primaryMagazineCount>
-					<shieldMoney>
-					  <min>500</min>
-					  <max>1400</max>
-					</shieldMoney>
-					<shieldTags>
-					  <li>OutlanderShield</li>
-					</shieldTags>
-					<shieldChance>0.5</shieldChance>
-					<sidearms>
-					  <li>
-						<generateChance>0.5</generateChance>
-						<sidearmMoney>
-						  <min>100</min>
-						  <max>300</max>
-						</sidearmMoney>
-						<weaponTags>
-						  <li>CE_Sidearm_Melee</li>
-						</weaponTags>
-					  </li>
-					</sidearms>
-				  </li>
-				</value>
-			</li>
-			<li Class="PatchOperationAddModExtension">
-				<xpath>/Defs/PawnKindDef[defName="EquiumCommander"]</xpath>
-				<value>
-				  <li Class="CombatExtended.LoadoutPropertiesExtension">
-					<primaryMagazineCount>
-					  <min>3</min>
-					  <max>5</max>
-					</primaryMagazineCount>
-					<shieldMoney>
-					  <min>500</min>
-					  <max>1400</max>
-					</shieldMoney>
-					<shieldTags>
-					  <li>OutlanderShield</li>
-					</shieldTags>
-					<shieldChance>0.5</shieldChance>
-					<sidearms>
-					  <li>
-						<generateChance>0.5</generateChance>
-						<sidearmMoney>
-						  <min>100</min>
-						  <max>300</max>
-						</sidearmMoney>
-						<weaponTags>
-						  <li>CE_Sidearm_Melee</li>
-						</weaponTags>
-					  </li>
-					</sidearms>
-				  </li>
-				</value>
-			</li>
+			
 		</operations>
 	</Operation>
 </Patch>
