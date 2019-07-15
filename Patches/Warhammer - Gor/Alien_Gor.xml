@@ -80,6 +80,24 @@
 				</value>
 			</li>
 
+			<li Class="PatchOperationAdd">
+				<success>Always</success>
+				<xpath>*/AlienRace.ThingDef_AlienRace[defName="Alien_Gor"][not(comp)]</xpath>
+				<value>
+					<comps />
+				</value>
+			</li>
+
+			<li Class="PatchOperationAdd">
+				<xpath>*/AlienRace.ThingDef_AlienRace[defName="Alien_Gor"]/comps</xpath>
+				<value>
+					<li>
+						<compClass>CombatExtended.CompPawnGizmo</compClass>
+					</li>
+					<li Class="CombatExtended.CompProperties_Suppressable" />
+				</value>
+			</li>
+
 		</operations>
 	</Operation>
 </Patch>

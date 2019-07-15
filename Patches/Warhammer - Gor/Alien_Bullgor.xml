@@ -124,6 +124,24 @@
 				</value>
 			</li>
 
+			<li Class="PatchOperationAdd">
+				<success>Always</success>
+				<xpath>*/AlienRace.ThingDef_AlienRace[defName="Alien_Bullgor"][not(comp)]</xpath>
+				<value>
+					<comps />
+				</value>
+			</li>
+
+			<li Class="PatchOperationAdd">
+				<xpath>*/AlienRace.ThingDef_AlienRace[defName="Alien_Bullgor"]/comps</xpath>
+				<value>
+					<li>
+						<compClass>CombatExtended.CompPawnGizmo</compClass>
+					</li>
+					<li Class="CombatExtended.CompProperties_Suppressable" />
+				</value>
+			</li>
+
 		</operations>
 	</Operation>
 </Patch>
