@@ -20,7 +20,7 @@ namespace CombatExtended
                 Log.Error("Command_Reload without ammo comp");
                 return;
             }
-            if (compAmmo.UseAmmo 
+            if (compAmmo.UseAmmo
                 && (compAmmo.CompInventory != null || compAmmo.turret != null)
                 || action == null)
             {
@@ -67,28 +67,29 @@ namespace CombatExtended
                 foreach (ThingDef curDef in ammoList)
                 {
                     AmmoDef ammoDef = (AmmoDef)curDef;
-                    floatOptionList.Add(new FloatMenuOption(ammoDef.ammoClass.LabelCap, new Action(delegate {
+                    floatOptionList.Add(new FloatMenuOption(ammoDef.ammoClass.LabelCap, new Action(delegate
+                    {
                         bool shouldReload = Controller.settings.AutoReloadOnChangeAmmo && (compAmmo.SelectedAmmo != ammoDef || compAmmo.CurMagCount < compAmmo.Props.magazineSize) && compAmmo.turret?.MannableComp == null;
-		               	compAmmo.SelectedAmmo = ammoDef;
-		               	if (shouldReload)
-		               	{
-			               	if (compAmmo.turret != null)
-			               	{
-			               		compAmmo.turret.TryOrderReload();
-			               	}
-			               	else
-			               	{
-			               		compAmmo.TryStartReload();
-			               	}
-		               	}
-	               	})));
+                        compAmmo.SelectedAmmo = ammoDef;
+                        if (shouldReload)
+                        {
+                            if (compAmmo.turret != null)
+                            {
+                                compAmmo.turret.TryOrderReload();
+                            }
+                            else
+                            {
+                                compAmmo.TryStartReload();
+                            }
+                        }
+                    })));
                 }
             }
             // Append unload command
             var hasOperator = compAmmo.Wielder != null || (compAmmo.turret?.MannableComp?.MannedNow ?? false);
             if (compAmmo.UseAmmo && hasOperator && compAmmo.HasMagazine && compAmmo.CurMagCount > 0)
             {
-                floatOptionList.Add(new FloatMenuOption("CE_UnloadLabel".Translate(), new Action(delegate { compAmmo.TryUnload(); })));
+                floatOptionList.Add(new FloatMenuOption("CE_UnloadLabel".Translate(), new Action(delegate { compAmmo.TryUnload(true); })));
             }
             // Append reload command
             if (compAmmo.HasMagazine && hasOperator)
