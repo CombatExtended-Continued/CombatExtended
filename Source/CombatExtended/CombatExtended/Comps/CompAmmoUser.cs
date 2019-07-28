@@ -388,7 +388,7 @@ namespace CombatExtended
             return new Job(CE_JobDefOf.ReloadWeapon, Holder, parent);
         }
 
-        private void DoOutOfAmmoAction()
+        public void DoOutOfAmmoAction()
         {
             if (ShouldThrowMote)
             {
