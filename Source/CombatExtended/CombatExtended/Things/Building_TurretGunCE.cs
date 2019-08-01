@@ -39,7 +39,7 @@ namespace CombatExtended
         private CompChangeableProjectile compChangeable = null;
         public bool isReloading = false;
         private int ticksUntilAutoReload = 0;
-        
+
         #endregion
 
         #region Properties
@@ -164,7 +164,7 @@ namespace CombatExtended
         {
             get
             {
-                return mannableComp == null
+                return (mannableComp == null || !mannableComp.MannedNow)
                     && CompAmmo != null
                     && CompAmmo.HasMagazine
                     && (CompAmmo.CurMagCount < CompAmmo.Props.magazineSize || CompAmmo.SelectedAmmo != CompAmmo.CurrentAmmo);
@@ -174,7 +174,8 @@ namespace CombatExtended
         {
             get
             {
-                return mannableComp == null && CompAmmo != null
+                return (mannableComp == null || (!mannableComp.MannedNow && ticksUntilAutoReload == 0))     //suppress manned turret auto-reload for a short time after spawning
+                    && CompAmmo != null
                     && CompAmmo.HasMagazine
                     && (ticksUntilAutoReload == 0 || CompAmmo.CurMagCount <= Mathf.CeilToInt(CompAmmo.Props.magazineSize / 6));
             }
@@ -423,6 +424,11 @@ namespace CombatExtended
             base.SpawnSetup(map, respawningAfterLoad);
             powerComp = base.GetComp<CompPowerTrader>();
             mannableComp = base.GetComp<CompMannable>();
+            if (mannableComp != null && !respawningAfterLoad)
+            {
+                //Delay auto-reload for a few seconds after spawn, so player can operate the turret right after placing it, before other colonists start reserving it for reload jobs
+                ticksUntilAutoReload = minTicksBeforeAutoReload;
+            }
         }
         
         private IAttackTargetSearcher TargSearcher()
