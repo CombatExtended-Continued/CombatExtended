@@ -156,6 +156,19 @@
       <armorCategory>Electric</armorCategory>
     </value>
   </Operation>
+
+  <!-- ========== Snake venom ========== -->
+
+  <Operation Class="PatchOperationAdd">
+    <xpath>Defs/DamageDef[defName="ToxicBite"]</xpath>
+    <value>
+      <hediff>VenomousBite</hediff>
+    </value>
+  </Operation>
+
+  <Operation Class="PatchOperationRemove">
+    <xpath>Defs/DamageDef[defName="ToxicBite"]/additionalHediffs/li[hediff="ToxicBuildup"]</xpath>
+  </Operation>
 	
 </Patch>
 
