@@ -94,41 +94,9 @@ namespace CombatExtended
         // Whether our shooter is currently under suppressive fire
         private bool IsSuppressed => ShooterPawn?.TryGetComp<CompSuppressable>()?.isSuppressed ?? false;
 
-        //Checks if magazine-fed weapon needs to reload before able to shoot again (out-of-ammo state is automatically handled by TryStartReload)
-        private bool NeedsMagazineReload => CompAmmo != null && CompAmmo.HasMagazine && CompAmmo.CurMagCount == 0;
-
-        //Mag-less weapons need separate handling for out-of-ammo state, as TryStartReload does nothing for them
-        private bool IsMaglessWeaponOutOfAmmo => CompAmmo != null && !CompAmmo.HasMagazine && CompAmmo.UseAmmo && !CompAmmo.HasAmmo;
-
-        private bool IsAttacking => ShooterPawn?.CurJobDef == JobDefOf.AttackStatic || ShooterPawn?.stances.curStance is Stance_Warmup;
-
         #endregion
 
         #region Methods
-
-        public override bool Available()
-        {
-            if (!base.Available())
-            {
-                return false;
-            }
-
-            if (IsAttacking)
-            {
-                if (NeedsMagazineReload)
-                {
-                    CompAmmo?.TryStartReload();
-                    return false;
-                }
-                if (IsMaglessWeaponOutOfAmmo)
-                {
-                    CompAmmo?.DoOutOfAmmoAction();
-                    return false;
-                }
-            }
-
-            return true;
-        }
 
         /// <summary>
         /// Handles activating aim mode at the start of the burst
@@ -254,10 +222,6 @@ namespace CombatExtended
                         }
                     }
                     return CompAmmo.Notify_PostShotFired();
-                }
-                if (NeedsMagazineReload)
-                {
-                    CompAmmo?.TryStartReload();
                 }
                 return true;
             }
