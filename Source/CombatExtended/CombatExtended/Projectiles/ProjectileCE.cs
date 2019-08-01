@@ -863,6 +863,7 @@ namespace CombatExtended
             {
                 //Target is too far to hit with given velocity/range/gravity params
                 //set firing angle for maximum distance
+                Log.Warning("[CE] Tried to fire projectile to unreachable target cell, truncating to maximum distance.");
                 return 45.0f * Mathf.Deg2Rad;
             }
             return Mathf.Atan((Mathf.Pow(velocity, 2f) + (flyOverhead ? 1f : -1f) * squareRootCheck) / (gravity * range));
