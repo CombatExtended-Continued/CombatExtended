@@ -858,7 +858,15 @@ namespace CombatExtended
         /// <returns>Arc angle in radians off the ground.</returns>
         public static float GetShotAngle(float velocity, float range, float heightDifference, bool flyOverhead, float gravity)
         {
-            return Mathf.Atan((Mathf.Pow(velocity, 2f) + (flyOverhead ? 1f : -1f) * Mathf.Sqrt(Mathf.Pow(velocity, 4f) - gravity * (gravity * Mathf.Pow(range, 2f) + 2f * heightDifference * Mathf.Pow(velocity, 2f)))) / (gravity * range));
+            float squareRootCheck = Mathf.Sqrt(Mathf.Pow(velocity, 4f) - gravity * (gravity * Mathf.Pow(range, 2f) + 2f * heightDifference * Mathf.Pow(velocity, 2f)));
+            if (float.IsNaN(squareRootCheck))
+            {
+                //Target is too far to hit with given velocity/range/gravity params
+                //set firing angle for maximum distance
+                Log.Warning("[CE] Tried to fire projectile to unreachable target cell, truncating to maximum distance.");
+                return 45.0f * Mathf.Deg2Rad;
+            }
+            return Mathf.Atan((Mathf.Pow(velocity, 2f) + (flyOverhead ? 1f : -1f) * squareRootCheck) / (gravity * range));
         }
         #endregion
 

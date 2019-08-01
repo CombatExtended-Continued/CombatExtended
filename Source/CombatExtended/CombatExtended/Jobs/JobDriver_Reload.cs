@@ -44,7 +44,7 @@ namespace CombatExtended
         #endregion Properties
 
         #region Methods
-        
+
         /// <summary>
         /// Generates the string which is shown in the interface when a pawn is selected while they are performing this job.
         /// </summary>
@@ -71,16 +71,16 @@ namespace CombatExtended
         {
             //if (TargetThingB.DestroyedOrNull() || pawn.equipment == null || pawn.equipment.Primary == null || pawn.equipment.Primary != TargetThingB)
             if ((reloadingEquipment && (pawn?.equipment?.Primary == null || pawn.equipment.Primary != weapon))
-			   	|| (reloadingInventory && (pawn.inventory == null || !pawn.inventory.innerContainer.Contains(weapon)))
-			    || (initEquipment != pawn?.equipment?.Primary))
+                   || (reloadingInventory && (pawn.inventory == null || !pawn.inventory.innerContainer.Contains(weapon)))
+                || (initEquipment != pawn?.equipment?.Primary))
                 return true;
 
-			//CompAmmoUser comp = pawn.equipment.Primary.TryGetComp<CompAmmoUser>();
-			//return comp != null && comp.useAmmo && !comp.hasAmmo;
-			//return comp != null && !comp.hasAndUsesAmmoOrMagazine;
-			// expecting true ends the job.  if comp == null then will return false from the first part and not test the second.  Job will continue (bad).
+            //CompAmmoUser comp = pawn.equipment.Primary.TryGetComp<CompAmmoUser>();
+            //return comp != null && comp.useAmmo && !comp.hasAmmo;
+            //return comp != null && !comp.hasAndUsesAmmoOrMagazine;
+            // expecting true ends the job.  if comp == null then will return false from the first part and not test the second.  Job will continue (bad).
 
-			return compReloader == null || !compReloader.HasAndUsesAmmoOrMagazine;
+            return compReloader == null || !compReloader.HasAndUsesAmmoOrMagazine;
         }
 
         /// <summary>
@@ -98,7 +98,7 @@ namespace CombatExtended
             }
             if (weapon == null) // Required.
             {
-                Log.Error(errorBase +  "TargetThingB is null.  A weapon (ThingWithComps) is required to perform a reload.");
+                Log.Error(errorBase + "TargetThingB is null.  A weapon (ThingWithComps) is required to perform a reload.");
                 yield return null;
             }
             if (compReloader == null) // Required.
@@ -122,7 +122,7 @@ namespace CombatExtended
             }
             if (reloadingInventory && reloadingEquipment) // prevent incorrect information on job text.  If somehow this was true may cause a FailOn to trip.
             {
-                Log.Error(errorBase +  "Something went spectacularly wrong as the weapon to be reloaded was found in both the Pawn's equipment AND inventory at the same time.");
+                Log.Error(errorBase + "Something went spectacularly wrong as the weapon to be reloaded was found in both the Pawn's equipment AND inventory at the same time.");
                 yield return null;
             }
 
@@ -142,8 +142,10 @@ namespace CombatExtended
             this.FailOn(HasNoGunOrAmmo);
 
             // Throw mote
-            if (compReloader.ShouldThrowMote)
+            if (compReloader.ShouldThrowMote && holder.Map != null)     //holder.Map is temporarily null after game load, skip mote if a pawn was reloading when game was saved
+            {
                 MoteMaker.ThrowText(pawn.Position.ToVector3Shifted(), holder.Map, string.Format("CE_ReloadingMote".Translate(), weapon.def.LabelCap));
+            }
 
             //Toil of do-nothing		
             Toil waitToil = new Toil() { actor = pawn }; // actor was always null in testing...
