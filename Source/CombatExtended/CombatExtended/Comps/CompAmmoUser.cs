@@ -276,6 +276,10 @@ namespace CombatExtended
         {
             if (!HasMagazine)
             {
+                if (!CanBeFiredNow)
+                {
+                    DoOutOfAmmoAction();
+                }
                 return;
             }
             if (Wielder == null && turret == null)
