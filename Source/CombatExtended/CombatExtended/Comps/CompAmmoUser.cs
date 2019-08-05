@@ -88,7 +88,7 @@ namespace CombatExtended
         {
             get
             {
-                return !UseAmmo || ((HasMagazine && CurMagCount > 0) || (!HasMagazine && HasAmmo));
+                return (HasMagazine && CurMagCount > 0) || (!HasMagazine && (HasAmmo || !UseAmmo));
             }
         }
         public bool HasAmmo
