@@ -156,6 +156,13 @@ namespace CombatExtended
             }
         }
 
+        private bool IsAttacking => ShooterPawn?.CurJobDef == JobDefOf.AttackStatic || ShooterPawn?.stances.curStance is Stance_Warmup;
+
+
+        #endregion
+
+        #region Methods
+
         public override bool Available()
         {
             // This part copied from vanilla Verb_LaunchProjectile
@@ -171,18 +178,13 @@ namespace CombatExtended
             }
 
             // Add check for reload
-            if (Projectile == null)
+            if (Projectile == null || (IsAttacking && CompAmmo != null && !CompAmmo.CanBeFiredNow))
             {
                 CompAmmo?.TryStartReload();
                 return false;
             }
-
             return true;
         }
-
-        #endregion
-
-        #region Methods
 
         /// <summary>
         /// Gets caster's weapon handling based on if it's a pawn or a turret
@@ -584,6 +586,10 @@ namespace CombatExtended
             }
             pelletMechanicsOnly = false;
             numShotsFired++;
+            if (CompAmmo != null && !CompAmmo.CanBeFiredNow)
+            {
+                CompAmmo?.TryStartReload();
+            }
             return true;
         }
 

@@ -88,7 +88,7 @@ namespace CombatExtended
         {
             get
             {
-                return !UseAmmo || ((HasMagazine && CurMagCount > 0) || (!HasMagazine && HasAmmo));
+                return (HasMagazine && CurMagCount > 0) || (!HasMagazine && (HasAmmo || !UseAmmo));
             }
         }
         public bool HasAmmo
@@ -276,6 +276,10 @@ namespace CombatExtended
         {
             if (!HasMagazine)
             {
+                if (!CanBeFiredNow)
+                {
+                    DoOutOfAmmoAction();
+                }
                 return;
             }
             if (Wielder == null && turret == null)
