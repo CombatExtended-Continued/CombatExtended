@@ -777,9 +777,10 @@ namespace CombatExtended
                 }
 
                 // Add validator to parameters
-                foreach (IntVec3 curCell in SightUtility.GetCellsOnLine(shotSource, targetLoc.ToVector3()))
+                foreach (IntVec3 curCell in SightUtility.GetCellsOnLine(shotSource, targetLoc.ToVector3(), caster.Map))
                 {
-                    if (Controller.settings.DebugDrawPartialLoSChecks) caster.Map.debugDrawer.FlashCell(curCell, 0.4f);
+                    if (Controller.settings.DebugDrawPartialLoSChecks)
+                        caster.Map.debugDrawer.FlashCell(curCell, 0.4f);
                     if (curCell != shotSource.ToIntVec3() && curCell != targetLoc && !CanShootThroughCell(curCell))
                     {
                         return false;
