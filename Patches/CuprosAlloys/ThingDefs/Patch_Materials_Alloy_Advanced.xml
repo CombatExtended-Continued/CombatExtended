@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+	<Operation Class="PatchOperationSequence">
+		<success>Always</success>
+		<operations>
+			<li Class="CombatExtended.PatchOperationFindMod">
+				<modName>[TWC]Cupro's Alloys 1.0</modName>
+			</li>
+			<!-- CAL_BlackSteel -->
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName="CAL_BlackSteel"]/stuffProps/statFactors</xpath>
+				<value>
+					<MeleePenetrationFactor>1.2</MeleePenetrationFactor>
+				</value>
+			</li>
+			<!-- CAL_Plastin -->
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName="CAL_Plastin"]/stuffProps/statFactors</xpath>
+				<value>
+					<MeleePenetrationFactor>1.4</MeleePenetrationFactor>
+				</value>
+			</li>
+		</operations>
+	</Operation>
+</Patch>
