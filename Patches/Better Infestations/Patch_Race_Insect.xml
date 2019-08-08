@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+	<!-- Better Infestations -->
+	<Operation Class="PatchOperationSequence">
+		<success>Always</success>
+		<operations>
+		 <!-- Checking for Better Infestations -->
+			<li Class="CombatExtended.PatchOperationFindMod">
+				<modName>Better Infestations 1.0</modName>
+			</li>
+			
+			<!-- BI_Queen -->
+			<li Class="PatchOperationAddModExtension">
+				<xpath>Defs/ThingDef[defName="BI_Queen"]</xpath>
+				<value>
+					<li Class="CombatExtended.RacePropertiesExtensionCE">
+						<bodyShape>QuadrupedLow</bodyShape>
+					</li>
+				</value>
+			</li>
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName="BI_Queen"]/statBases</xpath>
+				<value>
+					<MeleeDodgeChance>0.04</MeleeDodgeChance>
+					<MeleeCritChance>0.11</MeleeCritChance>
+					<MeleeParryChance>0.24</MeleeParryChance>
+				</value>
+			</li>
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="BI_Queen"]/tools</xpath>
+				<value>
+					<tools>
+						<li Class="CombatExtended.ToolCE">
+							<label>head claw</label>
+							<capacities>
+								<li>Cut</li>
+							</capacities>
+							<power>20</power>
+							<cooldownTime>2.6</cooldownTime>
+							<linkedBodyPartsGroup>HeadClaw</linkedBodyPartsGroup>
+							<armorPenetration>0.182</armorPenetration>
+						</li>
+						<li Class="CombatExtended.ToolCE">
+							<label>head</label>
+							<capacities>
+								<li>Blunt</li>
+							</capacities>
+							<power>18</power>
+							<cooldownTime>2</cooldownTime>
+							<linkedBodyPartsGroup>HeadAttackTool</linkedBodyPartsGroup>
+							<ensureLinkedBodyPartsGroupAlwaysUsable>true</ensureLinkedBodyPartsGroupAlwaysUsable>
+							<chanceFactor>0.2</chanceFactor>
+							<armorPenetration>0.178</armorPenetration>
+						</li>
+						<li Class="CombatExtended.ToolCE">
+							<label>mandibles</label>
+							<capacities>
+								<li>Bite</li>
+							</capacities>
+							<power>16</power>
+							<cooldownTime>1.8</cooldownTime>
+							<linkedBodyPartsGroup>Mouth</linkedBodyPartsGroup>
+							<armorPenetration>0.233</armorPenetration>
+						</li>
+					</tools>
+				</value>
+			</li>
+		</operations>
+	</Operation>
+</Patch>

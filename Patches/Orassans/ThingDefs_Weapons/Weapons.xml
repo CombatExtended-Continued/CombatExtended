@@ -412,6 +412,45 @@
 			<weaponTags>
 			</weaponTags>
 		  </li>
+		  
+		  <li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="Gun_OrassanLMG"]/tools</xpath>
+				<value>
+					<tools>
+        <li Class="CombatExtended.ToolCE">
+          <label>stock</label>
+          <capacities>
+            <li>Blunt</li>
+          </capacities>
+          <power>9</power>
+          <cooldownTime>1.8</cooldownTime>
+          <chanceFactor>1.5</chanceFactor>
+          <armorPenetration>0.11</armorPenetration>
+          <linkedBodyPartsGroup>Stock</linkedBodyPartsGroup>
+        </li>
+        <li Class="CombatExtended.ToolCE">
+          <label>barrel</label>
+          <capacities>
+            <li>Blunt</li>
+          </capacities>
+          <power>10</power>
+          <cooldownTime>1.9</cooldownTime>
+          <armorPenetration>0.118</armorPenetration>
+          <linkedBodyPartsGroup>Barrel</linkedBodyPartsGroup>
+        </li>
+        <li Class="CombatExtended.ToolCE">
+          <label>muzzle</label>
+          <capacities>
+            <li>Poke</li>
+          </capacities>
+          <power>10</power>
+          <cooldownTime>1.9</cooldownTime>
+          <armorPenetration>0.086</armorPenetration>
+          <linkedBodyPartsGroup>Muzzle</linkedBodyPartsGroup>
+        </li>
+      </tools>
+				</value>
+			</li>
 	  
       <!-- Orassan LMG -->
 		   <li Class="CombatExtended.PatchOperationMakeGunCECompatible">
@@ -459,6 +498,44 @@
 			<weaponTags>
 			</weaponTags>
 		  </li>
+		  <li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="Gun_OrassanLMG"]/tools</xpath>
+				<value>
+					<tools>
+        <li Class="CombatExtended.ToolCE">
+          <label>stock</label>
+          <capacities>
+            <li>Blunt</li>
+          </capacities>
+          <power>9</power>
+          <cooldownTime>1.8</cooldownTime>
+          <chanceFactor>1.5</chanceFactor>
+          <armorPenetration>0.11</armorPenetration>
+          <linkedBodyPartsGroup>Stock</linkedBodyPartsGroup>
+        </li>
+        <li Class="CombatExtended.ToolCE">
+          <label>barrel</label>
+          <capacities>
+            <li>Blunt</li>
+          </capacities>
+          <power>10</power>
+          <cooldownTime>1.9</cooldownTime>
+          <armorPenetration>0.118</armorPenetration>
+          <linkedBodyPartsGroup>Barrel</linkedBodyPartsGroup>
+        </li>
+        <li Class="CombatExtended.ToolCE">
+          <label>muzzle</label>
+          <capacities>
+            <li>Poke</li>
+          </capacities>
+          <power>10</power>
+          <cooldownTime>1.9</cooldownTime>
+          <armorPenetration>0.086</armorPenetration>
+          <linkedBodyPartsGroup>Muzzle</linkedBodyPartsGroup>
+        </li>
+      </tools>
+				</value>
+			</li>
 	  
 	  <!-- Orassan Sniper -->
 			<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
@@ -603,49 +680,6 @@
 					</tools>
 				</value>
 			</li>
-		<!-- The Sabere -->
-			<li Class="PatchOperationReplace">
-			<xpath>Defs/ThingDef[defName="MeleeWeapon_kittyclaws"]/tools</xpath>
-			<value>
-				<tools>
-					<li Class="CombatExtended.ToolCE">
-						<label>edge</label>
-						<capacities>
-							<li>Slash</li>
-						</capacities>
-						<power>26</power>
-						<cooldownTime>1.9</cooldownTime>
-						<armorPenetration>0.45</armorPenetration>
-						<linkedBodyPartsGroup>Blade</linkedBodyPartsGroup>
-					</li>
-					<li Class="CombatExtended.ToolCE">
-						<label>point</label>
-						<capacities>
-							<li>Stab</li>
-						</capacities>
-						<power>20</power>
-						<cooldownTime>1.2</cooldownTime>
-						<armorPenetration>0.75</armorPenetration>
-						<linkedBodyPartsGroup>Point</linkedBodyPartsGroup>
-					</li>
-				</tools>
-			</value>
-		</li>
-		<li Class="PatchOperationAdd">
-			<xpath>Defs/ThingDef[defName="MeleeWeapon_kittyclaws"]/statBases</xpath>
-			<value>
-				<Bulk>7</Bulk>
-			</value>
-		</li>
-		<li Class="PatchOperationAdd">
-			<xpath>Defs/ThingDef[defName="MeleeWeapon_kittyclaws"]</xpath>
-			<value>
-				<equippedStatOffsets>
-					<MeleeCritChance>1</MeleeCritChance>
-					<MeleeParryChance>1</MeleeParryChance>
-				</equippedStatOffsets>
-			</value>
-		</li>
       <!-- etc.. -->
     </operations>
   </Operation>
