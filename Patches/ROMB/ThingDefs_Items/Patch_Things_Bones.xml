@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+	<Operation Class="PatchOperationSequence">
+		<success>Always</success>
+		<operations>
+			<li Class="CombatExtended.PatchOperationFindMod">
+				<modName>Rim of Madness - Bones</modName>
+			</li>
+			<!-- BoneItem -->
+			<!-- As material -->
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName="BoneItem"]/stuffProps/statFactors</xpath>
+				<value>
+					<MeleePenetrationFactor>0.5</MeleePenetrationFactor>
+				</value>
+			</li>
+			<!-- As a weapon -->
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="BoneItem"]/tools</xpath>
+				<value>
+					<tools>
+						<li Class="CombatExtended.ToolCE">
+							<capacities>
+								<li>Blunt</li>
+							</capacities>
+							<power>4</power>
+							<cooldownTime>2.2</cooldownTime>
+							<armorPenetration>0.071</armorPenetration>
+						</li>
+					</tools>
+				</value>
+			</li>
+			
+			<!-- Sihv_Apparel_BoneArmor -->
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName="Sihv_Apparel_BoneArmor"]/statBases</xpath>
+				<value>
+					<Bulk>5</Bulk>
+					<WornBulk>5</WornBulk>
+				</value>
+			</li>
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="Sihv_Apparel_BoneArmor"]/statBases/ArmorRating_Sharp</xpath>
+				<value>
+					<ArmorRating_Sharp>0.2</ArmorRating_Sharp>
+				</value>
+			</li>
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="Sihv_Apparel_BoneArmor"]/statBases/ArmorRating_Blunt</xpath>
+				<value>
+					<ArmorRating_Blunt>0.1</ArmorRating_Blunt>
+				</value>
+			</li>
+		</operations>
+	</Operation>
+</Patch>
