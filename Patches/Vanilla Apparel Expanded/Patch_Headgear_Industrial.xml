@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+	<Operation Class="PatchOperationSequence">
+		<success>Always</success>
+		<operations>
+			<!-- CJ: "Ah ####, here we go again." -->
+			<li Class="CombatExtended.PatchOperationFindMod">
+				<modName>Vanilla Apparel Expanded</modName>
+			</li>
+
+			<!-- == VAE_Headgear_Scarf == -->
+			<!-- statBases -->
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="VAE_Headgear_Scarf"]/statBases/StuffEffectMultiplierArmor</xpath>
+				<value>
+					<Bulk>0.5</Bulk>
+					<StuffEffectMultiplierArmor>0.09</StuffEffectMultiplierArmor>
+				</value>
+			</li>
+
+			<!-- == VAE_Headgear_Beret, VAE_Headgear_BaseballCap and VAE_Headgear_ChefsToque == -->
+			<!-- statBases -->
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="VAE_Headgear_Beret" or defName="VAE_Headgear_BaseballCap" or defName="VAE_Headgear_ChefsToque"]/statBases/StuffEffectMultiplierArmor</xpath>
+				<value>
+					<StuffEffectMultiplierArmor>0.15</StuffEffectMultiplierArmor>
+				</value>
+			</li>
+			<!-- Miscellaneous -->
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="VAE_Headgear_Beret"]/equippedStatOffsets</xpath>
+				<value>
+					<equippedStatOffsets>
+						<AimingAccuracy>0.05</AimingAccuracy>
+					</equippedStatOffsets>
+				</value>
+			</li>
+
+			<!-- == VAE_Headgear_Hardhat == -->
+			<!-- statBases -->
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="VAE_Headgear_Hardhat"]/statBases/ArmorRating_Blunt</xpath>
+				<value>
+					<ArmorRating_Blunt>0.48</ArmorRating_Blunt>
+				</value>
+			</li>
+
+			<!-- == VAE_Headgear_GasMask == -->
+			<!-- statBases -->
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName="VAE_Headgear_GasMask"]/statBases</xpath>
+				<value>
+					<Bulk>2</Bulk>
+					<WornBulk>1</WornBulk>
+				</value>
+			</li>
+			<!-- Miscellaneous -->
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName="VAE_Headgear_GasMask"]/equippedStatOffsets</xpath>
+				<value>
+					<AimingAccuracy>-0.1</AimingAccuracy>
+				</value>
+			</li>
+
+			<!-- == VAE_Headgear_Sunglasses and VAE_Headgear_Glasses == -->
+			<!-- statBases -->
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName="VAE_Headgear_Sunglasses" or defName="VAE_Headgear_Glasses"]/statBases</xpath>
+				<value>
+					<Bulk>0.5</Bulk>
+				</value>
+			</li>
+
+		</operations>
+	</Operation>
+</Patch>
