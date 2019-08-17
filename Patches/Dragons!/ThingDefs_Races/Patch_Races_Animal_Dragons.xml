@@ -7,16 +7,19 @@
 			<li Class="CombatExtended.PatchOperationFindMod">
 				<modName>Dragon Mod</modName>
 			</li>
-			
-			<!-- Green_Dragon_Race -->
+
+			<!-- Adding shapes to the animals. -->
 			<li Class="PatchOperationAddModExtension">
-				<xpath>Defs/ThingDef[defName="Green_Dragon_Race"]</xpath>
+				<xpath>Defs/ThingDef[defName="Green_Dragon_Race" or defName="Black_Dragon_Race" or defName="Brown_Dragon_Race" or defName="Gold_Dragon_Race" or defName="Silver_Dragon_Race" or defName="Red_Dragon_Race" or defName="Blue_Dragon_Race" or defName="White_Dragon_Race" or defName="Purple_Dragon_Race" or defName="Cryo_Dragon_Race" or defName="Flamingo_Dragon_Race" or defName="Orange_Dragon_Race" or defName="Rock_Dragon_Race" or defName="Yellow_Dragon_Race" or defName="True_Dragon_Race" or defName="Royal_Dragon_Race" or defName="Basilisk_Race"]</xpath>
 				<value>
 					<li Class="CombatExtended.RacePropertiesExtensionCE">
 						<bodyShape>Quadruped</bodyShape>
 					</li>
 				</value>
 			</li>
+
+			<!-- Giving the animals combat stats. -->
+			<!-- Green_Dragon_Race -->
 			<li Class="PatchOperationAdd">
 				<xpath>Defs/ThingDef[defName="Green_Dragon_Race"]</xpath>
 				<value>
@@ -36,6 +39,114 @@
 					</statBases>
 				</value>
 			</li>
+			<!-- Black_Dragon_Race and Blue_Dragon_Race -->
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName="Black_Dragon_Race" or defName="Blue_Dragon_Race"]</xpath>
+				<value>
+					<statBases>
+						<MeleeDodgeChance>0.27</MeleeDodgeChance>
+						<MeleeCritChance>0.46</MeleeCritChance>
+						<MeleeParryChance>0.33</MeleeParryChance>
+						<MoveSpeed>8</MoveSpeed>
+						<ArmorRating_Blunt>0.65</ArmorRating_Blunt>
+						<ArmorRating_Sharp>0.45</ArmorRating_Sharp>
+						<ArmorRating_Heat>2</ArmorRating_Heat>
+						<ComfyTemperatureMax>70</ComfyTemperatureMax>
+						<ComfyTemperatureMin>-15</ComfyTemperatureMin>
+						<MarketValue>4000</MarketValue>
+						<MeatAmount>140</MeatAmount>
+						<LeatherAmount>50</LeatherAmount>
+					</statBases>
+				</value>
+			</li>
+			<!-- Brown_Dragon_Race, Red_Dragon_Race, Purple_Dragon_Race, Orange_Dragon_Race and Yellow_Dragon_Race -->
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName="Brown_Dragon_Race" or defName="Red_Dragon_Race" or defName="Purple_Dragon_Race" or defName="Orange_Dragon_Race" or defName="Yellow_Dragon_Race"]</xpath>
+				<value>
+					<statBases>
+						<MeleeDodgeChance>0.27</MeleeDodgeChance>
+						<MeleeCritChance>0.43</MeleeCritChance>
+						<MeleeParryChance>0.3</MeleeParryChance>
+						<MoveSpeed>8</MoveSpeed>
+						<ArmorRating_Blunt>0.65</ArmorRating_Blunt>
+						<ArmorRating_Sharp>0.45</ArmorRating_Sharp>
+						<ArmorRating_Heat>2</ArmorRating_Heat>
+						<ComfyTemperatureMax>70</ComfyTemperatureMax>
+						<ComfyTemperatureMin>-15</ComfyTemperatureMin>
+						<MarketValue>4000</MarketValue>
+						<MeatAmount>140</MeatAmount>
+						<LeatherAmount>50</LeatherAmount>
+					</statBases>
+				</value>
+			</li>
+			<!-- Gold_Dragon_Race, Silver_Dragon_Race, White_Dragon_Race and Cryo_Dragon_Race -->
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName="Gold_Dragon_Race" or defName="Silver_Dragon_Race" or defName="White_Dragon_Race" or defName="Cryo_Dragon_Race"]/statBases</xpath>
+				<value>
+					<MeleeDodgeChance>0.27</MeleeDodgeChance>
+					<MeleeCritChance>0.43</MeleeCritChance>
+					<MeleeParryChance>0.3</MeleeParryChance>
+				</value>
+			</li>
+			<!-- Flamingo_Dragon_Race -->
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName="Flamingo_Dragon_Race"]</xpath>
+				<value>
+					<statBases>
+						<MeleeDodgeChance>0.27</MeleeDodgeChance>
+						<MeleeCritChance>0.43</MeleeCritChance>
+						<MeleeParryChance>0.29</MeleeParryChance>
+						<MoveSpeed>8</MoveSpeed>
+						<ArmorRating_Blunt>0.65</ArmorRating_Blunt>
+						<ArmorRating_Sharp>0.45</ArmorRating_Sharp>
+						<ArmorRating_Heat>2</ArmorRating_Heat>
+						<ComfyTemperatureMax>70</ComfyTemperatureMax>
+						<ComfyTemperatureMin>-15</ComfyTemperatureMin>
+						<MarketValue>4000</MarketValue>
+						<MeatAmount>140</MeatAmount>
+						<LeatherAmount>50</LeatherAmount>
+					</statBases>
+				</value>
+			</li>
+			<!-- Rock_Dragon_Race -->
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName="Rock_Dragon_Race"]/statBases</xpath>
+				<value>
+					<MeleeDodgeChance>0.15</MeleeDodgeChance>
+					<MeleeCritChance>0.26</MeleeCritChance>
+					<MeleeParryChance>0.33</MeleeParryChance>
+				</value>
+			</li>
+			<!-- Basilisk_Race -->
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName="Basilisk_Race"]/statBases</xpath>
+				<value>
+					<MeleeDodgeChance>0.32</MeleeDodgeChance>
+					<MeleeCritChance>0.41</MeleeCritChance>
+					<MeleeParryChance>0.19</MeleeParryChance>
+				</value>
+			</li>
+			<!-- True_Dragon_Race -->
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName="True_Dragon_Race"]/statBases</xpath>
+				<value>
+					<MeleeDodgeChance>0.29</MeleeDodgeChance>
+					<MeleeCritChance>0.65</MeleeCritChance>
+					<MeleeParryChance>0.48</MeleeParryChance>
+				</value>
+			</li>
+			<!-- Royal_Dragon_Race -->
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName="Royal_Dragon_Race"]/statBases</xpath>
+				<value>
+					<MeleeDodgeChance>0.31</MeleeDodgeChance>
+					<MeleeCritChance>0.53</MeleeCritChance>
+					<MeleeParryChance>0.31</MeleeParryChance>
+				</value>
+			</li>
+
+			<!-- Unarmed attacks. -->
+			<!-- Green_Dragon_Race -->
 			<li Class="PatchOperationReplace">
 				<xpath>Defs/ThingDef[defName="Green_Dragon_Race"]/tools</xpath>
 				<value>
@@ -81,35 +192,7 @@
 					</tools>
 				</value>
 			</li>
-			
 			<!-- Black_Dragon_Race -->
-			<li Class="PatchOperationAddModExtension">
-				<xpath>Defs/ThingDef[defName="Black_Dragon_Race"]</xpath>
-				<value>
-					<li Class="CombatExtended.RacePropertiesExtensionCE">
-						<bodyShape>Quadruped</bodyShape>
-					</li>
-				</value>
-			</li>
-			<li Class="PatchOperationAdd">
-				<xpath>Defs/ThingDef[defName="Black_Dragon_Race"]</xpath>
-				<value>
-					<statBases>
-						<MeleeDodgeChance>0.27</MeleeDodgeChance>
-						<MeleeCritChance>0.46</MeleeCritChance>
-						<MeleeParryChance>0.33</MeleeParryChance>
-						<MoveSpeed>8</MoveSpeed>
-						<ArmorRating_Blunt>0.65</ArmorRating_Blunt>
-						<ArmorRating_Sharp>0.45</ArmorRating_Sharp>
-						<ArmorRating_Heat>2</ArmorRating_Heat>
-						<ComfyTemperatureMax>70</ComfyTemperatureMax>
-						<ComfyTemperatureMin>-15</ComfyTemperatureMin>
-						<MarketValue>4000</MarketValue>
-						<MeatAmount>140</MeatAmount>
-						<LeatherAmount>50</LeatherAmount>
-					</statBases>
-				</value>
-			</li>
 			<li Class="PatchOperationReplace">
 				<xpath>Defs/ThingDef[defName="Black_Dragon_Race"]/tools</xpath>
 				<value>
@@ -155,35 +238,7 @@
 					</tools>
 				</value>
 			</li>
-			
 			<!-- Brown_Dragon_Race -->
-			<li Class="PatchOperationAddModExtension">
-				<xpath>Defs/ThingDef[defName="Brown_Dragon_Race"]</xpath>
-				<value>
-					<li Class="CombatExtended.RacePropertiesExtensionCE">
-						<bodyShape>Quadruped</bodyShape>
-					</li>
-				</value>
-			</li>
-			<li Class="PatchOperationAdd">
-				<xpath>Defs/ThingDef[defName="Brown_Dragon_Race"]</xpath>
-				<value>
-					<statBases>
-						<MeleeDodgeChance>0.27</MeleeDodgeChance>
-						<MeleeCritChance>0.43</MeleeCritChance>
-						<MeleeParryChance>0.3</MeleeParryChance>
-						<MoveSpeed>8</MoveSpeed>
-						<ArmorRating_Blunt>0.65</ArmorRating_Blunt>
-						<ArmorRating_Sharp>0.45</ArmorRating_Sharp>
-						<ArmorRating_Heat>2</ArmorRating_Heat>
-						<ComfyTemperatureMax>70</ComfyTemperatureMax>
-						<ComfyTemperatureMin>-15</ComfyTemperatureMin>
-						<MarketValue>4000</MarketValue>
-						<MeatAmount>140</MeatAmount>
-						<LeatherAmount>50</LeatherAmount>
-					</statBases>
-				</value>
-			</li>
 			<li Class="PatchOperationReplace">
 				<xpath>Defs/ThingDef[defName="Brown_Dragon_Race"]/tools</xpath>
 				<value>
@@ -229,24 +284,7 @@
 					</tools>
 				</value>
 			</li>
-			
 			<!-- Gold_Dragon_Race -->
-			<li Class="PatchOperationAddModExtension">
-				<xpath>Defs/ThingDef[defName="Gold_Dragon_Race"]</xpath>
-				<value>
-					<li Class="CombatExtended.RacePropertiesExtensionCE">
-						<bodyShape>Quadruped</bodyShape>
-					</li>
-				</value>
-			</li>
-			<li Class="PatchOperationAdd">
-				<xpath>Defs/ThingDef[defName="Gold_Dragon_Race"]/statBases</xpath>
-				<value>
-					<MeleeDodgeChance>0.27</MeleeDodgeChance>
-					<MeleeCritChance>0.43</MeleeCritChance>
-					<MeleeParryChance>0.3</MeleeParryChance>
-				</value>
-			</li>
 			<li Class="PatchOperationReplace">
 				<xpath>Defs/ThingDef[defName="Gold_Dragon_Race"]/tools</xpath>
 				<value>
@@ -292,24 +330,7 @@
 					</tools>
 				</value>
 			</li>
-			
 			<!-- Silver_Dragon_Race -->
-			<li Class="PatchOperationAddModExtension">
-				<xpath>Defs/ThingDef[defName="Silver_Dragon_Race"]</xpath>
-				<value>
-					<li Class="CombatExtended.RacePropertiesExtensionCE">
-						<bodyShape>Quadruped</bodyShape>
-					</li>
-				</value>
-			</li>
-			<li Class="PatchOperationAdd">
-				<xpath>Defs/ThingDef[defName="Silver_Dragon_Race"]/statBases</xpath>
-				<value>
-					<MeleeDodgeChance>0.27</MeleeDodgeChance>
-					<MeleeCritChance>0.43</MeleeCritChance>
-					<MeleeParryChance>0.3</MeleeParryChance>
-				</value>
-			</li>
 			<li Class="PatchOperationReplace">
 				<xpath>Defs/ThingDef[defName="Silver_Dragon_Race"]/tools</xpath>
 				<value>
@@ -355,35 +376,7 @@
 					</tools>
 				</value>
 			</li>
-			
 			<!-- Red_Dragon_Race -->
-			<li Class="PatchOperationAddModExtension">
-				<xpath>Defs/ThingDef[defName="Red_Dragon_Race"]</xpath>
-				<value>
-					<li Class="CombatExtended.RacePropertiesExtensionCE">
-						<bodyShape>Quadruped</bodyShape>
-					</li>
-				</value>
-			</li>
-			<li Class="PatchOperationAdd">
-				<xpath>Defs/ThingDef[defName="Red_Dragon_Race"]</xpath>
-				<value>
-					<statBases>
-						<MeleeDodgeChance>0.27</MeleeDodgeChance>
-						<MeleeCritChance>0.43</MeleeCritChance>
-						<MeleeParryChance>0.3</MeleeParryChance>
-						<MoveSpeed>8</MoveSpeed>
-						<ArmorRating_Blunt>0.65</ArmorRating_Blunt>
-						<ArmorRating_Sharp>0.45</ArmorRating_Sharp>
-						<ArmorRating_Heat>2</ArmorRating_Heat>
-						<ComfyTemperatureMax>70</ComfyTemperatureMax>
-						<ComfyTemperatureMin>-15</ComfyTemperatureMin>
-						<MarketValue>4000</MarketValue>
-						<MeatAmount>140</MeatAmount>
-						<LeatherAmount>50</LeatherAmount>
-					</statBases>
-				</value>
-			</li>
 			<li Class="PatchOperationReplace">
 				<xpath>Defs/ThingDef[defName="Red_Dragon_Race"]/tools</xpath>
 				<value>
@@ -429,35 +422,7 @@
 					</tools>
 				</value>
 			</li>
-			
 			<!-- Blue_Dragon_Race -->
-			<li Class="PatchOperationAddModExtension">
-				<xpath>Defs/ThingDef[defName="Blue_Dragon_Race"]</xpath>
-				<value>
-					<li Class="CombatExtended.RacePropertiesExtensionCE">
-						<bodyShape>Quadruped</bodyShape>
-					</li>
-				</value>
-			</li>
-			<li Class="PatchOperationAdd">
-				<xpath>Defs/ThingDef[defName="Blue_Dragon_Race"]</xpath>
-				<value>
-					<statBases>
-						<MeleeDodgeChance>0.27</MeleeDodgeChance>
-						<MeleeCritChance>0.46</MeleeCritChance>
-						<MeleeParryChance>0.33</MeleeParryChance>
-						<MoveSpeed>8</MoveSpeed>
-						<ArmorRating_Blunt>0.65</ArmorRating_Blunt>
-						<ArmorRating_Sharp>0.45</ArmorRating_Sharp>
-						<ArmorRating_Heat>2</ArmorRating_Heat>
-						<ComfyTemperatureMax>70</ComfyTemperatureMax>
-						<ComfyTemperatureMin>-15</ComfyTemperatureMin>
-						<MarketValue>4000</MarketValue>
-						<MeatAmount>140</MeatAmount>
-						<LeatherAmount>50</LeatherAmount>
-					</statBases>
-				</value>
-			</li>
 			<li Class="PatchOperationReplace">
 				<xpath>Defs/ThingDef[defName="Blue_Dragon_Race"]/tools</xpath>
 				<value>
@@ -503,24 +468,7 @@
 					</tools>
 				</value>
 			</li>
-			
 			<!-- White_Dragon_Race -->
-			<li Class="PatchOperationAddModExtension">
-				<xpath>Defs/ThingDef[defName="White_Dragon_Race"]</xpath>
-				<value>
-					<li Class="CombatExtended.RacePropertiesExtensionCE">
-						<bodyShape>Quadruped</bodyShape>
-					</li>
-				</value>
-			</li>
-			<li Class="PatchOperationAdd">
-				<xpath>Defs/ThingDef[defName="White_Dragon_Race"]/statBases</xpath>
-				<value>
-					<MeleeDodgeChance>0.27</MeleeDodgeChance>
-					<MeleeCritChance>0.43</MeleeCritChance>
-					<MeleeParryChance>0.3</MeleeParryChance>
-				</value>
-			</li>
 			<li Class="PatchOperationReplace">
 				<xpath>Defs/ThingDef[defName="White_Dragon_Race"]/tools</xpath>
 				<value>
@@ -566,35 +514,7 @@
 					</tools>
 				</value>
 			</li>
-			
 			<!-- Purple_Dragon_Race -->
-			<li Class="PatchOperationAddModExtension">
-				<xpath>Defs/ThingDef[defName="Purple_Dragon_Race"]</xpath>
-				<value>
-					<li Class="CombatExtended.RacePropertiesExtensionCE">
-						<bodyShape>Quadruped</bodyShape>
-					</li>
-				</value>
-			</li>
-			<li Class="PatchOperationAdd">
-				<xpath>Defs/ThingDef[defName="Purple_Dragon_Race"]</xpath>
-				<value>
-					<statBases>
-						<MeleeDodgeChance>0.27</MeleeDodgeChance>
-						<MeleeCritChance>0.43</MeleeCritChance>
-						<MeleeParryChance>0.3</MeleeParryChance>
-						<MoveSpeed>8</MoveSpeed>
-						<ArmorRating_Blunt>0.65</ArmorRating_Blunt>
-						<ArmorRating_Sharp>0.45</ArmorRating_Sharp>
-						<ArmorRating_Heat>2</ArmorRating_Heat>
-						<ComfyTemperatureMax>70</ComfyTemperatureMax>
-						<ComfyTemperatureMin>-15</ComfyTemperatureMin>
-						<MarketValue>4000</MarketValue>
-						<MeatAmount>140</MeatAmount>
-						<LeatherAmount>50</LeatherAmount>
-					</statBases>
-				</value>
-			</li>
 			<li Class="PatchOperationReplace">
 				<xpath>Defs/ThingDef[defName="Purple_Dragon_Race"]/tools</xpath>
 				<value>
@@ -640,24 +560,7 @@
 					</tools>
 				</value>
 			</li>
-			
 			<!-- Cryo_Dragon_Race -->
-			<li Class="PatchOperationAddModExtension">
-				<xpath>Defs/ThingDef[defName="Cryo_Dragon_Race"]</xpath>
-				<value>
-					<li Class="CombatExtended.RacePropertiesExtensionCE">
-						<bodyShape>Quadruped</bodyShape>
-					</li>
-				</value>
-			</li>
-			<li Class="PatchOperationAdd">
-				<xpath>Defs/ThingDef[defName="Cryo_Dragon_Race"]/statBases</xpath>
-				<value>
-					<MeleeDodgeChance>0.27</MeleeDodgeChance>
-					<MeleeCritChance>0.43</MeleeCritChance>
-					<MeleeParryChance>0.3</MeleeParryChance>
-				</value>
-			</li>
 			<li Class="PatchOperationReplace">
 				<xpath>Defs/ThingDef[defName="Cryo_Dragon_Race"]/tools</xpath>
 				<value>
@@ -703,35 +606,7 @@
 					</tools>
 				</value>
 			</li>
-			
 			<!-- Flamingo_Dragon_Race -->
-			<li Class="PatchOperationAddModExtension">
-				<xpath>Defs/ThingDef[defName="Flamingo_Dragon_Race"]</xpath>
-				<value>
-					<li Class="CombatExtended.RacePropertiesExtensionCE">
-						<bodyShape>Quadruped</bodyShape>
-					</li>
-				</value>
-			</li>
-			<li Class="PatchOperationAdd">
-				<xpath>Defs/ThingDef[defName="Flamingo_Dragon_Race"]</xpath>
-				<value>
-					<statBases>
-						<MeleeDodgeChance>0.27</MeleeDodgeChance>
-						<MeleeCritChance>0.43</MeleeCritChance>
-						<MeleeParryChance>0.29</MeleeParryChance>
-						<MoveSpeed>8</MoveSpeed>
-						<ArmorRating_Blunt>0.65</ArmorRating_Blunt>
-						<ArmorRating_Sharp>0.45</ArmorRating_Sharp>
-						<ArmorRating_Heat>2</ArmorRating_Heat>
-						<ComfyTemperatureMax>70</ComfyTemperatureMax>
-						<ComfyTemperatureMin>-15</ComfyTemperatureMin>
-						<MarketValue>4000</MarketValue>
-						<MeatAmount>140</MeatAmount>
-						<LeatherAmount>50</LeatherAmount>
-					</statBases>
-				</value>
-			</li>
 			<li Class="PatchOperationReplace">
 				<xpath>Defs/ThingDef[defName="Flamingo_Dragon_Race"]/tools</xpath>
 				<value>
@@ -777,35 +652,7 @@
 					</tools>
 				</value>
 			</li>
-			
 			<!-- Orange_Dragon_Race-->
-			<li Class="PatchOperationAddModExtension">
-				<xpath>Defs/ThingDef[defName="Orange_Dragon_Race"]</xpath>
-				<value>
-					<li Class="CombatExtended.RacePropertiesExtensionCE">
-						<bodyShape>Quadruped</bodyShape>
-					</li>
-				</value>
-			</li>
-			<li Class="PatchOperationAdd">
-				<xpath>Defs/ThingDef[defName="Orange_Dragon_Race"]</xpath>
-				<value>
-					<statBases>
-						<MeleeDodgeChance>0.27</MeleeDodgeChance>
-						<MeleeCritChance>0.43</MeleeCritChance>
-						<MeleeParryChance>0.3</MeleeParryChance>
-						<MoveSpeed>8</MoveSpeed>
-						<ArmorRating_Blunt>0.65</ArmorRating_Blunt>
-						<ArmorRating_Sharp>0.45</ArmorRating_Sharp>
-						<ArmorRating_Heat>2</ArmorRating_Heat>
-						<ComfyTemperatureMax>70</ComfyTemperatureMax>
-						<ComfyTemperatureMin>-15</ComfyTemperatureMin>
-						<MarketValue>4000</MarketValue>
-						<MeatAmount>140</MeatAmount>
-						<LeatherAmount>50</LeatherAmount>
-					</statBases>
-				</value>
-			</li>
 			<li Class="PatchOperationReplace">
 				<xpath>Defs/ThingDef[defName="Orange_Dragon_Race"]/tools</xpath>
 				<value>
@@ -851,24 +698,7 @@
 					</tools>
 				</value>
 			</li>
-			
 			<!-- Rock_Dragon_Race -->
-			<li Class="PatchOperationAddModExtension">
-				<xpath>Defs/ThingDef[defName="Rock_Dragon_Race"]</xpath>
-				<value>
-					<li Class="CombatExtended.RacePropertiesExtensionCE">
-						<bodyShape>Quadruped</bodyShape>
-					</li>
-				</value>
-			</li>
-			<li Class="PatchOperationAdd">
-				<xpath>Defs/ThingDef[defName="Rock_Dragon_Race"]/statBases</xpath>
-				<value>
-					<MeleeDodgeChance>0.17</MeleeDodgeChance>
-					<MeleeCritChance>0.21</MeleeCritChance>
-					<MeleeParryChance>0.3</MeleeParryChance>
-				</value>
-			</li>
 			<li Class="PatchOperationReplace">
 				<xpath>Defs/ThingDef[defName="Rock_Dragon_Race"]/tools</xpath>
 				<value>
@@ -914,35 +744,7 @@
 					</tools>
 				</value>
 			</li>
-			
 			<!-- Yellow_Dragon_Race -->
-			<li Class="PatchOperationAddModExtension">
-				<xpath>Defs/ThingDef[defName="Yellow_Dragon_Race"]</xpath>
-				<value>
-					<li Class="CombatExtended.RacePropertiesExtensionCE">
-						<bodyShape>Quadruped</bodyShape>
-					</li>
-				</value>
-			</li>
-			<li Class="PatchOperationAdd">
-				<xpath>Defs/ThingDef[defName="Yellow_Dragon_Race"]</xpath>
-				<value>
-					<statBases>
-						<MeleeDodgeChance>0.27</MeleeDodgeChance>
-						<MeleeCritChance>0.43</MeleeCritChance>
-						<MeleeParryChance>0.3</MeleeParryChance>
-						<MoveSpeed>8</MoveSpeed>
-						<ArmorRating_Blunt>0.65</ArmorRating_Blunt>
-						<ArmorRating_Sharp>0.45</ArmorRating_Sharp>
-						<ArmorRating_Heat>2</ArmorRating_Heat>
-						<ComfyTemperatureMax>70</ComfyTemperatureMax>
-						<ComfyTemperatureMin>-15</ComfyTemperatureMin>
-						<MarketValue>4000</MarketValue>
-						<MeatAmount>140</MeatAmount>
-						<LeatherAmount>50</LeatherAmount>
-					</statBases>
-				</value>
-			</li>
 			<li Class="PatchOperationReplace">
 				<xpath>Defs/ThingDef[defName="Yellow_Dragon_Race"]/tools</xpath>
 				<value>
@@ -988,35 +790,52 @@
 					</tools>
 				</value>
 			</li>
-			
-			<!-- True_Dragon_Race -->
-			<li Class="PatchOperationAddModExtension">
-				<xpath>Defs/ThingDef[defName="True_Dragon_Race"]</xpath>
-				<value>
-					<li Class="CombatExtended.RacePropertiesExtensionCE">
-						<bodyShape>Quadruped</bodyShape>
-					</li>
-				</value>
-			</li>
+			<!-- Basilisk_Race -->
 			<li Class="PatchOperationReplace">
-				<xpath>Defs/ThingDef[defName="True_Dragon_Race"]/statBases</xpath>
+				<xpath>Defs/ThingDef[defName="Basilisk_Race"]/tools</xpath>
 				<value>
-					<statBases>
-						<MeleeDodgeChance>0.29</MeleeDodgeChance>
-						<MeleeCritChance>0.65</MeleeCritChance>
-						<MeleeParryChance>0.48</MeleeParryChance>
-						<MoveSpeed>8.5</MoveSpeed>
-						<ArmorRating_Blunt>1.2</ArmorRating_Blunt>
-						<ArmorRating_Sharp>1.2</ArmorRating_Sharp>
-						<ArmorRating_Heat>3</ArmorRating_Heat>
-						<ComfyTemperatureMax>75</ComfyTemperatureMax>
-						<ComfyTemperatureMin>-30</ComfyTemperatureMin>
-						<MarketValue>6000</MarketValue>
-						<MeatAmount>140</MeatAmount>
-						<LeatherAmount>60</LeatherAmount>
-					</statBases>
+					<tools>
+						<li Class="CombatExtended.ToolCE">
+							<cooldownTime>1.35</cooldownTime>
+							<power>12</power>
+							<capacities>
+								<li>Scratch</li>
+							</capacities>
+							<linkedBodyPartsGroup>FrontLeftClaws</linkedBodyPartsGroup>
+							<label>left claw</label>
+							<armorPenetration>0.091</armorPenetration>
+						</li>
+						<li Class="CombatExtended.ToolCE">
+							<cooldownTime>1.35</cooldownTime>
+							<power>12</power>
+							<capacities>
+								<li>Scratch</li>
+							</capacities>
+							<linkedBodyPartsGroup>FrontRightClaws</linkedBodyPartsGroup>
+							<label>right claw</label>
+							<armorPenetration>0.091</armorPenetration>
+						</li>
+						<li Class="CombatExtended.ToolCE">					
+							<cooldownTime>2</cooldownTime>
+							<power>15</power>
+							<capacities>
+								<li>Bite</li>
+							</capacities>
+							<linkedBodyPartsGroup>Teeth</linkedBodyPartsGroup>
+							<surpriseAttack>
+								<extraMeleeDamages>
+									<li>
+										<def>Stun</def>
+										<amount>10</amount>
+									</li>
+								</extraMeleeDamages>
+							</surpriseAttack>
+							<armorPenetration>0.223</armorPenetration>
+						</li>
+					</tools>
 				</value>
 			</li>
+			<!-- True_Dragon_Race -->
 			<li Class="PatchOperationReplace">
 				<xpath>Defs/ThingDef[defName="True_Dragon_Race"]/tools</xpath>
 				<value>
@@ -1062,24 +881,7 @@
 					</tools>
 				</value>
 			</li>
-			
 			<!-- Royal_Dragon_Race -->
-			<li Class="PatchOperationAddModExtension">
-				<xpath>Defs/ThingDef[defName="Royal_Dragon_Race"]</xpath>
-				<value>
-					<li Class="CombatExtended.RacePropertiesExtensionCE">
-						<bodyShape>Quadruped</bodyShape>
-					</li>
-				</value>
-			</li>
-			<li Class="PatchOperationAdd">
-				<xpath>Defs/ThingDef[defName="Royal_Dragon_Race"]/statBases</xpath>
-				<value>
-					<MeleeDodgeChance>0.31</MeleeDodgeChance>
-					<MeleeCritChance>0.53</MeleeCritChance>
-					<MeleeParryChance>0.31</MeleeParryChance>
-				</value>
-			</li>
 			<li Class="PatchOperationReplace">
 				<xpath>Defs/ThingDef[defName="Royal_Dragon_Race"]/tools</xpath>
 				<value>
@@ -1125,80 +927,7 @@
 					</tools>
 				</value>
 			</li>
-			
-			<!-- Basilisk_Race -->
-			<li Class="PatchOperationAddModExtension">
-				<xpath>Defs/ThingDef[defName="Basilisk_Race"]</xpath>
-				<value>
-					<li Class="CombatExtended.RacePropertiesExtensionCE">
-						<bodyShape>Quadruped</bodyShape>
-					</li>
-				</value>
-			</li>
-			<li Class="PatchOperationAdd">
-				<xpath>Defs/ThingDef[defName="Basilisk_Race"]/statBases</xpath>
-				<value>
-					<MeleeDodgeChance>0.32</MeleeDodgeChance>
-					<MeleeCritChance>0.41</MeleeCritChance>
-					<MeleeParryChance>0.19</MeleeParryChance>
-				</value>
-			</li>
-			<li Class="PatchOperationReplace">
-				<xpath>Defs/ThingDef[defName="Basilisk_Race"]/tools</xpath>
-				<value>
-					<tools>
-						<li Class="CombatExtended.ToolCE">
-							<cooldownTime>1.35</cooldownTime>
-							<power>12</power>
-							<capacities>
-								<li>Scratch</li>
-							</capacities>
-							<linkedBodyPartsGroup>FrontLeftClaws</linkedBodyPartsGroup>
-							<label>left claw</label>
-							<armorPenetration>0.091</armorPenetration>
-						</li>
-						<li Class="CombatExtended.ToolCE">
-							<cooldownTime>1.35</cooldownTime>
-							<power>12</power>
-							<capacities>
-								<li>Scratch</li>
-							</capacities>
-							<linkedBodyPartsGroup>FrontRightClaws</linkedBodyPartsGroup>
-							<label>right claw</label>
-							<armorPenetration>0.091</armorPenetration>
-						</li>
-						<li Class="CombatExtended.ToolCE">					
-							<cooldownTime>2</cooldownTime>
-							<power>15</power>
-							<capacities>
-								<li>Bite</li>
-							</capacities>
-							<linkedBodyPartsGroup>Teeth</linkedBodyPartsGroup>
-							<surpriseAttack>
-								<extraMeleeDamages>
-									<li>
-										<def>Stun</def>
-										<amount>10</amount>
-									</li>
-								</extraMeleeDamages>
-							</surpriseAttack>
-							<armorPenetration>0.223</armorPenetration>
-						</li>
-					</tools>
-				</value>
-			</li>
 		</operations>
+
 	</Operation>
-	<!-- Dragons! + Ranged Animal Framework -->
-	<!--<Operation Class="PatchOperationSequence">
-		<success>Always</success>
-		<operations>
-			<li Class="CombatExtended.PatchOperationFindMod">
-				<modName>Dragon Mod</modName>
-			</li>
-			<li Class="CombatExtended.PatchOperationFindMod">
-				<modName>Range Animal Framework</modName>
-			</li>
-		</operations>
-	</Operation>-->
 </Patch>
