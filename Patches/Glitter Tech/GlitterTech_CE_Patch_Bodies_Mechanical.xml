@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+			<li>Glitter Tech</li>
+			<li>Glitter Tech (No Surgery)</li>
+		</mods>
+		<match Class="PatchOperationSequence">
+			<operations>
+
+				<!-- ========== OC Tank ========== -->
+
+				<!-- ========== Add groups entry if it doesn't exist already ========== -->
+
+				<li Class="PatchOperationSequence">
+					<success>Always</success>
+					<operations>
+						<li Class="PatchOperationTest">
+							<xpath>/Defs/BodyDef[defName = "TankChassis"]/corePart/groups</xpath>
+							<success>Invert</success>
+						</li>
+						<li Class="PatchOperationAdd">
+							<xpath>/Defs/BodyDef[defName = "TankChassis"]/corePart</xpath>
+							<value>
+								<groups />
+							</value>
+						</li>
+					</operations>
+				</li>
+
+				<li Class="PatchOperationSequence">
+					<success>Always</success>
+					<operations>
+						<li Class="PatchOperationTest">
+							<xpath>/Defs/BodyDef[defName = "TankChassis"]/corePart/parts/li[def = "TurretActuator"]/groups</xpath>
+							<success>Invert</success>
+						</li>
+						<li Class="PatchOperationAdd">
+							<xpath>/Defs/BodyDef[defName = "TankChassis"]/corePart/parts/li[def = "TurretActuator"]</xpath>
+							<value>
+								<groups />
+							</value>
+						</li>
+					</operations>
+				</li>
+
+				<li Class="PatchOperationSequence">
+					<success>Always</success>
+					<operations>
+						<li Class="PatchOperationTest">
+							<xpath>/Defs/BodyDef[defName = "TankChassis"]/corePart/parts/li[def = "LeftTrack"]/groups</xpath>
+							<success>Invert</success>
+						</li>
+						<li Class="PatchOperationAdd">
+							<xpath>/Defs/BodyDef[defName = "TankChassis"]/corePart/parts/li[def = "LeftTrack"]</xpath>
+							<value>
+								<groups />
+							</value>
+						</li>
+					</operations>
+				</li>
+				
+				<li Class="PatchOperationSequence">
+					<success>Always</success>
+					<operations>
+						<li Class="PatchOperationTest">
+							<xpath>/Defs/BodyDef[defName = "TankChassis"]/corePart/parts/li[def = "RightTrack"]/groups</xpath>
+							<success>Invert</success>
+						</li>
+						<li Class="PatchOperationAdd">
+							<xpath>/Defs/BodyDef[defName = "TankChassis"]/corePart/parts/li[def = "RightTrack"]</xpath>
+							<value>
+								<groups />
+							</value>
+						</li>
+					</operations>
+				</li>
+
+				<!-- ========== Add armor coverage ========== -->
+
+				<li Class="PatchOperationAdd">
+					<xpath>/Defs/BodyDef[defName = "TankChassis"]/corePart/groups</xpath>
+					<value>
+						<li>CoveredByNaturalArmor</li>
+					</value>
+				</li>
+
+				<li Class="PatchOperationAdd">
+					<xpath>/Defs/BodyDef[defName = "TankChassis"]/corePart/parts/li[def = "TurretActuator"]/groups</xpath>
+					<value>
+						<li>CoveredByNaturalArmor</li>
+					</value>
+				</li>
+				
+				<li Class="PatchOperationAdd">
+					<xpath>/Defs/BodyDef[defName = "TankChassis"]/corePart/parts/li[def = "LeftTrack"]/groups</xpath>
+					<value>
+						<li>CoveredByNaturalArmor</li>
+					</value>
+				</li>
+				
+				<li Class="PatchOperationAdd">
+					<xpath>/Defs/BodyDef[defName = "TankChassis"]/corePart/parts/li[def = "RightTrack"]/groups</xpath>
+					<value>
+						<li>CoveredByNaturalArmor</li>
+					</value>
+				</li>				
+
+			</operations>
+		</match>
+	</Operation>
+</Patch>

@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+
+	<ThingCategoryDef>
+		<defName>AmmoGlitterTechApbFuelCellPistol</defName>
+		<label>APB Pistol Fuel Cell</label>
+		<parent>AmmoAdvanced</parent>
+		<iconPath>UI/Icons/ThingCategories/CaliberCharge</iconPath>
+	</ThingCategoryDef>
+
+	<!-- ==================== AmmoSet ========================== -->
+
+	<CombatExtended.AmmoSetDef>
+		<defName>AmmoSet_GlitterTechApbFuelCellPistol</defName>
+		<label>APB Pistol Fuel Cell</label>
+		<ammoTypes>
+			<Ammo_GlitterTechApbFuelCellPistol>Bullet_GlitterTechApbFuelCellPistol</Ammo_GlitterTechApbFuelCellPistol>
+		</ammoTypes>
+	</CombatExtended.AmmoSetDef>
+
+	<!-- ==================== Ammo ========================== -->
+
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="SpacerSmallAmmoBase">
+		<defName>Ammo_GlitterTechApbFuelCellPistol</defName>
+		<label>APB Pistol Fuel Cell</label>
+		<description>Anion Particle Beam fuel cell used in APB-1 Pistols</description>
+		<statBases>
+			<Mass>0.01</Mass>
+			<Bulk>0.02</Bulk>
+			<MarketValue>1</MarketValue>
+		</statBases>
+		<tradeTags>
+			<li>CE_AutoEnableTrade</li>
+		</tradeTags>
+		<thingCategories>
+			<li>AmmoGlitterTechApbFuelCellPistol</li>
+		</thingCategories>
+		<graphicData>
+			<texPath>Things/Ammo/FuelCell/Plasma/Pistol</texPath>
+			<graphicClass>CombatExtended.Graphic_StackCountRanged</graphicClass>
+		</graphicData>
+		<ammoClass>GlitterTechApbPlasma</ammoClass>
+	</ThingDef>
+
+	<!-- ================== Projectiles ================== -->
+
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="BaseBullet">
+		<defName>Bullet_GlitterTechApbFuelCellPistol</defName>
+		<label>APB Plasma Bolt</label>
+		<graphicData>
+			<texPath>Things/Projectile/Charge_Small</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+		</graphicData>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageDef>Flame</damageDef>
+			<speed>200</speed>
+			<damageAmountBase>15</damageAmountBase>
+			<armorPenetrationBase>1.0</armorPenetrationBase>
+		</projectile>
+	</ThingDef>
+
+</Defs>
