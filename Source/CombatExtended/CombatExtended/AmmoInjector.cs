@@ -42,11 +42,11 @@ namespace CombatExtended
         {
             if (InjectAmmos())
             {
-                Log.Message("Combat Extended :: Ammo " + (Controller.settings.EnableAmmoSystem ? "injected" : "removed"));
+                Log.Message("Combat Extended FastTrack Edition :: Ammo " + (Controller.settings.EnableAmmoSystem ? "injected" : "removed"));
             }
             else
             {
-                Log.Error("Combat Extended :: Ammo injector failed to get injected");
+                Log.Error("Combat Extended FastTrack Edition :: Ammo injector failed to get injected");
             }
             ThingSetMakerUtility.Reset();   // Reset pool of spawnable ammos for quests, etc.
         }

@@ -29,7 +29,7 @@ namespace CombatExtended
             // Inject pawn and plant bounds
             LongEventHandler.QueueLongEvent(BoundsInjector.Inject, "CE_LongEvent_BoundingBoxes", false, null);
 
-            Log.Message("Combat Extended :: initialized");
+            Log.Message("Combat Extended FastTrack Edition :: initialized");
 
             // Tutorial popup
             if (settings.ShowTutorialPopup && !Prefs.AdaptiveTrainingEnabled)

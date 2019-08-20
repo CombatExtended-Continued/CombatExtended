@@ -164,7 +164,7 @@ namespace CombatExtended
 					BoundMap(graphicSowing, GraphicType.Plant);	}
 			catch (Exception e) {	throw new Exception("GraphicSowing", e);	}
     		
-    		Log.Message("Combat Extended :: Bounds pre-generated");
+    		Log.Message("Combat Extended FastTrack Edition :: Bounds pre-generated");
     	}
     	
     	public static Vector2 ForPawn(Pawn pawn)

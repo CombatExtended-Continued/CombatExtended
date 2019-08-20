@@ -29,7 +29,7 @@ namespace CombatExtended.Harmony
     [HarmonyPatch(typeof(JobDriver_Wait), "CheckForAutoAttack")]
     static class Harmony_JobDriverWait_CheckForAutoAttack
     {
-        static readonly string logPrefix = Assembly.GetExecutingAssembly().GetName().Name + " :: " + typeof(Harmony_JobDriverWait_CheckForAutoAttack).Name + " :: ";
+        static readonly string logPrefix = "Combat Extended FastTrack Edition :: " + typeof(Harmony_JobDriverWait_CheckForAutoAttack).Name + " :: ";
         //static DynamicMethod Patched_ClosestThingTarget_Global = null;
 
         /// <summary>
