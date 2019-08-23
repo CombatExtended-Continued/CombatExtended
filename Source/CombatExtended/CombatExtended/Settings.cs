@@ -161,8 +161,13 @@ namespace CombatExtended
             if (lastAmmoSystemStatus != enableAmmoSystem)
             {
                 AmmoInjector.Inject();
+                AmmoInjector.AddRemoveCaliberFromGunRecipes();  //Ensure the labels are _removed_ when the ammo system gets disabled
                 lastAmmoSystemStatus = enableAmmoSystem;
                 TutorUtility.DoModalDialogIfNotKnown(CE_ConceptDefOf.CE_AmmoSettings);
+            }
+            else if (AmmoInjector.gunRecipesShowCaliber != showCaliberOnGuns)
+            {
+                AmmoInjector.AddRemoveCaliberFromGunRecipes();
             }
         }
 

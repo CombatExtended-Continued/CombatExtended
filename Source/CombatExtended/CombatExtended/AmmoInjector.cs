@@ -84,6 +84,8 @@ namespace CombatExtended
                 //.. else, continue the method.
             }
 
+            AddRemoveCaliberFromGunRecipes();
+
             var ammoDefs = new HashSet<ThingDef>();
 
             // Find all ammo using guns
@@ -243,6 +245,35 @@ namespace CombatExtended
                 }
             }
             _allRecipesCached.SetValue(benchDef, null);  // Set ammoCraftingStation.AllRecipes to null so it will reset
+        }
+
+        public static bool gunRecipesShowCaliber = false;
+        public static void AddRemoveCaliberFromGunRecipes()
+        {
+            var shouldHaveLabels = (Controller.settings.EnableAmmoSystem && Controller.settings.ShowCaliberOnGuns);
+
+            if (gunRecipesShowCaliber != shouldHaveLabels)
+            {
+                CE_Utility.allWeaponDefs.ForEach(x =>
+                {
+                    var ammoSet = x.GetCompProperties<CompProperties_AmmoUser>()?.ammoSet;
+
+                    if (ammoSet != null)
+                    {
+                        RecipeDef recipeDef = DefDatabase<RecipeDef>.GetNamed("Make_" + x.defName, false);
+
+                        if (recipeDef != null)
+                        {
+                            var label = x.label + (shouldHaveLabels ? " (" + ammoSet.LabelCap + ")" : "");
+
+                            recipeDef.UpdateLabel("RecipeMake".Translate(label));           //Just setting recipeDef.label doesn't update Jobs nor existing recipeUsers. We need UpdateLabel.
+                            recipeDef.jobString = "RecipeMakeJobString".Translate(label);   //The jobString should also be updated to reflect the name change.
+                        }
+                    }
+                });
+
+                gunRecipesShowCaliber = shouldHaveLabels;
+            }
         }
     }
 }
