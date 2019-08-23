@@ -116,6 +116,10 @@ namespace CombatExtended
                 ammoDef.menuHidden = !enabled;
                 ammoDef.destroyOnDrop = !enabled;
 
+                //AFTER CE_Utility.allWeaponDefs is initiated, this sets each ammo to list its users & special effects in its DEF DESCRIPTION rather than its THING DESCRIPTION.
+                //This is because the THING description ISN'T available during crafting - so people can now figure out what's different between ammo types.
+                ammoDef.AddDescriptionParts();
+
                 // Toggle trading
                 if (ammoDef.tradeTags.Contains(enableTradeTag))
                 {
