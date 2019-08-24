@@ -117,11 +117,6 @@ namespace CombatExtended
 
         public static void UpdateLabel(this Def def, string label)
         {
-            if (label.NullOrEmpty())
-            {
-                Log.Error("ERROR: GunMod.UpdateLabel(this Def def, string label) was called with label.NullOrEmpty() for def \"" + def.defName + "\"");
-                return;
-            }
             def.label = label;
             cachedLabelCapInfo.SetValue(def, "");
         }
