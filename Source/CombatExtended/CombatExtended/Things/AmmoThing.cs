@@ -21,7 +21,7 @@ namespace CombatExtended
 
         #region Methods
 
-        public override string DescriptionFlavor
+      /*public override string DescriptionFlavor
         {
             get
             {
@@ -50,7 +50,7 @@ namespace CombatExtended
 
                 return base.DescriptionFlavor;
             }
-        }
+        }*/
 
         public override void PreApplyDamage(ref DamageInfo dinfo, out bool absorbed)
         {
