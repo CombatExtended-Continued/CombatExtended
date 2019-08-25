@@ -12,7 +12,7 @@ namespace CombatExtended
     {
         public override bool ShouldShowFor(StatRequest req)
         {
-            return base.ShouldShowFor(req) && req.Thing?.TryGetComp<CompAmmoUser>()?.Props.ammoSet != null;
+            return base.ShouldShowFor(req) && (req.Def as ThingDef)?.GetCompProperties<CompProperties_AmmoUser>()?.ammoSet != null;
         }
 
         public override string GetExplanationUnfinalized(StatRequest req, ToStringNumberSense numberSense)
@@ -26,7 +26,7 @@ namespace CombatExtended
                 foreach (var cur in ammoProps.ammoSet.ammoTypes)
                 {
                     string label = string.IsNullOrEmpty(cur.ammo.ammoClass.LabelCapShort) ? cur.ammo.ammoClass.LabelCap : cur.ammo.ammoClass.LabelCapShort;
-                    stringBuilder.AppendLine(label + ":\n" + cur.projectile.GetProjectileReadout(req.Thing));
+                    stringBuilder.AppendLine(label + ":\n" + cur.projectile.GetProjectileReadout(req.Thing));   //Is fine handling req.Thing == null, then it sets mult = 1
                 }
             }
             return stringBuilder.ToString().TrimEndNewlines();

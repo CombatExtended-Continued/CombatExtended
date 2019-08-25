@@ -12,12 +12,12 @@ namespace CombatExtended
     {
         public override bool ShouldShowFor(StatRequest req)
         {
-            return base.ShouldShowFor(req) && req.Thing?.TryGetComp<CompAmmoUser>()?.Props.magazineSize > 0;
+            return base.ShouldShowFor(req) && ((req.Def as ThingDef)?.GetCompProperties<CompProperties_AmmoUser>()?.magazineSize ?? 0) > 0;
         }
 
         public override float GetValueUnfinalized(StatRequest req, bool applyPostProcess = true)
         {
-            return req.Thing?.TryGetComp<CompAmmoUser>().Props.magazineSize ?? 0;
+            return (req.Def as ThingDef)?.GetCompProperties<CompProperties_AmmoUser>()?.magazineSize ?? 0;
         }
 
         public override string GetExplanationUnfinalized(StatRequest req, ToStringNumberSense numberSense)
