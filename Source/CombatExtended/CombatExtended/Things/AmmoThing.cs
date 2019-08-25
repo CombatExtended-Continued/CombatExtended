@@ -105,7 +105,7 @@ namespace CombatExtended
 
         private bool TryLaunchCookOffProjectile()
         {
-            if (AmmoDef.cookOffProjectile == null) return false;
+            if (AmmoDef == null || AmmoDef.cookOffProjectile == null) return false;
 
             // Spawn projectile if enabled
             if (!Controller.settings.RealisticCookOff)
