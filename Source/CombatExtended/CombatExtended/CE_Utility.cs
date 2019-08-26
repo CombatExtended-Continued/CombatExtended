@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Reflection;
 using RimWorld;
 using Verse;
 using Verse.AI;
@@ -111,6 +112,14 @@ namespace CombatExtended
     	
         #region Misc
         public static List<ThingDef> allWeaponDefs = new List<ThingDef>();
+
+        public static readonly FieldInfo cachedLabelCapInfo = typeof(Def).GetField("cachedLabelCap", BindingFlags.NonPublic | BindingFlags.Instance);
+
+        public static void UpdateLabel(this Def def, string label)
+        {
+            def.label = label;
+            cachedLabelCapInfo.SetValue(def, "");
+        }
 
         /// <summary>
         /// Generates a random Vector2 in a circle with given radius

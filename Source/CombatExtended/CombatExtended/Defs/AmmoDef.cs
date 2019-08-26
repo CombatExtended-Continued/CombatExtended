@@ -46,5 +46,34 @@ namespace CombatExtended
                 return ammoSetDefs;
             }
         }
+        
+        private string oldDescription;
+        public void AddDescriptionParts()
+        {
+            if (ammoClass != null)
+            {
+                if (oldDescription.NullOrEmpty())
+                    oldDescription = description;
+
+                StringBuilder stringBuilder = new StringBuilder();
+                stringBuilder.AppendLine(oldDescription);
+
+                // Append ammo class description
+                stringBuilder.AppendLine("\n" + ammoClass.LabelCap + ":");
+                stringBuilder.AppendLine(ammoClass.description);
+
+                // Append guns that use this caliber
+                if (!Users.NullOrEmpty())
+                {
+                    stringBuilder.AppendLine("\n" + "CE_UsedBy".Translate() + ":");
+                    foreach (var user in Users)
+                    {
+                        stringBuilder.AppendLine("   -" + user.LabelCap);
+                    }
+                }
+
+                description = stringBuilder.ToString().TrimEndNewlines();
+            }
+        }
     }
 }

@@ -115,13 +115,17 @@ namespace CombatExtended
                 // Apparel is arranged in draw order, we run through reverse to go from Shell -> OnSkin
                 for (int i = apparel.Count - 1; i >= 0; i--)
                 {
-                    if (apparel[i].def.apparel.CoversBodyPart(hitPart) 
-                        && !TryPenetrateArmor(dinfo.Def, apparel[i].GetStatValue(dinfo.Def.armorCategory.armorRatingStat), ref penAmount, ref dmgAmount, apparel[i]))
+                    var app = apparel[i];
+
+                    if (app != null
+                        && app.def.apparel.CoversBodyPart(hitPart)
+                        && !TryPenetrateArmor(dinfo.Def, app.GetStatValue(dinfo.Def.armorCategory.armorRatingStat), ref penAmount, ref dmgAmount, app))
                     {
                         // Hit was deflected, convert damage type
                         //armorReduced = true;
                         dinfo = GetDeflectDamageInfo(dinfo, hitPart);
-                        i++;    // We apply this piece of apparel twice on conversion, this means we can't use deflection on Blunt or else we get an infinite loop of eternal deflection
+                        if (app == apparel.ElementAtOrDefault(i))   //Check whether the "deflecting" apparel is still in the WornApparel - if not, the next loop checks again and errors out because the index is out of range
+                           i++;    // We apply this piece of apparel twice on conversion, this means we can't use deflection on Blunt or else we get an infinite loop of eternal deflection
                     }
                     if (dmgAmount <= 0)
                     {
