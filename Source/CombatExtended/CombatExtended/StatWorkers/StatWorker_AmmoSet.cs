@@ -48,7 +48,7 @@ namespace CombatExtended
         public override string GetStatDrawEntryLabel(StatDef stat, float value, ToStringNumberSense numberSense, StatRequest optionalReq)
         {
             var list = (optionalReq.Def as AmmoDef)?.AmmoSetDefs;
-            return list.FirstOrDefault().LabelCap + (list.Count > 1 ? " (+"+list.Count+")" : "");
+            return list.FirstOrDefault().LabelCap + (list.Count > 1 ? " (+"+(list.Count - 1)+" more..)" : "");
         }
     }
 }
