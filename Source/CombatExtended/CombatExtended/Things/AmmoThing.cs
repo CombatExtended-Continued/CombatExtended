@@ -92,6 +92,32 @@ namespace CombatExtended
             }
         }
 
+        public override string GetInspectString()
+        {
+            StringBuilder stringBuilder = new StringBuilder();
+            string inspectString = base.GetInspectString();
+
+            if (!inspectString.NullOrEmpty())
+            {
+                stringBuilder.AppendLine(inspectString);
+            }
+
+            if (numToCookOff > 0)
+            {
+                stringBuilder.AppendLine("CE_CookingOff".Translate(numToCookOff, stackCount));
+            }
+
+            if (Controller.settings.EnableAmmoSystem)
+            {
+                var count = AmmoDef.Users.Count;
+
+                if (count >= 1)
+                    stringBuilder.AppendLine("CE_UsedBy".Translate() + ": " + AmmoDef.Users.FirstOrDefault().LabelCap + (AmmoDef.Users.Count > 1 ? " (+" + (AmmoDef.Users.Count - 1) + " more..)" : ""));
+            }
+
+            return stringBuilder.ToString().TrimEndNewlines();
+        }
+
         private bool TryDetonate(float scale = 1)
         {
             CompExplosiveCE comp = this.TryGetComp<CompExplosiveCE>();
