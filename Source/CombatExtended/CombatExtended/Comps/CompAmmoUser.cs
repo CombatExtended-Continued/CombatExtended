@@ -564,6 +564,11 @@ namespace CombatExtended
             return label + ammoSet;
         }
 
+        public override string CompInspectStringExtra()
+        {
+            return Controller.settings.EnableAmmoSystem ? "CE_AmmoSet".Translate() + ": " + Props.ammoSet.LabelCap : string.Empty;
+        }
+
         /*
         public override string GetDescriptionPart()
         {
