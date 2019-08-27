@@ -98,7 +98,7 @@ namespace CombatExtended
                         var props = dinfo.Weapon?.projectile as ProjectilePropertiesCE;
                         if (props != null && !props.secondaryDamage.NullOrEmpty())
                         {
-                            foreach(var sec in props.secondaryDamage)
+                            foreach (var sec in props.secondaryDamage)
                             {
                                 if (shield.Destroyed) break;
                                 var secDinfo = sec.GetDinfo();
@@ -125,7 +125,7 @@ namespace CombatExtended
                         //armorReduced = true;
                         dinfo = GetDeflectDamageInfo(dinfo, hitPart);
                         if (app == apparel.ElementAtOrDefault(i))   //Check whether the "deflecting" apparel is still in the WornApparel - if not, the next loop checks again and errors out because the index is out of range
-                           i++;    // We apply this piece of apparel twice on conversion, this means we can't use deflection on Blunt or else we get an infinite loop of eternal deflection
+                            i++;    // We apply this piece of apparel twice on conversion, this means we can't use deflection on Blunt or else we get an infinite loop of eternal deflection
                     }
                     if (dmgAmount <= 0)
                     {
@@ -158,7 +158,7 @@ namespace CombatExtended
                 if (coveredByArmor ? !TryPenetrateArmor(dinfo.Def, partArmor + pawn.GetStatValue(dinfo.Def.armorCategory.armorRatingStat), ref penAmount, ref dmgAmount) : !TryPenetrateArmor(dinfo.Def, partArmor, ref penAmount, ref unused))
                 {
                     dinfo.SetHitPart(curPart);
-                    if(coveredByArmor && pawn.RaceProps.IsMechanoid)
+                    if (coveredByArmor && pawn.RaceProps.IsMechanoid)
                     {
                         // For Mechanoid natural armor, apply deflection and blunt armor
                         dinfo = GetDeflectDamageInfo(dinfo, curPart);
@@ -197,10 +197,11 @@ namespace CombatExtended
             // Apply damage reduction
             float dmgMult = 1;
             var defCE = def.GetModExtension<DamageDefExtensionCE>() ?? new DamageDefExtensionCE();
-            if (deflected && defCE != null && defCE.noDamageOnDeflect) dmgMult = 0;
-            else dmgMult = dmgMultCurve.Evaluate(penAmount / armorAmount);
+            var noDmg = deflected && defCE.noDamageOnDeflect;
+            dmgMult = noDmg ? 0 : dmgMultCurve.Evaluate(penAmount / armorAmount);
+
             var newDmgAmount = dmgAmount * dmgMult;
-            var newPenAmount = penAmount * dmgMult;
+            var newPenAmount = deflected && !noDmg ? penAmount : penAmount * dmgMult;
 
             // Apply damage to armor
             if (armor != null)
@@ -283,7 +284,7 @@ namespace CombatExtended
         private static BodyPartRecord GetOuterMostParent(BodyPartRecord part)
         {
             var curPart = part;
-            while(curPart.parent != null && curPart.depth != BodyPartDepth.Outside)
+            while (curPart.parent != null && curPart.depth != BodyPartDepth.Outside)
             {
                 curPart = curPart.parent;
             }

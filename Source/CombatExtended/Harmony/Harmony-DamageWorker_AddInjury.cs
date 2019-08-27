@@ -24,7 +24,6 @@ namespace CombatExtended.Harmony
             {
                 if (pawn.Spawned) LessonAutoActivator.TeachOpportunity(CE_ConceptDefOf.CE_ArmorSystem, OpportunityType.Critical);   // Inform the player about armor deflection
             }
-            //if (newDinfo.Def != DamageDefOf.Blunt) newDinfo.SetAmount(0);
             dinfo = newDinfo;
         }
 
