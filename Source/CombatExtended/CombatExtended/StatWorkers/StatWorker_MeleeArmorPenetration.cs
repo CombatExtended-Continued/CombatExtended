@@ -8,7 +8,7 @@ using UnityEngine;
 
 namespace CombatExtended
 {
-    public class StatWorker_MeleeArmorPenetration : StatWorker
+    public class StatWorker_MeleeArmorPenetration : StatWorker_MeleeStats
     {
         private float GetMeleePenetration(StatRequest req)
         {
