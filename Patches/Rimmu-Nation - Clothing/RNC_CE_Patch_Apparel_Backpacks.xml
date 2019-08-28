@@ -88,6 +88,24 @@
 					</value>
 				</li>
 
+				<!-- Tweak backpack body part coverage for compatibility with CE vests -->
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[
+						defName="RNApparel_Backpack_Civilian" or
+						defName="RNApparel_Backpack_Military" or
+						defName="RNApparel_Backpack_Tactical" or
+						defName="RNApparel_Backpack_Tactical_Sling" or
+						defName="RNApparel_Backpack_PegasusEliteOps"
+						]/apparel/bodyPartGroups
+					</xpath>
+					<value>
+						<bodyPartGroups>
+							<li>Torso</li>
+						</bodyPartGroups>
+					</value>
+				</li>
+
 			</operations>
 		</match>
 	</Operation>
