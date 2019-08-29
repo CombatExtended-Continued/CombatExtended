@@ -497,15 +497,16 @@ namespace CombatExtended
             if (ShooterPawn != null)
             {
                 // Check for capable of violence
-                if (ShooterPawn.story != null
-          && ShooterPawn.story.WorkTagIsDisabled(WorkTags.Violent))
+                if (ShooterPawn.story != null && ShooterPawn.story.WorkTagIsDisabled(WorkTags.Violent))
                 {
                     report = "IsIncapableOfViolenceLower".Translate(ShooterPawn.Name.ToStringShort);
                     return false;
                 }
 
                 // Check for apparel
-                if (ShooterPawn.apparel != null)
+                //pawns can use turrets while wearing shield belts, but the shield is disabled for the duration via Harmony patch (see Harmony-ShieldBelt.cs)
+                bool isTurretOperator = caster.def.building?.IsTurret ?? false;
+                if (ShooterPawn.apparel != null && !isTurretOperator)
                 {
                     List<Apparel> wornApparel = ShooterPawn.apparel.WornApparel;
                     foreach (Apparel current in wornApparel)
