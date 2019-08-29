@@ -504,14 +504,14 @@ namespace CombatExtended
                 }
 
                 // Check for apparel
-                //pawns can use turrets while wearing shield belts, but the shield is disabled for the duration via Harmony patch (see Harmony-ShieldBelt.cs)
                 bool isTurretOperator = caster.def.building?.IsTurret ?? false;
-                if (ShooterPawn.apparel != null && !isTurretOperator)
+                if (ShooterPawn.apparel != null)
                 {
                     List<Apparel> wornApparel = ShooterPawn.apparel.WornApparel;
                     foreach (Apparel current in wornApparel)
                     {
-                        if (!current.AllowVerbCast(root, caster.Map, targ, this))
+                        //pawns can use turrets while wearing shield belts, but the shield is disabled for the duration via Harmony patch (see Harmony-ShieldBelt.cs)
+                        if (!current.AllowVerbCast(root, caster.Map, targ, this) || (isTurretOperator && current is ShieldBelt))
                         {
                             report = "Shooting disallowed by " + current.LabelShort;
                             return false;
