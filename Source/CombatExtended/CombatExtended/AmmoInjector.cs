@@ -121,9 +121,30 @@ namespace CombatExtended
                 ammoDef.AddDescriptionParts();
 
                 // Toggle trading
-                if (ammoDef.tradeTags.Contains(enableTradeTag))
+                var tradingTags = ammoDef.tradeTags.Where(t => t.StartsWith(enableTradeTag));
+                if (tradingTags.Any())
                 {
-                    ammoDef.tradeability = enabled ? Tradeability.All : Tradeability.None;
+                    var curTag = tradingTags.First();
+
+                    if (curTag == enableTradeTag)
+                    {
+                        ammoDef.tradeability = enabled ? Tradeability.All : Tradeability.None;
+                    }
+                    else
+                    {
+                        if (curTag.Length <= enableTradeTag.Length + 1)
+                        {
+                            Log.Error("CE :: AmmoInjector trying to inject " + ammoDef.ToString() + " but " + curTag + " is not a valid trading tag, valid formats are: " + enableTradeTag + " and " + enableTradeTag + "_levelOfTradeability");
+                        }
+                        else
+                        {
+                            var tradeabilityName = curTag.Remove(0, enableTradeTag.Length + 1);
+
+                            ammoDef.tradeability = enabled
+                                ? (Tradeability)Enum.Parse(typeof(Tradeability), tradeabilityName, true)
+                                : Tradeability.None;
+                        }
+                    }
                 }
 
                 // Toggle craftability
