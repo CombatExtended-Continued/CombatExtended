@@ -7,7 +7,7 @@ using Verse;
 
 namespace CombatExtended
 {
-    public class StatWorker_AmmoSet : StatWorker
+    public class StatWorker_AmmoCaliber : StatWorker
     {
         public override bool ShouldShowFor(StatRequest req)
         {

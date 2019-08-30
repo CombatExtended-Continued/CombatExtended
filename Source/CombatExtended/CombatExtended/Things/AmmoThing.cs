@@ -102,11 +102,6 @@ namespace CombatExtended
                 stringBuilder.AppendLine(inspectString);
             }
 
-            if (numToCookOff > 0)
-            {
-                stringBuilder.AppendLine("CE_CookingOff".Translate(numToCookOff, stackCount));
-            }
-
             if (Controller.settings.EnableAmmoSystem)
             {
                 var count = AmmoDef.Users.Count;
