@@ -61,6 +61,10 @@ namespace CombatExtended.Harmony
             // Override armor method call
             codes[armorBlockEnd].operand = typeof(Harmony_DamageWorker_AddInjury_ApplyDamageToPart).GetMethod(nameof(ArmorReroute), AccessTools.all);
 
+            // Prevent vanilla code from overriding changed damageDef
+            codes[armorBlockEnd + 3] = new CodeInstruction(OpCodes.Call, typeof(DamageInfo).GetMethod($"get_{nameof(DamageInfo.Def)}"));
+            codes[armorBlockEnd + 4] = new CodeInstruction(OpCodes.Stloc_S, 5);
+
             // Our method returns a Dinfo instead of float, we want to insert a call to Dinfo.Amount before stloc at ArmorBlockEnd+1
             codes.InsertRange(armorBlockEnd + 1, new[]
             {

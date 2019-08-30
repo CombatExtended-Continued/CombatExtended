@@ -502,8 +502,6 @@ namespace CombatExtended
                 //Current mag already has a few rounds in, and the inventory doesn't have any more of that type.
                 //If we let this method pick a new selectedAmmo below, it would convert the already loaded rounds to a different type,
                 //so for OneAtATime weapons, we stop the process here here.
-                //Also need to notify the player that there's no more ammo of this type, otherwise it may not be obvious why reloading stopped halfway through.
-                MoteMaker.ThrowText(Position.ToVector3Shifted(), Find.CurrentMap, "CE_OutOfAmmo".Translate() + "!", 4.0f);
                 return false;
             }
 
