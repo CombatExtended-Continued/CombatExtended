@@ -1,11 +1,12 @@
 ﻿using Harmony;
 using Verse;
+using RimWorld;
 using Verse.AI;
 
 namespace CombatExtended.Harmony
 {
-    [HarmonyPatch(typeof(RimWorld.ShieldBelt), "AllowVerbCast")]
-    internal static class ShieldBelt
+    [HarmonyPatch(typeof(ShieldBelt), "AllowVerbCast")]
+    internal static class ShieldBelt_PatchAllowVerbCast
     {
         internal static void Postfix(ref bool __result, IntVec3 root, Map map, LocalTargetInfo targ, Verb verb)
         {
@@ -50,11 +51,27 @@ namespace CombatExtended.Harmony
 
             //if (A=0 && C=1 && D=1) E=B;
             if (!(verb is Verb_LaunchProjectile) && (verb is Verb_LaunchProjectileCE) && __result)
-            { 
+            {
                 __result = ReachabilityImmediate.CanReachImmediate(root, targ, map, PathEndMode.Touch, null);
             }
 
             //NOTE. The method could maybe be transpiled or something fancy
+        }
+    }
+
+    [HarmonyPatch(typeof(ShieldBelt), "Tick")]
+    internal static class ShieldBelt_DisableOnOperateTurret
+    {
+        internal static void Postfix(ShieldBelt __instance, ref int ___ticksToReset, int ___StartingTicksToReset)
+        {
+            if (__instance.Wearer?.CurJob?.def == JobDefOf.ManTurret && (__instance.Wearer?.jobs?.curDriver?.OnLastToil ?? false))
+            {
+                if (__instance.ShieldState == ShieldState.Active)
+                {
+                    Traverse.Create(__instance).Method("Break").GetValue();
+                }
+                ___ticksToReset = ___StartingTicksToReset;
+            }
         }
     }
 }
