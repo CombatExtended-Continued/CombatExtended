@@ -82,27 +82,39 @@ namespace CombatExtended
                     Find.BattleLog.Add(logEntry);
                 }
 
-                // Apply primary damage
-                hitThing.TakeDamage(dinfo).AssociateWithLog(logEntry);
-
-                // Apply secondary to non-pawns (pawn secondary damage is handled in the damage worker)
-                // The !(hitThing is Pawn) already excludes non-pawn cookoff projectiles from being logged, as logEntry == null
-                if(!(hitThing is Pawn) && projectilePropsCE != null && !projectilePropsCE.secondaryDamage.NullOrEmpty())
+                try
                 {
-                    foreach(SecondaryDamage cur in projectilePropsCE.secondaryDamage)
+                    // Apply primary damage
+                    hitThing.TakeDamage(dinfo).AssociateWithLog(logEntry);
+                    
+                    // Apply secondary to non-pawns (pawn secondary damage is handled in the damage worker)
+                    // The !(hitThing is Pawn) already excludes non-pawn cookoff projectiles from being logged, as logEntry == null
+                    if(!(hitThing is Pawn) && projectilePropsCE != null && !projectilePropsCE.secondaryDamage.NullOrEmpty())
                     {
-                        if (hitThing.Destroyed) break;
-                        var secDinfo = new DamageInfo(
-                            cur.def,
-                            cur.amount,
-                            projectilePropsCE.GetArmorPenetration(1), //Armor Penetration
-                            ExactRotation.eulerAngles.y,
-                            launcher,
-                            null,
-                            def
-                        );
-                        hitThing.TakeDamage(secDinfo).AssociateWithLog(logEntry);
+                        foreach(SecondaryDamage cur in projectilePropsCE.secondaryDamage)
+                        {
+                            if (hitThing.Destroyed) break;
+                            var secDinfo = new DamageInfo(
+                                cur.def,
+                                cur.amount,
+                                projectilePropsCE.GetArmorPenetration(1), //Armor Penetration
+                                ExactRotation.eulerAngles.y,
+                                launcher,
+                                null,
+                                def
+                            );
+                            hitThing.TakeDamage(secDinfo).AssociateWithLog(logEntry);
+                        }
                     }
+                }
+                catch (Exception e)
+                {
+                    Log.Error("CombatExtended :: BulletCE impacting thing "+hitThing.LabelCap+" of def "+hitThing.def.LabelCap+" added by mod " + hitThing.def.modContentPack.Name + ". See following stacktrace for information.");
+                    throw e;
+                }
+                finally
+                {
+                    base.Impact(hitThing);
                 }
             }
             else
@@ -118,8 +130,8 @@ namespace CombatExtended
                         MoteMaker.MakeWaterSplash(this.ExactPosition, map, Mathf.Sqrt(def.projectile.GetDamageAmount(this.launcher)) * 1f, 4f);
                     }
                 }
+                base.Impact(hitThing);
             }
-            base.Impact(hitThing);
         }
     }
 }
