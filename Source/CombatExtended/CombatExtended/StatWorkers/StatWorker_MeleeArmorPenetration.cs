@@ -8,18 +8,18 @@ using UnityEngine;
 
 namespace CombatExtended
 {
-    public class StatWorker_MeleeArmorPenetration : StatWorker
+    public class StatWorker_MeleeArmorPenetration : StatWorker_MeleeStats
     {
         private float GetMeleePenetration(StatRequest req)
         {
-            var tools = req.Thing?.def.tools;
+            var tools = (req.Def as ThingDef)?.tools;
             if (tools.NullOrEmpty())
             {
                 return 0;
             }
             if (tools.Any(x=> !(x is ToolCE)))
             {
-                Log.Error($"Trying to get stat MeleePenetration from {req.Thing.def.defName} which has no support for Combat Extended.");
+                Log.Error($"Trying to get stat MeleePenetration from {req.Def.defName} which has no support for Combat Extended.");
                 return 0;
             }
 
@@ -34,7 +34,7 @@ namespace CombatExtended
                 var weightFactor = tool.chanceFactor / totalSelectionWeight;
                 totalAveragePen += weightFactor * tool.armorPenetration;
             }
-            var penMult = req.Thing.GetStatValue(CE_StatDefOf.MeleePenetrationFactor);
+            var penMult = req.Thing?.GetStatValue(CE_StatDefOf.MeleePenetrationFactor) ?? 1f;
             return totalAveragePen * penMult;
         }
 
@@ -45,14 +45,16 @@ namespace CombatExtended
 
         public override string GetExplanationUnfinalized(StatRequest req, ToStringNumberSense numberSense)
         {
-            if (req.Thing?.def.tools.NullOrEmpty() ?? true)
+            var tools = (req.Def as ThingDef)?.tools;
+
+            if (tools.NullOrEmpty())
             {
                 return base.GetExplanationUnfinalized(req, numberSense);
             }
 
             var stringBuilder = new StringBuilder();
-            var penMult = req.Thing.GetStatValue(CE_StatDefOf.MeleePenetrationFactor);
-            foreach (ToolCE tool in req.Thing.def.tools)
+            var penMult = req.Thing?.GetStatValue(CE_StatDefOf.MeleePenetrationFactor) ?? 1f;
+            foreach (ToolCE tool in tools)
             {
                 var maneuvers = DefDatabase<ManeuverDef>.AllDefsListForReading.Where(d => tool.capacities.Contains(d.requiredCapacity));
                 var maneuverString = "(";

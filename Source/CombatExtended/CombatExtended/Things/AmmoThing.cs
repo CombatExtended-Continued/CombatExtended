@@ -92,12 +92,33 @@ namespace CombatExtended
             }
         }
 
-        private bool TryDetonate(float amount = 1)
+        public override string GetInspectString()
+        {
+            StringBuilder stringBuilder = new StringBuilder();
+            string inspectString = base.GetInspectString();
+
+            if (!inspectString.NullOrEmpty())
+            {
+                stringBuilder.AppendLine(inspectString);
+            }
+
+            if (Controller.settings.EnableAmmoSystem)
+            {
+                var count = AmmoDef.Users.Count;
+
+                if (count >= 1)
+                    stringBuilder.AppendLine("CE_UsedBy".Translate() + ": " + AmmoDef.Users.FirstOrDefault().LabelCap + (AmmoDef.Users.Count > 1 ? " (+" + (AmmoDef.Users.Count - 1) + " more..)" : ""));
+            }
+
+            return stringBuilder.ToString().TrimEndNewlines();
+        }
+
+        private bool TryDetonate(float scale = 1)
         {
             CompExplosiveCE comp = this.TryGetComp<CompExplosiveCE>();
             if (comp != null)
             {
-            	if(Rand.Chance(Mathf.Clamp01(0.75f - Mathf.Pow(HitPoints / MaxHitPoints, 2)))) comp.Explode(this, Position.ToVector3Shifted(), Map, Mathf.Pow(amount, 0.333f));
+            	if(Rand.Chance(Mathf.Clamp01(0.75f - Mathf.Pow(HitPoints / MaxHitPoints, 2)))) comp.Explode(this, Position.ToVector3Shifted(), Map, Mathf.Pow(scale, 0.333f));
                 return true;
             }
             return false;
