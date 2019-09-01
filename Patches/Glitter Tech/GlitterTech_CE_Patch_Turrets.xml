@@ -63,7 +63,7 @@
 						<WorkToBuild>83500</WorkToBuild>
 					</value>
 				</li>
-				
+
 				<li Class="PatchOperationAdd">
 					<xpath>Defs/ThingDef[defName="EMTurret"]/statBases</xpath>
 					<value>
@@ -105,6 +105,13 @@
 						<reloadTime>4.9</reloadTime>
 						<ammoSet>AmmoSet_12Gauge</ammoSet>
 					</AmmoUser>
+					<FireModes>
+						<aiUseBurstMode>TRUE</aiUseBurstMode>
+						<aiAimMode>AimedShot</aiAimMode>
+						<aimedBurstShotCount>6</aimedBurstShotCount>
+						<noSnapshot>true</noSnapshot>
+						<noSingleShot>true</noSingleShot>
+					</FireModes>
 					<weaponTags>
 						<li>TurretGun</li>
 					</weaponTags>
@@ -123,7 +130,7 @@
 						<WorkToBuild>89500</WorkToBuild>
 					</value>
 				</li>
-				
+
 				<li Class="PatchOperationAdd">
 					<xpath>Defs/ThingDef[defName="CannisterTurret"]/statBases</xpath>
 					<value>
@@ -132,7 +139,7 @@
 				</li>
 
 				<!-- ========== Automatic mortar ========== -->
-				
+
 				<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
 					<defName>Artillery_AutoMortar</defName>
 					<statBases>
@@ -169,9 +176,9 @@
 						<aiAimMode>AimedShot</aiAimMode>
 					</FireModes>
 				</li>
-				
+
 				<!-- ========== Automatic cluster mortar ========== -->
-				
+
 				<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
 					<defName>Artillery_ClusterMortar</defName>
 					<statBases>
@@ -209,9 +216,9 @@
 						<noSingleShot>true</noSingleShot>
 					</FireModes>
 				</li>
-				
+
 				<!-- ========== Automatic EMP mortar ========== -->
-				
+
 				<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
 					<defName>Artillery_EMPAMortar</defName>
 					<statBases>
@@ -251,7 +258,7 @@
 				</li>
 
 				<!-- ========== Long range missile turret ========== -->
-				
+
 				<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
 					<defName>Artillery_MissileTurret</defName>
 					<statBases>
@@ -267,7 +274,7 @@
 						<hasStandardCommand>true</hasStandardCommand>
 						<defaultProjectile>Bullet_70mmAPKWS_HEAT</defaultProjectile>
 						<warmupTime>1.2</warmupTime>
-						<minRange>15</minRange>
+						<minRange>30</minRange>
 						<range>500</range>
 						<burstShotCount>25</burstShotCount>
 						<soundCast>Missile_small</soundCast>
@@ -286,14 +293,56 @@
 					<FireModes>
 						<aiUseBurstMode>FALSE</aiUseBurstMode>
 						<aiAimMode>AimedShot</aiAimMode>
+						<noSnapshot>true</noSnapshot>
 						<noSingleShot>true</noSingleShot>
 					</FireModes>
 				</li>
-				
+
 				<!-- ========== Cruise missile turret ========== -->
-				
-				<!-- WIP -->
-				
+
+				<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+					<defName>Artillery_CMissileTurret</defName>
+					<statBases>
+						<RangedWeapon_Cooldown>0.36</RangedWeapon_Cooldown>
+						<SightsEfficiency>1</SightsEfficiency>
+						<ShotSpread>0.09</ShotSpread>
+						<SwayFactor>0.1</SwayFactor>
+						<Bulk>12.9</Bulk>
+					</statBases>
+					<Properties>
+						<verbClass>CombatExtended.Verb_ShootMortarCE</verbClass>
+						<forceNormalTimeSpeed>false</forceNormalTimeSpeed>
+						<hasStandardCommand>true</hasStandardCommand>
+						<defaultProjectile>Bullet_TomahawkLAM</defaultProjectile>
+						<warmupTime>1.2</warmupTime>
+						<minRange>30</minRange>
+						<range>500</range>
+						<burstShotCount>1</burstShotCount>
+						<soundCast>Missile_large</soundCast>
+						<muzzleFlashScale>16</muzzleFlashScale>
+						<requireLineOfSight>false</requireLineOfSight>
+						<recoilPattern>Mounted</recoilPattern>
+						<targetParams>
+							<canTargetLocations>true</canTargetLocations>
+						</targetParams>
+					</Properties>
+					<AmmoUser>
+						<magazineSize>1</magazineSize>
+						<reloadTime>5</reloadTime>
+						<ammoSet>AmmoSet_TomahawkLAM</ammoSet>
+					</AmmoUser>
+					<FireModes>
+						<aiUseBurstMode>FALSE</aiUseBurstMode>
+						<aiAimMode>AimedShot</aiAimMode>
+						<noSnapshot>true</noSnapshot>
+					</FireModes>
+				</li>
+
+				<li Class="PatchOperationRemove">
+					<xpath>Defs/ThingDef[defName="CMissileTurret"]/thingClass</xpath>
+					<!-- Fixes bug in GT preventing CE patching -->
+				</li>
+
 				<!-- ========== Shared settings for direct-fire turrets ========== -->
 
 				<li Class="PatchOperationReplace">
@@ -327,9 +376,9 @@
 						<!-- Allows turrets to be fired from behind CE embrasures -->
 					</value>
 				</li>
-				
+
 				<!-- ========== Shared settings for mortar and missile Turrets ========== -->
-				
+
 				<li Class="PatchOperationAdd">
 					<xpath>Defs/ThingDef[@Name="BaseArtilleryWeapon_GT"]/comps</xpath>
 					<value>
@@ -343,7 +392,7 @@
 						</li>
 					</value>
 				</li>
-				
+
 				<li Class="PatchOperationReplace">
 					<xpath>Defs/ThingDef[@Name="BaseArtilleryBuilding_GT"
 				]/thingClass</xpath>
@@ -351,7 +400,7 @@
 						<thingClass>CombatExtended.Building_TurretGunCE</thingClass>
 					</value>
 				</li>
-				
+
 				<li Class="PatchOperationAdd">
 					<xpath>Defs/ThingDef[@Name = "BaseArtilleryBuilding_GT"]/statBases</xpath>
 					<value>
@@ -360,8 +409,8 @@
 						<Bulk>25</Bulk>
 					</value>
 				</li>
-								
-				</operations>
+
+			</operations>
 		</match>
 	</Operation>
 </Patch>
