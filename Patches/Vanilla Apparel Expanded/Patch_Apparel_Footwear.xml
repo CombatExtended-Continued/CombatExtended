@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+	<Operation Class="PatchOperationSequence">
+		<success>Always</success>
+		<operations>
+			<!-- There's a snake in my boot! -->
+			<li Class="CombatExtended.PatchOperationFindMod">
+				<modName>Vanilla Apparel Expanded</modName>
+			</li>
+
+			<!-- == VAE_Footwear_Boots == -->
+			<!-- statBases -->
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="VAE_Footwear_Boots"]/statBases/Mass</xpath>
+				<value>
+					<WornBulk>0.5</WornBulk>
+					<Mass>0.75</Mass>
+				</value>
+			</li>
+			<!-- Miscellaneous -->
+			<li Class="PatchOperationRemove">
+				<xpath>Defs/ThingDef[defName="VAE_Footwear_Boots"]/equippedStatOffsets</xpath>
+			</li>
+			<!-- Some people do wear socks. -->
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="VAE_Footwear_Boots"]/apparel/layers</xpath>
+				<value>
+					<layers>
+						<li>Shell</li>
+					</layers>
+				</value>
+			</li>
+
+			<!-- == VAE_Footwear_Shoes == -->
+			<!-- Miscellaneous -->
+			<!-- Some people do wear socks. -->
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="VAE_Footwear_Shoes"]/apparel/layers</xpath>
+				<value>
+					<layers>
+						<li>Shell</li>
+					</layers>
+				</value>
+			</li>
+
+		</operations>
+	</Operation>
+</Patch>
