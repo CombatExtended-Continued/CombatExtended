@@ -104,7 +104,7 @@ namespace CombatExtended
 
             if (Controller.settings.EnableAmmoSystem)
             {
-                var count = AmmoDef.Users.Count;
+                var count = AmmoDef?.Users.Count ?? 0;
 
                 if (count >= 1)
                     stringBuilder.AppendLine("CE_UsedBy".Translate() + ": " + AmmoDef.Users.FirstOrDefault().LabelCap + (AmmoDef.Users.Count > 1 ? " (+" + (AmmoDef.Users.Count - 1) + " more..)" : ""));
