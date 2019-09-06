@@ -99,21 +99,13 @@ namespace CombatExtended
 		protected override IEnumerable<Toil> MakeNewToils()
         {
             this.FailOnDespawnedNullOrForbidden(sourceInd);
-            this.FailOnDestroyedNullOrForbidden(thingInd);
+            this.FailOnDestroyedOrNull(thingInd);
             this.FailOn(DeadTakePawn);
             // We could set a slightly more sane value here which would prevent a hoard of pawns moving from pack animal to pack animal...
             // Also can enforce limits via JobGiver keeping track of how many things it's given away from each pawn, it's a small case though...
             yield return Toils_Reserve.Reserve(sourceInd, int.MaxValue, 0, null);
             yield return Toils_Goto.GotoThing(sourceInd, PathEndMode.Touch);
             yield return Toils_General.Wait(10);
-
-            if (targetItem is AmmoThing)
-            {
-                //For ammo items, this job is flagged with JobCondition.Incompletable, for unknown reasons.
-                //Removing the fail conditions allows the job to be carried out successfully, so the flag is likely being added by mistake at some point.
-                this.globalFailConditions.Clear();
-                //TODO : Find the root cause for ammo getting set as Incompletable
-            }
 
             yield return new Toil
             {

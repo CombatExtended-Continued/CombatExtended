@@ -156,7 +156,7 @@ namespace CombatExtended
             }
         }
 
-        private bool IsAttacking => ShooterPawn?.CurJobDef == JobDefOf.AttackStatic || ShooterPawn?.stances.curStance is Stance_Warmup;
+        private bool IsAttacking => ShooterPawn?.CurJobDef == JobDefOf.AttackStatic || ShooterPawn?.stances?.curStance is Stance_Warmup;
 
 
         #endregion
@@ -497,20 +497,21 @@ namespace CombatExtended
             if (ShooterPawn != null)
             {
                 // Check for capable of violence
-                if (ShooterPawn.story != null
-          && ShooterPawn.story.WorkTagIsDisabled(WorkTags.Violent))
+                if (ShooterPawn.story != null && ShooterPawn.story.WorkTagIsDisabled(WorkTags.Violent))
                 {
                     report = "IsIncapableOfViolenceLower".Translate(ShooterPawn.Name.ToStringShort);
                     return false;
                 }
 
                 // Check for apparel
+                bool isTurretOperator = caster.def.building?.IsTurret ?? false;
                 if (ShooterPawn.apparel != null)
                 {
                     List<Apparel> wornApparel = ShooterPawn.apparel.WornApparel;
                     foreach (Apparel current in wornApparel)
                     {
-                        if (!current.AllowVerbCast(root, caster.Map, targ, this))
+                        //pawns can use turrets while wearing shield belts, but the shield is disabled for the duration via Harmony patch (see Harmony-ShieldBelt.cs)
+                        if (!current.AllowVerbCast(root, caster.Map, targ, this) && !(current is ShieldBelt && isTurretOperator))
                         {
                             report = "Shooting disallowed by " + current.LabelShort;
                             return false;
