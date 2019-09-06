@@ -147,22 +147,25 @@ namespace CombatExtended
                     partsToHit.Add(curPart);
                 }
             }
+
+            var partDensity = pawn.GetStatValue(CE_StatDefOf.BodyPartDensity);   // How much armor is provided by sheer meat
             for (var i = partsToHit.Count - 1; i >= 0; i--)
             {
                 var curPart = partsToHit[i];
                 var coveredByArmor = curPart.IsInGroup(CE_BodyPartGroupDefOf.CoveredByNaturalArmor);
-                var partArmor = pawn.GetStatValue(CE_StatDefOf.BodyPartDensity);   // How much armor is provided by sheer meat
                 var unused = dmgAmount;
 
                 // Only apply damage reduction when penetrating armored body parts
-                if (coveredByArmor ? !TryPenetrateArmor(dinfo.Def, partArmor + pawn.GetStatValue(dinfo.Def.armorCategory.armorRatingStat), ref penAmount, ref dmgAmount) : !TryPenetrateArmor(dinfo.Def, partArmor, ref penAmount, ref unused))
+                if (!TryPenetrateArmor(dinfo.Def,pawn.GetStatValue(dinfo.Def.armorCategory.armorRatingStat), ref penAmount, ref dmgAmount, null, partDensity))
                 {
                     dinfo.SetHitPart(curPart);
                     if (coveredByArmor && pawn.RaceProps.IsMechanoid)
                     {
                         // For Mechanoid natural armor, apply deflection and blunt armor
                         dinfo = GetDeflectDamageInfo(dinfo, curPart);
-                        TryPenetrateArmor(dinfo.Def, partArmor + pawn.GetStatValue(dinfo.Def.armorCategory.armorRatingStat), ref penAmount, ref dmgAmount);
+
+                        // Fetch armor rating stat again in case of deflection conversion to blunt
+                        TryPenetrateArmor(dinfo.Def,pawn.GetStatValue(dinfo.Def.armorCategory.armorRatingStat), ref penAmount, ref dmgAmount, null, partDensity);
                     }
                     break;
                 }
@@ -186,8 +189,9 @@ namespace CombatExtended
         /// <param name="penAmount">How much penetration the attack still has</param>
         /// <param name="dmgAmount">The pre-armor amount of damage</param>
         /// <param name="armor">The armor apparel</param>
+        /// <param name="partDensity">When penetrating body parts, the body part density</param>
         /// <returns>False if the attack is deflected, true otherwise</returns>
-        private static bool TryPenetrateArmor(DamageDef def, float armorAmount, ref float penAmount, ref float dmgAmount, Thing armor = null)
+        private static bool TryPenetrateArmor(DamageDef def, float armorAmount, ref float penAmount, ref float dmgAmount, Thing armor = null, float partDensity = 0)
         {
             // Calculate deflection
             var isSharpDmg = def.armorCategory == DamageArmorCategoryDefOf.Sharp;
@@ -195,13 +199,13 @@ namespace CombatExtended
             var deflected = isSharpDmg && armorAmount > rand;
 
             // Apply damage reduction
-            float dmgMult = 1;
             var defCE = def.GetModExtension<DamageDefExtensionCE>() ?? new DamageDefExtensionCE();
             var noDmg = deflected && defCE.noDamageOnDeflect;
-            dmgMult = noDmg ? 0 : dmgMultCurve.Evaluate(penAmount / armorAmount);
+            var dmgMult = noDmg ? 0 : dmgMultCurve.Evaluate(penAmount / armorAmount);
+            var penMult = dmgMultCurve.Evaluate(penAmount / (armorAmount + partDensity));
 
             var newDmgAmount = dmgAmount * dmgMult;
-            var newPenAmount = deflected && !noDmg ? penAmount : penAmount * dmgMult;
+            var newPenAmount = deflected && !noDmg ? penAmount : penAmount * penMult;
 
             // Apply damage to armor
             if (armor != null)
