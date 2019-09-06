@@ -11,7 +11,7 @@ namespace CombatExtended
         private const int MaxPrecipitation = GenDate.TicksPerDay * 2;
         private const float MaxWindStrength = 6;    // With 1.5 multiplier from weather we get a 9 on Beaufort scale
         private const float MaxWindStrengthDelta = 0.5f;
-        private const float MaxDirectionDelta = 20f;
+        private const float MaxDirectionDelta = 5f;
 
         private float _humidity = MaxPrecipitation * 0.5f;
         private float _windStrength;
