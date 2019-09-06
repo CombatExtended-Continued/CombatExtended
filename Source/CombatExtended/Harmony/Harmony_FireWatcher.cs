@@ -7,7 +7,7 @@ namespace CombatExtended.Harmony
     [HarmonyPatch(typeof(FireWatcher), "get_LargeFireDangerPresent")]
     internal static class Harmony_FireWatcher
     {
-        private const float DangerThreshold = 900f;
+        private const float DangerThreshold = 450f;
 
         internal static void Postfix(FireWatcher __instance, ref bool __result)
         {

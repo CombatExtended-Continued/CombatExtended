@@ -21,7 +21,7 @@ namespace CombatExtended
         public override string GetExplanationUnfinalized(StatRequest req, ToStringNumberSense numberSense)
         {
             var pawn = (Pawn) req.Thing;
-            return $"Health scale: {pawn.HealthScale} x {HealthScaleFactor}";
+            return $"{"CE_StatsReport_PartDensity".Translate().Trim()}: {pawn.HealthScale} x {HealthScaleFactor}";
         }
     }
 }

@@ -41,12 +41,30 @@ namespace CombatExtended.Harmony
         }
     }
 
+    [HarmonyPatch(typeof(Fire), "TrySpread")]
+    internal static class Harmony_Fire_TrySpread
+    {
+        private const float SpreadCloseChance = 0.98f;
+
+        internal static IEnumerable<CodeInstruction> Transpiler(IEnumerable<CodeInstruction> instructions)
+        {
+            foreach (CodeInstruction code in instructions)
+            {
+                if (code.opcode == OpCodes.Ldc_R4 && code.operand is float operand && operand == 0.8f)
+                {
+                    code.operand = SpreadCloseChance;
+                }
+                yield return code;
+            }
+        }
+    }
+
     [HarmonyPatch(typeof(Fire), "get_SpreadInterval")]
     internal static class Harmony_Fire_SpreadInterval
     {
-        private const float BaseSpreadRate = 31.3f;
-        private const float SpreadSizeAdjust = 28.3f;
-        private const int MinSpreadTicks = 10;
+        private const float BaseSpreadRate = 94f;
+        private const float SpreadSizeAdjust = 85f;
+        private const int MinSpreadTicks = 30;
 
         internal static bool Prefix(Fire __instance, ref float __result)
         {
