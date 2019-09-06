@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Reflection.Emit;
 using Harmony;
@@ -14,7 +15,7 @@ namespace CombatExtended.Harmony
     {
         internal static IEnumerable<CodeInstruction> Transpiler(IEnumerable<CodeInstruction> instructions)
         {
-            foreach(CodeInstruction code in instructions)
+            foreach (CodeInstruction code in instructions)
             {
                 if (code.opcode == OpCodes.Ldc_R4 && code.operand is float && (float)code.operand == 150f)
                 {
@@ -44,18 +45,36 @@ namespace CombatExtended.Harmony
     [HarmonyPatch(typeof(Fire), "TrySpread")]
     internal static class Harmony_Fire_TrySpread
     {
-        private const float SpreadCloseChance = 0.98f;
+        private const float SpreadFarBaseChance = 0.025f;
 
         internal static IEnumerable<CodeInstruction> Transpiler(IEnumerable<CodeInstruction> instructions)
         {
+            var codes = new List<CodeInstruction>();
             foreach (CodeInstruction code in instructions)
             {
                 if (code.opcode == OpCodes.Ldc_R4 && code.operand is float operand && operand == 0.8f)
                 {
-                    code.operand = SpreadCloseChance;
+                    code.operand = 1f;
+
+                    codes.Add(code);
+                    codes.Add(new CodeInstruction(OpCodes.Ldc_R4, SpreadFarBaseChance));
+
+                    codes.Add(new CodeInstruction(OpCodes.Ldarg_0));
+                    codes.Add(new CodeInstruction(OpCodes.Call, AccessTools.Property(typeof(Fire), nameof(Fire.Map)).GetGetMethod()));
+
+                    var methodInfo = AccessTools.Method(typeof(Map), nameof(Map.GetComponent), new Type[] { }).MakeGenericMethod(typeof(WeatherTracker));
+                    codes.Add(new CodeInstruction(OpCodes.Call, methodInfo));
+                    codes.Add(new CodeInstruction(OpCodes.Call, AccessTools.Property(typeof(WeatherTracker), nameof(WeatherTracker.WindStrength)).GetGetMethod()));
+
+                    codes.Add(new CodeInstruction(OpCodes.Mul));
+                    codes.Add(new CodeInstruction(OpCodes.Sub));
+                    continue;
                 }
-                yield return code;
+
+                codes.Add(code);
             }
+
+            return codes;
         }
     }
 
