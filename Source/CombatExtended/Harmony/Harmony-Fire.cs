@@ -36,7 +36,7 @@ namespace CombatExtended.Harmony
             {
                 if (code.opcode == OpCodes.Ldc_R4 && code.operand is float && (float)code.operand == 1f)
                 {
-                    code.operand = 0.1f;
+                    code.operand = 0.6f;
                 }
                 yield return code;
             }
@@ -47,16 +47,28 @@ namespace CombatExtended.Harmony
     internal static class Harmony_Fire_TrySpread
     {
         private const float SpreadFarBaseChance = 0.02f;
-        private static SimpleCurve _angleCurve;
+        private static SimpleCurve _angleCurveWide;
+        private static SimpleCurve _angleCurveNarrow;
 
-        private static IntVec3 GetRandWindShift(Map map)
+        private static IntVec3 GetRandWindShift(Map map, bool spreadFar)
         {
-            if (_angleCurve == null)
+            if (_angleCurveWide == null)
             {
-                _angleCurve = new SimpleCurve
+                _angleCurveWide = new SimpleCurve
                 {
                     {0, 360},
-                    {3, 150},
+                    {3, 210},
+                    {6, 90},
+                    {9, 30},
+                    {999, 1}
+                };
+            }
+            if (_angleCurveNarrow == null)
+            {
+                _angleCurveNarrow = new SimpleCurve
+                {
+                    {0, 360},
+                    {3, 120},
                     {6, 30},
                     {9, 10},
                     {999, 1}
@@ -64,9 +76,14 @@ namespace CombatExtended.Harmony
             }
 
             var tracker = map.GetComponent<WeatherTracker>();
-            var angleDelta = _angleCurve.Evaluate(tracker.WindStrength) * 0.5f;
+            var angleDelta = spreadFar
+                ? _angleCurveNarrow.Evaluate(tracker.WindStrength)
+                : _angleCurveWide.Evaluate(tracker.WindStrength);
+            angleDelta *= 0.5f;
             var angle = Rand.Range(-angleDelta, angleDelta);
-            var vec = tracker.WindDirection.RotatedBy(angle) * Rand.Range(1, Mathf.Max(2, tracker.WindStrength));
+            var vec = tracker.WindDirection.RotatedBy(angle);
+            if (spreadFar)
+                vec *= Rand.Range(1, Mathf.Max(2, tracker.WindStrength));
 
             return vec.ToIntVec3();
         }
@@ -87,16 +104,16 @@ namespace CombatExtended.Harmony
 
                 if (code.operand == AccessTools.Field(typeof(GenRadial), nameof(GenRadial.ManualRadialPattern)))
                 {
-                    if (passedRadPattern)
-                    {
-                        delete = true;
-                        codes.Add(new CodeInstruction(OpCodes.Ldarg_0));
-                        codes.Add(new CodeInstruction(OpCodes.Call, AccessTools.Property(typeof(Fire), nameof(Fire.Map)).GetGetMethod()));
-                        codes.Add(new CodeInstruction(OpCodes.Callvirt, AccessTools.Method(typeof(Harmony_Fire_TrySpread), nameof(GetRandWindShift))));
-                        continue;
-                    }
+                    codes.Add(new CodeInstruction(OpCodes.Ldarg_0));
+                    codes.Add(new CodeInstruction(OpCodes.Call, AccessTools.Property(typeof(Fire), nameof(Fire.Map)).GetGetMethod()));
+                    codes.Add(passedRadPattern
+                        ? new CodeInstruction(OpCodes.Ldc_I4_1)
+                        : new CodeInstruction(OpCodes.Ldc_I4_0));
+                    codes.Add(new CodeInstruction(OpCodes.Callvirt, AccessTools.Method(typeof(Harmony_Fire_TrySpread), nameof(GetRandWindShift))));
 
                     passedRadPattern = true;
+                    delete = true;
+                    continue;
                 }
 
                 // Replace spread chance with our wind-dependent one
@@ -128,15 +145,15 @@ namespace CombatExtended.Harmony
     [HarmonyPatch(typeof(Fire), "get_SpreadInterval")]
     internal static class Harmony_Fire_SpreadInterval
     {
-        private const float BaseSpreadRate = 188f;
-        private const float SpreadSizeAdjust = 170f;
-        private const int MinSpreadTicks = 10;
+        private const float BaseSpreadRate = 94f;
+        private const float SpreadSizeAdjust = 85f;
+        private const int MinSpreadTicks = 1;
 
         internal static bool Prefix(Fire __instance, ref float __result)
         {
             __result = BaseSpreadRate - (__instance.fireSize - 1) * SpreadSizeAdjust;
             var windSpeed = __instance.Map.GetComponent<WeatherTracker>().WindStrength;
-            __result /= Mathf.Max(1, Mathf.Sqrt(windSpeed));
+            __result /= Mathf.Max(1, windSpeed);
 
             if (__result > MinSpreadTicks)
             {
