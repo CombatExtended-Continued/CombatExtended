@@ -7,9 +7,11 @@ namespace CombatExtended
 {
     public class WeatherTracker : MapComponent
     {
+        private static readonly string[] windHeadings = new string[] { "N", "NE", "E", "SE", "S", "SW", "W", "NW" };
         private const float HumidityDecayPerTick = 0.1f;
         private const int MaxPrecipitation = GenDate.TicksPerDay * 2;
         private const float MaxWindStrength = 6;    // With 1.5 multiplier from weather we get a 9 on Beaufort scale
+        private const float BeaufortScaleMultiplier = 1.5f;
         private const float MaxWindStrengthDelta = 0.5f;
         private const float MaxDirectionDelta = 5f;
 
@@ -28,6 +30,24 @@ namespace CombatExtended
         public float HumidityPercent => Humidity / MaxPrecipitation;
         public float WindStrength => _windStrength * map.weatherManager.CurWindSpeedFactor;
         public Vector3 WindDirection => Vector3Utility.FromAngleFlat(_windDirection);
+
+        private int BeaufortScale => Mathf.RoundToInt(_windStrength * BeaufortScaleMultiplier);
+
+        private string WindStrengthText => ("CE_Wind_Beaufort" + BeaufortScale).Translate();
+
+        private string WindDirectionText
+        {
+            get
+            {
+                int arf = Mathf.RoundToInt(_windStrength);
+                if (BeaufortScale == 0)
+                {
+                    return "";
+                }
+                int windHeadingsPosition = Mathf.Clamp(Mathf.RoundToInt(_windDirection / (360f / windHeadings.Length)), 0, windHeadings.Length - 1);
+                return ", " + ("CE_Wind_Direction_" + windHeadings[windHeadingsPosition]).Translate();
+            }
+        }
 
         public WeatherTracker(Map map) : base(map)
         {
@@ -67,5 +87,18 @@ namespace CombatExtended
                 Log.Message($"CE :: Wind angle set to {_windDirection}, trending towards {_windDirectionTarget}");
             }
         }
+
+        public void DoWindGUI(float num1, ref float num2)
+        {
+            num2 -= 26f;
+            Rect rect = new Rect(num1 - 100f, num2 - 26f, 300f, 26f);
+            Text.Anchor = TextAnchor.MiddleRight;
+            rect.width -= 15f;
+            Text.Font = GameFont.Small;
+            Widgets.Label(rect, WindStrengthText + WindDirectionText);
+            //TooltipHandler.TipRegion(rect, "tooltip text, if needed");
+            Text.Anchor = TextAnchor.UpperLeft;
+        }
+
     }
 }
