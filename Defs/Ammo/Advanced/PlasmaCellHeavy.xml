@@ -2,51 +2,52 @@
 <Defs>
 
 	<ThingCategoryDef>
-		<defName>AmmoGlitterTechApbFuelCellPistol</defName>
-		<label>APB Pistol Fuel Cell</label>
+		<defName>AmmoPlasmaCellHeavy</defName>
+		<label>Plasma Heavy Power Cell</label>
 		<parent>AmmoAdvanced</parent>
-		<iconPath>UI/Icons/ThingCategories/CaliberPlasmaSmall</iconPath>
+		<iconPath>UI/Icons/ThingCategories/CaliberPlasmaLarge</iconPath>
 	</ThingCategoryDef>
 
 	<!-- ==================== AmmoSet ========================== -->
 
 	<CombatExtended.AmmoSetDef>
-		<defName>AmmoSet_GlitterTechApbFuelCellPistol</defName>
-		<label>APB Pistol Fuel Cell</label>
+		<defName>AmmoSet_PlasmaCellHeavy</defName>
+		<label>Plasma Heavy Power Cell</label>
 		<ammoTypes>
-			<Ammo_GlitterTechApbFuelCellPistol>Bullet_GlitterTechApbFuelCellPistol</Ammo_GlitterTechApbFuelCellPistol>
+			<Ammo_PlasmaCellHeavy>Bullet_PlasmaCellHeavy</Ammo_PlasmaCellHeavy>
 		</ammoTypes>
 	</CombatExtended.AmmoSetDef>
 
 	<!-- ==================== Ammo ========================== -->
 
 	<ThingDef Class="CombatExtended.AmmoDef" ParentName="SpacerSmallAmmoBase">
-		<defName>Ammo_GlitterTechApbFuelCellPistol</defName>
-		<label>APB Pistol Fuel Cell</label>
-		<description>Anion Particle Beam fuel cell used in APB-1 Pistols</description>
+		<defName>Ammo_PlasmaCellHeavy</defName>
+		<label>Plasma Heavy Power Cell</label>
+		<description>Plasma containment power cell optimized for heavy weapons</description>
 		<statBases>
-			<Mass>0.01</Mass>
-			<Bulk>0.02</Bulk>
-			<MarketValue>1</MarketValue>
+			<Mass>0.2</Mass>
+			<Bulk>0.2</Bulk>
+			<MarketValue>5</MarketValue>
 		</statBases>
 		<tradeTags>
 			<li>CE_AutoEnableTrade</li>
 		</tradeTags>
 		<thingCategories>
-			<li>AmmoGlitterTechApbFuelCellPistol</li>
+			<li>AmmoPlasmaCellHeavy</li>
 		</thingCategories>
+		<stackLimit>75</stackLimit>
 		<graphicData>
-			<texPath>Things/Ammo/FuelCell/Plasma/Pistol</texPath>
+			<texPath>Things/Ammo/PlasmaCell/Heavy</texPath>
 			<graphicClass>CombatExtended.Graphic_StackCountRanged</graphicClass>
 		</graphicData>
-		<ammoClass>GlitterTechApbPlasma</ammoClass>
+		<ammoClass>Plasma</ammoClass>
 	</ThingDef>
 
 	<!-- ================== Projectiles ================== -->
 
 	<ThingDef Class="CombatExtended.AmmoDef" ParentName="BaseBullet">
-		<defName>Bullet_GlitterTechApbFuelCellPistol</defName>
-		<label>APB Plasma Bolt</label>
+		<defName>Bullet_PlasmaCellHeavy</defName>
+		<label>Plasma Bolt</label>
 		<graphicData>
 			<texPath>Things/Projectile/Charge_Small</texPath>
 			<graphicClass>Graphic_Single</graphicClass>
@@ -54,8 +55,14 @@
 		<projectile Class="CombatExtended.ProjectilePropertiesCE">
 			<damageDef>Flame</damageDef>
 			<speed>200</speed>
-			<damageAmountBase>15</damageAmountBase>
+			<damageAmountBase>50</damageAmountBase>
 			<armorPenetrationBase>1.0</armorPenetrationBase>
+			<secondaryDamage>
+				<li>
+					<def>Bomb_Secondary</def>
+					<amount>30</amount>
+				</li>
+			</secondaryDamage>
 		</projectile>
 	</ThingDef>
 

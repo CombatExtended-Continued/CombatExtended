@@ -2,7 +2,7 @@
 <Defs>
 
 	<ThingCategoryDef>
-		<defName>AmmoGlitterTech6mmRailgun</defName>
+		<defName>Ammo6mmRailgun</defName>
 		<label>6mm Railgun</label>
 		<parent>AmmoAdvanced</parent>
 		<iconPath>UI/Icons/ThingCategories/CaliberRailgunRifle</iconPath>
@@ -11,19 +11,19 @@
 	<!-- ==================== AmmoSet ========================== -->
 
 	<CombatExtended.AmmoSetDef>
-		<defName>AmmoSet_GlitterTech6mmRailgun</defName>
+		<defName>AmmoSet_6mmRailgun</defName>
 		<label>6mm Railgun</label>
 		<ammoTypes>
-			<Ammo_GlitterTech6mmRailgun_Sabot>Bullet_GlitterTech6mmRailgun_Sabot</Ammo_GlitterTech6mmRailgun_Sabot>
+			<Ammo_6mmRailgun_Sabot>Bullet_6mmRailgun_Sabot</Ammo_6mmRailgun_Sabot>
 		</ammoTypes>
 	</CombatExtended.AmmoSetDef>
 
 	<!-- ==================== Ammo ========================== -->
 
 	<ThingDef Class="CombatExtended.AmmoDef" ParentName="SpacerSmallAmmoBase">
-		<defName>Ammo_GlitterTech6mmRailgun_Sabot</defName>
+		<defName>Ammo_6mmRailgun_Sabot</defName>
 		<label>6mm Railgun cartridge (Sabot)</label>
-		<description>Fin-stabilized tungsten carbide penetrator with discarding sabot, designed specifically for the MRG-5 Rifle.</description>
+		<description>Fin-stabilized tungsten carbide penetrator with discarding sabot, designed for railgun rifles.</description>
 		<statBases>
 			<Mass>0.01</Mass>
 			<Bulk>0.008</Bulk>
@@ -33,19 +33,19 @@
 			<li>CE_AutoEnableTrade</li>
 		</tradeTags>
 		<thingCategories>
-			<li>AmmoGlitterTech6mmRailgun</li>
+			<li>Ammo6mmRailgun</li>
 		</thingCategories>
 		<graphicData>
 			<texPath>Things/Ammo/Railgun/Rifle</texPath>
 			<graphicClass>CombatExtended.Graphic_StackCountRanged</graphicClass>
 		</graphicData>
-		<ammoClass>GlitterTechRailgunSabot</ammoClass>
+		<ammoClass>RailgunSabot</ammoClass>
 	</ThingDef>
 
 	<!-- ================== Projectiles ================== -->
 
 	<ThingDef Class="CombatExtended.AmmoDef" ParentName="BaseBullet">
-		<defName>Bullet_GlitterTech6mmRailgun_Sabot</defName>
+		<defName>Bullet_6mmRailgun_Sabot</defName>
 		<label>6mm Railgun bullet (Sabot)</label>
 		<graphicData>
 			<texPath>Things/Projectile/Bullet_Small</texPath>

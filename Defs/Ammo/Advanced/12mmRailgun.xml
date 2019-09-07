@@ -2,7 +2,7 @@
 <Defs>
 
 	<ThingCategoryDef>
-		<defName>AmmoGlitterTech12mmRailgun</defName>
+		<defName>Ammo12mmRailgun</defName>
 		<label>12mm Railgun</label>
 		<parent>AmmoAdvanced</parent>
 		<iconPath>UI/Icons/ThingCategories/CaliberRailgunHighCaliber</iconPath>
@@ -11,19 +11,19 @@
 	<!-- ==================== AmmoSet ========================== -->
 
 	<CombatExtended.AmmoSetDef>
-		<defName>AmmoSet_GlitterTech12mmRailgun</defName>
+		<defName>AmmoSet_12mmRailgun</defName>
 		<label>12mm Railgun</label>
 		<ammoTypes>
-			<Ammo_GlitterTech12mmRailgun_Sabot>Bullet_GlitterTech12mmRailgun_Sabot</Ammo_GlitterTech12mmRailgun_Sabot>
+			<Ammo_12mmRailgun_Sabot>Bullet_12mmRailgun_Sabot</Ammo_12mmRailgun_Sabot>
 		</ammoTypes>
 	</CombatExtended.AmmoSetDef>
 
 	<!-- ==================== Ammo ========================== -->
 
 	<ThingDef Class="CombatExtended.AmmoDef" ParentName="SmallAmmoBase">
-		<defName>Ammo_GlitterTech12mmRailgun_Sabot</defName>
+		<defName>Ammo_12mmRailgun_Sabot</defName>
 		<label>12mm Railgun cartridge (Sabot)</label>
-		<description>Fin-stabilized tungsten carbide penetrator with discarding sabot, designed specifically for the EMRG-1 Rail Gun.</description>
+		<description>Fin-stabilized tungsten carbide penetrator with discarding sabot, designed for large-caliber railgun weapons.</description>
 		<statBases>
 			<Mass>0.051</Mass>
 			<Bulk>0.07</Bulk>
@@ -33,20 +33,20 @@
 			<li>CE_AutoEnableTrade</li>
 		</tradeTags>
 		<thingCategories>
-			<li>AmmoGlitterTech12mmRailgun</li>
+			<li>Ammo12mmRailgun</li>
 		</thingCategories>
 		<stackLimit>200</stackLimit>
 		<graphicData>
 			<texPath>Things/Ammo/Railgun/HighCaliber</texPath>
 			<graphicClass>CombatExtended.Graphic_StackCountRanged</graphicClass>
 		</graphicData>
-		<ammoClass>GlitterTechRailgunSabot</ammoClass>
+		<ammoClass>RailgunSabot</ammoClass>
 	</ThingDef>
 
 	<!-- ================== Projectiles ================== -->
 
 	<ThingDef Class="CombatExtended.AmmoDef" ParentName="BaseBullet">
-		<defName>Bullet_GlitterTech12mmRailgun_Sabot</defName>
+		<defName>Bullet_12mmRailgun_Sabot</defName>
 		<label>12mm Railgun bullet (Sabot)</label>
 		<graphicData>
 			<texPath>Things/Projectile/Bullet_Big</texPath>
