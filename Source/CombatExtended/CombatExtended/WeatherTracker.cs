@@ -98,6 +98,7 @@ namespace CombatExtended
             Widgets.Label(rect, WindStrengthText + WindDirectionText);
             //TooltipHandler.TipRegion(rect, "tooltip text, if needed");
             Text.Anchor = TextAnchor.UpperLeft;
+            num2 -= 100;
         }
 
     }

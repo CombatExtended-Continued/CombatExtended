@@ -23,7 +23,7 @@ namespace CombatExtended.Harmony
                     yield return new CodeInstruction(OpCodes.Callvirt, AccessTools.Property(typeof(Find), nameof(Find.CurrentMap)).GetGetMethod());
                     yield return new CodeInstruction(OpCodes.Call, getComponentMethodInfo);
                     yield return new CodeInstruction(OpCodes.Ldloc_0);
-                    yield return new CodeInstruction(OpCodes.Ldloc_1);
+                    yield return new CodeInstruction(OpCodes.Ldloca_S, 1);
                     yield return new CodeInstruction(OpCodes.Call, AccessTools.Method(typeof(WeatherTracker), nameof(WeatherTracker.DoWindGUI)));
                     write = false;
                 }
