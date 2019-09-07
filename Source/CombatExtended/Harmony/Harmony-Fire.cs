@@ -43,6 +43,35 @@ namespace CombatExtended.Harmony
         }
     }
 
+    [HarmonyPatch(typeof(Fire), "DoComplexCalcs")]
+    internal static class Harmony_Fire_DoComplexCalcs
+    {
+        private const float BaseGrowthPerTick = 0.00055f;   // Copied from vanilla Fire class
+
+        private static float GetWindGrowthAdjust(Map map)
+        {
+            var tracker = map.GetComponent<WeatherTracker>();
+            return BaseGrowthPerTick * (1 + Mathf.Sqrt(tracker.WindStrength));
+        }
+
+        internal static IEnumerable<CodeInstruction> Transpiler(IEnumerable<CodeInstruction> instructions)
+        {
+            foreach (CodeInstruction code in instructions)
+            {
+                if (code.opcode == OpCodes.Ldc_R4 && code.operand is float && (float)code.operand == 0.00055f)
+                {
+                    yield return new CodeInstruction(OpCodes.Ldarg_0);
+                    yield return new CodeInstruction(OpCodes.Call, AccessTools.Property(typeof(Fire), nameof(Fire.Map)).GetGetMethod());
+                    yield return new CodeInstruction(OpCodes.Call, AccessTools.Method(typeof(Harmony_Fire_DoComplexCalcs), nameof(GetWindGrowthAdjust)));
+                }
+                else
+                {
+                    yield return code;
+                }
+            }
+        }
+    }
+
     [HarmonyPatch(typeof(Fire), "TrySpread")]
     internal static class Harmony_Fire_TrySpread
     {
