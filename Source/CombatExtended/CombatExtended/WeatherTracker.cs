@@ -90,7 +90,6 @@ namespace CombatExtended
 
         public void DoWindGUI(float num1, ref float num2)
         {
-            num2 -= 26f;
             Rect rect = new Rect(num1 - 100f, num2 - 26f, 300f, 26f);
             Text.Anchor = TextAnchor.MiddleRight;
             rect.width -= 15f;
@@ -98,7 +97,7 @@ namespace CombatExtended
             Widgets.Label(rect, WindStrengthText + WindDirectionText);
             //TooltipHandler.TipRegion(rect, "tooltip text, if needed");
             Text.Anchor = TextAnchor.UpperLeft;
-            num2 -= 100;
+            num2 -= 26f;
         }
 
     }
