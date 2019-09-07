@@ -56,7 +56,6 @@ namespace CombatExtended
                 }
 
                 _windStrength = Mathf.MoveTowards(_windStrength, _windStrengthTarget, Rand.Range(0, MaxWindStrengthDelta));
-                Log.Message($"CE :: Wind strength set to {_windStrength}, trending towards {_windStrengthTarget}");
 
                 if (Math.Abs(_windDirection - _windDirectionTarget) < 1)
                 {
@@ -64,7 +63,6 @@ namespace CombatExtended
                 }
 
                 _windDirection = Mathf.MoveTowardsAngle(_windDirection, _windDirectionTarget, Rand.Range(0, MaxDirectionDelta));
-                Log.Message($"CE :: Wind angle set to {_windDirection}, trending towards {_windDirectionTarget}");
             }
         }
     }
