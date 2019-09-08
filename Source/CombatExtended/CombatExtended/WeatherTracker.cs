@@ -11,7 +11,6 @@ namespace CombatExtended
         private const float HumidityDecayPerTick = 0.1f;
         private const int MaxPrecipitation = GenDate.TicksPerDay * 2;
         private const float MaxWindStrength = 6;    // With 1.5 multiplier from weather we get a 9 on Beaufort scale
-        private const float BeaufortScaleMultiplier = 1.5f;
         private const float MaxWindStrengthDelta = 0.5f;
         private const float MaxDirectionDelta = 5f;
 
@@ -31,7 +30,7 @@ namespace CombatExtended
         public float WindStrength => _windStrength * map.weatherManager.CurWindSpeedFactor;
         public Vector3 WindDirection => Vector3Utility.FromAngleFlat(_windDirection);
 
-        private int BeaufortScale => Mathf.RoundToInt(_windStrength * BeaufortScaleMultiplier);
+        private int BeaufortScale => Mathf.RoundToInt(_windStrength);
 
         private string WindStrengthText => ("CE_Wind_Beaufort" + BeaufortScale).Translate();
 
