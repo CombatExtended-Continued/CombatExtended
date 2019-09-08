@@ -27,6 +27,59 @@ namespace CombatExtended.Harmony
         }
     }
 
+    [HarmonyPatch(typeof(Fire), "SpawnSmokeParticles")]
+    internal static class Harmony_Fire_SpawnSmokeParticles
+    {
+        internal static IEnumerable<CodeInstruction> Transpiler(IEnumerable<CodeInstruction> instructions)
+        {
+            foreach (CodeInstruction code in instructions)
+            {
+                //Log.Message($"OpCode {code.opcode}, operand {code.operand}, type {code.operand.GetType()}");
+                if (code.opcode == OpCodes.Ldc_I4_S && code.operand is sbyte && (sbyte)code.operand == 15)
+                {
+                    yield return new CodeInstruction(OpCodes.Ldc_I4, 1500);
+                }
+                else
+                {
+                    yield return code;
+                }
+            }
+        }
+
+        internal static void Postfix(Fire __instance)
+        {
+            if (__instance.Position.GetFirstThing(__instance.Map, ThingDefOf.Gas_Smoke) != null)
+            {
+                var vulnerableMethodInfo = AccessTools.Method(typeof(Fire), "VulnerableToRain");
+                if ((bool)vulnerableMethodInfo.Invoke(__instance, new object[] { }))
+                {
+                    return;
+                }
+
+                var region = __instance.GetRegion(RegionType.Set_Passable | RegionType.ImpassableFreeAirExchange);
+                if (!region.TryFindRandomCellInRegion(c => c.GetFirstThing(__instance.Map, ThingDefOf.Gas_Smoke) == null, out var freeCell))
+                {
+                    foreach (var neighbor in region.Neighbors)
+                    {
+                        if(neighbor.TryFindRandomCellInRegion(c => c.GetFirstThing(__instance.Map, ThingDefOf.Gas_Smoke) == null, out freeCell))
+                            break;
+                    }
+                }
+                if (!freeCell.IsValid)
+                {
+                    return;
+                }
+
+                if (freeCell.GetRoof(region.Map) == null)
+                {
+                    return;
+                }
+                GenSpawn.Spawn(ThingDefOf.Gas_Smoke, freeCell, __instance.Map);
+            }
+            GenSpawn.Spawn(ThingDefOf.Gas_Smoke, __instance.Position, __instance.Map);
+        }
+    }
+
     [HarmonyPatch(typeof(Fire), "Tick")]
     internal static class Harmony_Fire_Tick
     {
