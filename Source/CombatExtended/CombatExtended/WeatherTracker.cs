@@ -7,7 +7,7 @@ namespace CombatExtended
 {
     public class WeatherTracker : MapComponent
     {
-        private static readonly string[] windHeadings = new string[] { "N", "NE", "E", "SE", "S", "SW", "W", "NW" };
+        private static readonly string[] windDirections = new string[] { "N", "NE", "E", "SE", "S", "SW", "W", "NW" };
         private const float HumidityDecayPerTick = 0.1f;
         private const int MaxPrecipitation = GenDate.TicksPerDay * 2;
         private const float MaxWindStrength = 6;    // With 1.5 multiplier from weather we get a 9 on Beaufort scale
@@ -39,13 +39,12 @@ namespace CombatExtended
         {
             get
             {
-                int arf = Mathf.RoundToInt(_windStrength);
                 if (BeaufortScale == 0)
                 {
                     return "";
                 }
-                int windHeadingsPosition = Mathf.Clamp(Mathf.RoundToInt(_windDirection / (360f / windHeadings.Length)), 0, windHeadings.Length - 1);
-                return ", " + ("CE_Wind_Direction_" + windHeadings[windHeadingsPosition]).Translate();
+                int windDirectionsPosition = Mathf.Clamp(Mathf.RoundToInt(_windDirection / (360f / windDirections.Length)), 0, windDirections.Length - 1);
+                return ", " + ("CE_Wind_Direction_" + windDirections[windDirectionsPosition]).Translate();
             }
         }
 
@@ -76,7 +75,7 @@ namespace CombatExtended
                 }
 
                 _windStrength = Mathf.MoveTowards(_windStrength, _windStrengthTarget, Rand.Range(0, MaxWindStrengthDelta));
-                Log.Message($"CE :: Wind strength set to {_windStrength}, trending towards {_windStrengthTarget}");
+                //Log.Message($"CE :: Wind strength set to {_windStrength}, trending towards {_windStrengthTarget}");
 
                 if (Math.Abs(_windDirection - _windDirectionTarget) < 1)
                 {
@@ -84,20 +83,23 @@ namespace CombatExtended
                 }
 
                 _windDirection = Mathf.MoveTowardsAngle(_windDirection, _windDirectionTarget, Rand.Range(0, MaxDirectionDelta));
-                Log.Message($"CE :: Wind angle set to {_windDirection}, trending towards {_windDirectionTarget}");
+                //Log.Message($"CE :: Wind angle set to {_windDirection}, trending towards {_windDirectionTarget}");
             }
         }
 
-        public void DoWindGUI(float num1, ref float num2)
+        public void DoWindGUI(float xPos, ref float yPos)
         {
-            Rect rect = new Rect(num1 - 100f, num2 - 26f, 300f, 26f);
+            float widgetHorizontalOffset = 100f;
+            float widgetWidth = 200f + widgetHorizontalOffset;
+            float widgetHeight = 26f;
+            Rect rect = new Rect(xPos - widgetHorizontalOffset, yPos - widgetHeight, widgetWidth, widgetHeight);
             Text.Anchor = TextAnchor.MiddleRight;
             rect.width -= 15f;
             Text.Font = GameFont.Small;
             Widgets.Label(rect, WindStrengthText + WindDirectionText);
-            //TooltipHandler.TipRegion(rect, "tooltip text, if needed");
+            TooltipHandler.TipRegion(rect, "CE_Wind_Tooltip".Translate());
             Text.Anchor = TextAnchor.UpperLeft;
-            num2 -= 26f;
+            yPos -= widgetHeight;   //value updated by ref, so the transpiled method has the correct vertical position for the next widget
         }
 
     }
