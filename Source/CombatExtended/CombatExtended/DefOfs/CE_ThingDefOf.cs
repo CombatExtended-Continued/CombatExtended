@@ -19,5 +19,7 @@ namespace CombatExtended
         public static ThingDef AmmoBench;
         public static ThingDef FilthPrometheum;
 
+        public static ThingDef Gas_BlackSmoke;
+
     }
 }

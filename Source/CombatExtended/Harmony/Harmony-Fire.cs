@@ -48,6 +48,7 @@ namespace CombatExtended.Harmony
 
         internal static void Postfix(Fire __instance)
         {
+            /*
             if (__instance.Position.GetFirstThing(__instance.Map, ThingDefOf.Gas_Smoke) != null)
             {
                 var vulnerableMethodInfo = AccessTools.Method(typeof(Fire), "VulnerableToRain");
@@ -76,7 +77,8 @@ namespace CombatExtended.Harmony
                 }
                 GenSpawn.Spawn(ThingDefOf.Gas_Smoke, freeCell, __instance.Map);
             }
-            GenSpawn.Spawn(ThingDefOf.Gas_Smoke, __instance.Position, __instance.Map);
+            */
+            GenSpawn.Spawn(CE_ThingDefOf.Gas_BlackSmoke, __instance.Position, __instance.Map);
         }
     }
 
