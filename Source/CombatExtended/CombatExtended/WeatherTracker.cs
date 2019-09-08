@@ -30,7 +30,7 @@ namespace CombatExtended
         public float WindStrength => _windStrength * map.weatherManager.CurWindSpeedFactor;
         public Vector3 WindDirection => Vector3Utility.FromAngleFlat(_windDirection);
 
-        private int BeaufortScale => Mathf.RoundToInt(_windStrength);
+        private int BeaufortScale => Mathf.RoundToInt(WindStrength);
 
         private string WindStrengthText => ("CE_Wind_Beaufort" + BeaufortScale).Translate();
 
