@@ -58,10 +58,10 @@ namespace CombatExtended
 			
 			LoadoutGenericDef generic = new LoadoutGenericDef();
 			generic.defName = "GenericMeal";
-			generic.description = "Generic Loadout for Meals.  Intended for compatibility with pawns automatically picking up a meal for themself.";
+			generic.description = "Generic Loadout for perishable meals.  Intended for compatibility with pawns automatically picking up a meal for themself.";
 			generic.label = "CE_Generic_Meal".Translate();
             generic.defaultCountType = LoadoutCountType.pickupDrop; // Fits with disabling of RimWorld Pawn behavior of fetching meals themselves.
-            generic._lambda = td => td.IsNutritionGivingIngestible && td.ingestible.preferability >= FoodPreferability.MealAwful && !td.IsDrug;
+            generic._lambda = td => td.IsNutritionGivingIngestible && td.ingestible.preferability >= FoodPreferability.MealAwful && td.GetCompProperties<CompProperties_Rottable>()?.daysToRotStart <= 5 && !td.IsDrug;
 			generic.isBasic = true;
 			
 			defs.Add(generic);
