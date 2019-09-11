@@ -18,7 +18,6 @@ namespace CombatExtended
 
         public override void Tick()
         {
-            Log.Message($"Ticking");
             _ticksUntilMove--;
             if (!Position.Roofed(Map))
             {
@@ -47,7 +46,6 @@ namespace CombatExtended
             // Move towards unroofed cells if possible
             if (unroofedCell.IsValid)
             {
-                Log.Message($"Moving to unroofed {unroofedCell}");
                 Position = unroofedCell;
                 base.Tick();
                 return;
@@ -56,7 +54,6 @@ namespace CombatExtended
             // Find gas-free tile to move to
             foreach (var cell in freeCells)
             {
-                Log.Message($"Moving to roofed {cell}");
                 if (cell.GetGas(Map) == null)
                 {
                     Position = cell;

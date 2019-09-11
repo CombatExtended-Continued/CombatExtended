@@ -48,36 +48,6 @@ namespace CombatExtended.Harmony
 
         internal static void Postfix(Fire __instance)
         {
-            /*
-            if (__instance.Position.GetFirstThing(__instance.Map, ThingDefOf.Gas_Smoke) != null)
-            {
-                var vulnerableMethodInfo = AccessTools.Method(typeof(Fire), "VulnerableToRain");
-                if ((bool)vulnerableMethodInfo.Invoke(__instance, new object[] { }))
-                {
-                    return;
-                }
-
-                var region = __instance.GetRegion(RegionType.Set_Passable | RegionType.ImpassableFreeAirExchange);
-                if (!region.TryFindRandomCellInRegion(c => c.GetFirstThing(__instance.Map, ThingDefOf.Gas_Smoke) == null, out var freeCell))
-                {
-                    foreach (var neighbor in region.Neighbors)
-                    {
-                        if(neighbor.TryFindRandomCellInRegion(c => c.GetFirstThing(__instance.Map, ThingDefOf.Gas_Smoke) == null, out freeCell))
-                            break;
-                    }
-                }
-                if (!freeCell.IsValid)
-                {
-                    return;
-                }
-
-                if (freeCell.GetRoof(region.Map) == null)
-                {
-                    return;
-                }
-                GenSpawn.Spawn(ThingDefOf.Gas_Smoke, freeCell, __instance.Map);
-            }
-            */
             GenSpawn.Spawn(CE_ThingDefOf.Gas_BlackSmoke, __instance.Position, __instance.Map);
         }
     }

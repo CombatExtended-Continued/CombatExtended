@@ -15,7 +15,13 @@ namespace CombatExtended.Harmony
         {
             var drawData = eq.def.GetModExtension<GunDrawExtension>() ?? new GunDrawExtension();
             var scale = new Vector3(drawData.DrawSize.x, 1, drawData.DrawSize.y);
-            var posVec = new Vector3(drawData.DrawOffset.x, 0, drawData.DrawOffset.y).RotatedBy(aimAngle);
+            var posVec = new Vector3(drawData.DrawOffset.x, 0, drawData.DrawOffset.y);
+            if (aimAngle > 200 && aimAngle < 340)
+            {
+                posVec.x *= -1;
+            }
+
+            posVec = posVec.RotatedBy(rotation.eulerAngles.y);
 
             var matrix = new Matrix4x4();
             matrix.SetTRS(position + posVec, rotation, scale);
