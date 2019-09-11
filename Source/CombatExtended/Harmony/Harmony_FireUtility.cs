@@ -46,7 +46,7 @@ namespace CombatExtended.Harmony
             if (pawn == null)
                 return;
 
-            if (Rand.Chance(CatchFireChance))
+            if (Rand.Chance(CatchFireChance * pawn.GetStatValue(StatDefOf.Flammability)))
                 pawn.TryAttachFire(fireSize);
         }
     }
