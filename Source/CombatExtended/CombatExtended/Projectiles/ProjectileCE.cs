@@ -61,6 +61,7 @@ namespace CombatExtended
         protected ThingDef equipmentDef;
         protected Thing launcher;
         public Thing intendedTarget;
+        public IntVec3 targetCell;
         public float minCollisionSqr;
         public bool canTargetSelf;
         public bool castShadow = true;
@@ -472,9 +473,10 @@ namespace CombatExtended
             //Check for minimum PAWN collision distance
             float distFromOrigin = cell.DistanceToSquared(OriginIV3);
             if (!def.projectile.alwaysFreeIntercept
-                && minCollisionSqr <= 1f
-                ? distFromOrigin < 1f
-                : distFromOrigin <= Mathf.Min(144f, minCollisionSqr / 4))
+                && !cell.Equals(targetCell) 
+                && (minCollisionSqr <= 1f
+                    ? distFromOrigin < 1f
+                    : distFromOrigin <= Mathf.Min(144f, minCollisionSqr / 4)))
             {
                 return false;
             }
