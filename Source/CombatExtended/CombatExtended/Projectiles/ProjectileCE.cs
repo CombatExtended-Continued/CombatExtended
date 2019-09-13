@@ -476,7 +476,7 @@ namespace CombatExtended
                 ? distFromOrigin < 1f
                 : distFromOrigin <= Mathf.Min(144f, minCollisionSqr / 4))
             {
-                justWallsRoofs = true;
+                return false;
             }
 
             var mainThingList = new List<Thing>(Map.thingGrid.ThingsListAtFast(cell))
