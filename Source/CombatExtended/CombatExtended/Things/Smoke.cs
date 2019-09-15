@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System.Collections.Generic;
+using System.Linq;
 using RimWorld;
 using UnityEngine;
 using Verse;
@@ -10,6 +11,7 @@ namespace CombatExtended
         private int _ticksUntilMove;
         private const int BaseTicksUntilMove = 40;
         private const int TicksUntilMoveDelta = 20;
+        private const float InhalationPerSec = 0.0125f / GenTicks.TicksPerRealSecond;
 
         private bool CanMoveTo(IntVec3 pos)
         {
@@ -18,6 +20,8 @@ namespace CombatExtended
 
         public override void Tick()
         {
+            ApplyHediffs();
+
             _ticksUntilMove--;
             if (!Position.Roofed(Map))
             {
@@ -29,7 +33,7 @@ namespace CombatExtended
             // Don't decay if there's lots of smoke around
             var region = Position.GetRegion(Map);
             var smokeFillage = region.ListerThings.ThingsOfDef(CE_ThingDefOf.Gas_BlackSmoke).Count / region.CellCount;
-            if (Rand.Chance(smokeFillage * 2))
+            if (!Rand.Chance(smokeFillage * 2))
                 destroyTick++;
 
             if (_ticksUntilMove > 0)
@@ -63,6 +67,22 @@ namespace CombatExtended
             }
 
             base.Tick();
+        }
+
+        private void ApplyHediffs()
+        {
+            var pawns = Position.GetThingList(Map).Where(t => t is Pawn).ToList();
+            foreach (var cell in GenAdjFast.AdjacentCells8Way(Position))
+            {
+                pawns.AddRange(cell.GetThingList(Map).Where(t => t is Pawn));
+            }
+
+            foreach (Pawn pawn in pawns)
+            {
+
+                var severity = InhalationPerSec * pawn.GetStatValue(CE_StatDefOf.SmokeSensitivity);
+                HealthUtility.AdjustSeverity(pawn, CE_HediffDefOf.SmokeInhalation, severity);
+            }
         }
     }
 }

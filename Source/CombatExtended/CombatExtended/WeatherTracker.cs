@@ -58,7 +58,7 @@ namespace CombatExtended
             // Rain
             if (map.weatherManager.RainRate > 0)
             {
-                Humidity += map.weatherManager.RainRate;
+                Humidity += map.weatherManager.RainRate * 2;
             }
             else
             {
