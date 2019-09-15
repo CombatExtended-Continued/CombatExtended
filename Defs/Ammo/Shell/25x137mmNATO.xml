@@ -1,0 +1,244 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+
+	<ThingCategoryDef>
+		<defName>Ammo25x137mmNATO</defName>
+		<label>25x137mm NATO</label>
+		<parent>AmmoHighCaliber</parent>
+		<iconPath>UI/Icons/ThingCategories/CaliberHighCaliber</iconPath>
+	</ThingCategoryDef>
+
+	<!-- ==================== AmmoSet ========================== -->
+
+	<CombatExtended.AmmoSetDef>
+		<defName>AmmoSet_25x137mmNATO</defName>
+		<label>25x137mm NATO</label>
+		<ammoTypes>
+			<Ammo_25x137mmNATO_Sabot>Bullet_25x137mmNATO_Sabot</Ammo_25x137mmNATO_Sabot>
+			<Ammo_25x137mmNATO_HE>Bullet_25x137mmNATO_HE</Ammo_25x137mmNATO_HE>
+			<Ammo_25x137mmNATO_Incendiary>Bullet_25x137mmNATO_Incendiary</Ammo_25x137mmNATO_Incendiary>
+		</ammoTypes>
+	</CombatExtended.AmmoSetDef>
+
+	<!-- ==================== Ammo ========================== -->
+
+	<ThingDef Class="CombatExtended.AmmoDef" Name="Ammo25x137mmNATOBase" ParentName="SmallAmmoBase" Abstract="True">
+		<description>Large caliber cartridge used by autocannons.</description>
+		<statBases>
+			<Mass>0.502</Mass>
+			<Bulk>0.48</Bulk>
+		</statBases>
+		<tradeTags>
+			<li>CE_AutoEnableTrade</li>
+			<li>CE_AutoEnableCrafting</li>
+		</tradeTags>
+		<thingCategories>
+			<li>Ammo25x137mmNATO</li>
+		</thingCategories>
+		<stackLimit>100</stackLimit>
+	</ThingDef>
+
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="Ammo25x137mmNATOBase">
+		<defName>Ammo_25x137mmNATO_Sabot</defName>
+		<label>25x137mm NATO cartridge (Sabot)</label>
+		<graphicData>
+			<texPath>Things/Ammo/HighCaliber/Sabot</texPath>
+			<graphicClass>Graphic_StackCount</graphicClass>
+		</graphicData>
+		<statBases>
+			<MarketValue>2.35</MarketValue>
+		</statBases>
+		<ammoClass>Sabot</ammoClass>
+		<cookOffProjectile>Bullet_25x137mmNATO_Sabot</cookOffProjectile>
+	</ThingDef>
+
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="Ammo25x137mmNATOBase">
+		<defName>Ammo_25x137mmNATO_HE</defName>
+		<label>25x137mm NATO cartridge (HE)</label>
+		<graphicData>
+			<texPath>Things/Ammo/HighCaliber/HE</texPath>
+			<graphicClass>Graphic_StackCount</graphicClass>
+		</graphicData>
+		<statBases>
+			<MarketValue>2.67</MarketValue>
+		</statBases>
+		<ammoClass>ExplosiveAP</ammoClass>
+		<cookOffProjectile>Bullet_25x137mmNATO_HE</cookOffProjectile>
+	</ThingDef>
+
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="Ammo25x137mmNATOBase">
+		<defName>Ammo_25x137mmNATO_Incendiary</defName>
+		<label>25x137mm NATO cartridge (AP-I)</label>
+		<graphicData>
+			<texPath>Things/Ammo/HighCaliber/Incendiary</texPath>
+			<graphicClass>Graphic_StackCount</graphicClass>
+		</graphicData>
+		<statBases>
+			<MarketValue>2.16</MarketValue>
+		</statBases>
+		<ammoClass>IncendiaryAP</ammoClass>
+		<cookOffProjectile>Bullet_25x137mmNATO_Incendiary</cookOffProjectile>
+	</ThingDef>
+
+	<!-- ================== Projectiles ================== -->
+
+	<ThingDef Class="CombatExtended.AmmoDef" Name="Base25x137mmNATOBullet" ParentName="BaseBullet" Abstract="true">
+		<graphicData>
+			<texPath>Things/Projectile/Bullet_Big</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+		</graphicData>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageDef>Bullet</damageDef>
+			<speed>275</speed>
+			<dropsCasings>true</dropsCasings>
+		</projectile>
+	</ThingDef>
+
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="Base25x137mmNATOBullet">
+		<defName>Bullet_25x137mmNATO_Sabot</defName>
+		<label>25x137mm NATO bullet (Sabot)</label>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageAmountBase>50</damageAmountBase>
+			<armorPenetrationBase>1.454</armorPenetrationBase>
+			<speed>367</speed>
+		</projectile>
+	</ThingDef>
+
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="Base25x137mmNATOBullet">
+		<defName>Bullet_25x137mmNATO_HE</defName>
+		<label>25x137mm NATO bullet (HE)</label>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageAmountBase>71</damageAmountBase>
+			<armorPenetrationBase>1.404</armorPenetrationBase>
+			<secondaryDamage>
+				<li>
+					<def>Bomb_Secondary</def>
+					<amount>47</amount>
+				</li>
+			</secondaryDamage>
+		</projectile>
+	</ThingDef>
+
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="Base25x137mmNATOBullet">
+		<defName>Bullet_25x137mmNATO_Incendiary</defName>
+		<label>25x137mm NATO bullet (AP-I)</label>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageAmountBase>71</damageAmountBase>
+			<armorPenetrationBase>1.404</armorPenetrationBase>
+			<secondaryDamage>
+				<li>
+					<def>Flame_Secondary</def>
+					<amount>24</amount>
+				</li>
+			</secondaryDamage>
+		</projectile>
+	</ThingDef>
+
+	<!-- ==================== Recipes ========================== -->
+
+	<RecipeDef ParentName="AmmoRecipeBase">
+		<defName>MakeAmmo_25x137mmNATO_Sabot</defName>
+		<label>make 25x137mm NATO (Sabot) cartridge x100</label>
+		<description>Craft 100 .25x137mm NATO (Sabot) cartridges.</description>
+		<jobString>Making .25x137mm NATO (Sabot) cartridges.</jobString>
+		<ingredients>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>Steel</li>
+					</thingDefs>
+				</filter>
+				<count>47</count>
+			</li>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>Uranium</li>
+					</thingDefs>
+				</filter>
+				<count>7</count>
+			</li>
+		</ingredients>
+		<fixedIngredientFilter>
+			<thingDefs>
+				<li>Steel</li>
+				<li>Uranium</li>
+			</thingDefs>
+		</fixedIngredientFilter>
+		<products>
+			<Ammo_25x137mmNATO_Sabot>100</Ammo_25x137mmNATO_Sabot>
+		</products>
+		<workAmount>24750</workAmount>
+	</RecipeDef>
+
+	<RecipeDef ParentName="AmmoRecipeBase">
+		<defName>MakeAmmo_25x137mmNATO_HE</defName>
+		<label>make 25x137mm NATO (HE) cartridge x100</label>
+		<description>Craft 100 .25x137mm NATO (HE) cartridges.</description>
+		<jobString>Making .25x137mm NATO (HE) cartridges.</jobString>
+		<ingredients>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>Steel</li>
+					</thingDefs>
+				</filter>
+				<count>49</count>
+			</li>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>FSX</li>
+					</thingDefs>
+				</filter>
+				<count>7</count>
+			</li>
+		</ingredients>
+		<fixedIngredientFilter>
+			<thingDefs>
+				<li>Steel</li>
+				<li>FSX</li>
+			</thingDefs>
+		</fixedIngredientFilter>
+		<products>
+			<Ammo_25x137mmNATO_HE>100</Ammo_25x137mmNATO_HE>
+		</products>
+		<workAmount>24750</workAmount>
+	</RecipeDef>
+
+	<RecipeDef ParentName="AmmoRecipeBase">
+		<defName>MakeAmmo_25x137mmNATO_Incendiary</defName>
+		<label>make 25x137mm NATO (AP-I) cartridge x100</label>
+		<description>Craft 100 .25x137mm NATO (AP-I) cartridges.</description>
+		<jobString>Making .25x137mm NATO (AP-I) cartridges.</jobString>
+		<ingredients>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>Steel</li>
+					</thingDefs>
+				</filter>
+				<count>51</count>
+			</li>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>Prometheum</li>
+					</thingDefs>
+				</filter>
+				<count>4</count>
+			</li>
+		</ingredients>
+		<fixedIngredientFilter>
+			<thingDefs>
+				<li>Steel</li>
+				<li>Prometheum</li>
+			</thingDefs>
+		</fixedIngredientFilter>
+		<products>
+			<Ammo_25x137mmNATO_Incendiary>100</Ammo_25x137mmNATO_Incendiary>
+		</products>
+		<workAmount>22500</workAmount>
+	</RecipeDef>
+
+</Defs>
