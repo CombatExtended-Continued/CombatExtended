@@ -27,10 +27,10 @@ namespace CombatExtended
         }
 
         public float HumidityPercent => Humidity / MaxPrecipitation;
-        public float WindStrength => _windStrength * map.weatherManager.CurWindSpeedFactor;
         public Vector3 WindDirection => Vector3Utility.FromAngleFlat(_windDirection);
 
-        private int BeaufortScale => Mathf.RoundToInt(WindStrength);
+        private float WindStrength => _windStrength * map.weatherManager.CurWindSpeedFactor;
+        private int BeaufortScale => Mathf.FloorToInt(WindStrength);
 
         private string WindStrengthText => ("CE_Wind_Beaufort" + BeaufortScale).Translate();
 
@@ -49,6 +49,14 @@ namespace CombatExtended
 
         public WeatherTracker(Map map) : base(map)
         {
+        }
+
+        public float GetWindStrengthAt(IntVec3 cell)
+        {
+            if (cell.GetRoom(map)?.UsesOutdoorTemperature ?? false)
+                return 0;
+
+            return WindStrength;
         }
 
         public override void MapComponentTick()

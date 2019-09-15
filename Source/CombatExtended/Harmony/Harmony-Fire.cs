@@ -73,10 +73,10 @@ namespace CombatExtended.Harmony
     {
         private const float BaseGrowthPerTick = 0.00055f;   // Copied from vanilla Fire class
 
-        private static float GetWindGrowthAdjust(Map map)
+        private static float GetWindGrowthAdjust(Fire fire)
         {
-            var tracker = map.GetComponent<WeatherTracker>();
-            return BaseGrowthPerTick * (1 + Mathf.Sqrt(tracker.WindStrength));
+            var tracker = fire.Map.GetComponent<WeatherTracker>();
+            return BaseGrowthPerTick * (1 + Mathf.Sqrt(tracker.GetWindStrengthAt(fire.Position)));
         }
 
         internal static IEnumerable<CodeInstruction> Transpiler(IEnumerable<CodeInstruction> instructions)
@@ -86,7 +86,6 @@ namespace CombatExtended.Harmony
                 if (code.opcode == OpCodes.Ldc_R4 && code.operand is float && (float)code.operand == 0.00055f)
                 {
                     yield return new CodeInstruction(OpCodes.Ldarg_0);
-                    yield return new CodeInstruction(OpCodes.Call, AccessTools.Property(typeof(Fire), nameof(Fire.Map)).GetGetMethod());
                     yield return new CodeInstruction(OpCodes.Call, AccessTools.Method(typeof(Harmony_Fire_DoComplexCalcs), nameof(GetWindGrowthAdjust)));
                 }
                 else
@@ -104,7 +103,13 @@ namespace CombatExtended.Harmony
         private static SimpleCurve _angleCurveWide;
         private static SimpleCurve _angleCurveNarrow;
 
-        private static IntVec3 GetRandWindShift(Map map, bool spreadFar)
+        private static float GetWindMult(Fire fire)
+        {
+            var tracker = fire.Map.GetComponent<WeatherTracker>();
+            return tracker.GetWindStrengthAt(fire.Position);
+        }
+
+        private static IntVec3 GetRandWindShift(Fire fire, bool spreadFar)
         {
             if (_angleCurveWide == null)
             {
@@ -129,15 +134,15 @@ namespace CombatExtended.Harmony
                 };
             }
 
-            var tracker = map.GetComponent<WeatherTracker>();
+            var tracker = fire.Map.GetComponent<WeatherTracker>();
             var angleDelta = spreadFar
-                ? _angleCurveNarrow.Evaluate(tracker.WindStrength)
-                : _angleCurveWide.Evaluate(tracker.WindStrength);
+                ? _angleCurveNarrow.Evaluate(tracker.GetWindStrengthAt(fire.Position))
+                : _angleCurveWide.Evaluate(tracker.GetWindStrengthAt(fire.Position));
             angleDelta *= 0.5f;
             var angle = Rand.Range(-angleDelta, angleDelta);
             var vec = tracker.WindDirection.RotatedBy(angle);
             if (spreadFar)
-                vec *= Rand.Range(1, Mathf.Max(2, tracker.WindStrength));
+                vec *= Rand.Range(1, Mathf.Max(2, tracker.GetWindStrengthAt(fire.Position)));
 
             return vec.ToIntVec3();
         }
@@ -159,7 +164,6 @@ namespace CombatExtended.Harmony
                 if (code.operand == AccessTools.Field(typeof(GenRadial), nameof(GenRadial.ManualRadialPattern)))
                 {
                     codes.Add(new CodeInstruction(OpCodes.Ldarg_0));
-                    codes.Add(new CodeInstruction(OpCodes.Call, AccessTools.Property(typeof(Fire), nameof(Fire.Map)).GetGetMethod()));
                     codes.Add(passedRadPattern
                         ? new CodeInstruction(OpCodes.Ldc_I4_1)
                         : new CodeInstruction(OpCodes.Ldc_I4_0));
@@ -179,10 +183,7 @@ namespace CombatExtended.Harmony
                     codes.Add(new CodeInstruction(OpCodes.Ldc_R4, SpreadFarBaseChance));
 
                     codes.Add(new CodeInstruction(OpCodes.Ldarg_0));
-                    codes.Add(new CodeInstruction(OpCodes.Call, AccessTools.Property(typeof(Fire), nameof(Fire.Map)).GetGetMethod()));
-
-                    codes.Add(new CodeInstruction(OpCodes.Call, getComponentMethodInfo));
-                    codes.Add(new CodeInstruction(OpCodes.Call, AccessTools.Property(typeof(WeatherTracker), nameof(WeatherTracker.WindStrength)).GetGetMethod()));
+                    codes.Add(new CodeInstruction(OpCodes.Call, AccessTools.Method(typeof(Harmony_Fire_TrySpread), nameof(GetWindMult))));
 
                     codes.Add(new CodeInstruction(OpCodes.Mul));
                     codes.Add(new CodeInstruction(OpCodes.Sub));
@@ -206,7 +207,7 @@ namespace CombatExtended.Harmony
         internal static bool Prefix(Fire __instance, ref float __result)
         {
             __result = BaseSpreadRate - (__instance.fireSize - 1) * SpreadSizeAdjust;
-            var windSpeed = __instance.Map.GetComponent<WeatherTracker>().WindStrength;
+            var windSpeed = __instance.Map.GetComponent<WeatherTracker>().GetWindStrengthAt(__instance.PositionHeld);
             __result /= Mathf.Max(1, windSpeed);
 
             if (__result > MinSpreadTicks)
