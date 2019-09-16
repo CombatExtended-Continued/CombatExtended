@@ -4,7 +4,7 @@ Combat Extended: FastTrack Edition is a fork of the [original Combat Extended mo
 ## Features
 - Same [core features as the original mod](https://github.com/NoImageAvailable/CombatExtended/blob/master/README.md) - shooting, melee, armor, inventory and medical overhauls
 - Fully compatible with existing CE savegames - delete CE completely, drop in CE:FT and go!
-- 53 supported third-party mods (compared with 31 for CE)
+- 56 supported third-party mods (compared with 31 for CE)
 - Additional ammo and projectile definitions and textures
 
 ## Supported Third-Party Mods
@@ -24,6 +24,7 @@ FashionRIMsta 										| &#x2705; 	| &#x2705;
 Ferrex Race 										| &#x2705; 	| &#x2705;
 Flommel 											|  			| &#x2705;
 Forsakens											|  			| &#x2705;
+Glitter Tech										|  			| &#x2705;
 Hand 'n' Footwear 									| &#x2705; 	| &#x2705;
 High Caliber											|  			| &#x2705;
 Jernfalk's Standalone Horses 						| &#x2705; 	| &#x2705;
@@ -32,7 +33,9 @@ Leeani Playable Race 								| &#x2705; 	| &#x2705;
 Let's Have a Cat! 									|  			| &#x2705;
 Lizardmen 									|  			| &#x2705;
 Logann Race 										| &#x2705; 	| &#x2705;
+Magical Menagerie									|  			| &#x2705;
 Mechanoids Extraordinaire 							| &#x2705; 	| &#x2705;
+More Vanilla Turrets								|  			| &#x2705;
 Ni'Hal 											| &#x2705; 	| &#x2705;
 Orassans 											| &#x2705; 	| &#x2705;
 Orion's More Mechanoids 							| &#x2705; 	| &#x2705;
@@ -63,7 +66,7 @@ Xenn Race 											| &#x2705; 	| &#x2705;
 Xenohumans 										|  			| &#x2705;
 Yabils: Space Gremlins				|  			| &#x2705;
 Zombieland 										| &#x2705; 	| &#x2705;
-**Total** | **31** | **53**
+**Total** | **31** | **56**
 &nbsp; | **CE (original)** | **CE: FastTrack Edition**
 
 ## Contributing Your Patches
