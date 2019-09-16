@@ -771,7 +771,8 @@ namespace CombatExtended
             var comp = this.TryGetComp<CompExplosiveCE>();
             if (comp != null && ExactPosition.ToIntVec3().IsValid)
             {
-                comp.Explode(launcher, ExactPosition, Map);
+                var explodePos = hitThing?.DrawPos ?? ExactPosition;
+                comp.Explode(launcher, explodePos, Map);
             }
 
             //Spawn things if not an explosive but preExplosionSpawnThingDef != null

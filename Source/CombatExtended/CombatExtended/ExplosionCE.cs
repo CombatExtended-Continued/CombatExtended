@@ -172,7 +172,7 @@ namespace CombatExtended
 		private void AffectCell(IntVec3 c)
 		{
 			bool flag = this.ShouldCellBeAffectedOnlyByDamage(c);
-			if (!flag && Rand.Chance(this.preExplosionSpawnChance) && c.Walkable(base.Map)) {
+            if (!flag && Rand.Chance(this.preExplosionSpawnChance) && c.Walkable(base.Map)) {
 				this.TrySpawnExplosionThing(this.preExplosionSpawnThingDef, c, this.preExplosionSpawnThingCount);
 			}
 			this.damType.Worker.ExplosionAffectCell(this, c, this.damagedThings, !flag);

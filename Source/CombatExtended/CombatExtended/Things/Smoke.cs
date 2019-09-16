@@ -13,6 +13,12 @@ namespace CombatExtended
         private const int TicksUntilMoveDelta = 20;
         private const float InhalationPerSec = 0.0075f / GenTicks.TicksPerRealSecond;
 
+        public override void ExposeData()
+        {
+            base.ExposeData();
+            Scribe_Values.Look(ref _ticksUntilMove, "ticksUntilMove");
+        }
+
         private bool CanMoveTo(IntVec3 pos)
         {
             return !pos.Filled(Map) || (pos.GetDoor(Map)?.Open ?? false) || pos.GetFirstThing<Building_Vent>(Map) != null;

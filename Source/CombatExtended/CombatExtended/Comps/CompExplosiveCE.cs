@@ -116,6 +116,7 @@ namespace CombatExtended
                 explosion.postExplosionSpawnChance = Props.postExplosionSpawnChance;
                 explosion.postExplosionSpawnThingCount = Props.postExplosionSpawnThingCount;
                 explosion.applyDamageToExplosionCellsNeighbors = Props.applyDamageToExplosionCellsNeighbors;
+                explosion.armorPenetration = explosion.damAmount * 0.1f;
 		
 		// TODO: for some reason projectile goes to null
                 if (parent.def.projectile != null)
@@ -123,7 +124,7 @@ namespace CombatExtended
                     explosion.chanceToStartFire = parent.def.projectile.explosionChanceToStartFire;
                     explosion.damageFalloff = parent.def.projectile.explosionDamageFalloff;
                 }
-                explosion.StartExplosion(Props.explosionDamageDef.soundExplosion);
+                explosion.StartExplosion(Props.soundExplode ?? Props.explosionDamageDef.soundExplosion);
             }
         }
     }
