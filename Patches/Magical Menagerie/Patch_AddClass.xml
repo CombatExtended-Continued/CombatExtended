@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+	<Operation Class="PatchOperationSequence">
+		<success>Always</success>
+		<operations>
+
+			<li Class="CombatExtended.PatchOperationFindMod">
+				<modName>Magical Menagerie</modName>
+			</li>
+			
+			<li Class="PatchOperationAddModExtension">
+				<xpath>
+					Defs/ThingDef[
+						defName="MM_Ahuizotl" or
+						defName="MM_Chimera" or
+						defName="MM_ErymanthianBoar" or
+						defName="MM_Griffin" or
+						defName="MM_Kitsune" or
+						defName="MM_LernaeanHydra" or
+						defName="MM_Manticore" or
+						defName="MM_Pegasus" or
+						defName="MM_Qilin" or
+						defName="MM_Unicorn"
+					]
+				</xpath>
+				<value>
+					<li Class="CombatExtended.RacePropertiesExtensionCE">
+						<bodyShape>Quadruped</bodyShape>
+					</li>
+				</value>
+			</li>
+			
+			<li Class="PatchOperationAddModExtension">
+				<xpath>
+					Defs/ThingDef[
+						defName="MM_WillOWisp"
+					]
+				</xpath>
+				<value>
+					<li Class="CombatExtended.RacePropertiesExtensionCE">
+						<bodyShape>QuadrupedLow</bodyShape>
+					</li>
+				</value>
+			</li>
+			
+			<li Class="PatchOperationAddModExtension">
+				<xpath>
+					Defs/ThingDef[
+						defName="MM_WildMinotaur"
+					]
+				</xpath>
+				<value>
+					<li Class="CombatExtended.RacePropertiesExtensionCE">
+						<bodyShape>Humanoid</bodyShape>
+					</li>
+				</value>
+			</li>
+			
+		</operations>
+	</Operation>
+</Patch>
+
+
+
+
+
+
+
+
+
+
+
+
+
