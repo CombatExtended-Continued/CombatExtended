@@ -1,0 +1,212 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+	<!-- i am imprisoned inside someone's closet. please send help. -->
+	<Operation Class="PatchOperationSequence">
+		<success>Always</success>
+		<operations>
+			<!-- ==== Check for the mod. ==== -->
+			<li Class="CombatExtended.PatchOperationFindMod">
+				<modName>Black Widows 2.0</modName>
+			</li>
+
+			<!-- ==== Black Widow Rifle. ==== -->
+			<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+				<defName>Gun_BWRifle</defName>
+				<statBases>
+					<Mass>10</Mass>
+					<RangedWeapon_Cooldown>0.35</RangedWeapon_Cooldown>
+					<SightsEfficiency>1.1</SightsEfficiency>
+					<ShotSpread>0.05</ShotSpread>
+					<SwayFactor>2</SwayFactor>
+					<Bulk>10</Bulk>
+				</statBases>
+				<Properties>
+					<recoilAmount>0.73</recoilAmount>
+					<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+					<hasStandardCommand>true</hasStandardCommand>
+					<defaultProjectile>Bullet_5x35mmCharged</defaultProjectile>
+					<warmupTime>1</warmupTime>
+					<range>59</range>
+					<soundCast>ChargeLance_Fire</soundCast>
+					<soundCastTail>GunTail_Medium</soundCastTail>
+					<burstShotCount>5</burstShotCount>
+					<ticksBetweenBurstShots>5</ticksBetweenBurstShots>
+					<muzzleFlashScale>9</muzzleFlashScale>
+				</Properties>
+				<AmmoUser>
+					<reloadTime>4</reloadTime> <!-- ep... -->
+					<magazineSize>20</magazineSize> <!-- ...ic -->
+					<ammoSet>AmmoSet_5x35mmCharged</ammoSet>
+				</AmmoUser>
+				<FireModes>
+					<aimedBurstShotCount>3</aimedBurstShotCount>
+					<aiUseBurstMode>TRUE</aiUseBurstMode>
+					<aiAimMode>AimedShot</aiAimMode>
+				</FireModes>
+				<weaponTags>
+					<li>BWRifle</li>
+					<li>BlackWidowRanged</li>
+				</weaponTags>
+			</li>
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="Gun_BWRifle"]/tools</xpath>
+				<value>
+					<tools>
+						<li Class="CombatExtended.ToolCE">
+							<label>stock</label>
+							<capacities>
+								<li>Blunt</li>
+							</capacities>
+							<power>9</power>
+							<cooldownTime>1.8</cooldownTime>
+							<chanceFactor>1.5</chanceFactor>
+							<armorPenetration>0.11</armorPenetration>
+							<linkedBodyPartsGroup>Stock</linkedBodyPartsGroup>
+						</li>
+						<li Class="CombatExtended.ToolCE">
+							<label>barrel</label>
+							<capacities>
+								<li>Blunt</li>
+							</capacities>
+							<power>10</power>
+							<cooldownTime>1.9</cooldownTime>
+							<armorPenetration>0.118</armorPenetration>
+							<linkedBodyPartsGroup>Barrel</linkedBodyPartsGroup>
+						</li>
+						<li Class="CombatExtended.ToolCE">
+							<label>muzzle</label>
+							<capacities>
+								<li>Poke</li>
+							</capacities>
+							<power>10</power>
+							<cooldownTime>1.9</cooldownTime>
+							<armorPenetration>0.086</armorPenetration>
+							<linkedBodyPartsGroup>Muzzle</linkedBodyPartsGroup>
+						</li>
+				  </tools>
+				</value>
+			</li>
+
+			<!-- ==== Black Widow Bow. ==== -->
+			<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+				<defName>Bow_BWBow</defName>
+				<statBases>
+					<Mass>8</Mass>
+					<RangedWeapon_Cooldown>1</RangedWeapon_Cooldown>
+					<SightsEfficiency>0.8</SightsEfficiency>
+					<ShotSpread>0.8</ShotSpread>
+					<SwayFactor>3</SwayFactor>
+					<Bulk>7.5</Bulk>
+				</statBases>
+				<Properties>
+					<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+					<hasStandardCommand>true</hasStandardCommand>
+					<defaultProjectile>Projectile_BlackWidowArrow_Steel</defaultProjectile>
+					<warmupTime>8.5</warmupTime>
+					<range>54</range>
+					<soundCast>Bow_Large</soundCast>
+				</Properties>
+				<AmmoUser>
+					<ammoSet>AmmoSet_BlackWidowArrow</ammoSet>
+				</AmmoUser>
+				<weaponTags>
+					<li>BWBow</li>
+					<li>BlackWidowRanged</li>
+				</weaponTags>
+			</li>
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="Bow_BWBow"]/tools</xpath>
+				<value>
+					<tools>
+						<li Class="CombatExtended.ToolCE">
+							<label>hand guard</label>
+							<capacities>
+								<li>Blunt</li>
+							</capacities>
+							<power>4</power>
+							<cooldownTime>2</cooldownTime>
+							<armorPenetration>0.071</armorPenetration>
+						</li>
+						<li Class="CombatExtended.ToolCE">
+							<label>point</label>
+							<capacities>
+								<li>Stab</li>
+							</capacities>
+							<power>21</power>
+							<cooldownTime>3</cooldownTime>
+							<armorPenetration>0.353</armorPenetration>
+						</li>
+						<li Class="CombatExtended.ToolCE">
+							<label>edge</label>
+							<capacities>
+								<li>Cut</li>
+							</capacities>
+							<power>20</power>
+							<cooldownTime>1.8</cooldownTime>
+							<armorPenetration>0.182</armorPenetration>
+						</li>
+				  </tools>
+				</value>
+			</li>
+
+			<!-- ==== Black Widow Scythe ==== -->
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="MeleeWeapon_bwscythe"]/tools</xpath>
+				<value>
+					<tools>
+						<li Class="CombatExtended.ToolCE">
+							<label>hand guard</label>
+							<capacities>
+								<li>Blunt</li>
+							</capacities>
+							<power>5</power>
+							<cooldownTime>2.5</cooldownTime>
+							<armorPenetration>0.079</armorPenetration>
+						</li>
+						<li Class="CombatExtended.ToolCE">
+							<label>hook</label>
+							<capacities>
+								<li>Stab</li>
+							</capacities>
+							<power>27</power>
+							<cooldownTime>2.5</cooldownTime>
+							<armorPenetration>0.423</armorPenetration>
+						</li>
+						<li Class="CombatExtended.ToolCE">
+							<label>edge</label>
+							<capacities>
+								<li>Cut</li>
+							</capacities>
+							<power>28</power>
+							<cooldownTime>2.5</cooldownTime>
+							<armorPenetration>0.232</armorPenetration>
+						</li>
+				  </tools>
+				</value>
+			</li>
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName="MeleeWeapon_bwscythe"]/equippedStatOffsets</xpath>
+				<value>
+					<MeleeCritChance>1</MeleeCritChance>
+					<MeleeParryChance>0.5</MeleeParryChance>
+				</value>
+			</li>
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="MeleeWeapon_bwscythe"]/statBases/Mass</xpath>
+				<value>
+					<Mass>8</Mass>
+					<Bulk>10</Bulk>
+					<MeleeCounterParryBonus>1.5</MeleeCounterParryBonus>
+				</value>
+			</li>
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="MeleeWeapon_bwscythe" or defName="Bow_BWBow"]/stuffCategories</xpath>
+				<value>
+					<stuffCategories>
+						<li>Metallic_Weapon</li>
+					</stuffCategories>
+				</value>
+			</li>
+		</operations>
+	</Operation>
+</Patch>

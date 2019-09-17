@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+	<!-- Changing leather protection. -->
+	<Operation Class="PatchOperationSequence">
+		<success>Always</success>
+		<operations>
+			<!-- ==== Check for the mod. ==== -->
+			<li Class="CombatExtended.PatchOperationFindMod">
+				<modName>Black Widows 2.0</modName>
+			</li>
+
+			<!-- ==== WidowSilk ==== -->
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="WidowSilk"]/statBases/StuffPower_Armor_Sharp</xpath>
+				<value>
+					<StuffPower_Armor_Sharp>0.44</StuffPower_Armor_Sharp>
+				</value>
+			</li>
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="WidowSilk"]/statBases/StuffPower_Armor_Blunt</xpath>
+				<value>
+					<StuffPower_Armor_Blunt>0.157</StuffPower_Armor_Blunt>
+				</value>
+			</li>
+
+			<!-- ==== ThroneSilk ==== -->
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="ThroneSilk"]/statBases/StuffPower_Armor_Sharp</xpath>
+				<value>
+					<StuffPower_Armor_Sharp>0.471</StuffPower_Armor_Sharp>
+				</value>
+			</li>
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="ThroneSilk"]/statBases/StuffPower_Armor_Blunt</xpath>
+				<value>
+					<StuffPower_Armor_Blunt>0.181</StuffPower_Armor_Blunt>
+				</value>
+			</li>
+
+			<!-- ==== AbyssSilk ==== -->
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="AbyssSilk"]/statBases/StuffPower_Armor_Sharp</xpath>
+				<value>
+					<StuffPower_Armor_Sharp>0.644</StuffPower_Armor_Sharp>
+				</value>
+			</li>
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="AbyssSilk"]/statBases/StuffPower_Armor_Blunt</xpath>
+				<value>
+					<StuffPower_Armor_Blunt>0.232</StuffPower_Armor_Blunt>
+				</value>
+			</li>
+		</operations>
+	</Operation>
+</Patch>
