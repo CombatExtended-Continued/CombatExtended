@@ -79,12 +79,11 @@ Zombieland 										| &#x2705; 	| &#x2705;
 - CE:FT will be constantly updated to keep up with any new features, bugfixes and tweaks from the upstream CE project
 - Each release will have the same version/tag number as the corresponding CE update, plus a FT-specific suffix (e.g. v1.0.1.5-FT-003 = base CE version v1.0.1.5 + FastTrack patch #3)
 
-## Patch Acknowledgements
+## Acknowledgements
 The CE:FT team would like the thank the following individuals for contributing compatibility patches to this repository:
 - Kik0hi
 - Freedom187/RaptorX
 - Owlchemist
-- sumghai
 - Togoasl
 
 ## License
