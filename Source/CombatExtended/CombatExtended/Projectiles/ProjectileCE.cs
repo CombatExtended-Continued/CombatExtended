@@ -61,7 +61,6 @@ namespace CombatExtended
         protected ThingDef equipmentDef;
         protected Thing launcher;
         public Thing intendedTarget;
-        public IntVec3 targetCell;
         public float minCollisionSqr;
         public bool canTargetSelf;
         public bool castShadow = true;
@@ -377,7 +376,6 @@ namespace CombatExtended
             Scribe_Values.Look<bool>(ref canTargetSelf, "cts");
             Scribe_Values.Look<bool>(ref logMisses, "lM", true);
             Scribe_Values.Look<bool>(ref castShadow, "cS", true);
-            Scribe_Values.Look<IntVec3>(ref targetCell, "tC", default(IntVec3), true);
         }
         #endregion
 
@@ -473,16 +471,10 @@ namespace CombatExtended
 
             //Check for minimum PAWN collision distance
             float distFromOrigin = cell.DistanceToSquared(OriginIV3);
-            if (!def.projectile.alwaysFreeIntercept
-                && (intendedTarget != null
-                    ? !cell.Equals(intendedTarget.Position)
-                    : !cell.Equals(targetCell))
-                && (minCollisionSqr <= 1f
-                    ? distFromOrigin < 1f
-                    : distFromOrigin <= Mathf.Min(144f, minCollisionSqr / 4)))
-            {
-                return false;
-            }
+            bool skipCollision = !def.projectile.alwaysFreeIntercept 
+                && (minCollisionSqr <= 1f 
+                    ? distFromOrigin < 1f 
+                    : distFromOrigin <= Mathf.Min(144f, minCollisionSqr / 4));
 
             var mainThingList = new List<Thing>(Map.thingGrid.ThingsListAtFast(cell))
                 .Where(t => justWallsRoofs ? t.def.Fillage == FillCategory.Full : (t is Pawn || t.def.Fillage != FillCategory.None)).ToList();
@@ -524,7 +516,7 @@ namespace CombatExtended
                 if ((thing == launcher || thing == mount) && !canTargetSelf) continue;
 
                 // Check for collision
-                if (TryCollideWith(thing))
+                if ((!skipCollision || thing == intendedTarget) && TryCollideWith(thing))
                     return true;
 
                 // Apply suppression. The height here is NOT that of the bullet in CELL,

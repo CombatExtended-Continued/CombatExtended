@@ -572,7 +572,6 @@ namespace CombatExtended
                     targDist *= 2;  // Double to account for divide by 4 in ProjectileCE minimum collision distance calculations
                 projectile.minCollisionSqr = Mathf.Pow(targDist, 2);
                 projectile.intendedTarget = currentTarget.Thing;
-                projectile.targetCell = currentTarget.Cell;
                 projectile.mount = caster.Position.GetThingList(caster.Map).FirstOrDefault(t => t is Pawn && t != caster);
                 projectile.AccuracyFactor = report.accuracyFactor * report.swayDegrees * ((numShotsFired + 1) * 0.75f);
                 projectile.Launch(
