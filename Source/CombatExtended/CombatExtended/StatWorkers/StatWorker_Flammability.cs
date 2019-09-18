@@ -63,7 +63,7 @@ namespace CombatExtended
             var stringBuilder = new StringBuilder();
             stringBuilder.Append(explanation);
 
-            if ((req.Thing is Plant plant))
+            if (req.Thing is Plant plant)
             {
                 stringBuilder.AppendLine();
                 stringBuilder.AppendLine();
@@ -71,10 +71,10 @@ namespace CombatExtended
                     $"{"CE_StatsReport_FlammabilityPrecipitation".Translate().Trim()}: {GetPrecipitationFactorFor(plant).ToStringByStyle(ToStringStyle.PercentZero)}");
             }
 
-            if ((req.Thing is Pawn pawn))
+            if (req.Thing is Pawn pawn && pawn.apparel?.WornApparelCount > 0)
             {
                 GetApparelAdjustFor(pawn, out var apparelFlammability, out var apparelCoverage);
-                apparelFlammability /= apparelCoverage != 0f ? apparelCoverage : 1f;
+                apparelFlammability /= apparelCoverage;
 
                 stringBuilder.AppendLine();
                 stringBuilder.AppendLine();
