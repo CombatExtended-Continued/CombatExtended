@@ -471,13 +471,10 @@ namespace CombatExtended
 
             //Check for minimum PAWN collision distance
             float distFromOrigin = cell.DistanceToSquared(OriginIV3);
-            if (!def.projectile.alwaysFreeIntercept
-                && minCollisionSqr <= 1f
-                ? distFromOrigin < 1f
-                : distFromOrigin <= Mathf.Min(144f, minCollisionSqr / 4))
-            {
-                justWallsRoofs = true;
-            }
+            bool skipCollision = !def.projectile.alwaysFreeIntercept 
+                && (minCollisionSqr <= 1f 
+                    ? distFromOrigin < 1f 
+                    : distFromOrigin <= Mathf.Min(144f, minCollisionSqr / 4));
 
             var mainThingList = new List<Thing>(Map.thingGrid.ThingsListAtFast(cell))
                 .Where(t => justWallsRoofs ? t.def.Fillage == FillCategory.Full : (t is Pawn || t.def.Fillage != FillCategory.None)).ToList();
@@ -519,7 +516,7 @@ namespace CombatExtended
                 if ((thing == launcher || thing == mount) && !canTargetSelf) continue;
 
                 // Check for collision
-                if (TryCollideWith(thing))
+                if ((!skipCollision || thing == intendedTarget) && TryCollideWith(thing))
                     return true;
 
                 // Apply suppression. The height here is NOT that of the bullet in CELL,
