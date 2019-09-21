@@ -28,19 +28,21 @@ namespace CombatExtended
         public ThingDef preExplosionSpawnThingDef = null;
         public float preExplosionSpawnChance = 0;
         public int preExplosionSpawnThingCount = 1;
+        public bool damageFalloff = true;
+        public float chanceToStartFire;
 
         public CompProperties_ExplosiveCE()
         {
             compClass = typeof(CompExplosiveCE);
         }
-		
-		public override void ResolveReferences(ThingDef parentDef)
-		{
-			base.ResolveReferences(parentDef);
-			if (this.explosionDamageDef == null)
-			{
-				this.explosionDamageDef = DamageDefOf.Bomb;
-			}
-		}
+
+        public override void ResolveReferences(ThingDef parentDef)
+        {
+            base.ResolveReferences(parentDef);
+            if (this.explosionDamageDef == null)
+            {
+                this.explosionDamageDef = DamageDefOf.Bomb;
+            }
+        }
     }
 }
