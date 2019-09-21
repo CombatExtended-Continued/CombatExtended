@@ -16,7 +16,8 @@ namespace CombatExtended
 		private List<IntVec3> cellsToAffect;
 		private List<Thing> damagedThings;
 		private HashSet<IntVec3> addedCellsAffectedOnlyByDamage;
-		private const float DamageFactorAtEdge = 0.2f;
+		private const float DamageAtEdge = 4f;      // Synch these with spreadsheet
+        private const float PenAtEdge = 14.81f;
 		private static HashSet<IntVec3> tmpCells = new HashSet<IntVec3>();
 
 		public override void SpawnSetup(Map map, bool respawningAfterLoad)
@@ -181,7 +182,7 @@ namespace CombatExtended
 			}
 			float num = this.chanceToStartFire;
 			if (this.damageFalloff) {
-				num *= Mathf.Lerp(1f, 0.2f, c.DistanceTo(base.Position) / this.radius);
+				num *= Mathf.Lerp(1f, DamageAtEdge / damAmount, c.DistanceTo(base.Position) / this.radius);
 			}
 			if (Rand.Chance(num)) {
 				FireUtility.TryStartFireIn(c, base.Map, Rand.Range(0.1f, 0.925f));
@@ -251,5 +252,27 @@ namespace CombatExtended
 		{
 			return this.applyDamageToExplosionCellsNeighbors && this.addedCellsAffectedOnlyByDamage.Contains(c);
 		}
-	}
+
+        public float GetDamageAmountAtCE(IntVec3 c)
+        {
+            if (!this.damageFalloff)
+            {
+                return this.damAmount;
+            }
+            float t = c.DistanceTo(base.Position) / this.radius;
+            int a = GenMath.RoundRandom(Mathf.Lerp((float)this.damAmount, DamageAtEdge, t));
+
+            return Mathf.Max(a, 1);
+        }
+
+        public float GetArmorPenetrationAtCE(IntVec3 c)
+        {
+            if (!this.damageFalloff)
+            {
+                return this.armorPenetration;
+            }
+            float t = c.DistanceTo(base.Position) / this.radius;
+            return Mathf.Lerp(this.armorPenetration, PenAtEdge, t);
+        }
+    }
 }
