@@ -9,6 +9,175 @@
 				<modName>Black Widows 2.0</modName>
 			</li>
 
+			<li Class="PatchOperationInsert">
+				<xpath>Defs/ThingCategoryDef[defName="AmmoXennCell"]</xpath>
+				<value>
+					<!-- ==== Ammo ==== -->
+					<ThingCategoryDef>
+					  <defName>AmmoBlackWidowArrows</defName>
+					  <label>black widow arrows</label>
+					  <parent>AmmoNeolithic</parent>
+					  <iconPath>UI/Icons/ThingCategories/CaliberArrow</iconPath>
+					</ThingCategoryDef>
+					<!-- ==================== AmmoSet ========================== -->
+					<CombatExtended.AmmoSetDef>
+						<defName>AmmoSet_BlackWidowArrow</defName>
+						<label>black widow arrows</label>
+						<ammoTypes>
+							<Ammo_BlackWidowArrow_Steel>Projectile_BlackWidowArrow_Steel</Ammo_BlackWidowArrow_Steel>
+							<Ammo_BlackWidowArrow_Plasteel>Projectile_BlackWidowArrow_Plasteel</Ammo_BlackWidowArrow_Plasteel>
+						</ammoTypes>
+					</CombatExtended.AmmoSetDef>
+					<!-- ==================== Ammo ========================== -->
+				  <ThingDef Class="CombatExtended.AmmoDef" Name="AmmoBlackWidowArrowBase" ParentName="NeolithicAmmoBase" Abstract="True">
+					<description>Special arrow designed by black widows for use in their bow.</description>
+					<statBases>
+					  <Mass>0.2</Mass>
+					  <Bulk>0.2</Bulk>
+					  <Flammability>0.8</Flammability>
+					</statBases>
+					<thingCategories>
+					  <li>AmmoBlackWidowArrows</li>
+					</thingCategories>
+					<stackLimit>200</stackLimit>
+					<tradeTags>
+					  <li>CE_AutoEnableTrade</li>
+					  <li>CE_AutoEnableCrafting_FueledSmithy</li>
+					  <li>CE_AutoEnableCrafting_ElectricSmithy</li>
+					</tradeTags>
+				  </ThingDef>
+				  <ThingDef Class="CombatExtended.AmmoDef" ParentName="AmmoBlackWidowArrowBase">
+					<defName>Ammo_BlackWidowArrow_Steel</defName>
+					<label>black widow arrow (steel)</label>
+					<graphicData>
+					  <texPath>Things/Ammo/Neolithic/Bolt/Steel</texPath>
+					  <graphicClass>Graphic_StackCount</graphicClass>
+					</graphicData>
+					<statBases>
+					  <MarketValue>0.52</MarketValue>
+					</statBases>
+						<ammoClass>SteelArrow</ammoClass>
+				  </ThingDef>
+				  <ThingDef Class="CombatExtended.AmmoDef" ParentName="AmmoBlackWidowArrowBase">
+					<defName>Ammo_BlackWidowArrow_Plasteel</defName>
+					<label>black widow arrow (plasteel)</label>
+					<graphicData>
+					  <texPath>Things/Ammo/Neolithic/Bolt/Plasteel</texPath>
+					  <graphicClass>Graphic_StackCount</graphicClass>
+					</graphicData>
+					<statBases>
+					  <MarketValue>3.46</MarketValue>
+					</statBases>
+						<ammoClass>PlasteelArrow</ammoClass>
+					<generateAllowChance>0.5</generateAllowChance>
+				  </ThingDef>
+					<!-- ================== Projectiles ================== -->
+					<ThingDef Class="CombatExtended.AmmoDef" Name="BaseBlackWidowArrowProjectile" ParentName="BaseBullet" Abstract="true">
+						<graphicData>
+							<texPath>Things/Projectile/Arrow_Small</texPath>
+							<graphicClass>Graphic_Single</graphicClass>
+						</graphicData>
+						<projectile Class="CombatExtended.ProjectilePropertiesCE">
+							<damageDef>Arrow</damageDef>
+							<speed>69</speed>
+						</projectile>
+					</ThingDef>
+					<ThingDef Class="CombatExtended.AmmoDef" ParentName="BaseBlackWidowArrowProjectile">
+						<defName>Projectile_BlackWidowArrow_Steel</defName>
+						<label>black widow arrow (steel)</label>
+						<graphicData>
+							<texPath>Things/Projectile/Arrows/Arrow_Steel</texPath>
+							<graphicClass>Graphic_Single</graphicClass>
+						</graphicData>
+						<projectile Class="CombatExtended.ProjectilePropertiesCE">
+							<damageAmountBase>20</damageAmountBase>
+							<armorPenetrationBase>0.4</armorPenetrationBase>
+							<preExplosionSpawnThingDef>Ammo_BlackWidowArrow_Steel</preExplosionSpawnThingDef>
+						</projectile>
+					</ThingDef>
+					<ThingDef Class="CombatExtended.AmmoDef" ParentName="BaseBlackWidowArrowProjectile">
+						<defName>Projectile_BlackWidowArrow_Plasteel</defName>
+						<label>black widow arrow (plasteel)</label>
+						<graphicData>
+							<texPath>Things/Projectile/Arrows/Arrow_Plasteel</texPath>
+							<graphicClass>Graphic_Single</graphicClass>
+						</graphicData>
+						<projectile Class="CombatExtended.ProjectilePropertiesCE">
+							<damageAmountBase>20</damageAmountBase>
+							<armorPenetrationBase>0.6</armorPenetrationBase>
+							<preExplosionSpawnThingDef>Ammo_BlackWidowArrow_Plasteel</preExplosionSpawnThingDef>
+						</projectile>
+					</ThingDef>
+				  <!-- ==================== Recipes ========================== -->
+				  <RecipeDef ParentName="AmmoRecipeNeolithicBase">
+					<defName>MakeAmmo_BlackWidowArrow_Steel</defName>
+					<label>make steel black widow arrows x10</label>
+					<description>Craft 10 steel black widow arrows.</description>
+					<jobString>Making steel black widow arrows.</jobString>
+					<ingredients>
+					  <li>
+						<filter>
+						  <thingDefs>
+							<li>WoodLog</li>
+						  </thingDefs>
+						</filter>
+						<count>4</count>
+					  </li>
+					  <li>
+						<filter>
+						  <thingDefs>
+							<li>Steel</li>
+						  </thingDefs>
+						</filter>
+						<count>3</count>
+					  </li>
+					</ingredients>
+					<fixedIngredientFilter>
+					  <thingDefs>
+						<li>WoodLog</li>
+						<li>Steel</li>
+					  </thingDefs>
+					</fixedIngredientFilter>
+					<products>
+					  <Ammo_BlackWidowArrow_Steel>10</Ammo_BlackWidowArrow_Steel>
+					</products>
+				  </RecipeDef>
+				  <RecipeDef ParentName="AmmoRecipeNeolithicBase">
+					<defName>MakeAmmo_BlackWidowArrow_Plasteel</defName>
+					<label>make plasteel black widow arrows x10</label>
+					<description>Craft 10 plasteel black widow arrows.</description>
+					<jobString>Making plasteel black widow arrows.</jobString>
+					<ingredients>
+					  <li>
+						<filter>
+						  <thingDefs>
+							<li>WoodLog</li>
+						  </thingDefs>
+						</filter>
+						<count>4</count>
+					  </li>
+					  <li>
+						<filter>
+						  <thingDefs>
+							<li>Plasteel</li>
+						  </thingDefs>
+						</filter>
+						<count>4</count>
+					  </li>
+					</ingredients>
+					<fixedIngredientFilter>
+					  <thingDefs>
+						<li>WoodLog</li>
+						<li>Plasteel</li>
+					  </thingDefs>
+					</fixedIngredientFilter>
+					<products>
+					  <Ammo_BlackWidowArrow_Plasteel>10</Ammo_BlackWidowArrow_Plasteel>
+					</products>
+				  </RecipeDef>
+				</value>
+			</li>
+
 			<!-- ==== Black Widow Rifle. ==== -->
 			<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
 				<defName>Gun_BWRifle</defName>
