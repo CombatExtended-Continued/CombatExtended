@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+	<!-- Black Widow pawn kinds. -->
+	<Operation Class="PatchOperationSequence">
+		<success>Always</success>
+		<operations>
+			<!-- ======== Check for the mod. ======== -->
+			<li Class="CombatExtended.PatchOperationFindMod">
+				<modName>Black Widows 2.0</modName>
+			</li>
+
+			<!-- ======== Black Widow faction. ======== -->
+			<!-- ==== BlackWidowMatron ==== -->
+			<li Class="PatchOperationAddModExtension">
+				<xpath>/Defs/PawnKindDef[defName="BlackWidowMatron"]</xpath>
+				<value>
+					<li Class="CombatExtended.LoadoutPropertiesExtension">
+						<shieldMoney>
+							<min>999999</min>
+							<max>3000000</max>
+						</shieldMoney>
+						<shieldTags>
+							<li>OutlanderShield</li>
+						</shieldTags>
+						<shieldChance>0.9</shieldChance>
+					</li>
+				</value>
+			</li>
+
+			<!-- ==== BlackWidowTrader ==== -->
+			<li Class="PatchOperationAddModExtension">
+				<xpath>/Defs/PawnKindDef[defName="BlackWidowTrader"]</xpath>
+				<value>
+					<li Class="CombatExtended.LoadoutPropertiesExtension">
+						<primaryMagazineCount>
+							<min>1</min>
+							<max>3</max>
+						</primaryMagazineCount>
+						<shieldMoney>
+							<min>100</min>
+							<max>200</max>
+						</shieldMoney>
+						<shieldTags>
+							<li>OutlanderShield</li>
+						</shieldTags>
+						<shieldChance>0.6</shieldChance>
+						<sidearms>
+							<li>
+								<generateChance>0.5</generateChance>
+								<sidearmMoney>
+									<min>50</min>
+									<max>100</max>
+								</sidearmMoney>
+								<weaponTags>
+									<li>CE_Sidearm_Melee</li>
+								</weaponTags>
+							</li>
+						</sidearms>
+					</li>
+				</value>
+			</li>
+
+			<!-- ==== BlackWidowReaver ==== -->
+			<li Class="PatchOperationAddModExtension">
+				<xpath>/Defs/PawnKindDef[defName="BlackWidowReaver"]</xpath>
+				<value>
+					<li Class="CombatExtended.LoadoutPropertiesExtension">
+						<shieldMoney>
+							<min>300</min>
+							<max>800</max>
+						</shieldMoney>
+						<shieldTags>
+							<li>TribalShield</li>
+						</shieldTags>
+						<shieldChance>0.8</shieldChance>
+					</li>
+				</value>
+			</li>
+
+			<!-- ==== BlackWidowSniper ==== -->
+			<li Class="PatchOperationAddModExtension">
+				<xpath>/Defs/PawnKindDef[defName="BlackWidowSniper"]</xpath>
+				<value>
+					<li Class="CombatExtended.LoadoutPropertiesExtension">
+						<primaryMagazineCount>
+							<min>2</min>
+							<max>4</max>
+						</primaryMagazineCount>
+						<shieldMoney>
+							<min>2000</min>
+							<max>3000</max>
+						</shieldMoney>
+						<shieldTags>
+							<li>OutlanderShield</li>
+						</shieldTags>
+						<shieldChance>0.2</shieldChance>
+						<sidearms>
+							<li>
+								<generateChance>0.5</generateChance>
+								<sidearmMoney>
+									<min>1000</min>
+									<max>2000</max>
+								</sidearmMoney>
+								<weaponTags>
+									<li>CE_Sidearm_Melee</li>
+								</weaponTags>
+							</li>
+						</sidearms>
+					</li>
+				</value>
+			</li>
+
+			<!-- ==== BlackWidowSlasher ==== -->
+			<li Class="PatchOperationAddModExtension">
+				<xpath>/Defs/PawnKindDef[defName="BlackWidowSlasher"]</xpath>
+				<value>
+					<li Class="CombatExtended.LoadoutPropertiesExtension">
+						<shieldMoney>
+							<min>400</min>
+							<max>999999</max>
+						</shieldMoney>
+						<shieldTags>
+							<li>OutlanderShield</li>
+						</shieldTags>
+						<shieldChance>0.8</shieldChance>
+					</li>
+				</value>
+			</li>
+
+			<!-- ==== BlackWidowGrenadier ==== -->
+			<li Class="PatchOperationAddModExtension">
+				<xpath>/Defs/PawnKindDef[defName="BlackWidowGrenadier"]</xpath>
+				<value>
+					<li Class="CombatExtended.LoadoutPropertiesExtension">
+						<primaryMagazineCount>
+							<min>10</min>
+							<max>30</max>
+						</primaryMagazineCount>
+						<shieldMoney>
+							<min>250</min>
+							<max>1000</max>
+						</shieldMoney>
+						<shieldTags>
+							<li>OutlanderShield</li>
+						</shieldTags>
+						<shieldChance>0.5</shieldChance>
+						<forcedSidearm>
+							<sidearmMoney>
+								<min>200</min>
+								<max>600</max>
+							</sidearmMoney>
+							<weaponTags>
+								<li>CE_Sidearm_Melee</li>
+							</weaponTags>
+						</forcedSidearm>
+					</li>
+				</value>
+			</li>
+		</operations>
+	</Operation>
+</Patch>

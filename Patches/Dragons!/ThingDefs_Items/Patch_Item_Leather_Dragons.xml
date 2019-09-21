@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+	<!-- Changing leather protection. -->
+	<Operation Class="PatchOperationSequence">
+		<success>Always</success>
+		<operations>
+			<!-- ==== Check for the mod. ==== -->
+			<li Class="CombatExtended.PatchOperationFindMod">
+				<modName>Dragon Mod</modName>
+			</li>
+
+			<!-- ==== DragonLeatherBase ==== -->
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[@Name="DragonLeatherBase"]/statBases/StuffPower_Armor_Sharp</xpath>
+				<value>
+					<StuffPower_Armor_Sharp>0.56</StuffPower_Armor_Sharp>
+				</value>
+			</li>
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[@Name="DragonLeatherBase"]/statBases/StuffPower_Armor_Blunt</xpath>
+				<value>
+					<StuffPower_Armor_Blunt>0.33</StuffPower_Armor_Blunt>
+				</value>
+			</li>
+
+			<!-- ==== Leather_CryoDragon ==== -->
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="Leather_CryoDragon"]/statBases/StuffPower_Armor_Sharp</xpath>
+				<value>
+					<StuffPower_Armor_Sharp>0.58</StuffPower_Armor_Sharp>
+				</value>
+			</li>
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="Leather_CryoDragon"]/statBases/StuffPower_Armor_Blunt</xpath>
+				<value>
+					<StuffPower_Armor_Blunt>0.3</StuffPower_Armor_Blunt>
+				</value>
+			</li>
+
+			<!-- ==== Leather_RockDragon ==== -->
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="Leather_RockDragon"]/statBases/StuffPower_Armor_Sharp</xpath>
+				<value>
+					<StuffPower_Armor_Sharp>0.6</StuffPower_Armor_Sharp>
+				</value>
+			</li>
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="Leather_RockDragon"]/statBases/StuffPower_Armor_Blunt</xpath>
+				<value>
+					<StuffPower_Armor_Blunt>0.35</StuffPower_Armor_Blunt>
+				</value>
+			</li>
+
+			<!-- ==== Leather_RoyalDragon ==== -->
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="Leather_RoyalDragon"]/statBases/StuffPower_Armor_Sharp</xpath>
+				<value>
+					<StuffPower_Armor_Sharp>0.61</StuffPower_Armor_Sharp>
+				</value>
+			</li>
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="Leather_RoyalDragon"]/statBases/StuffPower_Armor_Blunt</xpath>
+				<value>
+					<StuffPower_Armor_Blunt>0.36</StuffPower_Armor_Blunt>
+				</value>
+			</li>
+
+			<!-- ==== Leather_TrueDragon ==== -->
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="Leather_TrueDragon"]/statBases/StuffPower_Armor_Sharp</xpath>
+				<value>
+					<StuffPower_Armor_Sharp>0.62</StuffPower_Armor_Sharp>
+				</value>
+			</li>
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="Leather_TrueDragon"]/statBases/StuffPower_Armor_Blunt</xpath>
+				<value>
+					<StuffPower_Armor_Blunt>0.37</StuffPower_Armor_Blunt>
+				</value>
+			</li>
+		</operations>
+	</Operation>
+</Patch>
