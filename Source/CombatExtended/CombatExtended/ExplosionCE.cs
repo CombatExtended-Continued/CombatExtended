@@ -253,7 +253,7 @@ namespace CombatExtended
 			return this.applyDamageToExplosionCellsNeighbors && this.addedCellsAffectedOnlyByDamage.Contains(c);
 		}
 
-        public float GetDamageAmountAtCE(IntVec3 c)
+        public int GetDamageAmountAtCE(IntVec3 c)
         {
             if (!this.damageFalloff)
             {
