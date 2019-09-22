@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+	<Operation Class="PatchOperationSequence">
+		<success>Always</success>
+		<operations>
+
+			<li Class="CombatExtended.PatchOperationFindMod">
+				<modName>Rabbie The Moonrabbit</modName>
+			</li>
+			
+			<!-- Fix incorrect apparel stuff definitions -->
+			
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ScenarioDef[defName="RB_Scenario"]/scenario/parts/li[thingDef="Apparel_FlakVest"]</xpath>
+				<value>
+					<stuff>Plasteel</stuff>
+				</value>
+			</li>
+			
+			<li Class="PatchOperationRemove">
+				<xpath>Defs/ScenarioDef[defName="RB_Scenario"]/scenario/parts/li[thingDef="Apparel_AdvancedHelmet"]/stuff</xpath>
+			</li>
+
+			<!-- Add ammo -->
+			
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ScenarioDef[defName="RB_Scenario"]/scenario/parts</xpath>
+				<value>
+					<li Class="ScenPart_StartingThing_Defined">
+						<def>StartingThing_Defined</def>
+						<thingDef>Ammo_46x30mm_FMJ</thingDef>
+						<count>500</count>
+					</li>
+				</value>
+			</li>
+			
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ScenarioDef[defName="RB_Scenario"]/scenario/parts</xpath>
+				<value>
+					<li Class="ScenPart_StartingThing_Defined">
+						<def>StartingThing_Defined</def>
+						<thingDef>Ammo_44Magnum_FMJ</thingDef>
+						<count>500</count>
+					</li>
+				</value>
+			</li>
+			
+		</operations>
+	</Operation>
+</Patch>

@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+	<Operation Class="PatchOperationSequence">
+		<success>Always</success>
+		<operations>
+
+			<li Class="CombatExtended.PatchOperationFindMod">
+				<modName>Rabbie The Moonrabbit</modName>
+			</li>
+
+			<!-- Replace miniguns with LMGs for machine gunners (miniguns cannot spawn with ammo) -->
+
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/PawnKindDef[defName="RB_FMachinegunner"]/weaponTags</xpath>
+				<value>
+					<weaponTags>
+						<li>CE_MachineGun</li>
+					</weaponTags>
+				</value>
+			</li>
+			
+			<!-- Spawn primary weapon ammo for all non-colonist Rabbies -->
+
+			<li Class="PatchOperationAddModExtension">
+				<xpath>Defs/PawnKindDef[@Name="RabbitishBasePawnKind"]</xpath>
+				<value>
+					<li Class="CombatExtended.LoadoutPropertiesExtension">
+						<primaryMagazineCount>
+							<min>2</min>
+							<max>5</max>
+						</primaryMagazineCount>
+					</li>
+				</value>
+			</li>
+
+			<!-- Spawn backpacks on all Rabbies -->
+
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/PawnKindDef[@Name="RBBasePawnKind" or @Name="RabbitishBasePawnKind"]</xpath>
+				<value>
+					<apparelRequired>
+						<li>Apparel_Backpack</li>
+					</apparelRequired>
+				</value>
+			</li>
+
+			<!-- Adjust weaponMoney -->
+
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/PawnKindDef[
+					defName="RB_EnergySupply" or
+					defName="RB_Technician" or
+					defName="RB_Worker"
+				]/weaponMoney</xpath>
+				<value>
+					<weaponMoney>
+						<min>350</min>
+						<max>1800</max>
+					</weaponMoney>
+				</value>
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/PawnKindDef[
+					defName="RB_Wanderer" or
+					defName="RB_SubOfficer" or
+					defName="RB_FRifle"
+				]/weaponMoney</xpath>
+				<value>
+					<weaponMoney>
+						<min>400</min>
+						<max>2500</max>
+					</weaponMoney>
+				</value>
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/PawnKindDef[defName="RB_EliteOfficer"]/weaponMoney</xpath>
+				<value>
+					<weaponMoney>
+						<min>850</min>
+						<max>4000</max>
+					</weaponMoney>
+				</value>
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/PawnKindDef[defName="RB_FSniper"]/weaponMoney</xpath>
+				<value>
+					<weaponMoney>
+						<min>450</min>
+						<max>2500</max>
+					</weaponMoney>
+				</value>
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/PawnKindDef[defName="RB_FMachinegunner"]/weaponMoney</xpath>
+				<value>
+					<weaponMoney>
+						<min>2500</min>
+						<max>5800</max>
+					</weaponMoney>
+				</value>
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/PawnKindDef[defName="RB_RGunner"]/weaponMoney</xpath>
+				<value>
+					<weaponMoney>
+						<min>850</min>
+						<max>4000</max>
+					</weaponMoney>
+				</value>
+			</li>
+
+		</operations>
+	</Operation>
+</Patch>
