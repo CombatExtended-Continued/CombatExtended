@@ -1,13 +1,13 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <Defs>
-	
+
 	<ThingCategoryDef>
 		<defName>AmmoFN57x28mm</defName>
 		<label>FN 5.7x28mm</label>
 		<parent>AmmoPistols</parent>
-    <iconPath>UI/Icons/ThingCategories/CaliberPistol</iconPath>
+		<iconPath>UI/Icons/ThingCategories/CaliberPistol</iconPath>
 	</ThingCategoryDef>
-	
+
 	<!-- ==================== AmmoSet ========================== -->
 
 	<CombatExtended.AmmoSetDef>
@@ -19,14 +19,14 @@
 			<Ammo_FN57x28mm_HP>Bullet_FN57x28mm_HP</Ammo_FN57x28mm_HP>
 		</ammoTypes>
 	</CombatExtended.AmmoSetDef>
-	
+
 	<!-- ==================== Ammo ========================== -->
 
 	<ThingDef Class="CombatExtended.AmmoDef" Name="FN57x29mmBase" ParentName="SmallAmmoBase" Abstract="True">
 		<description>This high-velocity handgun cartridge was specifically designed for military personnel to defeat body armor.</description>
 		<statBases>
-		<Mass>0.01</Mass>
-		<Bulk>0.02</Bulk>
+			<Mass>0.01</Mass>
+			<Bulk>0.02</Bulk>
 		</statBases>
 		<tradeTags>
 			<li>CE_AutoEnableTrade</li>
@@ -78,7 +78,7 @@
 		<ammoClass>HollowPoint</ammoClass>
 		<cookOffProjectile>Bullet_FN57x28mm_HP</cookOffProjectile>
 	</ThingDef>
-	
+
 	<!-- ================== Projectiles ================== -->
 
 	<ThingDef Class="CombatExtended.AmmoDef" Name="BaseFN57x28mmBullet" ParentName="BaseBullet" Abstract="true">
@@ -88,7 +88,7 @@
 		</graphicData>
 		<projectile Class="CombatExtended.ProjectilePropertiesCE">
 			<damageDef>Bullet</damageDef>
-			<speed>163</speed>
+			<speed>130</speed>
 			<dropsCasings>true</dropsCasings>
 		</projectile>
 	</ThingDef>
@@ -97,8 +97,10 @@
 		<defName>Bullet_FN57x28mm_FMJ</defName>
 		<label>FN 5.7mm bullet (FMJ)</label>
 		<projectile Class="CombatExtended.ProjectilePropertiesCE">
-			<damageAmountBase>7</damageAmountBase>
+			<damageAmountBase>9</damageAmountBase>
 			<armorPenetrationBase>0.312</armorPenetrationBase>
+			<armorPenetrationRHA>0</armorPenetrationRHA>
+			<armorPenetrationKPA>10980</armorPenetrationKPA>
 		</projectile>
 	</ThingDef>
 
@@ -106,8 +108,10 @@
 		<defName>Bullet_FN57x28mm_AP</defName>
 		<label>FN 5.7mm bullet (AP)</label>
 		<projectile Class="CombatExtended.ProjectilePropertiesCE">
-			<damageAmountBase>4</damageAmountBase>
+			<damageAmountBase>6</damageAmountBase>
 			<armorPenetrationBase>0.462</armorPenetrationBase>
+			<armorPenetrationRHA>0</armorPenetrationRHA>
+			<armorPenetrationKPA>10980</armorPenetrationKPA>
 		</projectile>
 	</ThingDef>
 
@@ -115,89 +119,91 @@
 		<defName>Bullet_FN57x28mm_HP</defName>
 		<label>FN 5.7mm bullet (HP)</label>
 		<projectile Class="CombatExtended.ProjectilePropertiesCE">
-			<damageAmountBase>10</damageAmountBase>
+			<damageAmountBase>12</damageAmountBase>
 			<armorPenetrationBase>0.162</armorPenetrationBase>
+			<armorPenetrationRHA>0</armorPenetrationRHA>
+			<armorPenetrationKPA>10980</armorPenetrationKPA>
 		</projectile>
 	</ThingDef>
-  
-  <!-- ==================== Recipes ========================== -->
 
-  <RecipeDef ParentName="AmmoRecipeBase">
-    <defName>MakeAmmo_FN57x28mm_FMJ</defName>
-    <label>make FN 5.7x28mm (FMJ) cartridge x500</label>
-    <description>Craft 500 FN 5.7x28mm (FMJ) cartridges.</description>
-    <jobString>Making FN 5.7x28mm (FMJ) cartridges.</jobString>
-    <ingredients>
-      <li>
-        <filter>
-          <thingDefs>
-            <li>Steel</li>
-          </thingDefs>
-        </filter>
-        <count>8</count>
-      </li>
-    </ingredients>
-    <fixedIngredientFilter>
-      <thingDefs>
-        <li>Steel</li>
-      </thingDefs>
-    </fixedIngredientFilter>
-    <products>
-      <Ammo_FN57x28mm_FMJ>500</Ammo_FN57x28mm_FMJ>
-    </products>
-    <workAmount>1500</workAmount>
-  </RecipeDef>
+	<!-- ==================== Recipes ========================== -->
 
-  <RecipeDef ParentName="AmmoRecipeBase">
-    <defName>MakeAmmo_FN57x28mm_AP</defName>
-    <label>make FN 5.7x28mm (AP) cartridge x500</label>
-    <description>Craft 500 FN 5.7x28mm (AP) cartridges.</description>
-    <jobString>Making FN 5.7x28mm (AP) cartridges.</jobString>
-    <ingredients>
-      <li>
-        <filter>
-          <thingDefs>
-            <li>Steel</li>
-          </thingDefs>
-        </filter>
-        <count>9</count>
-      </li>
-    </ingredients>
-    <fixedIngredientFilter>
-      <thingDefs>
-        <li>Steel</li>
-      </thingDefs>
-    </fixedIngredientFilter>
-    <products>
-      <Ammo_FN57x28mm_AP>500</Ammo_FN57x28mm_AP>
-    </products>
-    <workAmount>2000</workAmount>
-  </RecipeDef>
+	<RecipeDef ParentName="AmmoRecipeBase">
+		<defName>MakeAmmo_FN57x28mm_FMJ</defName>
+		<label>make FN 5.7x28mm (FMJ) cartridge x500</label>
+		<description>Craft 500 FN 5.7x28mm (FMJ) cartridges.</description>
+		<jobString>Making FN 5.7x28mm (FMJ) cartridges.</jobString>
+		<ingredients>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>Steel</li>
+					</thingDefs>
+				</filter>
+				<count>8</count>
+			</li>
+		</ingredients>
+		<fixedIngredientFilter>
+			<thingDefs>
+				<li>Steel</li>
+			</thingDefs>
+		</fixedIngredientFilter>
+		<products>
+			<Ammo_FN57x28mm_FMJ>500</Ammo_FN57x28mm_FMJ>
+		</products>
+		<workAmount>1500</workAmount>
+	</RecipeDef>
 
-  <RecipeDef ParentName="AmmoRecipeBase">
-    <defName>MakeAmmo_FN57x28mm_HP</defName>
-    <label>make FN 5.7x28mm (HP) cartridge x500</label>
-    <description>Craft 500 FN 5.7x28mm (HP) cartridges.</description>
-    <jobString>Making FN 5.7x28mm (HP) cartridges.</jobString>
-    <ingredients>
-      <li>
-        <filter>
-          <thingDefs>
-            <li>Steel</li>
-          </thingDefs>
-        </filter>
-        <count>8</count>
-      </li>
-    </ingredients>
-    <fixedIngredientFilter>
-      <thingDefs>
-        <li>Steel</li>
-      </thingDefs>
-    </fixedIngredientFilter>
-    <products>
-      <Ammo_FN57x28mm_HP>500</Ammo_FN57x28mm_HP>
-    </products>
-    <workAmount>2500</workAmount>
-  </RecipeDef>
-	
+	<RecipeDef ParentName="AmmoRecipeBase">
+		<defName>MakeAmmo_FN57x28mm_AP</defName>
+		<label>make FN 5.7x28mm (AP) cartridge x500</label>
+		<description>Craft 500 FN 5.7x28mm (AP) cartridges.</description>
+		<jobString>Making FN 5.7x28mm (AP) cartridges.</jobString>
+		<ingredients>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>Steel</li>
+					</thingDefs>
+				</filter>
+				<count>9</count>
+			</li>
+		</ingredients>
+		<fixedIngredientFilter>
+			<thingDefs>
+				<li>Steel</li>
+			</thingDefs>
+		</fixedIngredientFilter>
+		<products>
+			<Ammo_FN57x28mm_AP>500</Ammo_FN57x28mm_AP>
+		</products>
+		<workAmount>2000</workAmount>
+	</RecipeDef>
+
+	<RecipeDef ParentName="AmmoRecipeBase">
+		<defName>MakeAmmo_FN57x28mm_HP</defName>
+		<label>make FN 5.7x28mm (HP) cartridge x500</label>
+		<description>Craft 500 FN 5.7x28mm (HP) cartridges.</description>
+		<jobString>Making FN 5.7x28mm (HP) cartridges.</jobString>
+		<ingredients>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>Steel</li>
+					</thingDefs>
+				</filter>
+				<count>8</count>
+			</li>
+		</ingredients>
+		<fixedIngredientFilter>
+			<thingDefs>
+				<li>Steel</li>
+			</thingDefs>
+		</fixedIngredientFilter>
+		<products>
+			<Ammo_FN57x28mm_HP>500</Ammo_FN57x28mm_HP>
+		</products>
+		<workAmount>2500</workAmount>
+	</RecipeDef>
+
 </Defs>
