@@ -5,7 +5,9 @@ Combat Extended: FastTrack Edition is a fork of the [original Combat Extended mo
 - Same [core features as the original mod](https://github.com/NoImageAvailable/CombatExtended/blob/master/README.md) - shooting, melee, armor, inventory and medical overhauls
 - Fully compatible with existing CE savegames - delete CE completely, drop in CE:FT and go!
 - 56 supported third-party mods (compared with 31 for CE)
+- Recognizes existing third-party standalone CE patches
 - Additional ammo and projectile definitions and textures
+- New Graphic_StackCountRanged class for precise control of item subgraphics based on stack count
 
 ## Supported Third-Party Mods
 Mod | CE (original) | CE: FastTrack Edition
