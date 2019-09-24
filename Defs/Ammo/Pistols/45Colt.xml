@@ -5,9 +5,9 @@
 		<defName>Ammo45Colt</defName>
 		<label>.45 Colt</label>
 		<parent>AmmoPistols</parent>
-    <iconPath>UI/Icons/ThingCategories/CaliberPistol</iconPath>
+		<iconPath>UI/Icons/ThingCategories/CaliberPistol</iconPath>
 	</ThingCategoryDef>
-	
+
 	<!-- ==================== AmmoSet ========================== -->
 
 	<CombatExtended.AmmoSetDef>
@@ -20,19 +20,19 @@
 			<Ammo_410Bore_Buck>Bullet_410Bore_Buck</Ammo_410Bore_Buck>
 		</ammoTypes>
 	</CombatExtended.AmmoSetDef>
-	
+
 	<!-- ==================== Ammo ========================== -->
 
 	<ThingDef Class="CombatExtended.AmmoDef" Name="45ColtBase" ParentName="SmallAmmoBase" Abstract="True">
 		<description>Ancient pistol cartridge originally designed for revolvers.</description>
 		<statBases>
-		<Mass>0.02</Mass>
-		<Bulk>0.03</Bulk>
+			<Mass>0.02</Mass>
+			<Bulk>0.03</Bulk>
 		</statBases>
-	<tradeTags>
-		<li>CE_AutoEnableTrade</li>
-		<li>CE_AutoEnableCrafting</li>
-	</tradeTags>
+		<tradeTags>
+			<li>CE_AutoEnableTrade</li>
+			<li>CE_AutoEnableCrafting</li>
+		</tradeTags>
 		<thingCategories>
 			<li>Ammo45Colt</li>
 		</thingCategories>
@@ -79,7 +79,7 @@
 		<ammoClass>HollowPoint</ammoClass>
 		<cookOffProjectile>Bullet_45Colt_HP</cookOffProjectile>
 	</ThingDef>
-	
+
 	<!-- ================== Projectiles ================== -->
 
 	<ThingDef Class="CombatExtended.AmmoDef" Name="Base45ColtBullet" ParentName="BaseBullet" Abstract="true">
@@ -89,7 +89,7 @@
 		</graphicData>
 		<projectile Class="CombatExtended.ProjectilePropertiesCE">
 			<damageDef>Bullet</damageDef>
-			<speed>70</speed>
+			<speed>56</speed>
 			<dropsCasings>true</dropsCasings>
 		</projectile>
 	</ThingDef>
@@ -98,8 +98,10 @@
 		<defName>Bullet_45Colt_FMJ</defName>
 		<label>.45 Colt bullet (FMJ)</label>
 		<projectile Class="CombatExtended.ProjectilePropertiesCE">
-			<damageAmountBase>14</damageAmountBase>
+			<damageAmountBase>12</damageAmountBase>
 			<armorPenetrationBase>0.317</armorPenetrationBase>
+			<armorPenetrationRHA>4</armorPenetrationRHA>
+			<armorPenetrationKPA>11440</armorPenetrationKPA>
 		</projectile>
 	</ThingDef>
 
@@ -109,6 +111,8 @@
 		<projectile Class="CombatExtended.ProjectilePropertiesCE">
 			<damageAmountBase>8</damageAmountBase>
 			<armorPenetrationBase>0.467</armorPenetrationBase>
+			<armorPenetrationRHA>8</armorPenetrationRHA>
+			<armorPenetrationKPA>11440</armorPenetrationKPA>
 		</projectile>
 	</ThingDef>
 
@@ -116,89 +120,91 @@
 		<defName>Bullet_45Colt_HP</defName>
 		<label>.45 Colt bullet (HP)</label>
 		<projectile Class="CombatExtended.ProjectilePropertiesCE">
-			<damageAmountBase>20</damageAmountBase>
+			<damageAmountBase>15</damageAmountBase>
 			<armorPenetrationBase>0.167</armorPenetrationBase>
+			<armorPenetrationRHA>2</armorPenetrationRHA>
+			<armorPenetrationKPA>11440</armorPenetrationKPA>
 		</projectile>
 	</ThingDef>
-  
+
 	<!-- ==================== Recipes ========================== -->
 
-  <RecipeDef ParentName="AmmoRecipeBase">
-    <defName>MakeAmmo_45Colt_FMJ</defName>
-    <label>make .45 Colt (FMJ) cartridge x500</label>
-    <description>Craft 500 .45 Colt (FMJ) cartridges.</description>
-    <jobString>Making .45 Colt (FMJ) cartridges.</jobString>
-    <ingredients>
-      <li>
-        <filter>
-          <thingDefs>
-            <li>Steel</li>
-          </thingDefs>
-        </filter>
-        <count>14</count>
-      </li>
-    </ingredients>
-    <fixedIngredientFilter>
-      <thingDefs>
-        <li>Steel</li>
-      </thingDefs>
-    </fixedIngredientFilter>
-    <products>
-      <Ammo_45Colt_FMJ>500</Ammo_45Colt_FMJ>
-    </products>
-    <workAmount>2000</workAmount>
-  </RecipeDef>
+	<RecipeDef ParentName="AmmoRecipeBase">
+		<defName>MakeAmmo_45Colt_FMJ</defName>
+		<label>make .45 Colt (FMJ) cartridge x500</label>
+		<description>Craft 500 .45 Colt (FMJ) cartridges.</description>
+		<jobString>Making .45 Colt (FMJ) cartridges.</jobString>
+		<ingredients>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>Steel</li>
+					</thingDefs>
+				</filter>
+				<count>14</count>
+			</li>
+		</ingredients>
+		<fixedIngredientFilter>
+			<thingDefs>
+				<li>Steel</li>
+			</thingDefs>
+		</fixedIngredientFilter>
+		<products>
+			<Ammo_45Colt_FMJ>500</Ammo_45Colt_FMJ>
+		</products>
+		<workAmount>2000</workAmount>
+	</RecipeDef>
 
-  <RecipeDef ParentName="AmmoRecipeBase">
-    <defName>MakeAmmo_45Colt_AP</defName>
-    <label>make .45 Colt (AP) cartridge x500</label>
-    <description>Craft 500 .45 Colt (AP) cartridges.</description>
-    <jobString>Making .45 Colt (AP) cartridges.</jobString>
-    <ingredients>
-      <li>
-        <filter>
-          <thingDefs>
-            <li>Steel</li>
-          </thingDefs>
-        </filter>
-        <count>18</count>
-      </li>
-    </ingredients>
-    <fixedIngredientFilter>
-      <thingDefs>
-        <li>Steel</li>
-      </thingDefs>
-    </fixedIngredientFilter>
-    <products>
-      <Ammo_45Colt_AP>500</Ammo_45Colt_AP>
-    </products>
-    <workAmount>3000</workAmount>
-  </RecipeDef>
+	<RecipeDef ParentName="AmmoRecipeBase">
+		<defName>MakeAmmo_45Colt_AP</defName>
+		<label>make .45 Colt (AP) cartridge x500</label>
+		<description>Craft 500 .45 Colt (AP) cartridges.</description>
+		<jobString>Making .45 Colt (AP) cartridges.</jobString>
+		<ingredients>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>Steel</li>
+					</thingDefs>
+				</filter>
+				<count>18</count>
+			</li>
+		</ingredients>
+		<fixedIngredientFilter>
+			<thingDefs>
+				<li>Steel</li>
+			</thingDefs>
+		</fixedIngredientFilter>
+		<products>
+			<Ammo_45Colt_AP>500</Ammo_45Colt_AP>
+		</products>
+		<workAmount>3000</workAmount>
+	</RecipeDef>
 
-  <RecipeDef ParentName="AmmoRecipeBase">
-    <defName>MakeAmmo_45Colt_HP</defName>
-    <label>make .45 Colt (HP) cartridge x500</label>
-    <description>Craft 500 .45 Colt (HP) cartridges.</description>
-    <jobString>Making .45 Colt (HP) cartridges.</jobString>
-    <ingredients>
-      <li>
-        <filter>
-          <thingDefs>
-            <li>Steel</li>
-          </thingDefs>
-        </filter>
-        <count>14</count>
-      </li>
-    </ingredients>
-    <fixedIngredientFilter>
-      <thingDefs>
-        <li>Steel</li>
-      </thingDefs>
-    </fixedIngredientFilter>
-    <products>
-      <Ammo_45Colt_HP>500</Ammo_45Colt_HP>
-    </products>
-    <workAmount>4250</workAmount>
-  </RecipeDef>
-	
+	<RecipeDef ParentName="AmmoRecipeBase">
+		<defName>MakeAmmo_45Colt_HP</defName>
+		<label>make .45 Colt (HP) cartridge x500</label>
+		<description>Craft 500 .45 Colt (HP) cartridges.</description>
+		<jobString>Making .45 Colt (HP) cartridges.</jobString>
+		<ingredients>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>Steel</li>
+					</thingDefs>
+				</filter>
+				<count>14</count>
+			</li>
+		</ingredients>
+		<fixedIngredientFilter>
+			<thingDefs>
+				<li>Steel</li>
+			</thingDefs>
+		</fixedIngredientFilter>
+		<products>
+			<Ammo_45Colt_HP>500</Ammo_45Colt_HP>
+		</products>
+		<workAmount>4250</workAmount>
+	</RecipeDef>
+
 </Defs>

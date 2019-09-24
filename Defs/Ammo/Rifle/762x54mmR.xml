@@ -5,9 +5,9 @@
 		<defName>Ammo762x54mmR</defName>
 		<label>7.62x54mmR</label>
 		<parent>AmmoRifles</parent>
-    <iconPath>UI/Icons/ThingCategories/CaliberRifle</iconPath>
+		<iconPath>UI/Icons/ThingCategories/CaliberRifle</iconPath>
 	</ThingCategoryDef>
-	
+
 	<!-- ==================== AmmoSet ========================== -->
 
 	<CombatExtended.AmmoSetDef>
@@ -19,19 +19,19 @@
 			<Ammo_762x54mmR_HP>Bullet_762x54mmR_HP</Ammo_762x54mmR_HP>
 		</ammoTypes>
 	</CombatExtended.AmmoSetDef>
-	
+
 	<!-- ==================== Ammo ========================== -->
 
 	<ThingDef Class="CombatExtended.AmmoDef" Name="762x54mmRBase" ParentName="SmallAmmoBase" Abstract="True">
 		<description>Rimmed rifle cartridge used by many machine guns, bolt-action and sniper rifles.</description>
 		<statBases>
-		<Mass>0.03</Mass>
-		<Bulk>0.05</Bulk>
+			<Mass>0.03</Mass>
+			<Bulk>0.05</Bulk>
 		</statBases>
-	<tradeTags>
-		<li>CE_AutoEnableTrade</li>
-		<li>CE_AutoEnableCrafting</li>
-	</tradeTags>
+		<tradeTags>
+			<li>CE_AutoEnableTrade</li>
+			<li>CE_AutoEnableCrafting</li>
+		</tradeTags>
 		<thingCategories>
 			<li>Ammo762x54mmR</li>
 		</thingCategories>
@@ -78,7 +78,7 @@
 		<ammoClass>HollowPoint</ammoClass>
 		<cookOffProjectile>Bullet_762x54mmR_HP</cookOffProjectile>
 	</ThingDef>
-	
+
 	<!-- ================== Projectiles ================== -->
 
 	<ThingDef Class="CombatExtended.AmmoDef" Name="Base762x54mmRBullet" ParentName="BaseBullet" Abstract="true">
@@ -88,7 +88,7 @@
 		</graphicData>
 		<projectile Class="CombatExtended.ProjectilePropertiesCE">
 			<damageDef>Bullet</damageDef>
-			<speed>207</speed>
+			<speed>166</speed>
 			<dropsCasings>true</dropsCasings>
 		</projectile>
 	</ThingDef>
@@ -97,8 +97,10 @@
 		<defName>Bullet_762x54mmR_FMJ</defName>
 		<label>7.62mmR bullet (FMJ)</label>
 		<projectile Class="CombatExtended.ProjectilePropertiesCE">
-			<damageAmountBase>19</damageAmountBase>
+			<damageAmountBase>20</damageAmountBase>
 			<armorPenetrationBase>0.602</armorPenetrationBase>
+			<armorPenetrationRHA>7</armorPenetrationRHA>
+			<armorPenetrationKPA>67340</armorPenetrationKPA>
 		</projectile>
 	</ThingDef>
 
@@ -106,8 +108,10 @@
 		<defName>Bullet_762x54mmR_AP</defName>
 		<label>7.62mmR bullet (AP)</label>
 		<projectile Class="CombatExtended.ProjectilePropertiesCE">
-			<damageAmountBase>11</damageAmountBase>
+			<damageAmountBase>12</damageAmountBase>
 			<armorPenetrationBase>0.752</armorPenetrationBase>
+			<armorPenetrationRHA>14</armorPenetrationRHA>
+			<armorPenetrationKPA>67340</armorPenetrationKPA>
 		</projectile>
 	</ThingDef>
 
@@ -115,11 +119,13 @@
 		<defName>Bullet_762x54mmR_HP</defName>
 		<label>7.62mmR bullet (HP)</label>
 		<projectile Class="CombatExtended.ProjectilePropertiesCE">
-			<damageAmountBase>27</damageAmountBase>
+			<damageAmountBase>25</damageAmountBase>
 			<armorPenetrationBase>0.452</armorPenetrationBase>
+			<armorPenetrationRHA>4</armorPenetrationRHA>
+			<armorPenetrationKPA>67340</armorPenetrationKPA>
 		</projectile>
 	</ThingDef>
-  
+
 	<!-- ==================== Recipes ========================== -->
 
 	<RecipeDef ParentName="AmmoRecipeBase">
@@ -145,7 +151,7 @@
 		<products>
 			<Ammo_762x54mmR_FMJ>500</Ammo_762x54mmR_FMJ>
 		</products>
-    <workAmount>3750</workAmount>
+		<workAmount>3750</workAmount>
 	</RecipeDef>
 
 	<RecipeDef ParentName="AmmoRecipeBase">
@@ -171,7 +177,7 @@
 		<products>
 			<Ammo_762x54mmR_AP>500</Ammo_762x54mmR_AP>
 		</products>
-    <workAmount>6500</workAmount>
+		<workAmount>6500</workAmount>
 	</RecipeDef>
 
 	<RecipeDef ParentName="AmmoRecipeBase">
@@ -197,7 +203,7 @@
 		<products>
 			<Ammo_762x54mmR_HP>500</Ammo_762x54mmR_HP>
 		</products>
-    <workAmount>9250</workAmount>
+		<workAmount>9250</workAmount>
 	</RecipeDef>
-	
+
 </Defs>

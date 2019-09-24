@@ -5,9 +5,9 @@
 		<defName>Ammo303British</defName>
 		<label>.303 British</label>
 		<parent>AmmoRifles</parent>
-    <iconPath>UI/Icons/ThingCategories/CaliberRifle</iconPath>
+		<iconPath>UI/Icons/ThingCategories/CaliberRifle</iconPath>
 	</ThingCategoryDef>
-	
+
 	<!-- ==================== AmmoSet ========================== -->
 
 	<CombatExtended.AmmoSetDef>
@@ -19,19 +19,19 @@
 			<Ammo_303British_HP>Bullet_303British_HP</Ammo_303British_HP>
 		</ammoTypes>
 	</CombatExtended.AmmoSetDef>
-	
+
 	<!-- ==================== Ammo ========================== -->
 
 	<ThingDef Class="CombatExtended.AmmoDef" Name="303BritishBase" ParentName="SmallAmmoBase" Abstract="True">
 		<description>Large rifle bullet found mostly in outdated bolt-action firearms.</description>
 		<statBases>
-		<Mass>0.03</Mass>
-		<Bulk>0.05</Bulk>
+			<Mass>0.03</Mass>
+			<Bulk>0.05</Bulk>
 		</statBases>
-	<tradeTags>
-		<li>CE_AutoEnableTrade</li>
-		<li>CE_AutoEnableCrafting</li>
-	</tradeTags>
+		<tradeTags>
+			<li>CE_AutoEnableTrade</li>
+			<li>CE_AutoEnableCrafting</li>
+		</tradeTags>
 		<thingCategories>
 			<li>Ammo303British</li>
 		</thingCategories>
@@ -78,9 +78,9 @@
 		<ammoClass>HollowPoint</ammoClass>
 		<cookOffProjectile>Bullet_303British_HP</cookOffProjectile>
 	</ThingDef>
-	
+
 	<!-- ================== Projectiles ================== -->
-	
+
 	<ThingDef Class="CombatExtended.AmmoDef" Name="Base303BritishBullet" ParentName="BaseBullet" Abstract="true">
 		<graphicData>
 			<texPath>Things/Projectile/Bullet_Small</texPath>
@@ -88,7 +88,7 @@
 		</graphicData>
 		<projectile Class="CombatExtended.ProjectilePropertiesCE">
 			<damageDef>Bullet</damageDef>
-			<speed>186</speed>
+			<speed>149</speed>
 			<dropsCasings>true</dropsCasings>
 		</projectile>
 	</ThingDef>
@@ -97,8 +97,10 @@
 		<defName>Bullet_303British_FMJ</defName>
 		<label>.303 British bullet (FMJ)</label>
 		<projectile Class="CombatExtended.ProjectilePropertiesCE">
-			<damageAmountBase>18</damageAmountBase>
+			<damageAmountBase>19</damageAmountBase>
 			<armorPenetrationBase>0.589</armorPenetrationBase>
+			<armorPenetrationRHA>6</armorPenetrationRHA>
+			<armorPenetrationKPA>62540</armorPenetrationKPA>
 		</projectile>
 	</ThingDef>
 
@@ -106,8 +108,10 @@
 		<defName>Bullet_303British_AP</defName>
 		<label>.303 British bullet (AP)</label>
 		<projectile Class="CombatExtended.ProjectilePropertiesCE">
-			<damageAmountBase>11</damageAmountBase>
+			<damageAmountBase>12</damageAmountBase>
 			<armorPenetrationBase>0.739</armorPenetrationBase>
+			<armorPenetrationRHA>12</armorPenetrationRHA>
+			<armorPenetrationKPA>62540</armorPenetrationKPA>
 		</projectile>
 	</ThingDef>
 
@@ -115,11 +119,13 @@
 		<defName>Bullet_303British_HP</defName>
 		<label>.303 British bullet (HP)</label>
 		<projectile Class="CombatExtended.ProjectilePropertiesCE">
-			<damageAmountBase>25</damageAmountBase>
+			<damageAmountBase>24</damageAmountBase>
 			<armorPenetrationBase>0.439</armorPenetrationBase>
+			<armorPenetrationRHA>3</armorPenetrationRHA>
+			<armorPenetrationKPA>62540</armorPenetrationKPA>
 		</projectile>
 	</ThingDef>
-  
+
 	<!-- ==================== Recipes ========================== -->
 
 	<RecipeDef ParentName="AmmoRecipeBase">
@@ -145,7 +151,7 @@
 		<products>
 			<Ammo_303British_FMJ>500</Ammo_303British_FMJ>
 		</products>
-    <workAmount>3750</workAmount>
+		<workAmount>3750</workAmount>
 	</RecipeDef>
 
 	<RecipeDef ParentName="AmmoRecipeBase">
@@ -171,7 +177,7 @@
 		<products>
 			<Ammo_303British_AP>500</Ammo_303British_AP>
 		</products>
-    <workAmount>6000</workAmount>
+		<workAmount>6000</workAmount>
 	</RecipeDef>
 
 	<RecipeDef ParentName="AmmoRecipeBase">
@@ -197,7 +203,7 @@
 		<products>
 			<Ammo_303British_HP>500</Ammo_303British_HP>
 		</products>
-    <workAmount>8750</workAmount>
+		<workAmount>8750</workAmount>
 	</RecipeDef>
-	
+
 </Defs>

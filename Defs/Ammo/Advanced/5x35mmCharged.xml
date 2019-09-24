@@ -1,14 +1,14 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <Defs>
 
-    <ThingCategoryDef>
-      <defName>Ammo5x35mmCharged</defName>
-      <label>5x35mm Charged</label>
-      <parent>AmmoAdvanced</parent>
-      <iconPath>UI/Icons/ThingCategories/CaliberCharge</iconPath>
-    </ThingCategoryDef>
-	
-	<!-- ==================== AmmoSet ========================== -->
+  <ThingCategoryDef>
+    <defName>Ammo5x35mmCharged</defName>
+    <label>5x35mm Charged</label>
+    <parent>AmmoAdvanced</parent>
+    <iconPath>UI/Icons/ThingCategories/CaliberCharge</iconPath>
+  </ThingCategoryDef>
+
+  <!-- ==================== AmmoSet ========================== -->
 
   <CombatExtended.AmmoSetDef>
     <defName>AmmoSet_5x35mmCharged</defName>
@@ -17,14 +17,14 @@
       <Ammo_5x35mmCharged>Bullet_5x35mmCharged</Ammo_5x35mmCharged>
     </ammoTypes>
   </CombatExtended.AmmoSetDef>
-	
-	<!-- ==================== Ammo ========================== -->
+
+  <!-- ==================== Ammo ========================== -->
 
   <ThingDef Class="CombatExtended.AmmoDef" Name="5x35mmChargedBase" ParentName="SpacerSmallAmmoBase" Abstract="True">
     <description>Mechanoid-built charged shot ammo designed for high-velocity fire and armor penetration.</description>
     <statBases>
-	  <Mass>0.012</Mass>
-	  <Bulk>0.01</Bulk>
+      <Mass>0.012</Mass>
+      <Bulk>0.01</Bulk>
     </statBases>
     <thingCategories>
       <li>Ammo5x35mmCharged</li>
@@ -44,10 +44,10 @@
     <statBases>
       <MarketValue>1.28</MarketValue>
     </statBases>
-	<ammoClass>Charged</ammoClass>
+    <ammoClass>Charged</ammoClass>
   </ThingDef>
-	
-	<!-- ================== Projectiles ================== -->
+
+  <!-- ================== Projectiles ================== -->
 
   <ThingDef Class="CombatExtended.AmmoDef" ParentName="BaseBullet">
     <defName>Bullet_5x35mmCharged</defName>
@@ -60,18 +60,20 @@
     </graphicData>
     <projectile Class="CombatExtended.ProjectilePropertiesCE">
       <damageDef>Bullet</damageDef>
-      <damageAmountBase>10</damageAmountBase>
+      <damageAmountBase>13</damageAmountBase>
       <speed>200</speed>
       <secondaryDamage>
         <li>
           <def>Bomb_Secondary</def>
-          <amount>3</amount>
+          <amount>4</amount>
         </li>
       </secondaryDamage>
       <armorPenetrationBase>0.95</armorPenetrationBase>
+      <armorPenetrationRHA>30</armorPenetrationRHA>
+      <armorPenetrationKPA>70000</armorPenetrationKPA>
     </projectile>
   </ThingDef>
-  
-	<!-- ==================== Recipes ========================== -->
-	
+
+  <!-- ==================== Recipes ========================== -->
+
 </Defs>

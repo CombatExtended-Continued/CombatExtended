@@ -64,7 +64,7 @@
     <ammoClass>GrenadeHE</ammoClass>
     <comps>
       <li Class="CombatExtended.CompProperties_ExplosiveCE">
-        <explosionDamage>50</explosionDamage>
+        <explosionDamage>290</explosionDamage>
         <explosionDamageDef>Bomb</explosionDamageDef>
         <explosionRadius>2.5</explosionRadius>
         <fragments>
@@ -91,8 +91,8 @@
     <comps>
       <li Class="CombatExtended.CompProperties_ExplosiveCE">
         <explosionDamageDef>PrometheumFlame</explosionDamageDef>
-        <explosionDamage>50</explosionDamage>
-        <explosionRadius>3.5</explosionRadius>
+        <explosionDamage>0</explosionDamage>
+        <explosionRadius>9.5</explosionRadius>
         <preExplosionSpawnThingDef>FilthPrometheum</preExplosionSpawnThingDef>
         <preExplosionSpawnChance>0.5</preExplosionSpawnChance>
         <soundExplode>MortarIncendiary_Explode</soundExplode>
@@ -118,9 +118,9 @@
     <ammoClass>GrenadeEMP</ammoClass>
     <comps>
       <li Class="CombatExtended.CompProperties_ExplosiveCE">
-        <explosionDamage>10</explosionDamage>
+        <explosionDamage>83</explosionDamage>
         <explosionDamageDef>Bomb</explosionDamageDef>
-        <explosionRadius>1</explosionRadius>
+        <explosionRadius>3</explosionRadius>
         <fragments>
           <Fragment_Shell>20</Fragment_Shell>
         </fragments>
@@ -143,7 +143,7 @@
     <ammoClass>FoamFuel</ammoClass>
     <comps>
       <li Class="CombatExtended.CompProperties_ExplosiveCE">
-        <explosionRadius>5</explosionRadius>
+        <explosionRadius>9.5</explosionRadius>
         <explosionDamageDef>Extinguish</explosionDamageDef>
         <postExplosionSpawnThingDef>Filth_FireFoam</postExplosionSpawnThingDef>
         <postExplosionSpawnChance>1</postExplosionSpawnChance>
@@ -211,7 +211,9 @@
     </graphicData>
     <projectile Class="CombatExtended.ProjectilePropertiesCE">
       <damageDef>Bomb</damageDef>
-      <damageAmountBase>250</damageAmountBase>
+      <damageAmountBase>290</damageAmountBase>
+      <armorPenetrationRHA>0</armorPenetrationRHA>
+      <armorPenetrationKPA>43432</armorPenetrationKPA>
       <explosionRadius>2.5</explosionRadius>
       <soundExplode>MortarBomb_Explode</soundExplode>
       <applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
@@ -236,7 +238,9 @@
     <projectile Class="CombatExtended.ProjectilePropertiesCE">
       <damageDef>PrometheumFlame</damageDef>
       <damageAmountBase>0</damageAmountBase>
-      <explosionRadius>10.5</explosionRadius>
+      <armorPenetrationRHA>0</armorPenetrationRHA>
+      <armorPenetrationKPA>39493</armorPenetrationKPA>
+      <explosionRadius>9.5</explosionRadius>
       <preExplosionSpawnThingDef>FilthPrometheum</preExplosionSpawnThingDef>
       <preExplosionSpawnChance>0.15</preExplosionSpawnChance>
       <soundExplode>MortarIncendiary_Explode</soundExplode>
@@ -252,8 +256,10 @@
     </graphicData>
     <projectile Class="CombatExtended.ProjectilePropertiesCE">
       <damageDef>EMP</damageDef>
-      <damageAmountBase>80</damageAmountBase>
-      <explosionRadius>5</explosionRadius>
+      <damageAmountBase>83</damageAmountBase>
+      <armorPenetrationRHA>0</armorPenetrationRHA>
+      <armorPenetrationKPA>24946</armorPenetrationKPA>
+      <explosionRadius>3</explosionRadius>
     </projectile>
   </ThingDef>
 
@@ -266,7 +272,9 @@
     </graphicData>
     <projectile Class="CombatExtended.ProjectilePropertiesCE">
       <damageDef>Extinguish</damageDef>
-      <explosionRadius>10</explosionRadius>
+      <armorPenetrationRHA>0</armorPenetrationRHA>
+      <armorPenetrationKPA>39493</armorPenetrationKPA>
+      <explosionRadius>9.5</explosionRadius>
       <flyOverhead>true</flyOverhead>
       <soundHitThickRoof>Artillery_HitThickRoof</soundHitThickRoof>
       <soundExplode>Explosion_EMP</soundExplode>

@@ -1,13 +1,13 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <Defs>
 
-    <ThingCategoryDef>
-      <defName>Ammo50BMG</defName>
-      <label>.50 BMG</label>
-      <parent>AmmoHighCaliber</parent>
-      <iconPath>UI/Icons/ThingCategories/CaliberHighCaliber</iconPath>
-    </ThingCategoryDef>
-  
+  <ThingCategoryDef>
+    <defName>Ammo50BMG</defName>
+    <label>.50 BMG</label>
+    <parent>AmmoHighCaliber</parent>
+    <iconPath>UI/Icons/ThingCategories/CaliberHighCaliber</iconPath>
+  </ThingCategoryDef>
+
   <!-- ==================== AmmoSet ========================== -->
 
   <CombatExtended.AmmoSetDef>
@@ -20,14 +20,14 @@
       <Ammo_50BMG_Incendiary>Bullet_50BMG_Incendiary</Ammo_50BMG_Incendiary>
     </ammoTypes>
   </CombatExtended.AmmoSetDef>
-  
+
   <!-- ==================== Ammo ========================== -->
 
   <ThingDef Class="CombatExtended.AmmoDef" Name="Ammo50BMGBase" ParentName="SmallAmmoBase" Abstract="True">
     <description>Large caliber bullet used by many heavy machine guns and anti-materiel rifles.</description>
     <statBases>
-    <Mass>0.12</Mass>
-    <Bulk>0.16</Bulk>
+      <Mass>0.12</Mass>
+      <Bulk>0.16</Bulk>
     </statBases>
     <tradeTags>
       <li>CE_AutoEnableTrade</li>
@@ -104,7 +104,7 @@
     </graphicData>
     <projectile Class="CombatExtended.ProjectilePropertiesCE">
       <damageDef>Bullet</damageDef>
-      <speed>222</speed>
+      <speed>177</speed>
       <dropsCasings>true</dropsCasings>
     </projectile>
   </ThingDef>
@@ -113,8 +113,10 @@
     <defName>Bullet_50BMG_FMJ</defName>
     <label>.50 BMG bullet (FMJ)</label>
     <projectile Class="CombatExtended.ProjectilePropertiesCE">
-      <damageAmountBase>46</damageAmountBase>
+      <damageAmountBase>41</damageAmountBase>
       <armorPenetrationBase>0.909</armorPenetrationBase>
+      <armorPenetrationRHA>14</armorPenetrationRHA>
+      <armorPenetrationKPA>334380</armorPenetrationKPA>
     </projectile>
   </ThingDef>
 
@@ -124,7 +126,9 @@
     <projectile Class="CombatExtended.ProjectilePropertiesCE">
       <damageAmountBase>19</damageAmountBase>
       <armorPenetrationBase>1.109</armorPenetrationBase>
-      <speed>250</speed>
+      <armorPenetrationRHA>49</armorPenetrationRHA>
+      <armorPenetrationKPA>341780</armorPenetrationKPA>
+      <speed>244</speed>
     </projectile>
   </ThingDef>
 
@@ -132,12 +136,14 @@
     <defName>Bullet_50BMG_HE</defName>
     <label>.50 BMG bullet (HE)</label>
     <projectile Class="CombatExtended.ProjectilePropertiesCE">
-      <damageAmountBase>28</damageAmountBase>
+      <damageAmountBase>41</damageAmountBase>
       <armorPenetrationBase>1.059</armorPenetrationBase>
+      <armorPenetrationRHA>14</armorPenetrationRHA>
+      <armorPenetrationKPA>334380</armorPenetrationKPA>
     </projectile>
     <comps>
       <li Class="CombatExtended.CompProperties_ExplosiveCE">
-        <explosionDamage>18</explosionDamage>
+        <explosionDamage>24</explosionDamage>
         <explosionDamageDef>Bomb_Secondary</explosionDamageDef>
         <explosionRadius>1</explosionRadius>
         <soundExplode>CE_BulletHE_Explode</soundExplode>
@@ -149,17 +155,19 @@
     <defName>Bullet_50BMG_Incendiary</defName>
     <label>.50 BMG bullet (AP-I)</label>
     <projectile Class="CombatExtended.ProjectilePropertiesCE">
-      <damageAmountBase>28</damageAmountBase>
+      <damageAmountBase>25</damageAmountBase>
       <armorPenetrationBase>1.059</armorPenetrationBase>
+      <armorPenetrationRHA>28</armorPenetrationRHA>
+      <armorPenetrationKPA>314700</armorPenetrationKPA>
       <secondaryDamage>
         <li>
           <def>Flame_Secondary</def>
-          <amount>9</amount>
+          <amount>16</amount>
         </li>
       </secondaryDamage>
     </projectile>
   </ThingDef>
-  
+
   <!-- ==================== Recipes ========================== -->
 
   <RecipeDef ParentName="AmmoRecipeBase">

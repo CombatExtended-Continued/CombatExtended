@@ -5,9 +5,9 @@
 		<defName>Ammo32ACP</defName>
 		<label>.32 ACP</label>
 		<parent>AmmoPistols</parent>
-    <iconPath>UI/Icons/ThingCategories/CaliberPistol</iconPath>
+		<iconPath>UI/Icons/ThingCategories/CaliberPistol</iconPath>
 	</ThingCategoryDef>
-	
+
 	<!-- ==================== AmmoSet ========================== -->
 
 	<CombatExtended.AmmoSetDef>
@@ -15,18 +15,18 @@
 		<label>.32 ACP</label>
 		<ammoTypes>
 			<Ammo_32ACP_FMJ>Bullet_32ACP_FMJ</Ammo_32ACP_FMJ>
-		<!--<Ammo_32ACP_AP>Bullet_32ACP_AP</Ammo_32ACP_AP>
+			<!--<Ammo_32ACP_AP>Bullet_32ACP_AP</Ammo_32ACP_AP>
 			<Ammo_32ACP_HP>Bullet_32ACP_HP</Ammo_32ACP_HP>-->
 		</ammoTypes>
 	</CombatExtended.AmmoSetDef>
-	
+
 	<!-- ==================== Ammo ========================== -->
 
 	<ThingDef Class="CombatExtended.AmmoDef" Name="32ACPBase" ParentName="SmallAmmoBase" Abstract="True">
 		<description>Low caliber handgun cartridge lacking in stopping power.</description>
 		<statBases>
-		<Mass>0.01</Mass>
-		<Bulk>0.01</Bulk>
+			<Mass>0.01</Mass>
+			<Bulk>0.01</Bulk>
 		</statBases>
 		<tradeTags>
 			<li>CE_AutoEnableTrade</li>
@@ -76,7 +76,7 @@
 		</statBases>
 	<ammoClass>HollowPoint</ammoClass>
 	</ThingDef>-->
-	
+
 	<!-- ================== Projectiles ================== -->
 
 	<ThingDef Class="CombatExtended.AmmoDef" Name="Base32ACPBullet" ParentName="BaseBullet" Abstract="true">
@@ -86,7 +86,7 @@
 		</graphicData>
 		<projectile Class="CombatExtended.ProjectilePropertiesCE">
 			<damageDef>Bullet</damageDef>
-			<speed>80</speed>
+			<speed>64</speed>
 			<dropsCasings>true</dropsCasings>
 		</projectile>
 	</ThingDef>
@@ -95,8 +95,10 @@
 		<defName>Bullet_32ACP_FMJ</defName>
 		<label>.32 ACP bullet (FMJ)</label>
 		<projectile Class="CombatExtended.ProjectilePropertiesCE">
-			<damageAmountBase>6</damageAmountBase>
+			<damageAmountBase>7</damageAmountBase>
 			<armorPenetrationBase>0.187</armorPenetrationBase>
+			<armorPenetrationRHA>0</armorPenetrationRHA>
+			<armorPenetrationKPA>3980</armorPenetrationKPA>
 		</projectile>
 	</ThingDef>
 
@@ -117,33 +119,33 @@
 			<armorPenetrationBase>0.037</armorPenetrationBase>
 		</projectile>
 	</ThingDef>-->
-  
+
 	<!-- ==================== Recipes ========================== -->
 
-  <RecipeDef ParentName="AmmoRecipeBase">
-    <defName>MakeAmmo_32ACP_FMJ</defName>
-    <label>make .32 ACP cartridge x500</label>
-    <description>Craft 500 .32 ACP cartridges.</description>
-    <jobString>Making .32 ACP cartridges.</jobString>
-    <ingredients>
-      <li>
-        <filter>
-          <thingDefs>
-            <li>Steel</li>
-          </thingDefs>
-        </filter>
-        <count>5</count>
-      </li>
-    </ingredients>
-    <fixedIngredientFilter>
-      <thingDefs>
-        <li>Steel</li>
-      </thingDefs>
-    </fixedIngredientFilter>
-    <products>
-      <Ammo_32ACP_FMJ>500</Ammo_32ACP_FMJ>
-    </products>
-    <workAmount>1250</workAmount>
-  </RecipeDef>
-	
+	<RecipeDef ParentName="AmmoRecipeBase">
+		<defName>MakeAmmo_32ACP_FMJ</defName>
+		<label>make .32 ACP cartridge x500</label>
+		<description>Craft 500 .32 ACP cartridges.</description>
+		<jobString>Making .32 ACP cartridges.</jobString>
+		<ingredients>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>Steel</li>
+					</thingDefs>
+				</filter>
+				<count>5</count>
+			</li>
+		</ingredients>
+		<fixedIngredientFilter>
+			<thingDefs>
+				<li>Steel</li>
+			</thingDefs>
+		</fixedIngredientFilter>
+		<products>
+			<Ammo_32ACP_FMJ>500</Ammo_32ACP_FMJ>
+		</products>
+		<workAmount>1250</workAmount>
+	</RecipeDef>
+
 </Defs>
