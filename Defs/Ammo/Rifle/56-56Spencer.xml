@@ -1,13 +1,13 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <Defs>
-	
+
 	<ThingCategoryDef>
 		<defName>Ammo5656Spencer</defName>
 		<label>.56-56 Spencer</label>
 		<parent>AmmoRifles</parent>
-    <iconPath>UI/Icons/ThingCategories/CaliberRifle</iconPath>
+		<iconPath>UI/Icons/ThingCategories/CaliberRifle</iconPath>
 	</ThingCategoryDef>
-	
+
 	<!-- ==================== AmmoSet ========================== -->
 
 	<CombatExtended.AmmoSetDef>
@@ -17,9 +17,9 @@
 			<Ammo_5656SpencerRimfire>Bullet_5656Spencer</Ammo_5656SpencerRimfire>
 		</ammoTypes>
 	</CombatExtended.AmmoSetDef>
-	
+
 	<!-- ==================== Ammo ========================== -->
-	
+
 	<ThingDef Class="CombatExtended.AmmoDef" ParentName="SmallAmmoBase">
 		<defName>Ammo_5656SpencerRimfire</defName>
 		<label>.56-56 Spencer rimfire cartridge</label>
@@ -43,9 +43,9 @@
 		<ammoClass>FullMetalJacket</ammoClass>
 		<cookOffProjectile>Bullet_5656Spencer</cookOffProjectile>
 	</ThingDef>
-	
+
 	<!-- ================== Projectiles ================== -->
-	
+
 	<ThingDef Class="CombatExtended.AmmoDef" ParentName="BaseBullet">
 		<defName>Bullet_5656Spencer</defName>
 		<label>.56-56 Spencer rimfire bullet</label>
@@ -55,15 +55,17 @@
 		</graphicData>
 		<projectile Class="CombatExtended.ProjectilePropertiesCE">
 			<damageDef>Bullet</damageDef>
-			<damageAmountBase>25</damageAmountBase>
+			<damageAmountBase>18</damageAmountBase>
 			<armorPenetrationBase>0.466</armorPenetrationBase>
-			<speed>92</speed>
+			<armorPenetrationRHA>0</armorPenetrationRHA>
+			<armorPenetrationKPA>30360</armorPenetrationKPA>
+			<speed>73</speed>
 			<dropsCasings>true</dropsCasings>
 		</projectile>
 	</ThingDef>
-  
+
 	<!-- ==================== Recipes ========================== -->
-	
+
 	<RecipeDef ParentName="AmmoRecipeBase">
 		<defName>MakeAmmo_5656SpencerRimfire</defName>
 		<label>make .56-56 Spencer rimfire cartridge x500</label>
@@ -87,7 +89,7 @@
 		<products>
 			<Ammo_5656SpencerRimfire>500</Ammo_5656SpencerRimfire>
 		</products>
-    <workAmount>3000</workAmount>
+		<workAmount>3000</workAmount>
 	</RecipeDef>
-	
+
 </Defs>

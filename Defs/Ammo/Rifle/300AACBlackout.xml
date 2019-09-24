@@ -5,9 +5,9 @@
 		<defName>Ammo300AACBlackout</defName>
 		<label>.300 AAC Blackout</label>
 		<parent>AmmoRifles</parent>
-    <iconPath>UI/Icons/ThingCategories/CaliberRifle</iconPath>
+		<iconPath>UI/Icons/ThingCategories/CaliberRifle</iconPath>
 	</ThingCategoryDef>
-	
+
 	<!-- ==================== AmmoSet ========================== -->
 
 	<CombatExtended.AmmoSetDef>
@@ -19,19 +19,19 @@
 			<Ammo_300AACBlackout_HP>Bullet_300AACBlackout_HP</Ammo_300AACBlackout_HP>
 		</ammoTypes>
 	</CombatExtended.AmmoSetDef>
-	
+
 	<!-- ==================== Ammo ========================== -->
 
 	<ThingDef Class="CombatExtended.AmmoDef" Name="300AACBlackoutBase" ParentName="SmallAmmoBase" Abstract="True">
 		<description>Intermediate rifle cartridge that was designed to achieve ballistics similar to 7.62x39mm.</description>
 		<statBases>
-		<Mass>0.014</Mass>
-		<Bulk>0.03</Bulk>
+			<Mass>0.014</Mass>
+			<Bulk>0.03</Bulk>
 		</statBases>
-	<tradeTags>
-		<li>CE_AutoEnableTrade</li>
-		<li>CE_AutoEnableCrafting</li>
-	</tradeTags>
+		<tradeTags>
+			<li>CE_AutoEnableTrade</li>
+			<li>CE_AutoEnableCrafting</li>
+		</tradeTags>
 		<thingCategories>
 			<li>Ammo300AACBlackout</li>
 		</thingCategories>
@@ -78,9 +78,9 @@
 		<ammoClass>HollowPoint</ammoClass>
 		<cookOffProjectile>Bullet_300AACBlackout_HP</cookOffProjectile>
 	</ThingDef>
-	
+
 	<!-- ================== Projectiles ================== -->
-	
+
 	<ThingDef Class="CombatExtended.AmmoDef" Name="Base300AACBlackoutBullet" ParentName="BaseBullet" Abstract="true">
 		<graphicData>
 			<texPath>Things/Projectile/Bullet_Small</texPath>
@@ -88,11 +88,11 @@
 		</graphicData>
 		<projectile Class="CombatExtended.ProjectilePropertiesCE">
 			<damageDef>Bullet</damageDef>
-			<speed>169</speed>
+			<speed>135</speed>
 			<dropsCasings>true</dropsCasings>
 		</projectile>
 	</ThingDef>
-	
+
 	<ThingDef Class="CombatExtended.AmmoDef" ParentName="Base300AACBlackoutBullet">
 		<defName>Bullet_300AACBlackout_FMJ</defName>
 		<label>.300 AAC Blackout bullet (FMJ)</label>
@@ -103,6 +103,8 @@
 		<projectile Class="CombatExtended.ProjectilePropertiesCE">
 			<damageAmountBase>15</damageAmountBase>
 			<armorPenetrationBase>0.498</armorPenetrationBase>
+			<armorPenetrationRHA>0</armorPenetrationRHA>
+			<armorPenetrationKPA>0</armorPenetrationKPA>
 		</projectile>
 	</ThingDef>
 
@@ -116,6 +118,8 @@
 		<projectile Class="CombatExtended.ProjectilePropertiesCE">
 			<damageAmountBase>9</damageAmountBase>
 			<armorPenetrationBase>0.648</armorPenetrationBase>
+			<armorPenetrationRHA>0</armorPenetrationRHA>
+			<armorPenetrationKPA>0</armorPenetrationKPA>
 		</projectile>
 	</ThingDef>
 
@@ -129,9 +133,11 @@
 		<projectile Class="CombatExtended.ProjectilePropertiesCE">
 			<damageAmountBase>21</damageAmountBase>
 			<armorPenetrationBase>0.348</armorPenetrationBase>
+			<armorPenetrationRHA>0</armorPenetrationRHA>
+			<armorPenetrationKPA>0</armorPenetrationKPA>
 		</projectile>
 	</ThingDef>
-  
+
 	<!-- ==================== Recipes ========================== -->
 
 	<RecipeDef ParentName="AmmoRecipeBase">
@@ -157,7 +163,7 @@
 		<products>
 			<Ammo_300AACBlackout_FMJ>500</Ammo_300AACBlackout_FMJ>
 		</products>
-    <workAmount>2750</workAmount>
+		<workAmount>2750</workAmount>
 	</RecipeDef>
 
 	<RecipeDef ParentName="AmmoRecipeBase">
@@ -183,7 +189,7 @@
 		<products>
 			<Ammo_300AACBlackout_AP>500</Ammo_300AACBlackout_AP>
 		</products>
-    <workAmount>4500</workAmount>
+		<workAmount>4500</workAmount>
 	</RecipeDef>
 
 	<RecipeDef ParentName="AmmoRecipeBase">
@@ -209,7 +215,7 @@
 		<products>
 			<Ammo_300AACBlackout_HP>500</Ammo_300AACBlackout_HP>
 		</products>
-    <workAmount>6000</workAmount>
+		<workAmount>6000</workAmount>
 	</RecipeDef>
-	
+
 </Defs>

@@ -5,9 +5,9 @@
 		<defName>Ammo25ACP</defName>
 		<label>.25 ACP</label>
 		<parent>AmmoPistols</parent>
-    <iconPath>UI/Icons/ThingCategories/CaliberPistol</iconPath>
+		<iconPath>UI/Icons/ThingCategories/CaliberPistol</iconPath>
 	</ThingCategoryDef>
-	
+
 	<!-- ==================== AmmoSet ========================== -->
 
 	<CombatExtended.AmmoSetDef>
@@ -17,14 +17,14 @@
 			<Ammo_25ACP_FMJ>Bullet_25ACP_FMJ</Ammo_25ACP_FMJ>
 		</ammoTypes>
 	</CombatExtended.AmmoSetDef>
-	
+
 	<!-- ==================== Ammo ========================== -->
 
 	<ThingDef Class="CombatExtended.AmmoDef" Name="25ACPBase" ParentName="SmallAmmoBase" Abstract="True">
 		<description>Low caliber handgun cartridge lacking in stopping power.</description>
 		<statBases>
-		<Mass>0.004</Mass>
-		<Bulk>0.01</Bulk>
+			<Mass>0.004</Mass>
+			<Bulk>0.01</Bulk>
 		</statBases>
 		<tradeTags>
 			<li>CE_AutoEnableTrade</li>
@@ -48,7 +48,7 @@
 		<ammoClass>FullMetalJacket</ammoClass>
 		<cookOffProjectile>Bullet_25ACP_FMJ</cookOffProjectile>
 	</ThingDef>
-	
+
 	<!-- ================== Projectiles ================== -->
 
 	<ThingDef Class="CombatExtended.AmmoDef" Name="Base25ACPBullet" ParentName="BaseBullet" Abstract="true">
@@ -58,7 +58,7 @@
 		</graphicData>
 		<projectile Class="CombatExtended.ProjectilePropertiesCE">
 			<damageDef>Bullet</damageDef>
-			<speed>62</speed>
+			<speed>152</speed>
 			<dropsCasings>true</dropsCasings>
 		</projectile>
 	</ThingDef>
@@ -67,37 +67,39 @@
 		<defName>Bullet_25ACP_FMJ</defName>
 		<label>.25 ACP bullet (FMJ)</label>
 		<projectile Class="CombatExtended.ProjectilePropertiesCE">
-			<damageAmountBase>3</damageAmountBase>
+			<damageAmountBase>11</damageAmountBase>
 			<armorPenetrationBase>0.116</armorPenetrationBase>
+			<armorPenetrationRHA>0</armorPenetrationRHA>
+			<armorPenetrationKPA>0</armorPenetrationKPA>
 		</projectile>
 	</ThingDef>
-  
+
 	<!-- ==================== Recipes ========================== -->
 
-  <RecipeDef ParentName="AmmoRecipeBase">
-    <defName>MakeAmmo_25ACP_FMJ</defName>
-    <label>make .25 ACP cartridge x500</label>
-    <description>Craft 500 .25 ACP cartridges.</description>
-    <jobString>Making .25 ACP cartridges.</jobString>
-    <ingredients>
-      <li>
-        <filter>
-          <thingDefs>
-            <li>Steel</li>
-          </thingDefs>
-        </filter>
-        <count>4</count>
-      </li>
-    </ingredients>
-    <fixedIngredientFilter>
-      <thingDefs>
-        <li>Steel</li>
-      </thingDefs>
-    </fixedIngredientFilter>
-    <products>
-      <Ammo_25ACP_FMJ>500</Ammo_25ACP_FMJ>
-    </products>
-    <workAmount>1000</workAmount>
-  </RecipeDef>
-	
+	<RecipeDef ParentName="AmmoRecipeBase">
+		<defName>MakeAmmo_25ACP_FMJ</defName>
+		<label>make .25 ACP cartridge x500</label>
+		<description>Craft 500 .25 ACP cartridges.</description>
+		<jobString>Making .25 ACP cartridges.</jobString>
+		<ingredients>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>Steel</li>
+					</thingDefs>
+				</filter>
+				<count>4</count>
+			</li>
+		</ingredients>
+		<fixedIngredientFilter>
+			<thingDefs>
+				<li>Steel</li>
+			</thingDefs>
+		</fixedIngredientFilter>
+		<products>
+			<Ammo_25ACP_FMJ>500</Ammo_25ACP_FMJ>
+		</products>
+		<workAmount>1000</workAmount>
+	</RecipeDef>
+
 </Defs>

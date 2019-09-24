@@ -5,9 +5,9 @@
 		<defName>Ammo30Carbine</defName>
 		<label>.30 Carbine</label>
 		<parent>AmmoRifles</parent>
-    <iconPath>UI/Icons/ThingCategories/CaliberRifle</iconPath>
+		<iconPath>UI/Icons/ThingCategories/CaliberRifle</iconPath>
 	</ThingCategoryDef>
-	
+
 	<!-- ==================== AmmoSet ========================== -->
 
 	<CombatExtended.AmmoSetDef>
@@ -18,19 +18,19 @@
 			<Ammo_30Carbine_HP>Bullet_30Carbine_HP</Ammo_30Carbine_HP>
 		</ammoTypes>
 	</CombatExtended.AmmoSetDef>
-	
+
 	<!-- ==================== Ammo ========================== -->
 
 	<ThingDef Class="CombatExtended.AmmoDef" Name="30CarbineBase" ParentName="SmallAmmoBase" Abstract="True">
 		<description>Small, light rifle cartridge most commonly found in carbines.</description>
 		<statBases>
-		<Mass>0.012</Mass>
-		<Bulk>0.02</Bulk>
+			<Mass>0.012</Mass>
+			<Bulk>0.02</Bulk>
 		</statBases>
-	<tradeTags>
-		<li>CE_AutoEnableTrade</li>
-		<li>CE_AutoEnableCrafting</li>
-	</tradeTags>
+		<tradeTags>
+			<li>CE_AutoEnableTrade</li>
+			<li>CE_AutoEnableCrafting</li>
+		</tradeTags>
 		<thingCategories>
 			<li>Ammo30Carbine</li>
 		</thingCategories>
@@ -63,7 +63,7 @@
 		<ammoClass>HollowPoint</ammoClass>
 		<cookOffProjectile>Bullet_30Carbine_HP</cookOffProjectile>
 	</ThingDef>
-	
+
 	<!-- ================== Projectiles ================== -->
 
 	<ThingDef Class="CombatExtended.AmmoDef" Name="Base30CarbineBullet" ParentName="BaseBullet" Abstract="true">
@@ -73,7 +73,7 @@
 		</graphicData>
 		<projectile Class="CombatExtended.ProjectilePropertiesCE">
 			<damageDef>Bullet</damageDef>
-			<speed>152</speed>
+			<speed>121</speed>
 			<dropsCasings>true</dropsCasings>
 		</projectile>
 	</ThingDef>
@@ -85,6 +85,8 @@
 		<projectile Class="CombatExtended.ProjectilePropertiesCE">
 			<damageAmountBase>13</damageAmountBase>
 			<armorPenetrationBase>0.442</armorPenetrationBase>
+			<armorPenetrationRHA>0</armorPenetrationRHA>
+			<armorPenetrationKPA>0</armorPenetrationKPA>
 		</projectile>
 	</ThingDef>
 
@@ -94,9 +96,11 @@
 		<projectile Class="CombatExtended.ProjectilePropertiesCE">
 			<damageAmountBase>18</damageAmountBase>
 			<armorPenetrationBase>0.292</armorPenetrationBase>
+			<armorPenetrationRHA>0</armorPenetrationRHA>
+			<armorPenetrationKPA>0</armorPenetrationKPA>
 		</projectile>
 	</ThingDef>
-  
+
 	<!-- ==================== Recipes ========================== -->
 
 	<RecipeDef ParentName="AmmoRecipeBase">
@@ -122,7 +126,7 @@
 		<products>
 			<Ammo_30Carbine_FMJ>500</Ammo_30Carbine_FMJ>
 		</products>
-    <workAmount>2500</workAmount>
+		<workAmount>2500</workAmount>
 	</RecipeDef>
 
 	<RecipeDef ParentName="AmmoRecipeBase">
@@ -148,7 +152,7 @@
 		<products>
 			<Ammo_30Carbine_HP>500</Ammo_30Carbine_HP>
 		</products>
-    <workAmount>5250</workAmount>
+		<workAmount>5250</workAmount>
 	</RecipeDef>
-	
+
 </Defs>
