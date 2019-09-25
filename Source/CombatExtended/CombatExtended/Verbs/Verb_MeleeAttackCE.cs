@@ -20,7 +20,6 @@ namespace CombatExtended
      */
     public class Verb_MeleeAttackCE : Verb_MeleeAttack
     {
-
         #region Constants
 
         private const int TargetCooldown = 50;
@@ -50,6 +49,11 @@ namespace CombatExtended
         #endregion
 
         #region Properties
+
+        public static Verb_MeleeAttackCE LastAttackVerb { get; private set; }   // Hack to get around DamageInfo not passing the tool to ArmorUtilityCE
+
+        public float ArmorPenetrationRHA => (tool as ToolCE)?.armorPenetrationRHA * (EquipmentSource?.GetStatValue(CE_StatDefOf.MeleePenetrationFactor) ?? 1) ?? 0;
+        public float ArmorPenetrationKPA => (tool as ToolCE)?.armorPenetrationKPA * (EquipmentSource?.GetStatValue(CE_StatDefOf.MeleePenetrationFactor) ?? 1) ?? 0;
 
         bool isCrit;
 
@@ -208,7 +212,7 @@ namespace CombatExtended
                                !CasterPawn.def.race.Animal
                 ? 2
                 : 1;
-            var armorPenetration = verbProps.AdjustedArmorPenetration(this, CasterPawn) * (EquipmentSource?.GetStatValue(CE_StatDefOf.MeleePenetrationFactor) ?? 1) * critModifier;
+            var armorPenetration = (verbProps.meleeDamageDef.armorCategory == DamageArmorCategoryDefOf.Sharp ? ArmorPenetrationRHA : ArmorPenetrationKPA) * critModifier;
             DamageDef damDef = verbProps.meleeDamageDef;
             BodyPartGroupDef bodyPartGroupDef = null;
             HediffDef hediffDef = null;
@@ -308,7 +312,10 @@ namespace CombatExtended
                 {
                     break;
                 }
+
+                LastAttackVerb = this;
                 result = target.Thing.TakeDamage(current);
+                LastAttackVerb = null;
             }
             // Apply animal knockdown
             if (isCrit && CasterPawn.def.race.Animal)
