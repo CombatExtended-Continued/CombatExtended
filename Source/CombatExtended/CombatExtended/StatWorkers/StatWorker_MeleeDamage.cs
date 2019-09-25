@@ -13,37 +13,37 @@ namespace CombatExtended
         private readonly float damageDeviationMin = 0.5f;
         private readonly float damageDeviationMax = 1.5f;
 
-        private float GetMeleeDamage(StatRequest req)
+
+        public override string GetStatDrawEntryLabel(StatDef stat, float value, ToStringNumberSense numberSense, StatRequest optionalReq)
         {
-            var tools = (req.Def as ThingDef)?.tools;
+            var tools = (optionalReq.Def as ThingDef)?.tools;
             if (tools.NullOrEmpty())
             {
-                return 0;
+                return "";
             }
-            if (tools.Any(x=> !(x is ToolCE)))
+            if (tools.Any(x => !(x is ToolCE)))
             {
-                Log.Error($"Trying to get stat MeleeDamage from {req.Def.defName} which has no support for Combat Extended.");
-                return 0;
+                Log.Error($"Trying to get stat MeleeDamage from {optionalReq.Def.defName} which has no support for Combat Extended.");
+                return "";
             }
 
-            float totalSelectionWeight = 0f;
-            for (int i = 0; i < tools.Count; i++)
-            {
-                totalSelectionWeight += tools[i].chanceFactor;
-            }
-            float totalAverageDamage = 0f;
+            float lowestDamage = 999999f;
+            float highestDamage = 0f;
             foreach (ToolCE tool in tools)
             {
-                var weightFactor = tool.chanceFactor / totalSelectionWeight;
-                totalAverageDamage += weightFactor * tool.power;
+                if (tool.power > highestDamage)
+                {
+                    highestDamage = tool.power;
+                }
+                if (tool.power < lowestDamage)
+                {
+                    lowestDamage = tool.power;
+                }
             }
-            return totalAverageDamage;
-        }
 
-        public override float GetValueUnfinalized(StatRequest req, bool applyPostProcess = true)
-        {
-            var baseDamage = GetMeleeDamage(req);
-            return UnityEngine.Random.Range(baseDamage * damageDeviationMin, baseDamage * damageDeviationMax);
+            return (lowestDamage*damageDeviationMin).ToStringByStyle(ToStringStyle.FloatMaxTwo) 
+                + " - "
+                + (highestDamage*damageDeviationMax).ToStringByStyle(ToStringStyle.FloatMaxTwo);
         }
 
         public override string GetExplanationUnfinalized(StatRequest req, ToStringNumberSense numberSense)
@@ -67,8 +67,8 @@ namespace CombatExtended
                 maneuverString = maneuverString.TrimmedToLength(maneuverString.Length - 1) + ")";
                 stringBuilder.AppendLine("  Tool: " + tool.ToString() + " " + maneuverString);
                 stringBuilder.AppendLine("    Base damage: " + tool.power.ToStringByStyle(ToStringStyle.FloatMaxTwo));
-                stringBuilder.AppendLine(string.Format("    Damage variation: {0}% ~ {1}%", 100 * damageDeviationMin, 100 * damageDeviationMax));
-                stringBuilder.AppendLine(string.Format("    Final value: {0} ~ {1}", tool.power * damageDeviationMin, tool.power * damageDeviationMax));
+                stringBuilder.AppendLine(string.Format("    Damage variation: {0}% - {1}%", 100 * damageDeviationMin, 100 * damageDeviationMax));
+                stringBuilder.AppendLine(string.Format("    Final value: {0} - {1}", tool.power * damageDeviationMin, tool.power * damageDeviationMax));
                 stringBuilder.AppendLine();
             }
             return stringBuilder.ToString();
