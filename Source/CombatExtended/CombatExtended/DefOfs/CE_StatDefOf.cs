@@ -31,6 +31,7 @@ namespace CombatExtended
         public static StatDef MeleeCritChance;
         public static StatDef MeleeDodgeChance;
         public static StatDef MeleeParryChance;
+        public static StatDef UnarmedDamage;
         public static StatDef BodyPartRHA;
         public static StatDef BodyPartKPA;
 
