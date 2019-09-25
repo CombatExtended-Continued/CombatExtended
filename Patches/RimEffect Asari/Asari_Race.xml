@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+
+	<Operation Class="PatchOperationFindMod">
+					<mods>
+						<li>RimEffect - Asari of the Rims</li>
+					</mods>
+		<match Class="PatchOperationSequence">
+			<operations>
+
+					<li Class="PatchOperationAddModExtension">
+						<xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="Alien_Asari_Base"]</xpath>
+						<value>
+							<li Class="CombatExtended.RacePropertiesExtensionCE">
+								<bodyShape>Humanoid</bodyShape>
+							</li>
+						</value>
+					</li>
+					
+					<!-- Melee Tool & Basestats Defs -->
+					<li Class="PatchOperationAdd">
+					 <xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="Alien_Asari_Base"]/statBases</xpath>
+						  <value>
+						   <MeleeDodgeChance>0.20</MeleeDodgeChance>
+						   <MeleeCritChance>0.20</MeleeCritChance>
+						  </value>
+					</li>
+					
+					<li Class="PatchOperationReplace">
+						<xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="Alien_Asari_Base"]/tools</xpath> 
+						<value>
+							<tools>
+							  <li Class="CombatExtended.ToolCE">
+									<label>left fist</label>
+									<capacities>
+										<li>Blunt</li>
+									</capacities>
+									<power>6.7</power>
+									<cooldownTime>1.65</cooldownTime>
+									<linkedBodyPartsGroup>LeftHand</linkedBodyPartsGroup>
+									<armorPenetration>0.09</armorPenetration>
+
+							  </li>
+							  <li Class="CombatExtended.ToolCE">
+									<label>right fist</label>
+									<capacities>
+										<li>Blunt</li>
+									</capacities>
+									<power>6.7</power>
+									<cooldownTime>1.65</cooldownTime>
+									<linkedBodyPartsGroup>RightHand</linkedBodyPartsGroup>
+									<armorPenetration>0.09</armorPenetration>
+							   </li>
+								<li Class="CombatExtended.ToolCE">
+									<label>head</label>
+									<capacities>
+										<li>Blunt</li>
+									</capacities>
+									<power>4.7</power>
+									<cooldownTime>1.85</cooldownTime>	
+									<linkedBodyPartsGroup>HeadAttackTool</linkedBodyPartsGroup>
+									<armorPenetration>0.075</armorPenetration>
+							  </li>
+							</tools>
+						</value>
+					</li>
+						<!-- Checking if "Alien_Asari_Base" has a <comps> node, and add it if it doesn't exist -->
+						<li Class="PatchOperationSequence">
+							<success>Always</success>
+							<operations>
+								<li Class="PatchOperationTest">
+								<xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="Alien_Asari_Base"]/comps</xpath>
+								<success>Invert</success>
+								</li>
+								<li Class="PatchOperationAdd">
+								<xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="Alien_Asari_Base"]</xpath>
+								<value>
+									<comps />
+								</value>
+								</li>
+							</operations>
+						</li>
+					
+					<li Class="PatchOperationAdd">
+						<xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="Alien_Asari_Base"]/comps</xpath>
+						<value>
+							<li>
+							  <compClass>CombatExtended.CompPawnGizmo</compClass>
+							</li>
+							<li Class="CombatExtended.CompProperties_Suppressable" />
+						</value>
+					</li>
+
+					<!--Adding Inventory Support-->
+					<li Class="PatchOperationReplace">
+						<xpath>/Defs/ThingDef[@Name="BaseAsariPawn"]/inspectorTabs/li[.="ITab_Pawn_Gear"]</xpath>
+						<value>
+							<li>CombatExtended.ITab_Inventory</li>
+						</value>
+					</li>
+
+					<li Class="PatchOperationAdd">
+						<xpath>/Defs/ThingDef[@Name="BaseAsariPawn"]/comps</xpath>
+						<value>
+							<li Class="CombatExtended.CompProperties_Inventory" />
+						</value>
+					</li>
+
+			</operations>		
+		</match>
+	</Operation>
+
+</Patch>
