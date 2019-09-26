@@ -216,14 +216,11 @@ namespace CombatExtended
             DamageDef damDef = verbProps.meleeDamageDef;
             BodyPartGroupDef bodyPartGroupDef = null;
             HediffDef hediffDef = null;
-            if (EquipmentSource == null)
-            {
-                damAmount = CasterPawn.GetStatValue(CE_StatDefOf.UnarmedDamage);
-            }
-            else
-            {
-                damAmount = Rand.Range(damAmount * StatWorker_MeleeDamage.damageVariationMin, damAmount * StatWorker_MeleeDamage.damageVariationMax);
-            }
+
+            var damFactor = EquipmentSource == null ? 1 : Rand.Range(damAmount * StatWorker_MeleeDamage.damageVariationMin, damAmount * StatWorker_MeleeDamage.damageVariationMax);
+            damAmount *= damFactor;
+            armorPenetration *= damFactor;
+
             if (base.CasterIsPawn)
             {
                 bodyPartGroupDef = this.verbProps.AdjustedLinkedBodyPartsGroup(this.tool);

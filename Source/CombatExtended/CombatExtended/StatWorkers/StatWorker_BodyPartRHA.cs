@@ -9,7 +9,7 @@ namespace CombatExtended
         protected override float GetBaseValueFor(StatRequest req)
         {
             var pawn = (Pawn)req.Thing;
-            return 20 * (pawn.RaceProps.IsFlesh ? 0.011f : 0.8f);
+            return 20 * (pawn.RaceProps.IsFlesh ? 0.011f : 0.2f);
         }
     }
 }

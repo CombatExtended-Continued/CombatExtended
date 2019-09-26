@@ -208,6 +208,7 @@ namespace CombatExtended
 
             var dmgMult = noDmg ? 0 : newPenAmount / penAmount;
             var newDmgAmount = dmgAmount * dmgMult;
+            newPenAmount -= partDensity;    // Factor partDensity only after damage calculations
 
             // Apply damage to armor
             if (armor != null)

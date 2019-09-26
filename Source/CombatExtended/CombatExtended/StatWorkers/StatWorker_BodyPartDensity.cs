@@ -19,7 +19,7 @@ namespace CombatExtended
         {
             var baseValue = GetBaseValueFor(req);
             var pawn = (Pawn)req.Thing;
-            return baseValue * pawn.HealthScale * pawn.BodySize;
+            return baseValue * pawn.HealthScale;
         }
 
         public override string GetExplanationUnfinalized(StatRequest req, ToStringNumberSense numberSense)
@@ -30,7 +30,6 @@ namespace CombatExtended
 
             var pawn = (Pawn) req.Thing;
             stringBuilder.AppendLine($"{"StatsReport_HealthMultiplier".Translate(pawn.HealthScale)}: x{pawn.HealthScale.ToStringPercent()}");
-            stringBuilder.AppendLine($"{"StatsReport_BodySize".Translate(pawn.BodySize.ToString("F2"))}: x{pawn.BodySize.ToStringPercent()}");
             stringBuilder.AppendLine();
 
             return stringBuilder.ToString().Trim();
