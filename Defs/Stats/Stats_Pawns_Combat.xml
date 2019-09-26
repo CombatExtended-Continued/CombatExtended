@@ -265,6 +265,37 @@
       </points>
     </postProcessCurve>
   </StatDef>
+  
+  <StatDef>
+    <defName>UnarmedDamage</defName>
+    <label>unarmed damage</label>
+    <description>Damage done in unarmed combat.</description>
+    <category>PawnCombat</category>
+    <displayPriorityInCategory>99</displayPriorityInCategory>
+    <defaultBaseValue>0.50</defaultBaseValue>
+    <showOnPawns>true</showOnPawns>
+    <minValue>0.0</minValue>
+    <maxValue>10.0</maxValue>
+    <toStringStyle>FloatTwo</toStringStyle>
+    <skillNeedFactors>
+      <li Class="SkillNeed_BaseBonus">
+        <skill>Melee</skill>
+        <baseValue>0.00</baseValue>
+        <bonusPerLevel>1.00</bonusPerLevel>
+      </li>
+    </skillNeedFactors>
+    <capacityFactors>
+      <li>
+        <capacity>Sight</capacity>
+        <weight>0.7</weight>
+        <max>1</max>
+      </li>
+      <li>
+        <capacity>Manipulation</capacity>
+        <weight>1</weight>
+      </li>
+    </capacityFactors>
+  </StatDef>
 
   <!-- ================================== Body part armor =======================================-->
 
