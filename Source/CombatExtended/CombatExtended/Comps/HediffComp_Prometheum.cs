@@ -10,6 +10,8 @@ namespace CombatExtended
 {
     public class HediffComp_Prometheum : HediffComp
     {
+        private const float InternalFireDamage = 4;
+
         public override void CompPostTick(ref float severityAdjustment)
         {
             base.CompPostTick(ref severityAdjustment);
@@ -24,6 +26,17 @@ namespace CombatExtended
                 else if (fire != null)
                 {
                     fire.fireSize = Mathf.Min(fire.fireSize + parent.Severity * 0.5f, 1.75f);  // Clamped at max fire size
+                }
+
+                // Apply to internal parts
+                if (Pawn.def.race.IsMechanoid)
+                {
+                    var internalPart = Pawn.health.hediffSet.GetNotMissingParts(BodyPartHeight.Undefined, BodyPartDepth.Inside).RandomElement();
+                    if (internalPart == null)
+                        return;
+                    Log.Message($"CE :: Damaging {Pawn} in {internalPart} for {InternalFireDamage * Pawn.BodySize}");
+                    Pawn.TakeDamage(new DamageInfo(CE_DamageDefOf.Flame_Secondary, InternalFireDamage * Pawn.BodySize * parent.Severity, 0, -1, null,
+                        internalPart));
                 }
             }
         }

@@ -14,6 +14,12 @@ namespace CombatExtended.Harmony
     [HarmonyPatch(typeof(Fire), "DoFireDamage")]
     internal static class Harmony_Fire_DoFireDamage
     {
+        private static void ApplySizeMult(Pawn pawn, ref float damage)
+        {
+            Log.Message($"CE :: Setting fire damage to {damage * pawn.BodySize} from {damage} body size {pawn.BodySize}");
+            damage *= pawn.BodySize;
+        }
+
         internal static IEnumerable<CodeInstruction> Transpiler(IEnumerable<CodeInstruction> instructions)
         {
             foreach (CodeInstruction code in instructions)
@@ -22,6 +28,14 @@ namespace CombatExtended.Harmony
                 {
                     code.operand = 300f;
                 }
+
+                if (code.operand == AccessTools.Field(typeof(RulePackDefOf), nameof(RulePackDefOf.DamageEvent_Fire)))
+                {
+                    yield return new CodeInstruction(OpCodes.Ldloca, 1);
+                    yield return new CodeInstruction(OpCodes.Call, AccessTools.Method(typeof(Harmony_Fire_DoFireDamage), nameof(ApplySizeMult)));
+                    yield return new CodeInstruction(OpCodes.Ldloc_2);
+                }
+
                 yield return code;
             }
         }
