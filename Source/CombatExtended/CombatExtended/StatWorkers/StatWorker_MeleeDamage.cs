@@ -10,8 +10,8 @@ namespace CombatExtended
 {
     public class StatWorker_MeleeDamage : StatWorker_MeleeStats
     {
-        private readonly float damageDeviationMin = 0.5f;
-        private readonly float damageDeviationMax = 1.5f;
+        public const float damageVariationMin = 0.5f;
+        public const float damageVariationMax = 1.5f;
 
 
         public override string GetStatDrawEntryLabel(StatDef stat, float value, ToStringNumberSense numberSense, StatRequest optionalReq)
@@ -27,7 +27,7 @@ namespace CombatExtended
                 return "";
             }
 
-            float lowestDamage = 999999f;
+            float lowestDamage = Int32.MaxValue;
             float highestDamage = 0f;
             foreach (ToolCE tool in tools)
             {
@@ -41,9 +41,9 @@ namespace CombatExtended
                 }
             }
 
-            return (lowestDamage*damageDeviationMin).ToStringByStyle(ToStringStyle.FloatMaxTwo) 
+            return (lowestDamage*damageVariationMin).ToStringByStyle(ToStringStyle.FloatMaxTwo) 
                 + " - "
-                + (highestDamage*damageDeviationMax).ToStringByStyle(ToStringStyle.FloatMaxTwo);
+                + (highestDamage*damageVariationMax).ToStringByStyle(ToStringStyle.FloatMaxTwo);
         }
 
         public override string GetExplanationUnfinalized(StatRequest req, ToStringNumberSense numberSense)
@@ -67,8 +67,8 @@ namespace CombatExtended
                 maneuverString = maneuverString.TrimmedToLength(maneuverString.Length - 1) + ")";
                 stringBuilder.AppendLine("  Tool: " + tool.ToString() + " " + maneuverString);
                 stringBuilder.AppendLine("    Base damage: " + tool.power.ToStringByStyle(ToStringStyle.FloatMaxTwo));
-                stringBuilder.AppendLine(string.Format("    Damage variation: {0}% - {1}%", 100 * damageDeviationMin, 100 * damageDeviationMax));
-                stringBuilder.AppendLine(string.Format("    Final value: {0} - {1}", tool.power * damageDeviationMin, tool.power * damageDeviationMax));
+                stringBuilder.AppendLine(string.Format("    Damage variation: {0}% - {1}%", 100 * damageVariationMin, 100 * damageVariationMax));
+                stringBuilder.AppendLine(string.Format("    Final value: {0} - {1}", tool.power * damageVariationMin, tool.power * damageVariationMax));
                 stringBuilder.AppendLine();
             }
             return stringBuilder.ToString();
