@@ -16,7 +16,6 @@ namespace CombatExtended.Harmony
     {
         private static void ApplySizeMult(Pawn pawn, ref float damage)
         {
-            Log.Message($"CE :: Setting fire damage to {damage * pawn.BodySize} from {damage} body size {pawn.BodySize}");
             damage *= pawn.BodySize;
         }
 
