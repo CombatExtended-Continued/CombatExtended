@@ -16,8 +16,9 @@ namespace CombatExtended
 		private List<IntVec3> cellsToAffect;
 		private List<Thing> damagedThings;
 		private HashSet<IntVec3> addedCellsAffectedOnlyByDamage;
-		private const float DamageAtEdge = 2f;      // Synch these with spreadsheet
-        private const float PenAtEdge = 14.81f;
+		private const int DamageAtEdge = 4;      // Synch these with spreadsheet
+        private const int PenAtEdge = 600;
+        private const int PressurePerDamage = 150;
 		private static HashSet<IntVec3> tmpCells = new HashSet<IntVec3>();
 
 		public override void SpawnSetup(Map map, bool respawningAfterLoad)
@@ -182,7 +183,7 @@ namespace CombatExtended
 			}
 			var num = chanceToStartFire;
 			if (damageFalloff) {
-				num *= Mathf.Lerp(1f, DamageAtEdge / damAmount, c.DistanceTo(Position) / radius);
+				num *= Mathf.Lerp(1f, (float)DamageAtEdge / damAmount, c.DistanceTo(Position) / radius);
 			}
 			if (Rand.Chance(num)) {
 				FireUtility.TryStartFireIn(c, Map, Rand.Range(0.1f, 0.925f));
@@ -268,13 +269,16 @@ namespace CombatExtended
 
         public float GetArmorPenetrationAtCE(IntVec3 c)
         {
+            var basePen = damAmount * PressurePerDamage;
+            Log.Message($"CE :: Base penetration for explosion: {basePen} from {damAmount}, falloff? {damageFalloff}");
             if (!damageFalloff)
             {
-                return armorPenetration;
+                return basePen;
             }
             var t = c.DistanceTo(Position) / radius;
-            t = Mathf.Pow(t, 1 / 3f);
-            return Mathf.Lerp(armorPenetration, PenAtEdge, t);
+            t = Mathf.Pow(t, 0.55f);
+            Log.Message($"CE :: Final penetration at {Position}: {Mathf.Lerp(basePen, PenAtEdge, t)}, t={t}");
+            return Mathf.Lerp(basePen, PenAtEdge, t);
         }
     }
 }

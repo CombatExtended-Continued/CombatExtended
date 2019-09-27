@@ -218,7 +218,7 @@ namespace CombatExtended
             HediffDef hediffDef = null;
 
             var damFactor = EquipmentSource == null
-                ? 1
+                ? CasterPawn.GetStatValue(CE_StatDefOf.UnarmedDamage)
                 : Rand.Range(damAmount * StatWorker_MeleeDamage.GetDamageVariationMin(CasterPawn), damAmount * StatWorker_MeleeDamage.GetDamageVariationMax(CasterPawn));
             damAmount *= damFactor;
             armorPenetration *= damFactor;
