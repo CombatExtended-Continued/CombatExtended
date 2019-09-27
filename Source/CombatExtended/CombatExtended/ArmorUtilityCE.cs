@@ -148,7 +148,8 @@ namespace CombatExtended
                 }
             }
 
-            var partDensityStat = dinfo.Def.armorCategory.armorRatingStat == StatDefOf.ArmorRating_Sharp
+            var isSharp = dinfo.Def.armorCategory.armorRatingStat == StatDefOf.ArmorRating_Sharp;
+            var partDensityStat = isSharp
                 ? CE_StatDefOf.BodyPartRHA
                 : CE_StatDefOf.BodyPartKPA;
             var partDensity = pawn.GetStatValue(partDensityStat);   // How much armor is provided by sheer meat
@@ -156,13 +157,14 @@ namespace CombatExtended
             {
                 var curPart = partsToHit[i];
                 var coveredByArmor = curPart.IsInGroup(CE_BodyPartGroupDefOf.CoveredByNaturalArmor);
+                var armorAmount = coveredByArmor ? pawn.GetStatValue(dinfo.Def.armorCategory.armorRatingStat) : 0;
                 var unused = dmgAmount;
 
                 // Only apply damage reduction when penetrating armored body parts
-                if (!TryPenetrateArmor(dinfo.Def, pawn.GetStatValue(dinfo.Def.armorCategory.armorRatingStat), ref penAmount, ref dmgAmount, null, partDensity))
+                if (!TryPenetrateArmor(dinfo.Def, armorAmount, ref penAmount, ref dmgAmount, null, partDensity))
                 {
                     dinfo.SetHitPart(curPart);
-                    if (coveredByArmor && pawn.RaceProps.IsMechanoid)
+                    if (isSharp && coveredByArmor && pawn.RaceProps.IsMechanoid)
                     {
                         // For Mechanoid natural armor, apply deflection and blunt armor
                         dinfo = GetDeflectDamageInfo(dinfo, curPart, ref dmgAmount, ref penAmount);
