@@ -217,7 +217,9 @@ namespace CombatExtended
             BodyPartGroupDef bodyPartGroupDef = null;
             HediffDef hediffDef = null;
 
-            var damFactor = EquipmentSource == null ? 1 : Rand.Range(damAmount * StatWorker_MeleeDamage.damageVariationMin, damAmount * StatWorker_MeleeDamage.damageVariationMax);
+            var damFactor = EquipmentSource == null
+                ? 1
+                : Rand.Range(damAmount * StatWorker_MeleeDamage.GetDamageVariationMin(CasterPawn), damAmount * StatWorker_MeleeDamage.GetDamageVariationMax(CasterPawn));
             damAmount *= damFactor;
             armorPenetration *= damFactor;
 
