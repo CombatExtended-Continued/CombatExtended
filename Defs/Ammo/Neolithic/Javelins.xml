@@ -34,9 +34,10 @@
 		<defName>Pilum_Thrown</defName>
 		<label>pilum (thrown)</label>
 		<projectile Class="CombatExtended.ProjectilePropertiesCE">
-			<damageAmountBase>16</damageAmountBase>
-			<speed>26</speed>
-			<armorPenetrationBase>0.3</armorPenetrationBase>
+			<damageAmountBase>12</damageAmountBase>
+			<speed>5</speed>
+			<armorPenetrationKPA>3120</armorPenetrationKPA>
+			<armorPenetrationRHA>2</armorPenetrationRHA>
 			<preExplosionSpawnChance>0.75</preExplosionSpawnChance>	<!-- 4 javelins per resource -->
 			<preExplosionSpawnThingDef>Pila</preExplosionSpawnThingDef>
 		</projectile>
@@ -55,5 +56,48 @@
 	</ThingDef>
   
 	<!-- ==================== Recipes ========================== -->
+  <RecipeDef ParentName="AmmoRecipeNeolithicBase">
+    <defName>MakeAmmo_Pilum</defName>
+    <label>make pila x5</label>
+    <description>Craft 5 pila.</description>
+	<workSpeedStat>SmithingSpeed</workSpeedStat>
+	<workSkill>Crafting</workSkill>
+	<recipeUsers>
+		<li>ElectricSmithy</li>
+		<li>FueledSmithy</li>
+	</recipeUsers>
+	<effectWorking>Smelt</effectWorking>
+	<unfinishedThingDef>UnfinishedWeapon</unfinishedThingDef>
+    <workAmount>2500</workAmount>	
+    <jobString>Making pila.</jobString>
+    <ingredients>
+      <li>
+        <filter>
+          <thingDefs>
+            <li>WoodLog</li>
+          </thingDefs>
+        </filter>
+        <count>6</count>
+      </li>
+      <li>
+        <filter>
+          <thingDefs>
+            <li>Steel</li>
+          </thingDefs>
+        </filter>
+        <count>19</count>
+      </li>
+    </ingredients>
+    <fixedIngredientFilter>
+      <thingDefs>
+        <li>WoodLog</li>
+        <li>Steel</li>
+      </thingDefs>
+    </fixedIngredientFilter>
+    <products>
+      <Pila>5</Pila>
+    </products>
+  </RecipeDef>
+
 	
 </Defs>
