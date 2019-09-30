@@ -17,6 +17,10 @@
 			<Ammo_127x55mmAR_FMJ>Bullet_127x55mmAR_FMJ</Ammo_127x55mmAR_FMJ>
 			<Ammo_127x55mmAR_AP>Bullet_127x55mmAR_AP</Ammo_127x55mmAR_AP>
 			<Ammo_127x55mmAR_HP>Bullet_127x55mmAR_HP</Ammo_127x55mmAR_HP>
+	<!-- new ammotypes added below -->
+			<Ammo_127x55mmAR_API>Bullet_127x55mmAR_AP-I</Ammo_127x55mmAR_API>
+			<Ammo_127x55mmAR_HE>Bullet_127x55mmAR_HE</Ammo_127x55mmAR_HE>
+			<Ammo_127x55mmAR_Sabot>Bullet_127x55mmAR_Sabot</Ammo_127x55mmAR_Sabot>
 		</ammoTypes>
 	</CombatExtended.AmmoSetDef>
 
@@ -25,8 +29,8 @@
 	<ThingDef Class="CombatExtended.AmmoDef" Name="127x55mmARBase" ParentName="SmallAmmoBase" Abstract="True">
 		<description>High caliber subsonic assault rifle cartridge designed for suppressed fire.</description>
 		<statBases>
-			<Mass>0.02</Mass>
-			<Bulk>0.05</Bulk>
+			<Mass>0.028</Mass>
+			<Bulk>0.07</Bulk>
 		</statBases>
 		<tradeTags>
 			<li>CE_AutoEnableTrade</li>
@@ -80,6 +84,48 @@
 		<cookOffProjectile>Bullet_127x55mmAR_HP</cookOffProjectile>
 	</ThingDef>
 
+<!-- New ammotypes added: HE, API, Sabot. Note that it lacks an unique cookOffProjectile for these new projectiles. -->
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="127x55mmARBase">
+		<defName>Ammo_127x55mmAR_API</defName>
+		<label>12.7x55mm AR cartridge (AP-I)</label>
+		<graphicData>
+			<texPath>Things/Ammo/Rifle/API</texPath>
+			<graphicClass>Graphic_StackCount</graphicClass>
+		</graphicData>
+		<statBases>
+			<MarketValue>0.89</MarketValue>
+		</statBases>
+		<ammoClass>IncendiaryAP</ammoClass>
+		<cookOffProjectile>Bullet_127x55mmAR_AP-I</cookOffProjectile>
+	</ThingDef>
+
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="127x55mmARBase">
+		<defName>Ammo_127x55mmAR_HE</defName>
+		<label>12.7x55mm AR cartridge (HE)</label>
+		<graphicData>
+			<texPath>Things/Ammo/Rifle/HE</texPath>
+			<graphicClass>Graphic_StackCount</graphicClass>
+		</graphicData>
+		<statBases>
+			<MarketValue>0.71</MarketValue>
+		</statBases>
+		<ammoClass>ExplosiveAP</ammoClass>
+		<cookOffProjectile>Bullet_127x55mmAR_HE</cookOffProjectile>
+	</ThingDef>
+
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="127x55mmARBase">
+		<defName>Ammo_127x55mmAR_Sabot</defName>
+		<label>12.7x55mm AR cartridge (Sabot)</label>
+		<graphicData>
+			<texPath>Things/Ammo/Rifle/Sabot</texPath>
+			<graphicClass>Graphic_StackCount</graphicClass>
+		</graphicData>
+		<statBases>
+			<MarketValue>0.67</MarketValue>
+		</statBases>
+		<ammoClass>Sabot</ammoClass>
+		<cookOffProjectile>Bullet_127x55mmAR_Sabot</cookOffProjectile>
+	</ThingDef>
 	<!-- ================== Projectiles ================== -->
 
 	<ThingDef Class="CombatExtended.AmmoDef" Name="Base127x55mmARBullet" ParentName="BaseBullet" Abstract="true">
@@ -94,15 +140,13 @@
 		</projectile>
 	</ThingDef>
 
-
 	<ThingDef Class="CombatExtended.AmmoDef" ParentName="Base127x55mmARBullet">
 		<defName>Bullet_127x55mmAR_FMJ</defName>
 		<label>12.7mm AR bullet (FMJ)</label>
 		<projectile Class="CombatExtended.ProjectilePropertiesCE">
-			<damageAmountBase>23</damageAmountBase>
-			<armorPenetrationBase>0.478</armorPenetrationBase>
+			<damageAmountBase>21</damageAmountBase>
 			<armorPenetrationRHA>0</armorPenetrationRHA>
-			<armorPenetrationKPA>0</armorPenetrationKPA>
+			<armorPenetrationKPA>51340</armorPenetrationKPA>
 		</projectile>
 	</ThingDef>
 
@@ -110,10 +154,9 @@
 		<defName>Bullet_127x55mmAR_AP</defName>
 		<label>12.7mm AR bullet (AP)</label>
 		<projectile Class="CombatExtended.ProjectilePropertiesCE">
-			<damageAmountBase>14</damageAmountBase>
-			<armorPenetrationBase>0.628</armorPenetrationBase>
+			<damageAmountBase>13</damageAmountBase>
 			<armorPenetrationRHA>0</armorPenetrationRHA>
-			<armorPenetrationKPA>0</armorPenetrationKPA>
+			<armorPenetrationKPA>51340</armorPenetrationKPA>
 		</projectile>
 	</ThingDef>
 
@@ -121,10 +164,53 @@
 		<defName>Bullet_127x55mmAR_HP</defName>
 		<label>12.7mm AR bullet (HP)</label>
 		<projectile Class="CombatExtended.ProjectilePropertiesCE">
-			<damageAmountBase>32</damageAmountBase>
-			<armorPenetrationBase>0.328</armorPenetrationBase>
+			<damageAmountBase>27</damageAmountBase>
 			<armorPenetrationRHA>0</armorPenetrationRHA>
-			<armorPenetrationKPA>0</armorPenetrationKPA>
+			<armorPenetrationKPA>51340</armorPenetrationKPA>
+		</projectile>
+	</ThingDef>
+
+<!-- New ammotypes added: HE, API, Sabot. -->
+
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="Base127x55mmARBullet">
+		<defName>Bullet_127x55mmAR_HE</defName>
+		<label>12.7mm AR bullet (HE)</label>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageAmountBase>21</damageAmountBase>
+			<secondaryDamage>
+        <li>
+          <def>Bomb_Secondary</def>
+          <amount>13</amount>
+        </li>
+      </secondaryDamage>
+			<armorPenetrationRHA>0</armorPenetrationRHA>
+			<armorPenetrationKPA>51340</armorPenetrationKPA>
+		</projectile>
+	</ThingDef>
+
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="Base127x55mmARBullet">
+		<defName>Bullet_127x55mmAR_API</defName>
+		<label>12.7mm AR bullet (API)</label>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageAmountBase>13</damageAmountBase>
+			<secondaryDamage>
+        <li>
+          <def>Flame_Secondary</def>
+          <amount>8</amount>
+        </li>
+      </secondaryDamage>
+			<armorPenetrationRHA>0</armorPenetrationRHA>
+			<armorPenetrationKPA>51340</armorPenetrationKPA>
+		</projectile>
+	</ThingDef>
+
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="Base127x55mmARBullet">
+		<defName>Bullet_127x55mmAR_Sabot</defName>
+		<label>12.7mm AR bullet (Sabot)</label>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageAmountBase>12</damageAmountBase>
+			<armorPenetrationRHA>0</armorPenetrationRHA>
+			<armorPenetrationKPA>51340</armorPenetrationKPA>
 		</projectile>
 	</ThingDef>
 
@@ -207,5 +293,77 @@
 		</products>
 		<workAmount>6500</workAmount>
 	</RecipeDef>
+
+<!-- New ammotypes to be added: HE, API, Sabot.  -->
+
+<RecipeDef ParentName="AmmoRecipeBase">
+	<defName>MakeAmmo_127x55mmAR_API</defName>
+	<label>make 12.7x55mm AR cartridge (AP-I) cartridge x200</label>
+	<description>Craft 200 12.7x55mm AR cartridge (AP-I) cartridge.</description>
+	<jobString>Making 12.7x55mm AR cartridge (AP-I) cartridges.</jobString>
+	<ingredients>
+		<li>
+			<filter>
+				<thingDefs>
+					<li>Steel</li>
+				</thingDefs>
+			</filter>
+			<count>25</count>
+		</li>
+		<li>
+        <filter>
+          <thingDefs>
+            <li>FSX</li>
+          </thingDefs>
+        </filter>
+        <count>2</count>
+      </li>
+	</ingredients>
+	<fixedIngredientFilter>
+		<thingDefs>
+			<li>Steel</li>
+			<li>FSX</li>
+		</thingDefs>
+	</fixedIngredientFilter>
+	<products>
+		<Ammo_127x55mmAR_API>200</Ammo_127x55mmAR_API>
+	</products>
+	<workAmount>11750</workAmount>
+</RecipeDef>
+
+<RecipeDef ParentName="AmmoRecipeBase">
+	<defName>MakeAmmo_127x55mmAR_Sabot</defName>
+	<label>make 12.7x55mm AR cartridge (Sabot) cartridge x200</label>
+	<description>Craft 200 12.7x55mm AR cartridge (Sabot) cartridge.</description>
+	<jobString>Making 12.7x55mm AR cartridge (Sabot) cartridges.</jobString>
+	<ingredients>
+		<li>
+			<filter>
+				<thingDefs>
+					<li>Steel</li>
+				</thingDefs>
+			</filter>
+			<count>23</count>
+		</li>
+		<li>
+        <filter>
+          <thingDefs>
+            <li>Uranium</li>
+          </thingDefs>
+        </filter>
+        <count>3</count>
+      </li>
+	</ingredients>
+	<fixedIngredientFilter>
+		<thingDefs>
+			<li>Steel</li>
+			<li>Uranium</li>
+		</thingDefs>
+	</fixedIngredientFilter>
+	<products>
+		<Ammo_127x55mmAR_Sabot>200</Ammo_127x55mmAR_Sabot>
+	</products>
+	<workAmount>13000</workAmount>
+</RecipeDef>
 
 </Defs>
