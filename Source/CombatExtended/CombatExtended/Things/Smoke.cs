@@ -1,6 +1,5 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using Harmony;
 using RimWorld;
 using UnityEngine;
 using Verse;
@@ -24,7 +23,7 @@ namespace CombatExtended
         {
             return !pos.Filled(Map) 
                 || (pos.GetDoor(Map)?.Open ?? false) 
-                || (pos.GetFirstThing<Building_Vent>(Map) is Building_Vent vent && Traverse.Create(vent).Field("flickableComp").GetValue<CompFlickable>().SwitchIsOn);
+                || (pos.GetFirstThing<Building_Vent>(Map) is Building_Vent vent && vent.TryGetComp<CompFlickable>().SwitchIsOn);
         }
 
         public override void Tick()
