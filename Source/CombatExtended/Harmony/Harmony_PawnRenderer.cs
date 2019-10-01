@@ -52,7 +52,7 @@ namespace CombatExtended.Harmony
     /// </summary>
     [HarmonyPatch(typeof(PawnRenderer), "RenderPawnInternal")]
     [HarmonyPatch(new Type[] { typeof(Vector3), typeof(float), typeof(bool), typeof(Rot4), typeof(Rot4), typeof(RotDrawMode), typeof(bool), typeof(bool) })]
-    public static class SillyTests
+    public static class SkipShellLayerDrawing
     {
         enum PatchStage { Searching, ExtractTargetLabel, PurgingInstructions, Finished };
 
