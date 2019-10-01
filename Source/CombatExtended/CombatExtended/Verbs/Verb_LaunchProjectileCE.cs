@@ -321,28 +321,8 @@ namespace CombatExtended
             float minX = -maxX;
             float maxY = recoil;
             float minY = -recoil / 3;
-            /*
-            switch (VerbPropsCE.recoilPattern)
-            {
-                case RecoilPattern.None:
-            		return;
-                case RecoilPattern.Regular:
-                    float num = VerbPropsCE.recoilAmount / 3;
-                    minX = -(num / 3);
-                    maxX = num;
-                    minY = -num;
-                    maxY = VerbPropsCE.recoilAmount;
-                    break;
-                case RecoilPattern.Mounted:
-                    float num2 = VerbPropsCE.recoilAmount / 3;
-                    minX = -num2;
-                    maxX = num2;
-                    minY = -num2;
-                    maxY = VerbPropsCE.recoilAmount;
-                    break;
-            }
-            */
-            float recoilMagnitude = Mathf.Pow((5 - ShootingAccuracy), (Mathf.Min(10, numShotsFired) / 6.25f));
+
+            float recoilMagnitude = numShotsFired == 0 ? 0 : Mathf.Pow((5 - ShootingAccuracy), (Mathf.Min(10, numShotsFired) / 6.25f));
 
             rotation += recoilMagnitude * UnityEngine.Random.Range(minX, maxX);
             angle += Mathf.Deg2Rad * recoilMagnitude * UnityEngine.Random.Range(minY, maxY);
