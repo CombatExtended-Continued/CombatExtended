@@ -21,7 +21,9 @@ namespace CombatExtended
 
         private bool CanMoveTo(IntVec3 pos)
         {
-            return !pos.Filled(Map) || (pos.GetDoor(Map)?.Open ?? false) || pos.GetFirstThing<Building_Vent>(Map) != null;
+            return !pos.Filled(Map) 
+                || (pos.GetDoor(Map)?.Open ?? false) 
+                || (pos.GetFirstThing<Building_Vent>(Map) is Building_Vent vent && vent.TryGetComp<CompFlickable>().SwitchIsOn);
         }
 
         public override void Tick()

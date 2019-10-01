@@ -123,7 +123,7 @@ namespace CombatExtended
                     {
                         // Hit was deflected, convert damage type
                         //armorReduced = true;
-                        dinfo = GetDeflectDamageInfo(dinfo, hitPart);
+                        dinfo = GetDeflectDamageInfo(dinfo, hitPart, ref dmgAmount, ref penAmount);
                         if (app == apparel.ElementAtOrDefault(i))   //Check whether the "deflecting" apparel is still in the WornApparel - if not, the next loop checks again and errors out because the index is out of range
                             i++;    // We apply this piece of apparel twice on conversion, this means we can't use deflection on Blunt or else we get an infinite loop of eternal deflection
                     }
@@ -148,24 +148,29 @@ namespace CombatExtended
                 }
             }
 
-            var partDensity = pawn.GetStatValue(CE_StatDefOf.BodyPartDensity);   // How much armor is provided by sheer meat
+            var isSharp = dinfo.Def.armorCategory.armorRatingStat == StatDefOf.ArmorRating_Sharp;
+            var partDensityStat = isSharp
+                ? CE_StatDefOf.BodyPartRHA
+                : CE_StatDefOf.BodyPartKPA;
+            var partDensity = pawn.GetStatValue(partDensityStat);   // How much armor is provided by sheer meat
             for (var i = partsToHit.Count - 1; i >= 0; i--)
             {
                 var curPart = partsToHit[i];
                 var coveredByArmor = curPart.IsInGroup(CE_BodyPartGroupDefOf.CoveredByNaturalArmor);
+                var armorAmount = coveredByArmor ? pawn.GetStatValue(dinfo.Def.armorCategory.armorRatingStat) : 0;
                 var unused = dmgAmount;
 
                 // Only apply damage reduction when penetrating armored body parts
-                if (!TryPenetrateArmor(dinfo.Def,pawn.GetStatValue(dinfo.Def.armorCategory.armorRatingStat), ref penAmount, ref dmgAmount, null, partDensity))
+                if (!TryPenetrateArmor(dinfo.Def, armorAmount, ref penAmount, ref dmgAmount, null, partDensity))
                 {
                     dinfo.SetHitPart(curPart);
-                    if (coveredByArmor && pawn.RaceProps.IsMechanoid)
+                    if (isSharp && coveredByArmor && pawn.RaceProps.IsMechanoid)
                     {
                         // For Mechanoid natural armor, apply deflection and blunt armor
-                        dinfo = GetDeflectDamageInfo(dinfo, curPart);
+                        dinfo = GetDeflectDamageInfo(dinfo, curPart, ref dmgAmount, ref penAmount);
 
                         // Fetch armor rating stat again in case of deflection conversion to blunt
-                        TryPenetrateArmor(dinfo.Def,pawn.GetStatValue(dinfo.Def.armorCategory.armorRatingStat), ref penAmount, ref dmgAmount, null, partDensity);
+                        TryPenetrateArmor(dinfo.Def, pawn.GetStatValue(dinfo.Def.armorCategory.armorRatingStat), ref penAmount, ref dmgAmount, null, partDensity);
                     }
                     break;
                 }
@@ -195,17 +200,17 @@ namespace CombatExtended
         {
             // Calculate deflection
             var isSharpDmg = def.armorCategory == DamageArmorCategoryDefOf.Sharp;
-            var rand = UnityEngine.Random.Range(penAmount - PenetrationRandVariation, penAmount + PenetrationRandVariation);
-            var deflected = isSharpDmg && armorAmount > rand;
+            //var rand = UnityEngine.Random.Range(penAmount - PenetrationRandVariation, penAmount + PenetrationRandVariation);
+            var deflected = isSharpDmg && armorAmount > penAmount;
 
             // Apply damage reduction
             var defCE = def.GetModExtension<DamageDefExtensionCE>() ?? new DamageDefExtensionCE();
             var noDmg = deflected && defCE.noDamageOnDeflect;
-            var dmgMult = noDmg ? 0 : dmgMultCurve.Evaluate(penAmount / armorAmount);
-            var penMult = dmgMultCurve.Evaluate(penAmount / (armorAmount + partDensity));
+            var newPenAmount = penAmount - armorAmount;
 
+            var dmgMult = noDmg ? 0 : newPenAmount / penAmount;
             var newDmgAmount = dmgAmount * dmgMult;
-            var newPenAmount = deflected && !noDmg ? penAmount : penAmount * penMult;
+            newPenAmount -= partDensity;    // Factor partDensity only after damage calculations
 
             // Apply damage to armor
             if (armor != null)
@@ -228,8 +233,11 @@ namespace CombatExtended
                 }
             }
 
-            dmgAmount = Mathf.Max(0, newDmgAmount);
-            penAmount = Mathf.Max(0, newPenAmount);
+            if (!deflected)
+            {
+                dmgAmount = Mathf.Max(0, newDmgAmount);
+                penAmount = Mathf.Max(0, newPenAmount);
+            }
             return !deflected;
         }
 
@@ -267,10 +275,37 @@ namespace CombatExtended
         /// <param name="dinfo">The dinfo that was deflected</param>
         /// <param name="hitPart">The originally hit part</param>
         /// <returns>DamageInfo copied from dinfo with Def and forceHitPart adjusted</returns>
-        private static DamageInfo GetDeflectDamageInfo(DamageInfo dinfo, BodyPartRecord hitPart)
+        private static DamageInfo GetDeflectDamageInfo(DamageInfo dinfo, BodyPartRecord hitPart, ref float dmgAmount, ref float penAmount)
         {
-            var newDinfo = new DamageInfo(DamageDefOf.Blunt, dinfo.Amount, 0, //Armor Penetration
-                dinfo.Angle, dinfo.Instigator, GetOuterMostParent(hitPart), dinfo.Weapon);
+            // Get kPa value
+            var penMult = penAmount / dinfo.ArmorPenetrationInt;
+            if (dinfo.Weapon?.projectile is ProjectilePropertiesCE projectile)
+            {
+                penAmount = projectile.armorPenetrationKPA * penMult;
+            }
+            else
+            {
+                if (Verb_MeleeAttackCE.LastAttackVerb == null)
+                {
+                    Log.Error($"CE :: Tried to get deflect damage info for {dinfo} but LastAttackVerb is null");
+                    penAmount = 0;
+                }
+                else
+                {
+                    penAmount = Verb_MeleeAttackCE.LastAttackVerb.ArmorPenetrationKPA;
+                }
+            }
+
+            var force = penAmount * 10;
+            dmgAmount = Mathf.Pow(force, 1 / 3f) / 10;
+
+            var newDinfo = new DamageInfo(DamageDefOf.Blunt,
+                dmgAmount,
+                penAmount,
+                dinfo.Angle,
+                dinfo.Instigator,
+                GetOuterMostParent(hitPart),
+                dinfo.Weapon);
             newDinfo.SetBodyRegion(dinfo.Height, dinfo.Depth);
             newDinfo.SetWeaponBodyPartGroup(dinfo.WeaponBodyPartGroup);
             newDinfo.SetWeaponHediff(dinfo.WeaponLinkedHediff);
