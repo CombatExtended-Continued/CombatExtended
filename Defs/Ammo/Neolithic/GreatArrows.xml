@@ -25,14 +25,14 @@
   <ThingDef Class="CombatExtended.AmmoDef" Name="AmmoGreatArrowBase" ParentName="NeolithicAmmoBase" Abstract="True">
     <description>Heavy arrow designed to be fired from a great bow.</description>
     <statBases>
-      <Mass>0.17</Mass>
-      <Bulk>0.17</Bulk>
+      <Mass>0.105</Mass>
+      <Bulk>0.43</Bulk>
       <Flammability>1</Flammability>
     </statBases>
     <thingCategories>
       <li>AmmoGreatArrows</li>
     </thingCategories>
-    <stackLimit>200</stackLimit>
+    <stackLimit>1000</stackLimit>
     <tradeTags>
       <li>CE_AutoEnableTrade</li>
       <li>CE_AutoEnableCrafting_FueledSmithy</li>
@@ -48,7 +48,7 @@
       <graphicClass>Graphic_StackCount</graphicClass>
     </graphicData>
     <statBases>
-      <MarketValue>0.17</MarketValue>
+      <MarketValue>0.39</MarketValue>
     </statBases>
     <ammoClass>StoneArrow</ammoClass>
     <tradeTags>
@@ -64,7 +64,8 @@
       <graphicClass>Graphic_StackCount</graphicClass>
     </graphicData>
     <statBases>
-      <MarketValue>0.52</MarketValue>
+      <Mass>0.115</Mass>	
+      <MarketValue>0.66</MarketValue>
     </statBases>
     <ammoClass>SteelArrow</ammoClass>
   </ThingDef>
@@ -77,88 +78,88 @@
       <graphicClass>Graphic_StackCount</graphicClass>
     </graphicData>
     <statBases>
-      <MarketValue>3.46</MarketValue>
+      <Mass>0.108</Mass>	
+      <MarketValue>3.06</MarketValue>
     </statBases>
     <ammoClass>PlasteelArrow</ammoClass>
     <generateAllowChance>0</generateAllowChance>
   </ThingDef>
+	
+	<!-- ================== Projectiles ================== -->
 
-  <!-- ================== Projectiles (Great Bow) ================== -->
-
-  <ThingDef Class="CombatExtended.AmmoDef" Name="BaseGreatArrowProjectile" ParentName="BaseBullet" Abstract="true">
-    <graphicData>
-      <texPath>Things/Projectile/Arrow_Small</texPath>
-      <graphicClass>Graphic_Single</graphicClass>
-    </graphicData>
-    <projectile Class="CombatExtended.ProjectilePropertiesCE">
-      <damageDef>Arrow</damageDef>
-      <speed>11</speed>
-    </projectile>
-  </ThingDef>
-
-  <!-- The amount of arrows usable over the ammo lifetime for each resource cost is equal to
+	<ThingDef Class="CombatExtended.AmmoDef" Name="BaseGreatArrowProjectile" ParentName="BaseBullet" Abstract="true">
+		<graphicData>
+			<texPath>Things/Projectile/Arrow_Small</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+		</graphicData>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageDef>Arrow</damageDef>
+			<speed>12</speed>
+		</projectile>
+	</ThingDef>
+	
+	<!-- The amount of arrows usable over the ammo lifetime for each resource cost is equal to
 		[r / (1 - x)];
 			x = preExplosionSpawnChance,
 			r = resource cost. -->
+	
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="BaseGreatArrowProjectile">
+		<defName>Projectile_GreatArrow_Stone</defName>
+		<label>great arrow (stone)</label>
+		<graphicData>
+			<texPath>Things/Projectile/Arrows/Arrow_Stone</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+		</graphicData>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<speed>11</speed>
+			<damageAmountBase>8</damageAmountBase>
+			<armorPenetrationKPA>1660</armorPenetrationKPA>
+			<armorPenetrationRHA>1</armorPenetrationRHA>
+			<preExplosionSpawnChance>0.2</preExplosionSpawnChance>	<!-- 12.5 arrows per resource -->
+			<preExplosionSpawnThingDef>Ammo_GreatArrow_Stone</preExplosionSpawnThingDef>
+		</projectile>
+	</ThingDef>
 
-  <ThingDef Class="CombatExtended.AmmoDef" ParentName="BaseGreatArrowProjectile">
-    <defName>Projectile_GreatArrow_Stone</defName>
-    <label>great arrow (stone)</label>
-    <graphicData>
-      <texPath>Things/Projectile/Arrows/Arrow_Stone</texPath>
-      <graphicClass>Graphic_Single</graphicClass>
-    </graphicData>
-    <projectile Class="CombatExtended.ProjectilePropertiesCE">
-      <speed>11</speed>
-      <damageAmountBase>9</damageAmountBase>
-      <armorPenetrationRHA>1.0</armorPenetrationRHA>
-      <armorPenetrationKPA>2120</armorPenetrationKPA>
-      <preExplosionSpawnChance>0.2</preExplosionSpawnChance>      <!-- 12.5 arrows per resource -->
-      <preExplosionSpawnThingDef>Ammo_GreatArrow_Stone</preExplosionSpawnThingDef>
-    </projectile>
-  </ThingDef>
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="BaseGreatArrowProjectile">
+		<defName>Projectile_GreatArrow_Steel</defName>
+		<label>great arrow (steel)</label>
+		<graphicData>
+			<texPath>Things/Projectile/Arrows/Arrow_Steel</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+		</graphicData>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageAmountBase>7</damageAmountBase>
+			<armorPenetrationKPA>2340</armorPenetrationKPA>
+			<armorPenetrationRHA>2</armorPenetrationRHA>
+			<preExplosionSpawnChance>0.6</preExplosionSpawnChance>	<!-- 25 arrows per resource -->
+			<preExplosionSpawnThingDef>Ammo_GreatArrow_Steel</preExplosionSpawnThingDef>
+		</projectile>
+	</ThingDef>
 
-  <ThingDef Class="CombatExtended.AmmoDef" ParentName="BaseGreatArrowProjectile">
-    <defName>Projectile_GreatArrow_Steel</defName>
-    <label>great arrow (steel)</label>
-    <graphicData>
-      <texPath>Things/Projectile/Arrows/Arrow_Steel</texPath>
-      <graphicClass>Graphic_Single</graphicClass>
-    </graphicData>
-    <projectile Class="CombatExtended.ProjectilePropertiesCE">
-      <speed>12</speed>
-      <damageAmountBase>7</damageAmountBase>
-      <armorPenetrationRHA>2.0</armorPenetrationRHA>
-      <armorPenetrationKPA>2300</armorPenetrationKPA>
-      <preExplosionSpawnChance>0.6</preExplosionSpawnChance>      <!-- 25 arrows per resource -->
-      <preExplosionSpawnThingDef>Ammo_GreatArrow_Steel</preExplosionSpawnThingDef>
-    </projectile>
-  </ThingDef>
-
-  <ThingDef Class="CombatExtended.AmmoDef" ParentName="BaseGreatArrowProjectile">
-    <defName>Projectile_GreatArrow_Plasteel</defName>
-    <label>great arrow (plasteel)</label>
-    <graphicData>
-      <texPath>Things/Projectile/Arrows/Arrow_Plasteel</texPath>
-      <graphicClass>Graphic_Single</graphicClass>
-    </graphicData>
-    <projectile Class="CombatExtended.ProjectilePropertiesCE">
-      <speed>12</speed>
-      <damageAmountBase>6</damageAmountBase>
-      <armorPenetrationRHA>3.0</armorPenetrationRHA>
-      <armorPenetrationKPA>2340</armorPenetrationKPA>
-      <preExplosionSpawnChance>0.75</preExplosionSpawnChance>      <!-- 40 arrows per resource -->
-      <preExplosionSpawnThingDef>Ammo_GreatArrow_Plasteel</preExplosionSpawnThingDef>
-    </projectile>
-  </ThingDef>
-
-  <!-- ==================== Recipes ========================== -->
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="BaseGreatArrowProjectile">
+		<defName>Projectile_GreatArrow_Plasteel</defName>
+		<label>great arrow (plasteel)</label>
+		<graphicData>
+			<texPath>Things/Projectile/Arrows/Arrow_Plasteel</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+		</graphicData>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageAmountBase>6</damageAmountBase>
+			<armorPenetrationKPA>2140</armorPenetrationKPA>
+			<armorPenetrationRHA>3</armorPenetrationRHA>
+			<preExplosionSpawnChance>0.75</preExplosionSpawnChance>	<!-- 40 arrows per resource -->
+			<preExplosionSpawnThingDef>Ammo_GreatArrow_Plasteel</preExplosionSpawnThingDef>
+		</projectile>
+	</ThingDef>
+  
+	<!-- ==================== Recipes ========================== -->
 
   <RecipeDef ParentName="AmmoRecipeNeolithicBase">
     <defName>MakeAmmo_GreatArrow_Stone</defName>
     <label>make stone great arrows x10</label>
     <description>Craft 10 stone great arrows.</description>
     <jobString>Making stone great arrows.</jobString>
+	<workAmount>300</workAmount>
     <ingredients>
       <li>
         <filter>
@@ -166,7 +167,7 @@
             <li>WoodLog</li>
           </thingDefs>
         </filter>
-        <count>2</count>
+        <count>3</count>
       </li>
     </ingredients>
     <fixedIngredientFilter>
@@ -184,6 +185,7 @@
     <label>make steel great arrows x10</label>
     <description>Craft 10 steel great arrows.</description>
     <jobString>Making steel great arrows.</jobString>
+	<workAmount>400</workAmount>
     <ingredients>
       <li>
         <filter>
@@ -199,7 +201,7 @@
             <li>Steel</li>
           </thingDefs>
         </filter>
-        <count>1</count>
+        <count>2</count>
       </li>
     </ingredients>
     <fixedIngredientFilter>
@@ -218,6 +220,7 @@
     <label>make plasteel great arrows x10</label>
     <description>Craft 10 plasteel great arrows.</description>
     <jobString>Making plasteel great arrows.</jobString>
+	<workAmount>1400</workAmount>
     <ingredients>
       <li>
         <filter>
@@ -233,7 +236,7 @@
             <li>Plasteel</li>
           </thingDefs>
         </filter>
-        <count>1</count>
+        <count>3</count>
       </li>
     </ingredients>
     <fixedIngredientFilter>

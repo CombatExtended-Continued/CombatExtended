@@ -15,9 +15,9 @@
     <label>.50 BMG</label>
     <ammoTypes>
       <Ammo_50BMG_FMJ>Bullet_50BMG_FMJ</Ammo_50BMG_FMJ>
-      <Ammo_50BMG_Sabot>Bullet_50BMG_Sabot</Ammo_50BMG_Sabot>
-      <Ammo_50BMG_HE>Bullet_50BMG_HE</Ammo_50BMG_HE>
       <Ammo_50BMG_Incendiary>Bullet_50BMG_Incendiary</Ammo_50BMG_Incendiary>
+      <Ammo_50BMG_HE>Bullet_50BMG_HE</Ammo_50BMG_HE>
+      <Ammo_50BMG_Sabot>Bullet_50BMG_Sabot</Ammo_50BMG_Sabot>	  
     </ammoTypes>
   </CombatExtended.AmmoSetDef>
 
@@ -26,8 +26,8 @@
   <ThingDef Class="CombatExtended.AmmoDef" Name="Ammo50BMGBase" ParentName="SmallAmmoBase" Abstract="True">
     <description>Large caliber bullet used by many heavy machine guns and anti-materiel rifles.</description>
     <statBases>
-      <Mass>0.12</Mass>
-      <Bulk>0.16</Bulk>
+      <Mass>0.115</Mass>
+      <Bulk>0.14</Bulk>
     </statBases>
     <tradeTags>
       <li>CE_AutoEnableTrade</li>
@@ -36,7 +36,7 @@
     <thingCategories>
       <li>Ammo50BMG</li>
     </thingCategories>
-    <stackLimit>200</stackLimit>
+    <stackLimit>1000</stackLimit>
   </ThingDef>
 
   <ThingDef Class="CombatExtended.AmmoDef" ParentName="Ammo50BMGBase">
@@ -47,38 +47,10 @@
       <graphicClass>Graphic_StackCount</graphicClass>
     </graphicData>
     <statBases>
-      <MarketValue>0.42</MarketValue>
+      <MarketValue>0.48</MarketValue>
     </statBases>
     <ammoClass>FullMetalJacket</ammoClass>
     <cookOffProjectile>Bullet_50BMG_FMJ</cookOffProjectile>
-  </ThingDef>
-
-  <ThingDef Class="CombatExtended.AmmoDef" ParentName="Ammo50BMGBase">
-    <defName>Ammo_50BMG_Sabot</defName>
-    <label>.50 BMG cartridge (Sabot)</label>
-    <graphicData>
-      <texPath>Things/Ammo/HighCaliber/Sabot</texPath>
-      <graphicClass>Graphic_StackCount</graphicClass>
-    </graphicData>
-    <statBases>
-      <MarketValue>0.67</MarketValue>
-    </statBases>
-    <ammoClass>Sabot</ammoClass>
-    <cookOffProjectile>Bullet_50BMG_Sabot</cookOffProjectile>
-  </ThingDef>
-
-  <ThingDef Class="CombatExtended.AmmoDef" ParentName="Ammo50BMGBase">
-    <defName>Ammo_50BMG_HE</defName>
-    <label>.50 BMG cartridge (HE)</label>
-    <graphicData>
-      <texPath>Things/Ammo/HighCaliber/HE</texPath>
-      <graphicClass>Graphic_StackCount</graphicClass>
-    </graphicData>
-    <statBases>
-      <MarketValue>0.76</MarketValue>
-    </statBases>
-    <ammoClass>ExplosiveAP</ammoClass>
-    <cookOffProjectile>Bullet_50BMG_HE</cookOffProjectile>
   </ThingDef>
 
   <ThingDef Class="CombatExtended.AmmoDef" ParentName="Ammo50BMGBase">
@@ -89,12 +61,42 @@
       <graphicClass>Graphic_StackCount</graphicClass>
     </graphicData>
     <statBases>
-      <MarketValue>0.62</MarketValue>
+      <MarketValue>0.59</MarketValue>
+	  <Mass>0.112</Mass>
     </statBases>
     <ammoClass>IncendiaryAP</ammoClass>
     <cookOffProjectile>Bullet_50BMG_Incendiary</cookOffProjectile>
   </ThingDef>
 
+  <ThingDef Class="CombatExtended.AmmoDef" ParentName="Ammo50BMGBase">
+    <defName>Ammo_50BMG_HE</defName>
+    <label>.50 BMG cartridge (AP-HE)</label>
+    <graphicData>
+      <texPath>Things/Ammo/HighCaliber/HE</texPath>
+      <graphicClass>Graphic_StackCount</graphicClass>
+    </graphicData>
+    <statBases>
+      <MarketValue>1</MarketValue>
+    </statBases>
+    <ammoClass>ExplosiveAP</ammoClass>
+    <cookOffProjectile>Bullet_50BMG_HE</cookOffProjectile>
+  </ThingDef>
+ 
+  <ThingDef Class="CombatExtended.AmmoDef" ParentName="Ammo50BMGBase">
+    <defName>Ammo_50BMG_Sabot</defName>
+    <label>.50 BMG cartridge (Sabot)</label>
+    <graphicData>
+      <texPath>Things/Ammo/HighCaliber/Sabot</texPath>
+      <graphicClass>Graphic_StackCount</graphicClass>
+    </graphicData>
+    <statBases>
+      <MarketValue>0.52</MarketValue>
+	  <Mass>0.095</Mass>
+    </statBases>
+    <ammoClass>Sabot</ammoClass>
+    <cookOffProjectile>Bullet_50BMG_Sabot</cookOffProjectile>
+  </ThingDef>
+  
   <!-- ================== Projectiles ================== -->
 
   <ThingDef Class="CombatExtended.AmmoDef" Name="Base50BMGBullet" ParentName="BaseBullet" Abstract="true">
@@ -114,41 +116,9 @@
     <label>.50 BMG bullet (FMJ)</label>
     <projectile Class="CombatExtended.ProjectilePropertiesCE">
       <damageAmountBase>41</damageAmountBase>
-      <armorPenetrationBase>0.909</armorPenetrationBase>
       <armorPenetrationRHA>14</armorPenetrationRHA>
       <armorPenetrationKPA>334380</armorPenetrationKPA>
     </projectile>
-  </ThingDef>
-
-  <ThingDef Class="CombatExtended.AmmoDef" ParentName="Base50BMGBullet">
-    <defName>Bullet_50BMG_Sabot</defName>
-    <label>.50 BMG bullet (Sabot)</label>
-    <projectile Class="CombatExtended.ProjectilePropertiesCE">
-      <damageAmountBase>19</damageAmountBase>
-      <armorPenetrationBase>1.109</armorPenetrationBase>
-      <armorPenetrationRHA>49</armorPenetrationRHA>
-      <armorPenetrationKPA>341780</armorPenetrationKPA>
-      <speed>244</speed>
-    </projectile>
-  </ThingDef>
-
-  <ThingDef Class="CombatExtended.AmmoDef" ParentName="Base50BMGBullet">
-    <defName>Bullet_50BMG_HE</defName>
-    <label>.50 BMG bullet (HE)</label>
-    <projectile Class="CombatExtended.ProjectilePropertiesCE">
-      <damageAmountBase>41</damageAmountBase>
-      <armorPenetrationBase>1.059</armorPenetrationBase>
-      <armorPenetrationRHA>14</armorPenetrationRHA>
-      <armorPenetrationKPA>334380</armorPenetrationKPA>
-    </projectile>
-    <comps>
-      <li Class="CombatExtended.CompProperties_ExplosiveCE">
-        <explosionDamage>24</explosionDamage>
-        <explosionDamageDef>Bomb_Secondary</explosionDamageDef>
-        <explosionRadius>1</explosionRadius>
-        <soundExplode>CE_BulletHE_Explode</soundExplode>
-      </li>
-    </comps>
   </ThingDef>
 
   <ThingDef Class="CombatExtended.AmmoDef" ParentName="Base50BMGBullet">
@@ -156,7 +126,6 @@
     <label>.50 BMG bullet (AP-I)</label>
     <projectile Class="CombatExtended.ProjectilePropertiesCE">
       <damageAmountBase>25</damageAmountBase>
-      <armorPenetrationBase>1.059</armorPenetrationBase>
       <armorPenetrationRHA>28</armorPenetrationRHA>
       <armorPenetrationKPA>314700</armorPenetrationKPA>
       <secondaryDamage>
@@ -167,7 +136,35 @@
       </secondaryDamage>
     </projectile>
   </ThingDef>
+  
+  <ThingDef Class="CombatExtended.AmmoDef" ParentName="Base50BMGBullet">
+    <defName>Bullet_50BMG_HE</defName>
+    <label>.50 BMG bullet (AP-HE)</label>
+    <projectile Class="CombatExtended.ProjectilePropertiesCE">
+      <damageAmountBase>41</damageAmountBase>
+      <armorPenetrationRHA>14</armorPenetrationRHA>
+      <armorPenetrationKPA>334380</armorPenetrationKPA>
+    </projectile>
+    <comps>
+      <li Class="CombatExtended.CompProperties_ExplosiveCE">
+        <explosionDamage>24</explosionDamage>
+        <explosionDamageDef>Bomb_Secondary</explosionDamageDef>
+        <soundExplode>CE_BulletHE_Explode</soundExplode>
+      </li>
+    </comps>
+  </ThingDef>
 
+  <ThingDef Class="CombatExtended.AmmoDef" ParentName="Base50BMGBullet">
+    <defName>Bullet_50BMG_Sabot</defName>
+    <label>.50 BMG bullet (Sabot)</label>
+    <projectile Class="CombatExtended.ProjectilePropertiesCE">
+      <damageAmountBase>19</damageAmountBase>	
+      <armorPenetrationRHA>49</armorPenetrationRHA>
+      <armorPenetrationKPA>341780</armorPenetrationKPA>
+      <speed>244</speed>
+    </projectile>
+  </ThingDef>
+  
   <!-- ==================== Recipes ========================== -->
 
   <RecipeDef ParentName="AmmoRecipeBase">
@@ -182,7 +179,7 @@
             <li>Steel</li>
           </thingDefs>
         </filter>
-        <count>31</count>
+        <count>48</count>
       </li>
     </ingredients>
     <fixedIngredientFilter>
@@ -193,77 +190,7 @@
     <products>
       <Ammo_50BMG_FMJ>200</Ammo_50BMG_FMJ>
     </products>
-    <workAmount>5250</workAmount>
-  </RecipeDef>
-
-  <RecipeDef ParentName="AmmoRecipeBase">
-    <defName>MakeAmmo_50BMG_Sabot</defName>
-    <label>make .50 BMG (Sabot) cartridge x200</label>
-    <description>Craft 200 .50 BMG (Sabot) cartridges.</description>
-    <jobString>Making .50 BMG (Sabot) cartridges.</jobString>
-    <ingredients>
-      <li>
-        <filter>
-          <thingDefs>
-            <li>Steel</li>
-          </thingDefs>
-        </filter>
-        <count>26</count>
-      </li>
-      <li>
-        <filter>
-          <thingDefs>
-            <li>Uranium</li>
-          </thingDefs>
-        </filter>
-        <count>4</count>
-      </li>
-    </ingredients>
-    <fixedIngredientFilter>
-      <thingDefs>
-        <li>Steel</li>
-        <li>Uranium</li>
-      </thingDefs>
-    </fixedIngredientFilter>
-    <products>
-      <Ammo_50BMG_Sabot>200</Ammo_50BMG_Sabot>
-    </products>
-    <workAmount>11250</workAmount>
-  </RecipeDef>
-
-  <RecipeDef ParentName="AmmoRecipeBase">
-    <defName>MakeAmmo_50BMG_HE</defName>
-    <label>make .50 BMG (HE) cartridge x200</label>
-    <description>Craft 200 .50 BMG (HE) cartridges.</description>
-    <jobString>Making .50 BMG (HE) cartridges.</jobString>
-    <ingredients>
-      <li>
-        <filter>
-          <thingDefs>
-            <li>Steel</li>
-          </thingDefs>
-        </filter>
-        <count>27</count>
-      </li>
-      <li>
-        <filter>
-          <thingDefs>
-            <li>FSX</li>
-          </thingDefs>
-        </filter>
-        <count>4</count>
-      </li>
-    </ingredients>
-    <fixedIngredientFilter>
-      <thingDefs>
-        <li>Steel</li>
-        <li>FSX</li>
-      </thingDefs>
-    </fixedIngredientFilter>
-    <products>
-      <Ammo_50BMG_HE>200</Ammo_50BMG_HE>
-    </products>
-    <workAmount>14500</workAmount>
+    <workAmount>4800</workAmount>
   </RecipeDef>
 
   <RecipeDef ParentName="AmmoRecipeBase">
@@ -278,7 +205,7 @@
             <li>Steel</li>
           </thingDefs>
         </filter>
-        <count>29</count>
+        <count>46</count>
       </li>
       <li>
         <filter>
@@ -286,7 +213,7 @@
             <li>Prometheum</li>
           </thingDefs>
         </filter>
-        <count>2</count>
+        <count>4</count>
       </li>
     </ingredients>
     <fixedIngredientFilter>
@@ -298,7 +225,86 @@
     <products>
       <Ammo_50BMG_Incendiary>200</Ammo_50BMG_Incendiary>
     </products>
-    <workAmount>10250</workAmount>
+    <workAmount>6200</workAmount>
+  </RecipeDef>
+  
+  <RecipeDef ParentName="AmmoRecipeBase">
+    <defName>MakeAmmo_50BMG_HE</defName>
+    <label>make .50 BMG (AP-HE) cartridge x200</label>
+    <description>Craft 200 .50 BMG (HE) cartridges.</description>
+    <jobString>Making .50 BMG (HE) cartridges.</jobString>
+    <ingredients>
+      <li>
+        <filter>
+          <thingDefs>
+            <li>Steel</li>
+          </thingDefs>
+        </filter>
+        <count>48</count>
+      </li>
+      <li>
+        <filter>
+          <thingDefs>
+            <li>FSX</li>
+          </thingDefs>
+        </filter>
+        <count>10</count>
+      </li>
+    </ingredients>
+    <fixedIngredientFilter>
+      <thingDefs>
+        <li>Steel</li>
+        <li>FSX</li>
+      </thingDefs>
+    </fixedIngredientFilter>
+    <products>
+      <Ammo_50BMG_HE>200</Ammo_50BMG_HE>
+    </products>
+    <workAmount>8800</workAmount>
+  </RecipeDef>
+  
+  <RecipeDef ParentName="AmmoRecipeBase">
+    <defName>MakeAmmo_50BMG_Sabot</defName>
+    <label>make .50 BMG (Sabot) cartridge x200</label>
+    <description>Craft 200 .50 BMG (Sabot) cartridges.</description>
+    <jobString>Making .50 BMG (Sabot) cartridges.</jobString>
+    <ingredients>
+      <li>
+        <filter>
+          <thingDefs>
+            <li>Steel</li>
+          </thingDefs>
+        </filter>
+        <count>30</count>
+      </li>
+      <li>
+        <filter>
+          <thingDefs>
+            <li>Uranium</li>
+          </thingDefs>
+        </filter>
+        <count>5</count>
+      </li>
+      <li>
+        <filter>
+          <thingDefs>
+            <li>Chemfuel</li>
+          </thingDefs>
+        </filter>
+        <count>8</count>
+      </li>		  
+    </ingredients>
+    <fixedIngredientFilter>
+      <thingDefs>
+        <li>Steel</li>
+        <li>Uranium</li>
+        <li>Chemfuel</li>		
+      </thingDefs>
+    </fixedIngredientFilter>
+    <products>
+      <Ammo_50BMG_Sabot>200</Ammo_50BMG_Sabot>
+    </products>
+    <workAmount>6000</workAmount>
   </RecipeDef>
 
 </Defs>
