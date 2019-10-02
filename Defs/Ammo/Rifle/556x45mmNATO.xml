@@ -17,6 +17,9 @@
 			<Ammo_556x45mmNATO_FMJ>Bullet_556x45mmNATO_FMJ</Ammo_556x45mmNATO_FMJ>
 			<Ammo_556x45mmNATO_AP>Bullet_556x45mmNATO_AP</Ammo_556x45mmNATO_AP>
 			<Ammo_556x45mmNATO_HP>Bullet_556x45mmNATO_HP</Ammo_556x45mmNATO_HP>
+		    <Ammo_556x45mmNATO_Incendiary>Bullet_556x45mmNATO_Incendiary</Ammo_556x45mmNATO_Incendiary>
+			<Ammo_556x45mmNATO_HE>Bullet_556x45mmNATO_HE</Ammo_556x45mmNATO_HE>
+			<Ammo_556x45mmNATO_Sabot>Bullet_556x45mmNATO_Sabot</Ammo_556x45mmNATO_Sabot>				
 		</ammoTypes>
 	</CombatExtended.AmmoSetDef>
 
@@ -25,8 +28,8 @@
 	<ThingDef Class="CombatExtended.AmmoDef" Name="556x45mmNATOBase" ParentName="SmallAmmoBase" Abstract="True">
 		<description>Small, high-velocity rifle bullet used in a variety of assault rifles.</description>
 		<statBases>
-			<Mass>0.012</Mass>
-			<Bulk>0.03</Bulk>
+			<Mass>0.013</Mass>
+			<Bulk>0.02</Bulk>
 		</statBases>
 		<tradeTags>
 			<li>CE_AutoEnableTrade</li>
@@ -45,7 +48,7 @@
 			<graphicClass>Graphic_StackCount</graphicClass>
 		</graphicData>
 		<statBases>
-			<MarketValue>0.07</MarketValue>
+			<MarketValue>0.06</MarketValue>
 		</statBases>
 		<ammoClass>FullMetalJacket</ammoClass>
 		<cookOffProjectile>Bullet_556x45mmNATO_FMJ</cookOffProjectile>
@@ -59,7 +62,7 @@
 			<graphicClass>Graphic_StackCount</graphicClass>
 		</graphicData>
 		<statBases>
-			<MarketValue>0.09</MarketValue>
+			<MarketValue>0.06</MarketValue>
 		</statBases>
 		<ammoClass>ArmorPiercing</ammoClass>
 		<cookOffProjectile>Bullet_556x45mmNATO_AP</cookOffProjectile>
@@ -79,6 +82,49 @@
 		<cookOffProjectile>Bullet_556x45mmNATO_HP</cookOffProjectile>
 	</ThingDef>
 
+  <ThingDef Class="CombatExtended.AmmoDef" ParentName="556x45mmNATOBase">
+    <defName>Ammo_556x45mmNATO_Incendiary</defName>
+    <label>5.56x45mm NATO cartridge (AP-I)</label>
+    <graphicData>
+      <texPath>Things/Ammo/Rifle/Incendiary</texPath>
+      <graphicClass>Graphic_StackCount</graphicClass>
+    </graphicData>
+    <statBases>
+      <MarketValue>0.14</MarketValue>
+    </statBases>
+    <ammoClass>IncendiaryAP</ammoClass>
+    <cookOffProjectile>Bullet_556x45mmNATO_Incendiary</cookOffProjectile>
+  </ThingDef>
+
+  <ThingDef Class="CombatExtended.AmmoDef" ParentName="556x45mmNATOBase">
+    <defName>Ammo_556x45mmNATO_HE</defName>
+    <label>5.56x45mm NATO cartridge (AP-HE)</label>
+    <graphicData>
+      <texPath>Things/Ammo/Rifle/HE</texPath>
+      <graphicClass>Graphic_StackCount</graphicClass>
+    </graphicData>
+    <statBases>
+      <MarketValue>0.07</MarketValue>
+    </statBases>
+    <ammoClass>ExplosiveAP</ammoClass>
+    <cookOffProjectile>Bullet_556x45mmNATO_HE</cookOffProjectile>
+  </ThingDef>
+ 
+  <ThingDef Class="CombatExtended.AmmoDef" ParentName="556x45mmNATOBase">
+    <defName>Ammo_556x45mmNATO_Sabot</defName>
+    <label>5.56x45mm NATO cartridge (Sabot)</label>
+    <graphicData>
+      <texPath>Things/Ammo/Rifle/Sabot</texPath>
+      <graphicClass>Graphic_StackCount</graphicClass>
+    </graphicData>
+    <statBases>
+      <MarketValue>0.1</MarketValue>
+	  <Mass>0.022</Mass>
+    </statBases>
+    <ammoClass>Sabot</ammoClass>
+    <cookOffProjectile>Bullet_556x45mmNATO_Sabot</cookOffProjectile>
+  </ThingDef>
+  
 	<!-- ================== Projectiles ================== -->
 
 	<ThingDef Class="CombatExtended.AmmoDef" Name="Base556x45mmNATOBullet" ParentName="BaseBullet" Abstract="true">
@@ -93,13 +139,11 @@
 		</projectile>
 	</ThingDef>
 
-
 	<ThingDef Class="CombatExtended.AmmoDef" ParentName="Base556x45mmNATOBullet">
 		<defName>Bullet_556x45mmNATO_FMJ</defName>
 		<label>5.56mm NATO bullet (FMJ)</label>
 		<projectile Class="CombatExtended.ProjectilePropertiesCE">
 			<damageAmountBase>14</damageAmountBase>
-			<armorPenetrationBase>0.485</armorPenetrationBase>
 			<armorPenetrationRHA>4</armorPenetrationRHA>
 			<armorPenetrationKPA>34180</armorPenetrationKPA>
 		</projectile>
@@ -110,7 +154,6 @@
 		<label>5.56mm NATO bullet (AP)</label>
 		<projectile Class="CombatExtended.ProjectilePropertiesCE">
 			<damageAmountBase>9</damageAmountBase>
-			<armorPenetrationBase>0.635</armorPenetrationBase>
 			<armorPenetrationRHA>8</armorPenetrationRHA>
 			<armorPenetrationKPA>34180</armorPenetrationKPA>
 		</projectile>
@@ -121,11 +164,54 @@
 		<label>5.56mm NATO bullet (HP)</label>
 		<projectile Class="CombatExtended.ProjectilePropertiesCE">
 			<damageAmountBase>18</damageAmountBase>
-			<armorPenetrationBase>0.335</armorPenetrationBase>
 			<armorPenetrationRHA>2</armorPenetrationRHA>
 			<armorPenetrationKPA>34180</armorPenetrationKPA>
 		</projectile>
 	</ThingDef>
+
+	  <ThingDef Class="CombatExtended.AmmoDef" ParentName="Base556x45mmNATOBullet">
+		<defName>Bullet_556x45mmNATO_Incendiary</defName>
+		<label>5.56mm NATO bullet (AP-I)</label>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+		  <damageAmountBase>9</damageAmountBase>
+		  <armorPenetrationRHA>8</armorPenetrationRHA>
+		  <armorPenetrationKPA>34180</armorPenetrationKPA>
+		  <secondaryDamage>
+			<li>
+			  <def>Flame_Secondary</def>
+			  <amount>5</amount>
+			</li>
+		  </secondaryDamage>
+		</projectile>
+	  </ThingDef>
+	  
+	  <ThingDef Class="CombatExtended.AmmoDef" ParentName="Base556x45mmNATOBullet">
+		<defName>Bullet_556x45mmNATO_HE</defName>
+		<label>5.56mm NATO bullet (AP-HE)</label>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+		  <damageAmountBase>14</damageAmountBase>
+		  <armorPenetrationRHA>4</armorPenetrationRHA>
+		  <armorPenetrationKPA>34180</armorPenetrationKPA>
+		</projectile>
+		<comps>
+		  <li Class="CombatExtended.CompProperties_ExplosiveCE">
+			<explosionDamage>8</explosionDamage>
+			<explosionDamageDef>Bomb_Secondary</explosionDamageDef>
+			<soundExplode>CE_BulletHE_Explode</soundExplode>
+		  </li>
+		</comps>
+	  </ThingDef>
+
+	  <ThingDef Class="CombatExtended.AmmoDef" ParentName="Base556x45mmNATOBullet">
+		<defName>Bullet_556x45mmNATO_Sabot</defName>
+		<label>5.56mm NATO bullet (Sabot)</label>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+		  <damageAmountBase>7</damageAmountBase>
+		  <armorPenetrationRHA>14</armorPenetrationRHA>
+		  <armorPenetrationKPA>44180</armorPenetrationKPA>
+		  <speed>277</speed>
+		</projectile>
+	  </ThingDef>
 
 	<!-- ==================== Recipes ========================== -->
 
@@ -141,7 +227,7 @@
 						<li>Steel</li>
 					</thingDefs>
 				</filter>
-				<count>12</count>
+				<count>14</count>
 			</li>
 		</ingredients>
 		<fixedIngredientFilter>
@@ -152,7 +238,7 @@
 		<products>
 			<Ammo_556x45mmNATO_FMJ>500</Ammo_556x45mmNATO_FMJ>
 		</products>
-		<workAmount>2250</workAmount>
+		<workAmount>1400</workAmount>
 	</RecipeDef>
 
 	<RecipeDef ParentName="AmmoRecipeBase">
@@ -178,7 +264,7 @@
 		<products>
 			<Ammo_556x45mmNATO_AP>500</Ammo_556x45mmNATO_AP>
 		</products>
-		<workAmount>3500</workAmount>
+		<workAmount>1400</workAmount>
 	</RecipeDef>
 
 	<RecipeDef ParentName="AmmoRecipeBase">
@@ -204,7 +290,121 @@
 		<products>
 			<Ammo_556x45mmNATO_HP>500</Ammo_556x45mmNATO_HP>
 		</products>
-		<workAmount>5000</workAmount>
+		<workAmount>1400</workAmount>
 	</RecipeDef>
+
+  <RecipeDef ParentName="AmmoRecipeBase">
+    <defName>MakeAmmo_556x45mmNATO_Incendiary</defName>
+    <label>make 5.56x45mm NATO (AP-I) cartridge x200</label>
+    <description>Craft 200 5.56x45mm NATO (AP-I) cartridges.</description>
+    <jobString>Making 5.56x45mm NATO (AP-I) cartridges.</jobString>
+    <ingredients>
+      <li>
+        <filter>
+          <thingDefs>
+            <li>Steel</li>
+          </thingDefs>
+        </filter>
+        <count>14</count>
+      </li>
+      <li>
+        <filter>
+          <thingDefs>
+            <li>Prometheum</li>
+          </thingDefs>
+        </filter>
+        <count>2</count>
+      </li>
+    </ingredients>
+    <fixedIngredientFilter>
+      <thingDefs>
+        <li>Steel</li>
+        <li>Prometheum</li>
+      </thingDefs>
+    </fixedIngredientFilter>
+    <products>
+      <Ammo_556x45mmNATO_Incendiary>500</Ammo_556x45mmNATO_Incendiary>
+    </products>
+    <workAmount>2200</workAmount>
+  </RecipeDef>
+  
+  <RecipeDef ParentName="AmmoRecipeBase">
+    <defName>MakeAmmo_556x45mmNATO_HE</defName>
+    <label>make 5.56x45mm NATO (AP-HE) cartridge x200</label>
+    <description>Craft 200 5.56x45mm NATO (HE) cartridges.</description>
+    <jobString>Making 5.56x45mm NATO (HE) cartridges.</jobString>
+    <ingredients>
+      <li>
+        <filter>
+          <thingDefs>
+            <li>Steel</li>
+          </thingDefs>
+        </filter>
+        <count>14</count>
+      </li>
+      <li>
+        <filter>
+          <thingDefs>
+            <li>FSX</li>
+          </thingDefs>
+        </filter>
+        <count>4</count>
+      </li>
+    </ingredients>
+    <fixedIngredientFilter>
+      <thingDefs>
+        <li>Steel</li>
+        <li>FSX</li>
+      </thingDefs>
+    </fixedIngredientFilter>
+    <products>
+      <Ammo_556x45mmNATO_HE>500</Ammo_556x45mmNATO_HE>
+    </products>
+    <workAmount>3000</workAmount>
+  </RecipeDef>
+  
+  <RecipeDef ParentName="AmmoRecipeBase">
+    <defName>MakeAmmo_556x45mmNATO_Sabot</defName>
+    <label>make 5.56x45mm NATO (Sabot) cartridge x200</label>
+    <description>Craft 200 5.56x45mm NATO (Sabot) cartridges.</description>
+    <jobString>Making 5.56x45mm NATO (Sabot) cartridges.</jobString>
+    <ingredients>
+      <li>
+        <filter>
+          <thingDefs>
+            <li>Steel</li>
+          </thingDefs>
+        </filter>
+        <count>8</count>
+      </li>
+      <li>
+        <filter>
+          <thingDefs>
+            <li>Uranium</li>
+          </thingDefs>
+        </filter>
+        <count>2</count>
+      </li>
+      <li>
+        <filter>
+          <thingDefs>
+            <li>Chemfuel</li>
+          </thingDefs>
+        </filter>
+        <count>2</count>
+      </li>		  
+    </ingredients>
+    <fixedIngredientFilter>
+      <thingDefs>
+        <li>Steel</li>
+        <li>Uranium</li>
+        <li>Chemfuel</li>		
+      </thingDefs>
+    </fixedIngredientFilter>
+    <products>
+      <Ammo_556x45mmNATO_Sabot>500</Ammo_556x45mmNATO_Sabot>
+    </products>
+    <workAmount>2000</workAmount>
+  </RecipeDef>
 
 </Defs>
