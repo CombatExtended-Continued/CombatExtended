@@ -1,8 +1,10 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection.Emit;
 using Harmony;
+using RimWorld;
 using UnityEngine;
 using Verse;
 
@@ -43,4 +45,51 @@ namespace CombatExtended.Harmony
             return codes;
         }
     }
+
+    /// <summary>
+    /// Patches renderer to skip separate drawing of shell layer.
+    /// That layer is now drawn via Harmony_PawnGraphicSet.RenderShellAsNormalLayer, so that it obeys drawOrder.
+    /// </summary>
+    [HarmonyPatch(typeof(PawnRenderer), "RenderPawnInternal")]
+    [HarmonyPatch(new Type[] { typeof(Vector3), typeof(float), typeof(bool), typeof(Rot4), typeof(Rot4), typeof(RotDrawMode), typeof(bool), typeof(bool) })]
+    public static class SkipShellLayerDrawing
+    {
+        enum PatchStage { Searching, ExtractTargetLabel, PurgingInstructions, Finished };
+
+        internal static IEnumerable<CodeInstruction> Transpiler(IEnumerable<CodeInstruction> instructions)
+        {
+            PatchStage currentStage = PatchStage.Searching;
+            Label targetLabel = new Label();
+
+            foreach (var code in instructions)
+            {
+                if (currentStage == PatchStage.Searching)
+                {
+                    if (code.operand == AccessTools.Field(typeof(ApparelLayerDefOf), "Shell"))
+                    {
+                        currentStage = PatchStage.ExtractTargetLabel;
+                    }
+                }
+                else if (currentStage == PatchStage.ExtractTargetLabel)
+                {
+                    targetLabel = (Label)code.operand;
+                    currentStage = PatchStage.PurgingInstructions;
+                }
+                else if (currentStage == PatchStage.PurgingInstructions)
+                {
+                    if (code.labels.Contains(targetLabel))
+                    {
+                        currentStage = PatchStage.Finished;
+                    }
+                    else
+                    {
+                        code.opcode = OpCodes.Nop;
+                    }
+                }
+
+                yield return code;
+            }
+        }
+    }
+    
 }
