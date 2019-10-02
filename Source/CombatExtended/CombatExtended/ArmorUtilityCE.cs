@@ -287,8 +287,7 @@ namespace CombatExtended
             {
                 if (Verb_MeleeAttackCE.LastAttackVerb == null)
                 {
-                    Log.Error($"CE :: Tried to get deflect damage info for {dinfo} but LastAttackVerb is null");
-                    penAmount = 0;
+                    penAmount = 999999;
                 }
                 else
                 {
