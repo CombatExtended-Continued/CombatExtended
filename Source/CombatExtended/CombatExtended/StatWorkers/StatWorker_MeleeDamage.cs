@@ -14,7 +14,7 @@ namespace CombatExtended
 
         private const float damageVariationMin = 0.5f;
         private const float damageVariationMax = 1.5f;
-        private const float skillVariationPerLevel = 0.025f;
+        private const float damageVariationPerSkillLevel = 0.025f;
 
         #endregion
 
@@ -22,7 +22,6 @@ namespace CombatExtended
 
         public override string GetStatDrawEntryLabel(StatDef stat, float value, ToStringNumberSense numberSense, StatRequest optionalReq)
         {
-            
             Pawn pawnHolder = (optionalReq.Thing.ParentHolder is Pawn_EquipmentTracker) ? ((Pawn_EquipmentTracker)optionalReq.Thing.ParentHolder).pawn : null;
             float skilledDamageVariationMin = GetDamageVariationMin(pawnHolder);
             float skilledDamageVariationMax = GetDamageVariationMax(pawnHolder);
@@ -103,22 +102,36 @@ namespace CombatExtended
 
         public static float GetDamageVariationMin(Pawn pawn)
         {
-            if (pawn == null)
+            float unskilledReturnValue = damageVariationMin;
+            if (!ShouldUseSkillVariation(pawn, ref unskilledReturnValue))
             {
-                return damageVariationMin;
+                return unskilledReturnValue;
             }
-            int meleeSkillLevel = pawn.skills.GetSkill(SkillDefOf.Melee).Level;
-            return damageVariationMin + (skillVariationPerLevel * meleeSkillLevel);
+            return damageVariationMin + (damageVariationPerSkillLevel * pawn.skills.GetSkill(SkillDefOf.Melee).Level);
         }
 
         public static float GetDamageVariationMax(Pawn pawn)
         {
-            if (pawn == null)
+            float unskilledReturnValue = damageVariationMax;
+            if (!ShouldUseSkillVariation(pawn, ref unskilledReturnValue))
             {
-                return damageVariationMax;
+                return unskilledReturnValue;
             }
-            int meleeSkillLevel = pawn.skills.GetSkill(SkillDefOf.Melee).Level;
-            return damageVariationMax - (skillVariationPerLevel * (20 - meleeSkillLevel));
+            return damageVariationMax - (damageVariationPerSkillLevel * (20 - pawn.skills.GetSkill(SkillDefOf.Melee).Level));
+        }
+
+        private static bool ShouldUseSkillVariation(Pawn pawn, ref float unskilledReturnValue)
+        {
+            if (pawn == null)       //Info windows for when weapon isn't equipped
+            {
+                return false;
+            }
+            if ((pawn?.skills?.GetSkill(SkillDefOf.Melee) ?? null) == null)     //Pawns that can equip weapons but don't use skill (mechanoids, custom races) 
+            {                                                                   //No damage variation applied (same as animals for unarmed damage)
+                unskilledReturnValue = 1.0f;
+                return false;
+            }
+            return true;
         }
 
         #endregion
