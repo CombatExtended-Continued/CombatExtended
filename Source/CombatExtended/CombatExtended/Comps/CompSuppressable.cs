@@ -67,6 +67,7 @@ namespace CombatExtended
                         foreach (Apparel apparel in wornApparel)
                         {
                             float apparelArmor = apparel.GetStatValue(StatDefOf.ArmorRating_Sharp, true);
+                            apparelArmor *= apparel.def.apparel.HumanBodyCoverage;
                             if (apparelArmor > armorValue)
                             {
                                 armorValue = apparelArmor;

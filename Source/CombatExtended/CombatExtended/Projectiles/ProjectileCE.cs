@@ -638,8 +638,9 @@ namespace CombatExtended
             {
                 suppressionAmount = def.projectile.GetDamageAmount(1);
                 var propsCE = def.projectile as ProjectilePropertiesCE;
-                var penetrationAmount = propsCE == null ? 0f : propsCE.GetArmorPenetration(1);
-                suppressionAmount *= 1 - Mathf.Clamp(compSuppressable.ParentArmor - penetrationAmount, 0, 1);
+                var penetrationAmount = propsCE?.armorPenetrationRHA ?? 0f;
+                var armorMod = penetrationAmount <= 0 ? 0 : 1 - Mathf.Clamp(compSuppressable.ParentArmor * 0.5f / penetrationAmount, 0, 1);
+                suppressionAmount *= armorMod;
                 compSuppressable.AddSuppression(suppressionAmount, OriginIV3);
             }
         }
