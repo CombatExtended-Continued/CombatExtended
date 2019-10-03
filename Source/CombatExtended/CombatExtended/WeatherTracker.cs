@@ -27,7 +27,7 @@ namespace CombatExtended
         }
 
         public float HumidityPercent => Humidity / MaxPrecipitation;
-        public Vector3 WindDirection => Vector3Utility.FromAngleFlat(_windDirection);
+        public Vector3 WindDirection => Vector3Utility.FromAngleFlat(_windDirection - 90);
 
         private float WindStrength => _windStrength * map.weatherManager.CurWindSpeedFactor;
         private int BeaufortScale => Mathf.FloorToInt(WindStrength);
@@ -42,7 +42,9 @@ namespace CombatExtended
                 {
                     return "";
                 }
-                int windDirectionsPosition = Mathf.Clamp(Mathf.RoundToInt(_windDirection / (360f / windDirections.Length)), 0, windDirections.Length - 1);
+
+                var directionAngle = 360f / windDirections.Length;
+                int windDirectionsPosition = Mathf.Clamp(Mathf.RoundToInt((_windDirection - directionAngle * 0.5f) / directionAngle), 0, windDirections.Length - 1);
                 return ", " + ("CE_Wind_Direction_" + windDirections[windDirectionsPosition]).Translate();
             }
         }
@@ -53,7 +55,7 @@ namespace CombatExtended
 
         public float GetWindStrengthAt(IntVec3 cell)
         {
-            if (cell.GetRoom(map)?.UsesOutdoorTemperature ?? false)
+            if (!cell.UsesOutdoorTemperature(map))
                 return 0;
 
             return WindStrength;
