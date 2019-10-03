@@ -2,7 +2,7 @@
 <Defs>
 
   <ThingDef Name="ApparelCarryGearBase" Abstract="True">
-    <thingClass>Apparel</thingClass>
+    <thingClass>CombatExtended.Apparel_VisibleAccessory</thingClass>
     <techLevel>Industrial</techLevel>
     <category>Item</category>
     <selectable>True</selectable>
@@ -69,7 +69,6 @@
       <Cloth>60</Cloth>
     </costList>
     <apparel>
-      <wornGraphicPath>Things/Apparel/TacRigging/TacRigging</wornGraphicPath>
       <careIfWornByCorpse>false</careIfWornByCorpse>
       <bodyPartGroups>
         <li>Shoulders</li>
@@ -84,6 +83,11 @@
         <li>Soldier</li>
       </defaultOutfitTags>
     </apparel>
+    <modExtensions>
+      <li Class="CombatExtended.VisibleAccessoryDefExtension">
+        <order>1</order>
+      </li>
+    </modExtensions>
   </ThingDef>
 
   <ThingDef ParentName="ApparelCarryGearBase">
@@ -107,7 +111,6 @@
       <Cloth>40</Cloth>
     </costList>
     <apparel>
-      <wornGraphicPath>Things/Apparel/Backpack/Milpack</wornGraphicPath>
       <careIfWornByCorpse>false</careIfWornByCorpse>
       <bodyPartGroups>
         <li>Shoulders</li>
@@ -123,6 +126,11 @@
         <li>Soldier</li>
       </defaultOutfitTags>
     </apparel>
+    <modExtensions>
+      <li Class="CombatExtended.VisibleAccessoryDefExtension">
+        <order>2</order>
+      </li>
+    </modExtensions>
   </ThingDef>
 
   <ThingDef ParentName="ApparelCarryGearBase">
@@ -157,7 +165,6 @@
       </recipeUsers>
     </recipeMaker>
     <apparel>
-      <wornGraphicPath>Things/Apparel/TribalPack/Tribalpack</wornGraphicPath>
       <careIfWornByCorpse>false</careIfWornByCorpse>
       <bodyPartGroups>
         <li>Shoulders</li>
@@ -185,6 +192,11 @@
         </li>
       </options>
     </colorGenerator>
+    <modExtensions>
+      <li Class="CombatExtended.VisibleAccessoryDefExtension">
+        <order>2</order>
+      </li>
+    </modExtensions>
   </ThingDef>
 
 </Defs>
