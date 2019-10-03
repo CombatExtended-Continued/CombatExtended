@@ -42,7 +42,11 @@ namespace CombatExtended
             armorDeflected = false;
             armorReduced = false;
 
-            if (originalDinfo.Def.armorCategory == null) return originalDinfo;
+            if (originalDinfo.Def.armorCategory == null
+                || (!(originalDinfo.Weapon?.projectile is ProjectilePropertiesCE projectile) && Verb_MeleeAttackCE.LastAttackVerb == null))
+            {
+                return originalDinfo;
+            }
 
             var dinfo = new DamageInfo(originalDinfo);
             var dmgAmount = dinfo.Amount;
@@ -285,14 +289,7 @@ namespace CombatExtended
             }
             else
             {
-                if (Verb_MeleeAttackCE.LastAttackVerb == null)
-                {
-                    penAmount = 999999;
-                }
-                else
-                {
-                    penAmount = Verb_MeleeAttackCE.LastAttackVerb.ArmorPenetrationKPA;
-                }
+                penAmount = Verb_MeleeAttackCE.LastAttackVerb.ArmorPenetrationKPA;
             }
 
             var force = penAmount * 10;

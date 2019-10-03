@@ -61,7 +61,7 @@ namespace CombatExtended
             Pawn pawnHolder = (req.Thing.ParentHolder is Pawn_EquipmentTracker) ? ((Pawn_EquipmentTracker)req.Thing.ParentHolder).pawn : null;
             float skilledDamageVariationMin = GetDamageVariationMin(pawnHolder);
             float skilledDamageVariationMax = GetDamageVariationMax(pawnHolder);
-            int meleeSkillLevel = pawnHolder?.skills.GetSkill(SkillDefOf.Melee).Level ?? -1;
+            int meleeSkillLevel = pawnHolder?.skills?.GetSkill(SkillDefOf.Melee)?.Level ?? -1;
 
             var tools = (req.Def as ThingDef)?.tools;
 
