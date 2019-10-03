@@ -634,7 +634,7 @@ namespace CombatExtended
             var compSuppressable = pawn.TryGetComp<CompSuppressable>();
             if (compSuppressable != null
                 && pawn.Faction != launcher?.Faction
-                && (shield == null || shield?.ShieldState == ShieldState.Resetting))
+                && (shield == null || shield.ShieldState == ShieldState.Resetting))
             {
                 suppressionAmount = def.projectile.GetDamageAmount(1);
                 var propsCE = def.projectile as ProjectilePropertiesCE;
