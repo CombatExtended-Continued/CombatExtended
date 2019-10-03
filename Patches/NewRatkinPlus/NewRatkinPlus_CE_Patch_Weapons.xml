@@ -1,0 +1,742 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+	<Operation Class="PatchOperationSequence">
+		<!--<success>Always</success>-->
+		<operations>
+
+			<li Class="CombatExtended.PatchOperationFindMod">
+				<modName>NewRatkinPlus</modName>
+			</li>
+
+			<!-- Axe -->
+
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="RK_Axe"]/tools</xpath>
+				<value>
+					<tools>
+						<li Class="CombatExtended.ToolCE">
+							<label>edge</label>
+							<capacities>
+								<li>Cut</li>
+							</capacities>
+							<power>21.0</power>
+							<cooldownTime>1.875</cooldownTime>
+							<chanceFactor>1.33</chanceFactor>
+							<armorPenetration>0.188</armorPenetration>
+							<linkedBodyPartsGroup>Edge</linkedBodyPartsGroup>
+						</li>
+						<li Class="CombatExtended.ToolCE">
+							<label>shaft</label>
+							<capacities>
+								<li>Blunt</li>
+							</capacities>
+							<power>8</power>
+							<cooldownTime>1.575</cooldownTime>
+							<armorPenetration>0.102</armorPenetration>
+							<linkedBodyPartsGroup>Shaft</linkedBodyPartsGroup>
+						</li>	
+					</tools>
+				</value>
+			</li>
+
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName="RK_Axe"]/statBases</xpath>
+				<value>
+					<Bulk>5</Bulk>
+				</value>
+			</li>
+
+			<!-- Cleaver -->
+
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="RK_Cleaver"]/tools</xpath>
+				<value>
+					<tools>
+						<li Class="CombatExtended.ToolCE">
+							<label>edge</label>
+							<capacities>
+								<li>Cut</li>
+							</capacities>
+							<power>21.0</power>
+							<cooldownTime>1.725</cooldownTime>
+							<chanceFactor>1.33</chanceFactor>
+							<armorPenetration>0.188</armorPenetration>
+							<linkedBodyPartsGroup>Edge</linkedBodyPartsGroup>
+						</li>
+						<li Class="CombatExtended.ToolCE">
+							<label>handle</label>
+							<capacities>
+								<li>Blunt</li>
+							</capacities>
+							<power>6.0</power>
+							<cooldownTime>1.462</cooldownTime>
+							<armorPenetration>0.087</armorPenetration>
+							<linkedBodyPartsGroup>Handle</linkedBodyPartsGroup>
+						</li>		
+					</tools>
+				</value>
+			</li>
+
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName="RK_Cleaver"]/statBases</xpath>
+				<value>
+					<Bulk>3</Bulk>
+				</value>
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="RK_Cleaver"]/equippedStatOffsets</xpath>
+				<value>
+					<equippedStatOffsets>
+						<MeleeCritChance>0.5</MeleeCritChance>
+						<MeleeParryChance>0.42</MeleeParryChance>
+					</equippedStatOffsets>
+				</value>
+			</li>
+
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName="RK_Cleaver"]/weaponTags</xpath>
+				<value>
+					<li>CE_OneHandedWeapon</li>
+				</value>
+			</li>
+
+			<!-- Pitchfork -->
+
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="RK_Fork"]/tools</xpath>
+				<value>
+					<tools>
+						<li Class="CombatExtended.ToolCE">
+							<label>point</label>
+							<capacities>
+								<li>Stab</li>
+							</capacities>
+							<power>16.0</power>
+							<cooldownTime>1.725</cooldownTime>
+							<chanceFactor>1.33</chanceFactor>
+							<armorPenetration>0.292</armorPenetration>
+							<linkedBodyPartsGroup>Point</linkedBodyPartsGroup>
+						</li>
+					</tools>
+				</value>
+			</li>
+
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName="RK_Fork"]/statBases</xpath>
+				<value>
+					<Bulk>7</Bulk>
+					<MeleeCounterParryBonus>1.05</MeleeCounterParryBonus>
+				</value>
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="RK_Fork"]/equippedStatOffsets</xpath>
+				<value>
+					<equippedStatOffsets>
+						<MeleeCritChance>0.60</MeleeCritChance>
+						<MeleeParryChance>0.45</MeleeParryChance>
+						<MeleeDodgeChance>0.5</MeleeDodgeChance>
+					</equippedStatOffsets>
+				</value>
+			</li>
+
+			<!-- Hoe -->
+
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="RK_Hockey"]/tools</xpath>
+				<value>
+					<tools>
+						<li Class="CombatExtended.ToolCE">
+							<label>head</label>
+							<capacities>
+								<li>Stab</li>
+							</capacities>
+							<power>16.0</power>
+							<cooldownTime>1.725</cooldownTime>
+							<chanceFactor>1.33</chanceFactor>
+							<armorPenetration>0.329</armorPenetration>
+							<linkedBodyPartsGroup>Head</linkedBodyPartsGroup>
+						</li>
+						<li Class="CombatExtended.ToolCE">
+							<label>shaft</label>
+							<capacities>
+								<li>Blunt</li>
+							</capacities>
+							<power>6</power>
+							<cooldownTime>1.575</cooldownTime>
+							<armorPenetration>0.087</armorPenetration>
+							<linkedBodyPartsGroup>Shaft</linkedBodyPartsGroup>
+						</li>
+						<li Class="CombatExtended.ToolCE">
+							<label>point</label>
+							<capacities>
+								<li>Poke</li>
+							</capacities>
+							<power>6</power>
+							<cooldownTime>1.575</cooldownTime>
+							<armorPenetration>0.064</armorPenetration>
+							<linkedBodyPartsGroup>Point</linkedBodyPartsGroup>
+						</li>				
+					</tools>
+				</value>
+			</li>
+
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName="RK_Hockey"]/statBases</xpath>
+				<value>
+					<MeleeCounterParryBonus>1.4</MeleeCounterParryBonus>
+					<Bulk>6</Bulk>
+				</value>
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="RK_Hockey"]/equippedStatOffsets</xpath>
+				<value>
+					<equippedStatOffsets>
+						<MeleeCritChance>0.8</MeleeCritChance>
+						<MeleeParryChance>0.8</MeleeParryChance>
+					</equippedStatOffsets>
+				</value>
+			</li>
+
+			<!-- Long Sword -->
+
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="RK_LongSword"]/tools</xpath>
+				<value>
+					<tools>
+						<li Class="CombatExtended.ToolCE">
+							<label>point</label>
+							<capacities>
+								<li>Stab</li>
+							</capacities>
+							<power>18.0</power>
+							<cooldownTime>1.875</cooldownTime>
+							<chanceFactor>1.1</chanceFactor>
+							<armorPenetration>0.317</armorPenetration>
+							<linkedBodyPartsGroup>Point</linkedBodyPartsGroup>
+						</li>
+						<li Class="CombatExtended.ToolCE">
+							<label>edge</label>
+							<capacities>
+								<li>Cut</li>
+							</capacities>
+							<power>23.0</power>
+							<cooldownTime>1.875</cooldownTime>
+							<chanceFactor>1.33</chanceFactor>
+							<armorPenetration>0.201</armorPenetration>
+							<linkedBodyPartsGroup>Edge</linkedBodyPartsGroup>
+						</li>
+						<li Class="CombatExtended.ToolCE">
+							<label>handle</label>
+							<capacities>
+								<li>Blunt</li>
+							</capacities>
+							<power>6.0</power>
+							<cooldownTime>1.462</cooldownTime>
+							<armorPenetration>0.087</armorPenetration>
+							<linkedBodyPartsGroup>Handle</linkedBodyPartsGroup>
+						</li>		
+					</tools>
+				</value>
+			</li>
+
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName="RK_LongSword"]/statBases</xpath>
+				<value>
+					<Bulk>7.5</Bulk>
+					<MeleeCounterParryBonus>2</MeleeCounterParryBonus>
+				</value>
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="RK_LongSword"]/equippedStatOffsets</xpath>
+				<value>
+					<equippedStatOffsets>
+						<MeleeCritChance>0.68</MeleeCritChance>
+						<MeleeParryChance>0.7</MeleeParryChance>
+					</equippedStatOffsets>
+				</value>
+			</li>
+
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName="RK_LongSword"]/weaponTags</xpath>
+				<value>
+					<li>CE_OneHandedWeapon</li>
+				</value>
+			</li>
+
+			<!-- Crossbow -->
+
+			<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+				<defName>RK_Crossbow</defName>
+				<statBases>
+					<SightsEfficiency>1</SightsEfficiency>
+					<ShotSpread>0.5</ShotSpread>
+					<SwayFactor>1.2</SwayFactor>
+					<Bulk>7.5</Bulk>
+					<RangedWeapon_Cooldown>0.1</RangedWeapon_Cooldown>
+					<WorkToMake>2400</WorkToMake>	  
+				</statBases>
+				<Properties>
+					<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+					<hasStandardCommand>true</hasStandardCommand>
+					<defaultProjectile>Projectile_CrossbowBolt_Steel</defaultProjectile>
+					<warmupTime>1</warmupTime>
+					<range>26</range>
+					<soundCast>Bow_Large</soundCast>
+				</Properties>
+				<costList>
+					<WoodLog>40</WoodLog>
+					<Steel>20</Steel>
+				</costList>			
+				<AmmoUser>
+					<magazineSize>1</magazineSize>
+					<reloadTime>7</reloadTime>
+					<ammoSet>AmmoSet_RK_CrossbowBolt</ammoSet>
+				</AmmoUser>
+				<FireModes>
+					<aiAimMode>AimedShot</aiAimMode>
+				</FireModes>
+				<weaponTags Inherit="false">
+					<li>RK_1TierRange</li>
+					<li>RK_Crossbow</li>
+					<li>RK_Weapon</li>
+					<li>RK_RangeWeapon</li>
+					<li>RK_Combatant</li>			
+					<li>CE_Bow</li>
+				</weaponTags>
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="RK_Crossbow"]/tools</xpath>
+				<value>
+					<tools>
+						<li Class="CombatExtended.ToolCE">
+							<label>limb</label>
+							<capacities>
+								<li>Blunt</li>
+								<li>Poke</li>
+							</capacities>
+							<power>6</power>
+							<cooldownTime>2</cooldownTime>
+							<armorPenetration>0.087</armorPenetration>
+						</li>		
+					</tools>
+				</value>
+			</li>
+
+			<!-- Enhanced Crossbow -->
+
+			<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+				<defName>RK_EnhanceCrossBow</defName>
+				<statBases>
+					<SightsEfficiency>1</SightsEfficiency>
+					<ShotSpread>0.4</ShotSpread>
+					<SwayFactor>1.4</SwayFactor>
+					<Bulk>9.00</Bulk>
+					<RangedWeapon_Cooldown>0.1</RangedWeapon_Cooldown>
+					<WorkToMake>2600</WorkToMake>			  
+				</statBases>
+				<Properties>
+					<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+					<hasStandardCommand>true</hasStandardCommand>
+					<defaultProjectile>Projectile_CrossbowBolt_Steel</defaultProjectile>
+					<warmupTime>1</warmupTime>
+					<range>32</range>
+					<soundCast>Bow_Large</soundCast>
+				</Properties>
+				<AmmoUser>
+					<magazineSize>1</magazineSize>
+					<reloadTime>9</reloadTime>
+					<ammoSet>AmmoSet_RK_CrossbowBolt</ammoSet>
+				</AmmoUser>
+				<FireModes>
+					<aiAimMode>AimedShot</aiAimMode>
+				</FireModes>
+				<weaponTags Inherit="false">
+					<li>RK_1TierRange</li>
+					<li>RK_Crossbow</li>
+					<li>RK_Weapon</li>
+					<li>RK_RangeWeapon</li>
+					<li>RK_Combatant</li>
+					<li>CE_Bow</li>
+				</weaponTags>
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="RK_EnhanceCrossBow"]/tools</xpath>
+				<value>
+					<tools>
+						<li Class="CombatExtended.ToolCE">
+							<label>limb</label>
+							<capacities>
+								<li>Blunt</li>
+								<li>Poke</li>
+							</capacities>
+							<power>6</power>
+							<cooldownTime>2</cooldownTime>
+							<armorPenetration>0.087</armorPenetration>
+						</li>		
+					</tools>
+				</value>
+			</li>
+
+			<!-- Auto Crossbow -->
+
+			<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+				<defName>RK_AutoCrossBow</defName>
+				<statBases>
+					<SightsEfficiency>0.9</SightsEfficiency>
+					<ShotSpread>0.5</ShotSpread>
+					<SwayFactor>1.2</SwayFactor>
+					<Bulk>6.5</Bulk>
+					<RangedWeapon_Cooldown>1.2</RangedWeapon_Cooldown>
+					<WorkToMake>7500</WorkToMake>			  
+				</statBases>
+				<Properties>
+					<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+					<hasStandardCommand>true</hasStandardCommand>
+					<defaultProjectile>Projectile_CrossbowBolt_Steel</defaultProjectile>
+					<warmupTime>1</warmupTime>
+					<range>24</range>
+					<soundCast>Bow_Large</soundCast>
+				</Properties>
+				<AmmoUser>
+					<reloadOneAtATime>true</reloadOneAtATime>			
+					<magazineSize>6</magazineSize>
+					<reloadTime>6</reloadTime>
+					<ammoSet>AmmoSet_RK_CrossbowBolt</ammoSet>
+				</AmmoUser>
+				<FireModes>
+					<aiAimMode>AimedShot</aiAimMode>
+				</FireModes>
+				<weaponTags Inherit="false">
+					<li>RK_1TierRange</li>
+					<li>RK_Crossbow</li>
+					<li>RK_Weapon</li>
+					<li>RK_RangeWeapon</li>
+					<li>RK_Combatant</li>
+					<li>CE_Bow</li>
+				</weaponTags>
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="RK_AutoCrossBow"]/tools</xpath>
+				<value>
+					<tools>
+						<li Class="CombatExtended.ToolCE">
+							<label>limb</label>
+							<capacities>
+								<li>Blunt</li>
+								<li>Poke</li>
+							</capacities>
+							<power>6</power>
+							<cooldownTime>2</cooldownTime>
+							<armorPenetration>0.087</armorPenetration>
+						</li>		
+					</tools>
+				</value>
+			</li>
+
+			<!-- Rifle -->
+
+			<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+				<defName>RK_Rifle</defName>
+				<statBases>
+					<Mass>4</Mass>
+					<RangedWeapon_Cooldown>1.2</RangedWeapon_Cooldown>
+					<SightsEfficiency>1</SightsEfficiency>
+					<ShotSpread>0.02</ShotSpread>
+					<SwayFactor>1.74</SwayFactor>
+					<Bulk>11.60</Bulk>
+					<WorkToMake>12000</WorkToMake>
+				</statBases>
+				<costList>
+					<WoodLog>30</WoodLog>
+					<Steel>55</Steel>
+					<ComponentIndustrial>3</ComponentIndustrial>
+				</costList>
+				<Properties>
+					<recoilAmount>1.98</recoilAmount>
+					<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+					<hasStandardCommand>true</hasStandardCommand>
+					<defaultProjectile>Bullet_303British_FMJ</defaultProjectile>
+					<warmupTime>1.4</warmupTime>
+					<range>55</range>
+					<soundCast>Rifle</soundCast>
+					<soundCastTail>GunTail_Heavy</soundCastTail>
+					<muzzleFlashScale>9</muzzleFlashScale>
+					<recoilPattern>Regular</recoilPattern>
+				</Properties>
+
+				<AmmoUser>
+					<magazineSize>5</magazineSize>
+					<reloadTime>4.3</reloadTime>
+					<ammoSet>AmmoSet_303British</ammoSet>
+				</AmmoUser>
+
+				<FireModes>
+					<aiUseBurstMode>FALSE</aiUseBurstMode>
+					<aiAimMode>AimedShot</aiAimMode>
+				</FireModes>
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="RK_Rifle"]/tools</xpath>
+				<value>
+					<tools>
+						<li Class="CombatExtended.ToolCE">
+							<label>stock</label>
+							<capacities>
+								<li>Blunt</li>
+							</capacities>
+							<power>9</power>
+							<cooldownTime>1.8</cooldownTime>
+							<chanceFactor>1.5</chanceFactor>
+							<armorPenetration>0.11</armorPenetration>
+							<linkedBodyPartsGroup>Stock</linkedBodyPartsGroup>
+						</li>
+						<li Class="CombatExtended.ToolCE">
+							<label>bayonet</label>
+							<capacities>
+								<li>Stab</li>
+							</capacities>
+							<power>12</power>
+							<cooldownTime>2.3</cooldownTime>
+							<armorPenetration>0.241</armorPenetration>
+							<linkedBodyPartsGroup>Muzzle</linkedBodyPartsGroup>
+						</li>
+					</tools>
+				</value>
+			</li>
+
+			<!-- Sniper Rifle -->
+
+			<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+				<defName>RK_SniperRifle</defName>
+				<statBases>
+					<Mass>4.5</Mass>
+					<RangedWeapon_Cooldown>1.2</RangedWeapon_Cooldown>
+					<SightsEfficiency>2.2</SightsEfficiency>
+					<ShotSpread>0.02</ShotSpread>
+					<SwayFactor>1.74</SwayFactor>
+					<Bulk>11.60</Bulk>
+					<WorkToMake>15000</WorkToMake>
+				</statBases>
+				<costList>
+					<WoodLog>30</WoodLog>
+					<Steel>70</Steel>
+					<ComponentIndustrial>5</ComponentIndustrial>
+				</costList>
+				<Properties>
+					<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+					<hasStandardCommand>true</hasStandardCommand>
+					<defaultProjectile>Bullet_303British_FMJ</defaultProjectile>
+					<warmupTime>1.4</warmupTime>
+					<range>55</range>
+					<soundCast>Rifle</soundCast>
+					<soundCastTail>GunTail_Heavy</soundCastTail>
+					<muzzleFlashScale>9</muzzleFlashScale>
+				</Properties>
+				<AmmoUser>
+					<magazineSize>5</magazineSize>
+					<reloadTime>4.3</reloadTime>
+					<ammoSet>AmmoSet_303British</ammoSet>
+				</AmmoUser>
+				<FireModes>
+					<aiAimMode>AimedShot</aiAimMode>
+				</FireModes>
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="RK_SniperRifle"]/tools</xpath>
+				<value>
+					<tools>
+						<li Class="CombatExtended.ToolCE">
+							<label>stock</label>
+							<capacities>
+								<li>Blunt</li>
+							</capacities>
+							<power>9</power>
+							<cooldownTime>1.8</cooldownTime>
+							<chanceFactor>1.5</chanceFactor>
+							<armorPenetration>0.11</armorPenetration>
+							<linkedBodyPartsGroup>Stock</linkedBodyPartsGroup>
+						</li>
+						<li Class="CombatExtended.ToolCE">
+							<label>bayonet</label>
+							<capacities>
+								<li>Stab</li>
+							</capacities>
+							<power>12</power>
+							<cooldownTime>2.3</cooldownTime>
+							<armorPenetration>0.241</armorPenetration>
+							<linkedBodyPartsGroup>Muzzle</linkedBodyPartsGroup>
+						</li>
+					</tools>
+				</value>
+			</li>
+
+			<!-- Disable Flechette and Flechette Sniper Rifles (as standard Ratkin rifles can already be optionally
+			loaded with Armor-Piercing rounds) -->
+
+			<li Class="PatchOperationRemove">
+				<xpath>Defs/ThingDef[defName="RK_FlechetteRifle"]</xpath>
+			</li>
+
+			<li Class="PatchOperationRemove">
+				<xpath>Defs/ThingDef[defName="RK_FlechetteSniperRifle"]</xpath>
+			</li>
+
+			<!-- Prototype Pulse Rifle -->
+
+			<li Class="PatchOperationRemove">
+				<xpath>Defs/ThingDef[defName="RK_PrototypePulseRifle"]/verbs</xpath>
+			</li>
+
+			<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+				<defName>RK_PrototypePulseRifle</defName>
+				<statBases>
+					<Mass>3.5</Mass>
+					<RangedWeapon_Cooldown>0.4</RangedWeapon_Cooldown>
+					<SightsEfficiency>1.05</SightsEfficiency>
+					<ShotSpread>0.08</ShotSpread>
+					<SwayFactor>1.20</SwayFactor>
+					<Bulk>9.00</Bulk>
+					<WorkToMake>40000</WorkToMake>
+					<MarketValue>2500</MarketValue>	  
+				</statBases>
+				<costList>
+					<Plasteel>80</Plasteel>
+					<ComponentIndustrial>7</ComponentIndustrial>
+					<ComponentSpacer>1</ComponentSpacer>
+				</costList>
+				<Properties>
+					<recoilAmount>1.51</recoilAmount>
+					<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+					<hasStandardCommand>true</hasStandardCommand>
+					<defaultProjectile>Bullet_6x24mmCharged</defaultProjectile>
+					<warmupTime>1.0</warmupTime>
+					<range>48</range>
+					<ticksBetweenBurstShots>5</ticksBetweenBurstShots>
+					<burstShotCount>4</burstShotCount>
+					<soundCast>PrototypePulse</soundCast>
+					<soundCastTail>GunTail_Heavy</soundCastTail>
+					<muzzleFlashScale>9</muzzleFlashScale>
+				</Properties>
+				<AmmoUser>
+					<magazineSize>20</magazineSize>
+					<reloadTime>3.5</reloadTime>
+					<ammoSet>AmmoSet_6x24mmCharged</ammoSet>
+				</AmmoUser>
+				<FireModes>
+					<aimedBurstShotCount>2</aimedBurstShotCount>
+					<aiUseBurstMode>TRUE</aiUseBurstMode>
+					<aiAimMode>AimedShot</aiAimMode>
+					<noSingleShot>true</noSingleShot>
+				</FireModes>
+				<researchPrerequisite>ChargedShot</researchPrerequisite>
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="RK_PrototypePulseRifle"]/tools</xpath>
+				<value>
+					<tools>
+						<li Class="CombatExtended.ToolCE">
+							<label>stock</label>
+							<capacities>
+								<li>Blunt</li>
+							</capacities>
+							<power>9</power>
+							<cooldownTime>1.8</cooldownTime>
+							<chanceFactor>1.5</chanceFactor>
+							<armorPenetration>0.11</armorPenetration>
+							<linkedBodyPartsGroup>Stock</linkedBodyPartsGroup>
+						</li>
+						<li Class="CombatExtended.ToolCE">
+							<label>barrel</label>
+							<capacities>
+								<li>Blunt</li>
+							</capacities>
+							<power>10</power>
+							<cooldownTime>1.9</cooldownTime>
+							<armorPenetration>0.118</armorPenetration>
+							<linkedBodyPartsGroup>Barrel</linkedBodyPartsGroup>
+						</li>
+					</tools>
+				</value>
+			</li>
+
+			<!-- BFR 3000 -->
+
+			<li Class="PatchOperationRemove">
+				<xpath>Defs/ThingDef[defName="RK_BFR"]/verbs</xpath>
+			</li>
+
+			<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+				<defName>RK_BFR</defName>
+				<statBases>
+					<Mass>10.00</Mass>
+					<RangedWeapon_Cooldown>0.35</RangedWeapon_Cooldown>
+					<SightsEfficiency>1.2</SightsEfficiency>
+					<ShotSpread>0.01</ShotSpread>
+					<SwayFactor>2.10</SwayFactor>
+					<Bulk>13.00</Bulk>	  
+				</statBases>
+				<Properties>
+					<recoilAmount>1.75</recoilAmount>
+					<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+					<hasStandardCommand>true</hasStandardCommand>
+					<defaultProjectile>Bullet_5x35mmCharged</defaultProjectile>
+					<warmupTime>1.5</warmupTime>
+					<range>70</range>
+					<burstShotCount>1</burstShotCount>
+					<soundCast>PrototypePulse</soundCast>
+					<soundCastTail>GunTail_Heavy</soundCastTail>
+					<muzzleFlashScale>12</muzzleFlashScale>
+				</Properties>
+				<AmmoUser>
+					<magazineSize>5</magazineSize>
+					<reloadTime>3.5</reloadTime>
+					<ammoSet>AmmoSet_5x35mmCharged</ammoSet>
+				</AmmoUser>
+				<FireModes>
+					<aiAimMode>AimedShot</aiAimMode>
+				</FireModes>
+				<researchPrerequisite>ChargedShot</researchPrerequisite>
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="RK_BFR"]/tools</xpath>
+				<value>
+					<tools>
+						<li Class="CombatExtended.ToolCE">
+							<label>stock</label>
+							<capacities>
+								<li>Blunt</li>
+							</capacities>
+							<power>9</power>
+							<cooldownTime>1.8</cooldownTime>
+							<chanceFactor>1.5</chanceFactor>
+							<armorPenetration>0.11</armorPenetration>
+							<linkedBodyPartsGroup>Stock</linkedBodyPartsGroup>
+						</li>
+						<li Class="CombatExtended.ToolCE">
+							<label>barrel</label>
+							<capacities>
+								<li>Blunt</li>
+							</capacities>
+							<power>10</power>
+							<cooldownTime>1.9</cooldownTime>
+							<armorPenetration>0.118</armorPenetration>
+							<linkedBodyPartsGroup>Barrel</linkedBodyPartsGroup>
+						</li>
+					</tools>
+				</value>
+			</li>
+
+		</operations>
+	</Operation>
+</Patch>
