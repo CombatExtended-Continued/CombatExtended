@@ -43,7 +43,10 @@ namespace CombatExtended
             armorReduced = false;
 
             if (originalDinfo.Def.armorCategory == null
-                || (!(originalDinfo.Weapon?.projectile is ProjectilePropertiesCE projectile) && Verb_MeleeAttackCE.LastAttackVerb == null))
+                || (!(originalDinfo.Weapon?.projectile is ProjectilePropertiesCE projectile)
+                    && Verb_MeleeAttackCE.LastAttackVerb == null
+                    && originalDinfo.Weapon == null
+                    && originalDinfo.Instigator == null))
             {
                 return originalDinfo;
             }
@@ -289,7 +292,16 @@ namespace CombatExtended
             }
             else
             {
-                penAmount = Verb_MeleeAttackCE.LastAttackVerb.ArmorPenetrationKPA;
+                if (Verb_MeleeAttackCE.LastAttackVerb == null)
+                {
+                    //LastAttackVerb is already checked in GetAfterArmorDamage(). Only known case of code arriving here is with the ancient soldiers
+                    //spawned at the start of the game: their wounds are usually applied with Weapon==null and Instigator==null, so they skip CE's armor system,
+                    //but on rare occasions, one of the soldiers gets Bite injuries with with Weapon==null and the instigator set as *himself*.
+                    //Warning message below to identify any other situations where this might be happening. -LX7
+                    Log.Warning($"[CE] Deflection for Instigator:{dinfo.Instigator} Target:{dinfo.IntendedTarget} DamageDef:{dinfo.Def} Weapon:{dinfo.Weapon} has null verb, overriding AP.");
+                    
+                }
+                penAmount = Verb_MeleeAttackCE.LastAttackVerb?.ArmorPenetrationKPA ?? 999999;
             }
 
             var force = penAmount * 10;
