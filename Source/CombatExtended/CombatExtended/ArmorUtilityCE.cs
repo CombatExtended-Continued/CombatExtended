@@ -215,7 +215,7 @@ namespace CombatExtended
             var noDmg = deflected && defCE.noDamageOnDeflect;
             var newPenAmount = penAmount - armorAmount;
 
-            var dmgMult = noDmg ? 0 : Mathf.Clamp01(newPenAmount / penAmount);
+            var dmgMult = noDmg ? 0 : penAmount == 0 ? 1 : Mathf.Clamp01(newPenAmount / penAmount);
             var newDmgAmount = dmgAmount * dmgMult;
             newPenAmount -= partDensity;    // Factor partDensity only after damage calculations
 

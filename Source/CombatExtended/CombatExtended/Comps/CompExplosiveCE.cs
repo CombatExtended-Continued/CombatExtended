@@ -10,12 +10,13 @@ using UnityEngine;
 
 namespace CombatExtended
 {
+    [StaticConstructorOnStartup]
     public class CompExplosiveCE : ThingComp
     {
         private class MonoDummy : MonoBehaviour { }
 
         private const int TicksToSpawnAllFrag = 10;
-        private static GameObject DummyGO;
+        private static MonoDummy _monoDummy;
 
         private const float FragmentShadowChance = 0.2f;
 
@@ -25,6 +26,13 @@ namespace CombatExtended
             {
                 return (CompProperties_ExplosiveCE)props;
             }
+        }
+
+        static CompExplosiveCE()
+        {
+            var dummyGO = new GameObject();
+            UnityEngine.Object.DontDestroyOnLoad(dummyGO);
+            _monoDummy = dummyGO.AddComponent<MonoDummy>();
         }
 
         private static IEnumerator FragRoutine(Vector3 pos, Map map, float height, Thing instigator, ThingDefCountClass frag, float fragSpeedFactor)
@@ -97,14 +105,9 @@ namespace CombatExtended
                 var edificeHeight = edifice == null ? 0 : new CollisionVertical(edifice).Max;
                 var height = projCE != null ? Mathf.Max(edificeHeight, pos.y) : edificeHeight;
 
-                if (DummyGO == null)
-                {
-                    DummyGO = new GameObject();
-                    DummyGO.AddComponent<MonoDummy>();
-                }
                 foreach (var fragment in Props.fragments)
                 {
-                    DummyGO.GetComponent<MonoDummy>().StartCoroutine(FragRoutine(pos, map, height, instigator, fragment, Props.fragSpeedFactor));
+                    _monoDummy.GetComponent<MonoDummy>().StartCoroutine(FragRoutine(pos, map, height, instigator, fragment, Props.fragSpeedFactor));
                 }
             }
 
