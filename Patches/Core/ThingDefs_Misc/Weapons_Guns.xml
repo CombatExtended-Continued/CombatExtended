@@ -71,6 +71,24 @@
     </value>
   </Operation>
 
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/ThingDef[defName="Gun_TripleRocket" or defName="Gun_DoomsdayRocket"]/tools</xpath>
+    <value>
+      <tools>
+        <li Class="CombatExtended.ToolCE">
+          <label>barrel</label>
+          <capacities>
+            <li>Blunt</li>
+          </capacities>
+          <power>10</power>
+          <cooldownTime>2.44</cooldownTime>
+          <armorPenetrationKPA>3500</armorPenetrationKPA>
+          <linkedBodyPartsGroup>Barrel</linkedBodyPartsGroup>
+        </li>
+      </tools>
+    </value>
+  </Operation>
+
   <!-- ========== Revolver ========== -->
 
   <Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
@@ -996,24 +1014,6 @@
     <AllowWithRunAndGun>false</AllowWithRunAndGun>
   </Operation>
 
-  <Operation Class="PatchOperationReplace">
-    <xpath>Defs/ThingDef[defName="Gun_DoomsdayRocket"]/tools</xpath>
-    <value>
-      <tools>
-        <li Class="CombatExtended.ToolCE">
-          <label>barrel</label>
-          <capacities>
-            <li>Blunt</li>
-          </capacities>
-          <power>10</power>
-          <cooldownTime>1.9</cooldownTime>
-          <armorPenetration>0.118</armorPenetration>
-          <linkedBodyPartsGroup>Barrel</linkedBodyPartsGroup>
-        </li>
-      </tools>
-    </value>
-  </Operation>
-
   <Operation Class="PatchOperationAdd">
     <xpath>Defs/ThingDef[defName="Gun_DoomsdayRocket"]</xpath>
     <value>
@@ -1121,24 +1121,6 @@
     </weaponTags>
     <researchPrerequisite>CE_AdvancedLaunchers</researchPrerequisite>
     <AllowWithRunAndGun>false</AllowWithRunAndGun>
-  </Operation>
-
-  <Operation Class="PatchOperationReplace">
-    <xpath>Defs/ThingDef[defName="Gun_TripleRocket"]/tools</xpath>
-    <value>
-      <tools>
-        <li Class="CombatExtended.ToolCE">
-          <label>barrel</label>
-          <capacities>
-            <li>Blunt</li>
-          </capacities>
-          <power>10</power>
-          <cooldownTime>1.9</cooldownTime>
-          <armorPenetration>0.118</armorPenetration>
-          <linkedBodyPartsGroup>Barrel</linkedBodyPartsGroup>
-        </li>
-      </tools>
-    </value>
   </Operation>
 
   <Operation Class="PatchOperationAdd">
