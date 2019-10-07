@@ -217,6 +217,13 @@
 
 	<!-- Melee DPS -->
 	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/StatDef[defName="MeleeWeapon_AverageDPS"]/workerClass</xpath>
+		<value>
+			<workerClass>CombatExtended.StatWorker_MeleeDamageAverage</workerClass>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
 		<xpath>Defs/StatDef[defName="MeleeWeapon_AverageDPS"]/displayPriorityInCategory</xpath>
 		<value>
 			<displayPriorityInCategory>6</displayPriorityInCategory>
