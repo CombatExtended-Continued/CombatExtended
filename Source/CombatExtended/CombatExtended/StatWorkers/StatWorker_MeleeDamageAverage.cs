@@ -8,43 +8,39 @@ using UnityEngine;
 
 namespace CombatExtended
 {
-    public class StatWorker_MeleeDamage : StatWorker_MeleeDamageBase
+    public class StatWorker_MeleeDamageAverage : StatWorker_MeleeDamageBase
     {
-
-        public override string GetStatDrawEntryLabel(StatDef stat, float value, ToStringNumberSense numberSense, StatRequest optionalReq)
+        public override float GetValueUnfinalized(StatRequest req, bool applyPostProcess)
         {
-            Pawn pawnHolder = (optionalReq.Thing.ParentHolder is Pawn_EquipmentTracker) ? ((Pawn_EquipmentTracker)optionalReq.Thing.ParentHolder).pawn : null;
+            Pawn pawnHolder = (req.Thing.ParentHolder is Pawn_EquipmentTracker) ? ((Pawn_EquipmentTracker)req.Thing.ParentHolder).pawn : null;
             float skilledDamageVariationMin = GetDamageVariationMin(pawnHolder);
             float skilledDamageVariationMax = GetDamageVariationMax(pawnHolder);
 
-            var tools = (optionalReq.Def as ThingDef)?.tools;
+            var tools = (req.Def as ThingDef)?.tools;
             if (tools.NullOrEmpty())
             {
-                return "";
+                return 0;
             }
             if (tools.Any(x => !(x is ToolCE)))
             {
-                Log.Error($"Trying to get stat MeleeDamage from {optionalReq.Def.defName} which has no support for Combat Extended.");
-                return "";
+                Log.Error($"Trying to get stat MeleeDamageAverage from {req.Def.defName} which has no support for Combat Extended.");
+                return 0;
             }
 
-            float lowestDamage = Int32.MaxValue;
-            float highestDamage = 0f;
+            float totalSelectionWeight = 0f;
+            foreach (Tool tool in tools)
+            {
+                totalSelectionWeight += tool.chanceFactor;
+            }
+            float totalDPS = 0f;
             foreach (ToolCE tool in tools)
             {
-                if (tool.power > highestDamage)
-                {
-                    highestDamage = tool.power;
-                }
-                if (tool.power < lowestDamage)
-                {
-                    lowestDamage = tool.power;
-                }
+                float minDPS = tool.power / tool.cooldownTime * skilledDamageVariationMin;
+                float maxDPS = tool.power / tool.cooldownTime * skilledDamageVariationMax;
+                float weightFactor = tool.chanceFactor / totalSelectionWeight;
+                totalDPS += weightFactor * ((minDPS + maxDPS) / 2f);
             }
-
-            return (lowestDamage * skilledDamageVariationMin).ToStringByStyle(ToStringStyle.FloatMaxTwo)
-                + " - "
-                + (highestDamage * skilledDamageVariationMax).ToStringByStyle(ToStringStyle.FloatMaxTwo);
+            return totalDPS;
         }
 
         public override string GetExplanationUnfinalized(StatRequest req, ToStringNumberSense numberSense)
@@ -74,6 +70,9 @@ namespace CombatExtended
 
             foreach (ToolCE tool in tools)
             {
+                float minDPS = tool.power / tool.cooldownTime * skilledDamageVariationMin;
+                float maxDPS = tool.power / tool.cooldownTime * skilledDamageVariationMax;
+
                 var maneuvers = DefDatabase<ManeuverDef>.AllDefsListForReading.Where(d => tool.capacities.Contains(d.requiredCapacity));
                 var maneuverString = "(";
                 foreach (var maneuver in maneuvers)
@@ -81,11 +80,14 @@ namespace CombatExtended
                     maneuverString += maneuver.ToString() + "/";
                 }
                 maneuverString = maneuverString.TrimmedToLength(maneuverString.Length - 1) + ")";
+
                 stringBuilder.AppendLine("  Tool: " + tool.ToString() + " " + maneuverString);
                 stringBuilder.AppendLine("    Base damage: " + tool.power.ToStringByStyle(ToStringStyle.FloatMaxTwo));
-                stringBuilder.AppendLine(string.Format("    Final value: {0} - {1}",
-                    (tool.power * skilledDamageVariationMin).ToStringByStyle(ToStringStyle.FloatMaxTwo),
-                    (tool.power * skilledDamageVariationMax).ToStringByStyle(ToStringStyle.FloatMaxTwo)));
+                stringBuilder.AppendLine("    Cooldown: " + tool.cooldownTime.ToStringByStyle(ToStringStyle.FloatMaxTwo) + " seconds");
+                stringBuilder.AppendLine(string.Format("    Damage variation: {0} - {1}",
+                    minDPS.ToStringByStyle(ToStringStyle.FloatMaxTwo),
+                    maxDPS.ToStringByStyle(ToStringStyle.FloatMaxTwo)));
+                stringBuilder.AppendLine("    Average damage: " + ((minDPS + maxDPS) / 2f).ToStringByStyle(ToStringStyle.FloatMaxTwo));
                 stringBuilder.AppendLine();
             }
             return stringBuilder.ToString();
