@@ -106,7 +106,7 @@ namespace CombatExtended
                 return UseAmmo ? currentAmmoInt : null;
             }
         }
-        public ThingDef CurAmmoProjectile => Props.ammoSet?.ammoTypes?.FirstOrDefault(x => x.ammo == CurrentAmmo).projectile;
+        public ThingDef CurAmmoProjectile => Props.ammoSet?.ammoTypes?.FirstOrDefault(x => x.ammo == CurrentAmmo)?.projectile ?? parent.def.Verbs.FirstOrDefault().defaultProjectile;
         public CompInventory CompInventory
         {
             get
