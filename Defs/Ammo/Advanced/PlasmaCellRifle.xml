@@ -31,6 +31,8 @@
 		</statBases>
 		<tradeTags>
 			<li>CE_AutoEnableTrade</li>
+			<li>CE_AutoEnableCrafting_TableMachining</li>
+			<!-- Plasma ammo can't be handloaded, and the containment cell must be precision-machined anyway -->
 		</tradeTags>
 		<thingCategories>
 			<li>AmmoPlasmaCellRifle</li>
@@ -58,5 +60,42 @@
 			<armorPenetrationBase>1.0</armorPenetrationBase>
 		</projectile>
 	</ThingDef>
+
+	<!-- ==================== Recipes ========================== -->
+
+	<RecipeDef ParentName="ChargeAmmoRecipeBase">
+		<defName>MakeAmmo_PlasmaCellRifle</defName>
+		<label>make Plasma Rifle Power Cells</label>
+		<description>Craft 500 shots' worth of Plasma Rifle Power Cells.</description>
+		<jobString>Making Plasma Rifle Power Cells.</jobString>
+		<ingredients>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>Plasteel</li>
+					</thingDefs>
+				</filter>
+				<count>5</count>
+			</li>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>ComponentIndustrial</li>
+					</thingDefs>
+				</filter>
+				<count>5</count>
+			</li>
+		</ingredients>
+		<fixedIngredientFilter>
+			<thingDefs>
+				<li>Plasteel</li>
+				<li>ComponentIndustrial</li>
+			</thingDefs>
+		</fixedIngredientFilter>
+		<products>
+			<Ammo_PlasmaCellRifle>500</Ammo_PlasmaCellRifle>
+		</products>
+		<workAmount>20000</workAmount>
+	</RecipeDef>
 
 </Defs>

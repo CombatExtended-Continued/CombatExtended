@@ -31,6 +31,8 @@
 		</statBases>
 		<tradeTags>
 			<li>CE_AutoEnableTrade</li>
+			<li>CE_AutoEnableCrafting_TableMachining</li>
+			<!-- Railgun ammo isn't handloaded because it contains no propellant, and the sabots must be precision-machined anyway -->
 		</tradeTags>
 		<thingCategories>
 			<li>Ammo6mmRailgun</li>
@@ -58,5 +60,42 @@
 			<speed>667</speed>
 		</projectile>
 	</ThingDef>
+
+	<!-- ==================== Recipes ========================== -->
+
+	<RecipeDef ParentName="AmmoRecipeBase">
+		<defName>MakeAmmo_6mmRailgun_Sabot</defName>
+		<label>make 6mm Railgun cartridge (Sabot) x500</label>
+		<description>Craft 500 6mm Railgun (Sabot) cartridges.</description>
+		<jobString>Making 6mm Railgun (Sabot) cartridges.</jobString>
+		<ingredients>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>Steel</li>
+					</thingDefs>
+				</filter>
+				<count>4</count>
+			</li>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>Uranium</li>
+					</thingDefs>
+				</filter>
+				<count>1</count>
+			</li>
+		</ingredients>
+		<fixedIngredientFilter>
+			<thingDefs>
+				<li>Steel</li>
+				<li>Uranium</li>
+			</thingDefs>
+		</fixedIngredientFilter>
+		<products>
+			<Ammo_6mmRailgun_Sabot>500</Ammo_6mmRailgun_Sabot>
+		</products>
+		<workAmount>15750</workAmount>
+	</RecipeDef>
 
 </Defs>
