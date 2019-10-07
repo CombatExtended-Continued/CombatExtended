@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+	<Operation Class="PatchOperationSequence">
+		<success>Always</success>
+		<operations>
+
+			<li Class="CombatExtended.PatchOperationFindMod">
+				<modName>Megafauna</modName>
+			</li>
+
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName="Pulmonoscorpius"]/statBases</xpath>
+				<success>Always</success>
+				<value>
+					<MeleeDodgeChance>0.22</MeleeDodgeChance>
+					<MeleeCritChance>0.02</MeleeCritChance>
+					<MeleeParryChance>0.05</MeleeParryChance>
+				</value>
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="Pulmonoscorpius"]/tools</xpath>
+				<value>
+					<tools>
+						<li Class="CombatExtended.ToolCE">
+							<label>left pincer</label>
+							<capacities>
+								<li>Scratch</li>
+							</capacities>
+							<power>13</power>
+							<cooldownTime>1.25</cooldownTime>
+							<linkedBodyPartsGroup>LeftPincer</linkedBodyPartsGroup>
+							<armorPenetration>0.096</armorPenetration>
+						</li>
+						<li Class="CombatExtended.ToolCE">
+							<label>right pincer</label>
+							<capacities>
+								<li>Scratch</li>
+							</capacities>
+							<power>13</power>
+							<cooldownTime>1.25</cooldownTime>
+							<linkedBodyPartsGroup>RightPincer</linkedBodyPartsGroup>
+							<armorPenetration>0.096</armorPenetration>
+						</li>
+						<li Class="CombatExtended.ToolCE">
+							<label>stinger</label>
+							<capacities>
+								<li>ToxicSting</li>
+							</capacities>
+							<power>17</power>
+							<cooldownTime>1.7</cooldownTime>
+							<linkedBodyPartsGroup>Stinger</linkedBodyPartsGroup>
+							<ensureLinkedBodyPartsGroupAlwaysUsable>true</ensureLinkedBodyPartsGroupAlwaysUsable>
+							<surpriseAttack>
+								<extraMeleeDamages>
+									<li>
+										<def>Stun</def>
+										<amount>17</amount>
+									</li>
+								</extraMeleeDamages>
+							</surpriseAttack>
+							<chanceFactor>0.4</chanceFactor>
+							<armorPenetration>0.304</armorPenetration>
+						</li>
+						<li Class="CombatExtended.ToolCE">
+							<capacities>
+								<li>Bite</li>
+							</capacities>
+							<power>13</power>
+							<cooldownTime>1.55</cooldownTime>
+							<linkedBodyPartsGroup>Mouth</linkedBodyPartsGroup>
+							<armorPenetration>0.203</armorPenetration>
+						</li>
+					</tools>
+				</value>
+			</li>
+
+		</operations>
+	</Operation>
+</Patch>
+
+
+
+
+
+
+
+
+
+
+
+
+
