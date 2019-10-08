@@ -10,37 +10,37 @@ namespace CombatExtended
 {
     public class StatWorker_MeleeArmorPenetration : StatWorker_MeleeStats
     {
-        private float GetMeleePenetration(StatRequest req)
+        public override string GetStatDrawEntryLabel(StatDef stat, float value, ToStringNumberSense numberSense, StatRequest optionalReq)
         {
-            var tools = (req.Def as ThingDef)?.tools;
+            var tools = (optionalReq.Def as ThingDef)?.tools;
             if (tools.NullOrEmpty())
             {
-                return 0;
+                return "";
             }
-            if (tools.Any(x=> !(x is ToolCE)))
+            if (tools.Any(x => !(x is ToolCE)))
             {
-                Log.Error($"Trying to get stat MeleePenetration from {req.Def.defName} which has no support for Combat Extended.");
-                return 0;
+                Log.Error($"Trying to get stat MeleeArmorPenetration from {optionalReq.Def.defName} which has no support for Combat Extended.");
+                return "";
             }
 
             float totalSelectionWeight = 0f;
-            for (int i = 0; i < tools.Count; i++)
+            foreach (Tool tool in tools)
             {
-                totalSelectionWeight += tools[i].chanceFactor;
+                totalSelectionWeight += tool.chanceFactor;
             }
-            float totalAveragePen = 0f;
+            float totalAveragePenRHA = 0f;
+            float totalAveragePenKPA = 0f;
             foreach (ToolCE tool in tools)
             {
                 var weightFactor = tool.chanceFactor / totalSelectionWeight;
-                totalAveragePen += weightFactor * tool.armorPenetration;
+                totalAveragePenRHA += weightFactor * tool.armorPenetrationRHA;
+                totalAveragePenKPA += weightFactor * tool.armorPenetrationKPA;
             }
-            var penMult = req.Thing?.GetStatValue(CE_StatDefOf.MeleePenetrationFactor) ?? 1f;
-            return totalAveragePen * penMult;
-        }
+            var penMult = optionalReq.Thing?.GetStatValue(CE_StatDefOf.MeleePenetrationFactor) ?? 1f;
 
-        public override float GetValueUnfinalized(StatRequest req, bool applyPostProcess = true)
-        {
-            return GetMeleePenetration(req);
+            return (totalAveragePenRHA * penMult).ToStringByStyle(ToStringStyle.FloatMaxTwo) + "mm RHA"
+                + ", "
+                + (totalAveragePenKPA * penMult).ToStringByStyle(ToStringStyle.Integer) + " kPa";
         }
 
         public override string GetExplanationUnfinalized(StatRequest req, ToStringNumberSense numberSense)
@@ -51,9 +51,10 @@ namespace CombatExtended
             {
                 return base.GetExplanationUnfinalized(req, numberSense);
             }
-
             var stringBuilder = new StringBuilder();
             var penMult = req.Thing?.GetStatValue(CE_StatDefOf.MeleePenetrationFactor) ?? 1f;
+            stringBuilder.AppendLine("Weapon penetration factor: " + penMult.ToStringByStyle(ToStringStyle.PercentZero));
+            stringBuilder.AppendLine();
             foreach (ToolCE tool in tools)
             {
                 var maneuvers = DefDatabase<ManeuverDef>.AllDefsListForReading.Where(d => tool.capacities.Contains(d.requiredCapacity));
@@ -63,16 +64,20 @@ namespace CombatExtended
                     maneuverString += maneuver.ToString() + "/";
                 }
                 maneuverString = maneuverString.TrimmedToLength(maneuverString.Length - 1) + ")";
+
                 stringBuilder.AppendLine("  Tool: " + tool.ToString() + " " + maneuverString);
-                stringBuilder.AppendLine("    Base penetration: " + tool.armorPenetration.ToStringByStyle(ToStringStyle.FloatMaxTwo));
-                stringBuilder.AppendLine("    Weapon multiplier: " + penMult.ToStringByStyle(ToStringStyle.PercentZero));
-                stringBuilder.AppendLine(string.Format("    Final value: {0} x {1} = {2}",
-                    tool.armorPenetration.ToStringByStyle(ToStringStyle.FloatMaxTwo),
-                    penMult.ToStringByStyle(ToStringStyle.FloatMaxTwo),
-                    (tool.armorPenetration * penMult).ToStringByStyle(ToStringStyle.FloatMaxTwo)));
+                stringBuilder.AppendLine(string.Format("    Sharp penetration: {0} x {1} = {2} mm RHA",
+                    tool.armorPenetrationRHA.ToStringByStyle(ToStringStyle.FloatMaxTwo),
+                    penMult.ToStringByStyle(ToStringStyle.FloatMaxThree),
+                    (tool.armorPenetrationRHA * penMult).ToStringByStyle(ToStringStyle.FloatMaxTwo)));
+                stringBuilder.AppendLine(string.Format("    Blunt penetration: {0} x {1} = {2} kPa",
+                    tool.armorPenetrationKPA.ToStringByStyle(ToStringStyle.FloatMaxTwo),
+                    penMult.ToStringByStyle(ToStringStyle.FloatMaxThree),
+                    (tool.armorPenetrationKPA * penMult).ToStringByStyle(ToStringStyle.FloatMaxTwo)));
                 stringBuilder.AppendLine();
             }
             return stringBuilder.ToString();
         }
+
     }
 }
