@@ -4,7 +4,7 @@
 	<!-- Base Leather -->
 
 	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/ThingDef[@Name="LeatherBase"]/statBases/StuffPower_Armor_Sharp</xpath>
+		<xpath>Defs/ThingDef[@Name="LeatherBase" or defName="Leather_Wolf" or defName="Leather_Panthera" or defName="Leather_Human" or defName="Leather_Pig" or defName="Leather_Elephant"]/statBases/StuffPower_Armor_Sharp</xpath>
 		<value>
 			<StuffPower_Armor_Sharp>0.05</StuffPower_Armor_Sharp>
 		</value>
@@ -19,13 +19,6 @@
 
 	<!-- Wolfskin -->
 
-	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/ThingDef[defName="Leather_Wolf"]/statBases/StuffPower_Armor_Sharp</xpath>
-		<value>
-			<StuffPower_Armor_Sharp>0.32</StuffPower_Armor_Sharp>
-		</value>
-	</Operation>
-
 	<Operation Class="PatchOperationAdd">
 		<xpath>Defs/ThingDef[defName="Leather_Wolf"]/statBases</xpath>
 		<value>
@@ -34,13 +27,6 @@
 	</Operation>
 
 	<!-- Panthera Fur -->
-
-	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/ThingDef[defName="Leather_Panthera"]/statBases/StuffPower_Armor_Sharp</xpath>
-		<value>
-			<StuffPower_Armor_Sharp>0.3</StuffPower_Armor_Sharp>
-		</value>
-	</Operation>
 
 	<Operation Class="PatchOperationAdd">
 		<xpath>Defs/ThingDef[defName="Leather_Panthera"]/statBases</xpath>
@@ -51,13 +37,6 @@
 
 	<!-- Bearskin -->
 
-	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/ThingDef[defName="Leather_Bear"]/statBases/StuffPower_Armor_Sharp</xpath>
-		<value>
-			<StuffPower_Armor_Sharp>0.33</StuffPower_Armor_Sharp>
-		</value>
-	</Operation>
-
 	<Operation Class="PatchOperationAdd">
 		<xpath>Defs/ThingDef[defName="Leather_Bear"]/statBases</xpath>
 		<value>
@@ -67,13 +46,6 @@
 
 	<!-- Human Leather -->
 
-	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/ThingDef[defName="Leather_Human"]/statBases/StuffPower_Armor_Sharp</xpath>
-		<value>
-			<StuffPower_Armor_Sharp>0.25</StuffPower_Armor_Sharp>
-		</value>
-	</Operation>
-
 	<Operation Class="PatchOperationAdd">
 		<xpath>Defs/ThingDef[defName="Leather_Human"]/statBases</xpath>
 		<value>
@@ -82,13 +54,6 @@
 	</Operation>
 
 	<!-- Pigskin -->
-
-	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/ThingDef[defName="Leather_Pig"]/statBases/StuffPower_Armor_Sharp</xpath>
-		<value>
-			<StuffPower_Armor_Sharp>0.25</StuffPower_Armor_Sharp>
-		</value>
-	</Operation>
 
 	<Operation Class="PatchOperationAdd">
 		<xpath>Defs/ThingDef[defName="Leather_Pig"]/statBases</xpath>
@@ -100,9 +65,9 @@
 	<!-- Lightleather -->
 
 	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/ThingDef[defName="Leather_Light"]/statBases/StuffPower_Armor_Sharp</xpath>
+		<xpath>Defs/ThingDef[defName="Leather_Light" or defName="Leather_Bird" or defName="Leather_Chinchilla" or defName="Leather_Fox"]/statBases/StuffPower_Armor_Sharp</xpath>
 		<value>
-			<StuffPower_Armor_Sharp>0.23</StuffPower_Armor_Sharp>
+			<StuffPower_Armor_Sharp>0.03</StuffPower_Armor_Sharp>
 		</value>
 	</Operation>
 
@@ -116,13 +81,6 @@
 	<!-- Birdskin -->
 
 	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/ThingDef[defName="Leather_Bird"]/statBases/StuffPower_Armor_Sharp</xpath>
-		<value>
-			<StuffPower_Armor_Sharp>0.25</StuffPower_Armor_Sharp>
-		</value>
-	</Operation>
-
-	<Operation Class="PatchOperationReplace">
 		<xpath>Defs/ThingDef[defName="Leather_Bird"]/statBases/StuffPower_Armor_Blunt</xpath>
 		<value>
 			<StuffPower_Armor_Blunt>0.125</StuffPower_Armor_Blunt>
@@ -132,13 +90,6 @@
 	<!-- Chinchilla Fur -->
 
 	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/ThingDef[defName="Leather_Chinchilla"]/statBases/StuffPower_Armor_Sharp</xpath>
-		<value>
-			<StuffPower_Armor_Sharp>0.25</StuffPower_Armor_Sharp>
-		</value>
-	</Operation>
-
-	<Operation Class="PatchOperationReplace">
 		<xpath>Defs/ThingDef[defName="Leather_Chinchilla"]/statBases/StuffPower_Armor_Blunt</xpath>
 		<value>
 			<StuffPower_Armor_Blunt>0.125</StuffPower_Armor_Blunt>
@@ -146,13 +97,6 @@
 	</Operation>
 
 	<!-- Foxfur -->
-
-	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/ThingDef[defName="Leather_Fox"]/statBases/StuffPower_Armor_Sharp</xpath>
-		<value>
-			<StuffPower_Armor_Sharp>0.05</StuffPower_Armor_Sharp>
-		</value>
-	</Operation>
 
 	<Operation Class="PatchOperationReplace">
 		<xpath>Defs/ThingDef[defName="Leather_Fox"]/statBases/StuffPower_Armor_Blunt</xpath>
@@ -166,7 +110,7 @@
 	<Operation Class="PatchOperationReplace">
 		<xpath>Defs/ThingDef[defName="Leather_Lizard"]/statBases/StuffPower_Armor_Sharp</xpath>
 		<value>
-			<StuffPower_Armor_Sharp>0.05</StuffPower_Armor_Sharp>
+			<StuffPower_Armor_Sharp>0.08</StuffPower_Armor_Sharp>
 		</value>
 	</Operation>
 
@@ -179,13 +123,6 @@
 
 	<!-- Elephant Leather -->
 
-	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/ThingDef[defName="Leather_Elephant"]/statBases/StuffPower_Armor_Sharp</xpath>
-		<value>
-			<StuffPower_Armor_Sharp>0.33</StuffPower_Armor_Sharp>
-		</value>
-	</Operation>
-
 	<Operation Class="PatchOperationAdd">
 		<xpath>Defs/ThingDef[defName="Leather_Elephant"]/statBases</xpath>
 		<value>
@@ -196,9 +133,9 @@
 	<!-- Heavy Fur -->
 
 	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/ThingDef[defName="Leather_Heavy"]/statBases/StuffPower_Armor_Sharp</xpath>
+		<xpath>Defs/ThingDef[defName="Leather_Heavy" or defName="Leather_Bear" or defName="Leather_Rhinoceros"]/statBases/StuffPower_Armor_Sharp</xpath>
 		<value>
-			<StuffPower_Armor_Sharp>0.36</StuffPower_Armor_Sharp>
+			<StuffPower_Armor_Sharp>0.7</StuffPower_Armor_Sharp>
 		</value>
 	</Operation>
 
@@ -210,13 +147,6 @@
 	</Operation>
 
 	<!-- Rhinoceros Leather -->
-
-	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/ThingDef[defName="Leather_Rhinoceros"]/statBases/StuffPower_Armor_Sharp</xpath>
-		<value>
-			<StuffPower_Armor_Sharp>0.38</StuffPower_Armor_Sharp>
-		</value>
-	</Operation>
 
 	<Operation Class="PatchOperationAdd">
 		<xpath>Defs/ThingDef[defName="Leather_Rhinoceros"]/statBases</xpath>
@@ -230,14 +160,14 @@
 	<Operation Class="PatchOperationReplace">
 		<xpath>Defs/ThingDef[defName="Leather_Thrumbo"]/statBases/StuffPower_Armor_Sharp</xpath>
 		<value>
-			<StuffPower_Armor_Sharp>0.52</StuffPower_Armor_Sharp>
+			<StuffPower_Armor_Sharp>0.75</StuffPower_Armor_Sharp>
 		</value>
 	</Operation>
 
 	<Operation Class="PatchOperationReplace">
 		<xpath>Defs/ThingDef[defName="Leather_Thrumbo"]/statBases/StuffPower_Armor_Blunt</xpath>
 		<value>
-			<StuffPower_Armor_Blunt>0.26</StuffPower_Armor_Blunt>
+			<StuffPower_Armor_Blunt>100</StuffPower_Armor_Blunt>
 		</value>
 	</Operation>
 
@@ -246,7 +176,7 @@
 	<Operation Class="PatchOperationReplace">
 		<xpath>Defs/ThingDef[defName="Leather_Patch"]/statBases/StuffPower_Armor_Sharp</xpath>
 		<value>
-			<StuffPower_Armor_Sharp>0.21</StuffPower_Armor_Sharp>
+			<StuffPower_Armor_Sharp>0.02</StuffPower_Armor_Sharp>
 		</value>
 	</Operation>
 
