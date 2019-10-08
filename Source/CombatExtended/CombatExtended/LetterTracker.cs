@@ -28,5 +28,11 @@ namespace CombatExtended
                 _sentMechWarning = true;
             }
         }
+
+        public override void ExposeData()
+        {
+            base.ExposeData();
+            Scribe_Values.Look<bool>(ref _sentMechWarning, "sentMechWarning", false, false);
+        }
     }
 }
