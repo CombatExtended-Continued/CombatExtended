@@ -9,14 +9,9 @@
 			</li>
 			<!-- ========== Welding mask ========== -->
 			<li Class="PatchOperationReplace">
-				<xpath>Defs/ThingDef[defName = "Apparello_Wendywelder"]/statBases/ArmorRating_Sharp</xpath>
+				<xpath>Defs/ThingDef[defName = "Apparello_Wendywelder"]/statBases/StuffEffectMultiplierArmor</xpath>
 				<value>
 					<ArmorRating_Sharp>2</ArmorRating_Sharp>
-				</value>
-			</li>
-			<li Class="PatchOperationReplace">
-				<xpath>Defs/ThingDef[defName = "Apparello_Wendywelder"]/statBases/ArmorRating_Blunt</xpath>
-				<value>
 					<ArmorRating_Blunt>3000</ArmorRating_Blunt>
 				</value>
 			</li>
@@ -31,6 +26,26 @@
 				<xpath>Defs/ThingDef[defName = "Apparello_Hardhat"]/statBases/ArmorRating_Blunt</xpath>
 				<value>
 					<ArmorRating_Blunt>3000</ArmorRating_Blunt>
+				</value>
+			</li>
+			<!-- ========== Chef hats, surgeon ========== -->
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="Apparello_Chefhat" or defName="Apparello_Docteur"]/statBases/StuffEffectMultiplierArmor</xpath>
+				<value>
+					<ArmorRating_Sharp>0.006</ArmorRating_Sharp>
+					<ArmorRating_Blunt>1</ArmorRating_Blunt>
+				</value>
+			</li>
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="Apparello_Chefhatplus"]/statBases/ArmorRating_Sharp</xpath>
+				<value>
+					<ArmorRating_Sharp>0.006</ArmorRating_Sharp>
+				</value>
+			</li>
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="Apparello_Chefhatplus"]/statBases/ArmorRating_Blunt</xpath>
+				<value>
+					<ArmorRating_Blunt>1</ArmorRating_Blunt>
 				</value>
 			</li>
 			<!-- ========== Tac-team headcover ========== -->
@@ -84,7 +99,7 @@
 			<li Class="PatchOperationReplace">
 				<xpath>Defs/ThingDef[defName = "Apparello_Medband"]/statBases/ArmorRating_Sharp</xpath>
 				<value>
-					<ArmorRating_Sharp>0.02</ArmorRating_Sharp>
+					<ArmorRating_Sharp>0.006</ArmorRating_Sharp>
 				</value>
 			</li>
 			<!-- ========== Nerve enhancer ========== -->
@@ -123,6 +138,18 @@
 				<xpath>Defs/ThingDef[defName = "Apparello_Moron"]/statBases/ArmorRating_Sharp</xpath>
 				<value>
 					<ArmorRating_Sharp>2</ArmorRating_Sharp>
+				</value>
+			</li>
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName = "Apparello_Sandtrader"]/statBases</xpath>
+				<value>
+					<ArmorRating_Blunt>2</ArmorRating_Blunt>
+				</value>
+			</li>
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName = "Apparello_Sandtrader"]/statBases</xpath>
+				<value>
+					<ArmorRating_Sharp>0.012</ArmorRating_Sharp>
 				</value>
 			</li>
 			<li Class="PatchOperationAdd">
