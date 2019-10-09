@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+
+    <Operation Class="PatchOperationAdd">
+        <xpath>Defs/DamageDef[defName="Bullet"]</xpath>
+        <value>
+            <buildingDamageFactor>0.25</buildingDamageFactor>
+            <plantDamageFactor>0.25</plantDamageFactor>
+        </value>
+    </Operation>
+
+    <Operation Class="PatchOperationReplace">
+        <xpath>Defs/DamageDef[defName="Blunt"]/buildingDamageFactor</xpath>
+        <value>
+            <buildingDamageFactor>0.05</buildingDamageFactor>
+            <plantDamageFactor>0.05</plantDamageFactor>
+        </value>
+    </Operation>
+
+    <Operation Class="PatchOperationAdd">
+        <xpath>Defs/DamageDef[defName="Arrow" or defName="Cut" or defName="Stab" or defName="Scratch" or defName="Bite" or defName="RangedStab"]</xpath>
+        <value>
+            <buildingDamageFactor>0.05</buildingDamageFactor>
+            <plantDamageFactor>0.05</plantDamageFactor>
+        </value>
+    </Operation>
+
+</Patch>
+
