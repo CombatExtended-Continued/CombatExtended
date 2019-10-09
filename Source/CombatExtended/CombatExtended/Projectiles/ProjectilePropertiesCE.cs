@@ -21,6 +21,6 @@ namespace CombatExtended
         public float armorPenetrationRHA;
         public float armorPenetrationKPA;
 
-        public float Gravity => CE_Utility.gravityConst * gravityFactor;
+        public float Gravity => CE_Utility.GravityConst * gravityFactor;
     }
 }

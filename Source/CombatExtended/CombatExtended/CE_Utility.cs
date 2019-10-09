@@ -268,7 +268,7 @@ namespace CombatExtended
         /// <summary>
         /// Gravity constant in meters per second squared
         /// </summary>
-        public const float gravityConst = 9.8f;
+        public const float GravityConst = 9.8f * 0.2f;
 		
         public static Bounds GetBoundsFor(IntVec3 cell, RoofDef roof)
         {

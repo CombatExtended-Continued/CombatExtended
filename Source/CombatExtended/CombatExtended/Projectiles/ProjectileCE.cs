@@ -320,9 +320,8 @@ namespace CombatExtended
             {
                 if (_gravityFactor < 0)
                 {
-                    _gravityFactor = CE_Utility.gravityConst;
-                    var props = def.projectile as ProjectilePropertiesCE;
-                    if (props != null) _gravityFactor = props.Gravity;
+                    _gravityFactor = CE_Utility.GravityConst;
+                    if (def.projectile is ProjectilePropertiesCE props) _gravityFactor = props.Gravity;
                 }
                 return _gravityFactor;
             }
