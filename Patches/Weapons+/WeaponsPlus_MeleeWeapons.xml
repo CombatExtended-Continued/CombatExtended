@@ -477,7 +477,7 @@
         <xpath>/Defs/ThingDef[defName="MeleeWeapon_Glaive"]/statBases</xpath>
         <value>
           <Bulk>10</Bulk>
-          <MeleeCounterParryBonus>0.61</MeleeCounterParryBonus>
+          <MeleeCounterParryBonus>0.89</MeleeCounterParryBonus>
         </value>
       </li>
 
@@ -486,9 +486,19 @@
         <value>
           <equippedStatOffsets>
             <MeleeCritChance>0.22</MeleeCritChance>
-            <MeleeParryChance>0.7</MeleeParryChance>
-            <MeleeDodgeChance>0.43</MeleeDodgeChance>
+            <MeleeParryChance>1.33</MeleeParryChance>
+            <MeleeDodgeChance>0.57</MeleeDodgeChance>
           </equippedStatOffsets>
+        </value>
+      </li>
+
+      <li Class="PatchOperationAddModExtension">
+        <xpath>Defs/ThingDef[defName="MeleeWeapon_Glaive"]</xpath>
+        <value>
+          <li Class="CombatExtended.GunDrawExtension">
+            <DrawSize>1.7,1.7</DrawSize>
+            <DrawOffset>0.3,0.4</DrawOffset>
+          </li>
         </value>
       </li>
 
