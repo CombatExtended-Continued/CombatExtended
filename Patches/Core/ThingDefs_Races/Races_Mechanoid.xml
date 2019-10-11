@@ -3,34 +3,34 @@
 
 	<!-- ========== Base Mechanoid ========== -->
 
-	<!--<Operation Class="PatchOperationAdd">
+	<Operation Class="PatchOperationAdd">
 		<xpath>Defs/ThingDef[@Name="BaseMechanoid"]/statBases</xpath>
 		<value>
-			<ArmorRating_Heat>1</ArmorRating_Heat>
+			<SmokeSensitivity>0</SmokeSensitivity>
 		</value>
-	</Operation>-->
+	</Operation>
 
 	<Operation Class="PatchOperationSequence">
-  	<success>Always</success>
-  	<operations>
-    	<li Class="PatchOperationTest">
-      	<xpath>Defs/ThingDef[@Name="BaseMechanoid"]/comps</xpath>
-      	<success>Invert</success>
-    	</li>
-    	<li Class="PatchOperationAdd">
-      	<xpath>Defs/ThingDef[@Name="BaseMechanoid"]</xpath>
-      	<value>
-        	<comps />
-      	</value>
-    	</li>
-  	</operations>
+		<success>Always</success>
+		<operations>
+			<li Class="PatchOperationTest">
+				<xpath>Defs/ThingDef[@Name="BaseMechanoid"]/comps</xpath>
+				<success>Invert</success>
+			</li>
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[@Name="BaseMechanoid"]</xpath>
+				<value>
+					<comps />
+				</value>
+			</li>
+		</operations>
 	</Operation>
 
 	<Operation Class="PatchOperationAdd">
 		<xpath>Defs/ThingDef[@Name="BaseMechanoid"]/comps</xpath>
 		<value>
 			<li>
-			  <compClass>CombatExtended.CompPawnGizmo</compClass>
+				<compClass>CombatExtended.CompPawnGizmo</compClass>
 			</li>
 		</value>
 	</Operation>
@@ -41,7 +41,7 @@
 		<xpath>Defs/ThingDef[defName="Mech_Centipede"]</xpath>
 		<value>
 			<li Class="CombatExtended.RacePropertiesExtensionCE">
-				<bodyShape>Quadruped</bodyShape>
+				<bodyShape>QuadrupedLow</bodyShape>
 			</li>
 		</value>
 	</Operation>
@@ -62,14 +62,14 @@
 	<Operation Class="PatchOperationReplace">
 		<xpath>Defs/ThingDef[defName="Mech_Centipede"]/statBases/ArmorRating_Blunt</xpath>
 		<value>
-			<ArmorRating_Blunt>0.4</ArmorRating_Blunt>
+			<ArmorRating_Blunt>45000</ArmorRating_Blunt>
 		</value>
 	</Operation>
 
 	<Operation Class="PatchOperationReplace">
 		<xpath>Defs/ThingDef[defName="Mech_Centipede"]/statBases/ArmorRating_Sharp</xpath>
 		<value>
-			<ArmorRating_Sharp>1</ArmorRating_Sharp>
+			<ArmorRating_Sharp>20</ArmorRating_Sharp>
 		</value>
 	</Operation>
 
@@ -89,10 +89,11 @@
 					<capacities>
 						<li>Blunt</li>
 					</capacities>
-					<power>27</power>
-					<cooldownTime>2.4</cooldownTime>
+					<power>35</power>
+					<cooldownTime>3.51</cooldownTime>
 					<linkedBodyPartsGroup>HeadAttackTool</linkedBodyPartsGroup>
-					<armorPenetration>0.243</armorPenetration>
+					<armorPenetrationRHA>0</armorPenetrationRHA>
+					<armorPenetrationKPA>15000</armorPenetrationKPA>
 					<alwaysTreatAsWeapon>true</alwaysTreatAsWeapon>
 				</li>
 			</tools>
@@ -124,9 +125,16 @@
 	</Operation>
 
 	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Mech_Scyther" or defName="Mech_Lancer"]/statBases/ArmorRating_Blunt</xpath>
+		<value>
+			<ArmorRating_Blunt>12000</ArmorRating_Blunt>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
 		<xpath>Defs/ThingDef[defName="Mech_Scyther" or defName="Mech_Lancer"]/statBases/ArmorRating_Sharp</xpath>
 		<value>
-			<ArmorRating_Sharp>0.45</ArmorRating_Sharp>
+			<ArmorRating_Sharp>8</ArmorRating_Sharp>
 		</value>
 	</Operation>
 
@@ -139,10 +147,11 @@
 					<capacities>
 						<li>Cut</li>
 					</capacities>
-					<power>24</power>
+					<power>43</power>
 					<cooldownTime>1.65</cooldownTime>
 					<linkedBodyPartsGroup>LeftBlade</linkedBodyPartsGroup>
-					<armorPenetration>0.207</armorPenetration>
+					<armorPenetrationRHA>2.07</armorPenetrationRHA>
+					<armorPenetrationKPA>5400</armorPenetrationKPA>
 					<alwaysTreatAsWeapon>true</alwaysTreatAsWeapon>
 				</li>
 				<li Class="CombatExtended.ToolCE">
@@ -151,9 +160,10 @@
 						<li>Stab</li>
 					</capacities>
 					<power>24</power>
-					<cooldownTime>1.65</cooldownTime>
+					<cooldownTime>1.33</cooldownTime>
 					<linkedBodyPartsGroup>LeftBlade</linkedBodyPartsGroup>
-					<armorPenetration>0.388</armorPenetration>
+					<armorPenetrationRHA>40</armorPenetrationRHA>
+					<armorPenetrationKPA>20000</armorPenetrationKPA>
 					<alwaysTreatAsWeapon>true</alwaysTreatAsWeapon>
 				</li>
 				<li Class="CombatExtended.ToolCE">
@@ -161,10 +171,11 @@
 					<capacities>
 						<li>Cut</li>
 					</capacities>
-					<power>24</power>
-					<cooldownTime>1.65</cooldownTime>
+					<power>43</power>
+					<cooldownTime>2.07</cooldownTime>
 					<linkedBodyPartsGroup>RightBlade</linkedBodyPartsGroup>
-					<armorPenetration>0.207</armorPenetration>
+					<armorPenetrationRHA>2.16</armorPenetrationRHA>
+					<armorPenetrationKPA>5400</armorPenetrationKPA>
 					<alwaysTreatAsWeapon>true</alwaysTreatAsWeapon>
 				</li>
 				<li Class="CombatExtended.ToolCE">
@@ -173,9 +184,10 @@
 						<li>Stab</li>
 					</capacities>
 					<power>24</power>
-					<cooldownTime>1.65</cooldownTime>
+					<cooldownTime>1.33</cooldownTime>
 					<linkedBodyPartsGroup>RightBlade</linkedBodyPartsGroup>
-					<armorPenetration>0.388</armorPenetration>
+					<armorPenetrationRHA>40</armorPenetrationRHA>
+					<armorPenetrationKPA>20000</armorPenetrationKPA>
 					<alwaysTreatAsWeapon>true</alwaysTreatAsWeapon>
 				</li>
 				<li Class="CombatExtended.ToolCE">
@@ -183,16 +195,17 @@
 					<capacities>
 						<li>Blunt</li>
 					</capacities>
-					<power>7</power>
-					<cooldownTime>1.65</cooldownTime>
+					<power>6</power>
+					<cooldownTime>5.9</cooldownTime>
 					<linkedBodyPartsGroup>HeadAttackTool</linkedBodyPartsGroup>
 					<chanceFactor>0.2</chanceFactor>
-					<armorPenetration>0.095</armorPenetration>
+					<armorPenetrationRHA>0</armorPenetrationRHA>
+					<armorPenetrationKPA>1875</armorPenetrationKPA>
 				</li>
 			</tools>
 		</value>
 	</Operation>
-	
+
 	<Operation Class="PatchOperationReplace">
 		<xpath>Defs/ThingDef[defName="Mech_Lancer"]/tools</xpath>
 		<value>
@@ -202,10 +215,11 @@
 					<capacities>
 						<li>Blunt</li>
 					</capacities>
-					<power>12</power>
-					<cooldownTime>1.65</cooldownTime>
+					<power>1</power>
+					<cooldownTime>1.26</cooldownTime>
 					<linkedBodyPartsGroup>LeftHand</linkedBodyPartsGroup>
-					<armorPenetration>0.095</armorPenetration>
+					<armorPenetrationRHA>0</armorPenetrationRHA>
+					<armorPenetrationKPA>250</armorPenetrationKPA>
 					<alwaysTreatAsWeapon>true</alwaysTreatAsWeapon>
 				</li>
 				<li Class="CombatExtended.ToolCE">
@@ -213,10 +227,11 @@
 					<capacities>
 						<li>Blunt</li>
 					</capacities>
-					<power>12</power>
-					<cooldownTime>1.65</cooldownTime>
+					<power>1</power>
+					<cooldownTime>1.26</cooldownTime>
 					<linkedBodyPartsGroup>RightHand</linkedBodyPartsGroup>
-					<armorPenetration>0.095</armorPenetration>
+					<armorPenetrationRHA>0</armorPenetrationRHA>
+					<armorPenetrationKPA>250</armorPenetrationKPA>
 					<alwaysTreatAsWeapon>true</alwaysTreatAsWeapon>
 				</li>
 				<li Class="CombatExtended.ToolCE">
@@ -224,11 +239,12 @@
 					<capacities>
 						<li>Blunt</li>
 					</capacities>
-					<power>7</power>
-					<cooldownTime>1.65</cooldownTime>
+					<power>5</power>
+					<cooldownTime>1.85</cooldownTime>
 					<linkedBodyPartsGroup>HeadAttackTool</linkedBodyPartsGroup>
 					<chanceFactor>0.2</chanceFactor>
-					<armorPenetration>0.095</armorPenetration>
+					<armorPenetrationRHA>0</armorPenetrationRHA>
+					<armorPenetrationKPA>625</armorPenetrationKPA>
 				</li>
 			</tools>
 		</value>

@@ -7,5 +7,6 @@ namespace CombatExtended
     public static class CE_HediffDefOf
     {
         public static HediffDef VenomBuildup;
+        public static HediffDef SmokeInhalation;
     }
 }

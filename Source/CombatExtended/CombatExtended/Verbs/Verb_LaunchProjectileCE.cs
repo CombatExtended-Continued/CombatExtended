@@ -156,7 +156,7 @@ namespace CombatExtended
             }
         }
 
-        private bool IsAttacking => ShooterPawn?.CurJobDef == JobDefOf.AttackStatic || ShooterPawn?.stances.curStance is Stance_Warmup;
+        private bool IsAttacking => ShooterPawn?.CurJobDef == JobDefOf.AttackStatic || ShooterPawn?.stances?.curStance is Stance_Warmup;
 
 
         #endregion
@@ -321,28 +321,8 @@ namespace CombatExtended
             float minX = -maxX;
             float maxY = recoil;
             float minY = -recoil / 3;
-            /*
-            switch (VerbPropsCE.recoilPattern)
-            {
-                case RecoilPattern.None:
-            		return;
-                case RecoilPattern.Regular:
-                    float num = VerbPropsCE.recoilAmount / 3;
-                    minX = -(num / 3);
-                    maxX = num;
-                    minY = -num;
-                    maxY = VerbPropsCE.recoilAmount;
-                    break;
-                case RecoilPattern.Mounted:
-                    float num2 = VerbPropsCE.recoilAmount / 3;
-                    minX = -num2;
-                    maxX = num2;
-                    minY = -num2;
-                    maxY = VerbPropsCE.recoilAmount;
-                    break;
-            }
-            */
-            float recoilMagnitude = Mathf.Pow((5 - ShootingAccuracy), (Mathf.Min(10, numShotsFired) / 6.25f));
+
+            float recoilMagnitude = numShotsFired == 0 ? 0 : Mathf.Pow((5 - ShootingAccuracy), (Mathf.Min(10, numShotsFired) / 6.25f));
 
             rotation += recoilMagnitude * UnityEngine.Random.Range(minX, maxX);
             angle += Mathf.Deg2Rad * recoilMagnitude * UnityEngine.Random.Range(minY, maxY);
@@ -497,20 +477,21 @@ namespace CombatExtended
             if (ShooterPawn != null)
             {
                 // Check for capable of violence
-                if (ShooterPawn.story != null
-          && ShooterPawn.story.WorkTagIsDisabled(WorkTags.Violent))
+                if (ShooterPawn.story != null && ShooterPawn.story.WorkTagIsDisabled(WorkTags.Violent))
                 {
                     report = "IsIncapableOfViolenceLower".Translate(ShooterPawn.Name.ToStringShort);
                     return false;
                 }
 
                 // Check for apparel
+                bool isTurretOperator = caster.def.building?.IsTurret ?? false;
                 if (ShooterPawn.apparel != null)
                 {
                     List<Apparel> wornApparel = ShooterPawn.apparel.WornApparel;
                     foreach (Apparel current in wornApparel)
                     {
-                        if (!current.AllowVerbCast(root, caster.Map, targ, this))
+                        //pawns can use turrets while wearing shield belts, but the shield is disabled for the duration via Harmony patch (see Harmony-ShieldBelt.cs)
+                        if (!current.AllowVerbCast(root, caster.Map, targ, this) && !(current is ShieldBelt && isTurretOperator))
                         {
                             report = "Shooting disallowed by " + current.LabelShort;
                             return false;

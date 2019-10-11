@@ -19,7 +19,9 @@
     <deathMessage>{0} has been shredded to death.</deathMessage>
     <hediff>Shredded</hediff>
     <hediffSolid>Crack</hediffSolid>
-	<minDamageToFragment>15</minDamageToFragment>
+    <minDamageToFragment>5</minDamageToFragment>
+    <buildingDamageFactor>0.125</buildingDamageFactor>
+    <plantDamageFactor>0.125</plantDamageFactor>
   </DamageDef>
 
   <DamageDef ParentName="Flame">
@@ -27,7 +29,7 @@
     <additionalHediffs>
       <li>
         <hediff>PrometheumSoaked</hediff>
-        <severityPerDamageDealt>0.025</severityPerDamageDealt>
+        <severityPerDamageDealt>0.05</severityPerDamageDealt>
       </li>
     </additionalHediffs>
   </DamageDef>
@@ -46,6 +48,8 @@
     <armorCategory>Sharp</armorCategory>
     <overkillPctToDestroyPart>0~0.7</overkillPctToDestroyPart>
     <scratchSplitPercentage>0.67</scratchSplitPercentage>
+    <buildingDamageFactor>0.25</buildingDamageFactor>
+    <plantDamageFactor>0.25</plantDamageFactor>
     <modExtensions>
       <li Class="CombatExtended.DamageDefExtensionCE">
         <harmOnlyOutsideLayers>true</harmOnlyOutsideLayers>
@@ -55,7 +59,6 @@
 
   <DamageDef ParentName="Bomb">
     <defName>Bomb_Secondary</defName>
-    <harmAllLayersUntilOutside>false</harmAllLayersUntilOutside>
     <minDamageToFragment>99999</minDamageToFragment>
   </DamageDef>
 
@@ -63,6 +66,8 @@
     <defName>Thermobaric</defName>
     <label>thermobaric</label>
     <workerClass>DamageWorker_Flame</workerClass>
+    <buildingDamageFactor>6</buildingDamageFactor>
+    <plantDamageFactor>6</plantDamageFactor>
   </DamageDef>
 
   <DamageDef ParentName="Flame">

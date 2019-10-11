@@ -42,7 +42,14 @@ namespace CombatExtended
             armorDeflected = false;
             armorReduced = false;
 
-            if (originalDinfo.Def.armorCategory == null) return originalDinfo;
+            if (originalDinfo.Def.armorCategory == null
+                || (!(originalDinfo.Weapon?.projectile is ProjectilePropertiesCE projectile)
+                    && Verb_MeleeAttackCE.LastAttackVerb == null
+                    && originalDinfo.Weapon == null
+                    && originalDinfo.Instigator == null))
+            {
+                return originalDinfo;
+            }
 
             var dinfo = new DamageInfo(originalDinfo);
             var dmgAmount = dinfo.Amount;
@@ -123,7 +130,7 @@ namespace CombatExtended
                     {
                         // Hit was deflected, convert damage type
                         //armorReduced = true;
-                        dinfo = GetDeflectDamageInfo(dinfo, hitPart);
+                        dinfo = GetDeflectDamageInfo(dinfo, hitPart, ref dmgAmount, ref penAmount);
                         if (app == apparel.ElementAtOrDefault(i))   //Check whether the "deflecting" apparel is still in the WornApparel - if not, the next loop checks again and errors out because the index is out of range
                             i++;    // We apply this piece of apparel twice on conversion, this means we can't use deflection on Blunt or else we get an infinite loop of eternal deflection
                     }
@@ -147,22 +154,30 @@ namespace CombatExtended
                     partsToHit.Add(curPart);
                 }
             }
+
+            var isSharp = dinfo.Def.armorCategory.armorRatingStat == StatDefOf.ArmorRating_Sharp;
+            var partDensityStat = isSharp
+                ? CE_StatDefOf.BodyPartRHA
+                : CE_StatDefOf.BodyPartKPA;
+            var partDensity = pawn.GetStatValue(partDensityStat);   // How much armor is provided by sheer meat
             for (var i = partsToHit.Count - 1; i >= 0; i--)
             {
                 var curPart = partsToHit[i];
                 var coveredByArmor = curPart.IsInGroup(CE_BodyPartGroupDefOf.CoveredByNaturalArmor);
-                var partArmor = pawn.GetStatValue(CE_StatDefOf.BodyPartDensity);   // How much armor is provided by sheer meat
+                var armorAmount = coveredByArmor ? pawn.GetStatValue(dinfo.Def.armorCategory.armorRatingStat) : 0;
                 var unused = dmgAmount;
 
                 // Only apply damage reduction when penetrating armored body parts
-                if (coveredByArmor ? !TryPenetrateArmor(dinfo.Def, partArmor + pawn.GetStatValue(dinfo.Def.armorCategory.armorRatingStat), ref penAmount, ref dmgAmount) : !TryPenetrateArmor(dinfo.Def, partArmor, ref penAmount, ref unused))
+                if (!TryPenetrateArmor(dinfo.Def, armorAmount, ref penAmount, ref dmgAmount, null, partDensity))
                 {
                     dinfo.SetHitPart(curPart);
-                    if (coveredByArmor && pawn.RaceProps.IsMechanoid)
+                    if (isSharp && coveredByArmor && pawn.RaceProps.IsMechanoid)
                     {
                         // For Mechanoid natural armor, apply deflection and blunt armor
-                        dinfo = GetDeflectDamageInfo(dinfo, curPart);
-                        TryPenetrateArmor(dinfo.Def, partArmor + pawn.GetStatValue(dinfo.Def.armorCategory.armorRatingStat), ref penAmount, ref dmgAmount);
+                        dinfo = GetDeflectDamageInfo(dinfo, curPart, ref dmgAmount, ref penAmount);
+
+                        // Fetch armor rating stat again in case of deflection conversion to blunt
+                        TryPenetrateArmor(dinfo.Def, pawn.GetStatValue(dinfo.Def.armorCategory.armorRatingStat), ref penAmount, ref dmgAmount, null, partDensity);
                     }
                     break;
                 }
@@ -186,22 +201,23 @@ namespace CombatExtended
         /// <param name="penAmount">How much penetration the attack still has</param>
         /// <param name="dmgAmount">The pre-armor amount of damage</param>
         /// <param name="armor">The armor apparel</param>
+        /// <param name="partDensity">When penetrating body parts, the body part density</param>
         /// <returns>False if the attack is deflected, true otherwise</returns>
-        private static bool TryPenetrateArmor(DamageDef def, float armorAmount, ref float penAmount, ref float dmgAmount, Thing armor = null)
+        private static bool TryPenetrateArmor(DamageDef def, float armorAmount, ref float penAmount, ref float dmgAmount, Thing armor = null, float partDensity = 0)
         {
             // Calculate deflection
             var isSharpDmg = def.armorCategory == DamageArmorCategoryDefOf.Sharp;
-            var rand = UnityEngine.Random.Range(penAmount - PenetrationRandVariation, penAmount + PenetrationRandVariation);
-            var deflected = isSharpDmg && armorAmount > rand;
+            //var rand = UnityEngine.Random.Range(penAmount - PenetrationRandVariation, penAmount + PenetrationRandVariation);
+            var deflected = isSharpDmg && armorAmount > penAmount;
 
             // Apply damage reduction
-            float dmgMult = 1;
             var defCE = def.GetModExtension<DamageDefExtensionCE>() ?? new DamageDefExtensionCE();
             var noDmg = deflected && defCE.noDamageOnDeflect;
-            dmgMult = noDmg ? 0 : dmgMultCurve.Evaluate(penAmount / armorAmount);
+            var newPenAmount = penAmount - armorAmount;
 
+            var dmgMult = noDmg ? 0 : penAmount == 0 ? 1 : Mathf.Clamp01(newPenAmount / penAmount);
             var newDmgAmount = dmgAmount * dmgMult;
-            var newPenAmount = deflected && !noDmg ? penAmount : penAmount * dmgMult;
+            newPenAmount -= partDensity;    // Factor partDensity only after damage calculations
 
             // Apply damage to armor
             if (armor != null)
@@ -224,8 +240,11 @@ namespace CombatExtended
                 }
             }
 
-            dmgAmount = Mathf.Max(0, newDmgAmount);
-            penAmount = Mathf.Max(0, newPenAmount);
+            if (!deflected)
+            {
+                dmgAmount = Mathf.Max(0, newDmgAmount);
+                penAmount = Mathf.Max(0, newPenAmount);
+            }
             return !deflected;
         }
 
@@ -263,10 +282,38 @@ namespace CombatExtended
         /// <param name="dinfo">The dinfo that was deflected</param>
         /// <param name="hitPart">The originally hit part</param>
         /// <returns>DamageInfo copied from dinfo with Def and forceHitPart adjusted</returns>
-        private static DamageInfo GetDeflectDamageInfo(DamageInfo dinfo, BodyPartRecord hitPart)
+        private static DamageInfo GetDeflectDamageInfo(DamageInfo dinfo, BodyPartRecord hitPart, ref float dmgAmount, ref float penAmount)
         {
-            var newDinfo = new DamageInfo(DamageDefOf.Blunt, dinfo.Amount, 0, //Armor Penetration
-                dinfo.Angle, dinfo.Instigator, GetOuterMostParent(hitPart), dinfo.Weapon);
+            // Get kPa value
+            var penMult = penAmount / dinfo.ArmorPenetrationInt;
+            if (dinfo.Weapon?.projectile is ProjectilePropertiesCE projectile)
+            {
+                penAmount = projectile.armorPenetrationKPA * penMult;
+            }
+            else
+            {
+                if (Verb_MeleeAttackCE.LastAttackVerb == null)
+                {
+                    //LastAttackVerb is already checked in GetAfterArmorDamage(). Only known case of code arriving here is with the ancient soldiers
+                    //spawned at the start of the game: their wounds are usually applied with Weapon==null and Instigator==null, so they skip CE's armor system,
+                    //but on rare occasions, one of the soldiers gets Bite injuries with with Weapon==null and the instigator set as *himself*.
+                    //Warning message below to identify any other situations where this might be happening. -LX7
+                    Log.Warning($"[CE] Deflection for Instigator:{dinfo.Instigator} Target:{dinfo.IntendedTarget} DamageDef:{dinfo.Def} Weapon:{dinfo.Weapon} has null verb, overriding AP.");
+                    
+                }
+                penAmount = Verb_MeleeAttackCE.LastAttackVerb?.ArmorPenetrationKPA ?? 999999;
+            }
+
+            var force = penAmount * 10;
+            dmgAmount = Mathf.Pow(force, 1 / 3f) / 10;
+
+            var newDinfo = new DamageInfo(DamageDefOf.Blunt,
+                dmgAmount,
+                penAmount,
+                dinfo.Angle,
+                dinfo.Instigator,
+                GetOuterMostParent(hitPart),
+                dinfo.Weapon);
             newDinfo.SetBodyRegion(dinfo.Height, dinfo.Depth);
             newDinfo.SetWeaponBodyPartGroup(dinfo.WeaponBodyPartGroup);
             newDinfo.SetWeaponHediff(dinfo.WeaponLinkedHediff);

@@ -325,11 +325,6 @@ namespace CombatExtended
             {
                 stringBuilder.AppendLine("CanFireIn".Translate() + ": " + this.burstCooldownTicksLeft.ToStringSecondsFromTicks());
             }
-
-            if (CompAmmo != null && CompAmmo.Props.ammoSet != null)
-            {
-                stringBuilder.AppendLine("CE_AmmoSet".Translate() + ": " + CompAmmo.Props.ammoSet.LabelCap);
-            }
             /*
             if (this.def.building.turretShellDef != null)
             {

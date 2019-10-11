@@ -7,6 +7,25 @@
 			<li Class="CombatExtended.PatchOperationFindMod">
 				<modName>Apparello 2</modName>
 			</li>
+			<!-- ========== Science goggles, shades, aviators, visors ========== -->
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName = "Apparello_Goggles" or defName="Apparello_Shadess" or defName="Apparello_Piloggle"]/statBases</xpath>
+				<value>
+					<ArmorRating_Sharp>0.02</ArmorRating_Sharp>
+				</value>
+			</li>
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName = "Apparello_Visoor"]/statBases/ArmorRating_Sharp</xpath>
+				<value>
+					<ArmorRating_Sharp>0.02</ArmorRating_Sharp>
+				</value>
+			</li>
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName = "Apparello_Goggles" or defName="Apparello_Visoor" or defName="Apparello_Shadess" or defName="Apparello_Piloggle"]/statBases/ArmorRating_Blunt</xpath>
+				<value>
+					<ArmorRating_Blunt>30</ArmorRating_Blunt>
+				</value>
+			</li>
 			<!-- ========== Ski mask ========== -->
 			<li Class="PatchOperationReplace">
 				<xpath>Defs/ThingDef[defName = "Apparello_Brimsk"]/statBases/Mass</xpath>
@@ -19,7 +38,13 @@
 			<li Class="PatchOperationReplace">
 				<xpath>Defs/ThingDef[defName = "Apparello_Brimsk"]/statBases/ArmorRating_Sharp</xpath>
 				<value>
-					<ArmorRating_Sharp>0.25</ArmorRating_Sharp>
+					<ArmorRating_Sharp>4</ArmorRating_Sharp>
+				</value>
+			</li>
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName = "Apparello_Brimsk"]/statBases/ArmorRating_Blunt</xpath>
+				<value>
+					<ArmorRating_Blunt>6000</ArmorRating_Blunt>
 				</value>
 			</li>
 		</operations>

@@ -35,6 +35,18 @@ namespace CombatExtended
             }
         }
 
+        private List<AmmoSetDef> ammoSetDefs;
+        public List<AmmoSetDef> AmmoSetDefs
+        {
+            get
+            {
+                if (ammoSetDefs == null)
+                    ammoSetDefs = users.Select(x => x.GetCompProperties<CompProperties_AmmoUser>().ammoSet).Distinct().ToList();
+
+                return ammoSetDefs;
+            }
+        }
+        
         private string oldDescription;
         public void AddDescriptionParts()
         {

@@ -320,9 +320,8 @@ namespace CombatExtended
             {
                 if (_gravityFactor < 0)
                 {
-                    _gravityFactor = CE_Utility.gravityConst;
-                    var props = def.projectile as ProjectilePropertiesCE;
-                    if (props != null) _gravityFactor = props.Gravity;
+                    _gravityFactor = CE_Utility.GravityConst;
+                    if (def.projectile is ProjectilePropertiesCE props) _gravityFactor = props.Gravity;
                 }
                 return _gravityFactor;
             }
@@ -471,13 +470,10 @@ namespace CombatExtended
 
             //Check for minimum PAWN collision distance
             float distFromOrigin = cell.DistanceToSquared(OriginIV3);
-            if (!def.projectile.alwaysFreeIntercept
-                && minCollisionSqr <= 1f
-                ? distFromOrigin < 1f
-                : distFromOrigin <= Mathf.Min(144f, minCollisionSqr / 4))
-            {
-                justWallsRoofs = true;
-            }
+            bool skipCollision = !def.projectile.alwaysFreeIntercept 
+                && (minCollisionSqr <= 1f 
+                    ? distFromOrigin < 1f 
+                    : distFromOrigin <= Mathf.Min(144f, minCollisionSqr / 4));
 
             var mainThingList = new List<Thing>(Map.thingGrid.ThingsListAtFast(cell))
                 .Where(t => justWallsRoofs ? t.def.Fillage == FillCategory.Full : (t is Pawn || t.def.Fillage != FillCategory.None)).ToList();
@@ -519,7 +515,7 @@ namespace CombatExtended
                 if ((thing == launcher || thing == mount) && !canTargetSelf) continue;
 
                 // Check for collision
-                if (TryCollideWith(thing))
+                if ((!skipCollision || thing == intendedTarget) && TryCollideWith(thing))
                     return true;
 
                 // Apply suppression. The height here is NOT that of the bullet in CELL,
@@ -637,12 +633,13 @@ namespace CombatExtended
             var compSuppressable = pawn.TryGetComp<CompSuppressable>();
             if (compSuppressable != null
                 && pawn.Faction != launcher?.Faction
-                && (shield == null || shield?.ShieldState == ShieldState.Resetting))
+                && (shield == null || shield.ShieldState == ShieldState.Resetting))
             {
                 suppressionAmount = def.projectile.GetDamageAmount(1);
                 var propsCE = def.projectile as ProjectilePropertiesCE;
-                var penetrationAmount = propsCE == null ? 0f : propsCE.GetArmorPenetration(1);
-                suppressionAmount *= 1 - Mathf.Clamp(compSuppressable.ParentArmor - penetrationAmount, 0, 1);
+                var penetrationAmount = propsCE?.armorPenetrationRHA ?? 0f;
+                var armorMod = penetrationAmount <= 0 ? 0 : 1 - Mathf.Clamp(pawn.GetStatValue(CE_StatDefOf.AverageRHA) * 0.5f / penetrationAmount, 0, 1);
+                suppressionAmount *= armorMod;
                 compSuppressable.AddSuppression(suppressionAmount, OriginIV3);
             }
         }
@@ -771,7 +768,8 @@ namespace CombatExtended
             var comp = this.TryGetComp<CompExplosiveCE>();
             if (comp != null && ExactPosition.ToIntVec3().IsValid)
             {
-                comp.Explode(launcher, ExactPosition, Map);
+                var explodePos = hitThing?.DrawPos ?? ExactPosition;
+                comp.Explode(launcher, explodePos, Map);
             }
 
             //Spawn things if not an explosive but preExplosionSpawnThingDef != null

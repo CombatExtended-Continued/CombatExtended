@@ -5,9 +5,9 @@
 		<defName>Ammo127x55mmSniper</defName>
 		<label>12.7x55mm Sniper</label>
 		<parent>AmmoRifles</parent>
-    <iconPath>UI/Icons/ThingCategories/CaliberRifle</iconPath>
+		<iconPath>UI/Icons/ThingCategories/CaliberRifle</iconPath>
 	</ThingCategoryDef>
-	
+
 	<!-- ==================== AmmoSet ========================== -->
 
 	<CombatExtended.AmmoSetDef>
@@ -19,23 +19,23 @@
 			<Ammo_127x55mmSniper_HP>Bullet_127x55mmSniper_HP</Ammo_127x55mmSniper_HP>
 		</ammoTypes>
 	</CombatExtended.AmmoSetDef>
-	
+
 	<!-- ==================== Ammo ========================== -->
 
 	<ThingDef Class="CombatExtended.AmmoDef" Name="127x55mmSniperBase" ParentName="SmallAmmoBase" Abstract="True">
 		<description>High caliber subsonic sniper rifle cartridge designed for suppressed weapons.</description>
 		<statBases>
-		<Mass>0.032</Mass>
-		<Bulk>0.08</Bulk>
+			<Mass>0.032</Mass>
+			<Bulk>0.08</Bulk>
 		</statBases>
-	<tradeTags>
-		<li>CE_AutoEnableTrade</li>
-		<li>CE_AutoEnableCrafting</li>
-	</tradeTags>
+		<tradeTags>
+			<li>CE_AutoEnableTrade</li>
+			<li>CE_AutoEnableCrafting</li>
+		</tradeTags>
 		<thingCategories>
 			<li>Ammo127x55mmSniper</li>
 		</thingCategories>
-    <stackLimit>350</stackLimit>
+		<stackLimit>350</stackLimit>
 	</ThingDef>
 
 	<ThingDef Class="CombatExtended.AmmoDef" ParentName="127x55mmSniperBase">
@@ -79,7 +79,7 @@
 		<ammoClass>HollowPoint</ammoClass>
 		<cookOffProjectile>Bullet_127x55mmSniper_HP</cookOffProjectile>
 	</ThingDef>
-	
+
 	<!-- ================== Projectiles ================== -->
 
 	<ThingDef Class="CombatExtended.AmmoDef" Name="Base127x55mmSniperBullet" ParentName="BaseBullet" Abstract="true">
@@ -101,6 +101,8 @@
 		<projectile Class="CombatExtended.ProjectilePropertiesCE">
 			<damageAmountBase>31</damageAmountBase>
 			<armorPenetrationBase>0.623</armorPenetrationBase>
+			<armorPenetrationRHA>0</armorPenetrationRHA>
+			<armorPenetrationKPA>0</armorPenetrationKPA>
 		</projectile>
 	</ThingDef>
 
@@ -110,6 +112,8 @@
 		<projectile Class="CombatExtended.ProjectilePropertiesCE">
 			<damageAmountBase>19</damageAmountBase>
 			<armorPenetrationBase>0.773</armorPenetrationBase>
+			<armorPenetrationRHA>0</armorPenetrationRHA>
+			<armorPenetrationKPA>0</armorPenetrationKPA>
 		</projectile>
 	</ThingDef>
 
@@ -119,9 +123,11 @@
 		<projectile Class="CombatExtended.ProjectilePropertiesCE">
 			<damageAmountBase>43</damageAmountBase>
 			<armorPenetrationBase>0.473</armorPenetrationBase>
+			<armorPenetrationRHA>0</armorPenetrationRHA>
+			<armorPenetrationKPA>0</armorPenetrationKPA>
 		</projectile>
 	</ThingDef>
-  
+
 	<!-- ==================== Recipes ========================== -->
 
 	<RecipeDef ParentName="AmmoRecipeBase">
@@ -147,7 +153,7 @@
 		<products>
 			<Ammo_127x55mmSniper_FMJ>350</Ammo_127x55mmSniper_FMJ>
 		</products>
-    <workAmount>4500</workAmount>
+		<workAmount>4500</workAmount>
 	</RecipeDef>
 
 	<RecipeDef ParentName="AmmoRecipeBase">
@@ -173,7 +179,7 @@
 		<products>
 			<Ammo_127x55mmSniper_AP>350</Ammo_127x55mmSniper_AP>
 		</products>
-    <workAmount>7500</workAmount>
+		<workAmount>7500</workAmount>
 	</RecipeDef>
 
 	<RecipeDef ParentName="AmmoRecipeBase">
@@ -199,7 +205,7 @@
 		<products>
 			<Ammo_127x55mmSniper_HP>350</Ammo_127x55mmSniper_HP>
 		</products>
-    <workAmount>10750</workAmount>
+		<workAmount>10750</workAmount>
 	</RecipeDef>
-	
+
 </Defs>
