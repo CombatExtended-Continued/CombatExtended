@@ -8,8 +8,8 @@ namespace CombatExtended
     public class WeatherTracker : MapComponent
     {
         private static readonly string[] windDirections = new string[] { "N", "NE", "E", "SE", "S", "SW", "W", "NW" };
-        private const float HumidityDecayPerTick = 0.1f;
-        private const int MaxPrecipitation = GenDate.TicksPerDay * 2;
+        private const float HumidityDecayPerTick = 0.05f;
+        private const int MaxPrecipitation = GenDate.TicksPerDay * 3;
         private const float MaxWindStrength = 6;    // With 1.5 multiplier from weather we get a 9 on Beaufort scale
         private const float MaxWindStrengthDelta = 0.5f;
         private const float MaxDirectionDelta = 5f;
@@ -53,6 +53,16 @@ namespace CombatExtended
         {
         }
 
+        public override void ExposeData()
+        {
+            base.ExposeData();
+            Scribe_Values.Look(ref _humidity, "humidity", MaxPrecipitation * 0.5f);
+            Scribe_Values.Look(ref _windStrength, "windStrength");
+            Scribe_Values.Look(ref _windStrengthTarget, "windStrengthTarget");
+            Scribe_Values.Look(ref _windDirection, "windDirection");
+            Scribe_Values.Look(ref _windDirectionTarget, "windDirectionTarget");
+        }
+
         public float GetWindStrengthAt(IntVec3 cell)
         {
             if (!cell.UsesOutdoorTemperature(map))
@@ -68,7 +78,7 @@ namespace CombatExtended
             // Rain
             if (map.weatherManager.RainRate > 0)
             {
-                Humidity += map.weatherManager.RainRate * 2;
+                Humidity += map.weatherManager.RainRate * 3;
             }
             else
             {

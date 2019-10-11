@@ -79,9 +79,14 @@ namespace CombatExtended
 
         private void ApplyHediffs()
         {
+            if(!Position.InBounds(Map))
+                return;
+
             var pawns = Position.GetThingList(Map).Where(t => t is Pawn).ToList();
             foreach (var cell in GenAdjFast.AdjacentCells8Way(Position))
             {
+                if(!cell.InBounds(Map))
+                    continue;
                 pawns.AddRange(cell.GetThingList(Map).Where(t => t is Pawn));
             }
 
