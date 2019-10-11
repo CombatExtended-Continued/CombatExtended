@@ -28,19 +28,19 @@ namespace CombatExtended
             {
                 totalSelectionWeight += tool.chanceFactor;
             }
-            float totalAveragePenRHA = 0f;
-            float totalAveragePenKPA = 0f;
+            float totalAveragePenSharp = 0f;
+            float totalAveragePenBlunt = 0f;
             foreach (ToolCE tool in tools)
             {
                 var weightFactor = tool.chanceFactor / totalSelectionWeight;
-                totalAveragePenRHA += weightFactor * tool.armorPenetrationRHA;
-                totalAveragePenKPA += weightFactor * tool.armorPenetrationKPA;
+                totalAveragePenSharp += weightFactor * tool.armorPenetrationSharp;
+                totalAveragePenBlunt += weightFactor * tool.armorPenetrationBlunt;
             }
             var penMult = optionalReq.Thing?.GetStatValue(CE_StatDefOf.MeleePenetrationFactor) ?? 1f;
 
-            return (totalAveragePenRHA * penMult).ToStringByStyle(ToStringStyle.FloatMaxTwo) + "mm RHA"
+            return (totalAveragePenSharp * penMult).ToStringByStyle(ToStringStyle.FloatMaxTwo) + "mm RHA"
                 + ", "
-                + (totalAveragePenKPA * penMult).ToStringByStyle(ToStringStyle.Integer) + " kPa";
+                + (totalAveragePenBlunt * penMult).ToStringByStyle(ToStringStyle.FloatMaxTwo) + " MPa";
         }
 
         public override string GetExplanationUnfinalized(StatRequest req, ToStringNumberSense numberSense)
@@ -67,13 +67,13 @@ namespace CombatExtended
 
                 stringBuilder.AppendLine("  Tool: " + tool.ToString() + " " + maneuverString);
                 stringBuilder.AppendLine(string.Format("    Sharp penetration: {0} x {1} = {2} mm RHA",
-                    tool.armorPenetrationRHA.ToStringByStyle(ToStringStyle.FloatMaxTwo),
+                    tool.armorPenetrationSharp.ToStringByStyle(ToStringStyle.FloatMaxTwo),
                     penMult.ToStringByStyle(ToStringStyle.FloatMaxThree),
-                    (tool.armorPenetrationRHA * penMult).ToStringByStyle(ToStringStyle.FloatMaxTwo)));
-                stringBuilder.AppendLine(string.Format("    Blunt penetration: {0} x {1} = {2} kPa",
-                    tool.armorPenetrationKPA.ToStringByStyle(ToStringStyle.FloatMaxTwo),
+                    (tool.armorPenetrationSharp * penMult).ToStringByStyle(ToStringStyle.FloatMaxTwo)));
+                stringBuilder.AppendLine(string.Format("    Blunt penetration: {0} x {1} = {2} MPa",
+                    tool.armorPenetrationBlunt.ToStringByStyle(ToStringStyle.FloatMaxTwo),
                     penMult.ToStringByStyle(ToStringStyle.FloatMaxThree),
-                    (tool.armorPenetrationKPA * penMult).ToStringByStyle(ToStringStyle.FloatMaxTwo)));
+                    (tool.armorPenetrationBlunt * penMult).ToStringByStyle(ToStringStyle.FloatMaxTwo)));
                 stringBuilder.AppendLine();
             }
             return stringBuilder.ToString();
