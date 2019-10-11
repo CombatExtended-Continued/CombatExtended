@@ -3,13 +3,13 @@ using Verse;
 
 namespace CombatExtended
 {
-    public class StatWorker_BodyPartKPA : StatWorker_BodyPartDensity
+    public class StatWorker_BodyPartBluntArmor : StatWorker_BodyPartDensity
     {
-        protected override string UnitString => "CE_kPa".Translate();
+        protected override string UnitString => "CE_MPa".Translate();
         protected override float GetBaseValueFor(StatRequest req)
         {
             var pawn = (Pawn)req.Thing;
-            return pawn.RaceProps.IsFlesh ? 720 : 2000;
+            return pawn.RaceProps.IsFlesh ? 0.72f : 2f;
         }
     }
 }

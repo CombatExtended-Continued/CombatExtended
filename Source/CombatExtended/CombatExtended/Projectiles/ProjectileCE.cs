@@ -637,8 +637,8 @@ namespace CombatExtended
             {
                 suppressionAmount = def.projectile.GetDamageAmount(1);
                 var propsCE = def.projectile as ProjectilePropertiesCE;
-                var penetrationAmount = propsCE?.armorPenetrationRHA ?? 0f;
-                var armorMod = penetrationAmount <= 0 ? 0 : 1 - Mathf.Clamp(pawn.GetStatValue(CE_StatDefOf.AverageRHA) * 0.5f / penetrationAmount, 0, 1);
+                var penetrationAmount = propsCE?.armorPenetrationSharp ?? 0f;
+                var armorMod = penetrationAmount <= 0 ? 0 : 1 - Mathf.Clamp(pawn.GetStatValue(CE_StatDefOf.AverageSharpArmor) * 0.5f / penetrationAmount, 0, 1);
                 suppressionAmount *= armorMod;
                 compSuppressable.AddSuppression(suppressionAmount, OriginIV3);
             }
