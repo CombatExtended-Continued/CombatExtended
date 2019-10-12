@@ -61,7 +61,8 @@ namespace CombatExtended.Harmony
 
         internal static void Postfix(Fire __instance)
         {
-            GenSpawn.Spawn(CE_ThingDefOf.Gas_BlackSmoke, __instance.Position, __instance.Map);
+            if (__instance.Position.Roofed(__instance.Map))
+                GenSpawn.Spawn(CE_ThingDefOf.Gas_BlackSmoke, __instance.Position, __instance.Map);
         }
     }
 
@@ -119,7 +120,7 @@ namespace CombatExtended.Harmony
         private static float GetWindMult(Fire fire)
         {
             var tracker = fire.Map.GetComponent<WeatherTracker>();
-            return tracker.GetWindStrengthAt(fire.Position);
+            return Mathf.Sqrt(tracker.GetWindStrengthAt(fire.Position));
         }
 
         private static IntVec3 GetRandWindShift(Fire fire, bool spreadFar)
@@ -221,7 +222,7 @@ namespace CombatExtended.Harmony
         {
             __result = BaseSpreadRate - (__instance.fireSize - 1) * SpreadSizeAdjust;
             var windSpeed = __instance.Map.GetComponent<WeatherTracker>().GetWindStrengthAt(__instance.PositionHeld);
-            __result /= Mathf.Max(1, windSpeed);
+            __result /= Mathf.Max(1, Mathf.Sqrt(windSpeed));
 
             if (__result > MinSpreadTicks)
             {

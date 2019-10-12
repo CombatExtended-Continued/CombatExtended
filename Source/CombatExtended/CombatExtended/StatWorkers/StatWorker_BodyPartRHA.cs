@@ -3,7 +3,7 @@ using Verse;
 
 namespace CombatExtended
 {
-    public class StatWorker_BodyPartRHA : StatWorker_BodyPartDensity
+    public class StatWorker_BodyPartSharpArmor : StatWorker_BodyPartDensity
     {
         protected override string UnitString => "CE_mmRHA".Translate();
         protected override float GetBaseValueFor(StatRequest req)

@@ -57,7 +57,7 @@ namespace CombatExtended
                 DamageInfo dinfo = new DamageInfo(
                     def.projectile.damageDef,
                     damageAmountBase,
-                    projectilePropsCE.armorPenetrationRHA, //Armor Penetration
+                    projectilePropsCE.armorPenetrationSharp, //Armor Penetration
                     ExactRotation.eulerAngles.y,
                     launcher,
                     null,
@@ -97,7 +97,7 @@ namespace CombatExtended
                             var secDinfo = new DamageInfo(
                                 cur.def,
                                 cur.amount,
-                                projectilePropsCE.armorPenetrationRHA, //Armor Penetration
+                                projectilePropsCE.armorPenetrationSharp, //Armor Penetration
                                 ExactRotation.eulerAngles.y,
                                 launcher,
                                 null,

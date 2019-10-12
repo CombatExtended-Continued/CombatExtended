@@ -17,8 +17,8 @@ namespace CombatExtended
 		private List<Thing> damagedThings;
 		private HashSet<IntVec3> addedCellsAffectedOnlyByDamage;
 		private const int DamageAtEdge = 2;      // Synch these with spreadsheet
-        private const int PenAtEdge = 600;
-        private const int PressurePerDamage = 300;
+        private const float PenAtEdge = 0.6f;
+        private const float PressurePerDamage = 0.3f;
 		private static HashSet<IntVec3> tmpCells = new HashSet<IntVec3>();
 
 		public override void SpawnSetup(Map map, bool respawningAfterLoad)

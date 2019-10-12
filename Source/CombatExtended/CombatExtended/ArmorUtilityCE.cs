@@ -157,8 +157,8 @@ namespace CombatExtended
 
             var isSharp = dinfo.Def.armorCategory.armorRatingStat == StatDefOf.ArmorRating_Sharp;
             var partDensityStat = isSharp
-                ? CE_StatDefOf.BodyPartRHA
-                : CE_StatDefOf.BodyPartKPA;
+                ? CE_StatDefOf.BodyPartSharpArmor
+                : CE_StatDefOf.BodyPartBluntArmor;
             var partDensity = pawn.GetStatValue(partDensityStat);   // How much armor is provided by sheer meat
             for (var i = partsToHit.Count - 1; i >= 0; i--)
             {
@@ -288,7 +288,7 @@ namespace CombatExtended
             var penMult = penAmount / dinfo.ArmorPenetrationInt;
             if (dinfo.Weapon?.projectile is ProjectilePropertiesCE projectile)
             {
-                penAmount = projectile.armorPenetrationKPA * penMult;
+                penAmount = projectile.armorPenetrationBlunt * penMult;
             }
             else
             {
@@ -301,10 +301,10 @@ namespace CombatExtended
                     Log.Warning($"[CE] Deflection for Instigator:{dinfo.Instigator} Target:{dinfo.IntendedTarget} DamageDef:{dinfo.Def} Weapon:{dinfo.Weapon} has null verb, overriding AP.");
                     
                 }
-                penAmount = Verb_MeleeAttackCE.LastAttackVerb?.ArmorPenetrationKPA ?? 999999;
+                penAmount = Verb_MeleeAttackCE.LastAttackVerb?.ArmorPenetrationBlunt ?? 999999;
             }
 
-            var force = penAmount * 10;
+            var force = penAmount * 10000;
             dmgAmount = Mathf.Pow(force, 1 / 3f) / 10;
 
             var newDinfo = new DamageInfo(DamageDefOf.Blunt,
