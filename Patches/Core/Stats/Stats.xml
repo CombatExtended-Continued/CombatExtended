@@ -45,7 +45,21 @@
 	<Operation Class="PatchOperationAdd">
 		<xpath>Defs/StatDef[defName="ArmorRating_Blunt" or defName="ArmorRating_Sharp"]</xpath>
 		<value>
-			<toStringStyle>FloatTwo</toStringStyle>
+			<toStringStyle>FloatMaxThree</toStringStyle>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/StatDef[defName="ArmorRating_Blunt"]</xpath>
+		<value>
+			<formatString>{0} MPa</formatString>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/StatDef[defName="ArmorRating_Sharp"]</xpath>
+		<value>
+			<formatString>{0} mm RHA</formatString>
 		</value>
 	</Operation>
 
