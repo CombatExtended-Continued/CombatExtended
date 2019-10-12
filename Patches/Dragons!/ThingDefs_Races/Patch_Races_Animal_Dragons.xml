@@ -224,6 +224,31 @@
 					<ArmorRating_Sharp>10</ArmorRating_Sharp>
 				</value>
 			</li>
+			<!-- Wildness and revenge chance tweaks - we don't want them running around with instakilling lizards. -->
+			<li Class="PatchOperationRemove">
+				<xpath>Defs/ThingDef[defName="Basilisk_Race" or defName="True_Dragon_Race" or defName="Black_Dragon_Race"]/race/wildness</xpath>
+			</li>
+			<li Class="PatchOperationRemove">
+				<xpath>Defs/ThingDef[defName="Green_Dragon_Race" or defName="Black_Dragon_Race" or defName="Brown_Dragon_Race" or defName="Gold_Dragon_Race" or defName="Silver_Dragon_Race" or defName="Red_Dragon_Race" or defName="Blue_Dragon_Race" or defName="White_Dragon_Race" or defName="Purple_Dragon_Race" or defName="Cryo_Dragon_Race" or defName="Flamingo_Dragon_Race" or defName="Orange_Dragon_Race" or defName="Rock_Dragon_Race" or defName="Yellow_Dragon_Race" or defName="True_Dragon_Race" or defName="Royal_Dragon_Race" or defName="Basilisk_Race"]/race/manhunterOnTameFailChance</xpath>
+			</li>
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[@Name="DragonRaceBase"]/race/wildness</xpath>
+				<value>
+					<wildness>0.99</wildness>
+				</value>
+			</li>
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[@Name="DragonRaceBase"]/race</xpath>
+				<value>
+					<manhunterOnTameFailChance>0.5</manhunterOnTameFailChance>
+				</value>
+			</li>
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="Royal_Dragon_Race"]/race/wildness</xpath>
+				<value>
+					<wildness>0.50</wildness>
+				</value>
+			</li>
 
 			<!-- Unarmed attacks. -->
 			<!-- Green_Dragon_Race -->
