@@ -214,17 +214,17 @@ namespace CombatExtended.Harmony
     [HarmonyPatch(typeof(Fire), "get_SpreadInterval")]
     internal static class Harmony_Fire_SpreadInterval
     {
-        private const float BaseSpreadRate = 94f;
-        private const float SpreadSizeAdjust = 85f;
-        private const int MinSpreadTicks = 1;
+        private const float BaseSpreadTicks = 15f;
+        private const float FireSizeModifier = 2.85f;
+        private const int MinSpreadTicks = 4;
 
         internal static bool Prefix(Fire __instance, ref float __result)
         {
-            __result = BaseSpreadRate - (__instance.fireSize - 1) * SpreadSizeAdjust;
+            __result = BaseSpreadTicks - (__instance.fireSize * FireSizeModifier);
             var windSpeed = __instance.Map.GetComponent<WeatherTracker>().GetWindStrengthAt(__instance.PositionHeld);
             __result /= Mathf.Max(1, Mathf.Sqrt(windSpeed));
 
-            if (__result > MinSpreadTicks)
+            if (__result < MinSpreadTicks)
             {
                 __result = MinSpreadTicks;
             }
