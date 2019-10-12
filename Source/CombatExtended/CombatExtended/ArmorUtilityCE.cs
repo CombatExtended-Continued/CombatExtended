@@ -304,7 +304,7 @@ namespace CombatExtended
                 penAmount = Verb_MeleeAttackCE.LastAttackVerb?.ArmorPenetrationBlunt ?? 999999;
             }
 
-            var force = penAmount * 10;
+            var force = penAmount * 10000;
             dmgAmount = Mathf.Pow(force, 1 / 3f) / 10;
 
             var newDinfo = new DamageInfo(DamageDefOf.Blunt,
