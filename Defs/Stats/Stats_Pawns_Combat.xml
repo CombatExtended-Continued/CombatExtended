@@ -281,22 +281,22 @@
   
   <StatDef>
     <defName>UnarmedDamage</defName>
-    <label>unarmed damage</label>
-    <description>Damage done in unarmed combat.</description>
+    <label>unarmed damage bonus</label>
+    <description>Additional damage done in unarmed combat.</description>
     <category>PawnCombat</category>
     <displayPriorityInCategory>99</displayPriorityInCategory>
-    <defaultBaseValue>1</defaultBaseValue>
+    <defaultBaseValue>0</defaultBaseValue>
     <showOnPawns>true</showOnPawns>
     <minValue>0.0</minValue>
     <maxValue>10.0</maxValue>
-    <toStringStyle>PercentZero</toStringStyle>
-    <skillNeedFactors>
+    <toStringStyle>FloatMaxTwo</toStringStyle>
+    <skillNeedOffsets>
       <li Class="SkillNeed_BaseBonus">
         <skill>Melee</skill>
         <baseValue>0.00</baseValue>
-        <bonusPerLevel>1.00</bonusPerLevel>
+        <bonusPerLevel>0.50</bonusPerLevel>
       </li>
-    </skillNeedFactors>
+    </skillNeedOffsets>
     <capacityFactors>
       <li>
         <capacity>Sight</capacity>
