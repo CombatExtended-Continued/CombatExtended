@@ -13,9 +13,14 @@ namespace CombatExtended
 
         public override string GetStatDrawEntryLabel(StatDef stat, float value, ToStringNumberSense numberSense, StatRequest optionalReq)
         {
-            Pawn pawnHolder = (optionalReq.Thing.ParentHolder is Pawn_EquipmentTracker) ? ((Pawn_EquipmentTracker)optionalReq.Thing.ParentHolder).pawn : null;
-            float skilledDamageVariationMin = GetDamageVariationMin(pawnHolder);
-            float skilledDamageVariationMax = GetDamageVariationMax(pawnHolder);
+            var skilledDamageVariationMin = damageVariationMin;
+            var skilledDamageVariationMax = damageVariationMax;
+
+            if (optionalReq.Thing?.ParentHolder is Pawn_EquipmentTracker tracker)
+            {
+                skilledDamageVariationMin = GetDamageVariationMin(tracker.pawn);
+                skilledDamageVariationMax = GetDamageVariationMax(tracker.pawn);
+            }
 
             var tools = (optionalReq.Def as ThingDef)?.tools;
             if (tools.NullOrEmpty())
@@ -49,10 +54,19 @@ namespace CombatExtended
 
         public override string GetExplanationUnfinalized(StatRequest req, ToStringNumberSense numberSense)
         {
-            Pawn pawnHolder = (req.Thing.ParentHolder is Pawn_EquipmentTracker) ? ((Pawn_EquipmentTracker)req.Thing.ParentHolder).pawn : null;
-            float skilledDamageVariationMin = GetDamageVariationMin(pawnHolder);
-            float skilledDamageVariationMax = GetDamageVariationMax(pawnHolder);
-            int meleeSkillLevel = pawnHolder?.skills?.GetSkill(SkillDefOf.Melee)?.Level ?? -1;
+            var skilledDamageVariationMin = damageVariationMin;
+            var skilledDamageVariationMax = damageVariationMax;
+            var meleeSkillLevel = -1;
+
+            if (req.Thing?.ParentHolder is Pawn_EquipmentTracker tracker && tracker.pawn != null)
+            {
+                var pawnHolder = tracker.pawn;
+                skilledDamageVariationMin = GetDamageVariationMin(pawnHolder);
+                skilledDamageVariationMax = GetDamageVariationMax(pawnHolder);
+
+                if (pawnHolder.skills != null)
+                    meleeSkillLevel = pawnHolder.skills.GetSkill(SkillDefOf.Melee).Level;
+            }
 
             var tools = (req.Def as ThingDef)?.tools;
 

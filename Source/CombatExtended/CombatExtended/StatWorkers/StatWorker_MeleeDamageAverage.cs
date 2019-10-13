@@ -12,9 +12,14 @@ namespace CombatExtended
     {
         public override float GetValueUnfinalized(StatRequest req, bool applyPostProcess)
         {
-            Pawn pawnHolder = (req.Thing.ParentHolder is Pawn_EquipmentTracker) ? ((Pawn_EquipmentTracker)req.Thing.ParentHolder).pawn : null;
-            float skilledDamageVariationMin = GetDamageVariationMin(pawnHolder);
-            float skilledDamageVariationMax = GetDamageVariationMax(pawnHolder);
+            var skilledDamageVariationMin = damageVariationMin;
+            var skilledDamageVariationMax = damageVariationMax;
+
+            if (req.Thing?.ParentHolder is Pawn_EquipmentTracker tracker)
+            {
+                skilledDamageVariationMin = GetDamageVariationMin(tracker.pawn);
+                skilledDamageVariationMax = GetDamageVariationMax(tracker.pawn);
+            }
 
             var tools = (req.Def as ThingDef)?.tools;
             if (tools.NullOrEmpty())
@@ -27,17 +32,17 @@ namespace CombatExtended
                 return 0;
             }
 
-            float totalSelectionWeight = 0f;
-            foreach (Tool tool in tools)
+            var totalSelectionWeight = 0f;
+            foreach (var tool in tools)
             {
                 totalSelectionWeight += tool.chanceFactor;
             }
-            float totalDPS = 0f;
-            foreach (ToolCE tool in tools)
+            var totalDPS = 0f;
+            foreach (var tool in tools)
             {
-                float minDPS = tool.power / tool.cooldownTime * skilledDamageVariationMin;
-                float maxDPS = tool.power / tool.cooldownTime * skilledDamageVariationMax;
-                float weightFactor = tool.chanceFactor / totalSelectionWeight;
+                var minDPS = tool.power / tool.cooldownTime * skilledDamageVariationMin;
+                var maxDPS = tool.power / tool.cooldownTime * skilledDamageVariationMax;
+                var weightFactor = tool.chanceFactor / totalSelectionWeight;
                 totalDPS += weightFactor * ((minDPS + maxDPS) / 2f);
             }
             return totalDPS;
@@ -45,10 +50,19 @@ namespace CombatExtended
 
         public override string GetExplanationUnfinalized(StatRequest req, ToStringNumberSense numberSense)
         {
-            Pawn pawnHolder = (req.Thing.ParentHolder is Pawn_EquipmentTracker) ? ((Pawn_EquipmentTracker)req.Thing.ParentHolder).pawn : null;
-            float skilledDamageVariationMin = GetDamageVariationMin(pawnHolder);
-            float skilledDamageVariationMax = GetDamageVariationMax(pawnHolder);
-            int meleeSkillLevel = pawnHolder?.skills?.GetSkill(SkillDefOf.Melee)?.Level ?? -1;
+            var skilledDamageVariationMin = damageVariationMin;
+            var skilledDamageVariationMax = damageVariationMax;
+            var meleeSkillLevel = -1;
+
+            if (req.Thing?.ParentHolder is Pawn_EquipmentTracker tracker && tracker.pawn != null)
+            {
+                var pawnHolder = tracker.pawn;
+                skilledDamageVariationMin = GetDamageVariationMin(pawnHolder);
+                skilledDamageVariationMax = GetDamageVariationMax(pawnHolder);
+
+                if (pawnHolder.skills != null)
+                    meleeSkillLevel = pawnHolder.skills.GetSkill(SkillDefOf.Melee).Level;
+            }
 
             var tools = (req.Def as ThingDef)?.tools;
 
@@ -70,8 +84,8 @@ namespace CombatExtended
 
             foreach (ToolCE tool in tools)
             {
-                float minDPS = tool.power / tool.cooldownTime * skilledDamageVariationMin;
-                float maxDPS = tool.power / tool.cooldownTime * skilledDamageVariationMax;
+                var minDPS = tool.power / tool.cooldownTime * skilledDamageVariationMin;
+                var maxDPS = tool.power / tool.cooldownTime * skilledDamageVariationMax;
 
                 var maneuvers = DefDatabase<ManeuverDef>.AllDefsListForReading.Where(d => tool.capacities.Contains(d.requiredCapacity));
                 var maneuverString = "(";
