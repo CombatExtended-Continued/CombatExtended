@@ -217,10 +217,16 @@ namespace CombatExtended
             BodyPartGroupDef bodyPartGroupDef = null;
             HediffDef hediffDef = null;
 
-            var damVariation = EquipmentSource == null
-                ? CasterPawn.GetStatValue(CE_StatDefOf.UnarmedDamage)
-                : Rand.Range(StatWorker_MeleeDamage.GetDamageVariationMin(CasterPawn), StatWorker_MeleeDamage.GetDamageVariationMax(CasterPawn));
-            damAmount *= damVariation;
+            if (EquipmentSource != null)
+            {
+                //melee weapon damage variation
+                damAmount *= Rand.Range(StatWorker_MeleeDamage.GetDamageVariationMin(CasterPawn), StatWorker_MeleeDamage.GetDamageVariationMax(CasterPawn));
+            }
+            else
+            {
+                //unarmed damage bonus offset
+                damAmount += CasterPawn.GetStatValue(CE_StatDefOf.UnarmedDamage);
+            }
 
             if (CasterIsPawn)
             {
