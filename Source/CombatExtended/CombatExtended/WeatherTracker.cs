@@ -10,13 +10,12 @@ namespace CombatExtended
         private static readonly string[] windDirections = new string[] { "N", "NE", "E", "SE", "S", "SW", "W", "NW" };
         private const float HumidityDecayPerTick = 0.05f;
         private const int MaxPrecipitation = GenDate.TicksPerDay * 3;
-        private const float MaxWindStrength = 6;    // With 1.5 multiplier from weather we get a 9 on Beaufort scale
+        private const float BaseWindStrength = 3;    // With 2 max noise (see vanilla WindManager class), 1.5 multiplier from weather we get a 9 on Beaufort scale
+        private const float MaxWindStrength = 9;
         private const float MaxWindStrengthDelta = 0.5f;
         private const float MaxDirectionDelta = 5f;
 
         private float _humidity = MaxPrecipitation * 0.5f;
-        private float _windStrength;
-        private float _windStrengthTarget;
         private float _windDirection;
         private float _windDirectionTarget;
 
@@ -29,7 +28,7 @@ namespace CombatExtended
         public float HumidityPercent => Humidity / MaxPrecipitation;
         public Vector3 WindDirection => Vector3Utility.FromAngleFlat(_windDirection - 90);
 
-        private float WindStrength => _windStrength * map.weatherManager.CurWindSpeedFactor;
+        private float WindStrength => Mathf.Min(BaseWindStrength * map.windManager.WindSpeed, MaxWindStrength);
         private int BeaufortScale => Mathf.FloorToInt(WindStrength);
 
         private string WindStrengthText => ("CE_Wind_Beaufort" + BeaufortScale).Translate();
@@ -57,8 +56,6 @@ namespace CombatExtended
         {
             base.ExposeData();
             Scribe_Values.Look(ref _humidity, "humidity", MaxPrecipitation * 0.5f);
-            Scribe_Values.Look(ref _windStrength, "windStrength");
-            Scribe_Values.Look(ref _windStrengthTarget, "windStrengthTarget");
             Scribe_Values.Look(ref _windDirection, "windDirection");
             Scribe_Values.Look(ref _windDirectionTarget, "windDirectionTarget");
         }
@@ -88,13 +85,6 @@ namespace CombatExtended
             // Wind
             if (GenTicks.TicksGame % GenTicks.TickRareInterval == 0)
             {
-                if (Math.Abs(_windStrengthTarget - _windStrength) < 0.1f)
-                {
-                    _windStrengthTarget = Rand.Range(0, MaxWindStrength);
-                }
-
-                _windStrength = Mathf.MoveTowards(_windStrength, _windStrengthTarget, Rand.Range(0, MaxWindStrengthDelta));
-
                 if (Math.Abs(_windDirection - _windDirectionTarget) < 1)
                 {
                     _windDirectionTarget = Rand.Range(0, 360);
