@@ -53,7 +53,7 @@ namespace CombatExtended
 
             var dinfo = new DamageInfo(originalDinfo);
             var dmgAmount = dinfo.Amount;
-            var involveArmor = dinfo.Def.harmAllLayersUntilOutside;
+            var involveArmor = dinfo.Def.harmAllLayersUntilOutside || hitPart.depth == BodyPartDepth.Outside;
             bool isAmbientDamage = dinfo.IsAmbientDamage();
 
             // In case of ambient damage (fire, electricity) we apply a percentage reduction formula based on the sum of all applicable armor
@@ -216,8 +216,8 @@ namespace CombatExtended
             var newPenAmount = penAmount - armorAmount;
 
             var dmgMult = noDmg ? 0 : penAmount == 0 ? 1 : Mathf.Clamp01(newPenAmount / penAmount);
+            deflected = deflected || dmgMult == 0;
             var newDmgAmount = dmgAmount * dmgMult;
-            Log.Message($"CE :: dmg: {dmgAmount} * {dmgMult} = {newDmgAmount}, pen: {penAmount} - {armorAmount} = {newPenAmount}");
             newPenAmount -= partDensity;    // Factor partDensity only after damage calculations
 
             // Apply damage to armor
@@ -300,7 +300,7 @@ namespace CombatExtended
                     //but on rare occasions, one of the soldiers gets Bite injuries with with Weapon==null and the instigator set as *himself*.
                     //Warning message below to identify any other situations where this might be happening. -LX7
                     Log.Warning($"[CE] Deflection for Instigator:{dinfo.Instigator} Target:{dinfo.IntendedTarget} DamageDef:{dinfo.Def} Weapon:{dinfo.Weapon} has null verb, overriding AP.");
-                    
+
                 }
                 penAmount = Verb_MeleeAttackCE.LastAttackVerb?.ArmorPenetrationBlunt ?? 999999;
             }

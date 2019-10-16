@@ -11,32 +11,32 @@ namespace CombatExtended
 {
     public class BulletCE : ProjectileCE
     {
-        private const float StunChance = 0.1f;
+        private const float SecExplosionPenPerDmg = 3;
 
         private void LogImpact(Thing hitThing, out LogEntry_DamageResult logEntry)
         {
-			logEntry =
-				new BattleLogEntry_RangedImpact(
-					launcher,
-					hitThing,
-					intendedTarget,
-					equipmentDef,
-					def,
+            logEntry =
+                new BattleLogEntry_RangedImpact(
+                    launcher,
+                    hitThing,
+                    intendedTarget,
+                    equipmentDef,
+                    def,
                     null //CoverDef Missing!
                     );
             if (!(launcher is AmmoThing))
                 Find.BattleLog.Add(logEntry);
         }
-        
+
         protected override void Impact(Thing hitThing)
         {
             bool cookOff = (launcher is AmmoThing);
 
             Map map = base.Map;
             LogEntry_DamageResult logEntry = null;
-            
+
             if (logMisses
-                || 
+                ||
                 (!logMisses
                     && hitThing != null
                     && (hitThing is Pawn
@@ -46,7 +46,7 @@ namespace CombatExtended
                 if (!cookOff)
                     LogImpact(hitThing, out logEntry);
             }
-            
+
             if (hitThing != null)
             {
                 // launcher being the pawn equipping the weapon, not the weapon itself
@@ -62,10 +62,10 @@ namespace CombatExtended
                     launcher,
                     null,
                     def);
-                
+
                 // Set impact height
                 BodyPartDepth partDepth = damDefCE != null && damDefCE.harmOnlyOutsideLayers ? BodyPartDepth.Outside : BodyPartDepth.Undefined;
-                	//NOTE: ExactPosition.y isn't always Height at the point of Impact!
+                //NOTE: ExactPosition.y isn't always Height at the point of Impact!
                 BodyPartHeight partHeight = new CollisionVertical(hitThing).GetCollisionBodyHeight(ExactPosition.y);
                 dinfo.SetBodyRegion(partHeight, partDepth);
                 if (damDefCE != null && damDefCE.harmOnlyOutsideLayers) dinfo.SetBodyRegion(BodyPartHeight.Undefined, BodyPartDepth.Outside);
@@ -86,18 +86,25 @@ namespace CombatExtended
                 {
                     // Apply primary damage
                     hitThing.TakeDamage(dinfo).AssociateWithLog(logEntry);
-                    
+
                     // Apply secondary to non-pawns (pawn secondary damage is handled in the damage worker)
                     // The !(hitThing is Pawn) already excludes non-pawn cookoff projectiles from being logged, as logEntry == null
-                    if(!(hitThing is Pawn) && projectilePropsCE != null && !projectilePropsCE.secondaryDamage.NullOrEmpty())
+                    if (!(hitThing is Pawn) && projectilePropsCE != null && !projectilePropsCE.secondaryDamage.NullOrEmpty())
                     {
-                        foreach(SecondaryDamage cur in projectilePropsCE.secondaryDamage)
+                        foreach (SecondaryDamage cur in projectilePropsCE.secondaryDamage)
                         {
                             if (hitThing.Destroyed) break;
+
+                            var penetration = 0f;
+                            if (cur.def.isExplosive)
+                                penetration = cur.amount * SecExplosionPenPerDmg;
+                            else if (cur.def.armorCategory == DamageArmorCategoryDefOf.Sharp)
+                                penetration = projectilePropsCE.armorPenetrationSharp;
+
                             var secDinfo = new DamageInfo(
                                 cur.def,
                                 cur.amount,
-                                projectilePropsCE.armorPenetrationSharp, //Armor Penetration
+                                penetration, //Armor Penetration
                                 ExactRotation.eulerAngles.y,
                                 launcher,
                                 null,
@@ -109,7 +116,7 @@ namespace CombatExtended
                 }
                 catch (Exception e)
                 {
-                    Log.Error("CombatExtended :: BulletCE impacting thing "+hitThing.LabelCap+" of def "+hitThing.def.LabelCap+" added by mod " + hitThing.def.modContentPack.Name + ". See following stacktrace for information.");
+                    Log.Error("CombatExtended :: BulletCE impacting thing " + hitThing.LabelCap + " of def " + hitThing.def.LabelCap + " added by mod " + hitThing.def.modContentPack.Name + ". See following stacktrace for information.");
                     throw e;
                 }
                 finally
@@ -123,7 +130,7 @@ namespace CombatExtended
 
                 //Only display a dirt/water hit for projectiles with a dropshadow
                 if (base.castShadow)
-                { 
+                {
                     MoteMaker.MakeStaticMote(this.ExactPosition, map, ThingDefOf.Mote_ShotHit_Dirt, 1f);
                     if (base.Position.GetTerrain(map).takeSplashes)
                     {
