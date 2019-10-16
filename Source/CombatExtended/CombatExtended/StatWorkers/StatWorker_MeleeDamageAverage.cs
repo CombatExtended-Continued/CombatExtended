@@ -40,8 +40,9 @@ namespace CombatExtended
             var totalDPS = 0f;
             foreach (var tool in tools)
             {
-                var minDPS = tool.power / tool.cooldownTime * skilledDamageVariationMin;
-                var maxDPS = tool.power / tool.cooldownTime * skilledDamageVariationMax;
+                var toolDamage = GetAdjustedDamage((ToolCE)tool, req.Thing);
+                var minDPS = toolDamage / tool.cooldownTime * skilledDamageVariationMin;
+                var maxDPS = toolDamage / tool.cooldownTime * skilledDamageVariationMax;
                 var weightFactor = tool.chanceFactor / totalSelectionWeight;
                 totalDPS += weightFactor * ((minDPS + maxDPS) / 2f);
             }
@@ -84,8 +85,9 @@ namespace CombatExtended
 
             foreach (ToolCE tool in tools)
             {
-                var minDPS = tool.power / tool.cooldownTime * skilledDamageVariationMin;
-                var maxDPS = tool.power / tool.cooldownTime * skilledDamageVariationMax;
+                var adjustedToolDamage = GetAdjustedDamage(tool, req.Thing);
+                var minDPS = adjustedToolDamage / tool.cooldownTime * skilledDamageVariationMin;
+                var maxDPS = adjustedToolDamage / tool.cooldownTime * skilledDamageVariationMax;
 
                 var maneuvers = DefDatabase<ManeuverDef>.AllDefsListForReading.Where(d => tool.capacities.Contains(d.requiredCapacity));
                 var maneuverString = "(";
@@ -97,11 +99,13 @@ namespace CombatExtended
 
                 stringBuilder.AppendLine("  Tool: " + tool.ToString() + " " + maneuverString);
                 stringBuilder.AppendLine("    Base damage: " + tool.power.ToStringByStyle(ToStringStyle.FloatMaxTwo));
+                stringBuilder.AppendLine("    Adjusted for weapon: " + adjustedToolDamage.ToStringByStyle(ToStringStyle.FloatMaxTwo));
                 stringBuilder.AppendLine("    Cooldown: " + tool.cooldownTime.ToStringByStyle(ToStringStyle.FloatMaxTwo) + " seconds");
+                stringBuilder.AppendLine("    Damage per second: " + (adjustedToolDamage / tool.cooldownTime).ToStringByStyle(ToStringStyle.FloatMaxTwo));
                 stringBuilder.AppendLine(string.Format("    Damage variation: {0} - {1}",
                     minDPS.ToStringByStyle(ToStringStyle.FloatMaxTwo),
                     maxDPS.ToStringByStyle(ToStringStyle.FloatMaxTwo)));
-                stringBuilder.AppendLine("    Average damage: " + ((minDPS + maxDPS) / 2f).ToStringByStyle(ToStringStyle.FloatMaxTwo));
+                stringBuilder.AppendLine("    Final average damage: " + ((minDPS + maxDPS) / 2f).ToStringByStyle(ToStringStyle.FloatMaxTwo));
                 stringBuilder.AppendLine();
             }
             return stringBuilder.ToString();
