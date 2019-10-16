@@ -14,6 +14,7 @@ namespace CombatExtended.Harmony
     [HarmonyPatch(typeof(DamageWorker_AddInjury), "ApplyDamageToPart")]
     internal static class Harmony_DamageWorker_AddInjury_ApplyDamageToPart
     {
+        private static bool _applyingSecondary = false;
         private static bool shieldAbsorbed = false;
         private static readonly int[] ArmorBlockNullOps = { 1, 3, 4, 5, 6 };  // Lines in armor block that need to be nulled out
 
@@ -79,15 +80,17 @@ namespace CombatExtended.Harmony
         {
             if (shieldAbsorbed) return;
 
-            var props = dinfo.Weapon?.projectile as ProjectilePropertiesCE;
-            if (props != null && !props.secondaryDamage.NullOrEmpty() && dinfo.Def == props.damageDef)
+            if (dinfo.Weapon?.projectile is ProjectilePropertiesCE props && !props.secondaryDamage.NullOrEmpty() && !_applyingSecondary)
             {
+                _applyingSecondary = true;
                 foreach (var sec in props.secondaryDamage)
                 {
                     if (pawn.Dead) return;
                     var secDinfo = sec.GetDinfo(dinfo);
                     pawn.TakeDamage(secDinfo);
                 }
+
+                _applyingSecondary = false;
             }
         }
     }

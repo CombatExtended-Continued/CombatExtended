@@ -109,7 +109,7 @@ namespace CombatExtended
                             {
                                 if (shield.Destroyed) break;
                                 var secDinfo = sec.GetDinfo();
-                                var pen = originalDinfo.ArmorPenetrationInt; //GetPenetrationValue(originalDinfo);
+                                var pen = secDinfo.ArmorPenetrationInt; //GetPenetrationValue(originalDinfo);
                                 var dmg = (float)secDinfo.Amount;
                                 TryPenetrateArmor(secDinfo.Def, shield.GetStatValue(secDinfo.Def.armorCategory.armorRatingStat), ref pen, ref dmg, shield);
                             }

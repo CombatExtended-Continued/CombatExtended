@@ -11,8 +11,6 @@ namespace CombatExtended
 {
     public class BulletCE : ProjectileCE
     {
-        private const float SecExplosionPenPerDmg = 3;
-
         private void LogImpact(Thing hitThing, out LogEntry_DamageResult logEntry)
         {
             logEntry =
@@ -95,21 +93,7 @@ namespace CombatExtended
                         {
                             if (hitThing.Destroyed) break;
 
-                            var penetration = 0f;
-                            if (cur.def.isExplosive)
-                                penetration = cur.amount * SecExplosionPenPerDmg;
-                            else if (cur.def.armorCategory == DamageArmorCategoryDefOf.Sharp)
-                                penetration = projectilePropsCE.armorPenetrationSharp;
-
-                            var secDinfo = new DamageInfo(
-                                cur.def,
-                                cur.amount,
-                                penetration, //Armor Penetration
-                                ExactRotation.eulerAngles.y,
-                                launcher,
-                                null,
-                                def
-                            );
+                            var secDinfo = cur.GetDinfo(dinfo);
                             hitThing.TakeDamage(secDinfo).AssociateWithLog(logEntry);
                         }
                     }
