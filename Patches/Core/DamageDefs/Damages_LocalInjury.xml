@@ -130,21 +130,21 @@
     </value>
   </Operation>
 
-  <!-- ========== Stabs and pokes no longer ignore armor ========== -->
+  <!-- ========== Remove vanilla DamageWorker ========== -->
 
-	<Operation Class="PatchOperationAdd">
-		<xpath>Defs/DamageDef[defName="Poke"]</xpath>
-		<value>
-			<harmAllLayersUntilOutside>true</harmAllLayersUntilOutside>
-		</value>
-	</Operation>
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/DamageDef[defName="Cut" or defName="Poke" or defName="Stab" or defName="Scratch" or defName="Bite"]/workerClass</xpath>
+    <value>
+      <workerClass>DamageWorker_AddInjury</workerClass>
+    </value>
+  </Operation>
 
-	<Operation Class="PatchOperationAdd">
-		<xpath>Defs/DamageDef[defName="Stab"]</xpath>
-		<value>
-			<harmAllLayersUntilOutside>true</harmAllLayersUntilOutside>
-		</value>
-	</Operation>
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/DamageDef[defName="Blunt"]/workerClass</xpath>
+    <value>
+      <workerClass>CombatExtended.DamageWorker_BluntCE</workerClass>
+    </value>
+  </Operation>
 
 <!-- ========== Patch-out vanilla melee stun mechanic from blunt damage ========== -->
 

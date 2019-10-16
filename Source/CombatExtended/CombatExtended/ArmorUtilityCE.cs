@@ -217,6 +217,7 @@ namespace CombatExtended
 
             var dmgMult = noDmg ? 0 : penAmount == 0 ? 1 : Mathf.Clamp01(newPenAmount / penAmount);
             var newDmgAmount = dmgAmount * dmgMult;
+            Log.Message($"CE :: dmg: {dmgAmount} * {dmgMult} = {newDmgAmount}, pen: {penAmount} - {armorAmount} = {newPenAmount}");
             newPenAmount -= partDensity;    // Factor partDensity only after damage calculations
 
             // Apply damage to armor
