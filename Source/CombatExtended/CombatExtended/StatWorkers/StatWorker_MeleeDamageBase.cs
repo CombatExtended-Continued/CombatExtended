@@ -54,6 +54,11 @@ namespace CombatExtended
             return true;
         }
 
+        protected static float GetAdjustedDamage(ToolCE tool, Thing thingOwner)
+        {
+            return tool.AdjustedBaseMeleeDamageAmount(thingOwner, tool.capacities?.First()?.VerbsProperties?.First()?.meleeDamageDef);
+        }
+
         #endregion
 
     }
