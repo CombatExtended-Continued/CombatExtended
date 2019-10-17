@@ -165,7 +165,6 @@ namespace CombatExtended
                 var curPart = partsToHit[i];
                 var coveredByArmor = curPart.IsInGroup(CE_BodyPartGroupDefOf.CoveredByNaturalArmor);
                 var armorAmount = coveredByArmor ? pawn.GetStatValue(dinfo.Def.armorCategory.armorRatingStat) : 0;
-                var unused = dmgAmount;
 
                 // Only apply damage reduction when penetrating armored body parts
                 if (!TryPenetrateArmor(dinfo.Def, armorAmount, ref penAmount, ref dmgAmount, null, partDensity))
@@ -241,7 +240,7 @@ namespace CombatExtended
                 }
             }
 
-            if (!deflected)
+            if (!deflected || !isSharpDmg)
             {
                 dmgAmount = Mathf.Max(0, newDmgAmount);
                 penAmount = Mathf.Max(0, newPenAmount);
@@ -285,6 +284,15 @@ namespace CombatExtended
         /// <returns>DamageInfo copied from dinfo with Def and forceHitPart adjusted</returns>
         private static DamageInfo GetDeflectDamageInfo(DamageInfo dinfo, BodyPartRecord hitPart, ref float dmgAmount, ref float penAmount)
         {
+            // Non-sharp defaults to 0 damage
+            if (dinfo.Def.armorCategory != DamageArmorCategoryDefOf.Sharp)
+            {
+                dmgAmount = 0;
+                penAmount = 0;
+                dinfo.SetAmount(0);
+                return dinfo;
+            }
+
             // Get kPa value
             var penMult = penAmount / dinfo.ArmorPenetrationInt;
             if (dinfo.Weapon?.projectile is ProjectilePropertiesCE projectile)

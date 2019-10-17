@@ -208,7 +208,6 @@ namespace CombatExtended
         {
             //START 1:1 COPY Verb_MeleeAttack.DamageInfosToApply
             float damAmount = verbProps.AdjustedMeleeDamageAmount(this, CasterPawn);
-            Log.Message($"CE :: Base damage for {CasterPawn} = {damAmount}");
             var critModifier = isCrit && verbProps.meleeDamageDef.armorCategory == DamageArmorCategoryDefOf.Sharp &&
                                !CasterPawn.def.race.Animal
                 ? 2
@@ -222,13 +221,11 @@ namespace CombatExtended
             {
                 //melee weapon damage variation
                 damAmount *= Rand.Range(StatWorker_MeleeDamage.GetDamageVariationMin(CasterPawn), StatWorker_MeleeDamage.GetDamageVariationMax(CasterPawn));
-                Log.Message($"CE :: Post weapon variation damage for {CasterPawn} = {damAmount}");
             }
             else
             {
                 //unarmed damage bonus offset
                 damAmount += CasterPawn.GetStatValue(CE_StatDefOf.UnarmedDamage);
-                Log.Message($"CE :: Post unarmed damage for {CasterPawn} = {damAmount}");
             }
 
             if (CasterIsPawn)
