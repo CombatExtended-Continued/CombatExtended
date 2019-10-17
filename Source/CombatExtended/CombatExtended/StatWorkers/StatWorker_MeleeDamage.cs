@@ -37,13 +37,14 @@ namespace CombatExtended
             float highestDamage = 0f;
             foreach (ToolCE tool in tools)
             {
-                if (tool.power > highestDamage)
+                var toolDamage = GetAdjustedDamage(tool, optionalReq.Thing);
+                if (toolDamage > highestDamage)
                 {
-                    highestDamage = tool.power;
+                    highestDamage = toolDamage;
                 }
-                if (tool.power < lowestDamage)
+                if (toolDamage < lowestDamage)
                 {
-                    lowestDamage = tool.power;
+                    lowestDamage = toolDamage;
                 }
             }
 
@@ -88,6 +89,7 @@ namespace CombatExtended
 
             foreach (ToolCE tool in tools)
             {
+                var adjustedToolDamage = GetAdjustedDamage(tool, req.Thing);
                 var maneuvers = DefDatabase<ManeuverDef>.AllDefsListForReading.Where(d => tool.capacities.Contains(d.requiredCapacity));
                 var maneuverString = "(";
                 foreach (var maneuver in maneuvers)
@@ -97,9 +99,10 @@ namespace CombatExtended
                 maneuverString = maneuverString.TrimmedToLength(maneuverString.Length - 1) + ")";
                 stringBuilder.AppendLine("  Tool: " + tool.ToString() + " " + maneuverString);
                 stringBuilder.AppendLine("    Base damage: " + tool.power.ToStringByStyle(ToStringStyle.FloatMaxTwo));
+                stringBuilder.AppendLine("    Adjusted for weapon: " + adjustedToolDamage.ToStringByStyle(ToStringStyle.FloatMaxTwo));
                 stringBuilder.AppendLine(string.Format("    Final value: {0} - {1}",
-                    (tool.power * skilledDamageVariationMin).ToStringByStyle(ToStringStyle.FloatMaxTwo),
-                    (tool.power * skilledDamageVariationMax).ToStringByStyle(ToStringStyle.FloatMaxTwo)));
+                    (adjustedToolDamage * skilledDamageVariationMin).ToStringByStyle(ToStringStyle.FloatMaxTwo),
+                    (adjustedToolDamage * skilledDamageVariationMax).ToStringByStyle(ToStringStyle.FloatMaxTwo)));
                 stringBuilder.AppendLine();
             }
             return stringBuilder.ToString();
