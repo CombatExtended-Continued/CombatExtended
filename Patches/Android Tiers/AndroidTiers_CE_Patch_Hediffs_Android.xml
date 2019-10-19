@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+	<Operation Class="PatchOperationSequence">
+		<success>Always</success>
+		<operations>
+
+			<li Class="CombatExtended.PatchOperationFindMod">
+				<modName>[1.0] Android tiers</modName>
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>*/HediffDef[defName="CrudeJawAndroid"]/comps/li[@Class="HediffCompProperties_VerbGiver"]/tools</xpath>
+				<value>
+					<tools>
+						<li Class="CombatExtended.ToolCE">
+							<label>jaw</label>
+							<capacities>
+								<li>Bite</li>
+							</capacities>
+							<power>8</power>
+							<cooldownTime>3.65</cooldownTime>
+							<armorPenetration>0.14</armorPenetration>
+						</li>
+					</tools>
+				</value>
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>*/HediffDef[defName="ARArm"]/comps/li[@Class="HediffCompProperties_VerbGiver"]/tools</xpath>
+				<value>
+					<tools>
+						<li Class="CombatExtended.ToolCE">
+							<label>fist</label>
+							<capacities>
+								<li>Blunt</li>
+							</capacities>
+							<power>25</power>
+							<cooldownTime>1.65</cooldownTime>
+							<armorPenetration>0.45</armorPenetration>
+						</li>
+					</tools>
+				</value>
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>*/HediffDef[defName="AdvJawAndroid"]/comps/li[@Class="HediffCompProperties_VerbGiver"]/tools</xpath>
+				<value>
+					<tools>
+						<li Class="CombatExtended.ToolCE">
+							<label>jaw</label>
+							<capacities>
+								<li>Bite</li>
+							</capacities>
+							<power>50</power>
+							<cooldownTime>5</cooldownTime>
+							<armorPenetration>0.65</armorPenetration>
+						</li>
+					</tools>
+				</value>
+			</li>
+			
+		</operations>
+	</Operation>
+</Patch>

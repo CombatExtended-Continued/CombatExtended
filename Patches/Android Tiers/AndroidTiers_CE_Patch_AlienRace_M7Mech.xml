@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+	<Operation Class="PatchOperationSequence">
+		<success>Always</success>
+		<operations>
+
+			<li Class="CombatExtended.PatchOperationFindMod">
+				<modName>[1.0] Android tiers</modName>
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<success>Always</success>
+				<xpath>*/ThingDef[@Name="BasePawnMech"]/inspectorTabs/li[.="ITab_Pawn_Gear"]</xpath>
+				<value>
+					<li>CombatExtended.ITab_Inventory</li>
+				</value>
+			</li>
+
+			<li Class="PatchOperationAdd">
+				<success>Always</success>
+				<xpath>*/ThingDef[@Name="BasePawnMech"]/comps</xpath>
+				<value>
+					<li Class="CombatExtended.CompProperties_Inventory" />
+				</value>
+			</li>
+
+			<li Class="PatchOperationAddModExtension">
+				<xpath>*/AlienRace.ThingDef_AlienRace[defName="M7Mech"]</xpath>
+				<value>
+					<li Class="CombatExtended.RacePropertiesExtensionCE">
+						<bodyShape>Humanoid</bodyShape>
+					</li>
+				</value>
+			</li>
+
+			<li Class="PatchOperationAdd">
+				<xpath>*/AlienRace.ThingDef_AlienRace[defName="M7Mech"]/statBases</xpath>
+				<value>
+					<Suppressability>0.00</Suppressability>
+					<CarryWeight>70</CarryWeight> <!-- This value gets multipled by 5.2 (for body size) -->
+					<CarryBulk>50</CarryBulk> <!-- This value gets multipled by 5.2 (for body size) -->
+				</value>
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>*/AlienRace.ThingDef_AlienRace[defName="M7Mech"]/tools</xpath>
+				<value>
+					<tools>
+						<li Class="CombatExtended.ToolCE">
+							<label>left fist</label>
+							<capacities>
+								<li>Blunt</li>
+							</capacities>
+							<power>80</power>
+							<cooldownTime>3.2</cooldownTime>
+							<linkedBodyPartsGroup>LeftHand</linkedBodyPartsGroup>
+							<surpriseAttack>
+								<extraMeleeDamages>
+									<li>
+										<def>Stun</def>
+										<amount>22</amount>
+									</li>
+								</extraMeleeDamages>
+							</surpriseAttack>
+							<armorPenetration>0.38</armorPenetration>
+						</li>
+						<li Class="CombatExtended.ToolCE">
+							<label>right fist</label>
+							<capacities>
+								<li>Blunt</li>
+							</capacities>
+							<power>80</power>
+							<cooldownTime>3.2</cooldownTime>
+							<linkedBodyPartsGroup>RightHand</linkedBodyPartsGroup>
+							<surpriseAttack>
+								<extraMeleeDamages>
+									<li>
+										<def>Stun</def>
+										<amount>22</amount>
+									</li>
+								</extraMeleeDamages>
+							</surpriseAttack>
+							<armorPenetration>0.38</armorPenetration>
+						</li>
+					</tools>
+				</value>
+			</li>
+
+			<li Class="PatchOperationSequence">
+				<success>Always</success>
+				<operations>
+					<li Class="PatchOperationTest">
+						<xpath>*/AlienRace.ThingDef_AlienRace[defName="M7Mech"]/comps</xpath>
+						<success>Invert</success>
+					</li>
+					<li Class="PatchOperationAdd">
+						<xpath>*/AlienRace.ThingDef_AlienRace[defName="M7Mech"]</xpath>
+						<value>
+							<comps />
+						</value>
+					</li>
+				</operations>
+			</li>
+
+			<li Class="PatchOperationAdd">
+				<xpath>*/AlienRace.ThingDef_AlienRace[defName="M7Mech"]/comps</xpath>
+				<value>
+					<li>
+						<compClass>CombatExtended.CompPawnGizmo</compClass>
+					</li>
+					<li Class="CombatExtended.CompProperties_Suppressable" />
+				</value>
+			</li>
+
+		</operations>
+	</Operation>
+</Patch>

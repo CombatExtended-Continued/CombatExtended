@@ -1,0 +1,353 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+	<Operation Class="PatchOperationSequence">
+		<success>Always</success>
+		<operations>
+
+			<li Class="CombatExtended.PatchOperationFindMod">
+				<modName>[1.0] Android tiers</modName>
+			</li>
+			
+			<!-- ========== 40mm Cannon ========== -->
+
+			<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+				<defName>Mech40MMCannon</defName>
+				<statBases>
+					<Mass>42</Mass>
+					<RangedWeapon_Cooldown>2.5</RangedWeapon_Cooldown>
+					<SightsEfficiency>1</SightsEfficiency>
+					<ShotSpread>0.15</ShotSpread>
+					<SwayFactor>1.50</SwayFactor>
+					<Bulk>20</Bulk>
+				</statBases>
+				<Properties>
+					<recoilAmount>0.60</recoilAmount>
+					<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+					<hasStandardCommand>true</hasStandardCommand>
+					<defaultProjectile>Bullet_40x365mmBofors_AP</defaultProjectile>
+					<warmupTime>1.5</warmupTime>
+					<range>45</range>
+					<soundCast>40MMCannon</soundCast>
+					<soundCastTail>GunTail_Heavy</soundCastTail>
+					<muzzleFlashScale>18</muzzleFlashScale>
+					<burstShotCount>3</burstShotCount>
+					<targetParams>
+						<canTargetLocations>true</canTargetLocations>
+					</targetParams>
+				</Properties>
+				<AmmoUser>
+					<magazineSize>24</magazineSize>
+					<reloadTime>4.75</reloadTime>
+					<ammoSet>AmmoSet_40x365mmBofors</ammoSet>
+				</AmmoUser>
+				<FireModes>
+					<aiUseBurstMode>TRUE</aiUseBurstMode>
+					<aimedBurstShotCount>3</aimedBurstShotCount>
+					<noSingleShot>true</noSingleShot>
+				</FireModes>
+				<weaponTags>
+					<li>MechM7Gun</li>
+				</weaponTags>
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>*/ThingDef[defName="Mech40MMCannon"]/tools</xpath>
+				<value>
+					<tools>
+						<li Class="CombatExtended.ToolCE">
+							<label>grip</label>
+							<capacities>
+								<li>Blunt</li>
+							</capacities>
+							<power>25</power>
+							<cooldownTime>2.5</cooldownTime>
+							<armorPenetration>0.1</armorPenetration>
+						</li>
+						<li Class="CombatExtended.ToolCE">
+							<label>barrel</label>
+							<capacities>
+								<li>Blunt</li>
+							</capacities>
+							<power>40</power>
+							<cooldownTime>2.1</cooldownTime>
+							<armorPenetration>0.15</armorPenetration>
+						</li>
+						<li Class="CombatExtended.ToolCE">
+							<label>stock</label>
+							<capacities>
+								<li>Blunt</li>
+							</capacities>
+							<power>45</power>
+							<cooldownTime>2.2</cooldownTime>
+							<armorPenetration>0.15</armorPenetration>
+						</li>
+					</tools>
+				</value>	
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>*/ThingDef[defName="Mech40MMCannon"]/description</xpath>
+				<value>
+					<!-- Change description, as original one mentions "three 80kg rounds", which is laughably unrealistic 
+					     (For comparison, the real-life 120 mm M829 sabot tank rounds each have a mass of only 22.3 kg, 
+						 so it stands that the smaller 40 mm should have a much lower mass )-->
+					<description>This modified 40mm Cannon is capable of burst firing three 40x365mm Bofors rounds in quick succession. Designed for anti-material or mech on mech combat, it is quite the weapon. Originally being the factory standard when producing the M7 Mech, equipped on every unit in production</description>
+				</value>
+			</li>
+			
+			<!-- ========== Mastiff Shotgun ========== -->
+			
+			<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+				<defName>MechMastiffGun</defName>
+				<statBases>
+					<Mass>42</Mass>
+					<RangedWeapon_Cooldown>3</RangedWeapon_Cooldown>
+					<SightsEfficiency>1</SightsEfficiency>
+					<ShotSpread>0.22</ShotSpread>
+					<SwayFactor>1.50</SwayFactor>
+					<Bulk>12</Bulk>
+				</statBases>
+				<Properties>
+					<recoilAmount>0.35</recoilAmount>
+					<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+					<hasStandardCommand>true</hasStandardCommand>
+					<defaultProjectile>Bullet_MastiffShotgunShell</defaultProjectile>
+					<warmupTime>1</warmupTime>
+					<range>25</range>
+					<soundCast>SharpThrower</soundCast>
+					<soundCastTail>GunTail_Heavy</soundCastTail>
+					<muzzleFlashScale>12</muzzleFlashScale>
+					<ticksBetweenBurstShots>0</ticksBetweenBurstShots>
+					<burstShotCount>1</burstShotCount>
+					<targetParams>
+						<canTargetLocations>true</canTargetLocations>
+					</targetParams>
+				</Properties>
+				<AmmoUser>
+					<magazineSize>5</magazineSize>
+					<reloadOneAtATime>true</reloadOneAtATime>
+					<reloadTime>1.75</reloadTime>
+					<ammoSet>AmmoSet_MastiffShotgunShell</ammoSet>
+				</AmmoUser>
+				<FireModes>
+					<aiUseBurstMode>FALSE</aiUseBurstMode>
+				</FireModes>
+				<weaponTags>
+					<li>MechM7Gun</li>
+				</weaponTags>
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>*/ThingDef[defName="MechMastiffGun"]/tools</xpath>
+				<value>
+					<tools>
+						<li Class="CombatExtended.ToolCE">
+							<label>grip</label>
+							<capacities>
+								<li>Blunt</li>
+							</capacities>
+							<power>25</power>
+							<cooldownTime>2.5</cooldownTime>
+							<armorPenetration>0.1</armorPenetration>
+						</li>
+						<li Class="CombatExtended.ToolCE">
+							<label>barrel</label>
+							<capacities>
+								<li>Blunt</li>
+							</capacities>
+							<power>40</power>
+							<cooldownTime>2.1</cooldownTime>
+							<armorPenetration>0.15</armorPenetration>
+						</li>
+						<li Class="CombatExtended.ToolCE">
+							<label>stock</label>
+							<capacities>
+								<li>Blunt</li>
+							</capacities>
+							<power>45</power>
+							<cooldownTime>2.2</cooldownTime>
+							<armorPenetration>0.15</armorPenetration>
+						</li>
+					</tools>
+				</value>	
+			</li>
+
+			<!-- ========== Hand Cannon (X-5 Pistol) ========== -->
+			
+			<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+				<defName>MechHandCannon</defName>
+				<statBases>
+					<Mass>30</Mass>
+					<RangedWeapon_Cooldown>1</RangedWeapon_Cooldown>
+					<SightsEfficiency>1</SightsEfficiency>
+					<ShotSpread>0.12</ShotSpread>
+					<SwayFactor>1.50</SwayFactor>
+					<Bulk>14</Bulk>
+				</statBases>
+				<Properties>
+					<recoilAmount>0.25</recoilAmount>
+					<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+					<hasStandardCommand>true</hasStandardCommand>
+					<defaultProjectile>Bullet_AndroidTiersX5Pistol</defaultProjectile>
+					<warmupTime>1.5</warmupTime>
+					<range>30</range>
+					<soundCast>40MMCannon</soundCast>
+					<soundCastTail>GunTail_Heavy</soundCastTail>
+					<muzzleFlashScale>20</muzzleFlashScale>
+					<targetParams>
+						<canTargetLocations>true</canTargetLocations>
+					</targetParams>
+				</Properties>
+				<AmmoUser>
+					<magazineSize>8</magazineSize>
+					<reloadTime>4.75</reloadTime>
+					<ammoSet>AmmoSet_AndroidTiersX5Pistol</ammoSet>
+				</AmmoUser>
+				<FireModes>
+					<aiUseBurstMode>FALSE</aiUseBurstMode>
+				</FireModes>
+				<weaponTags>
+					<li>MechM7Gun</li>
+				</weaponTags>
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>*/ThingDef[defName="MechHandCannon"]/tools</xpath>
+				<value>
+					<tools>
+						<li Class="CombatExtended.ToolCE">
+							<label>grip</label>
+							<capacities>
+								<li>Blunt</li>
+							</capacities>
+							<power>25</power>
+							<cooldownTime>2.5</cooldownTime>
+							<armorPenetration>0.1</armorPenetration>
+						</li>
+						<li Class="CombatExtended.ToolCE">
+							<label>barrel</label>
+							<capacities>
+								<li>Blunt</li>
+							</capacities>
+							<power>40</power>
+							<cooldownTime>2.1</cooldownTime>
+							<armorPenetration>0.15</armorPenetration>
+						</li>
+						<li Class="CombatExtended.ToolCE">
+							<label>stock</label>
+							<capacities>
+								<li>Blunt</li>
+							</capacities>
+							<power>45</power>
+							<cooldownTime>2.2</cooldownTime>
+							<armorPenetration>0.15</armorPenetration>
+						</li>
+					</tools>
+				</value>	
+			</li>
+
+			<!-- ========== Mech Blade ========== -->
+			
+			<li Class="PatchOperationReplace">
+				<xpath>*/ThingDef[defName="MeleeWeapon_MechKnife"]/tools</xpath>
+				<value>
+					<tools>
+						<li Class="CombatExtended.ToolCE">
+							<label>point</label>
+							<capacities>
+								<li>Stab</li>
+							</capacities>
+							<power>125</power>
+							<cooldownTime>3</cooldownTime>
+							<armorPenetration>0.64</armorPenetration>
+						</li>
+						<li Class="CombatExtended.ToolCE">
+							<label>blade</label>
+							<capacities>
+								<li>Cut</li>
+							</capacities>
+							<power>95</power>
+							<cooldownTime>2.5</cooldownTime>
+							<armorPenetration>0.52</armorPenetration>
+						</li>
+					</tools>
+				</value>	
+			</li>
+
+			<!-- ========== Anti-Mech Rifle ========== -->
+			
+			<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+				<defName>AntiMechRifle</defName>
+				<statBases>
+					<Mass>12</Mass>
+					<RangedWeapon_Cooldown>2.5</RangedWeapon_Cooldown>
+					<SightsEfficiency>1</SightsEfficiency>
+					<ShotSpread>0.12</ShotSpread>
+					<SwayFactor>1.50</SwayFactor>
+					<Bulk>12</Bulk>
+				</statBases>
+				<Properties>
+					<recoilAmount>0.45</recoilAmount>
+					<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+					<hasStandardCommand>true</hasStandardCommand>
+					<defaultProjectile>Bullet_AndroidTiersX5Pistol</defaultProjectile>
+					<warmupTime>3</warmupTime>
+					<range>35</range>
+					<soundCast>SharpThrower</soundCast>
+					<soundCastTail>GunTail_Heavy</soundCastTail>
+					<muzzleFlashScale>10</muzzleFlashScale>
+					<targetParams>
+						<canTargetLocations>true</canTargetLocations>
+					</targetParams>
+				</Properties>
+				<AmmoUser>
+					<magazineSize>5</magazineSize>
+					<reloadTime>4.75</reloadTime>
+					<ammoSet>AmmoSet_AndroidTiersX5Pistol</ammoSet>
+				</AmmoUser>
+				<FireModes>
+					<aiUseBurstMode>FALSE</aiUseBurstMode>
+				</FireModes>
+				<weaponTags>
+					<li>GunHeavy</li>
+				</weaponTags>
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>*/ThingDef[defName="AntiMechRifle"]/tools</xpath>
+				<value>
+					<tools>
+						<li Class="CombatExtended.ToolCE">
+							<label>grip</label>
+							<capacities>
+								<li>Blunt</li>
+							</capacities>
+							<power>5</power>
+							<cooldownTime>2.5</cooldownTime>
+							<armorPenetration>0.1</armorPenetration>
+						</li>
+						<li Class="CombatExtended.ToolCE">
+							<label>barrel</label>
+							<capacities>
+								<li>Blunt</li>
+							</capacities>
+							<power>10</power>
+							<cooldownTime>2.1</cooldownTime>
+							<armorPenetration>0.15</armorPenetration>
+						</li>
+						<li Class="CombatExtended.ToolCE">
+							<label>stock</label>
+							<capacities>
+								<li>Blunt</li>
+							</capacities>
+							<power>15</power>
+							<cooldownTime>2.2</cooldownTime>
+							<armorPenetration>0.15</armorPenetration>
+						</li>
+					</tools>
+				</value>	
+			</li>
+
+		</operations>
+	</Operation>
+</Patch>
