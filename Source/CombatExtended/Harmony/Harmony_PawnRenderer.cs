@@ -59,6 +59,12 @@ namespace CombatExtended.Harmony
             }
         }
 
+        private static float GetPostShellOffset(PawnRenderer renderer)
+        {
+            var apparelGraphics = renderer.graphics.apparelGraphics.Where(a => a.sourceApparel.def.apparel.LastLayer.drawOrder >= ApparelLayerDefOf.Shell.drawOrder).ToList();
+            return apparelGraphics.Any() ? YOffsetIntervalClothes / apparelGraphics.Count : 0;
+        }
+
         private static bool IsPreShellLayer(ApparelLayerDef layer)
         {
             return layer.drawOrder < ApparelLayerDefOf.Shell.drawOrder
@@ -100,6 +106,17 @@ namespace CombatExtended.Harmony
 
                     // Write new calls for post shell rendering
                     code.opcode = OpCodes.Brtrue;
+
+                    yield return code;
+                    yield return new CodeInstruction(OpCodes.Ldloca_S, 7);
+                    yield return new CodeInstruction(OpCodes.Dup);
+                    yield return new CodeInstruction(OpCodes.Ldfld, AccessTools.Field(typeof(Vector3), nameof(Vector3.y)));
+                    yield return new CodeInstruction(OpCodes.Ldarg_0);
+                    yield return new CodeInstruction(OpCodes.Callvirt, AccessTools.Method(typeof(Harmony_PawnRenderer_RenderPawnInternal), nameof(GetPostShellOffset)));
+                    yield return new CodeInstruction(OpCodes.Add);
+                    yield return new CodeInstruction(OpCodes.Stfld, AccessTools.Field(typeof(Vector3), nameof(Vector3.y)));
+
+                    continue;
                 }
 
                 if (code.opcode == OpCodes.Stloc_S && ((LocalBuilder)code.operand).LocalIndex == 14)
