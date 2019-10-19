@@ -35,11 +35,7 @@ namespace CombatExtended
 
             float num = 0f;
             Vector3 vector = this.Wearer.Drawer.DrawPos;
-            vector.y = AltitudeLayer.Pawn.AltitudeFor();
-            var drawOffset = Wearer.Rotation == Rot4.North || Wearer.Rotation == Rot4.East 
-                ? (YOffsetBehind + YOffsetPrimaryEquipmentUnder) * 0.5f 
-                : 1;
-            vector.y += drawOffset;
+            vector.y = Wearer.Rotation == Rot4.West || Wearer.Rotation == Rot4.South ? AltitudeLayer.PawnUnused.AltitudeFor() : AltitudeLayer.Pawn.AltitudeFor();
 
             Vector3 s = new Vector3(1f, 1f, 1f);
             if (this.Wearer.Rotation == Rot4.North)

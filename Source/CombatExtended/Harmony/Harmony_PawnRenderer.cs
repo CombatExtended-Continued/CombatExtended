@@ -172,6 +172,15 @@ namespace CombatExtended.Harmony
 
             return codes;
         }
+
+        internal static void Prefix(PawnRenderer __instance, ref Vector3 drawLoc)
+        {
+            var pawn = (Pawn)AccessTools.Field(typeof(PawnRenderer), "pawn").GetValue(__instance);
+            if (pawn.Rotation == Rot4.South)
+            {
+                drawLoc.y++;
+            }
+        }
     }
 
     ///// <summary>
