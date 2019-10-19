@@ -14,6 +14,13 @@ namespace CombatExtended.Harmony
         typeof(Vector3), typeof(float), typeof(bool), typeof(Rot4), typeof(Rot4), typeof(RotDrawMode), typeof(bool), typeof(bool))]
     internal static class Harmony_PawnRenderer_RenderPawnInternal
     {
+        private enum WriteState
+        {
+            None,
+            WriteHead,
+            WriteShell
+        }
+
         // Sync these with vanilla PawnRenderer constants
         private const float YOffsetBehind = 0.00390625f;
         private const float YOffsetHead = 0.02734375f;
@@ -25,7 +32,7 @@ namespace CombatExtended.Harmony
         {
             var apparelGraphics = renderer.graphics.apparelGraphics;
             var headwearGraphics = apparelGraphics.Where(a => a.sourceApparel.def.apparel.LastLayer.GetModExtension<ApparelLayerExtension>()?.IsHeadwear ?? false).ToArray();
-            if(!headwearGraphics.Any())
+            if (!headwearGraphics.Any())
                 return;
 
             var interval = YOffsetIntervalClothes / headwearGraphics.Length;
@@ -52,16 +59,22 @@ namespace CombatExtended.Harmony
             }
         }
 
+        private static bool IsPreShellLayer(ApparelLayerDef layer)
+        {
+            return layer.drawOrder < ApparelLayerDefOf.Shell.drawOrder
+                   || (layer.GetModExtension<ApparelLayerExtension>()?.IsHeadwear ?? false);
+        }
+
         internal static IEnumerable<CodeInstruction> Transpiler(IEnumerable<CodeInstruction> instructions)
         {
-            var delete = false;
+            var state = WriteState.None;
             foreach (var code in instructions)
             {
-                if (delete)
+                if (state == WriteState.WriteHead)
                 {
-                    if (code.opcode == OpCodes.Ldloc_S && ((LocalBuilder) code.operand).LocalIndex == 13)
+                    if (code.opcode == OpCodes.Ldloc_S && ((LocalBuilder)code.operand).LocalIndex == 13)
                     {
-                        delete = false;
+                        state = WriteState.None;
 
                         // Insert new calls for head renderer
                         yield return new CodeInstruction(OpCodes.Ldarg_0);
@@ -81,9 +94,23 @@ namespace CombatExtended.Harmony
                     continue;
                 }
 
-                if (code.opcode == OpCodes.Stloc_S && ((LocalBuilder) code.operand).LocalIndex == 14)
+                if (state == WriteState.WriteShell)
                 {
-                    delete = true;
+                    state = WriteState.None;
+
+                    // Write new calls for post shell rendering
+                    code.opcode = OpCodes.Brtrue;
+                }
+
+                if (code.opcode == OpCodes.Stloc_S && ((LocalBuilder)code.operand).LocalIndex == 14)
+                {
+                    state = WriteState.WriteHead;
+                }
+                else if (code.opcode == OpCodes.Ldsfld && code.operand == AccessTools.Field(typeof(ApparelLayerDefOf), nameof(ApparelLayerDefOf.Shell)))
+                {
+                    state = WriteState.WriteShell;
+                    code.opcode = OpCodes.Callvirt;
+                    code.operand = AccessTools.Method(typeof(Harmony_PawnRenderer_RenderPawnInternal), nameof(IsPreShellLayer));
                 }
 
                 yield return code;
@@ -172,5 +199,5 @@ namespace CombatExtended.Harmony
     //        }
     //    }
     //}
-    
+
 }

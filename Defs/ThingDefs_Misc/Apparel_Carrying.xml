@@ -2,9 +2,9 @@
 <Defs>
 
   <ThingDef Name="ApparelCarryGearBase" Abstract="True">
-    <thingClass>CombatExtended.Apparel_VisibleAccessory</thingClass>
     <techLevel>Industrial</techLevel>
     <category>Item</category>
+    <thingClass>ThingWithComps</thingClass>
     <selectable>True</selectable>
     <pathCost>10</pathCost>
     <useHitPoints>True</useHitPoints>
@@ -82,12 +82,8 @@
       <defaultOutfitTags>
         <li>Soldier</li>
       </defaultOutfitTags>
+      <wornGraphicPath>Things/Apparel/TacRigging/TacRigging</wornGraphicPath>
     </apparel>
-    <modExtensions>
-      <li Class="CombatExtended.VisibleAccessoryDefExtension">
-        <order>1</order>
-      </li>
-    </modExtensions>
   </ThingDef>
 
   <ThingDef ParentName="ApparelCarryGearBase">
@@ -125,12 +121,8 @@
       <defaultOutfitTags>
         <li>Soldier</li>
       </defaultOutfitTags>
+      <wornGraphicPath>Things/Apparel/Backpack/Milpack</wornGraphicPath>
     </apparel>
-    <modExtensions>
-      <li Class="CombatExtended.VisibleAccessoryDefExtension">
-        <order>2</order>
-      </li>
-    </modExtensions>
   </ThingDef>
 
   <ThingDef ParentName="ApparelCarryGearBase">
@@ -175,6 +167,7 @@
       <tags>
         <li>Neolithic</li>
       </tags>
+      <wornGraphicPath>Things/Apparel/TribalPack/Tribalpack</wornGraphicPath>
     </apparel>
     <colorGenerator Class="ColorGenerator_Options">
       <options>
@@ -192,11 +185,6 @@
         </li>
       </options>
     </colorGenerator>
-    <modExtensions>
-      <li Class="CombatExtended.VisibleAccessoryDefExtension">
-        <order>2</order>
-      </li>
-    </modExtensions>
   </ThingDef>
 
 </Defs>
