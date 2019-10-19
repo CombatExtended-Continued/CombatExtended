@@ -10,6 +10,14 @@ namespace CombatExtended
 {
     public class Apparel_Shield : Apparel
     {
+        // From PawnRenderer
+        private const float YOffsetBehind = 0.00390625f;
+        private const float YOffsetPostHead = 0.03515625f;
+        private const float YOffsetPrimaryEquipmentUnder = 0f;
+        private const float YOffsetPrimaryEquipmentOver = 0.0390625f;
+        private const float YOffsetIntervalClothes = 0.00390625f;
+        private const float YOffsetStatus = 0.04296875f;
+
         public const string OneHandedTag = "CE_OneHandedWeapon";
         private bool drawShield => Wearer.Drafted || (Wearer.CurJob?.def.alwaysShowWeapon ?? false) || (Wearer.mindState.duty?.def.alwaysShowWeapon ?? false);  // Copied from PawnRenderer.CarryWeaponOpenly(), we show the shield whenever weapons are drawn
         private bool IsTall => def.GetModExtension<ShieldDefExtension>()?.drawAsTall ?? false;
@@ -27,11 +35,15 @@ namespace CombatExtended
 
             float num = 0f;
             Vector3 vector = this.Wearer.Drawer.DrawPos;
-            vector.y = Altitudes.AltitudeFor(AltitudeLayer.Pawn);
+            vector.y = AltitudeLayer.Pawn.AltitudeFor();
+            var drawOffset = Wearer.Rotation == Rot4.North || Wearer.Rotation == Rot4.East 
+                ? (YOffsetBehind + YOffsetPrimaryEquipmentUnder) * 0.5f 
+                : 1;
+            vector.y += drawOffset;
+
             Vector3 s = new Vector3(1f, 1f, 1f);
             if (this.Wearer.Rotation == Rot4.North)
             {
-                //vector.y = Altitudes.AltitudeFor(AltitudeLayer.Pawn);
                 vector.x -= 0.1f;
                 vector.z -= IsTall ? -0.1f : 0.2f;
             }
@@ -39,8 +51,6 @@ namespace CombatExtended
             {
                 if (this.Wearer.Rotation == Rot4.South)
                 {
-                    //vector.y = Altitudes.AltitudeFor(AltitudeLayer.MoteOverhead);
-                    vector.y += 0.0375f;
                     vector.x += 0.1f;
                     vector.z -= IsTall ? -0.05f : 0.2f;
                 }
@@ -48,7 +58,6 @@ namespace CombatExtended
                 {
                     if (this.Wearer.Rotation == Rot4.East)
                     {
-                        //vector.y = Altitudes.AltitudeFor(AltitudeLayer.Pawn);
                         if (IsTall) vector.x += 0.1f;
                         vector.z -= IsTall ? -0.05f : 0.2f;
                         num = 22.5f;
@@ -57,8 +66,6 @@ namespace CombatExtended
                     {
                         if (this.Wearer.Rotation == Rot4.West)
                         {
-                            //vector.y = Altitudes.AltitudeFor(AltitudeLayer.MoteOverhead);
-                            vector.y += 0.0425f;
                             if (IsTall) vector.x -= 0.1f;
                             vector.z -= IsTall ? -0.05f : 0.2f;
                             num = 337.5f;

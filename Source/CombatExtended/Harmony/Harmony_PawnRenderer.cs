@@ -18,7 +18,8 @@ namespace CombatExtended.Harmony
         {
             None,
             WriteHead,
-            WriteShell
+            WriteShell,
+            WritePostShell
         }
 
         // Sync these with vanilla PawnRenderer constants
@@ -102,12 +103,16 @@ namespace CombatExtended.Harmony
 
                 if (state == WriteState.WriteShell)
                 {
-                    state = WriteState.None;
+                    state = WriteState.WritePostShell;
 
                     // Write new calls for post shell rendering
                     code.opcode = OpCodes.Brtrue;
+                }
 
-                    yield return code;
+                if (state == WriteState.WritePostShell && code.opcode == OpCodes.Call && code.operand == AccessTools.Method(typeof(GenDraw), nameof(GenDraw.DrawMeshNowOrLater)))
+                {
+                    state = WriteState.None;
+
                     yield return new CodeInstruction(OpCodes.Ldloca_S, 7);
                     yield return new CodeInstruction(OpCodes.Dup);
                     yield return new CodeInstruction(OpCodes.Ldfld, AccessTools.Field(typeof(Vector3), nameof(Vector3.y)));
@@ -115,8 +120,6 @@ namespace CombatExtended.Harmony
                     yield return new CodeInstruction(OpCodes.Callvirt, AccessTools.Method(typeof(Harmony_PawnRenderer_RenderPawnInternal), nameof(GetPostShellOffset)));
                     yield return new CodeInstruction(OpCodes.Add);
                     yield return new CodeInstruction(OpCodes.Stfld, AccessTools.Field(typeof(Vector3), nameof(Vector3.y)));
-
-                    continue;
                 }
 
                 if (code.opcode == OpCodes.Stloc_S && ((LocalBuilder)code.operand).LocalIndex == 14)
