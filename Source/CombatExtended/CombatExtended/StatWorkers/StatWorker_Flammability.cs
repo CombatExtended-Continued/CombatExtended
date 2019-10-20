@@ -13,9 +13,9 @@ namespace CombatExtended
 
         static StatWorker_Flammability()
         {
-            HumidityCurve.Add(0, 4);
+            HumidityCurve.Add(0, 2);
             HumidityCurve.Add(0.5f, 1);
-            HumidityCurve.Add(1, 0.25f);
+            HumidityCurve.Add(1, 0.625f);
         }
 
         private static float GetPrecipitationFactorFor(Thing plant)

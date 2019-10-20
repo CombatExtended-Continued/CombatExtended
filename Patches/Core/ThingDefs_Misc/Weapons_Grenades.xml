@@ -38,7 +38,7 @@
 	<Operation Class="PatchOperationReplace">
 		<xpath>Defs/ThingDef[@Name="BaseGrenadeProjectile"]/projectile/speed</xpath>
 		<value>
-			<speed>24</speed>
+			<speed>9</speed>
 		</value>
 	</Operation>
 
@@ -66,11 +66,12 @@
 			<projectile Class="CombatExtended.ProjectilePropertiesCE">
 			  <explosionRadius>1.5</explosionRadius>
 			  <damageDef>Bomb</damageDef>
-			  <damageAmountBase>82</damageAmountBase>
+			  <damageAmountBase>56</damageAmountBase>
 			  <explosionDelay>60</explosionDelay>
 			  <dropsCasings>true</dropsCasings>
 			  <casingMoteDefname>Mote_GrenadePin</casingMoteDefname>
       	<applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
+			  <speed>9</speed>
 			</projectile>
 		</value>
 	</Operation>
@@ -157,7 +158,7 @@
 		<xpath>Defs/ThingDef[defName="Weapon_GrenadeFrag"]/comps</xpath>
 		<value>
 			<li Class="CombatExtended.CompProperties_ExplosiveCE">
-			  <explosionDamage>82</explosionDamage>
+			  <explosionDamage>56</explosionDamage>
 			  <explosionDamageDef>Bomb</explosionDamageDef>
 			  <explosionRadius>1.5</explosionRadius>
 			  <fragments>
@@ -171,9 +172,10 @@
     <defName>Weapon_GrenadeFrag</defName>
     <statBases>
 			<Mass>0.4</Mass>
-			<MarketValue>5.25</MarketValue>
+			<Bulk>0.87</Bulk>
+			<MarketValue>12.22</MarketValue>
 			<RangedWeapon_Cooldown>1</RangedWeapon_Cooldown>
-			<SightsEfficiency>1</SightsEfficiency>
+			<SightsEfficiency>0.45</SightsEfficiency>
     </statBases>
     <Properties>
     	<label>throw frag grenade</label>
@@ -218,6 +220,7 @@
 			  <damageAmountBase>10</damageAmountBase>
 			  <preExplosionSpawnThingDef>FilthPrometheum</preExplosionSpawnThingDef>
 			  <preExplosionSpawnChance>1</preExplosionSpawnChance>
+			  <speed>9</speed>
 			</projectile>
 		</value>
 	</Operation>
@@ -296,10 +299,11 @@
   <Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
     <defName>Weapon_GrenadeMolotov</defName>
     <statBases>
-			<Mass>0.4</Mass>
-			<MarketValue>2.1</MarketValue>
+			<Mass>1</Mass>
+			<Bulk>2.55</Bulk>
+			<MarketValue>7.05</MarketValue>
 			<RangedWeapon_Cooldown>1</RangedWeapon_Cooldown>
-			<SightsEfficiency>1</SightsEfficiency>
+			<SightsEfficiency>0.45</SightsEfficiency>
     </statBases>
     <Properties>
     	<label>throw molotov</label>
@@ -348,10 +352,11 @@
 			<projectile Class="CombatExtended.ProjectilePropertiesCE">
 			  <explosionRadius>3</explosionRadius>
 			  <damageDef>EMP</damageDef>
-			  <damageAmountBase>40</damageAmountBase>
+			  <damageAmountBase>28</damageAmountBase>
 			  <explosionDelay>60</explosionDelay>
 			  <dropsCasings>true</dropsCasings>
 			  <casingMoteDefname>Mote_GrenadePin</casingMoteDefname>
+			  <speed>9</speed>
 			</projectile>
 		</value>
 	</Operation>
@@ -415,9 +420,10 @@
     <defName>Weapon_GrenadeEMP</defName>
     <statBases>
 			<Mass>0.4</Mass>
-			<MarketValue>7.65</MarketValue>
+			<Bulk>0.87</Bulk>
+			<MarketValue>21.09</MarketValue>
 			<RangedWeapon_Cooldown>1</RangedWeapon_Cooldown>
-			<SightsEfficiency>1</SightsEfficiency>
+			<SightsEfficiency>0.45</SightsEfficiency>
     </statBases>
     <Properties>
     	<label>throw EMP grenade</label>
