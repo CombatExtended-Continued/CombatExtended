@@ -41,7 +41,7 @@ namespace CombatExtended
             var exactOrigin = new Vector2(pos.x, pos.z);
 
             //Fragments fly from a 0 (half of a circle) to 45 (3/4 of a circle) degree angle away from the explosion
-            var range = new FloatRange(0.5f, 0.75f);
+            var range = new FloatRange(10, 20);
             var fragToSpawn = frag.count;
             var fragPerTick = Mathf.CeilToInt((float)fragToSpawn / TicksToSpawnAllFrag);
             var fragSpawnedInTick = 0;
@@ -59,7 +59,7 @@ namespace CombatExtended
                 projectile.Launch(
                     instigator,
                     exactOrigin,
-                    Mathf.Acos(2 * range.RandomInRange - 1),
+                    range.RandomInRange * Mathf.Deg2Rad,
                     UnityEngine.Random.Range(0, 360),
                     height,
                     fragSpeedFactor * projectile.def.projectile.speed,
