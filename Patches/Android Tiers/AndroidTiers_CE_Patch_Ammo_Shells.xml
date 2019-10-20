@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+	<Operation Class="PatchOperationSequence">
+		<!-- <success>Always</success> -->
+		<operations>
+
+			<li Class="CombatExtended.PatchOperationFindMod">
+				<modName>[1.0] Android tiers</modName>
+			</li>
+
+			<!-- ========== Dynamically create new ammoClass ========== -->
+
+			<li Class="PatchOperationAdd">
+				<xpath>Defs</xpath>
+				<value>
+					<CombatExtended.AmmoCategoryDef>
+						<defName>AT_Nanoswarm</defName>
+						<label>nanoswarm</label>
+						<labelShort>nanoswarm</labelShort>
+						<description>Filled with micro-scythers. The little drones are scattered on impact, and automatically seek out nearby targets to kill.</description>
+					</CombatExtended.AmmoCategoryDef>
+				</value>
+			</li>
+
+			<!-- ========== Redefine Swarm Shell as a CE 81mm mortar shell ========== -->
+
+			<li Class="PatchOperationRemove">
+				<xpath>*/ThingDef[defName="Nanoswarm_shell"]</xpath>
+			</li>
+
+			<li Class="PatchOperationAdd">
+				<xpath>Defs</xpath>
+				<value>
+					<ThingDef Class="CombatExtended.AmmoDef" ParentName="81mmMortarShellBaseCraftableBase">
+						<defName>Shell_Nanoswarm</defName>
+						<label>81mm mortar shell (Nanoswarm)</label>
+						<graphicData>
+							<texPath>Things/Item/Nanoswarm_shell</texPath>
+							<graphicClass>Graphic_Single</graphicClass>
+						</graphicData>
+						<statBases>
+							<MaxHitPoints>60</MaxHitPoints>
+							<MarketValue>175</MarketValue>
+							<Mass>4.24</Mass>
+							<Bulk>5</Bulk>
+							<Flammability>0</Flammability>
+						</statBases>
+						<ammoClass>AT_Nanoswarm</ammoClass>
+						<comps>
+							<li Class="CombatExtended.CompProperties_ExplosiveCE">
+								<explosionRadius>2</explosionRadius>
+								<explosionDamageDef>Smoke</explosionDamageDef>
+								<postExplosionSpawnThingDef>Filth_FireFoam</postExplosionSpawnThingDef>
+								<applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
+							</li>
+						</comps>
+					</ThingDef>
+
+					<ThingDef Class="CombatExtended.AmmoDef" ParentName="Base81mmMortarShell">
+						<defName>Bullet_81mmMortarShell_Nanoswarm</defName>
+						<label>81mm mortar shell (Nanoswarm)</label>
+						<graphicData>
+							<texPath>Things/Projectile/ShellEMP</texPath>
+							<graphicClass>Graphic_Single</graphicClass>
+						</graphicData>
+						<projectile Class="CombatExtended.ProjectilePropertiesCE">
+							<damageDef>Smoke</damageDef>
+							<explosionRadius>1.9</explosionRadius>
+							<flyOverhead>true</flyOverhead>
+							<soundHitThickRoof>Artillery_HitThickRoof</soundHitThickRoof>
+							<soundExplode>Explosion_EMP</soundExplode>
+							<soundImpactAnticipate>MortarRound_PreImpact</soundImpactAnticipate>
+							<soundAmbient>MortarRound_Ambient</soundAmbient>
+							<postExplosionSpawnThingDef>MicroScytherGeneratorAI</postExplosionSpawnThingDef>
+							<postExplosionSpawnChance>1</postExplosionSpawnChance>
+							<postExplosionSpawnThingCount>1</postExplosionSpawnThingCount>
+							<applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
+							<explosionEffect>ExtinguisherExplosion</explosionEffect>
+						</projectile>
+					</ThingDef>
+
+					<RecipeDef ParentName="AmmoRecipeBase">
+						<defName>MakeShell_Nanoswarm</defName>
+						<label>make 81mm nanoswarm mortar shell</label>
+						<description>Craft a 81mm nanoswarm mortar shell.</description>
+						<jobString>Making 81mm nanoswarm mortar shell.</jobString>
+						<workSpeedStat>SmithingSpeed</workSpeedStat>
+						<effectWorking>Repair</effectWorking>
+						<soundWorking>Recipe_Machining</soundWorking>
+						<workSkill>Crafting</workSkill>
+						<ingredients>
+							<li>
+								<filter>
+									<thingDefs>
+										<li>Steel</li>
+									</thingDefs>
+								</filter>
+								<count>50</count>
+							</li>
+							<li>
+								<filter>
+									<thingDefs>
+										<li>ComponentIndustrial</li>
+									</thingDefs>
+								</filter>
+								<count>2</count>
+							</li>
+						</ingredients>
+						<fixedIngredientFilter>
+							<thingDefs>
+								<li>Steel</li>
+								<li>ComponentIndustrial</li>
+							</thingDefs>
+						</fixedIngredientFilter>
+						<products>
+							<Shell_Nanoswarm>1</Shell_Nanoswarm>
+						</products>
+						<researchPrerequisite>UltimateRoboticAnimals</researchPrerequisite>
+						<recipeUsers>
+							<li>AndroidProductionVat</li>
+						</recipeUsers>
+					</RecipeDef>
+
+				</value>
+			</li>
+
+			<!-- ========== Add new 81mm swarm mortar shell to standard mortar ammoset ========== -->
+
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/CombatExtended.AmmoSetDef[defName="AmmoSet_81mmMortarShell"]/ammoTypes</xpath>
+				<value>
+					<Shell_Nanoswarm>Bullet_81mmMortarShell_Nanoswarm</Shell_Nanoswarm>		
+				</value>
+			</li>
+
+		</operations>
+	</Operation>
+</Patch>
