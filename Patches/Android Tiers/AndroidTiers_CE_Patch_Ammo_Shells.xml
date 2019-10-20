@@ -8,7 +8,11 @@
 				<modName>[1.0] Android tiers</modName>
 			</li>
 
-			<!-- ========== Dynamically create new ammoClass ========== -->
+			<!-- ========== Redefine Swarm Shell as a CE 81mm mortar shell ========== -->
+
+			<li Class="PatchOperationRemove">
+				<xpath>*/ThingDef[defName="Nanoswarm_shell"]</xpath>
+			</li>
 
 			<li Class="PatchOperationAdd">
 				<xpath>Defs</xpath>
@@ -19,18 +23,7 @@
 						<labelShort>nanoswarm</labelShort>
 						<description>Filled with micro-scythers. The little drones are scattered on impact, and automatically seek out nearby targets to kill.</description>
 					</CombatExtended.AmmoCategoryDef>
-				</value>
-			</li>
-
-			<!-- ========== Redefine Swarm Shell as a CE 81mm mortar shell ========== -->
-
-			<li Class="PatchOperationRemove">
-				<xpath>*/ThingDef[defName="Nanoswarm_shell"]</xpath>
-			</li>
-
-			<li Class="PatchOperationAdd">
-				<xpath>Defs</xpath>
-				<value>
+				
 					<ThingDef Class="CombatExtended.AmmoDef" ParentName="81mmMortarShellBaseCraftableBase">
 						<defName>Shell_Nanoswarm</defName>
 						<label>81mm mortar shell (Nanoswarm)</label>
