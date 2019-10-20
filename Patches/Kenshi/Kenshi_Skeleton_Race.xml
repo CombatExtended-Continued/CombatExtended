@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+	<Operation Class="PatchOperationSequence">
+		<success>Always</success>
+		<operations>
+	<li Class="CombatExtended.PatchOperationFindMod">
+				<modName>Kenshi Skeleton Race</modName>
+	</li>
+	<li Class="PatchOperationAddModExtension">
+		<xpath>*/AlienRace.ThingDef_AlienRace[defName="Kenshi_Skeleton"]</xpath>
+		<value>
+			<li Class="CombatExtended.RacePropertiesExtensionCE">
+				<bodyShape>Humanoid</bodyShape>
+			</li>
+		</value>
+	</li>
+
+			<li Class="PatchOperationAdd">
+			<xpath>*/AlienRace.ThingDef_AlienRace[defName = "Kenshi_Skeleton"]/statBases</xpath>
+			<value>
+			<AimingAccuracy>1</AimingAccuracy>
+			<MeleeDodgeChance>1.5</MeleeDodgeChance>
+			<MeleeCritChance>1</MeleeCritChance>
+			<MeleeParryChance>1</MeleeParryChance>
+			<ReloadSpeed>1</ReloadSpeed>
+			<Suppressability>1</Suppressability>
+			</value>
+			</li>
+
+			<li Class="PatchOperationReplace">
+			<xpath>*/AlienRace.ThingDef_AlienRace[defName="Kenshi_Skeleton"]/tools</xpath>
+			<value>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+				<label>left fist</label>
+				<capacities>
+					<li>Blunt</li>
+				</capacities>
+				<power>8.2</power>
+				<cooldownTime>2</cooldownTime>
+				<linkedBodyPartsGroup>LeftHand</linkedBodyPartsGroup>
+				<surpriseAttack>
+				  <extraMeleeDamages>
+					<li>
+					  <def>Stun</def>
+					  <amount>14</amount>
+					</li>
+				  </extraMeleeDamages>
+				</surpriseAttack>
+				<armorPenetration>0.15</armorPenetration>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+				<label>right fist</label>
+				<capacities>
+					<li>Blunt</li>
+				</capacities>
+				<power>8.2</power>
+				<cooldownTime>2</cooldownTime>
+				<linkedBodyPartsGroup>RightHand</linkedBodyPartsGroup>
+				<surpriseAttack>
+				  <extraMeleeDamages>
+					<li>
+					  <def>Stun</def>
+					  <amount>14</amount>
+					</li>
+				  </extraMeleeDamages>
+				<armorPenetration>0.15</armorPenetration>
+				</surpriseAttack></li>
+				<li Class="CombatExtended.ToolCE">
+				<label>head</label>
+				<capacities>
+				  <li>Blunt</li>
+				</capacities>
+				<power>7</power>
+				<cooldownTime>2</cooldownTime>
+				<linkedBodyPartsGroup>HeadAttackTool</linkedBodyPartsGroup>
+				<armorPenetration>0.05</armorPenetration>
+				</li>
+			</tools>
+			</value>
+			</li>
+		</operations>
+	</Operation>
+</Patch>
