@@ -12,7 +12,7 @@ namespace CombatExtended
     {
         public override bool IsDisabledFor(Thing thing)
         {
-            return thing?.def?.building?.IsTurret ?? false;
+            return thing?.def?.building?.IsTurret ?? base.IsDisabledFor(thing);
         }
     }
 }
