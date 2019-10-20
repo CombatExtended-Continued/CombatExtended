@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+	<Operation Class="PatchOperationSequence">
+		<success>Always</success>
+		<operations>
+
+			<li Class="CombatExtended.PatchOperationFindMod">
+				<modName>More Vanilla Turrets 1.0</modName>
+			</li>
+
+			<!-- ========== Define 81mm plasma mortar shell and unique ammoset for Devastator Mortar ========== -->
+
+			<li Class="PatchOperationAdd">
+				<xpath>Defs</xpath>
+				<value>
+					<ThingDef Class="CombatExtended.AmmoDef" ParentName="81mmMortarShellBaseCraftableBase">
+						<defName>Shell_Plasma</defName>
+						<label>81mm mortar shell (Plasma)</label>
+						<graphicData>
+							<texPath>Things/Ammo/Mortar/Plasma</texPath>
+							<graphicClass>Graphic_Single</graphicClass>
+						</graphicData>
+						<statBases>
+							<MarketValue>30</MarketValue>
+							<Mass>6.5</Mass>
+							<Bulk>6</Bulk>
+						</statBases>
+						<ammoClass>Plasma</ammoClass>
+						<comps>
+							<li Class="CombatExtended.CompProperties_ExplosiveCE">
+								<explosionRadius>3.5</explosionRadius>
+								<explosionDamageDef>Bomb</explosionDamageDef>
+								<explosionDamage>80</explosionDamage>
+								<soundExplode>MortarBomb_Explode</soundExplode>
+							</li>
+						</comps>
+					</ThingDef>
+
+					<ThingDef Class="CombatExtended.AmmoDef" ParentName="Base81mmMortarShell">
+						<defName>Bullet_81mmMortarShell_Plasma</defName>
+						<label>81mm mortar shell (Plasma)</label>
+						<graphicData>
+							<texPath>Things/Projectile/Mortar/Plasma</texPath>
+							<graphicClass>Graphic_Single</graphicClass>
+						</graphicData>
+						<projectile Class="CombatExtended.ProjectilePropertiesCE">
+							<damageDef>Bomb</damageDef>
+							<speed>180</speed>
+							<damageAmountBase>80</damageAmountBase>
+							<explosionRadius>3.5</explosionRadius>
+							<explosionChanceToStartFire>0.22</explosionChanceToStartFire>
+							<applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
+							<soundHitThickRoof>Artillery_HitThickRoof</soundHitThickRoof>
+							<soundExplode>MortarBomb_Explode</soundExplode>
+							<soundImpactAnticipate>MortarRound_PreImpact</soundImpactAnticipate>
+							<soundAmbient>MortarRound_Ambient</soundAmbient>
+						</projectile>
+					</ThingDef>
+
+					<RecipeDef ParentName="AmmoRecipeBase">
+						<defName>MakeShell_Plasma</defName>
+						<label>make 81mm Plasma mortar shells x5</label>
+						<description>Craft 5 81mm Plasma mortar shells.</description>
+						<jobString>Making 81mm Plasma mortar shells.</jobString>
+						<ingredients>
+							<li>
+								<filter>
+									<thingDefs>
+										<li>Steel</li>
+									</thingDefs>
+								</filter>
+								<count>22</count>
+							</li>
+							<li>
+								<filter>
+									<thingDefs>
+										<li>ComponentIndustrial</li>
+									</thingDefs>
+								</filter>
+								<count>10</count>
+							</li>
+						</ingredients>
+						<fixedIngredientFilter>
+							<thingDefs>
+								<li>Steel</li>
+								<li>ComponentIndustrial</li>
+							</thingDefs>
+						</fixedIngredientFilter>
+						<products>
+							<Shell_Plasma>5</Shell_Plasma>
+						</products>
+					</RecipeDef>
+
+					<CombatExtended.AmmoSetDef>
+						<defName>AmmoSet_81mmMortarShell_Plasma</defName>
+						<label>81mm mortar shells</label>
+						<ammoTypes>
+							<Shell_Plasma>Bullet_81mmMortarShell_Plasma</Shell_Plasma>
+						</ammoTypes>
+					</CombatExtended.AmmoSetDef>
+
+				</value>
+			</li>
+
+		</operations>
+	</Operation>
+</Patch>
