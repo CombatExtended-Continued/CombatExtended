@@ -115,8 +115,8 @@ namespace CombatExtended
                 {
                     // Attack connects, calculate resolution
                     //var resultRoll = Rand.Value;
-                    var parryBonus = 1 / EquipmentSource?.GetStatValue(CE_StatDefOf.MeleeCounterParryBonus) ?? 1;
-                    var parryChance = GetComparativeChanceAgainst(defender, casterPawn, CE_StatDefOf.MeleeParryChance, BaseParryChance, parryBonus);
+                    var counterParryBonus = 1 + (EquipmentSource?.GetStatValue(CE_StatDefOf.MeleeCounterParryBonus) ?? 0);
+                    var parryChance = GetComparativeChanceAgainst(defender, casterPawn, CE_StatDefOf.MeleeParryChance, BaseParryChance, counterParryBonus);
                     if (!surpriseAttack && defender != null && CanDoParry(defender) && Rand.Chance(parryChance))
                     {
                         // Attack is parried
