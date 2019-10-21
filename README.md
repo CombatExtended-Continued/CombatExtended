@@ -4,7 +4,7 @@ Combat Extended: FastTrack Edition is a fork of the [original Combat Extended mo
 ## Features
 - Same [core features as the original mod](https://github.com/NoImageAvailable/CombatExtended/blob/master/README.md) - shooting, melee, armor, inventory and medical overhauls
 - Fully compatible with existing CE savegames - delete CE completely, drop in CE:FT and go!
-- 56 supported third-party mods (compared with 31 for CE)
+- 65 supported third-party mods (compared with 34 for CE)
 - Recognizes existing third-party standalone CE patches
 - Additional ammo and projectile definitions and textures
 - New Graphic_StackCountRanged class for precise control of item subgraphics based on stack count
@@ -26,10 +26,15 @@ FashionRIMsta 										| &#x2705; 	| &#x2705;
 Ferrex Race 										| &#x2705; 	| &#x2705;
 Flommel 											|  			| &#x2705;
 Forsakens											|  			| &#x2705;
+Gas Traps And Shells 										| &#x2705; 	| &#x2705;
 Glitter Tech										|  			| &#x2705;
+GouRIMet 										| &#x2705; 	| &#x2705;
 Hand 'n' Footwear 									| &#x2705; 	| &#x2705;
 High Caliber											|  			| &#x2705;
 Jernfalk's Standalone Horses 						| &#x2705; 	| &#x2705;
+Kenshi Hiver Race 									|  			| &#x2705;
+Kenshi Shek Race 									|  			| &#x2705;
+Kenshi Skeleton Race 									|  			| &#x2705;
 Kurin, The Three Tailed Fox 									|  			| &#x2705;
 Leeani Playable Race 								| &#x2705; 	| &#x2705;
 Let's Have a Cat! 									|  			| &#x2705;
@@ -37,10 +42,13 @@ Lizardmen 									|  			| &#x2705;
 Logann Race 										| &#x2705; 	| &#x2705;
 Magical Menagerie									|  			| &#x2705;
 Mechanoids Extraordinaire 							| &#x2705; 	| &#x2705;
+Megafauna 									|  			| &#x2705;
 More Vanilla Turrets								|  			| &#x2705;
+NewRatkinPlus								|  			| &#x2705;
 Ni'Hal 											| &#x2705; 	| &#x2705;
 Orassans 											| &#x2705; 	| &#x2705;
 Orion's More Mechanoids 							| &#x2705; 	| &#x2705;
+Rabbie The Moonrabbit								|  			| &#x2705;
 Rah's Bionics and Surgery Expansion 				| &#x2705; 	| &#x2705;
 Racc Race 											| &#x2705; 	| &#x2705;
 [RH] Faction: Elite Crew 			        |  			| &#x2705;
@@ -52,6 +60,7 @@ Racc Race 											| &#x2705; 	| &#x2705;
 Red Horse Furniture								|  			| &#x2705;
 Right Tool: Rebalanced 							| &#x2705; 	| &#x2705;
 Rimefeller 										| &#x2705; 	| &#x2705;
+RimEffect - Asari of the Rims 										| &#x2705; 	| &#x2705;
 Rimfire 											| &#x2705; 	| &#x2705;
 Rimmu-Nation - Clothing 							|  			| &#x2705;
 Rimmu-Nation - Weapons 							|  			| &#x2705;
@@ -68,7 +77,7 @@ Xenn Race 											| &#x2705; 	| &#x2705;
 Xenohumans 										|  			| &#x2705;
 Yabils: Space Gremlins				|  			| &#x2705;
 Zombieland 										| &#x2705; 	| &#x2705;
-**Total** | **31** | **56**
+**Total** | **34** | **65**
 &nbsp; | **CE (original)** | **CE: FastTrack Edition**
 
 ## Contributing Your Patches
