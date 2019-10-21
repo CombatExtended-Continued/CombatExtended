@@ -222,7 +222,7 @@ namespace CombatExtended
                 //melee weapon damage variation
                 damAmount *= Rand.Range(StatWorker_MeleeDamage.GetDamageVariationMin(CasterPawn), StatWorker_MeleeDamage.GetDamageVariationMax(CasterPawn));
             }
-            else
+            else if (!CE_StatDefOf.UnarmedDamage.Worker.IsDisabledFor(CasterPawn))  //ancient soldiers can punch even if non-violent, this prevents the disabled stat from being used
             {
                 //unarmed damage bonus offset
                 damAmount += CasterPawn.GetStatValue(CE_StatDefOf.UnarmedDamage);
