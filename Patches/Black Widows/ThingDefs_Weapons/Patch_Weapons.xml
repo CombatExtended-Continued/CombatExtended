@@ -10,7 +10,7 @@
 			</li>
 
 			<li Class="PatchOperationInsert">
-				<xpath>Defs/ThingCategoryDef[defName="AmmoXennCell"]</xpath>
+				<xpath>Defs/ThingCategoryDef[defName="AmmoGreatArrows"]</xpath>
 				<value>
 					<!-- ==== Ammo ==== -->
 					<ThingCategoryDef>
@@ -54,7 +54,7 @@
 					  <graphicClass>Graphic_StackCount</graphicClass>
 					</graphicData>
 					<statBases>
-					  <MarketValue>0.52</MarketValue>
+						<MarketValue>1.32</MarketValue>
 					</statBases>
 						<ammoClass>SteelArrow</ammoClass>
 				  </ThingDef>
@@ -66,7 +66,7 @@
 					  <graphicClass>Graphic_StackCount</graphicClass>
 					</graphicData>
 					<statBases>
-					  <MarketValue>3.46</MarketValue>
+						<MarketValue>6.12</MarketValue>
 					</statBases>
 						<ammoClass>PlasteelArrow</ammoClass>
 					<generateAllowChance>0.5</generateAllowChance>
@@ -79,7 +79,7 @@
 						</graphicData>
 						<projectile Class="CombatExtended.ProjectilePropertiesCE">
 							<damageDef>Arrow</damageDef>
-							<speed>69</speed>
+							<speed>30</speed>
 						</projectile>
 					</ThingDef>
 					<ThingDef Class="CombatExtended.AmmoDef" ParentName="BaseBlackWidowArrowProjectile">
@@ -91,7 +91,9 @@
 						</graphicData>
 						<projectile Class="CombatExtended.ProjectilePropertiesCE">
 							<damageAmountBase>20</damageAmountBase>
-							<armorPenetrationBase>0.4</armorPenetrationBase>
+							<armorPenetrationBlunt>6.686</armorPenetrationBlunt>
+							<armorPenetrationSharp>5.714</armorPenetrationSharp>
+							<preExplosionSpawnChance>0.8</preExplosionSpawnChance>
 							<preExplosionSpawnThingDef>Ammo_BlackWidowArrow_Steel</preExplosionSpawnThingDef>
 						</projectile>
 					</ThingDef>
@@ -103,8 +105,10 @@
 							<graphicClass>Graphic_Single</graphicClass>
 						</graphicData>
 						<projectile Class="CombatExtended.ProjectilePropertiesCE">
-							<damageAmountBase>20</damageAmountBase>
-							<armorPenetrationBase>0.6</armorPenetrationBase>
+							<damageAmountBase>24</damageAmountBase>
+							<armorPenetrationBlunt>8.56</armorPenetrationBlunt>
+							<armorPenetrationSharp>12</armorPenetrationSharp>
+							<preExplosionSpawnChance>0.9</preExplosionSpawnChance>
 							<preExplosionSpawnThingDef>Ammo_BlackWidowArrow_Plasteel</preExplosionSpawnThingDef>
 						</projectile>
 					</ThingDef>
@@ -205,7 +209,7 @@
 				<AmmoUser>
 					<reloadTime>4</reloadTime> <!-- ep... -->
 					<magazineSize>20</magazineSize> <!-- ...ic -->
-					<ammoSet>AmmoSet_5x35mmCharged</ammoSet>
+					<ammoSet>AmmoSet_6x24mmCharged</ammoSet>
 				</AmmoUser>
 				<FireModes>
 					<aimedBurstShotCount>3</aimedBurstShotCount>
@@ -226,10 +230,10 @@
 							<capacities>
 								<li>Blunt</li>
 							</capacities>
-							<power>9</power>
-							<cooldownTime>1.8</cooldownTime>
+							<power>8</power>
+							<cooldownTime>1.55</cooldownTime>
 							<chanceFactor>1.5</chanceFactor>
-							<armorPenetration>0.11</armorPenetration>
+							<armorPenetrationBlunt>2.755</armorPenetrationBlunt>
 							<linkedBodyPartsGroup>Stock</linkedBodyPartsGroup>
 						</li>
 						<li Class="CombatExtended.ToolCE">
@@ -237,20 +241,20 @@
 							<capacities>
 								<li>Blunt</li>
 							</capacities>
-							<power>10</power>
-							<cooldownTime>1.9</cooldownTime>
-							<armorPenetration>0.118</armorPenetration>
+							<power>5</power>
+							<cooldownTime>2.02</cooldownTime>
+							<armorPenetrationBlunt>1.63</armorPenetrationBlunt>
 							<linkedBodyPartsGroup>Barrel</linkedBodyPartsGroup>
 						</li>
 						<li Class="CombatExtended.ToolCE">
-							<label>muzzle</label>
+							<label>barrel</label>
 							<capacities>
 								<li>Poke</li>
 							</capacities>
-							<power>10</power>
-							<cooldownTime>1.9</cooldownTime>
-							<armorPenetration>0.086</armorPenetration>
-							<linkedBodyPartsGroup>Muzzle</linkedBodyPartsGroup>
+							<power>8</power>
+							<cooldownTime>1.55</cooldownTime>
+							<armorPenetrationBlunt>2.755</armorPenetrationBlunt>
+							<linkedBodyPartsGroup>Barrel</linkedBodyPartsGroup>
 						</li>
 				  </tools>
 				</value>
@@ -288,31 +292,24 @@
 				<value>
 					<tools>
 						<li Class="CombatExtended.ToolCE">
-							<label>hand guard</label>
-							<capacities>
-								<li>Blunt</li>
-							</capacities>
-							<power>4</power>
-							<cooldownTime>2</cooldownTime>
-							<armorPenetration>0.071</armorPenetration>
-						</li>
-						<li Class="CombatExtended.ToolCE">
-							<label>point</label>
-							<capacities>
-								<li>Stab</li>
-							</capacities>
-							<power>21</power>
-							<cooldownTime>3</cooldownTime>
-							<armorPenetration>0.353</armorPenetration>
-						</li>
-						<li Class="CombatExtended.ToolCE">
-							<label>edge</label>
+							<label>upper blade</label>
 							<capacities>
 								<li>Cut</li>
 							</capacities>
-							<power>20</power>
-							<cooldownTime>1.8</cooldownTime>
-							<armorPenetration>0.182</armorPenetration>
+							<power>23</power>
+							<cooldownTime>1.43</cooldownTime>
+							<armorPenetrationSharp>0.16</armorPenetrationSharp>
+							<armorPenetrationBlunt>1.563</armorPenetrationBlunt>
+						</li>
+						<li Class="CombatExtended.ToolCE">
+							<label>lower blade</label>
+							<capacities>
+								<li>Cut</li>
+							</capacities>
+							<power>23</power>
+							<cooldownTime>1.43</cooldownTime>
+							<armorPenetrationSharp>0.16</armorPenetrationSharp>
+							<armorPenetrationBlunt>1.563</armorPenetrationBlunt>
 						</li>
 				  </tools>
 				</value>
@@ -328,27 +325,29 @@
 							<capacities>
 								<li>Blunt</li>
 							</capacities>
-							<power>5</power>
-							<cooldownTime>2.5</cooldownTime>
-							<armorPenetration>0.079</armorPenetration>
+							<power>1</power>
+							<cooldownTime>1.26</cooldownTime>
+							<armorPenetrationBlunt>0.25</armorPenetrationBlunt>
 						</li>
 						<li Class="CombatExtended.ToolCE">
 							<label>hook</label>
 							<capacities>
 								<li>Stab</li>
 							</capacities>
-							<power>27</power>
-							<cooldownTime>2.5</cooldownTime>
-							<armorPenetration>0.423</armorPenetration>
+							<power>14</power>
+							<cooldownTime>1.11</cooldownTime>
+							<armorPenetrationSharp>2.82</armorPenetrationSharp>
+							<armorPenetrationBlunt>1.688</armorPenetrationBlunt>
 						</li>
 						<li Class="CombatExtended.ToolCE">
 							<label>edge</label>
 							<capacities>
 								<li>Cut</li>
 							</capacities>
-							<power>28</power>
-							<cooldownTime>2.5</cooldownTime>
-							<armorPenetration>0.232</armorPenetration>
+							<power>35</power>
+							<cooldownTime>1.32</cooldownTime>
+							<armorPenetrationSharp>1.5</armorPenetrationSharp>
+							<armorPenetrationBlunt>3.375</armorPenetrationBlunt>
 						</li>
 				  </tools>
 				</value>
@@ -356,16 +355,22 @@
 			<li Class="PatchOperationAdd">
 				<xpath>Defs/ThingDef[defName="MeleeWeapon_bwscythe"]/equippedStatOffsets</xpath>
 				<value>
-					<MeleeCritChance>1</MeleeCritChance>
+					<MeleeCritChance>0.25</MeleeCritChance>
 					<MeleeParryChance>0.5</MeleeParryChance>
+				</value>
+			</li>
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="MeleeWeapon_bwscythe"]/equippedStatOffsets/MeleeDodgeChance</xpath>
+				<value>
+					<MeleeDodgeChance>0.6</MeleeDodgeChance>
 				</value>
 			</li>
 			<li Class="PatchOperationReplace">
 				<xpath>Defs/ThingDef[defName="MeleeWeapon_bwscythe"]/statBases/Mass</xpath>
 				<value>
-					<Mass>8</Mass>
-					<Bulk>10</Bulk>
-					<MeleeCounterParryBonus>1.5</MeleeCounterParryBonus>
+					<Mass>4</Mass>
+					<Bulk>8</Bulk>
+					<MeleeCounterParryBonus>0.54</MeleeCounterParryBonus>
 				</value>
 			</li>
 			<li Class="PatchOperationReplace">

@@ -18,9 +18,9 @@
 							<capacities>
 								<li>Blunt</li>
 							</capacities>
-							<power>10</power>
-							<cooldownTime>1.85</cooldownTime>
-							<armorPenetration>0.118</armorPenetration>
+							<power>2</power>
+							<cooldownTime>0.99</cooldownTime>
+							<armorPenetrationBlunt>0.288</armorPenetrationBlunt>
 						</li>
 					</tools>
 				</value>
@@ -29,8 +29,9 @@
 				<xpath>Defs/ThingDef[defName="WoodLog_GhostAsh"]</xpath>
 				<value>
 					<equippedStatOffsets>
-						<MeleeCritChance>0.1</MeleeCritChance>
-						<MeleeParryChance>0.175</MeleeParryChance>
+						<MeleeCritChance>0.2</MeleeCritChance>
+						<MeleeParryChance>1</MeleeParryChance>
+						<MeleeDodgeChance>0.13</MeleeDodgeChance>
 					</equippedStatOffsets>
 				</value>
 			</li>
@@ -38,10 +39,22 @@
 				<xpath>Defs/ThingDef[defName="WoodLog_GhostAsh"]/statBases</xpath>
 				<value>
 					<Bulk>0.07</Bulk>
-					<MeleeCounterParryBonus>1.25</MeleeCounterParryBonus>
+					<MeleeCounterParryBonus>1.33</MeleeCounterParryBonus>
 				</value>
 			</li>
 			<!-- As a material -->
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="WoodLog_GhostAsh"]/statBases/StuffPower_Armor_Sharp</xpath>
+				<value>
+					<StuffPower_Armor_Sharp>0.2</StuffPower_Armor_Sharp>
+				</value>
+			</li>
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="WoodLog_GhostAsh"]/statBases/StuffPower_Armor_Blunt</xpath>
+				<value>
+					<StuffPower_Armor_Blunt>400</StuffPower_Armor_Blunt>
+				</value>
+			</li>
 			<li Class="PatchOperationReplace">
 				<xpath>Defs/ThingDef[defName="WoodLog_GhostAsh"]/statBases/SharpDamageMultiplier</xpath>
 				<value>
@@ -103,14 +116,13 @@
 				<value>
 					<tools>
 						<li Class="CombatExtended.ToolCE">
-							<label>limb</label>
+							<label>stock</label>
 							<capacities>
 								<li>Blunt</li>
-								<li>Poke</li>
 							</capacities>
-							<power>9</power>
-							<cooldownTime>2</cooldownTime>
-							<armorPenetration>0.095</armorPenetration>
+							<power>8</power>
+							<cooldownTime>1.55</cooldownTime>
+							<armorPenetrationBlunt>2.755</armorPenetrationBlunt>
 						</li>
 					</tools>
 				</value>
