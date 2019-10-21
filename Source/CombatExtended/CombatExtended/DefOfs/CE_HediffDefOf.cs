@@ -8,5 +8,6 @@ namespace CombatExtended
     {
         public static HediffDef VenomBuildup;
         public static HediffDef SmokeInhalation;
+        public static HediffDef MuscleSpasms;
     }
 }
