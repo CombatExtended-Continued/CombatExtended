@@ -14,21 +14,18 @@
 			<!-- The torso and some of its children. -->
 			<li Class="PatchOperationAdd">
 				<xpath>Defs/BodyDef[defName = "BlackWidow"]/corePart/groups</xpath>
-				<success>Always</success>
 				<value>
 					<li>CoveredByNaturalArmor</li>
 				</value>
 			</li>
 			<li Class="PatchOperationAdd">
 				<xpath>Defs/BodyDef[defName = "BlackWidow"]/corePart/parts/li[def = "BlackWidow_Waist"]/groups</xpath>
-				<success>Always</success>
 				<value>
 					<li>CoveredByNaturalArmor</li>
 				</value>
 			</li>
 			<li Class="PatchOperationAdd">
 				<xpath>Defs/BodyDef[defName = "BlackWidow"]/corePart/parts/li[def = "BlackWidow_Abdomen"]/groups</xpath>
-				<success>Always</success>
 				<value>
 					<li>CoveredByNaturalArmor</li>
 				</value>
@@ -37,7 +34,6 @@
 			<!-- The head. -->
 			<li Class="PatchOperationAdd">
 				<xpath>Defs/BodyDef[defName = "BlackWidow"]/corePart/parts/li[def = "Neck"]/parts/li[def = "Head"]/groups</xpath>
-				<success>Always</success>
 				<value>
 					<li>CoveredByNaturalArmor</li>
 				</value>
@@ -45,17 +41,27 @@
 
 			<!-- ==== Know your left and right arms. ==== -->
 			<li Class="PatchOperationAdd">
-				<xpath>Defs/BodyDef[defName = "BlackWidow"]/corePart/parts/li[def = "BWTLShoulder"]/parts/li[customLabel = "left arm" or customLabel = "left pedipalp"]/groups</xpath>
-				<success>Always</success>
+				<xpath>Defs/BodyDef[defName = "BlackWidow"]/corePart/parts/li[def = "BWTLShoulder" or def = "BWBLShoulder"]/parts/li[customLabel = "left arm" or customLabel = "left pedipalp"]/groups</xpath>
 				<value>
 					<li>LeftArm</li>
 				</value>
 			</li>
 			<li Class="PatchOperationAdd">
-				<xpath>Defs/BodyDef[defName = "BlackWidow"]/corePart/parts/li[def = "BWTLShoulder"]/parts/li[customLabel = "right arm" or customLabel = "right pedipalp"]/groups</xpath>
-				<success>Always</success>
+				<xpath>Defs/BodyDef[defName = "BlackWidow"]/corePart/parts/li[def = "BWTRShoulder" or def = "BWBRShoulder"]/parts/li[customLabel = "right arm" or customLabel = "right pedipalp"]/groups</xpath>
 				<value>
 					<li>RightArm</li>
+				</value>
+			</li>
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/BodyDef[defName = "BlackWidow"]/corePart/parts/li[def = "BWTLShoulder" or def = "BWBLShoulder"]/groups</xpath>
+				<value>
+					<li>LeftShoulder</li>
+				</value>
+			</li>
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/BodyDef[defName = "BlackWidow"]/corePart/parts/li[def = "BWTRShoulder" or def = "BWBRShoulder"]/groups</xpath>
+				<value>
+					<li>RightShoulder</li>
 				</value>
 			</li>
 		</operations>
