@@ -18,12 +18,25 @@
 					</li>
 				</value>
 			</li>
-			<li Class="PatchOperationAdd">
-				<xpath>Defs/ThingDef[defName="BI_Queen"]/statBases</xpath>
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="BI_Queen"]/statBases/ArmorRating_Blunt</xpath>
 				<value>
+					<ArmorRating_Blunt>6</ArmorRating_Blunt>
 					<MeleeDodgeChance>0.04</MeleeDodgeChance>
 					<MeleeCritChance>0.11</MeleeCritChance>
 					<MeleeParryChance>0.24</MeleeParryChance>
+				</value>
+			</li>
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="BI_Queen"]/statBases/ArmorRating_Sharp</xpath>
+				<value>
+					<ArmorRating_Sharp>6</ArmorRating_Sharp>
+				</value>
+			</li>
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="BI_Queen"]/statBases/ArmorRating_Blunt</xpath>
+				<value>
+					<ArmorRating_Blunt>6</ArmorRating_Blunt>
 				</value>
 			</li>
 			<li Class="PatchOperationReplace">
@@ -35,32 +48,34 @@
 							<capacities>
 								<li>Cut</li>
 							</capacities>
-							<power>20</power>
-							<cooldownTime>2.6</cooldownTime>
+							<power>44</power>
+							<cooldownTime>3.66</cooldownTime>
 							<linkedBodyPartsGroup>HeadClaw</linkedBodyPartsGroup>
-							<armorPenetration>0.182</armorPenetration>
+							<armorPenetrationSharp>0.22</armorPenetrationSharp>
+							<armorPenetrationBlunt>3.164</armorPenetrationBlunt>
 						</li>
 						<li Class="CombatExtended.ToolCE">
 							<label>head</label>
 							<capacities>
 								<li>Blunt</li>
 							</capacities>
-							<power>18</power>
-							<cooldownTime>2</cooldownTime>
+							<power>9</power>
+							<cooldownTime>3.66</cooldownTime>
 							<linkedBodyPartsGroup>HeadAttackTool</linkedBodyPartsGroup>
 							<ensureLinkedBodyPartsGroupAlwaysUsable>true</ensureLinkedBodyPartsGroupAlwaysUsable>
 							<chanceFactor>0.2</chanceFactor>
-							<armorPenetration>0.178</armorPenetration>
+							<armorPenetrationBlunt>3.164</armorPenetrationBlunt>
 						</li>
 						<li Class="CombatExtended.ToolCE">
 							<label>mandibles</label>
 							<capacities>
 								<li>Bite</li>
 							</capacities>
-							<power>16</power>
-							<cooldownTime>1.8</cooldownTime>
+							<power>25</power>
+							<cooldownTime>3.94</cooldownTime>
 							<linkedBodyPartsGroup>Mouth</linkedBodyPartsGroup>
-							<armorPenetration>0.233</armorPenetration>
+							<armorPenetrationSharp>0.01</armorPenetrationSharp>
+							<armorPenetrationBlunt>4.219</armorPenetrationBlunt>
 						</li>
 					</tools>
 				</value>

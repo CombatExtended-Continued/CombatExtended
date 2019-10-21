@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+	<Operation Class="PatchOperationSequence">
+		<success>Always</success>
+		<operations>
+			<li Class="CombatExtended.PatchOperationFindMod">
+				<modName>Rim of Madness - Bones</modName>
+			</li>
+
+			<!-- ======== BoneItem ======== -->
+			<!-- ==== As material ==== -->
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName="BoneItem"]/stuffProps/statFactors</xpath>
+				<value>
+					<MeleePenetrationFactor>0.6</MeleePenetrationFactor>
+				</value>
+			</li>
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="BoneItem"]/statBases/StuffPower_Armor_Sharp</xpath>
+				<value>
+					<StuffPower_Armor_Sharp>0.25</StuffPower_Armor_Sharp>
+				</value>
+			</li>
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="BoneItem"]/statBases/StuffPower_Armor_Blunt</xpath>
+				<value>
+					<StuffPower_Armor_Blunt>0.1</StuffPower_Armor_Blunt>
+				</value>
+			</li>
+			<!-- ==== As a weapon ==== -->
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="BoneItem"]/tools</xpath>
+				<value>
+					<tools>
+						<li Class="CombatExtended.ToolCE">
+							<capacities>
+								<li>Blunt</li>
+							</capacities>
+							<power>2</power>
+							<cooldownTime>0.99</cooldownTime>
+							<armorPenetrationBlunt>0.288</armorPenetrationBlunt>
+						</li>
+					</tools>
+				</value>
+			</li>
+
+			<!-- ======== BonePlastic ======== -->
+			<!-- ==== As material ==== -->
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="BonePlastic"]/statBases/StuffPower_Armor_Blunt</xpath>
+				<value>
+					<StuffPower_Armor_Blunt>0.5</StuffPower_Armor_Blunt>
+				</value>
+			</li>
+		</operations>
+	</Operation>
+</Patch>
