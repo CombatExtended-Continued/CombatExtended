@@ -75,7 +75,7 @@
     </costList>
         <statBases>
             <WorkToMake>8000</WorkToMake>
-            <MaxHitPoints>120</MaxHitPoints>
+            <MaxHitPoints>100</MaxHitPoints>
             <Mass>0.5</Mass>
             <Bulk>3</Bulk>
             <WornBulk>1</WornBulk>
@@ -97,6 +97,60 @@
             <tags>
                 <li>IndustrialMilitaryAdvanced</li>
             </tags>
+            <defaultOutfitTags>
+                <li>Soldier</li>
+            </defaultOutfitTags>
+              <hatRenderedFrontOfFace>false</hatRenderedFrontOfFace>
+        </apparel>
+        <modExtensions>
+            <li Class="CombatExtended.ApparelHediffExtension">
+                <hediff>WearingGasMask</hediff>
+            </li>
+        </modExtensions>
+    </ThingDef>
+
+    <ThingDef ParentName="HatMakeableBase">
+        <defName>Apparel_ImprovGasMask</defName>
+        <label>improvised gas mask</label>
+        <description>Crude gas mask fashioned from thick cloth and charcoal. Provides some limited protection against smoke and airborne toxins</description>
+        <graphicData>
+            <texPath>Things/Apparel/ImprovGasMask/ImprovGasMask</texPath>
+            <graphicClass>Graphic_Single</graphicClass>
+        </graphicData>
+    <techLevel>Neolithic</techLevel>
+    <recipeMaker>
+      <skillRequirements>
+        <Crafting>6</Crafting>
+      </skillRequirements>
+      <recipeUsers>
+          <li>CraftingSpot</li>
+      </recipeUsers>
+    </recipeMaker>
+    <costList>
+      <WoodLog>4</WoodLog>
+      <Cloth>40</Cloth>
+    </costList>
+        <statBases>
+            <WorkToMake>8000</WorkToMake>
+            <MaxHitPoints>100</MaxHitPoints>
+            <Mass>0.5</Mass>
+            <Bulk>3</Bulk>
+            <WornBulk>1</WornBulk>
+            <EquipDelay>4</EquipDelay>
+        </statBases>
+        <equippedStatOffsets>
+            <ToxicSensitivity>-0.3</ToxicSensitivity>
+            <SmokeSensitivity>-0.6</SmokeSensitivity>
+        </equippedStatOffsets>
+        <apparel>
+            <bodyPartGroups>
+                <li>Eyes</li>
+                <li>Teeth</li>
+            </bodyPartGroups>
+            <wornGraphicPath>Things/Apparel/ImprovGasMask/ImprovGasMask</wornGraphicPath>
+            <layers>
+                <li>StrappedHead</li>
+            </layers>
             <defaultOutfitTags>
                 <li>Soldier</li>
             </defaultOutfitTags>
