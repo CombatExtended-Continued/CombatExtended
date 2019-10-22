@@ -138,8 +138,8 @@
       <workerClass>DamageWorker_AddInjury</workerClass>
     </value>
   </Operation>
-
-  <Operation Class="PatchOperationReplace">
+  
+    <Operation Class="PatchOperationReplace">
     <xpath>Defs/DamageDef[defName="Blunt"]/workerClass</xpath>
     <value>
       <workerClass>CombatExtended.DamageWorker_BluntCE</workerClass>
@@ -172,6 +172,15 @@
 
   <Operation Class="PatchOperationRemove">
     <xpath>Defs/DamageDef[defName="ToxicBite"]/additionalHediffs/li[hediff="ToxicBuildup"]</xpath>
+  </Operation>
+  
+  <!-- ========== Fix harm layers for stab attacks ========== -->
+  
+  <Operation Class="PatchOperationAdd">
+    <xpath>Defs/DamageDef[defName="Stab"]</xpath>
+    <value>
+      <harmAllLayersUntilOutside>true</harmAllLayersUntilOutside>
+    </value>
   </Operation>
 	
 </Patch>
