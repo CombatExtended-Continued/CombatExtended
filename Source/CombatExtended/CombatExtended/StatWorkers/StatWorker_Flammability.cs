@@ -51,7 +51,7 @@ namespace CombatExtended
             {
                 GetApparelAdjustFor(pawn, out var totalFlammability, out var totalCoverage);
                 totalFlammability += flammability * (1 - totalCoverage);
-                return totalFlammability;
+                return flammability - (1 - totalFlammability);
             }
 
             return flammability;
