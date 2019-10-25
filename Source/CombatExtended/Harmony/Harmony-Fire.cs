@@ -67,7 +67,7 @@ namespace CombatExtended.Harmony
     [HarmonyPatch(typeof(Fire), "Tick")]
     internal static class Harmony_Fire_Tick
     {
-        private const int TicksPerSmoke = 30;
+        private const int TicksPerSmoke = 15;
 
         internal static IEnumerable<CodeInstruction> Transpiler(IEnumerable<CodeInstruction> instructions)
         {
