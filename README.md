@@ -4,7 +4,7 @@ Combat Extended: FastTrack Edition is a fork of the [original Combat Extended mo
 ## Features
 - Same [core features as the original mod](https://github.com/NoImageAvailable/CombatExtended/blob/master/README.md) - shooting, melee, armor, inventory and medical overhauls
 - Fully compatible with existing CE savegames - delete CE completely, drop in CE:FT and go!
-- 65 supported third-party mods (compared with 34 for CE)
+- 66 supported third-party mods (compared with 34 for CE)
 - Recognizes existing third-party standalone CE patches
 - Additional ammo and projectile definitions and textures
 - New Graphic_StackCountRanged class for precise control of item subgraphics based on stack count
@@ -14,6 +14,7 @@ Mod | CE (original) | CE: FastTrack Edition
 --- | :---: | :---:
 A Dog Said... 										| &#x2705; 	| &#x2705;
 A RimWorld of Magic 											|  			| &#x2705;
+Android Tiers											|  			| &#x2705;
 AnimalCollabProj 											|  			| &#x2705;
 Apparello 2 										| &#x2705; 	| &#x2705;
 Cute Penguin 										| &#x2705; 	| &#x2705;
@@ -77,7 +78,7 @@ Xenn Race 											| &#x2705; 	| &#x2705;
 Xenohumans 										|  			| &#x2705;
 Yabils: Space Gremlins				|  			| &#x2705;
 Zombieland 										| &#x2705; 	| &#x2705;
-**Total** | **34** | **65**
+**Total** | **34** | **66**
 &nbsp; | **CE (original)** | **CE: FastTrack Edition**
 
 ## Contributing Your Patches
