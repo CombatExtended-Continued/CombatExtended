@@ -39,23 +39,21 @@ namespace CombatExtended
             }
 
             // Don't decay if there's lots of smoke around
-            var region = Position.GetRegion(Map);
-            var smokeFillage = region?.ListerThings.ThingsOfDef(CE_ThingDefOf.Gas_BlackSmoke).Count / region?.CellCount ?? 0;
-            if (region != null && !Rand.Chance(smokeFillage * 1.5f))
+            var freeCells = GenAdjFast.AdjacentCells8Way(Position).InRandomOrder().Where(CanMoveTo).ToList();
+            var decayChance = Mathf.Clamp((freeCells.Count - 4) / 8f, 0, 1);
+            if (!Rand.Chance(decayChance))
                 destroyTick++;
 
+            // Movement
             if (_ticksUntilMove > 0)
             {
                 base.Tick();
                 return;
             }
-
             _ticksUntilMove = BaseTicksUntilMove + Rand.RangeInclusive(-TicksUntilMoveDelta, TicksUntilMoveDelta);
-
-            var freeCells = GenAdjFast.AdjacentCells8Way(Position).InRandomOrder().Where(CanMoveTo).ToList();
-            var unroofedCell = freeCells.FirstOrFallback(c => !c.Roofed(Map), IntVec3.Invalid);
-
+            
             // Move towards unroofed cells if possible
+            var unroofedCell = freeCells.FirstOrFallback(c => !c.Roofed(Map), IntVec3.Invalid);
             if (unroofedCell.IsValid)
             {
                 Position = unroofedCell;

@@ -61,14 +61,14 @@ namespace CombatExtended.Harmony
 
         internal static void Postfix(Fire __instance)
         {
-            if (__instance.Position.Roofed(__instance.Map))
-                GenSpawn.Spawn(CE_ThingDefOf.Gas_BlackSmoke, __instance.Position, __instance.Map);
         }
     }
 
     [HarmonyPatch(typeof(Fire), "Tick")]
     internal static class Harmony_Fire_Tick
     {
+        private const int TicksPerSmoke = 30;
+
         internal static IEnumerable<CodeInstruction> Transpiler(IEnumerable<CodeInstruction> instructions)
         {
             foreach (CodeInstruction code in instructions)
@@ -79,6 +79,12 @@ namespace CombatExtended.Harmony
                 }
                 yield return code;
             }
+        }
+
+        internal static void Postfix(Fire __instance)
+        {
+            if (__instance.Spawned && __instance.IsHashIntervalTick(TicksPerSmoke) && __instance.Position.Roofed(__instance.Map))
+                GenSpawn.Spawn(CE_ThingDefOf.Gas_BlackSmoke, __instance.Position, __instance.Map);
         }
     }
 
