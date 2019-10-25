@@ -1,14 +1,14 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <Defs>
 
-    <ThingCategoryDef>
-      <defName>Ammo8x35mmCharged</defName>
-      <label>8x35mm Charged</label>
-      <parent>AmmoAdvanced</parent>
-      <iconPath>UI/Icons/ThingCategories/CaliberCharge</iconPath>
-    </ThingCategoryDef>
-	
-	<!-- ==================== AmmoSet ========================== -->
+  <ThingCategoryDef>
+    <defName>Ammo8x35mmCharged</defName>
+    <label>8x35mm Charged</label>
+    <parent>AmmoAdvanced</parent>
+    <iconPath>UI/Icons/ThingCategories/CaliberCharge</iconPath>
+  </ThingCategoryDef>
+
+  <!-- ==================== AmmoSet ========================== -->
 
   <CombatExtended.AmmoSetDef>
     <defName>AmmoSet_8x35mmCharged</defName>
@@ -19,14 +19,14 @@
       <Ammo_8x35mmCharged_Ion>Bullet_8x35mmCharged_Ion</Ammo_8x35mmCharged_Ion>
     </ammoTypes>
   </CombatExtended.AmmoSetDef>
-	
-	<!-- ==================== Ammo ========================== -->
+
+  <!-- ==================== Ammo ========================== -->
 
   <ThingDef Class="CombatExtended.AmmoDef" Name="8x35mmChargedBase" ParentName="SpacerSmallAmmoBase" Abstract="True">
     <description>Charged shot ammo used by advanced assault rifle designs.</description>
     <statBases>
-	  <Mass>0.02</Mass>
-	  <Bulk>0.008</Bulk>
+      <Mass>0.02</Mass>
+      <Bulk>0.008</Bulk>
     </statBases>
     <tradeTags>
       <li>CE_AutoEnableTrade</li>
@@ -74,10 +74,10 @@
       <MarketValue>1.38</MarketValue>
     </statBases>
     <ammoClass>Ionized</ammoClass>
-	<generateAllowChance>0</generateAllowChance>
+    <generateAllowChance>0</generateAllowChance>
   </ThingDef>
-	
-	<!-- ================== Projectiles ================== -->
+
+  <!-- ================== Projectiles ================== -->
 
   <ThingDef Class="CombatExtended.AmmoDef" Name="Base8x35mmChargedBullet" ParentName="BaseBullet" Abstract="true">
     <graphicData>
@@ -89,9 +89,9 @@
       <speed>160</speed>
     </projectile>
   </ThingDef>
-	
-<!-- normal charged bullets --> 
-<ThingDef Class="CombatExtended.AmmoDef" ParentName="Base8x35mmChargedBullet">
+
+  <!-- normal charged bullets -->
+  <ThingDef Class="CombatExtended.AmmoDef" ParentName="Base8x35mmChargedBullet">
     <defName>Bullet_8x35mmCharged</defName>
     <label>8x35mm Charged bullet</label>
     <projectile Class="CombatExtended.ProjectilePropertiesCE">
@@ -102,32 +102,32 @@
           <amount>6</amount>
         </li>
       </secondaryDamage>
- 	        <armorPenetrationSharp>14</armorPenetrationSharp>
-		<armorPenetrationBlunt>57.6</armorPenetrationBlunt>
+      <armorPenetrationSharp>14</armorPenetrationSharp>
+      <armorPenetrationBlunt>57.6</armorPenetrationBlunt>
     </projectile>
   </ThingDef>
 
-<!-- concentrated bullets -->  
-<ThingDef Class="CombatExtended.AmmoDef" ParentName="Base8x35mmChargedBullet">
+  <!-- concentrated bullets -->
+  <ThingDef Class="CombatExtended.AmmoDef" ParentName="Base8x35mmChargedBullet">
     <defName>Bullet_8x35mmCharged_AP</defName>
     <label>8x35mm Charged bullet (Conc.)</label>
     <projectile Class="CombatExtended.ProjectilePropertiesCE">
-  
-	<damageAmountBase>15</damageAmountBase>
+
+      <damageAmountBase>15</damageAmountBase>
       <secondaryDamage>
         <li>
           <def>Bomb_Secondary</def>
           <amount>2</amount>
         </li>
       </secondaryDamage>
-  
-		<armorPenetrationSharp>28</armorPenetrationSharp>
-		<armorPenetrationBlunt>57.6</armorPenetrationBlunt>
-    
-	</projectile>
+
+      <armorPenetrationSharp>28</armorPenetrationSharp>
+      <armorPenetrationBlunt>57.6</armorPenetrationBlunt>
+
+    </projectile>
   </ThingDef>
 
-  <!-- ion bullets -->  
+  <!-- ion bullets -->
   <ThingDef Class="CombatExtended.AmmoDef" ParentName="Base8x35mmChargedBullet">
     <defName>Bullet_8x35mmCharged_Ion</defName>
     <label>8x35mm Charged bullet (Ion)</label>
@@ -136,16 +136,16 @@
       <secondaryDamage>
         <li>
           <def>EMP</def>
-          <amount>4</amount>
+          <amount>9</amount>
         </li>
       </secondaryDamage>
-	  
-		<armorPenetrationSharp>21</armorPenetrationSharp>
-		<armorPenetrationBlunt>57.6</armorPenetrationBlunt>
+
+      <armorPenetrationSharp>21</armorPenetrationSharp>
+      <armorPenetrationBlunt>57.6</armorPenetrationBlunt>
     </projectile>
   </ThingDef>
-  
-	<!-- ==================== Recipes ========================== -->
+
+  <!-- ==================== Recipes ========================== -->
 
   <RecipeDef ParentName="ChargeAmmoRecipeBase">
     <defName>MakeAmmo_8x35mmCharged</defName>
@@ -248,5 +248,5 @@
       <Ammo_8x35mmCharged_Ion>100</Ammo_8x35mmCharged_Ion>
     </products>
   </RecipeDef>
-	
+
 </Defs>
