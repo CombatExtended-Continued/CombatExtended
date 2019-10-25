@@ -83,7 +83,10 @@ namespace CombatExtended.Harmony
 
         internal static void Postfix(Fire __instance)
         {
-            if (__instance.Spawned && __instance.IsHashIntervalTick(TicksPerSmoke) && __instance.Position.Roofed(__instance.Map))
+            if (__instance.Spawned
+                && __instance.IsHashIntervalTick(TicksPerSmoke)
+                && __instance.Position.Roofed(__instance.Map)
+                && __instance.Position.GetGas(__instance.Map) == null)
                 GenSpawn.Spawn(CE_ThingDefOf.Gas_BlackSmoke, __instance.Position, __instance.Map);
         }
     }

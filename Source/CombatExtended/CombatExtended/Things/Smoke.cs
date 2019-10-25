@@ -21,8 +21,8 @@ namespace CombatExtended
 
         private bool CanMoveTo(IntVec3 pos)
         {
-            return !pos.Filled(Map) 
-                || (pos.GetDoor(Map)?.Open ?? false) 
+            return !pos.Filled(Map)
+                || (pos.GetDoor(Map)?.Open ?? false)
                 || (pos.GetFirstThing<Building_Vent>(Map) is Building_Vent vent && vent.TryGetComp<CompFlickable>().SwitchIsOn);
         }
 
@@ -51,11 +51,14 @@ namespace CombatExtended
                 return;
             }
             _ticksUntilMove = BaseTicksUntilMove + Rand.RangeInclusive(-TicksUntilMoveDelta, TicksUntilMoveDelta);
-            
+
             // Move towards unroofed cells if possible
             var unroofedCell = freeCells.FirstOrFallback(c => !c.Roofed(Map), IntVec3.Invalid);
             if (unroofedCell.IsValid)
             {
+                var otherGas = unroofedCell.GetGas(Map);
+                otherGas?.Destroy();
+
                 Position = unroofedCell;
                 base.Tick();
                 return;
@@ -77,13 +80,13 @@ namespace CombatExtended
 
         private void ApplyHediffs()
         {
-            if(!Position.InBounds(Map))
+            if (!Position.InBounds(Map))
                 return;
 
             var pawns = Position.GetThingList(Map).Where(t => t is Pawn).ToList();
             foreach (var cell in GenAdjFast.AdjacentCells8Way(Position))
             {
-                if(!cell.InBounds(Map))
+                if (!cell.InBounds(Map))
                     continue;
                 pawns.AddRange(cell.GetThingList(Map).Where(t => t is Pawn));
             }
