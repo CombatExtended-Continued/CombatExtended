@@ -7,13 +7,31 @@
 			<li Class="CombatExtended.PatchOperationFindMod">
 				<modName>[1.0] Android tiers</modName>
 			</li>
-
-			<!-- ========== Redefine Swarm Shell as a CE 81mm mortar shell ========== -->
-
+			
+			<!-- ========== Remove original non-CE shell ========== -->
+			
 			<li Class="PatchOperationRemove">
 				<xpath>*/ThingDef[defName="Nanoswarm_shell"]</xpath>
 			</li>
+			
+			<!-- =========================NOTICE=========================
+				 
+				 Nanoswarm shells are currently not available for CE:FT 
+				 due to an issue with the Micro-Scythers' JobDrivers,
+				 resulting in Debug log spam.
+				 
+				 The CE:FT team is working behind-the-scenes with Atlas,
+				 the author of Android Tiers, on a fix. 
+				 
+				 In the meantime, we have temporarily disabled the rest
+				 of this patch
+				 
+				 =========================NOTICE=========================
+			-->
 
+			<!-- ========== Redefine Swarm Shell as a CE 81mm mortar shell ========== -->
+
+			<!--
 			<li Class="PatchOperationAdd">
 				<xpath>Defs</xpath>
 				<value>
@@ -116,15 +134,18 @@
 
 				</value>
 			</li>
+			-->
 
 			<!-- ========== Add new 81mm swarm mortar shell to standard mortar ammoset ========== -->
 
+			<!--
 			<li Class="PatchOperationAdd">
 				<xpath>Defs/CombatExtended.AmmoSetDef[defName="AmmoSet_81mmMortarShell"]/ammoTypes</xpath>
 				<value>
 					<Shell_Nanoswarm>Bullet_81mmMortarShell_Nanoswarm</Shell_Nanoswarm>		
 				</value>
 			</li>
+			-->
 
 		</operations>
 	</Operation>
