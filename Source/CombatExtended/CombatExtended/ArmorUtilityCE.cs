@@ -102,8 +102,7 @@ namespace CombatExtended
                         dinfo.SetAmount(0);
 
                         // Apply secondary damage to shield
-                        var props = dinfo.Weapon?.projectile as ProjectilePropertiesCE;
-                        if (props != null && !props.secondaryDamage.NullOrEmpty())
+                        if (dinfo.Weapon?.projectile is ProjectilePropertiesCE props && !props.secondaryDamage.NullOrEmpty())
                         {
                             foreach (var sec in props.secondaryDamage)
                             {
@@ -145,7 +144,7 @@ namespace CombatExtended
 
             // Apply natural armor
             var partsToHit = new List<BodyPartRecord>() { hitPart };
-            if (involveArmor)
+            if (dinfo.Def.harmAllLayersUntilOutside)
             {
                 var curPart = hitPart;
                 while (curPart.parent != null && curPart.depth == BodyPartDepth.Inside)
@@ -170,7 +169,7 @@ namespace CombatExtended
                 if (!TryPenetrateArmor(dinfo.Def, armorAmount, ref penAmount, ref dmgAmount, null, partDensity))
                 {
                     dinfo.SetHitPart(curPart);
-                    if (isSharp && coveredByArmor && pawn.RaceProps.IsMechanoid)
+                    if (isSharp && coveredByArmor)
                     {
                         // For Mechanoid natural armor, apply deflection and blunt armor
                         dinfo = GetDeflectDamageInfo(dinfo, curPart, ref dmgAmount, ref penAmount);
@@ -258,7 +257,12 @@ namespace CombatExtended
         /// <returns>The post-armor damage ranging from 0 to the original amount</returns>
         private static float GetAmbientPostArmorDamage(float dmgAmount, StatDef armorRatingStat, Pawn pawn, BodyPartRecord part)
         {
-            var dmgMult = 1 - pawn.GetStatValue(armorRatingStat);
+            var dmgMult = 1f;
+            if (part.IsInGroup(CE_BodyPartGroupDefOf.CoveredByNaturalArmor))
+            {
+                dmgMult -= pawn.GetStatValue(armorRatingStat);
+            }
+
             if (dmgMult <= 0) return 0;
             if (pawn.apparel != null && !pawn.apparel.WornApparel.NullOrEmpty())
             {

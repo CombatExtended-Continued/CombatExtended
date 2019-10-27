@@ -85,7 +85,11 @@ namespace CombatExtended.Harmony
                 _applyingSecondary = true;
                 foreach (var sec in props.secondaryDamage)
                 {
-                    if (pawn.Dead) return;
+                    if (pawn.Dead)
+                    {
+                        _applyingSecondary = false;
+                        return;
+                    }
                     var secDinfo = sec.GetDinfo(dinfo);
                     pawn.TakeDamage(secDinfo);
                 }
