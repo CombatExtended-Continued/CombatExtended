@@ -137,7 +137,7 @@ namespace CombatExtended
                 Widgets.ListSeparator(ref num, viewRect.width, "OverallArmor".Translate());
                 TryDrawOverallArmor(ref num, viewRect.width, StatDefOf.ArmorRating_Blunt, "ArmorBlunt".Translate(), " " + "CE_MPa".Translate());
                 TryDrawOverallArmor(ref num, viewRect.width, StatDefOf.ArmorRating_Sharp, "ArmorSharp".Translate(), "CE_mmRHA".Translate());
-                TryDrawOverallArmor(ref num, viewRect.width, StatDefOf.ArmorRating_Heat, "ArmorHeat".Translate(), "");
+                TryDrawOverallArmor(ref num, viewRect.width, StatDefOf.ArmorRating_Heat, "ArmorHeat".Translate(), "%");
             }
             if (ShouldShowEquipment(SelPawnForGear))
             {
@@ -393,9 +393,8 @@ namespace CombatExtended
             List<Apparel> wornApparel = SelPawnForGear.apparel.WornApparel;
             for (int i = 0; i < wornApparel.Count; i++)
             {
-                num += Mathf.Clamp01(wornApparel[i].GetStatValue(stat, true)) * wornApparel[i].def.apparel.HumanBodyCoverage;
+                num += wornApparel[i].GetStatValue(stat, true) * wornApparel[i].def.apparel.HumanBodyCoverage;
             }
-            num = Mathf.Clamp01(num);
             if (num > 0.005f)
             {
                 Rect rect = new Rect(0f, curY, width, _standardLineHeight);
@@ -414,17 +413,17 @@ namespace CombatExtended
                             Apparel apparel = wornApparel[j];
                             if (apparel.def.apparel.CoversBodyPart(part))
                             {
-                                armorValue += Mathf.Clamp01(apparel.GetStatValue(stat, true));
+                                armorValue += apparel.GetStatValue(stat, true);
                             }
                         }
-                        text += Mathf.Clamp01(armorValue).ToStringByStyle(ToStringStyle.FloatMaxThree) + unit + "\n";
+                        text += formatArmorValue(armorValue, unit) + "\n";
                     }
                 }
                 TooltipHandler.TipRegion(rect, text);
 
                 Widgets.Label(rect, label.Truncate(200f, null));
                 rect.xMin += 200;
-                Widgets.Label(rect, num.ToStringByStyle(ToStringStyle.FloatMaxThree) + unit);
+                Widgets.Label(rect, formatArmorValue(num, unit));
                 curY += _standardLineHeight;
             }
         }
@@ -522,6 +521,16 @@ namespace CombatExtended
         private bool ShouldShowOverallArmor(Pawn p)
         {
             return p.RaceProps.Humanlike || ShouldShowApparel(p) || p.GetStatValue(StatDefOf.ArmorRating_Sharp, true) > 0f || p.GetStatValue(StatDefOf.ArmorRating_Blunt, true) > 0f || p.GetStatValue(StatDefOf.ArmorRating_Heat, true) > 0f;
+        }
+
+        private string formatArmorValue(float value, string unit)
+        {
+            var asPercent = unit.Equals("%");
+            if (asPercent)
+            {
+                value *= 100f;
+            }
+            return value.ToStringByStyle(asPercent ? ToStringStyle.FloatMaxOne : ToStringStyle.FloatMaxTwo) + unit;
         }
 
         #endregion Methods
