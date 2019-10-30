@@ -132,13 +132,13 @@ namespace CombatExtended
             Widgets.BeginScrollView(outRect, ref _scrollPosition, viewRect);
             float num = 0f;
             TryDrawComfyTemperatureRange(ref num, viewRect.width);
-            if (ShouldShowOverallArmor(SelPawnForGear))
-            {
-                Widgets.ListSeparator(ref num, viewRect.width, "OverallArmor".Translate());
-                TryDrawOverallArmor(ref num, viewRect.width, StatDefOf.ArmorRating_Blunt, "ArmorBlunt".Translate());
-                TryDrawOverallArmor(ref num, viewRect.width, StatDefOf.ArmorRating_Sharp, "ArmorSharp".Translate());
-                TryDrawOverallArmor(ref num, viewRect.width, StatDefOf.ArmorRating_Heat, "ArmorHeat".Translate());
-            }
+            //if (ShouldShowOverallArmor(SelPawnForGear))
+            //{
+            //    Widgets.ListSeparator(ref num, viewRect.width, "OverallArmor".Translate());
+            //    TryDrawOverallArmor(ref num, viewRect.width, StatDefOf.ArmorRating_Blunt, "ArmorBlunt".Translate());
+            //    TryDrawOverallArmor(ref num, viewRect.width, StatDefOf.ArmorRating_Sharp, "ArmorSharp".Translate());
+            //    TryDrawOverallArmor(ref num, viewRect.width, StatDefOf.ArmorRating_Heat, "ArmorHeat".Translate());
+            //}
             if (ShouldShowEquipment(SelPawnForGear))
             {
                 Widgets.ListSeparator(ref num, viewRect.width, "Equipment".Translate());
