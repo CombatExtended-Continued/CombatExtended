@@ -87,8 +87,7 @@ namespace CombatExtended.Harmony
                 {
                     if (pawn.Dead)
                     {
-                        _applyingSecondary = false;
-                        return;
+                        break;
                     }
                     var secDinfo = sec.GetDinfo(dinfo);
                     pawn.TakeDamage(secDinfo);
