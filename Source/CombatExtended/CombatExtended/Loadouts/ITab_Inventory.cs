@@ -113,13 +113,13 @@ namespace CombatExtended
 
                 string currentBulk = CE_StatDefOf.CarryBulk.ValueToString(comp.currentBulk, CE_StatDefOf.CarryBulk.toStringNumberSense);
                 string capacityBulk = CE_StatDefOf.CarryBulk.ValueToString(comp.capacityBulk, CE_StatDefOf.CarryBulk.toStringNumberSense);
-				Widgets.Label(bulkRect, currentBulk + "/" + capacityBulk);
+                Widgets.Label(bulkRect, currentBulk + "/" + capacityBulk);
 
-				string currentWeight = comp.currentWeight.ToString("0.#");
-				string capacityWeight = CE_StatDefOf.CarryWeight.ValueToString(comp.capacityWeight, CE_StatDefOf.CarryWeight.toStringNumberSense);
-				Widgets.Label(weightRect, currentWeight + "/" + capacityWeight);
+                string currentWeight = comp.currentWeight.ToString("0.#");
+                string capacityWeight = CE_StatDefOf.CarryWeight.ValueToString(comp.capacityWeight, CE_StatDefOf.CarryWeight.toStringNumberSense);
+                Widgets.Label(weightRect, currentWeight + "/" + capacityWeight);
 
-				Text.Anchor = TextAnchor.UpperLeft;
+                Text.Anchor = TextAnchor.UpperLeft;
             }
 
             // start drawing list (rip from ITab_Pawn_Gear)
@@ -132,13 +132,13 @@ namespace CombatExtended
             Widgets.BeginScrollView(outRect, ref _scrollPosition, viewRect);
             float num = 0f;
             TryDrawComfyTemperatureRange(ref num, viewRect.width);
-            //if (ShouldShowOverallArmor(SelPawnForGear))
-            //{
-            //    Widgets.ListSeparator(ref num, viewRect.width, "OverallArmor".Translate());
-            //    TryDrawOverallArmor(ref num, viewRect.width, StatDefOf.ArmorRating_Blunt, "ArmorBlunt".Translate());
-            //    TryDrawOverallArmor(ref num, viewRect.width, StatDefOf.ArmorRating_Sharp, "ArmorSharp".Translate());
-            //    TryDrawOverallArmor(ref num, viewRect.width, StatDefOf.ArmorRating_Heat, "ArmorHeat".Translate());
-            //}
+            if (ShouldShowOverallArmor(SelPawnForGear))
+            {
+                Widgets.ListSeparator(ref num, viewRect.width, "OverallArmor".Translate());
+                TryDrawOverallArmor(ref num, viewRect.width, StatDefOf.ArmorRating_Blunt, "ArmorBlunt".Translate(), " " + "CE_MPa".Translate());
+                TryDrawOverallArmor(ref num, viewRect.width, StatDefOf.ArmorRating_Sharp, "ArmorSharp".Translate(), "CE_mmRHA".Translate());
+                TryDrawOverallArmor(ref num, viewRect.width, StatDefOf.ArmorRating_Heat, "ArmorHeat".Translate(), "%");
+            }
             if (ShouldShowEquipment(SelPawnForGear))
             {
                 Widgets.ListSeparator(ref num, viewRect.width, "Equipment".Translate());
@@ -383,7 +383,7 @@ namespace CombatExtended
         }
 
         // RimWorld.ITab_Pawn_Gear
-        private void TryDrawOverallArmor(ref float curY, float width, StatDef stat, string label)
+        private void TryDrawOverallArmor(ref float curY, float width, StatDef stat, string label, string unit)
         {
             if (SelPawnForGear.RaceProps.body != BodyDefOf.Human)
             {
@@ -393,9 +393,8 @@ namespace CombatExtended
             List<Apparel> wornApparel = SelPawnForGear.apparel.WornApparel;
             for (int i = 0; i < wornApparel.Count; i++)
             {
-                num += Mathf.Clamp01(wornApparel[i].GetStatValue(stat, true)) * wornApparel[i].def.apparel.HumanBodyCoverage;
+                num += wornApparel[i].GetStatValue(stat, true) * wornApparel[i].def.apparel.HumanBodyCoverage;
             }
-            num = Mathf.Clamp01(num);
             if (num > 0.005f)
             {
                 Rect rect = new Rect(0f, curY, width, _standardLineHeight);
@@ -414,17 +413,17 @@ namespace CombatExtended
                             Apparel apparel = wornApparel[j];
                             if (apparel.def.apparel.CoversBodyPart(part))
                             {
-                                armorValue += Mathf.Clamp01(apparel.GetStatValue(stat, true));
+                                armorValue += apparel.GetStatValue(stat, true);
                             }
                         }
-                        text += Mathf.Clamp01(armorValue).ToStringPercent() + "\n";
+                        text += formatArmorValue(armorValue, unit) + "\n";
                     }
                 }
                 TooltipHandler.TipRegion(rect, text);
 
-                Widgets.Label(rect, label.Truncate(200f,null));
+                Widgets.Label(rect, label.Truncate(200f, null));
                 rect.xMin += 200;
-                Widgets.Label(rect, num.ToStringPercent());      
+                Widgets.Label(rect, formatArmorValue(num, unit));
                 curY += _standardLineHeight;
             }
         }
@@ -448,7 +447,7 @@ namespace CombatExtended
                 statValue2.ToStringTemperature("F0")
             }));
             curY += _standardLineHeight;
-         }
+        }
 
         // RimWorld.ITab_Pawn_Gear
         private void InterfaceDrop(Thing t)
@@ -522,6 +521,16 @@ namespace CombatExtended
         private bool ShouldShowOverallArmor(Pawn p)
         {
             return p.RaceProps.Humanlike || ShouldShowApparel(p) || p.GetStatValue(StatDefOf.ArmorRating_Sharp, true) > 0f || p.GetStatValue(StatDefOf.ArmorRating_Blunt, true) > 0f || p.GetStatValue(StatDefOf.ArmorRating_Heat, true) > 0f;
+        }
+
+        private string formatArmorValue(float value, string unit)
+        {
+            var asPercent = unit.Equals("%");
+            if (asPercent)
+            {
+                value *= 100f;
+            }
+            return value.ToStringByStyle(asPercent ? ToStringStyle.FloatMaxOne : ToStringStyle.FloatMaxTwo) + unit;
         }
 
         #endregion Methods
