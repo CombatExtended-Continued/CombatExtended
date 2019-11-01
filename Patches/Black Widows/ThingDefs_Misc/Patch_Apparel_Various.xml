@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+	<!-- Black Widow clothes. -->
+	<Operation Class="PatchOperationSequence">
+		<success>Always</success>
+		<operations>
+			<!-- ==== Check for the mod. ==== -->
+			<li Class="CombatExtended.PatchOperationFindMod">
+				<modName>Black Widows 2.0</modName>
+			</li>
+
+			<!-- ==== Apparel_HoverThrone ==== -->
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName = "Apparel_HoverThrone"]/statBases/Mass</xpath>
+				<value>
+					<Mass>8</Mass>
+					<Bulk>60</Bulk>
+					<WornBulk>8</WornBulk>
+				</value>
+			</li>
+			
+			<!-- ==== Apparel_BWSpiderFurs ==== -->
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName = "Apparel_BWSpiderFurs"]/statBases/Mass</xpath>
+				<value>
+					<Mass>4</Mass>
+					<Bulk>40</Bulk>
+					<WornBulk>3</WornBulk>
+				</value>
+			</li>
+			
+			<!-- ==== Apparel_MAGISuit ==== -->
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName = "Apparel_MAGISuit"]/statBases/Mass</xpath>
+				<value>
+					<Mass>40</Mass>
+					<Bulk>80</Bulk>
+					<WornBulk>15</WornBulk>
+				</value>
+			</li>
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName = "Apparel_MAGISuit"]/statBases/ArmorRating_Sharp</xpath>
+				<value>
+					<ArmorRating_Sharp>18</ArmorRating_Sharp>
+				</value>
+			</li>
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName = "Apparel_MAGISuit"]/statBases/ArmorRating_Blunt</xpath>
+				<value>
+					<ArmorRating_Blunt>40.5</ArmorRating_Blunt>
+				</value>
+			</li>
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName = "Apparel_MAGISuit"]/equippedStatOffsets</xpath>
+				<value>
+					<equippedStatOffsets>
+						<MoveSpeed>1</MoveSpeed>
+						<CarryWeight>60</CarryWeight>
+						<CarryBulk>8</CarryBulk>
+						<AimingDelayFactor>-0.2</AimingDelayFactor>
+					</equippedStatOffsets>
+				</value>
+			</li>
+			
+			<!-- ==== Apparel_BWDuster ==== -->
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName = "Apparel_BWDuster"]/statBases/StuffEffectMultiplierArmor</xpath>
+				<value>
+					<StuffEffectMultiplierArmor>6</StuffEffectMultiplierArmor>
+					<Bulk>7.5</Bulk>
+					<WornBulk>1</WornBulk>
+				</value>
+			</li>
+			
+			<!-- ==== Apparel_BWWidowVeil ==== -->
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName = "Apparel_BWWidowVeil"]/statBases</xpath>
+				<value>
+					<Bulk>2</Bulk>
+					<WornBulk>1</WornBulk>
+				</value>
+			</li>
+			
+			<!-- ==== Apparel_BWMAGISuitHelm ==== -->
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName = "Apparel_BWMAGISuitHelm"]/statBases/Mass</xpath>
+				<value>
+					<Mass>4</Mass>
+					<Bulk>8</Bulk>
+					<WornBulk>2</WornBulk>
+				</value>
+			</li>
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName = "Apparel_BWMAGISuitHelm"]/statBases/ArmorRating_Sharp</xpath>
+				<value>
+					<ArmorRating_Sharp>14.4</ArmorRating_Sharp>
+				</value>
+			</li>
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName = "Apparel_BWMAGISuitHelm"]/statBases/ArmorRating_Blunt</xpath>
+				<value>
+					<ArmorRating_Blunt>32.4</ArmorRating_Blunt>
+				</value>
+			</li>
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName = "Apparel_BWMAGISuitHelm"]/equippedStatOffsets/ShootingAccuracyPawn</xpath>
+				<value>
+					<AimingAccuracy>0.2</AimingAccuracy>
+				</value>
+			</li>
+			
+			<!-- ==== Apparel_BWReaverHelm ==== -->
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName = "Apparel_BWReaverHelm"]/statBases/Mass</xpath>
+				<value>
+					<Mass>6</Mass>
+					<Bulk>12</Bulk>
+					<WornBulk>4</WornBulk>
+				</value>
+			</li>
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName = "Apparel_BWReaverHelm"]/statBases/ArmorRating_Sharp</xpath>
+				<value>
+					<ArmorRating_Sharp>16</ArmorRating_Sharp>
+				</value>
+			</li>
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName = "Apparel_BWReaverHelm"]/statBases/ArmorRating_Blunt</xpath>
+				<value>
+					<ArmorRating_Blunt>37.8</ArmorRating_Blunt>
+				</value>
+			</li>
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName = "Apparel_BWReaverHelm"]</xpath>
+				<value>
+					<equippedStatOffsets>
+						<AimingAccuracy>-0.3</AimingAccuracy>
+					</equippedStatOffsets>
+				</value>
+			</li>
+		</operations>
+	</Operation>
+</Patch>

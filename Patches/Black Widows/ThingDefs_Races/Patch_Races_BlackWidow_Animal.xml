@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+	<!-- Black Widow alien race. -->
+	<Operation Class="PatchOperationSequence">
+		<success>Always</success>
+		<operations>
+			<!-- Check for the mod. -->
+			<li Class="CombatExtended.PatchOperationFindMod">
+				<modName>Black Widows 2.0</modName>
+			</li>
+
+			<!-- BWFlooferMoth  -->
+			<!-- Combat -->
+			<li Class="PatchOperationAddModExtension">
+				<xpath>Defs/ThingDef[defName="BWFlooferMoth"]</xpath>
+				<value>
+					<li Class="CombatExtended.RacePropertiesExtensionCE">
+						<bodyShape>QuadrupedLow</bodyShape>
+					</li>
+				</value>
+			</li>
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName = "BWFlooferMoth"]/statBases</xpath>
+				<value>
+					<MeleeCritChance>0.38</MeleeCritChance>
+					<MeleeParryChance>0.46</MeleeParryChance>
+					<MeleeDodgeChance>0.07</MeleeDodgeChance>
+				</value>
+			</li>
+			<!-- Unarmed -->
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="BWFlooferMoth"]/tools</xpath>
+				<value>
+					<tools>
+					  <li Class="CombatExtended.ToolCE">
+						<label>psionic gem</label>
+						<capacities>
+						  <li>Blunt</li>
+						</capacities>
+						<power>22</power>
+						<cooldownTime>2.52</cooldownTime>
+						<linkedBodyPartsGroup>HornAttackTool</linkedBodyPartsGroup>
+						<surpriseAttack>
+						  <extraMeleeDamages>
+							<li>
+							  <def>Stun</def>
+							  <amount>45</amount>
+							</li>
+						  </extraMeleeDamages>
+						</surpriseAttack>	
+						<chanceFactor>1.5</chanceFactor>
+						<armorPenetrationBlunt>4</armorPenetrationBlunt>
+					  </li>
+					  <li Class="CombatExtended.ToolCE">
+						<capacities>
+						  <li>Bite</li>
+						</capacities>
+						<power>18</power>
+						<cooldownTime>2.07</cooldownTime>
+						<linkedBodyPartsGroup>Teeth</linkedBodyPartsGroup>
+						<chanceFactor>0.7</chanceFactor>
+						<armorPenetrationBlunt>1.8</armorPenetrationBlunt>
+						<armorPenetrationSharp>0.01</armorPenetrationSharp>
+					  </li>
+					  <li Class="CombatExtended.ToolCE">
+						<label>left wing</label>
+						<capacities>
+						  <li>Blunt</li>
+						</capacities>
+						<power>22</power>
+						<cooldownTime>3.09</cooldownTime>
+						<linkedBodyPartsGroup>FrontLeftLeg</linkedBodyPartsGroup>
+						<armorPenetrationBlunt>4.5</armorPenetrationBlunt>
+					  </li>
+					  <li Class="CombatExtended.ToolCE">
+						<label>right wing</label>
+						<capacities>
+						  <li>Blunt</li>
+						</capacities>
+						<power>22</power>
+						<cooldownTime>3.09</cooldownTime>
+						<linkedBodyPartsGroup>FrontRightLeg</linkedBodyPartsGroup>
+						<armorPenetrationBlunt>4.5</armorPenetrationBlunt>
+					  </li>
+					  <li Class="CombatExtended.ToolCE">
+						<label>head</label>
+						<capacities>
+						  <li>Blunt</li>
+						</capacities>
+						<power>4</power>
+						<cooldownTime>5.05</cooldownTime>
+						<linkedBodyPartsGroup>HeadAttackTool</linkedBodyPartsGroup>
+						<ensureLinkedBodyPartsGroupAlwaysUsable>true</ensureLinkedBodyPartsGroupAlwaysUsable>
+						<chanceFactor>0.2</chanceFactor>
+						<armorPenetrationBlunt>1</armorPenetrationBlunt>
+					  </li>
+					</tools>
+				</value>
+			</li>
+
+			<!-- BWShadowWorm -->
+			<!-- Combat -->
+			<li Class="PatchOperationAddModExtension">
+				<xpath>Defs/ThingDef[defName="BWShadowWorm"]</xpath>
+				<value>
+					<li Class="CombatExtended.RacePropertiesExtensionCE">
+						<bodyShape>QuadrupedLow</bodyShape>
+					</li>
+				</value>
+			</li>
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName = "BWShadowWorm"]/statBases</xpath>
+				<value>
+					<MeleeCritChance>0.18</MeleeCritChance>
+					<MeleeParryChance>0.27</MeleeParryChance>
+					<MeleeDodgeChance>0.07</MeleeDodgeChance>
+				</value>
+			</li>
+			<!-- Unarmed -->
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="BWShadowWorm"]/tools</xpath>
+				<value>
+					<tools>
+						<li Class="CombatExtended.ToolCE">
+							<capacities>
+							  <li>Bite</li>
+							</capacities>
+							<power>10</power>
+							<cooldownTime>2.23</cooldownTime>
+							<linkedBodyPartsGroup>Mouth</linkedBodyPartsGroup>
+							<chanceFactor>0.7</chanceFactor>
+							<armorPenetrationBlunt>0.64</armorPenetrationBlunt>
+							<armorPenetrationSharp>0.01</armorPenetrationSharp>
+						</li>
+						<li Class="CombatExtended.ToolCE">
+							<label>head</label>
+							<capacities>
+							  <li>Blunt</li>
+							</capacities>
+							<power>6</power>
+							<cooldownTime>2.93</cooldownTime>
+							<linkedBodyPartsGroup>HeadAttackTool</linkedBodyPartsGroup>
+							<ensureLinkedBodyPartsGroupAlwaysUsable>true</ensureLinkedBodyPartsGroupAlwaysUsable>
+							<chanceFactor>0.2</chanceFactor>
+							<armorPenetrationBlunt>1.92</armorPenetrationBlunt>
+						</li>
+						<li Class="CombatExtended.ToolCE">
+							<label>left claw</label>
+							<capacities>
+							  <li>Poke</li>
+							</capacities>
+							<power>4</power>
+							<cooldownTime>2.65</cooldownTime>
+							<linkedBodyPartsGroup>Mouth</linkedBodyPartsGroup>
+							<armorPenetrationBlunt>1.28</armorPenetrationBlunt>
+						</li>
+						<li Class="CombatExtended.ToolCE">
+							<label>right claw</label>
+							<capacities>
+							  <li>Poke</li>
+							</capacities>
+							<power>4</power>
+							<cooldownTime>2.65</cooldownTime>
+							<linkedBodyPartsGroup>Mouth</linkedBodyPartsGroup>
+							<armorPenetrationBlunt>1.28</armorPenetrationBlunt>
+						</li>
+					</tools>
+				</value>
+			</li>
+		</operations>
+	</Operation>
+</Patch>

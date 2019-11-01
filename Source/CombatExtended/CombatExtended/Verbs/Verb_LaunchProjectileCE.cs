@@ -156,6 +156,13 @@ namespace CombatExtended
             }
         }
 
+        private bool IsAttacking => ShooterPawn?.CurJobDef == JobDefOf.AttackStatic || ShooterPawn?.stances?.curStance is Stance_Warmup;
+
+
+        #endregion
+
+        #region Methods
+
         public override bool Available()
         {
             // This part copied from vanilla Verb_LaunchProjectile
@@ -171,18 +178,13 @@ namespace CombatExtended
             }
 
             // Add check for reload
-            if (Projectile == null)
+            if (Projectile == null || (IsAttacking && CompAmmo != null && !CompAmmo.CanBeFiredNow))
             {
                 CompAmmo?.TryStartReload();
                 return false;
             }
-
             return true;
         }
-
-        #endregion
-
-        #region Methods
 
         /// <summary>
         /// Gets caster's weapon handling based on if it's a pawn or a turret
@@ -290,7 +292,7 @@ namespace CombatExtended
                         targetRange.min = victimVert.BottomHeight;
                         targetRange.max = victimVert.MiddleHeight;
                     }
-                    targetHeight = targetRange.Average;
+                    targetHeight = VerbPropsCE.ignorePartialLoSBlocker ? 0 : targetRange.Average;
                 }
                 angleRadians += ProjectileCE.GetShotAngle(ShotSpeed, (newTargetLoc - sourceLoc).magnitude, targetHeight - ShotHeight, Projectile.projectile.flyOverhead, projectilePropsCE.Gravity);
             }
@@ -319,28 +321,8 @@ namespace CombatExtended
             float minX = -maxX;
             float maxY = recoil;
             float minY = -recoil / 3;
-            /*
-            switch (VerbPropsCE.recoilPattern)
-            {
-                case RecoilPattern.None:
-            		return;
-                case RecoilPattern.Regular:
-                    float num = VerbPropsCE.recoilAmount / 3;
-                    minX = -(num / 3);
-                    maxX = num;
-                    minY = -num;
-                    maxY = VerbPropsCE.recoilAmount;
-                    break;
-                case RecoilPattern.Mounted:
-                    float num2 = VerbPropsCE.recoilAmount / 3;
-                    minX = -num2;
-                    maxX = num2;
-                    minY = -num2;
-                    maxY = VerbPropsCE.recoilAmount;
-                    break;
-            }
-            */
-            float recoilMagnitude = Mathf.Pow((5 - ShootingAccuracy), (Mathf.Min(10, numShotsFired) / 6.25f));
+
+            float recoilMagnitude = numShotsFired == 0 ? 0 : Mathf.Pow((5 - ShootingAccuracy), (Mathf.Min(10, numShotsFired) / 6.25f));
 
             rotation += recoilMagnitude * UnityEngine.Random.Range(minX, maxX);
             angle += Mathf.Deg2Rad * recoilMagnitude * UnityEngine.Random.Range(minY, maxY);
@@ -495,20 +477,21 @@ namespace CombatExtended
             if (ShooterPawn != null)
             {
                 // Check for capable of violence
-                if (ShooterPawn.story != null
-          && ShooterPawn.story.WorkTagIsDisabled(WorkTags.Violent))
+                if (ShooterPawn.story != null && ShooterPawn.story.WorkTagIsDisabled(WorkTags.Violent))
                 {
                     report = "IsIncapableOfViolenceLower".Translate(ShooterPawn.Name.ToStringShort);
                     return false;
                 }
 
                 // Check for apparel
+                bool isTurretOperator = caster.def.building?.IsTurret ?? false;
                 if (ShooterPawn.apparel != null)
                 {
                     List<Apparel> wornApparel = ShooterPawn.apparel.WornApparel;
                     foreach (Apparel current in wornApparel)
                     {
-                        if (!current.AllowVerbCast(root, caster.Map, targ, this))
+                        //pawns can use turrets while wearing shield belts, but the shield is disabled for the duration via Harmony patch (see Harmony-ShieldBelt.cs)
+                        if (!current.AllowVerbCast(root, caster.Map, targ, this) && !(current is ShieldBelt && isTurretOperator))
                         {
                             report = "Shooting disallowed by " + current.LabelShort;
                             return false;
@@ -563,7 +546,11 @@ namespace CombatExtended
 
                 //New aiming algorithm
                 projectile.canTargetSelf = false;
-                projectile.minCollisionSqr = (sourceLoc - currentTarget.Cell.ToIntVec2.ToVector2Shifted()).sqrMagnitude;
+
+                var targDist = (sourceLoc - currentTarget.Cell.ToIntVec2.ToVector2Shifted()).magnitude;
+                if (targDist <= 2)
+                    targDist *= 2;  // Double to account for divide by 4 in ProjectileCE minimum collision distance calculations
+                projectile.minCollisionSqr = Mathf.Pow(targDist, 2);
                 projectile.intendedTarget = currentTarget.Thing;
                 projectile.mount = caster.Position.GetThingList(caster.Map).FirstOrDefault(t => t is Pawn && t != caster);
                 projectile.AccuracyFactor = report.accuracyFactor * report.swayDegrees * ((numShotsFired + 1) * 0.75f);
@@ -580,6 +567,10 @@ namespace CombatExtended
             }
             pelletMechanicsOnly = false;
             numShotsFired++;
+            if (CompAmmo != null && !CompAmmo.CanBeFiredNow)
+            {
+                CompAmmo?.TryStartReload();
+            }
             return true;
         }
 
@@ -767,9 +758,10 @@ namespace CombatExtended
                 }
 
                 // Add validator to parameters
-                foreach (IntVec3 curCell in SightUtility.GetCellsOnLine(shotSource, targetLoc.ToVector3()))
+                foreach (IntVec3 curCell in SightUtility.GetCellsOnLine(shotSource, targetLoc.ToVector3(), caster.Map))
                 {
-                    if (Controller.settings.DebugDrawPartialLoSChecks) caster.Map.debugDrawer.FlashCell(curCell, 0.4f);
+                    if (Controller.settings.DebugDrawPartialLoSChecks)
+                        caster.Map.debugDrawer.FlashCell(curCell, 0.4f);
                     if (curCell != shotSource.ToIntVec3() && curCell != targetLoc && !CanShootThroughCell(curCell))
                     {
                         return false;

@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+	<!-- Thrumkin -->
+	<Operation Class="PatchOperationSequence">
+		<success>Always</success>
+		<operations>
+			<!-- Checking for the mod -->
+			<li Class="CombatExtended.PatchOperationFindMod">
+				<modName>[SYR] Thrumkin</modName>
+			</li>
+			<!-- Combat -->
+			<li Class="PatchOperationAddModExtension">
+				<xpath>Defs/AlienRace.ThingDef_AlienRace[defName="Thrumkin"]</xpath>
+				<value>
+					<li Class="CombatExtended.RacePropertiesExtensionCE">
+						<bodyShape>Humanoid</bodyShape>
+					</li>
+				</value>
+			</li>
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/AlienRace.ThingDef_AlienRace[defName="Thrumkin"]/comps</xpath>
+				<value>
+					<li>
+						<compClass>CombatExtended.CompPawnGizmo</compClass>
+					</li>
+					<li Class="CombatExtended.CompProperties_Suppressable" />
+				</value>
+			</li>
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/AlienRace.ThingDef_AlienRace[defName = "Thrumkin"]/statBases</xpath>
+				<value>
+					<AimingAccuracy>0.9</AimingAccuracy>
+					<MeleeCritChance>1.34</MeleeCritChance>
+					<MeleeParryChance>1.27</MeleeParryChance>
+					<Suppressability>0.8</Suppressability>
+					<ReloadSpeed>0.9</ReloadSpeed>
+					<MeleeDodgeChance>1.06</MeleeDodgeChance>
+				</value>
+			</li>
+			<!-- Unarmed -->
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/AlienRace.ThingDef_AlienRace[defName="Thrumkin"]/tools</xpath>
+				<value>
+					<tools>
+						<li Class="CombatExtended.ToolCE">
+							<label>horn</label>
+							<capacities>
+								<li>Scratch</li>
+							</capacities>
+							<power>34</power>
+							<cooldownTime>2.39</cooldownTime>
+							<linkedBodyPartsGroup>HornAttackTool</linkedBodyPartsGroup>
+							<chanceFactor>0.4</chanceFactor>
+							<armorPenetrationSharp>0.25</armorPenetrationSharp>
+							<armorPenetrationBlunt>3.669</armorPenetrationBlunt>
+						</li>
+						<li Class="CombatExtended.ToolCE">
+							<label>horn</label>
+							<capacities>
+								<li>Stab</li>
+							</capacities>
+							<power>21</power>
+							<cooldownTime>2.39</cooldownTime>
+							<linkedBodyPartsGroup>HornAttackTool</linkedBodyPartsGroup>
+							<chanceFactor>0.4</chanceFactor>
+							<armorPenetrationSharp>2.45</armorPenetrationSharp>
+							<armorPenetrationBlunt>3.669</armorPenetrationBlunt>
+						</li>
+						<li Class="CombatExtended.ToolCE">
+							<label>left fist</label>
+							<capacities>
+								<li>Blunt</li>
+							</capacities>
+							<power>2</power>
+							<cooldownTime>1.12</cooldownTime>
+							<linkedBodyPartsGroup>LeftHand</linkedBodyPartsGroup>
+							<surpriseAttack>
+							<extraMeleeDamages>
+								<li>
+									<def>Stun</def>
+									<amount>20</amount>
+								</li>
+							</extraMeleeDamages>
+							</surpriseAttack>
+							<armorPenetrationBlunt>0.528</armorPenetrationBlunt>
+						</li>
+						<li Class="CombatExtended.ToolCE">
+							<label>right fist</label>
+							<capacities>
+								<li>Blunt</li>
+							</capacities>
+							<power>2</power>
+							<cooldownTime>1.12</cooldownTime>
+							<linkedBodyPartsGroup>RightHand</linkedBodyPartsGroup>
+							<surpriseAttack>
+								<extraMeleeDamages>
+									<li>
+										<def>Stun</def>
+										<amount>20</amount>
+									</li>
+								</extraMeleeDamages>
+							</surpriseAttack>
+							<armorPenetrationBlunt>0.528</armorPenetrationBlunt>
+						</li>
+						<li Class="CombatExtended.ToolCE">
+							<label>teeth</label>
+							<capacities>
+								<li>Bite</li>
+							</capacities>
+							<power>13</power>
+							<cooldownTime>1.9</cooldownTime>
+							<linkedBodyPartsGroup>Teeth</linkedBodyPartsGroup>
+							<chanceFactor>0.2</chanceFactor>
+							<armorPenetrationSharp>0.01</armorPenetrationSharp>
+							<armorPenetrationBlunt>1.467</armorPenetrationBlunt>
+						</li>
+						<li Class="CombatExtended.ToolCE">
+							<label>head</label>
+							<capacities>
+								<li>Blunt</li>
+							</capacities>
+							<power>3</power>
+							<cooldownTime>4.78</cooldownTime>
+							<linkedBodyPartsGroup>HeadAttackTool</linkedBodyPartsGroup>
+							<ensureLinkedBodyPartsGroupAlwaysUsable>true</ensureLinkedBodyPartsGroupAlwaysUsable>
+							<chanceFactor>0.3</chanceFactor>
+							<armorPenetrationBlunt>0.917</armorPenetrationBlunt>
+						</li>
+					</tools>
+				</value>
+			</li>
+		</operations>
+	</Operation>
+</Patch>

@@ -1,14 +1,14 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <Defs>
 
-    <ThingCategoryDef>
-      <defName>Ammo6x18mmCharged</defName>
-      <label>6x18mm Charged</label>
-      <parent>AmmoAdvanced</parent>
-      <iconPath>UI/Icons/ThingCategories/CaliberCharge</iconPath>
-    </ThingCategoryDef>
-	
-	<!-- ==================== AmmoSet ========================== -->
+  <ThingCategoryDef>
+    <defName>Ammo6x18mmCharged</defName>
+    <label>6x18mm Charged</label>
+    <parent>AmmoAdvanced</parent>
+    <iconPath>UI/Icons/ThingCategories/CaliberCharge</iconPath>
+  </ThingCategoryDef>
+
+  <!-- ==================== AmmoSet ========================== -->
 
   <CombatExtended.AmmoSetDef>
     <defName>AmmoSet_6x18mmCharged</defName>
@@ -19,14 +19,14 @@
       <Ammo_6x18mmCharged_Ion>Bullet_6x18mmCharged_Ion</Ammo_6x18mmCharged_Ion>
     </ammoTypes>
   </CombatExtended.AmmoSetDef>
-	
-	<!-- ==================== Ammo ========================== -->
+
+  <!-- ==================== Ammo ========================== -->
 
   <ThingDef Class="CombatExtended.AmmoDef" Name="6x18mmChargedBase" ParentName="SpacerSmallAmmoBase" Abstract="True">
     <description>Charged shot ammo used by advanced SMG designs.</description>
     <statBases>
-	  <Mass>0.01</Mass>
-	  <Bulk>0.02</Bulk>
+      <Mass>0.01</Mass>
+      <Bulk>0.02</Bulk>
     </statBases>
     <tradeTags>
       <li>CE_AutoEnableTrade</li>
@@ -74,10 +74,10 @@
       <MarketValue>0.89</MarketValue>
     </statBases>
     <ammoClass>Ionized</ammoClass>
-	<generateAllowChance>0</generateAllowChance>
+    <generateAllowChance>0</generateAllowChance>
   </ThingDef>
-	
-	<!-- ================== Projectiles ================== -->
+
+  <!-- ================== Projectiles ================== -->
 
   <ThingDef Class="CombatExtended.AmmoDef" Name="Base6x18mmChargedBullet" ParentName="BaseBullet" Abstract="true">
     <graphicData>
@@ -86,7 +86,7 @@
     </graphicData>
     <projectile Class="CombatExtended.ProjectilePropertiesCE">
       <damageDef>Bullet</damageDef>
-      <speed>90</speed>
+      <speed>120</speed>
     </projectile>
   </ThingDef>
 
@@ -94,14 +94,15 @@
     <defName>Bullet_6x18mmCharged</defName>
     <label>6x18mm Charged bullet</label>
     <projectile Class="CombatExtended.ProjectilePropertiesCE">
-      <damageAmountBase>8</damageAmountBase>
+      <damageAmountBase>10</damageAmountBase>
       <secondaryDamage>
         <li>
           <def>Bomb_Secondary</def>
-          <amount>5</amount>
+          <amount>3</amount>
         </li>
       </secondaryDamage>
-      <armorPenetrationBase>0.5</armorPenetrationBase>
+      <armorPenetrationSharp>8</armorPenetrationSharp>
+      <armorPenetrationBlunt>14.4</armorPenetrationBlunt>
     </projectile>
   </ThingDef>
 
@@ -113,10 +114,11 @@
       <secondaryDamage>
         <li>
           <def>Bomb_Secondary</def>
-          <amount>2</amount>
+          <amount>1</amount>
         </li>
       </secondaryDamage>
-      <armorPenetrationBase>0.6</armorPenetrationBase>
+      <armorPenetrationSharp>16</armorPenetrationSharp>
+      <armorPenetrationBlunt>14.4</armorPenetrationBlunt>
     </projectile>
   </ThingDef>
 
@@ -128,14 +130,15 @@
       <secondaryDamage>
         <li>
           <def>EMP</def>
-          <amount>6</amount>
+          <amount>5</amount>
         </li>
       </secondaryDamage>
-      <armorPenetrationBase>0.5</armorPenetrationBase>
+      <armorPenetrationSharp>12</armorPenetrationSharp>
+      <armorPenetrationBlunt>14.4</armorPenetrationBlunt>
     </projectile>
   </ThingDef>
-  
-	<!-- ==================== Recipes ========================== -->
+
+  <!-- ==================== Recipes ========================== -->
 
   <RecipeDef ParentName="ChargeAmmoRecipeBase">
     <defName>MakeAmmo_6x18mmCharged</defName>
@@ -241,5 +244,5 @@
     </products>
     <workAmount>7500</workAmount>
   </RecipeDef>
-	
+
 </Defs>

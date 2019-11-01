@@ -10,8 +10,8 @@
 			<MeleeDodgeChance>0.08</MeleeDodgeChance>
 			<MeleeCritChance>0.79</MeleeCritChance>
 			<MeleeParryChance>0.51</MeleeParryChance>
-			<ArmorRating_Blunt>0.10</ArmorRating_Blunt>
-			<ArmorRating_Sharp>0.125</ArmorRating_Sharp>
+			<ArmorRating_Blunt>0.105</ArmorRating_Blunt>
+			<ArmorRating_Sharp>0.07</ArmorRating_Sharp>
 		</value>
 	</Operation>
 
@@ -28,54 +28,43 @@
 				<li Class="CombatExtended.ToolCE">
 					<label>tusk</label>
 					<capacities>
-						<li>Cut</li>
+						<li>Poke</li>
 					</capacities>
-					<power>33</power>
-					<cooldownTime>2</cooldownTime>
+					<power>67</power>
+					<cooldownTime>3.57</cooldownTime>
 					<linkedBodyPartsGroup>TuskAttackTool</linkedBodyPartsGroup>
-					<armorPenetration>0.261</armorPenetration>
-				</li>
-				<li Class="CombatExtended.ToolCE">
-					<label>tusk</label>
-					<capacities>
-						<li>Stab</li>
-					</capacities>
-					<power>33</power>
-					<cooldownTime>2</cooldownTime>
-					<chanceFactor>0.65</chanceFactor>
-					<linkedBodyPartsGroup>TuskAttackTool_2</linkedBodyPartsGroup>
-					<armorPenetration>0.489</armorPenetration>
+					<armorPenetrationBlunt>31.226</armorPenetrationBlunt>	
 				</li>
 				<li Class="CombatExtended.ToolCE">
 					<label>left foot</label>
 					<capacities>
 						<li>Blunt</li>
 					</capacities>
-					<power>17</power>
-					<cooldownTime>1.65</cooldownTime>
+					<power>31</power>
+					<cooldownTime>2.57</cooldownTime>
 					<linkedBodyPartsGroup>FrontLeftLeg</linkedBodyPartsGroup>
-					<armorPenetration>0.17</armorPenetration>
+					<armorPenetrationBlunt>12.960</armorPenetrationBlunt>	
 				</li>
 				<li Class="CombatExtended.ToolCE">
 					<label>right foot</label>
 					<capacities>
 						<li>Blunt</li>
 					</capacities>
-					<power>17</power>
-					<cooldownTime>1.65</cooldownTime>
+					<power>31</power>
+					<cooldownTime>2.57</cooldownTime>
 					<linkedBodyPartsGroup>FrontRightLeg</linkedBodyPartsGroup>
-					<armorPenetration>0.17</armorPenetration>
+					<armorPenetrationBlunt>12.960</armorPenetrationBlunt>	
 				</li>
 				<li Class="CombatExtended.ToolCE">
 					<label>head</label>
 					<capacities>
 						<li>Blunt</li>
 					</capacities>
-					<power>12</power>
-					<cooldownTime>1.65</cooldownTime>
+					<power>55</power>
+					<cooldownTime>3.99</cooldownTime>
 					<linkedBodyPartsGroup>HeadAttackTool</linkedBodyPartsGroup>
 					<chanceFactor>0.2</chanceFactor>
-					<armorPenetration>0.133</armorPenetration>
+					<armorPenetrationBlunt>25</armorPenetrationBlunt>	
 				</li>
 			</tools>
 		</value>
@@ -90,6 +79,13 @@
 		</value>
 	</Operation>
 
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/PawnKindDef[defName="Elephant"]/combatPower</xpath>
+		<value>
+			<combatPower>250</combatPower>
+		</value>
+	</Operation>
+
 	<!-- ========== Megasloth ========== -->
 
 	<Operation Class="PatchOperationAdd">
@@ -98,8 +94,6 @@
 			<MeleeDodgeChance>0.06</MeleeDodgeChance>
 			<MeleeCritChance>0.41</MeleeCritChance>
 			<MeleeParryChance>0.48</MeleeParryChance>
-			<ArmorRating_Blunt>0.10</ArmorRating_Blunt>
-			<ArmorRating_Sharp>0.125</ArmorRating_Sharp>
 		</value>
 	</Operation>
 
@@ -112,40 +106,33 @@
 					<capacities>
 						<li>Slash</li>
 					</capacities>
-					<power>27</power>
-					<cooldownTime>2.3</cooldownTime>
+					<power>59</power>
+					<cooldownTime>2.44</cooldownTime>
 					<linkedBodyPartsGroup>FrontLeftPaw</linkedBodyPartsGroup>
-					<armorPenetration>0.282</armorPenetration>
+					<armorPenetrationSharp>0.7</armorPenetrationSharp>
+					<armorPenetrationBlunt>3.5</armorPenetrationBlunt>
 				</li>
 				<li Class="CombatExtended.ToolCE">
 					<label>right claw</label>
 					<capacities>
 						<li>Slash</li>
 					</capacities>
-					<power>27</power>
-					<cooldownTime>2.3</cooldownTime>
+					<power>59</power>
+					<cooldownTime>2.44</cooldownTime>
 					<linkedBodyPartsGroup>FrontRightPaw</linkedBodyPartsGroup>
-					<armorPenetration>0.282</armorPenetration>
-				</li>
-				<li Class="CombatExtended.ToolCE">
-					<capacities>
-						<li>Bite</li>
-					</capacities>
-					<power>21</power>
-					<cooldownTime>2.2</cooldownTime>
-					<linkedBodyPartsGroup>Teeth</linkedBodyPartsGroup>
-					<armorPenetration>0.282</armorPenetration>
+					<armorPenetrationSharp>0.7</armorPenetrationSharp>
+					<armorPenetrationBlunt>3.5</armorPenetrationBlunt>
 				</li>
 				<li Class="CombatExtended.ToolCE">
 					<label>head</label>
 					<capacities>
 						<li>Blunt</li>
 					</capacities>
-					<power>13</power>
-					<cooldownTime>1.65</cooldownTime>
+					<power>24</power>
+					<cooldownTime>3.17</cooldownTime>
 					<linkedBodyPartsGroup>HeadAttackTool</linkedBodyPartsGroup>
 					<chanceFactor>0.2</chanceFactor>
-					<armorPenetration>0.14</armorPenetration>
+					<armorPenetrationBlunt>10</armorPenetrationBlunt>
 				</li>
 			</tools>
 		</value>
@@ -160,6 +147,13 @@
 		</value>
 	</Operation>
 
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/PawnKindDef[defName="Megasloth"]/combatPower</xpath>
+		<value>
+			<combatPower>225</combatPower>
+		</value>
+	</Operation>
+
 	<!-- ========== Thrumbo ========== -->
 
 	<Operation Class="PatchOperationAdd">
@@ -168,20 +162,28 @@
 			<MeleeDodgeChance>0.09</MeleeDodgeChance>
 			<MeleeCritChance>0.76</MeleeCritChance>
 			<MeleeParryChance>0.45</MeleeParryChance>
+			<Flammability>0.6</Flammability>
 		</value>
 	</Operation>
 
 	<Operation Class="PatchOperationReplace">
 		<xpath>Defs/ThingDef[defName="Thrumbo"]/statBases/ArmorRating_Blunt</xpath>
 		<value>
-			<ArmorRating_Blunt>0.2</ArmorRating_Blunt>
+			<ArmorRating_Blunt>21</ArmorRating_Blunt>
 		</value>
 	</Operation>
 
 	<Operation Class="PatchOperationReplace">
 		<xpath>Defs/ThingDef[defName="Thrumbo"]/statBases/ArmorRating_Sharp</xpath>
 		<value>
-			<ArmorRating_Sharp>0.3</ArmorRating_Sharp>
+			<ArmorRating_Sharp>14</ArmorRating_Sharp>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Thrumbo"]/statBases/ArmorRating_Heat</xpath>
+		<value>
+			<ArmorRating_Heat>0.6</ArmorRating_Heat>
 		</value>
 	</Operation>
 
@@ -201,50 +203,53 @@
 					<capacities>
 						<li>Cut</li>
 					</capacities>
-					<power>30</power>
-					<cooldownTime>1.85</cooldownTime>
+					<power>46</power>
+					<cooldownTime>2.52</cooldownTime>
 					<linkedBodyPartsGroup>HornAttackTool</linkedBodyPartsGroup>
-					<armorPenetration>0.243</armorPenetration>
+					<armorPenetrationSharp>0.54</armorPenetrationSharp>
+					<armorPenetrationBlunt>4</armorPenetrationBlunt>
 				</li>
 				<li Class="CombatExtended.ToolCE">
 					<label>horn</label>
 					<capacities>
 						<li>Stab</li>
 					</capacities>
-					<power>30</power>
-					<cooldownTime>1.85</cooldownTime>
+					<power>42</power>
+					<cooldownTime>2.52</cooldownTime>
 					<chanceFactor>0.65</chanceFactor>
 					<linkedBodyPartsGroup>HornAttackTool_2</linkedBodyPartsGroup>
-					<armorPenetration>0.457</armorPenetration>
+					<armorPenetrationSharp>8</armorPenetrationSharp>
+					<armorPenetrationBlunt>4</armorPenetrationBlunt>
 				</li>
 				<li Class="CombatExtended.ToolCE">
 					<label>left foot</label>
 					<capacities>
 						<li>Blunt</li>
 					</capacities>
-					<power>16</power>
-					<cooldownTime>1.65</cooldownTime>
+					<power>21</power>
+					<cooldownTime>2.33</cooldownTime>
 					<linkedBodyPartsGroup>FrontLeftLeg</linkedBodyPartsGroup>
-					<armorPenetration>0.163</armorPenetration>
+					<armorPenetrationBlunt>8.640</armorPenetrationBlunt>
 				</li>
 				<li Class="CombatExtended.ToolCE">
 					<label>right foot</label>
 					<capacities>
 						<li>Blunt</li>
 					</capacities>
-					<power>16</power>
-					<cooldownTime>1.65</cooldownTime>
+					<power>21</power>
+					<cooldownTime>2.33</cooldownTime>
 					<linkedBodyPartsGroup>FrontRightLeg</linkedBodyPartsGroup>
-					<armorPenetration>0.163</armorPenetration>
+					<armorPenetrationBlunt>8.640</armorPenetrationBlunt>
 				</li>
 				<li Class="CombatExtended.ToolCE">
 					<capacities>
 						<li>Bite</li>
 					</capacities>
-					<power>20</power>
-					<cooldownTime>2</cooldownTime>
+					<power>19</power>
+					<cooldownTime>1.62</cooldownTime>
 					<linkedBodyPartsGroup>Teeth</linkedBodyPartsGroup>
-					<armorPenetration>0.273</armorPenetration>
+					<armorPenetrationSharp>0.03</armorPenetrationSharp>
+					<armorPenetrationBlunt>2.016</armorPenetrationBlunt>
 				</li>
 				<li Class="CombatExtended.ToolCE">
 					<label>head</label>
@@ -252,10 +257,10 @@
 						<li>Blunt</li>
 					</capacities>
 					<power>11</power>
-					<cooldownTime>1.65</cooldownTime>
+					<cooldownTime>2.52</cooldownTime>
 					<linkedBodyPartsGroup>HeadAttackTool</linkedBodyPartsGroup>
 					<chanceFactor>0.2</chanceFactor>
-					<armorPenetration>0.125</armorPenetration>
+					<armorPenetrationBlunt>4</armorPenetrationBlunt>
 				</li>
 			</tools>
 		</value>
@@ -267,6 +272,13 @@
 			<li Class="CombatExtended.RacePropertiesExtensionCE">
 				<bodyShape>Birdlike</bodyShape>
 			</li>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/PawnKindDef[defName="Thrumbo"]/combatPower</xpath>
+		<value>
+			<combatPower>450</combatPower>
 		</value>
 	</Operation>
 

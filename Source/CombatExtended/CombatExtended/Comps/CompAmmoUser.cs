@@ -49,7 +49,10 @@ namespace CombatExtended
         {
             get
             {
-                if (CompEquippable == null || CompEquippable.PrimaryVerb == null || CompEquippable.PrimaryVerb.caster == null)
+                if (CompEquippable == null 
+                    || CompEquippable.PrimaryVerb == null 
+                    || CompEquippable.PrimaryVerb.caster == null
+                    || ((CompEquippable?.parent?.ParentHolder as Pawn_InventoryTracker)?.pawn is Pawn holderPawn && holderPawn != CompEquippable?.PrimaryVerb?.CasterPawn))
                 {
                     return null;
                 }
@@ -88,7 +91,7 @@ namespace CombatExtended
         {
             get
             {
-                return !UseAmmo || ((HasMagazine && CurMagCount > 0) || (!HasMagazine && HasAmmo));
+                return (HasMagazine && CurMagCount > 0) || (!HasMagazine && (HasAmmo || !UseAmmo));
             }
         }
         public bool HasAmmo
@@ -106,7 +109,7 @@ namespace CombatExtended
                 return UseAmmo ? currentAmmoInt : null;
             }
         }
-        public ThingDef CurAmmoProjectile => Props.ammoSet?.ammoTypes?.FirstOrDefault(x => x.ammo == CurrentAmmo).projectile;
+        public ThingDef CurAmmoProjectile => Props.ammoSet?.ammoTypes?.FirstOrDefault(x => x.ammo == CurrentAmmo)?.projectile ?? parent.def.Verbs.FirstOrDefault().defaultProjectile;
         public CompInventory CompInventory
         {
             get
@@ -276,6 +279,10 @@ namespace CombatExtended
         {
             if (!HasMagazine)
             {
+                if (!CanBeFiredNow)
+                {
+                    DoOutOfAmmoAction();
+                }
                 return;
             }
             if (Wielder == null && turret == null)
@@ -300,6 +307,12 @@ namespace CombatExtended
                 }
             }
 
+            if (Props.reloadOneAtATime && UseAmmo && selectedAmmo == CurrentAmmo && CurMagCount == Props.magazineSize)
+            {
+                //Because reloadOneAtATime weapons don't dump their mag at the start of a reload, have to stop the reloading process here if the mag was already full
+                return;
+            }
+
             // Issue reload job
             if (Wielder != null)
             {
@@ -320,13 +333,13 @@ namespace CombatExtended
         /// <remarks>
         /// Failure to unload occurs if the weapon doesn't use a magazine.
         /// </remarks>
-        public bool TryUnload()
+        public bool TryUnload(bool forceUnload = false)
         {
             Thing outThing;
-            return TryUnload(out outThing);
+            return TryUnload(out outThing, forceUnload);
         }
 
-        public bool TryUnload(out Thing droppedAmmo)
+        public bool TryUnload(out Thing droppedAmmo, bool forceUnload = false)
         {
             droppedAmmo = null;
             if (!HasMagazine || (Holder == null && turret == null))
@@ -334,6 +347,13 @@ namespace CombatExtended
 
             if (!UseAmmo || curMagCountInt == 0)
                 return true; // nothing to do but we aren't in a bad state either.  Claim success.
+
+            if (Props.reloadOneAtATime && !forceUnload && selectedAmmo == CurrentAmmo && turret == null)
+            {
+                //For reloadOneAtATime weapons that haven't been explicitly told to unload, and aren't switching their ammo type, skip unloading.
+                //The big advantage of a shotguns' reload mechanism is that you can add more shells without unloading the already loaded ones.
+                return true;
+            }
 
             // Add remaining ammo back to inventory
             Thing ammoThing = ThingMaker.MakeThing(currentAmmoInt);
@@ -478,6 +498,14 @@ namespace CombatExtended
             if (ammoThing != null)
             {
                 return true;
+            }
+
+            if (Props.reloadOneAtATime && CurMagCount > 0)
+            {
+                //Current mag already has a few rounds in, and the inventory doesn't have any more of that type.
+                //If we let this method pick a new selectedAmmo below, it would convert the already loaded rounds to a different type,
+                //so for OneAtATime weapons, we stop the process here here.
+                return false;
             }
 
             // Try finding ammo from different type

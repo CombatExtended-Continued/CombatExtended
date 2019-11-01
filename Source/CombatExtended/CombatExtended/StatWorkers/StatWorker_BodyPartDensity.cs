@@ -1,11 +1,14 @@
-﻿using RimWorld;
+﻿using System.Text;
+using RimWorld;
 using Verse;
 
 namespace CombatExtended
 {
-    public class StatWorker_BodyPartDensity : StatWorker
+    public abstract class StatWorker_BodyPartDensity : StatWorker
     {
-        private const float HealthScaleFactor = 0.05f;  // What % of health scale to use for density
+        protected abstract string UnitString { get; }
+
+        protected abstract float GetBaseValueFor(StatRequest req);
 
         public override bool ShouldShowFor(StatRequest req)
         {
@@ -14,14 +17,22 @@ namespace CombatExtended
 
         public override float GetValueUnfinalized(StatRequest req, bool applyPostProcess = true)
         {
+            var baseValue = GetBaseValueFor(req);
             var pawn = (Pawn)req.Thing;
-            return pawn.HealthScale * HealthScaleFactor;
+            return baseValue * pawn.HealthScale;
         }
 
         public override string GetExplanationUnfinalized(StatRequest req, ToStringNumberSense numberSense)
         {
+            var stringBuilder = new StringBuilder();
+            stringBuilder.AppendLine($"{"CE_StatsReport_BaseValue".Translate()}: {GetBaseValueFor(req)} {UnitString}");
+            stringBuilder.AppendLine();
+
             var pawn = (Pawn) req.Thing;
-            return $"Health scale: {pawn.HealthScale} x {HealthScaleFactor}";
+            stringBuilder.AppendLine($"{"StatsReport_HealthMultiplier".Translate(pawn.HealthScale)}: x{pawn.HealthScale.ToStringPercent()}");
+            stringBuilder.AppendLine();
+
+            return stringBuilder.ToString().Trim();
         }
     }
 }

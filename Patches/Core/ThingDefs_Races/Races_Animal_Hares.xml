@@ -18,12 +18,12 @@
 			<tools>
 				<li Class="CombatExtended.ToolCE">
 					<capacities>
-						<li>Bite</li>
+						<li>BiteBlunt</li>
 					</capacities>
-					<power>3</power>
-					<cooldownTime>1.65</cooldownTime>
+					<power>1</power>
+					<cooldownTime>1.26</cooldownTime>
 					<linkedBodyPartsGroup>Teeth</linkedBodyPartsGroup>
-					<armorPenetration>0.095</armorPenetration>
+					<armorPenetrationBlunt>0.250</armorPenetrationBlunt>
 				</li>
 				<li Class="CombatExtended.ToolCE">
 					<label>head</label>
@@ -31,10 +31,10 @@
 						<li>Blunt</li>
 					</capacities>
 					<power>1</power>
-					<cooldownTime>1.65</cooldownTime>
+					<cooldownTime>1.26</cooldownTime>
 					<linkedBodyPartsGroup>HeadAttackTool</linkedBodyPartsGroup>
 					<chanceFactor>0.2</chanceFactor>
-					<armorPenetration>0.048</armorPenetration>
+					<armorPenetrationBlunt>0.250</armorPenetrationBlunt>
 				</li>
 			</tools>
 		</value>
@@ -53,6 +53,13 @@
 			<li Class="CombatExtended.RacePropertiesExtensionCE">
 				<bodyShape>QuadrupedLow</bodyShape>
 			</li>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/PawnKindDef[@Name="HareBase"]/combatPower</xpath>
+		<value>
+			<combatPower>10</combatPower>
 		</value>
 	</Operation>
 
