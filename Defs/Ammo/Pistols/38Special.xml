@@ -1,126 +1,132 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <Defs>
 
-	<ThingCategoryDef>
-		<defName>Ammo38Special</defName>
-		<label>.38 Special</label>
-		<parent>AmmoPistols</parent>
+  <ThingCategoryDef>
+    <defName>Ammo38Special</defName>
+    <label>.38 Special</label>
+    <parent>AmmoPistols</parent>
     <iconPath>UI/Icons/ThingCategories/CaliberPistol</iconPath>
-	</ThingCategoryDef>
-	
-	<!-- ==================== AmmoSet ========================== -->
+  </ThingCategoryDef>
 
-	<CombatExtended.AmmoSetDef>
-		<defName>AmmoSet_38Special</defName>
-		<label>.38 Special</label>
-		<ammoTypes>
-			<Ammo_38Special_FMJ>Bullet_38Special_FMJ</Ammo_38Special_FMJ>
-			<Ammo_38Special_AP>Bullet_38Special_AP</Ammo_38Special_AP>
-			<Ammo_38Special_HP>Bullet_38Special_HP</Ammo_38Special_HP>
-		</ammoTypes>
-	</CombatExtended.AmmoSetDef>
-	
-	<!-- ==================== Ammo ========================== -->
+  <!-- ==================== AmmoSet ========================== -->
 
-	<ThingDef Class="CombatExtended.AmmoDef" Name="38SpecialBase" ParentName="SmallAmmoBase" Abstract="True">
-		<description>Ancient low-power revolver cartridge renowned for its manageability.</description>
-		<statBases>
-		<Mass>0.01</Mass>
-		<Bulk>0.02</Bulk>
-		</statBases>
-	<tradeTags>
-		<li>CE_AutoEnableTrade</li>
-		<li>CE_AutoEnableCrafting</li>
-	</tradeTags>
-		<thingCategories>
-			<li>Ammo38Special</li>
-		</thingCategories>
-	</ThingDef>
+  <CombatExtended.AmmoSetDef>
+    <defName>AmmoSet_38Special</defName>
+    <label>.38 Special</label>
+    <ammoTypes>
+      <Ammo_38Special_FMJ>Bullet_38Special_FMJ</Ammo_38Special_FMJ>
+      <Ammo_38Special_AP>Bullet_38Special_AP</Ammo_38Special_AP>
+      <Ammo_38Special_HP>Bullet_38Special_HP</Ammo_38Special_HP>
+    </ammoTypes>
+  </CombatExtended.AmmoSetDef>
 
-	<ThingDef Class="CombatExtended.AmmoDef" ParentName="38SpecialBase">
-		<defName>Ammo_38Special_FMJ</defName>
-		<label>.38 Special cartridge (FMJ)</label>
-		<graphicData>
-			<texPath>Things/Ammo/Pistol/FMJ</texPath>
-			<graphicClass>Graphic_StackCount</graphicClass>
-		</graphicData>
-		<statBases>
-			<MarketValue>0.05</MarketValue>
-		</statBases>
-		<ammoClass>FullMetalJacket</ammoClass>
-		<cookOffProjectile>Bullet_38Special_FMJ</cookOffProjectile>
-	</ThingDef>
+  <!-- ==================== Ammo ========================== -->
 
-	<ThingDef Class="CombatExtended.AmmoDef" ParentName="38SpecialBase">
-		<defName>Ammo_38Special_AP</defName>
-		<label>.38 Special cartridge (AP)</label>
-		<graphicData>
-			<texPath>Things/Ammo/Pistol/AP</texPath>
-			<graphicClass>Graphic_StackCount</graphicClass>
-		</graphicData>
-		<statBases>
-			<MarketValue>0.06</MarketValue>
-		</statBases>
-		<ammoClass>ArmorPiercing</ammoClass>
-		<cookOffProjectile>Bullet_38Special_AP</cookOffProjectile>
-	</ThingDef>
+  <ThingDef Class="CombatExtended.AmmoDef" Name="38SpecialBase" ParentName="SmallAmmoBase" Abstract="True">
+    <description>Ancient low-power revolver cartridge renowned for its manageability.</description>
+    <statBases>
+      <Mass>0.01</Mass>
+      <Bulk>0.02</Bulk>
+    </statBases>
+    <tradeTags>
+      <li>CE_AutoEnableTrade</li>
+      <li>CE_AutoEnableCrafting</li>
+    </tradeTags>
+    <thingCategories>
+      <li>Ammo38Special</li>
+    </thingCategories>
+  </ThingDef>
 
-	<ThingDef Class="CombatExtended.AmmoDef" ParentName="38SpecialBase">
-		<defName>Ammo_38Special_HP</defName>
-		<label>.38 Special cartridge (HP)</label>
-		<graphicData>
-			<texPath>Things/Ammo/Pistol/HP</texPath>
-			<graphicClass>Graphic_StackCount</graphicClass>
-		</graphicData>
-		<statBases>
-			<MarketValue>0.06</MarketValue>
-		</statBases>
-		<ammoClass>HollowPoint</ammoClass>
-		<cookOffProjectile>Bullet_38Special_HP</cookOffProjectile>
-	</ThingDef>
-	
-	<!-- ================== Projectiles ================== -->
+  <ThingDef Class="CombatExtended.AmmoDef" ParentName="38SpecialBase">
+    <defName>Ammo_38Special_FMJ</defName>
+    <label>.38 Special cartridge (FMJ)</label>
+    <graphicData>
+      <texPath>Things/Ammo/Pistol/FMJ</texPath>
+      <graphicClass>Graphic_StackCount</graphicClass>
+    </graphicData>
+    <statBases>
+      <MarketValue>0.05</MarketValue>
+    </statBases>
+    <ammoClass>FullMetalJacket</ammoClass>
+    <cookOffProjectile>Bullet_38Special_FMJ</cookOffProjectile>
+  </ThingDef>
 
-	<ThingDef Class="CombatExtended.AmmoDef" Name="Base38SpecialBullet" ParentName="BaseBullet" Abstract="true">
-		<graphicData>
-			<texPath>Things/Projectile/Bullet_Small</texPath>
-			<graphicClass>Graphic_Single</graphicClass>
-		</graphicData>
-		<projectile Class="CombatExtended.ProjectilePropertiesCE">
-			<damageDef>Bullet</damageDef>
-			<speed>75</speed>
-			<dropsCasings>true</dropsCasings>
-		</projectile>
-	</ThingDef>
+  <ThingDef Class="CombatExtended.AmmoDef" ParentName="38SpecialBase">
+    <defName>Ammo_38Special_AP</defName>
+    <label>.38 Special cartridge (AP)</label>
+    <graphicData>
+      <texPath>Things/Ammo/Pistol/AP</texPath>
+      <graphicClass>Graphic_StackCount</graphicClass>
+    </graphicData>
+    <statBases>
+      <MarketValue>0.06</MarketValue>
+    </statBases>
+    <ammoClass>ArmorPiercing</ammoClass>
+    <cookOffProjectile>Bullet_38Special_AP</cookOffProjectile>
+  </ThingDef>
 
-	<ThingDef Class="CombatExtended.AmmoDef" ParentName="Base38SpecialBullet">
-		<defName>Bullet_38Special_FMJ</defName>
-		<label>.38 Special bullet (FMJ)</label>
-		<projectile Class="CombatExtended.ProjectilePropertiesCE">
-			<damageAmountBase>9</damageAmountBase>
-			<armorPenetrationBase>0.257</armorPenetrationBase>
-		</projectile>
-	</ThingDef>
+  <ThingDef Class="CombatExtended.AmmoDef" ParentName="38SpecialBase">
+    <defName>Ammo_38Special_HP</defName>
+    <label>.38 Special cartridge (HP)</label>
+    <graphicData>
+      <texPath>Things/Ammo/Pistol/HP</texPath>
+      <graphicClass>Graphic_StackCount</graphicClass>
+    </graphicData>
+    <statBases>
+      <MarketValue>0.06</MarketValue>
+    </statBases>
+    <ammoClass>HollowPoint</ammoClass>
+    <cookOffProjectile>Bullet_38Special_HP</cookOffProjectile>
+  </ThingDef>
 
-	<ThingDef Class="CombatExtended.AmmoDef" ParentName="Base38SpecialBullet">
-		<defName>Bullet_38Special_AP</defName>
-		<label>.38 Special bullet (AP)</label>
-		<projectile Class="CombatExtended.ProjectilePropertiesCE">
-			<damageAmountBase>5</damageAmountBase>
-			<armorPenetrationBase>0.407</armorPenetrationBase>
-		</projectile>
-	</ThingDef>
+  <!-- ================== Projectiles ================== -->
 
-	<ThingDef Class="CombatExtended.AmmoDef" ParentName="Base38SpecialBullet">
-		<defName>Bullet_38Special_HP</defName>
-		<label>.38 Special bullet (HP)</label>
-		<projectile Class="CombatExtended.ProjectilePropertiesCE">
-			<damageAmountBase>13</damageAmountBase>
-			<armorPenetrationBase>0.107</armorPenetrationBase>
-		</projectile>
-	</ThingDef>
-  
-	<!-- ==================== Recipes ========================== -->
+  <ThingDef Class="CombatExtended.AmmoDef" Name="Base38SpecialBullet" ParentName="BaseBullet" Abstract="true">
+    <graphicData>
+      <texPath>Things/Projectile/Bullet_Small</texPath>
+      <graphicClass>Graphic_Single</graphicClass>
+    </graphicData>
+    <projectile Class="CombatExtended.ProjectilePropertiesCE">
+      <damageDef>Bullet</damageDef>
+      <speed>54</speed>
+      <dropsCasings>true</dropsCasings>
+    </projectile>
+  </ThingDef>
+
+  <ThingDef Class="CombatExtended.AmmoDef" ParentName="Base38SpecialBullet">
+    <defName>Bullet_38Special_FMJ</defName>
+    <label>.38 Special bullet (FMJ)</label>
+    <projectile Class="CombatExtended.ProjectilePropertiesCE">
+      <damageAmountBase>9</damageAmountBase>
+      <armorPenetrationBase>0.257</armorPenetrationBase>
+      <armorPenetrationSharp>0</armorPenetrationSharp>
+      <armorPenetrationBlunt>0</armorPenetrationBlunt>
+    </projectile>
+  </ThingDef>
+
+  <ThingDef Class="CombatExtended.AmmoDef" ParentName="Base38SpecialBullet">
+    <defName>Bullet_38Special_AP</defName>
+    <label>.38 Special bullet (AP)</label>
+    <projectile Class="CombatExtended.ProjectilePropertiesCE">
+      <damageAmountBase>5</damageAmountBase>
+      <armorPenetrationBase>0.407</armorPenetrationBase>
+      <armorPenetrationSharp>0</armorPenetrationSharp>
+      <armorPenetrationBlunt>0</armorPenetrationBlunt>
+    </projectile>
+  </ThingDef>
+
+  <ThingDef Class="CombatExtended.AmmoDef" ParentName="Base38SpecialBullet">
+    <defName>Bullet_38Special_HP</defName>
+    <label>.38 Special bullet (HP)</label>
+    <projectile Class="CombatExtended.ProjectilePropertiesCE">
+      <damageAmountBase>13</damageAmountBase>
+      <armorPenetrationBase>0.107</armorPenetrationBase>
+      <armorPenetrationSharp>0</armorPenetrationSharp>
+      <armorPenetrationBlunt>0</armorPenetrationBlunt>
+    </projectile>
+  </ThingDef>
+
+  <!-- ==================== Recipes ========================== -->
 
   <!-- Standard manufacture -->
   <RecipeDef ParentName="AmmoRecipeBase">
@@ -233,5 +239,5 @@
     </products>
     <workAmount>2750</workAmount>
   </RecipeDef>
-	
+
 </Defs>

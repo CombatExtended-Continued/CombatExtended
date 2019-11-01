@@ -6,7 +6,21 @@
   <Operation Class="PatchOperationReplace">
     <xpath>Defs/ThingDef[defName="Apparel_CowboyHat" or defName="Apparel_BowlerHat" or defName="Apparel_Tuque"]/statBases/StuffEffectMultiplierArmor</xpath>
     <value>
-      <StuffEffectMultiplierArmor>0.15</StuffEffectMultiplierArmor>
+      <StuffEffectMultiplierArmor>2</StuffEffectMultiplierArmor>
+    </value>
+  </Operation>
+
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/ThingDef[defName="Apparel_Tuque"]/apparel/layers/li[.="Overhead"]</xpath>
+    <value>
+      <li>MiddleHead</li>
+    </value>
+  </Operation>
+
+  <Operation Class="PatchOperationAdd">
+    <xpath>Defs/ThingDef[defName="Apparel_CowboyHat" or defName="Apparel_BowlerHat"]/apparel/layers</xpath>
+    <value>
+      <li>MiddleHead</li>
     </value>
   </Operation>
 
@@ -15,7 +29,7 @@
   <Operation Class="PatchOperationReplace">
     <xpath>Defs/ThingDef[defName="Apparel_TribalHeaddress"]/statBases/StuffEffectMultiplierArmor</xpath>
     <value>
-      <StuffEffectMultiplierArmor>0.12</StuffEffectMultiplierArmor>
+      <StuffEffectMultiplierArmor>5</StuffEffectMultiplierArmor>
     </value>
   </Operation>
 
@@ -31,14 +45,14 @@
   <Operation Class="PatchOperationReplace">
     <xpath>Defs/ThingDef[defName="Apparel_WarMask"]/statBases/StuffEffectMultiplierArmor</xpath>
     <value>
-      <StuffEffectMultiplierArmor>0.25</StuffEffectMultiplierArmor>
+      <StuffEffectMultiplierArmor>10</StuffEffectMultiplierArmor>
     </value>
   </Operation>
 
   <Operation Class="PatchOperationReplace">
     <xpath>Defs/ThingDef[defName="Apparel_WarVeil"]/statBases/StuffEffectMultiplierArmor</xpath>
     <value>
-      <StuffEffectMultiplierArmor>0.18</StuffEffectMultiplierArmor>
+      <StuffEffectMultiplierArmor>1</StuffEffectMultiplierArmor>
     </value>
   </Operation>
 
@@ -47,7 +61,7 @@
   <Operation Class="PatchOperationReplace">
     <xpath>Defs/ThingDef[defName="Apparel_SimpleHelmet"]/statBases/StuffEffectMultiplierArmor</xpath>
     <value>
-      <StuffEffectMultiplierArmor>0.4</StuffEffectMultiplierArmor>
+      <StuffEffectMultiplierArmor>4</StuffEffectMultiplierArmor>
     </value>
   </Operation>
 
@@ -78,14 +92,14 @@
   <Operation Class="PatchOperationAdd">
     <xpath>Defs/ThingDef[defName="Apparel_AdvancedHelmet"]/statBases</xpath>
     <value>
-      <ArmorRating_Sharp>0.525</ArmorRating_Sharp>
+      <ArmorRating_Sharp>8</ArmorRating_Sharp>
     </value>
   </Operation>
 
   <Operation Class="PatchOperationAdd">
     <xpath>Defs/ThingDef[defName="Apparel_AdvancedHelmet"]/statBases</xpath>
     <value>
-      <ArmorRating_Blunt>0.2</ArmorRating_Blunt>
+      <ArmorRating_Blunt>12</ArmorRating_Blunt>
     </value>
   </Operation>
 
@@ -135,6 +149,13 @@
     <xpath>Defs/ThingDef[defName="Apparel_AdvancedHelmet"]/stuffCategories</xpath>
   </Operation>
 
+  <Operation Class="PatchOperationAdd">
+    <xpath>Defs/ThingDef[defName="Apparel_AdvancedHelmet"]/apparel/layers</xpath>
+    <value>
+      <li>MiddleHead</li>
+    </value>
+  </Operation>
+
   <!-- ========== Power Armor Helmet ========== -->
 
   <Operation Class="PatchOperationReplace">
@@ -160,9 +181,30 @@
   </Operation>
 
   <Operation Class="PatchOperationReplace">
+    <xpath>Defs/ThingDef[defName="Apparel_PowerArmorHelmet"]/statBases/Flammability</xpath>
+    <value>
+      <Flammability>0</Flammability>
+    </value>
+  </Operation>
+
+  <Operation Class="PatchOperationReplace">
     <xpath>Defs/ThingDef[defName="Apparel_PowerArmorHelmet"]/statBases/MaxHitPoints</xpath>
     <value>
       <MaxHitPoints>240</MaxHitPoints>
+    </value>
+  </Operation>
+
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/ThingDef[defName="Apparel_PowerArmorHelmet"]/statBases/ArmorRating_Sharp</xpath>
+    <value>
+      <ArmorRating_Sharp>16</ArmorRating_Sharp>
+    </value>
+  </Operation>
+
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/ThingDef[defName="Apparel_PowerArmorHelmet"]/statBases/ArmorRating_Blunt</xpath>
+    <value>
+      <ArmorRating_Blunt>36</ArmorRating_Blunt>
     </value>
   </Operation>
 
@@ -173,6 +215,7 @@
         <PsychicSensitivity>-0.2</PsychicSensitivity>
         <AimingAccuracy>0.15</AimingAccuracy>
         <ToxicSensitivity>-0.50</ToxicSensitivity>
+        <SmokeSensitivity>-1</SmokeSensitivity>
       </equippedStatOffsets>
     </value>
   </Operation>
@@ -182,6 +225,15 @@
     <value>
       <Plasteel>45</Plasteel>
       <DevilstrandCloth>20</DevilstrandCloth>
+    </value>
+  </Operation>
+
+  <Operation Class="PatchOperationAdd">
+    <xpath>Defs/ThingDef[defName="Apparel_PowerArmorHelmet"]/apparel/layers</xpath>
+    <value>
+      <li>OnHead</li>
+      <li>StrappedHead</li>
+      <li>MiddleHead</li>
     </value>
   </Operation>
 

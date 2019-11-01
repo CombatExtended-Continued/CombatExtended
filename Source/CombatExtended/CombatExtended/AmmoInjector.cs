@@ -84,6 +84,8 @@ namespace CombatExtended
                 //.. else, continue the method.
             }
 
+            AddRemoveCaliberFromGunRecipes();
+
             var ammoDefs = new HashSet<ThingDef>();
 
             // Find all ammo using guns
@@ -114,10 +116,35 @@ namespace CombatExtended
                 ammoDef.menuHidden = !enabled;
                 ammoDef.destroyOnDrop = !enabled;
 
+                //AFTER CE_Utility.allWeaponDefs is initiated, this sets each ammo to list its users & special effects in its DEF DESCRIPTION rather than its THING DESCRIPTION.
+                //This is because the THING description ISN'T available during crafting - so people can now figure out what's different between ammo types.
+                ammoDef.AddDescriptionParts();
+
                 // Toggle trading
-                if (ammoDef.tradeTags.Contains(enableTradeTag))
+                var tradingTags = ammoDef.tradeTags.Where(t => t.StartsWith(enableTradeTag));
+                if (tradingTags.Any())
                 {
-                    ammoDef.tradeability = enabled ? Tradeability.All : Tradeability.None;
+                    var curTag = tradingTags.First();
+
+                    if (curTag == enableTradeTag)
+                    {
+                        ammoDef.tradeability = enabled ? Tradeability.All : Tradeability.None;
+                    }
+                    else
+                    {
+                        if (curTag.Length <= enableTradeTag.Length + 1)
+                        {
+                            Log.Error("CE :: AmmoInjector trying to inject " + ammoDef.ToString() + " but " + curTag + " is not a valid trading tag, valid formats are: " + enableTradeTag + " and " + enableTradeTag + "_levelOfTradeability");
+                        }
+                        else
+                        {
+                            var tradeabilityName = curTag.Remove(0, enableTradeTag.Length + 1);
+
+                            ammoDef.tradeability = enabled
+                                ? (Tradeability)Enum.Parse(typeof(Tradeability), tradeabilityName, true)
+                                : Tradeability.None;
+                        }
+                    }
                 }
 
                 // Toggle craftability
@@ -243,6 +270,35 @@ namespace CombatExtended
                 }
             }
             _allRecipesCached.SetValue(benchDef, null);  // Set ammoCraftingStation.AllRecipes to null so it will reset
+        }
+
+        public static bool gunRecipesShowCaliber = false;
+        public static void AddRemoveCaliberFromGunRecipes()
+        {
+            var shouldHaveLabels = (Controller.settings.EnableAmmoSystem && Controller.settings.ShowCaliberOnGuns);
+
+            if (gunRecipesShowCaliber != shouldHaveLabels)
+            {
+                CE_Utility.allWeaponDefs.ForEach(x =>
+                {
+                    var ammoSet = x.GetCompProperties<CompProperties_AmmoUser>()?.ammoSet;
+
+                    if (ammoSet != null)
+                    {
+                        RecipeDef recipeDef = DefDatabase<RecipeDef>.GetNamed("Make_" + x.defName, false);
+
+                        if (recipeDef != null)
+                        {
+                            var label = x.label + (shouldHaveLabels ? " (" + ammoSet.LabelCap + ")" : "");
+
+                            recipeDef.UpdateLabel("RecipeMake".Translate(label));           //Just setting recipeDef.label doesn't update Jobs nor existing recipeUsers. We need UpdateLabel.
+                            recipeDef.jobString = "RecipeMakeJobString".Translate(label);   //The jobString should also be updated to reflect the name change.
+                        }
+                    }
+                });
+
+                gunRecipesShowCaliber = shouldHaveLabels;
+            }
         }
     }
 }

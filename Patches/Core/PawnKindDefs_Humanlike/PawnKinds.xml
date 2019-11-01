@@ -17,6 +17,13 @@
   	</value>
   </Operation>
 
+  <Operation Class="PatchOperationAdd">
+    <xpath>Defs/PawnKindDef[defName="Mech_Centipede"]</xpath>
+    <value>
+      <canBeSapper>true</canBeSapper>
+    </value>
+  </Operation>
+
   <Operation Class="PatchOperationAddModExtension">
   	<xpath>Defs/PawnKindDef[defName="Mech_Lancer" or defName="Mech_Centipede"]</xpath>
   	<value>
@@ -422,6 +429,20 @@
   </Operation>
 
   <!-- ========== Tribal ========== -->
+
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/PawnKindDef[defName="Tribal_Penitent"]/weaponMoney/min</xpath>
+    <value>
+      <min>50</min>
+    </value>
+  </Operation>
+
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/PawnKindDef[defName="Tribal_Penitent"]/combatPower</xpath>
+    <value>
+      <combatPower>16</combatPower>
+    </value>
+  </Operation>
 
   <Operation Class="PatchOperationReplace">
     <xpath>Defs/PawnKindDef[defName="Tribal_Warrior"]/weaponMoney/min</xpath>

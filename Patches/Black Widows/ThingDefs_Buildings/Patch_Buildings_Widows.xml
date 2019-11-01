@@ -1,0 +1,37 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+	<!-- Black Widow buildings. -->
+	<Operation Class="PatchOperationSequence">
+		<success>Always</success>
+		<operations>
+			<!-- ==== Check for the mod. ==== -->
+			<li Class="CombatExtended.PatchOperationFindMod">
+				<modName>Black Widows 2.0</modName>
+			</li>
+
+			<!-- ==== Turret_BWWebcannon ==== -->
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName = "Turret_BWWebcannon"]/statBases</xpath>
+				<value>
+					<Bulk>200</Bulk>
+				</value>
+			</li>
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName = "Turret_BWWebcannon"]</xpath>
+				<value>
+					<tradeTags>
+						<li>CE_Turret</li>
+					</tradeTags>
+				</value>
+			</li>
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName = "Turret_BWWebcannon"]/researchPrerequisites</xpath>
+				<value>
+					<researchPrerequisites>
+						<li>GunTurrets</li>
+					</researchPrerequisites>
+				</value>
+			</li>
+		</operations>
+	</Operation>
+</Patch>

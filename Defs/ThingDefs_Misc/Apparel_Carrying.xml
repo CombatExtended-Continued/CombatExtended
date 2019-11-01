@@ -2,9 +2,9 @@
 <Defs>
 
   <ThingDef Name="ApparelCarryGearBase" Abstract="True">
-    <thingClass>CombatExtended.Apparel_VisibleAccessory</thingClass>
     <techLevel>Industrial</techLevel>
     <category>Item</category>
+    <thingClass>Apparel</thingClass>
     <selectable>True</selectable>
     <pathCost>10</pathCost>
     <useHitPoints>True</useHitPoints>
@@ -74,7 +74,7 @@
         <li>Shoulders</li>
       </bodyPartGroups>
       <layers>
-        <li>Belt</li>
+        <li>Webbing</li>
       </layers>
       <tags>
         <li>IndustrialMilitaryBasic</li>
@@ -82,12 +82,8 @@
       <defaultOutfitTags>
         <li>Soldier</li>
       </defaultOutfitTags>
+      <wornGraphicPath>Things/Apparel/TacRigging/TacRigging</wornGraphicPath>
     </apparel>
-    <modExtensions>
-      <li Class="CombatExtended.VisibleAccessoryDefExtension">
-        <order>1</order>
-      </li>
-    </modExtensions>
   </ThingDef>
 
   <ThingDef ParentName="ApparelCarryGearBase">
@@ -113,10 +109,10 @@
     <apparel>
       <careIfWornByCorpse>false</careIfWornByCorpse>
       <bodyPartGroups>
-        <li>Torso</li>
+        <li>Shoulders</li>
       </bodyPartGroups>
       <layers>
-        <li>Belt</li>
+        <li>Backpack</li>
       </layers>
       <tags>
         <li>IndustrialBasic</li>
@@ -125,12 +121,8 @@
       <defaultOutfitTags>
         <li>Soldier</li>
       </defaultOutfitTags>
+      <wornGraphicPath>Things/Apparel/Backpack/Milpack</wornGraphicPath>
     </apparel>
-    <modExtensions>
-      <li Class="CombatExtended.VisibleAccessoryDefExtension">
-        <order>2</order>
-      </li>
-    </modExtensions>
   </ThingDef>
 
   <ThingDef ParentName="ApparelCarryGearBase">
@@ -167,14 +159,15 @@
     <apparel>
       <careIfWornByCorpse>false</careIfWornByCorpse>
       <bodyPartGroups>
-        <li>Torso</li>
+        <li>Shoulders</li>
       </bodyPartGroups>
       <layers>
-        <li>Belt</li>
+        <li>Backpack</li>
       </layers>
       <tags>
         <li>Neolithic</li>
       </tags>
+      <wornGraphicPath>Things/Apparel/TribalPack/Tribalpack</wornGraphicPath>
     </apparel>
     <colorGenerator Class="ColorGenerator_Options">
       <options>
@@ -192,11 +185,6 @@
         </li>
       </options>
     </colorGenerator>
-    <modExtensions>
-      <li Class="CombatExtended.VisibleAccessoryDefExtension">
-        <order>2</order>
-      </li>
-    </modExtensions>
   </ThingDef>
 
 </Defs>

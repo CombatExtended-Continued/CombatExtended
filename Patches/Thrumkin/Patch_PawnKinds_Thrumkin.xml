@@ -1,0 +1,261 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+	<!-- Thrumkin Pawn Kinds -->
+	<Operation Class="PatchOperationSequence">
+		<success>Always</success>
+		<operations>
+			<!-- Checking for the mod -->
+			<li Class="CombatExtended.PatchOperationFindMod">
+				<modName>[SYR] Thrumkin</modName>
+			</li>
+			<!-- Thrumkin_Penitent -->
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/PawnKindDef[defName="Thrumkin_Penitent"]/combatPower</xpath>
+				<value>
+					<combatPower>20</combatPower>
+				</value>
+			</li>
+
+			<!-- Thrumkin_Archer -->
+			<li Class="PatchOperationAddModExtension">
+				<xpath>/Defs/PawnKindDef[defName="Thrumkin_Archer"]</xpath>
+				<value>
+					<li Class="CombatExtended.LoadoutPropertiesExtension">
+						<primaryMagazineCount>
+							<min>10</min>
+							<max>40</max>
+						</primaryMagazineCount>
+						<shieldMoney>
+							<min>100</min>
+							<max>140</max>
+						</shieldMoney>
+						<shieldTags>
+							<li>TribalShield</li>
+						</shieldTags>
+						<shieldChance>0.6</shieldChance>
+						<sidearms>
+							<li>
+								<sidearmMoney>
+									<min>40</min>
+									<max>80</max>
+								</sidearmMoney>
+								<weaponTags>
+									<li>CE_Sidearm_Tribal</li>
+								</weaponTags>
+							</li>
+						</sidearms>
+					</li>
+				</value>
+			</li>
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/PawnKindDef[defName="Tribal_Archer"]/combatPower</xpath>
+				<value>
+					<combatPower>40</combatPower>
+				</value>
+			</li>
+
+			<!-- Thrumkin_Warrior -->
+			<li Class="PatchOperationAddModExtension">
+				<xpath>/Defs/PawnKindDef[defName="Thrumkin_Warrior"]</xpath>
+				<value>
+					<li Class="CombatExtended.LoadoutPropertiesExtension">
+						<shieldMoney>
+							<min>100</min>
+							<max>200</max>
+						</shieldMoney>
+						<shieldTags>
+							<li>TribalShield</li>
+						</shieldTags>
+						<shieldChance>0.9</shieldChance>
+					</li>
+				</value>
+			</li>
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/PawnKindDef[defName="Thrumkin_Warrior"]/combatPower</xpath>
+				<value>
+					<combatPower>32</combatPower>
+				</value>
+			</li>
+
+			<!-- Thrumkin_Hunter -->
+			<li Class="PatchOperationAddModExtension">
+				<xpath>/Defs/PawnKindDef[defName="Thrumkin_Hunter"]</xpath>
+				<value>
+					<li Class="CombatExtended.LoadoutPropertiesExtension">
+						<primaryMagazineCount>
+							<min>10</min>
+							<max>60</max>
+						</primaryMagazineCount>
+						<shieldMoney>
+							<min>100</min>
+							<max>180</max>
+						</shieldMoney>
+						<shieldTags>
+							<li>TribalShield</li>
+						</shieldTags>
+						<shieldChance>0.6</shieldChance>
+						<sidearms>
+							<li>
+								<sidearmMoney>
+									<min>80</min>
+									<max>160</max>
+								</sidearmMoney>
+								<weaponTags>
+									<li>CE_Sidearm_Tribal</li>
+								</weaponTags>
+							</li>
+						</sidearms>
+					</li>
+				</value>
+			</li>
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/PawnKindDef[defName="Thrumkin_Hunter"]/combatPower</xpath>
+				<value>
+					<combatPower>60</combatPower>
+				</value>
+			</li>
+
+			<!-- Thrumkin_Berserker -->
+			<li Class="PatchOperationAddModExtension">
+				<xpath>/Defs/PawnKindDef[defName="Thrumkin_Berserker"]</xpath>
+				<value>
+					<li Class="CombatExtended.LoadoutPropertiesExtension">
+						<shieldMoney>
+							<min>100</min>
+							<max>300</max>
+						</shieldMoney>
+						<shieldTags>
+							<li>TribalShield</li>
+						</shieldTags>
+						<shieldChance>0.9</shieldChance>
+					</li>
+				</value>
+			</li>
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/PawnKindDef[defName="Thrumkin_Berserker"]/combatPower</xpath>
+				<value>
+					<combatPower>80</combatPower>
+				</value>
+			</li>
+
+			<!-- Thrumkin_HeavyArcher -->
+			<li Class="PatchOperationAddModExtension">
+				<xpath>/Defs/PawnKindDef[defName="Thrumkin_HeavyArcher"]</xpath>
+				<value>
+					<li Class="CombatExtended.LoadoutPropertiesExtension">
+						<primaryMagazineCount>
+							<min>10</min>
+							<max>80</max>
+						</primaryMagazineCount>
+						<shieldMoney>
+							<min>100</min>
+							<max>200</max>
+						</shieldMoney>
+						<shieldTags>
+							<li>TribalShield</li>
+						</shieldTags>
+						<shieldChance>0.6</shieldChance>
+						<sidearms>
+							<li>
+								<sidearmMoney>
+									<min>100</min>
+									<max>200</max>
+								</sidearmMoney>
+								<weaponTags>
+									<li>CE_Sidearm_Tribal</li>
+								</weaponTags>
+							</li>
+						</sidearms>
+					</li>
+				</value>
+			</li>
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/PawnKindDef[defName="Thrumkin_HeavyArcher"]/combatPower</xpath>
+				<value>
+					<combatPower>80</combatPower>
+				</value>
+			</li>
+
+			<!-- Thrumkin_ElderMelee -->
+			<li Class="PatchOperationAddModExtension">
+				<xpath>/Defs/PawnKindDef[defName="Thrumkin_ElderMelee"]</xpath>
+				<value>
+					<li Class="CombatExtended.LoadoutPropertiesExtension">
+						<shieldMoney>
+							<min>200</min>
+							<max>400</max>
+						</shieldMoney>
+						<shieldTags>
+							<li>TribalShield</li>
+						</shieldTags>
+						<shieldChance>0.9</shieldChance>
+					</li>
+				</value>
+			</li>
+
+			<!-- Thrumkin_ElderRanged -->
+			<li Class="PatchOperationAddModExtension">
+				<xpath>/Defs/PawnKindDef[defName="Thrumkin_ElderRanged"]</xpath>
+				<value>
+					<li Class="CombatExtended.LoadoutPropertiesExtension">
+						<primaryMagazineCount>
+							<min>10</min>
+							<max>80</max>
+						</primaryMagazineCount>
+						<shieldMoney>
+							<min>100</min>
+							<max>300</max>
+						</shieldMoney>
+						<shieldTags>
+							<li>TribalShield</li>
+						</shieldTags>
+						<shieldChance>0.6</shieldChance>
+						<sidearms>
+							<li>
+								<sidearmMoney>
+									<min>150</min>
+									<max>300</max>
+								</sidearmMoney>
+								<weaponTags>
+									<li>CE_Sidearm_Tribal</li>
+								</weaponTags>
+							</li>
+						</sidearms>
+					</li>
+				</value>
+			</li>
+
+			<!-- Thrumkin_GrandElder -->
+			<li Class="PatchOperationAddModExtension">
+				<xpath>/Defs/PawnKindDef[defName="Thrumkin_GrandElder"]</xpath>
+				<value>
+					<li Class="CombatExtended.LoadoutPropertiesExtension">
+						<primaryMagazineCount>
+							<min>10</min>
+							<max>40</max>
+						</primaryMagazineCount>
+						<shieldMoney>
+							<min>300</min>
+							<max>600</max>
+						</shieldMoney>
+						<shieldTags>
+							<li>TribalShield</li>
+						</shieldTags>
+						<shieldChance>0.6</shieldChance>
+						<sidearms>
+							<li>
+								<sidearmMoney>
+									<min>200</min>
+									<max>400</max>
+								</sidearmMoney>
+								<weaponTags>
+									<li>CE_Sidearm_Tribal</li>
+								</weaponTags>
+							</li>
+						</sidearms>
+					</li>
+				</value>
+			</li>
+		</operations>
+	</Operation>
+</Patch>

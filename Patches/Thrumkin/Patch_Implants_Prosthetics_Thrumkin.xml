@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+	<!-- Thrumkin Prosthetics -->
+	<Operation Class="PatchOperationSequence">
+		<success>Always</success>
+		<operations>
+			<!-- Checking for the mod -->
+			<li Class="CombatExtended.PatchOperationFindMod">
+				<modName>[SYR] Thrumkin</modName>
+			</li>
+
+			<!-- SteelThrumkinHorn -->
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/HediffDef[defName="SteelThrumkinHorn"]/comps/li[@Class="HediffCompProperties_VerbGiver"]/tools</xpath>
+				<value>
+					<tools>
+						<li Class="CombatExtended.ToolCE">
+							<label>steel horn</label>
+							<capacities>
+								<li>Scratch</li>
+							</capacities>
+							<power>23</power>
+							<cooldownTime>3.59</cooldownTime>
+							<armorPenetrationSharp>0.08</armorPenetrationSharp>
+							<armorPenetrationBlunt>1.631</armorPenetrationBlunt>
+						</li>
+						<li Class="CombatExtended.ToolCE">
+							<label>steel horn</label>
+							<capacities>
+								<li>Stab</li>
+							</capacities>
+							<power>15</power>
+							<cooldownTime>3.59</cooldownTime>
+							<armorPenetrationSharp>0.73</armorPenetrationSharp>
+							<armorPenetrationBlunt>1.631</armorPenetrationBlunt>
+						</li>
+					</tools>
+				</value>
+			</li>
+
+			<!-- EnhancementThrumkinHorn -->
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/HediffDef[defName="EnhancementThrumkinHorn"]/comps/li[@Class="HediffCompProperties_VerbGiver"]/tools</xpath>
+				<value>
+					<tools>
+						<li Class="CombatExtended.ToolCE">
+							<label>enhanced horn</label>
+							<capacities>
+								<li>Scratch</li>
+							</capacities>
+							<power>51</power>
+							<cooldownTime>1.59</cooldownTime>
+							<armorPenetrationSharp>0.83</armorPenetrationSharp>
+							<armorPenetrationBlunt>8.256</armorPenetrationBlunt>
+						</li>
+						<li Class="CombatExtended.ToolCE">
+							<label>enhanced horn</label>
+							<capacities>
+								<li>Stab</li>
+							</capacities>
+							<power>29</power>
+							<cooldownTime>1.59</cooldownTime>
+							<armorPenetrationSharp>8.26</armorPenetrationSharp>
+							<armorPenetrationBlunt>8.256</armorPenetrationBlunt>
+						</li>
+					</tools>
+				</value>
+			</li>
+		</operations>
+	</Operation>
+</Patch>

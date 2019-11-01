@@ -25,10 +25,10 @@ namespace CombatExtended
 
         public static float MoveSpeedFactor(float weight, float weightCapacity)
         {
-			float t = weight / weightCapacity;
-			if (float.IsNaN(t)) t = 1f;
-			return Mathf.Lerp(1f, 0.75f, t);
-		}
+            float t = weight / weightCapacity;
+            if (float.IsNaN(t)) t = 1f;
+            return Mathf.Lerp(1f, 0.75f, t);
+        }
 
         public static float WorkSpeedFactor(float bulk, float bulkCapacity)
         {
@@ -38,7 +38,14 @@ namespace CombatExtended
         public static float EncumberPenalty(float weight, float weightCapacity)
         {
             if (weight > weightCapacity)
-                return weight / weightCapacity - 1;
+            {
+                float weightPercent = weight / weightCapacity;
+                if (float.IsPositiveInfinity(weightPercent))
+                {
+                    return 1f;
+                }
+                return weightPercent - 1;
+            }
             else
                 return 0f;
         }
