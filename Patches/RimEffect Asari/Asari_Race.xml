@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <Patch>
-
+	<!-- Updated to Combat Extended 1.6 on 10.6.2019 by N7Huntsman -->
 	<Operation Class="PatchOperationFindMod">
 					<mods>
 						<li>RimEffect - Asari of the Rims</li>
@@ -21,8 +21,9 @@
 					<li Class="PatchOperationAdd">
 					 <xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="Alien_Asari_Base"]/statBases</xpath>
 						  <value>
-						   <MeleeDodgeChance>0.20</MeleeDodgeChance>
-						   <MeleeCritChance>0.20</MeleeCritChance>
+							  <MeleeDodgeChance>1</MeleeDodgeChance>
+							  <MeleeCritChance>1</MeleeCritChance>
+							  <MeleeParryChance>1</MeleeParryChance>
 						  </value>
 					</li>
 					
@@ -30,41 +31,41 @@
 						<xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="Alien_Asari_Base"]/tools</xpath> 
 						<value>
 							<tools>
-							  <li Class="CombatExtended.ToolCE">
+								<li Class="CombatExtended.ToolCE">
 									<label>left fist</label>
 									<capacities>
 										<li>Blunt</li>
 									</capacities>
-									<power>6.7</power>
-									<cooldownTime>1.65</cooldownTime>
+									<power>1</power>
+									<cooldownTime>1.4</cooldownTime>
 									<linkedBodyPartsGroup>LeftHand</linkedBodyPartsGroup>
-									<armorPenetration>0.09</armorPenetration>
-
-							  </li>
-							  <li Class="CombatExtended.ToolCE">
+									<armorPenetrationKPA>203</armorPenetrationKPA>
+								</li>
+								<li Class="CombatExtended.ToolCE">
 									<label>right fist</label>
 									<capacities>
 										<li>Blunt</li>
 									</capacities>
-									<power>6.7</power>
-									<cooldownTime>1.65</cooldownTime>
+									<power>1</power>
+									<cooldownTime>1.4</cooldownTime>
 									<linkedBodyPartsGroup>RightHand</linkedBodyPartsGroup>
-									<armorPenetration>0.09</armorPenetration>
-							   </li>
+									<armorPenetrationKPA>203</armorPenetrationKPA>
+								</li>
 								<li Class="CombatExtended.ToolCE">
 									<label>head</label>
 									<capacities>
 										<li>Blunt</li>
 									</capacities>
-									<power>4.7</power>
-									<cooldownTime>1.85</cooldownTime>	
+									<power>2</power>
+									<cooldownTime>4.49</cooldownTime>
 									<linkedBodyPartsGroup>HeadAttackTool</linkedBodyPartsGroup>
-									<armorPenetration>0.075</armorPenetration>
-							  </li>
+									<chanceFactor>0.2</chanceFactor>
+									<armorPenetrationKPA>625</armorPenetrationKPA>
+								</li>
 							</tools>
 						</value>
 					</li>
-						<!-- Checking if "Alien_Asari_Base" has a <comps> node, and add it if it doesn't exist -->
+						<!-- Checking if "Alien_Asari_Base" has a <comps> node and adding it if it doesn't exist -->
 						<li Class="PatchOperationSequence">
 							<success>Always</success>
 							<operations>
