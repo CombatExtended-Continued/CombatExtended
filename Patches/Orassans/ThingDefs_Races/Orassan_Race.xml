@@ -16,7 +16,7 @@
 	<!-- === Note to future furball compatibility nerds: 		=== -->
 	<!-- === Paste the defName of your horrible alien there   |	=== -->
 	<!-- === 												  V	=== -->
-		<xpath>*/AlienRace.ThingDef_AlienRace[defName="Alien_Orassan"]</xpath>
+		<xpath>Defs/AlienRace.ThingDef_AlienRace[defName="Alien_Orassan"]</xpath>
 		<value>
 			<li Class="CombatExtended.RacePropertiesExtensionCE">
 				<bodyShape>Humanoid</bodyShape>
@@ -27,11 +27,19 @@
 	<!-- ========== Gives Gun Gizmos to Orassan HUD thing ========== -->
 	<!-- ========== Also Makes Em Suppressable		   ========== -->
 	
+	<!-- Alman speaking, apparently you need to patch the alien race, not the alien race's base pawn. BaseOrassan is not being used for anything aswell. -->
+	<!-- Giving them <comps />. -->
+	<li Class="PatchOperationAdd">
+		<xpath>Defs/AlienRace.ThingDef_AlienRace[defName="Alien_Orassan"]</xpath>
+		<value>
+			<comps />
+		</value>
+	</li>
 	<li Class="PatchOperationAdd">
 	<!-- === Shouldn't need to change this at all		  === -->
 	<!-- === Unless you changed the name of your BasePawn === -->
 	<!-- === In which case change "BasePawn" to that name === -->
-		<xpath>*/ThingDef[@Name="BaseOrassan"]/comps</xpath>
+		<xpath>Defs/AlienRace.ThingDef_AlienRace[defName="Alien_Orassan"]/comps</xpath>
 		<value>
 			<li>
 				<compClass>CombatExtended.CompPawnGizmo</compClass>
@@ -45,7 +53,7 @@
 	<!-- === And also defines armor penetration, which allows them	=== -->
 	<!-- === to actually do damage. 								=== -->
 			<li Class="PatchOperationAdd">
-			<xpath>*/AlienRace.ThingDef_AlienRace[defName = "Alien_Orassan"]/statBases</xpath>
+			<xpath>Defs/AlienRace.ThingDef_AlienRace[defName = "Alien_Orassan"]/statBases</xpath>
 			<value>
 			<AimingAccuracy>1</AimingAccuracy>
 			<MeleeCritChance>1</MeleeCritChance>
@@ -56,7 +64,7 @@
 			</li>
 
 			<li Class="PatchOperationReplace">
-			<xpath>*/AlienRace.ThingDef_AlienRace[defName="Alien_Orassan"]/tools</xpath>
+			<xpath>Defs/AlienRace.ThingDef_AlienRace[defName="Alien_Orassan"]/tools</xpath>
 			<value>
 			<tools>
 				<li Class="CombatExtended.ToolCE">
@@ -122,8 +130,8 @@
 	<!-- === Unless you changed it         === -->
 	<!-- === then change 'em			   === -->
 	
-	<li Class="PatchOperationReplace">
-		<xpath>*/ThingDef[@Name="BaseOrassan"]/inspectorTabs/li[.="ITab_Pawn_Gear"]</xpath>
+	<!-- <li Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[@Name="BaseOrassan"]/inspectorTabs/li[.="ITab_Pawn_Gear"]</xpath>
 		<value>
 			<li>CombatExtended.ITab_Inventory</li>
 		</value>
@@ -131,11 +139,11 @@
 
 	<li Class="PatchOperationAdd">
 	
-		<xpath>*/ThingDef[@Name="BaseOrassan"]/comps</xpath>
+		<xpath>Defs/ThingDef[@Name="BaseOrassan"]/comps</xpath>
 		<value>
 			<li Class="CombatExtended.CompProperties_Inventory" />
 		</value>
-	</li>
+	</li>-->
 		</operations>
 	</Operation>
 	

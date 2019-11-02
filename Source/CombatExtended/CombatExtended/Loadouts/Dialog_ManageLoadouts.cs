@@ -247,7 +247,7 @@ namespace CombatExtended
                         delegate
                         {
                             if (CurrentLoadout == loadouts[local_i])
-								CurrentLoadout = LoadoutManager.DefaultLoadout;
+                                CurrentLoadout = null;
                             LoadoutManager.RemoveLoadout(loadouts[local_i]);
                         }));
                 }

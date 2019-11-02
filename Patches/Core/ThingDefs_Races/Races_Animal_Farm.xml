@@ -20,19 +20,20 @@
 					<capacities>
 						<li>Scratch</li>
 					</capacities>
-					<power>2</power>
-					<cooldownTime>1.65</cooldownTime>
+					<power>3</power>
+					<cooldownTime>1.39</cooldownTime>
 					<linkedBodyPartsGroup>Feet</linkedBodyPartsGroup>
-					<armorPenetration>0.041</armorPenetration>
+					<armorPenetrationSharp>0.01</armorPenetrationSharp>
+					<armorPenetrationBlunt>0.096</armorPenetrationBlunt>
 				</li>
 				<li Class="CombatExtended.ToolCE">
 					<capacities>
 						<li>Bite</li>
 					</capacities>
-					<power>3</power>
-					<cooldownTime>1.65</cooldownTime>
+					<power>2</power>
+					<cooldownTime>1.39</cooldownTime>
 					<linkedBodyPartsGroup>Beak</linkedBodyPartsGroup>
-					<armorPenetration>0.095</armorPenetration>
+					<armorPenetrationBlunt>0.096</armorPenetrationBlunt>
 				</li>
 				<li Class="CombatExtended.ToolCE">
 					<label>head</label>
@@ -43,7 +44,7 @@
 					<cooldownTime>1.65</cooldownTime>
 					<linkedBodyPartsGroup>HeadAttackTool</linkedBodyPartsGroup>
 					<chanceFactor>0.2</chanceFactor>
-					<armorPenetration>0.048</armorPenetration>
+					<armorPenetrationBlunt>0.192</armorPenetrationBlunt>
 				</li>
 			</tools>
 		</value>
@@ -72,6 +73,13 @@
 		</value>
 	</Operation>
 
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/PawnKindDef[defName="Chicken"]/combatPower</xpath>
+		<value>
+			<combatPower>8</combatPower>
+		</value>
+	</Operation>
+
 	<!-- ========== Pig ========== -->
 
 	<Operation Class="PatchOperationReplace">
@@ -92,21 +100,22 @@
 					<capacities>
 						<li>Bite</li>
 					</capacities>
-					<power>7</power>
-					<cooldownTime>1.65</cooldownTime>
+					<power>6</power>
+					<cooldownTime>1.5</cooldownTime>
 					<linkedBodyPartsGroup>Teeth</linkedBodyPartsGroup>
-					<armorPenetration>0.139</armorPenetration>
+					<armorPenetrationSharp>0.01</armorPenetrationSharp>
+					<armorPenetrationBlunt>0.5</armorPenetrationBlunt>
 				</li>
 				<li Class="CombatExtended.ToolCE">
 					<label>head</label>
 					<capacities>
 						<li>Blunt</li>
 					</capacities>
-					<power>3</power>
-					<cooldownTime>1.65</cooldownTime>
+					<power>6</power>
+					<cooldownTime>2.12</cooldownTime>
 					<linkedBodyPartsGroup>HeadAttackTool</linkedBodyPartsGroup>
 					<chanceFactor>0.2</chanceFactor>
-					<armorPenetration>0.064</armorPenetration>
+					<armorPenetrationBlunt>2</armorPenetrationBlunt>
 				</li>
 			</tools>
 		</value>
@@ -125,6 +134,13 @@
 			<li Class="CombatExtended.RacePropertiesExtensionCE">
 				<bodyShape>Quadruped</bodyShape>
 			</li>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/PawnKindDef[defName="Pig"]/combatPower</xpath>
+		<value>
+			<combatPower>20</combatPower>
 		</value>
 	</Operation>
 
@@ -147,33 +163,34 @@
 					<capacities>
 						<li>Bite</li>
 					</capacities>
-					<power>6</power>
-					<cooldownTime>1.65</cooldownTime>
+					<power>1</power>
+					<cooldownTime>1</cooldownTime>
 					<linkedBodyPartsGroup>Teeth</linkedBodyPartsGroup>
-					<armorPenetration>0.128</armorPenetration>
+					<armorPenetrationBlunt>0.1</armorPenetrationBlunt>
 				</li>
 				<li Class="CombatExtended.ToolCE">
 					<label>head</label>
 					<capacities>
 						<li>Blunt</li>
 					</capacities>
-					<power>5</power>
-					<cooldownTime>1.65</cooldownTime>
+					<power>6</power>
+					<cooldownTime>2.12</cooldownTime>
 					<chanceFactor>0.2</chanceFactor>
 					<linkedBodyPartsGroup>HeadAttackTool</linkedBodyPartsGroup>
-					<armorPenetration>0.079</armorPenetration>
+					<armorPenetrationBlunt>2</armorPenetrationBlunt>
 				</li>
 				<li Class="CombatExtended.ToolCE">
 					<label>horns</label>
 					<capacities>
 						<li>Stab</li>
 					</capacities>
-					<power>13</power>
-					<cooldownTime>1.65</cooldownTime>
+					<power>19</power>
+					<cooldownTime>2.12</cooldownTime>
 					<chanceFactor>0.65</chanceFactor>
 					<restrictedGender>Male</restrictedGender>
 					<linkedBodyPartsGroup>HeadAttackTool</linkedBodyPartsGroup>
-					<armorPenetration>0.254</armorPenetration>
+					<armorPenetrationSharp>0.03</armorPenetrationSharp>
+					<armorPenetrationBlunt>2</armorPenetrationBlunt>
 				</li>
 			</tools>
 		</value>
@@ -192,6 +209,13 @@
 			<li Class="CombatExtended.RacePropertiesExtensionCE">
 				<bodyShape>Quadruped</bodyShape>
 			</li>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/PawnKindDef[defName="Cow"]/combatPower</xpath>
+		<value>
+			<combatPower>30</combatPower>
 		</value>
 	</Operation>
 
@@ -215,49 +239,49 @@
 					<capacities>
 						<li>Blunt</li>
 					</capacities>
-					<power>8</power>
-					<cooldownTime>1.65</cooldownTime>
+					<power>2</power>
+					<cooldownTime>0.84</cooldownTime>
+					<armorPenetrationBlunt>0.563</armorPenetrationBlunt>					
 					<linkedBodyPartsGroup>FrontLeftLeg</linkedBodyPartsGroup>
-					<armorPenetration>0.102</armorPenetration>
 				</li>
 				<li Class="CombatExtended.ToolCE">
 					<label>left hoof</label>
 					<capacities>
 						<li>Poke</li>
 					</capacities>
-					<power>8</power>
-					<cooldownTime>1.65</cooldownTime>
+					<power>2</power>
+					<cooldownTime>0.84</cooldownTime>
+					<armorPenetrationBlunt>0.563</armorPenetrationBlunt>		
 					<linkedBodyPartsGroup>FrontLeftLeg_2</linkedBodyPartsGroup>
-					<armorPenetration>0.075</armorPenetration>
 				</li>
 				<li Class="CombatExtended.ToolCE">
 					<label>right hoof</label>
 					<capacities>
 						<li>Blunt</li>
 					</capacities>
-					<power>8</power>
-					<cooldownTime>1.65</cooldownTime>
+					<power>2</power>
+					<cooldownTime>0.84</cooldownTime>
+					<armorPenetrationBlunt>0.563</armorPenetrationBlunt>		
 					<linkedBodyPartsGroup>FrontRightLeg</linkedBodyPartsGroup>
-					<armorPenetration>0.102</armorPenetration>
 				</li>
 				<li Class="CombatExtended.ToolCE">
 					<label>right hoof</label>
 					<capacities>
 						<li>Poke</li>
 					</capacities>
-					<power>8</power>
-					<cooldownTime>1.65</cooldownTime>
+					<power>2</power>
+					<cooldownTime>0.84</cooldownTime>
+					<armorPenetrationBlunt>0.563</armorPenetrationBlunt>		
 					<linkedBodyPartsGroup>FrontRightLeg_2</linkedBodyPartsGroup>
-					<armorPenetration>0.075</armorPenetration>
 				</li>
 				<li Class="CombatExtended.ToolCE">
 					<capacities>
-						<li>Bite</li>
+						<li>BiteBlunt</li>
 					</capacities>
-					<power>4</power>
-					<cooldownTime>1.65</cooldownTime>
+					<power>1</power>
+					<cooldownTime>1.26</cooldownTime>
 					<linkedBodyPartsGroup>Teeth</linkedBodyPartsGroup>
-					<armorPenetration>0.117</armorPenetration>
+					<armorPenetrationBlunt>0.250</armorPenetrationBlunt>	
 				</li>
 				<li Class="CombatExtended.ToolCE">
 					<label>head</label>
@@ -265,10 +289,10 @@
 						<li>Blunt</li>
 					</capacities>
 					<power>2</power>
-					<cooldownTime>1.65</cooldownTime>
+					<cooldownTime>1.32</cooldownTime>
+					<armorPenetrationBlunt>0.3</armorPenetrationBlunt>		
 					<linkedBodyPartsGroup>HeadAttackTool</linkedBodyPartsGroup>
 					<chanceFactor>0.2</chanceFactor>
-					<armorPenetration>0.064</armorPenetration>
 				</li>
 			</tools>
 		</value>
@@ -280,6 +304,13 @@
 			<li Class="CombatExtended.RacePropertiesExtensionCE">
 				<bodyShape>Quadruped</bodyShape>
 			</li>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/PawnKindDef[defName="Alpaca"]/combatPower</xpath>
+		<value>
+			<combatPower>24</combatPower>
 		</value>
 	</Operation>
 

@@ -1,0 +1,37 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+
+  <ThingDef Name="BaseGas" Abstract="True">
+    <thingClass>Gas</thingClass>
+    <label>gas</label>
+    <category>Gas</category>
+    <altitudeLayer>Gas</altitudeLayer>
+    <useHitPoints>false</useHitPoints>
+    <tickerType>Normal</tickerType>
+    <graphicData>
+      <graphicClass>Graphic_Gas</graphicClass>
+      <shaderType>Transparent</shaderType>
+    </graphicData>
+  </ThingDef>
+
+  <ThingDef ParentName="BaseGas">
+    <defName>Gas_BlackSmoke</defName>
+    <thingClass>CombatExtended.Smoke</thingClass>
+    <label>black smoke</label>
+    <graphicData>
+      <texPath>Things/Gas/Puff</texPath>
+      <drawSize>3.3</drawSize>
+      <color>(0.1,0.1,0.1,0.66)</color>
+    </graphicData>
+    <gas>
+      <expireSeconds>
+        <min>50</min>
+        <max>60</max>
+      </expireSeconds>
+      <blockTurretTracking>true</blockTurretTracking>
+      <accuracyPenalty>0.7</accuracyPenalty>
+      <rotationSpeed>25</rotationSpeed>
+    </gas>
+  </ThingDef>
+    
+</Defs>

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Reflection;
 using RimWorld;
 using Verse;
 using Verse.AI;
@@ -111,6 +112,14 @@ namespace CombatExtended
     	
         #region Misc
         public static List<ThingDef> allWeaponDefs = new List<ThingDef>();
+
+        public static readonly FieldInfo cachedLabelCapInfo = typeof(Def).GetField("cachedLabelCap", BindingFlags.NonPublic | BindingFlags.Instance);
+
+        public static void UpdateLabel(this Def def, string label)
+        {
+            def.label = label;
+            cachedLabelCapInfo.SetValue(def, "");
+        }
 
         /// <summary>
         /// Generates a random Vector2 in a circle with given radius
@@ -259,7 +268,7 @@ namespace CombatExtended
         /// <summary>
         /// Gravity constant in meters per second squared
         /// </summary>
-        public const float gravityConst = 9.8f;
+        public const float GravityConst = 9.8f * 0.2f;
 		
         public static Bounds GetBoundsFor(IntVec3 cell, RoofDef roof)
         {

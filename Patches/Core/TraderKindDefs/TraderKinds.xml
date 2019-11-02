@@ -9,11 +9,61 @@
 		<xpath>Defs/TraderKindDef/stockGenerators/li[tradeTag="MortarShell"]</xpath>
 	</Operation>
 
+  <!-- ========== Neolithic bulk goods ========== -->
+
+  <Operation Class="PatchOperationAdd">
+    <xpath>Defs/TraderKindDef[defName="Caravan_Neolithic_BulkGoods"]/stockGenerators</xpath>
+    <value>
+      <li Class="StockGenerator_Category">
+        <categoryDef>Ammo</categoryDef>
+        <thingDefCountRange>
+          <min>0</min>
+          <max>0</max>
+        </thingDefCountRange>
+      </li>
+      <li Class="StockGenerator_Category">
+        <categoryDef>WeaponsTurrets</categoryDef>
+        <thingDefCountRange>
+          <min>0</min>
+          <max>0</max>
+        </thingDefCountRange>
+      </li>
+      <li Class="StockGenerator_SingleDef">
+        <thingDef>FSX</thingDef>
+        <countRange>
+          <min>15</min>
+          <max>40</max>
+        </countRange>
+      </li>
+      <li Class="StockGenerator_SingleDef">
+        <thingDef>Prometheum</thingDef>
+        <countRange>
+          <min>15</min>
+          <max>40</max>
+        </countRange>
+      </li>
+    </value>
+  </Operation>
+
   <!-- ========== War merchant ========== -->
 
   <Operation Class="PatchOperationAdd">
     <xpath>Defs/TraderKindDef[defName="Caravan_Neolithic_WarMerchant"]/stockGenerators</xpath>
     <value>
+      <li Class="StockGenerator_SingleDef">
+        <thingDef>FSX</thingDef>
+        <countRange>
+          <min>5</min>
+          <max>20</max>
+        </countRange>
+      </li>
+      <li Class="StockGenerator_SingleDef">
+        <thingDef>Prometheum</thingDef>
+        <countRange>
+          <min>5</min>
+          <max>20</max>
+        </countRange>
+      </li>
       <li Class="StockGenerator_Category">
         <categoryDef>Ammo</categoryDef>
         <thingDefCountRange>
@@ -47,11 +97,99 @@
     </value>
   </Operation>
 
+  <!-- ========== Neolithic misc ========== -->
+
+  <Operation Class="PatchOperationAdd">
+    <xpath>Defs/TraderKindDef[defName="Caravan_Neolithic_Slaver" or defName="Caravan_Neolithic_ShamanMerchant"]/stockGenerators</xpath>
+    <value>
+      <li Class="StockGenerator_Category">
+        <categoryDef>Ammo</categoryDef>
+        <thingDefCountRange>
+          <min>0</min>
+          <max>0</max>
+        </thingDefCountRange>
+      </li>
+      <li Class="StockGenerator_Category">
+        <categoryDef>WeaponsTurrets</categoryDef>
+        <thingDefCountRange>
+          <min>0</min>
+          <max>0</max>
+        </thingDefCountRange>
+      </li>
+    </value>
+  </Operation>
+
+  <!-- ========== Neolithic Base ========== -->
+
+  <Operation Class="PatchOperationAdd">
+    <xpath>Defs/TraderKindDef[defName="Base_Neolithic_Standard"]/stockGenerators</xpath>
+    <value>
+      <li Class="StockGenerator_SingleDef">
+        <thingDef>FSX</thingDef>
+        <countRange>
+          <min>10</min>
+          <max>50</max>
+        </countRange>
+      </li>
+      <li Class="StockGenerator_SingleDef">
+        <thingDef>Prometheum</thingDef>
+        <countRange>
+          <min>10</min>
+          <max>50</max>
+        </countRange>
+      </li>
+      <li Class="StockGenerator_Category">
+        <categoryDef>Ammo</categoryDef>
+        <thingDefCountRange>
+          <min>0</min>
+          <max>0</max>
+        </thingDefCountRange>
+      </li>
+      <li Class="StockGenerator_Category">
+        <categoryDef>WeaponsTurrets</categoryDef>
+        <thingDefCountRange>
+          <min>0</min>
+          <max>0</max>
+        </thingDefCountRange>
+      </li>
+      <li Class="StockGenerator_Animals">
+        <tradeTagsSell>
+          <li>CE_AnimalBoom</li>
+        </tradeTagsSell>
+        <tradeTagsBuy>
+          <li>CE_AnimalBoom</li>
+        </tradeTagsBuy>
+        <kindCountRange>
+          <min>1</min>
+          <max>2</max>
+        </kindCountRange>
+        <countRange>
+          <min>-2</min>
+          <max>4</max>
+        </countRange>
+      </li>
+    </value>
+  </Operation>
+
 	<!-- ========== Outlander Base ========== -->
 
 	<Operation Class="PatchOperationAdd">
 		<xpath>Defs/TraderKindDef[defName="Base_Outlander_Standard"]/stockGenerators</xpath>
 		<value>
+      <li Class="StockGenerator_SingleDef">
+        <thingDef>FSX</thingDef>
+        <countRange>
+          <min>25</min>
+          <max>100</max>
+        </countRange>
+      </li>
+      <li Class="StockGenerator_SingleDef">
+        <thingDef>Prometheum</thingDef>
+        <countRange>
+          <min>25</min>
+          <max>100</max>
+        </countRange>
+      </li>
       <li Class="StockGenerator_Tag">
         <tradeTag>CE_Ammo</tradeTag>
         <countRange>
@@ -135,11 +273,45 @@
 		</value>
 	</Operation>
 
+  <Operation Class="PatchOperationAdd">
+    <xpath>Defs/TraderKindDef[defName="Caravan_Outlander_BulkGoods"]/stockGenerators</xpath>
+    <value>
+      <li Class="StockGenerator_SingleDef">
+        <thingDef>FSX</thingDef>
+        <countRange>
+          <min>35</min>
+          <max>80</max>
+        </countRange>
+      </li>
+      <li Class="StockGenerator_SingleDef">
+        <thingDef>Prometheum</thingDef>
+        <countRange>
+          <min>35</min>
+          <max>80</max>
+        </countRange>
+      </li>
+    </value>
+  </Operation>
+
 	<!-- Combat Supplier -->
 
 	<Operation Class="PatchOperationAdd">
 		<xpath>Defs/TraderKindDef[defName="Caravan_Outlander_CombatSupplier"]/stockGenerators</xpath>
 		<value>
+      <li Class="StockGenerator_SingleDef">
+        <thingDef>FSX</thingDef>
+        <countRange>
+          <min>15</min>
+          <max>40</max>
+        </countRange>
+      </li>
+      <li Class="StockGenerator_SingleDef">
+        <thingDef>Prometheum</thingDef>
+        <countRange>
+          <min>15</min>
+          <max>40</max>
+        </countRange>
+      </li>
       <li Class="StockGenerator_Tag">
         <tradeTag>CE_Ammo</tradeTag>
         <countRange>
@@ -224,11 +396,45 @@
 		</value>
 	</Operation>
 
+  <Operation Class="PatchOperationAdd">
+    <xpath>Defs/TraderKindDef[defName="Orbital_BulkGoods"]/stockGenerators</xpath>
+    <value>
+      <li Class="StockGenerator_SingleDef">
+        <thingDef>FSX</thingDef>
+        <countRange>
+          <min>50</min>
+          <max>100</max>
+        </countRange>
+      </li>
+      <li Class="StockGenerator_SingleDef">
+        <thingDef>Prometheum</thingDef>
+        <countRange>
+          <min>50</min>
+          <max>100</max>
+        </countRange>
+      </li>
+    </value>
+  </Operation>
+
 	<!-- Combat Supplier -->
 
 	<Operation Class="PatchOperationAdd">
 		<xpath>Defs/TraderKindDef[defName="Orbital_CombatSupplier"]/stockGenerators</xpath>
 		<value>
+      <li Class="StockGenerator_SingleDef">
+        <thingDef>FSX</thingDef>
+        <countRange>
+          <min>25</min>
+          <max>50</max>
+        </countRange>
+      </li>
+      <li Class="StockGenerator_SingleDef">
+        <thingDef>Prometheum</thingDef>
+        <countRange>
+          <min>25</min>
+          <max>50</max>
+        </countRange>
+      </li>
       <li Class="StockGenerator_Tag">
         <tradeTag>CE_Ammo</tradeTag>
         <countRange>

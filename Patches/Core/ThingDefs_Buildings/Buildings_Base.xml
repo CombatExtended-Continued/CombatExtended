@@ -9,6 +9,9 @@
 		<xpath>Defs/ThingDef[defName="Wall"]/damageMultipliers</xpath>
 	</Operation>
 
+	<!-- this is now patched in DamageDefs\Damage_BuildingModifiers.xml -->
+
+	<!-- 
 	<Operation Class="PatchOperationAdd">
 		<xpath>Defs/ThingDef[@Name="BuildingBase"]</xpath>
 		<value>
@@ -34,64 +37,16 @@
 				  <multiplier>0.05</multiplier>
 				</li>
 				<li>
+				  <damageDef>ArrowHighVelocity</damageDef>
+				  <multiplier>0.05</multiplier>
+				</li>
+				<li>
 				  <damageDef>Electrical</damageDef>
 				  <multiplier>0.25</multiplier>
 				</li>
 			</damageMultipliers>
 		</value>
 	</Operation>
-
-	<!-- FurnitureBase -->
-
-<!--
-	<Operation Class="PatchOperationSequence">
-  	<success>Always</success>
-  	<operations>
-    	<li Class="PatchOperationTest">
-      	<xpath>Defs/ThingDef[@Name="FurnitureBase"]/damageMultipliers</xpath>
-      	<success>Invert</success>
-    	</li>
-    	<li Class="PatchOperationAdd">
-      	<xpath>Defs/ThingDef[@Name="FurnitureBase"]</xpath>
-      	<value>
-        	<damageMultipliers />
-      	</value>
-    	</li>
-  	</operations>
-	</Operation>
-
-	<Operation Class="PatchOperationAdd">
-		<xpath>Defs/ThingDef[@Name="FurnitureBase"]/damageMultipliers</xpath>
-		<value>
-			<li>
-			  <damageDef>Bomb</damageDef>
-			  <multiplier>2.4</multiplier>
-			</li>
-			<li>
-			  <damageDef>Thermobaric</damageDef>
-			  <multiplier>3.0</multiplier>
-			</li>
-			<li>
-			  <damageDef>Bullet</damageDef>
-			  <multiplier>0.5</multiplier>
-			</li>
-			<li>
-			  <damageDef>Fragment</damageDef>
-			  <multiplier>0.25</multiplier>
-			</li>
-			<li>
-			  <damageDef>Arrow</damageDef>
-			  <multiplier>0.1</multiplier>
-			</li>
-			<li>
-			  <damageDef>Electrical</damageDef>
-			  <multiplier>0.5</multiplier>
-			</li>
-		</value>
-	</Operation>
--->
-
-	<!-- BuildingNaturalBase and ChunkBase -->
 
 	<Operation Class="PatchOperationAdd">
 		<xpath>Defs/ThingDef[@Name="BuildingNaturalBase"]</xpath>
@@ -115,6 +70,10 @@
 				</li>
 				<li>
 				  <damageDef>Arrow</damageDef>
+				  <multiplier>0.0</multiplier>
+				</li>
+				<li>
+				  <damageDef>ArrowHighVelocity</damageDef>
 				  <multiplier>0.0</multiplier>
 				</li>
 				<li>
@@ -150,12 +109,17 @@
 				  <multiplier>0.0</multiplier>
 				</li>
 				<li>
+				  <damageDef>ArrowHighVelocity</damageDef>
+				  <multiplier>0.0</multiplier>
+				</li>
+				<li>
 				  <damageDef>Electrical</damageDef>
 				  <multiplier>0.0</multiplier>
 				</li>
 			</damageMultipliers>
 		</value>
 	</Operation>
+	-->
 
 </Patch>
 

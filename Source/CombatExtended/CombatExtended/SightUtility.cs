@@ -15,13 +15,20 @@ namespace CombatExtended
             value2 = temp;
         }
 
+        private static bool ValidateBounds(out IntVec3 cell, float x, float z, Map map)
+        {
+            cell = new Vector3(x, 0, z).ToIntVec3();
+            return cell.InBounds(map);
+        }
+
         private static float GetFractional(this float value)
         {
             return value / Mathf.Floor(value);
         }
 
-        public static IEnumerable<IntVec3> GetCellsOnLine(Vector3 originPoint, Vector3 targetPoint)
+        public static IEnumerable<IntVec3> GetCellsOnLine(Vector3 originPoint, Vector3 targetPoint, Map map)
         {
+            IntVec3 validatedCell;
             var x0 = originPoint.x;
             var y0 = originPoint.z;
             var x1 = targetPoint.x;
@@ -53,13 +60,17 @@ namespace CombatExtended
             var yPixel1 = Mathf.Floor(yEnd);
             if (isSteep)
             {
-                yield return new Vector3(yPixel1, 0, xPixel1).ToIntVec3();
-                yield return new Vector3(yPixel1 + 1, 0, xPixel1).ToIntVec3();
+                if (ValidateBounds(out validatedCell, yPixel1, xPixel1, map))
+                    yield return validatedCell;
+                if (ValidateBounds(out validatedCell, yPixel1 + 1, xPixel1, map))
+                    yield return validatedCell;
             }
             else
             {
-                yield return new Vector3(xPixel1, 0, yPixel1).ToIntVec3();
-                yield return new Vector3(xPixel1, 0, yPixel1 + 1).ToIntVec3();
+                if (ValidateBounds(out validatedCell, xPixel1, yPixel1, map))
+                    yield return validatedCell;
+                if (ValidateBounds(out validatedCell, xPixel1, yPixel1 + 1, map))
+                    yield return validatedCell;
             }
 
             var interY = yEnd + gradient;
@@ -72,13 +83,17 @@ namespace CombatExtended
             var yPixel2 = Mathf.Floor(yEnd);
             if (isSteep)
             {
-                yield return new Vector3(yPixel2, 0, xPixel2).ToIntVec3();
-                yield return new Vector3(yPixel2 + 1, 0, xPixel2).ToIntVec3();
+                if (ValidateBounds(out validatedCell, yPixel2, xPixel2, map))
+                    yield return validatedCell;
+                if (ValidateBounds(out validatedCell, yPixel2 + 1, xPixel2, map))
+                    yield return validatedCell;
             }
             else
             {
-                yield return new Vector3(xPixel2, 0, yPixel2).ToIntVec3();
-                yield return new Vector3(xPixel2, yPixel2 + 1).ToIntVec3();
+                if (ValidateBounds(out validatedCell, xPixel2, yPixel2, map))
+                    yield return validatedCell;
+                if (ValidateBounds(out validatedCell, xPixel2, yPixel2 + 1, map))
+                    yield return validatedCell;
             }
 
             // Main loop
@@ -86,8 +101,10 @@ namespace CombatExtended
             {
                 for (var i = xPixel1 + 1; i <= xPixel2 - 1; i++)
                 {
-                    yield return new Vector3(Mathf.Floor(interY), 0, i).ToIntVec3();
-                    yield return new Vector3(Mathf.Floor(interY) + 1, 0, i).ToIntVec3();
+                    if (ValidateBounds(out validatedCell, Mathf.Floor(interY), i, map))
+                        yield return validatedCell;
+                    if (ValidateBounds(out validatedCell, Mathf.Floor(interY) + 1, i, map))
+                        yield return validatedCell;
                     interY += gradient;
                 }
             }
@@ -95,8 +112,10 @@ namespace CombatExtended
             {
                 for (var i = xPixel1 + 1; i <= xPixel2 - 1; i++)
                 {
-                    yield return new Vector3(i, 0, Mathf.Floor(interY)).ToIntVec3();
-                    yield return new Vector3(i, 0, Mathf.Floor(interY) + 1).ToIntVec3();
+                    if (ValidateBounds(out validatedCell, i, Mathf.Floor(interY), map))
+                        yield return validatedCell;
+                    if (ValidateBounds(out validatedCell, i, Mathf.Floor(interY) + 1, map))
+                        yield return validatedCell;
                     interY += gradient;
                 }
             }

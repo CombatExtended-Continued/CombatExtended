@@ -5,9 +5,9 @@
 		<defName>Ammo303British</defName>
 		<label>.303 British</label>
 		<parent>AmmoRifles</parent>
-    <iconPath>UI/Icons/ThingCategories/CaliberRifle</iconPath>
+		<iconPath>UI/Icons/ThingCategories/CaliberRifle</iconPath>
 	</ThingCategoryDef>
-	
+
 	<!-- ==================== AmmoSet ========================== -->
 
 	<CombatExtended.AmmoSetDef>
@@ -17,21 +17,24 @@
 			<Ammo_303British_FMJ>Bullet_303British_FMJ</Ammo_303British_FMJ>
 			<Ammo_303British_AP>Bullet_303British_AP</Ammo_303British_AP>
 			<Ammo_303British_HP>Bullet_303British_HP</Ammo_303British_HP>
+		    <Ammo_303British_Incendiary>Bullet_303British_Incendiary</Ammo_303British_Incendiary>
+			<Ammo_303British_HE>Bullet_303British_HE</Ammo_303British_HE>
+			<Ammo_303British_Sabot>Bullet_303British_Sabot</Ammo_303British_Sabot>				
 		</ammoTypes>
 	</CombatExtended.AmmoSetDef>
-	
+
 	<!-- ==================== Ammo ========================== -->
 
 	<ThingDef Class="CombatExtended.AmmoDef" Name="303BritishBase" ParentName="SmallAmmoBase" Abstract="True">
 		<description>Large rifle bullet found mostly in outdated bolt-action firearms.</description>
 		<statBases>
-		<Mass>0.03</Mass>
-		<Bulk>0.05</Bulk>
+			<Mass>0.026</Mass>
+			<Bulk>0.03</Bulk>
 		</statBases>
-	<tradeTags>
-		<li>CE_AutoEnableTrade</li>
-		<li>CE_AutoEnableCrafting</li>
-	</tradeTags>
+		<tradeTags>
+			<li>CE_AutoEnableTrade</li>
+			<li>CE_AutoEnableCrafting</li>
+		</tradeTags>
 		<thingCategories>
 			<li>Ammo303British</li>
 		</thingCategories>
@@ -45,7 +48,7 @@
 			<graphicClass>Graphic_StackCount</graphicClass>
 		</graphicData>
 		<statBases>
-			<MarketValue>0.11</MarketValue>
+			<MarketValue>0.12</MarketValue>
 		</statBases>
 		<ammoClass>FullMetalJacket</ammoClass>
 		<cookOffProjectile>Bullet_303British_FMJ</cookOffProjectile>
@@ -59,7 +62,7 @@
 			<graphicClass>Graphic_StackCount</graphicClass>
 		</graphicData>
 		<statBases>
-			<MarketValue>0.15</MarketValue>
+			<MarketValue>0.12</MarketValue>
 		</statBases>
 		<ammoClass>ArmorPiercing</ammoClass>
 		<cookOffProjectile>Bullet_303British_AP</cookOffProjectile>
@@ -73,14 +76,57 @@
 			<graphicClass>Graphic_StackCount</graphicClass>
 		</graphicData>
 		<statBases>
-			<MarketValue>0.15</MarketValue>
+			<MarketValue>0.12</MarketValue>
 		</statBases>
 		<ammoClass>HollowPoint</ammoClass>
 		<cookOffProjectile>Bullet_303British_HP</cookOffProjectile>
 	</ThingDef>
-	
+
+  <ThingDef Class="CombatExtended.AmmoDef" ParentName="303BritishBase">
+    <defName>Ammo_303British_Incendiary</defName>
+    <label>.303 British cartridge (AP-I)</label>
+    <graphicData>
+      <texPath>Things/Ammo/Rifle/Incendiary</texPath>
+      <graphicClass>Graphic_StackCount</graphicClass>
+    </graphicData>
+    <statBases>
+      <MarketValue>0.15</MarketValue>
+    </statBases>
+    <ammoClass>IncendiaryAP</ammoClass>
+    <cookOffProjectile>Bullet_303British_Incendiary</cookOffProjectile>
+  </ThingDef>
+
+  <ThingDef Class="CombatExtended.AmmoDef" ParentName="303BritishBase">
+    <defName>Ammo_303British_HE</defName>
+    <label>.303 British cartridge (HE)</label>
+    <graphicData>
+      <texPath>Things/Ammo/Rifle/HE</texPath>
+      <graphicClass>Graphic_StackCount</graphicClass>
+    </graphicData>
+    <statBases>
+      <MarketValue>0.26</MarketValue>
+    </statBases>
+    <ammoClass>ExplosiveAP</ammoClass>
+    <cookOffProjectile>Bullet_303British_HE</cookOffProjectile>
+  </ThingDef>
+ 
+  <ThingDef Class="CombatExtended.AmmoDef" ParentName="303BritishBase">
+    <defName>Ammo_303British_Sabot</defName>
+    <label>.303 British cartridge (Sabot)</label>
+    <graphicData>
+      <texPath>Things/Ammo/Rifle/Sabot</texPath>
+      <graphicClass>Graphic_StackCount</graphicClass>
+    </graphicData>
+    <statBases>
+      <MarketValue>0.14</MarketValue>
+	  <Mass>0.022</Mass>
+    </statBases>
+    <ammoClass>Sabot</ammoClass>
+    <cookOffProjectile>Bullet_303British_Sabot</cookOffProjectile>
+  </ThingDef>
+  
 	<!-- ================== Projectiles ================== -->
-	
+
 	<ThingDef Class="CombatExtended.AmmoDef" Name="Base303BritishBullet" ParentName="BaseBullet" Abstract="true">
 		<graphicData>
 			<texPath>Things/Projectile/Bullet_Small</texPath>
@@ -88,7 +134,7 @@
 		</graphicData>
 		<projectile Class="CombatExtended.ProjectilePropertiesCE">
 			<damageDef>Bullet</damageDef>
-			<speed>186</speed>
+			<speed>149</speed>
 			<dropsCasings>true</dropsCasings>
 		</projectile>
 	</ThingDef>
@@ -97,8 +143,9 @@
 		<defName>Bullet_303British_FMJ</defName>
 		<label>.303 British bullet (FMJ)</label>
 		<projectile Class="CombatExtended.ProjectilePropertiesCE">
-			<damageAmountBase>18</damageAmountBase>
-			<armorPenetrationBase>0.589</armorPenetrationBase>
+			<damageAmountBase>19</damageAmountBase>
+			<armorPenetrationSharp>6</armorPenetrationSharp>
+			<armorPenetrationBlunt>62.540</armorPenetrationBlunt>
 		</projectile>
 	</ThingDef>
 
@@ -106,8 +153,9 @@
 		<defName>Bullet_303British_AP</defName>
 		<label>.303 British bullet (AP)</label>
 		<projectile Class="CombatExtended.ProjectilePropertiesCE">
-			<damageAmountBase>11</damageAmountBase>
-			<armorPenetrationBase>0.739</armorPenetrationBase>
+			<damageAmountBase>12</damageAmountBase>
+			<armorPenetrationSharp>12</armorPenetrationSharp>
+			<armorPenetrationBlunt>62.540</armorPenetrationBlunt>
 		</projectile>
 	</ThingDef>
 
@@ -115,11 +163,55 @@
 		<defName>Bullet_303British_HP</defName>
 		<label>.303 British bullet (HP)</label>
 		<projectile Class="CombatExtended.ProjectilePropertiesCE">
-			<damageAmountBase>25</damageAmountBase>
-			<armorPenetrationBase>0.439</armorPenetrationBase>
+			<damageAmountBase>24</damageAmountBase>
+			<armorPenetrationSharp>3</armorPenetrationSharp>
+			<armorPenetrationBlunt>62.540</armorPenetrationBlunt>
 		</projectile>
 	</ThingDef>
-  
+
+	  <ThingDef Class="CombatExtended.AmmoDef" ParentName="Base303BritishBullet">
+		<defName>Bullet_303British_Incendiary</defName>
+		<label>.303 British bullet (AP-I)</label>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+		  <damageAmountBase>12</damageAmountBase>
+		  <armorPenetrationSharp>12</armorPenetrationSharp>
+		  <armorPenetrationBlunt>62.540</armorPenetrationBlunt>
+		  <secondaryDamage>
+			<li>
+			  <def>Flame_Secondary</def>
+			  <amount>8</amount>
+			</li>
+		  </secondaryDamage>
+		</projectile>
+	  </ThingDef>
+	  
+	  <ThingDef Class="CombatExtended.AmmoDef" ParentName="Base303BritishBullet">
+		<defName>Bullet_303British_HE</defName>
+		<label>.303 British bullet (HE)</label>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+		  <damageAmountBase>19</damageAmountBase>
+		  <armorPenetrationSharp>6</armorPenetrationSharp>
+		  <armorPenetrationBlunt>62.540</armorPenetrationBlunt>
+		  <secondaryDamage>
+				<li>
+			  	<def>Bomb_Secondary</def>
+			  	<amount>12</amount>
+				</li>
+		  </secondaryDamage>
+		</projectile>
+	  </ThingDef>
+
+	  <ThingDef Class="CombatExtended.AmmoDef" ParentName="Base303BritishBullet">
+		<defName>Bullet_303British_Sabot</defName>
+		<label>.303 British bullet (Sabot)</label>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+		  <damageAmountBase>10</damageAmountBase>
+		  <armorPenetrationSharp>21</armorPenetrationSharp>
+		  <armorPenetrationBlunt>80.960</armorPenetrationBlunt>
+		  <speed>223</speed>
+		</projectile>
+	  </ThingDef>
+	  
 	<!-- ==================== Recipes ========================== -->
 
 	<RecipeDef ParentName="AmmoRecipeBase">
@@ -134,7 +226,7 @@
 						<li>Steel</li>
 					</thingDefs>
 				</filter>
-				<count>21</count>
+				<count>28</count>
 			</li>
 		</ingredients>
 		<fixedIngredientFilter>
@@ -145,7 +237,7 @@
 		<products>
 			<Ammo_303British_FMJ>500</Ammo_303British_FMJ>
 		</products>
-    <workAmount>3750</workAmount>
+		<workAmount>2800</workAmount>
 	</RecipeDef>
 
 	<RecipeDef ParentName="AmmoRecipeBase">
@@ -160,7 +252,7 @@
 						<li>Steel</li>
 					</thingDefs>
 				</filter>
-				<count>26</count>
+				<count>28</count>
 			</li>
 		</ingredients>
 		<fixedIngredientFilter>
@@ -171,7 +263,7 @@
 		<products>
 			<Ammo_303British_AP>500</Ammo_303British_AP>
 		</products>
-    <workAmount>6000</workAmount>
+		<workAmount>2800</workAmount>
 	</RecipeDef>
 
 	<RecipeDef ParentName="AmmoRecipeBase">
@@ -186,7 +278,7 @@
 						<li>Steel</li>
 					</thingDefs>
 				</filter>
-				<count>21</count>
+				<count>28</count>
 			</li>
 		</ingredients>
 		<fixedIngredientFilter>
@@ -197,7 +289,121 @@
 		<products>
 			<Ammo_303British_HP>500</Ammo_303British_HP>
 		</products>
-    <workAmount>8750</workAmount>
+		<workAmount>2800</workAmount>
 	</RecipeDef>
-	
+
+  <RecipeDef ParentName="AmmoRecipeBase">
+    <defName>MakeAmmo_303British_Incendiary</defName>
+    <label>make .303 British (AP-I) cartridge x500</label>
+    <description>Craft 500 .303 British (AP-I) cartridges.</description>
+    <jobString>Making .303 British (AP-I) cartridges.</jobString>
+    <ingredients>
+      <li>
+        <filter>
+          <thingDefs>
+            <li>Steel</li>
+          </thingDefs>
+        </filter>
+        <count>28</count>
+      </li>
+      <li>
+        <filter>
+          <thingDefs>
+            <li>Prometheum</li>
+          </thingDefs>
+        </filter>
+        <count>3</count>
+      </li>
+    </ingredients>
+    <fixedIngredientFilter>
+      <thingDefs>
+        <li>Steel</li>
+        <li>Prometheum</li>
+      </thingDefs>
+    </fixedIngredientFilter>
+    <products>
+      <Ammo_303British_Incendiary>500</Ammo_303British_Incendiary>
+    </products>
+    <workAmount>4000</workAmount>
+  </RecipeDef>
+  
+  <RecipeDef ParentName="AmmoRecipeBase">
+    <defName>MakeAmmo_303British_HE</defName>
+    <label>make .303 British (HE) cartridge x500</label>
+    <description>Craft 500 .303 British (HE) cartridges.</description>
+    <jobString>Making .303 British (HE) cartridges.</jobString>
+    <ingredients>
+      <li>
+        <filter>
+          <thingDefs>
+            <li>Steel</li>
+          </thingDefs>
+        </filter>
+        <count>28</count>
+      </li>
+      <li>
+        <filter>
+          <thingDefs>
+            <li>FSX</li>
+          </thingDefs>
+        </filter>
+        <count>7</count>
+      </li>
+    </ingredients>
+    <fixedIngredientFilter>
+      <thingDefs>
+        <li>Steel</li>
+        <li>FSX</li>
+      </thingDefs>
+    </fixedIngredientFilter>
+    <products>
+      <Ammo_303British_HE>500</Ammo_303British_HE>
+    </products>
+    <workAmount>5600</workAmount>
+  </RecipeDef>
+  
+  <RecipeDef ParentName="AmmoRecipeBase">
+    <defName>MakeAmmo_303British_Sabot</defName>
+    <label>make .303 British (Sabot) cartridge x500</label>
+    <description>Craft 500 .303 British (Sabot) cartridges.</description>
+    <jobString>Making .303 British (Sabot) cartridges.</jobString>
+    <ingredients>
+      <li>
+        <filter>
+          <thingDefs>
+            <li>Steel</li>
+          </thingDefs>
+        </filter>
+        <count>16</count>
+      </li>
+      <li>
+        <filter>
+          <thingDefs>
+            <li>Uranium</li>
+          </thingDefs>
+        </filter>
+        <count>4</count>
+      </li>
+      <li>
+        <filter>
+          <thingDefs>
+            <li>Chemfuel</li>
+          </thingDefs>
+        </filter>
+        <count>4</count>
+      </li>		  
+    </ingredients>
+    <fixedIngredientFilter>
+      <thingDefs>
+        <li>Steel</li>
+        <li>Uranium</li>
+        <li>Chemfuel</li>		
+      </thingDefs>
+    </fixedIngredientFilter>
+    <products>
+      <Ammo_303British_Sabot>500</Ammo_303British_Sabot>
+    </products>
+    <workAmount>4000</workAmount>
+  </RecipeDef>
+  
 </Defs>

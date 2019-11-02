@@ -21,7 +21,7 @@ namespace CombatExtended
 
         #region Methods
 
-        public override string DescriptionFlavor
+      /*public override string DescriptionFlavor
         {
             get
             {
@@ -50,7 +50,7 @@ namespace CombatExtended
 
                 return base.DescriptionFlavor;
             }
-        }
+        }*/
 
         public override void PreApplyDamage(ref DamageInfo dinfo, out bool absorbed)
         {
@@ -61,7 +61,7 @@ namespace CombatExtended
                 {
                     numToCookOff += Mathf.RoundToInt(def.stackLimit * ((float)dinfo.Amount / HitPoints) * (def.smallVolume ? Rand.Range(1f, 2f) : Rand.Range(0.0f, 1f)));
                 }
-                else TryDetonate(Mathf.Lerp(1, Mathf.Min(5, stackCount), stackCount / def.stackLimit));
+                else TryDetonate(Mathf.Min(75, stackCount));
             }
         }
 
@@ -92,12 +92,33 @@ namespace CombatExtended
             }
         }
 
+        public override string GetInspectString()
+        {
+            StringBuilder stringBuilder = new StringBuilder();
+            string inspectString = base.GetInspectString();
+
+            if (!inspectString.NullOrEmpty())
+            {
+                stringBuilder.AppendLine(inspectString);
+            }
+
+            if (Controller.settings.EnableAmmoSystem)
+            {
+                var count = AmmoDef?.Users.Count ?? 0;
+
+                if (count >= 1)
+                    stringBuilder.AppendLine("CE_UsedBy".Translate() + ": " + AmmoDef.Users.FirstOrDefault().LabelCap + (AmmoDef.Users.Count > 1 ? " (+" + (AmmoDef.Users.Count - 1) + " more..)" : ""));
+            }
+
+            return stringBuilder.ToString().TrimEndNewlines();
+        }
+
         private bool TryDetonate(float scale = 1)
         {
             CompExplosiveCE comp = this.TryGetComp<CompExplosiveCE>();
             if (comp != null)
             {
-            	if(Rand.Chance(Mathf.Clamp01(0.75f - Mathf.Pow(HitPoints / MaxHitPoints, 2)))) comp.Explode(this, Position.ToVector3Shifted(), Map, scale);
+            	if(Rand.Chance(Mathf.Clamp01(0.75f - Mathf.Pow(HitPoints / MaxHitPoints, 2)))) comp.Explode(this, Position.ToVector3Shifted(), Map, Mathf.Pow(scale, 0.333f));
                 return true;
             }
             return false;
@@ -105,7 +126,7 @@ namespace CombatExtended
 
         private bool TryLaunchCookOffProjectile()
         {
-            if (AmmoDef.cookOffProjectile == null) return false;
+            if (AmmoDef == null || AmmoDef.cookOffProjectile == null) return false;
 
             // Spawn projectile if enabled
             if (!Controller.settings.RealisticCookOff)
