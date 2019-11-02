@@ -20,6 +20,16 @@
 		</ammoTypes>
 	</CombatExtended.AmmoSetDef>
 
+	<!-- Separate Non-lethal AmmoSet for firearms designed only to accept Non-lethal rounds -->
+
+	<CombatExtended.AmmoSetDef>
+		<defName>AmmoSet_9x19mmPara_NonLethal</defName>
+		<label>9x19mm Para (Tranq)</label>
+		<ammoTypes>
+			<Ammo_9x19mmPara_NL>Bullet_9x19mmPara_NL</Ammo_9x19mmPara_NL>
+		</ammoTypes>
+	</CombatExtended.AmmoSetDef>
+
 	<!-- ==================== Ammo ========================== -->
 
 	<ThingDef Class="CombatExtended.AmmoDef" Name="9x19mmParaBase" ParentName="SmallAmmoBase" Abstract="True">
@@ -79,6 +89,20 @@
 		<cookOffProjectile>Bullet_9x19mmPara_HP</cookOffProjectile>
 	</ThingDef>
 
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="9x19mmParaBase">
+		<defName>Ammo_9x19mmPara_NL</defName>
+		<label>9x19mm Para cartridge (Tranq)</label>
+		<graphicData>
+			<texPath>Things/Ammo/Pistol/NL</texPath>
+			<graphicClass>Graphic_StackCount</graphicClass>
+		</graphicData>
+		<statBases>
+			<MarketValue>0.07</MarketValue>
+		</statBases>
+		<ammoClass>TranqNonLethal</ammoClass>
+		<cookOffProjectile>Bullet_9x19mmPara_NL</cookOffProjectile>
+	</ThingDef>
+
 	<!-- ================== Projectiles ================== -->
 
 	<ThingDef Class="CombatExtended.AmmoDef" Name="Base9x19mmParaBullet" ParentName="BaseBullet" Abstract="true">
@@ -123,6 +147,16 @@
 			<armorPenetrationBase>0.16</armorPenetrationBase>
 			<armorPenetrationSharp>2</armorPenetrationSharp>
 			<armorPenetrationBlunt>10.820</armorPenetrationBlunt>
+		</projectile>
+	</ThingDef>
+
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="Base9x19mmParaBullet">
+		<defName>Bullet_9x19mmPara_NL</defName>
+		<label>9mm Para bullet (Tranq)</label>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageDef>Tranquilizer</damageDef>
+			<damageAmountBase>1</damageAmountBase>
+			<armorPenetrationBase>0.31</armorPenetrationBase>
 		</projectile>
 	</ThingDef>
 
@@ -198,6 +232,50 @@
 		<fixedIngredientFilter>
 			<thingDefs>
 				<li>Steel</li>
+			</thingDefs>
+		</fixedIngredientFilter>
+		<products>
+			<Ammo_9x19mmPara_HP>500</Ammo_9x19mmPara_HP>
+		</products>
+		<workAmount>3500</workAmount>
+	</RecipeDef>
+
+	<RecipeDef ParentName="AmmoRecipeBase">
+		<defName>MakeAmmo_9x19mmPara_NL</defName>
+		<label>make 9x19mm Parabellum (Tranq) cartridge x500</label>
+		<description>Craft 500 9x19mm Parabellum (Tranq) cartridges.</description>
+		<jobString>Making 9x19mm Parabellum (Tranq) cartridges.</jobString>
+		<ingredients>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>Steel</li>
+					</thingDefs>
+				</filter>
+				<count>9</count>
+			</li>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>Neutroamine</li>
+					</thingDefs>
+				</filter>
+				<count>1</count>
+			</li>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>MedicineHerbal</li>
+					</thingDefs>
+				</filter>
+				<count>1</count>
+			</li>
+		</ingredients>
+		<fixedIngredientFilter>
+			<thingDefs>
+				<li>Steel</li>
+				<li>Neutroamine</li>
+				<li>MedicineHerbal</li>
 			</thingDefs>
 		</fixedIngredientFilter>
 		<products>

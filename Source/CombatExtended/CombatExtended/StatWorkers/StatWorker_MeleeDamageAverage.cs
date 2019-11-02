@@ -28,7 +28,7 @@ namespace CombatExtended
             }
             if (tools.Any(x => !(x is ToolCE)))
             {
-                Log.Error($"Trying to get stat MeleeDamageAverage from {req.Def.defName} which has no support for Combat Extended.");
+                Log.Error($"Trying to get stat MeleeDamageAverage from {req.Def.defName} which has no support for Combat Extended FastTrack Edition.");
                 return 0;
             }
 
