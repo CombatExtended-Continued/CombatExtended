@@ -210,7 +210,8 @@ namespace CombatExtended
                 if(cur.Price < money
                     && shieldTags.Any(t => cur.thing.apparel.tags.Contains(t))
                     && (cur.thing.generateAllowChance >= 1f || Rand.ValueSeeded(pawn.thingIDNumber ^ 68715844) <= cur.thing.generateAllowChance)
-                    && pawn.apparel.CanWearWithoutDroppingAnything(cur.thing))
+                    && pawn.apparel.CanWearWithoutDroppingAnything(cur.thing)
+                    && ApparelUtility.HasPartsToWear(pawn, cur.thing))
                 {
                     workingShields.Add(cur);
                 }

@@ -163,7 +163,6 @@ namespace CombatExtended
             {
                 CompFireModes.ResetModes();
             }
-            caster = null;
         }
 
         /// <summary>
@@ -182,10 +181,6 @@ namespace CombatExtended
             {
                 if (!CompAmmo.TryReduceAmmoCount())
                 {
-                    if (CompAmmo.HasMagazine)
-                    {
-                        CompAmmo.TryStartReload();
-                    }
                     return false;
                 }
             }

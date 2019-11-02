@@ -18,6 +18,12 @@ namespace CombatExtended
             List<Thing> list = new List<Thing>(Position.GetThingList(map));
             foreach (Thing thing in list)
             {
+                if (thing is Building_Door door && !door.Open)
+                {
+                    Destroy();
+                    return;
+                }
+
                 if (thing.HasAttachment(ThingDefOf.Fire))
                 {
                     Fire fire = (Fire)thing.GetAttachment(ThingDefOf.Fire);

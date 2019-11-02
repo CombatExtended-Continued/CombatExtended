@@ -4,13 +4,10 @@
   <DamageDef ParentName="BluntBase">
     <defName>Beanbag</defName>
     <label>beanbag</label>
-    <deathMessage>{0} has been shot to death.</deathMessage>
-    <additionalHediffs>
-      <li>
-        <hediff>MuscleSpasms</hediff>
-        <severityPerDamageDealt>0.05</severityPerDamageDealt>
-      </li>
-    </additionalHediffs>
+    <deathMessage>{0} has been beanbagged to death.</deathMessage>
+    <hediff>BruiseBeanbag</hediff>
+    <hediffSkin>BruiseBeanbag</hediffSkin>
+    <hediffSolid>CrackBeanbag</hediffSolid>
   </DamageDef>
 
   <DamageDef ParentName="Bullet">
@@ -19,7 +16,9 @@
     <deathMessage>{0} has been shredded to death.</deathMessage>
     <hediff>Shredded</hediff>
     <hediffSolid>Crack</hediffSolid>
-	<minDamageToFragment>15</minDamageToFragment>
+    <minDamageToFragment>5</minDamageToFragment>
+    <buildingDamageFactor>0.125</buildingDamageFactor>
+    <plantDamageFactor>0.125</plantDamageFactor>
   </DamageDef>
 
   <DamageDef ParentName="Flame">
@@ -27,7 +26,7 @@
     <additionalHediffs>
       <li>
         <hediff>PrometheumSoaked</hediff>
-        <severityPerDamageDealt>0.025</severityPerDamageDealt>
+        <severityPerDamageDealt>0.05</severityPerDamageDealt>
       </li>
     </additionalHediffs>
   </DamageDef>
@@ -59,6 +58,8 @@
     <armorCategory>Sharp</armorCategory>
     <overkillPctToDestroyPart>0~0.7</overkillPctToDestroyPart>
     <scratchSplitPercentage>0.67</scratchSplitPercentage>
+    <buildingDamageFactor>0.25</buildingDamageFactor>
+    <plantDamageFactor>0.25</plantDamageFactor>
     <modExtensions>
       <li Class="CombatExtended.DamageDefExtensionCE">
         <harmOnlyOutsideLayers>true</harmOnlyOutsideLayers>
@@ -68,14 +69,16 @@
 
   <DamageDef ParentName="Bomb">
     <defName>Bomb_Secondary</defName>
-    <harmAllLayersUntilOutside>false</harmAllLayersUntilOutside>
     <minDamageToFragment>99999</minDamageToFragment>
+    <harmAllLayersUntilOutside>false</harmAllLayersUntilOutside>
   </DamageDef>
 
   <DamageDef ParentName="Bomb">
     <defName>Thermobaric</defName>
     <label>thermobaric</label>
     <workerClass>DamageWorker_Flame</workerClass>
+    <buildingDamageFactor>6</buildingDamageFactor>
+    <plantDamageFactor>6</plantDamageFactor>
   </DamageDef>
 
   <DamageDef ParentName="Flame">
@@ -84,9 +87,10 @@
     <workerClass>DamageWorker_AddInjury</workerClass>
     <harmAllLayersUntilOutside>false</harmAllLayersUntilOutside>
     <minDamageToFragment>99999</minDamageToFragment>
+    <hediff>BurnSecondary</hediff>
   </DamageDef>
 
-  <DamageDef>
+  <DamageDef Name="Electrical">
     <defName>Electrical</defName>
     <label>electrical</label>
     <workerClass>DamageWorker_AddInjury</workerClass>

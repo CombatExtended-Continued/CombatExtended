@@ -5,9 +5,9 @@
 		<defName>Ammo454Casull</defName>
 		<label>.454 Casull</label>
 		<parent>AmmoPistols</parent>
-    <iconPath>UI/Icons/ThingCategories/CaliberPistol</iconPath>
+		<iconPath>UI/Icons/ThingCategories/CaliberPistol</iconPath>
 	</ThingCategoryDef>
-	
+
 	<!-- ==================== AmmoSet ========================== -->
 
 	<CombatExtended.AmmoSetDef>
@@ -23,19 +23,19 @@
 			<Ammo_410Bore_Buck>Bullet_410Bore_Buck</Ammo_410Bore_Buck>
 		</ammoTypes>
 	</CombatExtended.AmmoSetDef>
-	
+
 	<!-- ==================== Ammo ========================== -->
 
 	<ThingDef Class="CombatExtended.AmmoDef" Name="454CasullBase" ParentName="SmallAmmoBase" Abstract="True">
 		<description>A lengthened and reinforced .45 Colt cartridge. Very potent.</description>
 		<statBases>
-		<Mass>0.025</Mass>
-		<Bulk>0.03</Bulk>
+			<Mass>0.025</Mass>
+			<Bulk>0.03</Bulk>
 		</statBases>
-	<tradeTags>
-		<li>CE_AutoEnableTrade</li>
-		<li>CE_AutoEnableCrafting</li>
-	</tradeTags>
+		<tradeTags>
+			<li>CE_AutoEnableTrade</li>
+			<li>CE_AutoEnableCrafting</li>
+		</tradeTags>
 		<thingCategories>
 			<li>Ammo454Casull</li>
 		</thingCategories>
@@ -82,7 +82,7 @@
 		<ammoClass>HollowPoint</ammoClass>
 		<cookOffProjectile>Bullet_454Casull_HP</cookOffProjectile>
 	</ThingDef>
-	
+
 	<!-- ================== Projectiles ================== -->
 
 	<ThingDef Class="CombatExtended.AmmoDef" Name="Base454CasullBullet" ParentName="BaseBullet" Abstract="true">
@@ -92,7 +92,7 @@
 		</graphicData>
 		<projectile Class="CombatExtended.ProjectilePropertiesCE">
 			<damageDef>Bullet</damageDef>
-			<speed>135</speed>
+			<speed>116</speed>
 			<dropsCasings>true</dropsCasings>
 		</projectile>
 	</ThingDef>
@@ -103,6 +103,8 @@
 		<projectile Class="CombatExtended.ProjectilePropertiesCE">
 			<damageAmountBase>25</damageAmountBase>
 			<armorPenetrationBase>0.548</armorPenetrationBase>
+			<armorPenetrationSharp>0</armorPenetrationSharp>
+			<armorPenetrationBlunt>0</armorPenetrationBlunt>
 		</projectile>
 	</ThingDef>
 
@@ -112,6 +114,8 @@
 		<projectile Class="CombatExtended.ProjectilePropertiesCE">
 			<damageAmountBase>15</damageAmountBase>
 			<armorPenetrationBase>0.698</armorPenetrationBase>
+			<armorPenetrationSharp>0</armorPenetrationSharp>
+			<armorPenetrationBlunt>0</armorPenetrationBlunt>
 		</projectile>
 	</ThingDef>
 
@@ -121,9 +125,11 @@
 		<projectile Class="CombatExtended.ProjectilePropertiesCE">
 			<damageAmountBase>35</damageAmountBase>
 			<armorPenetrationBase>0.398</armorPenetrationBase>
+			<armorPenetrationSharp>0</armorPenetrationSharp>
+			<armorPenetrationBlunt>0</armorPenetrationBlunt>
 		</projectile>
 	</ThingDef>
-  
+
 	<!-- ==================== Recipes ========================== -->
 
 	<RecipeDef ParentName="AmmoRecipeBase">
@@ -200,5 +206,5 @@
 			<Ammo_454Casull_HP>500</Ammo_454Casull_HP>
 		</products>
 	</RecipeDef>
-	
+
 </Defs>

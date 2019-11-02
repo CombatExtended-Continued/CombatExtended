@@ -14,6 +14,7 @@ namespace CombatExtended.Harmony
     [HarmonyPatch(typeof(DamageWorker_AddInjury), "ApplyDamageToPart")]
     internal static class Harmony_DamageWorker_AddInjury_ApplyDamageToPart
     {
+        private static bool _applyingSecondary = false;
         private static bool shieldAbsorbed = false;
         private static readonly int[] ArmorBlockNullOps = { 1, 3, 4, 5, 6 };  // Lines in armor block that need to be nulled out
 
@@ -61,6 +62,10 @@ namespace CombatExtended.Harmony
             // Override armor method call
             codes[armorBlockEnd].operand = typeof(Harmony_DamageWorker_AddInjury_ApplyDamageToPart).GetMethod(nameof(ArmorReroute), AccessTools.all);
 
+            // Prevent vanilla code from overriding changed damageDef
+            codes[armorBlockEnd + 3] = new CodeInstruction(OpCodes.Call, typeof(DamageInfo).GetMethod($"get_{nameof(DamageInfo.Def)}"));
+            codes[armorBlockEnd + 4] = new CodeInstruction(OpCodes.Stloc_S, 5);
+
             // Our method returns a Dinfo instead of float, we want to insert a call to Dinfo.Amount before stloc at ArmorBlockEnd+1
             codes.InsertRange(armorBlockEnd + 1, new[]
             {
@@ -75,15 +80,20 @@ namespace CombatExtended.Harmony
         {
             if (shieldAbsorbed) return;
 
-            var props = dinfo.Weapon?.projectile as ProjectilePropertiesCE;
-            if (props != null && !props.secondaryDamage.NullOrEmpty() && dinfo.Def == props.damageDef)
+            if (dinfo.Weapon?.projectile is ProjectilePropertiesCE props && !props.secondaryDamage.NullOrEmpty() && !_applyingSecondary)
             {
+                _applyingSecondary = true;
                 foreach (var sec in props.secondaryDamage)
                 {
-                    if (pawn.Dead) return;
+                    if (pawn.Dead)
+                    {
+                        break;
+                    }
                     var secDinfo = sec.GetDinfo(dinfo);
                     pawn.TakeDamage(secDinfo);
                 }
+
+                _applyingSecondary = false;
             }
         }
     }

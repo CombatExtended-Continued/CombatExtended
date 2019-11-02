@@ -64,7 +64,7 @@ namespace CombatExtended
             }
 
             // CE stats
-            stringBuilder.AppendLine("   " + "CE_DescArmorPenetration".Translate() + ": " + props.GetArmorPenetration(1).ToStringByStyle(ToStringStyle.FloatTwo));
+            stringBuilder.AppendLine("   " + "CE_DescArmorPenetration".Translate() + ": " + props.armorPenetrationSharp.ToStringByStyle(ToStringStyle.FloatTwo) + "CE_mmRHA".Translate());
             if (props.pelletCount > 1)
             {
                 stringBuilder.AppendLine("   " + "CE_DescPelletCount".Translate() + ": " + GenText.ToStringByStyle(props.pelletCount, ToStringStyle.Integer));

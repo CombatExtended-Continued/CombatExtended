@@ -84,7 +84,7 @@
     </CustomCommands>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="0Harmony, Version=1.0.9.1, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="0Harmony, Version=1.2.0.1, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\Assemblies\0Harmony.dll</HintPath>
       <Private>False</Private>
@@ -110,15 +110,21 @@
     <Compile Include="CombatExtended\AmmoUtility.cs" />
     <Compile Include="CombatExtended\BoundsInjector.cs" />
     <Compile Include="CombatExtended\CollisionVertical.cs" />
+    <Compile Include="CombatExtended\Comps\HediffCompProperties_Beanbag.cs" />
     <Compile Include="CombatExtended\Comps\HediffCompProperties_FleshOnly.cs" />
     <Compile Include="CombatExtended\Comps\HediffCompProperties_Prometheum.cs" />
+    <Compile Include="CombatExtended\Comps\HediffCompProperties_Venom.cs" />
+    <Compile Include="CombatExtended\Comps\HediffComp_Beanbag.cs" />
     <Compile Include="CombatExtended\Comps\HediffComp_FleshOnly.cs" />
     <Compile Include="CombatExtended\Comps\HediffComp_Prometheum.cs" />
+    <Compile Include="CombatExtended\Comps\HediffComp_Venom.cs" />
     <Compile Include="CombatExtended\Controller.cs" />
+    <Compile Include="CombatExtended\DamageWorkers\DamageWorker_BluntCE.cs" />
     <Compile Include="CombatExtended\DefOfs\CE_BodyShapeDefOf.cs" />
     <Compile Include="CombatExtended\DefOfs\CE_ConceptDefOf.cs" />
     <Compile Include="CombatExtended\DefOfs\CE_DamageArmorCategoryDefOf.cs" />
     <Compile Include="CombatExtended\DefOfs\CE_DamageDefOf.cs" />
+    <Compile Include="CombatExtended\DefOfs\CE_HediffDefOf.cs" />
     <Compile Include="CombatExtended\DefOfs\CE_MentalStateDefOf.cs" />
     <Compile Include="CombatExtended\DefOfs\CE_RulePackDefOf.cs" />
     <Compile Include="CombatExtended\DefOfs\CE_TraitDefOf.cs" />
@@ -132,7 +138,10 @@
     <Compile Include="CombatExtended\DefOfs\CE_JobDefOf.cs" />
     <Compile Include="CombatExtended\DefOfs\CE_ThingDefOf.cs" />
     <Compile Include="CombatExtended\DefOfs\CE_StatDefOf.cs" />
+    <Compile Include="CombatExtended\Defs\ApparelHediffExtension.cs" />
+    <Compile Include="CombatExtended\Defs\ApparelLayerExtension.cs" />
     <Compile Include="CombatExtended\Defs\BodyShapeDef.cs" />
+    <Compile Include="CombatExtended\Defs\GunDrawExtension.cs" />
     <Compile Include="CombatExtended\Defs\JobDefExtensionCE.cs" />
     <Compile Include="CombatExtended\Defs\SidearmOption.cs" />
     <Compile Include="CombatExtended\Defs\LoadoutPropertiesExtension.cs" />
@@ -154,6 +163,7 @@
     <Compile Include="CombatExtended\Jobs\JobGiver_ManTurretsNearSelfCE.cs" />
     <Compile Include="CombatExtended\Jobs\JobGiver_ReactToSuppression.cs" />
     <Compile Include="CombatExtended\Jobs\JobGiver_TakeAndEquip.cs" />
+    <Compile Include="CombatExtended\LetterTracker.cs" />
     <Compile Include="CombatExtended\Loadouts\HoldRecord.cs" />
     <Compile Include="CombatExtended\Loadouts\PawnColumnWorker_MassBulkBars.cs" />
     <Compile Include="CombatExtended\Loadouts\Tracker.cs" />
@@ -167,18 +177,29 @@
     <Compile Include="CombatExtended\Settings.cs" />
     <Compile Include="CombatExtended\Projectiles\Projectile_FireTrail.cs" />
     <Compile Include="CombatExtended\SightUtility.cs" />
+    <Compile Include="CombatExtended\StatWorkers\StatWorker_ArmorCoverage.cs" />
     <Compile Include="CombatExtended\StatWorkers\StatWorker_BodyPartDensity.cs" />
+    <Compile Include="CombatExtended\StatWorkers\StatWorker_BodyPartKPA.cs" />
+    <Compile Include="CombatExtended\StatWorkers\StatWorker_BodyPartRHA.cs" />
     <Compile Include="CombatExtended\StatWorkers\StatWorker_Caliber.cs" />
+    <Compile Include="CombatExtended\StatWorkers\StatWorker_AmmoCaliber.cs" />
+    <Compile Include="CombatExtended\StatWorkers\StatWorker_Flammability.cs" />
+    <Compile Include="CombatExtended\StatWorkers\StatWorker_MeleeDamageAverage.cs" />
+    <Compile Include="CombatExtended\StatWorkers\StatWorker_MeleeDamageBase.cs" />
+    <Compile Include="CombatExtended\StatWorkers\StatWorker_MeleeDamage.cs" />
     <Compile Include="CombatExtended\StatWorkers\StatWorker_MeleeArmorPenetration.cs" />
     <Compile Include="CombatExtended\StatWorkers\StatWorker_Magazine.cs" />
+    <Compile Include="CombatExtended\StatWorkers\StatWorker_MeleeStats.cs" />
     <Compile Include="CombatExtended\TexButton.cs" />
     <Compile Include="CombatExtended\Projectiles\ProjectileCE_Explosive.cs" />
     <Compile Include="CombatExtended\Enums\RecoilPattern.cs" />
     <Compile Include="CombatExtended\Enums\AimMode.cs" />
     <Compile Include="CombatExtended\Things\Apparel_Shield.cs" />
+    <Compile Include="CombatExtended\Things\Smoke.cs" />
     <Compile Include="CombatExtended\ThinkNodes\ThinkNode_ConditionalHasLoadout.cs" />
     <Compile Include="CombatExtended\ToolCE.cs" />
     <Compile Include="CombatExtended\Verbs\Verb_MeleeAttackCE.cs" />
+    <Compile Include="CombatExtended\WeatherTracker.cs" />
     <Compile Include="CombatExtended\WorkGivers\WorkGiver_HunterHuntCE.cs" />
     <Compile Include="CombatExtended\Defs\DamageDefExtensionCE.cs" />
     <Compile Include="CombatExtended\Gizmos\Command_VerbTarget.cs" />
@@ -241,10 +262,12 @@
     <Compile Include="CombatExtended\Verbs\Verb_MarkForArtilleryCE.cs" />
     <Compile Include="CombatExtended\Verbs\Verb_ShootMortarCE.cs" />
     <Compile Include="CombatExtended\Verbs\Verb_ShootCEOneUse.cs" />
+    <Compile Include="Harmony\Harmony-BuildingProperties.cs" />
     <Compile Include="Harmony\Harmony-DamageWorker_AddInjury.cs" />
     <Compile Include="Harmony\Harmony-Fire.cs" />
     <Compile Include="Harmony\Harmony-FloatMenuMakerMap.cs" />
     <Compile Include="Harmony\Harmony-GenRadial.cs" />
+    <Compile Include="Harmony\Harmony-GlobalControls.cs" />
     <Compile Include="Harmony\Harmony-HediffComp_TendDuration.cs" />
     <Compile Include="Harmony\Harmony-HediffWithComps.cs" />
     <Compile Include="Harmony\Harmony-Hediff_MissingPart.cs" />
@@ -260,6 +283,7 @@
     <Compile Include="Harmony\Harmony-Pawn_HealthTracker.cs" />
     <Compile Include="Harmony\Harmony-SmokepopBelt.cs" />
     <Compile Include="Harmony\Harmony-StunHandler.cs" />
+    <Compile Include="Harmony\Harmony-Thing.cs" />
     <Compile Include="Harmony\Harmony-ThingDefGenerator_Meat.cs" />
     <Compile Include="Harmony\Harmony-ThingOwner.cs" />
     <Compile Include="Harmony\Harmony-TooltipUtility.cs" />
@@ -268,9 +292,16 @@
     <Compile Include="Harmony\Harmony-VerbProperties.cs" />
     <Compile Include="Harmony\Harmony-VerbTracker.cs" />
     <Compile Include="Harmony\Harmony-VerbUtility.cs" />
+    <Compile Include="Harmony\Harmony-Verb_LaunchProjectileCE.cs" />
     <Compile Include="Harmony\Harmony-Verb_TryStartCastOn.cs" />
     <Compile Include="Harmony\HarmonyJobGiver_ConfigurableHostilityResponse.cs" />
     <Compile Include="Harmony\HarmonyThingDef.cs" />
+    <Compile Include="Harmony\Harmony_ApparelGraphicRecordGetter.cs" />
+    <Compile Include="Harmony\Harmony_ApparelTracker.cs" />
+    <Compile Include="Harmony\Harmony_AvoidGrid.cs" />
+    <Compile Include="Harmony\Harmony_ExplosionCE.cs" />
+    <Compile Include="Harmony\Harmony_FireUtility.cs" />
+    <Compile Include="Harmony\Harmony_FireWatcher.cs" />
     <Compile Include="Harmony\Harmony_Hediff_Injury.cs" />
     <Compile Include="Harmony\Harmony_PathFinder.cs" />
     <Compile Include="Harmony\Harmony-WorkGiver_HunterHunt.cs" />
@@ -278,7 +309,11 @@
     <Compile Include="Harmony\HarmonyBase.cs" />
     <Compile Include="Harmony\Harmony-ThingListGroupHelper.cs" />
     <Compile Include="Harmony\Harmony-TurretGunUtility.cs" />
-    <Compile Include="Harmony\ShieldBelt.cs" />
+    <Compile Include="Harmony\Harmony-ShieldBelt.cs" />
+    <Compile Include="Harmony\Harmony_PawnGraphicSet.cs" />
+    <Compile Include="Harmony\Harmony_PawnRenderer.cs" />
+    <Compile Include="Harmony\Harmony_SappersUtility.cs" />
+    <Compile Include="Harmony\Harmony_Verb_BeatFire.cs" />
     <Compile Include="Harmony\TradeUtility.cs" />
     <Compile Include="Harmony\Verb_LaunchProjectileCE.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

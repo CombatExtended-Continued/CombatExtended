@@ -12,5 +12,6 @@ namespace CombatExtended
     public class CE_DamageDefOf
     {
         public static DamageDef Electrical;
+        public static DamageDef Flame_Secondary;
     }
 }

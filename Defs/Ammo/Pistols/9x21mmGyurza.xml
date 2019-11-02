@@ -1,13 +1,13 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <Defs>
-	
+
 	<ThingCategoryDef>
 		<defName>Ammo9x21mmGyurza</defName>
 		<label>9x21mm Gyurza</label>
 		<parent>AmmoPistols</parent>
-    <iconPath>UI/Icons/ThingCategories/CaliberPistol</iconPath>
+		<iconPath>UI/Icons/ThingCategories/CaliberPistol</iconPath>
 	</ThingCategoryDef>
-	
+
 	<!-- ==================== AmmoSet ========================== -->
 
 	<CombatExtended.AmmoSetDef>
@@ -19,14 +19,14 @@
 			<Ammo_9x21mmGyurza_HP>Bullet_9x21mmGyurza_HP</Ammo_9x21mmGyurza_HP>
 		</ammoTypes>
 	</CombatExtended.AmmoSetDef>
-	
+
 	<!-- ==================== Ammo ========================== -->
 
 	<ThingDef Class="CombatExtended.AmmoDef" Name="9x21mmGyurzaBase" ParentName="SmallAmmoBase" Abstract="True">
 		<description>This high-velocity handgun cartridge was specifically designed for military personnel to defeat body armor.</description>
 		<statBases>
-		<Mass>0.008</Mass>
-		<Bulk>0.02</Bulk>
+			<Mass>0.008</Mass>
+			<Bulk>0.02</Bulk>
 		</statBases>
 		<tradeTags>
 			<li>CE_AutoEnableTrade</li>
@@ -78,7 +78,7 @@
 		<ammoClass>HollowPoint</ammoClass>
 		<cookOffProjectile>Bullet_9x21mmGyurza_HP</cookOffProjectile>
 	</ThingDef>
-	
+
 	<!-- ================== Projectiles ================== -->
 
 	<ThingDef Class="CombatExtended.AmmoDef" Name="Base9x21mmGyurzaBullet" ParentName="BaseBullet" Abstract="true">
@@ -88,7 +88,7 @@
 		</graphicData>
 		<projectile Class="CombatExtended.ProjectilePropertiesCE">
 			<damageDef>Bullet</damageDef>
-			<speed>98</speed>
+			<speed>82</speed>
 			<dropsCasings>true</dropsCasings>
 		</projectile>
 	</ThingDef>
@@ -97,8 +97,10 @@
 		<defName>Bullet_9x21mmGyurza_FMJ</defName>
 		<label>9mm Gyurza bullet (FMJ)</label>
 		<projectile Class="CombatExtended.ProjectilePropertiesCE">
-			<damageAmountBase>11</damageAmountBase>
+			<damageAmountBase>9</damageAmountBase>
 			<armorPenetrationBase>0.324</armorPenetrationBase>
+			<armorPenetrationSharp>0</armorPenetrationSharp>
+			<armorPenetrationBlunt>0</armorPenetrationBlunt>
 		</projectile>
 	</ThingDef>
 
@@ -119,85 +121,85 @@
 			<armorPenetrationBase>0.174</armorPenetrationBase>
 		</projectile>
 	</ThingDef>
-  
-  <!-- ==================== Recipes ========================== -->
 
-  <RecipeDef ParentName="AmmoRecipeBase">
-    <defName>MakeAmmo_9x21mmGyurza_FMJ</defName>
-    <label>make 9x21mm Gyurza (FMJ) cartridge x500</label>
-    <description>Craft 500 9x21mm Gyurza (FMJ) cartridges.</description>
-    <jobString>Making 9x21mm Gyurza (FMJ) cartridges.</jobString>
-    <ingredients>
-      <li>
-        <filter>
-          <thingDefs>
-            <li>Steel</li>
-          </thingDefs>
-        </filter>
-        <count>8</count>
-      </li>
-    </ingredients>
-    <fixedIngredientFilter>
-      <thingDefs>
-        <li>Steel</li>
-      </thingDefs>
-    </fixedIngredientFilter>
-    <products>
-      <Ammo_9x21mmGyurza_FMJ>500</Ammo_9x21mmGyurza_FMJ>
-    </products>
-    <workAmount>2000</workAmount>
-  </RecipeDef>
+	<!-- ==================== Recipes ========================== -->
 
-  <RecipeDef ParentName="AmmoRecipeBase">
-    <defName>MakeAmmo_9x21mmGyurza_AP</defName>
-    <label>make 9x21mm Gyurza (AP) cartridge x500</label>
-    <description>Craft 500 9x21mm Gyurza (AP) cartridges.</description>
-    <jobString>Making 9x21mm Gyurza (AP) cartridges.</jobString>
-    <ingredients>
-      <li>
-        <filter>
-          <thingDefs>
-            <li>Steel</li>
-          </thingDefs>
-        </filter>
-        <count>10</count>
-      </li>
-    </ingredients>
-    <fixedIngredientFilter>
-      <thingDefs>
-        <li>Steel</li>
-      </thingDefs>
-    </fixedIngredientFilter>
-    <products>
-      <Ammo_9x21mmGyurza_AP>500</Ammo_9x21mmGyurza_AP>
-    </products>
-    <workAmount>2750</workAmount>
-  </RecipeDef>
+	<RecipeDef ParentName="AmmoRecipeBase">
+		<defName>MakeAmmo_9x21mmGyurza_FMJ</defName>
+		<label>make 9x21mm Gyurza (FMJ) cartridge x500</label>
+		<description>Craft 500 9x21mm Gyurza (FMJ) cartridges.</description>
+		<jobString>Making 9x21mm Gyurza (FMJ) cartridges.</jobString>
+		<ingredients>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>Steel</li>
+					</thingDefs>
+				</filter>
+				<count>8</count>
+			</li>
+		</ingredients>
+		<fixedIngredientFilter>
+			<thingDefs>
+				<li>Steel</li>
+			</thingDefs>
+		</fixedIngredientFilter>
+		<products>
+			<Ammo_9x21mmGyurza_FMJ>500</Ammo_9x21mmGyurza_FMJ>
+		</products>
+		<workAmount>2000</workAmount>
+	</RecipeDef>
 
-  <RecipeDef ParentName="AmmoRecipeBase">
-    <defName>MakeAmmo_9x21mmGyurza_HP</defName>
-    <label>make 9x21mm Gyurza (HP) cartridge x500</label>
-    <description>Craft 500 9x21mm Gyurza (HP) cartridges.</description>
-    <jobString>Making 9x21mm Gyurza (HP) cartridges.</jobString>
-    <ingredients>
-      <li>
-        <filter>
-          <thingDefs>
-            <li>Steel</li>
-          </thingDefs>
-        </filter>
-        <count>8</count>
-      </li>
-    </ingredients>
-    <fixedIngredientFilter>
-      <thingDefs>
-        <li>Steel</li>
-      </thingDefs>
-    </fixedIngredientFilter>
-    <products>
-      <Ammo_9x21mmGyurza_HP>500</Ammo_9x21mmGyurza_HP>
-    </products>
-    <workAmount>3500</workAmount>
-  </RecipeDef>
-	
+	<RecipeDef ParentName="AmmoRecipeBase">
+		<defName>MakeAmmo_9x21mmGyurza_AP</defName>
+		<label>make 9x21mm Gyurza (AP) cartridge x500</label>
+		<description>Craft 500 9x21mm Gyurza (AP) cartridges.</description>
+		<jobString>Making 9x21mm Gyurza (AP) cartridges.</jobString>
+		<ingredients>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>Steel</li>
+					</thingDefs>
+				</filter>
+				<count>10</count>
+			</li>
+		</ingredients>
+		<fixedIngredientFilter>
+			<thingDefs>
+				<li>Steel</li>
+			</thingDefs>
+		</fixedIngredientFilter>
+		<products>
+			<Ammo_9x21mmGyurza_AP>500</Ammo_9x21mmGyurza_AP>
+		</products>
+		<workAmount>2750</workAmount>
+	</RecipeDef>
+
+	<RecipeDef ParentName="AmmoRecipeBase">
+		<defName>MakeAmmo_9x21mmGyurza_HP</defName>
+		<label>make 9x21mm Gyurza (HP) cartridge x500</label>
+		<description>Craft 500 9x21mm Gyurza (HP) cartridges.</description>
+		<jobString>Making 9x21mm Gyurza (HP) cartridges.</jobString>
+		<ingredients>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>Steel</li>
+					</thingDefs>
+				</filter>
+				<count>8</count>
+			</li>
+		</ingredients>
+		<fixedIngredientFilter>
+			<thingDefs>
+				<li>Steel</li>
+			</thingDefs>
+		</fixedIngredientFilter>
+		<products>
+			<Ammo_9x21mmGyurza_HP>500</Ammo_9x21mmGyurza_HP>
+		</products>
+		<workAmount>3500</workAmount>
+	</RecipeDef>
+
 </Defs>

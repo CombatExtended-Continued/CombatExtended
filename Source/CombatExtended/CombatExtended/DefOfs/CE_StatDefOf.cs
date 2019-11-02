@@ -31,8 +31,12 @@ namespace CombatExtended
         public static StatDef MeleeCritChance;
         public static StatDef MeleeDodgeChance;
         public static StatDef MeleeParryChance;
-        public static StatDef BodyPartDensity;
+        public static StatDef UnarmedDamage;
+        public static StatDef BodyPartSharpArmor;
+        public static StatDef BodyPartBluntArmor;
+        public static StatDef AverageSharpArmor;
 
+        public static StatDef SmokeSensitivity;
 
         public static StatDef Suppressability;
     }
