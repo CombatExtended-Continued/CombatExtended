@@ -19,9 +19,20 @@
 			</li>
 			<!-- Miscellaneous -->
 			<li Class="PatchOperationAdd">
-				<xpath>Defs/ThingDef[defName="VAE_Headgear_Scarf"]/equippedStatOffsets</xpath>
+				<xpath>Defs/ThingDef[defName="VAE_Headgear_Scarf"]</xpath>
 				<value>
-					<SmokeSensitivity>-0.25</SmokeSensitivity>
+					<equippedStatOffsets>
+						<SmokeSensitivity>-0.2</SmokeSensitivity>
+						<ToxicSensitivity>-0.1</ToxicSensitivity>
+					</equippedStatOffsets>
+				</value>
+			</li>
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="VAE_Headgear_Scarf"]/apparel/layers</xpath>
+				<value>
+					<layers>
+						<li>StrappedHead</li>
+					</layers>
 				</value>
 			</li>
 
@@ -42,8 +53,16 @@
 					</equippedStatOffsets>
 				</value>
 			</li>
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="VAE_Headgear_BaseballCap"]/apparel/layers</xpath>
+				<value>
+					<layers>
+						<li>MiddleHead</li>
+					</layers>
+				</value>
+			</li>
 
-			<!-- == VAE_Headgear_Hardhat == -->
+			<!-- == VAE_Headgear_Hardhat, VAE_Headgear_ChefsToque == -->
 			<!-- statBases -->
 			<li Class="PatchOperationReplace">
 				<xpath>Defs/ThingDef[defName="VAE_Headgear_Hardhat"]/statBases/ArmorRating_Blunt</xpath>
@@ -55,6 +74,13 @@
 				<xpath>Defs/ThingDef[defName="VAE_Headgear_Hardhat"]/statBases/ArmorRating_Sharp</xpath>
 				<value>
 					<ArmorRating_Sharp>1.5</ArmorRating_Sharp>
+				</value>
+			</li>
+			<!-- Miscellaneous -->
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName="VAE_Headgear_Hardhat" or defName="VAE_Headgear_ChefsToque"]/apparel/layers</xpath>
+				<value>
+					<li>MiddleHead</li>
 				</value>
 			</li>
 
@@ -78,8 +104,16 @@
 			<li Class="PatchOperationAdd">
 				<xpath>Defs/ThingDef[defName="VAE_Headgear_GasMask"]/equippedStatOffsets</xpath>
 				<value>
-					<AimingAccuracy>-0.1</AimingAccuracy>
+					<AimingAccuracy>-0.05</AimingAccuracy>
 					<SmokeSensitivity>-1</SmokeSensitivity>
+				</value>
+			</li>
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="VAE_Headgear_GasMask"]/apparel/layers</xpath>
+				<value>
+					<layers>
+						<li>StrappedHead</li>
+					</layers>
 				</value>
 			</li>
 
@@ -91,7 +125,15 @@
 					<Bulk>0.5</Bulk>
 				</value>
 			</li>
-
+			<!-- Miscellaneous -->
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="VAE_Headgear_Sunglasses" or defName="VAE_Headgear_Glasses"]/apparel/layers</xpath>
+				<value>
+					<layers>
+						<li>OnHead</li>
+					</layers>
+				</value>
+			</li>
 		</operations>
 	</Operation>
 </Patch>
