@@ -24,7 +24,7 @@
 		<description>Rare pistol cartridge that utilizes miniature rockets for propulsion instead of gunpowder.</description>
 		<statBases>
 			<Mass>0.016</Mass>
-			<Bulk>0.04</Bulk>
+			<Bulk>0.02</Bulk>
 		</statBases>
 		<tradeTags>
 			<li>CE_AutoEnableTrade</li>
@@ -43,7 +43,7 @@
 			<graphicClass>Graphic_StackCount</graphicClass>
 		</graphicData>
 		<statBases>
-			<MarketValue>0.17</MarketValue>
+			<MarketValue>0.2</MarketValue>
 		</statBases>
 		<ammoClass>FullMetalJacket</ammoClass>
 		<cookOffProjectile>Bullet_13mmGyrojet_FMJ</cookOffProjectile>
@@ -67,10 +67,8 @@
 		<label>13mm Gyrojet bullet (FMJ)</label>
 		<projectile Class="CombatExtended.ProjectilePropertiesCE">
 			<damageAmountBase>12</damageAmountBase>
-			<armorPenetrationBase>0.373</armorPenetrationBase>
-			<armorPenetrationSharp>0</armorPenetrationSharp>
+			<armorPenetrationSharp>10</armorPenetrationSharp>
 			<armorPenetrationBlunt>10.2</armorPenetrationBlunt>
-			<spreadMult>8</spreadMult>
 		</projectile>
 	</ThingDef>
 
@@ -90,16 +88,25 @@
 				</filter>
 				<count>16</count>
 			</li>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>ComponentIndustrial</li>
+					</thingDefs>
+				</filter>
+				<count>2</count>
+			</li>
 		</ingredients>
 		<fixedIngredientFilter>
 			<thingDefs>
 				<li>Steel</li>
+				<li>ComponentIndustrial</li>
 			</thingDefs>
 		</fixedIngredientFilter>
 		<products>
 			<Ammo_13mmGyrojet_FMJ>500</Ammo_13mmGyrojet_FMJ>
 		</products>
-		<workAmount>13750</workAmount>
+		<workAmount>2800</workAmount>
 	</RecipeDef>
 
 </Defs>
