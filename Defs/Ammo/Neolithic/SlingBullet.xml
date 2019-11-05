@@ -25,8 +25,8 @@
   <ThingDef Class="CombatExtended.AmmoDef" Name="AmmoSlingBulletBase" ParentName="NeolithicAmmoBase" Abstract="True">
     <description>An aerodynamic stone or metal pellet. Perfect for being launched by a sling.</description>
     <statBases>
-      <Mass>0.05</Mass>
-      <Bulk>0.08</Bulk>
+      <Mass>0.04</Mass>
+      <Bulk>0.04</Bulk>
     </statBases>
     <thingCategories>
       <li>AmmoSlingBullet</li>
@@ -47,7 +47,7 @@
       <graphicClass>Graphic_StackCount</graphicClass>
     </graphicData>
     <statBases>
-      <MarketValue>0.06</MarketValue>
+      <MarketValue>0.1</MarketValue>
     </statBases>
 		<ammoClass>StoneSlingBullet</ammoClass>
     <tradeTags>
@@ -63,7 +63,8 @@
       <graphicClass>Graphic_StackCount</graphicClass>
     </graphicData>
     <statBases>
-      <MarketValue>0.33</MarketValue>
+	  <Mass>0.057</Mass>
+      <MarketValue>0.4</MarketValue>
     </statBases>
 		<ammoClass>SteelSlingBullet</ammoClass>
   </ThingDef>
@@ -76,7 +77,8 @@
       <graphicClass>Graphic_StackCount</graphicClass>
     </graphicData>
     <statBases>
-      <MarketValue>3.16</MarketValue>
+	  <Mass>0.026</Mass>
+      <MarketValue>1.87</MarketValue>
     </statBases>
 		<ammoClass>PlasteelSlingBullet</ammoClass>
 	<generateAllowChance>0</generateAllowChance>
@@ -91,7 +93,7 @@
 		</graphicData>
 		<projectile Class="CombatExtended.ProjectilePropertiesCE">
 			<damageDef>Blunt</damageDef>
-			<speed>44</speed>
+			<speed>9</speed>
 		</projectile>
 	</ThingDef>
 
@@ -104,8 +106,9 @@
 		<defName>Projectile_SlingBullet_Stone</defName>
 		<label>sling bullet (stone)</label>
 		<projectile Class="CombatExtended.ProjectilePropertiesCE">
-			<damageAmountBase>7</damageAmountBase>
-			<armorPenetrationBase>0.125</armorPenetrationBase>
+			<damageAmountBase>6</damageAmountBase>
+			<armorPenetrationBlunt>0.760</armorPenetrationBlunt>
+			<armorPenetrationSharp>1</armorPenetrationSharp>
 			<preExplosionSpawnChance>0.166</preExplosionSpawnChance>	<!-- 11.99 stones per resource -->
 			<preExplosionSpawnThingDef>Ammo_SlingBullet_Stone</preExplosionSpawnThingDef>
 		</projectile>
@@ -116,7 +119,8 @@
 		<label>sling bullet (steel)</label>
 		<projectile Class="CombatExtended.ProjectilePropertiesCE">
 			<damageAmountBase>7</damageAmountBase>
-			<armorPenetrationBase>0.1625</armorPenetrationBase>
+			<armorPenetrationBlunt>1.100</armorPenetrationBlunt>
+			<armorPenetrationSharp>1</armorPenetrationSharp>
 			<preExplosionSpawnChance>0.5</preExplosionSpawnChance>	<!-- 20 stones per resource -->
 			<preExplosionSpawnThingDef>Ammo_SlingBullet_Steel</preExplosionSpawnThingDef>
 		</projectile>
@@ -126,8 +130,9 @@
 		<defName>Projectile_SlingBullet_Plasteel</defName>
 		<label>sling bullet (plasteel)</label>
 		<projectile Class="CombatExtended.ProjectilePropertiesCE">
-			<damageAmountBase>7</damageAmountBase>
-			<armorPenetrationBase>0.2</armorPenetrationBase>
+			<damageAmountBase>5</damageAmountBase>
+			<armorPenetrationBlunt>0.500</armorPenetrationBlunt>
+			<armorPenetrationSharp>1</armorPenetrationSharp>
 			<preExplosionSpawnChance>0.7</preExplosionSpawnChance>	<!-- 33.33 stones per resource -->
 			<preExplosionSpawnThingDef>Ammo_SlingBullet_Plasteel</preExplosionSpawnThingDef>
 		</projectile>
@@ -140,6 +145,7 @@
     <label>make stone sling bullets x10</label>
     <description>Make 10 stone sling bullets.</description>
     <jobString>Making stone sling bullets.</jobString>
+	<workAmount>100</workAmount>
     <ingredients>
       <li>
         <filter>
@@ -165,6 +171,7 @@
     <label>make steel sling bullets x10</label>
     <description>Make 10 steel sling bullets.</description>
     <jobString>Making steel sling bullets.</jobString>
+	<workAmount>200</workAmount>
     <ingredients>
       <li>
         <filter>
@@ -172,7 +179,7 @@
             <li>Steel</li>
           </thingDefs>
         </filter>
-        <count>1</count>
+        <count>2</count>
       </li>
     </ingredients>
     <fixedIngredientFilter>
@@ -190,6 +197,7 @@
     <label>make plasteel sling bullets x10</label>
     <description>Make 10 plasteel sling bullets.</description>
     <jobString>Making plasteel sling bullets.</jobString>
+	<workAmount>800</workAmount>
     <ingredients>
       <li>
         <filter>
@@ -197,7 +205,7 @@
             <li>Plasteel</li>
           </thingDefs>
         </filter>
-        <count>1</count>
+        <count>2</count>
       </li>
     </ingredients>
     <fixedIngredientFilter>
