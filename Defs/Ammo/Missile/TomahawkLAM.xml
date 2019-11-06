@@ -41,20 +41,22 @@
 			<drawSize>2,1</drawSize>
 		</graphicData>
 		<statBases>
-			<MarketValue>1500</MarketValue>
+			<MarketValue>14026</MarketValue>
 			<Mass>1440</Mass>
-			<Bulk>182</Bulk>
+			<Bulk>3830.29</Bulk>
 		</statBases>
 		<size>2,1</size>
 		<ammoClass>TomahawkLAM</ammoClass>
 		<comps>
 			<li Class="CombatExtended.CompProperties_ExplosiveCE">
-				<explosionDamage>500</explosionDamage>
+				<explosionDamage>5653</explosionDamage>
 				<explosionDamageDef>Bomb</explosionDamageDef>
-				<explosionRadius>26</explosionRadius>
-				<fragRange>10</fragRange>
+				<explosionRadius>19.5</explosionRadius>
 				<fragments>
-					<Fragment_RocketFrag>200</Fragment_RocketFrag>
+					<Fragment_Large>300</Fragment_Large>
+					<!-- Reduced from calculated value of 3729 for performance reasons -->
+					<Fragment_Small>500</Fragment_Small>
+					<!-- Reduced from calculated value of 39576 for performance reasons -->
 				</fragments>
 				<soundExplode>Explosion_GiantBomb</soundExplode>
 				<applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
@@ -69,7 +71,7 @@
 			<shaderType>TransparentPostLight</shaderType>
 		</graphicData>
 		<projectile Class="CombatExtended.ProjectilePropertiesCE">
-			<speed>185</speed>
+			<speed>50</speed>
 			<soundHitThickRoof>Explosion_GiantBomb</soundHitThickRoof>
 			<soundExplode>Explosion_GiantBomb</soundExplode>
 			<soundImpactAnticipate>MortarRound_PreImpact</soundImpactAnticipate>
@@ -89,15 +91,20 @@
 			<graphicClass>Graphic_Single</graphicClass>
 		</graphicData>
 		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<explosionRadius>19.5</explosionRadius >
 			<damageDef>Bomb</damageDef>
-			<damageAmountBase>500</damageAmountBase>
-			<explosionRadius>26</explosionRadius>
-			<applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
+			<damageAmountBase>5653</damageAmountBase>
+			<armorPenetrationSharp>0</armorPenetrationSharp>
+			<armorPenetrationBlunt>0</armorPenetrationBlunt>
+			<applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>			
 		</projectile>
 		<comps>
 			<li Class="CombatExtended.CompProperties_ExplosiveCE">
 				<fragments>
-					<Fragment_RocketFrag>200</Fragment_RocketFrag>
+					<Fragment_Large>300</Fragment_Large>
+					<!-- Reduced from calculated value of 3729 for performance reasons -->
+					<Fragment_Small>500</Fragment_Small>
+					<!-- Reduced from calculated value of 39576 for performance reasons -->
 				</fragments>				
 			</li>
 		</comps>
@@ -110,7 +117,7 @@
 		<label>make Tomahawk Missile</label>
 		<description>Craft a single Tomahawk Missile.</description>
 		<jobString>Making Tomahawk Missile.</jobString>
-		<workAmount>3500</workAmount>
+		<workAmount>607200</workAmount>
 		<ingredients>
 			<li>
 				<filter>
@@ -118,7 +125,7 @@
 						<li>Steel</li>
 					</thingDefs>
 				</filter>
-				<count>500</count>
+				<count>2880</count>
 			</li>
 			<li>
 				<filter>
@@ -126,7 +133,7 @@
 						<li>FSX</li>
 					</thingDefs>
 				</filter>
-				<count>30</count>
+				<count>792</count>
 			</li>
 			<li>
 				<filter>
@@ -134,7 +141,7 @@
 						<li>ComponentIndustrial</li>
 					</thingDefs>
 				</filter>
-				<count>10</count>
+				<count>4</count>
 			</li>
 		</ingredients>
 		<fixedIngredientFilter>
