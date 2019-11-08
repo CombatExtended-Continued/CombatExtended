@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+
+	<!-- Separate Non-lethal tranquilizer 762x51mmNATO cartridge for Project Red Horse: Militaires Sans Frontieres -->
+
+	<!-- ==================== AmmoSet ========================== -->
+
+	<CombatExtended.AmmoSetDef>
+		<defName>AmmoSet_762x51mmNATO_NonLethal</defName>
+		<label>7.62x51mm NATO (Tranq)</label>
+		<ammoTypes>
+			<Ammo_762x51mmNATO_NL>Bullet_762x51mmNATO_NL</Ammo_762x51mmNATO_NL>
+		</ammoTypes>
+	</CombatExtended.AmmoSetDef>
+
+	<!-- ==================== Ammo ========================== -->	
+
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="762x51mmNATOBase">
+		<defName>Ammo_762x51mmNATO_NL</defName>
+		<label>7.62x51mm NATO cartridge (Tranq)</label>
+		<graphicData>
+			<texPath>Things/Ammo/Rifle/NL</texPath>
+			<graphicClass>Graphic_StackCount</graphicClass>
+		</graphicData>
+		<statBases>
+			<MarketValue>0.11</MarketValue>
+		</statBases>
+		<ammoClass>TranqNonLethal</ammoClass>
+		<cookOffProjectile>Bullet_762x51mmNATO_NL</cookOffProjectile>
+	</ThingDef>
+
+	<!-- ================== Projectiles ================== -->
+
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="Base762x51mmNATOBullet">
+		<defName>Bullet_762x51mmNATO_NL</defName>
+		<label>7.62mm NATO bullet (Tranq)</label>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageDef>Tranquilizer</damageDef>
+			<damageAmountBase>1</damageAmountBase>
+			<armorPenetrationBase>0.601</armorPenetrationBase>
+		</projectile>
+	</ThingDef>
+
+	<!-- ==================== Recipes ========================== -->
+
+	<RecipeDef ParentName="AmmoRecipeBase">
+		<defName>MakeAmmo_762x51mmNATO_NL</defName>
+		<label>make 7.62x51mm NATO (Tranq) cartridge x500</label>
+		<description>Craft 500 7.62x51mm NATO (Tranq) cartridges.</description>
+		<jobString>Making 7.62x51mm NATO (Tranq) cartridges.</jobString>
+		<ingredients>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>Steel</li>
+					</thingDefs>
+				</filter>
+				<count>21</count>
+			</li>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>Neutroamine</li>
+					</thingDefs>
+				</filter>
+				<count>1</count>
+			</li>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>MedicineHerbal</li>
+					</thingDefs>
+				</filter>
+				<count>1</count>
+			</li>
+		</ingredients>
+		<fixedIngredientFilter>
+			<thingDefs>
+				<li>Steel</li>
+				<li>Neutroamine</li>
+				<li>MedicineHerbal</li>
+			</thingDefs>
+		</fixedIngredientFilter>
+		<products>
+			<Ammo_762x51mmNATO_NL>500</Ammo_762x51mmNATO_NL>
+		</products>
+	</RecipeDef>
+
+</Defs>
