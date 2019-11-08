@@ -58,24 +58,31 @@
 				</value>
 			</li>
 			<li Class="PatchOperationReplace">
-				<xpath>Defs/ThingDef[defName="VAE_Headgear_StoneWarMask"]/statBases/StuffEffectMultiplierArmor</xpath>
+				<xpath>Defs/ThingDef[defName="VAE_Headgear_StoneWarMask"]/statBases/ArmorRating_Sharp</xpath>
 				<value>
 					<StuffEffectMultiplierArmor>2.5</StuffEffectMultiplierArmor>
 				</value>
 			</li>
+			<li Class="PatchOperationRemove">
+				<xpath>Defs/ThingDef[defName="VAE_Headgear_StoneWarMask"]/statBases/ArmorRating_Blunt</xpath>
+			</li>
 			<!-- Miscellaneous -->
-			<li Class="PatchOperationAdd">
-				<xpath>Defs/ThingDef[defName="VAE_Headgear_StoneWarMask"]/equippedStatOffsets</xpath>
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="VAE_Headgear_StoneWarMask"]/equippedStatOffsets/MoveSpeed</xpath>
 				<value>
 					<Suppressability>-0.1</Suppressability>
 					<AimingAccuracy>-0.2</AimingAccuracy>
 					<MeleeHitChance>-1</MeleeHitChance>
 				</value>
 			</li>
-			<li Class="PatchOperationRemove">
-				<xpath>Defs/ThingDef[defName="VAE_Headgear_StoneWarMask"]/equippedStatOffsets/MoveSpeed</xpath>
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName="VAE_Headgear_StoneWarMask"]/apparel/layers</xpath>
+				<value>
+					<li>OnHead</li>
+					<li>MiddleHead</li>
+					<li>StrappedHead</li>
+				</value>
 			</li>
-
 		</operations>
 	</Operation>
 </Patch>

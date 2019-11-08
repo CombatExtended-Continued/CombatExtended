@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+
+	<Operation Class="PatchOperationFindMod">
+    <mods>
+        <li>[FSF] Advanced Bionics Expansion</li>
+    </mods>
+	<match Class="PatchOperationSequence">
+		<operations>
+		<!--Arms-->
+		<li Class="PatchOperationReplace">
+			<xpath>Defs/HediffDef[defName="FSFAdvBionicPowerArm"]/comps/li[@Class="HediffCompProperties_VerbGiver"]/tools</xpath>
+			<value>
+				<tools>
+					<li Class="CombatExtended.ToolCE">
+					<label>claw</label>
+					<capacities>
+						<li>Slash</li>
+					</capacities>
+					<power>25</power>
+					<cooldownTime>0.71</cooldownTime>
+					<armorPenetrationSharp>1.25</armorPenetrationSharp>
+					<armorPenetrationBlunt>6.25</armorPenetrationBlunt>
+					<linkedBodyPartsGroup>Blade</linkedBodyPartsGroup>
+					</li>
+				</tools>
+			</value>
+		</li>
+		
+		<li Class="PatchOperationReplace">
+			<xpath>Defs/HediffDef[defName="FSFArchotechPowerArm"]/comps/li[@Class="HediffCompProperties_VerbGiver"]/tools</xpath>
+			<value>
+				<tools>
+					<li Class="CombatExtended.ToolCE">
+					<label>claw</label>
+					<capacities>
+						<li>Slash</li>
+					</capacities>
+					<power>29</power>
+					<cooldownTime>0.59</cooldownTime>
+					<armorPenetrationSharp>1.8</armorPenetrationSharp>
+					<armorPenetrationBlunt>9</armorPenetrationBlunt>
+					<linkedBodyPartsGroup>Blade</linkedBodyPartsGroup>
+					</li>
+				</tools>
+			</value>
+		</li>
+		
+		<li Class="PatchOperationReplace">
+			<xpath>Defs/HediffDef[defName="FSFAdvBionicArm"]/comps/li[@Class="HediffCompProperties_VerbGiver"]/tools</xpath>
+			<value>
+				<tools>
+					<li Class="CombatExtended.ToolCE">
+					<label>fist</label>
+					<capacities>
+						<li>Blunt</li>
+					</capacities>
+					<power>7</power>
+					<cooldownTime>0.92</cooldownTime>
+					<armorPenetrationBlunt>2.43</armorPenetrationBlunt>
+					</li>
+				</tools>
+			</value>
+		</li>
+		
+		<!--Subdermal Implants-->
+		
+		<!--2mm Hyperweave-->
+		<li Class="PatchOperationReplace">
+			<xpath>Defs/HediffDef[defName="FSFImplantSubdermalArmor"]/stages/li/statOffsets</xpath>
+			<value>
+				<statOffsets>
+					<ArmorRating_Blunt>+3</ArmorRating_Blunt>
+					<ArmorRating_Heat>+3.84</ArmorRating_Heat>
+					<ArmorRating_Sharp>+2</ArmorRating_Sharp>
+				</statOffsets>
+			</value>
+		</li>
+		
+		<!--2mm Plasteel/w Hyperweave heat armor-->
+		<li Class="PatchOperationReplace">
+			<xpath>Defs/HediffDef[defName="FSFArchotechImplantSubdermalArmor"]/stages/li/statOffsets</xpath>
+			<value>
+				<statOffsets>
+					<ArmorRating_Blunt>+6</ArmorRating_Blunt>
+					<ArmorRating_Heat>+3.84</ArmorRating_Heat>
+					<ArmorRating_Sharp>+4</ArmorRating_Sharp>
+				</statOffsets>
+			</value>
+		</li>
+		
+		<!-- CE disables human bite attacks-->
+		<li Class="PatchOperationRemove">
+			<xpath>Defs/HediffDef[defName="FSFAdvBionicJaw"]/comps/li[@Class="HediffCompProperties_VerbGiver"]</xpath>
+		</li>
+		</operations>
+	</match>
+	</Operation>
+</Patch>
+
