@@ -14,7 +14,7 @@ Mod | CE (original) | CE: FastTrack Edition
 --- | :---: | :---:
 A Dog Said... 										| &#x2705; 	| &#x2705;
 A RimWorld of Magic 											|  			| &#x2705;
-Android Tiers											|  			| &#x2705;
+Android Tiers											|&#x2705;| &#x2705;
 AnimalCollabProj 											|  			| &#x2705;
 Apparello 2 										| &#x2705; 	| &#x2705;
 Arachne Race										| &#x2705; 	| &#x2705;
@@ -99,7 +99,7 @@ Xenn Race 											| &#x2705; 	| &#x2705;
 Xenohumans 										|  			| &#x2705;
 Yabils: Space Gremlins				|  			| &#x2705;
 Zombieland 										| &#x2705; 	| &#x2705;
-**Total** | **87** | **55**
+**Total** | **56** | **87**
 &nbsp; | **CE (original)** | **CE: FastTrack Edition**
 
 ## Contributing Your Patches
