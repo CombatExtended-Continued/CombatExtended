@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+  <Operation Class="PatchOperationSequence">
+	<operations>
+	  <li Class="PatchOperationFindMod">
+			
+		<mods><li>Dragonian Race</li></mods>
+			
+		<match Class="PatchOperationSequence">
+		<operations>
+
+			<!-- ========== Basic Wears ========== -->
+
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="DR_BasicWear" or defName="DR_BasicDress" or defName="DR_MaleDress"]/statBases/StuffEffectMultiplierArmor</xpath>
+				<value>
+					<StuffEffectMultiplierArmor>1</StuffEffectMultiplierArmor>
+				</value>
+			</li>
+
+			<!-- ========== Others ========== -->
+			
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="DR_GreekDress" or
+				defName="DR_GreekHanZo" or 
+				defName="DR_GreekPriest" or
+				defName="DR_GreekSexyDress" or
+				defName="DR_GreekString" or
+				defName="DR_JapaneseDress" or
+				defName="DR_Onepiece" or
+				defName="DR_EveningDress"
+				]/statBases/StuffEffectMultiplierArmor</xpath>
+				<value>
+					<StuffEffectMultiplierArmor>2</StuffEffectMultiplierArmor>
+				</value>
+			</li>
+			
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="DR_GreekDress" or
+				defName="DR_GreekHanZo" or 
+				defName="DR_GreekPriest" or
+				defName="DR_GreekSexyDress" or
+				defName="DR_GreekString" or
+				defName="DR_JapaneseDress" or
+				defName="DR_Onepiece" or
+				defName="DR_EveningDress"
+				]/statBases/ArmorRating_Sharp</xpath>
+				<value>
+					<ArmorRating_Sharp>4.05</ArmorRating_Sharp>
+				</value>
+			</li>
+			
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="DR_GreekDress" or
+				defName="DR_GreekHanZo" or 
+				defName="DR_GreekPriest" or
+				defName="DR_GreekSexyDress" or
+				defName="DR_GreekString" or
+				defName="DR_JapaneseDress" or
+				defName="DR_Onepiece" or
+				defName="DR_EveningDress"
+				]/statBases/ArmorRating_Blunt</xpath>
+				<value>
+					<ArmorRating_Blunt>5.1</ArmorRating_Blunt>
+				</value>
+			</li>
+			
+		</operations>
+		</match>	
+	  </li>
+	</operations>	
+  </Operation>
+</Patch>
