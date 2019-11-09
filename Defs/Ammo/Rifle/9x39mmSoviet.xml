@@ -1,13 +1,13 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <Defs>
-	
+
 	<ThingCategoryDef>
 		<defName>Ammo9x39mmSoviet</defName>
 		<label>9x39mm Soviet</label>
 		<parent>AmmoRifles</parent>
-    <iconPath>UI/Icons/ThingCategories/CaliberRifle</iconPath>
+		<iconPath>UI/Icons/ThingCategories/CaliberRifle</iconPath>
 	</ThingCategoryDef>
-	
+
 	<!-- ==================== AmmoSet ========================== -->
 
 	<CombatExtended.AmmoSetDef>
@@ -19,14 +19,14 @@
 			<Ammo_9x39mmSoviet_HP>Bullet_9x39mmSoviet_HP</Ammo_9x39mmSoviet_HP>
 		</ammoTypes>
 	</CombatExtended.AmmoSetDef>
-	
+
 	<!-- ==================== Ammo ========================== -->
 
 	<ThingDef Class="CombatExtended.AmmoDef" Name="9x39mmSovietBase" ParentName="AmmoBase" Abstract="True">
 		<description>Small, high-velocity rifle bullet used in a variety of assault rifles.</description>
 		<statBases>
-			<Mass>0.024</Mass>
-			<Bulk>0.04</Bulk>
+			<Mass>0.022</Mass>
+			<Bulk>0.02</Bulk>
 		</statBases>
 		<tradeTags>
 			<li>CE_AutoEnableTrade</li>
@@ -45,7 +45,7 @@
 			<graphicClass>Graphic_StackCount</graphicClass>
 		</graphicData>
 		<statBases>
-			<MarketValue>0.09</MarketValue>
+			<MarketValue>0.11</MarketValue>
 		</statBases>
 		<ammoClass>FullMetalJacket</ammoClass>
 		<cookOffProjectile>Bullet_9x39mmSoviet_FMJ</cookOffProjectile>
@@ -80,7 +80,7 @@
 	</ThingDef>
 
 	<!-- ================== Projectiles ================== -->
-	
+
 	<ThingDef Class="CombatExtended.AmmoDef" Name="Base9x39mmSovietBullet" ParentName="BaseBullet" Abstract="True">
 		<graphicData>
 			<texPath>Things/Projectile/Bullet_Small</texPath>
@@ -88,44 +88,41 @@
 		</graphicData>
 		<projectile Class="CombatExtended.ProjectilePropertiesCE">
 			<damageDef>Bullet</damageDef>
-			<speed>80</speed>
+			<speed>56</speed>
 			<dropsCasings>true</dropsCasings>
 		</projectile>
 	</ThingDef>
-	
+
 	<ThingDef Class="CombatExtended.AmmoDef" ParentName="Base9x39mmSovietBullet">
 		<defName>Bullet_9x39mmSoviet_FMJ</defName>
 		<label>9mm Soviet bullet (FMJ)</label>
 		<projectile Class="CombatExtended.ProjectilePropertiesCE">
 			<damageAmountBase>12</damageAmountBase>
-			<armorPenetrationBase>0.369</armorPenetrationBase>
 			<armorPenetrationSharp>5</armorPenetrationSharp>
-			<armorPenetrationBlunt>13.18</armorPenetrationBlunt>
+			<armorPenetrationBlunt>13.180</armorPenetrationBlunt>
 		</projectile>
 	</ThingDef>
-	
+
 	<ThingDef Class="CombatExtended.AmmoDef" ParentName="Base9x39mmSovietBullet">
 		<defName>Bullet_9x39mmSoviet_AP</defName>
 		<label>9mm Soviet bullet (AP)</label>
 		<projectile Class="CombatExtended.ProjectilePropertiesCE">
 			<damageAmountBase>7</damageAmountBase>
-			<armorPenetrationBase>0.519</armorPenetrationBase>
 			<armorPenetrationSharp>10</armorPenetrationSharp>
-			<armorPenetrationBlunt>68.22</armorPenetrationBlunt>
+			<armorPenetrationBlunt>13.180</armorPenetrationBlunt>
 		</projectile>
 	</ThingDef>
-	
+
 	<ThingDef Class="CombatExtended.AmmoDef" ParentName="Base9x39mmSovietBullet">
 		<defName>Bullet_9x39mmSoviet_HP</defName>
 		<label>9mm Soviet bullet (HP)</label>
 		<projectile Class="CombatExtended.ProjectilePropertiesCE">
 			<damageAmountBase>15</damageAmountBase>
-			<armorPenetrationBase>0.269</armorPenetrationBase>
 			<armorPenetrationSharp>2</armorPenetrationSharp>
-			<armorPenetrationBlunt>68.22</armorPenetrationBlunt>
+			<armorPenetrationBlunt>13.180</armorPenetrationBlunt>
 		</projectile>
 	</ThingDef>
-	
+
 	<!-- ==================== Recipes ========================== -->
 
 	<RecipeDef ParentName="AmmoRecipeBase">
@@ -140,7 +137,7 @@
 						<li>Steel</li>
 					</thingDefs>
 				</filter>
-				<count>12</count>
+				<count>26</count>
 			</li>
 		</ingredients>
 		<fixedIngredientFilter>
@@ -151,7 +148,7 @@
 		<products>
 			<Ammo_9x39mmSoviet_FMJ>500</Ammo_9x39mmSoviet_FMJ>
 		</products>
-    <workAmount>2250</workAmount>
+		<workAmount>2600</workAmount>
 	</RecipeDef>
 
 	<RecipeDef ParentName="AmmoRecipeBase">
@@ -166,7 +163,7 @@
 						<li>Steel</li>
 					</thingDefs>
 				</filter>
-				<count>14</count>
+				<count>26</count>
 			</li>
 		</ingredients>
 		<fixedIngredientFilter>
@@ -177,7 +174,7 @@
 		<products>
 			<Ammo_9x39mmSoviet_AP>500</Ammo_9x39mmSoviet_AP>
 		</products>
-    <workAmount>3250</workAmount>
+		<workAmount>2600</workAmount>
 	</RecipeDef>
 
 	<RecipeDef ParentName="AmmoRecipeBase">
@@ -192,7 +189,7 @@
 						<li>Steel</li>
 					</thingDefs>
 				</filter>
-				<count>12</count>
+				<count>26</count>
 			</li>
 		</ingredients>
 		<fixedIngredientFilter>
@@ -203,7 +200,7 @@
 		<products>
 			<Ammo_9x39mmSoviet_HP>500</Ammo_9x39mmSoviet_HP>
 		</products>
-    <workAmount>4250</workAmount>
+		<workAmount>2600</workAmount>
 	</RecipeDef>
-	
+
 </Defs>

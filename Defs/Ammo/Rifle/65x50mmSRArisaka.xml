@@ -5,9 +5,9 @@
 		<defName>Ammo65x50mmSRArisaka</defName>
 		<label>6.5x50mmSR Arisaka</label>
 		<parent>AmmoRifles</parent>
-    <iconPath>UI/Icons/ThingCategories/CaliberRifle</iconPath>
+		<iconPath>UI/Icons/ThingCategories/CaliberRifle</iconPath>
 	</ThingCategoryDef>
-	
+
 	<!-- ==================== AmmoSet ========================== -->
 
 	<CombatExtended.AmmoSetDef>
@@ -19,19 +19,19 @@
 			<Ammo_65x50mmSRArisaka_HP>Bullet_65x50mmSRArisaka_HP</Ammo_65x50mmSRArisaka_HP>
 		</ammoTypes>
 	</CombatExtended.AmmoSetDef>
-	
+
 	<!-- ==================== Ammo ========================== -->
 
 	<ThingDef Class="CombatExtended.AmmoDef" Name="65x50mmSRArisakaBase" ParentName="SmallAmmoBase" Abstract="True">
 		<description>Semi-rimmed, intermediate rifle cartridge found mostly in outdated bolt-action firearms.</description>
 		<statBases>
-		<Mass>0.02</Mass>
-		<Bulk>0.05</Bulk>
+			<Mass>0.022</Mass>
+			<Bulk>0.03</Bulk>
 		</statBases>
-	<tradeTags>
-		<li>CE_AutoEnableTrade</li>
-		<li>CE_AutoEnableCrafting</li>
-	</tradeTags>
+		<tradeTags>
+			<li>CE_AutoEnableTrade</li>
+			<li>CE_AutoEnableCrafting</li>
+		</tradeTags>
 		<thingCategories>
 			<li>Ammo65x50mmSRArisaka</li>
 		</thingCategories>
@@ -59,7 +59,7 @@
 			<graphicClass>Graphic_StackCount</graphicClass>
 		</graphicData>
 		<statBases>
-			<MarketValue>0.14</MarketValue>
+			<MarketValue>0.1</MarketValue>
 		</statBases>
 		<ammoClass>ArmorPiercing</ammoClass>
 		<cookOffProjectile>Bullet_65x50mmSRArisaka_AP</cookOffProjectile>
@@ -73,14 +73,14 @@
 			<graphicClass>Graphic_StackCount</graphicClass>
 		</graphicData>
 		<statBases>
-			<MarketValue>0.14</MarketValue>
+			<MarketValue>0.1</MarketValue>
 		</statBases>
 		<ammoClass>HollowPoint</ammoClass>
 		<cookOffProjectile>Bullet_65x50mmSRArisaka_HP</cookOffProjectile>
 	</ThingDef>
-	
+
 	<!-- ================== Projectiles ================== -->
-	
+
 	<ThingDef Class="CombatExtended.AmmoDef" Name="Base65x50mmSRArisakaBullet" ParentName="BaseBullet" Abstract="true">
 		<graphicData>
 			<texPath>Things/Projectile/Bullet_Small</texPath>
@@ -88,7 +88,7 @@
 		</graphicData>
 		<projectile Class="CombatExtended.ProjectilePropertiesCE">
 			<damageDef>Bullet</damageDef>
-			<speed>193</speed>
+			<speed>154</speed>
 			<dropsCasings>true</dropsCasings>
 		</projectile>
 	</ThingDef>
@@ -98,7 +98,6 @@
 		<label>6.5mmSR Arisaka bullet (FMJ)</label>
 		<projectile Class="CombatExtended.ProjectilePropertiesCE">
 			<damageAmountBase>17</damageAmountBase>
-			<armorPenetrationBase>0.561</armorPenetrationBase>
 			<armorPenetrationSharp>7</armorPenetrationSharp>
 			<armorPenetrationBlunt>53.36</armorPenetrationBlunt>
 		</projectile>
@@ -109,7 +108,6 @@
 		<label>6.5mmSR Arisaka bullet (AP)</label>
 		<projectile Class="CombatExtended.ProjectilePropertiesCE">
 			<damageAmountBase>11</damageAmountBase>
-			<armorPenetrationBase>0.711</armorPenetrationBase>
 			<armorPenetrationSharp>15</armorPenetrationSharp>
 			<armorPenetrationBlunt>53.36</armorPenetrationBlunt>
 		</projectile>
@@ -120,12 +118,11 @@
 		<label>6.5mmSR Arisaka bullet (HP)</label>
 		<projectile Class="CombatExtended.ProjectilePropertiesCE">
 			<damageAmountBase>22</damageAmountBase>
-			<armorPenetrationBase>0.411</armorPenetrationBase>
 			<armorPenetrationSharp>4</armorPenetrationSharp>
 			<armorPenetrationBlunt>53.36</armorPenetrationBlunt>
 		</projectile>
 	</ThingDef>
-  
+
 	<!-- ==================== Recipes ========================== -->
 
 	<RecipeDef ParentName="AmmoRecipeBase">
@@ -140,7 +137,7 @@
 						<li>Steel</li>
 					</thingDefs>
 				</filter>
-				<count>20</count>
+				<count>24</count>
 			</li>
 		</ingredients>
 		<fixedIngredientFilter>
@@ -151,7 +148,7 @@
 		<products>
 			<Ammo_65x50mmSRArisaka_FMJ>500</Ammo_65x50mmSRArisaka_FMJ>
 		</products>
-    <workAmount>3000</workAmount>
+		<workAmount>2400</workAmount>
 	</RecipeDef>
 
 	<RecipeDef ParentName="AmmoRecipeBase">
@@ -177,7 +174,7 @@
 		<products>
 			<Ammo_65x50mmSRArisaka_AP>500</Ammo_65x50mmSRArisaka_AP>
 		</products>
-    <workAmount>5000</workAmount>
+		<workAmount>2400</workAmount>
 	</RecipeDef>
 
 	<RecipeDef ParentName="AmmoRecipeBase">
@@ -192,7 +189,7 @@
 						<li>Steel</li>
 					</thingDefs>
 				</filter>
-				<count>20</count>
+				<count>24</count>
 			</li>
 		</ingredients>
 		<fixedIngredientFilter>
@@ -203,7 +200,7 @@
 		<products>
 			<Ammo_65x50mmSRArisaka_HP>500</Ammo_65x50mmSRArisaka_HP>
 		</products>
-    <workAmount>7000</workAmount>
+		<workAmount>2400</workAmount>
 	</RecipeDef>
-	
+
 </Defs>

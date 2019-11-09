@@ -5,9 +5,9 @@
 		<defName>Ammo792x51mmMauser</defName>
 		<label>7.92x57mm Mauser</label>
 		<parent>AmmoRifles</parent>
-    <iconPath>UI/Icons/ThingCategories/CaliberRifle</iconPath>
+		<iconPath>UI/Icons/ThingCategories/CaliberRifle</iconPath>
 	</ThingCategoryDef>
-	
+
 	<!-- ==================== AmmoSet ========================== -->
 
 	<CombatExtended.AmmoSetDef>
@@ -19,19 +19,19 @@
 			<Ammo_792x51mmMauser_HP>Bullet_792x51mmMauser_HP</Ammo_792x51mmMauser_HP>
 		</ammoTypes>
 	</CombatExtended.AmmoSetDef>
-	
+
 	<!-- ==================== Ammo ========================== -->
 
 	<ThingDef Class="CombatExtended.AmmoDef" Name="792x51mmMauserBase" ParentName="SmallAmmoBase" Abstract="True">
 		<description>Large rifle bullet used in machine guns, sniper rifles and the occasional assault rifle.</description>
 		<statBases>
-		<Mass>0.029</Mass>
-		<Bulk>0.06</Bulk>
+			<Mass>0.039</Mass>
+			<Bulk>0.03</Bulk>
 		</statBases>
-	<tradeTags>
-		<li>CE_AutoEnableTrade</li>
-		<li>CE_AutoEnableCrafting</li>
-	</tradeTags>
+		<tradeTags>
+			<li>CE_AutoEnableTrade</li>
+			<li>CE_AutoEnableCrafting</li>
+		</tradeTags>
 		<thingCategories>
 			<li>Ammo792x51mmMauser</li>
 		</thingCategories>
@@ -45,7 +45,7 @@
 			<graphicClass>Graphic_StackCount</graphicClass>
 		</graphicData>
 		<statBases>
-			<MarketValue>0.14</MarketValue>
+			<MarketValue>0.16</MarketValue>
 		</statBases>
 		<ammoClass>FullMetalJacket</ammoClass>
 		<cookOffProjectile>Bullet_792x51mmMauser_FMJ</cookOffProjectile>
@@ -59,7 +59,7 @@
 			<graphicClass>Graphic_StackCount</graphicClass>
 		</graphicData>
 		<statBases>
-			<MarketValue>0.19</MarketValue>
+			<MarketValue>0.16</MarketValue>
 		</statBases>
 		<ammoClass>ArmorPiercing</ammoClass>
 		<cookOffProjectile>Bullet_792x51mmMauser_AP</cookOffProjectile>
@@ -73,12 +73,12 @@
 			<graphicClass>Graphic_StackCount</graphicClass>
 		</graphicData>
 		<statBases>
-			<MarketValue>0.2</MarketValue>
+			<MarketValue>0.16</MarketValue>
 		</statBases>
 		<ammoClass>HollowPoint</ammoClass>
 		<cookOffProjectile>Bullet_792x51mmMauser_HP</cookOffProjectile>
 	</ThingDef>
-	
+
 	<!-- ================== Projectiles ================== -->
 
 	<ThingDef Class="CombatExtended.AmmoDef" Name="Base792x51mmMauserBullet" ParentName="BaseBullet" Abstract="true">
@@ -88,7 +88,7 @@
 		</graphicData>
 		<projectile Class="CombatExtended.ProjectilePropertiesCE">
 			<damageDef>Bullet</damageDef>
-			<speed>200</speed>
+			<speed>164</speed>
 			<dropsCasings>true</dropsCasings>
 		</projectile>
 	</ThingDef>
@@ -98,9 +98,8 @@
 		<label>7.62mm Mauser bullet (FMJ)</label>
 		<projectile Class="CombatExtended.ProjectilePropertiesCE">
 			<damageAmountBase>21</damageAmountBase>
-			<armorPenetrationBase>0.466</armorPenetrationBase>
 			<armorPenetrationSharp>6</armorPenetrationSharp>
-			<armorPenetrationBlunt>78.68</armorPenetrationBlunt>
+			<armorPenetrationBlunt>78.680</armorPenetrationBlunt>
 		</projectile>
 	</ThingDef>
 
@@ -109,9 +108,8 @@
 		<label>7.62mm Mauser bullet (AP)</label>
 		<projectile Class="CombatExtended.ProjectilePropertiesCE">
 			<damageAmountBase>13</damageAmountBase>
-			<armorPenetrationBase>0.712</armorPenetrationBase>
 			<armorPenetrationSharp>12</armorPenetrationSharp>
-			<armorPenetrationBlunt>78.68</armorPenetrationBlunt>
+			<armorPenetrationBlunt>78.680</armorPenetrationBlunt>
 		</projectile>
 	</ThingDef>
 
@@ -120,12 +118,11 @@
 		<label>7.62mm Mauser bullet (HP)</label>
 		<projectile Class="CombatExtended.ProjectilePropertiesCE">
 			<damageAmountBase>27</damageAmountBase>
-			<armorPenetrationBase>0.562</armorPenetrationBase>
 			<armorPenetrationSharp>3</armorPenetrationSharp>
-			<armorPenetrationBlunt>78.68</armorPenetrationBlunt>
+			<armorPenetrationBlunt>78.680</armorPenetrationBlunt>
 		</projectile>
 	</ThingDef>
-  
+
 	<!-- ==================== Recipes ========================== -->
 
 	<RecipeDef ParentName="AmmoRecipeBase">
@@ -140,7 +137,7 @@
 						<li>Steel</li>
 					</thingDefs>
 				</filter>
-				<count>21</count>
+				<count>40</count>
 			</li>
 		</ingredients>
 		<fixedIngredientFilter>
@@ -151,6 +148,7 @@
 		<products>
 			<Ammo_792x51mmMauser_FMJ>500</Ammo_792x51mmMauser_FMJ>
 		</products>
+		<workAmount>4000</workAmount>
 	</RecipeDef>
 
 	<RecipeDef ParentName="AmmoRecipeBase">
@@ -165,7 +163,7 @@
 						<li>Steel</li>
 					</thingDefs>
 				</filter>
-				<count>26</count>
+				<count>40</count>
 			</li>
 		</ingredients>
 		<fixedIngredientFilter>
@@ -176,6 +174,7 @@
 		<products>
 			<Ammo_792x51mmMauser_AP>500</Ammo_792x51mmMauser_AP>
 		</products>
+		<workAmount>4000</workAmount>
 	</RecipeDef>
 
 	<RecipeDef ParentName="AmmoRecipeBase">
@@ -190,7 +189,7 @@
 						<li>Steel</li>
 					</thingDefs>
 				</filter>
-				<count>21</count>
+				<count>40</count>
 			</li>
 		</ingredients>
 		<fixedIngredientFilter>
@@ -201,6 +200,7 @@
 		<products>
 			<Ammo_792x51mmMauser_HP>500</Ammo_792x51mmMauser_HP>
 		</products>
+		<workAmount>4000</workAmount>
 	</RecipeDef>
-	
+
 </Defs>
