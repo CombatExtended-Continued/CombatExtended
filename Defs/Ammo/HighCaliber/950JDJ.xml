@@ -7,7 +7,7 @@
 		<parent>AmmoRifles</parent>
 		<iconPath>UI/Icons/ThingCategories/CaliberHighCaliber</iconPath>
 	</ThingCategoryDef>
-	
+
 	<!-- ==================== AmmoSet ========================== -->
 
 	<CombatExtended.AmmoSetDef>
@@ -17,25 +17,25 @@
 			<Ammo_950JDJ_FMJ>Bullet_950JDJ_FMJ</Ammo_950JDJ_FMJ>
 		</ammoTypes>
 	</CombatExtended.AmmoSetDef>
-	
+
 	<!-- ==================== Ammo ========================== -->
 
 	<ThingDef Class="CombatExtended.AmmoDef" Name="950JDJBase" ParentName="SmallAmmoBase" Abstract="True">
 		<description>A ridiculously large and powerful caliber sporting cartridge.</description>
 		<statBases>
-		<Mass>0.483</Mass>
-		<Bulk>0.19</Bulk>
+			<Mass>0.314</Mass>
+			<Bulk>0.11</Bulk>
 		</statBases>
-	<tradeTags>
-		<li>CE_AutoEnableTrade</li>
-		<li>CE_AutoEnableCrafting</li>
-	</tradeTags>
+		<tradeTags>
+			<li>CE_AutoEnableTrade</li>
+			<li>CE_AutoEnableCrafting</li>
+		</tradeTags>
 		<thingCategories>
 			<li>Ammo950JDJ</li>
 		</thingCategories>
-    <stackLimit>100</stackLimit>
+		<stackLimit>100</stackLimit>
 	</ThingDef>
-	
+
 	<ThingDef Class="CombatExtended.AmmoDef" ParentName="950JDJBase">
 		<defName>Ammo_950JDJ_FMJ</defName>
 		<label>.950 JDJ cartridge (FMJ)</label>
@@ -44,12 +44,12 @@
 			<graphicClass>Graphic_StackCount</graphicClass>
 		</graphicData>
 		<statBases>
-			<MarketValue>1.03</MarketValue>
+			<MarketValue>1.31</MarketValue>
 		</statBases>
 		<ammoClass>FullMetalJacket</ammoClass>
 		<cookOffProjectile>Bullet_950JDJ_FMJ</cookOffProjectile>
 	</ThingDef>
-	
+
 	<!-- ================== Projectiles ================== -->
 
 	<ThingDef Class="CombatExtended.AmmoDef" Name="Base950JDJBullet" ParentName="BaseBullet" Abstract="true">
@@ -59,22 +59,21 @@
 		</graphicData>
 		<projectile Class="CombatExtended.ProjectilePropertiesCE">
 			<damageDef>Bullet</damageDef>
-			<speed>168</speed>
+			<speed>134</speed>
 			<dropsCasings>true</dropsCasings>
 		</projectile>
 	</ThingDef>
-	
+
 	<ThingDef Class="CombatExtended.AmmoDef" ParentName="Base950JDJBullet">
 		<defName>Bullet_950JDJ_FMJ</defName>
 		<label>.950 JDJ bullet (FMJ)</label>
 		<projectile Class="CombatExtended.ProjectilePropertiesCE">
 			<damageAmountBase>75</damageAmountBase>
-			<armorPenetrationBase>1.126</armorPenetrationBase>
 			<armorPenetrationSharp>15</armorPenetrationSharp>
-			<armorPenetrationBlunt>1045.94</armorPenetrationBlunt>
+			<armorPenetrationBlunt>1045.940</armorPenetrationBlunt>
 		</projectile>
 	</ThingDef>
-  
+
 	<!-- ==================== Recipes ========================== -->
 
 	<RecipeDef ParentName="AmmoRecipeBase">
@@ -89,7 +88,7 @@
 						<li>Steel</li>
 					</thingDefs>
 				</filter>
-				<count>38</count>
+				<count>66</count>
 			</li>
 		</ingredients>
 		<fixedIngredientFilter>
@@ -100,7 +99,7 @@
 		<products>
 			<Ammo_950JDJ_FMJ>100</Ammo_950JDJ_FMJ>
 		</products>
-    <workAmount>6750</workAmount>
+		<workAmount>6600</workAmount>
 	</RecipeDef>
-	
+
 </Defs>

@@ -7,7 +7,7 @@
 		<parent>AmmoRifles</parent>
 		<iconPath>UI/Icons/ThingCategories/CaliberHighCaliber</iconPath>
 	</ThingCategoryDef>
-	
+
 	<!-- ==================== AmmoSet ========================== -->
 
 	<CombatExtended.AmmoSetDef>
@@ -18,25 +18,25 @@
 			<Ammo_55Boys_AP>Bullet_55Boys_AP</Ammo_55Boys_AP>
 		</ammoTypes>
 	</CombatExtended.AmmoSetDef>
-	
+
 	<!-- ==================== Ammo ========================== -->
 
 	<ThingDef Class="CombatExtended.AmmoDef" Name="55BoysBase" ParentName="SmallAmmoBase" Abstract="True">
 		<description>Outdated large caliber bullet used in anti-materiel rifles.</description>
 		<statBases>
-		<Mass>0.173</Mass>
-		<Bulk>0.15</Bulk>
+			<Mass>0.16</Mass>
+			<Bulk>0.13</Bulk>
 		</statBases>
-	<tradeTags>
-		<li>CE_AutoEnableTrade</li>
-		<li>CE_AutoEnableCrafting</li>
-	</tradeTags>
+		<tradeTags>
+			<li>CE_AutoEnableTrade</li>
+			<li>CE_AutoEnableCrafting</li>
+		</tradeTags>
 		<thingCategories>
 			<li>Ammo55Boys</li>
 		</thingCategories>
-    <stackLimit>200</stackLimit>
+		<stackLimit>200</stackLimit>
 	</ThingDef>
-	
+
 	<ThingDef Class="CombatExtended.AmmoDef" ParentName="55BoysBase">
 		<defName>Ammo_55Boys_FMJ</defName>
 		<label>.55 Boys cartridge (FMJ)</label>
@@ -45,7 +45,7 @@
 			<graphicClass>Graphic_StackCount</graphicClass>
 		</graphicData>
 		<statBases>
-			<MarketValue>0.48</MarketValue>
+			<MarketValue>0.66</MarketValue>
 		</statBases>
 		<ammoClass>FullMetalJacket</ammoClass>
 		<cookOffProjectile>Bullet_55Boys_FMJ</cookOffProjectile>
@@ -59,12 +59,13 @@
 			<graphicClass>Graphic_StackCount</graphicClass>
 		</graphicData>
 		<statBases>
-			<MarketValue>0.65</MarketValue>
+			<MarketValue>0.6</MarketValue>
+			<Mass>0.147</Mass>
 		</statBases>
 		<ammoClass>ArmorPiercing</ammoClass>
 		<cookOffProjectile>Bullet_55Boys_AP</cookOffProjectile>
 	</ThingDef>
-	
+
 	<!-- ================== Projectiles ================== -->
 
 	<ThingDef Class="CombatExtended.AmmoDef" Name="Base55BoysBullet" ParentName="BaseBullet" Abstract="true">
@@ -74,19 +75,18 @@
 		</graphicData>
 		<projectile Class="CombatExtended.ProjectilePropertiesCE">
 			<damageDef>Bullet</damageDef>
-			<speed>190</speed>
+			<speed>152</speed>
 			<dropsCasings>true</dropsCasings>
 		</projectile>
 	</ThingDef>
-	
+
 	<ThingDef Class="CombatExtended.AmmoDef" ParentName="Base55BoysBullet">
 		<defName>Bullet_55Boys_FMJ</defName>
 		<label>.55 Boys bullet (FMJ)</label>
 		<projectile Class="CombatExtended.ProjectilePropertiesCE">
-			<damageAmountBase>47</damageAmountBase>
-			<armorPenetrationBase>0.92</armorPenetrationBase>
+			<damageAmountBase>43</damageAmountBase>
 			<armorPenetrationSharp>12</armorPenetrationSharp>
-			<armorPenetrationBlunt>476.68</armorPenetrationBlunt>
+			<armorPenetrationBlunt>352.340</armorPenetrationBlunt>
 		</projectile>
 	</ThingDef>
 
@@ -94,13 +94,13 @@
 		<defName>Bullet_55Boys_AP</defName>
 		<label>.55 Boys bullet (AP)</label>
 		<projectile Class="CombatExtended.ProjectilePropertiesCE">
-			<damageAmountBase>30</damageAmountBase>
-			<armorPenetrationBase>1.07</armorPenetrationBase>
+			<speed>189</speed>
+			<damageAmountBase>29</damageAmountBase>
 			<armorPenetrationSharp>24</armorPenetrationSharp>
-			<armorPenetrationBlunt>476.68</armorPenetrationBlunt>
+			<armorPenetrationBlunt>428.660</armorPenetrationBlunt>
 		</projectile>
 	</ThingDef>
-  
+
 	<!-- ==================== Recipes ========================== -->
 
 	<RecipeDef ParentName="AmmoRecipeBase">
@@ -115,7 +115,7 @@
 						<li>Steel</li>
 					</thingDefs>
 				</filter>
-				<count>36</count>
+				<count>66</count>
 			</li>
 		</ingredients>
 		<fixedIngredientFilter>
@@ -126,7 +126,7 @@
 		<products>
 			<Ammo_55Boys_FMJ>200</Ammo_55Boys_FMJ>
 		</products>
-    <workAmount>5750</workAmount>
+		<workAmount>6600</workAmount>
 	</RecipeDef>
 
 	<RecipeDef ParentName="AmmoRecipeBase">
@@ -141,7 +141,7 @@
 						<li>Steel</li>
 					</thingDefs>
 				</filter>
-				<count>45</count>
+				<count>60</count>
 			</li>
 		</ingredients>
 		<fixedIngredientFilter>
@@ -152,7 +152,7 @@
 		<products>
 			<Ammo_55Boys_AP>200</Ammo_55Boys_AP>
 		</products>
-    <workAmount>10000</workAmount>
+		<workAmount>6000</workAmount>
 	</RecipeDef>
-	
+
 </Defs>
