@@ -4,7 +4,7 @@ Combat Extended: FastTrack Edition is a fork of the [original Combat Extended mo
 ## Features
 - Same [core features as the original mod](https://github.com/NoImageAvailable/CombatExtended/blob/master/README.md) - shooting, melee, armor, inventory and medical overhauls
 - Fully compatible with existing CE savegames - delete CE completely, drop in CE:FT and go!
-- 88 supported third-party mods (compared with 57 for CE)
+- 89 supported third-party mods (compared with 58 for CE)
 - Recognizes existing third-party standalone patches intended for the original CE
 - Additional ammo and projectile definitions and textures
 - New Graphic_StackCountRanged class for precise control of item subgraphics based on stack count
@@ -28,6 +28,7 @@ CyberNet											| &#x2705; 	| &#x2705;
 Defensive Machine Gun Turret Pack 					| &#x2705; 	| &#x2705;
 Dinosauria											| &#x2705; 	| &#x2705;
 Dragon Mod											| &#x2705; 	| &#x2705;
+Dragonian Race											| &#x2705; 	| &#x2705;
 Expanded Prosthetics and Organ Engineering (EPOE) 	| &#x2705; 	| &#x2705;
 Equiums Horse Race 								| &#x2705; 	| &#x2705;
 Extended Storage 									| &#x2705; 	| &#x2705;
@@ -100,7 +101,7 @@ Xenn Race 											| &#x2705; 	| &#x2705;
 Xenohumans 										|  			| &#x2705;
 Yabils: Space Gremlins				|  			| &#x2705;
 Zombieland 										| &#x2705; 	| &#x2705;
-**Total** | **57** | **88**
+**Total** | **58** | **89**
 &nbsp; | **CE (original)** | **CE: FastTrack Edition**
 
 ## Contributing Your Patches
@@ -118,6 +119,7 @@ The CE:FT team would like the thank the following individuals for contributing c
 - Kik0hi
 - Freedom187/RaptorX
 - Owlchemist
+- Theblessedwant
 - Togoasl
 
 ## License
