@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8" ?>
-<!-- made by steamuser togo, with edits from sumghai -->
+<!-- originally made by steamuser togo -->
 <Patch>
 	<Operation Class="PatchOperationSequence">
 		<success>Always</success>
@@ -33,17 +33,16 @@
 			<li Class="PatchOperationAdd">
 				<xpath>*/AlienRace.ThingDef_AlienRace[defName = "DRNTF_Race"]/statBases</xpath>
 				<value>
-					<AimingAccuracy>1</AimingAccuracy>
+					<MeleeDodgeChance>1</MeleeDodgeChance>
 					<MeleeCritChance>1</MeleeCritChance>
 					<MeleeParryChance>1</MeleeParryChance>
-					<ReloadSpeed>1</ReloadSpeed>
 					<Suppressability>1</Suppressability>
+					<SmokeSensitivity>1</SmokeSensitivity>
 				</value>
 			</li>
 
 			<li Class="PatchOperationReplace">
-				<success>Always</success>
-				<xpath>*/AlienRace.ThingDef_AlienRace[defName="DRNTF_Race"]/tools</xpath>
+				<xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="DRNTF_Race"]/tools</xpath> 
 				<value>
 					<tools>
 						<li Class="CombatExtended.ToolCE">
@@ -51,84 +50,68 @@
 							<capacities>
 								<li>Blunt</li>
 							</capacities>
-							<power>8</power>
-							<cooldownTime>1.6</cooldownTime>
+							<power>1</power>
+							<cooldownTime>1.26</cooldownTime>
 							<linkedBodyPartsGroup>LeftHand</linkedBodyPartsGroup>
-							<surpriseAttack>
-								<extraMeleeDamages>
-									<li>
-										<def>Stun</def>
-										<amount>16</amount>
-									</li>
-								</extraMeleeDamages>
-							</surpriseAttack>
-							<armorPenetration>0.1</armorPenetration>
+							<armorPenetrationBlunt>0.25</armorPenetrationBlunt>
 						</li>
 						<li Class="CombatExtended.ToolCE">
 							<label>right fist</label>
 							<capacities>
 								<li>Blunt</li>
 							</capacities>
-							<power>8</power>
-							<cooldownTime>1.6</cooldownTime>
+							<power>1</power>
+							<cooldownTime>1.26</cooldownTime>
 							<linkedBodyPartsGroup>RightHand</linkedBodyPartsGroup>
-							<surpriseAttack>
-								<extraMeleeDamages>
-									<li>
-										<def>Stun</def>
-										<amount>16</amount>
-									</li>
-								</extraMeleeDamages>
-							</surpriseAttack>
-							<armorPenetration>0.1</armorPenetration>
+							<armorPenetrationBlunt>0.25</armorPenetrationBlunt>
 						</li>
 						<li Class="CombatExtended.ToolCE">
 							<label>teeth</label>
 							<capacities>
 								<li>Bite</li>
 							</capacities>
-							<power>12</power>
-							<cooldownTime>1.6</cooldownTime>
+							<power>4</power>
+							<cooldownTime>2.14</cooldownTime>
 							<linkedBodyPartsGroup>Teeth</linkedBodyPartsGroup>
-							<armorPenetration>0.18</armorPenetration>
-							<chanceFactor>0.4</chanceFactor>
+							<chanceFactor>0.2</chanceFactor>
+							<armorPenetrationSharp>0.01</armorPenetrationSharp>
+							<armorPenetrationBlunt>0.245</armorPenetrationBlunt>
 						</li>
 						<li Class="CombatExtended.ToolCE">
 							<label>head</label>
 							<capacities>
 								<li>Blunt</li>
 							</capacities>
-							<power>5</power>
-							<cooldownTime>1.8</cooldownTime>
+							<power>2</power>
+							<cooldownTime>4.49</cooldownTime>
 							<linkedBodyPartsGroup>HeadAttackTool</linkedBodyPartsGroup>
-							<armorPenetration>0.09</armorPenetration>
-							<chanceFactor>0.1</chanceFactor>
+							<chanceFactor>0.2</chanceFactor>
+							<armorPenetrationBlunt>0.625</armorPenetrationBlunt>
 						</li>
 					</tools>
 				</value>
 			</li>
-			
+
 			<!-- Allow Kurin to wear non-Kurin faction apparel, including CE vests and backpacks -->
 
 			<li Class="PatchOperationRemove">
 				<xpath>*/AlienRace.ThingDef_AlienRace[defName = "DRNTF_Race"]/alienRace/raceRestriction/onlyUseRaceRestrictedApparel</xpath>
 			</li>
 
-			<li Class="PatchOperationReplace">
-				<xpath>*/ThingDef[@Name="DRNTF_Race"]/inspectorTabs/li[.="ITab_Pawn_Gear"]</xpath>
-				<value>
-					<li>CombatExtended.ITab_Inventory</li>
-				</value>
+			<li Class="PatchOperationConditional">
+				<xpath>*/AlienRace.ThingDef_AlienRace[defName="DRNTF_Race"]/comps</xpath>
+				<nomatch Class="PatchOperationAdd">
+					<xpath>*/AlienRace.ThingDef_AlienRace[defName="DRNTF_Race"]</xpath>
+					<value>
+						<comps/>
+					</value>
+				</nomatch>
+				<match Class="PatchOperationAdd">
+					<xpath>*/AlienRace.ThingDef_AlienRace[defName="DRNTF_Race"]</xpath>
+					<value>
+					</value>
+				</match>
 			</li>
-
-			<li Class="PatchOperationAdd">
-				<xpath>*/ThingDef[@Name="DRNTF_Race"]/comps</xpath>
-				<value>
-					<li Class="CombatExtended.CompProperties_Inventory" />
-				</value>
-			</li>
-
-			
 
 		</operations>
 	</Operation>

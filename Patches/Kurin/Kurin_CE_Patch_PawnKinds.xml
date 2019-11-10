@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="utf-8" ?>
-<!-- made by steamuser togo, with edits from sumghai -->
+<!-- originally made by steamuser togo -->
 <Patch>
 	<Operation Class="PatchOperationSequence">
 		<success>Always</success>
 		<operations>
-		
+
 			<li Class="CombatExtended.PatchOperationFindMod">
 				<modName>Kurin, The Three Tailed Fox</modName>
 			</li>
-			
+
 			<!-- ========== Kurin player colonists and NPC faction pawns should spawn with ammo appropriate to their primary weapon ========== -->
 
 			<li Class="PatchOperationAddModExtension">
@@ -22,13 +22,53 @@
 					</li>
 				</value>
 			</li>
-			
+
+			<li Class="PatchOperationAddModExtension">
+				<xpath>Defs/PawnKindDef[
+					defName="DRNTF_Vigilante" or 
+					defName="DRNTF_Soldier" or
+					defName="DRNTF_EliteSoldier" or
+					defName="DRNTF_Sniper"
+					]</xpath>
+				<value>
+					<li Class="CombatExtended.LoadoutPropertiesExtension">	
+						<primaryMagazineCount>
+							<min>4</min>
+							<max>6</max>
+						</primaryMagazineCount>
+						<sidearms>
+							<li>
+								<generateChance>0.5</generateChance>
+								<sidearmMoney>
+									<min>20</min>
+									<max>120</max>
+								</sidearmMoney>
+								<weaponTags>
+									<li>CE_Sidearm_Melee</li>
+								</weaponTags>
+							</li>
+						</sidearms>
+					</li>
+				</value>
+			</li>
+
 			<!-- ========== Kurin player colonists and NPC faction pawns should spawn with backpacks, allowing them to carry additional inventory ========== -->
 
 			<li Class="PatchOperationAdd">
 				<xpath>/Defs/PawnKindDef[defName="DRNTF_Colonist" or @Name="DRNTF_NPCBase"]/apparelRequired</xpath>
 				<value>
 					<li>Apparel_Backpack</li>
+				</value>
+			</li>
+			
+			<!-- ========== Allow Kurin Vigilante NPCs to have a chance to spawn with pistols marked by CE as being generally available to NPCs ========== -->
+			
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/PawnKindDef[defName="DRNTF_Vigilante"]/weaponTags</xpath>
+				<value>
+					<weaponTags>
+						<li>CE_AI_Pistol</li>
+					</weaponTags>
 				</value>
 			</li>
 
