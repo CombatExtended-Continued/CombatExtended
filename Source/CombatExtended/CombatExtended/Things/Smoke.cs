@@ -11,7 +11,7 @@ namespace CombatExtended
         private int _ticksUntilMove;
         private const int BaseTicksUntilMove = 40;
         private const int TicksUntilMoveDelta = 20;
-        private const float InhalationPerSec = 0.0075f / GenTicks.TicksPerRealSecond;
+        private const float InhalationPerSec = 0.0150f / GenTicks.TicksPerRealSecond;
 
         public override void ExposeData()
         {
@@ -84,12 +84,12 @@ namespace CombatExtended
                 return;
 
             var pawns = Position.GetThingList(Map).Where(t => t is Pawn).ToList();
-            foreach (var cell in GenAdjFast.AdjacentCells8Way(Position))
-            {
-                if (!cell.InBounds(Map))
-                    continue;
-                pawns.AddRange(cell.GetThingList(Map).Where(t => t is Pawn));
-            }
+            //foreach (var cell in GenAdjFast.AdjacentCells8Way(Position))
+            //{
+            //    if (!cell.InBounds(Map))
+            //        continue;
+            //    pawns.AddRange(cell.GetThingList(Map).Where(t => t is Pawn));
+            //}
 
             foreach (Pawn pawn in pawns)
             {
