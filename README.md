@@ -4,7 +4,7 @@ Combat Extended: FastTrack Edition is a fork of the [original Combat Extended mo
 ## Features
 - Same [core features as the original mod](https://github.com/NoImageAvailable/CombatExtended/blob/master/README.md) - shooting, melee, armor, inventory and medical overhauls
 - Fully compatible with existing CE savegames - delete CE completely, drop in CE:FT and go!
-- 89 supported third-party mods (compared with 59 for CE)
+- 89 supported third-party mods (compared with 60 for CE)
 - Recognizes existing third-party standalone patches intended for the original CE
 - Additional ammo and projectile definitions and textures
 - New Graphic_StackCountRanged class for precise control of item subgraphics based on stack count
@@ -67,7 +67,7 @@ Ni'Hal 											| &#x2705; 	| &#x2705;
 [O21] Kobolds								| &#x2705; 	| &#x2705;
 Orassans 											| &#x2705; 	| &#x2705;
 Orion's More Mechanoids 							| &#x2705; 	| &#x2705;
-Rabbie The Moonrabbit								|  			| &#x2705;
+Rabbie The Moonrabbit								| &#x2705; 	| &#x2705;
 Rah's Bionics and Surgery Expansion 				| &#x2705; 	| &#x2705;
 Racc Race 											| &#x2705; 	| &#x2705;
 [RH] Faction: Elite Crew 			        |  			| &#x2705;
@@ -101,7 +101,7 @@ Xenn Race 											| &#x2705; 	| &#x2705;
 Xenohumans 										|  			| &#x2705;
 Yabils: Space Gremlins				|  			| &#x2705;
 Zombieland 										| &#x2705; 	| &#x2705;
-**Total** | **59** | **89**
+**Total** | **60** | **89**
 &nbsp; | **CE (original)** | **CE: FastTrack Edition**
 
 ## Contributing Your Patches
