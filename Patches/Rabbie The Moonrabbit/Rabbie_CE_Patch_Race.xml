@@ -29,20 +29,26 @@
 				</value>
 			</li>
 
+			<!--Better shooting, Worse melee-->
+
 			<li Class="PatchOperationAdd">
-				<xpath>*/AlienRace.ThingDef_AlienRace[defName = "Rabbie"]/statBases</xpath>
+				<xpath>*/AlienRace.ThingDef_AlienRace[defName="Rabbie"]/statBases</xpath>
 				<value>
-					<AimingAccuracy>1</AimingAccuracy>
-					<MeleeCritChance>1</MeleeCritChance>
-					<MeleeParryChance>1</MeleeParryChance>
-					<ReloadSpeed>1</ReloadSpeed>
+					<!--Same as shooting offset-->
+					<AimingAccuracy>1.2</AimingAccuracy>
+					<!--Same as hit offset-->
+					<MeleeCritChance>0.9</MeleeCritChance>
+					<!--Same as dodge offset-->
+					<MeleeParryChance>0.8</MeleeParryChance>
 					<Suppressability>1</Suppressability>
+					<SmokeSensitivity>1</SmokeSensitivity>
 				</value>
 			</li>
 
+			<!--Base has no headbut, only bite-->
+			
 			<li Class="PatchOperationReplace">
-				<success>Always</success>
-				<xpath>*/AlienRace.ThingDef_AlienRace[defName="Rabbie"]/tools</xpath>
+				<xpath>*/AlienRace.ThingDef_AlienRace[defName="Rabbie"]/tools</xpath> 
 				<value>
 					<tools>
 						<li Class="CombatExtended.ToolCE">
@@ -50,58 +56,32 @@
 							<capacities>
 								<li>Blunt</li>
 							</capacities>
-							<power>8</power>
-							<cooldownTime>1.6</cooldownTime>
+							<power>1</power>
+							<cooldownTime>1.33</cooldownTime>
 							<linkedBodyPartsGroup>LeftHand</linkedBodyPartsGroup>
-							<surpriseAttack>
-								<extraMeleeDamages>
-									<li>
-										<def>Stun</def>
-										<amount>16</amount>
-									</li>
-								</extraMeleeDamages>
-							</surpriseAttack>
-							<armorPenetration>0.1</armorPenetration>
+							<armorPenetrationBlunt>0.162</armorPenetrationBlunt>
 						</li>
 						<li Class="CombatExtended.ToolCE">
 							<label>right fist</label>
 							<capacities>
 								<li>Blunt</li>
 							</capacities>
-							<power>8</power>
-							<cooldownTime>1.6</cooldownTime>
+							<power>1</power>
+							<cooldownTime>1.33</cooldownTime>
 							<linkedBodyPartsGroup>RightHand</linkedBodyPartsGroup>
-							<surpriseAttack>
-								<extraMeleeDamages>
-									<li>
-										<def>Stun</def>
-										<amount>16</amount>
-									</li>
-								</extraMeleeDamages>
-							</surpriseAttack>
-							<armorPenetration>0.1</armorPenetration>
+							<armorPenetrationBlunt>0.162</armorPenetrationBlunt>
 						</li>
 						<li Class="CombatExtended.ToolCE">
 							<label>teeth</label>
 							<capacities>
 								<li>Bite</li>
 							</capacities>
-							<power>12</power>
-							<cooldownTime>1.6</cooldownTime>
+							<power>2</power>
+							<cooldownTime>2.52</cooldownTime>
 							<linkedBodyPartsGroup>Teeth</linkedBodyPartsGroup>
-							<armorPenetration>0.18</armorPenetration>
-							<chanceFactor>0.4</chanceFactor>
-						</li>
-						<li Class="CombatExtended.ToolCE">
-							<label>head</label>
-							<capacities>
-								<li>Blunt</li>
-							</capacities>
-							<power>5</power>
-							<cooldownTime>1.8</cooldownTime>
-							<linkedBodyPartsGroup>HeadAttackTool</linkedBodyPartsGroup>
-							<armorPenetration>0.09</armorPenetration>
-							<chanceFactor>0.1</chanceFactor>
+							<chanceFactor>0.2</chanceFactor>
+							<armorPenetrationSharp>0.01</armorPenetrationSharp>
+							<armorPenetrationBlunt>0.245</armorPenetrationBlunt>
 						</li>
 					</tools>
 				</value>

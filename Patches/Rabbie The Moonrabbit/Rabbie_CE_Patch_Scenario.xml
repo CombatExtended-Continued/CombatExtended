@@ -7,22 +7,34 @@
 			<li Class="CombatExtended.PatchOperationFindMod">
 				<modName>Rabbie The Moonrabbit</modName>
 			</li>
-			
-			<!-- Fix incorrect apparel stuff definitions -->
-			
-			<li Class="PatchOperationAdd">
+
+			<!-- Patch starting apparel items definitions -->
+
+			<li Class="PatchOperationReplace">
 				<xpath>Defs/ScenarioDef[defName="RB_Scenario"]/scenario/parts/li[thingDef="Apparel_FlakVest"]</xpath>
 				<value>
-					<stuff>Plasteel</stuff>
+					<li Class="ScenPart_StartingThing_Defined">
+						<def>StartingThing_Defined</def>
+						<thingDef>Apparel_FlakVest</thingDef>
+						<stuff>Steel</stuff>
+						<count>1</count>
+					</li>
 				</value>
 			</li>
-			
-			<li Class="PatchOperationRemove">
-				<xpath>Defs/ScenarioDef[defName="RB_Scenario"]/scenario/parts/li[thingDef="Apparel_AdvancedHelmet"]/stuff</xpath>
+
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ScenarioDef[defName="RB_Scenario"]/scenario/parts/li[thingDef="Apparel_AdvancedHelmet"]</xpath>
+				<value>
+					<li Class="ScenPart_StartingThing_Defined">
+						<def>StartingThing_Defined</def>
+						<thingDef>Apparel_AdvancedHelmet</thingDef>
+						<count>1</count>
+					</li>
+				</value>
 			</li>
 
 			<!-- Add ammo -->
-			
+
 			<li Class="PatchOperationAdd">
 				<xpath>Defs/ScenarioDef[defName="RB_Scenario"]/scenario/parts</xpath>
 				<value>
@@ -33,7 +45,7 @@
 					</li>
 				</value>
 			</li>
-			
+
 			<li Class="PatchOperationAdd">
 				<xpath>Defs/ScenarioDef[defName="RB_Scenario"]/scenario/parts</xpath>
 				<value>
@@ -44,7 +56,7 @@
 					</li>
 				</value>
 			</li>
-			
+
 		</operations>
 	</Operation>
 </Patch>
