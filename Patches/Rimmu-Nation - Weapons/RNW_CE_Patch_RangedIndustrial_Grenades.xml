@@ -63,15 +63,14 @@
 				<xpath>Defs/ThingDef[defName="RNProj_C4CSGO"]/projectile</xpath>
 				<value>
 					<projectile Class="CombatExtended.ProjectilePropertiesCE">
-						<explosionRadius>8</explosionRadius>
+						<explosionRadius>4</explosionRadius>
 						<damageDef>Bomb</damageDef>
-						<damageAmountBase>250</damageAmountBase>
+						<damageAmountBase>328</damageAmountBase>
 						<explosionDelay>500</explosionDelay>
 						<dropsCasings>true</dropsCasings>
 						<casingMoteDefname>Mote_GrenadePin</casingMoteDefname>
-						<stoppingPower>4</stoppingPower>
-						<preExplosionSpawnThingDef>Gas_Smoke</preExplosionSpawnThingDef>
 						<applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
+						<speed>2</speed>
 					</projectile>
 				</value>
 			</li>
@@ -97,8 +96,7 @@
 				<value>
 					<li Class="CombatExtended.CompProperties_ExplosiveCE">
 						<fragments>
-							<Fragment_GrenadeFrag>250</Fragment_GrenadeFrag>
-							<!-- Might not be enough for this explosive, 250 was for a standard grenade -->
+							<Fragment_GrenadeFrag>345</Fragment_GrenadeFrag>
 						</fragments>
 					</li>
 				</value>
@@ -110,8 +108,7 @@
 				<xpath>Defs/ThingDef[defName="RNThrown_C4CSGO"]</xpath>
 				<value>
 					<thingClass>CombatExtended.AmmoThing</thingClass>
-					<stackLimit>10</stackLimit>
-					<!-- Arbitrary number for now but seems appropriate -->
+					<stackLimit>25</stackLimit>
 					<resourceReadoutPriority>First</resourceReadoutPriority>
 					<drawGUIOverlay>true</drawGUIOverlay>
 				</value>
@@ -143,12 +140,11 @@
 				<xpath>Defs/ThingDef[defName="RNThrown_C4CSGO"]/comps</xpath>
 				<value>
 					<li Class="CombatExtended.CompProperties_ExplosiveCE">
-						<explosionDamage>250</explosionDamage>
-						<!-- Might need more dmg-->
+						<explosionDamage>328</explosionDamage>
 						<explosionDamageDef>Bomb</explosionDamageDef>
-						<explosionRadius>8</explosionRadius>
+						<explosionRadius>4</explosionRadius>
 						<fragments>
-							<Fragment_GrenadeFrag>250</Fragment_GrenadeFrag>
+							<Fragment_GrenadeFrag>345</Fragment_GrenadeFrag>
 						</fragments>
 					</li>
 				</value>
@@ -156,7 +152,10 @@
 			<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
 				<defName>RNThrown_C4CSGO</defName>
 				<statBases>
-					<MarketValue>5.25</MarketValue>
+					<Mass>3.42</Mass>
+					<Bulk>6.8</Bulk>
+					<MarketValue>153.2</MarketValue>
+					<RangedWeapon_Cooldown>1</RangedWeapon_Cooldown>
 					<SightsEfficiency>0.45</SightsEfficiency>
 				</statBases>
 				<Properties>
