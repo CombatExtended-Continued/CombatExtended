@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+  <Operation Class="PatchOperationSequence">
+	<operations>
+	  <li Class="PatchOperationFindMod">
+			
+		<mods><li>Girls' frontline Apparel Pack</li></mods>
+			
+		<match Class="PatchOperationSequence">
+		<operations>
+			
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[@Name="AR_ApparelMakeableBase"]/recipeMaker/recipeUsers</xpath>
+				<value>
+					<recipeUsers><li>TableMachining</li></recipeUsers>
+				</value>
+			</li>
+			
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[@Name="AR_ApparelMakeableBase"]/recipeMaker</xpath>
+				<value>
+					<researchPrerequisite>FlakArmor</researchPrerequisite>
+				</value>
+			</li>
+			
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="AR_M4Costume" or
+				defName="AR_M16A1Costume" or
+				defName="AR_M16A1Costume_b" or
+				defName="AR_M4SOPIIcoutume" or
+				defName="AR_AR15costume" or
+				defName="AR_RO635costume" or
+				defName="404_HK416costume" or
+				defName="404_G11costume" or
+				defName="404_UMP9costume" or
+				defName="404_UMP40costume" or
+				defName="404_UMP45costume" or
+				defName="Defy_AK12costume" or
+				defName="Defy_AN94costume" or
+				defName="Kanade_NEGEVcostume" or
+				defName="Kanade_IWS2000costume" or
+				defName="Kanade_JERICHOcostume"
+				]/statBases/ArmorRating_Sharp</xpath>
+				<value>
+					<Bulk>5</Bulk>
+					<WornBulk>5</WornBulk>
+					<StuffEffectMultiplierArmor>4</StuffEffectMultiplierArmor>
+					<ArmorRating_Sharp>2</ArmorRating_Sharp>
+				</value>
+			</li>
+			
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="AR_M4Costume" or
+				defName="AR_M16A1Costume" or
+				defName="AR_M16A1Costume_b" or
+				defName="AR_M4SOPIIcoutume" or
+				defName="AR_AR15costume" or
+				defName="AR_RO635costume" or
+				defName="404_HK416costume" or
+				defName="404_G11costume" or
+				defName="404_UMP9costume" or
+				defName="404_UMP40costume" or
+				defName="404_UMP45costume" or
+				defName="Defy_AK12costume" or
+				defName="Defy_AN94costume" or
+				defName="Kanade_NEGEVcostume" or
+				defName="Kanade_IWS2000costume" or
+				defName="Kanade_JERICHOcostume"
+				]/statBases/ArmorRating_Blunt</xpath>
+				<value>
+					<ArmorRating_Blunt>0.5</ArmorRating_Blunt>
+				</value>
+			</li>
+			
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="AR_M4Costume" or
+				defName="AR_M16A1Costume" or
+				defName="AR_M16A1Costume_b" or
+				defName="AR_M4SOPIIcoutume" or
+				defName="AR_AR15costume" or
+				defName="AR_RO635costume" or
+				defName="404_HK416costume" or
+				defName="404_G11costume" or
+				defName="404_UMP9costume" or
+				defName="404_UMP40costume" or
+				defName="404_UMP45costume" or
+				defName="Defy_AK12costume" or
+				defName="Defy_AN94costume" or
+				defName="Kanade_NEGEVcostume" or
+				defName="Kanade_IWS2000costume" or
+				defName="Kanade_JERICHOcostume"
+				]/statBases/WorkToMake</xpath>
+				<value>
+					<WorkToMake>16000</WorkToMake>
+				</value>
+			</li>
+			
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="AR_M4Costume" or
+				defName="AR_M16A1Costume" or
+				defName="AR_M16A1Costume_b" or
+				defName="AR_M4SOPIIcoutume" or
+				defName="AR_AR15costume" or
+				defName="AR_RO635costume" or
+				defName="404_HK416costume" or
+				defName="404_G11costume" or
+				defName="404_UMP9costume" or
+				defName="404_UMP40costume" or
+				defName="404_UMP45costume" or
+				defName="Defy_AK12costume" or
+				defName="Defy_AN94costume" or
+				defName="Kanade_NEGEVcostume" or
+				defName="Kanade_IWS2000costume" or
+				defName="Kanade_JERICHOcostume"
+				]/costList</xpath>
+				<value>
+					<costList>
+						<Steel>35</Steel>
+					</costList>
+					<stuffCategories>
+						<li>Fabric</li>
+					</stuffCategories>
+					<costStuffCount>100</costStuffCount>
+				</value>
+			</li>
+			
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="AR_M4SOPIIcoutume" or
+				defName="Kanade_JERICHOcostume"
+				]/equippedStatOffsets/MeleeDodgeChance</xpath>
+				<value>
+					<MeleeDodgeChance>0.25</MeleeDodgeChance>
+				</value>
+			</li>
+			
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="AR_M4SOPIIcoutume"]/equippedStatOffsets/MeleeHitChance</xpath>
+				<value>
+					<MeleeHitChance>1</MeleeHitChance>
+				</value>
+			</li>
+			
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="Kanade_JERICHOcostume"]/equippedStatOffsets/MeleeHitChance</xpath>
+				<value>
+					<MeleeHitChance>1.5</MeleeHitChance>
+				</value>
+			</li>
+			
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName="Defy_AN94_Mask" or defName="Defy_AK12_Mask"]/equippedStatOffsets</xpath>
+				<value>
+					<SmokeSensitivity>-0.25</SmokeSensitivity>
+				</value>
+			</li>
+		</operations>
+		</match>	
+	  </li>
+	</operations>	
+  </Operation>
+</Patch>
