@@ -84,6 +84,7 @@ namespace CombatExtended.Harmony
         internal static void Postfix(Fire __instance)
         {
             if (__instance.Spawned
+                && Controller.settings.SmokeEffects
                 && __instance.IsHashIntervalTick(TicksPerSmoke)
                 && __instance.Position.Roofed(__instance.Map)
                 && __instance.Position.GetGas(__instance.Map) == null)
