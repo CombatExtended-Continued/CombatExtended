@@ -1,0 +1,124 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+
+  <ThingCategoryDef>
+    <defName>Ammo152x169mm</defName>
+    <label>15.2x169mm</label>
+    <parent>AmmoHighCaliber</parent>
+    <iconPath>UI/Icons/ThingCategories/CaliberHighCaliber</iconPath>
+  </ThingCategoryDef>
+	
+	<!-- ==================== AmmoSet ========================== -->
+
+  <CombatExtended.AmmoSetDef>
+    <defName>AmmoSet_152x169mm</defName>
+    <label>15.2x169mm</label>
+    <ammoTypes>
+      <Ammo_152x169mm_Sabot>Bullet_152x169mm_Sabot</Ammo_152x169mm_Sabot>
+    </ammoTypes>
+  </CombatExtended.AmmoSetDef>
+	
+	<!-- ==================== Ammo ========================== -->
+
+  <ThingDef Class="CombatExtended.AmmoDef" Name="152x169mmBase" ParentName="SmallAmmoBase" Abstract="True">
+    <description>Prototype smoothbore cartritge designed for anti-material use.</description>
+    <statBases>
+	  <Mass>0.185</Mass>
+	  <Bulk>0.33</Bulk>
+    </statBases>
+    <tradeTags>
+      <li>CE_AutoEnableTrade</li>
+      <li>CE_AutoEnableCrafting</li>
+    </tradeTags>
+    <thingCategories>
+      <li>Ammo152x169mm</li>
+    </thingCategories>
+	<stackLimit>250</stackLimit>
+  </ThingDef>
+
+  <ThingDef Class="CombatExtended.AmmoDef" ParentName="152x169mmBase">
+    <defName>Ammo_152x169mm_Sabot</defName>
+    <label>15.2x169mm cartridge (Sabot)</label>
+    <graphicData>
+      <texPath>Things/Ammo/HighCaliber/Sabot</texPath>
+      <graphicClass>Graphic_StackCount</graphicClass>
+    </graphicData>
+    <statBases>
+      <MarketValue>0.91</MarketValue>
+    </statBases>
+    <ammoClass>Sabot</ammoClass>
+	<cookOffProjectile>Bullet_152x169mm_Sabot</cookOffProjectile>
+  </ThingDef>
+
+	
+	<!-- ================== Projectile ================== -->
+
+  <ThingDef Class="CombatExtended.AmmoDef" Name="Base_152x169mm" ParentName="BaseBullet" Abstract="true">
+    <graphicData>
+      <texPath>Things/Projectile/Bullet_Big</texPath>
+      <graphicClass>Graphic_Single</graphicClass>
+    </graphicData>
+    <projectile Class="CombatExtended.ProjectilePropertiesCE">
+      <damageDef>Bullet</damageDef>
+      <speed>290</speed>
+    </projectile>
+  </ThingDef>
+  
+  <ThingDef Class="CombatExtended.AmmoDef" ParentName="Base_152x169mm">
+    <defName>Bullet_152x169mm_Sabot</defName>
+    <label> 152x169mm (Sabot)</label>
+    <projectile Class="CombatExtended.ProjectilePropertiesCE">
+      <damageAmountBase>18</damageAmountBase>
+	  <armorPenetrationSharp>63</armorPenetrationSharp>
+      <armorPenetrationBlunt>409.98</armorPenetrationBlunt>
+    </projectile>
+  </ThingDef>
+  
+	<!-- ==================== Recipes ========================== -->
+
+  <RecipeDef ParentName="AmmoRecipeBase">
+    <defName>MakeAmmo_152x169mm_Sabot</defName>
+    <label>make 152x169mm (Sabot) x200</label>
+    <description>Craft 200 152x169mm (Sabot) cartridges.</description>
+    <jobString>Making 152x169mm (Sabot) cartridges.</jobString>
+    <ingredients>
+      <li>
+        <filter>
+          <thingDefs>
+            <li>Steel</li>
+          </thingDefs>
+        </filter>
+        <count>60</count>
+      </li>
+      <li>
+        <filter>
+          <thingDefs>
+            <li>Uranium</li>
+          </thingDefs>
+        </filter>
+        <count>4</count>
+      </li>
+      <li>
+        <filter>
+          <thingDefs>
+            <li>Chemfuel</li>
+          </thingDefs>
+        </filter>
+        <count>4</count>
+      </li>	  
+    </ingredients>
+    <fixedIngredientFilter>
+      <thingDefs>
+        <li>Chemfuel</li>	  
+        <li>Steel</li>
+		<li>Uranium</li>
+      </thingDefs>
+    </fixedIngredientFilter>
+    <products>
+      <Ammo_152x169mm_Sabot>200</Ammo_152x169mm_Sabot>
+    </products>
+	<workAmount>8400</workAmount>
+  </RecipeDef>
+
+	
+</Defs>
