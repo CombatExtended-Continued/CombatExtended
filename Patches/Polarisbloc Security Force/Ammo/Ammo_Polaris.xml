@@ -1,0 +1,203 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+  <Operation Class="PatchOperationSequence">
+	<operations>
+	  <li Class="PatchOperationFindMod">
+			
+		<mods><li>Polarisbloc - Security Force</li></mods>
+			
+		<match Class="PatchOperationSequence">
+		<operations>
+			
+			<li Class="PatchOperationAdd">
+				<xpath>Defs</xpath>
+				<value>
+					<CombatExtended.AmmoSetDef>
+						<defName>AmmoSet_6x24mmPolarisSF</defName>
+						<label>6x24mm Charged Bullet (Canicula)</label>
+						<ammoTypes>
+						  <Ammo_6x24mmCharged>Bullet_6x24mmPolarisSF</Ammo_6x24mmCharged>
+						  <Ammo_6x24mmCharged_AP>Bullet_6x24mmPolarisSF_AP</Ammo_6x24mmCharged_AP>
+						  <Ammo_6x24mmCharged_Ion>Bullet_6x24mmPolarisSF_Ion</Ammo_6x24mmCharged_Ion>
+						</ammoTypes>
+					</CombatExtended.AmmoSetDef>
+				</value>
+			</li>
+			
+			<li Class="PatchOperationAdd">
+				<xpath>Defs</xpath>
+				<value>
+					<ThingDef Class="CombatExtended.AmmoDef" ParentName="Base6x24mmChargedBullet">
+						<defName>Bullet_6x24mmPolarisSF</defName>
+						<label>6x24mm Charged SF bullet</label>
+						<graphicData>
+						  <texPath>PolarisblocSF/Projectile/Bullet_CaniculaRifle</texPath>
+						  <graphicClass>Graphic_Single</graphicClass>
+						</graphicData>
+						<projectile Class="CombatExtended.ProjectilePropertiesCE">
+						  <speed>192</speed>
+						  <damageAmountBase>7</damageAmountBase>
+						  <secondaryDamage>
+							<li>
+							  <def>Bomb_Secondary</def>
+							  <amount>8</amount>
+							</li>
+						  </secondaryDamage>
+						  <armorPenetrationSharp>12</armorPenetrationSharp>
+						  <armorPenetrationBlunt>25.6</armorPenetrationBlunt>
+						</projectile>
+					</ThingDef>
+				</value>
+			</li>
+			
+			<li Class="PatchOperationAdd">
+				<xpath>Defs</xpath>
+				<value>
+					<ThingDef Class="CombatExtended.AmmoDef" ParentName="Base6x24mmChargedBullet">
+						<defName>Bullet_6x24mmPolarisSF_AP</defName>
+						<label>6x24mm Charged SF bullet (Conc.)</label>
+						<graphicData>
+						  <texPath>PolarisblocSF/Projectile/Bullet_CaniculaRifle</texPath>
+						  <graphicClass>Graphic_Single</graphicClass>
+						</graphicData>
+						<projectile Class="CombatExtended.ProjectilePropertiesCE">
+						  <speed>192</speed>
+						  <damageAmountBase>5</damageAmountBase>
+						  <secondaryDamage>
+							<li>
+							  <def>Bomb_Secondary</def>
+							  <amount>4</amount>
+							</li>
+						  </secondaryDamage>
+						  <armorPenetrationSharp>24</armorPenetrationSharp>
+						  <armorPenetrationBlunt>25.6</armorPenetrationBlunt>
+						</projectile>
+					</ThingDef>
+				</value>
+			</li>
+			
+			<li Class="PatchOperationAdd">
+				<xpath>Defs</xpath>
+				<value>
+					<ThingDef Class="CombatExtended.AmmoDef" ParentName="Base6x24mmChargedBullet">
+						<defName>Bullet_6x24mmPolarisSF_Ion</defName>
+						<label>6x24mm Charged SF bullet (Ion)</label>
+						<graphicData>
+						  <texPath>PolarisblocSF/Projectile/Bullet_CaniculaRifle</texPath>
+						  <graphicClass>Graphic_Single</graphicClass>
+						</graphicData>
+						<projectile Class="CombatExtended.ProjectilePropertiesCE">
+						  <speed>192</speed>
+						  <damageAmountBase>5</damageAmountBase>
+						  <secondaryDamage>
+							<li>
+							  <def>EMP</def>
+							  <amount>12</amount>
+							</li>
+						  </secondaryDamage>
+						  <armorPenetrationSharp>18</armorPenetrationSharp>
+						  <armorPenetrationBlunt>25.6</armorPenetrationBlunt>
+						</projectile>
+					</ThingDef>
+				</value>
+			</li>
+			
+			<li Class="PatchOperationAdd">
+				<xpath>Defs</xpath>
+				<value>
+				  <CombatExtended.AmmoSetDef>
+					<defName>AmmoSet_8x35mmPolarisSF</defName>
+					<label>8x35mm Charged Bullet (Canicula)</label>
+					<ammoTypes>
+					  <Ammo_8x35mmCharged>Bullet_8x35mmPolarisSF</Ammo_8x35mmCharged>
+					  <Ammo_8x35mmCharged_AP>Bullet_8x35mmPolarisSF_AP</Ammo_8x35mmCharged_AP>
+					  <Ammo_8x35mmCharged_Ion>Bullet_8x35mmPolarisSF_Ion</Ammo_8x35mmCharged_Ion>
+					</ammoTypes>
+				  </CombatExtended.AmmoSetDef>
+				</value>
+			</li>
+			
+			<li Class="PatchOperationAdd">
+				<xpath>Defs</xpath>
+				<value>
+				  <ThingDef Class="CombatExtended.AmmoDef" ParentName="Base8x35mmChargedBullet">
+					<defName>Bullet_8x35mmPolarisSF</defName>
+					<label>8x35mm Charged SF bullet</label>
+					<graphicData>
+					  <texPath>PolarisblocSF/Projectile/Bullet_CaniculaSniper</texPath>
+					  <graphicClass>Graphic_Single</graphicClass>
+					</graphicData>
+					<projectile Class="CombatExtended.ProjectilePropertiesCE">
+					  <damageAmountBase>7</damageAmountBase>
+					  <speed>192</speed>
+					  <secondaryDamage>
+						<li>
+						  <def>Bomb_Secondary</def>
+						  <amount>12</amount>
+						</li>
+					  </secondaryDamage>
+					  <armorPenetrationSharp>14</armorPenetrationSharp>
+					  <armorPenetrationBlunt>57.6</armorPenetrationBlunt>
+					</projectile>
+				  </ThingDef>
+				</value>
+			</li>
+			
+			<li Class="PatchOperationAdd">
+				<xpath>Defs</xpath>
+				<value>
+				  <ThingDef Class="CombatExtended.AmmoDef" ParentName="Base8x35mmChargedBullet">
+					<defName>Bullet_8x35mmPolarisSF_AP</defName>
+					<label>8x35mm Charged SF bullet (Conc.)</label>
+					<graphicData>
+					  <texPath>PolarisblocSF/Projectile/Bullet_CaniculaSniper</texPath>
+					  <graphicClass>Graphic_Single</graphicClass>
+					</graphicData>
+					<projectile Class="CombatExtended.ProjectilePropertiesCE">
+					  <damageAmountBase>6</damageAmountBase>
+					  <speed>192</speed>
+					  <secondaryDamage>
+						<li>
+						  <def>Bomb_Secondary</def>
+						  <amount>4</amount>
+						</li>
+					  </secondaryDamage>
+					  <armorPenetrationSharp>28</armorPenetrationSharp>
+					  <armorPenetrationBlunt>57.6</armorPenetrationBlunt>
+					</projectile>
+				  </ThingDef>
+				</value>
+			</li>
+			
+			<li Class="PatchOperationAdd">
+				<xpath>Defs</xpath>
+				<value>
+				  <ThingDef Class="CombatExtended.AmmoDef" ParentName="Base8x35mmChargedBullet">
+					<defName>Bullet_8x35mmPolarisSF_Ion</defName>
+					<label>8x35mm Charged SF bullet (Ion)</label>
+					<graphicData>
+					  <texPath>PolarisblocSF/Projectile/Bullet_CaniculaSniper</texPath>
+					  <graphicClass>Graphic_Single</graphicClass>
+					</graphicData>
+					<projectile Class="CombatExtended.ProjectilePropertiesCE">
+					  <damageAmountBase>6</damageAmountBase>
+					  <speed>192</speed>
+					  <secondaryDamage>
+						<li>
+						  <def>EMP</def>
+						  <amount>18</amount>
+						</li>
+					  </secondaryDamage>
+					  <armorPenetrationSharp>21</armorPenetrationSharp>
+					  <armorPenetrationBlunt>57.6</armorPenetrationBlunt>
+					</projectile>
+				  </ThingDef>
+				</value>
+			</li>
+			
+		</operations>
+		</match>	
+	  </li>
+	</operations>	
+  </Operation>
+</Patch>
