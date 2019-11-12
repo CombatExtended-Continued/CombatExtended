@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+  <Operation Class="PatchOperationSequence">
+	<operations>
+	  <li Class="PatchOperationFindMod">
+			
+		<mods><li>Polarisbloc - Security Force</li></mods>
+			
+		<match Class="PatchOperationSequence">
+		<operations>
+			<!--Std Armor, 1/3 protection of devilstrand flak-->
+			
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="Polarisbloc_CygnusStandardArmor"]/statBases/ArmorRating_Sharp</xpath>
+				<value>
+					<ArmorRating_Sharp>1.35</ArmorRating_Sharp>
+				</value>
+			</li>
+			
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="Polarisbloc_CygnusStandardArmor"]/statBases/ArmorRating_Blunt</xpath>
+				<value>
+					<ArmorRating_Blunt>0.3</ArmorRating_Blunt>
+				</value>
+			</li>
+			
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="Polarisbloc_CygnusStandardArmor"]/equippedStatOffsets/MeleeDodgeChance</xpath>
+				<value>
+					<MeleeDodgeChance>0.2</MeleeDodgeChance>
+					<CarryBulk>20</CarryBulk>
+				</value>
+			</li>
+			
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName="Polarisbloc_CygnusStandardArmor"]/statBases</xpath>
+				<value>
+					<Bulk>5</Bulk>
+					<WornBulk>3</WornBulk>
+				</value>
+			</li>
+			
+			<!--Cap Armor, 1/2 protection of devilstrand flak-->
+			
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="Polarisbloc_CygnusStandardArmorC"]/statBases/ArmorRating_Sharp</xpath>
+				<value>
+					<ArmorRating_Sharp>2</ArmorRating_Sharp>
+				</value>
+			</li>
+			
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="Polarisbloc_CygnusStandardArmorC"]/statBases/ArmorRating_Blunt</xpath>
+				<value>
+					<ArmorRating_Blunt>0.45</ArmorRating_Blunt>
+				</value>
+			</li>
+			
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="Polarisbloc_CygnusStandardArmorC"]/equippedStatOffsets/MeleeDodgeChance</xpath>
+				<value>
+					<MeleeDodgeChance>0.25</MeleeDodgeChance>
+					<CarryBulk>20</CarryBulk>
+				</value>
+			</li>
+			
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName="Polarisbloc_CygnusStandardArmorC"]/statBases</xpath>
+				<value>
+					<Bulk>5</Bulk>
+					<WornBulk>1</WornBulk>
+				</value>
+			</li>
+			
+			<!--Std Tights-->
+			
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="Polarisbloc_CygnusStandardTights"]/statBases/ArmorRating_Sharp</xpath>
+				<value>
+					<ArmorRating_Sharp>0.2</ArmorRating_Sharp>
+				</value>
+			</li>
+			
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="Polarisbloc_CygnusStandardTights"]/statBases/ArmorRating_Blunt</xpath>
+				<value>
+					<ArmorRating_Blunt>0.1</ArmorRating_Blunt>
+				</value>
+			</li>
+			
+			<!--Strategy Assistant-->
+			
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="Polarisbloc_AlkaidStrategyAssistant"]/equippedStatOffsets/MeleeDodgeChance</xpath>
+				<value>
+					<MeleeDodgeChance>0.05</MeleeDodgeChance>
+					<MeleeParryChance>0.05</MeleeParryChance>
+				</value>
+			</li>
+			
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="Polarisbloc_AlkaidStrategyAssistant"]/equippedStatOffsets/ShootingAccuracyPawn</xpath>
+				<value>
+					<ShootingAccuracyPawn>0.4</ShootingAccuracyPawn>
+					<AimingAccuracy>0.2</AimingAccuracy>
+					<Suppressability>-0.2</Suppressability>
+				</value>
+			</li>
+			
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName="Polarisbloc_AlkaidStrategyAssistant"]/statBases</xpath>
+				<value>
+					<Bulk>5</Bulk>
+					<WornBulk>0</WornBulk>
+				</value>
+			</li>
+			
+			<!--Tac Goggles-->
+			
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="Polarisbloc_ThubanTacticalGoggles"]/statBases/ArmorRating_Sharp</xpath>
+				<value>
+					<ArmorRating_Sharp>4</ArmorRating_Sharp>
+				</value>
+			</li>
+			
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="Polarisbloc_ThubanTacticalGoggles"]/statBases/ArmorRating_Blunt</xpath>
+				<value>
+					<ArmorRating_Blunt>6</ArmorRating_Blunt>
+				</value>
+			</li>
+			
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="Polarisbloc_ThubanTacticalGoggles"]/equippedStatOffsets/ShootingAccuracyPawn</xpath>
+				<value>
+					<ShootingAccuracyPawn>0.4</ShootingAccuracyPawn>
+					<AimingAccuracy>0.2</AimingAccuracy>
+					<MeleeCritChance>0.05</MeleeCritChance>
+				</value>
+			</li>
+			
+		</operations>
+		</match>	
+	  </li>
+	</operations>	
+  </Operation>
+</Patch>

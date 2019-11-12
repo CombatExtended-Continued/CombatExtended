@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+  <Operation Class="PatchOperationSequence">
+	<operations>
+	  <li Class="PatchOperationFindMod">
+			
+		<mods><li>Polarisbloc - Security Force</li></mods>
+			
+		<match Class="PatchOperationSequence">
+		<operations>
+			
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="Polarisbloc_CaniculaRifle" or 
+				defName="Polarisbloc_CaniculaSniper"]/tools</xpath>
+				<value>
+					<tools>
+						<li Class="CombatExtended.ToolCE">
+						<label>stock</label>
+						<capacities>
+						<li>Blunt</li>
+						</capacities>
+						<power>8</power>
+						<cooldownTime>1.55</cooldownTime>
+						<chanceFactor>1.5</chanceFactor>
+						<armorPenetrationBlunt>2.755</armorPenetrationBlunt>
+						<linkedBodyPartsGroup>Stock</linkedBodyPartsGroup>
+						</li>
+						<li Class="CombatExtended.ToolCE">
+							<label>barrel</label>
+							<capacities>
+							<li>Blunt</li>
+							</capacities>
+							<power>5</power>
+							<cooldownTime>2.02</cooldownTime>
+							<armorPenetrationBlunt>1.630</armorPenetrationBlunt>
+							<linkedBodyPartsGroup>Barrel</linkedBodyPartsGroup>
+						</li>
+						<li Class="CombatExtended.ToolCE">
+						<label>muzzle</label>
+							<capacities>
+							<li>Poke</li>
+							</capacities>
+							<power>8</power>
+							<cooldownTime>1.55</cooldownTime>
+							<armorPenetrationBlunt>2.755</armorPenetrationBlunt>
+							<linkedBodyPartsGroup>Muzzle</linkedBodyPartsGroup>
+						</li>
+					</tools>
+				</value>
+			</li>
+			
+			<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+				<defName>Polarisbloc_CaniculaRifle</defName>
+				<statBases>
+					<Bulk>7.50</Bulk>
+					<Mass>2.7</Mass>
+					<RangedWeapon_Cooldown>0.37</RangedWeapon_Cooldown>
+					<SightsEfficiency>2.15</SightsEfficiency>
+					<SwayFactor>1.05</SwayFactor>
+					<ShotSpread>0.05</ShotSpread>
+				</statBases>
+				<Properties>
+					<recoilAmount>1.74</recoilAmount>
+					<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+					<hasStandardCommand>true</hasStandardCommand>
+					<defaultProjectile>Bullet_6x24mmPolarisSF</defaultProjectile>
+					<warmupTime>1.225</warmupTime>
+					<range>62</range>
+					<burstShotCount>6</burstShotCount>
+					<ticksBetweenBurstShots>5</ticksBetweenBurstShots>
+					<soundCast>Shot_ChargeRifle</soundCast>
+					<soundCastTail>GunTail_Medium</soundCastTail>
+					<muzzleFlashScale>9</muzzleFlashScale>
+				</Properties>
+				<AmmoUser>
+					<magazineSize>30</magazineSize>
+					<reloadTime>4</reloadTime>
+					<ammoSet>AmmoSet_6x24mmPolarisSF</ammoSet>
+				</AmmoUser>
+				<FireModes>
+					<aimedBurstShotCount>3</aimedBurstShotCount>
+					<aiUseBurstMode>TRUE</aiUseBurstMode>
+					<aiAimMode>AimedShot</aiAimMode>
+				</FireModes>
+			</li>
+			
+			<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+				<defName>Polarisbloc_CaniculaSniper</defName>
+				<statBases>
+					<Bulk>19.00</Bulk>
+					<Mass>3.30</Mass>
+					<RangedWeapon_Cooldown>0.37</RangedWeapon_Cooldown>
+					<SightsEfficiency>2.51</SightsEfficiency>
+					<SwayFactor>1.57</SwayFactor>
+					<ShotSpread>0.01</ShotSpread>
+				</statBases>
+				<Properties>
+					<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+					<hasStandardCommand>true</hasStandardCommand>
+					<defaultProjectile>Bullet_8x35mmPolarisSF</defaultProjectile>
+					<warmupTime>1.525</warmupTime>
+					<range>78</range>
+					<soundCast>ChargeLance_Fire</soundCast>
+					<soundCastTail>GunTail_Heavy</soundCastTail>
+					<muzzleFlashScale>9</muzzleFlashScale>
+				</Properties>
+				<AmmoUser>
+					<magazineSize>9</magazineSize>
+					<reloadTime>4</reloadTime>
+					<ammoSet>AmmoSet_8x35mmPolarisSF</ammoSet>
+				</AmmoUser>
+				<FireModes>
+					<aiAimMode>AimedShot</aiAimMode>
+				</FireModes>
+			</li>
+			
+		</operations>
+		</match>	
+	  </li>
+	</operations>	
+  </Operation>
+</Patch>
