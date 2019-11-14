@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+  <Operation Class="PatchOperationSequence">
+	<operations>
+	  <li Class="PatchOperationFindMod">
+			
+		<mods><li>Flak Dusters</li></mods>
+			
+		<match Class="PatchOperationSequence">
+		<operations>
+			
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="Apparel_FlakDuster"]/statBases/ArmorRating_Sharp</xpath>
+				<value>
+					<ArmorRating_Sharp>2</ArmorRating_Sharp>
+				</value>
+			</li>
+			
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="Apparel_FlakDuster"]/statBases/ArmorRating_Blunt</xpath>
+				<value>
+					<ArmorRating_Blunt>0.5</ArmorRating_Blunt>
+				</value>
+			</li>
+			
+			<li Class="PatchOperationRemove">
+				<xpath>Defs/ThingDef[defName="Apparel_FlakDuster"]/statBases/ArmorRating_Heat</xpath>
+			</li>
+			
+			<!--Not stuffable as leather in CE-->
+			
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="Apparel_FlakDuster"]/costList</xpath>
+				<value>
+					<costList>
+						<Steel>32</Steel>
+					</costList>
+				</value>
+			</li>
+			
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="Apparel_FlakDuster"]/stuffCategories</xpath>
+				<value>
+					<stuffCategories>
+						<li>Fabric</li>
+					</stuffCategories>
+				</value>
+			</li>
+			
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="Apparel_FlakDuster"]/costStuffCount</xpath>
+				<value>
+					<costStuffCount>90</costStuffCount>
+				</value>
+			</li>
+			
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="Apparel_FlakDuster"]/statBases/StuffEffectMultiplierArmor</xpath>
+				<value>
+					<StuffEffectMultiplierArmor>4</StuffEffectMultiplierArmor>
+					<Bulk>7</Bulk>
+					<WornBulk>5</WornBulk>
+				</value>
+			</li>
+			
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="Apparel_FlakDuster"]/statBases/StuffEffectMultiplierInsulation_Cold</xpath>
+				<value>
+					<StuffEffectMultiplierInsulation_Cold>0.9</StuffEffectMultiplierInsulation_Cold>
+				</value>
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="Apparel_FlakDuster"]/statBases/StuffEffectMultiplierInsulation_Heat</xpath>
+				<value>
+					<StuffEffectMultiplierInsulation_Heat>0.4</StuffEffectMultiplierInsulation_Heat>
+				</value>
+			</li>
+			
+			<li Class="PatchOperationRemove">
+				<xpath>Defs/ThingDef[defName="Apparel_FlakDuster"]/equippedStatOffsets/MoveSpeed</xpath>
+			</li>
+			
+			<li Class="PatchOperationRemove">
+				<xpath>Defs/ThingDef[defName="Apparel_FlakDuster"]/statBases/Insulation_Cold</xpath>
+			</li>
+			
+			<li Class="PatchOperationRemove">
+				<xpath>Defs/ThingDef[defName="Apparel_FlakDuster"]/statBases/Insulation_Heat</xpath>
+			</li>
+			
+		</operations>
+		</match>	
+	  </li>
+	</operations>	
+  </Operation>
+</Patch>
