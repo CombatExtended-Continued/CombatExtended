@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+  <Operation Class="PatchOperationSequence">
+	<operations>
+	  <li Class="PatchOperationFindMod">
+			
+		<mods><li>K.L.K - Styles Apparel Pack</li></mods>
+			
+		<match Class="PatchOperationSequence">
+		<operations>
+			
+			<!--Senketsu-->
+			
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="KLK_SYBbase"]/statBases/ArmorRating_Sharp</xpath>
+				<value>
+					<ArmorRating_Sharp>6</ArmorRating_Sharp>
+					<Bulk>5</Bulk>
+					<WornBulk>3</WornBulk>
+				</value>
+			</li>
+			
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="KLK_SYBbase"]/statBases/ArmorRating_Blunt</xpath>
+				<value>
+					<ArmorRating_Blunt>5.4</ArmorRating_Blunt>
+				</value>
+			</li>
+			
+			<!--Active-->
+			
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="KLK_SYBactive"]/statBases/ArmorRating_Sharp</xpath>
+				<value>
+					<ArmorRating_Sharp>16.8</ArmorRating_Sharp>
+					<Bulk>5</Bulk>
+					<WornBulk>1</WornBulk>
+				</value>
+			</li>
+			
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="KLK_SYBactive"]/statBases/ArmorRating_Blunt</xpath>
+				<value>
+					<ArmorRating_Blunt>27</ArmorRating_Blunt>
+				</value>
+			</li>
+			
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="KLK_SYBactive"]/equippedStatOffsets/MeleeDodgeChance</xpath>
+				<value>
+					<MeleeDodgeChance>0.94</MeleeDodgeChance>
+					<Suppressability>-0.8</Suppressability>
+					<MeleeCritChance>0.08</MeleeCritChance>
+					<MeleeParryChance>0.1</MeleeParryChance>
+				</value>
+			</li>
+			
+		</operations>
+		</match>	
+	  </li>
+	</operations>	
+  </Operation>
+</Patch>
