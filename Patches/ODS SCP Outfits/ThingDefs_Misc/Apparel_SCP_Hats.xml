@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+  <Operation Class="PatchOperationSequence">
+	<operations>
+	  <li Class="PatchOperationFindMod">
+			
+		<mods><li>[Ods] SCP Outfits Only Edition</li></mods>
+			
+		<match Class="PatchOperationSequence">
+		<operations>
+			
+			<!--Thin Stuffable-->
+			
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="Apparel_ScpRcfFrontCap" or
+				defName="Apparel_ScpRcfBackCap" or
+				defName="Apparel_GocSecurityBeret" or
+				defName="Apparel_GocSTBoonie" or
+				defName="Apparel_CiToque" or
+				defName="Apparel_CiMaskedHeadset" or
+				defName="Apparel_CiCap" or
+				defName="Apparel_CiCapMasked" or
+				defName="Apparel_CiMilitaryCap" or
+				defName="Apparel_ScpRcfCap" or
+				defName="Apparel_GocSTBoonieNew"
+				]/statBases/StuffEffectMultiplierArmor</xpath>
+				<value>
+					<StuffEffectMultiplierArmor>1</StuffEffectMultiplierArmor>
+					<Bulk>1</Bulk>
+					<WornBulk>1</WornBulk>
+				</value>
+			</li>
+			
+			
+			<!--Helmet-->
+			
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="Apparel_ScpRcfHelmet" or
+				defName="Apparel_ScpSecurityHelmet" or
+				defName="Apparel_ScpMtfHelmet" or
+				defName="Apparel_ScpMtfHelmetGoggles" or
+				defName="Apparel_ScpMtfHelmetVisor" or
+				defName="Apparel_ScpMtfHelmetMasked" or
+				defName="Apparel_ScpMtfHelmetGogglesMasked" or 
+				defName="Apparel_ScpMtfHelmetVisorMasked" or 
+				defName="Apparel_GocSecurityHelmet" or 
+				defName="Apparel_GocSTHelmet" or 
+				defName="Apparel_GocSTHelmetMasked" or 
+				defName="Apparel_CiHelmet" or 
+				defName="Apparel_ScpRcfHelmetMasked" or 
+				defName="Apparel_ScpMtfHelmetMaskedNew" or 
+				defName="Apparel_ScpMtfHelmetVisorMaskedNew" or 
+				defName="Apparel_ScpMtfHelmetGasmaskNew" or 
+				defName="Apparel_GocSTHelmetNew" or 
+				defName="Apparel_GocSTHelmetMaskedNew"
+				]/statBases/StuffEffectMultiplierArmor</xpath>
+				<value>
+					<StuffEffectMultiplierArmor>4</StuffEffectMultiplierArmor>
+					<Bulk>5</Bulk>
+					<WornBulk>1</WornBulk>
+				</value>
+			</li>
+			
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="Apparel_ScpRcfHelmet" or
+				defName="Apparel_ScpSecurityHelmet" or
+				defName="Apparel_ScpMtfHelmet" or
+				defName="Apparel_ScpMtfHelmetGoggles" or
+				defName="Apparel_ScpMtfHelmetVisor" or
+				defName="Apparel_ScpMtfHelmetMasked" or
+				defName="Apparel_ScpMtfHelmetGogglesMasked" or 
+				defName="Apparel_ScpMtfHelmetVisorMasked" or 
+				defName="Apparel_GocSecurityHelmet" or 
+				defName="Apparel_GocSTHelmet" or 
+				defName="Apparel_GocSTHelmetMasked" or 
+				defName="Apparel_CiHelmet" or 
+				defName="Apparel_ScpRcfHelmetMasked" or 
+				defName="Apparel_ScpMtfHelmetMaskedNew" or 
+				defName="Apparel_ScpMtfHelmetVisorMaskedNew" or 
+				defName="Apparel_ScpMtfHelmetGasmaskNew" or 
+				defName="Apparel_GocSTHelmetNew" or 
+				defName="Apparel_GocSTHelmetMaskedNew"
+				]/stuffCategories/li[.="Metallic"]</xpath>
+				<value>
+					<li>Steeled</li>
+				</value>
+			</li>
+			
+			<!--Helmet Gasmask-->
+			
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="Apparel_ScpMtfHelmetGasmask" or
+				defName="Apparel_ScpMtfHelmetVisorGasmask" or
+				defName="Apparel_GocSTHelmetGasMask" or
+				defName="Apparel_CiHelmetGasmask" or
+				defName="Apparel_GocSTHelmetGasMaskNew" or
+				defName="Apparel_CiGasmaskHelmet"
+				]/statBases/StuffEffectMultiplierArmor</xpath>
+				<value>
+					<StuffEffectMultiplierArmor>5</StuffEffectMultiplierArmor>
+					<Bulk>5</Bulk>
+					<WornBulk>2</WornBulk>
+				</value>
+			</li>
+			
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="Apparel_ScpMtfHelmetGasmask" or
+				defName="Apparel_ScpMtfHelmetVisorGasmask" or
+				defName="Apparel_GocSTHelmetGasMask" or
+				defName="Apparel_CiHelmetGasmask" or
+				defName="Apparel_GocSTHelmetGasMaskNew" or
+				defName="Apparel_CiGasmaskHelmet"
+				]/stuffCategories/li[.="Metallic"]</xpath>
+				<value>
+					<li>Steeled</li>
+				</value>
+			</li>
+			
+			<li Class="PatchOperationAddModExtension">
+				<xpath>Defs/ThingDef[defName="Apparel_ScpMtfHelmetGasmask" or
+				defName="Apparel_ScpMtfHelmetVisorGasmask" or
+				defName="Apparel_GocSTHelmetGasMask" or
+				defName="Apparel_CiHelmetGasmask" or
+				defName="Apparel_GocSTHelmetGasMaskNew" or
+				defName="Apparel_CiGasmaskHelmet"
+				]</xpath>
+				<value>
+					<li Class="CombatExtended.ApparelHediffExtension">
+						<hediff>WearingGasMask</hediff>
+					</li>
+				</value>
+			</li>
+			
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName="Apparel_ScpMtfHelmetGasmask" or
+				defName="Apparel_ScpMtfHelmetVisorGasmask" or
+				defName="Apparel_GocSTHelmetGasMask" or
+				defName="Apparel_CiHelmetGasmask" or
+				defName="Apparel_GocSTHelmetGasMaskNew" or
+				defName="Apparel_CiGasmaskHelmet"
+				]/apparel/layers</xpath>
+				<value>
+					<li>StrappedHead</li>
+				</value>
+			</li>
+			
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName="Apparel_ScpMtfHelmetGasmask" or
+				defName="Apparel_ScpMtfHelmetVisorGasmask" or
+				defName="Apparel_GocSTHelmetGasMask" or
+				defName="Apparel_CiHelmetGasmask" or
+				defName="Apparel_GocSTHelmetGasMaskNew" or
+				defName="Apparel_CiGasmaskHelmet"
+				]/equippedStatOffsets</xpath>
+				<value>
+					<SmokeSensitivity>-1</SmokeSensitivity>
+				</value>
+			</li>
+			
+		</operations>
+		</match>	
+	  </li>
+	</operations>	
+  </Operation>
+</Patch>
