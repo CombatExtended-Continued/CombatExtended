@@ -12,7 +12,7 @@ namespace CombatExtended.Harmony
     [HarmonyPatch]
     class GraphicApparelDetour_Disable
     {
-        static readonly string logPrefix = Assembly.GetExecutingAssembly().GetName().Name + " :: " + typeof(GraphicApparelDetour_Disable).Name + " :: ";
+        static readonly string logPrefix = Assembly.GetExecutingAssembly().GetName().Name + " :: ";
         static List<Assembly> target_asses = new List<Assembly>();
 
         static bool Prepare()
@@ -33,6 +33,7 @@ namespace CombatExtended.Harmony
 
         static IEnumerable<MethodBase> TargetMethods()
         {
+            ReportOffendingDetourMods();
             foreach (var ass in target_asses)
             {
                 foreach (var type in ass.GetTypes())
@@ -44,7 +45,6 @@ namespace CombatExtended.Harmony
                     }
                     if (method_info != null)
                     {
-                        Log.Message($"{logPrefix}Disabling TryGetGraphicApparel detour injection in: {ass.FullName}");
                         yield return method_info;
                     }
                 }
@@ -54,6 +54,32 @@ namespace CombatExtended.Harmony
         static bool Prefix()
         {
             return false;
+        }
+
+        static void ReportOffendingDetourMods()
+        {
+            List<string> offending_mods = new List<string>();
+
+            foreach (var mod in LoadedModManager.RunningMods)
+            {
+                foreach (var mod_ass in mod.assemblies.loadedAssemblies)
+                {
+                    if(target_asses.Contains(mod_ass))
+                    {
+                        offending_mods.Add(mod.Name);
+                    }
+                }
+            }
+            if (offending_mods.Any())
+            {
+                bool pl = offending_mods.Count > 1;
+                Log.Error($"{logPrefix}A highly incompatible and outdated detour has been detected and disabled in the following mod{(pl ? "s" : "")}:");
+                foreach (var mod_name in offending_mods)
+                {
+                    Log.Error($"   {mod_name}");
+                }
+                Log.Error($"Please ask the developer{(pl ? "s" : "")} of {(pl ? "these mods" : "this mod")} to update to use a more compatible patching method, such as the Harmony library.");
+            }
         }
     }
 }
