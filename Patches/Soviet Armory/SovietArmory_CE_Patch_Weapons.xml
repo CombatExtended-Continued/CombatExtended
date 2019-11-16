@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <Patch>
 	<Operation Class="PatchOperationSequence">
-		<!-- <success>Always</success> -->
+		<success>Always</success>
 		<operations>
 
 			<li Class="CombatExtended.PatchOperationFindMod">
@@ -941,14 +941,8 @@
 					<SightsEfficiency>1.00</SightsEfficiency>
 					<ShotSpread>0.2</ShotSpread>
 					<SwayFactor>2.02</SwayFactor>
-					<Bulk>10.20</Bulk>
-					<WorkToMake>24000</WorkToMake>
+					<Bulk>10.20</Bulk>					
 				</statBases>
-				<costList>
-					<Steel>85</Steel>
-					<ComponentIndustrial>3</ComponentIndustrial>
-					<FSX>8</FSX>
-				</costList>
 				<Properties>
 					<verbClass>CombatExtended.Verb_ShootCEOneUse</verbClass>
 					<hasStandardCommand>true</hasStandardCommand>
@@ -995,6 +989,73 @@
 							<armorPenetrationBlunt>3.5</armorPenetrationBlunt>
 						</li>
 					</tools>
+				</value>
+			</li>
+
+			<!-- Kill original recipeMaker -->
+			<li Class="PatchOperationRemove">
+				<xpath>Defs/ThingDef[defName="Gun_RPO-Z_SA"]/recipeMaker</xpath>
+			</li>
+
+			<!-- Replace with CE recipe that crafts multiple launchers -->
+			<li Class="PatchOperationAdd">
+				<xpath>Defs</xpath>
+				<value>
+					<RecipeDef ParentName="GrenadeRecipeBase">
+						<defName>MakeRPO-Z_SA</defName>
+						<label>make RPO-Z Shmel x5</label>
+						<description>Craft 5 RPO-Z Shmel launchers.</description>
+						<jobString>Making RPO-Z Shmel launchers.</jobString>
+						<researchPrerequisite>Stage1b_SA</researchPrerequisite>
+						<skillRequirements>
+							<Crafting>7</Crafting>
+						</skillRequirements>
+						<workSpeedStat>SmithingSpeed</workSpeedStat>
+						<workSkill>Crafting</workSkill>
+						<effectWorking>Smith</effectWorking>
+						<soundWorking>Recipe_Smith</soundWorking>
+						<recipeUsers>
+							<li>TableSA</li>
+						</recipeUsers>
+						<unfinishedThingDef>UnfinishedGun</unfinishedThingDef>
+						<workAmount>24000</workAmount>
+						<ingredients>
+							<li>
+								<filter>
+									<thingDefs>
+										<li>Steel</li>
+									</thingDefs>
+								</filter>
+								<count>85</count>
+							</li>
+							<li>
+								<filter>
+									<thingDefs>
+										<li>FSX</li>
+									</thingDefs>
+								</filter>
+								<count>8</count>
+							</li>
+							<li>
+								<filter>
+									<thingDefs>
+										<li>ComponentIndustrial</li>
+									</thingDefs>
+								</filter>
+								<count>3</count>
+							</li>
+						</ingredients>
+						<fixedIngredientFilter>
+							<thingDefs>
+								<li>Steel</li>
+								<li>FSX</li>
+								<li>ComponentIndustrial</li>
+							</thingDefs>
+						</fixedIngredientFilter>
+						<products>
+							<Gun_RPO-Z_SA>5</Gun_RPO-Z_SA>
+						</products>
+					</RecipeDef>
 				</value>
 			</li>
 
