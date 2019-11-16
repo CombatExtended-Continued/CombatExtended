@@ -50,6 +50,13 @@
 				</weaponTags>
 			</li>
 
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="Turret_DP28MG"]/specialDisplayRadius</xpath>
+				<value>
+					<specialDisplayRadius>75</specialDisplayRadius>
+				</value>
+			</li>
+
 			<!-- ========== Mounted M2HB Turret ========== -->
 
 			<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
@@ -67,7 +74,7 @@
 					<hasStandardCommand>true</hasStandardCommand>
 					<defaultProjectile>Bullet_50BMG_FMJ</defaultProjectile>
 					<warmupTime>1.1</warmupTime>
-					<range>126</range>
+					<range>86</range>
 					<ticksBetweenBurstShots>6</ticksBetweenBurstShots>
 					<burstShotCount>10</burstShotCount>
 					<soundCast>ShotM2</soundCast>
@@ -93,6 +100,13 @@
 				</weaponTags>
 			</li>
 
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="Turret_M2HB"]/specialDisplayRadius</xpath>
+				<value>
+					<specialDisplayRadius>86</specialDisplayRadius>
+				</value>
+			</li>
+
 			<!-- ========== Mounted Twin M2HB Turret ========== -->
 
 			<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
@@ -110,7 +124,7 @@
 					<hasStandardCommand>true</hasStandardCommand>
 					<defaultProjectile>Bullet_50BMG_FMJ</defaultProjectile>
 					<warmupTime>1.1</warmupTime>
-					<range>126</range>
+					<range>86</range>
 					<ticksBetweenBurstShots>6</ticksBetweenBurstShots>
 					<burstShotCount>20</burstShotCount>
 					<soundCast>ShotM2</soundCast>
@@ -134,6 +148,13 @@
 				<weaponTags>
 					<li>TurretGun</li>
 				</weaponTags>
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="Turret_M2HBT"]/specialDisplayRadius</xpath>
+				<value>
+					<specialDisplayRadius>86</specialDisplayRadius>
+				</value>
 			</li>
 
 			<!-- ========== Mounted M134 Turret ========== -->
@@ -181,6 +202,13 @@
 				</weaponTags>
 			</li>
 
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="Turret_M134MG"]/specialDisplayRadius</xpath>
+				<value>
+					<specialDisplayRadius>86</specialDisplayRadius>
+				</value>
+			</li>
+
 			<!-- ========== Mounted Mk 19 Turret ========== -->
 
 			<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
@@ -198,7 +226,7 @@
 					<hasStandardCommand>true</hasStandardCommand>
 					<defaultProjectile>Bullet_40x53mmGrenade_HE</defaultProjectile>
 					<warmupTime>1.1</warmupTime>
-					<range>112</range>
+					<range>78</range>
 					<ticksBetweenBurstShots>6</ticksBetweenBurstShots>
 					<burstShotCount>6</burstShotCount>
 					<soundCast>InfernoCannon_Fire</soundCast>
@@ -222,6 +250,13 @@
 				<weaponTags>
 					<li>TurretGun</li>
 				</weaponTags>
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="Turret_Mk19MGL"]/specialDisplayRadius</xpath>
+				<value>
+					<specialDisplayRadius>78</specialDisplayRadius>
+				</value>
 			</li>
 
 			<!-- ========== Work To Build ========== -->
@@ -319,20 +354,8 @@
 					defName="Turret_Mk19MGL"
 				]/statBases</xpath>
 				<value>
-					<AimingAccuracy>0.5</AimingAccuracy>
-				</value>
-			</li>
-
-			<li Class="PatchOperationReplace">
-				<xpath>Defs/ThingDef[
-					defName="Turret_DP28MG" or
-					defName="Turret_M2HB" or
-					defName="Turret_M2HBT" or
-					defName="Turret_M134MG" or
-					defName="Turret_Mk19MGL"
-				]/statBases/ShootingAccuracy</xpath>
-				<value>
-					<ShootingAccuracy>1</ShootingAccuracy>
+					<AimingAccuracy>0.9</AimingAccuracy>
+					<ShootingAccuracyTurret>1.0</ShootingAccuracyTurret>
 				</value>
 			</li>
 

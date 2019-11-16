@@ -24,7 +24,7 @@
 					<hasStandardCommand>true</hasStandardCommand>
 					<defaultProjectile>Bullet_50BMG_FMJ</defaultProjectile>
 					<warmupTime>1.1</warmupTime>
-					<range>126</range>
+					<range>86</range>
 					<ticksBetweenBurstShots>6</ticksBetweenBurstShots>
 					<burstShotCount>10</burstShotCount>
 					<soundCast>ShotM2</soundCast>
@@ -47,6 +47,13 @@
 				<weaponTags>
 					<li>TurretGun</li>
 				</weaponTags>
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="Turret_M2HBs"]/specialDisplayRadius</xpath>
+				<value>
+					<specialDisplayRadius>86</specialDisplayRadius>
+				</value>
 			</li>
 
 			<!-- ========== M134 Sentry Gun ========== -->
@@ -91,6 +98,13 @@
 				</weaponTags>
 			</li>
 
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="Turret_M134MGs"]/specialDisplayRadius</xpath>
+				<value>
+					<specialDisplayRadius>86</specialDisplayRadius>
+				</value>
+			</li>
+
 			<!-- ========== Mk 19 Sentry Gun ========== -->
 
 			<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
@@ -108,7 +122,7 @@
 					<hasStandardCommand>true</hasStandardCommand>
 					<defaultProjectile>Bullet_40x53mmGrenade_HE</defaultProjectile>
 					<warmupTime>1.1</warmupTime>
-					<range>112</range>
+					<range>78</range>
 					<ticksBetweenBurstShots>6</ticksBetweenBurstShots>
 					<burstShotCount>6</burstShotCount>
 					<soundCast>InfernoCannon_Fire</soundCast>
@@ -131,6 +145,13 @@
 				<weaponTags>
 					<li>TurretGun</li>
 				</weaponTags>
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="Turret_Mk19MGLs"]/specialDisplayRadius</xpath>
+				<value>
+					<specialDisplayRadius>78</specialDisplayRadius>
+				</value>
 			</li>
 
 			<!-- ========== Work To Build ========== -->
@@ -205,17 +226,7 @@
 				]/statBases</xpath>
 				<value>
 					<AimingAccuracy>1.0</AimingAccuracy>
-				</value>
-			</li>
-
-			<li Class="PatchOperationReplace">
-				<xpath>Defs/ThingDef[
-					defName="Turret_M2HBs" or
-					defName="Turret_M134MGs" or
-					defName="Turret_Mk19MGLs"
-				]/statBases/ShootingAccuracy</xpath>
-				<value>
-					<ShootingAccuracy>1</ShootingAccuracy>
+					<ShootingAccuracyTurret>1.0</ShootingAccuracyTurret>
 				</value>
 			</li>
 
