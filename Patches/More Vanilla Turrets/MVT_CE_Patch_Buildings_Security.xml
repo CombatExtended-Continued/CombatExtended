@@ -24,7 +24,7 @@
 					<hasStandardCommand>true</hasStandardCommand>
 					<defaultProjectile>Bullet_50BMG_FMJ</defaultProjectile>
 					<warmupTime>1.1</warmupTime>
-					<range>126</range>
+					<range>86</range>
 					<ticksBetweenBurstShots>6</ticksBetweenBurstShots>
 					<burstShotCount>10</burstShotCount>
 					<soundCast>Shot_Minigun</soundCast>
@@ -45,6 +45,13 @@
 					<aiAimMode>SuppressFire</aiAimMode>
 					<aimedBurstShotCount>5</aimedBurstShotCount>
 				</FireModes>
+			</li>
+			
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="GunComplex"]/specialDisplayRadius</xpath>
+				<value>
+					<specialDisplayRadius>86</specialDisplayRadius>
+				</value>
 			</li>
 			
 			<!-- ========== Rocket Complex ========== -->
@@ -87,6 +94,13 @@
 				</FireModes>
 			</li>
 			
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="RocketComplex"]/specialDisplayRadius</xpath>
+				<value>
+					<specialDisplayRadius>48</specialDisplayRadius>
+				</value>
+			</li>
+			
 			<!-- ========== Military Grade Turret ========== -->
 			
 			<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
@@ -104,7 +118,7 @@
 					<hasStandardCommand>true</hasStandardCommand>
 					<defaultProjectile>Bullet_50BMG_FMJ</defaultProjectile>
 					<warmupTime>1.1</warmupTime>
-					<range>126</range>
+					<range>86</range>
 					<ticksBetweenBurstShots>6</ticksBetweenBurstShots>
 					<burstShotCount>20</burstShotCount>
 					<soundCast>Shot_AssaultRifle</soundCast>
@@ -124,6 +138,13 @@
 					<noSnapshot>true</noSnapshot>
 					<noSingleShot>true</noSingleShot>
 				</FireModes>
+			</li>
+			
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="MilitaryTurretGun"]/specialDisplayRadius</xpath>
+				<value>
+					<specialDisplayRadius>86</specialDisplayRadius>
+				</value>
 			</li>
 			
 			<!-- ========== Manned Military Grade Turret ========== -->
@@ -166,15 +187,12 @@
 			</li>
 			
 			<li Class="PatchOperationReplace">
-				<xpath>Defs/ThingDef[
-					defName="MilitaryTurretGun" or
-					defName="MilitaryTurretGunManned"
-				]/fillPercent</xpath>
+				<xpath>Defs/ThingDef[defName="MilitaryTurretGunManned"]/specialDisplayRadius</xpath>
 				<value>
-					<fillPercent>0.85</fillPercent>
+					<specialDisplayRadius>86</specialDisplayRadius>
 				</value>
 			</li>
-			
+						
 			<!-- ========== Shredder Turret ========== -->
 			
 			<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
@@ -216,6 +234,13 @@
 					<noSnapshot>true</noSnapshot>
 					<noSingleShot>true</noSingleShot>
 				</FireModes>
+			</li>
+			
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="ShredderTurretGun"]/specialDisplayRadius</xpath>
+				<value>
+					<specialDisplayRadius>20</specialDisplayRadius>
+				</value>
 			</li>
 			
 			<!-- ========== Manned Shredder Turret ========== -->
@@ -262,12 +287,9 @@
 			</li>
 			
 			<li Class="PatchOperationReplace">
-				<xpath>Defs/ThingDef[
-					defName="ShredderTurretGun" or
-					defName="ShredderTurretGunManned"
-				]/fillPercent</xpath>
+				<xpath>Defs/ThingDef[defName="ShredderTurretGunManned"]/specialDisplayRadius</xpath>
 				<value>
-					<fillPercent>0.85</fillPercent>
+					<specialDisplayRadius>20</specialDisplayRadius>
 				</value>
 			</li>
 			
@@ -288,7 +310,7 @@
 					<hasStandardCommand>true</hasStandardCommand>
 					<defaultProjectile>Bullet_25x137mmNATO_Sabot</defaultProjectile>
 					<warmupTime>1.4</warmupTime>
-					<range>175</range>
+					<range>89</range>
 					<ticksBetweenBurstShots>6</ticksBetweenBurstShots>
 					<burstShotCount>5</burstShotCount>
 					<soundCast>Shot_SniperRifle</soundCast>
@@ -311,6 +333,13 @@
 				</FireModes>
 			</li>
 			
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="PrecisionTurretGun"]/specialDisplayRadius</xpath>
+				<value>
+					<specialDisplayRadius>89</specialDisplayRadius>
+				</value>
+			</li>
+			
 			<!-- ========== Manned Precision Turret ========== -->
 			
 			<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
@@ -328,7 +357,7 @@
 					<hasStandardCommand>true</hasStandardCommand>
 					<defaultProjectile>Bullet_25x137mmNATO_Sabot</defaultProjectile>
 					<warmupTime>1.4</warmupTime>
-					<range>175</range>
+					<range>89</range>
 					<ticksBetweenBurstShots>6</ticksBetweenBurstShots>
 					<burstShotCount>5</burstShotCount>
 					<soundCast>Shot_SniperRifle</soundCast>
@@ -352,14 +381,11 @@
 			</li>
 						
 			<li Class="PatchOperationReplace">
-				<xpath>Defs/ThingDef[
-					defName="PrecisionTurretGun" or
-					defName="PrecisionTurretGunManned"
-				]/fillPercent</xpath>
+				<xpath>Defs/ThingDef[defName="PrecisionTurretGunManned"]/specialDisplayRadius</xpath>
 				<value>
-					<fillPercent>0.85</fillPercent>
+					<specialDisplayRadius>89</specialDisplayRadius>
 				</value>
-			</li>			
+			</li>
 			
 			<!-- ========== Blast Turret ========== -->
 			
@@ -397,6 +423,13 @@
 					<aimedBurstShotCount>3</aimedBurstShotCount>
 					<noSingleShot>true</noSingleShot>
 				</FireModes>
+			</li>
+			
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="BlastTurretGun"]/specialDisplayRadius</xpath>
+				<value>
+					<specialDisplayRadius>40</specialDisplayRadius>
+				</value>
 			</li>
 			
 			<!-- ========== Manned Blast Turret ========== -->
@@ -438,15 +471,12 @@
 			</li>
 			
 			<li Class="PatchOperationReplace">
-				<xpath>Defs/ThingDef[
-					defName="BlastTurretGun" or
-					defName="BlastTurretGunManned"
-				]/fillPercent</xpath>
+				<xpath>Defs/ThingDef[defName="BlastTurretGunManned"]/specialDisplayRadius</xpath>
 				<value>
-					<fillPercent>0.85</fillPercent>
+					<specialDisplayRadius>40</specialDisplayRadius>
 				</value>
 			</li>
-			
+					
 			<!-- ========== Vulcan Cannon ========== -->
 			
 			<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
@@ -484,6 +514,13 @@
 					<noSnapshot>true</noSnapshot>
 					<noSingleShot>true</noSingleShot>
 				</FireModes>
+			</li>
+			
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="VulcanCannon"]/specialDisplayRadius</xpath>
+				<value>
+					<specialDisplayRadius>62</specialDisplayRadius>
+				</value>
 			</li>
 			
 			<!-- ========== Manned Vulcan Cannon ========== -->
@@ -524,6 +561,13 @@
 					<noSingleShot>true</noSingleShot>
 				</FireModes>
 			</li>			
+			
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="VulcanCannonManned"]/specialDisplayRadius</xpath>
+				<value>
+					<specialDisplayRadius>62</specialDisplayRadius>
+				</value>
+			</li>
 			
 			<li Class="PatchOperationReplace">
 				<xpath>Defs/ThingDef[
@@ -624,6 +668,22 @@
 				]/thingClass</xpath>
 				<value>
 					<thingClass>CombatExtended.Building_TurretGunCE</thingClass>
+				</value>
+			</li>
+			
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[
+					defName="MilitaryTurretGun" or
+					defName="MilitaryTurretGunManned" or
+					defName="ShredderTurretGun" or
+					defName="ShredderTurretGunManned" or
+					defName="PrecisionTurretGun" or
+					defName="PrecisionTurretGunManned" or
+					defName="BlastTurretGun" or
+					defName="BlastTurretGunManned"
+				]/fillPercent</xpath>
+				<value>
+					<fillPercent>0.85</fillPercent>
 				</value>
 			</li>
 			
