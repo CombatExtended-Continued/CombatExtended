@@ -1,109 +1,109 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <Patch>
 
-	<!-- ========== Sandbags ========== -->
+  <!-- ========== Sandbags ========== -->
 
-	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/ThingDef[defName="Sandbags"]/costList/Steel</xpath>
-		<value>
-			<Steel>2</Steel>
-		</value>
-	</Operation>
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/ThingDef[defName="Sandbags"]/costList/Steel</xpath>
+    <value>
+      <Steel>2</Steel>
+    </value>
+  </Operation>
 
-	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/ThingDef[defName="Sandbags"]/fillPercent</xpath>
-		<value>
-			<fillPercent>0.6</fillPercent>
-		</value>
-	</Operation>
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/ThingDef[defName="Sandbags"]/fillPercent</xpath>
+    <value>
+      <fillPercent>0.6</fillPercent>
+    </value>
+  </Operation>
 
-	<!-- ========== Mini-turret ========== -->
+  <!-- ========== Mini-turret ========== -->
 
-	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/ThingDef[defName="Turret_MiniTurret"]/thingClass</xpath>
-		<value>
-			<thingClass>CombatExtended.Building_TurretGunCE</thingClass>
-		</value>
-	</Operation>
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/ThingDef[defName="Turret_MiniTurret"]/thingClass</xpath>
+    <value>
+      <thingClass>CombatExtended.Building_TurretGunCE</thingClass>
+    </value>
+  </Operation>
 
-	<Operation Class="PatchOperationAdd">
-		<xpath>Defs/ThingDef[defName="Turret_MiniTurret"]/statBases</xpath>
-		<value>
-			<AimingAccuracy>0.25</AimingAccuracy>
-		</value>
-	</Operation>
+  <Operation Class="PatchOperationAdd">
+    <xpath>Defs/ThingDef[defName="Turret_MiniTurret"]/statBases</xpath>
+    <value>
+      <AimingAccuracy>0.25</AimingAccuracy>
+    </value>
+  </Operation>
 
-	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/ThingDef[defName="Turret_MiniTurret"]/statBases/ShootingAccuracyTurret</xpath>
-		<value>
-			<ShootingAccuracyTurret>0.5</ShootingAccuracyTurret>
-		</value>
-	</Operation>
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/ThingDef[defName="Turret_MiniTurret"]/statBases/ShootingAccuracyTurret</xpath>
+    <value>
+      <ShootingAccuracyTurret>0.5</ShootingAccuracyTurret>
+    </value>
+  </Operation>
 
-	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/ThingDef[defName="Turret_MiniTurret"]/statBases/Mass</xpath>
-		<value>
-			<Mass>25</Mass>
-		</value>
-	</Operation>
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/ThingDef[defName="Turret_MiniTurret"]/statBases/Mass</xpath>
+    <value>
+      <Mass>25</Mass>
+    </value>
+  </Operation>
 
-	<Operation Class="PatchOperationRemove">
-		<xpath>Defs/ThingDef[defName="Turret_MiniTurret"]/comps/li[@Class = "CompProperties_Explosive"]</xpath>
-	</Operation>
+  <Operation Class="PatchOperationRemove">
+    <xpath>Defs/ThingDef[defName="Turret_MiniTurret"]/comps/li[@Class = "CompProperties_Explosive"]</xpath>
+  </Operation>
 
-	<Operation Class="PatchOperationRemove">
-		<xpath>Defs/ThingDef[defName="Turret_MiniTurret"]/comps/li[@Class = "CompProperties_Refuelable"]</xpath>
-	</Operation>
+  <Operation Class="PatchOperationRemove">
+    <xpath>Defs/ThingDef[defName="Turret_MiniTurret"]/comps/li[@Class = "CompProperties_Refuelable"]</xpath>
+  </Operation>
 
-	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/ThingDef[defName="Turret_MiniTurret"]/fillPercent</xpath>
-		<value>
-			<fillPercent>0.85</fillPercent>
-		</value>
-	</Operation>
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/ThingDef[defName="Turret_MiniTurret"]/fillPercent</xpath>
+    <value>
+      <fillPercent>0.85</fillPercent>
+    </value>
+  </Operation>
 
-	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/ThingDef[defName="Turret_MiniTurret"]/specialDisplayRadius</xpath>
-		<value>
-			<specialDisplayRadius>27</specialDisplayRadius>
-		</value>
-	</Operation>
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/ThingDef[defName="Turret_MiniTurret"]/specialDisplayRadius</xpath>
+    <value>
+      <specialDisplayRadius>27</specialDisplayRadius>
+    </value>
+  </Operation>
 
-	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/ThingDef[defName="Turret_MiniTurret"]/building/turretBurstCooldownTime</xpath>
-		<value>
-			<turretBurstCooldownTime>1.1</turretBurstCooldownTime>
-		</value>
-	</Operation>
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/ThingDef[defName="Turret_MiniTurret"]/building/turretBurstCooldownTime</xpath>
+    <value>
+      <turretBurstCooldownTime>1.1</turretBurstCooldownTime>
+    </value>
+  </Operation>
 
-	<!-- Add trade tags -->
+  <!-- Add trade tags -->
 
-	<Operation Class="PatchOperationSequence">
-  	<success>Always</success>
-  	<operations>
-    	<li Class="PatchOperationTest">
-      	<xpath>Defs/ThingDef[defName="Turret_MiniTurret"]/tradeTags</xpath>
-      	<success>Invert</success>
-    	</li>
-    	<li Class="PatchOperationAdd">
-      	<xpath>Defs/ThingDef[defName="Turret_MiniTurret"]</xpath>
-      	<value>
-        	<tradeTags />
-      	</value>
-    	</li>
-  	</operations>
-	</Operation>
+  <Operation Class="PatchOperationSequence">
+    <success>Always</success>
+    <operations>
+      <li Class="PatchOperationTest">
+        <xpath>Defs/ThingDef[defName="Turret_MiniTurret"]/tradeTags</xpath>
+        <success>Invert</success>
+      </li>
+      <li Class="PatchOperationAdd">
+        <xpath>Defs/ThingDef[defName="Turret_MiniTurret"]</xpath>
+        <value>
+          <tradeTags />
+        </value>
+      </li>
+    </operations>
+  </Operation>
 
-	<Operation Class="PatchOperationAdd">
-		<xpath>Defs/ThingDef[defName="Turret_MiniTurret"]/tradeTags</xpath>
-		<value>
-			<li>CE_Turret</li>
-		</value>
-	</Operation>
+  <Operation Class="PatchOperationAdd">
+    <xpath>Defs/ThingDef[defName="Turret_MiniTurret"]/tradeTags</xpath>
+    <value>
+      <li>CE_Turret</li>
+    </value>
+  </Operation>
 
-	<!-- Patch build costs -->
+  <!-- Patch build costs -->
 
-<!--
+  <!--
 	<Operation Class="PatchOperationReplace">
 		<xpath>Defs/ThingDef[defName="Turret_MiniTurret"]/costList/Steel</xpath>
 		<value>
@@ -127,197 +127,209 @@
 	</Operation>
 -->
 
-	<!-- ========== Sniper turret ========== -->
+  <!-- ========== Sniper turret ========== -->
 
- 	<Operation Class="PatchOperationRemove">
-		<xpath>Defs/ThingDef[defName="Turret_Sniper"]</xpath>
-	</Operation>
+  <Operation Class="PatchOperationRemove">
+    <xpath>Defs/ThingDef[defName="Turret_Sniper"]</xpath>
+  </Operation>
 
-	<!-- ========== Autocannon turret ========== -->
+  <!-- ========== Autocannon turret ========== -->
 
-	<Operation Class="PatchOperationRemove">
-		<xpath>Defs/ThingDef[defName="Turret_Autocannon"]</xpath>
-	</Operation>
-	
-	<!-- ========== Mortar Base ========== -->
+  <Operation Class="PatchOperationRemove">
+    <xpath>Defs/ThingDef[defName="Turret_Autocannon"]</xpath>
+  </Operation>
 
-	<!-- Patch weapon -->
+  <!-- ========== Mortar Base ========== -->
 
-	<Operation Class="PatchOperationAdd">
-		<xpath>Defs/ThingDef[defName = "Artillery_Mortar"]</xpath>
-		<value>
-			<statBases>
-				<SightsEfficiency>0.5</SightsEfficiency>
-			</statBases>
-			<comps>
-			  <li Class="CombatExtended.CompProperties_Charges">
-			    <chargeSpeeds>
-			      <li>30</li>
-			      <li>50</li>
-			      <li>70</li>
-			      <li>90</li>
-			    </chargeSpeeds>
-			  </li>
-			  <li Class="CombatExtended.CompProperties_AmmoUser">
-			    <magazineSize>1</magazineSize>
-			    <reloadTime>5</reloadTime>
-			    <spawnUnloaded>true</spawnUnloaded>
-			    <ammoSet>AmmoSet_81mmMortarShell</ammoSet>
-			  </li>
-			</comps>
-		</value>
-	</Operation>
+  <!-- Patch weapon -->
 
-	<Operation Class="PatchOperationAdd">
-		<xpath>Defs/ThingDef[defName = "Artillery_Mortar"]/weaponTags</xpath>
-		<value>
-			<li>TurretGun</li>
-		</value>
-	</Operation>
+  <Operation Class="PatchOperationAdd">
+    <xpath>Defs/ThingDef[defName = "Artillery_Mortar"]</xpath>
+    <value>
+      <statBases>
+        <SightsEfficiency>0.5</SightsEfficiency>
+      </statBases>
+      <comps>
+        <li Class="CombatExtended.CompProperties_Charges">
+          <chargeSpeeds>
+            <li>10</li>
+            <li>12</li>
+            <li>14</li>
+            <li>16</li>
+            <li>18</li>
+            <li>20</li>
+            <li>22</li>
+            <li>24</li>
+            <li>26</li>
+            <li>28</li>
+            <li>30</li>
+            <li>32</li>
+            <li>34</li>
+            <li>36</li>
+            <li>38</li>
+            <li>40</li>
+          </chargeSpeeds>
+        </li>
+        <li Class="CombatExtended.CompProperties_AmmoUser">
+          <magazineSize>1</magazineSize>
+          <reloadTime>5</reloadTime>
+          <spawnUnloaded>true</spawnUnloaded>
+          <ammoSet>AmmoSet_81mmMortarShell</ammoSet>
+        </li>
+      </comps>
+    </value>
+  </Operation>
 
-	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/ThingDef[defName = "Artillery_Mortar"]/verbs</xpath>
-		<value>
-			<verbs>
-			  <li Class="CombatExtended.VerbPropertiesCE">
-			    <verbClass>CombatExtended.Verb_ShootMortarCE</verbClass>
-			    <forceNormalTimeSpeed>false</forceNormalTimeSpeed>
-			    <hasStandardCommand>true</hasStandardCommand>
-			    <defaultProjectile>Bullet_81mmMortarShell_HE</defaultProjectile>
-			    <warmupTime>5.5</warmupTime>
-			    <minRange>32</minRange>
-			    <range>700</range>
-			    <burstShotCount>1</burstShotCount>
-			    <soundCast>Mortar_LaunchA</soundCast>
-			    <muzzleFlashScale>16</muzzleFlashScale>
-			    <circularError>1</circularError>
-			    <indirectFirePenalty>0.2</indirectFirePenalty>
-			    <targetParams>
-			      <canTargetLocations>true</canTargetLocations>
-			    </targetParams>
-			  </li>
-			</verbs>
-		</value>
-	</Operation>
+  <Operation Class="PatchOperationAdd">
+    <xpath>Defs/ThingDef[defName = "Artillery_Mortar"]/weaponTags</xpath>
+    <value>
+      <li>TurretGun</li>
+    </value>
+  </Operation>
 
-	<!-- Patch base -->
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/ThingDef[defName = "Artillery_Mortar"]/verbs</xpath>
+    <value>
+      <verbs>
+        <li Class="CombatExtended.VerbPropertiesCE">
+          <verbClass>CombatExtended.Verb_ShootMortarCE</verbClass>
+          <forceNormalTimeSpeed>false</forceNormalTimeSpeed>
+          <hasStandardCommand>true</hasStandardCommand>
+          <defaultProjectile>Bullet_81mmMortarShell_HE</defaultProjectile>
+          <warmupTime>5.5</warmupTime>
+          <minRange>32</minRange>
+          <range>700</range>
+          <burstShotCount>1</burstShotCount>
+          <soundCast>Mortar_LaunchA</soundCast>
+          <muzzleFlashScale>16</muzzleFlashScale>
+          <circularError>1</circularError>
+          <indirectFirePenalty>0.2</indirectFirePenalty>
+          <targetParams>
+            <canTargetLocations>true</canTargetLocations>
+          </targetParams>
+        </li>
+      </verbs>
+    </value>
+  </Operation>
 
-	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/ThingDef[@Name = "BaseArtilleryBuilding"]/thingClass</xpath>
-		<value>
-			<thingClass>CombatExtended.Building_TurretGunCE</thingClass>
-		</value>
-	</Operation>
+  <!-- Patch base -->
 
-	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/ThingDef[@Name = "BaseArtilleryBuilding"]/building/turretBurstCooldownTime</xpath>
-		<value>
-			<turretBurstCooldownTime>2</turretBurstCooldownTime>
-		</value>
-	</Operation>
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/ThingDef[@Name = "BaseArtilleryBuilding"]/thingClass</xpath>
+    <value>
+      <thingClass>CombatExtended.Building_TurretGunCE</thingClass>
+    </value>
+  </Operation>
 
-	<Operation Class="PatchOperationAdd">
-		<xpath>Defs/ThingDef[@Name = "BaseArtilleryBuilding"]/building</xpath>
-		<value>
-			<spawnedConceptLearnOpportunity>CE_MortarDirectFire</spawnedConceptLearnOpportunity>
-		</value>
-	</Operation>
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/ThingDef[@Name = "BaseArtilleryBuilding"]/building/turretBurstCooldownTime</xpath>
+    <value>
+      <turretBurstCooldownTime>2</turretBurstCooldownTime>
+    </value>
+  </Operation>
 
-	<Operation Class="PatchOperationRemove">
-		<xpath>Defs/ThingDef[@Name = "BaseArtilleryBuilding"]/inspectorTabs</xpath>
-	</Operation>
+  <Operation Class="PatchOperationAdd">
+    <xpath>Defs/ThingDef[@Name = "BaseArtilleryBuilding"]/building</xpath>
+    <value>
+      <spawnedConceptLearnOpportunity>CE_MortarDirectFire</spawnedConceptLearnOpportunity>
+    </value>
+  </Operation>
 
-	<!-- ========== Actual Mortars ========== -->
+  <Operation Class="PatchOperationRemove">
+    <xpath>Defs/ThingDef[@Name = "BaseArtilleryBuilding"]/inspectorTabs</xpath>
+  </Operation>
 
-	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/ThingDef[defName="Turret_Mortar"]/label</xpath>
-		<value>
-			<label>81mm mortar</label>
-		</value>
-	</Operation>
+  <!-- ========== Actual Mortars ========== -->
 
-	<Operation Class="PatchOperationRemove">
-		<xpath>Defs/ThingDef[defName="Turret_Mortar"]/comps</xpath>
-	</Operation>
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/ThingDef[defName="Turret_Mortar"]/label</xpath>
+    <value>
+      <label>81mm mortar</label>
+    </value>
+  </Operation>
 
-	<!-- Add trade tags -->
+  <Operation Class="PatchOperationRemove">
+    <xpath>Defs/ThingDef[defName="Turret_Mortar"]/comps</xpath>
+  </Operation>
 
-	<Operation Class="PatchOperationSequence">
-  	<success>Always</success>
-  	<operations>
-    	<li Class="PatchOperationTest">
-      	<xpath>Defs/ThingDef[defName="Turret_Mortar"]/tradeTags</xpath>
-      	<success>Invert</success>
-    	</li>
-    	<li Class="PatchOperationAdd">
-      	<xpath>Defs/ThingDef[defName="Turret_Mortar"]</xpath>
-      	<value>
-        	<tradeTags />
-      	</value>
-    	</li>
-  	</operations>
-	</Operation>
+  <!-- Add trade tags -->
 
-	<Operation Class="PatchOperationAdd">
-		<xpath>Defs/ThingDef[defName="Turret_Mortar"]/tradeTags</xpath>
-		<value>
-			<li>CE_Turret</li>
-		</value>
-	</Operation>
+  <Operation Class="PatchOperationSequence">
+    <success>Always</success>
+    <operations>
+      <li Class="PatchOperationTest">
+        <xpath>Defs/ThingDef[defName="Turret_Mortar"]/tradeTags</xpath>
+        <success>Invert</success>
+      </li>
+      <li Class="PatchOperationAdd">
+        <xpath>Defs/ThingDef[defName="Turret_Mortar"]</xpath>
+        <value>
+          <tradeTags />
+        </value>
+      </li>
+    </operations>
+  </Operation>
 
-	<!-- ========== Traps ========== -->
+  <Operation Class="PatchOperationAdd">
+    <xpath>Defs/ThingDef[defName="Turret_Mortar"]/tradeTags</xpath>
+    <value>
+      <li>CE_Turret</li>
+    </value>
+  </Operation>
 
-	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/ThingDef[defName="TrapIED_HighExplosive"]/costList</xpath>
-		<value>
-			<costList>
-				<Steel>10</Steel>
-				<FSX>2</FSX>
-				<ComponentIndustrial>1</ComponentIndustrial>
-			</costList>
-		</value>
-	</Operation>
+  <!-- ========== Traps ========== -->
 
-	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/ThingDef[defName="TrapIED_Incendiary"]/costList</xpath>
-		<value>
-			<costList>
-				<Steel>10</Steel>
-				<Prometheum>2</Prometheum>
-				<ComponentIndustrial>1</ComponentIndustrial>
-			</costList>
-		</value>
-	</Operation>
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/ThingDef[defName="TrapIED_HighExplosive"]/costList</xpath>
+    <value>
+      <costList>
+        <Steel>10</Steel>
+        <FSX>2</FSX>
+        <ComponentIndustrial>1</ComponentIndustrial>
+      </costList>
+    </value>
+  </Operation>
 
-	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/ThingDef[defName="TrapIED_HighExplosive"]/comps/li[@Class="CompProperties_Explosive"]</xpath>
-		<value>
-			<li Class="CompProperties_Explosive">
-				<explosiveDamageType>Bomb</explosiveDamageType>
-				<explosiveRadius>5</explosiveRadius>
-				<wickTicks>
-				  <min>5</min>
-				  <max>30</max>
-				</wickTicks>
-			</li>
-		</value>
-	</Operation>
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/ThingDef[defName="TrapIED_Incendiary"]/costList</xpath>
+    <value>
+      <costList>
+        <Steel>10</Steel>
+        <Prometheum>2</Prometheum>
+        <ComponentIndustrial>1</ComponentIndustrial>
+      </costList>
+    </value>
+  </Operation>
 
-	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/ThingDef[defName="TrapIED_Incendiary"]/comps/li[@Class="CompProperties_Explosive"]</xpath>
-		<value>
-			<li Class="CompProperties_Explosive">
-				<explosiveDamageType>PrometheumFlame</explosiveDamageType>
-				<explosiveRadius>7</explosiveRadius>
-				<preExplosionSpawnThingDef>FilthPrometheum</preExplosionSpawnThingDef>
-				<preExplosionSpawnChance>0.75</preExplosionSpawnChance>
-				<wickTicks>
-				  <min>5</min>
-				  <max>20</max>
-				</wickTicks>
-			</li>
-		</value>
-	</Operation>
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/ThingDef[defName="TrapIED_HighExplosive"]/comps/li[@Class="CompProperties_Explosive"]</xpath>
+    <value>
+      <li Class="CompProperties_Explosive">
+        <explosiveDamageType>Bomb</explosiveDamageType>
+        <explosiveRadius>5</explosiveRadius>
+        <wickTicks>
+          <min>5</min>
+          <max>30</max>
+        </wickTicks>
+      </li>
+    </value>
+  </Operation>
+
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/ThingDef[defName="TrapIED_Incendiary"]/comps/li[@Class="CompProperties_Explosive"]</xpath>
+    <value>
+      <li Class="CompProperties_Explosive">
+        <explosiveDamageType>PrometheumFlame</explosiveDamageType>
+        <explosiveRadius>7</explosiveRadius>
+        <preExplosionSpawnThingDef>FilthPrometheum</preExplosionSpawnThingDef>
+        <preExplosionSpawnChance>0.75</preExplosionSpawnChance>
+        <wickTicks>
+          <min>5</min>
+          <max>20</max>
+        </wickTicks>
+      </li>
+    </value>
+  </Operation>
 
 </Patch>
 
