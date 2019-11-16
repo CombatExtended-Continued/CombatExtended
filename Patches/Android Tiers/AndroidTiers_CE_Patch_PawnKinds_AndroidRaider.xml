@@ -9,61 +9,31 @@
 			</li>
 
 			<li Class="PatchOperationAddModExtension">
-				<xpath>/Defs/PawnKindDef[defName="AndroidT1RaiderFactionSpecific"]</xpath>
-				<value>
-					<li Class="CombatExtended.LoadoutPropertiesExtension">
-						<primaryMagazineCount>
-							<min>3</min>
-							<max>5</max>
-						</primaryMagazineCount>
-					</li>
-				</value>
-			</li>
-
-			<li Class="PatchOperationAddModExtension">
-				<xpath>/Defs/PawnKindDef[defName="AndroidT1SlaveFactionSpecific"]</xpath>
-				<value>
-					<li Class="CombatExtended.LoadoutPropertiesExtension">
-						<primaryMagazineCount>
-							<min>3</min>
-							<max>5</max>
-						</primaryMagazineCount>
-					</li>
-				</value>
-			</li>
-
-			<li Class="PatchOperationAddModExtension">
-				<xpath>/Defs/PawnKindDef[defName="AndroidT2RaiderFactionSpecific"]</xpath>
-				<value>
-					<li Class="CombatExtended.LoadoutPropertiesExtension">
+				<xpath>Defs/PawnKindDef[
+					defName="AndroidT1RaiderFactionSpecific" or
+					defName="AndroidT1SlaveFactionSpecific" or
+					defName="AndroidT2RaiderFactionSpecific" or
+					defName="AndroidT3RaiderFactionSpecific" or
+					defName="AndroidT4RaiderFactionSpecific"
+					]</xpath>
+				<value>	
+					<li Class="CombatExtended.LoadoutPropertiesExtension">	
 						<primaryMagazineCount>
 							<min>4</min>
-							<max>5</max>
+							<max>6</max>
 						</primaryMagazineCount>
-					</li>
-				</value>
-			</li>
-
-			<li Class="PatchOperationAddModExtension">
-				<xpath>/Defs/PawnKindDef[defName="AndroidT3RaiderFactionSpecific"]</xpath>
-				<value>
-					<li Class="CombatExtended.LoadoutPropertiesExtension">
-						<primaryMagazineCount>
-							<min>3</min>
-							<max>5</max>
-						</primaryMagazineCount>
-					</li>
-				</value>
-			</li>
-
-			<li Class="PatchOperationAddModExtension">
-				<xpath>/Defs/PawnKindDef[defName="AndroidT4RaiderFactionSpecific"]</xpath>
-				<value>
-					<li Class="CombatExtended.LoadoutPropertiesExtension">
-						<primaryMagazineCount>
-							<min>4</min>
-							<max>5</max>
-						</primaryMagazineCount>
+						<sidearms>
+							<li>
+								<generateChance>0.5</generateChance>
+								<sidearmMoney>
+									<min>20</min>
+									<max>120</max>
+								</sidearmMoney>
+								<weaponTags>
+									<li>CE_Sidearm_Melee</li>
+								</weaponTags>
+							</li>
+						</sidearms>
 					</li>
 				</value>
 			</li>
