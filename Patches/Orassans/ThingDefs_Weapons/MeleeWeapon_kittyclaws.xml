@@ -18,18 +18,19 @@
 							<capacities>
 								<li>Blunt</li>
 							</capacities>
-							<power>10</power>
-							<cooldownTime>2.5</cooldownTime>
-							<armorPenetration>0.118</armorPenetration>
+							<power>6</power>
+							<cooldownTime>1.12</cooldownTime>
+							<armorPenetrationBlunt>1.8</armorPenetrationBlunt>
 						</li>
 						<li Class="CombatExtended.ToolCE">
 							<label>point</label>
 							<capacities>
 								<li>Stab</li>
 							</capacities>
-							<power>25</power>
-							<cooldownTime>1.2</cooldownTime>
-							<armorPenetration>0.8</armorPenetration> <!-- I've doubled the base armorPenetration, because the description states "Can cut through just about anything.". -->
+							<power>19</power>
+							<cooldownTime>1.12</cooldownTime>
+							<armorPenetrationSharp>28.8</armorPenetrationSharp>
+							<armorPenetrationBlunt>1.8</armorPenetrationBlunt>
 							<linkedBodyPartsGroup>Point</linkedBodyPartsGroup>
 						</li>
 						<li Class="CombatExtended.ToolCE">
@@ -37,9 +38,10 @@
 							<capacities>
 								<li>Cut</li>
 							</capacities>
-							<power>32</power>
-							<cooldownTime>1.9</cooldownTime>
-							<armorPenetration>0.51</armorPenetration>
+							<power>52</power>
+							<cooldownTime>0.9</cooldownTime>
+							<armorPenetrationSharp>10.37</armorPenetrationSharp>
+							<armorPenetrationBlunt>5.832</armorPenetrationBlunt>
 							<linkedBodyPartsGroup>Blade</linkedBodyPartsGroup>
 						</li>
 					</tools>
@@ -49,8 +51,9 @@
 				<xpath>Defs/ThingDef[defName="MeleeWeapon_kittyclaws"]</xpath>
 				<value>
 					<equippedStatOffsets>
-						<MeleeCritChance>1</MeleeCritChance>
-						<MeleeParryChance>1</MeleeParryChance>
+						<MeleeCritChance>0.63</MeleeCritChance>
+						<MeleeParryChance>0.75</MeleeParryChance>
+						<MeleeDodgeChance>0.4</MeleeDodgeChance>
 					</equippedStatOffsets>
 				</value>
 			</li>
@@ -58,7 +61,7 @@
 				<xpath>Defs/ThingDef[defName="MeleeWeapon_kittyclaws"]/statBases</xpath>
 				<value>
 					<Bulk>7</Bulk>
-					<MeleeCounterParryBonus>2.5</MeleeCounterParryBonus>
+					<MeleeCounterParryBonus>1</MeleeCounterParryBonus>
 				</value>
 			</li>
 		</operations>
