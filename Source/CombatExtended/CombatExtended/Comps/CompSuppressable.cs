@@ -52,35 +52,6 @@ namespace CombatExtended
         public IntVec3 SuppressorLoc => suppressorLoc;
 
         public float CurrentSuppression => currentSuppression;
-        public float ParentArmor
-        {
-            get
-            {
-                float armorValue = 0f;
-                Pawn pawn = parent as Pawn;
-                if (pawn != null)
-                {
-                    //Get most protective piece of armor
-                    if (pawn.apparel.WornApparel != null && pawn.apparel.WornApparel.Count > 0)
-                    {
-                        List<Apparel> wornApparel = new List<Apparel>(pawn.apparel.WornApparel);
-                        foreach (Apparel apparel in wornApparel)
-                        {
-                            float apparelArmor = apparel.GetStatValue(StatDefOf.ArmorRating_Sharp, true);
-                            if (apparelArmor > armorValue)
-                            {
-                                armorValue = apparelArmor;
-                            }
-                        }
-                    }
-                }
-                else
-                {
-                    Log.Error("Tried to get parent armor of non-pawn");
-                }
-                return armorValue;
-            }
-        }
         private float SuppressionThreshold
         {
             get

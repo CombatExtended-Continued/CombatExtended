@@ -20,7 +20,6 @@ namespace CombatExtended
      */
     public class Verb_MeleeAttackCE : Verb_MeleeAttack
     {
-
         #region Constants
 
         private const int TargetCooldown = 50;
@@ -50,6 +49,11 @@ namespace CombatExtended
         #endregion
 
         #region Properties
+
+        public static Verb_MeleeAttackCE LastAttackVerb { get; private set; }   // Hack to get around DamageInfo not passing the tool to ArmorUtilityCE
+
+        public float ArmorPenetrationSharp => (tool as ToolCE)?.armorPenetrationSharp * (EquipmentSource?.GetStatValue(CE_StatDefOf.MeleePenetrationFactor) ?? 1) ?? 0;
+        public float ArmorPenetrationBlunt => (tool as ToolCE)?.armorPenetrationBlunt * (EquipmentSource?.GetStatValue(CE_StatDefOf.MeleePenetrationFactor) ?? 1) ?? 0;
 
         bool isCrit;
 
@@ -111,8 +115,8 @@ namespace CombatExtended
                 {
                     // Attack connects, calculate resolution
                     //var resultRoll = Rand.Value;
-                    var parryBonus = 1 / EquipmentSource?.GetStatValue(CE_StatDefOf.MeleeCounterParryBonus) ?? 1;
-                    var parryChance = GetComparativeChanceAgainst(defender, casterPawn, CE_StatDefOf.MeleeParryChance, BaseParryChance, parryBonus);
+                    var counterParryBonus = 1 + (EquipmentSource?.GetStatValue(CE_StatDefOf.MeleeCounterParryBonus) ?? 0);
+                    var parryChance = GetComparativeChanceAgainst(defender, casterPawn, CE_StatDefOf.MeleeParryChance, BaseParryChance, counterParryBonus);
                     if (!surpriseAttack && defender != null && CanDoParry(defender) && Rand.Chance(parryChance))
                     {
                         // Attack is parried
@@ -145,7 +149,7 @@ namespace CombatExtended
                     }
                     else
                     {
-                        BattleLogEntry_MeleeCombat log = this.CreateCombatLog((ManeuverDef maneuver) => maneuver.combatLogRulesHit, false);
+                        BattleLogEntry_MeleeCombat log = CreateCombatLog((ManeuverDef maneuver) => maneuver.combatLogRulesHit, false);
 
                         // Attack connects
                         if (surpriseAttack || Rand.Chance(GetComparativeChanceAgainst(casterPawn, defender, CE_StatDefOf.MeleeCritChance, BaseCritChance)))
@@ -203,24 +207,35 @@ namespace CombatExtended
         private IEnumerable<DamageInfo> DamageInfosToApply(LocalTargetInfo target, bool isCrit = false)
         {
             //START 1:1 COPY Verb_MeleeAttack.DamageInfosToApply
-            float damAmount = this.verbProps.AdjustedMeleeDamageAmount(this, base.CasterPawn);
+            float damAmount = verbProps.AdjustedMeleeDamageAmount(this, CasterPawn);
             var critModifier = isCrit && verbProps.meleeDamageDef.armorCategory == DamageArmorCategoryDefOf.Sharp &&
                                !CasterPawn.def.race.Animal
                 ? 2
                 : 1;
-            var armorPenetration = verbProps.AdjustedArmorPenetration(this, CasterPawn) * (EquipmentSource?.GetStatValue(CE_StatDefOf.MeleePenetrationFactor) ?? 1) * critModifier;
+            var armorPenetration = (verbProps.meleeDamageDef.armorCategory == DamageArmorCategoryDefOf.Sharp ? ArmorPenetrationSharp : ArmorPenetrationBlunt) * critModifier;
             DamageDef damDef = verbProps.meleeDamageDef;
             BodyPartGroupDef bodyPartGroupDef = null;
             HediffDef hediffDef = null;
-            damAmount = Rand.Range(damAmount * 0.8f, damAmount * 1.2f);
-            if (base.CasterIsPawn)
+
+            if (EquipmentSource != null)
             {
-                bodyPartGroupDef = this.verbProps.AdjustedLinkedBodyPartsGroup(this.tool);
+                //melee weapon damage variation
+                damAmount *= Rand.Range(StatWorker_MeleeDamage.GetDamageVariationMin(CasterPawn), StatWorker_MeleeDamage.GetDamageVariationMax(CasterPawn));
+            }
+            else if (!CE_StatDefOf.UnarmedDamage.Worker.IsDisabledFor(CasterPawn))  //ancient soldiers can punch even if non-violent, this prevents the disabled stat from being used
+            {
+                //unarmed damage bonus offset
+                damAmount += CasterPawn.GetStatValue(CE_StatDefOf.UnarmedDamage);
+            }
+
+            if (CasterIsPawn)
+            {
+                bodyPartGroupDef = verbProps.AdjustedLinkedBodyPartsGroup(tool);
                 if (damAmount >= 1f)
                 {
-                    if (base.HediffCompSource != null)
+                    if (HediffCompSource != null)
                     {
-                        hediffDef = base.HediffCompSource.Def;
+                        hediffDef = HediffCompSource.Def;
                     }
                 }
                 else
@@ -229,32 +244,34 @@ namespace CombatExtended
                     damDef = DamageDefOf.Blunt;
                 }
             }
-            ThingDef source;
-            if (base.EquipmentSource != null)
-            {
-                source = base.EquipmentSource.def;
-            }
-            else
-            {
-                source = base.CasterPawn.def;
-            }
-            Vector3 direction = (target.Thing.Position - base.CasterPawn.Position).ToVector3();
+
+            var source = EquipmentSource != null ? EquipmentSource.def : CasterPawn.def;
+            Vector3 direction = (target.Thing.Position - CasterPawn.Position).ToVector3();
             DamageDef def = damDef;
             //END 1:1 COPY
             BodyPartHeight bodyRegion = GetBodyPartHeightFor(target);   //Custom // Add check for body height
             //START 1:1 COPY
             DamageInfo mainDinfo = new DamageInfo(def, damAmount, armorPenetration, -1f, caster, null, source, DamageInfo.SourceCategory.ThingOrUnknown, null); //Alteration
-            mainDinfo.SetBodyRegion(bodyRegion, BodyPartDepth.Outside); //Alteration
+
+            // Predators get a neck bite on immobile targets
+            if (caster.def.race.predator && IsTargetImmobile(target) && target.Thing is Pawn pawn)
+            {
+                var neck = pawn.health.hediffSet.GetNotMissingParts(BodyPartHeight.Top, BodyPartDepth.Outside)
+                    .FirstOrDefault(r => r.def == BodyPartDefOf.Neck);
+                mainDinfo.SetHitPart(neck);
+            }
+
+            mainDinfo.SetBodyRegion(bodyRegion); //Alteration
             mainDinfo.SetWeaponBodyPartGroup(bodyPartGroupDef);
             mainDinfo.SetWeaponHediff(hediffDef);
             mainDinfo.SetAngle(direction);
             yield return mainDinfo;
 
             // Apply critical damage
-            if (isCrit && !CasterPawn.def.race.Animal && verbProps.meleeDamageDef.armorCategory != DamageArmorCategoryDefOf.Sharp)
+            if (isCrit && !CasterPawn.def.race.Animal && verbProps.meleeDamageDef.armorCategory != DamageArmorCategoryDefOf.Sharp && target.Thing.def.race.IsFlesh)
             {
                 var critAmount = GenMath.RoundRandom(mainDinfo.Amount * 0.25f);
-                var critDinfo = new DamageInfo(DamageDefOf.Stun, critAmount, armorPenetration, //Ignore armor //armorPenetration, //Armor Penetration
+                var critDinfo = new DamageInfo(DamageDefOf.Stun, critAmount, armorPenetration,
                     -1, caster, null, source);
                 critDinfo.SetBodyRegion(bodyRegion, BodyPartDepth.Outside);
                 critDinfo.SetWeaponBodyPartGroup(bodyPartGroupDef);
@@ -267,17 +284,17 @@ namespace CombatExtended
         // unmodified
         private float GetHitChance(LocalTargetInfo target)
         {
-            if (this.surpriseAttack)
+            if (surpriseAttack)
             {
                 return 1f;
             }
-            if (this.IsTargetImmobile(target))
+            if (IsTargetImmobile(target))
             {
                 return 1f;
             }
-            if (base.CasterPawn.skills != null)
+            if (CasterPawn.skills != null)
             {
-                return base.CasterPawn.GetStatValue(StatDefOf.MeleeHitChance, true);
+                return CasterPawn.GetStatValue(StatDefOf.MeleeHitChance, true);
             }
             return DefaultHitChance;
         }
@@ -308,7 +325,10 @@ namespace CombatExtended
                 {
                     break;
                 }
+
+                LastAttackVerb = this;
                 result = target.Thing.TakeDamage(current);
+                LastAttackVerb = null;
             }
             // Apply animal knockdown
             if (isCrit && CasterPawn.def.race.Animal)
@@ -363,7 +383,9 @@ namespace CombatExtended
             {
                 foreach (var dinfo in DamageInfosToApply(defender))
                 {
+                    LastAttackVerb = this;
                     ArmorUtilityCE.ApplyParryDamage(dinfo, parryThing);
+                    LastAttackVerb = null;
                 }
             }
             if (isRiposte)
@@ -395,7 +417,7 @@ namespace CombatExtended
                 sound?.PlayOneShot(new TargetInfo(caster.Position, caster.Map));
             }
             // Register with parry tracker
-            ParryTracker tracker = defender.Map.GetComponent<ParryTracker>();
+            ParryTracker tracker = defender.Map?.GetComponent<ParryTracker>();
             if (tracker == null)
             {
                 Log.Error("CE failed to find ParryTracker to register pawn " + defender.ToString());
@@ -425,23 +447,23 @@ namespace CombatExtended
         // unmodified
         private SoundDef SoundHitPawn()
         {
-            if (this.EquipmentSource != null && this.EquipmentSource.Stuff != null)
+            if (EquipmentSource != null && EquipmentSource.Stuff != null)
             {
-                if (this.verbProps.meleeDamageDef.armorCategory == DamageArmorCategoryDefOf.Sharp)
+                if (verbProps.meleeDamageDef.armorCategory == DamageArmorCategoryDefOf.Sharp)
                 {
-                    if (!this.EquipmentSource.Stuff.stuffProps.soundMeleeHitSharp.NullOrUndefined())
+                    if (!EquipmentSource.Stuff.stuffProps.soundMeleeHitSharp.NullOrUndefined())
                     {
-                        return this.EquipmentSource.Stuff.stuffProps.soundMeleeHitSharp;
+                        return EquipmentSource.Stuff.stuffProps.soundMeleeHitSharp;
                     }
                 }
-                else if (!this.EquipmentSource.Stuff.stuffProps.soundMeleeHitBlunt.NullOrUndefined())
+                else if (!EquipmentSource.Stuff.stuffProps.soundMeleeHitBlunt.NullOrUndefined())
                 {
-                    return this.EquipmentSource.Stuff.stuffProps.soundMeleeHitBlunt;
+                    return EquipmentSource.Stuff.stuffProps.soundMeleeHitBlunt;
                 }
             }
-            if (base.CasterPawn != null && !base.CasterPawn.def.race.soundMeleeHitPawn.NullOrUndefined())
+            if (CasterPawn != null && !CasterPawn.def.race.soundMeleeHitPawn.NullOrUndefined())
             {
-                return base.CasterPawn.def.race.soundMeleeHitPawn;
+                return CasterPawn.def.race.soundMeleeHitPawn;
             }
             return SoundDefOf.Pawn_Melee_Punch_HitPawn;
         }
@@ -449,23 +471,23 @@ namespace CombatExtended
         // unmodified
         private SoundDef SoundHitBuilding()
         {
-            if (this.EquipmentSource != null && this.EquipmentSource.Stuff != null)
+            if (EquipmentSource != null && EquipmentSource.Stuff != null)
             {
-                if (this.verbProps.meleeDamageDef.armorCategory == DamageArmorCategoryDefOf.Sharp)
+                if (verbProps.meleeDamageDef.armorCategory == DamageArmorCategoryDefOf.Sharp)
                 {
-                    if (!this.EquipmentSource.Stuff.stuffProps.soundMeleeHitSharp.NullOrUndefined())
+                    if (!EquipmentSource.Stuff.stuffProps.soundMeleeHitSharp.NullOrUndefined())
                     {
-                        return this.EquipmentSource.Stuff.stuffProps.soundMeleeHitSharp;
+                        return EquipmentSource.Stuff.stuffProps.soundMeleeHitSharp;
                     }
                 }
-                else if (!this.EquipmentSource.Stuff.stuffProps.soundMeleeHitBlunt.NullOrUndefined())
+                else if (!EquipmentSource.Stuff.stuffProps.soundMeleeHitBlunt.NullOrUndefined())
                 {
-                    return this.EquipmentSource.Stuff.stuffProps.soundMeleeHitBlunt;
+                    return EquipmentSource.Stuff.stuffProps.soundMeleeHitBlunt;
                 }
             }
-            if (base.CasterPawn != null && !base.CasterPawn.def.race.soundMeleeHitBuilding.NullOrUndefined())
+            if (CasterPawn != null && !CasterPawn.def.race.soundMeleeHitBuilding.NullOrUndefined())
             {
-                return base.CasterPawn.def.race.soundMeleeHitBuilding;
+                return CasterPawn.def.race.soundMeleeHitBuilding;
             }
             return SoundDefOf.Pawn_Melee_Punch_HitBuilding;
         }
@@ -473,9 +495,9 @@ namespace CombatExtended
         // unmodified
         private SoundDef SoundMiss()
         {
-            if (base.CasterPawn != null && !base.CasterPawn.def.race.soundMeleeMiss.NullOrUndefined())
+            if (CasterPawn != null && !CasterPawn.def.race.soundMeleeMiss.NullOrUndefined())
             {
-                return base.CasterPawn.def.race.soundMeleeMiss;
+                return CasterPawn.def.race.soundMeleeMiss;
             }
             return SoundDefOf.Pawn_Melee_Punch_Miss;
         }

@@ -1,13 +1,13 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <Defs>
-	
+
 	<ThingCategoryDef>
 		<defName>Ammo46x30mm</defName>
 		<label>4.6x30mm</label>
 		<parent>AmmoPistols</parent>
-    <iconPath>UI/Icons/ThingCategories/CaliberPistol</iconPath>
+		<iconPath>UI/Icons/ThingCategories/CaliberPistol</iconPath>
 	</ThingCategoryDef>
-	
+
 	<!-- ==================== AmmoSet ========================== -->
 
 	<CombatExtended.AmmoSetDef>
@@ -19,14 +19,14 @@
 			<Ammo_46x30mm_HP>Bullet_46x30mm_HP</Ammo_46x30mm_HP>
 		</ammoTypes>
 	</CombatExtended.AmmoSetDef>
-	
+
 	<!-- ==================== Ammo ========================== -->
 
 	<ThingDef Class="CombatExtended.AmmoDef" Name="46x30mmBase" ParentName="SmallAmmoBase" Abstract="True">
 		<description>This high-velocity handgun cartridge was specifically designed for military personnel to defeat body armor.</description>
 		<statBases>
-		<Mass>0.008</Mass>
-		<Bulk>0.02</Bulk>
+			<Mass>0.008</Mass>
+			<Bulk>0.02</Bulk>
 		</statBases>
 		<tradeTags>
 			<li>CE_AutoEnableTrade</li>
@@ -78,7 +78,7 @@
 		<ammoClass>HollowPoint</ammoClass>
 		<cookOffProjectile>Bullet_46x30mm_HP</cookOffProjectile>
 	</ThingDef>
-	
+
 	<!-- ================== Projectiles ================== -->
 
 	<ThingDef Class="CombatExtended.AmmoDef" Name="Base46x30mmBullet" ParentName="BaseBullet" Abstract="true">
@@ -88,7 +88,7 @@
 		</graphicData>
 		<projectile Class="CombatExtended.ProjectilePropertiesCE">
 			<damageDef>Bullet</damageDef>
-			<speed>150</speed>
+			<speed>120</speed>
 			<dropsCasings>true</dropsCasings>
 		</projectile>
 	</ThingDef>
@@ -97,8 +97,10 @@
 		<defName>Bullet_46x30mm_FMJ</defName>
 		<label>4.6x30mm bullet (FMJ)</label>
 		<projectile Class="CombatExtended.ProjectilePropertiesCE">
-			<damageAmountBase>5</damageAmountBase>
+			<damageAmountBase>8</damageAmountBase>
 			<armorPenetrationBase>0.295</armorPenetrationBase>
+			<armorPenetrationSharp>0</armorPenetrationSharp>
+			<armorPenetrationBlunt>0</armorPenetrationBlunt>
 		</projectile>
 	</ThingDef>
 
@@ -106,8 +108,10 @@
 		<defName>Bullet_46x30mm_AP</defName>
 		<label>4.6x30mm bullet (AP)</label>
 		<projectile Class="CombatExtended.ProjectilePropertiesCE">
-			<damageAmountBase>3</damageAmountBase>
+			<damageAmountBase>6</damageAmountBase>
 			<armorPenetrationBase>0.445</armorPenetrationBase>
+			<armorPenetrationSharp>0</armorPenetrationSharp>
+			<armorPenetrationBlunt>0</armorPenetrationBlunt>
 		</projectile>
 	</ThingDef>
 
@@ -115,89 +119,91 @@
 		<defName>Bullet_46x30mm_HP</defName>
 		<label>4.6x30mm bullet (HP)</label>
 		<projectile Class="CombatExtended.ProjectilePropertiesCE">
-			<damageAmountBase>7</damageAmountBase>
+			<damageAmountBase>10</damageAmountBase>
 			<armorPenetrationBase>0.145</armorPenetrationBase>
+			<armorPenetrationSharp>0</armorPenetrationSharp>
+			<armorPenetrationBlunt>0</armorPenetrationBlunt>
 		</projectile>
 	</ThingDef>
-  
-  <!-- ==================== Recipes ========================== -->
 
-  <RecipeDef ParentName="AmmoRecipeBase">
-    <defName>MakeAmmo_46x30mm_FMJ</defName>
-    <label>make 4.6x30mm (FMJ) cartridge x500</label>
-    <description>Craft 500 4.6x30mm (FMJ) cartridges.</description>
-    <jobString>Making 4.6x30mm (FMJ) cartridges.</jobString>
-    <ingredients>
-      <li>
-        <filter>
-          <thingDefs>
-            <li>Steel</li>
-          </thingDefs>
-        </filter>
-        <count>8</count>
-      </li>
-    </ingredients>
-    <fixedIngredientFilter>
-      <thingDefs>
-        <li>Steel</li>
-      </thingDefs>
-    </fixedIngredientFilter>
-    <products>
-      <Ammo_46x30mm_FMJ>500</Ammo_46x30mm_FMJ>
-    </products>
-    <workAmount>1250</workAmount>
-  </RecipeDef>
+	<!-- ==================== Recipes ========================== -->
 
-  <RecipeDef ParentName="AmmoRecipeBase">
-    <defName>MakeAmmo_46x30mm_AP</defName>
-    <label>make 4.6x30mm (AP) cartridge x500</label>
-    <description>Craft 500 4.6x30mm (AP) cartridges.</description>
-    <jobString>Making 4.6x30mm (AP) cartridges.</jobString>
-    <ingredients>
-      <li>
-        <filter>
-          <thingDefs>
-            <li>Steel</li>
-          </thingDefs>
-        </filter>
-        <count>10</count>
-      </li>
-    </ingredients>
-    <fixedIngredientFilter>
-      <thingDefs>
-        <li>Steel</li>
-      </thingDefs>
-    </fixedIngredientFilter>
-    <products>
-      <Ammo_46x30mm_AP>500</Ammo_46x30mm_AP>
-    </products>
-    <workAmount>1750</workAmount>
-  </RecipeDef>
+	<RecipeDef ParentName="AmmoRecipeBase">
+		<defName>MakeAmmo_46x30mm_FMJ</defName>
+		<label>make 4.6x30mm (FMJ) cartridge x500</label>
+		<description>Craft 500 4.6x30mm (FMJ) cartridges.</description>
+		<jobString>Making 4.6x30mm (FMJ) cartridges.</jobString>
+		<ingredients>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>Steel</li>
+					</thingDefs>
+				</filter>
+				<count>8</count>
+			</li>
+		</ingredients>
+		<fixedIngredientFilter>
+			<thingDefs>
+				<li>Steel</li>
+			</thingDefs>
+		</fixedIngredientFilter>
+		<products>
+			<Ammo_46x30mm_FMJ>500</Ammo_46x30mm_FMJ>
+		</products>
+		<workAmount>1250</workAmount>
+	</RecipeDef>
 
-  <RecipeDef ParentName="AmmoRecipeBase">
-    <defName>MakeAmmo_46x30mm_HP</defName>
-    <label>make 4.6x30mm (HP) cartridge x500</label>
-    <description>Craft 500 4.6x30mm (HP) cartridges.</description>
-    <jobString>Making 4.6x30mm (HP) cartridges.</jobString>
-    <ingredients>
-      <li>
-        <filter>
-          <thingDefs>
-            <li>Steel</li>
-          </thingDefs>
-        </filter>
-        <count>8</count>
-      </li>
-    </ingredients>
-    <fixedIngredientFilter>
-      <thingDefs>
-        <li>Steel</li>
-      </thingDefs>
-    </fixedIngredientFilter>
-    <products>
-      <Ammo_46x30mm_HP>500</Ammo_46x30mm_HP>
-    </products>
-    <workAmount>2000</workAmount>
-  </RecipeDef>
-	
+	<RecipeDef ParentName="AmmoRecipeBase">
+		<defName>MakeAmmo_46x30mm_AP</defName>
+		<label>make 4.6x30mm (AP) cartridge x500</label>
+		<description>Craft 500 4.6x30mm (AP) cartridges.</description>
+		<jobString>Making 4.6x30mm (AP) cartridges.</jobString>
+		<ingredients>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>Steel</li>
+					</thingDefs>
+				</filter>
+				<count>10</count>
+			</li>
+		</ingredients>
+		<fixedIngredientFilter>
+			<thingDefs>
+				<li>Steel</li>
+			</thingDefs>
+		</fixedIngredientFilter>
+		<products>
+			<Ammo_46x30mm_AP>500</Ammo_46x30mm_AP>
+		</products>
+		<workAmount>1750</workAmount>
+	</RecipeDef>
+
+	<RecipeDef ParentName="AmmoRecipeBase">
+		<defName>MakeAmmo_46x30mm_HP</defName>
+		<label>make 4.6x30mm (HP) cartridge x500</label>
+		<description>Craft 500 4.6x30mm (HP) cartridges.</description>
+		<jobString>Making 4.6x30mm (HP) cartridges.</jobString>
+		<ingredients>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>Steel</li>
+					</thingDefs>
+				</filter>
+				<count>8</count>
+			</li>
+		</ingredients>
+		<fixedIngredientFilter>
+			<thingDefs>
+				<li>Steel</li>
+			</thingDefs>
+		</fixedIngredientFilter>
+		<products>
+			<Ammo_46x30mm_HP>500</Ammo_46x30mm_HP>
+		</products>
+		<workAmount>2000</workAmount>
+	</RecipeDef>
+
 </Defs>

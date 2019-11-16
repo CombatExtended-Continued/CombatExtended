@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+  <Operation Class="PatchOperationSequence">
+	<operations>
+	  <li Class="PatchOperationFindMod">
+			
+		<mods><li>K.L.K - Styles Apparel Pack</li></mods>
+			
+		<match Class="PatchOperationSequence">
+		<operations>
+			
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="ScissorBlade"]/tools</xpath>
+				<value>
+					<tools>
+						<li Class="CombatExtended.ToolCE">
+							<label>handle</label>
+							<capacities>
+								<li>Blunt</li>
+							</capacities>
+							<power>3</power>
+							<cooldownTime>0.95</cooldownTime>
+							<armorPenetrationBlunt>0.9</armorPenetrationBlunt>
+							<armorPenetrationSharp>0</armorPenetrationSharp>
+						</li>
+						<li Class="CombatExtended.ToolCE">
+							<label>blade</label>
+							<capacities>
+								<li>Stab</li>
+							</capacities>
+							<power>11</power>
+							<cooldownTime>0.95</cooldownTime>
+							<armorPenetrationBlunt>0.9</armorPenetrationBlunt>
+							<armorPenetrationSharp>18</armorPenetrationSharp>
+						</li>
+						<li Class="CombatExtended.ToolCE">
+							<label>Ultimate Skill - The Scissor Blade Decapitation Mode</label>
+							<capacities>
+								<li>Cut</li>
+							</capacities>
+							<power>22</power>
+							<cooldownTime>2.36</cooldownTime>
+							<armorPenetrationBlunt>1.6</armorPenetrationBlunt>
+							<armorPenetrationSharp>6.4</armorPenetrationSharp>
+						</li>
+						<li Class="CombatExtended.ToolCE">
+							<label>Fiber Lost</label>
+							<capacities>
+								<li>KLKSBCut</li>
+							</capacities>
+							<power>26</power>
+							<cooldownTime>2.36</cooldownTime>
+							<armorPenetrationBlunt>1.6</armorPenetrationBlunt>
+							<armorPenetrationSharp>6.4</armorPenetrationSharp>
+						</li>
+					</tools>
+				</value>
+			</li>
+			
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName="ScissorBlade"]/statBases</xpath>
+				<value>
+					<Bulk>5</Bulk>
+					<MeleeCounterParryBonus>1</MeleeCounterParryBonus>
+				</value>
+			</li>
+			
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="ScissorBlade"]/equippedStatOffsets/MeleeDodgeChance</xpath>
+				<value>
+					<MeleeDodgeChance>0.58</MeleeDodgeChance>
+				</value>
+			</li>
+			
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="ScissorBlade"]/equippedStatOffsets/ArmorRating_Sharp</xpath>
+				<value>
+					<ArmorRating_Sharp>2</ArmorRating_Sharp>
+					<MeleeCritChance>1.25</MeleeCritChance>
+					<MeleeParryChance>1.44</MeleeParryChance>
+				</value>
+			</li>
+			
+		</operations>
+		</match>	
+	  </li>
+	</operations>	
+  </Operation>
+</Patch>

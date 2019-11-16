@@ -15,7 +15,7 @@ namespace CombatExtended
         {
             get
             {
-                return ThingRequest.ForGroup(ThingRequestGroup.BuildingArtificial); ;
+                return ThingRequest.ForGroup(ThingRequestGroup.BuildingArtificial);
             }
         }
 

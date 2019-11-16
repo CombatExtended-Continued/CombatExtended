@@ -10,6 +10,8 @@ namespace CombatExtended
 {
     public class SecondaryDamage
     {
+        private const float SecExplosionPenPerDmg = 3;
+
         public DamageDef def;
         public int amount;
 
@@ -20,9 +22,15 @@ namespace CombatExtended
 
         public DamageInfo GetDinfo(DamageInfo primaryDinfo)
         {
+            var penetration = 0f;
+            if (def.isExplosive)
+                penetration = amount * SecExplosionPenPerDmg;
+            else if (def.armorCategory == DamageArmorCategoryDefOf.Sharp)
+                penetration = primaryDinfo.ArmorPenetrationInt;
+
             var dinfo = new DamageInfo(def,
                             amount,
-                            primaryDinfo.ArmorPenetrationInt, //Armor Penetration TODO: Fix this after DamageWorker restructuring.
+                            penetration,
                             primaryDinfo.Angle,
                             primaryDinfo.Instigator,
                             primaryDinfo.HitPart,

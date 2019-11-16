@@ -56,8 +56,9 @@ namespace CombatExtended.Harmony
                     var height = def.Fillage == FillCategory.Full
                         ? CollisionVertical.WallCollisionHeight
                         : def.fillPercent;
+                    height *= CollisionVertical.MeterPerCellHeight;
 
-                    var newEntry = new StatDrawEntry(entry.category, "CE_CoverHeight".Translate(), height.ToStringByStyle(ToStringStyle.FloatMaxTwo), entry.DisplayPriorityWithinCategory)
+                    var newEntry = new StatDrawEntry(entry.category, "CE_CoverHeight".Translate(), height.ToStringByStyle(ToStringStyle.FloatMaxTwo) + " m", entry.DisplayPriorityWithinCategory)
                     {
                         overrideReportText = "CE_CoverHeightExplanation".Translate()
                     };

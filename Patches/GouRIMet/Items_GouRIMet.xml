@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+
+	<Operation Class="PatchOperationFindMod">
+			<mods>
+				<li>GouRIMet</li>
+			</mods>
+		<match Class="PatchOperationSequence">
+			<operations>
+
+			<!-- Sweets -->		
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName="CaramelBalls" or
+				defName="HotCocoa" or
+				defName="HotTea"
+				]/statBases</xpath>
+				<value>
+					<Bulk>0.05</Bulk>
+				</value>
+			</li>
+
+			<!-- Resources -->		
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[@Name="ResourceBaseGRM"]</xpath>
+				<value>
+					<statBases>				
+						<Bulk>0.1</Bulk>
+					</statBases>
+				</value>
+			</li>
+
+			<!-- Smoked Meat -->		
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName="SmokedMeat"]/statBases</xpath>
+				<value>
+					<Bulk>0.1</Bulk>
+				</value>
+			</li>
+
+		</operations>
+		</match>
+	</Operation>
+</Patch>

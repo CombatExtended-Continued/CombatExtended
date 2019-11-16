@@ -1,0 +1,232 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+  <Operation Class="PatchOperationSequence">
+	<operations>
+	  <li Class="PatchOperationFindMod">
+			
+		<mods><li>[SS]Maid Project</li></mods>
+			
+		<match Class="PatchOperationSequence">
+		<operations>
+			
+			<!--Combat Type-->
+			
+			<!--Fight Maid-->
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="FightMaid"]/statBases/ArmorRating_Sharp</xpath>
+				<value>
+					<ArmorRating_Sharp>7.2</ArmorRating_Sharp>
+				</value>
+			</li>
+			
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="FightMaid"]/statBases/ArmorRating_Blunt</xpath>
+				<value>
+					<ArmorRating_Blunt>8.25</ArmorRating_Blunt>
+				</value>
+			</li>
+			
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="FightMaid"]/equippedStatOffsets/MeleeDodgeChance</xpath>
+				<value>
+					<MeleeDodgeChance>0.05</MeleeDodgeChance>
+					<MeleeParryChance>0.05</MeleeParryChance>
+				</value>
+			</li>
+			
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName="FightMaid"]/statBases</xpath>
+				<value>
+					<Bulk>15</Bulk>
+					<WornBulk>10</WornBulk>
+				</value>
+			</li>
+			
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="FightMaid"]/equippedStatOffsets/ShootingAccuracyPawn</xpath>
+				<value>
+					<ShootingAccuracyPawn>0.2</ShootingAccuracyPawn>
+					<AimingAccuracy>0.1</AimingAccuracy>
+					<MeleeCritChance>0.05</MeleeCritChance>
+				</value>
+			</li>
+			
+			<!--Header Maid-->
+			
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="HeaderMaid"]/statBases/ArmorRating_Sharp</xpath>
+				<value>
+					<ArmorRating_Sharp>5</ArmorRating_Sharp>
+				</value>
+			</li>
+			
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="HeaderMaid"]/statBases/ArmorRating_Blunt</xpath>
+				<value>
+					<ArmorRating_Blunt>0.9</ArmorRating_Blunt>
+				</value>
+			</li>
+			
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName="HeaderMaid"]/statBases</xpath>
+				<value>
+					<Bulk>7</Bulk>
+					<WornBulk>6</WornBulk>
+				</value>
+			</li>
+			
+			<!--Healer Maid-->
+			
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="NurseMaid"]/statBases/ArmorRating_Sharp</xpath>
+				<value>
+					<ArmorRating_Sharp>4.5</ArmorRating_Sharp>
+				</value>
+			</li>
+			
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="NurseMaid"]/statBases/ArmorRating_Blunt</xpath>
+				<value>
+					<ArmorRating_Blunt>0.9</ArmorRating_Blunt>
+				</value>
+			</li>
+			
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName="NurseMaid"]/statBases</xpath>
+				<value>
+					<Bulk>7</Bulk>
+					<WornBulk>6</WornBulk>
+				</value>
+			</li>
+			
+			<!--Non-combat Type-->
+			
+			<!--Crafter-->
+			
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="CrafterMaid"]/statBases/ArmorRating_Sharp</xpath>
+				<value>
+					<ArmorRating_Sharp>2.2</ArmorRating_Sharp>
+				</value>
+			</li>
+			
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="CrafterMaid"]/statBases/ArmorRating_Blunt</xpath>
+				<value>
+					<ArmorRating_Blunt>0.24</ArmorRating_Blunt>
+				</value>
+			</li>
+			
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName="CrafterMaid"]/statBases</xpath>
+				<value>
+					<Bulk>5</Bulk>
+					<WornBulk>1</WornBulk>
+				</value>
+			</li>
+			
+			<!--Cook-->
+			
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="ChefMaid"]/statBases/ArmorRating_Sharp</xpath>
+				<value>
+					<ArmorRating_Sharp>2.5</ArmorRating_Sharp>
+				</value>
+			</li>
+			
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="ChefMaid"]/statBases/ArmorRating_Blunt</xpath>
+				<value>
+					<ArmorRating_Blunt>0.3</ArmorRating_Blunt>
+				</value>
+			</li>
+			
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName="ChefMaid"]/statBases</xpath>
+				<value>
+					<Bulk>5</Bulk>
+					<WornBulk>1</WornBulk>
+				</value>
+			</li>
+			
+			<!--Cleaner-->
+			
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="CleanerMaid"]/statBases/ArmorRating_Sharp</xpath>
+				<value>
+					<ArmorRating_Sharp>1.9</ArmorRating_Sharp>
+				</value>
+			</li>
+			
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="CleanerMaid"]/statBases/ArmorRating_Blunt</xpath>
+				<value>
+					<ArmorRating_Blunt>0.18</ArmorRating_Blunt>
+				</value>
+			</li>
+			
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName="CleanerMaid"]/statBases</xpath>
+				<value>
+					<Bulk>5</Bulk>
+					<WornBulk>1</WornBulk>
+				</value>
+			</li>
+			
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName="CleanerMaid"]/equippedStatOffsets</xpath>
+				<value>
+					<CarryWeight>15</CarryWeight>
+					<CarryBulk>25</CarryBulk>
+				</value>
+			</li>
+			
+			<!--Hats-->
+			
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="MaidHatNA"]/statBases/ArmorRating_Sharp</xpath>
+				<value>
+					<ArmorRating_Sharp>7.8</ArmorRating_Sharp>
+				</value>
+			</li>
+			
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="MaidHatNA"]/statBases/ArmorRating_Blunt</xpath>
+				<value>
+					<ArmorRating_Blunt>6</ArmorRating_Blunt>
+				</value>
+			</li>
+			
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName="MaidHatNA" or
+				defName="MaidHatNB" or 
+				defName="MaidHatNC"
+				]/statBases</xpath>
+				<value>
+					<Bulk>3</Bulk>
+					<WornBulk>1</WornBulk>
+				</value>
+			</li>
+			
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="MaidHatNB" or defName="MaidHatNC"]/statBases/ArmorRating_Sharp</xpath>
+				<value>
+					<ArmorRating_Sharp>3.6</ArmorRating_Sharp>
+				</value>
+			</li>
+			
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="MaidHatNB" or defName="MaidHatNC"]/statBases/ArmorRating_Blunt</xpath>
+				<value>
+					<ArmorRating_Blunt>2.25</ArmorRating_Blunt>
+				</value>
+			</li>
+			
+
+			
+		</operations>
+		</match>	
+	  </li>
+	</operations>	
+  </Operation>
+</Patch>
