@@ -97,7 +97,7 @@ Rim of Madness - Bones							| &#x2705; 	| &#x2705;
 [SS]Maid Project           | &#x2705; 	| &#x2705;
 Sergals, Gnolls and Lions								| &#x2705;* 	| &#x2705;
 Simply More Melee           | &#x2705; 	| &#x2705;
-Soviet Armory         | &#x2705; 	| &#x2705;
+Soviet Armory         |        	| &#x2705;
 Spartan Foundry 								| &#x2705; 	| &#x2705;
 Spidercamp's Dog Pack 								|  			| &#x2705;
 [SYR] Thrumkin									| &#x2705; 	| &#x2705;
