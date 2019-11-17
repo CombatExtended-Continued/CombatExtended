@@ -13,6 +13,7 @@ Combat Extended: FastTrack Edition is a fork of the [original Combat Extended mo
 Mod | CE (original) | CE: FastTrack Edition
 --- | :---: | :---:
 A Dog Said... 										| &#x2705; 	| &#x2705;
+Alpha Animals 											|  			| &#x2705;
 A RimWorld of Magic 											|  			| &#x2705;
 Android Tiers											|&#x2705;| &#x2705;
 Androids										|&#x2705;| &#x2705;
@@ -94,8 +95,9 @@ Rimmu-Nation - Clothing 							|  			| &#x2705;
 Rimmu-Nation - Weapons 							|  			| &#x2705;
 Rim of Madness - Bones							| &#x2705; 	| &#x2705;
 [SS]Maid Project           | &#x2705; 	| &#x2705;
-Sergals and Gnolls 								| &#x2705; 	| &#x2705;
+Sergals, Gnolls and Lions								| &#x2705;* 	| &#x2705;
 Simply More Melee           | &#x2705; 	| &#x2705;
+Soviet Armory         | &#x2705; 	| &#x2705;
 Spartan Foundry 								| &#x2705; 	| &#x2705;
 Spidercamp's Dog Pack 								|  			| &#x2705;
 [SYR] Thrumkin									| &#x2705; 	| &#x2705;
@@ -115,6 +117,8 @@ Yabils: Space Gremlins				|  			| &#x2705;
 Zombieland 										| &#x2705; 	| &#x2705;
 **Total** | **73** | **89**
 &nbsp; | **CE (original)** | **CE: FastTrack Edition**
+
+*Incomplete implementation
 
 ## Contributing Your Patches
 - We welcome patches for any and all third-party mods!
