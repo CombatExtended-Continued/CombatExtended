@@ -88,6 +88,24 @@
 		</value>
 	</Operation>
 
+	<Operation Class="PatchOperationConditional">
+		<xpath>Defs/ThingDef[defName="Leather_Thrumbo"]/stuffProps/categories</xpath>
+		<nomatch Class="PatchOperationAdd">
+			<xpath>Defs/ThingDef[defName="Leather_Thrumbo"]/stuffProps</xpath>
+			<value>
+				<categories>
+				  <li>SoftArmor</li>
+				</categories>
+			</value>
+		</nomatch>
+		<match Class="PatchOperationAdd">
+			<xpath>Defs/ThingDef[defName="Leather_Thrumbo"]/stuffProps/categories</xpath>
+			<value>
+				<li>SoftArmor</li>
+			</value>
+		</match>
+	</Operation>
+
 	<!-- Patchleather -->
 
 	<Operation Class="PatchOperationReplace">
