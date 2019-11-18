@@ -74,7 +74,31 @@
 					<CarryBulk>20</CarryBulk>
 				</value>
 			</li>
-			
+
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="RK_CrossBack"]/apparel
+				</xpath>
+				<value>
+					<apparel>
+						<careIfWornByCorpse>false</careIfWornByCorpse>
+						<bodyPartGroups>
+							<li>Shoulders</li>
+						</bodyPartGroups>
+						<layers>
+							<li>Backpack</li>
+						</layers>
+						<tags>
+							<li>RK_CrossBack</li>
+							<li>RK_1Tier</li>
+						</tags>
+						<defaultOutfitTags>
+							<li>Worker</li>
+						</defaultOutfitTags>
+						<wornGraphicPath>Apparel/RK_CrossBack</wornGraphicPath>
+					</apparel>
+				</value>
+			</li>
+
 			<!-- Backpack -->
 
 			<li Class="PatchOperationAdd">
@@ -89,6 +113,31 @@
 				<xpath>Defs/ThingDef[defName="RK_Backpack"]/equippedStatOffsets</xpath>
 				<value>
 					<CarryBulk>30</CarryBulk>
+				</value>
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="RK_Backpack"]/apparel
+				</xpath>
+				<value>
+					<apparel>
+						<careIfWornByCorpse>false</careIfWornByCorpse>
+						<bodyPartGroups>
+							<li>Shoulders</li>
+						</bodyPartGroups>
+						<layers>
+							<li>Backpack</li>
+						</layers>
+						<tags>
+							<li>RK_Backpack</li>
+							<li>RK_2Tier</li>
+						</tags>
+						<defaultOutfitTags>
+							<li>Worker</li>
+							<li>Soldier</li>
+						</defaultOutfitTags>
+						<wornGraphicPath>Apparel/RK_Backpack</wornGraphicPath>
+					</apparel>
 				</value>
 			</li>
 
@@ -183,6 +232,31 @@
 				</value>
 			</li>
 
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="RK_OutdoorBackpack"]/apparel
+				</xpath>
+				<value>
+					<apparel>
+						<careIfWornByCorpse>false</careIfWornByCorpse>
+						<bodyPartGroups>
+							<li>Shoulders</li>
+						</bodyPartGroups>
+						<layers>
+							<li>Backpack</li>
+						</layers>
+						<tags>
+							<li>RK_Backpack</li>
+							<li>RK_3Tier</li>
+						</tags>
+						<defaultOutfitTags>
+							<li>Worker</li>
+							<li>Soldier</li>
+						</defaultOutfitTags>
+						<wornGraphicPath>Apparel/RK_OutdoorBackpack</wornGraphicPath>
+					</apparel>
+				</value>
+			</li>
+
 			<!-- Ratkin Order Uniform -->
 
 			<li Class="PatchOperationAdd">
@@ -262,6 +336,31 @@
 				<xpath>Defs/ThingDef[defName="RK_Sack"]/equippedStatOffsets</xpath>
 				<value>
 					<CarryBulk>50</CarryBulk>
+				</value>
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="RK_Sack"]/apparel
+				</xpath>
+				<value>
+					<apparel>
+						<careIfWornByCorpse>false</careIfWornByCorpse>
+						<bodyPartGroups>
+							<li>Shoulders</li>
+						</bodyPartGroups>
+						<layers>
+							<li>Backpack</li>
+						</layers>
+						<tags>
+							<li>RK_Package</li>
+							<li>RK_Thief</li>
+						</tags>
+						<defaultOutfitTags>
+							<li>Worker</li>
+							<li>Soldier</li>
+						</defaultOutfitTags>
+						<wornGraphicPath>Apparel/RK_Sack</wornGraphicPath>
+					</apparel>
 				</value>
 			</li>
 
@@ -395,9 +494,33 @@
 					<CarryBulk>60</CarryBulk>
 				</value>
 			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="RK_SantaSack"]/apparel
+				</xpath>
+				<value>
+					<apparel>
+						<careIfWornByCorpse>false</careIfWornByCorpse>
+						<bodyPartGroups>
+							<li>Shoulders</li>
+						</bodyPartGroups>
+						<layers>
+							<li>Backpack</li>
+						</layers>
+						<tags>
+							<li>RK_Santa</li>
+						</tags>
+						<defaultOutfitTags>
+							<li>Worker</li>
+							<li>Soldier</li>
+						</defaultOutfitTags>
+						<wornGraphicPath>Apparel/RK_SantaSack</wornGraphicPath>
+					</apparel>
+				</value>
+			</li>
 			
 			<!-- Remove Ratkin mod's own custom CarryCapacity stat, as we are using CE's own CarryBulk instead -->
-			
+
 			<li Class="PatchOperationRemove">
 				<xpath>Defs/ThingDef[
 					defName="RK_CrossBack" or 
