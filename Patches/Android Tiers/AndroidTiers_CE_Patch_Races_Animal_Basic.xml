@@ -9,7 +9,7 @@
 			</li>
 
 			<li Class="PatchOperationAddModExtension">
-				<xpath>*/ThingDef[defName="AndroidMuff"]</xpath>
+				<xpath>Defs/ThingDef[defName="AndroidMuff"]</xpath>
 				<value>
 					<li Class="CombatExtended.RacePropertiesExtensionCE">
 						<bodyShape>Quadruped</bodyShape>
@@ -17,8 +17,18 @@
 				</value>
 			</li>
 
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName="AndroidMuff"]/statBases</xpath>
+				<value>
+					<MeleeDodgeChance>0.17</MeleeDodgeChance>
+					<MeleeCritChance>0.23</MeleeCritChance>
+					<MeleeParryChance>0.1</MeleeParryChance>
+					<SmokeSensitivity>0.05</SmokeSensitivity>
+				</value>
+			</li>
+
 			<li Class="PatchOperationReplace">
-				<xpath>*/ThingDef[defName="AndroidMuff"]/tools</xpath>
+				<xpath>Defs/ThingDef[defName="AndroidMuff"]/tools</xpath>
 				<value>
 					<tools>
 						<li Class="CombatExtended.ToolCE">
@@ -27,16 +37,16 @@
 								<li>Blunt</li>
 							</capacities>
 							<power>24</power>
-							<cooldownTime>1.65</cooldownTime>
+							<cooldownTime>3.17</cooldownTime>
 							<linkedBodyPartsGroup>HeadAttackTool</linkedBodyPartsGroup>
-							<armorPenetration>0.15</armorPenetration>
+							<armorPenetrationBlunt>10</armorPenetrationBlunt>
 						</li>
 					</tools>
 				</value>
 			</li>
 
 			<li Class="PatchOperationAddModExtension">
-				<xpath>*/ThingDef[defName="AndroidChicken"]</xpath>
+				<xpath>Defs/ThingDef[defName="AndroidChicken"]</xpath>
 				<value>
 					<li Class="CombatExtended.RacePropertiesExtensionCE">
 						<bodyShape>Birdlike</bodyShape>
@@ -44,19 +54,49 @@
 				</value>
 			</li>
 
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName="AndroidChicken"]/statBases</xpath>
+				<value>
+					<MeleeDodgeChance>0.15</MeleeDodgeChance>
+					<MeleeCritChance>0.0</MeleeCritChance>
+					<SmokeSensitivity>0.05</SmokeSensitivity>
+				</value>
+			</li>
+
 			<li Class="PatchOperationReplace">
-				<xpath>*/ThingDef[defName="AndroidChicken"]/tools</xpath>
+				<xpath>Defs/ThingDef[defName="AndroidChicken"]/tools</xpath>
 				<value>
 					<tools>
+						<li Class="CombatExtended.ToolCE">
+							<label>claws</label>
+							<capacities>
+								<li>Scratch</li>
+							</capacities>
+							<power>3</power>
+							<cooldownTime>1.39</cooldownTime>
+							<linkedBodyPartsGroup>Feet</linkedBodyPartsGroup>
+							<armorPenetrationSharp>0.01</armorPenetrationSharp>
+							<armorPenetrationBlunt>0.096</armorPenetrationBlunt>
+						</li>
+						<li Class="CombatExtended.ToolCE">
+							<capacities>
+								<li>Bite</li>
+							</capacities>
+							<power>2</power>
+							<cooldownTime>1.39</cooldownTime>
+							<linkedBodyPartsGroup>Beak</linkedBodyPartsGroup>
+							<armorPenetrationBlunt>0.096</armorPenetrationBlunt>
+						</li>
 						<li Class="CombatExtended.ToolCE">
 							<label>head</label>
 							<capacities>
 								<li>Blunt</li>
 							</capacities>
-							<power>8</power>
+							<power>1</power>
 							<cooldownTime>1.65</cooldownTime>
 							<linkedBodyPartsGroup>HeadAttackTool</linkedBodyPartsGroup>
-							<armorPenetration>0.099</armorPenetration>
+							<chanceFactor>0.2</chanceFactor>
+							<armorPenetrationBlunt>0.192</armorPenetrationBlunt>
 						</li>
 					</tools>
 				</value>
