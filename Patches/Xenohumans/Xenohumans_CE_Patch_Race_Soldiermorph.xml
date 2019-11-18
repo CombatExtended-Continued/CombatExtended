@@ -20,13 +20,14 @@
 			<li Class="PatchOperationAdd">
 				<xpath>Defs/AlienRace.ThingDef_AlienRace[defName="SoldiermorphXH"]/statBases</xpath>
 				<value>
-					<MeleeDodgeChance>1.1</MeleeDodgeChance>
-					<MeleeCritChance>1.1</MeleeCritChance>
+					<MeleeDodgeChance>1.2</MeleeDodgeChance>
+					<MeleeCritChance>1.2</MeleeCritChance>
 					<MeleeParryChance>1.1</MeleeParryChance>
 				</value>
 			</li>
 
 			<li Class="PatchOperationReplace">
+				<success>Always</success>
 				<xpath>Defs/AlienRace.ThingDef_AlienRace[defName="SoldiermorphXH"]/tools</xpath>
 				<value>
 					<tools>
@@ -35,20 +36,36 @@
 							<capacities>
 								<li>Blunt</li>
 							</capacities>
-							<power>8.2</power>
-							<cooldownTime>1.65</cooldownTime>
-							<linkedBodyPartsGroup>LeftHand</linkedBodyPartsGroup>
-							<armorPenetration>0.095</armorPenetration>
+							<power>2</power>
+							<cooldownTime>1.07</cooldownTime>
+							<linkedBodyPartsGroup>LeftHand</linkedBodyPartsGroup>								
+							<surpriseAttack>
+								<extraMeleeDamages>
+									<li>
+										<def>Stun</def>
+										<amount>14</amount>
+									</li>
+								</extraMeleeDamages>
+							</surpriseAttack>
+							<armorPenetrationBlunt>0.634</armorPenetrationBlunt>
 						</li>
 						<li Class="CombatExtended.ToolCE">
 							<label>right fist</label>
 							<capacities>
 								<li>Blunt</li>
 							</capacities>
-							<power>8.2</power>
-							<cooldownTime>1.65</cooldownTime>
-							<linkedBodyPartsGroup>RightHand</linkedBodyPartsGroup>
-							<armorPenetration>0.095</armorPenetration>
+							<power>1</power>
+							<cooldownTime>1.07</cooldownTime>
+							<linkedBodyPartsGroup>RightHand</linkedBodyPartsGroup>								
+							<surpriseAttack>
+								<extraMeleeDamages>
+									<li>
+										<def>Stun</def>
+										<amount>14</amount>
+									</li>
+								</extraMeleeDamages>
+							</surpriseAttack>
+							<armorPenetrationBlunt>0.634</armorPenetrationBlunt>
 						</li>
 						<li Class="CombatExtended.ToolCE">
 							<label>head</label>
@@ -56,24 +73,34 @@
 								<li>Blunt</li>
 							</capacities>
 							<power>5</power>
-							<cooldownTime>1.65</cooldownTime>
+							<cooldownTime>2.99</cooldownTime>
 							<linkedBodyPartsGroup>HeadAttackTool</linkedBodyPartsGroup>
+							<ensureLinkedBodyPartsGroupAlwaysUsable>true</ensureLinkedBodyPartsGroupAlwaysUsable>
 							<chanceFactor>0.2</chanceFactor>
-							<armorPenetration>0.079</armorPenetration>
+							<armorPenetrationBlunt>1.406</armorPenetrationBlunt>
 						</li>
 					</tools>
 				</value>
 			</li>
 
-			<li Class="PatchOperationAdd">
+			<li Class="PatchOperationSequence">
 				<success>Always</success>
-				<xpath>Defs/AlienRace.ThingDef_AlienRace[defName="SoldiermorphXH"][not(comp)]</xpath>
-				<value>
-					<comps />
-				</value>
+				<operations>
+					<li Class="PatchOperationTest">
+						<xpath>Defs/AlienRace.ThingDef_AlienRace[defName="SoldiermorphXH"]/comps</xpath>
+						<success>Invert</success>
+					</li>
+					<li Class="PatchOperationAdd">
+						<xpath>Defs/AlienRace.ThingDef_AlienRace[defName="SoldiermorphXH"]</xpath>
+						<value>
+							<comps />
+						</value>
+					</li>
+				</operations>
 			</li>
 
 			<li Class="PatchOperationAdd">
+				<success>Always</success>
 				<xpath>Defs/AlienRace.ThingDef_AlienRace[defName="SoldiermorphXH"]/comps</xpath>
 				<value>
 					<li>
