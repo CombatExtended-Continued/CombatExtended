@@ -3,13 +3,13 @@
 <Patch>
 	<Operation Class="PatchOperationFindMod">
 		<mods>
-			<li>Combat Extended</li>
+			<li>Xenohumans - Gen-spliced Xenos on the Rim</li>
 		</mods>
 		<match Class="PatchOperationSequence">
 			<operations>
 			
 				<li Class="PatchOperationAddModExtension">
-					<xpath>*/AlienRace.ThingDef_AlienRace[defName="ScaleManXH"]</xpath>
+					<xpath>Defs/AlienRace.ThingDef_AlienRace[defName="ScaleManXH"]</xpath>
 					<value>
 						<li Class="CombatExtended.RacePropertiesExtensionCE">
 							<bodyShape>Humanoid</bodyShape>
@@ -18,7 +18,7 @@
 				</li>
 
 				<li Class="PatchOperationAdd">
-					<xpath>*/AlienRace.ThingDef_AlienRace[defName="ScaleManXH"]/statBases</xpath>
+					<xpath>Defs/AlienRace.ThingDef_AlienRace[defName="ScaleManXH"]/statBases</xpath>
 					<value>
 						<MeleeDodgeChance>0.85</MeleeDodgeChance>
 						<MeleeCritChance>0.95</MeleeCritChance>
@@ -27,14 +27,14 @@
 				</li>
 
 				<li Class="PatchOperationReplace">
-					<xpath>*/AlienRace.ThingDef_AlienRace[defName="ScaleManXH"]/statBases/ArmorRating_Blunt</xpath>
+					<xpath>Defs/AlienRace.ThingDef_AlienRace[defName="ScaleManXH"]/statBases/ArmorRating_Blunt</xpath>
 					<value>
 						<ArmorRating_Blunt>2</ArmorRating_Blunt>
 					</value>
 				</li>
 
 				<li Class="PatchOperationReplace">
-					<xpath>*/AlienRace.ThingDef_AlienRace[defName="ScaleManXH"]/statBases/ArmorRating_Sharp</xpath>
+					<xpath>Defs/AlienRace.ThingDef_AlienRace[defName="ScaleManXH"]/statBases/ArmorRating_Sharp</xpath>
 					<value>
 						<ArmorRating_Sharp>0.2</ArmorRating_Sharp>
 					</value>
@@ -42,7 +42,7 @@
 
 				<li Class="PatchOperationReplace">
 					<success>Always</success>
-					<xpath>*/AlienRace.ThingDef_AlienRace[defName="ScaleManXH"]/tools</xpath>
+					<xpath>Defs/AlienRace.ThingDef_AlienRace[defName="ScaleManXH"]/tools</xpath>
 					<value>
 						<tools>
 							<li Class="CombatExtended.ToolCE">
@@ -85,11 +85,11 @@
 					<success>Always</success>
 					<operations>
 						<li Class="PatchOperationTest">
-							<xpath>*/AlienRace.ThingDef_AlienRace[defName="ScaleManXH"]/comps</xpath>
+							<xpath>Defs/AlienRace.ThingDef_AlienRace[defName="ScaleManXH"]/comps</xpath>
 							<success>Invert</success>
 						</li>
 						<li Class="PatchOperationAdd">
-							<xpath>*/AlienRace.ThingDef_AlienRace[defName="ScaleManXH"]</xpath>
+							<xpath>Defs/AlienRace.ThingDef_AlienRace[defName="ScaleManXH"]</xpath>
 							<value>
 								<comps />
 							</value>
@@ -99,7 +99,7 @@
 
 				<li Class="PatchOperationAdd">
 					<success>Always</success>
-					<xpath>*/AlienRace.ThingDef_AlienRace[defName="ScaleManXH"]/comps</xpath>
+					<xpath>Defs/AlienRace.ThingDef_AlienRace[defName="ScaleManXH"]/comps</xpath>
 					<value>
 						<li>
 							<compClass>CombatExtended.CompPawnGizmo</compClass>
