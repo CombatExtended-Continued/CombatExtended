@@ -24,6 +24,26 @@
 					</value>
 				</li>
 
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="RNApparel_Backpack_Civilian"]/apparel
+					</xpath>
+					<value>
+						<apparel>
+							<careIfWornByCorpse>false</careIfWornByCorpse>
+							<bodyPartGroups>
+								<li>Shoulders</li>
+							</bodyPartGroups>
+							<layers>
+								<li>Backpack</li>
+							</layers>
+							<tags>
+								<li>IndustrialAdvanced</li>
+							</tags>
+							<wornGraphicPath>Things/Apparel/Belt/CivilianBackpack</wornGraphicPath>
+						</apparel>
+					</value>
+				</li>
+
 				<!-- ========== Backpack military ========== -->
 
 				<li Class="PatchOperationAdd">
@@ -37,6 +57,29 @@
 					<xpath>Defs/ThingDef[defName="RNApparel_Backpack_Military"]/equippedStatOffsets</xpath>
 					<value>
 						<CarryBulk>35</CarryBulk>
+					</value>
+				</li>
+				
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="RNApparel_Backpack_Military"]/apparel
+					</xpath>
+					<value>
+						<apparel>
+							<careIfWornByCorpse>false</careIfWornByCorpse>
+							<bodyPartGroups>
+								<li>Shoulders</li>
+							</bodyPartGroups>
+							<layers>
+								<li>Backpack</li>
+							</layers>
+							<tags>
+								<li>RN_Backpack</li>
+							</tags>
+							<defaultOutfitTags>
+								<li>Soldier</li>
+							</defaultOutfitTags>
+							<wornGraphicPath>Things/Apparel/Belt/MilitaryBackpack</wornGraphicPath>
+						</apparel>
 					</value>
 				</li>
 
@@ -55,6 +98,29 @@
 						<CarryBulk>30</CarryBulk>
 					</value>
 				</li>
+				
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="RNApparel_Backpack_Tactical"]/apparel
+					</xpath>
+					<value>
+						<apparel>
+							<careIfWornByCorpse>false</careIfWornByCorpse>
+							<bodyPartGroups>
+								<li>Shoulders</li>
+							</bodyPartGroups>
+							<layers>
+								<li>Backpack</li>
+							</layers>
+							<tags>
+								<li>IndustrialAdvanced</li>
+							</tags>
+							<defaultOutfitTags>
+								<li>Soldier</li>
+							</defaultOutfitTags>
+							<wornGraphicPath>Things/Apparel/Belt/AssaultBackpack</wornGraphicPath>
+						</apparel>
+					</value>
+				</li>
 
 				<!-- ========== Backpack tactical sling ========== -->
 
@@ -69,6 +135,29 @@
 					<xpath>Defs/ThingDef[defName="RNApparel_Backpack_Tactical_Sling"]/equippedStatOffsets</xpath>
 					<value>
 						<CarryBulk>15</CarryBulk>
+					</value>
+				</li>
+				
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="RNApparel_Backpack_Tactical_Sling"]/apparel
+					</xpath>
+					<value>
+						<apparel>
+							<careIfWornByCorpse>false</careIfWornByCorpse>
+							<bodyPartGroups>
+								<li>Shoulders</li>
+							</bodyPartGroups>
+							<layers>
+								<li>Backpack</li>
+							</layers>
+							<tags>
+								<li>IndustrialAdvanced</li>
+							</tags>
+							<defaultOutfitTags>
+								<li>Soldier</li>
+							</defaultOutfitTags>
+							<wornGraphicPath>Things/Apparel/Belt/Tactical_SlingBackpack</wornGraphicPath>
+						</apparel>
 					</value>
 				</li>
 
@@ -87,22 +176,27 @@
 						<CarryBulk>30</CarryBulk>
 					</value>
 				</li>
-
-				<!-- Tweak backpack body part coverage for compatibility with CE vests -->
-
+				
 				<li Class="PatchOperationReplace">
-					<xpath>Defs/ThingDef[
-						defName="RNApparel_Backpack_Civilian" or
-						defName="RNApparel_Backpack_Military" or
-						defName="RNApparel_Backpack_Tactical" or
-						defName="RNApparel_Backpack_Tactical_Sling" or
-						defName="RNApparel_Backpack_PegasusEliteOps"
-						]/apparel/bodyPartGroups
+					<xpath>Defs/ThingDef[defName="RNApparel_Backpack_PegasusEliteOps"]/apparel
 					</xpath>
 					<value>
-						<bodyPartGroups>
-							<li>Torso</li>
-						</bodyPartGroups>
+						<apparel>
+							<careIfWornByCorpse>false</careIfWornByCorpse>
+							<bodyPartGroups>
+								<li>Shoulders</li>
+							</bodyPartGroups>
+							<layers>
+								<li>Backpack</li>
+							</layers>
+							<tags>
+								<li>IndustrialAdvanced</li>
+							</tags>
+							<defaultOutfitTags>
+								<li>Soldier</li>
+							</defaultOutfitTags>
+							<wornGraphicPath>Things/Apparel/Belt/EliteOpsBackpack</wornGraphicPath>
+						</apparel>
 					</value>
 				</li>
 
