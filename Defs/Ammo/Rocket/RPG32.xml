@@ -46,19 +46,19 @@
 			<graphicClass>Graphic_StackCount</graphicClass>
 		</graphicData>
 		<statBases>
-			<MarketValue>23.23</MarketValue>
+			<MarketValue>93.35</MarketValue>
 			<Mass>7.5</Mass>
-			<Bulk>6</Bulk>
+			<Bulk>26.48</Bulk>
 		</statBases>
 		<ammoClass>RocketHEAT</ammoClass>
 		<comps>
 			<li Class="CombatExtended.CompProperties_ExplosiveCE">
-				<explosionDamage>30</explosionDamage>
+				<explosionDamage>216</explosionDamage>
 				<explosionDamageDef>Bomb</explosionDamageDef>
-				<explosionRadius>1</explosionRadius>
-				<fragRange>6</fragRange>
+				<explosionRadius>1.5</explosionRadius>
 				<fragments>
-					<Fragment_RocketFrag>30</Fragment_RocketFrag>
+					<Fragment_Large>10</Fragment_Large>
+					<Fragment_Small>86</Fragment_Small>
 				</fragments>
 				<soundExplode>MortarBomb_Explode</soundExplode>
 				<applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
@@ -74,16 +74,16 @@
 			<graphicClass>Graphic_StackCount</graphicClass>
 		</graphicData>
 		<statBases>
-			<MarketValue>37.03</MarketValue>
+			<MarketValue>93.35</MarketValue>
 			<Mass>7.5</Mass>
-			<Bulk>6</Bulk>
+			<Bulk>26.48</Bulk>
 		</statBases>
 		<ammoClass>RocketThermobaric</ammoClass>
 		<comps>
 			<li Class="CombatExtended.CompProperties_ExplosiveCE">
-				<explosionDamage>80</explosionDamage>
+				<explosionDamage>173</explosionDamage>
 				<explosionDamageDef>Thermobaric</explosionDamageDef>
-				<explosionRadius>4.0</explosionRadius>
+				<explosionRadius>4</explosionRadius>
 				<applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
 				<soundExplode>MortarBomb_Explode</soundExplode>
 			</li>
@@ -97,7 +97,7 @@
 			<shaderType>TransparentPostLight</shaderType>
 		</graphicData>
 		<projectile Class="CombatExtended.ProjectilePropertiesCE">
-			<speed>35</speed>
+			<speed>28</speed>
 			<soundAmbient>RocketPropelledLoop_Small</soundAmbient>
 		</projectile>
 	</ThingDef>	
@@ -111,16 +111,18 @@
 		</graphicData>
 		<projectile Class="CombatExtended.ProjectilePropertiesCE">
 			<damageDef>Bullet</damageDef>
-			<damageAmountBase>100</damageAmountBase>
-			<armorPenetrationBase>3.0</armorPenetrationBase>
+			<damageAmountBase>286</damageAmountBase>
+			<armorPenetrationSharp>650</armorPenetrationSharp>
+			<armorPenetrationBlunt>64.893</armorPenetrationBlunt>
 		</projectile>
 		<comps>
 			<li Class="CombatExtended.CompProperties_ExplosiveCE">
-				<explosionDamage>284</explosionDamage>
+				<explosionDamage>216</explosionDamage>
 				<explosionDamageDef>Bomb</explosionDamageDef>
-				<explosionRadius>1</explosionRadius>
+				<explosionRadius>1.5</explosionRadius>
 				<fragments>
-					<Fragment_RocketFrag>50</Fragment_RocketFrag>
+					<Fragment_Large>10</Fragment_Large>
+					<Fragment_Small>86</Fragment_Small>
 				</fragments>
 				<soundExplode>MortarBomb_Explode</soundExplode>
 				<applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
@@ -139,8 +141,9 @@
 		<projectile Class="CombatExtended.ProjectilePropertiesCE">
 			<explosionRadius>4</explosionRadius>
 			<damageDef>Thermobaric</damageDef>
-			<damageAmountBase>284</damageAmountBase>
+			<damageAmountBase>173</damageAmountBase>
 			<applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
+			<ai_IsIncendiary>true</ai_IsIncendiary>
 		</projectile>
 	</ThingDef>
 
@@ -151,7 +154,7 @@
 		<label>make RPG-32 HEAT rockets x5</label>
 		<description>Craft 5 RPG-32 HEAT rockets.</description>
 		<jobString>Making RPG-32 HEAT rockets.</jobString>
-		<workAmount>15000</workAmount>
+		<workAmount>17200</workAmount>
 		<ingredients>
 			<li>
 				<filter>
@@ -159,7 +162,7 @@
 						<li>Steel</li>
 					</thingDefs>
 				</filter>
-				<count>13</count>
+				<count>76</count>
 			</li>
 			<li>
 				<filter>
@@ -167,7 +170,7 @@
 						<li>FSX</li>
 					</thingDefs>
 				</filter>
-				<count>3</count>
+				<count>18</count>
 			</li>
 			<li>
 				<filter>
@@ -175,7 +178,7 @@
 						<li>ComponentIndustrial</li>
 					</thingDefs>
 				</filter>
-				<count>3</count>
+				<count>4</count>
 			</li>
 		</ingredients>
 		<fixedIngredientFilter>
@@ -195,7 +198,7 @@
 		<label>make RPG-32 thermobaric rockets x5</label>
 		<description>Craft 5 RPG-32 thermobaric rockets.</description>
 		<jobString>Making RPG-32 thermobaric rockets.</jobString>
-		<workAmount>15000</workAmount>
+		<workAmount>17200</workAmount>
 		<ingredients>
 			<li>
 				<filter>
@@ -203,7 +206,7 @@
 						<li>Steel</li>
 					</thingDefs>
 				</filter>
-				<count>13</count>
+				<count>76</count>
 			</li>
 			<li>
 				<filter>
@@ -211,7 +214,7 @@
 						<li>FSX</li>
 					</thingDefs>
 				</filter>
-				<count>9</count>
+				<count>18</count>
 			</li>
 			<li>
 				<filter>
@@ -219,7 +222,7 @@
 						<li>ComponentIndustrial</li>
 					</thingDefs>
 				</filter>
-				<count>3</count>
+				<count>4</count>
 			</li>
 		</ingredients>
 		<fixedIngredientFilter>

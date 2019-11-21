@@ -1,22 +1,22 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <Defs>
 
-    <ThingCategoryDef>
-      <defName>AmmoRPOGrenades</defName>
-      <label>RPO grenades</label>
-      <parent>AmmoRockets</parent>
-    </ThingCategoryDef>
-	
+	<ThingCategoryDef>
+		<defName>AmmoRPOGrenades</defName>
+		<label>RPO grenades</label>
+		<parent>AmmoRockets</parent>
+	</ThingCategoryDef>
+
 	<!-- ================== Projectiles ================== -->
 
 	<ThingDef Class="CombatExtended.AmmoDef" Name="BaseRPOGrenade" ParentName="BaseBullet" Abstract="true">
 		<graphicData>
-      <texPath>Things/Projectile/Rocket_Big</texPath>
-      <graphicClass>Graphic_Single</graphicClass>
+			<texPath>Things/Projectile/Rocket_Big</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
 			<shaderType>TransparentPostLight</shaderType>
 		</graphicData>
 		<projectile Class="CombatExtended.ProjectilePropertiesCE">
-			<speed>51</speed>
+			<speed>25</speed>
 			<soundAmbient>RocketPropelledLoop_Small</soundAmbient>
 		</projectile>
 	</ThingDef>	
@@ -25,40 +25,40 @@
 		<defName>Bullet_RPO_A_Grenade</defName>
 		<thingClass>CombatExtended.ProjectileCE_Explosive</thingClass>
 		<label>RPO-A grenade</label>
-    <projectile Class="CombatExtended.ProjectilePropertiesCE">
-      <explosionRadius>4</explosionRadius>
-      <damageDef>Thermobaric</damageDef>
-      <damageAmountBase>180</damageAmountBase>
-      <applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
-      <ai_IsIncendiary>true</ai_IsIncendiary>
-    </projectile>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<explosionRadius>3.5</explosionRadius>
+			<damageDef>Thermobaric</damageDef>
+			<damageAmountBase>164</damageAmountBase>
+			<applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
+			<ai_IsIncendiary>true</ai_IsIncendiary>
+		</projectile>
 	</ThingDef>
 
-  <ThingDef Class="CombatExtended.AmmoDef" ParentName="BaseRPOGrenade">
-    <defName>Bullet_RPO_Z_Grenade</defName>
-	<thingClass>CombatExtended.ProjectileCE_Explosive</thingClass>
-    <label>RPO-Z grenade</label>
-    <projectile Class="CombatExtended.ProjectilePropertiesCE">
-      <damageDef>PrometheumFlame</damageDef>
-      <damageAmountBase>30</damageAmountBase>
-      <explosionRadius>5</explosionRadius>
-      <preExplosionSpawnThingDef>FilthPrometheum</preExplosionSpawnThingDef>
-      <preExplosionSpawnChance>0.5</preExplosionSpawnChance>
-      <soundExplode>MortarIncendiary_Explode</soundExplode>
-      <ai_IsIncendiary>true</ai_IsIncendiary>
-    </projectile>
-  </ThingDef>
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="BaseRPOGrenade">
+		<defName>Bullet_RPO_Z_Grenade</defName>
+		<thingClass>CombatExtended.ProjectileCE_Explosive</thingClass>
+		<label>RPO-Z grenade</label>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageDef>PrometheumFlame</damageDef>
+			<damageAmountBase>0</damageAmountBase>
+			<explosionRadius>12.5</explosionRadius>
+			<preExplosionSpawnThingDef>FilthPrometheum</preExplosionSpawnThingDef>
+			<preExplosionSpawnChance>0.5</preExplosionSpawnChance>
+			<soundExplode>MortarIncendiary_Explode</soundExplode>
+			<ai_IsIncendiary>true</ai_IsIncendiary>
+		</projectile>
+	</ThingDef>
 
-  <ThingDef Class="CombatExtended.AmmoDef" ParentName="BaseRPOGrenade">
-    <defName>Bullet_RPO_D_Grenade</defName>
-	<thingClass>CombatExtended.ProjectileCE_Explosive</thingClass>
-    <label>RPO-D grenade</label>
-    <projectile Class="CombatExtended.ProjectilePropertiesCE">
-      <damageDef>Smoke</damageDef>
-      <explosionRadius>8</explosionRadius>
-      <preExplosionSpawnThingDef>Gas_Smoke</preExplosionSpawnThingDef>
-      <preExplosionSpawnChance>1</preExplosionSpawnChance>
-    </projectile>
-  </ThingDef>
-	
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="BaseRPOGrenade">
+		<defName>Bullet_RPO_D_Grenade</defName>
+		<thingClass>CombatExtended.ProjectileCE_Explosive</thingClass>
+		<label>RPO-D grenade</label>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageDef>Smoke</damageDef>
+			<explosionRadius>8</explosionRadius>
+			<preExplosionSpawnThingDef>Gas_Smoke</preExplosionSpawnThingDef>
+			<preExplosionSpawnChance>1</preExplosionSpawnChance>
+		</projectile>
+	</ThingDef>
+
 </Defs>
