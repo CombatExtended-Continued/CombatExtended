@@ -383,7 +383,9 @@ namespace CombatExtended
             {
                 foreach (var dinfo in DamageInfosToApply(defender))
                 {
+                    LastAttackVerb = this;
                     ArmorUtilityCE.ApplyParryDamage(dinfo, parryThing);
+                    LastAttackVerb = null;
                 }
             }
             if (isRiposte)
@@ -415,7 +417,7 @@ namespace CombatExtended
                 sound?.PlayOneShot(new TargetInfo(caster.Position, caster.Map));
             }
             // Register with parry tracker
-            ParryTracker tracker = defender.Map.GetComponent<ParryTracker>();
+            ParryTracker tracker = defender.Map?.GetComponent<ParryTracker>();
             if (tracker == null)
             {
                 Log.Error("CE failed to find ParryTracker to register pawn " + defender.ToString());
