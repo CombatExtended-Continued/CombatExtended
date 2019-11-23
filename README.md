@@ -4,7 +4,7 @@ Combat Extended: FastTrack Edition is a fork of the [original Combat Extended mo
 ## Features
 - Same [core features as the original mod](https://github.com/NoImageAvailable/CombatExtended/blob/master/README.md) - shooting, melee, armor, inventory and medical overhauls
 - Fully compatible with existing CE savegames - delete CE completely, drop in CE:FT and go!
-- 103 supported third-party mods (compared with 73 for CE)
+- 106 supported third-party mods (compared with 76 for CE)
 - Recognizes existing third-party standalone patches intended for the original CE
 - Additional ammo and projectile definitions and textures
 - New Graphic_StackCountRanged class for precise control of item subgraphics based on stack count
@@ -12,6 +12,7 @@ Combat Extended: FastTrack Edition is a fork of the [original Combat Extended mo
 ## Supported Third-Party Mods
 Mod | CE (original) | CE: FastTrack Edition
 --- | :---: | :---:
+[CP] British Military Kit 					|  			| &#x2705;
 A Dog Said... 										| &#x2705; 	| &#x2705;
 Alpha Animals 											|  			| &#x2705;
 A RimWorld of Magic 											|  			| &#x2705;
@@ -66,6 +67,7 @@ MiningCo. MiningHelmet								| &#x2705; 	| &#x2705;
 More Vanilla Turrets								|  			| &#x2705;
 Misc. Robots										| &#x2705; 	| &#x2705;
 More Mechanoids										| &#x2705; 	| &#x2705;
+More Practical Traits         | &#x2705; 	| &#x2705;
 NewRatkinPlus								|  			| &#x2705;
 Ni'Hal 											| &#x2705; 	| &#x2705;
 [O21] Goblins								| &#x2705; 	| &#x2705;
@@ -91,8 +93,8 @@ Rim Contractors Arsenal 						| &#x2705; 	| &#x2705;
 Rimefeller 										| &#x2705; 	| &#x2705;
 RimEffect - Asari of the Rims 										| &#x2705; 	| &#x2705;
 Rimfire 											| &#x2705; 	| &#x2705;
-Rimmu-Nation - Clothing 							|  			| &#x2705;
-Rimmu-Nation - Weapons 							|  			| &#x2705;
+[CP] Rimmu-Nation - Clothing 							|  			| &#x2705;
+[CP] Rimmu-Nation - Weapons 							|  			| &#x2705;
 Rim of Madness - Bones							| &#x2705; 	| &#x2705;
 [SS]Maid Project           | &#x2705; 	| &#x2705;
 Sergals, Gnolls and Lions								| &#x2705;* 	| &#x2705;
@@ -102,6 +104,7 @@ Spartan Foundry 								| &#x2705; 	| &#x2705;
 Spidercamp's Dog Pack 								|  			| &#x2705;
 [SYR] Thrumkin									| &#x2705; 	| &#x2705;
 T-45b Power Armor 								|  			| &#x2705;
+TouhouStyle									| &#x2705; 	| &#x2705;
 Trading Economy 									| &#x2705; 	| &#x2705;
 Vanilla-Friendly Animal Surgery 					| &#x2705; 	| &#x2705;
 Vanilla-Friendly Weapon Expansion 					| &#x2705; 	| &#x2705;
@@ -112,10 +115,10 @@ Vulpine Race Pack 									| &#x2705; 	| &#x2705;
 Warhammer: Gor 									|  			| &#x2705;
 Weapons+ 											| &#x2705; 	| &#x2705;
 Xenn Race 											| &#x2705; 	| &#x2705;
-Xenohumans 										|  			| &#x2705;
+Xenohumans 										| &#x2705; | &#x2705;
 Yabils: Space Gremlins				|  			| &#x2705;
 Zombieland 										| &#x2705; 	| &#x2705;
-**Total** | **73** | **103**
+**Total** | **76** | **106**
 &nbsp; | **CE (original)** | **CE: FastTrack Edition**
 
 *Incomplete implementation
