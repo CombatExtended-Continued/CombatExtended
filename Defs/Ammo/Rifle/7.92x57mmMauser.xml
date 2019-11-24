@@ -2,7 +2,7 @@
 <Defs>
 
 	<ThingCategoryDef>
-		<defName>Ammo792x51mmMauser</defName>
+		<defName>Ammo792x57mmMauser</defName>
 		<label>7.92x57mm Mauser</label>
 		<parent>AmmoRifles</parent>
 		<iconPath>UI/Icons/ThingCategories/CaliberRifle</iconPath>
@@ -11,18 +11,18 @@
 	<!-- ==================== AmmoSet ========================== -->
 
 	<CombatExtended.AmmoSetDef>
-		<defName>AmmoSet_792x51mmMauser</defName>
+		<defName>AmmoSet_792x57mmMauser</defName>
 		<label>7.92x57mm Mauser</label>
 		<ammoTypes>
-			<Ammo_792x51mmMauser_FMJ>Bullet_792x51mmMauser_FMJ</Ammo_792x51mmMauser_FMJ>
-			<Ammo_792x51mmMauser_AP>Bullet_792x51mmMauser_AP</Ammo_792x51mmMauser_AP>
-			<Ammo_792x51mmMauser_HP>Bullet_792x51mmMauser_HP</Ammo_792x51mmMauser_HP>
+			<Ammo_792x57mmMauser_FMJ>Bullet_792x57mmMauser_FMJ</Ammo_792x57mmMauser_FMJ>
+			<Ammo_792x57mmMauser_AP>Bullet_792x57mmMauser_AP</Ammo_792x57mmMauser_AP>
+			<Ammo_792x57mmMauser_HP>Bullet_792x57mmMauser_HP</Ammo_792x57mmMauser_HP>
 		</ammoTypes>
 	</CombatExtended.AmmoSetDef>
 
 	<!-- ==================== Ammo ========================== -->
 
-	<ThingDef Class="CombatExtended.AmmoDef" Name="792x51mmMauserBase" ParentName="SmallAmmoBase" Abstract="True">
+	<ThingDef Class="CombatExtended.AmmoDef" Name="792x57mmMauserBase" ParentName="SmallAmmoBase" Abstract="True">
 		<description>Large rifle bullet used in machine guns, sniper rifles and the occasional assault rifle.</description>
 		<statBases>
 			<Mass>0.039</Mass>
@@ -33,12 +33,12 @@
 			<li>CE_AutoEnableCrafting</li>
 		</tradeTags>
 		<thingCategories>
-			<li>Ammo792x51mmMauser</li>
+			<li>Ammo792x57mmMauser</li>
 		</thingCategories>
 	</ThingDef>
 
-	<ThingDef Class="CombatExtended.AmmoDef" ParentName="792x51mmMauserBase">
-		<defName>Ammo_792x51mmMauser_FMJ</defName>
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="792x57mmMauserBase">
+		<defName>Ammo_792x57mmMauser_FMJ</defName>
 		<label>7.92x57mm Mauser cartridge (FMJ)</label>
 		<graphicData>
 			<texPath>Things/Ammo/Rifle/FMJ</texPath>
@@ -48,11 +48,11 @@
 			<MarketValue>0.16</MarketValue>
 		</statBases>
 		<ammoClass>FullMetalJacket</ammoClass>
-		<cookOffProjectile>Bullet_792x51mmMauser_FMJ</cookOffProjectile>
+		<cookOffProjectile>Bullet_792x57mmMauser_FMJ</cookOffProjectile>
 	</ThingDef>
 
-	<ThingDef Class="CombatExtended.AmmoDef" ParentName="792x51mmMauserBase">
-		<defName>Ammo_792x51mmMauser_AP</defName>
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="792x57mmMauserBase">
+		<defName>Ammo_792x57mmMauser_AP</defName>
 		<label>7.92x57mm Mauser cartridge (AP)</label>
 		<graphicData>
 			<texPath>Things/Ammo/Rifle/AP</texPath>
@@ -62,11 +62,11 @@
 			<MarketValue>0.16</MarketValue>
 		</statBases>
 		<ammoClass>ArmorPiercing</ammoClass>
-		<cookOffProjectile>Bullet_792x51mmMauser_AP</cookOffProjectile>
+		<cookOffProjectile>Bullet_792x57mmMauser_AP</cookOffProjectile>
 	</ThingDef>
 
-	<ThingDef Class="CombatExtended.AmmoDef" ParentName="792x51mmMauserBase">
-		<defName>Ammo_792x51mmMauser_HP</defName>
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="792x57mmMauserBase">
+		<defName>Ammo_792x57mmMauser_HP</defName>
 		<label>7.92x57mm Mauser cartridge (HP)</label>
 		<graphicData>
 			<texPath>Things/Ammo/Rifle/HP</texPath>
@@ -76,12 +76,12 @@
 			<MarketValue>0.16</MarketValue>
 		</statBases>
 		<ammoClass>HollowPoint</ammoClass>
-		<cookOffProjectile>Bullet_792x51mmMauser_HP</cookOffProjectile>
+		<cookOffProjectile>Bullet_792x57mmMauser_HP</cookOffProjectile>
 	</ThingDef>
 
 	<!-- ================== Projectiles ================== -->
 
-	<ThingDef Class="CombatExtended.AmmoDef" Name="Base792x51mmMauserBullet" ParentName="BaseBullet" Abstract="true">
+	<ThingDef Class="CombatExtended.AmmoDef" Name="Base792x57mmMauserBullet" ParentName="BaseBullet" Abstract="true">
 		<graphicData>
 			<texPath>Things/Projectile/Bullet_Small</texPath>
 			<graphicClass>Graphic_Single</graphicClass>
@@ -93,8 +93,8 @@
 		</projectile>
 	</ThingDef>
 
-	<ThingDef Class="CombatExtended.AmmoDef" ParentName="Base792x51mmMauserBullet">
-		<defName>Bullet_792x51mmMauser_FMJ</defName>
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="Base792x57mmMauserBullet">
+		<defName>Bullet_792x57mmMauser_FMJ</defName>
 		<label>7.62mm Mauser bullet (FMJ)</label>
 		<projectile Class="CombatExtended.ProjectilePropertiesCE">
 			<damageAmountBase>21</damageAmountBase>
@@ -103,8 +103,8 @@
 		</projectile>
 	</ThingDef>
 
-	<ThingDef Class="CombatExtended.AmmoDef" ParentName="Base792x51mmMauserBullet">
-		<defName>Bullet_792x51mmMauser_AP</defName>
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="Base792x57mmMauserBullet">
+		<defName>Bullet_792x57mmMauser_AP</defName>
 		<label>7.62mm Mauser bullet (AP)</label>
 		<projectile Class="CombatExtended.ProjectilePropertiesCE">
 			<damageAmountBase>13</damageAmountBase>
@@ -113,8 +113,8 @@
 		</projectile>
 	</ThingDef>
 
-	<ThingDef Class="CombatExtended.AmmoDef" ParentName="Base792x51mmMauserBullet">
-		<defName>Bullet_792x51mmMauser_HP</defName>
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="Base792x57mmMauserBullet">
+		<defName>Bullet_792x57mmMauser_HP</defName>
 		<label>7.62mm Mauser bullet (HP)</label>
 		<projectile Class="CombatExtended.ProjectilePropertiesCE">
 			<damageAmountBase>27</damageAmountBase>
@@ -126,7 +126,7 @@
 	<!-- ==================== Recipes ========================== -->
 
 	<RecipeDef ParentName="AmmoRecipeBase">
-		<defName>MakeAmmo_792x51mmMauser_FMJ</defName>
+		<defName>MakeAmmo_792x57mmMauser_FMJ</defName>
 		<label>make 7.92x57mm Mauser (FMJ) cartridge x500</label>
 		<description>Craft 500 7.92x57mm Mauser (FMJ) cartridges.</description>
 		<jobString>Making 7.92x57mm Mauser (FMJ) cartridges.</jobString>
@@ -146,13 +146,13 @@
 			</thingDefs>
 		</fixedIngredientFilter>
 		<products>
-			<Ammo_792x51mmMauser_FMJ>500</Ammo_792x51mmMauser_FMJ>
+			<Ammo_792x57mmMauser_FMJ>500</Ammo_792x57mmMauser_FMJ>
 		</products>
 		<workAmount>4000</workAmount>
 	</RecipeDef>
 
 	<RecipeDef ParentName="AmmoRecipeBase">
-		<defName>MakeAmmo_792x51mmMauser_AP</defName>
+		<defName>MakeAmmo_792x57mmMauser_AP</defName>
 		<label>make 7.92x57mm Mauser (AP) cartridge x500</label>
 		<description>Craft 500 7.92x57mm Mauser (AP) cartridges.</description>
 		<jobString>Making 7.92x57mm Mauser (AP) cartridges.</jobString>
@@ -172,13 +172,13 @@
 			</thingDefs>
 		</fixedIngredientFilter>
 		<products>
-			<Ammo_792x51mmMauser_AP>500</Ammo_792x51mmMauser_AP>
+			<Ammo_792x57mmMauser_AP>500</Ammo_792x57mmMauser_AP>
 		</products>
 		<workAmount>4000</workAmount>
 	</RecipeDef>
 
 	<RecipeDef ParentName="AmmoRecipeBase">
-		<defName>MakeAmmo_792x51mmMauser_HP</defName>
+		<defName>MakeAmmo_792x57mmMauser_HP</defName>
 		<label>make 7.92x57mm Mauser (HP) cartridge x500</label>
 		<description>Craft 500 7.92x57mm Mauser (HP) cartridges.</description>
 		<jobString>Making 7.92x57mm Mauser (HP) cartridges.</jobString>
@@ -198,7 +198,7 @@
 			</thingDefs>
 		</fixedIngredientFilter>
 		<products>
-			<Ammo_792x51mmMauser_HP>500</Ammo_792x51mmMauser_HP>
+			<Ammo_792x57mmMauser_HP>500</Ammo_792x57mmMauser_HP>
 		</products>
 		<workAmount>4000</workAmount>
 	</RecipeDef>
