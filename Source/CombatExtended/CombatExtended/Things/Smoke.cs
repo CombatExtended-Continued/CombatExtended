@@ -8,71 +8,67 @@ namespace CombatExtended
 {
     public class Smoke : Gas
     {
-        private int _ticksUntilMove;
-        private const int BaseTicksUntilMove = 40;
-        private const int TicksUntilMoveDelta = 20;
-        private const float InhalationPerSec = 0.0150f / GenTicks.TicksPerRealSecond;
+        public const int UpdateIntervalTicks = 30;
+        private const float InhalationPerSec = 0.0150f * UpdateIntervalTicks / GenTicks.TicksPerRealSecond;
+        private const float DensityDissipationThreshold = 3.0f;
+        private const float MinSpreadDensity = 1.0f;    //ensures smoke clouds don't spread to infinitely small densities. Should be lower than DensityDissipationThreshold to avoid clouds stuck indoors.
+        private const float MaxDensity = 12800f;
+
+        private float density;
+        private int updateTickOffset;   //Random offset (it looks jarring when smoke clouds all update on the same tick)
+
+        public override void SpawnSetup(Map map, bool respawningAfterLoad)
+        {
+            updateTickOffset = Rand.Range(0, UpdateIntervalTicks);
+            base.SpawnSetup(map, respawningAfterLoad);
+        }
 
         public override void ExposeData()
         {
             base.ExposeData();
-            Scribe_Values.Look(ref _ticksUntilMove, "ticksUntilMove");
+            Scribe_Values.Look(ref density, "density");
+        }
+
+        public override string LabelNoCount
+        {
+            get
+            {
+                return base.LabelNoCount + " (" + Mathf.RoundToInt(density) + " ppm)";
+            }
         }
 
         private bool CanMoveTo(IntVec3 pos)
         {
-            return !pos.Filled(Map)
-                || (pos.GetDoor(Map)?.Open ?? false)
-                || (pos.GetFirstThing<Building_Vent>(Map) is Building_Vent vent && vent.TryGetComp<CompFlickable>().SwitchIsOn);
+            return 
+                pos.InBounds(Map) 
+                && (
+                    !pos.Filled(Map)
+                    || (pos.GetDoor(Map)?.Open ?? false)
+                    || (pos.GetFirstThing<Building_Vent>(Map) is Building_Vent vent && vent.TryGetComp<CompFlickable>().SwitchIsOn)
+                );
         }
 
         public override void Tick()
         {
-            ApplyHediffs();
-
-            _ticksUntilMove--;
-            if (!Position.Roofed(Map))
+            if (density > DensityDissipationThreshold)   //very low density smoke clouds eventually dissipate on their own
             {
-                destroyTick--;
-                base.Tick();
-                return;
-            }
-
-            // Don't decay if there's lots of smoke around
-            var freeCells = GenAdjFast.AdjacentCells8Way(Position).InRandomOrder().Where(CanMoveTo).ToList();
-            var decayChance = Mathf.Clamp((freeCells.Count - 4) / 8f, 0, 1);
-            if (!Rand.Chance(decayChance))
                 destroyTick++;
-
-            // Movement
-            if (_ticksUntilMove > 0)
-            {
-                base.Tick();
-                return;
-            }
-            _ticksUntilMove = BaseTicksUntilMove + Rand.RangeInclusive(-TicksUntilMoveDelta, TicksUntilMoveDelta);
-
-            // Move towards unroofed cells if possible
-            var unroofedCell = freeCells.FirstOrFallback(c => !c.Roofed(Map), IntVec3.Invalid);
-            if (unroofedCell.IsValid)
-            {
-                var otherGas = unroofedCell.GetGas(Map);
-                otherGas?.Destroy();
-
-                Position = unroofedCell;
-                base.Tick();
-                return;
             }
 
-            // Find gas-free tile to move to
-            foreach (var cell in freeCells)
+            if ((GenTicks.TicksGame + updateTickOffset) % UpdateIntervalTicks == 0)
             {
-                if (cell.GetGas(Map) == null)
+                if (!CanMoveTo(Position))   //cloud is in inaccessible cell, probably a recently closed door or vent. Spread to nearby cells and delete.
                 {
-                    Position = cell;
-                    base.Tick();
+                    SpreadToAdjacentCells();
+                    Destroy();
                     return;
                 }
+                if (!Position.Roofed(Map))
+                {
+                    UpdateDensityBy(-60);
+                }
+                SpreadToAdjacentCells();
+                ApplyHediffs();
             }
 
             base.Tick();
@@ -84,19 +80,49 @@ namespace CombatExtended
                 return;
 
             var pawns = Position.GetThingList(Map).Where(t => t is Pawn).ToList();
-            //foreach (var cell in GenAdjFast.AdjacentCells8Way(Position))
-            //{
-            //    if (!cell.InBounds(Map))
-            //        continue;
-            //    pawns.AddRange(cell.GetThingList(Map).Where(t => t is Pawn));
-            //}
 
             foreach (Pawn pawn in pawns)
             {
-
-                var severity = InhalationPerSec * pawn.GetStatValue(CE_StatDefOf.SmokeSensitivity);
+                var severity = InhalationPerSec * (density / MaxDensity) * pawn.GetStatValue(CE_StatDefOf.SmokeSensitivity);
                 HealthUtility.AdjustSeverity(pawn, CE_HediffDefOf.SmokeInhalation, severity);
             }
+        }
+
+        private void SpreadToAdjacentCells()
+        {
+            if (density >= 1f)
+            {
+                var freeCells = GenAdjFast.AdjacentCellsCardinal(Position).InRandomOrder().Where(CanMoveTo).ToList();
+                foreach (var freeCell in freeCells)
+                {
+                    if (freeCell.GetGas(Map) is Smoke existingSmoke)
+                    {
+                        var densityDiff = this.density - existingSmoke.density;
+                        TransferDensityTo(existingSmoke, densityDiff / 2);
+                    }
+                    else {
+                        var transferedDensity = this.density / 2;
+                        var newSmokeCloud = (Smoke)GenSpawn.Spawn(CE_ThingDefOf.Gas_BlackSmoke, freeCell, Map);
+                        TransferDensityTo(newSmokeCloud, this.density / 2);
+                    }
+                }
+            }
+        }
+
+        public void UpdateDensityBy(float diff)
+        {
+            density = Mathf.Clamp(density + diff, 0, MaxDensity);
+        }
+
+        private void TransferDensityTo(Smoke target, float value)
+        {
+            this.UpdateDensityBy(-value);
+            target.UpdateDensityBy(value);
+        }
+
+        public float GetOpacity()
+        {
+            return 0.05f + (0.95f * (density / MaxDensity));
         }
     }
 }

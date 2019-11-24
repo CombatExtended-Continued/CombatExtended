@@ -67,7 +67,7 @@ namespace CombatExtended.Harmony
     [HarmonyPatch(typeof(Fire), "Tick")]
     internal static class Harmony_Fire_Tick
     {
-        private const int TicksPerSmoke = 15;
+        private const float SmokeDensityPerInterval = 150f;
 
         internal static IEnumerable<CodeInstruction> Transpiler(IEnumerable<CodeInstruction> instructions)
         {
@@ -85,10 +85,19 @@ namespace CombatExtended.Harmony
         {
             if (__instance.Spawned
                 && Controller.settings.SmokeEffects
-                && __instance.IsHashIntervalTick(TicksPerSmoke)
-                && __instance.Position.Roofed(__instance.Map)
-                && __instance.Position.GetGas(__instance.Map) == null)
-                GenSpawn.Spawn(CE_ThingDefOf.Gas_BlackSmoke, __instance.Position, __instance.Map);
+                && __instance.IsHashIntervalTick(Smoke.UpdateIntervalTicks)
+                && __instance.Position.Roofed(__instance.Map))
+            {
+                if (__instance.Position.GetGas(__instance.Map) is Smoke existingSmoke)
+                {
+                    existingSmoke.UpdateDensityBy(SmokeDensityPerInterval);
+                }
+                else
+                {
+                    var newSmoke = (Smoke)GenSpawn.Spawn(CE_ThingDefOf.Gas_BlackSmoke, __instance.Position, __instance.Map);
+                    newSmoke.UpdateDensityBy(SmokeDensityPerInterval);
+                }
+            }
         }
     }
 
