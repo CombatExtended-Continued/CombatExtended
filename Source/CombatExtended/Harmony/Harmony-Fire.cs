@@ -130,7 +130,7 @@ namespace CombatExtended.Harmony
         private static float GetWindMult(Fire fire)
         {
             var tracker = fire.Map.GetComponent<WeatherTracker>();
-            return Mathf.Sqrt(tracker.GetWindStrengthAt(fire.Position));
+            return Mathf.Max(1, Mathf.Sqrt(tracker.GetWindStrengthAt(fire.Position)));
         }
 
         private static IntVec3 GetRandWindShift(Fire fire, bool spreadFar)
