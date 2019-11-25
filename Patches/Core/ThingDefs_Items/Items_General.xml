@@ -1,31 +1,46 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <Patch>
 
-	<!-- ========== Resource RawPlant ========== -->
+  <!-- ========== Resource RawPlant ========== -->
 
-	<Operation Class="PatchOperationAdd">
-		<xpath>Defs/ThingDef[@Name="OrganicProductBase"]/statBases</xpath>
-		<value>
-			<Bulk>0.2</Bulk>
-		</value>
-	</Operation>
+  <Operation Class="PatchOperationAdd">
+    <xpath>Defs/ThingDef[@Name="OrganicProductBase"]/statBases</xpath>
+    <value>
+      <Bulk>0.2</Bulk>
+    </value>
+  </Operation>
 
   <!-- ========== Resource Exotic ========== -->
 
   <!-- Thrumbo Horn -->
-  
+
   <Operation Class="PatchOperationRemove">
     <xpath>Defs/ThingDef[defName="ThrumboHorn"]/tools</xpath>
   </Operation>
-  
+
   <Operation Class="PatchOperationAttributeSet">
     <xpath>Defs/ThingDef[defName="ThrumboHorn"]</xpath>
     <attribute>ParentName</attribute>
     <value>ResourceBase</value>
   </Operation>
 
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/ThingDef[defName="ThrumboHorn"]/statBases/Mass</xpath>
+    <value>
+      <Mass>50</Mass>
+      <Bulk>25</Bulk>
+    </value>
+  </Operation>
+
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/ThingDef[defName="ThrumboHorn"]/description</xpath>
+    <value>
+      <description>A thrumbo's horn. Its rarity makes it priceless in most markets.</description>
+    </value>
+  </Operation>
+
   <!-- Elephant Tusk -->
-  
+
   <Operation Class="PatchOperationRemove">
     <xpath>Defs/ThingDef[defName="ElephantTusk"]/tools</xpath>
   </Operation>
@@ -35,8 +50,21 @@
     <attribute>ParentName</attribute>
     <value>ResourceBase</value>
   </Operation>
-  
-  
-  
+
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/ThingDef[defName="ElephantTusk"]/statBases/Mass</xpath>
+    <value>
+      <Mass>40</Mass>
+      <Bulk>20</Bulk>
+    </value>
+  </Operation>
+
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/ThingDef[defName="ElephantTusk"]/description</xpath>
+    <value>
+      <description>An elephant's tusk. Fetches a good price among exotic traders.</description>
+    </value>
+  </Operation>
+
 </Patch>
 
