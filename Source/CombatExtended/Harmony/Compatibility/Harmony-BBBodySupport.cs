@@ -24,7 +24,7 @@ namespace CombatExtended.Harmony.Compatibility
 
         static bool Prepare()
         {
-            if (ass.FullName.Contains("BBBodySupport"))
+            if (ass?.FullName.Contains("BBBodySupport") ?? false)
             {
                 return true;
             }
