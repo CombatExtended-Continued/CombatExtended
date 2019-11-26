@@ -65,6 +65,19 @@
 			</value>
 			</li>
 			
+			<li Class="PatchOperationAdd">
+				<xpath>Defs</xpath>
+				<value>
+					<CombatExtended.AmmoSetDef>
+						<defName>AmmoSet_ArrowKijinFlame</defName>
+						<label>flame arrows</label>
+						<ammoTypes>
+						  <Ammo_Arrow_Flame>Projectile_StreamlinedArrow_Flame</Ammo_Arrow_Flame>
+						</ammoTypes>
+					</CombatExtended.AmmoSetDef>
+				</value>
+			</li>
+			
 			<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
 				<defName>Kijin_FlameBow</defName>
 				<statBases>
@@ -75,19 +88,18 @@
 				  <RangedWeapon_Cooldown>0.8</RangedWeapon_Cooldown>
 				</statBases>
 				<costList>
-				  <WoodLog>75</WoodLog>
-				  <Prometheum>25</Prometheum>
+				  <WoodLog>35</WoodLog>
 				</costList>
 				<Properties>
 				  <verbClass>CombatExtended.Verb_ShootCE</verbClass>
 				  <hasStandardCommand>true</hasStandardCommand>
-				  <defaultProjectile>Projectile_StreamlinedArrow_Stone</defaultProjectile>
-				  <warmupTime>1.2</warmupTime>
+				  <defaultProjectile>Projectile_StreamlinedArrow_Flame</defaultProjectile>
+				  <warmupTime>0.8</warmupTime>
 				  <range>32</range>
 				  <soundCast>Bow_Small</soundCast>
 				</Properties>
 				<AmmoUser>
-				  <ammoSet>AmmoSet_StreamlinedArrow</ammoSet>
+				  <ammoSet>AmmoSet_ArrowKijinFlame</ammoSet>
 				</AmmoUser>
 				<FireModes />
 			</li>
@@ -120,32 +132,43 @@
 			</value>
 			</li>
 			
+			<li Class="PatchOperationAdd">
+				<xpath>Defs</xpath>
+				<value>
+					<CombatExtended.AmmoSetDef>
+						<defName>AmmoSet_ArrowKijinVenom</defName>
+						<label>venom arrows</label>
+						<ammoTypes>
+						  <Ammo_Arrow_Venom>Projectile_StreamlinedArrow_Venom</Ammo_Arrow_Venom>
+						</ammoTypes>
+					</CombatExtended.AmmoSetDef>
+				</value>
+			</li>
+			
 			<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
 				<defName>Kijin_PosionBow</defName>
 				<statBases>
 				  <SightsEfficiency>0.6</SightsEfficiency>
-				  <ShotSpread>1</ShotSpread>
-				  <SwayFactor>2</SwayFactor>
-				  <Bulk>5.00</Bulk>
+				  <ShotSpread>0.5</ShotSpread>
+				  <SwayFactor>1</SwayFactor>
+				  <Bulk>4.00</Bulk>
 				  <RangedWeapon_Cooldown>1</RangedWeapon_Cooldown>
 				</statBases>
 				<costList>
-				  <WoodLog>20</WoodLog>
+				  <WoodLog>35</WoodLog>
 				</costList>
 				<Properties>
 				  <verbClass>CombatExtended.Verb_ShootCE</verbClass>
 				  <hasStandardCommand>true</hasStandardCommand>
-				  <defaultProjectile>Projectile_StreamlinedArrow_Stone</defaultProjectile>
-				  <warmupTime>1.3</warmupTime>
-				  <range>33</range>
-				  <soundCast>Bow_Large</soundCast>
+				  <defaultProjectile>Projectile_StreamlinedArrow_Venom</defaultProjectile>
+				  <warmupTime>1</warmupTime>
+				  <range>35</range>
+				  <soundCast>Bow_Small</soundCast>
 				</Properties>
 				<AmmoUser>
-				  <ammoSet>AmmoSet_StreamlinedArrow</ammoSet>
+				  <ammoSet>AmmoSet_ArrowKijinVenom</ammoSet>
 				</AmmoUser>
 				<FireModes />
-				<researchPrerequisite>Greatbow</researchPrerequisite>
-				<AllowWithRunAndGun>false</AllowWithRunAndGun>
 			</li>
 			
 			<li Class="PatchOperationReplace">
