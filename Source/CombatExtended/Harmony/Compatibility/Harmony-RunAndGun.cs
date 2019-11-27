@@ -1,5 +1,4 @@
 ﻿using Harmony;
-using RimWorld;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
@@ -21,7 +20,6 @@ namespace CombatExtended.Harmony.Compatibility
 
         internal static bool Prepare()
         {
-            HarmonyInstance.DEBUG = true;
             if (ass != null)
             {
                 foreach (var t in ass.GetTypes())
@@ -93,6 +91,5 @@ namespace CombatExtended.Harmony.Compatibility
         {
             return instance.EquipmentSource.TryGetComp<CompAmmoUser>()?.CanBeFiredNow ?? true;
         }
-
     }
 }
