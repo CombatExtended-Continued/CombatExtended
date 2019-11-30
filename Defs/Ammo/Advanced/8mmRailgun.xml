@@ -25,9 +25,9 @@
 		<label>8mm Railgun cartridge (Sabot)</label>
 		<description>Fin-stabilized tungsten carbide penetrator with discarding sabot, designed for railgun pistols.</description>
 		<statBases>
-			<Mass>0.01</Mass>
-			<Bulk>0.008</Bulk>
-			<MarketValue>0.18</MarketValue>
+			<Mass>0.009</Mass>
+			<Bulk>0.01</Bulk>
+			<MarketValue>0.06</MarketValue>
 		</statBases>
 		<tradeTags>
 			<li>CE_AutoEnableTrade</li>
@@ -55,12 +55,13 @@
 		</graphicData>
 		<projectile Class="CombatExtended.ProjectilePropertiesCE">
 			<damageDef>Bullet</damageDef>
-			<damageAmountBase>22</damageAmountBase>
-			<armorPenetrationBase>1.054</armorPenetrationBase>
-			<speed>600</speed>
+			<damageAmountBase>28</damageAmountBase>
+			<armorPenetrationSharp>57</armorPenetrationSharp>
+			<armorPenetrationBlunt>252.720</armorPenetrationBlunt>
+			<speed>360</speed>
 		</projectile>
 	</ThingDef>
-	
+
 	<!-- ==================== Recipes ========================== -->
 
 	<RecipeDef ParentName="AmmoRecipeBase">
@@ -68,6 +69,7 @@
 		<label>make 8mm Railgun cartridge (Sabot) x500</label>
 		<description>Craft 500 8mm Railgun (Sabot) cartridges.</description>
 		<jobString>Making 8mm Railgun (Sabot) cartridges.</jobString>
+		<workAmount>1000</workAmount>
 		<ingredients>
 			<li>
 				<filter>
@@ -75,7 +77,7 @@
 						<li>Steel</li>
 					</thingDefs>
 				</filter>
-				<count>4</count>
+				<count>2</count>
 			</li>
 			<li>
 				<filter>
@@ -83,7 +85,7 @@
 						<li>Uranium</li>
 					</thingDefs>
 				</filter>
-				<count>1</count>
+				<count>4</count>
 			</li>
 		</ingredients>
 		<fixedIngredientFilter>
@@ -95,7 +97,6 @@
 		<products>
 			<Ammo_8mmRailgun_Sabot>500</Ammo_8mmRailgun_Sabot>
 		</products>
-		<workAmount>19500</workAmount>
 	</RecipeDef>
 
 </Defs>

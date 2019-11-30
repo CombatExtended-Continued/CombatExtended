@@ -25,9 +25,9 @@
 		<label>Plasma Rifle Power Cell</label>
 		<description>Plasma containment power cell optimized for rifles</description>
 		<statBases>
-			<Mass>0.016</Mass>
-			<Bulk>0.025</Bulk>
-			<MarketValue>1.2</MarketValue>
+			<Mass>0.018</Mass>
+			<Bulk>0.14</Bulk>
+			<MarketValue>0.24</MarketValue>
 		</statBases>
 		<tradeTags>
 			<li>CE_AutoEnableTrade</li>
@@ -42,6 +42,19 @@
 			<graphicClass>CombatExtended.Graphic_StackCountRanged</graphicClass>
 		</graphicData>
 		<ammoClass>Plasma</ammoClass>
+		<comps>
+			<!-- Arbitarily defined cookoff explosive stats; represents a plasma containment system failing -->
+			<li Class="CombatExtended.CompProperties_ExplosiveCE">
+				<explosionDamage>20</explosionDamage>
+				<explosionDamageDef>Bomb</explosionDamageDef>
+				<explosionRadius>0.5</explosionRadius>
+				<fragments>
+					<Fragment_Large>2</Fragment_Large>
+					<Fragment_Small>10</Fragment_Small>
+				</fragments>
+				<applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
+			</li>
+		</comps>
 	</ThingDef>
 
 	<!-- ================== Projectiles ================== -->
@@ -54,10 +67,17 @@
 			<graphicClass>Graphic_Single</graphicClass>
 		</graphicData>
 		<projectile Class="CombatExtended.ProjectilePropertiesCE">
-			<damageDef>Flame</damageDef>
 			<speed>200</speed>
-			<damageAmountBase>18</damageAmountBase>
-			<armorPenetrationBase>1.0</armorPenetrationBase>
+			<damageDef>Bomb</damageDef>
+			<damageAmountBase>2</damageAmountBase>
+			<explosionRadius>0.5</explosionRadius>
+			<applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
+			<secondaryDamage>
+				<li>
+					<def>Flame_Secondary</def>
+					<amount>13</amount>
+				</li>
+			</secondaryDamage>
 		</projectile>
 	</ThingDef>
 
@@ -68,14 +88,23 @@
 		<label>make Plasma Rifle Power Cells</label>
 		<description>Craft 500 shots' worth of Plasma Rifle Power Cells.</description>
 		<jobString>Making Plasma Rifle Power Cells.</jobString>
+		<workAmount>3800</workAmount>
 		<ingredients>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>Steel</li>
+					</thingDefs>
+				</filter>
+				<count>18</count>
+			</li>
 			<li>
 				<filter>
 					<thingDefs>
 						<li>Plasteel</li>
 					</thingDefs>
 				</filter>
-				<count>5</count>
+				<count>2</count>
 			</li>
 			<li>
 				<filter>
@@ -83,11 +112,12 @@
 						<li>ComponentIndustrial</li>
 					</thingDefs>
 				</filter>
-				<count>5</count>
+				<count>2</count>
 			</li>
 		</ingredients>
 		<fixedIngredientFilter>
 			<thingDefs>
+				<li>Steel</li>
 				<li>Plasteel</li>
 				<li>ComponentIndustrial</li>
 			</thingDefs>
@@ -95,7 +125,6 @@
 		<products>
 			<Ammo_PlasmaCellRifle>500</Ammo_PlasmaCellRifle>
 		</products>
-		<workAmount>20000</workAmount>
 	</RecipeDef>
 
 </Defs>
