@@ -46,7 +46,7 @@ namespace CombatExtended
                 }
                 catch (Exception e)
                 {
-                	Log.Error("CombatExtended :: IconTexture("+def.ToString()+") - pawnKindDef check - resulted in the following error [defaulting to non-cropped texture]: "+e.ToString());
+                	Log.Error("Combat Extended FastTrack Edition :: IconTexture(" + def.ToString()+") - pawnKindDef check - resulted in the following error [defaulting to non-cropped texture]: "+e.ToString());
         			_cachedDefIcons[def.defName] = (pdef.lifeStages.Last().bodyGraphicData.Graphic.MatSouth.mainTexture as Texture2D);
                     return _cachedDefIcons[def.defName];
                 }
@@ -71,7 +71,7 @@ namespace CombatExtended
                 }
                 catch (Exception e)
                 {
-                	Log.Error("CombatExtended :: IconTexture("+def.ToString()+") - entityDefToBuild check - resulted in the following error [defaulting to non-cropped texture]: "+e.ToString());
+                	Log.Error("Combat Extended FastTrack Edition :: IconTexture(" + def.ToString()+") - entityDefToBuild check - resulted in the following error [defaulting to non-cropped texture]: "+e.ToString());
                 	_cachedDefIcons[def.defName]= tdef.entityDefToBuild.IconTexture();
                 	return _cachedDefIcons[def.defName];
                 }

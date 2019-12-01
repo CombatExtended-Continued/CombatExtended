@@ -82,7 +82,7 @@ namespace CombatExtended
                         var shieldDef = shield.def.GetModExtension<ShieldDefExtension>();
                         if (shieldDef == null)
                         {
-                            Log.ErrorOnce("CE :: shield " + shield.def.ToString() + " is Apparel_Shield but has no ShieldDefExtension", shield.def.GetHashCode() + 12748102);
+                            Log.ErrorOnce("Combat Extended FastTrack Edition :: shield " + shield.def.ToString() + " is Apparel_Shield but has no ShieldDefExtension", shield.def.GetHashCode() + 12748102);
                         }
                         else
                         {

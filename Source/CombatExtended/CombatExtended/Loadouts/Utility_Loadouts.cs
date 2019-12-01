@@ -264,7 +264,7 @@ namespace CombatExtended
             var ys = xs.OrderBy(x => x).ToArray();
             if (ys.Length == 0)
             {
-                Log.Error("CE :: Utility_Loadouts :: Median: Nonzero-length array");
+                Log.Error("Combat Extended FastTrack Edition :: Utility_Loadouts :: Median: Nonzero-length array");
                 return 0;
             }
             else if (ys.Length % 2 == 0)

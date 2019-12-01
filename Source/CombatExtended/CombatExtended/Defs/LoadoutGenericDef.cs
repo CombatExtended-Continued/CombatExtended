@@ -65,10 +65,10 @@ namespace CombatExtended
 			generic.isBasic = true;
 			
 			defs.Add(generic);
-			//Log.Message(string.Concat("CombatExtended :: LoadoutGenericDef :: ", generic.LabelCap, " list: ", string.Join(", ", DefDatabase<ThingDef>.AllDefs.Where(t => generic.lambda(t)).Select(t => t.label).ToArray())));
-			
-			
-			float targetNutrition = 0.85f;
+            //Log.Message(string.Concat("Combat Extended FastTrack Edition :: LoadoutGenericDef :: ", generic.LabelCap, " list: ", string.Join(", ", DefDatabase<ThingDef>.AllDefs.Where(t => generic.lambda(t)).Select(t => t.label).ToArray())));
+
+
+            float targetNutrition = 0.85f;
 			generic = new LoadoutGenericDef();
 			generic.defName = "GenericRawFood";
 			generic.description = "Generic Loadout for Raw Food.  Intended for compatibility with pawns automatically picking up raw food to train animals.";
@@ -81,10 +81,10 @@ namespace CombatExtended
 			//TODO: Test pawns fetching raw food if no meal is available, if so then add a patch to have that talk to HoldTracker too.
 			
 			defs.Add(generic);
-			//Log.Message(string.Concat("CombatExtended :: LoadoutGenericDef :: ", generic.LabelCap, " list: ", string.Join(", ", DefDatabase<ThingDef>.AllDefs.Where(t => generic.lambda(t)).Select(t => t.label + " B(" + t.GetStatValueAbstract(CE_StatDefOf.Bulk) + ") M(" + t.GetStatValueAbstract(StatDefOf.Mass) + ")").ToArray())));
-			
-			
-			generic = new LoadoutGenericDef();
+            //Log.Message(string.Concat("Combat Extended FastTrack Edition :: LoadoutGenericDef :: ", generic.LabelCap, " list: ", string.Join(", ", DefDatabase<ThingDef>.AllDefs.Where(t => generic.lambda(t)).Select(t => t.label + " B(" + t.GetStatValueAbstract(CE_StatDefOf.Bulk) + ") M(" + t.GetStatValueAbstract(StatDefOf.Mass) + ")").ToArray())));
+
+
+            generic = new LoadoutGenericDef();
 			generic.defName = "GenericDrugs";
 			generic.defaultCount = 3;
 			generic.description = "Generic Loadout for Drugs.  Intended for compatibility with pawns automatically picking up drugs in compliance with drug policies.";
@@ -93,7 +93,7 @@ namespace CombatExtended
 			generic.isBasic = true;
 			
 			defs.Add(generic);
-            //Log.Message(string.Concat("CombatExtended :: LoadoutGenericDef :: ", generic.LabelCap, " list: ", string.Join(", ", DefDatabase<ThingDef>.AllDefs.Where(t => generic.lambda(t)).Select(t => t.label).ToArray())));
+            //Log.Message(string.Concat("Combat Extended FastTrack Edition :: LoadoutGenericDef :: ", generic.LabelCap, " list: ", string.Join(", ", DefDatabase<ThingDef>.AllDefs.Where(t => generic.lambda(t)).Select(t => t.label).ToArray())));
 
 
             generic = new LoadoutGenericDef();
@@ -127,11 +127,11 @@ namespace CombatExtended
 				generic.thingRequestGroup = ThingRequestGroup.HaulableEver;
 				generic._lambda = td => td is AmmoDef && gun.GetCompProperties<CompProperties_AmmoUser>().ammoSet.ammoTypes.Any(al => al.ammo == td);
 				defs.Add(generic);
-				//Log.Message(string.Concat("CombatExtended :: LoadoutGenericDef :: ", generic.LabelCap, " list: ", string.Join(", ", DefDatabase<ThingDef>.AllDefs.Where(t => generic.lambda(t)).Select(t => t.label).ToArray())));
-			}
-			
-			// finally we add all the defs generated to the DefDatabase.
-			DefDatabase<LoadoutGenericDef>.Add(defs);
+                //Log.Message(string.Concat("Combat Extended FastTrack Edition :: LoadoutGenericDef :: ", generic.LabelCap, " list: ", string.Join(", ", DefDatabase<ThingDef>.AllDefs.Where(t => generic.lambda(t)).Select(t => t.label).ToArray())));
+            }
+
+            // finally we add all the defs generated to the DefDatabase.
+            DefDatabase<LoadoutGenericDef>.Add(defs);
 		}
 		
 		#endregion Constructors
