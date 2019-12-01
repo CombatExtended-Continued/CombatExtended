@@ -4,7 +4,7 @@ Combat Extended: FastTrack Edition is a fork of the [original Combat Extended mo
 ## Features
 - Same [core features as the original mod](https://github.com/NoImageAvailable/CombatExtended/blob/master/README.md) - shooting, melee, armor, inventory and medical overhauls
 - Fully compatible with existing CE savegames - delete CE completely, drop in CE:FT and go!
-- 106 supported third-party mods (compared with 76 for CE)
+- 111 supported third-party mods (compared with 78 for CE)
 - Recognizes existing third-party standalone patches intended for the original CE
 - Additional ammo and projectile definitions and textures
 - New Graphic_StackCountRanged class for precise control of item subgraphics based on stack count
@@ -21,7 +21,10 @@ Mod | CE (original) | CE: FastTrack Edition
 [O21] Goblins						| &#x2705;	| &#x2705;
 [O21] Goblins - Faction Addon				| &#x2705;	| &#x2705;
 [O21] Kobolds						| &#x2705;	| &#x2705;
+[Ods] Kaiser Reich's Imperial Army - Apparel            |  		| &#x2705;
 [Ods] SCP Outfits Only Edition				| &#x2705;	| &#x2705;
+[Ods] Third Reich - Uniforms                            |  		| &#x2705;
+[Pratt] WWII Weapons Pack (Vanilla)                     |  		| &#x2705;
 [RH] Faction: Elite Crew				|  		| &#x2705;
 [RH] Faction: Last Man Mercs				|  		| &#x2705;
 [RH] Faction: Militaires Sans Frontieres		|  		| &#x2705;
@@ -44,6 +47,7 @@ Black Widows						| &#x2705;	| &#x2705;
 Cupro's Alloys						| &#x2705;	| &#x2705;
 Cute Penguin						| &#x2705;	| &#x2705;
 CyberNet						| &#x2705;	| &#x2705;
+Cybernetic Organism and Neural Network	        	| &#x2705;	| &#x2705;
 Defensive Machine Gun Turret Pack			| &#x2705;	| &#x2705;
 Dinosauria						| &#x2705;	| &#x2705;
 Dragon Mod						| &#x2705;	| &#x2705;
@@ -79,6 +83,7 @@ Lizardmen						|  		| &#x2705;
 Logann Race						| &#x2705;	| &#x2705;
 Magical Menagerie					|  		| &#x2705;
 Mechanoids Extraordinaire				| &#x2705;	| &#x2705;
+Medical System Expansion				| &#x2705;	| &#x2705;
 Megafauna						| &#x2705;	| &#x2705;
 MiningCo. MiningHelmet					| &#x2705;	| &#x2705;
 Misc. Robots						| &#x2705;	| &#x2705;
@@ -118,7 +123,7 @@ Xenn Race						| &#x2705;	| &#x2705;
 Xenohumans						| &#x2705;	| &#x2705;
 Yabils: Space Gremlins					|  		| &#x2705;
 Zombieland						| &#x2705;	| &#x2705;
-**Total** | **76** | **106**
+**Total** | **78** | **111**
 &nbsp; | **CE (original)** | **CE: FastTrack Edition**
 
 *Incomplete implementation
