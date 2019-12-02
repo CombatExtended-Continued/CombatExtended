@@ -22,6 +22,7 @@ namespace CombatExtended
 
         public Building_TurretGunCE turret;         // Cross-linked from CE turret
 
+        internal static Type rgStance = null;       // RunAndGun compatibility, set in relevent patch if needed
         #endregion
 
         #region Properties
@@ -294,6 +295,10 @@ namespace CombatExtended
                 turret.TryOrderReload();
                 return;
             }
+
+            // R&G compatibility, prevents an initial attempt to reload while moving
+            if (Wielder.stances.curStance.GetType() == rgStance)
+                return;
 
             if (UseAmmo)
             {
