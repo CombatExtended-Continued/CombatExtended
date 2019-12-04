@@ -25,8 +25,8 @@
 	<ThingDef Class="CombatExtended.AmmoDef" Name="75x54mmFrenchBase" ParentName="SmallAmmoBase" Abstract="True">
 		<description>Large rifle bullet found mostly in outdated bolt-action firearms.</description>
 		<statBases>
-		<Mass>0.02</Mass>
-		<Bulk>0.05</Bulk>
+		<Mass>0.025</Mass>
+		<Bulk>0.03</Bulk>
 		</statBases>
 	<tradeTags>
 		<li>CE_AutoEnableTrade</li>
@@ -59,7 +59,7 @@
 			<graphicClass>Graphic_StackCount</graphicClass>
 		</graphicData>
 		<statBases>
-			<MarketValue>0.14</MarketValue>
+			<MarketValue>0.11</MarketValue>
 		</statBases>
 		<ammoClass>ArmorPiercing</ammoClass>
 		<cookOffProjectile>Bullet_75x54mmFrench_AP</cookOffProjectile>
@@ -73,7 +73,7 @@
 			<graphicClass>Graphic_StackCount</graphicClass>
 		</graphicData>
 		<statBases>
-			<MarketValue>0.15</MarketValue>
+			<MarketValue>0.11</MarketValue>
 		</statBases>
 		<ammoClass>HollowPoint</ammoClass>
 		<cookOffProjectile>Bullet_75x54mmFrench_HP</cookOffProjectile>
@@ -88,7 +88,7 @@
 		</graphicData>
 		<projectile Class="CombatExtended.ProjectilePropertiesCE">
 			<damageDef>Bullet</damageDef>
-			<speed>208</speed>
+			<speed>164</speed>
 			<dropsCasings>true</dropsCasings>
 		</projectile>
 	</ThingDef>
@@ -97,8 +97,9 @@
 		<defName>Bullet_75x54mmFrench_FMJ</defName>
 		<label>7.5mm French bullet (FMJ)</label>
 		<projectile Class="CombatExtended.ProjectilePropertiesCE">
-			<damageAmountBase>18</damageAmountBase>
-			<armorPenetrationBase>0.588</armorPenetrationBase>
+			<damageAmountBase>19</damageAmountBase>
+			<armorPenetrationSharp>6</armorPenetrationSharp>
+			<armorPenetrationBlunt>60.52</armorPenetrationBlunt>
 		</projectile>
 	</ThingDef>
 
@@ -106,8 +107,9 @@
 		<defName>Bullet_75x54mmFrench_AP</defName>
 		<label>7.5mm French bullet (AP)</label>
 		<projectile Class="CombatExtended.ProjectilePropertiesCE">
-			<damageAmountBase>11</damageAmountBase>
-			<armorPenetrationBase>0.738</armorPenetrationBase>
+			<damageAmountBase>12</damageAmountBase>
+			<armorPenetrationSharp>12</armorPenetrationSharp>
+			<armorPenetrationBlunt>60.52</armorPenetrationBlunt>
 		</projectile>
 	</ThingDef>
 
@@ -115,8 +117,9 @@
 		<defName>Bullet_75x54mmFrench_HP</defName>
 		<label>7.5mm French bullet (HP)</label>
 		<projectile Class="CombatExtended.ProjectilePropertiesCE">
-			<damageAmountBase>25</damageAmountBase>
-			<armorPenetrationBase>0.438</armorPenetrationBase>
+			<damageAmountBase>24</damageAmountBase>
+			<armorPenetrationSharp>3</armorPenetrationSharp>
+			<armorPenetrationBlunt>60.52</armorPenetrationBlunt>
 		</projectile>
 	</ThingDef>
   
@@ -134,7 +137,7 @@
 						<li>Steel</li>
 					</thingDefs>
 				</filter>
-				<count>20</count>
+				<count>26</count>
 			</li>
 		</ingredients>
 		<fixedIngredientFilter>
@@ -145,7 +148,7 @@
 		<products>
 			<Ammo_75x54mmFrench_FMJ>500</Ammo_75x54mmFrench_FMJ>
 		</products>
-    <workAmount>3750</workAmount>
+    <workAmount>2600</workAmount>
 	</RecipeDef>
 
 	<RecipeDef ParentName="AmmoRecipeBase">
@@ -160,7 +163,7 @@
 						<li>Steel</li>
 					</thingDefs>
 				</filter>
-				<count>24</count>
+				<count>26</count>
 			</li>
 		</ingredients>
 		<fixedIngredientFilter>
@@ -171,7 +174,7 @@
 		<products>
 			<Ammo_75x54mmFrench_AP>500</Ammo_75x54mmFrench_AP>
 		</products>
-    <workAmount>6000</workAmount>
+    <workAmount>2600</workAmount>
 	</RecipeDef>
 
 	<RecipeDef ParentName="AmmoRecipeBase">
@@ -186,7 +189,7 @@
 						<li>Steel</li>
 					</thingDefs>
 				</filter>
-				<count>20</count>
+				<count>26</count>
 			</li>
 		</ingredients>
 		<fixedIngredientFilter>
@@ -197,7 +200,7 @@
 		<products>
 			<Ammo_75x54mmFrench_HP>500</Ammo_75x54mmFrench_HP>
 		</products>
-    <workAmount>8750</workAmount>
+    <workAmount>2600</workAmount>
 	</RecipeDef>
 	
 </Defs>

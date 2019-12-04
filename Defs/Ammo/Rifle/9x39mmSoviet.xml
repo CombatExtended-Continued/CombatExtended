@@ -25,8 +25,8 @@
 	<ThingDef Class="CombatExtended.AmmoDef" Name="9x39mmSovietBase" ParentName="AmmoBase" Abstract="True">
 		<description>Small, high-velocity rifle bullet used in a variety of assault rifles.</description>
 		<statBases>
-			<Mass>0.024</Mass>
-			<Bulk>0.04</Bulk>
+			<Mass>0.027</Mass>
+			<Bulk>0.02</Bulk>
 		</statBases>
 		<tradeTags>
 			<li>CE_AutoEnableTrade</li>
@@ -45,7 +45,7 @@
 			<graphicClass>Graphic_StackCount</graphicClass>
 		</graphicData>
 		<statBases>
-			<MarketValue>0.09</MarketValue>
+			<MarketValue>0.12</MarketValue>
 		</statBases>
 		<ammoClass>FullMetalJacket</ammoClass>
 		<cookOffProjectile>Bullet_9x39mmSoviet_FMJ</cookOffProjectile>
@@ -59,7 +59,7 @@
 			<graphicClass>Graphic_StackCount</graphicClass>
 		</graphicData>
 		<statBases>
-			<MarketValue>0.11</MarketValue>
+			<MarketValue>0.12</MarketValue>
 		</statBases>
 		<ammoClass>ArmorPiercing</ammoClass>
 		<cookOffProjectile>Bullet_9x39mmSoviet_AP</cookOffProjectile>
@@ -73,7 +73,7 @@
 			<graphicClass>Graphic_StackCount</graphicClass>
 		</graphicData>
 		<statBases>
-			<MarketValue>0.11</MarketValue>
+			<MarketValue>0.12</MarketValue>
 		</statBases>
 		<ammoClass>HollowPoint</ammoClass>
 		<cookOffProjectile>Bullet_9x39mmSoviet_HP</cookOffProjectile>
@@ -88,7 +88,7 @@
 		</graphicData>
 		<projectile Class="CombatExtended.ProjectilePropertiesCE">
 			<damageDef>Bullet</damageDef>
-			<speed>80</speed>
+			<speed>64</speed>
 			<dropsCasings>true</dropsCasings>
 		</projectile>
 	</ThingDef>
@@ -98,7 +98,8 @@
 		<label>9mm Soviet bullet (FMJ)</label>
 		<projectile Class="CombatExtended.ProjectilePropertiesCE">
 			<damageAmountBase>13</damageAmountBase>
-			<armorPenetrationBase>0.369</armorPenetrationBase>
+			<armorPenetrationSharp>4</armorPenetrationSharp>
+			<armorPenetrationBlunt>16.48</armorPenetrationBlunt>
 		</projectile>
 	</ThingDef>
 	
@@ -107,7 +108,8 @@
 		<label>9mm Soviet bullet (AP)</label>
 		<projectile Class="CombatExtended.ProjectilePropertiesCE">
 			<damageAmountBase>8</damageAmountBase>
-			<armorPenetrationBase>0.519</armorPenetrationBase>
+			<armorPenetrationSharp>8</armorPenetrationSharp>
+			<armorPenetrationBlunt>16.48</armorPenetrationBlunt>
 		</projectile>
 	</ThingDef>
 	
@@ -115,8 +117,9 @@
 		<defName>Bullet_9x39mmSoviet_HP</defName>
 		<label>9mm Soviet bullet (HP)</label>
 		<projectile Class="CombatExtended.ProjectilePropertiesCE">
-			<damageAmountBase>18</damageAmountBase>
-			<armorPenetrationBase>0.269</armorPenetrationBase>
+			<damageAmountBase>16</damageAmountBase>
+			<armorPenetrationSharp>2</armorPenetrationSharp>
+			<armorPenetrationBlunt>16.48</armorPenetrationBlunt>
 		</projectile>
 	</ThingDef>
 	
@@ -134,7 +137,7 @@
 						<li>Steel</li>
 					</thingDefs>
 				</filter>
-				<count>12</count>
+				<count>30</count>
 			</li>
 		</ingredients>
 		<fixedIngredientFilter>
@@ -145,7 +148,7 @@
 		<products>
 			<Ammo_9x39mmSoviet_FMJ>500</Ammo_9x39mmSoviet_FMJ>
 		</products>
-    <workAmount>2250</workAmount>
+    <workAmount>3000</workAmount>
 	</RecipeDef>
 
 	<RecipeDef ParentName="AmmoRecipeBase">
@@ -160,7 +163,7 @@
 						<li>Steel</li>
 					</thingDefs>
 				</filter>
-				<count>14</count>
+				<count>30</count>
 			</li>
 		</ingredients>
 		<fixedIngredientFilter>
@@ -171,7 +174,7 @@
 		<products>
 			<Ammo_9x39mmSoviet_AP>500</Ammo_9x39mmSoviet_AP>
 		</products>
-    <workAmount>3250</workAmount>
+    <workAmount>3000</workAmount>
 	</RecipeDef>
 
 	<RecipeDef ParentName="AmmoRecipeBase">
@@ -186,7 +189,7 @@
 						<li>Steel</li>
 					</thingDefs>
 				</filter>
-				<count>12</count>
+				<count>30</count>
 			</li>
 		</ingredients>
 		<fixedIngredientFilter>
@@ -197,7 +200,7 @@
 		<products>
 			<Ammo_9x39mmSoviet_HP>500</Ammo_9x39mmSoviet_HP>
 		</products>
-    <workAmount>4250</workAmount>
+    <workAmount>3000</workAmount>
 	</RecipeDef>
 	
 </Defs>
