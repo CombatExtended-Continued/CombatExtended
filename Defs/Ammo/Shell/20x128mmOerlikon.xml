@@ -1,0 +1,186 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+
+	<ThingCategoryDef>
+		<defName>Ammo20x128mmOerlikon</defName>
+		<label>20x128mm Oerlikon</label>
+		<parent>AmmoHighCaliber</parent>
+		<iconPath>UI/Icons/ThingCategories/CaliberHighCaliber</iconPath>
+	</ThingCategoryDef>
+
+	<!-- ==================== AmmoSet ========================== -->
+
+	<CombatExtended.AmmoSetDef>
+		<defName>AmmoSet_20x128mmOerlikon</defName>
+		<label>20x128mm Oerlikon</label>
+		<ammoTypes>
+			<Ammo_20x128mmOerlikon_HE>Bullet_20x128mmOerlikon_HE</Ammo_20x128mmOerlikon_HE>
+			<Ammo_20x128mmOerlikon_Incendiary>Bullet_20x128mmOerlikon_Incendiary</Ammo_20x128mmOerlikon_Incendiary>
+		</ammoTypes>
+	</CombatExtended.AmmoSetDef>
+
+	<!-- ==================== Ammo ========================== -->
+
+	<ThingDef Class="CombatExtended.AmmoDef" Name="Ammo20x128mmOerlikonBase" ParentName="SmallAmmoBase" Abstract="True">
+		<description>Large caliber cartridge used by autocannons and a handful of anti-tank rifles.</description>
+		<statBases>
+			<Mass>0.353</Mass>
+			<Bulk>0.47</Bulk>
+		</statBases>
+		<tradeTags>
+			<li>CE_AutoEnableTrade</li>
+			<li>CE_AutoEnableCrafting</li>
+		</tradeTags>
+		<thingCategories>
+			<li>Ammo20x128mmOerlikon</li>
+		</thingCategories>
+		<stackLimit>750</stackLimit>
+	</ThingDef>
+
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="Ammo20x128mmOerlikonBase">
+		<defName>Ammo_20x128mmOerlikon_HE</defName>
+		<label>20x128mm Oerlikon cartridge (HE)</label>
+		<graphicData>
+			<texPath>Things/Ammo/HighCaliber/HE</texPath>
+			<graphicClass>Graphic_StackCount</graphicClass>
+		</graphicData>
+		<statBases>
+			<MarketValue>2.78</MarketValue>
+		</statBases>
+		<ammoClass>ExplosiveAP</ammoClass>
+		<cookOffProjectile>Bullet_20x128mmOerlikon_HE</cookOffProjectile>
+	</ThingDef>
+
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="Ammo20x128mmOerlikonBase">
+		<defName>Ammo_20x128mmOerlikon_Incendiary</defName>
+		<label>20x128mm Oerlikon cartridge (AP-I)</label>
+		<graphicData>
+			<texPath>Things/Ammo/HighCaliber/Incendiary</texPath>
+			<graphicClass>Graphic_StackCount</graphicClass>
+		</graphicData>
+		<statBases>
+			<MarketValue>1.81</MarketValue>
+		</statBases>
+		<ammoClass>IncendiaryAP</ammoClass>
+		<cookOffProjectile>Bullet_20x128mmOerlikon_Incendiary</cookOffProjectile>
+	</ThingDef>
+
+	<!-- ================== Projectiles ================== -->
+
+	<ThingDef Class="CombatExtended.AmmoDef" Name="Base20x128mmOerlikonBullet" ParentName="BaseBullet" Abstract="true">
+		<graphicData>
+			<texPath>Things/Projectile/Bullet_Big</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+		</graphicData>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageDef>Bullet</damageDef>
+			<speed>207</speed>
+			<dropsCasings>true</dropsCasings>
+		</projectile>
+	</ThingDef>
+
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="Base20x128mmOerlikonBullet">
+		<defName>Bullet_20x128mmOerlikon_HE</defName>
+		<label>20mm Oerlikon bullet (HE)</label>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageAmountBase>75</damageAmountBase>
+			<armorPenetrationSharp>18</armorPenetrationSharp>
+			<armorPenetrationBlunt>1280.120</armorPenetrationBlunt>
+			<secondaryDamage>
+				<li>
+					<def>Bomb_Secondary</def>
+					<amount>45</amount>
+				</li>
+			</secondaryDamage>
+		</projectile>
+	</ThingDef>
+
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="Base20x128mmOerlikonBullet">
+		<defName>Bullet_20x128mmOerlikon_Incendiary</defName>
+		<label>20mm Oerlikon bullet (AP-I)</label>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageAmountBase>47</damageAmountBase>
+			<armorPenetrationSharp>36</armorPenetrationSharp>
+			<armorPenetrationBlunt>1280.120</armorPenetrationBlunt>
+			<secondaryDamage>
+				<li>
+					<def>Flame_Secondary</def>
+					<amount>30</amount>
+				</li>
+			</secondaryDamage>
+		</projectile>
+	</ThingDef>
+
+	<!-- ==================== Recipes ========================== -->
+
+	<RecipeDef ParentName="AmmoRecipeBase">
+		<defName>MakeAmmo_20x128mmOerlikon_HE</defName>
+		<label>make 20x128mm Oerlikon (HE) cartridge x100</label>
+		<description>Craft 100 20x128mm Oerlikon (HE) cartridges.</description>
+		<jobString>Making 20x128mm Oerlikon (HE) cartridges.</jobString>
+		<ingredients>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>Steel</li>
+					</thingDefs>
+				</filter>
+				<count>72</count>
+			</li>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>FSX</li>
+					</thingDefs>
+				</filter>
+				<count>13</count>
+			</li>
+		</ingredients>
+		<fixedIngredientFilter>
+			<thingDefs>
+				<li>Steel</li>
+				<li>FSX</li>
+			</thingDefs>
+		</fixedIngredientFilter>
+		<products>
+			<Ammo_20x128mmOerlikon_HE>100</Ammo_20x128mmOerlikon_HE>
+		</products>
+		<workAmount>12400</workAmount>
+	</RecipeDef>
+
+	<RecipeDef ParentName="AmmoRecipeBase">
+		<defName>MakeAmmo_20x128mmOerlikon_Incendiary</defName>
+		<label>make 20x128mm Oerlikon (AP-I) cartridge x100</label>
+		<description>Craft 100 20x128mm Oerlikon (AP-I) cartridges.</description>
+		<jobString>Making 20x128mm Oerlikon (AP-I) cartridges.</jobString>
+		<ingredients>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>Steel</li>
+					</thingDefs>
+				</filter>
+				<count>72</count>
+			</li>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>Prometheum</li>
+					</thingDefs>
+				</filter>
+				<count>6</count>
+			</li>
+		</ingredients>
+		<fixedIngredientFilter>
+			<thingDefs>
+				<li>Steel</li>
+				<li>Prometheum</li>
+			</thingDefs>
+		</fixedIngredientFilter>
+		<products>
+			<Ammo_20x128mmOerlikon_Incendiary>100</Ammo_20x128mmOerlikon_Incendiary>
+		</products>
+		<workAmount>9600</workAmount>
+	</RecipeDef>
+
+</Defs>
