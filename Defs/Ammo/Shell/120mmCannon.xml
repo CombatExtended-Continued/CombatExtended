@@ -1,0 +1,251 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+
+	<ThingCategoryDef>
+		<defName>Ammo120mmCannonShells</defName>
+		<label>120mm cannon shell</label>
+		<parent>AmmoShells</parent>
+		<iconPath>UI/Icons/ThingCategories/CaliberCannon</iconPath>
+	</ThingCategoryDef>
+
+	<!-- ==================== AmmoSet ========================== -->
+
+	<CombatExtended.AmmoSetDef>
+		<defName>AmmoSet_120mmCannonShell</defName>
+		<label>120mm cannon shells</label>
+		<ammoTypes>
+			<Ammo_120mmCannonShell_HEAT>Bullet_120mmCannonShell_HEAT</Ammo_120mmCannonShell_HEAT>
+			<Ammo_120mmCannonShell_HE>Bullet_120mmCannonShell_HE</Ammo_120mmCannonShell_HE>
+		</ammoTypes>
+	</CombatExtended.AmmoSetDef>
+
+	<!-- ==================== Ammo ========================== -->
+
+	<ThingDef Class="CombatExtended.AmmoDef" Name="120mmCannonShellBase" ParentName="AmmoBase" Abstract="True">
+		<description>Large cannon shells, typically used by 120mm smoothbore tank guns.</description>
+		<thingCategories>
+			<li>Ammo120mmCannonShells</li>
+		</thingCategories>
+		<stackLimit>25</stackLimit>
+		<tradeTags>
+			<li>CE_AutoEnableTrade</li>
+			<li>CE_AutoEnableCrafting_TableMachining</li>
+		</tradeTags>
+		<statBases>
+			<MaxHitPoints>250</MaxHitPoints>
+			<Mass>22.3</Mass>
+			<Bulk>66.09</Bulk>
+		</statBases>
+		<cookOffFlashScale>35</cookOffFlashScale>
+		<cookOffSound>MortarBomb_Explode</cookOffSound>
+	</ThingDef>
+
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="120mmCannonShellBase">
+		<defName>Ammo_120mmCannonShell_HEAT</defName>
+		<label>120mm cannon shell (HEAT)</label>
+		<graphicData>
+			<texPath>Things/Ammo/Cannon/HEAT</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+		</graphicData>
+		<statBases>
+			<MarketValue>136.99</MarketValue>
+		</statBases>
+		<ammoClass>RocketHEAT</ammoClass>
+		<comps>
+			<li Class="CombatExtended.CompProperties_ExplosiveCE">
+				<explosionDamage>208</explosionDamage>
+				<explosionDamageDef>Bomb</explosionDamageDef>
+				<explosionRadius>1.5</explosionRadius>
+				<fragments>
+					<Fragment_Large>18</Fragment_Large>
+					<Fragment_Small>81</Fragment_Small>
+				</fragments>
+				<applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
+			</li>
+		</comps>
+	</ThingDef>
+
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="120mmCannonShellBase">
+		<defName>Ammo_120mmCannonShell_HE</defName>
+		<label>120mm cannon shell (HE)</label>
+		<graphicData>
+			<texPath>Things/Ammo/Cannon/HE</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+		</graphicData>
+		<statBases>
+			<MarketValue>170.06</MarketValue>
+		</statBases>
+		<ammoClass>GrenadeHE</ammoClass>
+		<comps>
+			<li Class="CombatExtended.CompProperties_ExplosiveCE">
+				<explosionDamage>315</explosionDamage>
+				<explosionDamageDef>Bomb</explosionDamageDef>
+				<explosionRadius>4</explosionRadius>
+				<fragments>
+					<Fragment_Large>30</Fragment_Large>
+					<Fragment_Small>323</Fragment_Small>
+				</fragments>
+				<applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
+			</li>
+		</comps>
+	</ThingDef>
+
+	<!-- ================== Projectiles ================== -->
+
+	<ThingDef Class="CombatExtended.AmmoDef" Name="Base120mmCannonShell" ParentName="BaseBullet" Abstract="true">
+		<graphicData>
+			<shaderType>TransparentPostLight</shaderType>
+		</graphicData>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<speed>280</speed>
+			<soundExplode>MortarBomb_Explode</soundExplode>
+			<flyOverhead>false</flyOverhead>
+			<dropsCasings>true</dropsCasings>
+			<casingMoteDefname>Mote_BigShell</casingMoteDefname>
+		</projectile>
+	</ThingDef>
+
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="Base120mmCannonShell">
+		<defName>Bullet_120mmCannonShell_HEAT</defName>
+		<label>120mm cannon shell (HEAT)</label>
+		<graphicData>
+			<texPath>Things/Projectile/Cannon/HEAT</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+		</graphicData>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageDef>Bullet</damageDef>
+			<damageAmountBase>405</damageAmountBase>
+			<soundExplode>MortarBomb_Explode</soundExplode>
+			<armorPenetrationSharp>420</armorPenetrationSharp>
+			<armorPenetrationBlunt>62.411</armorPenetrationBlunt>
+		</projectile>
+		<comps>
+			<li Class="CombatExtended.CompProperties_ExplosiveCE">
+				<explosionDamage>208</explosionDamage>
+				<explosionDamageDef>Bomb</explosionDamageDef>
+				<explosionRadius>1.5</explosionRadius>
+				<fragments>
+					<Fragment_Large>18</Fragment_Large>
+					<Fragment_Small>81</Fragment_Small>
+				</fragments>
+				<applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
+			</li>
+		</comps>
+	</ThingDef>
+
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="Base120mmCannonShell">
+		<defName>Bullet_120mmCannonShell_HE</defName>
+		<label>120mm cannon shell (HE)</label>
+		<thingClass>CombatExtended.ProjectileCE_Explosive</thingClass>
+		<graphicData>
+			<texPath>Things/Projectile/Cannon/HE</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+		</graphicData>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageDef>Bomb</damageDef>
+			<damageAmountBase>315</damageAmountBase>
+			<explosionRadius>4</explosionRadius>
+			<soundExplode>MortarBomb_Explode</soundExplode>
+			<applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
+		</projectile>
+		<comps>
+			<li Class="CombatExtended.CompProperties_ExplosiveCE">
+				<fragments>
+					<Fragment_Large>30</Fragment_Large>
+					<Fragment_Small>323</Fragment_Small>
+				</fragments>
+			</li>
+		</comps>
+	</ThingDef>
+
+	<!-- ==================== Recipes ========================== -->
+
+	<RecipeDef ParentName="GrenadeRecipeBase">
+		<defName>MakeAmmo_120mmCannonShell_HEAT</defName>
+		<label>make 120mm HEAT cannon shells x5</label>
+		<description>Craft 5 120mm HEAT cannon shells.</description>
+		<jobString>Making 120mm HEAT cannon shells.</jobString>
+		<workAmount>30400</workAmount>
+		<ingredients>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>Steel</li>
+					</thingDefs>
+				</filter>
+				<count>224</count>
+			</li>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>ComponentIndustrial</li>
+					</thingDefs>
+				</filter>
+				<count>2</count>
+			</li>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>FSX</li>
+					</thingDefs>
+				</filter>
+				<count>17</count>
+			</li>
+		</ingredients>
+		<fixedIngredientFilter>
+			<thingDefs>
+				<li>Steel</li>
+				<li>ComponentIndustrial</li>
+				<li>FSX</li>
+			</thingDefs>
+		</fixedIngredientFilter>
+		<products>
+			<Ammo_120mmCannonShell_HEAT>5</Ammo_120mmCannonShell_HEAT>
+		</products>
+	</RecipeDef>
+
+	<RecipeDef ParentName="GrenadeRecipeBase">
+		<defName>MakeAmmo_120mmCannonShell_HE</defName>
+		<label>make 120mm HE cannon shells x5</label>
+		<description>Craft 5 120mm HE cannon shells.</description>
+		<jobString>Making 120mm HE cannon shells.</jobString>
+		<workAmount>36800</workAmount>
+		<ingredients>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>Steel</li>
+					</thingDefs>
+				</filter>
+				<count>224</count>
+			</li>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>ComponentIndustrial</li>
+					</thingDefs>
+				</filter>
+				<count>2</count>
+			</li>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>FSX</li>
+					</thingDefs>
+				</filter>
+				<count>33</count>
+			</li>
+		</ingredients>
+		<fixedIngredientFilter>
+			<thingDefs>
+				<li>Steel</li>
+				<li>ComponentIndustrial</li>
+				<li>FSX</li>
+			</thingDefs>
+		</fixedIngredientFilter>
+		<products>
+			<Ammo_120mmCannonShell_HE>5</Ammo_120mmCannonShell_HE>
+		</products>
+	</RecipeDef>
+
+</Defs>
