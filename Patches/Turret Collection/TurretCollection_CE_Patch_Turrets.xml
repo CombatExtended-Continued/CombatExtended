@@ -8,6 +8,42 @@
 				<modName>Turret Collection</modName>
 			</li>
 
+			<!-- ========== Ammo: Indirect-fire variant of M74 Incendiary rocket ========== -->
+			<!-- This allows the same craftable M74 ammo to be used by both direct and indirect fire weapons -->
+
+			<li Class="PatchOperationAdd">
+				<xpath>Defs</xpath>
+				<value>
+					<CombatExtended.AmmoSetDef>
+						<defName>AmmoSet_M74_TC</defName>
+						<label>M74 Rockets</label>
+						<ammoTypes>
+							<Ammo_M74_Incendiary>Bullet_M74_Incendiary_TC</Ammo_M74_Incendiary>
+						</ammoTypes>
+					</CombatExtended.AmmoSetDef>
+
+					<ThingDef Class="CombatExtended.AmmoDef" ParentName="BaseM74">
+						<defName>Bullet_M74_Incendiary_TC</defName>
+						<thingClass>CombatExtended.ProjectileCE_Explosive</thingClass>
+						<label>M74 Rocket (Incendiary)</label>
+						<graphicData>
+							<texPath>Things/Projectile/Rocket/M74</texPath>
+							<graphicClass>Graphic_Single</graphicClass>
+						</graphicData>
+						<projectile Class="CombatExtended.ProjectilePropertiesCE">
+							<damageDef>PrometheumFlame</damageDef>
+							<damageAmountBase>0</damageAmountBase>
+							<explosionRadius>8</explosionRadius>
+							<preExplosionSpawnThingDef>FilthPrometheum</preExplosionSpawnThingDef>
+							<preExplosionSpawnChance>0.5</preExplosionSpawnChance>
+							<soundExplode>MortarIncendiary_Explode</soundExplode>
+							<!-- This is the key to indirect-fire projectiles -->
+							<flyOverhead>true</flyOverhead>
+						</projectile>
+					</ThingDef>
+				</value>
+			</li>
+
 			<!-- ========== Advanced Naval Gun Turret ========== -->
 
 			<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
@@ -385,7 +421,7 @@
 				<Properties>
 					<verbClass>CombatExtended.Verb_ShootMortarCE</verbClass>
 					<hasStandardCommand>true</hasStandardCommand>
-					<defaultProjectile>Bullet_M74_Incendiary</defaultProjectile>
+					<defaultProjectile>Bullet_M74_Incendiary_TC</defaultProjectile>
 					<warmupTime>2.1</warmupTime>
 					<range>72</range>
 					<minRange>15</minRange>
@@ -401,12 +437,12 @@
 				<AmmoUser>
 					<magazineSize>4</magazineSize>
 					<reloadTime>8.6</reloadTime>
-					<ammoSet>AmmoSet_M74</ammoSet>
+					<ammoSet>AmmoSet_M74_TC</ammoSet>
 				</AmmoUser>
 				<FireModes>
 					<aiUseBurstMode>FALSE</aiUseBurstMode>
 					<aiAimMode>AimedShot</aiAimMode>
-					<noSingleShot>true</noSingleShot>
+					<aimedBurstShotCount>1</aimedBurstShotCount>
 				</FireModes>
 				<weaponTags>
 					<li>TurretGun</li>
@@ -875,7 +911,7 @@
 			</li>
 
 			<!-- ========== Replace research projects with CE equivalents ========== -->
-			
+
 			<li Class="PatchOperationRemove">
 				<xpath>Defs/ResearchProjectDef[
 					defName="TC_AvengerTurret"
@@ -885,19 +921,19 @@
 			<li Class="PatchOperationRemove">
 				<xpath>Defs/ResearchProjectDef[defName="TC_Artillery"]</xpath>
 			</li>
-			
+
 			<li Class="PatchOperationRemove">
 				<xpath>Defs/ResearchProjectDef[defName="TC_AutoTurret"]</xpath>
 			</li>
-			
+
 			<li Class="PatchOperationRemove">
 				<xpath>Defs/ResearchProjectDef[defName="TC_AvengerTurret"]</xpath>
 			</li>
-			
+
 			<li Class="PatchOperationRemove">
 				<xpath>Defs/ResearchProjectDef[defName="TCEE_ClusterMunition"]</xpath>
 			</li>
-			
+
 			<li Class="PatchOperationRemove">
 				<xpath>Defs/ThingDef[
 					defName="TCEE_Shell_Howitzer_ClusterBomb" or
@@ -919,7 +955,7 @@
 					</researchPrerequisites>
 				</value>
 			</li>
-			
+
 			<li Class="PatchOperationReplace">
 				<xpath>Defs/ThingDef[
 					@Name="TC_BaseAutoBuilding"
