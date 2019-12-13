@@ -4,7 +4,7 @@ Combat Extended: FastTrack Edition is a fork of the [original Combat Extended mo
 ## Features
 - Same [core features as the original mod](https://github.com/NoImageAvailable/CombatExtended/blob/master/README.md) - shooting, melee, armor, inventory and medical overhauls
 - Fully compatible with existing CE savegames - delete CE completely, drop in CE:FT and go!
-- 111 supported third-party mods (compared with 78 for CE)
+- 112 supported third-party mods (compared with 78 for CE)
 - Recognizes existing third-party standalone patches intended for the original CE
 - Additional ammo and projectile definitions and textures
 - New Graphic_StackCountRanged class for precise control of item subgraphics based on stack count
@@ -111,6 +111,7 @@ Spidercamp's Dog Pack					|  		| &#x2705;
 T-45b Power Armor					|  		| &#x2705;
 TouhouStyle						| &#x2705;	| &#x2705;
 Trading Economy						| &#x2705;	| &#x2705;
+Turret Collection					|  		| &#x2705;
 Vanilla Apparel Expanded				| &#x2705;	| &#x2705;
 Vanilla Armour Expanded					| &#x2705;	| &#x2705;
 Vanilla Bionics Expansion				| &#x2705;	| &#x2705;
@@ -123,7 +124,7 @@ Xenn Race						| &#x2705;	| &#x2705;
 Xenohumans						| &#x2705;	| &#x2705;
 Yabils: Space Gremlins					|  		| &#x2705;
 Zombieland						| &#x2705;	| &#x2705;
-**Total** | **78** | **111**
+**Total** | **78** | **112**
 &nbsp; | **CE (original)** | **CE: FastTrack Edition**
 
 *Incomplete implementation
@@ -143,6 +144,7 @@ The CE:FT team would like the thank the following individuals for contributing c
 - Kik0hi
 - Freedom187/RaptorX
 - Owlchemist
+- skycrossercat
 - Theblessedwant
 - Togoasl
 
