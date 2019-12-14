@@ -16,50 +16,44 @@
 					<Bulk>5</Bulk>
 					<WornBulk>1</WornBulk>
 					<Mass>10</Mass>
-					<StuffEffectMultiplierArmor>2</StuffEffectMultiplierArmor>
+					<StuffEffectMultiplierArmor>10</StuffEffectMultiplierArmor>
 				</value>
 			</li>
-			<li Class="PatchOperationReplace">
+			<li Class="PatchOperationRemove">
 				<xpath>Defs/ThingDef[defName="VAE_Apparel_BulletproofVest"]/statBases/ArmorRating_Sharp</xpath>
-				<value>
-					<ArmorRating_Sharp>4</ArmorRating_Sharp>
-				</value>
 			</li>
-			<li Class="PatchOperationReplace">
+			<li Class="PatchOperationRemove">
 				<xpath>Defs/ThingDef[defName="VAE_Apparel_BulletproofVest"]/statBases/ArmorRating_Blunt</xpath>
-				<value>
-					<ArmorRating_Blunt>8</ArmorRating_Blunt>
-				</value>
 			</li>
 			<li Class="PatchOperationReplace">
 				<xpath>Defs/ThingDef[defName="VAE_Apparel_BulletproofVest"]/statBases/MaxHitPoints</xpath>
 				<value>
-					<MaxHitPoints>100</MaxHitPoints>
+					<MaxHitPoints>125</MaxHitPoints>
 				</value>
 			</li>
 			<!-- Miscellaneous -->
 			<li Class="PatchOperationReplace">
 				<xpath>Defs/ThingDef[defName="VAE_Apparel_BulletproofVest"]/description</xpath>
 				<value>
-					<description>A vest with kevlar plates inserted on the chest and back, which are reinforced with another fabric. Despite being cheaper and lighter than other defensive vests, it still offers some protection against gunfire.</description>
+					<description>An armor vest made from flexible and resistant fabric or leather. Despite being cheaper and lighter than other armor vests, it still offers some protection against gunfire.</description>
 				</value>
 			</li>
 			<li Class="PatchOperationReplace">
-				<xpath>Defs/ThingDef[defName="VAE_Apparel_BulletproofVest"]/costList</xpath>
+				<xpath>Defs/ThingDef[defName="VAE_Apparel_BulletproofVest"]/label</xpath>
 				<value>
-					<costList>
-						<Cloth>10</Cloth>
-						<Steel>60</Steel>
-					</costList>
+					<label>soft armor vest</label>
 				</value>
 			</li>
-			<!-- The bulletproof vest is now makeable from any fabric. Pretty much like a flak jacket or pants, but now in vest form. -->
+			<li Class="PatchOperationRemove">
+				<xpath>Defs/ThingDef[defName="VAE_Apparel_BulletproofVest"]/costList</xpath>
+			</li>
+			<!-- The bulletproof vest is now makeable from any fabric or leather that's sufficiently protective. Pretty much like a flak jacket or pants, but now in vest form. -->
 			<li Class="PatchOperationAdd">
 				<xpath>Defs/ThingDef[defName="VAE_Apparel_BulletproofVest"]</xpath>
 				<value>
-					<costStuffCount>30</costStuffCount>
+					<costStuffCount>50</costStuffCount>
 					<stuffCategories>
-						<li>Fabric</li>
+						<li>SoftArmor</li>
 					</stuffCategories>
 				</value>
 			</li>
@@ -100,7 +94,7 @@
 			<li Class="PatchOperationReplace">
 				<xpath>Defs/ThingDef[defName="VAE_Apparel_AdvancedVest"]/statBases/MaxHitPoints</xpath>
 				<value>
-					<MaxHitPoints>150</MaxHitPoints>
+					<MaxHitPoints>175</MaxHitPoints>
 				</value>
 			</li>
 			<!-- Miscellaneous -->
@@ -116,7 +110,7 @@
 			<li Class="PatchOperationReplace">
 				<xpath>Defs/ThingDef[defName="VAE_Apparel_AdvancedVest"]/costStuffCount</xpath>
 				<value>
-					<costStuffCount>80</costStuffCount>
+					<costStuffCount>100</costStuffCount>
 				</value>
 			</li>
 
@@ -146,7 +140,6 @@
 					<li>Feet</li>
 				</value>
 			</li>
-
 		</operations>
 	</Operation>
 </Patch>
