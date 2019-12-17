@@ -31,6 +31,7 @@
 		</thingCategories>
 		<tradeTags>
 			<li>CE_AutoEnableTrade_Sellable</li>
+			<li>CE_AutoEnableCrafting</li>
 		</tradeTags>
 	</ThingDef>
 
@@ -74,5 +75,40 @@
 	</ThingDef>
 
 	<!-- ==================== Recipes ========================== -->
+	
+	<RecipeDef ParentName="ChargeAmmoRecipeBase">
+		<defName>MakeAmmo_5x35mmCharged</defName>
+		<label>make 5x35mm Charged cartridge x100</label>
+		<description>Craft 100 5x35mm Charged cartridges.</description>
+		<jobString>Making 5x35mm Charged cartridges.</jobString>
+		<workAmount>6000</workAmount>
+		<ingredients>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>Plasteel</li>
+					</thingDefs>
+				</filter>
+				<count>6</count>
+			</li>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>ComponentIndustrial</li>
+					</thingDefs>
+				</filter>
+				<count>4</count>
+			</li>
+		</ingredients>
+		<fixedIngredientFilter>
+			<thingDefs>
+				<li>Plasteel</li>
+				<li>ComponentIndustrial</li>
+			</thingDefs>
+		</fixedIngredientFilter>
+		<products>
+			<Ammo_5x35mmCharged>100</Ammo_5x35mmCharged>
+		</products>
+	</RecipeDef>
 
 </Defs>
