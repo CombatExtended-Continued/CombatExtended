@@ -9,7 +9,7 @@ namespace CombatExtended
     public class Smoke : Gas
     {
         public const int UpdateIntervalTicks = 30;
-        private const float InhalationPerSec = 0.0150f * UpdateIntervalTicks / GenTicks.TicksPerRealSecond;
+        private const float InhalationPerSec = 0.045f * UpdateIntervalTicks / GenTicks.TicksPerRealSecond;
         private const float DensityDissipationThreshold = 3.0f;
         private const float MinSpreadDensity = 1.0f;    //ensures smoke clouds don't spread to infinitely small densities. Should be lower than DensityDissipationThreshold to avoid clouds stuck indoors.
         private const float MaxDensity = 12800f;
@@ -83,7 +83,7 @@ namespace CombatExtended
 
             foreach (Pawn pawn in pawns)
             {
-                var severity = InhalationPerSec * (density / MaxDensity) * pawn.GetStatValue(CE_StatDefOf.SmokeSensitivity);
+                var severity = InhalationPerSec * Mathf.Pow(density / MaxDensity, 2) * pawn.GetStatValue(CE_StatDefOf.SmokeSensitivity);
                 HealthUtility.AdjustSeverity(pawn, CE_HediffDefOf.SmokeInhalation, severity);
             }
         }

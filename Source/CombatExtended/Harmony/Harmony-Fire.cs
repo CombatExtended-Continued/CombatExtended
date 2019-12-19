@@ -67,7 +67,7 @@ namespace CombatExtended.Harmony
     [HarmonyPatch(typeof(Fire), "Tick")]
     internal static class Harmony_Fire_Tick
     {
-        private const float SmokeDensityPerInterval = 150f;
+        private const float SmokeDensityPerInterval = 900f;
 
         internal static IEnumerable<CodeInstruction> Transpiler(IEnumerable<CodeInstruction> instructions)
         {
