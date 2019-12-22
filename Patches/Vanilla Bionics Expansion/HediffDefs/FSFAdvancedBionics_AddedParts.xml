@@ -15,7 +15,7 @@
 					<li Class="CombatExtended.ToolCE">
 					<label>claw</label>
 					<capacities>
-						<li>Slash</li>
+						<li>Scratch</li>
 					</capacities>
 					<power>25</power>
 					<cooldownTime>0.71</cooldownTime>
@@ -34,7 +34,7 @@
 					<li Class="CombatExtended.ToolCE">
 					<label>claw</label>
 					<capacities>
-						<li>Slash</li>
+						<li>Scratch</li>
 					</capacities>
 					<power>29</power>
 					<cooldownTime>0.59</cooldownTime>
@@ -85,6 +85,34 @@
 					<ArmorRating_Blunt>+6</ArmorRating_Blunt>
 					<ArmorRating_Heat>+3.84</ArmorRating_Heat>
 					<ArmorRating_Sharp>+4</ArmorRating_Sharp>
+				</statOffsets>
+			</value>
+		</li>
+		
+		<!--AI Chip Implants-->
+		
+		<li Class="PatchOperationReplace">
+			<xpath>Defs/HediffDef[defName="FSFAIChipMelee"]/stages/li/statOffsets</xpath>
+			<value>
+				<statOffsets>
+					<MeleeCritChance>0.15</MeleeCritChance>
+					<MeleeParryChance>0.1875</MeleeParryChance>
+					<MeleeDodgeChance>0.5</MeleeDodgeChance>
+					<MeleeHitChance>15.0</MeleeHitChance>
+					<Suppressability>-0.50</Suppressability>
+				</statOffsets>
+			</value>
+		</li>
+		
+		<li Class="PatchOperationReplace">
+			<xpath>Defs/HediffDef[defName="FSFAIChipShooting"]/stages/li/statOffsets</xpath>
+			<value>
+				<statOffsets>
+					<ShootingAccuracyPawn>+1</ShootingAccuracyPawn>
+					<AimingAccuracy>+0.5</AimingAccuracy>
+					<AimingDelayFactor>-0.25</AimingDelayFactor>
+					<Suppressability>-0.25</Suppressability>
+					<HuntingStealth>+0.25</HuntingStealth>
 				</statOffsets>
 			</value>
 		</li>
