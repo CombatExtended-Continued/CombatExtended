@@ -17,6 +17,9 @@
 			<Ammo_75x54mmFrench_FMJ>Bullet_75x54mmFrench_FMJ</Ammo_75x54mmFrench_FMJ>
 			<Ammo_75x54mmFrench_AP>Bullet_75x54mmFrench_AP</Ammo_75x54mmFrench_AP>
 			<Ammo_75x54mmFrench_HP>Bullet_75x54mmFrench_HP</Ammo_75x54mmFrench_HP>
+		    <Ammo_75x54mmFrench_Incendiary>Bullet_75x54mmFrench_Incendiary</Ammo_75x54mmFrench_Incendiary>
+			<Ammo_75x54mmFrench_HE>Bullet_75x54mmFrench_HE</Ammo_75x54mmFrench_HE>
+			<Ammo_75x54mmFrench_Sabot>Bullet_75x54mmFrench_Sabot</Ammo_75x54mmFrench_Sabot>				
 		</ammoTypes>
 	</CombatExtended.AmmoSetDef>
 	
@@ -78,7 +81,50 @@
 		<ammoClass>HollowPoint</ammoClass>
 		<cookOffProjectile>Bullet_75x54mmFrench_HP</cookOffProjectile>
 	</ThingDef>
-	
+
+  <ThingDef Class="CombatExtended.AmmoDef" ParentName="75x54mmFrenchBase">
+    <defName>Ammo_75x54mmFrench_Incendiary</defName>
+    <label>7.5x54mm French cartridge (AP-I)</label>
+    <graphicData>
+      <texPath>Things/Ammo/Rifle/Incendiary</texPath>
+      <graphicClass>Graphic_StackCount</graphicClass>
+    </graphicData>
+    <statBases>
+      <MarketValue>0.15</MarketValue>
+    </statBases>
+    <ammoClass>IncendiaryAP</ammoClass>
+    <cookOffProjectile>Bullet_75x54mmFrench_Incendiary</cookOffProjectile>
+  </ThingDef>
+
+  <ThingDef Class="CombatExtended.AmmoDef" ParentName="75x54mmFrenchBase">
+    <defName>Ammo_75x54mmFrench_HE</defName>
+    <label>7.5x54mm French cartridge (HE)</label>
+    <graphicData>
+      <texPath>Things/Ammo/Rifle/HE</texPath>
+      <graphicClass>Graphic_StackCount</graphicClass>
+    </graphicData>
+    <statBases>
+      <MarketValue>0.21</MarketValue>
+    </statBases>
+    <ammoClass>ExplosiveAP</ammoClass>
+    <cookOffProjectile>Bullet_75x54mmFrench_HE</cookOffProjectile>
+  </ThingDef>
+ 
+  <ThingDef Class="CombatExtended.AmmoDef" ParentName="75x54mmFrenchBase">
+    <defName>Ammo_75x54mmFrench_Sabot</defName>
+    <label>7.5x54mm French cartridge (Sabot)</label>
+    <graphicData>
+      <texPath>Things/Ammo/Rifle/Sabot</texPath>
+      <graphicClass>Graphic_StackCount</graphicClass>
+    </graphicData>
+    <statBases>
+      <MarketValue>0.12</MarketValue>
+	  <Mass>0.021</Mass>
+    </statBases>
+    <ammoClass>Sabot</ammoClass>
+    <cookOffProjectile>Bullet_75x54mmFrench_Sabot</cookOffProjectile>
+  </ThingDef>
+  
 	<!-- ================== Projectiles ================== -->
 	
 	<ThingDef Class="CombatExtended.AmmoDef" Name="Base75x54mmFrenchBullet" ParentName="BaseBullet" Abstract="true">
@@ -122,7 +168,50 @@
 			<armorPenetrationBlunt>60.52</armorPenetrationBlunt>
 		</projectile>
 	</ThingDef>
-  
+
+	  <ThingDef Class="CombatExtended.AmmoDef" ParentName="Base75x54mmFrenchBullet">
+		<defName>Bullet_75x54mmFrench_Incendiary</defName>
+		<label>7.5mm French bullet (AP-I)</label>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+		  <damageAmountBase>12</damageAmountBase>
+		  <armorPenetrationSharp>12</armorPenetrationSharp>
+		  <armorPenetrationBlunt>60.52</armorPenetrationBlunt>
+		  <secondaryDamage>
+				<li>
+			  	<def>Flame_Secondary</def>
+			  	<amount>7</amount>
+				</li>
+		  </secondaryDamage>
+		</projectile>
+	  </ThingDef>
+	  
+	  <ThingDef Class="CombatExtended.AmmoDef" ParentName="Base75x54mmFrenchBullet">
+		<defName>Bullet_75x54mmFrench_HE</defName>
+		<label>7.5mm French bullet (HE)</label>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+		  <damageAmountBase>19</damageAmountBase>
+		  <armorPenetrationSharp>12</armorPenetrationSharp>
+		  <armorPenetrationBlunt>60.52</armorPenetrationBlunt>
+		  <secondaryDamage>
+				<li>
+			  	<def>Bomb_Secondary</def>
+			  	<amount>11</amount>
+				</li>
+		  </secondaryDamage>
+		</projectile>
+	  </ThingDef>
+
+	  <ThingDef Class="CombatExtended.AmmoDef" ParentName="Base75x54mmFrenchBullet">
+		<defName>Bullet_75x54mmFrench_Sabot</defName>
+		<label>7.5mm French bullet (Sabot)</label>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+		  <damageAmountBase>9</damageAmountBase>
+		  <armorPenetrationSharp>21</armorPenetrationSharp>
+		  <armorPenetrationBlunt>77.62</armorPenetrationBlunt>
+		  <speed>246</speed>
+		</projectile>
+	  </ThingDef>
+	  
 	<!-- ==================== Recipes ========================== -->
 
 	<RecipeDef ParentName="AmmoRecipeBase">
@@ -202,5 +291,119 @@
 		</products>
     <workAmount>2600</workAmount>
 	</RecipeDef>
-	
+
+  <RecipeDef ParentName="AmmoRecipeBase">
+    <defName>MakeAmmo_75x54mmFrench_Incendiary</defName>
+    <label>make 7.5x54mm French (AP-I) cartridge x500</label>
+    <description>Craft 500 7.5x54mm French (AP-I) cartridges.</description>
+    <jobString>Making 7.5x54mm French (AP-I) cartridges.</jobString>
+    <ingredients>
+      <li>
+        <filter>
+          <thingDefs>
+            <li>Steel</li>
+          </thingDefs>
+        </filter>
+        <count>26</count>
+      </li>
+      <li>
+        <filter>
+          <thingDefs>
+            <li>Prometheum</li>
+          </thingDefs>
+        </filter>
+        <count>3</count>
+      </li>
+    </ingredients>
+    <fixedIngredientFilter>
+      <thingDefs>
+        <li>Steel</li>
+        <li>Prometheum</li>
+      </thingDefs>
+    </fixedIngredientFilter>
+    <products>
+      <Ammo_75x54mmFrench_Incendiary>500</Ammo_75x54mmFrench_Incendiary>
+    </products>
+    <workAmount>3800</workAmount>
+  </RecipeDef>
+  
+  <RecipeDef ParentName="AmmoRecipeBase">
+    <defName>MakeAmmo_75x54mmFrench_HE</defName>
+    <label>make 7.5x54mm French (HE) cartridge x500</label>
+    <description>Craft 500 7.5x54mm French (HE) cartridges.</description>
+    <jobString>Making 7.5x54mm French (HE) cartridges.</jobString>
+    <ingredients>
+      <li>
+        <filter>
+          <thingDefs>
+            <li>Steel</li>
+          </thingDefs>
+        </filter>
+        <count>26</count>
+      </li>
+      <li>
+        <filter>
+          <thingDefs>
+            <li>FSX</li>
+          </thingDefs>
+        </filter>
+        <count>5</count>
+      </li>
+    </ingredients>
+    <fixedIngredientFilter>
+      <thingDefs>
+        <li>Steel</li>
+        <li>FSX</li>
+      </thingDefs>
+    </fixedIngredientFilter>
+    <products>
+      <Ammo_75x54mmFrench_HE>500</Ammo_75x54mmFrench_HE>
+    </products>
+    <workAmount>4600</workAmount>
+  </RecipeDef>
+  
+  <RecipeDef ParentName="AmmoRecipeBase">
+    <defName>MakeAmmo_75x54mmFrench_Sabot</defName>
+    <label>make 7.5x54mm French (Sabot) cartridge x500</label>
+    <description>Craft 500 7.5x54mm French (Sabot) cartridges.</description>
+    <jobString>Making 7.5x54mm French (Sabot) cartridges.</jobString>
+    <ingredients>
+      <li>
+        <filter>
+          <thingDefs>
+            <li>Steel</li>
+          </thingDefs>
+        </filter>
+        <count>16</count>
+      </li>
+      <li>
+        <filter>
+          <thingDefs>
+            <li>Uranium</li>
+          </thingDefs>
+        </filter>
+        <count>3</count>
+      </li>
+      <li>
+        <filter>
+          <thingDefs>
+            <li>Chemfuel</li>
+          </thingDefs>
+        </filter>
+        <count>3</count>
+      </li>		  
+    </ingredients>
+    <fixedIngredientFilter>
+      <thingDefs>
+        <li>Steel</li>
+        <li>Uranium</li>
+        <li>Chemfuel</li>		
+      </thingDefs>
+    </fixedIngredientFilter>
+    <products>
+      <Ammo_75x54mmFrench_Sabot>500</Ammo_75x54mmFrench_Sabot>
+    </products>
+    <workAmount>3400</workAmount>
+  </RecipeDef>
+  
 </Defs>
