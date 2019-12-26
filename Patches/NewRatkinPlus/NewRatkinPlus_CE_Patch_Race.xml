@@ -8,10 +8,10 @@
 				<modName>NewRatkinPlus</modName>
 			</li>
 
-			<!-- Ratkin -->
+			<!-- ========== Ratkin ========== -->
 
 			<li Class="PatchOperationAddModExtension">
-				<xpath>*/AlienRace.ThingDef_AlienRace[defName="Ratkin"]</xpath>
+				<xpath>Defs/AlienRace.ThingDef_AlienRace[defName="Ratkin"]</xpath>
 				<value>
 					<li Class="CombatExtended.RacePropertiesExtensionCE">
 						<bodyShape>Humanoid</bodyShape>
@@ -20,7 +20,7 @@
 			</li>
 
 			<li Class="PatchOperationAdd">
-				<xpath>*/AlienRace.ThingDef_AlienRace[defName="Ratkin"]</xpath>
+				<xpath>Defs/AlienRace.ThingDef_AlienRace[defName="Ratkin"]</xpath>
 				<value>
 					<comps>
 						<li>
@@ -32,97 +32,93 @@
 			</li>
 
 			<li Class="PatchOperationAdd">
-				<xpath>*/AlienRace.ThingDef_AlienRace[defName = "Ratkin"]/statBases</xpath>
+				<xpath>Defs/AlienRace.ThingDef_AlienRace[defName="Ratkin"]/statBases</xpath>
 				<value>
-					<AimingAccuracy>1</AimingAccuracy>
-					<MeleeCritChance>1</MeleeCritChance>
+					<MeleeCritChance>0.95</MeleeCritChance>
 					<MeleeParryChance>1</MeleeParryChance>
-					<ReloadSpeed>1</ReloadSpeed>
-					<Suppressability>1</Suppressability>
+				</value>
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/AlienRace.ThingDef_AlienRace[defName="Ratkin"]/statBases/MeleeDodgeChance</xpath>
+				<value>
+					<MeleeDodgeChance>1.05</MeleeDodgeChance>
 				</value>
 			</li>
 
 			<li Class="PatchOperationReplace">
 				<success>Always</success>
-				<xpath>*/AlienRace.ThingDef_AlienRace[defName="Ratkin"]/tools</xpath>
+				<xpath>Defs/AlienRace.ThingDef_AlienRace[defName="Ratkin"]/tools</xpath>
 				<value>
 					<tools>
+						<li Class="CombatExtended.ToolCE">
+							<label>left fist</label>
+							<capacities>
+								<li>Scratch</li>
+							</capacities>
+							<power>3</power>
+							<cooldownTime>1.11</cooldownTime>
+							<linkedBodyPartsGroup>LeftHand</linkedBodyPartsGroup>
+							<armorPenetrationBlunt>0.081</armorPenetrationBlunt>
+							<armorPenetrationSharp>0.02</armorPenetrationSharp>
+
+						</li>
+						<li Class="CombatExtended.ToolCE">
+							<label>right fist</label>
+							<capacities>
+								<li>Scratch</li>
+							</capacities>
+							<power>3</power>
+							<cooldownTime>1.11</cooldownTime>
+							<linkedBodyPartsGroup>RightHand</linkedBodyPartsGroup>
+							<armorPenetrationBlunt>0.081</armorPenetrationBlunt>
+							<armorPenetrationSharp>0.02</armorPenetrationSharp>
+						</li>
 						<li Class="CombatExtended.ToolCE">
 							<label>teeth</label>
 							<capacities>
 								<li>Bite</li>
 							</capacities>
-							<power>10</power>
-							<cooldownTime>1.4</cooldownTime>
+							<power>5</power>
+							<cooldownTime>1.32</cooldownTime>
 							<linkedBodyPartsGroup>Teeth</linkedBodyPartsGroup>
-							<surpriseAttack>
-								<extraMeleeDamages>
-									<li>
-										<def>Bite</def>
-										<amount>12</amount>
-									</li>
-								</extraMeleeDamages>
-							</surpriseAttack>
-							<armorPenetration>0.18</armorPenetration>
+							<chanceFactor>0.2</chanceFactor>
+							<armorPenetrationBlunt>0.03</armorPenetrationBlunt>
+							<armorPenetrationSharp>0.02</armorPenetrationSharp>
 						</li>
 						<li Class="CombatExtended.ToolCE">
-							<label>left fist</label>
+							<label>head</label>
 							<capacities>
 								<li>Blunt</li>
 							</capacities>
-							<power>5</power>
-							<cooldownTime>1.5</cooldownTime>
-							<linkedBodyPartsGroup>LeftHand</linkedBodyPartsGroup>
-							<surpriseAttack>
-								<extraMeleeDamages>
-									<li>
-										<def>Scratch</def>
-										<amount>7</amount>
-									</li>
-								</extraMeleeDamages>
-							</surpriseAttack>
-							<armorPenetration>0.1</armorPenetration>
-						</li>
-						<li Class="CombatExtended.ToolCE">
-							<label>right fist</label>
-							<capacities>
-								<li>Blunt</li>
-							</capacities>
-							<power>5</power>
-							<cooldownTime>1.5</cooldownTime>
-							<linkedBodyPartsGroup>RightHand</linkedBodyPartsGroup>
-							<surpriseAttack>
-								<extraMeleeDamages>
-									<li>
-										<def>Scratch</def>
-										<amount>7</amount>
-									</li>
-								</extraMeleeDamages>
-							</surpriseAttack>
-							<armorPenetration>0.1</armorPenetration>
-						</li>
+							<power>2</power>
+							<cooldownTime>4.24</cooldownTime>
+							<linkedBodyPartsGroup>Teeth</linkedBodyPartsGroup>
+							<chanceFactor>0.1</chanceFactor>
+							<armorPenetrationBlunt>0.5</armorPenetrationBlunt>
+						</li>					  
 					</tools>
 				</value>
 			</li>
 
 			<li Class="PatchOperationReplace">
-				<xpath>*/ThingDef[@Name="RK_PawnBase"]/inspectorTabs/li[.="ITab_Pawn_Gear"]</xpath>
+				<xpath>Defs/ThingDef[@Name="RK_PawnBase"]/inspectorTabs/li[.="ITab_Pawn_Gear"]</xpath>
 				<value>
 					<li>CombatExtended.ITab_Inventory</li>
 				</value>
 			</li>
 
 			<li Class="PatchOperationAdd">
-				<xpath>*/ThingDef[@Name="RK_PawnBase"]/comps</xpath>
+				<xpath>Defs/ThingDef[@Name="RK_PawnBase"]/comps</xpath>
 				<value>
 					<li Class="CombatExtended.CompProperties_Inventory" />
 				</value>
 			</li>
 
-			<!-- Rotti -->
-			
+			<!-- ========== Rotti ========== -->
+
 			<li Class="PatchOperationAddModExtension">
-				<xpath>Defs/ThingDef[defName="Rottie"]</xpath>
+				<xpath>Defs/ThingDef[defName="Rotti"]</xpath>
 				<value>
 					<li Class="CombatExtended.RacePropertiesExtensionCE">
 						<bodyShape>QuadrupedLow</bodyShape>
@@ -130,17 +126,24 @@
 				</value>
 			</li>
 
-			<li Class="PatchOperationAdd">
-				<xpath>Defs/ThingDef[defName="Rottie"]/statBases</xpath>
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="Rotti"]/statBases/MoveSpeed</xpath>
 				<value>
-					<MeleeDodgeChance>0.16</MeleeDodgeChance>
-					<MeleeCritChance>0.03</MeleeCritChance>
-					<MeleeParryChance>0.03</MeleeParryChance>
+					<MoveSpeed>3.9</MoveSpeed>
+				</value>
+			</li>
+
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName="Rotti"]/statBases</xpath>
+				<value>
+					<MeleeDodgeChance>0.23</MeleeDodgeChance>
+					<MeleeCritChance>0</MeleeCritChance>
+					<MeleeParryChance>0</MeleeParryChance>
 				</value>
 			</li>
 
 			<li Class="PatchOperationReplace">
-				<xpath>Defs/ThingDef[defName="Rottie"]/tools</xpath>
+				<xpath>Defs/ThingDef[defName="Rotti"]/tools</xpath>
 				<value>
 					<tools>
 						<li Class="CombatExtended.ToolCE">
@@ -148,42 +151,103 @@
 							<capacities>
 								<li>Scratch</li>
 							</capacities>
-							<power>8.4</power>
-							<cooldownTime>2</cooldownTime>
+							<power>1</power>
+							<cooldownTime>2.01</cooldownTime>
 							<linkedBodyPartsGroup>FrontLeftPaw</linkedBodyPartsGroup>
-							<armorPenetration>0.251</armorPenetration>
+							<armorPenetrationSharp>0.01</armorPenetrationSharp>
+							<armorPenetrationBlunt>0.25</armorPenetrationBlunt>
 						</li>
 						<li Class="CombatExtended.ToolCE">
 							<label>right claw</label>
 							<capacities>
 								<li>Scratch</li>
 							</capacities>
-							<power>8.4</power>
-							<cooldownTime>2</cooldownTime>
+							<power>1</power>
+							<cooldownTime>2.01</cooldownTime>
 							<linkedBodyPartsGroup>FrontRightPaw</linkedBodyPartsGroup>
-							<armorPenetration>0.251</armorPenetration>
+							<armorPenetrationSharp>0.01</armorPenetrationSharp>
+							<armorPenetrationBlunt>0.25</armorPenetrationBlunt>
 						</li>
 						<li Class="CombatExtended.ToolCE">
 							<capacities>
 								<li>Bite</li>
 							</capacities>
-							<power>8.5</power>
-							<cooldownTime>2</cooldownTime>
+							<power>3</power>
+							<cooldownTime>0.84</cooldownTime>
 							<linkedBodyPartsGroup>Teeth</linkedBodyPartsGroup>
-							<chanceFactor>0.7</chanceFactor>
-							<armorPenetration>0.253</armorPenetration>
+							<chanceFactor>2</chanceFactor>
+							<armorPenetrationSharp>0.02</armorPenetrationSharp>
+							<armorPenetrationBlunt>0.144</armorPenetrationBlunt>
 						</li>
 						<li Class="CombatExtended.ToolCE">
 							<label>head</label>
 							<capacities>
 								<li>Blunt</li>
 							</capacities>
-							<power>4</power>
-							<cooldownTime>2</cooldownTime>
+							<power>1</power>
+							<cooldownTime>3</cooldownTime>
 							<linkedBodyPartsGroup>HeadAttackTool</linkedBodyPartsGroup>
 							<ensureLinkedBodyPartsGroupAlwaysUsable>true</ensureLinkedBodyPartsGroupAlwaysUsable>
 							<chanceFactor>0.2</chanceFactor>
-							<armorPenetration>0.095</armorPenetration>
+							<armorPenetrationBlunt>0.125</armorPenetrationBlunt>
+						</li>
+					</tools>
+				</value>
+			</li>
+
+			<!-- ========== RK_KingHamster ========== -->
+
+			<li Class="PatchOperationAddModExtension">
+				<xpath>Defs/ThingDef[defName="RK_KingHamster"]</xpath>
+				<value>
+					<li Class="CombatExtended.RacePropertiesExtensionCE">
+						<bodyShape>Quadruped</bodyShape>
+					</li>
+				</value>
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="RK_KingHamster"]/statBases/MoveSpeed</xpath>
+				<value>
+					<MoveSpeed>4.5</MoveSpeed>
+				</value>
+			</li>
+
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName="RK_KingHamster"]/statBases</xpath>
+				<value>
+					<MeleeDodgeChance>0.19</MeleeDodgeChance>
+					<MeleeCritChance>0.14</MeleeCritChance>
+					<MeleeParryChance>0.15</MeleeParryChance>
+				</value>
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="RK_KingHamster"]/tools</xpath>
+				<value>
+					<tools>
+						<li Class="CombatExtended.ToolCE">
+							<capacities>
+								<li>Bite</li>
+							</capacities>
+							<power>20</power>
+							<cooldownTime>1.87</cooldownTime>
+							<linkedBodyPartsGroup>Teeth</linkedBodyPartsGroup>
+							<chanceFactor>2</chanceFactor>
+							<armorPenetrationBlunt>3.6</armorPenetrationBlunt>
+							<armorPenetrationSharp>0.04</armorPenetrationSharp>
+						</li>
+						<li Class="CombatExtended.ToolCE">
+							<label>head</label>
+							<capacities>
+								<li>Blunt</li>
+							</capacities>
+							<power>20</power>
+							<cooldownTime>3</cooldownTime>
+							<linkedBodyPartsGroup>HeadAttackTool</linkedBodyPartsGroup>
+							<ensureLinkedBodyPartsGroupAlwaysUsable>true</ensureLinkedBodyPartsGroupAlwaysUsable>
+							<chanceFactor>0.2</chanceFactor>
+							<armorPenetrationBlunt>8</armorPenetrationBlunt>
 						</li>
 					</tools>
 				</value>
