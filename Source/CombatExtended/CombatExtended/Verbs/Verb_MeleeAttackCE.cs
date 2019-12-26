@@ -357,7 +357,8 @@ namespace CombatExtended
                 || !pawn.RaceProps.Humanlike
                 || pawn.story.WorkTagIsDisabled(WorkTags.Violent)
                 || !pawn.health.capacities.CapableOf(PawnCapacityDefOf.Manipulation)
-                || IsTargetImmobile(pawn))
+                || IsTargetImmobile(pawn)
+                || pawn.MentalStateDef == MentalStateDefOf.SocialFighting)
             {
                 return false;
             }
