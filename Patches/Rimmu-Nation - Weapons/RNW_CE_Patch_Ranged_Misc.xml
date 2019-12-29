@@ -14,19 +14,18 @@
 				<defName>RN_BallisticKnife</defName>
 				<statBases>
 					<Mass>0.560</Mass>
-					<RangedWeapon_Cooldown>0.85</RangedWeapon_Cooldown>
+					<RangedWeapon_Cooldown>1.07</RangedWeapon_Cooldown>
 					<SightsEfficiency>0.70</SightsEfficiency>
 					<ShotSpread>0.2</ShotSpread>
 					<SwayFactor>0.85</SwayFactor>
 					<Bulk>1.00</Bulk>
-					<WorkToMake>7000</WorkToMake>
+					<WorkToMake>3000</WorkToMake>
 				</statBases>
 				<costList>
 					<Steel>25</Steel>
-					<ComponentIndustrial>3</ComponentIndustrial>
+					<ComponentIndustrial>1</ComponentIndustrial>
 				</costList>
 				<Properties>
-					<recoilAmount>0.32</recoilAmount>
 					<verbClass>CombatExtended.Verb_ShootCEOneUse</verbClass>
 					<hasStandardCommand>true</hasStandardCommand>
 					<defaultProjectile>Projectile_BallisticKnifeBlade</defaultProjectile>
@@ -36,7 +35,6 @@
 					<ticksBetweenBurstShots>0</ticksBetweenBurstShots>
 					<soundCast>RNShotBallistic</soundCast>
 					<muzzleFlashScale>0</muzzleFlashScale>
-					<recoilPattern>Regular</recoilPattern>
 				</Properties>
 
 				<FireModes>
@@ -56,34 +54,55 @@
 						<li Class="CombatExtended.ToolCE">
 							<label>handle</label>
 							<capacities>
-								<li>Blunt</li>
+								<li>Poke</li>
 							</capacities>
-							<power>6</power>
-							<cooldownTime>2.5</cooldownTime>
-							<armorPenetration>0.1</armorPenetration>
+							<power>1</power>
+							<cooldownTime>1.26</cooldownTime>
+							<armorPenetrationBlunt>0.250</armorPenetrationBlunt>
 							<linkedBodyPartsGroup>Handle</linkedBodyPartsGroup>
+						</li>
+						<li Class="CombatExtended.ToolCE">
+							<label>blade</label>
+							<capacities>
+								<li>Cut</li>
+							</capacities>
+							<power>10</power>
+							<cooldownTime>1.18</cooldownTime>
+							<armorPenetrationBlunt>0.36</armorPenetrationBlunt>
+							<armorPenetrationSharp>0.32</armorPenetrationSharp>
+							<linkedBodyPartsGroup>Blade</linkedBodyPartsGroup>
 						</li>
 						<li Class="CombatExtended.ToolCE">
 							<label>point</label>
 							<capacities>
 								<li>Stab</li>
 							</capacities>
-							<power>17</power>
-							<cooldownTime>2.5</cooldownTime>
-							<armorPenetration>0.18</armorPenetration>
-							<linkedBodyPartsGroup>Blade</linkedBodyPartsGroup>
-						</li>
-						<li Class="CombatExtended.ToolCE">
-							<label>edge</label>
-							<capacities>
-								<li>Cut</li>
-							</capacities>
-							<power>9</power>
-							<cooldownTime>0.95</cooldownTime>
-							<armorPenetration>0.22</armorPenetration>
-							<linkedBodyPartsGroup>Edge</linkedBodyPartsGroup>
+							<power>11</power>
+							<cooldownTime>1.26</cooldownTime>
+							<chanceFactor>1.33</chanceFactor>
+							<armorPenetrationBlunt>0.25</armorPenetrationBlunt>
+							<armorPenetrationSharp>0.42</armorPenetrationSharp>
+							<linkedBodyPartsGroup>Point</linkedBodyPartsGroup>
 						</li>
 					</tools>
+				</value>
+			</li>
+
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName="RN_BallisticKnife"]/statBases</xpath>
+				<value>
+					<MeleeCounterParryBonus>0.15</MeleeCounterParryBonus>
+				</value>
+			</li>
+
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName="RN_BallisticKnife"]</xpath>
+				<value>
+					<equippedStatOffsets>
+						<MeleeCritChance>0.5</MeleeCritChance>
+						<MeleeParryChance>0.15</MeleeParryChance>
+						<MeleeDodgeChance>0.05</MeleeDodgeChance>	
+					</equippedStatOffsets>
 				</value>
 			</li>
 
@@ -104,7 +123,6 @@
 					<warmupTime>1.25</warmupTime>
 					<range>27</range>
 					<soundCast>Bow_Recurve</soundCast>
-					<recoilPattern>Regular</recoilPattern>
 				</Properties>
 				<AmmoUser>
 					<ammoSet>AmmoSet_Arrow</ammoSet>
@@ -153,7 +171,6 @@
 					<warmupTime>1</warmupTime>
 					<range>30</range>
 					<soundCast>RNCrossbow</soundCast>
-					<recoilPattern>Regular</recoilPattern>
 				</Properties>
 				<AmmoUser>
 					<ammoSet>AmmoSet_CrossbowBolt</ammoSet>
@@ -174,13 +191,11 @@
 						<li Class="CombatExtended.ToolCE">
 							<capacities>
 								<li>Blunt</li>
-								<li>Poke</li>
 							</capacities>
-							<power>8</power>
+							<power>7</power>
 							<cooldownTime>1.6</cooldownTime>
-							<armorPenetration>0.1</armorPenetration>
-							<linkedBodyPartsGroup>Stock</linkedBodyPartsGroup>
-						</li>
+							<armorPenetrationBlunt>0.65</armorPenetrationBlunt>
+						</li>	
 					</tools>
 				</value>
 			</li>
