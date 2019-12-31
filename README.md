@@ -129,6 +129,9 @@ Zombieland						| &#x2705;	| &#x2705;
 
 *Incomplete implementation
 
+## Incompatibilities
+- **All Your Base**: Interferes with CE's modifications to base projectile definitions, and will prevent any CE weapons from firing
+
 ## Contributing Your Patches
 - We welcome patches for any and all third-party mods!
 - You can either submit a pull request, or just raise an issue to ask one of our regular contributors for help
