@@ -1,542 +1,523 @@
 <?xml version="1.0" encoding="utf-8" ?>
-<!-- 
-Chicken Plucker's Project Red Horse mods often have duplicate items, apparels and defs shared between them,
-so this patch will only be applied if:
-
-The Ghosts is active && Rimmu-Nation Weapons is NOT active
-
-If both mods are active, the CE patch from Rimmu-Nation Weapons should automatically take over
--->
 <Patch>
-	<Operation Class="PatchOperationFindMod">
-		<mods>
-			<li>[RH] Faction: The Ghosts (1.0)</li>
-		</mods>
-		<match Class="PatchOperationFindMod">
-			<mods>
-				<li>[CP] Rimmu-Nation - Weapons (1.0)</li>
-			</mods>
-			<nomatch Class="PatchOperationSequence">
-				<operations>
+	<Operation Class="PatchOperationSequence">
+		<success>Always</success>
+		<operations>
 
-					<!-- ========== Heckler & Koch M27 IAR ========== -->
+			<li Class="CombatExtended.PatchOperationFindMod">
+				<modName>[RH] Faction: The Ghosts (1.0)</modName>
+			</li>
 
-					<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
-						<defName>RNGun_M27IAR</defName>
-						<statBases>
-							<Mass>3.60</Mass>
-							<RangedWeapon_Cooldown>0.36</RangedWeapon_Cooldown>
-							<SightsEfficiency>2.21</SightsEfficiency>
-							<ShotSpread>0.08</ShotSpread>
-							<SwayFactor>1.16</SwayFactor>
-							<Bulk>9.37</Bulk>
-							<WorkToMake>36500</WorkToMake>
-						</statBases>
-						<costList>
-							<Steel>50</Steel>
-							<ComponentIndustrial>6</ComponentIndustrial>
-							<Chemfuel>10</Chemfuel>
-						</costList>
-						<Properties>
-							<recoilAmount>1.31</recoilAmount>
-							<verbClass>CombatExtended.Verb_ShootCE</verbClass>
-							<hasStandardCommand>true</hasStandardCommand>
-							<defaultProjectile>Bullet_556x45mmNATO_FMJ</defaultProjectile>
-							<warmupTime>1.275</warmupTime>
-							<range>59</range>
-							<burstShotCount>6</burstShotCount>
-							<ticksBetweenBurstShots>4</ticksBetweenBurstShots>
-							<soundCast>RNShot_GenericAR_IV</soundCast>
-							<soundCastTail>GunTail_Medium</soundCastTail>
-							<muzzleFlashScale>9</muzzleFlashScale>
-							<recoilPattern>Regular</recoilPattern>
-						</Properties>
+			<!-- ========== Heckler & Koch HK416 SD DEVGRU ========== -->
 
-						<AmmoUser>
-							<magazineSize>30</magazineSize>
-							<reloadTime>4</reloadTime>
-							<ammoSet>AmmoSet_556x45mmNATO</ammoSet>
-						</AmmoUser>
+			<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+				<defName>RNGun_HK416SD_DEVGRU</defName>
+				<statBases>
+					<Mass>4.44</Mass>
+					<RangedWeapon_Cooldown>0.36</RangedWeapon_Cooldown>
+					<SightsEfficiency>2.24</SightsEfficiency>
+					<ShotSpread>0.05</ShotSpread>
+					<SwayFactor>1.62</SwayFactor>
+					<Bulk>10.39</Bulk>
+					<WorkToMake>37500</WorkToMake>
+				</statBases>
+				<costList>
+					<Chemfuel>10</Chemfuel>
+					<Steel>55</Steel>
+					<ComponentIndustrial>6</ComponentIndustrial>
+				</costList>
+				<Properties>
+					<recoilAmount>1.27</recoilAmount>
+					<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+					<hasStandardCommand>true</hasStandardCommand>
+					<defaultProjectile>Bullet_556x45mmNATO_FMJ</defaultProjectile>
+					<warmupTime>1.3</warmupTime>
+					<range>62</range>
+					<burstShotCount>6</burstShotCount>
+					<ticksBetweenBurstShots>4</ticksBetweenBurstShots>
+					<soundCast>RNShot_SDAR</soundCast>
+					<soundCastTail>GunTail_Medium</soundCastTail>
+					<muzzleFlashScale>9</muzzleFlashScale>
+				</Properties>
 
-						<FireModes>
-							<aiUseBurstMode>TRUE</aiUseBurstMode>
-							<aiAimMode>AimedShot</aiAimMode>
-							<aimedBurstShotCount>3</aimedBurstShotCount>
-						</FireModes>
+				<AmmoUser>
+					<magazineSize>30</magazineSize>
+					<reloadTime>4</reloadTime>
+					<ammoSet>AmmoSet_556x45mmNATO</ammoSet>
+				</AmmoUser>
 
-						<!-- No additional CE weaponTags needed -->
-					</li>
+				<FireModes>
+					<aiUseBurstMode>TRUE</aiUseBurstMode>
+					<aiAimMode>AimedShot</aiAimMode>
+					<aimedBurstShotCount>3</aimedBurstShotCount>
+				</FireModes>
 
-					<li Class="PatchOperationReplace">
-						<xpath>Defs/ThingDef[defName="RNGun_M27IAR"]/tools</xpath>
-						<value>
-							<tools>
-								<li Class="CombatExtended.ToolCE">
-									<label>stock</label>
-									<capacities>
-										<li>Blunt</li>
-									</capacities>
-									<power>9</power>
-									<cooldownTime>1.6</cooldownTime>
-									<armorPenetration>0.12</armorPenetration>
-									<linkedBodyPartsGroup>Stock</linkedBodyPartsGroup>
-								</li>
-								<li Class="CombatExtended.ToolCE">
-									<label>barrel</label>
-									<capacities>
-										<li>Blunt</li>
-									</capacities>
-									<power>9</power>
-									<cooldownTime>1.7</cooldownTime>
-									<armorPenetration>0.15</armorPenetration>
-									<linkedBodyPartsGroup>Barrel</linkedBodyPartsGroup>
-								</li>
-								<li Class="CombatExtended.ToolCE">
-									<label>muzzle</label>
-									<capacities>
-										<li>Poke</li>
-									</capacities>
-									<power>9</power>
-									<cooldownTime>1.4</cooldownTime>
-									<armorPenetration>0.1</armorPenetration>
-									<linkedBodyPartsGroup>Muzzle</linkedBodyPartsGroup>
-								</li>
-							</tools>
-						</value>
-					</li>
+				<!-- No additional CE weaponTags needed -->
+			</li>
 
-					<!-- ========== Heckler & Koch M27 IAR SD ========== -->
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="RNGun_HK416SD_DEVGRU"]/tools</xpath>
+				<value>
+					<tools>
+						<li Class="CombatExtended.ToolCE">
+							<label>stock</label>
+							<capacities>
+								<li>Blunt</li>
+							</capacities>
+							<power>8</power>
+							<cooldownTime>1.79</cooldownTime>
+							<linkedBodyPartsGroup>Stock</linkedBodyPartsGroup>
+							<armorPenetrationBlunt>2.755</armorPenetrationBlunt>
+						</li>
+						<li Class="CombatExtended.ToolCE">
+							<label>barrel</label>
+							<capacities>
+								<li>Blunt</li>
+							</capacities>
+							<power>5</power>
+							<cooldownTime>3.02</cooldownTime>
+							<linkedBodyPartsGroup>Barrel</linkedBodyPartsGroup>
+							<armorPenetrationBlunt>1.63</armorPenetrationBlunt>
+						</li>
+						<li Class="CombatExtended.ToolCE">
+							<label>muzzle</label>
+							<capacities>
+								<li>Poke</li>
+							</capacities>
+							<power>8</power>
+							<cooldownTime>1.55</cooldownTime>
+							<linkedBodyPartsGroup>Muzzle</linkedBodyPartsGroup>
+							<armorPenetrationBlunt>2.755</armorPenetrationBlunt>
+						</li>
+					</tools>
+				</value>
+			</li>
 
-					<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
-						<defName>RNGun_M27IAR_SD</defName>
-						<statBases>
-							<Mass>4.11</Mass>
-							<RangedWeapon_Cooldown>0.36</RangedWeapon_Cooldown>
-							<SightsEfficiency>2.21</SightsEfficiency>
-							<ShotSpread>0.07</ShotSpread>
-							<SwayFactor>1.37</SwayFactor>
-							<Bulk>10.26</Bulk>
-							<WorkToMake>37000</WorkToMake>
-						</statBases>
-						<costList>
-							<Steel>55</Steel>
-							<ComponentIndustrial>6</ComponentIndustrial>
-							<Chemfuel>10</Chemfuel>
-						</costList>
-						<Properties>
-							<recoilAmount>1.23</recoilAmount>
-							<verbClass>CombatExtended.Verb_ShootCE</verbClass>
-							<hasStandardCommand>true</hasStandardCommand>
-							<defaultProjectile>Bullet_556x45mmNATO_FMJ</defaultProjectile>
-							<warmupTime>1.275</warmupTime>
-							<range>59</range>
-							<burstShotCount>6</burstShotCount>
-							<ticksBetweenBurstShots>4</ticksBetweenBurstShots>
-							<soundCast>RNShot_SDAR_III</soundCast>
-							<soundCastTail>GunTail_Medium</soundCastTail>
-							<muzzleFlashScale>9</muzzleFlashScale>
-							<recoilPattern>Regular</recoilPattern>
-						</Properties>
+			<!-- ========== M16A4 MIL-SPEC ========== -->
 
-						<AmmoUser>
-							<magazineSize>30</magazineSize>
-							<reloadTime>4</reloadTime>
-							<ammoSet>AmmoSet_556x45mmNATO</ammoSet>
-						</AmmoUser>
+			<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+				<defName>RNGun_M16A4MilSpec</defName>
+				<statBases>
+					<Mass>2.89</Mass>
+					<RangedWeapon_Cooldown>0.36</RangedWeapon_Cooldown>
+					<SightsEfficiency>2.24</SightsEfficiency>
+					<ShotSpread>0.07</ShotSpread>
+					<SwayFactor>1.33</SwayFactor>
+					<Bulk>10.03</Bulk>
+					<WorkToMake>34000</WorkToMake>
+				</statBases>
+				<costList>
+					<Chemfuel>10</Chemfuel>
+					<Steel>50</Steel>
+					<ComponentIndustrial>6</ComponentIndustrial>
+				</costList>
+				<Properties>
+					<recoilAmount>1.63</recoilAmount>
+					<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+					<hasStandardCommand>true</hasStandardCommand>
+					<defaultProjectile>Bullet_556x45mmNATO_FMJ</defaultProjectile>
+					<warmupTime>1.3</warmupTime>
+					<range>59</range>
+					<burstShotCount>6</burstShotCount>
+					<ticksBetweenBurstShots>4</ticksBetweenBurstShots>
+					<soundCast>RNShot_GenericAR_IV</soundCast>
+					<soundCastTail>GunTail_Medium</soundCastTail>
+					<muzzleFlashScale>9</muzzleFlashScale>
+				</Properties>
 
-						<FireModes>
-							<aiUseBurstMode>TRUE</aiUseBurstMode>
-							<aiAimMode>AimedShot</aiAimMode>
-							<aimedBurstShotCount>3</aimedBurstShotCount>
-						</FireModes>
+				<AmmoUser>
+					<magazineSize>30</magazineSize>
+					<reloadTime>4</reloadTime>
+					<ammoSet>AmmoSet_556x45mmNATO</ammoSet>
+				</AmmoUser>
 
-						<!-- No additional CE weaponTags needed -->
-					</li>
+				<FireModes>
+					<aiUseBurstMode>TRUE</aiUseBurstMode>
+					<aiAimMode>AimedShot</aiAimMode>
+					<aimedBurstShotCount>3</aimedBurstShotCount>
+				</FireModes>
 
-					<li Class="PatchOperationReplace">
-						<xpath>Defs/ThingDef[defName="RNGun_M27IAR_SD"]/tools</xpath>
-						<value>
-							<tools>
-								<li Class="CombatExtended.ToolCE">
-									<label>stock</label>
-									<capacities>
-										<li>Blunt</li>
-									</capacities>
-									<power>9</power>
-									<cooldownTime>1.6</cooldownTime>
-									<armorPenetration>0.12</armorPenetration>
-									<linkedBodyPartsGroup>Stock</linkedBodyPartsGroup>
-								</li>
-								<li Class="CombatExtended.ToolCE">
-									<label>barrel</label>
-									<capacities>
-										<li>Blunt</li>
-									</capacities>
-									<power>9</power>
-									<cooldownTime>1.7</cooldownTime>
-									<armorPenetration>0.15</armorPenetration>
-									<linkedBodyPartsGroup>Barrel</linkedBodyPartsGroup>
-								</li>
-								<li Class="CombatExtended.ToolCE">
-									<label>muzzle</label>
-									<capacities>
-										<li>Poke</li>
-									</capacities>
-									<power>9</power>
-									<cooldownTime>1.4</cooldownTime>
-									<armorPenetration>0.1</armorPenetration>
-									<linkedBodyPartsGroup>Muzzle</linkedBodyPartsGroup>
-								</li>
-							</tools>
-						</value>
-					</li>
+				<!-- No additional CE weaponTags needed -->
+			</li>
 
-					<!-- ========== Heckler & Koch HK416 SD DEVGRU ========== -->
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="RNGun_M16A4MilSpec"]/tools</xpath>
+				<value>
+					<tools>
+						<li Class="CombatExtended.ToolCE">
+							<label>stock</label>
+							<capacities>
+								<li>Blunt</li>
+							</capacities>
+							<power>8</power>
+							<cooldownTime>1.79</cooldownTime>
+							<linkedBodyPartsGroup>Stock</linkedBodyPartsGroup>
+							<armorPenetrationBlunt>2.755</armorPenetrationBlunt>
+						</li>
+						<li Class="CombatExtended.ToolCE">
+							<label>barrel</label>
+							<capacities>
+								<li>Blunt</li>
+							</capacities>
+							<power>5</power>
+							<cooldownTime>3.02</cooldownTime>
+							<linkedBodyPartsGroup>Barrel</linkedBodyPartsGroup>
+							<armorPenetrationBlunt>1.63</armorPenetrationBlunt>
+						</li>
+						<li Class="CombatExtended.ToolCE">
+							<label>muzzle</label>
+							<capacities>
+								<li>Poke</li>
+							</capacities>
+							<power>8</power>
+							<cooldownTime>1.55</cooldownTime>
+							<linkedBodyPartsGroup>Muzzle</linkedBodyPartsGroup>
+							<armorPenetrationBlunt>2.755</armorPenetrationBlunt>
+						</li>
+					</tools>
+				</value>
+			</li>
 
-					<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
-						<defName>RNGun_HK416SD_DEVGRU</defName>
-						<statBases>
-							<Mass>4.44</Mass>
-							<RangedWeapon_Cooldown>0.36</RangedWeapon_Cooldown>
-							<SightsEfficiency>2.24</SightsEfficiency>
-							<ShotSpread>0.05</ShotSpread>
-							<SwayFactor>1.62</SwayFactor>
-							<Bulk>10.39</Bulk>
-							<WorkToMake>37500</WorkToMake>
-						</statBases>
-						<costList>
-							<Steel>55</Steel>
-							<ComponentIndustrial>6</ComponentIndustrial>
-							<Chemfuel>10</Chemfuel>
-						</costList>
-						<Properties>
-							<recoilAmount>1.27</recoilAmount>
-							<verbClass>CombatExtended.Verb_ShootCE</verbClass>
-							<hasStandardCommand>true</hasStandardCommand>
-							<defaultProjectile>Bullet_556x45mmNATO_FMJ</defaultProjectile>
-							<warmupTime>1.3</warmupTime>
-							<range>62</range>
-							<burstShotCount>6</burstShotCount>
-							<ticksBetweenBurstShots>4</ticksBetweenBurstShots>
-							<soundCast>RNShot_SDAR</soundCast>
-							<soundCastTail>GunTail_Medium</soundCastTail>
-							<muzzleFlashScale>9</muzzleFlashScale>
-							<recoilPattern>Regular</recoilPattern>
-						</Properties>
+			<!-- ========== Heckler & Koch M27 IAR ========== -->
 
-						<AmmoUser>
-							<magazineSize>30</magazineSize>
-							<reloadTime>4</reloadTime>
-							<ammoSet>AmmoSet_556x45mmNATO</ammoSet>
-						</AmmoUser>
+			<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+				<defName>RNGun_M27IAR</defName>
+				<statBases>
+					<Mass>3.60</Mass>
+					<RangedWeapon_Cooldown>0.36</RangedWeapon_Cooldown>
+					<SightsEfficiency>2.21</SightsEfficiency>
+					<ShotSpread>0.08</ShotSpread>
+					<SwayFactor>1.23</SwayFactor>
+					<Bulk>9.37</Bulk>
+					<WorkToMake>36500</WorkToMake>
+				</statBases>
+				<costList>
+					<Chemfuel>10</Chemfuel>
+					<Steel>50</Steel>
+					<ComponentIndustrial>6</ComponentIndustrial>
+				</costList>
+				<Properties>
+					<recoilAmount>1.31</recoilAmount>
+					<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+					<hasStandardCommand>true</hasStandardCommand>
+					<defaultProjectile>Bullet_556x45mmNATO_FMJ</defaultProjectile>
+					<warmupTime>1.275</warmupTime>
+					<range>59</range>
+					<burstShotCount>6</burstShotCount>
+					<ticksBetweenBurstShots>4</ticksBetweenBurstShots>
+					<soundCast>RNShot_GenericAR_IV</soundCast>
+					<soundCastTail>GunTail_Medium</soundCastTail>
+					<muzzleFlashScale>9</muzzleFlashScale>
+				</Properties>
 
-						<FireModes>
-							<aiUseBurstMode>TRUE</aiUseBurstMode>
-							<aiAimMode>AimedShot</aiAimMode>
-							<aimedBurstShotCount>3</aimedBurstShotCount>
-						</FireModes>
+				<AmmoUser>
+					<magazineSize>30</magazineSize>
+					<reloadTime>4</reloadTime>
+					<ammoSet>AmmoSet_556x45mmNATO</ammoSet>
+				</AmmoUser>
 
-						<!-- No additional CE weaponTags needed -->
-					</li>
+				<FireModes>
+					<aiUseBurstMode>TRUE</aiUseBurstMode>
+					<aiAimMode>AimedShot</aiAimMode>
+					<aimedBurstShotCount>3</aimedBurstShotCount>
+				</FireModes>
 
-					<li Class="PatchOperationReplace">
-						<xpath>Defs/ThingDef[defName="RNGun_HK416SD_DEVGRU"]/tools</xpath>
-						<value>
-							<tools>
-								<li Class="CombatExtended.ToolCE">
-									<label>stock</label>
-									<capacities>
-										<li>Blunt</li>
-									</capacities>
-									<power>9</power>
-									<cooldownTime>1.6</cooldownTime>
-									<armorPenetration>0.12</armorPenetration>
-									<linkedBodyPartsGroup>Stock</linkedBodyPartsGroup>
-								</li>
-								<li Class="CombatExtended.ToolCE">
-									<label>barrel</label>
-									<capacities>
-										<li>Blunt</li>
-									</capacities>
-									<power>9</power>
-									<cooldownTime>1.7</cooldownTime>
-									<armorPenetration>0.15</armorPenetration>
-									<linkedBodyPartsGroup>Barrel</linkedBodyPartsGroup>
-								</li>
-								<li Class="CombatExtended.ToolCE">
-									<label>muzzle</label>
-									<capacities>
-										<li>Poke</li>
-									</capacities>
-									<power>9</power>
-									<cooldownTime>1.4</cooldownTime>
-									<armorPenetration>0.1</armorPenetration>
-									<linkedBodyPartsGroup>Muzzle</linkedBodyPartsGroup>
-								</li>
-							</tools>
-						</value>
-					</li>
+				<!-- No additional CE weaponTags needed -->
+			</li>
 
-					<!-- ========== M4A1 MIL-SPEC ========== -->
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="RNGun_M27IAR"]/tools</xpath>
+				<value>
+					<tools>
+						<li Class="CombatExtended.ToolCE">
+							<label>stock</label>
+							<capacities>
+								<li>Blunt</li>
+							</capacities>
+							<power>8</power>
+							<cooldownTime>1.79</cooldownTime>
+							<linkedBodyPartsGroup>Stock</linkedBodyPartsGroup>
+							<armorPenetrationBlunt>2.755</armorPenetrationBlunt>
+						</li>
+						<li Class="CombatExtended.ToolCE">
+							<label>barrel</label>
+							<capacities>
+								<li>Blunt</li>
+							</capacities>
+							<power>5</power>
+							<cooldownTime>3.02</cooldownTime>
+							<linkedBodyPartsGroup>Barrel</linkedBodyPartsGroup>
+							<armorPenetrationBlunt>1.63</armorPenetrationBlunt>
+						</li>
+						<li Class="CombatExtended.ToolCE">
+							<label>muzzle</label>
+							<capacities>
+								<li>Poke</li>
+							</capacities>
+							<power>8</power>
+							<cooldownTime>1.55</cooldownTime>
+							<linkedBodyPartsGroup>Muzzle</linkedBodyPartsGroup>
+							<armorPenetrationBlunt>2.755</armorPenetrationBlunt>
+						</li>
+					</tools>
+				</value>
+			</li>
 
-					<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
-						<defName>RNGun_M4A1MilSpec</defName>
-						<statBases>
-							<Mass>2.90</Mass>
-							<RangedWeapon_Cooldown>0.36</RangedWeapon_Cooldown>
-							<SightsEfficiency>2.24</SightsEfficiency>
-							<ShotSpread>0.1</ShotSpread>
-							<SwayFactor>1.40</SwayFactor>
-							<Bulk>7.56</Bulk>
-							<WorkToMake>33500</WorkToMake>
-						</statBases>
-						<costList>
-							<Steel>40</Steel>
-							<ComponentIndustrial>6</ComponentIndustrial>
-							<Chemfuel>10</Chemfuel>
-						</costList>
-						<Properties>
-							<recoilAmount>1.58</recoilAmount>
-							<verbClass>CombatExtended.Verb_ShootCE</verbClass>
-							<hasStandardCommand>true</hasStandardCommand>
-							<defaultProjectile>Bullet_556x45mmNATO_FMJ</defaultProjectile>
-							<warmupTime>1.3</warmupTime>
-							<range>55</range>
-							<burstShotCount>6</burstShotCount>
-							<ticksBetweenBurstShots>4</ticksBetweenBurstShots>
-							<soundCast>RNShot_GenericAR_II</soundCast>
-							<soundCastTail>GunTail_Medium</soundCastTail>
-							<muzzleFlashScale>9</muzzleFlashScale>
-							<recoilPattern>Regular</recoilPattern>
-						</Properties>
+			<!-- ========== Heckler & Koch M27 IAR SD ========== -->
 
-						<AmmoUser>
-							<magazineSize>30</magazineSize>
-							<reloadTime>4</reloadTime>
-							<ammoSet>AmmoSet_556x45mmNATO</ammoSet>
-						</AmmoUser>
+			<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+				<defName>RNGun_M27IAR_SD</defName>
+				<statBases>
+					<Mass>4.11</Mass>
+					<RangedWeapon_Cooldown>0.36</RangedWeapon_Cooldown>
+					<SightsEfficiency>2.21</SightsEfficiency>
+					<ShotSpread>0.07</ShotSpread>
+					<SwayFactor>1.37</SwayFactor>
+					<Bulk>10.26</Bulk>
+					<WorkToMake>37000</WorkToMake>
+				</statBases>
+				<costList>
+					<Chemfuel>10</Chemfuel>
+					<Steel>55</Steel>
+					<ComponentIndustrial>6</ComponentIndustrial>
+				</costList>
+				<Properties>
+					<recoilAmount>1.23</recoilAmount>
+					<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+					<hasStandardCommand>true</hasStandardCommand>
+					<defaultProjectile>Bullet_556x45mmNATO_FMJ</defaultProjectile>
+					<warmupTime>1.275</warmupTime>
+					<range>59</range>
+					<burstShotCount>6</burstShotCount>
+					<ticksBetweenBurstShots>4</ticksBetweenBurstShots>
+					<soundCast>RNShot_SDAR_III</soundCast>
+					<soundCastTail>GunTail_Medium</soundCastTail>
+					<muzzleFlashScale>9</muzzleFlashScale>
+				</Properties>
 
-						<FireModes>
-							<aiUseBurstMode>TRUE</aiUseBurstMode>
-							<aiAimMode>AimedShot</aiAimMode>
-							<aimedBurstShotCount>3</aimedBurstShotCount>
-						</FireModes>
+				<AmmoUser>
+					<magazineSize>30</magazineSize>
+					<reloadTime>4</reloadTime>
+					<ammoSet>AmmoSet_556x45mmNATO</ammoSet>
+				</AmmoUser>
 
-						<!-- No additional CE weaponTags needed -->
-					</li>
+				<FireModes>
+					<aiUseBurstMode>TRUE</aiUseBurstMode>
+					<aiAimMode>AimedShot</aiAimMode>
+					<aimedBurstShotCount>3</aimedBurstShotCount>
+				</FireModes>
 
-					<li Class="PatchOperationReplace">
-						<xpath>Defs/ThingDef[defName="RNGun_M4A1MilSpec"]/tools</xpath>
-						<value>
-							<tools>
-								<li Class="CombatExtended.ToolCE">
-									<label>stock</label>
-									<capacities>
-										<li>Blunt</li>
-									</capacities>
-									<power>9</power>
-									<cooldownTime>1.6</cooldownTime>
-									<armorPenetration>0.12</armorPenetration>
-									<linkedBodyPartsGroup>Stock</linkedBodyPartsGroup>
-								</li>
-								<li Class="CombatExtended.ToolCE">
-									<label>barrel</label>
-									<capacities>
-										<li>Blunt</li>
-									</capacities>
-									<power>9</power>
-									<cooldownTime>1.7</cooldownTime>
-									<armorPenetration>0.15</armorPenetration>
-									<linkedBodyPartsGroup>Barrel</linkedBodyPartsGroup>
-								</li>
-								<li Class="CombatExtended.ToolCE">
-									<label>muzzle</label>
-									<capacities>
-										<li>Poke</li>
-									</capacities>
-									<power>9</power>
-									<cooldownTime>1.4</cooldownTime>
-									<armorPenetration>0.1</armorPenetration>
-									<linkedBodyPartsGroup>Muzzle</linkedBodyPartsGroup>
-								</li>
-							</tools>
-						</value>
-					</li>
+				<!-- No additional CE weaponTags needed -->
+			</li>
 
-					<!-- ========== M4A1 SD MIL-SPEC ========== -->
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="RNGun_M27IAR_SD"]/tools</xpath>
+				<value>
+					<tools>
+						<li Class="CombatExtended.ToolCE">
+							<label>stock</label>
+							<capacities>
+								<li>Blunt</li>
+							</capacities>
+							<power>8</power>
+							<cooldownTime>1.79</cooldownTime>
+							<linkedBodyPartsGroup>Stock</linkedBodyPartsGroup>
+							<armorPenetrationBlunt>2.755</armorPenetrationBlunt>
+						</li>
+						<li Class="CombatExtended.ToolCE">
+							<label>barrel</label>
+							<capacities>
+								<li>Blunt</li>
+							</capacities>
+							<power>5</power>
+							<cooldownTime>3.02</cooldownTime>
+							<linkedBodyPartsGroup>Barrel</linkedBodyPartsGroup>
+							<armorPenetrationBlunt>1.63</armorPenetrationBlunt>
+						</li>
+						<li Class="CombatExtended.ToolCE">
+							<label>muzzle</label>
+							<capacities>
+								<li>Poke</li>
+							</capacities>
+							<power>8</power>
+							<cooldownTime>1.55</cooldownTime>
+							<linkedBodyPartsGroup>Muzzle</linkedBodyPartsGroup>
+							<armorPenetrationBlunt>2.755</armorPenetrationBlunt>
+						</li>
+					</tools>
+				</value>
+			</li>
 
-					<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
-						<defName>RNGun_M4A1MilSpecSD</defName>
-						<statBases>
-							<Mass>3.52</Mass>
-							<RangedWeapon_Cooldown>0.36</RangedWeapon_Cooldown>
-							<SightsEfficiency>2.24</SightsEfficiency>
-							<ShotSpread>0.06</ShotSpread>
-							<SwayFactor>1.40</SwayFactor>
-							<Bulk>9.21</Bulk>
-							<WorkToMake>37000</WorkToMake>
-						</statBases>
-						<costList>
-							<Steel>50</Steel>
-							<ComponentIndustrial>6</ComponentIndustrial>
-							<Chemfuel>10</Chemfuel>
-						</costList>
-						<Properties>
-							<recoilAmount>1.44</recoilAmount>
-							<verbClass>CombatExtended.Verb_ShootCE</verbClass>
-							<hasStandardCommand>true</hasStandardCommand>
-							<defaultProjectile>Bullet_556x45mmNATO_FMJ</defaultProjectile>
-							<warmupTime>1.3</warmupTime>
-							<range>55</range>
-							<burstShotCount>6</burstShotCount>
-							<ticksBetweenBurstShots>4</ticksBetweenBurstShots>
-							<soundCast>RNShot_SDAR_III</soundCast>
-							<soundCastTail>GunTail_Medium</soundCastTail>
-							<muzzleFlashScale>9</muzzleFlashScale>
-							<recoilPattern>Regular</recoilPattern>
-						</Properties>
+			<!-- ========== M4A1 MIL-SPEC ========== -->
 
-						<AmmoUser>
-							<magazineSize>30</magazineSize>
-							<reloadTime>4</reloadTime>
-							<ammoSet>AmmoSet_556x45mmNATO</ammoSet>
-						</AmmoUser>
+			<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+				<defName>RNGun_M4A1MilSpec</defName>
+				<statBases>
+					<Mass>2.90</Mass>
+					<RangedWeapon_Cooldown>0.36</RangedWeapon_Cooldown>
+					<SightsEfficiency>2.24</SightsEfficiency>
+					<ShotSpread>0.1</ShotSpread>
+					<SwayFactor>1.17</SwayFactor>
+					<Bulk>7.56</Bulk>
+					<WorkToMake>33500</WorkToMake>
+				</statBases>
+				<costList>
+					<Chemfuel>10</Chemfuel>
+					<Steel>40</Steel>
+					<ComponentIndustrial>6</ComponentIndustrial>
+				</costList>
+				<Properties>
+					<recoilAmount>1.58</recoilAmount>
+					<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+					<hasStandardCommand>true</hasStandardCommand>
+					<defaultProjectile>Bullet_556x45mmNATO_FMJ</defaultProjectile>
+					<warmupTime>1.3</warmupTime>
+					<range>55</range>
+					<burstShotCount>6</burstShotCount>
+					<ticksBetweenBurstShots>4</ticksBetweenBurstShots>
+					<soundCast>RNShot_GenericAR_II</soundCast>
+					<soundCastTail>GunTail_Medium</soundCastTail>
+					<muzzleFlashScale>9</muzzleFlashScale>
+				</Properties>
 
-						<FireModes>
-							<aiUseBurstMode>TRUE</aiUseBurstMode>
-							<aiAimMode>AimedShot</aiAimMode>
-							<aimedBurstShotCount>3</aimedBurstShotCount>
-						</FireModes>
+				<AmmoUser>
+					<magazineSize>30</magazineSize>
+					<reloadTime>4</reloadTime>
+					<ammoSet>AmmoSet_556x45mmNATO</ammoSet>
+				</AmmoUser>
 
-						<!-- No additional CE weaponTags needed -->
-					</li>
+				<FireModes>
+					<aiUseBurstMode>TRUE</aiUseBurstMode>
+					<aiAimMode>AimedShot</aiAimMode>
+					<aimedBurstShotCount>3</aimedBurstShotCount>
+				</FireModes>
 
-					<li Class="PatchOperationReplace">
-						<xpath>Defs/ThingDef[defName="RNGun_M4A1MilSpecSD"]/tools</xpath>
-						<value>
-							<tools>
-								<li Class="CombatExtended.ToolCE">
-									<label>stock</label>
-									<capacities>
-										<li>Blunt</li>
-									</capacities>
-									<power>9</power>
-									<cooldownTime>1.6</cooldownTime>
-									<armorPenetration>0.12</armorPenetration>
-									<linkedBodyPartsGroup>Stock</linkedBodyPartsGroup>
-								</li>
-								<li Class="CombatExtended.ToolCE">
-									<label>barrel</label>
-									<capacities>
-										<li>Blunt</li>
-									</capacities>
-									<power>9</power>
-									<cooldownTime>1.7</cooldownTime>
-									<armorPenetration>0.15</armorPenetration>
-									<linkedBodyPartsGroup>Barrel</linkedBodyPartsGroup>
-								</li>
-								<li Class="CombatExtended.ToolCE">
-									<label>muzzle</label>
-									<capacities>
-										<li>Poke</li>
-									</capacities>
-									<power>9</power>
-									<cooldownTime>1.4</cooldownTime>
-									<armorPenetration>0.1</armorPenetration>
-									<linkedBodyPartsGroup>Muzzle</linkedBodyPartsGroup>
-								</li>
-							</tools>
-						</value>
-					</li>
+				<!-- No additional CE weaponTags needed -->
+			</li>
 
-					<!-- ========== M16A4 MIL-SPEC ========== -->
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="RNGun_M4A1MilSpec"]/tools</xpath>
+				<value>
+					<tools>
+						<li Class="CombatExtended.ToolCE">
+							<label>stock</label>
+							<capacities>
+								<li>Blunt</li>
+							</capacities>
+							<power>8</power>
+							<cooldownTime>1.79</cooldownTime>
+							<linkedBodyPartsGroup>Stock</linkedBodyPartsGroup>
+							<armorPenetrationBlunt>2.755</armorPenetrationBlunt>
+						</li>
+						<li Class="CombatExtended.ToolCE">
+							<label>barrel</label>
+							<capacities>
+								<li>Blunt</li>
+							</capacities>
+							<power>5</power>
+							<cooldownTime>3.02</cooldownTime>
+							<linkedBodyPartsGroup>Barrel</linkedBodyPartsGroup>
+							<armorPenetrationBlunt>1.63</armorPenetrationBlunt>
+						</li>
+						<li Class="CombatExtended.ToolCE">
+							<label>muzzle</label>
+							<capacities>
+								<li>Poke</li>
+							</capacities>
+							<power>8</power>
+							<cooldownTime>1.55</cooldownTime>
+							<linkedBodyPartsGroup>Muzzle</linkedBodyPartsGroup>
+							<armorPenetrationBlunt>2.755</armorPenetrationBlunt>
+						</li>
+					</tools>
+				</value>
+			</li>
 
-					<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
-						<defName>RNGun_M16A4MilSpec</defName>
-						<statBases>
-							<Mass>2.89</Mass>
-							<RangedWeapon_Cooldown>0.36</RangedWeapon_Cooldown>
-							<SightsEfficiency>2.24</SightsEfficiency>
-							<ShotSpread>0.07</ShotSpread>
-							<SwayFactor>1.33</SwayFactor>
-							<Bulk>10.03</Bulk>
-							<WorkToMake>34000</WorkToMake>
-						</statBases>
-						<costList>
-							<Steel>50</Steel>
-							<ComponentIndustrial>6</ComponentIndustrial>
-							<Chemfuel>10</Chemfuel>
-						</costList>
-						<Properties>
-							<recoilAmount>1.63</recoilAmount>
-							<verbClass>CombatExtended.Verb_ShootCE</verbClass>
-							<hasStandardCommand>true</hasStandardCommand>
-							<defaultProjectile>Bullet_556x45mmNATO_FMJ</defaultProjectile>
-							<warmupTime>1.3</warmupTime>
-							<range>59</range>
-							<burstShotCount>6</burstShotCount>
-							<ticksBetweenBurstShots>4</ticksBetweenBurstShots>
-							<soundCast>RNShot_GenericAR_IV</soundCast>
-							<soundCastTail>GunTail_Medium</soundCastTail>
-							<muzzleFlashScale>9</muzzleFlashScale>
-							<recoilPattern>Regular</recoilPattern>
-						</Properties>
+			<!-- ========== M4A1 SD MIL-SPEC ========== -->
 
-						<AmmoUser>
-							<magazineSize>30</magazineSize>
-							<reloadTime>4</reloadTime>
-							<ammoSet>AmmoSet_556x45mmNATO</ammoSet>
-						</AmmoUser>
+			<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+				<defName>RNGun_M4A1MilSpecSD</defName>
+				<statBases>
+					<Mass>3.52</Mass>
+					<RangedWeapon_Cooldown>0.36</RangedWeapon_Cooldown>
+					<SightsEfficiency>2.24</SightsEfficiency>
+					<ShotSpread>0.06</ShotSpread>
+					<SwayFactor>1.40</SwayFactor>
+					<Bulk>9.21</Bulk>
+					<WorkToMake>37000</WorkToMake>
+				</statBases>
+				<costList>
+					<Chemfuel>10</Chemfuel>
+					<Steel>50</Steel>
+					<ComponentIndustrial>6</ComponentIndustrial>
+				</costList>
+				<Properties>
+					<recoilAmount>1.44</recoilAmount>
+					<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+					<hasStandardCommand>true</hasStandardCommand>
+					<defaultProjectile>Bullet_556x45mmNATO_FMJ</defaultProjectile>
+					<warmupTime>1.3</warmupTime>
+					<range>55</range>
+					<burstShotCount>6</burstShotCount>
+					<ticksBetweenBurstShots>4</ticksBetweenBurstShots>
+					<soundCast>RNShot_SDAR_III</soundCast>
+					<soundCastTail>GunTail_Medium</soundCastTail>
+					<muzzleFlashScale>9</muzzleFlashScale>
+				</Properties>
 
-						<FireModes>
-							<aiUseBurstMode>TRUE</aiUseBurstMode>
-							<aiAimMode>AimedShot</aiAimMode>
-							<aimedBurstShotCount>3</aimedBurstShotCount>
-						</FireModes>
+				<AmmoUser>
+					<magazineSize>30</magazineSize>
+					<reloadTime>4</reloadTime>
+					<ammoSet>AmmoSet_556x45mmNATO</ammoSet>
+				</AmmoUser>
 
-						<!-- No additional CE weaponTags needed -->
-					</li>
+				<FireModes>
+					<aiUseBurstMode>TRUE</aiUseBurstMode>
+					<aiAimMode>AimedShot</aiAimMode>
+					<aimedBurstShotCount>3</aimedBurstShotCount>
+				</FireModes>
 
-					<li Class="PatchOperationReplace">
-						<xpath>Defs/ThingDef[defName="RNGun_M16A4MilSpec"]/tools</xpath>
-						<value>
-							<tools>
-								<li Class="CombatExtended.ToolCE">
-									<label>stock</label>
-									<capacities>
-										<li>Blunt</li>
-									</capacities>
-									<power>9</power>
-									<cooldownTime>1.6</cooldownTime>
-									<armorPenetration>0.12</armorPenetration>
-									<linkedBodyPartsGroup>Stock</linkedBodyPartsGroup>
-								</li>
-								<li Class="CombatExtended.ToolCE">
-									<label>barrel</label>
-									<capacities>
-										<li>Blunt</li>
-									</capacities>
-									<power>9</power>
-									<cooldownTime>1.7</cooldownTime>
-									<armorPenetration>0.15</armorPenetration>
-									<linkedBodyPartsGroup>Barrel</linkedBodyPartsGroup>
-								</li>
-								<li Class="CombatExtended.ToolCE">
-									<label>muzzle</label>
-									<capacities>
-										<li>Poke</li>
-									</capacities>
-									<power>9</power>
-									<cooldownTime>1.4</cooldownTime>
-									<armorPenetration>0.1</armorPenetration>
-									<linkedBodyPartsGroup>Muzzle</linkedBodyPartsGroup>
-								</li>
-							</tools>
-						</value>
-					</li>
+				<!-- No additional CE weaponTags needed -->
+			</li>
 
-				</operations>
-			</nomatch>
-		</match>
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="RNGun_M4A1MilSpecSD"]/tools</xpath>
+				<value>
+					<tools>
+						<li Class="CombatExtended.ToolCE">
+							<label>stock</label>
+							<capacities>
+								<li>Blunt</li>
+							</capacities>
+							<power>8</power>
+							<cooldownTime>1.79</cooldownTime>
+							<linkedBodyPartsGroup>Stock</linkedBodyPartsGroup>
+							<armorPenetrationBlunt>2.755</armorPenetrationBlunt>
+						</li>
+						<li Class="CombatExtended.ToolCE">
+							<label>barrel</label>
+							<capacities>
+								<li>Blunt</li>
+							</capacities>
+							<power>5</power>
+							<cooldownTime>3.02</cooldownTime>
+							<linkedBodyPartsGroup>Barrel</linkedBodyPartsGroup>
+							<armorPenetrationBlunt>1.63</armorPenetrationBlunt>
+						</li>
+						<li Class="CombatExtended.ToolCE">
+							<label>muzzle</label>
+							<capacities>
+								<li>Poke</li>
+							</capacities>
+							<power>8</power>
+							<cooldownTime>1.55</cooldownTime>
+							<linkedBodyPartsGroup>Muzzle</linkedBodyPartsGroup>
+							<armorPenetrationBlunt>2.755</armorPenetrationBlunt>
+						</li>
+					</tools>
+				</value>
+			</li>
+
+		</operations>
 	</Operation>
 </Patch>
