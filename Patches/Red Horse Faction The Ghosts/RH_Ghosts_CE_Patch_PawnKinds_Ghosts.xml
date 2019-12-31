@@ -11,11 +11,11 @@
 			<!-- ========== Ghost faction pawns should spawn with ammo appropriate to their primary weapon ========== -->
 
 			<li Class="PatchOperationAddModExtension">
-				<xpath>/Defs/PawnKindDef[@Name="RH_TheGhosts_Base"]</xpath>
+				<xpath>Defs/PawnKindDef[@Name="RH_TheGhosts_Base"]</xpath>
 				<value>
 					<li Class="CombatExtended.LoadoutPropertiesExtension">
 						<primaryMagazineCount>
-							<min>2</min>
+							<min>3</min>
 							<max>5</max>
 						</primaryMagazineCount>
 					</li>
@@ -25,7 +25,7 @@
 			<!-- ========== Ghost faction pawns should spawn backpacks, allowing them to carry their (huge) inventory ========== -->
 
 			<li Class="PatchOperationAdd">
-				<xpath>/Defs/PawnKindDef[
+				<xpath>Defs/PawnKindDef[
 						defName="RH_TheGhosts_Recon" or
 						defName="RH_TheGhosts_SMG" or
 						defName="RH_TheGhosts_SMG_TierII" or
@@ -47,23 +47,28 @@
 			<!-- ========== Tweak minimum weaponMoney for selected pawn types, so that they actually spawn with weapons ========== -->
 
 			<li Class="PatchOperationReplace">
-				<xpath>/Defs/PawnKindDef[defName="RH_TheGhosts_SMG_TierII"]/weaponMoney/min</xpath>
+				<xpath>Defs/PawnKindDef[
+					defName="RH_TheGhosts_Recon" or
+					defName="RH_TheGhosts_SMG_TierII" or
+					defName="RH_TheGhosts_Marksman" or
+					defName="RH_TheGhosts_Trader"
+				]/weaponMoney/min</xpath>
 				<value>
 					<min>400</min>
 				</value>
 			</li>
 
 			<li Class="PatchOperationReplace">
-				<xpath>/Defs/PawnKindDef[defName="RH_TheGhosts_Sniper"]/weaponMoney/min</xpath>
+				<xpath>Defs/PawnKindDef[defName="RH_TheGhosts_Sniper"]/weaponMoney/min</xpath>
 				<value>
 					<min>600</min>
 				</value>
 			</li>
 
 			<li Class="PatchOperationReplace">
-				<xpath>/Defs/PawnKindDef[defName="RH_TheGhosts_Gunner"]/weaponMoney/min</xpath>
+				<xpath>Defs/PawnKindDef[defName="RH_TheGhosts_Gunner"]/weaponMoney/min</xpath>
 				<value>
-					<min>540</min>
+					<min>550</min>
 				</value>
 			</li>
 
