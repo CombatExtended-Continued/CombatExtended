@@ -4,7 +4,7 @@ Combat Extended: FastTrack Edition is a fork of the [original Combat Extended mo
 ## Features
 - Same [core features as the original mod](https://github.com/NoImageAvailable/CombatExtended/blob/master/README.md) - shooting, melee, armor, inventory and medical overhauls
 - Fully compatible with existing CE savegames - delete CE completely, drop in CE:FT and go!
-- 112 supported third-party mods (compared with 78 for CE)
+- 110 supported third-party mods (compared with 78 for CE)
 - Recognizes existing third-party standalone patches intended for the original CE
 - Additional ammo and projectile definitions and textures
 - New Graphic_StackCountRanged class for precise control of item subgraphics based on stack count
@@ -79,7 +79,6 @@ Kenshi Skeleton Race					|  		| &#x2705;
 Kurin, The Three Tailed Fox				| &#x2705;	| &#x2705;
 Leeani Playable Race					| &#x2705;	| &#x2705;
 Let's Have a Cat!					|  		| &#x2705;
-Lizardmen						|  		| &#x2705;
 Logann Race						| &#x2705;	| &#x2705;
 Magical Menagerie					|  		| &#x2705;
 Mechanoids Extraordinaire				| &#x2705;	| &#x2705;
@@ -122,9 +121,8 @@ Warhammer: Gor						|  		| &#x2705;
 Weapons+						| &#x2705;	| &#x2705;
 Xenn Race						| &#x2705;	| &#x2705;
 Xenohumans						| &#x2705;	| &#x2705;
-Yabils: Space Gremlins					|  		| &#x2705;
 Zombieland						| &#x2705;	| &#x2705;
-**Total** | **78** | **112**
+**Total** | **78** | **110**
 &nbsp; | **CE (original)** | **CE: FastTrack Edition**
 
 *Incomplete implementation
@@ -146,7 +144,6 @@ Zombieland						| &#x2705;	| &#x2705;
 The CE:FT team would like the thank the following individuals for contributing compatibility patches to this repository:
 - Kik0hi
 - Freedom187/RaptorX
-- Owlchemist
 - skycrossercat
 - Theblessedwant
 - Togoasl
