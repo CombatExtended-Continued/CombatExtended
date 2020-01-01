@@ -1,284 +1,268 @@
 <?xml version="1.0" encoding="utf-8" ?>
-<!-- 
-Chicken Plucker's Project Red Horse mods often have duplicate items, apparels and defs shared between them,
-so this patch will only be applied if:
-
-Task Force 141 is active && Rimmu-Nation Weapons is NOT active
-
-If both mods are active, the CE patch from Rimmu-Nation Weapons should automatically take over
--->
 <Patch>
-	<Operation Class="PatchOperationFindMod">
-		<mods>
-			<li>[RH] Faction: Task Force 141 (1.0)</li>
-		</mods>
-		<match Class="PatchOperationFindMod">
-			<mods>
-				<li>[CP] Rimmu-Nation - Weapons (1.0)</li>
-			</mods>
-			<nomatch Class="PatchOperationSequence">
-				<operations>
+	<Operation Class="PatchOperationSequence">
+		<success>Always</success>
+		<operations>
 
-					<!-- ========== MP5A2 SD - Hostage Rescue Team variant ========== -->
+			<li Class="CombatExtended.PatchOperationFindMod">
+				<modName>[RH] Faction: Task Force 141 (1.0)</modName>
+			</li>
 
-					<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
-						<defName>RNGun_MP5A2SDHRT_PDW</defName>
-						<statBases>
-							<Mass>2.50</Mass>
-							<RangedWeapon_Cooldown>0.36</RangedWeapon_Cooldown>
-							<SightsEfficiency>1.10</SightsEfficiency>
-							<ShotSpread>0.13</ShotSpread>
-							<SwayFactor>0.93</SwayFactor>
-							<Bulk>6.80</Bulk>
-							<WorkToMake>29000</WorkToMake>
-						</statBases>
-						<costList>
-							<Steel>40</Steel>
-							<ComponentIndustrial>6</ComponentIndustrial>
-							<Chemfuel>5</Chemfuel>
-						</costList>
-						<Properties>
-							<recoilAmount>1.60</recoilAmount>
-							<verbClass>CombatExtended.Verb_ShootCE</verbClass>
-							<hasStandardCommand>true</hasStandardCommand>
-							<defaultProjectile>Bullet_9x19mmPara_FMJ</defaultProjectile>
-							<warmupTime>0.5</warmupTime>
-							<range>31</range>
-							<burstShotCount>6</burstShotCount>
-							<ticksBetweenBurstShots>5</ticksBetweenBurstShots>
-							<soundCast>RNShotSMG2SD</soundCast>
-							<soundCastTail>GunTail_Heavy</soundCastTail>
-							<muzzleFlashScale>9</muzzleFlashScale>
-							<recoilPattern>Regular</recoilPattern>
-						</Properties>
+			<!-- ========== Heckler & Koch G36C - Hostage Rescue Team variant ========== -->
 
-						<AmmoUser>
-							<magazineSize>30</magazineSize>
-							<reloadTime>4</reloadTime>
-							<ammoSet>AmmoSet_9x19mmPara</ammoSet>
-						</AmmoUser>
+			<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+				<defName>RNGun_G36CHRT</defName>
+				<statBases>
+					<Mass>2.82</Mass>
+					<RangedWeapon_Cooldown>0.36</RangedWeapon_Cooldown>
+					<SightsEfficiency>2.18</SightsEfficiency>
+					<ShotSpread>0.13</ShotSpread>
+					<SwayFactor>1.03</SwayFactor>
+					<Bulk>5.00</Bulk>
+					<WorkToMake>34000</WorkToMake>
+				</statBases>
+				<costList>
+					<Chemfuel>10</Chemfuel>
+					<Steel>30</Steel>
+					<ComponentIndustrial>6</ComponentIndustrial>
+				</costList>
+				<Properties>
+					<recoilAmount>1.43</recoilAmount>
+					<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+					<hasStandardCommand>true</hasStandardCommand>
+					<defaultProjectile>Bullet_556x45mmNATO_FMJ</defaultProjectile>
+					<warmupTime>1.25</warmupTime>
+					<range>31</range>
+					<burstShotCount>6</burstShotCount>
+					<ticksBetweenBurstShots>5</ticksBetweenBurstShots>
+					<soundCast>RNShotG36C</soundCast>
+					<soundCastTail>GunTail_Medium</soundCastTail>
+					<muzzleFlashScale>9</muzzleFlashScale>
+				</Properties>
 
-						<FireModes>
-							<aiUseBurstMode>FALSE</aiUseBurstMode>
-							<aiAimMode>Snapshot</aiAimMode>
-							<aimedBurstShotCount>3</aimedBurstShotCount>
-						</FireModes>
+				<AmmoUser>
+					<magazineSize>30</magazineSize>
+					<reloadTime>4</reloadTime>
+					<ammoSet>AmmoSet_556x45mmNATO</ammoSet>
+				</AmmoUser>
 
-						<!-- No additional CE weaponTags needed -->
-					</li>
+				<FireModes>
+					<aiUseBurstMode>TRUE</aiUseBurstMode>
+					<aiAimMode>AimedShot</aiAimMode>
+					<aimedBurstShotCount>3</aimedBurstShotCount>
+				</FireModes>
 
-					<li Class="PatchOperationReplace">
-						<xpath>Defs/ThingDef[defName="RNGun_MP5A2SDHRT_PDW"]/tools</xpath>
-						<value>
-							<tools>
-								<li Class="CombatExtended.ToolCE">
-									<label>stock</label>
-									<capacities>
-										<li>Blunt</li>
-									</capacities>
-									<power>9</power>
-									<cooldownTime>2</cooldownTime>
-									<armorPenetration>0.12</armorPenetration>
-									<linkedBodyPartsGroup>Stock</linkedBodyPartsGroup>
-								</li>
-								<li Class="CombatExtended.ToolCE">
-									<label>barrel</label>
-									<capacities>
-										<li>Blunt</li>
-									</capacities>
-									<power>9</power>
-									<cooldownTime>2</cooldownTime>
-									<armorPenetration>0.15</armorPenetration>
-									<linkedBodyPartsGroup>Barrel</linkedBodyPartsGroup>
-								</li>
-								<li Class="CombatExtended.ToolCE">
-									<label>muzzle</label>
-									<capacities>
-										<li>Poke</li>
-									</capacities>
-									<power>9</power>
-									<cooldownTime>2</cooldownTime>
-									<armorPenetration>0.1</armorPenetration>
-									<linkedBodyPartsGroup>Muzzle</linkedBodyPartsGroup>
-								</li>
-							</tools>
-						</value>
-					</li>	
+				<!-- No additional CE weaponTags needed -->
+			</li>
 
-					<!-- ========== UMP 45 - Hostage Rescue Team variant ========== -->
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="RNGun_G36CHRT"]/tools</xpath>
+				<value>
+					<tools>
+						<li Class="CombatExtended.ToolCE">
+							<label>stock</label>
+							<capacities>
+								<li>Blunt</li>
+							</capacities>
+							<power>8</power>
+							<cooldownTime>1.79</cooldownTime>
+							<linkedBodyPartsGroup>Stock</linkedBodyPartsGroup>
+							<armorPenetrationBlunt>2.755</armorPenetrationBlunt>
+						</li>
+						<li Class="CombatExtended.ToolCE">
+							<label>barrel</label>
+							<capacities>
+								<li>Blunt</li>
+							</capacities>
+							<power>5</power>
+							<cooldownTime>3.02</cooldownTime>
+							<linkedBodyPartsGroup>Barrel</linkedBodyPartsGroup>
+							<armorPenetrationBlunt>1.63</armorPenetrationBlunt>
+						</li>
+						<li Class="CombatExtended.ToolCE">
+							<label>muzzle</label>
+							<capacities>
+								<li>Poke</li>
+							</capacities>
+							<power>8</power>
+							<cooldownTime>1.55</cooldownTime>
+							<linkedBodyPartsGroup>Muzzle</linkedBodyPartsGroup>
+							<armorPenetrationBlunt>2.755</armorPenetrationBlunt>
+						</li>
+					</tools>
+				</value>
+			</li>
 
-					<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
-						<defName>RNGun_UMP45HRT_PDW</defName>
-						<statBases>
-							<Mass>2.54</Mass>
-							<RangedWeapon_Cooldown>0.37</RangedWeapon_Cooldown>
-							<SightsEfficiency>1.00</SightsEfficiency>
-							<ShotSpread>0.14</ShotSpread>
-							<SwayFactor>1.2</SwayFactor>
-							<Bulk>0.94</Bulk>
-							<WorkToMake>30500</WorkToMake>
-						</statBases>
-						<costList>
-							<Steel>30</Steel>
-							<ComponentIndustrial>5</ComponentIndustrial>
-							<Chemfuel>10</Chemfuel>
-						</costList>
-						<Properties>
-							<recoilAmount>1.84</recoilAmount>
-							<verbClass>CombatExtended.Verb_ShootCE</verbClass>
-							<hasStandardCommand>true</hasStandardCommand>
-							<defaultProjectile>Bullet_45ACP_FMJ</defaultProjectile>
-							<warmupTime>0.6</warmupTime>
-							<range>15</range>
-							<burstShotCount>6</burstShotCount>
-							<ticksBetweenBurstShots>4</ticksBetweenBurstShots>
-							<soundCast>RNUMP45Shot</soundCast>
-							<soundCastTail>GunTail_Heavy</soundCastTail>
-							<muzzleFlashScale>9</muzzleFlashScale>
-							<recoilPattern>Regular</recoilPattern>
-						</Properties>
+			<!-- ========== MP5A2 SD - Hostage Rescue Team variant ========== -->
 
-						<AmmoUser>
-							<magazineSize>25</magazineSize>
-							<reloadTime>4</reloadTime>
-							<ammoSet>AmmoSet_45ACP</ammoSet>
-						</AmmoUser>
+			<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+				<defName>RNGun_MP5A2SDHRT_PDW</defName>
+				<statBases>
+					<Mass>2.50</Mass>
+					<RangedWeapon_Cooldown>0.36</RangedWeapon_Cooldown>
+					<SightsEfficiency>1.10</SightsEfficiency>
+					<ShotSpread>0.13</ShotSpread>
+					<SwayFactor>0.93</SwayFactor>
+					<Bulk>6.80</Bulk>
+					<WorkToMake>29000</WorkToMake>
+				</statBases>
+				<costList>
+					<Chemfuel>5</Chemfuel>
+					<Steel>40</Steel>
+					<ComponentIndustrial>6</ComponentIndustrial>
+				</costList>
+				<Properties>
+					<recoilAmount>1.60</recoilAmount>
+					<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+					<hasStandardCommand>true</hasStandardCommand>
+					<defaultProjectile>Bullet_9x19mmPara_FMJ</defaultProjectile>
+					<warmupTime>0.5</warmupTime>
+					<range>31</range>
+					<burstShotCount>6</burstShotCount>
+					<ticksBetweenBurstShots>5</ticksBetweenBurstShots>
+					<soundCast>RNShotSMG2SD</soundCast>
+					<soundCastTail>GunTail_Heavy</soundCastTail>
+					<muzzleFlashScale>9</muzzleFlashScale>
+				</Properties>
 
-						<FireModes>
-							<aiUseBurstMode>FALSE</aiUseBurstMode>
-							<aiAimMode>Snapshot</aiAimMode>
-							<aimedBurstShotCount>3</aimedBurstShotCount>
-						</FireModes>
+				<AmmoUser>
+					<magazineSize>30</magazineSize>
+					<reloadTime>4</reloadTime>
+					<ammoSet>AmmoSet_9x19mmPara</ammoSet>
+				</AmmoUser>
 
-						<!-- No additional CE weaponTags needed -->
-					</li>
+				<FireModes>
+					<aiUseBurstMode>FALSE</aiUseBurstMode>
+					<aiAimMode>Snapshot</aiAimMode>
+					<aimedBurstShotCount>3</aimedBurstShotCount>
+				</FireModes>
 
-					<li Class="PatchOperationReplace">
-						<xpath>Defs/ThingDef[defName="RNGun_UMP45HRT_PDW"]/tools</xpath>
-						<value>
-							<tools>
-								<li Class="CombatExtended.ToolCE">
-									<label>stock</label>
-									<capacities>
-										<li>Blunt</li>
-									</capacities>
-									<power>9</power>
-									<cooldownTime>2</cooldownTime>
-									<armorPenetration>0.12</armorPenetration>
-									<linkedBodyPartsGroup>Stock</linkedBodyPartsGroup>
-								</li>
-								<li Class="CombatExtended.ToolCE">
-									<label>barrel</label>
-									<capacities>
-										<li>Blunt</li>
-									</capacities>
-									<power>9</power>
-									<cooldownTime>2</cooldownTime>
-									<armorPenetration>0.15</armorPenetration>
-									<linkedBodyPartsGroup>Barrel</linkedBodyPartsGroup>
-								</li>
-								<li Class="CombatExtended.ToolCE">
-									<label>muzzle</label>
-									<capacities>
-										<li>Poke</li>
-									</capacities>
-									<power>9</power>
-									<cooldownTime>2</cooldownTime>
-									<armorPenetration>0.1</armorPenetration>
-									<linkedBodyPartsGroup>Muzzle</linkedBodyPartsGroup>
-								</li>
-							</tools>
-						</value>
-					</li>
+				<!-- No additional CE weaponTags needed -->
+			</li>
 
-					<!-- ========== Heckler & Koch G36C - Hostage Rescue Team variant ========== -->
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="RNGun_MP5A2SDHRT_PDW"]/tools</xpath>
+				<value>
+					<tools>
+						<li Class="CombatExtended.ToolCE">
+							<label>stock</label>
+							<capacities>
+								<li>Blunt</li>
+							</capacities>
+							<power>8</power>
+							<cooldownTime>1.79</cooldownTime>
+							<linkedBodyPartsGroup>Stock</linkedBodyPartsGroup>
+							<armorPenetrationBlunt>2.755</armorPenetrationBlunt>
+						</li>
+						<li Class="CombatExtended.ToolCE">
+							<label>barrel</label>
+							<capacities>
+								<li>Blunt</li>
+							</capacities>
+							<power>5</power>
+							<cooldownTime>3.02</cooldownTime>
+							<linkedBodyPartsGroup>Barrel</linkedBodyPartsGroup>
+							<armorPenetrationBlunt>1.63</armorPenetrationBlunt>
+						</li>
+						<li Class="CombatExtended.ToolCE">
+							<label>muzzle</label>
+							<capacities>
+								<li>Poke</li>
+							</capacities>
+							<power>8</power>
+							<cooldownTime>1.55</cooldownTime>
+							<linkedBodyPartsGroup>Muzzle</linkedBodyPartsGroup>
+							<armorPenetrationBlunt>2.755</armorPenetrationBlunt>
+						</li>
+					</tools>
+				</value>
+			</li>	
 
-					<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
-						<defName>RNGun_G36CHRT</defName>
-						<statBases>
-							<Mass>2.82</Mass>
-							<RangedWeapon_Cooldown>0.36</RangedWeapon_Cooldown>
-							<SightsEfficiency>2.18</SightsEfficiency>
-							<ShotSpread>0.13</ShotSpread>
-							<SwayFactor>1.03</SwayFactor>
-							<Bulk>5.00</Bulk>
-							<WorkToMake>34000</WorkToMake>
-						</statBases>
-						<costList>
-							<Steel>30</Steel>
-							<ComponentIndustrial>6</ComponentIndustrial>
-							<Chemfuel>10</Chemfuel>
-						</costList>
-						<Properties>
-							<recoilAmount>1.43</recoilAmount>
-							<verbClass>CombatExtended.Verb_ShootCE</verbClass>
-							<hasStandardCommand>true</hasStandardCommand>
-							<defaultProjectile>Bullet_556x45mmNATO_FMJ</defaultProjectile>
-							<warmupTime>1.25</warmupTime>
-							<range>31</range>
-							<burstShotCount>6</burstShotCount>
-							<ticksBetweenBurstShots>5</ticksBetweenBurstShots>
-							<soundCast>RNShotG36C</soundCast>
-							<soundCastTail>GunTail_Medium</soundCastTail>
-							<muzzleFlashScale>9</muzzleFlashScale>
-							<recoilPattern>Regular</recoilPattern>
-						</Properties>
+			<!-- ========== UMP 45 - Hostage Rescue Team variant ========== -->
 
-						<AmmoUser>
-							<magazineSize>30</magazineSize>
-							<reloadTime>4</reloadTime>
-							<ammoSet>AmmoSet_556x45mmNATO</ammoSet>
-						</AmmoUser>
+			<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+				<defName>RNGun_UMP45HRT_PDW</defName>
+				<statBases>
+					<Mass>2.54</Mass>
+					<RangedWeapon_Cooldown>0.37</RangedWeapon_Cooldown>
+					<SightsEfficiency>1.00</SightsEfficiency>
+					<ShotSpread>0.14</ShotSpread>
+					<SwayFactor>0.94</SwayFactor>
+					<Bulk>4.50</Bulk>
+					<WorkToMake>30500</WorkToMake>
+				</statBases>
+				<costList>
+					<Chemfuel>10</Chemfuel>
+					<Steel>30</Steel>
+					<ComponentIndustrial>5</ComponentIndustrial>
+				</costList>
+				<Properties>
+					<recoilAmount>1.84</recoilAmount>
+					<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+					<hasStandardCommand>true</hasStandardCommand>
+					<defaultProjectile>Bullet_45ACP_FMJ</defaultProjectile>
+					<warmupTime>0.6</warmupTime>
+					<range>15</range>
+					<burstShotCount>6</burstShotCount>
+					<ticksBetweenBurstShots>4</ticksBetweenBurstShots>
+					<soundCast>RNUMP45Shot</soundCast>
+					<soundCastTail>GunTail_Heavy</soundCastTail>
+					<muzzleFlashScale>9</muzzleFlashScale>
+				</Properties>
 
-						<FireModes>
-							<aiUseBurstMode>TRUE</aiUseBurstMode>
-							<aiAimMode>AimedShot</aiAimMode>
-							<aimedBurstShotCount>3</aimedBurstShotCount>
-						</FireModes>
+				<AmmoUser>
+					<magazineSize>25</magazineSize>
+					<reloadTime>4</reloadTime>
+					<ammoSet>AmmoSet_45ACP</ammoSet>
+				</AmmoUser>
 
-						<!-- No additional CE weaponTags needed -->
-					</li>
+				<FireModes>
+					<aiUseBurstMode>FALSE</aiUseBurstMode>
+					<aiAimMode>Snapshot</aiAimMode>
+					<aimedBurstShotCount>3</aimedBurstShotCount>
+				</FireModes>
 
-					<li Class="PatchOperationReplace">
-						<xpath>Defs/ThingDef[defName="RNGun_G36CHRT"]/tools</xpath>
-						<value>
-							<tools>
-								<li Class="CombatExtended.ToolCE">
-									<label>stock</label>
-									<capacities>
-										<li>Blunt</li>
-									</capacities>
-									<power>9</power>
-									<cooldownTime>1.6</cooldownTime>
-									<armorPenetration>0.12</armorPenetration>
-									<linkedBodyPartsGroup>Stock</linkedBodyPartsGroup>
-								</li>
-								<li Class="CombatExtended.ToolCE">
-									<label>barrel</label>
-									<capacities>
-										<li>Blunt</li>
-									</capacities>
-									<power>9</power>
-									<cooldownTime>1.7</cooldownTime>
-									<armorPenetration>0.15</armorPenetration>
-									<linkedBodyPartsGroup>Barrel</linkedBodyPartsGroup>
-								</li>
-								<li Class="CombatExtended.ToolCE">
-									<label>muzzle</label>
-									<capacities>
-										<li>Poke</li>
-									</capacities>
-									<power>9</power>
-									<cooldownTime>1.4</cooldownTime>
-									<armorPenetration>0.1</armorPenetration>
-									<linkedBodyPartsGroup>Muzzle</linkedBodyPartsGroup>
-								</li>
-							</tools>
-						</value>
-					</li>
+				<!-- No additional CE weaponTags needed -->
+			</li>
 
-				</operations>
-			</nomatch>
-		</match>
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="RNGun_UMP45HRT_PDW"]/tools</xpath>
+				<value>
+					<tools>
+						<li Class="CombatExtended.ToolCE">
+							<label>stock</label>
+							<capacities>
+								<li>Blunt</li>
+							</capacities>
+							<power>8</power>
+							<cooldownTime>1.79</cooldownTime>
+							<linkedBodyPartsGroup>Stock</linkedBodyPartsGroup>
+							<armorPenetrationBlunt>2.755</armorPenetrationBlunt>
+						</li>
+						<li Class="CombatExtended.ToolCE">
+							<label>barrel</label>
+							<capacities>
+								<li>Blunt</li>
+							</capacities>
+							<power>5</power>
+							<cooldownTime>3.02</cooldownTime>
+							<linkedBodyPartsGroup>Barrel</linkedBodyPartsGroup>
+							<armorPenetrationBlunt>1.63</armorPenetrationBlunt>
+						</li>
+						<li Class="CombatExtended.ToolCE">
+							<label>muzzle</label>
+							<capacities>
+								<li>Poke</li>
+							</capacities>
+							<power>8</power>
+							<cooldownTime>1.55</cooldownTime>
+							<linkedBodyPartsGroup>Muzzle</linkedBodyPartsGroup>
+							<armorPenetrationBlunt>2.755</armorPenetrationBlunt>
+						</li>
+					</tools>
+				</value>
+			</li>
+
+		</operations>
 	</Operation>
 </Patch>
