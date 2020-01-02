@@ -1,111 +1,96 @@
 <?xml version="1.0" encoding="utf-8" ?>
-<!-- 
-Chicken Plucker's Project Red Horse mods often have duplicate items, apparels and defs shared between them,
-so this patch will only be applied if:
-
-Elite Crew is active && Rimmu-Nation Weapons is NOT active
-
-If both mods are active, the CE patch from Rimmu-Nation Weapons should automatically take over
--->
 <Patch>
-	<Operation Class="PatchOperationFindMod">
-		<mods>
-			<li>[RH] Faction: Elite Crew (1.0)</li>
-		</mods>
-		<match Class="PatchOperationFindMod">
-			<mods>
-				<li>[CP] Rimmu-Nation - Weapons (1.0)</li>
-			</mods>
-			<nomatch Class="PatchOperationSequence">
-				<operations>
+	<Operation Class="PatchOperationSequence">
+		<success>Always</success>
+		<operations>
 
-					<!-- ========== Supernova ========== -->
+			<li Class="CombatExtended.PatchOperationFindMod">
+				<modName>[RH] Faction: Elite Crew (1.0)</modName>
+			</li>
 
-					<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
-						<defName>RNGun_Supernova</defName>
-						<statBases>
-							<Mass>3.45</Mass>
-							<RangedWeapon_Cooldown>0.99</RangedWeapon_Cooldown>
-							<SightsEfficiency>1</SightsEfficiency>
-							<ShotSpread>0.14</ShotSpread>
-							<SwayFactor>1.36</SwayFactor>
-							<Bulk>10.16</Bulk>
-							<WorkToMake>12500</WorkToMake>
-						</statBases>
-						<costList>
-							<Chemfuel>10</Chemfuel>
-							<Steel>50</Steel>
-							<ComponentIndustrial>1</ComponentIndustrial>
-						</costList>
-						<Properties>
-							<recoilAmount>2.98</recoilAmount>
-							<verbClass>CombatExtended.Verb_ShootCE</verbClass>
-							<hasStandardCommand>true</hasStandardCommand>
-							<defaultProjectile>Bullet_12Gauge_Buck</defaultProjectile>
-							<warmupTime>0.6</warmupTime>
-							<range>12</range>
-							<soundCast>RNNovaShot</soundCast>
-							<soundCastTail>GunTail_Heavy</soundCastTail>
-							<muzzleFlashScale>9</muzzleFlashScale>
-							<recoilPattern>Regular</recoilPattern>
-						</Properties>
+			<!-- ========== Supernova ========== -->
 
-						<AmmoUser>
-							<magazineSize>5</magazineSize>
-							<reloadTime>4.25</reloadTime>
-							<ammoSet>AmmoSet_12Gauge</ammoSet>
-						</AmmoUser>
+			<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+				<defName>RNGun_Supernova</defName>
+				<statBases>
+					<Mass>3.45</Mass>
+					<RangedWeapon_Cooldown>0.99</RangedWeapon_Cooldown>
+					<SightsEfficiency>1</SightsEfficiency>
+					<ShotSpread>0.14</ShotSpread>
+					<SwayFactor>1.36</SwayFactor>
+					<Bulk>10.16</Bulk>
+					<WorkToMake>12500</WorkToMake>
+				</statBases>
+				<costList>
+					<Chemfuel>10</Chemfuel>
+					<Steel>50</Steel>
+					<ComponentIndustrial>1</ComponentIndustrial>
+				</costList>
+				<Properties>
+					<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+					<hasStandardCommand>true</hasStandardCommand>
+					<defaultProjectile>Bullet_12Gauge_Buck</defaultProjectile>
+					<warmupTime>0.6</warmupTime>
+					<range>12</range>
+					<soundCast>RNNovaShot</soundCast>
+					<soundCastTail>GunTail_Heavy</soundCastTail>
+					<muzzleFlashScale>9</muzzleFlashScale>
+				</Properties>
 
-						<FireModes>
-							<aiUseBurstMode>FALSE</aiUseBurstMode>
-							<aiAimMode>Snapshot</aiAimMode>
-						</FireModes>
+				<AmmoUser>
+					<magazineSize>5</magazineSize>
+					<reloadTime>4.25</reloadTime>
+					<ammoSet>AmmoSet_12Gauge</ammoSet>
+				</AmmoUser>
 
-						<weaponTags>
-							<li>CE_AI_AssaultWeapon</li>
-						</weaponTags>
-					</li>
+				<FireModes>
+					<aiUseBurstMode>FALSE</aiUseBurstMode>
+					<aiAimMode>Snapshot</aiAimMode>
+				</FireModes>
 
-					<li Class="PatchOperationReplace">
-						<xpath>Defs/ThingDef[defName="RNGun_Supernova"]/tools</xpath>
-						<value>
-							<tools>
-								<li Class="CombatExtended.ToolCE">
-									<label>stock</label>
-									<capacities>
-										<li>Blunt</li>
-									</capacities>
-									<power>9</power>
-									<cooldownTime>1.6</cooldownTime>
-									<armorPenetration>0.12</armorPenetration>
-									<linkedBodyPartsGroup>Stock</linkedBodyPartsGroup>
-								</li>
-								<li Class="CombatExtended.ToolCE">
-									<label>barrel</label>
-									<capacities>
-										<li>Blunt</li>
-									</capacities>
-									<power>9</power>
-									<cooldownTime>1.7</cooldownTime>
-									<armorPenetration>0.15</armorPenetration>
-									<linkedBodyPartsGroup>Barrel</linkedBodyPartsGroup>
-								</li>
-								<li Class="CombatExtended.ToolCE">
-									<label>muzzle</label>
-									<capacities>
-										<li>Poke</li>
-									</capacities>
-									<power>9</power>
-									<cooldownTime>1.4</cooldownTime>
-									<armorPenetration>0.1</armorPenetration>
-									<linkedBodyPartsGroup>Muzzle</linkedBodyPartsGroup>
-								</li>
-							</tools>
-						</value>
-					</li>
+				<weaponTags>
+					<li>CE_AI_AssaultWeapon</li>
+				</weaponTags>
+			</li>
 
-				</operations>
-			</nomatch>
-		</match>
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="RNGun_Supernova"]/tools</xpath>
+				<value>
+					<tools>
+						<li Class="CombatExtended.ToolCE">
+							<label>stock</label>
+							<capacities>
+								<li>Blunt</li>
+							</capacities>
+							<power>8</power>
+							<cooldownTime>1.79</cooldownTime>
+							<linkedBodyPartsGroup>Stock</linkedBodyPartsGroup>
+							<armorPenetrationBlunt>2.755</armorPenetrationBlunt>
+						</li>
+						<li Class="CombatExtended.ToolCE">
+							<label>barrel</label>
+							<capacities>
+								<li>Blunt</li>
+							</capacities>
+							<power>5</power>
+							<cooldownTime>3.02</cooldownTime>
+							<linkedBodyPartsGroup>Barrel</linkedBodyPartsGroup>
+							<armorPenetrationBlunt>1.63</armorPenetrationBlunt>
+						</li>
+						<li Class="CombatExtended.ToolCE">
+							<label>muzzle</label>
+							<capacities>
+								<li>Poke</li>
+							</capacities>
+							<power>8</power>
+							<cooldownTime>1.55</cooldownTime>
+							<linkedBodyPartsGroup>Muzzle</linkedBodyPartsGroup>
+							<armorPenetrationBlunt>2.755</armorPenetrationBlunt>
+						</li>
+					</tools>
+				</value>
+			</li>
+
+		</operations>
 	</Operation>
 </Patch>

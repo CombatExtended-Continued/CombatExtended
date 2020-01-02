@@ -1,280 +1,231 @@
 <?xml version="1.0" encoding="utf-8" ?>
-<!-- 
-Chicken Plucker's Project Red Horse mods often have duplicate items, apparels and defs shared between them,
-so this patch will only be applied if:
-
-Elite Crew is active && Rimmu-Nation Weapons is NOT active
-
-If both mods are active, the CE patch from Rimmu-Nation Weapons should automatically take over
--->
 <Patch>
-	<Operation Class="PatchOperationFindMod">
-		<mods>
-			<li>[RH] Faction: Elite Crew (1.0)</li>
-		</mods>
-		<match Class="PatchOperationFindMod">
-			<mods>
-				<li>[CP] Rimmu-Nation - Weapons (1.0)</li>
-			</mods>
-			<nomatch Class="PatchOperationSequence">
-				<operations>	
+	<Operation Class="PatchOperationSequence">
+		<success>Always</success>
+		<operations>
 
-					<!-- ========== TEC-9 ========== -->
+			<li Class="CombatExtended.PatchOperationFindMod">
+				<modName>[RH] Faction: Elite Crew (1.0)</modName>
+			</li>	
 
-					<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
-						<defName>RNGun_TEC-9P</defName>
-						<statBases>
-							<Mass>1.23</Mass>
-							<RangedWeapon_Cooldown>0.37</RangedWeapon_Cooldown>
-							<SightsEfficiency>0.70</SightsEfficiency>
-							<ShotSpread>0.19</ShotSpread>
-							<SwayFactor>1.21</SwayFactor>
-							<Bulk>2.41</Bulk>
-							<WorkToMake>7500</WorkToMake>
-						</statBases>
-						<costList>
-							<Chemfuel>5</Chemfuel>
-							<Steel>20</Steel>
-							<ComponentIndustrial>3</ComponentIndustrial>
-						</costList>
-						<Properties>
-							<recoilAmount>2.19</recoilAmount>
-							<verbClass>CombatExtended.Verb_ShootCE</verbClass>
-							<hasStandardCommand>true</hasStandardCommand>
-							<defaultProjectile>Bullet_9x19mmPara_FMJ</defaultProjectile>
-							<warmupTime>0.25</warmupTime>
-							<range>12</range>
-							<soundCast>RNShotTec9</soundCast>
-							<soundCastTail>GunTail_Light</soundCastTail>
-							<muzzleFlashScale>9</muzzleFlashScale>
-							<recoilPattern>Regular</recoilPattern>
-						</Properties>
+			<!-- ========== Desert Eagle ========== -->
 
-						<AmmoUser>
-							<magazineSize>32</magazineSize>
-							<reloadTime>4</reloadTime>
-							<ammoSet>AmmoSet_9x19mmPara</ammoSet>
-						</AmmoUser>
+			<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+				<defName>RNGun_DesertEagle</defName>
+				<statBases>
+					<Mass>2.00</Mass>
+					<RangedWeapon_Cooldown>0.39</RangedWeapon_Cooldown>
+					<SightsEfficiency>0.70</SightsEfficiency>
+					<ShotSpread>0.16</ShotSpread>
+					<SwayFactor>1.58</SwayFactor>
+					<Bulk>2.73</Bulk>
+					<WorkToMake>7500</WorkToMake>
+				</statBases>
+				<costList>
+					<Steel>30</Steel>
+					<ComponentIndustrial>3</ComponentIndustrial>
+				</costList>
+				<Properties>
+					<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+					<hasStandardCommand>true</hasStandardCommand>
+					<defaultProjectile>Bullet_50AE_FMJ</defaultProjectile>
+					<warmupTime>0.6</warmupTime>
+					<range>12</range>
+					<soundCast>RNDeagleShot</soundCast>
+					<soundCastTail>GunTail_Light</soundCastTail>
+					<muzzleFlashScale>9</muzzleFlashScale>
+				</Properties>
 
-						<FireModes>
-							<aiUseBurstMode>FALSE</aiUseBurstMode>
-							<aiAimMode>AimedShot</aiAimMode>
-						</FireModes>
+				<AmmoUser>
+					<magazineSize>7</magazineSize>
+					<reloadTime>4</reloadTime>
+					<ammoSet>AmmoSet_50AE</ammoSet>
+				</AmmoUser>
 
-						<weaponTags>
-							<li>CE_AI_Pistol</li>
-							<li>CE_Sidearm</li>
-						</weaponTags>
-					</li>
+				<FireModes>
+					<aiUseBurstMode>FALSE</aiUseBurstMode>
+					<aiAimMode>AimedShot</aiAimMode>
+				</FireModes>
 
-					<li Class="PatchOperationReplace">
-						<xpath>Defs/ThingDef[defName="RNGun_TEC-9P"]/tools</xpath>
-						<value>
-							<tools>
-								<li Class="CombatExtended.ToolCE">
-									<label>grip</label>
-									<capacities>
-										<li>Blunt</li>
-									</capacities>
-									<power>9</power>
-									<cooldownTime>1.6</cooldownTime>
-									<armorPenetration>0.12</armorPenetration>
-									<linkedBodyPartsGroup>Grip</linkedBodyPartsGroup>
-								</li>
-								<li Class="CombatExtended.ToolCE">
-									<label>barrel</label>
-									<capacities>
-										<li>Blunt</li>
-									</capacities>
-									<power>9</power>
-									<cooldownTime>1.7</cooldownTime>
-									<armorPenetration>0.15</armorPenetration>
-									<linkedBodyPartsGroup>Barrel</linkedBodyPartsGroup>
-								</li>
-								<li Class="CombatExtended.ToolCE">
-									<label>muzzle</label>
-									<capacities>
-										<li>Poke</li>
-									</capacities>
-									<power>9</power>
-									<cooldownTime>1.4</cooldownTime>
-									<armorPenetration>0.1</armorPenetration>
-									<linkedBodyPartsGroup>Muzzle</linkedBodyPartsGroup>
-								</li>
-							</tools>
-						</value>
-					</li>
+				<weaponTags>
+					<li>CE_AI_Pistol</li>
+					<li>CE_Sidearm</li>
+				</weaponTags>
+			</li>
 
-					<!-- ========== FN Five-seven ========== -->
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="RNGun_DesertEagle"]/tools</xpath>
+				<value>
+					<tools>
+						<li Class="CombatExtended.ToolCE">
+							<label>grip</label>
+							<capacities>
+								<li>Blunt</li>
+							</capacities>
+							<power>2</power>
+							<cooldownTime>1.56</cooldownTime>
+							<linkedBodyPartsGroup>Grip</linkedBodyPartsGroup>
+							<armorPenetrationBlunt>0.555</armorPenetrationBlunt>
+						</li>
+						<li Class="CombatExtended.ToolCE">
+							<label>muzzle</label>
+							<capacities>
+								<li>Poke</li>
+							</capacities>
+							<power>2</power>
+							<cooldownTime>1.54</cooldownTime>
+							<linkedBodyPartsGroup>Muzzle</linkedBodyPartsGroup>
+							<armorPenetrationBlunt>0.555</armorPenetrationBlunt>
+						</li>
+					</tools>
+				</value>
+			</li>
 
-					<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
-						<defName>RNGun_FiveSeven</defName>
-						<statBases>
-							<Mass>0.61</Mass>
-							<RangedWeapon_Cooldown>0.37</RangedWeapon_Cooldown>
-							<SightsEfficiency>0.70</SightsEfficiency>
-							<ShotSpread>0.17</ShotSpread>
-							<SwayFactor>0.90</SwayFactor>
-							<Bulk>2.08</Bulk>
-							<WorkToMake>7500</WorkToMake>
-						</statBases>
-						<costList>
-							<Chemfuel>5</Chemfuel>
-							<Steel>20</Steel>
-							<ComponentIndustrial>3</ComponentIndustrial>
-						</costList>
-						<Properties>
-							<recoilAmount>1.87</recoilAmount>
-							<verbClass>CombatExtended.Verb_ShootCE</verbClass>
-							<hasStandardCommand>true</hasStandardCommand>
-							<defaultProjectile>Bullet_FN57x28mm_FMJ</defaultProjectile>
-							<warmupTime>0.6</warmupTime>
-							<range>12</range>
-							<soundCast>RNShotFiveSeven</soundCast>
-							<soundCastTail>GunTail_Light</soundCastTail>
-							<muzzleFlashScale>9</muzzleFlashScale>
-							<recoilPattern>Regular</recoilPattern>
-						</Properties>
+			<!-- ========== FN Five-seven ========== -->
 
-						<AmmoUser>
-							<magazineSize>20</magazineSize>
-							<reloadTime>4</reloadTime>
-							<ammoSet>AmmoSet_FN57x28mm</ammoSet>
-						</AmmoUser>
+			<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+				<defName>RNGun_FiveSeven</defName>
+				<statBases>
+					<Mass>0.61</Mass>
+					<RangedWeapon_Cooldown>0.37</RangedWeapon_Cooldown>
+					<SightsEfficiency>0.70</SightsEfficiency>
+					<ShotSpread>0.17</ShotSpread>
+					<SwayFactor>0.90</SwayFactor>
+					<Bulk>2.08</Bulk>
+					<WorkToMake>7500</WorkToMake>
+				</statBases>
+				<costList>
+					<Chemfuel>5</Chemfuel>
+					<Steel>20</Steel>
+					<ComponentIndustrial>3</ComponentIndustrial>
+				</costList>
+				<Properties>
+					<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+					<hasStandardCommand>true</hasStandardCommand>
+					<defaultProjectile>Bullet_FN57x28mm_FMJ</defaultProjectile>
+					<warmupTime>0.6</warmupTime>
+					<range>12</range>
+					<soundCast>RNShotFiveSeven</soundCast>
+					<soundCastTail>GunTail_Light</soundCastTail>
+					<muzzleFlashScale>9</muzzleFlashScale>
+				</Properties>
 
-						<FireModes>
-							<aiUseBurstMode>FALSE</aiUseBurstMode>
-							<aiAimMode>AimedShot</aiAimMode>
-						</FireModes>
+				<AmmoUser>
+					<magazineSize>20</magazineSize>
+					<reloadTime>4</reloadTime>
+					<ammoSet>AmmoSet_FN57x28mm</ammoSet>
+				</AmmoUser>
 
-						<!-- No additional CE weaponTags needed -->
-					</li>
+				<FireModes>
+					<aiUseBurstMode>FALSE</aiUseBurstMode>
+					<aiAimMode>AimedShot</aiAimMode>
+				</FireModes>
 
-					<li Class="PatchOperationReplace">
-						<xpath>Defs/ThingDef[defName="RNGun_FiveSeven"]/tools</xpath>
-						<value>
-							<tools>
-								<li Class="CombatExtended.ToolCE">
-									<label>grip</label>
-									<capacities>
-										<li>Blunt</li>
-									</capacities>
-									<power>9</power>
-									<cooldownTime>1.6</cooldownTime>
-									<armorPenetration>0.12</armorPenetration>
-									<linkedBodyPartsGroup>Grip</linkedBodyPartsGroup>
-								</li>
-								<li Class="CombatExtended.ToolCE">
-									<label>barrel</label>
-									<capacities>
-										<li>Blunt</li>
-									</capacities>
-									<power>9</power>
-									<cooldownTime>1.7</cooldownTime>
-									<armorPenetration>0.15</armorPenetration>
-									<linkedBodyPartsGroup>Barrel</linkedBodyPartsGroup>
-								</li>
-								<li Class="CombatExtended.ToolCE">
-									<label>muzzle</label>
-									<capacities>
-										<li>Poke</li>
-									</capacities>
-									<power>9</power>
-									<cooldownTime>1.4</cooldownTime>
-									<armorPenetration>0.1</armorPenetration>
-									<linkedBodyPartsGroup>Muzzle</linkedBodyPartsGroup>
-								</li>
-							</tools>
-						</value>
-					</li>
+				<!-- No additional CE weaponTags needed -->
+			</li>
 
-					<!-- ========== Desert Eagle ========== -->
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="RNGun_FiveSeven"]/tools</xpath>
+				<value>
+					<tools>
+						<li Class="CombatExtended.ToolCE">
+							<label>grip</label>
+							<capacities>
+								<li>Blunt</li>
+							</capacities>
+							<power>2</power>
+							<cooldownTime>1.56</cooldownTime>
+							<linkedBodyPartsGroup>Grip</linkedBodyPartsGroup>
+							<armorPenetrationBlunt>0.555</armorPenetrationBlunt>
+						</li>
+						<li Class="CombatExtended.ToolCE">
+							<label>muzzle</label>
+							<capacities>
+								<li>Poke</li>
+							</capacities>
+							<power>2</power>
+							<cooldownTime>1.54</cooldownTime>
+							<linkedBodyPartsGroup>Muzzle</linkedBodyPartsGroup>
+							<armorPenetrationBlunt>0.555</armorPenetrationBlunt>
+						</li>
+					</tools>
+				</value>
+			</li>
 
-					<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
-						<defName>RNGun_DesertEagle</defName>
-						<statBases>
-							<Mass>1.63</Mass>
-							<RangedWeapon_Cooldown>0.39</RangedWeapon_Cooldown>
-							<SightsEfficiency>0.70</SightsEfficiency>
-							<ShotSpread>0.16</ShotSpread>
-							<SwayFactor>1.58</SwayFactor>
-							<Bulk>3.92</Bulk>
-							<WorkToMake>7500</WorkToMake>
-						</statBases>
-						<costList>
-							<Steel>25</Steel>
-							<ComponentIndustrial>3</ComponentIndustrial>
-						</costList>
-						<Properties>
-							<recoilAmount>3.01</recoilAmount>
-							<verbClass>CombatExtended.Verb_ShootCE</verbClass>
-							<hasStandardCommand>true</hasStandardCommand>
-							<defaultProjectile>Bullet_50AE_FMJ</defaultProjectile>
-							<warmupTime>0.6</warmupTime>
-							<range>12</range>
-							<soundCast>RNDeagleShot</soundCast>
-							<soundCastTail>GunTail_Light</soundCastTail>
-							<muzzleFlashScale>9</muzzleFlashScale>
-							<recoilPattern>Regular</recoilPattern>
-						</Properties>
+			<!-- ========== TEC-9 ========== -->
 
-						<AmmoUser>
-							<magazineSize>7</magazineSize>
-							<reloadTime>4</reloadTime>
-							<ammoSet>AmmoSet_50AE</ammoSet>
-						</AmmoUser>
+			<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+				<defName>RNGun_TEC-9P</defName>
+				<statBases>
+					<Mass>1.23</Mass>
+					<RangedWeapon_Cooldown>0.37</RangedWeapon_Cooldown>
+					<SightsEfficiency>0.70</SightsEfficiency>
+					<ShotSpread>0.19</ShotSpread>
+					<SwayFactor>1.21</SwayFactor>
+					<Bulk>2.41</Bulk>
+					<WorkToMake>7500</WorkToMake>
+				</statBases>
+				<costList>
+					<Chemfuel>5</Chemfuel>
+					<Steel>20</Steel>
+					<ComponentIndustrial>3</ComponentIndustrial>
+				</costList>
+				<Properties>
+					<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+					<hasStandardCommand>true</hasStandardCommand>
+					<defaultProjectile>Bullet_9x19mmPara_FMJ</defaultProjectile>
+					<warmupTime>0.6</warmupTime>
+					<range>12</range>
+					<soundCast>RNShotTec9</soundCast>
+					<soundCastTail>GunTail_Light</soundCastTail>
+					<muzzleFlashScale>9</muzzleFlashScale>
+				</Properties>
 
-						<FireModes>
-							<aiUseBurstMode>FALSE</aiUseBurstMode>
-							<aiAimMode>AimedShot</aiAimMode>
-						</FireModes>
+				<AmmoUser>
+					<magazineSize>32</magazineSize>
+					<reloadTime>4</reloadTime>
+					<ammoSet>AmmoSet_9x19mmPara</ammoSet>
+				</AmmoUser>
 
-						<weaponTags>
-							<li>CE_AI_Pistol</li>
-							<li>CE_Sidearm</li>
-						</weaponTags>
-					</li>
+				<FireModes>
+					<aiUseBurstMode>FALSE</aiUseBurstMode>
+					<aiAimMode>AimedShot</aiAimMode>
+				</FireModes>
 
-					<li Class="PatchOperationReplace">
-						<xpath>Defs/ThingDef[defName="RNGun_DesertEagle"]/tools</xpath>
-						<value>
-							<tools>
-								<li Class="CombatExtended.ToolCE">
-									<label>grip</label>
-									<capacities>
-										<li>Blunt</li>
-									</capacities>
-									<power>9</power>
-									<cooldownTime>1.6</cooldownTime>
-									<armorPenetration>0.12</armorPenetration>
-									<linkedBodyPartsGroup>Grip</linkedBodyPartsGroup>
-								</li>
-								<li Class="CombatExtended.ToolCE">
-									<label>barrel</label>
-									<capacities>
-										<li>Blunt</li>
-									</capacities>
-									<power>9</power>
-									<cooldownTime>1.7</cooldownTime>
-									<armorPenetration>0.15</armorPenetration>
-									<linkedBodyPartsGroup>Barrel</linkedBodyPartsGroup>
-								</li>
-								<li Class="CombatExtended.ToolCE">
-									<label>muzzle</label>
-									<capacities>
-										<li>Poke</li>
-									</capacities>
-									<power>9</power>
-									<cooldownTime>1.4</cooldownTime>
-									<armorPenetration>0.1</armorPenetration>
-									<linkedBodyPartsGroup>Muzzle</linkedBodyPartsGroup>
-								</li>
-							</tools>
-						</value>
-					</li>
+				<weaponTags>
+					<li>CE_AI_Pistol</li>
+					<li>CE_Sidearm</li>
+				</weaponTags>
+			</li>
 
-				</operations>
-			</nomatch>
-		</match>
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="RNGun_TEC-9P"]/tools</xpath>
+				<value>
+					<tools>
+						<li Class="CombatExtended.ToolCE">
+							<label>grip</label>
+							<capacities>
+								<li>Blunt</li>
+							</capacities>
+							<power>2</power>
+							<cooldownTime>1.56</cooldownTime>
+							<linkedBodyPartsGroup>Grip</linkedBodyPartsGroup>
+							<armorPenetrationBlunt>0.555</armorPenetrationBlunt>
+						</li>
+						<li Class="CombatExtended.ToolCE">
+							<label>muzzle</label>
+							<capacities>
+								<li>Poke</li>
+							</capacities>
+							<power>2</power>
+							<cooldownTime>1.54</cooldownTime>
+							<linkedBodyPartsGroup>Muzzle</linkedBodyPartsGroup>
+							<armorPenetrationBlunt>0.555</armorPenetrationBlunt>
+						</li>
+					</tools>
+				</value>
+			</li>
+
+		</operations>
 	</Operation>
 </Patch>
