@@ -1,66 +1,52 @@
 <?xml version="1.0" encoding="utf-8" ?>
-<!-- 
-Chicken Plucker's Project Red Horse mods often have duplicate items, apparels and defs shared between them,
-so this patch will only be applied if:
-
-Elite Crew is active && Rimmu-Nation Clothing is NOT active
-
-If both mods are active, the CE patch from Rimmu-Nation Clothing should automatically take over
--->
 <Patch>
-	<Operation Class="PatchOperationFindMod">
-		<mods>
-			<li>[RH] Faction: Elite Crew (1.0)</li>
-		</mods>
-		<match Class="PatchOperationFindMod">
-			<mods>
-				<li>[CP] Rimmu-Nation - Clothing (1.0)</li>
-				<li>[CP] Rimmu-Nation - Clothing (All Craftable!) (1.0)</li>
-			</mods>
-			<nomatch Class="PatchOperationSequence">
-				<operations>
+	<Operation Class="PatchOperationSequence">
+		<success>Always</success>
+		<operations>
 
-					<!-- ========== Handgun holsters ========== -->
+			<li Class="CombatExtended.PatchOperationFindMod">
+				<modName>[RH] Faction: Elite Crew (1.0)</modName>
+			</li>
 
-					<li Class="PatchOperationAdd">
-						<xpath>Defs/ThingDef[defName="RNApparel_Holsters_Shoulder"]/statBases</xpath>
-						<value>
-							<Bulk>2.5</Bulk>
-							<WornBulk>1</WornBulk>
-						</value>
-					</li>
+			<!-- ========== Handgun holsters ========== -->
 
-					<li Class="PatchOperationAdd">
-						<xpath>Defs/ThingDef[defName="RNApparel_Holsters_Shoulder"]/equippedStatOffsets</xpath>
-						<value>
-							<CarryBulk>2.5</CarryBulk>
-						</value>
-					</li>
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName="RNApparel_Holsters_Shoulder"]/statBases</xpath>
+				<value>
+					<Bulk>2.5</Bulk>
+					<WornBulk>1</WornBulk>
+				</value>
+			</li>
 
-					<li Class="PatchOperationReplace">
-						<xpath>Defs/ThingDef[defName="RNApparel_Holsters_Shoulder"]/apparel
-						</xpath>
-						<value>
-							<apparel>
-								<bodyPartGroups>
-									<li>Shoulders</li>
-								</bodyPartGroups>
-								<layers>
-									<li>Webbing</li>
-								</layers>
-								<tags>
-									<li>IndustrialMilitaryBasic</li>
-								</tags>
-								<defaultOutfitTags>
-									<li>Soldier</li>
-								</defaultOutfitTags>
-								<wornGraphicPath>Things/Apparel/Belt/ShoulderHolster</wornGraphicPath>
-							</apparel>
-						</value>
-					</li>
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName="RNApparel_Holsters_Shoulder"]/equippedStatOffsets</xpath>
+				<value>
+					<CarryBulk>2.5</CarryBulk>
+				</value>
+			</li>
 
-				</operations>
-			</nomatch>
-		</match>
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="RNApparel_Holsters_Shoulder"]/apparel
+				</xpath>
+				<value>
+					<apparel>
+						<bodyPartGroups>
+							<li>Shoulders</li>
+						</bodyPartGroups>
+						<layers>
+							<li>Webbing</li>
+						</layers>
+						<tags>
+							<li>IndustrialMilitaryBasic</li>
+						</tags>
+						<defaultOutfitTags>
+							<li>Soldier</li>
+						</defaultOutfitTags>
+						<wornGraphicPath>Things/Apparel/Belt/ShoulderHolster</wornGraphicPath>
+					</apparel>
+				</value>
+			</li>
+
+		</operations>
 	</Operation>
 </Patch>
