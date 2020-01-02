@@ -8,32 +8,178 @@
 				<modName>[RH] Faction: Elite Crew (1.0)</modName>
 			</li>
 
-			<!-- ========== Remove Grenades and their projectiles, regardless of whether Rimmu-Nation Weapons is active or not 
-				(since we always default to CE's built-in grenades instead) ========== -->
+			<!-- ========== Remove Molotovs as CE:FT already includes a generic version ========== -->
 
-			<li Class="PatchOperationRemove">
-				<xpath>Defs/ThingDef[defName="RNThrown_RGDNade"]</xpath>
-			</li>
-			<li Class="PatchOperationRemove">
-				<xpath>Defs/ThingDef[defName="RNProj_RGDGrenade"]</xpath>
-			</li>
 			<li Class="PatchOperationRemove">
 				<xpath>Defs/ThingDef[defName="RNThrown_PUBGVodka"]</xpath>
 			</li>
+
 			<li Class="PatchOperationRemove">
 				<xpath>Defs/ThingDef[defName="RNProj_PUBGMolotov"]</xpath>
 			</li>
-			
-			<!-- ========== Patch C4 (Elite) ========== -->
 
-			<!-- Projectile def -->
+			<!-- ========== Common ========== -->
+
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[
+				defName="RNThrown_RGDNade" or
+				defName="RNThrown_C4CSGO_Elite"
+				]/graphicData</xpath>
+				<value>
+					<onGroundRandomRotateAngle>0</onGroundRandomRotateAngle>
+				</value>
+			</li>
+
+			<li Class="PatchOperationAttributeSet">
+				<xpath>Defs/ThingDef[
+				defName="RNThrown_RGDNade" or
+				defName="RNThrown_C4CSGO_Elite"
+				]</xpath>
+				<attribute>Class</attribute>
+				<value>CombatExtended.AmmoDef</value>
+			</li>
+
+			<li Class="PatchOperationSequence">
+				<success>Always</success>
+				<operations>
+					<li Class="PatchOperationTest">
+						<xpath>Defs/ThingDef[
+						defName="RNThrown_RGDNade" or
+						defName="RNThrown_C4CSGO_Elite"
+						]/comps</xpath>
+						<success>Invert</success>
+					</li>
+					<li Class="PatchOperationAdd">
+						<xpath>Defs/ThingDef[
+						defName="RNThrown_RGDNade" or
+						defName="RNThrown_C4CSGO_Elite"
+						]</xpath>
+						<value>
+							<comps />
+						</value>
+					</li>
+				</operations>
+			</li>
 
 			<li Class="PatchOperationReplace">
-				<xpath>Defs/ThingDef[defName="RNProj_C4CSGO_Elite"]/thingClass</xpath>
+				<xpath>Defs/ThingDef[
+					defName="RNProj_RGDGrenade" or
+					defName="RNProj_C4CSGO_Elite"
+				]/thingClass</xpath>
 				<value>
 					<thingClass>CombatExtended.ProjectileCE_Explosive</thingClass>
 				</value>
 			</li>
+
+			<li Class="PatchOperationSequence">
+				<success>Always</success>
+				<operations>
+					<li Class="PatchOperationTest">
+						<xpath>Defs/ThingDef[
+						defName="RNProj_RGDGrenade" or
+						defName="RNProj_C4CSGO_Elite"
+						]/comps</xpath>
+						<success>Invert</success>
+					</li>
+					<li Class="PatchOperationAdd">
+						<xpath>Defs/ThingDef[
+						defName="RNProj_RGDGrenade" or
+						defName="RNProj_C4CSGO_Elite"
+						]</xpath>
+						<value>
+							<comps />
+						</value>
+					</li>
+				</operations>
+			</li>
+
+			<!-- ========== RGD-5 Grenade ========== -->
+
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="RNProj_RGDGrenade"]/projectile</xpath>
+				<value>
+					<projectile Class="CombatExtended.ProjectilePropertiesCE">
+						<explosionRadius>1</explosionRadius>
+						<damageDef>Bomb</damageDef>
+						<damageAmountBase>35</damageAmountBase>
+						<explosionDelay>60</explosionDelay>
+						<dropsCasings>true</dropsCasings>
+						<casingMoteDefname>Mote_GrenadePin</casingMoteDefname>
+						<applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
+						<speed>5</speed>
+					</projectile>
+				</value>
+			</li>
+
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName="RNThrown_RGDNade"]/comps</xpath>
+				<value>
+					<li Class="CombatExtended.CompProperties_ExplosiveCE">
+						<explosionDamage>35</explosionDamage>
+						<explosionDamageDef>Bomb</explosionDamageDef>
+						<explosionRadius>1</explosionRadius>
+						<fragments>
+							<Fragment_Small>31</Fragment_Small>
+						</fragments>
+					</li>
+				</value>
+			</li>
+
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName="RNThrown_RGDNade"]</xpath>
+				<value>
+					<thingClass>CombatExtended.AmmoThing</thingClass>
+					<stackLimit>75</stackLimit>
+					<resourceReadoutPriority>First</resourceReadoutPriority>
+					<drawGUIOverlay>true</drawGUIOverlay>
+				</value>
+			</li>
+
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName="RNProj_RGDGrenade"]/comps</xpath>
+				<value>
+					<li Class="CombatExtended.CompProperties_ExplosiveCE">
+						<fragments>
+							<Fragment_Small>31</Fragment_Small>
+						</fragments>
+					</li>
+				</value>
+			</li>		
+
+			<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+				<defName>RNThrown_RGDNade</defName>
+				<statBases>
+					<Mass>0.31</Mass>
+					<Bulk>0.93</Bulk>
+					<MarketValue>10.16</MarketValue>
+					<RangedWeapon_Cooldown>1</RangedWeapon_Cooldown>
+					<SightsEfficiency>0.45</SightsEfficiency>
+				</statBases>
+				<Properties>
+					<label>throw RGD-5 grenade</label>
+					<verbClass>CombatExtended.Verb_ShootCEOneUse</verbClass>
+					<hasStandardCommand>true</hasStandardCommand>
+					<range>10.0</range>
+					<minRange>4</minRange>
+					<warmupTime>0.8</warmupTime>
+					<noiseRadius>4</noiseRadius>
+					<ai_IsBuildingDestroyer>true</ai_IsBuildingDestroyer>
+					<soundCast>ThrowGrenade</soundCast>
+					<targetParams>
+						<canTargetLocations>true</canTargetLocations>
+					</targetParams>
+					<defaultProjectile>RNProj_RGDGrenade</defaultProjectile>
+					<ignorePartialLoSBlocker>true</ignorePartialLoSBlocker>
+					<rangedFireRulepack>Combat_RangedFire_Thrown</rangedFireRulepack>
+				</Properties>
+				<weaponTags>
+					<li>CE_AI_Grenade</li>
+					<li>CE_OneHandedWeapon</li>
+					<li>RN_RGDGrenade</li>
+				</weaponTags>
+			</li>
+
+			<!-- ========== Patch C4 (Elite) ========== -->
 
 			<li Class="PatchOperationReplace">
 				<xpath>Defs/ThingDef[defName="RNProj_C4CSGO_Elite"]/graphicData/texPath</xpath>
@@ -58,22 +204,6 @@
 				</value>
 			</li>
 
-			<li Class="PatchOperationSequence">
-				<success>Always</success>
-				<operations>
-					<li Class="PatchOperationTest">
-						<xpath>Defs/ThingDef[defName="RNProj_C4CSGO_Elite"]/comps</xpath>
-						<success>Invert</success>
-					</li>
-					<li Class="PatchOperationAdd">
-						<xpath>Defs/ThingDef[defName="RNProj_C4CSGO_Elite"]</xpath>
-						<value>
-							<comps />
-						</value>
-					</li>
-				</operations>
-			</li>
-
 			<li Class="PatchOperationAdd">
 				<xpath>Defs/ThingDef[defName="RNProj_C4CSGO_Elite"]/comps</xpath>
 				<value>
@@ -85,8 +215,6 @@
 				</value>
 			</li>
 
-			<!-- Weapon def -->
-
 			<li Class="PatchOperationAdd">
 				<xpath>Defs/ThingDef[defName="RNThrown_C4CSGO_Elite"]</xpath>
 				<value>
@@ -95,28 +223,6 @@
 					<resourceReadoutPriority>First</resourceReadoutPriority>
 					<drawGUIOverlay>true</drawGUIOverlay>
 				</value>
-			</li>
-
-			<li Class="PatchOperationAttributeSet">
-				<xpath>Defs/ThingDef[defName="RNThrown_C4CSGO_Elite"]</xpath>
-				<attribute>Class</attribute>
-				<value>CombatExtended.AmmoDef</value>
-			</li>
-
-			<li Class="PatchOperationSequence">
-				<success>Always</success>
-				<operations>
-					<li Class="PatchOperationTest">
-						<xpath>Defs/ThingDef[defName="RNThrown_C4CSGO_Elite"]/comps</xpath>
-						<success>Invert</success>
-					</li>
-					<li Class="PatchOperationAdd">
-						<xpath>Defs/ThingDef[defName="RNThrown_C4CSGO_Elite"]</xpath>
-						<value>
-							<comps />
-						</value>
-					</li>
-				</operations>
 			</li>
 
 			<li Class="PatchOperationAdd">
@@ -132,6 +238,7 @@
 					</li>
 				</value>
 			</li>
+
 			<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
 				<defName>RNThrown_C4CSGO_Elite</defName>
 				<statBases>
@@ -140,7 +247,13 @@
 					<MarketValue>153.2</MarketValue>
 					<RangedWeapon_Cooldown>1</RangedWeapon_Cooldown>
 					<SightsEfficiency>0.45</SightsEfficiency>
+					<WorkToMake>4800</WorkToMake>
 				</statBases>
+				<costList>
+					<Steel>8</Steel>
+					<ComponentIndustrial>2</ComponentIndustrial>
+					<FSX>7</FSX>
+				</costList>
 				<Properties>
 					<label>arm and throw C4</label>
 					<verbClass>CombatExtended.Verb_ShootCEOneUse</verbClass>
