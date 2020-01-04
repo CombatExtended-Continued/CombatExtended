@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8" ?>
+
+<Patch>
+	<Operation Class="PatchOperationSequence">
+		<success>Always</success>
+		<operations>
+
+			<li Class="CombatExtended.PatchOperationFindMod">
+				<modName>[CP] Red Horse Furniture (1.0)</modName>
+			</li>
+
+			<!-- ========== Reduce food, medicine and drugs carried in inventory ========== -->
+
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/PawnKindDef[@Name="RH_FBIAgentBase"]/invNutrition</xpath>
+				<value>
+					<invNutrition>2</invNutrition>
+				</value>
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/PawnKindDef[@Name="RH_FBIAgentBase"]/inventoryOptions/subOptionsChooseOne</xpath>
+				<value>
+					<subOptionsChooseOne>
+						<li>
+							<choiceChance>50</choiceChance>
+							<thingDef>RNMedicine_IFAK_Multicam</thingDef>
+							<countRange>
+								<min>1</min>
+								<max>2</max>
+							</countRange>
+						</li>
+						<li>
+							<choiceChance>10</choiceChance>
+							<thingDef>RNMedicine_MedicBag</thingDef>
+							<countRange>
+								<min>1</min>
+								<max>2</max>
+							</countRange>
+						</li>
+					</subOptionsChooseOne>
+				</value>
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/PawnKindDef[
+				defName="RH_FBI_Assault" or
+				defName="RH_FBI_CQB" or
+				defName="RH_FBI_CQB_TierII" or
+				defName="RH_FBI_Marksman"
+				]/inventoryOptions/subOptionsChooseOne</xpath>
+				<value>
+					<subOptionsChooseOne>
+						<li>
+							<choiceChance>20</choiceChance>
+							<thingDef>CP_MaxiCola</thingDef>
+							<countRange>
+								<min>1</min>
+								<max>2</max>
+							</countRange>
+						</li>
+					</subOptionsChooseOne>
+				</value>
+			</li>
+			
+			<!-- ========== Remove smokepop belt ========== -->
+			
+			<li Class="PatchOperationRemove">
+				<xpath>Defs/PawnKindDef[
+				defName="RH_FBI_Assault" or
+				defName="RH_FBI_CQB" or
+				defName="RH_FBI_CQB_TierII" or
+				defName="RH_FBI_Marksman"
+				]/apparelTags/li[.="BeltDefensePop"]</xpath>
+			</li>
+			
+			<li Class="PatchOperationRemove">
+				<xpath>Defs/PawnKindDef[
+				defName="RH_FBI_Assault" or
+				defName="RH_FBI_CQB" or
+				defName="RH_FBI_CQB_TierII" or
+				defName="RH_FBI_Marksman"
+				]/apparelRequired/li[.="Apparel_SmokepopBelt"]</xpath>
+			</li>
+
+			<!-- ========== FBI HRT pawns should spawn with ammo appropriate to their primary weapon ========== -->
+
+			<li Class="PatchOperationAddModExtension">
+				<xpath>Defs/PawnKindDef[@Name="RH_FBIAgentBase"]</xpath>
+				<value>
+					<li Class="CombatExtended.LoadoutPropertiesExtension">
+						<primaryMagazineCount>
+							<min>4</min>
+							<max>5</max>
+						</primaryMagazineCount>
+					</li>
+				</value>
+			</li>
+
+
+		</operations>
+	</Operation>
+</Patch>
