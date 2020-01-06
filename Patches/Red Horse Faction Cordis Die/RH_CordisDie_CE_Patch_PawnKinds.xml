@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+	<Operation Class="PatchOperationSequence">
+		<success>Always</success>
+		<operations>
+
+			<li Class="CombatExtended.PatchOperationFindMod">
+				<modName>[RH] Faction: Cordis Die (1.0)</modName>
+			</li>
+
+			<!-- ========== Reduce meals and medicine carried by all pawns ========== -->
+
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/PawnKindDef[@Name="RH_CordisDie_Base"]/invNutrition</xpath>
+				<value>
+					<invNutrition>2</invNutrition>
+				</value>
+			</li>
+
+			<li Class="PatchOperationRemove">
+				<xpath>Defs/PawnKindDef[@Name="RH_CordisDie_Base"]/inventoryOptions</xpath>
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/PawnKindDef[
+					defName="RH_CordisDie_CQB_TierII" or
+					defName="RH_CordisDie_Assault" or
+					defName="RH_CordisDie_Assault_TierII" or
+					defName="RH_CordisDie_Gunner" or
+					defName="RH_CordisDie_Grenadier" or
+					defName="RH_CordisDie_Boss" or
+					defName="RH_CordisDie_Elite"
+				]/inventoryOptions/subOptionsChooseOne</xpath>
+				<value>
+					<subOptionsChooseOne>
+						<li>
+							<thingDef>RNMedicine_IFAK_Multicam</thingDef>
+							<countRange>
+								<min>1</min>
+								<max>2</max>
+							</countRange>
+						</li>
+						<li>
+							<thingDef>RNMedicine_MedicBag</thingDef>
+							<countRange>
+								<min>1</min>
+								<max>2</max>
+							</countRange>
+						</li>
+					</subOptionsChooseOne>
+				</value>
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/PawnKindDef[
+					defName="RH_CordisDie_CQB" or
+					defName="RH_CordisDie_Marksman" or
+					defName="RH_CordisDie_Marksman_TierII" or
+					defName="RH_CordisDie_Sniper"
+				]/inventoryOptions/subOptionsChooseOne</xpath>
+				<value>
+					<subOptionsChooseOne>
+						<li>
+							<thingDef>RNMedicine_IFAK_Multicam</thingDef>
+							<countRange>
+								<min>1</min>
+								<max>1</max>
+							</countRange>
+						</li>
+					</subOptionsChooseOne>
+				</value>
+			</li>
+			
+			<!-- ========== Remove smokepop belt ========== -->
+
+			<li Class="PatchOperationRemove">
+				<xpath>Defs/PawnKindDef[
+					defName="RH_CordisDie_Sniper" or
+					@Name="RH_CDEliteTierBase" or
+					defName="RH_CordisDie_Trader"
+				]/apparelTags/li[.="BeltDefensePop"]</xpath>
+			</li>
+
+			<li Class="PatchOperationRemove">
+				<xpath>Defs/PawnKindDef[
+					defName="RH_CordisDie_Sniper" or
+					defName="RH_CordisDie_Boss" or
+					defName="RH_CordisDie_Elite" or
+					defName="RH_CordisDie_Trader"
+				]/apparelRequired/li[.="Apparel_SmokepopBelt"]</xpath>
+			</li>
+
+			<!-- ========== Cordis Die faction pawns should spawn backpacks, allowing them to carry their (huge) inventory ========== -->
+
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/PawnKindDef[@Name="RH_CordisDie_Base"]</xpath>
+				<value>
+					<apparelRequired>
+						<li>Apparel_Backpack</li>
+					</apparelRequired>
+				</value>
+			</li>
+
+			<!-- ========== Cordis Die faction pawns should spawn with ammo appropriate to their primary weapon ========== -->
+
+			<li Class="PatchOperationAddModExtension">
+				<xpath>Defs/PawnKindDef[@Name="RH_CordisDie_Base"]</xpath>
+				<value>
+					<li Class="CombatExtended.LoadoutPropertiesExtension">
+						<primaryMagazineCount>
+							<min>4</min>
+							<max>5</max>
+						</primaryMagazineCount>
+					</li>
+				</value>
+			</li>
+			
+			<!-- ========== Tweak minimum weaponMoney for selected pawn types, so that they actually spawn with weapons ========== -->
+
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/PawnKindDef[
+					defName="RH_CordisDie_Marksman" or
+					defName="RH_CordisDie_Marksman_TierII"
+				]/weaponMoney/min</xpath>
+				<value>
+					<min>500</min>
+				</value>
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/PawnKindDef[defName="RH_CordisDie_Gunner"]/weaponMoney/min</xpath>
+				<value>
+					<min>450</min>
+				</value>
+			</li>
+
+		</operations>
+	</Operation>
+</Patch>
