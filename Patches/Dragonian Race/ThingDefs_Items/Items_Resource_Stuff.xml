@@ -44,6 +44,24 @@
 					<Mass>0.90</Mass>
 				</value>
 			</li>
+
+			<li Class="PatchOperationConditional">
+				<xpath>Defs/ThingDef[defName="WoolDragonian"]/stuffProps/categories</xpath>
+				<nomatch Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="WoolDragonian"]/stuffProps</xpath>
+					<value>
+						<categories>
+						<li>SoftArmor</li>
+						</categories>
+					</value>
+				</nomatch>
+				<match Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="WoolDragonian"]/stuffProps/categories</xpath>
+					<value>
+						<li>SoftArmor</li>
+					</value>
+				</match>
+			</li>
 			
 		</operations>
 		</match>	
