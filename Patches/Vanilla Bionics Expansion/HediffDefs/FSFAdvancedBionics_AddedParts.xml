@@ -15,7 +15,7 @@
 					<li Class="CombatExtended.ToolCE">
 					<label>claw</label>
 					<capacities>
-						<li>Slash</li>
+						<li>Scratch</li>
 					</capacities>
 					<power>25</power>
 					<cooldownTime>0.71</cooldownTime>
@@ -34,7 +34,7 @@
 					<li Class="CombatExtended.ToolCE">
 					<label>claw</label>
 					<capacities>
-						<li>Slash</li>
+						<li>Scratch</li>
 					</capacities>
 					<power>29</power>
 					<cooldownTime>0.59</cooldownTime>
@@ -65,26 +65,73 @@
 		
 		<!--Subdermal Implants-->
 		
-		<!--2mm Hyperweave-->
+		<!--3mm Hyperweave/w : 100% heat armor-->
 		<li Class="PatchOperationReplace">
 			<xpath>Defs/HediffDef[defName="FSFImplantSubdermalArmor"]/stages/li/statOffsets</xpath>
 			<value>
 				<statOffsets>
-					<ArmorRating_Blunt>+3</ArmorRating_Blunt>
-					<ArmorRating_Heat>+3.84</ArmorRating_Heat>
-					<ArmorRating_Sharp>+2</ArmorRating_Sharp>
+					<ArmorRating_Blunt>+4.5</ArmorRating_Blunt>
+					<ArmorRating_Heat>+1</ArmorRating_Heat>
+					<ArmorRating_Sharp>+3</ArmorRating_Sharp>
 				</statOffsets>
 			</value>
 		</li>
 		
-		<!--2mm Plasteel/w Hyperweave heat armor-->
+		<!--3mm Plasteel/w : 100% heat armor : 80% EMP armor-->
 		<li Class="PatchOperationReplace">
 			<xpath>Defs/HediffDef[defName="FSFArchotechImplantSubdermalArmor"]/stages/li/statOffsets</xpath>
 			<value>
 				<statOffsets>
-					<ArmorRating_Blunt>+6</ArmorRating_Blunt>
-					<ArmorRating_Heat>+3.84</ArmorRating_Heat>
-					<ArmorRating_Sharp>+4</ArmorRating_Sharp>
+					<ArmorRating_Blunt>+9</ArmorRating_Blunt>
+					<ArmorRating_Heat>+1</ArmorRating_Heat>
+					<ArmorRating_Sharp>+6</ArmorRating_Sharp>
+					<ArmorRating_Electric>+0.80</ArmorRating_Electric>
+				</statOffsets>
+			</value>
+		</li>
+		
+		<!--Tone down adv. Sprinter frame dodge chance to be more inline with CE stats (also so it doesn't instantly max out dodge)-->
+		
+		<li Class="PatchOperationReplace">
+			<xpath>Defs/HediffDef[defName="FSFImplantTorsoMovement"]/stages/li/statOffsets/MeleeDodgeChance</xpath>
+			<value>
+					<MeleeDodgeChance>+2.5</MeleeDodgeChance>
+			</value>
+		</li>
+		
+		<!--Give hazard module smoke immunity-->
+		
+		<li Class="PatchOperationAdd">
+			<xpath>Defs/HediffDef[defName="FSFImplantHazardModule"]/stages/li/statOffsets</xpath>
+			<value>
+					<SmokeSensitivity>-1.0</SmokeSensitivity>
+			</value>
+		</li>
+		
+		<!--AI Chip Implants-->
+		
+		<li Class="PatchOperationReplace">
+			<xpath>Defs/HediffDef[defName="FSFAIChipMelee"]/stages/li/statOffsets</xpath>
+			<value>
+				<statOffsets>
+					<MeleeCritChance>0.15</MeleeCritChance>
+					<MeleeParryChance>0.1875</MeleeParryChance>
+					<MeleeDodgeChance>0.5</MeleeDodgeChance>
+					<MeleeHitChance>15.0</MeleeHitChance>
+					<Suppressability>-0.50</Suppressability>
+				</statOffsets>
+			</value>
+		</li>
+		
+		<li Class="PatchOperationReplace">
+			<xpath>Defs/HediffDef[defName="FSFAIChipShooting"]/stages/li/statOffsets</xpath>
+			<value>
+				<statOffsets>
+					<ShootingAccuracyPawn>+1</ShootingAccuracyPawn>
+					<AimingAccuracy>+0.5</AimingAccuracy>
+					<AimingDelayFactor>-0.25</AimingDelayFactor>
+					<Suppressability>-0.25</Suppressability>
+					<HuntingStealth>+0.25</HuntingStealth>
 				</statOffsets>
 			</value>
 		</li>
