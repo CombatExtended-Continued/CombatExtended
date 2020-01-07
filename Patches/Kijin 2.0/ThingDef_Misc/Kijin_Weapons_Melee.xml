@@ -1,0 +1,214 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+  <Operation Class="PatchOperationSequence">
+	<operations>
+	  <li Class="PatchOperationFindMod">
+			
+		<mods><li>Kijin Race 2.0</li></mods>
+			
+		<match Class="PatchOperationSequence">
+		<operations>
+			<!--========= Melee =========-->
+			
+			<!--Polearm counts as Glaive-->
+			
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="Kijin_Polearm"]/tools</xpath>
+				<value>
+					<tools>
+					  <li Class="CombatExtended.ToolCE">
+						<label>shaft</label>
+						<capacities>
+						  <li>Blunt</li>
+						</capacities>
+						<power>6</power>
+						<cooldownTime>1.31</cooldownTime>
+						<armorPenetrationBlunt>2.025</armorPenetrationBlunt>
+						<linkedBodyPartsGroup>Shaft</linkedBodyPartsGroup>
+					  </li>
+					  <li Class="CombatExtended.ToolCE">
+						<label>edge</label>
+						<capacities>
+						  <li>Cut</li>
+						</capacities>
+						<power>47</power>
+						<cooldownTime>2.9</cooldownTime>
+						<chanceFactor>1.165</chanceFactor>
+						<armorPenetrationBlunt>8.1</armorPenetrationBlunt>
+						<armorPenetrationSharp>1.62</armorPenetrationSharp>
+						<linkedBodyPartsGroup>Edge</linkedBodyPartsGroup>
+					  </li>
+					  <li Class="CombatExtended.ToolCE">
+						<label>point</label>
+						<capacities>
+						  <li>Stab</li>
+						</capacities>
+						<power>40</power>
+						<cooldownTime>1.16</cooldownTime>
+						<chanceFactor>1.165</chanceFactor>
+						<armorPenetrationBlunt>2.025</armorPenetrationBlunt>
+						<armorPenetrationSharp>2.03</armorPenetrationSharp>
+						<linkedBodyPartsGroup>Point</linkedBodyPartsGroup>
+					  </li>
+					</tools>
+				</value>
+			</li>
+			
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName="Kijin_Polearm"]/statBases</xpath>
+				<value>
+					<MeleeCounterParryBonus>1.08</MeleeCounterParryBonus>
+					<Bulk>10</Bulk>
+				</value>
+			</li>
+			
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName="Kijin_Polearm"]</xpath>
+				<value>
+					<equippedStatOffsets>
+					  <MeleeCritChance>0.22</MeleeCritChance>
+					  <MeleeParryChance>1.53</MeleeParryChance>
+					  <MeleeDodgeChance>0.67</MeleeDodgeChance>
+					</equippedStatOffsets>
+				</value>
+			</li>
+			
+			<!--Mace with 2kg mass-->
+			
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="Kijin_Mace"]/tools</xpath>
+				<value>
+					<tools>
+						<li Class="CombatExtended.ToolCE">
+							<label>handle</label>
+							<capacities>
+								<li>Poke</li>
+							</capacities>
+							<power>4</power>
+							<cooldownTime>1.78</cooldownTime>
+							<armorPenetrationBlunt>1</armorPenetrationBlunt>
+							<linkedBodyPartsGroup>Handle</linkedBodyPartsGroup>
+						</li>
+						<li Class="CombatExtended.ToolCE">
+							<label>head</label>
+							<capacities>
+								<li>Blunt</li>
+							</capacities>
+							<power>22</power>
+							<cooldownTime>1.9</cooldownTime>
+							<chanceFactor>2.14</chanceFactor>
+							<armorPenetrationBlunt>9</armorPenetrationBlunt>
+							<linkedBodyPartsGroup>Head</linkedBodyPartsGroup>
+						</li>
+					</tools>
+				</value>
+			</li>
+			
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName="Kijin_Mace"]/statBases</xpath>
+				<value>
+					<Bulk>5.5</Bulk>
+					<MeleeCounterParryBonus>0.24</MeleeCounterParryBonus>
+				</value>
+			</li>
+			
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName="Kijin_Mace"]</xpath>
+				<value>
+					<equippedStatOffsets>
+						<MeleeCritChance>0.42</MeleeCritChance>
+						<MeleeParryChance>0.24</MeleeParryChance>
+						<MeleeDodgeChance>0.2</MeleeDodgeChance>
+					</equippedStatOffsets>
+				</value>
+			</li>
+			
+			<!--30kg, 12.5m/s swing, top heavy-->
+			
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="Kijin_100tHammer"]/tools</xpath>
+				<value>
+					<tools>
+						<li Class="CombatExtended.ToolCE">
+							<label>head</label>
+							<capacities>
+								<li>Blunt</li>
+							</capacities>
+							<power>52</power>
+							<cooldownTime>8.43</cooldownTime>
+							<chanceFactor>1</chanceFactor>
+							<armorPenetrationBlunt>23.438</armorPenetrationBlunt>
+							<linkedBodyPartsGroup>Head</linkedBodyPartsGroup>
+						</li>
+					</tools>
+				</value>
+			</li>
+			
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName="Kijin_100tHammer"]/statBases</xpath>
+				<value>
+					<Bulk>15.5</Bulk>
+					<MeleeCounterParryBonus>0.07</MeleeCounterParryBonus>
+				</value>
+			</li>
+			
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName="Kijin_100tHammer"]</xpath>
+				<value>
+					<equippedStatOffsets>
+						<!--Crit is technically 15 according to sheet. Toned down for obvious reasons-->
+						<MeleeCritChance>2</MeleeCritChance>
+						<MeleeParryChance>0.05</MeleeParryChance>
+						<MeleeDodgeChance>0.05</MeleeDodgeChance>
+					</equippedStatOffsets>
+				</value>
+			</li>
+			
+			<!--Dagger : Double Parry length, two handed-->
+			
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="Kijin_PoisonDagger"]/tools</xpath>
+				<value>
+					<tools>
+						<li Class="CombatExtended.ToolCE">
+							<label>point</label>
+							<capacities>
+								<li>KijinPoisonDagger</li>
+							</capacities>
+							<power>6</power>
+							<cooldownTime>1.26</cooldownTime>
+							<chanceFactor>1.33</chanceFactor>
+							<armorPenetrationBlunt>0.25</armorPenetrationBlunt>
+							<armorPenetrationSharp>0.42</armorPenetrationSharp>
+							<linkedBodyPartsGroup>Point</linkedBodyPartsGroup>
+						</li>
+					</tools>
+				</value>
+			</li>
+			
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName="Kijin_PoisonDagger"]/statBases</xpath>
+				<value>
+					<Bulk>3</Bulk>
+					<MeleeCounterParryBonus>0.2</MeleeCounterParryBonus>
+				</value>
+			</li>
+			
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName="Kijin_PoisonDagger"]</xpath>
+				<value>
+					<equippedStatOffsets>
+						<MeleeCritChance>1</MeleeCritChance>
+						<MeleeParryChance>0.6</MeleeParryChance>
+						<MeleeDodgeChance>0.05</MeleeDodgeChance>
+					</equippedStatOffsets>
+				</value>
+			</li>
+			
+			
+		</operations>
+		</match>	
+	  </li>
+	</operations>	
+  </Operation>
+</Patch>
