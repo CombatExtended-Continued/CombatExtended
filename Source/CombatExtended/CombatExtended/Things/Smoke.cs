@@ -98,7 +98,7 @@ namespace CombatExtended
 
         private void SpreadToAdjacentCells()
         {
-            if (density >= 1f)
+            if (density >= MinSpreadDensity)
             {
                 var freeCells = GenAdjFast.AdjacentCellsCardinal(Position).InRandomOrder().Where(CanMoveTo).ToList();
                 foreach (var freeCell in freeCells)
