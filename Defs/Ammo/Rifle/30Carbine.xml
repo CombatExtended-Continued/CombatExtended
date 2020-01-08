@@ -17,6 +17,9 @@
 			<Ammo_30Carbine_FMJ>Bullet_30Carbine_FMJ</Ammo_30Carbine_FMJ>
 			<Ammo_30Carbine_AP>Bullet_30Carbine_AP</Ammo_30Carbine_AP>			
 			<Ammo_30Carbine_HP>Bullet_30Carbine_HP</Ammo_30Carbine_HP>
+		    <Ammo_30Carbine_Incendiary>Bullet_30Carbine_Incendiary</Ammo_30Carbine_Incendiary>
+			<Ammo_30Carbine_HE>Bullet_30Carbine_HE</Ammo_30Carbine_HE>
+			<Ammo_30Carbine_Sabot>Bullet_30Carbine_Sabot</Ammo_30Carbine_Sabot>				
 		</ammoTypes>
 	</CombatExtended.AmmoSetDef>
 
@@ -25,8 +28,8 @@
 	<ThingDef Class="CombatExtended.AmmoDef" Name="30CarbineBase" ParentName="SmallAmmoBase" Abstract="True">
 		<description>Small, light rifle cartridge most commonly found in carbines.</description>
 		<statBases>
-			<Mass>0.014</Mass>
-			<Bulk>0.02</Bulk>
+			<Mass>0.013</Mass>
+			<Bulk>0.01</Bulk>
 		</statBases>
 		<tradeTags>
 			<li>CE_AutoEnableTrade</li>
@@ -79,6 +82,49 @@
 		<cookOffProjectile>Bullet_30Carbine_HP</cookOffProjectile>
 	</ThingDef>
 
+  <ThingDef Class="CombatExtended.AmmoDef" ParentName="30CarbineBase">
+    <defName>Ammo_30Carbine_Incendiary</defName>
+    <label>.30 Carbine cartridge (AP-I)</label>
+    <graphicData>
+      <texPath>Things/Ammo/Rifle/Incendiary</texPath>
+      <graphicClass>Graphic_StackCount</graphicClass>
+    </graphicData>
+    <statBases>
+      <MarketValue>0.09</MarketValue>
+    </statBases>
+    <ammoClass>IncendiaryAP</ammoClass>
+    <cookOffProjectile>Bullet_30Carbine_Incendiary</cookOffProjectile>
+  </ThingDef>
+
+  <ThingDef Class="CombatExtended.AmmoDef" ParentName="30CarbineBase">
+    <defName>Ammo_30Carbine_HE</defName>
+    <label>.30 Carbine cartridge (HE)</label>
+    <graphicData>
+      <texPath>Things/Ammo/Rifle/HE</texPath>
+      <graphicClass>Graphic_StackCount</graphicClass>
+    </graphicData>
+    <statBases>
+      <MarketValue>0.16</MarketValue>
+    </statBases>
+    <ammoClass>ExplosiveAP</ammoClass>
+    <cookOffProjectile>Bullet_30Carbine_HE</cookOffProjectile>
+  </ThingDef>
+ 
+  <ThingDef Class="CombatExtended.AmmoDef" ParentName="30CarbineBase">
+    <defName>Ammo_30Carbine_Sabot</defName>
+    <label>.30 Carbine cartridge (Sabot)</label>
+    <graphicData>
+      <texPath>Things/Ammo/Rifle/Sabot</texPath>
+      <graphicClass>Graphic_StackCount</graphicClass>
+    </graphicData>
+    <statBases>
+      <MarketValue>0.06</MarketValue>
+	  <Mass>0.01</Mass>
+    </statBases>
+    <ammoClass>Sabot</ammoClass>
+    <cookOffProjectile>Bullet_30Carbine_Sabot</cookOffProjectile>
+  </ThingDef>
+
 	<!-- ================== Projectiles ================== -->
 
 	<ThingDef Class="CombatExtended.AmmoDef" Name="Base30CarbineBullet" ParentName="BaseBullet" Abstract="true">
@@ -123,6 +169,49 @@
 			<armorPenetrationBlunt>25.74</armorPenetrationBlunt>
 		</projectile>
 	</ThingDef>
+
+	  <ThingDef Class="CombatExtended.AmmoDef" ParentName="Base30CarbineBullet">
+		<defName>Bullet_30Carbine_Incendiary</defName>
+		<label>.30 Carbine bullet (AP-I)</label>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+		  <damageAmountBase>9</damageAmountBase>
+		  <armorPenetrationSharp>10</armorPenetrationSharp>
+		  <armorPenetrationBlunt>25.74</armorPenetrationBlunt>
+		  <secondaryDamage>
+				<li>
+			  	<def>Flame_Secondary</def>
+			  	<amount>5</amount>
+				</li>
+		  </secondaryDamage>
+		</projectile>
+	  </ThingDef>
+	  
+	  <ThingDef Class="CombatExtended.AmmoDef" ParentName="Base30CarbineBullet">
+		<defName>Bullet_30Carbine_HE</defName>
+		<label>.30 Carbine bullet (HE)</label>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+		  <damageAmountBase>14</damageAmountBase>
+		  <armorPenetrationSharp>5</armorPenetrationSharp>
+		  <armorPenetrationBlunt>25.74</armorPenetrationBlunt>
+		  <secondaryDamage>
+				<li>
+			  	<def>Bomb_Secondary</def>
+			  	<amount>8</amount>
+				</li>
+		  </secondaryDamage>
+		</projectile>
+	  </ThingDef>
+
+	  <ThingDef Class="CombatExtended.AmmoDef" ParentName="Base30CarbineBullet">
+		<defName>Bullet_30Carbine_Sabot</defName>
+		<label>.30 Carbine bullet (Sabot)</label>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+		  <damageAmountBase>8</damageAmountBase>
+		  <armorPenetrationSharp>17.5</armorPenetrationSharp>
+		  <armorPenetrationBlunt>33.02</armorPenetrationBlunt>
+		  <speed>182</speed>
+		</projectile>
+	  </ThingDef>
 
 	<!-- ==================== Recipes ========================== -->
 
@@ -177,5 +266,119 @@
 		</products>
 		<workAmount>1400</workAmount>
 	</RecipeDef>
+
+  <RecipeDef ParentName="AmmoRecipeBase">
+    <defName>MakeAmmo_30Carbine_Incendiary</defName>
+    <label>make .30 Carbine  (AP-I) cartridge x500</label>
+    <description>Craft 500 .30 Carbine  (AP-I) cartridges.</description>
+    <jobString>Making .30 Carbine  (AP-I) cartridges.</jobString>
+    <ingredients>
+      <li>
+        <filter>
+          <thingDefs>
+            <li>Steel</li>
+          </thingDefs>
+        </filter>
+        <count>14</count>
+      </li>
+      <li>
+        <filter>
+          <thingDefs>
+            <li>Prometheum</li>
+          </thingDefs>
+        </filter>
+        <count>2</count>
+      </li>
+    </ingredients>
+    <fixedIngredientFilter>
+      <thingDefs>
+        <li>Steel</li>
+        <li>Prometheum</li>
+      </thingDefs>
+    </fixedIngredientFilter>
+    <products>
+      <Ammo_30Carbine_Incendiary>500</Ammo_30Carbine_Incendiary>
+    </products>
+    <workAmount>2200</workAmount>
+  </RecipeDef>
+  
+  <RecipeDef ParentName="AmmoRecipeBase">
+    <defName>MakeAmmo_30Carbine_HE</defName>
+    <label>make .30 Carbine  (HE) cartridge x500</label>
+    <description>Craft 500 .30 Carbine  (HE) cartridges.</description>
+    <jobString>Making .30 Carbine  (HE) cartridges.</jobString>
+    <ingredients>
+      <li>
+        <filter>
+          <thingDefs>
+            <li>Steel</li>
+          </thingDefs>
+        </filter>
+        <count>14</count>
+      </li>
+      <li>
+        <filter>
+          <thingDefs>
+            <li>FSX</li>
+          </thingDefs>
+        </filter>
+        <count>5</count>
+      </li>
+    </ingredients>
+    <fixedIngredientFilter>
+      <thingDefs>
+        <li>Steel</li>
+        <li>FSX</li>
+      </thingDefs>
+    </fixedIngredientFilter>
+    <products>
+      <Ammo_30Carbine_HE>500</Ammo_30Carbine_HE>
+    </products>
+    <workAmount>3400</workAmount>
+  </RecipeDef>
+  
+  <RecipeDef ParentName="AmmoRecipeBase">
+    <defName>MakeAmmo_30Carbine_Sabot</defName>
+    <label>make .30 Carbine  (Sabot) cartridge x500</label>
+    <description>Craft 500 .30 Carbine  (Sabot) cartridges.</description>
+    <jobString>Making .30 Carbine  (Sabot) cartridges.</jobString>
+    <ingredients>
+      <li>
+        <filter>
+          <thingDefs>
+            <li>Steel</li>
+          </thingDefs>
+        </filter>
+        <count>6</count>
+      </li>
+      <li>
+        <filter>
+          <thingDefs>
+            <li>Uranium</li>
+          </thingDefs>
+        </filter>
+        <count>2</count>
+      </li>
+      <li>
+        <filter>
+          <thingDefs>
+            <li>Chemfuel</li>
+          </thingDefs>
+        </filter>
+        <count>2</count>
+      </li>		  
+    </ingredients>
+    <fixedIngredientFilter>
+      <thingDefs>
+        <li>Steel</li>
+        <li>Uranium</li>
+        <li>Chemfuel</li>		
+      </thingDefs>
+    </fixedIngredientFilter>
+    <products>
+      <Ammo_30Carbine_Sabot>500</Ammo_30Carbine_Sabot>
+    </products>
+    <workAmount>1800</workAmount>
+  </RecipeDef>
 
 </Defs>
