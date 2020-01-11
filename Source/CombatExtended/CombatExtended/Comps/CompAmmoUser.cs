@@ -228,10 +228,13 @@ namespace CombatExtended
         }
 
         /// <summary>
-        /// Reduces ammo count and updates inventory if necessary, call this whenever ammo is consumed by the gun (e.g. firing a shot, clearing a jam)
+        /// <para>Reduces ammo count and updates inventory if necessary, call this whenever ammo is consumed by the gun (e.g. firing a shot, clearing a jam). </para>
+        /// <para>Has an optional argument for the amount of ammo to consume per shot, which defaults to 1; this caters for special cases such as different sci-fi weapons using up different amounts of the same energy cell ammo type per shot, or a double-barrelled shotgun that fires both cartridges at the same time (projectile treated as a single, more powerful bullet)</para>
         /// </summary>
-        public bool TryReduceAmmoCount()
+        public bool TryReduceAmmoCount(int ammoConsumedPerShot = 1)
         {
+            ammoConsumedPerShot = (ammoConsumedPerShot > 0) ? ammoConsumedPerShot : 1;
+
             if (Wielder == null && turret == null)
             {
                 Log.Error(parent.ToString() + " tried reducing its ammo count without a wielder");
@@ -263,7 +266,20 @@ namespace CombatExtended
                 return false;
             }
             // Reduce ammo count and update inventory
-            curMagCountInt--;
+            curMagCountInt = (curMagCountInt - ammoConsumedPerShot < 0) ? 0 : curMagCountInt - ammoConsumedPerShot;
+
+
+            /*if (curMagCountInt - ammoConsumedPerShot < 0)
+            {
+                curMagCountInt = 0;
+            } else
+            {
+                curMagCountInt = curMagCountInt - ammoConsumedPerShot;
+            }*/
+
+
+            // Original: curMagCountInt--;
+
             if (CompInventory != null)
             {
                 CompInventory.UpdateInventory();
