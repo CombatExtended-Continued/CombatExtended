@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+	<Operation Class="PatchOperationSequence">
+		<success>Always</success>
+		<operations>
+
+			<li Class="CombatExtended.PatchOperationFindMod">
+				<modName>[CP] The DOOM Kit - Classic (1.0)</modName>
+			</li>
+
+			<!-- ==================== Weapons research prerequisite patches ==================== -->
+
+			<!-- ========== Remove MultibarrelWeapons research prerequisite from all weapons (as CE doesn't use that research) ========== -->
+
+			<li Class="PatchOperationRemove">
+				<xpath>Defs/ThingDef[@Name="DOOMMakeableLauncher"]/recipeMaker/researchPrerequisite</xpath>
+			</li>
+
+			<li Class="PatchOperationRemove">
+				<xpath>Defs/ThingDef[@Name="DOOMMakeableGun"]/recipeMaker/researchPrerequisite</xpath>
+			</li>
+
+			<li Class="PatchOperationRemove">
+				<xpath>Defs/ThingDef[defName="RHGun_DOOMClassic_Chaingun"]/recipeMaker/researchPrerequisite</xpath>
+			</li>
+
+		</operations>
+	</Operation>
+</Patch>
