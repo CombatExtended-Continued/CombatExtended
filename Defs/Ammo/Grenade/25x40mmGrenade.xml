@@ -24,8 +24,8 @@
   <ThingDef Class="CombatExtended.AmmoDef" Name="25mmGrenadeBase" ParentName="AmmoBase" Abstract="True">
     <description>Specialized grenade developed for use in shoulder-fired grenade launchers.</description>
     <statBases>
-      <Mass>0.2</Mass>
-      <Bulk>0.3</Bulk>
+      <Mass>0.144</Mass>
+      <Bulk>0.15</Bulk>
     </statBases>
     <tradeTags>
       <li>CE_AutoEnableTrade</li>
@@ -45,16 +45,17 @@
       <graphicClass>Graphic_StackCount</graphicClass>
     </graphicData>
     <statBases>
-      <MarketValue>1.38</MarketValue>
+      <MarketValue>1.81</MarketValue>
     </statBases>
     <ammoClass>GrenadeHE</ammoClass>
     <comps>
       <li Class="CombatExtended.CompProperties_ExplosiveCE">
-        <explosionDamage>15</explosionDamage>
+        <explosionDamage>17</explosionDamage>
         <explosionDamageDef>Bomb</explosionDamageDef>
         <explosionRadius>1</explosionRadius>
         <fragments>
-          <Fragment_GrenadeFrag>80</Fragment_GrenadeFrag>
+          <Fragment_Large>1</Fragment_Large>
+          <Fragment_Small>3</Fragment_Small>
         </fragments>
         <applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
       </li>
@@ -69,16 +70,16 @@
       <graphicClass>Graphic_StackCount</graphicClass>
     </graphicData>
     <statBases>
-      <MarketValue>2.07</MarketValue>
+      <MarketValue>3.24</MarketValue>
     </statBases>
     <ammoClass>GrenadeEMP</ammoClass>
     <comps>
       <li Class="CombatExtended.CompProperties_ExplosiveCE">
         <explosionDamage>5</explosionDamage>
         <explosionDamageDef>Bomb</explosionDamageDef>
-        <explosionRadius>0.5</explosionRadius>
+        <explosionRadius>1</explosionRadius>
         <fragments>
-          <Fragment_GrenadeFrag>10</Fragment_GrenadeFrag>
+          <Fragment_Large>1</Fragment_Large>
         </fragments>
       </li>
     </comps>
@@ -103,16 +104,17 @@
     <thingClass>CombatExtended.ProjectileCE_Explosive</thingClass>
     <projectile Class="CombatExtended.ProjectilePropertiesCE">
       <damageDef>Bomb</damageDef>
-      <damageAmountBase>30</damageAmountBase>
+      <damageAmountBase>17</damageAmountBase>
       <explosionRadius>1</explosionRadius>
-      <armorPenetrationSharp>0</armorPenetrationSharp>
-      <armorPenetrationBlunt>54.240</armorPenetrationBlunt>
+      <!--<armorPenetrationSharp>0</armorPenetrationSharp>
+      <armorPenetrationBlunt>54.240</armorPenetrationBlunt>-->
       <applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
     </projectile>
     <comps>
       <li Class="CombatExtended.CompProperties_ExplosiveCE">
         <fragments>
-          <Fragment_GrenadeFrag>80</Fragment_GrenadeFrag>
+          <Fragment_Large>1</Fragment_Large>
+          <Fragment_Small>3</Fragment_Small>
         </fragments>
       </li>
     </comps>
@@ -124,10 +126,10 @@
     <thingClass>CombatExtended.ProjectileCE_Explosive</thingClass>
     <projectile Class="CombatExtended.ProjectilePropertiesCE">
       <damageDef>EMP</damageDef>
-      <damageAmountBase>30</damageAmountBase>
-      <explosionRadius>1</explosionRadius>
-      <armorPenetrationSharp>0</armorPenetrationSharp>
-      <armorPenetrationBlunt>54.240</armorPenetrationBlunt>
+      <damageAmountBase>17</damageAmountBase>
+      <explosionRadius>1.5</explosionRadius>
+      <!--<armorPenetrationSharp>0</armorPenetrationSharp>
+      <armorPenetrationBlunt>54.240</armorPenetrationBlunt>-->
     </projectile>
   </ThingDef>
 
@@ -145,7 +147,7 @@
             <li>Steel</li>
           </thingDefs>
         </filter>
-        <count>18</count>
+        <count>32</count>
       </li>
       <li>
         <filter>
@@ -153,7 +155,7 @@
             <li>FSX</li>
           </thingDefs>
         </filter>
-        <count>3</count>
+        <count>5</count>
       </li>
       <li>
         <filter>
@@ -161,7 +163,7 @@
             <li>ComponentIndustrial</li>
           </thingDefs>
         </filter>
-        <count>1</count>
+        <count>2</count>
       </li>
     </ingredients>
     <fixedIngredientFilter>
@@ -172,8 +174,9 @@
       </thingDefs>
     </fixedIngredientFilter>
     <products>
-      <Ammo_25x40mmGrenade_HE>50</Ammo_25x40mmGrenade_HE>
+      <Ammo_25x40mmGrenade_HE>100</Ammo_25x40mmGrenade_HE>
     </products>
+	<workAmount>6400</workAmount>
   </RecipeDef>
 
   <RecipeDef ParentName="AmmoRecipeBase">
@@ -188,7 +191,7 @@
             <li>Steel</li>
           </thingDefs>
         </filter>
-        <count>15</count>
+        <count>32</count>
       </li>
       <li>
         <filter>
@@ -196,7 +199,7 @@
             <li>ComponentIndustrial</li>
           </thingDefs>
         </filter>
-        <count>4</count>
+        <count>8</count>
       </li>
     </ingredients>
     <fixedIngredientFilter>
@@ -206,8 +209,9 @@
       </thingDefs>
     </fixedIngredientFilter>
     <products>
-      <Ammo_25x40mmGrenade_EMP>50</Ammo_25x40mmGrenade_EMP>
+      <Ammo_25x40mmGrenade_EMP>100</Ammo_25x40mmGrenade_EMP>
     </products>
+	<workAmount>8000</workAmount>
   </RecipeDef>
 
 </Defs>
