@@ -15,6 +15,7 @@
 		<label>.50 AE</label>
 		<ammoTypes>
 			<Ammo_50AE_FMJ>Bullet_50AE_FMJ</Ammo_50AE_FMJ>
+			<Ammo_50AE_AP>Bullet_50AE_HP</Ammo_50AE_AP>			
 			<Ammo_50AE_HP>Bullet_50AE_HP</Ammo_50AE_HP>
 		</ammoTypes>
 	</CombatExtended.AmmoSetDef>
@@ -24,8 +25,8 @@
 	<ThingDef Class="CombatExtended.AmmoDef" Name="50AEBase" ParentName="AmmoBase" Abstract="True">
 		<description>This high-powered cartridge is one of the largest calibers found in handguns.</description>
 		<statBases>
-			<Mass>0.03</Mass>
-			<Bulk>0.03</Bulk>
+			<Mass>0.029</Mass>
+			<Bulk>0.02</Bulk>
 		</statBases>
 		<tradeTags>
 			<li>CE_AutoEnableTrade</li>
@@ -44,10 +45,24 @@
 			<graphicClass>Graphic_StackCount</graphicClass>
 		</graphicData>
 		<statBases>
-			<MarketValue>0.1</MarketValue>
+			<MarketValue>0.12</MarketValue>
 		</statBases>
 		<ammoClass>FullMetalJacket</ammoClass>
 		<cookOffProjectile>Bullet_50AE_FMJ</cookOffProjectile>
+	</ThingDef>
+
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="50AEBase">
+		<defName>Ammo_50AE_AP</defName>
+		<label>.50 AE cartridge (AP)</label>
+		<graphicData>
+			<texPath>Things/Ammo/Pistol/AP</texPath>
+			<graphicClass>Graphic_StackCount</graphicClass>
+		</graphicData>
+		<statBases>
+			<MarketValue>0.12</MarketValue>
+		</statBases>
+		<ammoClass>ArmorPiercing</ammoClass>
+		<cookOffProjectile>Bullet_50AE_AP</cookOffProjectile>
 	</ThingDef>
 
 	<ThingDef Class="CombatExtended.AmmoDef" ParentName="50AEBase">
@@ -58,7 +73,7 @@
 			<graphicClass>Graphic_StackCount</graphicClass>
 		</graphicData>
 		<statBases>
-			<MarketValue>0.15</MarketValue>
+			<MarketValue>0.12</MarketValue>
 		</statBases>
 		<ammoClass>HollowPoint</ammoClass>
 		<cookOffProjectile>Bullet_50AE_HP</cookOffProjectile>
@@ -82,8 +97,17 @@
 		<label>.50 AE bullet (FMJ)</label>
 		<projectile Class="CombatExtended.ProjectilePropertiesCE">
 			<damageAmountBase>19</damageAmountBase>
-			<armorPenetrationBase>0.505</armorPenetrationBase>
 			<armorPenetrationSharp>8</armorPenetrationSharp>
+			<armorPenetrationBlunt>38.480</armorPenetrationBlunt>
+		</projectile>
+	</ThingDef>
+
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="Base50AEBullet">
+		<defName>Bullet_50AE_AP</defName>
+		<label>.50 AE bullet (AP)</label>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageAmountBase>12</damageAmountBase>
+			<armorPenetrationSharp>16</armorPenetrationSharp>
 			<armorPenetrationBlunt>38.480</armorPenetrationBlunt>
 		</projectile>
 	</ThingDef>
@@ -93,7 +117,6 @@
 		<label>.50 AE bullet (HP)</label>
 		<projectile Class="CombatExtended.ProjectilePropertiesCE">
 			<damageAmountBase>24</damageAmountBase>
-			<armorPenetrationBase>0.355</armorPenetrationBase>
 			<armorPenetrationSharp>4</armorPenetrationSharp>
 			<armorPenetrationBlunt>38.480</armorPenetrationBlunt>
 		</projectile>
@@ -103,9 +126,9 @@
 
 	<RecipeDef ParentName="AmmoRecipeBase">
 		<defName>MakeAmmo_50AE_HP</defName>
-		<label>make .50 AE cartridge x500</label>
-		<description>Craft 500 .50 AE HP cartridges.</description>
-		<jobString>Making .50 AE HP cartridges.</jobString>
+		<label>make .50 AE (HP) cartridge x500</label>
+		<description>Craft 500 .50 AE (HP) cartridges.</description>
+		<jobString>Making .50 AE (HP) cartridges.</jobString>
 		<ingredients>
 			<li>
 				<filter>
@@ -113,7 +136,7 @@
 						<li>Steel</li>
 					</thingDefs>
 				</filter>
-				<count>16</count>
+				<count>30</count>
 			</li>
 		</ingredients>
 		<fixedIngredientFilter>
@@ -124,14 +147,14 @@
 		<products>
 			<Ammo_50AE_HP>500</Ammo_50AE_HP>
 		</products>
-		<workAmount>10250</workAmount>
+		<workAmount>3000</workAmount>
 	</RecipeDef>
 
 	<RecipeDef ParentName="AmmoRecipeBase">
-		<defName>MakeAmmo_50AE_FMJ</defName>
-		<label>make .50 AE cartridge x500</label>
-		<description>Craft 500 .50 AE FMJ cartridges.</description>
-		<jobString>Making .50 AE FMJ cartridges.</jobString>
+		<defName>MakeAmmo_50AE_AP</defName>
+		<label>make .50 AE (AP) cartridge x500</label>
+		<description>Craft 500 .50 AE (AP) cartridges.</description>
+		<jobString>Making .50 AE (AP) cartridges.</jobString>
 		<ingredients>
 			<li>
 				<filter>
@@ -139,7 +162,33 @@
 						<li>Steel</li>
 					</thingDefs>
 				</filter>
-				<count>16</count>
+				<count>30</count>
+			</li>
+		</ingredients>
+		<fixedIngredientFilter>
+			<thingDefs>
+				<li>Steel</li>
+			</thingDefs>
+		</fixedIngredientFilter>
+		<products>
+			<Ammo_50AE_AP>500</Ammo_50AE_AP>
+		</products>
+		<workAmount>3000</workAmount>
+	</RecipeDef>
+
+	<RecipeDef ParentName="AmmoRecipeBase">
+		<defName>MakeAmmo_50AE_FMJ</defName>
+		<label>make .50 AE (FMJ) cartridge x500</label>
+		<description>Craft 500 .50 AE (FMJ) cartridges.</description>
+		<jobString>Making .50 AE (FMJ) cartridges.</jobString>
+		<ingredients>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>Steel</li>
+					</thingDefs>
+				</filter>
+				<count>30</count>
 			</li>
 		</ingredients>
 		<fixedIngredientFilter>
@@ -150,7 +199,7 @@
 		<products>
 			<Ammo_50AE_FMJ>500</Ammo_50AE_FMJ>
 		</products>
-		<workAmount>4250</workAmount>
+		<workAmount>3000</workAmount>
 	</RecipeDef>
 
 </Defs>

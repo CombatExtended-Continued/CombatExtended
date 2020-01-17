@@ -15,6 +15,8 @@
 		<label>8x22mm Nambu</label>
 		<ammoTypes>
 			<Ammo_8x22mmNambu_FMJ>Bullet_8x22mmNambu_FMJ</Ammo_8x22mmNambu_FMJ>
+			<Ammo_8x22mmNambu_AP>Bullet_8x22mmNambu_AP</Ammo_8x22mmNambu_AP>
+			<Ammo_8x22mmNambu_HP>Bullet_8x22mmNambu_HP</Ammo_8x22mmNambu_HP>			
 		</ammoTypes>
 	</CombatExtended.AmmoSetDef>
 
@@ -23,8 +25,8 @@
 	<ThingDef Class="CombatExtended.AmmoDef" Name="8x22mmNambuBase" ParentName="SmallAmmoBase" Abstract="True">
 		<description>Low caliber handgun cartridge lacking in stopping power.</description>
 		<statBases>
-			<Mass>0.008</Mass>
-			<Bulk>0.02</Bulk>
+			<Mass>0.013</Mass>
+			<Bulk>0.01</Bulk>
 		</statBases>
 		<tradeTags>
 			<li>CE_AutoEnableTrade</li>
@@ -43,10 +45,38 @@
 			<graphicClass>Graphic_StackCount</graphicClass>
 		</graphicData>
 		<statBases>
-			<MarketValue>0.04</MarketValue>
+			<MarketValue>0.06</MarketValue>
 		</statBases>
 		<ammoClass>FullMetalJacket</ammoClass>
 		<cookOffProjectile>Bullet_8x22mmNambu_FMJ</cookOffProjectile>
+	</ThingDef>
+
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="8x22mmNambuBase">
+		<defName>Ammo_8x22mmNambu_AP</defName>
+		<label>8x22mm Nambu cartridge (AP)</label>
+		<graphicData>
+			<texPath>Things/Ammo/Pistol/AP</texPath>
+			<graphicClass>Graphic_StackCount</graphicClass>
+		</graphicData>
+		<statBases>
+			<MarketValue>0.08</MarketValue>
+		</statBases>
+		<ammoClass>ArmorPiercing</ammoClass>
+		<cookOffProjectile>Bullet_8x22mmNambu_AP</cookOffProjectile>
+	</ThingDef>
+
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="8x22mmNambuBase">
+		<defName>Ammo_8x22mmNambu_HP</defName>
+		<label>8x22mm Nambu cartridge (HP)</label>
+		<graphicData>
+			<texPath>Things/Ammo/Pistol/HP</texPath>
+			<graphicClass>Graphic_StackCount</graphicClass>
+		</graphicData>
+		<statBases>
+			<MarketValue>0.08</MarketValue>
+		</statBases>
+		<ammoClass>HollowPoint</ammoClass>
+		<cookOffProjectile>Bullet_8x22mmNambu_HP</cookOffProjectile>
 	</ThingDef>
 
 	<!-- ================== Projectiles ================== -->
@@ -67,10 +97,29 @@
 		<defName>Bullet_8x22mmNambu_FMJ</defName>
 		<label>8mm Nambu bullet (FMJ)</label>
 		<projectile Class="CombatExtended.ProjectilePropertiesCE">
-			<damageAmountBase>7</damageAmountBase>
-			<armorPenetrationBase>0.224</armorPenetrationBase>
-			<armorPenetrationSharp>0</armorPenetrationSharp>
-			<armorPenetrationBlunt>0</armorPenetrationBlunt>
+			<damageAmountBase>9</damageAmountBase>
+			<armorPenetrationSharp>3</armorPenetrationSharp>
+			<armorPenetrationBlunt>5.88</armorPenetrationBlunt>
+		</projectile>
+	</ThingDef>
+
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="Base8x22mmNambuBullet">
+		<defName>Bullet_8x22mmNambu_AP</defName>
+		<label>8x22mm Nambu bullet (AP)</label>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageAmountBase>5</damageAmountBase>
+			<armorPenetrationSharp>6</armorPenetrationSharp>
+			<armorPenetrationBlunt>5.88</armorPenetrationBlunt>
+		</projectile>
+	</ThingDef>
+
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="Base8x22mmNambuBullet">
+		<defName>Bullet_8x22mmNambu_HP</defName>
+		<label>8x22mm Nambu bullet (HP)</label>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageAmountBase>11</damageAmountBase>
+			<armorPenetrationSharp>2</armorPenetrationSharp>
+			<armorPenetrationBlunt>5.88</armorPenetrationBlunt>
 		</projectile>
 	</ThingDef>
 
@@ -88,7 +137,7 @@
 						<li>Steel</li>
 					</thingDefs>
 				</filter>
-				<count>8</count>
+				<count>14</count>
 			</li>
 		</ingredients>
 		<fixedIngredientFilter>
@@ -99,7 +148,59 @@
 		<products>
 			<Ammo_8x22mmNambu_FMJ>500</Ammo_8x22mmNambu_FMJ>
 		</products>
-		<workAmount>1500</workAmount>
+		<workAmount>1400</workAmount>
+	</RecipeDef>
+
+	<RecipeDef ParentName="AmmoRecipeBase">
+		<defName>MakeAmmo_8x22mmNambu_AP</defName>
+		<label>make 8x22mm Nambu (AP) cartridge x500</label>
+		<description>Craft 500 8x22mm Nambu (AP) cartridges.</description>
+		<jobString>Making 8x22mm Nambu (AP) cartridges.</jobString>
+		<ingredients>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>Steel</li>
+					</thingDefs>
+				</filter>
+				<count>14</count>
+			</li>
+		</ingredients>
+		<fixedIngredientFilter>
+			<thingDefs>
+				<li>Steel</li>
+			</thingDefs>
+		</fixedIngredientFilter>
+		<products>
+			<Ammo_8x22mmNambu_AP>500</Ammo_8x22mmNambu_AP>
+		</products>
+		<workAmount>1400</workAmount>
+	</RecipeDef>
+
+	<RecipeDef ParentName="AmmoRecipeBase">
+		<defName>MakeAmmo_8x22mmNambu_HP</defName>
+		<label>make 8x22mm Nambu (HP) cartridge x500</label>
+		<description>Craft 500 8x22mm Nambu (HP) cartridges.</description>
+		<jobString>Making 8x22mm Nambu (HP) cartridges.</jobString>
+		<ingredients>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>Steel</li>
+					</thingDefs>
+				</filter>
+				<count>14</count>
+			</li>
+		</ingredients>
+		<fixedIngredientFilter>
+			<thingDefs>
+				<li>Steel</li>
+			</thingDefs>
+		</fixedIngredientFilter>
+		<products>
+			<Ammo_8x22mmNambu_HP>500</Ammo_8x22mmNambu_HP>
+		</products>
+		<workAmount>1400</workAmount>
 	</RecipeDef>
 
 </Defs>
