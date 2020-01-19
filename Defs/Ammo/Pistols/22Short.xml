@@ -14,7 +14,9 @@
 		<defName>AmmoSet_22Short</defName>
 		<label>.22 Short</label>
 		<ammoTypes>
-			<Ammo_22Short>Bullet_22Short</Ammo_22Short>
+			<Ammo_22Short_FMJ>Bullet_22Short_FMJ</Ammo_22Short_FMJ>
+			<Ammo_22Short_AP>Bullet_22Short_AP</Ammo_22Short_AP>
+			<Ammo_22Short_HP>Bullet_22Short_HP</Ammo_22Short_HP>
 		</ammoTypes>
 	</CombatExtended.AmmoSetDef>
 
@@ -36,7 +38,7 @@
 	</ThingDef>
 
 	<ThingDef Class="CombatExtended.AmmoDef" ParentName="22ShortBase">
-		<defName>Ammo_22Short</defName>
+		<defName>Ammo_22Short_FMJ</defName>
 		<label>.22 Short cartridge</label>
 		<graphicData>
 			<texPath>Things/Ammo/Pistol/FMJ</texPath>
@@ -46,7 +48,35 @@
 			<MarketValue>0.02</MarketValue>
 		</statBases>
 		<ammoClass>FullMetalJacket</ammoClass>
-		<cookOffProjectile>Bullet_22Short</cookOffProjectile>
+		<cookOffProjectile>Bullet_22Short_FMJ</cookOffProjectile>
+	</ThingDef>
+
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="22ShortBase">
+		<defName>Ammo_22Short_AP</defName>
+		<label>.22 Short cartridge (AP)</label>
+		<graphicData>
+			<texPath>Things/Ammo/Pistol/AP</texPath>
+			<graphicClass>Graphic_StackCount</graphicClass>
+		</graphicData>
+		<statBases>
+			<MarketValue>0.02</MarketValue>
+		</statBases>
+		<ammoClass>ArmorPiercing</ammoClass>
+		<cookOffProjectile>Bullet_22Short_AP</cookOffProjectile>
+	</ThingDef>
+
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="22ShortBase">
+		<defName>Ammo_22Short_HP</defName>
+		<label>.22 Short cartridge (HP)</label>
+		<graphicData>
+			<texPath>Things/Ammo/Pistol/HP</texPath>
+			<graphicClass>Graphic_StackCount</graphicClass>
+		</graphicData>
+		<statBases>
+			<MarketValue>0.02</MarketValue>
+		</statBases>
+		<ammoClass>HollowPoint</ammoClass>
+		<cookOffProjectile>Bullet_22Short_HP</cookOffProjectile>
 	</ThingDef>
 
 	<!-- ================== Projectiles ================== -->
@@ -63,12 +93,31 @@
 	</ThingDef>
 
 	<ThingDef Class="CombatExtended.AmmoDef" ParentName="Base22ShortBullet">
-		<defName>Bullet_22Short</defName>
+		<defName>Bullet_22Short_FMJ</defName>
 		<label>.22 Short bullet</label>
 		<projectile Class="CombatExtended.ProjectilePropertiesCE">
 			<damageAmountBase>4</damageAmountBase>
-			<armorPenetrationBase>0.121</armorPenetrationBase>
-			<armorPenetrationSharp>0</armorPenetrationSharp>
+			<armorPenetrationSharp>1</armorPenetrationSharp>
+			<armorPenetrationBlunt>1.180</armorPenetrationBlunt>
+		</projectile>
+	</ThingDef>
+
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="Base22ShortBullet">
+		<defName>Bullet_22Short_AP</defName>
+		<label>.22 Short bullet (AP)</label>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageAmountBase>3</damageAmountBase>
+			<armorPenetrationSharp>2</armorPenetrationSharp>
+			<armorPenetrationBlunt>1.180</armorPenetrationBlunt>
+		</projectile>
+	</ThingDef>
+
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="Base22ShortBullet">
+		<defName>Bullet_22Short_HP</defName>
+		<label>.22 Short bullet (HP)</label>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageAmountBase>5</damageAmountBase>
+			<armorPenetrationSharp>1</armorPenetrationSharp>
 			<armorPenetrationBlunt>1.180</armorPenetrationBlunt>
 		</projectile>
 	</ThingDef>
@@ -96,9 +145,61 @@
 			</thingDefs>
 		</fixedIngredientFilter>
 		<products>
-			<Ammo_22Short>500</Ammo_22Short>
+			<Ammo_22Short_FMJ>500</Ammo_22Short_FMJ>
 		</products>
-		<workAmount>1000</workAmount>
+		<workAmount>400</workAmount>
+	</RecipeDef>
+
+	<RecipeDef ParentName="AmmoRecipeBase">
+		<defName>MakeAmmo_22Short_AP</defName>
+		<label>make .22 Short (AP) cartridge x500</label>
+		<description>Craft 500 .22 Short (AP) cartridges.</description>
+		<jobString>Making .22 Short (AP) cartridges.</jobString>
+		<ingredients>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>Steel</li>
+					</thingDefs>
+				</filter>
+				<count>4</count>
+			</li>
+		</ingredients>
+		<fixedIngredientFilter>
+			<thingDefs>
+				<li>Steel</li>
+			</thingDefs>
+		</fixedIngredientFilter>
+		<products>
+			<Ammo_22Short_AP>500</Ammo_22Short_AP>
+		</products>
+		<workAmount>400</workAmount>
+	</RecipeDef>
+
+	<RecipeDef ParentName="AmmoRecipeBase">
+		<defName>MakeAmmo_22Short_HP</defName>
+		<label>make .22 Short (HP) cartridge x500</label>
+		<description>Craft 500 .22 Short (HP) cartridges.</description>
+		<jobString>Making .22 Short (HP) cartridges.</jobString>
+		<ingredients>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>Steel</li>
+					</thingDefs>
+				</filter>
+				<count>4</count>
+			</li>
+		</ingredients>
+		<fixedIngredientFilter>
+			<thingDefs>
+				<li>Steel</li>
+			</thingDefs>
+		</fixedIngredientFilter>
+		<products>
+			<Ammo_22Short_HP>500</Ammo_22Short_HP>
+		</products>
+		<workAmount>400</workAmount>
 	</RecipeDef>
 
 </Defs>
