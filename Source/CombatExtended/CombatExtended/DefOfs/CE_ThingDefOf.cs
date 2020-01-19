@@ -23,5 +23,6 @@ namespace CombatExtended
 
         public static ThingDef Mech_Centipede;
 
+        public static ThingDef Gun_BinocularsRadio;
     }
 }

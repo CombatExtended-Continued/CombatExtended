@@ -13,6 +13,7 @@ namespace CombatExtended
         private const float DensityDissipationThreshold = 3.0f;
         private const float MinSpreadDensity = 1.0f;    //ensures smoke clouds don't spread to infinitely small densities. Should be lower than DensityDissipationThreshold to avoid clouds stuck indoors.
         private const float MaxDensity = 12800f;
+        private const float BugConfusePercent = 0.15f;  // Percent of MaxDensity where bugs go into confused wander
 
         private float density;
         private int updateTickOffset;   //Random offset (it looks jarring when smoke clouds all update on the same tick)
@@ -39,8 +40,8 @@ namespace CombatExtended
 
         private bool CanMoveTo(IntVec3 pos)
         {
-            return 
-                pos.InBounds(Map) 
+            return
+                pos.InBounds(Map)
                 && (
                     !pos.Filled(Map)
                     || (pos.GetDoor(Map)?.Open ?? false)
@@ -83,6 +84,13 @@ namespace CombatExtended
 
             foreach (Pawn pawn in pawns)
             {
+                if (pawn.RaceProps.FleshType == FleshTypeDefOf.Insectoid)
+                {
+                    if (density > MaxDensity * BugConfusePercent)
+                        pawn.mindState.mentalStateHandler.TryStartMentalState(CE_MentalStateDefOf.WanderConfused);
+                    continue;
+                }
+
                 var severity = InhalationPerSec * Mathf.Pow(density / MaxDensity, 2) * pawn.GetStatValue(CE_StatDefOf.SmokeSensitivity);
                 HealthUtility.AdjustSeverity(pawn, CE_HediffDefOf.SmokeInhalation, severity);
             }
@@ -90,7 +98,7 @@ namespace CombatExtended
 
         private void SpreadToAdjacentCells()
         {
-            if (density >= 1f)
+            if (density >= MinSpreadDensity)
             {
                 var freeCells = GenAdjFast.AdjacentCellsCardinal(Position).InRandomOrder().Where(CanMoveTo).ToList();
                 foreach (var freeCell in freeCells)
@@ -100,7 +108,8 @@ namespace CombatExtended
                         var densityDiff = this.density - existingSmoke.density;
                         TransferDensityTo(existingSmoke, densityDiff / 2);
                     }
-                    else {
+                    else
+                    {
                         var transferedDensity = this.density / 2;
                         var newSmokeCloud = (Smoke)GenSpawn.Spawn(CE_ThingDefOf.Gas_BlackSmoke, freeCell, Map);
                         TransferDensityTo(newSmokeCloud, this.density / 2);
