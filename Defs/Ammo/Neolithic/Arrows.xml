@@ -18,8 +18,8 @@
       <Ammo_Arrow_Stone>Projectile_Arrow_Stone</Ammo_Arrow_Stone>
       <Ammo_Arrow_Steel>Projectile_Arrow_Steel</Ammo_Arrow_Steel>
       <Ammo_Arrow_Plasteel>Projectile_Arrow_Plasteel</Ammo_Arrow_Plasteel>
-	  <Ammo_Arrow_Venom>Projectile_Arrow_Venom</Ammo_Arrow_Venom>
-	  <Ammo_Arrow_Flame>Projectile_Arrow_Flame</Ammo_Arrow_Flame>
+	    <Ammo_Arrow_Venom>Projectile_Arrow_Venom</Ammo_Arrow_Venom>
+	    <Ammo_Arrow_Flame>Projectile_Arrow_Flame</Ammo_Arrow_Flame>
     </ammoTypes>
   </CombatExtended.AmmoSetDef>
 
@@ -42,7 +42,7 @@
     <description>Simple arrow design with a cutting head attached to a wooden shaft.</description>
     <statBases>
       <Mass>0.028</Mass>
-      <Bulk>0.11</Bulk>
+      <Bulk>0.08</Bulk>
       <Flammability>1</Flammability>
     </statBases>
     <thingCategories>
@@ -110,7 +110,7 @@
     </graphicData>
     <statBases>
       <Mass>0.034</Mass>	
-      <MarketValue>2.6</MarketValue>
+      <MarketValue>1.55</MarketValue>
     </statBases>
     <ammoClass>VenomArrow</ammoClass>
   </ThingDef>
@@ -123,8 +123,8 @@
       <graphicClass>Graphic_StackCount</graphicClass>
     </graphicData>
     <statBases>
-      <Mass>0.034</Mass>	
-      <MarketValue>1.8</MarketValue>
+      <Mass>0.018</Mass>	
+      <MarketValue>1.16</MarketValue>
     </statBases>
     <ammoClass>FlameArrow</ammoClass>
   </ThingDef>
@@ -138,7 +138,7 @@
     </graphicData>
     <projectile Class="CombatExtended.ProjectilePropertiesCE">
       <damageDef>Arrow</damageDef>
-      <speed>15</speed>
+      <speed>24</speed>
     </projectile>
   </ThingDef>
 
@@ -155,10 +155,10 @@
       <graphicClass>Graphic_Single</graphicClass>
     </graphicData>
     <projectile Class="CombatExtended.ProjectilePropertiesCE">
-      <speed>15</speed>
-      <damageAmountBase>5</damageAmountBase>
+      <speed>16</speed>
+      <damageAmountBase>6</damageAmountBase>
       <armorPenetrationSharp>0.2</armorPenetrationSharp>
-      <armorPenetrationBlunt>0.980</armorPenetrationBlunt>
+      <armorPenetrationBlunt>0.88</armorPenetrationBlunt>
       <preExplosionSpawnChance>0.333</preExplosionSpawnChance>      <!-- 14.99 arrows per resource -->
       <preExplosionSpawnThingDef>Ammo_Arrow_Stone</preExplosionSpawnThingDef>
     </projectile>
@@ -172,10 +172,10 @@
       <graphicClass>Graphic_Single</graphicClass>
     </graphicData>
     <projectile Class="CombatExtended.ProjectilePropertiesCE">
-      <speed>23</speed>
-      <damageAmountBase>5</damageAmountBase>
+      <speed>24</speed>
+      <damageAmountBase>7</damageAmountBase>
       <armorPenetrationSharp>0.5</armorPenetrationSharp>
-      <armorPenetrationBlunt>1.5</armorPenetrationBlunt>
+      <armorPenetrationBlunt>3.02</armorPenetrationBlunt>
       <preExplosionSpawnChance>0.666</preExplosionSpawnChance>      <!-- 29.94 arrows per resource -->
       <preExplosionSpawnThingDef>Ammo_Arrow_Steel</preExplosionSpawnThingDef>
     </projectile>
@@ -206,11 +206,11 @@
       <graphicClass>Graphic_Single</graphicClass>
     </graphicData>
     <projectile Class="CombatExtended.ProjectilePropertiesCE">
-      <speed>23</speed>
+      <speed>24</speed>
 	  <damageDef>ArrowVenom</damageDef>
-      <damageAmountBase>5</damageAmountBase>
+      <damageAmountBase>7</damageAmountBase>
       <armorPenetrationSharp>0.5</armorPenetrationSharp>
-      <armorPenetrationBlunt>1.5</armorPenetrationBlunt>
+      <armorPenetrationBlunt>3.02</armorPenetrationBlunt>
       <preExplosionSpawnChance>0.666</preExplosionSpawnChance>      <!-- 29.94 arrows per resource -->
       <preExplosionSpawnThingDef>Ammo_Arrow_Steel</preExplosionSpawnThingDef> <!--Spawns steel arrow-->
     </projectile>
@@ -224,11 +224,17 @@
       <graphicClass>Graphic_Single</graphicClass>
     </graphicData>
     <projectile Class="CombatExtended.ProjectilePropertiesCE">
-      <speed>23</speed>
-	  <damageDef>Flame</damageDef>
-      <damageAmountBase>2</damageAmountBase>
-      <armorPenetrationSharp>0.5</armorPenetrationSharp>
-      <armorPenetrationBlunt>1.5</armorPenetrationBlunt>
+      <speed>24</speed>
+	    <damageDef>Arrow</damageDef>
+      <damageAmountBase>5</damageAmountBase>
+      <armorPenetrationSharp>0.2</armorPenetrationSharp>
+      <armorPenetrationBlunt>0.413</armorPenetrationBlunt>
+		  <secondaryDamage>
+			<li>
+			  <def>Flame_Secondary</def>
+			  <amount>3</amount>
+			</li>
+		  </secondaryDamage>      
 	  <!-- destroyed on use -->
     </projectile>
   </ThingDef>
@@ -242,7 +248,7 @@
     </graphicData>
     <projectile Class="CombatExtended.ProjectilePropertiesCE">
       <damageDef>ArrowHighVelocity</damageDef>
-      <speed>21</speed>
+      <speed>22</speed>
     </projectile>
   </ThingDef>
 
@@ -254,10 +260,10 @@
       <graphicClass>Graphic_Single</graphicClass>
     </graphicData>
     <projectile Class="CombatExtended.ProjectilePropertiesCE">
-      <speed>21</speed>
+      <speed>22</speed>
       <damageAmountBase>7</damageAmountBase>
       <armorPenetrationSharp>0.5</armorPenetrationSharp>
-      <armorPenetrationBlunt>1.920</armorPenetrationBlunt>
+      <armorPenetrationBlunt>1.74</armorPenetrationBlunt>
       <preExplosionSpawnChance>0.2</preExplosionSpawnChance>
       <preExplosionSpawnThingDef>Ammo_Arrow_Stone</preExplosionSpawnThingDef>
     </projectile>
@@ -272,9 +278,9 @@
     </graphicData>
     <projectile Class="CombatExtended.ProjectilePropertiesCE">
       <speed>33</speed>
-      <damageAmountBase>6</damageAmountBase>
+      <damageAmountBase>9</damageAmountBase>
       <armorPenetrationSharp>1.0</armorPenetrationSharp>
-      <armorPenetrationBlunt>2.960</armorPenetrationBlunt>
+      <armorPenetrationBlunt>5.9</armorPenetrationBlunt>
       <preExplosionSpawnChance>0.6</preExplosionSpawnChance>
       <preExplosionSpawnThingDef>Ammo_Arrow_Steel</preExplosionSpawnThingDef>
     </projectile>
@@ -288,7 +294,7 @@
       <graphicClass>Graphic_Single</graphicClass>
     </graphicData>
     <projectile Class="CombatExtended.ProjectilePropertiesCE">
-      <speed>36</speed>
+      <speed>37</speed>
       <damageAmountBase>5</damageAmountBase>
       <armorPenetrationSharp>1.5</armorPenetrationSharp>
       <armorPenetrationBlunt>3.260</armorPenetrationBlunt>
@@ -307,9 +313,9 @@
     <projectile Class="CombatExtended.ProjectilePropertiesCE">
       <speed>33</speed>
 	  <damageDef>ArrowVenom</damageDef>
-      <damageAmountBase>6</damageAmountBase>
+      <damageAmountBase>9</damageAmountBase>
       <armorPenetrationSharp>1.0</armorPenetrationSharp>
-      <armorPenetrationBlunt>2.960</armorPenetrationBlunt>
+      <armorPenetrationBlunt>5.9</armorPenetrationBlunt>
       <preExplosionSpawnChance>0.6</preExplosionSpawnChance>
       <preExplosionSpawnThingDef>Ammo_Arrow_Steel</preExplosionSpawnThingDef>
     </projectile>
@@ -324,10 +330,14 @@
     </graphicData>
     <projectile Class="CombatExtended.ProjectilePropertiesCE">
       <speed>33</speed>
-	  <damageDef>Flame</damageDef>
+	    <damageDef>Flame</damageDef>
       <damageAmountBase>3</damageAmountBase>
-      <armorPenetrationSharp>1.0</armorPenetrationSharp>
-      <armorPenetrationBlunt>2.960</armorPenetrationBlunt>
+      <armorPenetrationSharp>0.5</armorPenetrationSharp>
+      <armorPenetrationBlunt>0.413</armorPenetrationBlunt>
+			<li>
+			  <def>Flame_Secondary</def>
+			  <amount>3</amount>
+			</li>      
     </projectile>
   </ThingDef>
 
@@ -502,14 +512,14 @@
             <li>Prometheum</li>
           </thingDefs>
         </filter>
-        <count>2</count>
+        <count>1</count>
       </li>
     </ingredients>
     <fixedIngredientFilter>
       <thingDefs>
         <li>WoodLog</li>
         <li>Steel</li>
-		<li>Prometheum</li>
+		    <li>Prometheum</li>
       </thingDefs>
     </fixedIngredientFilter>
     <products>

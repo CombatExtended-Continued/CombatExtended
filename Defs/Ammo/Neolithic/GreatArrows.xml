@@ -17,8 +17,8 @@
       <Ammo_GreatArrow_Stone>Projectile_GreatArrow_Stone</Ammo_GreatArrow_Stone>
       <Ammo_GreatArrow_Steel>Projectile_GreatArrow_Steel</Ammo_GreatArrow_Steel>
       <Ammo_GreatArrow_Plasteel>Projectile_GreatArrow_Plasteel</Ammo_GreatArrow_Plasteel>
-	  <Ammo_GreatArrow_Venom>Projectile_GreatArrow_Venom</Ammo_GreatArrow_Venom>
-	  <Ammo_GreatArrow_Flame>Projectile_GreatArrow_Flame</Ammo_GreatArrow_Flame>
+	    <Ammo_GreatArrow_Venom>Projectile_GreatArrow_Venom</Ammo_GreatArrow_Venom>
+	    <Ammo_GreatArrow_Flame>Projectile_GreatArrow_Flame</Ammo_GreatArrow_Flame>
     </ammoTypes>
   </CombatExtended.AmmoSetDef>
 
@@ -28,13 +28,13 @@
     <description>Heavy arrow designed to be fired from a great bow.</description>
     <statBases>
       <Mass>0.105</Mass>
-      <Bulk>0.43</Bulk>
+      <Bulk>0.32</Bulk>
       <Flammability>1</Flammability>
     </statBases>
     <thingCategories>
       <li>AmmoGreatArrows</li>
     </thingCategories>
-    <stackLimit>1000</stackLimit>
+    <stackLimit>5000</stackLimit>
     <tradeTags>
       <li>CE_AutoEnableTrade</li>
       <li>CE_AutoEnableCrafting_FueledSmithy</li>
@@ -96,7 +96,7 @@
     </graphicData>
     <statBases>
       <Mass>0.115</Mass>	
-      <MarketValue>2.72</MarketValue>
+      <MarketValue>4.76</MarketValue>
     </statBases>
     <ammoClass>VenomArrow</ammoClass>
   </ThingDef>
@@ -109,8 +109,8 @@
       <graphicClass>Graphic_StackCount</graphicClass>
     </graphicData>
     <statBases>
-      <Mass>0.115</Mass>	
-      <MarketValue>1.92</MarketValue>
+      <Mass>0.083</Mass>	
+      <MarketValue>1.29</MarketValue>
     </statBases>
     <ammoClass>FlameArrow</ammoClass>
   </ThingDef>
@@ -174,6 +174,7 @@
 			<graphicClass>Graphic_Single</graphicClass>
 		</graphicData>
 		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<speed>13</speed>    
 			<damageAmountBase>6</damageAmountBase>
 			<armorPenetrationBlunt>2.140</armorPenetrationBlunt>
 			<armorPenetrationSharp>3</armorPenetrationSharp>
@@ -207,10 +208,14 @@
 			<graphicClass>Graphic_Single</graphicClass>
 		</graphicData>
 		<projectile Class="CombatExtended.ProjectilePropertiesCE">
-			<damageDef>Flame</damageDef>
-			<damageAmountBase>3</damageAmountBase>
-			<armorPenetrationBlunt>2.340</armorPenetrationBlunt>
-			<armorPenetrationSharp>2</armorPenetrationSharp>
+			<damageDef>Arrow</damageDef>
+			<damageAmountBase>6</damageAmountBase>
+			<armorPenetrationBlunt>0.949</armorPenetrationBlunt>
+			<armorPenetrationSharp>0.5</armorPenetrationSharp>
+			<li>
+			  <def>Flame_Secondary</def>
+			  <amount>3</amount>
+			</li>      
 		</projectile>
 	</ThingDef>
   
@@ -341,14 +346,14 @@
             <li>MedicineHerbal</li>
           </thingDefs>
         </filter>
-        <count>2</count>
+        <count>4</count>
       </li>
     </ingredients>
     <fixedIngredientFilter>
       <thingDefs>
         <li>WoodLog</li>
         <li>Steel</li>
-		<li>MedicineHerbal</li>
+		    <li>MedicineHerbal</li>
       </thingDefs>
     </fixedIngredientFilter>
     <products>
@@ -385,14 +390,14 @@
             <li>Prometheum</li>
           </thingDefs>
         </filter>
-        <count>2</count>
+        <count>1</count>
       </li>
     </ingredients>
     <fixedIngredientFilter>
       <thingDefs>
         <li>WoodLog</li>
         <li>Steel</li>
-		<li>Prometheum</li>
+		    <li>Prometheum</li>
       </thingDefs>
     </fixedIngredientFilter>
     <products>
