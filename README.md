@@ -7,7 +7,9 @@ Combat Extended: FastTrack Edition is a fork of the [original Combat Extended mo
 - 119 supported third-party mods (compared with 80 for CE)
 - Recognizes existing third-party standalone patches intended for the original CE
 - Additional ammo and projectile definitions and textures
-- New Graphic_StackCountRanged class for precise control of item subgraphics based on stack count
+- CE:FT-exclusive features for third-party modders and patch authors:
+  - `ammoConsumedPerShotCount` for `Verb_ShootCE`, which supports guns with multiple simultaneous-firing barrels 
+  - `Graphic_StackCountRanged` class, for precise control of item subgraphics based on stack count
 
 ## Supported Third-Party Mods
 Mod | CE (original) | CE: FastTrack Edition
