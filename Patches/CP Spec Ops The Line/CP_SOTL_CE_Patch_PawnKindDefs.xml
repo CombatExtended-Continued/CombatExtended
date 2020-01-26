@@ -26,6 +26,15 @@
 					</countRange>
 				</value>
 			</li>
+			
+			<!-- ========== Delta QRF Operator pawns should spawn backpacks, allowing them to carry their (huge) inventory ========== -->
+
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/PawnKindDef[defName="RH_SOTL_Delta_QRF"]/apparelRequired</xpath>
+				<value>
+					<li>RHApparel_Backpack_Tactical_ShoulderBag</li>
+				</value>
+			</li>
 
 			<!-- ========== Delta QRF Operator pawns should spawn with ammo appropriate to their primary weapon ========== -->
 
@@ -34,8 +43,8 @@
 				<value>
 					<li Class="CombatExtended.LoadoutPropertiesExtension">
 						<primaryMagazineCount>
-							<min>3</min>
-							<max>5</max>
+							<min>6</min>
+							<max>8</max>
 						</primaryMagazineCount>
 					</li>
 				</value>
