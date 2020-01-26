@@ -4,7 +4,7 @@ Combat Extended: FastTrack Edition is a fork of the [original Combat Extended mo
 ## Features
 - Same [core features as the original mod](https://github.com/NoImageAvailable/CombatExtended/blob/master/README.md) - shooting, melee, armor, inventory and medical overhauls
 - Fully compatible with existing CE savegames - delete CE completely, drop in CE:FT and go!
-- 110 supported third-party mods (compared with 78 for CE)
+- 119 supported third-party mods (compared with 80 for CE)
 - Recognizes existing third-party standalone patches intended for the original CE
 - Additional ammo and projectile definitions and textures
 - New Graphic_StackCountRanged class for precise control of item subgraphics based on stack count
@@ -13,9 +13,14 @@ Combat Extended: FastTrack Edition is a fork of the [original Combat Extended mo
 Mod | CE (original) | CE: FastTrack Edition
 --- | :---: | :---:
 [CP] British Military Kit				|  		| &#x2705;
+[CP] DOOM (1.0)		                        	|  		| &#x2705;
+[CP] Metal Gear Solid (1.0)	                       	|  		| &#x2705;
 [CP] Red Horse Furniture				|  		| &#x2705;
 [CP] Rimmu-Nation - Clothing				|  		| &#x2705;
+[CP] Rimmu-Nation - Clothing (All Craftable!) (1.0)	|  		| &#x2705;
 [CP] Rimmu-Nation - Weapons				|  		| &#x2705;
+[CP] Spec Ops - The Line (1.0)	        		|  		| &#x2705;
+[CP] The DOOM Kit - Classic (1.0)	       		|  		| &#x2705;
 [O21] Elves						| &#x2705;	| &#x2705;
 [O21] Elves - Faction Addon				| &#x2705;	| &#x2705;
 [O21] Goblins						| &#x2705;	| &#x2705;
@@ -25,8 +30,9 @@ Mod | CE (original) | CE: FastTrack Edition
 [Ods] SCP Outfits Only Edition				| &#x2705;	| &#x2705;
 [Ods] Third Reich - Uniforms                            |  		| &#x2705;
 [Pratt] WWII Weapons Pack (Vanilla)                     |  		| &#x2705;
+[RH] Faction: Cordis Die (1.0)                          |  		| &#x2705;
 [RH] Faction: Elite Crew				|  		| &#x2705;
-[RH] Faction: Last Man Mercs				|  		| &#x2705;
+[RH] Faction: Last Man Contingent			|  		| &#x2705;
 [RH] Faction: Militaires Sans Frontieres		|  		| &#x2705;
 [RH] Faction: Task Force 141				|  		| &#x2705;
 [RH] Faction: The Ghosts				|  		| &#x2705;
@@ -76,6 +82,7 @@ K.L.K - Styles Apparel Pack				| &#x2705;	| &#x2705;
 Kenshi Hiver Race					|  		| &#x2705;
 Kenshi Shek Race					|  		| &#x2705;
 Kenshi Skeleton Race					|  		| &#x2705;
+Kijin Race 2.0          				| &#x2705;	| &#x2705;
 Kurin, The Three Tailed Fox				| &#x2705;	| &#x2705;
 Leeani Playable Race					| &#x2705;	| &#x2705;
 Let's Have a Cat!					|  		| &#x2705;
@@ -102,6 +109,7 @@ Rim of Madness - Bones					| &#x2705;	| &#x2705;
 Rimefeller						| &#x2705;	| &#x2705;
 RimEffect - Asari of the Rims				| &#x2705;	| &#x2705;
 Rimfire							| &#x2705;	| &#x2705;
+Save Our Ship 2                                         | &#x2705;	| &#x2705;
 Sergals, Gnolls and Lions				| &#x2705;*	| &#x2705;
 Simply More Melee					| &#x2705;	| &#x2705;
 Soviet Armory						|  		| &#x2705;
@@ -119,10 +127,11 @@ Vanilla-Friendly Weapon Expansion			| &#x2705;	| &#x2705;
 Vulpine Race Pack					| &#x2705;	| &#x2705;
 Warhammer: Gor						|  		| &#x2705;
 Weapons+						| &#x2705;	| &#x2705;
+WWII Soviet Faction (1.0)                               |  		| &#x2705;
 Xenn Race						| &#x2705;	| &#x2705;
 Xenohumans						| &#x2705;	| &#x2705;
 Zombieland						| &#x2705;	| &#x2705;
-**Total** | **78** | **110**
+**Total** | **80** | **119**
 &nbsp; | **CE (original)** | **CE: FastTrack Edition**
 
 *Incomplete implementation
