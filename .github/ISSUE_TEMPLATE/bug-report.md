@@ -59,7 +59,7 @@ Issues with big log files directly pasted here will be REJECTED and CLOSED.
 ```
 
 ## Declarations of Due Diligence
-[ ] (Tick) By submitting this bug report, I declare that:
+- [ ] (Tick) By submitting this bug report, I declare that:
 
 * I have tested to make sure a new savegame works with only Core and CE:FT
 * I have tested to make sure this issue is not also found in the original Combat Extended mod
