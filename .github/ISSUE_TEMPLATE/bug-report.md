@@ -59,12 +59,11 @@ Issues with big log files directly pasted here will be REJECTED and CLOSED.
 ```
 
 ## Declarations of Due Diligence
-(Tick the boxes that apply to you)
+[ ] (Tick) By submitting this bug report, I declare that:
 
-I declare that:
-* [ ] I have tested to make sure a new savegame works with only Core and CE:FT
-* [ ] I have tested to make sure this issue is not also found in the original Combat Extended mod
-* [ ] I have narrowed down the affected mod(s), by testing them individually or through a binary search
-* [ ] I have searched the issue tracker, and made sure this issue hasn't been reported before
-* [ ] I am reporting only one issue at a time, and not combining several issues in one report
-* [ ] I understand that the CE:FT team reserves the right to close my issue at any time, regardless of whether or not my problem has been resolved, if I have been found to not have performed the due diligence required
+* I have tested to make sure a new savegame works with only Core and CE:FT
+* I have tested to make sure this issue is not also found in the original Combat Extended mod
+* I have narrowed down the affected mod(s), by testing them individually or through a binary search
+* I have searched the issue tracker, and made sure this issue hasn't been reported before
+* I am reporting only one issue at a time, and not combining several issues in one report
+* I understand that the CE:FT team reserves the right to close my issue at any time, regardless of whether or not my problem has been resolved, if I have been found to not have performed the due diligence required
