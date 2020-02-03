@@ -34,22 +34,22 @@ e.g. https://steamcommunity.com/sharedfiles/filedetails/?id=1688004964
 
 ## Detailed Information
 **What content from the mod needs to be patched by CE:FT?:**
-(Tick all the boxes that apply)
+(Delete the lines that are NOT applicable to the mod)
 
-- [ ] Ammunition (e.g. Shells)
-- [ ] Apparel, Armor (e.g. Helmets, Vests)
-- [ ] Apparel, General (e.g. Clothes, Hats, Gasmasks)
-- [ ] Apparel, Loadbearing (e.g. Backpacks, Harnesses)
-- [ ] Apparel, Shields (e.g. Viking Shield, Riot Shield)
-- [ ] Pawns, Alien Races (e.g. pawns that rely on the Humanoid Alien Races framework)
-- [ ] Pawns, Animals/Monsters/Mechanoids
-- [ ] Pawns, Humans
-- [ ] Pawns, Vehicles (e.g. Tanks, APCs, Drones)
-- [ ] Weapons, Melee (e.g. Knives, Swords, Clubs, Lightsabers)
-- [ ] Weapons, Ranged (e.g. Pistols, Rifles, Rocket Launchers)
-- [ ] Weapons, Thrown (e.g. Grenades, C4 charges)
-- [ ] Items/Resources (e.g. Meals, Medkits, Drugs)
-- [ ] Other (please specify):
+- Ammunition (e.g. Shells)
+- Apparel, Armor (e.g. Helmets, Vests)
+- Apparel, General (e.g. Clothes, Hats, Gasmasks)
+- Apparel, Loadbearing (e.g. Backpacks, Harnesses)
+- Apparel, Shields (e.g. Viking Shield, Riot Shield)
+- Pawns, Alien Races (e.g. pawns that rely on the Humanoid Alien Races framework)
+- Pawns, Animals/Monsters/Mechanoids
+- Pawns, Humans
+- Pawns, Vehicles (e.g. Tanks, APCs, Drones)
+- Weapons, Melee (e.g. Knives, Swords, Clubs, Lightsabers)
+- Weapons, Ranged (e.g. Pistols, Rifles, Rocket Launchers)
+- Weapons, Thrown (e.g. Grenades, C4 charges)
+- Items/Resources (e.g. Meals, Medkits, Drugs)
+- Other (please specify):
 
 ```
 If the mod has feature(s) not covered by the categories above, briefly describe them here
