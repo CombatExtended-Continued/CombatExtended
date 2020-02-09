@@ -23,7 +23,7 @@
 	
 	<!-- ==================== Ammo ========================== -->
 
-	<ThingDef Class="CombatExtended.AmmoDef" Name="950JDJBase" ParentName="SmallAmmoBase" Abstract="True">
+	<ThingDef Class="CombatExtended.AmmoDef" Name="Ammo950JDJBase" ParentName="SmallAmmoBase" Abstract="True">
 		<description>A ridiculously large and powerful caliber sporting cartridge.</description>
 		<statBases>
 		<Mass>0.319</Mass>
@@ -38,7 +38,7 @@
 		</thingCategories>
 	</ThingDef>
 	
-	<ThingDef Class="CombatExtended.AmmoDef" ParentName="950JDJBase">
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="Ammo950JDJBase">
 		<defName>Ammo_950JDJ_FMJ</defName>
 		<label>.950 JDJ cartridge (FMJ)</label>
 		<graphicData>
@@ -52,9 +52,9 @@
 		<cookOffProjectile>Bullet_950JDJ_FMJ</cookOffProjectile>
 	</ThingDef>
 
-	<ThingDef Class="CombatExtended.AmmoDef" ParentName="Ammo50JDJBase">
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="Ammo950JDJBase">
 		<defName>Ammo_50JDJ_Incendiary</defName>
-		<label>.600 Nitro Express cartridge (AP-I)</label>
+		<label>.950 JDJ cartridge (AP-I)</label>
 		<graphicData>
 		<texPath>Things/Ammo/HighCaliber/Incendiary</texPath>
 		<graphicClass>Graphic_StackCount</graphicClass>
@@ -66,9 +66,9 @@
 		<cookOffProjectile>Bullet_50JDJ_Incendiary</cookOffProjectile>
 	</ThingDef>
 
-	<ThingDef Class="CombatExtended.AmmoDef" ParentName="Ammo50JDJBase">
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="Ammo950JDJBase">
 		<defName>Ammo_50JDJ_HE</defName>
-		<label>.600 Nitro Express cartridge (HE)</label>
+		<label>.950 JDJ cartridge (HE)</label>
 		<graphicData>
 		<texPath>Things/Ammo/HighCaliber/HE</texPath>
 		<graphicClass>Graphic_StackCount</graphicClass>
@@ -80,9 +80,9 @@
 		<cookOffProjectile>Bullet_50JDJ_HE</cookOffProjectile>
 	</ThingDef>
 
-	<ThingDef Class="CombatExtended.AmmoDef" ParentName="Ammo50JDJBase">
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="Ammo950JDJBase">
 		<defName>Ammo_50JDJ_Sabot</defName>
-		<label>.600 Nitro Express cartridge (Sabot)</label>
+		<label>.950 JDJ cartridge (Sabot)</label>
 		<graphicData>
 		<texPath>Things/Ammo/HighCaliber/Sabot</texPath>
 		<graphicClass>Graphic_StackCount</graphicClass>
@@ -119,9 +119,9 @@
 		</projectile>
 	</ThingDef>
 
-	<ThingDef Class="CombatExtended.AmmoDef" ParentName="Base50JDJBullet">
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="Base950JDJBullet">
 		<defName>Bullet_50JDJ_Incendiary</defName>
-		<label>.600 Nitro Express bullet (AP-I)</label>
+		<label>.950 JDJ bullet (AP-I)</label>
 		<projectile Class="CombatExtended.ProjectilePropertiesCE">
 		<damageAmountBase>47</damageAmountBase>
 		<armorPenetrationSharp>36</armorPenetrationSharp>
@@ -135,9 +135,9 @@
 		</projectile>
 	</ThingDef>
 
-	<ThingDef Class="CombatExtended.AmmoDef" ParentName="Base50JDJBullet">
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="Base950JDJBullet">
 		<defName>Bullet_50JDJ_HE</defName>
-		<label>.600 Nitro Express bullet (HE)</label>
+		<label>.950 JDJ bullet (HE)</label>
 		<projectile Class="CombatExtended.ProjectilePropertiesCE">
 		<damageAmountBase>75</damageAmountBase>
 		<armorPenetrationSharp>18</armorPenetrationSharp>
@@ -151,9 +151,9 @@
 		</projectile>
 	</ThingDef>
 
-	<ThingDef Class="CombatExtended.AmmoDef" ParentName="Base50JDJBullet">
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="Base950JDJBullet">
 		<defName>Bullet_50JDJ_Sabot</defName>
-		<label>.600 Nitro Express bullet (Sabot)</label>
+		<label>.950 JDJ bullet (Sabot)</label>
 		<projectile Class="CombatExtended.ProjectilePropertiesCE">
 		<speed>201</speed>
 		<damageAmountBase>40</damageAmountBase>
@@ -192,9 +192,9 @@
 
 	<RecipeDef ParentName="AmmoRecipeBase">
 		<defName>MakeAmmo_50JDJ_Incendiary</defName>
-		<label>make .600 Nitro Express (AP-I) cartridge x200</label>
-		<description>Craft 200 .600 Nitro Express (AP-I) cartridges.</description>
-		<jobString>Making .600 Nitro Express (AP-I) cartridges.</jobString>
+		<label>make .950 JDJ (AP-I) cartridge x200</label>
+		<description>Craft 200 .950 JDJ (AP-I) cartridges.</description>
+		<jobString>Making .950 JDJ (AP-I) cartridges.</jobString>
 		<ingredients>
 		<li>
 			<filter>
@@ -227,9 +227,9 @@
 
 	<RecipeDef ParentName="AmmoRecipeBase">
 		<defName>MakeAmmo_50JDJ_HE</defName>
-		<label>make .600 Nitro Express (HE) cartridge x200</label>
-		<description>Craft 200 .600 Nitro Express (HE) cartridges.</description>
-		<jobString>Making .600 Nitro Express (HE) cartridges.</jobString>
+		<label>make .950 JDJ (HE) cartridge x200</label>
+		<description>Craft 200 .950 JDJ (HE) cartridges.</description>
+		<jobString>Making .950 JDJ (HE) cartridges.</jobString>
 		<ingredients>
 		<li>
 		<filter>
@@ -262,9 +262,9 @@
 
 	<RecipeDef ParentName="AmmoRecipeBase">
 		<defName>MakeAmmo_50JDJ_Sabot</defName>
-		<label>make .600 Nitro Express (Sabot) cartridge x200</label>
-		<description>Craft 200 .600 Nitro Express (Sabot) cartridges.</description>
-		<jobString>Making .600 Nitro Express (Sabot) cartridges.</jobString>
+		<label>make .950 JDJ (Sabot) cartridge x200</label>
+		<description>Craft 200 .950 JDJ (Sabot) cartridges.</description>
+		<jobString>Making .950 JDJ (Sabot) cartridges.</jobString>
 		<ingredients>
 		<li>
 		<filter>
