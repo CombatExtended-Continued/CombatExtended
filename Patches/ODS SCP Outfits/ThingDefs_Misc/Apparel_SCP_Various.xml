@@ -1,0 +1,240 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+  <Operation Class="PatchOperationSequence">
+	<operations>
+	  <li Class="PatchOperationFindMod">
+			
+		<mods><li>[Ods] SCP Outfits Only Edition</li></mods>
+			
+		<match Class="PatchOperationSequence">
+		<operations>
+			
+			<!--Thin Stuffable-->
+			
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="Apparel_ScpDClassUniform" or
+				defName="Apparel_ScpFacilityStaff" or
+				defName="Apparel_ScpScientist" or
+				defName="Apparel_ScpBuisnessSuit" or
+				defName="Apparel_GocStaff" or
+				defName="Apparel_GocScientist" or
+				defName="Apparel_GocBuisnessSuit" or
+				defName="Apparel_CiOpperative"
+				]/statBases/StuffEffectMultiplierArmor</xpath>
+				<value>
+					<StuffEffectMultiplierArmor>1</StuffEffectMultiplierArmor>
+					<Bulk>3</Bulk>
+					<WornBulk>1</WornBulk>
+				</value>
+			</li>
+			
+			
+			<!--Mid Stuffable-->
+			
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="Apparel_ScpSecurityFatigues" or
+				defName="Apparel_ScpRcfTShirt" or
+				defName="Apparel_ScpMtfFatigues" or
+				defName="Apparel_GocSecurityFatigues" or
+				defName="Apparel_GocSTFatigues" or
+				defName="Apparel_CiMilitaryFatiguesTwo" or
+				defName="Apparel_ScpSecurityFatiguesNew"
+				]/statBases/StuffEffectMultiplierArmor</xpath>
+				<value>
+					<StuffEffectMultiplierArmor>1.5</StuffEffectMultiplierArmor>
+					<Bulk>5</Bulk>
+					<WornBulk>1</WornBulk>
+				</value>
+			</li>
+			
+			<!--Thick Stuffable-->
+			
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="Apparel_ScpRcfJacket" or
+				defName="Apparel_CiMilitaryFatiguesOne" or
+				defName="Apparel_ScpRcfJacketNew" or
+				defName="Apparel_CiMilitaryFatigues"
+				]/statBases/StuffEffectMultiplierArmor</xpath>
+				<value>
+					<StuffEffectMultiplierArmor>2</StuffEffectMultiplierArmor>
+					<Bulk>7</Bulk>
+					<WornBulk>3</WornBulk>
+				</value>
+			</li>
+			
+			<!--Light Bodyarmor-->
+			
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="Apparel_CiBodyArmorTwo" or
+				defName="Apparel_CiBodyArmor"
+				]/statBases/ArmorRating_Sharp</xpath>
+				<value>
+					<ArmorRating_Sharp>3</ArmorRating_Sharp>
+					<Bulk>3</Bulk>
+					<WornBulk>1</WornBulk>
+				</value>
+			</li>
+			
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="Apparel_CiBodyArmorTwo" or
+				defName="Apparel_CiBodyArmor"
+				]/statBases/ArmorRating_Blunt</xpath>
+				<value>
+					<ArmorRating_Blunt>4.5</ArmorRating_Blunt>
+				</value>
+			</li>
+			
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="Apparel_CiBodyArmorTwo" or
+				defName="Apparel_CiBodyArmor"
+				]/statBases/Mass</xpath>
+				<value>
+					<Mass>5.25</Mass>
+				</value>
+			</li>
+			
+			<li Class="PatchOperationRemove">
+				<xpath>Defs/ThingDef[defName="Apparel_CiBodyArmorTwo" or
+				defName="Apparel_CiBodyArmor"
+				]/statBases/ArmorRating_Heat</xpath>
+			</li>
+			
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="Apparel_CiBodyArmorTwo" or
+				defName="Apparel_CiBodyArmor"
+				]/costList</xpath>
+				<value>
+					<costList>
+					  <Cloth>20</Cloth>
+					  <Steel>30</Steel>
+					</costList>
+				</value>
+			</li>
+			
+			
+			
+			<!--Heavy Bodyarmor-->
+			
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="Apparel_ScpSecurityArmor" or
+				defName="Apparel_ScpRcfBodyArmor" or
+				defName="Apparel_GocSecurityArmor" or
+				defName="Apparel_CiBodyArmorOne"
+				]/statBases/ArmorRating_Sharp</xpath>
+				<value>
+					<ArmorRating_Sharp>14</ArmorRating_Sharp>
+					<Bulk>5</Bulk>
+					<WornBulk>3</WornBulk>
+				</value>
+			</li>
+			
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="Apparel_ScpSecurityArmor" or
+				defName="Apparel_ScpRcfBodyArmor" or
+				defName="Apparel_GocSecurityArmor" or
+				defName="Apparel_CiBodyArmorOne"
+				]/statBases/ArmorRating_Blunt</xpath>
+				<value>
+					<ArmorRating_Blunt>21</ArmorRating_Blunt>
+				</value>
+			</li>
+			
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="Apparel_ScpSecurityArmor" or
+				defName="Apparel_ScpRcfBodyArmor" or
+				defName="Apparel_GocSecurityArmor" or
+				defName="Apparel_CiBodyArmorOne"
+				]/statBases/Mass</xpath>
+				<value>
+					<Mass>12</Mass>
+				</value>
+			</li>
+			
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="Apparel_ScpSecurityArmor" or
+				defName="Apparel_ScpRcfBodyArmor" or
+				defName="Apparel_GocSecurityArmor" or
+				defName="Apparel_CiBodyArmorOne"
+				]/statBases/MaxHitPoints</xpath>
+				<value>
+					<MaxHitPoints>75</MaxHitPoints>
+				</value>
+			</li>
+			
+			<li Class="PatchOperationRemove">
+				<xpath>Defs/ThingDef[defName="Apparel_ScpSecurityArmor" or
+				defName="Apparel_ScpRcfBodyArmor" or
+				defName="Apparel_GocSecurityArmor" or
+				defName="Apparel_CiBodyArmorOne"
+				]/statBases/ArmorRating_Heat</xpath>
+			</li>
+			
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="Apparel_ScpSecurityArmor" or
+				defName="Apparel_ScpRcfBodyArmor" or
+				defName="Apparel_GocSecurityArmor" or
+				defName="Apparel_CiBodyArmorOne"
+				]/costList</xpath>
+				<value>
+					<costList>
+						<Steel>60</Steel>
+						<DevilstrandCloth>20</DevilstrandCloth>
+					</costList>
+				</value>
+			</li>
+			
+			<!--Elite Bodyarmor-->
+			
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="Apparel_ScpMtfBodyArmor" or
+				defName="Apparel_GocSTArmor"
+				]/statBases/ArmorRating_Sharp</xpath>
+				<value>
+					<ArmorRating_Sharp>16</ArmorRating_Sharp>
+					<Bulk>5</Bulk>
+					<WornBulk>3</WornBulk>
+				</value>
+			</li>
+			
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="Apparel_ScpMtfBodyArmor" or
+				defName="Apparel_GocSTArmor"
+				]/statBases/ArmorRating_Blunt</xpath>
+				<value>
+					<ArmorRating_Blunt>24</ArmorRating_Blunt>
+				</value>
+			</li>
+			
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="Apparel_ScpMtfBodyArmor" or
+				defName="Apparel_GocSTArmor"
+				]/statBases/Mass</xpath>
+				<value>
+					<Mass>10.40</Mass>
+				</value>
+			</li>
+			
+			<li Class="PatchOperationRemove">
+				<xpath>Defs/ThingDef[defName="Apparel_ScpMtfBodyArmor" or
+				defName="Apparel_GocSTArmor"
+				]/statBases/ArmorRating_Heat</xpath>
+			</li>
+			
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="Apparel_ScpMtfBodyArmor" or
+				defName="Apparel_GocSTArmor"
+				]/costList</xpath>
+				<value>
+					<costList>
+					  <Cloth>30</Cloth>
+					  <Plasteel>90</Plasteel>
+					</costList>
+				</value>
+			</li>
+			
+		</operations>
+		</match>	
+	  </li>
+	</operations>	
+  </Operation>
+</Patch>

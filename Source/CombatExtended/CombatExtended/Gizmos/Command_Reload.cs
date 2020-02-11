@@ -20,21 +20,51 @@ namespace CombatExtended
                 Log.Error("Command_Reload without ammo comp");
                 return;
             }
-            if (compAmmo.UseAmmo
-                && (compAmmo.CompInventory != null || compAmmo.turret != null)
-                || action == null)
+
+            if (compAmmo.UseAmmo && (compAmmo.CompInventory != null || compAmmo.turret != null) || action == null)
             {
-                Find.WindowStack.Add(MakeAmmoMenu());
+                bool currentlyMannedTurret = compAmmo.turret?.MannableComp?.MannedNow ?? false;
+                if (Controller.settings.RightClickAmmoSelect && action != null && (compAmmo.turret == null || currentlyMannedTurret))
+                {
+                    base.ProcessInput(ev);
+                }
+                else
+                {
+                    Find.WindowStack.Add(MakeAmmoMenu());
+                }
             }
             else if (compAmmo.SelectedAmmo != compAmmo.CurrentAmmo || compAmmo.CurMagCount < compAmmo.Props.magazineSize)
             {
                 base.ProcessInput(ev);
             }
+
             // Show we learned something by clicking this
-            if (!tutorTag.NullOrEmpty()) PlayerKnowledgeDatabase.KnowledgeDemonstrated(ConceptDef.Named(tutorTag), KnowledgeAmount.Total);
+            if (!tutorTag.NullOrEmpty())
+            {
+                PlayerKnowledgeDatabase.KnowledgeDemonstrated(ConceptDef.Named(tutorTag), KnowledgeAmount.Total);
+            }
+        }
+
+        public override IEnumerable<FloatMenuOption> RightClickFloatMenuOptions
+        {
+            get
+            {
+                if (Controller.settings.RightClickAmmoSelect)
+                {
+                    foreach (var option in BuildAmmoOptions())
+                    {
+                        yield return option;
+                    }
+                }
+            }
         }
 
         private FloatMenu MakeAmmoMenu()
+        {
+            return new FloatMenu(BuildAmmoOptions());
+        }
+
+        private List<FloatMenuOption> BuildAmmoOptions()
         {
             List<ThingDef> ammoList = new List<ThingDef>();      // List of all ammo types the gun can use and the pawn has in his inventory
             if (compAmmo.turret != null)
@@ -96,7 +126,8 @@ namespace CombatExtended
             {
                 floatOptionList.Add(new FloatMenuOption("CE_ReloadLabel".Translate(), new Action(action)));
             }
-            return new FloatMenu(floatOptionList);
+            return floatOptionList;
         }
+
     }
 }

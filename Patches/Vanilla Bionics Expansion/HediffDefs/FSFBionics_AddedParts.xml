@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+
+	<Operation Class="PatchOperationFindMod">
+    <mods>
+        <li>[FSF] Vanilla Bionics Expansion</li>
+    </mods>
+	<match Class="PatchOperationSequence">
+		<operations>
+		<!--Power Arm-->
+		<li Class="PatchOperationReplace">
+			<xpath>Defs/HediffDef[defName="FSFBionicPowerArm"]/comps/li[@Class="HediffCompProperties_VerbGiver"]/tools</xpath>
+			<value>
+				<tools>
+					<li Class="CombatExtended.ToolCE">
+					<label>claw</label>
+					<capacities>
+						<li>Scratch</li>
+					</capacities>
+					<power>21</power>
+					<cooldownTime>0.89</cooldownTime>
+					<armorPenetrationSharp>0.8</armorPenetrationSharp>
+					<armorPenetrationBlunt>4</armorPenetrationBlunt>
+					<linkedBodyPartsGroup>Blade</linkedBodyPartsGroup>
+				</li>
+				</tools>
+			</value>
+		</li>
+		<!--Prosthetics -->
+		<li Class="PatchOperationReplace">
+			<xpath>Defs/HediffDef[defName="FSFProstheticHand"]/comps/li[@Class="HediffCompProperties_VerbGiver"]/tools</xpath>
+			<value>
+				<tools>
+					<li Class="CombatExtended.ToolCE">
+					<label>fist</label>
+					<capacities>
+						<li>Blunt</li>
+					</capacities>
+					<power>1</power>
+					<cooldownTime>1.26</cooldownTime>
+					<armorPenetrationBlunt>0.250</armorPenetrationBlunt>
+					</li>
+				</tools>
+			</value>
+		</li>
+		<!-- CE disables human bite attacks-->
+		<li Class="PatchOperationRemove">
+			<xpath>Defs/HediffDef[defName="FSFArchotechJaw" or defName="FSFBionicJaw"]/comps/li[@Class="HediffCompProperties_VerbGiver"]</xpath>
+		</li>
+		</operations>
+	</match>
+	</Operation>
+</Patch>
+

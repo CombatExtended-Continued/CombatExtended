@@ -16,16 +16,18 @@ namespace CombatExtended
         private bool showCasings = true;
         private bool showTaunts = true;
         private bool allowMeleeHunting = false;
+        private bool smokeEffects = true;
 
         public bool ShowCasings => showCasings;
         public bool ShowTaunts => showTaunts;
         public bool AllowMeleeHunting => allowMeleeHunting;
+        public bool SmokeEffects => smokeEffects;
 
         public bool ShowTutorialPopup = true;
 
         // Ammo settings
         private bool enableAmmoSystem = true;
-        // private bool rightClickAmmoSelect = false;
+        private bool rightClickAmmoSelect = false;
         private bool autoReloadOnChangeAmmo = true;
         private bool autoTakeAmmo = true;
         private bool showCaliberOnGuns = true;
@@ -33,7 +35,7 @@ namespace CombatExtended
         private bool realisticCookOff = false;
 
         public bool EnableAmmoSystem => enableAmmoSystem;
-        // public bool RightClickAmmoSelect => rightClickAmmoSelect;
+        public bool RightClickAmmoSelect => rightClickAmmoSelect;
         public bool AutoReloadOnChangeAmmo => autoReloadOnChangeAmmo;
         public bool AutoTakeAmmo => autoTakeAmmo;
         public bool ShowCaliberOnGuns => showCaliberOnGuns;
@@ -67,6 +69,7 @@ namespace CombatExtended
             Scribe_Values.Look(ref showCasings, "showCasings", true);
             Scribe_Values.Look(ref showTaunts, "showTaunts", true);
             Scribe_Values.Look(ref allowMeleeHunting, "allowMeleeHunting", false);
+            Scribe_Values.Look(ref smokeEffects, "smokeEffects", true);
 
 #if DEBUG
             // Debug settings
@@ -80,7 +83,7 @@ namespace CombatExtended
 
             // Ammo settings
             Scribe_Values.Look(ref enableAmmoSystem, "enableAmmoSystem", true);
-            // Scribe_Values.Look(ref rightClickAmmoSelect, "rightClickAmmoSelect", false);
+            Scribe_Values.Look(ref rightClickAmmoSelect, "rightClickAmmoSelect", false);
             Scribe_Values.Look(ref autoReloadOnChangeAmmo, "autoReloadOnChangeAmmo", true);
             Scribe_Values.Look(ref autoTakeAmmo, "autoTakeAmmo", true);
             Scribe_Values.Look(ref showCaliberOnGuns, "showCaliberOnGuns", true);
@@ -107,6 +110,7 @@ namespace CombatExtended
             list.CheckboxLabeled("CE_Settings_ShowCasings_Title".Translate(), ref showCasings, "CE_Settings_ShowCasings_Desc".Translate());
             list.CheckboxLabeled("CE_Settings_ShowTaunts_Title".Translate(), ref showTaunts, "CE_Settings_ShowTaunts_Desc".Translate());
             list.CheckboxLabeled("CE_Settings_AllowMeleeHunting_Title".Translate(), ref allowMeleeHunting, "CE_Settings_AllowMeleeHunting_Desc".Translate());
+            list.CheckboxLabeled("CE_Settings_SmokeEffects_Title".Translate(), ref smokeEffects, "CE_Settings_SmokeEffects_Desc".Translate());
 
 #if DEBUG
             // Do Debug settings
@@ -136,7 +140,7 @@ namespace CombatExtended
             list.GapLine();
             if (enableAmmoSystem)
             {
-                // list.CheckboxLabeled("CE_Settings_RightClickAmmoSelect_Title".Translate(), ref rightClickAmmoSelect, "CE_Settings_RightClickAmmoSelect_Desc".Translate());
+                list.CheckboxLabeled("CE_Settings_RightClickAmmoSelect_Title".Translate(), ref rightClickAmmoSelect, "CE_Settings_RightClickAmmoSelect_Desc".Translate());
                 list.CheckboxLabeled("CE_Settings_AutoReloadOnChangeAmmo_Title".Translate(), ref autoReloadOnChangeAmmo, "CE_Settings_AutoReloadOnChangeAmmo_Desc".Translate());
                 list.CheckboxLabeled("CE_Settings_AutoTakeAmmo_Title".Translate(), ref autoTakeAmmo, "CE_Settings_AutoTakeAmmo_Desc".Translate());
                 list.CheckboxLabeled("CE_Settings_ShowCaliberOnGuns_Title".Translate(), ref showCaliberOnGuns, "CE_Settings_ShowCaliberOnGuns_Desc".Translate());

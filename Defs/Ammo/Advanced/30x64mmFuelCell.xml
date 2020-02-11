@@ -25,8 +25,8 @@
   <ThingDef Class="CombatExtended.AmmoDef" Name="30x64mmFuelBase" ParentName="SpacerSmallAmmoBase" Abstract="True">
     <description>Container holding fuel for incendiary shot firearms.</description>
     <statBases>
-      <Mass>0.3</Mass>
-      <Bulk>0.5</Bulk>
+      <Mass>0.08</Mass>
+      <Bulk>0.14</Bulk>
     </statBases>
     <tradeTags>
       <li>CE_AutoEnableTrade</li>
@@ -35,7 +35,7 @@
     <thingCategories>
       <li>Ammo30x64mmFuelCell</li>
     </thingCategories>
-    <stackLimit>75</stackLimit>
+    <stackLimit>3000</stackLimit>
   </ThingDef>
 
   <ThingDef Class="CombatExtended.AmmoDef" ParentName="30x64mmFuelBase">
@@ -46,7 +46,7 @@
       <graphicClass>Graphic_StackCount</graphicClass>
     </graphicData>
     <statBases>
-      <MarketValue>1.52</MarketValue>
+      <MarketValue>3.4</MarketValue>
     </statBases>
     <ammoClass>IncendiaryFuel</ammoClass>
   </ThingDef>
@@ -59,7 +59,7 @@
       <graphicClass>Graphic_StackCount</graphicClass>
     </graphicData>
     <statBases>
-      <MarketValue>2.16</MarketValue>
+      <MarketValue>5.96</MarketValue>
     </statBases>
     <ammoClass>ThermobaricFuel</ammoClass>
   </ThingDef>
@@ -72,7 +72,7 @@
       <graphicClass>Graphic_StackCount</graphicClass>
     </graphicData>
     <statBases>
-      <MarketValue>0.61</MarketValue>
+      <MarketValue>3.66</MarketValue>
     </statBases>
     <ammoClass>FoamFuel</ammoClass>
     <generateAllowChance>0</generateAllowChance>
@@ -100,8 +100,8 @@
       <damageDef>PrometheumFlame</damageDef>
       <damageAmountBase>0</damageAmountBase>
       <armorPenetrationSharp>0</armorPenetrationSharp>
-      <armorPenetrationBlunt>14.047</armorPenetrationBlunt>
-      <explosionRadius>3.5</explosionRadius>
+      <armorPenetrationBlunt>0</armorPenetrationBlunt>
+      <explosionRadius>6.5</explosionRadius>
       <preExplosionSpawnThingDef>FilthPrometheum</preExplosionSpawnThingDef>
       <preExplosionSpawnChance>0.15</preExplosionSpawnChance>
       <ai_IsIncendiary>true</ai_IsIncendiary>
@@ -115,9 +115,9 @@
     <projectile Class="CombatExtended.ProjectilePropertiesCE">
       <explosionRadius>2.0</explosionRadius>
       <damageDef>Thermobaric</damageDef>
-      <damageAmountBase>136</damageAmountBase>
+      <damageAmountBase>48</damageAmountBase>
       <armorPenetrationSharp>0</armorPenetrationSharp>
-      <armorPenetrationBlunt>25.526</armorPenetrationBlunt>
+      <armorPenetrationBlunt>0</armorPenetrationBlunt>
       <soundExplode>MortarBomb_Explode</soundExplode>
       <applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
       <ai_IsIncendiary>true</ai_IsIncendiary>
@@ -130,9 +130,9 @@
     <label>foam bolt</label>
     <projectile Class="CombatExtended.ProjectilePropertiesCE">
       <damageDef>Extinguish</damageDef>
-      <explosionRadius>5.0</explosionRadius>
+      <explosionRadius>6.5</explosionRadius>
       <armorPenetrationSharp>0</armorPenetrationSharp>
-      <armorPenetrationBlunt>14.047</armorPenetrationBlunt>
+      <armorPenetrationBlunt>0</armorPenetrationBlunt>
       <postExplosionSpawnThingDef>Filth_FireFoam</postExplosionSpawnThingDef>
       <preExplosionSpawnChance>1</preExplosionSpawnChance>
     </projectile>
@@ -152,7 +152,7 @@
             <li>Steel</li>
           </thingDefs>
         </filter>
-        <count>12</count>
+        <count>8</count>
       </li>
       <li>
         <filter>
@@ -160,11 +160,20 @@
             <li>Prometheum</li>
           </thingDefs>
         </filter>
-        <count>7</count>
+        <count>14</count>
       </li>
+      <li>
+        <filter>
+          <thingDefs>
+            <li>ComponentIndustrial</li>
+          </thingDefs>
+        </filter>
+        <count>2</count>
+      </li>	  
     </ingredients>
     <fixedIngredientFilter>
       <thingDefs>
+            <li>ComponentIndustrial</li>	  
         <li>Steel</li>
         <li>Prometheum</li>
       </thingDefs>
@@ -172,6 +181,7 @@
     <products>
       <Ammo_30x64mmFuel_Incendiary>50</Ammo_30x64mmFuel_Incendiary>
     </products>
+    <workAmount>7600</workAmount>		
   </RecipeDef>
 
   <RecipeDef ParentName="AmmoRecipeBase">
@@ -186,7 +196,7 @@
             <li>Steel</li>
           </thingDefs>
         </filter>
-        <count>12</count>
+        <count>8</count>
       </li>
       <li>
         <filter>
@@ -194,8 +204,16 @@
             <li>FSX</li>
           </thingDefs>
         </filter>
-        <count>7</count>
+        <count>21</count>
       </li>
+      <li>
+        <filter>
+          <thingDefs>
+            <li>ComponentIndustrial</li>
+          </thingDefs>
+        </filter>
+        <count>2</count>
+      </li>		  
     </ingredients>
     <fixedIngredientFilter>
       <thingDefs>
@@ -206,6 +224,7 @@
     <products>
       <Ammo_30x64mmFuel_Thermobaric>50</Ammo_30x64mmFuel_Thermobaric>
     </products>
+    <workAmount>10400</workAmount>		
   </RecipeDef>
 
   <RecipeDef ParentName="AmmoRecipeBase">
@@ -220,7 +239,7 @@
             <li>Steel</li>
           </thingDefs>
         </filter>
-        <count>12</count>
+        <count>8</count>
       </li>
       <li>
         <filter>
@@ -228,12 +247,21 @@
             <li>MeatRaw</li>
           </categories>
         </filter>
-        <count>2</count>
+        <count>47</count>
       </li>
+      <li>
+        <filter>
+          <thingDefs>
+            <li>ComponentIndustrial</li>
+          </thingDefs>
+        </filter>
+        <count>2</count>
+      </li>		  
     </ingredients>
     <fixedIngredientFilter>
       <thingDefs>
         <li>Steel</li>
+        <li>ComponentIndustrial</li>		
       </thingDefs>
       <categories>
         <li>MeatRaw</li>
@@ -242,6 +270,7 @@
     <products>
       <Ammo_30x64mmFuel_Foam>50</Ammo_30x64mmFuel_Foam>
     </products>
+    <workAmount>11400</workAmount>	
   </RecipeDef>
 
 </Defs>

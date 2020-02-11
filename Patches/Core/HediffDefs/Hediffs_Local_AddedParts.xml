@@ -36,13 +36,30 @@
 	</Operation>
 
 	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/HediffDef[defName="ArchotechArm"]/comps/li[@Class="HediffCompProperties_VerbGiver"]/tools</xpath>
+		<value>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<label>fist</label>
+					<capacities>
+						<li>Blunt</li>
+					</capacities>
+					<power>9</power>
+					<cooldownTime>0.83</cooldownTime>
+					<armorPenetrationBlunt>3.00</armorPenetrationBlunt>
+				</li>
+			</tools>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
 		<xpath>Defs/HediffDef[defName="PowerClaw"]/comps/li[@Class="HediffCompProperties_VerbGiver"]/tools</xpath>
 		<value>
 			<tools>
 				<li Class="CombatExtended.ToolCE">
 					<label>claw</label>
 					<capacities>
-						<li>Slash</li>
+						<li>Scratch</li>
 					</capacities>
 					<power>21</power>
 					<cooldownTime>0.89</cooldownTime>
@@ -51,7 +68,7 @@
 					<linkedBodyPartsGroup>Blade</linkedBodyPartsGroup>
 				</li>
 			</tools>
-  		</value>
+		</value>
 	</Operation>
 
 </Patch>

@@ -389,6 +389,24 @@
 		</value>
 	</Operation>
 
+	<Operation Class="PatchOperationConditional">
+		<xpath>Defs/ThingDef[defName="Synthread"]/stuffProps/categories</xpath>
+		<nomatch Class="PatchOperationAdd">
+			<xpath>Defs/ThingDef[defName="Synthread"]/stuffProps</xpath>
+			<value>
+				<categories>
+				  <li>SoftArmor</li>
+				</categories>
+			</value>
+		</nomatch>
+		<match Class="PatchOperationAdd">
+			<xpath>Defs/ThingDef[defName="Synthread"]/stuffProps/categories</xpath>
+			<value>
+				<li>SoftArmor</li>
+			</value>
+		</match>
+	</Operation>
+
 	<!-- Devilstrand -->
 
 	<Operation Class="PatchOperationAdd">
@@ -424,6 +442,7 @@
 		<xpath>Defs/ThingDef[defName="DevilstrandCloth"]/statBases/StuffPower_Armor_Heat</xpath>
 		<value>
 			<StuffPower_Armor_Heat>0.05</StuffPower_Armor_Heat>
+			<StuffPower_Armor_Electric>0.05</StuffPower_Armor_Electric>
 		</value>
 	</Operation>
 
@@ -432,6 +451,24 @@
 		<value>
 			<Flammability>0</Flammability>
 		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationConditional">
+		<xpath>Defs/ThingDef[defName="DevilstrandCloth"]/stuffProps/categories</xpath>
+		<nomatch Class="PatchOperationAdd">
+			<xpath>Defs/ThingDef[defName="DevilstrandCloth"]/stuffProps</xpath>
+			<value>
+				<categories>
+				  <li>SoftArmor</li>
+				</categories>
+			</value>
+		</nomatch>
+		<match Class="PatchOperationAdd">
+			<xpath>Defs/ThingDef[defName="DevilstrandCloth"]/stuffProps/categories</xpath>
+			<value>
+				<li>SoftArmor</li>
+			</value>
+		</match>
 	</Operation>
 
 	<!-- Hyperweave -->
@@ -493,6 +530,24 @@
 		<value>
 			<Flammability>0.1</Flammability>
 		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationConditional">
+		<xpath>Defs/ThingDef[defName="Hyperweave"]/stuffProps/categories</xpath>
+		<nomatch Class="PatchOperationAdd">
+			<xpath>Defs/ThingDef[defName="Hyperweave"]/stuffProps</xpath>
+			<value>
+				<categories>
+				  <li>SoftArmor</li>
+				</categories>
+			</value>
+		</nomatch>
+		<match Class="PatchOperationAdd">
+			<xpath>Defs/ThingDef[defName="Hyperweave"]/stuffProps/categories</xpath>
+			<value>
+				<li>SoftArmor</li>
+			</value>
+		</match>
 	</Operation>
 
 	<!-- Wool (Base) -->
