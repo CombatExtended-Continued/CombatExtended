@@ -25,8 +25,8 @@
   <ThingDef Class="CombatExtended.AmmoDef" Name="8x35mmChargedBase" ParentName="SpacerSmallAmmoBase" Abstract="True">
     <description>Charged shot ammo used by advanced assault rifle designs.</description>
     <statBases>
-      <Mass>0.02</Mass>
-      <Bulk>0.008</Bulk>
+      <Mass>0.018</Mass>
+      <Bulk>0.01</Bulk>
     </statBases>
     <tradeTags>
       <li>CE_AutoEnableTrade</li>
@@ -35,6 +35,7 @@
     <thingCategories>
       <li>Ammo8x35mmCharged</li>
     </thingCategories>
+    <stackLimit>5000</stackLimit>	
   </ThingDef>
 
   <ThingDef Class="CombatExtended.AmmoDef" ParentName="8x35mmChargedBase">
@@ -45,7 +46,7 @@
       <graphicClass>Graphic_StackCount</graphicClass>
     </graphicData>
     <statBases>
-      <MarketValue>1.38</MarketValue>
+      <MarketValue>1.55</MarketValue>
     </statBases>
     <ammoClass>Charged</ammoClass>
   </ThingDef>
@@ -58,7 +59,7 @@
       <graphicClass>Graphic_StackCount</graphicClass>
     </graphicData>
     <statBases>
-      <MarketValue>1.38</MarketValue>
+      <MarketValue>1.55</MarketValue>
     </statBases>
     <ammoClass>ChargedAP</ammoClass>
   </ThingDef>
@@ -71,7 +72,7 @@
       <graphicClass>Graphic_StackCount</graphicClass>
     </graphicData>
     <statBases>
-      <MarketValue>1.38</MarketValue>
+      <MarketValue>1.55</MarketValue>
     </statBases>
     <ammoClass>Ionized</ammoClass>
     <generateAllowChance>0</generateAllowChance>
@@ -112,7 +113,6 @@
     <defName>Bullet_8x35mmCharged_AP</defName>
     <label>8x35mm Charged bullet (Conc.)</label>
     <projectile Class="CombatExtended.ProjectilePropertiesCE">
-
       <damageAmountBase>15</damageAmountBase>
       <secondaryDamage>
         <li>
@@ -120,10 +120,8 @@
           <amount>2</amount>
         </li>
       </secondaryDamage>
-
       <armorPenetrationSharp>28</armorPenetrationSharp>
       <armorPenetrationBlunt>57.6</armorPenetrationBlunt>
-
     </projectile>
   </ThingDef>
 
@@ -139,7 +137,6 @@
           <amount>9</amount>
         </li>
       </secondaryDamage>
-
       <armorPenetrationSharp>21</armorPenetrationSharp>
       <armorPenetrationBlunt>57.6</armorPenetrationBlunt>
     </projectile>
@@ -149,8 +146,8 @@
 
   <RecipeDef ParentName="ChargeAmmoRecipeBase">
     <defName>MakeAmmo_8x35mmCharged</defName>
-    <label>make 8x35mm Charged cartridge x100</label>
-    <description>Craft 100 8x35mm Charged cartridges.</description>
+    <label>make 8x35mm Charged cartridge x500</label>
+    <description>Craft 500 8x35mm Charged cartridges.</description>
     <jobString>Making 8x35mm Charged cartridges.</jobString>
     <ingredients>
       <li>
@@ -159,32 +156,42 @@
             <li>Plasteel</li>
           </thingDefs>
         </filter>
-        <count>3</count>
+        <count>18</count>
       </li>
+      <li>
+        <filter>
+          <thingDefs>
+            <li>Steel</li>
+          </thingDefs>
+        </filter>
+        <count>10</count>
+      </li>	  
       <li>
         <filter>
           <thingDefs>
             <li>ComponentIndustrial</li>
           </thingDefs>
         </filter>
-        <count>3</count>
+        <count>18</count>
       </li>
     </ingredients>
     <fixedIngredientFilter>
       <thingDefs>
         <li>Plasteel</li>
+        <li>Steel</li>		
         <li>ComponentIndustrial</li>
       </thingDefs>
     </fixedIngredientFilter>
     <products>
-      <Ammo_8x35mmCharged>100</Ammo_8x35mmCharged>
+      <Ammo_8x35mmCharged>500</Ammo_8x35mmCharged>
     </products>
+    <workAmount>19000</workAmount>		
   </RecipeDef>
 
   <RecipeDef ParentName="ChargeAmmoRecipeBase">
     <defName>MakeAmmo_8x35mmCharged_AP</defName>
-    <label>make 8x35mm Charged (Conc.) cartridge x100</label>
-    <description>Craft 100 8x35mm Charged (Conc.) cartridges.</description>
+    <label>make 8x35mm Charged (Conc.) cartridge x500</label>
+    <description>Craft 500 8x35mm Charged (Conc.) cartridges.</description>
     <jobString>Making 8x35mm Charged (Conc.) cartridges.</jobString>
     <ingredients>
       <li>
@@ -193,32 +200,42 @@
             <li>Plasteel</li>
           </thingDefs>
         </filter>
-        <count>3</count>
+        <count>18</count>
       </li>
+      <li>
+        <filter>
+          <thingDefs>
+            <li>Steel</li>
+          </thingDefs>
+        </filter>
+        <count>10</count>
+      </li>	  
       <li>
         <filter>
           <thingDefs>
             <li>ComponentIndustrial</li>
           </thingDefs>
         </filter>
-        <count>3</count>
+        <count>18</count>
       </li>
     </ingredients>
     <fixedIngredientFilter>
       <thingDefs>
         <li>Plasteel</li>
+        <li>Steel</li>		
         <li>ComponentIndustrial</li>
       </thingDefs>
     </fixedIngredientFilter>
     <products>
-      <Ammo_8x35mmCharged_AP>100</Ammo_8x35mmCharged_AP>
+      <Ammo_8x35mmCharged_AP>500</Ammo_8x35mmCharged_AP>
     </products>
+    <workAmount>19000</workAmount>		
   </RecipeDef>
 
   <RecipeDef ParentName="ChargeAmmoRecipeBase">
     <defName>MakeAmmo_8x35mmCharged_Ion</defName>
-    <label>make 8x35mm Charged (Ion) cartridge x100</label>
-    <description>Craft 100 8x35mm Charged (Ion) cartridges.</description>
+    <label>make 8x35mm Charged (Ion) cartridge x500</label>
+    <description>Craft 500 8x35mm Charged (Ion) cartridges.</description>
     <jobString>Making 8x35mm Charged (Ion) cartridges.</jobString>
     <ingredients>
       <li>
@@ -227,26 +244,36 @@
             <li>Plasteel</li>
           </thingDefs>
         </filter>
-        <count>3</count>
+        <count>18</count>
       </li>
+      <li>
+        <filter>
+          <thingDefs>
+            <li>Steel</li>
+          </thingDefs>
+        </filter>
+        <count>10</count>
+      </li>	  
       <li>
         <filter>
           <thingDefs>
             <li>ComponentIndustrial</li>
           </thingDefs>
         </filter>
-        <count>3</count>
+        <count>18</count>
       </li>
     </ingredients>
     <fixedIngredientFilter>
       <thingDefs>
         <li>Plasteel</li>
+        <li>Steel</li>		
         <li>ComponentIndustrial</li>
       </thingDefs>
     </fixedIngredientFilter>
     <products>
-      <Ammo_8x35mmCharged_Ion>100</Ammo_8x35mmCharged_Ion>
+      <Ammo_8x35mmCharged_Ion>500</Ammo_8x35mmCharged_Ion>
     </products>
+    <workAmount>19000</workAmount>	
   </RecipeDef>
 
 </Defs>

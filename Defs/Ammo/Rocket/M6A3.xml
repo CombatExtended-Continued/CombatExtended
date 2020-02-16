@@ -9,15 +9,6 @@
     </ThingCategoryDef>
 	
 	<!-- ==================== AmmoSet ========================== -->
-
-  <CombatExtended.AmmoSetDef>
-    <defName>AmmoSet_M6A3Rocket</defName>
-    <label>M6A3 Rockets</label>
-	<ammoTypes>
-	  <Ammo_M6A3_HEAT>Bullet_M6A3_HEAT</Ammo_M6A3_HEAT>
-	  <Ammo_M6A3_Incendiary>Bullet_M6A3_Incendiary</Ammo_M6A3_Incendiary>
-	</ammoTypes>
-  </CombatExtended.AmmoSetDef>
 	
 	<!-- ==================== Ammo ========================== -->
 
@@ -46,21 +37,21 @@
       <graphicClass>Graphic_StackCount</graphicClass>
     </graphicData>
     <statBases>
-      <MarketValue>21.54</MarketValue>
-	  <Mass>2.6</Mass>
-	  <Bulk>4</Bulk>
+      <MarketValue>51.74</MarketValue>
+	    <Mass>1.53</Mass>
+	    <Bulk>4.19</Bulk>
     </statBases>
 	<ammoClass>RocketHEAT</ammoClass>
     <comps>
       <li Class="CombatExtended.CompProperties_ExplosiveCE">
-        <explosionDamage>17</explosionDamage>
+        <explosionDamage>141</explosionDamage>
         <explosionDamageDef>Bomb</explosionDamageDef>
-        <explosionRadius>1</explosionRadius>
-        <fragRange>6</fragRange>
+        <explosionRadius>1.5</explosionRadius>
         <fragments>
-          <Fragment_RocketFrag>16</Fragment_RocketFrag>
+          <Fragment_Large>1</Fragment_Large>
+          <Fragment_Small>43</Fragment_Small>
         </fragments>
-		<applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
+		    <applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
         <soundExplode>MortarBomb_Explode</soundExplode>
       </li>
     </comps>
@@ -74,19 +65,19 @@
       <graphicClass>Graphic_StackCount</graphicClass>
     </graphicData>
     <statBases>
-      <MarketValue>19.94</MarketValue>
-	  <Mass>2.6</Mass>
-	  <Bulk>2.5</Bulk>
+      <MarketValue>38.21</MarketValue>
+	    <Mass>1.59</Mass>
+	    <Bulk>3.81</Bulk>
     </statBases>
 	<ammoClass>GrenadeIncendiary</ammoClass>
     <comps>
       <li Class="CombatExtended.CompProperties_ExplosiveCE">
-        <explosionDamage>12</explosionDamage>
+        <explosionDamage>0</explosionDamage>
         <explosionDamageDef>PrometheumFlame</explosionDamageDef>
-        <explosionRadius>2.4</explosionRadius>
-		<preExplosionSpawnThingDef>FilthPrometheum</preExplosionSpawnThingDef>
-		<preExplosionSpawnChance>0.4</preExplosionSpawnChance>
-		<applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
+        <explosionRadius>9</explosionRadius>
+		    <preExplosionSpawnThingDef>FilthPrometheum</preExplosionSpawnThingDef>
+		    <preExplosionSpawnChance>0.5</preExplosionSpawnChance>
+		    <applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
         <soundExplode>MortarBomb_Explode</soundExplode>
       </li>
     </comps>
@@ -99,7 +90,7 @@
 			<shaderType>TransparentPostLight</shaderType>
 		</graphicData>
 		<projectile Class="CombatExtended.ProjectilePropertiesCE">
-			<speed>29</speed>
+			<speed>17</speed>
 			<soundAmbient>RocketPropelledLoop_Small</soundAmbient>
 		</projectile>
 	</ThingDef>	
@@ -113,16 +104,18 @@
 		</graphicData>
 		<projectile Class="CombatExtended.ProjectilePropertiesCE">
 			<damageDef>Bullet</damageDef>
-			<damageAmountBase>92</damageAmountBase>
-			<armorPenetrationBase>1.78</armorPenetrationBase>
+			<damageAmountBase>208</damageAmountBase>
+      <armorPenetrationSharp>76</armorPenetrationSharp>
+      <armorPenetrationBlunt>42.273</armorPenetrationBlunt>
 		</projectile>
 		<comps>
 			<li Class="CombatExtended.CompProperties_ExplosiveCE">
-				<explosionDamage>17</explosionDamage>
+				<explosionDamage>141</explosionDamage>
 				<explosionDamageDef>Bomb</explosionDamageDef>
-				<explosionRadius>1</explosionRadius>
+				<explosionRadius>1.5</explosionRadius>
 				<fragments>
-					<Fragment_RocketFrag>16</Fragment_RocketFrag>
+          <Fragment_Large>1</Fragment_Large>
+          <Fragment_Small>43</Fragment_Small>
 				</fragments>
 				<applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
 				<soundExplode>MortarBomb_Explode</soundExplode>
@@ -140,10 +133,10 @@
 		</graphicData>
 		<projectile Class="CombatExtended.ProjectilePropertiesCE">
 			<damageDef>PrometheumFlame</damageDef>
-			<damageAmountBase>12</damageAmountBase>
-			<explosionRadius>2.4</explosionRadius>
+			<damageAmountBase>0</damageAmountBase>
+			<explosionRadius>9</explosionRadius>
 			<preExplosionSpawnThingDef>FilthPrometheum</preExplosionSpawnThingDef>
-			<preExplosionSpawnChance>0.25</preExplosionSpawnChance>
+			<preExplosionSpawnChance>0.5</preExplosionSpawnChance>
 			<soundExplode>MortarBomb_Explode</soundExplode>
 		</projectile>
 	</ThingDef>
@@ -178,7 +171,7 @@
     <label>make M6A3 HEAT rockets x5</label>
     <description>Craft 5 M6A3 HEAT rockets.</description>
     <jobString>Making M6A3 HEAT rockets.</jobString>
-    <workAmount>15000</workAmount>
+    <workAmount>7800</workAmount>
     <ingredients>
       <li>
         <filter>
@@ -186,7 +179,7 @@
             <li>Steel</li>
           </thingDefs>
         </filter>
-        <count>13</count>
+        <count>18</count>
       </li>
       <li>
         <filter>
@@ -194,7 +187,7 @@
             <li>FSX</li>
           </thingDefs>
         </filter>
-        <count>2</count>
+        <count>9</count>
       </li>
       <li>
         <filter>
@@ -202,7 +195,7 @@
             <li>ComponentIndustrial</li>
           </thingDefs>
         </filter>
-        <count>3</count>
+        <count>4</count>
       </li>
     </ingredients>
     <fixedIngredientFilter>
@@ -222,7 +215,7 @@
     <label>make M6A3 Incendiary rockets x5</label>
     <description>Craft 5 M6A3 Incendiary rockets.</description>
     <jobString>Making M6A3 Incendiary rockets.</jobString>
-    <workAmount>15000</workAmount>
+    <workAmount>5800</workAmount>
     <ingredients>
       <li>
         <filter>
@@ -230,7 +223,7 @@
             <li>Steel</li>
           </thingDefs>
         </filter>
-        <count>13</count>
+        <count>18</count>
       </li>
       <li>
         <filter>
@@ -238,7 +231,7 @@
             <li>Prometheum</li>
           </thingDefs>
         </filter>
-        <count>2</count>
+        <count>4</count>
       </li>
       <li>
         <filter>
@@ -246,7 +239,7 @@
             <li>ComponentIndustrial</li>
           </thingDefs>
         </filter>
-        <count>3</count>
+        <count>4</count>
       </li>
     </ingredients>
     <fixedIngredientFilter>

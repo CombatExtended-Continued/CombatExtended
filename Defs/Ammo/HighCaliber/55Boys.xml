@@ -15,17 +15,19 @@
 		<label>.55 Boys</label>
 		<ammoTypes>
 			<Ammo_55Boys_FMJ>Bullet_55Boys_FMJ</Ammo_55Boys_FMJ>
-			<Ammo_55Boys_AP>Bullet_55Boys_AP</Ammo_55Boys_AP>
+			<Ammo_55Boys_Incendiary>Bullet_55Boys_Incendiary</Ammo_55Boys_Incendiary>
+			<Ammo_55Boys_HE>Bullet_55Boys_HE</Ammo_55Boys_HE>
+			<Ammo_55Boys_Sabot>Bullet_55Boys_Sabot</Ammo_55Boys_Sabot>	  
 		</ammoTypes>
 	</CombatExtended.AmmoSetDef>
 	
 	<!-- ==================== Ammo ========================== -->
 
-	<ThingDef Class="CombatExtended.AmmoDef" Name="55BoysBase" ParentName="SmallAmmoBase" Abstract="True">
+	<ThingDef Class="CombatExtended.AmmoDef" Name="Ammo55BoysBase" ParentName="SmallAmmoBase" Abstract="True">
 		<description>Outdated large caliber bullet used in anti-materiel rifles.</description>
 		<statBases>
-		<Mass>0.173</Mass>
-		<Bulk>0.15</Bulk>
+		<Mass>0.133</Mass>
+		<Bulk>0.13</Bulk>
 		</statBases>
 	<tradeTags>
 		<li>CE_AutoEnableTrade</li>
@@ -34,10 +36,9 @@
 		<thingCategories>
 			<li>Ammo55Boys</li>
 		</thingCategories>
-    <stackLimit>200</stackLimit>
 	</ThingDef>
 	
-	<ThingDef Class="CombatExtended.AmmoDef" ParentName="55BoysBase">
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="Ammo55BoysBase">
 		<defName>Ammo_55Boys_FMJ</defName>
 		<label>.55 Boys cartridge (FMJ)</label>
 		<graphicData>
@@ -45,24 +46,53 @@
 			<graphicClass>Graphic_StackCount</graphicClass>
 		</graphicData>
 		<statBases>
-			<MarketValue>0.48</MarketValue>
+			<MarketValue>0.56</MarketValue>
 		</statBases>
 		<ammoClass>FullMetalJacket</ammoClass>
 		<cookOffProjectile>Bullet_55Boys_FMJ</cookOffProjectile>
 	</ThingDef>
 
-	<ThingDef Class="CombatExtended.AmmoDef" ParentName="55BoysBase">
-		<defName>Ammo_55Boys_AP</defName>
-		<label>.55 Boys cartridge (AP)</label>
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="Ammo55BoysBase">
+		<defName>Ammo_55Boys_Incendiary</defName>
+		<label>.55 Boys cartridge (AP-I)</label>
 		<graphicData>
-			<texPath>Things/Ammo/HighCaliber/FMJ</texPath>
-			<graphicClass>Graphic_StackCount</graphicClass>
+		<texPath>Things/Ammo/HighCaliber/Incendiary</texPath>
+		<graphicClass>Graphic_StackCount</graphicClass>
 		</graphicData>
 		<statBases>
-			<MarketValue>0.65</MarketValue>
+		<MarketValue>0.78</MarketValue>
 		</statBases>
-		<ammoClass>ArmorPiercing</ammoClass>
-		<cookOffProjectile>Bullet_55Boys_AP</cookOffProjectile>
+		<ammoClass>IncendiaryAP</ammoClass>
+		<cookOffProjectile>Bullet_55Boys_Incendiary</cookOffProjectile>
+	</ThingDef>
+
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="Ammo55BoysBase">
+		<defName>Ammo_55Boys_HE</defName>
+		<label>.55 Boys cartridge (HE)</label>
+		<graphicData>
+		<texPath>Things/Ammo/HighCaliber/HE</texPath>
+		<graphicClass>Graphic_StackCount</graphicClass>
+		</graphicData>
+		<statBases>
+		<MarketValue>1.23</MarketValue>
+		</statBases>
+		<ammoClass>ExplosiveAP</ammoClass>
+		<cookOffProjectile>Bullet_55Boys_HE</cookOffProjectile>
+	</ThingDef>
+
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="Ammo55BoysBase">
+		<defName>Ammo_55Boys_Sabot</defName>
+		<label>.55 Boys cartridge (Sabot)</label>
+		<graphicData>
+		<texPath>Things/Ammo/HighCaliber/Sabot</texPath>
+		<graphicClass>Graphic_StackCount</graphicClass>
+		</graphicData>
+		<statBases>
+			<MarketValue>2.14</MarketValue>
+			<Mass>0.107</Mass>
+		</statBases>
+		<ammoClass>Sabot</ammoClass>
+		<cookOffProjectile>Bullet_55Boys_Sabot</cookOffProjectile>
 	</ThingDef>
 	
 	<!-- ================== Projectiles ================== -->
@@ -74,7 +104,7 @@
 		</graphicData>
 		<projectile Class="CombatExtended.ProjectilePropertiesCE">
 			<damageDef>Bullet</damageDef>
-			<speed>190</speed>
+			<speed>177</speed>
 			<dropsCasings>true</dropsCasings>
 		</projectile>
 	</ThingDef>
@@ -83,17 +113,52 @@
 		<defName>Bullet_55Boys_FMJ</defName>
 		<label>.55 Boys bullet (FMJ)</label>
 		<projectile Class="CombatExtended.ProjectilePropertiesCE">
-			<damageAmountBase>51</damageAmountBase>
-			<armorPenetrationBase>0.92</armorPenetrationBase>
+			<damageAmountBase>48</damageAmountBase>
+			<armorPenetrationSharp>19</armorPenetrationSharp>
+			<armorPenetrationBlunt>476.68</armorPenetrationBlunt>
 		</projectile>
 	</ThingDef>
 
 	<ThingDef Class="CombatExtended.AmmoDef" ParentName="Base55BoysBullet">
-		<defName>Bullet_55Boys_AP</defName>
-		<label>.55 Boys bullet (AP)</label>
+		<defName>Bullet_55Boys_Incendiary</defName>
+		<label>.55 Boys bullet (AP-I)</label>
 		<projectile Class="CombatExtended.ProjectilePropertiesCE">
-			<damageAmountBase>31</damageAmountBase>
-			<armorPenetrationBase>1.07</armorPenetrationBase>
+		<damageAmountBase>30</damageAmountBase>
+		<armorPenetrationSharp>38</armorPenetrationSharp>
+		<armorPenetrationBlunt>476.68</armorPenetrationBlunt>
+		<secondaryDamage>
+			<li>
+			<def>Flame_Secondary</def>
+			<amount>19</amount>
+			</li>
+		</secondaryDamage>
+		</projectile>
+	</ThingDef>
+	
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="Base55BoysBullet">
+		<defName>Bullet_55Boys_HE</defName>
+		<label>.55 Boys bullet (HE)</label>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+		<damageAmountBase>48</damageAmountBase>
+		<armorPenetrationSharp>19</armorPenetrationSharp>
+		<armorPenetrationBlunt>476.68</armorPenetrationBlunt>
+		<secondaryDamage>
+			<li>
+			<def>Bomb_Secondary</def>
+			<amount>29</amount>
+			</li>
+		</secondaryDamage>
+		</projectile>
+	</ThingDef>
+
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="Base55BoysBullet">
+		<defName>Bullet_55Boys_Sabot</defName>
+		<label>.55 Boys bullet (Sabot)</label>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<speed>266</speed>
+		<damageAmountBase>25</damageAmountBase>
+		<armorPenetrationSharp>66</armorPenetrationSharp>
+		<armorPenetrationBlunt>611.36</armorPenetrationBlunt>
 		</projectile>
 	</ThingDef>
   
@@ -111,7 +176,7 @@
 						<li>Steel</li>
 					</thingDefs>
 				</filter>
-				<count>36</count>
+				<count>56</count>
 			</li>
 		</ingredients>
 		<fixedIngredientFilter>
@@ -122,33 +187,121 @@
 		<products>
 			<Ammo_55Boys_FMJ>200</Ammo_55Boys_FMJ>
 		</products>
-    <workAmount>5750</workAmount>
+    <workAmount>5600</workAmount>
 	</RecipeDef>
 
 	<RecipeDef ParentName="AmmoRecipeBase">
-		<defName>MakeAmmo_55Boys_AP</defName>
-		<label>make .55 Boys (AP) cartridge x200</label>
-		<description>Craft 200 .55 Boys (AP) cartridges.</description>
-		<jobString>Making .55 Boys (AP) cartridges.</jobString>
+		<defName>MakeAmmo_55Boys_Incendiary</defName>
+		<label>make .55 Boys (AP-I) cartridge x200</label>
+		<description>Craft 200 .55 Boys (AP-I) cartridges.</description>
+		<jobString>Making .55 Boys (AP-I) cartridges.</jobString>
 		<ingredients>
-			<li>
-				<filter>
-					<thingDefs>
-						<li>Steel</li>
-					</thingDefs>
-				</filter>
-				<count>45</count>
-			</li>
-		</ingredients>
-		<fixedIngredientFilter>
+		<li>
+			<filter>
 			<thingDefs>
 				<li>Steel</li>
 			</thingDefs>
+			</filter>
+			<count>56</count>
+		</li>
+		<li>
+			<filter>
+			<thingDefs>
+				<li>Prometheum</li>
+			</thingDefs>
+			</filter>
+			<count>7</count>
+		</li>
+		</ingredients>
+		<fixedIngredientFilter>
+		<thingDefs>
+			<li>Steel</li>
+			<li>Prometheum</li>
+		</thingDefs>
 		</fixedIngredientFilter>
 		<products>
-			<Ammo_55Boys_AP>200</Ammo_55Boys_AP>
+		<Ammo_55Boys_Incendiary>200</Ammo_55Boys_Incendiary>
 		</products>
-    <workAmount>10000</workAmount>
+		<workAmount>8400</workAmount>
+	</RecipeDef>
+
+	<RecipeDef ParentName="AmmoRecipeBase">
+		<defName>MakeAmmo_55Boys_HE</defName>
+		<label>make .55 Boys (HE) cartridge x200</label>
+		<description>Craft 200 .55 Boys (HE) cartridges.</description>
+		<jobString>Making .55 Boys (HE) cartridges.</jobString>
+		<ingredients>
+		<li>
+			<filter>
+			<thingDefs>
+				<li>Steel</li>
+			</thingDefs>
+			</filter>
+			<count>56</count>
+		</li>
+		<li>
+			<filter>
+			<thingDefs>
+				<li>FSX</li>
+			</thingDefs>
+			</filter>
+			<count>13</count>
+		</li>
+		</ingredients>
+		<fixedIngredientFilter>
+		<thingDefs>
+			<li>Steel</li>
+			<li>FSX</li>
+		</thingDefs>
+		</fixedIngredientFilter>
+		<products>
+		<Ammo_55Boys_HE>200</Ammo_55Boys_HE>
+		</products>
+		<workAmount>10800</workAmount>
+	</RecipeDef>
+
+	<RecipeDef ParentName="AmmoRecipeBase">
+		<defName>MakeAmmo_55Boys_Sabot</defName>
+		<label>make .55 Boys (Sabot) cartridge x200</label>
+		<description>Craft 200 .55 Boys (Sabot) cartridges.</description>
+		<jobString>Making .55 Boys (Sabot) cartridges.</jobString>
+		<ingredients>
+		<li>
+			<filter>
+			<thingDefs>
+				<li>Steel</li>
+			</thingDefs>
+			</filter>
+			<count>30</count>
+		</li>
+		<li>
+			<filter>
+			<thingDefs>
+				<li>Uranium</li>
+			</thingDefs>
+			</filter>
+			<count>7</count>
+		</li>
+		<li>
+			<filter>
+			<thingDefs>
+				<li>Chemfuel</li>
+			</thingDefs>
+			</filter>
+			<count>7</count>
+		</li>	  
+		</ingredients>
+		<fixedIngredientFilter>
+		<thingDefs>
+			<li>Chemfuel</li>	  
+			<li>Steel</li>
+			<li>Uranium</li>
+		</thingDefs>
+		</fixedIngredientFilter>
+		<products>
+		<Ammo_55Boys_Sabot>200</Ammo_55Boys_Sabot>
+		</products>
+		<workAmount>7200</workAmount>
 	</RecipeDef>
 	
 </Defs>
