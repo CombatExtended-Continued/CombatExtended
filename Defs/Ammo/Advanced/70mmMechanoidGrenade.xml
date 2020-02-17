@@ -24,13 +24,13 @@
 	<ThingDef Class="CombatExtended.AmmoDef" Name="70mmMechanoidGrenadeBase" ParentName="AmmoBase" Abstract="True">
 		<description>Low velocity, large bore grenade fired from mechanoid grenade launchers.</description>
 		<statBases>
-			<Mass>2.8</Mass>
-			<Bulk>4</Bulk>
+			<Mass>1.58</Mass>
+			<Bulk>2.89</Bulk>
 		</statBases>
 		<thingCategories>
 			<li>Ammo70mmMechanoidGrenades</li>
 		</thingCategories>
-		<stackLimit>30</stackLimit>
+		<stackLimit>25</stackLimit>
 		<cookOffFlashScale>25</cookOffFlashScale>
 	</ThingDef>
 
@@ -41,14 +41,18 @@
 			<texPath>Things/Ammo/GrenadeLauncher/HE</texPath>
 			<graphicClass>Graphic_StackCount</graphicClass>
 		</graphicData>
+		<statBases>
+		<MarketValue>36.68</MarketValue>
+		</statBases>		
 		<ammoClass>GrenadeHE</ammoClass>
 		<comps>
 			<li Class="CombatExtended.CompProperties_ExplosiveCE">
-				<explosionDamage>50</explosionDamage>
+				<explosionDamage>132</explosionDamage>
 				<explosionDamageDef>Bomb</explosionDamageDef>
 				<explosionRadius>2.5</explosionRadius>
 				<fragments>
-					<Fragment_Shell>300</Fragment_Shell>
+					<Fragment_Large>3</Fragment_Large>
+					<Fragment_Small>76</Fragment_Small>
 				</fragments>
       	<applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
 			</li>
@@ -62,14 +66,17 @@
 			<texPath>Things/Ammo/GrenadeLauncher/EMP</texPath>
 			<graphicClass>Graphic_StackCount</graphicClass>
 		</graphicData>
+		<statBases>
+		<MarketValue>78.64</MarketValue>
+		</statBases>		
 		<ammoClass>GrenadeEMP</ammoClass>
 		<comps>
 			<li Class="CombatExtended.CompProperties_ExplosiveCE">
-				<explosionDamage>10</explosionDamage>
+				<explosionDamage>5</explosionDamage>
 				<explosionDamageDef>Bomb</explosionDamageDef>
-				<explosionRadius>1</explosionRadius>
+				<explosionRadius>2.5</explosionRadius>
 				<fragments>
-					<Fragment_Shell>20</Fragment_Shell>
+					<Fragment_Large>1</Fragment_Large>
 				</fragments>
 			</li>
 		</comps>
@@ -84,7 +91,7 @@
 			<graphicClass>Graphic_Single</graphicClass>
 		</graphicData>
 		<projectile Class="CombatExtended.ProjectilePropertiesCE">
-			<speed>50</speed>
+			<speed>20</speed>
 		</projectile>
 	</ThingDef>
 
@@ -93,7 +100,7 @@
 		<label>70mm mechanoid grenade (HE)</label>
 		<projectile Class="CombatExtended.ProjectilePropertiesCE">
 			<damageDef>Bomb</damageDef>
-			<damageAmountBase>175</damageAmountBase>
+			<damageAmountBase>132</damageAmountBase>
 			<explosionRadius>2.5</explosionRadius>
 			<soundExplode>MortarBomb_Explode</soundExplode>
       <applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
@@ -101,7 +108,8 @@
 		<comps>
 			<li Class="CombatExtended.CompProperties_ExplosiveCE">
 				<fragments>
-					<Fragment_Shell>300</Fragment_Shell>
+					<Fragment_Large>3</Fragment_Large>
+					<Fragment_Small>76</Fragment_Small>
 				</fragments>
 			</li>
 		</comps>
@@ -111,9 +119,9 @@
 		<defName>Bullet_70mmMechanoidGrenade_EMP</defName>
 		<label>70mm mechanoid grenade (EMP)</label>
 		<projectile Class="CombatExtended.ProjectilePropertiesCE">
-			<explosionRadius>3.0</explosionRadius>
+			<explosionRadius>5</explosionRadius>
 			<damageDef>EMP</damageDef>
-			<damageAmountBase>70</damageAmountBase>
+			<damageAmountBase>132</damageAmountBase>
 		</projectile>
 	</ThingDef>
 

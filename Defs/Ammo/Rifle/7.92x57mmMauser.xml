@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>
+<?xml version="1.0" encoding="utf-8" ?>
 <Defs>
 
 	<ThingCategoryDef>
@@ -17,6 +17,9 @@
 			<Ammo_792x57mmMauser_FMJ>Bullet_792x57mmMauser_FMJ</Ammo_792x57mmMauser_FMJ>
 			<Ammo_792x57mmMauser_AP>Bullet_792x57mmMauser_AP</Ammo_792x57mmMauser_AP>
 			<Ammo_792x57mmMauser_HP>Bullet_792x57mmMauser_HP</Ammo_792x57mmMauser_HP>
+			<Ammo_792x57mmMauser_Incendiary>Bullet_792x57mmMauser_Incendiary</Ammo_792x57mmMauser_Incendiary>
+			<Ammo_792x57mmMauser_HE>Bullet_792x57mmMauser_HE</Ammo_792x57mmMauser_HE>
+			<Ammo_792x57mmMauser_Sabot>Bullet_792x57mmMauser_Sabot</Ammo_792x57mmMauser_Sabot>			
 		</ammoTypes>
 	</CombatExtended.AmmoSetDef>
 
@@ -25,7 +28,7 @@
 	<ThingDef Class="CombatExtended.AmmoDef" Name="792x57mmMauserBase" ParentName="SmallAmmoBase" Abstract="True">
 		<description>Large rifle bullet used in machine guns, sniper rifles and the occasional assault rifle.</description>
 		<statBases>
-			<Mass>0.039</Mass>
+			<Mass>0.028</Mass>
 			<Bulk>0.03</Bulk>
 		</statBases>
 		<tradeTags>
@@ -45,7 +48,7 @@
 			<graphicClass>Graphic_StackCount</graphicClass>
 		</graphicData>
 		<statBases>
-			<MarketValue>0.16</MarketValue>
+			<MarketValue>0.12</MarketValue>
 		</statBases>
 		<ammoClass>FullMetalJacket</ammoClass>
 		<cookOffProjectile>Bullet_792x57mmMauser_FMJ</cookOffProjectile>
@@ -59,7 +62,7 @@
 			<graphicClass>Graphic_StackCount</graphicClass>
 		</graphicData>
 		<statBases>
-			<MarketValue>0.16</MarketValue>
+			<MarketValue>0.12</MarketValue>
 		</statBases>
 		<ammoClass>ArmorPiercing</ammoClass>
 		<cookOffProjectile>Bullet_792x57mmMauser_AP</cookOffProjectile>
@@ -73,10 +76,53 @@
 			<graphicClass>Graphic_StackCount</graphicClass>
 		</graphicData>
 		<statBases>
-			<MarketValue>0.16</MarketValue>
+			<MarketValue>0.12</MarketValue>
 		</statBases>
 		<ammoClass>HollowPoint</ammoClass>
 		<cookOffProjectile>Bullet_792x57mmMauser_HP</cookOffProjectile>
+	</ThingDef>
+
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="792x57mmMauserBase">
+		<defName>Ammo_792x57mmMauser_Incendiary</defName>
+		<label>7.92x57mm Mauser cartridge (AP-I)</label>
+		<graphicData>
+			<texPath>Things/Ammo/Rifle/Incendiary</texPath>
+			<graphicClass>Graphic_StackCount</graphicClass>
+		</graphicData>
+		<statBases>
+			<MarketValue>0.16</MarketValue>
+		</statBases>
+		<ammoClass>IncendiaryAP</ammoClass>
+		<cookOffProjectile>Bullet_792x57mmMauser_Incendiary</cookOffProjectile>
+	</ThingDef>
+
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="792x57mmMauserBase">
+		<defName>Ammo_792x57mmMauser_HE</defName>
+		<label>7.92x57mm Mauser cartridge (HE)</label>
+		<graphicData>
+			<texPath>Things/Ammo/Rifle/HE</texPath>
+			<graphicClass>Graphic_StackCount</graphicClass>
+		</graphicData>
+		<statBases>
+			<MarketValue>0.27</MarketValue>
+		</statBases>
+		<ammoClass>ExplosiveAP</ammoClass>
+		<cookOffProjectile>Bullet_792x57mmMauser_HE</cookOffProjectile>
+	</ThingDef>
+
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="792x57mmMauserBase">
+		<defName>Ammo_792x57mmMauser_Sabot</defName>
+		<label>7.92x57mm Mauser cartridge (Sabot)</label>
+		<graphicData>
+			<texPath>Things/Ammo/Rifle/Sabot</texPath>
+			<graphicClass>Graphic_StackCount</graphicClass>
+		</graphicData>
+		<statBases>
+			<MarketValue>0.15</MarketValue>
+			<Mass>0.023</Mass>
+		</statBases>
+		<ammoClass>Sabot</ammoClass>
+		<cookOffProjectile>Bullet_792x57mmMauser_Sabot</cookOffProjectile>
 	</ThingDef>
 
 	<!-- ================== Projectiles ================== -->
@@ -95,31 +141,74 @@
 
 	<ThingDef Class="CombatExtended.AmmoDef" ParentName="Base792x57mmMauserBullet">
 		<defName>Bullet_792x57mmMauser_FMJ</defName>
-		<label>7.62mm Mauser bullet (FMJ)</label>
+		<label>7.92mm Mauser bullet (FMJ)</label>
 		<projectile Class="CombatExtended.ProjectilePropertiesCE">
 			<damageAmountBase>21</damageAmountBase>
 			<armorPenetrationSharp>6</armorPenetrationSharp>
-			<armorPenetrationBlunt>78.680</armorPenetrationBlunt>
+			<armorPenetrationBlunt>78.68</armorPenetrationBlunt>
 		</projectile>
 	</ThingDef>
 
 	<ThingDef Class="CombatExtended.AmmoDef" ParentName="Base792x57mmMauserBullet">
 		<defName>Bullet_792x57mmMauser_AP</defName>
-		<label>7.62mm Mauser bullet (AP)</label>
+		<label>7.92mm Mauser bullet (AP)</label>
 		<projectile Class="CombatExtended.ProjectilePropertiesCE">
 			<damageAmountBase>13</damageAmountBase>
 			<armorPenetrationSharp>12</armorPenetrationSharp>
-			<armorPenetrationBlunt>78.680</armorPenetrationBlunt>
+			<armorPenetrationBlunt>78.68</armorPenetrationBlunt>
 		</projectile>
 	</ThingDef>
 
 	<ThingDef Class="CombatExtended.AmmoDef" ParentName="Base792x57mmMauserBullet">
 		<defName>Bullet_792x57mmMauser_HP</defName>
-		<label>7.62mm Mauser bullet (HP)</label>
+		<label>7.92mm Mauser bullet (HP)</label>
 		<projectile Class="CombatExtended.ProjectilePropertiesCE">
 			<damageAmountBase>27</damageAmountBase>
 			<armorPenetrationSharp>3</armorPenetrationSharp>
-			<armorPenetrationBlunt>78.680</armorPenetrationBlunt>
+			<armorPenetrationBlunt>78.68</armorPenetrationBlunt>
+		</projectile>
+	</ThingDef>
+
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="Base792x57mmMauserBullet">
+		<defName>Bullet_792x57mmMauser_Incendiary</defName>
+		<label>7.92x57mm Mauser bullet (AP-I)</label>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageAmountBase>13</damageAmountBase>
+			<armorPenetrationSharp>12</armorPenetrationSharp>
+			<armorPenetrationBlunt>78.68</armorPenetrationBlunt>
+			<secondaryDamage>
+				<li>
+					<def>Flame_Secondary</def>
+					<amount>8</amount>
+				</li>
+			</secondaryDamage>
+		</projectile>
+	</ThingDef>
+
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="Base792x57mmMauserBullet">
+		<defName>Bullet_792x57mmMauser_HE</defName>
+		<label>7.92x57mm Mauser bullet (HE)</label>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageAmountBase>21</damageAmountBase>
+			<armorPenetrationSharp>6</armorPenetrationSharp>
+			<armorPenetrationBlunt>78.68</armorPenetrationBlunt>
+			<secondaryDamage>
+				<li>
+					<def>Bomb_Secondary</def>
+					<amount>13</amount>
+				</li>
+			</secondaryDamage>
+		</projectile>
+	</ThingDef>
+
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="Base792x57mmMauserBullet">
+		<defName>Bullet_792x57mmMauser_Sabot</defName>
+		<label>7.92x57mm Mauser bullet (Sabot)</label>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageAmountBase>13</damageAmountBase>
+			<armorPenetrationSharp>21</armorPenetrationSharp>
+			<armorPenetrationBlunt>100.92</armorPenetrationBlunt>
+			<speed>246</speed>
 		</projectile>
 	</ThingDef>
 
@@ -137,7 +226,7 @@
 						<li>Steel</li>
 					</thingDefs>
 				</filter>
-				<count>40</count>
+				<count>30</count>
 			</li>
 		</ingredients>
 		<fixedIngredientFilter>
@@ -148,7 +237,7 @@
 		<products>
 			<Ammo_792x57mmMauser_FMJ>500</Ammo_792x57mmMauser_FMJ>
 		</products>
-		<workAmount>4000</workAmount>
+		<workAmount>3000</workAmount>		
 	</RecipeDef>
 
 	<RecipeDef ParentName="AmmoRecipeBase">
@@ -163,7 +252,7 @@
 						<li>Steel</li>
 					</thingDefs>
 				</filter>
-				<count>40</count>
+				<count>30</count>
 			</li>
 		</ingredients>
 		<fixedIngredientFilter>
@@ -174,7 +263,7 @@
 		<products>
 			<Ammo_792x57mmMauser_AP>500</Ammo_792x57mmMauser_AP>
 		</products>
-		<workAmount>4000</workAmount>
+		<workAmount>3000</workAmount>		
 	</RecipeDef>
 
 	<RecipeDef ParentName="AmmoRecipeBase">
@@ -189,7 +278,7 @@
 						<li>Steel</li>
 					</thingDefs>
 				</filter>
-				<count>40</count>
+				<count>30</count>
 			</li>
 		</ingredients>
 		<fixedIngredientFilter>
@@ -200,7 +289,121 @@
 		<products>
 			<Ammo_792x57mmMauser_HP>500</Ammo_792x57mmMauser_HP>
 		</products>
-		<workAmount>4000</workAmount>
+		<workAmount>3000</workAmount>		
+	</RecipeDef>
+
+	<RecipeDef ParentName="AmmoRecipeBase">
+		<defName>MakeAmmo_792x57mmMauser_Incendiary</defName>
+		<label>make 7.92x57mm Mauser (AP-I) cartridge x500</label>
+		<description>Craft 500 7.92x57mm Mauser (AP-I) cartridges.</description>
+		<jobString>Making 7.92x57mm Mauser (AP-I) cartridges.</jobString>
+		<ingredients>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>Steel</li>
+					</thingDefs>
+				</filter>
+				<count>30</count>
+			</li>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>Prometheum</li>
+					</thingDefs>
+				</filter>
+				<count>3</count>
+			</li>
+		</ingredients>
+		<fixedIngredientFilter>
+			<thingDefs>
+				<li>Steel</li>
+				<li>Prometheum</li>
+			</thingDefs>
+		</fixedIngredientFilter>
+		<products>
+			<Ammo_792x57mmMauser_Incendiary>500</Ammo_792x57mmMauser_Incendiary>
+		</products>
+		<workAmount>4200</workAmount>
+	</RecipeDef>
+
+	<RecipeDef ParentName="AmmoRecipeBase">
+		<defName>MakeAmmo_792x57mmMauser_HE</defName>
+		<label>make 7.92x57mm Mauser (HE) cartridge x500</label>
+		<description>Craft 500 7.92x57mm Mauser (HE) cartridges.</description>
+		<jobString>Making 7.92x57mm Mauser (HE) cartridges.</jobString>
+		<ingredients>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>Steel</li>
+					</thingDefs>
+				</filter>
+				<count>30</count>
+			</li>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>FSX</li>
+					</thingDefs>
+				</filter>
+				<count>7</count>
+			</li>
+		</ingredients>
+		<fixedIngredientFilter>
+			<thingDefs>
+				<li>Steel</li>
+				<li>FSX</li>
+			</thingDefs>
+		</fixedIngredientFilter>
+		<products>
+			<Ammo_792x57mmMauser_HE>500</Ammo_792x57mmMauser_HE>
+		</products>
+		<workAmount>5800</workAmount>
+	</RecipeDef>
+
+	<RecipeDef ParentName="AmmoRecipeBase">
+		<defName>MakeAmmo_792x57mmMauser_Sabot</defName>
+		<label>make 7.92x57mm Mauser (Sabot) cartridge x500</label>
+		<description>Craft 500 7.92x57mm Mauser (Sabot) cartridges.</description>
+		<jobString>Making 7.92x57mm Mauser (Sabot) cartridges.</jobString>
+		<ingredients>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>Steel</li>
+					</thingDefs>
+				</filter>
+				<count>18</count>
+			</li>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>Uranium</li>
+					</thingDefs>
+				</filter>
+				<count>4</count>
+			</li>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>Chemfuel</li>
+					</thingDefs>
+				</filter>
+				<count>4</count>
+			</li>		  
+		</ingredients>
+		<fixedIngredientFilter>
+			<thingDefs>
+				<li>Steel</li>
+				<li>Uranium</li>
+				<li>Chemfuel</li>		
+			</thingDefs>
+		</fixedIngredientFilter>
+		<products>
+			<Ammo_792x57mmMauser_Sabot>500</Ammo_792x57mmMauser_Sabot>
+		</products>
+		<workAmount>4200</workAmount>
 	</RecipeDef>
 
 </Defs>

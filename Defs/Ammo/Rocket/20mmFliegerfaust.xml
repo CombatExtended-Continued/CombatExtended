@@ -32,7 +32,7 @@
 		<thingCategories>
 			<li>Ammo20mmFliegerfaust</li>
 		</thingCategories>
-		<stackLimit>27</stackLimit>
+		<stackLimit>4000</stackLimit>
 		<cookOffFlashScale>25</cookOffFlashScale>
 		<cookOffSound>MortarBomb_Explode</cookOffSound>
 	</ThingDef>
@@ -45,22 +45,21 @@
 			<graphicClass>Graphic_StackCount</graphicClass>
 		</graphicData>
 		<statBases>
-			<MarketValue>16.04</MarketValue>
-			<Mass>0.09</Mass>
-			<Bulk>0.25</Bulk>
+			<MarketValue>14.83</MarketValue>
+			<Mass>0.12</Mass>
+			<Bulk>0.16</Bulk>
 		</statBases>
 		<ammoClass>GrenadeHE</ammoClass>
 		<comps>
 			<li Class="CombatExtended.CompProperties_ExplosiveCE">
-				<explosionDamage>12</explosionDamage>
+				<explosionDamage>16</explosionDamage>
 				<explosionDamageDef>Bomb</explosionDamageDef>
 				<explosionRadius>0.5</explosionRadius>
 				<fragments>
 					<Fragment_Large>1</Fragment_Large>
-					<Fragment_Small>2</Fragment_Small>
+					<Fragment_Small>3</Fragment_Small>
 				</fragments>
 				<soundExplode>MortarBomb_Explode</soundExplode>
-				<applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
 			</li>
 		</comps>
 	</ThingDef>
@@ -87,28 +86,27 @@
 		</graphicData>
 		<projectile Class="CombatExtended.ProjectilePropertiesCE">
 			<damageDef>Bomb</damageDef>
-			<damageAmountBase>12</damageAmountBase>
+			<damageAmountBase>16</damageAmountBase>
 			<explosionRadius>0.5</explosionRadius>
-			<applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
 		</projectile>
 		<comps>
 			<li Class="CombatExtended.CompProperties_ExplosiveCE">
 				<fragments>
 					<Fragment_Large>1</Fragment_Large>
-					<Fragment_Small>2</Fragment_Small>
+					<Fragment_Small>3</Fragment_Small>
 				</fragments>
 			</li>
-		</comps>		
+		</comps>
 	</ThingDef>
 
 	<!-- ==================== Recipes ========================== -->
 
 	<RecipeDef ParentName="AmmoRecipeBase">
 		<defName>MakeAmmo_20mmFliegerfaust_HE</defName>
-		<label>make 20mmFliegerfaust HE rockets x9</label>
-		<description>Craft 9 20mmFliegerfaust HE rockets.</description>
+		<label>make 20mmFliegerfaust HE rockets x10</label>
+		<description>Craft 10 20mmFliegerfaust HE rockets.</description>
 		<jobString>Making 20mmFliegerfaust HE rockets.</jobString>
-		<workAmount>3000</workAmount>
+		<workAmount>3200</workAmount>
 		<ingredients>
 			<li>
 				<filter>
@@ -116,7 +114,7 @@
 						<li>Steel</li>
 					</thingDefs>
 				</filter>
-				<count>2</count>
+				<count>4</count>
 			</li>
 			<li>
 				<filter>
@@ -143,7 +141,7 @@
 			</thingDefs>
 		</fixedIngredientFilter>
 		<products>
-			<Ammo_20mmFliegerfaust_HE>9</Ammo_20mmFliegerfaust_HE>
+			<Ammo_20mmFliegerfaust_HE>10</Ammo_20mmFliegerfaust_HE>
 		</products>
 	</RecipeDef>
 

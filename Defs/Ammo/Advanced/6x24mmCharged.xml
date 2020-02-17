@@ -35,6 +35,7 @@
 		<thingCategories>
 			<li>Ammo6x24mmCharged</li>
 		</thingCategories>
+		<stackLimit>5000</stackLimit>		
 	</ThingDef>
 
 	<ThingDef Class="CombatExtended.AmmoDef" ParentName="6x24mmChargedBase">
@@ -45,7 +46,7 @@
 			<graphicClass>Graphic_StackCount</graphicClass>
 		</graphicData>
 		<statBases>
-			<MarketValue>0.88</MarketValue>
+			<MarketValue>0.7</MarketValue>
 		</statBases>
 		<ammoClass>Charged</ammoClass>
 	</ThingDef>
@@ -58,7 +59,7 @@
 			<graphicClass>Graphic_StackCount</graphicClass>
 		</graphicData>
 		<statBases>
-			<MarketValue>0.88</MarketValue>
+			<MarketValue>0.7</MarketValue>
 		</statBases>
 		<ammoClass>ChargedAP</ammoClass>
 	</ThingDef>
@@ -71,7 +72,7 @@
 			<graphicClass>Graphic_StackCount</graphicClass>
 		</graphicData>
 		<statBases>
-			<MarketValue>0.88</MarketValue>
+			<MarketValue>0.7</MarketValue>
 		</statBases>
 		<ammoClass>Ionized</ammoClass>
 		<generateAllowChance>0</generateAllowChance>
@@ -142,134 +143,134 @@
 
 	<RecipeDef ParentName="ChargeAmmoRecipeBase">
 		<defName>MakeAmmo_6x24mmCharged</defName>
-		<label>make 6x24mm Charged cartridge x100</label>
-		<description>Craft 100 6x24mm Charged cartridges.</description>
+		<label>make 6x24mm Charged cartridge x500</label>
+		<description>Craft 500 6x24mm Charged cartridges.</description>
 		<jobString>Making 6x24mm Charged cartridges.</jobString>
-		<workAmount>2200</workAmount>
 		<ingredients>
-			<li>
-				<filter>
-					<thingDefs>
-						<li>Steel</li>
-					</thingDefs>
-				</filter>
-				<count>2</count>
-			</li>
 			<li>
 				<filter>
 					<thingDefs>
 						<li>Plasteel</li>
 					</thingDefs>
 				</filter>
-				<count>2</count>
+				<count>8</count>
 			</li>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>Steel</li>
+					</thingDefs>
+				</filter>
+				<count>6</count>
+			</li>	  
 			<li>
 				<filter>
 					<thingDefs>
 						<li>ComponentIndustrial</li>
 					</thingDefs>
 				</filter>
-				<count>2</count>
+				<count>8</count>
 			</li>
 		</ingredients>
 		<fixedIngredientFilter>
 			<thingDefs>
-				<li>Steel</li>
 				<li>Plasteel</li>
+				<li>Steel</li>		
 				<li>ComponentIndustrial</li>
 			</thingDefs>
 		</fixedIngredientFilter>
 		<products>
-			<Ammo_6x24mmCharged>100</Ammo_6x24mmCharged>
+			<Ammo_6x24mmCharged>500</Ammo_6x24mmCharged>
 		</products>
+		<workAmount>8600</workAmount>		
 	</RecipeDef>
 
 	<RecipeDef ParentName="ChargeAmmoRecipeBase">
 		<defName>MakeAmmo_6x24mmCharged_AP</defName>
-		<label>make 6x24mm Charged (Conc.) cartridge x100</label>
-		<description>Craft 100 6x24mm Charged (Conc.) cartridges.</description>
+		<label>make 6x24mm Charged (Conc.) cartridge x500</label>
+		<description>Craft 500 6x24mm Charged (Conc.) cartridges.</description>
 		<jobString>Making 6x24mm Charged (Conc.) cartridges.</jobString>
-		<workAmount>2200</workAmount>
 		<ingredients>
-			<li>
-				<filter>
-					<thingDefs>
-						<li>Steel</li>
-					</thingDefs>
-				</filter>
-				<count>2</count>
-			</li>
 			<li>
 				<filter>
 					<thingDefs>
 						<li>Plasteel</li>
 					</thingDefs>
 				</filter>
-				<count>2</count>
+				<count>8</count>
 			</li>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>Steel</li>
+					</thingDefs>
+				</filter>
+				<count>6</count>
+			</li>	  
 			<li>
 				<filter>
 					<thingDefs>
 						<li>ComponentIndustrial</li>
 					</thingDefs>
 				</filter>
-				<count>2</count>
+				<count>8</count>
 			</li>
 		</ingredients>
 		<fixedIngredientFilter>
 			<thingDefs>
-				<li>Steel</li>
 				<li>Plasteel</li>
+				<li>Steel</li>		
 				<li>ComponentIndustrial</li>
 			</thingDefs>
 		</fixedIngredientFilter>
 		<products>
-			<Ammo_6x24mmCharged_AP>100</Ammo_6x24mmCharged_AP>
+			<Ammo_6x24mmCharged_AP>500</Ammo_6x24mmCharged_AP>
 		</products>
+		<workAmount>8600</workAmount>		
 	</RecipeDef>
 
 	<RecipeDef ParentName="ChargeAmmoRecipeBase">
 		<defName>MakeAmmo_6x24mmCharged_Ion</defName>
-		<label>make 6x24mm Charged (Ion) cartridge x100</label>
-		<description>Craft 100 6x24mm Charged (Ion) cartridges.</description>
+		<label>make 6x24mm Charged (Ion) cartridge x500</label>
+		<description>Craft 500 6x24mm Charged (Ion) cartridges.</description>
 		<jobString>Making 6x24mm Charged (Ion) cartridges.</jobString>
-		<workAmount>2200</workAmount>
 		<ingredients>
-			<li>
-				<filter>
-					<thingDefs>
-						<li>Steel</li>
-					</thingDefs>
-				</filter>
-				<count>2</count>
-			</li>
 			<li>
 				<filter>
 					<thingDefs>
 						<li>Plasteel</li>
 					</thingDefs>
 				</filter>
-				<count>2</count>
+				<count>8</count>
 			</li>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>Steel</li>
+					</thingDefs>
+				</filter>
+				<count>6</count>
+			</li>	  
 			<li>
 				<filter>
 					<thingDefs>
 						<li>ComponentIndustrial</li>
 					</thingDefs>
 				</filter>
-				<count>2</count>
+				<count>8</count>
 			</li>
 		</ingredients>
 		<fixedIngredientFilter>
 			<thingDefs>
-				<li>Steel</li>
 				<li>Plasteel</li>
+				<li>Steel</li>		
 				<li>ComponentIndustrial</li>
 			</thingDefs>
 		</fixedIngredientFilter>
 		<products>
-			<Ammo_6x24mmCharged_Ion>100</Ammo_6x24mmCharged_Ion>
+			<Ammo_6x24mmCharged_Ion>500</Ammo_6x24mmCharged_Ion>
 		</products>
+		<workAmount>8600</workAmount>	
 	</RecipeDef>
 
 </Defs>

@@ -35,7 +35,7 @@
 		<thingCategories>
 			<li>Ammo30x64mmFuelCell</li>
 		</thingCategories>
-		<stackLimit>75</stackLimit>
+		<stackLimit>3000</stackLimit>
 	</ThingDef>
 
 	<ThingDef Class="CombatExtended.AmmoDef" ParentName="30x64mmFuelBase">
@@ -99,6 +99,8 @@
 		<projectile Class="CombatExtended.ProjectilePropertiesCE">
 			<damageDef>PrometheumFlame</damageDef>
 			<damageAmountBase>0</damageAmountBase>
+			<armorPenetrationSharp>0</armorPenetrationSharp>
+			<armorPenetrationBlunt>0</armorPenetrationBlunt>
 			<explosionRadius>6.5</explosionRadius>
 			<preExplosionSpawnThingDef>FilthPrometheum</preExplosionSpawnThingDef>
 			<preExplosionSpawnChance>0.15</preExplosionSpawnChance>
@@ -114,6 +116,8 @@
 			<explosionRadius>2.0</explosionRadius>
 			<damageDef>Thermobaric</damageDef>
 			<damageAmountBase>48</damageAmountBase>
+			<armorPenetrationSharp>0</armorPenetrationSharp>
+			<armorPenetrationBlunt>0</armorPenetrationBlunt>
 			<soundExplode>MortarBomb_Explode</soundExplode>
 			<applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
 			<ai_IsIncendiary>true</ai_IsIncendiary>
@@ -127,6 +131,8 @@
 		<projectile Class="CombatExtended.ProjectilePropertiesCE">
 			<damageDef>Extinguish</damageDef>
 			<explosionRadius>6.5</explosionRadius>
+			<armorPenetrationSharp>0</armorPenetrationSharp>
+			<armorPenetrationBlunt>0</armorPenetrationBlunt>
 			<postExplosionSpawnThingDef>Filth_FireFoam</postExplosionSpawnThingDef>
 			<preExplosionSpawnChance>1</preExplosionSpawnChance>
 		</projectile>
@@ -139,7 +145,6 @@
 		<label>make 30x64mm fuel cell (Incendiary) x50</label>
 		<description>Craft 50 30x64mm incendiary fuel cells.</description>
 		<jobString>Making incendiary fuel cells.</jobString>
-		<workAmount>7600</workAmount>
 		<ingredients>
 			<li>
 				<filter>
@@ -148,14 +153,6 @@
 					</thingDefs>
 				</filter>
 				<count>8</count>
-			</li>
-			<li>
-				<filter>
-					<thingDefs>
-						<li>ComponentIndustrial</li>
-					</thingDefs>
-				</filter>
-				<count>2</count>
 			</li>
 			<li>
 				<filter>
@@ -165,17 +162,26 @@
 				</filter>
 				<count>14</count>
 			</li>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>ComponentIndustrial</li>
+					</thingDefs>
+				</filter>
+				<count>2</count>
+			</li>	  
 		</ingredients>
 		<fixedIngredientFilter>
 			<thingDefs>
+				<li>ComponentIndustrial</li>	  
 				<li>Steel</li>
-				<li>ComponentIndustrial</li>
 				<li>Prometheum</li>
 			</thingDefs>
 		</fixedIngredientFilter>
 		<products>
 			<Ammo_30x64mmFuel_Incendiary>50</Ammo_30x64mmFuel_Incendiary>
 		</products>
+		<workAmount>7600</workAmount>		
 	</RecipeDef>
 
 	<RecipeDef ParentName="AmmoRecipeBase">
@@ -183,7 +189,6 @@
 		<label>make 30x64mm fuel cell (Thermobaric) x50</label>
 		<description>Craft 50 30x64mm thermobaric fuel cells.</description>
 		<jobString>Making thermobaric fuel cells.</jobString>
-		<workAmount>10400</workAmount>
 		<ingredients>
 			<li>
 				<filter>
@@ -192,14 +197,6 @@
 					</thingDefs>
 				</filter>
 				<count>8</count>
-			</li>
-			<li>
-				<filter>
-					<thingDefs>
-						<li>ComponentIndustrial</li>
-					</thingDefs>
-				</filter>
-				<count>2</count>
 			</li>
 			<li>
 				<filter>
@@ -209,17 +206,25 @@
 				</filter>
 				<count>21</count>
 			</li>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>ComponentIndustrial</li>
+					</thingDefs>
+				</filter>
+				<count>2</count>
+			</li>		  
 		</ingredients>
 		<fixedIngredientFilter>
 			<thingDefs>
 				<li>Steel</li>
-				<li>ComponentIndustrial</li>
 				<li>FSX</li>
 			</thingDefs>
 		</fixedIngredientFilter>
 		<products>
 			<Ammo_30x64mmFuel_Thermobaric>50</Ammo_30x64mmFuel_Thermobaric>
 		</products>
+		<workAmount>10400</workAmount>		
 	</RecipeDef>
 
 	<RecipeDef ParentName="AmmoRecipeBase">
@@ -227,7 +232,6 @@
 		<label>make 30x64mm fuel cell (Foam) x50</label>
 		<description>Craft 50 30x64mm foam fuel cells.</description>
 		<jobString>Making foam fuel cells.</jobString>
-		<workAmount>11400</workAmount>
 		<ingredients>
 			<li>
 				<filter>
@@ -239,25 +243,25 @@
 			</li>
 			<li>
 				<filter>
-					<thingDefs>
-						<li>ComponentIndustrial</li>
-					</thingDefs>
-				</filter>
-				<count>2</count>
-			</li>
-			<li>
-				<filter>
 					<categories>
 						<li>MeatRaw</li>
 					</categories>
 				</filter>
 				<count>47</count>
 			</li>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>ComponentIndustrial</li>
+					</thingDefs>
+				</filter>
+				<count>2</count>
+			</li>		  
 		</ingredients>
 		<fixedIngredientFilter>
 			<thingDefs>
 				<li>Steel</li>
-				<li>ComponentIndustrial</li>
+				<li>ComponentIndustrial</li>		
 			</thingDefs>
 			<categories>
 				<li>MeatRaw</li>
@@ -266,6 +270,7 @@
 		<products>
 			<Ammo_30x64mmFuel_Foam>50</Ammo_30x64mmFuel_Foam>
 		</products>
+		<workAmount>11400</workAmount>	
 	</RecipeDef>
 
 </Defs>

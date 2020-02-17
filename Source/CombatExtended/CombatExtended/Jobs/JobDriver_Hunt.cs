@@ -70,20 +70,32 @@ namespace CombatExtended
             var startExecuteDowned = Toils_Goto.GotoThing(VictimInd, PathEndMode.Touch).JumpIfDespawnedOrNull(VictimInd, startCollectCorpse);
             
             yield return Toils_Jump.JumpIf(startExecuteDowned, () => Victim.Downed && Victim.RaceProps.executionRange <= 2);
-            
-            yield return Toils_Combat.CastVerb(VictimInd, false).JumpIfDespawnedOrNull(VictimInd, startCollectCorpse)
-                .FailOn(() =>
+
+            if (pawn?.equipment?.PrimaryEq?.PrimaryVerb?.IsMeleeAttack ?? false)
+            {
+                yield return Toils_Combat.FollowAndMeleeAttack(TargetIndex.A, delegate
                 {
-                    if (Find.TickManager.TicksGame <= jobStartTick + MaxHuntTicks)
+                    pawn.meleeVerbs.TryMeleeAttack(Victim);
+                }).JumpIfDespawnedOrNull(VictimInd, startCollectCorpse);
+            }
+            else
+            {
+                yield return Toils_Combat.CastVerb(VictimInd, false).JumpIfDespawnedOrNull(VictimInd, startCollectCorpse)
+                    .FailOn(() =>
                     {
-                        if (comp == null || comp.HasAndUsesAmmoOrMagazine)
+                        if (Find.TickManager.TicksGame <= jobStartTick + MaxHuntTicks)
                         {
-                            return false;
+                            if (comp == null || comp.HasAndUsesAmmoOrMagazine)
+                            {
+                                return false;
+                            }
                         }
-                    }
-                    return true;
-                });
-            
+                        return true;
+                    });
+
+                yield return Toils_Jump.Jump(moveIfCannotHit);
+            }
+
             yield return Toils_Jump.Jump(moveIfCannotHit);
 
             // Execute downed animal - adapted from JobDriver_Slaughter

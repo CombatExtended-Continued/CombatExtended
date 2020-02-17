@@ -17,6 +17,9 @@
 			<Ammo_3006Springfield_FMJ>Bullet_3006Springfield_FMJ</Ammo_3006Springfield_FMJ>
 			<Ammo_3006Springfield_AP>Bullet_3006Springfield_AP</Ammo_3006Springfield_AP>
 			<Ammo_3006Springfield_HP>Bullet_3006Springfield_HP</Ammo_3006Springfield_HP>
+			<Ammo_3006Springfield_Incendiary>Bullet_3006Springfield_Incendiary</Ammo_3006Springfield_Incendiary>
+			<Ammo_3006Springfield_HE>Bullet_3006Springfield_HE</Ammo_3006Springfield_HE>
+			<Ammo_3006Springfield_Sabot>Bullet_3006Springfield_Sabot</Ammo_3006Springfield_Sabot>			
 		</ammoTypes>
 	</CombatExtended.AmmoSetDef>
 
@@ -39,7 +42,7 @@
 
 	<ThingDef Class="CombatExtended.AmmoDef" ParentName="3006SpringfieldBase">
 		<defName>Ammo_3006Springfield_FMJ</defName>
-		<label>.30-06 Springfield Cartridge (FMJ)</label>
+		<label>.30-06 Springfield cartridge (FMJ)</label>
 		<graphicData>
 			<texPath>Things/Ammo/Rifle/FMJ</texPath>
 			<graphicClass>Graphic_StackCount</graphicClass>
@@ -53,7 +56,7 @@
 
 	<ThingDef Class="CombatExtended.AmmoDef" ParentName="3006SpringfieldBase">
 		<defName>Ammo_3006Springfield_AP</defName>
-		<label>.30-06 Springfield Cartridge (AP)</label>
+		<label>.30-06 Springfield cartridge (AP)</label>
 		<graphicData>
 			<texPath>Things/Ammo/Rifle/AP</texPath>
 			<graphicClass>Graphic_StackCount</graphicClass>
@@ -67,7 +70,7 @@
 
 	<ThingDef Class="CombatExtended.AmmoDef" ParentName="3006SpringfieldBase">
 		<defName>Ammo_3006Springfield_HP</defName>
-		<label>.30-06 Springfield Cartridge (HP)</label>
+		<label>.30-06 Springfield cartridge (HP)</label>
 		<graphicData>
 			<texPath>Things/Ammo/Rifle/HP</texPath>
 			<graphicClass>Graphic_StackCount</graphicClass>
@@ -77,6 +80,49 @@
 		</statBases>
 		<ammoClass>HollowPoint</ammoClass>
 		<cookOffProjectile>Bullet_3006Springfield_HP</cookOffProjectile>
+	</ThingDef>
+
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="3006SpringfieldBase">
+		<defName>Ammo_3006Springfield_Incendiary</defName>
+		<label>.30-06 Springfield cartridge (AP-I)</label>
+		<graphicData>
+			<texPath>Things/Ammo/Rifle/Incendiary</texPath>
+			<graphicClass>Graphic_StackCount</graphicClass>
+		</graphicData>
+		<statBases>
+			<MarketValue>0.15</MarketValue>
+		</statBases>
+		<ammoClass>IncendiaryAP</ammoClass>
+		<cookOffProjectile>Bullet_3006Springfield_Incendiary</cookOffProjectile>
+	</ThingDef>
+
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="3006SpringfieldBase">
+		<defName>Ammo_3006Springfield_HE</defName>
+		<label>.30-06 Springfield cartridge (HE)</label>
+		<graphicData>
+			<texPath>Things/Ammo/Rifle/HE</texPath>
+			<graphicClass>Graphic_StackCount</graphicClass>
+		</graphicData>
+		<statBases>
+			<MarketValue>0.22</MarketValue>
+		</statBases>
+		<ammoClass>ExplosiveAP</ammoClass>
+		<cookOffProjectile>Bullet_3006Springfield_HE</cookOffProjectile>
+	</ThingDef>
+
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="3006SpringfieldBase">
+		<defName>Ammo_3006Springfield_Sabot</defName>
+		<label>.30-06 Springfield cartridge (Sabot)</label>
+		<graphicData>
+			<texPath>Things/Ammo/Rifle/Sabot</texPath>
+			<graphicClass>Graphic_StackCount</graphicClass>
+		</graphicData>
+		<statBases>
+			<MarketValue>0.13</MarketValue>
+			<Mass>0.023</Mass>
+		</statBases>
+		<ammoClass>Sabot</ammoClass>
+		<cookOffProjectile>Bullet_3006Springfield_Sabot</cookOffProjectile>
 	</ThingDef>
 
 	<!-- ================== Projectiles ================== -->
@@ -95,7 +141,7 @@
 
 	<ThingDef Class="CombatExtended.AmmoDef" ParentName="Base3006SpringfieldBullet">
 		<defName>Bullet_3006Springfield_FMJ</defName>
-		<label>.30-06 Springfield Cartridge (FMJ)</label>
+		<label>.30-06 Springfield cartridge (FMJ)</label>
 		<projectile Class="CombatExtended.ProjectilePropertiesCE">
 			<damageAmountBase>21</damageAmountBase>
 			<armorPenetrationSharp>8</armorPenetrationSharp>
@@ -105,7 +151,7 @@
 
 	<ThingDef Class="CombatExtended.AmmoDef" ParentName="Base3006SpringfieldBullet">
 		<defName>Bullet_3006Springfield_AP</defName>
-		<label>.30-06 Springfield Cartridge (AP)</label>
+		<label>.30-06 Springfield cartridge (AP)</label>
 		<projectile Class="CombatExtended.ProjectilePropertiesCE">
 			<damageAmountBase>13</damageAmountBase>
 			<armorPenetrationSharp>16</armorPenetrationSharp>
@@ -115,11 +161,54 @@
 
 	<ThingDef Class="CombatExtended.AmmoDef" ParentName="Base3006SpringfieldBullet">
 		<defName>Bullet_3006Springfield_HP</defName>
-		<label>.30-06 Springfield Cartridge (HP)</label>
+		<label>.30-06 Springfield cartridge (HP)</label>
 		<projectile Class="CombatExtended.ProjectilePropertiesCE">
 			<damageAmountBase>26</damageAmountBase>
 			<armorPenetrationSharp>4</armorPenetrationSharp>
 			<armorPenetrationBlunt>79.22</armorPenetrationBlunt>
+		</projectile>
+	</ThingDef>
+
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="Base3006SpringfieldBullet">
+		<defName>Bullet_3006Springfield_Incendiary</defName>
+		<label>.30-06 Springfield bullet (AP-I)</label>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageAmountBase>13</damageAmountBase>
+			<armorPenetrationSharp>16</armorPenetrationSharp>
+			<armorPenetrationBlunt>79.22</armorPenetrationBlunt>
+			<secondaryDamage>
+				<li>
+					<def>Flame_Secondary</def>
+					<amount>8</amount>
+				</li>
+			</secondaryDamage>
+		</projectile>
+	</ThingDef>
+
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="Base3006SpringfieldBullet">
+		<defName>Bullet_3006Springfield_HE</defName>
+		<label>.30-06 Springfield bullet (HE)</label>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageAmountBase>21</damageAmountBase>
+			<armorPenetrationSharp>8</armorPenetrationSharp>
+			<armorPenetrationBlunt>79.22</armorPenetrationBlunt>
+			<secondaryDamage>
+				<li>
+					<def>Bomb_Secondary</def>
+					<amount>12</amount>
+				</li>
+			</secondaryDamage>
+		</projectile>
+	</ThingDef>
+
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="Base3006SpringfieldBullet">
+		<defName>Bullet_3006Springfield_Sabot</defName>
+		<label>.30-06 Springfield bullet (Sabot)</label>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageAmountBase>11</damageAmountBase>
+			<armorPenetrationSharp>28</armorPenetrationSharp>
+			<armorPenetrationBlunt>101.58</armorPenetrationBlunt>
+			<speed>267</speed>
 		</projectile>
 	</ThingDef>
 
@@ -148,7 +237,7 @@
 		<products>
 			<Ammo_3006Springfield_FMJ>500</Ammo_3006Springfield_FMJ>
 		</products>
-		<workAmount>2800</workAmount>
+		<workAmount>2800</workAmount>		
 	</RecipeDef>
 
 	<RecipeDef ParentName="AmmoRecipeBase">
@@ -172,9 +261,9 @@
 			</thingDefs>
 		</fixedIngredientFilter>
 		<products>
-			<Ammo_3006Springfield_AP>500</Ammo_3006Springfield_AP>
+			<Ammo_3006Springfield_AP>500</Ammo_3006Springfield_AP>		
 		</products>
-		<workAmount>2800</workAmount>
+		<workAmount>2800</workAmount>			
 	</RecipeDef>
 
 	<RecipeDef ParentName="AmmoRecipeBase">
@@ -200,7 +289,121 @@
 		<products>
 			<Ammo_3006Springfield_HP>500</Ammo_3006Springfield_HP>
 		</products>
-		<workAmount>2800</workAmount>
+		<workAmount>2800</workAmount>		
+	</RecipeDef>
+
+	<RecipeDef ParentName="AmmoRecipeBase">
+		<defName>MakeAmmo_3006Springfield_Incendiary</defName>
+		<label>make .30-06 Springfield (AP-I) cartridge x500</label>
+		<description>Craft 500 .30-06 Springfield (AP-I) cartridges.</description>
+		<jobString>Making .30-06 Springfield (AP-I) cartridges.</jobString>
+		<ingredients>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>Steel</li>
+					</thingDefs>
+				</filter>
+				<count>28</count>
+			</li>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>Prometheum</li>
+					</thingDefs>
+				</filter>
+				<count>3</count>
+			</li>
+		</ingredients>
+		<fixedIngredientFilter>
+			<thingDefs>
+				<li>Steel</li>
+				<li>Prometheum</li>
+			</thingDefs>
+		</fixedIngredientFilter>
+		<products>
+			<Ammo_3006Springfield_Incendiary>500</Ammo_3006Springfield_Incendiary>
+		</products>
+		<workAmount>4000</workAmount>
+	</RecipeDef>
+
+	<RecipeDef ParentName="AmmoRecipeBase">
+		<defName>MakeAmmo_3006Springfield_HE</defName>
+		<label>make .30-06 Springfield (HE) cartridge x500</label>
+		<description>Craft 500 .30-06 Springfield (HE) cartridges.</description>
+		<jobString>Making .30-06 Springfield (HE) cartridges.</jobString>
+		<ingredients>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>Steel</li>
+					</thingDefs>
+				</filter>
+				<count>28</count>
+			</li>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>FSX</li>
+					</thingDefs>
+				</filter>
+				<count>5</count>
+			</li>
+		</ingredients>
+		<fixedIngredientFilter>
+			<thingDefs>
+				<li>Steel</li>
+				<li>FSX</li>
+			</thingDefs>
+		</fixedIngredientFilter>
+		<products>
+			<Ammo_3006Springfield_HE>500</Ammo_3006Springfield_HE>
+		</products>
+		<workAmount>4800</workAmount>
+	</RecipeDef>
+
+	<RecipeDef ParentName="AmmoRecipeBase">
+		<defName>MakeAmmo_3006Springfield_Sabot</defName>
+		<label>make .30-06 Springfield (Sabot) cartridge x500</label>
+		<description>Craft 500 .30-06 Springfield (Sabot) cartridges.</description>
+		<jobString>Making .30-06 Springfield (Sabot) cartridges.</jobString>
+		<ingredients>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>Steel</li>
+					</thingDefs>
+				</filter>
+				<count>18</count>
+			</li>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>Uranium</li>
+					</thingDefs>
+				</filter>
+				<count>3</count>
+			</li>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>Chemfuel</li>
+					</thingDefs>
+				</filter>
+				<count>3</count>
+			</li>		  
+		</ingredients>
+		<fixedIngredientFilter>
+			<thingDefs>
+				<li>Steel</li>
+				<li>Uranium</li>
+				<li>Chemfuel</li>		
+			</thingDefs>
+		</fixedIngredientFilter>
+		<products>
+			<Ammo_3006Springfield_Sabot>500</Ammo_3006Springfield_Sabot>
+		</products>
+		<workAmount>3600</workAmount>
 	</RecipeDef>
 
 </Defs>

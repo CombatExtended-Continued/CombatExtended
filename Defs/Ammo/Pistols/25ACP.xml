@@ -15,6 +15,8 @@
 		<label>.25 ACP</label>
 		<ammoTypes>
 			<Ammo_25ACP_FMJ>Bullet_25ACP_FMJ</Ammo_25ACP_FMJ>
+			<Ammo_25ACP_AP>Bullet_25ACP_AP</Ammo_25ACP_AP>
+			<Ammo_25ACP_HP>Bullet_25ACP_HP</Ammo_25ACP_HP>			
 		</ammoTypes>
 	</CombatExtended.AmmoSetDef>
 
@@ -49,6 +51,34 @@
 		<cookOffProjectile>Bullet_25ACP_FMJ</cookOffProjectile>
 	</ThingDef>
 
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="25ACPBase">
+		<defName>Ammo_25ACP_AP</defName>
+		<label>.25 ACP cartridge (AP)</label>
+		<graphicData>
+			<texPath>Things/Ammo/Pistol/AP</texPath>
+			<graphicClass>Graphic_StackCount</graphicClass>
+		</graphicData>
+		<statBases>
+			<MarketValue>0.04</MarketValue>
+		</statBases>
+		<ammoClass>ArmorPiercing</ammoClass>
+		<cookOffProjectile>Bullet_25ACP_AP</cookOffProjectile>
+	</ThingDef>
+
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="25ACPBase">
+		<defName>Ammo_25ACP_HP</defName>
+		<label>.25 ACP cartridge (HP)</label>
+		<graphicData>
+			<texPath>Things/Ammo/Pistol/HP</texPath>
+			<graphicClass>Graphic_StackCount</graphicClass>
+		</graphicData>
+		<statBases>
+			<MarketValue>0.04</MarketValue>
+		</statBases>
+		<ammoClass>HollowPoint</ammoClass>
+		<cookOffProjectile>Bullet_25ACP_HP</cookOffProjectile>
+	</ThingDef>
+
 	<!-- ================== Projectiles ================== -->
 
 	<ThingDef Class="CombatExtended.AmmoDef" Name="Base25ACPBullet" ParentName="BaseBullet" Abstract="true">
@@ -69,6 +99,26 @@
 		<projectile Class="CombatExtended.ProjectilePropertiesCE">
 			<damageAmountBase>11</damageAmountBase>
 			<armorPenetrationSharp>3</armorPenetrationSharp>
+			<armorPenetrationBlunt>17.32</armorPenetrationBlunt>
+		</projectile>
+	</ThingDef>
+
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="Base25ACPBullet">
+		<defName>Bullet_25ACP_AP</defName>
+		<label>.25 ACP bullet (AP)</label>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageAmountBase>7</damageAmountBase>
+			<armorPenetrationSharp>6</armorPenetrationSharp>
+			<armorPenetrationBlunt>17.32</armorPenetrationBlunt>
+		</projectile>
+	</ThingDef>
+
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="Base25ACPBullet">
+		<defName>Bullet_25ACP_HP</defName>
+		<label>.25 ACP bullet (HP)</label>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageAmountBase>15</damageAmountBase>
+			<armorPenetrationSharp>2</armorPenetrationSharp>
 			<armorPenetrationBlunt>17.32</armorPenetrationBlunt>
 		</projectile>
 	</ThingDef>
@@ -97,6 +147,58 @@
 		</fixedIngredientFilter>
 		<products>
 			<Ammo_25ACP_FMJ>500</Ammo_25ACP_FMJ>
+		</products>
+		<workAmount>800</workAmount>
+	</RecipeDef>
+
+	<RecipeDef ParentName="AmmoRecipeBase">
+		<defName>MakeAmmo_25ACP_AP</defName>
+		<label>make .25 ACP (AP) cartridge x500</label>
+		<description>Craft 500 .25 ACP (AP) cartridges.</description>
+		<jobString>Making .25 ACP (AP) cartridges.</jobString>
+		<ingredients>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>Steel</li>
+					</thingDefs>
+				</filter>
+				<count>8</count>
+			</li>
+		</ingredients>
+		<fixedIngredientFilter>
+			<thingDefs>
+				<li>Steel</li>
+			</thingDefs>
+		</fixedIngredientFilter>
+		<products>
+			<Ammo_25ACP_AP>500</Ammo_25ACP_AP>
+		</products>
+		<workAmount>800</workAmount>
+	</RecipeDef>
+
+	<RecipeDef ParentName="AmmoRecipeBase">
+		<defName>MakeAmmo_25ACP_HP</defName>
+		<label>make .25 ACP (HP) cartridge x500</label>
+		<description>Craft 500 .25 ACP (HP) cartridges.</description>
+		<jobString>Making .25 ACP (HP) cartridges.</jobString>
+		<ingredients>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>Steel</li>
+					</thingDefs>
+				</filter>
+				<count>8</count>
+			</li>
+		</ingredients>
+		<fixedIngredientFilter>
+			<thingDefs>
+				<li>Steel</li>
+			</thingDefs>
+		</fixedIngredientFilter>
+		<products>
+			<Ammo_25ACP_HP>500</Ammo_25ACP_HP>
 		</products>
 		<workAmount>800</workAmount>
 	</RecipeDef>

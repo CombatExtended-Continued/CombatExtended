@@ -16,6 +16,7 @@
 		<ammoTypes>
 			<Ammo_83mmPIATGrenade_HEAT>Bullet_83mmPIATGrenade_HEAT</Ammo_83mmPIATGrenade_HEAT>
 			<Ammo_83mmPIATGrenade_HE>Bullet_83mmPIATGrenade_HE</Ammo_83mmPIATGrenade_HE>
+			<Ammo_83mmPIATGrenade_EMP>Bullet_83mmPIATGrenade_EMP</Ammo_83mmPIATGrenade_EMP>      
 		</ammoTypes>
 	</CombatExtended.AmmoSetDef>
 
@@ -24,7 +25,7 @@
 	<ThingDef Class="CombatExtended.AmmoDef" Name="83mmPIATGrenadeBase" ParentName="AmmoBase" Abstract="True">
 		<description>Large spigot grenade designed to be fired at tanks.</description>
 		<statBases>
-			<Mass>1.36</Mass>
+			<Mass>3.176</Mass>
 			<Bulk>6.5</Bulk>
 		</statBases>
 		<tradeTags>
@@ -47,7 +48,7 @@
 			<graphicClass>Graphic_StackCount</graphicClass>
 		</graphicData>
 		<statBases>
-			<MarketValue>37.16</MarketValue>
+			<MarketValue>44.3</MarketValue>
 		</statBases>
 		<ammoClass>RocketHEAT</ammoClass>
 		<comps>
@@ -72,7 +73,7 @@
 			<graphicClass>Graphic_StackCount</graphicClass>
 		</graphicData>
 		<statBases>
-			<MarketValue>37.16</MarketValue>
+			<MarketValue>44.3</MarketValue>
 		</statBases>
 		<ammoClass>GrenadeHE</ammoClass>
 		<comps>
@@ -81,10 +82,33 @@
 				<explosionDamageDef>Bomb</explosionDamageDef>
 				<explosionRadius>2.5</explosionRadius>
 				<fragments>
-					<Fragment_Large>2</Fragment_Large>
+					<Fragment_Large>1</Fragment_Large>
 					<Fragment_Small>83</Fragment_Small>
 				</fragments>
 				<applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
+			</li>
+		</comps>
+	</ThingDef>
+
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="83mmPIATGrenadeBase">
+		<defName>Ammo_83mmPIATGrenade_EMP</defName>
+		<label>83mm PIAT grenade (EMP)</label>
+		<graphicData>
+			<texPath>Things/Ammo/GrenadeLauncher/EMP</texPath>
+			<graphicClass>Graphic_StackCount</graphicClass>
+		</graphicData>
+		<statBases>
+			<MarketValue>90.7</MarketValue>
+		</statBases>
+		<ammoClass>GrenadeEMP</ammoClass>
+		<comps>
+			<li Class="CombatExtended.CompProperties_ExplosiveCE">
+				<explosionDamage>5</explosionDamage>
+				<explosionDamageDef>Bomb</explosionDamageDef>
+				<explosionRadius>1.25</explosionRadius>
+				<fragments>
+					<Fragment_Large>1</Fragment_Large>
+				</fragments>
 			</li>
 		</comps>
 	</ThingDef>
@@ -107,8 +131,8 @@
 		<label>83mm PIAT grenade (HEAT)</label>
 		<projectile Class="CombatExtended.ProjectilePropertiesCE">
 			<damageDef>Bullet</damageDef>
-			<damageAmountBase>248</damageAmountBase>
-			<armorPenetrationSharp>75</armorPenetrationSharp>
+			<damageAmountBase>268</damageAmountBase>
+			<armorPenetrationSharp>100</armorPenetrationSharp>      
 			<armorPenetrationBlunt>41.818</armorPenetrationBlunt>
 		</projectile>
 		<comps>
@@ -131,31 +155,38 @@
 		<defName>Bullet_83mmPIATGrenade_HE</defName>
 		<label>83mm PIAT grenade (HE)</label>
 		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<explosionRadius>2.5</explosionRadius >
 			<damageDef>Bomb</damageDef>
 			<damageAmountBase>139</damageAmountBase>
-			<explosionRadius>2.5</explosionRadius>
 			<applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
 		</projectile>
 		<comps>
 			<li Class="CombatExtended.CompProperties_ExplosiveCE">
 				<fragments>
-					<Fragment_Large>2</Fragment_Large>
+					<Fragment_Large>1</Fragment_Large>
 					<Fragment_Small>83</Fragment_Small>
 				</fragments>
-				<applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
-				<soundExplode>MortarBomb_Explode</soundExplode>
 			</li>
 		</comps>
+	</ThingDef>
+
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="Base83mmPIATGrenade">
+		<defName>Bullet_83mmPIATGrenade_EMP</defName>
+		<label>83mm PIAT grenade (EMP)</label>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<explosionRadius>5</explosionRadius>
+			<damageDef>EMP</damageDef>
+			<damageAmountBase>139</damageAmountBase>
+		</projectile>
 	</ThingDef>
 
 	<!-- ==================== Recipes ========================== -->
 
 	<RecipeDef ParentName="AmmoRecipeBase">
 		<defName>MakeAmmo_83mmPIATGrenade_HEAT</defName>
-		<label>make 83mm PIAT HEAT grenades x55</label>
+		<label>make 83mm PIAT HEAT grenades x5</label>
 		<description>Craft 5 83mm PIAT HEAT grenades.</description>
 		<jobString>Making 83mm PIAT HEAT grenades.</jobString>
-		<workAmount>6200</workAmount>
 		<ingredients>
 			<li>
 				<filter>
@@ -163,7 +194,7 @@
 						<li>Steel</li>
 					</thingDefs>
 				</filter>
-				<count>14</count>
+				<count>32</count>
 			</li>
 			<li>
 				<filter>
@@ -192,6 +223,7 @@
 		<products>
 			<Ammo_83mmPIATGrenade_HEAT>5</Ammo_83mmPIATGrenade_HEAT>
 		</products>
+		<workAmount>8000</workAmount>     
 	</RecipeDef>
 
 	<RecipeDef ParentName="AmmoRecipeBase">
@@ -199,7 +231,6 @@
 		<label>make 83mm PIAT HE grenades x5</label>
 		<description>Craft 5 83mm PIAT HE grenades.</description>
 		<jobString>Making 83mm PIAT HE grenades.</jobString>
-		<workAmount>6200</workAmount>
 		<ingredients>
 			<li>
 				<filter>
@@ -207,7 +238,7 @@
 						<li>Steel</li>
 					</thingDefs>
 				</filter>
-				<count>14</count>
+				<count>32</count>
 			</li>
 			<li>
 				<filter>
@@ -236,6 +267,42 @@
 		<products>
 			<Ammo_83mmPIATGrenade_HE>5</Ammo_83mmPIATGrenade_HE>
 		</products>
+		<workAmount>8000</workAmount>       
+	</RecipeDef>
+
+	<RecipeDef ParentName="AmmoRecipeBase">
+		<defName>MakeAmmo_83mmPIATGrenade_EMP</defName>
+		<label>make 83mm PIAT EMP grenades x5</label>
+		<description>Craft 5 83mm PIAT EMP grenades.</description>
+		<jobString>Making 83mm PIAT EMP grenades.</jobString>
+		<ingredients>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>Steel</li>
+					</thingDefs>
+				</filter>
+				<count>32</count>
+			</li>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>ComponentIndustrial</li>
+					</thingDefs>
+				</filter>
+				<count>12</count>
+			</li>
+		</ingredients>
+		<fixedIngredientFilter>
+			<thingDefs>
+				<li>Steel</li>
+				<li>ComponentIndustrial</li>
+			</thingDefs>
+		</fixedIngredientFilter>
+		<products>
+			<Ammo_83mmPIATGrenade_EMP>5</Ammo_83mmPIATGrenade_EMP>
+		</products>
+		<workAmount>10400</workAmount>       
 	</RecipeDef>
 
 </Defs>

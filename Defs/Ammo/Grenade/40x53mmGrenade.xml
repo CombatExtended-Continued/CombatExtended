@@ -24,8 +24,8 @@
 	<ThingDef Class="CombatExtended.AmmoDef" Name="40x53mmGrenadeBase" ParentName="AmmoBase" Abstract="True">
 		<description>High velocity grenade fired from mounted and crew-served grenade launchers.</description>
 		<statBases>
-			<Mass>0.353</Mass>
-			<Bulk>0.4</Bulk>
+			<Mass>0.375</Mass>
+			<Bulk>0.46</Bulk>
 		</statBases>
 		<tradeTags>
 			<li>CE_AutoEnableTrade</li>
@@ -34,7 +34,7 @@
 		<thingCategories>
 			<li>Ammo40x53mmGrenades</li>
 		</thingCategories>
-		<stackLimit>75</stackLimit>
+		<stackLimit>500</stackLimit>
 		<cookOffFlashScale>20</cookOffFlashScale>
 	</ThingDef>
 
@@ -46,17 +46,17 @@
 			<graphicClass>Graphic_StackCount</graphicClass>
 		</graphicData>
 		<statBases>
-			<MarketValue>4.26</MarketValue>
+			<MarketValue>2.89</MarketValue>
 		</statBases>
 		<ammoClass>GrenadeHE</ammoClass>
 		<comps>
 			<li Class="CombatExtended.CompProperties_ExplosiveCE">
-				<explosionDamage>30</explosionDamage>
+				<explosionDamage>20</explosionDamage>
 				<explosionDamageDef>Bomb</explosionDamageDef>
 				<explosionRadius>1</explosionRadius>
 				<fragments>
-					<Fragment_Large>1</Fragment_Large>
-					<Fragment_Small>7</Fragment_Small>
+					<Fragment_Large>2</Fragment_Large>
+					<Fragment_Small>4</Fragment_Small>
 				</fragments>
 				<applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
 			</li>
@@ -71,16 +71,16 @@
 			<graphicClass>Graphic_StackCount</graphicClass>
 		</graphicData>
 		<statBases>
-			<MarketValue>7.36</MarketValue>
+			<MarketValue>4.76</MarketValue>
 		</statBases>
 		<ammoClass>GrenadeEMP</ammoClass>
 		<comps>
 			<li Class="CombatExtended.CompProperties_ExplosiveCE">
 				<explosionDamage>5</explosionDamage>
 				<explosionDamageDef>Bomb</explosionDamageDef>
-				<explosionRadius>0.5</explosionRadius>
+				<explosionRadius>0.75</explosionRadius>
 				<fragments>
-					<Fragment_Small>3</Fragment_Small>
+					<Fragment_Large>1</Fragment_Large>
 				</fragments>
 			</li>
 		</comps>
@@ -95,7 +95,7 @@
 			<graphicClass>Graphic_Single</graphicClass>
 		</graphicData>
 		<projectile Class="CombatExtended.ProjectilePropertiesCE">
-			<speed>48</speed>
+			<speed>49</speed>
 		</projectile>
 	</ThingDef>
 
@@ -103,16 +103,16 @@
 		<defName>Bullet_40x53mmGrenade_HE</defName>
 		<label>40x53mm grenade (HE)</label>
 		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<explosionRadius>1</explosionRadius >
 			<damageDef>Bomb</damageDef>
-			<damageAmountBase>30</damageAmountBase>
-			<explosionRadius>1</explosionRadius>
+			<damageAmountBase>20</damageAmountBase>
 			<applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
 		</projectile>
 		<comps>
 			<li Class="CombatExtended.CompProperties_ExplosiveCE">
 				<fragments>
-					<Fragment_Large>1</Fragment_Large>
-					<Fragment_Small>7</Fragment_Small>
+					<Fragment_Large>2</Fragment_Large>
+					<Fragment_Small>4</Fragment_Small>
 				</fragments>
 			</li>
 		</comps>
@@ -122,9 +122,9 @@
 		<defName>Bullet_40x53mmGrenade_EMP</defName>
 		<label>40x53mm grenade (EMP)</label>
 		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<explosionRadius>1.5</explosionRadius>
 			<damageDef>EMP</damageDef>
-			<damageAmountBase>30</damageAmountBase>
-			<explosionRadius>2</explosionRadius>
+			<damageAmountBase>20</damageAmountBase>
 		</projectile>
 	</ThingDef>
 
@@ -132,10 +132,9 @@
 
 	<RecipeDef ParentName="AmmoRecipeBase">
 		<defName>MakeAmmo_40x53mmGrenade_HE</defName>
-		<label>make 40x53mm HE grenades x50</label>
-		<description>Craft 50 40x53mm HE grenades.</description>
+		<label>make 40x53mm HE grenades x100</label>
+		<description>Craft 100 40x53mm HE grenades.</description>
 		<jobString>Making 40x53mm HE grenades.</jobString>
-		<workAmount>7800</workAmount>
 		<ingredients>
 			<li>
 				<filter>
@@ -143,7 +142,7 @@
 						<li>Steel</li>
 					</thingDefs>
 				</filter>
-				<count>38</count>
+				<count>76</count>
 			</li>
 			<li>
 				<filter>
@@ -170,16 +169,16 @@
 			</thingDefs>
 		</fixedIngredientFilter>
 		<products>
-			<Ammo_40x53mmGrenade_HE>50</Ammo_40x53mmGrenade_HE>
+			<Ammo_40x53mmGrenade_HE>100</Ammo_40x53mmGrenade_HE>
 		</products>
+		<workAmount>11600</workAmount>    
 	</RecipeDef>
 
 	<RecipeDef ParentName="AmmoRecipeBase">
 		<defName>MakeAmmo_40x53mmGrenade_EMP</defName>
-		<label>make 40x53mm EMP grenades x50</label>
-		<description>Craft 50 40x53mm EMP grenades.</description>
+		<label>make 40x53mm EMP grenades x100</label>
+		<description>Craft 100 40x53mm EMP grenades.</description>
 		<jobString>Making 40x53mm EMP grenades.</jobString>
-		<workAmount>9200</workAmount>
 		<ingredients>
 			<li>
 				<filter>
@@ -187,7 +186,7 @@
 						<li>Steel</li>
 					</thingDefs>
 				</filter>
-				<count>38</count>
+				<count>76</count>
 			</li>
 			<li>
 				<filter>
@@ -195,7 +194,7 @@
 						<li>ComponentIndustrial</li>
 					</thingDefs>
 				</filter>
-				<count>9</count>
+				<count>10</count>
 			</li>
 		</ingredients>
 		<fixedIngredientFilter>
@@ -205,8 +204,9 @@
 			</thingDefs>
 		</fixedIngredientFilter>
 		<products>
-			<Ammo_40x53mmGrenade_EMP>50</Ammo_40x53mmGrenade_EMP>
+			<Ammo_40x53mmGrenade_EMP>100</Ammo_40x53mmGrenade_EMP>
 		</products>
+		<workAmount>13600</workAmount>      
 	</RecipeDef>
 
 </Defs>
