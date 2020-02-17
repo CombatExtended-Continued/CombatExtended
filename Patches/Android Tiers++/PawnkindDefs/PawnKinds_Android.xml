@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+	<Operation Class="PatchOperationSequence">
+		<success></success>
+		<operations>
+			<li Class="PatchOperationFindMod">
+			<mods><li>Android Tiers++ Expansion</li></mods>
+			<match Class="PatchOperationSequence">
+			<operations>
+			
+			<li Class="PatchOperationAddModExtension">
+				<xpath>Defs/PawnKindDef[
+					defName="ATPP_AndroidTX2RaiderFactionSpecific" or
+					defName="ATPP_AndroidTX3RaiderFactionSpecific" or
+					defName="ATPP_AndroidTX4RaiderFactionSpecific" or
+					defName="ATPP_AndroidTX2CollectiveSoldier" or
+					defName="ATPP_AndroidTX3CollectiveSoldier" or
+					defName="ATPP_AndroidTX4CollectiveSoldier"
+					]</xpath>
+				<value>	
+					<li Class="CombatExtended.LoadoutPropertiesExtension">	
+						<primaryMagazineCount>
+							<min>4</min>
+							<max>6</max>
+						</primaryMagazineCount>
+						<sidearms>
+							<li>
+								<generateChance>0.5</generateChance>
+								<sidearmMoney>
+									<min>20</min>
+									<max>120</max>
+								</sidearmMoney>
+								<weaponTags>
+									<li>CE_Sidearm_Melee</li>
+								</weaponTags>
+							</li>
+						</sidearms>
+					</li>
+				</value>
+			</li>
+			
+			</operations>
+			</match>
+			</li>
+		</operations>
+	</Operation>
+</Patch>
