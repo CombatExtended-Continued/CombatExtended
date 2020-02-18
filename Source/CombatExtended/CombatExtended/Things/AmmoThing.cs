@@ -68,7 +68,7 @@ namespace CombatExtended
         public override void Tick()
         {
             // Self-destruct if ammo is disabled
-            if (!Controller.settings.EnableAmmoSystem && !def.IsWeapon) Destroy(DestroyMode.Vanish);
+            if (!Controller.settings.EnableAmmoSystem && !def.IsWeapon && def is AmmoDef) Destroy(DestroyMode.Vanish);
 
             base.Tick();
 
