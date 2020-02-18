@@ -1,0 +1,2595 @@
+<?xml version="1.0" encoding="UTF-8" ?> 
+
+<!-- Spreadsheets for this patch can be found here: https://docs.google.com/spreadsheets/d/1lgGUlbR2BYTUpEYWdTQjbu2sPBYPaLKx8gQRdRrm_TM
+https://docs.google.com/spreadsheets/d/1pnhJUo3bkEPxhpmPrHj4spPdvjifLhOsnfFrZmOovmQ
+--> 
+
+<Patch>
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+			<li>Megafauna</li>
+		</mods>
+		<match Class="PatchOperationSequence">
+			<operations>
+
+				<!-- BODY SHAPES -->
+
+				<li Class="PatchOperationAddModExtension">
+					<xpath>
+						Defs/ThingDef[
+							defName="Gigantopithecus"
+						]
+					</xpath>
+					<value>
+						<li Class="CombatExtended.RacePropertiesExtensionCE">
+							<bodyShape>Humanoid</bodyShape>
+						</li>
+					</value>
+				</li>
+				<li Class="PatchOperationAddModExtension">
+					<xpath>
+						Defs/ThingDef[
+							defName="Andrewsarchus" or
+							defName="Aurochs" or
+							defName="Castoroides" or
+							defName="Chalicotherium" or
+							defName="Daeodon" or
+							defName="Deinotherium" or
+							defName="Dinocrocuta" or
+							defName="Dinopithecus" or
+							defName="Diprotodon" or
+							defName="Elasmotherium" or
+							defName="Josephoartigasia" or
+							defName="Macrauchenia" or
+							defName="Megaloceros" or
+							defName="Paraceratherium" or
+							defName="Platybelodon" or
+							defName="Procoptodon" or
+							defName="ShortfacedBear" or
+							defName="Sivatherium" or
+							defName="Smilodon" or
+							defName="Uintatherium" or
+							defName="WoollyMammoth" or
+							defName="Zygolophodon"
+						]
+					</xpath>
+					<value>
+						<li Class="CombatExtended.RacePropertiesExtensionCE">
+							<bodyShape>Quadruped</bodyShape>
+						</li>
+					</value>
+				</li>
+				<li Class="PatchOperationAddModExtension">
+					<xpath>
+						Defs/ThingDef[
+							defName="Doedicurus" or
+							defName="Enhydriodon" or
+							defName="Gomphotaria" or
+							defName="Megalania" or
+							defName="Megalochelys" or
+							defName="Pulmonoscorpius" or
+							defName="Purussaurus" or
+							defName="Quinkana"
+						]
+					</xpath>
+					<value>
+						<li Class="CombatExtended.RacePropertiesExtensionCE">
+							<bodyShape>QuadrupedLow</bodyShape>
+						</li>
+					</value>
+				</li>
+				<li Class="PatchOperationAddModExtension">
+					<xpath>
+						Defs/ThingDef[
+							defName="Arthropleura" or
+							defName="Gigantophis" or
+							defName="Meganeura" or
+							defName="Titanoboa"
+						]
+					</xpath>
+					<value>
+						<li Class="CombatExtended.RacePropertiesExtensionCE">
+							<bodyShape>Serpentine</bodyShape>
+						</li>
+					</value>
+				</li>
+				<li Class="PatchOperationAddModExtension">
+					<xpath>
+						Defs/ThingDef[
+							defName="Dinornis" or
+							defName="Palaeeudyptes" or
+							defName="Titanis"
+						]
+					</xpath>
+					<value>
+						<li Class="CombatExtended.RacePropertiesExtensionCE">
+							<bodyShape>Birdlike</bodyShape>
+						</li>
+					</value>
+				</li>
+
+				<!-- ========= Arthropleura ========= -->
+
+				<li Class="PatchOperationAdd">
+					<xpath>/Defs/ThingDef[defName="Arthropleura"]/statBases</xpath>
+					<value>
+						<MeleeDodgeChance>0.10</MeleeDodgeChance>
+						<MeleeCritChance>0.15</MeleeCritChance>
+						<MeleeParryChance>0.27</MeleeParryChance>
+					</value>
+				</li>				
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/ThingDef[defName="Arthropleura"]/race/baseHealthScale</xpath>
+					<value>
+						<baseHealthScale>4</baseHealthScale>
+					</value>
+				</li>
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/ThingDef[defName="Arthropleura"]/statBases/ArmorRating_Blunt</xpath>
+					<value>
+						<ArmorRating_Blunt>0.2</ArmorRating_Blunt>
+					</value>
+				</li>
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/ThingDef[defName="Arthropleura"]/statBases/ArmorRating_Sharp</xpath>
+					<value>
+						<ArmorRating_Sharp>0.05</ArmorRating_Sharp>
+					</value>
+				</li>
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/ThingDef[defName="Arthropleura"]/tools</xpath>
+					<value>
+						<tools>
+							<li Class="CombatExtended.ToolCE">
+								<label>teeth</label>
+								<capacities>
+									<li>Bite</li>
+								</capacities>
+								<power>12</power>
+								<cooldownTime>2.25</cooldownTime>
+								<linkedBodyPartsGroup>Mouth</linkedBodyPartsGroup>
+								<armorPenetrationSharp>0.05</armorPenetrationSharp>
+								<armorPenetrationBlunt>2.5</armorPenetrationBlunt>
+							</li>
+						</tools>
+					</value>
+				</li>
+
+				<!-- ========= Doedicurus ========= -->
+
+				<li Class="PatchOperationAdd">
+					<xpath>/Defs/ThingDef[defName="Doedicurus"]/statBases</xpath>
+					<value>
+						<MeleeDodgeChance>0.04</MeleeDodgeChance>
+						<MeleeCritChance>0.13</MeleeCritChance>
+						<MeleeParryChance>0.35</MeleeParryChance>
+					</value>
+				</li>	
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/ThingDef[defName="Doedicurus"]/statBases/ArmorRating_Blunt</xpath>
+					<value>
+						<ArmorRating_Blunt>18</ArmorRating_Blunt>
+					</value>
+				</li>
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/ThingDef[defName="Doedicurus"]/statBases/ArmorRating_Sharp</xpath>
+					<value>
+						<ArmorRating_Sharp>0.75</ArmorRating_Sharp>
+					</value>
+				</li>
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/ThingDef[defName="Doedicurus"]/tools</xpath>
+					<value>
+						<tools>
+							<li Class="CombatExtended.ToolCE">
+								<label>tail</label>
+								<capacities>
+									<li>Blunt</li>
+								</capacities>
+								<power>26</power>
+								<cooldownTime>4</cooldownTime>
+								<linkedBodyPartsGroup>TailWeapon</linkedBodyPartsGroup>
+								<surpriseAttack>
+									<extraMeleeDamages>
+										<li>
+											<def>Stun</def>
+											<amount>25</amount>
+										</li>
+									</extraMeleeDamages>
+								</surpriseAttack>
+								<armorPenetrationBlunt>10.985</armorPenetrationBlunt>
+								<chanceFactor>0.25</chanceFactor>
+							</li>
+							<li Class="CombatExtended.ToolCE">
+								<label>left claw</label>
+								<capacities>
+									<li>Scratch</li>
+								</capacities>
+								<power>11</power>
+								<cooldownTime>1.8</cooldownTime>
+								<linkedBodyPartsGroup>FrontLeftPaw</linkedBodyPartsGroup>
+								<armorPenetrationSharp>0.1</armorPenetrationSharp>
+								<armorPenetrationBlunt>1</armorPenetrationBlunt>
+							</li>
+							<li Class="CombatExtended.ToolCE">
+								<label>right claw</label>
+								<capacities>
+									<li>Scratch</li>
+								</capacities>
+								<power>11</power>
+								<cooldownTime>1.8</cooldownTime>
+								<linkedBodyPartsGroup>FrontRightPaw</linkedBodyPartsGroup>
+								<armorPenetrationSharp>0.1</armorPenetrationSharp>
+								<armorPenetrationBlunt>1</armorPenetrationBlunt>
+							</li>
+							<li Class="CombatExtended.ToolCE">
+								<label>teeth</label>
+								<capacities>
+									<li>Bite</li>
+								</capacities>
+								<power>15</power>
+								<cooldownTime>2.1</cooldownTime>
+								<linkedBodyPartsGroup>Teeth</linkedBodyPartsGroup>
+								<armorPenetrationSharp>0.07</armorPenetrationSharp>
+								<armorPenetrationBlunt>2</armorPenetrationBlunt>
+							</li>
+						</tools>
+					</value>
+				</li>
+
+				<!-- ========= Daeodon ========= -->
+
+				<li Class="PatchOperationAdd">
+					<xpath>/Defs/ThingDef[defName="Daeodon"]/statBases</xpath>
+					<value>
+						<MeleeDodgeChance>0.13</MeleeDodgeChance>
+						<MeleeCritChance>0.39</MeleeCritChance>
+						<MeleeParryChance>0.28</MeleeParryChance>
+					</value>
+				</li>				
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/ThingDef[defName="Daeodon"]/race/baseHealthScale</xpath>
+					<value>
+						<baseHealthScale>3</baseHealthScale>
+					</value>
+				</li>
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/ThingDef[defName="Daeodon"]/tools</xpath>
+					<value>
+						<tools>
+							<li Class="CombatExtended.ToolCE">
+								<label>left hoof</label>
+								<capacities>
+									<li>Blunt</li>
+								</capacities>
+								<power>13</power>
+								<cooldownTime>2.05</cooldownTime>
+								<linkedBodyPartsGroup>FrontLeftLeg</linkedBodyPartsGroup>
+								<armorPenetrationBlunt>5.04</armorPenetrationBlunt>
+							</li>
+							<li Class="CombatExtended.ToolCE">
+								<label>right hoof</label>
+								<capacities>
+									<li>Blunt</li>
+								</capacities>
+								<power>13</power>
+								<cooldownTime>2.05</cooldownTime>
+								<linkedBodyPartsGroup>FrontRightLeg</linkedBodyPartsGroup>
+								<armorPenetrationBlunt>5.04</armorPenetrationBlunt>
+							</li>
+							<li Class="CombatExtended.ToolCE">
+								<label>teeth</label>
+								<capacities>
+									<li>Bite</li>
+								</capacities>
+								<power>28</power>
+								<cooldownTime>2.45</cooldownTime>
+								<linkedBodyPartsGroup>Teeth</linkedBodyPartsGroup>
+								<surpriseAttack>
+									<extraMeleeDamages>
+										<li>
+											<def>Stun</def>
+											<amount>23</amount>
+										</li>
+									</extraMeleeDamages>
+								</surpriseAttack>
+								<armorPenetrationSharp>0.22</armorPenetrationSharp>
+								<armorPenetrationBlunt>10.8</armorPenetrationBlunt>
+							</li>
+						</tools>
+					</value>
+				</li>
+
+				<!-- ========= Gigantopithecus ========= -->
+
+				<li Class="PatchOperationAdd">
+					<xpath>/Defs/ThingDef[defName="Gigantopithecus"]/statBases</xpath>
+					<value>
+						<MeleeDodgeChance>0.11</MeleeDodgeChance>
+						<MeleeCritChance>0.18</MeleeCritChance>
+						<MeleeParryChance>0.19</MeleeParryChance>
+					</value>
+				</li>				
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/ThingDef[defName="Gigantopithecus"]/race/baseHealthScale</xpath>
+					<value>
+						<baseHealthScale>3</baseHealthScale>
+					</value>
+				</li>
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/ThingDef[defName="Gigantopithecus"]/race/baseBodySize</xpath>
+					<value>
+						<baseBodySize>2</baseBodySize>
+					</value>
+				</li>
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/ThingDef[defName="Gigantopithecus"]/tools</xpath>
+					<value>
+						<tools>
+							<li Class="CombatExtended.ToolCE">
+								<label>left fist</label>
+								<capacities>
+									<li>Blunt</li>
+								</capacities>
+								<power>14</power>
+								<cooldownTime>2.05</cooldownTime>
+								<linkedBodyPartsGroup>LeftHand</linkedBodyPartsGroup>
+								<armorPenetrationBlunt>5.184</armorPenetrationBlunt>
+							</li>
+							<li Class="CombatExtended.ToolCE">
+								<label>right fist</label>
+								<capacities>
+									<li>Blunt</li>
+								</capacities>
+								<power>14</power>
+								<cooldownTime>2.05</cooldownTime>
+								<linkedBodyPartsGroup>RightHand</linkedBodyPartsGroup>
+								<armorPenetrationBlunt>5.184</armorPenetrationBlunt>
+							</li>
+							<li Class="CombatExtended.ToolCE">
+								<label>teeth</label>
+								<capacities>
+									<li>Bite</li>
+								</capacities>
+								<power>12</power>
+								<cooldownTime>2.3</cooldownTime>
+								<linkedBodyPartsGroup>Teeth</linkedBodyPartsGroup>
+								<armorPenetrationSharp>0.04</armorPenetrationSharp>
+								<armorPenetrationBlunt>2.7</armorPenetrationBlunt>
+							</li>
+						</tools>
+					</value>
+				</li>
+
+				<!-- ========= Paraceratherium ========= -->
+
+				<li Class="PatchOperationAdd">
+					<xpath>/Defs/ThingDef[defName="Paraceratherium"]/statBases</xpath>
+					<value>
+						<MeleeDodgeChance>0.07</MeleeDodgeChance>
+						<MeleeCritChance>1.04</MeleeCritChance>
+						<MeleeParryChance>1.24</MeleeParryChance>
+					</value>
+				</li>				
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/ThingDef[defName="Paraceratherium"]/race/baseHealthScale</xpath>
+					<value>
+						<baseHealthScale>10</baseHealthScale>
+					</value>
+				</li>
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/ThingDef[defName="Paraceratherium"]/race/baseBodySize</xpath>
+					<value>
+						<baseBodySize>12</baseBodySize>
+					</value>
+				</li>
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/ThingDef[defName="Paraceratherium"]/tools</xpath>
+					<value>
+						<tools>
+							<li Class="CombatExtended.ToolCE">
+								<label>left hoof</label>
+								<capacities>
+									<li>Blunt</li>
+								</capacities>
+								<power>131</power>
+								<cooldownTime>5.1</cooldownTime>
+								<linkedBodyPartsGroup>FrontLeftLeg</linkedBodyPartsGroup>
+								<armorPenetrationBlunt>66</armorPenetrationBlunt>
+							</li>
+							<li Class="CombatExtended.ToolCE">
+								<label>right hoof</label>
+								<capacities>
+									<li>Blunt</li>
+								</capacities>
+								<power>131</power>
+								<cooldownTime>5.1</cooldownTime>
+								<linkedBodyPartsGroup>FrontRightLeg</linkedBodyPartsGroup>
+								<armorPenetrationBlunt>66</armorPenetrationBlunt>
+							</li>
+							<li Class="CombatExtended.ToolCE">
+								<label>teeth</label>
+								<capacities>
+									<li>Bite</li>
+								</capacities>
+								<power>114</power>
+								<cooldownTime>5.15</cooldownTime>
+								<linkedBodyPartsGroup>Teeth</linkedBodyPartsGroup>
+								<armorPenetrationSharp>1.03</armorPenetrationSharp>
+								<armorPenetrationBlunt>205.2</armorPenetrationBlunt>
+							</li>
+						</tools>
+					</value>
+				</li>
+
+				<!-- ========= Titanis ========= -->
+
+				<li Class="PatchOperationAdd">
+					<xpath>/Defs/ThingDef[defName="Titanis"]/statBases</xpath>
+					<value>
+						<MeleeDodgeChance>0.26</MeleeDodgeChance>
+						<MeleeCritChance>0.23</MeleeCritChance>
+						<MeleeParryChance>0.18</MeleeParryChance>
+					</value>
+				</li>				
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/ThingDef[defName="Titanis"]/race/baseHealthScale</xpath>
+					<value>
+						<baseHealthScale>3.6</baseHealthScale>
+					</value>
+				</li>
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/ThingDef[defName="Titanis"]/tools</xpath>
+					<value>
+						<tools>
+							<li Class="CombatExtended.ToolCE">
+								<label>claws</label>
+								<capacities>
+									<li>Scratch</li>
+								</capacities>
+								<power>14</power>
+								<cooldownTime>1.8</cooldownTime>
+								<linkedBodyPartsGroup>Feet</linkedBodyPartsGroup>
+								<surpriseAttack>
+									<extraMeleeDamages>
+										<li>
+											<def>Stun</def>
+											<amount>20</amount>
+										</li>
+									</extraMeleeDamages>
+								</surpriseAttack>
+								<armorPenetrationSharp>0.2</armorPenetrationSharp>
+								<armorPenetrationBlunt>1</armorPenetrationBlunt>
+							</li>
+							<li Class="CombatExtended.ToolCE">
+								<label>teeth</label>
+								<capacities>
+									<li>Bite</li>
+								</capacities>
+								<power>33</power>
+								<cooldownTime>2.35</cooldownTime>
+								<linkedBodyPartsGroup>Beak</linkedBodyPartsGroup>
+								<surpriseAttack>
+									<extraMeleeDamages>
+										<li>
+											<def>Stun</def>
+											<amount>22</amount>
+										</li>
+									</extraMeleeDamages>
+								</surpriseAttack>
+								<armorPenetrationSharp>0.06</armorPenetrationSharp>
+								<armorPenetrationBlunt>5.445</armorPenetrationBlunt>
+							</li>
+						</tools>
+					</value>
+				</li>
+
+				<!-- ========= Titanoboa ========= -->
+
+				<li Class="PatchOperationAdd">
+					<xpath>/Defs/ThingDef[defName="Titanoboa"]/statBases</xpath>
+					<value>
+						<MeleeDodgeChance>0.12</MeleeDodgeChance>
+						<MeleeCritChance>0.27</MeleeCritChance>
+						<MeleeParryChance>0.57</MeleeParryChance>
+					</value>
+				</li>				
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/ThingDef[defName="Titanoboa"]/race/baseHealthScale</xpath>
+					<value>
+						<baseHealthScale>6</baseHealthScale>
+					</value>
+				</li>
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/ThingDef[defName="Titanoboa"]/race/baseBodySize</xpath>
+					<value>
+						<baseBodySize>10</baseBodySize>
+					</value>
+				</li>
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/ThingDef[defName="Titanoboa"]/tools</xpath>
+					<value>
+						<tools>
+							<li Class="CombatExtended.ToolCE">
+								<label>teeth</label>
+								<capacities>
+									<li>BiteBlunt</li>
+								</capacities>
+								<power>88</power>
+								<cooldownTime>2.5</cooldownTime>
+								<linkedBodyPartsGroup>Mouth</linkedBodyPartsGroup>
+								<surpriseAttack>
+									<extraMeleeDamages>
+										<li>
+											<def>Stun</def>
+											<amount>75</amount>
+										</li>
+									</extraMeleeDamages>
+								</surpriseAttack>
+								<armorPenetrationBlunt>42.561</armorPenetrationBlunt>
+							</li>						
+						</tools>
+					</value>
+				</li>
+
+				<!-- ========= WoollyMammoth ========= -->
+
+				<li Class="PatchOperationAdd">
+					<xpath>/Defs/ThingDef[defName="WoollyMammoth"]/statBases</xpath>
+					<value>
+						<MeleeDodgeChance>0.07</MeleeDodgeChance>
+						<MeleeCritChance>0.61</MeleeCritChance>
+						<MeleeParryChance>0.51</MeleeParryChance>
+					</value>
+				</li>				
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/ThingDef[defName="WoollyMammoth"]/race/baseHealthScale</xpath>
+					<value>
+						<baseHealthScale>3.6</baseHealthScale>
+					</value>
+				</li>
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/ThingDef[defName="WoollyMammoth"]/race/baseBodySize</xpath>
+					<value>
+						<baseBodySize>4</baseBodySize>
+					</value>
+				</li>
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/ThingDef[defName="WoollyMammoth"]/tools</xpath>
+					<value>
+						<tools>
+							<li Class="CombatExtended.ToolCE">
+								<label>tusk</label>
+								<capacities>
+									<li>Poke</li>
+								</capacities>
+								<power>67</power>
+								<cooldownTime>3.55</cooldownTime>
+								<linkedBodyPartsGroup>TuskAttackTool</linkedBodyPartsGroup>
+								<armorPenetrationBlunt>31.226</armorPenetrationBlunt>
+							</li>
+							<li Class="CombatExtended.ToolCE">
+								<label>left foot</label>
+								<capacities>
+									<li>Blunt</li>
+								</capacities>
+								<power>31</power>
+								<cooldownTime>2.55</cooldownTime>
+								<linkedBodyPartsGroup>FrontLeftLeg</linkedBodyPartsGroup>
+								<armorPenetrationBlunt>12.96</armorPenetrationBlunt>
+							</li>
+							<li Class="CombatExtended.ToolCE">
+								<label>right foot</label>
+								<capacities>
+									<li>Blunt</li>
+								</capacities>
+								<power>31</power>
+								<cooldownTime>2.55</cooldownTime>
+								<linkedBodyPartsGroup>FrontRightLeg</linkedBodyPartsGroup>
+								<armorPenetrationBlunt>12.96</armorPenetrationBlunt>
+							</li>
+							<li Class="CombatExtended.ToolCE">
+								<label>head</label>
+								<capacities>
+									<li>Blunt</li>
+								</capacities>
+								<power>55</power>
+								<cooldownTime>4</cooldownTime>
+								<linkedBodyPartsGroup>HeadAttackTool</linkedBodyPartsGroup>
+								<armorPenetrationBlunt>25</armorPenetrationBlunt>
+							</li>
+						</tools>
+					</value>
+				</li>
+
+				<!-- ========= Elasmotherium ========= -->
+
+				<li Class="PatchOperationAdd">
+					<xpath>/Defs/ThingDef[defName="Elasmotherium"]/statBases</xpath>
+					<value>
+						<MeleeDodgeChance>0.08</MeleeDodgeChance>
+						<MeleeCritChance>0.62</MeleeCritChance>
+						<MeleeParryChance>0.48</MeleeParryChance>
+					</value>
+				</li>				
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/ThingDef[defName="Elasmotherium"]/race/baseHealthScale</xpath>
+					<value>
+						<baseHealthScale>4</baseHealthScale>
+					</value>
+				</li>
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/ThingDef[defName="Elasmotherium"]/tools</xpath>
+					<value>
+						<tools>
+							<li Class="CombatExtended.ToolCE">
+								<label>horn</label>
+								<capacities>
+									<li>Poke</li>
+								</capacities>
+								<power>55</power>
+								<cooldownTime>4</cooldownTime>
+								<linkedBodyPartsGroup>HornAttackTool</linkedBodyPartsGroup>
+								<armorPenetrationBlunt>25</armorPenetrationBlunt>
+							</li>
+							<li Class="CombatExtended.ToolCE">
+								<label>teeth</label>
+								<capacities>
+									<li>Bite</li>
+								</capacities>
+								<power>23</power>
+								<cooldownTime>3.05</cooldownTime>
+								<linkedBodyPartsGroup>Teeth</linkedBodyPartsGroup>
+								<armorPenetrationSharp>0.11</armorPenetrationSharp>
+								<armorPenetrationBlunt>8.75</armorPenetrationBlunt>
+							</li>
+							<li Class="CombatExtended.ToolCE">
+								<label>head</label>
+								<capacities>
+									<li>Blunt</li>
+								</capacities>
+								<power>43</power>
+								<cooldownTime>3.7</cooldownTime>
+								<linkedBodyPartsGroup>HeadAttackTool</linkedBodyPartsGroup>
+								<armorPenetrationBlunt>18.75</armorPenetrationBlunt>
+								<chanceFactor>0.2</chanceFactor>
+							</li>
+						</tools>
+					</value>
+				</li>
+
+				<!-- ========= Smilodon ========= -->
+
+				<li Class="PatchOperationAdd">
+					<xpath>/Defs/ThingDef[defName="Smilodon"]/statBases</xpath>
+					<value>
+						<MeleeDodgeChance>0.18</MeleeDodgeChance>
+						<MeleeCritChance>0.23</MeleeCritChance>
+						<MeleeParryChance>0.2</MeleeParryChance>
+					</value>
+				</li>				
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/ThingDef[defName="Smilodon"]/race/baseHealthScale</xpath>
+					<value>
+						<baseHealthScale>3.3</baseHealthScale>
+					</value>
+				</li>
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/ThingDef[defName="Smilodon"]/race/baseBodySize</xpath>
+					<value>
+						<baseBodySize>2.7</baseBodySize>
+					</value>
+				</li>
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/ThingDef[defName="Smilodon"]/tools</xpath>
+					<value>
+						<tools>
+							<li Class="CombatExtended.ToolCE">
+								<label>left claw</label>
+								<capacities>
+									<li>Scratch</li>
+								</capacities>
+								<power>16</power>
+								<cooldownTime>1.5</cooldownTime>
+								<linkedBodyPartsGroup>FrontLeftPaw</linkedBodyPartsGroup>
+								<armorPenetrationSharp>0.34</armorPenetrationSharp>
+								<armorPenetrationBlunt>2.366</armorPenetrationBlunt>
+							</li>
+							<li Class="CombatExtended.ToolCE">
+								<label>right claw</label>
+								<capacities>
+									<li>Scratch</li>
+								</capacities>
+								<power>16</power>
+								<cooldownTime>1.5</cooldownTime>
+								<linkedBodyPartsGroup>FrontRightPaw</linkedBodyPartsGroup>
+								<armorPenetrationSharp>0.34</armorPenetrationSharp>
+								<armorPenetrationBlunt>2.366</armorPenetrationBlunt>
+							</li>
+							<li Class="CombatExtended.ToolCE">
+								<label>teeth</label>
+								<capacities>
+									<li>Bite</li>
+								</capacities>
+								<power>26</power>
+								<cooldownTime>1.95</cooldownTime>
+								<linkedBodyPartsGroup>Teeth</linkedBodyPartsGroup>
+								<surpriseAttack>
+									<extraMeleeDamages>
+										<li>
+											<def>Stun</def>
+											<amount>22</amount>
+										</li>
+									</extraMeleeDamages>
+								</surpriseAttack>
+								<armorPenetrationSharp>0.14</armorPenetrationSharp>
+								<armorPenetrationBlunt>6.802</armorPenetrationBlunt>
+							</li>
+						</tools>
+					</value>
+				</li>
+
+				<!-- ========= Chalicotherium ========= -->
+
+				<li Class="PatchOperationAdd">
+					<xpath>/Defs/ThingDef[defName="Chalicotherium"]/statBases</xpath>
+					<value>
+						<MeleeDodgeChance>0.1</MeleeDodgeChance>
+						<MeleeCritChance>0.24</MeleeCritChance>
+						<MeleeParryChance>0.33</MeleeParryChance>
+					</value>
+				</li>				
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/ThingDef[defName="Chalicotherium"]/race/baseHealthScale</xpath>
+					<value>
+						<baseHealthScale>3</baseHealthScale>
+					</value>
+				</li>
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/ThingDef[defName="Chalicotherium"]/tools</xpath>
+					<value>
+						<tools>
+							<li Class="CombatExtended.ToolCE">
+								<label>left claw</label>
+								<capacities>
+									<li>Scratch</li>
+								</capacities>
+								<power>23</power>
+								<cooldownTime>1.75</cooldownTime>
+								<linkedBodyPartsGroup>FrontLeftPaw</linkedBodyPartsGroup>
+								<armorPenetrationSharp>0.06</armorPenetrationSharp>
+								<armorPenetrationBlunt>2.88</armorPenetrationBlunt>
+							</li>
+							<li Class="CombatExtended.ToolCE">
+								<label>right claw</label>
+								<capacities>
+									<li>Scratch</li>
+								</capacities>
+								<power>23</power>
+								<cooldownTime>1.75</cooldownTime>
+								<linkedBodyPartsGroup>FrontRightPaw</linkedBodyPartsGroup>
+								<armorPenetrationSharp>0.06</armorPenetrationSharp>
+								<armorPenetrationBlunt>2.88</armorPenetrationBlunt>
+							</li>
+							<li Class="CombatExtended.ToolCE">
+								<label>teeth</label>
+								<capacities>
+									<li>Bite</li>
+								</capacities>
+								<power>13</power>
+								<cooldownTime>2.1</cooldownTime>
+								<linkedBodyPartsGroup>Teeth</linkedBodyPartsGroup>
+								<armorPenetrationSharp>0.03</armorPenetrationSharp>
+								<armorPenetrationBlunt>2</armorPenetrationBlunt>
+							</li>
+						</tools>
+					</value>
+				</li>
+
+				<!-- ========= Megaloceros ========= -->
+
+				<li Class="PatchOperationAdd">
+					<xpath>/Defs/ThingDef[defName="Megaloceros"]/statBases</xpath>
+					<value>
+						<MeleeDodgeChance>0.14</MeleeDodgeChance>
+						<MeleeCritChance>0.27</MeleeCritChance>
+						<MeleeParryChance>0.3</MeleeParryChance>
+					</value>
+				</li>				
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/ThingDef[defName="Megaloceros"]/race/baseHealthScale</xpath>
+					<value>
+						<baseHealthScale>3.5</baseHealthScale>
+					</value>
+				</li>
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/ThingDef[defName="Megaloceros"]/tools</xpath>
+					<value>
+						<tools>
+							<li Class="CombatExtended.ToolCE">
+								<label>left hoof</label>
+								<capacities>
+									<li>Blunt</li>
+								</capacities>
+								<power>17</power>
+								<cooldownTime>1.55</cooldownTime>
+								<linkedBodyPartsGroup>FrontLeftLeg</linkedBodyPartsGroup>
+								<armorPenetrationBlunt>6.75</armorPenetrationBlunt>
+							</li>
+							<li Class="CombatExtended.ToolCE">
+								<label>right hoof</label>
+								<capacities>
+									<li>Blunt</li>
+								</capacities>
+								<power>17</power>
+								<cooldownTime>1.55</cooldownTime>
+								<linkedBodyPartsGroup>FrontRightLeg</linkedBodyPartsGroup>
+								<armorPenetrationBlunt>6.75</armorPenetrationBlunt>
+							</li>
+							<li Class="CombatExtended.ToolCE">
+								<label>teeth</label>
+								<capacities>
+									<li>BiteBlunt</li>
+								</capacities>
+								<power>13</power>
+								<cooldownTime>2.6</cooldownTime>
+								<linkedBodyPartsGroup>Teeth</linkedBodyPartsGroup>
+								<armorPenetrationBlunt>4.75</armorPenetrationBlunt>							
+								<chanceFactor>0.25</chanceFactor>
+							</li>
+							<li Class="CombatExtended.ToolCE">
+								<label>head</label>
+								<capacities>
+									<li>Blunt</li>
+								</capacities>
+								<power>11</power>
+								<cooldownTime>2.5</cooldownTime>							
+								<restrictedGender>Female</restrictedGender>
+								<linkedBodyPartsGroup>HeadAttackTool</linkedBodyPartsGroup>
+								<armorPenetrationBlunt>4</armorPenetrationBlunt>
+							</li>
+							<li Class="CombatExtended.ToolCE">
+								<label>antlers</label>
+								<capacities>
+									<li>Stab</li>
+								</capacities>
+								<power>18</power>
+								<cooldownTime>3.65</cooldownTime>							
+								<restrictedGender>Male</restrictedGender>
+								<linkedBodyPartsGroup>HeadAttackTool</linkedBodyPartsGroup>
+								<armorPenetrationSharp>0.39</armorPenetrationSharp>
+								<armorPenetrationBlunt>17.5</armorPenetrationBlunt>
+							</li>
+						</tools>
+					</value>
+				</li>
+
+				<!-- ========= Procoptodon ========= -->
+
+				<li Class="PatchOperationAdd">
+					<xpath>/Defs/ThingDef[defName="Procoptodon"]/statBases</xpath>
+					<value>
+						<MeleeDodgeChance>0.15</MeleeDodgeChance>
+						<MeleeCritChance>0.14</MeleeCritChance>
+						<MeleeParryChance>0.2</MeleeParryChance>
+					</value>
+				</li>				
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/ThingDef[defName="Procoptodon"]/race/baseHealthScale</xpath>
+					<value>
+						<baseHealthScale>3.2</baseHealthScale>
+					</value>
+				</li>
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/ThingDef[defName="Procoptodon"]/tools</xpath>
+					<value>
+						<tools>
+							<li Class="CombatExtended.ToolCE">
+								<label>feet</label>
+								<capacities>
+									<li>Blunt</li>
+								</capacities>
+								<power>18</power>
+								<cooldownTime>1.3</cooldownTime>
+								<linkedBodyPartsGroup>Feet</linkedBodyPartsGroup>
+								<surpriseAttack>
+									<extraMeleeDamages>
+										<li>
+											<def>Stun</def>
+											<amount>25</amount>
+										</li>
+									</extraMeleeDamages>
+								</surpriseAttack>
+								<armorPenetrationBlunt>7.225</armorPenetrationBlunt>
+							</li>
+							<li Class="CombatExtended.ToolCE">
+								<label>left fist</label>
+								<capacities>
+									<li>Blunt</li>
+								</capacities>
+								<power>12</power>
+								<cooldownTime>1.15</cooldownTime>
+								<linkedBodyPartsGroup>LeftHand</linkedBodyPartsGroup>
+								<surpriseAttack>
+									<extraMeleeDamages>
+										<li>
+											<def>Stun</def>
+											<amount>22</amount>
+										</li>
+									</extraMeleeDamages>
+								</surpriseAttack>
+								<armorPenetrationBlunt>4.335</armorPenetrationBlunt>
+							</li>
+							<li Class="CombatExtended.ToolCE">
+								<label>right fist</label>
+								<capacities>
+									<li>Blunt</li>
+								</capacities>
+								<power>12</power>
+								<cooldownTime>1.15</cooldownTime>
+								<linkedBodyPartsGroup>RightHand</linkedBodyPartsGroup>
+								<surpriseAttack>
+									<extraMeleeDamages>
+										<li>
+											<def>Stun</def>
+											<amount>22</amount>
+										</li>
+									</extraMeleeDamages>
+								</surpriseAttack>
+								<armorPenetrationBlunt>4.335</armorPenetrationBlunt>
+							</li>
+							<li Class="CombatExtended.ToolCE">
+								<label>teeth</label>
+								<capacities>
+									<li>BiteBlunt</li>
+								</capacities>
+								<power>4</power>
+								<cooldownTime>1.9</cooldownTime>
+								<linkedBodyPartsGroup>Teeth</linkedBodyPartsGroup>
+								<armorPenetrationBlunt>1.35</armorPenetrationBlunt>
+							</li>
+						</tools>
+					</value>
+				</li>
+
+				<!-- ========= Megalania ========= -->
+
+				<li Class="PatchOperationAdd">
+					<xpath>/Defs/ThingDef[defName="Megalania"]/statBases</xpath>
+					<value>
+						<MeleeDodgeChance>0.09</MeleeDodgeChance>
+						<MeleeCritChance>0.15</MeleeCritChance>
+						<MeleeParryChance>0.25</MeleeParryChance>
+					</value>
+				</li>				
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/ThingDef[defName="Megalania"]/race/baseHealthScale</xpath>
+					<value>
+						<baseHealthScale>2.8</baseHealthScale>
+					</value>
+				</li>
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/ThingDef[defName="Megalania"]/tools</xpath>
+					<value>
+						<tools>
+							<li Class="CombatExtended.ToolCE">
+								<label>left claw</label>
+								<capacities>
+									<li>Scratch</li>
+								</capacities>
+								<power>34</power>
+								<cooldownTime>2.05</cooldownTime>
+								<linkedBodyPartsGroup>FrontLeftClaws</linkedBodyPartsGroup>
+								<armorPenetrationSharp>0.6</armorPenetrationSharp>
+								<armorPenetrationBlunt>5.4</armorPenetrationBlunt>
+							</li>
+							<li Class="CombatExtended.ToolCE">
+								<label>right claw</label>
+								<capacities>
+									<li>Scratch</li>
+								</capacities>
+								<power>34</power>
+								<cooldownTime>2.05</cooldownTime>
+								<linkedBodyPartsGroup>FrontRightClaws</linkedBodyPartsGroup>
+								<armorPenetrationSharp>0.6</armorPenetrationSharp>
+								<armorPenetrationBlunt>5.4</armorPenetrationBlunt>
+							</li>
+							<li Class="CombatExtended.ToolCE">
+								<label>toxic bite</label>
+								<capacities>
+									<li>ToxicBite</li>
+								</capacities>
+								<power>24</power>
+								<cooldownTime>2.1</cooldownTime>
+								<linkedBodyPartsGroup>Teeth</linkedBodyPartsGroup>
+								<surpriseAttack>
+									<extraMeleeDamages>
+										<li>
+											<def>Stun</def>
+											<amount>27</amount>
+										</li>
+									</extraMeleeDamages>
+								</surpriseAttack>
+								<armorPenetrationSharp>0.08</armorPenetrationSharp>
+								<armorPenetrationBlunt>5.76</armorPenetrationBlunt>
+							</li>
+						</tools>
+					</value>
+				</li>
+
+				<!-- ========= Gomphotaria ========= -->
+
+				<li Class="PatchOperationAdd">
+					<xpath>/Defs/ThingDef[defName="Gomphotaria"]/statBases</xpath>
+					<value>
+						<MeleeDodgeChance>0.05</MeleeDodgeChance>
+						<MeleeCritChance>0.2</MeleeCritChance>
+						<MeleeParryChance>0.43</MeleeParryChance>
+					</value>
+				</li>				
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/ThingDef[defName="Gomphotaria"]/race/baseHealthScale</xpath>
+					<value>
+						<baseHealthScale>7</baseHealthScale>
+					</value>
+				</li>
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/ThingDef[defName="Gomphotaria"]/race/baseBodySize</xpath>
+					<value>
+						<baseBodySize>4</baseBodySize>
+					</value>
+				</li>
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/ThingDef[defName="Gomphotaria"]/tools</xpath>
+					<value>
+						<tools>
+							<li Class="CombatExtended.ToolCE">
+								<label>teeth</label>
+								<capacities>
+									<li>Bite</li>
+								</capacities>
+								<power>37</power>
+								<cooldownTime>3.75</cooldownTime>
+								<linkedBodyPartsGroup>Teeth</linkedBodyPartsGroup>
+								<surpriseAttack>
+									<extraMeleeDamages>
+										<li>
+											<def>Stun</def>
+											<amount>36</amount>
+										</li>
+									</extraMeleeDamages>
+								</surpriseAttack>
+								<armorPenetrationSharp>0.11</armorPenetrationSharp>
+								<armorPenetrationBlunt>10.125</armorPenetrationBlunt>
+							</li>						
+						</tools>
+					</value>
+				</li>
+
+				<!-- ========= Diprotodon ========= -->
+
+				<li Class="PatchOperationAdd">
+					<xpath>/Defs/ThingDef[defName="Diprotodon"]/statBases</xpath>
+					<value>
+						<MeleeDodgeChance>0.06</MeleeDodgeChance>
+						<MeleeCritChance>0.3</MeleeCritChance>
+						<MeleeParryChance>0.45</MeleeParryChance>
+					</value>
+				</li>				
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/ThingDef[defName="Diprotodon"]/race/baseHealthScale</xpath>
+					<value>
+						<baseHealthScale>6</baseHealthScale>
+					</value>
+				</li>
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/ThingDef[defName="Diprotodon"]/tools</xpath>
+					<value>
+						<tools>
+							<li Class="CombatExtended.ToolCE">
+								<label>left claw</label>
+								<capacities>
+									<li>Scratch</li>
+								</capacities>
+								<power>36</power>
+								<cooldownTime>2.25</cooldownTime>
+								<linkedBodyPartsGroup>FrontLeftPaw</linkedBodyPartsGroup>
+								<armorPenetrationSharp>0.13</armorPenetrationSharp>
+								<armorPenetrationBlunt>12.675</armorPenetrationBlunt>
+							</li>
+							<li Class="CombatExtended.ToolCE">
+								<label>right claw</label>
+								<capacities>
+									<li>Scratch</li>
+								</capacities>
+								<power>36</power>
+								<cooldownTime>2.25</cooldownTime>
+								<linkedBodyPartsGroup>FrontRightPaw</linkedBodyPartsGroup>
+								<armorPenetrationSharp>0.13</armorPenetrationSharp>
+								<armorPenetrationBlunt>12.675</armorPenetrationBlunt>
+							</li>
+							<li Class="CombatExtended.ToolCE">
+								<label>teeth</label>
+								<capacities>
+									<li>Bite</li>
+								</capacities>
+								<power>27</power>
+								<cooldownTime>1.95</cooldownTime>
+								<linkedBodyPartsGroup>Teeth</linkedBodyPartsGroup>
+								<surpriseAttack>
+									<extraMeleeDamages>
+										<li>
+											<def>Stun</def>
+											<amount>24</amount>
+										</li>
+									</extraMeleeDamages>
+								</surpriseAttack>
+								<armorPenetrationSharp>0.07</armorPenetrationSharp>
+								<armorPenetrationBlunt>6.76</armorPenetrationBlunt>
+							</li>
+						</tools>
+					</value>
+				</li>
+
+				<!-- ========= ShortfacedBear ========= -->
+
+				<li Class="PatchOperationAdd">
+					<xpath>/Defs/ThingDef[defName="ShortfacedBear"]/statBases</xpath>
+					<value>
+						<MeleeDodgeChance>0.13</MeleeDodgeChance>
+						<MeleeCritChance>0.34</MeleeCritChance>
+						<MeleeParryChance>0.33</MeleeParryChance>
+					</value>
+				</li>				
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/ThingDef[defName="ShortfacedBear"]/race/baseHealthScale</xpath>
+					<value>
+						<baseHealthScale>3.2</baseHealthScale>
+					</value>
+				</li>
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/ThingDef[defName="ShortfacedBear"]/race/baseBodySize</xpath>
+					<value>
+						<baseBodySize>4</baseBodySize>
+					</value>
+				</li>
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/ThingDef[defName="ShortfacedBear"]/tools</xpath>
+					<value>
+						<tools>
+							<li Class="CombatExtended.ToolCE">
+								<label>left claw</label>
+								<capacities>
+									<li>Scratch</li>
+								</capacities>
+								<power>30</power>
+								<cooldownTime>1.55</cooldownTime>
+								<linkedBodyPartsGroup>FrontLeftPaw</linkedBodyPartsGroup>
+								<surpriseAttack>
+									<extraMeleeDamages>
+										<li>
+											<def>Stun</def>
+											<amount>25</amount>
+										</li>
+									</extraMeleeDamages>
+								</surpriseAttack>
+								<armorPenetrationSharp>0.07</armorPenetrationSharp>
+								<armorPenetrationBlunt>6.75</armorPenetrationBlunt>
+							</li>
+							<li Class="CombatExtended.ToolCE">
+								<label>right claw</label>
+								<capacities>
+									<li>Scratch</li>
+								</capacities>
+								<power>30</power>
+								<cooldownTime>1.55</cooldownTime>
+								<linkedBodyPartsGroup>FrontRightPaw</linkedBodyPartsGroup>
+								<surpriseAttack>
+									<extraMeleeDamages>
+										<li>
+											<def>Stun</def>
+											<amount>25</amount>
+										</li>
+									</extraMeleeDamages>
+								</surpriseAttack>
+								<armorPenetrationSharp>0.07</armorPenetrationSharp>
+								<armorPenetrationBlunt>6.75</armorPenetrationBlunt>
+							</li>
+							<li Class="CombatExtended.ToolCE">
+								<label>teeth</label>
+								<capacities>
+									<li>Bite</li>
+								</capacities>
+								<power>46</power>
+								<cooldownTime>2</cooldownTime>
+								<linkedBodyPartsGroup>Teeth</linkedBodyPartsGroup>
+								<surpriseAttack>
+									<extraMeleeDamages>
+										<li>
+											<def>Stun</def>
+											<amount>27</amount>
+										</li>
+									</extraMeleeDamages>
+								</surpriseAttack>
+								<armorPenetrationSharp>0.23</armorPenetrationSharp>
+								<armorPenetrationBlunt>18</armorPenetrationBlunt>
+							</li>						
+						</tools>
+					</value>
+				</li>
+
+				<!-- ========= Dinocrocuta ========= -->
+
+				<li Class="PatchOperationAdd">
+					<xpath>/Defs/ThingDef[defName="Dinocrocuta"]/statBases</xpath>
+					<value>
+						<MeleeDodgeChance>0.18</MeleeDodgeChance>
+						<MeleeCritChance>0.18</MeleeCritChance>
+						<MeleeParryChance>0.18</MeleeParryChance>
+					</value>
+				</li>				
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/ThingDef[defName="Dinocrocuta"]/race/baseHealthScale</xpath>
+					<value>
+						<baseHealthScale>3.3</baseHealthScale>
+					</value>
+				</li>
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/ThingDef[defName="Dinocrocuta"]/race/baseBodySize</xpath>
+					<value>
+						<baseBodySize>2.7</baseBodySize>
+					</value>
+				</li>
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/ThingDef[defName="Dinocrocuta"]/tools</xpath>
+					<value>
+						<tools>
+							<li Class="CombatExtended.ToolCE">
+								<label>left claw</label>
+								<capacities>
+									<li>Scratch</li>
+								</capacities>
+								<power>14</power>
+								<cooldownTime>1.35</cooldownTime>
+								<linkedBodyPartsGroup>FrontLeftPaw</linkedBodyPartsGroup>
+								<armorPenetrationSharp>0.72</armorPenetrationSharp>
+								<armorPenetrationBlunt>3.6</armorPenetrationBlunt>
+							</li>
+							<li Class="CombatExtended.ToolCE">
+								<label>right claw</label>
+								<capacities>
+									<li>Scratch</li>
+								</capacities>
+								<power>14</power>
+								<cooldownTime>1.35</cooldownTime>
+								<linkedBodyPartsGroup>FrontRightPaw</linkedBodyPartsGroup>
+								<armorPenetrationSharp>0.72</armorPenetrationSharp>
+								<armorPenetrationBlunt>3.6</armorPenetrationBlunt>
+							</li>
+							<li Class="CombatExtended.ToolCE">
+								<label>teeth</label>
+								<capacities>
+									<li>Bite</li>
+								</capacities>
+								<power>29</power>
+								<cooldownTime>1.65</cooldownTime>
+								<linkedBodyPartsGroup>Teeth</linkedBodyPartsGroup>
+								<surpriseAttack>
+									<extraMeleeDamages>
+										<li>
+											<def>Stun</def>
+											<amount>28</amount>
+										</li>
+									</extraMeleeDamages>
+								</surpriseAttack>
+								<armorPenetrationSharp>0.96</armorPenetrationSharp>
+								<armorPenetrationBlunt>8.1</armorPenetrationBlunt>
+							</li>
+						</tools>
+					</value>
+				</li>
+
+				<!-- ========= Sivatherium ========= -->
+
+				<li Class="PatchOperationAdd">
+					<xpath>/Defs/ThingDef[defName="Sivatherium"]/statBases</xpath>
+					<value>
+						<MeleeDodgeChance>0.14</MeleeDodgeChance>
+						<MeleeCritChance>0.2</MeleeCritChance>
+						<MeleeParryChance>0.28</MeleeParryChance>
+					</value>
+				</li>				
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/ThingDef[defName="Sivatherium"]/race/baseHealthScale</xpath>
+					<value>
+						<baseHealthScale>3.3</baseHealthScale>
+					</value>
+				</li>
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/ThingDef[defName="Sivatherium"]/race/baseBodySize</xpath>
+					<value>
+						<baseBodySize>2.7</baseBodySize>
+					</value>
+				</li>
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/ThingDef[defName="Sivatherium"]/tools</xpath>
+					<value>
+						<tools>
+							<li Class="CombatExtended.ToolCE">
+								<label>left hoof</label>
+								<capacities>
+									<li>Blunt</li>
+								</capacities>
+								<power>13</power>
+								<cooldownTime>1.45</cooldownTime>
+								<linkedBodyPartsGroup>FrontLeftLeg</linkedBodyPartsGroup>
+								<armorPenetrationBlunt>5.063</armorPenetrationBlunt>
+							</li>
+							<li Class="CombatExtended.ToolCE">
+								<label>right hoof</label>
+								<capacities>
+									<li>Blunt</li>
+								</capacities>
+								<power>13</power>
+								<cooldownTime>1.45</cooldownTime>
+								<linkedBodyPartsGroup>FrontRightLeg</linkedBodyPartsGroup>
+								<armorPenetrationBlunt>5.063</armorPenetrationBlunt>
+							</li>
+							<li Class="CombatExtended.ToolCE">
+								<label>teeth</label>
+								<capacities>
+									<li>BiteBlunt</li>
+								</capacities>
+								<power>10</power>
+								<cooldownTime>2.45</cooldownTime>
+								<linkedBodyPartsGroup>Teeth</linkedBodyPartsGroup>
+								<armorPenetrationBlunt>3.5</armorPenetrationBlunt>
+							</li>
+							<li Class="CombatExtended.ToolCE">
+								<label>head</label>
+								<capacities>
+									<li>Blunt</li>
+								</capacities>
+								<power>9</power>
+								<cooldownTime>2.35</cooldownTime>
+								<linkedBodyPartsGroup>HeadAttackTool</linkedBodyPartsGroup>
+								<armorPenetrationBlunt>3</armorPenetrationBlunt>
+								<chanceFactor>0.5</chanceFactor>
+							</li>
+						</tools>
+					</value>
+				</li>
+
+				<!-- ========= Andrewsarchus ========= -->
+
+				<li Class="PatchOperationAdd">
+					<xpath>/Defs/ThingDef[defName="Andrewsarchus"]/statBases</xpath>
+					<value>
+						<MeleeDodgeChance>0.12</MeleeDodgeChance>
+						<MeleeCritChance>0.19</MeleeCritChance>
+						<MeleeParryChance>0.15</MeleeParryChance>
+					</value>
+				</li>				
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/ThingDef[defName="Andrewsarchus"]/race/baseHealthScale</xpath>
+					<value>
+						<baseHealthScale>2.2</baseHealthScale>
+					</value>
+				</li>
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/ThingDef[defName="Andrewsarchus"]/race/baseBodySize</xpath>
+					<value>
+						<baseBodySize>1.5</baseBodySize>
+					</value>
+				</li>
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/ThingDef[defName="Andrewsarchus"]/tools</xpath>
+					<value>
+						<tools>
+							<li Class="CombatExtended.ToolCE">
+								<label>left claw</label>
+								<capacities>
+									<li>Scratch</li>
+								</capacities>
+								<power>18</power>
+								<cooldownTime>1.25</cooldownTime>
+								<linkedBodyPartsGroup>FrontLeftPaw</linkedBodyPartsGroup>
+								<armorPenetrationSharp>0.03</armorPenetrationSharp>
+								<armorPenetrationBlunt>2.925</armorPenetrationBlunt>
+							</li>
+							<li Class="CombatExtended.ToolCE">
+								<label>right claw</label>
+								<capacities>
+									<li>Scratch</li>
+								</capacities>
+								<power>18</power>
+								<cooldownTime>1.25</cooldownTime>
+								<linkedBodyPartsGroup>FrontRightPaw</linkedBodyPartsGroup>
+								<armorPenetrationSharp>0.03</armorPenetrationSharp>
+								<armorPenetrationBlunt>2.925</armorPenetrationBlunt>
+							</li>
+							<li Class="CombatExtended.ToolCE">
+								<label>teeth</label>
+								<capacities>
+									<li>Bite</li>
+								</capacities>
+								<power>23</power>
+								<cooldownTime>1.8</cooldownTime>
+								<linkedBodyPartsGroup>Teeth</linkedBodyPartsGroup>
+								<surpriseAttack>
+									<extraMeleeDamages>
+										<li>
+											<def>Stun</def>
+											<amount>30</amount>
+										</li>
+									</extraMeleeDamages>
+								</surpriseAttack>
+								<armorPenetrationSharp>0.07</armorPenetrationSharp>
+								<armorPenetrationBlunt>5.07</armorPenetrationBlunt>
+							</li>
+						</tools>
+					</value>
+				</li>
+
+				<!-- ========= Dinornis ========= -->
+
+				<li Class="PatchOperationAdd">
+					<xpath>/Defs/ThingDef[defName="Dinornis"]/statBases</xpath>
+					<value>
+						<MeleeDodgeChance>0.24</MeleeDodgeChance>
+						<MeleeCritChance>0.21</MeleeCritChance>
+						<MeleeParryChance>0.26</MeleeParryChance>
+					</value>
+				</li>				
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/ThingDef[defName="Dinornis"]/race/baseHealthScale</xpath>
+					<value>
+						<baseHealthScale>5</baseHealthScale>
+					</value>
+				</li>
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/ThingDef[defName="Dinornis"]/tools</xpath>
+					<value>
+						<tools>
+							<li Class="CombatExtended.ToolCE">
+								<label>claws</label>
+								<capacities>
+									<li>Scratch</li>
+								</capacities>
+								<power>15</power>
+								<cooldownTime>1.6</cooldownTime>
+								<linkedBodyPartsGroup>Feet</linkedBodyPartsGroup>
+								<surpriseAttack>
+									<extraMeleeDamages>
+										<li>
+											<def>Stun</def>
+											<amount>15</amount>
+										</li>
+									</extraMeleeDamages>
+								</surpriseAttack>
+								<armorPenetrationSharp>0.25</armorPenetrationSharp>
+								<armorPenetrationBlunt>1.2</armorPenetrationBlunt>
+							</li>
+							<li Class="CombatExtended.ToolCE">
+								<label>beak</label>
+								<capacities>
+									<li>Bite</li>
+								</capacities>
+								<power>11</power>
+								<cooldownTime>2.05</cooldownTime>
+								<linkedBodyPartsGroup>Beak</linkedBodyPartsGroup>
+								<surpriseAttack>
+									<extraMeleeDamages>
+										<li>
+											<def>Stun</def>
+											<amount>13</amount>
+										</li>
+									</extraMeleeDamages>
+								</surpriseAttack>
+								<armorPenetrationSharp>0.01</armorPenetrationSharp>
+								<armorPenetrationBlunt>3.025</armorPenetrationBlunt>
+							</li>			
+						</tools>
+					</value>
+				</li>
+
+				<!-- ========= Macrauchenia ========= -->
+
+				<li Class="PatchOperationAdd">
+					<xpath>/Defs/ThingDef[defName="Macrauchenia"]/statBases</xpath>
+					<value>
+						<MeleeDodgeChance>0.15</MeleeDodgeChance>
+						<MeleeCritChance>0.49</MeleeCritChance>
+						<MeleeParryChance>0.32</MeleeParryChance>
+					</value>
+				</li>				
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/ThingDef[defName="Macrauchenia"]/race/baseHealthScale</xpath>
+					<value>
+						<baseHealthScale>3.5</baseHealthScale>
+					</value>
+				</li>
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/ThingDef[defName="Macrauchenia"]/race/baseBodySize</xpath>
+					<value>
+						<baseBodySize>3.5</baseBodySize>
+					</value>
+				</li>
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/ThingDef[defName="Macrauchenia"]/tools</xpath>
+					<value>
+						<tools>
+							<li Class="CombatExtended.ToolCE">
+								<label>left hoof</label>
+								<capacities>
+									<li>Blunt</li>
+								</capacities>
+								<power>16</power>
+								<cooldownTime>2.1</cooldownTime>
+								<linkedBodyPartsGroup>FrontLeftLeg</linkedBodyPartsGroup>
+								<armorPenetrationBlunt>5.976</armorPenetrationBlunt>
+							</li>
+							<li Class="CombatExtended.ToolCE">
+								<label>right hoof</label>
+								<capacities>
+									<li>Blunt</li>
+								</capacities>
+								<power>16</power>
+								<cooldownTime>2.1</cooldownTime>
+								<linkedBodyPartsGroup>FrontRightLeg</linkedBodyPartsGroup>
+								<armorPenetrationBlunt>5.976</armorPenetrationBlunt>
+							</li>
+							<li Class="CombatExtended.ToolCE">
+								<label>teeth</label>
+								<capacities>
+									<li>BiteBlunt</li>
+								</capacities>
+								<power>11</power>
+								<cooldownTime>2.55</cooldownTime>
+								<linkedBodyPartsGroup>Teeth</linkedBodyPartsGroup>
+								<armorPenetrationBlunt>4.15</armorPenetrationBlunt>
+								<chanceFactor>0.3</chanceFactor>
+							</li>
+						</tools>
+					</value>
+				</li>
+
+				<!-- ========= Quinkana ========= -->
+
+				<li Class="PatchOperationAdd">
+					<xpath>/Defs/ThingDef[defName="Quinkana"]/statBases</xpath>
+					<value>
+						<MeleeDodgeChance>0.13</MeleeDodgeChance>
+						<MeleeCritChance>0.29</MeleeCritChance>
+						<MeleeParryChance>0.26</MeleeParryChance>
+					</value>
+				</li>				
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/ThingDef[defName="Quinkana"]/race/baseHealthScale</xpath>
+					<value>
+						<baseHealthScale>3</baseHealthScale>
+					</value>
+				</li>
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/ThingDef[defName="Quinkana"]/race/baseBodySize</xpath>
+					<value>
+						<baseBodySize>3</baseBodySize>
+					</value>
+				</li>
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/ThingDef[defName="Quinkana"]/tools</xpath>
+					<value>
+						<tools>
+							<li Class="CombatExtended.ToolCE">
+								<label>left claw</label>
+								<capacities>
+									<li>Scratch</li>
+								</capacities>
+								<power>31</power>
+								<cooldownTime>2.15</cooldownTime>
+								<linkedBodyPartsGroup>FrontLeftClaws</linkedBodyPartsGroup>
+								<armorPenetrationSharp>0.08</armorPenetrationSharp>
+								<armorPenetrationBlunt>6.48</armorPenetrationBlunt>
+							</li>
+							<li Class="CombatExtended.ToolCE">
+								<label>right claw</label>
+								<capacities>
+									<li>Scratch</li>
+								</capacities>
+								<power>31</power>
+								<cooldownTime>2.15</cooldownTime>
+								<linkedBodyPartsGroup>FrontRightClaws</linkedBodyPartsGroup>
+								<armorPenetrationSharp>0.08</armorPenetrationSharp>
+								<armorPenetrationBlunt>6.48</armorPenetrationBlunt>
+							</li>
+							<li Class="CombatExtended.ToolCE">
+								<label>teeth</label>
+								<capacities>
+									<li>Bite</li>
+								</capacities>
+								<power>26</power>
+								<cooldownTime>1.8</cooldownTime>
+								<linkedBodyPartsGroup>Teeth</linkedBodyPartsGroup>
+								<surpriseAttack>
+									<extraMeleeDamages>
+										<li>
+											<def>Stun</def>
+											<amount>32</amount>
+										</li>
+									</extraMeleeDamages>
+								</surpriseAttack>
+								<armorPenetrationSharp>0.1</armorPenetrationSharp>
+								<armorPenetrationBlunt>7.84</armorPenetrationBlunt>
+							</li>
+						</tools>
+					</value>
+				</li>
+
+				<!-- ========= Deinotherium ========= -->
+
+				<li Class="PatchOperationAdd">
+					<xpath>/Defs/ThingDef[defName="Deinotherium"]/statBases</xpath>
+					<value>
+						<MeleeDodgeChance>0.07</MeleeDodgeChance>
+						<MeleeCritChance>0.89</MeleeCritChance>
+						<MeleeParryChance>0.72</MeleeParryChance>
+					</value>
+				</li>				
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/ThingDef[defName="Deinotherium"]/race/baseHealthScale</xpath>
+					<value>
+						<baseHealthScale>6</baseHealthScale>
+					</value>
+				</li>
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/ThingDef[defName="Deinotherium"]/tools</xpath>
+					<value>
+						<tools>
+							<li Class="CombatExtended.ToolCE">
+								<label>tusk</label>
+								<capacities>
+									<li>Poke</li>
+								</capacities>
+								<power>85</power>
+								<cooldownTime>3.8</cooldownTime>
+								<linkedBodyPartsGroup>TuskAttackTool</linkedBodyPartsGroup>
+								<armorPenetrationBlunt>40.593</armorPenetrationBlunt>
+							</li>
+							<li Class="CombatExtended.ToolCE">
+								<label>left foot</label>
+								<capacities>
+									<li>Blunt</li>
+								</capacities>
+								<power>41</power>
+								<cooldownTime>2.8</cooldownTime>
+								<linkedBodyPartsGroup>FrontLeftLeg</linkedBodyPartsGroup>
+								<armorPenetrationBlunt>18</armorPenetrationBlunt>
+							</li>
+							<li Class="CombatExtended.ToolCE">
+								<label>right foot</label>
+								<capacities>
+									<li>Blunt</li>
+								</capacities>
+								<power>41</power>
+								<cooldownTime>2.8</cooldownTime>
+								<linkedBodyPartsGroup>FrontRightLeg</linkedBodyPartsGroup>
+								<armorPenetrationBlunt>18</armorPenetrationBlunt>
+							</li>
+							<li Class="CombatExtended.ToolCE">
+								<label>head</label>
+								<capacities>
+									<li>Blunt</li>
+								</capacities>
+								<power>79</power>
+								<cooldownTime>4.4</cooldownTime>
+								<linkedBodyPartsGroup>HeadAttackTool</linkedBodyPartsGroup>
+								<armorPenetrationBlunt>37.5</armorPenetrationBlunt>
+								<chanceFactor>0.01</chanceFactor>
+							</li>
+						</tools>
+					</value>
+				</li>
+
+				<!-- ========= Aurochs ========= -->
+
+				<li Class="PatchOperationAdd">
+					<xpath>/Defs/ThingDef[defName="Aurochs"]/statBases</xpath>
+					<value>
+						<MeleeDodgeChance>0.11</MeleeDodgeChance>
+						<MeleeCritChance>0.31</MeleeCritChance>
+						<MeleeParryChance>0.28</MeleeParryChance>
+					</value>
+				</li>	
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/ThingDef[defName="Aurochs"]/tools</xpath>
+					<value>
+						<tools>
+							<li Class="CombatExtended.ToolCE">
+								<label>left hoof</label>
+								<capacities>
+									<li>Blunt</li>
+								</capacities>
+								<power>13</power>
+								<cooldownTime>2</cooldownTime>
+								<linkedBodyPartsGroup>FrontLeftLeg</linkedBodyPartsGroup>
+								<armorPenetrationBlunt>5.04</armorPenetrationBlunt>
+							</li>
+							<li Class="CombatExtended.ToolCE">
+								<label>right hoof</label>
+								<capacities>
+									<li>Blunt</li>
+								</capacities>
+								<power>13</power>
+								<cooldownTime>2</cooldownTime>
+								<linkedBodyPartsGroup>FrontRightLeg</linkedBodyPartsGroup>
+								<armorPenetrationBlunt>5.04</armorPenetrationBlunt>
+							</li>
+							<li Class="CombatExtended.ToolCE">
+								<label>horn</label>
+								<capacities>
+									<li>Poke</li>
+								</capacities>
+								<power>22</power>
+								<cooldownTime>1.7</cooldownTime>
+								<linkedBodyPartsGroup>HornAttackTool</linkedBodyPartsGroup>
+								<armorPenetrationBlunt>9</armorPenetrationBlunt>
+								<chanceFactor>0.45</chanceFactor>
+							</li>
+							<li Class="CombatExtended.ToolCE">
+								<label>head</label>
+								<capacities>
+									<li>Blunt</li>
+								</capacities>
+								<power>15</power>
+								<cooldownTime>2.1</cooldownTime>
+								<linkedBodyPartsGroup>HeadAttackTool</linkedBodyPartsGroup>
+								<armorPenetrationBlunt>5.76</armorPenetrationBlunt>
+								<chanceFactor>0.25</chanceFactor>
+							</li>
+						</tools>
+					</value>
+				</li>
+
+				<!-- ========= Megalochelys ========= -->
+
+				<li Class="PatchOperationAdd">
+					<xpath>/Defs/ThingDef[defName="Megalochelys"]/statBases</xpath>
+					<value>
+						<MeleeDodgeChance>0.03</MeleeDodgeChance>
+						<MeleeCritChance>0.06</MeleeCritChance>
+						<MeleeParryChance>0.44</MeleeParryChance>
+					</value>
+				</li>	
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/ThingDef[defName="Megalochelys"]/statBases/ArmorRating_Blunt</xpath>
+					<value>
+						<ArmorRating_Blunt>20</ArmorRating_Blunt>
+					</value>
+				</li>
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/ThingDef[defName="Megalochelys"]/statBases/ArmorRating_Sharp</xpath>
+					<value>
+						<ArmorRating_Sharp>0.85</ArmorRating_Sharp>
+					</value>
+				</li>
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/ThingDef[defName="Megalochelys"]/tools</xpath>
+					<value>
+						<tools>
+							<li Class="CombatExtended.ToolCE">
+								<label>beak</label>
+								<capacities>
+									<li>Bite</li>
+								</capacities>
+								<power>30</power>
+								<cooldownTime>3.25</cooldownTime>
+								<linkedBodyPartsGroup>TurtleBeakAttackTool</linkedBodyPartsGroup>
+								<armorPenetrationSharp>0.11</armorPenetrationSharp>
+								<armorPenetrationBlunt>11</armorPenetrationBlunt>
+							</li>
+							<li Class="CombatExtended.ToolCE">
+								<label>head</label>
+								<capacities>
+									<li>Blunt</li>
+								</capacities>
+								<power>5</power>
+								<cooldownTime>1.65</cooldownTime>
+								<linkedBodyPartsGroup>HeadAttackTool</linkedBodyPartsGroup>
+								<armorPenetrationBlunt>1.65</armorPenetrationBlunt>
+								<ensureLinkedBodyPartsGroupAlwaysUsable>true</ensureLinkedBodyPartsGroupAlwaysUsable>							
+								<chanceFactor>0.2</chanceFactor>
+							</li>						
+						</tools>
+					</value>
+				</li>
+
+				<!-- ========= Palaeeudyptes ========= -->
+
+				<li Class="PatchOperationAdd">
+					<xpath>/Defs/ThingDef[defName="Palaeeudyptes"]/statBases</xpath>
+					<value>
+						<MeleeDodgeChance>0.14</MeleeDodgeChance>
+						<MeleeCritChance>0.07</MeleeCritChance>
+						<MeleeParryChance>0.16</MeleeParryChance>
+					</value>
+				</li>				
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/ThingDef[defName="Palaeeudyptes"]/race/baseHealthScale</xpath>
+					<value>
+						<baseHealthScale>3</baseHealthScale>
+					</value>
+				</li>
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/ThingDef[defName="Palaeeudyptes"]/tools</xpath>
+					<value>
+						<tools>
+							<li Class="CombatExtended.ToolCE">
+								<label>claws</label>
+								<capacities>
+									<li>Scratch</li>
+								</capacities>
+								<power>26</power>
+								<cooldownTime>3.85</cooldownTime>
+								<linkedBodyPartsGroup>Feet</linkedBodyPartsGroup>
+								<armorPenetrationSharp>0.24</armorPenetrationSharp>
+								<armorPenetrationBlunt>11.543</armorPenetrationBlunt>
+							</li>
+							<li Class="CombatExtended.ToolCE">
+								<label>teeth</label>
+								<capacities>
+									<li>Bite</li>
+								</capacities>
+								<power>22</power>
+								<cooldownTime>3.85</cooldownTime>
+								<linkedBodyPartsGroup>Beak</linkedBodyPartsGroup>
+								<surpriseAttack>
+									<extraMeleeDamages>
+										<li>
+											<def>Stun</def>
+											<amount>19</amount>
+										</li>
+									</extraMeleeDamages>
+								</surpriseAttack>
+								<armorPenetrationSharp>0.12</armorPenetrationSharp>
+								<armorPenetrationBlunt>11.543</armorPenetrationBlunt>
+							</li>						
+						</tools>
+					</value>
+				</li>
+
+				<!-- ========= Josephoartigasia ========= -->
+
+				<li Class="PatchOperationAdd">
+					<xpath>/Defs/ThingDef[defName="Josephoartigasia"]/statBases</xpath>
+					<value>
+						<MeleeDodgeChance>0.08</MeleeDodgeChance>
+						<MeleeCritChance>0.19</MeleeCritChance>
+						<MeleeParryChance>0.34</MeleeParryChance>
+					</value>
+				</li>				
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/ThingDef[defName="Josephoartigasia"]/race/baseHealthScale</xpath>
+					<value>
+						<baseHealthScale>3</baseHealthScale>
+					</value>
+				</li>
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/ThingDef[defName="Josephoartigasia"]/tools</xpath>
+					<value>
+						<tools>
+							<li Class="CombatExtended.ToolCE">
+								<label>left claw</label>
+								<capacities>
+									<li>Scratch</li>
+								</capacities>
+								<power>20</power>
+								<cooldownTime>1.8</cooldownTime>
+								<linkedBodyPartsGroup>FrontLeftPaw</linkedBodyPartsGroup>
+								<armorPenetrationSharp>0.04</armorPenetrationSharp>
+								<armorPenetrationBlunt>5.07</armorPenetrationBlunt>
+							</li>
+							<li Class="CombatExtended.ToolCE">
+								<label>right claw</label>
+								<capacities>
+									<li>Scratch</li>
+								</capacities>
+								<power>20</power>
+								<cooldownTime>1.8</cooldownTime>
+								<linkedBodyPartsGroup>FrontRightPaw</linkedBodyPartsGroup>
+								<armorPenetrationSharp>0.04</armorPenetrationSharp>
+								<armorPenetrationBlunt>5.07</armorPenetrationBlunt>
+							</li>
+							<li Class="CombatExtended.ToolCE">
+								<label>teeth</label>
+								<capacities>
+									<li>Bite</li>
+								</capacities>
+								<power>52</power>
+								<cooldownTime>2.25</cooldownTime>
+								<linkedBodyPartsGroup>Teeth</linkedBodyPartsGroup>
+								<surpriseAttack>
+									<extraMeleeDamages>
+										<li>
+											<def>Stun</def>
+											<amount>18</amount>
+										</li>
+									</extraMeleeDamages>
+								</surpriseAttack>
+								<armorPenetrationSharp>0.13</armorPenetrationSharp>
+								<armorPenetrationBlunt>12.675</armorPenetrationBlunt>
+							</li>
+						</tools>
+					</value>
+				</li>
+
+				<!-- ========= Gigantophis ========= -->
+
+				<li Class="PatchOperationAdd">
+					<xpath>/Defs/ThingDef[defName="Gigantophis"]/statBases</xpath>
+					<value>
+						<MeleeDodgeChance>0.16</MeleeDodgeChance>
+						<MeleeCritChance>0.19</MeleeCritChance>
+						<MeleeParryChance>0.43</MeleeParryChance>
+					</value>
+				</li>				
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/ThingDef[defName="Gigantophis"]/race/baseHealthScale</xpath>
+					<value>
+						<baseHealthScale>3.6</baseHealthScale>
+					</value>
+				</li>
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/ThingDef[defName="Gigantophis"]/race/baseBodySize</xpath>
+					<value>
+						<baseBodySize>9</baseBodySize>
+					</value>
+				</li>
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/ThingDef[defName="Gigantophis"]/tools</xpath>
+					<value>
+						<tools>
+							<li Class="CombatExtended.ToolCE">
+								<label>teeth</label>
+								<capacities>
+									<li>BiteBlunt</li>
+								</capacities>
+								<power>38</power>
+								<cooldownTime>1.95</cooldownTime>
+								<linkedBodyPartsGroup>Mouth</linkedBodyPartsGroup>
+								<surpriseAttack>
+									<extraMeleeDamages>
+										<li>
+											<def>Stun</def>
+											<amount>55</amount>
+										</li>
+									</extraMeleeDamages>
+								</surpriseAttack>
+								<armorPenetrationBlunt>16.313</armorPenetrationBlunt>
+							</li>
+						</tools>
+					</value>
+				</li>
+
+				<!-- ========= Meganeura ========= -->
+
+				<li Class="PatchOperationAdd">
+					<xpath>/Defs/ThingDef[defName="Meganeura"]/statBases</xpath>
+					<value>
+						<MeleeDodgeChance>0.37</MeleeDodgeChance>
+						<MeleeCritChance>0.09</MeleeCritChance>
+						<MeleeParryChance>0.04</MeleeParryChance>
+					</value>
+				</li>				
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/ThingDef[defName="Meganeura"]/statBases/ArmorRating_Blunt</xpath>
+					<value>
+						<ArmorRating_Blunt>3</ArmorRating_Blunt>
+					</value>
+				</li>
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/ThingDef[defName="Meganeura"]/statBases/ArmorRating_Sharp</xpath>
+					<value>
+						<ArmorRating_Sharp>0.05</ArmorRating_Sharp>
+					</value>
+				</li>
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/ThingDef[defName="Meganeura"]/tools</xpath>
+					<value>
+						<tools>
+							<li Class="CombatExtended.ToolCE">
+								<label>teeth</label>
+								<capacities>
+									<li>Bite</li>
+								</capacities>
+								<power>6</power>
+								<cooldownTime>1.35</cooldownTime>
+								<linkedBodyPartsGroup>Mouth</linkedBodyPartsGroup>
+								<surpriseAttack>
+									<extraMeleeDamages>
+										<li>
+											<def>Stun</def>
+											<amount>9</amount>
+										</li>
+									</extraMeleeDamages>
+								</surpriseAttack>
+								<armorPenetrationSharp>0.04</armorPenetrationSharp>
+								<armorPenetrationBlunt>0.605</armorPenetrationBlunt>
+								<ensureLinkedBodyPartsGroupAlwaysUsable>true</ensureLinkedBodyPartsGroupAlwaysUsable>
+							</li>						
+						</tools>
+					</value>
+				</li>
+
+				<!-- ========= Zygolophodon ========= -->
+
+				<li Class="PatchOperationAdd">
+					<xpath>/Defs/ThingDef[defName="Zygolophodon"]/statBases</xpath>
+					<value>
+						<MeleeDodgeChance>0.06</MeleeDodgeChance>
+						<MeleeCritChance>0.98</MeleeCritChance>
+						<MeleeParryChance>0.97</MeleeParryChance>
+					</value>
+				</li>	
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/ThingDef[defName="Zygolophodon"]/race/baseBodySize</xpath>
+					<value>
+						<baseBodySize>8</baseBodySize>
+					</value>
+				</li>
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/ThingDef[defName="Zygolophodon"]/tools</xpath>
+					<value>
+						<tools>
+							<li Class="CombatExtended.ToolCE">
+								<label>tusk</label>
+								<capacities>
+									<li>Poke</li>
+								</capacities>
+								<power>179</power>
+								<cooldownTime>4.7</cooldownTime>
+								<linkedBodyPartsGroup>TuskAttackTool</linkedBodyPartsGroup>
+								<armorPenetrationBlunt>93.677</armorPenetrationBlunt>
+							</li>
+							<li Class="CombatExtended.ToolCE">
+								<label>left foot</label>
+								<capacities>
+									<li>Blunt</li>
+								</capacities>
+								<power>76</power>
+								<cooldownTime>3.3</cooldownTime>
+								<linkedBodyPartsGroup>FrontLeftLeg</linkedBodyPartsGroup>
+								<armorPenetrationBlunt>36</armorPenetrationBlunt>
+							</li>
+							<li Class="CombatExtended.ToolCE">
+								<label>right foot</label>
+								<capacities>
+									<li>Blunt</li>
+								</capacities>
+								<power>76</power>
+								<cooldownTime>3.3</cooldownTime>
+								<linkedBodyPartsGroup>FrontRightLeg</linkedBodyPartsGroup>
+								<armorPenetrationBlunt>36</armorPenetrationBlunt>
+							</li>
+							<li Class="CombatExtended.ToolCE">
+								<label>head</label>
+								<capacities>
+									<li>Blunt</li>
+								</capacities>
+								<power>125</power>
+								<cooldownTime>5</cooldownTime>
+								<linkedBodyPartsGroup>HeadAttackTool</linkedBodyPartsGroup>
+								<armorPenetrationBlunt>62.5</armorPenetrationBlunt>
+								<chanceFactor>0.01</chanceFactor>
+							</li>
+						</tools>
+					</value>
+				</li>
+
+				<!-- ========= Platybelodon ========= -->
+
+				<li Class="PatchOperationAdd">
+					<xpath>/Defs/ThingDef[defName="Platybelodon"]/statBases</xpath>
+					<value>
+						<MeleeDodgeChance>0.06</MeleeDodgeChance>
+						<MeleeCritChance>0.46</MeleeCritChance>
+						<MeleeParryChance>0.5</MeleeParryChance>
+					</value>
+				</li>				
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/ThingDef[defName="Platybelodon"]/race/baseHealthScale</xpath>
+					<value>
+						<baseHealthScale>3.4</baseHealthScale>
+					</value>
+				</li>
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/ThingDef[defName="Platybelodon"]/race/baseBodySize</xpath>
+					<value>
+						<baseBodySize>4</baseBodySize>
+					</value>
+				</li>
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/ThingDef[defName="Platybelodon"]/tools</xpath>
+					<value>
+						<tools>
+							<li Class="CombatExtended.ToolCE">
+								<label>tusk</label>
+								<capacities>
+									<li>Poke</li>
+								</capacities>
+								<power>36</power>
+								<cooldownTime>3</cooldownTime>
+								<linkedBodyPartsGroup>TuskAttackTool</linkedBodyPartsGroup>
+								<armorPenetrationBlunt>15.613</armorPenetrationBlunt>
+							</li>
+							<li Class="CombatExtended.ToolCE">
+								<label>left foot</label>
+								<capacities>
+									<li>Blunt</li>
+								</capacities>
+								<power>29</power>
+								<cooldownTime>2.55</cooldownTime>
+								<linkedBodyPartsGroup>FrontLeftLeg</linkedBodyPartsGroup>
+								<armorPenetrationBlunt>12.24</armorPenetrationBlunt>
+							</li>
+							<li Class="CombatExtended.ToolCE">
+								<label>right foot</label>
+								<capacities>
+									<li>Blunt</li>
+								</capacities>
+								<power>29</power>
+								<cooldownTime>2.55</cooldownTime>
+								<linkedBodyPartsGroup>FrontRightLeg</linkedBodyPartsGroup>
+								<armorPenetrationBlunt>12.24</armorPenetrationBlunt>
+							</li>
+							<li Class="CombatExtended.ToolCE">
+								<label>head</label>
+								<capacities>
+									<li>Blunt</li>
+								</capacities>
+								<power>50</power>
+								<cooldownTime>3.9</cooldownTime>
+								<linkedBodyPartsGroup>HeadAttackTool</linkedBodyPartsGroup>
+								<armorPenetrationBlunt>22.5</armorPenetrationBlunt>
+								<chanceFactor>0.01</chanceFactor>
+							</li>
+						</tools>
+					</value>
+				</li>
+
+				<!-- ========= Purussaurus ========= -->
+
+				<li Class="PatchOperationAdd">
+					<xpath>/Defs/ThingDef[defName="Purussaurus"]/statBases</xpath>
+					<value>
+						<MeleeDodgeChance>0.08</MeleeDodgeChance>
+						<MeleeCritChance>0.65</MeleeCritChance>
+						<MeleeParryChance>0.62</MeleeParryChance>
+					</value>
+				</li>				
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/ThingDef[defName="Purussaurus"]/race/baseHealthScale</xpath>
+					<value>
+						<baseHealthScale>8</baseHealthScale>
+					</value>
+				</li>
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/ThingDef[defName="Purussaurus"]/race/baseBodySize</xpath>
+					<value>
+						<baseBodySize>5.5</baseBodySize>
+					</value>
+				</li>
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/ThingDef[defName="Purussaurus"]/tools</xpath>
+					<value>
+						<tools>
+							<li Class="CombatExtended.ToolCE">
+								<label>left claw</label>
+								<capacities>
+									<li>Scratch</li>
+								</capacities>
+								<power>65</power>
+								<cooldownTime>3.55</cooldownTime>
+								<linkedBodyPartsGroup>FrontLeftClaws</linkedBodyPartsGroup>
+								<armorPenetrationSharp>0.47</armorPenetrationSharp>
+								<armorPenetrationBlunt>46.8</armorPenetrationBlunt>
+							</li>
+							<li Class="CombatExtended.ToolCE">
+								<label>right claw</label>
+								<capacities>
+									<li>Scratch</li>
+								</capacities>
+								<power>65</power>
+								<cooldownTime>3.55</cooldownTime>
+								<linkedBodyPartsGroup>FrontRightClaws</linkedBodyPartsGroup>
+								<armorPenetrationSharp>0.47</armorPenetrationSharp>
+								<armorPenetrationBlunt>46.8</armorPenetrationBlunt>
+							</li>
+							<li Class="CombatExtended.ToolCE">
+								<label>teeth</label>
+								<capacities>
+									<li>Bite</li>
+								</capacities>
+								<power>90</power>
+								<cooldownTime>3.05</cooldownTime>
+								<linkedBodyPartsGroup>Teeth</linkedBodyPartsGroup>
+								<surpriseAttack>
+									<extraMeleeDamages>
+										<li>
+											<def>Stun</def>
+											<amount>45</amount>
+										</li>
+									</extraMeleeDamages>
+								</surpriseAttack>
+								<armorPenetrationSharp>0.99</armorPenetrationSharp>
+								<armorPenetrationBlunt>99</armorPenetrationBlunt>
+							</li>
+						</tools>
+					</value>
+				</li>
+
+				<!-- ========= Uintatherium ========= -->
+
+				<li Class="PatchOperationAdd">
+					<xpath>/Defs/ThingDef[defName="Uintatherium"]/statBases</xpath>
+					<value>
+						<MeleeDodgeChance>0.08</MeleeDodgeChance>
+						<MeleeCritChance>0.31</MeleeCritChance>
+						<MeleeParryChance>0.41</MeleeParryChance>
+					</value>
+				</li>				
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/ThingDef[defName="Uintatherium"]/race/baseHealthScale</xpath>
+					<value>
+						<baseHealthScale>3.5</baseHealthScale>
+					</value>
+				</li>
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/ThingDef[defName="Uintatherium"]/race/baseBodySize</xpath>
+					<value>
+						<baseBodySize>4</baseBodySize>
+					</value>
+				</li>
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/ThingDef[defName="Uintatherium"]/tools</xpath>
+					<value>
+						<tools>
+							<li Class="CombatExtended.ToolCE">
+								<label>horns</label>
+								<capacities>
+									<li>Poke</li>
+								</capacities>
+								<power>30</power>
+								<cooldownTime>3.35</cooldownTime>
+								<linkedBodyPartsGroup>HornAttackTool</linkedBodyPartsGroup>
+								<armorPenetrationBlunt>12.5</armorPenetrationBlunt>
+							</li>
+							<li Class="CombatExtended.ToolCE">
+								<label>teeth</label>
+								<capacities>
+									<li>Bite</li>
+								</capacities>
+								<power>17</power>
+								<cooldownTime>2.6</cooldownTime>
+								<linkedBodyPartsGroup>Teeth</linkedBodyPartsGroup>
+								<armorPenetrationSharp>0.06</armorPenetrationSharp>
+								<armorPenetrationBlunt>4.375</armorPenetrationBlunt>
+							</li>
+							<li Class="CombatExtended.ToolCE">
+								<label>head</label>
+								<capacities>
+									<li>Blunt</li>
+								</capacities>
+								<power>23</power>
+								<cooldownTime>3.1</cooldownTime>
+								<linkedBodyPartsGroup>HeadAttackTool</linkedBodyPartsGroup>
+								<armorPenetrationBlunt>9.375</armorPenetrationBlunt>
+								<chanceFactor>0.2</chanceFactor>
+							</li>
+						</tools>
+					</value>
+				</li>
+
+				<!-- ========= Pulmonoscorpius ========= -->
+
+				<li Class="PatchOperationAdd">
+					<xpath>/Defs/ThingDef[defName="Pulmonoscorpius"]/statBases</xpath>
+					<value>
+						<MeleeDodgeChance>0.19</MeleeDodgeChance>
+						<MeleeCritChance>0.03</MeleeCritChance>
+						<MeleeParryChance>0.05</MeleeParryChance>
+					</value>
+				</li>				
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/ThingDef[defName="Pulmonoscorpius"]/race/baseHealthScale</xpath>
+					<value>
+						<baseHealthScale>0.85</baseHealthScale>
+					</value>
+				</li>
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/ThingDef[defName="Pulmonoscorpius"]/race/baseBodySize</xpath>
+					<value>
+						<baseBodySize>0.9</baseBodySize>
+					</value>
+				</li>
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/ThingDef[defName="Pulmonoscorpius"]/statBases/ArmorRating_Blunt</xpath>
+					<value>
+						<ArmorRating_Blunt>3</ArmorRating_Blunt>
+					</value>
+				</li>
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/ThingDef[defName="Pulmonoscorpius"]/statBases/ArmorRating_Sharp</xpath>
+					<value>
+						<ArmorRating_Sharp>0.06</ArmorRating_Sharp>
+					</value>
+				</li>
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/ThingDef[defName="Pulmonoscorpius"]/tools</xpath>
+					<value>
+						<tools>
+							<li Class="CombatExtended.ToolCE">
+								<label>left pincer</label>
+								<capacities>
+									<li>Scratch</li>
+								</capacities>
+								<power>10</power>
+								<cooldownTime>1.4</cooldownTime>
+								<linkedBodyPartsGroup>LeftPincer</linkedBodyPartsGroup>
+								<armorPenetrationSharp>0.05</armorPenetrationSharp>
+								<armorPenetrationBlunt>0.4</armorPenetrationBlunt>
+							</li>
+							<li Class="CombatExtended.ToolCE">
+								<label>right pincer</label>
+								<capacities>
+									<li>Scratch</li>
+								</capacities>
+								<power>10</power>
+								<cooldownTime>1.4</cooldownTime>
+								<linkedBodyPartsGroup>RightPincer</linkedBodyPartsGroup>
+								<armorPenetrationSharp>0.05</armorPenetrationSharp>
+								<armorPenetrationBlunt>0.4</armorPenetrationBlunt>
+							</li>
+							<li Class="CombatExtended.ToolCE">
+								<label>stinger</label>
+								<capacities>
+									<li>ToxicSting</li>
+								</capacities>
+								<power>20</power>
+								<cooldownTime>1.52</cooldownTime>
+								<linkedBodyPartsGroup>Stinger</linkedBodyPartsGroup>
+								<surpriseAttack>
+									<extraMeleeDamages>
+										<li>
+											<def>Stun</def>
+											<amount>17</amount>
+										</li>
+									</extraMeleeDamages>
+								</surpriseAttack>
+								<armorPenetrationSharp>0.4</armorPenetrationSharp>
+								<armorPenetrationBlunt>2.535</armorPenetrationBlunt>
+								<ensureLinkedBodyPartsGroupAlwaysUsable>true</ensureLinkedBodyPartsGroupAlwaysUsable>
+							</li>
+						</tools>
+					</value>
+				</li>
+
+				<!-- ========= Dinopithecus ========= -->
+
+				<li Class="PatchOperationAdd">
+					<xpath>/Defs/ThingDef[defName="Dinopithecus"]/statBases</xpath>
+					<value>
+						<MeleeDodgeChance>0.19</MeleeDodgeChance>
+						<MeleeCritChance>0.08</MeleeCritChance>
+						<MeleeParryChance>0.07</MeleeParryChance>
+					</value>
+				</li>				
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/ThingDef[defName="Dinopithecus"]/race/baseHealthScale</xpath>
+					<value>
+						<baseHealthScale>1</baseHealthScale>
+					</value>
+				</li>
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/ThingDef[defName="Dinopithecus"]/race/baseBodySize</xpath>
+					<value>
+						<baseBodySize>1</baseBodySize>
+					</value>
+				</li>
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/ThingDef[defName="Dinopithecus"]/tools</xpath>
+					<value>
+						<tools>
+							<li Class="CombatExtended.ToolCE">
+								<label>left hand</label>
+								<capacities>
+									<li>Scratch</li>
+								</capacities>
+								<power>6</power>
+								<cooldownTime>0.9</cooldownTime>
+								<linkedBodyPartsGroup>LeftHand</linkedBodyPartsGroup>
+								<armorPenetrationSharp>0.01</armorPenetrationSharp>
+								<armorPenetrationBlunt>0.49</armorPenetrationBlunt>
+							</li>
+							<li Class="CombatExtended.ToolCE">
+								<label>right hand</label>
+								<capacities>
+									<li>Scratch</li>
+								</capacities>
+								<power>6</power>
+								<cooldownTime>0.9</cooldownTime>
+								<linkedBodyPartsGroup>RightHand</linkedBodyPartsGroup>
+								<armorPenetrationSharp>0.01</armorPenetrationSharp>
+								<armorPenetrationBlunt>0.49</armorPenetrationBlunt>
+							</li>
+							<li Class="CombatExtended.ToolCE">
+								<label>teeth</label>
+								<capacities>
+									<li>Bite</li>
+								</capacities>
+								<power>12</power>
+								<cooldownTime>1.35</cooldownTime>
+								<linkedBodyPartsGroup>Teeth</linkedBodyPartsGroup>
+								<surpriseAttack>
+									<extraMeleeDamages>
+										<li>
+											<def>Stun</def>
+											<amount>19</amount>
+										</li>
+									</extraMeleeDamages>
+								</surpriseAttack>
+								<armorPenetrationSharp>0.27</armorPenetrationSharp>
+								<armorPenetrationBlunt>1.69</armorPenetrationBlunt>
+							</li>
+						</tools>
+					</value>
+				</li>
+
+				<!-- ========= Castoroides ========= -->
+
+				<li Class="PatchOperationAdd">
+					<xpath>/Defs/ThingDef[defName="Castoroides"]/statBases</xpath>
+					<value>
+						<MeleeDodgeChance>0.13</MeleeDodgeChance>
+						<MeleeCritChance>0.08</MeleeCritChance>
+						<MeleeParryChance>0.08</MeleeParryChance>
+					</value>
+				</li>				
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/ThingDef[defName="Castoroides"]/race/baseHealthScale</xpath>
+					<value>
+						<baseHealthScale>1.3</baseHealthScale>
+					</value>
+				</li>
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/ThingDef[defName="Castoroides"]/race/baseBodySize</xpath>
+					<value>
+						<baseBodySize>1</baseBodySize>
+					</value>
+				</li>
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/ThingDef[defName="Castoroides"]/tools</xpath>
+					<value>
+						<tools>
+							<li Class="CombatExtended.ToolCE">
+								<label>left claw</label>
+								<capacities>
+									<li>Scratch</li>
+								</capacities>
+								<power>11</power>
+								<cooldownTime>1.8</cooldownTime>
+								<linkedBodyPartsGroup>FrontLeftPaw</linkedBodyPartsGroup>
+								<armorPenetrationSharp>0.1</armorPenetrationSharp>
+								<armorPenetrationBlunt>1</armorPenetrationBlunt>
+							</li>
+							<li Class="CombatExtended.ToolCE">
+								<label>right claw</label>
+								<capacities>
+									<li>Scratch</li>
+								</capacities>
+								<power>11</power>
+								<cooldownTime>1.8</cooldownTime>
+								<linkedBodyPartsGroup>FrontRightPaw</linkedBodyPartsGroup>
+								<armorPenetrationSharp>0.1</armorPenetrationSharp>
+								<armorPenetrationBlunt>1</armorPenetrationBlunt>
+							</li>
+							<li Class="CombatExtended.ToolCE">
+								<label>teeth</label>
+								<capacities>
+									<li>Bite</li>
+								</capacities>
+								<power>21</power>
+								<cooldownTime>1.95</cooldownTime>
+								<linkedBodyPartsGroup>Teeth</linkedBodyPartsGroup>
+								<armorPenetrationSharp>0.15</armorPenetrationSharp>
+								<armorPenetrationBlunt>4.32</armorPenetrationBlunt>
+								<chanceFactor>0.7</chanceFactor>
+							</li>
+							<li Class="CombatExtended.ToolCE">
+								<label>head</label>
+								<capacities>
+									<li>Blunt</li>
+								</capacities>
+								<power>3</power>
+								<cooldownTime>1.25</cooldownTime>
+								<linkedBodyPartsGroup>HeadAttackTool</linkedBodyPartsGroup>
+								<armorPenetrationBlunt>0.72</armorPenetrationBlunt>
+								<chanceFactor>0.2</chanceFactor>
+							</li>
+						</tools>
+					</value>
+				</li>
+
+				<!-- ========= Enhydriodon ========= -->
+
+				<li Class="PatchOperationAdd">
+					<xpath>/Defs/ThingDef[defName="Enhydriodon"]/statBases</xpath>
+					<value>
+						<MeleeDodgeChance>0.17</MeleeDodgeChance>
+						<MeleeCritChance>0.15</MeleeCritChance>
+						<MeleeParryChance>0.13</MeleeParryChance>
+					</value>
+				</li>				
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/ThingDef[defName="Enhydriodon"]/race/baseHealthScale</xpath>
+					<value>
+						<baseHealthScale>2.1</baseHealthScale>
+					</value>
+				</li>
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/ThingDef[defName="Enhydriodon"]/race/baseBodySize</xpath>
+					<value>
+						<baseBodySize>1.7</baseBodySize>
+					</value>
+				</li>
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/ThingDef[defName="Enhydriodon"]/tools</xpath>
+					<value>
+						<tools>
+							<li Class="CombatExtended.ToolCE">
+								<label>left claw</label>
+								<capacities>
+									<li>Scratch</li>
+								</capacities>
+								<power>17</power>
+								<cooldownTime>1.4</cooldownTime>
+								<linkedBodyPartsGroup>FrontLeftPaw</linkedBodyPartsGroup>
+								<armorPenetrationSharp>0.59</armorPenetrationSharp>
+								<armorPenetrationBlunt>2.94</armorPenetrationBlunt>
+							</li>
+							<li Class="CombatExtended.ToolCE">
+								<label>right claw</label>
+								<capacities>
+									<li>Scratch</li>
+								</capacities>
+								<power>17</power>
+								<cooldownTime>1.4</cooldownTime>
+								<linkedBodyPartsGroup>FrontRightPaw</linkedBodyPartsGroup>
+								<armorPenetrationSharp>0.59</armorPenetrationSharp>
+								<armorPenetrationBlunt>2.94</armorPenetrationBlunt>
+							</li>
+							<li Class="CombatExtended.ToolCE">
+								<label>teeth</label>
+								<capacities>
+									<li>Bite</li>
+								</capacities>
+								<power>26</power>
+								<cooldownTime>1.9</cooldownTime>
+								<linkedBodyPartsGroup>Teeth</linkedBodyPartsGroup>
+								<surpriseAttack>
+									<extraMeleeDamages>
+										<li>
+											<def>Stun</def>
+											<amount>21</amount>
+										</li>
+									</extraMeleeDamages>
+								</surpriseAttack>
+								<armorPenetrationSharp>0.08</armorPenetrationSharp>
+								<armorPenetrationBlunt>6.338</armorPenetrationBlunt>
+							</li>
+						</tools>
+					</value>
+				</li>
+			</operations>
+		</match>
+	</Operation>
+</Patch>

@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+	<!-- ========== Make sure the mod is there first ========== -->
+	<Operation Class="PatchOperationSequence">
+		<success>Always</success>
+		<operations>
+	<!-- ========== Look for Sil... uh ========== -->
+	<li Class="CombatExtended.PatchOperationFindMod">
+				<modName>Sergals and Gnolls</modName>
+	</li>
+	<!-- ========== Whats an NME? ========== -->
+	
+	<!-- ========== Turn our NME boys into NME *boys*? ========== -->
+	<!-- ========== To be human is to be a tall brick 	  ========== -->
+	<li Class="PatchOperationAddModExtension">
+	<!-- === Note to future furball compatibility nerds: 		=== -->
+	<!-- === Paste the defName of your horrible alien there   |	=== -->
+	<!-- === 												  V	=== -->
+		<xpath>*/AlienRace.ThingDef_AlienRace[defName="Alien_SergalNME"]</xpath>
+		<value>
+			<li Class="CombatExtended.RacePropertiesExtensionCE">
+				<bodyShape>Humanoid</bodyShape>
+			</li>
+		</value>
+	</li>
+
+	<!-- ========== Gives Gun Gizmos to Serg HUD thing ========== -->
+	<!-- ========== Also Makes Em Suppressable		   ========== -->
+	
+	<li Class="PatchOperationAdd">
+	<!-- === Shouldn't need to change this at all		  === -->
+	<!-- === Unless you changed the name of your BasePawn === -->
+	<!-- === In which case change "BasePawn" to that name === -->
+		<xpath>*/ThingDef[@Name="BasePawn"]/comps</xpath>
+		<value>
+			<li>
+				<compClass>CombatExtended.CompPawnGizmo</compClass>
+			</li>
+			<li Class="CombatExtended.CompProperties_Suppressable" />
+		</value>
+	</li>
+	
+	<!-- === Patch Serg default melee attacks === -->
+	<!-- === Sidewards eyeballs thrash depth perception === -->
+	<!-- === Sweet swipeys tho 	=== -->
+
+			<li Class="PatchOperationAdd">
+			<xpath>*/AlienRace.ThingDef_AlienRace[defName = "Alien_SergalNME"]/statBases</xpath>
+			<value>
+			<AimingAccuracy>0.9</AimingAccuracy>
+			<MeleeDodgeChance>2.5</MeleeDodgeChance>
+			<MeleeCritChance>1.25</MeleeCritChance>
+			<MeleeParryChance>1.75</MeleeParryChance>
+			<ReloadSpeed>1.85</ReloadSpeed>
+			<Suppressability>0.25</Suppressability>
+			</value>
+			</li>
+
+			<li Class="PatchOperationReplace">
+			<xpath>*/AlienRace.ThingDef_AlienRace[defName="Alien_SergalNME"]/tools</xpath>
+			<value>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+				<label>left claws</label>
+				<capacities>
+					<li>Scratch</li>
+				</capacities>
+				<power>14</power>
+				<cooldownTime>1.3</cooldownTime>
+				<linkedBodyPartsGroup>LeftHand</linkedBodyPartsGroup>
+				<armorPenetration>0.15</armorPenetration>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+				<label>right claws</label>
+				<capacities>
+					<li>Scratch</li>
+				</capacities>
+				<power>14</power>
+				<cooldownTime>1.3</cooldownTime>
+				<linkedBodyPartsGroup>RightHand</linkedBodyPartsGroup>
+				<armorPenetration>0.15</armorPenetration>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+				<label>teeth</label>
+				<capacities>
+					<li>Bite</li>
+				</capacities>
+				<power>3</power>
+				<cooldownTime>0.95</cooldownTime>
+				<linkedBodyPartsGroup>Teeth</linkedBodyPartsGroup>
+				<armorPenetration>0.16</armorPenetration>
+				</li>
+			</tools>
+			</value>
+			</li>
+
+	<!-- ================================================= -->
+	<!-- === BaseBodySize, ArmorRatings, MoveSpeed, and BaseHealth should already be set. I think. === -->
+	<!-- ===================================== -->
+	<!-- === Adds In Inspector Tabs 	   === -->
+	<!-- === Inventory and all that jazz   === -->
+	<!-- === Again, no need to change 'em  === -->
+	<!-- === Unless you changed it         === -->
+	<!-- === then change 'em			   === -->
+	
+	<li Class="PatchOperationReplace">
+		<xpath>*/ThingDef[@Name="BasePawn"]/inspectorTabs/li[.="ITab_Pawn_Gear"]</xpath>
+		<value>
+			<li>CombatExtended.ITab_Inventory</li>
+		</value>
+	</li>
+
+	<li Class="PatchOperationAdd">
+	
+		<xpath>*/ThingDef[@Name="BasePawn"]/comps</xpath>
+		<value>
+			<li Class="CombatExtended.CompProperties_Inventory" />
+		</value>
+	</li>
+		</operations>
+	</Operation>
+	
+	<!-- === Congratulations! Your alien is Combat Ready!	 === -->
+	<!-- === If your alien comes with extra guns and gear,	 === -->
+	<!-- === Congratulations! You're not even close to done! === -->
+</Patch>
