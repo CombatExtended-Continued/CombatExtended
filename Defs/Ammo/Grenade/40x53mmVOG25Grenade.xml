@@ -5,87 +5,87 @@
 		<defName>Ammo40x53mmVOG25Grenades</defName>
 		<label>40x53mm VOG-25 Grenade</label>
 		<parent>AmmoGrenades</parent>
-		<iconPath>UI/Icons/ThingCategories/CaliberGrenade</iconPath>
+    <iconPath>UI/Icons/ThingCategories/CaliberGrenade</iconPath>
 	</ThingCategoryDef>
-
+	
 	<!-- ==================== AmmoSet ========================== -->
 
-	<CombatExtended.AmmoSetDef>
-		<defName>AmmoSet_40x53mmVOG25Grenade</defName>
-		<label>40x53mm VOG-25 Grenades</label>
-		<ammoTypes>
-			<Ammo_40x53mmVOG25Grenade_HE>Bullet_40x53mmVOG25Grenade_HE</Ammo_40x53mmVOG25Grenade_HE>
-			<Ammo_40x53mmVOG25Grenade_EMP>Bullet_40x53mmVOG25Grenade_EMP</Ammo_40x53mmVOG25Grenade_EMP>
-		</ammoTypes>
-	</CombatExtended.AmmoSetDef>
-
+  <CombatExtended.AmmoSetDef>
+    <defName>AmmoSet_40x53mmVOG25Grenade</defName>
+    <label>40x53mm VOG-25 Grenades</label>
+    <ammoTypes>
+      <Ammo_40x53mmVOG25Grenade_HE>Bullet_40x53mmVOG25Grenade_HE</Ammo_40x53mmVOG25Grenade_HE>
+      <Ammo_40x53mmVOG25Grenade_EMP>Bullet_40x53mmVOG25Grenade_EMP</Ammo_40x53mmVOG25Grenade_EMP>
+    </ammoTypes>
+  </CombatExtended.AmmoSetDef>
+	
 	<!-- ==================== Ammo ========================== -->
 
-	<ThingDef Class="CombatExtended.AmmoDef" Name="40x53mmVOG25GrenadeBase" ParentName="AmmoBase" Abstract="True">
-		<description>Low velocity caseless grenade fired from handheld grenade launchers.</description>
-		<statBases>
-			<Mass>0.25</Mass>
-			<Bulk>0.39</Bulk>
-		</statBases>
-		<tradeTags>
-			<li>CE_AutoEnableTrade</li>
-			<li>CE_AutoEnableCrafting_TableMachining</li>
-		</tradeTags>
-		<thingCategories>
-			<li>Ammo40x53mmVOG25Grenades</li>
-		</thingCategories>
-		<stackLimit>500</stackLimit>
-		<cookOffFlashScale>20</cookOffFlashScale>
-	</ThingDef>
+  <ThingDef Class="CombatExtended.AmmoDef" Name="40x53mmVOG25GrenadeBase" ParentName="AmmoBase" Abstract="True">
+    <description>Low velocity caseless grenade fired from handheld grenade launchers.</description>
+    <statBases>
+	  <Mass>0.25</Mass>
+	  <Bulk>0.39</Bulk>
+    </statBases>
+	<tradeTags>
+	  <li>CE_AutoEnableTrade</li>
+	  <li>CE_AutoEnableCrafting_TableMachining</li>
+	</tradeTags>
+    <thingCategories>
+      <li>Ammo40x53mmVOG25Grenades</li>
+    </thingCategories>
+    <stackLimit>500</stackLimit>
+    <cookOffFlashScale>20</cookOffFlashScale>
+  </ThingDef>
 
-	<ThingDef Class="CombatExtended.AmmoDef" ParentName="40x53mmVOG25GrenadeBase">
-		<defName>Ammo_40x53mmVOG25Grenade_HE</defName>
-		<label>40x53mm VOG-25 grenade (HE)</label>
-		<graphicData>
-			<texPath>Things/Ammo/GrenadeLauncher/HE</texPath>
-			<graphicClass>Graphic_StackCount</graphicClass>
-		</graphicData>
-		<statBases>
-			<MarketValue>2.78</MarketValue>
-		</statBases>
-		<ammoClass>GrenadeHE</ammoClass>
-		<comps>
-			<li Class="CombatExtended.CompProperties_ExplosiveCE">
-				<explosionDamage>27</explosionDamage>
-				<explosionDamageDef>Bomb</explosionDamageDef>
-				<explosionRadius>1</explosionRadius>
-				<fragments>
-					<Fragment_Large>1</Fragment_Large>
-					<Fragment_Small>6</Fragment_Small>
-				</fragments>
-				<applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
-			</li>
-		</comps>
-	</ThingDef>
+  <ThingDef Class="CombatExtended.AmmoDef" ParentName="40x53mmVOG25GrenadeBase">
+    <defName>Ammo_40x53mmVOG25Grenade_HE</defName>
+    <label>40x53mm VOG-25 grenade (HE)</label>
+    <graphicData>
+      <texPath>Things/Ammo/GrenadeLauncher/HE</texPath>
+      <graphicClass>Graphic_StackCount</graphicClass>
+    </graphicData>
+    <statBases>
+      <MarketValue>2.78</MarketValue>
+    </statBases>
+    <ammoClass>GrenadeHE</ammoClass>
+    <comps>
+      <li Class="CombatExtended.CompProperties_ExplosiveCE">
+        <explosionDamage>27</explosionDamage>
+        <explosionDamageDef>Bomb</explosionDamageDef>
+        <explosionRadius>1</explosionRadius>
+        <fragments>
+          <Fragment_Large>1</Fragment_Large>
+          <Fragment_Small>6</Fragment_Small>
+        </fragments>
+		<applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
+      </li>
+    </comps>
+  </ThingDef>
 
-	<ThingDef Class="CombatExtended.AmmoDef" ParentName="40x53mmVOG25GrenadeBase">
-		<defName>Ammo_40x53mmVOG25Grenade_EMP</defName>
-		<label>40x53mm VOG-25 grenade (EMP)</label>
-		<graphicData>
-			<texPath>Things/Ammo/GrenadeLauncher/EMP</texPath>
-			<graphicClass>Graphic_StackCount</graphicClass>
-		</graphicData>
-		<statBases>
-			<MarketValue>5.55</MarketValue>
-		</statBases>
-		<ammoClass>GrenadeEMP</ammoClass>
-		<comps>
-			<li Class="CombatExtended.CompProperties_ExplosiveCE">
-				<explosionDamage>5</explosionDamage>
-				<explosionDamageDef>Bomb</explosionDamageDef>
-				<explosionRadius>1</explosionRadius>
-				<fragments>
-					<Fragment_Large>1</Fragment_Large>
-				</fragments>
-			</li>
-		</comps>
-	</ThingDef>
-
+  <ThingDef Class="CombatExtended.AmmoDef" ParentName="40x53mmVOG25GrenadeBase">
+    <defName>Ammo_40x53mmVOG25Grenade_EMP</defName>
+    <label>40x53mm VOG-25 grenade (EMP)</label>
+    <graphicData>
+      <texPath>Things/Ammo/GrenadeLauncher/EMP</texPath>
+      <graphicClass>Graphic_StackCount</graphicClass>
+    </graphicData>
+    <statBases>
+      <MarketValue>5.55</MarketValue>
+    </statBases>
+    <ammoClass>GrenadeEMP</ammoClass>
+    <comps>
+      <li Class="CombatExtended.CompProperties_ExplosiveCE">
+        <explosionDamage>5</explosionDamage>
+        <explosionDamageDef>Bomb</explosionDamageDef>
+        <explosionRadius>1</explosionRadius>
+        <fragments>
+          <Fragment_Large>1</Fragment_Large>
+        </fragments>
+      </li>
+    </comps>
+  </ThingDef>
+	
 	<!-- ================== Projectiles ================== -->
 
 	<ThingDef Class="CombatExtended.AmmoDef" Name="Base40x53mmVOG25GrenadeBullet" ParentName="BaseBullet" Abstract="true">
@@ -111,12 +111,12 @@
 		<comps>
 			<li Class="CombatExtended.CompProperties_ExplosiveCE">
 				<fragments>
-					<Fragment_Large>1</Fragment_Large>
-					<Fragment_Small>6</Fragment_Small>
+          <Fragment_Large>1</Fragment_Large>
+          <Fragment_Small>6</Fragment_Small>
 				</fragments>
 			</li>
 		</comps>
-	</ThingDef>
+		</ThingDef>
 
 	<ThingDef Class="CombatExtended.AmmoDef" ParentName="Base40x53mmVOG25GrenadeBullet">
 		<defName>Bullet_40x53mmVOG25Grenade_EMP</defName>
@@ -127,86 +127,86 @@
 			<damageAmountBase>27</damageAmountBase>
 		</projectile>
 	</ThingDef>
-
+  
 	<!-- ==================== Recipes ========================== -->
 
-	<RecipeDef ParentName="AmmoRecipeBase">
-		<defName>MakeAmmo_40x53mmVOG25Grenade_HE</defName>
-		<label>make 40x53mm VOG-25 HE grenades x100</label>
-		<description>Craft 100 40x53mm VOG-25 HE grenades.</description>
-		<jobString>Making 40x53mm VOG-25 HE grenades.</jobString>
-		<ingredients>
-			<li>
-				<filter>
-					<thingDefs>
-						<li>Steel</li>
-					</thingDefs>
-				</filter>
-				<count>50</count>
-			</li>
-			<li>
-				<filter>
-					<thingDefs>
-						<li>FSX</li>
-					</thingDefs>
-				</filter>
-				<count>11</count>
-			</li>
-			<li>
-				<filter>
-					<thingDefs>
-						<li>ComponentIndustrial</li>
-					</thingDefs>
-				</filter>
-				<count>2</count>
-			</li>
-		</ingredients>
-		<fixedIngredientFilter>
-			<thingDefs>
-				<li>Steel</li>
-				<li>FSX</li>
-				<li>ComponentIndustrial</li>
-			</thingDefs>
-		</fixedIngredientFilter>
-		<products>
-			<Ammo_40x53mmVOG25Grenade_HE>100</Ammo_40x53mmVOG25Grenade_HE>
-		</products>
-		<workAmount>10600</workAmount>       
-	</RecipeDef>
+  <RecipeDef ParentName="AmmoRecipeBase">
+    <defName>MakeAmmo_40x53mmVOG25Grenade_HE</defName>
+    <label>make 40x53mm VOG-25 HE grenades x100</label>
+    <description>Craft 100 40x53mm VOG-25 HE grenades.</description>
+    <jobString>Making 40x53mm VOG-25 HE grenades.</jobString>
+    <ingredients>
+      <li>
+        <filter>
+          <thingDefs>
+            <li>Steel</li>
+          </thingDefs>
+        </filter>
+        <count>50</count>
+      </li>
+      <li>
+        <filter>
+          <thingDefs>
+            <li>FSX</li>
+          </thingDefs>
+        </filter>
+        <count>11</count>
+      </li>
+      <li>
+        <filter>
+          <thingDefs>
+            <li>ComponentIndustrial</li>
+          </thingDefs>
+        </filter>
+        <count>2</count>
+      </li>
+    </ingredients>
+    <fixedIngredientFilter>
+      <thingDefs>
+        <li>Steel</li>
+        <li>FSX</li>
+        <li>ComponentIndustrial</li>
+      </thingDefs>
+    </fixedIngredientFilter>
+    <products>
+      <Ammo_40x53mmVOG25Grenade_HE>100</Ammo_40x53mmVOG25Grenade_HE>
+    </products>
+    <workAmount>10600</workAmount>       
+  </RecipeDef>
 
-	<RecipeDef ParentName="AmmoRecipeBase">
-		<defName>MakeAmmo_40x53mmVOG25Grenade_EMP</defName>
-		<label>make 40x53mm VOG-25 EMP grenades x100</label>
-		<description>Craft 100 40x53mm VOG-25 EMP grenades.</description>
-		<jobString>Making 40x53mm VOG-25 EMP grenades.</jobString>
-		<ingredients>
-			<li>
-				<filter>
-					<thingDefs>
-						<li>Steel</li>
-					</thingDefs>
-				</filter>
-				<count>50</count>
-			</li>
-			<li>
-				<filter>
-					<thingDefs>
-						<li>ComponentIndustrial</li>
-					</thingDefs>
-				</filter>
-				<count>14</count>
-			</li>
-		</ingredients>
-		<fixedIngredientFilter>
-			<thingDefs>
-				<li>Steel</li>
-				<li>ComponentIndustrial</li>
-			</thingDefs>
-		</fixedIngredientFilter>
-		<products>
-			<Ammo_40x53mmVOG25Grenade_EMP>100</Ammo_40x53mmVOG25Grenade_EMP>
-		</products>
-		<workAmount>13400</workAmount>       
-	</RecipeDef>
-
+  <RecipeDef ParentName="AmmoRecipeBase">
+    <defName>MakeAmmo_40x53mmVOG25Grenade_EMP</defName>
+    <label>make 40x53mm VOG-25 EMP grenades x100</label>
+    <description>Craft 100 40x53mm VOG-25 EMP grenades.</description>
+    <jobString>Making 40x53mm VOG-25 EMP grenades.</jobString>
+    <ingredients>
+      <li>
+        <filter>
+          <thingDefs>
+            <li>Steel</li>
+          </thingDefs>
+        </filter>
+        <count>50</count>
+      </li>
+      <li>
+        <filter>
+          <thingDefs>
+            <li>ComponentIndustrial</li>
+          </thingDefs>
+        </filter>
+        <count>14</count>
+      </li>
+    </ingredients>
+    <fixedIngredientFilter>
+      <thingDefs>
+        <li>Steel</li>
+        <li>ComponentIndustrial</li>
+      </thingDefs>
+    </fixedIngredientFilter>
+    <products>
+      <Ammo_40x53mmVOG25Grenade_EMP>100</Ammo_40x53mmVOG25Grenade_EMP>
+    </products>
+    <workAmount>13400</workAmount>       
+  </RecipeDef>
+	
 </Defs>

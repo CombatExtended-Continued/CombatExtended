@@ -5,87 +5,87 @@
 		<defName>Ammo35x32mmSRGrenades</defName>
 		<label>35x32mmSR Grenade</label>
 		<parent>AmmoGrenades</parent>
-		<iconPath>UI/Icons/ThingCategories/CaliberGrenade</iconPath>
+    <iconPath>UI/Icons/ThingCategories/CaliberGrenade</iconPath>
 	</ThingCategoryDef>
-
+	
 	<!-- ==================== AmmoSet ========================== -->
 
-	<CombatExtended.AmmoSetDef>
-		<defName>AmmoSet_35x32mmSRGrenade</defName>
-		<label>35x32mmSR Grenades</label>
-		<ammoTypes>
-			<Ammo_35x32mmSRGrenade_HE>Bullet_35x32mmSRGrenade_HE</Ammo_35x32mmSRGrenade_HE>
-			<Ammo_35x32mmSRGrenade_EMP>Bullet_35x32mmSRGrenade_EMP</Ammo_35x32mmSRGrenade_EMP>
-		</ammoTypes>
-	</CombatExtended.AmmoSetDef>
-
+  <CombatExtended.AmmoSetDef>
+    <defName>AmmoSet_35x32mmSRGrenade</defName>
+    <label>35x32mmSR Grenades</label>
+    <ammoTypes>
+      <Ammo_35x32mmSRGrenade_HE>Bullet_35x32mmSRGrenade_HE</Ammo_35x32mmSRGrenade_HE>
+      <Ammo_35x32mmSRGrenade_EMP>Bullet_35x32mmSRGrenade_EMP</Ammo_35x32mmSRGrenade_EMP>
+    </ammoTypes>
+  </CombatExtended.AmmoSetDef>
+	
 	<!-- ==================== Ammo ========================== -->
 
-	<ThingDef Class="CombatExtended.AmmoDef" Name="35x32mmSRGrenadeBase" ParentName="AmmoBase" Abstract="True">
-		<description>High velocity grenade fired from handheld grenade launchers.</description>
-		<statBases>
-			<Mass>0.25</Mass>
-			<Bulk>0.35</Bulk>
-		</statBases>
-		<tradeTags>
-			<li>CE_AutoEnableTrade</li>
-			<li>CE_AutoEnableCrafting_TableMachining</li>
-		</tradeTags>
-		<thingCategories>
-			<li>Ammo35x32mmSRGrenades</li>
-		</thingCategories>
-		<stackLimit>750</stackLimit>
-		<cookOffFlashScale>20</cookOffFlashScale>
-	</ThingDef>
+  <ThingDef Class="CombatExtended.AmmoDef" Name="35x32mmSRGrenadeBase" ParentName="AmmoBase" Abstract="True">
+    <description>High velocity grenade fired from handheld grenade launchers.</description>
+    <statBases>
+	  <Mass>0.25</Mass>
+	  <Bulk>0.35</Bulk>
+    </statBases>
+	<tradeTags>
+	  <li>CE_AutoEnableTrade</li>
+	  <li>CE_AutoEnableCrafting_TableMachining</li>
+	</tradeTags>
+    <thingCategories>
+      <li>Ammo35x32mmSRGrenades</li>
+    </thingCategories>
+    <stackLimit>750</stackLimit>
+    <cookOffFlashScale>20</cookOffFlashScale>
+  </ThingDef>
 
-	<ThingDef Class="CombatExtended.AmmoDef" ParentName="35x32mmSRGrenadeBase">
-		<defName>Ammo_35x32mmSRGrenade_HE</defName>
-		<label>35x32mmSR grenade (HE)</label>
-		<graphicData>
-			<texPath>Things/Ammo/GrenadeLauncher/HE</texPath>
-			<graphicClass>Graphic_StackCount</graphicClass>
-		</graphicData>
-		<statBases>
-			<MarketValue>2.27</MarketValue>
-		</statBases>
-		<ammoClass>GrenadeHE</ammoClass>
-		<comps>
-			<li Class="CombatExtended.CompProperties_ExplosiveCE">
-				<explosionDamage>19</explosionDamage>
-				<explosionDamageDef>Bomb</explosionDamageDef>
-				<explosionRadius>1</explosionRadius>
-				<fragments>
-					<Fragment_Large>1</Fragment_Large>
-					<Fragment_Small>3</Fragment_Small>
-				</fragments>
-				<applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
-			</li>
-		</comps>
-	</ThingDef>
+  <ThingDef Class="CombatExtended.AmmoDef" ParentName="35x32mmSRGrenadeBase">
+    <defName>Ammo_35x32mmSRGrenade_HE</defName>
+    <label>35x32mmSR grenade (HE)</label>
+    <graphicData>
+      <texPath>Things/Ammo/GrenadeLauncher/HE</texPath>
+      <graphicClass>Graphic_StackCount</graphicClass>
+    </graphicData>
+    <statBases>
+      <MarketValue>2.27</MarketValue>
+    </statBases>
+    <ammoClass>GrenadeHE</ammoClass>
+    <comps>
+      <li Class="CombatExtended.CompProperties_ExplosiveCE">
+        <explosionDamage>19</explosionDamage>
+        <explosionDamageDef>Bomb</explosionDamageDef>
+        <explosionRadius>1</explosionRadius>
+        <fragments>
+          <Fragment_Large>1</Fragment_Large>
+          <Fragment_Small>3</Fragment_Small>
+        </fragments>
+		<applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
+      </li>
+    </comps>
+  </ThingDef>
 
-	<ThingDef Class="CombatExtended.AmmoDef" ParentName="35x32mmSRGrenadeBase">
-		<defName>Ammo_35x32mmSRGrenade_EMP</defName>
-		<label>35x32mmSR grenade (EMP)</label>
-		<graphicData>
-			<texPath>Things/Ammo/GrenadeLauncher/EMP</texPath>
-			<graphicClass>Graphic_StackCount</graphicClass>
-		</graphicData>
-		<statBases>
-			<MarketValue>3.92</MarketValue>
-		</statBases>
-		<ammoClass>GrenadeEMP</ammoClass>
-		<comps>
-			<li Class="CombatExtended.CompProperties_ExplosiveCE">
-				<explosionDamage>5</explosionDamage>
-				<explosionDamageDef>Bomb</explosionDamageDef>
-				<explosionRadius>0.75</explosionRadius>
-				<fragments>
-					<Fragment_Large>1</Fragment_Large>
-				</fragments>
-			</li>
-		</comps>
-	</ThingDef>
-
+  <ThingDef Class="CombatExtended.AmmoDef" ParentName="35x32mmSRGrenadeBase">
+    <defName>Ammo_35x32mmSRGrenade_EMP</defName>
+    <label>35x32mmSR grenade (EMP)</label>
+    <graphicData>
+      <texPath>Things/Ammo/GrenadeLauncher/EMP</texPath>
+      <graphicClass>Graphic_StackCount</graphicClass>
+    </graphicData>
+    <statBases>
+      <MarketValue>3.92</MarketValue>
+    </statBases>
+    <ammoClass>GrenadeEMP</ammoClass>
+    <comps>
+      <li Class="CombatExtended.CompProperties_ExplosiveCE">
+        <explosionDamage>5</explosionDamage>
+        <explosionDamageDef>Bomb</explosionDamageDef>
+        <explosionRadius>0.75</explosionRadius>
+        <fragments>
+          <Fragment_Large>1</Fragment_Large>
+        </fragments>
+      </li>
+    </comps>
+  </ThingDef>
+	
 	<!-- ================== Projectiles ================== -->
 
 	<ThingDef Class="CombatExtended.AmmoDef" Name="Base35x32mmSRGrenadeBullet" ParentName="BaseBullet" Abstract="true">
@@ -111,12 +111,12 @@
 		<comps>
 			<li Class="CombatExtended.CompProperties_ExplosiveCE">
 				<fragments>
-					<Fragment_Large>1</Fragment_Large>
-					<Fragment_Small>3</Fragment_Small>
+          <Fragment_Large>1</Fragment_Large>
+          <Fragment_Small>3</Fragment_Small>
 				</fragments>
 			</li>
 		</comps>
-	</ThingDef>
+		</ThingDef>
 
 	<ThingDef Class="CombatExtended.AmmoDef" ParentName="Base35x32mmSRGrenadeBullet">
 		<defName>Bullet_35x32mmSRGrenade_EMP</defName>
@@ -128,86 +128,86 @@
 			<damageAmountBase>19</damageAmountBase>
 		</projectile>
 	</ThingDef>
-
+  
 	<!-- ==================== Recipes ========================== -->
 
-	<RecipeDef ParentName="AmmoRecipeBase">
-		<defName>MakeAmmo_35x32mmSRGrenade_HE</defName>
-		<label>make 35x32mmSR HE grenades x100</label>
-		<description>Craft 100 35x32mmSR HE grenades.</description>
-		<jobString>Making 35x32mmSR HE grenades.</jobString>
-		<ingredients>
-			<li>
-				<filter>
-					<thingDefs>
-						<li>Steel</li>
-					</thingDefs>
-				</filter>
-				<count>50</count>
-			</li>
-			<li>
-				<filter>
-					<thingDefs>
-						<li>FSX</li>
-					</thingDefs>
-				</filter>
-				<count>6</count>
-			</li>
-			<li>
-				<filter>
-					<thingDefs>
-						<li>ComponentIndustrial</li>
-					</thingDefs>
-				</filter>
-				<count>2</count>
-			</li>
-		</ingredients>
-		<fixedIngredientFilter>
-			<thingDefs>
-				<li>Steel</li>
-				<li>FSX</li>
-				<li>ComponentIndustrial</li>
-			</thingDefs>
-		</fixedIngredientFilter>
-		<products>
-			<Ammo_35x32mmSRGrenade_HE>100</Ammo_35x32mmSRGrenade_HE>
-		</products>
-		<workAmount>8600</workAmount>    
-	</RecipeDef>
+  <RecipeDef ParentName="AmmoRecipeBase">
+    <defName>MakeAmmo_35x32mmSRGrenade_HE</defName>
+    <label>make 35x32mmSR HE grenades x100</label>
+    <description>Craft 100 35x32mmSR HE grenades.</description>
+    <jobString>Making 35x32mmSR HE grenades.</jobString>
+    <ingredients>
+      <li>
+        <filter>
+          <thingDefs>
+            <li>Steel</li>
+          </thingDefs>
+        </filter>
+        <count>50</count>
+      </li>
+      <li>
+        <filter>
+          <thingDefs>
+            <li>FSX</li>
+          </thingDefs>
+        </filter>
+        <count>6</count>
+      </li>
+      <li>
+        <filter>
+          <thingDefs>
+            <li>ComponentIndustrial</li>
+          </thingDefs>
+        </filter>
+        <count>2</count>
+      </li>
+    </ingredients>
+    <fixedIngredientFilter>
+      <thingDefs>
+        <li>Steel</li>
+        <li>FSX</li>
+        <li>ComponentIndustrial</li>
+      </thingDefs>
+    </fixedIngredientFilter>
+    <products>
+      <Ammo_35x32mmSRGrenade_HE>100</Ammo_35x32mmSRGrenade_HE>
+    </products>
+    <workAmount>8600</workAmount>    
+  </RecipeDef>
 
-	<RecipeDef ParentName="AmmoRecipeBase">
-		<defName>MakeAmmo_35x32mmSRGrenade_EMP</defName>
-		<label>make 35x32mmSR EMP grenades x100</label>
-		<description>Craft 100 35x32mmSR EMP grenades.</description>
-		<jobString>Making 35x32mmSR EMP grenades.</jobString>
-		<ingredients>
-			<li>
-				<filter>
-					<thingDefs>
-						<li>Steel</li>
-					</thingDefs>
-				</filter>
-				<count>50</count>
-			</li>
-			<li>
-				<filter>
-					<thingDefs>
-						<li>ComponentIndustrial</li>
-					</thingDefs>
-				</filter>
-				<count>9</count>
-			</li>
-		</ingredients>
-		<fixedIngredientFilter>
-			<thingDefs>
-				<li>Steel</li>
-				<li>ComponentIndustrial</li>
-			</thingDefs>
-		</fixedIngredientFilter>
-		<products>
-			<Ammo_35x32mmSRGrenade_EMP>100</Ammo_35x32mmSRGrenade_EMP>
-		</products>
-		<workAmount>10400</workAmount>      
-	</RecipeDef>
-
+  <RecipeDef ParentName="AmmoRecipeBase">
+    <defName>MakeAmmo_35x32mmSRGrenade_EMP</defName>
+    <label>make 35x32mmSR EMP grenades x100</label>
+    <description>Craft 100 35x32mmSR EMP grenades.</description>
+    <jobString>Making 35x32mmSR EMP grenades.</jobString>
+    <ingredients>
+      <li>
+        <filter>
+          <thingDefs>
+            <li>Steel</li>
+          </thingDefs>
+        </filter>
+        <count>50</count>
+      </li>
+      <li>
+        <filter>
+          <thingDefs>
+            <li>ComponentIndustrial</li>
+          </thingDefs>
+        </filter>
+        <count>9</count>
+      </li>
+    </ingredients>
+    <fixedIngredientFilter>
+      <thingDefs>
+        <li>Steel</li>
+        <li>ComponentIndustrial</li>
+      </thingDefs>
+    </fixedIngredientFilter>
+    <products>
+      <Ammo_35x32mmSRGrenade_EMP>100</Ammo_35x32mmSRGrenade_EMP>
+    </products>
+    <workAmount>10400</workAmount>      
+  </RecipeDef>
+	
 </Defs>

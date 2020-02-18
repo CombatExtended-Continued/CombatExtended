@@ -5,113 +5,113 @@
 		<defName>Ammo83mmPIATGrenades</defName>
 		<label>83mm PIAT Grenade</label>
 		<parent>AmmoGrenades</parent>
-		<iconPath>UI/Icons/ThingCategories/CaliberGrenade</iconPath>
+    <iconPath>UI/Icons/ThingCategories/CaliberGrenade</iconPath>
 	</ThingCategoryDef>
-
+	
 	<!-- ==================== AmmoSet ========================== -->
 
-	<CombatExtended.AmmoSetDef>
-		<defName>AmmoSet_83mmPIATGrenade</defName>
-		<label>83mm PIAT Grenades</label>
-		<ammoTypes>
-			<Ammo_83mmPIATGrenade_HEAT>Bullet_83mmPIATGrenade_HEAT</Ammo_83mmPIATGrenade_HEAT>
-			<Ammo_83mmPIATGrenade_HE>Bullet_83mmPIATGrenade_HE</Ammo_83mmPIATGrenade_HE>
-			<Ammo_83mmPIATGrenade_EMP>Bullet_83mmPIATGrenade_EMP</Ammo_83mmPIATGrenade_EMP>      
-		</ammoTypes>
-	</CombatExtended.AmmoSetDef>
-
+  <CombatExtended.AmmoSetDef>
+    <defName>AmmoSet_83mmPIATGrenade</defName>
+    <label>83mm PIAT Grenades</label>
+    <ammoTypes>
+      <Ammo_83mmPIATGrenade_HEAT>Bullet_83mmPIATGrenade_HEAT</Ammo_83mmPIATGrenade_HEAT>
+      <Ammo_83mmPIATGrenade_HE>Bullet_83mmPIATGrenade_HE</Ammo_83mmPIATGrenade_HE>
+      <Ammo_83mmPIATGrenade_EMP>Bullet_83mmPIATGrenade_EMP</Ammo_83mmPIATGrenade_EMP>      
+    </ammoTypes>
+  </CombatExtended.AmmoSetDef>
+	
 	<!-- ==================== Ammo ========================== -->
 
-	<ThingDef Class="CombatExtended.AmmoDef" Name="83mmPIATGrenadeBase" ParentName="AmmoBase" Abstract="True">
-		<description>Large spigot grenade designed to be fired at tanks.</description>
-		<statBases>
-			<Mass>3.176</Mass>
-			<Bulk>6.5</Bulk>
-		</statBases>
-		<tradeTags>
-			<li>CE_AutoEnableTrade</li>
-			<li>CE_AutoEnableCrafting_TableMachining</li>
-		</tradeTags>
-		<thingCategories>
-			<li>Ammo83mmPIATGrenades</li>
-		</thingCategories>
-		<stackLimit>25</stackLimit>
-		<cookOffFlashScale>30</cookOffFlashScale>
-		<cookOffSound>MortarBomb_Explode</cookOffSound>
-	</ThingDef>
+  <ThingDef Class="CombatExtended.AmmoDef" Name="83mmPIATGrenadeBase" ParentName="AmmoBase" Abstract="True">
+    <description>Large spigot grenade designed to be fired at tanks.</description>
+    <statBases>
+	  <Mass>3.176</Mass>
+	  <Bulk>6.5</Bulk>
+    </statBases>
+	<tradeTags>
+	  <li>CE_AutoEnableTrade</li>
+	  <li>CE_AutoEnableCrafting_TableMachining</li>
+	</tradeTags>
+    <thingCategories>
+      <li>Ammo83mmPIATGrenades</li>
+    </thingCategories>
+    <stackLimit>25</stackLimit>
+    <cookOffFlashScale>30</cookOffFlashScale>
+    <cookOffSound>MortarBomb_Explode</cookOffSound>
+  </ThingDef>
 
-	<ThingDef Class="CombatExtended.AmmoDef" ParentName="83mmPIATGrenadeBase">
-		<defName>Ammo_83mmPIATGrenade_HEAT</defName>
-		<label>83mm PIAT grenade (HEAT)</label>
-		<graphicData>
-			<texPath>Things/Ammo/GrenadeLauncher/HE</texPath>
-			<graphicClass>Graphic_StackCount</graphicClass>
-		</graphicData>
-		<statBases>
-			<MarketValue>44.3</MarketValue>
-		</statBases>
-		<ammoClass>RocketHEAT</ammoClass>
-		<comps>
-			<li Class="CombatExtended.CompProperties_ExplosiveCE">
-				<explosionDamage>139</explosionDamage>
-				<explosionDamageDef>Bomb</explosionDamageDef>
-				<explosionRadius>1</explosionRadius>
-				<fragments>
-					<Fragment_Large>1</Fragment_Large>
-					<Fragment_Small>42</Fragment_Small>
-				</fragments>
-				<applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
-			</li>
-		</comps>
-	</ThingDef>
+  <ThingDef Class="CombatExtended.AmmoDef" ParentName="83mmPIATGrenadeBase">
+    <defName>Ammo_83mmPIATGrenade_HEAT</defName>
+    <label>83mm PIAT grenade (HEAT)</label>
+    <graphicData>
+      <texPath>Things/Ammo/GrenadeLauncher/HE</texPath>
+      <graphicClass>Graphic_StackCount</graphicClass>
+    </graphicData>
+    <statBases>
+      <MarketValue>44.3</MarketValue>
+    </statBases>
+    <ammoClass>RocketHEAT</ammoClass>
+    <comps>
+      <li Class="CombatExtended.CompProperties_ExplosiveCE">
+        <explosionDamage>139</explosionDamage>
+        <explosionDamageDef>Bomb</explosionDamageDef>
+        <explosionRadius>1</explosionRadius>
+        <fragments>
+          <Fragment_Large>1</Fragment_Large>
+          <Fragment_Small>42</Fragment_Small>
+        </fragments>
+		<applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
+      </li>
+    </comps>
+  </ThingDef>
 
-	<ThingDef Class="CombatExtended.AmmoDef" ParentName="83mmPIATGrenadeBase">
-		<defName>Ammo_83mmPIATGrenade_HE</defName>
-		<label>83mm PIAT grenade (HE)</label>
-		<graphicData>
-			<texPath>Things/Ammo/GrenadeLauncher/HE</texPath>
-			<graphicClass>Graphic_StackCount</graphicClass>
-		</graphicData>
-		<statBases>
-			<MarketValue>44.3</MarketValue>
-		</statBases>
-		<ammoClass>GrenadeHE</ammoClass>
-		<comps>
-			<li Class="CombatExtended.CompProperties_ExplosiveCE">
-				<explosionDamage>139</explosionDamage>
-				<explosionDamageDef>Bomb</explosionDamageDef>
-				<explosionRadius>2.5</explosionRadius>
-				<fragments>
-					<Fragment_Large>1</Fragment_Large>
-					<Fragment_Small>83</Fragment_Small>
-				</fragments>
-				<applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
-			</li>
-		</comps>
-	</ThingDef>
+  <ThingDef Class="CombatExtended.AmmoDef" ParentName="83mmPIATGrenadeBase">
+    <defName>Ammo_83mmPIATGrenade_HE</defName>
+    <label>83mm PIAT grenade (HE)</label>
+    <graphicData>
+      <texPath>Things/Ammo/GrenadeLauncher/HE</texPath>
+      <graphicClass>Graphic_StackCount</graphicClass>
+    </graphicData>
+    <statBases>
+      <MarketValue>44.3</MarketValue>
+    </statBases>
+    <ammoClass>GrenadeHE</ammoClass>
+    <comps>
+      <li Class="CombatExtended.CompProperties_ExplosiveCE">
+        <explosionDamage>139</explosionDamage>
+        <explosionDamageDef>Bomb</explosionDamageDef>
+        <explosionRadius>2.5</explosionRadius>
+        <fragments>
+          <Fragment_Large>1</Fragment_Large>
+          <Fragment_Small>83</Fragment_Small>
+        </fragments>
+		<applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
+      </li>
+    </comps>
+  </ThingDef>
 
-	<ThingDef Class="CombatExtended.AmmoDef" ParentName="83mmPIATGrenadeBase">
-		<defName>Ammo_83mmPIATGrenade_EMP</defName>
-		<label>83mm PIAT grenade (EMP)</label>
-		<graphicData>
-			<texPath>Things/Ammo/GrenadeLauncher/EMP</texPath>
-			<graphicClass>Graphic_StackCount</graphicClass>
-		</graphicData>
-		<statBases>
-			<MarketValue>90.7</MarketValue>
-		</statBases>
-		<ammoClass>GrenadeEMP</ammoClass>
-		<comps>
-			<li Class="CombatExtended.CompProperties_ExplosiveCE">
-				<explosionDamage>5</explosionDamage>
-				<explosionDamageDef>Bomb</explosionDamageDef>
-				<explosionRadius>1.25</explosionRadius>
-				<fragments>
-					<Fragment_Large>1</Fragment_Large>
-				</fragments>
-			</li>
-		</comps>
-	</ThingDef>
+  <ThingDef Class="CombatExtended.AmmoDef" ParentName="83mmPIATGrenadeBase">
+    <defName>Ammo_83mmPIATGrenade_EMP</defName>
+    <label>83mm PIAT grenade (EMP)</label>
+    <graphicData>
+      <texPath>Things/Ammo/GrenadeLauncher/EMP</texPath>
+      <graphicClass>Graphic_StackCount</graphicClass>
+    </graphicData>
+    <statBases>
+      <MarketValue>90.7</MarketValue>
+    </statBases>
+    <ammoClass>GrenadeEMP</ammoClass>
+    <comps>
+      <li Class="CombatExtended.CompProperties_ExplosiveCE">
+        <explosionDamage>5</explosionDamage>
+        <explosionDamageDef>Bomb</explosionDamageDef>
+        <explosionRadius>1.25</explosionRadius>
+        <fragments>
+          <Fragment_Large>1</Fragment_Large>
+        </fragments>
+      </li>
+    </comps>
+  </ThingDef>
 
 	<!-- ================== Projectiles ================== -->
 
@@ -141,14 +141,13 @@
 				<explosionDamageDef>Bomb</explosionDamageDef>
 				<explosionRadius>1</explosionRadius>
 				<fragments>
-					<Fragment_Large>1</Fragment_Large>
-					<Fragment_Small>42</Fragment_Small>
+          <Fragment_Large>1</Fragment_Large>
+          <Fragment_Small>42</Fragment_Small>
 				</fragments>
 				<applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
 				<soundExplode>MortarBomb_Explode</soundExplode>
 			</li>
 		</comps>
-
 	</ThingDef>
 
 	<ThingDef Class="CombatExtended.AmmoDef" ParentName="Base83mmPIATGrenade">
@@ -163,8 +162,8 @@
 		<comps>
 			<li Class="CombatExtended.CompProperties_ExplosiveCE">
 				<fragments>
-					<Fragment_Large>1</Fragment_Large>
-					<Fragment_Small>83</Fragment_Small>
+          <Fragment_Large>1</Fragment_Large>
+          <Fragment_Small>83</Fragment_Small>
 				</fragments>
 			</li>
 		</comps>
@@ -182,127 +181,127 @@
 
 	<!-- ==================== Recipes ========================== -->
 
-	<RecipeDef ParentName="AmmoRecipeBase">
-		<defName>MakeAmmo_83mmPIATGrenade_HEAT</defName>
-		<label>make 83mm PIAT HEAT grenades x5</label>
-		<description>Craft 5 83mm PIAT HEAT grenades.</description>
-		<jobString>Making 83mm PIAT HEAT grenades.</jobString>
-		<ingredients>
-			<li>
-				<filter>
-					<thingDefs>
-						<li>Steel</li>
-					</thingDefs>
-				</filter>
-				<count>32</count>
-			</li>
-			<li>
-				<filter>
-					<thingDefs>
-						<li>FSX</li>
-					</thingDefs>
-				</filter>
-				<count>9</count>
-			</li>
-			<li>
-				<filter>
-					<thingDefs>
-						<li>ComponentIndustrial</li>
-					</thingDefs>
-				</filter>
-				<count>2</count>
-			</li>
-		</ingredients>
-		<fixedIngredientFilter>
-			<thingDefs>
-				<li>Steel</li>
-				<li>FSX</li>
-				<li>ComponentIndustrial</li>
-			</thingDefs>
-		</fixedIngredientFilter>
-		<products>
-			<Ammo_83mmPIATGrenade_HEAT>5</Ammo_83mmPIATGrenade_HEAT>
-		</products>
-		<workAmount>8000</workAmount>     
-	</RecipeDef>
+  <RecipeDef ParentName="AmmoRecipeBase">
+    <defName>MakeAmmo_83mmPIATGrenade_HEAT</defName>
+    <label>make 83mm PIAT HEAT grenades x5</label>
+    <description>Craft 5 83mm PIAT HEAT grenades.</description>
+    <jobString>Making 83mm PIAT HEAT grenades.</jobString>
+    <ingredients>
+      <li>
+        <filter>
+          <thingDefs>
+            <li>Steel</li>
+          </thingDefs>
+        </filter>
+        <count>32</count>
+      </li>
+      <li>
+        <filter>
+          <thingDefs>
+            <li>FSX</li>
+          </thingDefs>
+        </filter>
+        <count>9</count>
+      </li>
+      <li>
+        <filter>
+          <thingDefs>
+            <li>ComponentIndustrial</li>
+          </thingDefs>
+        </filter>
+        <count>2</count>
+      </li>
+    </ingredients>
+    <fixedIngredientFilter>
+      <thingDefs>
+        <li>Steel</li>
+        <li>FSX</li>
+        <li>ComponentIndustrial</li>
+      </thingDefs>
+    </fixedIngredientFilter>
+    <products>
+      <Ammo_83mmPIATGrenade_HEAT>5</Ammo_83mmPIATGrenade_HEAT>
+    </products>
+    <workAmount>8000</workAmount>     
+  </RecipeDef>
 
-	<RecipeDef ParentName="AmmoRecipeBase">
-		<defName>MakeAmmo_83mmPIATGrenade_HE</defName>
-		<label>make 83mm PIAT HE grenades x5</label>
-		<description>Craft 5 83mm PIAT HE grenades.</description>
-		<jobString>Making 83mm PIAT HE grenades.</jobString>
-		<ingredients>
-			<li>
-				<filter>
-					<thingDefs>
-						<li>Steel</li>
-					</thingDefs>
-				</filter>
-				<count>32</count>
-			</li>
-			<li>
-				<filter>
-					<thingDefs>
-						<li>FSX</li>
-					</thingDefs>
-				</filter>
-				<count>9</count>
-			</li>
-			<li>
-				<filter>
-					<thingDefs>
-						<li>ComponentIndustrial</li>
-					</thingDefs>
-				</filter>
-				<count>2</count>
-			</li>
-		</ingredients>
-		<fixedIngredientFilter>
-			<thingDefs>
-				<li>Steel</li>
-				<li>FSX</li>
-				<li>ComponentIndustrial</li>
-			</thingDefs>
-		</fixedIngredientFilter>
-		<products>
-			<Ammo_83mmPIATGrenade_HE>5</Ammo_83mmPIATGrenade_HE>
-		</products>
-		<workAmount>8000</workAmount>       
-	</RecipeDef>
+  <RecipeDef ParentName="AmmoRecipeBase">
+    <defName>MakeAmmo_83mmPIATGrenade_HE</defName>
+    <label>make 83mm PIAT HE grenades x5</label>
+    <description>Craft 5 83mm PIAT HE grenades.</description>
+    <jobString>Making 83mm PIAT HE grenades.</jobString>
+    <ingredients>
+      <li>
+        <filter>
+          <thingDefs>
+            <li>Steel</li>
+          </thingDefs>
+        </filter>
+        <count>32</count>
+      </li>
+      <li>
+        <filter>
+          <thingDefs>
+            <li>FSX</li>
+          </thingDefs>
+        </filter>
+        <count>9</count>
+      </li>
+      <li>
+        <filter>
+          <thingDefs>
+            <li>ComponentIndustrial</li>
+          </thingDefs>
+        </filter>
+        <count>2</count>
+      </li>
+    </ingredients>
+    <fixedIngredientFilter>
+      <thingDefs>
+        <li>Steel</li>
+        <li>FSX</li>
+        <li>ComponentIndustrial</li>
+      </thingDefs>
+    </fixedIngredientFilter>
+    <products>
+      <Ammo_83mmPIATGrenade_HE>5</Ammo_83mmPIATGrenade_HE>
+    </products>
+    <workAmount>8000</workAmount>       
+  </RecipeDef>
 
-	<RecipeDef ParentName="AmmoRecipeBase">
-		<defName>MakeAmmo_83mmPIATGrenade_EMP</defName>
-		<label>make 83mm PIAT EMP grenades x5</label>
-		<description>Craft 5 83mm PIAT EMP grenades.</description>
-		<jobString>Making 83mm PIAT EMP grenades.</jobString>
-		<ingredients>
-			<li>
-				<filter>
-					<thingDefs>
-						<li>Steel</li>
-					</thingDefs>
-				</filter>
-				<count>32</count>
-			</li>
-			<li>
-				<filter>
-					<thingDefs>
-						<li>ComponentIndustrial</li>
-					</thingDefs>
-				</filter>
-				<count>12</count>
-			</li>
-		</ingredients>
-		<fixedIngredientFilter>
-			<thingDefs>
-				<li>Steel</li>
-				<li>ComponentIndustrial</li>
-			</thingDefs>
-		</fixedIngredientFilter>
-		<products>
-			<Ammo_83mmPIATGrenade_EMP>5</Ammo_83mmPIATGrenade_EMP>
-		</products>
-		<workAmount>10400</workAmount>       
-	</RecipeDef>
+  <RecipeDef ParentName="AmmoRecipeBase">
+    <defName>MakeAmmo_83mmPIATGrenade_EMP</defName>
+    <label>make 83mm PIAT EMP grenades x5</label>
+    <description>Craft 5 83mm PIAT EMP grenades.</description>
+    <jobString>Making 83mm PIAT EMP grenades.</jobString>
+    <ingredients>
+      <li>
+        <filter>
+          <thingDefs>
+            <li>Steel</li>
+          </thingDefs>
+        </filter>
+        <count>32</count>
+      </li>
+      <li>
+        <filter>
+          <thingDefs>
+            <li>ComponentIndustrial</li>
+          </thingDefs>
+        </filter>
+        <count>12</count>
+      </li>
+    </ingredients>
+    <fixedIngredientFilter>
+      <thingDefs>
+        <li>Steel</li>
+        <li>ComponentIndustrial</li>
+      </thingDefs>
+    </fixedIngredientFilter>
+    <products>
+      <Ammo_83mmPIATGrenade_EMP>5</Ammo_83mmPIATGrenade_EMP>
+    </products>
+    <workAmount>10400</workAmount>       
+  </RecipeDef>
 
 </Defs>

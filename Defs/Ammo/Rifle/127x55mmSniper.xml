@@ -25,7 +25,8 @@
 	<ThingDef Class="CombatExtended.AmmoDef" Name="127x55mmSniperBase" ParentName="SmallAmmoBase" Abstract="True">
 		<description>High caliber subsonic sniper rifle cartridge designed for suppressed weapons.</description>
 		<statBases>
-			<Bulk>0.05</Bulk>
+			<Mass>0.032</Mass>
+			<Bulk>0.08</Bulk>
 		</statBases>
 		<tradeTags>
 			<li>CE_AutoEnableTrade</li>
@@ -45,8 +46,7 @@
 			<graphicClass>Graphic_StackCount</graphicClass>
 		</graphicData>
 		<statBases>
-			<Mass>0.082</Mass>
-			<MarketValue>0.34</MarketValue>
+			<MarketValue>0.18</MarketValue>
 		</statBases>
 		<ammoClass>FullMetalJacket</ammoClass>
 		<cookOffProjectile>Bullet_127x55mmSniper_FMJ</cookOffProjectile>
@@ -60,8 +60,7 @@
 			<graphicClass>Graphic_StackCount</graphicClass>
 		</graphicData>
 		<statBases>
-			<Mass>0.099</Mass>
-			<MarketValue>0.4</MarketValue>
+			<MarketValue>0.24</MarketValue>
 		</statBases>
 		<ammoClass>ArmorPiercing</ammoClass>
 		<cookOffProjectile>Bullet_127x55mmSniper_AP</cookOffProjectile>
@@ -75,8 +74,7 @@
 			<graphicClass>Graphic_StackCount</graphicClass>
 		</graphicData>
 		<statBases>
-			<Mass>0.082</Mass>
-			<MarketValue>0.34</MarketValue>
+			<MarketValue>0.25</MarketValue>
 		</statBases>
 		<ammoClass>HollowPoint</ammoClass>
 		<cookOffProjectile>Bullet_127x55mmSniper_HP</cookOffProjectile>
@@ -91,7 +89,7 @@
 		</graphicData>
 		<projectile Class="CombatExtended.ProjectilePropertiesCE">
 			<damageDef>Bullet</damageDef>
-			<speed>59</speed>
+			<speed>79</speed>
 			<dropsCasings>true</dropsCasings>
 		</projectile>
 	</ThingDef>
@@ -101,9 +99,10 @@
 		<defName>Bullet_127x55mmSniper_FMJ</defName>
 		<label>12.7mm Sniper bullet (FMJ)</label>
 		<projectile Class="CombatExtended.ProjectilePropertiesCE">
-			<damageAmountBase>21</damageAmountBase>
-			<armorPenetrationSharp>8</armorPenetrationSharp>
-			<armorPenetrationBlunt>51.34</armorPenetrationBlunt>
+			<damageAmountBase>31</damageAmountBase>
+			<armorPenetrationBase>0.623</armorPenetrationBase>
+			<armorPenetrationSharp>0</armorPenetrationSharp>
+			<armorPenetrationBlunt>0</armorPenetrationBlunt>
 		</projectile>
 	</ThingDef>
 
@@ -111,9 +110,10 @@
 		<defName>Bullet_127x55mmSniper_AP</defName>
 		<label>12.7mm Sniper bullet (AP)</label>
 		<projectile Class="CombatExtended.ProjectilePropertiesCE">
-			<damageAmountBase>14</damageAmountBase>
-			<armorPenetrationSharp>16</armorPenetrationSharp>
-			<armorPenetrationBlunt>66.14</armorPenetrationBlunt>
+			<damageAmountBase>19</damageAmountBase>
+			<armorPenetrationBase>0.773</armorPenetrationBase>
+			<armorPenetrationSharp>0</armorPenetrationSharp>
+			<armorPenetrationBlunt>0</armorPenetrationBlunt>
 		</projectile>
 	</ThingDef>
 
@@ -121,9 +121,10 @@
 		<defName>Bullet_127x55mmSniper_HP</defName>
 		<label>12.7mm Sniper bullet (HP)</label>
 		<projectile Class="CombatExtended.ProjectilePropertiesCE">
-			<damageAmountBase>27</damageAmountBase>
-			<armorPenetrationSharp>4</armorPenetrationSharp>
-			<armorPenetrationBlunt>51.34</armorPenetrationBlunt>
+			<damageAmountBase>43</damageAmountBase>
+			<armorPenetrationBase>0.473</armorPenetrationBase>
+			<armorPenetrationSharp>0</armorPenetrationSharp>
+			<armorPenetrationBlunt>0</armorPenetrationBlunt>
 		</projectile>
 	</ThingDef>
 
@@ -141,7 +142,7 @@
 						<li>Steel</li>
 					</thingDefs>
 				</filter>
-				<count>58</count>
+				<count>22</count>
 			</li>
 		</ingredients>
 		<fixedIngredientFilter>
@@ -152,7 +153,7 @@
 		<products>
 			<Ammo_127x55mmSniper_FMJ>350</Ammo_127x55mmSniper_FMJ>
 		</products>
-		<workAmount>5800</workAmount>
+		<workAmount>4500</workAmount>
 	</RecipeDef>
 
 	<RecipeDef ParentName="AmmoRecipeBase">
@@ -167,7 +168,7 @@
 						<li>Steel</li>
 					</thingDefs>
 				</filter>
-				<count>70</count>
+				<count>27</count>
 			</li>
 		</ingredients>
 		<fixedIngredientFilter>
@@ -178,7 +179,7 @@
 		<products>
 			<Ammo_127x55mmSniper_AP>350</Ammo_127x55mmSniper_AP>
 		</products>
-		<workAmount>7000</workAmount>
+		<workAmount>7500</workAmount>
 	</RecipeDef>
 
 	<RecipeDef ParentName="AmmoRecipeBase">
@@ -193,7 +194,7 @@
 						<li>Steel</li>
 					</thingDefs>
 				</filter>
-				<count>58</count>
+				<count>22</count>
 			</li>
 		</ingredients>
 		<fixedIngredientFilter>
@@ -204,7 +205,7 @@
 		<products>
 			<Ammo_127x55mmSniper_HP>350</Ammo_127x55mmSniper_HP>
 		</products>
-		<workAmount>5800</workAmount>
+		<workAmount>10750</workAmount>
 	</RecipeDef>
 
 </Defs>

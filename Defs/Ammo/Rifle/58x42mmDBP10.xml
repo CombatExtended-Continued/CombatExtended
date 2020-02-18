@@ -1,13 +1,13 @@
-<?xml version="1.0" encoding="utf-8" ?>
+﻿<?xml version="1.0" encoding="utf-8" ?>
 <Defs>
 
 	<ThingCategoryDef>
 		<defName>Ammo58x42mmDBP10</defName>
 		<label>5.8x42mm DBP10</label>
 		<parent>AmmoRifles</parent>
-		<iconPath>UI/Icons/ThingCategories/CaliberRifle</iconPath>
+    <iconPath>UI/Icons/ThingCategories/CaliberRifle</iconPath>
 	</ThingCategoryDef>
-
+	
 	<!-- ==================== AmmoSet ========================== -->
 
 	<CombatExtended.AmmoSetDef>
@@ -17,24 +17,24 @@
 			<Ammo_58x42mmDBP10_FMJ>Bullet_58x42mmDBP10_FMJ</Ammo_58x42mmDBP10_FMJ>
 			<Ammo_58x42mmDBP10_AP>Bullet_58x42mmDBP10_AP</Ammo_58x42mmDBP10_AP>
 			<Ammo_58x42mmDBP10_HP>Bullet_58x42mmDBP10_HP</Ammo_58x42mmDBP10_HP>
-			<Ammo_58x42mmDBP10_Incendiary>Bullet_58x42mmDBP10_Incendiary</Ammo_58x42mmDBP10_Incendiary>
+		    <Ammo_58x42mmDBP10_Incendiary>Bullet_58x42mmDBP10_Incendiary</Ammo_58x42mmDBP10_Incendiary>
 			<Ammo_58x42mmDBP10_HE>Bullet_58x42mmDBP10_HE</Ammo_58x42mmDBP10_HE>
 			<Ammo_58x42mmDBP10_Sabot>Bullet_58x42mmDBP10_Sabot</Ammo_58x42mmDBP10_Sabot>			
 		</ammoTypes>
 	</CombatExtended.AmmoSetDef>
-
+	
 	<!-- ==================== Ammo ========================== -->
 
 	<ThingDef Class="CombatExtended.AmmoDef" Name="58x42mmDBP10Base" ParentName="SmallAmmoBase" Abstract="True">
 		<description>Small, high-velocity rifle bullet used in a variety of assault rifles.</description>
 		<statBases>
-			<Mass>0.015</Mass>
-			<Bulk>0.02</Bulk>
+		<Mass>0.015</Mass>
+		<Bulk>0.02</Bulk>
 		</statBases>
-		<tradeTags>
-			<li>CE_AutoEnableTrade</li>
-			<li>CE_AutoEnableCrafting</li>
-		</tradeTags>
+	<tradeTags>
+		<li>CE_AutoEnableTrade</li>
+		<li>CE_AutoEnableCrafting</li>
+	</tradeTags>
 		<thingCategories>
 			<li>Ammo58x42mmDBP10</li>
 		</thingCategories>
@@ -82,51 +82,51 @@
 		<cookOffProjectile>Bullet_58x42mmDBP10_HP</cookOffProjectile>
 	</ThingDef>
 
-	<ThingDef Class="CombatExtended.AmmoDef" ParentName="58x42mmDBP10Base">
-		<defName>Ammo_58x42mmDBP10_Incendiary</defName>
-		<label>5.8x42mm DBP10 cartridge (AP-I)</label>
-		<graphicData>
-			<texPath>Things/Ammo/Rifle/Incendiary</texPath>
-			<graphicClass>Graphic_StackCount</graphicClass>
-		</graphicData>
-		<statBases>
-			<MarketValue>0.1</MarketValue>
-		</statBases>
-		<ammoClass>IncendiaryAP</ammoClass>
-		<cookOffProjectile>Bullet_58x42mmDBP10_Incendiary</cookOffProjectile>
-	</ThingDef>
+  <ThingDef Class="CombatExtended.AmmoDef" ParentName="58x42mmDBP10Base">
+    <defName>Ammo_58x42mmDBP10_Incendiary</defName>
+    <label>5.8x42mm DBP10 cartridge (AP-I)</label>
+    <graphicData>
+      <texPath>Things/Ammo/Rifle/Incendiary</texPath>
+      <graphicClass>Graphic_StackCount</graphicClass>
+    </graphicData>
+    <statBases>
+      <MarketValue>0.1</MarketValue>
+    </statBases>
+    <ammoClass>IncendiaryAP</ammoClass>
+    <cookOffProjectile>Bullet_58x42mmDBP10_Incendiary</cookOffProjectile>
+  </ThingDef>
 
-	<ThingDef Class="CombatExtended.AmmoDef" ParentName="58x42mmDBP10Base">
-		<defName>Ammo_58x42mmDBP10_HE</defName>
-		<label>5.8x42mm DBP10 cartridge (HE)</label>
-		<graphicData>
-			<texPath>Things/Ammo/Rifle/HE</texPath>
-			<graphicClass>Graphic_StackCount</graphicClass>
-		</graphicData>
-		<statBases>
-			<MarketValue>0.16</MarketValue>
-		</statBases>
-		<ammoClass>ExplosiveAP</ammoClass>
-		<cookOffProjectile>Bullet_58x42mmDBP10_HE</cookOffProjectile>
-	</ThingDef>
-
-	<ThingDef Class="CombatExtended.AmmoDef" ParentName="58x42mmDBP10Base">
-		<defName>Ammo_58x42mmDBP10_Sabot</defName>
-		<label>5.8x42mm DBP10 cartridge (Sabot)</label>
-		<graphicData>
-			<texPath>Things/Ammo/Rifle/Sabot</texPath>
-			<graphicClass>Graphic_StackCount</graphicClass>
-		</graphicData>
-		<statBases>
-			<MarketValue>0.09</MarketValue>
-			<Mass>0.013</Mass>
-		</statBases>
-		<ammoClass>Sabot</ammoClass>
-		<cookOffProjectile>Bullet_58x42mmDBP10_Sabot</cookOffProjectile>
-	</ThingDef>
-
+  <ThingDef Class="CombatExtended.AmmoDef" ParentName="58x42mmDBP10Base">
+    <defName>Ammo_58x42mmDBP10_HE</defName>
+    <label>5.8x42mm DBP10 cartridge (HE)</label>
+    <graphicData>
+      <texPath>Things/Ammo/Rifle/HE</texPath>
+      <graphicClass>Graphic_StackCount</graphicClass>
+    </graphicData>
+    <statBases>
+      <MarketValue>0.16</MarketValue>
+    </statBases>
+    <ammoClass>ExplosiveAP</ammoClass>
+    <cookOffProjectile>Bullet_58x42mmDBP10_HE</cookOffProjectile>
+  </ThingDef>
+ 
+  <ThingDef Class="CombatExtended.AmmoDef" ParentName="58x42mmDBP10Base">
+    <defName>Ammo_58x42mmDBP10_Sabot</defName>
+    <label>5.8x42mm DBP10 cartridge (Sabot)</label>
+    <graphicData>
+      <texPath>Things/Ammo/Rifle/Sabot</texPath>
+      <graphicClass>Graphic_StackCount</graphicClass>
+    </graphicData>
+    <statBases>
+      <MarketValue>0.09</MarketValue>
+	  <Mass>0.013</Mass>
+    </statBases>
+    <ammoClass>Sabot</ammoClass>
+    <cookOffProjectile>Bullet_58x42mmDBP10_Sabot</cookOffProjectile>
+  </ThingDef>
+  
 	<!-- ================== Projectiles ================== -->
-
+	
 	<ThingDef Class="CombatExtended.AmmoDef" Name="Base58x42mmDBP10Bullet" ParentName="BaseBullet" Abstract="true">
 		<graphicData>
 			<texPath>Things/Projectile/Bullet_Small</texPath>
@@ -138,7 +138,7 @@
 			<dropsCasings>true</dropsCasings>
 		</projectile>
 	</ThingDef>
-
+	
 	<ThingDef Class="CombatExtended.AmmoDef" ParentName="Base58x42mmDBP10Bullet">
 		<defName>Bullet_58x42mmDBP10_FMJ</defName>
 		<label>5.8mm DBP10 bullet (FMJ)</label>
@@ -181,49 +181,49 @@
 		</projectile>
 	</ThingDef>
 
-	<ThingDef Class="CombatExtended.AmmoDef" ParentName="Base58x42mmDBP10Bullet">
+	  <ThingDef Class="CombatExtended.AmmoDef" ParentName="Base58x42mmDBP10Bullet">
 		<defName>Bullet_58x42mmDBP10_Incendiary</defName>
 		<label>5.8mm DBP10 bullet (AP-I)</label>
 		<projectile Class="CombatExtended.ProjectilePropertiesCE">
-			<damageAmountBase>9</damageAmountBase>
-			<armorPenetrationSharp>12</armorPenetrationSharp>
-			<armorPenetrationBlunt>35.9</armorPenetrationBlunt>
-			<secondaryDamage>
+		  <damageAmountBase>9</damageAmountBase>
+		  <armorPenetrationSharp>12</armorPenetrationSharp>
+		  <armorPenetrationBlunt>35.9</armorPenetrationBlunt>
+		  <secondaryDamage>
 				<li>
-					<def>Flame_Secondary</def>
-					<amount>6</amount>
+			  	<def>Flame_Secondary</def>
+			  	<amount>6</amount>
 				</li>
-			</secondaryDamage>
+		  </secondaryDamage>
 		</projectile>
-	</ThingDef>
-
-	<ThingDef Class="CombatExtended.AmmoDef" ParentName="Base58x42mmDBP10Bullet">
+	  </ThingDef>
+	  
+	  <ThingDef Class="CombatExtended.AmmoDef" ParentName="Base58x42mmDBP10Bullet">
 		<defName>Bullet_58x42mmDBP10_HE</defName>
 		<label>5.8mm DBP10 bullet (HE)</label>
 		<projectile Class="CombatExtended.ProjectilePropertiesCE">
-			<damageAmountBase>14</damageAmountBase>
-			<armorPenetrationSharp>6</armorPenetrationSharp>
-			<armorPenetrationBlunt>35.9</armorPenetrationBlunt>
-			<secondaryDamage>
+		  <damageAmountBase>14</damageAmountBase>
+		  <armorPenetrationSharp>6</armorPenetrationSharp>
+		  <armorPenetrationBlunt>35.9</armorPenetrationBlunt>
+		  <secondaryDamage>
 				<li>
-					<def>Bomb_Secondary</def>
-					<amount>9</amount>
+			  	<def>Bomb_Secondary</def>
+			  	<amount>9</amount>
 				</li>
-			</secondaryDamage>
+		  </secondaryDamage>
 		</projectile>
-	</ThingDef>
+	  </ThingDef>
 
-	<ThingDef Class="CombatExtended.AmmoDef" ParentName="Base58x42mmDBP10Bullet">
+	  <ThingDef Class="CombatExtended.AmmoDef" ParentName="Base58x42mmDBP10Bullet">
 		<defName>Bullet_58x42mmDBP10_Sabot</defName>
 		<label>5.8mm DBP10 bullet (Sabot)</label>
 		<projectile Class="CombatExtended.ProjectilePropertiesCE">
-			<damageAmountBase>8</damageAmountBase>
-			<armorPenetrationSharp>21</armorPenetrationSharp>
-			<armorPenetrationBlunt>46.12</armorPenetrationBlunt>
-			<speed>279</speed>
+		  <damageAmountBase>8</damageAmountBase>
+		  <armorPenetrationSharp>21</armorPenetrationSharp>
+		  <armorPenetrationBlunt>46.12</armorPenetrationBlunt>
+		  <speed>279</speed>
 		</projectile>
-	</ThingDef>
-
+	  </ThingDef>
+	  
 	<!-- ==================== Recipes ========================== -->
 
 	<RecipeDef ParentName="AmmoRecipeBase">
@@ -249,7 +249,7 @@
 		<products>
 			<Ammo_58x42mmDBP10_FMJ>500</Ammo_58x42mmDBP10_FMJ>
 		</products>
-		<workAmount>1800</workAmount>
+    	<workAmount>1800</workAmount>
 	</RecipeDef>
 
 	<RecipeDef ParentName="AmmoRecipeBase">
@@ -275,7 +275,7 @@
 		<products>
 			<Ammo_58x42mmDBP10_AP>500</Ammo_58x42mmDBP10_AP>
 		</products>
-		<workAmount>1800</workAmount>
+    	<workAmount>1800</workAmount>
 	</RecipeDef>
 
 	<RecipeDef ParentName="AmmoRecipeBase">
@@ -301,121 +301,121 @@
 		<products>
 			<Ammo_58x42mmDBP10_HP>500</Ammo_58x42mmDBP10_HP>
 		</products>
-		<workAmount>1800</workAmount>
+    	<workAmount>1800</workAmount>
 	</RecipeDef>
 
-	<RecipeDef ParentName="AmmoRecipeBase">
-		<defName>MakeAmmo_58x42mmDBP10_Incendiary</defName>
-		<label>make 5.8x42mm DBP10 (AP-I) cartridge x500</label>
-		<description>Craft 500 5.8x42mm DBP10 (AP-I) cartridges.</description>
-		<jobString>Making 5.8x42mm DBP10 (AP-I) cartridges.</jobString>
-		<ingredients>
-			<li>
-				<filter>
-					<thingDefs>
-						<li>Steel</li>
-					</thingDefs>
-				</filter>
-				<count>18</count>
-			</li>
-			<li>
-				<filter>
-					<thingDefs>
-						<li>Prometheum</li>
-					</thingDefs>
-				</filter>
-				<count>2</count>
-			</li>
-		</ingredients>
-		<fixedIngredientFilter>
-			<thingDefs>
-				<li>Steel</li>
-				<li>Prometheum</li>
-			</thingDefs>
-		</fixedIngredientFilter>
-		<products>
-			<Ammo_58x42mmDBP10_Incendiary>500</Ammo_58x42mmDBP10_Incendiary>
-		</products>
-		<workAmount>2600</workAmount>
-	</RecipeDef>
-
-	<RecipeDef ParentName="AmmoRecipeBase">
-		<defName>MakeAmmo_58x42mmDBP10_HE</defName>
-		<label>make 5.8x42mm DBP10 (HE) cartridge x500</label>
-		<description>Craft 500 5.8x42mm DBP10 (HE) cartridges.</description>
-		<jobString>Making 5.8x42mm DBP10 (HE) cartridges.</jobString>
-		<ingredients>
-			<li>
-				<filter>
-					<thingDefs>
-						<li>Steel</li>
-					</thingDefs>
-				</filter>
-				<count>18</count>
-			</li>
-			<li>
-				<filter>
-					<thingDefs>
-						<li>FSX</li>
-					</thingDefs>
-				</filter>
-				<count>4</count>
-			</li>
-		</ingredients>
-		<fixedIngredientFilter>
-			<thingDefs>
-				<li>Steel</li>
-				<li>FSX</li>
-			</thingDefs>
-		</fixedIngredientFilter>
-		<products>
-			<Ammo_58x42mmDBP10_HE>500</Ammo_58x42mmDBP10_HE>
-		</products>
-		<workAmount>3400</workAmount>
-	</RecipeDef>
-
-	<RecipeDef ParentName="AmmoRecipeBase">
-		<defName>MakeAmmo_58x42mmDBP10_Sabot</defName>
-		<label>make 5.8x42mm DBP10 (Sabot) cartridge x500</label>
-		<description>Craft 500 5.8x42mm DBP10 (Sabot) cartridges.</description>
-		<jobString>Making 5.8x42mm DBP10 (Sabot) cartridges.</jobString>
-		<ingredients>
-			<li>
-				<filter>
-					<thingDefs>
-						<li>Steel</li>
-					</thingDefs>
-				</filter>
-				<count>12</count>
-			</li>
-			<li>
-				<filter>
-					<thingDefs>
-						<li>Uranium</li>
-					</thingDefs>
-				</filter>
-				<count>2</count>
-			</li>
-			<li>
-				<filter>
-					<thingDefs>
-						<li>Chemfuel</li>
-					</thingDefs>
-				</filter>
-				<count>2</count>
-			</li>		  
-		</ingredients>
-		<fixedIngredientFilter>
-			<thingDefs>
-				<li>Steel</li>
-				<li>Uranium</li>
-				<li>Chemfuel</li>		
-			</thingDefs>
-		</fixedIngredientFilter>
-		<products>
-			<Ammo_58x42mmDBP10_Sabot>500</Ammo_58x42mmDBP10_Sabot>
-		</products>
-		<workAmount>2400</workAmount>
-	</RecipeDef>
-
+  <RecipeDef ParentName="AmmoRecipeBase">
+    <defName>MakeAmmo_58x42mmDBP10_Incendiary</defName>
+    <label>make 5.8x42mm DBP10 (AP-I) cartridge x500</label>
+    <description>Craft 500 5.8x42mm DBP10 (AP-I) cartridges.</description>
+    <jobString>Making 5.8x42mm DBP10 (AP-I) cartridges.</jobString>
+    <ingredients>
+      <li>
+        <filter>
+          <thingDefs>
+            <li>Steel</li>
+          </thingDefs>
+        </filter>
+        <count>18</count>
+      </li>
+      <li>
+        <filter>
+          <thingDefs>
+            <li>Prometheum</li>
+          </thingDefs>
+        </filter>
+        <count>2</count>
+      </li>
+    </ingredients>
+    <fixedIngredientFilter>
+      <thingDefs>
+        <li>Steel</li>
+        <li>Prometheum</li>
+      </thingDefs>
+    </fixedIngredientFilter>
+    <products>
+      <Ammo_58x42mmDBP10_Incendiary>500</Ammo_58x42mmDBP10_Incendiary>
+    </products>
+    <workAmount>2600</workAmount>
+  </RecipeDef>
+  
+  <RecipeDef ParentName="AmmoRecipeBase">
+    <defName>MakeAmmo_58x42mmDBP10_HE</defName>
+    <label>make 5.8x42mm DBP10 (HE) cartridge x500</label>
+    <description>Craft 500 5.8x42mm DBP10 (HE) cartridges.</description>
+    <jobString>Making 5.8x42mm DBP10 (HE) cartridges.</jobString>
+    <ingredients>
+      <li>
+        <filter>
+          <thingDefs>
+            <li>Steel</li>
+          </thingDefs>
+        </filter>
+        <count>18</count>
+      </li>
+      <li>
+        <filter>
+          <thingDefs>
+            <li>FSX</li>
+          </thingDefs>
+        </filter>
+        <count>4</count>
+      </li>
+    </ingredients>
+    <fixedIngredientFilter>
+      <thingDefs>
+        <li>Steel</li>
+        <li>FSX</li>
+      </thingDefs>
+    </fixedIngredientFilter>
+    <products>
+      <Ammo_58x42mmDBP10_HE>500</Ammo_58x42mmDBP10_HE>
+    </products>
+    <workAmount>3400</workAmount>
+  </RecipeDef>
+  
+  <RecipeDef ParentName="AmmoRecipeBase">
+    <defName>MakeAmmo_58x42mmDBP10_Sabot</defName>
+    <label>make 5.8x42mm DBP10 (Sabot) cartridge x500</label>
+    <description>Craft 500 5.8x42mm DBP10 (Sabot) cartridges.</description>
+    <jobString>Making 5.8x42mm DBP10 (Sabot) cartridges.</jobString>
+    <ingredients>
+      <li>
+        <filter>
+          <thingDefs>
+            <li>Steel</li>
+          </thingDefs>
+        </filter>
+        <count>12</count>
+      </li>
+      <li>
+        <filter>
+          <thingDefs>
+            <li>Uranium</li>
+          </thingDefs>
+        </filter>
+        <count>2</count>
+      </li>
+      <li>
+        <filter>
+          <thingDefs>
+            <li>Chemfuel</li>
+          </thingDefs>
+        </filter>
+        <count>2</count>
+      </li>		  
+    </ingredients>
+    <fixedIngredientFilter>
+      <thingDefs>
+        <li>Steel</li>
+        <li>Uranium</li>
+        <li>Chemfuel</li>		
+      </thingDefs>
+    </fixedIngredientFilter>
+    <products>
+      <Ammo_58x42mmDBP10_Sabot>500</Ammo_58x42mmDBP10_Sabot>
+    </products>
+    <workAmount>2400</workAmount>
+  </RecipeDef>
+	
 </Defs>

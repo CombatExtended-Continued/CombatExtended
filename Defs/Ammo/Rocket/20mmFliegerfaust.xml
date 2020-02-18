@@ -1,69 +1,69 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <Defs>
 
-	<ThingCategoryDef>
-		<defName>Ammo20mmFliegerfaust</defName>
-		<label/>
-		<parent>AmmoRockets</parent>
-		<iconPath>UI/Icons/ThingCategories/CaliberRocket</iconPath>
-	</ThingCategoryDef>
-
+    <ThingCategoryDef>
+      <defName>Ammo20mmFliegerfaust</defName>
+      <label></label>
+      <parent>AmmoRockets</parent>
+      <iconPath>UI/Icons/ThingCategories/CaliberRocket</iconPath>
+    </ThingCategoryDef>
+	
 	<!-- ==================== AmmoSet ========================== -->
 
-	<CombatExtended.AmmoSetDef>
-		<defName>AmmoSet_20mmFliegerfaust</defName>
-		<label>20mm Fliegerfaust</label>
-		<ammoTypes>
-			<Ammo_20mmFliegerfaust_HE>Bullet_20mmFliegerfaust_HE</Ammo_20mmFliegerfaust_HE>
-		</ammoTypes>
-	</CombatExtended.AmmoSetDef>
-
+  <CombatExtended.AmmoSetDef>
+    <defName>AmmoSet_20mmFliegerfaust</defName>
+    <label>20mm Fliegerfaust</label>
+	<ammoTypes>
+	  <Ammo_20mmFliegerfaust_HE>Bullet_20mmFliegerfaust_HE</Ammo_20mmFliegerfaust_HE>
+	</ammoTypes>
+  </CombatExtended.AmmoSetDef>
+	
 	<!-- ==================== Ammo ========================== -->
 
-	<ThingDef Class="CombatExtended.AmmoDef" Name="20mmFliegerfaustBase" ParentName="AmmoBase" Abstract="True">
-		<description>Outdated 20mm rocket designed to be fired in volleys at airplanes.</description>
-		<statBases>
-			<MaxHitPoints>150</MaxHitPoints>
-		</statBases>
-		<tradeTags>
-			<li>CE_AutoEnableTrade</li>
-			<li>CE_AutoEnableCrafting_TableMachining</li>
-		</tradeTags>
-		<thingCategories>
-			<li>Ammo20mmFliegerfaust</li>
-		</thingCategories>
-		<stackLimit>4000</stackLimit>
-		<cookOffFlashScale>25</cookOffFlashScale>
-		<cookOffSound>MortarBomb_Explode</cookOffSound>
-	</ThingDef>
+  <ThingDef Class="CombatExtended.AmmoDef" Name="20mmFliegerfaustBase" ParentName="AmmoBase" Abstract="True">
+    <description>Outdated 20mm rocket designed to be fired in volleys at airplanes.</description>
+    <statBases>
+      <MaxHitPoints>150</MaxHitPoints>
+    </statBases>
+    <tradeTags>
+      <li>CE_AutoEnableTrade</li>
+      <li>CE_AutoEnableCrafting_TableMachining</li>
+    </tradeTags>
+    <thingCategories>
+      <li>Ammo20mmFliegerfaust</li>
+    </thingCategories>
+    <stackLimit>4000</stackLimit>
+    <cookOffFlashScale>25</cookOffFlashScale>
+    <cookOffSound>MortarBomb_Explode</cookOffSound>
+  </ThingDef>
 
-	<ThingDef Class="CombatExtended.AmmoDef" ParentName="20mmFliegerfaustBase">
-		<defName>Ammo_20mmFliegerfaust_HE</defName>
-		<label>20mm Fliegerfaust (HE)</label>
-		<graphicData>
-			<texPath>Things/Ammo/RPG/Frag</texPath>
-			<graphicClass>Graphic_StackCount</graphicClass>
-		</graphicData>
-		<statBases>
-			<MarketValue>14.83</MarketValue>
-			<Mass>0.12</Mass>
-			<Bulk>0.16</Bulk>
-		</statBases>
-		<ammoClass>GrenadeHE</ammoClass>
-		<comps>
-			<li Class="CombatExtended.CompProperties_ExplosiveCE">
-				<explosionDamage>16</explosionDamage>
-				<explosionDamageDef>Bomb</explosionDamageDef>
-				<explosionRadius>0.5</explosionRadius>
+  <ThingDef Class="CombatExtended.AmmoDef" ParentName="20mmFliegerfaustBase">
+    <defName>Ammo_20mmFliegerfaust_HE</defName>
+    <label>20mm Fliegerfaust (HE)</label>
+    <graphicData>
+      <texPath>Things/Ammo/RPG/Frag</texPath>
+      <graphicClass>Graphic_StackCount</graphicClass>
+    </graphicData>
+    <statBases>
+      <MarketValue>14.83</MarketValue>
+	    <Mass>0.12</Mass>
+	    <Bulk>0.16</Bulk>
+    </statBases>
+    <ammoClass>GrenadeHE</ammoClass>
+    <comps>
+      <li Class="CombatExtended.CompProperties_ExplosiveCE">
+        <explosionDamage>16</explosionDamage>
+        <explosionDamageDef>Bomb</explosionDamageDef>
+        <explosionRadius>0.5</explosionRadius>
 				<fragments>
 					<Fragment_Large>1</Fragment_Large>
 					<Fragment_Small>3</Fragment_Small>
 				</fragments>
-				<soundExplode>MortarBomb_Explode</soundExplode>
-			</li>
-		</comps>
-	</ThingDef>
-
+        <soundExplode>MortarBomb_Explode</soundExplode>
+      </li>
+    </comps>
+  </ThingDef>
+	
 	<!-- ================== Projectiles ================== -->
 
 	<ThingDef Class="CombatExtended.AmmoDef" Name="Base20mmFliegerfaust" ParentName="BaseBullet" Abstract="true">
@@ -98,51 +98,51 @@
 			</li>
 		</comps>
 	</ThingDef>
-
+  
 	<!-- ==================== Recipes ========================== -->
 
-	<RecipeDef ParentName="AmmoRecipeBase">
-		<defName>MakeAmmo_20mmFliegerfaust_HE</defName>
-		<label>make 20mmFliegerfaust HE rockets x10</label>
-		<description>Craft 10 20mmFliegerfaust HE rockets.</description>
-		<jobString>Making 20mmFliegerfaust HE rockets.</jobString>
-		<workAmount>3200</workAmount>
-		<ingredients>
-			<li>
-				<filter>
-					<thingDefs>
-						<li>Steel</li>
-					</thingDefs>
-				</filter>
-				<count>4</count>
-			</li>
-			<li>
-				<filter>
-					<thingDefs>
-						<li>FSX</li>
-					</thingDefs>
-				</filter>
-				<count>1</count>
-			</li>
-			<li>
-				<filter>
-					<thingDefs>
-						<li>ComponentIndustrial</li>
-					</thingDefs>
-				</filter>
-				<count>4</count>
-			</li>
-		</ingredients>
-		<fixedIngredientFilter>
-			<thingDefs>
-				<li>Steel</li>
-				<li>FSX</li>
-				<li>ComponentIndustrial</li>
-			</thingDefs>
-		</fixedIngredientFilter>
-		<products>
-			<Ammo_20mmFliegerfaust_HE>10</Ammo_20mmFliegerfaust_HE>
-		</products>
-	</RecipeDef>
-
+  <RecipeDef ParentName="AmmoRecipeBase">
+    <defName>MakeAmmo_20mmFliegerfaust_HE</defName>
+    <label>make 20mmFliegerfaust HE rockets x10</label>
+    <description>Craft 10 20mmFliegerfaust HE rockets.</description>
+    <jobString>Making 20mmFliegerfaust HE rockets.</jobString>
+    <workAmount>3200</workAmount>
+    <ingredients>
+      <li>
+        <filter>
+          <thingDefs>
+            <li>Steel</li>
+          </thingDefs>
+        </filter>
+        <count>4</count>
+      </li>
+      <li>
+        <filter>
+          <thingDefs>
+            <li>FSX</li>
+          </thingDefs>
+        </filter>
+        <count>1</count>
+      </li>
+      <li>
+        <filter>
+          <thingDefs>
+            <li>ComponentIndustrial</li>
+          </thingDefs>
+        </filter>
+        <count>4</count>
+      </li>
+    </ingredients>
+    <fixedIngredientFilter>
+      <thingDefs>
+        <li>Steel</li>
+        <li>FSX</li>
+        <li>ComponentIndustrial</li>
+      </thingDefs>
+    </fixedIngredientFilter>
+    <products>
+      <Ammo_20mmFliegerfaust_HE>10</Ammo_20mmFliegerfaust_HE>
+    </products>
+  </RecipeDef>
+	
 </Defs>

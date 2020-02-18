@@ -7,7 +7,7 @@
 		<parent>AmmoRifles</parent>
 		<iconPath>UI/Icons/ThingCategories/CaliberHighCaliber</iconPath>
 	</ThingCategoryDef>
-
+	
 	<!-- ==================== AmmoSet ========================== -->
 
 	<CombatExtended.AmmoSetDef>
@@ -15,29 +15,29 @@
 		<label>13.2x92mmSR TuF</label>
 		<ammoTypes>
 			<Ammo_132x92mmSRTuF_FMJ>Bullet_132x92mmSRTuF_FMJ</Ammo_132x92mmSRTuF_FMJ>
-			<Ammo_132x92mmSRTuF_HE>Bullet_132x92mmSRTuF_HE</Ammo_132x92mmSRTuF_HE>
-			<Ammo_132x92mmSRTuF_Incendiary>Bullet_132x92mmSRTuF_Incendiary</Ammo_132x92mmSRTuF_Incendiary>
+      		<Ammo_132x92mmSRTuF_HE>Bullet_132x92mmSRTuF_HE</Ammo_132x92mmSRTuF_HE>
+      		<Ammo_132x92mmSRTuF_Incendiary>Bullet_132x92mmSRTuF_Incendiary</Ammo_132x92mmSRTuF_Incendiary>
 			<Ammo_132x92mmSRTuF_Sabot>Bullet_132x92mmSRTuF_Sabot</Ammo_132x92mmSRTuF_Sabot>	    
 		</ammoTypes>
 	</CombatExtended.AmmoSetDef>
-
+	
 	<!-- ==================== Ammo ========================== -->
 
 	<ThingDef Class="CombatExtended.AmmoDef" Name="Ammo132x92mmSRTuFBase" ParentName="SmallAmmoBase" Abstract="True">
 		<description>Outdated large caliber bullet used in anti-materiel rifles.</description>
 		<statBases>
-			<Mass>0.142</Mass>
-			<Bulk>0.09</Bulk>
+		<Mass>0.142</Mass>
+		<Bulk>0.09</Bulk>
 		</statBases>
-		<tradeTags>
-			<li>CE_AutoEnableTrade</li>
-			<li>CE_AutoEnableCrafting</li>
-		</tradeTags>
+	<tradeTags>
+		<li>CE_AutoEnableTrade</li>
+		<li>CE_AutoEnableCrafting</li>
+	</tradeTags>
 		<thingCategories>
 			<li>Ammo132x92mmSRTuF</li>
 		</thingCategories>
 	</ThingDef>
-
+	
 	<ThingDef Class="CombatExtended.AmmoDef" ParentName="Ammo132x92mmSRTuFBase">
 		<defName>Ammo_132x92mmSRTuF_FMJ</defName>
 		<label>13.2x92mmSR TuF cartridge (FMJ)</label>
@@ -56,11 +56,11 @@
 		<defName>Ammo_132x92mmSRTuF_Incendiary</defName>
 		<label>13.2x92mmSR TuF cartridge (AP-I)</label>
 		<graphicData>
-			<texPath>Things/Ammo/HighCaliber/Incendiary</texPath>
-			<graphicClass>Graphic_StackCount</graphicClass>
+		<texPath>Things/Ammo/HighCaliber/Incendiary</texPath>
+		<graphicClass>Graphic_StackCount</graphicClass>
 		</graphicData>
 		<statBases>
-			<MarketValue>0.77</MarketValue>   
+		<MarketValue>0.77</MarketValue>   
 		</statBases>
 		<ammoClass>IncendiaryAP</ammoClass>
 		<cookOffProjectile>Bullet_132x92mmSRTuF_Incendiary</cookOffProjectile>
@@ -70,11 +70,11 @@
 		<defName>Ammo_132x92mmSRTuF_HE</defName>
 		<label>13.2x92mmSR TuF cartridge (HE)</label>
 		<graphicData>
-			<texPath>Things/Ammo/HighCaliber/HE</texPath>
-			<graphicClass>Graphic_StackCount</graphicClass>
+		<texPath>Things/Ammo/HighCaliber/HE</texPath>
+		<graphicClass>Graphic_StackCount</graphicClass>
 		</graphicData>
 		<statBases>
-			<MarketValue>1.15</MarketValue>
+		<MarketValue>1.15</MarketValue>
 		</statBases>
 		<ammoClass>ExplosiveAP</ammoClass>
 		<cookOffProjectile>Bullet_132x92mmSRTuF_HE</cookOffProjectile>
@@ -84,17 +84,17 @@
 		<defName>Ammo_132x92mmSRTuF_Sabot</defName>
 		<label>13.2x92mmSR TuF cartridge (Sabot)</label>
 		<graphicData>
-			<texPath>Things/Ammo/HighCaliber/Sabot</texPath>
-			<graphicClass>Graphic_StackCount</graphicClass>
+		<texPath>Things/Ammo/HighCaliber/Sabot</texPath>
+		<graphicClass>Graphic_StackCount</graphicClass>
 		</graphicData>
 		<statBases>
-			<MarketValue>0.63</MarketValue>
-			<Mass>0.12</Mass>
+		<MarketValue>0.63</MarketValue>
+		<Mass>0.12</Mass>
 		</statBases>
 		<ammoClass>Sabot</ammoClass>
 		<cookOffProjectile>Bullet_132x92mmSRTuF_Sabot</cookOffProjectile>
 	</ThingDef>
-
+	
 	<!-- ================== Projectiles ================== -->
 
 	<ThingDef Class="CombatExtended.AmmoDef" Name="Base132x92mmSRTuFBullet" ParentName="BaseBullet" Abstract="true">
@@ -108,7 +108,7 @@
 			<dropsCasings>true</dropsCasings>
 		</projectile>
 	</ThingDef>
-
+	
 	<ThingDef Class="CombatExtended.AmmoDef" ParentName="Base132x92mmSRTuFBullet">
 		<defName>Bullet_132x92mmSRTuF_FMJ</defName>
 		<label>13.2mm TuF bullet (FMJ)</label>
@@ -123,15 +123,15 @@
 		<defName>Bullet_132x92mmSRTuF_Incendiary</defName>
 		<label>13.2x92mmSR TuF bullet (AP-I)</label>
 		<projectile Class="CombatExtended.ProjectilePropertiesCE">
-			<damageAmountBase>25</damageAmountBase>
-			<armorPenetrationSharp>44</armorPenetrationSharp>
-			<armorPenetrationBlunt>317.36</armorPenetrationBlunt>
-			<secondaryDamage>
-				<li>
-					<def>Flame_Secondary</def>
-					<amount>16</amount>
-				</li>
-			</secondaryDamage>
+		<damageAmountBase>25</damageAmountBase>
+		<armorPenetrationSharp>44</armorPenetrationSharp>
+		<armorPenetrationBlunt>317.36</armorPenetrationBlunt>
+		<secondaryDamage>
+			<li>
+			<def>Flame_Secondary</def>
+			<amount>16</amount>
+			</li>
+		</secondaryDamage>
 		</projectile>
 	</ThingDef>
 
@@ -139,15 +139,15 @@
 		<defName>Bullet_132x92mmSRTuF_HE</defName>
 		<label>13.2x92mmSR TuF bullet (HE)</label>
 		<projectile Class="CombatExtended.ProjectilePropertiesCE">
-			<damageAmountBase>40</damageAmountBase>
-			<armorPenetrationSharp>22</armorPenetrationSharp>
-			<armorPenetrationBlunt>317.36</armorPenetrationBlunt>
-			<secondaryDamage>
-				<li>
-					<def>Bomb_Secondary</def>
-					<amount>24</amount>
-				</li>
-			</secondaryDamage>
+		<damageAmountBase>40</damageAmountBase>
+		<armorPenetrationSharp>22</armorPenetrationSharp>
+		<armorPenetrationBlunt>317.36</armorPenetrationBlunt>
+		<secondaryDamage>
+			<li>
+			<def>Bomb_Secondary</def>
+			<amount>24</amount>
+			</li>
+		</secondaryDamage>
 		</projectile>
 	</ThingDef>
 
@@ -156,12 +156,12 @@
 		<label>13.2x92mmSR TuF bullet (Sabot)</label>
 		<projectile Class="CombatExtended.ProjectilePropertiesCE">
 			<speed>236</speed>
-			<damageAmountBase>21</damageAmountBase>
-			<armorPenetrationSharp>77</armorPenetrationSharp>
-			<armorPenetrationBlunt>406.94</armorPenetrationBlunt>
+		<damageAmountBase>21</damageAmountBase>
+		<armorPenetrationSharp>77</armorPenetrationSharp>
+		<armorPenetrationBlunt>406.94</armorPenetrationBlunt>
 		</projectile>
 	</ThingDef>
-
+  
 	<!-- ==================== Recipes ========================== -->
 
 	<RecipeDef ParentName="AmmoRecipeBase">
@@ -196,31 +196,31 @@
 		<description>Craft 200 13.2x92mmSR TuF (AP-I) cartridges.</description>
 		<jobString>Making 13.2x92mmSR TuF (AP-I) cartridges.</jobString>
 		<ingredients>
-			<li>
-				<filter>
-					<thingDefs>
-						<li>Steel</li>
-					</thingDefs>
-				</filter>
-				<count>58</count>
-			</li>
-			<li>
-				<filter>
-					<thingDefs>
-						<li>Prometheum</li>
-					</thingDefs>
-				</filter>
-				<count>6</count>
-			</li>
-		</ingredients>
-		<fixedIngredientFilter>
+		<li>
+			<filter>
 			<thingDefs>
 				<li>Steel</li>
+			</thingDefs>
+			</filter>
+			<count>58</count>
+		</li>
+		<li>
+			<filter>
+			<thingDefs>
 				<li>Prometheum</li>
 			</thingDefs>
+			</filter>
+			<count>6</count>
+		</li>
+		</ingredients>
+		<fixedIngredientFilter>
+		<thingDefs>
+			<li>Steel</li>
+			<li>Prometheum</li>
+		</thingDefs>
 		</fixedIngredientFilter>
 		<products>
-			<Ammo_132x92mmSRTuF_Incendiary>200</Ammo_132x92mmSRTuF_Incendiary>
+		<Ammo_132x92mmSRTuF_Incendiary>200</Ammo_132x92mmSRTuF_Incendiary>
 		</products>
 		<workAmount>8200</workAmount>
 	</RecipeDef>
@@ -231,31 +231,31 @@
 		<description>Craft 200 13.2x92mmSR TuF (HE) cartridges.</description>
 		<jobString>Making 13.2x92mmSR TuF (HE) cartridges.</jobString>
 		<ingredients>
-			<li>
-				<filter>
-					<thingDefs>
-						<li>Steel</li>
-					</thingDefs>
-				</filter>
-				<count>58</count>
-			</li>
-			<li>
-				<filter>
-					<thingDefs>
-						<li>FSX</li>
-					</thingDefs>
-				</filter>
-				<count>11</count>
-			</li>
-		</ingredients>
-		<fixedIngredientFilter>
+		<li>
+			<filter>
 			<thingDefs>
 				<li>Steel</li>
+			</thingDefs>
+			</filter>
+			<count>58</count>
+		</li>
+		<li>
+			<filter>
+			<thingDefs>
 				<li>FSX</li>
 			</thingDefs>
+			</filter>
+			<count>11</count>
+		</li>
+		</ingredients>
+		<fixedIngredientFilter>
+		<thingDefs>
+			<li>Steel</li>
+			<li>FSX</li>
+		</thingDefs>
 		</fixedIngredientFilter>
 		<products>
-			<Ammo_132x92mmSRTuF_HE>200</Ammo_132x92mmSRTuF_HE>
+		<Ammo_132x92mmSRTuF_HE>200</Ammo_132x92mmSRTuF_HE>
 		</products>
 		<workAmount>10200</workAmount>
 	</RecipeDef>
@@ -266,42 +266,42 @@
 		<description>Craft 200 13.2x92mmSR TuF (Sabot) cartridges.</description>
 		<jobString>Making 13.2x92mmSR TuF (Sabot) cartridges.</jobString>
 		<ingredients>
-			<li>
-				<filter>
-					<thingDefs>
-						<li>Steel</li>
-					</thingDefs>
-				</filter>
-				<count>36</count>
-			</li>
-			<li>
-				<filter>
-					<thingDefs>
-						<li>Uranium</li>
-					</thingDefs>
-				</filter>
-				<count>6</count>
-			</li>
-			<li>
-				<filter>
-					<thingDefs>
-						<li>Chemfuel</li>
-					</thingDefs>
-				</filter>
-				<count>6</count>
-			</li>	  
-		</ingredients>
-		<fixedIngredientFilter>
+		<li>
+			<filter>
 			<thingDefs>
-				<li>Chemfuel</li>	  
 				<li>Steel</li>
+			</thingDefs>
+			</filter>
+			<count>36</count>
+		</li>
+		<li>
+			<filter>
+			<thingDefs>
 				<li>Uranium</li>
 			</thingDefs>
+			</filter>
+			<count>6</count>
+		</li>
+		<li>
+			<filter>
+			<thingDefs>
+				<li>Chemfuel</li>
+			</thingDefs>
+			</filter>
+			<count>6</count>
+		</li>	  
+		</ingredients>
+		<fixedIngredientFilter>
+		<thingDefs>
+			<li>Chemfuel</li>	  
+			<li>Steel</li>
+			<li>Uranium</li>
+		</thingDefs>
 		</fixedIngredientFilter>
 		<products>
-			<Ammo_132x92mmSRTuF_Sabot>200</Ammo_132x92mmSRTuF_Sabot>
+		<Ammo_132x92mmSRTuF_Sabot>200</Ammo_132x92mmSRTuF_Sabot>
 		</products>
 		<workAmount>7200</workAmount>
 	</RecipeDef>
-
+	
 </Defs>

@@ -1,13 +1,13 @@
-<?xml version="1.0" encoding="utf-8" ?>
+﻿<?xml version="1.0" encoding="utf-8" ?>
 <Defs>
 
 	<ThingCategoryDef>
 		<defName>Ammo65x50mmSRArisaka</defName>
 		<label>6.5x50mmSR Arisaka</label>
 		<parent>AmmoRifles</parent>
-		<iconPath>UI/Icons/ThingCategories/CaliberRifle</iconPath>
+    <iconPath>UI/Icons/ThingCategories/CaliberRifle</iconPath>
 	</ThingCategoryDef>
-
+	
 	<!-- ==================== AmmoSet ========================== -->
 
 	<CombatExtended.AmmoSetDef>
@@ -17,24 +17,24 @@
 			<Ammo_65x50mmSRArisaka_FMJ>Bullet_65x50mmSRArisaka_FMJ</Ammo_65x50mmSRArisaka_FMJ>
 			<Ammo_65x50mmSRArisaka_AP>Bullet_65x50mmSRArisaka_AP</Ammo_65x50mmSRArisaka_AP>
 			<Ammo_65x50mmSRArisaka_HP>Bullet_65x50mmSRArisaka_HP</Ammo_65x50mmSRArisaka_HP>
-			<Ammo_65x50mmSRArisaka_Incendiary>Bullet_65x50mmSRArisaka_Incendiary</Ammo_65x50mmSRArisaka_Incendiary>
+		    <Ammo_65x50mmSRArisaka_Incendiary>Bullet_65x50mmSRArisaka_Incendiary</Ammo_65x50mmSRArisaka_Incendiary>
 			<Ammo_65x50mmSRArisaka_HE>Bullet_65x50mmSRArisaka_HE</Ammo_65x50mmSRArisaka_HE>
 			<Ammo_65x50mmSRArisaka_Sabot>Bullet_65x50mmSRArisaka_Sabot</Ammo_65x50mmSRArisaka_Sabot>				
 		</ammoTypes>
 	</CombatExtended.AmmoSetDef>
-
+	
 	<!-- ==================== Ammo ========================== -->
 
 	<ThingDef Class="CombatExtended.AmmoDef" Name="65x50mmSRArisakaBase" ParentName="SmallAmmoBase" Abstract="True">
 		<description>Semi-rimmed, intermediate rifle cartridge found mostly in outdated bolt-action firearms.</description>
 		<statBases>
-			<Mass>0.023</Mass>
-			<Bulk>0.03</Bulk>
+		<Mass>0.023</Mass>
+		<Bulk>0.03</Bulk>
 		</statBases>
-		<tradeTags>
-			<li>CE_AutoEnableTrade</li>
-			<li>CE_AutoEnableCrafting</li>
-		</tradeTags>
+	<tradeTags>
+		<li>CE_AutoEnableTrade</li>
+		<li>CE_AutoEnableCrafting</li>
+	</tradeTags>
 		<thingCategories>
 			<li>Ammo65x50mmSRArisaka</li>
 		</thingCategories>
@@ -82,51 +82,51 @@
 		<cookOffProjectile>Bullet_65x50mmSRArisaka_HP</cookOffProjectile>
 	</ThingDef>
 
-	<ThingDef Class="CombatExtended.AmmoDef" ParentName="65x50mmSRArisakaBase">
-		<defName>Ammo_65x50mmSRArisaka_Incendiary</defName>
-		<label>6.5x50mmSR cartridge (AP-I)</label>
-		<graphicData>
-			<texPath>Things/Ammo/Rifle/Incendiary</texPath>
-			<graphicClass>Graphic_StackCount</graphicClass>
-		</graphicData>
-		<statBases>
-			<MarketValue>0.14</MarketValue>
-		</statBases>
-		<ammoClass>IncendiaryAP</ammoClass>
-		<cookOffProjectile>Bullet_65x50mmSRArisaka_Incendiary</cookOffProjectile>
-	</ThingDef>
+  <ThingDef Class="CombatExtended.AmmoDef" ParentName="65x50mmSRArisakaBase">
+    <defName>Ammo_65x50mmSRArisaka_Incendiary</defName>
+    <label>6.5x50mmSR cartridge (AP-I)</label>
+    <graphicData>
+      <texPath>Things/Ammo/Rifle/Incendiary</texPath>
+      <graphicClass>Graphic_StackCount</graphicClass>
+    </graphicData>
+    <statBases>
+      <MarketValue>0.14</MarketValue>
+    </statBases>
+    <ammoClass>IncendiaryAP</ammoClass>
+    <cookOffProjectile>Bullet_65x50mmSRArisaka_Incendiary</cookOffProjectile>
+  </ThingDef>
 
-	<ThingDef Class="CombatExtended.AmmoDef" ParentName="65x50mmSRArisakaBase">
-		<defName>Ammo_65x50mmSRArisaka_HE</defName>
-		<label>6.5x50mmSR cartridge (HE)</label>
-		<graphicData>
-			<texPath>Things/Ammo/Rifle/HE</texPath>
-			<graphicClass>Graphic_StackCount</graphicClass>
-		</graphicData>
-		<statBases>
-			<MarketValue>0.2</MarketValue>
-		</statBases>
-		<ammoClass>ExplosiveAP</ammoClass>
-		<cookOffProjectile>Bullet_65x50mmSRArisaka_HE</cookOffProjectile>
-	</ThingDef>
-
-	<ThingDef Class="CombatExtended.AmmoDef" ParentName="65x50mmSRArisakaBase">
-		<defName>Ammo_65x50mmSRArisaka_Sabot</defName>
-		<label>6.5x50mmSR cartridge (Sabot)</label>
-		<graphicData>
-			<texPath>Things/Ammo/Rifle/Sabot</texPath>
-			<graphicClass>Graphic_StackCount</graphicClass>
-		</graphicData>
-		<statBases>
-			<MarketValue>0.11</MarketValue>
-			<Mass>0.019</Mass>
-		</statBases>
-		<ammoClass>Sabot</ammoClass>
-		<cookOffProjectile>Bullet_65x50mmSRArisaka_Sabot</cookOffProjectile>
-	</ThingDef>
-
+  <ThingDef Class="CombatExtended.AmmoDef" ParentName="65x50mmSRArisakaBase">
+    <defName>Ammo_65x50mmSRArisaka_HE</defName>
+    <label>6.5x50mmSR cartridge (HE)</label>
+    <graphicData>
+      <texPath>Things/Ammo/Rifle/HE</texPath>
+      <graphicClass>Graphic_StackCount</graphicClass>
+    </graphicData>
+    <statBases>
+      <MarketValue>0.2</MarketValue>
+    </statBases>
+    <ammoClass>ExplosiveAP</ammoClass>
+    <cookOffProjectile>Bullet_65x50mmSRArisaka_HE</cookOffProjectile>
+  </ThingDef>
+ 
+  <ThingDef Class="CombatExtended.AmmoDef" ParentName="65x50mmSRArisakaBase">
+    <defName>Ammo_65x50mmSRArisaka_Sabot</defName>
+    <label>6.5x50mmSR cartridge (Sabot)</label>
+    <graphicData>
+      <texPath>Things/Ammo/Rifle/Sabot</texPath>
+      <graphicClass>Graphic_StackCount</graphicClass>
+    </graphicData>
+    <statBases>
+      <MarketValue>0.11</MarketValue>
+	  <Mass>0.019</Mass>
+    </statBases>
+    <ammoClass>Sabot</ammoClass>
+    <cookOffProjectile>Bullet_65x50mmSRArisaka_Sabot</cookOffProjectile>
+  </ThingDef>
+  
 	<!-- ================== Projectiles ================== -->
-
+	
 	<ThingDef Class="CombatExtended.AmmoDef" Name="Base65x50mmSRArisakaBullet" ParentName="BaseBullet" Abstract="true">
 		<graphicData>
 			<texPath>Things/Projectile/Bullet_Small</texPath>
@@ -169,49 +169,49 @@
 		</projectile>
 	</ThingDef>
 
-	<ThingDef Class="CombatExtended.AmmoDef" ParentName="Base65x50mmSRArisakaBullet">
+	  <ThingDef Class="CombatExtended.AmmoDef" ParentName="Base65x50mmSRArisakaBullet">
 		<defName>Bullet_65x50mmSRArisaka_Incendiary</defName>
 		<label>6.5mmSR Arisaka bullet (AP-I)</label>
 		<projectile Class="CombatExtended.ProjectilePropertiesCE">
-			<damageAmountBase>11</damageAmountBase>
-			<armorPenetrationSharp>12</armorPenetrationSharp>
-			<armorPenetrationBlunt>53.96</armorPenetrationBlunt>
-			<secondaryDamage>
+		  <damageAmountBase>11</damageAmountBase>
+		  <armorPenetrationSharp>12</armorPenetrationSharp>
+		  <armorPenetrationBlunt>53.96</armorPenetrationBlunt>
+		  <secondaryDamage>
 				<li>
-					<def>Flame_Secondary</def>
-					<amount>7</amount>
+			  	<def>Flame_Secondary</def>
+			  	<amount>7</amount>
 				</li>
-			</secondaryDamage>
+		  </secondaryDamage>
 		</projectile>
-	</ThingDef>
-
-	<ThingDef Class="CombatExtended.AmmoDef" ParentName="Base65x50mmSRArisakaBullet">
+	  </ThingDef>
+	  
+	  <ThingDef Class="CombatExtended.AmmoDef" ParentName="Base65x50mmSRArisakaBullet">
 		<defName>Bullet_65x50mmSRArisaka_HE</defName>
 		<label>6.5mmSR Arisaka bullet (HE)</label>
 		<projectile Class="CombatExtended.ProjectilePropertiesCE">
-			<damageAmountBase>17</damageAmountBase>
-			<armorPenetrationSharp>6</armorPenetrationSharp>
-			<armorPenetrationBlunt>53.96</armorPenetrationBlunt>
-			<secondaryDamage>
+		  <damageAmountBase>17</damageAmountBase>
+		  <armorPenetrationSharp>6</armorPenetrationSharp>
+		  <armorPenetrationBlunt>53.96</armorPenetrationBlunt>
+		  <secondaryDamage>
 				<li>
-					<def>Bomb_Secondary</def>
-					<amount>10</amount>
+			  	<def>Bomb_Secondary</def>
+			  	<amount>10</amount>
 				</li>
-			</secondaryDamage>
+		  </secondaryDamage>
 		</projectile>
-	</ThingDef>
+	  </ThingDef>
 
-	<ThingDef Class="CombatExtended.AmmoDef" ParentName="Base65x50mmSRArisakaBullet">
+	  <ThingDef Class="CombatExtended.AmmoDef" ParentName="Base65x50mmSRArisakaBullet">
 		<defName>Bullet_65x50mmSRArisaka_Sabot</defName>
 		<label>6.5mmSR Arisaka bullet (Sabot)</label>
 		<projectile Class="CombatExtended.ProjectilePropertiesCE">
-			<damageAmountBase>9</damageAmountBase>
-			<armorPenetrationSharp>21</armorPenetrationSharp>
-			<armorPenetrationBlunt>69.24</armorPenetrationBlunt>
-			<speed>231</speed>
+		  <damageAmountBase>9</damageAmountBase>
+		  <armorPenetrationSharp>21</armorPenetrationSharp>
+		  <armorPenetrationBlunt>69.24</armorPenetrationBlunt>
+		  <speed>231</speed>
 		</projectile>
-	</ThingDef>
-
+	  </ThingDef>
+	  
 	<!-- ==================== Recipes ========================== -->
 
 	<RecipeDef ParentName="AmmoRecipeBase">
@@ -237,7 +237,7 @@
 		<products>
 			<Ammo_65x50mmSRArisaka_FMJ>500</Ammo_65x50mmSRArisaka_FMJ>
 		</products>
-		<workAmount>2400</workAmount>
+    <workAmount>2400</workAmount>
 	</RecipeDef>
 
 	<RecipeDef ParentName="AmmoRecipeBase">
@@ -263,7 +263,7 @@
 		<products>
 			<Ammo_65x50mmSRArisaka_AP>500</Ammo_65x50mmSRArisaka_AP>
 		</products>
-		<workAmount>2400</workAmount>
+    <workAmount>2400</workAmount>
 	</RecipeDef>
 
 	<RecipeDef ParentName="AmmoRecipeBase">
@@ -289,121 +289,121 @@
 		<products>
 			<Ammo_65x50mmSRArisaka_HP>500</Ammo_65x50mmSRArisaka_HP>
 		</products>
-		<workAmount>2400</workAmount>
+    <workAmount>2400</workAmount>
 	</RecipeDef>
 
-	<RecipeDef ParentName="AmmoRecipeBase">
-		<defName>MakeAmmo_65x50mmSRArisaka_Incendiary</defName>
-		<label>make 6.5x50mmSR (AP-I) cartridge x500</label>
-		<description>Craft 500 6.5x50mmSR (AP-I) cartridges.</description>
-		<jobString>Making 6.5x50mmSR (AP-I) cartridges.</jobString>
-		<ingredients>
-			<li>
-				<filter>
-					<thingDefs>
-						<li>Steel</li>
-					</thingDefs>
-				</filter>
-				<count>24</count>
-			</li>
-			<li>
-				<filter>
-					<thingDefs>
-						<li>Prometheum</li>
-					</thingDefs>
-				</filter>
-				<count>3</count>
-			</li>
-		</ingredients>
-		<fixedIngredientFilter>
-			<thingDefs>
-				<li>Steel</li>
-				<li>Prometheum</li>
-			</thingDefs>
-		</fixedIngredientFilter>
-		<products>
-			<Ammo_65x50mmSRArisaka_Incendiary>500</Ammo_65x50mmSRArisaka_Incendiary>
-		</products>
-		<workAmount>3600</workAmount>
-	</RecipeDef>
-
-	<RecipeDef ParentName="AmmoRecipeBase">
-		<defName>MakeAmmo_65x50mmSRArisaka_HE</defName>
-		<label>make 6.5x50mmSR (HE) cartridge x500</label>
-		<description>Craft 500 6.5x50mmSR (HE) cartridges.</description>
-		<jobString>Making 6.5x50mmSR (HE) cartridges.</jobString>
-		<ingredients>
-			<li>
-				<filter>
-					<thingDefs>
-						<li>Steel</li>
-					</thingDefs>
-				</filter>
-				<count>24</count>
-			</li>
-			<li>
-				<filter>
-					<thingDefs>
-						<li>FSX</li>
-					</thingDefs>
-				</filter>
-				<count>5</count>
-			</li>
-		</ingredients>
-		<fixedIngredientFilter>
-			<thingDefs>
-				<li>Steel</li>
-				<li>FSX</li>
-			</thingDefs>
-		</fixedIngredientFilter>
-		<products>
-			<Ammo_65x50mmSRArisaka_HE>500</Ammo_65x50mmSRArisaka_HE>
-		</products>
-		<workAmount>4400</workAmount>
-	</RecipeDef>
-
-	<RecipeDef ParentName="AmmoRecipeBase">
-		<defName>MakeAmmo_65x50mmSRArisaka_Sabot</defName>
-		<label>make 6.5x50mmSR (Sabot) cartridge x500</label>
-		<description>Craft 500 6.5x50mmSR (Sabot) cartridges.</description>
-		<jobString>Making 6.5x50mmSR (Sabot) cartridges.</jobString>
-		<ingredients>
-			<li>
-				<filter>
-					<thingDefs>
-						<li>Steel</li>
-					</thingDefs>
-				</filter>
-				<count>14</count>
-			</li>
-			<li>
-				<filter>
-					<thingDefs>
-						<li>Uranium</li>
-					</thingDefs>
-				</filter>
-				<count>3</count>
-			</li>
-			<li>
-				<filter>
-					<thingDefs>
-						<li>Chemfuel</li>
-					</thingDefs>
-				</filter>
-				<count>3</count>
-			</li>		  
-		</ingredients>
-		<fixedIngredientFilter>
-			<thingDefs>
-				<li>Steel</li>
-				<li>Uranium</li>
-				<li>Chemfuel</li>		
-			</thingDefs>
-		</fixedIngredientFilter>
-		<products>
-			<Ammo_65x50mmSRArisaka_Sabot>500</Ammo_65x50mmSRArisaka_Sabot>
-		</products>
-		<workAmount>3200</workAmount>
-	</RecipeDef>
-
+  <RecipeDef ParentName="AmmoRecipeBase">
+    <defName>MakeAmmo_65x50mmSRArisaka_Incendiary</defName>
+    <label>make 6.5x50mmSR (AP-I) cartridge x500</label>
+    <description>Craft 500 6.5x50mmSR (AP-I) cartridges.</description>
+    <jobString>Making 6.5x50mmSR (AP-I) cartridges.</jobString>
+    <ingredients>
+      <li>
+        <filter>
+          <thingDefs>
+            <li>Steel</li>
+          </thingDefs>
+        </filter>
+        <count>24</count>
+      </li>
+      <li>
+        <filter>
+          <thingDefs>
+            <li>Prometheum</li>
+          </thingDefs>
+        </filter>
+        <count>3</count>
+      </li>
+    </ingredients>
+    <fixedIngredientFilter>
+      <thingDefs>
+        <li>Steel</li>
+        <li>Prometheum</li>
+      </thingDefs>
+    </fixedIngredientFilter>
+    <products>
+      <Ammo_65x50mmSRArisaka_Incendiary>500</Ammo_65x50mmSRArisaka_Incendiary>
+    </products>
+    <workAmount>3600</workAmount>
+  </RecipeDef>
+  
+  <RecipeDef ParentName="AmmoRecipeBase">
+    <defName>MakeAmmo_65x50mmSRArisaka_HE</defName>
+    <label>make 6.5x50mmSR (HE) cartridge x500</label>
+    <description>Craft 500 6.5x50mmSR (HE) cartridges.</description>
+    <jobString>Making 6.5x50mmSR (HE) cartridges.</jobString>
+    <ingredients>
+      <li>
+        <filter>
+          <thingDefs>
+            <li>Steel</li>
+          </thingDefs>
+        </filter>
+        <count>24</count>
+      </li>
+      <li>
+        <filter>
+          <thingDefs>
+            <li>FSX</li>
+          </thingDefs>
+        </filter>
+        <count>5</count>
+      </li>
+    </ingredients>
+    <fixedIngredientFilter>
+      <thingDefs>
+        <li>Steel</li>
+        <li>FSX</li>
+      </thingDefs>
+    </fixedIngredientFilter>
+    <products>
+      <Ammo_65x50mmSRArisaka_HE>500</Ammo_65x50mmSRArisaka_HE>
+    </products>
+    <workAmount>4400</workAmount>
+  </RecipeDef>
+  
+  <RecipeDef ParentName="AmmoRecipeBase">
+    <defName>MakeAmmo_65x50mmSRArisaka_Sabot</defName>
+    <label>make 6.5x50mmSR (Sabot) cartridge x500</label>
+    <description>Craft 500 6.5x50mmSR (Sabot) cartridges.</description>
+    <jobString>Making 6.5x50mmSR (Sabot) cartridges.</jobString>
+    <ingredients>
+      <li>
+        <filter>
+          <thingDefs>
+            <li>Steel</li>
+          </thingDefs>
+        </filter>
+        <count>14</count>
+      </li>
+      <li>
+        <filter>
+          <thingDefs>
+            <li>Uranium</li>
+          </thingDefs>
+        </filter>
+        <count>3</count>
+      </li>
+      <li>
+        <filter>
+          <thingDefs>
+            <li>Chemfuel</li>
+          </thingDefs>
+        </filter>
+        <count>3</count>
+      </li>		  
+    </ingredients>
+    <fixedIngredientFilter>
+      <thingDefs>
+        <li>Steel</li>
+        <li>Uranium</li>
+        <li>Chemfuel</li>		
+      </thingDefs>
+    </fixedIngredientFilter>
+    <products>
+      <Ammo_65x50mmSRArisaka_Sabot>500</Ammo_65x50mmSRArisaka_Sabot>
+    </products>
+    <workAmount>3200</workAmount>
+  </RecipeDef>
+  
 </Defs>
