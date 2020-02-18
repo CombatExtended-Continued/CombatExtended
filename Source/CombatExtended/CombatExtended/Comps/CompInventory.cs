@@ -339,7 +339,7 @@ namespace CombatExtended
                     else
                     {
 #if DEBUG
-                        Log.Warning("Combat Extended FastTrack Edition :: CompInventory :: SwitchToNextViableWeapon :: destroying out of bounds equipment" + eq.ToString());
+                        Log.Warning("Combat Extended :: CompInventory :: SwitchToNextViableWeapon :: destroying out of bounds equipment" + eq.ToString());
 #endif
                         if (!eq.Destroyed)
                         {
@@ -371,7 +371,7 @@ namespace CombatExtended
                 else
                 {
 #if DEBUG
-                    Log.Warning("Combat Extended FastTrack Edition :: CompInventory :: TrySwitchToWeapon :: failed to add current equipment to inventory");
+                    Log.Warning("Combat Extended :: CompInventory :: TrySwitchToWeapon :: failed to add current equipment to inventory");
 #endif
                     parentPawn.equipment.MakeRoomFor(newEq);
                 }
@@ -423,7 +423,7 @@ namespace CombatExtended
             UpdateInventory();
             if (oldWeight != currentWeight || oldBulk != currentBulk)
             {
-                Log.Error("Combat Extended FastTrack Edition :: CompInventory :: " + parent.ToString() + " failed inventory validation");
+                Log.Error("Combat Extended :: CompInventory :: " + parent.ToString() + " failed inventory validation");
             }
         }
 

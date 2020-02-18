@@ -20,7 +20,7 @@ namespace CombatExtended.Harmony
     [HarmonyPatch]
     static class FloatMenuMakerMap_PatchKnowledge
     {
-        static readonly string logPrefix = "Combat Extended FastTrack Edition :: " + typeof(FloatMenuMakerMap_PatchKnowledge).Name + " :: ";
+        static readonly string logPrefix = "Combat Extended :: " + typeof(FloatMenuMakerMap_PatchKnowledge).Name + " :: ";
 
         static MethodBase TargetMethod()
         {
@@ -52,7 +52,7 @@ namespace CombatExtended.Harmony
     [HarmonyPatch(new Type[] { typeof(Vector3), typeof(Pawn), typeof(List<FloatMenuOption>) })]
     static class FloatMenuMakerMap_Modify_AddHumanlikeOrders
     {
-        static readonly string logPrefix = "Combat Extended FastTrack Edition :: " + typeof(FloatMenuMakerMap_Modify_AddHumanlikeOrders).Name + " :: ";
+        static readonly string logPrefix = "Combat Extended :: " + typeof(FloatMenuMakerMap_Modify_AddHumanlikeOrders).Name + " :: ";
 
         /* 
          * Opted for a postfix as the original Detour had the code inserted generally after other code had run and because we want the target's code

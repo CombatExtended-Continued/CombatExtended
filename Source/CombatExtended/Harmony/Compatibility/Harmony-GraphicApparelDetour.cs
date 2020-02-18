@@ -73,7 +73,7 @@ namespace CombatExtended.Harmony.Compatibility
             if (offending_mods.Any())
             {
                 bool pl = offending_mods.Count > 1;
-                Log.Error($"Combat Extended: FastTrack Edition :: An incompatible and outdated detour has been detected and disabled in the following mod{(pl ? "s" : "")}:");
+                Log.Error($"Combat Extended:: An incompatible and outdated detour has been detected and disabled in the following mod{(pl ? "s" : "")}:");
                 foreach (var mod_name in offending_mods)
                 {
                     Log.Error($"   {mod_name}");

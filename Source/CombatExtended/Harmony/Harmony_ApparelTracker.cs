@@ -32,7 +32,7 @@ namespace CombatExtended.Harmony
             var hediff = pawn.health.hediffSet.hediffs.FirstOrDefault(h => h.def == hediffDef);
             if (hediff == null)
             {
-                Log.Warning($"Combat Extended FastTrack Edition :: Apparel {apparel} tried removing hediff {hediffDef} from {pawn} but could not find any");
+                Log.Warning($"Combat Extended :: Apparel {apparel} tried removing hediff {hediffDef} from {pawn} but could not find any");
                 return;
             }
             pawn.health.RemoveHediff(hediff);

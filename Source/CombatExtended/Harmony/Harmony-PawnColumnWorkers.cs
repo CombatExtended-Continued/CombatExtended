@@ -17,7 +17,7 @@ namespace CombatExtended.Harmony
      */
     static class PawnColumnWorkers_Resize
     {
-        static readonly string logPrefix = "Combat Extended FastTrack Edition :: " + typeof(PawnColumnWorkers_Resize).Name + " :: ";
+        static readonly string logPrefix = "Combat Extended :: " + typeof(PawnColumnWorkers_Resize).Name + " :: ";
 
         static readonly float orgMinWidth = 194f;
         static readonly float orgOptimalWidth = 251f;
@@ -88,7 +88,7 @@ namespace CombatExtended.Harmony
      */
     static class PawnColumnWorkers_SwapButtons
     {
-        static readonly string logPrefix = "Combat Extended FastTrack Edition :: " + typeof(PawnColumnWorkers_SwapButtons).Name + " :: ";
+        static readonly string logPrefix = "Combat Extended :: " + typeof(PawnColumnWorkers_SwapButtons).Name + " :: ";
 
         // NOTE: For the two strings below you can also change the translation string...
         private const string apparelString = "CE_Outfits"; // change this to change the word after "Edit" in the edit tooltip for outfits.
