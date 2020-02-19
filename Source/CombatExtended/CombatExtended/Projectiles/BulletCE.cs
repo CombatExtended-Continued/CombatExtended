@@ -102,7 +102,7 @@ namespace CombatExtended
                 }
                 catch (Exception e)
                 {
-                    Log.Error("Combat Extended FastTrack Edition :: BulletCE impacting thing " + hitThing.LabelCap + " of def " + hitThing.def.LabelCap + " added by mod " + hitThing.def.modContentPack.Name + ". See following stacktrace for information.");
+                    Log.Error("CombatExtended :: BulletCE impacting thing " + hitThing.LabelCap + " of def " + hitThing.def.LabelCap + " added by mod " + hitThing.def.modContentPack.Name + ". See following stacktrace for information.");
                     throw e;
                 }
                 finally
