@@ -11,7 +11,27 @@ namespace CombatExtended
 {
     public class Command_Reload : Command_Action
     {
+        List<Command_Reload> others;
         public CompAmmoUser compAmmo;
+
+        public override bool GroupsWith(Gizmo other)
+        {
+            var order = other as Command_Reload;
+            return order != null;
+        }
+
+        public override void MergeWith(Gizmo other)
+        {
+            var order = other as Command_Reload;
+
+            if (others == null)
+            {
+                others = new List<Command_Reload>();
+                others.Add(this);
+            }
+
+            others.Add(order);
+        }
 
         public override void ProcessInput(Event ev)
         {
@@ -66,66 +86,121 @@ namespace CombatExtended
 
         private List<FloatMenuOption> BuildAmmoOptions()
         {
-            List<ThingDef> ammoList = new List<ThingDef>();      // List of all ammo types the gun can use and the pawn has in his inventory
-            if (compAmmo.turret != null)
+            //Prepare list of others in case only a single gizmo is selected
+            if (others == null)
+                others = new List<Command_Reload>();
+            if (!others.Contains(this))
+                others.Add(this);
+
+            //List of actions to be taken on choosing a new ammo type, listed by ammoCategoryDef (FMJ/AP/HP)
+            Dictionary<AmmoCategoryDef, Action> ammoClassActions = new Dictionary<AmmoCategoryDef, Action>();
+
+            //Index 0: amount which COULD have this ammoClass; Index 1: amount which CURRENTLY has this ammoClass
+            Dictionary<AmmoCategoryDef, int[]> ammoClassAmounts = new Dictionary<AmmoCategoryDef, int[]>();
+
+            //Whether ALL in OTHERS lack reloadable weapons
+            var flag = false;
+
+            foreach (var other in others)
             {
-                // If we have no inventory available (e.g. manned turret), add all possible ammo types to the selection
-                foreach (AmmoLink link in compAmmo.Props.ammoSet.ammoTypes)
+                var user = other.compAmmo;
+                
+                foreach (AmmoLink link in user.Props.ammoSet.ammoTypes)
                 {
-                    ammoList.Add(link.ammo);
-                }
-            }
-            else
-            {
-                // Iterate through all suitable ammo types and check if they're in our inventory
-                foreach (AmmoLink curLink in compAmmo.Props.ammoSet.ammoTypes)
-                {
-                    if (compAmmo.CompInventory.ammoList.Any(x => x.def == curLink.ammo))
-                        ammoList.Add(curLink.ammo);
+                    var ammoDef = link.ammo;
+                    var ammoClass = ammoDef.ammoClass;
+                    
+                    // If we have no inventory available (e.g. manned turret), add all possible ammo types to the selection
+                    // Otherwise, iterate through all suitable ammo types and check if they're in our inventory
+                    if (user.CompInventory?.ammoList?.Any(x => x.def == ammoDef) ?? true)
+                    {
+                        if (!ammoClassAmounts.ContainsKey(ammoClass))
+                            ammoClassAmounts.Add(ammoClass, new int[2]);
+                        
+                        ammoClassAmounts[ammoClass][0]++;
+
+                        Action del = null;
+
+                        //Increase amount of current ammo of this type by 1
+                        if (user.CurrentAmmo == ammoDef)
+                            ammoClassAmounts[ammoClass][1]++;
+
+                        if (user.SelectedAmmo == ammoDef)
+                        {
+                            if (Controller.settings.AutoReloadOnChangeAmmo && user.turret?.MannableComp == null && user.CurMagCount < user.Props.magazineSize)
+                                del += other.action;
+                        }
+                        else
+                        {
+                            del += delegate { user.SelectedAmmo = ammoDef; };
+
+                            if (Controller.settings.AutoReloadOnChangeAmmo && user.turret?.MannableComp == null)
+                                del += other.action;
+                        }
+
+                        //Add to delegate or create delegate at ammoClass key
+                        if (ammoClassActions.ContainsKey(ammoClass))
+                            ammoClassActions[ammoClass] += del;
+                        else
+                            ammoClassActions.Add(ammoClass, del);
+
+                        flag = true;
+                    }
                 }
             }
 
             // Append float menu options for every available ammo type
             List<FloatMenuOption> floatOptionList = new List<FloatMenuOption>();
-            if (ammoList.NullOrEmpty())
+
+            //At least one ammo type is available
+            if (flag)
             {
-                floatOptionList.Add(new FloatMenuOption("CE_OutOfAmmo".Translate(), null));
-            }
-            else
-            {
-                // Append all available ammo types
-                foreach (ThingDef curDef in ammoList)
+                foreach (var pair in ammoClassActions)
                 {
-                    AmmoDef ammoDef = (AmmoDef)curDef;
-                    floatOptionList.Add(new FloatMenuOption(ammoDef.ammoClass.LabelCap, new Action(delegate
-                    {
-                        bool shouldReload = Controller.settings.AutoReloadOnChangeAmmo && (compAmmo.SelectedAmmo != ammoDef || compAmmo.CurMagCount < compAmmo.Props.magazineSize) && compAmmo.turret?.MannableComp == null;
-                        compAmmo.SelectedAmmo = ammoDef;
-                        if (shouldReload)
-                        {
-                            if (compAmmo.turret != null)
-                            {
-                                compAmmo.turret.TryOrderReload();
-                            }
-                            else
-                            {
-                                compAmmo.TryStartReload();
-                            }
-                        }
-                    })));
+                    //Create entries of form "(a/b) c"
+                        //a = number of guns currently using this ammo category
+                        //b = number of guns that could use this ammo category
+                        //c = name of category (FMJ/AP/HP/..)
+                    floatOptionList.Add(new FloatMenuOption(
+                            others.Except(this).Any() ? 
+                            "(" + ammoClassAmounts[pair.Key][1] + "/"+ammoClassAmounts[pair.Key][0]+") " + pair.Key.LabelCap
+                            : pair.Key.LabelCap
+                        , pair.Value));
                 }
             }
-            // Append unload command
-            var hasOperator = compAmmo.Wielder != null || (compAmmo.turret?.MannableComp?.MannedNow ?? false);
-            if (compAmmo.UseAmmo && hasOperator && compAmmo.HasMagazine && compAmmo.CurMagCount > 0)
+            else    //Display when ALL OTHERS have no ammo
+                floatOptionList.Add(new FloatMenuOption("CE_OutOfAmmo".Translate(), null));
+            
+            var unload = false;
+            Action unloadDel = null;
+
+            var reload = false;
+            Action reloadDel = null;
+
+            foreach (var other in others)
             {
-                floatOptionList.Add(new FloatMenuOption("CE_UnloadLabel".Translate(), new Action(delegate { compAmmo.TryUnload(true); })));
+                var user = other.compAmmo;
+                if (user.HasMagazine && user.Wielder != null || (user.turret?.MannableComp?.MannedNow ?? false))
+                {
+                    reload = true;
+                    reloadDel += other.action;
+
+                    if (user.UseAmmo && user.CurMagCount > 0)
+                    {
+                        unload = true;
+                        unloadDel += delegate { user.TryUnload(true); };
+                    }
+                }
             }
-            // Append reload command
-            if (compAmmo.HasMagazine && hasOperator)
-            {
-                floatOptionList.Add(new FloatMenuOption("CE_ReloadLabel".Translate(), new Action(action)));
-            }
+
+            // Append unload delegates
+            if (unload)
+                floatOptionList.Add(new FloatMenuOption("CE_UnloadLabel".Translate(), unloadDel));
+
+            // Append reload delegates
+            if (reload)
+                floatOptionList.Add(new FloatMenuOption("CE_ReloadLabel".Translate(), reloadDel));
+            
             return floatOptionList;
         }
 
