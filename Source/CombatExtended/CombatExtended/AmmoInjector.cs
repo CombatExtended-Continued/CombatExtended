@@ -134,7 +134,7 @@ namespace CombatExtended
                     {
                         if (curTag.Length <= enableTradeTag.Length + 1)
                         {
-                            Log.Error("CE :: AmmoInjector trying to inject " + ammoDef.ToString() + " but " + curTag + " is not a valid trading tag, valid formats are: " + enableTradeTag + " and " + enableTradeTag + "_levelOfTradeability");
+                            Log.Error("Combat Extended :: AmmoInjector trying to inject " + ammoDef.ToString() + " but " + curTag + " is not a valid trading tag, valid formats are: " + enableTradeTag + " and " + enableTradeTag + "_levelOfTradeability");
                         }
                         else
                         {
@@ -171,14 +171,14 @@ namespace CombatExtended
                                 // Parse tag for bench def
                                 if (curTag.Length <= enableCraftingTag.Length + 1)
                                 {
-                                    Log.Error("CE :: AmmoInjector trying to inject " + ammoDef.ToString() + " but " + curTag + " is not a valid crafting tag, valid formats are: " + enableCraftingTag + " and " + enableCraftingTag + "_defNameOfCraftingBench");
+                                    Log.Error("Combat Extended :: AmmoInjector trying to inject " + ammoDef.ToString() + " but " + curTag + " is not a valid crafting tag, valid formats are: " + enableCraftingTag + " and " + enableCraftingTag + "_defNameOfCraftingBench");
                                     continue;
                                 }
                                 var benchName = curTag.Remove(0, enableCraftingTag.Length + 1);
                                 bench = DefDatabase<ThingDef>.GetNamed(benchName, false);
                                 if (bench == null)
                                 {
-                                    Log.Error("CE :: AmmoInjector trying to inject " + ammoDef.ToString() + " but no crafting bench with defName=" + benchName + " could be found for tag " + curTag);
+                                    Log.Error("Combat Extended :: AmmoInjector trying to inject " + ammoDef.ToString() + " but no crafting bench with defName=" + benchName + " could be found for tag " + curTag);
                                     continue;
                                 }
                             }

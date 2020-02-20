@@ -1,0 +1,157 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+
+	<ThingCategoryDef>
+		<defName>Ammo155mmHowitzerShells</defName>
+		<label>155mm Howitzer shell</label>
+		<parent>AmmoShells</parent>
+		<iconPath>UI/Icons/ThingCategories/CaliberCannon</iconPath>
+	</ThingCategoryDef>
+
+	<!-- ==================== AmmoSet ========================== -->
+
+	<CombatExtended.AmmoSetDef>
+		<defName>AmmoSet_155mmHowitzerShell</defName>
+		<label>155mm Howitzer shells</label>
+		<ammoTypes>
+			<Ammo_155mmHowitzerShell_HE>Bullet_155mmHowitzerShell_HE</Ammo_155mmHowitzerShell_HE>
+		</ammoTypes>
+	</CombatExtended.AmmoSetDef>
+
+	<!-- ==================== Ammo ========================== -->
+
+	<ThingDef Class="CombatExtended.AmmoDef" Name="155mmHowitzerShellBase" ParentName="AmmoBase" Abstract="True">
+		<description>Large cannon shell used by howitzers.</description>
+		<thingCategories>
+			<li>Ammo155mmHowitzerShells</li>
+		</thingCategories>
+		<stackLimit>25</stackLimit>
+		<tradeTags>
+			<li>CE_AutoEnableTrade</li>
+			<li>CE_AutoEnableCrafting_TableMachining</li>
+		</tradeTags>
+		<statBases>
+			<MaxHitPoints>300</MaxHitPoints>
+			<Mass>46.7</Mass>
+			<Bulk>47.67</Bulk>
+		</statBases>
+		<cookOffFlashScale>40</cookOffFlashScale>
+		<cookOffSound>MortarBomb_Explode</cookOffSound>
+	</ThingDef>
+
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="155mmHowitzerShellBase">
+		<defName>Ammo_155mmHowitzerShell_HE</defName>
+		<label>155mm Howitzer shell (HE)</label>
+		<graphicData>
+			<texPath>Things/Ammo/Cannon/HE</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+		</graphicData>
+		<statBases>
+			<MarketValue>440.44</MarketValue>
+		</statBases>
+		<ammoClass>GrenadeHE</ammoClass>
+		<comps>
+			<li Class="CombatExtended.CompProperties_ExplosiveCE">
+				<explosionDamage>549</explosionDamage>
+				<explosionDamageDef>Bomb</explosionDamageDef>
+				<explosionRadius>5.5</explosionRadius>
+				<fragments>
+					<Fragment_Large>138</Fragment_Large>
+					<Fragment_Small>812</Fragment_Small>
+				</fragments>
+				<applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
+			</li>
+		</comps>
+	</ThingDef>
+
+	<!-- ================== Projectiles ================== -->
+
+	<ThingDef Class="CombatExtended.AmmoDef" Name="Base155mmHowitzerShell" ParentName="BaseBullet" Abstract="true">
+		<graphicData>
+			<shaderType>TransparentPostLight</shaderType>
+		</graphicData>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<speed>166</speed>
+			<soundExplode>MortarBomb_Explode</soundExplode>
+			<soundHitThickRoof>Artillery_HitThickRoof</soundHitThickRoof>
+			<soundImpactAnticipate>MortarRound_PreImpact</soundImpactAnticipate>
+			<soundAmbient>MortarRound_Ambient</soundAmbient>
+			<flyOverhead>true</flyOverhead>
+			<dropsCasings>true</dropsCasings>
+			<casingMoteDefname>Mote_BigShell</casingMoteDefname>
+			<gravityFactor>5</gravityFactor>
+		</projectile>
+	</ThingDef>
+
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="Base155mmHowitzerShell">
+		<defName>Bullet_155mmHowitzerShell_HE</defName>
+		<label>155mm Howitzer shell (HE)</label>
+		<thingClass>CombatExtended.ProjectileCE_Explosive</thingClass>
+		<graphicData>
+			<texPath>Things/Projectile/Cannon/HE</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+		</graphicData>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageDef>Bomb</damageDef>
+			<damageAmountBase>549</damageAmountBase>
+			<explosionRadius>5.5</explosionRadius>
+			<soundExplode>MortarBomb_Explode</soundExplode>
+			<applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
+		</projectile>
+		<comps>
+			<li Class="CombatExtended.CompProperties_ExplosiveCE">
+				<fragments>
+					<Fragment_Large>138</Fragment_Large>
+					<Fragment_Small>812</Fragment_Small>
+				</fragments>
+			</li>
+		</comps>
+	</ThingDef>
+
+	<!-- ==================== Recipes ========================== -->
+
+	<RecipeDef ParentName="AmmoRecipeBase">
+		<defName>MakeAmmo_155mmHowitzerShell_HE</defName>
+		<label>make 155mm HE Howitzer shells x5</label>
+		<description>Craft 5 155mm HE Howitzer shells.</description>
+		<jobString>Making 155mm HE Howitzer shells.</jobString>
+		<workAmount>94800</workAmount>
+		<ingredients>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>Steel</li>
+					</thingDefs>
+				</filter>
+				<count>468</count>
+			</li>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>ComponentIndustrial</li>
+					</thingDefs>
+				</filter>
+				<count>2</count>
+			</li>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>FSX</li>
+					</thingDefs>
+				</filter>
+				<count>117</count>
+			</li>
+		</ingredients>
+		<fixedIngredientFilter>
+			<thingDefs>
+				<li>Steel</li>
+				<li>ComponentIndustrial</li>
+				<li>FSX</li>
+			</thingDefs>
+		</fixedIngredientFilter>
+		<products>
+			<Ammo_155mmHowitzerShell_HE>5</Ammo_155mmHowitzerShell_HE>
+		</products>
+	</RecipeDef>
+
+</Defs>

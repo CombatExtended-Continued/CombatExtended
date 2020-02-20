@@ -11,6 +11,7 @@ namespace CombatExtended
     public class VerbPropertiesCE : VerbProperties
     {
         public RecoilPattern recoilPattern = RecoilPattern.None;
+        public int ammoConsumedPerShotCount = 1;
         public float recoilAmount = 0;
         public float indirectFirePenalty = 0;
         public float circularError = 0;
