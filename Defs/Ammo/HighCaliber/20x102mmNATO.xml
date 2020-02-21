@@ -14,9 +14,10 @@
 		<defName>AmmoSet_20x102mmNATO</defName>
 		<label>20x102mm NATO</label>
 		<ammoTypes>
-			<Ammo_20x102mmNATO_Sabot>Bullet_20x102mmNATO_Sabot</Ammo_20x102mmNATO_Sabot>
-			<Ammo_20x102mmNATO_HE>Bullet_20x102mmNATO_HE</Ammo_20x102mmNATO_HE>
+      		<Ammo_20x102mmNATO_FMJ>Bullet_20x102mmNATO_FMJ</Ammo_20x102mmNATO_FMJ>		
 			<Ammo_20x102mmNATO_Incendiary>Bullet_20x102mmNATO_Incendiary</Ammo_20x102mmNATO_Incendiary>
+			<Ammo_20x102mmNATO_HE>Bullet_20x102mmNATO_HE</Ammo_20x102mmNATO_HE>
+			<Ammo_20x102mmNATO_Sabot>Bullet_20x102mmNATO_Sabot</Ammo_20x102mmNATO_Sabot>
 		</ammoTypes>
 	</CombatExtended.AmmoSetDef>
 
@@ -35,36 +36,22 @@
 		<thingCategories>
 			<li>Ammo20x102mmNATO</li>
 		</thingCategories>
-		<stackLimit>200</stackLimit>
+		<stackLimit>1000</stackLimit>
 	</ThingDef>
 
-	<ThingDef Class="CombatExtended.AmmoDef" ParentName="Ammo20x102mmNATOBase">
-		<defName>Ammo_20x102mmNATO_Sabot</defName>
-		<label>20x102mm NATO cartridge (Sabot)</label>
-		<graphicData>
-			<texPath>Things/Ammo/HighCaliber/Sabot</texPath>
-			<graphicClass>Graphic_StackCount</graphicClass>
-		</graphicData>
-		<statBases>
-			<MarketValue>1.52</MarketValue>
-		</statBases>
-		<ammoClass>Sabot</ammoClass>
-		<cookOffProjectile>Bullet_20x102mmNATO_Sabot</cookOffProjectile>
-	</ThingDef>
-
-	<ThingDef Class="CombatExtended.AmmoDef" ParentName="Ammo20x102mmNATOBase">
-		<defName>Ammo_20x102mmNATO_HE</defName>
-		<label>20x102mm NATO cartridge (HE)</label>
-		<graphicData>
-			<texPath>Things/Ammo/HighCaliber/HE</texPath>
-			<graphicClass>Graphic_StackCount</graphicClass>
-		</graphicData>
-		<statBases>
-			<MarketValue>2.38</MarketValue>
-		</statBases>
-		<ammoClass>ExplosiveAP</ammoClass>
-		<cookOffProjectile>Bullet_20x102mmNATO_HE</cookOffProjectile>
-	</ThingDef>
+    <ThingDef Class="CombatExtended.AmmoDef" ParentName="Ammo20x102mmNATOBase">
+      <defName>Ammo_20x102mmNATO_FMJ</defName>
+      <label>20x102mm NATO cartridge (FMJ)</label>
+      <graphicData>
+        <texPath>Things/Ammo/HighCaliber/FMJ</texPath>
+        <graphicClass>Graphic_StackCount</graphicClass>
+      </graphicData>
+      <statBases>
+        <MarketValue>1.04</MarketValue>
+      </statBases>
+      <ammoClass>FullMetalJacket</ammoClass>
+      <cookOffProjectile>Bullet_20x102mmNATO_FMJ</cookOffProjectile>
+    </ThingDef>
 
 	<ThingDef Class="CombatExtended.AmmoDef" ParentName="Ammo20x102mmNATOBase">
 		<defName>Ammo_20x102mmNATO_Incendiary</defName>
@@ -78,6 +65,35 @@
 		</statBases>
 		<ammoClass>IncendiaryAP</ammoClass>
 		<cookOffProjectile>Bullet_20x102mmNATO_Incendiary</cookOffProjectile>
+	</ThingDef>
+
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="Ammo20x102mmNATOBase">
+		<defName>Ammo_20x102mmNATO_HE</defName>
+		<label>20x102mm NATO cartridge (HE)</label>
+		<graphicData>
+			<texPath>Things/Ammo/HighCaliber/HE</texPath>
+			<graphicClass>Graphic_StackCount</graphicClass>
+		</graphicData>
+		<statBases>
+			<MarketValue>2.02</MarketValue>
+		</statBases>
+		<ammoClass>ExplosiveAP</ammoClass>
+		<cookOffProjectile>Bullet_20x102mmNATO_HE</cookOffProjectile>
+	</ThingDef>
+
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="Ammo20x102mmNATOBase">
+		<defName>Ammo_20x102mmNATO_Sabot</defName>
+		<label>20x102mm NATO cartridge (Sabot)</label>
+		<graphicData>
+			<texPath>Things/Ammo/HighCaliber/Sabot</texPath>
+			<graphicClass>Graphic_StackCount</graphicClass>
+		</graphicData>
+		<statBases>
+			<Mass>0.213</Mass>
+			<MarketValue>1.17</MarketValue>
+		</statBases>
+		<ammoClass>Sabot</ammoClass>
+		<cookOffProjectile>Bullet_20x102mmNATO_Sabot</cookOffProjectile>
 	</ThingDef>
 
 	<!-- ================== Projectiles ================== -->
@@ -94,14 +110,29 @@
 		</projectile>
 	</ThingDef>
 
+    <ThingDef Class="CombatExtended.AmmoDef" ParentName="Base20x102mmNATOBullet">
+      <defName>Bullet_20x102mmNATO_FMJ</defName>
+      <label>20x102mm NATO bullet (FMJ)</label>
+      <projectile Class="CombatExtended.ProjectilePropertiesCE">
+        <damageAmountBase>70</damageAmountBase>
+        <armorPenetrationSharp>13</armorPenetrationSharp>
+        <armorPenetrationBlunt>1029.080</armorPenetrationBlunt>
+      </projectile>
+    </ThingDef>
+
 	<ThingDef Class="CombatExtended.AmmoDef" ParentName="Base20x102mmNATOBullet">
-		<defName>Bullet_20x102mmNATO_Sabot</defName>
-		<label>20x102mm NATO bullet (Sabot)</label>
+		<defName>Bullet_20x102mmNATO_Incendiary</defName>
+		<label>20x102mm NATO bullet (AP-I)</label>
 		<projectile Class="CombatExtended.ProjectilePropertiesCE">
-			<damageAmountBase>39</damageAmountBase>
-			<armorPenetrationSharp>46</armorPenetrationSharp>
-			<armorPenetrationBlunt>1069.420</armorPenetrationBlunt>
-			<speed>210</speed>
+			<damageAmountBase>44</damageAmountBase>
+			<armorPenetrationSharp>26</armorPenetrationSharp>
+			<armorPenetrationBlunt>1029.080</armorPenetrationBlunt>
+			<secondaryDamage>
+				<li>
+					<def>Flame_Secondary</def>
+					<amount>27</amount>
+				</li>
+			</secondaryDamage>
 		</projectile>
 	</ThingDef>
 
@@ -122,27 +153,118 @@
 	</ThingDef>
 
 	<ThingDef Class="CombatExtended.AmmoDef" ParentName="Base20x102mmNATOBullet">
-		<defName>Bullet_20x102mmNATO_Incendiary</defName>
-		<label>20x102mm NATO bullet (AP-I)</label>
+		<defName>Bullet_20x102mmNATO_Sabot</defName>
+		<label>20x102mm NATO bullet (Sabot)</label>
 		<projectile Class="CombatExtended.ProjectilePropertiesCE">
-			<damageAmountBase>44</damageAmountBase>
-			<armorPenetrationSharp>26</armorPenetrationSharp>
-			<armorPenetrationBlunt>1029.080</armorPenetrationBlunt>
-			<secondaryDamage>
-				<li>
-					<def>Flame_Secondary</def>
-					<amount>27</amount>
-				</li>
-			</secondaryDamage>
+			<damageAmountBase>37</damageAmountBase>
+			<armorPenetrationSharp>46</armorPenetrationSharp>
+			<armorPenetrationBlunt>1320.02</armorPenetrationBlunt>
+			<speed>309</speed>
 		</projectile>
 	</ThingDef>
 
 	<!-- ==================== Recipes ========================== -->
 
+    <RecipeDef ParentName="AmmoRecipeBase">
+      <defName>MakeAmmo_20x102mmNATO_FMJ</defName>
+      <label>make 20x102mm NATO (FMJ) cartridge x200</label>
+      <description>Craft 200 20x102mm NATO (FMJ) cartridges.</description>
+      <jobString>Making 20x102mm NATO (FMJ) cartridges.</jobString>
+      <ingredients>
+        <li>
+          <filter>
+            <thingDefs>
+              <li>Steel</li>
+            </thingDefs>
+          </filter>
+          <count>104</count>
+        </li>
+      </ingredients>
+      <fixedIngredientFilter>
+        <thingDefs>
+          <li>Steel</li>
+        </thingDefs>
+      </fixedIngredientFilter>
+      <products>
+        <Ammo_20x102mmNATO_FMJ>200</Ammo_20x102mmNATO_FMJ>
+      </products>
+      <workAmount>10400</workAmount>
+    </RecipeDef>
+
+	<RecipeDef ParentName="AmmoRecipeBase">
+		<defName>MakeAmmo_20x102mmNATO_Incendiary</defName>
+		<label>make 20x102mm NATO (AP-I) cartridge x200</label>
+		<description>Craft 200 .20x102mm NATO (AP-I) cartridges.</description>
+		<jobString>Making .20x102mm NATO (AP-I) cartridges.</jobString>
+		<ingredients>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>Steel</li>
+					</thingDefs>
+				</filter>
+				<count>104</count>
+			</li>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>Prometheum</li>
+					</thingDefs>
+				</filter>
+				<count>10</count>
+			</li>
+		</ingredients>
+		<fixedIngredientFilter>
+			<thingDefs>
+				<li>Steel</li>
+				<li>Prometheum</li>
+			</thingDefs>
+		</fixedIngredientFilter>
+		<products>
+			<Ammo_20x102mmNATO_Incendiary>200</Ammo_20x102mmNATO_Incendiary>
+		</products>
+		<workAmount>14400</workAmount>
+	</RecipeDef>
+
+	<RecipeDef ParentName="AmmoRecipeBase">
+		<defName>MakeAmmo_20x102mmNATO_HE</defName>
+		<label>make 20x102mm NATO (HE) cartridge x200</label>
+		<description>Craft 200 .20x102mm NATO (HE) cartridges.</description>
+		<jobString>Making .20x102mm NATO (HE) cartridges.</jobString>
+		<ingredients>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>Steel</li>
+					</thingDefs>
+				</filter>
+				<count>104</count>
+			</li>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>FSX</li>
+					</thingDefs>
+				</filter>
+				<count>19</count>
+			</li>
+		</ingredients>
+		<fixedIngredientFilter>
+			<thingDefs>
+				<li>Steel</li>
+				<li>FSX</li>
+			</thingDefs>
+		</fixedIngredientFilter>
+		<products>
+			<Ammo_20x102mmNATO_HE>200</Ammo_20x102mmNATO_HE>
+		</products>
+		<workAmount>18000</workAmount>
+	</RecipeDef>
+
 	<RecipeDef ParentName="AmmoRecipeBase">
 		<defName>MakeAmmo_20x102mmNATO_Sabot</defName>
-		<label>make 20x102mm NATO (Sabot) cartridge x100</label>
-		<description>Craft 100 .20x102mm NATO (Sabot) cartridges.</description>
+		<label>make 20x102mm NATO (Sabot) cartridge x200</label>
+		<description>Craft 200 .20x102mm NATO (Sabot) cartridges.</description>
 		<jobString>Making .20x102mm NATO (Sabot) cartridges.</jobString>
 		<ingredients>
 			<li>
@@ -151,7 +273,7 @@
 						<li>Steel</li>
 					</thingDefs>
 				</filter>
-				<count>32</count>
+				<count>64</count>
 			</li>
 			<li>
 				<filter>
@@ -159,7 +281,7 @@
 						<li>Uranium</li>
 					</thingDefs>
 				</filter>
-				<count>10</count>
+				<count>12</count>
 			</li>
 			<li>
 				<filter>
@@ -167,7 +289,7 @@
 						<li>Chemfuel</li>
 					</thingDefs>
 				</filter>
-				<count>10</count>
+				<count>12</count>
 			</li>
 		</ingredients>
 		<fixedIngredientFilter>
@@ -178,79 +300,9 @@
 			</thingDefs>
 		</fixedIngredientFilter>
 		<products>
-			<Ammo_20x102mmNATO_Sabot>100</Ammo_20x102mmNATO_Sabot>
+			<Ammo_20x102mmNATO_Sabot>200</Ammo_20x102mmNATO_Sabot>
 		</products>
-		<workAmount>9200</workAmount>
-	</RecipeDef>
-
-	<RecipeDef ParentName="AmmoRecipeBase">
-		<defName>MakeAmmo_20x102mmNATO_HE</defName>
-		<label>make 20x102mm NATO (HE) cartridge x100</label>
-		<description>Craft 100 .20x102mm NATO (HE) cartridges.</description>
-		<jobString>Making .20x102mm NATO (HE) cartridges.</jobString>
-		<ingredients>
-			<li>
-				<filter>
-					<thingDefs>
-						<li>Steel</li>
-					</thingDefs>
-				</filter>
-				<count>52</count>
-			</li>
-			<li>
-				<filter>
-					<thingDefs>
-						<li>FSX</li>
-					</thingDefs>
-				</filter>
-				<count>13</count>
-			</li>
-		</ingredients>
-		<fixedIngredientFilter>
-			<thingDefs>
-				<li>Steel</li>
-				<li>FSX</li>
-			</thingDefs>
-		</fixedIngredientFilter>
-		<products>
-			<Ammo_20x102mmNATO_HE>100</Ammo_20x102mmNATO_HE>
-		</products>
-		<workAmount>10400</workAmount>
-	</RecipeDef>
-
-	<RecipeDef ParentName="AmmoRecipeBase">
-		<defName>MakeAmmo_20x102mmNATO_Incendiary</defName>
-		<label>make 20x102mm NATO (AP-I) cartridge x100</label>
-		<description>Craft 100 .20x102mm NATO (AP-I) cartridges.</description>
-		<jobString>Making .20x102mm NATO (AP-I) cartridges.</jobString>
-		<ingredients>
-			<li>
-				<filter>
-					<thingDefs>
-						<li>Steel</li>
-					</thingDefs>
-				</filter>
-				<count>52</count>
-			</li>
-			<li>
-				<filter>
-					<thingDefs>
-						<li>Prometheum</li>
-					</thingDefs>
-				</filter>
-				<count>5</count>
-			</li>
-		</ingredients>
-		<fixedIngredientFilter>
-			<thingDefs>
-				<li>Steel</li>
-				<li>Prometheum</li>
-			</thingDefs>
-		</fixedIngredientFilter>
-		<products>
-			<Ammo_20x102mmNATO_Incendiary>100</Ammo_20x102mmNATO_Incendiary>
-		</products>
-		<workAmount>7200</workAmount>
+		<workAmount>13600</workAmount>
 	</RecipeDef>
 
 </Defs>

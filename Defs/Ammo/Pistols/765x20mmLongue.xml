@@ -15,6 +15,8 @@
 		<label>7.65x20mm Longue</label>
 		<ammoTypes>
 			<Ammo_765x20mmLongue_FMJ>Bullet_765x20mmLongue_FMJ</Ammo_765x20mmLongue_FMJ>
+			<Ammo_765x20mmLongue_AP>Bullet_765x20mmLongue_AP</Ammo_765x20mmLongue_AP>
+			<Ammo_765x20mmLongue_HP>Bullet_765x20mmLongue_HP</Ammo_765x20mmLongue_HP>			
 		</ammoTypes>
 	</CombatExtended.AmmoSetDef>
 
@@ -49,6 +51,34 @@
 		<cookOffProjectile>Bullet_765x20mmLongue_FMJ</cookOffProjectile>
 	</ThingDef>
 
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="765x20mmLongueBase">
+		<defName>Ammo_765x20mmLongue_AP</defName>
+		<label>7.65x20mm Longue cartridge (AP)</label>
+		<graphicData>
+			<texPath>Things/Ammo/Pistol/AP</texPath>
+			<graphicClass>Graphic_StackCount</graphicClass>
+		</graphicData>
+		<statBases>
+			<MarketValue>0.09</MarketValue>
+		</statBases>
+		<ammoClass>ArmorPiercing</ammoClass>
+		<cookOffProjectile>Bullet_765x20mmLongue_AP</cookOffProjectile>
+	</ThingDef>
+
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="765x20mmLongueBase">
+		<defName>Ammo_765x20mmLongue_HP</defName>
+		<label>7.65x20mm Longue cartridge (HP)</label>
+		<graphicData>
+			<texPath>Things/Ammo/Pistol/HP</texPath>
+			<graphicClass>Graphic_StackCount</graphicClass>
+		</graphicData>
+		<statBases>
+			<MarketValue>0.09</MarketValue>
+		</statBases>
+		<ammoClass>HollowPoint</ammoClass>
+		<cookOffProjectile>Bullet_765x20mmLongue_HP</cookOffProjectile>
+	</ThingDef>
+
 	<!-- ================== Projectiles ================== -->
 
 	<ThingDef Class="CombatExtended.AmmoDef" Name="Base765x20mmLongueBullet" ParentName="BaseBullet" Abstract="true">
@@ -69,6 +99,26 @@
 		<projectile Class="CombatExtended.ProjectilePropertiesCE">
 			<damageAmountBase>9</damageAmountBase>
 			<armorPenetrationSharp>4</armorPenetrationSharp>
+			<armorPenetrationBlunt>5.880</armorPenetrationBlunt>
+		</projectile>
+	</ThingDef>
+
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="Base765x20mmLongueBullet">
+		<defName>Bullet_765x20mmLongue_AP</defName>
+		<label>7.65x20mm Longue bullet (AP)</label>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageAmountBase>5</damageAmountBase>
+			<armorPenetrationSharp>8</armorPenetrationSharp>
+			<armorPenetrationBlunt>5.880</armorPenetrationBlunt>
+		</projectile>
+	</ThingDef>
+
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="Base765x20mmLongueBullet">
+		<defName>Bullet_765x20mmLongue_HP</defName>
+		<label>7.65x20mm Longue bullet (HP)</label>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageAmountBase>11</damageAmountBase>
+			<armorPenetrationSharp>2</armorPenetrationSharp>
 			<armorPenetrationBlunt>5.880</armorPenetrationBlunt>
 		</projectile>
 	</ThingDef>
@@ -100,5 +150,58 @@
 		</products>
 		<workAmount>1000</workAmount>
 	</RecipeDef>
+
+	<RecipeDef ParentName="AmmoRecipeBase">
+		<defName>MakeAmmo_765x20mmLongue_AP</defName>
+		<label>make 7.65x20mm Longue (AP) cartridge x500</label>
+		<description>Craft 500 7.65x20mm Longue (AP) cartridges.</description>
+		<jobString>Making 7.65x20mm Longue (AP) cartridges.</jobString>
+		<ingredients>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>Steel</li>
+					</thingDefs>
+				</filter>
+				<count>10</count>
+			</li>
+		</ingredients>
+		<fixedIngredientFilter>
+			<thingDefs>
+				<li>Steel</li>
+			</thingDefs>
+		</fixedIngredientFilter>
+		<products>
+			<Ammo_765x20mmLongue_AP>500</Ammo_765x20mmLongue_AP>
+		</products>
+		<workAmount>1000</workAmount>
+	</RecipeDef>
+
+	<RecipeDef ParentName="AmmoRecipeBase">
+		<defName>MakeAmmo_765x20mmLongue_HP</defName>
+		<label>make 7.65x20mm Longue (HP) cartridge x500</label>
+		<description>Craft 500 7.65x20mm Longue (HP) cartridges.</description>
+		<jobString>Making 7.65x20mm Longue (HP) cartridges.</jobString>
+		<ingredients>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>Steel</li>
+					</thingDefs>
+				</filter>
+				<count>10</count>
+			</li>
+		</ingredients>
+		<fixedIngredientFilter>
+			<thingDefs>
+				<li>Steel</li>
+			</thingDefs>
+		</fixedIngredientFilter>
+		<products>
+			<Ammo_765x20mmLongue_HP>500</Ammo_765x20mmLongue_HP>
+		</products>
+		<workAmount>1000</workAmount>
+	</RecipeDef>
+
 
 </Defs>

@@ -15,6 +15,8 @@
 		<label>.455 Webley</label>
 		<ammoTypes>
 			<Ammo_455Webley_FMJ>Bullet_455Webley_FMJ</Ammo_455Webley_FMJ>
+			<Ammo_455Webley_AP>Bullet_455Webley_AP</Ammo_455Webley_AP>
+			<Ammo_455Webley_HP>Bullet_455Webley_HP</Ammo_455Webley_HP>			
 		</ammoTypes>
 	</CombatExtended.AmmoSetDef>
 
@@ -49,6 +51,34 @@
 		<cookOffProjectile>Bullet_455Webley_FMJ</cookOffProjectile>
 	</ThingDef>
 
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="455WebleyBase">
+		<defName>Ammo_455Webley_AP</defName>
+		<label>.455 Webley cartridge (AP)</label>
+		<graphicData>
+			<texPath>Things/Ammo/Pistol/AP</texPath>
+			<graphicClass>Graphic_StackCount</graphicClass>
+		</graphicData>
+		<statBases>
+			<MarketValue>0.09</MarketValue>
+		</statBases>
+		<ammoClass>ArmorPiercing</ammoClass>
+		<cookOffProjectile>Bullet_455Webley_AP</cookOffProjectile>
+	</ThingDef>
+
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="455WebleyBase">
+		<defName>Ammo_455Webley_HP</defName>
+		<label>.455 Webley cartridge (HP)</label>
+		<graphicData>
+			<texPath>Things/Ammo/Pistol/HP</texPath>
+			<graphicClass>Graphic_StackCount</graphicClass>
+		</graphicData>
+		<statBases>
+			<MarketValue>0.09</MarketValue>
+		</statBases>
+		<ammoClass>HollowPoint</ammoClass>
+		<cookOffProjectile>Bullet_455Webley_HP</cookOffProjectile>
+	</ThingDef>
+
 	<!-- ================== Projectiles ================== -->
 
 	<ThingDef Class="CombatExtended.AmmoDef" Name="Base455WebleyBullet" ParentName="BaseBullet" Abstract="true">
@@ -69,7 +99,27 @@
 		<projectile Class="CombatExtended.ProjectilePropertiesCE">
 			<damageAmountBase>12</damageAmountBase>
 			<armorPenetrationSharp>3</armorPenetrationSharp>
-			<armorPenetrationBlunt>10.860</armorPenetrationBlunt>
+			<armorPenetrationBlunt>5.5</armorPenetrationBlunt>
+		</projectile>
+	</ThingDef>
+
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="Base455WebleyBullet">
+		<defName>Bullet_455Webley_AP</defName>
+		<label>.455 Webley bullet (AP)</label>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageAmountBase>6</damageAmountBase>
+			<armorPenetrationSharp>6</armorPenetrationSharp>
+			<armorPenetrationBlunt>5.5</armorPenetrationBlunt>
+		</projectile>
+	</ThingDef>
+
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="Base455WebleyBullet">
+		<defName>Bullet_455Webley_HP</defName>
+		<label>.455 Webley bullet (HP)</label>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageAmountBase>12</damageAmountBase>
+			<armorPenetrationSharp>2</armorPenetrationSharp>
+			<armorPenetrationBlunt>5.5</armorPenetrationBlunt>
 		</projectile>
 	</ThingDef>
 
@@ -100,5 +150,58 @@
 		</products>
 		<workAmount>2600</workAmount>
 	</RecipeDef>
+
+	<RecipeDef ParentName="AmmoRecipeBase">
+		<defName>MakeAmmo_455Webley_AP</defName>
+		<label>make .455 Webley (AP) cartridge x500</label>
+		<description>Craft 500 .455 Webley (AP) cartridges.</description>
+		<jobString>Making .455 Webley (AP) cartridges.</jobString>
+		<ingredients>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>Steel</li>
+					</thingDefs>
+				</filter>
+				<count>22</count>
+			</li>
+		</ingredients>
+		<fixedIngredientFilter>
+			<thingDefs>
+				<li>Steel</li>
+			</thingDefs>
+		</fixedIngredientFilter>
+		<products>
+			<Ammo_455Webley_AP>500</Ammo_455Webley_AP>
+		</products>
+		<workAmount>2200</workAmount>
+	</RecipeDef>
+
+	<RecipeDef ParentName="AmmoRecipeBase">
+		<defName>MakeAmmo_455Webley_HP</defName>
+		<label>make .455 Webley (HP) cartridge x500</label>
+		<description>Craft 500 .455 Webley (HP) cartridges.</description>
+		<jobString>Making .455 Webley (HP) cartridges.</jobString>
+		<ingredients>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>Steel</li>
+					</thingDefs>
+				</filter>
+				<count>22</count>
+			</li>
+		</ingredients>
+		<fixedIngredientFilter>
+			<thingDefs>
+				<li>Steel</li>
+			</thingDefs>
+		</fixedIngredientFilter>
+		<products>
+			<Ammo_455Webley_HP>500</Ammo_455Webley_HP>
+		</products>
+		<workAmount>2200</workAmount>
+	</RecipeDef>
+
 
 </Defs>
