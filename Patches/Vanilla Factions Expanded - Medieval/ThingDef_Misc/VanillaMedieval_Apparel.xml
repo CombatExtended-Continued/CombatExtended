@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8" ?>
+
+<Patch>
+
+	<Operation Class="PatchOperationFindMod">
+    <mods>
+        <li>Vanilla Factions Expanded - Medieval</li>
+    </mods>
+		<match Class="PatchOperationSequence">
+	<!--NOTE: Numerous pieces of apparel aren't patched here. Apparel without a specific value for Bulk or WornBulk
+		defaults to '1' for both. So, smallaer pieces of clothing don't need patched.-->			
+			<operations>			
+				<!-- ========== Heavy Helmet =========== -->
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="VFEM_Apparel_PlateHelmetHeavy"]/statBases</xpath>
+					<value>
+						<Bulk>5</Bulk>
+						<WornBulk>1</WornBulk>					
+					</value>
+				</li>			
+
+				<!-- ========== Heavy Plate Armor =========== -->
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="VFEM_Apparel_PlateArmorHeavy"]/statBases</xpath>
+					<value>
+						<Bulk>120</Bulk>
+						<WornBulk>20</WornBulk>					
+					</value>
+				</li>
+
+				<!-- ========== Tabard =========== -->
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="VFEM_Apparel_Tabard"]/statBases</xpath>
+					<value>
+						<Bulk>3</Bulk>
+						<WornBulk>1.5</WornBulk>					
+					</value>
+				</li>
+				
+			</operations>
+		</match>
+	</Operation>
+</Patch>

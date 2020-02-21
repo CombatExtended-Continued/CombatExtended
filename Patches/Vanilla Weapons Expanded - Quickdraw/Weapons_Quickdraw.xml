@@ -1,0 +1,286 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+			<li>Vanilla Weapons Expanded - Quickdraw</li>
+		</mods>
+		<match Class="PatchOperationSequence">
+			<operations>
+
+  <!-- ========== Melee Tools ========== -->
+  <li Class="PatchOperationReplace">
+    <xpath>Defs/ThingDef[defName="VWE_Gun_AutomaticPistol"]/tools</xpath>
+    <value>
+      <tools>
+        <li Class="CombatExtended.ToolCE">
+          <label>grip</label>
+          <capacities>
+            <li>Blunt</li>
+          </capacities>
+          <power>2</power>
+          <cooldownTime>1.54</cooldownTime>
+          <chanceFactor>1.5</chanceFactor>
+          <armorPenetrationBlunt>0.555</armorPenetrationBlunt>
+          <linkedBodyPartsGroup>Grip</linkedBodyPartsGroup>
+        </li>
+        <li Class="CombatExtended.ToolCE">
+          <label>muzzle</label>
+          <capacities>
+            <li>Poke</li>
+          </capacities>
+          <power>2</power>
+          <cooldownTime>1.54</cooldownTime>
+          <armorPenetrationBlunt>0.555</armorPenetrationBlunt>
+          <linkedBodyPartsGroup>Muzzle</linkedBodyPartsGroup>
+        </li>
+      </tools>
+    </value>
+  </li>
+
+  <li Class="PatchOperationReplace">
+    <xpath>Defs/ThingDef[defName="VWE_Gun_PDW" or defName="VWE_Gun_BullpupRifle" or defName="VWE_Gun_BullpupDMR"]/tools</xpath>
+    <value>
+      <tools>
+        <li Class="CombatExtended.ToolCE">
+          <label>stock</label>
+          <capacities>
+            <li>Blunt</li>
+          </capacities>
+          <power>8</power>
+          <cooldownTime>1.55</cooldownTime>
+          <chanceFactor>1.5</chanceFactor>
+          <armorPenetrationBlunt>2.755</armorPenetrationBlunt>
+          <linkedBodyPartsGroup>Stock</linkedBodyPartsGroup>
+        </li>
+        <li Class="CombatExtended.ToolCE">
+          <label>barrel</label>
+          <capacities>
+            <li>Blunt</li>
+          </capacities>
+          <power>5</power>
+          <cooldownTime>2.02</cooldownTime>
+          <armorPenetrationBlunt>1.630</armorPenetrationBlunt>
+          <linkedBodyPartsGroup>Barrel</linkedBodyPartsGroup>
+        </li>
+        <li Class="CombatExtended.ToolCE">
+          <label>muzzle</label>
+          <capacities>
+            <li>Poke</li>
+          </capacities>
+          <power>8</power>
+          <cooldownTime>1.55</cooldownTime>
+          <armorPenetrationBlunt>2.755</armorPenetrationBlunt>
+          <linkedBodyPartsGroup>Muzzle</linkedBodyPartsGroup>
+        </li>
+      </tools>
+    </value>
+  </li>
+
+  <!-- ========== PDW ========== -->
+  <li Class='CombatExtended.PatchOperationMakeGunCECompatible'>
+    <defName>VWE_Gun_PDW</defName>
+    <statBases>
+      <WorkToMake>13000</WorkToMake>
+      <SightsEfficiency>1</SightsEfficiency>
+      <ShotSpread>0.17</ShotSpread>
+      <SwayFactor>1.71</SwayFactor>
+      <Bulk>3.76</Bulk>
+      <Mass>1.99</Mass>
+      <RangedWeapon_Cooldown>0.36</RangedWeapon_Cooldown>
+    </statBases>
+    <Properties>
+      <verbClass>CombatExtended.Verb_ShootCE</verbClass>
+      <hasStandardCommand>True</hasStandardCommand>
+      <defaultProjectile>Bullet_FN57x28mm_FMJ</defaultProjectile>
+      <warmupTime>0.1</warmupTime>
+      <range>32</range>
+      <burstShotCount>6</burstShotCount>
+      <ticksBetweenBurstShots>4</ticksBetweenBurstShots>
+      <soundCast>Shot_HeavySMG</soundCast>
+      <soundCastTail>GunTail_Light</soundCastTail>
+      <muzzleFlashScale>9</muzzleFlashScale>
+      <recoilPattern>Regular</recoilPattern>
+      <recoilAmount>1.25</recoilAmount>
+    </Properties>
+    <AmmoUser>
+      <magazineSize>50</magazineSize>
+      <reloadTime>4.5</reloadTime>
+      <ammoSet>AmmoSet_FN57x28mm</ammoSet>
+    </AmmoUser>
+    <FireModes>
+      <aiUseBurstMode>True</aiUseBurstMode>
+      <aiAimMode>AimedShot</aiAimMode>
+      <aimedBurstShotCount>3</aimedBurstShotCount>
+    </FireModes>
+    <weaponTags>
+      <li>IndustrialGunAdvanced</li>
+      <li>CE_Sidearm</li>
+      <li>CE_OneHandedWeapon</li>
+    </weaponTags>
+    <!-- Required research rework -->
+    <researchPrerequisite>BlowbackOperation</researchPrerequisite>
+  </li>
+
+  <!-- Name -->
+  <li Class='PatchOperationReplace'>
+    <xpath>Defs/ThingDef[defName='VWE_Gun_PDW']/label</xpath> 
+    <value>
+      <label>P90</label>
+    </value>
+  </li>
+
+  <!-- ========== Bullpup Rifle ========== -->
+  <li Class='CombatExtended.PatchOperationMakeGunCECompatible'>
+    <defName>VWE_Gun_BullpupRifle</defName>
+    <statBases>
+      <WorkToMake>32000</WorkToMake>
+      <SightsEfficiency>1</SightsEfficiency>
+      <ShotSpread>0.09</ShotSpread>
+      <SwayFactor>1.36</SwayFactor>
+      <Bulk>7.10</Bulk>
+      <Mass>3.61</Mass>
+      <RangedWeapon_Cooldown>0.36</RangedWeapon_Cooldown>
+    </statBases>
+    <Properties>
+      <verbClass>CombatExtended.Verb_ShootCE</verbClass>
+      <hasStandardCommand>True</hasStandardCommand>
+      <defaultProjectile>Bullet_556x45mmNATO_FMJ</defaultProjectile>
+      <burstShotCount>5</burstShotCount>
+      <ticksBetweenBurstShots>3</ticksBetweenBurstShots>
+      <warmupTime>0.1</warmupTime>
+      <range>44</range>
+      <soundCast>Shot_AssaultRifle</soundCast>
+      <soundCastTail>GunTail_Medium</soundCastTail>
+      <muzzleFlashScale>9</muzzleFlashScale>
+      <recoilPattern>Regular</recoilPattern>
+      <recoilAmount>1.36</recoilAmount>
+    </Properties>
+    <AmmoUser>
+      <magazineSize>25</magazineSize>
+      <reloadTime>4</reloadTime>
+      <ammoSet>AmmoSet_556x45mmNATO</ammoSet>
+    </AmmoUser>
+    <FireModes>
+      <aiUseBurstMode>True</aiUseBurstMode>
+      <aiAimMode>AimedShot</aiAimMode>
+      <aimedBurstShotCount>2</aimedBurstShotCount>
+    </FireModes>
+    <weaponTags>
+      <li>IndustrialGunAdvanced</li>
+    </weaponTags>
+    <!-- Required research rework -->
+    <researchPrerequisite>PrecisionRifling</researchPrerequisite>
+  </li>
+
+  <!-- Name -->
+  <li Class='PatchOperationReplace'>
+    <xpath>Defs/ThingDef[defName='VWE_Gun_BullpupRifle']/label</xpath>
+    <value>
+      <label>FAMAS</label>
+    </value>
+  </li>
+
+  <!-- ========== Bullpup DMR ========== -->
+  <li Class='CombatExtended.PatchOperationMakeGunCECompatible'>
+    <defName>VWE_Gun_BullpupDMR</defName>
+    <statBases>
+      <WorkToMake>23000</WorkToMake>
+      <SightsEfficiency>2.24</SightsEfficiency>
+      <ShotSpread>0.04</ShotSpread>
+      <SwayFactor>1.70</SwayFactor>
+      <Bulk>11.25</Bulk>
+      <Mass>4.30</Mass>
+      <RangedWeapon_Cooldown>0.36</RangedWeapon_Cooldown>
+    </statBases>
+    <Properties>
+      <verbClass>CombatExtended.Verb_ShootCE</verbClass>
+      <hasStandardCommand>True</hasStandardCommand>
+      <defaultProjectile>Bullet_762x54mmR_FMJ</defaultProjectile>
+      <warmupTime>0.3</warmupTime>
+      <range>75</range>
+      <soundCast>Shot_BoltActionRifle</soundCast>
+      <soundCastTail>GunTail_Heavy</soundCastTail>
+      <muzzleFlashScale>9</muzzleFlashScale>
+    </Properties>
+    <AmmoUser>
+      <magazineSize>10</magazineSize>
+      <reloadTime>4</reloadTime>
+      <ammoSet>AmmoSet_762x54mmR</ammoSet>
+    </AmmoUser>
+    <FireModes>
+      <aiUseBurstMode>False</aiUseBurstMode>
+      <aiAimMode>AimedShot</aiAimMode>
+    </FireModes>
+    <weaponTags>
+      <li>SniperRifle</li>
+    </weaponTags>
+    <!-- Required research rework -->
+    <researchPrerequisite>PrecisionRifling</researchPrerequisite>
+  </li>
+
+  <!-- Name -->
+  <li Class='PatchOperationReplace'>
+    <xpath>Defs/ThingDef[defName='VWE_Gun_BullpupDMR']/label</xpath>
+    <value>
+      <label>Bullpup DMR</label>
+    </value>
+  </li>
+
+  <!-- ========== Auto Pistol ========== -->
+  <li Class='CombatExtended.PatchOperationMakeGunCECompatible'>
+    <defName>VWE_Gun_AutomaticPistol</defName>
+    <statBases>
+      <WorkToMake>7000</WorkToMake>
+      <SightsEfficiency>0.75</SightsEfficiency>
+      <ShotSpread>0.17</ShotSpread>
+      <SwayFactor>0.83</SwayFactor>
+      <Bulk>1.85</Bulk>
+      <Mass>0.90</Mass>
+      <RangedWeapon_Cooldown>0.35</RangedWeapon_Cooldown>
+    </statBases>
+    <Properties>
+      <verbClass>CombatExtended.Verb_ShootCE</verbClass>
+      <hasStandardCommand>True</hasStandardCommand>
+      <defaultProjectile>Bullet_9x19mmPara_FMJ</defaultProjectile>
+      <warmupTime>0.1</warmupTime>
+      <range>17</range>
+      <burstShotCount>3</burstShotCount>
+      <ticksBetweenBurstShots>5</ticksBetweenBurstShots>
+      <soundCast>Shot_Autopistol</soundCast>
+      <soundCastTail>GunTail_Light</soundCastTail>
+      <muzzleFlashScale>9</muzzleFlashScale>
+      <recoilPattern>Regular</recoilPattern>
+    </Properties>
+    <AmmoUser>
+      <magazineSize>17</magazineSize>
+      <reloadTime>4</reloadTime>
+      <ammoSet>AmmoSet_9x19mmPara</ammoSet>
+    </AmmoUser>
+    <FireModes>
+      <aiAimMode>AimedShot</aiAimMode>
+    </FireModes>
+    <weaponTags>
+      <li>IndustrialGunAdvanced</li>
+      <li>CE_Sidearm</li>
+      <li>CE_OneHandedWeapon</li>
+    </weaponTags>
+    <!-- Required research rework -->
+    <researchPrerequisite>BlowbackOperation</researchPrerequisite>
+  </li>
+
+  <!-- Name -->
+  <li Class='PatchOperationReplace'>
+    <xpath>Defs/ThingDef[defName='VWE_Gun_AutomaticPistol']/label</xpath>
+    <value>
+      <label>Glock 19</label>
+    </value>
+  </li>
+
+
+			</operations>		
+		</match>
+	</Operation>
+
+</Patch>
+

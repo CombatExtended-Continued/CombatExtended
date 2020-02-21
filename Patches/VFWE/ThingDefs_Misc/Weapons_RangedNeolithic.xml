@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Patch>
 
-	<Operation Class="PatchOperationSequence">
-		<success>Always</success>
+	<Operation Class="PatchOperationFindMod">
+    <mods>
+		<li>[XND] Vanilla-Friendly Weapon Expansion</li>
+    </mods>
+		<match Class="PatchOperationSequence">
 		<operations>
-			<li Class="CombatExtended.PatchOperationFindMod">
-				<modName>[XND] Vanilla-Friendly Weapon Expansion</modName>
-			</li>
 
 			<!-- Sling -->
 			<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
@@ -78,39 +78,41 @@
 				<value>
 					<tools>
 						<li Class="CombatExtended.ToolCE">
-							<label>stock</label>
-							<capacities>
-								<li>Blunt</li>
-							</capacities>
-							<power>9</power>
-							<cooldownTime>1.8</cooldownTime>
-							<armorPenetration>0.11</armorPenetration>
-							<linkedBodyPartsGroup>Stock</linkedBodyPartsGroup>
+						<label>stock</label>
+						<capacities>
+							<li>Blunt</li>
+						</capacities>
+						<power>8</power>
+						<cooldownTime>1.55</cooldownTime>
+						<chanceFactor>1.5</chanceFactor>
+						<armorPenetrationBlunt>2.755</armorPenetrationBlunt>
+						<linkedBodyPartsGroup>Stock</linkedBodyPartsGroup>
 						</li>
 						<li Class="CombatExtended.ToolCE">
-							<label>lath</label>
-							<capacities>
-								<li>Blunt</li>
-							</capacities>
-							<power>8</power>
-							<cooldownTime>1.6</cooldownTime>
-							<armorPenetration>0.102</armorPenetration>
-							<linkedBodyPartsGroup>Head</linkedBodyPartsGroup>
+						<label>barrel</label>
+						<capacities>
+							<li>Blunt</li>
+						</capacities>
+						<power>5</power>
+						<cooldownTime>2.02</cooldownTime>
+						<armorPenetrationBlunt>1.630</armorPenetrationBlunt>
+						<linkedBodyPartsGroup>Barrel</linkedBodyPartsGroup>
 						</li>
 						<li Class="CombatExtended.ToolCE">
-							<label>stirrup</label>
-							<capacities>
-								<li>Poke</li>
-							</capacities>
-							<power>8</power>
-							<cooldownTime>1.6</cooldownTime>
-							<armorPenetration>0.075</armorPenetration>
-							<linkedBodyPartsGroup>Point</linkedBodyPartsGroup>
+						<label>muzzle</label>
+						<capacities>
+							<li>Poke</li>
+						</capacities>
+						<power>8</power>
+						<cooldownTime>1.55</cooldownTime>
+						<armorPenetrationBlunt>2.755</armorPenetrationBlunt>
+						<linkedBodyPartsGroup>Muzzle</linkedBodyPartsGroup>
 						</li>
 					</tools>
 				</value>
 			</li>
-		</operations>
-	</Operation>
 
+		</operations>
+		</match>
+	</Operation>
 </Patch>
