@@ -41,6 +41,14 @@ namespace CombatExtended
             {
                 return curMagCountInt;
             }
+            set
+            {
+                if (curMagCountInt != value && value >= 0)
+                {
+                    curMagCountInt = value;
+                    if (CompInventory != null) CompInventory.UpdateInventory();     //Must be positioned after curMagCountInt is updated, because it relies on that value
+                }
+            }
         }
         public CompEquippable CompEquippable
         {
@@ -262,11 +270,11 @@ namespace CombatExtended
             // If magazine is empty, return false
             if (curMagCountInt <= 0)
             {
-                curMagCountInt = 0;
+                CurMagCount = 0;
                 return false;
             }
             // Reduce ammo count and update inventory
-            curMagCountInt = (curMagCountInt - ammoConsumedPerShot < 0) ? 0 : curMagCountInt - ammoConsumedPerShot;
+            CurMagCount = (curMagCountInt - ammoConsumedPerShot < 0) ? 0 : curMagCountInt - ammoConsumedPerShot;
 
 
             /*if (curMagCountInt - ammoConsumedPerShot < 0)
@@ -279,11 +287,7 @@ namespace CombatExtended
 
 
             // Original: curMagCountInt--;
-
-            if (CompInventory != null)
-            {
-                CompInventory.UpdateInventory();
-            }
+            
             if (curMagCountInt < 0) TryStartReload();
             return true;
         }
@@ -398,7 +402,7 @@ namespace CombatExtended
             }
 
             // don't forget to set the clip to empty...
-            curMagCountInt = 0;
+            CurMagCount = 0;
 
             return true;
         }
@@ -466,7 +470,6 @@ namespace CombatExtended
                         newMagCount = Props.magazineSize;
                         ammoThing.stackCount -= Props.magazineSize;
                     }
-                    if (CompInventory != null) CompInventory.UpdateInventory();
                 }
 
                 // If there's less ammo in inventory than the weapon can hold, or if there's only one bullet left if reloading one at a time
@@ -487,7 +490,7 @@ namespace CombatExtended
             {
                 newMagCount = (Props.reloadOneAtATime) ? (curMagCountInt + 1) : Props.magazineSize;
             }
-            curMagCountInt = newMagCount;
+            CurMagCount = newMagCount;
             if (turret != null) turret.isReloading = false;
             if (parent.def.soundInteract != null) parent.def.soundInteract.PlayOneShot(new TargetInfo(Position, Find.CurrentMap, false));
         }
@@ -504,7 +507,7 @@ namespace CombatExtended
                 currentAmmoInt = newAmmo;
                 selectedAmmo = newAmmo;
             }
-            curMagCountInt = Props.magazineSize;
+            CurMagCount = Props.magazineSize;
         }
 
         public bool TryFindAmmoInInventory(out Thing ammoThing)
