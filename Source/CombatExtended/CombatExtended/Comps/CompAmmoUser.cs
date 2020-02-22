@@ -502,6 +502,7 @@ namespace CombatExtended
             if (newAmmo != null)
             {
                 currentAmmoInt = newAmmo;
+                selectedAmmo = newAmmo;
             }
             curMagCountInt = Props.magazineSize;
         }
