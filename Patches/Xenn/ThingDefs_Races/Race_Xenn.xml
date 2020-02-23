@@ -16,7 +16,7 @@
 				<!-- === Note to future furball compatibility nerds: 		=== -->
 				<!-- === Paste the defName of your horrible alien there   |	=== -->
 				<!-- === 												  V	=== -->
-				<xpath>*/AlienRace.ThingDef_AlienRace[defName="Alien_Xenn"]</xpath>
+				<xpath>Defs/AlienRace.ThingDef_AlienRace[defName="Alien_Xenn"]</xpath>
 				<value>
 					<li Class="CombatExtended.RacePropertiesExtensionCE">
 						<bodyShape>Humanoid</bodyShape>
@@ -31,7 +31,7 @@
 				<!-- === Shouldn't need to change this at all		  === -->
 				<!-- === Unless you changed the name of your BaseXennPawn === -->
 				<!-- === In which case change "BaseXennPawn" to that name === -->
-				<xpath>*/ThingDef[@Name="BaseXennPawn"]/comps</xpath>
+				<xpath>Defs/ThingDef[@Name="BaseXennPawn"]/comps</xpath>
 				<value>
 					<li>
 						<compClass>CombatExtended.CompPawnGizmo</compClass>
@@ -45,7 +45,7 @@
 			<!-- === And also defines armor penetration, which allows them	=== -->
 			<!-- === to actually do damage.									=== -->
 			<li Class="PatchOperationAdd">
-				<xpath>*/AlienRace.ThingDef_AlienRace[defName = "Alien_Xenn"]/statBases</xpath>
+				<xpath>Defs/AlienRace.ThingDef_AlienRace[defName = "Alien_Xenn"]/statBases</xpath>
 				<value>
 					<AimingAccuracy>1</AimingAccuracy>
 					<MeleeDodgeChance>1</MeleeDodgeChance>
@@ -57,7 +57,7 @@
 			</li>
 
 			<li Class="PatchOperationReplace">
-				<xpath>*/AlienRace.ThingDef_AlienRace[defName="Alien_Xenn"]/tools</xpath>
+				<xpath>Defs/AlienRace.ThingDef_AlienRace[defName="Alien_Xenn"]/tools</xpath>
 				<value>
 					<tools>
 						<li Class="CombatExtended.ToolCE">
@@ -107,7 +107,7 @@
 			<!-- === then change 'em			   === -->
 
 			<li Class="PatchOperationReplace">
-				<xpath>*/ThingDef[@Name="BaseXennPawn"]/inspectorTabs/li[.="ITab_Pawn_Gear"]</xpath>
+				<xpath>Defs/ThingDef[@Name="BaseXennPawn"]/inspectorTabs/li[.="ITab_Pawn_Gear"]</xpath>
 				<value>
 					<li>CombatExtended.ITab_Inventory</li>
 				</value>
@@ -115,7 +115,7 @@
 
 			<li Class="PatchOperationAdd">
 
-				<xpath>*/ThingDef[@Name="BaseXennPawn"]/comps</xpath>
+				<xpath>Defs/ThingDef[@Name="BaseXennPawn"]/comps</xpath>
 				<value>
 					<li Class="CombatExtended.CompProperties_Inventory" />
 				</value>
