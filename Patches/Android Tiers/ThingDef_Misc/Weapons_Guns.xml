@@ -24,7 +24,7 @@
 					<recoilAmount>1.72</recoilAmount>
 					<verbClass>CombatExtended.Verb_ShootCE</verbClass>
 					<hasStandardCommand>true</hasStandardCommand>
-					<defaultProjectile>Bullet_40x53mmGrenade_HE</defaultProjectile>
+					<defaultProjectile>Bullet_40x365mmBofors_AP</defaultProjectile>
 					<warmupTime>1.45</warmupTime>
 					<burstShotCount>6</burstShotCount>
 					<ticksBetweenBurstShots>10</ticksBetweenBurstShots>
@@ -38,9 +38,9 @@
 				</Properties>
 				
 				<AmmoUser>
-					<magazineSize>42</magazineSize>
+					<magazineSize>24</magazineSize>
 					<reloadTime>4</reloadTime>
-					<ammoSet>AmmoSet_40x53mmGrenade</ammoSet>
+					<ammoSet>AmmoSet_40x365mmBofors</ammoSet>
 				</AmmoUser>
 				<FireModes>
 					<aimedBurstShotCount>3</aimedBurstShotCount>
@@ -51,7 +51,10 @@
 			<li Class="PatchOperationReplace">
 				<xpath>Defs/ThingDef[defName="Mech40MMCannon"]/description</xpath>
 				<value>
-					<description>This modified 40mm Cannon is capable of burst firing grenades in quick succession. Designed for area saturation or anti-mechanoid combat, it is quite the weapon. Originally being the factory standard when producing the M7 Mech, equipped on every unit in production.</description>
+					<!-- Change description, as original one mentions "three 80kg rounds", which is laughably unrealistic 
+					     (For comparison, the real-life 120 mm M829 sabot tank rounds each have a mass of only 22.3 kg, 
+						 so it stands that the smaller 40 mm should have a much lower mass )-->
+					<description>This modified 40mm Cannon is capable of burst firing three 40x365mm Bofors rounds in quick succession. Designed for anti-material or mech on mech combat, it is quite the weapon. Originally being the factory standard when producing the M7 Mech, equipped on every unit in production</description>
 				</value>
 			</li>
 			
@@ -110,7 +113,7 @@
 				<Properties>
 					<verbClass>CombatExtended.Verb_ShootCE</verbClass>
 					<hasStandardCommand>true</hasStandardCommand>
-					<defaultProjectile>Bullet_145x114mm_FMJ</defaultProjectile>
+					<defaultProjectile>Bullet_AndroidTiersX5Pistol</defaultProjectile>
 					<warmupTime>0.7</warmupTime>
 					<range>55</range>
 					<soundCast>40MMCannon</soundCast>
@@ -123,7 +126,7 @@
 				<AmmoUser>
 					<magazineSize>15</magazineSize>
 					<reloadTime>4</reloadTime>
-					<ammoSet>AmmoSet_145x114mm</ammoSet>
+					<ammoSet>AmmoSet_AndroidTiersX5Pistol</ammoSet>
 				</AmmoUser>
 			</li>
 			
@@ -166,6 +169,15 @@
 				</value>
 			</li>
 			
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="MechHandCannon"]/weaponTags</xpath>
+				<value>
+					<weaponTags>
+						<li>CE_Sidearm_M7Mech</li>
+					</weaponTags>
+				</value>
+			</li>
+			
 			<!-- ==========  Mastiff  =========== -->
 			
 			<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
@@ -183,34 +195,27 @@
 					<recoilAmount>1.72</recoilAmount>
 					<verbClass>CombatExtended.Verb_ShootCE</verbClass>
 					<hasStandardCommand>true</hasStandardCommand>
-					<defaultProjectile>Bullet_12GaugeCharged</defaultProjectile>
+					<defaultProjectile>Bullet_MastiffShotgunShell</defaultProjectile>
 					<warmupTime>0.6</warmupTime>
-					<burstShotCount>6</burstShotCount>
+					<burstShotCount>1</burstShotCount>
 					<ticksBetweenBurstShots>0</ticksBetweenBurstShots>
 					<range>25</range>
-					<soundCast>40MMCannon</soundCast>
+					<soundCast>SharpThrower</soundCast>
 					<soundCastTail>GunTail_Heavy</soundCastTail>
 					<muzzleFlashScale>18</muzzleFlashScale>
 					<recoilPattern>Mounted</recoilPattern>
 				</Properties>
 				
 				<AmmoUser>
-					<magazineSize>72</magazineSize>
-					<reloadTime>4</reloadTime>
-					<ammoSet>AmmoSet_12GaugeCharged</ammoSet>
+					<magazineSize>5</magazineSize>
+					<reloadOneAtATime>true</reloadOneAtATime>
+					<reloadTime>1.75</reloadTime>
+					<ammoSet>AmmoSet_MastiffShotgunShell</ammoSet>
 				</AmmoUser>
 				<FireModes>
-					<aimedBurstShotCount>3</aimedBurstShotCount>
 					<aiUseBurstMode>FALSE</aiUseBurstMode>
 				</FireModes>
 				
-			</li>
-			
-			<li Class="PatchOperationReplace">
-				<xpath>Defs/ThingDef[defName="MechMastiffGun"]/description</xpath>
-				<value>
-					<description>A mech shotgun, designed to deliver a heavy punch. This gun cools its firing mechanism constantly, permitting high volume burst fire.</description>
-				</value>
 			</li>
 			
 			<li Class="PatchOperationReplace">
@@ -282,10 +287,12 @@
 				</value>
 			</li>
 			
-			<li Class="PatchOperationAdd">
+			<li Class="PatchOperationReplace">
 				<xpath>Defs/ThingDef[defName="MeleeWeapon_MechKnife"]/weaponTags</xpath>
 				<value>
-					<li>CE_Sidearm_M7Mech</li>
+					<weaponTags>
+						<li>CE_Melee_M7Mech</li>
+					</weaponTags>
 				</value>
 			</li>
 			
