@@ -9,7 +9,7 @@
 		<match Class="PatchOperationSequence">
 			<operations>			
 
-				<!-- Claymore -->
+				<!-- Claymore -->	
 				<li Class="PatchOperationReplace">
 					<xpath>Defs/ThingDef[defName="VFEM_MeleeWeapon_Claymore"]/tools</xpath>
 					<value>
@@ -72,13 +72,16 @@
 					</value>
 				</li>
 
-				<li Class="PatchOperationReplace">
-					<xpath>Defs/ThingDef[defName="VFEM_MeleeWeapon_Claymore"]/stuffCategories[li="Metallic"]</xpath>
-					<value>
-						<li>Steeled</li>
-					</value>
-				</li>
-						
+                <li Class="PatchOperationReplace">
+                    <xpath>Defs/ThingDef[defName="VFEM_MeleeWeapon_Claymore"]/stuffCategories</xpath>
+                    <value>
+                    <stuffCategories>
+                        <li>Steeled</li>
+						<li>Woody</li>						
+                    </stuffCategories>    
+                    </value>
+                </li>
+					
 			</operations>
 		</match>
 	</Operation>
