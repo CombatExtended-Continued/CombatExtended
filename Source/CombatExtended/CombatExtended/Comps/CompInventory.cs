@@ -281,6 +281,8 @@ namespace CombatExtended
                  weight = eq.GetStatValue(StatDefOf.Mass);
             //old     weight = eq.GetStatValue(CE_StatDefOf.Weight);
                  bulk = eq.GetStatValue(CE_StatDefOf.Bulk);
+
+            /*
             CompAmmoUser comp = eq.TryGetComp<CompAmmoUser>();
             if (comp != null && comp.CurrentAmmo != null)
             {
@@ -288,6 +290,7 @@ namespace CombatExtended
                 //old     weight += comp.currentAmmo.GetStatValueAbstract(CE_StatDefOf.Weight) * comp.curMagCount;
                 bulk += comp.CurrentAmmo.GetStatValueAbstract(CE_StatDefOf.Bulk) * comp.CurMagCount;
             }
+            */
         }
 
         /// <summary>
