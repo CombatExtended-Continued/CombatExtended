@@ -16,6 +16,7 @@
 		<ammoTypes>
 			<Ammo_50mmGS50Grenade_HE>Bullet_50mmGS50Grenade_HE</Ammo_50mmGS50Grenade_HE>
 			<Ammo_50mmGS50Grenade_EMP>Bullet_50mmGS50Grenade_EMP</Ammo_50mmGS50Grenade_EMP>
+			<Ammo_50mmGS50Grenade_Smoke>Bullet_50mmGS50Grenade_Smoke</Ammo_50mmGS50Grenade_Smoke>	  			
 		</ammoTypes>
 	</CombatExtended.AmmoSetDef> 
 
@@ -80,11 +81,34 @@
 				<explosionDamageDef>Bomb</explosionDamageDef>
 				<explosionRadius>0.5</explosionRadius>
 				<fragments>
-					<Fragment_Small>3</Fragment_Small>
+					<Fragment_Large>1</Fragment_Large>
 				</fragments>
 			</li>
 		</comps>
 	</ThingDef>  
+
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="50mmGS50GrenadeBase">
+		<defName>Ammo_50mmGS50Grenade_Smoke</defName>
+		<label>50mmGS50 grenade (Smoke)</label>
+		<graphicData>
+		<texPath>Things/Ammo/GrenadeLauncher/GS50_SMK</texPath>
+		<graphicClass>Graphic_StackCount</graphicClass>
+		</graphicData>
+		<statBases>
+		<MarketValue>1.92</MarketValue>
+		</statBases>
+		<ammoClass>Smoke</ammoClass>
+		<comps>
+		<li Class="CombatExtended.CompProperties_ExplosiveCE">
+			<explosionDamage>5</explosionDamage>
+			<explosionDamageDef>Bomb</explosionDamageDef>
+			<explosionRadius>0.5</explosionRadius>
+			<fragments>
+				<Fragment_Large>1</Fragment_Large>
+			</fragments>
+		</li>
+		</comps>
+	</ThingDef>
 
 	<!-- ================== Projectiles ================== -->
 
@@ -130,17 +154,24 @@
 		</projectile>
 	</ThingDef>
 
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="Base50mmGS50GrenadeBullet">
+		<defName>Bullet_50mmGS50Grenade_Smoke</defName>
+		<label>50mmGS50 grenade (Smoke)</label>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+		<explosionRadius>2</explosionRadius>
+		<damageDef>Smoke</damageDef>
+		<postExplosionSpawnThingDef>Gas_Smoke</postExplosionSpawnThingDef>
+		<preExplosionSpawnChance>1</preExplosionSpawnChance>
+		</projectile>
+	</ThingDef>
+
 	<!-- ==================== Recipes ========================== -->
-	
-	<!-- Note: We are deviating from the standard CE calculations by replacing some of the steel with chemfuel. 
-	           This is because the GS-50 series of grenades have polymer cases, grenade shells and fins -->
 
 	<RecipeDef ParentName="AmmoRecipeBase">
 		<defName>MakeAmmo_50mmGS50Grenade_HE</defName>
 		<label>make 50mm GO-SO HE grenades x50</label>
 		<description>Craft 50 GO-SO 50mm HE grenades.</description>
 		<jobString>Making 50mm GO-SO HE grenades.</jobString>
-		<workAmount>14600</workAmount>
 		<ingredients>
 			<li>
 				<filter>
@@ -148,15 +179,7 @@
 						<li>Steel</li>
 					</thingDefs>
 				</filter>
-				<count>26</count>
-			</li>
-			<li>
-				<filter>
-					<thingDefs>
-						<li>Chemfuel</li>
-					</thingDefs>
-				</filter>
-				<count>20</count>
+				<count>46</count>
 			</li>
 			<li>
 				<filter>
@@ -164,7 +187,7 @@
 						<li>FSX</li>
 					</thingDefs>
 				</filter>
-				<count>7</count>
+				<count>5</count>
 			</li>
 			<li>
 				<filter>
@@ -178,14 +201,14 @@
 		<fixedIngredientFilter>
 			<thingDefs>
 				<li>Steel</li>
-				<li>Chemfuel</li>
 				<li>FSX</li>
 				<li>ComponentIndustrial</li>
 			</thingDefs>
 		</fixedIngredientFilter>
 		<products>
-			<Ammo_50mmGS50Grenade_HE>50</Ammo_50mmGS50Grenade_HE>
+		<Ammo_50mmGS50Grenade_HE>50</Ammo_50mmGS50Grenade_HE>
 		</products>
+		<workAmount>7800</workAmount>		
 	</RecipeDef>
 
 	<RecipeDef ParentName="AmmoRecipeBase">
@@ -193,7 +216,6 @@
 		<label>make 50mm EM-50 EMP grenades x50</label>
 		<description>Craft 50 EM-50 50mm EMP grenades.</description>
 		<jobString>Making 50mm EM-50 EMP grenades.</jobString>
-		<workAmount>15400</workAmount>
 		<ingredients>
 			<li>
 				<filter>
@@ -201,15 +223,7 @@
 						<li>Steel</li>
 					</thingDefs>
 				</filter>
-				<count>26</count>
-			</li>
-			<li>
-				<filter>
-					<thingDefs>
-						<li>Chemfuel</li>
-					</thingDefs>
-				</filter>
-				<count>20</count>
+				<count>46</count>
 			</li>
 			<li>
 				<filter>
@@ -227,9 +241,54 @@
 				<li>ComponentIndustrial</li>
 			</thingDefs>
 		</fixedIngredientFilter>
+		<workAmount>9400</workAmount>		
 		<products>
-			<Ammo_50mmGS50Grenade_EMP>50</Ammo_50mmGS50Grenade_EMP>
+		<Ammo_50mmGS50Grenade_EMP>50</Ammo_50mmGS50Grenade_EMP>
 		</products>
+	</RecipeDef>
+
+	<RecipeDef ParentName="AmmoRecipeBase">
+		<defName>MakeAmmo_50mmGS50Grenade_Smoke</defName>
+		<label>make 50mmGS50 smoke grenades x100</label>
+		<description>Craft 100 50mmGS50 smoke grenades.</description>
+		<jobString>Making 50mmGS50 smoke grenades.</jobString>
+		<ingredients>
+		<li>
+			<filter>
+			<thingDefs>
+				<li>Steel</li>
+			</thingDefs>
+			</filter>
+			<count>46</count>
+		</li>
+		<li>
+			<filter>
+			<thingDefs>
+				<li>Prometheum</li>
+			</thingDefs>
+			</filter>
+			<count>4</count>
+		</li>
+		<li>
+			<filter>
+			<thingDefs>
+				<li>ComponentIndustrial</li>
+			</thingDefs>
+			</filter>
+			<count>2</count>
+		</li>      
+		</ingredients>
+		<fixedIngredientFilter>
+		<thingDefs>
+			<li>Steel</li>
+			<li>Prometheum</li>
+			<li>ComponentIndustrial</li>        
+		</thingDefs>
+		</fixedIngredientFilter>
+		<products>
+		<Ammo_50mmGS50Grenade_Smoke>100</Ammo_50mmGS50Grenade_Smoke>
+		</products>
+		<workAmount>7400</workAmount>
 	</RecipeDef>
 
 </Defs>
