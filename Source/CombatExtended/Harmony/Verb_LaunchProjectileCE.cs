@@ -13,7 +13,7 @@ namespace CombatExtended.Harmony
             var targetMethod = AccessTools.Method(typeof(Verb_LaunchProjectileCE), nameof(Verb_LaunchProjectileCE.TryFindShootLineFromTo));
             if (targetMethod == null)
             {
-                Log.Error($"CE :: Transpiler could not find method info for {typeof(Verb_LaunchProjectileCE).Name}.{nameof(Verb_LaunchProjectileCE.TryStartCastOn)}");
+                Log.Error($"Combat Extended :: Transpiler could not find method info for {typeof(Verb_LaunchProjectileCE).Name}.{nameof(Verb_LaunchProjectileCE.TryStartCastOn)}");
             }
             
             foreach (var code in instructions)

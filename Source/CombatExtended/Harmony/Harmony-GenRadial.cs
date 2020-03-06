@@ -19,7 +19,7 @@ namespace CombatExtended.Harmony
 	internal static class Harmony_GenRadial_RadialPatternCount
 	{
 		// used for debug outputs (probably not used much).
-		static readonly string logPrefix = Assembly.GetExecutingAssembly().GetName().Name + " :: " + typeof(Harmony_GenRadial_RadialPatternCount).Name + " :: ";
+		static readonly string logPrefix = "Combat Extended :: " + typeof(Harmony_GenRadial_RadialPatternCount).Name + " :: ";
 		
 		// this replaces -60 and 60 in SetupRadialPattern()
 		const SByte newRadialRange = SByte.MaxValue; // set to max value as I was creeping up on it to make things look right.  Though no crashes the circle was squished on cardinal directions.
