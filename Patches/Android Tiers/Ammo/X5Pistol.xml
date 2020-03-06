@@ -4,6 +4,7 @@
 	<Operation Class="PatchOperationFindMod">
 		<mods>
 			<li>[1.0] Android tiers</li>
+			<!--<li>Android tiers</li>-->
 		</mods>
 		<match Class="PatchOperationSequence">
 			<operations>
@@ -56,22 +57,17 @@
 
 						<!-- ================== Projectiles ================== -->
 
-						<ThingDef Class="CombatExtended.AmmoDef" Name="BaseAndroidTiersX5Pistol" ParentName="BaseBullet" Abstract="true">
+						<!-- Workaround for conditionally-patched projectiles: use an existing abstract class from the generic ammo library (In this case, Base12GaugeBullet) -->
+						<ThingDef Class="CombatExtended.AmmoDef" ParentName="Base600NitroExpressBullet">
+							<defName>Bullet_AndroidTiersX5Pistol</defName>
+							<label>X-5 round</label>
 							<graphicData>
 								<texPath>Things/Projectile/ShellHighExplosive</texPath>
 								<graphicClass>Graphic_Single</graphicClass>
 								<shaderType>TransparentPostLight</shaderType>
 							</graphicData>
 							<projectile Class="CombatExtended.ProjectilePropertiesCE">
-								<damageDef>Bullet</damageDef>
-								<speed>124</speed>
-							</projectile>
-						</ThingDef>
-
-						<ThingDef Class="CombatExtended.AmmoDef" ParentName="BaseAndroidTiersX5Pistol">
-							<defName>Bullet_AndroidTiersX5Pistol</defName>
-							<label>X-5 round</label>
-							<projectile Class="CombatExtended.ProjectilePropertiesCE">
+							<speed>124</speed>
 								<damageAmountBase>38</damageAmountBase>
 								<armorPenetrationSharp>11</armorPenetrationSharp>
 								<armorPenetrationBlunt>222.960</armorPenetrationBlunt>
