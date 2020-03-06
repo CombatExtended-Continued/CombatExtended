@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="utf-8" ?>
+
+<Patch>
+
+	<Operation Class="PatchOperationFindMod">
+    <mods>
+        <li>Vanilla Factions Expanded - Medieval</li>
+    </mods>
+		<match Class="PatchOperationSequence">
+			<operations>			
+
+				<!-- Kite Shield -->
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/ThingDef[defName="VFEM_Shield_Kite"]</xpath>
+					<value>
+						 <ThingDef ParentName="ShieldBase">
+							<defName>VFEM_Shield_Kite</defName>
+							<label>kite shield</label>
+							<description>A large wooden shield, with the front decoratively covered by leather. Offers a moderate amount of protection against melee and ranged attacks.</description>
+							<techLevel>Medieval</techLevel>
+							<graphicData>
+								<texPath>Things/Item/Equipment/Shield/HeaterShield/HeaterShield</texPath>
+								<graphicClass>Graphic_Single</graphicClass>
+								<drawSize>0.88</drawSize>
+							</graphicData>
+							<thingCategories Inherit="False">
+								<li>Shields</li>
+							</thingCategories>
+							<costStuffCount>25</costStuffCount>							
+							<costList>
+								<WoodLog>70</WoodLog>
+							</costList>
+							<stuffCategories>
+								<li>Leathery</li>
+							</stuffCategories>
+							<recipeMaker>
+							  <researchPrerequisite>Smithing</researchPrerequisite>		
+							  <recipeUsers>
+								<li>FueledSmithy</li>
+								<li>ElectricSmithy</li>		
+							  </recipeUsers>
+							</recipeMaker>		
+							<statBases>
+							  <WorkToMake>3000</WorkToMake>
+							  <MaxHitPoints>145</MaxHitPoints>
+							  <ArmorRating_Blunt>4</ArmorRating_Blunt>
+							  <ArmorRating_Sharp>3</ArmorRating_Sharp>
+							  <Mass>7.5</Mass>
+							  <Bulk>8</Bulk>
+							  <WornBulk>5</WornBulk>
+							</statBases>
+							<equippedStatOffsets>
+							  <ReloadSpeed>-0.1</ReloadSpeed>
+							  <MeleeHitChance>-1</MeleeHitChance>
+							  <ShootingAccuracyPawn>-0.2</ShootingAccuracyPawn>
+							  <AimingAccuracy>-0.05</AimingAccuracy>
+							  <Suppressability>-0.25</Suppressability>
+							  <MeleeCritChance>-0.08</MeleeCritChance>
+							  <MeleeParryChance>1.0</MeleeParryChance>
+							</equippedStatOffsets>
+							<apparel>
+							  <tags>
+								<li>KiteShield</li>
+							  </tags>
+							</apparel>
+							<comps>
+								<li Class="CompOversizedWeapon.CompProperties_OversizedWeapon"/>							
+								<li>
+									<compClass>CompColorable</compClass>
+								</li>								
+							</comps>							
+							<modExtensions>
+							  <li Class="CombatExtended.ShieldDefExtension">
+								<shieldCoverage>
+								  <li>Hands</li>
+								  <li>Arms</li>
+								  <li>Shoulders</li>
+								  <li>Torso</li>
+								  <li>Neck</li>
+								  <li>Legs</li>		  
+								</shieldCoverage>
+								<drawAsTall>false</drawAsTall>
+							  </li>
+							<li Class="VFECore.ThingDefExtension">
+								<useFactionColourForPawnKinds>
+									<li>VFEM_Medieval_Footsoldier</li>
+									<li>VFEM_Medieval_Knight</li>
+									<li>VFEM_Medieval_Lord</li>
+								</useFactionColourForPawnKinds>
+							</li>							  
+							</modExtensions>
+						  </ThingDef>					
+					</value>
+				</li>
+
+				<!-- Heater Shield -->
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/ThingDef[defName="VFEM_Shield_Heater"]</xpath>
+					<value>
+						 <ThingDef ParentName="ShieldBase">
+							<defName>VFEM_Shield_Heater</defName>
+							<label>heater shield</label>
+							<description>A heavy medium-sized steel shield, with the front decoratively covered by leather. Offers a significant amount of protection against melee and ranged attacks.</description>
+							<techLevel>Medieval</techLevel>
+							<graphicData>
+								<texPath>Things/Item/Equipment/Shield/HeaterShield/HeaterShield</texPath>
+								<graphicClass>Graphic_Single</graphicClass>
+								<drawSize>0.88</drawSize>
+							</graphicData>
+							<costStuffCount>20</costStuffCount>
+							<costList>
+								<Steel>80</Steel>
+							</costList>
+							<stuffCategories>
+								<li>Leathery</li>
+							</stuffCategories>
+							<thingCategories Inherit="False">
+								<li>Shields</li>
+							</thingCategories>							
+							<recipeMaker>
+							  <researchPrerequisite>Smithing</researchPrerequisite>		
+							  <recipeUsers>
+								<li>FueledSmithy</li>
+								<li>ElectricSmithy</li>		
+							  </recipeUsers>
+							</recipeMaker>		
+							<statBases>
+							  <WorkToMake>8000</WorkToMake>
+							  <MaxHitPoints>145</MaxHitPoints>
+							  <ArmorRating_Blunt>0.23</ArmorRating_Blunt>
+							  <ArmorRating_Sharp>0.32</ArmorRating_Sharp>
+							  <Mass>8</Mass>
+							  <Bulk>9</Bulk>
+							  <WornBulk>6</WornBulk>
+							</statBases>
+							<equippedStatOffsets>
+							  <ReloadSpeed>-0.1</ReloadSpeed>
+							  <MeleeHitChance>-1</MeleeHitChance>
+							  <ShootingAccuracyPawn>-0.2</ShootingAccuracyPawn>
+							  <AimingAccuracy>-0.05</AimingAccuracy>
+							  <Suppressability>-0.25</Suppressability>
+							  <MeleeCritChance>-0.08</MeleeCritChance>
+							  <MeleeParryChance>1.0</MeleeParryChance>
+							</equippedStatOffsets>
+							<apparel>
+							  <tags>
+								<li>HeaterShield</li>
+							  </tags>
+							</apparel>
+							<comps>
+								<li Class="CompOversizedWeapon.CompProperties_OversizedWeapon"/>							
+								<li>
+									<compClass>CompColorable</compClass>
+								</li>
+							</comps>							
+							<modExtensions>
+							  <li Class="CombatExtended.ShieldDefExtension">
+								<shieldCoverage>
+								  <li>Hands</li>
+								  <li>Arms</li>
+								  <li>Shoulders</li>
+								  <li>Torso</li>
+								</shieldCoverage>
+								<drawAsTall>false</drawAsTall>
+							  </li>
+							<li Class="VFECore.ThingDefExtension">
+								<useFactionColourForPawnKinds>
+									<li>VFEM_Medieval_Footsoldier</li>
+									<li>VFEM_Medieval_Knight</li>
+									<li>VFEM_Medieval_Lord</li>
+								</useFactionColourForPawnKinds>
+							</li>							  
+							</modExtensions>
+						  </ThingDef>					
+					</value>
+				</li>				
+										
+			</operations>
+		</match>
+	</Operation>
+</Patch>
