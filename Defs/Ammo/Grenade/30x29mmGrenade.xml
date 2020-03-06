@@ -16,6 +16,7 @@
     <ammoTypes>
       <Ammo_30x29mmGrenade_HE>Bullet_30x29mmGrenade_HE</Ammo_30x29mmGrenade_HE>
       <Ammo_30x29mmGrenade_EMP>Bullet_30x29mmGrenade_EMP</Ammo_30x29mmGrenade_EMP>
+			<Ammo_30x29mmGrenade_Smoke>Bullet_30x29mmGrenade_Smoke</Ammo_30x29mmGrenade_Smoke>	         
     </ammoTypes>
   </CombatExtended.AmmoSetDef>
 
@@ -86,6 +87,29 @@
     </comps>
   </ThingDef>
 
+  <ThingDef Class="CombatExtended.AmmoDef" ParentName="30x29mmGrenadeBase">
+    <defName>Ammo_30x29mmGrenade_Smoke</defName>
+    <label>30x29mm grenade (Smoke)</label>
+    <graphicData>
+      <texPath>Things/Ammo/GrenadeLauncher/SMK</texPath>
+      <graphicClass>Graphic_StackCount</graphicClass>
+    </graphicData>
+    <statBases>
+      <MarketValue>2.44</MarketValue>
+    </statBases>
+    <ammoClass>Smoke</ammoClass>
+    <comps>
+      <li Class="CombatExtended.CompProperties_ExplosiveCE">
+        <explosionDamage>5</explosionDamage>
+        <explosionDamageDef>Bomb</explosionDamageDef>
+        <explosionRadius>0.75</explosionRadius>
+        <fragments>
+          <Fragment_Large>1</Fragment_Large>
+        </fragments>
+      </li>
+    </comps>
+  </ThingDef>
+
   <!-- ================== Projectiles ================== -->
 
   <ThingDef Class="CombatExtended.AmmoDef" Name="Base30x29mmGrenadeBullet" ParentName="BaseBullet" Abstract="true">
@@ -126,6 +150,17 @@
       <explosionRadius>1.5</explosionRadius>
       <damageDef>EMP</damageDef>
       <damageAmountBase>20</damageAmountBase>
+    </projectile>
+  </ThingDef>
+
+  <ThingDef Class="CombatExtended.AmmoDef" ParentName="Base30x29mmGrenadeBullet">
+    <defName>Bullet_30x29mmGrenade_Smoke</defName>
+    <label>30x29mm grenade (Smoke)</label>
+    <projectile Class="CombatExtended.ProjectilePropertiesCE">
+      <explosionRadius>2</explosionRadius>
+      <damageDef>Smoke</damageDef>
+      <postExplosionSpawnThingDef>Gas_Smoke</postExplosionSpawnThingDef>
+      <preExplosionSpawnChance>1</preExplosionSpawnChance>
     </projectile>
   </ThingDef>
 
@@ -208,6 +243,50 @@
       <Ammo_30x29mmGrenade_EMP>100</Ammo_30x29mmGrenade_EMP>
     </products>
     <workAmount>13400</workAmount>
+  </RecipeDef>
+
+  <RecipeDef ParentName="AmmoRecipeBase">
+    <defName>MakeAmmo_30x29mmGrenade_Smoke</defName>
+    <label>make 30x29mm smoke grenades x100</label>
+    <description>Craft 100 30x29mm smoke grenades.</description>
+    <jobString>Making 30x29mm smoke grenades.</jobString>
+    <ingredients>
+      <li>
+        <filter>
+          <thingDefs>
+            <li>Steel</li>
+          </thingDefs>
+        </filter>
+        <count>74</count>
+      </li>
+      <li>
+        <filter>
+          <thingDefs>
+            <li>Prometheum</li>
+          </thingDefs>
+        </filter>
+        <count>5</count>
+      </li>
+      <li>
+        <filter>
+          <thingDefs>
+            <li>ComponentIndustrial</li>
+          </thingDefs>
+        </filter>
+        <count>2</count>
+      </li>      
+    </ingredients>
+    <fixedIngredientFilter>
+      <thingDefs>
+        <li>Steel</li>
+        <li>Prometheum</li>
+        <li>ComponentIndustrial</li>        
+      </thingDefs>
+    </fixedIngredientFilter>
+    <products>
+      <Ammo_30x29mmGrenade_Smoke>100</Ammo_30x29mmGrenade_Smoke>
+    </products>
+    <workAmount>10600</workAmount>
   </RecipeDef>
 
 </Defs>
