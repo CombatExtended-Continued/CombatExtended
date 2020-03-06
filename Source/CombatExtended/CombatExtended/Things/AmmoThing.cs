@@ -65,10 +65,25 @@ namespace CombatExtended
             }
         }
 
+        int shouldDestroy = -1;
+        public bool ShouldDestroy
+        {
+            get
+            {
+                if (shouldDestroy == -1)
+                {
+                    shouldDestroy = !def.IsWeapon && (AmmoDef?.tradeTags?.Contains(AmmoInjector.destroyWithAmmoDisabledTag) ?? false)
+                        ? 1
+                        : 0;
+                }
+                return shouldDestroy == 1 && !Controller.settings.EnableAmmoSystem;
+            }
+        }
+
         public override void Tick()
         {
             // Self-destruct if ammo is disabled
-            if (!Controller.settings.EnableAmmoSystem && !def.IsWeapon && def is AmmoDef) Destroy(DestroyMode.Vanish);
+            if (ShouldDestroy) Destroy(DestroyMode.Vanish);
 
             base.Tick();
 

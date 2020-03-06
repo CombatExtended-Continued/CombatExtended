@@ -16,6 +16,7 @@
     <ammoTypes>
       <Ammo_40x53mmVOG25Grenade_HE>Bullet_40x53mmVOG25Grenade_HE</Ammo_40x53mmVOG25Grenade_HE>
       <Ammo_40x53mmVOG25Grenade_EMP>Bullet_40x53mmVOG25Grenade_EMP</Ammo_40x53mmVOG25Grenade_EMP>
+		  <Ammo_40x53mmVOG25Grenade_Smoke>Bullet_40x53mmVOG25Grenade_Smoke</Ammo_40x53mmVOG25Grenade_Smoke>      
     </ammoTypes>
   </CombatExtended.AmmoSetDef>
 	
@@ -85,7 +86,30 @@
       </li>
     </comps>
   </ThingDef>
-	
+
+  <ThingDef Class="CombatExtended.AmmoDef" ParentName="40x53mmVOG25GrenadeBase">
+    <defName>Ammo_40x53mmVOG25Grenade_Smoke</defName>
+    <label>40x53mmVOG25 grenade (Smoke)</label>
+    <graphicData>
+      <texPath>Things/Ammo/GrenadeLauncher/SMK</texPath>
+      <graphicClass>Graphic_StackCount</graphicClass>
+    </graphicData>
+    <statBases>
+      <MarketValue>2.15</MarketValue>
+    </statBases>
+    <ammoClass>Smoke</ammoClass>
+    <comps>
+      <li Class="CombatExtended.CompProperties_ExplosiveCE">
+        <explosionDamage>5</explosionDamage>
+        <explosionDamageDef>Bomb</explosionDamageDef>
+        <explosionRadius>1</explosionRadius>
+        <fragments>
+          <Fragment_Large>1</Fragment_Large>
+        </fragments>
+      </li>
+    </comps>
+  </ThingDef>
+
 	<!-- ================== Projectiles ================== -->
 
 	<ThingDef Class="CombatExtended.AmmoDef" Name="Base40x53mmVOG25GrenadeBullet" ParentName="BaseBullet" Abstract="true">
@@ -127,7 +151,18 @@
 			<damageAmountBase>27</damageAmountBase>
 		</projectile>
 	</ThingDef>
-  
+
+  <ThingDef Class="CombatExtended.AmmoDef" ParentName="Base40x53mmVOG25GrenadeBullet">
+    <defName>Bullet_40x53mmVOG25Grenade_Smoke</defName>
+    <label>40x53mmVOG25 grenade (Smoke)</label>
+    <projectile Class="CombatExtended.ProjectilePropertiesCE">
+      <explosionRadius>2.5</explosionRadius>
+      <damageDef>Smoke</damageDef>
+      <postExplosionSpawnThingDef>Gas_Smoke</postExplosionSpawnThingDef>
+      <preExplosionSpawnChance>1</preExplosionSpawnChance>
+    </projectile>
+  </ThingDef>
+
 	<!-- ==================== Recipes ========================== -->
 
   <RecipeDef ParentName="AmmoRecipeBase">
@@ -208,5 +243,49 @@
     </products>
     <workAmount>13400</workAmount>       
   </RecipeDef>
-	
+
+  <RecipeDef ParentName="AmmoRecipeBase">
+    <defName>MakeAmmo_40x53mmVOG25Grenade_Smoke</defName>
+    <label>make 40x53mmVOG25 smoke grenades x100</label>
+    <description>Craft 100 40x53mmVOG25 smoke grenades.</description>
+    <jobString>Making 40x53mmVOG25 smoke grenades.</jobString>
+    <ingredients>
+      <li>
+        <filter>
+          <thingDefs>
+            <li>Steel</li>
+          </thingDefs>
+        </filter>
+        <count>50</count>
+      </li>
+      <li>
+        <filter>
+          <thingDefs>
+            <li>Prometheum</li>
+          </thingDefs>
+        </filter>
+        <count>8</count>
+      </li>
+      <li>
+        <filter>
+          <thingDefs>
+            <li>ComponentIndustrial</li>
+          </thingDefs>
+        </filter>
+        <count>2</count>
+      </li>      
+    </ingredients>
+    <fixedIngredientFilter>
+      <thingDefs>
+        <li>Steel</li>
+        <li>Prometheum</li>
+        <li>ComponentIndustrial</li>        
+      </thingDefs>
+    </fixedIngredientFilter>
+    <products>
+      <Ammo_40x53mmVOG25Grenade_Smoke>100</Ammo_40x53mmVOG25Grenade_Smoke>
+    </products>
+    <workAmount>9400</workAmount>
+  </RecipeDef>
+
 </Defs>
