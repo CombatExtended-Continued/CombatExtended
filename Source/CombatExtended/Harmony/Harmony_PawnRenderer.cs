@@ -23,11 +23,11 @@ namespace CombatExtended.HarmonyCE
         }
 
         // Sync these with vanilla PawnRenderer constants
-        private const float YOffsetBehind = 0.00390625f;
-        private const float YOffsetHead = 0.02734375f;
-        private const float YOffsetOnHead = 0.03125f;
-        private const float YOffsetPostHead = 0.03515625f;
-        private const float YOffsetIntervalClothes = 0.00390625f;
+        private const float YOffsetBehind = 0.003787879f;
+        private const float YOffsetHead = 0.0265151523f;
+        private const float YOffsetOnHead = 0.0303030312f;
+        private const float YOffsetPostHead = 0.03409091f;
+        private const float YOffsetIntervalClothes = 0.003787879f;
 
         private static void DrawHeadApparel(PawnRenderer renderer, Mesh mesh, Vector3 rootLoc, Vector3 headLoc, Vector3 headOffset, Rot4 bodyFacing, Quaternion quaternion, bool portrait, ref bool hideHair, bool invisible)
         {
