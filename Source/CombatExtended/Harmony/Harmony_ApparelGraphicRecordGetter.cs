@@ -6,6 +6,20 @@ using Verse;
 
 namespace CombatExtended.HarmonyCE
 {
+    /*
+     *  If all apparel worn on pawns is the drop image of that apparel,
+     *      PLEASE change "code.opcode = OpCodes.Brtrue"
+     *                 to "code.opcode = OpCodes.Brfalse"
+     *      
+     *      
+     *  This is due to the IL generated upon compiling:
+     *  
+     *  - sometimes, the generated IL jumps to the "else" condition (draw as worn apparel rather than as an item)
+     *      when the provided check (RenderSpecial) is TRUE
+     *      
+     *  - at other times, it jumps when the check is FALSE
+     */
+
     [HarmonyPatch(typeof(ApparelGraphicRecordGetter), "TryGetGraphicApparel")]
     internal static class Harmony_ApparelGraphicRecordGetter
     {
@@ -23,7 +37,7 @@ namespace CombatExtended.HarmonyCE
                 if (write)
                 {
                     write = false;
-                    code.opcode = OpCodes.Brfalse;
+                    code.opcode = OpCodes.Brtrue;
                 }
 
                 if (code.opcode == OpCodes.Ldsfld && code.operand == AccessTools.Field(typeof(ApparelLayerDefOf), nameof(ApparelLayerDefOf.Overhead)))

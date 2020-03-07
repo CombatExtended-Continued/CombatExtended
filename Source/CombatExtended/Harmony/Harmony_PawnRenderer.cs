@@ -10,6 +10,16 @@ using Verse;
 
 namespace CombatExtended.HarmonyCE
 {
+    /*
+        Check this patch if:
+        - Apparel is rendered slightly off from the pawn sprite (update YOffset constants based on PawnRenderer values
+
+
+        If all apparel worn on pawns is the drop image of that apparel,
+            CHECK Harmony_ApparelGraphicRecordGetter.cs
+            INSTEAD!
+     */
+
     [HarmonyPatch(typeof(PawnRenderer), "RenderPawnInternal",
         typeof(Vector3), typeof(float), typeof(bool), typeof(Rot4), typeof(Rot4), typeof(RotDrawMode), typeof(bool), typeof(bool), typeof(bool))]
     internal static class Harmony_PawnRenderer_RenderPawnInternal
@@ -29,7 +39,7 @@ namespace CombatExtended.HarmonyCE
         private const float YOffsetPostHead = 0.03409091f;
         private const float YOffsetIntervalClothes = 0.003787879f;
 
-        private static void DrawHeadApparel(PawnRenderer renderer, Mesh mesh, Vector3 rootLoc, Vector3 headLoc, Vector3 headOffset, Rot4 bodyFacing, Quaternion quaternion, bool portrait, ref bool hideHair, bool invisible)
+        private static void DrawHeadApparel(PawnRenderer renderer, Mesh mesh, Vector3 rootLoc, Vector3 headLoc, Vector3 headOffset, Rot4 bodyFacing, Quaternion quaternion, bool portrait, ref bool hideHair)
         {
             var apparelGraphics = renderer.graphics.apparelGraphics;
             var headwearGraphics = apparelGraphics.Where(a => a.sourceApparel.def.apparel.LastLayer.GetModExtension<ApparelLayerExtension>()?.IsHeadwear ?? false).ToArray();
@@ -93,7 +103,6 @@ namespace CombatExtended.HarmonyCE
                         yield return new CodeInstruction(OpCodes.Ldloc_0);
                         yield return new CodeInstruction(OpCodes.Ldarg, 7);
                         yield return new CodeInstruction(OpCodes.Ldloca_S, 12);
-                        yield return new CodeInstruction(OpCodes.Ldarg, 8);
                         yield return new CodeInstruction(OpCodes.Callvirt, AccessTools.Method(typeof(Harmony_PawnRenderer_RenderPawnInternal), nameof(DrawHeadApparel)));
 
                         yield return code;
@@ -114,7 +123,7 @@ namespace CombatExtended.HarmonyCE
                 {
                     state = WriteState.None;
 
-                    yield return new CodeInstruction(OpCodes.Ldloca_S, 7);
+                    yield return new CodeInstruction(OpCodes.Ldloca_S, 2);
                     yield return new CodeInstruction(OpCodes.Dup);
                     yield return new CodeInstruction(OpCodes.Ldfld, AccessTools.Field(typeof(Vector3), nameof(Vector3.y)));
                     yield return new CodeInstruction(OpCodes.Ldarg_0);
@@ -123,7 +132,7 @@ namespace CombatExtended.HarmonyCE
                     yield return new CodeInstruction(OpCodes.Stfld, AccessTools.Field(typeof(Vector3), nameof(Vector3.y)));
                 }
 
-                if (code.opcode == OpCodes.Stloc_S && ((LocalBuilder)code.operand).LocalIndex == 14)
+                if (code.opcode == OpCodes.Stloc_S && ((LocalBuilder)code.operand).LocalIndex == 13)
                 {
                     state = WriteState.WriteHead;
                 }
