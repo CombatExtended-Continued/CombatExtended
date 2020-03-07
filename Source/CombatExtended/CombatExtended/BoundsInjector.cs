@@ -139,8 +139,12 @@ namespace CombatExtended
 			    	
     				try {	if (lifeStage.dessicatedBodyGraphicData != null && lifeStage.dessicatedBodyGraphicData.Graphic != null)
     						BoundMap(lifeStage.dessicatedBodyGraphicData.Graphic, GraphicType.Pawn);	}
-    				catch (Exception e) {	throw new Exception(def+".lifeStages["+i+"].dessicatedBodyGraphicData", e);	}
-    			}
+    				catch (Exception e) {	throw new Exception(def+".lifeStages["+i+"].dessicatedBodyGraphicData", e); }
+
+                    try {   if (lifeStage.femaleDessicatedBodyGraphicData != null && lifeStage.femaleDessicatedBodyGraphicData.Graphic != null)
+                            BoundMap(lifeStage.femaleDessicatedBodyGraphicData.Graphic, GraphicType.Pawn);    }
+                    catch (Exception e) {   throw new Exception(def+".lifeStages["+i+"].femaleDessicatedBodyGraphicData", e); }
+                }
     		}
     		
     		foreach (ThingDef def in DefDatabase<ThingDef>.AllDefs.Where<ThingDef>(x => x.plant != null))
