@@ -179,7 +179,7 @@ namespace CombatExtended
             if (!flag && Rand.Chance(preExplosionSpawnChance) && c.Walkable(Map)) {
 				TrySpawnExplosionThing(preExplosionSpawnThingDef, c, preExplosionSpawnThingCount);
 			}
-			damType.Worker.ExplosionAffectCell(this, c, damagedThings, !flag);
+			damType.Worker.ExplosionAffectCell(this, c, damagedThings, null, !flag);
 			if (!flag && Rand.Chance(postExplosionSpawnChance) && c.Walkable(Map)) {
 				TrySpawnExplosionThing(postExplosionSpawnThingDef, c, postExplosionSpawnThingCount);
 			}
