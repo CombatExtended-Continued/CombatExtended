@@ -1,10 +1,10 @@
 ﻿using System.Collections.Generic;
 using System.Reflection.Emit;
-using Harmony;
+using HarmonyLib;
 using RimWorld;
 using Verse;
 
-namespace CombatExtended.Harmony
+namespace CombatExtended.HarmonyCE
 {
     [HarmonyPatch(typeof(ApparelGraphicRecordGetter), "TryGetGraphicApparel")]
     internal static class Harmony_ApparelGraphicRecordGetter

@@ -2,12 +2,12 @@
 using System.Globalization;
 using System.Linq;
 using System.Reflection;
-using Harmony;
+using HarmonyLib;
 using RimWorld;
 using Verse;
 using Verse.Noise;
 
-namespace CombatExtended.Harmony
+namespace CombatExtended.HarmonyCE
 {
     [HarmonyPatch]
     internal static class HarmonyThingDef
@@ -18,7 +18,7 @@ namespace CombatExtended.Harmony
 
         static MethodBase TargetMethod()
         {
-            var type = AccessTools.Inner(typeof(ThingDef), "<SpecialDisplayStats>c__Iterator1");
+            var type = AccessTools.Inner(typeof(ThingDef), "<SpecialDisplayStats>d__269") ?? AccessTools.Inner(typeof(ThingDef), "<SpecialDisplayStats>d__270");
             return AccessTools.Method(type, "MoveNext");
         }
 
@@ -58,10 +58,7 @@ namespace CombatExtended.Harmony
                         : def.fillPercent;
                     height *= CollisionVertical.MeterPerCellHeight;
 
-                    var newEntry = new StatDrawEntry(entry.category, "CE_CoverHeight".Translate(), height.ToStringByStyle(ToStringStyle.FloatMaxTwo) + " m", entry.DisplayPriorityWithinCategory)
-                    {
-                        overrideReportText = "CE_CoverHeightExplanation".Translate()
-                    };
+                    var newEntry = new StatDrawEntry(entry.category, "CE_CoverHeight".Translate(), height.ToStringByStyle(ToStringStyle.FloatMaxTwo) + " m", (string)"CE_CoverHeightExplanation".Translate(), entry.DisplayPriorityWithinCategory);
 
                     AccessTools.Field(__instance.GetType(), "$current").SetValue(__instance, newEntry);
                 }

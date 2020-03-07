@@ -296,7 +296,7 @@ namespace CombatExtended
 
                         if (recipeDef != null)
                         {
-                            var label = x.label + (shouldHaveLabels ? " (" + ammoSet.LabelCap + ")" : "");
+                            var label = x.label + (shouldHaveLabels ? " (" + (string)ammoSet.LabelCap + ")" : "");
 
                             recipeDef.UpdateLabel("RecipeMake".Translate(label));           //Just setting recipeDef.label doesn't update Jobs nor existing recipeUsers. We need UpdateLabel.
                             recipeDef.jobString = "RecipeMakeJobString".Translate(label);   //The jobString should also be updated to reflect the name change.

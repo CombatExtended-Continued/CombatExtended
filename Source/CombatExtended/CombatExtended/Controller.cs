@@ -5,7 +5,7 @@ using System.Text;
 using RimWorld;
 using Verse;
 using UnityEngine;
-using CombatExtended.Harmony;
+using CombatExtended.HarmonyCE;
 
 namespace CombatExtended
 {
@@ -15,6 +15,7 @@ namespace CombatExtended
 
         public Controller(ModContentPack content) : base(content)
         {
+
             settings = GetSettings<Settings>();
 
             // Apply Harmony patches

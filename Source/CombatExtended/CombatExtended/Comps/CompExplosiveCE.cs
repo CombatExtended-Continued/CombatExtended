@@ -115,7 +115,7 @@ namespace CombatExtended
             if (Props.explosionRadius > 0 && Props.explosionDamage > 0 && parent.def != null && GenGrid.InBounds(posIV, map))
             {
                 // Copy-paste from GenExplosion
-                ExplosionCE explosion = GenSpawn.Spawn(CE_ThingDefOf.ExplosionCE, posIV, map) as ExplosionCE;
+                Explosion explosion = GenSpawn.Spawn(CE_ThingDefOf.ExplosionCE, posIV, map) as Explosion;
                 explosion.height = pos.y;
                 explosion.radius = Props.explosionRadius * scaleFactor;
                 explosion.damType = Props.explosionDamageDef;
@@ -133,7 +133,7 @@ namespace CombatExtended
                 explosion.armorPenetration = explosion.damAmount * 0.1f;
                 explosion.damageFalloff = Props.damageFalloff;
                 explosion.chanceToStartFire = Props.chanceToStartFire;
-                explosion.StartExplosion(Props.soundExplode ?? Props.explosionDamageDef.soundExplosion);
+                explosion.StartExplosion(Props.soundExplode ?? Props.explosionDamageDef.soundExplosion, new List<Thing>());
             }
         }
     }

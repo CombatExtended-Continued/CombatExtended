@@ -6,9 +6,9 @@ using System.Reflection;
 using RimWorld;
 using Verse;
 using UnityEngine;
-using Harmony;
+using HarmonyLib;
 
-namespace CombatExtended.Harmony
+namespace CombatExtended.HarmonyCE
 {
     [HarmonyPatch(typeof(BuildingProperties), "SpecialDisplayStats")]
     static class Harmony_BuildingProperties_SpecialDisplayStats_Patch

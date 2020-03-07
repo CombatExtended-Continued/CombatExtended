@@ -5,6 +5,7 @@ using System.Text;
 using RimWorld;
 using Verse;
 using UnityEngine;
+using HarmonyLib;
 
 namespace CombatExtended
 {
@@ -46,7 +47,7 @@ namespace CombatExtended
                     stringBuilder.AppendLine(ammoSet.LabelCap + "\n");
                     foreach (var cur in ammoSet.ammoTypes)
                     {
-                        string label = string.IsNullOrEmpty(cur.ammo.ammoClass.LabelCapShort) ? cur.ammo.ammoClass.LabelCap : cur.ammo.ammoClass.LabelCapShort;
+                        string label = string.IsNullOrEmpty(cur.ammo.ammoClass.LabelCapShort) ? (string)cur.ammo.ammoClass.LabelCap : cur.ammo.ammoClass.LabelCapShort;
                         stringBuilder.AppendLine(label + ":\n" + cur.projectile.GetProjectileReadout(Gun(req)));   //Is fine handling req.Thing == null, then it sets mult = 1
                     }
                 }
@@ -62,7 +63,7 @@ namespace CombatExtended
             return stringBuilder.ToString().TrimEndNewlines();
         }
 
-        public override string GetStatDrawEntryLabel(StatDef stat, float value, ToStringNumberSense numberSense, StatRequest optionalReq)
+        public override string GetStatDrawEntryLabel(StatDef stat, float value, ToStringNumberSense numberSense, StatRequest optionalReq, bool finalized = true)
         {
             if (Controller.settings.EnableAmmoSystem)
             {

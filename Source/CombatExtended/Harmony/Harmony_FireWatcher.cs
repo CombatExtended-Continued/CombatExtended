@@ -1,8 +1,8 @@
-﻿using Harmony;
+﻿using HarmonyLib;
 using RimWorld;
 using Verse;
 
-namespace CombatExtended.Harmony
+namespace CombatExtended.HarmonyCE
 {
     [HarmonyPatch(typeof(FireWatcher), "get_LargeFireDangerPresent")]
     internal static class Harmony_FireWatcher

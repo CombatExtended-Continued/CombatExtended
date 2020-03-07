@@ -2,11 +2,11 @@
 using System.Collections.Generic;
 using System.Reflection;
 using System.Reflection.Emit;
-using Harmony;
+using HarmonyLib;
 using RimWorld;
 using Verse;
 
-namespace CombatExtended.Harmony
+namespace CombatExtended.HarmonyCE
 {
     [HarmonyPatch(typeof(GlobalControls), "GlobalControlsOnGUI")]
     internal static class Harmony_GlobalControls

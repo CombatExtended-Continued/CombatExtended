@@ -162,7 +162,7 @@ namespace CombatExtended
                 return null;
             }
 
-            if (!pawn.RaceProps.Humanlike || (pawn.story != null && pawn.story.WorkTagIsDisabled(WorkTags.Violent)))
+            if (!pawn.RaceProps.Humanlike || (pawn.story != null && pawn.WorkTagIsDisabled(WorkTags.Violent)))
             {
                 return null;
             }

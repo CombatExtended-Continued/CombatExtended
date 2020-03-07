@@ -333,7 +333,7 @@ namespace CombatExtended
                                 }
                                 equipOption = new FloatMenuOption(
                                     equipOptionLabel,
-                                    (SelPawnForGear.story != null && SelPawnForGear.story.WorkTagIsDisabled(WorkTags.Violent))
+                                    (SelPawnForGear.story != null && SelPawnForGear.WorkTagIsDisabled(WorkTags.Violent))
                                     ? null
                                     : new Action(delegate
                                     {
@@ -361,7 +361,7 @@ namespace CombatExtended
                             SoundDefOf.Tick_High.PlayOneShotOnCamera();
                             InterfaceIngest(thing);
                         };
-                        string label = thing.def.ingestible.ingestCommandString.NullOrEmpty() ? "ConsumeThing".Translate(thing.LabelShort, thing) : string.Format(thing.def.ingestible.ingestCommandString, thing.LabelShort);
+                        string label = thing.def.ingestible.ingestCommandString.NullOrEmpty() ? (string)"ConsumeThing".Translate(thing.LabelShort, thing) : string.Format(thing.def.ingestible.ingestCommandString, thing.LabelShort);
                         floatOptionList.Add(new FloatMenuOption(label, eatFood));
                     }
                     floatOptionList.Add(new FloatMenuOption("DropThing".Translate(), dropApparel));

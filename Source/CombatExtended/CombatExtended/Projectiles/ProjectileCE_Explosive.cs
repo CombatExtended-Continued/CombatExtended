@@ -2,6 +2,7 @@ using System;
 using Verse;
 using RimWorld;
 using UnityEngine;
+using System.Collections.Generic;
 
 namespace CombatExtended
 {
@@ -47,7 +48,7 @@ namespace CombatExtended
         }
         protected virtual void Explode()
         {
-            ExplosionCE explosion = GenSpawn.Spawn(CE_ThingDefOf.ExplosionCE, ExactPosition.ToIntVec3(), Map) as ExplosionCE;
+            Explosion explosion = GenSpawn.Spawn(CE_ThingDefOf.ExplosionCE, ExactPosition.ToIntVec3(), Map) as Explosion;
             explosion.height = ExactPosition.y;
             explosion.radius = def.projectile.explosionRadius;
             explosion.damType = def.projectile.damageDef;

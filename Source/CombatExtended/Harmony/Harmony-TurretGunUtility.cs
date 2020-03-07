@@ -1,6 +1,6 @@
 ﻿using System.Linq;
 using System.Reflection;
-using Harmony;
+using HarmonyLib;
 using RimWorld;
 using Verse;
 
@@ -8,7 +8,7 @@ using Verse;
 // ReSharper disable InlineOutVariableDeclaration
 // ReSharper disable UsePatternMatching
 
-namespace CombatExtended.Harmony
+namespace CombatExtended.HarmonyCE
 {
     [HarmonyPatch]
     public static class Harmony_TurretGunUtility
@@ -81,9 +81,9 @@ namespace CombatExtended.Harmony
 
             MethodBase target = null;
 
-            foreach (var @class in classes.Where(c => c.Name.Contains("TryFindRandomShellDef")))
+            foreach (var @class in classes.Where(c => c.Name.Contains("c__DisplayClass1_0")))
             {
-                target = @class.GetMethods(AccessTools.all).FirstOrDefault(m => m.Name.Contains("m__"));
+                target = @class.GetMethods(AccessTools.all).FirstOrDefault(m => m.Name.Contains("b__"));
                 break;
             }
 

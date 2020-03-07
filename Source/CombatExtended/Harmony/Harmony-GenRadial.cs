@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using System.Reflection.Emit;
-using Harmony;
+using HarmonyLib;
 using Verse;
 
-namespace CombatExtended.Harmony
+namespace CombatExtended.HarmonyCE
 {
 	/* Targetting Verse.GenRadial.RadialPatternCount constant.
 	 * Specifically this looks for all methods which use that constant and patches them (since the constant is compiled in).

@@ -3,13 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using System.Reflection.Emit;
-using Harmony;
+using HarmonyLib;
 using Verse;
 using RimWorld;
 using UnityEngine;
 using Verse.AI;
 
-namespace CombatExtended.Harmony
+namespace CombatExtended.HarmonyCE
 {
     /*
      * The additional item to be inserted adds learning information for CE when a weapon is selected for equipping.
@@ -17,7 +17,7 @@ namespace CombatExtended.Harmony
      * Used dynamic targetting in case the target assemly changes the name of the target class will most certainly change or even shift position (removing the ability to count).
      * Looking for a signature (field by name/type) that identifies the desired class without looking at it's code.
      */
-    [HarmonyPatch]
+    /* [HarmonyPatch]
     static class FloatMenuMakerMap_PatchKnowledge
     {
         static readonly string logPrefix = "Combat Extended :: " + typeof(FloatMenuMakerMap_PatchKnowledge).Name + " :: ";
@@ -45,7 +45,7 @@ namespace CombatExtended.Harmony
             LessonAutoActivator.TeachOpportunity(CE_ConceptDefOf.CE_AimingSystem, OpportunityType.GoodToKnow);
         }
 
-    }
+    } */
 
     [HarmonyPatch(typeof(FloatMenuMakerMap))]
     [HarmonyPatch("AddHumanlikeOrders")]
@@ -61,9 +61,9 @@ namespace CombatExtended.Harmony
          * -Both when right clicking on something with a pawn selected.
          */
 
-        // __instance isn't apt, target is static.
-        // __result isn't apt, target return is void.
-        [HarmonyPostfix]
+    // __instance isn't apt, target is static.
+    // __result isn't apt, target return is void.
+    [HarmonyPostfix]
         static void AddMenuItems(Vector3 clickPos, Pawn pawn, List<FloatMenuOption> opts)
         {
             // Stabilize
@@ -77,7 +77,7 @@ namespace CombatExtended.Harmony
                         && pawn.CanReach(patient, PathEndMode.InteractionCell, Danger.Deadly)
                         && patient.health.hediffSet.GetHediffsTendable().Any(h => h.CanBeStabilized()))
                     {
-                        if (pawn.story.WorkTypeIsDisabled(WorkTypeDefOf.Doctor))
+                        if (pawn.WorkTypeIsDisabled(WorkTypeDefOf.Doctor))
                         {
                             opts.Add(new FloatMenuOption("CE_CannotStabilize".Translate() + ": " + "IncapableOfCapacity".Translate(WorkTypeDefOf.Doctor.gerundLabel), null, MenuOptionPriority.Default));
                         }

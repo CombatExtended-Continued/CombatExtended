@@ -3,15 +3,15 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection.Emit;
-using Harmony;
+using HarmonyLib;
 using RimWorld;
 using UnityEngine;
 using Verse;
 
-namespace CombatExtended.Harmony
+namespace CombatExtended.HarmonyCE
 {
     [HarmonyPatch(typeof(PawnRenderer), "RenderPawnInternal",
-        typeof(Vector3), typeof(float), typeof(bool), typeof(Rot4), typeof(Rot4), typeof(RotDrawMode), typeof(bool), typeof(bool))]
+        typeof(Vector3), typeof(float), typeof(bool), typeof(Rot4), typeof(Rot4), typeof(RotDrawMode), typeof(bool), typeof(bool), typeof(bool))]
     internal static class Harmony_PawnRenderer_RenderPawnInternal
     {
         private enum WriteState
@@ -29,7 +29,7 @@ namespace CombatExtended.Harmony
         private const float YOffsetPostHead = 0.03515625f;
         private const float YOffsetIntervalClothes = 0.00390625f;
 
-        private static void DrawHeadApparel(PawnRenderer renderer, Mesh mesh, Vector3 rootLoc, Vector3 headLoc, Vector3 headOffset, Rot4 bodyFacing, Quaternion quaternion, bool portrait, ref bool hideHair)
+        private static void DrawHeadApparel(PawnRenderer renderer, Mesh mesh, Vector3 rootLoc, Vector3 headLoc, Vector3 headOffset, Rot4 bodyFacing, Quaternion quaternion, bool portrait, ref bool hideHair, bool invisible)
         {
             var apparelGraphics = renderer.graphics.apparelGraphics;
             var headwearGraphics = apparelGraphics.Where(a => a.sourceApparel.def.apparel.LastLayer.GetModExtension<ApparelLayerExtension>()?.IsHeadwear ?? false).ToArray();
@@ -79,20 +79,21 @@ namespace CombatExtended.Harmony
             {
                 if (state == WriteState.WriteHead)
                 {
-                    if (code.opcode == OpCodes.Ldloc_S && ((LocalBuilder)code.operand).LocalIndex == 13)
+                    if (code.opcode == OpCodes.Ldloc_S && ((LocalBuilder)code.operand).LocalIndex == 12)
                     {
                         state = WriteState.None;
 
                         // Insert new calls for head renderer
                         yield return new CodeInstruction(OpCodes.Ldarg_0);
-                        yield return new CodeInstruction(OpCodes.Ldloc_S, 14);
+                        yield return new CodeInstruction(OpCodes.Ldloc_S, 13);
                         yield return new CodeInstruction(OpCodes.Ldarg_1);
-                        yield return new CodeInstruction(OpCodes.Ldloc_S, 12);
+                        yield return new CodeInstruction(OpCodes.Ldloc_S, 11);
                         yield return new CodeInstruction(OpCodes.Ldloc_S, 9);
                         yield return new CodeInstruction(OpCodes.Ldarg, 4);
                         yield return new CodeInstruction(OpCodes.Ldloc_0);
                         yield return new CodeInstruction(OpCodes.Ldarg, 7);
-                        yield return new CodeInstruction(OpCodes.Ldloca_S, 13);
+                        yield return new CodeInstruction(OpCodes.Ldloca_S, 12);
+                        yield return new CodeInstruction(OpCodes.Ldarg, 8);
                         yield return new CodeInstruction(OpCodes.Callvirt, AccessTools.Method(typeof(Harmony_PawnRenderer_RenderPawnInternal), nameof(DrawHeadApparel)));
 
                         yield return code;

@@ -784,7 +784,7 @@ namespace CombatExtended
 
                 if (thingDef.IsFilth && Position.Walkable(Map))
                 {
-                    FilthMaker.MakeFilth(Position, Map, thingDef);
+                    FilthMaker.TryMakeFilth(Position, Map, thingDef);
                 }
                 else if (Controller.settings.ReuseNeolithicProjectiles)
                 {

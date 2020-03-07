@@ -4,12 +4,12 @@ using System.Linq;
 using System.Reflection;
 using System.Text;
 using System.Reflection.Emit;
-using Harmony;
+using HarmonyLib;
 using Verse;
 using RimWorld;
 using UnityEngine;
 
-namespace CombatExtended.Harmony
+namespace CombatExtended.HarmonyCE
 {
     [HarmonyPatch(typeof(Fire), "DoFireDamage")]
     internal static class Harmony_Fire_DoFireDamage
@@ -190,7 +190,8 @@ namespace CombatExtended.Harmony
             {
                 if (delete)
                 {
-                    delete = code.opcode != OpCodes.Ldobj;
+                    delete = code.opcode != OpCodes.Ldelem;
+
                     continue;
                 }
 
