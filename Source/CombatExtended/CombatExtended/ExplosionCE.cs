@@ -9,7 +9,7 @@ using HarmonyLib;
 
 namespace CombatExtended
 {
-	public class Explosion : Verse.Explosion
+	public class ExplosionCE : Verse.Explosion
 	{
 		public float height;
 

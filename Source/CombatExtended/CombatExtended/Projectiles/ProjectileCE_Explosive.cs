@@ -48,7 +48,7 @@ namespace CombatExtended
         }
         protected virtual void Explode()
         {
-            Explosion explosion = GenSpawn.Spawn(CE_ThingDefOf.ExplosionCE, ExactPosition.ToIntVec3(), Map) as Explosion;
+            ExplosionCE explosion = GenSpawn.Spawn(CE_ThingDefOf.ExplosionCE, ExactPosition.ToIntVec3(), Map) as ExplosionCE;
             explosion.height = ExactPosition.y;
             explosion.radius = def.projectile.explosionRadius;
             explosion.damType = def.projectile.damageDef;

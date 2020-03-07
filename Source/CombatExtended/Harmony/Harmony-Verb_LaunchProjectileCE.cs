@@ -7,6 +7,7 @@ using Verse;
 using CombatExtended;
 
 namespace CombatExtended.HarmonyCE
+
 {
     [HarmonyPatch(typeof(Verb), "TryFindShootLineFromTo")]
     internal static class Verb_LaunchProjectileCE_RerouteTryFindShootLineFromTo

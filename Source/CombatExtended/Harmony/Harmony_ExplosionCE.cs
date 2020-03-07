@@ -5,6 +5,7 @@ using System.Linq;
 using System.Reflection.Emit;
 using HarmonyLib;
 using Verse;
+using CombatExtended;
 
 namespace CombatExtended.HarmonyCE
 {
@@ -12,11 +13,10 @@ namespace CombatExtended.HarmonyCE
     public static class Harmony_ExplosionCE_GetDamageAmountAt
     {
         internal static bool Prefix(Explosion __instance, ref int __result, IntVec3 c)
-
         {
-            if (__instance is Explosion)
+            if (__instance is ExplosionCE)
             {
-                __result = (__instance as Explosion).GetDamageAmountAtCE(c);
+                __result = (__instance as ExplosionCE).GetDamageAmountAtCE(c);
                 return false;
             }
             return true;
@@ -28,9 +28,9 @@ namespace CombatExtended.HarmonyCE
     {
         internal static bool Prefix(Explosion __instance, ref float __result, IntVec3 c)
         {
-            if (__instance is Explosion)
+            if (__instance is ExplosionCE)
             {
-                __result = (__instance as Explosion).GetArmorPenetrationAtCE(c);
+                __result = (__instance as ExplosionCE).GetArmorPenetrationAtCE(c);
                 return false;
             }
             return true;

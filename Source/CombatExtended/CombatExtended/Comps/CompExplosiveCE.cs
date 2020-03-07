@@ -115,7 +115,7 @@ namespace CombatExtended
             if (Props.explosionRadius > 0 && Props.explosionDamage > 0 && parent.def != null && GenGrid.InBounds(posIV, map))
             {
                 // Copy-paste from GenExplosion
-                Explosion explosion = GenSpawn.Spawn(CE_ThingDefOf.ExplosionCE, posIV, map) as Explosion;
+                ExplosionCE explosion = GenSpawn.Spawn(CE_ThingDefOf.ExplosionCE, posIV, map) as ExplosionCE;
                 explosion.height = pos.y;
                 explosion.radius = Props.explosionRadius * scaleFactor;
                 explosion.damType = Props.explosionDamageDef;
