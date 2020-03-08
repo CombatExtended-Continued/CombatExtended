@@ -101,6 +101,8 @@ namespace CombatExtended.HarmonyCE
         }
     }
 
+    // Should work as long as ShouldReduceDamageToPreservePart exists
+
     [HarmonyPatch(typeof(DamageWorker_AddInjury), nameof(DamageWorker_AddInjury.ShouldReduceDamageToPreservePart))]
     static class Patch_ShouldReduceDamageToPreservePart
     {

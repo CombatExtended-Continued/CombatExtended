@@ -37,7 +37,7 @@ namespace CombatExtended.HarmonyCE
                 if (write)
                 {
                     write = false;
-                    code.opcode = OpCodes.Brtrue;
+                    code.opcode = OpCodes.Brtrue;   //OR try Brfalse
                 }
 
                 if (code.opcode == OpCodes.Ldsfld && code.operand == AccessTools.Field(typeof(ApparelLayerDefOf), nameof(ApparelLayerDefOf.Overhead)))

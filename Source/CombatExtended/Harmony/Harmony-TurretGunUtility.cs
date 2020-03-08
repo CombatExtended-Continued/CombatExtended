@@ -1,4 +1,6 @@
 ﻿using System.Linq;
+using System.Collections.Generic;
+using System.Collections;
 using System.Reflection;
 using HarmonyLib;
 using RimWorld;
@@ -13,6 +15,9 @@ namespace CombatExtended.HarmonyCE
     [HarmonyPatch]
     public static class Harmony_TurretGunUtility
     {
+        const string className = "DisplayClass";
+        const string methodName = "<TryFindRandomShellDef>";
+
         public static void Postfix(object __instance, ThingDef x, ref bool __result)
         {
             // Ignore already true results.
@@ -29,7 +34,7 @@ namespace CombatExtended.HarmonyCE
                 return;
             }
 
-            // Get local variable values. 
+            #region Get properties of parent of TryFindRandomShellDef
             var type = __instance.GetType();
 
             bool allowEMP;
@@ -40,6 +45,7 @@ namespace CombatExtended.HarmonyCE
 
             bool mustHarmHealth;
             bool.TryParse(AccessTools.Field(type, "mustHarmHealth").GetValue(__instance)?.ToString(), out mustHarmHealth);
+            #endregion
 
             // Check if market value is within range.
             if (maxMarketValue >= 0.0f && ammoDef.BaseMarketValue > maxMarketValue)
@@ -77,17 +83,19 @@ namespace CombatExtended.HarmonyCE
 
         public static MethodBase TargetMethod()
         {
-            var classes = typeof(TurretGunUtility).GetNestedTypes(AccessTools.all).ToList();
+            var classTargets = typeof(TurretGunUtility).GetNestedTypes(AccessTools.all)
+                .Where(x => x.Name.Contains(className));
 
-            MethodBase target = null;
+            if (!classTargets.Any())
+                Log.Error("CombatExtended :: Harmony_TurretGunUtility couldn't find subclass with part `"+ className + "`");
+            
+            var methodTarget = classTargets.SelectMany(x => x.GetMethods(AccessTools.all))
+                .FirstOrDefault(x => x.Name.Contains(methodName));
 
-            foreach (var @class in classes.Where(c => c.Name.Contains("c__DisplayClass1_0")))
-            {
-                target = @class.GetMethods(AccessTools.all).FirstOrDefault(m => m.Name.Contains("b__"));
-                break;
-            }
-
-            return target;
+            if (methodTarget == null)
+                Log.Error("CombatExtended :: Harmony_TurretGunUtility couldn't find method with part `"+ methodName + "` in subclasses with part `"+ className + "`");
+            
+            return methodTarget;
         }
     }
 }

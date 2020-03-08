@@ -85,4 +85,34 @@ namespace CombatExtended.HarmonyCE
             }
         }
     }
+
+    // To test if it works:
+    //      See if the displayed stats in the info card are for the TURRET GUN, rather than for the TURRET BUILDING
+
+    [HarmonyPatch(typeof(ThingDef), "SpecialDisplayStats")]
+    static class Harmony_ThingDef_SpecialDisplayStats_Patch
+    {
+        public static void Postfix(ThingDef __instance, ref IEnumerable<StatDrawEntry> __result, StatRequest req)
+        {
+            var turretGunDef = __instance.building?.turretGunDef ?? null;
+
+            if (turretGunDef != null)
+            {
+                var statRequestGun = StatRequest.For(turretGunDef, null);
+                
+                var cache = __result;
+
+                var newStats1 = DefDatabase<StatDef>.AllDefs
+                    .Where(x => x.category == StatCategoryDefOf.Weapon
+                        && x.Worker.ShouldShowFor(statRequestGun)
+                        && !x.Worker.IsDisabledFor(req.Thing)
+                        && !(x.Worker is StatWorker_MeleeStats))
+                    .Where(x => !cache.Any(y => y.stat == x))
+                    .Select(x => new StatDrawEntry(StatCategoryDefOf.Weapon, x, turretGunDef.GetStatValueAbstract(x), statRequestGun, ToStringNumberSense.Undefined))
+                    .Where(x => x.ShouldDisplay);
+                
+                __result = __result.Concat(newStats1);
+            }
+        }
+    }
 }
