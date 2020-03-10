@@ -209,26 +209,29 @@ namespace CombatExtended
 			}
 			else
 			{
-	    		PawnKindLifeStage lifeStage = pawn.ageTracker.CurKindLifeStage;
+                //Ignore pack animals
+                var graphic = (pawn.IsDessicated() ? pawn.Drawer.renderer.graphics.dessicatedGraphic : null)
+                    ?? pawn.Drawer.renderer.graphics.nakedGraphic;
 
-                var graphic = pawn.IsDessicated()
-                    ? (pawn.gender == Gender.Male ? lifeStage.dessicatedBodyGraphicData : lifeStage.femaleDessicatedBodyGraphicData)
-                    : (pawn.gender == Gender.Male ? lifeStage.bodyGraphicData : lifeStage.femaleGraphicData);
-
-                if (graphic != null && graphic.Graphic != null)
+                if (graphic == null)
                 {
-                    try { return Vector2.Scale(BoundMap(graphic.Graphic, GraphicType.Pawn), graphic.drawSize); }
+                    Log.Error(pawn + ".lifeStage[" + pawn.ageTracker.CurLifeStageIndex + "] nakedGraphic could not be found");
+                    return Vector2.zero;
+                }
+                else
+                {
+                    PawnKindLifeStage lifeStage = pawn.ageTracker.CurKindLifeStage;
+                    var name = pawn.IsDessicated()
+                        ? (pawn.gender == Gender.Female && lifeStage.femaleDessicatedBodyGraphicData != null ? "femaleDessicatedBodyGraphicData" : "dessicatedBodyGraphicData")
+                            ?? (pawn.gender == Gender.Female && lifeStage.femaleGraphicData != null ? "bodyGraphicData" : "femaleGraphicData")
+                        : (pawn.gender == Gender.Female && lifeStage.femaleGraphicData != null ? "bodyGraphicData" : "femaleGraphicData");
+
+                    try { return Vector2.Scale(BoundMap(graphic, GraphicType.Pawn), graphic.drawSize); }
                     catch (ArgumentException e)
                     {
-                        var name = pawn.IsDessicated()
-                            ? (pawn.gender == Gender.Male ? "dessicatedBodyGraphicData"  : "femaleDessicatedBodyGraphicData")
-                            : (pawn.gender == Gender.Male ? "bodyGraphicData" : "femaleGraphicData");
-
-                        throw new ArgumentException(pawn + ".lifeStage[" + pawn.ageTracker.CurLifeStageIndex + "]."+ name, e);
+                        throw new ArgumentException(pawn + ".lifeStage[" + pawn.ageTracker.CurLifeStageIndex + "]." + name, e);
                     }
                 }
-
-	    		return Vector2.zero;
 			}
     	}
     	
