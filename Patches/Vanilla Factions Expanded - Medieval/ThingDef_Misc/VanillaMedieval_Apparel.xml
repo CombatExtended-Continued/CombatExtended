@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8" ?>
+
+<Patch>
+
+	<Operation Class="PatchOperationFindMod">
+    <mods>
+        <li>Vanilla Factions Expanded - Medieval</li>
+    </mods>
+		<match Class="PatchOperationSequence">
+			<operations>		
+
+				<!-- ========== Light Helmet =========== -->
+				<li Class="PatchOperationAdd">
+					<xpath>/Defs/ThingDef[defName="VFEM_Apparel_PlateHelmetLight"]/statBases</xpath>
+					<value>
+						<Bulk>3</Bulk>
+						<WornBulk>1</WornBulk>					
+					</value>
+				</li>	
+
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/ThingDef[defName="VFEM_Apparel_PlateHelmetLight"]/statBases/StuffEffectMultiplierArmor</xpath>
+					<value>
+						<StuffEffectMultiplierArmor>1.2</StuffEffectMultiplierArmor>
+					</value>
+				</li>
+
+				<!-- ========== Heavy Helmet =========== -->
+				<li Class="PatchOperationAdd">
+					<xpath>/Defs/ThingDef[defName="VFEM_Apparel_PlateHelmetHeavy"]/statBases</xpath>
+					<value>
+						<Bulk>5</Bulk>
+						<WornBulk>1</WornBulk>					
+					</value>
+				</li>			
+
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/ThingDef[defName="VFEM_Apparel_PlateHelmetHeavy"]/statBases/StuffEffectMultiplierArmor</xpath>
+					<value>
+						<StuffEffectMultiplierArmor>2</StuffEffectMultiplierArmor>
+					</value>
+				</li>
+
+				<!-- ========== Heavy Plate Armor =========== -->
+				<li Class="PatchOperationAdd">
+					<xpath>/Defs/ThingDef[defName="VFEM_Apparel_PlateArmorHeavy"]/statBases</xpath>
+					<value>
+						<Bulk>100</Bulk>
+						<WornBulk>15</WornBulk>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/ThingDef[defName="VFEM_Apparel_PlateArmorHeavy"]/statBases/StuffEffectMultiplierArmor</xpath>
+					<value>
+						<StuffEffectMultiplierArmor>2.5</StuffEffectMultiplierArmor>
+					</value>
+				</li>
+
+				<li Class="PatchOperationRemove">
+					<xpath>/Defs/ThingDef[defName="VFEM_Apparel_PlateArmorHeavy"]/equippedStatOffsets/MoveSpeed</xpath>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/ThingDef[defName="VFEM_Apparel_PlateArmorHeavy"]/equippedStatOffsets/MeleeDodgeChance</xpath>
+					<value>
+						<MeleeDodgeChance>-0.15</MeleeDodgeChance>
+					</value>
+				</li>
+
+				<li Class="PatchOperationAdd">
+					<xpath>/Defs/ThingDef[defName="VFEM_Apparel_PlateArmorHeavy"]/apparel/bodyPartGroups</xpath>
+					<value>
+						<li>Hands</li>
+						<li>Feet</li>
+					</value>
+				</li>
+
+				<!-- ========== Tabard =========== -->
+				<li Class="PatchOperationAdd">
+					<xpath>/Defs/ThingDef[defName="VFEM_Apparel_Tabard"]/statBases</xpath>
+					<value>
+						<Bulk>4</Bulk>
+						<WornBulk>1.5</WornBulk>					
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/ThingDef[defName="VFEM_Apparel_Tabard"]/statBases/StuffEffectMultiplierArmor</xpath>
+					<value>
+						<StuffEffectMultiplierArmor>1</StuffEffectMultiplierArmor>
+					</value>
+				</li>
+
+			</operations>
+		</match>
+	</Operation>
+</Patch>
