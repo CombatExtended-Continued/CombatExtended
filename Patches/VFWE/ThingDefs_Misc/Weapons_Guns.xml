@@ -1,11 +1,98 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Patch>
 
-	<Operation Class="PatchOperationSequence">
-		<success>Always</success>
+	<Operation Class="PatchOperationFindMod">
+    <mods>
+		<li>[XND] Vanilla-Friendly Weapon Expansion</li>
+    </mods>
+		<match Class="PatchOperationSequence">
 		<operations>
-			<li Class="CombatExtended.PatchOperationFindMod">
-				<modName>[XND] Vanilla-Friendly Weapon Expansion</modName>
+
+			<!-- Melee Tools -->
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="Gun_ImprovisedPistol"]/tools</xpath>
+				<value>
+				<tools>
+					<li Class="CombatExtended.ToolCE">
+					<label>grip</label>
+					<capacities>
+						<li>Blunt</li>
+					</capacities>
+					<power>2</power>
+					<cooldownTime>1.54</cooldownTime>
+					<chanceFactor>1.5</chanceFactor>
+					<armorPenetrationBlunt>0.555</armorPenetrationBlunt>
+					<linkedBodyPartsGroup>Grip</linkedBodyPartsGroup>
+					</li>
+					<li Class="CombatExtended.ToolCE">
+					<label>muzzle</label>
+					<capacities>
+						<li>Poke</li>
+					</capacities>
+					<power>2</power>
+					<cooldownTime>1.54</cooldownTime>
+					<armorPenetrationBlunt>0.555</armorPenetrationBlunt>
+					<linkedBodyPartsGroup>Muzzle</linkedBodyPartsGroup>
+					</li>
+				</tools>
+				</value>
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="Gun_SawedOffShotgun" or defName="Gun_LeverActionRifle" or defName="Gun_AntiMaterielRifle" or defName="Gun_GuidedPulseSMG" or defName="Gun_ChargeScattergun"]/tools</xpath>
+				<value>
+				<tools>
+					<li Class="CombatExtended.ToolCE">
+					<label>stock</label>
+					<capacities>
+						<li>Blunt</li>
+					</capacities>
+					<power>8</power>
+					<cooldownTime>1.55</cooldownTime>
+					<chanceFactor>1.5</chanceFactor>
+					<armorPenetrationBlunt>2.755</armorPenetrationBlunt>
+					<linkedBodyPartsGroup>Stock</linkedBodyPartsGroup>
+					</li>
+					<li Class="CombatExtended.ToolCE">
+					<label>barrel</label>
+					<capacities>
+						<li>Blunt</li>
+					</capacities>
+					<power>5</power>
+					<cooldownTime>2.02</cooldownTime>
+					<armorPenetrationBlunt>1.630</armorPenetrationBlunt>
+					<linkedBodyPartsGroup>Barrel</linkedBodyPartsGroup>
+					</li>
+					<li Class="CombatExtended.ToolCE">
+					<label>muzzle</label>
+					<capacities>
+						<li>Poke</li>
+					</capacities>
+					<power>8</power>
+					<cooldownTime>1.55</cooldownTime>
+					<armorPenetrationBlunt>2.755</armorPenetrationBlunt>
+					<linkedBodyPartsGroup>Muzzle</linkedBodyPartsGroup>
+					</li>
+				</tools>
+				</value>
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="Gun_RadiationCannon"]/tools</xpath>
+				<value>
+				<tools>
+					<li Class="CombatExtended.ToolCE">
+					<label>barrel</label>
+					<capacities>
+						<li>Blunt</li>
+					</capacities>
+					<power>10</power>
+					<cooldownTime>2.44</cooldownTime>
+					<armorPenetrationBlunt>3.5</armorPenetrationBlunt>
+					<linkedBodyPartsGroup>Barrel</linkedBodyPartsGroup>
+					</li>
+				</tools>
+				</value>
 			</li>
 
 			<!-- Improvised Pistol -->
@@ -46,44 +133,6 @@
 				</weaponTags>
 				<researchPrerequisite>Machining</researchPrerequisite>
 			</li>
-			<li Class="PatchOperationReplace">
-				<xpath>Defs/ThingDef[defName="Gun_ImprovisedPistol"]/tools</xpath>
-				<value>
-					<tools>
-						<li Class="CombatExtended.ToolCE">
-							<label>grip</label>
-							<capacities>
-								<li>Blunt</li>
-							</capacities>
-							<power>8</power>
-							<cooldownTime>1.6</cooldownTime>
-							<chanceFactor>1.5</chanceFactor>
-							<armorPenetration>0.102</armorPenetration>
-							<linkedBodyPartsGroup>Grip</linkedBodyPartsGroup>
-						</li>
-						<li Class="CombatExtended.ToolCE">
-							<label>barrel</label>
-							<capacities>
-								<li>Blunt</li>
-							</capacities>
-							<power>8</power>
-							<cooldownTime>1.6</cooldownTime>
-							<armorPenetration>0.102</armorPenetration>
-							<linkedBodyPartsGroup>Barrel</linkedBodyPartsGroup>
-						</li>
-						<li Class="CombatExtended.ToolCE">
-							<label>muzzle</label>
-							<capacities>
-								<li>Poke</li>
-							</capacities>
-							<power>8</power>
-							<cooldownTime>1.6</cooldownTime>
-							<armorPenetration>0.075</armorPenetration>
-							<linkedBodyPartsGroup>Muzzle</linkedBodyPartsGroup>
-						</li>
-					</tools>
-				</value>
-			</li>
 
 			<!-- Sawed-Off Shotgun -->
 			<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
@@ -122,44 +171,6 @@
 					<li>CE_AI_AssaultWeapon</li>
 				</weaponTags>
 				<researchPrerequisite>Gunsmithing</researchPrerequisite>
-			</li>
-			<li Class="PatchOperationReplace">
-				<xpath>Defs/ThingDef[defName="Gun_SawedOffShotgun"]/tools</xpath>
-				<value>
-					<tools>
-						<li Class="CombatExtended.ToolCE">
-							<label>grip</label>
-							<capacities>
-								<li>Blunt</li>
-							</capacities>
-							<power>8</power>
-							<cooldownTime>1.6</cooldownTime>
-							<chanceFactor>1.5</chanceFactor>
-							<armorPenetration>0.102</armorPenetration>
-							<linkedBodyPartsGroup>Grip</linkedBodyPartsGroup>
-						</li>
-						<li Class="CombatExtended.ToolCE">
-							<label>barrel</label>
-							<capacities>
-								<li>Blunt</li>
-							</capacities>
-							<power>8</power>
-							<cooldownTime>1.6</cooldownTime>
-							<armorPenetration>0.102</armorPenetration>
-							<linkedBodyPartsGroup>Barrel</linkedBodyPartsGroup>
-						</li>
-						<li Class="CombatExtended.ToolCE">
-							<label>muzzle</label>
-							<capacities>
-								<li>Poke</li>
-							</capacities>
-							<power>8</power>
-							<cooldownTime>1.6</cooldownTime>
-							<armorPenetration>0.075</armorPenetration>
-							<linkedBodyPartsGroup>Muzzle</linkedBodyPartsGroup>
-						</li>
-					</tools>
-				</value>
 			</li>
 
 			<!-- Lever-Action Rifle -->
@@ -201,44 +212,6 @@
 					<li>CE_AI_AssaultWeapon</li>
 				</weaponTags>
 				<researchPrerequisite>Gunsmithing</researchPrerequisite>
-			</li>
-			<li Class="PatchOperationReplace">
-				<xpath>Defs/ThingDef[defName="Gun_LeverActionRifle"]/tools</xpath>
-				<value>
-					<tools>
-						<li Class="CombatExtended.ToolCE">
-							<label>stock</label>
-							<capacities>
-								<li>Blunt</li>
-							</capacities>
-							<power>9</power>
-							<cooldownTime>1.8</cooldownTime>
-							<chanceFactor>1.5</chanceFactor>
-							<armorPenetration>0.11</armorPenetration>
-							<linkedBodyPartsGroup>Stock</linkedBodyPartsGroup>
-						</li>
-						<li Class="CombatExtended.ToolCE">
-							<label>barrel</label>
-							<capacities>
-								<li>Blunt</li>
-							</capacities>
-							<power>10</power>
-							<cooldownTime>1.9</cooldownTime>
-							<armorPenetration>0.118</armorPenetration>
-							<linkedBodyPartsGroup>Barrel</linkedBodyPartsGroup>
-						</li>
-						<li Class="CombatExtended.ToolCE">
-							<label>muzzle</label>
-							<capacities>
-								<li>Poke</li>
-							</capacities>
-							<power>10</power>
-							<cooldownTime>1.9</cooldownTime>
-							<armorPenetration>0.086</armorPenetration>
-							<linkedBodyPartsGroup>Muzzle</linkedBodyPartsGroup>
-						</li>
-					</tools>
-				</value>
 			</li>
 
 			<!-- Anti-Materiel Rifle -->
@@ -284,44 +257,6 @@
 			<li Class="PatchOperationRemove">
 				<xpath>Defs/ThingDef[defName="Gun_AntiMaterielRifle"]/equippedStatOffsets</xpath>
 			</li>
-			<li Class="PatchOperationReplace">
-				<xpath>Defs/ThingDef[defName="Gun_AntiMaterielRifle"]/tools</xpath>
-				<value>
-					<tools>
-						<li Class="CombatExtended.ToolCE">
-							<label>stock</label>
-							<capacities>
-								<li>Blunt</li>
-							</capacities>
-							<power>9</power>
-							<cooldownTime>1.8</cooldownTime>
-							<chanceFactor>1.5</chanceFactor>
-							<armorPenetration>0.11</armorPenetration>
-							<linkedBodyPartsGroup>Stock</linkedBodyPartsGroup>
-						</li>
-						<li Class="CombatExtended.ToolCE">
-							<label>barrel</label>
-							<capacities>
-								<li>Blunt</li>
-							</capacities>
-							<power>10</power>
-							<cooldownTime>1.9</cooldownTime>
-							<armorPenetration>0.118</armorPenetration>
-							<linkedBodyPartsGroup>Barrel</linkedBodyPartsGroup>
-						</li>
-						<li Class="CombatExtended.ToolCE">
-							<label>muzzle</label>
-							<capacities>
-								<li>Poke</li>
-							</capacities>
-							<power>10</power>
-							<cooldownTime>1.9</cooldownTime>
-							<armorPenetration>0.086</armorPenetration>
-							<linkedBodyPartsGroup>Muzzle</linkedBodyPartsGroup>
-						</li>
-					</tools>
-				</value>
-			</li>
 
 			<!-- Guided Pulse SMG -->
 			<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
@@ -366,44 +301,6 @@
 			<li Class="PatchOperationRemove">
 				<xpath>Defs/ThingDef[defName="Gun_GuidedPulseSMG"]/equippedStatOffsets</xpath>
 			</li>
-			<li Class="PatchOperationReplace">
-				<xpath>Defs/ThingDef[defName="Gun_GuidedPulseSMG"]/tools</xpath>
-				<value>
-					<tools>
-						<li Class="CombatExtended.ToolCE">
-							<label>stock</label>
-							<capacities>
-								<li>Blunt</li>
-							</capacities>
-							<power>9</power>
-							<cooldownTime>1.8</cooldownTime>
-							<chanceFactor>1.5</chanceFactor>
-							<armorPenetration>0.11</armorPenetration>
-							<linkedBodyPartsGroup>Stock</linkedBodyPartsGroup>
-						</li>
-						<li Class="CombatExtended.ToolCE">
-							<label>barrel</label>
-							<capacities>
-								<li>Blunt</li>
-							</capacities>
-							<power>8</power>
-							<cooldownTime>1.6</cooldownTime>
-							<armorPenetration>0.102</armorPenetration>
-							<linkedBodyPartsGroup>Barrel</linkedBodyPartsGroup>
-						</li>
-						<li Class="CombatExtended.ToolCE">
-							<label>muzzle</label>
-							<capacities>
-								<li>Poke</li>
-							</capacities>
-							<power>8</power>
-							<cooldownTime>1.6</cooldownTime>
-							<armorPenetration>0.075</armorPenetration>
-							<linkedBodyPartsGroup>Muzzle</linkedBodyPartsGroup>
-						</li>
-					</tools>
-				</value>
-			</li>
 
 			<!-- Charge Scattergun -->
 			<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
@@ -437,23 +334,6 @@
 				<weaponTags>
 					<li>CE_AI_AssaultWeapon</li>
 				</weaponTags>
-			</li>
-			<li Class="PatchOperationReplace">
-				<xpath>Defs/ThingDef[defName="Gun_ChargeScattergun"]/tools</xpath>
-				<value>
-					<tools>
-						<li Class="CombatExtended.ToolCE">
-							<label>barrel</label>
-							<capacities>
-								<li>Blunt</li>
-							</capacities>
-							<power>10</power>
-							<cooldownTime>1.9</cooldownTime>
-							<armorPenetration>0.118</armorPenetration>
-							<linkedBodyPartsGroup>Barrel</linkedBodyPartsGroup>
-						</li>
-					</tools>
-				</value>
 			</li>
 
 			<!-- Radiation Cannon -->
@@ -489,24 +369,8 @@
 					<li>CE_AI_Launcher</li>
 				</weaponTags>
 			</li>
-			<li Class="PatchOperationReplace">
-				<xpath>Defs/ThingDef[defName="Gun_RadiationCannon"]/tools</xpath>
-				<value>
-					<tools>
-						<li Class="CombatExtended.ToolCE">
-							<label>barrel</label>
-							<capacities>
-								<li>Blunt</li>
-							</capacities>
-							<power>10</power>
-							<cooldownTime>1.9</cooldownTime>
-							<armorPenetration>0.118</armorPenetration>
-							<linkedBodyPartsGroup>Barrel</linkedBodyPartsGroup>
-						</li>
-					</tools>
-				</value>
-			</li>
-		</operations>
-	</Operation>
 
+		</operations>
+		</match>
+	</Operation>
 </Patch>
