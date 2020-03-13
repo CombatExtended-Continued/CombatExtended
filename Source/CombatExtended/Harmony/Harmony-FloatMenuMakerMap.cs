@@ -17,21 +17,27 @@ namespace CombatExtended.HarmonyCE
      * Used dynamic targetting in case the target assemly changes the name of the target class will most certainly change or even shift position (removing the ability to count).
      * Looking for a signature (field by name/type) that identifies the desired class without looking at it's code.
      */
-    /* [HarmonyPatch]
+    [HarmonyPatch]
     static class FloatMenuMakerMap_PatchKnowledge
     {
         static readonly string logPrefix = "Combat Extended :: " + typeof(FloatMenuMakerMap_PatchKnowledge).Name + " :: ";
 
+        const string ClassNamePart = "DisplayClass5";   //1.0: "AddHumanLikeOrders" to target <AddHumanLikeOrders>c__AnonStoreyB
+        const string MethodNamePart = "g__Equip";       //1.0: "m__" to target <>m__0()
+
+        // Target the class containing several KnowledgeDemonstrated, MakeStaticMote, Mote_FeedbackEquip ..
+        // 1.0: FloatMenuMakerMap.<AddHumanLikeOrders>c__AnonStoreyB.<>m__0(),
+        // 1.1: FloatMenuMakerMap.<>c__DisplayClass5_11.g__Equip|11()()
         static MethodBase TargetMethod()
         {
             List<Type> classes = typeof(FloatMenuMakerMap).GetNestedTypes(AccessTools.all).ToList();
             MethodBase target = null; //classes.First().GetMethods().First(); // a bailout so that harmony doesn't choke.
-            foreach (Type clas in classes.Where(c => c.Name.Contains("AddHumanlikeOrders")))
+            foreach (Type clas in classes.Where(c => c.Name.Contains(ClassNamePart)))
             {
                 FieldInfo info = AccessTools.Field(clas, "equipment");
                 if (info != null && info.FieldType == typeof(ThingWithComps))
                 {
-                    target = clas.GetMethods(AccessTools.all).FirstOrDefault(m => m.Name.Contains("m__"));
+                    target = clas.GetMethods(AccessTools.all).FirstOrDefault(m => m.Name.Contains("g__Equip"));
                     break;
                 }
             }
@@ -45,7 +51,7 @@ namespace CombatExtended.HarmonyCE
             LessonAutoActivator.TeachOpportunity(CE_ConceptDefOf.CE_AimingSystem, OpportunityType.GoodToKnow);
         }
 
-    } */
+    }
 
     [HarmonyPatch(typeof(FloatMenuMakerMap))]
     [HarmonyPatch("AddHumanlikeOrders")]
