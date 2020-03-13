@@ -37,7 +37,7 @@ namespace CombatExtended.HarmonyCE
                 FieldInfo info = AccessTools.Field(clas, "equipment");
                 if (info != null && info.FieldType == typeof(ThingWithComps))
                 {
-                    target = clas.GetMethods(AccessTools.all).FirstOrDefault(m => m.Name.Contains("g__Equip"));
+                    target = clas.GetMethods(AccessTools.all).FirstOrDefault(m => m.Name.Contains(MethodNamePart));
                     break;
                 }
             }
