@@ -101,7 +101,7 @@ namespace CombatExtended
 			}
 		}
 
-        public override void TickRareWorker()
+        public void TickRareWorker()
         {
             if (!IsActive)
                 return;

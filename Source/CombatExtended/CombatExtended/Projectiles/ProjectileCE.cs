@@ -421,6 +421,56 @@ namespace CombatExtended
         #endregion
 
         #region Collisions
+        public static FieldInfo interceptAngleField = typeof(CompProjectileInterceptor).GetField("lastInterceptAngle");
+        public static FieldInfo interceptTicksField = typeof(CompProjectileInterceptor).GetField("lastInterceptTicks");
+        public static FieldInfo interceptEMPField = typeof(CompProjectileInterceptor).GetField("lastHitByEmpTicks");
+        private bool CheckIntercept(Thing thing, CompProjectileInterceptor interceptor)
+        {
+            Vector3 vector = thing.Position.ToVector3Shifted();
+            float num = interceptor.Props.radius + def.projectile.SpeedTilesPerTick + 0.1f;
+
+            var newExactPos = ExactPosition;
+
+            if ((newExactPos.x - vector.x) * (newExactPos.x - vector.x) + (newExactPos.z - vector.z) * (newExactPos.z - vector.z) > num * num)
+            {
+                return false;
+            }
+            if (!interceptor.Active)
+            {
+                return false;
+            }
+            if (interceptor.Props.interceptGroundProjectiles
+                ? def.projectile.flyOverhead
+                : !(interceptor.Props.interceptAirProjectiles && def.projectile.flyOverhead))
+            {
+                return false;
+            }
+            if ((launcher == null || !launcher.HostileTo(thing)))
+                //&& !interceptor.debugInterceptNonHostileProjectiles)  Disabled
+            {
+                return false;
+            }
+            if ((new Vector2(vector.x, vector.z) - new Vector2(lastExactPos.x, lastExactPos.z)).sqrMagnitude <= interceptor.Props.radius * interceptor.Props.radius)
+            {
+                return false;
+            }
+            if (!GenGeo.IntersectLineCircleOutline(new Vector2(vector.x, vector.z), interceptor.Props.radius, new Vector2(lastExactPos.x, lastExactPos.z), new Vector2(newExactPos.x, newExactPos.z)))
+            {
+                return false;
+            }
+            interceptAngleField.SetValue(interceptor, lastExactPos.AngleToFlat(thing.TrueCenter()));
+            interceptTicksField.SetValue(interceptor, Find.TickManager.TicksGame);
+            if (def.projectile.damageDef == DamageDefOf.EMP
+                || ((def.projectile as ProjectilePropertiesCE)?.secondaryDamage?.Any(x => x.def == DamageDefOf.EMP) ?? false))
+            {
+                interceptEMPField.SetValue(interceptor, Find.TickManager.TicksGame);
+            }
+            Effecter eff = new Effecter(EffecterDefOf.Interceptor_BlockedProjectile);
+            eff.Trigger(new TargetInfo(newExactPos.ToIntVec3(), thing.Map, false), TargetInfo.Invalid);
+            eff.Cleanup();
+            return true;
+        }
+
         //Removed minimum collision distance
         private bool CheckForCollisionBetween()
         {
@@ -438,6 +488,16 @@ namespace CombatExtended
                 Map.debugDrawer.FlashLine(lastPosIV3, newPosIV3);
             }
             #endregion
+            
+            List<Thing> list = base.Map.listerThings.ThingsInGroup(ThingRequestGroup.ProjectileInterceptor);
+            for (int i = 0; i < list.Count; i++)
+            {
+                if (CheckIntercept(list[i], list[i].TryGetComp<CompProjectileInterceptor>()))
+                {
+                    this.Destroy(DestroyMode.Vanish);
+                    return true;
+                }
+            }
 
             // Iterate through all cells between the last and the new position
             // INCLUDING[!!!] THE LAST AND NEW POSITIONS!
