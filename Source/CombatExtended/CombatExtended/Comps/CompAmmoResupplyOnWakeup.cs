@@ -93,7 +93,15 @@ namespace CombatExtended
             }
         }
 
-        public override void CompTickRare()
+		public override void CompTick()
+		{
+			if (parent.IsHashIntervalTick(250))
+			{
+				TickRareWorker();
+			}
+		}
+
+        public override void TickRareWorker()
         {
             if (!IsActive)
                 return;
