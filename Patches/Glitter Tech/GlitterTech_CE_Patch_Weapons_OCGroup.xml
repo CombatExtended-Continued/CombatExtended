@@ -1,0 +1,224 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+			<li>Glitter Tech</li>
+			<li>Glitter Tech (No Surgery)</li>
+		</mods>
+		<match Class="PatchOperationSequence">
+			<operations>
+
+				<!-- ========== OC Defense Pistol ========== -->
+
+				<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+					<defName>Gun_OCPDPistol</defName>
+					<statBases>
+						<Mass>0.97</Mass>
+						<RangedWeapon_Cooldown>0.38</RangedWeapon_Cooldown>
+						<SightsEfficiency>0.70</SightsEfficiency>
+						<ShotSpread>0.17</ShotSpread>
+						<SwayFactor>1.05</SwayFactor>
+						<Bulk>2.17</Bulk>
+					</statBases>
+					<Properties>
+						<recoilAmount>2.53</recoilAmount>
+						<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+						<hasStandardCommand>true</hasStandardCommand>
+						<defaultProjectile>Bullet_9x19mmPara_FMJ</defaultProjectile>
+						<warmupTime>0.6</warmupTime>
+						<range>12</range>
+						<burstShotCount>2</burstShotCount>
+						<ticksBetweenBurstShots>3</ticksBetweenBurstShots>
+						<soundCast>OCDRifle</soundCast>
+						<soundCastTail>GunTail_Light</soundCastTail>
+						<muzzleFlashScale>9</muzzleFlashScale>
+						<recoilPattern>Regular</recoilPattern>
+					</Properties>
+
+					<AmmoUser>
+						<magazineSize>15</magazineSize>
+						<reloadTime>4</reloadTime>
+						<ammoSet>AmmoSet_9x19mmPara</ammoSet>
+					</AmmoUser>
+
+					<FireModes>
+						<aiUseBurstMode>TRUE</aiUseBurstMode>
+						<aiAimMode>Snapshot</aiAimMode>
+						<aimedBurstShotCount>2</aimedBurstShotCount>
+					</FireModes>
+
+					<!-- No additional CE weaponTags needed -->
+				</li>
+
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="Gun_OCPDPistol"]</xpath>
+					<value>
+						<tools>
+							<li Class="CombatExtended.ToolCE">
+								<label>grip</label>
+								<capacities>
+									<li>Blunt</li>
+								</capacities>
+								<power>2</power>
+								<cooldownTime>1.54</cooldownTime>
+								<chanceFactor>1.5</chanceFactor>
+								<armorPenetrationBlunt>0.555</armorPenetrationBlunt>
+								<linkedBodyPartsGroup>Grip</linkedBodyPartsGroup>
+							</li>
+							<li Class="CombatExtended.ToolCE">
+								<label>muzzle</label>
+								<capacities>
+									<li>Poke</li>
+								</capacities>
+								<power>2</power>
+								<cooldownTime>1.54</cooldownTime>
+								<armorPenetrationBlunt>0.555</armorPenetrationBlunt>
+								<linkedBodyPartsGroup>Muzzle</linkedBodyPartsGroup>
+							</li>
+						</tools>
+					</value>
+				</li>
+
+				<!-- ========== OC Defense Rifle ========== -->
+
+				<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+					<defName>Gun_OCPDRifle</defName>
+					<statBases>
+						<Mass>3.20</Mass>
+						<RangedWeapon_Cooldown>0.36</RangedWeapon_Cooldown>
+						<SightsEfficiency>1.10</SightsEfficiency>
+						<ShotSpread>0.09</ShotSpread>
+						<SwayFactor>1.22</SwayFactor>
+						<Bulk>9.00</Bulk>
+					</statBases>
+					<Properties>
+						<recoilAmount>1.49</recoilAmount>
+						<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+						<hasStandardCommand>true</hasStandardCommand>
+						<defaultProjectile>Bullet_556x45mmNATO_FMJ</defaultProjectile>
+						<warmupTime>1</warmupTime>
+						<range>55</range>
+						<burstShotCount>6</burstShotCount>
+						<ticksBetweenBurstShots>4</ticksBetweenBurstShots>
+						<soundCast>OCDRifle</soundCast>
+						<soundCastTail>GunTail_Medium</soundCastTail>
+						<muzzleFlashScale>9</muzzleFlashScale>
+						<recoilPattern>Regular</recoilPattern>
+					</Properties>
+
+					<AmmoUser>
+						<magazineSize>30</magazineSize>
+						<reloadTime>4</reloadTime>
+						<ammoSet>AmmoSet_556x45mmNATO</ammoSet>
+					</AmmoUser>
+
+					<FireModes>
+						<aiUseBurstMode>TRUE</aiUseBurstMode>
+						<aiAimMode>AimedShot</aiAimMode>
+						<aimedBurstShotCount>3</aimedBurstShotCount>
+					</FireModes>
+
+					<!-- No additional CE weaponTags needed -->
+				</li>
+
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="Gun_OCPDRifle"]</xpath>
+					<value>
+						<tools>
+							<li Class="CombatExtended.ToolCE">
+								<label>stock</label>
+								<capacities>
+									<li>Blunt</li>
+								</capacities>
+								<power>8</power>
+								<cooldownTime>1.55</cooldownTime>
+								<chanceFactor>1.5</chanceFactor>
+								<armorPenetrationBlunt>2.755</armorPenetrationBlunt>
+								<linkedBodyPartsGroup>Stock</linkedBodyPartsGroup>
+							</li>
+							<li Class="CombatExtended.ToolCE">
+								<label>barrel</label>
+								<capacities>
+									<li>Blunt</li>
+								</capacities>
+								<power>5</power>
+								<cooldownTime>2.02</cooldownTime>
+								<armorPenetrationBlunt>1.630</armorPenetrationBlunt>
+								<linkedBodyPartsGroup>Barrel</linkedBodyPartsGroup>
+							</li>
+							<li Class="CombatExtended.ToolCE">
+								<label>muzzle</label>
+								<capacities>
+									<li>Poke</li>
+								</capacities>
+								<power>8</power>
+								<cooldownTime>1.55</cooldownTime>
+								<armorPenetrationBlunt>2.755</armorPenetrationBlunt>
+								<linkedBodyPartsGroup>Muzzle</linkedBodyPartsGroup>
+							</li>
+						</tools>
+					</value>
+				</li>
+
+				<!-- ========== Orion rocket launcher ========== -->
+
+				<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+					<defName>Gun_OCRocket</defName>
+					<statBases>
+						<Mass>12.00</Mass>
+						<RangedWeapon_Cooldown>1.5</RangedWeapon_Cooldown>
+						<SightsEfficiency>1</SightsEfficiency>
+						<ShotSpread>0.05</ShotSpread>
+						<SwayFactor>1.10</SwayFactor>
+						<Bulk>13.00</Bulk>
+					</statBases>
+					<Properties>
+						<verbClass>CombatExtended.Verb_ShootCEOneUse</verbClass>
+						<hasStandardCommand>true</hasStandardCommand>
+						<defaultProjectile>Bullet_Rocket</defaultProjectile>
+						<warmupTime>1.9</warmupTime>
+						<range>60</range>
+						<ticksBetweenBurstShots>20</ticksBetweenBurstShots>
+						<burstShotCount>3</burstShotCount>
+						<soundCast>InfernoCannon_Fire</soundCast>
+						<soundCastTail>GunTail_Heavy</soundCastTail>
+						<onlyManualCast>true</onlyManualCast>
+						<stopBurstWithoutLos>false</stopBurstWithoutLos>
+						<targetParams>
+							<canTargetLocations>true</canTargetLocations>
+						</targetParams>
+						<muzzleFlashScale>9</muzzleFlashScale>
+					</Properties>
+
+					<FireModes>
+						<aiAimMode>AimedShot</aiAimMode>
+						<noSingleShot>true</noSingleShot>
+					</FireModes>
+
+					<!-- No additional CE weaponTags needed -->
+
+					<AllowWithRunAndGun>false</AllowWithRunAndGun>
+				</li>
+
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="Gun_OCRocket"]</xpath>
+					<value>
+						<tools>
+							<li Class="CombatExtended.ToolCE">
+								<label>barrel</label>
+								<capacities>
+									<li>Blunt</li>
+								</capacities>
+								<power>10</power>
+								<cooldownTime>2.44</cooldownTime>
+								<armorPenetrationBlunt>3.5</armorPenetrationBlunt>
+								<linkedBodyPartsGroup>Barrel</linkedBodyPartsGroup>
+							</li>
+						</tools>
+					</value>
+				</li>
+
+			</operations>
+		</match>
+	</Operation>
+</Patch>

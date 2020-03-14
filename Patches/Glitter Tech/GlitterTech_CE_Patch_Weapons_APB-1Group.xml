@@ -1,0 +1,269 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+			<li>Glitter Tech</li>
+			<li>Glitter Tech (No Surgery)</li>
+		</mods>
+		<match Class="PatchOperationSequence">
+			<operations>
+
+				<!-- ========== APB-1 Pistol ========== -->
+
+				<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+					<defName>Gun_APB-1Pistol</defName>
+					<statBases>
+						<Mass>0.66</Mass>
+						<RangedWeapon_Cooldown>0.35</RangedWeapon_Cooldown>
+						<SightsEfficiency>0.80</SightsEfficiency>
+						<ShotSpread>0.17</ShotSpread>
+						<SwayFactor>0.84</SwayFactor>
+						<Bulk>1.86</Bulk>
+					</statBases>
+					<Properties>
+						<recoilAmount>0.00</recoilAmount>
+						<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+						<hasStandardCommand>true</hasStandardCommand>
+						<defaultProjectile>Bullet_PlasmaCellPistol</defaultProjectile>
+						<warmupTime>0.1</warmupTime>
+						<range>12</range>
+						<soundCast>PB</soundCast>
+						<soundCastTail>GunTail_Light</soundCastTail>
+						<muzzleFlashScale>9</muzzleFlashScale>
+						<recoilPattern>Regular</recoilPattern>
+					</Properties>
+
+					<AmmoUser>
+						<magazineSize>15</magazineSize>
+						<reloadTime>4</reloadTime>
+						<ammoSet>AmmoSet_PlasmaCellPistol</ammoSet>
+					</AmmoUser>
+
+					<FireModes>
+						<aiUseBurstMode>FALSE</aiUseBurstMode>
+						<aiAimMode>Snapshot</aiAimMode>
+					</FireModes>
+
+					<!-- No additional CE weaponTags needed -->
+				</li>
+
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="Gun_APB-1Pistol"]</xpath>
+					<value>
+						<tools>
+							<li Class="CombatExtended.ToolCE">
+								<label>grip</label>
+								<capacities>
+									<li>Blunt</li>
+								</capacities>
+								<power>2</power>
+								<cooldownTime>1.54</cooldownTime>
+								<chanceFactor>1.5</chanceFactor>
+								<armorPenetrationBlunt>0.555</armorPenetrationBlunt>
+								<linkedBodyPartsGroup>Grip</linkedBodyPartsGroup>
+							</li>
+							<li Class="CombatExtended.ToolCE">
+								<label>muzzle</label>
+								<capacities>
+									<li>Poke</li>
+								</capacities>
+								<power>2</power>
+								<cooldownTime>1.54</cooldownTime>
+								<armorPenetrationBlunt>0.555</armorPenetrationBlunt>
+								<linkedBodyPartsGroup>Muzzle</linkedBodyPartsGroup>
+							</li>
+						</tools>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="Bullet_PlasmaCellPistol"]/graphicData/texPath</xpath>
+					<value>
+						<texPath>Things/Projectile/APBP</texPath>
+					</value>
+				</li>
+
+				<!-- ========== APB-1 Projector ========== -->
+
+				<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+					<defName>Gun_APB-1Projector</defName>
+					<statBases>
+						<Mass>6.35</Mass>
+						<RangedWeapon_Cooldown>0.35</RangedWeapon_Cooldown>
+						<SightsEfficiency>1.10</SightsEfficiency>
+						<ShotSpread>0.08</ShotSpread>
+						<SwayFactor>1.38</SwayFactor>
+						<Bulk>7.49</Bulk>
+					</statBases>
+					<Properties>
+						<recoilAmount>0.00</recoilAmount>
+						<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+						<hasStandardCommand>true</hasStandardCommand>
+						<defaultProjectile>Bullet_PlasmaCellHeavy</defaultProjectile>
+						<warmupTime>1</warmupTime>
+						<range>48</range>
+						<soundCast>PBP</soundCast>
+						<soundCastTail>GunTail_Heavy</soundCastTail>
+						<onlyManualCast>true</onlyManualCast>
+						<stopBurstWithoutLos>false</stopBurstWithoutLos>
+						<muzzleFlashScale>9</muzzleFlashScale>
+						<targetParams>
+							<canTargetLocations>true</canTargetLocations>
+						</targetParams>
+						<recoilPattern>Regular</recoilPattern>
+					</Properties>
+
+					<AmmoUser>
+						<magazineSize>6</magazineSize>
+						<reloadTime>4</reloadTime>
+						<ammoSet>AmmoSet_PlasmaCellHeavy</ammoSet>
+					</AmmoUser>
+
+					<FireModes>
+						<aiUseBurstMode>FALSE</aiUseBurstMode>
+						<aiAimMode>SuppressFire</aiAimMode>
+					</FireModes>
+
+					<!-- No additional CE weaponTags needed -->
+
+					<AllowWithRunAndGun>false</AllowWithRunAndGun>
+				</li>
+
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="Gun_APB-1Projector"]</xpath>
+					<value>
+						<tools>
+							<li Class="CombatExtended.ToolCE">
+								<label>stock</label>
+								<capacities>
+									<li>Blunt</li>
+								</capacities>
+								<power>8</power>
+								<cooldownTime>1.55</cooldownTime>
+								<chanceFactor>1.5</chanceFactor>
+								<armorPenetrationBlunt>2.755</armorPenetrationBlunt>
+								<linkedBodyPartsGroup>Stock</linkedBodyPartsGroup>
+							</li>
+							<li Class="CombatExtended.ToolCE">
+								<label>barrel</label>
+								<capacities>
+									<li>Blunt</li>
+								</capacities>
+								<power>5</power>
+								<cooldownTime>2.02</cooldownTime>
+								<armorPenetrationBlunt>1.630</armorPenetrationBlunt>
+								<linkedBodyPartsGroup>Barrel</linkedBodyPartsGroup>
+							</li>
+							<li Class="CombatExtended.ToolCE">
+								<label>muzzle</label>
+								<capacities>
+									<li>Poke</li>
+								</capacities>
+								<power>8</power>
+								<cooldownTime>1.55</cooldownTime>
+								<armorPenetrationBlunt>2.755</armorPenetrationBlunt>
+								<linkedBodyPartsGroup>Muzzle</linkedBodyPartsGroup>
+							</li>
+						</tools>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="Bullet_PlasmaCellHeavy"]/graphicData/texPath</xpath>
+					<value>
+						<texPath>Things/Projectile/APBProj</texPath>
+					</value>
+				</li>
+
+				<!-- ========== APB-1 Rifle ========== -->
+
+				<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+					<defName>Gun_APB-1Rifle</defName>
+					<statBases>
+						<Mass>3.00</Mass>
+						<RangedWeapon_Cooldown>0.35</RangedWeapon_Cooldown>
+						<SightsEfficiency>1.10</SightsEfficiency>
+						<ShotSpread>0.08</ShotSpread>
+						<SwayFactor>1.20</SwayFactor>
+						<Bulk>9.00</Bulk>
+					</statBases>
+					<Properties>
+						<recoilAmount>0.00</recoilAmount>
+						<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+						<hasStandardCommand>true</hasStandardCommand>
+						<defaultProjectile>Bullet_PlasmaCellRifle</defaultProjectile>
+						<warmupTime>1</warmupTime>
+						<range>55</range>
+						<burstShotCount>6</burstShotCount>
+						<ticksBetweenBurstShots>5</ticksBetweenBurstShots>
+						<soundCast>PB</soundCast>
+						<soundCastTail>GunTail_Heavy</soundCastTail>
+						<muzzleFlashScale>9</muzzleFlashScale>
+						<recoilPattern>Regular</recoilPattern>
+					</Properties>
+
+					<AmmoUser>
+						<magazineSize>30</magazineSize>
+						<reloadTime>4</reloadTime>
+						<ammoSet>AmmoSet_PlasmaCellRifle</ammoSet>
+					</AmmoUser>
+
+					<FireModes>
+						<aiUseBurstMode>TRUE</aiUseBurstMode>
+						<aiAimMode>AimedShot</aiAimMode>
+						<aimedBurstShotCount>3</aimedBurstShotCount>
+					</FireModes>
+
+					<!-- No additional CE weaponTags needed -->
+				</li>
+
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="Gun_APB-1Rifle"]</xpath>
+					<value>
+						<tools>
+							<li Class="CombatExtended.ToolCE">
+								<label>stock</label>
+								<capacities>
+									<li>Blunt</li>
+								</capacities>
+								<power>8</power>
+								<cooldownTime>1.55</cooldownTime>
+								<chanceFactor>1.5</chanceFactor>
+								<armorPenetrationBlunt>2.755</armorPenetrationBlunt>
+								<linkedBodyPartsGroup>Stock</linkedBodyPartsGroup>
+							</li>
+							<li Class="CombatExtended.ToolCE">
+								<label>barrel</label>
+								<capacities>
+									<li>Blunt</li>
+								</capacities>
+								<power>5</power>
+								<cooldownTime>2.02</cooldownTime>
+								<armorPenetrationBlunt>1.630</armorPenetrationBlunt>
+								<linkedBodyPartsGroup>Barrel</linkedBodyPartsGroup>
+							</li>
+							<li Class="CombatExtended.ToolCE">
+								<label>muzzle</label>
+								<capacities>
+									<li>Poke</li>
+								</capacities>
+								<power>8</power>
+								<cooldownTime>1.55</cooldownTime>
+								<armorPenetrationBlunt>2.755</armorPenetrationBlunt>
+								<linkedBodyPartsGroup>Muzzle</linkedBodyPartsGroup>
+							</li>
+						</tools>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="Bullet_PlasmaCellRifle"]/graphicData/texPath</xpath>
+					<value>
+						<texPath>Things/Projectile/APBR</texPath>
+					</value>
+				</li>
+
+			</operations>
+		</match>
+	</Operation>
+</Patch>
