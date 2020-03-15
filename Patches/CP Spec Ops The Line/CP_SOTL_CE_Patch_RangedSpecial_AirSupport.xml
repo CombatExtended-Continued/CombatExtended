@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+	<Operation Class="PatchOperationSequence">
+		<success>Always</success>
+		<operations>
+
+			<li Class="CombatExtended.PatchOperationFindMod">
+				<modName>[CP] Spec Ops: The Line</modName>
+			</li>
+			
+			<!-- Adjust mass and bulk of SOFLAM based on real-life stats for the AN/PEQ-1 -->
+			
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName="RNAir_SOFLAM"]</xpath>
+				<value>
+					<statBases>
+						<Mass>5.2</Mass>
+						<Bulk>2.5</Bulk>
+					</statBases>
+				</value>
+			</li>
+			
+			<!-- Increase SOFLAM range, to match its real-life performance relative to RimWorld-->
+			
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="RNAir_SOFLAM"]/verbs/li/range</xpath>
+				<value>
+					<range>700</range>
+				</value>
+			</li>
+
+		</operations>
+	</Operation>
+</Patch>

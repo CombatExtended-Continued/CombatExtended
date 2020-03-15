@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+	<Operation Class="PatchOperationSequence">
+		<success>Always</success>
+		<operations>
+
+			<li Class="CombatExtended.PatchOperationFindMod">
+				<modName>[CP] Spec Ops: The Line</modName>
+			</li>
+
+			<!-- ========== Shemagh scarf (Walker) & Shemagh mask (Walker) ========== -->
+
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="RHApparel_Shemagh_Scarf_Delta" or defName="RHApparel_Shemagh_Mask_Delta"]/statBases/StuffEffectMultiplierArmor</xpath>
+				<value>
+					<StuffEffectMultiplierArmor>5</StuffEffectMultiplierArmor>
+				</value>
+			</li>
+
+			<!-- ========== Baseball Cap Backwards (Delta) ========== -->
+
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName="RHApparel_BackwardsCap_ATACSAU_Delta"]/statBases</xpath>
+				<value>
+					<Bulk>1</Bulk>
+					<WornBulk>1</WornBulk>
+				</value>
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="RHApparel_BackwardsCap_ATACSAU_Delta"]/statBases/StuffEffectMultiplierArmor</xpath>
+				<value>
+					<StuffEffectMultiplierArmor>5</StuffEffectMultiplierArmor>
+				</value>
+			</li>
+
+			<!-- ========== Baseball Cap (Lugo) ========== -->
+
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName="RHApparel_LugoCap"]/statBases</xpath>
+				<value>
+					<Bulk>1</Bulk>
+					<WornBulk>1</WornBulk>
+				</value>
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="RHApparel_LugoCap"]/statBases/StuffEffectMultiplierArmor</xpath>
+				<value>
+					<StuffEffectMultiplierArmor>5</StuffEffectMultiplierArmor>
+				</value>
+			</li>
+
+			<!-- ========== Boonie Hat A-TACS AU (Delta) ========== -->
+
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName="RHApparel_ATACSAUBoonie_Delta"]/statBases</xpath>
+				<value>
+					<Bulk>1</Bulk>
+					<WornBulk>1</WornBulk>
+				</value>
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="RHApparel_ATACSAUBoonie_Delta"]/statBases/StuffEffectMultiplierArmor</xpath>
+				<value>
+					<StuffEffectMultiplierArmor>5</StuffEffectMultiplierArmor>
+				</value>
+			</li>
+
+		</operations>
+	</Operation>
+</Patch>
