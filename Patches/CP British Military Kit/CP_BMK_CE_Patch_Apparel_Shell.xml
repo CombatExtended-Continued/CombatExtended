@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+	<Operation Class="PatchOperationSequence">
+		<success>Always</success>
+		<operations>
+
+			<li Class="CombatExtended.PatchOperationFindMod">
+				<modName>[CP] British Military Kit</modName>
+			</li>
+
+			<!-- ========== pcs smock MTP ========== -->
+
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName="RHApparel_PcsParka_MTP"]/statBases</xpath>
+				<value>
+					<Bulk>10</Bulk>
+					<WornBulk>5</WornBulk>
+				</value>
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="RHApparel_PcsParka_MTP"]/statBases/StuffEffectMultiplierArmor</xpath>
+				<value>
+					<StuffEffectMultiplierArmor>10</StuffEffectMultiplierArmor>
+				</value>
+			</li>
+
+			<!-- ========== pcs smock MTP (PLCE) ========== -->
+
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName="RHApparel_PcsParka_MTP_PLCE"]/statBases</xpath>
+				<value>
+					<Bulk>12</Bulk>
+					<WornBulk>7</WornBulk>
+				</value>
+			</li>
+
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName="RHApparel_PcsParka_MTP_PLCE"]/equippedStatOffsets</xpath>
+				<value>
+					<CarryBulk>10</CarryBulk>
+				</value>
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="RHApparel_PcsParka_MTP_PLCE"]/statBases/StuffEffectMultiplierArmor</xpath>
+				<value>
+					<StuffEffectMultiplierArmor>10</StuffEffectMultiplierArmor>
+				</value>
+			</li>
+
+			<!-- ========== ghillie suit British ========== -->
+
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName="RNApparel_GhillieSuit_British"]/statBases</xpath>
+				<value>
+					<Bulk>10</Bulk>
+					<WornBulk>7.5</WornBulk>
+				</value>
+			</li>
+
+		</operations>
+	</Operation>
+</Patch>
