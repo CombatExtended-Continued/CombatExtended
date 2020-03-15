@@ -10,12 +10,15 @@ using RimWorld;
 namespace CombatExtended.HarmonyCE
 {
     [HarmonyPatch(typeof(MechClusterGenerator), "GetBuildingDefsForCluster")]
-    public class Harmony_MechClusterGenerator
+    public static class Harmony_MechClusterGenerator
     {
-        public static void PostFix(ref List<ThingDef> __result)
+		[HarmonyPostfix]
+        public static void PostFix(List<ThingDef> __result)
         {
             if (Controller.settings.EnableAmmoSystem
-                && __result.Any(x => x.building.IsTurret && !x.building.IsMortar))
+                && __result.Any(x => x.building.IsTurret
+                    && !x.building.IsMortar
+                    && x.GetCompProperties<CompProperties_AmmoUser>()?.ammoSet != null))
             {
                 __result.Add(DefDatabase<ThingDef>.GetNamed("CombatExtended_MechAmmoBeacon"));
             }
