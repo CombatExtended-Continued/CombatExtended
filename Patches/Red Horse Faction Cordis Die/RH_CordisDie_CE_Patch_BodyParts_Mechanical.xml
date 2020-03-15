@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+	<Operation Class="PatchOperationSequence">
+		<success>Always</success>
+		<operations>
+
+			<li Class="CombatExtended.PatchOperationFindMod">
+				<modName>[RH] Faction: Cordis Die</modName>
+			</li>
+
+			<!-- ========== Add mechanical leg parts ========== -->
+
+			<li Class="PatchOperationAdd">
+				<xpath>Defs</xpath>
+				<value>
+					<BodyPartDef>
+						<defName>RH_CLAW_CEFT_LegMechanical</defName>
+						<label>leg</label>
+						<hitPoints>60</hitPoints>
+						<permanentInjuryChanceFactor>0</permanentInjuryChanceFactor>
+						<skinCovered>false</skinCovered>
+						<solid>true</solid>
+						<alive>false</alive>
+						<bleedRate>0</bleedRate>
+						<tags>
+							<li>MovingLimbSegment</li>
+						</tags>
+					</BodyPartDef>
+					
+					<BodyPartDef>
+						<defName>RH_CLAW_CEFT_FeetMechanical</defName>
+						<label>feet</label>
+						<hitPoints>15</hitPoints>
+						<permanentInjuryChanceFactor>0</permanentInjuryChanceFactor>
+						<skinCovered>false</skinCovered>
+						<solid>true</solid>
+						<alive>false</alive>
+						<bleedRate>0</bleedRate>
+						<tags>
+							<li>MovingLimbSegment</li>
+						</tags>
+					</BodyPartDef>
+				</value>
+			</li>
+
+			<!-- ========== Buff hitpoints ========== -->
+
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/BodyPartDef[defName="RH_TurretRing"]/hitPoints</xpath>
+				<value>
+					<hitPoints>50</hitPoints>
+				</value>
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/BodyPartDef[defName="RH_Turret"]/hitPoints</xpath>
+				<value>
+					<hitPoints>60</hitPoints>
+				</value>
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/BodyPartDef[defName="RH_TurretMainGun"]/hitPoints</xpath>
+				<value>
+					<hitPoints>20</hitPoints>
+				</value>
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/BodyPartDef[defName="RH_Link"]/hitPoints</xpath>
+				<value>
+					<hitPoints>40</hitPoints>
+				</value>
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/BodyPartDef[defName="RH_RoadWheel"]/hitPoints</xpath>
+				<value>
+					<hitPoints>30</hitPoints>
+				</value>
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/BodyPartDef[@Name="RH_MBTBodyBase"]/hitPoints</xpath>
+				<value>
+					<hitPoints>100</hitPoints>
+				</value>
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/BodyPartDef[defName="RH_MBTGlacisPlate"]/hitPoints</xpath>
+				<value>
+					<hitPoints>80</hitPoints>
+				</value>
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/BodyPartDef[defName="RH_MBTHullFront"]/hitPoints</xpath>
+				<value>
+					<hitPoints>80</hitPoints>
+				</value>
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/BodyPartDef[defName="RH_MBTHullCentre"]/hitPoints</xpath>
+				<value>
+					<hitPoints>80</hitPoints>
+				</value>
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/BodyPartDef[defName="RH_ArmoredSkirtRight"]/hitPoints</xpath>
+				<value>
+					<hitPoints>90</hitPoints>
+				</value>
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/BodyPartDef[defName="RH_ArmoredSkirtLeft"]/hitPoints</xpath>
+				<value>
+					<hitPoints>90</hitPoints>
+				</value>
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/BodyPartDef[defName="RH_MBTHullRear"]/hitPoints</xpath>
+				<value>
+					<hitPoints>60</hitPoints>
+				</value>
+			</li>
+
+		</operations>
+	</Operation>
+</Patch>
