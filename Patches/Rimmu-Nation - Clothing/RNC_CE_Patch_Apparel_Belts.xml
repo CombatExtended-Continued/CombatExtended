@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+			<li>[CP] Rimmu-Nation - Clothing</li>
+		</mods>
+		<match Class="PatchOperationSequence">
+			<operations>
+
+				<!-- ========== MOLLE ========== -->
+
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="RNApparel_Harness_MOLLE"]/statBases</xpath>
+					<value>
+						<Bulk>5</Bulk>
+						<WornBulk>5</WornBulk>
+					</value>
+				</li>
+
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="RNApparel_Harness_MOLLE"]/equippedStatOffsets</xpath>
+					<value>
+						<CarryBulk>20</CarryBulk>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="RNApparel_Harness_MOLLE"]/apparel
+					</xpath>
+					<value>
+						<apparel>
+							<bodyPartGroups>
+								<li>Shoulders</li>
+							</bodyPartGroups>
+							<layers>
+								<li>Webbing</li>
+							</layers>
+							<tags>
+								<li>IndustrialMilitaryBasic</li>
+							</tags>
+							<defaultOutfitTags>
+								<li>Soldier</li>
+							</defaultOutfitTags>
+							<wornGraphicPath>Things/Apparel/Belt/TacticalHarness</wornGraphicPath>
+						</apparel>
+					</value>
+				</li>
+
+				<!-- ========== ALICE ========== -->
+
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="RNApparel_Harness_ALICE"]/statBases</xpath>
+					<value>
+						<Bulk>3</Bulk>
+						<WornBulk>3</WornBulk>
+					</value>
+				</li>
+
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="RNApparel_Harness_ALICE"]/equippedStatOffsets</xpath>
+					<value>
+						<CarryBulk>10</CarryBulk>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="RNApparel_Harness_ALICE"]/apparel
+					</xpath>
+					<value>
+						<apparel>
+							<bodyPartGroups>
+								<li>Shoulders</li>
+							</bodyPartGroups>
+							<layers>
+								<li>Webbing</li>
+							</layers>
+							<tags>
+								<li>IndustrialMilitaryBasic</li>
+							</tags>
+							<defaultOutfitTags>
+								<li>Soldier</li>
+							</defaultOutfitTags>
+							<wornGraphicPath>Things/Apparel/Belt/ALICE_Harness</wornGraphicPath>
+						</apparel>
+					</value>
+				</li>
+
+				<!-- ========== Handgun holsters ========== -->
+				
+				<!-- Shared with other CP / RH / RN mods - make sure not to apply redundant patches and cause duplicate XML node errors -->
+
+				<li Class="PatchOperationSequence">
+					<success>Always</success>
+					<operations>
+						<li Class="PatchOperationTest">
+							<xpath>Defs/ThingDef[defName="RNApparel_Holsters_Shoulder"]/statBases/Bulk</xpath>
+							<success>Invert</success>
+						</li>
+						<li Class="PatchOperationAdd">
+							<xpath>Defs/ThingDef[defName="RNApparel_Holsters_Shoulder"]/statBases</xpath>
+							<value>
+								<Bulk>2.5</Bulk>
+								<WornBulk>1</WornBulk>
+							</value>
+						</li>
+						<li Class="PatchOperationAdd">
+							<xpath>Defs/ThingDef[defName="RNApparel_Holsters_Shoulder"]/equippedStatOffsets</xpath>
+							<value>
+								<CarryBulk>2.5</CarryBulk>
+							</value>
+						</li>
+					</operations>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="RNApparel_Holsters_Shoulder"]/apparel
+					</xpath>
+					<value>
+						<apparel>
+							<bodyPartGroups>
+								<li>Shoulders</li>
+							</bodyPartGroups>
+							<layers>
+								<li>Webbing</li>
+							</layers>
+							<tags>
+								<li>IndustrialMilitaryBasic</li>
+							</tags>
+							<defaultOutfitTags>
+								<li>Soldier</li>
+							</defaultOutfitTags>
+							<wornGraphicPath>Things/Apparel/Belt/ShoulderHolster</wornGraphicPath>
+						</apparel>
+					</value>
+				</li>
+
+			</operations>
+		</match>
+	</Operation>
+</Patch>
