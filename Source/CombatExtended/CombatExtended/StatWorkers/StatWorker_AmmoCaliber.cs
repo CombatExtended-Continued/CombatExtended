@@ -15,6 +15,24 @@ namespace CombatExtended
             return base.ShouldShowFor(req) && (!(req.Def as AmmoDef)?.Users.NullOrEmpty() ?? false);
         }
 
+        public override IEnumerable<Dialog_InfoCard.Hyperlink> GetInfoCardHyperlinks(StatRequest statRequest)
+        {
+            var ammoDef = (statRequest.Def as AmmoDef);
+
+            if (ammoDef != null)
+            {
+                var users = ammoDef.Users;
+
+                if (!users.NullOrEmpty())
+                {
+                    foreach (var user in users)
+                    {
+                        yield return new Dialog_InfoCard.Hyperlink(user);
+                    }
+                }
+            }
+        }
+
         public override string GetExplanationUnfinalized(StatRequest req, ToStringNumberSense numberSense)
         {
             StringBuilder stringBuilder = new StringBuilder();

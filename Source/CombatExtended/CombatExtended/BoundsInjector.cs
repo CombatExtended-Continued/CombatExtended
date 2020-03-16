@@ -209,6 +209,9 @@ namespace CombatExtended
 			}
 			else
             {
+                //Revert to old system:
+                //return new Vector2(pawn.BodySize, pawn.BodySize);
+                
                 PawnKindLifeStage lifeStage = pawn.ageTracker.CurKindLifeStage;
 
                 //Exact mimick of PawnGraphicSet
@@ -253,8 +256,8 @@ namespace CombatExtended
                         throw new ArgumentException(pawn + ".lifeStage[" + pawn.ageTracker.CurLifeStageIndex + "]." + name, e);
                     }
                 }
-			}
-    	}
+            }
+        }
     	
     	public static Vector2 ForPlant(Plant plant)
     	{

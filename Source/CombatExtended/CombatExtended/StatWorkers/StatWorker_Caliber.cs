@@ -34,6 +34,21 @@ namespace CombatExtended
                     : (GunDef(req)?.Verbs?.Any(x => x.defaultProjectile != null) ?? false));
         }
 
+        public override IEnumerable<Dialog_InfoCard.Hyperlink> GetInfoCardHyperlinks(StatRequest statRequest)
+        {
+            if (Controller.settings.EnableAmmoSystem)
+            {
+                var ammoSet = GunDef(statRequest)?.GetCompProperties<CompProperties_AmmoUser>().ammoSet;
+                if (ammoSet != null)
+                {
+                    foreach (var ammoType in ammoSet.ammoTypes)
+                    {
+                        yield return new Dialog_InfoCard.Hyperlink(ammoType.ammo);
+                    }
+                }
+            }
+        }
+
         public override string GetExplanationUnfinalized(StatRequest req, ToStringNumberSense numberSense)
         {
             StringBuilder stringBuilder = new StringBuilder();

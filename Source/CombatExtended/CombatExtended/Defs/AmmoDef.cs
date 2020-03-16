@@ -34,6 +34,14 @@ namespace CombatExtended
                         }
                         return false;
                     });
+                    
+                    foreach (var user in users)
+                    {
+                        if (descriptionHyperlinks.NullOrEmpty())
+                            descriptionHyperlinks = new List<DefHyperlink>();
+
+                        descriptionHyperlinks.Add(user);
+                    }
                 }
                 return users;
             }
@@ -68,13 +76,7 @@ namespace CombatExtended
 
                 // Append guns that use this caliber
                 if (!Users.NullOrEmpty())
-                {
                     stringBuilder.AppendLine("\n" + "CE_UsedBy".Translate() + ":");
-                    foreach (var user in Users)
-                    {
-                        stringBuilder.AppendLine("   -" + user.LabelCap);
-                    }
-                }
 
                 description = stringBuilder.ToString().TrimEndNewlines();
             }
