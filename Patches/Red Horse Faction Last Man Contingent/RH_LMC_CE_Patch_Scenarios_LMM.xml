@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+	<Operation Class="PatchOperationSequence">
+		<success>Always</success>
+		<operations>
+
+			<li Class="CombatExtended.PatchOperationFindMod">
+				<modName>[RH] Faction: Last Man Contingent</modName>
+			</li>
+
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ScenarioDef[defName="RH_Scenario_LMM"]/scenario/parts</xpath>
+				<value>
+					<li Class="ScenPart_StartingThing_Defined">
+						<def>StartingThing_Defined</def>
+						<thingDef>Ammo_9x19mmPara_FMJ</thingDef>
+						<count>1000</count>
+					</li>
+					<li Class="ScenPart_StartingThing_Defined">
+						<def>StartingThing_Defined</def>
+						<thingDef>Ammo_556x45mmNATO_FMJ</thingDef>
+						<count>500</count>
+					</li>
+					<li Class="ScenPart_StartingThing_Defined">
+						<def>StartingThing_Defined</def>
+						<thingDef>Ammo_762x39mmSoviet_FMJ</thingDef>
+						<count>500</count>
+					</li>
+					<li Class="ScenPart_StartingThing_Defined">
+						<def>StartingThing_Defined</def>
+						<thingDef>Ammo_762x51mmNATO_FMJ</thingDef>
+						<count>500</count>
+					</li>
+				</value>
+			</li>
+
+		</operations>
+	</Operation>
+</Patch>

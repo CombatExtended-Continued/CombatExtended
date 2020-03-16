@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+	<Operation Class="PatchOperationSequence">
+		<success>Always</success>
+		<operations>
+
+			<li Class="CombatExtended.PatchOperationFindMod">
+				<modName>[RH] Faction: Last Man Contingent</modName>
+			</li>
+
+			<!-- ========== Shiv ========== -->
+
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="RNMeleeWeapon_Knife_Shiv"]/tools</xpath>
+				<value>
+					<tools>
+						<li Class="CombatExtended.ToolCE">
+							<label>handle</label>
+							<capacities>
+								<li>Poke</li>
+							</capacities>
+							<power>1</power>
+							<cooldownTime>1.09</cooldownTime>
+							<armorPenetrationBlunt>0.14</armorPenetrationBlunt>
+							<linkedBodyPartsGroup>Handle</linkedBodyPartsGroup>
+						</li>
+						<li Class="CombatExtended.ToolCE">
+							<label>point</label>
+							<capacities>
+								<li>Stab</li>
+							</capacities>
+							<power>7</power>
+							<cooldownTime>1.09</cooldownTime>
+							<armorPenetrationBlunt>0.14</armorPenetrationBlunt>
+							<armorPenetrationSharp>0.24</armorPenetrationSharp>
+							<linkedBodyPartsGroup>Point</linkedBodyPartsGroup>
+						</li>
+						<li Class="CombatExtended.ToolCE">
+							<label>edge</label>
+							<capacities>
+								<li>Cut</li>
+							</capacities>
+							<power>7</power>
+							<cooldownTime>0.99</cooldownTime>
+							<armorPenetrationBlunt>0.202</armorPenetrationBlunt>
+							<armorPenetrationSharp>0.18</armorPenetrationSharp>
+							<linkedBodyPartsGroup>Edge</linkedBodyPartsGroup>
+						</li>
+					</tools>
+				</value>
+			</li>
+
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName="RNMeleeWeapon_Knife_Shiv"]/statBases</xpath>
+				<value>
+					<Bulk>1</Bulk>
+					<MeleeCounterParryBonus>0.2</MeleeCounterParryBonus>
+				</value>
+			</li>
+
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName="RNMeleeWeapon_Knife_Shiv"]</xpath>
+				<value>
+					<equippedStatOffsets>
+						<MeleeCritChance>1.43</MeleeCritChance>
+						<MeleeParryChance>0.2</MeleeParryChance>
+						<MeleeDodgeChance>0.04</MeleeDodgeChance>
+					</equippedStatOffsets>
+				</value>
+			</li>
+
+		</operations>
+	</Operation>
+</Patch>
