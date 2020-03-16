@@ -448,8 +448,11 @@ namespace CombatExtended
             }
             else
             {
-                Log.Message("Intercepts air");
-                flag = (interceptor.Props.interceptAirProjectiles && def.projectile.flyOverhead);
+				if (interceptor.Props.interceptAirProjectiles)
+				{
+					Log.Message("Intercepts air");
+					flag = def.projectile.flyOverhead;
+				}
             }
             if (!flag)
             {
