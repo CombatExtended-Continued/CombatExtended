@@ -61,8 +61,8 @@ Combat Extended completely overhauls combat. It adds completely new shooting and
 ## Supported Third-Party Mods
 Mod | Combat Extended Supported Mods
 --- | :---:
-[CP] British Military Kit				|  		| &#x2705;
-[CP] DOOM (1.0)		                        	|  		| &#x2705;
+[CP] British Military Kit				|  	&#x2705;
+[CP] DOOM (1.0)		                        	|  	&#x2705;
 [CP] Metal Gear Solid (1.0)	                       	|  		| &#x2705;
 [CP] Red Horse Furniture				|  		| &#x2705;
 [CP] Rimmu-Nation - Clothing				|  		| &#x2705;
