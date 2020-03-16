@@ -421,10 +421,10 @@ namespace CombatExtended
         #endregion
 
         #region Collisions
-        static FieldInfo interceptAngleField = typeof(CompProjectileInterceptor).GetField("lastInterceptAngle");
-        static FieldInfo interceptTicksField = typeof(CompProjectileInterceptor).GetField("lastInterceptTicks");
-        static FieldInfo interceptEMPField = typeof(CompProjectileInterceptor).GetField("lastHitByEmpTicks");
-        static FieldInfo interceptDebug = typeof(CompProjectileInterceptor).GetField("debugInterceptNonHostileProjectiles");
+        static FieldInfo interceptAngleField = typeof(CompProjectileInterceptor).GetField("lastInterceptAngle", BindingFlags.NonPublic | BindingFlags.Instance);
+        static FieldInfo interceptTicksField = typeof(CompProjectileInterceptor).GetField("lastInterceptTicks", BindingFlags.NonPublic | BindingFlags.Instance);
+        static FieldInfo interceptEMPField = typeof(CompProjectileInterceptor).GetField("lastHitByEmpTicks", BindingFlags.NonPublic | BindingFlags.Instance);
+        static FieldInfo interceptDebug = typeof(CompProjectileInterceptor).GetField("debugInterceptNonHostileProjectiles", BindingFlags.NonPublic | BindingFlags.Instance);
         private bool CheckIntercept(Thing thing, CompProjectileInterceptor interceptor, bool withDebug = false)
         {
             var str = "CheckIntercept || ";
