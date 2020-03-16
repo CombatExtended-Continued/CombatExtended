@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+	<Operation Class="PatchOperationSequence">
+		<success>Always</success>
+		<operations>
+
+			<li Class="CombatExtended.PatchOperationFindMod">
+				<modName>[RH] Faction: Cordis Die</modName>
+			</li>
+
+			<!-- ========== M134 Minigun ========== -->
+
+			<!-- Errata:
+			
+			The original Cordis Die mod incorrectly defines the .50 cal GAU-19 "Death Machine" as the CLAW's primary weapon, but the GAU-19 is a large three-barrelled weapon rather than the smaller six-barrelled weapon seen in the actual Black Ops 2 game; the correct weapon is thus the 7.62mm M134 Minigun -->
+
+			<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+				<defName>RNGun_DeathMachine_Minigun</defName>
+				<statBases>
+					<RangedWeapon_Cooldown>0.35</RangedWeapon_Cooldown>
+					<SightsEfficiency>1.00</SightsEfficiency>
+					<ShotSpread>0.06</ShotSpread>
+					<SwayFactor>1.23</SwayFactor>
+					<Bulk>8.02</Bulk>
+				</statBases>
+				<Properties>
+					<recoilAmount>0.65</recoilAmount>
+					<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+					<hasStandardCommand>true</hasStandardCommand>
+					<defaultProjectile>Bullet_762x51mmNATO_FMJ</defaultProjectile>
+					<warmupTime>2.3</warmupTime>
+					<range>86</range>
+					<ticksBetweenBurstShots>1</ticksBetweenBurstShots>
+					<burstShotCount>100</burstShotCount>
+					<soundCast>RHFire_DOOMChaingun</soundCast>
+					<soundAiming>RHGun_DOOMChaingunAiming</soundAiming>
+					<soundCastTail>GunTail_Medium</soundCastTail>
+					<muzzleFlashScale>9</muzzleFlashScale>
+				</Properties>
+				<AmmoUser>
+					<magazineSize>500</magazineSize>
+					<reloadTime>0</reloadTime>
+					<!--Allow instantaneous reload inside the CLAW unit-->
+					<ammoSet>AmmoSet_762x51mmNATO</ammoSet>
+				</AmmoUser>
+				<FireModes>
+					<aiUseBurstMode>FALSE</aiUseBurstMode>
+					<aiAimMode>SuppressFire</aiAimMode>
+					<aimedBurstShotCount>50</aimedBurstShotCount>
+					<noSnapshot>true</noSnapshot>
+					<noSingleShot>true</noSingleShot>
+				</FireModes>
+				<weaponTags>
+					<li>TurretGun</li>
+				</weaponTags>
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="RNGun_DeathMachine_Minigun"]/tools</xpath>
+				<value>
+					<tools>
+						<li Class="CombatExtended.ToolCE">
+							<label>barrel</label>
+							<capacities>
+								<li>Blunt</li>
+							</capacities>
+							<power>10</power>
+							<cooldownTime>2.44</cooldownTime>
+							<armorPenetrationBlunt>3.5</armorPenetrationBlunt>
+							<linkedBodyPartsGroup>Barrel</linkedBodyPartsGroup>
+						</li>
+					</tools>
+				</value>
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="RNGun_DeathMachine_Minigun"]/label</xpath>
+				<value>
+					<label>M134 Minigun</label>
+				</value>
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="RNGun_DeathMachine_Minigun"]/description</xpath>
+				<value>
+					<description>A six-barrel rotary heavy machine gun with a very high rate of fire, chambered in 7.62×51mm NATO rounds. 
+
+Whereas most self-loading guns are powered by the energy from the gunpowder within each cartridge, the minigun uses an electric motor to rapidly cycle cartridges through the weapon.</description>
+				</value>
+			</li>
+
+		</operations>
+	</Operation>
+</Patch>
