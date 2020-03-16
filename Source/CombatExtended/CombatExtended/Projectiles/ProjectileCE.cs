@@ -421,59 +421,50 @@ namespace CombatExtended
         #endregion
 
         #region Collisions
-        public static FieldInfo interceptAngleField = typeof(CompProjectileInterceptor).GetField("lastInterceptAngle");
-        public static FieldInfo interceptTicksField = typeof(CompProjectileInterceptor).GetField("lastInterceptTicks");
-        public static FieldInfo interceptEMPField = typeof(CompProjectileInterceptor).GetField("lastHitByEmpTicks");
-        private bool CheckIntercept(Thing thing, CompProjectileInterceptor interceptor)
+        static FieldInfo interceptAngleField = typeof(CompProjectileInterceptor).GetField("lastInterceptAngle");
+        static FieldInfo interceptTicksField = typeof(CompProjectileInterceptor).GetField("lastInterceptTicks");
+        static FieldInfo interceptEMPField = typeof(CompProjectileInterceptor).GetField("lastHitByEmpTicks");
+        static FieldInfo interceptDebug = typeof(CompProjectileInterceptor).GetField("debugInterceptNonHostileProjectiles");
+        private bool CheckIntercept(Thing thing, CompProjectileInterceptor interceptor, bool withDebug = false)
         {
-            var str = "CheckIntercept call || ";
-
             Vector3 vector = thing.Position.ToVector3Shifted();
             float num = interceptor.Props.radius + def.projectile.SpeedTilesPerTick + 0.1f;
 
             var newExactPos = ExactPosition;
-
-            str += "1";
-
+            
             if ((newExactPos.x - vector.x) * (newExactPos.x - vector.x) + (newExactPos.z - vector.z) * (newExactPos.z - vector.z) > num * num)
             {
-                Log.Message(str);
                 return false;
             }
-            str += "2";
             if (!interceptor.Active)
             {
-                Log.Message(str);
                 return false;
             }
-            str += "3";
-            if (interceptor.Props.interceptGroundProjectiles
-                ? def.projectile.flyOverhead
-                : !(interceptor.Props.interceptAirProjectiles && def.projectile.flyOverhead))
+            bool flag;
+            if (interceptor.Props.interceptGroundProjectiles)
             {
-                Log.Message(str);
-                return false;
+                flag = !def.projectile.flyOverhead;
             }
-            str += "4";
-            if ((launcher == null || !launcher.HostileTo(thing)))
-            //&& !interceptor.debugInterceptNonHostileProjectiles)  Disabled
+            else
             {
-                Log.Message(str);
+                flag = (interceptor.Props.interceptAirProjectiles && def.projectile.flyOverhead);
+            }
+            if (!flag)
+            {
                 return false;
             }
-            str += "5";
+            if ((launcher == null || !launcher.HostileTo(thing)) && !((bool)interceptDebug.GetValue(interceptor)))
+            {
+                return false;
+            }
             if ((new Vector2(vector.x, vector.z) - new Vector2(lastExactPos.x, lastExactPos.z)).sqrMagnitude <= interceptor.Props.radius * interceptor.Props.radius)
             {
-                Log.Message(str);
                 return false;
             }
-            str += "6";
             if (!GenGeo.IntersectLineCircleOutline(new Vector2(vector.x, vector.z), interceptor.Props.radius, new Vector2(lastExactPos.x, lastExactPos.z), new Vector2(newExactPos.x, newExactPos.z)))
             {
-                Log.Message(str);
                 return false;
             }
-            str += "7";
             interceptAngleField.SetValue(interceptor, lastExactPos.AngleToFlat(thing.TrueCenter()));
             interceptTicksField.SetValue(interceptor, Find.TickManager.TicksGame);
             if (def.projectile.damageDef == DamageDefOf.EMP
@@ -481,12 +472,9 @@ namespace CombatExtended
             {
                 interceptEMPField.SetValue(interceptor, Find.TickManager.TicksGame);
             }
-            str += "8";
             Effecter eff = new Effecter(EffecterDefOf.Interceptor_BlockedProjectile);
             eff.Trigger(new TargetInfo(newExactPos.ToIntVec3(), thing.Map, false), TargetInfo.Invalid);
             eff.Cleanup();
-            str += "9";
-            Log.Message(str);
             return true;
         }
 
