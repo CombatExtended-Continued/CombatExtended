@@ -427,74 +427,57 @@ namespace CombatExtended
         static FieldInfo interceptDebug = typeof(CompProjectileInterceptor).GetField("debugInterceptNonHostileProjectiles", BindingFlags.NonPublic | BindingFlags.Instance);
         private bool CheckIntercept(Thing thing, CompProjectileInterceptor interceptor, bool withDebug = false)
         {
-            var str = "CheckIntercept || ";
-
             Vector3 vector = thing.Position.ToVector3Shifted();
             float num = interceptor.Props.radius + def.projectile.SpeedTilesPerTick + 0.1f;
 
             var newExactPos = ExactPosition;
-
-            str += "1";
-
+            
             if ((newExactPos.x - vector.x) * (newExactPos.x - vector.x) + (newExactPos.z - vector.z) * (newExactPos.z - vector.z) > num * num)
             {
-                Log.Message(str);
                 return false;
             }
-            str += "2";
             if (!interceptor.Active)
             {
-                Log.Message(str);
                 return false;
             }
-            str += "3";
             bool flag;
             if (interceptor.Props.interceptGroundProjectiles)
             {
+                Log.Message("Intercepts ground");
                 flag = !def.projectile.flyOverhead;
             }
             else
             {
+                Log.Message("Intercepts air");
                 flag = (interceptor.Props.interceptAirProjectiles && def.projectile.flyOverhead);
             }
             if (!flag)
             {
-                Log.Message(str);
+                Log.Message("Projectile didn't match");
                 return false;
             }
-            str += "4";
             if ((launcher == null || !launcher.HostileTo(thing)) && !((bool)interceptDebug.GetValue(interceptor)))
             {
-                Log.Message(str);
                 return false;
             }
-            str += "5";
             if ((new Vector2(vector.x, vector.z) - new Vector2(lastExactPos.x, lastExactPos.z)).sqrMagnitude <= interceptor.Props.radius * interceptor.Props.radius)
             {
-                Log.Message(str);
                 return false;
             }
-            str += "6";
             if (!GenGeo.IntersectLineCircleOutline(new Vector2(vector.x, vector.z), interceptor.Props.radius, new Vector2(lastExactPos.x, lastExactPos.z), new Vector2(newExactPos.x, newExactPos.z)))
             {
-                Log.Message(str);
                 return false;
             }
-            str += "7";
             interceptAngleField.SetValue(interceptor, lastExactPos.AngleToFlat(thing.TrueCenter()));
             interceptTicksField.SetValue(interceptor, Find.TickManager.TicksGame);
-            str += "8";
             if (def.projectile.damageDef == DamageDefOf.EMP
                 || ((def.projectile as ProjectilePropertiesCE)?.secondaryDamage?.Any(x => x.def == DamageDefOf.EMP) ?? false))
             {
                 interceptEMPField.SetValue(interceptor, Find.TickManager.TicksGame);
             }
-            str += "9";
             Effecter eff = new Effecter(EffecterDefOf.Interceptor_BlockedProjectile);
             eff.Trigger(new TargetInfo(newExactPos.ToIntVec3(), thing.Map, false), TargetInfo.Invalid);
             eff.Cleanup();
-            str += "10";
-            Log.Message(str);
             return true;
         }
 
