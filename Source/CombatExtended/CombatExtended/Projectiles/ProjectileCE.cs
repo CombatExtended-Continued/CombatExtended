@@ -434,47 +434,38 @@ namespace CombatExtended
             
             if ((newExactPos.x - vector.x) * (newExactPos.x - vector.x) + (newExactPos.z - vector.z) * (newExactPos.z - vector.z) > num * num)
             {
-                Log.Message("Projectile goes faster than the entire width of the shield ("+def.defName+")");
                 return false;
             }
-			Log.Message("Projectile ("+def.defName+") within shield ("+thing.def.defName+")");
             if (!interceptor.Active)
             {
-                Log.Message("Interceptor inactive ("+def.defName+")");
                 return false;
             }
             bool flag = false;
             if (interceptor.Props.interceptGroundProjectiles)
             {
-                Log.Message("Intercepts ground");
                 flag = !def.projectile.flyOverhead;
             }
             else
             {
 				if (interceptor.Props.interceptAirProjectiles)
 				{
-					Log.Message("Intercepts air. flag = "+flag+", flyOverhead ("+def.defName+") = "+def.projectile.flyOverhead);
 					flag = def.projectile.flyOverhead;
 				}
             }
             if (!flag)
             {
-                Log.Message("Projectile ("+def.defName+") didn't match. flag = "+flag);
                 return false;
             }
             if ((launcher == null || !launcher.HostileTo(thing)) && !((bool)interceptDebug.GetValue(interceptor)))
             {
-                Log.Message("Launcher ("+def.defName+") null ("+(launcher == null)+") or non-hostile to shield");
                 return false;
             }
             if ((new Vector2(vector.x, vector.z) - new Vector2(lastExactPos.x, lastExactPos.z)).sqrMagnitude <= interceptor.Props.radius * interceptor.Props.radius)
             {
-                Log.Message("Not within radius of shield for "+def.defName);
                 return false;
             }
             if (!GenGeo.IntersectLineCircleOutline(new Vector2(vector.x, vector.z), interceptor.Props.radius, new Vector2(lastExactPos.x, lastExactPos.z), new Vector2(newExactPos.x, newExactPos.z)))
             {
-                Log.Message("Complex intercept stuff didn't work "+def.defName);
                 return false;
             }
             interceptAngleField.SetValue(interceptor, lastExactPos.AngleToFlat(thing.TrueCenter()));
@@ -487,7 +478,6 @@ namespace CombatExtended
             Effecter eff = new Effecter(EffecterDefOf.Interceptor_BlockedProjectile);
             eff.Trigger(new TargetInfo(newExactPos.ToIntVec3(), thing.Map, false), TargetInfo.Invalid);
             eff.Cleanup();
-            Log.Message("Projectile has been detected within shield and should be destroyed "+def.defName);
             return true;
         }
 
@@ -503,7 +493,6 @@ namespace CombatExtended
                 if (CheckIntercept(list[i], list[i].TryGetComp<CompProjectileInterceptor>()))
                 {
                     this.Destroy(DestroyMode.Vanish);
-					Log.Message("Projectile was destroyed "+def.defName);
                     return true;
                 }
             }
