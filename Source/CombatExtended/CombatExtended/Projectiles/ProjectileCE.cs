@@ -440,7 +440,7 @@ namespace CombatExtended
             {
                 return false;
             }
-            bool flag;
+            bool flag = false;
             if (interceptor.Props.interceptGroundProjectiles)
             {
                 Log.Message("Intercepts ground");
