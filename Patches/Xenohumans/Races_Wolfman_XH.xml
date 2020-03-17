@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="utf-8" ?>
+
+<Patch>
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+			<li>Xenohumans - Gen-spliced Xenos on the Rim</li>
+		</mods>
+		<match Class="PatchOperationSequence">	
+			<operations>
+
+				<li Class="PatchOperationAddModExtension">
+					<xpath>Defs/AlienRace.ThingDef_AlienRace[defName="WolfManXH"]</xpath>
+					<value>
+						<li Class="CombatExtended.RacePropertiesExtensionCE">
+							<bodyShape>Humanoid</bodyShape>
+						</li>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/AlienRace.ThingDef_AlienRace[defName="WolfManXH"]/statBases/ArmorRating_Blunt</xpath>
+					<value>
+						<ArmorRating_Blunt>0.05</ArmorRating_Blunt>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/AlienRace.ThingDef_AlienRace[defName="WolfManXH"]/statBases/ArmorRating_Sharp</xpath>
+					<value>
+						<ArmorRating_Sharp>0.05</ArmorRating_Sharp>
+					</value>
+				</li>
+
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/AlienRace.ThingDef_AlienRace[defName="WolfManXH"]/statBases</xpath>
+					<value>
+						<MeleeDodgeChance>1</MeleeDodgeChance>
+						<MeleeCritChance>1</MeleeCritChance>
+						<MeleeParryChance>1</MeleeParryChance>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<success>Always</success>
+					<xpath>Defs/AlienRace.ThingDef_AlienRace[defName="WolfManXH"]/tools</xpath>
+					<value>
+						<tools>
+							<li Class="CombatExtended.ToolCE">
+								<label>left fist</label>
+								<capacities>
+									<li>Scratch</li>
+								</capacities>
+								<power>7</power>
+								<cooldownTime>0.84</cooldownTime>
+								<linkedBodyPartsGroup>LeftHand</linkedBodyPartsGroup>
+								<armorPenetrationSharp>0.12</armorPenetrationSharp>
+								<armorPenetrationBlunt>0.563</armorPenetrationBlunt>
+							</li>
+							<li Class="CombatExtended.ToolCE">
+								<label>right fist</label>
+								<capacities>
+									<li>Scratch</li>
+								</capacities>
+								<power>7</power>
+								<cooldownTime>0.84</cooldownTime>
+								<linkedBodyPartsGroup>RightHand</linkedBodyPartsGroup>
+								<armorPenetrationSharp>0.12</armorPenetrationSharp>
+								<armorPenetrationBlunt>0.563</armorPenetrationBlunt>
+							</li>
+							<li Class="CombatExtended.ToolCE">
+								<label>teeth</label>
+								<capacities>
+									<li>Bite</li>
+								</capacities>
+								<power>16</power>
+								<cooldownTime>1.65</cooldownTime>
+								<linkedBodyPartsGroup>Teeth</linkedBodyPartsGroup>
+								<armorPenetrationSharp>0.03</armorPenetrationSharp>
+								<armorPenetrationBlunt>2.16</armorPenetrationBlunt>
+								<chanceFactor>0.3</chanceFactor>
+							</li>
+							<li Class="CombatExtended.ToolCE">
+								<label>head</label>
+								<capacities>
+									<li>Blunt</li>
+								</capacities>
+								<power>2</power>
+								<cooldownTime>4.49</cooldownTime>
+								<linkedBodyPartsGroup>HeadAttackTool</linkedBodyPartsGroup>
+								<ensureLinkedBodyPartsGroupAlwaysUsable>true</ensureLinkedBodyPartsGroupAlwaysUsable>
+								<chanceFactor>0.2</chanceFactor>
+								<armorPenetrationBlunt>0.625</armorPenetrationBlunt>
+							</li>
+						</tools>
+					</value>
+				</li>
+
+				<li Class="PatchOperationSequence">
+					<success>Always</success>
+					<operations>
+						<li Class="PatchOperationTest">
+							<xpath>Defs/AlienRace.ThingDef_AlienRace[defName="WolfManXH"]/comps</xpath>
+							<success>Invert</success>
+						</li>
+						<li Class="PatchOperationAdd">
+							<xpath>Defs/AlienRace.ThingDef_AlienRace[defName="WolfManXH"]</xpath>
+							<value>
+								<comps />
+							</value>
+						</li>
+					</operations>
+				</li>
+
+				<li Class="PatchOperationAdd">
+					<success>Always</success>
+					<xpath>Defs/AlienRace.ThingDef_AlienRace[defName="WolfManXH"]/comps</xpath>
+					<value>
+						<li>
+							<compClass>CombatExtended.CompPawnGizmo</compClass>
+						</li>
+						<li Class="CombatExtended.CompProperties_Suppressable" />
+					</value>
+				</li>
+			</operations>
+		</match>
+	</Operation>
+</Patch>

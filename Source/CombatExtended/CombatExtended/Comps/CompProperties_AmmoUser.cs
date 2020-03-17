@@ -16,6 +16,7 @@ namespace CombatExtended
         public bool throwMote = true;
         public AmmoSetDef ammoSet = null;
         public bool spawnUnloaded = false;
+        public float loadedAmmoBulkFactor = 0f;
 
         public CompProperties_AmmoUser()
         {

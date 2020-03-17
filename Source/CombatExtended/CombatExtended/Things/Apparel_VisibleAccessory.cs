@@ -36,7 +36,7 @@ namespace CombatExtended
             //Since I haven't a head apparel item to test the drawing code against for now we throw an error (ONCE) and exit.
             if (this.onHead)
             {
-            	Log.ErrorOnce(string.Concat("CombatExtended :: Apparel_VisibleAccessory: The head drawing code is incomplete and the apparel '",
+            	Log.ErrorOnce(string.Concat("Combat Extended :: Apparel_VisibleAccessory: The head drawing code is incomplete and the apparel '",
             	                            this.Label, "' will not be drawn."), this.def.debugRandomId);
             	return;
             }
@@ -188,7 +188,7 @@ namespace CombatExtended
 		   			}
 		   			if (!_OnHeadCache.ContainsKey(def.defName))
 		   			{
-		   				Log.ErrorOnce(string.Concat("CombatExtended :: ", this.GetType(), " was unable to determine if body or head on item '", Label,
+		   				Log.ErrorOnce(string.Concat("Combat Extended :: ", this.GetType(), " was unable to determine if body or head on item '", Label,
 		   				                            "', might the Wearer be non-human?  Assuming apparel is on body."), def.debugRandomId);
 		   				_OnHeadCache.Add(def.defName, false);
 		   			}

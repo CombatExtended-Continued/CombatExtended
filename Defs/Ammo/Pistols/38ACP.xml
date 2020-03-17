@@ -15,6 +15,7 @@
 		<label>.38 ACP</label>
 		<ammoTypes>
 			<Ammo_38ACP_FMJ>Bullet_38ACP_FMJ</Ammo_38ACP_FMJ>
+			<Ammo_38ACP_AP>Bullet_38ACP_AP</Ammo_38ACP_AP>			
 			<Ammo_38ACP_HP>Bullet_38ACP_HP</Ammo_38ACP_HP>
 		</ammoTypes>
 	</CombatExtended.AmmoSetDef>
@@ -24,8 +25,8 @@
 	<ThingDef Class="CombatExtended.AmmoDef" Name="38ACPBase" ParentName="SmallAmmoBase" Abstract="True">
 		<description>Low caliber handgun cartridge lacking in stopping power.</description>
 		<statBases>
-			<Mass>0.01</Mass>
-			<Bulk>0.02</Bulk>
+			<Mass>0.014</Mass>
+			<Bulk>0.01</Bulk>
 		</statBases>
 		<tradeTags>
 			<li>CE_AutoEnableTrade</li>
@@ -44,10 +45,24 @@
 			<graphicClass>Graphic_StackCount</graphicClass>
 		</graphicData>
 		<statBases>
-			<MarketValue>0.05</MarketValue>
+			<MarketValue>0.07</MarketValue>
 		</statBases>
 		<ammoClass>FullMetalJacket</ammoClass>
 		<cookOffProjectile>Bullet_38ACP_FMJ</cookOffProjectile>
+	</ThingDef>
+
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="40SWBase">
+		<defName>Ammo_38ACP_AP</defName>
+		<label>.38 ACP cartridge (AP)</label>
+		<graphicData>
+			<texPath>Things/Ammo/Pistol/AP</texPath>
+			<graphicClass>Graphic_StackCount</graphicClass>
+		</graphicData>
+		<statBases>
+			<MarketValue>0.07</MarketValue>
+		</statBases>
+		<ammoClass>ArmorPiercing</ammoClass>
+		<cookOffProjectile>Bullet_38ACP_AP</cookOffProjectile>
 	</ThingDef>
 
 	<ThingDef Class="CombatExtended.AmmoDef" ParentName="38ACPBase">
@@ -58,7 +73,7 @@
 			<graphicClass>Graphic_StackCount</graphicClass>
 		</graphicData>
 		<statBases>
-			<MarketValue>0.06</MarketValue>
+			<MarketValue>0.07</MarketValue>
 		</statBases>
 		<ammoClass>HollowPoint</ammoClass>
 	</ThingDef>
@@ -82,9 +97,18 @@
 		<label>.38 ACP bullet (FMJ)</label>
 		<projectile Class="CombatExtended.ProjectilePropertiesCE">
 			<damageAmountBase>10</damageAmountBase>
-			<armorPenetrationBase>0.286</armorPenetrationBase>
-			<armorPenetrationSharp>0</armorPenetrationSharp>
-			<armorPenetrationBlunt>0</armorPenetrationBlunt>
+			<armorPenetrationSharp>3</armorPenetrationSharp>
+			<armorPenetrationBlunt>8.58</armorPenetrationBlunt>
+		</projectile>
+	</ThingDef>
+
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="Base38ACPBullet">
+		<defName>Bullet_38ACP_AP</defName>
+		<label>.38 ACP bullet (AP)</label>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageAmountBase>6</damageAmountBase>
+			<armorPenetrationSharp>6</armorPenetrationSharp>
+			<armorPenetrationBlunt>8.58</armorPenetrationBlunt>
 		</projectile>
 	</ThingDef>
 
@@ -92,10 +116,9 @@
 		<defName>Bullet_38ACP_HP</defName>
 		<label>.38 ACP bullet (HP)</label>
 		<projectile Class="CombatExtended.ProjectilePropertiesCE">
-			<damageAmountBase>14</damageAmountBase>
-			<armorPenetrationBase>0.136</armorPenetrationBase>
-			<armorPenetrationSharp>0</armorPenetrationSharp>
-			<armorPenetrationBlunt>0</armorPenetrationBlunt>
+			<damageAmountBase>13</damageAmountBase>
+			<armorPenetrationSharp>2</armorPenetrationSharp>
+			<armorPenetrationBlunt>8.58</armorPenetrationBlunt>
 		</projectile>
 	</ThingDef>
 
@@ -113,7 +136,7 @@
 						<li>Steel</li>
 					</thingDefs>
 				</filter>
-				<count>8</count>
+				<count>16</count>
 			</li>
 		</ingredients>
 		<fixedIngredientFilter>
@@ -124,7 +147,33 @@
 		<products>
 			<Ammo_38ACP_FMJ>500</Ammo_38ACP_FMJ>
 		</products>
-		<workAmount>1750</workAmount>
+		<workAmount>1600</workAmount>
+	</RecipeDef>
+
+	<RecipeDef ParentName="AmmoRecipeBase">
+		<defName>MakeAmmo_38ACP_AP</defName>
+		<label>make .38 ACP (AP) cartridge x500</label>
+		<description>Craft 500 .38 ACP (AP) cartridges.</description>
+		<jobString>Making .38 ACP (AP) cartridges.</jobString>
+		<ingredients>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>Steel</li>
+					</thingDefs>
+				</filter>
+				<count>16</count>
+			</li>
+		</ingredients>
+		<fixedIngredientFilter>
+			<thingDefs>
+				<li>Steel</li>
+			</thingDefs>
+		</fixedIngredientFilter>
+		<products>
+			<Ammo_38ACP_AP>500</Ammo_38ACP_AP>
+		</products>
+		<workAmount>1600</workAmount>
 	</RecipeDef>
 
 	<RecipeDef ParentName="AmmoRecipeBase">
@@ -139,7 +188,7 @@
 						<li>Steel</li>
 					</thingDefs>
 				</filter>
-				<count>8</count>
+				<count>16</count>
 			</li>
 		</ingredients>
 		<fixedIngredientFilter>
@@ -150,7 +199,7 @@
 		<products>
 			<Ammo_38ACP_HP>500</Ammo_38ACP_HP>
 		</products>
-		<workAmount>3000</workAmount>
+		<workAmount>1600</workAmount>
 	</RecipeDef>
 
 </Defs>

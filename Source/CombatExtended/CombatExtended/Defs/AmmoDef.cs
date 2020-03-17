@@ -28,7 +28,11 @@ namespace CombatExtended
                     users = CE_Utility.allWeaponDefs.FindAll(delegate(ThingDef def) 
                     {
                         CompProperties_AmmoUser props = def.GetCompProperties<CompProperties_AmmoUser>();
-                        return props != null && props.ammoSet.ammoTypes.Any(x => x.ammo == this);
+                        if(props?.ammoSet?.ammoTypes != null)
+                        {
+                            return props.ammoSet.ammoTypes.Any(x => x.ammo == this);
+                        }
+                        return false;
                     });
                 }
                 return users;
@@ -41,7 +45,7 @@ namespace CombatExtended
             get
             {
                 if (ammoSetDefs == null)
-                    ammoSetDefs = users.Select(x => x.GetCompProperties<CompProperties_AmmoUser>().ammoSet).Distinct().ToList();
+                    ammoSetDefs = Users.Select(x => x.GetCompProperties<CompProperties_AmmoUser>().ammoSet).Distinct().ToList();
 
                 return ammoSetDefs;
             }

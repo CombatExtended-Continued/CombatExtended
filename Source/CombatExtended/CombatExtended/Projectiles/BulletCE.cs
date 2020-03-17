@@ -51,11 +51,13 @@ namespace CombatExtended
                 int damageAmountBase = def.projectile.GetDamageAmount(1);
                 DamageDefExtensionCE damDefCE = def.projectile.damageDef.GetModExtension<DamageDefExtensionCE>() ?? new DamageDefExtensionCE();
                 var projectilePropsCE = (ProjectilePropertiesCE)def.projectile;
+                var isSharpDmg = def.projectile.damageDef.armorCategory == DamageArmorCategoryDefOf.Sharp;
+                var penetration = isSharpDmg ? projectilePropsCE.armorPenetrationSharp : projectilePropsCE.armorPenetrationBlunt;
 
                 DamageInfo dinfo = new DamageInfo(
                     def.projectile.damageDef,
                     damageAmountBase,
-                    projectilePropsCE.armorPenetrationSharp, //Armor Penetration
+                    penetration, //Armor Penetration
                     ExactRotation.eulerAngles.y,
                     launcher,
                     null,
