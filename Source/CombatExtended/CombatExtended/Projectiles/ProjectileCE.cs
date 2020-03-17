@@ -436,6 +436,7 @@ namespace CombatExtended
             {
                 return false;
             }
+			Log.Message("Projectile ("+def.defName+") within shield ("+thing.def.defName+")");
             if (!interceptor.Active)
             {
                 Log.Message("Interceptor inactive ("+def.defName+")");
@@ -485,6 +486,7 @@ namespace CombatExtended
             Effecter eff = new Effecter(EffecterDefOf.Interceptor_BlockedProjectile);
             eff.Trigger(new TargetInfo(newExactPos.ToIntVec3(), thing.Map, false), TargetInfo.Invalid);
             eff.Cleanup();
+            Log.Message("Projectile has been detected within shield and should be destroyed "+def.defName);
             return true;
         }
 
@@ -512,6 +514,7 @@ namespace CombatExtended
                 if (CheckIntercept(list[i], list[i].TryGetComp<CompProjectileInterceptor>()))
                 {
                     this.Destroy(DestroyMode.Vanish);
+					Log.Message("Projectile was destroyed "+def.defName);
                     return true;
                 }
             }
