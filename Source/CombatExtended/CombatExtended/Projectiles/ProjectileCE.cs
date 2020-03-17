@@ -497,6 +497,17 @@ namespace CombatExtended
             var lastPosIV3 = LastPos.ToIntVec3();
             var newPosIV3 = ExactPosition.ToIntVec3();
 
+            List<Thing> list = base.Map.listerThings.ThingsInGroup(ThingRequestGroup.ProjectileInterceptor);
+            for (int i = 0; i < list.Count; i++)
+            {
+                if (CheckIntercept(list[i], list[i].TryGetComp<CompProjectileInterceptor>()))
+                {
+                    this.Destroy(DestroyMode.Vanish);
+					Log.Message("Projectile was destroyed "+def.defName);
+                    return true;
+                }
+            }
+			
             #region Sanity checks
             if (!lastPosIV3.InBounds(Map) || !newPosIV3.InBounds(Map))
             {
@@ -509,21 +520,6 @@ namespace CombatExtended
             }
             #endregion
             
-            List<Thing> list = base.Map.listerThings.ThingsInGroup(ThingRequestGroup.ProjectileInterceptor);
-			
-			if (list.Count == 0)
-				Log.Message("No interceptors exist");
-			
-            for (int i = 0; i < list.Count; i++)
-            {
-                if (CheckIntercept(list[i], list[i].TryGetComp<CompProjectileInterceptor>()))
-                {
-                    this.Destroy(DestroyMode.Vanish);
-					Log.Message("Projectile was destroyed "+def.defName);
-                    return true;
-                }
-            }
-
             // Iterate through all cells between the last and the new position
             // INCLUDING[!!!] THE LAST AND NEW POSITIONS!
             var cells = GenSight.PointsOnLineOfSight(lastPosIV3, newPosIV3).Union(new[] { lastPosIV3, newPosIV3 }).Distinct().OrderBy(x => (x.ToVector3Shifted() - LastPos).MagnitudeHorizontalSquared());
@@ -745,9 +741,7 @@ namespace CombatExtended
                 Destroy();
                 return;
             }
-            if (ticksToImpact >= 0
-                && !def.projectile.flyOverhead
-                && CheckForCollisionBetween())
+            if (CheckForCollisionBetween())
             {
                 return;
             }
