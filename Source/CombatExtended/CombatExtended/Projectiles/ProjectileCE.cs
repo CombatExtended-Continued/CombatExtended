@@ -434,6 +434,7 @@ namespace CombatExtended
             
             if ((newExactPos.x - vector.x) * (newExactPos.x - vector.x) + (newExactPos.z - vector.z) * (newExactPos.z - vector.z) > num * num)
             {
+                Log.Message("Projectile goes faster than the entire width of the shield ("+def.defName+")");
                 return false;
             }
 			Log.Message("Projectile ("+def.defName+") within shield ("+thing.def.defName+")");
@@ -509,6 +510,10 @@ namespace CombatExtended
             #endregion
             
             List<Thing> list = base.Map.listerThings.ThingsInGroup(ThingRequestGroup.ProjectileInterceptor);
+			
+			if (list.Count == 0)
+				Log.Message("No interceptors exist");
+			
             for (int i = 0; i < list.Count; i++)
             {
                 if (CheckIntercept(list[i], list[i].TryGetComp<CompProjectileInterceptor>()))
