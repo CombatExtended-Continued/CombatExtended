@@ -450,13 +450,13 @@ namespace CombatExtended
             {
 				if (interceptor.Props.interceptAirProjectiles)
 				{
-					Log.Message("Intercepts air");
+					Log.Message("Intercepts air. flag = "+flag+", flyOverhead ("+def.defName+") = "+def.projectile.flyOverhead);
 					flag = def.projectile.flyOverhead;
 				}
             }
             if (!flag)
             {
-                Log.Message("Projectile didn't match");
+                Log.Message("Projectile didn't match. flag = "+flag);
                 return false;
             }
             if ((launcher == null || !launcher.HostileTo(thing)) && !((bool)interceptDebug.GetValue(interceptor)))
