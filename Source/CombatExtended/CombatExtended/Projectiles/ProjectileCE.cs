@@ -438,6 +438,7 @@ namespace CombatExtended
             }
             if (!interceptor.Active)
             {
+                Log.Message("Interceptor inactive ("+def.defName+")");
                 return false;
             }
             bool flag = false;
@@ -456,19 +457,22 @@ namespace CombatExtended
             }
             if (!flag)
             {
-                Log.Message("Projectile didn't match. flag = "+flag);
+                Log.Message("Projectile ("+def.defName+") didn't match. flag = "+flag);
                 return false;
             }
             if ((launcher == null || !launcher.HostileTo(thing)) && !((bool)interceptDebug.GetValue(interceptor)))
             {
+                Log.Message("Launcher ("+def.defName+") null ("+(launcher == null)+") or non-hostile to shield");
                 return false;
             }
             if ((new Vector2(vector.x, vector.z) - new Vector2(lastExactPos.x, lastExactPos.z)).sqrMagnitude <= interceptor.Props.radius * interceptor.Props.radius)
             {
+                Log.Message("Not within radius of shield for "+def.defName);
                 return false;
             }
             if (!GenGeo.IntersectLineCircleOutline(new Vector2(vector.x, vector.z), interceptor.Props.radius, new Vector2(lastExactPos.x, lastExactPos.z), new Vector2(newExactPos.x, newExactPos.z)))
             {
+                Log.Message("Complex intercept stuff didn't work "+def.defName);
                 return false;
             }
             interceptAngleField.SetValue(interceptor, lastExactPos.AngleToFlat(thing.TrueCenter()));
