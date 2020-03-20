@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+	<Operation Class="PatchOperationSequence">
+		<success>Always</success>
+		<operations>
+
+			<li Class="CombatExtended.PatchOperationFindMod">
+				<modName>[RH] Faction: Cordis Die</modName>
+			</li>
+
+			<!-- ========== Dragonfire MG ========== -->
+
+			<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+				<defName>RNGun_Dragonfire_MG</defName>
+				<statBases>
+					<RangedWeapon_Cooldown>0.36</RangedWeapon_Cooldown>
+					<SightsEfficiency>2.24</SightsEfficiency>
+					<ShotSpread>0.1</ShotSpread>
+					<SwayFactor>0.62</SwayFactor>
+					<Bulk>7.56</Bulk>
+				</statBases>
+				<Properties>
+					<recoilAmount>1.54</recoilAmount>
+					<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+					<hasStandardCommand>true</hasStandardCommand>
+					<defaultProjectile>Bullet_556x45mmNATO_FMJ</defaultProjectile>
+					<warmupTime>2</warmupTime>
+					<range>55</range>
+					<ticksBetweenBurstShots>4</ticksBetweenBurstShots>
+					<burstShotCount>10</burstShotCount>
+					<soundCast>RNShot_GenericAR_IV</soundCast>
+					<soundCastTail>GunTail_Light</soundCastTail>
+					<muzzleFlashScale>9</muzzleFlashScale>
+				</Properties>
+				<AmmoUser>
+					<magazineSize>100</magazineSize>
+					<reloadTime>0</reloadTime>
+					<ammoSet>AmmoSet_556x45mmNATO</ammoSet>
+				</AmmoUser>
+				<FireModes>
+					<aiUseBurstMode>FALSE</aiUseBurstMode>
+					<aiAimMode>SuppressFire</aiAimMode>
+					<aimedBurstShotCount>5</aimedBurstShotCount>
+					<noSnapshot>true</noSnapshot>
+					<noSingleShot>true</noSingleShot>
+				</FireModes>
+				<weaponTags>
+					<li>TurretGun</li>
+				</weaponTags>
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="RNGun_Dragonfire_MG"]/tools</xpath>
+				<value>
+					<li Class="CombatExtended.ToolCE">
+						<label>barrel</label>
+						<capacities>
+							<li>Blunt</li>
+						</capacities>
+						<power>5</power>
+						<cooldownTime>2.02</cooldownTime>
+						<armorPenetrationBlunt>1.630</armorPenetrationBlunt>
+						<linkedBodyPartsGroup>Barrel</linkedBodyPartsGroup>
+					</li>
+				</value>
+			</li>
+
+		</operations>
+	</Operation>
+</Patch>

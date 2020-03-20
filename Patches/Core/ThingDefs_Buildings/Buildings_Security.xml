@@ -3,15 +3,18 @@
 
 	<!-- ========== Sandbags ========== -->
 
-	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/ThingDef[defName="Sandbags"]/costList/Steel</xpath>
+	<!-- 1.1 sandbags now cost cloth/leather instead of steel
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="Sandbags"]</xpath>
 		<value>
-			<Steel>2</Steel>
+			<costList>
+				<Steel>2</Steel>
+			</costList>
 		</value>
-	</Operation>
+	</Operation>-->
 
 	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/ThingDef[defName="Sandbags"]/fillPercent</xpath>
+		<xpath>Defs/ThingDef[defName="Sandbags" or defName="Barricade"]/fillPercent</xpath>
 		<value>
 			<fillPercent>0.6</fillPercent>
 		</value>
@@ -59,13 +62,6 @@
 		<xpath>Defs/ThingDef[defName="Turret_MiniTurret"]/fillPercent</xpath>
 		<value>
 			<fillPercent>0.85</fillPercent>
-		</value>
-	</Operation>
-
-	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/ThingDef[defName="Turret_MiniTurret"]/specialDisplayRadius</xpath>
-		<value>
-			<specialDisplayRadius>27</specialDisplayRadius>
 		</value>
 	</Operation>
 
@@ -149,7 +145,12 @@
 			<statBases>
 				<SightsEfficiency>0.5</SightsEfficiency>
 			</statBases>
-			<comps>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName = "Artillery_Mortar"]/comps</xpath>
+		<value>
 			  <li Class="CombatExtended.CompProperties_Charges">
 			    <chargeSpeeds>
 			      <li>30</li>
@@ -164,7 +165,6 @@
 			    <spawnUnloaded>true</spawnUnloaded>
 			    <ammoSet>AmmoSet_81mmMortarShell</ammoSet>
 			  </li>
-			</comps>
 		</value>
 	</Operation>
 

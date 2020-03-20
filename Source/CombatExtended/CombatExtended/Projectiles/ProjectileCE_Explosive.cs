@@ -2,6 +2,7 @@ using System;
 using Verse;
 using RimWorld;
 using UnityEngine;
+using System.Collections.Generic;
 
 namespace CombatExtended
 {

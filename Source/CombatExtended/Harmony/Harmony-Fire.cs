@@ -4,12 +4,12 @@ using System.Linq;
 using System.Reflection;
 using System.Text;
 using System.Reflection.Emit;
-using Harmony;
+using HarmonyLib;
 using Verse;
 using RimWorld;
 using UnityEngine;
 
-namespace CombatExtended.Harmony
+namespace CombatExtended.HarmonyCE
 {
     [HarmonyPatch(typeof(Fire), "DoFireDamage")]
     internal static class Harmony_Fire_DoFireDamage
@@ -30,9 +30,9 @@ namespace CombatExtended.Harmony
 
                 if (code.operand == AccessTools.Field(typeof(RulePackDefOf), nameof(RulePackDefOf.DamageEvent_Fire)))
                 {
-                    yield return new CodeInstruction(OpCodes.Ldloca, 1);
+                    yield return new CodeInstruction(OpCodes.Ldloca, 0);
                     yield return new CodeInstruction(OpCodes.Call, AccessTools.Method(typeof(Harmony_Fire_DoFireDamage), nameof(ApplySizeMult)));
-                    yield return new CodeInstruction(OpCodes.Ldloc_2);
+                    yield return new CodeInstruction(OpCodes.Ldloc_1);
                 }
 
                 yield return code;
@@ -190,7 +190,8 @@ namespace CombatExtended.Harmony
             {
                 if (delete)
                 {
-                    delete = code.opcode != OpCodes.Ldobj;
+                    delete = code.opcode != OpCodes.Ldelem;
+
                     continue;
                 }
 

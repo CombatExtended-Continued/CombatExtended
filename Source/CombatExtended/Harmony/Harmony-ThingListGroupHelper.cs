@@ -1,9 +1,9 @@
 ﻿using System.Collections.Generic;
 using System.Reflection;
-using Harmony;
+using HarmonyLib;
 using Verse;
 
-namespace CombatExtended.Harmony
+namespace CombatExtended.HarmonyCE
 {
     [HarmonyPatch(typeof(ThingListGroupHelper), "Includes")]
     internal static class Harmony_ThingListGroupHelper

@@ -421,13 +421,86 @@ namespace CombatExtended
         #endregion
 
         #region Collisions
+        static FieldInfo interceptAngleField = typeof(CompProjectileInterceptor).GetField("lastInterceptAngle", BindingFlags.NonPublic | BindingFlags.Instance);
+        static FieldInfo interceptTicksField = typeof(CompProjectileInterceptor).GetField("lastInterceptTicks", BindingFlags.NonPublic | BindingFlags.Instance);
+        static FieldInfo interceptEMPField = typeof(CompProjectileInterceptor).GetField("lastHitByEmpTicks", BindingFlags.NonPublic | BindingFlags.Instance);
+        static FieldInfo interceptDebug = typeof(CompProjectileInterceptor).GetField("debugInterceptNonHostileProjectiles", BindingFlags.NonPublic | BindingFlags.Instance);
+        private bool CheckIntercept(Thing thing, CompProjectileInterceptor interceptor, bool withDebug = false)
+        {
+            Vector3 vector = thing.Position.ToVector3Shifted();
+            float num = interceptor.Props.radius + def.projectile.SpeedTilesPerTick + 0.1f;
+
+            var newExactPos = ExactPosition;
+            
+            if ((newExactPos.x - vector.x) * (newExactPos.x - vector.x) + (newExactPos.z - vector.z) * (newExactPos.z - vector.z) > num * num)
+            {
+                return false;
+            }
+            if (!interceptor.Active)
+            {
+                return false;
+            }
+            bool flag = false;
+            if (interceptor.Props.interceptGroundProjectiles)
+            {
+                flag = !def.projectile.flyOverhead;
+            }
+            else
+            {
+				if (interceptor.Props.interceptAirProjectiles)
+				{
+					flag = def.projectile.flyOverhead;
+				}
+            }
+            if (!flag)
+            {
+                return false;
+            }
+            if ((launcher == null || !launcher.HostileTo(thing)) && !((bool)interceptDebug.GetValue(interceptor)))
+            {
+                return false;
+            }
+            if ((new Vector2(vector.x, vector.z) - new Vector2(lastExactPos.x, lastExactPos.z)).sqrMagnitude <= interceptor.Props.radius * interceptor.Props.radius)
+            {
+                return false;
+            }
+            if (!GenGeo.IntersectLineCircleOutline(new Vector2(vector.x, vector.z), interceptor.Props.radius, new Vector2(lastExactPos.x, lastExactPos.z), new Vector2(newExactPos.x, newExactPos.z)))
+            {
+                return false;
+            }
+            interceptAngleField.SetValue(interceptor, lastExactPos.AngleToFlat(thing.TrueCenter()));
+            interceptTicksField.SetValue(interceptor, Find.TickManager.TicksGame);
+            if (def.projectile.damageDef == DamageDefOf.EMP
+                || ((def.projectile as ProjectilePropertiesCE)?.secondaryDamage?.Any(x => x.def == DamageDefOf.EMP) ?? false))
+            {
+                interceptEMPField.SetValue(interceptor, Find.TickManager.TicksGame);
+            }
+            Effecter eff = new Effecter(EffecterDefOf.Interceptor_BlockedProjectile);
+            eff.Trigger(new TargetInfo(newExactPos.ToIntVec3(), thing.Map, false), TargetInfo.Invalid);
+            eff.Cleanup();
+            return true;
+        }
+
         //Removed minimum collision distance
         private bool CheckForCollisionBetween()
         {
             var lastPosIV3 = LastPos.ToIntVec3();
             var newPosIV3 = ExactPosition.ToIntVec3();
 
+            List<Thing> list = base.Map.listerThings.ThingsInGroup(ThingRequestGroup.ProjectileInterceptor);
+            for (int i = 0; i < list.Count; i++)
+            {
+                if (CheckIntercept(list[i], list[i].TryGetComp<CompProjectileInterceptor>()))
+                {
+                    this.Destroy(DestroyMode.Vanish);
+                    return true;
+                }
+            }
+			
             #region Sanity checks
+			if (ticksToImpact == 0 || def.projectile.flyOverhead)
+				return false;
+			
             if (!lastPosIV3.InBounds(Map) || !newPosIV3.InBounds(Map))
             {
                 return false;
@@ -438,7 +511,7 @@ namespace CombatExtended
                 Map.debugDrawer.FlashLine(lastPosIV3, newPosIV3);
             }
             #endregion
-
+            
             // Iterate through all cells between the last and the new position
             // INCLUDING[!!!] THE LAST AND NEW POSITIONS!
             var cells = GenSight.PointsOnLineOfSight(lastPosIV3, newPosIV3).Union(new[] { lastPosIV3, newPosIV3 }).Distinct().OrderBy(x => (x.ToVector3Shifted() - LastPos).MagnitudeHorizontalSquared());
@@ -660,9 +733,7 @@ namespace CombatExtended
                 Destroy();
                 return;
             }
-            if (ticksToImpact >= 0
-                && !def.projectile.flyOverhead
-                && CheckForCollisionBetween())
+            if (CheckForCollisionBetween())
             {
                 return;
             }
@@ -784,7 +855,7 @@ namespace CombatExtended
 
                 if (thingDef.IsFilth && Position.Walkable(Map))
                 {
-                    FilthMaker.MakeFilth(Position, Map, thingDef);
+                    FilthMaker.TryMakeFilth(Position, Map, thingDef);
                 }
                 else if (Controller.settings.ReuseNeolithicProjectiles)
                 {

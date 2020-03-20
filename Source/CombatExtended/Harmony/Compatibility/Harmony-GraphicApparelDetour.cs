@@ -1,4 +1,4 @@
-﻿using Harmony;
+﻿using HarmonyLib;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -6,7 +6,7 @@ using System.Reflection;
 using Verse;
 
 
-namespace CombatExtended.Harmony.Compatibility
+namespace CombatExtended.HarmonyCE.Compatibility
 {
 
     [HarmonyPatch]

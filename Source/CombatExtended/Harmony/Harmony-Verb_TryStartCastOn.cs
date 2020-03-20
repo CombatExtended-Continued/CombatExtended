@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Reflection;
 using System.Reflection.Emit;
-using Harmony;
+using HarmonyLib;
 using Verse;
 using Verse.AI;
 
@@ -14,7 +14,7 @@ using Verse.AI;
  *  if a pawn is out of ammo they try to reload and if that job fails they should fail from the TryStartCastOn...
  */
  
- namespace CombatExtended.Harmony
+ namespace CombatExtended.HarmonyCE
  {
  	[HarmonyPatch(typeof(Verb), "TryStartCastOn", new Type[] { typeof(LocalTargetInfo), typeof(bool), typeof(bool) } )]
 	static class Harmony_Verb_TryStartCastOn
