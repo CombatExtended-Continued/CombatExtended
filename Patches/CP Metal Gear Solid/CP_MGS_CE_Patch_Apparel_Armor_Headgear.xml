@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+	<Operation Class="PatchOperationSequence">
+		<success>Always</success>
+		<operations>
+
+			<li Class="CombatExtended.PatchOperationFindMod">
+				<modName>[CP] Metal Gear Solid</modName>
+			</li>
+
+			<!-- ========== PASGT helmet FOXHOUND ========== -->
+
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName="RNApparel_PASGTFOXHOUNDHelmet"]/statBases</xpath>
+				<value>
+					<Bulk>4</Bulk>
+					<WornBulk>1</WornBulk>
+					<ArmorRating_Sharp>6</ArmorRating_Sharp>
+					<ArmorRating_Blunt>13</ArmorRating_Blunt>
+					<ArmorRating_Heat>0.54</ArmorRating_Heat>
+				</value>
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="RNApparel_PASGTFOXHOUNDHelmet"]/statBases/StuffEffectMultiplierArmor</xpath>
+				<value>
+					<StuffEffectMultiplierArmor>0.20</StuffEffectMultiplierArmor>
+				</value>
+			</li>
+
+			<!-- ========== Exo Suit Helmet THI ========== -->
+
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName="RNApparel_ExoSuitHelmet_GrayFox"]/statBases</xpath>
+				<value>
+					<Bulk>6</Bulk>
+					<WornBulk>1.5</WornBulk>
+				</value>
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="RNApparel_ExoSuitHelmet_GrayFox"]/statBases/ArmorRating_Sharp</xpath>
+				<value>
+					<ArmorRating_Sharp>15</ArmorRating_Sharp>
+				</value>
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="RNApparel_ExoSuitHelmet_GrayFox"]/statBases/ArmorRating_Blunt</xpath>
+				<value>
+					<ArmorRating_Blunt>32</ArmorRating_Blunt>
+				</value>
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="RNApparel_ExoSuitHelmet_GrayFox"]/statBases/ArmorRating_Heat</xpath>
+				<value>
+					<ArmorRating_Heat>1</ArmorRating_Heat>
+				</value>
+			</li>
+
+		</operations>
+	</Operation>
+</Patch>

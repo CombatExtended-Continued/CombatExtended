@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+	<Operation Class="PatchOperationSequence">
+		<success>Always</success>
+		<operations>
+
+			<li Class="CombatExtended.PatchOperationFindMod">
+				<modName>[RH] Faction: Militaires Sans Frontieres</modName>
+			</li>
+
+			<!-- ========== Mosin Nagant ========== -->
+
+			<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+				<defName>RNGun_MosinNagant_Mercenary</defName>
+				<statBases>
+					<Mass>4.00</Mass>
+					<RangedWeapon_Cooldown>1.17</RangedWeapon_Cooldown>
+					<SightsEfficiency>2.21</SightsEfficiency>
+					<ShotSpread>0.03</ShotSpread>
+					<SwayFactor>1.67</SwayFactor>
+					<Bulk>12.32</Bulk>
+					<WorkToMake>15500</WorkToMake>
+				</statBases>
+				<costList>
+					<WoodLog>15</WoodLog>
+					<Steel>55</Steel>
+					<ComponentIndustrial>2</ComponentIndustrial>
+				</costList>
+				<Properties>
+					<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+					<hasStandardCommand>true</hasStandardCommand>
+					<defaultProjectile>Bullet_762x54mmR_FMJ</defaultProjectile>
+					<warmupTime>1.275</warmupTime>
+					<range>75</range>
+					<soundCast>RNShot_BoltActionOldie</soundCast>
+					<soundCastTail>GunTail_Heavy</soundCastTail>
+					<muzzleFlashScale>9</muzzleFlashScale>
+				</Properties>
+
+				<AmmoUser>
+					<magazineSize>5</magazineSize>
+					<reloadTime>4.3</reloadTime>
+					<ammoSet>AmmoSet_762x54mmR</ammoSet>
+				</AmmoUser>
+
+				<FireModes>
+					<aiUseBurstMode>FALSE</aiUseBurstMode>
+					<aiAimMode>AimedShot</aiAimMode>
+				</FireModes>
+
+				<weaponTags>
+					<li>CE_AI_Rifle</li>
+				</weaponTags>
+
+				<AllowWithRunAndGun>false</AllowWithRunAndGun>
+			</li>
+
+			<!-- ========== Remington 700 ========== -->
+
+			<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+				<defName>RNGun_R700Sn</defName>
+				<statBases>
+					<Mass>4.08</Mass>
+					<RangedWeapon_Cooldown>1.37</RangedWeapon_Cooldown>
+					<SightsEfficiency>2.72</SightsEfficiency>
+					<ShotSpread>0.05</ShotSpread>
+					<SwayFactor>1.15</SwayFactor>
+					<Bulk>12.08</Bulk>
+					<WorkToMake>26000</WorkToMake>
+				</statBases>
+				<costList>
+					<Chemfuel>15</Chemfuel>
+					<Steel>55</Steel>
+					<ComponentIndustrial>4</ComponentIndustrial>
+				</costList>
+				<Properties>
+					<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+					<hasStandardCommand>true</hasStandardCommand>
+					<defaultProjectile>Bullet_762x51mmNATO_FMJ</defaultProjectile>
+					<warmupTime>1.9</warmupTime>
+					<range>75</range>
+					<soundCast>RNShotM40Sniper</soundCast>
+					<soundCastTail>GunTail_Heavy</soundCastTail>
+					<muzzleFlashScale>9</muzzleFlashScale>
+				</Properties>
+
+				<AmmoUser>
+					<magazineSize>5</magazineSize>
+					<reloadTime>4.25</reloadTime>
+					<ammoSet>AmmoSet_762x51mmNATO</ammoSet>
+				</AmmoUser>
+
+				<FireModes>
+					<aiUseBurstMode>FALSE</aiUseBurstMode>
+					<aiAimMode>AimedShot</aiAimMode>
+				</FireModes>
+
+				<!-- No additional CE weaponTags needed -->
+
+				<AllowWithRunAndGun>false</AllowWithRunAndGun>
+			</li>
+
+			<!-- == Shared patches for firearm melee tools == -->
+
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[
+					defName="RNGun_MosinNagant_Mercenary" or
+					defName="RNGun_R700Sn"
+				]/tools</xpath>
+				<value>
+					<tools>
+						<li Class="CombatExtended.ToolCE">
+							<label>stock</label>
+							<capacities>
+								<li>Blunt</li>
+							</capacities>
+							<power>8</power>
+							<cooldownTime>1.55</cooldownTime>
+							<chanceFactor>1.5</chanceFactor>
+							<armorPenetrationBlunt>2.755</armorPenetrationBlunt>
+							<linkedBodyPartsGroup>Stock</linkedBodyPartsGroup>
+						</li>
+						<li Class="CombatExtended.ToolCE">
+							<label>barrel</label>
+							<capacities>
+								<li>Blunt</li>
+							</capacities>
+							<power>5</power>
+							<cooldownTime>2.02</cooldownTime>
+							<armorPenetrationBlunt>1.630</armorPenetrationBlunt>
+							<linkedBodyPartsGroup>Barrel</linkedBodyPartsGroup>
+						</li>
+						<li Class="CombatExtended.ToolCE">
+							<label>muzzle</label>
+							<capacities>
+								<li>Poke</li>
+							</capacities>
+							<power>8</power>
+							<cooldownTime>1.55</cooldownTime>
+							<armorPenetrationBlunt>2.755</armorPenetrationBlunt>
+							<linkedBodyPartsGroup>Muzzle</linkedBodyPartsGroup>
+						</li>
+					</tools>
+				</value>
+			</li>
+
+		</operations>
+	</Operation>
+</Patch>			
