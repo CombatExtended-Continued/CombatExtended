@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+			<li>[1.0] Android tiers</li>
+			<li>Android tiers</li>
+		</mods>
+		<match Class="PatchOperationSequence">
+			<operations>
+				<li Class="PatchOperationAdd">
+					<xpath>Defs</xpath>
+					<value>
+
+						<!-- There is only one type of Mastiff shell, no subcategory for variants required -->
+
+						<!-- ==================== AmmoSet ========================== -->
+
+						<CombatExtended.AmmoSetDef>
+							<defName>AmmoSet_MastiffShotgunShell</defName>
+							<label>Mastiff shell</label>
+							<ammoTypes>
+								<Ammo_MastiffShotgunShell>Bullet_MastiffShotgunShell</Ammo_MastiffShotgunShell>
+							</ammoTypes>
+						</CombatExtended.AmmoSetDef>
+
+						<!-- ==================== Ammo ========================== -->
+
+						<ThingDef Class="CombatExtended.AmmoDef" Name="MastiffShotgunShellBase" ParentName="AmmoBase" Abstract="True">
+							<description>Very large caliber buckshot shell designed specifically for the mech-operated Mastiff Shotgun.</description>
+							<statBases>
+								<Mass>2.128</Mass>
+								<Bulk>7.22</Bulk>
+							</statBases>
+							<tradeTags>
+								<li>CE_AutoEnableTrade</li>
+								<li>CE_AutoEnableCrafting_TableMachining</li>
+							</tradeTags>
+							<thingCategories>
+								<li>AmmoAdvanced</li>
+							</thingCategories>
+							<stackLimit>25</stackLimit>
+						</ThingDef>
+
+						<ThingDef Class="CombatExtended.AmmoDef" ParentName="MastiffShotgunShellBase">
+							<defName>Ammo_MastiffShotgunShell</defName>
+							<label>Mastiff shell (Buck)</label>
+							<graphicData>
+								<texPath>ThirdParty/Android Tiers/MastiffShell</texPath>
+								<graphicClass>Graphic_StackCount</graphicClass>
+							</graphicData>
+							<statBases>
+								<MarketValue>9.52</MarketValue>
+							</statBases>
+							<ammoClass>BuckShot</ammoClass>
+						</ThingDef>
+
+						<!-- ================== Projectiles ================== -->
+						
+						<!-- Workaround for conditionally-patched projectiles: use an existing abstract class from the generic ammo library (In this case, Base12GaugeBullet) -->
+						<ThingDef Class="CombatExtended.AmmoDef" ParentName="Base12GaugeBullet">
+							<defName>Bullet_MastiffShotgunShell</defName>
+							<label>Mastiff buckshot pellet</label>
+							<graphicData>
+								<texPath>Things/Projectile/Shotgun_Pellet</texPath>
+								<graphicClass>Graphic_Single</graphicClass>
+							</graphicData>
+							<projectile Class="CombatExtended.ProjectilePropertiesCE">
+								<speed>107</speed>
+								<damageAmountBase>23</damageAmountBase>
+								<pelletCount>200</pelletCount>
+								<armorPenetrationSharp>5</armorPenetrationSharp>
+								<armorPenetrationBlunt>79.54</armorPenetrationBlunt>
+								<spreadMult>17.8</spreadMult>
+							</projectile>
+						</ThingDef>
+
+						<RecipeDef ParentName="AmmoRecipeBase">
+							<defName>MakeAmmo_MastiffShotgunShell</defName>
+							<label>make Mastiff (Buck) shell x5</label>
+							<description>Craft 5 Mastiff (Buck) shells.</description>
+							<jobString>Making Mastiff (Buck) shells.</jobString>
+							<workAmount>2400</workAmount>
+							<ingredients>
+								<li>
+									<filter>
+										<thingDefs>
+											<li>Steel</li>
+										</thingDefs>
+									</filter>
+									<count>24</count>
+								</li>
+							</ingredients>
+							<fixedIngredientFilter>
+								<thingDefs>
+									<li>Steel</li>
+								</thingDefs>
+							</fixedIngredientFilter>
+							<products>
+								<Ammo_MastiffShotgunShell>5</Ammo_MastiffShotgunShell>
+							</products>
+						</RecipeDef>
+
+					</value>
+				</li>
+			</operations>
+		</match>
+	</Operation>
+</Patch>

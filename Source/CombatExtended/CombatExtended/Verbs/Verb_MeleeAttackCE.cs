@@ -355,7 +355,7 @@ namespace CombatExtended
             if (pawn == null
                 || pawn.Dead
                 || !pawn.RaceProps.Humanlike
-                || pawn.story.WorkTagIsDisabled(WorkTags.Violent)
+                || pawn.WorkTagIsDisabled(WorkTags.Violent)
                 || !pawn.health.capacities.CapableOf(PawnCapacityDefOf.Manipulation)
                 || IsTargetImmobile(pawn)
                 || pawn.MentalStateDef == MentalStateDefOf.SocialFighting)

@@ -474,7 +474,7 @@ namespace CombatExtended
             if (ShooterPawn != null)
             {
                 // Check for capable of violence
-                if (ShooterPawn.story != null && ShooterPawn.story.WorkTagIsDisabled(WorkTags.Violent))
+                if (ShooterPawn.story != null && ShooterPawn.WorkTagIsDisabled(WorkTags.Violent))
                 {
                     report = "IsIncapableOfViolenceLower".Translate(ShooterPawn.Name.ToStringShort);
                     return false;

@@ -1,14 +1,14 @@
 using System;
 using System.Collections.Generic;
 using System.Reflection.Emit;
-using Harmony;
+using HarmonyLib;
 using Verse;
 using RimWorld;
 using System.Linq;
 using System.Reflection;
 using UnityEngine;
 
-namespace CombatExtended.Harmony
+namespace CombatExtended.HarmonyCE
 {
     [HarmonyPatch(typeof(MassUtility), "Capacity")]
     static class Harmony_MassUtility_Capacity

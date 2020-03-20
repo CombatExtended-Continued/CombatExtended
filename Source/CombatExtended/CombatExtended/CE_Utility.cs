@@ -118,7 +118,7 @@ namespace CombatExtended
         public static void UpdateLabel(this Def def, string label)
         {
             def.label = label;
-            cachedLabelCapInfo.SetValue(def, "");
+            cachedLabelCapInfo.SetValue(def, new TaggedString(""));
         }
 
         /// <summary>

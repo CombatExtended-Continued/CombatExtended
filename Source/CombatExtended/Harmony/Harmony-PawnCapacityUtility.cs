@@ -2,11 +2,11 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using Harmony;
+using HarmonyLib;
 using Verse;
 using RimWorld;
 
-namespace CombatExtended.Harmony
+namespace CombatExtended.HarmonyCE
 {
     [HarmonyPatch(typeof(PawnCapacityUtility), "CalculateNaturalPartsAverageEfficiency")]
     internal static class Harmony_PawnCapacityUtility

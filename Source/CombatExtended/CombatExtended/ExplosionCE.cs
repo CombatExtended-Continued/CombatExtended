@@ -5,10 +5,11 @@ using System.Linq;
 using UnityEngine;
 using Verse;
 using Verse.Sound;
+using HarmonyLib;
 
 namespace CombatExtended
 {
-	public class ExplosionCE : Explosion
+	public class ExplosionCE : Verse.Explosion
 	{
 		public float height;
 
@@ -20,6 +21,7 @@ namespace CombatExtended
         private const float PenAtEdge = 0.6f;
         private const float PressurePerDamage = 0.3f;
 		private static HashSet<IntVec3> tmpCells = new HashSet<IntVec3>();
+		private List<Thing> ignoredThings;
 
 		public override void SpawnSetup(Map map, bool respawningAfterLoad)
 		{
@@ -100,7 +102,7 @@ namespace CombatExtended
 			}
 		}
 		
-		public override void StartExplosion(SoundDef explosionSound)
+		public  void StartExplosion(SoundDef explosionSound)
 		{
 			if (!Spawned) {
 				Log.Error("Called StartExplosion() on unspawned thing.");
@@ -177,7 +179,7 @@ namespace CombatExtended
             if (!flag && Rand.Chance(preExplosionSpawnChance) && c.Walkable(Map)) {
 				TrySpawnExplosionThing(preExplosionSpawnThingDef, c, preExplosionSpawnThingCount);
 			}
-			damType.Worker.ExplosionAffectCell(this, c, damagedThings, !flag);
+			damType.Worker.ExplosionAffectCell(this, c, damagedThings, null, !flag);
 			if (!flag && Rand.Chance(postExplosionSpawnChance) && c.Walkable(Map)) {
 				TrySpawnExplosionThing(postExplosionSpawnThingDef, c, postExplosionSpawnThingCount);
 			}
@@ -196,7 +198,7 @@ namespace CombatExtended
 				return;
 			}
 			if (thingDef.IsFilth) {
-				FilthMaker.MakeFilth(c, Map, thingDef, count);
+				FilthMaker.TryMakeFilth(c, Map, thingDef, count);
 			}
 			else {
 				var thing = ThingMaker.MakeThing(thingDef, null);

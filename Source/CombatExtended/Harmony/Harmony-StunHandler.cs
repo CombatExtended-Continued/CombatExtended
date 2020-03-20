@@ -5,9 +5,9 @@ using System.Text;
 using RimWorld;
 using Verse;
 using UnityEngine;
-using Harmony;
+using HarmonyLib;
 
-namespace CombatExtended.Harmony
+namespace CombatExtended.HarmonyCE
 {
     [HarmonyPatch(typeof(StunHandler), "Notify_DamageApplied")]
     public static class Harmony_StunHandler_Notify_DamageApplied

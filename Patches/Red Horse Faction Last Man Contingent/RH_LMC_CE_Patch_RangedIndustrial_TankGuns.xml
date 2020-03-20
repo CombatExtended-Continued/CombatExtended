@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+	<Operation Class="PatchOperationSequence">
+		<success>Always</success>
+		<operations>
+
+			<li Class="CombatExtended.PatchOperationFindMod">
+				<modName>[RH] Faction: Last Man Contingent</modName>
+			</li>
+
+			<!-- ========== D-10 Tank Gun ========== -->
+
+			<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+				<defName>RNTank_D10S_Tankgun</defName>
+				<statBases>
+					<Mass>1438</Mass>
+					<RangedWeapon_Cooldown>2.58</RangedWeapon_Cooldown>
+					<SightsEfficiency>1.10</SightsEfficiency>
+					<ShotSpread>0.01</ShotSpread>
+					<SwayFactor>3.90</SwayFactor>
+					<Bulk>56.08</Bulk>
+					<WorkToMake>109500</WorkToMake>
+				</statBases>
+				<costList>
+					<Steel>640</Steel>
+					<ComponentIndustrial>6</ComponentIndustrial>
+				</costList>
+				<Properties>
+					<recoilAmount>4.07</recoilAmount>
+					<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+					<hasStandardCommand>true</hasStandardCommand>
+					<defaultProjectile>Bullet_100x695mmRCannonShell_HEAT</defaultProjectile>
+					<warmupTime>4</warmupTime>
+					<range>86</range>
+					<soundCast>RN_MBTShot</soundCast>
+					<soundCastTail>GunTail_Heavy</soundCastTail>
+					<targetParams>
+						<canTargetLocations>true</canTargetLocations>
+					</targetParams>
+					<muzzleFlashScale>15</muzzleFlashScale>
+				</Properties>
+
+				<AmmoUser>
+					<magazineSize>1</magazineSize>
+					<reloadTime>9.8</reloadTime>
+					<ammoSet>AmmoSet_100x695mmRCannonShell</ammoSet>
+				</AmmoUser>
+
+				<FireModes>
+					<aiUseBurstMode>FALSE</aiUseBurstMode>
+					<aiAimMode>AimedShot</aiAimMode>
+				</FireModes>
+				
+				<weaponTags>
+					<li>TurretGun</li>
+				</weaponTags>
+
+				<AllowWithRunAndGun>false</AllowWithRunAndGun>
+			</li>
+
+		</operations>
+	</Operation>
+</Patch>

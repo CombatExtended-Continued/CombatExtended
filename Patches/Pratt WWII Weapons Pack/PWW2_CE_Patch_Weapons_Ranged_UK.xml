@@ -1,0 +1,645 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Patch>
+	<Operation Class="PatchOperationSequence">
+		<success>Always</success>
+		<operations>
+
+			<li Class="CombatExtended.PatchOperationFindMod">
+				<modName>[Pratt] WWII Weapons Pack (Vanilla)</modName>
+			</li>
+
+			<!-- ========== (UK) Lee Enfield N°4 MkI ========== -->
+
+			<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+				<defName>Gun_LeeEnfieldN4MkIR</defName>
+				<statBases>
+					<Mass>4.11</Mass>
+					<RangedWeapon_Cooldown>1.17</RangedWeapon_Cooldown>
+					<SightsEfficiency>1.00</SightsEfficiency>
+					<ShotSpread>0.04</ShotSpread>
+					<SwayFactor>1.54</SwayFactor>
+					<Bulk>11.29</Bulk>
+					<WorkToMake>11500</WorkToMake>
+				</statBases>
+				<costList>
+					<WoodLog>15</WoodLog>
+					<Steel>50</Steel>
+					<ComponentIndustrial>1</ComponentIndustrial>
+				</costList>
+				<Properties>
+					<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+					<hasStandardCommand>true</hasStandardCommand>
+					<defaultProjectile>Bullet_303British_FMJ</defaultProjectile>
+					<warmupTime>1.1</warmupTime>
+					<range>55</range>
+					<soundCast>Shot_BoltActionRifle</soundCast>
+					<soundCastTail>GunTail_Heavy</soundCastTail>
+					<muzzleFlashScale>9</muzzleFlashScale>
+				</Properties>
+
+				<AmmoUser>
+					<magazineSize>10</magazineSize>
+					<reloadTime>4.3</reloadTime>
+					<ammoSet>AmmoSet_303British</ammoSet>
+				</AmmoUser>
+
+				<FireModes>
+					<aiUseBurstMode>FALSE</aiUseBurstMode>
+					<aiAimMode>AimedShot</aiAimMode>
+				</FireModes>
+
+				<AllowWithRunAndGun>false</AllowWithRunAndGun>
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="Gun_LeeEnfieldN4MkIR"]/tools</xpath>
+				<value>
+					<tools>
+						<li Class="CombatExtended.ToolCE">
+							<label>stock</label>
+							<capacities>
+								<li>Blunt</li>
+							</capacities>
+							<power>8</power>
+							<cooldownTime>1.55</cooldownTime>
+							<chanceFactor>1.5</chanceFactor>
+							<armorPenetrationBlunt>2.755</armorPenetrationBlunt>
+							<linkedBodyPartsGroup>Stock</linkedBodyPartsGroup>
+						</li>
+						<li Class="CombatExtended.ToolCE">
+							<label>barrel</label>
+							<capacities>
+								<li>Blunt</li>
+							</capacities>
+							<power>5</power>
+							<cooldownTime>2.02</cooldownTime>
+							<armorPenetrationBlunt>1.630</armorPenetrationBlunt>
+							<linkedBodyPartsGroup>Barrel</linkedBodyPartsGroup>
+						</li>
+						<li Class="CombatExtended.ToolCE">
+							<label>muzzle</label>
+							<capacities>
+								<li>Poke</li>
+							</capacities>
+							<power>8</power>
+							<cooldownTime>1.55</cooldownTime>
+							<armorPenetrationBlunt>2.755</armorPenetrationBlunt>
+							<linkedBodyPartsGroup>Muzzle</linkedBodyPartsGroup>
+						</li>
+					</tools>
+				</value>
+			</li>
+
+			<!-- ========== (UK) LeeEnfield N°4 MkI (T) ========== -->
+
+			<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+				<defName>Gun_LeeEnfieldN4MkI-TSR</defName>
+				<statBases>
+					<Mass>4.84</Mass>
+					<RangedWeapon_Cooldown>1.17</RangedWeapon_Cooldown>
+					<SightsEfficiency>2.21</SightsEfficiency>
+					<ShotSpread>0.04</ShotSpread>
+					<SwayFactor>1.65</SwayFactor>
+					<Bulk>11.29</Bulk>
+					<WorkToMake>15500</WorkToMake>
+				</statBases>
+				<costList>
+					<WoodLog>15</WoodLog>
+					<Steel>55</Steel>
+					<ComponentIndustrial>2</ComponentIndustrial>
+				</costList>
+				<Properties>
+					<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+					<hasStandardCommand>true</hasStandardCommand>
+					<defaultProjectile>Bullet_303British_FMJ</defaultProjectile>
+					<warmupTime>1.275</warmupTime>
+					<range>55</range>
+					<soundCast>Shot_BoltActionRifle</soundCast>
+					<soundCastTail>GunTail_Heavy</soundCastTail>
+					<muzzleFlashScale>9</muzzleFlashScale>
+				</Properties>
+
+				<AmmoUser>
+					<magazineSize>10</magazineSize>
+					<reloadTime>4.3</reloadTime>
+					<ammoSet>AmmoSet_303British</ammoSet>
+				</AmmoUser>
+
+				<FireModes>
+					<aiUseBurstMode>FALSE</aiUseBurstMode>
+					<aiAimMode>AimedShot</aiAimMode>
+				</FireModes>
+
+				<AllowWithRunAndGun>false</AllowWithRunAndGun>
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="Gun_LeeEnfieldN4MkI-TSR"]/tools</xpath>
+				<value>
+					<tools>
+						<li Class="CombatExtended.ToolCE">
+							<label>stock</label>
+							<capacities>
+								<li>Blunt</li>
+							</capacities>
+							<power>8</power>
+							<cooldownTime>1.55</cooldownTime>
+							<chanceFactor>1.5</chanceFactor>
+							<armorPenetrationBlunt>2.755</armorPenetrationBlunt>
+							<linkedBodyPartsGroup>Stock</linkedBodyPartsGroup>
+						</li>
+						<li Class="CombatExtended.ToolCE">
+							<label>barrel</label>
+							<capacities>
+								<li>Blunt</li>
+							</capacities>
+							<power>5</power>
+							<cooldownTime>2.02</cooldownTime>
+							<armorPenetrationBlunt>1.630</armorPenetrationBlunt>
+							<linkedBodyPartsGroup>Barrel</linkedBodyPartsGroup>
+						</li>
+						<li Class="CombatExtended.ToolCE">
+							<label>muzzle</label>
+							<capacities>
+								<li>Poke</li>
+							</capacities>
+							<power>8</power>
+							<cooldownTime>1.55</cooldownTime>
+							<armorPenetrationBlunt>2.755</armorPenetrationBlunt>
+							<linkedBodyPartsGroup>Muzzle</linkedBodyPartsGroup>
+						</li>
+					</tools>
+				</value>
+			</li>
+
+			<!-- ========== (UK) Bren MkII ========== -->
+
+			<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+				<defName>Gun_BrenMkIILMG</defName>
+				<statBases>
+					<Mass>10.35</Mass>
+					<RangedWeapon_Cooldown>0.56</RangedWeapon_Cooldown>
+					<SightsEfficiency>1.00</SightsEfficiency>
+					<ShotSpread>0.04</ShotSpread>
+					<SwayFactor>1.53</SwayFactor>
+					<Bulk>12.56</Bulk>
+					<WorkToMake>32000</WorkToMake>
+				</statBases>
+				<costList>
+					<WoodLog>10</WoodLog>
+					<Steel>85</Steel>
+					<ComponentIndustrial>5</ComponentIndustrial>
+				</costList>
+				<Properties>
+					<recoilAmount>1.22</recoilAmount>
+					<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+					<hasStandardCommand>true</hasStandardCommand>
+					<defaultProjectile>Bullet_303British_FMJ</defaultProjectile>
+					<warmupTime>1.3</warmupTime>
+					<range>59</range>
+					<burstShotCount>10</burstShotCount>
+					<ticksBetweenBurstShots>7</ticksBetweenBurstShots>
+					<soundCast>Shot_Minigun</soundCast>
+					<soundCastTail>GunTail_Medium</soundCastTail>
+					<muzzleFlashScale>9</muzzleFlashScale>
+				</Properties>
+
+				<AmmoUser>
+					<magazineSize>30</magazineSize>
+					<reloadTime>4</reloadTime>
+					<ammoSet>AmmoSet_303British</ammoSet>
+				</AmmoUser>
+
+				<FireModes>
+					<aiUseBurstMode>FALSE</aiUseBurstMode>
+					<aiAimMode>SuppressFire</aiAimMode>
+					<aimedBurstShotCount>5</aimedBurstShotCount>
+				</FireModes>
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="Gun_BrenMkIILMG"]/tools</xpath>
+				<value>
+					<tools>
+						<li Class="CombatExtended.ToolCE">
+							<label>stock</label>
+							<capacities>
+								<li>Blunt</li>
+							</capacities>
+							<power>8</power>
+							<cooldownTime>1.55</cooldownTime>
+							<chanceFactor>1.5</chanceFactor>
+							<armorPenetrationBlunt>2.755</armorPenetrationBlunt>
+							<linkedBodyPartsGroup>Stock</linkedBodyPartsGroup>
+						</li>
+						<li Class="CombatExtended.ToolCE">
+							<label>barrel</label>
+							<capacities>
+								<li>Blunt</li>
+							</capacities>
+							<power>5</power>
+							<cooldownTime>2.02</cooldownTime>
+							<armorPenetrationBlunt>1.630</armorPenetrationBlunt>
+							<linkedBodyPartsGroup>Barrel</linkedBodyPartsGroup>
+						</li>
+						<li Class="CombatExtended.ToolCE">
+							<label>muzzle</label>
+							<capacities>
+								<li>Poke</li>
+							</capacities>
+							<power>8</power>
+							<cooldownTime>1.55</cooldownTime>
+							<armorPenetrationBlunt>2.755</armorPenetrationBlunt>
+							<linkedBodyPartsGroup>Muzzle</linkedBodyPartsGroup>
+						</li>
+					</tools>
+				</value>
+			</li>
+
+			<!-- ========== (UK) Sten MkIII ========== -->
+
+			<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+				<defName>Gun_StenMkIII</defName>
+				<statBases>
+					<Mass>3.20</Mass>
+					<RangedWeapon_Cooldown>0.36</RangedWeapon_Cooldown>
+					<SightsEfficiency>1.00</SightsEfficiency>
+					<ShotSpread>0.14</ShotSpread>
+					<SwayFactor>1.08</SwayFactor>
+					<Bulk>7.62</Bulk>
+					<WorkToMake>27000</WorkToMake>
+				</statBases>
+				<costList>
+					<Steel>50</Steel>
+					<ComponentIndustrial>5</ComponentIndustrial>
+				</costList>
+				<Properties>
+					<recoilAmount>1.35</recoilAmount>
+					<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+					<hasStandardCommand>true</hasStandardCommand>
+					<defaultProjectile>Bullet_9x19mmPara_FMJ</defaultProjectile>
+					<warmupTime>0.6</warmupTime>
+					<range>20</range>
+					<burstShotCount>6</burstShotCount>
+					<ticksBetweenBurstShots>5</ticksBetweenBurstShots>
+					<soundCast>Shot_MachinePistol</soundCast>
+					<soundCastTail>GunTail_Light</soundCastTail>
+					<muzzleFlashScale>9</muzzleFlashScale>
+				</Properties>
+
+				<AmmoUser>
+					<magazineSize>32</magazineSize>
+					<reloadTime>4</reloadTime>
+					<ammoSet>AmmoSet_9x19mmPara</ammoSet>
+				</AmmoUser>
+
+				<FireModes>
+					<aiUseBurstMode>FALSE</aiUseBurstMode>
+					<aiAimMode>Snapshot</aiAimMode>
+					<aimedBurstShotCount>3</aimedBurstShotCount>
+				</FireModes>
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="Gun_StenMkIII"]/tools</xpath>
+				<value>
+					<tools>
+						<li Class="CombatExtended.ToolCE">
+							<label>stock</label>
+							<capacities>
+								<li>Blunt</li>
+							</capacities>
+							<power>8</power>
+							<cooldownTime>1.79</cooldownTime>
+							<linkedBodyPartsGroup>Stock</linkedBodyPartsGroup>
+							<armorPenetrationBlunt>2.755</armorPenetrationBlunt>
+						</li>
+						<li Class="CombatExtended.ToolCE">
+							<label>barrel</label>
+							<capacities>
+								<li>Blunt</li>
+							</capacities>
+							<power>5</power>
+							<cooldownTime>3.02</cooldownTime>
+							<linkedBodyPartsGroup>Barrel</linkedBodyPartsGroup>
+							<armorPenetrationBlunt>1.63</armorPenetrationBlunt>
+						</li>
+						<li Class="CombatExtended.ToolCE">
+							<label>muzzle</label>
+							<capacities>
+								<li>Poke</li>
+							</capacities>
+							<power>8</power>
+							<cooldownTime>1.55</cooldownTime>
+							<linkedBodyPartsGroup>Muzzle</linkedBodyPartsGroup>
+							<armorPenetrationBlunt>2.755</armorPenetrationBlunt>
+						</li>
+					</tools>
+				</value>
+			</li>
+
+			<!-- ========== (UK) Sten MkVI ========== -->
+
+			<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+				<defName>Gun_StenMkVI</defName>
+				<statBases>
+					<Mass>4.50</Mass>
+					<RangedWeapon_Cooldown>0.36</RangedWeapon_Cooldown>
+					<SightsEfficiency>1.00</SightsEfficiency>
+					<ShotSpread>0.14</ShotSpread>
+					<SwayFactor>1.36</SwayFactor>
+					<Bulk>9.08</Bulk>
+					<WorkToMake>27500</WorkToMake>
+				</statBases>
+				<costList>
+					<WoodLog>10</WoodLog>
+					<Steel>50</Steel>
+					<ComponentIndustrial>5</ComponentIndustrial>
+				</costList>
+				<Properties>
+					<recoilAmount>1.04</recoilAmount>
+					<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+					<hasStandardCommand>true</hasStandardCommand>
+					<defaultProjectile>Bullet_9x19mmPara_FMJ</defaultProjectile>
+					<warmupTime>0.6</warmupTime>
+					<range>20</range>
+					<burstShotCount>6</burstShotCount>
+					<ticksBetweenBurstShots>5</ticksBetweenBurstShots>
+					<soundCast>Shot_MachinePistol</soundCast>
+					<soundCastTail>GunTail_Light</soundCastTail>
+					<muzzleFlashScale>9</muzzleFlashScale>
+				</Properties>
+
+				<AmmoUser>
+					<magazineSize>32</magazineSize>
+					<reloadTime>4</reloadTime>
+					<ammoSet>AmmoSet_9x19mmPara</ammoSet>
+				</AmmoUser>
+
+				<FireModes>
+					<aiUseBurstMode>FALSE</aiUseBurstMode>
+					<aiAimMode>Snapshot</aiAimMode>
+					<aimedBurstShotCount>3</aimedBurstShotCount>
+				</FireModes>
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="Gun_StenMkVI"]/tools</xpath>
+				<value>
+					<tools>
+						<li Class="CombatExtended.ToolCE">
+							<label>stock</label>
+							<capacities>
+								<li>Blunt</li>
+							</capacities>
+							<power>8</power>
+							<cooldownTime>1.55</cooldownTime>
+							<chanceFactor>1.5</chanceFactor>
+							<armorPenetrationBlunt>2.755</armorPenetrationBlunt>
+							<linkedBodyPartsGroup>Stock</linkedBodyPartsGroup>
+						</li>
+						<li Class="CombatExtended.ToolCE">
+							<label>barrel</label>
+							<capacities>
+								<li>Blunt</li>
+							</capacities>
+							<power>5</power>
+							<cooldownTime>2.02</cooldownTime>
+							<armorPenetrationBlunt>1.630</armorPenetrationBlunt>
+							<linkedBodyPartsGroup>Barrel</linkedBodyPartsGroup>
+						</li>
+						<li Class="CombatExtended.ToolCE">
+							<label>muzzle</label>
+							<capacities>
+								<li>Poke</li>
+							</capacities>
+							<power>8</power>
+							<cooldownTime>1.55</cooldownTime>
+							<armorPenetrationBlunt>2.755</armorPenetrationBlunt>
+							<linkedBodyPartsGroup>Muzzle</linkedBodyPartsGroup>
+						</li>
+					</tools>
+				</value>
+			</li>
+
+			<!-- ========== (UK) Thompson M1928 ========== -->
+
+			<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+				<defName>Gun_ThompsonM1928UKSMG</defName>
+				<statBases>
+					<Mass>4.90</Mass>
+					<RangedWeapon_Cooldown>0.36</RangedWeapon_Cooldown>
+					<SightsEfficiency>1.00</SightsEfficiency>
+					<ShotSpread>0.12</ShotSpread>
+					<SwayFactor>1.35</SwayFactor>
+					<Bulk>8.60</Bulk>
+					<WorkToMake>27500</WorkToMake>
+				</statBases>
+				<costList>
+					<WoodLog>10</WoodLog>
+					<Steel>50</Steel>
+					<ComponentIndustrial>5</ComponentIndustrial>
+				</costList>
+				<Properties>
+					<recoilAmount>1.32</recoilAmount>
+					<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+					<hasStandardCommand>true</hasStandardCommand>
+					<defaultProjectile>Bullet_45ACP_FMJ</defaultProjectile>
+					<warmupTime>0.6</warmupTime>
+					<range>25</range>
+					<burstShotCount>6</burstShotCount>
+					<ticksBetweenBurstShots>5</ticksBetweenBurstShots>
+					<soundCast>Shot_MachinePistol</soundCast>
+					<soundCastTail>GunTail_Light</soundCastTail>
+					<muzzleFlashScale>9</muzzleFlashScale>
+				</Properties>
+
+				<AmmoUser>
+					<magazineSize>30</magazineSize>
+					<reloadTime>4</reloadTime>
+					<ammoSet>AmmoSet_45ACP</ammoSet>
+				</AmmoUser>
+
+				<FireModes>
+					<aiUseBurstMode>FALSE</aiUseBurstMode>
+					<aiAimMode>Snapshot</aiAimMode>
+					<aimedBurstShotCount>3</aimedBurstShotCount>
+				</FireModes>
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="Gun_ThompsonM1928UKSMG"]/tools</xpath>
+				<value>
+					<tools>
+						<li Class="CombatExtended.ToolCE">
+							<label>stock</label>
+							<capacities>
+								<li>Blunt</li>
+							</capacities>
+							<power>8</power>
+							<cooldownTime>1.55</cooldownTime>
+							<chanceFactor>1.5</chanceFactor>
+							<armorPenetrationBlunt>2.755</armorPenetrationBlunt>
+							<linkedBodyPartsGroup>Stock</linkedBodyPartsGroup>
+						</li>
+						<li Class="CombatExtended.ToolCE">
+							<label>barrel</label>
+							<capacities>
+								<li>Blunt</li>
+							</capacities>
+							<power>5</power>
+							<cooldownTime>2.02</cooldownTime>
+							<armorPenetrationBlunt>1.630</armorPenetrationBlunt>
+							<linkedBodyPartsGroup>Barrel</linkedBodyPartsGroup>
+						</li>
+						<li Class="CombatExtended.ToolCE">
+							<label>muzzle</label>
+							<capacities>
+								<li>Poke</li>
+							</capacities>
+							<power>8</power>
+							<cooldownTime>1.55</cooldownTime>
+							<armorPenetrationBlunt>2.755</armorPenetrationBlunt>
+							<linkedBodyPartsGroup>Muzzle</linkedBodyPartsGroup>
+						</li>
+					</tools>
+				</value>
+			</li>
+
+			<!-- ========== (UK) Webley ========== -->
+
+			<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+				<defName>Gun_WebleyP</defName>
+				<statBases>
+					<Mass>1.10</Mass>
+					<RangedWeapon_Cooldown>0.38</RangedWeapon_Cooldown>
+					<SightsEfficiency>0.70</SightsEfficiency>
+					<ShotSpread>0.17</ShotSpread>
+					<SwayFactor>1.32</SwayFactor>
+					<Bulk>2.86</Bulk>
+					<WorkToMake>5000</WorkToMake>
+				</statBases>
+				<costList>
+					<Steel>30</Steel>
+					<ComponentIndustrial>2</ComponentIndustrial>
+				</costList>
+				<Properties>
+					<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+					<hasStandardCommand>true</hasStandardCommand>
+					<defaultProjectile>Bullet_455Webley_FMJ</defaultProjectile>
+					<warmupTime>0.6</warmupTime>
+					<range>12</range>
+					<soundCast>Shot_Revolver</soundCast>
+					<soundCastTail>GunTail_Light</soundCastTail>
+					<muzzleFlashScale>9</muzzleFlashScale>
+				</Properties>
+
+				<AmmoUser>
+					<magazineSize>6</magazineSize>
+					<reloadTime>3.5</reloadTime>
+					<ammoSet>AmmoSet_455Webley</ammoSet>
+				</AmmoUser>
+
+				<FireModes>
+					<aiUseBurstMode>FALSE</aiUseBurstMode>
+					<aiAimMode>Snapshot</aiAimMode>
+				</FireModes>
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="Gun_WebleyP"]/tools</xpath>
+				<value>
+					<tools>
+						<li Class="CombatExtended.ToolCE">
+							<label>grip</label>
+							<capacities>
+								<li>Blunt</li>
+							</capacities>
+							<power>2</power>
+							<cooldownTime>1.54</cooldownTime>
+							<chanceFactor>1.5</chanceFactor>
+							<armorPenetrationBlunt>0.555</armorPenetrationBlunt>
+							<linkedBodyPartsGroup>Grip</linkedBodyPartsGroup>
+						</li>
+						<li Class="CombatExtended.ToolCE">
+							<label>muzzle</label>
+							<capacities>
+								<li>Poke</li>
+							</capacities>
+							<power>2</power>
+							<cooldownTime>1.54</cooldownTime>
+							<armorPenetrationBlunt>0.555</armorPenetrationBlunt>
+							<linkedBodyPartsGroup>Muzzle</linkedBodyPartsGroup>
+						</li>
+					</tools>
+				</value>
+			</li>
+
+			<!-- ========== (UK) PIAT ========== -->
+
+			<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+				<defName>Gun_PIAT</defName>
+				<statBases>
+					<Mass>15.00</Mass>
+					<RangedWeapon_Cooldown>1.50</RangedWeapon_Cooldown>
+					<SightsEfficiency>1.00</SightsEfficiency>
+					<ShotSpread>0.2</ShotSpread>
+					<SwayFactor>2.49</SwayFactor>
+					<Bulk>10.90</Bulk>
+					<WorkToMake>26500</WorkToMake>
+				</statBases>
+				<costList>
+					<Steel>105</Steel>
+					<ComponentIndustrial>3</ComponentIndustrial>
+				</costList>
+				<Properties>
+					<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+					<hasStandardCommand>true</hasStandardCommand>
+					<defaultProjectile>Bullet_83mmPIATGrenade_HEAT</defaultProjectile>
+					<warmupTime>1.9</warmupTime>
+					<range>20</range>
+					<soundCast>Shot_IncendiaryLauncher</soundCast>
+					<soundCastTail>GunTail_Heavy</soundCastTail>
+					<muzzleFlashScale>14</muzzleFlashScale>
+					<onlyManualCast>true</onlyManualCast>
+					<stopBurstWithoutLos>false</stopBurstWithoutLos>
+					<targetParams>
+						<canTargetLocations>true</canTargetLocations>
+					</targetParams>
+				</Properties>
+
+				<AmmoUser>
+					<magazineSize>1</magazineSize>
+					<reloadTime>8.6</reloadTime>
+					<ammoSet>AmmoSet_83mmPIATGrenade</ammoSet>
+				</AmmoUser>
+
+				<FireModes>
+					<aiUseBurstMode>FALSE</aiUseBurstMode>
+					<aiAimMode>AimedShot</aiAimMode>
+				</FireModes>
+
+				<AllowWithRunAndGun>false</AllowWithRunAndGun>
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="Gun_PIAT"]/tools</xpath>
+				<value>
+					<tools>
+						<li Class="CombatExtended.ToolCE">
+							<label>barrel</label>
+							<capacities>
+								<li>Blunt</li>
+							</capacities>
+							<power>10</power>
+							<cooldownTime>2.44</cooldownTime>
+							<armorPenetrationBlunt>3.5</armorPenetrationBlunt>
+							<linkedBodyPartsGroup>Barrel</linkedBodyPartsGroup>
+						</li>
+					</tools>
+				</value>
+			</li>
+
+		</operations>
+	</Operation>
+</Patch>
