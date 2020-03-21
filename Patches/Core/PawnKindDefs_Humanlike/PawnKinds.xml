@@ -36,6 +36,25 @@
   	</value>
   </Operation>
 
+  <Operation Class="PatchOperationAdd">
+    <xpath>Defs/PawnKindDef[defName="Mech_Pikeman"]</xpath>
+    <value>
+      <canBeSapper>true</canBeSapper>
+    </value>
+  </Operation>
+
+  <Operation Class="PatchOperationAddModExtension">
+  	<xpath>Defs/PawnKindDef[defName="Mech_Pikeman"]</xpath>
+  	<value>
+      <li Class="CombatExtended.LoadoutPropertiesExtension">
+        <primaryMagazineCount>
+          <min>3</min>
+          <max>5</max>
+        </primaryMagazineCount>
+      </li>
+  	</value>
+  </Operation>
+
   <!-- ========== Mercenary ========== -->
 
   <Operation Class="PatchOperationAddModExtension">
