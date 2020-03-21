@@ -67,6 +67,34 @@
     </value>
   </Operation>
 
+  <Operation Class="PatchOperationAddModExtension">
+    <xpath>Defs/PawnKindDef[defName="Grenadier_EMP"]</xpath>
+    <value>
+      <li Class="CombatExtended.LoadoutPropertiesExtension">
+        <primaryMagazineCount>
+          <min>10</min>
+          <max>30</max>
+        </primaryMagazineCount>
+        <forcedSidearm>
+          <sidearmMoney>
+            <min>150</min>
+            <max>350</max>
+          </sidearmMoney>
+          <weaponTags>
+            <li>CE_Sidearm_Melee</li>
+          </weaponTags>
+        </forcedSidearm>
+      </li>
+    </value>
+  </Operation>
+
+  <Operation Class="PatchOperationAdd">
+    <xpath>Defs/PawnKindDef[defName="Grenadier_Smoke"]/weaponTags</xpath>
+    <value>
+      <li>CE_GrenadeFlashbang</li>
+    </value>
+  </Operation>
+
   <Operation Class="PatchOperationAdd">
     <xpath>Defs/PawnKindDef[defName="Mercenary_Gunner"]</xpath>
     <value>
