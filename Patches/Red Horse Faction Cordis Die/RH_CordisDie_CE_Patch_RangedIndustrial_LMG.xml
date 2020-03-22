@@ -55,45 +55,6 @@
 				<!-- No additional CE weaponTags needed -->
 			</li>
 
-			<li Class="PatchOperationReplace">
-				<xpath>Defs/ThingDef[defName="RNGun_HAMRIARLMG"]/tools</xpath>
-				<value>
-					<tools>
-						<li Class="CombatExtended.ToolCE">
-							<label>stock</label>
-							<capacities>
-								<li>Blunt</li>
-							</capacities>
-							<power>8</power>
-							<cooldownTime>1.55</cooldownTime>
-							<chanceFactor>1.5</chanceFactor>
-							<armorPenetrationBlunt>2.755</armorPenetrationBlunt>
-							<linkedBodyPartsGroup>Stock</linkedBodyPartsGroup>
-						</li>
-						<li Class="CombatExtended.ToolCE">
-							<label>barrel</label>
-							<capacities>
-								<li>Blunt</li>
-							</capacities>
-							<power>5</power>
-							<cooldownTime>2.02</cooldownTime>
-							<armorPenetrationBlunt>1.630</armorPenetrationBlunt>
-							<linkedBodyPartsGroup>Barrel</linkedBodyPartsGroup>
-						</li>
-						<li Class="CombatExtended.ToolCE">
-							<label>muzzle</label>
-							<capacities>
-								<li>Poke</li>
-							</capacities>
-							<power>8</power>
-							<cooldownTime>1.55</cooldownTime>
-							<armorPenetrationBlunt>2.755</armorPenetrationBlunt>
-							<linkedBodyPartsGroup>Muzzle</linkedBodyPartsGroup>
-						</li>
-					</tools>
-				</value>
-			</li>
-
 			<!-- ========== LSAT ========== -->
 
 			<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
@@ -141,8 +102,13 @@
 				<!-- No additional CE weaponTags needed -->
 			</li>
 
+			<!-- == Shared patches for firearm melee tools == -->
+
 			<li Class="PatchOperationReplace">
-				<xpath>Defs/ThingDef[defName="RNGun_LSATLMG"]/tools</xpath>
+				<xpath>Defs/ThingDef[
+					defName="RNGun_HAMRIARLMG" or
+					defName="RNGun_LSATLMG"
+				]/tools</xpath>
 				<value>
 					<tools>
 						<li Class="CombatExtended.ToolCE">
