@@ -100,7 +100,7 @@
   <ThingDef ParentName="BaseGunWithQuality">
     <defName>CE_ExplosiveBoltProjector</defName>
     <label>Explosive Bolt Projector</label>
-    <description>A simple, locally produced break-action grenade launcher, capable of firing a variety of different projectiles.</description>
+    <description>A low-velocity, high-trajectory fire support system deployed by mechanoid Pikeman. While inaccurate and slow-firing, it remains a potent weapon against static targets.</description>
     <graphicData>
       <texPath>Things/Item/Equipment/WeaponRanged/NeedleGun</texPath>
       <graphicClass>Graphic_Single</graphicClass>
@@ -111,9 +111,13 @@
       <ShotSpread>0.16</ShotSpread>
       <SwayFactor>1.00</SwayFactor>
       <Bulk>7.31</Bulk>
-      <Mass>2.70</Mass>
+      <Mass>20.00</Mass>
       <RangedWeapon_Cooldown>6</RangedWeapon_Cooldown>
     </statBases>
+    <techLevel>Spacer</techLevel>
+    <menuHidden>True</menuHidden>
+    <tradeability>None</tradeability>
+    <destroyOnDrop>true</destroyOnDrop>    
     <weaponTags>
       <li>MechanoidGunLongRange</li>	  
     </weaponTags>
@@ -124,7 +128,7 @@
 		<hasStandardCommand>true</hasStandardCommand>
 		<defaultProjectile>Bullet_60mmMortarShell_HE</defaultProjectile>
 		<warmupTime>3</warmupTime>
-		<minRange>7</minRange>
+		<minRange>10</minRange>
 		<range>45</range>
 		<burstShotCount>1</burstShotCount>
 		<soundCast>Mortar_LaunchA</soundCast>
