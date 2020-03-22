@@ -115,10 +115,13 @@
 					</value>
 				</li>
 
-				<!-- ========== K6-3 helmet ========== -->
+				<!-- ========== K6-3 helmet (closed, open variants) ========== -->
 
 				<li Class="PatchOperationAdd">
-					<xpath>Defs/ThingDef[defName="RNApparel_K63Helmet"]/statBases</xpath>
+					<xpath>Defs/ThingDef[
+						defName="RNApparel_K63Helmet" or
+						defName="RNApparel_K63HelmetOpen"
+					]/statBases</xpath>
 					<value>
 						<Bulk>5</Bulk>
 						<WornBulk>1</WornBulk>
@@ -127,18 +130,24 @@
 						<ArmorRating_Heat>0.54</ArmorRating_Heat>
 					</value>
 				</li>
-				
+
 				<li Class="PatchOperationReplace">
-					<xpath>Defs/ThingDef[defName="RNApparel_K63Helmet"]/statBases/StuffEffectMultiplierArmor</xpath>
+					<xpath>Defs/ThingDef[
+						defName="RNApparel_K63Helmet" or
+						defName="RNApparel_K63HelmetOpen"
+					]/statBases/StuffEffectMultiplierArmor</xpath>
 					<value>
 						<StuffEffectMultiplierArmor>0.30</StuffEffectMultiplierArmor>
 					</value>
 				</li>
 
-				<!-- ========== K6-3 helmet open ========== -->
+				<!-- ========== Lynx-T helmet (closed, open variants) ========== -->
 
 				<li Class="PatchOperationAdd">
-					<xpath>Defs/ThingDef[defName="RNApparel_K63HelmetOpen"]/statBases</xpath>
+					<xpath>Defs/ThingDef[
+						defName="RNApparel_LynxTHelmet" or
+						defName="RNApparel_LynxTHelmetOpen"
+					]/statBases</xpath>
 					<value>
 						<Bulk>5</Bulk>
 						<WornBulk>1</WornBulk>
@@ -147,49 +156,12 @@
 						<ArmorRating_Heat>0.54</ArmorRating_Heat>
 					</value>
 				</li>
-				
+
 				<li Class="PatchOperationReplace">
-					<xpath>Defs/ThingDef[defName="RNApparel_K63HelmetOpen"]/statBases/StuffEffectMultiplierArmor</xpath>
-					<value>
-						<StuffEffectMultiplierArmor>0.30</StuffEffectMultiplierArmor>
-					</value>
-				</li>
-
-				<!-- ========== Lynx-T helmet ========== -->
-
-				<li Class="PatchOperationAdd">
-					<xpath>Defs/ThingDef[defName="RNApparel_LynxTHelmet"]/statBases</xpath>
-					<value>
-						<Bulk>5</Bulk>
-						<WornBulk>1</WornBulk>
-						<ArmorRating_Sharp>10</ArmorRating_Sharp>
-						<ArmorRating_Blunt>22</ArmorRating_Blunt>
-						<ArmorRating_Heat>0.54</ArmorRating_Heat>
-					</value>
-				</li>
-				
-				<li Class="PatchOperationReplace">
-					<xpath>Defs/ThingDef[defName="RNApparel_LynxTHelmet"]/statBases/StuffEffectMultiplierArmor</xpath>
-					<value>
-						<StuffEffectMultiplierArmor>0.30</StuffEffectMultiplierArmor>
-					</value>
-				</li>
-
-				<!-- ========== Lynx-T helmet open ========== -->
-
-				<li Class="PatchOperationAdd">
-					<xpath>Defs/ThingDef[defName="RNApparel_LynxTHelmetOpen"]/statBases</xpath>
-					<value>
-						<Bulk>5</Bulk>
-						<WornBulk>1</WornBulk>
-						<ArmorRating_Sharp>10</ArmorRating_Sharp>
-						<ArmorRating_Blunt>22</ArmorRating_Blunt>
-						<ArmorRating_Heat>0.54</ArmorRating_Heat>
-					</value>
-				</li>
-				
-				<li Class="PatchOperationReplace">
-					<xpath>Defs/ThingDef[defName="RNApparel_LynxTHelmetOpen"]/statBases/StuffEffectMultiplierArmor</xpath>
+					<xpath>Defs/ThingDef[
+						defName="RNApparel_LynxTHelmet" or
+						defName="RNApparel_LynxTHelmetOpen"
+					]/statBases/StuffEffectMultiplierArmor</xpath>
 					<value>
 						<StuffEffectMultiplierArmor>0.30</StuffEffectMultiplierArmor>
 					</value>
@@ -227,7 +199,7 @@
 						<ArmorRating_Heat>0.54</ArmorRating_Heat>
 					</value>
 				</li>
-				
+
 				<li Class="PatchOperationReplace">
 					<xpath>Defs/ThingDef[defName="RNApparel_MASKA1Helmet"]/statBases/StuffEffectMultiplierArmor</xpath>
 					<value>
@@ -235,10 +207,13 @@
 					</value>
 				</li>
 
-				<!-- ========== PASGT helmet DCU ========== -->
+				<!-- ========== PASGT helmet (DCU, M81 variants) ========== -->
 
 				<li Class="PatchOperationAdd">
-					<xpath>Defs/ThingDef[defName="RNApparel_PASGTDCUHelmet"]/statBases</xpath>
+					<xpath>Defs/ThingDef[
+						defName="RNApparel_PASGTDCUHelmet" or
+						defName="RNApparel_PASGTM81Helmet"
+					]/statBases</xpath>
 					<value>
 						<Bulk>4</Bulk>
 						<WornBulk>1</WornBulk>
@@ -249,27 +224,10 @@
 				</li>
 
 				<li Class="PatchOperationReplace">
-					<xpath>Defs/ThingDef[defName="RNApparel_PASGTDCUHelmet"]/statBases/StuffEffectMultiplierArmor</xpath>
-					<value>
-						<StuffEffectMultiplierArmor>0.15</StuffEffectMultiplierArmor>
-					</value>
-				</li>  
-
-				<!-- ========== PASGT helmet M81 ========== -->
-
-				<li Class="PatchOperationAdd">
-					<xpath>Defs/ThingDef[defName="RNApparel_PASGTM81Helmet"]/statBases</xpath>
-					<value>
-						<Bulk>4</Bulk>
-						<WornBulk>1</WornBulk>
-						<ArmorRating_Sharp>6</ArmorRating_Sharp>
-						<ArmorRating_Blunt>13</ArmorRating_Blunt>
-						<ArmorRating_Heat>0.54</ArmorRating_Heat>
-					</value>
-				</li>
-
-				<li Class="PatchOperationReplace">
-					<xpath>Defs/ThingDef[defName="RNApparel_PASGTM81Helmet"]/statBases/StuffEffectMultiplierArmor</xpath>
+					<xpath>Defs/ThingDef[
+						defName="RNApparel_PASGTDCUHelmet" or
+						defName="RNApparel_PASGTM81Helmet"
+					]/statBases/StuffEffectMultiplierArmor</xpath>
 					<value>
 						<StuffEffectMultiplierArmor>0.15</StuffEffectMultiplierArmor>
 					</value>
@@ -287,7 +245,7 @@
 						<ArmorRating_Heat>0.54</ArmorRating_Heat>
 					</value>
 				</li>
-				
+
 				<li Class="PatchOperationReplace">
 					<xpath>Defs/ThingDef[defName="RNApparel_PTABravoHelmetBlack"]/statBases/StuffEffectMultiplierArmor</xpath>
 					<value>
@@ -307,7 +265,7 @@
 						<ArmorRating_Heat>0.54</ArmorRating_Heat>
 					</value>
 				</li>
-				
+
 				<li Class="PatchOperationReplace">
 					<xpath>Defs/ThingDef[defName="RNApparel_PTABravoHelmetOperator"]/statBases/StuffEffectMultiplierArmor</xpath>
 					<value>
@@ -315,10 +273,13 @@
 					</value>
 				</li>  
 
-				<!-- ========== MICH helmet DPM ========== -->
+				<!-- ========== MICH helmet (DPM, Tan variants) ========== -->
 
 				<li Class="PatchOperationAdd">
-					<xpath>Defs/ThingDef[defName="RNApparel_MICHHelmet_DPM"]/statBases</xpath>
+					<xpath>Defs/ThingDef[
+						defName="RNApparel_MICHHelmet_DPM" or
+						defName="RNApparel_MICHHelmet_Tan"
+					]/statBases</xpath>
 					<value>
 						<Bulk>4</Bulk>
 						<WornBulk>1</WornBulk>
@@ -327,33 +288,16 @@
 						<ArmorRating_Heat>0.54</ArmorRating_Heat>
 					</value>
 				</li>
-				
+
 				<li Class="PatchOperationReplace">
-					<xpath>Defs/ThingDef[defName="RNApparel_MICHHelmet_DPM"]/statBases/StuffEffectMultiplierArmor</xpath>
+					<xpath>Defs/ThingDef[
+						defName="RNApparel_MICHHelmet_DPM" or
+						defName="RNApparel_MICHHelmet_Tan"
+					]/statBases/StuffEffectMultiplierArmor</xpath>
 					<value>
 						<StuffEffectMultiplierArmor>0.20</StuffEffectMultiplierArmor>
-					</value>
-				</li>  
-
-				<!-- ========== MICH helmet Tan ========== -->
-
-				<li Class="PatchOperationAdd">
-					<xpath>Defs/ThingDef[defName="RNApparel_MICHHelmet_Tan"]/statBases</xpath>
-					<value>
-						<Bulk>4</Bulk>
-						<WornBulk>1</WornBulk>
-						<ArmorRating_Sharp>8</ArmorRating_Sharp>
-						<ArmorRating_Blunt>16</ArmorRating_Blunt>
-						<ArmorRating_Heat>0.54</ArmorRating_Heat>
 					</value>
 				</li>
-				
-				<li Class="PatchOperationReplace">
-					<xpath>Defs/ThingDef[defName="RNApparel_MICHHelmet_Tan"]/statBases/StuffEffectMultiplierArmor</xpath>
-					<value>
-						<StuffEffectMultiplierArmor>0.20</StuffEffectMultiplierArmor>
-					</value>
-				</li>  
 
 				<!-- ========== Crye Airframe helmet ========== -->
 
@@ -367,7 +311,7 @@
 						<ArmorRating_Heat>0.54</ArmorRating_Heat>
 					</value>
 				</li>
-				
+
 				<li Class="PatchOperationReplace">
 					<xpath>Defs/ThingDef[defName="RNApparel_CryeAirframeHelmet_Tan"]/statBases/StuffEffectMultiplierArmor</xpath>
 					<value>

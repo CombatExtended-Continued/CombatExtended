@@ -53,35 +53,6 @@
 				</weaponTags>
 			</li>
 
-			<li Class="PatchOperationReplace">
-				<xpath>Defs/ThingDef[defName="RNGun_DesertEagle"]/tools</xpath>
-				<value>
-					<tools>
-						<li Class="CombatExtended.ToolCE">
-							<label>grip</label>
-							<capacities>
-								<li>Blunt</li>
-							</capacities>
-							<power>2</power>
-							<cooldownTime>1.54</cooldownTime>
-							<chanceFactor>1.5</chanceFactor>
-							<armorPenetrationBlunt>0.555</armorPenetrationBlunt>
-							<linkedBodyPartsGroup>Grip</linkedBodyPartsGroup>
-						</li>
-						<li Class="CombatExtended.ToolCE">
-							<label>muzzle</label>
-							<capacities>
-								<li>Poke</li>
-							</capacities>
-							<power>2</power>
-							<cooldownTime>1.54</cooldownTime>
-							<armorPenetrationBlunt>0.555</armorPenetrationBlunt>
-							<linkedBodyPartsGroup>Muzzle</linkedBodyPartsGroup>
-						</li>
-					</tools>
-				</value>
-			</li>
-
 			<!-- ========== FN Five-seven ========== -->
 
 			<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
@@ -123,35 +94,6 @@
 				</FireModes>
 
 				<!-- No additional CE weaponTags needed -->
-			</li>
-
-			<li Class="PatchOperationReplace">
-				<xpath>Defs/ThingDef[defName="RNGun_FiveSeven"]/tools</xpath>
-				<value>
-					<tools>
-						<li Class="CombatExtended.ToolCE">
-							<label>grip</label>
-							<capacities>
-								<li>Blunt</li>
-							</capacities>
-							<power>2</power>
-							<cooldownTime>1.54</cooldownTime>
-							<chanceFactor>1.5</chanceFactor>
-							<armorPenetrationBlunt>0.555</armorPenetrationBlunt>
-							<linkedBodyPartsGroup>Grip</linkedBodyPartsGroup>
-						</li>
-						<li Class="CombatExtended.ToolCE">
-							<label>muzzle</label>
-							<capacities>
-								<li>Poke</li>
-							</capacities>
-							<power>2</power>
-							<cooldownTime>1.54</cooldownTime>
-							<armorPenetrationBlunt>0.555</armorPenetrationBlunt>
-							<linkedBodyPartsGroup>Muzzle</linkedBodyPartsGroup>
-						</li>
-					</tools>
-				</value>
 			</li>
 
 			<!-- ========== TEC-9 ========== -->
@@ -200,8 +142,14 @@
 				</weaponTags>
 			</li>
 
+			<!-- == Shared patches for firearm melee tools == -->
+
 			<li Class="PatchOperationReplace">
-				<xpath>Defs/ThingDef[defName="RNGun_TEC-9P"]/tools</xpath>
+				<xpath>Defs/ThingDef[
+					defName="RNGun_DesertEagle" or
+					defName="RNGun_FiveSeven" or
+					defName="RNGun_TEC-9P"
+				]/tools</xpath>
 				<value>
 					<tools>
 						<li Class="CombatExtended.ToolCE">
