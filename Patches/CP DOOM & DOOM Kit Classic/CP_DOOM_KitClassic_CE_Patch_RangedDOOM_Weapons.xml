@@ -1,0 +1,297 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+	<Operation Class="PatchOperationSequence">
+		<success>Always</success>
+		<operations>
+
+			<li Class="CombatExtended.PatchOperationFindMod">
+				<modName>[CP] The DOOM Kit - Classic</modName>
+			</li>
+
+			<!-- ========== Pistol (DOOM) ========== -->
+
+			<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+				<defName>RNGun_DOOMClassic_Pistol</defName>
+				<statBases>
+					<Mass>0.97</Mass>
+					<RangedWeapon_Cooldown>0.38</RangedWeapon_Cooldown>
+					<SightsEfficiency>0.70</SightsEfficiency>
+					<ShotSpread>0.17</ShotSpread>
+					<SwayFactor>1.05</SwayFactor>
+					<Bulk>2.17</Bulk>
+				</statBases>
+				<Properties>
+					<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+					<hasStandardCommand>true</hasStandardCommand>
+					<defaultProjectile>Bullet_9x19mmPara_FMJ</defaultProjectile>
+					<warmupTime>0.6</warmupTime>
+					<range>12</range>
+					<soundCast>RHShot_DOOMClassic_Pistol</soundCast>
+					<soundCastTail>GunTail_Light</soundCastTail>
+					<muzzleFlashScale>9</muzzleFlashScale>
+				</Properties>
+
+				<AmmoUser>
+					<magazineSize>15</magazineSize>
+					<reloadTime>4</reloadTime>
+					<ammoSet>AmmoSet_9x19mmPara</ammoSet>
+				</AmmoUser>
+
+				<FireModes>
+					<aiUseBurstMode>FALSE</aiUseBurstMode>
+					<aiAimMode>AimedShot</aiAimMode>
+				</FireModes>
+			</li>
+
+			<!-- ========== Shotgun (DOOM) ========== -->
+
+			<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+				<defName>RHGun_DOOMClassic_Shotgun</defName>
+				<statBases>
+					<Mass>3.40</Mass>
+					<RangedWeapon_Cooldown>1.00</RangedWeapon_Cooldown>
+					<SightsEfficiency>1</SightsEfficiency>
+					<ShotSpread>0.11</ShotSpread>
+					<SwayFactor>1.55</SwayFactor>
+					<Bulk>12.07</Bulk>
+				</statBases>
+				<Properties>
+					<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+					<hasStandardCommand>true</hasStandardCommand>
+					<defaultProjectile>Bullet_12Gauge_Buck</defaultProjectile>
+					<warmupTime>0.6</warmupTime>
+					<range>12</range>
+					<soundCast>RHShot_DOOMClassicShotgun</soundCast>
+					<soundCastTail>GunTail_Heavy</soundCastTail>
+					<muzzleFlashScale>9</muzzleFlashScale>
+				</Properties>
+
+				<AmmoUser>
+					<magazineSize>8</magazineSize>
+					<reloadTime>5.1</reloadTime>
+					<ammoSet>AmmoSet_12Gauge</ammoSet>
+				</AmmoUser>
+
+				<FireModes>
+					<aiUseBurstMode>FALSE</aiUseBurstMode>
+					<aiAimMode>Snapshot</aiAimMode>
+				</FireModes>
+			</li>
+
+			<!-- ========== Super Shotgun (DOOM) ========== -->
+
+			<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+				<defName>RHGun_DOOMClassic_SuperShotgun</defName>
+				<statBases>
+					<Mass>1.90</Mass>
+					<RangedWeapon_Cooldown>0.93</RangedWeapon_Cooldown>
+					<SightsEfficiency>0.7</SightsEfficiency>
+					<ShotSpread>0.17</ShotSpread>
+					<SwayFactor>2.73</SwayFactor>
+					<Bulk>6.29</Bulk>
+				</statBases>
+				<Properties>
+					<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+					<hasStandardCommand>true</hasStandardCommand>
+					<defaultProjectile>Bullet_12Gauge_DoubleBarreled_Buck</defaultProjectile>
+					<warmupTime>0.6</warmupTime>
+					<ammoConsumedPerShotCount>2</ammoConsumedPerShotCount>
+					<range>11</range>
+					<soundCast>RHShot_DOOMClassicSuperShotgun</soundCast>
+					<soundCastTail>GunTail_Heavy</soundCastTail>
+					<muzzleFlashScale>9</muzzleFlashScale>
+				</Properties>
+
+				<AmmoUser>
+					<magazineSize>2</magazineSize>
+					<reloadTime>1.7</reloadTime>
+					<ammoSet>AmmoSet_12Gauge_CP_DOOM_SuperShotgun</ammoSet>
+				</AmmoUser>
+
+				<FireModes>
+					<aiUseBurstMode>TRUE</aiUseBurstMode>
+					<aiAimMode>Snapshot</aiAimMode>
+				</FireModes>
+			</li>
+
+			<!-- ========== Chaingun (DOOM) ========== -->
+			<!-- Note: In-game lore explicitly states that the chaingun uses the same ammo as the pistol -->
+
+			<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+				<defName>RHGun_DOOMClassic_Chaingun</defName>
+				<statBases>
+					<Mass>39.00</Mass>
+					<RangedWeapon_Cooldown>0.35</RangedWeapon_Cooldown>
+					<SightsEfficiency>1</SightsEfficiency>
+					<ShotSpread>0.06</ShotSpread>
+					<SwayFactor>1.32</SwayFactor>
+					<Bulk>8.02</Bulk>
+				</statBases>
+				<Properties>
+					<recoilAmount>0.58</recoilAmount>
+					<recoilPattern>Mounted</recoilPattern>
+					<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+					<hasStandardCommand>true</hasStandardCommand>
+					<defaultProjectile>Bullet_9x19mmPara_FMJ</defaultProjectile>
+					<warmupTime>2.3</warmupTime>
+					<range>62</range>
+					<burstShotCount>200</burstShotCount>
+					<ticksBetweenBurstShots>1</ticksBetweenBurstShots>
+					<soundCast>RHShot_DOOMClassic_Pistol</soundCast>
+					<soundCastTail>GunTail_Medium</soundCastTail>
+					<muzzleFlashScale>9</muzzleFlashScale>
+				</Properties>
+				<AmmoUser>
+					<magazineSize>200</magazineSize>
+					<reloadTime>9.2</reloadTime>
+					<ammoSet>AmmoSet_9x19mmPara</ammoSet>
+				</AmmoUser>
+				<FireModes>
+					<aiAimMode>AimedShot</aiAimMode>
+					<noSingleShot>true</noSingleShot>
+				</FireModes>
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="RHGun_DOOMClassic_Chaingun"]/description</xpath>
+				<value>
+					<description>The chaingun (also known as "gatling gun") is a rapid-firing, multi-barrelled automatic weapon that uses the same ammunition as the pistol. A high velocity heavy weapon capable of suppressing multiple targets at once.</description>
+				</value>
+			</li>
+
+			<!-- ========== Plasma Gun (DOOM) ========== -->
+
+			<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+				<defName>RHGun_DOOMClassic_PlasmaGun</defName>
+				<statBases>
+					<Mass>8.20</Mass>
+					<RangedWeapon_Cooldown>0.56</RangedWeapon_Cooldown>
+					<SightsEfficiency>1.10</SightsEfficiency>
+					<ShotSpread>0.07</ShotSpread>
+					<SwayFactor>1.27</SwayFactor>
+					<Bulk>13.00</Bulk>
+				</statBases>
+				<Properties>
+					<recoilAmount>1.48</recoilAmount>
+					<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+					<hasStandardCommand>true</hasStandardCommand>
+					<defaultProjectile>Bullet_DoomClassicPlasmaGun</defaultProjectile>
+					<warmupTime>1.2</warmupTime>
+					<range>75</range>
+					<ticksBetweenBurstShots>5</ticksBetweenBurstShots>
+					<burstShotCount>10</burstShotCount>
+					<soundCast>RHShot_DOOMClassicPlasmaGun</soundCast>
+					<soundCastTail>GunTail_Medium</soundCastTail>
+					<muzzleFlashScale>9</muzzleFlashScale>
+				</Properties>
+
+				<AmmoUser>
+					<magazineSize>40</magazineSize>
+					<reloadTime>4.9</reloadTime>
+					<ammoSet>AmmoSet_DoomClassicPlasmaGun</ammoSet>
+				</AmmoUser>
+
+				<FireModes>
+					<aiUseBurstMode>FALSE</aiUseBurstMode>
+					<aiAimMode>SuppressFire</aiAimMode>
+					<aimedBurstShotCount>5</aimedBurstShotCount>
+				</FireModes>
+			</li>
+
+			<!-- == Shared patches for firearm melee tools == -->
+
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="RNGun_DOOMClassic_Pistol"]/tools</xpath>
+				<value>
+					<tools>
+						<li Class="CombatExtended.ToolCE">
+							<label>grip</label>
+							<capacities>
+								<li>Blunt</li>
+							</capacities>
+							<power>2</power>
+							<cooldownTime>1.54</cooldownTime>
+							<chanceFactor>1.5</chanceFactor>
+							<armorPenetrationBlunt>0.555</armorPenetrationBlunt>
+							<linkedBodyPartsGroup>Grip</linkedBodyPartsGroup>
+						</li>
+						<li Class="CombatExtended.ToolCE">
+							<label>muzzle</label>
+							<capacities>
+								<li>Poke</li>
+							</capacities>
+							<power>2</power>
+							<cooldownTime>1.54</cooldownTime>
+							<armorPenetrationBlunt>0.555</armorPenetrationBlunt>
+							<linkedBodyPartsGroup>Muzzle</linkedBodyPartsGroup>
+						</li>
+					</tools>
+				</value>
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[
+					defName="RHGun_DOOMClassic_Shotgun" or
+					defName="RHGun_DOOMClassic_SuperShotgun" or
+					defName="RHGun_DOOMClassic_PlasmaGun"
+				]/tools</xpath>
+				<value>
+					<tools>
+						<li Class="CombatExtended.ToolCE">
+							<label>stock</label>
+							<capacities>
+								<li>Blunt</li>
+							</capacities>
+							<power>8</power>
+							<cooldownTime>1.55</cooldownTime>
+							<chanceFactor>1.5</chanceFactor>
+							<armorPenetrationBlunt>2.755</armorPenetrationBlunt>
+							<linkedBodyPartsGroup>Stock</linkedBodyPartsGroup>
+						</li>
+						<li Class="CombatExtended.ToolCE">
+							<label>barrel</label>
+							<capacities>
+								<li>Blunt</li>
+							</capacities>
+							<power>5</power>
+							<cooldownTime>2.02</cooldownTime>
+							<armorPenetrationBlunt>1.630</armorPenetrationBlunt>
+							<linkedBodyPartsGroup>Barrel</linkedBodyPartsGroup>
+						</li>
+						<li Class="CombatExtended.ToolCE">
+							<label>muzzle</label>
+							<capacities>
+								<li>Poke</li>
+							</capacities>
+							<power>8</power>
+							<cooldownTime>1.55</cooldownTime>
+							<armorPenetrationBlunt>2.755</armorPenetrationBlunt>
+							<linkedBodyPartsGroup>Muzzle</linkedBodyPartsGroup>
+						</li>
+					</tools>
+				</value>
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[
+					defName="RHGun_DOOMClassic_Chaingun"
+				]/tools</xpath>
+				<value>
+					<tools>
+						<li Class="CombatExtended.ToolCE">
+							<label>barrel</label>
+							<capacities>
+								<li>Blunt</li>
+							</capacities>
+							<power>10</power>
+							<cooldownTime>2.44</cooldownTime>
+							<armorPenetrationBlunt>3.5</armorPenetrationBlunt>
+							<linkedBodyPartsGroup>Barrel</linkedBodyPartsGroup>
+						</li>
+					</tools>
+				</value>
+			</li>
+
+		</operations>
+	</Operation>
+</Patch>

@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+	<Operation Class="PatchOperationSequence">
+		<success>Always</success>
+		<operations>
+
+			<li Class="CombatExtended.PatchOperationFindMod">
+				<modName>[CP] The DOOM Kit - Classic</modName>
+			</li>
+
+			<!-- ========== Mixom Beavertooth Painsaw (chainsaw) ========== -->
+
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="RHMelee_DOOMClassic_Chainsaw"]/tools</xpath>
+				<value>
+					<tools>
+						<li Class="CombatExtended.ToolCE">
+							<label>blade</label>
+							<capacities>
+								<li>RHMelee_ClassicChainsawSlash</li>
+							</capacities>
+							<power>38</power>
+							<cooldownTime>4.36</cooldownTime>
+							<armorPenetrationBlunt>3.7</armorPenetrationBlunt>
+							<armorPenetrationSharp>14.8</armorPenetrationSharp>
+							<linkedBodyPartsGroup>Edge</linkedBodyPartsGroup>
+						</li>
+						<li Class="CombatExtended.ToolCE">
+							<label>point</label>
+							<capacities>
+								<li>RHMelee_ClassicChainsawStab</li>
+							</capacities>
+							<power>40</power>
+							<cooldownTime>2.47</cooldownTime>
+							<armorPenetrationBlunt>3.7</armorPenetrationBlunt>
+							<armorPenetrationSharp>1.65</armorPenetrationSharp>
+							<linkedBodyPartsGroup>Point</linkedBodyPartsGroup>
+						</li>
+					</tools>
+				</value>
+			</li>
+
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName="RHMelee_DOOMClassic_Chainsaw"]/statBases</xpath>
+				<value>
+					<Bulk>9</Bulk>
+					<MeleeCounterParryBonus>0.14</MeleeCounterParryBonus>
+				</value>
+			</li>
+
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName="RHMelee_DOOMClassic_Chainsaw"]</xpath>
+				<value>
+					<equippedStatOffsets>
+						<MeleeCritChance>0.04</MeleeCritChance>
+						<MeleeParryChance>0.1</MeleeParryChance>
+						<MeleeDodgeChance>0.25</MeleeDodgeChance>
+					</equippedStatOffsets>
+				</value>
+			</li>
+
+		</operations>
+	</Operation>
+</Patch>

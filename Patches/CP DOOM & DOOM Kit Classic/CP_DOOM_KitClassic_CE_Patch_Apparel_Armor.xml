@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+	<Operation Class="PatchOperationSequence">
+		<success>Always</success>
+		<operations>
+
+			<li Class="CombatExtended.PatchOperationFindMod">
+				<modName>[CP] The DOOM Kit - Classic</modName>
+			</li>
+
+			<!-- ========== Praetor Suit (classic) ========== -->
+
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName="RHApparel_DOOMClassic_PraetorSuit"]/statBases</xpath>
+				<value>
+					<Bulk>100</Bulk>
+					<WornBulk>15</WornBulk>
+				</value>
+			</li>
+
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName="RHApparel_DOOMClassic_PraetorSuit"]/equippedStatOffsets</xpath>
+				<value>
+					<CarryBulk>40</CarryBulk>
+					<CarryWeight>90</CarryWeight>
+				</value>
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="RHApparel_DOOMClassic_PraetorSuit"]/statBases/ArmorRating_Sharp</xpath>
+				<value>
+					<ArmorRating_Sharp>20</ArmorRating_Sharp>
+				</value>
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="RHApparel_DOOMClassic_PraetorSuit"]/statBases/ArmorRating_Blunt</xpath>
+				<value>
+					<ArmorRating_Blunt>40</ArmorRating_Blunt>
+				</value>
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="RHApparel_DOOMClassic_PraetorSuit"]/statBases/ArmorRating_Heat</xpath>
+				<value>
+					<ArmorRating_Heat>1.0</ArmorRating_Heat>
+				</value>
+			</li>
+
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName="RHApparel_DOOMClassic_PraetorSuit"]/statBases</xpath>
+				<value>
+					<ArmorRating_Electric>0.975</ArmorRating_Electric>
+				</value>
+			</li>
+
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName="RHApparel_DOOMClassic_PraetorSuit"]/apparel/bodyPartGroups</xpath>
+				<value>
+					<li>Hands</li>
+					<li>Feet</li>
+				</value>
+			</li>
+
+		</operations>
+	</Operation>
+</Patch>
