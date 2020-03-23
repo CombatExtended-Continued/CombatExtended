@@ -96,21 +96,41 @@
         </primaryMagazineCount>
         <forcedSidearm>
           <sidearmMoney>
-            <min>150</min>
-            <max>350</max>
+            <min>250</min>
+            <max>100</max>
           </sidearmMoney>
           <weaponTags>
-            <li>CE_Sidearm_Melee</li>
+            <li>CE_Sidearm</li>
           </weaponTags>
+        <magazineCount>
+          <min>2</min>
+          <max>5</max>
+        </magazineCount>          
         </forcedSidearm>
       </li>
     </value>
   </Operation>
 
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/PawnKindDef[defName="Grenadier_EMP"]/label</xpath>
+    <value>
+	    <label>advanced grenadier</label>
+    </value>
+  </Operation>
+
   <Operation Class="PatchOperationAdd">
-    <xpath>Defs/PawnKindDef[defName="Grenadier_Smoke"]/weaponTags</xpath>
+    <xpath>Defs/PawnKindDef[defName="Grenadier_EMP"]/weaponTags</xpath>
     <value>
       <li>CE_GrenadeFlashbang</li>
+	    <li>GrenadeSmoke</li>
+	    <li>GrenadeDestructive</li>	
+    </value>
+  </Operation>
+
+  <Operation Class="PatchOperationAdd">
+    <xpath>Defs/PawnKindDef[defName="Grenadier_EMP"]</xpath>
+    <value>
+      <combatPower>85</combatPower>
     </value>
   </Operation>
 
