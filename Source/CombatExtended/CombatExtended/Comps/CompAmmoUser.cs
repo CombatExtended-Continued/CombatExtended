@@ -171,6 +171,7 @@ namespace CombatExtended
         {
             base.Initialize(vprops);
 
+			//spawnUnloaded checks have all been moved to methods calling ResetAmmoCount.
             //curMagCountInt = Props.spawnUnloaded && UseAmmo ? 0 : Props.magazineSize;
 
             // Initialize ammo with default if none is set

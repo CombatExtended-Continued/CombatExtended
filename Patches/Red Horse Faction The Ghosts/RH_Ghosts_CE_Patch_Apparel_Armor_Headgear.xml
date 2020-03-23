@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+	<Operation Class="PatchOperationSequence">
+		<success>Always</success>
+		<operations>
+
+			<li Class="CombatExtended.PatchOperationFindMod">
+				<modName>[RH] Faction: The Ghosts</modName>
+			</li>
+
+			<!-- ========== FAST helmet Keegan, PT A-Bravo helmet Grim ========== -->
+
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[
+					defName="RNApparel_FASTHelmet_Keegan" or
+					defName="RNApparel_PTABravoHelmet_Grim"
+				]/statBases</xpath>
+				<value>
+					<Bulk>4.5</Bulk>
+					<WornBulk>1</WornBulk>
+					<ArmorRating_Sharp>7</ArmorRating_Sharp>
+					<ArmorRating_Blunt>16</ArmorRating_Blunt>
+					<ArmorRating_Heat>0.54</ArmorRating_Heat>
+				</value>
+			</li>
+			
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[
+					defName="RNApparel_FASTHelmet_Keegan" or
+					defName="RNApparel_PTABravoHelmet_Grim"
+				]/statBases/StuffEffectMultiplierArmor</xpath>
+				<value>
+					<StuffEffectMultiplierArmor>0.20</StuffEffectMultiplierArmor>
+				</value>
+			</li>
+
+			<!-- ========== MICH helmet Hesh, MICH helmet Ajax ========== -->
+
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[
+					defName="RNApparel_MICHHelmet_Hesh" or
+					defName="RNApparel_MICHHelmet_Ajax"
+				]/statBases</xpath>
+				<value>
+					<Bulk>4</Bulk>
+					<WornBulk>1</WornBulk>
+					<ArmorRating_Sharp>7</ArmorRating_Sharp>
+					<ArmorRating_Blunt>16</ArmorRating_Blunt>
+					<ArmorRating_Heat>0.54</ArmorRating_Heat>
+				</value>
+			</li>
+			
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[
+					defName="RNApparel_MICHHelmet_Hesh" or
+					defName="RNApparel_MICHHelmet_Ajax"
+				]/statBases/StuffEffectMultiplierArmor</xpath>
+				<value>
+					<StuffEffectMultiplierArmor>0.20</StuffEffectMultiplierArmor>
+				</value>
+			</li>
+
+		</operations>
+	</Operation>
+</Patch>

@@ -109,7 +109,8 @@ namespace CombatExtended
                     InitGun();
                     
                     // FIXME: Hack to make player-crafted turrets spawn unloaded
-                    if (Map != null && !Map.IsPlayerHome && compAmmo != null)
+                    if (//Map != null && !Map.IsPlayerHome
+                        !Faction.IsPlayer && compAmmo != null)
                     {
                         compAmmo.ResetAmmoCount();
                     }

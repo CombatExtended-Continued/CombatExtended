@@ -2,18 +2,18 @@
 <Defs>
 
   <!-- ==================== M97 Grenade Launcher ==================== -->
-<!--
+
   <ThingDef ParentName="BaseMakeableGun">
-    <defName>CE_M97GrenadeLauncher</defName>
-    <label>M97 Grenade Launcher</label>
+    <defName>CE_GrenadeLauncher</defName>
+    <label>Grenade Launcher</label>
     <description>A simple, locally produced break-action grenade launcher, capable of firing a variety of different projectiles.</description>
     <graphicData>
-      <texPath>Things/Weapons/MilkorMGL</texPath>
+      <texPath>Things/Weapons/GrenadeLauncher</texPath>
       <graphicClass>Graphic_Single</graphicClass>
     </graphicData>
     <soundInteract>Interact_Rifle</soundInteract>
     <statBases>
-      <WorkToMake>9000</WorkToMake>
+      <WorkToMake>9000</WorkToMake>	
       <SightsEfficiency>1</SightsEfficiency>
       <ShotSpread>0.16</ShotSpread>
       <SwayFactor>1.00</SwayFactor>
@@ -25,7 +25,7 @@
       <Steel>40</Steel>
       <ComponentIndustrial>1</ComponentIndustrial>
       <WoodLog>10</WoodLog>
-    </costList>
+    </costList>	
     <weaponTags>
       <li>GunHeavy</li>
 	  <li>GrenadeSmoke</li>
@@ -61,7 +61,7 @@
     </comps>
     <recipeMaker>
       <researchPrerequisite>CE_Launchers</researchPrerequisite>
-    </recipeMaker>
+    </recipeMaker>	
     <tools>
       <li Class="CombatExtended.ToolCE">
         <label>stock</label>
@@ -95,13 +95,91 @@
         <linkedBodyPartsGroup>Muzzle</linkedBodyPartsGroup>
       </li>
     </tools>
+  </ThingDef>
+
+
+  <!-- ==================== Explosive Bolt Launcher ==================== -->
+
+  <ThingDef ParentName="BaseGunWithQuality">
+    <defName>CE_ExplosiveBoltProjector</defName>
+    <label>Explosive Bolt Projector</label>
+    <description>A low-velocity, high-trajectory fire support system deployed by mechanoid Pikeman. While inaccurate and slow-firing, it remains a potent weapon against static targets.</description>
+    <graphicData>
+      <texPath>Things/Item/Equipment/WeaponRanged/NeedleGun</texPath>
+      <graphicClass>Graphic_Single</graphicClass>
+    </graphicData>
+    <soundInteract>Interact_Rifle</soundInteract>
+    <statBases>
+      <SightsEfficiency>1</SightsEfficiency>
+      <ShotSpread>0.16</ShotSpread>
+      <SwayFactor>1.00</SwayFactor>
+      <Bulk>7.31</Bulk>
+      <Mass>20.00</Mass>
+      <RangedWeapon_Cooldown>6</RangedWeapon_Cooldown>
+    </statBases>
+    <techLevel>Spacer</techLevel>
+    <menuHidden>True</menuHidden>
+    <tradeability>None</tradeability>
+    <destroyOnDrop>true</destroyOnDrop>    
+    <weaponTags>
+      <li>MechanoidGunLongRange</li>	  
+    </weaponTags>
+    <verbs>
+	  <li Class="CombatExtended.VerbPropertiesCE">
+		<verbClass>CombatExtended.Verb_ShootMortarCE</verbClass>
+		<forceNormalTimeSpeed>false</forceNormalTimeSpeed>
+		<hasStandardCommand>true</hasStandardCommand>
+		<defaultProjectile>Bullet_60mmMortarShell_HE</defaultProjectile>
+		<warmupTime>3</warmupTime>
+		<minRange>10</minRange>
+		<range>45</range>
+		<burstShotCount>1</burstShotCount>
+		<soundCast>Mortar_LaunchA</soundCast>
+		<muzzleFlashScale>16</muzzleFlashScale>
+		<circularError>3</circularError>
+		<indirectFirePenalty>0.3</indirectFirePenalty>
+		<targetParams>
+		  <canTargetLocations>true</canTargetLocations>
+		</targetParams>
+	  </li>
+    </verbs>
+    <comps>
+	  <li Class="CombatExtended.CompProperties_Charges">
+		<chargeSpeeds>
+		  <li>30</li>
+		  <li>50</li>
+		  <li>70</li>
+		  <li>90</li>
+		</chargeSpeeds>
+	  </li>	
+      <li Class="CombatExtended.CompProperties_AmmoUser">
+        <magazineSize>5</magazineSize>
+        <reloadTime>12</reloadTime>
+        <ammoSet>AmmoSet_60mmMortarShell</ammoSet>
+      </li>
+      <li Class="CombatExtended.CompProperties_FireModes">
+        <aiUseBurstMode>FALSE</aiUseBurstMode>
+        <aiAimMode>SuppressFire</aiAimMode>
+      </li>
+    </comps>
+    <tools>
+      <li Class="CombatExtended.ToolCE">
+        <label>barrel</label>
+        <capacities>
+          <li>Blunt</li>
+        </capacities>
+        <power>10</power>
+        <cooldownTime>2.44</cooldownTime>
+        <armorPenetrationBlunt>3.5</armorPenetrationBlunt>
+        <linkedBodyPartsGroup>Barrel</linkedBodyPartsGroup>
+      </li>
+    </tools>
     <modExtensions>
       <li Class="CombatExtended.GunDrawExtension">
-        <DrawSize>0.9,0.93</DrawSize>
+        <DrawSize>1.2,1.4</DrawSize>
         <DrawOffset>0.0,-0.05</DrawOffset>
       </li>
     </modExtensions>
   </ThingDef>
--->
-
+  
 </Defs>

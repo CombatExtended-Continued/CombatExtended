@@ -117,7 +117,7 @@ namespace CombatExtended
 
                 if (thingDef != null)
                 {
-                    DropSupplies(thingDef, 10, turret.Position);
+                    DropSupplies(thingDef, 20, turret.Position);
                 }
             }
         }
