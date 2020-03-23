@@ -170,7 +170,7 @@
     </value>
   </Operation>
 
-  <!-- ========== Snake venom ========== -->
+  <!-- ========== Venom Bite & Scratch ========== -->
 
   <Operation Class="PatchOperationAdd">
     <xpath>Defs/DamageDef[defName="ToxicBite"]</xpath>
@@ -181,6 +181,17 @@
 
   <Operation Class="PatchOperationRemove">
     <xpath>Defs/DamageDef[defName="ToxicBite"]/additionalHediffs/li[hediff="ToxicBuildup"]</xpath>
+  </Operation>
+
+  <Operation Class="PatchOperationAdd">
+    <xpath>Defs/DamageDef[defName="ScratchToxic"]</xpath>
+    <value>
+      <hediff>VenomousBite</hediff>
+    </value>
+  </Operation>
+
+  <Operation Class="PatchOperationRemove">
+    <xpath>Defs/DamageDef[defName="ScratchToxic"]/additionalHediffs/li[hediff="ToxicBuildup"]</xpath>
   </Operation>
   
   <!-- ========== Fix harm layers for stab attacks ========== -->
