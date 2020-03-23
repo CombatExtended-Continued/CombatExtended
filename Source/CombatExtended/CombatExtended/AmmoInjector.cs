@@ -93,7 +93,7 @@ namespace CombatExtended
             foreach (ThingDef weaponDef in CE_Utility.allWeaponDefs)
             {
                 CompProperties_AmmoUser props = weaponDef.GetCompProperties<CompProperties_AmmoUser>();
-                if (props != null && props.ammoSet != null && !props.ammoSet.ammoTypes.NullOrEmpty())
+                if (!weaponDef.destroyOnDrop && props != null && props.ammoSet != null && !props.ammoSet.ammoTypes.NullOrEmpty())
                 {
                     ammoDefs.UnionWith(props.ammoSet.ammoTypes.Select<AmmoLink, ThingDef>(x => x.ammo));
                 }
