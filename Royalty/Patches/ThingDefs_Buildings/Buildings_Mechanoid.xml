@@ -196,5 +196,90 @@
 			<turretGunDef>Gun_InfernoCannonTurret</turretGunDef>
 		</value>
 	</Operation>
+
+	<!-- ========== Auto Mortar ========== -->
+
+	<!-- Auto Mortar Base -->
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Turret_AutoMortar"]/thingClass</xpath>
+		<value>
+			<thingClass>CombatExtended.Building_TurretGunCE</thingClass>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Turret_AutoMortar"]/statBases/ShootingAccuracyTurret</xpath>
+		<value>
+			<ShootingAccuracyTurret>0.25</ShootingAccuracyTurret>
+		</value>
+	</Operation>
+
+	<!-- Auto Mortar Top -->
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName = "Artillery_AutoMortar"]</xpath>
+		<value>
+			<statBases>
+				<SightsEfficiency>0.5</SightsEfficiency>
+			</statBases>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName = "Artillery_AutoMortar"]</xpath>
+		<value>
+			<comps>
+			  <li Class="CombatExtended.CompProperties_Charges">
+			    <chargeSpeeds>
+			      <li>30</li>
+			      <li>50</li>
+			      <li>70</li>
+			      <li>90</li>
+			    </chargeSpeeds>
+			  </li>
+			  <!--
+			  <li Class="CombatExtended.CompProperties_AmmoUser">
+			    <magazineSize>1</magazineSize>
+			    <reloadTime>5</reloadTime>
+			    <ammoSet>AmmoSet_81mmMortarShell</ammoSet>
+			  </li>
+			  -->
+			</comps>			  
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName = "Artillery_AutoMortar"]/weaponTags</xpath>
+		<value>
+			<li>TurretGun</li>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName = "Artillery_AutoMortar"]/verbs</xpath>
+		<value>
+			<verbs>
+			  <li Class="CombatExtended.VerbPropertiesCE">
+			    <verbClass>CombatExtended.Verb_ShootMortarCE</verbClass>
+			    <forceNormalTimeSpeed>false</forceNormalTimeSpeed>
+			    <hasStandardCommand>true</hasStandardCommand>
+			    <defaultProjectile>Bullet_81mmMortarShell_HE</defaultProjectile>
+			    <warmupTime>11</warmupTime>
+			    <minRange>32</minRange>
+			    <range>700</range>
+			    <burstShotCount>1</burstShotCount>
+			    <soundCast>Mortar_LaunchA</soundCast>
+			    <muzzleFlashScale>16</muzzleFlashScale>
+			    <circularError>3</circularError>
+			    <indirectFirePenalty>0.4</indirectFirePenalty>
+			    <targetParams>
+			      <canTargetLocations>true</canTargetLocations>
+			    </targetParams>
+			  </li>
+			</verbs>
+		</value>
+	</Operation>
+
 	
 </Patch>	
