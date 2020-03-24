@@ -93,14 +93,12 @@ namespace CombatExtended
             foreach (ThingDef weaponDef in CE_Utility.allWeaponDefs)
             {
                 CompProperties_AmmoUser props = weaponDef.GetCompProperties<CompProperties_AmmoUser>();
-                if (!weaponDef.destroyOnDrop && props != null && props.ammoSet != null && !props.ammoSet.ammoTypes.NullOrEmpty())
+                if (props != null && props.ammoSet != null && !props.ammoSet.ammoTypes.NullOrEmpty())
                 {
+                    // Union their ammoTypes -- since ammoDefs is a HashSet, duplicates are automatically removed
                     ammoDefs.UnionWith(props.ammoSet.ammoTypes.Select<AmmoLink, ThingDef>(x => x.ammo));
                 }
             }
-
-            // Make sure to exclude all ammo things which double as weapons
-            ammoDefs.RemoveWhere(x => x.IsWeapon);
 
             /*
             bool canCraft = (AmmoCraftingStation != null);
@@ -111,6 +109,7 @@ namespace CombatExtended
             }
             */
 
+            // Loop through all weaponDef's unique ammoType.ammo values
             foreach (AmmoDef ammoDef in ammoDefs)
             {
                 //AFTER CE_Utility.allWeaponDefs is initiated, this sets each ammo to list its users & special effects in its DEF DESCRIPTION rather than its THING DESCRIPTION.
@@ -125,6 +124,14 @@ namespace CombatExtended
                         ammoDef.menuHidden = !enabled;
                         ammoDef.destroyOnDrop = !enabled;
                     }
+
+                    //Weapon defs aren't changed w.r.t crafting, trading, destruction on drop -- but the description is still added to the recipe
+                    if (ammoDef.IsWeapon)
+                        continue;
+
+                    //If there exists NO gun which DOESN'T destroy on drop (e.g all guns destroy on drop) or ISN'T a turretGun, this ammo should not be tradable nor craftable
+                    if (!ammoDef.Users.Any(x => !x.destroyOnDrop || (x.weaponTags != null && !x.weaponTags.Contains("TurretGun"))))
+                        continue;
 
                     // Toggle trading
                     var tradingTags = ammoDef.tradeTags.Where(t => t.StartsWith(enableTradeTag));
@@ -292,7 +299,7 @@ namespace CombatExtended
 
                     if (ammoSet != null)
                     {
-                        RecipeDef recipeDef = DefDatabase<RecipeDef>.GetNamed("Make_" + x.defName, false);
+                        RecipeDef recipeDef = DefDatabase<RecipeDef>.GetNamed("Make" + x.defName, false);
 
                         if (recipeDef != null)
                         {

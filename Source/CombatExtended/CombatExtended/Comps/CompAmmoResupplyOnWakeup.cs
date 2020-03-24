@@ -12,15 +12,16 @@ namespace CombatExtended
 {
     public class CompAmmoResupplyOnWakeup : ThingComp
     {
-        public HashSet<Thing> nearbyTurrets = new HashSet<Thing>();
+        public HashSet<Building_TurretGunCE> nearbyTurrets = new HashSet<Building_TurretGunCE>();
         const int turretsWithinDistanceSqr = 100;
+        const int ticksBetweenChecks = 600;    //Divide by 60 for seconds
 
         public CompProperties_AmmoResupplyOnWakeup Props => (CompProperties_AmmoResupplyOnWakeup)props;
         
         //Only do something if not dormant
         //Only do something when ammo system is enabled
         public bool IsActive => Controller.settings.EnableAmmoSystem
-            && (parent.TryGetComp<CompCanBeDormant>()?.Awake ?? false);
+            && (parent.TryGetComp<CompCanBeDormant>()?.Awake ?? true);
 
         FieldInfo thingsField = typeof(LordJob_MechanoidDefendBase).GetField("things");
         FieldInfo mechClusterDefeatedField = typeof(LordJob_MechanoidDefendBase).GetField("mechClusterDefeated");
@@ -38,17 +39,18 @@ namespace CombatExtended
             }
         }
 
-        public bool EnoughAmmoAround(Thing thing)
+        public bool EnoughAmmoAround(Building_TurretGunCE turret)
         {
-            var ammoComp = (thing as Building_TurretGunCE).CompAmmo;
+            //Prevent ammo being dropped as a result of the turret being reloaded at the time
+            if (!turret.isReloading && !turret.AllowAutomaticReload)
+                return true;
 
+            var ammoComp = turret.CompAmmo;
+            
             int num = GenRadial.NumCellsInRadius(20f);
             int num2 = ammoComp.CurMagCount;
             int num3 = Mathf.CeilToInt((float)ammoComp.Props.magazineSize / 6f);
-
-            if (num2 > num3)
-                return true;
-
+            
             for (int i = 0; i < num; i++)
             {
                 IntVec3 c = parent.Position + GenRadial.RadialPattern[i];
@@ -78,7 +80,7 @@ namespace CombatExtended
 
             if (OwnerOnly)
             {
-                nearbyTurrets.AddRange(((List<Thing>)thingsField.GetValue(parentLordJob))
+                nearbyTurrets.AddRange(((List<Building_TurretGunCE>)thingsField.GetValue(parentLordJob))
                     .Where(x => x.def.building.IsTurret && !x.def.building.IsMortar
                         //ONLY supply nearby turrets which are Building_TurretGunCE
                         && ((x as Building_TurretGunCE)?.CompAmmo?.UseAmmo ?? false)));
@@ -89,13 +91,13 @@ namespace CombatExtended
                     .Where(x => x.def.building.IsTurret && !x.def.building.IsMortar
                         //ONLY supply nearby turrets which are Building_TurretGunCE
                         && ((x as Building_TurretGunCE)?.CompAmmo?.UseAmmo ?? false)
-                        && x.Position.DistanceToSquared(parent.Position) < turretsWithinDistanceSqr));
+                        && x.Position.DistanceToSquared(parent.Position) < turretsWithinDistanceSqr).Select(x => x as Building_TurretGunCE));
             }
         }
 
 		public override void CompTick()
 		{
-			if (parent.IsHashIntervalTick(250))
+			if (parent.IsHashIntervalTick(ticksBetweenChecks))
 			{
 				TickRareWorker();
 			}
@@ -110,10 +112,13 @@ namespace CombatExtended
 
             foreach (var turret in nearbyTurrets)
             {
+                if (!turret.Active)
+                    continue;
+
                 if (EnoughAmmoAround(turret))
                     continue;
                 
-                ThingDef thingDef = (turret as Building_TurretGunCE).CompAmmo.CurrentAmmo;
+                ThingDef thingDef = turret.CompAmmo.CurrentAmmo;
 
                 if (thingDef != null)
                 {
@@ -130,7 +135,7 @@ namespace CombatExtended
             list.Add(thing);
 
             //If turrets are near-empty or empty, call in ammo droppod
-            DropPodUtility.DropThingsNear(cell, parent.Map, list, 110, false, false, true, true);
+            DropPodUtility.DropThingsNear(cell, parent.Map, list, 110, false, false, true, OwnerOnly);
         }
     }
 }
