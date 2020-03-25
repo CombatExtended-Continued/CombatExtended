@@ -495,6 +495,9 @@ namespace CombatExtended
             {
                 foreach (Command com in CompAmmo.CompGetGizmosExtra())
                 {
+                    if (!PlayerControlled && Prefs.DevMode && com is GizmoAmmoStatus)
+                        (com as GizmoAmmoStatus).prefix = "DEV: ";
+
                     yield return com;
                 }
             }
