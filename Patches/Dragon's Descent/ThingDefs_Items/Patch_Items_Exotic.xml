@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+	<!-- Skiddadle skidoodle your cut off horn is now a big noodle. -->
+	<Operation Class="PatchOperationSequence">
+		<success>Normal</success>
+		<operations>
+			<!-- ==== Check for the mod. ==== -->
+			<li Class="CombatExtended.PatchOperationFindMod">
+				<modName>Dragon's Descent</modName>
+			</li>
+
+			<!-- ==== DragonHorn ==== -->
+			<li Class="PatchOperationRemove">
+				<xpath>Defs/ThingDef[defName="DragonHorn"]/tools</xpath>
+			</li>
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="DragonHorn"]/statBases/Mass</xpath>
+				<value>
+					<Mass>50</Mass>
+					<Bulk>25</Bulk>
+				</value>
+			</li>
+			<li Class="PatchOperationAttributeSet">
+				<xpath>Defs/ThingDef[defName="DragonHorn"]</xpath>
+				<attribute>ParentName</attribute>
+				<value>ResourceBase</value>
+			</li>
+		</operations>
+	</Operation>
+</Patch>
