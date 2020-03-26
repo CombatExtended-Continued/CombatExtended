@@ -57,8 +57,10 @@ namespace CombatExtended
         private bool IsMortar => def.building.IsMortar;
         private bool IsMortarOrProjectileFliesOverhead => Projectile.projectile.flyOverhead || IsMortar;
         //Not included: CanExtractShell
-        private bool MannedByColonist => mannableComp?.ManningPawn?.Faction == Faction.OfPlayer;
-        private bool MannedByNonColonist => mannableComp?.ManningPawn?.Faction != Faction.OfPlayer;
+        private bool MannedByColonist => mannableComp != null && mannableComp.ManningPawn != null
+            && mannableComp.ManningPawn.Faction == Faction.OfPlayer;
+        private bool MannedByNonColonist => mannableComp != null && mannableComp.ManningPawn != null
+            && mannableComp.ManningPawn.Faction != Faction.OfPlayer;
 
         // New properties
         public Thing Gun

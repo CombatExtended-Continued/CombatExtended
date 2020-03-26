@@ -85,6 +85,8 @@ namespace CombatExtended
 
         public override void ResolveReferences()
         {
+            base.ResolveReferences();
+
             if (detonateProjectile != null)
             {
                 foreach (var comp in detonateProjectile.comps)
