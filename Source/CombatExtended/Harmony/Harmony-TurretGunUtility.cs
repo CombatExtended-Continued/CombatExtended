@@ -54,7 +54,8 @@ namespace CombatExtended.HarmonyCE
             }
 
             // Get the explosive damage def.
-            var explosiveDamageDef = ammoDef.GetCompProperties<CompProperties_ExplosiveCE>()?.explosionDamageDef;
+            var explosiveDamageDef = ammoDef.GetCompProperties<CompProperties_ExplosiveCE>()?.explosiveDamageType ??
+                ammoDef.GetCompProperties<CompProperties_Explosive>()?.explosiveDamageType;
 
             // Get the projectile damage def via the mortar ammo set.
             var mortarAmmoSet = DefDatabase<AmmoSetDef>.GetNamed("AmmoSet_81mmMortarShell");
