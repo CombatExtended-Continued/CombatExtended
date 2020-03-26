@@ -51,19 +51,7 @@
 			<Bulk>23.95</Bulk>
 		</statBases>
 		<ammoClass>RocketHEAT</ammoClass>
-		<comps>
-			<li Class="CombatExtended.CompProperties_ExplosiveCE">
-				<explosionDamage>139</explosionDamage>
-				<explosionDamageDef>Bomb</explosionDamageDef>
-				<explosionRadius>1</explosionRadius>
-				<fragments>
-					<Fragment_Large>6</Fragment_Large>
-					<Fragment_Small>42</Fragment_Small>
-				</fragments>
-				<soundExplode>MortarBomb_Explode</soundExplode>
-				<applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
-			</li>
-		</comps>
+		<detonateProjectile>Bullet_RPG32Rocket_HEAT</detonateProjectile>
 	</ThingDef>
 
 	<ThingDef Class="CombatExtended.AmmoDef" ParentName="RPG32RocketBase">
@@ -79,15 +67,7 @@
 			<Bulk>23.95</Bulk>
 		</statBases>
 		<ammoClass>RocketThermobaric</ammoClass>
-		<comps>
-			<li Class="CombatExtended.CompProperties_ExplosiveCE">
-				<explosionDamage>280</explosionDamage>
-				<explosionDamageDef>Thermobaric</explosionDamageDef>
-				<explosionRadius>5</explosionRadius>
-				<applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
-				<soundExplode>MortarBomb_Explode</soundExplode>
-			</li>
-		</comps>
+		<detonateProjectile>Bullet_RPG32Rocket_Thermobaric</detonateProjectile>
 	</ThingDef>
 
 	<!-- ================== Projectiles ================== -->
@@ -116,17 +96,19 @@
 			<armorPenetrationBlunt>41.818</armorPenetrationBlunt>
 		</projectile>
 		<comps>
-			<li Class="CombatExtended.CompProperties_ExplosiveCE">
-				<explosionDamage>139</explosionDamage>
-				<explosionDamageDef>Bomb</explosionDamageDef>
-				<explosionRadius>1</explosionRadius>
-				<fragments>
-					<Fragment_Large>6</Fragment_Large>
-					<Fragment_Small>42</Fragment_Small>
-				</fragments>
-				<soundExplode>MortarBomb_Explode</soundExplode>
+		  <li Class="CombatExtended.CompProperties_ExplosiveCE">
+			<damageAmountBase>139</damageAmountBase>
+			<explosiveDamageType>Bomb</explosiveDamageType>
+			<explosiveRadius>1</explosiveRadius>
+			<explosionSound>MortarBomb_Explode</explosionSound>
 				<applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
-			</li>
+		  </li>
+		  <li Class="CombatExtended.CompProperties_Fragments">
+			<fragments>
+				<Fragment_Large>6</Fragment_Large>
+			  <Fragment_Small>42</Fragment_Small>
+			</fragments>
+		  </li>
 		</comps>
 	</ThingDef>
 

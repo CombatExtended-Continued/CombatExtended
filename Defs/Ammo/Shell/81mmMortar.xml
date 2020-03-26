@@ -62,18 +62,7 @@
       <Bulk>8.17</Bulk>
     </statBases>
     <ammoClass>GrenadeHE</ammoClass>
-    <comps>
-      <li Class="CombatExtended.CompProperties_ExplosiveCE">
-        <explosionDamage>156</explosionDamage>
-        <explosionDamageDef>Bomb</explosionDamageDef>
-        <explosionRadius>2.5</explosionRadius>
-        <fragments>
-          <Fragment_Large>16</Fragment_Large>
-          <Fragment_Small>100</Fragment_Small>
-        </fragments>
-        <applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
-      </li>
-    </comps>
+	<detonateProjectile>Bullet_81mmMortarShell_HE</detonateProjectile>
   </ThingDef>
 
   <ThingDef Class="CombatExtended.AmmoDef" ParentName="81mmMortarShellBaseCraftableBase">
@@ -89,16 +78,7 @@
       <Bulk>10.01</Bulk>
     </statBases>
     <ammoClass>GrenadeIncendiary</ammoClass>
-    <comps>
-      <li Class="CombatExtended.CompProperties_ExplosiveCE">
-        <explosionDamageDef>PrometheumFlame</explosionDamageDef>
-        <explosionDamage>0</explosionDamage>
-        <explosionRadius>9.5</explosionRadius>
-        <preExplosionSpawnThingDef>FilthPrometheum</preExplosionSpawnThingDef>
-        <preExplosionSpawnChance>0.5</preExplosionSpawnChance>
-        <soundExplode>MortarIncendiary_Explode</soundExplode>
-      </li>
-    </comps>
+	<detonateProjectile>Bullet_81mmMortarShell_Incendiary</detonateProjectile>
   </ThingDef>
 
   <ThingDef Class="CombatExtended.AmmoDef" ParentName="81mmMortarShellBaseCraftableBase">
@@ -115,11 +95,12 @@
     </statBases>
     <ammoClass>GrenadeEMP</ammoClass>
     <comps>
-      <li Class="CombatExtended.CompProperties_ExplosiveCE">
-        <explosionDamage>34</explosionDamage>
-        <explosionDamageDef>Bomb</explosionDamageDef>
-        <explosionRadius>5.5</explosionRadius>
-      </li>
+	  <li Class="CombatExtended.CompProperties_ExplosiveCE">
+		<damageAmountBase>34</damageAmountBase>
+		<explosiveDamageType>Bomb</explosiveDamageType>
+		<explosiveRadius>5.5</explosiveRadius>
+		<applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
+	  </li>
     </comps>
   </ThingDef>
 
@@ -136,16 +117,7 @@
       <Bulk>13.34</Bulk>
     </statBases>
     <ammoClass>FoamFuel</ammoClass>
-    <comps>
-      <li Class="CombatExtended.CompProperties_ExplosiveCE">
-        <explosionRadius>9.5</explosionRadius>
-        <explosionDamageDef>Extinguish</explosionDamageDef>
-        <postExplosionSpawnThingDef>Filth_FireFoam</postExplosionSpawnThingDef>
-        <postExplosionSpawnChance>1</postExplosionSpawnChance>
-        <postExplosionSpawnThingCount>3</postExplosionSpawnThingCount>
-        <applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
-      </li>
-    </comps>
+	<detonateProjectile>Bullet_81mmMortarShell_Firefoam</detonateProjectile>
   </ThingDef>
 
   <ThingDef Class="CombatExtended.AmmoDef" ParentName="81mmMortarShellBase">
@@ -168,12 +140,12 @@
     </tradeTags>
     <ammoClass>Antigrain</ammoClass>
     <comps>
-      <li Class="CombatExtended.CompProperties_ExplosiveCE">
-        <explosionRadius>20</explosionRadius>
-        <explosionDamageDef>Bomb</explosionDamageDef>
-        <explosionDamage>800</explosionDamage>
-        <soundExplode>Explosion_GiantBomb</soundExplode>
-      </li>
+	  <li Class="CombatExtended.CompProperties_ExplosiveCE">
+		<damageAmountBase>800</damageAmountBase>
+		<explosiveDamageType>Bomb</explosiveDamageType>
+		<explosiveRadius>20</explosiveRadius>
+        <explosionSound>Explosion_GiantBomb</explosionSound>
+	  </li>
     </comps>
   </ThingDef>
 
@@ -217,12 +189,12 @@
       <ai_IsIncendiary>true</ai_IsIncendiary>
     </projectile>
     <comps>
-      <li Class="CombatExtended.CompProperties_ExplosiveCE">
-        <fragments>
-          <Fragment_Large>16</Fragment_Large>
-          <Fragment_Small>100</Fragment_Small>
-        </fragments>
-      </li>
+	  <li Class="CombatExtended.CompProperties_Fragments">
+		<fragments>
+			<Fragment_Large>16</Fragment_Large>
+			<Fragment_Small>100</Fragment_Small>
+		</fragments>
+	  </li>
     </comps>
   </ThingDef>
 
