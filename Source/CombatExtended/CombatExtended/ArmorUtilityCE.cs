@@ -14,6 +14,7 @@ namespace CombatExtended
 
         private const float PenetrationRandVariation = 0.05f;    // Armor penetration will be randomized by +- this amount
         private const float SoftArmorMinDamageFactor = 0.2f;    // Soft body armor will always take at least original damage * this number from sharp attacks
+        private const float SpikeTrapAPModifierBlunt = 0.65f;
 
         #endregion
 
@@ -82,7 +83,7 @@ namespace CombatExtended
                         var shieldDef = shield.def.GetModExtension<ShieldDefExtension>();
                         if (shieldDef == null)
                         {
-                            Log.ErrorOnce("CE :: shield " + shield.def.ToString() + " is Apparel_Shield but has no ShieldDefExtension", shield.def.GetHashCode() + 12748102);
+                            Log.ErrorOnce("Combat Extended :: shield " + shield.def.ToString() + " is Apparel_Shield but has no ShieldDefExtension", shield.def.GetHashCode() + 12748102);
                         }
                         else
                         {
@@ -303,18 +304,28 @@ namespace CombatExtended
             {
                 penAmount = projectile.armorPenetrationBlunt * penMult;
             }
+            else if (dinfo.Instigator.def.thingClass == typeof(Building_TrapDamager))
+            {
+                //Temporarily deriving spike trap blunt AP based on their vanilla stats, just so they're not entirely broken
+                //TODO proper integration
+                var trapAP = dinfo.Instigator.GetStatValue(StatDefOf.TrapMeleeDamage, true) * SpikeTrapAPModifierBlunt;
+                penAmount = trapAP * penMult;
+            }
             else
             {
-                if (Verb_MeleeAttackCE.LastAttackVerb == null)
+                if (Verb_MeleeAttackCE.LastAttackVerb != null)
+                {
+                    penAmount = Verb_MeleeAttackCE.LastAttackVerb.ArmorPenetrationBlunt;
+                }
+                else
                 {
                     //LastAttackVerb is already checked in GetAfterArmorDamage(). Only known case of code arriving here is with the ancient soldiers
                     //spawned at the start of the game: their wounds are usually applied with Weapon==null and Instigator==null, so they skip CE's armor system,
                     //but on rare occasions, one of the soldiers gets Bite injuries with with Weapon==null and the instigator set as *himself*.
                     //Warning message below to identify any other situations where this might be happening. -LX7
                     Log.Warning($"[CE] Deflection for Instigator:{dinfo.Instigator} Target:{dinfo.IntendedTarget} DamageDef:{dinfo.Def} Weapon:{dinfo.Weapon} has null verb, overriding AP.");
-
+                    penAmount = 50;
                 }
-                penAmount = Verb_MeleeAttackCE.LastAttackVerb?.ArmorPenetrationBlunt ?? 999999;
             }
 
             var force = penAmount * 10000;

@@ -1,4 +1,4 @@
-﻿using Harmony;
+﻿using HarmonyLib;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -6,7 +6,7 @@ using System.Reflection;
 using Verse;
 
 
-namespace CombatExtended.Harmony.Compatibility
+namespace CombatExtended.HarmonyCE.Compatibility
 {
 
     [HarmonyPatch]
@@ -73,12 +73,12 @@ namespace CombatExtended.Harmony.Compatibility
             if (offending_mods.Any())
             {
                 bool pl = offending_mods.Count > 1;
-                Log.Error($"{logPrefix}A highly incompatible and outdated detour has been detected and disabled in the following mod{(pl ? "s" : "")}:");
+                Log.Error($"Combat Extended:: An incompatible and outdated detour has been detected and disabled in the following mod{(pl ? "s" : "")}:");
                 foreach (var mod_name in offending_mods)
                 {
                     Log.Error($"   {mod_name}");
                 }
-                Log.Error($"Please ask the developer{(pl ? "s" : "")} of {(pl ? "these mods" : "this mod")} to update to use a more compatible patching method, such as the Harmony library.");
+                Log.Error($"Please ask the developer{(pl ? "s" : "")} of {(pl ? "these mods" : "this mod")} to update {(pl ? "them" : "it")}  with a more compatible patching method, such as the Harmony library.");
             }
         }
     }

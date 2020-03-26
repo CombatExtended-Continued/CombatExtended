@@ -1,0 +1,218 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+
+	<ThingCategoryDef>
+		<defName>Ammo762x385mmRCannonShells</defName>
+		<label>76.2x385mmR Cannon shell</label>
+		<parent>AmmoShells</parent>
+		<iconPath>Things/Ammo/Cannon/762x385mmR/HE</iconPath>
+	</ThingCategoryDef>
+
+	<!-- ==================== AmmoSet ========================== -->
+
+	<CombatExtended.AmmoSetDef>
+		<defName>AmmoSet_762x385mmRCannonShell</defName>
+		<label>76.2x385mmR Cannon shells</label>
+		<ammoTypes>
+			<Ammo_762x385mmRCannonShell_HE>Bullet_762x385mmRCannonShell_HE</Ammo_762x385mmRCannonShell_HE>
+			<Ammo_762x385mmRCannonShell_EMP>Bullet_762x385mmRCannonShell_EMP</Ammo_762x385mmRCannonShell_EMP>
+		</ammoTypes>
+	</CombatExtended.AmmoSetDef>
+
+	<!-- ==================== Ammo ========================== -->
+
+	<ThingDef Class="CombatExtended.AmmoDef" Name="762x385mmRCannonShellBase" ParentName="AmmoBase" Abstract="True">
+		<description>Light cannon shell used in field guns.</description>
+		<thingCategories>
+			<li>Ammo762x385mmRCannonShells</li>
+		</thingCategories>
+		<stackLimit>25</stackLimit>
+		<tradeTags>
+			<li>CE_AutoEnableTrade</li>
+			<li>CE_AutoEnableCrafting_TableMachining</li>
+		</tradeTags>
+		<statBases>
+			<MaxHitPoints>150</MaxHitPoints>
+			<Mass>8.82</Mass>
+			<Bulk>9.7</Bulk>
+		</statBases>
+		<cookOffFlashScale>20</cookOffFlashScale>
+		<cookOffSound>MortarBomb_Explode</cookOffSound>
+	</ThingDef>
+
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="762x385mmRCannonShellBase">
+		<defName>Ammo_762x385mmRCannonShell_HE</defName>
+		<label>76.2x385mmR Cannon shell (HE)</label>
+		<graphicData>
+			<texPath>Things/Ammo/Cannon/762x385mmR/HE</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+		</graphicData>
+		<statBases>
+			<MarketValue>63.17</MarketValue>
+		</statBases>
+		<ammoClass>GrenadeHE</ammoClass>
+		<detonateProjectile>Bullet_762x385mmRCannonShell_HE</detonateProjectile>
+	</ThingDef>
+
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="762x385mmRCannonShellBase">
+		<defName>Ammo_762x385mmRCannonShell_EMP</defName>
+		<label>76.2x385mmR Cannon shell (EMP)</label>
+		<graphicData>
+			<texPath>Things/Ammo/Cannon/762x385mmR/EMP</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+		</graphicData>
+		<statBases>
+			<MarketValue>87.70</MarketValue>
+		</statBases>
+		<ammoClass>GrenadeEMP</ammoClass>
+		<comps>
+		  <li Class="CombatExtended.CompProperties_ExplosiveCE">
+			<damageAmountBase>99</damageAmountBase>
+			<explosiveDamageType>Bomb</explosiveDamageType>
+			<explosiveRadius>2</explosiveRadius>
+		  </li>
+		  <li Class="CombatExtended.CompProperties_Fragments">
+			<fragments>
+				<Fragment_Large>22</Fragment_Large>
+			</fragments>
+		  </li>
+		</comps>
+	</ThingDef>
+
+	<!-- ================== Projectiles ================== -->
+
+	<ThingDef Class="CombatExtended.AmmoDef" Name="Base762x385mmRCannonShell" ParentName="BaseBullet" Abstract="true">
+		<graphicData>
+			<shaderType>TransparentPostLight</shaderType>
+		</graphicData>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<speed>136</speed>
+			<soundExplode>MortarBomb_Explode</soundExplode>
+			<flyOverhead>false</flyOverhead>
+			<dropsCasings>true</dropsCasings>
+			<casingMoteDefname>Mote_BigShell</casingMoteDefname>
+		</projectile>
+	</ThingDef>
+
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="Base762x385mmRCannonShell">
+		<defName>Bullet_762x385mmRCannonShell_HE</defName>
+		<label>76.2x385mmR Cannon shell (HE)</label>
+		<thingClass>CombatExtended.ProjectileCE_Explosive</thingClass>
+		<graphicData>
+			<texPath>Things/Projectile/Cannon/762x385mmR/HE</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+		</graphicData>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageDef>Bomb</damageDef>
+			<damageAmountBase>99</damageAmountBase>
+			<explosionRadius>2</explosionRadius>
+			<soundExplode>MortarBomb_Explode</soundExplode>
+			<applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
+		</projectile>
+		<comps>
+			<li Class="CombatExtended.CompProperties_Fragments">
+				<fragments>
+					<Fragment_Large>21</Fragment_Large>
+					<Fragment_Small>47</Fragment_Small>
+				</fragments>
+			</li>
+		</comps>
+	</ThingDef>
+
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="Base762x385mmRCannonShell">
+		<defName>Bullet_762x385mmRCannonShell_EMP</defName>
+		<label>76.2x385mmR Cannon shell (EMP)</label>
+		<thingClass>CombatExtended.ProjectileCE_Explosive</thingClass>
+		<graphicData>
+			<texPath>Things/Projectile/Cannon/762x385mmR/EMP</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+		</graphicData>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageDef>EMP</damageDef>
+			<damageAmountBase>99</damageAmountBase>
+			<explosionRadius>4</explosionRadius>
+		</projectile>
+	</ThingDef>
+
+	<!-- ==================== Recipes ========================== -->
+
+	<RecipeDef ParentName="AmmoRecipeBase">
+		<defName>MakeAmmo_762x385mmRCannonShell_HE</defName>
+		<label>make 76.2x385mmR HE cannon shells x5</label>
+		<description>Craft 5 76.2x385mmR HE cannon shells.</description>
+		<jobString>Making 76.2x385mmR HE cannon shells.</jobString>
+		<workAmount>13000</workAmount>
+		<ingredients>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>Steel</li>
+					</thingDefs>
+				</filter>
+				<count>90</count>
+			</li>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>FSX</li>
+					</thingDefs>
+				</filter>
+				<count>7</count>
+			</li>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>ComponentIndustrial</li>
+					</thingDefs>
+				</filter>
+				<count>2</count>
+			</li>
+		</ingredients>
+		<fixedIngredientFilter>
+			<thingDefs>
+				<li>Steel</li>
+				<li>FSX</li>
+				<li>ComponentIndustrial</li>
+			</thingDefs>
+		</fixedIngredientFilter>
+		<products>
+			<Ammo_762x385mmRCannonShell_HE>5</Ammo_762x385mmRCannonShell_HE>
+		</products>
+	</RecipeDef>
+
+	<RecipeDef ParentName="AmmoRecipeBase">
+		<defName>MakeAmmo_762x385mmRCannonShell_EMP</defName>
+		<label>make 76.2x385mmR EMP cannon shells x5</label>
+		<description>Craft 5 76.2x385mmR EMP cannon shells.</description>
+		<jobString>Making 76.2x385mmR EMP cannon shells.</jobString>
+		<workAmount>13800</workAmount>
+		<ingredients>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>Steel</li>
+					</thingDefs>
+				</filter>
+				<count>90</count>
+			</li>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>ComponentIndustrial</li>
+					</thingDefs>
+				</filter>
+				<count>8</count>
+			</li>
+		</ingredients>
+		<fixedIngredientFilter>
+			<thingDefs>
+				<li>Steel</li>
+				<li>ComponentIndustrial</li>
+			</thingDefs>
+		</fixedIngredientFilter>
+		<products>
+			<Ammo_762x385mmRCannonShell_EMP>5</Ammo_762x385mmRCannonShell_EMP>
+		</products>
+	</RecipeDef>
+
+</Defs>

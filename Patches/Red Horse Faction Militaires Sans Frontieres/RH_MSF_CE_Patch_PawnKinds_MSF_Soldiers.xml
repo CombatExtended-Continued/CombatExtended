@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+	<Operation Class="PatchOperationSequence">
+		<success>Always</success>
+		<operations>
+
+			<li Class="CombatExtended.PatchOperationFindMod">
+				<modName>[RH] Faction: Militaires Sans Frontieres</modName>
+			</li>
+			
+			<!-- ========== MSF faction pawns should spawn backpacks, allowing them to carry their (huge) inventory ========== -->
+
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/PawnKindDef[
+					defName="RH_MSF_Patrol" or
+					defName="RH_MSF_Marksman" or
+					defName="RH_MSF_Sniper" or
+					defName="RH_MSF_Assault" or
+					defName="RH_MSF_Assault_TierII" or
+					defName="RH_MSF_Gunner" or
+					defName="RH_MSF_Grenadier" or
+					defName="RH_MSF_Boss" or
+					defName="RH_MSF_Elite" or
+					defName="RH_MSF_Trader" or
+					defName="RH_MSF_SpecialUnit"
+				]/apparelRequired</xpath>
+				<value>
+					<li>Apparel_Backpack</li>
+				</value>
+			</li>
+			
+			<!-- ========== MSF faction pawns should spawn with ammo appropriate to their primary weapon ========== -->
+			
+			<li Class="PatchOperationAddModExtension">
+				<xpath>Defs/PawnKindDef[
+					defName="RH_MSF_Patrol" or
+					defName="RH_MSF_Marksman" or
+					defName="RH_MSF_Sniper" or
+					defName="RH_MSF_Assault" or
+					defName="RH_MSF_Assault_TierII" or
+					defName="RH_MSF_Boss" or
+					defName="RH_MSF_Elite" or
+					defName="RH_MSF_Trader" or
+					defName="RH_MSF_SpecialUnit"
+				]</xpath>
+				<value>
+					<li Class="CombatExtended.LoadoutPropertiesExtension">
+						<primaryMagazineCount>
+							<min>6</min>
+							<max>8</max>
+						</primaryMagazineCount>
+					</li>
+				</value>
+			</li>
+			
+			<li Class="PatchOperationAddModExtension">
+				<xpath>Defs/PawnKindDef[defName="RH_MSF_Gunner"]</xpath>
+				<value>
+					<li Class="CombatExtended.LoadoutPropertiesExtension">
+						<primaryMagazineCount>
+							<min>3</min>
+							<max>4</max>
+						</primaryMagazineCount>
+					</li>
+				</value>
+			</li>
+			
+			<li Class="PatchOperationAddModExtension">
+				<xpath>Defs/PawnKindDef[defName="RH_MSF_Grenadier"]</xpath>
+				<value>
+					<li Class="CombatExtended.LoadoutPropertiesExtension">
+						<primaryMagazineCount>
+							<min>8</min>
+							<max>10</max>
+						</primaryMagazineCount>
+					</li>
+				</value>
+			</li>
+
+		</operations>
+	</Operation>
+</Patch>

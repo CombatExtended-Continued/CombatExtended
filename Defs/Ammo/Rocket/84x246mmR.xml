@@ -46,23 +46,12 @@
       <graphicClass>Graphic_Single</graphicClass>
     </graphicData>
     <statBases>
-      <MarketValue>31.14</MarketValue>
+      <MarketValue>53.16</MarketValue>
       <Mass>3.2</Mass>
-      <Bulk>6</Bulk>
+      <Bulk>9.66</Bulk>
     </statBases>
     <ammoClass>RocketHEAT</ammoClass>
-    <comps>
-      <li Class="CombatExtended.CompProperties_ExplosiveCE">
-        <explosionDamage>30</explosionDamage>
-        <explosionDamageDef>Bomb</explosionDamageDef>
-        <explosionRadius>1</explosionRadius>
-        <fragments>
-          <Fragment_RocketFrag>30</Fragment_RocketFrag>
-        </fragments>
-        <soundExplode>MortarBomb_Explode</soundExplode>
-        <applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
-      </li>
-    </comps>
+	<detonateProjectile>Bullet_84x246mmR_HEAT</detonateProjectile>
   </ThingDef>
 
   <ThingDef Class="CombatExtended.AmmoDef" ParentName="84x246mmRBase">
@@ -73,20 +62,12 @@
       <graphicClass>Graphic_Single</graphicClass>
     </graphicData>
     <statBases>
-      <MarketValue>34.87</MarketValue>
-	  <Mass>3.1</Mass>
-	  <Bulk>6</Bulk>
+      <MarketValue>53.81</MarketValue>
+      <Mass>3.1</Mass>
+      <Bulk>7.26</Bulk>
     </statBases>
     <ammoClass>GrenadeHE</ammoClass>
-    <comps>
-      <li Class="CombatExtended.CompProperties_ExplosiveCE">
-        <explosionDamage>40</explosionDamage>
-        <explosionDamageDef>Bomb</explosionDamageDef>
-        <explosionRadius>2.5</explosionRadius>
-        <soundExplode>MortarBomb_Explode</soundExplode>
-        <applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
-      </li>
-    </comps>
+	<detonateProjectile>Bullet_84x246mmR_HE</detonateProjectile>
   </ThingDef>
 	
 	<!-- ================== Projectiles ================== -->
@@ -108,43 +89,45 @@
 		<label>84x246mmR shell (HEAT)</label>
 		<projectile Class="CombatExtended.ProjectilePropertiesCE">
 			<damageDef>Bullet</damageDef>
-			<damageAmountBase>150</damageAmountBase>
-			<armorPenetrationBase>3.0</armorPenetrationBase>
+			<damageAmountBase>248</damageAmountBase>
+			<armorPenetrationSharp>400</armorPenetrationSharp>
+			<armorPenetrationBlunt>37.075</armorPenetrationBlunt>
 		</projectile>
 		<comps>
-			<li Class="CombatExtended.CompProperties_ExplosiveCE">
-				<explosionDamage>30</explosionDamage>
-				<explosionDamageDef>Bomb</explosionDamageDef>
-				<explosionRadius>1</explosionRadius>
-				<fragments>
-          <Fragment_RocketFrag>30</Fragment_RocketFrag>
-				</fragments>
-				<soundExplode>MortarBomb_Explode</soundExplode>
-        <applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
-			</li>
+		  <li Class="CombatExtended.CompProperties_ExplosiveCE">
+			<damageAmountBase>124</damageAmountBase>
+			<explosiveDamageType>Bomb</explosiveDamageType>
+			<explosiveRadius>1</explosiveRadius>
+			<explosionSound>MortarBomb_Explode</explosionSound>
+				<applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
+		  </li>
+		  <li Class="CombatExtended.CompProperties_Fragments">
+			<fragments>
+				<Fragment_Large>4</Fragment_Large>
+			  <Fragment_Small>34</Fragment_Small>
+			</fragments>
+		  </li>
 		</comps>
 	</ThingDef>
 
 	<ThingDef Class="CombatExtended.AmmoDef" ParentName="Base84x246mmR">
 		<defName>Bullet_84x246mmR_HE</defName>
 		<label>84x246mmR shell (HE)</label>
-		<projectile Class="CombatExtended.ProjectilePropertiesCE">
-			<explosionRadius>1.5</explosionRadius>
-			<damageDef>Bomb</damageDef>
-			<damageAmountBase>60</damageAmountBase>
+    <projectile Class="CombatExtended.ProjectilePropertiesCE">
+      <damageDef>Bomb</damageDef>
+      <damageAmountBase>151</damageAmountBase>
+      <explosionRadius>2.5</explosionRadius>
+      <soundExplode>MortarBomb_Explode</soundExplode>
       <applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
-		</projectile>
-		<comps>
-			<li Class="CombatExtended.CompProperties_ExplosiveCE">
-				<explosionDamage>40</explosionDamage>
-				<explosionDamageDef>Bomb</explosionDamageDef>
-				<explosionRadius>2.5</explosionRadius>
-				<soundExplode>MortarBomb_Explode</soundExplode>
+    </projectile>
+    <comps>
+      <li Class="CombatExtended.CompProperties_Fragments">
         <fragments>
-          <Fragment_RocketFrag>150</Fragment_RocketFrag>
+          <Fragment_Large>5</Fragment_Large>
+          <Fragment_Small>95</Fragment_Small>
         </fragments>
-			</li>
-		</comps>
+      </li>
+    </comps>
 	</ThingDef>
   
 	<!-- ==================== Recipes ========================== -->
@@ -154,7 +137,7 @@
     <label>make 84x246mmR HEAT cartridges x5</label>
     <description>Craft 5 84x246mmR HEAT cartridges.</description>
     <jobString>Making 84x246mmR HEAT cartridge.</jobString>
-    <workAmount>15000</workAmount>
+    <workAmount>8400</workAmount>
     <ingredients>
       <li>
         <filter>
@@ -162,7 +145,7 @@
             <li>Steel</li>
           </thingDefs>
         </filter>
-        <count>16</count>
+        <count>32</count>
       </li>
       <li>
         <filter>
@@ -170,7 +153,7 @@
             <li>FSX</li>
           </thingDefs>
         </filter>
-        <count>3</count>
+        <count>7</count>
       </li>
       <li>
         <filter>
@@ -178,7 +161,7 @@
             <li>ComponentIndustrial</li>
           </thingDefs>
         </filter>
-        <count>3</count>
+        <count>4</count>
       </li>
     </ingredients>
     <fixedIngredientFilter>
@@ -198,7 +181,7 @@
     <label>make 84x246mmR HE cartridge x5</label>
     <description>Craft 5 84x246mmR HE cartridges.</description>
     <jobString>Making 84x246mmR HE cartridges.</jobString>
-    <workAmount>15000</workAmount>
+    <workAmount>9600</workAmount>
     <ingredients>
       <li>
         <filter>
@@ -206,7 +189,7 @@
             <li>Steel</li>
           </thingDefs>
         </filter>
-        <count>14</count>
+        <count>32</count>
       </li>
       <li>
         <filter>
@@ -214,7 +197,7 @@
             <li>FSX</li>
           </thingDefs>
         </filter>
-        <count>5</count>
+        <count>10</count>
       </li>
       <li>
         <filter>
@@ -222,7 +205,7 @@
             <li>ComponentIndustrial</li>
           </thingDefs>
         </filter>
-        <count>3</count>
+        <count>4</count>
       </li>
     </ingredients>
     <fixedIngredientFilter>

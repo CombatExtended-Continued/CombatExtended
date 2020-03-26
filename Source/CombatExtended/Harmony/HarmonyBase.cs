@@ -1,5 +1,5 @@
 ﻿using System.Reflection;
-using Harmony;
+using HarmonyLib;
 using Verse;
 using System;
 using System.Reflection.Emit;
@@ -22,22 +22,22 @@ using System.Collections.Generic;
  * 
  */
 
-namespace CombatExtended.Harmony
+namespace CombatExtended.HarmonyCE
 {
     public static class HarmonyBase
     {
-        private static HarmonyInstance harmony = null;
+        private static Harmony harmony = null;
 
         /// <summary>
         /// Fetch CombatExtended's instance of Harmony.
         /// </summary>
         /// <remarks>One should only have a single instance of Harmony per Assembly.</remarks>
-        static internal HarmonyInstance instance
+        static internal Harmony instance
         {
             get
             {
                 if (harmony == null)
-                    harmony = harmony = HarmonyInstance.Create("CombatExtended.Harmony");
+                    harmony = harmony = new Harmony("CombatExtended.HarmonyCE");
                 return harmony;
             }
         }
@@ -45,14 +45,14 @@ namespace CombatExtended.Harmony
         public static void InitPatches()
         {
             // Remove the remark on the following to debug all auto patches.
-            //HarmonyInstance.DEBUG = true;
+            // Harmony.DEBUG = true;
             instance.PatchAll(Assembly.GetExecutingAssembly());
             // Keep the following remarked to also debug manual patches.
             //HarmonyInstance.DEBUG = false;
 
             // Manual patches
             PatchThingOwner();
-            PatchHediffWithComps();
+            PatchHediffWithComps(instance);
             Harmony_GenRadial_RadialPatternCount.Patch();
             PawnColumnWorkers_Resize.Patch();
             PawnColumnWorkers_SwapButtons.Patch();
@@ -68,7 +68,7 @@ namespace CombatExtended.Harmony
             var postfixRemove = typeof(Harmony_ThingOwner_Remove_Patch).GetMethod("Postfix");
 
             var baseType = typeof(Thing);
-            var types = baseType.AllSubclassesNonAbstract().Add(baseType);
+            var types = baseType.AllSubclassesNonAbstract().AddItem(baseType);
             foreach (Type current in types)
             {
                 var type = typeof(ThingOwner<>).MakeGenericType(current);
@@ -78,130 +78,134 @@ namespace CombatExtended.Harmony
             }
         }
 
-        private static void PatchHediffWithComps()
+        private static void PatchHediffWithComps(Harmony harmonyInstance)
         {
             var postfixBleedRate = typeof(Harmony_HediffWithComps_BleedRate_Patch).GetMethod("Postfix");
             var baseType = typeof(HediffWithComps);
-            var types = baseType.AllSubclassesNonAbstract().Add(baseType);
+            var types = baseType.AllSubclassesNonAbstract();
             foreach (Type cur in types)
             {
-                instance.Patch(cur.GetProperty("BleedRate").GetGetMethod(), null, new HarmonyMethod(postfixBleedRate));
-            }
-        }
-
-        #endregion
-
-        #region Utility_Methods
-
-        // Remarked the following block since time is a factor, played with it yesterday but it will probably eat too much time to finish and is probably a better fit for 
-        // a Harmony PR.
-        /*
-        /// <summary>
-        /// Returns a bool indicating if the types are compatible (castable).  Optional bool does implicit specific check.  That is that one can cast from into to.
-        /// </summary>
-        /// <param name="from">Type of object that moving from.</param>
-        /// <param name="to">Type of object that moving to.</param>
-        /// <param name="implicitly">bool indicating if the from->to cast is limited to implicit casting.</param>
-        /// <returns>bool true indicates the cast can happen, false not.</returns>
-        /// <remarks>based on https://stackoverflow.com/questions/2119441/check-if-types-are-castable-subclasses </remarks>
-        public static bool IsCastableTo(this Type from, Type to, bool implicitly = false)
-        {
-            return to.IsAssignableFrom(from) || from.HasCastDefined(to, implicitly);
-        }
-        private static bool HasCastDefined(this Type from, Type to, bool implicitly)
-        {
-            if ((from.IsPrimitive || from.IsEnum) && (to.IsPrimitive || to.IsEnum))
-            {
-                if (!implicitly)
-                    return from == to || (from != typeof(Boolean) && to != typeof(Boolean));
-
-                Type[][] typeHierarchy = {
-            new Type[] { typeof(Byte),  typeof(SByte), typeof(Char) },
-            new Type[] { typeof(Int16), typeof(UInt16) },
-            new Type[] { typeof(Int32), typeof(UInt32) },
-            new Type[] { typeof(Int64), typeof(UInt64) },
-            new Type[] { typeof(Single) },
-            new Type[] { typeof(Double) }
-        };
-                IEnumerable<Type> lowerTypes = Enumerable.Empty<Type>();
-                foreach (Type[] types in typeHierarchy)
+                var getMethod = cur.GetProperty("BleedRate").GetGetMethod();
+                if (getMethod.IsVirtual && (getMethod.DeclaringType.Equals(cur)))
                 {
-                    if (types.Any(t => t == to))
-                        return lowerTypes.Any(t => t == from);
-                    lowerTypes = lowerTypes.Concat(types);
-                }
-
-                return false;   // IntPtr, UIntPtr, Enum, Boolean
-            }
-            return IsCastDefined(to, m => m.GetParameters()[0].ParameterType, _ => from, implicitly, false)
-                || IsCastDefined(from, _ => to, m => m.ReturnType, implicitly, true);
-        }
-        static bool IsCastDefined(Type type, Func<MethodInfo, Type> baseType,
-                                Func<MethodInfo, Type> derivedType, bool implicitly, bool lookInBase)
-        {
-            var bindinFlags = BindingFlags.Public | BindingFlags.Static
-                            | (lookInBase ? BindingFlags.FlattenHierarchy : BindingFlags.DeclaredOnly);
-            return type.GetMethods(bindinFlags).Any(
-                m => (m.Name == "op_Implicit" || (!implicitly && m.Name == "op_Explicit"))
-                    && baseType(m).IsAssignableFrom(derivedType(m)));
-        }
-
-
-        private static IEnumerable<CodeInstruction> doSwapCall (IEnumerable<CodeInstruction> instructions, ILGenerator il, Type[] tArgs, Type[] fArgs, int tIndex = 0)
-        {
-            bool skipPatch = false;
-            List<CodeInstruction> preCall = new List<CodeInstruction>();
-
-            // Further error checking, make sure that each set of argument in 'from' and 'to' are compatible, if not then don't patch.
-            for (int i = 0; i < fArgs.Length; i++)
-            {
-                if (!IsCastableTo(fArgs[i], tArgs[tIndex], true))
-                {
-                    Log.Error(string.Concat("doSwapCall :: Invalid argument: 'from' Type (", fArgs[i], ") is not implicitly castable 'to' Type (", tArgs[tIndex], "). Patching skipped."));
-                    skipPatch = true;
-                    break;
-                }
-                tIndex++;
-            }
-
-            // identify the remaining args in tArgs so that we can insert appropriate instructions to pick them up before the call instruction.
-            // there is a chance we can fail at this point...
-            if (!skipPatch)
-            {
-                List<LocalBuilder> locals = Traverse.Create(il).Field("locals").GetValue<LocalBuilder[]>().ToList();
-                MethodBase from;
-
-                for (int i = tIndex; i < tArgs.Length; i++)
-                {
-                    
+                    harmonyInstance.Patch(getMethod, null, new HarmonyMethod(postfixBleedRate));
                 }
             }
         }
 
-        internal static IEnumerable<CodeInstruction> SwapCallvirt (IEnumerable<CodeInstruction> instructions, ILGenerator il, MethodBase from, MethodBase to)
+#endregion
+
+#region Utility_Methods
+
+// Remarked the following block since time is a factor, played with it yesterday but it will probably eat too much time to finish and is probably a better fit for 
+// a Harmony PR.
+/*
+/// <summary>
+/// Returns a bool indicating if the types are compatible (castable).  Optional bool does implicit specific check.  That is that one can cast from into to.
+/// </summary>
+/// <param name="from">Type of object that moving from.</param>
+/// <param name="to">Type of object that moving to.</param>
+/// <param name="implicitly">bool indicating if the from->to cast is limited to implicit casting.</param>
+/// <returns>bool true indicates the cast can happen, false not.</returns>
+/// <remarks>based on https://stackoverflow.com/questions/2119441/check-if-types-are-castable-subclasses </remarks>
+public static bool IsCastableTo(this Type from, Type to, bool implicitly = false)
+{
+    return to.IsAssignableFrom(from) || from.HasCastDefined(to, implicitly);
+}
+private static bool HasCastDefined(this Type from, Type to, bool implicitly)
+{
+    if ((from.IsPrimitive || from.IsEnum) && (to.IsPrimitive || to.IsEnum))
+    {
+        if (!implicitly)
+            return from == to || (from != typeof(Boolean) && to != typeof(Boolean));
+
+        Type[][] typeHierarchy = {
+    new Type[] { typeof(Byte),  typeof(SByte), typeof(Char) },
+    new Type[] { typeof(Int16), typeof(UInt16) },
+    new Type[] { typeof(Int32), typeof(UInt32) },
+    new Type[] { typeof(Int64), typeof(UInt64) },
+    new Type[] { typeof(Single) },
+    new Type[] { typeof(Double) }
+};
+        IEnumerable<Type> lowerTypes = Enumerable.Empty<Type>();
+        foreach (Type[] types in typeHierarchy)
         {
-            int tIndex = 0;
-            Type[] tArgs = to.GetGenericArguments();
-            Type[] fArgs = from.GetGenericArguments();
-
-            // first error check, 'to' needs to contain the calling type (from) as an argument.
-            if (!IsCastableTo(from.DeclaringType, tArgs[tIndex], true))
-            {
-                Log.Error(string.Concat("SwapCallvirt :: Invalid argument: Initial Type (", tArgs[tIndex], ") is not implicitly castable from Type (", from.DeclaringType, "). Patching skipped."));
-                return instructions;
-            }
-
-            // pass further execution onto the main workhorse.
-            return doSwapCall(instructions, il, tArgs, fArgs, tIndex + 1);
+            if (types.Any(t => t == to))
+                return lowerTypes.Any(t => t == from);
+            lowerTypes = lowerTypes.Concat(types);
         }
 
-        internal static IEnumerable<CodeInstruction> SwapCall (IEnumerable<CodeInstruction> instructions, ILGenerator il, MethodBase from, MethodBase to)
-        {
-            return doSwapCall(instructions, il, to.GetGenericArguments(), from.GetGenericArguments());
-        }
-        */
+        return false;   // IntPtr, UIntPtr, Enum, Boolean
+    }
+    return IsCastDefined(to, m => m.GetParameters()[0].ParameterType, _ => from, implicitly, false)
+        || IsCastDefined(from, _ => to, m => m.ReturnType, implicitly, true);
+}
+static bool IsCastDefined(Type type, Func<MethodInfo, Type> baseType,
+                        Func<MethodInfo, Type> derivedType, bool implicitly, bool lookInBase)
+{
+    var bindinFlags = BindingFlags.Public | BindingFlags.Static
+                    | (lookInBase ? BindingFlags.FlattenHierarchy : BindingFlags.DeclaredOnly);
+    return type.GetMethods(bindinFlags).Any(
+        m => (m.Name == "op_Implicit" || (!implicitly && m.Name == "op_Explicit"))
+            && baseType(m).IsAssignableFrom(derivedType(m)));
+}
 
-        internal static LocalBuilder[] GetLocals(ILGenerator il)
+
+private static IEnumerable<CodeInstruction> doSwapCall (IEnumerable<CodeInstruction> instructions, ILGenerator il, Type[] tArgs, Type[] fArgs, int tIndex = 0)
+{
+    bool skipPatch = false;
+    List<CodeInstruction> preCall = new List<CodeInstruction>();
+
+    // Further error checking, make sure that each set of argument in 'from' and 'to' are compatible, if not then don't patch.
+    for (int i = 0; i < fArgs.Length; i++)
+    {
+        if (!IsCastableTo(fArgs[i], tArgs[tIndex], true))
+        {
+            Log.Error(string.Concat("doSwapCall :: Invalid argument: 'from' Type (", fArgs[i], ") is not implicitly castable 'to' Type (", tArgs[tIndex], "). Patching skipped."));
+            skipPatch = true;
+            break;
+        }
+        tIndex++;
+    }
+
+    // identify the remaining args in tArgs so that we can insert appropriate instructions to pick them up before the call instruction.
+    // there is a chance we can fail at this point...
+    if (!skipPatch)
+    {
+        List<LocalBuilder> locals = Traverse.Create(il).Field("locals").GetValue<LocalBuilder[]>().ToList();
+        MethodBase from;
+
+        for (int i = tIndex; i < tArgs.Length; i++)
+        {
+
+        }
+    }
+}
+
+internal static IEnumerable<CodeInstruction> SwapCallvirt (IEnumerable<CodeInstruction> instructions, ILGenerator il, MethodBase from, MethodBase to)
+{
+    int tIndex = 0;
+    Type[] tArgs = to.GetGenericArguments();
+    Type[] fArgs = from.GetGenericArguments();
+
+    // first error check, 'to' needs to contain the calling type (from) as an argument.
+    if (!IsCastableTo(from.DeclaringType, tArgs[tIndex], true))
+    {
+        Log.Error(string.Concat("SwapCallvirt :: Invalid argument: Initial Type (", tArgs[tIndex], ") is not implicitly castable from Type (", from.DeclaringType, "). Patching skipped."));
+        return instructions;
+    }
+
+    // pass further execution onto the main workhorse.
+    return doSwapCall(instructions, il, tArgs, fArgs, tIndex + 1);
+}
+
+internal static IEnumerable<CodeInstruction> SwapCall (IEnumerable<CodeInstruction> instructions, ILGenerator il, MethodBase from, MethodBase to)
+{
+    return doSwapCall(instructions, il, to.GetGenericArguments(), from.GetGenericArguments());
+}
+*/
+
+internal static LocalBuilder[] GetLocals(ILGenerator il)
         {
             return Traverse.Create(il).Field("locals").GetValue<LocalBuilder[]>();
         }

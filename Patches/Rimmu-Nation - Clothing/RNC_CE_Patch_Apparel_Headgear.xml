@@ -1,0 +1,358 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+			<li>[CP] Rimmu-Nation - Clothing (1.0)</li>
+		</mods>
+		<match Class="PatchOperationSequence">
+			<operations>
+
+				<!-- ========== Berets ========== -->
+
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[
+					defName="RNApparel_Beret" or
+					defName="RNApparel_BeretSOG"					
+					]/statBases</xpath>
+					<value>
+						<Bulk>1</Bulk>
+						<WornBulk>1</WornBulk>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[
+					defName="RNApparel_Beret" or
+					defName="RNApparel_BeretSOG"					
+					]/statBases/StuffEffectMultiplierArmor</xpath>
+					<value>
+						<!-- Equivalent to vanilla fabric hats -->
+						<StuffEffectMultiplierArmor>2</StuffEffectMultiplierArmor>
+					</value>
+				</li>
+
+				<!-- ========== Baseball Caps ========== -->
+
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[
+					defName="RNApparel_PatchCap" or
+					defName="RNApparel_BackwardsCap" or
+					defName="RNApparel_AceCap" or
+					defName="RNApparel_LegendCap" or
+					defName="RNApparel_PunisherCap" or
+					defName="RNApparel_MAGACap" or
+					defName="RNApparel_M81Cap" or
+					defName="RNApparel_MulticamCap" or
+					defName="RNApparel_BrownCap" or
+					defName="RNApparel_NomadCap"
+					]/statBases</xpath>
+					<value>
+						<Bulk>1</Bulk>
+						<WornBulk>1</WornBulk>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[
+					defName="RNApparel_PatchCap" or
+					defName="RNApparel_BackwardsCap" or
+					defName="RNApparel_AceCap" or
+					defName="RNApparel_LegendCap" or
+					defName="RNApparel_PunisherCap" or
+					defName="RNApparel_MAGACap" or
+					defName="RNApparel_M81Cap" or
+					defName="RNApparel_MulticamCap" or
+					defName="RNApparel_BrownCap" or
+					defName="RNApparel_NomadCap"
+					]/statBases/StuffEffectMultiplierArmor</xpath>
+					<value>
+						<!-- Equivalent to vanilla fabric hats -->
+						<StuffEffectMultiplierArmor>2</StuffEffectMultiplierArmor>
+					</value>
+				</li>
+
+				<!-- ========== Boonie Hats ========== -->
+
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[
+					defName="RNApparel_PlainBoonie" or
+					defName="RNApparel_M81Boonie" or
+					defName="RNApparel_MulticamBoonie"
+					]/statBases</xpath>
+					<value>
+						<Bulk>1</Bulk>
+						<WornBulk>1</WornBulk>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[
+					defName="RNApparel_PlainBoonie" or
+					defName="RNApparel_M81Boonie" or
+					defName="RNApparel_MulticamBoonie"
+					]/statBases/StuffEffectMultiplierArmor</xpath>
+					<value>
+						<!-- Equivalent to vanilla fabric hats -->
+						<StuffEffectMultiplierArmor>2</StuffEffectMultiplierArmor>
+					</value>
+				</li>
+
+				<!-- ========== Bandanas ========== -->
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[
+					defName="RNApparel_BandanaRed" or 
+					defName="RNApparel_BandanaTan"
+					]/statBases/StuffEffectMultiplierArmor</xpath>
+					<value>
+						<!-- Equivalent to vanilla pants, T-shirt and button-down shirt -->
+						<StuffEffectMultiplierArmor>1</StuffEffectMultiplierArmor>
+					</value>
+				</li>
+
+				<!-- ========== Balaclavas ========== -->
+
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[
+					defName="RNApparel_Balaclava" or
+					defName="RNApparel_BalaclavaSkully" or
+					defName="RNApparel_BalaclavaRiley" or
+					defName="RNApparel_BalaclavaKeegan"
+					]/statBases</xpath>
+					<value>
+						<Bulk>1</Bulk>
+						<WornBulk>1</WornBulk>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[
+					defName="RNApparel_Balaclava" or
+					defName="RNApparel_BalaclavaSkully" or
+					defName="RNApparel_BalaclavaRiley" or
+					defName="RNApparel_BalaclavaKeegan"
+					]/statBases/StuffEffectMultiplierArmor</xpath>
+					<value>
+						<!-- Equivalent to vanilla tuque -->
+						<StuffEffectMultiplierArmor>2</StuffEffectMultiplierArmor>
+					</value>
+				</li>
+
+				<!-- ========== Ghillie Suit Hood ========== -->
+
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="RNApparel_NewGhillieHood"]/statBases</xpath>
+					<value>
+						<Bulk>3</Bulk>
+						<WornBulk>2</WornBulk>
+					</value>
+				</li>
+
+				<!-- ========== Tuques / Beanies ========== -->
+
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[
+						defName="RNApparel_Beanie" or
+						defName="RNApparel_M81Tuque" or
+						defName="RNApparel_MulticamTuque"
+					]/statBases</xpath>
+					<value>
+						<Bulk>1</Bulk>
+						<WornBulk>1</WornBulk>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[
+						defName="RNApparel_Beanie" or
+						defName="RNApparel_M81Tuque" or
+						defName="RNApparel_MulticamTuque"
+					]/apparel/layers/li[.="Overhead"]</xpath>
+					<value>
+						<li>MiddleHead</li>
+					</value>
+				</li>
+				
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[
+						defName="RNApparel_Beanie" or
+						defName="RNApparel_M81Tuque" or
+						defName="RNApparel_MulticamTuque"
+					]/statBases/StuffEffectMultiplierArmor</xpath>
+					<value>
+						<!-- Equivalent to vanilla tuque -->
+						<StuffEffectMultiplierArmor>2</StuffEffectMultiplierArmor>
+					</value>
+				</li>
+
+				<!-- ========== Beanie Division ========== -->
+
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="RNApparel_BeanieDivision"]/statBases</xpath>
+					<value>
+						<Bulk>1.5</Bulk>
+						<WornBulk>1.5</WornBulk>
+					</value>
+				</li>
+				
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="RNApparel_BeanieDivision"]/statBases/StuffEffectMultiplierArmor</xpath>
+					<value>
+						<!-- Equivalent to vanilla tuque -->
+						<StuffEffectMultiplierArmor>2</StuffEffectMultiplierArmor>
+					</value>
+				</li>
+
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="RNApparel_BeanieDivision"]/equippedStatOffsets</xpath>
+					<value>
+						<SmokeSensitivity>-1</SmokeSensitivity>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="RNApparel_BeanieDivision"]/apparel/layers/li[.="Overhead"]</xpath>
+					<value>
+						<li>MiddleHead</li>
+						<li>StrappedHead</li>
+					</value>
+				</li>
+
+				<li Class="PatchOperationAddModExtension">
+					<xpath>Defs/ThingDef[defName="RNApparel_BeanieDivision"]</xpath>
+					<value>
+						<li Class="CombatExtended.ApparelHediffExtension">
+							<hediff>WearingGasMask</hediff>
+						</li>
+					</value>
+				</li>
+
+				<!-- ========== 4A1 gasmask ========== -->
+
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="RNApparel_4A1Gasmask"]/statBases</xpath>
+					<value>
+						<Bulk>3</Bulk>
+						<WornBulk>1</WornBulk>
+					</value>
+				</li>
+
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="RNApparel_4A1Gasmask"]/equippedStatOffsets</xpath>
+					<value>
+						<SmokeSensitivity>-1</SmokeSensitivity>
+					</value>
+				</li>
+
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="RNApparel_4A1Gasmask"]/apparel/layers</xpath>
+					<value>
+						<li>StrappedHead</li>
+					</value>
+				</li>
+
+				<li Class="PatchOperationAddModExtension">
+					<xpath>Defs/ThingDef[defName="RNApparel_4A1Gasmask"]</xpath>
+					<value>
+						<li Class="CombatExtended.ApparelHediffExtension">
+							<hediff>WearingGasMask</hediff>
+						</li>
+					</value>
+				</li>
+
+				<!-- ========== GP-5 gasmask ========== -->
+
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="RNApparel_GP5Gasmask"]/statBases</xpath>
+					<value>
+						<Bulk>3</Bulk>
+						<WornBulk>1</WornBulk>
+					</value>
+				</li>
+
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="RNApparel_GP5Gasmask"]/equippedStatOffsets</xpath>
+					<value>
+						<SmokeSensitivity>-1</SmokeSensitivity>
+					</value>
+				</li>
+
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="RNApparel_GP5Gasmask"]/apparel/layers</xpath>
+					<value>
+						<li>StrappedHead</li>
+					</value>
+				</li>
+
+				<li Class="PatchOperationAddModExtension">
+					<xpath>Defs/ThingDef[defName="RNApparel_GP5Gasmask"]</xpath>
+					<value>
+						<li Class="CombatExtended.ApparelHediffExtension">
+							<hediff>WearingGasMask</hediff>
+						</li>
+					</value>
+				</li>
+
+				<!-- ========== Halfmask (GTA) ========== -->
+
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="RNApparel_GTAHalfMask"]/statBases</xpath>
+					<value>
+						<Bulk>1</Bulk>
+						<WornBulk>0.5</WornBulk>
+					</value>
+				</li>
+
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="RNApparel_GTAHalfMask"]/equippedStatOffsets</xpath>
+					<value>
+						<SmokeSensitivity>-1</SmokeSensitivity>
+					</value>
+				</li>
+
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="RNApparel_GTAHalfMask"]/apparel/layers</xpath>
+					<value>
+						<li>StrappedHead</li>
+					</value>
+				</li>
+
+				<li Class="PatchOperationAddModExtension">
+					<xpath>Defs/ThingDef[defName="RNApparel_GTAHalfMask"]</xpath>
+					<value>
+						<li Class="CombatExtended.ApparelHediffExtension">
+							<hediff>WearingGasMask</hediff>
+						</li>
+					</value>
+				</li>
+
+				<!-- ========== Field Caps ========== -->
+
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[
+					defName="RNApparel_MilitaryCap_DCU" or
+					defName="RNApparel_MilitaryCap_M81cam" or
+					defName="RNApparel_MilitaryCap_Multicam"
+					]/statBases</xpath>
+					<value>
+						<Bulk>1</Bulk>
+						<WornBulk>1</WornBulk>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[
+					defName="RNApparel_MilitaryCap_DCU" or
+					defName="RNApparel_MilitaryCap_M81cam" or
+					defName="RNApparel_MilitaryCap_Multicam"
+					]/statBases/StuffEffectMultiplierArmor</xpath>
+					<value>
+						<!-- Equivalent to vanilla fabric hats -->
+						<StuffEffectMultiplierArmor>2</StuffEffectMultiplierArmor>
+					</value>
+				</li>
+
+			</operations>
+		</match>
+	</Operation>
+</Patch>

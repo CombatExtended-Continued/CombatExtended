@@ -17,6 +17,7 @@ namespace CombatExtended
         public ThingDef cookOffProjectile = null;
         public SoundDef cookOffSound = null;
         public SoundDef cookOffTailSound = null;
+        public ThingDef detonateProjectile = null;
 
         private List<ThingDef> users;
         public List<ThingDef> Users
@@ -28,8 +29,20 @@ namespace CombatExtended
                     users = CE_Utility.allWeaponDefs.FindAll(delegate(ThingDef def) 
                     {
                         CompProperties_AmmoUser props = def.GetCompProperties<CompProperties_AmmoUser>();
-                        return props != null && props.ammoSet.ammoTypes.Any(x => x.ammo == this);
+                        if(props?.ammoSet?.ammoTypes != null)
+                        {
+                            return props.ammoSet.ammoTypes.Any(x => x.ammo == this);
+                        }
+                        return false;
                     });
+                    
+                    foreach (var user in users)
+                    {
+                        if (descriptionHyperlinks.NullOrEmpty())
+                            descriptionHyperlinks = new List<DefHyperlink>();
+
+                        descriptionHyperlinks.Add(user);
+                    }
                 }
                 return users;
             }
@@ -41,7 +54,7 @@ namespace CombatExtended
             get
             {
                 if (ammoSetDefs == null)
-                    ammoSetDefs = users.Select(x => x.GetCompProperties<CompProperties_AmmoUser>().ammoSet).Distinct().ToList();
+                    ammoSetDefs = Users.Select(x => x.GetCompProperties<CompProperties_AmmoUser>().ammoSet).Distinct().ToList();
 
                 return ammoSetDefs;
             }
@@ -64,15 +77,26 @@ namespace CombatExtended
 
                 // Append guns that use this caliber
                 if (!Users.NullOrEmpty())
-                {
                     stringBuilder.AppendLine("\n" + "CE_UsedBy".Translate() + ":");
-                    foreach (var user in Users)
-                    {
-                        stringBuilder.AppendLine("   -" + user.LabelCap);
-                    }
-                }
 
                 description = stringBuilder.ToString().TrimEndNewlines();
+            }
+        }
+
+        public override void ResolveReferences()
+        {
+            base.ResolveReferences();
+
+            if (detonateProjectile != null)
+            {
+                foreach (var comp in detonateProjectile.comps)
+                {
+                    if (!comps.Any(x => x.compClass == comp.compClass)
+                        && (comp.compClass == typeof(CompFragments)
+                            || comp.compClass == typeof(CompExplosive)
+                            || comp.compClass == typeof(CompExplosiveCE)))
+                        comps.Add(comp);
+                }
             }
         }
     }

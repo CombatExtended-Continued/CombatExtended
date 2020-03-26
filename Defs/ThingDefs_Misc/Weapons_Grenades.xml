@@ -91,11 +91,12 @@
     </graphicData>
     <soundInteract>Interact_Grenade</soundInteract>
     <techLevel>Industrial</techLevel>
+    <stackLimit>250</stackLimit>
     <statBases>
       <Mass>0.236</Mass>
       <Bulk>0.61</Bulk>
       <MarketValue>8.33</MarketValue>
-      <SightsEfficiency>0.45</SightsEfficiency>
+      <SightsEfficiency>0.65</SightsEfficiency>
       <RangedWeapon_Cooldown>1</RangedWeapon_Cooldown>
     </statBases>
     <weaponTags>
@@ -124,12 +125,12 @@
       </li>
     </verbs>
     <comps>
-      <li Class="CombatExtended.CompProperties_ExplosiveCE">
-        <explosionDamage>25</explosionDamage>
-        <explosionDamageDef>Stun</explosionDamageDef>
-        <explosionRadius>4</explosionRadius>
-        <soundExplode>Explosion_Stun</soundExplode>
-      </li>
+	  <li Class="CombatExtended.CompProperties_ExplosiveCE">
+		<damageAmountBase>25</damageAmountBase>
+		<explosiveDamageType>Stun</explosiveDamageType>
+		<explosiveRadius>4</explosiveRadius>
+        <explosionSound>Explosion_Stun</explosionSound>
+	  </li>
     </comps>
   </ThingDef>
 
@@ -164,11 +165,12 @@
     </graphicData>
     <soundInteract>Interact_Grenade</soundInteract>
     <techLevel>Industrial</techLevel>
+    <stackLimit>25</stackLimit>
     <statBases>
       <Mass>1.5</Mass>
       <Bulk>4.72</Bulk>
       <MarketValue>25.51</MarketValue>
-      <SightsEfficiency>0.45</SightsEfficiency>
+      <SightsEfficiency>0.65</SightsEfficiency>
       <RangedWeapon_Cooldown>1</RangedWeapon_Cooldown>
     </statBases>
     <weaponTags>
@@ -195,14 +197,7 @@
         <ignorePartialLoSBlocker>true</ignorePartialLoSBlocker>
       </li>
     </verbs>
-    <comps>
-      <li Class="CombatExtended.CompProperties_ExplosiveCE">
-        <explosionDamage>234</explosionDamage>
-        <explosionDamageDef>Bomb</explosionDamageDef>
-        <explosionRadius>2.5</explosionRadius>
-        <applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
-      </li>
-    </comps>
+	<detonateProjectile>Proj_GrenadeStickBomb</detonateProjectile>
   </ThingDef>
 
   <!-- ==================== Smoke grenade ========================== -->
@@ -240,13 +235,13 @@
     <statBases>
       <Mass>0.539</Mass>
       <Bulk>1.05</Bulk>
-      <MarketValue>8.88</MarketValue>
-      <SightsEfficiency>0.45</SightsEfficiency>
+      <MarketValue>8.33</MarketValue>
+      <SightsEfficiency>0.65</SightsEfficiency>
       <RangedWeapon_Cooldown>1</RangedWeapon_Cooldown>
     </statBases>
     <weaponTags>
-      <li>CE_GrenadeSmoke</li>
       <li>CE_AI_Nonlethal</li>
+      <li>GrenadeSmoke</li>	  
     </weaponTags>
     <thingCategories>
       <li>Grenades</li>
@@ -270,12 +265,12 @@
       </li>
     </verbs>
     <comps>
-      <li Class="CombatExtended.CompProperties_ExplosiveCE">
-        <explosionDamageDef>Smoke</explosionDamageDef>
-        <explosionRadius>4</explosionRadius>
+	  <li Class="CombatExtended.CompProperties_ExplosiveCE">
+		<damageAmountBase>4</damageAmountBase>
+		<explosiveDamageType>Smoke</explosiveDamageType>
         <postExplosionSpawnThingDef>Gas_Smoke</postExplosionSpawnThingDef>
         <preExplosionSpawnChance>1</preExplosionSpawnChance>
-      </li>
+	  </li>
     </comps>
   </ThingDef>
 
@@ -315,7 +310,7 @@
       <Mass>0.5</Mass>
       <Bulk>1.05</Bulk>
       <MarketValue>11.52</MarketValue>
-      <SightsEfficiency>0.45</SightsEfficiency>
+      <SightsEfficiency>0.65</SightsEfficiency>
       <RangedWeapon_Cooldown>1</RangedWeapon_Cooldown>
     </statBases>
     <weaponTags>
@@ -343,13 +338,13 @@
       </li>
     </verbs>
     <comps>
-      <li Class="CombatExtended.CompProperties_ExplosiveCE">
-        <explosionDamageDef>Extinguish</explosionDamageDef>
-        <explosionRadius>6.5</explosionRadius>
+	  <li Class="CombatExtended.CompProperties_ExplosiveCE">
+		<explosiveDamageType>Extinguish</explosiveDamageType>
+		<explosiveRadius>6.5</explosiveRadius>
         <postExplosionSpawnThingDef>Filth_FireFoam</postExplosionSpawnThingDef>
         <postExplosionSpawnChance>1</postExplosionSpawnChance>
         <postExplosionSpawnThingCount>3</postExplosionSpawnThingCount>
-      </li>
+	  </li>
     </comps>
   </ThingDef>
 

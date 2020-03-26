@@ -25,8 +25,8 @@
 	<ThingDef Class="CombatExtended.AmmoDef" Name="46x30mmBase" ParentName="SmallAmmoBase" Abstract="True">
 		<description>This high-velocity handgun cartridge was specifically designed for military personnel to defeat body armor.</description>
 		<statBases>
-			<Mass>0.008</Mass>
-			<Bulk>0.02</Bulk>
+			<Mass>0.007</Mass>
+			<Bulk>0.01</Bulk>
 		</statBases>
 		<tradeTags>
 			<li>CE_AutoEnableTrade</li>
@@ -59,7 +59,7 @@
 			<graphicClass>Graphic_StackCount</graphicClass>
 		</graphicData>
 		<statBases>
-			<MarketValue>0.05</MarketValue>
+			<MarketValue>0.04</MarketValue>
 		</statBases>
 		<ammoClass>ArmorPiercing</ammoClass>
 		<cookOffProjectile>Bullet_46x30mm_AP</cookOffProjectile>
@@ -73,7 +73,7 @@
 			<graphicClass>Graphic_StackCount</graphicClass>
 		</graphicData>
 		<statBases>
-			<MarketValue>0.05</MarketValue>
+			<MarketValue>0.04</MarketValue>
 		</statBases>
 		<ammoClass>HollowPoint</ammoClass>
 		<cookOffProjectile>Bullet_46x30mm_HP</cookOffProjectile>
@@ -98,9 +98,8 @@
 		<label>4.6x30mm bullet (FMJ)</label>
 		<projectile Class="CombatExtended.ProjectilePropertiesCE">
 			<damageAmountBase>8</damageAmountBase>
-			<armorPenetrationBase>0.295</armorPenetrationBase>
-			<armorPenetrationSharp>0</armorPenetrationSharp>
-			<armorPenetrationBlunt>0</armorPenetrationBlunt>
+			<armorPenetrationSharp>5</armorPenetrationSharp>
+			<armorPenetrationBlunt>9.72</armorPenetrationBlunt>
 		</projectile>
 	</ThingDef>
 
@@ -108,10 +107,9 @@
 		<defName>Bullet_46x30mm_AP</defName>
 		<label>4.6x30mm bullet (AP)</label>
 		<projectile Class="CombatExtended.ProjectilePropertiesCE">
-			<damageAmountBase>6</damageAmountBase>
-			<armorPenetrationBase>0.445</armorPenetrationBase>
-			<armorPenetrationSharp>0</armorPenetrationSharp>
-			<armorPenetrationBlunt>0</armorPenetrationBlunt>
+			<damageAmountBase>5</damageAmountBase>
+			<armorPenetrationSharp>10</armorPenetrationSharp>
+			<armorPenetrationBlunt>9.72</armorPenetrationBlunt>
 		</projectile>
 	</ThingDef>
 
@@ -119,10 +117,10 @@
 		<defName>Bullet_46x30mm_HP</defName>
 		<label>4.6x30mm bullet (HP)</label>
 		<projectile Class="CombatExtended.ProjectilePropertiesCE">
-			<damageAmountBase>10</damageAmountBase>
+			<damageAmountBase>11</damageAmountBase>
 			<armorPenetrationBase>0.145</armorPenetrationBase>
-			<armorPenetrationSharp>0</armorPenetrationSharp>
-			<armorPenetrationBlunt>0</armorPenetrationBlunt>
+			<armorPenetrationSharp>3</armorPenetrationSharp>
+			<armorPenetrationBlunt>9.72</armorPenetrationBlunt>
 		</projectile>
 	</ThingDef>
 
@@ -151,7 +149,7 @@
 		<products>
 			<Ammo_46x30mm_FMJ>500</Ammo_46x30mm_FMJ>
 		</products>
-		<workAmount>1250</workAmount>
+		<workAmount>800</workAmount>
 	</RecipeDef>
 
 	<RecipeDef ParentName="AmmoRecipeBase">
@@ -166,7 +164,7 @@
 						<li>Steel</li>
 					</thingDefs>
 				</filter>
-				<count>10</count>
+				<count>8</count>
 			</li>
 		</ingredients>
 		<fixedIngredientFilter>
@@ -177,7 +175,7 @@
 		<products>
 			<Ammo_46x30mm_AP>500</Ammo_46x30mm_AP>
 		</products>
-		<workAmount>1750</workAmount>
+		<workAmount>800</workAmount>
 	</RecipeDef>
 
 	<RecipeDef ParentName="AmmoRecipeBase">
@@ -203,7 +201,7 @@
 		<products>
 			<Ammo_46x30mm_HP>500</Ammo_46x30mm_HP>
 		</products>
-		<workAmount>2000</workAmount>
+		<workAmount>800</workAmount>
 	</RecipeDef>
 
 </Defs>

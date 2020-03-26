@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using System.Reflection.Emit;
-using Harmony;
+using HarmonyLib;
 using Verse;
 
-namespace CombatExtended.Harmony
+namespace CombatExtended.HarmonyCE
 {
 	/* Targetting Verse.GenRadial.RadialPatternCount constant.
 	 * Specifically this looks for all methods which use that constant and patches them (since the constant is compiled in).
@@ -19,7 +19,7 @@ namespace CombatExtended.Harmony
 	internal static class Harmony_GenRadial_RadialPatternCount
 	{
 		// used for debug outputs (probably not used much).
-		static readonly string logPrefix = Assembly.GetExecutingAssembly().GetName().Name + " :: " + typeof(Harmony_GenRadial_RadialPatternCount).Name + " :: ";
+		static readonly string logPrefix = "Combat Extended :: " + typeof(Harmony_GenRadial_RadialPatternCount).Name + " :: ";
 		
 		// this replaces -60 and 60 in SetupRadialPattern()
 		const SByte newRadialRange = SByte.MaxValue; // set to max value as I was creeping up on it to make things look right.  Though no crashes the circle was squished on cardinal directions.
@@ -28,8 +28,10 @@ namespace CombatExtended.Harmony
 		
 		// this replaces the constant RadialPaternCount used in the class methods/constructor of GenRadial.
 		static readonly Int32 newRadialPatternCount = Convert.ToInt32(Math.Pow(newRadialRange * 2, 2) * keepPatternRange); //may be any valid int <= Math.Pow(newRange*2, 2)
-		// on further thought I think the limit should be about 68 percent of the maximum available by the loop in order to avoid squishing.
-		
+        // on further thought I think the limit should be about 68 percent of the maximum available by the loop in order to avoid squishing.
+
+        static Int32 defaultValue;
+
 		// This is a complex patch so PatchAll() can't cover it.
 		internal static void Patch()
 		{
@@ -37,7 +39,9 @@ namespace CombatExtended.Harmony
 			// (ProfoundDarkness) I tried to get the individual default constructor via GetConstructor() but didn't know enough of what I was doing.
 			ConstructorInfo constructor = typeof(GenRadial).GetConstructors(AccessTools.all).FirstOrDefault();
 			MethodInfo redoMethod = null;
-			
+
+            defaultValue = (Int32)AccessTools.Field(typeof(GenRadial), "RadialPatternCount").GetValue(null);
+
 			// patch the constructor.
 			HarmonyBase.instance.Patch(constructor, null, null, new HarmonyMethod(typeof(Harmony_GenRadial_RadialPatternCount), "Transpiler_RadialPatternCount"));
 			
@@ -65,11 +69,9 @@ namespace CombatExtended.Harmony
 		
 		static IEnumerable<CodeInstruction> Transpiler_RadialPatternCount(IEnumerable<CodeInstruction> instructions)
 		{
-			const int defaultVal = 10000;
-			
 			foreach (CodeInstruction instruction in instructions)
 			{
-				if (instruction.opcode == OpCodes.Ldc_I4 && (Int32)instruction.operand == defaultVal)
+				if (instruction.opcode == OpCodes.Ldc_I4 && (Int32)instruction.operand == defaultValue)
 					instruction.operand = newRadialPatternCount;
 			}
 			return instructions;

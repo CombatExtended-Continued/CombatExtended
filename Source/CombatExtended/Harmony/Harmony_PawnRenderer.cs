@@ -3,15 +3,25 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection.Emit;
-using Harmony;
+using HarmonyLib;
 using RimWorld;
 using UnityEngine;
 using Verse;
 
-namespace CombatExtended.Harmony
+namespace CombatExtended.HarmonyCE
 {
+    /*
+        Check this patch if:
+        - Apparel is rendered slightly off from the pawn sprite (update YOffset constants based on PawnRenderer values
+
+
+        If all apparel worn on pawns is the drop image of that apparel,
+            CHECK Harmony_ApparelGraphicRecordGetter.cs
+            INSTEAD!
+     */
+
     [HarmonyPatch(typeof(PawnRenderer), "RenderPawnInternal",
-        typeof(Vector3), typeof(float), typeof(bool), typeof(Rot4), typeof(Rot4), typeof(RotDrawMode), typeof(bool), typeof(bool))]
+        typeof(Vector3), typeof(float), typeof(bool), typeof(Rot4), typeof(Rot4), typeof(RotDrawMode), typeof(bool), typeof(bool), typeof(bool))]
     internal static class Harmony_PawnRenderer_RenderPawnInternal
     {
         private enum WriteState
@@ -23,11 +33,11 @@ namespace CombatExtended.Harmony
         }
 
         // Sync these with vanilla PawnRenderer constants
-        private const float YOffsetBehind = 0.00390625f;
-        private const float YOffsetHead = 0.02734375f;
-        private const float YOffsetOnHead = 0.03125f;
-        private const float YOffsetPostHead = 0.03515625f;
-        private const float YOffsetIntervalClothes = 0.00390625f;
+        private const float YOffsetBehind = 0.003787879f;
+        private const float YOffsetHead = 0.0265151523f;
+        private const float YOffsetOnHead = 0.0303030312f;
+        private const float YOffsetPostHead = 0.03409091f;
+        private const float YOffsetIntervalClothes = 0.003787879f;
 
         private static void DrawHeadApparel(PawnRenderer renderer, Mesh mesh, Vector3 rootLoc, Vector3 headLoc, Vector3 headOffset, Rot4 bodyFacing, Quaternion quaternion, bool portrait, ref bool hideHair)
         {
@@ -79,20 +89,20 @@ namespace CombatExtended.Harmony
             {
                 if (state == WriteState.WriteHead)
                 {
-                    if (code.opcode == OpCodes.Ldloc_S && ((LocalBuilder)code.operand).LocalIndex == 13)
+                    if (code.opcode == OpCodes.Ldloc_S && ((LocalBuilder)code.operand).LocalIndex == 12)
                     {
                         state = WriteState.None;
 
                         // Insert new calls for head renderer
                         yield return new CodeInstruction(OpCodes.Ldarg_0);
-                        yield return new CodeInstruction(OpCodes.Ldloc_S, 14);
+                        yield return new CodeInstruction(OpCodes.Ldloc_S, 13);
                         yield return new CodeInstruction(OpCodes.Ldarg_1);
-                        yield return new CodeInstruction(OpCodes.Ldloc_S, 12);
+                        yield return new CodeInstruction(OpCodes.Ldloc_S, 11);
                         yield return new CodeInstruction(OpCodes.Ldloc_S, 9);
                         yield return new CodeInstruction(OpCodes.Ldarg, 4);
                         yield return new CodeInstruction(OpCodes.Ldloc_0);
                         yield return new CodeInstruction(OpCodes.Ldarg, 7);
-                        yield return new CodeInstruction(OpCodes.Ldloca_S, 13);
+                        yield return new CodeInstruction(OpCodes.Ldloca_S, 12);
                         yield return new CodeInstruction(OpCodes.Callvirt, AccessTools.Method(typeof(Harmony_PawnRenderer_RenderPawnInternal), nameof(DrawHeadApparel)));
 
                         yield return code;
@@ -113,7 +123,7 @@ namespace CombatExtended.Harmony
                 {
                     state = WriteState.None;
 
-                    yield return new CodeInstruction(OpCodes.Ldloca_S, 7);
+                    yield return new CodeInstruction(OpCodes.Ldloca_S, 2);
                     yield return new CodeInstruction(OpCodes.Dup);
                     yield return new CodeInstruction(OpCodes.Ldfld, AccessTools.Field(typeof(Vector3), nameof(Vector3.y)));
                     yield return new CodeInstruction(OpCodes.Ldarg_0);
@@ -122,7 +132,7 @@ namespace CombatExtended.Harmony
                     yield return new CodeInstruction(OpCodes.Stfld, AccessTools.Field(typeof(Vector3), nameof(Vector3.y)));
                 }
 
-                if (code.opcode == OpCodes.Stloc_S && ((LocalBuilder)code.operand).LocalIndex == 14)
+                if (code.opcode == OpCodes.Stloc_S && ((LocalBuilder)code.operand).LocalIndex == 13)
                 {
                     state = WriteState.WriteHead;
                 }

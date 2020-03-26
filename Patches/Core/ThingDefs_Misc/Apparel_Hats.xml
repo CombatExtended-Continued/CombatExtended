@@ -173,7 +173,7 @@
   </Operation>
 
   <Operation Class="PatchOperationAdd">
-    <xpath>Defs/ThingDef[defName="Apparel_PowerArmorHelmet"]/statBases</xpath>
+    <xpath>Defs/ThingDef[@Name="ApparelArmorHelmetPowerBase"]/statBases</xpath>
     <value>
       <Bulk>5</Bulk>
       <WornBulk>1</WornBulk>
@@ -181,28 +181,28 @@
   </Operation>
 
   <Operation Class="PatchOperationReplace">
-    <xpath>Defs/ThingDef[defName="Apparel_PowerArmorHelmet"]/statBases/Flammability</xpath>
+    <xpath>Defs/ThingDef[@Name="ApparelArmorHelmetPowerBase"]/statBases/Flammability</xpath>
     <value>
       <Flammability>0</Flammability>
     </value>
   </Operation>
 
   <Operation Class="PatchOperationReplace">
-    <xpath>Defs/ThingDef[defName="Apparel_PowerArmorHelmet"]/statBases/MaxHitPoints</xpath>
+    <xpath>Defs/ThingDef[@Name="ApparelArmorHelmetPowerBase"]/statBases/MaxHitPoints</xpath>
     <value>
       <MaxHitPoints>240</MaxHitPoints>
     </value>
   </Operation>
 
   <Operation Class="PatchOperationReplace">
-    <xpath>Defs/ThingDef[defName="Apparel_PowerArmorHelmet"]/statBases/ArmorRating_Sharp</xpath>
+    <xpath>Defs/ThingDef[@Name="ApparelArmorHelmetPowerBase"]/statBases/ArmorRating_Sharp</xpath>
     <value>
       <ArmorRating_Sharp>16</ArmorRating_Sharp>
     </value>
   </Operation>
 
   <Operation Class="PatchOperationReplace">
-    <xpath>Defs/ThingDef[defName="Apparel_PowerArmorHelmet"]/statBases/ArmorRating_Blunt</xpath>
+    <xpath>Defs/ThingDef[@Name="ApparelArmorHelmetPowerBase"]/statBases/ArmorRating_Blunt</xpath>
     <value>
       <ArmorRating_Blunt>36</ArmorRating_Blunt>
     </value>
@@ -221,7 +221,7 @@
   </Operation>
 
   <Operation Class="PatchOperationReplace">
-    <xpath>Defs/ThingDef[defName="Apparel_PowerArmorHelmet"]/costList/Plasteel</xpath>
+    <xpath>Defs/ThingDef[@Name="ApparelArmorHelmetPowerBase"]/costList/Plasteel</xpath>
     <value>
       <Plasteel>45</Plasteel>
       <DevilstrandCloth>20</DevilstrandCloth>
@@ -229,7 +229,80 @@
   </Operation>
 
   <Operation Class="PatchOperationAdd">
-    <xpath>Defs/ThingDef[defName="Apparel_PowerArmorHelmet"]/apparel/layers</xpath>
+    <xpath>Defs/ThingDef[@Name="ApparelArmorHelmetPowerBase"]/apparel/layers</xpath>
+    <value>
+      <li>OnHead</li>
+      <li>StrappedHead</li>
+      <li>MiddleHead</li>
+    </value>
+  </Operation>
+
+  <!-- ========== Recon Armor Helmet ========== -->
+
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/ThingDef[defName="Apparel_ArmorHelmetRecon"]/description</xpath>
+    <value>
+      <description>A high-tech armored helmet with a built-in status computer and a protective plasteel-weave plate.\n\nArmor like this is often used by imperial scout troops or glitterworld police forces.\n\nIntegrated servo-motors assist the wearer's muscles in holding the weight of the helmet while the integrated combat HUD improves weapon accuracy.</description>
+    </value>
+  </Operation>
+
+  <Operation Class="PatchOperationAdd">
+    <xpath>Defs/ThingDef[@Name="ApparelArmorHelmetReconBase"]/statBases</xpath>
+    <value>
+      <Bulk>4</Bulk>
+      <WornBulk>1</WornBulk>
+    </value>
+  </Operation>
+
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/ThingDef[@Name="ApparelArmorHelmetReconBase"]/statBases/Flammability</xpath>
+    <value>
+      <Flammability>0</Flammability>
+    </value>
+  </Operation>
+
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/ThingDef[@Name="ApparelArmorHelmetReconBase"]/statBases/MaxHitPoints</xpath>
+    <value>
+      <MaxHitPoints>190</MaxHitPoints>
+    </value>
+  </Operation>
+
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/ThingDef[@Name="ApparelArmorHelmetReconBase"]/statBases/ArmorRating_Sharp</xpath>
+    <value>
+      <ArmorRating_Sharp>12</ArmorRating_Sharp>
+    </value>
+  </Operation>
+
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/ThingDef[@Name="ApparelArmorHelmetReconBase"]/statBases/ArmorRating_Blunt</xpath>
+    <value>
+      <ArmorRating_Blunt>28</ArmorRating_Blunt>
+    </value>
+  </Operation>
+
+  <Operation Class="PatchOperationAdd">
+    <xpath>Defs/ThingDef[defName="Apparel_ArmorHelmetRecon"]</xpath>
+    <value>
+      <equippedStatOffsets>
+        <PsychicSensitivity>-0.2</PsychicSensitivity>
+        <AimingAccuracy>0.1</AimingAccuracy>
+        <ToxicSensitivity>-0.50</ToxicSensitivity>
+        <SmokeSensitivity>-1</SmokeSensitivity>
+      </equippedStatOffsets>
+    </value>
+  </Operation>
+
+  <Operation Class="PatchOperationAdd">
+    <xpath>Defs/ThingDef[@Name="ApparelArmorHelmetReconBase"]/costList</xpath>
+    <value>
+      <DevilstrandCloth>15</DevilstrandCloth>
+    </value>
+  </Operation>
+
+  <Operation Class="PatchOperationAdd">
+    <xpath>Defs/ThingDef[@Name="ApparelArmorHelmetReconBase"]/apparel/layers</xpath>
     <value>
       <li>OnHead</li>
       <li>StrappedHead</li>

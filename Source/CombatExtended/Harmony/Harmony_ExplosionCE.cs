@@ -3,28 +3,37 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection.Emit;
-using Harmony;
+using HarmonyLib;
 using Verse;
+using CombatExtended;
 
-namespace CombatExtended.Harmony
+namespace CombatExtended.HarmonyCE
 {
-    [HarmonyPatch(typeof(ExplosionCE), "GetDamageAmountAt")]
+    [HarmonyPatch(typeof(Explosion), "GetDamageAmountAt")]
     public static class Harmony_ExplosionCE_GetDamageAmountAt
     {
-        internal static bool Prefix(ExplosionCE __instance, ref int __result, IntVec3 c)
+        internal static bool Prefix(Explosion __instance, ref int __result, IntVec3 c)
         {
-            __result = __instance.GetDamageAmountAtCE(c);
-            return false;
+            if (__instance is ExplosionCE)
+            {
+                __result = (__instance as ExplosionCE).GetDamageAmountAtCE(c);
+                return false;
+            }
+            return true;
         }
     }
 
-    [HarmonyPatch(typeof(ExplosionCE), "GetArmorPenetrationAt")]
+    [HarmonyPatch(typeof(Explosion), "GetArmorPenetrationAt")]
     public class Harmony_ExplosionCE_GetArmorPenetrationAt
     {
-        internal static bool Prefix(ExplosionCE __instance, ref float __result, IntVec3 c)
+        internal static bool Prefix(Explosion __instance, ref float __result, IntVec3 c)
         {
-            __result = __instance.GetArmorPenetrationAtCE(c);
-            return false;
+            if (__instance is ExplosionCE)
+            {
+                __result = (__instance as ExplosionCE).GetArmorPenetrationAtCE(c);
+                return false;
+            }
+            return true;
         }
     }
 }

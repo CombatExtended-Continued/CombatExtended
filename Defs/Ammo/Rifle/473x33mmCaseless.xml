@@ -17,15 +17,18 @@
 			<Ammo_473x33mmCaseless_FMJ>Bullet_473x33mmCaseless_FMJ</Ammo_473x33mmCaseless_FMJ>
 			<Ammo_473x33mmCaseless_AP>Bullet_473x33mmCaseless_AP</Ammo_473x33mmCaseless_AP>
 			<Ammo_473x33mmCaseless_HP>Bullet_473x33mmCaseless_HP</Ammo_473x33mmCaseless_HP>
+		    <Ammo_473x33mmCaseless_Incendiary>Bullet_473x33mmCaseless_Incendiary</Ammo_473x33mmCaseless_Incendiary>
+			<Ammo_473x33mmCaseless_HE>Bullet_473x33mmCaseless_HE</Ammo_473x33mmCaseless_HE>
+			<Ammo_473x33mmCaseless_Sabot>Bullet_473x33mmCaseless_Sabot</Ammo_473x33mmCaseless_Sabot>				
 		</ammoTypes>
 	</CombatExtended.AmmoSetDef>
 	
 	<!-- ==================== Ammo ========================== -->
 
 	<ThingDef Class="CombatExtended.AmmoDef" Name="473x33mmCaselessBase" ParentName="SmallAmmoBase" Abstract="True">
-		<description>Caseless bullet with a solid propellant enveloping the bullet.</description>
+		<description>Caseless bullet with a solid propellant enveloping the projectile.</description>
 		<statBases>
-		<Mass>0.005</Mass>
+		<Mass>0.009</Mass>
 		<Bulk>0.01</Bulk>
 		</statBases>
 	<tradeTags>
@@ -45,7 +48,7 @@
 			<graphicClass>Graphic_StackCount</graphicClass>
 		</graphicData>
 		<statBases>
-			<MarketValue>0.03</MarketValue>
+			<MarketValue>0.04</MarketValue>
 		</statBases>
 		<ammoClass>FullMetalJacket</ammoClass>
 		<cookOffProjectile>Bullet_473x33mmCaseless_FMJ</cookOffProjectile>
@@ -73,11 +76,54 @@
 			<graphicClass>Graphic_StackCount</graphicClass>
 		</graphicData>
 		<statBases>
-			<MarketValue>0.05</MarketValue>
+			<MarketValue>0.04</MarketValue>
 		</statBases>
 		<ammoClass>HollowPoint</ammoClass>
 		<cookOffProjectile>Bullet_473x33mmCaseless_HP</cookOffProjectile>
 	</ThingDef>
+
+  <ThingDef Class="CombatExtended.AmmoDef" ParentName="473x33mmCaselessBase">
+    <defName>Ammo_473x33mmCaseless_Incendiary</defName>
+    <label>4.73x33mm Caseless cartridge (AP-I)</label>
+    <graphicData>
+      <texPath>Things/Ammo/Rifle/Incendiary</texPath>
+      <graphicClass>Graphic_StackCount</graphicClass>
+    </graphicData>
+    <statBases>
+      <MarketValue>0.06</MarketValue>
+    </statBases>
+    <ammoClass>IncendiaryAP</ammoClass>
+    <cookOffProjectile>Bullet_473x33mmCaseless_Incendiary</cookOffProjectile>
+  </ThingDef>
+
+  <ThingDef Class="CombatExtended.AmmoDef" ParentName="473x33mmCaselessBase">
+    <defName>Ammo_473x33mmCaseless_HE</defName>
+    <label>4.73x33mm Caseless cartridge (HE)</label>
+    <graphicData>
+      <texPath>Things/Ammo/Rifle/HE</texPath>
+      <graphicClass>Graphic_StackCount</graphicClass>
+    </graphicData>
+    <statBases>
+      <MarketValue>0.09</MarketValue>
+    </statBases>
+    <ammoClass>ExplosiveAP</ammoClass>
+    <cookOffProjectile>Bullet_473x33mmCaseless_HE</cookOffProjectile>
+  </ThingDef>
+ 
+  <ThingDef Class="CombatExtended.AmmoDef" ParentName="473x33mmCaselessBase">
+    <defName>Ammo_473x33mmCaseless_Sabot</defName>
+    <label>4.73x33mm Caseless cartridge (Sabot)</label>
+    <graphicData>
+      <texPath>Things/Ammo/Rifle/Sabot</texPath>
+      <graphicClass>Graphic_StackCount</graphicClass>
+    </graphicData>
+    <statBases>
+      <MarketValue>0.05</MarketValue>
+	  <Mass>0.008</Mass>
+    </statBases>
+    <ammoClass>Sabot</ammoClass>
+    <cookOffProjectile>Bullet_473x33mmCaseless_Sabot</cookOffProjectile>
+  </ThingDef>
 	
 	<!-- ================== Projectiles ================== -->
 	
@@ -88,7 +134,7 @@
 		</graphicData>
 		<projectile Class="CombatExtended.ProjectilePropertiesCE">
 			<damageDef>Bullet</damageDef>
-			<speed>233</speed>
+			<speed>185</speed>
 		</projectile>
 	</ThingDef>
 
@@ -96,8 +142,9 @@
 		<defName>Bullet_473x33mmCaseless_FMJ</defName>
 		<label>4.73mm Caseless bullet (FMJ)</label>
 		<projectile Class="CombatExtended.ProjectilePropertiesCE">
-			<damageAmountBase>8</damageAmountBase>
-			<armorPenetrationBase>0.453</armorPenetrationBase>
+			<damageAmountBase>12</damageAmountBase>
+			<armorPenetrationSharp>6</armorPenetrationSharp>
+			<armorPenetrationBlunt>28.5</armorPenetrationBlunt>
 		</projectile>
 	</ThingDef>
 
@@ -105,8 +152,9 @@
 		<defName>Bullet_473x33mmCaseless_AP</defName>
 		<label>4.73mm Caseless bullet (AP)</label>
 		<projectile Class="CombatExtended.ProjectilePropertiesCE">
-			<damageAmountBase>5</damageAmountBase>
-			<armorPenetrationBase>0.603</armorPenetrationBase>
+			<damageAmountBase>8</damageAmountBase>
+			<armorPenetrationSharp>12</armorPenetrationSharp>
+			<armorPenetrationBlunt>28.5</armorPenetrationBlunt>
 		</projectile>
 	</ThingDef>
 
@@ -114,11 +162,55 @@
 		<defName>Bullet_473x33mmCaseless_HP</defName>
 		<label>4.73mm Caseless bullet (HP)</label>
 		<projectile Class="CombatExtended.ProjectilePropertiesCE">
-			<damageAmountBase>11</damageAmountBase>
-			<armorPenetrationBase>0.303</armorPenetrationBase>
+			<damageAmountBase>16</damageAmountBase>
+			<armorPenetrationSharp>3</armorPenetrationSharp>
+			<armorPenetrationBlunt>28.5</armorPenetrationBlunt>
 		</projectile>
 	</ThingDef>
-  
+ 
+	  <ThingDef Class="CombatExtended.AmmoDef" ParentName="Base473x33mmCaselessBullet">
+		<defName>Bullet_473x33mmCaseless_Incendiary</defName>
+		<label>4.73mm Caseless bullet (AP-I)</label>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+		  <damageAmountBase>8</damageAmountBase>
+		  <armorPenetrationSharp>12</armorPenetrationSharp>
+		  <armorPenetrationBlunt>28.5</armorPenetrationBlunt>
+		  <secondaryDamage>
+				<li>
+			  	<def>Flame_Secondary</def>
+			  	<amount>5</amount>
+				</li>
+		  </secondaryDamage>
+		</projectile>
+	  </ThingDef>
+	  
+	  <ThingDef Class="CombatExtended.AmmoDef" ParentName="Base473x33mmCaselessBullet">
+		<defName>Bullet_473x33mmCaseless_HE</defName>
+		<label>4.73mm Caseless bullet (HE)</label>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+		  <damageAmountBase>12</damageAmountBase>
+		  <armorPenetrationSharp>6</armorPenetrationSharp>
+		  <armorPenetrationBlunt>28.5</armorPenetrationBlunt>
+		  <secondaryDamage>
+				<li>
+			  	<def>Bomb_Secondary</def>
+			  	<amount>7</amount>
+				</li>
+		  </secondaryDamage>
+		</projectile>
+	  </ThingDef>
+
+	  <ThingDef Class="CombatExtended.AmmoDef" ParentName="Base473x33mmCaselessBullet">
+		<defName>Bullet_473x33mmCaseless_Sabot</defName>
+		<label>4.73mm Caseless bullet (Sabot)</label>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+		  <damageAmountBase>6</damageAmountBase>
+		  <armorPenetrationSharp>21</armorPenetrationSharp>
+		  <armorPenetrationBlunt>36.58</armorPenetrationBlunt>
+		  <speed>278</speed>
+		</projectile>
+	  </ThingDef>
+ 
 	<!-- ==================== Recipes ========================== -->
 
 	<RecipeDef ParentName="AmmoRecipeBase">
@@ -133,7 +225,7 @@
 						<li>Steel</li>
 					</thingDefs>
 				</filter>
-				<count>4</count>
+				<count>10</count>
 			</li>
 		</ingredients>
 		<fixedIngredientFilter>
@@ -144,7 +236,7 @@
 		<products>
 			<Ammo_473x33mmCaseless_FMJ>500</Ammo_473x33mmCaseless_FMJ>
 		</products>
-    <workAmount>2000</workAmount>
+    <workAmount>1000</workAmount>
 	</RecipeDef>
 
 	<RecipeDef ParentName="AmmoRecipeBase">
@@ -159,7 +251,7 @@
 						<li>Steel</li>
 					</thingDefs>
 				</filter>
-				<count>5</count>
+				<count>10</count>
 			</li>
 		</ingredients>
 		<fixedIngredientFilter>
@@ -170,7 +262,7 @@
 		<products>
 			<Ammo_473x33mmCaseless_AP>500</Ammo_473x33mmCaseless_AP>
 		</products>
-    <workAmount>2750</workAmount>
+    <workAmount>1000</workAmount>
 	</RecipeDef>
 
 	<RecipeDef ParentName="AmmoRecipeBase">
@@ -185,7 +277,7 @@
 						<li>Steel</li>
 					</thingDefs>
 				</filter>
-				<count>4</count>
+				<count>10</count>
 			</li>
 		</ingredients>
 		<fixedIngredientFilter>
@@ -196,7 +288,121 @@
 		<products>
 			<Ammo_473x33mmCaseless_HP>500</Ammo_473x33mmCaseless_HP>
 		</products>
-    <workAmount>3750</workAmount>
+    <workAmount>1000</workAmount>
 	</RecipeDef>
+
+  <RecipeDef ParentName="AmmoRecipeBase">
+    <defName>MakeAmmo_473x33mmCaseless_Incendiary</defName>
+    <label>make 4.73x33mm Caseless (AP-I) cartridge x500</label>
+    <description>Craft 500 4.73x33mm Caseless (AP-I) cartridges.</description>
+    <jobString>Making 4.73x33mm Caseless (AP-I) cartridges.</jobString>
+    <ingredients>
+      <li>
+        <filter>
+          <thingDefs>
+            <li>Steel</li>
+          </thingDefs>
+        </filter>
+        <count>10</count>
+      </li>
+      <li>
+        <filter>
+          <thingDefs>
+            <li>Prometheum</li>
+          </thingDefs>
+        </filter>
+        <count>1</count>
+      </li>
+    </ingredients>
+    <fixedIngredientFilter>
+      <thingDefs>
+        <li>Steel</li>
+        <li>Prometheum</li>
+      </thingDefs>
+    </fixedIngredientFilter>
+    <products>
+      <Ammo_473x33mmCaseless_Incendiary>500</Ammo_473x33mmCaseless_Incendiary>
+    </products>
+    <workAmount>1400</workAmount>
+  </RecipeDef>
+  
+  <RecipeDef ParentName="AmmoRecipeBase">
+    <defName>MakeAmmo_473x33mmCaseless_HE</defName>
+    <label>make 4.73x33mm Caseless (HE) cartridge x500</label>
+    <description>Craft 500 4.73x33mm Caseless (HE) cartridges.</description>
+    <jobString>Making 4.73x33mm Caseless (HE) cartridges.</jobString>
+    <ingredients>
+      <li>
+        <filter>
+          <thingDefs>
+            <li>Steel</li>
+          </thingDefs>
+        </filter>
+        <count>10</count>
+      </li>
+      <li>
+        <filter>
+          <thingDefs>
+            <li>FSX</li>
+          </thingDefs>
+        </filter>
+        <count>2</count>
+      </li>
+    </ingredients>
+    <fixedIngredientFilter>
+      <thingDefs>
+        <li>Steel</li>
+        <li>FSX</li>
+      </thingDefs>
+    </fixedIngredientFilter>
+    <products>
+      <Ammo_473x33mmCaseless_HE>500</Ammo_473x33mmCaseless_HE>
+    </products>
+    <workAmount>1800</workAmount>
+  </RecipeDef>
+  
+  <RecipeDef ParentName="AmmoRecipeBase">
+    <defName>MakeAmmo_473x33mmCaseless_Sabot</defName>
+    <label>make 4.73x33mm Caseless (Sabot) cartridge x500</label>
+    <description>Craft 500 4.73x33mm Caseless (Sabot) cartridges.</description>
+    <jobString>Making 4.73x33mm Caseless (Sabot) cartridges.</jobString>
+    <ingredients>
+      <li>
+        <filter>
+          <thingDefs>
+            <li>Steel</li>
+          </thingDefs>
+        </filter>
+        <count>6</count>
+      </li>
+      <li>
+        <filter>
+          <thingDefs>
+            <li>Uranium</li>
+          </thingDefs>
+        </filter>
+        <count>1</count>
+      </li>
+      <li>
+        <filter>
+          <thingDefs>
+            <li>Chemfuel</li>
+          </thingDefs>
+        </filter>
+        <count>1</count>
+      </li>		  
+    </ingredients>
+    <fixedIngredientFilter>
+      <thingDefs>
+        <li>Steel</li>
+        <li>Uranium</li>
+        <li>Chemfuel</li>		
+      </thingDefs>
+    </fixedIngredientFilter>
+    <products>
+      <Ammo_473x33mmCaseless_Sabot>500</Ammo_473x33mmCaseless_Sabot>
+    </products>
+    <workAmount>1200</workAmount>
+  </RecipeDef>
 	
 </Defs>

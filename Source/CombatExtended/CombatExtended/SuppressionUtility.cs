@@ -130,7 +130,7 @@ namespace CombatExtended
             }
 
             // Attack break
-            if (!(pawn.story.WorkTagIsDisabled(WorkTags.Violent)
+            if (!(pawn.WorkTagIsDisabled(WorkTags.Violent)
                   || traits.DegreeOfTrait(TraitDefOf.Nerves) < 0
                   || traits.DegreeOfTrait(CE_TraitDefOf.Bravery) < 0))
             {

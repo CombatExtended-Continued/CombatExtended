@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+	<Operation Class="PatchOperationSequence">
+		<success>Always</success>
+		<operations>
+
+			<li Class="CombatExtended.PatchOperationFindMod">
+				<modName>[RH] Faction: The Ghosts</modName>
+			</li>
+
+			<!-- ========== Combat Uniform A-TACS LE-X ========== -->
+
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName="RNApparel_combats_ATACSLEX"]/statBases</xpath>
+				<value>
+					<Bulk>8</Bulk>
+					<WornBulk>3</WornBulk>
+					<ArmorRating_Sharp>0.05</ArmorRating_Sharp>
+					<ArmorRating_Blunt>0.075</ArmorRating_Blunt>
+				</value>
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="RNApparel_combats_ATACSLEX"]/statBases/StuffEffectMultiplierArmor</xpath>
+				<value>
+					<!-- Slightly tougher than vanilla pants, T-shirt and button-down shirt -->
+					<StuffEffectMultiplierArmor>2</StuffEffectMultiplierArmor>
+				</value>
+			</li>
+
+		</operations>
+	</Operation>
+</Patch>

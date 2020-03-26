@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+	<Operation Class="PatchOperationSequence">
+		<success>Always</success>
+		<operations>
+
+			<li Class="CombatExtended.PatchOperationFindMod">
+				<modName>[CP] The DOOM Kit - Classic</modName>
+			</li>
+
+			<li Class="PatchOperationAdd">
+				<xpath>Defs</xpath>
+				<value>
+
+					<!-- There is only one type of UAC Energy Cell for CE, no subcategory for variants required -->
+
+					<!-- ==================== AmmoSets ========================== -->
+
+					<CombatExtended.AmmoSetDef>
+						<defName>AmmoSet_DoomClassicPlasmaGun</defName>
+						<label>UAC Energy Cell</label>
+						<ammoTypes>
+							<Ammo_DoomClassicEnergyCell>Bullet_DoomClassicPlasmaGun</Ammo_DoomClassicEnergyCell>
+						</ammoTypes>
+					</CombatExtended.AmmoSetDef>
+
+					<CombatExtended.AmmoSetDef>
+						<defName>AmmoSet_DoomClassicBfg9000Gun</defName>
+						<label>UAC Energy Cell</label>
+						<ammoTypes>
+							<Ammo_DoomClassicEnergyCell>Bullet_DoomClassicBfg9000Gun</Ammo_DoomClassicEnergyCell>
+						</ammoTypes>
+					</CombatExtended.AmmoSetDef>
+
+					<!-- ==================== Ammo ========================== -->
+
+					<ThingDef Class="CombatExtended.AmmoDef" ParentName="SpacerSmallAmmoBase">
+						<defName>Ammo_DoomClassicEnergyCell</defName>
+						<label>UAC Energy Cell</label>
+						<description>Plasma containment power cell developed by the Union Aerospace Corporation for experimental energy weapons</description>
+						<statBases>
+							<Mass>0.013</Mass>
+							<Bulk>0.03</Bulk>
+							<MarketValue>1.48</MarketValue>
+						</statBases>
+						<tradeTags>
+							<li>CE_AutoEnableTrade</li>
+							<li>CE_AutoEnableCrafting_TableMachining</li>
+							<!-- Plasma ammo can't be handloaded, and the containment cell must be precision-machined anyway -->
+						</tradeTags>
+						<thingCategories>
+							<li>AmmoAdvanced</li>
+						</thingCategories>
+						<stackLimit>100</stackLimit>
+						<graphicData>
+							<texPath>ThirdParty/CP DOOM and DOOM Kit Classic/DoomClassicEnergyCell</texPath>
+							<graphicClass>CombatExtended.Graphic_StackCountRanged</graphicClass>
+						</graphicData>
+						<ammoClass>Plasma</ammoClass>
+						<comps>
+							<!-- Arbitarily defined cookoff explosive stats; represents a plasma containment system failing -->
+						  <li Class="CombatExtended.CompProperties_ExplosiveCE">
+							<damageAmountBase>20</damageAmountBase>
+							<explosiveDamageType>Bomb</explosiveDamageType>
+							<explosiveRadius>0.5</explosiveRadius>
+							<applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
+						  </li>
+						  <li Class="CombatExtended.CompProperties_Fragments">
+							<fragments>
+								<Fragment_Large>2</Fragment_Large>
+								<Fragment_Small>10</Fragment_Small>
+							</fragments>
+						  </li>
+						</comps>
+					</ThingDef>
+
+					<!-- ================== Projectiles ================== -->
+					
+					<!-- Workaround for conditionally-patched projectiles: use an existing abstract class from the generic ammo library (In this case, Base6x24mmChargedBullet) -->
+
+					<ThingDef Class="CombatExtended.AmmoDef" ParentName="Base6x24mmChargedBullet">
+						<defName>Bullet_DoomClassicPlasmaGun</defName>
+						<label>Plasma Shot</label>
+						<graphicData>
+							<texPath>Things/Projectile/Plasma_Classic</texPath>
+							<graphicClass>Graphic_Single</graphicClass>
+						</graphicData>
+						<projectile Class="CombatExtended.ProjectilePropertiesCE">
+							<speed>200</speed>
+							<damageDef>Bomb</damageDef>
+							<damageAmountBase>14</damageAmountBase>
+							<explosionRadius>0.5</explosionRadius>
+							<soundExplode>MortarBomb_Explode</soundExplode>
+							<applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
+							<secondaryDamage>
+								<li>
+									<def>Flame_Secondary</def>
+									<amount>67</amount>
+								</li>
+							</secondaryDamage>
+						</projectile>
+					</ThingDef>
+
+					<ThingDef Class="CombatExtended.AmmoDef" ParentName="Base6x24mmChargedBullet">
+						<defName>Bullet_DoomClassicBfg9000Gun</defName>
+						<thingClass>CombatExtended.ProjectileCE_Explosive</thingClass>
+						<label>BFG Plasma Shot</label>
+						<graphicData>
+							<texPath>Things/Projectile/BFGPLAZMA</texPath>
+							<graphicClass>Graphic_Single</graphicClass>
+						</graphicData>
+						<projectile Class="CombatExtended.ProjectilePropertiesCE">
+							<speed>200</speed>
+							<damageDef>Bomb</damageDef>
+							<damageAmountBase>560</damageAmountBase>
+							<explosionRadius>2.5</explosionRadius>
+							<soundExplode>RHHit_DOOMClassicBFG</soundExplode>
+							<applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
+							<secondaryDamage>
+								<li>
+									<def>Flame_Secondary</def>
+									<amount>2680</amount>
+								</li>
+							</secondaryDamage>
+						</projectile>
+					</ThingDef>
+
+					<!-- ==================== Recipes ========================== -->
+
+					<RecipeDef ParentName="ChargeAmmoRecipeBase">
+						<defName>MakeAmmo_DoomClassicEnergyCell</defName>
+						<label>make UAC Energy Cells x100 shots</label>
+						<description>Craft 100 shots' worth of UAC Energy Cells.</description>
+						<jobString>Making UAC Energy Cells.</jobString>
+						<workAmount>4800</workAmount>
+						<ingredients>
+							<li>
+								<filter>
+									<thingDefs>
+										<li>Steel</li>
+									</thingDefs>
+								</filter>
+								<count>4</count>
+							</li>
+							<li>
+								<filter>
+									<thingDefs>
+										<li>Plasteel</li>
+									</thingDefs>
+								</filter>
+								<count>8</count>
+							</li>
+							<li>
+								<filter>
+									<thingDefs>
+										<li>ComponentIndustrial</li>
+									</thingDefs>
+								</filter>
+								<count>2</count>
+							</li>
+						</ingredients>
+						<fixedIngredientFilter>
+							<thingDefs>
+								<li>Steel</li>
+								<li>Plasteel</li>
+								<li>ComponentIndustrial</li>
+							</thingDefs>
+						</fixedIngredientFilter>
+						<products>
+							<Ammo_DoomClassicEnergyCell>100</Ammo_DoomClassicEnergyCell>
+						</products>
+					</RecipeDef>
+
+				</value>
+			</li>
+
+		</operations>
+	</Operation>
+</Patch>

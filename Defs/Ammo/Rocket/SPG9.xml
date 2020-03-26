@@ -46,24 +46,12 @@
       <graphicClass>Graphic_StackCount</graphicClass>
     </graphicData>
     <statBases>
-      <MarketValue>33.76</MarketValue>
-      <Mass>4.4</Mass>
-      <Bulk>5</Bulk>
+      <MarketValue>55.69</MarketValue>
+      <Mass>5.35</Mass>
+      <Bulk>11.56</Bulk>
     </statBases>
 	<ammoClass>RocketHEAT</ammoClass>
-    <comps>
-      <li Class="CombatExtended.CompProperties_ExplosiveCE">
-        <explosionDamage>30</explosionDamage>
-        <explosionDamageDef>Bomb</explosionDamageDef>
-        <explosionRadius>1</explosionRadius>
-        <fragRange>6</fragRange>
-        <fragments>
-          <Fragment_RocketFrag>30</Fragment_RocketFrag>
-        </fragments>
-        <soundExplode>MortarBomb_Explode</soundExplode>
-        <applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
-      </li>
-    </comps>
+	<detonateProjectile>Bullet_SPG9Grenade_HEAT</detonateProjectile>
   </ThingDef>
 
   <ThingDef Class="CombatExtended.AmmoDef" ParentName="SPG9GrenadeBase">
@@ -74,23 +62,12 @@
       <graphicClass>Graphic_StackCount</graphicClass>
     </graphicData>
     <statBases>
-      <MarketValue>35.51</MarketValue>
+      <MarketValue>59.82</MarketValue>
       <Mass>5.35</Mass>
-      <Bulk>5</Bulk>
+      <Bulk>13.34</Bulk>
     </statBases>
     <ammoClass>RocketFrag</ammoClass>
-    <comps>
-      <li Class="CombatExtended.CompProperties_ExplosiveCE">
-        <explosionDamage>50</explosionDamage>
-        <explosionDamageDef>Bomb</explosionDamageDef>
-        <explosionRadius>1.5</explosionRadius>
-        <fragments>
-          <Fragment_RocketFrag>400</Fragment_RocketFrag>
-        </fragments>
-        <soundExplode>MortarBomb_Explode</soundExplode>
-        <applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
-      </li>
-    </comps>
+	<detonateProjectile>Bullet_SPG9Grenade_Frag</detonateProjectile>
   </ThingDef>
 	
 	<!-- ================== Projectiles ================== -->
@@ -100,7 +77,7 @@
 			<shaderType>TransparentPostLight</shaderType>
 		</graphicData>
 		<projectile Class="CombatExtended.ProjectilePropertiesCE">
-			<speed>65</speed>
+			<speed>87</speed>
 			<soundAmbient>RocketPropelledLoop_Small</soundAmbient>
 		</projectile>
 	</ThingDef>	
@@ -114,20 +91,24 @@
 		</graphicData>
 		<projectile Class="CombatExtended.ProjectilePropertiesCE">
 			<damageDef>Bullet</damageDef>
-			<damageAmountBase>150</damageAmountBase>
-			<armorPenetrationBase>3.0</armorPenetrationBase>
+			<damageAmountBase>248</damageAmountBase>
+			<armorPenetrationSharp>300</armorPenetrationSharp>
+			<armorPenetrationBlunt>25.529</armorPenetrationBlunt>
 		</projectile>
 		<comps>
-			<li Class="CombatExtended.CompProperties_ExplosiveCE">
-				<explosionDamage>30</explosionDamage>
-				<explosionDamageDef>Bomb</explosionDamageDef>
-				<explosionRadius>1</explosionRadius>
-				<fragments>
-          <Fragment_RocketFrag>30</Fragment_RocketFrag>
-				</fragments>
-				<soundExplode>MortarBomb_Explode</soundExplode>
-        <applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
-			</li>
+		  <li Class="CombatExtended.CompProperties_ExplosiveCE">
+			<damageAmountBase>88</damageAmountBase>
+			<explosiveDamageType>Bomb</explosiveDamageType>
+			<explosiveRadius>1</explosiveRadius>
+			<explosionSound>MortarBomb_Explode</explosionSound>
+			<applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
+		  </li>
+		  <li Class="CombatExtended.CompProperties_Fragments">
+			<fragments>
+				<Fragment_Large>9</Fragment_Large>
+			  <Fragment_Small>20</Fragment_Small>
+			</fragments>
+		  </li>
 		</comps>
 	</ThingDef>
 
@@ -140,18 +121,19 @@
 			<graphicClass>Graphic_Single</graphicClass>
 		</graphicData>
 		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<speed>64</speed>    
 			<explosionRadius>2</explosionRadius>
 			<damageDef>Bomb</damageDef>
-			<damageAmountBase>70</damageAmountBase>
+			<damageAmountBase>111</damageAmountBase>
+			<soundExplode>MortarBomb_Explode</soundExplode>
       <applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
 		</projectile>
 		<comps>
-			<li Class="CombatExtended.CompProperties_ExplosiveCE">
-				<fragments>
-          <Fragment_RocketFrag>400</Fragment_RocketFrag>
-				</fragments>
-				<soundExplode>MortarBomb_Explode</soundExplode>
-			</li>
+		  <li Class="CombatExtended.CompProperties_Fragments">
+			<fragments>
+			  <Fragment_Small>500</Fragment_Small>
+			</fragments>
+		  </li>
 		</comps>
 	</ThingDef>
   
@@ -162,7 +144,7 @@
     <label>make SPG-9 HEAT grenades x5</label>
     <description>Craft 5 SPG-9 HEAT grenades.</description>
     <jobString>Making SPG-9 HEAT grenades.</jobString>
-    <workAmount>15000</workAmount>
+    <workAmount>9400</workAmount>
     <ingredients>
       <li>
         <filter>
@@ -170,7 +152,7 @@
             <li>Steel</li>
           </thingDefs>
         </filter>
-        <count>22</count>
+        <count>54</count>
       </li>
       <li>
         <filter>
@@ -178,7 +160,7 @@
             <li>FSX</li>
           </thingDefs>
         </filter>
-        <count>3</count>
+        <count>4</count>
       </li>
       <li>
         <filter>
@@ -186,7 +168,7 @@
             <li>ComponentIndustrial</li>
           </thingDefs>
         </filter>
-        <count>3</count>
+        <count>4</count>
       </li>
     </ingredients>
     <fixedIngredientFilter>
@@ -206,7 +188,7 @@
     <label>make SPG-9 frag grenades x5</label>
     <description>Craft 5 SPG-9 frag grenades.</description>
     <jobString>Making SPG-9 frag grenades.</jobString>
-    <workAmount>15000</workAmount>
+    <workAmount>10200</workAmount>
     <ingredients>
       <li>
         <filter>
@@ -214,7 +196,7 @@
             <li>Steel</li>
           </thingDefs>
         </filter>
-        <count>26</count>
+        <count>54</count>
       </li>
       <li>
         <filter>
@@ -222,7 +204,7 @@
             <li>FSX</li>
           </thingDefs>
         </filter>
-        <count>3</count>
+        <count>6</count>
       </li>
       <li>
         <filter>
@@ -230,7 +212,7 @@
             <li>ComponentIndustrial</li>
           </thingDefs>
         </filter>
-        <count>3</count>
+        <count>4</count>
       </li>
     </ingredients>
     <fixedIngredientFilter>

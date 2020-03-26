@@ -5,21 +5,25 @@ using System.Linq;
 using UnityEngine;
 using Verse;
 using Verse.Sound;
+using HarmonyLib;
 
 namespace CombatExtended
 {
-	public class ExplosionCE : Explosion
+	public class ExplosionCE : Verse.Explosion
 	{
+        // New properties
 		public float height;
+        private const int DamageAtEdge = 2;      // Synch these with spreadsheet
+        private const float PenAtEdge = 0.6f;
+        private const float PressurePerDamage = 0.3f;
 
-		private int startTick;
+        // Core properties
+        private int startTick;
 		private List<IntVec3> cellsToAffect;
 		private List<Thing> damagedThings;
 		private HashSet<IntVec3> addedCellsAffectedOnlyByDamage;
-		private const int DamageAtEdge = 2;      // Synch these with spreadsheet
-        private const float PenAtEdge = 0.6f;
-        private const float PressurePerDamage = 0.3f;
 		private static HashSet<IntVec3> tmpCells = new HashSet<IntVec3>();
+		private List<Thing> ignoredThings;
 
 		public override void SpawnSetup(Map map, bool respawningAfterLoad)
 		{
@@ -48,6 +52,7 @@ namespace CombatExtended
 			addedCellsAffectedOnlyByDamage = null;
 		}
 
+        // New method
 		public virtual IEnumerable<IntVec3> ExplosionCellsToHit
 		{
 			get
@@ -64,6 +69,7 @@ namespace CombatExtended
 					var intVec = Position + GenRadial.RadialPattern[i];
 					if (intVec.InBounds(Map))
 					{
+                        //Added code
 						if (aboveRoofs)
 						{
 							if ((!roofed && GenSight.LineOfSight(Position, intVec, Map, false, null, 0, 0))
@@ -73,8 +79,17 @@ namespace CombatExtended
 							}
 						}
 						else if (GenSight.LineOfSight(Position, intVec, Map, true, null, 0, 0))
-						{
-							openCells.Add(intVec);
+                        {
+                            if (needLOSToCell1.HasValue || needLOSToCell2.HasValue)
+                            {
+                                bool flag = needLOSToCell1.HasValue && GenSight.LineOfSight(needLOSToCell1.Value, intVec, Map, false, null, 0, 0);
+                                bool flag2 = needLOSToCell2.HasValue && GenSight.LineOfSight(needLOSToCell2.Value, intVec, Map, false, null, 0, 0);
+                                if (!flag && !flag2)
+                                {
+                                    continue;
+                                }
+                            }
+                            openCells.Add(intVec);
 						}
 					}
 				}
@@ -82,17 +97,10 @@ namespace CombatExtended
 					if (intVec2.Walkable(Map)) {
 						for (var k = 0; k < 4; k++) {
 							var intVec3 = intVec2 + GenAdj.CardinalDirections[k];
-							if (intVec3.InHorDistOf(Position, radius)) {
-								if (intVec3.InBounds(Map)) {
-									if (!intVec3.Standable(Map)) {
-										if (intVec3.GetEdifice(Map) != null) {
-											if (!openCells.Contains(intVec3) && adjWallCells.Contains(intVec3)) {
-												adjWallCells.Add(intVec3);
-											}
-										}
-									}
-								}
-							}
+                            if (intVec3.InHorDistOf(Position, radius) && intVec3.InBounds(Map) && !intVec3.Standable(Map) && intVec3.GetEdifice(Map) != null && !openCells.Contains(intVec3) && adjWallCells.Contains(intVec3))
+                            {
+                                adjWallCells.Add(intVec3);
+                            }
 						}
 					}
 				}
@@ -100,8 +108,8 @@ namespace CombatExtended
 			}
 		}
 		
-		public override void StartExplosion(SoundDef explosionSound)
-		{
+		public void StartExplosionCE(SoundDef explosionSound, List<Thing> ignoredThings)    //Removed cellsToAffect by Worker
+        {
 			if (!Spawned) {
 				Log.Error("Called StartExplosion() on unspawned thing.");
 				return;
@@ -129,30 +137,33 @@ namespace CombatExtended
 		}
 
 		public override void Tick()
-		{
-			var ticksGame = Find.TickManager.TicksGame;
-			var count = cellsToAffect.Count;
-			for (var i = count - 1; i >= 0; i--) {
-				if (ticksGame < GetCellAffectTick(cellsToAffect[i])) {
-					break;
-				}
-				try {
-					AffectCell(cellsToAffect[i]);
-				}
-				catch (Exception ex) {
-					Log.Error(string.Concat(new object[] {
-						"Explosion could not affect cell ",
-						cellsToAffect[i],
-						": ",
-						ex
-					}));
-				}
-				cellsToAffect.RemoveAt(i);
-			}
-			if (!cellsToAffect.Any<IntVec3>()) {
-				Destroy(DestroyMode.Vanish);
-			}
-		}
+        {
+            int ticksGame = Find.TickManager.TicksGame;
+            int num = this.cellsToAffect.Count - 1;
+            while (num >= 0 && ticksGame >= this.GetCellAffectTick(this.cellsToAffect[num]))
+            {
+                try
+                {
+                    this.AffectCell(this.cellsToAffect[num]);
+                }
+                catch (Exception ex)
+                {
+                    Log.Error(string.Concat(new object[]
+                    {
+                "Explosion could not affect cell ",
+                this.cellsToAffect[num],
+                ": ",
+                ex
+                    }), false);
+                }
+                this.cellsToAffect.RemoveAt(num);
+                num--;
+            }
+            if (!this.cellsToAffect.Any<IntVec3>())
+            {
+                this.Destroy(DestroyMode.Vanish);
+            }
+        }
 
 		public override void ExposeData()
 		{
@@ -166,18 +177,23 @@ namespace CombatExtended
 			}
 		}
 
+        //Copies of core
 		private int GetCellAffectTick(IntVec3 cell)
 		{
 			return startTick + (int)((cell - Position).LengthHorizontal * 1.5f);
 		}
 
 		private void AffectCell(IntVec3 c)
-		{
-			var flag = ShouldCellBeAffectedOnlyByDamage(c);
+        {
+            if (!c.InBounds(base.Map))
+            {
+                return;
+            }
+            var flag = ShouldCellBeAffectedOnlyByDamage(c);
             if (!flag && Rand.Chance(preExplosionSpawnChance) && c.Walkable(Map)) {
 				TrySpawnExplosionThing(preExplosionSpawnThingDef, c, preExplosionSpawnThingCount);
 			}
-			damType.Worker.ExplosionAffectCell(this, c, damagedThings, !flag);
+			damType.Worker.ExplosionAffectCell(this, c, damagedThings, null, !flag);
 			if (!flag && Rand.Chance(postExplosionSpawnChance) && c.Walkable(Map)) {
 				TrySpawnExplosionThing(postExplosionSpawnThingDef, c, postExplosionSpawnThingCount);
 			}
@@ -196,7 +212,7 @@ namespace CombatExtended
 				return;
 			}
 			if (thingDef.IsFilth) {
-				FilthMaker.MakeFilth(c, Map, thingDef, count);
+				FilthMaker.TryMakeFilth(c, Map, thingDef, count);
 			}
 			else {
 				var thing = ThingMaker.MakeThing(thingDef, null);
@@ -233,11 +249,9 @@ namespace CombatExtended
 				if (cells[j].Walkable(Map)) {
 					for (var k = 0; k < GenAdj.AdjacentCells.Length; k++) {
 						var intVec = cells[j] + GenAdj.AdjacentCells[k];
-						if (intVec.InBounds(Map)) {
-							var flag = tmpCells.Add(intVec);
-							if (flag) {
-								addedCellsAffectedOnlyByDamage.Add(intVec);
-							}
+						if (intVec.InBounds(Map) && tmpCells.Add(intVec))
+						{
+							addedCellsAffectedOnlyByDamage.Add(intVec);
 						}
 					}
 				}
@@ -254,7 +268,8 @@ namespace CombatExtended
 			return applyDamageToExplosionCellsNeighbors && addedCellsAffectedOnlyByDamage.Contains(c);
 		}
 
-        public int GetDamageAmountAtCE(IntVec3 c)
+        //New methods
+        public int GetDamageAmountAtCE(IntVec3 c)   //t => t^(1/3)
         {
             if (!damageFalloff)
             {
@@ -262,14 +277,12 @@ namespace CombatExtended
             }
             var t = c.DistanceTo(Position) / radius;
             t = Mathf.Pow(t, 1 / 3f);
-            var a = GenMath.RoundRandom(Mathf.Lerp((float)damAmount, DamageAtEdge, t));
-
-            return Mathf.Max(a, 1);
+            return Mathf.Max(GenMath.RoundRandom(Mathf.Lerp((float)damAmount, DamageAtEdge, t)), 1);
         }
 
-        public float GetArmorPenetrationAtCE(IntVec3 c)
+        public float GetArmorPenetrationAtCE(IntVec3 c) //t => t^(0.55), penetrationAmount => damAmount * PressurePerDamage
         {
-            var basePen = damAmount * PressurePerDamage;
+            var basePen = Mathf.Max(damAmount * PressurePerDamage, armorPenetration);
             if (!damageFalloff)
             {
                 return basePen;

@@ -179,7 +179,7 @@ namespace CombatExtended
             //Reduce ammunition
             if (CompAmmo != null)
             {
-                if (!CompAmmo.TryReduceAmmoCount())
+                if (!CompAmmo.TryReduceAmmoCount(VerbPropsCE.ammoConsumedPerShotCount))
                 {
                     return false;
                 }

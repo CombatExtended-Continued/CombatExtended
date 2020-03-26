@@ -17,8 +17,8 @@
       <Ammo_GreatArrow_Stone>Projectile_GreatArrow_Stone</Ammo_GreatArrow_Stone>
       <Ammo_GreatArrow_Steel>Projectile_GreatArrow_Steel</Ammo_GreatArrow_Steel>
       <Ammo_GreatArrow_Plasteel>Projectile_GreatArrow_Plasteel</Ammo_GreatArrow_Plasteel>
-	  <Ammo_GreatArrow_Venom>Projectile_GreatArrow_Venom</Ammo_GreatArrow_Venom>
-	  <Ammo_GreatArrow_Flame>Projectile_GreatArrow_Flame</Ammo_GreatArrow_Flame>
+	    <Ammo_GreatArrow_Venom>Projectile_GreatArrow_Venom</Ammo_GreatArrow_Venom>
+	    <Ammo_GreatArrow_Flame>Projectile_GreatArrow_Flame</Ammo_GreatArrow_Flame>
     </ammoTypes>
   </CombatExtended.AmmoSetDef>
 
@@ -96,9 +96,10 @@
     </graphicData>
     <statBases>
       <Mass>0.115</Mass>	
-      <MarketValue>3.06</MarketValue>
+      <MarketValue>4.76</MarketValue>
     </statBases>
     <ammoClass>VenomArrow</ammoClass>
+    <generateAllowChance>0</generateAllowChance>    
   </ThingDef>
   
   <ThingDef Class="CombatExtended.AmmoDef" ParentName="AmmoGreatArrowBase">
@@ -109,8 +110,8 @@
       <graphicClass>Graphic_StackCount</graphicClass>
     </graphicData>
     <statBases>
-      <Mass>0.115</Mass>	
-      <MarketValue>3.06</MarketValue>
+      <Mass>0.083</Mass>	
+      <MarketValue>1.29</MarketValue>
     </statBases>
     <ammoClass>FlameArrow</ammoClass>
   </ThingDef>
@@ -209,8 +210,8 @@
 		<projectile Class="CombatExtended.ProjectilePropertiesCE">
 			<damageDef>Flame</damageDef>
 			<damageAmountBase>3</damageAmountBase>
-			<armorPenetrationBlunt>2.340</armorPenetrationBlunt>
-			<armorPenetrationSharp>2</armorPenetrationSharp>
+			<armorPenetrationBlunt>1.18</armorPenetrationBlunt>
+			<armorPenetrationSharp>1</armorPenetrationSharp>
 		</projectile>
 	</ThingDef>
   
@@ -317,7 +318,7 @@
     <label>make venom great arrows x10</label>
     <description>Craft 10 venom great arrows.</description>
     <jobString>Making venom great arrows.</jobString>
-	<workAmount>400</workAmount>
+  	<workAmount>1600</workAmount>
     <ingredients>
       <li>
         <filter>
@@ -341,18 +342,18 @@
             <li>MedicineHerbal</li>
           </thingDefs>
         </filter>
-        <count>2</count>
+        <count>4</count>
       </li>
     </ingredients>
     <fixedIngredientFilter>
       <thingDefs>
         <li>WoodLog</li>
         <li>Steel</li>
-		<li>MedicineHerbal</li>
+		    <li>MedicineHerbal</li>
       </thingDefs>
     </fixedIngredientFilter>
     <products>
-      <Ammo_GreatArrow_Steel>10</Ammo_GreatArrow_Steel>
+      <Ammo_GreatArrow_Venom>10</Ammo_GreatArrow_Venom>
     </products>
   </RecipeDef>
   
@@ -361,7 +362,7 @@
     <label>make flame great arrows x10</label>
     <description>Craft 10 flame great arrows.</description>
     <jobString>Making flame great arrows.</jobString>
-	<workAmount>400</workAmount>
+	  <workAmount>800</workAmount>
     <ingredients>
       <li>
         <filter>
@@ -392,11 +393,11 @@
       <thingDefs>
         <li>WoodLog</li>
         <li>Steel</li>
-		<li>Prometheum</li>
+		    <li>Prometheum</li>
       </thingDefs>
     </fixedIngredientFilter>
     <products>
-      <Ammo_GreatArrow_Steel>10</Ammo_GreatArrow_Steel>
+      <Ammo_GreatArrow_Flame>10</Ammo_GreatArrow_Flame>
     </products>
   </RecipeDef>
 

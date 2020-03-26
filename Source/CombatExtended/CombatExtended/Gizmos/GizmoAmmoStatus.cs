@@ -14,6 +14,7 @@ namespace CombatExtended
         private static bool initialized;
         //Link
         public CompAmmoUser compAmmo;
+        public string prefix = "";
 
         private static Texture2D FullTex;
         private static Texture2D EmptyTex;
@@ -39,7 +40,7 @@ namespace CombatExtended
             Rect textRect = inRect;
             textRect.height = overRect.height / 2;
             Text.Font = GameFont.Tiny;
-            Widgets.Label(textRect, compAmmo.CurrentAmmo == null ? compAmmo.parent.def.LabelCap : compAmmo.CurrentAmmo.ammoClass.LabelCap);
+            Widgets.Label(textRect, prefix + (compAmmo.CurrentAmmo == null ? compAmmo.parent.def.LabelCap : compAmmo.CurrentAmmo.ammoClass.LabelCap));
 
             // Bar
             if (compAmmo.HasMagazine)

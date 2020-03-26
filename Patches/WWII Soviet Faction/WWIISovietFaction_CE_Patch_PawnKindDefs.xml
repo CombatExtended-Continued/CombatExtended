@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+	<Operation Class="PatchOperationSequence">
+		<success>Always</success>
+		<operations>
+
+			<li Class="CombatExtended.PatchOperationFindMod">
+				<modName>WWII Soviet Faction</modName>
+			</li>
+
+			<!-- ========== Reduce meals and medicine carried by all pawns ========== -->
+
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/PawnKindDef[@Name="WWII_SovietPawnKind_Base"]/invNutrition</xpath>
+				<value>
+					<invNutrition>1</invNutrition>
+				</value>
+			</li>
+
+			<li Class="PatchOperationRemove">
+				<xpath>Defs/PawnKindDef[@Name="WWII_SovietPawnKind_Base"]/inventoryOptions</xpath>
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/PawnKindDef[
+					defName="WWII_Soviet_Grunt" or
+					defName="WWII_Soviet_Assault" or
+					defName="WWII_Soviet_Assault_TierII" or
+					defName="WWII_Soviet_Sniper" or
+					defName="WWII_Soviet_Sniper_TierII" or
+					defName="WWII_Soviet_Grenadier" or
+					defName="WWII_Soviet_Boss"
+				]/inventoryOptions/subOptionsChooseOne/li[thingDef="MedicineIndustrial"]/countRange</xpath>
+				<value>
+					<countRange>
+						<min>0</min>
+						<max>1</max>
+					</countRange>
+				</value>
+			</li>
+
+			<!-- ========== WWII Soviet Faction Grunts should always spawn with harnesses, to compensate for the added bulk of their primary weapon, ammo and kit ========== -->
+
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/PawnKindDef[defName="WWII_Soviet_Grunt"]/apparelRequired</xpath>
+				<value>
+					<li>Apparel_M73_Harness</li>
+				</value>
+			</li>
+
+			<!-- ========== WWII Soviet Faction Komandirs should always spawn with harnesses instead of smokepop belts, to compensate for the added bulk of their primary weapon, ammo and kit ========== -->
+
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/PawnKindDef[defName="WWII_Soviet_Boss"]/apparelRequired</xpath>
+				<value>
+					<apparelRequired>
+						<li>Apparel_SovietCoat</li>
+						<li>Apparel_SN-42Armor</li>
+						<li>Apparel_M35_Uniform</li>
+						<li>Apparel_Ushanka</li>
+						<li>Apparel_M73_Harness</li>
+					</apparelRequired>
+				</value>
+			</li>
+
+			<!-- ========== WWII Soviet Faction pawns should spawn with ammo appropriate to their primary weapon ========== -->
+
+			<li Class="PatchOperationAddModExtension">
+				<xpath>Defs/PawnKindDef[
+					defName="WWII_Soviet_Grunt" or
+					defName="WWII_Soviet_Assault" or
+					defName="WWII_Soviet_Assault_TierII" or
+					defName="WWII_Soviet_Sniper" or
+					defName="WWII_Soviet_Sniper_TierII" or
+					defName="WWII_Soviet_Grenadier" or
+					defName="WWII_Soviet_Stormtrooper" or
+					defName="WWII_Soviet_Boss" or
+					defName="WWII_Soviet_Trader"
+				]</xpath>
+				<value>
+					<li Class="CombatExtended.LoadoutPropertiesExtension">
+						<primaryMagazineCount>
+							<min>6</min>
+							<max>8</max>
+						</primaryMagazineCount>
+					</li>
+				</value>
+			</li>
+			
+		</operations>
+	</Operation>
+</Patch>
