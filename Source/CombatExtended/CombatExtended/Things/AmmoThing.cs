@@ -131,9 +131,30 @@ namespace CombatExtended
         private bool TryDetonate(float scale = 1)
         {
             CompExplosiveCE comp = this.TryGetComp<CompExplosiveCE>();
-            if (comp != null)
+            var detProps = AmmoDef?.detonateProjectile?.projectile;
+
+            if (comp != null || detProps != null)
             {
-            	if(Rand.Chance(Mathf.Clamp01(0.75f - Mathf.Pow(HitPoints / MaxHitPoints, 2)))) comp.Explode(this, Position.ToVector3Shifted(), Map, Mathf.Pow(scale, 0.333f));
+                if (Rand.Chance(Mathf.Clamp01(0.75f - Mathf.Pow(HitPoints / MaxHitPoints, 2))))
+                {
+                    if (comp != null)
+                        comp.Explode(this, Position.ToVector3Shifted(), Map, Mathf.Pow(scale, 0.333f));
+                    else
+                        this.TryGetComp<CompFragments>()?.Throw(Position.ToVector3Shifted(), Map, this, Mathf.Pow(scale, 0.333f));
+
+                    if (detProps != null)
+                    {
+                        Log.Message(LabelCap + " has exploded, did it throw an explosion effect?");
+                        GenExplosionCE.DoExplosion(Position, Map, detProps.explosionRadius, detProps.damageDef,
+                            this, detProps.GetDamageAmount(1), detProps.GetArmorPenetration(1),
+                            detProps.soundExplode ?? detProps.damageDef.soundExplosion,
+                            null, def, null, detProps.postExplosionSpawnThingDef, detProps.postExplosionSpawnChance,
+                            detProps.postExplosionSpawnThingCount, detProps.applyDamageToExplosionCellsNeighbors,
+                            detProps.preExplosionSpawnThingDef, detProps.preExplosionSpawnChance, detProps.preExplosionSpawnThingCount,
+                            detProps.explosionChanceToStartFire, detProps.explosionDamageFalloff, null, new List<Thing>() { this }, 0f, scale);
+                    }
+                }
+
                 return true;
             }
             return false;
