@@ -50,17 +50,18 @@ namespace CombatExtended
             var secExpProps = projectileDef.GetCompProperties<CompProperties_ExplosiveCE>();
             if (secExpProps != null)
             {
-                if (secExpProps.explosionRadius > 0)
+                if (secExpProps.explosiveRadius > 0)
                 {
                     stringBuilder.AppendLine("   " + "CE_DescSecondaryExplosion".Translate() + ":");
-                    stringBuilder.AppendLine("   " + "   " + "CE_DescExplosionRadius".Translate() + ": " + secExpProps.explosionRadius.ToStringByStyle(ToStringStyle.FloatOne));
+                    stringBuilder.AppendLine("   " + "   " + "CE_DescExplosionRadius".Translate() + ": " + secExpProps.explosiveRadius.ToStringByStyle(ToStringStyle.FloatOne));
                     stringBuilder.AppendLine("   " + "   " + "CE_DescDamage".Translate() + ": " +
-                                             secExpProps.explosionDamage.ToStringByStyle(ToStringStyle.Integer) + " (" + secExpProps.explosionDamageDef.LabelCap + ")");
+                                             secExpProps.damageAmountBase.ToStringByStyle(ToStringStyle.Integer) + " (" + secExpProps.explosiveDamageType.LabelCap + ")");
                 }
+              /* Fragrange never did anything
                 if (secExpProps.fragRange > 0)
                 {
                     stringBuilder.AppendLine("   " + "CE_DescFragRange".Translate() + ": " + secExpProps.fragRange.ToStringByStyle(ToStringStyle.FloatTwo));
-                }
+                }*/
             }
 
             // CE stats

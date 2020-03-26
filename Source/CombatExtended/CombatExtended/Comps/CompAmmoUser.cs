@@ -550,11 +550,10 @@ namespace CombatExtended
         public override IEnumerable<Gizmo> CompGetGizmosExtra()
         {
             GizmoAmmoStatus ammoStatusGizmo = new GizmoAmmoStatus { compAmmo = this };
+            yield return ammoStatusGizmo;
 
             if ((Wielder != null && Wielder.Faction == Faction.OfPlayer) || (turret != null && turret.Faction == Faction.OfPlayer && (turret.MannableComp != null || UseAmmo)))
             {
-                yield return ammoStatusGizmo;
-
                 Action action = null;
                 if (Wielder != null) action = TryStartReload;
                 else if (turret?.MannableComp != null) action = turret.TryOrderReload;
@@ -583,11 +582,6 @@ namespace CombatExtended
                     tutorTag = tag
                 };
                 yield return reloadCommandGizmo;
-            }
-            else if (Prefs.DevMode)
-            {
-                ammoStatusGizmo.prefix = "DEV: ";
-                yield return ammoStatusGizmo;
             }
         }
 

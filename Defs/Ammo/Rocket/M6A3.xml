@@ -42,19 +42,7 @@
 	    <Bulk>4.19</Bulk>
     </statBases>
 	<ammoClass>RocketHEAT</ammoClass>
-    <comps>
-      <li Class="CombatExtended.CompProperties_ExplosiveCE">
-        <explosionDamage>141</explosionDamage>
-        <explosionDamageDef>Bomb</explosionDamageDef>
-        <explosionRadius>1.5</explosionRadius>
-        <fragments>
-          <Fragment_Large>1</Fragment_Large>
-          <Fragment_Small>43</Fragment_Small>
-        </fragments>
-		    <applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
-        <soundExplode>MortarBomb_Explode</soundExplode>
-      </li>
-    </comps>
+	<detonateProjectile>Bullet_M6A3_HEAT</detonateProjectile>
   </ThingDef>
   
   <ThingDef Class="CombatExtended.AmmoDef" ParentName="M6A3RocketBase">
@@ -70,16 +58,14 @@
 	    <Bulk>3.81</Bulk>
     </statBases>
 	<ammoClass>GrenadeIncendiary</ammoClass>
+	<detonateProjectile>Bullet_M6A3_Incendiary</detonateProjectile>
     <comps>
-      <li Class="CombatExtended.CompProperties_ExplosiveCE">
-        <explosionDamage>0</explosionDamage>
-        <explosionDamageDef>PrometheumFlame</explosionDamageDef>
-        <explosionRadius>9</explosionRadius>
-		    <preExplosionSpawnThingDef>FilthPrometheum</preExplosionSpawnThingDef>
-		    <preExplosionSpawnChance>0.5</preExplosionSpawnChance>
-		    <applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
-        <soundExplode>MortarBomb_Explode</soundExplode>
-      </li>
+	  <li Class="CombatExtended.CompProperties_Fragments">
+		<fragments>
+			<Fragment_Large>1</Fragment_Large>
+		  <Fragment_Small>43</Fragment_Small>
+		</fragments>
+	  </li>
     </comps>
   </ThingDef>
 	
@@ -109,17 +95,19 @@
       <armorPenetrationBlunt>42.273</armorPenetrationBlunt>
 		</projectile>
 		<comps>
-			<li Class="CombatExtended.CompProperties_ExplosiveCE">
-				<explosionDamage>141</explosionDamage>
-				<explosionDamageDef>Bomb</explosionDamageDef>
-				<explosionRadius>1.5</explosionRadius>
-				<fragments>
-          <Fragment_Large>1</Fragment_Large>
-          <Fragment_Small>43</Fragment_Small>
-				</fragments>
+		  <li Class="CombatExtended.CompProperties_ExplosiveCE">
+			<damageAmountBase>141</damageAmountBase>
+			<explosiveDamageType>Bomb</explosiveDamageType>
+			<explosiveRadius>1.5</explosiveRadius>
+			<explosionSound>MortarBomb_Explode</explosionSound>
 				<applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
-				<soundExplode>MortarBomb_Explode</soundExplode>
-			</li>
+		  </li>
+		  <li Class="CombatExtended.CompProperties_Fragments">
+			<fragments>
+				<Fragment_Large>1</Fragment_Large>
+			  <Fragment_Small>43</Fragment_Small>
+			</fragments>
+		  </li>
 		</comps>
 	</ThingDef>
 	

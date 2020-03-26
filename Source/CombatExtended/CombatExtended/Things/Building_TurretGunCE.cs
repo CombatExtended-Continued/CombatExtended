@@ -57,8 +57,10 @@ namespace CombatExtended
         private bool IsMortar => def.building.IsMortar;
         private bool IsMortarOrProjectileFliesOverhead => Projectile.projectile.flyOverhead || IsMortar;
         //Not included: CanExtractShell
-        private bool MannedByColonist => mannableComp?.ManningPawn?.Faction == Faction.OfPlayer;
-        private bool MannedByNonColonist => mannableComp?.ManningPawn?.Faction != Faction.OfPlayer;
+        private bool MannedByColonist => mannableComp != null && mannableComp.ManningPawn != null
+            && mannableComp.ManningPawn.Faction == Faction.OfPlayer;
+        private bool MannedByNonColonist => mannableComp != null && mannableComp.ManningPawn != null
+            && mannableComp.ManningPawn.Faction != Faction.OfPlayer;
 
         // New properties
         public Thing Gun
@@ -495,6 +497,9 @@ namespace CombatExtended
             {
                 foreach (Command com in CompAmmo.CompGetGizmosExtra())
                 {
+                    if (!PlayerControlled && Prefs.DevMode && com is GizmoAmmoStatus)
+                        (com as GizmoAmmoStatus).prefix = "DEV: ";
+
                     yield return com;
                 }
             }

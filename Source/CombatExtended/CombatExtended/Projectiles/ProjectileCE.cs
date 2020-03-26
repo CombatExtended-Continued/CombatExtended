@@ -833,22 +833,16 @@ namespace CombatExtended
             landed = true;
             Impact(null);
         }
-
+        
         protected virtual void Impact(Thing hitThing)
         {
-            var comp = this.TryGetComp<CompExplosiveCE>();
-            if (comp != null && ExactPosition.ToIntVec3().IsValid)
-            {
-                var explodePos = hitThing?.DrawPos ?? ExactPosition;
-                comp.Explode(launcher, explodePos, Map);
-            }
+            var ignoredThings = new List<Thing>();
 
-            //Spawn things if not an explosive but preExplosionSpawnThingDef != null
-            if (Controller.settings.EnableAmmoSystem
-                && comp == null
-                && Position.IsValid
+            //Spawn things from preExplosionSpawnThingDef != null
+            if (Position.IsValid
                 && def.projectile.preExplosionSpawnChance > 0
                 && def.projectile.preExplosionSpawnThingDef != null
+                && (Controller.settings.EnableAmmoSystem || !(def.projectile.preExplosionSpawnThingDef is AmmoDef))
                 && Rand.Value < def.projectile.preExplosionSpawnChance)
             {
                 var thingDef = def.projectile.preExplosionSpawnThingDef;
@@ -864,21 +858,64 @@ namespace CombatExtended
                     reusableAmmo.SetForbidden(true, false);
                     GenPlace.TryPlaceThing(reusableAmmo, Position, Map, ThingPlaceMode.Near);
                     LessonAutoActivator.TeachOpportunity(CE_ConceptDefOf.CE_ReusableNeolithicProjectiles, reusableAmmo, OpportunityType.GoodToKnow);
+                    ignoredThings.Add(reusableAmmo);
                 }
             }
 
-            // Opt-out for things without explosionRadius
-            if (def.projectile.explosionRadius > 0 && ExactPosition.y < SuppressionRadius)
+            var explodePos = hitThing?.DrawPos ?? ExactPosition;
+
+            if (!explodePos.ToIntVec3().IsValid)
             {
-                // Apply suppression around impact area
-                var suppressThings = GenRadial.RadialDistinctThingsAround(ExactPosition.ToIntVec3(), Map, SuppressionRadius + def.projectile.explosionRadius, true);
-                foreach (var thing in suppressThings)
-                {
-                    var pawn = thing as Pawn;
-                    if (pawn != null) ApplySuppression(pawn);
-                }
+                Destroy();
+                return;
             }
 
+            var explodingComp = this.TryGetComp<CompExplosiveCE>();
+
+            if (explodingComp == null)
+                this.TryGetComp<CompFragments>()?.Throw(explodePos, Map, launcher);
+
+            //If the comp exists, it'll already call CompFragments
+            if (explodingComp != null || def.projectile.explosionRadius > 0)
+            {
+                //Handle anything explosive
+
+                if (hitThing is Pawn && (hitThing as Pawn).Dead)
+                    ignoredThings.Add((hitThing as Pawn).Corpse);
+
+                var suppressThings = new List<Pawn>();
+                var dir = new float?(origin.AngleTo(Vec2Position()));
+
+                // Opt-out for things without explosionRadius
+                if (def.projectile.explosionRadius > 0)
+                {
+                    GenExplosionCE.DoExplosion(explodePos.ToIntVec3(), Map, def.projectile.explosionRadius,
+                        def.projectile.damageDef, launcher, def.projectile.GetDamageAmount(1), def.projectile.GetDamageAmount(1) * 0.1f,
+                        def.projectile.soundExplode ?? def.projectile.damageDef.soundExplosion, equipmentDef,
+                        def, null, def.projectile.postExplosionSpawnThingDef, def.projectile.postExplosionSpawnChance, def.projectile.postExplosionSpawnThingCount,
+                        def.projectile.applyDamageToExplosionCellsNeighbors, def.projectile.preExplosionSpawnThingDef, def.projectile.preExplosionSpawnChance,
+                        def.projectile.preExplosionSpawnThingCount, def.projectile.explosionChanceToStartFire, def.projectile.explosionDamageFalloff,
+                        dir, ignoredThings, explodePos.y);
+
+                    // Apply suppression around impact area
+                    if (explodePos.y < SuppressionRadius)
+                        suppressThings.AddRange(GenRadial.RadialDistinctThingsAround(explodePos.ToIntVec3(), Map, SuppressionRadius + def.projectile.explosionRadius, true)
+                            .Where(x => x is Pawn).Select(x => x as Pawn));
+                }
+
+                if (explodingComp != null)
+                {
+                    explodingComp.Explode(this, explodePos, Map, 1f, dir, ignoredThings);
+
+                    if (explodePos.y < SuppressionRadius)
+                        suppressThings.AddRange(GenRadial.RadialDistinctThingsAround(explodePos.ToIntVec3(), Map, SuppressionRadius + (explodingComp.props as CompProperties_ExplosiveCE).explosiveRadius, true)
+                        .Where(x => x is Pawn).Select(x => x as Pawn));
+                }
+
+                foreach (var thing in suppressThings)
+                    ApplySuppression(thing as Pawn);
+            }
+            
             Destroy();
         }
         #endregion
