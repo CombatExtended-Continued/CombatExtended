@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+	<Operation Class="PatchOperationSequence">
+		<success>Always</success>
+		<operations>
+
+			<li Class="CombatExtended.PatchOperationFindMod">
+				<modName>[CP] Spec Ops: The Line</modName>
+			</li>
+
+			<!-- ========== Shemagh scarf (Walker) & Shemagh mask (Walker) ========== -->
+
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[
+					defName="RHApparel_Shemagh_Scarf_Delta" or 
+					defName="RHApparel_Shemagh_Mask_Delta"
+				]/statBases/StuffEffectMultiplierArmor</xpath>
+				<value>
+					<!-- Equivalent to vanilla pants, T-shirt and button-down shirt -->
+					<StuffEffectMultiplierArmor>1</StuffEffectMultiplierArmor>
+				</value>
+			</li>
+
+			<!-- ========== Baseball Cap Backwards (Delta), Baseball Cap (Lugo), Boonie Hat A-TACS AU (Delta) ========== -->
+
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[
+					defName="RHApparel_BackwardsCap_ATACSAU_Delta" or
+					defName="RHApparel_LugoCap" or
+					defName="RHApparel_ATACSAUBoonie_Delta"
+				]/statBases</xpath>
+				<value>
+					<Bulk>1</Bulk>
+					<WornBulk>1</WornBulk>
+				</value>
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[
+					defName="RHApparel_BackwardsCap_ATACSAU_Delta" or
+					defName="RHApparel_LugoCap" or
+					defName="RHApparel_ATACSAUBoonie_Delta"
+				]/statBases/StuffEffectMultiplierArmor</xpath>
+				<value>
+					<!-- Equivalent to vanilla fabric hats -->
+					<StuffEffectMultiplierArmor>2</StuffEffectMultiplierArmor>
+				</value>
+			</li>
+
+		</operations>
+	</Operation>
+</Patch>

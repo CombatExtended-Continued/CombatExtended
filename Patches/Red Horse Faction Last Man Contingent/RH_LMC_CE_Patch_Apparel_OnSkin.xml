@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+	<Operation Class="PatchOperationSequence">
+		<success>Always</success>
+		<operations>
+
+			<li Class="CombatExtended.PatchOperationFindMod">
+				<modName>[RH] Faction: Last Man Contingent</modName>
+			</li>
+
+			<!-- ========== Combat Softshell (LMCT) ========== -->
+
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName="RNApparel_combats_Softshell_LMCT"]/statBases</xpath>
+				<value>
+					<Bulk>8</Bulk>
+					<WornBulk>3</WornBulk>
+					<ArmorRating_Sharp>0.05</ArmorRating_Sharp>
+					<ArmorRating_Blunt>0.075</ArmorRating_Blunt>
+				</value>
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="RNApparel_combats_Softshell_LMCT"]/statBases/StuffEffectMultiplierArmor</xpath>
+				<value>
+					<!-- Slightly tougher than vanilla pants, T-shirt and button-down shirt -->
+					<StuffEffectMultiplierArmor>2</StuffEffectMultiplierArmor>
+				</value>
+			</li>
+
+			<!-- ========== Polo Shirts with Trousers ========== -->
+
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[
+					defName="RNApparel_Polo_LMCT" or
+					defName="RNApparel_Polo_LMM"
+					]/statBases</xpath>
+				<value>
+					<Bulk>6</Bulk>
+					<WornBulk>3</WornBulk>
+					<ArmorRating_Sharp>0.05</ArmorRating_Sharp>
+					<ArmorRating_Blunt>0.075</ArmorRating_Blunt>
+				</value>
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[
+					defName="RNApparel_Polo_LMCT" or
+					defName="RNApparel_Polo_LMM"
+					]/statBases/StuffEffectMultiplierArmor</xpath>
+				<value>
+					<!-- Equivalent to vanilla pants, T-shirt and button-down shirt -->
+					<StuffEffectMultiplierArmor>1</StuffEffectMultiplierArmor>
+				</value>
+			</li>
+
+			<!-- ========== Skimpy Dress ========== -->
+
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName="RNApparel_SkimpyDress"]/statBases</xpath>
+				<value>
+					<Bulk>4</Bulk>
+					<WornBulk>4</WornBulk>
+					<ArmorRating_Sharp>0.05</ArmorRating_Sharp>
+					<ArmorRating_Blunt>0.075</ArmorRating_Blunt>
+				</value>
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="RNApparel_SkimpyDress"]/statBases/StuffEffectMultiplierArmor</xpath>
+				<value>
+					<!-- Equivalent to vanilla pants, T-shirt and button-down shirt -->
+					<StuffEffectMultiplierArmor>1</StuffEffectMultiplierArmor>
+				</value>
+			</li>
+
+		</operations>
+	</Operation>
+</Patch>

@@ -1,0 +1,955 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Patch>
+	<Operation Class="PatchOperationSequence">
+		<success>Always</success>
+		<operations>
+
+			<li Class="CombatExtended.PatchOperationFindMod">
+				<modName>[Pratt] WWII Weapons Pack (Vanilla)</modName>
+			</li>
+
+			<!-- Core patches already cover the BaseGrenadeProjectile abstract class -->
+
+			<!-- ========== Common ========== -->
+
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[
+				defName="Weapon_MkIIGrenadeGNDE" or
+				defName="Weapon_Stielhandgranate24gnde" or
+				defName="Weapon_Type97GNDE" or
+				defName="Weapon_RGD-33GNDE" or
+				defName="Weapon_F1GrenadeGNDE" or
+				defName="Weapon_MillsGrenadeGNDE"
+				]</xpath>
+				<value>
+					<thingClass>CombatExtended.AmmoThing</thingClass>
+					<stackLimit>75</stackLimit>
+					<resourceReadoutPriority>First</resourceReadoutPriority>
+				</value>
+			</li>
+
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[
+				defName="Weapon_MkIIGrenadeGNDE" or
+				defName="Weapon_Stielhandgranate24gnde" or
+				defName="Weapon_Type97GNDE" or
+				defName="Weapon_RGD-33GNDE" or
+				defName="Weapon_F1GrenadeGNDE" or
+				defName="Weapon_MillsGrenadeGNDE"
+				]/graphicData</xpath>
+				<value>
+					<onGroundRandomRotateAngle>0</onGroundRandomRotateAngle>
+				</value>
+			</li>
+
+			<li Class="PatchOperationAttributeSet">
+				<xpath>Defs/ThingDef[
+				defName="Weapon_MkIIGrenadeGNDE" or
+				defName="Weapon_Stielhandgranate24gnde" or
+				defName="Weapon_Type97GNDE" or
+				defName="Weapon_RGD-33GNDE" or
+				defName="Weapon_F1GrenadeGNDE" or
+				defName="Weapon_MillsGrenadeGNDE"
+				]</xpath>
+				<attribute>Class</attribute>
+				<value>CombatExtended.AmmoDef</value>
+			</li>
+
+			<li Class="PatchOperationSequence">
+				<success>Always</success>
+				<operations>
+					<li Class="PatchOperationTest">
+						<xpath>Defs/ThingDef[
+						defName="Weapon_MkIIGrenadeGNDE" or
+						defName="Weapon_Stielhandgranate24gnde" or
+						defName="Weapon_Type97GNDE" or
+						defName="Weapon_RGD-33GNDE" or
+						defName="Weapon_F1GrenadeGNDE" or
+						defName="Weapon_MillsGrenadeGNDE"
+						]/comps</xpath>
+						<success>Invert</success>
+					</li>
+					<li Class="PatchOperationAdd">
+						<xpath>Defs/ThingDef[
+						defName="Weapon_MkIIGrenadeGNDE" or
+						defName="Weapon_Stielhandgranate24gnde" or
+						defName="Weapon_Type97GNDE" or
+						defName="Weapon_RGD-33GNDE" or
+						defName="Weapon_F1GrenadeGNDE" or
+						defName="Weapon_MillsGrenadeGNDE"
+						]</xpath>
+						<value>
+							<comps />
+						</value>
+					</li>
+				</operations>
+			</li>
+
+			<!-- Remove original recipe maker -->
+
+			<li Class="PatchOperationAttributeSet">
+				<xpath>Defs/ThingDef[
+				defName="Weapon_MkIIGrenadeGNDE" or
+				defName="Weapon_Stielhandgranate24gnde" or
+				defName="Weapon_Type97GNDE" or
+				defName="Weapon_RGD-33GNDE" or
+				defName="Weapon_F1GrenadeGNDE" or
+				defName="Weapon_MillsGrenadeGNDE"
+				]</xpath>
+				<attribute>ParentName</attribute>
+				<value>BaseWeapon</value>
+			</li>
+
+			<li Class="PatchOperationRemove">
+				<xpath>Defs/ThingDef[
+				defName="Weapon_MkIIGrenadeGNDE" or
+				defName="Weapon_Stielhandgranate24gnde" or
+				defName="Weapon_Type97GNDE" or
+				defName="Weapon_RGD-33GNDE" or
+				defName="Weapon_F1GrenadeGNDE" or
+				defName="Weapon_MillsGrenadeGNDE"
+				]/costList</xpath>
+			</li>
+
+			<!-- Remove original recipe maker (END) -->
+
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[
+				defName="Proj_MkIIGrenadeGNDE" or
+				defName="Proj_Stielhandgranate24gnde" or
+				defName="Proj_Type97GNDE" or
+				defName="Proj_RGD-33GNDE" or
+				defName="Proj_F1GrenadeGNDE" or
+				defName="Proj_MillsGrenadeGNDE"
+				]/thingClass</xpath>
+				<value>
+					<thingClass>CombatExtended.ProjectileCE_Explosive</thingClass>
+				</value>
+			</li>
+
+			<li Class="PatchOperationSequence">
+				<success>Always</success>
+				<operations>
+					<li Class="PatchOperationTest">
+						<xpath>Defs/ThingDef[
+						defName="Proj_MkIIGrenadeGNDE" or
+						defName="Proj_Stielhandgranate24gnde" or
+						defName="Proj_Type97GNDE" or
+						defName="Proj_RGD-33GNDE" or
+						defName="Proj_F1GrenadeGNDE" or
+						defName="Proj_MillsGrenadeGNDE"
+						]/comps</xpath>
+						<success>Invert</success>
+					</li>
+					<li Class="PatchOperationAdd">
+						<xpath>Defs/ThingDef[
+						defName="Proj_MkIIGrenadeGNDE" or
+						defName="Proj_Stielhandgranate24gnde" or
+						defName="Proj_Type97GNDE" or
+						defName="Proj_RGD-33GNDE" or
+						defName="Proj_F1GrenadeGNDE" or
+						defName="Proj_MillsGrenadeGNDE"
+						]</xpath>
+						<value>
+							<comps />
+						</value>
+					</li>
+				</operations>
+			</li>
+
+			<!-- ========== (US) MkII Grenade ========== -->
+
+			<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+				<defName>Weapon_MkIIGrenadeGNDE</defName>
+				<statBases>
+					<Mass>0.595</Mass>
+					<Bulk>0.91</Bulk>
+					<MarketValue>10.95</MarketValue>
+					<RangedWeapon_Cooldown>1</RangedWeapon_Cooldown>
+					<SightsEfficiency>0.45</SightsEfficiency>
+				</statBases>
+				<Properties>
+					<label>throw frag grenade</label>
+					<verbClass>CombatExtended.Verb_ShootCEOneUse</verbClass>
+					<hasStandardCommand>true</hasStandardCommand>
+					<range>10.0</range>
+					<minRange>4</minRange>
+					<warmupTime>0.8</warmupTime>
+					<noiseRadius>4</noiseRadius>
+					<ai_IsBuildingDestroyer>true</ai_IsBuildingDestroyer>
+					<soundCast>ThrowGrenade</soundCast>
+					<targetParams>
+						<canTargetLocations>true</canTargetLocations>
+					</targetParams>
+					<defaultProjectile>Proj_MkIIGrenadeGNDE</defaultProjectile>
+					<onlyManualCast>true</onlyManualCast>
+					<ignorePartialLoSBlocker>true</ignorePartialLoSBlocker>
+				</Properties>
+				<weaponTags>
+					<li>CE_AI_Grenade</li>
+					<li>CE_OneHandedWeapon</li>
+				</weaponTags>
+			</li>
+
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName="Weapon_MkIIGrenadeGNDE"]/comps</xpath>
+				<value>
+				  <li Class="CombatExtended.CompProperties_ExplosiveCE">
+					<damageAmountBase>22</damageAmountBase>
+					<explosiveDamageType>Bomb</explosiveDamageType>
+					<explosiveRadius>1</explosiveRadius>
+				  </li>
+				</value>
+			</li>
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName="Weapon_MkIIGrenadeGNDE"]/comps</xpath>
+				<value>
+				  <li Class="CombatExtended.CompProperties_Fragments">
+					<fragments>
+						<Fragment_Small>60</Fragment_Small>
+					</fragments>
+				  </li>
+				</value>
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="Proj_MkIIGrenadeGNDE"]/projectile</xpath>
+				<value>
+					<projectile Class="CombatExtended.ProjectilePropertiesCE">
+						<explosionRadius>1</explosionRadius>
+						<damageDef>Bomb</damageDef>
+						<damageAmountBase>22</damageAmountBase>
+						<explosionDelay>60</explosionDelay>
+						<dropsCasings>true</dropsCasings>
+						<casingMoteDefname>Mote_GrenadePin</casingMoteDefname>
+						<applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
+						<speed>5</speed>
+					</projectile>
+				</value>
+			</li>
+
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName="Proj_MkIIGrenadeGNDE"]/comps</xpath>
+				<value>
+					<li Class="CombatExtended.CompProperties_Fragments">
+						<fragments>
+							<Fragment_Small>60</Fragment_Small>
+						</fragments>
+					</li>
+				</value>
+			</li>
+
+			<li Class="PatchOperationAdd">
+				<xpath>Defs</xpath>
+				<value>
+					<RecipeDef ParentName="GrenadeRecipeBase">
+						<defName>MakeMkIIGrenadeGNDE</defName>
+						<label>make MkII grenades x10</label>
+						<description>Craft 10 MkII grenades.</description>
+						<jobString>Making MkII grenades.</jobString>
+						<workAmount>3200</workAmount>
+						<ingredients>
+							<li>
+								<filter>
+									<thingDefs>
+										<li>Steel</li>
+									</thingDefs>
+								</filter>
+								<count>12</count>
+							</li>
+							<li>
+								<filter>
+									<thingDefs>
+										<li>FSX</li>
+									</thingDefs>
+								</filter>
+								<count>2</count>
+							</li>
+							<li>
+								<filter>
+									<thingDefs>
+										<li>ComponentIndustrial</li>
+									</thingDefs>
+								</filter>
+								<count>2</count>
+							</li>
+						</ingredients>
+						<fixedIngredientFilter>
+							<thingDefs>
+								<li>Steel</li>
+								<li>FSX</li>
+								<li>ComponentIndustrial</li>
+							</thingDefs>
+						</fixedIngredientFilter>
+						<products>
+							<Weapon_MkIIGrenadeGNDE>10</Weapon_MkIIGrenadeGNDE>
+						</products>
+					</RecipeDef>
+				</value>
+			</li>
+
+			<!-- ========== (GER) Stielhandgranate 24 ========== -->
+
+			<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+				<defName>Weapon_Stielhandgranate24gnde</defName>
+				<statBases>
+					<Mass>0.595</Mass>
+					<Bulk>4.22</Bulk>
+					<MarketValue>13.41</MarketValue>
+					<RangedWeapon_Cooldown>1</RangedWeapon_Cooldown>
+					<SightsEfficiency>0.45</SightsEfficiency>
+				</statBases>
+				<Properties>
+					<label>throw frag grenade</label>
+					<verbClass>CombatExtended.Verb_ShootCEOneUse</verbClass>
+					<hasStandardCommand>true</hasStandardCommand>
+					<range>10.0</range>
+					<minRange>4</minRange>
+					<warmupTime>0.8</warmupTime>
+					<noiseRadius>4</noiseRadius>
+					<ai_IsBuildingDestroyer>true</ai_IsBuildingDestroyer>
+					<soundCast>ThrowGrenade</soundCast>
+					<targetParams>
+						<canTargetLocations>true</canTargetLocations>
+					</targetParams>
+					<defaultProjectile>Proj_Stielhandgranate24gnde</defaultProjectile>
+					<onlyManualCast>true</onlyManualCast>
+					<ignorePartialLoSBlocker>true</ignorePartialLoSBlocker>
+				</Properties>
+				<weaponTags>
+					<li>CE_AI_Grenade</li>
+					<li>CE_OneHandedWeapon</li>
+				</weaponTags>
+			</li>
+
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName="Weapon_Stielhandgranate24gnde"]/comps</xpath>
+				<value>
+				  <li Class="CombatExtended.CompProperties_ExplosiveCE">
+					<damageAmountBase>45</damageAmountBase>
+					<explosiveDamageType>Bomb</explosiveDamageType>
+					<explosiveRadius>1.5</explosiveRadius>
+				  </li>
+				  <li Class="CombatExtended.CompProperties_Fragments">
+					<fragments>
+						<Fragment_Large>1</Fragment_Large>
+						<Fragment_Small>13</Fragment_Small>
+					</fragments>
+				  </li>
+				</value>
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="Proj_Stielhandgranate24gnde"]/projectile</xpath>
+				<value>
+					<projectile Class="CombatExtended.ProjectilePropertiesCE">
+						<explosionRadius>1.5</explosionRadius>
+						<damageDef>Bomb</damageDef>
+						<damageAmountBase>45</damageAmountBase>
+						<explosionDelay>60</explosionDelay>
+						<dropsCasings>true</dropsCasings>
+						<casingMoteDefname>Mote_GrenadePin</casingMoteDefname>
+						<applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
+						<speed>5</speed>
+					</projectile>
+				</value>
+			</li>
+
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName="Proj_Stielhandgranate24gnde"]/comps</xpath>
+				<value>
+					<li Class="CombatExtended.CompProperties_Fragments">
+						<fragments>
+							<Fragment_Large>1</Fragment_Large>
+							<Fragment_Small>13</Fragment_Small>
+						</fragments>
+					</li>
+				</value>
+			</li>
+
+			<li Class="PatchOperationAdd">
+				<xpath>Defs</xpath>
+				<value>
+					<!-- Note: Costs were hand-balanced to account for the wooden handle -->
+					<RecipeDef ParentName="GrenadeRecipeBase">
+						<defName>MakeStielhandgranate24gnde</defName>
+						<label>make Stielhandgranate 24 grenades x10</label>
+						<description>Craft 10 Stielhandgranate 24 grenades.</description>
+						<jobString>Making Stielhandgranate 24 grenades.</jobString>
+						<workAmount>4200</workAmount>
+						<ingredients>
+							<li>
+								<filter>
+									<thingDefs>
+										<li>WoodLog</li>
+									</thingDefs>
+								</filter>
+								<count>4</count>
+							</li>
+							<li>
+								<filter>
+									<thingDefs>
+										<li>Steel</li>
+									</thingDefs>
+								</filter>
+								<count>3</count>
+							</li>
+							<li>
+								<filter>
+									<thingDefs>
+										<li>FSX</li>
+									</thingDefs>
+								</filter>
+								<count>4</count>
+							</li>
+							<li>
+								<filter>
+									<thingDefs>
+										<li>ComponentIndustrial</li>
+									</thingDefs>
+								</filter>
+								<count>2</count>
+							</li>
+						</ingredients>
+						<fixedIngredientFilter>
+							<thingDefs>
+								<li>WoodLog</li>
+								<li>Steel</li>
+								<li>FSX</li>
+								<li>ComponentIndustrial</li>
+							</thingDefs>
+						</fixedIngredientFilter>
+						<products>
+							<Weapon_Stielhandgranate24gnde>10</Weapon_Stielhandgranate24gnde>
+						</products>
+					</RecipeDef>
+				</value>
+			</li>
+
+			<!-- ========== (JPN) Type 97 Grenade ========== -->
+
+			<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+				<defName>Weapon_Type97GNDE</defName>
+				<statBases>
+					<Mass>0.45</Mass>
+					<Bulk>0.57</Bulk>
+					<MarketValue>10.55</MarketValue>
+					<RangedWeapon_Cooldown>1</RangedWeapon_Cooldown>
+					<SightsEfficiency>0.45</SightsEfficiency>
+				</statBases>
+				<Properties>
+					<label>throw frag grenade</label>
+					<verbClass>CombatExtended.Verb_ShootCEOneUse</verbClass>
+					<hasStandardCommand>true</hasStandardCommand>
+					<range>10.0</range>
+					<minRange>4</minRange>
+					<warmupTime>0.8</warmupTime>
+					<noiseRadius>4</noiseRadius>
+					<ai_IsBuildingDestroyer>true</ai_IsBuildingDestroyer>
+					<soundCast>ThrowGrenade</soundCast>
+					<targetParams>
+						<canTargetLocations>true</canTargetLocations>
+					</targetParams>
+					<defaultProjectile>Proj_Type97GNDE</defaultProjectile>
+					<onlyManualCast>true</onlyManualCast>
+					<ignorePartialLoSBlocker>true</ignorePartialLoSBlocker>
+				</Properties>
+				<weaponTags>
+					<li>CE_AI_Grenade</li>
+					<li>CE_OneHandedWeapon</li>
+				</weaponTags>
+			</li>
+
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName="Weapon_Type97GNDE"]/comps</xpath>
+				<value>
+				  <li Class="CombatExtended.CompProperties_ExplosiveCE">
+					<damageAmountBase>26</damageAmountBase>
+					<explosiveDamageType>Bomb</explosiveDamageType>
+					<explosiveRadius>1</explosiveRadius>
+				  </li>
+				</value>
+			</li>
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName="Weapon_Type97GNDE"]/comps</xpath>
+				<value>
+				  <li Class="CombatExtended.CompProperties_Fragments">
+					<fragments>
+						<Fragment_Small>45</Fragment_Small>
+					</fragments>
+				  </li>
+				</value>
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="Proj_Type97GNDE"]/projectile</xpath>
+				<value>
+					<projectile Class="CombatExtended.ProjectilePropertiesCE">
+						<explosionRadius>1</explosionRadius>
+						<damageDef>Bomb</damageDef>
+						<damageAmountBase>26</damageAmountBase>
+						<explosionDelay>60</explosionDelay>
+						<dropsCasings>true</dropsCasings>
+						<casingMoteDefname>Mote_GrenadePin</casingMoteDefname>
+						<applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
+						<speed>5</speed>
+					</projectile>
+				</value>
+			</li>
+
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName="Proj_Type97GNDE"]/comps</xpath>
+				<value>
+					<li Class="CombatExtended.CompProperties_Fragments">
+						<fragments>
+							<Fragment_Small>45</Fragment_Small>
+						</fragments>
+					</li>
+				</value>
+			</li>
+
+			<li Class="PatchOperationAdd">
+				<xpath>Defs</xpath>
+				<value>
+					<RecipeDef ParentName="GrenadeRecipeBase">
+						<defName>MakeType97GNDE</defName>
+						<label>make Type 97 grenades x10</label>
+						<description>Craft 10 Type 97 grenades.</description>
+						<jobString>Making Type 97 grenades.</jobString>
+						<workAmount>3000</workAmount>
+						<ingredients>
+							<li>
+								<filter>
+									<thingDefs>
+										<li>Steel</li>
+									</thingDefs>
+								</filter>
+								<count>10</count>
+							</li>
+							<li>
+								<filter>
+									<thingDefs>
+										<li>FSX</li>
+									</thingDefs>
+								</filter>
+								<count>2</count>
+							</li>
+							<li>
+								<filter>
+									<thingDefs>
+										<li>ComponentIndustrial</li>
+									</thingDefs>
+								</filter>
+								<count>2</count>
+							</li>
+						</ingredients>
+						<fixedIngredientFilter>
+							<thingDefs>
+								<li>Steel</li>
+								<li>FSX</li>
+								<li>ComponentIndustrial</li>
+							</thingDefs>
+						</fixedIngredientFilter>
+						<products>
+							<Weapon_Type97GNDE>10</Weapon_Type97GNDE>
+						</products>
+					</RecipeDef>
+				</value>
+			</li>
+
+			<!-- ========== (USSR) RGD-33 ========== -->
+
+			<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+				<defName>Weapon_RGD-33GNDE</defName>
+				<statBases>
+					<Mass>0.75</Mass>
+					<Bulk>1.31</Bulk>
+					<MarketValue>11.74</MarketValue>
+					<RangedWeapon_Cooldown>1</RangedWeapon_Cooldown>
+					<SightsEfficiency>0.45</SightsEfficiency>
+				</statBases>
+				<Properties>
+					<label>throw frag grenade</label>
+					<verbClass>CombatExtended.Verb_ShootCEOneUse</verbClass>
+					<hasStandardCommand>true</hasStandardCommand>
+					<range>10.0</range>
+					<minRange>4</minRange>
+					<warmupTime>0.8</warmupTime>
+					<noiseRadius>4</noiseRadius>
+					<ai_IsBuildingDestroyer>true</ai_IsBuildingDestroyer>
+					<soundCast>ThrowGrenade</soundCast>
+					<targetParams>
+						<canTargetLocations>true</canTargetLocations>
+					</targetParams>
+					<defaultProjectile>Proj_RGD-33GNDE</defaultProjectile>
+					<onlyManualCast>true</onlyManualCast>
+					<ignorePartialLoSBlocker>true</ignorePartialLoSBlocker>
+				</Properties>
+				<weaponTags>
+					<li>CE_AI_Grenade</li>
+					<li>CE_OneHandedWeapon</li>
+				</weaponTags>
+			</li>
+
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName="Weapon_RGD-33GNDE"]/comps</xpath>
+				<value>
+				  <li Class="CombatExtended.CompProperties_ExplosiveCE">
+					<damageAmountBase>30</damageAmountBase>
+					<explosiveDamageType>Bomb</explosiveDamageType>
+					<explosiveRadius>1</explosiveRadius>
+				  </li>
+				</value>
+			</li>
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName="Weapon_RGD-33GNDE"]/comps</xpath>
+				<value>
+				  <li Class="CombatExtended.CompProperties_Fragments">
+					<fragments>
+						<Fragment_Small>9</Fragment_Small>
+					</fragments>
+				  </li>
+				</value>
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="Proj_RGD-33GNDE"]/projectile</xpath>
+				<value>
+					<projectile Class="CombatExtended.ProjectilePropertiesCE">
+						<explosionRadius>1</explosionRadius>
+						<damageDef>Bomb</damageDef>
+						<damageAmountBase>30</damageAmountBase>
+						<explosionDelay>60</explosionDelay>
+						<dropsCasings>true</dropsCasings>
+						<casingMoteDefname>Mote_GrenadePin</casingMoteDefname>
+						<applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
+						<speed>5</speed>
+					</projectile>
+				</value>
+			</li>
+
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName="Proj_RGD-33GNDE"]/comps</xpath>
+				<value>
+					<li Class="CombatExtended.CompProperties_Fragments">
+						<fragments>
+							<Fragment_Small>9</Fragment_Small>
+						</fragments>
+					</li>
+				</value>
+			</li>
+
+			<li Class="PatchOperationAdd">
+				<xpath>Defs</xpath>
+				<value>
+					<RecipeDef ParentName="GrenadeRecipeBase">
+						<defName>MakeRGD-33GNDE</defName>
+						<label>make RGD-33 grenades x10</label>
+						<description>Craft 10 RGD-33 grenades.</description>
+						<jobString>Making RGD-33 grenades.</jobString>
+						<workAmount>3600</workAmount>
+						<ingredients>
+							<li>
+								<filter>
+									<thingDefs>
+										<li>Steel</li>
+									</thingDefs>
+								</filter>
+								<count>16</count>
+							</li>
+							<li>
+								<filter>
+									<thingDefs>
+										<li>FSX</li>
+									</thingDefs>
+								</filter>
+								<count>2</count>
+							</li>
+							<li>
+								<filter>
+									<thingDefs>
+										<li>ComponentIndustrial</li>
+									</thingDefs>
+								</filter>
+								<count>2</count>
+							</li>
+						</ingredients>
+						<fixedIngredientFilter>
+							<thingDefs>
+								<li>Steel</li>
+								<li>FSX</li>
+								<li>ComponentIndustrial</li>
+							</thingDefs>
+						</fixedIngredientFilter>
+						<products>
+							<Weapon_RGD-33GNDE>10</Weapon_RGD-33GNDE>
+						</products>
+					</RecipeDef>
+				</value>
+			</li>
+
+			<!-- ========== (FR) Grenade F1 ========== -->
+
+			<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+				<defName>Weapon_F1GrenadeGNDE</defName>
+				<statBases>
+					<Mass>0.55</Mass>
+					<Bulk>0.65</Bulk>
+					<MarketValue>10.95</MarketValue>
+					<RangedWeapon_Cooldown>1</RangedWeapon_Cooldown>
+					<SightsEfficiency>0.45</SightsEfficiency>
+				</statBases>
+				<Properties>
+					<label>throw frag grenade</label>
+					<verbClass>CombatExtended.Verb_ShootCEOneUse</verbClass>
+					<hasStandardCommand>true</hasStandardCommand>
+					<range>10.0</range>
+					<minRange>4</minRange>
+					<warmupTime>0.8</warmupTime>
+					<noiseRadius>4</noiseRadius>
+					<ai_IsBuildingDestroyer>true</ai_IsBuildingDestroyer>
+					<soundCast>ThrowGrenade</soundCast>
+					<targetParams>
+						<canTargetLocations>true</canTargetLocations>
+					</targetParams>
+					<defaultProjectile>Proj_F1GrenadeGNDE</defaultProjectile>
+					<onlyManualCast>true</onlyManualCast>
+					<ignorePartialLoSBlocker>true</ignorePartialLoSBlocker>
+				</Properties>
+				<weaponTags>
+					<li>CE_AI_Grenade</li>
+					<li>CE_OneHandedWeapon</li>
+				</weaponTags>
+			</li>
+
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName="Weapon_F1GrenadeGNDE"]/comps</xpath>
+				<value>
+				  <li Class="CombatExtended.CompProperties_ExplosiveCE">
+					<damageAmountBase>24</damageAmountBase>
+					<explosiveDamageType>Bomb</explosiveDamageType>
+					<explosiveRadius>1</explosiveRadius>
+				  </li>
+				</value>
+			</li>
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName="Weapon_F1GrenadeGNDE"]/comps</xpath>
+				<value>
+				  <li Class="CombatExtended.CompProperties_Fragments">
+					<fragments>
+						<Fragment_Small>55</Fragment_Small>
+					</fragments>
+				  </li>
+				</value>
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="Proj_F1GrenadeGNDE"]/projectile</xpath>
+				<value>
+					<projectile Class="CombatExtended.ProjectilePropertiesCE">
+						<explosionRadius>1</explosionRadius>
+						<damageDef>Bomb</damageDef>
+						<damageAmountBase>24</damageAmountBase>
+						<explosionDelay>60</explosionDelay>
+						<dropsCasings>true</dropsCasings>
+						<casingMoteDefname>Mote_GrenadePin</casingMoteDefname>
+						<applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
+						<speed>5</speed>
+					</projectile>
+				</value>
+			</li>
+
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName="Proj_F1GrenadeGNDE"]/comps</xpath>
+				<value>
+					<li Class="CombatExtended.CompProperties_Fragments">
+						<fragments>
+							<Fragment_Small>55</Fragment_Small>
+						</fragments>
+					</li>
+				</value>
+			</li>
+
+			<li Class="PatchOperationAdd">
+				<xpath>Defs</xpath>
+				<value>
+					<RecipeDef ParentName="GrenadeRecipeBase">
+						<defName>MakeF1GrenadeGNDE</defName>
+						<label>make F1 grenades x10</label>
+						<description>Craft 10 F1 grenades.</description>
+						<jobString>Making F1 grenades.</jobString>
+						<workAmount>3200</workAmount>
+						<ingredients>
+							<li>
+								<filter>
+									<thingDefs>
+										<li>Steel</li>
+									</thingDefs>
+								</filter>
+								<count>12</count>
+							</li>
+							<li>
+								<filter>
+									<thingDefs>
+										<li>FSX</li>
+									</thingDefs>
+								</filter>
+								<count>2</count>
+							</li>
+							<li>
+								<filter>
+									<thingDefs>
+										<li>ComponentIndustrial</li>
+									</thingDefs>
+								</filter>
+								<count>2</count>
+							</li>
+						</ingredients>
+						<fixedIngredientFilter>
+							<thingDefs>
+								<li>Steel</li>
+								<li>FSX</li>
+								<li>ComponentIndustrial</li>
+							</thingDefs>
+						</fixedIngredientFilter>
+						<products>
+							<Weapon_F1GrenadeGNDE>10</Weapon_F1GrenadeGNDE>
+						</products>
+					</RecipeDef>
+				</value>
+			</li>
+
+			<!-- ========== (UK) Mills Grenade ========== -->
+
+			<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+				<defName>Weapon_MillsGrenadeGNDE</defName>
+				<statBases>
+					<Mass>0.765</Mass>
+					<Bulk>0.84</Bulk>
+					<MarketValue>11.74</MarketValue>
+					<RangedWeapon_Cooldown>1</RangedWeapon_Cooldown>
+					<SightsEfficiency>0.45</SightsEfficiency>
+				</statBases>
+				<Properties>
+					<label>throw frag grenade</label>
+					<verbClass>CombatExtended.Verb_ShootCEOneUse</verbClass>
+					<hasStandardCommand>true</hasStandardCommand>
+					<range>10.0</range>
+					<minRange>4</minRange>
+					<warmupTime>0.8</warmupTime>
+					<noiseRadius>4</noiseRadius>
+					<ai_IsBuildingDestroyer>true</ai_IsBuildingDestroyer>
+					<soundCast>ThrowGrenade</soundCast>
+					<targetParams>
+						<canTargetLocations>true</canTargetLocations>
+					</targetParams>
+					<defaultProjectile>Proj_MillsGrenadeGNDE</defaultProjectile>
+					<onlyManualCast>true</onlyManualCast>
+					<ignorePartialLoSBlocker>true</ignorePartialLoSBlocker>
+				</Properties>
+				<weaponTags>
+					<li>CE_AI_Grenade</li>
+					<li>CE_OneHandedWeapon</li>
+				</weaponTags>
+			</li>
+
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName="Weapon_MillsGrenadeGNDE"]/comps</xpath>
+				<value>
+				  <li Class="CombatExtended.CompProperties_ExplosiveCE">
+					<damageAmountBase>27</damageAmountBase>
+					<explosiveDamageType>Bomb</explosiveDamageType>
+					<explosiveRadius>1</explosiveRadius>
+				  </li>
+				</value>
+			</li>
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName="Weapon_MillsGrenadeGNDE"]/comps</xpath>
+				<value>
+				  <li Class="CombatExtended.CompProperties_Fragments">
+					<fragments>
+						<Fragment_Small>77</Fragment_Small>
+					</fragments>
+				  </li>
+				</value>
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="Proj_MillsGrenadeGNDE"]/projectile</xpath>
+				<value>
+					<projectile Class="CombatExtended.ProjectilePropertiesCE">
+						<explosionRadius>1</explosionRadius>
+						<damageDef>Bomb</damageDef>
+						<damageAmountBase>27</damageAmountBase>
+						<explosionDelay>60</explosionDelay>
+						<dropsCasings>true</dropsCasings>
+						<casingMoteDefname>Mote_GrenadePin</casingMoteDefname>
+						<applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
+						<speed>5</speed>
+					</projectile>
+				</value>
+			</li>
+
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName="Proj_MillsGrenadeGNDE"]/comps</xpath>
+				<value>
+					<li Class="CombatExtended.CompProperties_Fragments">
+						<fragments>
+							<Fragment_Small>77</Fragment_Small>
+						</fragments>
+					</li>
+				</value>
+			</li>
+
+			<li Class="PatchOperationAdd">
+				<xpath>Defs</xpath>
+				<value>
+					<RecipeDef ParentName="GrenadeRecipeBase">
+						<defName>MakeMillsGrenadeGNDE</defName>
+						<label>make Mills grenades x10</label>
+						<description>Craft 10 Mills grenades.</description>
+						<jobString>Making Mills grenades.</jobString>
+						<workAmount>3600</workAmount>
+						<ingredients>
+							<li>
+								<filter>
+									<thingDefs>
+										<li>Steel</li>
+									</thingDefs>
+								</filter>
+								<count>16</count>
+							</li>
+							<li>
+								<filter>
+									<thingDefs>
+										<li>FSX</li>
+									</thingDefs>
+								</filter>
+								<count>2</count>
+							</li>
+							<li>
+								<filter>
+									<thingDefs>
+										<li>ComponentIndustrial</li>
+									</thingDefs>
+								</filter>
+								<count>2</count>
+							</li>
+						</ingredients>
+						<fixedIngredientFilter>
+							<thingDefs>
+								<li>Steel</li>
+								<li>FSX</li>
+								<li>ComponentIndustrial</li>
+							</thingDefs>
+						</fixedIngredientFilter>
+						<products>
+							<Weapon_MillsGrenadeGNDE>10</Weapon_MillsGrenadeGNDE>
+						</products>
+					</RecipeDef>
+				</value>
+			</li>
+
+		</operations>
+	</Operation>
+</Patch>

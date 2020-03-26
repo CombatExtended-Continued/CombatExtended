@@ -52,19 +52,7 @@
 			<Bulk>17.91</Bulk>
 		</statBases>
 		<ammoClass>RocketHEAT</ammoClass>
-		<comps>
-			<li Class="CombatExtended.CompProperties_ExplosiveCE">
-				<explosionDamage>132</explosionDamage>
-				<explosionDamageDef>Bomb</explosionDamageDef>
-				<explosionRadius>1</explosionRadius>
-				<fragments>
-					<Fragment_Large>7</Fragment_Large>
-					<Fragment_Small>38</Fragment_Small>
-				</fragments>
-				<soundExplode>MortarBomb_Explode</soundExplode>
-				<applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
-			</li>
-		</comps>
+		<detonateProjectile>Bullet_83mmSMAW_HEAT</detonateProjectile>
 	</ThingDef>
 
 	<ThingDef Class="CombatExtended.AmmoDef" ParentName="83mmSMAWBase">
@@ -80,19 +68,7 @@
 			<Bulk>15.87</Bulk>
 		</statBases>
 		<ammoClass>GrenadeHE</ammoClass>
-		<comps>
-			<li Class="CombatExtended.CompProperties_ExplosiveCE">
-				<explosionDamage>154</explosionDamage>
-				<explosionDamageDef>Bomb</explosionDamageDef>
-				<explosionRadius>2.5</explosionRadius>
-				<fragments>
-					<Fragment_Large>12</Fragment_Large>
-					<Fragment_Small>98</Fragment_Small>
-				</fragments>
-				<soundExplode>MortarBomb_Explode</soundExplode>
-				<applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
-			</li>
-		</comps>
+		<detonateProjectile>Bullet_83mmSMAW_HE</detonateProjectile>
 	</ThingDef>
 
 	<ThingDef Class="CombatExtended.AmmoDef" ParentName="83mmSMAWBase">
@@ -108,15 +84,7 @@
 			<Bulk>17.27</Bulk>
 		</statBases>
 		<ammoClass>RocketThermobaric</ammoClass>
-		<comps>
-			<li Class="CombatExtended.CompProperties_ExplosiveCE">
-				<explosionDamage>260</explosionDamage>
-				<explosionDamageDef>Thermobaric</explosionDamageDef>
-				<explosionRadius>5</explosionRadius>
-				<applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
-				<soundExplode>MortarBomb_Explode</soundExplode>
-			</li>
-		</comps>
+		<detonateProjectile>Bullet_83mmSMAW_Thermobaric</detonateProjectile>
 	</ThingDef>
 
 	<!-- ================== Projectiles ================== -->
@@ -131,7 +99,7 @@
 		</projectile>
 	</ThingDef>	
 
-	<ThingDef Class="CombatExtended.AmmoDef" ParentName="BaseRPG7Grenade">
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="Base83mmSMAW">
 		<defName>Bullet_83mmSMAW_HEAT</defName>
 		<label>83mm SMAW rocket (HEAT)</label>
 		<graphicData>
@@ -145,21 +113,23 @@
 			<armorPenetrationBlunt>39.494</armorPenetrationBlunt>
 		</projectile>
 		<comps>
-			<li Class="CombatExtended.CompProperties_ExplosiveCE">
-				<explosionDamage>132</explosionDamage>
-				<explosionDamageDef>Bomb</explosionDamageDef>
-				<explosionRadius>1</explosionRadius>
-				<fragments>
-					<Fragment_Large>7</Fragment_Large>
-					<Fragment_Small>38</Fragment_Small>
-				</fragments>
-				<soundExplode>MortarBomb_Explode</soundExplode>
+		  <li Class="CombatExtended.CompProperties_ExplosiveCE">
+			<damageAmountBase>132</damageAmountBase>
+			<explosiveDamageType>Bomb</explosiveDamageType>
+			<explosiveRadius>1</explosiveRadius>
+			<explosionSound>MortarBomb_Explode</explosionSound>
 				<applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
-			</li>
+		  </li>
+		  <li Class="CombatExtended.CompProperties_Fragments">
+			<fragments>
+				<Fragment_Large>7</Fragment_Large>
+			  <Fragment_Small>38</Fragment_Small>
+			</fragments>
+		  </li>
 		</comps>
 	</ThingDef>
 
-	<ThingDef Class="CombatExtended.AmmoDef" ParentName="BaseRPG7Grenade">
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="Base83mmSMAW">
 		<defName>Bullet_83mmSMAW_HE</defName>
 		<label>83mm SMAW rocket (HE)</label>
 		<graphicData>
@@ -167,23 +137,23 @@
 			<graphicClass>Graphic_Single</graphicClass>
 		</graphicData>
 		<projectile Class="CombatExtended.ProjectilePropertiesCE">
-		<damageDef>Bomb</damageDef>
-		<damageAmountBase>154</damageAmountBase>
-		<explosionRadius>2.5</explosionRadius>
-		<soundExplode>MortarBomb_Explode</soundExplode>
-		<applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
+			<damageDef>Bomb</damageDef>
+			<damageAmountBase>154</damageAmountBase>
+			<explosionRadius>2.5</explosionRadius>
+			<soundExplode>MortarBomb_Explode</soundExplode>
+			<applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
 		</projectile>
 		<comps>
-		<li Class="CombatExtended.CompProperties_ExplosiveCE">
-			<fragments>
-			<Fragment_Large>12</Fragment_Large>
-			<Fragment_Small>98</Fragment_Small>
-			</fragments>
-		</li>
+			<li Class="CombatExtended.CompProperties_Fragments">
+				<fragments>
+				<Fragment_Large>12</Fragment_Large>
+				<Fragment_Small>98</Fragment_Small>
+				</fragments>
+			</li>
 		</comps>
 	</ThingDef>
 
-	<ThingDef Class="CombatExtended.AmmoDef" ParentName="BaseRPG7Grenade">
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="Base83mmSMAW">
 		<defName>Bullet_83mmSMAW_Thermobaric</defName>
 		<label>83mm SMAW rocket (Thermobaric)</label>
 		<thingClass>CombatExtended.ProjectileCE_Explosive</thingClass>    
@@ -195,6 +165,7 @@
 			<explosionRadius>5</explosionRadius>
 			<damageDef>Thermobaric</damageDef>
 			<damageAmountBase>260</damageAmountBase>
+			<soundExplode>MortarBomb_Explode</soundExplode>
 			<applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
 		</projectile>
 	</ThingDef>

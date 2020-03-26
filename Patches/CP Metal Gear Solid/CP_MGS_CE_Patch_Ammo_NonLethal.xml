@@ -1,0 +1,187 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+			<li>[CP] Metal Gear Solid</li>
+			<li>[RH] Faction: Militaires Sans Frontieres</li>
+		</mods>
+		<match Class="PatchOperationSequence">
+			<operations>
+
+				<!-- Non-lethal tranquilizer 9x19mm Parabellum pistol cartridge and ammoset for non-lethal pistols -->
+
+				<li Class="PatchOperationAdd">
+					<xpath>Defs</xpath>
+					<value>
+
+						<!-- ==================== AmmoSet ========================== -->
+
+						<CombatExtended.AmmoSetDef>
+							<defName>AmmoSet_9x19mmPara_NonLethal</defName>
+							<label>9x19mm Para (Tranq)</label>
+							<ammoTypes>
+								<Ammo_9x19mmPara_NL>Bullet_9x19mmPara_NL</Ammo_9x19mmPara_NL>
+							</ammoTypes>
+						</CombatExtended.AmmoSetDef>
+
+						<!-- ==================== Ammo ========================== -->	
+
+						<ThingDef Class="CombatExtended.AmmoDef" ParentName="9x19mmParaBase">
+							<defName>Ammo_9x19mmPara_NL</defName>
+							<label>9x19mm Para cartridge (Tranq)</label>
+							<graphicData>
+								<texPath>ThirdParty/CP Metal Gear Solid/Pistol/NL</texPath>
+								<graphicClass>Graphic_StackCount</graphicClass>
+							</graphicData>
+							<statBases>
+								<MarketValue>0.31</MarketValue>
+							</statBases>
+							<ammoClass>TranqNonLethal</ammoClass>
+							<cookOffProjectile>Bullet_9x19mmPara_NL</cookOffProjectile>
+						</ThingDef>
+
+						<!-- ================== Projectiles ================== -->
+
+						<!-- Workaround for conditionally-patched projectiles: use an existing abstract class from the generic ammo library (In this case, Base9x19mmParaBullet) -->
+						<ThingDef Class="CombatExtended.AmmoDef" ParentName="Base9x19mmParaBullet">
+							<defName>Bullet_9x19mmPara_NL</defName>
+							<label>9mm Para bullet (Tranq)</label>
+							<projectile Class="CombatExtended.ProjectilePropertiesCE">
+								<damageDef>Tranquilizer</damageDef>
+								<damageAmountBase>1</damageAmountBase>
+								<armorPenetrationSharp>2</armorPenetrationSharp>
+								<armorPenetrationBlunt>10.820</armorPenetrationBlunt>
+							</projectile>
+						</ThingDef>
+
+						<!-- ==================== Recipes ========================== -->
+
+						<RecipeDef ParentName="AmmoRecipeBase">
+							<defName>MakeAmmo_9x19mmPara_NL</defName>
+							<label>make 9x19mm Parabellum (Tranq) cartridge x500</label>
+							<description>Craft 500 9x19mm Parabellum (Tranq) cartridges.</description>
+							<jobString>Making 9x19mm Parabellum (Tranq) cartridges.</jobString>
+							<ingredients>
+								<li>
+									<filter>
+										<thingDefs>
+											<li>Steel</li>
+										</thingDefs>
+									</filter>
+									<count>14</count>
+								</li>
+								<li>
+									<filter>
+										<thingDefs>
+											<li>MedicineHerbal</li>
+										</thingDefs>
+									</filter>
+									<count>12</count>
+								</li>
+							</ingredients>
+							<fixedIngredientFilter>
+								<thingDefs>
+									<li>Steel</li>
+									<li>MedicineHerbal</li>
+								</thingDefs>
+							</fixedIngredientFilter>
+							<products>
+								<Ammo_9x19mmPara_NL>500</Ammo_9x19mmPara_NL>
+							</products>
+							<workAmount>5000</workAmount>
+						</RecipeDef>
+
+					</value>
+				</li>
+
+				<!-- Non-lethal tranquilizer 7.62x51mm NATO rifle cartridge and ammoset for non-lethal rifles -->
+
+				<li Class="PatchOperationAdd">
+					<xpath>Defs</xpath>
+					<value>
+
+						<!-- ==================== AmmoSet ========================== -->
+
+						<CombatExtended.AmmoSetDef>
+							<defName>AmmoSet_762x51mmNATO_NonLethal</defName>
+							<label>7.62x51mm NATO (Tranq)</label>
+							<ammoTypes>
+								<Ammo_762x51mmNATO_NL>Bullet_762x51mmNATO_NL</Ammo_762x51mmNATO_NL>
+							</ammoTypes>
+						</CombatExtended.AmmoSetDef>
+
+						<!-- ==================== Ammo ========================== -->	
+
+						<ThingDef Class="CombatExtended.AmmoDef" ParentName="762x51mmNATOBase">
+							<defName>Ammo_762x51mmNATO_NL</defName>
+							<label>7.62x51mm NATO cartridge (Tranq)</label>
+							<graphicData>
+								<texPath>ThirdParty/CP Metal Gear Solid/Rifle/NL</texPath>
+								<graphicClass>Graphic_StackCount</graphicClass>
+							</graphicData>
+							<statBases>
+								<MarketValue>0.5</MarketValue>
+							</statBases>
+							<ammoClass>TranqNonLethal</ammoClass>
+							<cookOffProjectile>Bullet_762x51mmNATO_NL</cookOffProjectile>
+						</ThingDef>
+
+						<!-- ================== Projectiles ================== -->
+
+						<!-- Workaround for conditionally-patched projectiles: use an existing abstract class from the generic ammo library (In this case, Base762x51mmNATOBullet) -->
+						<ThingDef Class="CombatExtended.AmmoDef" ParentName="Base762x51mmNATOBullet">
+							<defName>Bullet_762x51mmNATO_NL</defName>
+							<label>7.62mm NATO bullet (Tranq)</label>
+							<projectile Class="CombatExtended.ProjectilePropertiesCE">
+								<damageDef>Tranquilizer</damageDef>
+								<damageAmountBase>1</damageAmountBase>
+								<armorPenetrationSharp>21</armorPenetrationSharp>
+								<armorPenetrationBlunt>86.28</armorPenetrationBlunt>
+							</projectile>
+						</ThingDef>
+
+						<!-- ==================== Recipes ========================== -->
+
+						<RecipeDef ParentName="AmmoRecipeBase">
+							<defName>MakeAmmo_762x51mmNATO_NL</defName>
+							<label>make 7.62x51mm NATO (Tranq) cartridge x500</label>
+							<description>Craft 500 7.62x51mm NATO (Tranq) cartridges.</description>
+							<jobString>Making 7.62x51mm NATO (Tranq) cartridges.</jobString>
+							<ingredients>
+								<li>
+									<filter>
+										<thingDefs>
+											<li>Steel</li>
+										</thingDefs>
+									</filter>
+									<count>22</count>
+								</li>
+								<li>
+									<filter>
+										<thingDefs>
+											<li>MedicineHerbal</li>
+										</thingDefs>
+									</filter>
+									<count>20</count>
+								</li>
+							</ingredients>
+							<fixedIngredientFilter>
+								<thingDefs>
+									<li>Steel</li>
+									<li>MedicineHerbal</li>
+								</thingDefs>
+							</fixedIngredientFilter>
+							<products>
+								<Ammo_762x51mmNATO_NL>500</Ammo_762x51mmNATO_NL>
+							</products>
+							<workAmount>8200</workAmount>
+						</RecipeDef>
+
+					</value>
+				</li>
+
+			</operations>
+		</match>
+	</Operation>
+</Patch>

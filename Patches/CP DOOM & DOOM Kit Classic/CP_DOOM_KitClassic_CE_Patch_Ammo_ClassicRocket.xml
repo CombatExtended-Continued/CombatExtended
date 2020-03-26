@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+	<Operation Class="PatchOperationSequence">
+		<success>Always</success>
+		<operations>
+
+			<li Class="CombatExtended.PatchOperationFindMod">
+				<modName>[CP] The DOOM Kit - Classic</modName>
+			</li>
+
+			<li Class="PatchOperationAdd">
+				<xpath>Defs</xpath>
+				<value>
+
+					<ThingCategoryDef>
+						<defName>AmmoDoomClassicRockets</defName>
+						<label>UAC Rocket Mk I</label>
+						<parent>AmmoRockets</parent>
+						<iconPath>ThirdParty/CP DOOM and DOOM Kit Classic/DoomClassicRocket/DoomClassicRocket_c</iconPath>
+					</ThingCategoryDef>
+
+					<!-- ==================== AmmoSet ========================== -->
+
+					<CombatExtended.AmmoSetDef>
+						<defName>AmmoSet_DoomClassicRocket</defName>
+						<label>UAC Rocket Mk I</label>
+						<ammoTypes>
+							<Ammo_DoomClassicRocket_HEAT>Bullet_DoomClassicRocket_HEAT</Ammo_DoomClassicRocket_HEAT>
+						</ammoTypes>
+					</CombatExtended.AmmoSetDef>
+
+					<!-- ==================== Ammo ========================== -->
+
+					<ThingDef Class="CombatExtended.AmmoDef" Name="DoomClassicRocketBase" ParentName="AmmoBase" Abstract="True">
+						<description>Compact 60mm rocket developed by the Union Aerospace Corporation for infantry rocket launchers.</description>
+						<statBases>
+							<MaxHitPoints>150</MaxHitPoints>
+						</statBases>
+						<tradeTags>
+							<li>CE_AutoEnableTrade</li>
+							<li>CE_AutoEnableCrafting_TableMachining</li>
+						</tradeTags>
+						<thingCategories>
+							<li>AmmoDoomClassicRockets</li>
+						</thingCategories>
+						<stackLimit>5</stackLimit>
+						<cookOffFlashScale>40</cookOffFlashScale>
+						<cookOffSound>MortarBomb_Explode</cookOffSound>
+					</ThingDef>
+
+					<ThingDef Class="CombatExtended.AmmoDef" ParentName="DoomClassicRocketBase">
+						<defName>Ammo_DoomClassicRocket_HEAT</defName>
+						<label>UAC Rocket Mk I (HEAT)</label>
+						<graphicData>
+							<texPath>ThirdParty/CP DOOM and DOOM Kit Classic/DoomClassicRocket</texPath>
+							<graphicClass>Graphic_StackCount</graphicClass>
+						</graphicData>
+						<statBases>
+							<MarketValue>37.44</MarketValue>
+							<Mass>0.75</Mass>
+							<Bulk>1.53</Bulk>
+						</statBases>
+						<ammoClass>RocketHEAT</ammoClass>
+						<detonateProjectile>Bullet_DoomClassicRocket_HEAT</detonateProjectile>
+					</ThingDef>
+
+					<!-- ================== Projectiles ================== -->
+
+					<!-- Workaround for conditionally-patched projectiles: use an existing abstract class from the generic ammo library (In this case, BaseM6Rocket) -->
+
+					<ThingDef Class="CombatExtended.AmmoDef" ParentName="BaseM6Rocket">
+						<defName>Bullet_DoomClassicRocket_HEAT</defName>
+						<label>UAC Rocket Mk I (HEAT)</label>
+						<graphicData>
+							<texPath>Things/Projectile/DOOM_Rocket</texPath>
+							<graphicClass>Graphic_Single</graphicClass>
+						</graphicData>
+						<projectile Class="CombatExtended.ProjectilePropertiesCE">
+							<speed>60</speed>
+							<damageDef>Bullet</damageDef>
+							<damageAmountBase>225</damageAmountBase>
+							<armorPenetrationSharp>76</armorPenetrationSharp>
+							<armorPenetrationBlunt>19.178</armorPenetrationBlunt>
+						</projectile>
+						<comps>
+						  <li Class="CombatExtended.CompProperties_ExplosiveCE">
+							<damageAmountBase>64</damageAmountBase>
+							<explosiveDamageType>Bomb</explosiveDamageType>
+							<explosiveRadius>1</explosiveRadius>
+								<explosionSound>RHHit_DOOMClassicRocketLauncher</explosionSound>
+							<applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
+						  </li>
+						  <li Class="CombatExtended.CompProperties_Fragments">
+							<fragments>
+								<Fragment_Large>1</Fragment_Large>
+								<Fragment_Small>12</Fragment_Small>
+							</fragments>
+						  </li>
+						</comps>
+					</ThingDef>
+
+					<!-- ==================== Recipes ========================== -->
+
+					<RecipeDef ParentName="AmmoRecipeBase">
+						<defName>MakeAmmo_DoomClassicRocket_HEAT</defName>
+						<label>make UAC Rocket Mk I (HEAT) rockets x5</label>
+						<description>Craft 5 UAC Rocket Mk I (HEAT) rockets.</description>
+						<jobString>Making UAC Rocket Mk I (HEAT) rockets.</jobString>
+						<workAmount>4800</workAmount>
+						<ingredients>
+							<li>
+								<filter>
+									<thingDefs>
+										<li>Steel</li>
+									</thingDefs>
+								</filter>
+								<count>8</count>
+							</li>
+							<li>
+								<filter>
+									<thingDefs>
+										<li>FSX</li>
+									</thingDefs>
+								</filter>
+								<count>4</count>
+							</li>
+							<li>
+								<filter>
+									<thingDefs>
+										<li>ComponentIndustrial</li>
+									</thingDefs>
+								</filter>
+								<count>4</count>
+							</li>
+						</ingredients>
+						<fixedIngredientFilter>
+							<thingDefs>
+								<li>Steel</li>
+								<li>FSX</li>
+								<li>ComponentIndustrial</li>
+							</thingDefs>
+						</fixedIngredientFilter>
+						<products>
+							<Ammo_DoomClassicRocket_HEAT>5</Ammo_DoomClassicRocket_HEAT>
+						</products>
+					</RecipeDef>
+
+				</value>
+			</li>
+
+		</operations>
+	</Operation>
+</Patch>

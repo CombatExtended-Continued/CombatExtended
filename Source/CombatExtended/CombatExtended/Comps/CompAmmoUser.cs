@@ -171,6 +171,7 @@ namespace CombatExtended
         {
             base.Initialize(vprops);
 
+			//spawnUnloaded checks have all been moved to methods calling ResetAmmoCount.
             //curMagCountInt = Props.spawnUnloaded && UseAmmo ? 0 : Props.magazineSize;
 
             // Initialize ammo with default if none is set
@@ -575,7 +576,7 @@ namespace CombatExtended
                 {
                     compAmmo = this,
                     action = action,
-                    defaultLabel = HasMagazine ? "CE_ReloadLabel".Translate() : "",
+                    defaultLabel = HasMagazine ? (string)"CE_ReloadLabel".Translate() : "",
                     defaultDesc = "CE_ReloadDesc".Translate(),
                     icon = CurrentAmmo == null ? ContentFinder<Texture2D>.Get("UI/Buttons/Reload", true) : selectedAmmo.IconTexture(),
                     tutorTag = tag
@@ -586,7 +587,7 @@ namespace CombatExtended
 
         public override string TransformLabel(string label)
         {
-            string ammoSet = UseAmmo && Controller.settings.ShowCaliberOnGuns ? " (" + Props.ammoSet.LabelCap + ") " : "";
+            string ammoSet = UseAmmo && Controller.settings.ShowCaliberOnGuns ? " (" + (string)Props.ammoSet.LabelCap + ") " : "";
             return label + ammoSet;
         }
 

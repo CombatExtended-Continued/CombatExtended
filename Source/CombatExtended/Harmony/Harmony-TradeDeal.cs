@@ -1,13 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Reflection.Emit;
-using Harmony;
+using HarmonyLib;
 using Verse;
 using RimWorld;
 using UnityEngine;
 using System.Reflection;
 
-namespace CombatExtended.Harmony
+namespace CombatExtended.HarmonyCE
 {
 	/* Dev Notes:
      * Goal is to change the RoundToInt into RoundToCeil.

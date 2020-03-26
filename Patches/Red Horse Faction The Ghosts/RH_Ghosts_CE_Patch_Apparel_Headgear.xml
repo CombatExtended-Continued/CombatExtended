@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+	<Operation Class="PatchOperationSequence">
+		<success>Always</success>
+		<operations>
+
+			<li Class="CombatExtended.PatchOperationFindMod">
+				<modName>[RH] Faction: The Ghosts</modName>
+			</li>
+
+			<!-- ========== Balaclava Hunter, Logan, Merrick, Spook, Wraith ========== -->
+
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[
+					defName="RNApparel_Balaclava_Hunter" or
+					defName="RNApparel_Balaclava_Logan" or
+					defName="RNApparel_Balaclava_Merrick" or
+					defName="RNApparel_Balaclava_Spook" or
+					defName="RNApparel_Balaclava_Wraith"
+				]/statBases</xpath>
+				<value>
+					<Bulk>1</Bulk>
+					<WornBulk>1</WornBulk>
+				</value>
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[
+					defName="RNApparel_Balaclava_Hunter" or
+					defName="RNApparel_Balaclava_Logan" or
+					defName="RNApparel_Balaclava_Merrick" or
+					defName="RNApparel_Balaclava_Spook" or
+					defName="RNApparel_Balaclava_Wraith"
+				]/statBases/StuffEffectMultiplierArmor</xpath>
+				<value>
+					<!-- Equivalent to vanilla tuque -->
+					<StuffEffectMultiplierArmor>2</StuffEffectMultiplierArmor>
+				</value>
+			</li>
+
+			<!-- ========== Boonie Hat A-TACS LE-X ========== -->
+
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName="RNApparel_ATACSLEXBoonie"]/statBases</xpath>
+				<value>
+					<Bulk>1</Bulk>
+					<WornBulk>1</WornBulk>
+				</value>
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="RNApparel_ATACSLEXBoonie"]/statBases/StuffEffectMultiplierArmor</xpath>
+				<value>
+					<!-- Equivalent to vanilla fabric hats -->
+					<StuffEffectMultiplierArmor>2</StuffEffectMultiplierArmor>
+				</value>
+			</li>
+
+		</operations>
+	</Operation>
+</Patch>

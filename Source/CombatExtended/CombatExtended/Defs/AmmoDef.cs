@@ -17,6 +17,7 @@ namespace CombatExtended
         public ThingDef cookOffProjectile = null;
         public SoundDef cookOffSound = null;
         public SoundDef cookOffTailSound = null;
+        public ThingDef detonateProjectile = null;
 
         private List<ThingDef> users;
         public List<ThingDef> Users
@@ -34,6 +35,14 @@ namespace CombatExtended
                         }
                         return false;
                     });
+                    
+                    foreach (var user in users)
+                    {
+                        if (descriptionHyperlinks.NullOrEmpty())
+                            descriptionHyperlinks = new List<DefHyperlink>();
+
+                        descriptionHyperlinks.Add(user);
+                    }
                 }
                 return users;
             }
@@ -68,15 +77,26 @@ namespace CombatExtended
 
                 // Append guns that use this caliber
                 if (!Users.NullOrEmpty())
-                {
                     stringBuilder.AppendLine("\n" + "CE_UsedBy".Translate() + ":");
-                    foreach (var user in Users)
-                    {
-                        stringBuilder.AppendLine("   -" + user.LabelCap);
-                    }
-                }
 
                 description = stringBuilder.ToString().TrimEndNewlines();
+            }
+        }
+
+        public override void ResolveReferences()
+        {
+            base.ResolveReferences();
+
+            if (detonateProjectile != null)
+            {
+                foreach (var comp in detonateProjectile.comps)
+                {
+                    if (!comps.Any(x => x.compClass == comp.compClass)
+                        && (comp.compClass == typeof(CompFragments)
+                            || comp.compClass == typeof(CompExplosive)
+                            || comp.compClass == typeof(CompExplosiveCE)))
+                        comps.Add(comp);
+                }
             }
         }
     }

@@ -8,17 +8,20 @@ using UnityEngine;
 
 namespace CombatExtended
 {
+    /// <summary>
+    /// Version of CompPropertes_Explosive that does not use the wicker
+    /// </summary>
     public class CompProperties_ExplosiveCE : CompProperties
     {
-        public float explosionDamage = -1;
+        public float damageAmountBase = -1;
         public List<ThingDefCountClass> fragments = new List<ThingDefCountClass>();
-        public float fragRange = 0f;
+      //public float fragRange = 0f;
         public float fragSpeedFactor = 1f;
 
-        public float explosionRadius = 0f;
-        public DamageDef explosionDamageDef;
+        public float explosiveRadius = 0f;
+        public DamageDef explosiveDamageType;
         // instigator
-        public SoundDef soundExplode = null;
+        public SoundDef explosionSound = null;
         // projectile = parent.def
         // source = null
         public ThingDef postExplosionSpawnThingDef = null;
@@ -39,9 +42,9 @@ namespace CombatExtended
         public override void ResolveReferences(ThingDef parentDef)
         {
             base.ResolveReferences(parentDef);
-            if (this.explosionDamageDef == null)
+            if (this.explosiveDamageType == null)
             {
-                this.explosionDamageDef = DamageDefOf.Bomb;
+                this.explosiveDamageType = DamageDefOf.Bomb;
             }
         }
     }

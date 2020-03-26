@@ -62,16 +62,17 @@
       <Bulk>8.17</Bulk>
     </statBases>
     <ammoClass>GrenadeHE</ammoClass>
+	<detonateProjectile>Bullet_81mmMortarShell_HE</detonateProjectile>
     <comps>
-      <li Class="CombatExtended.CompProperties_ExplosiveCE">
-        <explosionDamage>156</explosionDamage>
-        <explosionDamageDef>Bomb</explosionDamageDef>
-        <explosionRadius>2.5</explosionRadius>
-        <fragments>
-          <Fragment_Large>16</Fragment_Large>
-          <Fragment_Small>100</Fragment_Small>
-        </fragments>
-        <applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
+		<!-- Vanilla values -->
+      <li Class="CompProperties_Explosive">
+        <explosiveRadius>2.9</explosiveRadius>
+        <explosiveDamageType>Bomb</explosiveDamageType>
+    <!--<explosiveExpandPerStackcount>0.4</explosiveExpandPerStackcount>-->
+        <startWickHitPointsPercent>0.7</startWickHitPointsPercent>
+		<applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
+		<explodeOnKilled>True</explodeOnKilled>
+        <wickTicks>30~60</wickTicks>
       </li>
     </comps>
   </ThingDef>
@@ -89,14 +90,17 @@
       <Bulk>10.01</Bulk>
     </statBases>
     <ammoClass>GrenadeIncendiary</ammoClass>
+	<detonateProjectile>Bullet_81mmMortarShell_Incendiary</detonateProjectile>
     <comps>
-      <li Class="CombatExtended.CompProperties_ExplosiveCE">
-        <explosionDamageDef>PrometheumFlame</explosionDamageDef>
-        <explosionDamage>0</explosionDamage>
-        <explosionRadius>9.5</explosionRadius>
-        <preExplosionSpawnThingDef>FilthPrometheum</preExplosionSpawnThingDef>
-        <preExplosionSpawnChance>0.5</preExplosionSpawnChance>
-        <soundExplode>MortarIncendiary_Explode</soundExplode>
+		<!-- Vanilla values -->
+      <li Class="CompProperties_Explosive">
+        <explosiveRadius>2.9</explosiveRadius>
+        <explosiveDamageType>Flame</explosiveDamageType>
+    <!--<explosiveExpandPerStackcount>0.4</explosiveExpandPerStackcount>-->
+        <startWickHitPointsPercent>0.7</startWickHitPointsPercent>
+		<applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
+		<explodeOnKilled>True</explodeOnKilled>
+        <wickTicks>30~60</wickTicks>
       </li>
     </comps>
   </ThingDef>
@@ -115,10 +119,21 @@
     </statBases>
     <ammoClass>GrenadeEMP</ammoClass>
     <comps>
-      <li Class="CombatExtended.CompProperties_ExplosiveCE">
-        <explosionDamage>34</explosionDamage>
-        <explosionDamageDef>Bomb</explosionDamageDef>
-        <explosionRadius>5.5</explosionRadius>
+	  <li Class="CombatExtended.CompProperties_ExplosiveCE">
+		<damageAmountBase>34</damageAmountBase>
+		<explosiveDamageType>Bomb</explosiveDamageType>
+		<explosiveRadius>5.5</explosiveRadius>
+		<applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
+	  </li>
+		<!-- Vanilla values -->
+      <li Class="CompProperties_Explosive">
+        <explosiveRadius>11.9</explosiveRadius>
+        <explosiveDamageType>EMP</explosiveDamageType>
+    <!--<explosiveExpandPerStackcount>0.4</explosiveExpandPerStackcount>-->
+        <startWickHitPointsPercent>0.7</startWickHitPointsPercent>
+		<applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
+		<explodeOnKilled>True</explodeOnKilled>
+        <wickTicks>30~60</wickTicks>
       </li>
     </comps>
   </ThingDef>
@@ -136,14 +151,21 @@
       <Bulk>13.34</Bulk>
     </statBases>
     <ammoClass>FoamFuel</ammoClass>
+	<detonateProjectile>Bullet_81mmMortarShell_Firefoam</detonateProjectile>
     <comps>
-      <li Class="CombatExtended.CompProperties_ExplosiveCE">
-        <explosionRadius>9.5</explosionRadius>
-        <explosionDamageDef>Extinguish</explosionDamageDef>
+		<!-- Vanilla values -->
+      <li Class="CompProperties_Explosive">
+        <explosiveRadius>9.9</explosiveRadius>
+        <explosiveDamageType>Extinguish</explosiveDamageType>
+    <!--<explosiveExpandPerStackcount>0.4</explosiveExpandPerStackcount>-->
+        <startWickHitPointsPercent>0.7</startWickHitPointsPercent>
         <postExplosionSpawnThingDef>Filth_FireFoam</postExplosionSpawnThingDef>
         <postExplosionSpawnChance>1</postExplosionSpawnChance>
         <postExplosionSpawnThingCount>3</postExplosionSpawnThingCount>
         <applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
+        <explosionEffect>ExtinguisherExplosion</explosionEffect>
+		<explodeOnKilled>True</explodeOnKilled>
+        <wickTicks>30~60</wickTicks>
       </li>
     </comps>
   </ThingDef>
@@ -168,11 +190,25 @@
     </tradeTags>
     <ammoClass>Antigrain</ammoClass>
     <comps>
-      <li Class="CombatExtended.CompProperties_ExplosiveCE">
-        <explosionRadius>20</explosionRadius>
-        <explosionDamageDef>Bomb</explosionDamageDef>
-        <explosionDamage>800</explosionDamage>
-        <soundExplode>Explosion_GiantBomb</soundExplode>
+	  <li Class="CombatExtended.CompProperties_ExplosiveCE">
+		<damageAmountBase>800</damageAmountBase>
+		<explosiveDamageType>Bomb</explosiveDamageType>
+		<explosiveRadius>20</explosiveRadius>
+        <explosionSound>Explosion_GiantBomb</explosionSound>
+	  </li>
+		<!-- Vanilla values -->
+      <li Class="CompProperties_Explosive">
+        <explosiveRadius>14.9</explosiveRadius>
+        <explosiveDamageType>BombSuper</explosiveDamageType>
+    <!--<explosiveExpandPerStackcount>0.4</explosiveExpandPerStackcount>-->
+        <startWickHitPointsPercent>0.7</startWickHitPointsPercent>
+        <chanceToStartFire>0.22</chanceToStartFire>
+        <damageFalloff>true</damageFalloff>
+        <explosionEffect>GiantExplosion</explosionEffect>
+        <explosionSound>Explosion_GiantBomb</explosionSound>
+        <wickTicks>60~120</wickTicks>
+		<explodeOnKilled>True</explodeOnKilled>
+		<applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
       </li>
     </comps>
   </ThingDef>
@@ -211,17 +247,18 @@
       <armorPenetrationSharp>0</armorPenetrationSharp>
       <armorPenetrationBlunt>0</armorPenetrationBlunt>
       <explosionRadius>2.5</explosionRadius>
+      <flyOverhead>true</flyOverhead>
       <soundExplode>MortarBomb_Explode</soundExplode>
       <applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
       <ai_IsIncendiary>true</ai_IsIncendiary>
     </projectile>
     <comps>
-      <li Class="CombatExtended.CompProperties_ExplosiveCE">
-        <fragments>
-          <Fragment_Large>16</Fragment_Large>
-          <Fragment_Small>100</Fragment_Small>
-        </fragments>
-      </li>
+	  <li Class="CombatExtended.CompProperties_Fragments">
+		<fragments>
+			<Fragment_Large>16</Fragment_Large>
+			<Fragment_Small>100</Fragment_Small>
+		</fragments>
+	  </li>
     </comps>
   </ThingDef>
 
@@ -238,6 +275,7 @@
       <armorPenetrationSharp>0</armorPenetrationSharp>
       <armorPenetrationBlunt>0</armorPenetrationBlunt>
       <explosionRadius>9.5</explosionRadius>
+      <flyOverhead>true</flyOverhead>
       <preExplosionSpawnThingDef>FilthPrometheum</preExplosionSpawnThingDef>
       <preExplosionSpawnChance>0.15</preExplosionSpawnChance>
       <soundExplode>MortarIncendiary_Explode</soundExplode>
@@ -256,6 +294,7 @@
       <damageAmountBase>156</damageAmountBase>
       <armorPenetrationSharp>0</armorPenetrationSharp>
       <armorPenetrationBlunt>0</armorPenetrationBlunt>
+      <flyOverhead>true</flyOverhead>
       <explosionRadius>5.5</explosionRadius>
     </projectile>
   </ThingDef>
@@ -298,6 +337,7 @@
       <explosionRadius>50</explosionRadius>
       <explosionChanceToStartFire>0.22</explosionChanceToStartFire>
       <applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
+      <flyOverhead>true</flyOverhead>
       <explosionEffect>GiantExplosion</explosionEffect>
       <soundHitThickRoof>Artillery_HitThickRoof</soundHitThickRoof>
       <soundExplode>Explosion_GiantBomb</soundExplode>
