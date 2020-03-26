@@ -73,8 +73,8 @@ namespace CombatExtended
                 if (shouldDestroy == -1)
                 {
                     shouldDestroy = !def.IsWeapon && (AmmoDef?.tradeTags?.Contains(AmmoInjector.destroyWithAmmoDisabledTag) ?? false)
-                        ? 1
-                        : 0;
+                        ? 1     //isn't a weapon AND has the tag
+                        : 0;    //is a weapon or doesn't have the tag (shouldn't be destroyed)
                 }
                 return shouldDestroy == 1 && !Controller.settings.EnableAmmoSystem;
             }
@@ -85,6 +85,7 @@ namespace CombatExtended
             // Self-destruct if ammo is disabled
             if (ShouldDestroy) Destroy(DestroyMode.Vanish);
 
+            //Calls CompExplosive _first_
             base.Tick();
 
             // Cook off ammo based on how much damage we've taken so far
@@ -138,13 +139,12 @@ namespace CombatExtended
                 if (Rand.Chance(Mathf.Clamp01(0.75f - Mathf.Pow(HitPoints / MaxHitPoints, 2))))
                 {
                     if (comp != null)
-                        comp.Explode(this, Position.ToVector3Shifted(), Map, Mathf.Pow(scale, 0.333f));
+                        comp.Explode(this, Position.ToVector3Shifted(), Map, Mathf.Pow(scale, 0.333f), null, new List<Thing>() { this });
                     else
                         this.TryGetComp<CompFragments>()?.Throw(Position.ToVector3Shifted(), Map, this, Mathf.Pow(scale, 0.333f));
 
                     if (detProps != null)
                     {
-                        Log.Message(LabelCap + " has exploded, did it throw an explosion effect?");
                         GenExplosionCE.DoExplosion(Position, Map, detProps.explosionRadius, detProps.damageDef,
                             this, detProps.GetDamageAmount(1), detProps.GetArmorPenetration(1),
                             detProps.soundExplode ?? detProps.damageDef.soundExplosion,
