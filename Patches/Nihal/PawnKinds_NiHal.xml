@@ -1,12 +1,14 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<Patch>
 
-	<Operation Class="PatchOperationSequence">
-		<success>Always</success>
-		<operations>
-			<li Class="CombatExtended.PatchOperationFindMod">
-				<modName>Ni'Hal 1.0</modName>
-			</li>
+<Patch>
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+			<li>Ni'Hal 1.0</li>
+			<li>Ni'Hal 1.0/1.1</li>			
+		</mods>
+		<match Class="PatchOperationSequence">
+			<operations>
+			
 			<!-- ========== Scoot ========== -->
 			<li Class="PatchOperationAddModExtension">
 				<xpath>/Defs/PawnKindDef[defName="NihalPeasant"]</xpath>
@@ -318,6 +320,9 @@
 				  </li>
 				</value>
 			</li>
-		</operations>
+			
+			</operations>		
+		</match>
 	</Operation>
+
 </Patch>
