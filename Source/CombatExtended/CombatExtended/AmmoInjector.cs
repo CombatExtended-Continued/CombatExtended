@@ -129,9 +129,12 @@ namespace CombatExtended
                     if (ammoDef.IsWeapon)
                         continue;
 
-                    //If there exists NO gun which DOESN'T destroy on drop (e.g all guns destroy on drop) or ISN'T a turretGun, this ammo should not be tradable nor craftable
-                    if (!ammoDef.Users.Any(x => !x.destroyOnDrop || (x.weaponTags != null && !x.weaponTags.Contains("TurretGun"))))
-                        continue;
+                    if (!ammoDef.Users                                                                          //If there exists NO gun..
+                        .Any(x => !x.destroyOnDrop                                                              //.. which DOESN'T destroy on drop (e.g all guns destroy on drop)
+                                    || (x.weaponTags != null && x.weaponTags.Contains("TurretGun")              //.. or IS part of a Turret..
+                                        && DefDatabase<ThingDef>.AllDefs.Where(y => y.building?.turretGunDef == x)                //.. as long as ALL turrets using the gun are non-mechcluster turrets
+                                            .All(y => !y.building?.buildingTags?.Contains(MechClusterGenerator.MechClusterMemberTag) ?? true))))                                                                  
+                        continue;                                                                               //Then this ammo's tradeability and craftability are ignored
 
                     // Toggle trading
                     var tradingTags = ammoDef.tradeTags.Where(t => t.StartsWith(enableTradeTag));
