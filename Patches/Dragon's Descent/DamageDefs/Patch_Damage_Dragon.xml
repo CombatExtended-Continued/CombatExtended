@@ -11,7 +11,7 @@
 
 			<!-- ==== Add DefModExtension ==== -->
 			<li Class="PatchOperationAddModExtension">
-				<xpath>Defs/DamageDef[defName="Toxic_Bite" or defName="Rend" or defName="Skull_Bash" or defName="Frost_Bite" or defName="Pyro_Bite"]</xpath>
+				<xpath>Defs/DamageDef[defName="Rend" or defName="Skull_Bash" or defName="Frost_Bite" or defName="Pyro_Bite"]</xpath>
 				<value>
 					<li Class="CombatExtended.DamageDefExtensionCE">
 						<harmOnlyOutsideLayers>true</harmOnlyOutsideLayers>
@@ -21,7 +21,7 @@
 
 			<!-- ==== Remove vanilla DamageWorker ==== -->
 			<li Class="PatchOperationReplace">
-				<xpath>Defs/DamageDef[defName="Toxic_Bite" or defName="Frost_Bite"]/workerClass</xpath>
+				<xpath>Defs/DamageDef[defName="Frost_Bite"]/workerClass</xpath>
 				<value>
 					<workerClass>DamageWorker_AddInjury</workerClass>
 				</value>
