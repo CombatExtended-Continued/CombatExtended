@@ -63,6 +63,18 @@
     </statBases>
     <ammoClass>GrenadeHE</ammoClass>
 	<detonateProjectile>Bullet_81mmMortarShell_HE</detonateProjectile>
+    <comps>
+		<!-- Vanilla values -->
+      <li Class="CompProperties_Explosive">
+        <explosiveRadius>2.9</explosiveRadius>
+        <explosiveDamageType>Bomb</explosiveDamageType>
+    <!--<explosiveExpandPerStackcount>0.4</explosiveExpandPerStackcount>-->
+        <startWickHitPointsPercent>0.7</startWickHitPointsPercent>
+		<applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
+		<explodeOnKilled>True</explodeOnKilled>
+        <wickTicks>30~60</wickTicks>
+      </li>
+    </comps>
   </ThingDef>
 
   <ThingDef Class="CombatExtended.AmmoDef" ParentName="81mmMortarShellBaseCraftableBase">
@@ -79,6 +91,18 @@
     </statBases>
     <ammoClass>GrenadeIncendiary</ammoClass>
 	<detonateProjectile>Bullet_81mmMortarShell_Incendiary</detonateProjectile>
+    <comps>
+		<!-- Vanilla values -->
+      <li Class="CompProperties_Explosive">
+        <explosiveRadius>2.9</explosiveRadius>
+        <explosiveDamageType>Flame</explosiveDamageType>
+    <!--<explosiveExpandPerStackcount>0.4</explosiveExpandPerStackcount>-->
+        <startWickHitPointsPercent>0.7</startWickHitPointsPercent>
+		<applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
+		<explodeOnKilled>True</explodeOnKilled>
+        <wickTicks>30~60</wickTicks>
+      </li>
+    </comps>
   </ThingDef>
 
   <ThingDef Class="CombatExtended.AmmoDef" ParentName="81mmMortarShellBaseCraftableBase">
@@ -101,6 +125,16 @@
 		<explosiveRadius>5.5</explosiveRadius>
 		<applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
 	  </li>
+		<!-- Vanilla values -->
+      <li Class="CompProperties_Explosive">
+        <explosiveRadius>11.9</explosiveRadius>
+        <explosiveDamageType>EMP</explosiveDamageType>
+    <!--<explosiveExpandPerStackcount>0.4</explosiveExpandPerStackcount>-->
+        <startWickHitPointsPercent>0.7</startWickHitPointsPercent>
+		<applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
+		<explodeOnKilled>True</explodeOnKilled>
+        <wickTicks>30~60</wickTicks>
+      </li>
     </comps>
   </ThingDef>
 
@@ -118,6 +152,22 @@
     </statBases>
     <ammoClass>FoamFuel</ammoClass>
 	<detonateProjectile>Bullet_81mmMortarShell_Firefoam</detonateProjectile>
+    <comps>
+		<!-- Vanilla values -->
+      <li Class="CompProperties_Explosive">
+        <explosiveRadius>9.9</explosiveRadius>
+        <explosiveDamageType>Extinguish</explosiveDamageType>
+    <!--<explosiveExpandPerStackcount>0.4</explosiveExpandPerStackcount>-->
+        <startWickHitPointsPercent>0.7</startWickHitPointsPercent>
+        <postExplosionSpawnThingDef>Filth_FireFoam</postExplosionSpawnThingDef>
+        <postExplosionSpawnChance>1</postExplosionSpawnChance>
+        <postExplosionSpawnThingCount>3</postExplosionSpawnThingCount>
+        <applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
+        <explosionEffect>ExtinguisherExplosion</explosionEffect>
+		<explodeOnKilled>True</explodeOnKilled>
+        <wickTicks>30~60</wickTicks>
+      </li>
+    </comps>
   </ThingDef>
 
   <ThingDef Class="CombatExtended.AmmoDef" ParentName="81mmMortarShellBase">
@@ -146,6 +196,20 @@
 		<explosiveRadius>20</explosiveRadius>
         <explosionSound>Explosion_GiantBomb</explosionSound>
 	  </li>
+		<!-- Vanilla values -->
+      <li Class="CompProperties_Explosive">
+        <explosiveRadius>14.9</explosiveRadius>
+        <explosiveDamageType>BombSuper</explosiveDamageType>
+    <!--<explosiveExpandPerStackcount>0.4</explosiveExpandPerStackcount>-->
+        <startWickHitPointsPercent>0.7</startWickHitPointsPercent>
+        <chanceToStartFire>0.22</chanceToStartFire>
+        <damageFalloff>true</damageFalloff>
+        <explosionEffect>GiantExplosion</explosionEffect>
+        <explosionSound>Explosion_GiantBomb</explosionSound>
+        <wickTicks>60~120</wickTicks>
+		<explodeOnKilled>True</explodeOnKilled>
+		<applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
+      </li>
     </comps>
   </ThingDef>
 
