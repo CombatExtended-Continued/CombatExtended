@@ -12,8 +12,12 @@ namespace CombatExtended
     public static class GenExplosionCE
     {
         public static void DoExplosion(IntVec3 center, Map map, float radius, DamageDef damType, Thing instigator, int damAmount = -1, float armorPenetration = -1f, SoundDef explosionSound = null, ThingDef weapon = null, ThingDef projectile = null, Thing intendedTarget = null, ThingDef postExplosionSpawnThingDef = null, float postExplosionSpawnChance = 0f, int postExplosionSpawnThingCount = 1, bool applyDamageToExplosionCellsNeighbors = false, ThingDef preExplosionSpawnThingDef = null, float preExplosionSpawnChance = 0f, int preExplosionSpawnThingCount = 1, float chanceToStartFire = 0f, bool damageFalloff = false, float? direction = null, List<Thing> ignoredThings = null,
-            float height = 0f, float scaleFactor = 1f)
+            float height = 0f, float scaleFactor = 1f, bool destroyAfterwards = false, ThingWithComps explosionParentToDestroy = null)
         {
+            // Allows destroyed things to be exploded with appropriate scaleFactor
+            if (scaleFactor == 0f)
+                scaleFactor = 1f;
+            
             if (map == null)
             {
                 Log.Warning("CombatExtended :: Tried to do explosionCE in a null map.", false);
@@ -62,6 +66,10 @@ namespace CombatExtended
             explosion.needLOSToCell1 = needLOSToCell;
             explosion.needLOSToCell2 = needLOSToCell2;
             explosion.StartExplosionCE(explosionSound, ignoredThings);
+
+            // Needed to allow CompExplosive to use stackCount
+            if (destroyAfterwards && !explosionParentToDestroy.Destroyed)
+                explosionParentToDestroy?.Kill();
         }
         
         //Exact copy (1.1)
