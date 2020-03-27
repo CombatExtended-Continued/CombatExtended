@@ -32,7 +32,7 @@ namespace CombatExtended
             }
             
             //Try to throw fragments -- increase count by scaleFactor
-            parent.TryGetComp<CompFragments>()?.Throw(pos, map, instigator, scaleFactor);
+            parent.TryGetComp<CompFragments>()?.Throw(pos, map, instigator);//scaleFactor);
 
             if (Props.explosiveRadius > 0 //&& Props.damageAmountBase > 0 Disabled to allow flame explosions etc
                 && parent.def != null)
