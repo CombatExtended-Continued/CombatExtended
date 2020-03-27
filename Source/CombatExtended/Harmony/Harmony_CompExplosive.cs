@@ -22,7 +22,7 @@ namespace CombatExtended.HarmonyCE
         {
             var fragComp = parent.TryGetComp<CompFragments>();
             if (fragComp != null)
-                fragComp.Throw(parent.PositionHeld.ToVector3(), map, instigator, Mathf.Pow(parent.stackCount, 0.333f));
+                fragComp.Throw(parent.PositionHeld.ToVector3(), map, instigator);//Mathf.Pow(parent.stackCount, 0.333f));
         }
         
         internal static IEnumerable<CodeInstruction> Transpiler(IEnumerable<CodeInstruction> instructions)

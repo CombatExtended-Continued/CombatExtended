@@ -141,7 +141,7 @@ namespace CombatExtended
                     if (comp != null)
                         comp.Explode(this, Position.ToVector3Shifted(), Map, Mathf.Pow(scale, 0.333f), null, new List<Thing>() { this });
                     else
-                        this.TryGetComp<CompFragments>()?.Throw(Position.ToVector3Shifted(), Map, this, Mathf.Pow(scale, 0.333f));
+                        this.TryGetComp<CompFragments>()?.Throw(Position.ToVector3Shifted(), Map, this); //Mathf.Pow(scale, 0.333f));
 
                     if (detProps != null)
                     {
