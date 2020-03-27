@@ -18,7 +18,8 @@ namespace CombatExtended
       //public float fragRange = 0f;
         public float fragSpeedFactor = 1f;
 
-        public float explosiveRadius = 0f;
+        /// <summary>Default value 1.9f as for CompProperties_Explosive</summary>
+        public float explosiveRadius = 1.9f;
         public DamageDef explosiveDamageType;
         // instigator
         public SoundDef explosionSound = null;
@@ -46,6 +47,12 @@ namespace CombatExtended
 
             if (explosiveRadius <= 0f)
                 yield return "explosiveRadius smaller or equal to zero, this explosion cannot occur";
+
+            if (parentDef.tickerType != TickerType.Normal)
+                yield return "CompExplosiveCE requires Normal ticker type";
+
+            if (fragments.Any())
+                yield return "fragments is removed from CompExplosiveCE, please use CombatExtended.CompFragments instead";
         }
 
         public override void ResolveReferences(ThingDef parentDef)
