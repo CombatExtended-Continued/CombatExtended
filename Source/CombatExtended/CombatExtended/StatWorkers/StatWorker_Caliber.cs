@@ -87,7 +87,7 @@ namespace CombatExtended
             else
             {
                 var projectiles = GunDef(optionalReq)?.Verbs?.Where(x => x.defaultProjectile != null).Select(x => x.defaultProjectile);
-                return projectiles.First().LabelCap + (projectiles.Count() > 1 ? "(+"+(projectiles.Count() - 1)+" more..)" : "");
+                return projectiles.First().LabelCap + (projectiles.Count() > 1 ? "(+"+(projectiles.Count() - 1)+")" : "");
             }
         }
     }
