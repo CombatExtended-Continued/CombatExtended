@@ -428,7 +428,7 @@
 			<!-- NiHal Thoober -->
 
 			<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
-				<defName>Gun_NihalCarbine</defName>
+				<defName>Gun_NihalThoober</defName>
 				<statBases>
 				  <WorkToMake>14000</WorkToMake>	
 				  <SightsEfficiency>1.1</SightsEfficiency>
@@ -500,15 +500,13 @@
 					<hasStandardCommand>true</hasStandardCommand>
 					<defaultProjectile>Bullet_6x18mmCharged</defaultProjectile>
 					<warmupTime>1</warmupTime>
-					<range>50</range>
-					<ticksBetweenBurstShots>6</ticksBetweenBurstShots>
-					<burstShotCount>3</burstShotCount>
+					<range>46</range>
 					<soundCast>ORifle</soundCast>
 					<soundCastTail>GunTail_Medium</soundCastTail>
 					<muzzleFlashScale>9</muzzleFlashScale>
 				</Properties>
 				<AmmoUser>
-					<magazineSize>24</magazineSize>
+					<magazineSize>15</magazineSize>
 					<reloadTime>3</reloadTime>
 					<ammoSet>AmmoSet_6x18mmCharged</ammoSet>
 				</AmmoUser>
@@ -519,6 +517,23 @@
 					<li>NiHalRifle</li>
 				</weaponTags>
 			</li>
+
+		    <li Class="PatchOperationAdd">
+		  	<xpath>Defs/ThingDef[defName="Gun_NihalCarbine"]/tools</xpath>
+		  	<value>
+		  		<li Class="CombatExtended.ToolCE">
+		  		  <label>bayonet</label>
+		  		  <capacities>
+		  			<li>Stab</li>
+		  		  </capacities>
+		  		  <power>17</power>
+		  		  <cooldownTime>1.38</cooldownTime>
+		  		  <armorPenetrationBlunt>1.08</armorPenetrationBlunt>
+		  		  <armorPenetrationSharp>0.72</armorPenetrationSharp>				
+		  		  <linkedBodyPartsGroup>Muzzle</linkedBodyPartsGroup>
+		  		</li>
+		  	</value>
+		    </li>
 			
 			</operations>		
 		</match>
