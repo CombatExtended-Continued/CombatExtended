@@ -39,6 +39,15 @@ namespace CombatExtended
             compClass = typeof(CompExplosiveCE);
         }
 
+        public override IEnumerable<string> ConfigErrors(ThingDef parentDef)
+        {
+            foreach (var i in base.ConfigErrors(parentDef))
+                yield return i;
+
+            if (explosiveRadius <= 0f)
+                yield return "explosiveRadius smaller or equal to zero, this explosion cannot occur";
+        }
+
         public override void ResolveReferences(ThingDef parentDef)
         {
             base.ResolveReferences(parentDef);
