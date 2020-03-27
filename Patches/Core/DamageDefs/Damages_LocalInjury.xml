@@ -179,6 +179,15 @@
     </value>
   </Operation>
 
+	<Operation Class="PatchOperationAddModExtension">
+  	<xpath>Defs/DamageDef[defName="ToxicBite"]</xpath>
+  	<value>
+  		<li Class="CombatExtended.DamageDefExtensionCE">
+  			<harmOnlyOutsideLayers>true</harmOnlyOutsideLayers>
+  		</li>
+  	</value>
+	</Operation>
+
   <Operation Class="PatchOperationRemove">
     <xpath>Defs/DamageDef[defName="ToxicBite"]/additionalHediffs/li[hediff="ToxicBuildup"]</xpath>
   </Operation>
@@ -189,6 +198,15 @@
       <hediff>VenomousScratch</hediff>
     </value>
   </Operation>
+
+	<Operation Class="PatchOperationAddModExtension">
+  	<xpath>Defs/DamageDef[defName="ScratchToxic"]</xpath>
+  	<value>
+  		<li Class="CombatExtended.DamageDefExtensionCE">
+  			<harmOnlyOutsideLayers>true</harmOnlyOutsideLayers>
+  		</li>
+  	</value>
+	</Operation>
 
   <Operation Class="PatchOperationRemove">
     <xpath>Defs/DamageDef[defName="ScratchToxic"]/additionalHediffs/li[hediff="ToxicBuildup"]</xpath>
