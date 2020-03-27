@@ -265,8 +265,9 @@ namespace CombatExtended
 
 		private bool ShouldCellBeAffectedOnlyByDamage(IntVec3 c)
 		{
-			return applyDamageToExplosionCellsNeighbors && addedCellsAffectedOnlyByDamage.Contains(c);
-		}
+			return applyDamageToExplosionCellsNeighbors && addedCellsAffectedOnlyByDamage.Contains(c)
+                && !Map.thingGrid.ThingsListAtFast(c).Any(x => x.def == damType.explosionCellMote);
+        }
 
         //New methods
         public int GetDamageAmountAtCE(IntVec3 c)   //t => t^(1/3)
