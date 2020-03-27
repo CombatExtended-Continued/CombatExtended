@@ -24,8 +24,8 @@
               <comps>
                 <li Class="CombatExtended.CompProperties_ExplosiveCE">
                   <explosionDamage>50</explosionDamage>
-                  <explosionDamageDef>VWE_Shock</explosionDamageDef>
-                  <explosionRadius>1.5</explosionRadius>
+                  <explosiveDamageType>VWE_Shock</explosiveDamageType>
+                  <explosiveRadius>1.5</explosiveRadius>
                   <soundExplode>MortarBomb_Explode</soundExplode>
                   <applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
                   <fragments>
@@ -60,17 +60,17 @@
                 <soundAmbient>RocketPropelledLoop_Small</soundAmbient>
               </projectile>
               <comps>
-                <li Class="CombatExtended.CompProperties_ExplosiveCE">
-                  <explosionDamage>50</explosionDamage>
-                  <explosionDamageDef>VWE_Shock</explosionDamageDef>
-                  <explosionRadius>4.5</explosionRadius>
-                  <soundExplode>MortarBomb_Explode</soundExplode>
-                  <fragments>
-                    <Fragment_Large>5</Fragment_Large>
-                    <Fragment_Small>50</Fragment_Small>
-                  </fragments>
-                  <applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
-                </li>
+			  <li Class="CombatExtended.CompProperties_ExplosiveCE">
+				<damageAmountBase>50</damageAmountBase>
+				<explosiveDamageType>VWE_Shock</explosiveDamageType>
+				<explosiveRadius>4.5</explosiveRadius>
+				<explosionSound>MortarBomb_Explode</explosionSound>
+                <fragments>
+                  <Fragment_Large>5</Fragment_Large>
+                  <Fragment_Small>50</Fragment_Small>
+                </fragments>
+                <applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>				
+			  </li>			  
               </comps>
             </ThingDef>
           </value>
