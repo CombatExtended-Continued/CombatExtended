@@ -1,0 +1,245 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+
+	<Operation Class="PatchOperationSequence">
+		<success>Always</success>
+		<operations>
+			<li Class="CombatExtended.PatchOperationFindMod">
+				<modName>Xenn Race</modName>
+			</li>
+
+			<li Class="PatchOperationAdd">
+				<xpath>Defs</xpath>
+				<value>
+
+					<ThingCategoryDef>
+						<defName>AmmoXennCell</defName>
+						<label>Xenn Fuel Cell</label>
+						<parent>AmmoAdvanced</parent>
+						<iconPath>UI/Icons/ThingCategories/CaliberFuel</iconPath>
+					</ThingCategoryDef>
+
+					<!-- ==================== AmmoSet ========================== -->
+
+					<CombatExtended.AmmoSetDef>
+						<defName>AmmoSet_XennFuel</defName>
+						<label>Xenn Fuel Cell</label>
+						<ammoTypes>
+							<Ammo_Xenn_Hot>Bullet_Xenn_Hot</Ammo_Xenn_Hot>
+							<Ammo_Xenn_Cold>Bullet_Xenn_Cold</Ammo_Xenn_Cold>
+							<Ammo_Xenn_Foam>Bullet_Xenn_Foam</Ammo_Xenn_Foam>
+						</ammoTypes>
+					</CombatExtended.AmmoSetDef>
+
+					<!-- ==================== Ammo ========================== -->
+
+					<ThingDef Class="CombatExtended.AmmoDef" Name="XennCellBase" ParentName="SpacerSmallAmmoBase" Abstract="True">
+						<description>Container holding fuel for Xenn weaponry.</description>
+						<statBases>
+							<Mass>0.3</Mass>
+							<Bulk>0.2</Bulk>
+						</statBases>
+						<tradeTags>
+							<li>CE_AutoEnableTrade</li>
+							<li>CE_AutoEnableCrafting</li>
+						</tradeTags>
+						<thingCategories>
+							<li>AmmoXennCell</li>
+						</thingCategories>
+						<stackLimit>75</stackLimit>
+					</ThingDef>
+
+					<ThingDef Class="CombatExtended.AmmoDef" ParentName="XennCellBase">
+						<defName>Ammo_Xenn_Hot</defName>
+						<label>Xenn Plasma Cell</label>
+						<graphicData>
+							<texPath>Things/Ammo/FuelCell/Incendiary</texPath>
+							<graphicClass>Graphic_StackCount</graphicClass>
+						</graphicData>
+						<statBases>
+							<MarketValue>1.52</MarketValue>
+						</statBases>
+						<ammoClass>IncendiaryFuel</ammoClass>
+					</ThingDef>
+
+					<ThingDef Class="CombatExtended.AmmoDef" ParentName="XennCellBase">
+						<defName>Ammo_Xenn_Cold</defName>
+						<label>Xenn Cryogenic Cell</label>
+						<graphicData>
+							<texPath>Things/Ammo/FuelCell/Thermobaric</texPath>
+							<graphicClass>Graphic_StackCount</graphicClass>
+						</graphicData>
+						<statBases>
+							<MarketValue>2.16</MarketValue>
+						</statBases>
+						<ammoClass>ThermobaricFuel</ammoClass>
+					</ThingDef>
+
+					<ThingDef Class="CombatExtended.AmmoDef" ParentName="XennCellBase">
+						<defName>Ammo_Xenn_Foam</defName>
+						<label>Xenn Firefoam Cell</label>
+						<graphicData>
+							<texPath>Things/Ammo/FuelCell/Foam</texPath>
+							<graphicClass>Graphic_StackCount</graphicClass>
+						</graphicData>
+						<statBases>
+							<MarketValue>0.61</MarketValue>
+						</statBases>
+						<ammoClass>FoamFuel</ammoClass>
+						<generateAllowChance>0</generateAllowChance>
+					</ThingDef>
+
+					<!-- ================== Projectiles ================== -->
+
+					<ThingDef Class="CombatExtended.AmmoDef" Name="BaseXennBullet" ParentName="BaseBullet" Abstract="true">
+						<graphicData>
+							<texPath>Things/Projectile/LauncherShot</texPath>
+							<graphicClass>Graphic_Single</graphicClass>
+							<shaderType>TransparentPostLight</shaderType>
+						</graphicData>
+						<projectile Class="CombatExtended.ProjectilePropertiesCE">
+							<speed>80</speed>
+							<dropsCasings>true</dropsCasings>
+							<flyOverhead>false</flyOverhead>
+						</projectile>
+					</ThingDef>
+
+					<ThingDef Class="CombatExtended.AmmoDef" ParentName="BaseXennBullet">
+						<defName>Bullet_Xenn_Hot</defName>
+						<thingClass>CombatExtended.ProjectileCE_Explosive</thingClass>
+						<label>incendiary bolt</label>
+						<projectile Class="CombatExtended.ProjectilePropertiesCE">
+							<damageDef>PrometheumFlame</damageDef>
+							<damageAmountBase>10</damageAmountBase>
+							<explosionRadius>0.5</explosionRadius>
+							<preExplosionSpawnThingDef>FilthPrometheum</preExplosionSpawnThingDef>
+						</projectile>
+					</ThingDef>
+
+					<ThingDef Class="CombatExtended.AmmoDef" ParentName="BaseXennBullet">
+						<defName>Bullet_Xenn_Cold</defName>
+						<thingClass>CombatExtended.ProjectileCE_Explosive</thingClass>
+						<label>freezer bolt</label>
+						<projectile Class="CombatExtended.ProjectilePropertiesCE">
+							<explosionRadius>0.75</explosionRadius>
+							<damageDef>Frostbite</damageDef>
+							<damageAmountBase>15</damageAmountBase>
+							<applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
+						</projectile>
+					</ThingDef>
+
+					<ThingDef Class="CombatExtended.AmmoDef" ParentName="BaseXennBullet">
+						<defName>Bullet_Xenn_Foam</defName>
+						<thingClass>CombatExtended.ProjectileCE_Explosive</thingClass>
+						<label>foam bolt</label>
+						<projectile Class="CombatExtended.ProjectilePropertiesCE">
+							<damageDef>Extinguish</damageDef>
+							<damageAmountBase>50</damageAmountBase>
+							<explosionRadius>1</explosionRadius>
+							<postExplosionSpawnThingDef>Filth_FireFoam</postExplosionSpawnThingDef>
+							<preExplosionSpawnChance>1</preExplosionSpawnChance>
+						</projectile>
+					</ThingDef>
+
+					<!-- ==================== Recipes ========================== -->
+
+					<RecipeDef ParentName="AmmoRecipeBase">
+						<defName>MakeAmmo_Xenn_Hot</defName>
+						<label>make Xenn Plasma Cells x50</label>
+						<description>Craft 50 Xenn plasma cells.</description>
+						<jobString>Making Xenn Plasma cells.</jobString>
+						<ingredients>
+							<li>
+								<filter>
+									<thingDefs>
+										<li>Steel</li>
+									</thingDefs>
+								</filter>
+								<count>10</count>
+							</li>
+							<li>
+								<filter>
+									<thingDefs>
+										<li>Prometheum</li>
+									</thingDefs>
+								</filter>
+								<count>5</count>
+							</li>
+						</ingredients>
+						<fixedIngredientFilter>
+							<thingDefs>
+								<li>Steel</li>
+								<li>Prometheum</li>
+							</thingDefs>
+						</fixedIngredientFilter>
+						<products>
+							<Ammo_Xenn_Hot>50</Ammo_Xenn_Hot>
+						</products>
+					</RecipeDef>
+
+					<RecipeDef ParentName="AmmoRecipeBase">
+						<defName>MakeAmmo_Xenn_Cold</defName>
+						<label>make Xenn Cryo Cell x50</label>
+						<description>Craft 50 Xenn cryo cells.</description>
+						<jobString>Making Xenn cells.</jobString>
+						<ingredients>
+							<li>
+								<filter>
+									<thingDefs>
+										<li>Steel</li>
+									</thingDefs>
+								</filter>
+								<count>12</count>
+							</li>
+						</ingredients>
+						<fixedIngredientFilter>
+							<thingDefs>
+								<li>Steel</li>
+							</thingDefs>
+						</fixedIngredientFilter>
+						<products>
+							<Ammo_Xenn_Cold>50</Ammo_Xenn_Cold>
+						</products>
+					</RecipeDef>
+
+					<RecipeDef ParentName="AmmoRecipeBase">
+						<defName>MakeAmmo_Xenn_Foam</defName>
+						<label>make Xenn foam cell x50</label>
+						<description>Craft 50 Xenn foam cells.</description>
+						<jobString>Making Xenn foam cells.</jobString>
+						<ingredients>
+							<li>
+								<filter>
+									<thingDefs>
+										<li>Steel</li>
+									</thingDefs>
+								</filter>
+								<count>10</count>
+							</li>
+							<li>
+								<filter>
+									<categories>
+										<li>MeatRaw</li>
+									</categories>
+								</filter>
+								<count>2</count>
+							</li>
+						</ingredients>
+						<fixedIngredientFilter>
+							<thingDefs>
+								<li>Steel</li>
+							</thingDefs>
+							<categories>
+								<li>MeatRaw</li>
+							</categories>
+						</fixedIngredientFilter>
+						<products>
+							<Ammo_Xenn_Foam>50</Ammo_Xenn_Foam>
+						</products>
+					</RecipeDef>
+				</value>
+			</li>
+		</operations>
+	</Operation>
+
+</Patch>

@@ -15,7 +15,8 @@
 		<label>.22 LR</label>
 		<ammoTypes>
 			<Ammo_22LR_FMJ>Bullet_22LR_FMJ</Ammo_22LR_FMJ>
-			<!--<Ammo_22LR_HP>Bullet_22LR_HP</Ammo_22LR_HP>-->
+			<Ammo_22LR_AP>Bullet_22LR_AP</Ammo_22LR_AP>
+			<Ammo_22LR_HP>Bullet_22LR_HP</Ammo_22LR_HP>
 		</ammoTypes>
 	</CombatExtended.AmmoSetDef>
 
@@ -24,7 +25,7 @@
 	<ThingDef Class="CombatExtended.AmmoDef" Name="22LRBase" ParentName="SmallAmmoBase" Abstract="True">
 		<description>Low caliber handgun cartridge massively lacking in stopping power.</description>
 		<statBases>
-			<Mass>0.01</Mass>
+			<Mass>0.003</Mass>
 			<Bulk>0.01</Bulk>
 		</statBases>
 		<tradeTags>
@@ -49,8 +50,22 @@
 		<ammoClass>FullMetalJacket</ammoClass>
 		<cookOffProjectile>Bullet_22LR_FMJ</cookOffProjectile>
 	</ThingDef>
+	
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="22LRBase">
+		<defName>Ammo_22LR_AP</defName>
+		<label>.22 LR cartridge (AP)</label>
+		<graphicData>
+			<texPath>Things/Ammo/Pistol/AP</texPath>
+			<graphicClass>Graphic_StackCount</graphicClass>
+		</graphicData>
+		<statBases>
+			<MarketValue>0.03</MarketValue>
+		</statBases>
+		<ammoClass>ArmorPiercing</ammoClass>
+		<cookOffProjectile>Bullet_22LR_AP</cookOffProjectile>
+	</ThingDef>
 
-	<!--<ThingDef Class="CombatExtended.AmmoDef" ParentName="22LRBase">
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="22LRBase">
 		<defName>Ammo_22LR_HP</defName>
 		<label>.22 LR cartridge (HP)</label>
 		<graphicData>
@@ -61,7 +76,8 @@
 			<MarketValue>0.03</MarketValue>
 		</statBases>
 		<ammoClass>HollowPoint</ammoClass>
-	</ThingDef>-->
+		<cookOffProjectile>Bullet_22LR_HP</cookOffProjectile>
+	</ThingDef>
 
 	<!-- ================== Projectiles ================== -->
 
@@ -82,20 +98,30 @@
 		<label>.22 LR bullet (FMJ)</label>
 		<projectile Class="CombatExtended.ProjectilePropertiesCE">
 			<damageAmountBase>7</damageAmountBase>
-			<armorPenetrationBase>0.189</armorPenetrationBase>
-			<armorPenetrationSharp>0</armorPenetrationSharp>
+			<armorPenetrationSharp>4</armorPenetrationSharp>
+			<armorPenetrationBlunt>4.06</armorPenetrationBlunt>
+		</projectile>
+	</ThingDef>
+	
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="Base22LRBullet">
+		<defName>Bullet_22LR_AP</defName>
+		<label>.22 LR bullet (AP)</label>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageAmountBase>4</damageAmountBase>
+			<armorPenetrationSharp>8</armorPenetrationSharp>
 			<armorPenetrationBlunt>4.06</armorPenetrationBlunt>
 		</projectile>
 	</ThingDef>
 
-	<!--<ThingDef Class="CombatExtended.AmmoDef" ParentName="Base22LRBullet">
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="Base22LRBullet">
 		<defName>Bullet_22LR_HP</defName>
 		<label>.22 LR bullet (HP)</label>
 		<projectile Class="CombatExtended.ProjectilePropertiesCE">
-			<damageAmountBase>6</damageAmountBase>
-			<armorPenetrationBase>0.039</armorPenetrationBase>
+			<damageAmountBase>8</damageAmountBase>
+			<armorPenetrationSharp>2</armorPenetrationSharp>
+			<armorPenetrationBlunt>4.06</armorPenetrationBlunt>
 		</projectile>
-	</ThingDef>-->
+	</ThingDef>
 
 	<!-- ==================== Recipes ========================== -->
 
@@ -111,7 +137,7 @@
 						<li>Steel</li>
 					</thingDefs>
 				</filter>
-				<count>4</count>
+				<count>6</count>
 			</li>
 		</ingredients>
 		<fixedIngredientFilter>
@@ -122,10 +148,36 @@
 		<products>
 			<Ammo_22LR_FMJ>500</Ammo_22LR_FMJ>
 		</products>
-		<workAmount>1250</workAmount>
+		<workAmount>600</workAmount>
+	</RecipeDef>
+	
+	<RecipeDef ParentName="AmmoRecipeBase">
+		<defName>MakeAmmo_22LR_AP</defName>
+		<label>make .22 LR (AP) cartridge x500</label>
+		<description>Craft 500 .22 LR (AP) cartridges.</description>
+		<jobString>Making .22 LR (AP) cartridges.</jobString>
+		<ingredients>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>Steel</li>
+					</thingDefs>
+				</filter>
+				<count>6</count>
+			</li>
+		</ingredients>
+		<fixedIngredientFilter>
+			<thingDefs>
+				<li>Steel</li>
+			</thingDefs>
+		</fixedIngredientFilter>
+		<products>
+			<Ammo_22LR_AP>500</Ammo_22LR_AP>
+		</products>
+		<workAmount>600</workAmount>
 	</RecipeDef>
 
-	<!--<RecipeDef ParentName="AmmoRecipeBase">
+	<RecipeDef ParentName="AmmoRecipeBase">
 		<defName>MakeAmmo_22LR_HP</defName>
 		<label>make .22 LR (HP) cartridge x500</label>
 		<description>Craft 500 .22 LR (HP) cartridges.</description>
@@ -137,7 +189,7 @@
 						<li>Steel</li>
 					</thingDefs>
 				</filter>
-				<count>4</count>
+				<count>6</count>
 			</li>
 		</ingredients>
 		<fixedIngredientFilter>
@@ -148,6 +200,7 @@
 		<products>
 			<Ammo_22LR_HP>500</Ammo_22LR_HP>
 		</products>
-	</RecipeDef>-->
+		<workAmount>600</workAmount>
+	</RecipeDef>
 
 </Defs>

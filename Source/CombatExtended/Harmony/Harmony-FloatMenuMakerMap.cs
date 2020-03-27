@@ -3,13 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using System.Reflection.Emit;
-using Harmony;
+using HarmonyLib;
 using Verse;
 using RimWorld;
 using UnityEngine;
 using Verse.AI;
 
-namespace CombatExtended.Harmony
+namespace CombatExtended.HarmonyCE
 {
     /*
      * The additional item to be inserted adds learning information for CE when a weapon is selected for equipping.
@@ -20,18 +20,24 @@ namespace CombatExtended.Harmony
     [HarmonyPatch]
     static class FloatMenuMakerMap_PatchKnowledge
     {
-        static readonly string logPrefix = Assembly.GetExecutingAssembly().GetName().Name + " :: " + typeof(FloatMenuMakerMap_PatchKnowledge).Name + " :: ";
+        static readonly string logPrefix = "Combat Extended :: " + typeof(FloatMenuMakerMap_PatchKnowledge).Name + " :: ";
 
+        const string ClassNamePart = "DisplayClass5";   //1.0: "AddHumanLikeOrders" to target <AddHumanLikeOrders>c__AnonStoreyB
+        const string MethodNamePart = "g__Equip";       //1.0: "m__" to target <>m__0()
+
+        // Target the class containing several KnowledgeDemonstrated, MakeStaticMote, Mote_FeedbackEquip ..
+        // 1.0: FloatMenuMakerMap.<AddHumanLikeOrders>c__AnonStoreyB.<>m__0(),
+        // 1.1: FloatMenuMakerMap.<>c__DisplayClass5_11.g__Equip|11()()
         static MethodBase TargetMethod()
         {
             List<Type> classes = typeof(FloatMenuMakerMap).GetNestedTypes(AccessTools.all).ToList();
             MethodBase target = null; //classes.First().GetMethods().First(); // a bailout so that harmony doesn't choke.
-            foreach (Type clas in classes.Where(c => c.Name.Contains("AddHumanlikeOrders")))
+            foreach (Type clas in classes.Where(c => c.Name.Contains(ClassNamePart)))
             {
                 FieldInfo info = AccessTools.Field(clas, "equipment");
                 if (info != null && info.FieldType == typeof(ThingWithComps))
                 {
-                    target = clas.GetMethods(AccessTools.all).FirstOrDefault(m => m.Name.Contains("m__"));
+                    target = clas.GetMethods(AccessTools.all).FirstOrDefault(m => m.Name.Contains(MethodNamePart));
                     break;
                 }
             }
@@ -52,7 +58,7 @@ namespace CombatExtended.Harmony
     [HarmonyPatch(new Type[] { typeof(Vector3), typeof(Pawn), typeof(List<FloatMenuOption>) })]
     static class FloatMenuMakerMap_Modify_AddHumanlikeOrders
     {
-        static readonly string logPrefix = Assembly.GetExecutingAssembly().GetName().Name + " :: " + typeof(FloatMenuMakerMap_Modify_AddHumanlikeOrders).Name + " :: ";
+        static readonly string logPrefix = "Combat Extended :: " + typeof(FloatMenuMakerMap_Modify_AddHumanlikeOrders).Name + " :: ";
 
         /* 
          * Opted for a postfix as the original Detour had the code inserted generally after other code had run and because we want the target's code
@@ -61,9 +67,9 @@ namespace CombatExtended.Harmony
          * -Both when right clicking on something with a pawn selected.
          */
 
-        // __instance isn't apt, target is static.
-        // __result isn't apt, target return is void.
-        [HarmonyPostfix]
+    // __instance isn't apt, target is static.
+    // __result isn't apt, target return is void.
+    [HarmonyPostfix]
         static void AddMenuItems(Vector3 clickPos, Pawn pawn, List<FloatMenuOption> opts)
         {
             // Stabilize
@@ -77,7 +83,7 @@ namespace CombatExtended.Harmony
                         && pawn.CanReach(patient, PathEndMode.InteractionCell, Danger.Deadly)
                         && patient.health.hediffSet.GetHediffsTendable().Any(h => h.CanBeStabilized()))
                     {
-                        if (pawn.story.WorkTypeIsDisabled(WorkTypeDefOf.Doctor))
+                        if (pawn.WorkTypeIsDisabled(WorkTypeDefOf.Doctor))
                         {
                             opts.Add(new FloatMenuOption("CE_CannotStabilize".Translate() + ": " + "IncapableOfCapacity".Translate(WorkTypeDefOf.Doctor.gerundLabel), null, MenuOptionPriority.Default));
                         }

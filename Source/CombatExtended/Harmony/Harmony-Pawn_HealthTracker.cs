@@ -1,11 +1,11 @@
 ﻿using System.Collections.Generic;
 using Verse;
-using Harmony;
+using HarmonyLib;
 using System.Reflection.Emit;
 using System.Reflection;
 using System.Linq;
 
-namespace CombatExtended.Harmony
+namespace CombatExtended.HarmonyCE
 {
     /* Dev Notes:
      * The goal in this case is to remove the RNG death event.
@@ -22,7 +22,7 @@ namespace CombatExtended.Harmony
     [HarmonyPatch(typeof(Pawn_HealthTracker), "CheckForStateChange")]
     static class Harmony_Pawn_HealthTracker_CheckForStateChange
     {
-        static readonly string logPrefix = Assembly.GetExecutingAssembly().GetName().Name + " :: " + typeof(Harmony_Pawn_HealthTracker_CheckForStateChange).Name + " :: ";
+        static readonly string logPrefix = "Combat Extended :: " + typeof(Harmony_Pawn_HealthTracker_CheckForStateChange).Name + " :: ";
 
         static IEnumerable<CodeInstruction> Transpiler(IEnumerable<CodeInstruction> instructions)
         {

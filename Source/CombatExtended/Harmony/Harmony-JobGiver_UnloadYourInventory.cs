@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using System.Reflection.Emit;
-using Harmony;
+using HarmonyLib;
 using Verse;
 using RimWorld;
 using UnityEngine;
@@ -21,7 +21,7 @@ using Verse.AI;
  * 
  */
 
-namespace CombatExtended.Harmony
+namespace CombatExtended.HarmonyCE
 {
     [HarmonyPatch(typeof(JobGiver_UnloadYourInventory), "TryGiveJob", new Type[] { typeof(Pawn) } )]
     static class Harmony_JobGiver_UnloadYourInventory
@@ -56,7 +56,7 @@ namespace CombatExtended.Harmony
                 }
 
                 // The first branch we find is the one to remember.  This is also the insertion point...
-                if (patchPhase == 0 && instruction.opcode.Equals(OpCodes.Brtrue))
+                if (patchPhase == 0 && instruction.opcode.Equals(OpCodes.Brtrue_S))
                 {
                     branchTrue = instruction.operand as Label?;
 
@@ -76,6 +76,9 @@ namespace CombatExtended.Harmony
                 yield return instruction;
 
             }
+
+            if (patchPhase < 2)
+                Log.Warning("CombatExtended :: Harmony-JobGiver_UnloadYourInventory patch failed to complete all its steps");
         }
     }
 }

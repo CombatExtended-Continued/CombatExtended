@@ -10,8 +10,8 @@
 			</li>
 			<!-- WoodLog_GhostAsh -->
 			<!-- As a weapon -->
-			<li Class="PatchOperationReplace">
-				<xpath>Defs/ThingDef[defName="WoodLog_GhostAsh"]/tools</xpath>
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName="WoodLog_GhostAsh"]</xpath>
 				<value>
 					<tools>
 						<li Class="CombatExtended.ToolCE">
@@ -125,6 +125,66 @@
 							<armorPenetrationBlunt>2.755</armorPenetrationBlunt>
 						</li>
 					</tools>
+				</value>
+			</li>
+
+			<!-- Thrumkin_Sword -->
+			<!-- Used as a weapon -->
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="Thrumkin_Sword"]/tools</xpath>
+				<value>
+					<tools>
+						<li Class="CombatExtended.ToolCE">
+							<label>handle</label>
+							<capacities>
+								<li>Poke</li>
+							</capacities>
+							<power>6</power>
+							<cooldownTime>2.12</cooldownTime>
+							<chanceFactor>0.1</chanceFactor>
+							<armorPenetrationBlunt>2</armorPenetrationBlunt>
+						</li>
+						<li Class="CombatExtended.ToolCE">
+							<label>point</label>
+							<capacities>
+								<li>Stab</li>
+							</capacities>
+							<power>27</power>
+							<cooldownTime>2.12</cooldownTime>
+							<chanceFactor>0.5</chanceFactor>
+							<armorPenetrationSharp>8</armorPenetrationSharp>
+							<armorPenetrationBlunt>2</armorPenetrationBlunt>
+						</li>
+						<li Class="CombatExtended.ToolCE">
+							<label>edge</label>
+							<capacities>
+								<li>Cut</li>
+							</capacities>
+							<power>56</power>
+							<cooldownTime>2.1</cooldownTime>
+							<chanceFactor>0.4</chanceFactor>
+							<armorPenetrationSharp>2.88</armorPenetrationSharp>
+							<armorPenetrationBlunt>6.48</armorPenetrationBlunt>
+						</li>
+					</tools>
+				</value>
+			</li>
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName="Thrumkin_Sword"]</xpath>
+				<value>
+					<equippedStatOffsets>
+						<MeleeCritChance>0.17</MeleeCritChance>
+						<MeleeParryChance>0.35</MeleeParryChance>
+						<MeleeDodgeChance>0.47</MeleeDodgeChance>
+					</equippedStatOffsets>
+				</value>
+			</li>
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="Thrumkin_Sword"]/statBases/Mass</xpath>
+				<value>
+					<Mass>4</Mass>
+					<Bulk>12</Bulk>
+					<MeleeCounterParryBonus>0.47</MeleeCounterParryBonus>
 				</value>
 			</li>
 		</operations>

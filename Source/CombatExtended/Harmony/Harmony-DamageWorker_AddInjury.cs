@@ -7,9 +7,9 @@ using System.Reflection.Emit;
 using Verse;
 using RimWorld;
 using UnityEngine;
-using Harmony;
+using HarmonyLib;
 
-namespace CombatExtended.Harmony
+namespace CombatExtended.HarmonyCE
 {
     [HarmonyPatch(typeof(DamageWorker_AddInjury), "ApplyDamageToPart")]
     internal static class Harmony_DamageWorker_AddInjury_ApplyDamageToPart
@@ -30,11 +30,14 @@ namespace CombatExtended.Harmony
 
         internal static IEnumerable<CodeInstruction> Transpiler(IEnumerable<CodeInstruction> instructions)
         {
+        
             var codes = instructions.ToList();
-
+           
             // Find armor block
-            var armorBlockEnd = codes.FirstIndexOf(c => c.operand == typeof(ArmorUtility).GetMethod(nameof(ArmorUtility.GetPostArmorDamage)));
+            var armorBlockEnd = codes.FirstIndexOf(c => c.operand == typeof(ArmorUtility).GetMethod("GetPostArmorDamage", AccessTools.all));
+          
             int armorBlockStart = -1;
+
             for (int i = armorBlockEnd; i > 0; i--)
             {
                 // Find OpCode loading up first argument for GetPostArmorDamage (Pawn)
@@ -64,7 +67,7 @@ namespace CombatExtended.Harmony
 
             // Prevent vanilla code from overriding changed damageDef
             codes[armorBlockEnd + 3] = new CodeInstruction(OpCodes.Call, typeof(DamageInfo).GetMethod($"get_{nameof(DamageInfo.Def)}"));
-            codes[armorBlockEnd + 4] = new CodeInstruction(OpCodes.Stloc_S, 5);
+            codes[armorBlockEnd + 4] = new CodeInstruction(OpCodes.Stloc_S, 4);
 
             // Our method returns a Dinfo instead of float, we want to insert a call to Dinfo.Amount before stloc at ArmorBlockEnd+1
             codes.InsertRange(armorBlockEnd + 1, new[]
@@ -97,6 +100,8 @@ namespace CombatExtended.Harmony
             }
         }
     }
+
+    // Should work as long as ShouldReduceDamageToPreservePart exists
 
     [HarmonyPatch(typeof(DamageWorker_AddInjury), nameof(DamageWorker_AddInjury.ShouldReduceDamageToPreservePart))]
     static class Patch_ShouldReduceDamageToPreservePart

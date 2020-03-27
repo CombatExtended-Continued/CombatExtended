@@ -41,7 +41,7 @@
 
   <ThingDef Class="CombatExtended.AmmoDef" ParentName="FlamethrowerBase">
     <defName>Ammo_Flamethrower_Napalm</defName>
-    <label>Napalm</label>
+    <label>jellied chemfuel</label>
     <graphicData>
       <texPath>Things/Ammo/FuelCell/Incendiary</texPath>
       <graphicClass>Graphic_StackCount</graphicClass>
@@ -51,13 +51,13 @@
     </statBases>
     <ammoClass>NapalmFuel</ammoClass>
     <comps>
-      <li Class="CombatExtended.CompProperties_ExplosiveCE">
-		<explosionDamage>2</explosionDamage>
-        <explosionDamageDef>Flame</explosionDamageDef>
-        <explosionRadius>1</explosionRadius>
-		<preExplosionSpawnThingDef>Filth_Fuel</preExplosionSpawnThingDef>
-		<preExplosionSpawnChance>1</preExplosionSpawnChance>
-      </li>
+		  <li Class="CombatExtended.CompProperties_ExplosiveCE">
+			<damageAmountBase>2</damageAmountBase>
+			<explosiveDamageType>Flame</explosiveDamageType>
+			<explosiveRadius>1</explosiveRadius>
+			<preExplosionSpawnThingDef>Filth_Fuel</preExplosionSpawnThingDef>
+			<preExplosionSpawnChance>1</preExplosionSpawnChance>
+		  </li>
     </comps>
   </ThingDef>
 
@@ -73,13 +73,13 @@
     </statBases>
     <ammoClass>JelliedPrometheumFuel</ammoClass>
     <comps>
-      <li Class="CombatExtended.CompProperties_ExplosiveCE">
-		<explosionDamage>5</explosionDamage>
-        <explosionDamageDef>PrometheumFlame</explosionDamageDef>
-        <explosionRadius>1.2</explosionRadius>
+	  <li Class="CombatExtended.CompProperties_ExplosiveCE">
+		<damageAmountBase>5</damageAmountBase>
+		<explosiveDamageType>PrometheumFlame</explosiveDamageType>
+		<explosiveRadius>1.2</explosiveRadius>
 		<preExplosionSpawnThingDef>FilthPrometheum</preExplosionSpawnThingDef>
 		<preExplosionSpawnChance>1</preExplosionSpawnChance>
-      </li>
+	  </li>
     </comps>
   </ThingDef>
 	
@@ -100,7 +100,7 @@
   <ThingDef Class="CombatExtended.AmmoDef" ParentName="BaseFlamethrowerBullet">
     <defName>Bullet_Flamethrower_Napalm</defName>
     <thingClass>CombatExtended.ProjectileCE_Explosive</thingClass>
-    <label>Napalm stream</label>
+    <label>jellied chemfuel stream</label>
     <projectile Class="CombatExtended.ProjectilePropertiesCE">
       <damageDef>Flame</damageDef>
       <damageAmountBase>3</damageAmountBase>

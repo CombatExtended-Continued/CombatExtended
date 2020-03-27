@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Patch>
 
-	<Operation Class="PatchOperationSequence">
-		<success>Always</success>
+	<Operation Class="PatchOperationFindMod">
+    <mods>
+		<li>[XND] Vanilla-Friendly Weapon Expansion</li>
+    </mods>
+		<match Class="PatchOperationSequence">
 		<operations>
-			<li Class="CombatExtended.PatchOperationFindMod">
-				<modName>[XND] Vanilla-Friendly Weapon Expansion</modName>
-			</li>
 
 			<!-- Quarterstaff -->
 			<li Class="PatchOperationReplace">
@@ -18,19 +18,20 @@
 						<capacities>
 							<li>Blunt</li>
 						</capacities>
-						<power>11</power>
-						<cooldownTime>1.2</cooldownTime>
-						<armorPenetration>0.125</armorPenetration>
+						<power>4</power>
+						<cooldownTime>1.19</cooldownTime>
+						<chanceFactor>1.33</chanceFactor>
+						<armorPenetrationBlunt>1.35</armorPenetrationBlunt>
 						<linkedBodyPartsGroup>Shaft</linkedBodyPartsGroup>
 					</li>
 					<li Class="CombatExtended.ToolCE">
-						<label>point</label>
+						<label>shaft</label>
 						<capacities>
 							<li>Poke</li>
 						</capacities>
-						<power>11</power>
-						<cooldownTime>1.2</cooldownTime>
-						<armorPenetration>0.091</armorPenetration>
+						<power>3</power>
+						<cooldownTime>1.69</cooldownTime>
+						<armorPenetrationBlunt>0.8</armorPenetrationBlunt>
 						<linkedBodyPartsGroup>Point</linkedBodyPartsGroup>
 					</li>
 				</tools>
@@ -40,18 +41,21 @@
 			<xpath>Defs/ThingDef[defName="MeleeWeapon_Quarterstaff"]/statBases</xpath>
 			<value>
 				<Bulk>6</Bulk>
+      	  		<MeleeCounterParryBonus>2.18</MeleeCounterParryBonus>				
 			</value>
 		</li>
 		<li Class="PatchOperationAdd">
 			<xpath>Defs/ThingDef[defName="MeleeWeapon_Quarterstaff"]</xpath>
 			<value>
 				<equippedStatOffsets>
-					<MeleeCritChance>0.5</MeleeCritChance>
-					<MeleeParryChance>1.00</MeleeParryChance>
+					<MeleeCritChance>0.83</MeleeCritChance>
+					<MeleeParryChance>1.64</MeleeParryChance>
+					<MeleeDodgeChance>0.9</MeleeDodgeChance>	
 				</equippedStatOffsets>
 			</value>
 		</li>
-		</operations>
-	</Operation>
 
+		</operations>
+		</match>
+	</Operation>
 </Patch>

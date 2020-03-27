@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Patch>
+	<Operation Class="PatchOperationSequence">
+		<success>Always</success>
+		<operations>
+
+			<li Class="CombatExtended.PatchOperationFindMod">
+				<modName>[CP] Metal Gear Solid</modName>
+			</li>
+
+			<!-- ========== Longsword / Katana ========== -->
+
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="RHMelee_MGS_HFBlade"]/tools</xpath>
+				<value>
+					<tools>
+						<li Class="CombatExtended.ToolCE">
+							<label>handle</label>
+							<capacities>
+								<li>Blunt</li>
+							</capacities>
+							<power>2</power>
+							<chanceFactor>0.33</chanceFactor>
+							<cooldownTime>1.52</cooldownTime>
+							<armorPenetrationBlunt>0.500</armorPenetrationBlunt>
+							<linkedBodyPartsGroup>Handle</linkedBodyPartsGroup>
+						</li>
+						<li Class="CombatExtended.ToolCE">
+							<label>point</label>
+							<capacities>
+								<li>RHMelee_HFBladeStab</li>
+							</capacities>
+							<power>16</power>
+							<cooldownTime>1</cooldownTime>
+							<armorPenetrationBlunt>10</armorPenetrationBlunt>
+							<armorPenetrationSharp>85</armorPenetrationSharp>
+							<linkedBodyPartsGroup>Point</linkedBodyPartsGroup>
+						</li>
+						<li Class="CombatExtended.ToolCE">
+							<label>blade</label>
+							<capacities>
+								<li>RHMelee_HFBladeSlash</li>
+							</capacities>
+							<power>42</power>
+							<cooldownTime>0.5</cooldownTime>
+							<armorPenetrationBlunt>40</armorPenetrationBlunt>
+							<armorPenetrationSharp>75</armorPenetrationSharp>
+							<linkedBodyPartsGroup>Edge</linkedBodyPartsGroup>
+						</li>
+					</tools>
+				</value>
+			</li>
+
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName="RHMelee_MGS_HFBlade"]/statBases</xpath>
+				<value>
+					<Bulk>6</Bulk>
+					<MeleeCounterParryBonus>0.78</MeleeCounterParryBonus>
+				</value>
+			</li>
+
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName="RHMelee_MGS_HFBlade"]</xpath>
+				<value>
+					<equippedStatOffsets>
+						<MeleeCritChance>4</MeleeCritChance>
+						<MeleeParryChance>1.2</MeleeParryChance>
+						<MeleeDodgeChance>0.4</MeleeDodgeChance>
+					</equippedStatOffsets>
+				</value>
+			</li>
+
+		</operations>
+	</Operation>
+</Patch>

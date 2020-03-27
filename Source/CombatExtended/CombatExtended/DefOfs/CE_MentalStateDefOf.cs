@@ -8,5 +8,6 @@ namespace CombatExtended
     {
         public static MentalStateDef ShellShock;
         public static MentalStateDef CombatFrenzy;
+        public static MentalStateDef WanderConfused;
     }
 }

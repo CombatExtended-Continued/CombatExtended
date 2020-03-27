@@ -5,17 +5,17 @@ using System.Text;
 using RimWorld;
 using Verse;
 using UnityEngine;
-using Harmony;
+using HarmonyLib;
 using System.Reflection;
 
-namespace CombatExtended.Harmony
+namespace CombatExtended.HarmonyCE
 {
     [HarmonyPatch]
     public static class Harmony_ThingDefGenerator_Meat
     {
         static MethodBase TargetMethod()
         {
-            var type = AccessTools.Inner(typeof(ThingDefGenerator_Meat), "<ImpliedMeatDefs>c__Iterator0");
+            var type = AccessTools.Inner(typeof(ThingDefGenerator_Meat), "<ImpliedMeatDefs>d__0");
             return AccessTools.Method(type, "MoveNext");
         }
         

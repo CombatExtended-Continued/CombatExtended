@@ -72,19 +72,16 @@ namespace CombatExtended
         {
             get
             {
-                if (shotSpeed < 0)
+                if (CompCharges != null)
                 {
-                    if (CompCharges != null)
+                    if (CompCharges.GetChargeBracket((currentTarget.Cell - caster.Position).LengthHorizontal, ShotHeight, projectilePropsCE.Gravity, out var bracket))
                     {
-                        if (CompCharges.GetChargeBracket((currentTarget.Cell - caster.Position).LengthHorizontal, ShotHeight, projectilePropsCE.Gravity, out var bracket))
-                        {
-                            shotSpeed = bracket.x;
-                        }
+                        shotSpeed = bracket.x;
                     }
-                    else
-                    {
-                        shotSpeed = Projectile.projectile.speed;
-                    }
+                }
+                else
+                {
+                    shotSpeed = Projectile.projectile.speed;
                 }
                 return shotSpeed;
             }
@@ -477,7 +474,7 @@ namespace CombatExtended
             if (ShooterPawn != null)
             {
                 // Check for capable of violence
-                if (ShooterPawn.story != null && ShooterPawn.story.WorkTagIsDisabled(WorkTags.Violent))
+                if (ShooterPawn.story != null && ShooterPawn.WorkTagIsDisabled(WorkTags.Violent))
                 {
                     report = "IsIncapableOfViolenceLower".Translate(ShooterPawn.Name.ToStringShort);
                     return false;

@@ -1,9 +1,9 @@
 ﻿using System.Linq;
-using Harmony;
+using HarmonyLib;
 using RimWorld;
 using Verse;
 
-namespace CombatExtended.Harmony
+namespace CombatExtended.HarmonyCE
 {
     [HarmonyPatch(typeof(Pawn_ApparelTracker), "Notify_ApparelAdded")]
     internal static class Harmony_ApparelTracker_Notify_ApparelAdded
@@ -32,7 +32,7 @@ namespace CombatExtended.Harmony
             var hediff = pawn.health.hediffSet.hediffs.FirstOrDefault(h => h.def == hediffDef);
             if (hediff == null)
             {
-                Log.Warning($"CE :: Apparel {apparel} tried removing hediff {hediffDef} from {pawn} but could not find any");
+                Log.Warning($"Combat Extended :: Apparel {apparel} tried removing hediff {hediffDef} from {pawn} but could not find any");
                 return;
             }
             pawn.health.RemoveHediff(hediff);

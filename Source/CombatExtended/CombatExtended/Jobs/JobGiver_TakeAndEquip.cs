@@ -69,7 +69,7 @@ namespace CombatExtended
                 if (!hasWeaponInInventory(pawn))
                 {
                     return WorkPriority.Weapon;
-                }                
+                }
             }
 
             CompInventory compInventory = pawn.TryGetComp<CompInventory>();
@@ -162,7 +162,7 @@ namespace CombatExtended
                 return null;
             }
 
-            if (!pawn.RaceProps.Humanlike || (pawn.story != null && pawn.story.WorkTagIsDisabled(WorkTags.Violent)))
+            if (!pawn.RaceProps.Humanlike || (pawn.story != null && pawn.WorkTagIsDisabled(WorkTags.Violent)))
             {
                 return null;
             }
@@ -177,6 +177,10 @@ namespace CombatExtended
             }
 
             if (!pawn.Faction.IsPlayer && FindBattleWorthyEnemyPawnsCount(Find.CurrentMap, pawn) > 25)
+            {
+                return null;
+            }
+            if (pawn.IsPrisoner && (pawn.HostFaction != Faction.OfPlayer || pawn.guest.interactionMode == PrisonerInteractionModeDefOf.Release))
             {
                 return null;
             }
@@ -207,7 +211,7 @@ namespace CombatExtended
                 // Equip weapon if no any weapon
                 if (!pawn.Faction.IsPlayer && !hasPrimary)
                 {
-                        // For ranged weapon
+                    // For ranged weapon
                     if ((pawn.skills.GetSkill(SkillDefOf.Shooting).Level >= pawn.skills.GetSkill(SkillDefOf.Melee).Level
                          || pawn.skills.GetSkill(SkillDefOf.Shooting).Level >= 6) && !brawler)
                     {

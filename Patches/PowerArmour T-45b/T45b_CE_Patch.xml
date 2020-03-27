@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+			<li>T-45b Power Armor</li>
+		</mods>
+		<match Class="PatchOperationSequence">
+			<operations>
+
+				<!-- ========== T-45b helmet ========== -->
+
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="CPApparel_T45bHelmet"]/statBases</xpath>
+					<value>
+						<Bulk>6</Bulk>
+						<WornBulk>1.5</WornBulk>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="CPApparel_T45bHelmet"]/statBases/ArmorRating_Sharp</xpath>
+					<value>
+						<ArmorRating_Sharp>15</ArmorRating_Sharp>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="CPApparel_T45bHelmet"]/statBases/ArmorRating_Blunt</xpath>
+					<value>
+						<ArmorRating_Blunt>32</ArmorRating_Blunt>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="CPApparel_T45bHelmet"]/statBases/ArmorRating_Heat</xpath>
+					<value>
+						<ArmorRating_Heat>1</ArmorRating_Heat>
+					</value>
+				</li>
+
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="CPApparel_T45bHelmet"]/statBases</xpath>
+					<value>
+						<ArmorRating_Electric>0.06</ArmorRating_Electric>
+					</value>
+				</li>
+
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="CPApparel_T45bHelmet"]/equippedStatOffsets</xpath>
+					<value>
+						<SmokeSensitivity>-1</SmokeSensitivity>
+					</value>
+				</li>
+				
+				<!-- Deliberately omitted WearingGasMask ApparelHediffExtension, as we assume the T-45b Helmet is more comfortable than real-life gas masks -->
+				
+				<!-- ========== T-45b armor ========== -->
+
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="CPApparel_T45bPowerArmor"]/statBases</xpath>
+					<value>
+						<Bulk>100</Bulk>
+						<WornBulk>15</WornBulk>
+					</value>
+				</li>
+
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="CPApparel_T45bPowerArmor"]/equippedStatOffsets</xpath>
+					<value>
+						<CarryBulk>15</CarryBulk>
+						<CarryWeight>90</CarryWeight>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="CPApparel_T45bPowerArmor"]/statBases/ArmorRating_Sharp</xpath>
+					<value>
+						<ArmorRating_Sharp>18</ArmorRating_Sharp>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="CPApparel_T45bPowerArmor"]/statBases/ArmorRating_Blunt</xpath>
+					<value>
+						<ArmorRating_Blunt>40</ArmorRating_Blunt>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="CPApparel_T45bPowerArmor"]/statBases/ArmorRating_Heat</xpath>
+					<value>
+						<ArmorRating_Heat>0.8</ArmorRating_Heat>
+					</value>
+				</li>
+
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="CPApparel_T45bPowerArmor"]/statBases</xpath>
+					<value>
+						<ArmorRating_Electric>0.05</ArmorRating_Electric>
+					</value>
+				</li>
+
+			</operations>
+		</match>
+	</Operation>
+</Patch>

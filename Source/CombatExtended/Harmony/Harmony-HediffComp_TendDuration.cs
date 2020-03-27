@@ -1,10 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Reflection.Emit;
-using Harmony;
+using HarmonyLib;
 using Verse;
 
-namespace CombatExtended.Harmony
+namespace CombatExtended.HarmonyCE
 {
 	/* Targetting Verse.HediffComp_TendDuration.CompTended
 	 * Specifically the (decompiled) line this.tendQuality = Mathf.Clamp01(quality + Rand.Range(-0.25f, 0.25f));

@@ -25,8 +25,8 @@
 	<ThingDef Class="CombatExtended.AmmoDef" Name="357SIGBase" ParentName="SmallAmmoBase" Abstract="True">
 		<description>A powerful cartridge designed to bring the performance of .357 Magnum to autoloaders.</description>
 		<statBases>
-			<Mass>0.014</Mass>
-			<Bulk>0.02</Bulk>
+			<Mass>0.016</Mass>
+			<Bulk>0.01</Bulk>
 		</statBases>
 		<tradeTags>
 			<li>CE_AutoEnableTrade</li>
@@ -45,7 +45,7 @@
 			<graphicClass>Graphic_StackCount</graphicClass>
 		</graphicData>
 		<statBases>
-			<MarketValue>0.06</MarketValue>
+			<MarketValue>0.08</MarketValue>
 		</statBases>
 		<ammoClass>FullMetalJacket</ammoClass>
 		<cookOffProjectile>Bullet_357SIG_FMJ</cookOffProjectile>
@@ -59,7 +59,7 @@
 			<graphicClass>Graphic_StackCount</graphicClass>
 		</graphicData>
 		<statBases>
-			<MarketValue>0.07</MarketValue>
+			<MarketValue>0.08</MarketValue>
 		</statBases>
 		<ammoClass>ArmorPiercing</ammoClass>
 		<cookOffProjectile>Bullet_357SIG_AP</cookOffProjectile>
@@ -98,9 +98,8 @@
 		<label>.357 SIG bullet (FMJ)</label>
 		<projectile Class="CombatExtended.ProjectilePropertiesCE">
 			<damageAmountBase>12</damageAmountBase>
-			<armorPenetrationBase>0.372</armorPenetrationBase>
-			<armorPenetrationSharp>0</armorPenetrationSharp>
-			<armorPenetrationBlunt>0</armorPenetrationBlunt>
+			<armorPenetrationSharp>5</armorPenetrationSharp>
+			<armorPenetrationBlunt>13.62</armorPenetrationBlunt>
 		</projectile>
 	</ThingDef>
 
@@ -108,10 +107,9 @@
 		<defName>Bullet_357SIG_AP</defName>
 		<label>.357 SIG bullet (AP)</label>
 		<projectile Class="CombatExtended.ProjectilePropertiesCE">
-			<damageAmountBase>10</damageAmountBase>
-			<armorPenetrationBase>0.529</armorPenetrationBase>
-			<armorPenetrationSharp>0</armorPenetrationSharp>
-			<armorPenetrationBlunt>0</armorPenetrationBlunt>
+			<damageAmountBase>7</damageAmountBase>
+			<armorPenetrationSharp>10</armorPenetrationSharp>
+			<armorPenetrationBlunt>13.62</armorPenetrationBlunt>
 		</projectile>
 	</ThingDef>
 
@@ -119,10 +117,9 @@
 		<defName>Bullet_357SIG_HP</defName>
 		<label>.357 SIG bullet (HP)</label>
 		<projectile Class="CombatExtended.ProjectilePropertiesCE">
-			<damageAmountBase>14</damageAmountBase>
-			<armorPenetrationBase>0.229</armorPenetrationBase>
-			<armorPenetrationSharp>0</armorPenetrationSharp>
-			<armorPenetrationBlunt>0</armorPenetrationBlunt>
+			<damageAmountBase>15</damageAmountBase>
+			<armorPenetrationSharp>3</armorPenetrationSharp>
+			<armorPenetrationBlunt>13.62</armorPenetrationBlunt>
 		</projectile>
 	</ThingDef>
 
@@ -140,7 +137,7 @@
 						<li>Steel</li>
 					</thingDefs>
 				</filter>
-				<count>10</count>
+				<count>18</count>
 			</li>
 		</ingredients>
 		<fixedIngredientFilter>
@@ -151,6 +148,7 @@
 		<products>
 			<Ammo_357SIG_FMJ>500</Ammo_357SIG_FMJ>
 		</products>
+		<workAmount>1800</workAmount>
 	</RecipeDef>
 
 	<RecipeDef ParentName="AmmoRecipeBase">
@@ -165,7 +163,7 @@
 						<li>Steel</li>
 					</thingDefs>
 				</filter>
-				<count>12</count>
+				<count>18</count>
 			</li>
 		</ingredients>
 		<fixedIngredientFilter>
@@ -176,6 +174,7 @@
 		<products>
 			<Ammo_357SIG_AP>500</Ammo_357SIG_AP>
 		</products>
+		<workAmount>1800</workAmount>
 	</RecipeDef>
 
 	<RecipeDef ParentName="AmmoRecipeBase">
@@ -190,7 +189,7 @@
 						<li>Steel</li>
 					</thingDefs>
 				</filter>
-				<count>10</count>
+				<count>18</count>
 			</li>
 		</ingredients>
 		<fixedIngredientFilter>
@@ -201,6 +200,7 @@
 		<products>
 			<Ammo_357SIG_HP>500</Ammo_357SIG_HP>
 		</products>
+		<workAmount>1800</workAmount>
 	</RecipeDef>
 
 </Defs>

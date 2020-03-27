@@ -25,7 +25,7 @@
 	<ThingDef Class="CombatExtended.AmmoDef" Name="40SWBase" ParentName="SmallAmmoBase" Abstract="True">
 		<description>A pistol cartridge designed to match the performance of .38 Special +P in an automatic.</description>
 		<statBases>
-			<Mass>0.015</Mass>
+			<Mass>0.016</Mass>
 			<Bulk>0.01</Bulk>
 		</statBases>
 		<tradeTags>
@@ -45,7 +45,7 @@
 			<graphicClass>Graphic_StackCount</graphicClass>
 		</graphicData>
 		<statBases>
-			<MarketValue>0.04</MarketValue>
+			<MarketValue>0.08</MarketValue>
 		</statBases>
 		<ammoClass>FullMetalJacket</ammoClass>
 		<cookOffProjectile>Bullet_40SW_FMJ</cookOffProjectile>
@@ -59,7 +59,7 @@
 			<graphicClass>Graphic_StackCount</graphicClass>
 		</graphicData>
 		<statBases>
-			<MarketValue>0.06</MarketValue>
+			<MarketValue>0.08</MarketValue>
 		</statBases>
 		<ammoClass>ArmorPiercing</ammoClass>
 		<cookOffProjectile>Bullet_40SW_AP</cookOffProjectile>
@@ -73,7 +73,7 @@
 			<graphicClass>Graphic_StackCount</graphicClass>
 		</graphicData>
 		<statBases>
-			<MarketValue>0.06</MarketValue>
+			<MarketValue>0.08</MarketValue>
 		</statBases>
 		<ammoClass>HollowPoint</ammoClass>
 		<cookOffProjectile>Bullet_40SW_HP</cookOffProjectile>
@@ -98,8 +98,7 @@
 		<label>.40 SW bullet (FMJ)</label>
 		<projectile Class="CombatExtended.ProjectilePropertiesCE">
 			<damageAmountBase>12</damageAmountBase>
-			<armorPenetrationBase>0.343</armorPenetrationBase>
-			<armorPenetrationSharp>0</armorPenetrationSharp>
+			<armorPenetrationSharp>4</armorPenetrationSharp>
 			<armorPenetrationBlunt>12.360</armorPenetrationBlunt>
 		</projectile>
 	</ThingDef>
@@ -109,8 +108,7 @@
 		<label>.40 SW bullet (AP)</label>
 		<projectile Class="CombatExtended.ProjectilePropertiesCE">
 			<damageAmountBase>8</damageAmountBase>
-			<armorPenetrationBase>0.493</armorPenetrationBase>
-			<armorPenetrationSharp>0</armorPenetrationSharp>
+			<armorPenetrationSharp>8</armorPenetrationSharp>
 			<armorPenetrationBlunt>12.360</armorPenetrationBlunt>
 		</projectile>
 	</ThingDef>
@@ -119,9 +117,8 @@
 		<defName>Bullet_40SW_HP</defName>
 		<label>.40 SW bullet (HP)</label>
 		<projectile Class="CombatExtended.ProjectilePropertiesCE">
-			<damageAmountBase>16</damageAmountBase>
-			<armorPenetrationBase>0.193</armorPenetrationBase>
-			<armorPenetrationSharp>0</armorPenetrationSharp>
+			<damageAmountBase>15</damageAmountBase>
+			<armorPenetrationSharp>2</armorPenetrationSharp>
 			<armorPenetrationBlunt>12.360</armorPenetrationBlunt>
 		</projectile>
 	</ThingDef>
@@ -140,7 +137,7 @@
 						<li>Steel</li>
 					</thingDefs>
 				</filter>
-				<count>7</count>
+				<count>18</count>
 			</li>
 		</ingredients>
 		<fixedIngredientFilter>
@@ -151,6 +148,7 @@
 		<products>
 			<Ammo_40SW_FMJ>500</Ammo_40SW_FMJ>
 		</products>
+		<workAmount>1800</workAmount>
 	</RecipeDef>
 
 	<RecipeDef ParentName="AmmoRecipeBase">
@@ -165,7 +163,7 @@
 						<li>Steel</li>
 					</thingDefs>
 				</filter>
-				<count>9</count>
+				<count>18</count>
 			</li>
 		</ingredients>
 		<fixedIngredientFilter>
@@ -176,6 +174,7 @@
 		<products>
 			<Ammo_40SW_AP>500</Ammo_40SW_AP>
 		</products>
+		<workAmount>400</workAmount>
 	</RecipeDef>
 
 	<RecipeDef ParentName="AmmoRecipeBase">
@@ -190,7 +189,7 @@
 						<li>Steel</li>
 					</thingDefs>
 				</filter>
-				<count>7</count>
+				<count>18</count>
 			</li>
 		</ingredients>
 		<fixedIngredientFilter>
@@ -201,6 +200,7 @@
 		<products>
 			<Ammo_40SW_HP>500</Ammo_40SW_HP>
 		</products>
+		<workAmount>1800</workAmount>
 	</RecipeDef>
 
 </Defs>

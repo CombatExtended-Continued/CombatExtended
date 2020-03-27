@@ -281,6 +281,8 @@ namespace CombatExtended
                  weight = eq.GetStatValue(StatDefOf.Mass);
             //old     weight = eq.GetStatValue(CE_StatDefOf.Weight);
                  bulk = eq.GetStatValue(CE_StatDefOf.Bulk);
+
+            /*
             CompAmmoUser comp = eq.TryGetComp<CompAmmoUser>();
             if (comp != null && comp.CurrentAmmo != null)
             {
@@ -288,6 +290,7 @@ namespace CombatExtended
                 //old     weight += comp.currentAmmo.GetStatValueAbstract(CE_StatDefOf.Weight) * comp.curMagCount;
                 bulk += comp.CurrentAmmo.GetStatValueAbstract(CE_StatDefOf.Bulk) * comp.CurMagCount;
             }
+            */
         }
 
         /// <summary>
@@ -339,7 +342,7 @@ namespace CombatExtended
                     else
                     {
 #if DEBUG
-                        Log.Warning("CE :: CompInventory :: SwitchToNextViableWeapon :: destroying out of bounds equipment" + eq.ToString());
+                        Log.Warning("Combat Extended :: CompInventory :: SwitchToNextViableWeapon :: destroying out of bounds equipment" + eq.ToString());
 #endif
                         if (!eq.Destroyed)
                         {
@@ -371,7 +374,7 @@ namespace CombatExtended
                 else
                 {
 #if DEBUG
-                    Log.Warning("CE :: CompInventory :: TrySwitchToWeapon :: failed to add current equipment to inventory");
+                    Log.Warning("Combat Extended :: CompInventory :: TrySwitchToWeapon :: failed to add current equipment to inventory");
 #endif
                     parentPawn.equipment.MakeRoomFor(newEq);
                 }
@@ -423,7 +426,7 @@ namespace CombatExtended
             UpdateInventory();
             if (oldWeight != currentWeight || oldBulk != currentBulk)
             {
-                Log.Error("CE :: CompInventory :: " + parent.ToString() + " failed inventory validation");
+                Log.Error("Combat Extended :: CompInventory :: " + parent.ToString() + " failed inventory validation");
             }
         }
 

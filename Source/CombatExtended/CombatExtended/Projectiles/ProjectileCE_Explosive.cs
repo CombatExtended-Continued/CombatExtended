@@ -2,6 +2,7 @@ using System;
 using Verse;
 using RimWorld;
 using UnityEngine;
+using System.Collections.Generic;
 
 namespace CombatExtended
 {
@@ -22,7 +23,8 @@ namespace CombatExtended
                 this.ticksToDetonation--;
                 if (this.ticksToDetonation <= 0)
                 {
-                    this.Explode();
+					//Explosions are all handled in base
+                    base.Impact(null);
                 }
             }
         }
@@ -38,35 +40,14 @@ namespace CombatExtended
             }
             if (def.projectile.explosionDelay == 0)
             {
-                Explode();
+				//Explosions are all handled in base
+                base.Impact(null);
                 return;
             }
             landed = true;
             ticksToDetonation = def.projectile.explosionDelay;
             GenExplosion.NotifyNearbyPawnsOfDangerousExplosive(this, this.def.projectile.damageDef, this.launcher?.Faction);
         }
-        protected virtual void Explode()
-        {
-            ExplosionCE explosion = GenSpawn.Spawn(CE_ThingDefOf.ExplosionCE, ExactPosition.ToIntVec3(), Map) as ExplosionCE;
-            explosion.height = ExactPosition.y;
-            explosion.radius = def.projectile.explosionRadius;
-            explosion.damType = def.projectile.damageDef;
-            explosion.instigator = launcher;
-            explosion.damAmount = def.projectile.GetDamageAmount(1);
-            explosion.weapon = equipmentDef;
-            explosion.projectile = def;
-            explosion.preExplosionSpawnThingDef = def.projectile.preExplosionSpawnThingDef;
-            explosion.preExplosionSpawnChance = def.projectile.preExplosionSpawnChance;
-            explosion.preExplosionSpawnThingCount = def.projectile.preExplosionSpawnThingCount;
-            explosion.postExplosionSpawnThingDef = def.projectile.postExplosionSpawnThingDef;
-            explosion.postExplosionSpawnChance = def.projectile.postExplosionSpawnChance;
-            explosion.postExplosionSpawnThingCount = def.projectile.postExplosionSpawnThingCount;
-            explosion.applyDamageToExplosionCellsNeighbors = def.projectile.applyDamageToExplosionCellsNeighbors;
-            explosion.chanceToStartFire = def.projectile.explosionChanceToStartFire;
-            explosion.damageFalloff = def.projectile.explosionDamageFalloff;
-            explosion.StartExplosion(def.projectile.soundExplode);
-            explosion.armorPenetration = explosion.damAmount * 0.1f;
-
             //This code was disabled because it didn't run under previous circumstances. Could be enabled if necessary
             /*
             if (map != null && base.ExactPosition.ToIntVec3().IsValid)
@@ -74,10 +55,6 @@ namespace CombatExtended
                 ThrowBigExplode(base.ExactPosition + Gen.RandomHorizontalVector(def.projectile.explosionRadius * 0.5f), base.Map, def.projectile.explosionRadius * 0.4f);
             }
             */
-
-            base.Impact(null); // base.Impact() handles this.Destroy() and comp.Explode()
-        }
-
         /*public static void ThrowBigExplode(Vector3 loc, Map map, float size)
           {
               if (!loc.ShouldSpawnMotesAt(map))

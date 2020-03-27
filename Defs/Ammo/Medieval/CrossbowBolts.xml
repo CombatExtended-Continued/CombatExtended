@@ -17,6 +17,8 @@
 			<Ammo_CrossbowBolt_Stone>Projectile_CrossbowBolt_Stone</Ammo_CrossbowBolt_Stone>
 			<Ammo_CrossbowBolt_Steel>Projectile_CrossbowBolt_Steel</Ammo_CrossbowBolt_Steel>
 			<Ammo_CrossbowBolt_Plasteel>Projectile_CrossbowBolt_Plasteel</Ammo_CrossbowBolt_Plasteel>
+	    <Ammo_CrossbowBolt_Venom>Projectile_CrossbowBolt_Venom</Ammo_CrossbowBolt_Venom>
+	    <Ammo_CrossbowBolt_Flame>Projectile_CrossbowBolt_Flame</Ammo_CrossbowBolt_Flame>      
 		</ammoTypes>
 	</CombatExtended.AmmoSetDef>
 	
@@ -25,14 +27,14 @@
   <ThingDef Class="CombatExtended.AmmoDef" Name="AmmoCrossbowBoltBase" ParentName="NeolithicAmmoBase" Abstract="True">
     <description>A crossbow bolt.</description>
     <statBases>
-      <Mass>0.1</Mass>
-      <Bulk>0.1</Bulk>
+      <Mass>0.131</Mass>
+      <Bulk>0.24</Bulk>
       <Flammability>1</Flammability>
     </statBases>
     <thingCategories>
       <li>AmmoCrossbowBolts</li>
     </thingCategories>
-    <stackLimit>200</stackLimit>
+    <stackLimit>4000</stackLimit>
     <tradeTags>
       <li>CE_AutoEnableTrade</li>
       <li>CE_AutoEnableCrafting_FueledSmithy</li>
@@ -44,11 +46,12 @@
     <defName>Ammo_CrossbowBolt_Stone</defName>
     <label>crossbow bolt</label>
     <graphicData>
-      <texPath>Things/Ammo/Neolithic/Arrow/Stone</texPath>
+      <texPath>Things/Ammo/Neolithic/Bolt/Stone</texPath>
       <graphicClass>Graphic_StackCount</graphicClass>
     </graphicData>
     <statBases>
-      <MarketValue>0.13</MarketValue>
+      <Mass>0.081</Mass>
+      <MarketValue>0.39</MarketValue>
     </statBases>
     <ammoClass>StoneCrossbowBolt</ammoClass>
     <tradeTags>
@@ -60,11 +63,11 @@
     <defName>Ammo_CrossbowBolt_Steel</defName>
     <label>crossbow bolt (steel)</label>
     <graphicData>
-      <texPath>Things/Ammo/Neolithic/Arrow/Steel</texPath>
+      <texPath>Things/Ammo/Neolithic/Bolt/Steel</texPath>
       <graphicClass>Graphic_StackCount</graphicClass>
     </graphicData>
     <statBases>
-      <MarketValue>0.61</MarketValue>
+      <MarketValue>0.66</MarketValue>
     </statBases>
 		<ammoClass>SteelCrossbowBolt</ammoClass>
   </ThingDef>
@@ -73,16 +76,45 @@
     <defName>Ammo_CrossbowBolt_Plasteel</defName>
     <label>crossbow bolt (plasteel)</label>
     <graphicData>
-      <texPath>Things/Ammo/Neolithic/Arrow/Plasteel</texPath>
+      <texPath>Things/Ammo/Neolithic/Bolt/Plasteel</texPath>
       <graphicClass>Graphic_StackCount</graphicClass>
     </graphicData>
     <statBases>
-      <MarketValue>3.63</MarketValue>
+      <MarketValue>3.99</MarketValue>
     </statBases>
 		<ammoClass>PlasteelCrossbowBolt</ammoClass>
 	<generateAllowChance>0</generateAllowChance>
   </ThingDef>
-	
+
+  <ThingDef Class="CombatExtended.AmmoDef" ParentName="AmmoCrossbowBoltBase">
+    <defName>Ammo_CrossbowBolt_Venom</defName>
+    <label>crossbow bolt (venom)</label>
+    <graphicData>
+      <texPath>Things/Ammo/Neolithic/Arrow/Venom</texPath>
+      <graphicClass>Graphic_StackCount</graphicClass>
+    </graphicData>
+    <statBases>
+      <Mass>0.131</Mass>	
+      <MarketValue>3.73</MarketValue>
+    </statBases>
+    <ammoClass>VenomArrow</ammoClass>
+    <generateAllowChance>0</generateAllowChance>    
+  </ThingDef>
+  
+  <ThingDef Class="CombatExtended.AmmoDef" ParentName="AmmoCrossbowBoltBase">
+    <defName>Ammo_CrossbowBolt_Flame</defName>
+    <label>crossbow bolt (flame)</label>
+    <graphicData>
+      <texPath>Things/Ammo/Neolithic/Arrow/Flame</texPath>
+      <graphicClass>Graphic_StackCount</graphicClass>
+    </graphicData>
+    <statBases>
+      <Mass>0.086</Mass>	
+      <MarketValue>1.29</MarketValue>
+    </statBases>
+    <ammoClass>FlameArrow</ammoClass>
+  </ThingDef>
+
 	<!-- ================== Projectiles ================== -->
 
 	<ThingDef Class="CombatExtended.AmmoDef" Name="BaseCrossbowBoltProjectile" ParentName="BaseBullet" Abstract="true">
@@ -92,7 +124,7 @@
 		</graphicData>
 		<projectile Class="CombatExtended.ProjectilePropertiesCE">
 			<damageDef>Arrow</damageDef>
-			<speed>55</speed>
+			<speed>7</speed>
 		</projectile>
 	</ThingDef>
 
@@ -109,8 +141,9 @@
 			<graphicClass>Graphic_Single</graphicClass>
 		</graphicData>
 		<projectile Class="CombatExtended.ProjectilePropertiesCE">
-			<damageAmountBase>18</damageAmountBase>
-			<armorPenetrationBase>0.25</armorPenetrationBase>
+			<damageAmountBase>6</damageAmountBase>
+			<armorPenetrationBlunt>0.44</armorPenetrationBlunt>
+			<armorPenetrationSharp>1.5</armorPenetrationSharp>			
 			<preExplosionSpawnChance>0.1</preExplosionSpawnChance>	<!-- 11.11 bolts per resource -->
 			<preExplosionSpawnThingDef>Ammo_CrossbowBolt_Stone</preExplosionSpawnThingDef>
 		</projectile>
@@ -124,8 +157,10 @@
 			<graphicClass>Graphic_Single</graphicClass>
 		</graphicData>
 		<projectile Class="CombatExtended.ProjectilePropertiesCE">
-			<damageAmountBase>18</damageAmountBase>
-			<armorPenetrationBase>0.35</armorPenetrationBase>
+			<damageAmountBase>8</damageAmountBase>
+			<armorPenetrationBlunt>2.26</armorPenetrationBlunt>
+			<armorPenetrationSharp>2.5</armorPenetrationSharp>
+			<speed>10</speed>			
 			<preExplosionSpawnChance>0.333</preExplosionSpawnChance>	<!-- 14.99 bolts per resource -->
 			<preExplosionSpawnThingDef>Ammo_CrossbowBolt_Steel</preExplosionSpawnThingDef>
 		</projectile>
@@ -139,13 +174,49 @@
 			<graphicClass>Graphic_Single</graphicClass>
 		</graphicData>
 		<projectile Class="CombatExtended.ProjectilePropertiesCE">
-			<damageAmountBase>18</damageAmountBase>
-			<armorPenetrationBase>0.45</armorPenetrationBase>
+			<damageAmountBase>7</damageAmountBase>
+			<armorPenetrationBlunt>2.72</armorPenetrationBlunt>
+			<armorPenetrationSharp>3.5</armorPenetrationSharp>
+			<speed>11</speed>				
 			<preExplosionSpawnChance>0.6</preExplosionSpawnChance>	<!-- 25 bolts per resource -->
 			<preExplosionSpawnThingDef>Ammo_CrossbowBolt_Plasteel</preExplosionSpawnThingDef>
 		</projectile>
 	</ThingDef>
-  
+
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="BaseCrossbowBoltProjectile">
+		<defName>Projectile_CrossbowBolt_Venom</defName>
+		<label>crossbow bolt (venom)</label>
+		<graphicData>
+			<texPath>Things/Projectile/Arrows/Arrow_Venom</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+		</graphicData>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageDef>ArrowVenom</damageDef>
+			<damageAmountBase>8</damageAmountBase>
+			<armorPenetrationBlunt>2.72</armorPenetrationBlunt>
+			<armorPenetrationSharp>2.5</armorPenetrationSharp>
+      <speed>11</speed>	
+			<preExplosionSpawnChance>0.6</preExplosionSpawnChance>	<!-- 25 arrows per resource -->
+			<preExplosionSpawnThingDef>Ammo_CrossbowBolt_Steel</preExplosionSpawnThingDef>
+		</projectile>
+	</ThingDef>
+	
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="BaseCrossbowBoltProjectile">
+		<defName>Projectile_CrossbowBolt_Flame</defName>
+		<label>crossbow bolt (flame)</label>
+		<graphicData>
+			<texPath>Things/Projectile/Arrows/Arrow_Flame</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+		</graphicData>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageDef>Flame</damageDef>
+			<damageAmountBase>3</damageAmountBase>
+			<armorPenetrationBlunt>1.36</armorPenetrationBlunt>
+			<armorPenetrationSharp>1.5</armorPenetrationSharp>
+      <speed>11</speed>	
+		</projectile>
+	</ThingDef>
+
 	<!-- ==================== Recipes ========================== -->
 
   <RecipeDef ParentName="AmmoRecipeNeolithicBase">
@@ -171,6 +242,7 @@
     <products>
       <Ammo_CrossbowBolt_Stone>10</Ammo_CrossbowBolt_Stone>
     </products>
+    <workAmount>300</workAmount>	
   </RecipeDef>
 
   <RecipeDef ParentName="AmmoRecipeNeolithicBase">
@@ -185,7 +257,7 @@
             <li>WoodLog</li>
           </thingDefs>
         </filter>
-        <count>3</count>
+        <count>2</count>
       </li>
       <li>
         <filter>
@@ -193,7 +265,7 @@
             <li>Steel</li>
           </thingDefs>
         </filter>
-        <count>1</count>
+        <count>2</count>
       </li>
     </ingredients>
     <fixedIngredientFilter>
@@ -205,6 +277,7 @@
     <products>
       <Ammo_CrossbowBolt_Steel>10</Ammo_CrossbowBolt_Steel>
     </products>
+    <workAmount>400</workAmount>	
   </RecipeDef>
 
   <RecipeDef ParentName="AmmoRecipeNeolithicBase">
@@ -219,7 +292,7 @@
             <li>WoodLog</li>
           </thingDefs>
         </filter>
-        <count>3</count>
+        <count>2</count>
       </li>
       <li>
         <filter>
@@ -227,7 +300,7 @@
             <li>Plasteel</li>
           </thingDefs>
         </filter>
-        <count>1</count>
+        <count>4</count>
       </li>
     </ingredients>
     <fixedIngredientFilter>
@@ -239,6 +312,95 @@
     <products>
       <Ammo_CrossbowBolt_Plasteel>10</Ammo_CrossbowBolt_Plasteel>
     </products>
+    <workAmount>1800</workAmount>		
   </RecipeDef>
-	
+
+  <RecipeDef ParentName="AmmoRecipeNeolithicBase">
+    <defName>MakeAmmo_CrossbowBolt_Venom</defName>
+    <label>make venom crossbow bolts x10</label>
+    <description>Craft 10 venom crossbow bolts.</description>
+    <jobString>Making venom crossbow bolts.</jobString>
+	<workAmount>1300</workAmount>
+    <ingredients>
+      <li>
+        <filter>
+          <thingDefs>
+            <li>WoodLog</li>
+          </thingDefs>
+        </filter>
+        <count>2</count>
+      </li>
+      <li>
+        <filter>
+          <thingDefs>
+            <li>Steel</li>
+          </thingDefs>
+        </filter>
+        <count>2</count>
+      </li>
+      <li>
+        <filter>
+          <thingDefs>
+            <li>MedicineHerbal</li>
+          </thingDefs>
+        </filter>
+        <count>3</count>
+      </li>
+    </ingredients>
+    <fixedIngredientFilter>
+      <thingDefs>
+        <li>WoodLog</li>
+        <li>Steel</li>
+		    <li>MedicineHerbal</li>
+      </thingDefs>
+    </fixedIngredientFilter>
+    <products>
+      <Ammo_CrossbowBolt_Venom>10</Ammo_CrossbowBolt_Venom>
+    </products>
+  </RecipeDef>
+  
+  <RecipeDef ParentName="AmmoRecipeNeolithicBase">
+    <defName>MakeAmmo_CrossbowBolt_Flame</defName>
+    <label>make flame crossbow bolts x10</label>
+    <description>Craft 10 flame crossbow bolts.</description>
+    <jobString>Making flame crossbow bolts.</jobString>
+	<workAmount>800</workAmount>
+    <ingredients>
+      <li>
+        <filter>
+          <thingDefs>
+            <li>WoodLog</li>
+          </thingDefs>
+        </filter>
+        <count>2</count>
+      </li>
+      <li>
+        <filter>
+          <thingDefs>
+            <li>Steel</li>
+          </thingDefs>
+        </filter>
+        <count>2</count>
+      </li>
+      <li>
+        <filter>
+          <thingDefs>
+            <li>Prometheum</li>
+          </thingDefs>
+        </filter>
+        <count>1</count>
+      </li>
+    </ingredients>
+    <fixedIngredientFilter>
+      <thingDefs>
+        <li>WoodLog</li>
+        <li>Steel</li>
+		<li>Prometheum</li>
+      </thingDefs>
+    </fixedIngredientFilter>
+    <products>
+      <Ammo_CrossbowBolt_Flame>10</Ammo_CrossbowBolt_Flame>
+    </products>
+  </RecipeDef>
+
 </Defs>

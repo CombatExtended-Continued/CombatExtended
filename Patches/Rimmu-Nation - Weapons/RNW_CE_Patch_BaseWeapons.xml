@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+	<Operation Class="PatchOperationSequence">
+		<success>Always</success>
+		<operations>
+		
+			<li Class="CombatExtended.PatchOperationFindMod">
+				<modName>[CP] Rimmu-Nation - Weapons</modName>
+			</li>
+
+			<!-- ==================== Weapons research prerequisite patches ==================== -->
+
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[
+					@Name="RNMakeableGrenadeLauncher" or
+					@Name="RNMakeableOneTimeUseLauncher"
+				]/recipeMaker/researchPrerequisite[text()="MultibarrelWeapons"]</xpath>
+				<value>
+					<researchPrerequisite>CE_Launchers</researchPrerequisite>
+				</value>
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[@Name="RNMakeableRocketLauncher"]/recipeMaker/researchPrerequisite[text()="MultibarrelWeapons"]</xpath>
+				<value>
+					<researchPrerequisite>CE_AdvancedLaunchers</researchPrerequisite>
+				</value>
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[
+					@Name="RNMakeableSpacer" or
+					@Name="RNMakeableAKStyle" or
+					@Name="RNMakeableARStyle" or
+					@Name="RNMakeableBullpup" or
+					@Name="RNMakeableAssaultRifle"
+				]/recipeMaker/researchPrerequisite[text()="MultibarrelWeapons"]</xpath>
+				<value>
+					<researchPrerequisite>PrecisionRifling</researchPrerequisite>
+				</value>
+			</li>
+
+		</operations>
+	</Operation>
+</Patch>

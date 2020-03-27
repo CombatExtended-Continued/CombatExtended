@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+	<Operation Class="PatchOperationSequence">
+		<success>Always</success>
+		<operations>
+
+			<li Class="CombatExtended.PatchOperationFindMod">
+				<modName>WWII Soviet Faction</modName>
+			</li>
+
+			<!-- ========== ZiS (76 mm divisional gun M1942) ========== -->
+
+			<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+				<defName>Gun_TurretZis</defName>
+				<statBases>
+					<RangedWeapon_Cooldown>2.64</RangedWeapon_Cooldown>
+					<SightsEfficiency>2.3</SightsEfficiency>
+					<ShotSpread>0.01</ShotSpread>
+					<SwayFactor>0.81</SwayFactor>
+				</statBases>
+				<Properties>
+					<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+					<hasStandardCommand>true</hasStandardCommand>
+					<defaultProjectile>Bullet_762x385mmRCannonShell_HE</defaultProjectile>
+					<warmupTime>4.3</warmupTime>
+					<range>86</range>
+					<minRange>16</minRange>
+					<soundCast>Shot_Revolver</soundCast>
+					<soundCastTail>GunTail_Heavy</soundCastTail>
+					<muzzleFlashScale>13</muzzleFlashScale>
+					<targetParams>
+						<canTargetLocations>true</canTargetLocations>
+					</targetParams>
+					<recoilPattern>Mounted</recoilPattern>
+				</Properties>
+				<AmmoUser>
+					<magazineSize>1</magazineSize>
+					<reloadTime>9.8</reloadTime>
+					<ammoSet>AmmoSet_762x385mmRCannonShell</ammoSet>
+				</AmmoUser>
+				<FireModes>
+					<aiUseBurstMode>FALSE</aiUseBurstMode>
+					<aiAimMode>AimedShot</aiAimMode>
+				</FireModes>
+				<weaponTags>
+					<li>TurretGun</li>
+				</weaponTags>
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="Gun_TurretZis"]/soundInteract</xpath>
+				<value>
+					<soundInteract>Artillery_ShellLoaded</soundInteract>
+				</value>
+			</li>
+
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName="Turret_Zis"]/statBases</xpath>
+				<value>
+					<ShootingAccuracyTurret>1.0</ShootingAccuracyTurret>
+					<AimingAccuracy>1.0</AimingAccuracy>
+				</value>
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="Turret_Zis"]/thingClass</xpath>
+				<value>
+					<thingClass>CombatExtended.Building_TurretGunCE</thingClass>
+				</value>
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="Turret_Zis"]/fillPercent</xpath>
+				<value>
+					<!-- Needs to be at least 0.85 in order to shoot out from CE embrasures -->
+					<fillPercent>0.85</fillPercent>
+				</value>
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="Turret_Zis"]/statBases/MaxHitPoints</xpath>
+				<value>
+					<MaxHitPoints>400</MaxHitPoints>
+				</value>
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="Turret_Zis"]/statBases/WorkToBuild</xpath>
+				<value>
+					<WorkToBuild>94500</WorkToBuild>
+				</value>
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="Turret_Zis"]/statBases/Mass</xpath>
+				<value>
+					<Mass>1116</Mass>
+					<Bulk>1000</Bulk>
+				</value>
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="Turret_Zis"]/costList</xpath>
+				<value>
+					<costList>
+						<Steel>535</Steel>
+						<ComponentIndustrial>5</ComponentIndustrial>
+					</costList>
+				</value>
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="Turret_Zis"]/specialDisplayRadius</xpath>
+				<value>
+					<specialDisplayRadius>86</specialDisplayRadius>
+				</value>
+			</li>
+
+			<li Class="PatchOperationRemove">
+				<xpath>Defs/ThingDef[defName="Turret_Zis"]/comps/li[@Class = "CompProperties_Refuelable"]</xpath>
+			</li>
+
+		</operations>
+	</Operation>
+</Patch>

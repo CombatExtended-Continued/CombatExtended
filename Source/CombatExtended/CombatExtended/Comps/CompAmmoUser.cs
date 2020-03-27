@@ -41,6 +41,14 @@ namespace CombatExtended
             {
                 return curMagCountInt;
             }
+            set
+            {
+                if (curMagCountInt != value && value >= 0)
+                {
+                    curMagCountInt = value;
+                    if (CompInventory != null) CompInventory.UpdateInventory();     //Must be positioned after curMagCountInt is updated, because it relies on that value
+                }
+            }
         }
         public CompEquippable CompEquippable
         {
@@ -163,6 +171,7 @@ namespace CombatExtended
         {
             base.Initialize(vprops);
 
+			//spawnUnloaded checks have all been moved to methods calling ResetAmmoCount.
             //curMagCountInt = Props.spawnUnloaded && UseAmmo ? 0 : Props.magazineSize;
 
             // Initialize ammo with default if none is set
@@ -228,10 +237,13 @@ namespace CombatExtended
         }
 
         /// <summary>
-        /// Reduces ammo count and updates inventory if necessary, call this whenever ammo is consumed by the gun (e.g. firing a shot, clearing a jam)
+        /// <para>Reduces ammo count and updates inventory if necessary, call this whenever ammo is consumed by the gun (e.g. firing a shot, clearing a jam). </para>
+        /// <para>Has an optional argument for the amount of ammo to consume per shot, which defaults to 1; this caters for special cases such as different sci-fi weapons using up different amounts of the same energy cell ammo type per shot, or a double-barrelled shotgun that fires both cartridges at the same time (projectile treated as a single, more powerful bullet)</para>
         /// </summary>
-        public bool TryReduceAmmoCount()
+        public bool TryReduceAmmoCount(int ammoConsumedPerShot = 1)
         {
+            ammoConsumedPerShot = (ammoConsumedPerShot > 0) ? ammoConsumedPerShot : 1;
+
             if (Wielder == null && turret == null)
             {
                 Log.Error(parent.ToString() + " tried reducing its ammo count without a wielder");
@@ -259,15 +271,24 @@ namespace CombatExtended
             // If magazine is empty, return false
             if (curMagCountInt <= 0)
             {
-                curMagCountInt = 0;
+                CurMagCount = 0;
                 return false;
             }
             // Reduce ammo count and update inventory
-            curMagCountInt--;
-            if (CompInventory != null)
+            CurMagCount = (curMagCountInt - ammoConsumedPerShot < 0) ? 0 : curMagCountInt - ammoConsumedPerShot;
+
+
+            /*if (curMagCountInt - ammoConsumedPerShot < 0)
             {
-                CompInventory.UpdateInventory();
-            }
+                curMagCountInt = 0;
+            } else
+            {
+                curMagCountInt = curMagCountInt - ammoConsumedPerShot;
+            }*/
+
+
+            // Original: curMagCountInt--;
+            
             if (curMagCountInt < 0) TryStartReload();
             return true;
         }
@@ -382,7 +403,7 @@ namespace CombatExtended
             }
 
             // don't forget to set the clip to empty...
-            curMagCountInt = 0;
+            CurMagCount = 0;
 
             return true;
         }
@@ -450,7 +471,6 @@ namespace CombatExtended
                         newMagCount = Props.magazineSize;
                         ammoThing.stackCount -= Props.magazineSize;
                     }
-                    if (CompInventory != null) CompInventory.UpdateInventory();
                 }
 
                 // If there's less ammo in inventory than the weapon can hold, or if there's only one bullet left if reloading one at a time
@@ -471,7 +491,7 @@ namespace CombatExtended
             {
                 newMagCount = (Props.reloadOneAtATime) ? (curMagCountInt + 1) : Props.magazineSize;
             }
-            curMagCountInt = newMagCount;
+            CurMagCount = newMagCount;
             if (turret != null) turret.isReloading = false;
             if (parent.def.soundInteract != null) parent.def.soundInteract.PlayOneShot(new TargetInfo(Position, Find.CurrentMap, false));
         }
@@ -486,8 +506,9 @@ namespace CombatExtended
             if (newAmmo != null)
             {
                 currentAmmoInt = newAmmo;
+                selectedAmmo = newAmmo;
             }
-            curMagCountInt = Props.magazineSize;
+            CurMagCount = Props.magazineSize;
         }
 
         public bool TryFindAmmoInInventory(out Thing ammoThing)
@@ -555,7 +576,7 @@ namespace CombatExtended
                 {
                     compAmmo = this,
                     action = action,
-                    defaultLabel = HasMagazine ? "CE_ReloadLabel".Translate() : "",
+                    defaultLabel = HasMagazine ? (string)"CE_ReloadLabel".Translate() : "",
                     defaultDesc = "CE_ReloadDesc".Translate(),
                     icon = CurrentAmmo == null ? ContentFinder<Texture2D>.Get("UI/Buttons/Reload", true) : selectedAmmo.IconTexture(),
                     tutorTag = tag
@@ -566,7 +587,7 @@ namespace CombatExtended
 
         public override string TransformLabel(string label)
         {
-            string ammoSet = UseAmmo && Controller.settings.ShowCaliberOnGuns ? " (" + Props.ammoSet.LabelCap + ") " : "";
+            string ammoSet = UseAmmo && Controller.settings.ShowCaliberOnGuns ? " (" + (string)Props.ammoSet.LabelCap + ") " : "";
             return label + ammoSet;
         }
 

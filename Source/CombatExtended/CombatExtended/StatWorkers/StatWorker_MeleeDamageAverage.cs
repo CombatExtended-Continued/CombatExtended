@@ -76,9 +76,10 @@ namespace CombatExtended
 
             if (meleeSkillLevel >= 0)
             {
-                stringBuilder.AppendLine("Wielder skill level: " + meleeSkillLevel);
+                stringBuilder.AppendLine("CE_WielderSkillLevel".Translate()+": " + meleeSkillLevel);
             }
-            stringBuilder.AppendLine(string.Format("Damage variation: {0}% - {1}%",
+            stringBuilder.AppendLine(string.Format("{0}: {1}% - {2}%",
+                "CE_DamageVariation".Translate(),
                 (100 * skilledDamageVariationMin).ToStringByStyle(ToStringStyle.FloatMaxTwo),
                 (100 * skilledDamageVariationMax).ToStringByStyle(ToStringStyle.FloatMaxTwo)));
             stringBuilder.AppendLine("");
@@ -97,15 +98,15 @@ namespace CombatExtended
                 }
                 maneuverString = maneuverString.TrimmedToLength(maneuverString.Length - 1) + ")";
 
-                stringBuilder.AppendLine("  Tool: " + tool.ToString() + " " + maneuverString);
-                stringBuilder.AppendLine("    Base damage: " + tool.power.ToStringByStyle(ToStringStyle.FloatMaxTwo));
-                stringBuilder.AppendLine("    Adjusted for weapon: " + adjustedToolDamage.ToStringByStyle(ToStringStyle.FloatMaxTwo));
-                stringBuilder.AppendLine("    Cooldown: " + tool.cooldownTime.ToStringByStyle(ToStringStyle.FloatMaxTwo) + " seconds");
-                stringBuilder.AppendLine("    Damage per second: " + (adjustedToolDamage / tool.cooldownTime).ToStringByStyle(ToStringStyle.FloatMaxTwo));
-                stringBuilder.AppendLine(string.Format("    Damage variation: {0} - {1}",
+                stringBuilder.AppendLine("  " +"Tool".Translate() + ": " + tool.ToString() + " " + maneuverString);
+                stringBuilder.AppendLine("    " +"CE_DescBaseDamage".Translate() + ": " + tool.power.ToStringByStyle(ToStringStyle.FloatMaxTwo));
+                stringBuilder.AppendLine("    "+ "CE_AdjustedForWeapon".Translate() + ": " + adjustedToolDamage.ToStringByStyle(ToStringStyle.FloatMaxTwo));
+                stringBuilder.AppendLine("    "+ "CooldownTime".Translate() + ": " + tool.cooldownTime.ToStringByStyle(ToStringStyle.FloatMaxTwo) + " seconds");
+                stringBuilder.AppendLine("    "+ "CE_DPS".Translate() + ": " + (adjustedToolDamage / tool.cooldownTime).ToStringByStyle(ToStringStyle.FloatMaxTwo));
+                stringBuilder.AppendLine(string.Format("    "+ "CE_DamageVariation".Translate()+": {0} - {1}",
                     minDPS.ToStringByStyle(ToStringStyle.FloatMaxTwo),
                     maxDPS.ToStringByStyle(ToStringStyle.FloatMaxTwo)));
-                stringBuilder.AppendLine("    Final average damage: " + ((minDPS + maxDPS) / 2f).ToStringByStyle(ToStringStyle.FloatMaxTwo));
+                stringBuilder.AppendLine("    "+ "CE_FinalAverageDamage".Translate() + ": " + ((minDPS + maxDPS) / 2f).ToStringByStyle(ToStringStyle.FloatMaxTwo));
                 stringBuilder.AppendLine();
             }
             return stringBuilder.ToString();

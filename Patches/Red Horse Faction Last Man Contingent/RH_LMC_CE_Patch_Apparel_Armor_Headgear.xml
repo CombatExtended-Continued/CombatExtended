@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+	<Operation Class="PatchOperationSequence">
+		<success>Always</success>
+		<operations>
+
+			<li Class="CombatExtended.PatchOperationFindMod">
+				<modName>[RH] Faction: Last Man Contingent</modName>
+			</li>
+
+			<!-- ========== PASGT helmet (LMM, LMM II variants) ========== -->
+
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[
+					defName="RNApparel_PASGTLMMHelmet" or
+					defName="RNApparel_PASGTLMMHelmet_II"
+				]/statBases</xpath>
+				<value>
+					<Bulk>4</Bulk>
+					<WornBulk>1</WornBulk>
+					<ArmorRating_Sharp>6</ArmorRating_Sharp>
+					<ArmorRating_Blunt>13</ArmorRating_Blunt>
+					<ArmorRating_Heat>0.54</ArmorRating_Heat>
+				</value>
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[
+					defName="RNApparel_PASGTLMMHelmet" or
+					defName="RNApparel_PASGTLMMHelmet_II"
+				]/statBases/StuffEffectMultiplierArmor</xpath>
+				<value>
+					<StuffEffectMultiplierArmor>0.20</StuffEffectMultiplierArmor>
+				</value>
+			</li>
+
+			<!-- ========== FAST helmet (LMCT, LMM variants) ========== -->
+
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[
+					defName="RNApparel_FASTHelmetLMCT" or
+					defName="RNApparel_FASTHelmetLMM"
+				]/statBases</xpath>
+				<value>
+					<Bulk>4.5</Bulk>
+					<WornBulk>1</WornBulk>
+					<ArmorRating_Sharp>7</ArmorRating_Sharp>
+					<ArmorRating_Blunt>16</ArmorRating_Blunt>
+					<ArmorRating_Heat>0.54</ArmorRating_Heat>
+				</value>
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[
+					defName="RNApparel_FASTHelmetLMCT" or
+					defName="RNApparel_FASTHelmetLMM"
+				]/statBases/StuffEffectMultiplierArmor</xpath>
+				<value>
+					<StuffEffectMultiplierArmor>0.20</StuffEffectMultiplierArmor>
+				</value>
+			</li>
+
+			<!-- ========== CVC helmet LMCT ========== -->
+
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName="RNApparel_CVCHelmet_LMM"]/statBases</xpath>
+				<value>
+					<Bulk>3.75</Bulk>
+					<WornBulk>1</WornBulk>
+					<ArmorRating_Sharp>6</ArmorRating_Sharp>
+					<ArmorRating_Blunt>13</ArmorRating_Blunt>
+					<ArmorRating_Heat>0.54</ArmorRating_Heat>
+				</value>
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="RNApparel_CVCHelmet_LMM"]/statBases/StuffEffectMultiplierArmor</xpath>
+				<value>
+					<StuffEffectMultiplierArmor>0.20</StuffEffectMultiplierArmor>
+				</value>
+			</li>
+
+		</operations>
+	</Operation>
+</Patch>

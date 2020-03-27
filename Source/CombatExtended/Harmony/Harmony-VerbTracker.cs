@@ -1,10 +1,10 @@
 ﻿using System.Collections.Generic;
 using Verse;
-using Harmony;
+using HarmonyLib;
 using System.Reflection.Emit;
 using System.Reflection;
 
-namespace CombatExtended.Harmony
+namespace CombatExtended.HarmonyCE
 {
     /* Dev Notes:
      * The target code should look like this (high level view)

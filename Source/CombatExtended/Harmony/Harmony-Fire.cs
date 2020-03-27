@@ -4,12 +4,12 @@ using System.Linq;
 using System.Reflection;
 using System.Text;
 using System.Reflection.Emit;
-using Harmony;
+using HarmonyLib;
 using Verse;
 using RimWorld;
 using UnityEngine;
 
-namespace CombatExtended.Harmony
+namespace CombatExtended.HarmonyCE
 {
     [HarmonyPatch(typeof(Fire), "DoFireDamage")]
     internal static class Harmony_Fire_DoFireDamage
@@ -30,9 +30,9 @@ namespace CombatExtended.Harmony
 
                 if (code.operand == AccessTools.Field(typeof(RulePackDefOf), nameof(RulePackDefOf.DamageEvent_Fire)))
                 {
-                    yield return new CodeInstruction(OpCodes.Ldloca, 1);
+                    yield return new CodeInstruction(OpCodes.Ldloca, 0);
                     yield return new CodeInstruction(OpCodes.Call, AccessTools.Method(typeof(Harmony_Fire_DoFireDamage), nameof(ApplySizeMult)));
-                    yield return new CodeInstruction(OpCodes.Ldloc_2);
+                    yield return new CodeInstruction(OpCodes.Ldloc_1);
                 }
 
                 yield return code;
@@ -67,7 +67,7 @@ namespace CombatExtended.Harmony
     [HarmonyPatch(typeof(Fire), "Tick")]
     internal static class Harmony_Fire_Tick
     {
-        private const int TicksPerSmoke = 15;
+        private const float SmokeDensityPerInterval = 900f;
 
         internal static IEnumerable<CodeInstruction> Transpiler(IEnumerable<CodeInstruction> instructions)
         {
@@ -85,10 +85,19 @@ namespace CombatExtended.Harmony
         {
             if (__instance.Spawned
                 && Controller.settings.SmokeEffects
-                && __instance.IsHashIntervalTick(TicksPerSmoke)
-                && __instance.Position.Roofed(__instance.Map)
-                && __instance.Position.GetGas(__instance.Map) == null)
-                GenSpawn.Spawn(CE_ThingDefOf.Gas_BlackSmoke, __instance.Position, __instance.Map);
+                && __instance.IsHashIntervalTick(Smoke.UpdateIntervalTicks)
+                && __instance.Position.Roofed(__instance.Map))
+            {
+                if (__instance.Position.GetGas(__instance.Map) is Smoke existingSmoke)
+                {
+                    existingSmoke.UpdateDensityBy(SmokeDensityPerInterval);
+                }
+                else
+                {
+                    var newSmoke = (Smoke)GenSpawn.Spawn(CE_ThingDefOf.Gas_BlackSmoke, __instance.Position, __instance.Map);
+                    newSmoke.UpdateDensityBy(SmokeDensityPerInterval);
+                }
+            }
         }
     }
 
@@ -130,7 +139,7 @@ namespace CombatExtended.Harmony
         private static float GetWindMult(Fire fire)
         {
             var tracker = fire.Map.GetComponent<WeatherTracker>();
-            return Mathf.Sqrt(tracker.GetWindStrengthAt(fire.Position));
+            return Mathf.Max(1, Mathf.Sqrt(tracker.GetWindStrengthAt(fire.Position)));
         }
 
         private static IntVec3 GetRandWindShift(Fire fire, bool spreadFar)
@@ -181,7 +190,8 @@ namespace CombatExtended.Harmony
             {
                 if (delete)
                 {
-                    delete = code.opcode != OpCodes.Ldobj;
+                    delete = code.opcode != OpCodes.Ldelem;
+
                     continue;
                 }
 

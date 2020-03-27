@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+	<Operation Class="PatchOperationSequence">
+		<success>Always</success>
+		<operations>
+
+			<li Class="CombatExtended.PatchOperationFindMod">
+				<modName>[RH] Faction: Umbra Company</modName>
+			</li>
+
+			<!-- ========== Traders should also sell CE ammo ========== -->
+
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/TraderKindDef[
+					defName="RHVisitor_UC_Standard" or
+					defName="RHBase_UC_Standard" or
+					defName="RHCaravan_UC_BlackMarket"
+				]/stockGenerators</xpath>
+				<value>
+					<li Class="StockGenerator_Tag">
+						<tradeTag>CE_Ammo</tradeTag>
+						<countRange>
+							<min>1000</min>
+							<max>3000</max>
+						</countRange>
+						<price>Cheap</price>
+						<thingDefCountRange>
+							<min>5</min>
+							<max>12</max>
+						</thingDefCountRange>
+					</li>
+				</value>
+			</li>
+
+		</operations>
+	</Operation>
+</Patch>
