@@ -61,7 +61,9 @@ namespace CombatExtended
                 {
                     numToCookOff += Mathf.RoundToInt(def.stackLimit * ((float)dinfo.Amount / HitPoints) * (def.smallVolume ? Rand.Range(1f, 2f) : Rand.Range(0.0f, 1f)));
                 }
-                else TryDetonate(stackCount);
+                //Assume CompExplosive destroys on kill
+                else if (this.TryGetComp<CompExplosive>() == null || !this.TryGetComp<CompExplosive>().Props.explodeOnKilled)
+                    TryDetonate(stackCount);
             }
         }
 

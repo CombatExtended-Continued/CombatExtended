@@ -13,9 +13,13 @@ namespace CombatExtended
 	{
         // New properties
 		public float height;
+        public bool radiusChange = false;
         private const int DamageAtEdge = 2;      // Synch these with spreadsheet
         private const float PenAtEdge = 0.6f;
         private const float PressurePerDamage = 0.3f;
+        private const float MaxMergeTicks = 3f;
+        public const float MaxMergeRange = 3f;           //merge within 3 tiles
+        public const bool MergeExplosions = false;
 
         // Core properties
         private int startTick;
@@ -53,7 +57,163 @@ namespace CombatExtended
 		}
 
         // New method
-		public virtual IEnumerable<IntVec3> ExplosionCellsToHit
+        public virtual bool MergeWith(ExplosionCE other, out ExplosionCE merged, out ExplosionCE nonMerged)
+        {
+            merged = null;
+            nonMerged = null;
+
+            //Log.Message("This: "+this.ThingID+", Other: "+other.ThingID);
+
+            //Sanity check
+            if (other == null)
+                return false;
+
+            var startDiff = (other.startTick == 0 ? Find.TickManager.TicksGame : other.startTick)
+                - (startTick == 0 ? Find.TickManager.TicksGame : startTick);
+
+            //Log.Message("StartDiff: " + startDiff);
+
+            if (Mathf.Abs(startDiff) > MaxMergeTicks)
+                return false;
+
+            //Log.Message("DF: " + damageFalloff + ", " + other.damageFalloff);
+
+            if (other.damageFalloff != damageFalloff)
+                return false;
+
+            //Log.Message("DT: " + damType.defName + ", " + other.damType.defName);
+
+            if (other.damType != damType)
+                return false;
+
+            //Log.Message("Sign: " + Mathf.Sign(height - CollisionVertical.WallCollisionHeight) + ", " + Mathf.Sign(other.height - CollisionVertical.WallCollisionHeight));
+
+            if (Mathf.Sign(other.height - CollisionVertical.WallCollisionHeight) != Mathf.Sign(height - CollisionVertical.WallCollisionHeight))
+                return false;
+
+            //Log.Message("PreExp: " + (preExplosionSpawnThingDef != null ? preExplosionSpawnThingDef.defName : "null") + ", " + (other.preExplosionSpawnThingDef != null ? other.preExplosionSpawnThingDef.defName : "null"));
+
+            if (preExplosionSpawnThingDef != null && other.preExplosionSpawnThingDef != null && other.preExplosionSpawnThingDef != preExplosionSpawnThingDef)
+                return false;
+
+            //Log.Message("PostExp: " + (postExplosionSpawnThingDef != null ? postExplosionSpawnThingDef.defName : "null") + ", " + (other.postExplosionSpawnThingDef != null ? other.postExplosionSpawnThingDef.defName : "null"));
+
+            if (postExplosionSpawnThingDef != null && other.postExplosionSpawnThingDef != null && other.postExplosionSpawnThingDef != postExplosionSpawnThingDef)
+                return false;
+
+            Thing newInstigator = null;
+
+            //Log.Message("Instig: " + (instigator != null ? instigator.ThingID : "null") + ", " + (other.instigator != null ? other.instigator.ThingID : "null"));
+
+            //Instigator "equal-enough"
+            if (other.instigator != null && instigator != null)
+            {
+                //If both were hostile action..
+                if (other.intendedTarget != null && intendedTarget != null
+                    && other.intendedTarget.HostileTo(other.instigator)
+                    && intendedTarget.HostileTo(instigator))
+                {
+                    //If both instigators had different factions, the explosions had different intentions -- cannot merge
+                    if (instigator.Faction != null && other.instigator.Faction != null && instigator.Faction != other.instigator.Faction)
+                        return false;
+                }
+                else
+                {
+                    if (other.instigator != instigator)
+                    {
+                        //Impossible to distinguish for a combat log which pawn initiated the explosion
+                        if (instigator is Pawn && other.instigator is Pawn)
+                            return false;
+                        else
+                        {
+                            if (instigator is Pawn)
+                                newInstigator = instigator;
+                            else if (other.instigator is Pawn)
+                                newInstigator = other.instigator;
+
+                            if (instigator is AmmoThing || other.instigator is AmmoThing)
+                                newInstigator = instigator is AmmoThing ? other.instigator : instigator;
+                            else
+                                newInstigator = Rand.Value < 0.5f ? instigator : other.instigator;
+                        }
+                    }
+                }
+            }
+
+            //Log.Message("Wpn: " + (weapon != null ? weapon.defName : "null") + ", " + (other.weapon != null ? other.weapon.defName : "null"));
+
+            //Might be problematic
+            if (other.weapon != null && weapon != null && other.weapon != weapon)
+                return false;
+
+            //Log.Message("Prj: " + (projectile != null ? projectile.defName : "null") + ", " + (other.projectile != null ? other.projectile.defName : "null"));
+
+            //Might be problematic
+            if (other.projectile != null && projectile != null && other.projectile != projectile)
+                return false;
+
+            //Log.Message("LOS1: " + needLOSToCell1.ToString() + ", " + other.needLOSToCell1.ToString());
+
+            if (other.needLOSToCell1 != needLOSToCell1)
+                return false;
+
+            //Log.Message("LOS2: " + needLOSToCell2.ToString() + ", " + other.needLOSToCell2.ToString());
+
+            if (other.needLOSToCell2 != needLOSToCell2)
+                return false;
+
+            //Crucial matches
+            merged = startDiff <= 0 ? this : other;
+            nonMerged = startDiff <= 0 ? other : this;
+
+            //Log.Message("this: "+this.ThingID + " merged: "+merged.ThingID + " other: "+other.ThingID + " nonmerged: "+nonMerged.ThingID);
+
+            merged.instigator = newInstigator;
+
+            //Combine shared ignored things
+            var newIgnoredThings = new HashSet<Thing>();
+            if (ignoredThings != null && other.ignoredThings != null)
+                newIgnoredThings.AddRange(ignoredThings.Where(x => other.ignoredThings.Contains(x)));
+
+            //Add instigators if necessary
+            if (ignoredThings != null && ignoredThings.Contains(instigator))
+                newIgnoredThings.Add(instigator);
+            if (other.ignoredThings != null && other.ignoredThings.Contains(other.instigator))
+                newIgnoredThings.Add(other.instigator);
+
+            merged.ignoredThings = newIgnoredThings.ToList();
+                
+            //Combine chances such that the same spread of things is observed, while the average is retained to the best of our ability using integer values only
+            merged.chanceToStartFire = 1 - (1 - chanceToStartFire) * (1 - other.chanceToStartFire);
+            merged.preExplosionSpawnThingCount = Mathf.RoundToInt((preExplosionSpawnThingCount * preExplosionSpawnChance
+                + other.preExplosionSpawnThingCount * other.preExplosionSpawnChance) / (1 - (1 - preExplosionSpawnChance) * (1 - other.preExplosionSpawnChance)));
+            merged.preExplosionSpawnChance = 1 - (1 - preExplosionSpawnChance) * (1 - other.preExplosionSpawnChance);
+            merged.postExplosionSpawnThingCount = Mathf.RoundToInt((postExplosionSpawnThingCount * postExplosionSpawnChance
+                + other.postExplosionSpawnThingCount * other.postExplosionSpawnChance) / (1 - (1 - postExplosionSpawnChance) * (1 - other.postExplosionSpawnChance)));
+            merged.postExplosionSpawnChance = 1 - (1 - postExplosionSpawnChance) * (1 - other.postExplosionSpawnChance);
+
+            //Linearly combine damage, since that's how it would be if both explosions ran
+            merged.armorPenetration = Mathf.Max(damAmount * PressurePerDamage, armorPenetration)
+                + Mathf.Max(other.damAmount * PressurePerDamage, other.armorPenetration);
+            merged.damAmount = damAmount + other.damAmount;
+
+            if (!merged.applyDamageToExplosionCellsNeighbors && nonMerged.applyDamageToExplosionCellsNeighbors)
+            {
+                merged.applyDamageToExplosionCellsNeighbors = true;
+                merged.radiusChange = true;
+            }
+                
+            if (radius != other.radius && merged.radius < nonMerged.radius)
+            {
+                merged.radius = Mathf.Max(radius, other.radius);
+                merged.radiusChange = true;
+            }
+
+            return true;
+        }
+        
+        // Changed method to include "aboveRoofs" check
+        public virtual IEnumerable<IntVec3> ExplosionCellsToHit
 		{
 			get
 			{
@@ -108,12 +268,63 @@ namespace CombatExtended
 			}
 		}
 		
-		public void StartExplosionCE(SoundDef explosionSound, List<Thing> ignoredThings)    //Removed cellsToAffect by Worker
+        public void RestartAfterMerge(SoundDef explosionSound)
         {
-			if (!Spawned) {
+            Log.Message("Restarting");
+
+            //Hasn't been started yet or cellsToAffect has to be recalculated
+            if (startTick == 0 || radiusChange)
+            {
+                StartExplosionCE(explosionSound, ignoredThings);
+                radiusChange = false;
+            }
+
+            //If it has already been started and there's no radius change, continue as it was planning to
+        }
+
+        public void StartExplosionCE(SoundDef explosionSound, List<Thing> ignoredThings)    //Removed cellsToAffect by Worker
+        {
+            if (Controller.settings.MergeExplosions)
+            {
+                ExplosionCE existingExplosion = Position.GetThingList(Map).FirstOrDefault(x => x.def == CE_ThingDefOf.ExplosionCE && x != this) as ExplosionCE;
+
+                if (existingExplosion == null)
+                {
+                    var i = 1;
+                    var num = GenRadial.NumCellsInRadius(MaxMergeRange);
+
+                    while (i < num && existingExplosion == null)
+                    {
+                        IntVec3 c = Position + GenRadial.RadialPattern[i];
+                        if (c.InBounds(Map))
+                        {
+                            existingExplosion = c.GetThingList(Map).FirstOrDefault(x => x.def == CE_ThingDefOf.ExplosionCE && x != this) as ExplosionCE;
+                        }
+                        i++;
+                    }
+                }
+
+                if (existingExplosion != null)
+                {
+                    if (MergeWith(existingExplosion, out var merged, out var nonMerged))
+                    {
+                        nonMerged.Destroy();
+                        //Was possible to merge, destroy nonmerged and start merged.
+                        merged.RestartAfterMerge(explosionSound);
+                        return;
+                    }
+                }
+
+            }
+
+            if (!Spawned) {
 				Log.Error("Called StartExplosion() on unspawned thing.");
 				return;
 			}
+
+            if (this.ignoredThings.NullOrEmpty())
+                this.ignoredThings = ignoredThings;
+
 			startTick = Find.TickManager.TicksGame;
 			cellsToAffect.Clear();
 			damagedThings.Clear();
@@ -190,10 +401,11 @@ namespace CombatExtended
                 return;
             }
             var flag = ShouldCellBeAffectedOnlyByDamage(c);
+            var spawnMote = c.GetFirstThing(Map, damType.explosionCellMote) == null;
             if (!flag && Rand.Chance(preExplosionSpawnChance) && c.Walkable(Map)) {
 				TrySpawnExplosionThing(preExplosionSpawnThingDef, c, preExplosionSpawnThingCount);
 			}
-			damType.Worker.ExplosionAffectCell(this, c, damagedThings, null, !flag);
+			damType.Worker.ExplosionAffectCell(this, c, damagedThings, null, spawnMote && !flag);
 			if (!flag && Rand.Chance(postExplosionSpawnChance) && c.Walkable(Map)) {
 				TrySpawnExplosionThing(postExplosionSpawnThingDef, c, postExplosionSpawnThingCount);
 			}
@@ -265,23 +477,22 @@ namespace CombatExtended
 
 		private bool ShouldCellBeAffectedOnlyByDamage(IntVec3 c)
 		{
-			return applyDamageToExplosionCellsNeighbors && addedCellsAffectedOnlyByDamage.Contains(c)
-                && !Map.thingGrid.ThingsListAtFast(c).Any(x => x.def == damType.explosionCellMote);
+			return applyDamageToExplosionCellsNeighbors && addedCellsAffectedOnlyByDamage.Contains(c);
         }
 
         //New methods
-        public int GetDamageAmountAtCE(IntVec3 c)   //t => t^(1/3)
+        public int GetDamageAmountAtCE(IntVec3 c)   //t => t^(0.333f)
         {
             if (!damageFalloff)
             {
                 return damAmount;
             }
             var t = c.DistanceTo(Position) / radius;
-            t = Mathf.Pow(t, 1 / 3f);
+            t = Mathf.Pow(t, 0.333f);
             return Mathf.Max(GenMath.RoundRandom(Mathf.Lerp((float)damAmount, DamageAtEdge, t)), 1);
         }
 
-        public float GetArmorPenetrationAtCE(IntVec3 c) //t => t^(0.55), penetrationAmount => damAmount * PressurePerDamage
+        public float GetArmorPenetrationAtCE(IntVec3 c) //t => t^(0.55f), penetrationAmount => damAmount * PressurePerDamage
         {
             var basePen = Mathf.Max(damAmount * PressurePerDamage, armorPenetration);
             if (!damageFalloff)

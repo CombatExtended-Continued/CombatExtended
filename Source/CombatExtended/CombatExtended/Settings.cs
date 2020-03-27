@@ -17,11 +17,13 @@ namespace CombatExtended
         private bool showTaunts = true;
         private bool allowMeleeHunting = false;
         private bool smokeEffects = true;
+        private bool mergeExplosions = true;
 
         public bool ShowCasings => showCasings;
         public bool ShowTaunts => showTaunts;
         public bool AllowMeleeHunting => allowMeleeHunting;
         public bool SmokeEffects => smokeEffects;
+        public bool MergeExplosions => mergeExplosions;
 
         public bool ShowTutorialPopup = true;
 
@@ -70,6 +72,7 @@ namespace CombatExtended
             Scribe_Values.Look(ref showTaunts, "showTaunts", true);
             Scribe_Values.Look(ref allowMeleeHunting, "allowMeleeHunting", false);
             Scribe_Values.Look(ref smokeEffects, "smokeEffects", true);
+            Scribe_Values.Look(ref mergeExplosions, "mergeExplosions", true);
 
 #if DEBUG
             // Debug settings
@@ -111,6 +114,7 @@ namespace CombatExtended
             list.CheckboxLabeled("CE_Settings_ShowTaunts_Title".Translate(), ref showTaunts, "CE_Settings_ShowTaunts_Desc".Translate());
             list.CheckboxLabeled("CE_Settings_AllowMeleeHunting_Title".Translate(), ref allowMeleeHunting, "CE_Settings_AllowMeleeHunting_Desc".Translate());
             list.CheckboxLabeled("CE_Settings_SmokeEffects_Title".Translate(), ref smokeEffects, "CE_Settings_SmokeEffects_Desc".Translate());
+            list.CheckboxLabeled("CE_Settings_MergeExplosions_Title".Translate(), ref mergeExplosions, "CE_Settings_MergeExplosions_Desc".Translate());
 
 #if DEBUG
             // Do Debug settings
