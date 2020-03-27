@@ -56,7 +56,7 @@ namespace CombatExtended.HarmonyCE
                 }
 
                 // The first branch we find is the one to remember.  This is also the insertion point...
-                if (patchPhase == 0 && instruction.opcode.Equals(OpCodes.Brtrue))
+                if (patchPhase == 0 && instruction.opcode.Equals(OpCodes.Brtrue_S))
                 {
                     branchTrue = instruction.operand as Label?;
 
@@ -76,6 +76,9 @@ namespace CombatExtended.HarmonyCE
                 yield return instruction;
 
             }
+
+            if (patchPhase < 2)
+                Log.Warning("CombatExtended :: Harmony-JobGiver_UnloadYourInventory patch failed to complete all its steps");
         }
     }
 }

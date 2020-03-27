@@ -123,7 +123,7 @@ namespace CombatExtended
                 var count = AmmoDef?.Users.Count ?? 0;
 
                 if (count >= 1)
-                    stringBuilder.AppendLine("CE_UsedBy".Translate() + ": " + AmmoDef.Users.FirstOrDefault().LabelCap + (AmmoDef.Users.Count > 1 ? " (+" + (AmmoDef.Users.Count - 1) + " more..)" : ""));
+                    stringBuilder.AppendLine("CE_UsedBy".Translate() + ": " + AmmoDef.Users.FirstOrDefault().LabelCap + (AmmoDef.Users.Count > 1 ? " (+" + (AmmoDef.Users.Count - 1) + ")" : ""));
             }
 
             return stringBuilder.ToString().TrimEndNewlines();
