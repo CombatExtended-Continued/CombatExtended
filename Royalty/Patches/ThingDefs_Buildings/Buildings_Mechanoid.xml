@@ -2,34 +2,38 @@
 <Patch>
 
 	<!-- ========== Structures ========== -->
-<!--
+
 	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/ThingDef[defName="EMIDynamo"]/comps/li[@Class="CompProperties_Explosive"]</xpath>
+		<xpath>Defs/ThingDef[defName="Defoliator"]/comps/li[@Class="CompProperties_Explosive"]/wickTicks</xpath>
 		<value>
-		    <li Class="CombatExtended.CompProperties_ExplosiveCE">
-			  <explosionDamage>60</explosionDamage>
-			  <explosionDamageDef>EMP</explosionDamageDef>
-			  <explosionRadius>9.9</explosionRadius>
-			  <applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>				  
-		    </li>		
+			<wickTicks>
+			  <min>180</min>
+			  <max>240</max>
+			</wickTicks>	
 		</value>
 	</Operation>
 
 	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/ThingDef[defName="UnstablePowerCell"]/comps/li[@Class="CompProperties_Explosive"]</xpath>
+		<xpath>Defs/ThingDef[defName="UnstablePowerCell"]/comps/li[@Class="CompProperties_Explosive"]/wickTicks</xpath>
 		<value>
-			<li Class="CombatExtended.CompProperties_ExplosiveCE">
-				<wickTicks>240</wickTicks>
-				<explosionRadius>9.9</explosionRadius>
-				<explosionDamage>60</explosionDamage>
-				<explosionDamageDef>Bomb</explosionDamageDef>
-				<explodeOnKilled>true</explodeOnKilled>
-				<startWickHitPointsPercent>0.5</startWickHitPointsPercent>
-				<extraInspectStringKey>ExplosionOnDamageWarning</extraInspectStringKey>			
-			</li>
+			<wickTicks>
+			  <min>180</min>
+			  <max>300</max>
+			</wickTicks>	
 		</value>
 	</Operation>
--->
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Turret_AutoMortar"]/comps/li[@Class="CompProperties_Explosive"]/wickTicks</xpath>
+		<value>
+			<wickTicks>
+			  <min>180</min>
+			  <max>240</max>
+			</wickTicks>	
+		</value>
+	</Operation>
+
+
 	<!-- ========== Turrets ========== -->
 
 	<!-- ========== Auto mini-turret ========== -->
@@ -209,9 +213,28 @@
 	</Operation>
 
 	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Turret_AutoMortar"]/statBases/MaxHitPoints</xpath>
+		<value>
+			<MaxHitPoints>250</MaxHitPoints>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
 		<xpath>Defs/ThingDef[defName="Turret_AutoMortar"]/statBases/ShootingAccuracyTurret</xpath>
 		<value>
 			<ShootingAccuracyTurret>0.25</ShootingAccuracyTurret>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="Turret_AutoMortar"]/comps</xpath>
+		<value>
+		  <li Class="CombatExtended.CompProperties_Fragments">
+			<fragments>
+				<Fragment_Large>5</Fragment_Large>
+				<Fragment_Small>20</Fragment_Small>
+			</fragments>
+		  </li>
 		</value>
 	</Operation>
 
