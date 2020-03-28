@@ -14,6 +14,7 @@ namespace CombatExtended
         // New properties
 		public float height;
         public bool radiusChange = false;
+        public bool toBeMerged = false;
         private const int DamageAtEdge = 2;      // Synch these with spreadsheet
         private const float PenAtEdge = 0.6f;
         private const float PressurePerDamage = 0.3f;
@@ -270,8 +271,6 @@ namespace CombatExtended
 		
         public void RestartAfterMerge(SoundDef explosionSound)
         {
-            Log.Message("Restarting");
-
             //Hasn't been started yet or cellsToAffect has to be recalculated
             if (startTick == 0 || radiusChange)
             {
@@ -286,7 +285,7 @@ namespace CombatExtended
         {
             if (Controller.settings.MergeExplosions)
             {
-                ExplosionCE existingExplosion = Position.GetThingList(Map).FirstOrDefault(x => x.def == CE_ThingDefOf.ExplosionCE && x != this) as ExplosionCE;
+                ExplosionCE existingExplosion = Position.GetThingList(Map).FirstOrDefault(x => x.def == CE_ThingDefOf.ExplosionCE && x != this && !(x as ExplosionCE).toBeMerged) as ExplosionCE;
 
                 if (existingExplosion == null)
                 {
@@ -298,7 +297,7 @@ namespace CombatExtended
                         IntVec3 c = Position + GenRadial.RadialPattern[i];
                         if (c.InBounds(Map))
                         {
-                            existingExplosion = c.GetThingList(Map).FirstOrDefault(x => x.def == CE_ThingDefOf.ExplosionCE && x != this) as ExplosionCE;
+                            existingExplosion = c.GetThingList(Map).FirstOrDefault(x => x.def == CE_ThingDefOf.ExplosionCE && x != this && !(x as ExplosionCE).toBeMerged) as ExplosionCE;
                         }
                         i++;
                     }
@@ -308,13 +307,12 @@ namespace CombatExtended
                 {
                     if (MergeWith(existingExplosion, out var merged, out var nonMerged))
                     {
-                        nonMerged.Destroy();
-                        //Was possible to merge, destroy nonmerged and start merged.
+                        nonMerged.toBeMerged = true;
+                        //Was possible to merge, destroy nonmerged (later) and start merged.
                         merged.RestartAfterMerge(explosionSound);
                         return;
                     }
                 }
-
             }
 
             if (!Spawned) {
@@ -351,26 +349,26 @@ namespace CombatExtended
         {
             int ticksGame = Find.TickManager.TicksGame;
             int num = this.cellsToAffect.Count - 1;
-            while (num >= 0 && ticksGame >= this.GetCellAffectTick(this.cellsToAffect[num]))
+            while (!toBeMerged && num >= 0 && ticksGame >= this.GetCellAffectTick(this.cellsToAffect[num]))
             {
                 try
                 {
-                    this.AffectCell(this.cellsToAffect[num]);
+                    AffectCell(this.cellsToAffect[num]);
                 }
                 catch (Exception ex)
                 {
                     Log.Error(string.Concat(new object[]
                     {
-                "Explosion could not affect cell ",
-                this.cellsToAffect[num],
-                ": ",
-                ex
+                        "Explosion could not affect cell ",
+                        this.cellsToAffect[num],
+                        ": ",
+                        ex
                     }), false);
                 }
                 this.cellsToAffect.RemoveAt(num);
                 num--;
             }
-            if (!this.cellsToAffect.Any<IntVec3>())
+            if (toBeMerged || !this.cellsToAffect.Any<IntVec3>())
             {
                 this.Destroy(DestroyMode.Vanish);
             }
@@ -406,7 +404,7 @@ namespace CombatExtended
 				TrySpawnExplosionThing(preExplosionSpawnThingDef, c, preExplosionSpawnThingCount);
 			}
 			damType.Worker.ExplosionAffectCell(this, c, damagedThings, null, spawnMote && !flag);
-			if (!flag && Rand.Chance(postExplosionSpawnChance) && c.Walkable(Map)) {
+            if (!flag && Rand.Chance(postExplosionSpawnChance) && c.Walkable(Map)) {
 				TrySpawnExplosionThing(postExplosionSpawnThingDef, c, postExplosionSpawnThingCount);
 			}
 			var num = chanceToStartFire;
@@ -415,10 +413,11 @@ namespace CombatExtended
 			}
 			if (Rand.Chance(num)) {
 				FireUtility.TryStartFireIn(c, Map, Rand.Range(0.1f, 0.925f));
-			}
-		}
+            }
+            //ExplosionCE (this) can be Destroyed after ExplosionAffectCell
+        }
 
-		private void TrySpawnExplosionThing(ThingDef thingDef, IntVec3 c, int count)
+        private void TrySpawnExplosionThing(ThingDef thingDef, IntVec3 c, int count)
 		{
 			if (thingDef == null) {
 				return;

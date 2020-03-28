@@ -149,7 +149,7 @@ namespace CombatExtended
                     {
                         GenExplosionCE.DoExplosion(Position, Map, detProps.explosionRadius, detProps.damageDef,
                             this, detProps.GetDamageAmount(1), detProps.GetArmorPenetration(1),
-                            detProps.soundExplode ?? detProps.damageDef.soundExplosion,
+                            detProps.soundExplode,
                             null, def, null, detProps.postExplosionSpawnThingDef, detProps.postExplosionSpawnChance,
                             detProps.postExplosionSpawnThingCount, detProps.applyDamageToExplosionCellsNeighbors,
                             detProps.preExplosionSpawnThingDef, detProps.preExplosionSpawnChance, detProps.preExplosionSpawnThingCount,

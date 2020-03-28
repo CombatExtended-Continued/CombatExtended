@@ -39,6 +39,13 @@ namespace CombatExtended
                 }
             }
 
+            explosionSound = explosionSound ?? damType.soundExplosion;
+
+            if (explosionSound == null)
+            {
+                Log.Error("CombatExtended :: SoundDef was null for DamageDef "+damType.defName+" as well as instigator "+instigator.ThingID);
+            }
+
             damAmount = Mathf.RoundToInt(damAmount*scaleFactor);
             radius *= scaleFactor;
             armorPenetration *= scaleFactor;
