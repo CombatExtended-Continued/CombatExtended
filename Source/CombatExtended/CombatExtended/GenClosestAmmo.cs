@@ -12,6 +12,13 @@ namespace CombatExtended
 {
     public static class GenClosestAmmo
     {
+        public const int pawnsPerTurret = 10;
+        public const float ammoSearchRadius = 40f;
+        public static Dictionary<ThingDef, int> latestAmmoUpdate = new Dictionary<ThingDef, int>();
+
+        //Check for any AmmoThing having SPAWNED (not for AmmoThing having been destroyed, as this cannot resolve issues)
+        public static Dictionary<ThingDef, List<Building_TurretGunCE>> listeners = new Dictionary<ThingDef, List<Building_TurretGunCE>>();
+        
         public static Thing ClosestAmmoReachable(IntVec3 root, Map map, CompAmmoUser user, TraverseParms traverseParams, PathEndMode peMode = PathEndMode.ClosestTouch, float maxDistance = 9999f, Predicate<Thing> validator = null, IEnumerable<Thing> customGlobalSearchSet = null, int searchRegionsMin = 0, int searchRegionsMax = -1, bool forceAllowGlobalSearch = false, RegionType traversableRegionTypes = RegionType.Set_Passable, bool ignoreEntirelyForbiddenRegions = false)
         {
             //selectedAmmo
@@ -26,7 +33,7 @@ namespace CombatExtended
 
             if (user.Props.ammoSet?.ammoTypes.NullOrEmpty() ?? true)
                 return null;
-            
+
             bool flag = searchRegionsMax < 0 | forceAllowGlobalSearch;
             if (!flag && customGlobalSearchSet != null)
             {
@@ -54,7 +61,7 @@ namespace CombatExtended
                 }
                 else
                     if (!user.Props.ammoSet.ammoTypes.Any(x => map.listerThings.ThingsOfDef(x.ammo).Any()))
-                    return null;
+                        return null;
 
             }
             #endregion
@@ -64,14 +71,16 @@ namespace CombatExtended
 
             foreach (var ammo in user.Props.ammoSet.ammoTypes.Select(x => x.ammo))
             {
-                thingList.AddRange(map.listerThings.ThingsOfDef(ammo).Where(y => y.Position.DistanceToSquared(root) <= mDsq));
+                thingList.AddRange(map.listerThings.ThingsOfDef(ammo).Where(y => y.Position.DistanceToSquared(root) <= mDsq
+                    && (!(y as AmmoThing)?.IsCookingOff ?? true)
+                    && !y.IsBurning()));
             }
             #endregion
 
             Func<Thing, float> priorityGetter = (x => { if (x.def == user.SelectedAmmo) return 3f; else if (x.def == user.CurrentAmmo) return 2f; else return 1f; });
             
             int num = (searchRegionsMax > 0) ? searchRegionsMax : 30;
-            var thing = RegionwiseBFSWorker(root, map, thingList, peMode, traverseParams, validator, priorityGetter, searchRegionsMin, num, maxDistance, out int num2, traversableRegionTypes, ignoreEntirelyForbiddenRegions);
+            var thing = RegionwiseBFSWorker(root, map, thingList, peMode, traverseParams, validator, priorityGetter, searchRegionsMin, num, mDsq, out int num2, traversableRegionTypes, ignoreEntirelyForbiddenRegions);
             var flag2 = (thing == null && num2 < num);
             
             if ((thing == null & flag) && !flag2)
@@ -83,9 +92,7 @@ namespace CombatExtended
 
                 Predicate<Thing> validator2 = (Thing t) => map.reachability.CanReach(root, t, peMode, traverseParams) && (validator == null || validator(t));
                 thing = GenClosest.ClosestThing_Global(root, thingList, maxDistance, validator2, null);
-               
             }
-            
             return thing;
         }
 
