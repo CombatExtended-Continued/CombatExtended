@@ -79,7 +79,7 @@ namespace CombatExtended
                 // Perform ammo system specific activities, failure condition and hauling
                 if (pawn.Faction != Faction.OfPlayer)
                 {
-                    ammo.SetForbidden(false, false);
+                    ammo.SetForbidden(true, false);
                     this.FailOnDestroyedOrNull(TargetIndex.B);
                 }
                 else

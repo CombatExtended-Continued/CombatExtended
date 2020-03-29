@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -19,66 +20,256 @@ namespace CombatExtended
             }
         }
 
+        private bool Checks(Pawn pawn, Building_TurretGunCE turret, bool forced)
+        {
+            //WorkTagIsDisabled check inherent to WorkGiver_Scanner
+            //MissingRequiredCapacity check inherent to WorkGiver_Scanner
+            if (turret.isReloading)
+            {
+              //Log.Message(pawn.ThingID + " failed " + turret.ThingID + ": turret is already reloading");
+                return false;  //Turret is already reloading
+            }
+            if (!turret.NeedsReload)
+            {
+              //Log.Message(pawn.ThingID + " failed " + turret.ThingID + ": turret doesn't need reload");
+                return false;  //Turret doesn't need reload
+            }
+            //if (!forced && !turret.AllowAutomaticReload) return false;  //Turret doesn't need auto-reload and isn't forced to reload
+            if (turret.IsBurning())
+            {
+              //Log.Message(pawn.ThingID + " failed " + turret.ThingID + ": turret on fire");
+                return false;   //Turret on fire
+            }
+            if (turret.Faction != pawn.Faction && turret.Faction?.RelationKindWith(pawn.Faction) != FactionRelationKind.Ally)
+            {
+              //Log.Message(pawn.ThingID + " failed " + turret.ThingID + ": non-allied turret");
+                return false;     //Allies reload turrets
+            }
+            if (!pawn.CanReserveAndReach(turret, PathEndMode.ClosestTouch, forced ? Danger.Deadly : pawn.NormalMaxDanger(), GenClosestAmmo.pawnsPerTurret))
+            {
+              //Log.Message(pawn.ThingID + " failed " + turret.ThingID + ": turret unreachable");
+                return false;    //Pawn cannot reach turret
+            }
+
+            return true;
+        }
+
+        public override float GetPriority(Pawn pawn, TargetInfo t)
+        {
+            return GetThingPriority(pawn, t.Thing);
+        }
+
+        private float GetThingPriority(Pawn pawn, Thing t, bool forced = false)
+        {
+            Building_TurretGunCE turret = t as Building_TurretGunCE;
+            if (pawn == null)
+            {
+              //Log.Message("Checking " + turret.ThingID + ", found pawn == null");
+                return 0f;
+            }
+            if (turret == null || turret.IsForbidden(pawn) || !Checks(pawn, turret, forced)) return 0f;
+
+            if (!turret.Active) return 1f;
+            if (turret.ReloadCritical) return 9f;
+            if (turret.AllowAutomaticReload) return 5f;
+            return 1f;
+        }
+
+        public override bool ShouldSkip(Pawn pawn, bool forced = false)
+        {
+            return !forced && pawn.CurJob != null && (pawn.CurJob.playerForced || pawn.CurJobDef == CE_JobDefOf.ReloadTurret || pawn.CurJobDef == CE_JobDefOf.ReloadWeapon);
+        }
+
+        /// <summary>
+        /// Called as a scanner
+        /// </summary>
+        /// <param name="pawn">Never null</param>
+        /// <param name="t">Can be non-turret</param>
+        /// <param name="forced">Generally not true</param>
+        /// <returns></returns>
+        /*public override bool HasJobOnThing(Pawn pawn, Thing t, bool forced = false)
+          {
+              Building_TurretGunCE turret = t as Building_TurretGunCE;
+              if (turret == null || !Checks(pawn, turret, forced))  return false;
+
+              if (!turret.CompAmmo.UseAmmo)
+                  return true;
+
+              turret.UpdateNearbyAmmo();
+
+              Thing ammo = turret.nearestViableAmmo;
+
+              int amountNeeded = turret.CompAmmo.Props.magazineSize;
+              if (turret.CompAmmo.CurrentAmmo == turret.CompAmmo.SelectedAmmo) amountNeeded -= turret.CompAmmo.CurMagCount;
+
+              if (ammo == null || ammo.IsForbidden(pawn) || !pawn.CanReserveAndReach(new LocalTargetInfo(ammo), PathEndMode.ClosestTouch, pawn.NormalMaxDanger(), Mathf.Max(1, ammo.stackCount - amountNeeded), amountNeeded, null, forced))
+              {
+                  ammo = turret.InventoryAmmo(pawn.TryGetComp<CompInventory>());
+              }
+
+              return ammo != null;
+          }*/
+
         public override bool HasJobOnThing(Pawn pawn, Thing t, bool forced = false)
         {
-            Building_TurretGunCE turret = t as Building_TurretGunCE;
-            if (turret == null || (!forced && !turret.AllowAutomaticReload)) return false;
-            
-            if (!turret.NeedsReload
-                || !pawn.CanReserveAndReach(turret, PathEndMode.ClosestTouch, Danger.Deadly)
-                || turret.IsForbidden(pawn.Faction))
-            {
-                return false;
-            }
-            if (!turret.CompAmmo.UseAmmo) return true;
-            Thing ammo = GenClosest.ClosestThingReachable(pawn.Position, pawn.Map,
-                            ThingRequest.ForDef(turret.CompAmmo.SelectedAmmo),
-                            PathEndMode.ClosestTouch,
-                            TraverseParms.For(pawn, Danger.Deadly, TraverseMode.ByPawn),
-                            80,
-                            x => !x.IsForbidden(pawn) && pawn.CanReserve(x));
-            return ammo != null;
-        }
+            var priority = GetThingPriority(pawn, t, forced);
+            if (priority == 0f) return false;
 
-        public override Job JobOnThing(Pawn pawn, Thing t, bool forced = false)
-        {
             Building_TurretGunCE turret = t as Building_TurretGunCE;
-            if (turret == null || turret.CompAmmo == null) return null;
-
             if (!turret.CompAmmo.UseAmmo)
-            {
-                return new Job(CE_JobDefOf.ReloadTurret, t, null);
-            }
+                return true;
 
-            // Iterate through all possible ammo types for NPC's to find whichever is available, starting with currently selected
-            Thing ammo = null;
-            var ammoTypes = turret.CompAmmo.Props.ammoSet.ammoTypes.Select(l => l.ammo).ToList();
-            var index = ammoTypes.IndexOf(turret.CompAmmo.SelectedAmmo);
-            for (int i = 0; i < ammoTypes.Count; i++)
-            {
-                index = (index + i) % ammoTypes.Count;
-                ammo = GenClosest.ClosestThingReachable(pawn.Position, pawn.Map,
-                                ThingRequest.ForDef(ammoTypes[index]),
-                                PathEndMode.ClosestTouch,
-                                TraverseParms.For(pawn, Danger.Deadly, TraverseMode.ByPawn),
-                                80,
-                                x => !x.IsForbidden(pawn) && pawn.CanReserve(x));
-                if (ammo != null || pawn.Faction == Faction.OfPlayer)
-                    break;
-            }
-            if (ammo == null)
-                return null;
-
-            // Update selected ammo if necessary
-            if (ammo.def != turret.CompAmmo.SelectedAmmo)
-                turret.CompAmmo.SelectedAmmo = ammo.def as AmmoDef;
-
-            // Create the actual job
             int amountNeeded = turret.CompAmmo.Props.magazineSize;
             if (turret.CompAmmo.CurrentAmmo == turret.CompAmmo.SelectedAmmo) amountNeeded -= turret.CompAmmo.CurMagCount;
-            return new Job(DefDatabase<JobDef>.GetNamed("ReloadTurret"), t, ammo) { count = Mathf.Min(amountNeeded, ammo.stackCount) };
+
+            turret.UpdateNearbyAmmo();
+            Thing ammo = PawnClosestAmmo(pawn, turret, out bool _, forced);
+
+            if (ammo == null)
+                return false;
+
+            // Update selected ammo if necessary
+            if (ammo.def != turret.CompAmmo.SelectedAmmo
+                && priority < 9f && ammo.stackCount < amountNeeded)    //New option can fill magazine completely (and is otherwise closer)
+                    return false;
+
+            return true;
         }
 
+        //Checks before called (ONLY when in SCANNER):
+        // - PawnCanUseWorkGiver(pawn, this)
+        //      - nonColonistCanDo || isColonist
+        //      - !WorkTagIsDisabled(def.workTags)
+        //      - !ShouldSkip(pawn, false)
+        //      - MissingRequiredCapacity(pawn) == null
+        // - !t.IsForbidden(pawn)
+        // - this.PotentialWorkThingRequest.Accepts(t), 
+        /// <summary>
+        /// Called after HasJobOnThing by WorkGiver_Scanner, or by Building_TurretGunCE when turret tryReload with manningPawn
+        /// </summary>
+        /// <param name="pawn"></param>
+        /// <param name="t"></param>
+        /// <param name="forced"></param>
+        /// <returns></returns>
+        public override Job JobOnThing(Pawn pawn, Thing t, bool forced = false)
+        {
+            var priority = GetThingPriority(pawn, t, forced);
+            if (priority == 0f) return null;
 
+            //Do not check for NeedsReload etc. -- if forced, treat as if NeedsReload && AllowAutomaticReload
+
+            Building_TurretGunCE turret = t as Building_TurretGunCE;
+            if (!turret.CompAmmo.UseAmmo)
+                return new Job(CE_JobDefOf.ReloadTurret, t, null);
+            
+            int amountNeeded = turret.CompAmmo.Props.magazineSize;
+            if (turret.CompAmmo.CurrentAmmo == turret.CompAmmo.SelectedAmmo) amountNeeded -= turret.CompAmmo.CurMagCount;
+
+            turret.UpdateNearbyAmmo();
+
+            var ammo = PawnClosestAmmo(pawn, turret, out bool fromInventory, forced);
+            
+            if (ammo == null)
+                return null;
+            
+            // Update selected ammo if necessary
+            if (ammo.def != turret.CompAmmo.SelectedAmmo)    //New option can fill magazine completely (and is otherwise closer)
+            {
+                if ((priority >= 9f || ammo.stackCount >= amountNeeded))
+                    turret.CompAmmo.SelectedAmmo = ammo.def as AmmoDef;
+                else
+                    return null;
+            }
+            
+            if (fromInventory && !pawn.TryGetComp<CompInventory>().container.TryDrop(ammo, pawn.Position, pawn.Map, ThingPlaceMode.Direct, Mathf.Min(ammo.stackCount, amountNeeded), out ammo))
+            {
+                Log.ErrorOnce("Found optimal ammo (" + ammo.LabelCap + "), but could not drop from " + pawn.LabelCap, 8164528);
+                return null;
+            }
+
+            return new Job(CE_JobDefOf.ReloadTurret, t, ammo) { count = Mathf.Min(amountNeeded, ammo.stackCount) };
+        }
+
+        private Thing PawnClosestAmmo(Pawn pawn, Building_TurretGunCE turret, out bool fromInventory, bool forced = false)
+        {
+            var testAmmo = turret.nearestViableAmmo;
+
+            int amount = turret.CompAmmo.Props.magazineSize;
+            if (turret.CompAmmo.CurrentAmmo == turret.CompAmmo.SelectedAmmo) amount -= turret.CompAmmo.CurMagCount;
+
+            if (testAmmo == null
+                || testAmmo.IsForbidden(pawn)
+                || !pawn.CanReserveAndReach(new LocalTargetInfo(testAmmo), PathEndMode.ClosestTouch, forced ? Danger.Deadly : pawn.NormalMaxDanger(),
+                    Mathf.Max(1, testAmmo.stackCount - amount), Mathf.Min(testAmmo.stackCount, amount), null, forced))
+            {
+                testAmmo = turret.InventoryAmmo(pawn?.TryGetComp<CompInventory>());
+                fromInventory = true;
+            }
+            else
+                fromInventory = false;
+
+            return testAmmo;
+        }
+
+        public Pawn BestNonJobUser(IEnumerable<Pawn> pawns, Building_TurretGunCE turret, out bool fromInventory, bool forced = false)
+        {
+            fromInventory = false;
+            
+            if (!pawns.Any()) return null;
+
+            //Cut a significant portion of pawns
+            pawns = pawns.Where(p => !ShouldSkip(p) && !p.Downed && !p.Dead && p.Spawned && (p.mindState?.Active ?? true)
+                && (!p.mindState?.mentalStateHandler?.InMentalState ?? true) && !turret.IsForbidden(p)
+                && (turret.Faction == p.Faction || turret.Faction?.RelationKindWith(p.Faction) == FactionRelationKind.Ally)
+                && p.CanReserveAndReach(new LocalTargetInfo(turret), PathEndMode.InteractionCell, forced ? Danger.Deadly : p.NormalMaxDanger(), GenClosestAmmo.pawnsPerTurret, -1, null, forced));
+            
+            //No pawns remaining => quit
+            if (!pawns.Any())
+                return null;
+
+            //If no ammo is used, minimize distance
+            if (!turret.CompAmmo?.UseAmmo ?? true)
+                return pawns.MinBy(x => x.Position.DistanceTo(turret.Position));
+            
+            //ELSE: ammo is used, pawns remain
+            turret.UpdateNearbyAmmo(forced);
+            var hasNearbyAmmo = turret.nearestViableAmmo != null;
+
+            int amount = turret.CompAmmo.Props.magazineSize;
+            if (turret.CompAmmo.CurrentAmmo == turret.CompAmmo.SelectedAmmo) amount -= turret.CompAmmo.CurMagCount;
+            
+            if (hasNearbyAmmo)
+                pawns = pawns.OrderBy(x => x.Position.DistanceTo(turret.Position));
+
+            var bestNonInventoryDistance = 9999f;
+            Pawn bestPawn = null;
+            var minimumDistance = hasNearbyAmmo ? turret.Position.DistanceTo(turret.nearestViableAmmo.Position) : 0f;
+
+            //Sort through ASCENDING DISTANCE TO TURRET -- e.g, inventory ammo is preferred
+            foreach (var p in pawns)
+            {
+                if (PawnClosestAmmo(p, turret, out fromInventory, forced) == null)
+                    continue;
+
+                if (fromInventory)
+                {
+                    if (p.Position.DistanceTo(turret.Position) < bestNonInventoryDistance + minimumDistance)
+                        return p;
+                }
+                else if (hasNearbyAmmo)
+                {
+                    var dist = p.Position.DistanceTo(turret.nearestViableAmmo.Position);
+
+                    if (dist < bestNonInventoryDistance)
+                    {
+                        bestNonInventoryDistance = dist;
+                        bestPawn = p;
+                    }
+                }
+            }
+
+            fromInventory = false;
+            return bestPawn;
+        }
     }
 }
