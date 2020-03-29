@@ -4,10 +4,11 @@
 	<Operation Class="PatchOperationFindMod">
     <mods>
         <li>[FSF] Advanced Bionics Expansion</li>
+		<li>[FSF] Advanced Bionics Expansion Legacy Version</li>
     </mods>
 	<match Class="PatchOperationSequence">
 		<operations>
-		<!--Arms-->
+		<!--Arms : Power arms now have multiple attacks, I will revise this later to adjust for those properties-->
 		<li Class="PatchOperationReplace">
 			<xpath>Defs/HediffDef[defName="FSFAdvBionicPowerArm"]/comps/li[@Class="HediffCompProperties_VerbGiver"]/tools</xpath>
 			<value>
@@ -63,6 +64,116 @@
 			</value>
 		</li>
 		
+		<li Class="PatchOperationReplace">
+			<xpath>Defs/HediffDef[defName="FSFAdvBionicTaserArm"]/comps/li[@Class="HediffCompProperties_VerbGiver"]/tools</xpath>
+			<value>
+				<tools>
+					<li Class="CombatExtended.ToolCE">
+					<label>palm</label>
+					<capacities>
+						<li>FSFEffectTaser</li>
+					</capacities>
+					<power>5</power>
+					<cooldownTime>1.84</cooldownTime>
+					<armorPenetrationBlunt>2.43</armorPenetrationBlunt>
+					<alwaysTreatAsWeapon>true</alwaysTreatAsWeapon>
+						<extraMeleeDamages>
+							<li>
+								<def>EMP</def>
+								<amount>12.5</amount>
+							</li>
+						</extraMeleeDamages>
+					</li>
+				</tools>
+			</value>
+		</li>
+		
+		<!-- CE disables human bite attacks-->
+		<li Class="PatchOperationRemove">
+			<xpath>Defs/HediffDef[defName="FSFAdvBionicJaw"]/comps/li[@Class="HediffCompProperties_VerbGiver"]</xpath>
+		</li>
+		</operations>
+	</match>
+	</Operation>
+	
+	<Operation Class="PatchOperationFindMod">
+    <mods>
+        <li>[FSF] Advanced Bionics Expansion</li>
+    </mods>
+	<match Class="PatchOperationSequence">
+		<operations>
+		
+		<li Class="PatchOperationReplace">
+			<xpath>Defs/HediffDef[defName="FSFAdvBionicFieldArm"]/comps/li[@Class="HediffCompProperties_VerbGiver"]/tools</xpath>
+			<value>
+				<tools>
+					<li Class="CombatExtended.ToolCE">
+					<label>fist</label>
+					<capacities>
+						<li>Blunt</li>
+					</capacities>
+					<power>7</power>
+					<cooldownTime>0.98</cooldownTime>
+					<armorPenetrationBlunt>2.168</armorPenetrationBlunt>
+					</li>
+				</tools>
+			</value>
+		</li>
+		
+		<li Class="PatchOperationReplace">
+			<xpath>Defs/HediffDef[defName="FSFAdvBionicConstructionArm"]/comps/li[@Class="HediffCompProperties_VerbGiver"]/tools</xpath>
+			<value>
+				<tools>
+					<li Class="CombatExtended.ToolCE">
+					<label>fist</label>
+					<capacities>
+						<li>Blunt</li>
+					</capacities>
+					<power>7</power>
+					<cooldownTime>0.98</cooldownTime>
+					<armorPenetrationBlunt>2.168</armorPenetrationBlunt>
+					</li>
+				</tools>
+			</value>
+		</li>
+		
+		<li Class="PatchOperationReplace">
+			<xpath>Defs/HediffDef[defName="FSFAdvBionicDrillArm"]/comps/li[@Class="HediffCompProperties_VerbGiver"]/tools</xpath>
+			<value>
+				<tools>
+					<li Class="CombatExtended.ToolCE">
+					<label>fist</label>
+					<capacities>
+						<li>Stab</li>
+					</capacities>
+					<power>8</power>
+					<cooldownTime>1.07</cooldownTime>
+					<armorPenetrationSharp>0.13</armorPenetrationSharp>
+					<armorPenetrationBlunt>0.98</armorPenetrationBlunt>
+					</li>
+				</tools>
+			</value>
+		</li>
+		
+		<!--Tone down Speed torso implant dodge chance to be more inline with CE stats (also so it doesn't instantly max out dodge)-->
+		
+		<li Class="PatchOperationReplace">
+			<xpath>Defs/HediffDef[defName="FSFImplantTorsoSpeed"]/stages/li/statOffsets/MeleeDodgeChance</xpath>
+			<value>
+					<MeleeDodgeChance>+2.5</MeleeDodgeChance>
+			</value>
+		</li>
+		
+		</operations>
+	</match>
+	</Operation>
+	
+	<Operation Class="PatchOperationFindMod">
+    <mods>
+        <li>[FSF] Advanced Bionics Expansion Legacy Version</li>
+    </mods>
+	<match Class="PatchOperationSequence">
+		<operations>
 		<!--Subdermal Implants-->
 		
 		<!--3mm Hyperweave/w : 100% heat armor-->
@@ -73,6 +184,18 @@
 					<ArmorRating_Blunt>+4.5</ArmorRating_Blunt>
 					<ArmorRating_Heat>+1</ArmorRating_Heat>
 					<ArmorRating_Sharp>+3</ArmorRating_Sharp>
+				</statOffsets>
+			</value>
+		</li>
+		
+		<!--3mm Plasteel/w : 100% heat armor-->
+		<li Class="PatchOperationReplace">
+			<xpath>Defs/HediffDef[defName="FSFImplantSubdermalArmorMkII"]/stages/li/statOffsets</xpath>
+			<value>
+				<statOffsets>
+					<ArmorRating_Blunt>+9</ArmorRating_Blunt>
+					<ArmorRating_Heat>+1</ArmorRating_Heat>
+					<ArmorRating_Sharp>+6</ArmorRating_Sharp>
 				</statOffsets>
 			</value>
 		</li>
@@ -164,10 +287,6 @@
 			</value>
 		</li>
 		
-		<!-- CE disables human bite attacks-->
-		<li Class="PatchOperationRemove">
-			<xpath>Defs/HediffDef[defName="FSFAdvBionicJaw"]/comps/li[@Class="HediffCompProperties_VerbGiver"]</xpath>
-		</li>
 		</operations>
 	</match>
 	</Operation>
