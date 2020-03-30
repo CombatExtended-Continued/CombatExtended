@@ -173,6 +173,9 @@ namespace CombatExtended
                     ticksUntilAutoReload = minTicksBeforeAutoReload;
             }
 
+            if (CompAmmo == null || CompAmmo.Props == null || CompAmmo.Props.ammoSet == null || CompAmmo.Props.ammoSet.ammoTypes.NullOrEmpty())
+                return;
+
             //"Subscribe" turret to GenClosestAmmo
             foreach (var ammo in CompAmmo.Props.ammoSet.ammoTypes.Select(x => x.ammo))
             {
