@@ -87,14 +87,14 @@ namespace CombatExtended
                 return;
             
             foreach (var turret in parent.Map.listerThings.ThingsInGroup(ThingRequestGroup.BuildingArtificial)
-                    .Where(x => x.def.building.IsTurret && !x.def.building.IsMortar
+                    .Where(x => (x.def?.building?.IsTurret ?? false) && !x.def.building.IsMortar
                         //ONLY supply nearby turrets which are Building_TurretGunCE
                         && ((x as Building_TurretGunCE)?.CompAmmo?.UseAmmo ?? false)
-                        && x.Faction.def == FactionDefOf.Mechanoid
+                        && x.Faction?.def == FactionDefOf.Mechanoid
                         && x.Position.DistanceToSquared(parent.Position) < turretsWithinDistanceSqr).Select(x => x as Building_TurretGunCE))
             {
                 if (EnoughAmmoAround(turret)) continue;
-                if (turret.CompAmmo.CurrentAmmo != null)
+                if (turret.CompAmmo != null && turret.CompAmmo.CurrentAmmo != null)
                     DropSupplies(turret.CompAmmo.CurrentAmmo, Mathf.CeilToInt(0.5f * (float)turret.CompAmmo.Props.magazineSize), turret.Position);
             }
         }
