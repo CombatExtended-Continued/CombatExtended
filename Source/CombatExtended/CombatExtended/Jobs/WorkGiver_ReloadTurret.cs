@@ -40,7 +40,7 @@ namespace CombatExtended
               //Log.Message(pawn.ThingID + " failed " + turret.ThingID + ": turret on fire");
                 return false;   //Turret on fire
             }
-            if (turret.Faction != pawn.Faction && turret.Faction?.RelationKindWith(pawn.Faction) != FactionRelationKind.Ally)
+            if (turret.Faction != pawn.Faction && (turret.Faction != null && pawn.Faction != null && turret.Faction.RelationKindWith(pawn.Faction) != FactionRelationKind.Ally))
             {
               //Log.Message(pawn.ThingID + " failed " + turret.ThingID + ": non-allied turret");
                 return false;     //Allies reload turrets
