@@ -58,6 +58,7 @@ namespace CombatExtended
                 if (thing.def.Fillage == FillCategory.Full)
                 {
                     heightRange = new FloatRange(0, WallCollisionHeight);
+                    shotHeight = WallCollisionHeight;
                     return;
                 }
                 float fillPercent = thing.def.fillPercent;

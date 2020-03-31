@@ -13,6 +13,7 @@ namespace CombatExtended
     public class CompAmmoResupplyOnWakeup : ThingComp
     {
         public HashSet<Building_TurretGunCE> nearbyTurrets = new HashSet<Building_TurretGunCE>();
+        bool initialized = false;
         const int turretsWithinDistanceSqr = 100;
         const int ticksBetweenChecks = 600;    //Divide by 60 for seconds
 
@@ -20,13 +21,12 @@ namespace CombatExtended
         
         //Only do something if not dormant
         //Only do something when ammo system is enabled
-        public bool IsActive => Controller.settings.EnableAmmoSystem
-            && (parent.TryGetComp<CompCanBeDormant>()?.Awake ?? true);
+        public bool IsActive => Controller.settings.EnableAmmoSystem && (parent.TryGetComp<CompCanBeDormant>()?.Awake ?? true);
 
         FieldInfo thingsField = typeof(LordJob_MechanoidDefendBase).GetField("things");
         FieldInfo mechClusterDefeatedField = typeof(LordJob_MechanoidDefendBase).GetField("mechClusterDefeated");
         LordJob_MechanoidDefendBase parentLordJob => ((parent as Building)?.GetLord()?.LordJob as LordJob_MechanoidDefendBase);
-        public bool OwnerOnly
+        public bool ClusterAlive
         {
             get
             {
@@ -42,7 +42,7 @@ namespace CombatExtended
         public bool EnoughAmmoAround(Building_TurretGunCE turret)
         {
             //Prevent ammo being dropped as a result of the turret being reloaded at the time
-            if (!turret.isReloading && !turret.AllowAutomaticReload)
+            if (turret.isReloading || !turret.NeedsReload)
                 return true;
 
             var ammoComp = turret.CompAmmo;
@@ -59,8 +59,7 @@ namespace CombatExtended
                     List<Thing> thingList = c.GetThingList(parent.Map);
                     for (int j = 0; j < thingList.Count; j++)
                     {
-                        if ((ammoComp != null && ammoComp.CurrentAmmo == thingList[j].def)
-                            || thingList[j].def.IsShell)
+                        if ((ammoComp != null && ammoComp.CurrentAmmo == thingList[j].def))
                         {
                             num2 += thingList[j].stackCount;
 
@@ -73,28 +72,7 @@ namespace CombatExtended
 
             return false;
         }
-
-        void UpdateNearbyTurrets()
-        {
-            nearbyTurrets.Clear();
-
-            if (OwnerOnly)
-            {
-                nearbyTurrets.AddRange(((List<Building_TurretGunCE>)thingsField.GetValue(parentLordJob))
-                    .Where(x => x.def.building.IsTurret && !x.def.building.IsMortar
-                        //ONLY supply nearby turrets which are Building_TurretGunCE
-                        && ((x as Building_TurretGunCE)?.CompAmmo?.UseAmmo ?? false)));
-            }
-            else
-            {
-                nearbyTurrets.AddRange(parent.Map.listerThings.ThingsInGroup(ThingRequestGroup.BuildingArtificial)
-                    .Where(x => x.def.building.IsTurret && !x.def.building.IsMortar
-                        //ONLY supply nearby turrets which are Building_TurretGunCE
-                        && ((x as Building_TurretGunCE)?.CompAmmo?.UseAmmo ?? false)
-                        && x.Position.DistanceToSquared(parent.Position) < turretsWithinDistanceSqr).Select(x => x as Building_TurretGunCE));
-            }
-        }
-
+        
 		public override void CompTick()
 		{
 			if (parent.IsHashIntervalTick(ticksBetweenChecks))
@@ -107,23 +85,17 @@ namespace CombatExtended
         {
             if (!IsActive)
                 return;
-
-            UpdateNearbyTurrets();
-
-            foreach (var turret in nearbyTurrets)
+            
+            foreach (var turret in parent.Map.listerThings.ThingsInGroup(ThingRequestGroup.BuildingArtificial)
+                    .Where(x => (x.def?.building?.IsTurret ?? false) && !x.def.building.IsMortar
+                        //ONLY supply nearby turrets which are Building_TurretGunCE
+                        && ((x as Building_TurretGunCE)?.CompAmmo?.UseAmmo ?? false)
+                        && x.Faction?.def == FactionDefOf.Mechanoid
+                        && x.Position.DistanceToSquared(parent.Position) < turretsWithinDistanceSqr).Select(x => x as Building_TurretGunCE))
             {
-                if (!turret.Active)
-                    continue;
-
-                if (EnoughAmmoAround(turret))
-                    continue;
-                
-                ThingDef thingDef = turret.CompAmmo.CurrentAmmo;
-
-                if (thingDef != null)
-                {
-                    DropSupplies(thingDef, 20, turret.Position);
-                }
+                if (EnoughAmmoAround(turret)) continue;
+                if (turret.CompAmmo != null && turret.CompAmmo.CurrentAmmo != null)
+                    DropSupplies(turret.CompAmmo.CurrentAmmo, Mathf.CeilToInt(0.5f * (float)turret.CompAmmo.Props.magazineSize), turret.Position);
             }
         }
 
@@ -135,7 +107,7 @@ namespace CombatExtended
             list.Add(thing);
 
             //If turrets are near-empty or empty, call in ammo droppod
-            DropPodUtility.DropThingsNear(cell, parent.Map, list, 110, false, false, true, OwnerOnly);
+            DropPodUtility.DropThingsNear(cell, parent.Map, list, 110, false, false, true, true);
         }
     }
 }
