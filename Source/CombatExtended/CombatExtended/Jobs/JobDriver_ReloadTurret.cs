@@ -33,7 +33,7 @@ namespace CombatExtended
 
         public override bool TryMakePreToilReservations(bool errorOnFailed)
         {
-            return pawn.Reserve(TargetA, job);
+            return pawn.Reserve(TargetA, job) && (ammo == null || pawn.Reserve(TargetB, job, Mathf.Max(1, TargetThingB.stackCount - job.count), job.count));
         }
 
         public override string GetReport()
@@ -59,7 +59,7 @@ namespace CombatExtended
             }
            	if (compReloader == null)
             {
-                Log.Error(string.Concat(errorBase, "TargetThingA (Building_TurretGunCE) is missing it's CompAmmoUser."));
+                Log.Error(string.Concat(errorBase, "TargetThingA (Building_TurretGunCE) is missing its CompAmmoUser."));
                 yield return null;
             }
             if (compReloader.UseAmmo && ammo == null)
@@ -79,7 +79,7 @@ namespace CombatExtended
                 // Perform ammo system specific activities, failure condition and hauling
                 if (pawn.Faction != Faction.OfPlayer)
                 {
-                    ammo.SetForbidden(false, false);
+                    ammo.SetForbidden(true, false);
                     this.FailOnDestroyedOrNull(TargetIndex.B);
                 }
                 else
@@ -88,7 +88,7 @@ namespace CombatExtended
                 }
 
                 // Haul ammo
-                yield return Toils_Reserve.Reserve(TargetIndex.B, 1);
+                yield return Toils_Reserve.Reserve(TargetIndex.B, Mathf.Max(1, TargetThingB.stackCount - job.count), job.count);
                 yield return Toils_Goto.GotoCell(ammo.Position, PathEndMode.Touch);
                 yield return Toils_Haul.StartCarryThing(TargetIndex.B);
                 yield return Toils_Goto.GotoCell(turret.Position, PathEndMode.Touch);

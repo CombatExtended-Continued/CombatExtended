@@ -4,7 +4,7 @@
 	  <operations>
 		<li Class="PatchOperationFindMod">
 		
-		  <mods><li>Android Tiers++ Expansion</li></mods>
+		  <mods><li>Android tiers - TX Series</li></mods>
 			<match Class="PatchOperationSequence">
 			  <operations>
 				<!--Test for comps-->
@@ -18,6 +18,22 @@
 					
 					<li Class="PatchOperationAdd">
 					  <xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="ATPP_Android2TX"]</xpath>
+					  <value><comps /></value>
+					</li>
+					
+				  </operations>
+				</li>
+				
+				<li Class="PatchOperationSequence">
+				  <success>Always</success>
+				  <operations>
+				    <li Class="PatchOperationTest">
+					  <xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="ATPP_Android2ITX"]/comps</xpath>
+					  <success>Invert</success>
+					</li>
+					
+					<li Class="PatchOperationAdd">
+					  <xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="ATPP_Android2ITX"]</xpath>
 					  <value><comps /></value>
 					</li>
 					
@@ -42,6 +58,20 @@
 				  <success>Always</success>
 				  <operations>
 				    <li Class="PatchOperationTest">
+					  <xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="ATPP_Android3ITX"]/comps</xpath>
+					  <success>Invert</success>
+					</li>
+					<li Class="PatchOperationAdd">
+					  <xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="ATPP_Android3ITX"]</xpath>
+					  <value><comps /></value>
+					</li>
+				  </operations>
+				</li>
+				
+				<li Class="PatchOperationSequence">
+				  <success>Always</success>
+				  <operations>
+				    <li Class="PatchOperationTest">
 					  <xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="ATPP_Android4TX"]/comps</xpath>
 					  <success>Invert</success>
 					</li>
@@ -52,12 +82,60 @@
 				  </operations>
 				</li>
 				
+				<li Class="PatchOperationSequence">
+				  <success>Always</success>
+				  <operations>
+				    <li Class="PatchOperationTest">
+					  <xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="ATPP_Android4ITX"]/comps</xpath>
+					  <success>Invert</success>
+					</li>
+					<li Class="PatchOperationAdd">
+					  <xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="ATPP_Android4ITX"]</xpath>
+					  <value><comps /></value>
+					</li>
+				  </operations>
+				</li>
+				
+				<li Class="PatchOperationSequence">
+				  <success>Always</success>
+				  <operations>
+				    <li Class="PatchOperationTest">
+					  <xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="ATPP_Android2KTX"]/comps</xpath>
+					  <success>Invert</success>
+					</li>
+					<li Class="PatchOperationAdd">
+					  <xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="ATPP_Android2KTX"]</xpath>
+					  <value><comps /></value>
+					</li>
+				  </operations>
+				</li>
+				
+				<li Class="PatchOperationSequence">
+				  <success>Always</success>
+				  <operations>
+				    <li Class="PatchOperationTest">
+					  <xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="ATPP_Android2KITX"]/comps</xpath>
+					  <success>Invert</success>
+					</li>
+					<li Class="PatchOperationAdd">
+					  <xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="ATPP_Android2KITX"]</xpath>
+					  <value><comps /></value>
+					</li>
+				  </operations>
+				</li>
+				
 				<!--Multiple-->
 				
 				<li Class="PatchOperationAddModExtension">
-				  <xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="ATPP_Android2TX" or 
+				  <xpath>/Defs/AlienRace.ThingDef_AlienRace[
+				  defName="ATPP_Android2TX" or 
 				  defName="ATPP_Android3TX" or
-				  defName="ATPP_Android4TX"
+				  defName="ATPP_Android4TX" or
+				  defName="ATPP_Android2ITX" or 
+				  defName="ATPP_Android3ITX" or
+				  defName="ATPP_Android4ITX" or
+				  defName="ATPP_Android2KTX" or
+				  defName="ATPP_Android2KITX"
 				  ]</xpath>
 				  <value>
 					<li Class="CombatExtended.RacePropertiesExtensionCE">
@@ -67,9 +145,15 @@
 				</li>
 				
 				<li Class="PatchOperationAdd">
-				  <xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="ATPP_Android2TX" or 
+				  <xpath>/Defs/AlienRace.ThingDef_AlienRace[
+				  defName="ATPP_Android2TX" or 
 				  defName="ATPP_Android3TX" or
-				  defName="ATPP_Android4TX"
+				  defName="ATPP_Android4TX" or
+				  defName="ATPP_Android2ITX" or 
+				  defName="ATPP_Android3ITX" or
+				  defName="ATPP_Android4ITX" or
+				  defName="ATPP_Android2KTX" or
+				  defName="ATPP_Android2KITX"
 				  ]/comps</xpath>
 				  <value>
 				    <li>
@@ -78,11 +162,16 @@
 				  </value>
 				</li>
 				
-				<!--2/3/4 are all complex enough to have at least some intrinsic self presevation-->
+				<!--2/3/4 are all complex enough to have at least some intrinsic self presevation. 
+				2KXT Are purpose built combat units and as such do not.-->
 				<li Class="PatchOperationAdd">
-				  <xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="ATPP_Android2TX" or 
+				  <xpath>/Defs/AlienRace.ThingDef_AlienRace[
+				  defName="ATPP_Android2TX" or 
 				  defName="ATPP_Android3TX" or
-				  defName="ATPP_Android4TX"
+				  defName="ATPP_Android4TX" or
+				  defName="ATPP_Android2ITX" or 
+				  defName="ATPP_Android3ITX" or
+				  defName="ATPP_Android4ITX"
 				  ]/comps</xpath>
 				  <value>
 				    <li Class="CombatExtended.CompProperties_Suppressable" />
@@ -92,7 +181,7 @@
 				<!--T2-->
 				
 				<li Class="PatchOperationAdd">
-				  <xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="ATPP_Android2TX"]/statBases</xpath>
+				  <xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="ATPP_Android2TX" or defName="ATPP_Android2ITX"]/statBases</xpath>
 				  <value>
 				    <MeleeDodgeChance>0.95</MeleeDodgeChance>
 					<MeleeCritChance>0.95</MeleeCritChance>
@@ -103,21 +192,21 @@
 				</li>
 				<!--1mm Steel-->
 				<li Class="PatchOperationReplace">
-				  <xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="ATPP_Android2TX"]/statBases/ArmorRating_Sharp</xpath>
+				  <xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="ATPP_Android2TX" or defName="ATPP_Android2ITX"]/statBases/ArmorRating_Sharp</xpath>
 				  <value>
 				    <ArmorRating_Sharp>1</ArmorRating_Sharp>
 				  </value>
 				</li>
 				
 				<li Class="PatchOperationReplace">
-				  <xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="ATPP_Android2TX"]/statBases/ArmorRating_Blunt</xpath>
+				  <xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="ATPP_Android2TX" or defName="ATPP_Android2ITX"]/statBases/ArmorRating_Blunt</xpath>
 				  <value>
 				    <ArmorRating_Blunt>1.5</ArmorRating_Blunt>
 				  </value>
 				</li>
 				
 				<li Class="PatchOperationReplace">
-				  <xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="ATPP_Android2TX"]/tools</xpath>
+				  <xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="ATPP_Android2TX" or defName="ATPP_Android2ITX"]/tools</xpath>
 				  <value>
 				    <tools>
 					  <li Class="CombatExtended.ToolCE">
@@ -159,7 +248,7 @@
 				<!--T3-->
 				
 				<li Class="PatchOperationAdd">
-				  <xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="ATPP_Android3TX"]/statBases</xpath>
+				  <xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="ATPP_Android3TX" or defName="ATPP_Android3ITX"]/statBases</xpath>
 				  <value>
 				    <MeleeDodgeChance>1</MeleeDodgeChance>
 					<MeleeCritChance>1.1</MeleeCritChance>
@@ -170,21 +259,21 @@
 				</li>
 				<!--1mm plasteel/1.5mm steel-->
 				<li Class="PatchOperationReplace">
-				  <xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="ATPP_Android3TX"]/statBases/ArmorRating_Sharp</xpath>
+				  <xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="ATPP_Android3TX" or defName="ATPP_Android3ITX"]/statBases/ArmorRating_Sharp</xpath>
 				  <value>
 				    <ArmorRating_Sharp>3.5</ArmorRating_Sharp>
 				  </value>
 				</li>
 				
 				<li Class="PatchOperationReplace">
-				  <xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="ATPP_Android3TX"]/statBases/ArmorRating_Blunt</xpath>
+				  <xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="ATPP_Android3TX" or defName="ATPP_Android3ITX"]/statBases/ArmorRating_Blunt</xpath>
 				  <value>
 				    <ArmorRating_Blunt>4.75</ArmorRating_Blunt>
 				  </value>
 				</li>
 				
 				<li Class="PatchOperationReplace">
-				  <xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="ATPP_Android3TX"]/tools</xpath>
+				  <xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="ATPP_Android3TX" or defName="ATPP_Android3ITX"]/tools</xpath>
 				  <value>
 				    <tools>
 					  <li Class="CombatExtended.ToolCE">
@@ -226,7 +315,7 @@
 				<!--T4-->
 				
 				<li Class="PatchOperationAdd">
-				  <xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="ATPP_Android4TX"]/statBases</xpath>
+				  <xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="ATPP_Android4TX" or defName="ATPP_Android4ITX"]/statBases</xpath>
 				  <value>
 				    <MeleeDodgeChance>1.2</MeleeDodgeChance>
 					<MeleeCritChance>1.2</MeleeCritChance>
@@ -237,21 +326,21 @@
 				</li>
 				<!--2mm plasteel-->
 				<li Class="PatchOperationReplace">
-				  <xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="ATPP_Android4TX"]/statBases/ArmorRating_Sharp</xpath>
+				  <xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="ATPP_Android4TX" or defName="ATPP_Android4ITX"]/statBases/ArmorRating_Sharp</xpath>
 				  <value>
 				    <ArmorRating_Sharp>4</ArmorRating_Sharp>
 				  </value>
 				</li>
 				
 				<li Class="PatchOperationReplace">
-				  <xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="ATPP_Android4TX"]/statBases/ArmorRating_Blunt</xpath>
+				  <xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="ATPP_Android4TX" or defName="ATPP_Android4ITX"]/statBases/ArmorRating_Blunt</xpath>
 				  <value>
 				    <ArmorRating_Blunt>6</ArmorRating_Blunt>
 				  </value>
 				</li>
 				
 				<li Class="PatchOperationReplace">
-				  <xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="ATPP_Android4TX"]/tools</xpath>
+				  <xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="ATPP_Android4TX" or defName="ATPP_Android4ITX"]/tools</xpath>
 				  <value>
 				    <tools>
 					  <li Class="CombatExtended.ToolCE">
@@ -285,6 +374,73 @@
 						<cooldownTime>2.49</cooldownTime>
 						<linkedBodyPartsGroup>HeadAttackTool</linkedBodyPartsGroup>
 						<armorPenetrationBlunt>2.025</armorPenetrationBlunt>
+					  </li>
+					</tools>
+				  </value>
+				</li>
+				
+				<!--T2K-->
+				
+				<li Class="PatchOperationAdd">
+				  <xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="ATPP_Android2KTX" or defName="ATPP_Android2KITX"]/statBases</xpath>
+				  <value>
+				    <MeleeDodgeChance>0.75</MeleeDodgeChance>
+					<MeleeCritChance>1.0</MeleeCritChance>
+					<MeleeParryChance>1.2</MeleeParryChance>
+					<Suppressability>0</Suppressability>
+					<SmokeSensitivity>0</SmokeSensitivity>
+				  </value>
+				</li>
+				<!--4mm Steel-->
+				<li Class="PatchOperationReplace">
+				  <xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="ATPP_Android2KTX" or defName="ATPP_Android2KITX"]/statBases/ArmorRating_Sharp</xpath>
+				  <value>
+				    <ArmorRating_Sharp>4</ArmorRating_Sharp>
+				  </value>
+				</li>
+				
+				<li Class="PatchOperationReplace">
+				  <xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="ATPP_Android2KTX" or defName="ATPP_Android2KITX"]/statBases/ArmorRating_Blunt</xpath>
+				  <value>
+				    <ArmorRating_Blunt>6</ArmorRating_Blunt>
+				  </value>
+				</li>
+				
+				<li Class="PatchOperationReplace">
+				  <xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="ATPP_Android2KTX" or defName="ATPP_Android2KITX"]/tools</xpath>
+				  <value>
+				    <tools>
+					  <li Class="CombatExtended.ToolCE">
+						<label>left fist</label>
+						<capacities>
+						  <li>Blunt</li>
+						</capacities>
+						<power>5</power>
+						<cooldownTime>2.05</cooldownTime>
+						<linkedBodyPartsGroup>LeftHand</linkedBodyPartsGroup>
+						<armorPenetrationBlunt>1.75</armorPenetrationBlunt>
+					  </li>
+					  
+					  <li Class="CombatExtended.ToolCE">
+						<label>right fist</label>
+						<capacities>
+						  <li>Blunt</li>
+						</capacities>
+						<power>5</power>
+						<cooldownTime>2.05</cooldownTime>
+						<linkedBodyPartsGroup>RightHand</linkedBodyPartsGroup>
+						<armorPenetrationBlunt>1.75</armorPenetrationBlunt>
+					  </li>
+					  
+					  <li Class="CombatExtended.ToolCE">
+						<label>head</label>
+						<capacities>
+						  <li>Blunt</li>
+						</capacities>
+						<power>10</power>
+						<cooldownTime>5.29</cooldownTime>
+						<linkedBodyPartsGroup>HeadAttackTool</linkedBodyPartsGroup>
+						<armorPenetrationBlunt>3.6</armorPenetrationBlunt>
 					  </li>
 					</tools>
 				  </value>

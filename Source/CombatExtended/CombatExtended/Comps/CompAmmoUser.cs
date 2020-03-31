@@ -556,7 +556,7 @@ namespace CombatExtended
             {
                 Action action = null;
                 if (Wielder != null) action = TryStartReload;
-                else if (turret?.MannableComp != null) action = turret.TryOrderReload;
+                else if (turret?.MannableComp != null) action = turret.TryForceReload;
 
                 // Check for teaching opportunities
                 string tag;
