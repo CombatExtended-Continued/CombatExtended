@@ -566,7 +566,7 @@ namespace CombatExtended
                 );
                 pelletMechanicsOnly = true;
             }
-            Log.Message("Fired from "+caster.ThingID+" at "+ShotHeight);
+           /// Log.Message("Fired from "+caster.ThingID+" at "+ShotHeight); /// 
             pelletMechanicsOnly = false;
             numShotsFired++;
             if (CompAmmo != null && !CompAmmo.CanBeFiredNow)
