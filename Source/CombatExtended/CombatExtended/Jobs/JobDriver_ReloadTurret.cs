@@ -35,7 +35,7 @@ namespace CombatExtended
         {
             return pawn.Reserve(TargetA, job) && (ammo == null || pawn.Reserve(TargetB, job, Mathf.Max(1, TargetThingB.stackCount - job.count), job.count));
         }
-
+        
         public override string GetReport()
         {
             string text = CE_JobDefOf.ReloadTurret.reportString;
@@ -113,6 +113,9 @@ namespace CombatExtended
 
             // If ammo system is turned off we just need to go to the turret.
             yield return Toils_Goto.GotoCell(turret.Position, PathEndMode.Touch);
+
+            //If pawn fails reloading from this point, reset isReloading
+            this.AddFinishAction(delegate { turret.isReloading = false; });
 
             // Wait in place
             Toil waitToil = new Toil() { actor = pawn };
