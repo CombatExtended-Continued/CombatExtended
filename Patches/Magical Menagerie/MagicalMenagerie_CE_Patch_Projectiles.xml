@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+	<Operation Class="PatchOperationSequence">
+		<success>Always</success>
+		<operations>
+
+			<li Class="CombatExtended.PatchOperationFindMod">
+				<modName>Magical Menagerie</modName>
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="MM_Quill"]/projectile</xpath>
+				<value>
+					<projectile Class="CombatExtended.ProjectilePropertiesCE">
+						<flyOverhead>false</flyOverhead>
+						<damageDef>MM_ToxicSting</damageDef>
+						<damageAmountBase>20</damageAmountBase>
+						<speed>20</speed>
+						<!-- Roughly equal to steel neolithic arrows -->
+						<armorPenetrationSharp>0.5</armorPenetrationSharp>
+						<armorPenetrationBlunt>3.02</armorPenetrationBlunt>
+
+					</projectile>
+				</value>
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="MM_Tremor"]/projectile</xpath>
+				<value>
+					<projectile Class="CombatExtended.ProjectilePropertiesCE">
+						<flyOverhead>false</flyOverhead>
+						<damageDef>Blunt</damageDef>
+						<damageAmountBase>20</damageAmountBase>
+						<speed>5</speed>
+						<armorPenetrationBlunt>100</armorPenetrationBlunt>
+					</projectile>
+				</value>
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="MM_WispProjectile"]/projectile</xpath>
+				<value>
+					<projectile Class="CombatExtended.ProjectilePropertiesCE">
+						<flyOverhead>false</flyOverhead>
+						<damageDef>Burn</damageDef>
+						<damageAmountBase>1</damageAmountBase>
+						<speed>5</speed>
+					</projectile>
+				</value>
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="MM_FlameBreath"]/projectile</xpath>
+				<value>
+					<projectile Class="CombatExtended.ProjectilePropertiesCE">
+						<speed>40</speed>
+						<damageDef>Flame</damageDef>
+						<damageAmountBase>2</damageAmountBase>
+						<explosionRadius>1.1</explosionRadius>
+						<ai_IsIncendiary>true</ai_IsIncendiary>
+						<soundExplode>Interact_Ignite</soundExplode>
+					</projectile>
+				</value>
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="MM_PoisonBreath"]/projectile</xpath>
+				<value>
+					<projectile Class="CombatExtended.ProjectilePropertiesCE">
+						<speed>20</speed>
+						<damageDef>MM_ToxicBreath</damageDef>
+						<damageAmountBase>2</damageAmountBase>
+						<flyOverhead>false</flyOverhead>
+					</projectile>
+				</value>
+			</li>
+
+		</operations>
+	</Operation>
+</Patch>

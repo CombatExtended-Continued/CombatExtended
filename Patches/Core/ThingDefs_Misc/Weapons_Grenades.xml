@@ -95,7 +95,7 @@
 	<Operation Class="PatchOperationAdd">
 		<xpath>Defs/ThingDef[defName="Proj_GrenadeFrag"]/comps</xpath>
 		<value>
-			<li Class="CombatExtended.CompProperties_ExplosiveCE">
+			<li Class="CombatExtended.CompProperties_Fragments">
 				<fragments>
 					<Fragment_Small>40</Fragment_Small>
 				</fragments>
@@ -157,14 +157,22 @@
 	<Operation Class="PatchOperationAdd">
 		<xpath>Defs/ThingDef[defName="Weapon_GrenadeFrag"]/comps</xpath>
 		<value>
-			<li Class="CombatExtended.CompProperties_ExplosiveCE">
-				<explosionDamage>56</explosionDamage>
-				<explosionDamageDef>Bomb</explosionDamageDef>
-				<explosionRadius>1.5</explosionRadius>
-				<fragments>
-					<Fragment_Small>40</Fragment_Small>
-				</fragments>
-			</li>
+		  <li Class="CombatExtended.CompProperties_ExplosiveCE">
+			<damageAmountBase>56</damageAmountBase>
+			<explosiveDamageType>Bomb</explosiveDamageType>
+			<explosiveRadius>1.5</explosiveRadius>
+		  </li>
+		</value>
+	</Operation>
+	
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="Weapon_GrenadeFrag"]/comps</xpath>
+		<value>
+		  <li Class="CombatExtended.CompProperties_Fragments">
+			<fragments>
+				<Fragment_Small>40</Fragment_Small>
+			</fragments>
+		  </li>
 		</value>
 	</Operation>
 
@@ -287,13 +295,13 @@
 	<Operation Class="PatchOperationAdd">
 		<xpath>Defs/ThingDef[defName="Weapon_GrenadeMolotov"]/comps</xpath>
 		<value>
-			<li Class="CombatExtended.CompProperties_ExplosiveCE">
-				<explosionDamage>1</explosionDamage>
-				<explosionDamageDef>Flame</explosionDamageDef>
-				<explosionRadius>0.5</explosionRadius>
+		  <li Class="CombatExtended.CompProperties_ExplosiveCE">
+			<damageAmountBase>1</damageAmountBase>
+			<explosiveDamageType>Flame</explosiveDamageType>
+			<explosiveRadius>0.5</explosiveRadius>
 				<preExplosionSpawnThingDef>Filth_Fuel</preExplosionSpawnThingDef>
 				<preExplosionSpawnChance>1</preExplosionSpawnChance>
-			</li>
+		  </li>
 		</value>
 	</Operation>
 

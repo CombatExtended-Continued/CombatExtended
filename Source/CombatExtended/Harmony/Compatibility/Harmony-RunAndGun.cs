@@ -1,4 +1,4 @@
-﻿using Harmony;
+﻿using HarmonyLib;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
@@ -7,7 +7,7 @@ using System.Reflection.Emit;
 using System;
 
 
-namespace CombatExtended.Harmony.Compatibility
+namespace CombatExtended.HarmonyCE.Compatibility
 {
     [HarmonyPatch]
     class Harmony_Compat_RunAndGun

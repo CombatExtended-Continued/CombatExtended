@@ -1,9 +1,9 @@
 ﻿using System.Linq;
-using Harmony;
+using HarmonyLib;
 using RimWorld;
 using Verse;
 
-namespace CombatExtended.Harmony
+namespace CombatExtended.HarmonyCE
 {
     [HarmonyPatch(typeof(Pawn_ApparelTracker), "Notify_ApparelAdded")]
     internal static class Harmony_ApparelTracker_Notify_ApparelAdded

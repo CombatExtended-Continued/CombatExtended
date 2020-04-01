@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+	<Operation Class="PatchOperationSequence">
+		<success>Always</success>
+		<operations>
+
+			<li Class="CombatExtended.PatchOperationFindMod">
+				<modName>[CP] Metal Gear Solid</modName>
+			</li>
+
+			<!-- ========== Exo Suit THI ========== -->
+
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName="RNApparel_ExoSuit_GrayFox"]/apparel/bodyPartGroups</xpath>
+				<value>
+					<li>Hands</li>
+					<li>Feet</li>
+				</value>
+			</li>
+			
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName="RNApparel_ExoSuit_GrayFox"]/statBases</xpath>
+				<value>
+					<Bulk>15</Bulk>
+					<WornBulk>10</WornBulk>
+				</value>
+			</li>
+
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName="RNApparel_ExoSuit_GrayFox"]/equippedStatOffsets</xpath>
+				<value>
+					<CarryWeight>30</CarryWeight>
+					<!-- Essentially cancel out the added bulk of the exosuit -->
+					<CarryBulk>10</CarryBulk>
+				</value>
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="RNApparel_ExoSuit_GrayFox"]/statBases/ArmorRating_Sharp</xpath>
+				<value>
+					<ArmorRating_Sharp>18</ArmorRating_Sharp>
+				</value>
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="RNApparel_ExoSuit_GrayFox"]/statBases/ArmorRating_Blunt</xpath>
+				<value>
+					<ArmorRating_Blunt>40</ArmorRating_Blunt>
+				</value>
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="RNApparel_ExoSuit_GrayFox"]/statBases/ArmorRating_Heat</xpath>
+				<value>
+					<ArmorRating_Heat>0.8</ArmorRating_Heat>
+				</value>
+			</li>
+
+		</operations>
+	</Operation>
+</Patch>

@@ -3,13 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using System.Reflection.Emit;
-using Harmony;
+using HarmonyLib;
 using Verse;
 using RimWorld;
 using UnityEngine;
 using Verse.AI;
 
-namespace CombatExtended.Harmony
+namespace CombatExtended.HarmonyCE
 {
     /* This class handles patching of the Core PawnColumnWorkers that are used on the assign tab which are similar to the PawnColumnWorker_Loadout.
      * This patch reads the variables from PawnColumnWorker_Loadout and sets Core to use the same values so all 3 workers use the same size information.
@@ -141,9 +141,9 @@ namespace CombatExtended.Harmony
                 {
                     editButtonBlockStart = i;
                 }
-                if (curCode.operand != null && curCode.operand.Equals(0.714285731f) && mainButtonIndex < 0)
+                if (curCode.opcode == OpCodes.Call && curCode.operand.Equals(typeof(Mathf).GetMethod("FloorToInt", AccessTools.all)) && mainButtonIndex < 0)
                 {
-                    mainButtonIndex = i;
+                    mainButtonIndex = i - 2;
                 }
 
                 // Watch for calls to rect.y + 2f, we replace them with our num4 (see PawnColumnWorker_Loadout)
@@ -172,9 +172,12 @@ namespace CombatExtended.Harmony
                 }
             }
 
-            // Change outfit/drug policy button width to match new edit/clear buttons
-            codes[mainButtonIndex].operand = PawnColumnWorker_Loadout.IconSize;
-            codes[mainButtonIndex + 1].opcode = OpCodes.Sub;
+            if (codes[mainButtonIndex].operand.Equals(0.714285731f))
+            {
+                // Change outfit/drug policy button width to match new edit/clear buttons
+                codes[mainButtonIndex].operand = PawnColumnWorker_Loadout.IconSize;
+                codes[mainButtonIndex + 1].opcode = OpCodes.Sub;
+            }
 
             // Change edit button width by nulling out the current block up until stloc (don't want to have to mess with local variable tracking, so this lets us use the existing opcode)
             codes[editButtonBlockStart].opcode = OpCodes.Ldc_R4;
@@ -202,8 +205,8 @@ namespace CombatExtended.Harmony
                     cur.opcode = OpCodes.Nop;
                 }
                 // Replace method call ButtonText->ButtonImage
-                codes[index + 5].operand = typeof(Widgets).GetMethod(nameof(Widgets.ButtonImage),
-                    new[] { typeof(Rect), typeof(Texture2D) });
+                codes[index + 6].operand = typeof(Widgets).GetMethod(nameof(Widgets.ButtonImage),
+                    new[] { typeof(Rect), typeof(Texture2D), typeof(bool) });
             }
             foreach (var index in clearButtonIndices)
             {
@@ -219,8 +222,8 @@ namespace CombatExtended.Harmony
                     cur.opcode = OpCodes.Nop;
                 }
                 // Replace method call ButtonText->ButtonImage
-                codes[index + 5].operand = typeof(Widgets).GetMethod(nameof(Widgets.ButtonImage),
-                    new[] { typeof(Rect), typeof(Texture2D) });
+                codes[index + 6].operand = typeof(Widgets).GetMethod(nameof(Widgets.ButtonImage),
+                    new[] { typeof(Rect), typeof(Texture2D), typeof(bool) });
             }
 
             // Replace rect.y + 2f with rect.y + (rect.height - IconSize) / 2

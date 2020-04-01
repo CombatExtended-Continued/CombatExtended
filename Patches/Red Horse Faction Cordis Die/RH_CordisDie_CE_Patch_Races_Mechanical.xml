@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+	<Operation Class="PatchOperationSequence">
+		<success>Always</success>
+		<operations>
+
+			<li Class="CombatExtended.PatchOperationFindMod">
+				<modName>[RH] Faction: Cordis Die</modName>
+			</li>
+
+			<!-- Core CE patches already cover BaseMechanoid abstract class -->
+
+			<!-- ========== CLAW AGR ========== -->
+
+			<li Class="PatchOperationAddModExtension">
+				<xpath>Defs/ThingDef[defName="RHRace_CLAW_AGR"]</xpath>
+				<value>
+					<li Class="CombatExtended.RacePropertiesExtensionCE">
+						<bodyShape>Quadruped</bodyShape>
+					</li>
+				</value>
+			</li>
+
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName="RHRace_CLAW_AGR"]/statBases</xpath>
+				<value>
+					<ArmorRating_Electric>0.975</ArmorRating_Electric>
+					<AimingAccuracy>1.0</AimingAccuracy>
+					<ShootingAccuracyPawn>1</ShootingAccuracyPawn>
+					<MeleeDodgeChance>0.05</MeleeDodgeChance>
+					<MeleeCritChance>0.05</MeleeCritChance>
+					<MeleeParryChance>0.58</MeleeParryChance>
+				</value>
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="RHRace_CLAW_AGR"]/statBases/ArmorRating_Blunt</xpath>
+				<value>
+					<ArmorRating_Blunt>45</ArmorRating_Blunt>
+				</value>
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="RHRace_CLAW_AGR"]/statBases/ArmorRating_Sharp</xpath>
+				<value>
+					<ArmorRating_Sharp>20</ArmorRating_Sharp>
+				</value>
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="RHRace_CLAW_AGR"]/tools</xpath>
+				<value>
+					<tools>
+						<li Class="CombatExtended.ToolCE">
+							<label>glacis plate</label>
+							<capacities>
+								<li>Blunt</li>
+							</capacities>
+							<power>80</power>
+							<cooldownTime>2.4</cooldownTime>
+							<linkedBodyPartsGroup>HeadAttackTool</linkedBodyPartsGroup>
+							<armorPenetrationBlunt>2</armorPenetrationBlunt>
+						</li>
+						<li Class="CombatExtended.ToolCE">
+							<label>left foot</label>
+							<capacities>
+								<li>Blunt</li>
+							</capacities>
+							<power>31</power>
+							<cooldownTime>2.57</cooldownTime>
+							<linkedBodyPartsGroup>FrontLeftLeg</linkedBodyPartsGroup>
+							<armorPenetrationBlunt>12.960</armorPenetrationBlunt>	
+						</li>
+						<li Class="CombatExtended.ToolCE">
+							<label>right foot</label>
+							<capacities>
+								<li>Blunt</li>
+							</capacities>
+							<power>31</power>
+							<cooldownTime>2.57</cooldownTime>
+							<linkedBodyPartsGroup>FrontRightLeg</linkedBodyPartsGroup>
+							<armorPenetrationBlunt>12.960</armorPenetrationBlunt>	
+						</li>
+					</tools>
+				</value>
+			</li>
+
+			<li Class="PatchOperationAddModExtension">
+				<xpath>Defs/PawnKindDef[defName="RHMech_CLAW_AGR_CD"]</xpath>
+				<value>
+					<li Class="CombatExtended.LoadoutPropertiesExtension">
+						<primaryMagazineCount>
+							<min>10</min>
+							<max>10</max>
+						</primaryMagazineCount>
+					</li>
+				</value>
+			</li>
+
+		</operations>
+	</Operation>
+</Patch>

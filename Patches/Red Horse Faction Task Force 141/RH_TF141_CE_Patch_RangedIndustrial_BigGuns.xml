@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+	<Operation Class="PatchOperationSequence">
+		<success>Always</success>
+		<operations>
+
+			<li Class="CombatExtended.PatchOperationFindMod">
+				<modName>[RH] Faction: Task Force 141</modName>
+			</li>
+
+			<!-- ========== M320 Grenade Launcher Module ========== -->
+
+			<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+				<defName>RNEx_M320GL</defName>
+				<statBases>
+					<Mass>1.27</Mass>
+					<RangedWeapon_Cooldown>0.53</RangedWeapon_Cooldown>
+					<SightsEfficiency>1.00</SightsEfficiency>
+					<ShotSpread>0.2</ShotSpread>
+					<SwayFactor>0.48</SwayFactor>
+					<Bulk>2.85</Bulk>
+					<WorkToMake>13500</WorkToMake>
+				</statBases>
+				<costList>
+					<Chemfuel>5</Chemfuel>
+					<Steel>25</Steel>
+					<ComponentIndustrial>2</ComponentIndustrial>
+				</costList>
+				<Properties>
+					<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+					<hasStandardCommand>true</hasStandardCommand>
+					<defaultProjectile>Bullet_40x46mmGrenade_HE</defaultProjectile>
+					<warmupTime>1.1</warmupTime>
+					<range>44</range>
+					<burstShotCount>1</burstShotCount>
+					<ticksBetweenBurstShots>10</ticksBetweenBurstShots>
+					<soundCast>RNShotGL</soundCast>
+					<soundCastTail>GunTail_Heavy</soundCastTail>
+					<onlyManualCast>true</onlyManualCast>
+					<stopBurstWithoutLos>false</stopBurstWithoutLos>
+					<muzzleFlashScale>15</muzzleFlashScale>
+					<targetParams>
+						<canTargetLocations>true</canTargetLocations>
+					</targetParams>
+				</Properties>
+
+				<AmmoUser>
+					<magazineSize>1</magazineSize>
+					<reloadTime>0.85</reloadTime>
+					<ammoSet>AmmoSet_40x46mmGrenade</ammoSet>
+				</AmmoUser>
+
+				<FireModes>
+					<aiUseBurstMode>FALSE</aiUseBurstMode>
+					<aiAimMode>SuppressFire</aiAimMode>
+				</FireModes>
+
+				<!-- No additional CE weaponTags needed -->
+
+				<AllowWithRunAndGun>false</AllowWithRunAndGun>
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="RNEx_M320GL"]/tools</xpath>
+				<value>
+					<tools>
+						<li Class="CombatExtended.ToolCE">
+							<label>stock</label>
+							<capacities>
+								<li>Blunt</li>
+							</capacities>
+							<power>8</power>
+							<cooldownTime>1.55</cooldownTime>
+							<chanceFactor>1.5</chanceFactor>
+							<armorPenetrationBlunt>2.755</armorPenetrationBlunt>
+							<linkedBodyPartsGroup>Stock</linkedBodyPartsGroup>
+						</li>
+						<li Class="CombatExtended.ToolCE">
+							<label>barrel</label>
+							<capacities>
+								<li>Blunt</li>
+							</capacities>
+							<power>5</power>
+							<cooldownTime>2.02</cooldownTime>
+							<armorPenetrationBlunt>1.630</armorPenetrationBlunt>
+							<linkedBodyPartsGroup>Barrel</linkedBodyPartsGroup>
+						</li>
+						<li Class="CombatExtended.ToolCE">
+							<label>muzzle</label>
+							<capacities>
+								<li>Poke</li>
+							</capacities>
+							<power>8</power>
+							<cooldownTime>1.55</cooldownTime>
+							<armorPenetrationBlunt>2.755</armorPenetrationBlunt>
+							<linkedBodyPartsGroup>Muzzle</linkedBodyPartsGroup>
+						</li>
+					</tools>
+				</value>
+			</li>
+
+			<!-- ========== RPG-7 ========== -->
+
+			<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+				<defName>RNEx_RPG7RL</defName>
+				<statBases>
+					<Mass>7.00</Mass>
+					<RangedWeapon_Cooldown>1.50</RangedWeapon_Cooldown>
+					<SightsEfficiency>2.16</SightsEfficiency>
+					<ShotSpread>0.2</ShotSpread>
+					<SwayFactor>1.68</SwayFactor>
+					<Bulk>10.50</Bulk>
+					<WorkToMake>25500</WorkToMake>
+				</statBases>
+				<costList>
+					<WoodLog>5</WoodLog>
+					<Steel>70</Steel>
+					<ComponentIndustrial>4</ComponentIndustrial>
+				</costList>
+				<Properties>
+					<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+					<hasStandardCommand>true</hasStandardCommand>
+					<defaultProjectile>Bullet_RPG7Grenade_HEAT</defaultProjectile>
+					<warmupTime>2.035</warmupTime>
+					<range>40</range>
+					<soundCast>RNShotRPG</soundCast>
+					<soundCastTail>GunTail_Heavy</soundCastTail>
+					<onlyManualCast>true</onlyManualCast>
+					<stopBurstWithoutLos>false</stopBurstWithoutLos>
+					<muzzleFlashScale>15</muzzleFlashScale>
+					<targetParams>
+						<canTargetLocations>true</canTargetLocations>
+					</targetParams>
+				</Properties>
+
+				<AmmoUser>
+					<magazineSize>1</magazineSize>
+					<reloadTime>8.6</reloadTime>
+					<ammoSet>AmmoSet_RPG7Grenade</ammoSet>
+				</AmmoUser>
+
+				<FireModes>
+					<aiUseBurstMode>FALSE</aiUseBurstMode>
+					<aiAimMode>AimedShot</aiAimMode>
+				</FireModes>
+
+				<!-- No additional CE weaponTags needed -->
+
+				<AllowWithRunAndGun>false</AllowWithRunAndGun>
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="RNEx_RPG7RL"]/tools</xpath>
+				<value>
+					<tools>
+						<li Class="CombatExtended.ToolCE">
+							<label>barrel</label>
+							<capacities>
+								<li>Blunt</li>
+							</capacities>
+							<power>10</power>
+							<cooldownTime>2.44</cooldownTime>
+							<armorPenetrationBlunt>3.5</armorPenetrationBlunt>
+							<linkedBodyPartsGroup>Barrel</linkedBodyPartsGroup>
+						</li>
+					</tools>
+				</value>
+			</li>
+
+		</operations>
+	</Operation>
+</Patch>

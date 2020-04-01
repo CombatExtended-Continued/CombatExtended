@@ -139,8 +139,12 @@ namespace CombatExtended
 			    	
     				try {	if (lifeStage.dessicatedBodyGraphicData != null && lifeStage.dessicatedBodyGraphicData.Graphic != null)
     						BoundMap(lifeStage.dessicatedBodyGraphicData.Graphic, GraphicType.Pawn);	}
-    				catch (Exception e) {	throw new Exception(def+".lifeStages["+i+"].dessicatedBodyGraphicData", e);	}
-    			}
+    				catch (Exception e) {	throw new Exception(def+".lifeStages["+i+"].dessicatedBodyGraphicData", e); }
+
+                    try {   if (lifeStage.femaleDessicatedBodyGraphicData != null && lifeStage.femaleDessicatedBodyGraphicData.Graphic != null)
+                            BoundMap(lifeStage.femaleDessicatedBodyGraphicData.Graphic, GraphicType.Pawn);    }
+                    catch (Exception e) {   throw new Exception(def+".lifeStages["+i+"].femaleDessicatedBodyGraphicData", e); }
+                }
     		}
     		
     		foreach (ThingDef def in DefDatabase<ThingDef>.AllDefs.Where<ThingDef>(x => x.plant != null))
@@ -204,23 +208,56 @@ namespace CombatExtended
                 */
 			}
 			else
-			{
-	    		PawnKindLifeStage lifeStage = pawn.ageTracker.CurKindLifeStage;
-	    		
-	    		try {	if (pawn.IsDessicated() && lifeStage.dessicatedBodyGraphicData != null)
-	    				return Vector2.Scale(BoundMap(lifeStage.dessicatedBodyGraphicData.Graphic, GraphicType.Pawn), lifeStage.dessicatedBodyGraphicData.drawSize);	}
-	    		catch (ArgumentException e) {	throw new ArgumentException(pawn+".lifeStage["+pawn.ageTracker.CurLifeStageIndex+"].dessicatedBodyGraphicData", e);	}
-	    		
-	    		try {	if (pawn.gender == Gender.Female && lifeStage.femaleGraphicData != null)
-	    				return Vector2.Scale(BoundMap(lifeStage.femaleGraphicData.Graphic, GraphicType.Pawn), lifeStage.femaleGraphicData.drawSize);	}
-	    		catch (ArgumentException e) {	throw new ArgumentException(pawn+".lifeStage["+pawn.ageTracker.CurLifeStageIndex+"].femaleGraphicData", e);	}
-	    		
-	    		try {	if (lifeStage.bodyGraphicData != null) return Vector2.Scale(BoundMap(lifeStage.bodyGraphicData.Graphic, GraphicType.Pawn), lifeStage.bodyGraphicData.drawSize);	}
-	    		catch (ArgumentException e) {	throw new ArgumentException(pawn+".lifeStage["+pawn.ageTracker.CurLifeStageIndex+"].bodyGraphicData", e);	}
-	    		
-	    		return Vector2.zero;
-			}
-    	}
+            {
+                //Revert to old system:
+                //return new Vector2(pawn.BodySize, pawn.BodySize);
+                
+                PawnKindLifeStage lifeStage = pawn.ageTracker.CurKindLifeStage;
+
+                //Exact mimick of PawnGraphicSet
+                GraphicData data = pawn.IsDessicated() && lifeStage.dessicatedBodyGraphicData != null
+                    ? (pawn.gender != Gender.Female || lifeStage.femaleDessicatedBodyGraphicData == null)
+                        ? lifeStage.dessicatedBodyGraphicData
+                        : lifeStage.femaleDessicatedBodyGraphicData
+                    : (pawn.gender != Gender.Female || lifeStage.femaleGraphicData == null)
+                        ? lifeStage.bodyGraphicData
+                        : lifeStage.femaleGraphicData;
+                
+                var name = pawn.IsDessicated() && lifeStage.dessicatedBodyGraphicData != null
+                    ? (pawn.gender != Gender.Female || lifeStage.femaleDessicatedBodyGraphicData == null)
+                        ? "dessicatedBodyGraphicData"
+                        : "femaleDessicatedBodyGraphicData"
+                    : (pawn.gender != Gender.Female || lifeStage.femaleGraphicData == null)
+                        ? "bodyGraphicData"
+                        : "femaleGraphicData";
+
+                var graphic = data.Graphic;
+                var size = data.drawSize;
+
+                if (!pawn.kindDef.alternateGraphics.NullOrEmpty())
+                {
+                    if (!pawn.Drawer.renderer.graphics.AllResolved)
+                        pawn.Drawer.renderer.graphics.ResolveAllGraphics();
+
+                    name = "alternateGraphics";
+                    graphic = pawn.Drawer.renderer.graphics.nakedGraphic;
+                }
+                
+                if (graphic == null)
+                {
+                    Log.Error(pawn + ".lifeStage[" + pawn.ageTracker.CurLifeStageIndex + "]."+name+" could not be found");
+                    return Vector2.zero;
+                }
+                else
+                {
+                    try { return Vector2.Scale(BoundMap(graphic, GraphicType.Pawn), size); }
+                    catch (ArgumentException e)
+                    {
+                        throw new ArgumentException(pawn + ".lifeStage[" + pawn.ageTracker.CurLifeStageIndex + "]." + name, e);
+                    }
+                }
+            }
+        }
     	
     	public static Vector2 ForPlant(Plant plant)
     	{

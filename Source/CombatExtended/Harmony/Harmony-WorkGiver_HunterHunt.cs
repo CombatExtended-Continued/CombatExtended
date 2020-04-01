@@ -5,9 +5,9 @@ using System.Text;
 using RimWorld;
 using Verse;
 using UnityEngine;
-using Harmony;
+using HarmonyLib;
 
-namespace CombatExtended.Harmony
+namespace CombatExtended.HarmonyCE
 {
     [HarmonyPatch(typeof(WorkGiver_HunterHunt), "HasHuntingWeapon")]
     public class Harmony_WorkGiver_HunterHunt_HasHuntingWeapon_Patch

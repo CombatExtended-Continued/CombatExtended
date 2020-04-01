@@ -1,10 +1,10 @@
 ﻿using System.Collections.Generic;
 using System.Reflection.Emit;
-using Harmony;
+using HarmonyLib;
 using RimWorld;
 using Verse;
 
-namespace CombatExtended.Harmony
+namespace CombatExtended.HarmonyCE
 {
     [HarmonyPatch(typeof(FireUtility), "ChanceToStartFireIn")]
     internal static class Harmony_FireUtility_ChanceToStartFireIn

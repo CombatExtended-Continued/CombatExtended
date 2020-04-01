@@ -10,11 +10,11 @@
 		<operations>
 			
 			<li Class="PatchOperationAddModExtension">
-				<xpath>Defs/PawnKindDef[
-					defName="DRNTF_Vigilante" or 
-					defName="DRNTF_Soldier" or
-					defName="DRNTF_EliteSoldier" or
-					defName="DRNTF_Sniper"
+				<xpath>Defs/Garam_RaceAddon.RaceAddonPawnKindDef[
+					defName="Kurin_Vigilante" or 
+					defName="Kurin_Soldier" or
+					defName="Kurin_EliteSoldier" or
+					defName="Kurin_Sniper"
 					]</xpath>
 				<value>
 					<li Class="CombatExtended.LoadoutPropertiesExtension">	
@@ -38,25 +38,26 @@
 				</value>
 			</li>
 			
-			<li Class="PatchOperationAdd">
-				<xpath>Defs/PawnKindDef[
-					defName="DRNTF_Soldier" or
-					defName="DRNTF_EliteSoldier" or
-					defName="DRNTF_Sniper"
-					]/apparelRequired</xpath>
-				<value>
-					<li>Apparel_Backpack</li>
-				</value>
-			</li>
-			
 			<li Class="PatchOperationReplace">
-				<xpath>Defs/PawnKindDef[defName="DRNTF_Vigilante"]/weaponTags</xpath>
+				<xpath>Defs/Garam_RaceAddon.RaceAddonPawnKindDef[defName="Kurin_Vigilante"]/weaponTags</xpath>
 				<value>
 					<weaponTags>
 						<li>CE_AI_Pistol</li>
 					</weaponTags>
 				</value>
 			</li>
+			
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/Garam_RaceAddon.RaceAddonPawnKindDef[
+					defName="Kurin_Soldier" or
+					defName="Kurin_EliteSoldier" or
+					defName="Kurin_Sniper"
+					]/apparelRequired</xpath>
+				<value>
+					<li>Apparel_Backpack</li>
+				</value>
+			</li>
+			
 		</operations>
 		</match>	
 	  </li>

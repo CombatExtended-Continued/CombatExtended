@@ -26,12 +26,13 @@ namespace CombatExtended
 
         public override bool ShouldShowFor(StatRequest req)
         {
-            return base.ShouldShowFor(req) && (GunDef(req)?.Verbs?.Any(x => Convert.ToBoolean(((VerbPropertiesCE)x).ammoConsumedPerShotCount > 1)) ?? false);
+            return base.ShouldShowFor(req) && (GunDef(req)?.Verbs?
+                .Any(x => ((x as VerbPropertiesCE)?.ammoConsumedPerShotCount ?? 1) > 1) ?? false);
         }
 
         public override float GetValueUnfinalized(StatRequest req, bool applyPostProcess = true)
         {
-            return ((VerbPropertiesCE)GunDef(req)?.Verbs?.First(x => ((VerbPropertiesCE)x).ammoConsumedPerShotCount > 1)).ammoConsumedPerShotCount;
+            return ((VerbPropertiesCE)GunDef(req)?.Verbs?.FirstOrDefault(x => ((VerbPropertiesCE)x).ammoConsumedPerShotCount > 1))?.ammoConsumedPerShotCount ?? 1;
         }
 
         public override string GetExplanationUnfinalized(StatRequest req, ToStringNumberSense numberSense)

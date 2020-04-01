@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+	<Operation Class="PatchOperationSequence">
+		<success>Always</success>
+		<operations>
+
+			<li Class="CombatExtended.PatchOperationFindMod">
+				<modName>[CP] Rimmu-Nation - Weapons</modName>
+			</li>
+
+				<!-- ========== Patch EMP to use CE EMP projectile defs ========== -->
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="RNAir_EMPBlast"]/projectile</xpath>
+					<value>
+						<projectile Class="CombatExtended.ProjectilePropertiesCE">
+							<damageDef>EMP</damageDef>
+							<damageAmountBase>9001</damageAmountBase>
+							<explosionRadius>15.9</explosionRadius>
+							<flyOverhead>true</flyOverhead>
+							<preExplosionSpawnThingDef>Spark</preExplosionSpawnThingDef>
+							<speed>70</speed>
+						</projectile>
+					</value>
+				</li>
+
+				<!-- ========== All other air support defs do not require CE patches ========== -->
+
+			</operations>
+	</Operation>
+</Patch>

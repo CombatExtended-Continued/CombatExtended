@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using RimWorld;
 using Verse;
+using HarmonyLib;
 
 namespace CombatExtended
 {
@@ -12,6 +13,24 @@ namespace CombatExtended
         public override bool ShouldShowFor(StatRequest req)
         {
             return base.ShouldShowFor(req) && (!(req.Def as AmmoDef)?.Users.NullOrEmpty() ?? false);
+        }
+
+        public override IEnumerable<Dialog_InfoCard.Hyperlink> GetInfoCardHyperlinks(StatRequest statRequest)
+        {
+            var ammoDef = (statRequest.Def as AmmoDef);
+
+            if (ammoDef != null)
+            {
+                var users = ammoDef.Users;
+
+                if (!users.NullOrEmpty())
+                {
+                    foreach (var user in users)
+                    {
+                        yield return new Dialog_InfoCard.Hyperlink(user);
+                    }
+                }
+            }
         }
 
         public override string GetExplanationUnfinalized(StatRequest req, ToStringNumberSense numberSense)
@@ -45,10 +64,10 @@ namespace CombatExtended
             return stringBuilder.ToString().TrimEndNewlines();
         }
 
-        public override string GetStatDrawEntryLabel(StatDef stat, float value, ToStringNumberSense numberSense, StatRequest optionalReq)
+        public override string GetStatDrawEntryLabel(StatDef stat, float value, ToStringNumberSense numberSense, StatRequest optionalReq, bool finalized = true)
         {
             var list = (optionalReq.Def as AmmoDef)?.AmmoSetDefs;
-            return list.FirstOrDefault().LabelCap + (list.Count > 1 ? " (+"+(list.Count - 1)+" more..)" : "");
+            return list.FirstOrDefault().LabelCap + (list.Count > 1 ? " (+"+(list.Count - 1)+")" : "");
         }
     }
 }

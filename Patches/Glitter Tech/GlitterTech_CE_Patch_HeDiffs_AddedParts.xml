@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+			<li>Glitter Tech</li>
+			<!-- Current patch not applicable to Glitter Tech (No Surgery) -->
+		</mods>
+		<match Class="PatchOperationSequence">
+			<operations>
+
+				<!-- ========== Advanced bionic arm ========== -->
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/HediffDef[defName="GTArm"]/comps/li[@Class="HediffCompProperties_VerbGiver"]/verbs</xpath>
+					<value>
+						<tools>
+							<li Class="CombatExtended.ToolCE">
+								<label>fist</label>
+								<capacities>
+									<li>Blunt</li>
+								</capacities>
+								<power>7</power>	<!-- between vanilla Bionic and Archotech Arms -->
+								<cooldownTime>1.11</cooldownTime>
+								<armorPenetrationBlunt>1.688</armorPenetrationBlunt>
+							</li>
+						</tools>
+					</value>
+				</li>
+
+				<!-- ========== Advanced bionic hand ========== -->
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/HediffDef[defName="GTHand"]/comps/li[@Class="HediffCompProperties_VerbGiver"]/verbs</xpath>
+					<value>
+						<tools>
+							<li Class="CombatExtended.ToolCE">
+								<label>fist</label>
+								<capacities>
+									<li>Blunt</li>
+								</capacities>
+								<power>7</power>	<!-- between vanilla Bionic and Archotech Arms -->
+								<cooldownTime>1.11</cooldownTime>
+								<armorPenetrationBlunt>1.688</armorPenetrationBlunt>
+							</li>
+						</tools>
+					</value>
+				</li>
+
+			</operations>
+		</match>
+	</Operation>
+</Patch>

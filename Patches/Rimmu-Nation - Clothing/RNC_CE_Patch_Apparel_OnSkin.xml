@@ -1,0 +1,277 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+			<li>[CP] Rimmu-Nation - Clothing</li>
+		</mods>
+		<match Class="PatchOperationSequence">
+			<operations>
+
+				<!-- ========== Combat Fleece / Hoodie ========== -->
+
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[
+					defName="RNApparel_combats_Fleece" or
+					defName="RNApparel_combats_FleeceBlack"
+					]/statBases</xpath>
+					<value>
+						<Bulk>8</Bulk>
+						<WornBulk>3</WornBulk>
+						<ArmorRating_Sharp>0.05</ArmorRating_Sharp>
+						<ArmorRating_Blunt>0.075</ArmorRating_Blunt>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[
+					defName="RNApparel_combats_Fleece" or
+					defName="RNApparel_combats_FleeceBlack"
+					]/statBases/StuffEffectMultiplierArmor</xpath>
+					<value>
+						<!-- Slightly tougher than vanilla pants, T-shirt and button-down shirt -->
+						<StuffEffectMultiplierArmor>2</StuffEffectMultiplierArmor>
+					</value>
+				</li>
+
+				<!-- ========== GORKA 4 ========== -->
+
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="RNApparel_combats_GORKA4C"]/statBases</xpath>
+					<value>
+						<Bulk>8</Bulk>
+						<WornBulk>4</WornBulk>
+						<ArmorRating_Sharp>0.075</ArmorRating_Sharp>
+						<ArmorRating_Blunt>0.1</ArmorRating_Blunt>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="RNApparel_combats_GORKA4C"]/statBases/StuffEffectMultiplierArmor</xpath>
+					<value>
+						<!-- Slightly tougher than vanilla pants, T-shirt and button-down shirt -->
+						<StuffEffectMultiplierArmor>2</StuffEffectMultiplierArmor>
+					</value>
+				</li>
+
+				<!-- ========== Combat Uniforms ========== -->
+
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[
+					defName="RNApparel_combats_DCU" or
+					defName="RNApparel_combats_DPM" or
+					defName="RNApparel_combats_M81C" or
+					defName="RNApparel_combats_Multicam"
+					]/statBases</xpath>
+					<value>
+						<Bulk>8</Bulk>
+						<WornBulk>3</WornBulk>
+						<ArmorRating_Sharp>0.05</ArmorRating_Sharp>
+						<ArmorRating_Blunt>0.075</ArmorRating_Blunt>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[
+					defName="RNApparel_combats_DCU" or
+					defName="RNApparel_combats_DPM" or
+					defName="RNApparel_combats_M81C" or
+					defName="RNApparel_combats_Multicam"
+					]/statBases/StuffEffectMultiplierArmor</xpath>
+					<value>
+						<!-- Slightly tougher than vanilla pants, T-shirt and button-down shirt -->
+						<StuffEffectMultiplierArmor>2</StuffEffectMultiplierArmor>
+					</value>
+				</li>
+
+				<!-- ========== Combat Uniform C&C Red Alert Tanya ========== -->
+
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="RNApparel_Combats_Tanya"]/statBases</xpath>
+					<value>
+						<Bulk>6</Bulk>
+						<WornBulk>3</WornBulk>
+						<ArmorRating_Sharp>0.05</ArmorRating_Sharp>
+						<ArmorRating_Blunt>0.075</ArmorRating_Blunt>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="RNApparel_Combats_Tanya"]/statBases/StuffEffectMultiplierArmor</xpath>
+					<value>
+						<!-- Slightly tougher than vanilla pants, T-shirt and button-down shirt -->
+						<StuffEffectMultiplierArmor>2</StuffEffectMultiplierArmor>
+					</value>
+				</li>
+
+				<!-- ========== Plaid Collar Shirts with Jeans ========== -->
+
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[
+					defName="RNApparel_Plaid_Black" or
+					defName="RNApparel_Plaid_Blue" or
+					defName="RNApparel_Plaid_Green" or
+					defName="RNApparel_Plaid_Red" or
+					defName="RNApparel_Plaid_Tan"
+					]/statBases</xpath>
+					<value>
+						<Bulk>8</Bulk>
+						<WornBulk>3</WornBulk>
+						<ArmorRating_Sharp>0.05</ArmorRating_Sharp>
+						<ArmorRating_Blunt>0.075</ArmorRating_Blunt>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[
+					defName="RNApparel_Plaid_Black" or
+					defName="RNApparel_Plaid_Blue" or
+					defName="RNApparel_Plaid_Green" or
+					defName="RNApparel_Plaid_Red" or
+					defName="RNApparel_Plaid_Tan"
+					]/statBases/StuffEffectMultiplierArmor</xpath>
+					<value>
+						<!-- Equivalent to vanilla pants, T-shirt and button-down shirt -->
+						<StuffEffectMultiplierArmor>1</StuffEffectMultiplierArmor>
+					</value>
+				</li>
+
+				<!-- ========== Tank Tops with Trousers ========== -->
+
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[
+					defName="RNApparel__Tank_ExplorerA" or
+					defName="RNApparel_Tank_ExplorerB" or
+					defName="RNApparel_GymOutfit_Blank" or
+					defName="RNApparel_Tank_Tenlyashka"
+					]/statBases</xpath>
+					<value>
+						<Bulk>6</Bulk>
+						<WornBulk>3</WornBulk>
+						<ArmorRating_Sharp>0.05</ArmorRating_Sharp>
+						<ArmorRating_Blunt>0.075</ArmorRating_Blunt>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[
+					defName="RNApparel__Tank_ExplorerA" or
+					defName="RNApparel_Tank_ExplorerB" or
+					defName="RNApparel_GymOutfit_Blank" or
+					defName="RNApparel_Tank_Tenlyashka"
+					]/statBases/StuffEffectMultiplierArmor</xpath>
+					<value>
+						<!-- Equivalent to vanilla pants, T-shirt and button-down shirt -->
+						<StuffEffectMultiplierArmor>1</StuffEffectMultiplierArmor>
+					</value>
+				</li>
+
+				<!-- ========== Button Shirts with Trousers ========== -->
+
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[
+					defName="RNApparel_Shirt_PUBGGray" or
+					defName="RNApparel_Shirt_PUBGNavy" or
+					defName="RNApparel_Shirt_Office" or
+					defName="RNApparel_Shirt_OffDuty" or
+					defName="RNApparel_Shirt_Spy" or
+					defName="RNApparel_Shirt_Wick"
+					]/statBases</xpath>
+					<value>
+						<Bulk>6</Bulk>
+						<WornBulk>3</WornBulk>
+						<ArmorRating_Sharp>0.05</ArmorRating_Sharp>
+						<ArmorRating_Blunt>0.075</ArmorRating_Blunt>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[
+					defName="RNApparel_Shirt_PUBGGray" or
+					defName="RNApparel_Shirt_PUBGNavy" or
+					defName="RNApparel_Shirt_Office" or
+					defName="RNApparel_Shirt_OffDuty" or
+					defName="RNApparel_Shirt_Spy" or
+					defName="RNApparel_Shirt_Wick"
+					]/statBases/StuffEffectMultiplierArmor</xpath>
+					<value>
+						<!-- Equivalent to vanilla pants, T-shirt and button-down shirt -->
+						<StuffEffectMultiplierArmor>1</StuffEffectMultiplierArmor>
+					</value>
+				</li>
+
+				<!-- ========== Light Shirts with Trousers ========== -->
+
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[
+					defName="RNApparel_Shirt_LiteDDPM" or
+					defName="RNApparel_Shirt_EllieShirt" or
+					defName="RNApparel_Shirt_NomadShirt" or
+					defName="RNApparel_Polo_WPSRed" or
+					defName="RNApparel_Shirt_ButSarge"
+					]/statBases</xpath>
+					<value>
+						<Bulk>6</Bulk>
+						<WornBulk>3</WornBulk>
+						<ArmorRating_Sharp>0.05</ArmorRating_Sharp>
+						<ArmorRating_Blunt>0.075</ArmorRating_Blunt>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[
+					defName="RNApparel_Shirt_LiteDDPM" or
+					defName="RNApparel_Shirt_EllieShirt" or
+					defName="RNApparel_Shirt_NomadShirt" or
+					defName="RNApparel_Polo_WPSRed" or
+					defName="RNApparel_Shirt_ButSarge"
+					]/statBases/StuffEffectMultiplierArmor</xpath>
+					<value>
+						<!-- Equivalent to vanilla pants, T-shirt and button-down shirt -->
+						<StuffEffectMultiplierArmor>1</StuffEffectMultiplierArmor>
+					</value>
+				</li>
+
+				<!-- ========== Causals Division ========== -->
+
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="RNApparel_Hoodie_Ryan"]/statBases</xpath>
+					<value>
+						<Bulk>8</Bulk>
+						<WornBulk>3</WornBulk>
+						<ArmorRating_Sharp>0.05</ArmorRating_Sharp>
+						<ArmorRating_Blunt>0.075</ArmorRating_Blunt>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="RNApparel_Hoodie_Ryan"]/statBases/StuffEffectMultiplierArmor</xpath>
+					<value>
+						<!-- Equivalent to vanilla pants, T-shirt and button-down shirt -->
+						<StuffEffectMultiplierArmor>1</StuffEffectMultiplierArmor>
+					</value>
+				</li>
+
+				<!-- ========== Ada Wong outfit (Resident Evil) ========== -->
+
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="RNApparel_Shirt_AdaREmake"]/statBases</xpath>
+					<value>
+						<Bulk>6</Bulk>
+						<WornBulk>3</WornBulk>
+						<ArmorRating_Sharp>0.05</ArmorRating_Sharp>
+						<ArmorRating_Blunt>0.075</ArmorRating_Blunt>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="RNApparel_Shirt_AdaREmake"]/statBases/StuffEffectMultiplierArmor</xpath>
+					<value>
+						<!-- Equivalent to vanilla pants, T-shirt and button-down shirt -->
+						<StuffEffectMultiplierArmor>1</StuffEffectMultiplierArmor>
+					</value>
+				</li>
+
+			</operations>
+		</match>
+	</Operation>
+</Patch>

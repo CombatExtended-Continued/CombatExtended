@@ -103,9 +103,10 @@ namespace CombatExtended
             generic.description = "Generic Loadout for Medicine.  Intended for pawns which will handle triage activities.";
             generic.label = "CE_Generic_Medicine".Translate();
             generic.thingRequestGroup = ThingRequestGroup.Medicine;
-
+			generic.isBasic = true;
+			defs.Add(generic);
 			// now for the guns and ammo...
-			
+
 			// Get a list of guns that are player acquireable (not menuHidden but could also go with not dropOnDeath) which have expected comps/compProperties/verbs.
 			List<ThingDef> guns = everything.Where(td => !td.menuHidden &&
 			                                       td.HasComp(typeof(CompAmmoUser)) && td.GetCompProperties<CompProperties_AmmoUser>() != null &&

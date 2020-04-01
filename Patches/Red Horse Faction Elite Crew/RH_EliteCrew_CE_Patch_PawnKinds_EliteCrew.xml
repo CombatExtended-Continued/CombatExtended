@@ -1,0 +1,265 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+	<Operation Class="PatchOperationSequence">
+		<success>Always</success>
+		<operations>
+
+			<li Class="CombatExtended.PatchOperationFindMod">
+				<modName>[RH] Faction: Elite Crew</modName>
+			</li>
+
+			<!-- ========== Elite Crew faction pawns should spawn backpacks, allowing them to carry their (huge) inventory ========== -->
+
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/PawnKindDef[
+					defName="RH_EliteCrew_Scout" or
+					defName="RH_EliteCrew_Grunt" or
+					defName="RH_EliteCrew_CQB" or
+					defName="RH_EliteCrew_CQB_TierII" or
+					defName="RH_EliteCrew_Assault" or
+					defName="RH_EliteCrew_Assault_TierII" or
+					defName="RH_EliteCrew_Marksman" or
+					defName="RH_EliteCrew_Marksman_TierII" or
+					defName="RH_EliteCrew_Gunner" or
+					defName="RH_EliteCrew_Grenadier" or
+					defName="RH_EliteCrew_Boss" or
+					defName="RH_EliteCrew_Elite" or
+					defName="RH_EliteCrew_Trader" or
+					defName="RH_EliteCrew_Sniper" or
+					defName="RH_EliteCrew_Bomber"
+				]/apparelRequired</xpath>
+				<value>
+					<li>Apparel_Backpack</li>
+				</value>
+			</li>
+
+			<!-- ========== Tweak grenade types available to grenadiers ========== -->
+
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/PawnKindDef[defName="RH_EliteCrew_Grenadier"]/weaponTags</xpath>
+				<value>
+					<weaponTags>
+						<li>RN_RPG7</li>
+						<li>RN_RGDGrenade</li>
+						<li>GrenadeDestructive</li>
+						<!-- Use vanilla CE's own generic molotov cocktails -->
+					</weaponTags>
+				</value>
+			</li>
+
+			<!-- ========== Elite Crew faction pawns should spawn with ammo appropriate to their primary weapon, as well as a sidearm (and its own ammo) and any small melee weapons ========== -->
+			
+			<!-- First remove redundant Pistols and Knives from pawns' existing primary weaponTags -->
+			<li Class="PatchOperationRemove">
+				<xpath>Defs/PawnKindDef[
+					defName="RH_EliteCrew_CQB"
+					]/weaponTags/li[.="RN_TEC9"]</xpath>
+			</li>
+			
+			<li Class="PatchOperationRemove">
+				<xpath>Defs/PawnKindDef[
+					defName="RH_EliteCrew_CQB"
+				]/weaponTags/li[.="RN_FiveSeven"]</xpath>
+			</li>
+			
+			<li Class="PatchOperationRemove">
+				<xpath>Defs/PawnKindDef[
+					defName="RH_EliteCrew_Scout" or
+					defName="RH_EliteCrew_CQB" or
+					defName="RH_EliteCrew_CQB_TierII"
+				]/weaponTags/li[.="RN_DesertEagle"]</xpath>
+			</li>
+			
+			<li Class="PatchOperationRemove">
+				<xpath>Defs/PawnKindDef[
+					defName="RH_EliteCrew_Grunt" or
+					defName="RH_EliteCrew_CQB"
+				]/weaponTags/li[.="RN_SkinnerKnife"]</xpath>
+			</li>
+			
+			<li Class="PatchOperationAddModExtension">
+				<xpath>Defs/PawnKindDef[defName="RH_EliteCrew_Grunt"]</xpath>
+				<value>
+					<li Class="CombatExtended.LoadoutPropertiesExtension">
+						<primaryMagazineCount>
+							<min>6</min>
+							<max>8</max>
+						</primaryMagazineCount>
+						<sidearms>
+							<li>
+								<generateChance>1</generateChance>
+								<weaponTags>
+									<li>RN_SkinnerKnife</li>
+								</weaponTags>
+							</li>
+						</sidearms>
+					</li>
+				</value>
+			</li>
+
+			<li Class="PatchOperationAddModExtension">
+				<xpath>Defs/PawnKindDef[
+					defName="RH_EliteCrew_Scout" or
+					defName="RH_EliteCrew_CQB" or
+					defName="RH_EliteCrew_CQB_TierII" or
+					defName="RH_EliteCrew_Assault" or
+					defName="RH_EliteCrew_Assault_TierII" or
+					defName="RH_EliteCrew_Marksman" or
+					defName="RH_EliteCrew_Marksman_TierII" or
+					defName="RH_EliteCrew_Boss" or
+					defName="RH_EliteCrew_Elite" or
+					defName="RH_EliteCrew_Trader" or
+					defName="RH_EliteCrew_Sniper"
+				]</xpath>
+				<value>
+					<li Class="CombatExtended.LoadoutPropertiesExtension">
+						<primaryMagazineCount>
+							<min>6</min>
+							<max>8</max>
+						</primaryMagazineCount>
+						<sidearms>
+							<li>
+								<generateChance>1</generateChance>
+								<magazineCount>
+									<min>2</min>
+									<max>3</max>
+								</magazineCount>	
+								<weaponTags>
+									<li>RN_TEC9</li>
+									<li>RN_FiveSeven</li>
+									<li>RN_DesertEagle</li>
+								</weaponTags>
+							</li>
+							<li>
+								<generateChance>1</generateChance>
+								<weaponTags>
+									<li>RN_SkinnerKnife</li>
+								</weaponTags>
+							</li>
+						</sidearms>
+					</li>
+				</value>
+			</li>
+
+			<li Class="PatchOperationAddModExtension">
+				<xpath>Defs/PawnKindDef[defName="RH_EliteCrew_Gunner"]</xpath>
+				<value>
+					<li Class="CombatExtended.LoadoutPropertiesExtension">
+						<primaryMagazineCount>
+							<min>3</min>
+							<max>4</max>
+						</primaryMagazineCount>
+						<sidearms>
+							<li>
+								<generateChance>1</generateChance>
+								<magazineCount>
+									<min>2</min>
+									<max>3</max>
+								</magazineCount>	
+								<weaponTags>
+									<li>RN_TEC9</li>
+									<li>RN_FiveSeven</li>
+									<li>RN_DesertEagle</li>
+								</weaponTags>
+							</li>
+							<li>
+								<generateChance>1</generateChance>
+								<weaponTags>
+									<li>RN_SkinnerKnife</li>
+								</weaponTags>
+							</li>
+						</sidearms>
+					</li>
+				</value>
+			</li>
+
+			<li Class="PatchOperationAddModExtension">
+				<xpath>Defs/PawnKindDef[defName="RH_EliteCrew_Grenadier"]</xpath>
+				<value>
+					<li Class="CombatExtended.LoadoutPropertiesExtension">
+						<primaryMagazineCount>
+							<min>4</min>
+							<max>5</max>
+						</primaryMagazineCount>
+						<sidearms>
+							<li>
+								<generateChance>1</generateChance>
+								<magazineCount>
+									<min>2</min>
+									<max>3</max>
+								</magazineCount>	
+								<weaponTags>
+									<li>RN_TEC9</li>
+									<li>RN_FiveSeven</li>
+									<li>RN_DesertEagle</li>
+								</weaponTags>
+							</li>
+							<li>
+								<generateChance>1</generateChance>
+								<weaponTags>
+									<li>RN_SkinnerKnife</li>
+								</weaponTags>
+							</li>
+						</sidearms>
+					</li>
+				</value>
+			</li>
+			
+			<li Class="PatchOperationAddModExtension">
+				<xpath>Defs/PawnKindDef[defName="RH_EliteCrew_Bomber"]</xpath>
+				<value>
+					<li Class="CombatExtended.LoadoutPropertiesExtension">
+						<primaryMagazineCount>
+							<min>2</min>
+							<max>2</max>
+						</primaryMagazineCount>
+						<sidearms>
+							<li>
+								<generateChance>1</generateChance>
+								<magazineCount>
+									<min>2</min>
+									<max>3</max>
+								</magazineCount>	
+								<weaponTags>
+									<li>RN_TEC9</li>
+									<li>RN_FiveSeven</li>
+									<li>RN_DesertEagle</li>
+								</weaponTags>
+							</li>
+							<li>
+								<generateChance>1</generateChance>
+								<weaponTags>
+									<li>RN_SkinnerKnife</li>
+								</weaponTags>
+							</li>
+						</sidearms>
+					</li>
+				</value>
+			</li>
+
+			<!-- ========== Tweak minimum weaponMoney for selected pawn types, so that they actually spawn with weapons ========== -->
+
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/PawnKindDef[defName="RH_EliteCrew_Grunt"]/weaponMoney/min</xpath>
+				<value>
+					<min>180</min>
+				</value>
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/PawnKindDef[defName="RH_EliteCrew_Gunner"]/weaponMoney/min</xpath>
+				<value>
+					<min>1000</min>
+				</value>
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/PawnKindDef[defName="RH_EliteCrew_Gunner"]/weaponMoney/max</xpath>
+				<value>
+					<max>2500</max>
+				</value>
+			</li>
+
+		</operations>
+	</Operation>
+</Patch>

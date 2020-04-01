@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+	<Operation Class="PatchOperationSequence">
+		<success>Always</success>
+		<operations>
+
+			<li Class="CombatExtended.PatchOperationFindMod">
+				<modName>[RH] Faction: Elite Crew</modName>
+			</li>
+
+			<!-- ========== Shemagh 1337 (white, black, olive, tan variants) ========== -->
+
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[
+					defName="RNApparel_Shemagh_EliteCrew_White" or
+					defName="RNApparel_Shemagh_EliteCrew_Black" or
+					defName="RNApparel_Shemagh_EliteCrew_Olive" or
+					defName="RNApparel_Shemagh_EliteCrew_Tan"
+				]/statBases</xpath>
+				<value>
+					<Bulk>1</Bulk>
+					<WornBulk>1</WornBulk>
+				</value>
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[
+					defName="RNApparel_Shemagh_EliteCrew_White" or
+					defName="RNApparel_Shemagh_EliteCrew_Black" or
+					defName="RNApparel_Shemagh_EliteCrew_Olive" or
+					defName="RNApparel_Shemagh_EliteCrew_Tan"
+				]/statBases/StuffEffectMultiplierArmor</xpath>
+				<value>
+					<!-- Equivalent to vanilla pants, T-shirt and button-down shirt -->
+					<StuffEffectMultiplierArmor>1</StuffEffectMultiplierArmor>
+				</value>
+			</li>
+
+			<!-- ========== Shemagh 1337 scarf (canary and tan variants) ========== -->
+
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[
+					defName="RNApparel_Shemagh_EliteCrew_Dad_Canary" or
+					defName="RNApparel_Shemagh_EliteCrew_Dad_Tan"
+				]/statBases</xpath>
+				<value>
+					<Bulk>0.5</Bulk>
+					<WornBulk>0.5</WornBulk>
+				</value>
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[
+					defName="RNApparel_Shemagh_EliteCrew_Dad_Canary" or
+					defName="RNApparel_Shemagh_EliteCrew_Dad_Tan"
+				]/statBases/StuffEffectMultiplierArmor</xpath>
+				<value>
+					<!-- Equivalent to vanilla pants, T-shirt and button-down shirt -->
+					<StuffEffectMultiplierArmor>1</StuffEffectMultiplierArmor>
+				</value>
+			</li>
+
+		</operations>
+	</Operation>
+</Patch>

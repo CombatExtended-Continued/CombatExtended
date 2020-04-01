@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+	<Operation Class="PatchOperationSequence">
+		<success>Always</success>
+		<operations>
+
+			<li Class="CombatExtended.PatchOperationFindMod">
+				<modName>[RH] Faction: The Ghosts</modName>
+			</li>
+
+			<li Class="PatchOperationAddModExtension">
+				<xpath>Defs/ThingDef[defName="RH_Tactical_GermanShepherd"]</xpath>
+				<value>
+					<li Class="CombatExtended.RacePropertiesExtensionCE">
+						<bodyShape>Quadruped</bodyShape>
+					</li>
+				</value>
+			</li>						
+
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName="RH_Tactical_GermanShepherd"]/statBases</xpath>
+				<value>
+					<MeleeDodgeChance>0.29</MeleeDodgeChance>
+					<MeleeCritChance>0.15</MeleeCritChance>
+					<MeleeParryChance>0.02</MeleeParryChance>
+				</value>
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="RH_Tactical_GermanShepherd"]/tools</xpath>
+				<value>
+					<tools>
+						<li Class="CombatExtended.ToolCE">
+							<label>left claw</label>
+							<capacities>
+								<li>Scratch</li>
+							</capacities>
+							<power>5</power>
+							<cooldownTime>0.6</cooldownTime>
+							<linkedBodyPartsGroup>FrontLeftPaw</linkedBodyPartsGroup>
+							<surpriseAttack>
+								<extraMeleeDamages>
+									<li>
+										<def>Stun</def>
+										<amount>20</amount>
+									</li>
+								</extraMeleeDamages>
+							</surpriseAttack>
+							<armorPenetrationBlunt>0.430</armorPenetrationBlunt>
+							<armorPenetrationSharp>0.08</armorPenetrationSharp>
+						</li>
+						<li Class="CombatExtended.ToolCE">
+							<label>right claw</label>
+							<capacities>
+								<li>Scratch</li>
+							</capacities>
+							<power>5</power>
+							<cooldownTime>0.6</cooldownTime>
+							<linkedBodyPartsGroup>FrontRightPaw</linkedBodyPartsGroup>
+							<surpriseAttack>
+								<extraMeleeDamages>
+									<li>
+										<def>Stun</def>
+										<amount>20</amount>
+									</li>
+								</extraMeleeDamages>
+							</surpriseAttack>
+							<armorPenetrationBlunt>0.430</armorPenetrationBlunt>
+							<armorPenetrationSharp>0.08</armorPenetrationSharp>
+						</li>
+						<li Class="CombatExtended.ToolCE">
+							<capacities>
+								<li>Bite</li>
+							</capacities>
+							<power>15</power>
+							<cooldownTime>1.42</cooldownTime>
+							<linkedBodyPartsGroup>Teeth</linkedBodyPartsGroup>
+							<surpriseAttack>
+								<extraMeleeDamages>
+									<li>
+										<def>Stun</def>
+										<amount>20</amount>
+									</li>
+								</extraMeleeDamages>
+							</surpriseAttack>
+							<armorPenetrationSharp>0.05</armorPenetrationSharp>
+							<armorPenetrationBlunt>2.950</armorPenetrationBlunt>
+						</li>
+						<li Class="CombatExtended.ToolCE">
+							<label>head</label>
+							<capacities>
+								<li>Blunt</li>
+							</capacities>
+							<power>1</power>
+							<cooldownTime>1.05</cooldownTime>
+							<linkedBodyPartsGroup>HeadAttackTool</linkedBodyPartsGroup>
+							<chanceFactor>0.2</chanceFactor>
+							<armorPenetrationBlunt>0.250</armorPenetrationBlunt>
+						</li>
+					</tools>
+				</value>
+			</li>
+
+		</operations>
+	</Operation>
+</Patch>

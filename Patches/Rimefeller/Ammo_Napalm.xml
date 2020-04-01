@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+
+	<Operation Class="PatchOperationFindMod">
+    <mods>
+		<li>Rimefeller</li>
+    </mods>
+		<match Class="PatchOperationSequence">
+		<success>Always</success>
+		 <operations>
+		 
+		 
+		<!-- Add Shell Recipes -->
+			<li Class="PatchOperationAdd">
+				<xpath>Defs</xpath>
+				<value>
+					  <RecipeDef ParentName="AmmoRecipeBase">
+						<defName>MakeShell_Napalm</defName>
+						<label>make 81mm napalm mortar shells x5</label>
+						<description>Craft 5 81mm Napalm mortar shells.</description>
+						<jobString>Making 81mm napalm mortar shells.</jobString>
+						<ingredients>
+						  <li>
+							<filter>
+							  <thingDefs>
+								<li>Steel</li>
+							  </thingDefs>
+							</filter>
+							<count>20</count>
+						  </li>
+						  <li>
+							<filter>
+							  <thingDefs>
+								<li>ComponentIndustrial</li>
+							  </thingDefs>
+							</filter>
+							<count>1</count>
+						  </li>
+						  <li>
+							<filter>
+							  <thingDefs>
+								<li>Napalm</li>
+							  </thingDefs>
+							</filter>
+							<count>15</count>
+						  </li>
+						</ingredients>
+						<fixedIngredientFilter>
+						  <thingDefs>
+							<li>Steel</li>
+							<li>ComponentIndustrial</li>
+							<li>Napalm</li>
+						  </thingDefs>
+						</fixedIngredientFilter>
+						<products>
+						  <Shell_Napalm>5</Shell_Napalm>
+						</products>
+					  </RecipeDef>
+					</value>
+				</li>
+		
+			<!-- Add Shells to AmmoSet -->
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/CombatExtended.AmmoSetDef[defName="AmmoSet_81mmMortarShell"]/ammoTypes</xpath>
+				<value>
+				<Shell_Napalm>Bullet_Shell_Napalm</Shell_Napalm>		
+				</value>
+			</li>
+			
+			<!-- Add CE Ammo.Def to Shells & Ammo-->
+			<li Class="PatchOperationAttributeAdd">
+				<xpath>Defs/ThingDef[defName="Shell_Napalm"]</xpath>
+				<attribute>Class</attribute>
+				<value>CombatExtended.AmmoDef</value>
+			</li>
+
+			<!-- Add New Shell Base-->
+			<li Class="PatchOperationAttributeSet">
+				<xpath>Defs/ThingDef[defName="Shell_Napalm"]</xpath>
+				<attribute>ParentName</attribute>
+				<value>81mmMortarShellBaseCraftableBase</value>
+			</li>
+
+			 <!-- Remove Stuff -->
+			<li Class="PatchOperationRemove">
+				<xpath>Defs/ThingDef[defName="Shell_Napalm"]/projectileWhenLoaded</xpath>
+			</li> 
+
+			<!-- Add Shell Mass and Tradability-->
+				<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName="Shell_Napalm"]</xpath>
+				<value>
+				<statBases>
+					<Mass>4.3</Mass>
+					<Bulk>6.5</Bulk>	
+				</statBases>					
+				</value>
+			</li>
+
+			<!-- Add Shell Ammo Type-->
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName="Shell_Napalm"]</xpath>
+				<value>
+					<ammoClass>Napalm</ammoClass>				
+				</value>
+			</li>	
+			
+			<!-- Add CE Explosives Comps to Shells -->			
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="Shell_Napalm"]/comps</xpath>
+				<value>
+				<comps>				
+				  <li Class="CompProperties_Explosive">
+					<explosiveRadius>3.3</explosiveRadius>
+					<explosiveDamageType>Flame</explosiveDamageType>
+					<explosiveExpandPerStackcount>0</explosiveExpandPerStackcount>
+					<startWickHitPointsPercent>0.7</startWickHitPointsPercent>
+					<preExplosionSpawnThingDef>Filth_NapalmTrail</preExplosionSpawnThingDef>
+					<preExplosionSpawnChance>0.25</preExplosionSpawnChance>
+					<postExplosionSpawnThingDef>Filth_Fuel</postExplosionSpawnThingDef>
+					<postExplosionSpawnChance>1.0</postExplosionSpawnChance>
+					<wickTicks>
+					  <min>10</min>
+					  <max>30</max>
+					</wickTicks>
+				  </li>
+				</comps>				  
+				</value>
+			</li>
+
+			
+			<!-- Add New Bullet Base-->
+			<li Class="PatchOperationAttributeSet">
+				<xpath>Defs/ThingDef[defName="Bullet_Shell_Napalm"]</xpath>
+				<attribute>ParentName</attribute>
+				<value>Base81mmMortarShell</value>
+			</li>
+			
+			<!-- Projectiles -->		
+			<li Class="PatchOperationAttributeAdd">
+				<xpath>Defs/ThingDef[defName="Bullet_Shell_Napalm"]/projectile</xpath>
+				<attribute>Class</attribute>
+				<value>CombatExtended.ProjectilePropertiesCE</value>
+			</li>
+			
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="Bullet_Shell_Napalm"]/thingClass</xpath>
+				<value>
+				    <thingClass>CombatExtended.ProjectileCE_Explosive</thingClass>
+				</value>
+			</li>
+
+		</operations>
+		</match>
+	</Operation>
+</Patch>

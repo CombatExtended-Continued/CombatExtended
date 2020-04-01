@@ -8,17 +8,21 @@ using UnityEngine;
 
 namespace CombatExtended
 {
+    /// <summary>
+    /// Version of CompPropertes_Explosive that does not use the wicker
+    /// </summary>
     public class CompProperties_ExplosiveCE : CompProperties
     {
-        public float explosionDamage = -1;
+        public float damageAmountBase = -1;
         public List<ThingDefCountClass> fragments = new List<ThingDefCountClass>();
-        public float fragRange = 0f;
+      //public float fragRange = 0f;
         public float fragSpeedFactor = 1f;
 
-        public float explosionRadius = 0f;
-        public DamageDef explosionDamageDef;
+        /// <summary>Default value 1.9f as for CompProperties_Explosive</summary>
+        public float explosiveRadius = 1.9f;
+        public DamageDef explosiveDamageType;
         // instigator
-        public SoundDef soundExplode = null;
+        public SoundDef explosionSound = null;
         // projectile = parent.def
         // source = null
         public ThingDef postExplosionSpawnThingDef = null;
@@ -36,12 +40,27 @@ namespace CombatExtended
             compClass = typeof(CompExplosiveCE);
         }
 
+        public override IEnumerable<string> ConfigErrors(ThingDef parentDef)
+        {
+            foreach (var i in base.ConfigErrors(parentDef))
+                yield return i;
+
+            if (explosiveRadius <= 0f)
+                yield return "explosiveRadius smaller or equal to zero, this explosion cannot occur";
+
+            if (parentDef.tickerType != TickerType.Normal)
+                yield return "CompExplosiveCE requires Normal ticker type";
+
+            if (fragments.Any())
+                yield return "fragments is removed from CompExplosiveCE, please use CombatExtended.CompFragments instead";
+        }
+
         public override void ResolveReferences(ThingDef parentDef)
         {
             base.ResolveReferences(parentDef);
-            if (this.explosionDamageDef == null)
+            if (this.explosiveDamageType == null)
             {
-                this.explosionDamageDef = DamageDefOf.Bomb;
+                this.explosiveDamageType = DamageDefOf.Bomb;
             }
         }
     }
