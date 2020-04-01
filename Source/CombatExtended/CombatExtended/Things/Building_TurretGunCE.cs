@@ -713,10 +713,6 @@ namespace CombatExtended
 
         public void TryOrderReload(bool forced = false)
         {
-            //If unmanned or unmannable, test for "auto-reload"
-            if (!mannableComp?.MannedNow ?? true && ticksUntilAutoReload > 0)
-                return;
-
             //No reload necessary at all --
             if ((CompAmmo.CurrentAmmo == CompAmmo.SelectedAmmo && (!CompAmmo.HasMagazine || CompAmmo.CurMagCount == CompAmmo.Props.magazineSize)))
                 return;
@@ -724,6 +720,10 @@ namespace CombatExtended
             //Non-mannableComp interaction
             if (!mannableComp?.MannedNow ?? true)
             {
+                //If auto-turret test for "auto-reload"
+                if (!forced && ticksUntilAutoReload > 0)
+                    return;
+
                 //Unmanned or autoturret -- cancel job on reserved turret
                 if (Map.physicalInteractionReservationManager.IsReserved(new LocalTargetInfo(this)))
                     return;
@@ -781,8 +781,11 @@ namespace CombatExtended
             }
             else    //MannableComp interaction
             {
-                //Already reserved for manning
+                //Only have manningPawn reload after a long time of no firing
+                if (!forced && Reloadable && (compAmmo.CurMagCount != 0 || ticksUntilAutoReload > 0))
+                    return;
 
+                //Already reserved for manning
                 Pawn manningPawn = mannableComp.ManningPawn;
                 if (manningPawn != null)
                 {
