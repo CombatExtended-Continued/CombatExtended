@@ -42,7 +42,7 @@ namespace CombatExtended
         public bool EnoughAmmoAround(Building_TurretGunCE turret)
         {
             //Prevent ammo being dropped as a result of the turret being reloaded at the time
-            if (turret.isReloading || !turret.NeedsReload)
+            if (turret.isReloading || turret.FullMagazine)
                 return true;
 
             var ammoComp = turret.CompAmmo;

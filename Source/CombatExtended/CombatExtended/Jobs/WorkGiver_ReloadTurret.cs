@@ -19,35 +19,35 @@ namespace CombatExtended
                 return ThingRequest.ForGroup(ThingRequestGroup.BuildingArtificial);
             }
         }
-
+        
         private bool Checks(Pawn pawn, Building_TurretGunCE turret, bool forced)
         {
             //WorkTagIsDisabled check inherent to WorkGiver_Scanner
             //MissingRequiredCapacity check inherent to WorkGiver_Scanner
             if (turret.isReloading)
             {
-              //Log.Message(pawn.ThingID + " failed " + turret.ThingID + ": turret is already reloading");
+                //Log.Message(pawn.ThingID + " failed " + turret.ThingID + ": turret is already reloading");
                 return false;  //Turret is already reloading
             }
-            if (!turret.NeedsReload)
+            if (turret.FullMagazine)
             {
-              //Log.Message(pawn.ThingID + " failed " + turret.ThingID + ": turret doesn't need reload");
+                // Log.Message(pawn.ThingID + " failed " + turret.ThingID + ": turret doesn't need reload");
                 return false;  //Turret doesn't need reload
             }
             //if (!forced && !turret.AllowAutomaticReload) return false;  //Turret doesn't need auto-reload and isn't forced to reload
             if (turret.IsBurning())
             {
-              //Log.Message(pawn.ThingID + " failed " + turret.ThingID + ": turret on fire");
+                // Log.Message(pawn.ThingID + " failed " + turret.ThingID + ": turret on fire");
                 return false;   //Turret on fire
             }
             if (turret.Faction != pawn.Faction && (turret.Faction != null && pawn.Faction != null && turret.Faction.RelationKindWith(pawn.Faction) != FactionRelationKind.Ally))
             {
-              //Log.Message(pawn.ThingID + " failed " + turret.ThingID + ": non-allied turret");
+                // Log.Message(pawn.ThingID + " failed " + turret.ThingID + ": non-allied turret");
                 return false;     //Allies reload turrets
             }
-            if (!pawn.CanReserveAndReach(turret, PathEndMode.ClosestTouch, forced ? Danger.Deadly : pawn.NormalMaxDanger(), GenClosestAmmo.pawnsPerTurret))
+            if ((turret.MannableComp?.ManningPawn != pawn) && !pawn.CanReserveAndReach(turret, PathEndMode.ClosestTouch, forced ? Danger.Deadly : pawn.NormalMaxDanger(), GenClosestAmmo.pawnsPerTurret))
             {
-              //Log.Message(pawn.ThingID + " failed " + turret.ThingID + ": turret unreachable");
+                //Log.Message(pawn.ThingID + " failed " + turret.ThingID + ": turret unreachable");
                 return false;    //Pawn cannot reach turret
             }
 
@@ -70,14 +70,14 @@ namespace CombatExtended
             if (turret == null || turret.IsForbidden(pawn) || !Checks(pawn, turret, forced)) return 0f;
 
             if (!turret.Active) return 1f;
-            if (turret.ReloadCritical) return 9f;
-            if (turret.AllowAutomaticReload) return 5f;
+            if (turret.EmptyMagazine) return 9f;
+            if (turret.AutoReloadableMagazine) return 5f;
             return 1f;
         }
 
         public override bool ShouldSkip(Pawn pawn, bool forced = false)
         {
-            return !forced && pawn.CurJob != null && (pawn.CurJob.playerForced || pawn.CurJobDef == CE_JobDefOf.ReloadTurret || pawn.CurJobDef == CE_JobDefOf.ReloadWeapon);
+            return !forced && pawn.CurJob != null && pawn.CurJobDef != JobDefOf.ManTurret && (pawn.CurJob.playerForced || pawn.CurJobDef == CE_JobDefOf.ReloadTurret || pawn.CurJobDef == CE_JobDefOf.ReloadWeapon);
         }
 
         /// <summary>
