@@ -327,7 +327,7 @@ namespace CombatExtended
                 return;
             }
             //Copied and modified from Verb_LaunchProjectileCE.Available
-            if (Projectile == null || (CompAmmo != null && !CompAmmo.CanBeFiredNow))
+            if (!isReloading && (Projectile == null || (CompAmmo != null && !CompAmmo.CanBeFiredNow)))
             {
                 ResetCurrentTarget();
                 TryOrderReload();
