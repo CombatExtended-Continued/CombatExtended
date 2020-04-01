@@ -1,0 +1,226 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+	<Operation Class="PatchOperationSequence">
+		<success>Always</success>
+		<operations>
+
+			<li Class="CombatExtended.PatchOperationFindMod">
+				<modName>Sergals Gnolls Lions and Frogs</modName>
+			</li>
+
+			<!-- ========== Pride Gauss Rifle (CE implementation based on MRG-5 Rifle from Glitter Tech) ========== -->
+
+			<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+				<defName>LionWep_Gauss</defName>
+				<statBases>
+					<Bulk>6.88</Bulk>
+					<Mass>3.60</Mass>
+					<SwayFactor>1.05</SwayFactor>
+					<ShotSpread>0.09</ShotSpread>
+					<SightsEfficiency>1.10</SightsEfficiency>
+					<RangedWeapon_Cooldown>0.36</RangedWeapon_Cooldown>
+					<WorkToMake>72000</WorkToMake>
+				</statBases>
+				<costList>
+					<Plasteel>60</Plasteel>
+					<ComponentIndustrial>3</ComponentIndustrial>
+					<ComponentSpacer>3</ComponentSpacer>
+				</costList>
+				<Properties>
+					<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+					<hasStandardCommand>true</hasStandardCommand>
+					<defaultProjectile>Bullet_6mmRailgun_Sabot</defaultProjectile>
+					<warmupTime>1.1</warmupTime>
+					<range>86</range>
+					<soundCast>LionGauss</soundCast>
+					<soundCastTail>GunTail_Heavy</soundCastTail>
+				</Properties>
+
+				<AmmoUser>
+					<magazineSize>30</magazineSize>
+					<reloadTime>4</reloadTime>
+					<ammoSet>AmmoSet_6mmRailgun</ammoSet>
+				</AmmoUser>
+
+				<FireModes>
+					<aiUseBurstMode>TRUE</aiUseBurstMode>
+					<aiAimMode>AimedShot</aiAimMode>
+				</FireModes>
+
+			</li>
+
+			<!-- ========== Pride Machinegun (CE implementation based on M249 LMG, rechambered for 6mm Railgun sabots) ========== -->
+
+			<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+				<defName>LionWep_Chaingauss</defName>
+				<statBases>
+					<Bulk>13.35</Bulk>
+					<Mass>7.50</Mass>
+					<SwayFactor>1.27</SwayFactor>
+					<ShotSpread>0.06</ShotSpread>
+					<SightsEfficiency>2.21</SightsEfficiency>
+					<RangedWeapon_Cooldown>0.55</RangedWeapon_Cooldown>
+					<WorkToMake>82000</WorkToMake>
+				</statBases>
+				<costList>
+					<Plasteel>120</Plasteel>
+					<ComponentIndustrial>3</ComponentIndustrial>
+					<ComponentSpacer>4</ComponentSpacer>
+				</costList>
+				<Properties>
+					<recoilAmount>0.94</recoilAmount>
+					<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+					<hasStandardCommand>true</hasStandardCommand>
+					<defaultProjectile>Bullet_6mmRailgun_Sabot</defaultProjectile>
+					<warmupTime>1.475</warmupTime>
+					<range>75</range>
+					<burstShotCount>10</burstShotCount>
+					<ticksBetweenBurstShots>6</ticksBetweenBurstShots>
+					<soundCast>LionGauss</soundCast>
+					<soundCastTail>GunTail_Heavy</soundCastTail>
+				</Properties>
+
+				<AmmoUser>
+					<magazineSize>200</magazineSize>
+					<reloadTime>7.8</reloadTime>
+					<ammoSet>AmmoSet_6mmRailgun</ammoSet>
+				</AmmoUser>
+
+				<FireModes>
+					<aiUseBurstMode>FALSE</aiUseBurstMode>
+					<aiAimMode>SuppressFire</aiAimMode>
+					<aimedBurstShotCount>5</aimedBurstShotCount>
+				</FireModes>
+
+			</li>
+
+			<!-- ========== Pride Pistol (CE implementation based on Desert Eagle, rechambered for the Sergal mod's own "prothene acid" bullet) ========== -->
+
+			<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+				<defName>LionWep_HandyGun</defName>
+				<statBases>
+					<Bulk>2.73</Bulk>
+					<Mass>2.00</Mass>
+					<SwayFactor>1.58</SwayFactor>
+					<ShotSpread>0.16</ShotSpread>
+					<SightsEfficiency>0.70</SightsEfficiency>
+					<RangedWeapon_Cooldown>0.39</RangedWeapon_Cooldown>
+					<WorkToMake>32000</WorkToMake>
+				</statBases>
+				<costList>
+					<Plasteel>80</Plasteel>
+					<ComponentIndustrial>3</ComponentIndustrial>
+					<ComponentSpacer>2</ComponentSpacer>
+				</costList>
+				<Properties>
+					<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+					<hasStandardCommand>true</hasStandardCommand>
+					<defaultProjectile>Lion_Wet_Bullet</defaultProjectile>
+					<warmupTime>0.6</warmupTime>
+					<range>12</range>
+					<soundCast>LionPistol</soundCast>
+					<soundCastTail>GunTail_Heavy</soundCastTail>
+				</Properties>
+
+				<!-- Treat this as an infinite-ammo weapon, as "prothene acid" bullets are too weird to warrant defining a mod-unique ammo item -->
+
+				<FireModes>
+					<aiUseBurstMode>FALSE</aiUseBurstMode>
+					<aiAimMode>AimedShot</aiAimMode>
+				</FireModes>
+
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="LionWep_HandyGun"]/tools</xpath>
+				<value>
+					<tools>
+						<li Class="CombatExtended.ToolCE">
+							<label>grip</label>
+							<capacities>
+								<li>Blunt</li>
+							</capacities>
+							<power>2</power>
+							<cooldownTime>1.54</cooldownTime>
+							<chanceFactor>1.5</chanceFactor>
+							<armorPenetrationBlunt>0.555</armorPenetrationBlunt>
+							<linkedBodyPartsGroup>Grip</linkedBodyPartsGroup>
+						</li>
+						<li Class="CombatExtended.ToolCE">
+							<label>muzzle</label>
+							<capacities>
+								<li>Poke</li>
+							</capacities>
+							<power>2</power>
+							<cooldownTime>1.54</cooldownTime>
+							<armorPenetrationBlunt>0.555</armorPenetrationBlunt>
+							<linkedBodyPartsGroup>Muzzle</linkedBodyPartsGroup>
+						</li>
+					</tools>
+				</value>
+			</li>
+
+			<!-- Patch prothene acid bullet -->
+			
+			<li Class="PatchOperationAttributeSet">
+				<xpath>Defs/ThingDef[defName="Lion_Wet_Bullet"]/projectile</xpath>
+				<attribute>Class</attribute>
+				<value>CombatExtended.ProjectilePropertiesCE</value>
+			</li>
+			
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName="Lion_Wet_Bullet"]/projectile</xpath>
+				<value>
+					<!-- Sharp/blunt penetration equivalent to .50 AE (AP), so that the acid has a chance to eat through armor and clothing  -->
+					<armorPenetrationSharp>16</armorPenetrationSharp>
+					<armorPenetrationBlunt>38.480</armorPenetrationBlunt>
+				</value>
+			</li>
+
+			<!-- == Shared patches for firearm melee tools == -->
+
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[
+					defName="LionWep_Gauss" or
+					defName="LionWep_Chaingauss"
+				]/tools</xpath>
+				<value>
+					<tools>
+						<li Class="CombatExtended.ToolCE">
+							<label>stock</label>
+							<capacities>
+								<li>Blunt</li>
+							</capacities>
+							<power>8</power>
+							<cooldownTime>1.55</cooldownTime>
+							<chanceFactor>1.5</chanceFactor>
+							<armorPenetrationBlunt>2.755</armorPenetrationBlunt>
+							<linkedBodyPartsGroup>Stock</linkedBodyPartsGroup>
+						</li>
+						<li Class="CombatExtended.ToolCE">
+							<label>barrel</label>
+							<capacities>
+								<li>Blunt</li>
+							</capacities>
+							<power>5</power>
+							<cooldownTime>2.02</cooldownTime>
+							<armorPenetrationBlunt>1.630</armorPenetrationBlunt>
+							<linkedBodyPartsGroup>Barrel</linkedBodyPartsGroup>
+						</li>
+						<li Class="CombatExtended.ToolCE">
+							<label>muzzle</label>
+							<capacities>
+								<li>Poke</li>
+							</capacities>
+							<power>8</power>
+							<cooldownTime>1.55</cooldownTime>
+							<armorPenetrationBlunt>2.755</armorPenetrationBlunt>
+							<linkedBodyPartsGroup>Muzzle</linkedBodyPartsGroup>
+						</li>
+					</tools>
+				</value>
+			</li>
+
+		</operations>
+	</Operation>
+</Patch>
