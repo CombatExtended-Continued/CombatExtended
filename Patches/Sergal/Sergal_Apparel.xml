@@ -1,0 +1,379 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+	<Operation Class="PatchOperationSequence">
+		<success>Always</success>
+		<operations>
+
+			<li Class="CombatExtended.PatchOperationFindMod">
+				<modName>Sergals Gnolls Lions and Frogs</modName>
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="Lion_Apparel_TribalA"]/statBases/StuffEffectMultiplierArmor</xpath>
+				<value>
+					<StuffEffectMultiplierArmor>3</StuffEffectMultiplierArmor>
+				</value>
+			</li>
+
+			<!-- ========== Cargo pants, Tucked-in button shirt and Suit pants ========== -->
+
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[
+					defName="Lion_Apparel_Cheap_Pants" or 
+					defName="Lion_Apparel_CollarShirt" or
+					defName="Lion_Apparel_Pants"
+				]/statBases/StuffEffectMultiplierArmor</xpath>
+				<value>
+					<StuffEffectMultiplierArmor>1</StuffEffectMultiplierArmor>
+				</value>
+			</li>
+
+			<!-- ========== Duster and Jacket ========== -->
+
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[
+					defName="Lion_Apparel_Duster" or 
+					defName="Lion_Apparel_Jacket"
+				]/statBases/StuffEffectMultiplierArmor</xpath>
+				<value>
+					<StuffEffectMultiplierArmor>5</StuffEffectMultiplierArmor>
+				</value>
+			</li>
+
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName="Lion_Apparel_Duster"]/statBases</xpath>
+				<value>
+					<Bulk>7.5</Bulk>
+					<WornBulk>1</WornBulk>
+				</value>
+			</li>
+
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName="Lion_Apparel_Jacket"]/statBases</xpath>
+				<value>
+					<Bulk>5</Bulk>
+					<WornBulk>1</WornBulk>
+				</value>
+			</li>
+
+			<!-- ========== Lion armor vest ========== -->
+
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="Lion_Apparel_FlakVest"]/label</xpath>
+				<value>
+					<label>lion armor vest</label>
+				</value>
+			</li>
+
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName="Lion_Apparel_FlakVest"]/statBases</xpath>
+				<value>
+					<Bulk>5</Bulk>
+					<WornBulk>3</WornBulk>
+					<StuffEffectMultiplierArmor>8</StuffEffectMultiplierArmor>
+				</value>
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="Lion_Apparel_FlakVest"]/statBases/MaxHitPoints</xpath>
+				<value>
+					<MaxHitPoints>125</MaxHitPoints>
+				</value>
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="Lion_Apparel_FlakVest"]/statBases/Mass</xpath>
+				<value>
+					<Mass>13</Mass>
+				</value>
+			</li>
+
+			<li Class="PatchOperationRemove">
+				<xpath>Defs/ThingDef[defName="Lion_Apparel_FlakVest"]/statBases/ArmorRating_Sharp</xpath>
+			</li>
+
+			<li Class="PatchOperationRemove">
+				<xpath>Defs/ThingDef[defName="Lion_Apparel_FlakVest"]/statBases/ArmorRating_Blunt</xpath>
+			</li>
+
+			<li Class="PatchOperationRemove">
+				<xpath>Defs/ThingDef[defName="Lion_Apparel_FlakVest"]/statBases/ArmorRating_Heat</xpath>
+			</li>
+
+			<li Class="PatchOperationRemove">
+				<xpath>Defs/ThingDef[defName="Lion_Apparel_FlakVest"]/equippedStatOffsets/MoveSpeed</xpath>
+			</li>
+
+			<!-- Change recipe to stuffed -->
+
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName="Lion_Apparel_FlakVest"]</xpath>
+				<value>
+					<costStuffCount>90</costStuffCount>
+				</value>
+			</li>
+
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName="Lion_Apparel_FlakVest"]</xpath>
+				<value>
+					<stuffCategories>
+						<li>Steeled</li>
+					</stuffCategories>
+				</value>
+			</li>
+
+			<li Class="PatchOperationRemove">
+				<xpath>Defs/ThingDef[defName="Lion_Apparel_FlakVest"]/recipeMaker/unfinishedThingDef</xpath>
+			</li>
+
+			<li Class="PatchOperationRemove">
+				<xpath>Defs/ThingDef[defName="Lion_Apparel_FlakVest"]/costList/Steel</xpath>
+			</li>
+
+			<li Class="PatchOperationRemove">
+				<xpath>Defs/ThingDef[defName="Lion_Apparel_FlakVest"]/costList/ComponentIndustrial</xpath>
+			</li>
+
+			<li Class="PatchOperationRemove">
+				<xpath>Defs/ThingDef[defName="Lion_Apparel_FlakVest"]/colorGenerator</xpath>
+			</li>
+
+			<!-- ========== Lion flak pants ========== -->
+
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="Lion_Apparel_FlakPants"]/description</xpath>
+				<value>
+					<description>Padded pants made from bullet-resistant materials. Provides limited protection against shrapnel and gunfire at relatively low weight.</description>
+				</value>
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="Lion_Apparel_FlakPants"]/statBases/ArmorRating_Sharp</xpath>
+				<value>
+					<Bulk>4</Bulk>
+					<WornBulk>4</WornBulk>
+					<StuffEffectMultiplierArmor>4</StuffEffectMultiplierArmor>
+					<ArmorRating_Sharp>2</ArmorRating_Sharp>
+				</value>
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="Lion_Apparel_FlakPants"]/statBases/ArmorRating_Blunt</xpath>
+				<value>
+					<ArmorRating_Blunt>0.5</ArmorRating_Blunt>
+				</value>
+			</li>
+
+			<li Class="PatchOperationRemove">
+				<xpath>Defs/ThingDef[defName="Lion_Apparel_FlakPants"]/statBases/ArmorRating_Heat</xpath>
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="Lion_Apparel_FlakPants"]/statBases/Insulation_Cold</xpath>
+				<value>
+					<StuffEffectMultiplierInsulation_Cold>0.2</StuffEffectMultiplierInsulation_Cold>
+				</value>
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="Lion_Apparel_FlakPants"]/statBases/Insulation_Heat</xpath>
+				<value>
+					<StuffEffectMultiplierInsulation_Heat>0.08</StuffEffectMultiplierInsulation_Heat>
+				</value>
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="Lion_Apparel_FlakPants"]/costList</xpath>
+				<value>
+					<costList>
+						<Steel>15</Steel>
+					</costList>
+					<stuffCategories>
+						<li>Fabric</li>
+					</stuffCategories>
+					<costStuffCount>50</costStuffCount>
+				</value>
+			</li>
+
+			<li Class="PatchOperationRemove">
+				<xpath>Defs/ThingDef[defName="Lion_Apparel_FlakPants"]/equippedStatOffsets</xpath>
+			</li>
+
+			<!-- ========== Cheap power armor ========== -->
+
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName="Lion_Apparel_CheapPowerArmor"]/statBases</xpath>
+				<value>
+					<Bulk>80</Bulk>
+					<WornBulk>12</WornBulk>
+				</value>
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="Lion_Apparel_CheapPowerArmor"]/statBases/MaxHitPoints</xpath>
+				<value>
+					<MaxHitPoints>400</MaxHitPoints>
+				</value>
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="Lion_Apparel_CheapPowerArmor"]/statBases/Mass</xpath>
+				<value>
+					<Mass>40</Mass>
+				</value>
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="Lion_Apparel_CheapPowerArmor"]/statBases/Flammability</xpath>
+				<value>
+					<Flammability>0</Flammability>
+				</value>
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="Lion_Apparel_CheapPowerArmor"]/statBases/ArmorRating_Sharp</xpath>
+				<value>
+					<ArmorRating_Sharp>16</ArmorRating_Sharp>
+				</value>
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="Lion_Apparel_CheapPowerArmor"]/statBases/ArmorRating_Blunt</xpath>
+				<value>
+					<ArmorRating_Blunt>40</ArmorRating_Blunt>
+				</value>
+			</li>
+
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName="Lion_Apparel_CheapPowerArmor"]/costList</xpath>
+				<value>
+					<DevilstrandCloth>40</DevilstrandCloth>
+				</value>
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="Lion_Apparel_CheapPowerArmor"]/equippedStatOffsets</xpath>
+				<value>
+					<equippedStatOffsets>
+						<CarryWeight>50</CarryWeight>
+						<CarryBulk>8</CarryBulk>
+						<ToxicSensitivity>-0.50</ToxicSensitivity>
+					</equippedStatOffsets>
+				</value>
+			</li>
+
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName="Lion_Apparel_CheapPowerArmor"]/apparel/bodyPartGroups</xpath>
+				<value>
+					<li>Hands</li>
+					<li>Feet</li>
+				</value>
+			</li>
+
+			<!-- ========== Lion honor guard armor and Lion elite armor ========== -->
+
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[
+					defName="Lion_Apparel_PowerArmor" or
+					defName="Lion_Apparel_ExpensivePowerArmor"
+				]/statBases</xpath>
+				<value>
+					<Bulk>100</Bulk>
+					<WornBulk>15</WornBulk>
+				</value>
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[
+					defName="Lion_Apparel_PowerArmor" or
+					defName="Lion_Apparel_ExpensivePowerArmor"
+				]/statBases/MaxHitPoints</xpath>
+				<value>
+					<MaxHitPoints>500</MaxHitPoints>
+				</value>
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[
+					defName="Lion_Apparel_PowerArmor" or
+					defName="Lion_Apparel_ExpensivePowerArmor"
+				]/statBases/Mass</xpath>
+				<value>
+					<Mass>50</Mass>
+				</value>
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[
+					defName="Lion_Apparel_PowerArmor" or
+					defName="Lion_Apparel_ExpensivePowerArmor"
+				]/statBases/Flammability</xpath>
+				<value>
+					<Flammability>0</Flammability>
+				</value>
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[
+					defName="Lion_Apparel_PowerArmor" or
+					defName="Lion_Apparel_ExpensivePowerArmor"
+				]/statBases/ArmorRating_Sharp</xpath>
+				<value>
+					<ArmorRating_Sharp>20</ArmorRating_Sharp>
+				</value>
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[
+					defName="Lion_Apparel_PowerArmor" or
+					defName="Lion_Apparel_ExpensivePowerArmor"
+				]/statBases/ArmorRating_Blunt</xpath>
+				<value>
+					<ArmorRating_Blunt>45</ArmorRating_Blunt>
+				</value>
+			</li>
+
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[
+					defName="Lion_Apparel_PowerArmor" or
+					defName="Lion_Apparel_ExpensivePowerArmor"
+				]/costList</xpath>
+				<value>
+					<DevilstrandCloth>50</DevilstrandCloth>
+				</value>
+			</li>
+
+			<li Class="PatchOperationRemove">
+				<xpath>Defs/ThingDef[
+					defName="Lion_Apparel_PowerArmor" or
+					defName="Lion_Apparel_ExpensivePowerArmor"
+				]/equippedStatOffsets/MoveSpeed</xpath>
+			</li>
+
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[
+					defName="Lion_Apparel_PowerArmor" or
+					defName="Lion_Apparel_ExpensivePowerArmor"
+				]/equippedStatOffsets</xpath>
+				<value>
+					<CarryWeight>80</CarryWeight>
+					<CarryBulk>10</CarryBulk>
+					<ShootingAccuracyPawn>0.15</ShootingAccuracyPawn>
+					<ToxicSensitivity>-0.50</ToxicSensitivity>
+				</value>
+			</li>
+
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[
+					defName="Lion_Apparel_PowerArmor" or
+					defName="Lion_Apparel_ExpensivePowerArmor"
+				]/apparel/bodyPartGroups</xpath>
+				<value>
+					<li>Hands</li>
+					<li>Feet</li>
+				</value>
+			</li>
+
+		</operations>
+	</Operation>
+</Patch>

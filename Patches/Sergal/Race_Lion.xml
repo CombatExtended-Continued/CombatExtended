@@ -9,7 +9,7 @@
 			</li>
 
 			<li Class="PatchOperationAddModExtension">
-				<xpath>Defs/AlienRace.ThingDef_AlienRace[defName="Alien_SGnoll"]</xpath>
+				<xpath>Defs/AlienRace.ThingDef_AlienRace[defName="Alien_Lion"]</xpath>
 				<value>
 					<li Class="CombatExtended.RacePropertiesExtensionCE">
 						<bodyShape>Humanoid</bodyShape>
@@ -18,7 +18,7 @@
 			</li>
 
 			<li Class="PatchOperationAdd">
-				<xpath>Defs/AlienRace.ThingDef_AlienRace[defName="Alien_SGnoll"]/statBases</xpath>
+				<xpath>Defs/AlienRace.ThingDef_AlienRace[defName="Alien_Lion"]/statBases</xpath>
 				<value>
 					<AimingAccuracy>0.9</AimingAccuracy>
 					<MeleeDodgeChance>2.5</MeleeDodgeChance>
@@ -30,7 +30,7 @@
 			</li>
 
 			<li Class="PatchOperationReplace">
-				<xpath>Defs/AlienRace.ThingDef_AlienRace[defName="Alien_SGnoll"]/tools</xpath>
+				<xpath>Defs/AlienRace.ThingDef_AlienRace[defName="Alien_Lion"]/tools</xpath>
 				<value>
 					<tools>
 						<li Class="CombatExtended.ToolCE">
@@ -57,7 +57,7 @@
 							<capacities>
 								<li>Blunt</li>
 							</capacities>
-							<power>1</power>
+							<power>2</power>
 							<cooldownTime>1.26</cooldownTime>
 							<linkedBodyPartsGroup>LeftHand</linkedBodyPartsGroup>
 							<armorPenetrationBlunt>0.250</armorPenetrationBlunt>
@@ -86,7 +86,7 @@
 							<capacities>
 								<li>Blunt</li>
 							</capacities>
-							<power>1</power>
+							<power>2</power>
 							<cooldownTime>1.26</cooldownTime>
 							<linkedBodyPartsGroup>RightHand</linkedBodyPartsGroup>
 							<armorPenetrationBlunt>0.250</armorPenetrationBlunt>
@@ -95,8 +95,8 @@
 							<capacities>
 								<li>Bite</li>
 							</capacities>
-							<power>15</power>
-							<cooldownTime>1.73</cooldownTime>
+							<power>8</power>
+							<cooldownTime>1.35</cooldownTime>
 							<linkedBodyPartsGroup>Teeth</linkedBodyPartsGroup>
 							<surpriseAttack>
 								<extraMeleeDamages>
@@ -106,19 +106,19 @@
 									</li>
 								</extraMeleeDamages>
 							</surpriseAttack>
-							<armorPenetrationSharp>0.43</armorPenetrationSharp>
-							<armorPenetrationBlunt>4.225</armorPenetrationBlunt>
+							<armorPenetrationSharp>0.25</armorPenetrationSharp>
+							<armorPenetrationBlunt>1.35</armorPenetrationBlunt>
 						</li>
 						<li Class="CombatExtended.ToolCE">
 							<label>head</label>
 							<capacities>
 								<li>Blunt</li>
 							</capacities>
-							<power>2</power>
-							<cooldownTime>4.49</cooldownTime>
+							<power>3</power>
+							<cooldownTime>0.97</cooldownTime>
 							<linkedBodyPartsGroup>HeadAttackTool</linkedBodyPartsGroup>
 							<chanceFactor>0.2</chanceFactor>
-							<armorPenetrationBlunt>0.625</armorPenetrationBlunt>
+							<armorPenetrationBlunt>0.423</armorPenetrationBlunt>
 						</li>
 					</tools>
 				</value>
@@ -126,14 +126,14 @@
 
 			<li Class="PatchOperationAdd">
 				<success>Always</success>
-				<xpath>Defs/AlienRace.ThingDef_AlienRace[defName="Alien_SGnoll"][not(comp)]</xpath>
+				<xpath>Defs/AlienRace.ThingDef_AlienRace[defName="Alien_Lion"][not(comp)]</xpath>
 				<value>
 					<comps />
 				</value>
 			</li>
 
 			<li Class="PatchOperationAdd">
-				<xpath>Defs/AlienRace.ThingDef_AlienRace[defName="Alien_SGnoll"]/comps</xpath>
+				<xpath>Defs/AlienRace.ThingDef_AlienRace[defName="Alien_Lion"]/comps</xpath>
 				<value>
 					<li>
 						<compClass>CombatExtended.CompPawnGizmo</compClass>

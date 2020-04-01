@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+	<Operation Class="PatchOperationSequence">
+		<success>Always</success>
+		<operations>
+
+			<li Class="CombatExtended.PatchOperationFindMod">
+				<modName>Sergals Gnolls Lions and Frogs</modName>
+			</li>
+
+			<li Class="PatchOperationAdd">
+				<xpath>Defs</xpath>
+				<value>
+				
+					<!-- ==================== AmmoCategory and ThingCategory ==================== -->
+				
+					<CombatExtended.AmmoCategoryDef>
+						<defName>LeadBall</defName>
+						<label>lead ball</label>
+						<description>A loose fitting metal ball. Fairly innacurate due to poor aerodynamics, but inflicts large wounds due to the hitting power and large diameter of the projectile.</description>
+					</CombatExtended.AmmoCategoryDef>
+
+					<ThingCategoryDef>
+						<defName>AmmoSergalLeadBall</defName>
+						<label>lead ball</label>
+						<parent>AmmoNeolithic</parent>
+						<iconPath>UI/Icons/ThingCategories/CaliberRifle</iconPath>
+					</ThingCategoryDef>
+					
+					<!-- ==================== AmmoSet ========================== -->
+
+					<CombatExtended.AmmoSetDef>
+						<defName>AmmoSet_Sergal_LeadBall</defName>
+						<label>lead ball</label>
+						<ammoTypes>
+							<Ammo_Sergal_LeadBall>Bullet_Sergal_LeadBall</Ammo_Sergal_LeadBall>
+						</ammoTypes>
+					</CombatExtended.AmmoSetDef>
+					
+					<!-- ==================== Ammo ========================== -->
+
+					<ThingDef Class="CombatExtended.AmmoDef" ParentName="NeolithicAmmoBase">
+						<defName>Ammo_Sergal_LeadBall</defName>
+						<label>lead ball</label>
+						<description>Projectile traditionally fired from smooth-bore muskets and flintlock pistols.</description>
+						<ammoClass>LeadBall</ammoClass>
+						<graphicData>
+							<texPath>Things/Ammo/Neolithic/SlingBullet/Steel</texPath>
+							<graphicClass>Graphic_StackCount</graphicClass>
+						</graphicData>
+						<statBases>
+							<Mass>0.03</Mass>
+							<Bulk>0.06</Bulk>
+						</statBases>
+						<thingCategories>
+							<li>AmmoSergalLeadBall</li>
+						</thingCategories>
+						<stackLimit>1000</stackLimit>
+						<tradeTags>
+							<li>CE_AutoEnableTrade</li>
+							<li>CE_AutoEnableCrafting_FueledSmithy</li>
+							<li>CE_AutoEnableCrafting_ElectricSmithy</li>
+							<li>CE_AutoEnableCrafting_CraftingSpot</li>
+						</tradeTags>
+					</ThingDef>
+					
+					<!-- ================== Projectiles ================== -->
+					
+					<!-- Workaround for conditionally-patched projectiles: use an existing abstract class from the generic ammo library (In this case, BaseSlingBullet) -->
+
+					<ThingDef Class="CombatExtended.AmmoDef" ParentName="BaseSlingBullet">
+						<defName>Bullet_Sergal_LeadBall</defName>
+						<label>lead ball</label>
+						<graphicData>
+							<texPath>Things/Projectile/Sling/Steel</texPath>
+							<graphicClass>Graphic_Single</graphicClass>
+						</graphicData>
+						<projectile Class="CombatExtended.ProjectilePropertiesCE">
+							<damageDef>Bullet</damageDef>
+							<speed>72</speed>
+							<damageAmountBase>20</damageAmountBase>
+							<armorPenetrationSharp>7.2</armorPenetrationSharp>
+							<armorPenetrationBlunt>37.8</armorPenetrationBlunt>
+							<flyOverhead>false</flyOverhead>
+						</projectile>
+					</ThingDef>
+					
+					<!-- ==================== Recipes ========================== -->
+
+					<RecipeDef ParentName="AmmoRecipeBase">
+						<defName>MakeAmmo_Sergal_LeadBall</defName>
+						<label>make lead balls x100</label>
+						<description>Craft 100 lead balls.</description>
+						<jobString>Making lead balls.</jobString>
+						<ingredients>
+							<li>
+								<filter>
+									<thingDefs>
+										<li>Steel</li>
+									</thingDefs>
+								</filter>
+								<count>20</count>
+							</li>
+						</ingredients>
+						<fixedIngredientFilter>
+							<thingDefs>
+								<li>Steel</li>
+							</thingDefs>
+						</fixedIngredientFilter>
+						<products>
+							<Ammo_Sergal_LeadBall>500</Ammo_Sergal_LeadBall>
+						</products>
+						<workAmount>2000</workAmount>
+						<recipeUsers>
+							<li>FueledSmithy</li>
+							<li>ElectricSmithy</li>
+						</recipeUsers>
+					</RecipeDef>
+				</value>
+			</li>
+
+		</operations>
+	</Operation>
+</Patch>
