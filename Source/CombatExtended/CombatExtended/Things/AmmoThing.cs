@@ -227,13 +227,23 @@ namespace CombatExtended
                         listener.isSlow = false;
                     }
                 }
+
+                if (GenClosestAmmo.latestAmmoUpdate.ContainsKey(def))
+                    GenClosestAmmo.latestAmmoUpdate[def] = Find.TickManager.TicksGame;
             }
+            else if (GenClosestAmmo.latestAmmoUpdate.ContainsKey(def))
+                GenClosestAmmo.latestAmmoUpdate.Clear();
         }
 
         private void RegisterAmmo()
         {
             if (numToCookOff <= 0 && !this.IsBurning() && GenClosestAmmo.listeners.ContainsKey(def))
+            {
                 GenClosestAmmo.listeners[def].ForEach(x => x.isSlow = false);
+
+                if (GenClosestAmmo.latestAmmoUpdate.ContainsKey(def))
+                    GenClosestAmmo.latestAmmoUpdate[def] = Find.TickManager.TicksGame;
+            }
         }
         #endregion
     }
