@@ -5,9 +5,9 @@ using System.Text;
 using RimWorld;
 using Verse;
 using UnityEngine;
-using Harmony;
+using HarmonyLib;
 
-namespace CombatExtended.Harmony
+namespace CombatExtended.HarmonyCE
 {
     [HarmonyPatch(typeof(TooltipUtility), "ShotCalculationTipString")]
     public class Harmony_TooltipUtility_ShotCalculationTipString_Patch

@@ -1,15 +1,16 @@
 <?xml version="1.0" encoding="utf-8" ?>
+
 <Patch>
-	<!-- ========== Check For Our Fishy Modholders ========== -->
-	<Operation Class="PatchOperationSequence">
-		<success>Always</success>
-		<operations>
-	<li Class="CombatExtended.PatchOperationFindMod">
-				<modName>Ni'Hal 1.0</modName>
-	</li>
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+			<li>Ni'Hal 1.0</li>
+			<li>Ni'Hal 1.0/1.1</li>			
+		</mods>
+		<match Class="PatchOperationSequence">
+			<operations>
 	<!-- ========== Make Drake Drakonic ========== -->
 	<li Class="PatchOperationAddModExtension">
-		<xpath>*/ThingDef[defName="Drake"]</xpath>
+		<xpath>/Defs/ThingDef[defName="Drake"]</xpath>
 		<value>
 			<li Class="CombatExtended.RacePropertiesExtensionCE">
 				<bodyShape>Serpentine</bodyShape>
@@ -108,7 +109,9 @@
 		</value>
 	</li>
 	<!-- ========== yeah i think i made them a bit op ========== -->
-	</operations>
+			</operations>		
+		</match>
 	</Operation>
+
 </Patch>
 	

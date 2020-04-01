@@ -51,19 +51,7 @@
 			<MarketValue>63.17</MarketValue>
 		</statBases>
 		<ammoClass>GrenadeHE</ammoClass>
-		<comps>
-			<li Class="CombatExtended.CompProperties_ExplosiveCE">
-				<explosionDamage>99</explosionDamage>
-				<explosionDamageDef>Bomb</explosionDamageDef>
-				<explosionRadius>2</explosionRadius>
-				<fragments>
-					<Fragment_Large>21</Fragment_Large>
-					<Fragment_Small>47</Fragment_Small>
-				</fragments>
-				<fragRange>10</fragRange>
-				<applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
-			</li>
-		</comps>
+		<detonateProjectile>Bullet_762x385mmRCannonShell_HE</detonateProjectile>
 	</ThingDef>
 
 	<ThingDef Class="CombatExtended.AmmoDef" ParentName="762x385mmRCannonShellBase">
@@ -78,14 +66,16 @@
 		</statBases>
 		<ammoClass>GrenadeEMP</ammoClass>
 		<comps>
-			<li Class="CombatExtended.CompProperties_ExplosiveCE">
-				<explosionDamage>99</explosionDamage>
-				<explosionDamageDef>Bomb</explosionDamageDef>
-				<explosionRadius>2</explosionRadius>
-				<fragments>
-					<Fragment_Large>22</Fragment_Large>
-				</fragments>
-			</li>
+		  <li Class="CombatExtended.CompProperties_ExplosiveCE">
+			<damageAmountBase>99</damageAmountBase>
+			<explosiveDamageType>Bomb</explosiveDamageType>
+			<explosiveRadius>2</explosiveRadius>
+		  </li>
+		  <li Class="CombatExtended.CompProperties_Fragments">
+			<fragments>
+				<Fragment_Large>22</Fragment_Large>
+			</fragments>
+		  </li>
 		</comps>
 	</ThingDef>
 
@@ -120,7 +110,7 @@
 			<applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
 		</projectile>
 		<comps>
-			<li Class="CombatExtended.CompProperties_ExplosiveCE">
+			<li Class="CombatExtended.CompProperties_Fragments">
 				<fragments>
 					<Fragment_Large>21</Fragment_Large>
 					<Fragment_Small>47</Fragment_Small>

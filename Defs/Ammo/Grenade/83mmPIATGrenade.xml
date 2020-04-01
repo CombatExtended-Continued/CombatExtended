@@ -51,18 +51,7 @@
       <MarketValue>44.3</MarketValue>
     </statBases>
     <ammoClass>RocketHEAT</ammoClass>
-    <comps>
-      <li Class="CombatExtended.CompProperties_ExplosiveCE">
-        <explosionDamage>139</explosionDamage>
-        <explosionDamageDef>Bomb</explosionDamageDef>
-        <explosionRadius>1</explosionRadius>
-        <fragments>
-          <Fragment_Large>1</Fragment_Large>
-          <Fragment_Small>42</Fragment_Small>
-        </fragments>
-		<applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
-      </li>
-    </comps>
+	<detonateProjectile>Bullet_83mmPIATGrenade_HEAT</detonateProjectile>
   </ThingDef>
 
   <ThingDef Class="CombatExtended.AmmoDef" ParentName="83mmPIATGrenadeBase">
@@ -76,18 +65,7 @@
       <MarketValue>44.3</MarketValue>
     </statBases>
     <ammoClass>GrenadeHE</ammoClass>
-    <comps>
-      <li Class="CombatExtended.CompProperties_ExplosiveCE">
-        <explosionDamage>139</explosionDamage>
-        <explosionDamageDef>Bomb</explosionDamageDef>
-        <explosionRadius>2.5</explosionRadius>
-        <fragments>
-          <Fragment_Large>1</Fragment_Large>
-          <Fragment_Small>83</Fragment_Small>
-        </fragments>
-		<applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
-      </li>
-    </comps>
+	<detonateProjectile>Bullet_83mmPIATGrenade_HE</detonateProjectile>
   </ThingDef>
 
   <ThingDef Class="CombatExtended.AmmoDef" ParentName="83mmPIATGrenadeBase">
@@ -102,14 +80,16 @@
     </statBases>
     <ammoClass>GrenadeEMP</ammoClass>
     <comps>
-      <li Class="CombatExtended.CompProperties_ExplosiveCE">
-        <explosionDamage>5</explosionDamage>
-        <explosionDamageDef>Bomb</explosionDamageDef>
-        <explosionRadius>1.25</explosionRadius>
-        <fragments>
-          <Fragment_Large>1</Fragment_Large>
-        </fragments>
-      </li>
+	  <li Class="CombatExtended.CompProperties_ExplosiveCE">
+		<damageAmountBase>5</damageAmountBase>
+		<explosiveDamageType>Bomb</explosiveDamageType>
+		<explosiveRadius>1.25</explosiveRadius>
+	  </li>
+	  <li Class="CombatExtended.CompProperties_Fragments">
+		<fragments>
+			<Fragment_Large>1</Fragment_Large>
+		</fragments>
+	  </li>
     </comps>
   </ThingDef>
 
@@ -136,17 +116,19 @@
 			<armorPenetrationBlunt>41.818</armorPenetrationBlunt>
 		</projectile>
 		<comps>
-			<li Class="CombatExtended.CompProperties_ExplosiveCE">
-				<explosionDamage>139</explosionDamage>
-				<explosionDamageDef>Bomb</explosionDamageDef>
-				<explosionRadius>1</explosionRadius>
-				<fragments>
-          <Fragment_Large>1</Fragment_Large>
-          <Fragment_Small>42</Fragment_Small>
-				</fragments>
-				<applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
-				<soundExplode>MortarBomb_Explode</soundExplode>
-			</li>
+		  <li Class="CombatExtended.CompProperties_ExplosiveCE">
+			<damageAmountBase>139</damageAmountBase>
+			<explosiveDamageType>Bomb</explosiveDamageType>
+			<explosiveRadius>1</explosiveRadius>
+			<applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
+			<explosionSound>MortarBomb_Explode</explosionSound>
+		  </li>
+		  <li Class="CombatExtended.CompProperties_Fragments">
+			<fragments>
+				<Fragment_Large>1</Fragment_Large>
+			  <Fragment_Small>42</Fragment_Small>
+			</fragments>
+		  </li>
 		</comps>
 	</ThingDef>
 
@@ -160,7 +142,7 @@
 			<applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
 		</projectile>
 		<comps>
-			<li Class="CombatExtended.CompProperties_ExplosiveCE">
+			<li Class="CombatExtended.CompProperties_Fragments">
 				<fragments>
           <Fragment_Large>1</Fragment_Large>
           <Fragment_Small>83</Fragment_Small>

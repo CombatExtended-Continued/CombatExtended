@@ -22,7 +22,7 @@
 	
 	<!-- ==================== Ammo ========================== -->
 
-  <ThingDef Class="CombatExtended.AmmoDef" Name="20mmGrenadeBase" ParentName="AmmoBase" Abstract="True">
+  <ThingDef Class="CombatExtended.AmmoDef" Name="20x42mmGrenadeBase" ParentName="AmmoBase" Abstract="True">
     <description>Specialized grenade developed for use in shoulder-fired grenade launchers.</description>
     <statBases>
 	  <Mass>0.125</Mass>
@@ -38,7 +38,7 @@
     <cookOffFlashScale>20</cookOffFlashScale>
   </ThingDef>
 
-  <ThingDef Class="CombatExtended.AmmoDef" ParentName="20mmGrenadeBase">
+  <ThingDef Class="CombatExtended.AmmoDef" ParentName="20x42mmGrenadeBase">
     <defName>Ammo_20x42mmGrenade_HE</defName>
     <label>20mm grenade (HE)</label>
     <graphicData>
@@ -49,21 +49,10 @@
       <MarketValue>1.69</MarketValue>
     </statBases>
     <ammoClass>GrenadeHE</ammoClass>
-    <comps>
-      <li Class="CombatExtended.CompProperties_ExplosiveCE">
-        <explosionDamage>15</explosionDamage>
-        <explosionDamageDef>Bomb</explosionDamageDef>
-        <explosionRadius>0.5</explosionRadius>
-        <fragments>
-          <Fragment_Large>1</Fragment_Large>
-          <Fragment_Small>3</Fragment_Small>
-        </fragments>
-		<applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
-      </li>
-    </comps>
+	<detonateProjectile>Bullet_20x42mmGrenade_HE</detonateProjectile>
   </ThingDef>  
 
-  <ThingDef Class="CombatExtended.AmmoDef" ParentName="20mmGrenadeBase">
+  <ThingDef Class="CombatExtended.AmmoDef" ParentName="20x42mmGrenadeBase">
     <defName>Ammo_20x42mmGrenade_EMP</defName>
     <label>20mm grenade (EMP)</label>
     <graphicData>
@@ -75,10 +64,12 @@
     </statBases>
     <ammoClass>GrenadeEMP</ammoClass>
     <comps>
-      <li Class="CombatExtended.CompProperties_ExplosiveCE">
-        <explosionDamage>5</explosionDamage>
-        <explosionDamageDef>Bomb</explosionDamageDef>
-        <explosionRadius>0.75</explosionRadius>
+	  <li Class="CombatExtended.CompProperties_ExplosiveCE">
+		<damageAmountBase>5</damageAmountBase>
+		<explosiveDamageType>Bomb</explosiveDamageType>
+		<explosiveRadius>0.75</explosiveRadius>
+	  </li>
+      <li Class="CombatExtended.CompProperties_Fragments">
         <fragments>
           <Fragment_Large>1</Fragment_Large>
         </fragments>
@@ -98,10 +89,12 @@
     </statBases>
     <ammoClass>Smoke</ammoClass>
     <comps>
-      <li Class="CombatExtended.CompProperties_ExplosiveCE">
-        <explosionDamage>5</explosionDamage>
-        <explosionDamageDef>Bomb</explosionDamageDef>
-        <explosionRadius>0.75</explosionRadius>
+	  <li Class="CombatExtended.CompProperties_ExplosiveCE">
+		<damageAmountBase>5</damageAmountBase>
+		<explosiveDamageType>Bomb</explosiveDamageType>
+		<explosiveRadius>0.75</explosiveRadius>
+	  </li>
+      <li Class="CombatExtended.CompProperties_Fragments">
         <fragments>
           <Fragment_Large>1</Fragment_Large>
         </fragments>
@@ -133,12 +126,12 @@
 			<applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
 		</projectile>
 		<comps>
-			<li Class="CombatExtended.CompProperties_ExplosiveCE">
-				<fragments>
-          <Fragment_Large>1</Fragment_Large>
-          <Fragment_Small>3</Fragment_Small>
-				</fragments>
-			</li>
+		  <li Class="CombatExtended.CompProperties_Fragments">
+			<fragments>
+			  <Fragment_Large>1</Fragment_Large>
+			  <Fragment_Small>3</Fragment_Small>
+			</fragments>
+		  </li>
 		</comps>
 	</ThingDef>
 		

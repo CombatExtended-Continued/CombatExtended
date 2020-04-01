@@ -1,0 +1,243 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+	<Operation Class="PatchOperationSequence">
+		<success>Always</success>
+		<operations>
+
+			<li Class="CombatExtended.PatchOperationFindMod">
+				<modName>[RH] Faction: Last Man Contingent</modName>
+			</li>
+
+			<!-- ========== Reduce meals and medicine carried by all pawns ========== -->
+
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/PawnKindDef[@Name="RH_LastManMercs_Base"]/invNutrition</xpath>
+				<value>
+					<invNutrition>1</invNutrition>
+				</value>
+			</li>
+
+			<li Class="PatchOperationRemove">
+				<xpath>Defs/PawnKindDef[@Name="RH_LastManMercs_Base"]/inventoryOptions</xpath>
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/PawnKindDef[
+					defName="RH_LastManMercs_Defector" or
+					defName="RH_LastManMercs_Rogue" or
+					defName="RH_LastManMercs_TankCrewman" or
+					defName="RH_LastManMercs_CQB_TierII" or
+					defName="RH_LastManMercs_Assault" or
+					defName="RH_LastManMercs_Assault_TierII" or
+					defName="RH_LastManMercs_Gunner" or
+					defName="RH_LastManMercs_Grenadier" or
+					defName="RH_LastManMercs_Boss" or
+					defName="RH_LastManMercs_Elite"
+				]/inventoryOptions/subOptionsChooseOne</xpath>
+				<value>
+					<subOptionsChooseOne>
+						<li>
+							<thingDef>RNMedicine_IFAK_Multicam</thingDef>
+							<countRange>
+								<min>0</min>
+								<max>1</max>
+							</countRange>
+						</li>
+						<li>
+							<thingDef>RNMedicine_MedicBag</thingDef>
+							<countRange>
+								<min>0</min>
+								<max>1</max>
+							</countRange>
+						</li>
+					</subOptionsChooseOne>
+				</value>
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/PawnKindDef[
+					defName="RH_LastManMercs_Grunt" or
+					defName="RH_LastManMercs_CQB" or
+					defName="RH_LastManMercs_Marksman" or
+					defName="RH_LastManMercs_Marksman_TierII" or
+					defName="RH_LastManMercs_Sniper"
+				]/inventoryOptions/subOptionsChooseOne</xpath>
+				<value>
+					<subOptionsChooseOne>
+						<li>
+							<thingDef>RNMedicine_IFAK_Multicam</thingDef>
+							<countRange>
+								<min>0</min>
+								<max>1</max>
+							</countRange>
+						</li>
+					</subOptionsChooseOne>
+				</value>
+			</li>
+
+			<!-- ========== Remove smokepop belt ========== -->
+
+			<li Class="PatchOperationRemove">
+				<xpath>Defs/PawnKindDef[
+					defName="RH_LastManMercs_Defector" or
+					defName="RH_LastManMercs_Rogue" or
+					@Name="RH_LMMEliteTierBase" or
+					defName="RH_LastManMercs_Sniper"
+				]/apparelTags/li[.="BeltDefensePop"]</xpath>
+			</li>
+
+			<li Class="PatchOperationRemove">
+				<xpath>Defs/PawnKindDef[
+					defName="RH_LastManMercs_Defector" or
+					defName="RH_LastManMercs_Boss" or
+					defName="RH_LastManMercs_Elite" or
+					defName="RH_LastManMercs_Sniper"
+				]/apparelRequired/li[.="Apparel_SmokepopBelt"]</xpath>
+			</li>
+
+			<!-- ========== LMM faction pawns should spawn backpacks, allowing them to carry their (huge) inventory ========== -->
+
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/PawnKindDef[@Name="RH_LastManMercs_Base"]</xpath>
+				<value>
+					<apparelRequired>
+						<li>Apparel_Backpack</li>
+					</apparelRequired>
+				</value>
+			</li>
+
+			<!-- ========== LMM faction pawns should spawn with ammo appropriate to their primary weapon, as well as a sidearm (and its own ammo) ========== -->
+
+			<!-- No sidearms for Grunts or Tank Crewmen -->
+			<li Class="PatchOperationAddModExtension">
+				<xpath>Defs/PawnKindDef[
+					defName="RH_LastManMercs_TankCrewman" or
+					defName="RH_LastManMercs_Grunt"
+				]</xpath>
+				<value>
+					<li Class="CombatExtended.LoadoutPropertiesExtension">
+						<primaryMagazineCount>
+							<min>6</min>
+							<max>8</max>
+						</primaryMagazineCount>
+					</li>
+				</value>
+			</li>
+
+			<li Class="PatchOperationAddModExtension">
+				<xpath>Defs/PawnKindDef[
+					defName="RH_LastManMercs_Defector" or
+					defName="RH_LastManMercs_Rogue" or
+					defName="RH_LastManMercs_CQB" or
+					defName="RH_LastManMercs_CQB_TierII" or
+					defName="RH_LastManMercs_Assault" or
+					defName="RH_LastManMercs_Assault_TierII" or
+					defName="RH_LastManMercs_Marksman" or
+					defName="RH_LastManMercs_Marksman_TierII" or
+					defName="RH_LastManMercs_Boss" or
+					defName="RH_LastManMercs_Elite" or
+					defName="RH_LastManMercs_Trader" or
+					defName="RH_LastManMercs_Sniper"
+				]</xpath>
+				<value>
+					<li Class="CombatExtended.LoadoutPropertiesExtension">
+						<primaryMagazineCount>
+							<min>6</min>
+							<max>8</max>
+						</primaryMagazineCount>
+						<sidearms>
+							<li>
+								<generateChance>1</generateChance>
+								<magazineCount>
+									<min>2</min>
+									<max>3</max>
+								</magazineCount>	
+								<weaponTags>
+									<li>RN_M9HRT</li>
+									<li>RN_Glock17HRT</li>
+									<li>RN_TEC9</li>
+								</weaponTags>
+							</li>
+						</sidearms>
+					</li>
+				</value>
+			</li>
+
+			<li Class="PatchOperationAddModExtension">
+				<xpath>Defs/PawnKindDef[defName="RH_LastManMercs_Gunner"]</xpath>
+				<value>
+					<li Class="CombatExtended.LoadoutPropertiesExtension">
+						<primaryMagazineCount>
+							<min>3</min>
+							<max>4</max>
+						</primaryMagazineCount>
+						<sidearms>
+							<li>
+								<generateChance>1</generateChance>
+								<magazineCount>
+									<min>2</min>
+									<max>3</max>
+								</magazineCount>	
+								<weaponTags>
+									<li>RN_M9HRT</li>
+									<li>RN_Glock17HRT</li>
+									<li>RN_TEC9</li>
+								</weaponTags>
+							</li>
+						</sidearms>
+					</li>
+				</value>
+			</li>
+
+			<li Class="PatchOperationAddModExtension">
+				<xpath>Defs/PawnKindDef[defName="RH_LastManMercs_Grenadier"]</xpath>
+				<value>
+					<li Class="CombatExtended.LoadoutPropertiesExtension">
+						<primaryMagazineCount>
+							<min>8</min>
+							<max>10</max>
+						</primaryMagazineCount>
+						<sidearms>
+							<li>
+								<generateChance>1</generateChance>
+								<magazineCount>
+									<min>2</min>
+									<max>3</max>
+								</magazineCount>	
+								<weaponTags>
+									<li>RN_M9HRT</li>
+									<li>RN_Glock17HRT</li>
+									<li>RN_TEC9</li>
+								</weaponTags>
+							</li>
+						</sidearms>
+					</li>
+				</value>
+			</li>
+
+			<!-- ========== Tweak minimum weaponMoney for selected pawn types, so that they actually spawn with weapons ========== -->
+
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/PawnKindDef[defName="RH_LastManMercs_Defector"]/weaponMoney/min</xpath>
+				<value>
+					<min>350</min>
+				</value>
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/PawnKindDef[defName="RH_LastManMercs_Marksman_TierII"]/weaponMoney/min</xpath>
+				<value>
+					<min>400</min>
+				</value>
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/PawnKindDef[defName="RH_LastManMercs_Gunner"]/weaponMoney/min</xpath>
+				<value>
+					<min>475</min>
+				</value>
+			</li>
+
+		</operations>
+	</Operation>
+</Patch>

@@ -1,0 +1,427 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+			<li>Glitter Tech</li>
+			<li>Glitter Tech (No Surgery)</li>
+		</mods>
+		<match Class="PatchOperationSequence">
+			<operations>
+
+				<!-- ========== EMRG turret ========== -->
+
+				<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+					<defName>Gun_EMRGTurret</defName>
+					<statBases>
+						<RangedWeapon_Cooldown>0.36</RangedWeapon_Cooldown>
+						<SightsEfficiency>2.24</SightsEfficiency>
+						<ShotSpread>0.05</ShotSpread>
+						<SwayFactor>1.19</SwayFactor>
+						<Bulk>8.94</Bulk>
+					</statBases>
+					<Properties>
+						<recoilAmount>0.2</recoilAmount>
+						<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+						<hasStandardCommand>true</hasStandardCommand>
+						<defaultProjectile>Bullet_12mmRailgun_Sabot</defaultProjectile>
+						<warmupTime>1.3</warmupTime>
+						<range>86</range>
+						<soundCast>EM</soundCast>
+						<soundCastTail>GunTail_Heavy</soundCastTail>
+						<muzzleFlashScale>9</muzzleFlashScale>
+						<requireLineOfSight>false</requireLineOfSight>
+						<targetParams>
+							<canTargetLocations>true</canTargetLocations>
+						</targetParams>
+						<recoilPattern>Mounted</recoilPattern>
+					</Properties>
+					<AmmoUser>
+						<magazineSize>200</magazineSize>
+						<reloadTime>4</reloadTime>
+						<ammoSet>AmmoSet_12mmRailgun</ammoSet>
+					</AmmoUser>
+					<FireModes>
+						<aiUseBurstMode>FALSE</aiUseBurstMode>
+						<aiAimMode>AimedShot</aiAimMode>
+						<noSnapshot>true</noSnapshot>
+					</FireModes>
+					<weaponTags>
+						<li>TurretGun</li>
+					</weaponTags>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="EMTurret"]/building/turretBurstCooldownTime</xpath>
+					<value>
+						<turretBurstCooldownTime>2.5</turretBurstCooldownTime>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="EMTurret"]/statBases/WorkToBuild</xpath>
+					<value>
+						<WorkToBuild>83500</WorkToBuild>
+					</value>
+				</li>
+
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="EMTurret"]/statBases</xpath>
+					<value>
+						<Bulk>15</Bulk>
+					</value>
+				</li>
+
+				<!-- ========== Cannister turret ========== -->
+
+				<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+					<defName>Gun_CannisterTurret</defName>
+					<statBases>
+						<RangedWeapon_Cooldown>0.35</RangedWeapon_Cooldown>
+						<SightsEfficiency>1.00</SightsEfficiency>
+						<ShotSpread>0.14</ShotSpread>
+						<SwayFactor>2.02</SwayFactor>
+						<Bulk>10.66</Bulk>
+					</statBases>
+					<Properties>
+						<recoilAmount>0.34</recoilAmount>
+						<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+						<hasStandardCommand>true</hasStandardCommand>
+						<defaultProjectile>Bullet_12Gauge_Buck</defaultProjectile>
+						<warmupTime>0.6</warmupTime>
+						<range>20</range>
+						<ticksBetweenBurstShots>3</ticksBetweenBurstShots>
+						<burstShotCount>6</burstShotCount>
+						<soundCast>Shot_IncendiaryLauncher</soundCast>
+						<soundCastTail>GunTail_Medium</soundCastTail>
+						<muzzleFlashScale>12</muzzleFlashScale>
+						<requireLineOfSight>false</requireLineOfSight>
+						<targetParams>
+							<canTargetLocations>true</canTargetLocations>
+						</targetParams>
+						<recoilPattern>Mounted</recoilPattern>
+					</Properties>
+					<AmmoUser>
+						<magazineSize>100</magazineSize>
+						<reloadTime>4.9</reloadTime>
+						<ammoSet>AmmoSet_12Gauge</ammoSet>
+					</AmmoUser>
+					<FireModes>
+						<aiUseBurstMode>TRUE</aiUseBurstMode>
+						<aiAimMode>AimedShot</aiAimMode>
+						<aimedBurstShotCount>6</aimedBurstShotCount>
+						<noSnapshot>true</noSnapshot>
+						<noSingleShot>true</noSingleShot>
+					</FireModes>
+					<weaponTags>
+						<li>TurretGun</li>
+					</weaponTags>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="CannisterTurret"]/building/turretBurstCooldownTime</xpath>
+					<value>
+						<turretBurstCooldownTime>1.1</turretBurstCooldownTime>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="CannisterTurret"]/statBases/WorkToBuild</xpath>
+					<value>
+						<WorkToBuild>89500</WorkToBuild>
+					</value>
+				</li>
+
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="CannisterTurret"]/statBases</xpath>
+					<value>
+						<Bulk>20</Bulk>
+					</value>
+				</li>
+
+				<!-- ========== Automatic mortar ========== -->
+
+				<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+					<defName>Artillery_AutoMortar</defName>
+					<statBases>
+						<RangedWeapon_Cooldown>0.36</RangedWeapon_Cooldown>
+						<SightsEfficiency>1</SightsEfficiency>
+						<ShotSpread>0.09</ShotSpread>
+						<SwayFactor>0.1</SwayFactor>
+						<Bulk>12.9</Bulk>
+					</statBases>
+					<Properties>
+						<verbClass>CombatExtended.Verb_ShootMortarCE</verbClass>
+						<forceNormalTimeSpeed>false</forceNormalTimeSpeed>
+						<hasStandardCommand>true</hasStandardCommand>
+						<defaultProjectile>Bullet_81mmMortarShell_HE</defaultProjectile>
+						<warmupTime>1.2</warmupTime>
+						<minRange>30</minRange>
+						<range>500</range>
+						<burstShotCount>1</burstShotCount>
+						<soundCast>Mortar_LaunchA</soundCast>
+						<muzzleFlashScale>16</muzzleFlashScale>
+						<requireLineOfSight>false</requireLineOfSight>
+						<targetParams>
+							<canTargetLocations>true</canTargetLocations>
+						</targetParams>
+						<recoilPattern>Mounted</recoilPattern>
+					</Properties>
+					<AmmoUser>
+						<magazineSize>25</magazineSize>
+						<reloadTime>5</reloadTime>
+						<ammoSet>AmmoSet_81mmMortarShell_GlitterTechAutoMortar</ammoSet>
+					</AmmoUser>
+					<FireModes>
+						<aiUseBurstMode>FALSE</aiUseBurstMode>
+						<aiAimMode>AimedShot</aiAimMode>
+					</FireModes>
+				</li>
+
+				<!-- ========== Automatic cluster mortar ========== -->
+
+				<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+					<defName>Artillery_ClusterMortar</defName>
+					<statBases>
+						<RangedWeapon_Cooldown>0.36</RangedWeapon_Cooldown>
+						<SightsEfficiency>1</SightsEfficiency>
+						<ShotSpread>0.09</ShotSpread>
+						<SwayFactor>0.1</SwayFactor>
+						<Bulk>12.9</Bulk>
+					</statBases>
+					<Properties>
+						<verbClass>CombatExtended.Verb_ShootMortarCE</verbClass>
+						<forceNormalTimeSpeed>false</forceNormalTimeSpeed>
+						<hasStandardCommand>true</hasStandardCommand>
+						<defaultProjectile>Bullet_81mmMortarShell_HE</defaultProjectile>
+						<warmupTime>1.2</warmupTime>
+						<minRange>30</minRange>
+						<range>500</range>
+						<burstShotCount>5</burstShotCount>
+						<soundCast>Mortar_LaunchA</soundCast>
+						<muzzleFlashScale>16</muzzleFlashScale>
+						<requireLineOfSight>false</requireLineOfSight>
+						<targetParams>
+							<canTargetLocations>true</canTargetLocations>
+						</targetParams>
+						<recoilPattern>Mounted</recoilPattern>
+					</Properties>
+					<AmmoUser>
+						<magazineSize>25</magazineSize>
+						<reloadTime>5</reloadTime>
+						<ammoSet>AmmoSet_81mmMortarShell_GlitterTechClusterMortar</ammoSet>
+					</AmmoUser>
+					<FireModes>
+						<aiUseBurstMode>FALSE</aiUseBurstMode>
+						<aiAimMode>AimedShot</aiAimMode>
+						<noSingleShot>true</noSingleShot>
+					</FireModes>
+				</li>
+
+				<!-- ========== Automatic EMP mortar ========== -->
+
+				<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+					<defName>Artillery_EMPAMortar</defName>
+					<statBases>
+						<RangedWeapon_Cooldown>0.36</RangedWeapon_Cooldown>
+						<SightsEfficiency>1</SightsEfficiency>
+						<ShotSpread>0.09</ShotSpread>
+						<SwayFactor>0.1</SwayFactor>
+						<Bulk>12.9</Bulk>
+					</statBases>
+					<Properties>
+						<verbClass>CombatExtended.Verb_ShootMortarCE</verbClass>
+						<forceNormalTimeSpeed>false</forceNormalTimeSpeed>
+						<hasStandardCommand>true</hasStandardCommand>
+						<defaultProjectile>Bullet_81mmMortarShell_EMP</defaultProjectile>
+						<warmupTime>1.2</warmupTime>
+						<minRange>30</minRange>
+						<range>500</range>
+						<burstShotCount>5</burstShotCount>
+						<soundCast>Mortar_LaunchA</soundCast>
+						<muzzleFlashScale>16</muzzleFlashScale>
+						<requireLineOfSight>false</requireLineOfSight>
+						<targetParams>
+							<canTargetLocations>true</canTargetLocations>
+						</targetParams>
+						<recoilPattern>Mounted</recoilPattern>
+					</Properties>
+					<AmmoUser>
+						<magazineSize>25</magazineSize>
+						<reloadTime>5</reloadTime>
+						<ammoSet>AmmoSet_81mmMortarShell_GlitterTechEMPAMortar</ammoSet>
+					</AmmoUser>
+					<FireModes>
+						<aiUseBurstMode>FALSE</aiUseBurstMode>
+						<aiAimMode>AimedShot</aiAimMode>
+						<noSingleShot>true</noSingleShot>
+					</FireModes>
+				</li>
+
+				<!-- ========== Long range missile turret ========== -->
+
+				<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+					<defName>Artillery_MissileTurret</defName>
+					<statBases>
+						<RangedWeapon_Cooldown>0.36</RangedWeapon_Cooldown>
+						<SightsEfficiency>1</SightsEfficiency>
+						<ShotSpread>0.09</ShotSpread>
+						<SwayFactor>0.1</SwayFactor>
+						<Bulk>12.9</Bulk>
+					</statBases>
+					<Properties>
+						<verbClass>CombatExtended.Verb_ShootMortarCE</verbClass>
+						<forceNormalTimeSpeed>false</forceNormalTimeSpeed>
+						<hasStandardCommand>true</hasStandardCommand>
+						<defaultProjectile>Bullet_70mmAPKWS_HEAT</defaultProjectile>
+						<warmupTime>1.2</warmupTime>
+						<minRange>30</minRange>
+						<range>500</range>
+						<burstShotCount>25</burstShotCount>
+						<soundCast>Missile_small</soundCast>
+						<muzzleFlashScale>16</muzzleFlashScale>
+						<requireLineOfSight>false</requireLineOfSight>
+						<targetParams>
+							<canTargetLocations>true</canTargetLocations>
+						</targetParams>
+						<recoilPattern>Mounted</recoilPattern>
+					</Properties>
+					<AmmoUser>
+						<magazineSize>25</magazineSize>
+						<reloadTime>5</reloadTime>
+						<ammoSet>AmmoSet_70mmAPKWS</ammoSet>
+					</AmmoUser>
+					<FireModes>
+						<aiUseBurstMode>FALSE</aiUseBurstMode>
+						<aiAimMode>AimedShot</aiAimMode>
+						<noSnapshot>true</noSnapshot>
+						<noSingleShot>true</noSingleShot>
+					</FireModes>
+				</li>
+
+				<!-- ========== Cruise missile turret ========== -->
+
+				<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+					<defName>Artillery_CMissileTurret</defName>
+					<statBases>
+						<RangedWeapon_Cooldown>0.36</RangedWeapon_Cooldown>
+						<SightsEfficiency>1</SightsEfficiency>
+						<ShotSpread>0.09</ShotSpread>
+						<SwayFactor>0.1</SwayFactor>
+						<Bulk>12.9</Bulk>
+					</statBases>
+					<Properties>
+						<verbClass>CombatExtended.Verb_ShootMortarCE</verbClass>
+						<forceNormalTimeSpeed>false</forceNormalTimeSpeed>
+						<hasStandardCommand>true</hasStandardCommand>
+						<defaultProjectile>Bullet_TomahawkLAM</defaultProjectile>
+						<warmupTime>1.2</warmupTime>
+						<minRange>30</minRange>
+						<range>500</range>
+						<burstShotCount>1</burstShotCount>
+						<soundCast>Missile_large</soundCast>
+						<muzzleFlashScale>16</muzzleFlashScale>
+						<requireLineOfSight>false</requireLineOfSight>
+						<targetParams>
+							<canTargetLocations>true</canTargetLocations>
+						</targetParams>
+						<recoilPattern>Mounted</recoilPattern>
+					</Properties>
+					<AmmoUser>
+						<magazineSize>1</magazineSize>
+						<reloadTime>5</reloadTime>
+						<ammoSet>AmmoSet_TomahawkLAM</ammoSet>
+					</AmmoUser>
+					<FireModes>
+						<aiUseBurstMode>FALSE</aiUseBurstMode>
+						<aiAimMode>AimedShot</aiAimMode>
+						<noSnapshot>true</noSnapshot>
+					</FireModes>
+				</li>
+
+				<li Class="PatchOperationRemove">
+					<xpath>Defs/ThingDef[defName="CMissileTurret"]/thingClass</xpath>
+					<!-- Fixes bug in GT preventing CE patching -->
+				</li>
+
+				<!-- ========== Shared settings for direct-fire turrets ========== -->
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[
+					defName="EMTurret" or
+					defName="CannisterTurret"
+				]/thingClass</xpath>
+					<value>
+						<thingClass>CombatExtended.Building_TurretGunCE</thingClass>
+					</value>
+				</li>
+
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[
+					defName="EMTurret" or
+					defName="CannisterTurret"
+				]/statBases</xpath>
+					<value>
+						<AimingAccuracy>1.0</AimingAccuracy>
+						<ShootingAccuracyTurret>1.0</ShootingAccuracyTurret>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[
+					defName="EMTurret" or
+					defName="CannisterTurret"
+				]/fillPercent</xpath>
+					<value>
+						<fillPercent>0.85</fillPercent>
+						<!-- Allows turrets to be fired from behind CE embrasures -->
+					</value>
+				</li>
+
+				<!-- ========== Shared settings for mortar and missile Turrets ========== -->
+
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[@Name="BaseArtilleryWeapon_GT"]/comps</xpath>
+					<value>
+						<li Class="CombatExtended.CompProperties_Charges">
+							<chargeSpeeds>
+								<li>30</li>
+								<li>50</li>
+								<li>70</li>
+								<li>90</li>
+							</chargeSpeeds>
+						</li>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[@Name="BaseArtilleryBuilding_GT"
+				]/thingClass</xpath>
+					<value>
+						<thingClass>CombatExtended.Building_TurretGunCE</thingClass>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[
+						@Name = "BaseArtilleryBuilding_GT" or
+						defName = "MissileTurret" or
+						defName = "CMissileTurret"
+					]/statBases/WorkToBuild</xpath>
+					<value>
+						<WorkToBuild>58500</WorkToBuild>
+					</value>
+				</li>
+
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[@Name = "BaseArtilleryBuilding_GT"]/statBases</xpath>
+					<value>
+						<ShootingAccuracyTurret>0.875</ShootingAccuracyTurret>
+						<AimingAccuracy>1</AimingAccuracy>
+						<Bulk>25</Bulk>
+					</value>
+				</li>
+
+			</operations>
+		</match>
+	</Operation>
+</Patch>

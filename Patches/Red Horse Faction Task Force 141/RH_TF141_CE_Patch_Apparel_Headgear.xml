@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+	<Operation Class="PatchOperationSequence">
+		<success>Always</success>
+		<operations>
+
+			<li Class="CombatExtended.PatchOperationFindMod">
+				<modName>[RH] Faction: Task Force 141</modName>
+			</li>
+
+			<!-- ========== Boonie Hat DCU ========== -->
+
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName="RNApparel_DCUBoonie"]/statBases</xpath>
+				<value>
+					<Bulk>1</Bulk>
+					<WornBulk>1</WornBulk>
+				</value>
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="RNApparel_DCUBoonie"]/statBases/StuffEffectMultiplierArmor</xpath>
+				<value>
+					<!-- Equivalent to vanilla fabric hats -->
+					<StuffEffectMultiplierArmor>2</StuffEffectMultiplierArmor>
+				</value>
+			</li>
+
+			<!-- ========== Balaclava Ghost ========== -->
+
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName="RNApparel_Balaclava_Ghost"]/statBases</xpath>
+				<value>
+					<Bulk>1</Bulk>
+					<WornBulk>1</WornBulk>
+				</value>
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="RNApparel_Balaclava_Ghost"]/statBases/StuffEffectMultiplierArmor</xpath>
+				<value>
+					<!-- Equivalent to vanilla tuque -->
+					<StuffEffectMultiplierArmor>2</StuffEffectMultiplierArmor>
+				</value>
+			</li>
+
+		</operations>
+	</Operation>
+</Patch>

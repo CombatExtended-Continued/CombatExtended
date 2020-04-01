@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+	<Operation Class="PatchOperationSequence">
+		<success>Always</success>
+		<operations>
+
+			<li Class="CombatExtended.PatchOperationFindMod">
+				<modName>[RH] Faction: Umbra Company</modName>
+			</li>
+			
+			<!-- ========== Combat Uniform Black ========== -->
+
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName="RNApparel_combats_Black"]/statBases</xpath>
+				<value>
+					<Bulk>8</Bulk>
+					<WornBulk>5</WornBulk>
+					<ArmorRating_Sharp>0.05</ArmorRating_Sharp>
+					<ArmorRating_Blunt>0.075</ArmorRating_Blunt>
+				</value>
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="RNApparel_combats_Black"]/statBases/StuffEffectMultiplierArmor</xpath>
+				<value>
+					<!-- Slightly tougher than vanilla pants, T-shirt and button-down shirt -->
+					<StuffEffectMultiplierArmor>2</StuffEffectMultiplierArmor>
+				</value>
+			</li>
+			
+			<!-- ========== Combat Smock Black ========== -->
+
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName="RNApparel_combats_SmockBlack"]/statBases</xpath>
+				<value>
+					<Bulk>8</Bulk>
+					<WornBulk>6</WornBulk>
+					<ArmorRating_Sharp>0.3</ArmorRating_Sharp>
+					<ArmorRating_Blunt>0.075</ArmorRating_Blunt>
+				</value>
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="RNApparel_combats_SmockBlack"]/statBases/StuffEffectMultiplierArmor</xpath>
+				<value>
+					<StuffEffectMultiplierArmor>5</StuffEffectMultiplierArmor>
+				</value>
+			</li>
+			
+		</operations>
+	</Operation>
+</Patch>

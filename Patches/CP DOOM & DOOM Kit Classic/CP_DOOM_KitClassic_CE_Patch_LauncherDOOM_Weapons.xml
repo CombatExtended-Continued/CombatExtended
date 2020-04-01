@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+	<Operation Class="PatchOperationSequence">
+		<success>Always</success>
+		<operations>
+
+			<li Class="CombatExtended.PatchOperationFindMod">
+				<modName>[CP] The DOOM Kit - Classic</modName>
+			</li>
+
+			<!-- ========== BFG 9000 (DOOM) ========== -->
+
+			<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+				<defName>RHEx_DOOMClassic_BFG9000Gun</defName>
+				<statBases>
+					<Mass>10.00</Mass>
+					<RangedWeapon_Cooldown>0.35</RangedWeapon_Cooldown>
+					<SightsEfficiency>1.00</SightsEfficiency>
+					<ShotSpread>0.01</ShotSpread>
+					<SwayFactor>0.88</SwayFactor>
+					<Bulk>13.00</Bulk>
+				</statBases>
+				<Properties>
+					<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+					<hasStandardCommand>true</hasStandardCommand>
+					<defaultProjectile>Bullet_DoomClassicBfg9000Gun</defaultProjectile>
+					<warmupTime>1.3</warmupTime>
+					<ammoConsumedPerShotCount>40</ammoConsumedPerShotCount>
+					<ai_AvoidFriendlyFireRadius>5</ai_AvoidFriendlyFireRadius>
+					<range>62</range>
+					<soundCast>RHShot_DOOMClassicBFG</soundCast>
+					<soundCastTail>GunTail_Heavy</soundCastTail>
+					<onlyManualCast>true</onlyManualCast>
+					<muzzleFlashScale>20</muzzleFlashScale>
+					<stopBurstWithoutLos>false</stopBurstWithoutLos>
+					<targetParams>
+						<canTargetLocations>true</canTargetLocations>
+					</targetParams>
+				</Properties>
+
+				<AmmoUser>
+					<magazineSize>40</magazineSize>
+					<reloadTime>4.9</reloadTime>
+					<ammoSet>AmmoSet_DoomClassicBfg9000Gun</ammoSet>
+				</AmmoUser>
+
+				<FireModes>
+					<aiAimMode>AimedShot</aiAimMode>
+				</FireModes>
+			</li>
+		
+			<!-- ========== Rocket Launcher (DOOM) ========== -->
+
+			<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+				<defName>RHEx_DOOMClassic_RocketLauncher</defName>
+				<statBases>
+					<Mass>8.00</Mass>
+					<RangedWeapon_Cooldown>1.50</RangedWeapon_Cooldown>
+					<SightsEfficiency>1.00</SightsEfficiency>
+					<ShotSpread>0.2</ShotSpread>
+					<SwayFactor>1.82</SwayFactor>
+					<Bulk>11.20</Bulk>
+				</statBases>
+				<Properties>
+					<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+					<hasStandardCommand>true</hasStandardCommand>
+					<defaultProjectile>Bullet_DoomClassicRocket_HEAT</defaultProjectile>
+					<warmupTime>1.9</warmupTime>
+					<ai_AvoidFriendlyFireRadius>5</ai_AvoidFriendlyFireRadius>
+					<range>40</range>
+					<soundCast>RHShot_DOOMClassicRocketLauncher</soundCast>
+					<soundCastTail>GunTail_Heavy</soundCastTail>
+					<onlyManualCast>true</onlyManualCast>
+					<stopBurstWithoutLos>false</stopBurstWithoutLos>
+					<muzzleFlashScale>15</muzzleFlashScale>
+					<targetParams>
+						<canTargetLocations>true</canTargetLocations>
+					</targetParams>
+				</Properties>
+
+				<AmmoUser>
+					<magazineSize>1</magazineSize>
+					<reloadTime>5.1</reloadTime>
+					<ammoSet>AmmoSet_DoomClassicRocket</ammoSet>
+				</AmmoUser>
+
+				<FireModes>
+					<aiAimMode>AimedShot</aiAimMode>
+				</FireModes>
+
+			</li>
+
+			<!-- == Shared patches for firearm melee tools == -->
+
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[
+					defName="RHEx_DOOMClassic_BFG9000Gun" or
+					defName="RHEx_DOOMClassic_RocketLauncher"
+				]/tools</xpath>
+				<value>
+					<tools>
+						<li Class="CombatExtended.ToolCE">
+							<label>barrel</label>
+							<capacities>
+								<li>Blunt</li>
+							</capacities>
+							<power>10</power>
+							<cooldownTime>2.44</cooldownTime>
+							<armorPenetrationBlunt>3.5</armorPenetrationBlunt>
+							<linkedBodyPartsGroup>Barrel</linkedBodyPartsGroup>
+						</li>
+					</tools>
+				</value>
+			</li>
+
+		</operations>
+	</Operation>
+</Patch>

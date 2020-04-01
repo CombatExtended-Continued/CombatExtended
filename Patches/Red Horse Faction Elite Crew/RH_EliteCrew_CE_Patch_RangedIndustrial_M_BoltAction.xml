@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+	<Operation Class="PatchOperationSequence">
+		<success>Always</success>
+		<operations>
+
+			<li Class="CombatExtended.PatchOperationFindMod">
+				<modName>[RH] Faction: Elite Crew</modName>
+			</li>
+
+			<!-- ========== Accuracy International AW50 ========== -->
+
+			<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+				<defName>RNGun_AW50Sn</defName>
+				<statBases>
+					<Mass>13.50</Mass>
+					<RangedWeapon_Cooldown>1.38</RangedWeapon_Cooldown>
+					<SightsEfficiency>2.72</SightsEfficiency>
+					<ShotSpread>0.03</ShotSpread>
+					<SwayFactor>2.02</SwayFactor>
+					<Bulk>15.20</Bulk>
+					<WorkToMake>36500</WorkToMake>
+				</statBases>
+				<costList>
+					<Chemfuel>20</Chemfuel>
+					<Steel>95</Steel>
+					<ComponentIndustrial>5</ComponentIndustrial>
+				</costList>
+				<Properties>
+					<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+					<hasStandardCommand>true</hasStandardCommand>
+					<defaultProjectile>Bullet_50BMG_FMJ</defaultProjectile>
+					<warmupTime>3.4</warmupTime>
+					<range>112</range>
+					<soundCast>RNShot_AWP</soundCast>
+					<soundCastTail>GunTail_Heavy</soundCastTail>
+					<muzzleFlashScale>9</muzzleFlashScale>
+				</Properties>
+
+				<AmmoUser>
+					<magazineSize>5</magazineSize>
+					<reloadTime>4</reloadTime>
+					<ammoSet>AmmoSet_50BMG</ammoSet>
+				</AmmoUser>
+
+				<FireModes>
+					<aiUseBurstMode>FALSE</aiUseBurstMode>
+					<aiAimMode>AimedShot</aiAimMode>
+				</FireModes>
+
+				<!-- No additional CE weaponTags needed -->
+				<AllowWithRunAndGun>false</AllowWithRunAndGun>
+			</li>
+
+			<!-- ========== L96A1 ========== -->
+
+			<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+				<defName>RNGun_L96A1Sn</defName>
+				<statBases>
+					<Mass>6.50</Mass>
+					<RangedWeapon_Cooldown>1.36</RangedWeapon_Cooldown>
+					<SightsEfficiency>2.36</SightsEfficiency>
+					<ShotSpread>0.04</ShotSpread>
+					<SwayFactor>1.32</SwayFactor>
+					<Bulk>12.80</Bulk>
+					<WorkToMake>26500</WorkToMake>
+				</statBases>
+				<costList>
+					<Chemfuel>15</Chemfuel>
+					<Steel>65</Steel>
+					<ComponentIndustrial>4</ComponentIndustrial>
+				</costList>
+				<Properties>
+					<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+					<hasStandardCommand>true</hasStandardCommand>
+					<defaultProjectile>Bullet_762x51mmNATO_FMJ</defaultProjectile>
+					<warmupTime>1.6</warmupTime>
+					<range>75</range>
+					<soundCast>RNShot_L96A1Sn</soundCast>
+					<soundCastTail>GunTail_Heavy</soundCastTail>
+					<muzzleFlashScale>9</muzzleFlashScale>
+				</Properties>
+
+				<AmmoUser>
+					<magazineSize>10</magazineSize>
+					<reloadTime>4</reloadTime>
+					<ammoSet>AmmoSet_762x51mmNATO</ammoSet>
+				</AmmoUser>
+
+				<FireModes>
+					<aiUseBurstMode>FALSE</aiUseBurstMode>
+					<aiAimMode>AimedShot</aiAimMode>
+				</FireModes>
+
+				<weaponTags>
+					<li>CE_AI_Rifle</li>
+				</weaponTags>
+
+				<AllowWithRunAndGun>false</AllowWithRunAndGun>
+			</li>
+
+			<!-- == Shared patches for firearm melee tools == -->
+
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[
+					defName="RNGun_AW50Sn" or
+					defName="RNGun_L96A1Sn"
+				]/tools</xpath>
+				<value>
+					<tools>
+						<li Class="CombatExtended.ToolCE">
+							<label>stock</label>
+							<capacities>
+								<li>Blunt</li>
+							</capacities>
+							<power>8</power>
+							<cooldownTime>1.55</cooldownTime>
+							<chanceFactor>1.5</chanceFactor>
+							<armorPenetrationBlunt>2.755</armorPenetrationBlunt>
+							<linkedBodyPartsGroup>Stock</linkedBodyPartsGroup>
+						</li>
+						<li Class="CombatExtended.ToolCE">
+							<label>barrel</label>
+							<capacities>
+								<li>Blunt</li>
+							</capacities>
+							<power>5</power>
+							<cooldownTime>2.02</cooldownTime>
+							<armorPenetrationBlunt>1.630</armorPenetrationBlunt>
+							<linkedBodyPartsGroup>Barrel</linkedBodyPartsGroup>
+						</li>
+						<li Class="CombatExtended.ToolCE">
+							<label>muzzle</label>
+							<capacities>
+								<li>Poke</li>
+							</capacities>
+							<power>8</power>
+							<cooldownTime>1.55</cooldownTime>
+							<armorPenetrationBlunt>2.755</armorPenetrationBlunt>
+							<linkedBodyPartsGroup>Muzzle</linkedBodyPartsGroup>
+						</li>
+					</tools>
+				</value>
+			</li>
+
+		</operations>
+	</Operation>
+</Patch>

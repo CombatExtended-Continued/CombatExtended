@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+	<Operation Class="PatchOperationSequence">
+		<success>Always</success>
+		<operations>
+
+			<li Class="CombatExtended.PatchOperationFindMod">
+				<modName>[RH] Faction: Militaires Sans Frontieres</modName>
+			</li>
+
+			<!-- ========== Parka M65 MSF ========== -->
+
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName="RNApparel_Parka_M65MSF"]/statBases</xpath>
+				<value>
+					<Bulk>10</Bulk>
+					<WornBulk>5</WornBulk>
+				</value>
+			</li>
+
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName="RNApparel_Parka_M65MSF"]/equippedStatOffsets</xpath>
+				<value>
+					<CarryBulk>10</CarryBulk>
+					<!-- Integrated ALICE harness -->
+				</value>
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="RNApparel_Parka_M65MSF"]/statBases/StuffEffectMultiplierArmor</xpath>
+				<value>
+					<StuffEffectMultiplierArmor>10</StuffEffectMultiplierArmor>
+				</value>
+			</li>
+
+		</operations>
+	</Operation>
+</Patch>

@@ -16,13 +16,13 @@
     <ammoTypes>
       <Ammo_25x40mmGrenade_HE>Bullet_25x40mmGrenade_HE</Ammo_25x40mmGrenade_HE>
       <Ammo_25x40mmGrenade_EMP>Bullet_25x40mmGrenade_EMP</Ammo_25x40mmGrenade_EMP>
-			<Ammo_25x40mmGrenade_Smoke>Bullet_25x40mmGrenade_Smoke</Ammo_25x40mmGrenade_Smoke>	      
+	<Ammo_25x40mmGrenade_Smoke>Bullet_25x40mmGrenade_Smoke</Ammo_25x40mmGrenade_Smoke>	      
     </ammoTypes>
   </CombatExtended.AmmoSetDef>
 
   <!-- ==================== Ammo ========================== -->
 
-  <ThingDef Class="CombatExtended.AmmoDef" Name="25mmGrenadeBase" ParentName="AmmoBase" Abstract="True">
+  <ThingDef Class="CombatExtended.AmmoDef" Name="25x40mmGrenadeBase" ParentName="AmmoBase" Abstract="True">
     <description>Specialized grenade developed for use in shoulder-fired grenade launchers.</description>
     <statBases>
       <Mass>0.144</Mass>
@@ -39,7 +39,7 @@
     <stackLimit>3000</stackLimit>	  
   </ThingDef>
 
-  <ThingDef Class="CombatExtended.AmmoDef" ParentName="25mmGrenadeBase">
+  <ThingDef Class="CombatExtended.AmmoDef" ParentName="25x40mmGrenadeBase">
     <defName>Ammo_25x40mmGrenade_HE</defName>
     <label>25mm grenade (HE)</label>
     <graphicData>
@@ -50,21 +50,10 @@
       <MarketValue>1.81</MarketValue>
     </statBases>
     <ammoClass>GrenadeHE</ammoClass>
-    <comps>
-      <li Class="CombatExtended.CompProperties_ExplosiveCE">
-        <explosionDamage>17</explosionDamage>
-        <explosionDamageDef>Bomb</explosionDamageDef>
-        <explosionRadius>1</explosionRadius>
-        <fragments>
-          <Fragment_Large>1</Fragment_Large>
-          <Fragment_Small>3</Fragment_Small>
-        </fragments>
-        <applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
-      </li>
-    </comps>
+	<detonateProjectile>Bullet_25x40mmGrenade_HE</detonateProjectile>
   </ThingDef>
 
-  <ThingDef Class="CombatExtended.AmmoDef" ParentName="25mmGrenadeBase">
+  <ThingDef Class="CombatExtended.AmmoDef" ParentName="25x40mmGrenadeBase">
     <defName>Ammo_25x40mmGrenade_EMP</defName>
     <label>25mm grenade (EMP)</label>
     <graphicData>
@@ -77,13 +66,15 @@
     <ammoClass>GrenadeEMP</ammoClass>
     <comps>
       <li Class="CombatExtended.CompProperties_ExplosiveCE">
-        <explosionDamage>5</explosionDamage>
-        <explosionDamageDef>Bomb</explosionDamageDef>
-        <explosionRadius>0.75</explosionRadius>
-        <fragments>
-          <Fragment_Large>1</Fragment_Large>
-        </fragments>
+		<damageAmountBase>5</damageAmountBase>
+		<explosiveDamageType>Bomb</explosiveDamageType>
+		<explosiveRadius>0.75</explosiveRadius>
       </li>
+	  <li Class="CombatExtended.CompProperties_Fragments">
+		<fragments>
+		  <Fragment_Large>1</Fragment_Large>
+		</fragments>
+	  </li>
     </comps>
   </ThingDef>
 
@@ -100,13 +91,15 @@
     <ammoClass>Smoke</ammoClass>
     <comps>
       <li Class="CombatExtended.CompProperties_ExplosiveCE">
-        <explosionDamage>5</explosionDamage>
-        <explosionDamageDef>Bomb</explosionDamageDef>
-        <explosionRadius>0.75</explosionRadius>
-        <fragments>
-          <Fragment_Large>1</Fragment_Large>
-        </fragments>
+		<damageAmountBase>5</damageAmountBase>
+		<explosiveDamageType>Bomb</explosiveDamageType>
+		<explosiveRadius>0.75</explosiveRadius>
       </li>
+	  <li Class="CombatExtended.CompProperties_Fragments">
+		<fragments>
+		  <Fragment_Large>1</Fragment_Large>
+		</fragments>
+	  </li>
     </comps>
   </ThingDef>
 
@@ -134,7 +127,7 @@
       <applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
     </projectile>
     <comps>
-      <li Class="CombatExtended.CompProperties_ExplosiveCE">
+      <li Class="CombatExtended.CompProperties_Fragments">
         <fragments>
           <Fragment_Large>1</Fragment_Large>
           <Fragment_Small>3</Fragment_Small>

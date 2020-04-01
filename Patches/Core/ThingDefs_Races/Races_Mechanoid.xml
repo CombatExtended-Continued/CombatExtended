@@ -10,6 +10,13 @@
 		</value>
 	</Operation>
 
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[@Name="BaseMechanoid"]/statBases/ArmorRating_Heat</xpath>
+		<value>
+      		<ArmorRating_Heat>0.00</ArmorRating_Heat>
+		</value>
+	</Operation>
+
 	<Operation Class="PatchOperationSequence">
 		<success>Always</success>
 		<operations>
@@ -83,6 +90,13 @@
 	</Operation>
 
 	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Mech_Centipede"]/race/baseBodySize</xpath>
+		<value>
+			<baseBodySize>2.0</baseBodySize>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
 		<xpath>Defs/ThingDef[defName="Mech_Centipede"]/tools</xpath>
 		<value>
 			<tools>
@@ -114,7 +128,7 @@
 	</Operation>
 
 	<Operation Class="PatchOperationAdd">
-		<xpath>Defs/ThingDef[defName="Mech_Scyther" or defName="Mech_Lancer"]/statBases</xpath>
+		<xpath>Defs/ThingDef[@Name="BaseMechanoidWalker"]/statBases</xpath>
 		<value>
 			<CarryWeight>50</CarryWeight>
 			<CarryBulk>20</CarryBulk>
@@ -128,14 +142,14 @@
 	</Operation>
 
 	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/ThingDef[defName="Mech_Scyther" or defName="Mech_Lancer"]/statBases/ArmorRating_Blunt</xpath>
+		<xpath>Defs/ThingDef[@Name="BaseMechanoidWalker"]/statBases/ArmorRating_Blunt</xpath>
 		<value>
 			<ArmorRating_Blunt>6</ArmorRating_Blunt>
 		</value>
 	</Operation>
 
 	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/ThingDef[defName="Mech_Scyther" or defName="Mech_Lancer"]/statBases/ArmorRating_Sharp</xpath>
+		<xpath>Defs/ThingDef[@Name="BaseMechanoidWalker"]/statBases/ArmorRating_Sharp</xpath>
 		<value>
 			<ArmorRating_Sharp>4</ArmorRating_Sharp>
 		</value>
@@ -248,6 +262,54 @@
 					<chanceFactor>0.2</chanceFactor>
 					<armorPenetrationSharp>0</armorPenetrationSharp>
 					<armorPenetrationBlunt>0.625</armorPenetrationBlunt>
+				</li>
+			</tools>
+		</value>
+	</Operation>
+
+	<!-- ========== Pikeman ========== -->
+
+	<Operation Class="PatchOperationAddModExtension">
+		<xpath>Defs/ThingDef[defName="Mech_Pikeman"]</xpath>
+		<value>
+			<li Class="CombatExtended.RacePropertiesExtensionCE">
+				<bodyShape>Quadruped</bodyShape>
+			</li>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="Mech_Pikeman"]/statBases</xpath>
+		<value>
+			<ArmorRating_Sharp>7</ArmorRating_Sharp>
+			<ArmorRating_Blunt>15</ArmorRating_Blunt>			
+			<CarryWeight>200</CarryWeight>
+			<CarryBulk>80</CarryBulk>
+			<AimingAccuracy>1.0</AimingAccuracy>
+			<ShootingAccuracyPawn>1</ShootingAccuracyPawn>
+			<MeleeDodgeChance>0.00</MeleeDodgeChance>
+			<MeleeCritChance>0.15</MeleeCritChance>
+			<MeleeParryChance>0.41</MeleeParryChance>
+			<AimingDelayFactor>1.25</AimingDelayFactor>
+			<MaxHitPoints>200</MaxHitPoints>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Mech_Pikeman"]/tools</xpath>
+		<value>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<label>head</label>
+					<capacities>
+						<li>Blunt</li>
+					</capacities>
+					<power>15</power>
+					<cooldownTime>3.51</cooldownTime>
+					<linkedBodyPartsGroup>HeadAttackTool</linkedBodyPartsGroup>
+					<armorPenetrationSharp>0</armorPenetrationSharp>
+					<armorPenetrationBlunt>12</armorPenetrationBlunt>
+					<alwaysTreatAsWeapon>true</alwaysTreatAsWeapon>
 				</li>
 			</tools>
 		</value>

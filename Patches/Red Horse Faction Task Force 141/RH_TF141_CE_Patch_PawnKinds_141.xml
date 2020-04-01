@@ -1,0 +1,194 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+	<Operation Class="PatchOperationSequence">
+		<success>Always</success>
+		<operations>
+
+			<li Class="CombatExtended.PatchOperationFindMod">
+				<modName>[RH] Faction: Task Force 141</modName>
+			</li>
+			
+			<!-- ========== Reduce meals and medicine carried by all pawns ========== -->
+
+			
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/PawnKindDef[@Name="RH_141TaskForce_Base"]/invNutrition</xpath>
+				<value>
+					<invNutrition>1</invNutrition>
+				</value>
+			</li>
+
+			<li Class="PatchOperationRemove">
+				<xpath>Defs/PawnKindDef[@Name="RH_141TaskForce_Base"]/inventoryOptions</xpath>
+			</li>
+			
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/PawnKindDef[
+					defName="RH_141TaskForce_Scout" or
+					defName="RH_141TaskForce_CQB" or
+					defName="RH_141TaskForce_CQB_TierII" or
+					defName="RH_141TaskForce_Marksman" or
+					defName="RH_141TaskForce_Assault" or
+					defName="RH_141TaskForce_Assault_TierII" or
+					defName="RH_141TaskForce_Gunner" or
+					defName="RH_141TaskForce_Grenadier" or
+					defName="RH_141TaskForce_Boss" or
+					defName="RH_141TaskForce_Elite"
+				]/inventoryOptions/subOptionsChooseOne</xpath>
+				<value>
+					<subOptionsChooseOne>
+						<li>
+							<thingDef>RNMedicine_IFAK_Multicam</thingDef>
+							<countRange>
+								<min>0</min>
+								<max>1</max>
+							</countRange>
+						</li>
+						<li>
+							<thingDef>RNMedicine_MedicBag</thingDef>
+							<countRange>
+								<min>0</min>
+								<max>1</max>
+							</countRange>
+						</li>
+					</subOptionsChooseOne>
+				</value>
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/PawnKindDef[
+					defName="RH_141TaskForce_Marksman" or
+					defName="RH_141TaskForce_Marksman_TierII" or
+					defName="RH_141TaskForce_Sniper"
+				]/inventoryOptions/subOptionsChooseOne</xpath>
+				<value>
+					<subOptionsChooseOne>
+						<li>
+							<thingDef>RNMedicine_IFAK_Multicam</thingDef>
+							<countRange>
+								<min>0</min>
+								<max>1</max>
+							</countRange>
+						</li>
+					</subOptionsChooseOne>
+				</value>
+			</li>
+			
+			<!-- ========== Remove smokepop belt ========== -->
+
+			<li Class="PatchOperationRemove">
+				<xpath>Defs/PawnKindDef[
+					defName="RH_141TaskForce_CQB_TierII" or
+					defName="RH_141TaskForce_Marksman_TierII" or
+					defName="RH_141TaskForce_Sniper" or
+					defName="RH_141TaskForce_Assault_TierII" or
+					defName="RH_141TaskForce_Grenadier" or
+					@Name="RH_141EliteTierBase" or
+					defName="RH_141TaskForce_Trader"
+				]/apparelTags/li[.="BeltDefensePop"]</xpath>
+			</li>
+
+			<li Class="PatchOperationRemove">
+				<xpath>Defs/PawnKindDef[
+					defName="RH_141TaskForce_CQB_TierII" or
+					defName="RH_141TaskForce_Marksman_TierII" or
+					defName="RH_141TaskForce_Sniper" or
+					defName="RH_141TaskForce_Assault_TierII" or
+					defName="RH_141TaskForce_Grenadier" or
+					defName="RH_141TaskForce_Boss" or
+					defName="RH_141TaskForce_Elite"
+				]/apparelRequired/li[.="Apparel_SmokepopBelt"]</xpath>
+			</li>
+
+			<!-- ========== TF 141 faction pawns should spawn backpacks, allowing them to carry their (huge) inventory ========== -->
+
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/PawnKindDef[
+					defName="RH_141TaskForce_Scout" or
+					defName="RH_141TaskForce_CQB" or
+					defName="RH_141TaskForce_CQB_TierII" or
+					defName="RH_141TaskForce_Marksman" or
+					defName="RH_141TaskForce_Marksman_TierII" or
+					defName="RH_141TaskForce_Sniper" or
+					defName="RH_141TaskForce_Assault" or
+					defName="RH_141TaskForce_Assault_TierII" or
+					defName="RH_141TaskForce_Gunner" or
+					defName="RH_141TaskForce_Grenadier" or
+					defName="RH_141TaskForce_Boss" or
+					defName="RH_141TaskForce_Elite" or
+					defName="RH_141TaskForce_Trader"
+				]/apparelRequired</xpath>
+				<value>
+					<li>Apparel_Backpack</li>
+				</value>
+			</li>
+			
+			<!-- ========== TF 141 faction pawns should spawn with ammo appropriate to their primary weapon ========== -->
+			
+			<li Class="PatchOperationAddModExtension">
+				<xpath>Defs/PawnKindDef[
+					defName="RH_141TaskForce_Scout" or
+					defName="RH_141TaskForce_CQB" or
+					defName="RH_141TaskForce_CQB_TierII" or
+					defName="RH_141TaskForce_Marksman" or
+					defName="RH_141TaskForce_Marksman_TierII" or
+					defName="RH_141TaskForce_Sniper" or
+					defName="RH_141TaskForce_Assault" or
+					defName="RH_141TaskForce_Assault_TierII" or
+					defName="RH_141TaskForce_Boss" or
+					defName="RH_141TaskForce_Elite" or
+					defName="RH_141TaskForce_Trader"
+				]</xpath>
+				<value>
+					<li Class="CombatExtended.LoadoutPropertiesExtension">
+						<primaryMagazineCount>
+							<min>6</min>
+							<max>8</max>
+						</primaryMagazineCount>
+					</li>
+				</value>
+			</li>
+			
+			<li Class="PatchOperationAddModExtension">
+				<xpath>Defs/PawnKindDef[defName="RH_141TaskForce_Gunner"]</xpath>
+				<value>
+					<li Class="CombatExtended.LoadoutPropertiesExtension">
+						<primaryMagazineCount>
+							<min>3</min>
+							<max>4</max>
+						</primaryMagazineCount>
+					</li>
+				</value>
+			</li>
+			
+			<li Class="PatchOperationAddModExtension">
+				<xpath>Defs/PawnKindDef[defName="RH_141TaskForce_Grenadier"]</xpath>
+				<value>
+					<li Class="CombatExtended.LoadoutPropertiesExtension">
+						<primaryMagazineCount>
+							<min>24</min>
+							<max>26</max>
+						</primaryMagazineCount>
+					</li>
+				</value>
+			</li>
+
+			<!-- ========== Tweak minimum weaponMoney for selected pawn types, so that they actually spawn with weapons ========== -->
+
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/PawnKindDef[defName="RH_141TaskForce_Marksman"]/weaponMoney/min</xpath>
+				<value>
+					<min>450</min>
+				</value>
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/PawnKindDef[defName="RH_141TaskForce_Marksman_TierII"]/weaponMoney/min</xpath>
+				<value>
+					<min>450</min>
+				</value>
+			</li>
+
+		</operations>
+	</Operation>
+</Patch>

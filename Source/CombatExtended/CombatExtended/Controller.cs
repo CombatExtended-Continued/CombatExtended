@@ -5,7 +5,7 @@ using System.Text;
 using RimWorld;
 using Verse;
 using UnityEngine;
-using CombatExtended.Harmony;
+using CombatExtended.HarmonyCE;
 
 namespace CombatExtended
 {
@@ -15,16 +15,17 @@ namespace CombatExtended
 
         public Controller(ModContentPack content) : base(content)
         {
+
             settings = GetSettings<Settings>();
 
             // Apply Harmony patches
             HarmonyBase.InitPatches();
 
             // Initialize loadout generator
-            LongEventHandler.QueueLongEvent(LoadoutPropertiesExtension.Reset, "Other def binding, resetting and global operations.", false, null);
+            LongEventHandler.QueueLongEvent(LoadoutPropertiesExtension.Reset, "CE_LongEvent_LoadoutProperties", false, null);
 
             // Inject ammo
-            LongEventHandler.QueueLongEvent(AmmoInjector.Inject, "LibraryStartup", false, null);
+            LongEventHandler.QueueLongEvent(AmmoInjector.Inject, "CE_LongEvent_AmmoInjector", false, null);
 
             // Inject pawn and plant bounds
             LongEventHandler.QueueLongEvent(BoundsInjector.Inject, "CE_LongEvent_BoundingBoxes", false, null);
@@ -33,7 +34,7 @@ namespace CombatExtended
 
             // Tutorial popup
             if (settings.ShowTutorialPopup && !Prefs.AdaptiveTrainingEnabled)
-                LongEventHandler.QueueLongEvent(DoTutorialPopup, "InitializingInterface", false, null);
+                LongEventHandler.QueueLongEvent(DoTutorialPopup, "CE_LongEvent_TutorialPopup", false, null);
         }
 
         private static void DoTutorialPopup()
