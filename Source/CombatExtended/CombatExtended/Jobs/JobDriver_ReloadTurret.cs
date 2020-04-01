@@ -68,36 +68,51 @@ namespace CombatExtended
                 yield return null;
             }
 
+            AddEndCondition(delegate
+            {
+                return (pawn.Downed || pawn.Dead || pawn.InMentalState || pawn.IsBurning()) ? JobCondition.Incompletable : JobCondition.Ongoing;
+            });
+            
+            this.FailOnIncapable(PawnCapacityDefOf.Manipulation);
+
             // Set fail condition on turret.
             if (pawn.Faction != Faction.OfPlayer)
                 this.FailOnDestroyedOrNull(TargetIndex.A);
             else
                 this.FailOnDestroyedNullOrForbidden(TargetIndex.A);
 
+            // Perform ammo system specific activities, failure condition and hauling
             if (compReloader.UseAmmo)
             {
-                // Perform ammo system specific activities, failure condition and hauling
+                var toilGoToCell = Toils_Goto.GotoCell(ammo.Position, PathEndMode.Touch).FailOnBurningImmobile(TargetIndex.B);
+                var toilCarryThing = Toils_Haul.StartCarryThing(TargetIndex.B).FailOnBurningImmobile(TargetIndex.B);
+
+                if (TargetThingB is AmmoThing)
+                {
+                    toilGoToCell.AddEndCondition(delegate { return (TargetThingB as AmmoThing).IsCookingOff ? JobCondition.Incompletable : JobCondition.Ongoing; });
+                    toilCarryThing.AddEndCondition(delegate { return (TargetThingB as AmmoThing).IsCookingOff ? JobCondition.Incompletable : JobCondition.Ongoing; });
+                }
+
                 if (pawn.Faction != Faction.OfPlayer)
                 {
                     ammo.SetForbidden(true, false);
-                    this.FailOnDestroyedOrNull(TargetIndex.B);
+                    toilGoToCell.FailOnDestroyedOrNull(TargetIndex.B);
+                    toilCarryThing.FailOnDestroyedOrNull(TargetIndex.B);
                 }
                 else
                 {
-                    this.FailOnDestroyedNullOrForbidden(TargetIndex.B);
+                    toilGoToCell.FailOnDestroyedNullOrForbidden(TargetIndex.B);
+                    toilCarryThing.FailOnDestroyedNullOrForbidden(TargetIndex.B);
                 }
 
-                // Haul ammo
-                yield return Toils_Reserve.Reserve(TargetIndex.B, Mathf.Max(1, TargetThingB.stackCount - job.count), job.count);
-                yield return Toils_Goto.GotoCell(ammo.Position, PathEndMode.Touch);
-                yield return Toils_Haul.StartCarryThing(TargetIndex.B);
-                yield return Toils_Goto.GotoCell(turret.Position, PathEndMode.Touch);
+                //yield return Toils_Reserve.Reserve(TargetIndex.B, Mathf.Max(1, TargetThingB.stackCount - job.count), job.count);
+                yield return toilGoToCell;
+                yield return toilCarryThing;
                 //yield return Toils_Haul.PlaceHauledThingInCell(TargetIndex.A, null, false);
-            } else
-            {
-                // If ammo system is turned off we just need to go to the turret.
-                yield return Toils_Goto.GotoCell(turret.Position, PathEndMode.Touch);
             }
+
+            // If ammo system is turned off we just need to go to the turret.
+            yield return Toils_Goto.GotoCell(turret.Position, PathEndMode.Touch);
 
             // Wait in place
             Toil waitToil = new Toil() { actor = pawn };

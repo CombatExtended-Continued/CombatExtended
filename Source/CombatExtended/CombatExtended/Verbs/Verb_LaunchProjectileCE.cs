@@ -229,7 +229,7 @@ namespace CombatExtended
                     // On first shot of burst do a range estimate
                     estimatedTargDist = report.GetRandDist();
                 }
-                Vector3 v = report.target.Thing.TrueCenter(); //report.targetPawn != null ? report.targetPawn.DrawPos + report.targetPawn.Drawer.leaner.LeanOffset * 0.5f : report.target.Cell.ToVector3Shifted();
+                Vector3 v = report.target.Thing?.TrueCenter() ?? report.target.Cell.ToVector3Shifted(); //report.targetPawn != null ? report.targetPawn.DrawPos + report.targetPawn.Drawer.leaner.LeanOffset * 0.5f : report.target.Cell.ToVector3Shifted();
                 if (report.targetPawn != null)
                     v += report.targetPawn.Drawer.leaner.LeanOffset * 0.5f;
 
@@ -566,7 +566,7 @@ namespace CombatExtended
                 );
                 pelletMechanicsOnly = true;
             }
-            Log.Message("Fired from "+caster.ThingID+" at "+ShotHeight);
+           /// Log.Message("Fired from "+caster.ThingID+" at "+ShotHeight); /// 
             pelletMechanicsOnly = false;
             numShotsFired++;
             if (CompAmmo != null && !CompAmmo.CanBeFiredNow)

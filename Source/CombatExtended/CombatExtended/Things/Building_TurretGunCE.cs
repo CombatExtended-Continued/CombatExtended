@@ -132,18 +132,12 @@ namespace CombatExtended
             }
         }
 
-        public bool ReloadCritical => (mannableComp == null || !mannableComp.MannedNow)
-                    && CompAmmo != null && CompAmmo.HasMagazine
-                    && CompAmmo.CurMagCount == 0;
-
-        public bool NeedsReload => (mannableComp == null || !mannableComp.MannedNow)
-                    && CompAmmo != null && CompAmmo.HasMagazine
-                    && (CompAmmo.CurMagCount < CompAmmo.Props.magazineSize || CompAmmo.SelectedAmmo != CompAmmo.CurrentAmmo);
-
-        public bool AllowAutomaticReload => (mannableComp == null || (!mannableComp.MannedNow && ticksUntilAutoReload == 0))     //suppress manned turret auto-reload for a short time after spawning
-                    && CompAmmo != null && CompAmmo.HasMagazine
-                    && (ticksUntilAutoReload == 0 || CompAmmo.CurMagCount <= Mathf.CeilToInt(CompAmmo.Props.magazineSize / 6));
-
+        public bool EmptyMagazine => Reloadable && CompAmmo.CurMagCount == 0;
+        public bool FullMagazine => !Reloadable || (CompAmmo.SelectedAmmo == CompAmmo.CurrentAmmo && CompAmmo.CurMagCount == CompAmmo.Props.magazineSize);
+        public bool AutoReloadableMagazine => AutoReloadableNow && CompAmmo.CurMagCount <= Mathf.CeilToInt(CompAmmo.Props.magazineSize / 6);
+        public bool AutoReloadableNow => (mannableComp == null || (!mannableComp.MannedNow && ticksUntilAutoReload == 0)) && Reloadable;    //suppress manned turret auto-reload for a short time after spawning
+        public bool Reloadable => CompAmmo != null && CompAmmo.HasMagazine;
+        
         public CompMannable MannableComp => mannableComp;
         #endregion
 
@@ -183,6 +177,9 @@ namespace CombatExtended
                     GenClosestAmmo.listeners.Add(ammo, new List<Building_TurretGunCE>() { this });
                 else
                     GenClosestAmmo.listeners[ammo].Add(this);
+
+                if (!GenClosestAmmo.latestAmmoUpdate.ContainsKey(ammo))
+                    GenClosestAmmo.latestAmmoUpdate.Add(ammo, 0);
             }
         }
 
@@ -263,8 +260,14 @@ namespace CombatExtended
             base.Tick();
             if (ticksUntilAutoReload > 0) ticksUntilAutoReload--;   // Reduce time until we can auto-reload
 
+            if (!isReloading && this.IsHashIntervalTick(TicksBetweenAmmoChecks))
+            {
+                TryOrderReload();
+            }
+
             //This code runs TryOrderReload for manning pawns or for non-humanlike intelligence such as mechs
-            if (this.IsHashIntervalTick(TicksBetweenAmmoChecks) && !isReloading && AllowAutomaticReload) TryOrderReload();
+          /*if (this.IsHashIntervalTick(TicksBetweenAmmoChecks) && !isReloading && (MannableComp?.MannedNow ?? false))
+                TryOrderReload(CompAmmo?.CurMagCount == 0);*/
             if (!CanSetForcedTarget && !isReloading && forcedTarget.IsValid && burstCooldownTicksLeft <= 0)
             {
                 ResetForcedTarget();
@@ -321,6 +324,13 @@ namespace CombatExtended
                 || (CompAmmo != null && (isReloading || (mannableComp == null && CompAmmo.CurMagCount <= 0))))
             {
                 ResetCurrentTarget();
+                return;
+            }
+            //Copied and modified from Verb_LaunchProjectileCE.Available
+            if (Projectile == null || (CompAmmo != null && !CompAmmo.CanBeFiredNow))
+            {
+                ResetCurrentTarget();
+                TryOrderReload();
                 return;
             }
             bool isValid = currentTargetInt.IsValid;
@@ -422,7 +432,9 @@ namespace CombatExtended
         {
             burstCooldownTicksLeft = BurstCooldownTime().SecondsToTicks();
             if (CompAmmo != null && CompAmmo.CurMagCount <= 0)
-                TryOrderReload(true);
+            {
+                TryForceReload();
+            }
         }
 
         protected float BurstCooldownTime()             // Core method
@@ -653,6 +665,9 @@ namespace CombatExtended
             if (lastSurroundingAmmoCheck + TicksBetweenAmmoChecks >= Find.TickManager.TicksGame)
                 return;
 
+            if (!CompAmmo.Props.ammoSet.ammoTypes.Any(x => GenClosestAmmo.latestAmmoUpdate[x.ammo] > lastSurroundingAmmoCheck))
+                return;
+
             //If ammo remained viable, don't bother unless forced
             if (nearestViableAmmo != null
                 && !forceCheck
@@ -671,7 +686,7 @@ namespace CombatExtended
             isSlow = (nearestViableAmmo == null || nearestViableAmmo == prevViableAmmo);
 
           //Log.Message("Updated " + ThingID + " (slow = "+prevIsSlow+" -> "+isSlow+") to " + nearestViableAmmo?.ThingID);
-
+            
             lastSurroundingAmmoCheck = Find.TickManager.TicksGame;
         }
 
@@ -698,70 +713,88 @@ namespace CombatExtended
 
         public void TryOrderReload(bool forced = false)
         {
-            if (ticksUntilAutoReload > 0 && !forced) return;
-            
-            if ((CompAmmo.CurrentAmmo == CompAmmo.SelectedAmmo && CompAmmo.CurMagCount == CompAmmo.Props.magazineSize)
-                || Map.physicalInteractionReservationManager.IsReserved(new LocalTargetInfo(this)))
+            //If unmanned or unmannable, test for "auto-reload"
+            if (!mannableComp?.MannedNow ?? true && ticksUntilAutoReload > 0)
                 return;
-            
-            if (mannableComp != null)
+
+            //No reload necessary at all --
+            if ((CompAmmo.CurrentAmmo == CompAmmo.SelectedAmmo && (!CompAmmo.HasMagazine || CompAmmo.CurMagCount == CompAmmo.Props.magazineSize)))
+                return;
+
+            //Non-mannableComp interaction
+            if (!mannableComp?.MannedNow ?? true)
             {
+                //Unmanned or autoturret -- cancel job on reserved turret
+                if (Map.physicalInteractionReservationManager.IsReserved(new LocalTargetInfo(this)))
+                    return;
+
+                //If manningPawn is null, WorkGiver_ReloadTurret might find a Humanlike intelligence pawn to reload the turret -- however, this method won't pick one at random to do so
+                //If manningPawn is null, try to assign jobs to a pawn of faction Mechanoids
+                if (Faction.def != FactionDefOf.Mechanoid)
+                    return;
+
+                List<Pawn> pawns;
+                if (this.GetLord() != null && this.GetLord().AnyActivePawn)     //Prevents mechs in ancient danger from joining in
+                {
+                    pawns = this.GetLord().ownedPawns;
+                }
+                //else if (Map.mapPawns?.PawnsInFaction(Faction).Any() ?? false)
+                //{
+                //    pawns = Map.mapPawns.PawnsInFaction(Faction);
+                //}
+                else return;    //Nothing could reload this
+
+                var giver = new WorkGiver_ReloadTurret();
+                var pawn = giver.BestNonJobUser(pawns.Where(x => x.RaceProps.intelligence == Intelligence.ToolUser
+                                                                //|| (x.training?.HasLearned(CE_TrainableDefOf.Haul) ?? false)    //would allow trained pawns to reload as well
+                                                                ), this, out bool fromInventory, forced);
+                if (pawn == null) return;
+
+                Job reloadJob = null;
+                if (!CompAmmo.UseAmmo) reloadJob = new Job(CE_JobDefOf.ReloadTurret, this, null);
+                else
+                {
+                    Thing ammo = fromInventory ? InventoryAmmo(pawn.TryGetComp<CompInventory>()) : nearestViableAmmo;
+                    if (ammo != null)
+                    {
+                        if (ammo.def != CompAmmo.SelectedAmmo)
+                            CompAmmo.SelectedAmmo = ammo.def as AmmoDef;
+
+                        int amount = CompAmmo.Props.magazineSize;
+                        if (CompAmmo.CurrentAmmo == CompAmmo.SelectedAmmo) amount -= CompAmmo.CurMagCount;
+
+                        if (fromInventory)
+                        {
+                            if (!pawn.TryGetComp<CompInventory>().container.TryDrop(ammo, Position, Map, ThingPlaceMode.Direct, Mathf.Min(ammo.stackCount, amount), out ammo))
+                            {
+                                Log.ErrorOnce("Found optimal ammo (" + ammo.LabelCap + "), but could not drop from " + pawn.LabelCap, 81274728);
+                                return;
+                            }
+                        }
+
+                        reloadJob = new Job(CE_JobDefOf.ReloadTurret, this, ammo) { count = Mathf.Min(ammo.stackCount, amount) };
+                    }
+                }
+
+                if (reloadJob != null)
+                    pawn.jobs.StartJob(reloadJob, JobCondition.Ongoing, null, pawn.CurJob?.def != reloadJob.def && (!pawn.CurJob?.def.isIdle ?? true));
+            }
+            else    //MannableComp interaction
+            {
+                //Already reserved for manning
+
                 Pawn manningPawn = mannableComp.ManningPawn;
                 if (manningPawn != null)
                 {
-                    // ONLY manningPawns should have the reloadTurret workGiver
-                    manningPawn.jobs.StartJob(new WorkGiver_ReloadTurret().JobOnThing(manningPawn, this), JobCondition.Ongoing, null, manningPawn.CurJob?.def != CE_JobDefOf.ReloadTurret);
+                    UpdateNearbyAmmo(forced);
+                    var jobOnThing = new WorkGiver_ReloadTurret().JobOnThing(manningPawn, this, forced);
+
+                    if (jobOnThing != null)
+                        manningPawn.jobs.StartJob(jobOnThing, JobCondition.Ongoing, null, manningPawn.CurJob?.def != CE_JobDefOf.ReloadTurret);
+
                     return;
                 }
             }
-
-            if (Faction.def != FactionDefOf.Mechanoid)
-                return;
-
-            List<Pawn> pawns;
-            if (this.GetLord() != null && this.GetLord().AnyActivePawn)     //Prevents mechs in ancient danger from joining in
-            {
-                pawns = this.GetLord().ownedPawns;
-            }
-          //else if (Map.mapPawns?.PawnsInFaction(Faction).Any() ?? false)
-          //{
-          //    pawns = Map.mapPawns.PawnsInFaction(Faction);
-          //}
-            else return;    //Nothing could reload this
-            
-            var giver = new WorkGiver_ReloadTurret();
-            var pawn = giver.BestNonJobUser(pawns.Where(x => x.RaceProps.intelligence == Intelligence.ToolUser
-                                                          //|| (x.training?.HasLearned(CE_TrainableDefOf.Haul) ?? false)    //would allow trained pawns to reload as well
-                                                            ), this, out bool fromInventory, forced);
-            if (pawn == null) return;
-            
-            Job reloadJob = null;
-            if (!CompAmmo.UseAmmo) reloadJob = new Job(CE_JobDefOf.ReloadTurret, this, null);
-            else
-            {
-                Thing ammo = fromInventory ? InventoryAmmo(pawn.TryGetComp<CompInventory>()) : nearestViableAmmo;
-                if (ammo != null)
-                {
-                    if (ammo.def != CompAmmo.SelectedAmmo)
-                        CompAmmo.SelectedAmmo = ammo.def as AmmoDef;
-                    
-                    int amount = CompAmmo.Props.magazineSize;
-                    if (CompAmmo.CurrentAmmo == CompAmmo.SelectedAmmo) amount -= CompAmmo.CurMagCount;
-                    
-                    if (fromInventory)
-                    {
-                        if (!pawn.TryGetComp<CompInventory>().container.TryDrop(ammo, Position, Map, ThingPlaceMode.Direct, Mathf.Min(ammo.stackCount, amount), out ammo))
-                        {
-                            Log.ErrorOnce("Found optimal ammo (" + ammo.LabelCap + "), but could not drop from " + pawn.LabelCap, 81274728);
-                            return;
-                        }
-                    }
-                    
-                    reloadJob = new Job(CE_JobDefOf.ReloadTurret, this, ammo) { count = Mathf.Min(ammo.stackCount, amount) };
-                }
-            }
-            
-            pawn.jobs.StartJob(reloadJob, JobCondition.Ongoing, null, pawn.CurJob?.def != reloadJob.def && (!pawn.CurJob?.def.isIdle ?? true));
         }
         #endregion
     }
