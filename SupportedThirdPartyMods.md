@@ -107,6 +107,7 @@ Vanilla Armour Expanded	|
 Vanilla Bionics Expansion	|
 Vanilla Factions Expanded - Medieval	|
 Vanilla Weapons Expanded Quickdraw	|
+Vanilla-Friendly Animal Surgery	|
 Vanilla-Friendly Weapon Expansion	|
 Vulpine Race Pack	|
 Weapons+	|
