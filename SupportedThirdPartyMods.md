@@ -34,7 +34,6 @@ A Dog Said...	|
 Android Tiers	|
 Android Tiers++	|
 Androids	|
-AnimalCollabProj	|
 Apparello 2	|
 Arachne Race	|
 Area Rugs	|
@@ -56,7 +55,7 @@ Fallout Traits	|
 FashionRIMsta	|
 Fate Grand Order - Styles Apparel Pack	|
 Ferrex Race	|
-Forsakens	|
+Flak Dusters	|
 Gas Traps And Shells	|
 Girls' Frontline Apparel Pack	|
 Girls' Frontline Styles - 404 Team	|
@@ -66,7 +65,7 @@ GouRIMet	|
 Hand 'n' Footwear	|
 High Caliber	|
 Jernfalk's Standalone Horses	|
-K.L.K - Styles Apparel Pack	||
+K.L.K - Styles Apparel Pack	|
 Kijin Race 2.0     	|     
 Kill la Kill Styles Pack    	|   
 Kurin, The Three Tailed Fox	|
@@ -95,7 +94,7 @@ Rimefeller	|
 RimEffect - Asari of the Rims	|
 Rimfire	|
 Save Our Ship 2	|
-Sergals, Gnolls and Lions	|
+Sergals, Gnolls, Lions and Frogs	|
 Simply More Melee	|
 Soviet Armory	|
 Spartan Foundry	|
