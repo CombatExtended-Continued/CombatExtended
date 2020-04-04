@@ -50,19 +50,7 @@
 			<Bulk>21.59</Bulk>
 		</statBases>
 		<ammoClass>RocketHEAT</ammoClass>
-		<comps>
-			<li Class="CombatExtended.CompProperties_ExplosiveCE">
-				<explosionDamage>148</explosionDamage>
-				<explosionDamageDef>Bomb</explosionDamageDef>
-				<explosionRadius>1.5</explosionRadius>
-				<fragments>
-					<Fragment_Large>26</Fragment_Large>
-					<Fragment_Small>46</Fragment_Small>
-				</fragments>
-				<soundExplode>MortarBomb_Explode</soundExplode>
-				<applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
-			</li>
-		</comps>
+		<detonateProjectile>Bullet_70mmAPKWS_HEAT</detonateProjectile>
 	</ThingDef>
 
 	<!-- ================== Projectiles ================== -->
@@ -98,17 +86,19 @@
 			<armorPenetrationBlunt>44.285</armorPenetrationBlunt>
 		</projectile>
 		<comps>
-			<li Class="CombatExtended.CompProperties_ExplosiveCE">
-				<explosionDamage>148</explosionDamage>
-				<explosionDamageDef>Bomb</explosionDamageDef>
-				<explosionRadius>1.5</explosionRadius>
-				<fragments>
-					<Fragment_Large>26</Fragment_Large>
-					<Fragment_Small>46</Fragment_Small>
-				</fragments>
-				<soundExplode>MortarBomb_Explode</soundExplode>
+		  <li Class="CombatExtended.CompProperties_ExplosiveCE">
+			<damageAmountBase>148</damageAmountBase>
+			<explosiveDamageType>Bomb</explosiveDamageType>
+			<explosiveRadius>1.5</explosiveRadius>
+			<explosionSound>MortarBomb_Explode</explosionSound>
 				<applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
-			</li>
+		  </li>
+		  <li Class="CombatExtended.CompProperties_Fragments">
+			<fragments>
+				<Fragment_Large>26</Fragment_Large>
+			  <Fragment_Small>46</Fragment_Small>
+			</fragments>
+		  </li>
 		</comps>
 	</ThingDef>
 

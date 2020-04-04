@@ -5,9 +5,9 @@ using System.Text;
 using RimWorld;
 using Verse;
 using UnityEngine;
-using Harmony;
+using HarmonyLib;
 
-namespace CombatExtended.Harmony
+namespace CombatExtended.HarmonyCE
 {
     [HarmonyPatch(typeof(JobGiver_DropUnusedInventory), "Drop")]
     public static class Harmony_JobGiver_DropUnusedInventory_Drop

@@ -36,6 +36,25 @@
   	</value>
   </Operation>
 
+  <Operation Class="PatchOperationAdd">
+    <xpath>Defs/PawnKindDef[defName="Mech_Pikeman"]</xpath>
+    <value>
+      <canBeSapper>true</canBeSapper>
+    </value>
+  </Operation>
+
+  <Operation Class="PatchOperationAddModExtension">
+  	<xpath>Defs/PawnKindDef[defName="Mech_Pikeman"]</xpath>
+  	<value>
+      <li Class="CombatExtended.LoadoutPropertiesExtension">
+        <primaryMagazineCount>
+          <min>3</min>
+          <max>5</max>
+        </primaryMagazineCount>
+      </li>
+  	</value>
+  </Operation>
+
   <!-- ========== Mercenary ========== -->
 
   <Operation Class="PatchOperationAddModExtension">
@@ -67,13 +86,58 @@
     </value>
   </Operation>
 
-  <Operation Class="PatchOperationReplace">
-    <xpath>Defs/PawnKindDef[defName="Mercenary_Gunner"]/weaponMoney</xpath>
+  <Operation Class="PatchOperationAddModExtension">
+    <xpath>Defs/PawnKindDef[defName="Grenadier_EMP"]</xpath>
     <value>
-      <weaponMoney>
-        <min>250</min>
-        <max>350</max>
-      </weaponMoney>
+      <li Class="CombatExtended.LoadoutPropertiesExtension">
+        <primaryMagazineCount>
+          <min>10</min>
+          <max>30</max>
+        </primaryMagazineCount>
+        <forcedSidearm>
+          <sidearmMoney>
+            <min>250</min>
+            <max>100</max>
+          </sidearmMoney>
+          <weaponTags>
+            <li>CE_Sidearm</li>
+          </weaponTags>
+        <magazineCount>
+          <min>2</min>
+          <max>5</max>
+        </magazineCount>          
+        </forcedSidearm>
+      </li>
+    </value>
+  </Operation>
+
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/PawnKindDef[defName="Grenadier_EMP"]/label</xpath>
+    <value>
+	    <label>advanced grenadier</label>
+    </value>
+  </Operation>
+
+  <Operation Class="PatchOperationAdd">
+    <xpath>Defs/PawnKindDef[defName="Grenadier_EMP"]/weaponTags</xpath>
+    <value>
+      <li>CE_GrenadeFlashbang</li>
+	    <li>GrenadeSmoke</li>
+	    <li>GrenadeDestructive</li>	
+    </value>
+  </Operation>
+
+  <Operation Class="PatchOperationAdd">
+    <xpath>Defs/PawnKindDef[defName="Grenadier_EMP"]</xpath>
+    <value>
+      <combatPower>85</combatPower>
+    </value>
+  </Operation>
+
+  <Operation Class="PatchOperationAdd">
+    <xpath>Defs/PawnKindDef[defName="Mercenary_Gunner"]</xpath>
+    <value>
+	<weaponMoney>250~350</weaponMoney>
     </value>
   </Operation>
 
@@ -109,13 +173,10 @@
   	</value>
   </Operation>
 
-  <Operation Class="PatchOperationReplace">
-    <xpath>Defs/PawnKindDef[defName="Mercenary_Sniper"]/weaponMoney</xpath>
+  <Operation Class="PatchOperationAdd">
+    <xpath>Defs/PawnKindDef[defName="Mercenary_Sniper"]</xpath>
     <value>
-      <weaponMoney>
-        <min>415</min>
-        <max>550</max>
-      </weaponMoney>
+	<weaponMoney>415~550</weaponMoney>
     </value>
   </Operation>
 
@@ -431,9 +492,9 @@
   <!-- ========== Tribal ========== -->
 
   <Operation Class="PatchOperationReplace">
-    <xpath>Defs/PawnKindDef[defName="Tribal_Penitent"]/weaponMoney/min</xpath>
+    <xpath>Defs/PawnKindDef[defName="Tribal_Penitent"]/weaponMoney</xpath>
     <value>
-      <min>50</min>
+      <weaponMoney>50~150</weaponMoney>
     </value>
   </Operation>
 
@@ -445,9 +506,9 @@
   </Operation>
 
   <Operation Class="PatchOperationReplace">
-    <xpath>Defs/PawnKindDef[defName="Tribal_Warrior"]/weaponMoney/min</xpath>
+    <xpath>Defs/PawnKindDef[defName="Tribal_Warrior"]/weaponMoney</xpath>
     <value>
-      <min>80</min>
+      <weaponMoney>80~150</weaponMoney>
     </value>
   </Operation>
 

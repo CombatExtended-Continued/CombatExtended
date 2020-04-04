@@ -5,7 +5,7 @@
 		<operations>
 
 			<li Class="CombatExtended.PatchOperationFindMod">
-				<modName>WWII Soviet Faction (1.0)</modName>
+				<modName>WWII Soviet Faction</modName>
 			</li>
 
 			<!-- ========== Mosin ========== -->
@@ -51,44 +51,6 @@
 				<AllowWithRunAndGun>false</AllowWithRunAndGun>
 			</li>
 
-			<li Class="PatchOperationReplace">
-				<xpath>Defs/ThingDef[defName="Gun_WWII_MosinNagant_Normal"]/tools</xpath>
-				<value>
-					<tools>
-						<li Class="CombatExtended.ToolCE">
-							<label>stock</label>
-							<capacities>
-								<li>Blunt</li>
-							</capacities>
-							<power>8</power>
-							<cooldownTime>1.79</cooldownTime>
-							<linkedBodyPartsGroup>Stock</linkedBodyPartsGroup>
-							<armorPenetrationBlunt>2.755</armorPenetrationBlunt>
-						</li>
-						<li Class="CombatExtended.ToolCE">
-							<label>barrel</label>
-							<capacities>
-								<li>Blunt</li>
-							</capacities>
-							<power>5</power>
-							<cooldownTime>3.02</cooldownTime>
-							<linkedBodyPartsGroup>Barrel</linkedBodyPartsGroup>
-							<armorPenetrationBlunt>1.63</armorPenetrationBlunt>
-						</li>
-						<li Class="CombatExtended.ToolCE">
-							<label>muzzle</label>
-							<capacities>
-								<li>Poke</li>
-							</capacities>
-							<power>8</power>
-							<cooldownTime>1.55</cooldownTime>
-							<linkedBodyPartsGroup>Muzzle</linkedBodyPartsGroup>
-							<armorPenetrationBlunt>2.755</armorPenetrationBlunt>
-						</li>
-					</tools>
-				</value>
-			</li>
-
 			<!-- ========== Mosin Bayonet ========== -->
 
 			<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
@@ -99,7 +61,8 @@
 					<SightsEfficiency>1.00</SightsEfficiency>
 					<ShotSpread>0.03</ShotSpread>
 					<SwayFactor>2.07</SwayFactor>
-					<Bulk>12.32</Bulk> <!-- Bulk reduced to non-bayonet version, assuming bayonet has negligible effect on overall bulk -->
+					<Bulk>12.32</Bulk>
+					<!-- Bulk reduced to non-bayonet version, assuming bayonet has negligible effect on overall bulk -->
 					<WorkToMake>14000</WorkToMake>
 				</statBases>
 				<costList>
@@ -130,46 +93,6 @@
 				</FireModes>
 
 				<AllowWithRunAndGun>false</AllowWithRunAndGun>
-			</li>
-
-			<li Class="PatchOperationReplace">
-				<xpath>Defs/ThingDef[defName="Gun_WWII_MosinNagant_Bayonet"]/tools</xpath>
-				<value>
-					<tools>
-						<li Class="CombatExtended.ToolCE">
-							<label>stock</label>
-							<capacities>
-								<li>Blunt</li>
-							</capacities>
-							<power>8</power>
-							<cooldownTime>1.79</cooldownTime>
-							<linkedBodyPartsGroup>Stock</linkedBodyPartsGroup>
-							<armorPenetrationBlunt>2.755</armorPenetrationBlunt>
-						</li>
-						<li Class="CombatExtended.ToolCE">
-							<label>bayonet</label>
-							<capacities>
-								<li>Cut</li>
-							</capacities>
-							<power>11</power>
-							<cooldownTime>1.23</cooldownTime>
-							<linkedBodyPartsGroup>Edge</linkedBodyPartsGroup>
-							<armorPenetrationSharp>0.48</armorPenetrationSharp>
-							<armorPenetrationBlunt>0.63</armorPenetrationBlunt>
-						</li>
-						<li Class="CombatExtended.ToolCE">
-							<label>bayonet</label>
-							<capacities>
-								<li>Stab</li>
-							</capacities>
-							<power>15</power>
-							<cooldownTime>3.02</cooldownTime>
-							<linkedBodyPartsGroup>Point</linkedBodyPartsGroup>
-							<armorPenetrationSharp>2.67</armorPenetrationSharp>
-							<armorPenetrationBlunt>0.8</armorPenetrationBlunt>
-						</li>
-					</tools>
-				</value>
 			</li>
 
 			<!-- ========== PPsh-41 ========== -->
@@ -217,44 +140,6 @@
 				</FireModes>
 			</li>
 
-			<li Class="PatchOperationReplace">
-				<xpath>Defs/ThingDef[defName="Gun_WWII_PPShSMG"]/tools</xpath>
-				<value>
-					<tools>
-						<li Class="CombatExtended.ToolCE">
-							<label>grip</label>
-							<capacities>
-								<li>Blunt</li>
-							</capacities>
-							<power>8</power>
-							<cooldownTime>1.79</cooldownTime>
-							<linkedBodyPartsGroup>Stock</linkedBodyPartsGroup>
-							<armorPenetrationBlunt>2.755</armorPenetrationBlunt>
-						</li>
-						<li Class="CombatExtended.ToolCE">
-							<label>barrel</label>
-							<capacities>
-								<li>Blunt</li>
-							</capacities>
-							<power>5</power>
-							<cooldownTime>3.02</cooldownTime>
-							<linkedBodyPartsGroup>Barrel</linkedBodyPartsGroup>
-							<armorPenetrationBlunt>1.63</armorPenetrationBlunt>
-						</li>
-						<li Class="CombatExtended.ToolCE">
-							<label>muzzle</label>
-							<capacities>
-								<li>Poke</li>
-							</capacities>
-							<power>8</power>
-							<cooldownTime>1.55</cooldownTime>
-							<linkedBodyPartsGroup>Muzzle</linkedBodyPartsGroup>
-							<armorPenetrationBlunt>2.755</armorPenetrationBlunt>
-						</li>
-					</tools>
-				</value>
-			</li>
-
 			<!-- ========== DP-28 ========== -->
 
 			<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
@@ -300,44 +185,6 @@
 				</FireModes>
 			</li>
 
-			<li Class="PatchOperationReplace">
-				<xpath>Defs/ThingDef[defName="Gun_DP-28_LMG"]/tools</xpath>
-				<value>
-					<tools>
-						<li Class="CombatExtended.ToolCE">
-							<label>stock</label>
-							<capacities>
-								<li>Blunt</li>
-							</capacities>
-							<power>8</power>
-							<cooldownTime>1.79</cooldownTime>
-							<linkedBodyPartsGroup>Stock</linkedBodyPartsGroup>
-							<armorPenetrationBlunt>2.755</armorPenetrationBlunt>
-						</li>
-						<li Class="CombatExtended.ToolCE">
-							<label>barrel</label>
-							<capacities>
-								<li>Blunt</li>
-							</capacities>
-							<power>5</power>
-							<cooldownTime>3.02</cooldownTime>
-							<linkedBodyPartsGroup>Barrel</linkedBodyPartsGroup>
-							<armorPenetrationBlunt>1.63</armorPenetrationBlunt>
-						</li>
-						<li Class="CombatExtended.ToolCE">
-							<label>muzzle</label>
-							<capacities>
-								<li>Poke</li>
-							</capacities>
-							<power>8</power>
-							<cooldownTime>1.55</cooldownTime>
-							<linkedBodyPartsGroup>Muzzle</linkedBodyPartsGroup>
-							<armorPenetrationBlunt>2.755</armorPenetrationBlunt>
-						</li>
-					</tools>
-				</value>
-			</li>
-
 			<!-- ========== Nagant Revolver ========== -->
 
 			<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
@@ -377,34 +224,6 @@
 					<aiUseBurstMode>FALSE</aiUseBurstMode>
 					<aiAimMode>Snapshot</aiAimMode>
 				</FireModes>
-			</li>
-
-			<li Class="PatchOperationReplace">
-				<xpath>Defs/ThingDef[defName="Gun_Nagant_Revolver"]/tools</xpath>
-				<value>
-					<tools>
-						<li Class="CombatExtended.ToolCE">
-							<label>grip</label>
-							<capacities>
-								<li>Blunt</li>
-							</capacities>
-							<power>2</power>
-							<cooldownTime>1.56</cooldownTime>
-							<linkedBodyPartsGroup>Grip</linkedBodyPartsGroup>
-							<armorPenetrationBlunt>0.555</armorPenetrationBlunt>
-						</li>
-						<li Class="CombatExtended.ToolCE">
-							<label>muzzle</label>
-							<capacities>
-								<li>Poke</li>
-							</capacities>
-							<power>2</power>
-							<cooldownTime>1.54</cooldownTime>
-							<linkedBodyPartsGroup>Muzzle</linkedBodyPartsGroup>
-							<armorPenetrationBlunt>0.555</armorPenetrationBlunt>
-						</li>
-					</tools>
-				</value>
 			</li>
 
 			<!-- ========== Svt-40 ========== -->
@@ -450,8 +269,16 @@
 				<AllowWithRunAndGun>false</AllowWithRunAndGun>
 			</li>
 
+			<!-- == Shared patches for firearm melee tools == -->
+
 			<li Class="PatchOperationReplace">
-				<xpath>Defs/ThingDef[defName="Gun_WWII_Svt-40_Rifle"]/tools</xpath>
+				<xpath>Defs/ThingDef[
+					defName="Gun_WWII_MosinNagant_Normal" or
+					defName="Gun_WWII_MosinNagant_Bayonet" or
+					defName="Gun_WWII_PPShSMG" or
+					defName="Gun_DP-28_LMG" or
+					defName="Gun_WWII_Svt-40_Rifle"
+				]/tools</xpath>
 				<value>
 					<tools>
 						<li Class="CombatExtended.ToolCE">
@@ -460,9 +287,10 @@
 								<li>Blunt</li>
 							</capacities>
 							<power>8</power>
-							<cooldownTime>1.79</cooldownTime>
-							<linkedBodyPartsGroup>Stock</linkedBodyPartsGroup>
+							<cooldownTime>1.55</cooldownTime>
+							<chanceFactor>1.5</chanceFactor>
 							<armorPenetrationBlunt>2.755</armorPenetrationBlunt>
+							<linkedBodyPartsGroup>Stock</linkedBodyPartsGroup>
 						</li>
 						<li Class="CombatExtended.ToolCE">
 							<label>barrel</label>
@@ -470,9 +298,9 @@
 								<li>Blunt</li>
 							</capacities>
 							<power>5</power>
-							<cooldownTime>3.02</cooldownTime>
+							<cooldownTime>2.02</cooldownTime>
+							<armorPenetrationBlunt>1.630</armorPenetrationBlunt>
 							<linkedBodyPartsGroup>Barrel</linkedBodyPartsGroup>
-							<armorPenetrationBlunt>1.63</armorPenetrationBlunt>
 						</li>
 						<li Class="CombatExtended.ToolCE">
 							<label>muzzle</label>
@@ -481,8 +309,37 @@
 							</capacities>
 							<power>8</power>
 							<cooldownTime>1.55</cooldownTime>
-							<linkedBodyPartsGroup>Muzzle</linkedBodyPartsGroup>
 							<armorPenetrationBlunt>2.755</armorPenetrationBlunt>
+							<linkedBodyPartsGroup>Muzzle</linkedBodyPartsGroup>
+						</li>
+					</tools>
+				</value>
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="Gun_Nagant_Revolver"]/tools</xpath>
+				<value>
+					<tools>
+						<li Class="CombatExtended.ToolCE">
+							<label>grip</label>
+							<capacities>
+								<li>Blunt</li>
+							</capacities>
+							<power>2</power>
+							<cooldownTime>1.54</cooldownTime>
+							<chanceFactor>1.5</chanceFactor>
+							<armorPenetrationBlunt>0.555</armorPenetrationBlunt>
+							<linkedBodyPartsGroup>Grip</linkedBodyPartsGroup>
+						</li>
+						<li Class="CombatExtended.ToolCE">
+							<label>muzzle</label>
+							<capacities>
+								<li>Poke</li>
+							</capacities>
+							<power>2</power>
+							<cooldownTime>1.54</cooldownTime>
+							<armorPenetrationBlunt>0.555</armorPenetrationBlunt>
+							<linkedBodyPartsGroup>Muzzle</linkedBodyPartsGroup>
 						</li>
 					</tools>
 				</value>

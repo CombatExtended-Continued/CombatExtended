@@ -1,0 +1,245 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+	<Operation Class="PatchOperationSequence">
+		<success>Always</success>
+		<operations>
+
+			<li Class="CombatExtended.PatchOperationFindMod">
+				<modName>[RH] Faction: Umbra Company</modName>
+			</li>
+
+			<!-- ========== Reduce meals and medicine carried by all pawns ========== -->
+
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/PawnKindDef[@Name="RH_UmbraCompany_Base"]/invNutrition</xpath>
+				<value>
+					<invNutrition>1</invNutrition>
+				</value>
+			</li>
+
+			<li Class="PatchOperationRemove">
+				<xpath>Defs/PawnKindDef[@Name="RH_UmbraCompany_Base"]/inventoryOptions</xpath>
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/PawnKindDef[
+					defName="RH_UmbraCompany_Rogue" or
+					defName="RH_UmbraCompany_CQB_TierII" or
+					defName="RH_UmbraCompany_Assault" or
+					defName="RH_UmbraCompany_Assault_TierII" or
+					defName="RH_UmbraCompany_Gunner" or
+					defName="RH_UmbraCompany_Grenadier" or
+					defName="RH_UmbraCompany_Boss" or
+					defName="RH_UmbraCompany_Elite"
+				]/inventoryOptions/subOptionsChooseOne</xpath>
+				<value>
+					<subOptionsChooseOne>
+						<li>
+							<thingDef>RNMedicine_IFAK_Multicam</thingDef>
+							<countRange>
+								<min>0</min>
+								<max>1</max>
+							</countRange>
+						</li>
+						<li>
+							<thingDef>RNMedicine_MedicBag</thingDef>
+							<countRange>
+								<min>0</min>
+								<max>1</max>
+							</countRange>
+						</li>
+					</subOptionsChooseOne>
+				</value>
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/PawnKindDef[
+					defName="RH_UmbraCompany_CQB" or
+					defName="RH_UmbraCompany_Marksman" or
+					defName="RH_UmbraCompany_Marksman_TierII" or
+					defName="RH_UmbraCompany_Sniper" or
+					defName="RH_UmbraCompany_APCCrewman"
+				]/inventoryOptions/subOptionsChooseOne</xpath>
+				<value>
+					<subOptionsChooseOne>
+						<li>
+							<thingDef>RNMedicine_IFAK_Multicam</thingDef>
+							<countRange>
+								<min>0</min>
+								<max>1</max>
+							</countRange>
+						</li>
+					</subOptionsChooseOne>
+				</value>
+			</li>
+
+			<!-- ========== Remove smokepop belt ========== -->
+
+			<li Class="PatchOperationRemove">
+				<xpath>Defs/PawnKindDef[
+					defName="RH_UmbraCompany_Rogue" or
+					defName="RH_UmbraCompany_Marksman" or
+					defName="RH_UmbraCompany_Marksman_TierII" or
+					defName="RH_UmbraCompany_Sniper" or
+					defName="RH_UmbraCompany_Assault_TierII" or
+					@Name="RH_UCEliteTierBase" or
+					defName="RH_UmbraCompany_Trader"
+				]/apparelTags/li[.="BeltDefensePop"]</xpath>
+			</li>
+
+			<li Class="PatchOperationRemove">
+				<xpath>Defs/PawnKindDef[
+					defName="RH_UmbraCompany_Rogue" or
+					defName="RH_UmbraCompany_Marksman" or
+					defName="RH_UmbraCompany_Marksman_TierII" or
+					defName="RH_UmbraCompany_Sniper" or
+					defName="RH_UmbraCompany_Assault_TierII" or
+					defName="RH_UmbraCompany_Boss" or
+					defName="RH_UmbraCompany_Elite" or
+					defName="RH_UmbraCompany_Trader"
+				]/apparelRequired/li[.="Apparel_SmokepopBelt"]</xpath>
+			</li>
+
+			<!-- ========== Umbra Company faction pawns should spawn backpacks, allowing them to carry their (huge) inventory ========== -->
+
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/PawnKindDef[
+						defName="RH_UmbraCompany_Rogue" or
+						defName="RH_UmbraCompany_CQB" or
+						defName="RH_UmbraCompany_CQB_TierII" or
+						defName="RH_UmbraCompany_Marksman" or
+						defName="RH_UmbraCompany_Marksman_TierII" or
+						defName="RH_UmbraCompany_Sniper" or
+						defName="RH_UmbraCompany_Assault" or
+						defName="RH_UmbraCompany_Assault_TierII" or
+						defName="RH_UmbraCompany_Gunner" or
+						defName="RH_UmbraCompany_Grenadier" or
+						defName="RH_UmbraCompany_Boss" or
+						defName="RH_UmbraCompany_Elite" or
+						defName="RH_UmbraCompany_Trader" or
+						defName="RH_UmbraCompany_APCCrewman"
+						]/apparelRequired</xpath>
+				<value>
+					<li>Apparel_Backpack</li>
+				</value>
+			</li>
+
+			<!-- ========== Umbra Company faction pawns should spawn with ammo appropriate to their primary weapon, as well as a sidearm (and its own ammo) ========== -->
+
+			<!-- First remove redundant M9 HRT from pawns' existing primary weaponTags -->
+			<li Class="PatchOperationRemove">
+				<xpath>Defs/PawnKindDef[defName="RH_UmbraCompany_APCCrewman"]/weaponTags/li[.="RN_M9HRT"]</xpath>
+			</li>
+
+			<!-- Also remove C4 from standard Grenadiers, so the magazine count patch doesn't crowd out the room required for the sidearm -->
+			<li Class="PatchOperationRemove">
+				<xpath>Defs/PawnKindDef[defName="RH_UmbraCompany_Grenadier"]/weaponTags/li[.="RH_UC_Explosives"]</xpath>
+			</li>
+
+			<li Class="PatchOperationAddModExtension">
+				<xpath>Defs/PawnKindDef[
+					defName="RH_UmbraCompany_Rogue" or
+					defName="RH_UmbraCompany_APCCrewman" or
+					defName="RH_UmbraCompany_Assault" or
+					defName="RH_UmbraCompany_Assault_TierII" or
+					defName="RH_UmbraCompany_Boss" or
+					defName="RH_UmbraCompany_CQB" or
+					defName="RH_UmbraCompany_CQB_TierII" or
+					defName="RH_UmbraCompany_Elite" or
+					defName="RH_UmbraCompany_Marksman" or
+					defName="RH_UmbraCompany_Marksman_TierII" or
+					defName="RH_UmbraCompany_Sniper" or
+					defName="RH_UmbraCompany_Trader"
+				]</xpath>
+				<value>
+					<li Class="CombatExtended.LoadoutPropertiesExtension">
+						<primaryMagazineCount>
+							<min>6</min>
+							<max>8</max>
+						</primaryMagazineCount>
+						<sidearms>
+							<li>
+								<generateChance>1</generateChance>
+								<magazineCount>
+									<min>2</min>
+									<max>3</max>
+								</magazineCount>	
+								<weaponTags>
+									<li>RN_M9HRT</li>
+								</weaponTags>
+							</li>
+						</sidearms>
+					</li>
+				</value>
+			</li>
+
+			<li Class="PatchOperationAddModExtension">
+				<xpath>Defs/PawnKindDef[defName="RH_UmbraCompany_Gunner"]</xpath>
+				<value>
+					<li Class="CombatExtended.LoadoutPropertiesExtension">
+						<primaryMagazineCount>
+							<min>3</min>
+							<max>4</max>
+						</primaryMagazineCount>
+						<sidearms>
+							<li>
+								<generateChance>1</generateChance>
+								<magazineCount>
+									<min>2</min>
+									<max>3</max>
+								</magazineCount>	
+								<weaponTags>
+									<li>RN_M9HRT</li>
+								</weaponTags>
+							</li>
+						</sidearms>
+					</li>
+				</value>
+			</li>
+
+			<li Class="PatchOperationAddModExtension">
+				<xpath>Defs/PawnKindDef[defName="RH_UmbraCompany_Grenadier"]</xpath>
+				<value>
+					<li Class="CombatExtended.LoadoutPropertiesExtension">
+						<primaryMagazineCount>
+							<min>24</min>
+							<max>26</max>
+						</primaryMagazineCount>
+						<sidearms>
+							<li>
+								<generateChance>1</generateChance>
+								<magazineCount>
+									<min>2</min>
+									<max>3</max>
+								</magazineCount>	
+								<weaponTags>
+									<li>RN_M9HRT</li>
+								</weaponTags>
+							</li>
+						</sidearms>
+					</li>
+				</value>
+			</li>
+
+			<!-- ========== Tweak minimum weaponMoney for selected pawn types, so that they actually spawn with weapons ========== -->
+
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/PawnKindDef[defName="RH_UmbraCompany_Gunner"]/weaponMoney/min</xpath>
+				<value>
+					<min>480</min>
+				</value>
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/PawnKindDef[
+					defName="RH_UmbraCompany_Marksman" or
+					defName="RH_UmbraCompany_Marksman_TierII"
+				]/weaponMoney/min</xpath>
+				<value>
+					<min>400</min>
+				</value>
+			</li>
+
+		</operations>
+	</Operation>
+</Patch>

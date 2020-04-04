@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+	<Operation Class="PatchOperationSequence">
+		<success>Always</success>
+		<operations>
+
+			<li Class="CombatExtended.PatchOperationFindMod">
+				<modName>[CP] Spec Ops: The Line</modName>
+			</li>
+
+			<!-- ========== Reduce meals and medicine carried by all pawns ========== -->
+
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/PawnKindDef[@Name="RH_FOX_Bare"]/invNutrition</xpath>
+				<value>
+					<invNutrition>1</invNutrition>
+				</value>
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/PawnKindDef[defName="RH_SOTL_Delta_Operator"]/inventoryOptions/subOptionsChooseOne/li/countRange</xpath>
+				<value>
+					<countRange>
+						<min>0</min>
+						<max>1</max>
+					</countRange>
+				</value>
+			</li>
+			
+			<!-- ========== Delta QRF Operator pawns should spawn backpacks, allowing them to carry their (huge) inventory ========== -->
+
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/PawnKindDef[defName="RH_SOTL_Delta_QRF"]/apparelRequired</xpath>
+				<value>
+					<li>RHApparel_Backpack_Tactical_ShoulderBag</li>
+				</value>
+			</li>
+
+			<!-- ========== Delta QRF Operator pawns should spawn with ammo appropriate to their primary weapon ========== -->
+
+			<li Class="PatchOperationAddModExtension">
+				<xpath>Defs/PawnKindDef[defName="RH_SOTL_Delta_QRF"]</xpath>
+				<value>
+					<li Class="CombatExtended.LoadoutPropertiesExtension">
+						<primaryMagazineCount>
+							<min>6</min>
+							<max>8</max>
+						</primaryMagazineCount>
+					</li>
+				</value>
+			</li>
+
+		</operations>
+	</Operation>
+</Patch>

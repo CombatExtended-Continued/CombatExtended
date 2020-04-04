@@ -1,0 +1,203 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+	<Operation Class="PatchOperationSequence">
+		<success>Always</success>
+		<operations>
+
+			<li Class="CombatExtended.PatchOperationFindMod">
+				<modName>[CP] Rimmu-Nation - Weapons</modName>
+			</li>
+
+			<!-- ========== Ballistic Knife ========== -->
+
+			<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+				<defName>RN_BallisticKnife</defName>
+				<statBases>
+					<Mass>0.560</Mass>
+					<RangedWeapon_Cooldown>1.07</RangedWeapon_Cooldown>
+					<SightsEfficiency>0.70</SightsEfficiency>
+					<ShotSpread>0.2</ShotSpread>
+					<SwayFactor>0.85</SwayFactor>
+					<Bulk>1.00</Bulk>
+					<WorkToMake>3000</WorkToMake>
+				</statBases>
+				<costList>
+					<Steel>25</Steel>
+					<ComponentIndustrial>1</ComponentIndustrial>
+				</costList>
+				<Properties>
+					<verbClass>CombatExtended.Verb_ShootCEOneUse</verbClass>
+					<hasStandardCommand>true</hasStandardCommand>
+					<defaultProjectile>Projectile_BallisticKnifeBlade</defaultProjectile>
+					<warmupTime>0.6</warmupTime>
+					<range>3</range>
+					<burstShotCount>1</burstShotCount>
+					<ticksBetweenBurstShots>0</ticksBetweenBurstShots>
+					<soundCast>RNShotBallistic</soundCast>
+					<muzzleFlashScale>0</muzzleFlashScale>
+				</Properties>
+
+				<FireModes>
+					<aiUseBurstMode>FALSE</aiUseBurstMode>
+					<aiAimMode>AimedShot</aiAimMode>
+				</FireModes>
+
+				<!-- No additional CE weaponTags needed -->
+
+				<AllowWithRunAndGun>false</AllowWithRunAndGun>
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="RN_BallisticKnife"]/tools</xpath>
+				<value>
+					<tools>
+						<li Class="CombatExtended.ToolCE">
+							<label>handle</label>
+							<capacities>
+								<li>Poke</li>
+							</capacities>
+							<power>1</power>
+							<cooldownTime>1.26</cooldownTime>
+							<armorPenetrationBlunt>0.250</armorPenetrationBlunt>
+							<linkedBodyPartsGroup>Handle</linkedBodyPartsGroup>
+						</li>
+						<li Class="CombatExtended.ToolCE">
+							<label>blade</label>
+							<capacities>
+								<li>Cut</li>
+							</capacities>
+							<power>10</power>
+							<cooldownTime>1.18</cooldownTime>
+							<armorPenetrationBlunt>0.36</armorPenetrationBlunt>
+							<armorPenetrationSharp>0.32</armorPenetrationSharp>
+							<linkedBodyPartsGroup>Blade</linkedBodyPartsGroup>
+						</li>
+						<li Class="CombatExtended.ToolCE">
+							<label>point</label>
+							<capacities>
+								<li>Stab</li>
+							</capacities>
+							<power>11</power>
+							<cooldownTime>1.26</cooldownTime>
+							<chanceFactor>1.33</chanceFactor>
+							<armorPenetrationBlunt>0.25</armorPenetrationBlunt>
+							<armorPenetrationSharp>0.42</armorPenetrationSharp>
+							<linkedBodyPartsGroup>Point</linkedBodyPartsGroup>
+						</li>
+					</tools>
+				</value>
+			</li>
+
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName="RN_BallisticKnife"]/statBases</xpath>
+				<value>
+					<MeleeCounterParryBonus>0.15</MeleeCounterParryBonus>
+				</value>
+			</li>
+
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName="RN_BallisticKnife"]</xpath>
+				<value>
+					<equippedStatOffsets>
+						<MeleeCritChance>0.5</MeleeCritChance>
+						<MeleeParryChance>0.15</MeleeParryChance>
+						<MeleeDodgeChance>0.05</MeleeDodgeChance>	
+					</equippedStatOffsets>
+				</value>
+			</li>
+
+			<!-- ========== Compound Bow ========== -->
+
+			<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+				<defName>RN_CompoundBow</defName>
+				<statBases>
+					<SightsEfficiency>0.95</SightsEfficiency>
+					<ShotSpread>1</ShotSpread>
+					<SwayFactor>2</SwayFactor>
+					<Bulk>3</Bulk>
+				</statBases>
+				<Properties>
+					<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+					<hasStandardCommand>true</hasStandardCommand>
+					<defaultProjectile>Projectile_Arrow_Steel</defaultProjectile>
+					<warmupTime>1.25</warmupTime>
+					<range>27</range>
+					<soundCast>Bow_Recurve</soundCast>
+				</Properties>
+				<AmmoUser>
+					<ammoSet>AmmoSet_Arrow</ammoSet>
+				</AmmoUser>
+				<FireModes>
+					<aiAimMode>AimedShot</aiAimMode>
+				</FireModes>
+
+				<!-- No additional CE weaponTags needed -->
+
+				<AllowWithRunAndGun>false</AllowWithRunAndGun>
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="RN_CompoundBow"]/tools</xpath>
+				<value>
+					<tools>
+						<li Class="CombatExtended.ToolCE">
+							<capacities>
+								<li>Blunt</li>
+							</capacities>
+							<power>7</power>
+							<cooldownTime>1.6</cooldownTime>
+							<armorPenetrationBlunt>0.65</armorPenetrationBlunt>
+						</li>
+					</tools>
+				</value>
+			</li>
+
+			<!-- ========== Compound Crossbow ========== -->
+
+			<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+				<defName>RN_CompoundCrossbow</defName>
+				<statBases>
+					<SightsEfficiency>0.95</SightsEfficiency>
+					<ShotSpread>1</ShotSpread>
+					<SwayFactor>2</SwayFactor>
+					<Bulk>3</Bulk>
+				</statBases>
+				<Properties>
+					<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+					<hasStandardCommand>true</hasStandardCommand>
+					<defaultProjectile>Projectile_CrossbowBolt_Steel</defaultProjectile>
+					<warmupTime>1</warmupTime>
+					<range>30</range>
+					<soundCast>RNCrossbow</soundCast>
+				</Properties>
+				<AmmoUser>
+					<ammoSet>AmmoSet_CrossbowBolt</ammoSet>
+				</AmmoUser>
+				<FireModes>
+					<aiAimMode>AimedShot</aiAimMode>
+				</FireModes>
+
+				<!-- No additional CE weaponTags needed -->
+
+				<AllowWithRunAndGun>false</AllowWithRunAndGun>
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="RN_CompoundCrossbow"]/tools</xpath>
+				<value>
+					<tools>
+						<li Class="CombatExtended.ToolCE">
+							<capacities>
+								<li>Blunt</li>
+							</capacities>
+							<power>7</power>
+							<cooldownTime>1.6</cooldownTime>
+							<armorPenetrationBlunt>0.65</armorPenetrationBlunt>
+						</li>
+					</tools>
+				</value>
+			</li>
+
+		</operations>
+	</Operation>
+</Patch>

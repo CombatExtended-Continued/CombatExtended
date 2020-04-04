@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+	<Operation Class="PatchOperationSequence">
+		<success>Always</success>
+		<operations>
+
+			<li Class="CombatExtended.PatchOperationFindMod">
+				<modName>[RH] Faction: Elite Crew</modName>
+			</li>
+
+			<!-- ========== parka M65 1337 ========== -->
+
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName="RNApparel_Parka_M651337Crew"]/statBases</xpath>
+				<value>
+					<Bulk>10</Bulk>
+					<WornBulk>5</WornBulk>
+				</value>
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="RNApparel_Parka_M651337Crew"]/statBases/StuffEffectMultiplierArmor</xpath>
+				<value>
+					<StuffEffectMultiplierArmor>10</StuffEffectMultiplierArmor>
+				</value>
+			</li>
+
+		</operations>
+	</Operation>
+</Patch>

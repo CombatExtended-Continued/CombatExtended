@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+	<Operation Class="PatchOperationSequence">
+		<success>Always</success>
+		<operations>
+
+			<li Class="CombatExtended.PatchOperationFindMod">
+				<modName>[CP] British Military Kit</modName>
+			</li>
+
+			<!-- ========== AFV crew helmet ========== -->
+
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName="RNApparel_AFV_CrewHelmet"]/statBases</xpath>
+				<value>
+					<Bulk>4</Bulk>
+					<WornBulk>1.5</WornBulk>
+					<ArmorRating_Sharp>6</ArmorRating_Sharp>
+					<ArmorRating_Blunt>13</ArmorRating_Blunt>
+					<ArmorRating_Heat>0.54</ArmorRating_Heat>
+				</value>
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="RNApparel_AFV_CrewHelmet"]/statBases/StuffEffectMultiplierArmor</xpath>
+				<value>
+					<StuffEffectMultiplierArmor>0.20</StuffEffectMultiplierArmor>
+				</value>
+			</li>
+
+			<!-- ========== aircrew helmet (RAF) ========== -->
+
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName="RNApparel_RAFAircrewHelmet"]/statBases</xpath>
+				<value>
+					<Bulk>3.75</Bulk>
+					<WornBulk>1.5</WornBulk>
+					<ArmorRating_Sharp>6</ArmorRating_Sharp>
+					<ArmorRating_Blunt>13</ArmorRating_Blunt>
+					<ArmorRating_Heat>0.54</ArmorRating_Heat>
+				</value>
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="RNApparel_RAFAircrewHelmet"]/statBases/StuffEffectMultiplierArmor</xpath>
+				<value>
+					<StuffEffectMultiplierArmor>0.20</StuffEffectMultiplierArmor>
+				</value>
+			</li>
+
+			<!-- ========== Mk 7 helmet ========== -->
+
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName="RNApparel_MK7Helmet"]/statBases</xpath>
+				<value>
+					<Bulk>4</Bulk>
+					<WornBulk>1.25</WornBulk>
+					<ArmorRating_Sharp>6</ArmorRating_Sharp>
+					<ArmorRating_Blunt>13</ArmorRating_Blunt>
+					<ArmorRating_Heat>0.54</ArmorRating_Heat>
+				</value>
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="RNApparel_MK7Helmet"]/statBases/StuffEffectMultiplierArmor</xpath>
+				<value>
+					<StuffEffectMultiplierArmor>0.20</StuffEffectMultiplierArmor>
+				</value>
+			</li>
+
+			<!-- ========== VIRTUS helmet (standard, goggle up, goggle down, masked, full masked, GSR gasmask, para, marine variants) ========== -->
+
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[
+					defName="RNApparel_VIRTUSHelmet" or
+					defName="RNApparel_VIRTUSHelmet_GoggleUp" or
+					defName="RNApparel_VIRTUSHelmet_GoggleDown" or
+					defName="RNApparel_VIRTUSHelmet_Masked" or
+					defName="RNApparel_VIRTUSHelmet_FullMasked" or
+					defName="RNApparel_VIRTUSHelmet_GSRGasmask" or
+					defName="RNApparel_VIRTUSHelmet_Scrim" or
+					defName="RNApparel_VIRTUSHelmet_CamCream"
+				]/statBases</xpath>
+				<value>
+					<Bulk>4</Bulk>
+					<WornBulk>1</WornBulk>
+					<ArmorRating_Sharp>8</ArmorRating_Sharp>
+					<ArmorRating_Blunt>16</ArmorRating_Blunt>
+					<ArmorRating_Heat>0.54</ArmorRating_Heat>
+				</value>
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[
+					defName="RNApparel_VIRTUSHelmet" or
+					defName="RNApparel_VIRTUSHelmet_GoggleUp" or
+					defName="RNApparel_VIRTUSHelmet_GoggleDown" or
+					defName="RNApparel_VIRTUSHelmet_Masked" or
+					defName="RNApparel_VIRTUSHelmet_FullMasked" or
+					defName="RNApparel_VIRTUSHelmet_GSRGasmask" or
+					defName="RNApparel_VIRTUSHelmet_Scrim" or
+					defName="RNApparel_VIRTUSHelmet_CamCream"
+				]/statBases/StuffEffectMultiplierArmor</xpath>
+				<value>
+					<StuffEffectMultiplierArmor>0.20</StuffEffectMultiplierArmor>
+				</value>
+			</li>
+
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName="RNApparel_VIRTUSHelmet_GSRGasmask"]/equippedStatOffsets</xpath>
+				<value>
+					<SmokeSensitivity>-1</SmokeSensitivity>
+				</value>
+			</li>
+
+			<li Class="PatchOperationAddModExtension">
+				<xpath>Defs/ThingDef[defName="RNApparel_VIRTUSHelmet_GSRGasmask"]</xpath>
+				<value>
+					<li Class="CombatExtended.ApparelHediffExtension">
+						<hediff>WearingGasMask</hediff>
+					</li>
+				</value>
+			</li>
+
+			<!-- ========== FAST helmet UKSF (A, B, C variants) ========== -->
+
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[
+					defName="RNApparel_FASTHelmetUKSF_A" or
+					defName="RNApparel_FASTHelmetUKSF_B" or
+					defName="RNApparel_FASTHelmetUKSF_C"
+				]/statBases</xpath>
+				<value>
+					<Bulk>4</Bulk>
+					<WornBulk>1</WornBulk>
+					<ArmorRating_Sharp>7</ArmorRating_Sharp>
+					<ArmorRating_Blunt>16</ArmorRating_Blunt>
+					<ArmorRating_Heat>0.54</ArmorRating_Heat>
+				</value>
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[
+					defName="RNApparel_FASTHelmetUKSF_A" or
+					defName="RNApparel_FASTHelmetUKSF_B" or
+					defName="RNApparel_FASTHelmetUKSF_C"
+				]/statBases/StuffEffectMultiplierArmor</xpath>
+				<value>
+					<StuffEffectMultiplierArmor>0.20</StuffEffectMultiplierArmor>
+				</value>
+			</li>
+
+		</operations>
+	</Operation>
+</Patch>

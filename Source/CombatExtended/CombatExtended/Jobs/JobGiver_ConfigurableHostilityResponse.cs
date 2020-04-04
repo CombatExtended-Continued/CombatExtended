@@ -37,7 +37,7 @@ namespace CombatExtended
 
         private Job TryGetAttackNearbyEnemyJob(Pawn pawn)
         {
-            if (pawn.story != null && pawn.story.WorkTagIsDisabled(WorkTags.Violent))
+            if (pawn.story != null && pawn.WorkTagIsDisabled(WorkTags.Violent))
             {
                 return null;
             }

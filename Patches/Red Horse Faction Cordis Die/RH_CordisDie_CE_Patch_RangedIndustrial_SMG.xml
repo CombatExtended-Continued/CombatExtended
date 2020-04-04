@@ -1,0 +1,249 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+	<Operation Class="PatchOperationSequence">
+		<success>Always</success>
+		<operations>
+
+			<li Class="CombatExtended.PatchOperationFindMod">
+				<modName>[RH] Faction: Cordis Die</modName>
+			</li>
+
+			<!-- ========== AKS-74U Keymod ========== -->
+
+			<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+				<defName>RNGun_AKS74UKeymod_PDW</defName>
+				<statBases>
+					<Mass>2.70</Mass>
+					<RangedWeapon_Cooldown>0.36</RangedWeapon_Cooldown>
+					<SightsEfficiency>1.10</SightsEfficiency>
+					<ShotSpread>0.14</ShotSpread>
+					<SwayFactor>1.00</SwayFactor>
+					<Bulk>4.90</Bulk>
+					<WorkToMake>29000</WorkToMake>
+				</statBases>
+				<costList>
+					<Steel>40</Steel>
+					<ComponentIndustrial>5</ComponentIndustrial>
+				</costList>
+				<Properties>
+					<recoilAmount>1.38</recoilAmount>
+					<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+					<hasStandardCommand>true</hasStandardCommand>
+					<defaultProjectile>Bullet_545x39mmSoviet_FMJ</defaultProjectile>
+					<warmupTime>1.1</warmupTime>
+					<range>31</range>
+					<burstShotCount>6</burstShotCount>
+					<ticksBetweenBurstShots>5</ticksBetweenBurstShots>
+					<soundCast>RNShotAK74USMG</soundCast>
+					<soundCastTail>GunTail_Light</soundCastTail>
+					<muzzleFlashScale>9</muzzleFlashScale>
+				</Properties>
+
+				<AmmoUser>
+					<magazineSize>30</magazineSize>
+					<reloadTime>4</reloadTime>
+					<ammoSet>AmmoSet_545x39mmSoviet</ammoSet>
+				</AmmoUser>
+
+				<FireModes>
+					<aiUseBurstMode>TRUE</aiUseBurstMode>
+					<aiAimMode>AimedShot</aiAimMode>
+					<aimedBurstShotCount>3</aimedBurstShotCount>
+				</FireModes>
+
+				<weaponTags>
+					<li>CE_AI_AssaultWeapon</li>
+					<li>CE_SMG</li>
+				</weaponTags>
+			</li>
+
+			<!-- ========== KRISS Vector Contractor ========== -->
+
+			<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+				<defName>RNGun_KrissVectorContractor_PDW</defName>
+				<statBases>
+					<Mass>3.20</Mass>
+					<RangedWeapon_Cooldown>0.36</RangedWeapon_Cooldown>
+					<SightsEfficiency>1.10</SightsEfficiency>
+					<ShotSpread>0.1</ShotSpread>
+					<SwayFactor>1.14</SwayFactor>
+					<Bulk>6.06</Bulk>
+					<WorkToMake>32000</WorkToMake>
+				</statBases>
+				<costList>
+					<Chemfuel>5</Chemfuel>
+					<Steel>40</Steel>
+					<ComponentIndustrial>6</ComponentIndustrial>
+				</costList>
+				<Properties>
+					<recoilAmount>1.47</recoilAmount>
+					<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+					<hasStandardCommand>true</hasStandardCommand>
+					<defaultProjectile>Bullet_45ACP_FMJ</defaultProjectile>
+					<warmupTime>0.5</warmupTime>
+					<range>12</range>
+					<burstShotCount>6</burstShotCount>
+					<ticksBetweenBurstShots>3</ticksBetweenBurstShots>
+					<soundCast>RNShotMP7SMG</soundCast>
+					<soundCastTail>GunTail_Heavy</soundCastTail>
+					<muzzleFlashScale>9</muzzleFlashScale>
+				</Properties>
+
+				<AmmoUser>
+					<magazineSize>30</magazineSize>
+					<reloadTime>4</reloadTime>
+					<ammoSet>AmmoSet_45ACP</ammoSet>
+				</AmmoUser>
+
+				<FireModes>
+					<aiUseBurstMode>FALSE</aiUseBurstMode>
+					<aiAimMode>Snapshot</aiAimMode>
+					<aimedBurstShotCount>3</aimedBurstShotCount>
+				</FireModes>
+
+				<!-- No additional CE weaponTags needed -->
+			</li>
+
+			<!-- ========== MP7A1 ========== -->
+
+			<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+				<defName>RNGun_MP7A1_PDW</defName>
+				<statBases>
+					<Mass>1.96</Mass>
+					<RangedWeapon_Cooldown>0.36</RangedWeapon_Cooldown>
+					<SightsEfficiency>1.00</SightsEfficiency>
+					<ShotSpread>0.15</ShotSpread>
+					<SwayFactor>0.83</SwayFactor>
+					<Bulk>4.15</Bulk>
+					<WorkToMake>29000</WorkToMake>
+				</statBases>
+				<costList>
+					<Chemfuel>5</Chemfuel>
+					<Steel>30</Steel>
+					<ComponentIndustrial>5</ComponentIndustrial>
+				</costList>
+				<Properties>
+					<recoilAmount>1.42</recoilAmount>
+					<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+					<hasStandardCommand>true</hasStandardCommand>
+					<defaultProjectile>Bullet_46x30mm_FMJ</defaultProjectile>
+					<warmupTime>0.6</warmupTime>
+					<range>31</range>
+					<burstShotCount>6</burstShotCount>
+					<ticksBetweenBurstShots>4</ticksBetweenBurstShots>
+					<soundCast>RNShotMP7SMG</soundCast>
+					<soundCastTail>GunTail_Heavy</soundCastTail>
+					<muzzleFlashScale>9</muzzleFlashScale>
+				</Properties>
+
+				<AmmoUser>
+					<magazineSize>30</magazineSize>
+					<reloadTime>4</reloadTime>
+					<ammoSet>AmmoSet_46x30mm</ammoSet>
+				</AmmoUser>
+
+				<FireModes>
+					<aiUseBurstMode>FALSE</aiUseBurstMode>
+					<aiAimMode>Snapshot</aiAimMode>
+					<aimedBurstShotCount>3</aimedBurstShotCount>
+				</FireModes>
+
+				<!-- No additional CE weaponTags needed -->
+			</li>
+
+			<!-- ========== PDW-57 (Futuristic P90) ========== -->
+
+			<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+				<defName>RNGun_PDW57_PDW</defName>
+				<statBases>
+					<Mass>2.60</Mass>
+					<RangedWeapon_Cooldown>0.36</RangedWeapon_Cooldown>
+					<SightsEfficiency>1.10</SightsEfficiency>
+					<ShotSpread>0.12</ShotSpread>
+					<SwayFactor>0.77</SwayFactor>
+					<Bulk>5.05</Bulk>
+					<WorkToMake>37000</WorkToMake>
+				</statBases>
+				<costList>
+					<Chemfuel>10</Chemfuel>
+					<Steel>30</Steel>
+					<ComponentIndustrial>7</ComponentIndustrial>
+				</costList>
+				<Properties>
+					<recoilAmount>1.05</recoilAmount>
+					<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+					<hasStandardCommand>true</hasStandardCommand>
+					<defaultProjectile>Bullet_FN57x28mm_FMJ</defaultProjectile>
+					<warmupTime>0.5</warmupTime>
+					<range>31</range>
+					<burstShotCount>6</burstShotCount>
+					<ticksBetweenBurstShots>4</ticksBetweenBurstShots>
+					<soundCast>RNP90Shot</soundCast>
+					<soundCastTail>GunTail_Light</soundCastTail>
+					<muzzleFlashScale>9</muzzleFlashScale>
+				</Properties>
+
+				<AmmoUser>
+					<magazineSize>50</magazineSize>
+					<reloadTime>4.5</reloadTime>
+					<ammoSet>AmmoSet_FN57x28mm</ammoSet>
+				</AmmoUser>
+
+				<FireModes>
+					<aiUseBurstMode>FALSE</aiUseBurstMode>
+					<aiAimMode>Snapshot</aiAimMode>
+					<aimedBurstShotCount>3</aimedBurstShotCount>
+				</FireModes>
+
+				<!-- No additional CE weaponTags needed -->
+			</li>
+
+			<!-- == Shared patches for firearm melee tools == -->
+
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[
+					defName="RNGun_AKS74UKeymod_PDW" or
+					defName="RNGun_KrissVectorContractor_PDW" or
+					defName="RNGun_MP7A1_PDW" or
+					defName="RNGun_PDW57_PDW"
+				]/tools</xpath>
+				<value>
+					<tools>
+						<li Class="CombatExtended.ToolCE">
+							<label>stock</label>
+							<capacities>
+								<li>Blunt</li>
+							</capacities>
+							<power>8</power>
+							<cooldownTime>1.55</cooldownTime>
+							<chanceFactor>1.5</chanceFactor>
+							<armorPenetrationBlunt>2.755</armorPenetrationBlunt>
+							<linkedBodyPartsGroup>Stock</linkedBodyPartsGroup>
+						</li>
+						<li Class="CombatExtended.ToolCE">
+							<label>barrel</label>
+							<capacities>
+								<li>Blunt</li>
+							</capacities>
+							<power>5</power>
+							<cooldownTime>2.02</cooldownTime>
+							<armorPenetrationBlunt>1.630</armorPenetrationBlunt>
+							<linkedBodyPartsGroup>Barrel</linkedBodyPartsGroup>
+						</li>
+						<li Class="CombatExtended.ToolCE">
+							<label>muzzle</label>
+							<capacities>
+								<li>Poke</li>
+							</capacities>
+							<power>8</power>
+							<cooldownTime>1.55</cooldownTime>
+							<armorPenetrationBlunt>2.755</armorPenetrationBlunt>
+							<linkedBodyPartsGroup>Muzzle</linkedBodyPartsGroup>
+						</li>
+					</tools>
+				</value>
+			</li>
+
+		</operations>
+	</Operation>
+</Patch>

@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+	<Operation Class="PatchOperationSequence">
+		<success>Always</success>
+		<operations>
+
+			<li Class="CombatExtended.PatchOperationFindMod">
+				<modName>Sergals Gnolls Lions and Frogs</modName>
+			</li>
+
+			<li Class="PatchOperationAddModExtension">
+				<xpath>Defs/PawnKindDef[
+					defName="FrogRefugee" or
+					defName="FrogSlave"
+				]</xpath>
+				<value>
+					<li Class="CombatExtended.LoadoutPropertiesExtension">
+						<primaryMagazineCount>
+							<min>20</min>
+							<max>40</max>
+						</primaryMagazineCount>
+					</li>
+				</value>
+			</li>
+
+			<li Class="PatchOperationAddModExtension">
+				<xpath>Defs/PawnKindDef[
+					defName="FrogTracker" or
+					defName="FrogTrader"
+				]</xpath>
+				<value>
+					<li Class="CombatExtended.LoadoutPropertiesExtension">
+						<primaryMagazineCount>
+							<min>20</min>
+							<max>40</max>
+						</primaryMagazineCount>
+						<sidearms>
+							<li>
+								<sidearmMoney>
+									<min>100</min>
+									<max>600</max>
+								</sidearmMoney>
+								<weaponTags>
+									<li>CE_Sidearm_Tribal</li>
+								</weaponTags>
+							</li>
+						</sidearms>
+					</li>
+				</value>
+			</li>
+
+			<li Class="PatchOperationAddModExtension">
+				<xpath>Defs/PawnKindDef[
+					defName="FrogHunter" or
+					defName="FrogPackLeader" or
+					defName="FrogRanger" or
+					defName="FrogRecruit" or
+					defName="FrogScavenger" or
+					defName="FrogSentinel"
+				]</xpath>
+				<value>
+					<li Class="CombatExtended.LoadoutPropertiesExtension">
+						<primaryMagazineCount>
+							<min>30</min>
+							<max>50</max>
+						</primaryMagazineCount>
+						<shieldMoney>
+							<min>120</min>
+							<max>160</max>
+						</shieldMoney>
+						<shieldTags>
+							<li>TribalShield</li>
+						</shieldTags>
+						<shieldChance>0.6</shieldChance>
+						<sidearms>
+							<li>
+								<sidearmMoney>
+									<min>100</min>
+									<max>600</max>
+								</sidearmMoney>
+								<weaponTags>
+									<li>CE_Sidearm_Tribal</li>
+								</weaponTags>
+							</li>
+						</sidearms>
+					</li>
+				</value>
+			</li>
+
+		</operations>
+	</Operation>
+</Patch>

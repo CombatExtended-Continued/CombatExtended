@@ -784,7 +784,6 @@
     <AmmoUser>
       <magazineSize>100</magazineSize>
       <reloadTime>7.8</reloadTime>
-      <spawnUnloaded>false</spawnUnloaded>
       <ammoSet>AmmoSet_556x45mmNATO</ammoSet>
     </AmmoUser>
     <FireModes>
@@ -941,7 +940,7 @@
   <Operation Class="PatchOperationAdd">
     <xpath>Defs/ThingDef[defName="Bullet_DoomsdayRocket"]/comps</xpath>
     <value>
-      <li Class="CombatExtended.CompProperties_ExplosiveCE">
+      <li Class="CombatExtended.CompProperties_Fragments">
         <fragSpeedFactor>1</fragSpeedFactor>
         <fragments>
           <Fragment_RocketFrag>400</Fragment_RocketFrag>
@@ -1045,7 +1044,7 @@
   <Operation Class="PatchOperationAdd">
     <xpath>Defs/ThingDef[defName="Bullet_Rocket"]/comps</xpath>
     <value>
-      <li Class="CombatExtended.CompProperties_ExplosiveCE">
+      <li Class="CombatExtended.CompProperties_Fragments">
         <fragSpeedFactor>1</fragSpeedFactor>
         <fragments>
           <Fragment_RocketFrag>150</Fragment_RocketFrag>
@@ -1149,8 +1148,8 @@
     </weaponTags>
   </Operation>
 
-  <Operation Class="PatchOperationReplace">
-    <xpath>Defs/ThingDef[defName="Gun_ChargeBlasterHeavy"]/tools</xpath>
+  <Operation Class="PatchOperationAdd">
+    <xpath>Defs/ThingDef[defName="Gun_ChargeBlasterHeavy"]</xpath>
     <value>
       <tools>
         <li Class="CombatExtended.ToolCE">
@@ -1216,8 +1215,8 @@
     </weaponTags>
   </Operation>
 
-  <Operation Class="PatchOperationReplace">
-    <xpath>Defs/ThingDef[defName="Gun_InfernoCannon"]/tools</xpath>
+    <Operation Class="PatchOperationReplace">
+    <xpath>Defs/ThingDef[@Name="Gun_InfernoCannonBase"]/tools</xpath>
     <value>
       <tools>
         <li Class="CombatExtended.ToolCE">
@@ -1308,6 +1307,12 @@
     </value>
   </Operation>
 
+  <!-- ========== Remove Needle Gun ========== -->
+
+  <Operation Class="PatchOperationRemove">
+    <xpath>Defs/ThingDef[defName="Gun_Needle"]</xpath>
+  </Operation>
+
   <!-- Disable for player -->
 
   <Operation Class="PatchOperationAttributeSet">
@@ -1342,6 +1347,15 @@
 
   <Operation Class="PatchOperationRemove">
     <xpath>/Defs/ThingDef[defName="Gun_ChargeLance"]/weaponTags/li[contains(.,"SpacerGun")]</xpath>
+  </Operation>
+
+  <!-- Remove Smoke and EMP Launchers -->
+  <Operation Class="PatchOperationRemove">
+    <xpath>Defs/ThingDef[defName="Gun_SmokeLauncher"]</xpath>
+  </Operation>
+
+  <Operation Class="PatchOperationRemove">
+    <xpath>Defs/ThingDef[defName="Gun_EmpLauncher"]</xpath>
   </Operation>
 
 </Patch>

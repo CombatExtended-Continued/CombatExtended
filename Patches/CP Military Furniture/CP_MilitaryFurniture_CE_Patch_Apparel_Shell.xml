@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+	<Operation Class="PatchOperationSequence">
+		<success>Always</success>
+		<operations>
+
+			<li Class="CombatExtended.PatchOperationFindMod">
+				<modName>[CP] Military Furniture</modName>
+			</li>
+			
+			<!-- ========== Parka A-TACS FG ========== -->
+
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName="RNApparel_Parka_ATACSFG"]/statBases</xpath>
+				<value>
+					<Bulk>10</Bulk>
+					<WornBulk>5</WornBulk>
+				</value>
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="RNApparel_Parka_ATACSFG"]/statBases/StuffEffectMultiplierArmor</xpath>
+				<value>
+					<StuffEffectMultiplierArmor>10</StuffEffectMultiplierArmor>
+				</value>
+			</li>
+
+		</operations>
+	</Operation>
+</Patch>

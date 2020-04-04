@@ -95,12 +95,10 @@ namespace CombatExtended
                 CompProperties_AmmoUser props = weaponDef.GetCompProperties<CompProperties_AmmoUser>();
                 if (props != null && props.ammoSet != null && !props.ammoSet.ammoTypes.NullOrEmpty())
                 {
+                    // Union their ammoTypes -- since ammoDefs is a HashSet, duplicates are automatically removed
                     ammoDefs.UnionWith(props.ammoSet.ammoTypes.Select<AmmoLink, ThingDef>(x => x.ammo));
                 }
             }
-
-            // Make sure to exclude all ammo things which double as weapons
-            ammoDefs.RemoveWhere(x => x.IsWeapon);
 
             /*
             bool canCraft = (AmmoCraftingStation != null);
@@ -111,6 +109,7 @@ namespace CombatExtended
             }
             */
 
+            // Loop through all weaponDef's unique ammoType.ammo values
             foreach (AmmoDef ammoDef in ammoDefs)
             {
                 //AFTER CE_Utility.allWeaponDefs is initiated, this sets each ammo to list its users & special effects in its DEF DESCRIPTION rather than its THING DESCRIPTION.
@@ -125,6 +124,17 @@ namespace CombatExtended
                         ammoDef.menuHidden = !enabled;
                         ammoDef.destroyOnDrop = !enabled;
                     }
+
+                    //Weapon defs aren't changed w.r.t crafting, trading, destruction on drop -- but the description is still added to the recipe
+                    if (ammoDef.IsWeapon)
+                        continue;
+
+                    if (!ammoDef.Users                                                                          //If there exists NO gun..
+                        .Any(x => !x.destroyOnDrop                                                              //.. which DOESN'T destroy on drop (e.g all guns destroy on drop)
+                                    || (x.weaponTags != null && x.weaponTags.Contains("TurretGun")              //.. or IS part of a Turret..
+                                        && DefDatabase<ThingDef>.AllDefs.Where(y => y.building?.turretGunDef == x)                //.. as long as ALL turrets using the gun are non-mechcluster turrets
+                                            .All(y => !y.building?.buildingTags?.Contains(MechClusterGenerator.MechClusterMemberTag) ?? true))))                                                                  
+                        continue;                                                                               //Then this ammo's tradeability and craftability are ignored
 
                     // Toggle trading
                     var tradingTags = ammoDef.tradeTags.Where(t => t.StartsWith(enableTradeTag));
@@ -292,11 +302,11 @@ namespace CombatExtended
 
                     if (ammoSet != null)
                     {
-                        RecipeDef recipeDef = DefDatabase<RecipeDef>.GetNamed("Make_" + x.defName, false);
+                        RecipeDef recipeDef = DefDatabase<RecipeDef>.GetNamed("Make" + x.defName, false);
 
                         if (recipeDef != null)
                         {
-                            var label = x.label + (shouldHaveLabels ? " (" + ammoSet.LabelCap + ")" : "");
+                            var label = x.label + (shouldHaveLabels ? " (" + (string)ammoSet.LabelCap + ")" : "");
 
                             recipeDef.UpdateLabel("RecipeMake".Translate(label));           //Just setting recipeDef.label doesn't update Jobs nor existing recipeUsers. We need UpdateLabel.
                             recipeDef.jobString = "RecipeMakeJobString".Translate(label);   //The jobString should also be updated to reflect the name change.

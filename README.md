@@ -56,3 +56,9 @@ Combat Extended completely overhauls combat. It adds completely new shooting and
 - Stabilize will temporarily reduce bleed rate of all wounds on a pawn and wears off over time. Stabilizing a heavily wounded colonist can buy you time, but it won't save him unless he gets proper treatment.
 - Missing parts and internal injuries are harder to stabilize than external bleedings.
 - Amount of reduction depends on medicine used and doctor skill. Don't expect the guy with 2 doctoring skill and herbal medicine to stop a destroyed lung from bleeding.
+
+
+## Supported Third-Party Mods
+CE comes with built-in support for a number of popular third-party mods, a [list of which can be found here](SupportedThirdPartyMods.md).
+
+

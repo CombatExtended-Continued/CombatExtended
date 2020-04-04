@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+	<!-- I expected more to patch. -->
+	<Operation Class="PatchOperationSequence">
+		<success>Always</success>
+		<operations>
+			<!-- ==== Check for the mod. ==== -->
+			<li Class="CombatExtended.PatchOperationFindMod">
+				<modName>Dragon's Descent</modName>
+			</li>
+
+			<!-- ==== Filthy_Wound ==== -->
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/HediffDef[defName="Filthy_Wound"]/comps/li[@Class = "HediffCompProperties_Infecter"]</xpath>
+				<value>
+					<li Class="CombatExtended.HediffCompProperties_InfecterCE">
+						<infectionChancePerHourUntended>0.1</infectionChancePerHourUntended>
+					</li>
+				</value>
+			</li>
+		</operations>
+	</Operation>
+</Patch>

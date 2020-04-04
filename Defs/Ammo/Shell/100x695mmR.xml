@@ -51,18 +51,7 @@
 			<MarketValue>170</MarketValue>
 		</statBases>
 		<ammoClass>RocketHEAT</ammoClass>
-		<comps>
-			<li Class="CombatExtended.CompProperties_ExplosiveCE">
-				<explosionDamage>173</explosionDamage>
-				<explosionDamageDef>Bomb</explosionDamageDef>
-				<explosionRadius>1.5</explosionRadius>
-				<fragments>
-					<Fragment_Large>27</Fragment_Large>
-					<Fragment_Small>60</Fragment_Small>
-				</fragments>
-				<applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
-			</li>
-		</comps>
+		<detonateProjectile>Bullet_100x695mmRCannonShell_HEAT</detonateProjectile>
 	</ThingDef>
 
 	<ThingDef Class="CombatExtended.AmmoDef" ParentName="100x695mmRCannonShellBase">
@@ -77,19 +66,7 @@
 			<MarketValue>183.19</MarketValue>
 		</statBases>
 		<ammoClass>GrenadeHE</ammoClass>
-		<comps>
-			<li Class="CombatExtended.CompProperties_ExplosiveCE">
-				<explosionDamage>209</explosionDamage>
-				<explosionDamageDef>Bomb</explosionDamageDef>
-				<explosionRadius>3</explosionRadius>
-				<fragments>
-					<Fragment_Large>52</Fragment_Large>
-					<Fragment_Small>163</Fragment_Small>
-				</fragments>
-				<fragRange>10</fragRange>
-				<applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
-			</li>
-		</comps>
+		<detonateProjectile>Bullet_100x695mmRCannonShell_HE</detonateProjectile>
 	</ThingDef>
 
 	<!-- ================== Projectiles ================== -->
@@ -122,17 +99,18 @@
 			<armorPenetrationBlunt>52.045</armorPenetrationBlunt>
 		</projectile>
 		<comps>
-			<li Class="CombatExtended.CompProperties_ExplosiveCE">
-				<explosionDamage>173</explosionDamage>
-				<explosionDamageDef>Bomb</explosionDamageDef>
-				<explosionRadius>1.5</explosionRadius>
-				<fragments>
-					<Fragment_Large>27</Fragment_Large>
-					<Fragment_Small>60</Fragment_Small>
-				</fragments>
-				<fragRange>10</fragRange>
-				<applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
-			</li>
+		  <li Class="CombatExtended.CompProperties_ExplosiveCE">
+			<damageAmountBase>173</damageAmountBase>
+			<explosiveDamageType>Bomb</explosiveDamageType>
+			<explosiveRadius>1.5</explosiveRadius>
+			<applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
+		  </li>
+		  <li Class="CombatExtended.CompProperties_Fragments">
+			<fragments>
+				<Fragment_Large>27</Fragment_Large>
+			  <Fragment_Small>60</Fragment_Small>
+			</fragments>
+		  </li>
 		</comps>
 	</ThingDef>
 
@@ -152,7 +130,7 @@
 			<applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
 		</projectile>
 		<comps>
-			<li Class="CombatExtended.CompProperties_ExplosiveCE">
+			<li Class="CombatExtended.CompProperties_Fragments">
 				<fragments>
 					<Fragment_Large>52</Fragment_Large>
 					<Fragment_Small>163</Fragment_Small>
@@ -163,7 +141,7 @@
 
 	<!-- ==================== Recipes ========================== -->
 
-	<RecipeDef ParentName="GrenadeRecipeBase">
+	<RecipeDef ParentName="AmmoRecipeBase">
 		<defName>MakeAmmo_100x695mmRCannonShell_HEAT</defName>
 		<label>make 100x695mmR HEAT cannon shells x5</label>
 		<description>Craft 5 100x695mmR HEAT cannon shells.</description>
@@ -207,7 +185,7 @@
 		</products>
 	</RecipeDef>
 
-	<RecipeDef ParentName="GrenadeRecipeBase">
+	<RecipeDef ParentName="AmmoRecipeBase">
 		<defName>MakeAmmo_100x695mmRCannonShell_HE</defName>
 		<label>make 100x695mmR HE cannon shells x5</label>
 		<description>Craft 5 100x695mmR HE cannon shells.</description>

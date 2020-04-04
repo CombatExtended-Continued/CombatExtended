@@ -1,0 +1,196 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+	<Operation Class="PatchOperationSequence">
+		<success>Always</success>
+		<operations>
+
+			<li Class="CombatExtended.PatchOperationFindMod">
+				<modName>[RH] Faction: Last Man Contingent</modName>
+			</li>
+
+			<!-- ========== Dragunov SVD ========== -->
+
+			<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+				<defName>RNGun_DragunovDMR</defName>
+				<statBases>
+					<Mass>4.30</Mass>
+					<RangedWeapon_Cooldown>0.37</RangedWeapon_Cooldown>
+					<SightsEfficiency>2.24</SightsEfficiency>
+					<ShotSpread>0.04</ShotSpread>
+					<SwayFactor>1.70</SwayFactor>
+					<Bulk>12.25</Bulk>
+					<WorkToMake>23000</WorkToMake>
+				</statBases>
+				<costList>
+					<WoodLog>10</WoodLog>
+					<Steel>60</Steel>
+					<ComponentIndustrial>4</ComponentIndustrial>
+				</costList>
+				<Properties>
+					<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+					<hasStandardCommand>true</hasStandardCommand>
+					<defaultProjectile>Bullet_762x54mmR_FMJ</defaultProjectile>
+					<warmupTime>1.3</warmupTime>
+					<range>75</range>
+					<soundCast>RNShotDragunov</soundCast>
+					<soundCastTail>GunTail_Heavy</soundCastTail>
+					<muzzleFlashScale>9</muzzleFlashScale>
+				</Properties>
+
+				<AmmoUser>
+					<magazineSize>10</magazineSize>
+					<reloadTime>4</reloadTime>
+					<ammoSet>AmmoSet_762x54mmR</ammoSet>
+				</AmmoUser>
+
+				<FireModes>
+					<aiUseBurstMode>FALSE</aiUseBurstMode>
+					<aiAimMode>AimedShot</aiAimMode>
+				</FireModes>
+
+				<weaponTags>
+					<li>CE_AI_Rifle</li>
+				</weaponTags>
+
+				<AllowWithRunAndGun>false</AllowWithRunAndGun>
+			</li>
+
+			<!-- ========== Barrett M107 ========== -->
+
+			<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+				<defName>RNGun_M107AMR</defName>
+				<statBases>
+					<Mass>14.00</Mass>
+					<RangedWeapon_Cooldown>0.58</RangedWeapon_Cooldown>
+					<SightsEfficiency>2.84</SightsEfficiency>
+					<ShotSpread>0.02</ShotSpread>
+					<SwayFactor>2.04</SwayFactor>
+					<Bulk>15.00</Bulk>
+					<WorkToMake>39500</WorkToMake>
+				</statBases>
+				<costList>
+					<Steel>115</Steel>
+					<ComponentIndustrial>7</ComponentIndustrial>
+				</costList>
+				<Properties>
+					<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+					<hasStandardCommand>true</hasStandardCommand>
+					<defaultProjectile>Bullet_50BMG_FMJ</defaultProjectile>
+					<warmupTime>3.5</warmupTime>
+					<range>126</range>
+					<soundCast>RNShot50Cal</soundCast>
+					<soundCastTail>GunTail_Heavy</soundCastTail>
+					<muzzleFlashScale>9</muzzleFlashScale>
+				</Properties>
+
+				<AmmoUser>
+					<magazineSize>10</magazineSize>
+					<reloadTime>4</reloadTime>
+					<ammoSet>AmmoSet_50BMG</ammoSet>
+				</AmmoUser>
+
+				<FireModes>
+					<aiUseBurstMode>FALSE</aiUseBurstMode>
+					<aiAimMode>AimedShot</aiAimMode>
+				</FireModes>
+
+				<!-- No additional CE weaponTags needed -->
+
+				<AllowWithRunAndGun>false</AllowWithRunAndGun>
+			</li>
+
+			<!-- ========== QBU-88 (Type 88) ========== -->
+
+			<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+				<defName>RNGun_QBU88DMR</defName>
+				<statBases>
+					<Mass>4.10</Mass>
+					<RangedWeapon_Cooldown>0.56</RangedWeapon_Cooldown>
+					<SightsEfficiency>2.54</SightsEfficiency>
+					<ShotSpread>0.04</ShotSpread>
+					<SwayFactor>0.99</SwayFactor>
+					<Bulk>10.20</Bulk>
+					<WorkToMake>39000</WorkToMake>
+				</statBases>
+				<costList>
+					<Chemfuel>10</Chemfuel>
+					<Steel>55</Steel>
+					<ComponentIndustrial>7</ComponentIndustrial>
+				</costList>
+				<Properties>
+					<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+					<hasStandardCommand>true</hasStandardCommand>
+					<defaultProjectile>Bullet_58x42mmDBP10_FMJ</defaultProjectile>
+					<warmupTime>1.75</warmupTime>
+					<range>75</range>
+					<soundCast>RNShot_GenericDMR_II</soundCast>
+					<soundCastTail>GunTail_Heavy</soundCastTail>
+					<muzzleFlashScale>9</muzzleFlashScale>
+				</Properties>
+
+				<AmmoUser>
+					<magazineSize>10</magazineSize>
+					<reloadTime>4.5</reloadTime>
+					<ammoSet>AmmoSet_58x42mmDBP10</ammoSet>
+				</AmmoUser>
+
+				<FireModes>
+					<aiUseBurstMode>FALSE</aiUseBurstMode>
+					<aiAimMode>AimedShot</aiAimMode>
+				</FireModes>
+
+				<weaponTags>
+					<li>CE_AI_Rifle</li>
+				</weaponTags>
+
+				<AllowWithRunAndGun>false</AllowWithRunAndGun>
+			</li>
+
+			<!-- == Shared patches for firearm melee tools == -->
+
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[
+					defName="RNGun_DragunovDMR" or
+					defName="RNGun_M107AMR" or
+					defName="RNGun_QBU88DMR"
+				]/tools</xpath>
+				<value>
+					<tools>
+						<li Class="CombatExtended.ToolCE">
+							<label>stock</label>
+							<capacities>
+								<li>Blunt</li>
+							</capacities>
+							<power>8</power>
+							<cooldownTime>1.55</cooldownTime>
+							<chanceFactor>1.5</chanceFactor>
+							<armorPenetrationBlunt>2.755</armorPenetrationBlunt>
+							<linkedBodyPartsGroup>Stock</linkedBodyPartsGroup>
+						</li>
+						<li Class="CombatExtended.ToolCE">
+							<label>barrel</label>
+							<capacities>
+								<li>Blunt</li>
+							</capacities>
+							<power>5</power>
+							<cooldownTime>2.02</cooldownTime>
+							<armorPenetrationBlunt>1.630</armorPenetrationBlunt>
+							<linkedBodyPartsGroup>Barrel</linkedBodyPartsGroup>
+						</li>
+						<li Class="CombatExtended.ToolCE">
+							<label>muzzle</label>
+							<capacities>
+								<li>Poke</li>
+							</capacities>
+							<power>8</power>
+							<cooldownTime>1.55</cooldownTime>
+							<armorPenetrationBlunt>2.755</armorPenetrationBlunt>
+							<linkedBodyPartsGroup>Muzzle</linkedBodyPartsGroup>
+						</li>
+					</tools>
+				</value>
+			</li>
+
+		</operations>
+	</Operation>
+</Patch>
