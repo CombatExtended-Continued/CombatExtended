@@ -277,18 +277,43 @@
         </li>
 
         <!-- Weapon -->
+        <li Class="PatchOperationAttributeSet">
+          <xpath>/Defs/ThingDef[defName="VWE_Throwing_Knives"]</xpath>
+          <attribute>ParentName</attribute>
+          <value>BaseWeapon</value>
+        </li>
+
+        <li Class="PatchOperationRemove">
+          <xpath>/Defs/ThingDef[defName="VWE_Throwing_Knives"]/recipeMaker</xpath>
+        </li>
+
+        <li Class="PatchOperationRemove">
+          <xpath>Defs/ThingDef[defName="VWE_Throwing_Knives"]/costStuffCount</xpath>
+        </li>
+
+        <li Class="PatchOperationRemove">
+          <xpath>/Defs/ThingDef[defName="VWE_Throwing_Knives"]/stuffCategories</xpath>
+        </li>
+
         <li Class="PatchOperationAdd">
-          <xpath>Defs/ThingDef[defName="VWE_Throwing_Knives"]</xpath>
+          <xpath>/Defs/ThingDef[defName="VWE_Throwing_Knives"]/graphicData</xpath>
+          <value>
+            <color>(105,105,105)</color>
+          </value>
+        </li>
+
+        <li Class="PatchOperationAdd">
+          <xpath>/Defs/ThingDef[defName="VWE_Throwing_Knives"]</xpath>
 
           <value>
             <thingClass>CombatExtended.AmmoThing</thingClass>
-            <stackLimit>50</stackLimit>
+            <stackLimit>75</stackLimit>
             <resourceReadoutPriority>First</resourceReadoutPriority>
           </value>
         </li>
 
         <li Class="PatchOperationAttributeSet">
-          <xpath>Defs/ThingDef[defName="VWE_Throwing_Knives"]</xpath>
+          <xpath>/Defs/ThingDef[defName="VWE_Throwing_Knives"]</xpath>
 
           <attribute>Class</attribute>
           <value>CombatExtended.AmmoDef</value>
@@ -298,10 +323,9 @@
           <defName>VWE_Throwing_Knives</defName>
 
           <statBases>
-            <WorkToMake>4600</WorkToMake>
-            <SightsEfficiency>0.7</SightsEfficiency>
-            <Bulk>1</Bulk>
-            <Mass>1</Mass>
+            <SightsEfficiency>1</SightsEfficiency>
+            <Bulk>0.35</Bulk>
+            <Mass>0.15</Mass>
             <RangedWeapon_Cooldown>0.38</RangedWeapon_Cooldown>
           </statBases>
 
@@ -311,8 +335,9 @@
             <hasStandardCommand>True</hasStandardCommand>
             <defaultProjectile>VWE_FlyingBlade</defaultProjectile>
             <warmupTime>1</warmupTime>
-            <range>15</range>
+            <range>10</range>
             <soundCast>ThrowGrenade</soundCast>
+             <ai_IsBuildingDestroyer>false</ai_IsBuildingDestroyer>
           </Properties>
         </li>
 
@@ -390,7 +415,7 @@
           <Properties>
             <verbClass>CombatExtended.Verb_ShootCE</verbClass>
             <hasStandardCommand>True</hasStandardCommand>
-            <defaultProjectile>Projectile_VWE_Whip</defaultProjectile>
+            <defaultProjectile>Bullet_VWE_Whip</defaultProjectile>
             <warmupTime>1</warmupTime>
             <range>15</range>
             <soundCast>VWE_Shot_Whip</soundCast>
