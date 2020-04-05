@@ -29,7 +29,7 @@
 							</extraMeleeDamages>
 							<cooldownTime>1.37</cooldownTime>
 							<chanceFactor>0.10</chanceFactor>
-							<armorPenetrationBlunt>1.688</armorPenetrationBlunt>
+							<armorPenetrationBlunt>8.688</armorPenetrationBlunt>
 							<linkedBodyPartsGroup>Handle</linkedBodyPartsGroup>
 						</li>
 						<li Class="CombatExtended.ToolCE">
@@ -54,7 +54,7 @@
 			</li>
 			
 			<li Class="PatchOperationAdd">
-				<xpath>Defs/ThingDef[defName="DR_BattleHammer"]/tools</xpath>
+				<xpath>Defs/ThingDef[defName="DR_BattleHammer"]/statBases</xpath>
 				<value>
 					<Bulk>8</Bulk>
 					<MeleeCounterParryBonus>0.40</MeleeCounterParryBonus>
@@ -65,26 +65,24 @@
 			<success>Always</success>
 			<operations>
 				<li Class="PatchOperationTest">
-				<xpath>Defs/ThingDef[defName="DR_BattleHammer"]/statBases</xpath>
+				<xpath>Defs/ThingDef[defName="DR_BattleHammer"]/equippedStatOffsets</xpath>
 				<success>Invert</success>
 				</li>
 				<li Class="PatchOperationAdd">
 				<xpath>Defs/ThingDef[defName="DR_BattleHammer"]</xpath>
 				<value>
-					<statBases />
+					<equippedStatOffsets />
 				</value>
 				</li>
 			</operations>
 			</li>
 			
 			<li Class="PatchOperationAdd">
-				<xpath>Defs/ThingDef[defName="DR_BattleHammer"]</xpath>
+				<xpath>Defs/ThingDef[defName="DR_BattleHammer"]/equippedStatOffsets</xpath>
 				<value>
-					<equippedStatOffsets>
-						<MeleeCritChance>1.50</MeleeCritChance>
-						<MeleeParryChance>0.30</MeleeParryChance>
-						<MeleeDodgeChance>0.30</MeleeDodgeChance>	
-					</equippedStatOffsets>
+					<MeleeCritChance>1.50</MeleeCritChance>
+					<MeleeParryChance>0.30</MeleeParryChance>
+					<MeleeDodgeChance>0.30</MeleeDodgeChance>	
 				</value>	
 			</li>
 			
