@@ -58,7 +58,7 @@
           </value>
         </li>
 
-        <!-- == Remove CompProperties == -->
+        <!-- == Remove stuff == -->
         <li Class="PatchOperationRemove">
           <xpath>/Defs/ThingDef[defName="Turret_GatlingGun"]/comps/li[@Class="CompProperties_Refuelable"]</xpath>
         </li>
@@ -73,6 +73,26 @@
 
         <li Class="PatchOperationRemove">
           <xpath>/Defs/ThingDef[defName="Turret_GatlingGun"]/comps/li[@Class="VanillaFactionsExpandedSettlers.CompProperties_WarmUpReduction"]</xpath>
+        </li>
+
+         <li Class="PatchOperationRemove">
+          <xpath>/Defs/ThingDef[defName="Turret_GatlingGun"]/stuffCategories</xpath>
+        </li>
+
+         <li Class="PatchOperationRemove">
+          <xpath>/Defs/ThingDef[defName="Turret_GatlingGun"]/costStuffCount</xpath>
+        </li>
+
+        <!-- == costList == -->
+        <li Class="PatchOperationAdd">
+          <xpath>/Defs/ThingDef[defName="Turret_GatlingGun"]</xpath>
+
+          <value>
+            <costList>
+              <Steel>325</Steel>
+              <ComponentIndustrial>4</ComponentIndustrial>
+            </costList>
+          </value>
         </li>
 
         <!-- == fillPercent == -->
