@@ -1,0 +1,229 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+
+  <Operation Class="PatchOperationFindMod">
+    <mods>
+      <li>Vanilla Weapons Expanded</li>
+    </mods>
+    <match Class="PatchOperationSequence">
+      <operations>
+
+        <!-- === Long Bow === -->
+        <!-- Weapon -->
+        <li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+            <defName>VWE_Bow_Long</defName>
+            <statBases>
+            <SightsEfficiency>0.7</SightsEfficiency>
+            <ShotSpread>1</ShotSpread>
+            <SwayFactor>2</SwayFactor>
+            <Bulk>5.50</Bulk>
+            <RangedWeapon_Cooldown>1</RangedWeapon_Cooldown>
+            </statBases>
+            <costList>
+            <WoodLog>65</WoodLog>
+            </costList>
+            <Properties>
+            <verbClass>CombatExtended.Verb_ShootCE</verbClass>
+            <hasStandardCommand>true</hasStandardCommand>
+            <defaultProjectile>Projectile_GreatArrow_Stone</defaultProjectile>
+            <warmupTime>1.5</warmupTime>
+            <range>37</range>
+            <soundCast>Bow_Large</soundCast>
+            </Properties>
+            <AmmoUser>
+            <ammoSet>AmmoSet_GreatArrow</ammoSet>
+            </AmmoUser>
+            <FireModes />
+            <weaponTags>
+            <li>NeolithicRangedBasic</li>
+            <li>NeolithicRangedHeavy</li>            
+            <li>CE_Bow</li>
+            </weaponTags>
+            <researchPrerequisite>VWE_Longbow</researchPrerequisite>
+            <AllowWithRunAndGun>false</AllowWithRunAndGun>
+        </li>
+
+        <li Class="PatchOperationReplace">
+            <xpath>Defs/ThingDef[defName="VWE_Bow_Long"]/tools</xpath>
+            <value>
+            <tools>
+                <li Class="CombatExtended.ToolCE">
+                    <capacities>
+                        <li>Blunt</li>
+                    </capacities>
+                    <power>7</power>
+                    <cooldownTime>1.6</cooldownTime>
+                <armorPenetrationBlunt>0.65</armorPenetrationBlunt>
+                </li>
+            </tools>
+            </value>
+        </li>
+
+        <!-- === Throwing Rock === -->
+        <!-- Projectile -->
+
+        <li Class="PatchOperationReplace">
+          <xpath>/Defs/ThingDef[defName="VWE_Rock"]/projectile</xpath>
+
+          <value>
+            <projectile Class="CombatExtended.ProjectilePropertiesCE">
+              <damageDef>Blunt</damageDef>
+              <damageAmountBase>15</damageAmountBase>
+              <armorPenetrationBlunt>3.12</armorPenetrationBlunt>
+              <dropsCasings>false</dropsCasings>
+              <flyOverhead>false</flyOverhead>
+            </projectile>
+          </value>
+        </li>
+
+        <!-- Weapon -->
+
+        <li Class="PatchOperationAttributeSet">
+          <xpath>Defs/ThingDef[defName="VWE_Throwing_Rocks"]</xpath>
+          <attribute>ParentName</attribute>
+          <value>BaseWeapon</value>
+        </li>
+
+        <li Class="PatchOperationRemove">
+          <xpath>Defs/ThingDef[defName="VWE_Throwing_Rocks"]/recipeMaker</xpath>
+        </li>
+
+        <li Class="PatchOperationRemove">
+          <xpath>Defs/ThingDef[defName="VWE_Throwing_Rocks"]/destroyOnDrop</xpath>
+        </li>
+
+        <li Class="PatchOperationRemove">
+          <xpath>Defs/ThingDef[defName="VWE_Throwing_Rocks"]/costStuffCount</xpath>
+        </li>
+
+        <li Class="PatchOperationRemove">
+          <xpath>Defs/ThingDef[defName="VWE_Throwing_Rocks"]/stuffCategories</xpath>
+        </li>
+
+        <li Class="PatchOperationAdd">
+          <xpath>/Defs/ThingDef[defName="VWE_Throwing_Rocks"]</xpath>
+
+          <value>
+            <thingClass>CombatExtended.AmmoThing</thingClass>
+            <stackLimit>75</stackLimit>
+            <resourceReadoutPriority>First</resourceReadoutPriority>
+          </value>
+        </li>
+
+        <li Class="PatchOperationAdd">
+          <xpath>/Defs/ThingDef[defName="VWE_Throwing_Rocks"]/graphicData</xpath>
+          <value>
+            <color>(158,153,135)</color>
+          </value>
+        </li>
+
+        <li Class="PatchOperationAttributeSet">
+          <xpath>/Defs/ThingDef[defName="VWE_Throwing_Rocks"]</xpath>
+
+          <attribute>Class</attribute>
+          <value>CombatExtended.AmmoDef</value>
+        </li>
+
+        <li Class="PatchOperationSequence">
+          <success>Always</success>
+
+          <operations>
+            <li Class="PatchOperationTest">
+              <xpath>/Defs/ThingDef[defName="VWE_Throwing_Rocks"]/comps</xpath>
+              <success>Invert</success>
+            </li>
+
+            <li Class="PatchOperationAdd">
+              <xpath>/Defs/ThingDef[defName="VWE_Throwing_Rocks"]</xpath>
+              <value>
+                <comps />
+              </value>
+            </li>
+          </operations>
+        </li>
+
+        <li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+          <defName>VWE_Throwing_Rocks</defName>
+
+          <statBases>
+            <Mass>0.5</Mass>
+            <Bulk>0.25</Bulk>
+            <MarketValue>0.09</MarketValue>
+            <SightsEfficiency>1</SightsEfficiency>
+            <RangedWeapon_Cooldown>1</RangedWeapon_Cooldown>
+          </statBases>
+
+          <Properties>
+            <label>throw rock</label>
+            <verbClass>CombatExtended.Verb_ShootCEOneUse</verbClass>
+            <hasStandardCommand>true</hasStandardCommand>
+            <defaultProjectile>VWE_Rock</defaultProjectile>
+            <range>10</range>
+            <warmupTime>1.8</warmupTime>
+            <soundCast>ThrowGrenade</soundCast>
+            <noiseRadius>4</noiseRadius>
+            <ai_IsBuildingDestroyer>false</ai_IsBuildingDestroyer>
+          </Properties>
+
+          <weaponTags>
+            <li>CE_OneHandedWeapon</li>
+          </weaponTags>
+        </li>
+
+        <li Class="PatchOperationReplace">
+            <xpath>Defs/ThingDef[defName="VWE_Throwing_Rocks"]/tools</xpath>
+            <value>
+            <tools>
+                <li Class="CombatExtended.ToolCE">
+                    <capacities>
+                        <li>Blunt</li>
+                    </capacities>
+                    <power>2</power>
+                    <cooldownTime>1.5</cooldownTime>
+                <armorPenetrationBlunt>0.5</armorPenetrationBlunt>
+                </li>
+            </tools>
+            </value>
+        </li>
+
+        <li Class="PatchOperationAdd">
+            <xpath>Defs</xpath>
+            <value>
+
+            <RecipeDef ParentName="AmmoRecipeNeolithicBase">
+              <defName>MakeThrowingRocks</defName>
+              <label>make throwing rocks x10</label>
+              <description>Craft 10 throwing rocks.</description>
+              <jobString>Making throwing rocks.</jobString>
+              <workAmount>1200</workAmount>
+              <ingredients>
+                <li>
+                  <filter>
+                  <stuffCategoriesToAllow>
+                    <li>Stony</li>
+                  </stuffCategoriesToAllow>
+                  </filter>
+                  <count>1</count>
+                </li>
+              </ingredients>
+              <fixedIngredientFilter>
+                <stuffCategoriesToAllow>
+                    <li>Stony</li>
+                </stuffCategoriesToAllow>
+              </fixedIngredientFilter>
+              <recipeUsers>
+                <li>CraftingSpot</li>
+              </recipeUsers>            
+              <products>
+                <VWE_Throwing_Rocks>10</VWE_Throwing_Rocks>
+              </products>
+            </RecipeDef>
+
+            </value>
+        </li>
+
+      </operations>
+    </match>
+  </Operation>
+
+</Patch>

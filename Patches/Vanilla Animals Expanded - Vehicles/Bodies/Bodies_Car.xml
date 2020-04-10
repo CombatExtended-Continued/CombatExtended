@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+	<Operation Class="PatchOperationSequence">
+		<operations>
+				
+			<!--Car Bodytype-->
+			
+			<li Class="PatchOperationFindMod">
+				<mods><li>Vanilla Vehicles Expanded</li></mods>
+				<match Class="PatchOperationSequence">
+					<operations>
+					<!--VAEAF Car-->
+					<li Class="PatchOperationAdd">
+						<xpath>/Defs/BodyDef[defName="VAEAF_CarBody"]/corePart</xpath>
+						<value>
+							<groups>
+								<li>CoveredByNaturalArmor</li>
+							</groups>
+						</value>
+					</li>
+					
+					<li Class="PatchOperationAdd">
+						<xpath>/Defs/BodyDef[defName="VAEAF_CarBody"]/corePart/parts/li[def="VAEAF_FrontGrille"]/groups</xpath>
+						<value>
+							<li>CoveredByNaturalArmor</li>
+						</value>
+					</li>
+					
+					<li Class="PatchOperationAdd">
+						<xpath>/Defs/BodyDef[defName="VAEAF_CarBody"]/corePart/parts/li[def="VAEAF_ChassisCentral"]</xpath>
+						<value>
+							<groups>
+								<li>CoveredByNaturalArmor</li>
+							</groups>
+						</value>
+					</li>
+					
+					<li Class="PatchOperationAdd">
+						<xpath>/Defs/BodyDef[defName="VAEAF_CarBody"]/corePart/parts/li[def="VAEAF_ChassisCentral"]/parts/li[def="VAEAF_ChassisRear"]</xpath>
+						<value>
+							<groups>
+								<li>CoveredByNaturalArmor</li>
+							</groups>
+						</value>
+					</li>
+					
+					</operations>
+				</match>
+			</li>
+		</operations>
+	</Operation>
+</Patch>
