@@ -16,39 +16,6 @@ namespace CombatExtended
     {
         public override ThingRequest PotentialWorkThingRequest => ThingRequest.ForGroup(ThingRequestGroup.BuildingArtificial);
 
-        private bool Checks(Pawn pawn, Building_TurretGunCE turret, bool forced)
-        {
-            //WorkTagIsDisabled check inherent to WorkGiver_Scanner
-            //MissingRequiredCapacity check inherent to WorkGiver_Scanner
-            if (turret.isReloading)
-            {
-                CELogger.Message(pawn.ThingID + " failed " + turret.ThingID + ": turret is already reloading");
-                return false;  //Turret is already reloading
-            }
-            if (turret.FullMagazine)
-            {
-                CELogger.Message(pawn.ThingID + " failed " + turret.ThingID + ": turret doesn't need reload");
-                return false;  //Turret doesn't need reload
-            }
-            if (turret.IsBurning())
-            {
-                CELogger.Message(pawn.ThingID + " failed " + turret.ThingID + ": turret on fire");
-                return false;   //Turret on fire
-            }
-            if (turret.Faction != pawn.Faction && (turret.Faction != null && pawn.Faction != null && turret.Faction.RelationKindWith(pawn.Faction) != FactionRelationKind.Ally))
-            {
-                CELogger.Message(pawn.ThingID + " failed " + turret.ThingID + ": non-allied turret");
-                return false;     //Allies reload turrets
-            }
-            if ((turret.MannableComp?.ManningPawn != pawn) && !pawn.CanReserveAndReach(turret, PathEndMode.ClosestTouch, forced ? Danger.Deadly : pawn.NormalMaxDanger(), GenClosestAmmo.pawnsPerTurret))
-            {
-                CELogger.Message(pawn.ThingID + " failed " + turret.ThingID + ": turret unreachable");
-                return false;    //Pawn cannot reach turret
-            }
-
-            return true;
-        }
-
         public override float GetPriority(Pawn pawn, TargetInfo t) => GetThingPriority(pawn, t.Thing);
 
         private float GetThingPriority(Pawn pawn, Thing t, bool forced = false)
@@ -95,53 +62,20 @@ namespace CombatExtended
         /// <param name="t">Can be non-turret</param>
         /// <param name="forced">Generally not true</param>
         /// <returns></returns>
-        /*public override bool HasJobOnThing(Pawn pawn, Thing t, bool forced = false)
-          {
-              Building_TurretGunCE turret = t as Building_TurretGunCE;
-              if (turret == null || !Checks(pawn, turret, forced))  return false;
-
-              if (!turret.CompAmmo.UseAmmo)
-                  return true;
-
-              turret.UpdateNearbyAmmo();
-
-              Thing ammo = turret.nearestViableAmmo;
-
-              int amountNeeded = turret.CompAmmo.Props.magazineSize;
-              if (turret.CompAmmo.CurrentAmmo == turret.CompAmmo.SelectedAmmo) amountNeeded -= turret.CompAmmo.CurMagCount;
-
-              if (ammo == null || ammo.IsForbidden(pawn) || !pawn.CanReserveAndReach(new LocalTargetInfo(ammo), PathEndMode.ClosestTouch, pawn.NormalMaxDanger(), Mathf.Max(1, ammo.stackCount - amountNeeded), amountNeeded, null, forced))
-              {
-                  ammo = turret.InventoryAmmo(pawn.TryGetComp<CompInventory>());
-              }
-
-              return ammo != null;
-          }*/
-
+        
         public override bool HasJobOnThing(Pawn pawn, Thing t, bool forced = false)
         {
             var priority = GetThingPriority(pawn, t, forced);
-            if (priority == 0f) return false;
+            CELogger.Message($"Priority check completed. Got {priority}");
 
             Building_TurretGunCE turret = t as Building_TurretGunCE;
+            CELogger.Message($"Turret uses ammo? {turret.CompAmmo.UseAmmo}");
             if (!turret.CompAmmo.UseAmmo)
                 return true;
 
-            int amountNeeded = turret.CompAmmo.Props.magazineSize;
-            if (turret.CompAmmo.CurrentAmmo == turret.CompAmmo.SelectedAmmo) amountNeeded -= turret.CompAmmo.CurMagCount;
+            CELogger.Message($"Total magazine size: {turret.CompAmmo.Props.magazineSize}. Needed: {turret.CompAmmo.MissingToFullMagazine}");
 
-            turret.UpdateNearbyAmmo();
-            Thing ammo = PawnClosestAmmo(pawn, turret, out bool _, forced);
-
-            if (ammo == null)
-                return false;
-
-            // Update selected ammo if necessary
-            if (ammo.def != turret.CompAmmo.SelectedAmmo
-                && priority < 9f && ammo.stackCount < amountNeeded)    //New option can fill magazine completely (and is otherwise closer)
-                    return false;
-
-            return true;
+            return JobGiverUtils_Reload.CanReload(pawn, turret, forced);
         }
 
         //Checks before called (ONLY when in SCANNER):
@@ -161,41 +95,16 @@ namespace CombatExtended
         /// <returns></returns>
         public override Job JobOnThing(Pawn pawn, Thing t, bool forced = false)
         {
-            var priority = GetThingPriority(pawn, t, forced);
-            if (priority == 0f) return null;
-
             //Do not check for NeedsReload etc. -- if forced, treat as if NeedsReload && AllowAutomaticReload
 
             Building_TurretGunCE turret = t as Building_TurretGunCE;
             if (!turret.CompAmmo.UseAmmo)
-                return new Job(CE_JobDefOf.ReloadTurret, t, null);
-            
-            int amountNeeded = turret.CompAmmo.Props.magazineSize;
-            if (turret.CompAmmo.CurrentAmmo == turret.CompAmmo.SelectedAmmo) amountNeeded -= turret.CompAmmo.CurMagCount;
+                return JobGiverUtils_Reload.MakeReloadJobNoAmmo(turret);
 
-            turret.UpdateNearbyAmmo();
+            // NOTE: The removal of the code that used to be here disables reloading turrets directly from one's inventory.
+            // The player would need to drop the ammo the pawn is holding first.
 
-            var ammo = PawnClosestAmmo(pawn, turret, out bool fromInventory, forced);
-            
-            if (ammo == null)
-                return null;
-            
-            // Update selected ammo if necessary
-            if (ammo.def != turret.CompAmmo.SelectedAmmo)    //New option can fill magazine completely (and is otherwise closer)
-            {
-                if ((priority >= 9f || ammo.stackCount >= amountNeeded))
-                    turret.CompAmmo.SelectedAmmo = ammo.def as AmmoDef;
-                else
-                    return null;
-            }
-            
-            if (fromInventory && !pawn.TryGetComp<CompInventory>().container.TryDrop(ammo, pawn.Position, pawn.Map, ThingPlaceMode.Direct, Mathf.Min(ammo.stackCount, amountNeeded), out ammo))
-            {
-                Log.ErrorOnce("Found optimal ammo (" + ammo.LabelCap + "), but could not drop from " + pawn.LabelCap, 8164528);
-                return null;
-            }
-
-            return new Job(CE_JobDefOf.ReloadTurret, t, ammo) { count = Mathf.Min(amountNeeded, ammo.stackCount) };
+            return JobGiverUtils_Reload.MakeReloadJob(pawn, turret);
         }
 
         private Thing PawnClosestAmmo(Pawn pawn, Building_TurretGunCE turret, out bool fromInventory, bool forced = false)

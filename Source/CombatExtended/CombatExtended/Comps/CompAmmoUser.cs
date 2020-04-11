@@ -120,7 +120,16 @@ namespace CombatExtended
         }
 
         public bool EmptyMagazine => HasMagazine && CurMagCount == 0;
-        public int MissingToFullMagazine => HasMagazine ? Props.magazineSize - CurMagCount : -1;
+        public int MissingToFullMagazine
+        {
+            get
+            {
+                if (HasMagazine) { return -1; }
+                if (SelectedAmmo == CurrentAmmo) { return Props.magazineSize - CurMagCount; }
+                return Props.magazineSize;
+            }
+        }
+
         public bool FullMagazine => HasMagazine && SelectedAmmo == CurrentAmmo && CurMagCount >= Props.magazineSize;
 
         public ThingDef CurAmmoProjectile => Props.ammoSet?.ammoTypes?.FirstOrDefault(x => x.ammo == CurrentAmmo)?.projectile ?? parent.def.Verbs.FirstOrDefault().defaultProjectile;
