@@ -110,7 +110,7 @@ namespace CombatExtended
                 return CompInventory != null && CompInventory.ammoList.Any(x => Props.ammoSet.ammoTypes.Any(a => a.ammo == x.def));
             }
         }
-        public bool HasMagazine { get { return Props.magazineSize > 0; } }
+        public bool HasMagazine => Props.magazineSize > 0;
         public AmmoDef CurrentAmmo
         {
             get
@@ -118,6 +118,11 @@ namespace CombatExtended
                 return UseAmmo ? currentAmmoInt : null;
             }
         }
+
+        public bool EmptyMagazine => HasMagazine && CurMagCount == 0;
+        public int MissingToFullMagazine => HasMagazine ? Props.magazineSize - CurMagCount : -1;
+        public bool FullMagazine => HasMagazine && SelectedAmmo == CurrentAmmo && CurMagCount >= Props.magazineSize;
+
         public ThingDef CurAmmoProjectile => Props.ammoSet?.ammoTypes?.FirstOrDefault(x => x.ammo == CurrentAmmo)?.projectile ?? parent.def.Verbs.FirstOrDefault().defaultProjectile;
         public CompInventory CompInventory
         {

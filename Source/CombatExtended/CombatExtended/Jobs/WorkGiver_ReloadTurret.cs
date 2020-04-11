@@ -7,67 +7,54 @@ using RimWorld;
 using Verse;
 using Verse.AI;
 using UnityEngine;
+using CombatExtended.CombatExtended.LoggerUtils;
+using CombatExtended.CombatExtended.Jobs.Utils;
 
 namespace CombatExtended
 {
     public class WorkGiver_ReloadTurret : WorkGiver_Scanner
     {
-        public override ThingRequest PotentialWorkThingRequest
-        {
-            get
-            {
-                return ThingRequest.ForGroup(ThingRequestGroup.BuildingArtificial);
-            }
-        }
-        
+        public override ThingRequest PotentialWorkThingRequest => ThingRequest.ForGroup(ThingRequestGroup.BuildingArtificial);
+
         private bool Checks(Pawn pawn, Building_TurretGunCE turret, bool forced)
         {
             //WorkTagIsDisabled check inherent to WorkGiver_Scanner
             //MissingRequiredCapacity check inherent to WorkGiver_Scanner
             if (turret.isReloading)
             {
-                //Log.Message(pawn.ThingID + " failed " + turret.ThingID + ": turret is already reloading");
+                CELogger.Message(pawn.ThingID + " failed " + turret.ThingID + ": turret is already reloading");
                 return false;  //Turret is already reloading
             }
             if (turret.FullMagazine)
             {
-                // Log.Message(pawn.ThingID + " failed " + turret.ThingID + ": turret doesn't need reload");
+                CELogger.Message(pawn.ThingID + " failed " + turret.ThingID + ": turret doesn't need reload");
                 return false;  //Turret doesn't need reload
             }
-            //if (!forced && !turret.AllowAutomaticReload) return false;  //Turret doesn't need auto-reload and isn't forced to reload
             if (turret.IsBurning())
             {
-                // Log.Message(pawn.ThingID + " failed " + turret.ThingID + ": turret on fire");
+                CELogger.Message(pawn.ThingID + " failed " + turret.ThingID + ": turret on fire");
                 return false;   //Turret on fire
             }
             if (turret.Faction != pawn.Faction && (turret.Faction != null && pawn.Faction != null && turret.Faction.RelationKindWith(pawn.Faction) != FactionRelationKind.Ally))
             {
-                // Log.Message(pawn.ThingID + " failed " + turret.ThingID + ": non-allied turret");
+                CELogger.Message(pawn.ThingID + " failed " + turret.ThingID + ": non-allied turret");
                 return false;     //Allies reload turrets
             }
             if ((turret.MannableComp?.ManningPawn != pawn) && !pawn.CanReserveAndReach(turret, PathEndMode.ClosestTouch, forced ? Danger.Deadly : pawn.NormalMaxDanger(), GenClosestAmmo.pawnsPerTurret))
             {
-                //Log.Message(pawn.ThingID + " failed " + turret.ThingID + ": turret unreachable");
+                CELogger.Message(pawn.ThingID + " failed " + turret.ThingID + ": turret unreachable");
                 return false;    //Pawn cannot reach turret
             }
 
             return true;
         }
 
-        public override float GetPriority(Pawn pawn, TargetInfo t)
-        {
-            return GetThingPriority(pawn, t.Thing);
-        }
+        public override float GetPriority(Pawn pawn, TargetInfo t) => GetThingPriority(pawn, t.Thing);
 
         private float GetThingPriority(Pawn pawn, Thing t, bool forced = false)
         {
+            CELogger.Message($"pawn: {pawn}. t: {t}. forced: {forced}");
             Building_TurretGunCE turret = t as Building_TurretGunCE;
-            if (pawn == null)
-            {
-              //Log.Message("Checking " + turret.ThingID + ", found pawn == null");
-                return 0f;
-            }
-            if (turret == null || turret.IsForbidden(pawn) || !Checks(pawn, turret, forced)) return 0f;
 
             if (!turret.Active) return 1f;
             if (turret.EmptyMagazine) return 9f;
@@ -77,7 +64,28 @@ namespace CombatExtended
 
         public override bool ShouldSkip(Pawn pawn, bool forced = false)
         {
-            return !forced && pawn.CurJob != null && pawn.CurJobDef != JobDefOf.ManTurret && (pawn.CurJob.playerForced || pawn.CurJobDef == CE_JobDefOf.ReloadTurret || pawn.CurJobDef == CE_JobDefOf.ReloadWeapon);
+            if (forced)
+            {
+                CELogger.Message("Job is forced. Not skipping.");
+                return false;
+            }
+            if (pawn.CurJob == null)
+            {
+                CELogger.Message($"Pawn {pawn.ThingID} has no job. Not skipping.");
+                return false;
+            }
+            if (pawn.CurJobDef == JobDefOf.ManTurret)
+            {
+                CELogger.Message($"Pawn {pawn.ThingID}'s current job is {nameof(JobDefOf.ManTurret)}. Not skipping.");
+                return false;
+            }
+            if (pawn.CurJob.playerForced)
+            {
+                CELogger.Message($"Pawn {pawn.ThingID}'s current job is forced by the player. Skipping.");
+                return true;
+            }
+            CELogger.Message($"Pawn {pawn.ThingID}'s current job is {pawn.CurJobDef.reportString}. Skipping");
+            return (pawn.CurJobDef == CE_JobDefOf.ReloadTurret || pawn.CurJobDef == CE_JobDefOf.ReloadWeapon);
         }
 
         /// <summary>
@@ -214,7 +222,7 @@ namespace CombatExtended
         public Pawn BestNonJobUser(IEnumerable<Pawn> pawns, Building_TurretGunCE turret, out bool fromInventory, bool forced = false)
         {
             fromInventory = false;
-            
+
             if (!pawns.Any()) return null;
 
             //Cut a significant portion of pawns
@@ -222,7 +230,7 @@ namespace CombatExtended
                 && (!p.mindState?.mentalStateHandler?.InMentalState ?? true) && !turret.IsForbidden(p)
                 && (turret.Faction == p.Faction || turret.Faction?.RelationKindWith(p.Faction) == FactionRelationKind.Ally)
                 && p.CanReserveAndReach(new LocalTargetInfo(turret), PathEndMode.InteractionCell, forced ? Danger.Deadly : p.NormalMaxDanger(), GenClosestAmmo.pawnsPerTurret, -1, null, forced));
-            
+
             //No pawns remaining => quit
             if (!pawns.Any())
                 return null;
@@ -230,14 +238,14 @@ namespace CombatExtended
             //If no ammo is used, minimize distance
             if (!turret.CompAmmo?.UseAmmo ?? true)
                 return pawns.MinBy(x => x.Position.DistanceTo(turret.Position));
-            
+
             //ELSE: ammo is used, pawns remain
             turret.UpdateNearbyAmmo(forced);
             var hasNearbyAmmo = turret.nearestViableAmmo != null;
 
             int amount = turret.CompAmmo.Props.magazineSize;
             if (turret.CompAmmo.CurrentAmmo == turret.CompAmmo.SelectedAmmo) amount -= turret.CompAmmo.CurMagCount;
-            
+
             if (hasNearbyAmmo)
                 pawns = pawns.OrderBy(x => x.Position.DistanceTo(turret.Position));
 

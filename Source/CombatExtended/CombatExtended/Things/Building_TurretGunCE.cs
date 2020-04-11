@@ -8,6 +8,7 @@ using Verse.AI;
 using Verse.AI.Group;
 using Verse.Sound;
 using UnityEngine;
+using CombatExtended.CombatExtended.LoggerUtils;
 
 namespace CombatExtended
 {
@@ -132,21 +133,12 @@ namespace CombatExtended
             }
         }
 
-        public bool EmptyMagazine => Reloadable && CompAmmo.CurMagCount == 0;
-        public bool FullMagazine => !Reloadable || (CompAmmo.SelectedAmmo == CompAmmo.CurrentAmmo && CompAmmo.CurMagCount == CompAmmo.Props.magazineSize);
+        public bool EmptyMagazine => CompAmmo?.EmptyMagazine ?? false;
+        public bool FullMagazine => CompAmmo?.FullMagazine ?? false;
         public bool AutoReloadableMagazine => AutoReloadableNow && CompAmmo.CurMagCount <= Mathf.CeilToInt(CompAmmo.Props.magazineSize / 6);
         public bool AutoReloadableNow => (mannableComp == null || (!mannableComp.MannedNow && ticksUntilAutoReload == 0)) && Reloadable;    //suppress manned turret auto-reload for a short time after spawning
-        public bool Reloadable => CompAmmo != null && CompAmmo.HasMagazine;
-        
+        public bool Reloadable => CompAmmo?.HasMagazine ?? false;
         public CompMannable MannableComp => mannableComp;
-        #endregion
-
-        #region Constructors
-        // Core constructor
-        public Building_TurretGunCE()
-        {
-            top = new TurretTop(this);
-        }
         #endregion
 
         #region Methods
