@@ -37,6 +37,7 @@
         </li>
 
         <!-- == Weapon == -->
+        
         <li Class="PatchOperationAttributeSet">
           <xpath>/Defs/ThingDef[defName="VFES_Tomahawk"]</xpath>
           <attribute>ParentName</attribute>
@@ -77,6 +78,24 @@
 
           <attribute>Class</attribute>
           <value>CombatExtended.AmmoDef</value>
+        </li>
+        
+        <li Class="PatchOperationSequence">
+          <success>Always</success>
+
+          <operations>
+            <li Class="PatchOperationTest">
+              <xpath>/Defs/ThingDef[defName="VFES_Tomahawk"]/comps</xpath>
+              <success>Invert</success>
+            </li>
+
+            <li Class="PatchOperationAdd">
+              <xpath>/Defs/ThingDef[defName="VFES_Tomahawk"]</xpath>
+              <value>
+                <comps />
+              </value>
+            </li>
+          </operations>
         </li>
 
         <li Class="CombatExtended.PatchOperationMakeGunCECompatible">
