@@ -16,7 +16,7 @@ namespace CombatExtended.CombatExtended.Jobs.Utils
 		/// The maximum allowed pathing cost to reach potential ammo. 2 ingame hours.
 		/// This is arbitrarily set. If you think this is too high or too low, feel free to change.
 		/// </summary>
-		private const float MaxPathCost = 2f * 60f / GenDate.TicksPerHour;
+		private const float MaxPathCost = 2f * 60f * GenDate.TicksPerHour;
 		/// <summary>
 		/// Magic number. I took it from the now deprecated GenClosestAmmo class. Not sure why we would want 10 reservations, but there it is.
 		/// </summary>
@@ -31,12 +31,14 @@ namespace CombatExtended.CombatExtended.Jobs.Utils
 				CELogger.Error("Tried to create a reload job on a thing that's not reloadable.");
 				return null;
 			}
-			var ammoList = FindAllAmmo(pawn, turret);
 
-			Job job = JobMaker.MakeJob(CE_JobDefOf.ReloadTurret, turret);
-			job.targetQueueB = ammoList.Select(t => new LocalTargetInfo(t)).ToList();
+            var ammo = FindBestAmmo(pawn, turret);
 
-			return job;
+            CELogger.Message($"Making a reload job for {pawn}, {turret} and {ammo}");
+
+            Job job = JobMaker.MakeJob(CE_JobDefOf.ReloadTurret, turret, ammo);
+            job.count = ammo.stackCount;
+            return job;
 		}
 
 		public static Job MakeReloadJobNoAmmo(Building_TurretGunCE turret)
@@ -51,7 +53,7 @@ namespace CombatExtended.CombatExtended.Jobs.Utils
 			return JobMaker.MakeJob(CE_JobDefOf.ReloadTurret, turret, null);
 		}
 
-		public static bool CanReload(Pawn pawn, Thing hopefullyTurret, bool forced = false)
+		public static bool CanReload(Pawn pawn, Thing hopefullyTurret, bool forced = false, bool emergency = false)
 		{
 			if (pawn == null || hopefullyTurret == null)
 			{
@@ -77,7 +79,7 @@ namespace CombatExtended.CombatExtended.Jobs.Utils
 				JobFailReason.Is("CE_TurretAlreadyReloading".Translate());
 				return false;
 			}
-			if (turret.IsBurning())
+			if (turret.IsBurning() && !emergency)
 			{
 				CELogger.Message($"{pawn} could not reload {turret} because turret is on fire.");
 				JobFailReason.Is("CE_TurretIsBurning".Translate());
@@ -115,9 +117,16 @@ namespace CombatExtended.CombatExtended.Jobs.Utils
 		private static Thing FindBestAmmo(Pawn pawn, Building_TurretGunCE reloadable)
 		{
 			//ThingFilter filter = refuelable.TryGetComp<CompRefuelable>().Props.fuelFilter;
-			var requestedAmmo = reloadable.CompAmmo.CurrentAmmo;
+			var requestedAmmo = reloadable.CompAmmo.SelectedAmmo;
 
-			bool validator(Thing thing) => thing.IsForbidden(pawn) || !pawn.CanReserve(thing);
+			bool validator(Thing potentialAmmo)
+			{
+				if (potentialAmmo.IsForbidden(pawn) || !pawn.CanReserve(potentialAmmo))
+				{
+					return false;
+				}
+				return GetPathCost(pawn, potentialAmmo) <= MaxPathCost;
+			}
 
 			return GenClosest.ClosestThingReachable(pawn.Position, pawn.Map, ThingRequest.ForDef(requestedAmmo), PathEndMode.ClosestTouch, TraverseParms.For(pawn), 9999f, validator);
 		}
@@ -178,7 +187,9 @@ namespace CombatExtended.CombatExtended.Jobs.Utils
 			var pos = pawn.Position;
 			var traverseParams = TraverseParms.For(pawn, Danger.Deadly, TraverseMode.PassDoors, false);
 			
-			return pawn.Map.pathFinder.FindPath(pawn.Position, cell, traverseParams, PathEndMode.Touch).TotalCost;
+			using (PawnPath path = pawn.Map.pathFinder.FindPath(pos, cell, traverseParams, PathEndMode.Touch)) {
+				return path.TotalCost;
+			}
 		}
 	}
 
