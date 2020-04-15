@@ -37,7 +37,7 @@ namespace CombatExtended.CombatExtended.Jobs.Utils
             CELogger.Message($"Making a reload job for {pawn}, {turret} and {ammo}");
 
             Job job = JobMaker.MakeJob(CE_JobDefOf.ReloadTurret, turret, ammo);
-            job.count = ammo.stackCount;
+            job.count = Mathf.Min(ammo.stackCount, turret.CompAmmo.MissingToFullMagazine);
             return job;
 		}
 
