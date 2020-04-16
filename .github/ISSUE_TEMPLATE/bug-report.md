@@ -8,6 +8,7 @@ assignees: ''
 ---
 
 **Complete the template below. Reports that do not follow the template will not be deleted.**
+**Title should be:** [Bug]: (Short description of bug)
 
 **Specifications**
 Please provide the following.

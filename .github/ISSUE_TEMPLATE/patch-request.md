@@ -11,6 +11,8 @@ assignees: ''
 
 **If a Patch Request (open or closed) already exists for the same mod, you may add a reaction to indicate your support. Do not create another request. Duplicate requests will be deleted.**
 
+**Title should be:** [Patch Request]: (Mod Name)
+
 **Mod name:**
 
 **Link to mod download (preferably Steam workshop or Github):**
