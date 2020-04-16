@@ -7,14 +7,15 @@ assignees: ''
 
 ---
 
-**Complete the template below. Issues not following the template will not be addressed.**
+**Complete the template below. Reports that do not follow the template will not be deleted.**
 
 **Specifications**
 Please provide the following.
+
 Rimworld version:
 Combat Extended version:
 Combat Extended source (Steam, GitHub, etc.):
-Operating system:
+Your operating system:
 
 **Description**
 Provide a concise description of the issue or concern. What happened?
@@ -26,8 +27,8 @@ What did you expect to happen?
 Provide clear steps to reproduce the behavior. How do we make this happen?
 
 **Screenshots & log dumps**
-When possible, add screenshots to help explain your problem, and share error or crash logs to make our jobs easier. For logs, please enter the logs into a pastebin site (e.g pastebin.com, justpasteit.com, etc.) 
-and provide a link rather than pasting the entire log here. 
+Whenever possible, add screenshots to help explain your problem, and share error or crash logs to make our jobs easier. For logs, please enter the logs into a pastebin site (e.g pastebin.com, justpasteit.com, etc.) 
+and provide a link. Do not paste the entire log here. 
 
 **Complete the following checklist**
 I hereby verify that I have done the following:
