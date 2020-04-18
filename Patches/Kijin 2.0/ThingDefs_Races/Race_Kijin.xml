@@ -71,6 +71,13 @@
 							<capacities>
 								<li>KijinFlameSmash</li>
 							</capacities>
+							<extraMeleeDamages>
+							<li>
+								<def>Flame</def>
+								<amount>1</amount>
+								<chance>0.3</chance>
+							</li>
+							</extraMeleeDamages>
 							<power>2</power>
 							<cooldownTime>1.12</cooldownTime>
 							<linkedBodyPartsGroup>LeftHand</linkedBodyPartsGroup>
@@ -81,6 +88,13 @@
 							<capacities>
 								<li>KijinStunPunch</li>
 							</capacities>
+							<extraMeleeDamages>
+							<li>
+								<def>Stun</def>
+								<amount>5</amount>
+								<chance>0.3</chance>
+							</li>
+							</extraMeleeDamages>
 							<power>2</power>
 							<cooldownTime>1.12</cooldownTime>
 							<linkedBodyPartsGroup>RightHand</linkedBodyPartsGroup>
@@ -98,6 +112,20 @@
 							<armorPenetrationBlunt>0.625</armorPenetrationBlunt>
 						</li>
 					</tools>
+				</value>
+			</li>
+			
+			<li Class="PatchOperationReplace">
+				<xpath>/Defs/ManeuverDef[defName="KijinFlameSmash"]/verb/meleeDamageDef</xpath> 
+				<value>
+					<meleeDamageDef>Flame_Secondary</meleeDamageDef>
+				</value>
+			</li>
+			
+			<li Class="PatchOperationReplace">
+				<xpath>/Defs/ManeuverDef[defName="KijinStunPunch"]/verb/meleeDamageDef</xpath> 
+				<value>
+					<meleeDamageDef>Blunt</meleeDamageDef>
 				</value>
 			</li>
 			

@@ -1,18 +1,18 @@
 ## Additions
 
-Describe the functionality added by your code, e.g.
+Describe new functionality added by your code, e.g.
 - Tribal smoke bombs
 - New tribal smoke bomb sprite
 - Tribal smoke bomb recipes at smithing bench and crafting spot using prometheum
 
 ## Changes
 
-Adjustments to other features made in this merge, e.g.
+Describe adjustments to existing features made in this merge, e.g.
 - Increased regular smoke bomb radius
 
 ## References
 
-Links to the associated issues, e.g.
+Links to the associated issues or other related pull requests, e.g.
 - Closes #[ISSUE_NUMBER]
 - Contributes towards #[ISSUE_NUMBER]
 
