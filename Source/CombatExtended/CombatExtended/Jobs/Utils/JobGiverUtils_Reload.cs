@@ -10,8 +10,8 @@ using Verse.Noise;
 
 namespace CombatExtended.CombatExtended.Jobs.Utils
 {
-    class JobGiverUtils_Reload
-    {
+	class JobGiverUtils_Reload
+	{
 		/// <summary>
 		/// The maximum allowed pathing cost to reach potential ammo. 2 ingame hours.
 		/// This is arbitrarily set. If you think this is too high or too low, feel free to change.
@@ -32,13 +32,17 @@ namespace CombatExtended.CombatExtended.Jobs.Utils
 				return null;
 			}
 
-            var ammo = FindBestAmmo(pawn, turret);
+			var ammo = FindBestAmmo(pawn, turret);
+			if (ammo == null)
+			{
+				CELogger.Error($"{pawn} tried to create a reload job without ammo. This should have been checked earlier.");
+				return null;
+			}
+			CELogger.Message($"Making a reload job for {pawn}, {turret} and {ammo}");
 
-            CELogger.Message($"Making a reload job for {pawn}, {turret} and {ammo}");
-
-            Job job = JobMaker.MakeJob(CE_JobDefOf.ReloadTurret, turret, ammo);
-            job.count = Mathf.Min(ammo.stackCount, turret.CompAmmo.MissingToFullMagazine);
-            return job;
+			Job job = JobMaker.MakeJob(CE_JobDefOf.ReloadTurret, turret, ammo);
+			job.count = Mathf.Min(ammo.stackCount, turret.CompAmmo.MissingToFullMagazine);
+			return job;
 		}
 
 		public static Job MakeReloadJobNoAmmo(Building_TurretGunCE turret)

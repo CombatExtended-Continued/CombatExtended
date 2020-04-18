@@ -693,12 +693,16 @@ namespace CombatExtended
             Pawn manningPawn = mannableComp.ManningPawn;
             if (manningPawn != null)
             {
+                if (!JobGiverUtils_Reload.CanReload(manningPawn, this))
+                {
+                    return;
+                }
                 var jobOnThing = JobGiverUtils_Reload.MakeReloadJob(manningPawn, this);
 
                 if (jobOnThing != null)
+                {
                     manningPawn.jobs.StartJob(jobOnThing, JobCondition.Ongoing, null, manningPawn.CurJob?.def != CE_JobDefOf.ReloadTurret);
-
-                return;
+                }
             }
 
         }
