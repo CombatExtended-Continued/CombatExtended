@@ -17,6 +17,7 @@ Rimworld version:
 Combat Extended version:
 Combat Extended source (Steam, GitHub, etc.):
 Your operating system:
+Your mod list:
 
 **Description**
 Provide a concise description of the issue or concern. What happened?
@@ -33,7 +34,7 @@ and provide a link. Do not paste the entire log here.
 
 **Complete the following checklist**
 I hereby verify that I have done the following:
-[ ] Confirmed that my game version and load order are correct.
-[ ] Confirmed that I am running the appropriate and most updated version of Combat Extended and required compatibility patches.
-[ ] Confirmed I am not running any mods with known incompatibilities with Combat Extended.
-[ ] Disabled Combat Extended and attempted to reproduce the behavior without success.
+- [ ] Confirmed that my game version and load order are correct.
+- [ ] Confirmed that I am running the appropriate and most updated version of Combat Extended and required compatibility patches.
+- [ ] Confirmed I am not running any mods with known incompatibilities with Combat Extended.
+- [ ] Disabled Combat Extended and attempted to reproduce the behavior without success.

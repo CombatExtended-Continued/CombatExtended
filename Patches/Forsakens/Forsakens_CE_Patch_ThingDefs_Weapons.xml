@@ -1,0 +1,561 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Patch>
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+			<li>Forsakens</li>
+		</mods>
+		<match Class="PatchOperationSequence">
+			<operations>
+
+				<!-- ========== Forsaken Sniping Rifle ========== -->
+
+				<!-- (CE implementation based on Accuracy International AWM sniper rifle from RN Weapons, chambered for 8x35mm Charged cartridge) -->
+				<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+					<defName>ForsakenSniper</defName>
+					<statBases>
+						<Mass>7.18</Mass>
+						<RangedWeapon_Cooldown>1.37</RangedWeapon_Cooldown>
+						<SightsEfficiency>3.50</SightsEfficiency>
+						<ShotSpread>0.01</ShotSpread>
+						<SwayFactor>1.61</SwayFactor>
+						<Bulk>15.60</Bulk>
+						<WorkToMake>50500</WorkToMake>
+					</statBases>
+					<costList>
+						<!-- from original mod -->
+						<Steel>300</Steel>
+						<Plasteel>75</Plasteel>
+						<ComponentIndustrial>12</ComponentIndustrial>
+					</costList>
+					<Properties>
+						<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+						<hasStandardCommand>true</hasStandardCommand>
+						<defaultProjectile>Bullet_8x35mmCharged_ForsakenSniper</defaultProjectile>
+						<warmupTime>2.55</warmupTime>
+						<range>86</range>
+						<soundCast>Shot_SniperRifle</soundCast>
+						<soundCastTail>GunTail_Heavy</soundCastTail>
+						<muzzleFlashScale>12</muzzleFlashScale>
+					</Properties>
+
+					<AmmoUser>
+						<magazineSize>5</magazineSize>
+						<reloadTime>4</reloadTime>
+						<ammoSet>AmmoSet_8x35mmCharged_ForsakenSniper</ammoSet>
+					</AmmoUser>
+
+					<FireModes>
+						<aiUseBurstMode>FALSE</aiUseBurstMode>
+						<aiAimMode>AimedShot</aiAimMode>
+					</FireModes>
+
+					<weaponTags>
+						<li>ForsakenSniper</li>
+					</weaponTags>
+
+					<AllowWithRunAndGun>false</AllowWithRunAndGun>
+				</li>
+
+				<!-- ========== Forsaken ShotGun ========== -->
+
+				<!-- (CE implementation based on UTS-15 shotgun from RN Weapons, chambered for 12 Gauge Charged shotgun cartridge) -->
+				<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+					<defName>ForsakenShotGun</defName>
+					<statBases>
+						<Mass>3.10</Mass>
+						<RangedWeapon_Cooldown>1.00</RangedWeapon_Cooldown>
+						<SightsEfficiency>1.0</SightsEfficiency>
+						<ShotSpread>0.14</ShotSpread>
+						<SwayFactor>1.03</SwayFactor>
+						<Bulk>7.20</Bulk>
+						<WorkToMake>54500</WorkToMake>
+					</statBases>
+					<costList>
+						<!-- from original mod -->
+						<Steel>350</Steel>
+						<Plasteel>120</Plasteel>
+						<ComponentIndustrial>20</ComponentIndustrial>
+					</costList>
+					<Properties>
+						<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+						<hasStandardCommand>true</hasStandardCommand>
+						<defaultProjectile>Bullet_12GaugeCharged_ForsakenShotGun</defaultProjectile>
+						<warmupTime>0.6</warmupTime>
+						<range>16</range>
+						<soundCast>Shot_Shotgun</soundCast>
+						<soundCastTail>GunTail_Heavy</soundCastTail>
+						<muzzleFlashScale>14</muzzleFlashScale>
+					</Properties>
+
+					<AmmoUser>
+						<!-- Reduced magazine size -->
+						<magazineSize>6</magazineSize>
+						<reloadTime>4.25</reloadTime>
+						<ammoSet>AmmoSet_12GaugeCharged_ForsakenShotGun</ammoSet>
+					</AmmoUser>
+
+					<FireModes>
+						<aiUseBurstMode>FALSE</aiUseBurstMode>
+						<aiAimMode>Snapshot</aiAimMode>
+					</FireModes>
+
+					<weaponTags>
+						<li>ForsakenGun</li>
+					</weaponTags>
+				</li>
+
+				<!-- ========== Forsaken Assault Rifle ========== -->
+
+				<!-- (CE implementation based on M16A1 assault rifle from RN Weapons, chambered for 5x35mm Charged cartridge) -->
+				<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+					<defName>ForsakenAR</defName>
+					<statBases>
+						<Mass>2.89</Mass>
+						<RangedWeapon_Cooldown>0.36</RangedWeapon_Cooldown>
+						<SightsEfficiency>1.00</SightsEfficiency>
+						<ShotSpread>0.07</ShotSpread>
+						<SwayFactor>1.29</SwayFactor>
+						<Bulk>10.03</Bulk>
+						<WorkToMake>60500</WorkToMake>
+					</statBases>
+					<costList>
+						<!-- from original mod -->
+						<Steel>500</Steel>
+						<Plasteel>100</Plasteel>
+						<ComponentIndustrial>10</ComponentIndustrial>
+					</costList>
+					<Properties>
+						<recoilAmount>1.63</recoilAmount>
+						<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+						<hasStandardCommand>true</hasStandardCommand>
+						<defaultProjectile>Bullet_5x35mmCharged_ForsakenAR</defaultProjectile>
+						<warmupTime>1.1</warmupTime>
+						<range>59</range>
+						<burstShotCount>6</burstShotCount>
+						<ticksBetweenBurstShots>4</ticksBetweenBurstShots>
+						<soundCast>Shot_ChargeRifle</soundCast>
+						<soundCastTail>GunTail_Heavy</soundCastTail>
+						<muzzleFlashScale>1</muzzleFlashScale>
+					</Properties>
+
+					<AmmoUser>
+						<magazineSize>30</magazineSize>
+						<reloadTime>4</reloadTime>
+						<ammoSet>AmmoSet_5x35mmCharged_ForsakenAR</ammoSet>
+					</AmmoUser>
+
+					<FireModes>
+						<aiUseBurstMode>TRUE</aiUseBurstMode>
+						<aiAimMode>AimedShot</aiAimMode>
+						<aimedBurstShotCount>3</aimedBurstShotCount>
+					</FireModes>
+
+					<weaponTags>
+						<li>ForsakenGun</li>
+					</weaponTags>
+				</li>			
+
+				<!-- == Shared patches for firearm melee tools == -->
+
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[
+						defName="ForsakenSniper" or
+						defName="ForsakenShotGun" or
+						defName="ForsakenAR"
+					]</xpath>
+					<value>
+						<tools>
+							<li Class="CombatExtended.ToolCE">
+								<label>stock</label>
+								<capacities>
+									<li>Blunt</li>
+								</capacities>
+								<power>8</power>
+								<cooldownTime>1.55</cooldownTime>
+								<chanceFactor>1.5</chanceFactor>
+								<armorPenetrationBlunt>2.755</armorPenetrationBlunt>
+								<linkedBodyPartsGroup>Stock</linkedBodyPartsGroup>
+							</li>
+							<li Class="CombatExtended.ToolCE">
+								<label>barrel</label>
+								<capacities>
+									<li>Blunt</li>
+								</capacities>
+								<power>5</power>
+								<cooldownTime>2.02</cooldownTime>
+								<armorPenetrationBlunt>1.630</armorPenetrationBlunt>
+								<linkedBodyPartsGroup>Barrel</linkedBodyPartsGroup>
+							</li>
+							<li Class="CombatExtended.ToolCE">
+								<label>muzzle</label>
+								<capacities>
+									<li>Poke</li>
+								</capacities>
+								<power>8</power>
+								<cooldownTime>1.55</cooldownTime>
+								<armorPenetrationBlunt>2.755</armorPenetrationBlunt>
+								<linkedBodyPartsGroup>Muzzle</linkedBodyPartsGroup>
+							</li>
+						</tools>
+					</value>
+				</li>
+				
+				<!-- ========== Forsaken Long Blade ========== -->
+
+				<!-- (CE implementation based on CE Melee Wraithblade) -->
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="ForsakenLongBlade"]/tools</xpath>
+					<value>
+						<tools>
+							<li Class="CombatExtended.ToolCE">
+								<label>handle</label>
+								<capacities>
+									<li>Blunt</li>
+								</capacities>
+								<power>2</power>
+								<chanceFactor>0.33</chanceFactor>
+								<cooldownTime>1.52</cooldownTime>
+								<armorPenetrationBlunt>0.500</armorPenetrationBlunt>
+								<linkedBodyPartsGroup>Handle</linkedBodyPartsGroup>
+							</li>
+							<li Class="CombatExtended.ToolCE">
+								<label>point</label>
+								<capacities>
+									<li>Stab</li>
+								</capacities>
+								<power>18</power>
+								<cooldownTime>1</cooldownTime>
+								<armorPenetrationBlunt>11.250</armorPenetrationBlunt>
+								<armorPenetrationSharp>90</armorPenetrationSharp>
+								<linkedBodyPartsGroup>Point</linkedBodyPartsGroup>
+							</li>
+							<li Class="CombatExtended.ToolCE">
+								<label>edge</label>
+								<capacities>
+									<li>Cut</li>
+								</capacities>
+								<power>23</power>
+								<cooldownTime>0.5</cooldownTime>
+								<armorPenetrationBlunt>25</armorPenetrationBlunt>
+								<armorPenetrationSharp>40</armorPenetrationSharp>
+								<linkedBodyPartsGroup>Edge</linkedBodyPartsGroup>
+							</li>
+						</tools>
+					</value>
+				</li>
+
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="ForsakenLongBlade"]/statBases</xpath>
+					<value>
+						<Bulk>8</Bulk>
+						<MeleeCounterParryBonus>1.6</MeleeCounterParryBonus>
+					</value>
+				</li>
+
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="ForsakenLongBlade"]</xpath>
+					<value>
+						<equippedStatOffsets>
+							<MeleeCritChance>4</MeleeCritChance>
+							<MeleeParryChance>1.2</MeleeParryChance>
+							<MeleeDodgeChance>0.4</MeleeDodgeChance>	
+						</equippedStatOffsets>
+					</value>
+				</li>
+
+				<!-- ========== Forsaken Combat Blade ========== -->
+
+				<!-- (CE implementation based on vanilla CE knife with armor penetration of CE Melee Wraithblade) -->
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="ForsakenCombatBlade"]/tools</xpath>
+					<value>
+						<tools>
+							<li Class="CombatExtended.ToolCE">
+								<label>handle</label>
+								<capacities>
+									<li>Poke</li>
+								</capacities>
+								<power>1</power>
+								<cooldownTime>1.26</cooldownTime>
+								<armorPenetrationBlunt>0.250</armorPenetrationBlunt>
+								<linkedBodyPartsGroup>Handle</linkedBodyPartsGroup>
+							</li>
+							<li Class="CombatExtended.ToolCE">
+								<label>blade</label>
+								<capacities>
+									<li>Cut</li>
+								</capacities>
+								<power>5</power>
+								<cooldownTime>1.18</cooldownTime>
+								<armorPenetrationBlunt>25</armorPenetrationBlunt>
+								<armorPenetrationSharp>40</armorPenetrationSharp>
+								<linkedBodyPartsGroup>Blade</linkedBodyPartsGroup>
+							</li>
+							<li Class="CombatExtended.ToolCE">
+								<label>point</label>
+								<capacities>
+									<li>Stab</li>
+								</capacities>
+								<power>11</power>
+								<cooldownTime>1.26</cooldownTime>
+								<chanceFactor>1.33</chanceFactor>
+								<armorPenetrationBlunt>11.250</armorPenetrationBlunt>
+								<armorPenetrationSharp>90</armorPenetrationSharp>
+								<linkedBodyPartsGroup>Point</linkedBodyPartsGroup>
+							</li>
+						</tools>
+					</value>
+				</li>
+
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="ForsakenCombatBlade"]/statBases</xpath>
+					<value>
+						<Bulk>1</Bulk>
+						<MeleeCounterParryBonus>0.15</MeleeCounterParryBonus>
+					</value>
+				</li>
+
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="ForsakenCombatBlade"]</xpath>
+					<value>
+						<equippedStatOffsets>
+							<MeleeCritChance>0.5</MeleeCritChance>
+							<MeleeParryChance>0.15</MeleeParryChance>
+							<MeleeDodgeChance>0.05</MeleeDodgeChance>	
+						</equippedStatOffsets>
+					</value>
+				</li>
+
+				<!-- ========== Forsaken Battle Axe ========== -->
+
+				<!-- (CE implementation based on Vanilla Weapons Expanded Battle Axe) -->
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="ForsakenBattle"]/tools</xpath>
+					<value>
+						<tools>
+							<li Class="CombatExtended.ToolCE">
+								<label>edge</label>
+								<capacities>
+									<li>Cut</li>
+								</capacities>
+								<power>48</power>
+								<cooldownTime>3.4</cooldownTime>
+								<chanceFactor>1.165</chanceFactor>
+								<armorPenetrationBlunt>10.4</armorPenetrationBlunt>
+								<armorPenetrationSharp>1.8</armorPenetrationSharp>
+								<linkedBodyPartsGroup>Edge</linkedBodyPartsGroup>
+							</li>
+							<li Class="CombatExtended.ToolCE">
+								<label>point</label>
+								<capacities>
+									<li>Stab</li>
+								</capacities>
+								<power>41</power>
+								<cooldownTime>1.8</cooldownTime>
+								<chanceFactor>1.165</chanceFactor>
+								<armorPenetrationBlunt>2.3</armorPenetrationBlunt>
+								<armorPenetrationSharp>2.2</armorPenetrationSharp>
+								<linkedBodyPartsGroup>Point</linkedBodyPartsGroup>
+							</li>
+						</tools>
+					</value>
+				</li>
+
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="ForsakenBattle"]/statBases</xpath>
+					<value>
+						<Bulk>13</Bulk>
+						<MeleeCounterParryBonus>1.08</MeleeCounterParryBonus>
+					</value>
+				</li>
+
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="ForsakenBattle"]</xpath>
+					<value>
+						<equippedStatOffsets>
+							<MeleeCritChance>0.2</MeleeCritChance>
+							<MeleeParryChance>1.45</MeleeParryChance>
+							<MeleeDodgeChance>0.6</MeleeDodgeChance>	
+						</equippedStatOffsets>
+					</value>
+				</li>				
+
+				<!-- ========== Forsaken Bulk Sword ========== -->
+
+				<!-- (Weaker than vanilla CE longsword, but low cooldown time) -->
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="ForsakenBulksword"]/tools</xpath>
+					<value>
+						<tools>
+							<li Class="CombatExtended.ToolCE">
+								<label>handle</label>
+								<capacities>
+									<li>Poke</li>
+								</capacities>
+								<power>3</power>
+								<cooldownTime>0.5</cooldownTime>
+								<chanceFactor>0.10</chanceFactor>
+								<armorPenetrationBlunt>0.8</armorPenetrationBlunt>
+								<linkedBodyPartsGroup>Handle</linkedBodyPartsGroup>
+							</li>
+							<li Class="CombatExtended.ToolCE">
+								<label>point</label>
+								<capacities>
+									<li>Stab</li>
+								</capacities>
+								<power>9</power>
+								<cooldownTime>0.5</cooldownTime>
+								<chanceFactor>0.60</chanceFactor>
+								<armorPenetrationBlunt>0.8</armorPenetrationBlunt>
+								<armorPenetrationSharp>1.6</armorPenetrationSharp>
+								<linkedBodyPartsGroup>Point</linkedBodyPartsGroup>
+							</li>
+							<li Class="CombatExtended.ToolCE">
+								<label>edge</label>
+								<capacities>
+									<li>Cut</li>
+								</capacities>
+								<power>18</power>
+								<cooldownTime>0.5</cooldownTime>
+								<chanceFactor>0.30</chanceFactor>
+								<armorPenetrationBlunt>2.592</armorPenetrationBlunt>
+								<armorPenetrationSharp>0.58</armorPenetrationSharp>
+								<linkedBodyPartsGroup>Edge</linkedBodyPartsGroup>
+							</li>
+						</tools>
+					</value>
+				</li>
+
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="ForsakenBulksword"]/statBases</xpath>
+					<value>
+						<!-- Slightly bulkier than vanilla CE longsword -->
+						<Bulk>10</Bulk>
+						<MeleeCounterParryBonus>1</MeleeCounterParryBonus>
+					</value>
+				</li>
+
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="ForsakenBulksword"]</xpath>
+					<value>
+						<equippedStatOffsets>
+							<MeleeCritChance>0.63</MeleeCritChance>
+							<MeleeParryChance>0.75</MeleeParryChance>
+							<MeleeDodgeChance>0.4</MeleeDodgeChance>	
+						</equippedStatOffsets>
+					</value>	
+				</li>
+
+				<!-- ========== Forsaken Spear ========== -->
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="FSpear"]/tools</xpath>
+					<value>
+						<tools>
+							<li Class="CombatExtended.ToolCE">
+								<label>shaft</label>
+								<capacities>
+									<li>Blunt</li>
+								</capacities>
+								<power>15</power>
+								<cooldownTime>1.35</cooldownTime>
+								<chanceFactor>0.15</chanceFactor>
+								<armorPenetrationBlunt>2.25</armorPenetrationBlunt>
+								<linkedBodyPartsGroup>Shaft</linkedBodyPartsGroup>
+							</li>
+							<li Class="CombatExtended.ToolCE">
+								<label>shaft</label>
+								<capacities>
+									<li>Poke</li>
+								</capacities>
+								<power>15</power>
+								<cooldownTime>1.78</cooldownTime>
+								<chanceFactor>0.05</chanceFactor>
+								<armorPenetrationBlunt>1</armorPenetrationBlunt>
+								<linkedBodyPartsGroup>Point</linkedBodyPartsGroup>
+							</li>
+							<li Class="CombatExtended.ToolCE">
+								<label>head</label>
+								<capacities>
+									<li>Stab</li>
+								</capacities>
+								<power>22</power>
+								<cooldownTime>1.19</cooldownTime>
+								<chanceFactor>1.00</chanceFactor>
+								<armorPenetrationBlunt>2.25</armorPenetrationBlunt>
+								<armorPenetrationSharp>1.5</armorPenetrationSharp>
+								<linkedBodyPartsGroup>Head</linkedBodyPartsGroup>
+							</li>
+						</tools>
+					</value>
+				</li>
+
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="FSpear"]/statBases</xpath>
+					<value>
+						<Bulk>10</Bulk>
+						<MeleeCounterParryBonus>1.68</MeleeCounterParryBonus>
+					</value>
+				</li>
+
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="FSpear"]</xpath>
+					<value>
+						<equippedStatOffsets>
+							<MeleeCritChance>0.17</MeleeCritChance>
+							<MeleeParryChance>1.45</MeleeParryChance>
+							<MeleeDodgeChance>0.9</MeleeDodgeChance>
+						</equippedStatOffsets>
+					</value>
+				</li>
+
+				<!-- ========== Forsaken Bow ========== -->
+
+				<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+					<defName>FBow</defName>
+					<statBases>
+						<SightsEfficiency>0.6</SightsEfficiency>
+						<ShotSpread>1</ShotSpread>
+						<SwayFactor>2</SwayFactor>
+						<Bulk>4.00</Bulk>
+						<RangedWeapon_Cooldown>1</RangedWeapon_Cooldown>
+					</statBases>
+					<costList>
+						<Steel>180</Steel>
+					</costList>
+					<Properties>
+						<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+						<hasStandardCommand>true</hasStandardCommand>
+						<defaultProjectile>Projectile_ForsakensArrows</defaultProjectile>
+						<warmupTime>1.2</warmupTime>
+						<range>32</range>
+						<soundCast>Bow_Large</soundCast>
+					</Properties>
+					<AmmoUser>
+						<ammoSet>AmmoSet_ForsakensArrows</ammoSet>
+					</AmmoUser>
+					<FireModes />
+					<researchPrerequisite>RecurveBow</researchPrerequisite>
+					<AllowWithRunAndGun>true</AllowWithRunAndGun>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="FBow"]/tools</xpath>
+					<value>
+						<tools>
+							<li Class="CombatExtended.ToolCE">
+								<capacities>
+									<li>Blunt</li>
+								</capacities>
+								<power>7</power>
+								<cooldownTime>1.6</cooldownTime>
+								<armorPenetrationBlunt>0.65</armorPenetrationBlunt>
+							</li>
+						</tools>
+					</value>
+				</li>
+
+			</operations>
+		</match>
+	</Operation>
+</Patch>
