@@ -98,7 +98,7 @@ namespace CombatExtended
 
         protected float ShootingAccuracy => Mathf.Min(CasterShootingAccuracyValue(caster), 4.5f);
         protected float AimingAccuracy => Mathf.Min(Shooter.GetStatValue(CE_StatDefOf.AimingAccuracy), 1.5f); //equivalent of ShooterPawn?.GetStatValue(CE_StatDefOf.AimingAccuracy) ?? caster.GetStatValue(CE_StatDefOf.AimingAccuracy)
-        protected float SightsEfficiency => EquipmentSource.GetStatValue(CE_StatDefOf.SightsEfficiency);
+        protected float SightsEfficiency => EquipmentSource != null ? EquipmentSource.GetStatValue(CE_StatDefOf.SightsEfficiency) : 1;
         protected virtual float SwayAmplitude => Mathf.Max(0, (4.5f - ShootingAccuracy) * EquipmentSource.GetStatValue(StatDef.Named("SwayFactor")));
 
         // Ammo variables
