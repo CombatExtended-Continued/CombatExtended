@@ -229,7 +229,7 @@ namespace CombatExtended
             }
             if (CanControlColonist)
             {
-                if ((thing.def.IsNutritionGivingIngestible || thing.def.IsNonMedicalDrug) && thing.IngestibleNow && base.SelPawn.WillEat(thing, null))
+                if ((thing.def.IsNutritionGivingIngestible || thing.def.IsNonMedicalDrug) && thing.IngestibleNow && base.SelPawn.WillEat(thing, null) && (!SelPawnForGear.IsTeetotaler() || !thing.def.IsNonMedicalDrug))
                 {
                     Rect rect3 = new Rect(rect.width - 24f, y, 24f, 24f);
                     TooltipHandler.TipRegion(rect3, "ConsumeThing".Translate(thing.LabelNoCount, thing));
@@ -315,7 +315,7 @@ namespace CombatExtended
                             string eqLabel = GenLabel.ThingLabel(eq.def, eq.Stuff, 1);
                             if (compBiocoded != null && compBiocoded.Biocoded && compBiocoded.CodedPawn != SelPawnForGear)
                             {
-                                equipOption = new FloatMenuOption("CannotEquip".Translate(eqLabel) + ": " + "BiocodedCodedForSomeoneElse".Translate(eqLabel), null);
+                                equipOption = new FloatMenuOption("CannotEquip".Translate(eqLabel) + ": " + "BiocodedCodedForSomeoneElse".Translate(), null);
                             }
                             else if (SelPawnForGear.equipment.AllEquipmentListForReading.Contains(eq) && SelPawnForGear.inventory != null)
                             {
@@ -367,7 +367,14 @@ namespace CombatExtended
                             InterfaceIngest(thing);
                         };
                         string label = thing.def.ingestible.ingestCommandString.NullOrEmpty() ? (string)"ConsumeThing".Translate(thing.LabelShort, thing) : string.Format(thing.def.ingestible.ingestCommandString, thing.LabelShort);
-                        floatOptionList.Add(new FloatMenuOption(label, eatFood));
+                        if (SelPawnForGear.IsTeetotaler() && thing.def.IsNonMedicalDrug)
+                        {
+                            floatOptionList.Add(new FloatMenuOption(label + ": " + TraitDefOf.DrugDesire.degreeDatas.Where(x => x.degree == -1).First()?.label, null));
+                        }
+                        else
+                        {
+                            floatOptionList.Add(new FloatMenuOption(label, eatFood));
+                        }
                     }
                     floatOptionList.Add(new FloatMenuOption("DropThing".Translate(), dropApparel));
                     floatOptionList.Add(new FloatMenuOption("CE_DropThingHaul".Translate(), dropApparelHaul));
