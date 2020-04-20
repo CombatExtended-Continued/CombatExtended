@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Patch>
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+			<li>Forsakens</li>
+		</mods>
+		<match Class="PatchOperationSequence">
+			<operations>
+
+				<!-- ========== Reduce meals and medicine carried by all pawns ========== -->
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/PawnKindDef[
+						@Name="ForsakenBase" or
+						defName="ForsakenSniper" or
+						defName="ForsakenSlasher"
+					]/invNutrition</xpath>
+					<value>
+						<invNutrition>1</invNutrition>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/PawnKindDef[
+					defName="ForsakenSlasher" or
+					defName="ForsakenGunner" or
+					defName="KingOfTheLostOnes"
+				]/inventoryOptions/subOptionsChooseOne</xpath>
+					<value>
+						<subOptionsChooseOne>
+							<li>
+								<thingDef>Silver</thingDef>
+								<countRange>
+									<min>180</min>
+									<max>400</max>
+								</countRange>
+							</li>
+							<li>
+								<thingDef>MedicineIndustrial</thingDef>
+								<countRange>
+									<min>0</min>
+									<max>1</max>
+								</countRange>
+							</li>
+						</subOptionsChooseOne>
+					</value>
+				</li>
+
+				<!-- ========== Remove smokepop belt ========== -->
+
+				<li Class="PatchOperationRemove">
+					<xpath>Defs/PawnKindDef[
+					defName="ForsakenGunner" or
+					defName="KingOfTheLostOnes" or
+					defName="Town_GuardF" or
+					defName="Town_TraderF"
+				]/apparelTags/li[.="BeltDefensePop"]</xpath>
+				</li>
+
+				<!-- ========== Forsaken faction pawns should spawn backpacks, allowing them to carry their inventory ========== -->
+
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/PawnKindDef[
+						defName="Town_GuardF" or
+						defName="VillagerF" or
+						defName="Town_TraderF"
+					]</xpath>
+					<value>
+						<apparelRequired>
+							<li>Apparel_Backpack</li>
+						</apparelRequired>
+					</value>
+				</li>
+
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/PawnKindDef[
+						defName="ForsakenSniper" or
+						defName="ForsakenSlasher" or
+						defName="ForsakenGunner" or
+						defName="KingOfTheLostOnes"
+					]/apparelRequired</xpath>
+					<value>
+						<li>Apparel_Backpack</li>
+					</value>
+				</li>
+
+				<!-- ========== Forsaken faction pawns should spawn with ammo appropriate to their primary weapon ========== -->
+
+				<li Class="PatchOperationAddModExtension">
+					<xpath>Defs/PawnKindDef[
+						defName="ForsakenSniper" or
+						defName="ForsakenSlasher" or
+						defName="ForsakenGunner" or
+						defName="KingOfTheLostOnes" or
+						defName="Town_GuardF" or
+						defName="VillagerF" or
+						defName="Town_TraderF"
+				]</xpath>
+					<value>
+						<li Class="CombatExtended.LoadoutPropertiesExtension">
+							<primaryMagazineCount>
+								<min>6</min>
+								<max>8</max>
+							</primaryMagazineCount>
+						</li>
+					</value>
+				</li>
+
+			</operations>
+		</match>
+	</Operation>
+</Patch>

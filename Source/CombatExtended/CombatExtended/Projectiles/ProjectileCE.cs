@@ -891,7 +891,7 @@ namespace CombatExtended
                 {
                     GenExplosionCE.DoExplosion(explodePos.ToIntVec3(), Map, def.projectile.explosionRadius,
                         def.projectile.damageDef, launcher, def.projectile.GetDamageAmount(1), def.projectile.GetDamageAmount(1) * 0.1f,
-                        def.projectile.soundExplode ?? def.projectile.damageDef.soundExplosion, equipmentDef,
+                        def.projectile.soundExplode, equipmentDef,
                         def, null, def.projectile.postExplosionSpawnThingDef, def.projectile.postExplosionSpawnChance, def.projectile.postExplosionSpawnThingCount,
                         def.projectile.applyDamageToExplosionCellsNeighbors, def.projectile.preExplosionSpawnThingDef, def.projectile.preExplosionSpawnChance,
                         def.projectile.preExplosionSpawnThingCount, def.projectile.explosionChanceToStartFire, def.projectile.explosionDamageFalloff,

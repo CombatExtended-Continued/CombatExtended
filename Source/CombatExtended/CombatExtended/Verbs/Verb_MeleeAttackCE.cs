@@ -267,6 +267,31 @@ namespace CombatExtended
             mainDinfo.SetAngle(direction);
             yield return mainDinfo;
 
+            DamageInfo damageInfo = new DamageInfo(def, damAmount, armorPenetration, -1f, this.caster, null, source, DamageInfo.SourceCategory.ThingOrUnknown, null);
+            damageInfo.SetBodyRegion(BodyPartHeight.Undefined, BodyPartDepth.Outside);
+            damageInfo.SetWeaponBodyPartGroup(bodyPartGroupDef);
+            damageInfo.SetWeaponHediff(hediffDef);
+            damageInfo.SetAngle(direction);
+            yield return damageInfo;
+            if (this.tool != null && this.tool.extraMeleeDamages != null)
+            {
+                foreach (ExtraDamage extraDamage in this.tool.extraMeleeDamages)
+                {
+                    if (Rand.Chance(extraDamage.chance))
+                    {
+                        damAmount = extraDamage.amount;
+                        damAmount = Rand.Range(damAmount * 0.8f, damAmount * 1.2f);
+                        damageInfo = new DamageInfo(extraDamage.def, damAmount, extraDamage.AdjustedArmorPenetration(this, this.CasterPawn), -1f, this.caster, null, source, DamageInfo.SourceCategory.ThingOrUnknown, null);
+                        damageInfo.SetBodyRegion(BodyPartHeight.Undefined, BodyPartDepth.Outside);
+                        damageInfo.SetWeaponBodyPartGroup(bodyPartGroupDef);
+                        damageInfo.SetWeaponHediff(hediffDef);
+                        damageInfo.SetAngle(direction);
+                        yield return damageInfo;
+                    }
+                }
+                List<ExtraDamage>.Enumerator enumerator = default(List<ExtraDamage>.Enumerator);
+            }
+
             // Apply critical damage
             if (isCrit && !CasterPawn.def.race.Animal && verbProps.meleeDamageDef.armorCategory != DamageArmorCategoryDefOf.Sharp && target.Thing.def.race.IsFlesh)
             {

@@ -221,7 +221,7 @@ namespace CombatExtended
         {
             if (!calculateMechanicalOnly)
             {
-                Vector3 u = CasterPawn != null ? CasterPawn.DrawPos : caster.Position.ToVector3Shifted();
+                Vector3 u = caster.TrueCenter();
                 sourceLoc.Set(u.x, u.z);
 
                 if (numShotsFired == 0)
@@ -229,7 +229,10 @@ namespace CombatExtended
                     // On first shot of burst do a range estimate
                     estimatedTargDist = report.GetRandDist();
                 }
-                Vector3 v = report.targetPawn != null ? report.targetPawn.DrawPos + report.targetPawn.Drawer.leaner.LeanOffset * 0.5f : report.target.Cell.ToVector3Shifted();
+                Vector3 v = report.target.Thing?.TrueCenter() ?? report.target.Cell.ToVector3Shifted(); //report.targetPawn != null ? report.targetPawn.DrawPos + report.targetPawn.Drawer.leaner.LeanOffset * 0.5f : report.target.Cell.ToVector3Shifted();
+                if (report.targetPawn != null)
+                    v += report.targetPawn.Drawer.leaner.LeanOffset * 0.5f;
+
                 newTargetLoc.Set(v.x, v.z);
 
                 // ----------------------------------- STEP 1: Actual location + Shift for visibility
@@ -537,6 +540,7 @@ namespace CombatExtended
             bool pelletMechanicsOnly = false;
             for (int i = 0; i < projectilePropsCE.pelletCount; i++)
             {
+
                 ProjectileCE projectile = (ProjectileCE)ThingMaker.MakeThing(Projectile, null);
                 GenSpawn.Spawn(projectile, shootLine.Source, caster.Map);
                 ShiftTarget(report, pelletMechanicsOnly);
@@ -562,6 +566,7 @@ namespace CombatExtended
                 );
                 pelletMechanicsOnly = true;
             }
+           /// Log.Message("Fired from "+caster.ThingID+" at "+ShotHeight); /// 
             pelletMechanicsOnly = false;
             numShotsFired++;
             if (CompAmmo != null && !CompAmmo.CanBeFiredNow)

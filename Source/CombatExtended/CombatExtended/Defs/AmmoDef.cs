@@ -19,6 +19,8 @@ namespace CombatExtended
         public SoundDef cookOffTailSound = null;
         public ThingDef detonateProjectile = null;
 
+        private List<DefHyperlink> originalHyperlinks;
+
         private List<ThingDef> users;
         public List<ThingDef> Users
         {
@@ -36,13 +38,41 @@ namespace CombatExtended
                         return false;
                     });
                     
+                    if (users != null && !users.Any())
+                        return users;
+                    
+                    if (descriptionHyperlinks.NullOrEmpty())
+                        descriptionHyperlinks = new List<DefHyperlink>();
+                    else
+                    {
+                        if (originalHyperlinks.NullOrEmpty())
+                        {
+                            originalHyperlinks = new List<DefHyperlink>();
+
+                            foreach (var i in descriptionHyperlinks)
+                                originalHyperlinks.Add(i);
+                        }
+                        else
+                        {
+                            var exceptList = descriptionHyperlinks.Except(originalHyperlinks).ToList();
+                            foreach (var i in exceptList)
+                            {
+                                descriptionHyperlinks.Remove(i);
+                                i.def.descriptionHyperlinks.Remove(this);
+                            }
+                        }
+                    }
+                    
                     foreach (var user in users)
                     {
-                        if (descriptionHyperlinks.NullOrEmpty())
-                            descriptionHyperlinks = new List<DefHyperlink>();
-
                         descriptionHyperlinks.Add(user);
+
+                        if (user.descriptionHyperlinks.NullOrEmpty())
+                            user.descriptionHyperlinks = new List<DefHyperlink>();
+
+                        user.descriptionHyperlinks.Add(this);
                     }
+
                 }
                 return users;
             }

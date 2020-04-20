@@ -16,10 +16,10 @@
     <label>60mm mortar shells</label>
     <ammoTypes>
       <!-- Overrides vanilla artillery shell -->
-      <Shell_60mm_HE>Bullet_60mmMortarShell_HE</Shell_60mm_HE>
-      <Shell_60mm_Incendiary>Bullet_60mmMortarShell_60mm_Incendiary</Shell_60mm_Incendiary>
-      <Shell_60mm_EMP>Bullet_60mmMortarShell_60mm_EMP</Shell_60mm_EMP>
-      <Shell_60mm_Firefoam>Bullet_60mmMortarShell_60mm_Firefoam</Shell_60mm_Firefoam>
+      <Shell_60mmMortar_HE>Bullet_60mmMortarShell_HE</Shell_60mmMortar_HE>
+      <Shell_60mmMortar_Incendiary>Bullet_60mmMortarShell_Incendiary</Shell_60mmMortar_Incendiary>
+      <Shell_60mmMortar_EMP>Bullet_60mmMortarShell_EMP</Shell_60mmMortar_EMP>
+      <Shell_60mmMortar_Firefoam>Bullet_60mmMortarShell_Firefoam</Shell_60mmMortar_Firefoam>
     </ammoTypes>
   </CombatExtended.AmmoSetDef>
 
@@ -50,7 +50,7 @@
   </ThingDef>
 
   <ThingDef Class="CombatExtended.AmmoDef" ParentName="60mmMortarShellBaseCraftableBase">
-    <defName>Shell_60mm_HE</defName>
+    <defName>Shell_60mmMortar_HE</defName>
     <label>60mm mortar shell (HE)</label>
     <graphicData>
       <texPath>Things/Ammo/Mortar/HE</texPath>
@@ -64,7 +64,7 @@
   </ThingDef>
 
   <ThingDef Class="CombatExtended.AmmoDef" ParentName="60mmMortarShellBaseCraftableBase">
-    <defName>Shell_60mm_Incendiary</defName>
+    <defName>Shell_60mmMortar_Incendiary</defName>
     <label>60mm mortar shell (Incendiary)</label>
     <graphicData>
       <texPath>Things/Ammo/Mortar/Incendiary</texPath>
@@ -88,7 +88,7 @@
   </ThingDef>
 
   <ThingDef Class="CombatExtended.AmmoDef" ParentName="60mmMortarShellBaseCraftableBase">
-    <defName>Shell_60mm_EMP</defName>
+    <defName>Shell_60mmMortar_EMP</defName>
     <label>60mm mortar shell (EMP)</label>
     <graphicData>
       <texPath>Things/Ammo/Mortar/EMP</texPath>
@@ -108,7 +108,7 @@
   </ThingDef>
 
   <ThingDef Class="CombatExtended.AmmoDef" ParentName="60mmMortarShellBaseCraftableBase">
-    <defName>Shell_60mm_Firefoam</defName>
+    <defName>Shell_60mmMortar_Firefoam</defName>
     <label>60mm mortar shell (Foam)</label>
     <generateAllowChance>0</generateAllowChance>	
     <graphicData>
@@ -119,6 +119,7 @@
       <MarketValue>23.97</MarketValue>
     </statBases>
     <ammoClass>FoamFuel</ammoClass>
+	<detonateProjectile>Bullet_60mmMortarShell_Firefoam</detonateProjectile>
     <comps>
 	  <li Class="CombatExtended.CompProperties_ExplosiveCE">
 		<damageAmountBase>7</damageAmountBase>
@@ -180,7 +181,7 @@
   </ThingDef>
 
   <ThingDef Class="CombatExtended.AmmoDef" ParentName="Base60mmMortarShell">
-    <defName>Bullet_60mmMortarShell_60mm_Incendiary</defName>
+    <defName>Bullet_60mmMortarShell_Incendiary</defName>
     <label>60mm mortar shell (Incendiary)</label>
     <graphicData>
       <texPath>Things/Projectile/Mortar/Incendiary</texPath>
@@ -200,7 +201,7 @@
   </ThingDef>
 
   <ThingDef Class="CombatExtended.AmmoDef" ParentName="Base60mmMortarShell">
-    <defName>Bullet_60mmMortarShell_60mm_EMP</defName>
+    <defName>Bullet_60mmMortarShell_EMP</defName>
     <label>60mm mortar shell (EMP)</label>
     <graphicData>
       <texPath>Things/Projectile/Mortar/EMP</texPath>
@@ -217,7 +218,7 @@
   </ThingDef>
 
   <ThingDef Class="CombatExtended.AmmoDef" ParentName="Base60mmMortarShell">
-    <defName>Bullet_60mmMortarShell_60mm_Firefoam</defName>
+    <defName>Bullet_60mmMortarShell_Firefoam</defName>
     <label>60mm mortar shell (Foam)</label>
     <graphicData>
       <texPath>Things/Projectile/Mortar/Firefoam</texPath>
@@ -245,7 +246,7 @@
 
 
   <RecipeDef ParentName="AmmoRecipeBase">
-    <defName>MakeShell_60mm_HE</defName>
+    <defName>MakeShell_60mmMortar_HE</defName>
     <label>make 60mm HE mortar shells x5</label>
     <description>Craft 5 60mm HE mortar shells.</description>
     <jobString>Making 60mm HE mortar shells.</jobString>
@@ -283,13 +284,13 @@
       </thingDefs>
     </fixedIngredientFilter>
     <products>
-      <Shell_60mm_HE>5</Shell_60mm_HE>
+      <Shell_60mmMortar_HE>5</Shell_60mmMortar_HE>
     </products>
     <workAmount>4800</workAmount>
   </RecipeDef>
 
   <RecipeDef ParentName="AmmoRecipeBase">
-    <defName>MakeShell_60mm_Incendiary</defName>
+    <defName>MakeShell_60mmMortar_Incendiary</defName>
     <label>make 60mm incendiary mortar shells x5</label>
     <description>Craft 5 60mm incendiary mortar shells.</description>
     <jobString>Making 60mm incendiary mortar shells.</jobString>
@@ -327,13 +328,13 @@
       </thingDefs>
     </fixedIngredientFilter>
     <products>
-      <Shell_60mm_Incendiary>5</Shell_60mm_Incendiary>
+      <Shell_60mmMortar_Incendiary>5</Shell_60mmMortar_Incendiary>
     </products>
     <workAmount>4000</workAmount>
   </RecipeDef>
 
   <RecipeDef ParentName="AmmoRecipeBase">
-    <defName>MakeShell_60mm_EMP</defName>
+    <defName>MakeShell_60mmMortar_EMP</defName>
     <label>make 60mm EMP mortar shells x5</label>
     <description>Craft 5 60mm EMP mortar shells.</description>
     <jobString>Making 60mm EMP mortar shells.</jobString>
@@ -362,13 +363,13 @@
       </thingDefs>
     </fixedIngredientFilter>
     <products>
-      <Shell_60mm_EMP>5</Shell_60mm_EMP>
+      <Shell_60mmMortar_EMP>5</Shell_60mmMortar_EMP>
     </products>
     <workAmount>5600</workAmount>
   </RecipeDef>
 
   <RecipeDef ParentName="AmmoRecipeBase">
-    <defName>MakeShell_60mm_Firefoam</defName>
+    <defName>MakeShell_60mmMortar_Firefoam</defName>
     <label>make 60mm firefoam mortar shells x5</label>
     <description>Craft 5 60mm firefoam mortar shells.</description>
     <jobString>Making 60mm firefoam mortar shells.</jobString>
@@ -408,7 +409,7 @@
       </categories>
     </fixedIngredientFilter>
     <products>
-      <Shell_60mm_Firefoam>5</Shell_60mm_Firefoam>
+      <Shell_60mmMortar_Firefoam>5</Shell_60mmMortar_Firefoam>
     </products>
     <workAmount>4600</workAmount>
   </RecipeDef>

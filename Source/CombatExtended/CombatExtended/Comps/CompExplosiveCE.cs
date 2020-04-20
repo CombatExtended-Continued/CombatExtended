@@ -32,7 +32,7 @@ namespace CombatExtended
             }
             
             //Try to throw fragments -- increase count by scaleFactor
-            parent.TryGetComp<CompFragments>()?.Throw(pos, map, instigator, scaleFactor);
+            parent.TryGetComp<CompFragments>()?.Throw(pos, map, instigator);//scaleFactor);
 
             if (Props.explosiveRadius > 0 //&& Props.damageAmountBase > 0 Disabled to allow flame explosions etc
                 && parent.def != null)
@@ -40,7 +40,7 @@ namespace CombatExtended
                 //Call GenExplosionCE for main explosion
                 GenExplosionCE.DoExplosion(posIV, map, Props.explosiveRadius, Props.explosiveDamageType, instigator,
                     GenMath.RoundRandom(Props.damageAmountBase), Props.damageAmountBase * 0.1f,
-                    Props.explosionSound ?? Props.explosiveDamageType.soundExplosion, null, parent.def, null,
+                    Props.explosionSound, null, parent.def, null,
                     Props.postExplosionSpawnThingDef, Props.postExplosionSpawnChance, Props.postExplosionSpawnThingCount,
                     Props.applyDamageToExplosionCellsNeighbors, Props.preExplosionSpawnThingDef, Props.preExplosionSpawnChance,
                     Props.preExplosionSpawnThingCount, Props.chanceToStartFire, Props.damageFalloff, direction, ignoredThings,
