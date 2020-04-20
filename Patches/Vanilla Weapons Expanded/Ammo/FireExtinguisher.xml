@@ -16,7 +16,7 @@
           <value>
             <ThingCategoryDef>
               <defName>AmmoVWEExtinguisher</defName>
-              <label>flame suppressant</label>
+              <label>firefoam</label>
               <parent>AmmoAdvanced</parent>
               <iconPath>UI/Icons/ThingCategories/CaliberFuel</iconPath>
             </ThingCategoryDef>
@@ -29,7 +29,7 @@
           <value>
             <CombatExtended.AmmoSetDef>
               <defName>AmmoSet_VWE_Extinguisher</defName>
-              <label>extinguisher fuel</label>
+              <label>firefoam</label>
               <ammoTypes>
                 <Ammo_VWE_Extinguisher>Bullet_VWE_Extinguisher</Ammo_VWE_Extinguisher>
               </ammoTypes>
@@ -44,7 +44,7 @@
           <value>
             <ThingDef Class="CombatExtended.AmmoDef" ParentName="SpacerSmallAmmoBase">
               <defName>Ammo_VWE_Extinguisher</defName>
-              <label>Flame Suppressant</label>
+              <label>firefoam</label>
               <description>Flame suppressant used by the Fire Extinguisher</description>
               <graphicData>
                 <texPath>Things/Ammo/FuelCell/Foam</texPath>
@@ -54,8 +54,8 @@
                 <MarketValue>0.50</MarketValue>
                 <MaxHitPoints>70</MaxHitPoints>
                 <Flammability>1.0</Flammability>
-                <Mass>0.05</Mass>
-                <Bulk>0.1</Bulk>
+                <Mass>0.03</Mass>
+                <Bulk>0.03</Bulk>
               </statBases>
               <tradeTags>
                 <li>CE_AutoEnableTrade</li>
@@ -64,7 +64,7 @@
               <thingCategories>
                 <li>AmmoVWEExtinguisher</li>
               </thingCategories>
-              <stackLimit>400</stackLimit>
+              <stackLimit>500</stackLimit>
               <ammoClass>FoamFuel</ammoClass>
               <generateAllowChance>0</generateAllowChance>
             </ThingDef>
@@ -79,7 +79,7 @@
             <ThingDef Class="CombatExtended.AmmoDef" ParentName="BaseBullet">
               <thingClass>CombatExtended.ProjectileCE_Explosive</thingClass>
               <defName>Bullet_VWE_Extinguisher</defName>
-              <label>flame suppressant</label>
+              <label>firefoam</label>
               <graphicData>
                 <texPath>Things/Projectile/Proj_FireExtinguisher/Proj_FireExtinguisherA</texPath>
                 <graphicClass>Graphic_Single</graphicClass>
@@ -93,7 +93,7 @@
                 <preExplosionSpawnChance>1</preExplosionSpawnChance>
                 <soundExplode>VWE_Explosion_FireExtinguisher</soundExplode>
                 <applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
-                <speed>30</speed>
+                <speed>20</speed>
                 <flyOverhead>false</flyOverhead>
               </projectile>
             </ThingDef>
@@ -120,9 +120,9 @@
           <value>
             <RecipeDef ParentName="ExtinguisherAmmoRecipeBase">
               <defName>MakeAmmo_VWE_Extinguisher</defName>
-              <label>make phosphate x400</label>
-              <description>Craft 400 units of Phosphate.</description>
-              <jobString>Making Phosphate.</jobString>
+              <label>make firefoam x500</label>
+              <description>Craft 500 units of firefoam.</description>
+              <jobString>Making firefoam.</jobString>
               <ingredients>
                 <li>
                   <filter>
@@ -130,7 +130,7 @@
                       <li>Chemfuel</li>
                     </thingDefs>
                   </filter>
-                  <count>20</count>
+                  <count>25</count>
                 </li>
                 <li>
                   <filter>
@@ -138,7 +138,7 @@
                       <li>MeatRaw</li>
                     </categories>
                   </filter>
-                  <count>20</count>
+                  <count>25</count>
                 </li>
               </ingredients>
               <fixedIngredientFilter>
