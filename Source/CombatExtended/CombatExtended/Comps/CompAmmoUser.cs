@@ -68,6 +68,7 @@ namespace CombatExtended
                 return CompEquippable.PrimaryVerb.CasterPawn;
             }
         }
+        public bool IsEquippedGun => Wielder != null;
         public Pawn Holder
         {
             get
@@ -110,7 +111,7 @@ namespace CombatExtended
                 return CompInventory != null && CompInventory.ammoList.Any(x => Props.ammoSet.ammoTypes.Any(a => a.ammo == x.def));
             }
         }
-        public bool HasMagazine { get { return Props.magazineSize > 0; } }
+        public bool HasMagazine => Props.magazineSize > 0;
         public AmmoDef CurrentAmmo
         {
             get
@@ -118,6 +119,20 @@ namespace CombatExtended
                 return UseAmmo ? currentAmmoInt : null;
             }
         }
+
+        public bool EmptyMagazine => HasMagazine && CurMagCount == 0;
+        public int MissingToFullMagazine
+        {
+            get
+            {
+                if (!HasMagazine) { return 0; }
+                if (SelectedAmmo == CurrentAmmo) { return Props.magazineSize - CurMagCount; }
+                return Props.magazineSize;
+            }
+        }
+
+        public bool FullMagazine => HasMagazine && SelectedAmmo == CurrentAmmo && CurMagCount >= Props.magazineSize;
+
         public ThingDef CurAmmoProjectile => Props.ammoSet?.ammoTypes?.FirstOrDefault(x => x.ammo == CurrentAmmo)?.projectile ?? parent.def.Verbs.FirstOrDefault().defaultProjectile;
         public CompInventory CompInventory
         {
@@ -130,7 +145,7 @@ namespace CombatExtended
         {
             get
             {
-                if (Wielder != null) return Wielder.Position;
+                if (IsEquippedGun) return Wielder.Position;
                 else if (turret != null) return turret.Position;
                 else if (Holder != null) return Holder.Position;
                 else return parent.Position;
@@ -171,7 +186,7 @@ namespace CombatExtended
         {
             base.Initialize(vprops);
 
-			//spawnUnloaded checks have all been moved to methods calling ResetAmmoCount.
+            //spawnUnloaded checks have all been moved to methods calling ResetAmmoCount.
             //curMagCountInt = Props.spawnUnloaded && UseAmmo ? 0 : Props.magazineSize;
 
             // Initialize ammo with default if none is set
@@ -244,7 +259,7 @@ namespace CombatExtended
         {
             ammoConsumedPerShot = (ammoConsumedPerShot > 0) ? ammoConsumedPerShot : 1;
 
-            if (Wielder == null && turret == null)
+            if (!IsEquippedGun && turret == null)
             {
                 Log.Error(parent.ToString() + " tried reducing its ammo count without a wielder");
             }
@@ -307,7 +322,7 @@ namespace CombatExtended
                 }
                 return;
             }
-            if (Wielder == null && turret == null)
+            if (!IsEquippedGun && turret == null)
                 return;
 
             // secondary branch for if we ended up being called up by a turret somehow...
@@ -326,7 +341,7 @@ namespace CombatExtended
                 TryUnload();
 
                 // Check for ammo
-                if (Wielder != null && !HasAmmo)
+                if (IsEquippedGun && !HasAmmo)
                 {
                     DoOutOfAmmoAction();
                     return;
@@ -340,7 +355,7 @@ namespace CombatExtended
             }
 
             // Issue reload job
-            if (Wielder != null)
+            if (IsEquippedGun)
             {
                 Job reloadJob = TryMakeReloadJob();
                 if (reloadJob == null)
@@ -427,7 +442,7 @@ namespace CombatExtended
             {
                 MoteMaker.ThrowText(Position.ToVector3Shifted(), Find.CurrentMap, "CE_OutOfAmmo".Translate() + "!");
             }
-            if (Wielder != null && CompInventory != null && (Wielder.CurJob == null || Wielder.CurJob.def != JobDefOf.Hunt)) CompInventory.SwitchToNextViableWeapon();
+            if (IsEquippedGun && CompInventory != null && (Wielder.CurJob == null || Wielder.CurJob.def != JobDefOf.Hunt)) CompInventory.SwitchToNextViableWeapon();
         }
 
         public void LoadAmmo(Thing ammo = null)
@@ -552,10 +567,10 @@ namespace CombatExtended
             GizmoAmmoStatus ammoStatusGizmo = new GizmoAmmoStatus { compAmmo = this };
             yield return ammoStatusGizmo;
 
-            if ((Wielder != null && Wielder.Faction == Faction.OfPlayer) || (turret != null && turret.Faction == Faction.OfPlayer && (turret.MannableComp != null || UseAmmo)))
+            if ((IsEquippedGun && Wielder.Faction == Faction.OfPlayer) || (turret != null && turret.Faction == Faction.OfPlayer && (turret.MannableComp != null || UseAmmo)))
             {
                 Action action = null;
-                if (Wielder != null) action = TryStartReload;
+                if (IsEquippedGun) action = TryStartReload;
                 else if (turret?.MannableComp != null) action = turret.TryForceReload;
 
                 // Check for teaching opportunities
