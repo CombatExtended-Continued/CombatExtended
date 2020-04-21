@@ -108,10 +108,6 @@ namespace CombatExtended
                         Destroy(DestroyMode.KillFinalize);
                     }
                 }
-
-                //Resubscribe ammo
-                if (numToCookOff <= 0)
-                    RegisterAmmo();
             }
         }
 
@@ -197,53 +193,12 @@ namespace CombatExtended
             return true;
         }
 
-        public override void SpawnSetup(Map map, bool respawningAfterLoad)
-        {
-            base.SpawnSetup(map, respawningAfterLoad);
-
-            //Keep track of newly spawned, non-cookoff AmmoThing
-            RegisterAmmo();
-        }
-
         public override void ExposeData()
         {
             base.ExposeData();
 
             //Such that save-reloading doesn't stop ammo cookoff
             Scribe_Values.Look(ref numToCookOff, "numToCookOff", 0);
-        }
-
-        public override void DeSpawn(DestroyMode mode = DestroyMode.Vanish)
-        {
-            base.DeSpawn(mode);
-
-            if (GenClosestAmmo.listeners.ContainsKey(def))
-            {
-                foreach (var listener in GenClosestAmmo.listeners[def])
-                {
-                    if (listener.nearestViableAmmo == this)
-                    {
-                        listener.nearestViableAmmo = null;
-                        listener.isSlow = false;
-                    }
-                }
-
-                if (GenClosestAmmo.latestAmmoUpdate.ContainsKey(def))
-                    GenClosestAmmo.latestAmmoUpdate[def] = Find.TickManager.TicksGame;
-            }
-            else if (GenClosestAmmo.latestAmmoUpdate.ContainsKey(def))
-                GenClosestAmmo.latestAmmoUpdate.Clear();
-        }
-
-        private void RegisterAmmo()
-        {
-            if (numToCookOff <= 0 && !this.IsBurning() && GenClosestAmmo.listeners.ContainsKey(def))
-            {
-                GenClosestAmmo.listeners[def].ForEach(x => x.isSlow = false);
-
-                if (GenClosestAmmo.latestAmmoUpdate.ContainsKey(def))
-                    GenClosestAmmo.latestAmmoUpdate[def] = Find.TickManager.TicksGame;
-            }
         }
         #endregion
     }
