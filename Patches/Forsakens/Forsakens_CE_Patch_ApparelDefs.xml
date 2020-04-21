@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Patch>
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+			<li>Forsakens</li>
+		</mods>
+		<match Class="PatchOperationSequence">
+			<operations>
+
+				<!-- ========== Forsaken Hood and Cloak ========== -->
+				
+				<!-- Note: Forsaken fabric apparel are only craftable from Synthread -->
+
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="Forsaken_Hood"]/statBases</xpath>
+					<value>
+						<Bulk>1</Bulk>
+					</value>
+				</li>
+				
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="Forsaken_Cloak"]/statBases</xpath>
+					<value>
+						<Bulk>7.5</Bulk>
+						<WornBulk>1</WornBulk>
+					</value>
+				</li>
+				
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[
+						defName="Forsaken_Hood" or
+						defName="Forsaken_Cloak"
+					]/statBases/ArmorRating_Sharp</xpath>
+					<value>
+						<!-- Equvalent to vanilla Synthread duster at normal quality -->
+						<ArmorRating_Sharp>1</ArmorRating_Sharp>
+					</value>
+				</li>
+				
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[
+						defName="Forsaken_Hood" or
+						defName="Forsaken_Cloak"
+					]/statBases/ArmorRating_Blunt</xpath>
+					<value>
+						<!-- Equvalent to vanilla Synthread duster at normal quality -->
+						<ArmorRating_Blunt>0.25</ArmorRating_Blunt>
+					</value>
+				</li>
+
+				<!-- ========== Forsaken Helmet ========== -->
+
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="TForsakenH"]/statBases</xpath>
+					<value>
+						<!-- Slightly larger item bulk than vanilla Power armor helmet, to account for horns on Forsaken helmet -->
+						<Bulk>6</Bulk>
+						<WornBulk>1.5</WornBulk>
+					</value>
+				</li>
+				
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="TForsakenH"]/statBases/ArmorRating_Sharp</xpath>
+					<value>
+						<!-- Equvalent to vanilla Power armor helmet at normal quality -->
+						<ArmorRating_Sharp>16</ArmorRating_Sharp>
+					</value>
+				</li>
+				
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="TForsakenH"]/statBases/ArmorRating_Blunt</xpath>
+					<value>
+						<!-- Equvalent to vanilla Power armor helmet at normal quality -->
+						<ArmorRating_Blunt>36</ArmorRating_Blunt>
+					</value>
+				</li>
+
+				<!-- ========== Forsaken Armor ========== -->
+
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="TForsakenA"]/statBases</xpath>
+					<value>
+						<Bulk>100</Bulk>
+						<WornBulk>15</WornBulk>
+					</value>
+				</li>
+
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="TForsakenA"]/equippedStatOffsets</xpath>
+					<value>
+						<CarryBulk>10</CarryBulk>
+						<CarryWeight>80</CarryWeight>
+					</value>
+				</li>
+				
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="TForsakenA"]/statBases/ArmorRating_Sharp</xpath>
+					<value>
+						<!-- Equvalent to vanilla Power armor at normal quality -->
+						<ArmorRating_Sharp>20</ArmorRating_Sharp>
+					</value>
+				</li>
+				
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="TForsakenA"]/statBases/ArmorRating_Blunt</xpath>
+					<value>
+						<!-- Equvalent to vanilla Power armor at normal quality -->
+						<ArmorRating_Blunt>45</ArmorRating_Blunt>
+					</value>
+				</li>
+
+			</operations>
+		</match>
+	</Operation>
+</Patch>

@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+
+  <Operation Class="PatchOperationFindMod">
+    <mods>
+      <li>Vanilla Factions Expanded - Settlers</li>
+    </mods>
+
+    <match Class="PatchOperationSequence">
+      <operations>
+        <!-- === Settler === -->
+        <!-- We'll add this as a secondary' -->
+        <li Class="PatchOperationRemove">
+          <xpath>/Defs/PawnKindDef[defName="Settler"]/weaponTags/li[.="GrenadeDestructive"]</xpath>
+        </li>
+
+        <li Class="PatchOperationAddModExtension">
+          <xpath>/Defs/PawnKindDef[defName="Settler"]</xpath>
+
+          <value>
+            <li Class="CombatExtended.LoadoutPropertiesExtension">
+              <primaryMagazineCount>
+                <min>1</min>
+                <max>3</max>
+              </primaryMagazineCount>
+              <sidearms>
+                <li>
+                  <generateChance>1</generateChance>
+                  <magazineCount>
+                    <min>1</min>
+                    <max>3</max>
+                  </magazineCount>
+                  <sidearmMoney>
+                    <min>100</min>
+                    <max>200</max>
+                  </sidearmMoney>
+                  <weaponTags>
+                    <li>GrenadeDynamite</li> <!-- Custom tag so they only spawn with dynamite -->
+                  </weaponTags>
+                </li>
+              </sidearms>
+            </li>
+          </value>
+        </li>
+
+        <!-- === Deputy | Militia | Frontier Trader === -->
+        <li Class="PatchOperationAddModExtension">
+          <xpath>/Defs/PawnKindDef[defName="Deputy" or defName="Militia" or defName="Frontier_Trader" or defName="Sheriff" or defName="Mayor"]</xpath>
+
+          <value>
+            <li Class="CombatExtended.LoadoutPropertiesExtension">
+              <primaryMagazineCount>
+                <min>2</min>
+                <max>4</max>
+              </primaryMagazineCount>
+            </li>
+          </value>
+        </li>
+      </operations>
+    </match>
+
+  </Operation>
+
+</Patch>
