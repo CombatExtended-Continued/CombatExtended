@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+			<li>Dragon's Descent</li>
+		</mods>
+
+		<!-- === Projectile_DragonBreath === -->
+		<match Class="PatchOperationReplace">
+			<xpath>/Defs/ThingDef[defName="Projectile_DragonBreath"]/projectile</xpath>
+
+			<value>
+				<projectile Class="CombatExtended.ProjectilePropertiesCE">
+					<speed>48</speed>
+					<flyOverhead>false</flyOverhead>
+					<damageDef>Flame</damageDef>
+					<damageAmountBase>4</damageAmountBase>
+					<soundExplode>DragonBreathFire</soundExplode>
+					<explosionRadius>1.1</explosionRadius>
+					<ai_IsIncendiary>true</ai_IsIncendiary>
+				</projectile>
+			</value>
+		</match>
+	</Operation>
+
+</Patch>

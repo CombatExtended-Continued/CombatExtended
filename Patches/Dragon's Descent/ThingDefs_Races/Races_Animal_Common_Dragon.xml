@@ -1,0 +1,278 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+			<li>Dragon's Descent</li>
+		</mods>
+
+		<match Class="PatchOperationSequence">
+			<operations>
+				<!-- === Common dragon base === -->
+				<!-- == bodyShape == -->
+				<li Class="PatchOperationAddModExtension">
+					<xpath>/Defs/ThingDef[@Name="DragonRaceBase"]</xpath>
+
+					<value>
+						<li Class="CombatExtended.RacePropertiesExtensionCE">
+							<bodyShape>Birdlike</bodyShape>
+						</li>
+					</value>
+				</li>
+
+				<!-- == statBases == -->
+				<li Class="PatchOperationAdd">
+					<xpath>/Defs/ThingDef[@Name="DragonRaceBase"]/statBases</xpath>
+
+					<value>
+						<MeleeDodgeChance>0.13</MeleeDodgeChance>
+						<MeleeCritChance>1.75</MeleeCritChance>
+						<MeleeParryChance>0.54</MeleeParryChance>
+						<SightsEfficiency>1</SightsEfficiency>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/ThingDef[@Name="DragonRaceBase"]/statBases/ArmorRating_Blunt</xpath>
+
+					<value>
+						<ArmorRating_Blunt>40</ArmorRating_Blunt>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/ThingDef[@Name="DragonRaceBase"]/statBases/ArmorRating_Sharp</xpath>
+
+					<value>
+						<ArmorRating_Sharp>16</ArmorRating_Sharp>
+					</value>
+				</li>
+
+				<!-- == baseHealthScale / manhunterOnTameFailChance == -->
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/ThingDef[@Name="DragonRaceBase"]/race/baseHealthScale</xpath>
+
+					<value>
+						<baseHealthScale>10</baseHealthScale>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/ThingDef[@Name="DragonRaceBase"]/race/manhunterOnTameFailChance</xpath>
+
+					<value>
+						<manhunterOnTameFailChance>0.51</manhunterOnTameFailChance>
+					</value>
+				</li>
+
+				<!-- === Verbs === -->
+				<li Class="PatchOperationReplace">
+					<xpath>
+						/Defs/ThingDef[
+							defName="Black_Dragon" or 
+							defName="Blue_Dragon" or 
+							defName="Green_Dragon" or
+							defName="Purple_Dragon" or 
+							defName="Red_Dragon" or 
+							defName="White_Dragon" or 
+							defName="Yellow_Dragon"]/verbs
+					</xpath>
+
+					<value>
+						<verbs>
+							<li Class="CombatExtended.VerbPropertiesCE">
+								<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+								<hasStandardCommand>true</hasStandardCommand>
+								<defaultProjectile>Projectile_DragonBreath</defaultProjectile>
+								<burstShotCount>25</burstShotCount>
+								<ticksBetweenBurstShots>2</ticksBetweenBurstShots>
+								<warmupTime>5</warmupTime>
+								<range>25</range>
+								<minRange>2</minRange>
+								<soundCast>DragonBreathShot</soundCast>
+								<muzzleFlashScale>1</muzzleFlashScale>
+								<commonality>0.9</commonality>
+								<ai_IsBuildingDestroyer>true</ai_IsBuildingDestroyer>
+								<targetParams>
+									<canTargetLocations>true</canTargetLocations>
+								</targetParams>
+							</li>
+						</verbs>
+					</value>
+				</li>
+
+				<!-- === Tools === -->
+				<li Class="PatchOperationReplace">
+					<xpath>
+						/Defs/ThingDef[
+							defName="Black_Dragon" or 
+							defName="Blue_Dragon" or 
+							defName="Green_Dragon" or
+							defName="Purple_Dragon" or 
+							defName="Red_Dragon" or 
+							defName="White_Dragon" or 
+							defName="Yellow_Dragon"]/tools
+					</xpath>
+
+					<value>
+						<tools>
+							<li Class="CombatExtended.ToolCE">
+								<label>left claw</label>
+								<capacities>
+									<li>Scratch</li>
+								</capacities>
+								<power>86</power>
+								<chanceFactor>0.25</chanceFactor>
+								<cooldownTime>3.5</cooldownTime>
+								<armorPenetrationSharp>24.09</armorPenetrationSharp>
+								<armorPenetrationBlunt>120.417</armorPenetrationBlunt>
+								<linkedBodyPartsGroup>FrontLeftPaw</linkedBodyPartsGroup>
+							</li>
+							<li Class="CombatExtended.ToolCE">
+								<label>right claw</label>
+								<capacities>
+									<li>Scratch</li>
+								</capacities>
+								<power>86</power>
+								<chanceFactor>0.25</chanceFactor>
+								<cooldownTime>3.5</cooldownTime>
+								<armorPenetrationSharp>24.09</armorPenetrationSharp>
+								<armorPenetrationBlunt>120.417</armorPenetrationBlunt>
+								<linkedBodyPartsGroup>FrontRightPaw</linkedBodyPartsGroup>
+							</li>
+							<li Class="CombatExtended.ToolCE">
+								<label>teeth</label>
+								<capacities>
+									<li>Bite</li>
+								</capacities>
+								<power>92</power>
+								<chanceFactor>0.2</chanceFactor>
+								<cooldownTime>4.41</cooldownTime>
+								<armorPenetrationSharp>4.75</armorPenetrationSharp>
+								<armorPenetrationBlunt>301.042</armorPenetrationBlunt>
+								<linkedBodyPartsGroup>Teeth</linkedBodyPartsGroup>
+							</li>
+							<li Class="CombatExtended.ToolCE">
+								<label>teeth</label>
+								<capacities>
+									<li>Rend</li>
+								</capacities>
+								<power>131</power>
+								<chanceFactor>0.15</chanceFactor>
+								<cooldownTime>2.94</cooldownTime>
+								<armorPenetrationSharp>10.67</armorPenetrationSharp>
+								<armorPenetrationBlunt>677.344</armorPenetrationBlunt>
+								<linkedBodyPartsGroup>Teeth</linkedBodyPartsGroup>
+							</li>
+							<li Class="CombatExtended.ToolCE">
+								<label>horn</label>
+								<capacities>
+									<li>Cut</li>
+								</capacities>
+								<surpriseAttack>
+									<extraMeleeDamages>
+										<li>
+											<def>Stun</def>
+											<amount>30</amount>
+										</li>
+									</extraMeleeDamages>
+								</surpriseAttack>
+								<power>69</power>
+								<chanceFactor>0.05</chanceFactor>
+								<cooldownTime>11.12</cooldownTime>
+								<armorPenetrationSharp>0.84</armorPenetrationSharp>
+								<armorPenetrationBlunt>16.725</armorPenetrationBlunt>
+								<linkedBodyPartsGroup>Horns</linkedBodyPartsGroup>
+							</li>
+							<li Class="CombatExtended.ToolCE">
+								<label>horn</label>
+								<capacities>
+									<li>Stab</li>
+								</capacities>
+								<surpriseAttack>
+									<extraMeleeDamages>
+										<li>
+											<def>Stun</def>
+											<amount>30</amount>
+										</li>
+									</extraMeleeDamages>
+								</surpriseAttack>
+								<power>38</power>
+								<chanceFactor>0.1</chanceFactor>
+								<cooldownTime>11.12</cooldownTime>
+								<armorPenetrationSharp>1.68</armorPenetrationSharp>
+								<armorPenetrationBlunt>16.725</armorPenetrationBlunt>
+								<linkedBodyPartsGroup>Horns</linkedBodyPartsGroup>
+							</li>
+						</tools>
+					</value>
+				</li>
+
+				<!-- === Wildness === -->
+				<!-- == Black Dragon == -->
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/ThingDef[defName="Black_Dragon"]/race/wildness</xpath>
+
+					<value>
+						<wildness>0.99</wildness>
+					</value>
+				</li>
+
+				<!-- == Blue Dragon == -->
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/ThingDef[defName="Blue_Dragon"]/race/wildness</xpath>
+
+					<value>
+						<wildness>0.89</wildness>
+					</value>
+				</li>
+
+				<!-- == Green Dragon ==-->
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/ThingDef[defName="Green_Dragon"]/race/wildness</xpath>
+
+					<value>
+						<wildness>0.97</wildness>
+					</value>
+				</li>
+
+				<!-- == Purple Dragon == -->
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/ThingDef[defName="Purple_Dragon"]/race/wildness</xpath>
+
+					<value>
+						<wildness>0.94</wildness>
+					</value>
+				</li>
+
+				<!-- == Red Dragon == -->
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/ThingDef[defName="Red_Dragon"]/race/wildness</xpath>
+
+					<value>
+						<wildness>0.99</wildness>
+					</value>
+				</li>
+
+				<!-- == White Dragon == -->
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/ThingDef[defName="White_Dragon"]/race/wildness</xpath>
+
+					<value>
+						<wildness>0.89</wildness>
+					</value>
+				</li>
+
+				<!-- == Yellow Dragon == -->
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/ThingDef[defName="Yellow_Dragon"]/race/wildness</xpath>
+
+					<value>
+						<wildness>0.89</wildness>
+					</value>
+				</li>
+			</operations>
+		</match>
+	</Operation>
+
+</Patch>
