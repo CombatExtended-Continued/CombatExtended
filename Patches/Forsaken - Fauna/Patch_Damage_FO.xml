@@ -1,26 +1,26 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <Patch>
-			
+
 	<Operation Class="PatchOperationFindMod">
 		<mods>
-		<li>Forsakens: Fauna</li>
+			<li>Forsakens: Fauna</li>
 		</mods>
 
 		<match Class="PatchOperationSequence">
-		<operations>
+			<operations>
 
-			<!-- ==== Add DefModExtension ==== -->
-			<li Class="PatchOperationAddModExtension">
-				<xpath>Defs/DamageDef[defName="FO_PlaguedBite"]</xpath>
-				<value>
-					<li Class="CombatExtended.DamageDefExtensionCE">
-						<harmOnlyOutsideLayers>true</harmOnlyOutsideLayers>
-					</li>
-				</value>
-			</li>
+				<!-- ==== Add DefModExtension ==== -->
+				<li Class="PatchOperationAddModExtension">
+					<xpath>Defs/DamageDef[defName="FO_PlaguedBite"]</xpath>
+					<value>
+						<li Class="CombatExtended.DamageDefExtensionCE">
+							<harmOnlyOutsideLayers>true</harmOnlyOutsideLayers>
+						</li>
+					</value>
+				</li>
 
-			<!-- ==== Remove vanilla DamageWorker ==== -->
-						<!--<li Class="PatchOperationReplace">
+				<!-- ==== Remove vanilla DamageWorker ==== -->
+				<!--<li Class="PatchOperationReplace">
 				<xpath>Defs/DamageDef[defName="Frost_Bite"]/workerClass</xpath>
 				<value>
 					<workerClass>DamageWorker_AddInjury</workerClass>
@@ -35,4 +35,5 @@
 			</operations>
 		</match>
 	</Operation>
+	
 </Patch>
