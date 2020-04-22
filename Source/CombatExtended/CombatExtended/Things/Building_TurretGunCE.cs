@@ -643,6 +643,7 @@ namespace CombatExtended
                 CompAmmo.turret = this;
                 //if (def.building.turretShellDef != null && def.building.turretShellDef is AmmoDef) CompAmmo.selectedAmmo = (AmmoDef)def.building.turretShellDef;
             }
+            gunInt = GetOrCreateGunInt();
             List<Verb> allVerbs = this.gunInt.TryGetComp<CompEquippable>().AllVerbs;
             for (int i = 0; i < allVerbs.Count; i++)
             {
@@ -650,6 +651,15 @@ namespace CombatExtended
                 verb.caster = this;
                 verb.castCompleteCallback = new Action(this.BurstComplete);
             }
+        }
+
+        private Thing GetOrCreateGunInt()
+        {
+            this.gunInt = this.gunInt ?? ThingMaker.MakeThing(this.def.building.turretGunDef, null);
+            this.compAmmo = this.compAmmo ?? gunInt.TryGetComp<CompAmmoUser>();
+
+            return gunInt;
+
         }
 
         public void TryForceReload()

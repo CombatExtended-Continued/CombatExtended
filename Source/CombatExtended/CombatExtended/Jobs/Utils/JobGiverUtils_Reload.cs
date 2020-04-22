@@ -110,7 +110,7 @@ namespace CombatExtended.CombatExtended.Jobs.Utils
 				CELogger.Message($"{pawn} could not reload {turret} because turret is manned (or was recently manned) by someone else.");
 				return false;
 			}
-			if (FindBestAmmo(pawn, turret) == null)
+			if (compAmmo.UseAmmo && FindBestAmmo(pawn, turret) == null)
 			{
 				JobFailReason.Is("CE_NoAmmoAvailable".Translate());
 				return false;

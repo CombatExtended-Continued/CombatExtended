@@ -68,15 +68,10 @@ namespace CombatExtended
             if (!(t is Building_TurretGunCE)) {
                 return false;
             }
-            var priority = GetThingPriority(pawn, t, forced);
-            CELogger.Message($"Priority check completed. Got {priority}");
 
             Building_TurretGunCE turret = t as Building_TurretGunCE;
-            CELogger.Message($"Turret uses ammo? {turret.CompAmmo.UseAmmo}");
-            if (!turret.CompAmmo.UseAmmo)
-                return true;
 
-            CELogger.Message($"Total magazine size: {turret.CompAmmo.Props.magazineSize}. Needed: {turret.CompAmmo.MissingToFullMagazine}");
+            CELogger.Message($"Total magazine size: {turret.CompAmmo?.Props.magazineSize.ToString() ?? "null"}. Needed: {turret.CompAmmo?.MissingToFullMagazine.ToString() ?? "null"}");
 
             return JobGiverUtils_Reload.CanReload(pawn, turret, forced);
         }

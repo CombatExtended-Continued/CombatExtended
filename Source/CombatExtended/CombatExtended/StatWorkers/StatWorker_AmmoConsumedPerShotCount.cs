@@ -19,11 +19,6 @@ namespace CombatExtended
             return def;
         }
 
-        private Thing Gun(StatRequest req)
-        {
-            return (req.Thing as Building_TurretGunCE)?.Gun ?? req.Thing;
-        }
-
         public override bool ShouldShowFor(StatRequest req)
         {
             return base.ShouldShowFor(req) && (GunDef(req)?.Verbs?

@@ -7,9 +7,9 @@
 		<xpath>Defs/ThingDef[defName="Defoliator"]/comps/li[@Class="CompProperties_Explosive"]/wickTicks</xpath>
 		<value>
 			<wickTicks>
-			  <min>180</min>
-			  <max>240</max>
-			</wickTicks>	
+				<min>180</min>
+				<max>240</max>
+			</wickTicks>
 		</value>
 	</Operation>
 
@@ -17,9 +17,9 @@
 		<xpath>Defs/ThingDef[defName="UnstablePowerCell"]/comps/li[@Class="CompProperties_Explosive"]/wickTicks</xpath>
 		<value>
 			<wickTicks>
-			  <min>180</min>
-			  <max>300</max>
-			</wickTicks>	
+				<min>180</min>
+				<max>300</max>
+			</wickTicks>
 		</value>
 	</Operation>
 
@@ -27,9 +27,9 @@
 		<xpath>Defs/ThingDef[defName="Turret_AutoMortar"]/comps/li[@Class="CompProperties_Explosive"]/wickTicks</xpath>
 		<value>
 			<wickTicks>
-			  <min>180</min>
-			  <max>240</max>
-			</wickTicks>	
+				<min>180</min>
+				<max>240</max>
+			</wickTicks>
 		</value>
 	</Operation>
 
@@ -229,12 +229,12 @@
 	<Operation Class="PatchOperationAdd">
 		<xpath>Defs/ThingDef[defName="Turret_AutoMortar"]/comps</xpath>
 		<value>
-		  <li Class="CombatExtended.CompProperties_Fragments">
-			<fragments>
-				<Fragment_Large>5</Fragment_Large>
-				<Fragment_Small>20</Fragment_Small>
-			</fragments>
-		  </li>
+			<li Class="CombatExtended.CompProperties_Fragments">
+				<fragments>
+					<Fragment_Large>5</Fragment_Large>
+					<Fragment_Small>20</Fragment_Small>
+				</fragments>
+			</li>
 		</value>
 	</Operation>
 
@@ -253,15 +253,16 @@
 		<xpath>Defs/ThingDef[defName = "Artillery_AutoMortar"]</xpath>
 		<value>
 			<comps>
-			  <li Class="CombatExtended.CompProperties_Charges">
-			    <chargeSpeeds>
-			      <li>30</li>
-			      <li>50</li>
-			      <li>70</li>
-			      <li>90</li>
-			    </chargeSpeeds>
-			  </li>
-			</comps>			  
+				<li Class="CombatExtended.CompProperties_Charges">
+					<chargeSpeeds>
+						<li>30</li>
+						<li>50</li>
+						<li>70</li>
+						<li>90</li>
+					</chargeSpeeds>
+				</li>
+				<li Class="CombatExtended.CompProperties_AmmoUser" />
+			</comps>
 		</value>
 	</Operation>
 
@@ -276,26 +277,26 @@
 		<xpath>Defs/ThingDef[defName = "Artillery_AutoMortar"]/verbs</xpath>
 		<value>
 			<verbs>
-			  <li Class="CombatExtended.VerbPropertiesCE">
-			    <verbClass>CombatExtended.Verb_ShootMortarCE</verbClass>
-			    <forceNormalTimeSpeed>false</forceNormalTimeSpeed>
-			    <hasStandardCommand>true</hasStandardCommand>
-			    <defaultProjectile>Bullet_ChargeMortarShell</defaultProjectile>
-			    <warmupTime>11</warmupTime>
-			    <minRange>32</minRange>
-			    <range>700</range>
-			    <burstShotCount>1</burstShotCount>
-			    <soundCast>Mortar_LaunchA</soundCast>
-			    <muzzleFlashScale>16</muzzleFlashScale>
-			    <circularError>3</circularError>
-			    <indirectFirePenalty>0.4</indirectFirePenalty>
-			    <targetParams>
-			      <canTargetLocations>true</canTargetLocations>
-			    </targetParams>
-			  </li>
+				<li Class="CombatExtended.VerbPropertiesCE">
+					<verbClass>CombatExtended.Verb_ShootMortarCE</verbClass>
+					<forceNormalTimeSpeed>false</forceNormalTimeSpeed>
+					<hasStandardCommand>true</hasStandardCommand>
+					<defaultProjectile>Bullet_ChargeMortarShell</defaultProjectile>
+					<warmupTime>11</warmupTime>
+					<minRange>32</minRange>
+					<range>700</range>
+					<burstShotCount>1</burstShotCount>
+					<soundCast>Mortar_LaunchA</soundCast>
+					<muzzleFlashScale>16</muzzleFlashScale>
+					<circularError>3</circularError>
+					<indirectFirePenalty>0.4</indirectFirePenalty>
+					<targetParams>
+						<canTargetLocations>true</canTargetLocations>
+					</targetParams>
+				</li>
 			</verbs>
 		</value>
 	</Operation>
 
-	
+
 </Patch>	
