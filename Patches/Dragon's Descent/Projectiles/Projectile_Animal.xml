@@ -6,21 +6,33 @@
 			<li>Dragon's Descent</li>
 		</mods>
 
-		<!-- === Projectile_DragonBreath === -->
-		<match Class="PatchOperationReplace">
-			<xpath>/Defs/ThingDef[defName="Projectile_DragonBreath"]/projectile</xpath>
+		<match Class="PatchOperationSequence">
+		<operations>
 
-			<value>
-				<projectile Class="CombatExtended.ProjectilePropertiesCE">
-					<speed>48</speed>
-					<flyOverhead>false</flyOverhead>
-					<damageDef>Flame</damageDef>
-					<damageAmountBase>4</damageAmountBase>
-					<soundExplode>DragonBreathFire</soundExplode>
-					<explosionRadius>1.1</explosionRadius>
-					<ai_IsIncendiary>true</ai_IsIncendiary>
-				</projectile>
-			</value>
+			<!-- === Projectile_DragonBreath === -->
+			
+			<li Class="PatchOperationReplace">
+				<xpath>/Defs/ThingDef[defName="Projectile_DragonBreath"]/thingClass</xpath>
+				<value>
+					<thingClass>CombatExtended.ProjectileCE_Explosive</thingClass>
+				</value>
+			</li>		
+			
+			<li Class="PatchOperationReplace">
+				<xpath>/Defs/ThingDef[defName="Projectile_DragonBreath"]/projectile</xpath>
+				<value>
+					<projectile Class="CombatExtended.ProjectilePropertiesCE">
+						<speed>48</speed>
+						<flyOverhead>false</flyOverhead>
+						<damageDef>Flame</damageDef>
+						<damageAmountBase>4</damageAmountBase>
+						<soundExplode>DragonBreathFire</soundExplode>
+						<explosionRadius>1.1</explosionRadius>
+						<ai_IsIncendiary>true</ai_IsIncendiary>
+					</projectile>
+				</value>
+			</li>
+		</operations>		
 		</match>
 	</Operation>
 
