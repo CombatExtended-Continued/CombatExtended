@@ -1,0 +1,21 @@
+name: MSBuild
+on:
+  push:
+    branches: [ master, Development ]
+  pull_request:
+    branches: [ master, Development ]
+
+jobs:
+  build:
+    runs-on: windows-latest
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Setup Nuget.exe
+      uses: warrenbuckley/Setup-Nuget@v1
+    - name: Restore packages
+      run: nuget restore Source/CombatExtended.sln
+    - name: Setup MSBuild.exe
+      uses: warrenbuckley/Setup-MSBuild@v1
+    - name: Build with MSBuild
+      run: msbuild Source/CombatExtended.sln -p:Configuration=Release
