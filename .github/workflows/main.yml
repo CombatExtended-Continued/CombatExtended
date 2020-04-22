@@ -19,3 +19,11 @@ jobs:
       uses: warrenbuckley/Setup-MSBuild@v1
     - name: Build with MSBuild
       run: msbuild Source/CombatExtended.sln -p:Configuration=Release
+    - name: Upload artifact
+      uses: actions/upload-artifact@v1.0.0
+      with:
+        # Artifact name
+        name: Assemblies
+        # Directory containing files to upload
+        path: Assemblies
+
