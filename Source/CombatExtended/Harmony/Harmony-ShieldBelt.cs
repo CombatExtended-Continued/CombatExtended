@@ -69,8 +69,12 @@ namespace CombatExtended.HarmonyCE
                 if (__instance.ShieldState == ShieldState.Active)
                 {
                     Traverse.Create(__instance).Method("Break").GetValue();
+                    ___ticksToReset = 120;
                 }
-                ___ticksToReset = ___StartingTicksToReset;
+                if (___ticksToReset < 120) 
+                {
+                    ___ticksToReset = 120;
+                }
             }
         }
     }
