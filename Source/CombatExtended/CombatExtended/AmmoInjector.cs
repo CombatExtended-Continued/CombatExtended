@@ -129,12 +129,14 @@ namespace CombatExtended
                     if (ammoDef.IsWeapon)
                         continue;
 
-                    if (!ammoDef.Users                                                                          //If there exists NO gun..
-                        .Any(x => !x.destroyOnDrop                                                              //.. which DOESN'T destroy on drop (e.g all guns destroy on drop)
-                                    || (x.weaponTags != null && x.weaponTags.Contains("TurretGun")              //.. or IS part of a Turret..
-                                        && DefDatabase<ThingDef>.AllDefs.Where(y => y.building?.turretGunDef == x)                //.. as long as ALL turrets using the gun are non-mechcluster turrets
-                                            .All(y => !y.building?.buildingTags?.Contains(MechClusterGenerator.MechClusterMemberTag) ?? true))))                                                                  
-                        continue;                                                                               //Then this ammo's tradeability and craftability are ignored
+                    //  LX7: Commented this out for now as it's preventing mechanoid ammo from being sold.
+                    //  If this is needed for something that can't be accomplished via XML, update it with mech ammo sellability in mind.
+                    //if (!ammoDef.Users                                                                          //If there exists NO gun..
+                    //    .Any(x => !x.destroyOnDrop                                                              //.. which DOESN'T destroy on drop (e.g all guns destroy on drop)
+                    //                || (x.weaponTags != null && x.weaponTags.Contains("TurretGun")              //.. or IS part of a Turret..
+                    //                    && DefDatabase<ThingDef>.AllDefs.Where(y => y.building?.turretGunDef == x)                //.. as long as ALL turrets using the gun are non-mechcluster turrets
+                    //                        .All(y => !y.building?.buildingTags?.Contains(MechClusterGenerator.MechClusterMemberTag) ?? true))))
+                    //    continue;                                                                               //Then this ammo's tradeability and craftability are ignored
 
                     // Toggle trading
                     var tradingTags = ammoDef.tradeTags.Where(t => t.StartsWith(enableTradeTag));
