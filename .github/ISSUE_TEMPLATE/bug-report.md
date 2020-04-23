@@ -2,12 +2,12 @@
 name: Bug Report
 about: Report gameplay issues and errors to help us improve.
 title: "[Bug]:"
-labels: bug
+labels: Bug
 assignees: ''
 
 ---
 
-**Complete the template below. Reports that do not follow the template will not be deleted.**
+**Complete the template below. Reports that do not follow the template will be deleted.**
 **Title should be:** [Bug]: (Short description of bug)
 
 **Specifications**

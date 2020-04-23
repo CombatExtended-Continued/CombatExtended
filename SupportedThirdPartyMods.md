@@ -16,9 +16,19 @@ Mod |
 [CP] The DOOM Kit - Classic	|
 [O21] Elves	|
 [O21] Elves - Faction Addon	|
+[O21] Gith |
 [O21] Goblins	|
 [O21] Goblins - Faction Addon	|
+[O21] Half-Orcs	|
+[O21] Hobgoblins	|
+[O21] Illithids	|
 [O21] Kobolds	|
+[O21] Orcs	|
+[O21] Orcs - Faction Addon	|
+[O21] Tieflings	|
+[O21] Tieflings - Faction Addon	|
+[O21] Warforged	|
+[O21] Warforged - Faction Addon	|
 [Ods] SCP Outfits Only Edition	|
 [Pratt] WWII Weapons Pack (Vanilla)	|
 [RH] Faction: Cordis Die	|
@@ -34,6 +44,7 @@ A Dog Said...	|
 Android Tiers	|
 Android Tiers++	|
 Androids	|
+AnimalCollabProj	|
 Apparello 2	|
 Arachne Race	|
 Area Rugs	|
@@ -56,6 +67,7 @@ FashionRIMsta	|
 Fate Grand Order - Styles Apparel Pack	|
 Ferrex Race	|
 Flak Dusters	|
+Forsakens	|
 Gas Traps And Shells	|
 Girls' Frontline Apparel Pack	|
 Girls' Frontline Styles - 404 Team	|
@@ -106,6 +118,7 @@ Vanilla Apparel Expanded	|
 Vanilla Armour Expanded	|
 Vanilla Bionics Expansion	|
 Vanilla Factions Expanded - Medieval	|
+Vanilla Vehicles Expanded	|
 Vanilla Weapons Expanded Quickdraw	|
 Vanilla-Friendly Animal Surgery	|
 Vanilla-Friendly Weapon Expansion	|
