@@ -34,7 +34,7 @@ namespace CombatExtended.HarmonyCE
             var codes = instructions.ToList();
            
             // Find armor block
-            var armorBlockEnd = codes.FirstIndexOf(c => c.operand == typeof(ArmorUtility).GetMethod("GetPostArmorDamage", AccessTools.all));
+            var armorBlockEnd = codes.FirstIndexOf(c => ReferenceEquals(c.operand, typeof(ArmorUtility).GetMethod("GetPostArmorDamage", AccessTools.all)));
           
             int armorBlockStart = -1;
 

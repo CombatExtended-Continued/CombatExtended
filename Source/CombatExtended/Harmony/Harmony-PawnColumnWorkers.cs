@@ -148,7 +148,7 @@ namespace CombatExtended.HarmonyCE
 
                 // Watch for calls to rect.y + 2f, we replace them with our num4 (see PawnColumnWorker_Loadout)
                 if (curCode.opcode == OpCodes.Call &&
-                    curCode.operand == typeof(Rect).GetMethod("get_y", AccessTools.all))
+                    ReferenceEquals(curCode.operand, typeof(Rect).GetMethod("get_y", AccessTools.all)))
                 {
                     if (passedFirstRectYCall && i + 1 < codes.Count && codes[i + 1].opcode == OpCodes.Ldc_R4 && codes[i + 1].operand.Equals(2f))
                     {
