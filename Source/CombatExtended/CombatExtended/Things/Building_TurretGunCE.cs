@@ -76,22 +76,19 @@ namespace CombatExtended
         {
             get
             {
-                if (this.gunInt == null && Map != null)
+                if (gunInt == null && Map != null)
                 {
-                    this.gunInt = ThingMaker.MakeThing(this.def.building.turretGunDef, null);
-                    this.compAmmo = gunInt.TryGetComp<CompAmmoUser>();
+                    GetOrCreateGunInt();
 
                     InitGun();
 
                     // FIXME: Hack to make player-crafted turrets spawn unloaded
-                    if (//Map != null && !Map.IsPlayerHome
-                        //!Faction.IsPlayer
-                        (!Map.IsPlayerHome || Faction != Faction.OfPlayer) && compAmmo != null)
+                    if (!Map.IsPlayerHome || Faction != Faction.OfPlayer)
                     {
-                        compAmmo.ResetAmmoCount();
+                        compAmmo?.ResetAmmoCount();
                     }
                 }
-                return this.gunInt;
+                return gunInt;
             }
         }
         public ThingDef Projectile
