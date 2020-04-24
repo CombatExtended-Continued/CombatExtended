@@ -37,7 +37,7 @@ namespace CombatExtended.HarmonyCE
             get
             {
                 if (harmony == null)
-                    harmony = harmony = new Harmony("CombatExtended.HarmonyCE");
+                    harmony = new Harmony("CombatExtended.HarmonyCE");
                 return harmony;
             }
         }

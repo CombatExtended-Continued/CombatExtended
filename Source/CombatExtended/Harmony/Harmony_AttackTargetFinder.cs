@@ -22,7 +22,7 @@ namespace CombatExtended.HarmonyCE
             var codes = instructions.ToList();
             for (int i = 0; i < instructions.Count(); i++)
             {
-                if (codes[i].opcode == OpCodes.Call && codes[i].operand == AccessTools.Method(typeof(VerbUtility), nameof(VerbUtility.IsEMP)))
+	      if (codes[i].opcode == OpCodes.Call && ReferenceEquals(codes[i].operand, AccessTools.Method(typeof(VerbUtility), nameof(VerbUtility.IsEMP))))
                 {
                     codes[i - 2].opcode = OpCodes.Nop;
                     codes[i - 1].opcode = OpCodes.Nop;
