@@ -29,7 +29,7 @@ namespace CombatExtended
 
         private Building_TurretGunCE TryFindTurretWhichNeedsReloading(Pawn pawn)
         {
-            bool _isTurretThatNeedsReloadingNow(Thing t)
+            Predicate<Thing> _isTurretThatNeedsReloadingNow = (Thing t) =>
             {
                 var turret = t as Building_TurretGunCE;
                 if (turret == null) { return false; }
