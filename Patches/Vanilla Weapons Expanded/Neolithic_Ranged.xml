@@ -84,10 +84,20 @@
 
         <!-- == Weapon == -->
         <li Class="PatchOperationAttributeSet">
-          <xpath>Defs/ThingDef[defName="VWE_Throwing_Rocks"]</xpath>
+          <xpath>/Defs/ThingDef[defName="VWE_Throwing_Rocks"]</xpath>
 
           <attribute>ParentName</attribute>
           <value>BaseWeapon</value>
+        </li>
+        
+        <li Class="PatchOperationAdd">
+          <xpath>/Defs/ThingDef[defName="VWE_Throwing_Rocks"]</xpath>
+          
+          <value>
+            <thingCategories>
+              <li>WeaponsRanged</li>
+            </thingCategories>
+          </value>
         </li>
 
         <li Class="PatchOperationRemove">
@@ -178,7 +188,7 @@
         </li>
 
         <li Class="PatchOperationReplace">
-          <xpath>Defs/ThingDef[defName="VWE_Throwing_Rocks"]/tools</xpath>
+          <xpath>/Defs/ThingDef[defName="VWE_Throwing_Rocks"]/tools</xpath>
           <value>
             <tools>
               <li Class="CombatExtended.ToolCE">
