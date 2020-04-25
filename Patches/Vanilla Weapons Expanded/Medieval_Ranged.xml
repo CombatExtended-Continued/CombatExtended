@@ -261,7 +261,7 @@
         <!-- === Throwing Knives === -->
         <!-- == Projectile == -->
         <li Class="PatchOperationReplace">
-          <xpath>Defs/ThingDef[defName="VWE_FlyingBlade"]/projectile</xpath>
+          <xpath>/Defs/ThingDef[defName="VWE_FlyingBlade"]/projectile</xpath>
 
           <value>
             <projectile Class="CombatExtended.ProjectilePropertiesCE">
@@ -279,8 +279,19 @@
         <!-- == Weapon == -->
         <li Class="PatchOperationAttributeSet">
           <xpath>/Defs/ThingDef[defName="VWE_Throwing_Knives"]</xpath>
+          
           <attribute>ParentName</attribute>
           <value>BaseWeapon</value>
+        </li>
+        
+        <li Class="PatchOperationAdd">
+          <xpath>/Defs/ThingDef[defName="VWE_Throwing_Knives"]</xpath>
+          
+          <value>
+            <thingCategories>
+              <li>WeaponsRanged</li>
+            </thingCategories>
+          </value>
         </li>
 
         <li Class="PatchOperationRemove">
@@ -288,7 +299,7 @@
         </li>
 
         <li Class="PatchOperationRemove">
-          <xpath>Defs/ThingDef[defName="VWE_Throwing_Knives"]/costStuffCount</xpath>
+          <xpath>/Defs/ThingDef[defName="VWE_Throwing_Knives"]/costStuffCount</xpath>
         </li>
 
         <li Class="PatchOperationRemove">
@@ -339,6 +350,10 @@
             <soundCast>ThrowGrenade</soundCast>
              <ai_IsBuildingDestroyer>false</ai_IsBuildingDestroyer>
           </Properties>
+          
+          <weaponTags>
+            <li>CE_OneHandedWeapon</li>
+          </weaponTags>
         </li>
 
         <li Class="PatchOperationReplace">

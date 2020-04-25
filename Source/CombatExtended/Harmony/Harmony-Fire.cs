@@ -185,7 +185,7 @@ namespace CombatExtended.HarmonyCE
             var delete = false;
             var passedRadPattern = false;
             var codes = new List<CodeInstruction>();
-            var getComponentMethodInfo = AccessTools.Method(typeof(Map), nameof(Map.GetComponent), new Type[] { }).MakeGenericMethod(typeof(WeatherTracker));
+
             foreach (var code in instructions)
             {
                 if (delete)

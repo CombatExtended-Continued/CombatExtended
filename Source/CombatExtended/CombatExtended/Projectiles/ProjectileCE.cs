@@ -77,7 +77,6 @@ namespace CombatExtended
         public float AccuracyFactor;
 
         #region FreeIntercept
-        private static List<IntVec3> checkedCells = new List<IntVec3>();
         #endregion
 
         #region Height
