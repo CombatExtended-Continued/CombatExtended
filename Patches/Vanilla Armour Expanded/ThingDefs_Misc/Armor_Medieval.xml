@@ -20,7 +20,34 @@
 			<li Class="PatchOperationReplace">
 				<xpath>Defs/ThingDef[defName="VAE_Apparel_Gambeson"]/statBases/StuffEffectMultiplierArmor</xpath>
 				<value>
-					<StuffEffectMultiplierArmor>10</StuffEffectMultiplierArmor>
+					<StuffEffectMultiplierArmor>4</StuffEffectMultiplierArmor> <!-- actual thickness is 10mm, but the gambeson isn't made entirely out of leather -->
+				</value>
+			</li>
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName="VAE_Apparel_Gambeson"]/statBases</xpath>
+				<value>
+					<ArmorRating_Sharp>0.06</ArmorRating_Sharp> <!-- remaining 6mm is of cloth, 0.01*6=0.06 -->
+				</value>
+			</li>
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName="VAE_Apparel_Gambeson"]/statBases</xpath>
+				<value>
+					<ArmorRating_Blunt>0.09</ArmorRating_Blunt> <!-- remaining 6mm is of cloth, 0.015*6=0.09 -->
+				</value>
+			</li>
+			<!-- other -->
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="VAE_Apparel_Gambeson"]/costStuffCount</xpath>
+				<value>
+					<costStuffCount>30</costStuffCount>
+				</value>
+			</li>
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName="VAE_Apparel_Gambeson"]</xpath>
+				<value>
+					<costList>
+						<Cloth>45</Cloth>
+					</costList>
 				</value>
 			</li>
 
@@ -36,7 +63,34 @@
 			<li Class="PatchOperationReplace">
 				<xpath>Defs/ThingDef[defName="VAE_Apparel_QuiltedVest"]/statBases/StuffEffectMultiplierArmor</xpath>
 				<value>
-					<StuffEffectMultiplierArmor>12.5</StuffEffectMultiplierArmor> <!-- found a photo of some dude wearing it - got the image proportions and measured my own arm. 60mm*2mm/10mm=12mm. made it 12.5 because i like numbers going up in one fourths. -->
+					<StuffEffectMultiplierArmor>6</StuffEffectMultiplierArmor> <!-- found a photo of some dude wearing it - got the image proportions and measured my own arm. 60mm*2mm/10mm=12mm. it isn't made entirely out of leather. -->
+				</value>
+			</li>
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName="VAE_Apparel_Gambeson"]/statBases</xpath>
+				<value>
+					<ArmorRating_Sharp>0.06</ArmorRating_Sharp> <!-- remaining 6mm is of cloth, 0.01*6=0.06 -->
+				</value>
+			</li>
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName="VAE_Apparel_Gambeson"]/statBases</xpath>
+				<value>
+					<ArmorRating_Blunt>0.09</ArmorRating_Blunt> <!-- remaining 6mm is of cloth, 0.015*6=0.09 -->
+				</value>
+			</li>
+			<!-- other -->
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="VAE_Apparel_Gambeson"]/costStuffCount</xpath>
+				<value>
+					<costStuffCount>30</costStuffCount>
+				</value>
+			</li>
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName="VAE_Apparel_Gambeson"]</xpath>
+				<value>
+					<costList>
+						<Cloth>30</Cloth>
+					</costList>
 				</value>
 			</li>
 
@@ -101,7 +155,7 @@
 				<xpath>Defs/ThingDef[defName="VAE_Apparel_Chestplate"]/statBases/Mass</xpath>
 				<value>
 					<Bulk>32.9</Bulk>
-					<WornBulk>5</WornBulk>
+					<WornBulk>4</WornBulk>
 					<Mass>6</Mass>
 				</value>
 			</li>
@@ -126,15 +180,15 @@
 			<li Class="PatchOperationReplace">
 				<xpath>Defs/ThingDef[defName="VAE_Apparel_Chainmail"]/statBases/Mass</xpath>
 				<value>
-					<Bulk>5</Bulk>
-					<WornBulk>2</WornBulk>
-					<Mass>5</Mass>
+					<Bulk>10</Bulk>
+					<WornBulk>5</WornBulk>
+					<Mass>10</Mass> <!-- searched the internet for a mass instead of thinking up (as always). one page said 11 to 12 kg. plate armor took the lowest mass from wikipedia, so i decided to make the chainmail weigh 10 kg. -->
 				</value>
 			</li>
 			<li Class="PatchOperationReplace">
 				<xpath>Defs/ThingDef[defName="VAE_Apparel_Chainmail"]/statBases/StuffEffectMultiplierArmor</xpath>
 				<value>
-					<StuffEffectMultiplierArmor>1.472</StuffEffectMultiplierArmor>
+					<StuffEffectMultiplierArmor>1.341</StuffEffectMultiplierArmor> <!-- did some actual calulations in a game. this isn't precisely it, but it's closer. -->
 				</value>
 			</li>
 			<!-- Miscellaneous -->
@@ -142,7 +196,7 @@
 				<xpath>Defs/ThingDef[defName="VAE_Apparel_Chainmail"]/equippedStatOffsets</xpath>
 				<value>
 					<equippedStatOffsets>
-						<MeleeDodgeChance>-0.05</MeleeDodgeChance>
+						<MeleeDodgeChance>-0.10</MeleeDodgeChance>
 					</equippedStatOffsets>
 				</value>
 			</li>
