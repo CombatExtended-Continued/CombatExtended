@@ -20,7 +20,7 @@ namespace CombatExtended
 
         #region Properties
 
-        private static readonly SimpleCurve dmgMultCurve = new SimpleCurve { new CurvePoint(0.5f, 0), new CurvePoint(1, 0.5f), new CurvePoint(2, 1) };    // Used to calculate the damage reduction from the penetration / armor ratio
+
         private static readonly StuffCategoryDef[] softStuffs = { StuffCategoryDefOf.Fabric, DefDatabase<StuffCategoryDef>.GetNamed("Leathery") };
 
         #endregion
@@ -44,7 +44,7 @@ namespace CombatExtended
             armorReduced = false;
 
             if (originalDinfo.Def.armorCategory == null
-                || (!(originalDinfo.Weapon?.projectile is ProjectilePropertiesCE projectile)
+                || (!(originalDinfo.Weapon?.projectile is ProjectilePropertiesCE)
                     && Verb_MeleeAttackCE.LastAttackVerb == null
                     && originalDinfo.Weapon == null
                     && originalDinfo.Instigator == null))
