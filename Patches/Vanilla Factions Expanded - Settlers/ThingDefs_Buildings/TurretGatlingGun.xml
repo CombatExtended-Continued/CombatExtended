@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+
+  <Operation Class="PatchOperationFindMod">
+    <mods>
+      <li>Vanilla Factions Expanded - Settlers</li>
+    </mods>
+
+    <match Class="PatchOperationSequence">
+      <operations>
+        <!-- === Gun === -->
+        <li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+          <defName>Gun_GatlingGun</defName>
+
+          <statBases>
+            <Bulk>15.54</Bulk>
+            <ShotSpread>0.04</ShotSpread>
+            <SwayFactor>1.16</SwayFactor>
+            <SightsEfficiency>1</SightsEfficiency>
+            <RangedWeapon_Cooldown>0.36</RangedWeapon_Cooldown>
+          </statBases>
+
+          <Properties>
+            <recoilAmount>1.52</recoilAmount>
+            <verbClass>CombatExtended.Verb_ShootCE</verbClass>
+            <hasStandardCommand>True</hasStandardCommand>
+            <defaultProjectile>Bullet_4570Gov_FMJ</defaultProjectile>
+            <burstShotCount>10</burstShotCount>
+            <ticksBetweenBurstShots>9</ticksBetweenBurstShots>
+            <warmupTime>1.4</warmupTime>
+            <range>62</range>
+            <soundCast>VFE_Shot_GattlingGun</soundCast>
+            <soundCastTail>GunTail_Medium</soundCastTail>
+            <muzzleFlashScale>10</muzzleFlashScale>
+            <recoilPattern>Mounted</recoilPattern>
+          </Properties>
+
+          <AmmoUser>
+            <magazineSize>40</magazineSize>
+            <reloadTime>7.8</reloadTime>
+            <ammoSet>AmmoSet_4570Gov</ammoSet>
+          </AmmoUser>
+
+          <FireModes>
+            <aiUseBurstMode>false</aiUseBurstMode>
+            <aimedBurstShotCount>5</aimedBurstShotCount>
+            <aiAimMode>SuppressFire</aiAimMode>
+          </FireModes>
+        </li>
+
+        <!-- === Turret === -->
+        <!-- == thingClass == -->
+        <li Class="PatchOperationReplace">
+          <xpath>/Defs/ThingDef[defName="Turret_GatlingGun"]/thingClass</xpath>
+
+          <value>
+            <thingClass>CombatExtended.Building_TurretGunCE</thingClass>
+          </value>
+        </li>
+
+        <!-- == Remove stuff == -->
+        <li Class="PatchOperationRemove">
+          <xpath>/Defs/ThingDef[defName="Turret_GatlingGun"]/comps/li[@Class="CompProperties_Explosive"]</xpath>
+        </li>
+
+        <li Class="PatchOperationRemove">
+          <xpath>/Defs/ThingDef[defName="Turret_GatlingGun"]/comps/li[@Class="CompProperties_Refuelable"]</xpath>
+        </li>
+
+        <li Class="PatchOperationRemove">
+          <xpath>/Defs/ThingDef[defName="Turret_GatlingGun"]/comps/li[@Class="CompProperties_Flickable"]</xpath>
+        </li>
+
+        <li Class="PatchOperationRemove">
+          <xpath>/Defs/ThingDef[defName="Turret_GatlingGun"]/comps/li[@Class="VanillaFactionsExpandedSettlers.CompProperties_WarmUpReduction"]</xpath>
+        </li>
+
+         <li Class="PatchOperationRemove">
+          <xpath>/Defs/ThingDef[defName="Turret_GatlingGun"]/stuffCategories</xpath>
+        </li>
+
+         <li Class="PatchOperationRemove">
+          <xpath>/Defs/ThingDef[defName="Turret_GatlingGun"]/costStuffCount</xpath>
+        </li>
+
+        <!-- == costList == -->
+        <li Class="PatchOperationAdd">
+          <xpath>/Defs/ThingDef[defName="Turret_GatlingGun"]</xpath>
+
+          <value>
+            <costList>
+              <Steel>325</Steel>
+              <ComponentIndustrial>4</ComponentIndustrial>
+            </costList>
+          </value>
+        </li>
+
+        <!-- == fillPercent == -->
+        <li Class="PatchOperationReplace">
+          <xpath>/Defs/ThingDef[defName="Turret_GatlingGun"]/fillPercent</xpath>
+
+          <value>
+            <fillPercent>0.85</fillPercent>
+          </value>
+        </li>
+
+        <!-- == turretBurstCooldownTime == -->
+        <li Class="PatchOperationReplace">
+          <xpath>/Defs/ThingDef[defName="Turret_GatlingGun"]/building/turretBurstCooldownTime</xpath>
+
+          <value>
+            <turretBurstCooldownTime>1.1</turretBurstCooldownTime>
+          </value>
+        </li>
+
+        <!-- == ShootingAccuracy === -->
+        <li Class="PatchOperationReplace">
+          <xpath>/Defs/ThingDef[defName="Turret_GatlingGun"]/statBases/ShootingAccuracyTurret</xpath>
+
+          <value>
+            <ShootingAccuracyTurret>0.35</ShootingAccuracyTurret>
+          </value>
+        </li>
+      </operations>
+    </match>
+  </Operation>
+
+</Patch>

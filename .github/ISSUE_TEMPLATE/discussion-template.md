@@ -3,7 +3,7 @@ name: Discussion Template
 about: For general discussions among contributors on matters relating to the mod.
   Not for off-topic chatter. Label as appropriate.
 title: "[Discussion]:"
-labels: discussion
+labels: Discussion
 assignees: ''
 
 ---

@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+
+  <Operation Class="PatchOperationFindMod">
+    <mods>
+      <li>Vanilla Factions Expanded - Settlers</li>
+    </mods>
+
+    <match Class="PatchOperationSequence">
+      <operations>
+        <!-- === Dynamine Count === -->
+        <li Class="PatchOperationReplace">
+          <xpath>/Defs/ScenarioDef[defName="VFES_Bandits"]/scenario/parts/li[thingDef="VFES_Weapon_GrenadeDynamite"]</xpath>
+
+          <value>
+            <li Class="ScenPart_StartingThing_Defined">
+              <def>StartingThing_Defined</def>
+              <thingDef>VFES_Weapon_GrenadeDynamite</thingDef>
+              <count>20</count>
+            </li>
+          </value>
+        </li>
+
+        <!-- === Add ammo to scenario === -->
+        <li Class="PatchOperationAdd">
+          <xpath>/Defs/ScenarioDef[defName="VFES_Bandits"]/scenario/parts</xpath>
+
+          <value>
+            <li Class="ScenPart_StartingThing_Defined">
+              <def>StartingThing_Defined</def>
+              <thingDef>Ammo_12Gauge_Buck</thingDef>
+              <count>60</count>
+            </li>
+            <li Class="ScenPart_StartingThing_Defined">
+              <def>StartingThing_Defined</def>
+              <thingDef>Ammo_44Magnum_FMJ</thingDef>
+              <count>60</count>
+            </li>
+          </value>
+        </li>
+      </operations>
+    </match>
+  </Operation>
+
+</Patch>
+

@@ -28,7 +28,7 @@ namespace CombatExtended.HarmonyCE
                     code.operand = 300f;
                 }
 
-                if (code.operand == AccessTools.Field(typeof(RulePackDefOf), nameof(RulePackDefOf.DamageEvent_Fire)))
+                if (ReferenceEquals(code.operand, AccessTools.Field(typeof(RulePackDefOf), nameof(RulePackDefOf.DamageEvent_Fire))))
                 {
                     yield return new CodeInstruction(OpCodes.Ldloca, 0);
                     yield return new CodeInstruction(OpCodes.Call, AccessTools.Method(typeof(Harmony_Fire_DoFireDamage), nameof(ApplySizeMult)));
@@ -195,7 +195,7 @@ namespace CombatExtended.HarmonyCE
                     continue;
                 }
 
-                if (code.operand == AccessTools.Field(typeof(GenRadial), nameof(GenRadial.ManualRadialPattern)))
+                if (ReferenceEquals(code.operand, AccessTools.Field(typeof(GenRadial), nameof(GenRadial.ManualRadialPattern))))
                 {
                     codes.Add(new CodeInstruction(OpCodes.Ldarg_0));
                     codes.Add(passedRadPattern

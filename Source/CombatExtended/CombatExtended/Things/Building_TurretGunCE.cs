@@ -8,6 +8,8 @@ using Verse.AI;
 using Verse.AI.Group;
 using Verse.Sound;
 using UnityEngine;
+using CombatExtended.CombatExtended.LoggerUtils;
+using CombatExtended.CombatExtended.Jobs.Utils;
 
 namespace CombatExtended
 {
@@ -46,7 +48,7 @@ namespace CombatExtended
         private CompChangeableProjectile compChangeable = null;
         public bool isReloading = false;
         private int ticksUntilAutoReload = 0;
-        private int lastSurroundingAmmoCheck = 0;
+        private int lastSurroundingAmmoCheck = int.MinValue;
 
         #endregion
 
@@ -78,9 +80,9 @@ namespace CombatExtended
                 {
                     this.gunInt = ThingMaker.MakeThing(this.def.building.turretGunDef, null);
                     this.compAmmo = gunInt.TryGetComp<CompAmmoUser>();
-                    
+
                     InitGun();
-                    
+
                     // FIXME: Hack to make player-crafted turrets spawn unloaded
                     if (//Map != null && !Map.IsPlayerHome
                         //!Faction.IsPlayer
@@ -98,22 +100,22 @@ namespace CombatExtended
             {
                 if (CompAmmo != null && CompAmmo.CurrentAmmo != null)
                 {
-                	return CompAmmo.CurAmmoProjectile;
+                    return CompAmmo.CurAmmoProjectile;
                 }
                 if (CompChangeable != null && CompChangeable.Loaded)
                 {
-                	return CompChangeable.Projectile;
+                    return CompChangeable.Projectile;
                 }
                 return this.GunCompEq.PrimaryVerb.verbProps.defaultProjectile;
             }
         }
         public CompChangeableProjectile CompChangeable
         {
-        	get
-        	{
-	            if (compChangeable == null && Gun != null) compChangeable = Gun.TryGetComp<CompChangeableProjectile>();
-	            return compChangeable;
-        	}
+            get
+            {
+                if (compChangeable == null && Gun != null) compChangeable = Gun.TryGetComp<CompChangeableProjectile>();
+                return compChangeable;
+            }
         }
         public CompAmmoUser CompAmmo
         {
@@ -132,25 +134,21 @@ namespace CombatExtended
             }
         }
 
-        public bool EmptyMagazine => Reloadable && CompAmmo.CurMagCount == 0;
-        public bool FullMagazine => !Reloadable || (CompAmmo.SelectedAmmo == CompAmmo.CurrentAmmo && CompAmmo.CurMagCount == CompAmmo.Props.magazineSize);
+        public bool EmptyMagazine => CompAmmo?.EmptyMagazine ?? false;
+        public bool FullMagazine => CompAmmo?.FullMagazine ?? false;
         public bool AutoReloadableMagazine => AutoReloadableNow && CompAmmo.CurMagCount <= Mathf.CeilToInt(CompAmmo.Props.magazineSize / 6);
         public bool AutoReloadableNow => (mannableComp == null || (!mannableComp.MannedNow && ticksUntilAutoReload == 0)) && Reloadable;    //suppress manned turret auto-reload for a short time after spawning
-        public bool Reloadable => CompAmmo != null && CompAmmo.HasMagazine;
-        
+        public bool Reloadable => CompAmmo?.HasMagazine ?? false;
         public CompMannable MannableComp => mannableComp;
         #endregion
 
-        #region Constructors
-        // Core constructor
         public Building_TurretGunCE()
         {
             top = new TurretTop(this);
         }
-        #endregion
 
         #region Methods
-        
+
         public override void SpawnSetup(Map map, bool respawningAfterLoad)      //Add mannableComp, ticksUntilAutoReload, register to GenClosestAmmo
         {
             base.SpawnSetup(map, respawningAfterLoad);
@@ -159,6 +157,7 @@ namespace CombatExtended
             mannableComp = GetComp<CompMannable>();
             if (!respawningAfterLoad)
             {
+                CELogger.Message($"top is {top?.ToString() ?? "null"}");
                 top.SetRotationFromOrientation();
                 burstCooldownTicksLeft = def.building.turretInitialCooldownTime.SecondsToTicks();
 
@@ -167,20 +166,20 @@ namespace CombatExtended
                     ticksUntilAutoReload = minTicksBeforeAutoReload;
             }
 
-            if (CompAmmo == null || CompAmmo.Props == null || CompAmmo.Props.ammoSet == null || CompAmmo.Props.ammoSet.ammoTypes.NullOrEmpty())
-                return;
+            // if (CompAmmo == null || CompAmmo.Props == null || CompAmmo.Props.ammoSet == null || CompAmmo.Props.ammoSet.ammoTypes.NullOrEmpty())
+            //     return;
 
-            //"Subscribe" turret to GenClosestAmmo
-            foreach (var ammo in CompAmmo.Props.ammoSet.ammoTypes.Select(x => x.ammo))
-            {
-                if (!GenClosestAmmo.listeners.ContainsKey(ammo))
-                    GenClosestAmmo.listeners.Add(ammo, new List<Building_TurretGunCE>() { this });
-                else
-                    GenClosestAmmo.listeners[ammo].Add(this);
+            // //"Subscribe" turret to GenClosestAmmo
+            // foreach (var ammo in CompAmmo.Props.ammoSet.ammoTypes.Select(x => x.ammo))
+            // {
+            //     if (!GenClosestAmmo.listeners.ContainsKey(ammo))
+            //         GenClosestAmmo.listeners.Add(ammo, new List<Building_TurretGunCE>() { this });
+            //     else
+            //         GenClosestAmmo.listeners[ammo].Add(this);
 
-                if (!GenClosestAmmo.latestAmmoUpdate.ContainsKey(ammo))
-                    GenClosestAmmo.latestAmmoUpdate.Add(ammo, 0);
-            }
+            //     if (!GenClosestAmmo.latestAmmoUpdate.ContainsKey(ammo))
+            //         GenClosestAmmo.latestAmmoUpdate.Add(ammo, 0);
+            // }
         }
 
         //PostMake not added -- MakeGun-like code is run whenever Gun is called
@@ -189,15 +188,9 @@ namespace CombatExtended
         {
             base.DeSpawn(mode);
             ResetCurrentTarget();
-
-            foreach (var ammo in CompAmmo.Props.ammoSet.ammoTypes.Select(x => x.ammo))
-            {
-                if (GenClosestAmmo.listeners.ContainsKey(ammo) && GenClosestAmmo.listeners[ammo].Contains(this))
-                    GenClosestAmmo.listeners[ammo].Remove(this);
-            }
         }
 
-        
+
         public override void ExposeData()           // Added new variables, removed bool loaded (not used in CE)
         {
             base.ExposeData();
@@ -260,14 +253,14 @@ namespace CombatExtended
             base.Tick();
             if (ticksUntilAutoReload > 0) ticksUntilAutoReload--;   // Reduce time until we can auto-reload
 
-            if (!isReloading && this.IsHashIntervalTick(TicksBetweenAmmoChecks))
+            if (!isReloading && this.IsHashIntervalTick(TicksBetweenAmmoChecks) && (MannableComp?.MannedNow ?? false))
             {
                 TryOrderReload();
             }
 
             //This code runs TryOrderReload for manning pawns or for non-humanlike intelligence such as mechs
-          /*if (this.IsHashIntervalTick(TicksBetweenAmmoChecks) && !isReloading && (MannableComp?.MannedNow ?? false))
-                TryOrderReload(CompAmmo?.CurMagCount == 0);*/
+            /*if (this.IsHashIntervalTick(TicksBetweenAmmoChecks) && !isReloading && (MannableComp?.MannedNow ?? false))
+                  TryOrderReload(CompAmmo?.CurMagCount == 0);*/
             if (!CanSetForcedTarget && !isReloading && forcedTarget.IsValid && burstCooldownTicksLeft <= 0)
             {
                 ResetForcedTarget();
@@ -313,14 +306,14 @@ namespace CombatExtended
                 this.ResetCurrentTarget();
             }
         }
-        
+
         protected void TryStartShootSomething(bool canBeginBurstImmediately)    // Added ammo check and use verb warmup time instead of turret's
         {
             // Check for ammo first
             if (!Spawned
                 || (holdFire && CanToggleHoldFire)
                 || (Projectile.projectile.flyOverhead && Map.roofGrid.Roofed(Position))
-              //|| !AttackVerb.Available()  -- Check replaced by the following:
+                //|| !AttackVerb.Available()  -- Check replaced by the following:
                 || (CompAmmo != null && (isReloading || (mannableComp == null && CompAmmo.CurMagCount <= 0))))
             {
                 ResetCurrentTarget();
@@ -357,7 +350,7 @@ namespace CombatExtended
             }
             burstWarmupTicksLeft = 1;
         }
-        
+
         protected LocalTargetInfo TryFindNewTarget()    // Core method
         {
             IAttackTargetSearcher attackTargetSearcher = this.TargSearcher();
@@ -420,14 +413,14 @@ namespace CombatExtended
             }
             return true;
         }
-        
+
         protected void BeginBurst()                     // Added handling for ticksUntilAutoReload
         {
             ticksUntilAutoReload = minTicksBeforeAutoReload;
             AttackVerb.TryStartCastOn(CurrentTarget, false, true);
             OnAttackedTarget(CurrentTarget);
         }
-        
+
         protected void BurstComplete()                  // Added CompAmmo reload check
         {
             burstCooldownTicksLeft = BurstCooldownTime().SecondsToTicks();
@@ -445,7 +438,7 @@ namespace CombatExtended
             }
             return AttackVerb.verbProps.defaultCooldownTime;
         }
-        
+
         public override string GetInspectString()       // Replaced vanilla loaded text with CE reloading
         {
             StringBuilder stringBuilder = new StringBuilder();
@@ -454,7 +447,7 @@ namespace CombatExtended
             {
                 stringBuilder.AppendLine(inspectString);
             }
-            
+
             stringBuilder.AppendLine("GunInstalled".Translate() + ": " + this.Gun.LabelCap);    // New code
 
             if (this.GunCompEq.PrimaryVerb.verbProps.minRange > 0f)
@@ -658,37 +651,6 @@ namespace CombatExtended
                 verb.castCompleteCallback = new Action(this.BurstComplete);
             }
         }
-        
-        public Thing nearestViableAmmo;
-        public void UpdateNearbyAmmo(bool forceCheck = false)
-        {
-            if (lastSurroundingAmmoCheck + TicksBetweenAmmoChecks >= Find.TickManager.TicksGame)
-                return;
-
-            if (!CompAmmo.Props.ammoSet.ammoTypes.Any(x => GenClosestAmmo.latestAmmoUpdate[x.ammo] > lastSurroundingAmmoCheck))
-                return;
-
-            //If ammo remained viable, don't bother unless forced
-            if (nearestViableAmmo != null
-                && !forceCheck
-                && nearestViableAmmo.Spawned
-                && !nearestViableAmmo.IsForbidden(Faction)
-                && nearestViableAmmo.ParentHolder == null
-                && !Map.physicalInteractionReservationManager.IsReserved(nearestViableAmmo))
-                return;
-
-          //var prevIsSlow = isSlow;
-            var prevViableAmmo = nearestViableAmmo;
-            nearestViableAmmo = GenClosestAmmo.ClosestAmmoReachable(Position, Map, CompAmmo,
-                TraverseParms.For(TraverseMode.NoPassClosedDoors, Danger.Deadly), PathEndMode.ClosestTouch, GenClosestAmmo.ammoSearchRadius,
-                x => !x.IsForbidden(Faction) && !Map.physicalInteractionReservationManager.IsReserved(x));
-
-            isSlow = (nearestViableAmmo == null || nearestViableAmmo == prevViableAmmo);
-
-          //Log.Message("Updated " + ThingID + " (slow = "+prevIsSlow+" -> "+isSlow+") to " + nearestViableAmmo?.ThingID);
-            
-            lastSurroundingAmmoCheck = Find.TickManager.TicksGame;
-        }
 
         public void TryForceReload()
         {
@@ -720,84 +682,29 @@ namespace CombatExtended
             //Non-mannableComp interaction
             if (!mannableComp?.MannedNow ?? true)
             {
-                //If auto-turret test for "auto-reload"
-                if (!forced && ticksUntilAutoReload > 0)
-                    return;
-
-                //Unmanned or autoturret -- cancel job on reserved turret
-                if (Map.physicalInteractionReservationManager.IsReserved(new LocalTargetInfo(this)))
-                    return;
-
-                //If manningPawn is null, WorkGiver_ReloadTurret might find a Humanlike intelligence pawn to reload the turret -- however, this method won't pick one at random to do so
-                //If manningPawn is null, try to assign jobs to a pawn of faction Mechanoids
-                if (Faction.def != FactionDefOf.Mechanoid)
-                    return;
-
-                List<Pawn> pawns;
-                if (this.GetLord() != null && this.GetLord().AnyActivePawn)     //Prevents mechs in ancient danger from joining in
-                {
-                    pawns = this.GetLord().ownedPawns;
-                }
-                //else if (Map.mapPawns?.PawnsInFaction(Faction).Any() ?? false)
-                //{
-                //    pawns = Map.mapPawns.PawnsInFaction(Faction);
-                //}
-                else return;    //Nothing could reload this
-
-                var giver = new WorkGiver_ReloadTurret();
-                var pawn = giver.BestNonJobUser(pawns.Where(x => x.RaceProps.intelligence == Intelligence.ToolUser
-                                                                //|| (x.training?.HasLearned(CE_TrainableDefOf.Haul) ?? false)    //would allow trained pawns to reload as well
-                                                                ), this, out bool fromInventory, forced);
-                if (pawn == null) return;
-
-                Job reloadJob = null;
-                if (!CompAmmo.UseAmmo) reloadJob = new Job(CE_JobDefOf.ReloadTurret, this, null);
-                else
-                {
-                    Thing ammo = fromInventory ? InventoryAmmo(pawn.TryGetComp<CompInventory>()) : nearestViableAmmo;
-                    if (ammo != null)
-                    {
-                        if (ammo.def != CompAmmo.SelectedAmmo)
-                            CompAmmo.SelectedAmmo = ammo.def as AmmoDef;
-
-                        int amount = CompAmmo.Props.magazineSize;
-                        if (CompAmmo.CurrentAmmo == CompAmmo.SelectedAmmo) amount -= CompAmmo.CurMagCount;
-
-                        if (fromInventory)
-                        {
-                            if (!pawn.TryGetComp<CompInventory>().container.TryDrop(ammo, Position, Map, ThingPlaceMode.Direct, Mathf.Min(ammo.stackCount, amount), out ammo))
-                            {
-                                Log.ErrorOnce("Found optimal ammo (" + ammo.LabelCap + "), but could not drop from " + pawn.LabelCap, 81274728);
-                                return;
-                            }
-                        }
-
-                        reloadJob = new Job(CE_JobDefOf.ReloadTurret, this, ammo) { count = Mathf.Min(ammo.stackCount, amount) };
-                    }
-                }
-
-                if (reloadJob != null)
-                    pawn.jobs.StartJob(reloadJob, JobCondition.Ongoing, null, pawn.CurJob?.def != reloadJob.def && (!pawn.CurJob?.def.isIdle ?? true));
+                return;
             }
-            else    //MannableComp interaction
+
+            //Only have manningPawn reload after a long time of no firing
+            if (!forced && Reloadable && (compAmmo.CurMagCount != 0 || ticksUntilAutoReload > 0))
+                return;
+
+            //Already reserved for manning
+            Pawn manningPawn = mannableComp.ManningPawn;
+            if (manningPawn != null)
             {
-                //Only have manningPawn reload after a long time of no firing
-                if (!forced && Reloadable && (compAmmo.CurMagCount != 0 || ticksUntilAutoReload > 0))
-                    return;
-
-                //Already reserved for manning
-                Pawn manningPawn = mannableComp.ManningPawn;
-                if (manningPawn != null)
+                if (!JobGiverUtils_Reload.CanReload(manningPawn, this))
                 {
-                    UpdateNearbyAmmo(forced);
-                    var jobOnThing = new WorkGiver_ReloadTurret().JobOnThing(manningPawn, this, forced);
-
-                    if (jobOnThing != null)
-                        manningPawn.jobs.StartJob(jobOnThing, JobCondition.Ongoing, null, manningPawn.CurJob?.def != CE_JobDefOf.ReloadTurret);
-
                     return;
                 }
+                var jobOnThing = JobGiverUtils_Reload.MakeReloadJob(manningPawn, this);
+
+                if (jobOnThing != null)
+                {
+                    manningPawn.jobs.StartJob(jobOnThing, JobCondition.Ongoing, null, manningPawn.CurJob?.def != CE_JobDefOf.ReloadTurret);
+                }
             }
+
         }
         #endregion
     }

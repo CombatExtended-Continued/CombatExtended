@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+
+  <Operation Class="PatchOperationFindMod">
+    <mods>
+      <li>Vanilla Factions Expanded - Settlers</li>
+    </mods>
+
+    <match Class="PatchOperationSequence">
+      <operations>
+        <!-- === Bulk === -->
+        <li Class="PatchOperationAdd">
+          <xpath>Defs/ThingDef[defName="Chemshine"]/statBases</xpath>
+
+          <value>
+            <Bulk>1</Bulk>
+          </value>
+        </li>
+
+        <!-- === stafOffsets === -->
+        <li Class="PatchOperationAdd">
+          <xpath>Defs/HediffDef[defName="Chemshined"]/stages/li[1]</xpath>
+
+          <value>
+            <statOffsets>
+              <Suppressability>-0.10</Suppressability>
+            </statOffsets>
+          </value>
+        </li>
+
+        <!-- === Addictivines === -->
+        <li Class="PatchOperationReplace">
+          <xpath>/Defs/ThingDef[defName="Chemshine"]/comps/li[@Class="CompProperties_Drug"]/addictiveness</xpath>
+
+          <value>
+            <addictiveness>0.05</addictiveness>
+          </value>
+        </li>
+
+        <li Class="PatchOperationReplace">
+          <xpath>/Defs/ThingDef[defName="Chemshine"]/comps/li[@Class="CompProperties_Drug"]/minToleranceToAddict</xpath>
+
+          <value>
+            <minToleranceToAddict>0.05</minToleranceToAddict>
+          </value>
+        </li>
+      </operations>
+    </match>
+  </Operation>
+
+</Patch>

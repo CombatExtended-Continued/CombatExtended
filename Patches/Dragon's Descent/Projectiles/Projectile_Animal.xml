@@ -1,17 +1,25 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <Patch>
-	<!-- >tfw you forget to clean your teeth -->
-	<Operation Class="PatchOperationSequence">
-		<success>Always</success>
-		<operations>
-			<!-- ==== Check for the mod. ==== -->
-			<li Class="CombatExtended.PatchOperationFindMod">
-				<modName>Dragon's Descent</modName>
-			</li>
 
-			<!-- ==== Projectile_DragonBreath ==== -->
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+			<li>Dragon's Descent</li>
+		</mods>
+
+		<match Class="PatchOperationSequence">
+		<operations>
+
+			<!-- === Projectile_DragonBreath === -->
+			
 			<li Class="PatchOperationReplace">
-				<xpath>Defs/ThingDef[defName="Projectile_DragonBreath"]/projectile</xpath>
+				<xpath>/Defs/ThingDef[defName="Projectile_DragonBreath"]/thingClass</xpath>
+				<value>
+					<thingClass>CombatExtended.ProjectileCE_Explosive</thingClass>
+				</value>
+			</li>		
+			
+			<li Class="PatchOperationReplace">
+				<xpath>/Defs/ThingDef[defName="Projectile_DragonBreath"]/projectile</xpath>
 				<value>
 					<projectile Class="CombatExtended.ProjectilePropertiesCE">
 						<speed>48</speed>
@@ -24,6 +32,8 @@
 					</projectile>
 				</value>
 			</li>
-		</operations>
+		</operations>		
+		</match>
 	</Operation>
+
 </Patch>
