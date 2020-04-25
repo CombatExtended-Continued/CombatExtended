@@ -73,8 +73,6 @@ namespace CombatExtended
 
             Building_TurretGunCE turret = t as Building_TurretGunCE;
             CELogger.Message($"Turret uses ammo? {turret.CompAmmo.UseAmmo}");
-            if (!turret.CompAmmo.UseAmmo)
-                return true;
 
             CELogger.Message($"Total magazine size: {turret.CompAmmo.Props.magazineSize}. Needed: {turret.CompAmmo.MissingToFullMagazine}");
 
