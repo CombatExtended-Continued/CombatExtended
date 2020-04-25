@@ -22,7 +22,7 @@ namespace CombatExtended.HarmonyCE
     [HarmonyPatch(typeof(Pawn_HealthTracker), "CheckForStateChange")]
     static class Harmony_Pawn_HealthTracker_CheckForStateChange
     {
-        static readonly string logPrefix = "Combat Extended :: " + typeof(Harmony_Pawn_HealthTracker_CheckForStateChange).Name + " :: ";
+
 
         static IEnumerable<CodeInstruction> Transpiler(IEnumerable<CodeInstruction> instructions)
         {
