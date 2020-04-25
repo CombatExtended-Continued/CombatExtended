@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+		<li>Alpha Animals</li>
+		</mods>
+
+		<match Class="PatchOperationSequence">
+			<operations>
+
+			<li Class="PatchOperationAddModExtension">
+				<xpath>/Defs/ThingDef[defName="AA_Gallatross"]</xpath>
+				<value>
+					<li Class="CombatExtended.RacePropertiesExtensionCE">
+						<bodyShape>Quadruped</bodyShape>
+					</li>
+				</value>
+			</li>
+
+			<li Class="PatchOperationAdd">
+				<xpath>/Defs/ThingDef[defName="AA_Gallatross"]/statBases</xpath>
+				<value>
+					<ArmorRating_Blunt>26</ArmorRating_Blunt>
+					<ArmorRating_Sharp>13</ArmorRating_Sharp>
+					<MeleeDodgeChance>0.02</MeleeDodgeChance>
+					<MeleeCritChance>1.75</MeleeCritChance>
+					<MeleeParryChance>0.25</MeleeParryChance>
+				</value>
+			</li>
+
+			<li Class="PatchOperationReplace">
+		                 <xpath>/Defs/ThingDef[defName="AA_Gallatross"]/race/baseHealthScale</xpath>
+		                 <value>
+			               <baseHealthScale>15</baseHealthScale>
+		                 </value>
+
+	                </li>
+			<li Class="PatchOperationReplace">
+				<xpath>/Defs/ThingDef[defName="AA_Gallatross"]/tools</xpath>
+				<value>
+					<tools>
+						<li Class="CombatExtended.ToolCE">
+							<label>horn</label>
+							<capacities>
+								<li>Blunt</li>
+							</capacities>
+							<power>60</power>
+							<cooldownTime>2.5</cooldownTime>
+							<linkedBodyPartsGroup>HornAttackTool</linkedBodyPartsGroup>
+							<armorPenetrationBlunt>40.226</armorPenetrationBlunt>	
+						</li>
+						<li Class="CombatExtended.ToolCE">
+							<capacities>
+								<li>Bite</li>
+							</capacities>
+							<power>48</power>
+							<cooldownTime>2.0</cooldownTime>
+							<linkedBodyPartsGroup>Teeth</linkedBodyPartsGroup>
+							<armorPenetrationSharp>16</armorPenetrationSharp>
+							<armorPenetrationBlunt>28</armorPenetrationBlunt>	
+						</li>
+						<li Class="CombatExtended.ToolCE">
+							<label>head</label>
+							<capacities>
+								<li>Blunt</li>
+							</capacities>
+							<power>40</power>
+							<cooldownTime>2</cooldownTime>
+							<linkedBodyPartsGroup>HeadAttackTool</linkedBodyPartsGroup>
+							<armorPenetrationBlunt>25</armorPenetrationBlunt>	
+							<chanceFactor>0.1</chanceFactor>
+						</li>
+					</tools>
+				</value>
+			</li>
+			
+			<!-- Add Low Bleed Hediff -->
+
+			<li Class="PatchOperationAdd"> 
+			<xpath>/Defs</xpath>
+				<value>
+					<HediffDef>
+						<defName>AA_LowBleed</defName>
+						<description>This creature bleeds very little.</description>
+						<label>Regen factor</label>
+						<defaultLabelColor>(.8,0,0)</defaultLabelColor>
+						<scenarioCanAdd>false</scenarioCanAdd>
+						<maxSeverity>1.0</maxSeverity>
+						<stages>
+							<li>
+								<totalBleedFactor>0.25</totalBleedFactor>
+							</li>
+						</stages>
+					</HediffDef>
+				</value>
+			</li>
+
+			<li Class="PatchOperationConditional">
+				<xpath>/Defs/ThingDef[defName="AA_Gallatross"]/comps</xpath>
+				<nomatch Class="PatchOperationAdd">
+					<xpath>/Defs/ThingDef[defName="AA_Gallatross"]</xpath>
+						<value>
+							<comps>
+								<li Class="AlphaBehavioursAndEvents.CompProperties_InitialHediff">
+									<hediffname>AA_LowBleed</hediffname>
+									<hediffseverity>1</hediffseverity>
+								</li>
+							</comps>
+						</value>
+				</nomatch>
+				<match Class="PatchOperationAdd">
+					<xpath>/Defs/ThingDef[defName="AA_Gallatross"]/comps</xpath>
+						<value>
+							<li Class="AlphaBehavioursAndEvents.CompProperties_InitialHediff">
+								<hediffname>AA_LowBleed</hediffname>
+								<hediffseverity>1</hediffseverity>
+							</li>
+						</value>
+				</match>
+			</li>
+
+			</operations>
+		</match>
+	</Operation>
+</Patch>

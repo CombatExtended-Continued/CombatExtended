@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+		<li>Alpha Animals</li>
+		</mods>
+
+		<match Class="PatchOperationSequence">
+			<operations>
+
+			<li Class="PatchOperationAddModExtension">
+				<xpath>/Defs/ThingDef[defName="AA_"]</xpath>
+				<value>
+					<li Class="CombatExtended.RacePropertiesExtensionCE">
+						<bodyShape></bodyShape>
+					</li>
+				</value>
+			</li>
+
+		<!-- Assign armor values, change replace and add depending on what exists or not -->
+		
+			<li Class="PatchOperationReplace">
+				<xpath>/Defs/ThingDef[defName=""]/statBases/ArmorRating_Blunt</xpath>
+				<value>
+					<ArmorRating_Blunt></ArmorRating_Blunt>
+				</value>
+			</li>
+			<li Class="PatchOperationReplace">
+				<xpath>/Defs/ThingDef[defName=""]/statBases/ArmorRating_Sharp</xpath>
+				<value>
+					<ArmorRating_Sharp></ArmorRating_Sharp>
+				</value>
+			</li>			
+			
+			
+			<li Class="PatchOperationAdd">
+				<xpath>/Defs/ThingDef[defName="AA_"]/statBases</xpath>
+				<value>
+					<ArmorRating_Blunt></ArmorRating_Blunt>
+					<ArmorRating_Sharp></ArmorRating_Sharp>
+					<MeleeDodgeChance></MeleeDodgeChance>
+					<MeleeCritChance></MeleeCritChance>
+					<MeleeParryChance></MeleeParryChance>
+				</value>
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>/Defs/ThingDef[defName="AA_"]/tools</xpath>
+				<value>
+					<tools>
+						<li Class="CombatExtended.ToolCE">
+						<armorPenetrationSharp></armorPenetrationSharp>
+						<armorPenetrationBlunt></armorPenetrationBlunt>
+						</li>
+						<li Class="CombatExtended.ToolCE">
+						<armorPenetrationSharp></armorPenetrationSharp>
+						<armorPenetrationBlunt></armorPenetrationBlunt>
+						</li>
+					</tools>
+				</value>
+			</li>
+			</operations>
+		</match>
+	</Operation>
+</Patch>
