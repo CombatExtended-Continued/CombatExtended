@@ -130,6 +130,7 @@ namespace CombatExtended.HarmonyCE
     [HarmonyPatch(typeof(Fire), "TrySpread")]
     internal static class Harmony_Fire_TrySpread
     {
+        private const float spreadFarBaseChance = 0.02f;
         private static SimpleCurve _angleCurveWide;
         private static SimpleCurve _angleCurveNarrow;
 
@@ -211,7 +212,7 @@ namespace CombatExtended.HarmonyCE
                     code.operand = 1f;
 
                     codes.Add(code);
-                    codes.Add(new CodeInstruction(OpCodes.Ldc_R4, FireSpread.values.spreadFarBaseChance));
+                    codes.Add(new CodeInstruction(OpCodes.Ldc_R4, spreadFarBaseChance));
 
                     codes.Add(new CodeInstruction(OpCodes.Ldarg_0));
                     codes.Add(new CodeInstruction(OpCodes.Call, AccessTools.Method(typeof(Harmony_Fire_TrySpread), nameof(GetWindMult))));

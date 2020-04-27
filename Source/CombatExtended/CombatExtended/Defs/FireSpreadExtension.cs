@@ -13,7 +13,6 @@ namespace CombatExtended
         public int baseSpreadTicks;
         public int minSpreadTicks;
         public float baseGrowthPerTick;
-        public float spreadFarBaseChance;
         public float fireSizeMultiplier;
         public float windSpeedMultiplier;
         public float maxHumidity;
