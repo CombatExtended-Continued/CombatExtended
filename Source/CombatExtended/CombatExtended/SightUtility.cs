@@ -55,7 +55,6 @@ namespace CombatExtended
             // First endpoint
             var xEnd = Mathf.Round(x0);
             var yEnd = y0 + gradient * (xEnd - x0);
-            var xGap = 1 - (x0 + 0.5f).GetFractional();
             var xPixel1 = xEnd;
             var yPixel1 = Mathf.Floor(yEnd);
             if (isSteep)
@@ -78,7 +77,6 @@ namespace CombatExtended
             // Second endpoint
             xEnd = Mathf.Round(x1);
             yEnd = y1 + gradient * (xEnd - x1);
-            xGap = (x1 + 0.5f).GetFractional();
             var xPixel2 = xEnd;
             var yPixel2 = Mathf.Floor(yEnd);
             if (isSteep)

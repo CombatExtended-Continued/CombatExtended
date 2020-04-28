@@ -272,7 +272,7 @@ namespace CombatExtended
                 int count;
                 Pawn carriedBy;
                 bool doEquip = false;
-                LoadoutSlot prioritySlot = GetPrioritySlot(pawn, out priority, out closestThing, out count, out carriedBy);
+                GetPrioritySlot(pawn, out priority, out closestThing, out count, out carriedBy);
                 // moved logic to detect if should equip vs put in inventory here...
                 if (closestThing != null)
                 {
