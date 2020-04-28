@@ -6,6 +6,7 @@ using RimWorld;
 using Verse;
 using UnityEngine;
 using CombatExtended.HarmonyCE;
+using CombatExtended.Compatibility;
 
 namespace CombatExtended
 {
@@ -35,6 +36,8 @@ namespace CombatExtended
             // Tutorial popup
             if (settings.ShowTutorialPopup && !Prefs.AdaptiveTrainingEnabled)
                 LongEventHandler.QueueLongEvent(DoTutorialPopup, "CE_LongEvent_TutorialPopup", false, null);
+
+            LongEventHandler.QueueLongEvent(Patches.Init, "CE_LongEvent_CompatibilityPatches", false, null);
         }
 
         private static void DoTutorialPopup()
