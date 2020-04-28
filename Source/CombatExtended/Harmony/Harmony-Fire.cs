@@ -136,7 +136,8 @@ namespace CombatExtended.HarmonyCE
         private static float GetWindMult(Fire fire)
         {
             var tracker = fire.Map.GetComponent<WeatherTracker>();
-            return Mathf.Max(1, Mathf.Sqrt(tracker.GetWindStrengthAt(fire.Position)) * FireSpread.values.windSpeedMultiplier);
+            float balancedWindMultiplier = Mathf.Sqrt(tracker.GetWindStrengthAt(fire.Position)) * FireSpread.values.windSpeedMultiplier;
+            return FireSpread.values.spreadFarBaseChance * Mathf.Max(1, balancedWindMultiplier);
         }
 
         private static IntVec3 GetRandWindShift(Fire fire, bool spreadFar)
@@ -211,12 +212,10 @@ namespace CombatExtended.HarmonyCE
                     code.operand = 1f;
 
                     codes.Add(code);
-                    codes.Add(new CodeInstruction(OpCodes.Ldc_R4, FireSpread.values.spreadFarBaseChance));
 
                     codes.Add(new CodeInstruction(OpCodes.Ldarg_0));
                     codes.Add(new CodeInstruction(OpCodes.Call, AccessTools.Method(typeof(Harmony_Fire_TrySpread), nameof(GetWindMult))));
 
-                    codes.Add(new CodeInstruction(OpCodes.Mul));
                     codes.Add(new CodeInstruction(OpCodes.Sub));
                     continue;
                 }
