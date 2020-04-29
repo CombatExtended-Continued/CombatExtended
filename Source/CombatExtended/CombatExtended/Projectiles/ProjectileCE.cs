@@ -6,6 +6,7 @@ using RimWorld;
 using UnityEngine;
 using Verse;
 using Verse.Sound;
+using CombatExtended.Compatibility;
 
 namespace CombatExtended
 {
@@ -75,10 +76,6 @@ namespace CombatExtended
         private float suppressionAmount;
         public Thing mount; // GiddyUp compatibility, ignore collisions with pawns the launcher is mounting
         public float AccuracyFactor;
-
-        #region FreeIntercept
-        private static List<IntVec3> checkedCells = new List<IntVec3>();
-        #endregion
 
         #region Height
         private int lastHeightTick = -1;
@@ -538,6 +535,14 @@ namespace CombatExtended
         /// <returns>True if collision occured, false otherwise</returns>
         private bool CheckCellForCollision(IntVec3 cell)
         {
+            if (BlockerRegistry.CheckCellForCollisionCallback(this, cell, launcher))
+            {
+                this.ticksToImpact = 0;
+                this.landed = true;
+
+                this.Impact(null);
+                return true;
+            }
             var roofChecked = false;
             var justWallsRoofs = false;
 
@@ -791,6 +796,11 @@ namespace CombatExtended
         //Modified collision with downed pawns
         private void ImpactSomething()
         {
+            if (BlockerRegistry.ImpactSomethingCallback(this, launcher))
+            {
+                this.Destroy();
+                return;
+            }
             var pos = ExactPosition.ToIntVec3();
 
             //Not modified, just mortar code
