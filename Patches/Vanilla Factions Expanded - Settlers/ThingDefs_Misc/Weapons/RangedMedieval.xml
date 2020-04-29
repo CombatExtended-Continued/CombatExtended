@@ -37,15 +37,24 @@
         </li>
 
         <!-- == Weapon == -->
-        
         <li Class="PatchOperationAttributeSet">
           <xpath>/Defs/ThingDef[defName="VFES_Tomahawk"]</xpath>
           <attribute>ParentName</attribute>
           <value>BaseWeapon</value>
         </li>
+        
+        <li Class="PatchOperationAdd">
+          <xpath>/Defs/ThingDef[defName="VFES_Tomahawk"]</xpath>
+          
+          <value>
+            <thingCategories>
+              <li>WeaponsRanged</li>
+            </thingCategories>
+          </value>
+        </li>
 
         <li Class="PatchOperationRemove">
-          <xpath>Defs/ThingDef[defName="VFES_Tomahawk"]/costStuffCount</xpath>
+          <xpath>/Defs/ThingDef[defName="VFES_Tomahawk"]/costStuffCount</xpath>
         </li>
 
         <li Class="PatchOperationRemove">

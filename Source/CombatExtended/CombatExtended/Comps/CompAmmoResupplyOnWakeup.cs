@@ -13,7 +13,6 @@ namespace CombatExtended
     public class CompAmmoResupplyOnWakeup : ThingComp
     {
         public HashSet<Building_TurretGunCE> nearbyTurrets = new HashSet<Building_TurretGunCE>();
-        bool initialized = false;
         const int turretsWithinDistanceSqr = 100;
         const int ticksBetweenChecks = 600;    //Divide by 60 for seconds
 
@@ -23,7 +22,7 @@ namespace CombatExtended
         //Only do something when ammo system is enabled
         public bool IsActive => Controller.settings.EnableAmmoSystem && (parent.TryGetComp<CompCanBeDormant>()?.Awake ?? true);
 
-        FieldInfo thingsField = typeof(LordJob_MechanoidDefendBase).GetField("things");
+        //FieldInfo thingsField = typeof(LordJob_MechanoidDefendBase).GetField("things");
         FieldInfo mechClusterDefeatedField = typeof(LordJob_MechanoidDefendBase).GetField("mechClusterDefeated");
         LordJob_MechanoidDefendBase parentLordJob => ((parent as Building)?.GetLord()?.LordJob as LordJob_MechanoidDefendBase);
         public bool ClusterAlive

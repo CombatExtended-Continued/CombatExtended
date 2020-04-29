@@ -25,11 +25,15 @@ namespace CombatExtended.CombatExtended.Jobs.Utils
 		public static Job MakeReloadJob(Pawn pawn, Building_TurretGunCE turret)
 		{
 			var compAmmo = turret.CompAmmo;
-			var amountNeeded = turret.CompAmmo.MissingToFullMagazine;
 			if (compAmmo == null)
 			{
-				CELogger.Error("Tried to create a reload job on a thing that's not reloadable.");
+				CELogger.Error($"{pawn} tried to create a reload job on a thing ({turret}) that's not reloadable.");
 				return null;
+			}
+
+			if (!compAmmo.UseAmmo)
+			{
+				return MakeReloadJobNoAmmo(turret);
 			}
 
 			var ammo = FindBestAmmo(pawn, turret);
@@ -45,9 +49,9 @@ namespace CombatExtended.CombatExtended.Jobs.Utils
 			return job;
 		}
 
-		public static Job MakeReloadJobNoAmmo(Building_TurretGunCE turret)
+		private static Job MakeReloadJobNoAmmo(Building_TurretGunCE turret)
 		{
-			var compAmmo = turret.TryGetComp<CompAmmoUser>();
+			var compAmmo = turret.CompAmmo;
 			if (compAmmo == null)
 			{
 				CELogger.Error("Tried to create a reload job on a thing that's not reloadable.");
@@ -87,6 +91,7 @@ namespace CombatExtended.CombatExtended.Jobs.Utils
 			{
 				CELogger.Message($"{pawn} could not reload {turret} because turret is on fire.");
 				JobFailReason.Is("CE_TurretIsBurning".Translate());
+				return false;
 			}
 			if (compAmmo.FullMagazine)
 			{
@@ -110,7 +115,7 @@ namespace CombatExtended.CombatExtended.Jobs.Utils
 				CELogger.Message($"{pawn} could not reload {turret} because turret is manned (or was recently manned) by someone else.");
 				return false;
 			}
-			if (FindBestAmmo(pawn, turret) == null)
+			if (compAmmo.UseAmmo && FindBestAmmo(pawn, turret) == null)
 			{
 				JobFailReason.Is("CE_NoAmmoAvailable".Translate());
 				return false;
@@ -123,14 +128,14 @@ namespace CombatExtended.CombatExtended.Jobs.Utils
 			//ThingFilter filter = refuelable.TryGetComp<CompRefuelable>().Props.fuelFilter;
 			var requestedAmmo = reloadable.CompAmmo.SelectedAmmo;
 
-			bool validator(Thing potentialAmmo)
+			Predicate<Thing> validator = (Thing potentialAmmo) =>
 			{
 				if (potentialAmmo.IsForbidden(pawn) || !pawn.CanReserve(potentialAmmo))
 				{
 					return false;
 				}
 				return GetPathCost(pawn, potentialAmmo) <= MaxPathCost;
-			}
+			};
 
 			return GenClosest.ClosestThingReachable(pawn.Position, pawn.Map, ThingRequest.ForDef(requestedAmmo), PathEndMode.ClosestTouch, TraverseParms.For(pawn), 9999f, validator);
 		}
@@ -147,20 +152,20 @@ namespace CombatExtended.CombatExtended.Jobs.Utils
 		{
 			int quantity = reloadable.CompAmmo.MissingToFullMagazine;
 			var ammoKind = reloadable.CompAmmo.SelectedAmmo;
-			bool validator(Thing potentialAmmo)
+			Predicate<Thing> validator = (Thing potentialAmmo) =>
 			{
 				if (potentialAmmo.IsForbidden(pawn) || !pawn.CanReserve(potentialAmmo))
 				{
 					return false;
 				}
 				return GetPathCost(pawn, potentialAmmo) <= MaxPathCost;
-			}
+			};
 			Region region = reloadable.Position.GetRegion(pawn.Map);
 			TraverseParms traverseParams = TraverseParms.For(pawn);
-			bool entryCondition(Region from, Region r) => r.Allows(traverseParams, isDestination: false);
+			Verse.RegionEntryPredicate entryCondition = (Region from, Region r) => r.Allows(traverseParams, isDestination: false);
 			var chosenThings = new List<Thing>();
 			int accumulatedQuantity = 0;
-			bool regionProcessor(Region r)
+			Verse.RegionProcessor regionProcessor = (Region r) =>
 			{
 				List<Thing> list = r.ListerThings.ThingsMatching(ThingRequest.ForDef(ammoKind));
 				foreach (var thing in list)
@@ -176,7 +181,7 @@ namespace CombatExtended.CombatExtended.Jobs.Utils
 					}
 				}
 				return false;
-			}
+			};
 			RegionTraverser.BreadthFirstTraverse(region, entryCondition, regionProcessor, 99999);
 			if (accumulatedQuantity >= quantity)
 			{

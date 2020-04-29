@@ -23,7 +23,6 @@ namespace CombatExtended
         private const float _topPadding = 20f;
         private const float _standardLineHeight = 22f;
         private static readonly Color _highlightColor = new Color(0.5f, 0.5f, 0.5f, 1f);
-        private static readonly Color _thingLabelColor = new Color(0.9f, 0.9f, 0.9f, 1f);
         private Vector2 _scrollPosition = Vector2.zero;
 
         private float _scrollViewHeight;
@@ -410,7 +409,6 @@ namespace CombatExtended
             if (num > 0.005f)
             {
                 Rect rect = new Rect(0f, curY, width, _standardLineHeight);
-                BodyPartRecord bpr = new BodyPartRecord();
                 List<BodyPartRecord> bpList = SelPawnForGear.RaceProps.body.AllParts;
                 string text = "";
                 for (int i = 0; i < bpList.Count; i++)
