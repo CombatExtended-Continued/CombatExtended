@@ -131,7 +131,17 @@ namespace CombatExtended
             }
         }
 
-        public bool FullMagazine => HasMagazine && SelectedAmmo == CurrentAmmo && CurMagCount >= Props.magazineSize;
+        public bool FullMagazine
+        {
+            get
+            {
+                if (UseAmmo)
+                {
+                    return HasMagazine && SelectedAmmo == CurrentAmmo && CurMagCount >= Props.magazineSize;
+                }
+                return CurMagCount >= Props.magazineSize;
+            }
+        }
 
         public ThingDef CurAmmoProjectile => Props.ammoSet?.ammoTypes?.FirstOrDefault(x => x.ammo == CurrentAmmo)?.projectile ?? parent.def.Verbs.FirstOrDefault().defaultProjectile;
         public CompInventory CompInventory
