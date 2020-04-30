@@ -1,4 +1,4 @@
-name: MSBuild
+name: Build
 on:
   push:
     branches: [ master, Development ]
@@ -19,3 +19,33 @@ jobs:
       uses: warrenbuckley/Setup-MSBuild@v1
     - name: Build with MSBuild
       run: msbuild Source/CombatExtended.sln -p:Configuration=Release
+    - name: Copy Assemblies
+      run: copy Assemblies dist/Assemblies
+    - name: Copy About
+      run: copy About dist/About
+    - name: Copy Defs
+      run: copy Defs dist/Defs
+    - name: Copy Language
+      run: copy Language dist/Language
+    - name: Copy Patches
+      run: copy Patches dist/Patches
+    - name: Copy Royalty
+      run: copy Royalty dist/Royalty
+    - name: Copy Sounds
+      run: copy Sounds dist/Sounds
+    - name: Copy Textures
+      run: copy Textures dist/Textures
+    - name: Copy LoadFolders.xml
+      run: copy LoadFolders.xml dist
+    - name: Copy README.md
+      run: copy README.md dist
+    - name: Copy SupportedThirdPartyMods.md
+      run: copy SupportedThirdPartyMods.md dist
+    - name: Upload artifact
+      uses: actions/upload-artifact@v1.0.0
+      with:
+        # Artifact name
+        name: CombatExtended
+        # Directory containing files to upload
+        path: dist
+
