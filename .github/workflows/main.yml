@@ -20,27 +20,27 @@ jobs:
     - name: Build with MSBuild
       run: msbuild Source/CombatExtended.sln -p:Configuration=Release
     - name: Copy Assemblies
-      run: copy Assemblies dist/Assemblies
+      run: Copy-Item -Path ".\Assemblies\" -Destination ".\dist\Assemblies" -Recurse
     - name: Copy About
-      run: copy About dist/About
+      run: Copy-Item -Path ".\About\" -Destination ".\dist\About" -Recurse
     - name: Copy Defs
-      run: copy Defs dist/Defs
+      run: Copy-Item -Path ".\Defs\" -Destination ".\dist\Defs" -Recurse
     - name: Copy Languages
-      run: copy Languages dist/Languages
+      run: Copy-Item -Path ".\Languages\" -Destination ".\dist\Languages" -Recurse
     - name: Copy Patches
-      run: copy Patches dist/Patches
+      run: Copy-Item -Path ".\Patches\" -Destination ".\dist\Patches" -Recurse
     - name: Copy Royalty
-      run: copy Royalty dist/Royalty
+      run: Copy-Item -Path ".\Royalty\" -Destination ".\dist\Royalty" -Recurse
     - name: Copy Sounds
-      run: copy Sounds dist/Sounds
+      run: Copy-Item -Path ".\Sounds\" -Destination ".\dist\Sounds" -Recurse
     - name: Copy Textures
-      run: copy Textures dist/Textures
+      run: Copy-Item -Path ".\Textures\" -Destination ".\dist\Textures" -Recurse
     - name: Copy LoadFolders.xml
-      run: copy LoadFolders.xml dist
+      run: Copy-Item -Path ".\LoadFolders.xml" -Destination ".\dist"
     - name: Copy README.md
-      run: copy README.md dist
+      run: Copy-Item -Path ".\README.md" -Destination ".\dist"
     - name: Copy SupportedThirdPartyMods.md
-      run: copy SupportedThirdPartyMods.md dist
+      run: Copy-Item -Path ".\SupportedThirdPartyMods.md" -Destination ".\dist"
     - name: Upload artifact
       uses: actions/upload-artifact@v1.0.0
       with:
