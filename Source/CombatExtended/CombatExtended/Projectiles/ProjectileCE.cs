@@ -418,18 +418,19 @@ namespace CombatExtended
         #endregion
 
         #region Collisions
-        static FieldInfo interceptAngleField = typeof(CompProjectileInterceptor).GetField("lastInterceptAngle", BindingFlags.NonPublic | BindingFlags.Instance);
-        static FieldInfo interceptTicksField = typeof(CompProjectileInterceptor).GetField("lastInterceptTicks", BindingFlags.NonPublic | BindingFlags.Instance);
-        static FieldInfo interceptEMPField = typeof(CompProjectileInterceptor).GetField("lastHitByEmpTicks", BindingFlags.NonPublic | BindingFlags.Instance);
-        static FieldInfo interceptDebug = typeof(CompProjectileInterceptor).GetField("debugInterceptNonHostileProjectiles", BindingFlags.NonPublic | BindingFlags.Instance);
+        static readonly FieldInfo interceptAngleField = typeof(CompProjectileInterceptor).GetField("lastInterceptAngle", BindingFlags.NonPublic | BindingFlags.Instance);
+        static readonly FieldInfo interceptTicksField = typeof(CompProjectileInterceptor).GetField("lastInterceptTicks", BindingFlags.NonPublic | BindingFlags.Instance);
+        static readonly FieldInfo interceptDebug = typeof(CompProjectileInterceptor).GetField("debugInterceptNonHostileProjectiles", BindingFlags.NonPublic | BindingFlags.Instance);
+
+        static readonly MethodInfo interceptBreakShield = typeof(CompProjectileInterceptor).GetMethod("BreakShield", BindingFlags.NonPublic | BindingFlags.Instance);
         private bool CheckIntercept(Thing thing, CompProjectileInterceptor interceptor, bool withDebug = false)
         {
-            Vector3 vector = thing.Position.ToVector3Shifted();
-            float num = interceptor.Props.radius + def.projectile.SpeedTilesPerTick + 0.1f;
+            Vector3 vector = thing.Position.ToVector3ShiftedWithAltitude(0.5f);
+            float blockRadius = interceptor.Props.radius + def.projectile.SpeedTilesPerTick + 0.1f;
 
             var newExactPos = ExactPosition;
-            
-            if ((newExactPos.x - vector.x) * (newExactPos.x - vector.x) + (newExactPos.z - vector.z) * (newExactPos.z - vector.z) > num * num)
+
+            if ((newExactPos - vector).sqrMagnitude > Mathf.Pow(blockRadius, 2))
             {
                 return false;
             }
@@ -437,40 +438,40 @@ namespace CombatExtended
             {
                 return false;
             }
-            bool flag = false;
-            if (interceptor.Props.interceptGroundProjectiles)
-            {
-                flag = !def.projectile.flyOverhead;
-            }
-            else
-            {
-				if (interceptor.Props.interceptAirProjectiles)
-				{
-					flag = def.projectile.flyOverhead;
-				}
-            }
-            if (!flag)
+
+            if (interceptor.Props.interceptGroundProjectiles && def.projectile.flyOverhead)
             {
                 return false;
             }
+
+            if (interceptor.Props.interceptAirProjectiles && !def.projectile.flyOverhead)
+            {
+                return false;
+            }
+
             if ((launcher == null || !launcher.HostileTo(thing)) && !((bool)interceptDebug.GetValue(interceptor)))
             {
                 return false;
             }
-            if ((new Vector2(vector.x, vector.z) - new Vector2(lastExactPos.x, lastExactPos.z)).sqrMagnitude <= interceptor.Props.radius * interceptor.Props.radius)
+            if ((vector - lastExactPos).sqrMagnitude <= Mathf.Pow(interceptor.Props.radius, 2))
             {
                 return false;
             }
-            if (!GenGeo.IntersectLineCircleOutline(new Vector2(vector.x, vector.z), interceptor.Props.radius, new Vector2(lastExactPos.x, lastExactPos.z), new Vector2(newExactPos.x, newExactPos.z)))
-            {
-                return false;
-            }
+            // No longer relevant. Calculations are done in 3D.
+            //if (!GenGeo.IntersectLineCircleOutline(new Vector2(vector.x, vector.z), interceptor.Props.radius, new Vector2(lastExactPos.x, lastExactPos.z), new Vector2(newExactPos.x, newExactPos.z)))
+            //{
+            //    return false;
+            //}
             interceptAngleField.SetValue(interceptor, lastExactPos.AngleToFlat(thing.TrueCenter()));
             interceptTicksField.SetValue(interceptor, Find.TickManager.TicksGame);
-            if (def.projectile.damageDef == DamageDefOf.EMP
-                || ((def.projectile as ProjectilePropertiesCE)?.secondaryDamage?.Any(x => x.def == DamageDefOf.EMP) ?? false))
+            var firstEMPSecondaryDamage = (def.projectile as ProjectilePropertiesCE)?.secondaryDamage?.FirstOrDefault(sd => sd.def == DamageDefOf.EMP);
+            if (def.projectile.damageDef == DamageDefOf.EMP)
             {
-                interceptEMPField.SetValue(interceptor, Find.TickManager.TicksGame);
+                interceptBreakShield.Invoke(interceptor, new object[] { new DamageInfo(def.projectile.damageDef, def.projectile.damageDef.defaultDamage) });
+            }
+            else if (firstEMPSecondaryDamage != null)
+            {
+                interceptBreakShield.Invoke(interceptor, new object[] { new DamageInfo(firstEMPSecondaryDamage.def, firstEMPSecondaryDamage.def.defaultDamage) });
             }
             Effecter eff = new Effecter(EffecterDefOf.Interceptor_BlockedProjectile);
             eff.Trigger(new TargetInfo(newExactPos.ToIntVec3(), thing.Map, false), TargetInfo.Invalid);
