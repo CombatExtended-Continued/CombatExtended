@@ -6,18 +6,11 @@
 		</mods>
 		<match Class="PatchOperationSequence">
 			<operations>
-			
-				<!-- NOTE: Black Hydra is currently disabled for CE, as the original mod incorrectly uses a thingDef rather than ThingDef, which is incompatible with CE patching -->
-				
-				<li Class="PatchOperationRemove">
-					<xpath>Defs/thingDef[defName="ForsakenHydra"]</xpath>
-				</li>
 
 				<!-- ========== Forsaken Black Hydra ========== -->
 
 				<!-- (CE implementation based on BFG 9000 from CP DOOM mod, with infinite ammo as per item description in original Forsakens mod) -->
-
-				<!-- TEMPORARILY DISABLED 
+ 
 				<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
 					<defName>ForsakenHydra</defName>
 					<statBases>
@@ -78,14 +71,12 @@
 							</li>
 						</tools>
 					</value>
-				</li>-->
+				</li>
 
 				<!-- Patch Hydra Blast projectile to be CE compatible, with armor penetration and blast damage stats similar to vanilla CE M6 HEAT rockets
 				
 				Note that the lightning strike effect has been removed, as the Forsaken.Linking Class required is incompatible with CombatExtended.AmmoDef -->
 				
-
-				<!-- TEMPORARILY DISABLED 
 				<li Class="PatchOperationReplace">
 					<xpath>Defs/ThingDef[defName="Bullet_HydraBlast"]</xpath>
 					<value>
@@ -109,7 +100,7 @@
 							</projectile>
 						</ThingDef>
 					</value>
-				</li>-->
+				</li>
 
 			</operations>
 		</match>
