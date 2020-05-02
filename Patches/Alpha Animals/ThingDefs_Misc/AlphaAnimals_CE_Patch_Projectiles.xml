@@ -45,7 +45,7 @@
 						<damageAmountBase>7</damageAmountBase>
 						<speed>34</speed>
 						<armorPenetrationSharp>1.5</armorPenetrationSharp>
-						<armorPenetrationBlunt>1.440</armorPenetrationBlunt>
+						<armorPenetrationBlunt>1.440</armorPenetrationBlunt
 					</projectile>
 				</value>
 			</li>
@@ -156,9 +156,16 @@
 					<projectile Class="CombatExtended.ProjectilePropertiesCE">
 						<flyOverhead>false</flyOverhead>
 						<damageDef>Stun</damageDef>
-						<damageAmountBase>15</damageAmountBase>
+						<damageAmountBase>10</damageAmountBase>
 						<speed>15</speed>
 						<armorPenetrationBlunt>0.25</armorPenetrationBlunt>
+						<!-- Adding secondary damage with CE's Procedure instead of AA's AnimalProjectile -->
+						<secondaryDamage>
+							<li>
+							  <def>Frostbite</def>
+							  <amount>7.5</amount>
+							</li>
+						</secondaryDamage>
 					</projectile>
 				</value>
 			</li>
@@ -169,9 +176,16 @@
 					<projectile Class="CombatExtended.ProjectilePropertiesCE">
 						<flyOverhead>false</flyOverhead>
 						<damageDef>Stun</damageDef>
-						<damageAmountBase>15</damageAmountBase>
+						<damageAmountBase>10</damageAmountBase>
 						<speed>15</speed>
 						<armorPenetrationBlunt>0.25</armorPenetrationBlunt>
+						<!-- Adding secondary damage with CE's Procedure instead of AA's AnimalProjectile -->
+						<secondaryDamage>
+							<li>
+							  <def>Burn</def>
+							  <amount>7.5</amount>
+							</li>
+						</secondaryDamage>
 					</projectile>
 				</value>
 			</li>
@@ -182,12 +196,21 @@
 					<projectile Class="CombatExtended.ProjectilePropertiesCE">
 						<flyOverhead>false</flyOverhead>
 						<damageDef>Stun</damageDef>
-						<damageAmountBase>15</damageAmountBase>
+						<damageAmountBase>10</damageAmountBase>
 						<speed>15</speed>
 						<armorPenetrationBlunt>0.25</armorPenetrationBlunt>
+						<!-- Adding secondary damage with CE's Procedure instead of AA's AnimalProjectile -->
+						<secondaryDamage>
+							<li>
+							  <def>AA_AcidSpit</def>
+							  <amount>7.5</amount>
+							</li>
+						</secondaryDamage>
 					</projectile>
 				</value>
 			</li>
+			
+						<!-- ======== Note: AA_ExplodingWeb wasn't used in any Race, so it wasn't included. If it gets added, just add a secondaryDamage to the corresponding projectile, with the Bomb damageDef ======== -->
 			
 			<li Class="PatchOperationReplace">
 				<xpath>/Defs/ThingDef[defName="AA_Web"]/projectile</xpath>
