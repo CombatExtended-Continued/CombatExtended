@@ -494,11 +494,11 @@ namespace CombatExtended
                     return true;
                 }
             }
-			
+
             #region Sanity checks
-			if (ticksToImpact == 0 || def.projectile.flyOverhead)
-				return false;
-			
+            if (ticksToImpact == 0 || def.projectile.flyOverhead)
+                return false;
+
             if (!lastPosIV3.InBounds(Map) || !newPosIV3.InBounds(Map))
             {
                 return false;
@@ -509,7 +509,7 @@ namespace CombatExtended
                 Map.debugDrawer.FlashLine(lastPosIV3, newPosIV3);
             }
             #endregion
-            
+
             // Iterate through all cells between the last and the new position
             // INCLUDING[!!!] THE LAST AND NEW POSITIONS!
             var cells = GenSight.PointsOnLineOfSight(lastPosIV3, newPosIV3).Union(new[] { lastPosIV3, newPosIV3 }).Distinct().OrderBy(x => (x.ToVector3Shifted() - LastPos).MagnitudeHorizontalSquared());
@@ -549,9 +549,9 @@ namespace CombatExtended
 
             //Check for minimum PAWN collision distance
             float distFromOrigin = cell.DistanceToSquared(OriginIV3);
-            bool skipCollision = !def.projectile.alwaysFreeIntercept 
-                && (minCollisionSqr <= 1f 
-                    ? distFromOrigin < 1f 
+            bool skipCollision = !def.projectile.alwaysFreeIntercept
+                && (minCollisionSqr <= 1f
+                    ? distFromOrigin < 1f
                     : distFromOrigin <= Mathf.Min(144f, minCollisionSqr / 4));
 
             var mainThingList = new List<Thing>(Map.thingGrid.ThingsListAtFast(cell))
@@ -844,7 +844,7 @@ namespace CombatExtended
             landed = true;
             Impact(null);
         }
-        
+
         protected virtual void Impact(Thing hitThing)
         {
             var ignoredThings = new List<Thing>();
@@ -926,7 +926,7 @@ namespace CombatExtended
                 foreach (var thing in suppressThings)
                     ApplySuppression(thing as Pawn);
             }
-            
+
             Destroy();
         }
         #endregion
