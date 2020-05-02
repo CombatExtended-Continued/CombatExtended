@@ -62,7 +62,7 @@ namespace CombatExtended.HarmonyCE
     [HarmonyPatch(typeof(ShieldBelt), "Tick")]
     internal static class ShieldBelt_DisableOnOperateTurret
     {
-        private const int TWO_SECONDS_IN_TICKS = 120;
+        private const int SHORT_SHIELD_RECHARGE_TIME =  2 * GenTicks.TicksPerRealSecond;
         internal static void Postfix(ShieldBelt __instance, ref int ___ticksToReset, int ___StartingTicksToReset)
         {
             if (__instance.Wearer?.CurJob?.def == JobDefOf.ManTurret && (__instance.Wearer?.jobs?.curDriver?.OnLastToil ?? false))
@@ -70,11 +70,11 @@ namespace CombatExtended.HarmonyCE
                 if (__instance.ShieldState == ShieldState.Active)
                 {
                     Traverse.Create(__instance).Method("Break").GetValue();
-                    ___ticksToReset = TWO_SECONDS_IN_TICKS;
+                    ___ticksToReset = SHORT_SHIELD_RECHARGE_TIME;
                 }
-                if (___ticksToReset < TWO_SECONDS_IN_TICKS) 
+                if (___ticksToReset < SHORT_SHIELD_RECHARGE_TIME) 
                 {
-                    ___ticksToReset = TWO_SECONDS_IN_TICKS;
+                    ___ticksToReset = SHORT_SHIELD_RECHARGE_TIME;
                 }
             }
         }
