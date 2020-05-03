@@ -73,8 +73,6 @@ namespace CombatExtended
 
             Building_TurretGunCE turret = t as Building_TurretGunCE;
             CELogger.Message($"Turret uses ammo? {turret.CompAmmo.UseAmmo}");
-            if (!turret.CompAmmo.UseAmmo)
-                return true;
 
             CELogger.Message($"Total magazine size: {turret.CompAmmo.Props.magazineSize}. Needed: {turret.CompAmmo.MissingToFullMagazine}");
 
@@ -98,11 +96,11 @@ namespace CombatExtended
         /// <returns></returns>
         public override Job JobOnThing(Pawn pawn, Thing t, bool forced = false)
         {
-            //Do not check for NeedsReload etc. -- if forced, treat as if NeedsReload && AllowAutomaticReload
-
             Building_TurretGunCE turret = t as Building_TurretGunCE;
-            if (!turret.CompAmmo.UseAmmo)
-                return JobGiverUtils_Reload.MakeReloadJobNoAmmo(turret);
+            if (turret == null)
+            {
+                CELogger.Error($"{pawn} tried to make a reload job on a {t} which isn't a turret. This should never be reached.");
+            }
 
             // NOTE: The removal of the code that used to be here disables reloading turrets directly from one's inventory.
             // The player would need to drop the ammo the pawn is holding first.
