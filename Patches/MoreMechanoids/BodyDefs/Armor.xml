@@ -38,7 +38,7 @@
                         <li>CoveredByNaturalArmor</li>
                     </value>
                 </li>
-                
+
                 <li Class="PatchOperationAdd">
                     <xpath>Defs/BodyDef[defName="MechanicalMammoth"]//*[def="MechanicalBody" or def="ArmorPlating" or def="InternalMetalPlate" or (def="MechanicalMammothLeg" and not(groups)) or def="MechanicalMammothHoof"]</xpath>
                     <value>
@@ -56,9 +56,11 @@
                 </li>
                 
                 <li Class="PatchOperationAdd">
-                    <xpath>Defs/BodyDef[defName="MechanicalFlamebot"]//*[def="MechanicalCore"]/groups</xpath>
+                    <xpath>Defs/BodyDef[defName="MechanicalFlamebot"]//*[def="MechanicalCore"]</xpath>
                     <value>
-                        <li>CoveredByNaturalArmor</li>
+                        <groups>
+                            <li>CoveredByNaturalArmor</li>
+                        </groups>
                     </value>
                 </li>
             </operations>
