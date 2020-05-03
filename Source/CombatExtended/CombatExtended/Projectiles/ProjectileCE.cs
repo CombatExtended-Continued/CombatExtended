@@ -464,14 +464,18 @@ namespace CombatExtended
             //}
             interceptAngleField.SetValue(interceptor, lastExactPos.AngleToFlat(thing.TrueCenter()));
             interceptTicksField.SetValue(interceptor, Find.TickManager.TicksGame);
-            var firstEMPSecondaryDamage = (def.projectile as ProjectilePropertiesCE)?.secondaryDamage?.FirstOrDefault(sd => sd.def == DamageDefOf.EMP);
-            if (def.projectile.damageDef == DamageDefOf.EMP)
+            var areWeLucky = Rand.Chance((def.projectile as ProjectilePropertiesCE)?.empShieldBreakChance ?? 0);
+            if (areWeLucky)
             {
-                interceptBreakShield.Invoke(interceptor, new object[] { new DamageInfo(def.projectile.damageDef, def.projectile.damageDef.defaultDamage) });
-            }
-            else if (firstEMPSecondaryDamage != null)
-            {
-                interceptBreakShield.Invoke(interceptor, new object[] { new DamageInfo(firstEMPSecondaryDamage.def, firstEMPSecondaryDamage.def.defaultDamage) });
+                var firstEMPSecondaryDamage = (def.projectile as ProjectilePropertiesCE)?.secondaryDamage?.FirstOrDefault(sd => sd.def == DamageDefOf.EMP);
+                if (def.projectile.damageDef == DamageDefOf.EMP)
+                {
+                    interceptBreakShield.Invoke(interceptor, new object[] { new DamageInfo(def.projectile.damageDef, def.projectile.damageDef.defaultDamage) });
+                }
+                else if (firstEMPSecondaryDamage != null)
+                {
+                    interceptBreakShield.Invoke(interceptor, new object[] { new DamageInfo(firstEMPSecondaryDamage.def, firstEMPSecondaryDamage.def.defaultDamage) });
+                }
             }
             Effecter eff = new Effecter(EffecterDefOf.Interceptor_BlockedProjectile);
             eff.Trigger(new TargetInfo(newExactPos.ToIntVec3(), thing.Map, false), TargetInfo.Invalid);
