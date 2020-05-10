@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+		<li>Alpha Animals</li>
+		</mods>
+
+		<match Class="PatchOperationSequence">
+			<operations>
+
+			<li Class="PatchOperationAddModExtension">
+				<xpath>/Defs/ThingDef[defName="AA_Slurrypede"]</xpath>
+				<value>
+					<li Class="CombatExtended.RacePropertiesExtensionCE">
+						<bodyShape>Serpentine</bodyShape>
+					</li>
+				</value>
+			</li>
+
+			<li Class="PatchOperationAdd">
+				<xpath>/Defs/ThingDef[defName="AA_Slurrypede"]/statBases</xpath>
+				<value>
+					<MeleeDodgeChance>0.12</MeleeDodgeChance>
+					<MeleeCritChance>0.1</MeleeCritChance>
+					<MeleeParryChance>0.17</MeleeParryChance>
+				</value>
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>/Defs/ThingDef[defName="AA_Slurrypede"]/tools</xpath>
+				<value>
+					<tools>
+						<li Class="CombatExtended.ToolCE">
+							<label>head</label>
+							<capacities>
+								<li>Blunt</li>
+							</capacities>
+							<power>8</power>
+							<cooldownTime>2.6</cooldownTime>
+							<linkedBodyPartsGroup>HeadAttackTool</linkedBodyPartsGroup>
+							<armorPenetrationBlunt>0.5</armorPenetrationBlunt>
+						</li>
+					</tools>
+				</value>
+			</li>
+
+			</operations>
+		</match>
+	</Operation>
+</Patch>

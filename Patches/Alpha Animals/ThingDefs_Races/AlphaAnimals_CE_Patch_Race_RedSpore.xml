@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+		<li>Alpha Animals</li>
+		</mods>
+
+		<match Class="PatchOperationSequence">
+			<operations>
+
+			<li Class="PatchOperationAddModExtension">
+				<xpath>/Defs/ThingDef[defName="AA_RedSpore"]</xpath>
+				<value>
+					<li Class="CombatExtended.RacePropertiesExtensionCE">
+						<bodyShape>Birdlike</bodyShape>
+					</li>
+				</value>
+			</li>
+
+			<li Class="PatchOperationAdd">
+				<xpath>/Defs/ThingDef[defName="AA_RedSpore"]/statBases</xpath>
+				<value>
+					<MeleeDodgeChance>0.08</MeleeDodgeChance>
+					<MeleeCritChance>0.06</MeleeCritChance>
+					<MeleeParryChance>0.10</MeleeParryChance>
+				</value>
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>/Defs/ThingDef[defName="AA_RedSpore"]/tools</xpath>
+				<value>
+					<tools>
+						<li Class="CombatExtended.ToolCE">
+							<label>tentacles</label>
+							<capacities>
+								<li>Blunt</li>
+							</capacities>
+							<power>14</power>
+							<cooldownTime>1.2</cooldownTime>
+							<linkedBodyPartsGroup>Arms</linkedBodyPartsGroup>
+							<armorPenetrationSharp>0.5</armorPenetrationSharp>
+							<armorPenetrationBlunt>2</armorPenetrationBlunt>
+						</li>
+					</tools>
+				</value>
+			</li>
+			</operations>
+		</match>
+	</Operation>
+</Patch>
