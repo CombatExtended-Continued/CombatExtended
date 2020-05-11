@@ -1,12 +1,7 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using System.Collections.Generic;
 using RimWorld;
 using Verse;
 using Verse.AI;
-using UnityEngine;
 using CombatExtended.CombatExtended.LoggerUtils;
 using CombatExtended.CombatExtended.Jobs.Utils;
 
@@ -14,7 +9,7 @@ namespace CombatExtended
 {
     public class WorkGiver_ReloadTurret : WorkGiver_Scanner
     {
-        public override ThingRequest PotentialWorkThingRequest => ThingRequest.ForGroup(ThingRequestGroup.BuildingArtificial);
+        public override IEnumerable<Thing> PotentialWorkThingsGlobal(Pawn pawn) => pawn.Map.GetComponent<TurretTracker>().Turrets;
 
         public override float GetPriority(Pawn pawn, TargetInfo t) => GetThingPriority(pawn, t.Thing);
 
@@ -65,9 +60,11 @@ namespace CombatExtended
         
         public override bool HasJobOnThing(Pawn pawn, Thing t, bool forced = false)
         {
+            // Should never happen anymore, as only TurretGunCEs should be returned from PotentialWorkThingsGlobal
             if (!(t is Building_TurretGunCE)) {
                 return false;
             }
+            
             var priority = GetThingPriority(pawn, t, forced);
             CELogger.Message($"Priority check completed. Got {priority}");
 
