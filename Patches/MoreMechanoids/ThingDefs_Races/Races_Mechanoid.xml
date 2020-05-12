@@ -1,368 +1,369 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <Patch>
-
-  <Operation Class="PatchOperationSequence">
-    <success>Always</success>
-    <operations>
-      <li Class="CombatExtended.PatchOperationFindMod">
-        <modName>More Mechanoids</modName>
-      </li>
-      
-      <!-- ========== Crawler ========== -->
-
-      <li Class="PatchOperationAddModExtension">
-      	<xpath>Defs/ThingDef[defName="Mech_Crawler"]</xpath>
-      	<value>
-      		<li Class="CombatExtended.RacePropertiesExtensionCE">
-      			<bodyShape>Quadruped</bodyShape>
-      		</li>
-      	</value>
-      </li>
-
-      <li Class="PatchOperationReplace">
-            <xpath>Defs/ThingDef[defName="Mech_Crawler"]/statBases/ArmorRating_Sharp</xpath>
-            <value>
-                  <ArmorRating_Sharp>2</ArmorRating_Sharp>
-            </value>
-      </li>
-      <li Class="PatchOperationReplace">
-            <xpath>Defs/ThingDef[defName="Mech_Crawler"]/statBases/ArmorRating_Blunt</xpath>
-            <value>
-                  <ArmorRating_Blunt>3</ArmorRating_Blunt>
-            </value>
-      </li>
-
-      <li Class="PatchOperationAdd">
-      	<xpath>Defs/ThingDef[defName="Mech_Crawler"]/statBases</xpath>
-      	<value>
-      		<MeleeDodgeChance>0.26</MeleeDodgeChance>
-      		<MeleeCritChance>0.06</MeleeCritChance>
-      		<MeleeParryChance>0</MeleeParryChance>
-      	</value>
-      </li>
-
-      <li Class="PatchOperationReplace">
-      	<xpath>Defs/ThingDef[defName="Mech_Crawler"]/tools</xpath>
-      	<value>
-      		<tools>
-      			<li Class="CombatExtended.ToolCE">
-      				<label>plasma cutter</label>
-      				<capacities>
-      				  <li>Cut</li>
-      				</capacities>
-      				<power>12</power>
-      				<cooldownTime>3.1</cooldownTime>
-      				<linkedBodyPartsGroup>PlasmaCutter</linkedBodyPartsGroup>
-      				<alwaysTreatAsWeapon>true</alwaysTreatAsWeapon>
-                              <armorPenetrationSharp>25</armorPenetrationSharp>
-      			</li>
-      			<li Class="CombatExtended.ToolCE">
-      				<label>front legs</label>
-      				<capacities>
-      				  <li>Cut</li>
-      				</capacities>
-      				<power>11</power>
-      				<cooldownTime>1</cooldownTime>
-      				<linkedBodyPartsGroup>FrontLegs</linkedBodyPartsGroup>
-      				<ensureLinkedBodyPartsGroupAlwaysUsable>true</ensureLinkedBodyPartsGroupAlwaysUsable>
-      				<armorPenetrationSharp>0.45</armorPenetrationSharp>
-                              <armorPenetrationBlunt>0.5</armorPenetrationBlunt>
-      			</li>
-      			<li Class="CombatExtended.ToolCE">
-      				<label>front legs</label>
-      				<capacities>
-      				  <li>Stab</li>
-      				</capacities>
-      				<power>12</power>
-      				<cooldownTime>1</cooldownTime>
-      				<linkedBodyPartsGroup>FrontLegs</linkedBodyPartsGroup>
-      				<ensureLinkedBodyPartsGroupAlwaysUsable>true</ensureLinkedBodyPartsGroupAlwaysUsable>
-      				<armorPenetrationSharp>0.84</armorPenetrationSharp>
-                              <armorPenetrationBlunt>0.5</armorPenetrationBlunt>
-      			</li>
-      		</tools>
-      	</value>
-      </li>
-
-      <!-- ========== Skullywag ========== -->
-
-      <li Class="PatchOperationAddModExtension">
-      	<xpath>Defs/ThingDef[defName="Mech_Skullywag"]</xpath>
-      	<value>
-      		<li Class="CombatExtended.RacePropertiesExtensionCE">
-      			<bodyShape>Humanoid</bodyShape>
-      		</li>
-      	</value>
-      </li>
-
-      <li Class="PatchOperationReplace">
-            <xpath>Defs/ThingDef[defName="Mech_Skullywag"]/statBases/ArmorRating_Sharp</xpath>
-            <value>
-                  <ArmorRating_Sharp>8</ArmorRating_Sharp>
-            </value>
-      </li>
-      <li Class="PatchOperationReplace">
-            <xpath>Defs/ThingDef[defName="Mech_Skullywag"]/statBases/ArmorRating_Blunt</xpath>
-            <value>
-                  <ArmorRating_Blunt>12</ArmorRating_Blunt>
-            </value>
-      </li>
-
-      <li Class="PatchOperationAdd">
-      	<xpath>Defs/ThingDef[defName="Mech_Skullywag"]/statBases</xpath>
-      	<value>
-      		<MeleeDodgeChance>0.19</MeleeDodgeChance>
-      		<MeleeCritChance>0.15</MeleeCritChance>
-      		<MeleeParryChance>0.08</MeleeParryChance>
-                  <MaxHitPoints>200</MaxHitPoints>
-      	</value>
-      </li>
-
-      <li Class="PatchOperationReplace">
-      	<xpath>Defs/ThingDef[defName="Mech_Skullywag"]/tools</xpath>
-      	<value>
-      		<tools>
-      			<li Class="CombatExtended.ToolCE">
-      			  <label>front paralyze component</label>
-      			  <capacities>
-      			    <li>ParalyzingPoke</li>
-      			    <li>UnlockDoor</li>
-      			  </capacities>
-      			  <power>2.0</power>
-      			  <cooldownTime>2</cooldownTime>
-      			  <linkedBodyPartsGroup>FrontParalyzeComponent</linkedBodyPartsGroup>
-      			  <ensureLinkedBodyPartsGroupAlwaysUsable>true</ensureLinkedBodyPartsGroupAlwaysUsable>
-      			  <alwaysTreatAsWeapon>true</alwaysTreatAsWeapon>
-      				<armorPenetration>0.0</armorPenetration>
-      			</li>
-      			<li Class="CombatExtended.ToolCE">
-      			  <label>head</label>
-      			  <capacities>
-      			    <li>Blunt</li>
-      			  </capacities>
-      			  <power>5.0</power>
-      			  <cooldownTime>2</cooldownTime>
-      			  <linkedBodyPartsGroup>HeadAttackTool</linkedBodyPartsGroup>
-      			  <ensureLinkedBodyPartsGroupAlwaysUsable>true</ensureLinkedBodyPartsGroupAlwaysUsable>
-      			  <chanceFactor>0.2</chanceFactor>
-      				<armorPenetrationBlunt>1.875</armorPenetrationBlunt>
-      			</li>
-      		</tools>
-      	</value>
-      </li>
-
-      <!-- ========== Flamebot ========== -->
-
-      <li Class="PatchOperationAddModExtension">
-      	<xpath>Defs/ThingDef[defName="Mech_Flamebot"]</xpath>
-      	<value>
-      		<li Class="CombatExtended.RacePropertiesExtensionCE">
-      			<bodyShape>Quadruped</bodyShape>
-      		</li>
-      	</value>
-      </li>
-
-      <li Class="PatchOperationReplace">
-            <xpath>Defs/ThingDef[defName="Mech_Flamebot"]/statBases/ArmorRating_Sharp</xpath>
-            <value>
-                  <ArmorRating_Sharp>4</ArmorRating_Sharp>
-            </value>
-      </li>
-      <li Class="PatchOperationReplace">
-            <xpath>Defs/ThingDef[defName="Mech_Flamebot"]/statBases/ArmorRating_Blunt</xpath>
-            <value>
-                  <ArmorRating_Blunt>6</ArmorRating_Blunt>
-            </value>
-      </li>
-
-      <li Class="PatchOperationAdd">
-      	<xpath>Defs/ThingDef[defName="Mech_Flamebot"]/statBases</xpath>
-      	<value>
-      		<MeleeDodgeChance>0.10</MeleeDodgeChance>
-      		<MeleeCritChance>0.04</MeleeCritChance>
-      		<MeleeParryChance>0.0</MeleeParryChance>
-      	</value>
-      </li>
-
-      <li Class="PatchOperationReplace">
-      	<xpath>Defs/ThingDef[defName="Mech_Flamebot"]/tools</xpath>
-      	<value>
-      		<tools>
-      			<li Class="CombatExtended.ToolCE">
-      				<label>igniter</label>
-      				<capacities>
-      				  <li>Stab</li>
-      					<li>Poke</li>
-      				</capacities>
-      				<power>1</power>
-      				<cooldownTime>1.26</cooldownTime>
-      				<linkedBodyPartsGroup>Igniter</linkedBodyPartsGroup>
-      				<alwaysTreatAsWeapon>true</alwaysTreatAsWeapon>
-      				<armorPenetrationBlunt>0.250</armorPenetrationBlunt>
-      			</li>
-      		</tools>
-      	</value>
-      </li>
-
-      <!-- ========== Mammoth ========== -->
-
-      <li Class="PatchOperationAddModExtension">
-      	<xpath>Defs/ThingDef[defName="Mech_Mammoth"]</xpath>
-      	<value>
-      		<li Class="CombatExtended.RacePropertiesExtensionCE">
-      			<bodyShape>Quadruped</bodyShape>
-      		</li>
-      	</value>
-      </li>
-
-      <li Class="PatchOperationAdd">
-      	<xpath>Defs/ThingDef[defName="Mech_Mammoth"]/statBases</xpath>
-      	<value>
-      		<MeleeDodgeChance>0.04</MeleeDodgeChance>
-      		<MeleeCritChance>0.64</MeleeCritChance>
-      		<MeleeParryChance>0.58</MeleeParryChance>
-                  <MaxHitPoints>800</MaxHitPoints>
-      	</value>
-      </li>
-
-      <li Class="PatchOperationReplace">
-      	<xpath>Defs/ThingDef[defName="Mech_Mammoth"]/statBases/ArmorRating_Sharp</xpath>
-      	<value>
-      		<ArmorRating_Sharp>30</ArmorRating_Sharp>
-      	</value>
-      </li>
-      <li Class="PatchOperationReplace">
-            <xpath>Defs/ThingDef[defName="Mech_Mammoth"]/statBases/ArmorRating_Blunt</xpath>
-            <value>
-                  <ArmorRating_Blunt>67.5</ArmorRating_Blunt>
-            </value>
-      </li>
-
-      <li Class="PatchOperationReplace">
-      	<xpath>Defs/ThingDef[defName="Mech_Mammoth"]/race/baseHealthScale</xpath>
-      	<value>
-      		<baseHealthScale>3</baseHealthScale>
-      	</value>
-      </li>
-
-      <li Class="PatchOperationReplace">
-      	<xpath>Defs/ThingDef[defName="Mech_Mammoth"]/tools</xpath>
-      	<value>
-      		<tools>
-      			<li Class="CombatExtended.ToolCE">
-      			  <label>head</label>
-      			  <capacities>
-      			    <li>Ram</li>
-      			  </capacities>
-      			  <power>72</power>
-      			  <cooldownTime>7</cooldownTime>
-      			  <linkedBodyPartsGroup>HeadAttackTool</linkedBodyPartsGroup>
-      			  <ensureLinkedBodyPartsGroupAlwaysUsable>true</ensureLinkedBodyPartsGroupAlwaysUsable>
-      				<armorPenetrationBlunt>33.750</armorPenetrationBlunt>
-      			</li>
-      			<li Class="CombatExtended.ToolCE">
-      			  <label>head</label>
-      			  <capacities>
-      			    <li>Blunt</li>
-      			  </capacities>
-      			  <power>35</power>
-      			  <cooldownTime>3.51</cooldownTime>
-      			  <linkedBodyPartsGroup>HeadAttackTool</linkedBodyPartsGroup>
-      			  <ensureLinkedBodyPartsGroupAlwaysUsable>true</ensureLinkedBodyPartsGroupAlwaysUsable>
-                              <armorPenetrationBlunt>15</armorPenetrationBlunt>
-      			</li>
-      			<li Class="CombatExtended.ToolCE">
-      			  <label>tusk</label>
-      			  <capacities>
-      			    <li>Stab</li>
-      			  </capacities>
-      			  <power>52</power>
-      			  <cooldownTime>2.34</cooldownTime>
-      			  <linkedBodyPartsGroup>Tusk</linkedBodyPartsGroup>
-      			  <ensureLinkedBodyPartsGroupAlwaysUsable>true</ensureLinkedBodyPartsGroupAlwaysUsable>
-                              <armorPenetrationBlunt>33.750</armorPenetrationBlunt>
-                              <armorPenetrationSharp>67.5</armorPenetrationSharp>
-      			</li>
-      			<li Class="CombatExtended.ToolCE">
-      			  <label>leg</label>
-      			  <capacities>
-      			    <li>Blunt</li>
-      			  </capacities>
-      			  <power>35</power>
-      			  <cooldownTime>3.51</cooldownTime>
-      			  <linkedBodyPartsGroup>FrontLegs</linkedBodyPartsGroup>
-      			  <ensureLinkedBodyPartsGroupAlwaysUsable>true</ensureLinkedBodyPartsGroupAlwaysUsable>
-                              <armorPenetrationBlunt>15</armorPenetrationBlunt>
-      			</li>
-      		</tools>
-      	</value>
-      </li>
-
-      <!-- ========== Assaulter ========== -->
-
-      <li Class="PatchOperationAddModExtension">
-      	<xpath>Defs/ThingDef[defName="Mech_Assaulter"]</xpath>
-      	<value>
-      		<li Class="CombatExtended.RacePropertiesExtensionCE">
-      			<bodyShape>Humanoid</bodyShape>
-      		</li>
-      	</value>
-      </li>
-
-      <li Class="PatchOperationReplace">
-            <xpath>Defs/ThingDef[defName="Mech_Assaulter"]/statBases/ArmorRating_Sharp</xpath>
-            <value>
-                  <ArmorRating_Sharp>15</ArmorRating_Sharp>
-            </value>
-      </li>
-      <li Class="PatchOperationReplace">
-            <xpath>Defs/ThingDef[defName="Mech_Assaulter"]/statBases/ArmorRating_Blunt</xpath>
-            <value>
-                  <ArmorRating_Blunt>22.5</ArmorRating_Blunt>
-            </value>
-      </li>
-
-      <li Class="PatchOperationAdd">
-      	<xpath>Defs/ThingDef[defName="Mech_Assaulter"]/statBases</xpath>
-      	<value>
-      		<MeleeDodgeChance>0.12</MeleeDodgeChance>
-      		<MeleeCritChance>0.16</MeleeCritChance>
-      		<MeleeParryChance>0.12</MeleeParryChance>
-                  <MaxHitPoints>300</MaxHitPoints>
-      	</value>
-      </li>
-
-      <li Class="PatchOperationReplace">
-      	<xpath>Defs/ThingDef[defName="Mech_Assaulter"]/tools</xpath>
-      	<value>
-      		<tools>
-      			<li Class="CombatExtended.ToolCE">
-      			  <label>shield</label>
-      			  <capacities>
-      			    <li>Blunt</li>
-      			  </capacities>
-      			  <power>19</power>
-      			  <cooldownTime>2.95</cooldownTime>
-      			  <linkedBodyPartsGroup>CoveredByShield</linkedBodyPartsGroup>
-      			  <alwaysTreatAsWeapon>true</alwaysTreatAsWeapon>
-                              <armorPenetrationBlunt>7.5</armorPenetrationBlunt>
-      			</li>
-      			<li Class="CombatExtended.ToolCE">
-      			  <label>gun protrusion</label>
-      			  <capacities>
-      			    <li>Poke</li>
-      			  </capacities>
-      			  <power>7</power>
-      			  <cooldownTime>2.24</cooldownTime>
-      			  <linkedBodyPartsGroup>GunProtrusion</linkedBodyPartsGroup>
-      			  <ensureLinkedBodyPartsGroupAlwaysUsable>true</ensureLinkedBodyPartsGroupAlwaysUsable>
-      			  <chanceFactor>0.2</chanceFactor>
-                              <armorPenetrationBlunt>2.5</armorPenetrationBlunt>
-      			</li>
-      		</tools>
-      	</value>
-      </li>
-    </operations>
-  </Operation>
-
+    
+    <Operation Class="PatchOperationFindMod">
+        <mods>
+            <li>More Mechanoids</li>
+        </mods>
+        
+        <match Class="PatchOperationSequence">
+            <operations>
+                
+                <!-- ========== Crawler ========== -->
+                
+                <li Class="PatchOperationAddModExtension">
+                    <xpath>Defs/ThingDef[defName="Mech_Crawler"]</xpath>
+                    <value>
+                        <li Class="CombatExtended.RacePropertiesExtensionCE">
+                            <bodyShape>Quadruped</bodyShape>
+                        </li>
+                    </value>
+                </li>
+                
+                <li Class="PatchOperationReplace">
+                    <xpath>Defs/ThingDef[defName="Mech_Crawler"]/statBases/ArmorRating_Sharp</xpath>
+                    <value>
+                        <ArmorRating_Sharp>2</ArmorRating_Sharp>
+                    </value>
+                </li>
+                <li Class="PatchOperationReplace">
+                    <xpath>Defs/ThingDef[defName="Mech_Crawler"]/statBases/ArmorRating_Blunt</xpath>
+                    <value>
+                        <ArmorRating_Blunt>3</ArmorRating_Blunt>
+                    </value>
+                </li>
+                
+                <li Class="PatchOperationAdd">
+                    <xpath>Defs/ThingDef[defName="Mech_Crawler"]/statBases</xpath>
+                    <value>
+                        <MeleeDodgeChance>0.26</MeleeDodgeChance>
+                        <MeleeCritChance>0.06</MeleeCritChance>
+                        <MeleeParryChance>0</MeleeParryChance>
+                    </value>
+                </li>
+                
+                <li Class="PatchOperationReplace">
+                    <xpath>Defs/ThingDef[defName="Mech_Crawler"]/tools</xpath>
+                    <value>
+                        <tools>
+                            <li Class="CombatExtended.ToolCE">
+                                <label>plasma cutter</label>
+                                <capacities>
+                                    <li>Cut</li>
+                                </capacities>
+                                <power>12</power>
+                                <cooldownTime>3.1</cooldownTime>
+                                <linkedBodyPartsGroup>PlasmaCutter</linkedBodyPartsGroup>
+                                <alwaysTreatAsWeapon>true</alwaysTreatAsWeapon>
+                                <armorPenetrationSharp>25</armorPenetrationSharp>
+                            </li>
+                            <li Class="CombatExtended.ToolCE">
+                                <label>front legs</label>
+                                <capacities>
+                                    <li>Cut</li>
+                                </capacities>
+                                <power>11</power>
+                                <cooldownTime>1</cooldownTime>
+                                <linkedBodyPartsGroup>FrontLegs</linkedBodyPartsGroup>
+                                <ensureLinkedBodyPartsGroupAlwaysUsable>true</ensureLinkedBodyPartsGroupAlwaysUsable>
+                                <armorPenetrationSharp>0.45</armorPenetrationSharp>
+                                <armorPenetrationBlunt>0.5</armorPenetrationBlunt>
+                            </li>
+                            <li Class="CombatExtended.ToolCE">
+                                <label>front legs</label>
+                                <capacities>
+                                    <li>Stab</li>
+                                </capacities>
+                                <power>12</power>
+                                <cooldownTime>1</cooldownTime>
+                                <linkedBodyPartsGroup>FrontLegs</linkedBodyPartsGroup>
+                                <ensureLinkedBodyPartsGroupAlwaysUsable>true</ensureLinkedBodyPartsGroupAlwaysUsable>
+                                <armorPenetrationSharp>0.84</armorPenetrationSharp>
+                                <armorPenetrationBlunt>0.5</armorPenetrationBlunt>
+                            </li>
+                        </tools>
+                    </value>
+                </li>
+                
+                <!-- ========== Skullywag ========== -->
+                
+                <li Class="PatchOperationAddModExtension">
+                    <xpath>Defs/ThingDef[defName="Mech_Skullywag"]</xpath>
+                    <value>
+                        <li Class="CombatExtended.RacePropertiesExtensionCE">
+                            <bodyShape>Humanoid</bodyShape>
+                        </li>
+                    </value>
+                </li>
+                
+                <li Class="PatchOperationReplace">
+                    <xpath>Defs/ThingDef[defName="Mech_Skullywag"]/statBases/ArmorRating_Sharp</xpath>
+                    <value>
+                        <ArmorRating_Sharp>8</ArmorRating_Sharp>
+                    </value>
+                </li>
+                <li Class="PatchOperationReplace">
+                    <xpath>Defs/ThingDef[defName="Mech_Skullywag"]/statBases/ArmorRating_Blunt</xpath>
+                    <value>
+                        <ArmorRating_Blunt>12</ArmorRating_Blunt>
+                    </value>
+                </li>
+                
+                <li Class="PatchOperationAdd">
+                    <xpath>Defs/ThingDef[defName="Mech_Skullywag"]/statBases</xpath>
+                    <value>
+                        <MeleeDodgeChance>0.19</MeleeDodgeChance>
+                        <MeleeCritChance>0.15</MeleeCritChance>
+                        <MeleeParryChance>0.08</MeleeParryChance>
+                        <MaxHitPoints>200</MaxHitPoints>
+                    </value>
+                </li>
+                
+                <li Class="PatchOperationReplace">
+                    <xpath>Defs/ThingDef[defName="Mech_Skullywag"]/tools</xpath>
+                    <value>
+                        <tools>
+                            <li Class="CombatExtended.ToolCE">
+                                <label>front paralyze component</label>
+                                <capacities>
+                                    <li>ParalyzingPoke</li>
+                                    <li>UnlockDoor</li>
+                                </capacities>
+                                <power>2.0</power>
+                                <cooldownTime>2</cooldownTime>
+                                <linkedBodyPartsGroup>FrontParalyzeComponent</linkedBodyPartsGroup>
+                                <ensureLinkedBodyPartsGroupAlwaysUsable>true</ensureLinkedBodyPartsGroupAlwaysUsable>
+                                <alwaysTreatAsWeapon>true</alwaysTreatAsWeapon>
+                                <armorPenetration>0.0</armorPenetration>
+                            </li>
+                            <li Class="CombatExtended.ToolCE">
+                                <label>head</label>
+                                <capacities>
+                                    <li>Blunt</li>
+                                </capacities>
+                                <power>5.0</power>
+                                <cooldownTime>2</cooldownTime>
+                                <linkedBodyPartsGroup>HeadAttackTool</linkedBodyPartsGroup>
+                                <ensureLinkedBodyPartsGroupAlwaysUsable>true</ensureLinkedBodyPartsGroupAlwaysUsable>
+                                <chanceFactor>0.2</chanceFactor>
+                                <armorPenetrationBlunt>1.875</armorPenetrationBlunt>
+                            </li>
+                        </tools>
+                    </value>
+                </li>
+                
+                <!-- ========== Flamebot ========== -->
+                
+                <li Class="PatchOperationAddModExtension">
+                    <xpath>Defs/ThingDef[defName="Mech_Flamebot"]</xpath>
+                    <value>
+                        <li Class="CombatExtended.RacePropertiesExtensionCE">
+                            <bodyShape>Quadruped</bodyShape>
+                        </li>
+                    </value>
+                </li>
+                
+                <li Class="PatchOperationReplace">
+                    <xpath>Defs/ThingDef[defName="Mech_Flamebot"]/statBases/ArmorRating_Sharp</xpath>
+                    <value>
+                        <ArmorRating_Sharp>4</ArmorRating_Sharp>
+                    </value>
+                </li>
+                <li Class="PatchOperationReplace">
+                    <xpath>Defs/ThingDef[defName="Mech_Flamebot"]/statBases/ArmorRating_Blunt</xpath>
+                    <value>
+                        <ArmorRating_Blunt>6</ArmorRating_Blunt>
+                    </value>
+                </li>
+                
+                <li Class="PatchOperationAdd">
+                    <xpath>Defs/ThingDef[defName="Mech_Flamebot"]/statBases</xpath>
+                    <value>
+                        <MeleeDodgeChance>0.10</MeleeDodgeChance>
+                        <MeleeCritChance>0.04</MeleeCritChance>
+                        <MeleeParryChance>0.0</MeleeParryChance>
+                    </value>
+                </li>
+                
+                <li Class="PatchOperationReplace">
+                    <xpath>Defs/ThingDef[defName="Mech_Flamebot"]/tools</xpath>
+                    <value>
+                        <tools>
+                            <li Class="CombatExtended.ToolCE">
+                                <label>igniter</label>
+                                <capacities>
+                                    <li>Stab</li>
+                                    <li>Poke</li>
+                                </capacities>
+                                <power>1</power>
+                                <cooldownTime>1.26</cooldownTime>
+                                <linkedBodyPartsGroup>Igniter</linkedBodyPartsGroup>
+                                <alwaysTreatAsWeapon>true</alwaysTreatAsWeapon>
+                                <armorPenetrationBlunt>0.250</armorPenetrationBlunt>
+                            </li>
+                        </tools>
+                    </value>
+                </li>
+                
+                <!-- ========== Mammoth ========== -->
+                
+                <li Class="PatchOperationAddModExtension">
+                    <xpath>Defs/ThingDef[defName="Mech_Mammoth"]</xpath>
+                    <value>
+                        <li Class="CombatExtended.RacePropertiesExtensionCE">
+                            <bodyShape>Quadruped</bodyShape>
+                        </li>
+                    </value>
+                </li>
+                
+                <li Class="PatchOperationAdd">
+                    <xpath>Defs/ThingDef[defName="Mech_Mammoth"]/statBases</xpath>
+                    <value>
+                        <MeleeDodgeChance>0.04</MeleeDodgeChance>
+                        <MeleeCritChance>0.64</MeleeCritChance>
+                        <MeleeParryChance>0.58</MeleeParryChance>
+                        <MaxHitPoints>800</MaxHitPoints>
+                    </value>
+                </li>
+                
+                <li Class="PatchOperationReplace">
+                    <xpath>Defs/ThingDef[defName="Mech_Mammoth"]/statBases/ArmorRating_Sharp</xpath>
+                    <value>
+                        <ArmorRating_Sharp>30</ArmorRating_Sharp>
+                    </value>
+                </li>
+                <li Class="PatchOperationReplace">
+                    <xpath>Defs/ThingDef[defName="Mech_Mammoth"]/statBases/ArmorRating_Blunt</xpath>
+                    <value>
+                        <ArmorRating_Blunt>67.5</ArmorRating_Blunt>
+                    </value>
+                </li>
+                
+                <li Class="PatchOperationReplace">
+                    <xpath>Defs/ThingDef[defName="Mech_Mammoth"]/race/baseHealthScale</xpath>
+                    <value>
+                        <baseHealthScale>3</baseHealthScale>
+                    </value>
+                </li>
+                
+                <li Class="PatchOperationReplace">
+                    <xpath>Defs/ThingDef[defName="Mech_Mammoth"]/tools</xpath>
+                    <value>
+                        <tools>
+                            <li Class="CombatExtended.ToolCE">
+                                <label>head</label>
+                                <capacities>
+                                    <li>Ram</li>
+                                </capacities>
+                                <power>72</power>
+                                <cooldownTime>7</cooldownTime>
+                                <linkedBodyPartsGroup>HeadAttackTool</linkedBodyPartsGroup>
+                                <ensureLinkedBodyPartsGroupAlwaysUsable>true</ensureLinkedBodyPartsGroupAlwaysUsable>
+                                <armorPenetrationBlunt>33.750</armorPenetrationBlunt>
+                            </li>
+                            <li Class="CombatExtended.ToolCE">
+                                <label>head</label>
+                                <capacities>
+                                    <li>Blunt</li>
+                                </capacities>
+                                <power>35</power>
+                                <cooldownTime>3.51</cooldownTime>
+                                <linkedBodyPartsGroup>HeadAttackTool</linkedBodyPartsGroup>
+                                <ensureLinkedBodyPartsGroupAlwaysUsable>true</ensureLinkedBodyPartsGroupAlwaysUsable>
+                                <armorPenetrationBlunt>15</armorPenetrationBlunt>
+                            </li>
+                            <li Class="CombatExtended.ToolCE">
+                                <label>tusk</label>
+                                <capacities>
+                                    <li>Stab</li>
+                                </capacities>
+                                <power>52</power>
+                                <cooldownTime>2.34</cooldownTime>
+                                <linkedBodyPartsGroup>Tusk</linkedBodyPartsGroup>
+                                <ensureLinkedBodyPartsGroupAlwaysUsable>true</ensureLinkedBodyPartsGroupAlwaysUsable>
+                                <armorPenetrationBlunt>33.750</armorPenetrationBlunt>
+                                <armorPenetrationSharp>67.5</armorPenetrationSharp>
+                            </li>
+                            <li Class="CombatExtended.ToolCE">
+                                <label>leg</label>
+                                <capacities>
+                                    <li>Blunt</li>
+                                </capacities>
+                                <power>35</power>
+                                <cooldownTime>3.51</cooldownTime>
+                                <linkedBodyPartsGroup>FrontLegs</linkedBodyPartsGroup>
+                                <ensureLinkedBodyPartsGroupAlwaysUsable>true</ensureLinkedBodyPartsGroupAlwaysUsable>
+                                <armorPenetrationBlunt>15</armorPenetrationBlunt>
+                            </li>
+                        </tools>
+                    </value>
+                </li>
+                
+                <!-- ========== Assaulter ========== -->
+                
+                <li Class="PatchOperationAddModExtension">
+                    <xpath>Defs/ThingDef[defName="Mech_Assaulter"]</xpath>
+                    <value>
+                        <li Class="CombatExtended.RacePropertiesExtensionCE">
+                            <bodyShape>Humanoid</bodyShape>
+                        </li>
+                    </value>
+                </li>
+                
+                <li Class="PatchOperationReplace">
+                    <xpath>Defs/ThingDef[defName="Mech_Assaulter"]/statBases/ArmorRating_Sharp</xpath>
+                    <value>
+                        <ArmorRating_Sharp>15</ArmorRating_Sharp>
+                    </value>
+                </li>
+                <li Class="PatchOperationReplace">
+                    <xpath>Defs/ThingDef[defName="Mech_Assaulter"]/statBases/ArmorRating_Blunt</xpath>
+                    <value>
+                        <ArmorRating_Blunt>22.5</ArmorRating_Blunt>
+                    </value>
+                </li>
+                
+                <li Class="PatchOperationAdd">
+                    <xpath>Defs/ThingDef[defName="Mech_Assaulter"]/statBases</xpath>
+                    <value>
+                        <MeleeDodgeChance>0.12</MeleeDodgeChance>
+                        <MeleeCritChance>0.16</MeleeCritChance>
+                        <MeleeParryChance>0.12</MeleeParryChance>
+                        <MaxHitPoints>300</MaxHitPoints>
+                    </value>
+                </li>
+                
+                <li Class="PatchOperationReplace">
+                    <xpath>Defs/ThingDef[defName="Mech_Assaulter"]/tools</xpath>
+                    <value>
+                        <tools>
+                            <li Class="CombatExtended.ToolCE">
+                                <label>shield</label>
+                                <capacities>
+                                    <li>Blunt</li>
+                                </capacities>
+                                <power>19</power>
+                                <cooldownTime>2.95</cooldownTime>
+                                <linkedBodyPartsGroup>CoveredByShield</linkedBodyPartsGroup>
+                                <alwaysTreatAsWeapon>true</alwaysTreatAsWeapon>
+                                <armorPenetrationBlunt>7.5</armorPenetrationBlunt>
+                            </li>
+                            <li Class="CombatExtended.ToolCE">
+                                <label>gun protrusion</label>
+                                <capacities>
+                                    <li>Poke</li>
+                                </capacities>
+                                <power>7</power>
+                                <cooldownTime>2.24</cooldownTime>
+                                <linkedBodyPartsGroup>GunProtrusion</linkedBodyPartsGroup>
+                                <ensureLinkedBodyPartsGroupAlwaysUsable>true</ensureLinkedBodyPartsGroupAlwaysUsable>
+                                <chanceFactor>0.2</chanceFactor>
+                                <armorPenetrationBlunt>2.5</armorPenetrationBlunt>
+                            </li>
+                        </tools>
+                    </value>
+                </li>
+            </operations>
+        </match>
+    </Operation>
 </Patch>
