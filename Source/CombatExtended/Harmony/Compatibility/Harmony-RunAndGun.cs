@@ -70,7 +70,7 @@ namespace CombatExtended.HarmonyCE.Compatibility
                 yield return code;
                 if (!patched)
                 {
-                    if (code.opcode == OpCodes.Isinst && code.operand == Stance_RunAndGun)
+		  if (code.opcode == OpCodes.Isinst && ReferenceEquals(code.operand, Stance_RunAndGun))
                     {
                         ready = true;
                     }

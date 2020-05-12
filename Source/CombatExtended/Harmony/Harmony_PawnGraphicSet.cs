@@ -30,7 +30,7 @@ namespace CombatExtended.HarmonyCE
                     code.opcode = OpCodes.Brtrue;
                 }
 
-                if (code.opcode == OpCodes.Ldsfld && code.operand == AccessTools.Field(typeof(ApparelLayerDefOf), nameof(ApparelLayerDefOf.Overhead)))
+                if (code.opcode == OpCodes.Ldsfld && ReferenceEquals(code.operand, AccessTools.Field(typeof(ApparelLayerDefOf), nameof(ApparelLayerDefOf.Overhead))))
                 {
                     write = true;
                     yield return new CodeInstruction(OpCodes.Callvirt, AccessTools.Method(typeof(Harmony_PawnGraphicSet), nameof(RenderSpecial)));
