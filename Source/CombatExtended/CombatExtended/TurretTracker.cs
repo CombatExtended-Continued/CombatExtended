@@ -7,7 +7,7 @@ namespace CombatExtended
     [StaticConstructorOnStartup]
     public class TurretTracker : MapComponent
     {
-        public List<Building_TurretGunCE> Turrets = new List<Building_TurretGunCE>();
+        public HashSet<Building_TurretGunCE> Turrets = new HashSet<Building_TurretGunCE>();
         
         public TurretTracker(Map map) : base(map)
         {
