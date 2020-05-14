@@ -1,0 +1,642 @@
+<?xml version="1.0" encoding="utf-8" ?>
+
+<Patch>
+	<Operation Class="PatchOperationFindMod">
+			<mods>
+				<li>NewRatkinPlus</li>
+			</mods>
+		<match Class="PatchOperationSequence">
+		<operations>
+  
+		  <!-- Axe --> 	  
+		  <li Class="PatchOperationReplace">
+			<xpath>/Defs/ThingDef[defName="RK_Axe"]/tools</xpath>
+			<value>
+				<tools>
+					<li Class="CombatExtended.ToolCE">
+						<label>handle</label>
+						<capacities>
+							<li>Poke</li>
+						</capacities>
+						<power>3</power>
+						<cooldownTime>1.59</cooldownTime>
+						<chanceFactor>0.10</chanceFactor>
+						<armorPenetrationBlunt>0.625</armorPenetrationBlunt>
+						<linkedBodyPartsGroup>Handle</linkedBodyPartsGroup>
+					</li>
+					<li Class="CombatExtended.ToolCE">
+						<label>edge</label>
+						<capacities>
+							<li>Cut</li>
+						</capacities>
+						<power>17</power>
+						<cooldownTime>3.52</cooldownTime>
+						<chanceFactor>0.30</chanceFactor>
+						<armorPenetrationBlunt>2.025</armorPenetrationBlunt>
+						<armorPenetrationSharp>0.68</armorPenetrationSharp>
+						<linkedBodyPartsGroup>Edge</linkedBodyPartsGroup>
+					</li>
+				</tools>
+			</value>
+		  </li>
+
+		  <li Class="PatchOperationAdd">
+			<xpath>/Defs/ThingDef[defName="RK_Axe"]/statBases</xpath>
+			<value>
+			  <Bulk>3.5</Bulk>
+			  <MeleeCounterParryBonus>0.15</MeleeCounterParryBonus>
+			</value>
+		  </li>
+	
+		<li Class="PatchOperationAdd">
+			<xpath>/Defs/ThingDef[defName="RK_Axe"]/equippedStatOffsets</xpath>
+			<value>
+				<MeleeCritChance>0.10</MeleeCritChance>
+				<MeleeParryChance>0.15</MeleeParryChance>
+				<MeleeDodgeChance>0.20</MeleeDodgeChance>	
+			</value>
+		  </li>
+		  
+		  <li Class="PatchOperationAdd">
+			<xpath>/Defs/ThingDef[defName="RK_Axe"]/weaponTags</xpath>
+			<value>
+			  <li>CE_OneHandedWeapon</li>
+			</value>
+		  </li>
+	  
+		  <!-- Cleaver -->  
+		  <li Class="PatchOperationReplace">
+			<xpath>/Defs/ThingDef[defName="RK_Cleaver"]/tools</xpath>
+			<value>
+			  <tools>
+                <li Class="CombatExtended.ToolCE">
+                  <label>edge</label>
+                  <capacities>
+                    <li>Cut</li>
+                  </capacities>
+                  <power>15</power>
+                  <cooldownTime>1.2</cooldownTime>
+                  <chanceFactor>1.33</chanceFactor>
+                  <armorPenetrationBlunt>0.656</armorPenetrationBlunt>
+                  <armorPenetrationSharp>0.43</armorPenetrationSharp>
+                  <linkedBodyPartsGroup>Edge</linkedBodyPartsGroup>
+                </li>
+				<li Class="CombatExtended.ToolCE">
+					<label>handle</label>
+					<capacities>
+						<li>Poke</li>
+					</capacities>
+					<power>1</power>
+					<cooldownTime>1.26</cooldownTime>
+					<armorPenetrationBlunt>0.250</armorPenetrationBlunt>
+					<linkedBodyPartsGroup>Handle</linkedBodyPartsGroup>
+				</li>	
+			  </tools>
+			</value>
+		  </li>
+		  <li Class="PatchOperationAdd">
+			<xpath>/Defs/ThingDef[defName="RK_Cleaver"]/statBases</xpath>
+			<value>
+			  <Bulk>3</Bulk>
+			</value>
+		  </li>
+		  <li Class="PatchOperationAdd">
+			<xpath>/Defs/ThingDef[defName="RK_Cleaver"]/equippedStatOffsets</xpath>
+			<value>
+				<MeleeCritChance>0.2</MeleeCritChance>
+				<MeleeParryChance>0.35</MeleeParryChance>
+				<MeleeDodgeChance>0.2</MeleeDodgeChance>
+			</value>
+		  </li>
+		  <li Class="PatchOperationAdd">
+			<xpath>/Defs/ThingDef[defName="RK_Cleaver"]/weaponTags</xpath>
+			<value>
+			  <li>CE_OneHandedWeapon</li>
+			</value>
+		  </li>
+
+		  <!-- Two-Handed Sword -->  
+		  <li Class="PatchOperationReplace">
+			<xpath>/Defs/ThingDef[defName="RK_TwoHanded"]/tools</xpath>
+			<value>
+				<tools>			
+					<li Class="CombatExtended.ToolCE">
+						<label>handle</label>
+						<capacities>
+							<li>Poke</li>
+						</capacities>
+						<power>3</power>
+						<cooldownTime>1.6</cooldownTime>
+						<chanceFactor>0.10</chanceFactor>
+						<armorPenetrationBlunt>0.65</armorPenetrationBlunt>
+						<linkedBodyPartsGroup>Handle</linkedBodyPartsGroup>
+					</li>
+					<li Class="CombatExtended.ToolCE">
+						<label>point</label>
+						<capacities>
+							<li>Stab</li>
+						</capacities>
+						<power>13</power>
+						<cooldownTime>1.6</cooldownTime>
+						<chanceFactor>0.60</chanceFactor>
+						<armorPenetrationBlunt>0.65</armorPenetrationBlunt>
+						<armorPenetrationSharp>1.45</armorPenetrationSharp>
+						<linkedBodyPartsGroup>Point</linkedBodyPartsGroup>
+					</li>
+					<li Class="CombatExtended.ToolCE">
+						<label>edge</label>
+						<capacities>
+							<li>Cut</li>
+						</capacities>
+						<power>33</power>
+						<cooldownTime>1.43</cooldownTime>
+						<chanceFactor>0.30</chanceFactor>
+						<armorPenetrationBlunt>2.106</armorPenetrationBlunt>
+						<armorPenetrationSharp>0.53</armorPenetrationSharp>
+						<linkedBodyPartsGroup>Edge</linkedBodyPartsGroup>
+					</li>
+				</tools>
+			</value>
+		  </li>
+		  <li Class="PatchOperationAdd">
+			<xpath>/Defs/ThingDef[defName="RK_TwoHanded"]/statBases</xpath>
+			<value>
+			  <Bulk>7</Bulk>
+			  <MeleeCounterParryBonus>1.13</MeleeCounterParryBonus>
+			</value>
+		  </li>
+		  <li Class="PatchOperationAdd">
+			<xpath>/Defs/ThingDef[defName="RK_TwoHanded"]</xpath>
+			<value>
+				<equippedStatOffsets>
+					<MeleeCritChance>0.77</MeleeCritChance>
+					<MeleeParryChance>0.85</MeleeParryChance>
+					<MeleeDodgeChance>0.37</MeleeDodgeChance>
+				</equippedStatOffsets>	
+			</value>
+		  </li>
+		  <li Class="PatchOperationReplace">
+			<xpath>/Defs/ThingDef[defName="RK_TwoHanded"]/statBases/Mass</xpath>
+			<value>
+				<Mass>1.3</Mass>
+			</value>
+		  </li>
+
+		  <!-- Pitchfork -->  
+		  <li Class="PatchOperationReplace">
+			<xpath>/Defs/ThingDef[defName="RK_Fork"]/tools</xpath>
+			<value>
+			  <tools>
+				<li Class="CombatExtended.ToolCE">
+					<label>shaft</label>
+					<capacities>
+						<li>Blunt</li>
+					</capacities>
+					<power>4</power>
+					<cooldownTime>1.5</cooldownTime>
+					<chanceFactor>0.15</chanceFactor>
+					<armorPenetrationBlunt>1.352</armorPenetrationBlunt>
+					<linkedBodyPartsGroup>Shaft</linkedBodyPartsGroup>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>shaft</label>
+					<capacities>
+						<li>Poke</li>
+					</capacities>
+					<power>2</power>
+					<cooldownTime>2.11</cooldownTime>
+					<chanceFactor>0.05</chanceFactor>
+					<armorPenetrationBlunt>0.512</armorPenetrationBlunt>
+					<linkedBodyPartsGroup>Point</linkedBodyPartsGroup>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>head</label>
+					<capacities>
+						<li>Stab</li>
+					</capacities>
+					<power>15</power>
+					<cooldownTime>1.3</cooldownTime>
+					<chanceFactor>1.00</chanceFactor>
+					<armorPenetrationBlunt>1.352</armorPenetrationBlunt>
+					<armorPenetrationSharp>0.31</armorPenetrationSharp>
+					<linkedBodyPartsGroup>Head</linkedBodyPartsGroup>
+				</li>
+			  </tools>
+			</value>
+		  </li>
+		  <li Class="PatchOperationAdd">
+			<xpath>/Defs/ThingDef[defName="RK_Fork"]/statBases</xpath>
+			<value>
+			  <Bulk>7</Bulk>
+			  <MeleeCounterParryBonus>2</MeleeCounterParryBonus>
+			</value>
+		  </li>
+		  <li Class="PatchOperationAdd">
+			<xpath>/Defs/ThingDef[defName="RK_Fork"]/equippedStatOffsets</xpath>
+			<value>
+				<MeleeCritChance>0.16</MeleeCritChance>
+				<MeleeParryChance>1.5</MeleeParryChance>
+				<MeleeDodgeChance>0.8</MeleeDodgeChance>
+			</value>
+		  </li>
+
+		  <!-- Bill -->  
+		  <li Class="PatchOperationReplace">
+			<xpath>/Defs/ThingDef[defName="RK_Hockey"]/tools</xpath>
+			<value>
+			  <tools>
+				<li Class="CombatExtended.ToolCE">
+					<label>shaft</label>
+					<capacities>
+						<li>Blunt</li>
+					</capacities>
+					<power>7</power>
+					<cooldownTime>1.35</cooldownTime>
+					<chanceFactor>0.15</chanceFactor>
+					<armorPenetrationBlunt>2.25</armorPenetrationBlunt>
+					<linkedBodyPartsGroup>Shaft</linkedBodyPartsGroup>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>shaft</label>
+					<capacities>
+						<li>Poke</li>
+					</capacities>
+					<power>4</power>
+					<cooldownTime>1.78</cooldownTime>
+					<chanceFactor>0.05</chanceFactor>
+					<armorPenetrationBlunt>1</armorPenetrationBlunt>
+					<linkedBodyPartsGroup>Point</linkedBodyPartsGroup>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+				  <label>edge</label>
+					<capacities>
+						<li>Cut</li>
+					</capacities>
+					<power>18</power>
+					<cooldownTime>3</cooldownTime>
+					<armorPenetrationBlunt>1.44</armorPenetrationBlunt>
+					<armorPenetrationSharp>0.48</armorPenetrationSharp>
+				  <linkedBodyPartsGroup>Blade</linkedBodyPartsGroup>
+				</li>				
+			  </tools>
+			</value>
+		  </li>
+		  <li Class="PatchOperationAdd">
+			<xpath>/Defs/ThingDef[defName="RK_Hockey"]/statBases</xpath>
+			<value>
+			  <MeleeCounterParryBonus>1.68</MeleeCounterParryBonus>
+			  <Bulk>8</Bulk>
+			</value>
+		  </li>
+		  <li Class="PatchOperationReplace">
+			<xpath>/Defs/ThingDef[defName="RK_Hockey"]/equippedStatOffsets</xpath>
+			<value>
+			  <equippedStatOffsets>
+				<MeleeCritChance>0.17</MeleeCritChance>
+				<MeleeParryChance>1.45</MeleeParryChance>
+				<MeleeDodgeChance>0.9</MeleeDodgeChance>
+			  </equippedStatOffsets>
+			</value>
+		  </li>
+		  
+		<!-- Dagger -->	
+		<li Class="PatchOperationReplace">
+			<xpath>Defs/ThingDef[defName="RK_Dagger"]/tools</xpath>
+			<value>
+				<tools>
+					<li Class="CombatExtended.ToolCE">
+						<label>handle</label>
+						<capacities>
+							<li>Poke</li>
+						</capacities>
+						<power>1</power>
+						<cooldownTime>1.26</cooldownTime>
+						<armorPenetrationBlunt>0.250</armorPenetrationBlunt>
+						<linkedBodyPartsGroup>Handle</linkedBodyPartsGroup>
+					</li>
+					<li Class="CombatExtended.ToolCE">
+						<label>blade</label>
+						<capacities>
+							<li>Cut</li>
+						</capacities>
+						<power>10</power>
+						<cooldownTime>1.18</cooldownTime>
+						<armorPenetrationBlunt>0.36</armorPenetrationBlunt>
+						<armorPenetrationSharp>0.32</armorPenetrationSharp>
+						<linkedBodyPartsGroup>Blade</linkedBodyPartsGroup>
+					</li>
+					<li Class="CombatExtended.ToolCE">
+						<label>point</label>
+						<capacities>
+							<li>Stab</li>
+						</capacities>
+						<power>11</power>
+						<cooldownTime>1.26</cooldownTime>
+						<chanceFactor>1.33</chanceFactor>
+						<armorPenetrationBlunt>0.25</armorPenetrationBlunt>
+						<armorPenetrationSharp>0.42</armorPenetrationSharp>
+						<linkedBodyPartsGroup>Point</linkedBodyPartsGroup>
+					</li>
+				</tools>
+			</value>
+		</li>
+
+		<li Class="PatchOperationAdd">
+			<xpath>Defs/ThingDef[defName="RK_Dagger"]/statBases</xpath>
+			<value>
+				<Bulk>1</Bulk>
+				<MeleeCounterParryBonus>0.15</MeleeCounterParryBonus>
+			</value>
+		</li>
+
+		<li Class="PatchOperationAdd">
+			<xpath>Defs/ThingDef[defName="RK_Dagger"]</xpath>
+			<value>
+				<equippedStatOffsets>
+					<MeleeCritChance>0.5</MeleeCritChance>
+					<MeleeParryChance>0.15</MeleeParryChance>
+					<MeleeDodgeChance>0.05</MeleeDodgeChance>
+				</equippedStatOffsets>
+			</value>
+		</li>
+
+		<!-- One-handed Sword -->
+		<li Class="PatchOperationReplace">
+			<xpath>Defs/ThingDef[defName="RK_OneHanded"]/tools</xpath>
+			<value>
+				<tools>
+				<li Class="CombatExtended.ToolCE">
+					<label>handle</label>
+					<capacities>
+						<li>Poke</li>
+					</capacities>
+					<power>2</power>
+					<cooldownTime>1.44</cooldownTime>
+					<armorPenetrationBlunt>0.425</armorPenetrationBlunt>
+					<linkedBodyPartsGroup>Handle</linkedBodyPartsGroup>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>point</label>
+					<capacities>
+						<li>Stab</li>
+					</capacities>
+					<power>27</power>
+					<cooldownTime>1.44</cooldownTime>
+					<armorPenetrationBlunt>0.425</armorPenetrationBlunt>
+					<armorPenetrationSharp>0.48</armorPenetrationSharp>
+					<linkedBodyPartsGroup>Point</linkedBodyPartsGroup>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>edge</label>
+					<capacities>
+						<li>Cut</li>
+					</capacities>
+					<power>20</power>
+					<cooldownTime>1.34</cooldownTime>
+					<chanceFactor>1.33</chanceFactor>
+					<armorPenetrationBlunt>0.956</armorPenetrationBlunt>
+					<armorPenetrationSharp>0.43</armorPenetrationSharp>
+					<linkedBodyPartsGroup>Edge</linkedBodyPartsGroup>
+				</li>
+				</tools>
+			</value>
+		</li>
+
+		<li Class="PatchOperationAdd">
+			<xpath>Defs/ThingDef[defName="RK_OneHanded"]/statBases</xpath>
+			<value>
+				<Bulk>3.5</Bulk>
+				<MeleeCounterParryBonus>0.35</MeleeCounterParryBonus>	
+			</value>
+		</li>
+		  <li Class="PatchOperationAdd">
+			<xpath>/Defs/ThingDef[defName="RK_OneHanded"]/weaponTags</xpath>
+			<value>
+			  <li>CE_OneHandedWeapon</li>
+			</value>
+		  </li>
+		<li Class="PatchOperationAdd">
+			<xpath>Defs/ThingDef[defName="RK_OneHanded"]</xpath>
+			<value>
+				<equippedStatOffsets>
+					<MeleeCritChance>0.2</MeleeCritChance>
+					<MeleeParryChance>0.35</MeleeParryChance>
+					<MeleeDodgeChance>0.2</MeleeDodgeChance>
+				</equippedStatOffsets>
+			</value>
+		</li>
+		
+		<!-- Two-handed Sword (Remove pointless duplicate.) -->
+		<li Class="PatchOperationRemove">
+			<xpath>Defs/ThingDef[defName="RK_LongSword"]</xpath>
+		</li>
+
+		<!-- Magic Wand/Concussion Grenade -->
+		<li Class="PatchOperationReplace">
+			<xpath>Defs/ThingDef[defName="RK_MagicWand"]/costList/Chemfuel</xpath>
+				<value>
+					<FSX>1</FSX>
+				</value>
+		</li>
+		<li Class="PatchOperationReplace">
+			<xpath>Defs/ThingDef[defName="RK_MagicWand"]/tools</xpath>
+				<value>
+					<tools>
+					<li Class="CombatExtended.ToolCE">
+						<label>edge</label>
+						<capacities>
+							<li>Kaboom</li>
+						</capacities>
+						<power>5</power>
+						<armorPenetrationBlunt>5.625</armorPenetrationBlunt>
+						<cooldownTime>1.5</cooldownTime>
+					</li>
+					</tools>
+				</value>
+		</li>
+
+		  <!-- Light Lance -->	  
+		  <li Class="PatchOperationReplace">
+			<xpath>/Defs/ThingDef[defName="RK_LightLance"]/tools</xpath>
+			<value>
+			  <tools>
+				<li Class="CombatExtended.ToolCE">
+					<label>shaft</label>
+					<capacities>
+						<li>Blunt</li>
+					</capacities>
+					<power>4</power>
+					<cooldownTime>1.67</cooldownTime>
+					<chanceFactor>0.15</chanceFactor>
+					<armorPenetrationBlunt>1.224</armorPenetrationBlunt>
+					<linkedBodyPartsGroup>Shaft</linkedBodyPartsGroup>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>shaft</label>
+					<capacities>
+						<li>Poke</li>
+					</capacities>
+					<power>2</power>
+					<cooldownTime>2.14</cooldownTime>
+					<chanceFactor>0.05</chanceFactor>
+					<armorPenetrationBlunt>0.544</armorPenetrationBlunt>
+					<linkedBodyPartsGroup>Point</linkedBodyPartsGroup>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>head</label>
+					<capacities>
+						<li>Stab</li>
+					</capacities>
+					<power>17</power>
+					<cooldownTime>1.43</cooldownTime>
+					<chanceFactor>1.00</chanceFactor>
+					<armorPenetrationBlunt>1.224</armorPenetrationBlunt>
+					<armorPenetrationSharp>0.84</armorPenetrationSharp>
+					<linkedBodyPartsGroup>Head</linkedBodyPartsGroup>
+				</li>				
+			  </tools>
+			</value>
+		  </li>
+		  <li Class="PatchOperationAdd">
+			<xpath>/Defs/ThingDef[defName="RK_LightLance"]/statBases</xpath>
+			<value>
+			  <MeleeCounterParryBonus>1.88</MeleeCounterParryBonus>
+			  <Bulk>7</Bulk>
+			</value>
+		  </li>
+		  <li Class="PatchOperationReplace">
+			<xpath>/Defs/ThingDef[defName="RK_LightLance"]/equippedStatOffsets</xpath>
+			<value>
+			  <equippedStatOffsets>
+				<MeleeCritChance>0.2</MeleeCritChance>
+				<MeleeParryChance>1.41</MeleeParryChance>
+				<MeleeDodgeChance>0.8</MeleeDodgeChance>
+			  </equippedStatOffsets>
+			</value>
+		  </li>
+		
+		 <!-- Heavy Lance -->
+		<li Class="PatchOperationReplace">
+			<xpath>/Defs/ThingDef[defName="RK_HeavyLance"]/tools</xpath>
+			<value>
+			  <tools>
+				<li Class="CombatExtended.ToolCE">
+					<label>shaft</label>
+					<capacities>
+						<li>Blunt</li>
+					</capacities>
+					<power>6</power>
+					<cooldownTime>1.83</cooldownTime>
+					<chanceFactor>0.15</chanceFactor>
+					<armorPenetrationBlunt>1.8</armorPenetrationBlunt>
+					<linkedBodyPartsGroup>Shaft</linkedBodyPartsGroup>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>shaft</label>
+					<capacities>
+						<li>Poke</li>
+					</capacities>
+					<power>3</power>
+					<cooldownTime>2.36</cooldownTime>
+					<chanceFactor>0.05</chanceFactor>
+					<armorPenetrationBlunt>0.8</armorPenetrationBlunt>
+					<linkedBodyPartsGroup>Point</linkedBodyPartsGroup>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>head</label>
+					<capacities>
+						<li>Stab</li>
+					</capacities>
+					<power>14</power>
+					<cooldownTime>1.57</cooldownTime>
+					<chanceFactor>1.00</chanceFactor>
+					<armorPenetrationBlunt>1.8</armorPenetrationBlunt>
+					<armorPenetrationSharp>1.2</armorPenetrationSharp>
+					<linkedBodyPartsGroup>Head</linkedBodyPartsGroup>
+				</li>
+			  </tools>
+			</value>
+		  </li>
+		  <li Class="PatchOperationAdd">
+			<xpath>/Defs/ThingDef[defName="RK_HeavyLance"]/statBases</xpath>
+			<value>
+			  <MeleeCounterParryBonus>1.28</MeleeCounterParryBonus>
+			  <Bulk>7</Bulk>
+			</value>
+		  </li>
+		  <li Class="PatchOperationReplace">
+			<xpath>/Defs/ThingDef[defName="RK_HeavyLance"]/equippedStatOffsets</xpath>
+			<value>
+			  <equippedStatOffsets>
+				<MeleeCritChance>0.2</MeleeCritChance>
+				<MeleeParryChance>0.98</MeleeParryChance>
+				<MeleeDodgeChance>0.8</MeleeDodgeChance>
+			  </equippedStatOffsets>
+			</value>
+		  </li>
+
+		  <!-- Gunlances (Normal & Spread) -->
+			<li Class="PatchOperationReplace">
+			<xpath>/Defs/ThingDef[defName="RK_Gunlance_NormalType" or defName="RK_Gunlance_SpreadType"]/tools</xpath>
+			<value>
+				<tools>			
+					<li Class="CombatExtended.ToolCE">
+						<label>handle</label>
+						<capacities>
+							<li>Poke</li>
+						</capacities>
+						<power>3</power>
+						<cooldownTime>1.9</cooldownTime>
+						<chanceFactor>0.10</chanceFactor>
+						<armorPenetrationBlunt>0.65</armorPenetrationBlunt>
+						<linkedBodyPartsGroup>Handle</linkedBodyPartsGroup>
+					</li>
+					<li Class="CombatExtended.ToolCE">
+						<label>point</label>
+						<capacities>
+							<li>Stab</li>
+						</capacities>
+						<power>16</power>
+						<cooldownTime>1.6</cooldownTime>
+						<chanceFactor>0.60</chanceFactor>
+						<armorPenetrationBlunt>3</armorPenetrationBlunt>
+						<armorPenetrationSharp>1.9</armorPenetrationSharp>
+						<linkedBodyPartsGroup>Point</linkedBodyPartsGroup>
+					</li>
+					<li Class="CombatExtended.ToolCE">
+						<label>edge</label>
+						<capacities>
+							<li>Cut</li>
+						</capacities>
+						<power>38</power>
+						<cooldownTime>2.1</cooldownTime>
+						<chanceFactor>0.30</chanceFactor>
+						<armorPenetrationBlunt>4.106</armorPenetrationBlunt>
+						<armorPenetrationSharp>0.90</armorPenetrationSharp>
+						<linkedBodyPartsGroup>Edge</linkedBodyPartsGroup>
+					</li>
+				</tools>
+			</value>
+		    </li>
+		    <li Class="PatchOperationAdd">
+		  	<xpath>/Defs/ThingDef[defName="RK_Gunlance_NormalType" or defName="RK_Gunlance_SpreadType"]/statBases</xpath>
+				<value>
+				  <MeleeCounterParryBonus>1.28</MeleeCounterParryBonus>
+				  <Bulk>7</Bulk>
+				</value>
+		    </li>
+		    <li Class="PatchOperationReplace">
+		  	<xpath>/Defs/ThingDef[defName="RK_Gunlance_NormalType" or defName="RK_Gunlance_SpreadType"]/equippedStatOffsets</xpath>
+				<value>
+				  <equippedStatOffsets>
+					<MeleeCritChance>0.2</MeleeCritChance>
+					<MeleeParryChance>0.98</MeleeParryChance>
+					<MeleeDodgeChance>0.8</MeleeDodgeChance>
+				  </equippedStatOffsets>
+				</value>
+		    </li>
+
+		</operations>
+		</match>
+	</Operation>
+</Patch>
