@@ -25,11 +25,15 @@ namespace CombatExtended.CombatExtended.Jobs.Utils
 		public static Job MakeReloadJob(Pawn pawn, Building_TurretGunCE turret)
 		{
 			var compAmmo = turret.CompAmmo;
-			var amountNeeded = turret.CompAmmo.MissingToFullMagazine;
 			if (compAmmo == null)
 			{
-				CELogger.Error("Tried to create a reload job on a thing that's not reloadable.");
+				CELogger.Error($"{pawn} tried to create a reload job on a thing ({turret}) that's not reloadable.");
 				return null;
+			}
+
+			if (!compAmmo.UseAmmo)
+			{
+				return MakeReloadJobNoAmmo(turret);
 			}
 
 			var ammo = FindBestAmmo(pawn, turret);
@@ -45,9 +49,9 @@ namespace CombatExtended.CombatExtended.Jobs.Utils
 			return job;
 		}
 
-		public static Job MakeReloadJobNoAmmo(Building_TurretGunCE turret)
+		private static Job MakeReloadJobNoAmmo(Building_TurretGunCE turret)
 		{
-			var compAmmo = turret.TryGetComp<CompAmmoUser>();
+			var compAmmo = turret.CompAmmo;
 			if (compAmmo == null)
 			{
 				CELogger.Error("Tried to create a reload job on a thing that's not reloadable.");
@@ -87,6 +91,7 @@ namespace CombatExtended.CombatExtended.Jobs.Utils
 			{
 				CELogger.Message($"{pawn} could not reload {turret} because turret is on fire.");
 				JobFailReason.Is("CE_TurretIsBurning".Translate());
+				return false;
 			}
 			if (compAmmo.FullMagazine)
 			{
@@ -110,7 +115,7 @@ namespace CombatExtended.CombatExtended.Jobs.Utils
 				CELogger.Message($"{pawn} could not reload {turret} because turret is manned (or was recently manned) by someone else.");
 				return false;
 			}
-			if (FindBestAmmo(pawn, turret) == null)
+			if (compAmmo.UseAmmo && FindBestAmmo(pawn, turret) == null)
 			{
 				JobFailReason.Is("CE_NoAmmoAvailable".Translate());
 				return false;

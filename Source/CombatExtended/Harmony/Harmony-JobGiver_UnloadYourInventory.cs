@@ -42,7 +42,6 @@ namespace CombatExtended.HarmonyCE
 
             Label branchFalse = il.DefineLabel(); // since the logic is gettin changed more than I thought, need a new label.
 
-            Label? branchTrue = null;
 
             int patchPhase = 0;
             foreach (CodeInstruction instruction in instructions)
@@ -58,7 +57,6 @@ namespace CombatExtended.HarmonyCE
                 // The first branch we find is the one to remember.  This is also the insertion point...
                 if (patchPhase == 0 && instruction.opcode.Equals(OpCodes.Brtrue_S))
                 {
-                    branchTrue = instruction.operand as Label?;
 
                     // If the inventory isn't set to unload mode, short circuit and jump to return null path...
                     yield return new CodeInstruction(OpCodes.Brfalse, branchFalse);

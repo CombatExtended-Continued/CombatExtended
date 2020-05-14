@@ -48,7 +48,6 @@ namespace CombatExtended
         private CompChangeableProjectile compChangeable = null;
         public bool isReloading = false;
         private int ticksUntilAutoReload = 0;
-        private int lastSurroundingAmmoCheck = int.MinValue;
 
         #endregion
 

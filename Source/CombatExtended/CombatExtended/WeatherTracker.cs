@@ -8,24 +8,21 @@ namespace CombatExtended
     public class WeatherTracker : MapComponent
     {
         private static readonly string[] windDirections = new string[] { "N", "NE", "E", "SE", "S", "SW", "W", "NW" };
-        private const float HumidityDecayPerTick = 0.05f;
-        private const int MaxPrecipitation = GenDate.TicksPerDay * 3;
         private const float BaseWindStrength = 3;    // With 2 max noise (see vanilla WindManager class), 1.5 multiplier from weather we get a 9 on Beaufort scale
         private const float MaxWindStrength = 9;
-        private const float MaxWindStrengthDelta = 0.5f;
         private const float MaxDirectionDelta = 5f;
 
-        private float _humidity = MaxPrecipitation * 0.5f;
+        private float _humidity = FireSpread.values.maxHumidity * 0.5f;
         private float _windDirection;
         private float _windDirectionTarget;
 
         public float Humidity
         {
             get => _humidity;
-            private set => _humidity = Mathf.Clamp(value, 0, MaxPrecipitation);
+            private set => _humidity = Mathf.Clamp(value, 0, FireSpread.values.maxHumidity);
         }
 
-        public float HumidityPercent => Humidity / MaxPrecipitation;
+        public float HumidityPercent => Humidity / FireSpread.values.maxHumidity;
         public Vector3 WindDirection => Vector3Utility.FromAngleFlat(_windDirection - 90);
 
         private float WindStrength => Mathf.Min(BaseWindStrength * map.windManager.WindSpeed, MaxWindStrength);
@@ -55,7 +52,7 @@ namespace CombatExtended
         public override void ExposeData()
         {
             base.ExposeData();
-            Scribe_Values.Look(ref _humidity, "humidity", MaxPrecipitation * 0.5f);
+            Scribe_Values.Look(ref _humidity, "humidity", FireSpread.values.maxHumidity * 0.5f);
             Scribe_Values.Look(ref _windDirection, "windDirection");
             Scribe_Values.Look(ref _windDirectionTarget, "windDirectionTarget");
         }
@@ -75,11 +72,11 @@ namespace CombatExtended
             // Rain
             if (map.weatherManager.RainRate > 0)
             {
-                Humidity += map.weatherManager.RainRate * 3;
+                Humidity += map.weatherManager.RainRate * FireSpread.values.humidityIncreaseMultiplier;
             }
             else
             {
-                Humidity -= HumidityDecayPerTick;
+                Humidity -= FireSpread.values.humidityDecayPerTick;
             }
 
             // Wind

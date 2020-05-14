@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+		<li>Alpha Animals</li>
+		</mods>
+
+		<match Class="PatchOperationSequence">
+			<operations>
+
+			<!-- Larval Atispec -->
+			
+				<li Class="PatchOperationAddModExtension">
+					<xpath>/Defs/ThingDef[defName="AA_LarvalAtispec"]</xpath>
+					<value>
+						<li Class="CombatExtended.RacePropertiesExtensionCE">
+							<bodyShape>Quadruped</bodyShape>
+						</li>
+					</value>
+				</li>
+
+				<li Class="PatchOperationAdd">
+					<xpath>/Defs/ThingDef[defName="AA_LarvalAtispec"]/statBases</xpath>
+					<value>
+						<MeleeDodgeChance>0.00</MeleeDodgeChance>
+						<MeleeCritChance>0.01</MeleeCritChance>
+						<MeleeParryChance>0.01</MeleeParryChance>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/ThingDef[defName="AA_LarvalAtispec"]/tools</xpath>
+					<value>
+						<tools>
+							<li Class="CombatExtended.ToolCE">
+								<label>head</label>
+								<capacities>
+									<li>Blunt</li>
+								</capacities>
+								<power>4</power>
+								<cooldownTime>2</cooldownTime>
+								<linkedBodyPartsGroup>HeadAttackTool</linkedBodyPartsGroup>
+								<ensureLinkedBodyPartsGroupAlwaysUsable>true</ensureLinkedBodyPartsGroupAlwaysUsable>
+								<armorPenetrationBlunt>0.3</armorPenetrationBlunt>
+							</li>
+						</tools>
+					</value>
+				</li>
+				
+				<li Class="PatchOperationAddModExtension">
+					<xpath>/Defs/ThingDef[defName="AA_Atispec"]</xpath>
+					<value>
+						<li Class="CombatExtended.RacePropertiesExtensionCE">
+							<bodyShape>Birdlike</bodyShape>
+						</li>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/ThingDef[defName="AA_Atispec"]/statBases/ArmorRating_Blunt</xpath>
+					<value>
+						<ArmorRating_Blunt>5</ArmorRating_Blunt>
+					</value>
+				</li>
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/ThingDef[defName="AA_Atispec"]/statBases/ArmorRating_Sharp</xpath>
+					<value>
+						<ArmorRating_Sharp>1.5</ArmorRating_Sharp>
+					</value>
+				</li>
+				
+				<li Class="PatchOperationAdd">
+					<xpath>/Defs/ThingDef[defName="AA_Atispec"]/statBases</xpath>
+					<value>
+						<MeleeDodgeChance>0.23</MeleeDodgeChance>
+						<MeleeCritChance>0.12</MeleeCritChance>
+						<MeleeParryChance>0.35</MeleeParryChance>
+					</value>
+				</li>
+
+				<!-- Atispec -->
+
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/ThingDef[defName="AA_Atispec"]/tools</xpath>
+					<value>
+						<tools>
+
+							<li Class="CombatExtended.ToolCE">
+								<label>left claw</label>
+								<capacities>
+									<li>Scratch</li>
+								</capacities>
+								<power>30</power>
+								<cooldownTime>1.88</cooldownTime>
+								<linkedBodyPartsGroup>FrontLeftClaws</linkedBodyPartsGroup>
+								<armorPenetrationSharp>2</armorPenetrationSharp>
+								<armorPenetrationBlunt>4</armorPenetrationBlunt>
+							</li>
+
+							<li Class="CombatExtended.ToolCE">
+								<label>right claw</label>
+								<capacities>
+									<li>Scratch</li>
+								</capacities>
+								<power>30</power>
+								<cooldownTime>1.88</cooldownTime>
+								<linkedBodyPartsGroup>FrontRightClaws</linkedBodyPartsGroup>
+								<armorPenetrationSharp>2</armorPenetrationSharp>
+								<armorPenetrationBlunt>4</armorPenetrationBlunt>
+							</li>
+							<li Class="CombatExtended.ToolCE">
+								<capacities>
+									<li>AA_VeryToxicSting</li>
+								</capacities>
+								<cooldownTime>2.45</cooldownTime>
+								<power>40</power>
+								<linkedBodyPartsGroup>AA_Sting</linkedBodyPartsGroup>
+								<chanceFactor>0.5</chanceFactor>
+								<armorPenetrationSharp>12</armorPenetrationSharp>
+								<armorPenetrationBlunt>8</armorPenetrationBlunt>
+							</li>
+
+							<li Class="CombatExtended.ToolCE">
+								<capacities>
+									<li>Bite</li>
+								</capacities>
+								<power>30</power>
+								<cooldownTime>1.85</cooldownTime>
+								<linkedBodyPartsGroup>Mouth</linkedBodyPartsGroup>
+								<chanceFactor>0.1</chanceFactor>
+								<armorPenetrationSharp>4</armorPenetrationSharp>
+								<armorPenetrationBlunt>5</armorPenetrationBlunt>
+							</li>
+
+						</tools>
+					</value>
+				</li>
+			</operations>
+		</match>
+	</Operation>
+</Patch>
