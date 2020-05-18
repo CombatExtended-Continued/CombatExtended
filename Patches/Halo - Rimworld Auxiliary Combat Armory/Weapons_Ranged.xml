@@ -11,11 +11,10 @@
         <!-- === Tools === -->
         <li Class="PatchOperationReplace">
           <xpath>
-            Defs/ThingDef[
-              defName = "HRACA_Gun_Charge_Pistol" or
-              defName = "HRACA_Gun_Charge_Magnum" or
-              defName = "HRACA_Gun_Charge_SMG" or
-              defName = "HRACA_Gun_Plasma_Pistol"]/tools
+            /Defs/ThingDef[
+              @Name="HRACA_Gun_charge_pistol_base" or
+              defName="HRACA_Gun_Charge_SMG" or
+              defName="HRACA_Gun_Plasma_Pistol"]/tools
           </xpath>
 
           <value>
@@ -47,17 +46,17 @@
 
         <li Class="PatchOperationReplace">
           <xpath>
-            Defs/ThingDef[
-              defName = "HRACA_Gun_Charge_Shotgun" or
-              defName = "HRACA_Gun_Charge_Rifle" or
-              defname = "HRACA_Gun_Charge_BR" or
-              defName = "HRACA_Gun_Charge_DMR" or
-              defName = "HRACA_Gun_Charge_Sniper" or
-              defName = "HRACA_EmpLauncher" or
-              defName = "HRACA_Gun_Plasma_Rifle" or
-              defName = "HRACA_Gun_Plasma_BR" or
-              defName = "HRACA_Gun_Plasma_DMR" or
-              defName = "HRACA_Gun_Plasma_Shotgun"]/tools
+            /Defs/ThingDef[
+              defName="HRACA_Gun_Charge_Shotgun" or
+              defName="HRACA_Gun_Charge_Rifle" or
+              defname="HRACA_Gun_Charge_BR" or
+              defName="HRACA_Gun_Charge_DMR" or
+              defName="HRACA_Gun_Charge_Sniper" or
+              defName="HRACA_EmpLauncher" or
+              defName="HRACA_Gun_Plasma_Rifle" or
+              defName="HRACA_Gun_Plasma_BR" or
+              defName="HRACA_Gun_Plasma_DMR" or
+              defName="HRACA_Gun_Plasma_Shotgun"]/tools
           </xpath>
 
           <value>
@@ -98,7 +97,7 @@
         </li>
 
         <li Class="PatchOperationReplace">
-          <xpath>Defs/ThingDef[defName = "HRACA_Gun_Charge_Launcher"]/tools</xpath>
+          <xpath>/Defs/ThingDef[defName="HRACA_Gun_Charge_Launcher"]/tools</xpath>
 
           <value>
             <tools>
@@ -484,6 +483,12 @@
             <muzzleFlashScale>9</muzzleFlashScale>
             <ignorePartialLoSBlocker>true</ignorePartialLoSBlocker>
           </Properties>
+
+          <AmmoUser>
+            <magazineSize>1</magazineSize>
+            <reloadTime>4.5</reloadTime>
+            <ammoSet>AmmoSet_HRACA_EMP</ammoSet>
+          </AmmoUser>
 
           <FireModes>
             <aiAimMode>SuppressFire</aiAimMode>
