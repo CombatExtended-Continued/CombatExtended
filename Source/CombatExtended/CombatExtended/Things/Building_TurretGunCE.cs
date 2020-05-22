@@ -151,6 +151,8 @@ namespace CombatExtended
         public override void SpawnSetup(Map map, bool respawningAfterLoad)      //Add mannableComp, ticksUntilAutoReload, register to GenClosestAmmo
         {
             base.SpawnSetup(map, respawningAfterLoad);
+            Map.GetComponent<TurretTracker>().Register(this);
+
             dormantComp = GetComp<CompCanBeDormant>();
             powerComp = GetComp<CompPowerTrader>();
             mannableComp = GetComp<CompMannable>();
@@ -185,6 +187,7 @@ namespace CombatExtended
 
         public override void DeSpawn(DestroyMode mode = DestroyMode.Vanish)    // Added GenClosestAmmo unsubscription
         {
+            Map.GetComponent<TurretTracker>().Unregister(this);
             base.DeSpawn(mode);
             ResetCurrentTarget();
         }
