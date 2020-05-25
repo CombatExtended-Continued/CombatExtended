@@ -39,6 +39,13 @@ namespace CombatExtended
         }
         */
 
+        // these weapons need to have ammo, even if the ammo system is turned off
+        private static ISet<string> mortars = new HashSet<string>(new string[] {
+            "Artillery_Mortar",
+            "Artillery_AutoMortar",
+            "Gun_FlakTurret" // ?
+        });
+
         public static void Inject()
         {
             if (InjectAmmos())
@@ -66,7 +73,9 @@ namespace CombatExtended
                         && (def.generateAllowChance > 0
                             || def.tradeability.TraderCanSell()
                             || (def.weaponTags != null && def.weaponTags.Contains("TurretGun"))))
-                        CE_Utility.allWeaponDefs.Add(def);
+                        Log.Message("adding weapon " + def.defName);
+                        if (enabled || mortars.Contains(def.defName))
+                            CE_Utility.allWeaponDefs.Add(def);
                 }
                 if (CE_Utility.allWeaponDefs.NullOrEmpty())
                 {
