@@ -443,7 +443,7 @@ namespace CombatExtended
             if (!HasMagazine || (Holder == null && turret == null))
                 return null; // the job couldn't be created.
 
-            return new Job(CE_JobDefOf.ReloadWeapon, Holder, parent);
+            return JobMaker.MakeJob(CE_JobDefOf.ReloadWeapon, Holder, parent);
         }
 
         private void DoOutOfAmmoAction()
