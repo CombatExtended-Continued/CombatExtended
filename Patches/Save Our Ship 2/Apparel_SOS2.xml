@@ -8,6 +8,7 @@
 		<match Class="PatchOperationSequence">
 		<operations>
 			
+	<!--  Survival Belt -->
 	<li Class="PatchOperationAdd">
 		<xpath>Defs/ThingDef[defName="Apparel_SpaceSurvivalBelt"]/statBases</xpath>
 		<value>
@@ -15,6 +16,22 @@
 			<WornBulk>1</WornBulk>
 		</value>
 	 </li>
+
+	<!--  EVA Suit -->
+	 <li Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="Apparel_SpaceSuitBody"]/statBases</xpath>
+		<value>
+			<Bulk>6</Bulk>
+			<WornBulk>4</WornBulk>
+		</value>
+	 </li>
+
+	   <li Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="Apparel_SpaceSuitBody"]/equippedStatOffsets</xpath>
+		<value>
+                         <ToxicSensitivity>-0.50</ToxicSensitivity>
+		</value>
+	   </li>
 
 
 	<!--  EVA Helmet -->
