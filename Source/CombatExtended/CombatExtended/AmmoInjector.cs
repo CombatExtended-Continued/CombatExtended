@@ -26,6 +26,16 @@ namespace CombatExtended
         public const string destroyWithAmmoDisabledTag = "CE_Ammo";               // The trade tag which automatically deleted this ammo with the ammo system disabled
         private const string enableTradeTag = "CE_AutoEnableTrade";             // The trade tag which designates ammo defs for being automatically switched to Tradeability.Stockable
         private const string enableCraftingTag = "CE_AutoEnableCrafting";        // The trade tag which designates ammo defs for having their crafting recipes automatically added to the crafting table
+        // these ammo classes are disabled when simplified ammo is turned on
+        private static HashSet<string> complexAmmoClasses = new HashSet<string>(new string[] {
+            // pistol + rifle + high caliber
+            "ArmorPiercing", "HollowPoint", "Sabot", "IncendiaryAP", "ExplosiveAP",
+            // shotguns
+            "Beanbag", "Slug",
+            // advanced
+            "ChargedAP"
+        });
+
         /*
         private static ThingDef ammoCraftingStationInt;                         // The crafting station to which ammo will be automatically added
         private static ThingDef AmmoCraftingStation
@@ -55,6 +65,7 @@ namespace CombatExtended
         public static bool InjectAmmos()
         {
             bool enabled = Controller.settings.EnableAmmoSystem;
+            bool simplifiedAmmo = Controller.settings.EnableSimplifiedAmmo;
             if (enabled)
             {
                 // Initialize list of all weapons
@@ -116,13 +127,17 @@ namespace CombatExtended
                 //This is because the THING description ISN'T available during crafting - so people can now figure out what's different between ammo types.
                 ammoDef.AddDescriptionParts();
 
+                bool ammoEnabled = enabled;
+                if (simplifiedAmmo && complexAmmoClasses.Contains(ammoDef.ammoClass.defName))
+                    ammoEnabled = false;
+
                 if (ammoDef.tradeTags != null)
                 {
                     if (ammoDef.tradeTags.Contains(destroyWithAmmoDisabledTag))
                     {
                         // Toggle ammo visibility in the debug menu
-                        ammoDef.menuHidden = !enabled;
-                        ammoDef.destroyOnDrop = !enabled;
+                        ammoDef.menuHidden = !ammoEnabled;
+                        ammoDef.destroyOnDrop = !ammoEnabled;
                     }
 
                     //Weapon defs aren't changed w.r.t crafting, trading, destruction on drop -- but the description is still added to the recipe
@@ -146,7 +161,7 @@ namespace CombatExtended
 
                         if (curTag == enableTradeTag)
                         {
-                            ammoDef.tradeability = enabled ? Tradeability.All : Tradeability.None;
+                            ammoDef.tradeability = ammoEnabled ? Tradeability.All : Tradeability.None;
                         }
                         else
                         {
@@ -158,7 +173,7 @@ namespace CombatExtended
                             {
                                 var tradeabilityName = curTag.Remove(0, enableTradeTag.Length + 1);
 
-                                ammoDef.tradeability = enabled
+                                ammoDef.tradeability = ammoEnabled
                                     ? (Tradeability)Enum.Parse(typeof(Tradeability), tradeabilityName, true)
                                     : Tradeability.None;
                             }
@@ -200,7 +215,7 @@ namespace CombatExtended
                                         continue;
                                     }
                                 }
-                                ToggleRecipeOnBench(recipe, bench);
+                                ToggleRecipeOnBench(recipe, bench, ammoEnabled);
                                 /*
                                 // Toggle recipe
                                 if (enabled)
@@ -255,9 +270,9 @@ namespace CombatExtended
             return true;
         }
 
-        private static void ToggleRecipeOnBench(RecipeDef recipeDef, ThingDef benchDef)
+        private static void ToggleRecipeOnBench(RecipeDef recipeDef, ThingDef benchDef, bool ammoEnabled)
         {
-            if (Controller.settings.EnableAmmoSystem)
+            if (ammoEnabled)
             {
                 if (recipeDef.recipeUsers == null)
                     recipeDef.recipeUsers = new List<ThingDef>();
