@@ -39,13 +39,6 @@ namespace CombatExtended
         }
         */
 
-        // these weapons need to have ammo, even if the ammo system is turned off
-        private static ISet<string> mortars = new HashSet<string>(new string[] {
-            "Artillery_Mortar",
-            "Artillery_AutoMortar",
-            "Gun_FlakTurret" // ?
-        });
-
         public static void Inject()
         {
             if (InjectAmmos())
@@ -73,9 +66,7 @@ namespace CombatExtended
                         && (def.generateAllowChance > 0
                             || def.tradeability.TraderCanSell()
                             || (def.weaponTags != null && def.weaponTags.Contains("TurretGun"))))
-                        Log.Message("adding weapon " + def.defName);
-                        if (enabled || mortars.Contains(def.defName))
-                            CE_Utility.allWeaponDefs.Add(def);
+                        CE_Utility.allWeaponDefs.Add(def);
                 }
                 if (CE_Utility.allWeaponDefs.NullOrEmpty())
                 {
@@ -125,13 +116,17 @@ namespace CombatExtended
                 //This is because the THING description ISN'T available during crafting - so people can now figure out what's different between ammo types.
                 ammoDef.AddDescriptionParts();
 
+                if (ammoDef.isMortarAmmo) Log.Message(ammoDef.defName + " is mortar ammo");
+                // mortar ammo will always be enabled, even if the ammo system is turned off
+                bool ammoEnabled = enabled || ammoDef.isMortarAmmo;
+
                 if (ammoDef.tradeTags != null)
                 {
                     if (ammoDef.tradeTags.Contains(destroyWithAmmoDisabledTag))
                     {
                         // Toggle ammo visibility in the debug menu
-                        ammoDef.menuHidden = !enabled;
-                        ammoDef.destroyOnDrop = !enabled;
+                        ammoDef.menuHidden = !ammoEnabled;
+                        ammoDef.destroyOnDrop = !ammoEnabled;
                     }
 
                     //Weapon defs aren't changed w.r.t crafting, trading, destruction on drop -- but the description is still added to the recipe
@@ -155,7 +150,7 @@ namespace CombatExtended
 
                         if (curTag == enableTradeTag)
                         {
-                            ammoDef.tradeability = enabled ? Tradeability.All : Tradeability.None;
+                            ammoDef.tradeability = ammoEnabled ? Tradeability.All : Tradeability.None;
                         }
                         else
                         {
@@ -167,7 +162,7 @@ namespace CombatExtended
                             {
                                 var tradeabilityName = curTag.Remove(0, enableTradeTag.Length + 1);
 
-                                ammoDef.tradeability = enabled
+                                ammoDef.tradeability = ammoEnabled
                                     ? (Tradeability)Enum.Parse(typeof(Tradeability), tradeabilityName, true)
                                     : Tradeability.None;
                             }
@@ -209,7 +204,7 @@ namespace CombatExtended
                                         continue;
                                     }
                                 }
-                                ToggleRecipeOnBench(recipe, bench);
+                                ToggleRecipeOnBench(recipe, bench, ammoEnabled);
                                 /*
                                 // Toggle recipe
                                 if (enabled)
@@ -264,9 +259,9 @@ namespace CombatExtended
             return true;
         }
 
-        private static void ToggleRecipeOnBench(RecipeDef recipeDef, ThingDef benchDef)
+        private static void ToggleRecipeOnBench(RecipeDef recipeDef, ThingDef benchDef, bool ammoEnabled)
         {
-            if (Controller.settings.EnableAmmoSystem)
+            if (ammoEnabled)
             {
                 if (recipeDef.recipeUsers == null)
                     recipeDef.recipeUsers = new List<ThingDef>();
