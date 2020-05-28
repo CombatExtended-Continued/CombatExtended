@@ -9,6 +9,21 @@
     <Company />
     <Authors />
     <Copyright>CC BY-NC-SA 4.0 2020</Copyright>
+    <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <OutputPath>..\..\Assemblies\</OutputPath>
+    <DebugType>none</DebugType>
+    <DebugSymbols>false</DebugSymbols>
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+    <OutputPath>..\..\Assemblies\</OutputPath>
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+    <DebugType>none</DebugType>
+    <DebugSymbols>false</DebugSymbols>
   </PropertyGroup>
 
   <Target Name="PostBuild" AfterTargets="PostBuildEvent">
@@ -44,7 +59,7 @@
 
   <ItemGroup>
     <PackageReference Include="Krafs.Rimworld.Ref" Version="1.1.2647" />
-    <PackageReference Include="Lib.Harmony" Version="2.0.1" />
+    <PackageReference Include="Lib.Harmony" Version="2.0.1" PrivateAssets="All" />
   </ItemGroup>
 
   <ItemGroup>
