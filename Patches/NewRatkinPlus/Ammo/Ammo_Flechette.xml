@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+	<Operation Class="PatchOperationFindMod">
+			<mods>
+				<li>NewRatkinPlus</li>
+			</mods>
+		<match Class="PatchOperationSequence">
+		<operations>
+
+			
+			<!-- ==========  Flechette Rounds =========== -->
+			
+			<!-- Def -->
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/CombatExtended.AmmoSetDef[defName="AmmoSet_65x50mmSRArisaka"]/ammoTypes</xpath>
+				<value><Ammo_65x50mmSRArisaka_FLCH>Bullet_65x50mmSRArisaka_FLCH</Ammo_65x50mmSRArisaka_FLCH></value>
+			</li>
+			
+			<li Class="PatchOperationAdd">
+			<xpath>Defs</xpath>
+			<value>
+				
+			<ThingDef Class="CombatExtended.AmmoDef" ParentName="65x50mmSRArisakaBase">
+				<defName>Ammo_65x50mmSRArisaka_FLCH</defName>
+				<label>6.5x50mmSR Arisaka cartridge (Flechette)</label>
+				<graphicData>
+					<texPath>ThirdParty/Ratkin/FLCH</texPath>
+					<graphicClass>Graphic_StackCount</graphicClass>
+				</graphicData>
+				<statBases>
+					<MarketValue>0.1</MarketValue>
+				</statBases>
+				<ammoClass>Flechette</ammoClass>
+			</ThingDef>
+
+			<!-- Projectile -->			
+			<ThingDef Class="CombatExtended.AmmoDef" ParentName="Base65x50mmSRArisakaBullet">
+				<defName>Bullet_65x50mmSRArisaka_FLCH</defName>
+				<label>6.5x50mmSR Arisaka cartridge (Flechette)</label>
+				<projectile Class="CombatExtended.ProjectilePropertiesCE">
+					<damageDef>Fragment</damageDef>						
+					<damageAmountBase>17</damageAmountBase>
+				  <armorPenetrationSharp>3</armorPenetrationSharp>
+				  <armorPenetrationBlunt>53.96</armorPenetrationBlunt>
+				</projectile>
+			</ThingDef>
+
+			<!-- Recipe -->			
+			<RecipeDef ParentName="AmmoRecipeBase">
+				<defName>MakeAmmo_65x50mmSRArisaka_FLCH</defName>
+				<label>make 500 65x50mm Arisaka Flechette rounds.</label>
+				<description>Craft 65x50mm Arisaka Flechette rounds.</description>
+				<jobString>Making 65x50mm Arisaka Flechette rounds.</jobString>
+				<ingredients>
+					<li>
+						<filter>
+						<thingDefs>
+							<li>Steel</li>
+						</thingDefs>
+						</filter>
+						<count>24</count>
+					</li>
+				</ingredients>
+				<fixedIngredientFilter>
+					<thingDefs>
+						<li>Steel</li>
+					</thingDefs>
+				</fixedIngredientFilter>
+				<products>
+					<Ammo_65x50mmSRArisaka_FLCH>500</Ammo_65x50mmSRArisaka_FLCH>
+				</products>
+				<researchPrerequisite>FlechetteBullet</researchPrerequisite>					
+				<workAmount>2800</workAmount>
+			</RecipeDef>
+
+			</value>
+			</li>
+		
+		</operations>
+		</match>
+	</Operation>
+</Patch>

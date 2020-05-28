@@ -1,0 +1,281 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+	<Operation Class="PatchOperationFindMod">
+			<mods>
+				<li>NewRatkinPlus</li>
+			</mods>
+		<match Class="PatchOperationSequence">
+		<operations>
+
+			<li Class="PatchOperationAdd">
+				<xpath>Defs</xpath>
+				<value>	
+	
+    <ThingCategoryDef>
+      <defName>AmmoBallistaBolts</defName>
+      <label>Ballista Bolts</label>
+      <parent>AmmoNeolithic</parent>
+    </ThingCategoryDef>
+	
+	<!-- ==================== AmmoSet ========================== -->
+
+	<CombatExtended.AmmoSetDef>
+		<defName>AmmoSet_RKBallistaBolt</defName>
+		<label>Ballista Bolt</label>
+		<ammoTypes>
+			<Ammo_RKBallistaBolt>Projectile_RKBallistaBolt</Ammo_RKBallistaBolt>
+			<Ammo_RKBallistaBolt_Bodkin>Projectile_RKBallistaBolt_Bodkin</Ammo_RKBallistaBolt_Bodkin>
+			<Ammo_RKBallistaBolt_Fire>Projectile_RKBallistaBolt_Fire</Ammo_RKBallistaBolt_Fire>			
+		</ammoTypes>
+	</CombatExtended.AmmoSetDef>
+	
+	<!-- ==================== Ammo ========================== -->
+	
+   <ThingDef Name="AmmoRKBallistaBolt" ParentName="AmmoBase" Abstract="True">
+    <description>Heavy bolt designed to be fired from a ratkin ballista.</description>
+    <statBases>
+      <Mass>2.00</Mass>
+      <Bulk>7.50</Bulk>
+      <Flammability>1</Flammability>
+    </statBases>
+    <thingCategories>
+      <li>AmmoBallistaBolts</li>
+    </thingCategories>
+    <stackLimit>75</stackLimit>
+    <techLevel>Medieval</techLevel>	
+  </ThingDef>
+
+  <ThingDef Class="CombatExtended.AmmoDef" ParentName="AmmoRKBallistaBolt">
+    <defName>Ammo_RKBallistaBolt</defName>
+    <label>Ballista Bolt</label>
+    <graphicData>
+      <texPath>Things/Item/Resource/Ballista_Bolt_Normal</texPath>
+      <graphicClass>Graphic_StackCount</graphicClass>
+    </graphicData>
+    <statBases>
+      <MarketValue>7.5</MarketValue>
+    </statBases>
+    <ammoClass>RKBallistaBolt</ammoClass>
+  </ThingDef>
+
+  <ThingDef Class="CombatExtended.AmmoDef" ParentName="AmmoRKBallistaBolt">
+    <defName>Ammo_RKBallistaBolt_Bodkin</defName>
+    <label>Ballista Bodkin Bolt</label>
+    <graphicData>
+      <texPath>Things/Item/Resource/Ballista_Bolt_AP</texPath>
+      <graphicClass>Graphic_StackCount</graphicClass>
+    </graphicData>
+    <statBases>
+      <MarketValue>9.5</MarketValue>
+    </statBases>
+    <ammoClass>RKBallistaBolt_AP</ammoClass>
+  </ThingDef>
+
+  <ThingDef Class="CombatExtended.AmmoDef" ParentName="AmmoRKBallistaBolt">
+    <defName>Ammo_RKBallistaBolt_Fire</defName>
+    <label>Flaming Ballista Bolt</label>
+    <graphicData>
+      <texPath>Things/Item/Resource/Ballista_Bolt_HE</texPath>
+      <graphicClass>Graphic_StackCount</graphicClass>
+    </graphicData>
+    <statBases>
+      <MarketValue>10.5</MarketValue>
+    </statBases>
+    <ammoClass>RKBallistaBolt_Fire</ammoClass>
+  </ThingDef>
+  
+	<!-- ================== Projectiles ================== -->
+
+	<ThingDef ParentName="BaseProjectileNeolithic" Name="BaseProjectileRKBallista" Abstract="true">
+		<thingClass>CombatExtended.BulletCE</thingClass>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<speed>45</speed>
+		</projectile>
+	</ThingDef>
+	
+	<ThingDef ParentName="BaseProjectileRKBallista">
+		<defName>Projectile_RKBallistaBolt_Bodkin</defName>
+		<label>Ballista Bolt</label>
+		<graphicData>
+			<texPath>Things/Projectile/Ballista_Bolt_Normal</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+		</graphicData>			
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageDef>Stab</damageDef>
+			<damageAmountBase>10</damageAmountBase>
+			<armorPenetrationBlunt>12.5</armorPenetrationBlunt>
+			<armorPenetrationSharp>8</armorPenetrationSharp>	
+			<preExplosionSpawnChance>0.6</preExplosionSpawnChance>
+			<preExplosionSpawnThingDef>Ammo_RKBallistaBolt</preExplosionSpawnThingDef>
+		</projectile>
+	</ThingDef>
+ 
+	<ThingDef ParentName="BaseProjectileRKBallista">
+		<defName>Projectile_RKBallistaBolt</defName>
+		<label>Ballista Bodkin Bolt</label>
+		<graphicData>
+			<texPath>Things/Projectile/Ballista_Bolt_AP</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+		</graphicData>		
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageDef>Stab</damageDef>
+			<damageAmountBase>19</damageAmountBase>
+			<armorPenetrationBlunt>12.5</armorPenetrationBlunt>
+			<armorPenetrationSharp>4</armorPenetrationSharp>			
+			<preExplosionSpawnChance>0.3</preExplosionSpawnChance>
+			<preExplosionSpawnThingDef>Ammo_RKBallistaBolt_Bodkin</preExplosionSpawnThingDef>
+		</projectile>
+	</ThingDef>
+
+	<ThingDef ParentName="BaseProjectileRKBallista">
+		<defName>Projectile_RKBallistaBolt_Fire</defName>
+		<label>Ballista Bodkin Bolt</label>
+		<thingClass>CombatExtended.Projectile_FireTrail</thingClass>		
+		<graphicData>
+			<texPath>Things/Projectile/Ballista_Bolt_HE</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+		</graphicData>		
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<explosionRadius>1.5</explosionRadius>		
+			<damageAmountBase>15</damageAmountBase>
+			<damageDef>Flame</damageDef>			
+			<armorPenetrationBlunt>12.5</armorPenetrationBlunt>
+			<armorPenetrationSharp>4</armorPenetrationSharp>	
+			<preExplosionSpawnThingDef>FilthPrometheum</preExplosionSpawnThingDef>
+			<preExplosionSpawnChance>1</preExplosionSpawnChance>
+		</projectile>
+	</ThingDef>
+	
+	<!-- ==================== Recipes ========================== -->
+
+    <RecipeDef ParentName="AmmoRecipeNeolithicBase">
+    <defName>MakeRKBallistaBolt</defName>
+    <label>make ballista bolt</label>
+    <description>Craft ballista bolt.</description>
+    <jobString>Making ballista bolt.</jobString>
+    <ingredients>
+      <li>
+        <filter>
+          <thingDefs>
+            <li>WoodLog</li>
+          </thingDefs>
+        </filter>
+        <count>5</count>
+      </li>
+      <li>
+        <filter>
+          <thingDefs>
+            <li>Steel</li>
+          </thingDefs>
+        </filter>
+        <count>15</count>
+      </li>
+    </ingredients>
+    <workAmount>2300</workAmount>	
+    <fixedIngredientFilter>
+      <thingDefs>
+        <li>WoodLog</li>
+        <li>Steel</li>
+      </thingDefs>
+    </fixedIngredientFilter>
+    <products>
+      <Ammo_RKBallistaBolt>5</Ammo_RKBallistaBolt>
+    </products>
+	<recipeUsers>
+	  <li>FueledSmithy</li>
+	  <li>ElectricSmithy</li>	
+	</recipeUsers>
+  </RecipeDef>
+
+    <RecipeDef ParentName="AmmoRecipeNeolithicBase">
+    <defName>MakeRKBallistaBodkinBolt</defName>
+    <label>make ballista bodkin bolt</label>
+    <description>Craft ballista bodkin bolt.</description>
+    <jobString>Making ballista bodkin bolt.</jobString>
+    <ingredients>
+      <li>
+        <filter>
+          <thingDefs>
+            <li>WoodLog</li>
+          </thingDefs>
+        </filter>
+        <count>5</count>
+      </li>
+      <li>
+        <filter>
+          <thingDefs>
+            <li>Steel</li>
+          </thingDefs>
+        </filter>
+        <count>12</count>
+      </li>
+    </ingredients>
+    <workAmount>3500</workAmount>	
+    <fixedIngredientFilter>
+      <thingDefs>
+        <li>WoodLog</li>
+        <li>Steel</li>
+      </thingDefs>
+    </fixedIngredientFilter>
+    <products>
+      <Ammo_RKBallistaBolt_Bodkin>5</Ammo_RKBallistaBolt_Bodkin>
+    </products>
+		<recipeUsers>
+		  <li>FueledSmithy</li>
+		  <li>ElectricSmithy</li>	
+		</recipeUsers>
+  </RecipeDef>
+
+    <RecipeDef ParentName="AmmoRecipeNeolithicBase">
+    <defName>MakeRKBallistaFireBolt</defName>
+    <label>make flaming ballista bolt</label>
+    <description>Craft flaming ballista bolt.</description>
+    <jobString>Making flaming ballista bolt.</jobString>
+    <ingredients>
+      <li>
+        <filter>
+          <thingDefs>
+            <li>WoodLog</li>
+          </thingDefs>
+        </filter>
+        <count>10</count>
+      </li>
+      <li>
+        <filter>
+          <thingDefs>
+            <li>Prometheum</li>
+          </thingDefs>
+        </filter>
+        <count>2</count>
+      </li>	  
+      <li>
+        <filter>
+          <thingDefs>
+            <li>Steel</li>
+          </thingDefs>
+        </filter>
+        <count>8</count>
+      </li>
+    </ingredients>
+    <workAmount>5000</workAmount>	
+    <fixedIngredientFilter>
+      <thingDefs>
+        <li>WoodLog</li>
+        <li>Steel</li>
+      </thingDefs>
+    </fixedIngredientFilter>	
+    <products>
+      <Ammo_RKBallistaBolt_Fire>5</Ammo_RKBallistaBolt_Fire>
+    </products>
+		<recipeUsers>
+		  <li>FueledSmithy</li>
+		  <li>ElectricSmithy</li>	
+		</recipeUsers>
+  </RecipeDef>
+
+				</value>
+			</li>
+		</operations>
+		</match>
+	</Operation>
+</Patch>
