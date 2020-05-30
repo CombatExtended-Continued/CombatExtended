@@ -426,7 +426,8 @@ namespace CombatExtended
         private bool CheckIntercept(Thing thing, CompProjectileInterceptor interceptor, bool withDebug = false)
         {
             Vector3 vector = thing.Position.ToVector3ShiftedWithAltitude(0.5f);
-            float blockRadius = interceptor.Props.radius + def.projectile.SpeedTilesPerTick + 0.1f;
+            float radius = interceptor.Props.radius;
+            float blockRadius = radius + def.projectile.SpeedTilesPerTick + 0.1f;
 
             var newExactPos = ExactPosition;
 
@@ -449,19 +450,18 @@ namespace CombatExtended
                 return false;
             }
 
-            if ((launcher == null || !launcher.HostileTo(thing)) && !((bool)interceptDebug.GetValue(interceptor)))
+            if ((launcher == null || !launcher.HostileTo(thing)) && !((bool)interceptDebug.GetValue(interceptor)) && !interceptor.Props.interceptNonHostileProjectiles)
             {
                 return false;
             }
-            if ((vector - lastExactPos).sqrMagnitude <= Mathf.Pow(interceptor.Props.radius, 2))
+            if (!interceptor.Props.interceptOutgoingProjectiles && (vector - lastExactPos).sqrMagnitude <= Mathf.Pow((float)radius, 2))
             {
                 return false;
             }
-            // No longer relevant. Calculations are done in 3D.
-            //if (!GenGeo.IntersectLineCircleOutline(new Vector2(vector.x, vector.z), interceptor.Props.radius, new Vector2(lastExactPos.x, lastExactPos.z), new Vector2(newExactPos.x, newExactPos.z)))
-            //{
-            //    return false;
-            //}
+            if (!IntersectLineSphericalOutline(vector, radius, lastExactPos, newExactPos))
+            {
+                return false;
+            }
             interceptAngleField.SetValue(interceptor, lastExactPos.AngleToFlat(thing.TrueCenter()));
             interceptTicksField.SetValue(interceptor, Find.TickManager.TicksGame);
             var areWeLucky = Rand.Chance((def.projectile as ProjectilePropertiesCE)?.empShieldBreakChance ?? 0);
@@ -480,6 +480,17 @@ namespace CombatExtended
             Effecter eff = new Effecter(EffecterDefOf.Interceptor_BlockedProjectile);
             eff.Trigger(new TargetInfo(newExactPos.ToIntVec3(), thing.Map, false), TargetInfo.Invalid);
             eff.Cleanup();
+            return true;
+        }
+
+        private static bool IntersectLineSphericalOutline(Vector3 center, float radius, Vector3 pointA, Vector3 pointB)
+        {
+            var pointAInShield = (center - pointA).sqrMagnitude <= Mathf.Pow(radius, 2);
+            var pointBInShield = (center - pointB).sqrMagnitude <= Mathf.Pow(radius, 2);
+
+            if (pointAInShield && pointBInShield) { return false; }
+            if (!pointAInShield && !pointBInShield) { return false; }
+
             return true;
         }
 
