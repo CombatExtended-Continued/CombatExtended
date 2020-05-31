@@ -283,7 +283,6 @@ namespace CombatExtended
                                                                                                            || (s.genericDef != null && s.countType == LoadoutCountType.pickupDrop
                                                                                                                && s.genericDef.lambda(pawn.equipment.Primary.def)))))
                         doEquip = true;
-                    Job job;
                     if (carriedBy == null)
                     {
                         // Equip gun if unarmed or current gun is not in loadout
@@ -291,15 +290,16 @@ namespace CombatExtended
                         {
                             return JobMaker.MakeJob(JobDefOf.Equip, closestThing);
                         }
-                        job = JobMaker.MakeJob(JobDefOf.TakeInventory, closestThing);
+                        Job job = JobMaker.MakeJob(JobDefOf.TakeInventory, closestThing);
                         job.count = Mathf.Min(closestThing.stackCount, count);
+                        return job;
                     }
                     else
                     {
-                        job = JobMaker.MakeJob(CE_JobDefOf.TakeFromOther, closestThing, carriedBy, doEquip ? pawn : null);
+                        Job job = JobMaker.MakeJob(CE_JobDefOf.TakeFromOther, closestThing, carriedBy, doEquip ? pawn : null);
                         job.count = doEquip ? 1 : Mathf.Min(closestThing.stackCount, count);
+                        return job;
                     }
-                    return job;
                 }
             }
             return null;

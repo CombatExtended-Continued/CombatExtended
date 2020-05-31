@@ -20,6 +20,7 @@ namespace CombatExtended
                 LessonAutoActivator.TeachOpportunity(CE_ConceptDefOf.CE_Hunkering, pawn, OpportunityType.Critical);
                 reactJob = JobMaker.MakeJob(CE_JobDefOf.HunkerDown, pawn);
                 reactJob.checkOverrideOnExpire = true;
+                return reactJob;
             }
             else
             {
