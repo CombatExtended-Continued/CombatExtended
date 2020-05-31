@@ -116,7 +116,6 @@ namespace CombatExtended
                 //This is because the THING description ISN'T available during crafting - so people can now figure out what's different between ammo types.
                 ammoDef.AddDescriptionParts();
 
-                if (ammoDef.isMortarAmmo) Log.Message(ammoDef.defName + " is mortar ammo");
                 // mortar ammo will always be enabled, even if the ammo system is turned off
                 bool ammoEnabled = enabled || ammoDef.isMortarAmmo;
 
