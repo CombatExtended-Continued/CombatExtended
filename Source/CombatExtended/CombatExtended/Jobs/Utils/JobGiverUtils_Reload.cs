@@ -126,8 +126,26 @@ namespace CombatExtended.CombatExtended.Jobs.Utils
 		private static Thing FindBestAmmo(Pawn pawn, Building_TurretGunCE reloadable)
 		{
 			//ThingFilter filter = refuelable.TryGetComp<CompRefuelable>().Props.fuelFilter;
-			var requestedAmmo = reloadable.CompAmmo.SelectedAmmo;
+			AmmoDef requestedAmmo = reloadable.CompAmmo.SelectedAmmo;
+			// try to find currently selected ammo first
+			var bestAmmo = FindBestAmmo(pawn, requestedAmmo);
+			if (bestAmmo == null && requestedAmmo.AmmoSetDefs != null)
+            {
+				// if there isn't any, try to find some ammo from same ammo set
+				foreach (AmmoSetDef set in requestedAmmo.AmmoSetDefs)
+                {
+					foreach (AmmoLink link in set.ammoTypes)
+                    {
+						bestAmmo = FindBestAmmo(pawn, link.ammo);
+						if (bestAmmo != null) return bestAmmo;
+                    }
+                }
+            }
+			return bestAmmo;
+		}
 
+		private static Thing FindBestAmmo(Pawn pawn, AmmoDef requestedAmmo)
+        {
 			Predicate<Thing> validator = (Thing potentialAmmo) =>
 			{
 				if (potentialAmmo.IsForbidden(pawn) || !pawn.CanReserve(potentialAmmo))
