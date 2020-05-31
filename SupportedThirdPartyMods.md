@@ -122,6 +122,7 @@ Vanilla Vehicles Expanded	|
 Vanilla Weapons Expanded Quickdraw	|
 Vanilla-Friendly Animal Surgery	|
 Vanilla-Friendly Weapon Expansion	|
+VGP Fabrics
 Vulpine Race Pack	|
 Weapons+	|
 WWII Soviet Faction	|
