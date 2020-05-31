@@ -40,7 +40,11 @@
 		  </li>
 
 		  <li Class="PatchOperationReplace">
-			<xpath>Defs/ThingDef[defName="Gun_MP_18_KA" or defName="Gun_Gew_98_KA" or defName="Gun_P08_Artillerie_KA"]/tools</xpath>
+			<xpath>Defs/ThingDef[defName="Gun_MP_18_KA" or
+			 defName="Gun_Gew_98_KA" or
+			  defName="Gun_P08_Artillerie_KA" or
+			   defName="Gun_MG_15_KA" or
+			    defName="Gun_M1916_Selbstlader_KA"]/tools</xpath>
 			<value>
 			  <tools>
 				<li Class="CombatExtended.ToolCE">
@@ -73,6 +77,24 @@
 				  <cooldownTime>1.55</cooldownTime>
 				  <armorPenetrationBlunt>2.755</armorPenetrationBlunt>
 				  <linkedBodyPartsGroup>Muzzle</linkedBodyPartsGroup>
+				</li>
+			  </tools>
+			</value>
+		  </li>
+
+		  <li Class="PatchOperationReplace">
+			<xpath>Defs/ThingDef[defName="Gun_WEX_KA"]/tools</xpath>
+			<value>
+			  <tools>
+				<li Class="CombatExtended.ToolCE">
+				<label>barrel</label>
+				<capacities>
+					<li>Blunt</li>
+				</capacities>
+				<power>10</power>
+				<cooldownTime>2.44</cooldownTime>
+				<armorPenetrationBlunt>3.5</armorPenetrationBlunt>
+				<linkedBodyPartsGroup>Barrel</linkedBodyPartsGroup>
 				</li>
 			  </tools>
 			</value>
@@ -333,6 +355,55 @@
 			<researchPrerequisite>Stage0b_KA</researchPrerequisite>
 		  </li>
 
+		  <!-- ========== WEX (Flamethrower) ========== -->
+
+		  <li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+			<defName>Gun_WEX_KA</defName>
+			<statBases>
+			  <Mass>24</Mass>
+			  <RangedWeapon_Cooldown>0.39</RangedWeapon_Cooldown>
+			  <SightsEfficiency>1</SightsEfficiency>
+      		  <ShotSpread>0.15</ShotSpread>
+      		  <SwayFactor>1.35</SwayFactor>
+			  <Bulk>24</Bulk>
+			  <WorkToMake>14000</WorkToMake>
+			</statBases>
+			<costList>
+			  <Steel>120</Steel>
+			  <ComponentIndustrial>6</ComponentIndustrial>
+			</costList>
+			<Properties>
+			  <verbClass>CombatExtended.Verb_ShootCE</verbClass>
+       		  <defaultProjectile>Bullet_Flamethrower_Prometheum</defaultProjectile>
+        	  <ai_IsBuildingDestroyer>true</ai_IsBuildingDestroyer>
+			  <warmupTime>1.1</warmupTime>
+			  <range>11</range>
+			  <minRange>3</minRange>
+			  <targetParams>
+			    <canTargetLocations>true</canTargetLocations>
+			  </targetParams>			  			  
+			  <soundCast>Shot_WEX</soundCast>
+			  <soundCastTail>GunTail_Heavy</soundCastTail>
+			  <muzzleFlashScale>9</muzzleFlashScale>
+			</Properties>
+			<AmmoUser>
+			  <magazineSize>80</magazineSize>
+			  <reloadTime>10</reloadTime>
+			  <ammoSet>AmmoSet_Flamethrower</ammoSet>
+			</AmmoUser>
+			<FireModes>
+			  <aiUseBurstMode>FALSE</aiUseBurstMode>
+			</FireModes>
+			<weaponTags>
+			  <li>GunHeavy</li>			  
+			</weaponTags>
+			<researchPrerequisite>Stage1b_KA</researchPrerequisite>
+		  </li>
+
+		  <li Class="PatchOperationRemove">
+			<xpath>Defs/ThingDef[defName="Gun_WEX_KA"]/equippedStatOffsets</xpath>
+		  </li>
+
 		  <!-- ========== P08 (Luger) ========== -->
 
 		  <li Class="CombatExtended.PatchOperationMakeGunCECompatible">
@@ -430,6 +501,160 @@
 		  <li Class="PatchOperationRemove">
 			<xpath>Defs/ThingDef[defName="Gun_MG_15_KA"]/equippedStatOffsets</xpath>
 		  </li>
+
+		  <!-- ========== M1914 Concussion Grenade ========== -->
+
+		  <!-- Projectile -->
+
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="Proj_M1915_KA"]/thingClass</xpath>
+				<value>
+					<thingClass>CombatExtended.ProjectileCE_Explosive</thingClass>
+				</value>
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="Proj_M1915_KA"]/graphicData/texPath</xpath>
+				<value>
+					<texPath>Things/Projectile/Grenades/Frag</texPath>
+				</value>
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="Proj_M1915_KA"]/projectile</xpath>
+				<value>
+					<projectile Class="CombatExtended.ProjectilePropertiesCE">
+						<explosionRadius>2</explosionRadius>
+						<damageDef>Bomb</damageDef>
+						<damageAmountBase>60</damageAmountBase>
+						<explosionDelay>100</explosionDelay>
+						<dropsCasings>true</dropsCasings>
+						<casingMoteDefname>Mote_GrenadePin</casingMoteDefname>
+						<applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
+						<speed>7</speed>
+					</projectile>
+				</value>
+			</li>
+
+			<li Class="PatchOperationSequence">
+				<success>Always</success>
+				<operations>
+					<li Class="PatchOperationTest">
+						<xpath>Defs/ThingDef[defName="Proj_M1915_KA"]/comps</xpath>
+						<success>Invert</success>
+					</li>
+					<li Class="PatchOperationAdd">
+						<xpath>Defs/ThingDef[defName="Proj_M1915_KA"]</xpath>
+						<value>
+							<comps />
+						</value>
+					</li>
+				</operations>
+			</li>
+
+		  <!-- M1914 Concussion Grenade -->
+
+			<li Class="PatchOperationAttributeSet">
+				<xpath>Defs/ThingDef[defName="Weapon_M1915_KA"]</xpath>
+				<attribute>ParentName</attribute>
+				<value>BaseWeapon</value>
+			</li>
+
+			<li Class="PatchOperationRemove">
+				<xpath>Defs/ThingDef[defName="Weapon_M1915_KA"]/recipeMaker</xpath>
+			</li>
+
+			<li Class="PatchOperationRemove">
+				<xpath>Defs/ThingDef[defName="Weapon_M1915_KA"]/costList</xpath>
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="Weapon_M1915_KA"]/label</xpath>
+				<value>
+					<label>concussion grenade</label>
+				</value>
+			</li>
+
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName="Weapon_M1915_KA"]</xpath>
+				<value>
+					<equippedAngleOffset>90</equippedAngleOffset>
+				</value>
+			</li>
+
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName="Weapon_M1915_KA"]</xpath>
+				<value>
+					<thingClass>CombatExtended.AmmoThing</thingClass>
+					<stackLimit>75</stackLimit>
+					<resourceReadoutPriority>First</resourceReadoutPriority>
+				</value>
+			</li>
+
+			<li Class="PatchOperationAttributeSet">
+				<xpath>Defs/ThingDef[defName="Weapon_M1915_KA"]</xpath>
+				<attribute>Class</attribute>
+				<value>CombatExtended.AmmoDef</value>
+			</li>
+
+			<li Class="PatchOperationSequence">
+				<success>Always</success>
+				<operations>
+					<li Class="PatchOperationTest">
+						<xpath>Defs/ThingDef[defName="Weapon_M1915_KA"]/comps</xpath>
+						<success>Invert</success>
+					</li>
+					<li Class="PatchOperationAdd">
+						<xpath>Defs/ThingDef[defName="Weapon_M1915_KA"]</xpath>
+						<value>
+							<comps />
+						</value>
+					</li>
+				</operations>
+			</li>
+
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName="Weapon_M1915_KA"]/comps</xpath>
+				<value>
+				<li Class="CombatExtended.CompProperties_ExplosiveCE">
+					<damageAmountBase>60</damageAmountBase>
+					<explosiveDamageType>Bomb</explosiveDamageType>
+					<explosiveRadius>2</explosiveRadius>
+				</li>
+				</value>
+			</li>
+
+			<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+				<defName>Weapon_M1915_KA</defName>
+				<statBases>
+					<Mass>0.82</Mass>
+					<Bulk>0.36</Bulk>
+					<MarketValue>12.22</MarketValue>
+					<RangedWeapon_Cooldown>1</RangedWeapon_Cooldown>
+					<SightsEfficiency>0.65</SightsEfficiency>
+				</statBases>
+				<Properties>
+					<label>throw concussion grenade</label>
+					<verbClass>CombatExtended.Verb_ShootCEOneUse</verbClass>
+					<hasStandardCommand>true</hasStandardCommand>
+					<range>13.0</range>
+					<minRange>2</minRange>
+					<warmupTime>0.8</warmupTime>
+					<noiseRadius>4</noiseRadius>
+					<ai_IsBuildingDestroyer>true</ai_IsBuildingDestroyer>
+					<soundCast>ThrowGrenade</soundCast>
+					<targetParams>
+						<canTargetLocations>true</canTargetLocations>
+					</targetParams>
+					<defaultProjectile>Proj_M1915_KA</defaultProjectile>
+					<onlyManualCast>true</onlyManualCast>
+					<ignorePartialLoSBlocker>true</ignorePartialLoSBlocker>
+				</Properties>
+				<weaponTags>
+					<li>CE_AI_Grenade</li>
+					<li>CE_OneHandedWeapon</li>
+				</weaponTags>
+			</li>
 
 			</operations>
 			</match>
