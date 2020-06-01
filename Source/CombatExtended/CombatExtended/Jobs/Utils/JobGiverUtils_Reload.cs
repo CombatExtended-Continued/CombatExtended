@@ -130,17 +130,17 @@ namespace CombatExtended.CombatExtended.Jobs.Utils
 			// try to find currently selected ammo first
 			var bestAmmo = FindBestAmmo(pawn, requestedAmmo);
 			if (bestAmmo == null && requestedAmmo.AmmoSetDefs != null)
-            {
+			{
 				// if there isn't any, try to find some ammo from same ammo set
 				foreach (AmmoSetDef set in requestedAmmo.AmmoSetDefs)
-                {
+				{
 					foreach (AmmoLink link in set.ammoTypes)
-                    {
+					{
 						bestAmmo = FindBestAmmo(pawn, link.ammo);
 						if (bestAmmo != null) return bestAmmo;
-                    }
-                }
-            }
+					}
+				}
+			}
 			return bestAmmo;
 		}
 

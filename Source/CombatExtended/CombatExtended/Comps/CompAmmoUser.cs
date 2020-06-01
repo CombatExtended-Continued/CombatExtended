@@ -79,11 +79,13 @@ namespace CombatExtended
         public bool UseAmmo
         {
             get
-            {
-                return (Props.ammoSet != null && (Controller.settings.EnableAmmoSystem || Props.ammoSet.isMortarAmmoSet));
-            }
-        }
-        public bool HasAndUsesAmmoOrMagazine
+			{
+				if (Props.ammoSet == null) return false;
+				if (Controller.settings.EnableAmmoSystem) return true;
+				return Props.ammoSet.isMortarAmmoSet;
+			}
+		}
+		public bool HasAndUsesAmmoOrMagazine
         {
             get
             {
