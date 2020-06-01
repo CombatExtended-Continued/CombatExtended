@@ -23,7 +23,7 @@ namespace CombatExtended.HarmonyCE
 
                     write = false;
                 }
-                else if (code.opcode == OpCodes.Ldfld && code.operand == AccessTools.Field(typeof(ThingDef), nameof(ThingDef.category)))
+                else if (code.opcode == OpCodes.Ldfld && ReferenceEquals(code.operand, AccessTools.Field(typeof(ThingDef), nameof(ThingDef.category))))
                 {
                     write = true;
                 }

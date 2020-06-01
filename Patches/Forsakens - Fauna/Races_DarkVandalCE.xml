@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+			<li>Forsakens: Fauna</li>
+		</mods>
+
+		<match Class="PatchOperationSequence">
+			<operations>
+
+				<li Class="PatchOperationAddModExtension">
+					<xpath>/Defs/ThingDef[defName="FO_DarkVandal"]</xpath>
+					<value>
+						<li Class="CombatExtended.RacePropertiesExtensionCE">
+							<bodyShape>Quadruped</bodyShape>
+						</li>
+					</value>
+				</li>
+
+				<li Class="PatchOperationAdd">
+					<xpath>/Defs/ThingDef[defName="FO_DarkVandal"]/statBases</xpath>
+					<value>
+						<MeleeDodgeChance>0.12</MeleeDodgeChance>
+						<MeleeCritChance>0.3</MeleeCritChance>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/ThingDef[defName="FO_DarkVandal"]/race/baseHealthScale</xpath>
+					<value>
+						<baseHealthScale>1</baseHealthScale>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/ThingDef[defName="FO_DarkVandal"]/tools</xpath>
+					<value>
+						<tools>
+							<li Class="CombatExtended.ToolCE">
+								<label>tusk</label>
+								<capacities>
+									<li>Scratch</li>
+									<li>Stab</li>
+								</capacities>
+								<power>13</power>
+								<cooldownTime>1.3</cooldownTime>
+								<linkedBodyPartsGroup>TuskAttackTool</linkedBodyPartsGroup>
+								<armorPenetrationSharp>0.35</armorPenetrationSharp>
+								<armorPenetrationBlunt>1</armorPenetrationBlunt>
+							</li>
+
+							<li Class="CombatExtended.ToolCE">
+								<capacities>
+									<li>Bite</li>
+								</capacities>
+								<power>17</power>
+								<cooldownTime>1.65</cooldownTime>
+								<armorPenetrationSharp>0.5</armorPenetrationSharp>
+								<armorPenetrationBlunt>3</armorPenetrationBlunt>
+								<linkedBodyPartsGroup>Teeth</linkedBodyPartsGroup>
+								<chanceFactor>0.6</chanceFactor>
+							</li>
+
+							<li Class="CombatExtended.ToolCE">
+								<label>head</label>
+								<capacities>
+									<li>Blunt</li>
+								</capacities>
+								<power>8</power>
+								<cooldownTime>2</cooldownTime>
+								<linkedBodyPartsGroup>HeadAttackTool</linkedBodyPartsGroup>
+								<armorPenetrationBlunt>4</armorPenetrationBlunt>
+								<chanceFactor>0.2</chanceFactor>
+							</li>
+						</tools>
+					</value>
+				</li>
+			</operations>
+		</match>
+	</Operation>
+
+</Patch>

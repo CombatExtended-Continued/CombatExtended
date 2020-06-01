@@ -20,7 +20,6 @@ namespace CombatExtended.HarmonyCE
     [HarmonyPatch]
     static class FloatMenuMakerMap_PatchKnowledge
     {
-        static readonly string logPrefix = "Combat Extended :: " + typeof(FloatMenuMakerMap_PatchKnowledge).Name + " :: ";
 
         const string ClassNamePart = "DisplayClass5";   //1.0: "AddHumanLikeOrders" to target <AddHumanLikeOrders>c__AnonStoreyB
         const string MethodNamePart = "g__Equip";       //1.0: "m__" to target <>m__0()
@@ -67,15 +66,17 @@ namespace CombatExtended.HarmonyCE
          * -Both when right clicking on something with a pawn selected.
          */
 
-    // __instance isn't apt, target is static.
-    // __result isn't apt, target return is void.
-    [HarmonyPostfix]
+        // __instance isn't apt, target is static.
+        // __result isn't apt, target return is void.
+        [HarmonyPostfix]
         static void AddMenuItems(Vector3 clickPos, Pawn pawn, List<FloatMenuOption> opts)
         {
             // Stabilize
             if (pawn.health.capacities.CapableOf(PawnCapacityDefOf.Manipulation))
             {
+#pragma warning disable CS0618 // You're supposed to migrate to GenUI.TargetsAt_NewTemp? But that scares me.
                 foreach (LocalTargetInfo curTarget in GenUI.TargetsAt(clickPos, TargetingParameters.ForRescue(pawn), true)) // !! This needs to be patched into A17
+#pragma warning restore CS0618
                 {
                     Pawn patient = (Pawn)curTarget.Thing;
                     if (patient.Downed
@@ -184,7 +185,7 @@ namespace CombatExtended.HarmonyCE
                 }
             }
         }
-        
+
         static IEnumerable<CodeInstruction> Transpiler(IEnumerable<CodeInstruction> instructions)
         {
             string targetString = "CannotPickUp";
@@ -384,7 +385,8 @@ namespace CombatExtended.HarmonyCE
                     }
                     yield return instruction;
                 }
-            } else
+            }
+            else
             {
                 // patch failure, just dump the data out
                 Log.Error(string.Concat(logPrefix, "Error applying patch to ForceWear, no change."));

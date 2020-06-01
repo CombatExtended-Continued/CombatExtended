@@ -28,7 +28,7 @@ namespace CombatExtended.HarmonyCE
     [HarmonyPatch(typeof(JobDriver_Wait), "CheckForAutoAttack")]
     static class Harmony_JobDriverWait_CheckForAutoAttack
     {
-        static readonly string logPrefix = Assembly.GetExecutingAssembly().GetName().Name + " :: " + typeof(Harmony_JobDriverWait_CheckForAutoAttack).Name + " :: ";
+
         //static MethodInfo Patched_ClosestThingTarget_Global = null;
 
         /// <summary>
@@ -72,7 +72,6 @@ namespace CombatExtended.HarmonyCE
             {
                 if (codes[i].opcode == OpCodes.Ldnull)
                 {
-                    CodeInstruction tmp = HarmonyBase.MakeLocalLoadInstruction(verbLocalIndex);
                     codes[i++] = HarmonyBase.MakeLocalLoadInstruction(verbLocalIndex);
                     codes.Insert(i, new CodeInstruction(OpCodes.Call, typeof(Harmony_JobDriverWait_CheckForAutoAttack).GetMethod("GetValidTargetPredicate", AccessTools.all)));
                     break;

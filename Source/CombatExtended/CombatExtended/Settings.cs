@@ -35,6 +35,7 @@ namespace CombatExtended
         private bool showCaliberOnGuns = true;
         private bool reuseNeolithicProjectiles = true;
         private bool realisticCookOff = false;
+        private bool enableSimplifiedAmmo = false;
 
         public bool EnableAmmoSystem => enableAmmoSystem;
         public bool RightClickAmmoSelect => rightClickAmmoSelect;
@@ -43,6 +44,7 @@ namespace CombatExtended
         public bool ShowCaliberOnGuns => showCaliberOnGuns;
         public bool ReuseNeolithicProjectiles => reuseNeolithicProjectiles;
         public bool RealisticCookOff => realisticCookOff;
+        public bool EnableSimplifiedAmmo => enableSimplifiedAmmo;
 
         // Debug settings - make sure all of these default to false for the release build
         private bool debugDrawPartialLoSChecks = false;
@@ -92,6 +94,7 @@ namespace CombatExtended
             Scribe_Values.Look(ref showCaliberOnGuns, "showCaliberOnGuns", true);
             Scribe_Values.Look(ref reuseNeolithicProjectiles, "reuseNeolithicProjectiles", true);
             Scribe_Values.Look(ref realisticCookOff, "realisticCookOff", false);
+            Scribe_Values.Look(ref enableSimplifiedAmmo, "enableSimplifiedAmmo", false);
 
             Scribe_Values.Look(ref ShowTutorialPopup, "ShowTutorialPopup", true);
 
@@ -150,6 +153,7 @@ namespace CombatExtended
                 list.CheckboxLabeled("CE_Settings_ShowCaliberOnGuns_Title".Translate(), ref showCaliberOnGuns, "CE_Settings_ShowCaliberOnGuns_Desc".Translate());
                 list.CheckboxLabeled("CE_Settings_ReuseNeolithicProjectiles_Title".Translate(), ref reuseNeolithicProjectiles, "CE_Settings_ReuseNeolithicProjectiles_Desc".Translate());
                 list.CheckboxLabeled("CE_Settings_RealisticCookOff_Title".Translate(), ref realisticCookOff, "CE_Settings_RealisticCookOff_Desc".Translate());
+                list.CheckboxLabeled("CE_Settings_EnableSimplifiedAmmo_Title".Translate(), ref enableSimplifiedAmmo, "CE_Settings_EnableSimplifiedAmmo_Desc".Translate()); ;
             }
             else
             {

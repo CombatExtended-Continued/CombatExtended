@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+		<li>Alpha Animals</li>
+		</mods>
+
+		<match Class="PatchOperationSequence">
+			<operations>
+
+			<li Class="PatchOperationAddModExtension">
+				<xpath>/Defs/ThingDef[defName="AA_MegaLouse"]</xpath>
+				<value>
+					<li Class="CombatExtended.RacePropertiesExtensionCE">
+						<bodyShape>QuadrupedLow</bodyShape>
+					</li>
+				</value>
+			</li>
+			
+			<li Class="PatchOperationReplace">
+				<xpath>/Defs/ThingDef[defName="AA_MegaLouse"]/statBases/ArmorRating_Blunt</xpath>
+				<value>
+					<ArmorRating_Blunt>1</ArmorRating_Blunt>
+				</value>
+			</li>
+			
+			<li Class="PatchOperationReplace">
+				<xpath>/Defs/ThingDef[defName="AA_MegaLouse"]/statBases/ArmorRating_Sharp</xpath>
+				<value>
+					<ArmorRating_Sharp>1</ArmorRating_Sharp>
+				</value>
+			</li>
+				
+			<li Class="PatchOperationReplace">
+			<xpath>/Defs/PawnKindDef[defName="AA_MegaLouse"]/combatPower</xpath>
+				<value>
+					<combatPower>25</combatPower>
+				</value>
+			</li>
+			
+			<li Class="PatchOperationAdd">
+				<xpath>/Defs/ThingDef[defName="AA_MegaLouse"]/statBases</xpath>
+				<value>
+					<MeleeDodgeChance>0.15</MeleeDodgeChance>
+					<MeleeCritChance>0.01</MeleeCritChance>
+					<MeleeParryChance>0.03</MeleeParryChance>
+				</value>
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>/Defs/ThingDef[defName="AA_MegaLouse"]/tools</xpath>
+				<value>
+					<tools>
+						<li Class="CombatExtended.ToolCE">
+							<label>tusk</label>
+							<capacities>
+								<li>Stab</li>
+							</capacities>
+							<power>11</power>
+							<cooldownTime>1.8</cooldownTime>
+							<linkedBodyPartsGroup>TuskAttackTool</linkedBodyPartsGroup>
+							<armorPenetrationSharp>10</armorPenetrationSharp>
+							<armorPenetrationBlunt>10</armorPenetrationBlunt>
+						</li>
+						<li Class="CombatExtended.ToolCE">
+							<label>head</label>
+							<capacities>
+								<li>Blunt</li>
+							</capacities>
+							<power>5</power>
+							<cooldownTime>1.65</cooldownTime>
+							<armorPenetrationBlunt>0.5</armorPenetrationBlunt>
+							<chanceFactor>0.2</chanceFactor>
+						</li>
+					</tools>
+				</value>
+			</li>
+			
+			</operations>
+		</match>
+	</Operation>
+</Patch>

@@ -98,8 +98,8 @@ namespace CombatExtended
 
         protected float ShootingAccuracy => Mathf.Min(CasterShootingAccuracyValue(caster), 4.5f);
         protected float AimingAccuracy => Mathf.Min(Shooter.GetStatValue(CE_StatDefOf.AimingAccuracy), 1.5f); //equivalent of ShooterPawn?.GetStatValue(CE_StatDefOf.AimingAccuracy) ?? caster.GetStatValue(CE_StatDefOf.AimingAccuracy)
-        protected float SightsEfficiency => EquipmentSource.GetStatValue(CE_StatDefOf.SightsEfficiency);
-        protected virtual float SwayAmplitude => Mathf.Max(0, (4.5f - ShootingAccuracy) * EquipmentSource.GetStatValue(StatDef.Named("SwayFactor")));
+        protected float SightsEfficiency => EquipmentSource?.GetStatValue(CE_StatDefOf.SightsEfficiency) ?? 1f;
+        protected virtual float SwayAmplitude => Mathf.Max(0, (4.5f - ShootingAccuracy) * (EquipmentSource?.GetStatValue(StatDef.Named("SwayFactor")) ?? 1f));
 
         // Ammo variables
         protected CompAmmoUser CompAmmo
@@ -358,7 +358,7 @@ namespace CombatExtended
             report.shotSpeed = ShotSpeed;
             report.swayDegrees = SwayAmplitude;
             var spreadmult = projectilePropsCE != null ? projectilePropsCE.spreadMult : 0f;
-            report.spreadDegrees = EquipmentSource.GetStatValue(StatDef.Named("ShotSpread")) * spreadmult;
+            report.spreadDegrees = (EquipmentSource?.GetStatValue(StatDef.Named("ShotSpread")) ?? 0) * spreadmult;
             Thing cover;
             float smokeDensity;
             GetHighestCoverAndSmokeForTarget(target, out cover, out smokeDensity);
@@ -721,7 +721,7 @@ namespace CombatExtended
                 // Create validator to check for intersection with partial cover
                 var aimMode = CompFireModes?.CurrentAimMode;
 
-                bool CanShootThroughCell(IntVec3 cell)
+                Predicate<IntVec3> CanShootThroughCell = (IntVec3 cell) =>
                 {
                     Thing cover = cell.GetFirstPawn(caster.Map) ?? cell.GetCover(caster.Map);
 
@@ -757,7 +757,7 @@ namespace CombatExtended
                     }
 
                     return true;
-                }
+                };
 
                 // Add validator to parameters
                 foreach (IntVec3 curCell in SightUtility.GetCellsOnLine(shotSource, targetLoc.ToVector3(), caster.Map))

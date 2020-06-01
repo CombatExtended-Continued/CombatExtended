@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+		<li>Alpha Animals</li>
+		</mods>
+
+		<match Class="PatchOperationSequence">
+			<operations>
+
+			<li Class="PatchOperationAddModExtension">
+				<xpath>/Defs/ThingDef[defName="AA_Aerofleet"]</xpath>
+				<value>
+					<li Class="CombatExtended.RacePropertiesExtensionCE">
+						<bodyShape>Birdlike</bodyShape>
+					</li>
+				</value>
+			</li>
+
+			<li Class="PatchOperationAdd">
+				<xpath>/Defs/ThingDef[defName="AA_Aerofleet"]/statBases</xpath>
+				<value>
+					<MeleeDodgeChance>0.36</MeleeDodgeChance>
+					<MeleeCritChance>0.1</MeleeCritChance>
+					<MeleeParryChance>0</MeleeParryChance>
+				</value>
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>/Defs/ThingDef[defName="AA_Aerofleet"]/tools</xpath>
+				<value>
+					<tools>
+						<li Class="CombatExtended.ToolCE">
+							<capacities>
+								<li>Bite</li>
+							</capacities>
+							<power>7</power>
+							<cooldownTime>2.5</cooldownTime>
+						<linkedBodyPartsGroup>Teeth</linkedBodyPartsGroup>
+						<armorPenetrationSharp>0.035</armorPenetrationSharp>
+						<armorPenetrationBlunt>0.01</armorPenetrationBlunt>
+						</li>
+						<li Class="CombatExtended.ToolCE">
+							<label>tentacles</label>
+							<capacities>
+								<li>Blunt</li>
+							</capacities>
+							<power>4</power>
+							<cooldownTime>1.65</cooldownTime>
+							<linkedBodyPartsGroup>Arms</linkedBodyPartsGroup>
+							<armorPenetrationBlunt>0.015</armorPenetrationBlunt>
+							<chanceFactor>0.2</chanceFactor>
+						</li>
+					</tools>
+				</value>
+			</li>
+
+			<li Class="PatchOperationAddModExtension">
+				<xpath>/Defs/ThingDef[defName="AA_ColossalAerofleet"]</xpath>
+				<value>
+					<li Class="CombatExtended.RacePropertiesExtensionCE">
+						<bodyShape>Birdlike</bodyShape>
+					</li>
+				</value>
+			</li>
+
+			<li Class="PatchOperationAdd">
+				<xpath>/Defs/ThingDef[defName="AA_ColossalAerofleet"]/statBases</xpath>
+				<value>
+					<MeleeDodgeChance>0.16</MeleeDodgeChance>
+					<MeleeCritChance>0.05</MeleeCritChance>
+					<MeleeParryChance>0.11</MeleeParryChance>
+				</value>
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>/Defs/ThingDef[defName="AA_ColossalAerofleet"]/tools</xpath>
+				<value>
+					<tools>
+						<li Class="CombatExtended.ToolCE">
+							<capacities>
+								<li>Bite</li>
+							</capacities>
+							<power>14</power>
+							<cooldownTime>2.5</cooldownTime>
+							<linkedBodyPartsGroup>Teeth</linkedBodyPartsGroup>
+							<armorPenetrationSharp>1.0</armorPenetrationSharp>
+							<armorPenetrationBlunt>0.25</armorPenetrationBlunt>
+						</li>
+						<li Class="CombatExtended.ToolCE">
+							<label>tentacles</label>
+							<capacities>
+								<li>Blunt</li>
+							</capacities>
+							<power>12</power>
+							<cooldownTime>1.65</cooldownTime>
+							<linkedBodyPartsGroup>Arms</linkedBodyPartsGroup>
+							<armorPenetrationBlunt>1.015</armorPenetrationBlunt>
+							<chanceFactor>0.2</chanceFactor>
+						</li>
+					</tools>
+				</value>
+			</li>
+
+			</operations>
+		</match>
+	</Operation>
+</Patch>

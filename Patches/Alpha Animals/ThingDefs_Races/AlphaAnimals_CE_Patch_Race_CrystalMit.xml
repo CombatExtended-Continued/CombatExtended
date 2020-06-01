@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+		<li>Alpha Animals</li>
+		</mods>
+
+		<match Class="PatchOperationSequence">
+			<operations>
+
+			<li Class="PatchOperationAddModExtension">
+				<xpath>/Defs/ThingDef[defName="AA_CrystalMit"]</xpath>
+				<value>
+					<li Class="CombatExtended.RacePropertiesExtensionCE">
+						<bodyShape>Quadruped</bodyShape>
+					</li>
+				</value>
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>/Defs/ThingDef[defName="AA_CrystalMit"]/statBases/ArmorRating_Blunt</xpath>
+				<value>
+					<ArmorRating_Blunt>12</ArmorRating_Blunt>
+				</value>
+			</li>
+			<li Class="PatchOperationReplace">
+				<xpath>/Defs/ThingDef[defName="AA_CrystalMit"]/statBases/ArmorRating_Sharp</xpath>
+				<value>
+					<ArmorRating_Sharp>20</ArmorRating_Sharp>
+				</value>
+			</li>
+			
+			<li Class="PatchOperationAdd">
+				<xpath>/Defs/ThingDef[defName="AA_CrystalMit"]/statBases</xpath>
+				<value>
+					<MeleeDodgeChance>0.02</MeleeDodgeChance>
+					<MeleeCritChance>0.07</MeleeCritChance>
+					<MeleeParryChance>0.04</MeleeParryChance>
+				</value>
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>/Defs/ThingDef[defName="AA_CrystalMit"]/tools</xpath>
+				<value>
+					<tools>
+						      <li Class="CombatExtended.ToolCE">
+								<capacities>
+								  <li>Bite</li>
+								</capacities>
+								<power>8</power>
+								<cooldownTime>2.6</cooldownTime>
+								<linkedBodyPartsGroup>TurtleBeakAttackTool</linkedBodyPartsGroup>
+								<armorPenetrationSharp>0.43</armorPenetrationSharp>
+								<armorPenetrationBlunt>0.65</armorPenetrationBlunt>
+							  </li>
+						      <li Class="CombatExtended.ToolCE">
+								<label>head</label>
+								<capacities>
+								  <li>Blunt</li>
+								</capacities>
+								<power>4</power>
+								<cooldownTime>1.65</cooldownTime>
+								<linkedBodyPartsGroup>HeadAttackTool</linkedBodyPartsGroup>
+								<armorPenetrationBlunt>0.750</armorPenetrationBlunt>
+								<chanceFactor>0.2</chanceFactor>
+							  </li>
+					</tools>
+				</value>
+			</li>
+			</operations>
+		</match>
+	</Operation>
+</Patch>

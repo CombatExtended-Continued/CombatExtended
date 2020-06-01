@@ -172,7 +172,7 @@ namespace CombatExtended
                 findItem = t => curSlot.genericDef.lambda(t.GetInnerIfMinified().def);
             else
                 findItem = t => t.GetInnerIfMinified().def == curSlot.thingDef;
-            Predicate<Thing> search = t => findItem(t) && !t.IsForbidden(pawn) && pawn.CanReserve(t) && !isFoodInPrison(t);
+            Predicate<Thing> search = t => findItem(t) && !t.IsForbidden(pawn) && pawn.CanReserve(t) && !isFoodInPrison(t) && AllowedByBiocode(t, pawn);
 
             // look for a thing near the pawn.
             curThing = GenClosest.ClosestThingReachable(
@@ -218,6 +218,12 @@ namespace CombatExtended
                     else curPriority = ItemPriority.Low;
                 }
             }
+        }
+
+        private bool AllowedByBiocode(Thing thing, Pawn pawn)
+        {
+            CompBiocodable compBiocoded = thing.TryGetComp<CompBiocodable>();
+            return (compBiocoded == null || !compBiocoded.Biocoded || compBiocoded.CodedPawn == pawn);
         }
 
         /// <summary>
@@ -266,7 +272,7 @@ namespace CombatExtended
                 int count;
                 Pawn carriedBy;
                 bool doEquip = false;
-                LoadoutSlot prioritySlot = GetPrioritySlot(pawn, out priority, out closestThing, out count, out carriedBy);
+                GetPrioritySlot(pawn, out priority, out closestThing, out count, out carriedBy);
                 // moved logic to detect if should equip vs put in inventory here...
                 if (closestThing != null)
                 {

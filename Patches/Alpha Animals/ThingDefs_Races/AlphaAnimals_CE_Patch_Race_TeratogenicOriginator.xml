@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+		<li>Alpha Animals</li>
+		</mods>
+
+		<match Class="PatchOperationSequence">
+			<operations>
+
+			<li Class="PatchOperationAddModExtension">
+				<xpath>/Defs/ThingDef[defName="AA_TeratogenicOriginator"]</xpath>
+				<value>
+					<li Class="CombatExtended.RacePropertiesExtensionCE">
+						<bodyShape>Birdlike</bodyShape>
+					</li>
+				</value>
+			</li>
+
+			<li Class="PatchOperationAdd">
+				<xpath>/Defs/ThingDef[defName="AA_TeratogenicOriginator"]/statBases</xpath>
+				<value>
+					<MeleeDodgeChance>0.3</MeleeDodgeChance>
+					<MeleeCritChance>0.04</MeleeCritChance>
+					<MeleeParryChance>0.3</MeleeParryChance>
+				</value>
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>/Defs/ThingDef[defName="AA_TeratogenicOriginator"]/tools</xpath>
+				<value>
+					<tools>
+						<li Class="CombatExtended.ToolCE">
+							<label>tentacles</label>
+							<capacities>
+								<li>Blunt</li>
+							</capacities>
+							<power>5</power>
+							<cooldownTime>0.35</cooldownTime>
+							<linkedBodyPartsGroup>Arms</linkedBodyPartsGroup>
+							<armorPenetrationBlunt>0.7</armorPenetrationBlunt>
+						</li>
+					</tools>
+				</value>
+			</li>
+			</operations>
+		</match>
+	</Operation>
+</Patch>

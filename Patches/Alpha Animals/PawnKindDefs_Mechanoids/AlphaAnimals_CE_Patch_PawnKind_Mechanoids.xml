@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+		<li>Alpha Animals</li>
+		</mods>
+
+			<match Class="PatchOperationSequence">
+				<operations>
+
+					<!--Siegebreaker-->
+	
+					<li Class="PatchOperationAddModExtension">
+						<xpath>/Defs/PawnKindDef[defName="AA_Siegebreaker"]</xpath>
+						<value>
+						<li Class="CombatExtended.LoadoutPropertiesExtension">
+							<primaryMagazineCount>
+							<min>20</min>
+							<max>20</max>
+						</primaryMagazineCount>
+						</li>
+						</value>
+					</li>
+
+					<!--Fireworm-->
+
+					<li Class="PatchOperationAddModExtension">
+						<xpath>/Defs/PawnKindDef[defName="AA_Fireworm"]</xpath>
+						<value>
+						<li Class="CombatExtended.LoadoutPropertiesExtension">
+							<primaryMagazineCount>
+							<min>100</min>
+							<max>100</max>
+						</primaryMagazineCount>
+						</li>
+						</value>
+					</li>
+					
+					<!--Goliath-->
+					
+					<li Class="PatchOperationAddModExtension">
+						<xpath>/Defs/PawnKindDef[defName="AA_Goliath"]</xpath>
+						<value>
+						<li Class="CombatExtended.LoadoutPropertiesExtension">
+							<primaryMagazineCount>
+							<min>50</min>
+							<max>50</max>
+						</primaryMagazineCount>
+						</li>
+						</value>
+					</li>
+
+				</operations>
+			</match>
+	</Operation>
+</Patch>

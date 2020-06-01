@@ -303,7 +303,6 @@ namespace CombatExtended
                     }
                 }
 
-                Room room = RegionAndRoomQuery.RoomAtFast(pawn.Position, pawn.Map);
 
                 // Find weapon in inventory and try to switch if any ammo in inventory.
                 if (priority == WorkPriority.Weapon && !hasPrimary)
