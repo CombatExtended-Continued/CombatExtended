@@ -8,14 +8,27 @@
 		<match Class="PatchOperationSequence">
 		 <operations>
 
-			<!-- ========== MG 08 ========== -->
-			
+			<!-- ========== Common to all Turrets ========== -->
 			<li Class="PatchOperationReplace">
-				<xpath>Defs/ThingDef[defName="Turret_MG_08_KA"]/thingClass</xpath>
+				<xpath>Defs/ThingDef[
+					@Name="Base_FK_96_KA" or
+					@Name="Base_leFH_16_KA" or
+					defName="Turret_MG_08_KA"			
+				]/thingClass</xpath>
 				<value>
 					<thingClass>CombatExtended.Building_TurretGunCE</thingClass>
 				</value>
 			</li>
+
+			<li Class="PatchOperationRemove">
+				<xpath>Defs/ThingDef[
+					@Name="Base_FK_96_KA" or
+					@Name="Base_leFH_16_KA" or
+					defName="Turret_MG_08_KA"	
+				]/comps/li[@Class = "CompProperties_Refuelable"]</xpath>
+			</li>
+
+			<!-- ========== MG 08 ========== -->
 
 			<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
 				<defName>Gun_MG_08_KA</defName>
@@ -58,6 +71,10 @@
 			<li Class="PatchOperationRemove">
 				<xpath>Defs/ThingDef[defName="Turret_MG_08_KA"]/comps/li[@Class = "CompProperties_Refuelable"]</xpath>
 			</li>
+
+			<!-- ========== leFH 16 ========== -->
+
+			<!-- ========== FK 96 ========== -->
 
 			</operations>
 			</match>
