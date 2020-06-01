@@ -80,9 +80,7 @@ namespace CombatExtended
         {
             get
 			{
-				if (Props.ammoSet == null) return false;
-				if (Controller.settings.EnableAmmoSystem) return true;
-				return Props.ammoSet.isMortarAmmoSet;
+                return Props.ammoSet != null && AmmoUtility.IsAmmoSystemActive(Props.ammoSet);
 			}
 		}
 		public bool HasAndUsesAmmoOrMagazine

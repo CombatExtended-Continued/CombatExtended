@@ -79,8 +79,7 @@ namespace CombatExtended
                         ? 1     //isn't a weapon AND has the tag
                         : 0;    //is a weapon or doesn't have the tag (shouldn't be destroyed)
                 }
-                bool isMortarAmmo = AmmoDef?.isMortarAmmo ?? false;
-                return shouldDestroy == 1 && !Controller.settings.EnableAmmoSystem && !isMortarAmmo;
+                return shouldDestroy == 1 && !AmmoUtility.IsAmmoSystemActive(AmmoDef);
             }
         }
 
@@ -121,9 +120,7 @@ namespace CombatExtended
             {
                 stringBuilder.AppendLine(inspectString);
             }
-            bool isMortarAmmo = AmmoDef?.isMortarAmmo ?? false;
-
-            if (Controller.settings.EnableAmmoSystem || isMortarAmmo)
+            if (AmmoUtility.IsAmmoSystemActive(AmmoDef))
             {
                 var count = AmmoDef?.Users.Count ?? 0;
 

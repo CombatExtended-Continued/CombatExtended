@@ -31,7 +31,7 @@ namespace CombatExtended
             if (!base.ShouldShowFor(req)) return false;
 
             AmmoSetDef ammoSet = GunDef(req)?.GetCompProperties<CompProperties_AmmoUser>()?.ammoSet;
-            if (Controller.settings.EnableAmmoSystem || (ammoSet != null && ammoSet.isMortarAmmoSet))
+            if (AmmoUtility.IsAmmoSystemActive(ammoSet))
             {
                 return (ammoSet != null);
             }
@@ -44,7 +44,7 @@ namespace CombatExtended
         public override IEnumerable<Dialog_InfoCard.Hyperlink> GetInfoCardHyperlinks(StatRequest statRequest)
         {
             var ammoSet = GunDef(statRequest)?.GetCompProperties<CompProperties_AmmoUser>().ammoSet;
-            if (ammoSet != null && (Controller.settings.EnableAmmoSystem || ammoSet.isMortarAmmoSet))
+            if (ammoSet != null && AmmoUtility.IsAmmoSystemActive(ammoSet))
             {
                 foreach (var ammoType in ammoSet.ammoTypes)
                 {
@@ -58,7 +58,7 @@ namespace CombatExtended
             StringBuilder stringBuilder = new StringBuilder();
 
             var ammoSet = GunDef(req)?.GetCompProperties<CompProperties_AmmoUser>().ammoSet;
-            if (Controller.settings.EnableAmmoSystem || (ammoSet != null && ammoSet.isMortarAmmoSet))
+            if (AmmoUtility.IsAmmoSystemActive(ammoSet))
             {
                 if (ammoSet != null)
                 {
@@ -84,8 +84,8 @@ namespace CombatExtended
 
         public override string GetStatDrawEntryLabel(StatDef stat, float value, ToStringNumberSense numberSense, StatRequest optionalReq, bool finalized = true)
         {
-            var ammoSet = GunDef(optionalReq)?.GetCompProperties<CompProperties_AmmoUser>().ammoSet;
-            if (Controller.settings.EnableAmmoSystem || (ammoSet != null && ammoSet.isMortarAmmoSet))
+            var ammoSet = GunDef(optionalReq)?.GetCompProperties<CompProperties_AmmoUser>()?.ammoSet;
+            if (AmmoUtility.IsAmmoSystemActive(ammoSet))
             {
                 return ammoSet?.LabelCap;
             }
