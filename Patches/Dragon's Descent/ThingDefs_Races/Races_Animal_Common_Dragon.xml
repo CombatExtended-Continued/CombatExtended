@@ -7,92 +7,9 @@
 		</mods>
 		<match Class="PatchOperationSequence">
 			<operations>
-				<!-- ==== Common dragon base ==== -->
-				<!-- === bodyShape === -->
-				<li Class="PatchOperationAddModExtension">
-					<xpath>/Defs/ThingDef[@Name="DragonRaceBase"]</xpath>
-					<value>
-						<li Class="CombatExtended.RacePropertiesExtensionCE">
-							<bodyShape>Birdlike</bodyShape>
-						</li>
-					</value>
-				</li>
-
-				<!-- === statBases === -->
-				<li Class="PatchOperationAdd">
-					<xpath>/Defs/ThingDef[@Name="DragonRaceBase"]/statBases</xpath>
-					<value>
-						<MeleeDodgeChance>0.13</MeleeDodgeChance>
-						<MeleeCritChance>1.75</MeleeCritChance>
-						<MeleeParryChance>0.54</MeleeParryChance>
-						<SightsEfficiency>1</SightsEfficiency>
-					</value>
-				</li>
-				<li Class="PatchOperationReplace">
-					<xpath>/Defs/ThingDef[@Name="DragonRaceBase"]/statBases/ArmorRating_Blunt</xpath>
-					<value>
-						<ArmorRating_Blunt>40</ArmorRating_Blunt>
-					</value>
-				</li>
-				<li Class="PatchOperationReplace">
-					<xpath>/Defs/ThingDef[@Name="DragonRaceBase"]/statBases/ArmorRating_Sharp</xpath>
-					<value>
-						<ArmorRating_Sharp>16</ArmorRating_Sharp>
-					</value>
-				</li>
-
-				<!-- === baseHealthScale and manhunterOnTameFailChance === -->
-				<li Class="PatchOperationReplace">
-					<xpath>/Defs/ThingDef[@Name="DragonRaceBase"]/race/baseHealthScale</xpath>
-					<value>
-						<baseHealthScale>10</baseHealthScale>
-					</value>
-				</li>
-				<li Class="PatchOperationReplace">
-					<xpath>/Defs/ThingDef[@Name="DragonRaceBase"]/race/manhunterOnTameFailChance</xpath>
-					<value>
-						<manhunterOnTameFailChance>0.51</manhunterOnTameFailChance>
-					</value>
-				</li>
-
-				<!-- === Verbs === -->
-				<li Class="PatchOperationReplace">
-					<xpath>
-						/Defs/ThingDef[
-							defName="Black_Dragon" or 
-							defName="Blue_Dragon" or 
-							defName="Green_Dragon" or
-							defName="Purple_Dragon" or 
-							defName="Red_Dragon" or 
-							defName="White_Dragon" or 
-							defName="Yellow_Dragon"]/verbs
-					</xpath>
-					<value>
-						<verbs>
-							<li Class="CombatExtended.VerbPropertiesCE">
-								<verbClass>CombatExtended.Verb_ShootCE</verbClass>
-								<hasStandardCommand>true</hasStandardCommand>
-								<defaultProjectile>Projectile_DragonBreath</defaultProjectile>
-								<burstShotCount>25</burstShotCount>
-								<ticksBetweenBurstShots>2</ticksBetweenBurstShots>
-								<warmupTime>5</warmupTime>
-								<range>25</range>
-								<minRange>2</minRange>
-								<soundCast>DragonBreathShot</soundCast>
-								<muzzleFlashScale>1</muzzleFlashScale>
-								<commonality>0.9</commonality>
-								<ai_IsBuildingDestroyer>true</ai_IsBuildingDestroyer>
-								<targetParams>
-									<canTargetLocations>true</canTargetLocations>
-								</targetParams>
-								<recoilAmount>0.4</recoilAmount>
-							</li>
-						</verbs>
-					</value>
-				</li>
-
-				<!-- === Tools === -->
-				<!-- == Base Tools == -->
+				<!-- ======== Common Dragons ======== -->
+				<!-- ====== Tools ====== -->
+				<!-- ==== Base Tools ==== -->
 				<li Class="PatchOperationReplace">
 					<xpath>
 						/Defs/ThingDef[
@@ -185,8 +102,8 @@
 						</tools>
 					</value>
 				</li>
-				<!-- == Unique Tools == -->
-				<!-- = Black Dragon = -->
+				<!-- ==== Unique Tools ==== -->
+				<!-- == Black Dragon == -->
 				<li Class="PatchOperationAdd">
 					<xpath>/Defs/ThingDef[defName="Black_Dragon"]/tools</xpath>
 					<value>
@@ -204,7 +121,7 @@
 						</li>
 					</value>
 				</li>
-				<!-- = Blue Dragon = -->
+				<!-- == Blue Dragon == -->
 				<li Class="PatchOperationAdd">
 					<xpath>/Defs/ThingDef[defName="Blue_Dragon"]/tools</xpath>
 					<value>
@@ -222,7 +139,7 @@
 						</li>
 					</value>
 				</li>
-				<!-- = Green Dragon = -->
+				<!-- == Green Dragon == -->
 				<li Class="PatchOperationAdd">
 					<xpath>/Defs/ThingDef[defName="Green_Dragon"]/tools</xpath>
 					<value>
@@ -240,7 +157,7 @@
 						</li>
 					</value>
 				</li>
-				<!-- = Purple Dragon = -->
+				<!-- == Purple Dragon == -->
 				<li Class="PatchOperationAdd">
 					<xpath>/Defs/ThingDef[defName="Purple_Dragon"]/tools</xpath>
 					<value>
@@ -284,7 +201,7 @@
 						</li>
 					</value>
 				</li>
-				<!-- = Red Dragon = -->
+				<!-- == Red Dragon == -->
 				<li Class="PatchOperationAdd">
 					<xpath>/Defs/ThingDef[defName="Red_Dragon"]/tools</xpath>
 					<value>
@@ -321,7 +238,7 @@
 						</li>
 					</value>
 				</li>
-				<!-- = White Dragon = -->
+				<!-- == White Dragon == -->
 				<li Class="PatchOperationAdd">
 					<xpath>/Defs/ThingDef[defName="White_Dragon"]/tools</xpath>
 					<value>
@@ -358,7 +275,7 @@
 						</li>
 					</value>
 				</li>
-				<!-- = Yellow Dragon = -->
+				<!-- == Yellow Dragon == -->
 				<li Class="PatchOperationAdd">
 					<xpath>/Defs/ThingDef[defName="Yellow_Dragon"]/tools</xpath>
 					<value>
@@ -403,29 +320,29 @@
 					</value>
 				</li>
 
-				<!-- === Wildness (descending order) === -->
-				<!-- == Black Dragon and Red Dragon == -->
+				<!-- ====== Wildness (descending order) ====== -->
+				<!-- ==== Black Dragon and Red Dragon ==== -->
 				<li Class="PatchOperationReplace">
 					<xpath>/Defs/ThingDef[defName="Black_Dragon" or defName="Red_Dragon"]/race/wildness</xpath>
 					<value>
 						<wildness>0.99</wildness>
 					</value>
 				</li>
-				<!-- == Green Dragon ==-->
+				<!-- ==== Green Dragon ==== -->
 				<li Class="PatchOperationReplace">
 					<xpath>/Defs/ThingDef[defName="Green_Dragon"]/race/wildness</xpath>
 					<value>
 						<wildness>0.97</wildness>
 					</value>
 				</li>
-				<!-- == Purple Dragon == -->
+				<!-- ==== Purple Dragon ==== -->
 				<li Class="PatchOperationReplace">
 					<xpath>/Defs/ThingDef[defName="Purple_Dragon"]/race/wildness</xpath>
 					<value>
 						<wildness>0.94</wildness>
 					</value>
 				</li>
-				<!-- == Blue Dragon and White Dragon and Yellow Dragon == -->
+				<!-- ==== Blue Dragon and White Dragon and Yellow Dragon ==== -->
 				<li Class="PatchOperationReplace">
 					<xpath>/Defs/ThingDef[defName="Blue_Dragon" or defName="White_Dragon" or defName="Yellow_Dragon"]/race/wildness</xpath>
 					<value>
@@ -435,5 +352,4 @@
 			</operations>
 		</match>
 	</Operation>
-
 </Patch>
