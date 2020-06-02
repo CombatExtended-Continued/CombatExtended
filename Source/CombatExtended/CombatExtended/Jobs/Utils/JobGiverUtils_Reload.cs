@@ -129,7 +129,9 @@ namespace CombatExtended.CombatExtended.Jobs.Utils
 			AmmoDef requestedAmmo = reloadable.CompAmmo.SelectedAmmo;
 			// try to find currently selected ammo first
 			var bestAmmo = FindBestAmmo(pawn, requestedAmmo);
-			if (bestAmmo == null && requestedAmmo.AmmoSetDefs != null)
+			// this code is mostly for siege raids, so they can use all the ammo dropped (and get more ammo)
+			// otherwise, they will wait forever for an HE ammo drop, without using the incendiary shells next to them
+			if (bestAmmo == null && !pawn.IsColonist && requestedAmmo.AmmoSetDefs != null)
 			{
 				// if there isn't any, try to find some ammo from same ammo set
 				foreach (AmmoSetDef set in requestedAmmo.AmmoSetDefs)
