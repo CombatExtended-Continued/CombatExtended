@@ -288,16 +288,17 @@ namespace CombatExtended
                         // Equip gun if unarmed or current gun is not in loadout
                         if (doEquip)
                         {
-                            return new Job(JobDefOf.Equip, closestThing);
+                            return JobMaker.MakeJob(JobDefOf.Equip, closestThing);
                         }
-                        return new Job(JobDefOf.TakeInventory, closestThing) { count = Mathf.Min(closestThing.stackCount, count) };
+                        Job job = JobMaker.MakeJob(JobDefOf.TakeInventory, closestThing);
+                        job.count = Mathf.Min(closestThing.stackCount, count);
+                        return job;
                     }
                     else
                     {
-                        return new Job(CE_JobDefOf.TakeFromOther, closestThing, carriedBy, doEquip ? pawn : null)
-                        {
-                            count = doEquip ? 1 : Mathf.Min(closestThing.stackCount, count)
-                        };
+                        Job job = JobMaker.MakeJob(CE_JobDefOf.TakeFromOther, closestThing, carriedBy, doEquip ? pawn : null);
+                        job.count = doEquip ? 1 : Mathf.Min(closestThing.stackCount, count);
+                        return job;
                     }
                 }
             }

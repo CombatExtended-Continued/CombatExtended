@@ -17,7 +17,7 @@ namespace CombatExtended
             {
                 return null;
             }
-            return new Job(CE_JobDefOf.HunkerDown, pawn);
+            return JobMaker.MakeJob(CE_JobDefOf.HunkerDown, pawn);
         }
     }
 }

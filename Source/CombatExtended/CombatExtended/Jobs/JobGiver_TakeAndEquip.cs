@@ -256,7 +256,7 @@ namespace CombatExtended
                             if (inventory.container.TryDrop(ListGun, pawn.Position, pawn.Map, ThingPlaceMode.Near, ListGun.stackCount, out droppedWeapon))
                             {
                                 pawn.jobs.EndCurrentJob(JobCondition.None, true);
-                                pawn.jobs.TryTakeOrderedJob(new Job(JobDefOf.DropEquipment, droppedWeapon, 30, true));
+                                pawn.jobs.TryTakeOrderedJob(JobMaker.MakeJob(JobDefOf.DropEquipment, droppedWeapon, 30, true));
                             }
                         }
                     }
@@ -287,7 +287,7 @@ namespace CombatExtended
                                 if (inventory.container.TryDrop(ammoInvListGun, pawn.Position, pawn.Map, ThingPlaceMode.Near, ammoInvListGun.stackCount, out droppedThingAmmo))
                                 {
                                     pawn.jobs.EndCurrentJob(JobCondition.None, true);
-                                    pawn.jobs.TryTakeOrderedJob(new Job(JobDefOf.DropEquipment, 30, true));
+                                    pawn.jobs.TryTakeOrderedJob(JobMaker.MakeJob(JobDefOf.DropEquipment, 30, true));
                                 }
                             }
                         }
@@ -297,7 +297,7 @@ namespace CombatExtended
                             if (inventory.container.TryDrop(WrongammoThing, pawn.Position, pawn.Map, ThingPlaceMode.Near, WrongammoThing.stackCount, out droppedThing))
                             {
                                 pawn.jobs.EndCurrentJob(JobCondition.None, true);
-                                pawn.jobs.TryTakeOrderedJob(new Job(JobDefOf.DropEquipment, 30, true));
+                                pawn.jobs.TryTakeOrderedJob(JobMaker.MakeJob(JobDefOf.DropEquipment, 30, true));
                             }
                         }
                     }
@@ -353,7 +353,7 @@ namespace CombatExtended
                                     int numToThing = 0;
                                     if (inventory.CanFitInInventory(thing, out numToThing))
                                     {
-                                        return new Job(JobDefOf.Equip, thing);
+                                        return JobMaker.MakeJob(JobDefOf.Equip, thing);
                                     }
                                 }
                                 else
@@ -382,7 +382,7 @@ namespace CombatExtended
                                             int numToThing = 0;
                                             if (inventory.CanFitInInventory(thing, out numToThing))
                                             {
-                                                return new Job(JobDefOf.Equip, thing);
+                                                return JobMaker.MakeJob(JobDefOf.Equip, thing);
                                             }
                                         }
                                     }
@@ -398,7 +398,7 @@ namespace CombatExtended
 
                             if (meleeWeapon != null)
                             {
-                                return new Job(JobDefOf.Equip, meleeWeapon);
+                                return JobMaker.MakeJob(JobDefOf.Equip, meleeWeapon);
                             }
                         }
                     }
@@ -452,10 +452,9 @@ namespace CombatExtended
                                                 int numToCarry = 0;
                                                 if (inventory.CanFitInInventory(th, out numToCarry))
                                                 {
-                                                    return new Job(JobDefOf.TakeInventory, th)
-                                                    {
-                                                        count = numToCarry
-                                                    };
+                                                    Job job = JobMaker.MakeJob(JobDefOf.TakeInventory, th);
+                                                    job.count = numToCarry;
+                                                    return job;
                                                 }
                                             }
                                         }
@@ -464,10 +463,9 @@ namespace CombatExtended
                                             int numToCarry = 0;
                                             if (inventory.CanFitInInventory(th, out numToCarry))
                                             {
-                                                return new Job(JobDefOf.TakeInventory, th)
-                                                {
-                                                    count = Mathf.RoundToInt(numToCarry * 0.8f)
-                                                };
+                                                Job job = JobMaker.MakeJob(JobDefOf.TakeInventory, th);
+                                                job.count = Mathf.RoundToInt(numToCarry * 0.8f);
+                                                return job;
                                             }
                                         }
                                     }
@@ -487,7 +485,7 @@ namespace CombatExtended
                             int numToapparel = 0;
                             if (inventory.CanFitInInventory(apparel, out numToapparel))
                             {
-                                return new Job(JobDefOf.Wear, apparel)
+                                return JobMaker.MakeJob(JobDefOf.Wear, apparel)
                                 {
                                     ignoreForbidden = true
                                 };
@@ -502,7 +500,7 @@ namespace CombatExtended
                             int numToapparel2 = 0;
                             if (inventory.CanFitInInventory(apparel2, out numToapparel2))
                             {
-                                return new Job(JobDefOf.Wear, apparel2)
+                                return JobMaker.MakeJob(JobDefOf.Wear, apparel2)
                                 {
                                     ignoreForbidden = true
                                 };
@@ -517,7 +515,7 @@ namespace CombatExtended
                             int numToapparel3 = 0;
                             if (inventory.CanFitInInventory(apparel3, out numToapparel3))
                             {
-                                return new Job(JobDefOf.Wear, apparel3)
+                                return JobMaker.MakeJob(JobDefOf.Wear, apparel3)
                                 {
                                     ignoreForbidden = true,
                                     locomotionUrgency = LocomotionUrgency.Sprint
@@ -549,14 +547,14 @@ namespace CombatExtended
                 }
                 if (thing == null)
                 {
-                    return new Job(JobDefOf.Goto, target, 100, true);
+                    return JobMaker.MakeJob(JobDefOf.Goto, target, 100, true);
                 }
                 if (pawn.equipment.Primary != null)
                 {
                     Verb primaryVerb = pawn.equipment.PrimaryEq.PrimaryVerb;
                     if (primaryVerb.verbProps.ai_IsBuildingDestroyer && (!primaryVerb.verbProps.ai_IsIncendiary || thing.FlammableNow))
                     {
-                        return new Job(JobDefOf.UseVerbOnThing)
+                        return JobMaker.MakeJob(JobDefOf.UseVerbOnThing)
                         {
                             targetA = thing,
                             verbToUse = primaryVerb,
@@ -616,14 +614,13 @@ namespace CombatExtended
         {
             if (!pawn.CanReserve(blocker, 1))
             {
-                return new Job(JobDefOf.Goto, CellFinder.RandomClosewalkCellNear(cellBeforeBlocker, pawn.Map, 10), 100, true);
+                return JobMaker.MakeJob(JobDefOf.Goto, CellFinder.RandomClosewalkCellNear(cellBeforeBlocker, pawn.Map, 10), 100, true);
             }
-            return new Job(JobDefOf.AttackMelee, blocker)
-            {
-                ignoreDesignations = true,
-                expiryInterval = 100,
-                checkOverrideOnExpire = true
-            };
+            Job job = JobMaker.MakeJob(JobDefOf.AttackMelee, blocker);
+            job.ignoreDesignations = true;
+            job.expiryInterval = 100;
+            job.checkOverrideOnExpire = true;
+            return job;
         }
 
         /*
