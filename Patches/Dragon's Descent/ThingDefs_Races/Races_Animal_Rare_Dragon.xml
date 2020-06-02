@@ -1,99 +1,14 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <Patch>
-
 	<Operation Class="PatchOperationFindMod">
 		<mods>
 			<li>Dragon's Descent</li>
 		</mods>
-
 		<match Class="PatchOperationSequence">
 			<operations>
-				<!-- ==== Rare Dragon Base ==== -->
-				<!-- === bodyShape === -->
-				<li Class="PatchOperationAddModExtension">
-					<xpath>/Defs/ThingDef[@Name="RDragonRaceBase"]</xpath>
-					<value>
-						<li Class="CombatExtended.RacePropertiesExtensionCE">
-							<bodyShape>Birdlike</bodyShape>
-						</li>
-					</value>
-				</li>
-
-				<!-- === statBases === -->
-				<li Class="PatchOperationAdd">
-					<xpath>/Defs/ThingDef[@Name="RDragonRaceBase"]/statBases</xpath>
-					<value>
-						<MeleeDodgeChance>0.13</MeleeDodgeChance>
-						<MeleeCritChance>1.96</MeleeCritChance>
-						<MeleeParryChance>0.64</MeleeParryChance>
-						<SightsEfficiency>1</SightsEfficiency>
-					</value>
-				</li>
-				<li Class="PatchOperationReplace">
-					<xpath>/Defs/ThingDef[@Name="RDragonRaceBase"]/statBases/ArmorRating_Blunt</xpath>
-					<value>
-						<ArmorRating_Blunt>48</ArmorRating_Blunt>
-					</value>
-				</li>
-				<li Class="PatchOperationReplace">
-					<xpath>/Defs/ThingDef[@Name="RDragonRaceBase"]/statBases/ArmorRating_Sharp</xpath>
-
-					<value>
-						<ArmorRating_Sharp>19.2</ArmorRating_Sharp>
-					</value>
-				</li>
-
-				<!-- === baseHealthScale and manhunterOnTameFailChance === -->
-				<li Class="PatchOperationReplace">
-					<xpath>/Defs/ThingDef[@Name="DragonRaceBase"]/race/baseHealthScale</xpath>
-
-					<value>
-						<baseHealthScale>12</baseHealthScale>
-					</value>
-				</li>
-				<li Class="PatchOperationReplace">
-					<xpath>/Defs/ThingDef[@Name="DragonRaceBase"]/race/manhunterOnTameFailChance</xpath>
-
-					<value>
-						<manhunterOnTameFailChance>0.51</manhunterOnTameFailChance>
-					</value>
-				</li>
-
-				<!-- === Verbs === -->
-				<li Class="PatchOperationReplace">
-					<xpath> 
-						/Defs/ThingDef[ 
-							defName="Gold_Dragon" or 
-							defName="Silver_Dragon" or 
-							defName="Jade_Dragon" or 
-							defName="True_Dragon"]/verbs
-					</xpath>
-					<value>
-						<verbs>
-							<li Class="CombatExtended.VerbPropertiesCE">
-								<verbClass>CombatExtended.Verb_ShootCE</verbClass>
-								<hasStandardCommand>true</hasStandardCommand>
-								<defaultProjectile>Projectile_DragonBreath</defaultProjectile>
-								<burstShotCount>25</burstShotCount>
-								<ticksBetweenBurstShots>2</ticksBetweenBurstShots>
-								<warmupTime>5</warmupTime>
-								<range>25</range>
-								<minRange>2</minRange>
-								<soundCast>DragonBreathShot</soundCast>
-								<muzzleFlashScale>1</muzzleFlashScale>
-								<commonality>0.9</commonality>
-								<ai_IsBuildingDestroyer>true</ai_IsBuildingDestroyer>
-								<targetParams>
-									<canTargetLocations>true</canTargetLocations>
-								</targetParams>
-								<recoilAmount>0.4</recoilAmount>
-							</li>
-						</verbs>
-					</value>
-				</li>
-
-				<!-- === Tools === -->
-				<!-- == Base Tools -->
+				<!-- ======== Rare Dragons ======== -->
+				<!-- ====== Tools ====== -->
+				<!-- ==== Base Tools ==== -->
 				<li Class="PatchOperationReplace">
 					<xpath>/Defs/ThingDef[
 							defName="Gold_Dragon" or 
@@ -180,8 +95,8 @@
 						</tools>
 					</value>
 				</li>
-				<!-- == Unique Tools == -->
-				<!-- = Gold Dragon = -->
+				<!-- ==== Unique Tools ==== -->
+				<!-- == Gold Dragon == -->
 				<li Class="PatchOperationAdd">
 					<xpath>/Defs/ThingDef[defName="Gold_Dragon"]/tools</xpath>
 					<value>
@@ -218,7 +133,7 @@
 						</li>
 					</value>
 				</li>
-				<!-- = Silver Dragon = -->
+				<!-- == Silver Dragon == -->
 				<li Class="PatchOperationAdd">
 					<xpath>/Defs/ThingDef[defName="Silver_Dragon"]/tools</xpath>
 					<value>
@@ -255,7 +170,7 @@
 						</li>
 					</value>
 				</li>
-				<!-- = Jade Dragon = -->
+				<!-- == Jade Dragon == -->
 				<li Class="PatchOperationAdd">
 					<xpath>/Defs/ThingDef[defName="Jade_Dragon"]/tools</xpath>
 					<value>
@@ -292,9 +207,8 @@
 						</li>
 					</value>
 				</li>
-
-				<!-- === Wildness === -->
-				<!-- == Gold Dragon and Silver Dragon and Jade Dragon == -->
+				<!-- ====== Wildness ====== -->
+				<!-- ==== Gold Dragon and Silver Dragon and Jade Dragon ==== -->
 				<li Class="PatchOperationReplace">
 					<xpath>/Defs/ThingDef[defName="Gold_Dragon" or defName="Silver_Dragon" or defName="Jade_Dragon"]/race/wildness</xpath>
 					<value>
@@ -302,14 +216,15 @@
 					</value>
 				</li>
 
-				<!-- ==== True Dragon ==== -->
-				<!-- === statBases === -->
+				<!-- ======== True Dragon ======== -->
+				<!-- ====== statBases ====== -->
 				<li Class="PatchOperationAdd">
 					<xpath>/Defs/ThingDef[defName="True_Dragon"]/statBases</xpath>
 					<value>
 						<MeleeDodgeChance>0.14</MeleeDodgeChance>
 						<MeleeCritChance>2.34</MeleeCritChance>
 						<MeleeParryChance>0.64</MeleeParryChance>
+						<SightsEfficiency>1</SightsEfficiency>
 					</value>
 				</li>
 
@@ -325,8 +240,7 @@
 						<ArmorRating_Sharp>23</ArmorRating_Sharp>
 					</value>
 				</li>
-
-				<!-- === Tools === -->
+				<!-- ====== Tools ====== -->
 				<li Class="PatchOperationReplace">
 					<xpath>/Defs/ThingDef[defName="True_Dragon"]/tools</xpath>
 					<value>
@@ -472,8 +386,7 @@
 						</tools>
 					</value>
 				</li>
-
-				<!-- === Wildness === -->
+				<!-- ====== Wildness ====== -->
 				<li Class="PatchOperationReplace">
 					<xpath>/Defs/ThingDef[defName="True_Dragon"]/race/wildness</xpath>
 					<value>
@@ -483,5 +396,4 @@
 			</operations>
 		</match>
 	</Operation>
-
 </Patch>

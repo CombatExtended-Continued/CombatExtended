@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+	<!-- I took 3 months off of RimWorld and I've forgotten how to do patches. Great. -->
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+			<li>Dragon's Descent</li>
+		</mods>
+		<match Class="PatchOperationSequence">
+			<operations>
+				<!-- ======== BaseDragon (Dragon Base) ======== -->
+				<!-- ====== ModExtension ====== -->
+				<li Class="PatchOperationAddModExtension">
+					<xpath>Defs/ThingDef[@Name="BaseDragon"]</xpath>
+					<value>
+						<li Class="CombatExtended.RacePropertiesExtensionCE">
+							<bodyShape>Birdlike</bodyShape>
+						</li>
+					</value>
+				</li>
+
+				<!-- ======== DragonRaceBase (Common Dragon Base) ======== -->
+				<!-- ====== statBases ====== -->
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[@Name="DragonRaceBase"]/statBases</xpath>
+					<value>
+						<MeleeDodgeChance>0.13</MeleeDodgeChance>
+						<MeleeCritChance>1.75</MeleeCritChance>
+						<MeleeParryChance>0.54</MeleeParryChance>
+						<SightsEfficiency>1</SightsEfficiency>
+					</value>
+				</li>
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[@Name="DragonRaceBase"]/statBases/ArmorRating_Blunt</xpath>
+					<value>
+						<ArmorRating_Blunt>40</ArmorRating_Blunt>
+					</value>
+				</li>
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[@Name="DragonRaceBase"]/statBases/ArmorRating_Sharp</xpath>
+					<value>
+						<ArmorRating_Sharp>16</ArmorRating_Sharp>
+					</value>
+				</li>
+				<!-- ====== race (Race Properties) ====== -->
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[@Name="DragonRaceBase"]/race/baseHealthScale</xpath>
+					<value>
+						<baseHealthScale>10</baseHealthScale>
+					</value>
+				</li>
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[@Name="DragonRaceBase"]/race/manhunterOnTameFailChance</xpath>
+					<value>
+						<manhunterOnTameFailChance>0.51</manhunterOnTameFailChance>
+					</value>
+				</li>
+				<!-- ====== verbs (Because XPath dumb) ======== -->
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[@Name="DragonRaceBase"]</xpath>
+					<value>
+						<verbs Inherit="false">
+							<li Class="CombatExtended.VerbPropertiesCE">
+								<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+								<hasStandardCommand>true</hasStandardCommand>
+								<defaultProjectile>Projectile_DragonBreath</defaultProjectile>
+								<burstShotCount>25</burstShotCount>
+								<ticksBetweenBurstShots>2</ticksBetweenBurstShots>
+								<warmupTime>5</warmupTime>
+								<range>25</range>
+								<minRange>2</minRange>
+								<soundCast>DragonBreathShot</soundCast>
+								<muzzleFlashScale>1</muzzleFlashScale>
+								<commonality>0.9</commonality>
+								<ai_IsBuildingDestroyer>true</ai_IsBuildingDestroyer>
+								<targetParams>
+									<canTargetLocations>true</canTargetLocations>
+								</targetParams>
+								<recoilAmount>0.4</recoilAmount>
+							</li>
+						</verbs>
+					</value>
+				</li>
+
+				<!-- ======== RDragonRaceBase (Rare Dragon Base) ======== -->
+				<!-- ====== statBases ====== -->
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[@Name="RDragonRaceBase"]/statBases</xpath>
+					<value>
+						<MeleeDodgeChance>0.13</MeleeDodgeChance>
+						<MeleeCritChance>1.96</MeleeCritChance>
+						<MeleeParryChance>0.64</MeleeParryChance>
+						<SightsEfficiency>1</SightsEfficiency>
+					</value>
+				</li>
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[@Name="RDragonRaceBase"]/statBases/ArmorRating_Blunt</xpath>
+					<value>
+						<ArmorRating_Blunt>48</ArmorRating_Blunt>
+					</value>
+				</li>
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[@Name="RDragonRaceBase"]/statBases/ArmorRating_Sharp</xpath>
+					<value>
+						<ArmorRating_Sharp>19.2</ArmorRating_Sharp>
+					</value>
+				</li>
+				<!-- ====== race (Race Properties) ====== -->
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[@Name="RDragonRaceBase"]/race/baseHealthScale</xpath>
+					<value>
+						<baseHealthScale>12</baseHealthScale>
+					</value>
+				</li>
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[@Name="RDragonRaceBase"]/race/manhunterOnTameFailChance</xpath>
+					<value>
+						<manhunterOnTameFailChance>0.51</manhunterOnTameFailChance>
+					</value>
+				</li>
+				<!-- ====== verbs (Because XPath dumb) ======== -->
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[@Name="RDragonRaceBase"]</xpath>
+					<value>
+						<verbs Inherit="false">
+							<li Class="CombatExtended.VerbPropertiesCE">
+								<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+								<hasStandardCommand>true</hasStandardCommand>
+								<defaultProjectile>Projectile_DragonBreath</defaultProjectile>
+								<burstShotCount>25</burstShotCount>
+								<ticksBetweenBurstShots>2</ticksBetweenBurstShots>
+								<warmupTime>5</warmupTime>
+								<range>25</range>
+								<minRange>2</minRange>
+								<soundCast>DragonBreathShot</soundCast>
+								<muzzleFlashScale>1</muzzleFlashScale>
+								<commonality>0.9</commonality>
+								<ai_IsBuildingDestroyer>true</ai_IsBuildingDestroyer>
+								<targetParams>
+									<canTargetLocations>true</canTargetLocations>
+								</targetParams>
+								<recoilAmount>0.4</recoilAmount>
+							</li>
+						</verbs>
+					</value>
+				</li>
+			</operations>
+		</match>
+	</Operation>
+
+</Patch>
