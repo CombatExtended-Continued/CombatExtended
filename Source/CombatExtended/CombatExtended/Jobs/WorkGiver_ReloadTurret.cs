@@ -70,7 +70,7 @@ namespace CombatExtended
 
             Building_TurretGunCE turret = t as Building_TurretGunCE;
             CELogger.Message($"Turret uses ammo? {turret.CompAmmo?.UseAmmo}");
-            if (!(turret.CompAmmo?.UseAmmo ?? false))
+            if (!turret.Reloadable)
             {
                 return false;
             }
