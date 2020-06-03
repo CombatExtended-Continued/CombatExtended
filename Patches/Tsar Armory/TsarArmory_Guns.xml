@@ -1,0 +1,405 @@
+<?xml version="1.0" encoding="utf-8" ?>
+
+<Patch>
+	<Operation Class="PatchOperationFindMod">
+    <mods>
+		<li>Tsar Armory [1.1]</li>
+    </mods>
+		<match Class="PatchOperationSequence">
+		 <operations>
+
+		  <!-- ========== Tools ========== -->
+
+		  <li Class="PatchOperationReplace">
+			<xpath>Defs/ThingDef[defName="Gun_Nagant_TA"]/tools</xpath>
+			<value>
+			  <tools>
+				<li Class="CombatExtended.ToolCE">
+				  <label>grip</label>
+				  <capacities>
+					<li>Blunt</li>
+				  </capacities>
+				  <power>2</power>
+				  <cooldownTime>1.54</cooldownTime>
+				  <chanceFactor>1.5</chanceFactor>
+				  <armorPenetrationBlunt>0.555</armorPenetrationBlunt>
+				  <linkedBodyPartsGroup>Grip</linkedBodyPartsGroup>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+				  <label>muzzle</label>
+				  <capacities>
+					<li>Poke</li>
+				  </capacities>
+				  <power>2</power>
+				  <cooldownTime>1.54</cooldownTime>
+				  <armorPenetrationBlunt>0.555</armorPenetrationBlunt>
+				  <linkedBodyPartsGroup>Muzzle</linkedBodyPartsGroup>
+				</li>
+			  </tools>
+			</value>
+		  </li>
+
+		  <li Class="PatchOperationReplace">
+			<xpath>Defs/ThingDef[defName="Gun_Fedorov_TA" or defName="Gun_Mosin_TA" or defName="Gun_M1895_TA"]/tools</xpath>
+			<value>
+			  <tools>
+				<li Class="CombatExtended.ToolCE">
+				  <label>stock</label>
+				  <capacities>
+					<li>Blunt</li>
+				  </capacities>
+				  <power>8</power>
+				  <cooldownTime>1.55</cooldownTime>
+				  <chanceFactor>1.5</chanceFactor>
+				  <armorPenetrationBlunt>2.755</armorPenetrationBlunt>
+				  <linkedBodyPartsGroup>Stock</linkedBodyPartsGroup>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+				  <label>barrel</label>
+				  <capacities>
+					<li>Blunt</li>
+				  </capacities>
+				  <power>5</power>
+				  <cooldownTime>2.02</cooldownTime>
+				  <armorPenetrationBlunt>1.630</armorPenetrationBlunt>
+				  <linkedBodyPartsGroup>Barrel</linkedBodyPartsGroup>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+				  <label>muzzle</label>
+				  <capacities>
+					<li>Poke</li>
+				  </capacities>
+				  <power>8</power>
+				  <cooldownTime>1.55</cooldownTime>
+				  <armorPenetrationBlunt>2.755</armorPenetrationBlunt>
+				  <linkedBodyPartsGroup>Muzzle</linkedBodyPartsGroup>
+				</li>
+			  </tools>
+			</value>
+		  </li>
+
+		  <!-- ========== Fedorov Avtomat ========== -->
+
+		  <li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+			<defName>Gun_Fedorov_TA</defName>
+			<statBases>
+			  <Mass>4.40</Mass>
+			  <RangedWeapon_Cooldown>0.37</RangedWeapon_Cooldown>
+			  <SightsEfficiency>1</SightsEfficiency>
+			  <ShotSpread>0.03</ShotSpread>
+			  <SwayFactor>1.49</SwayFactor>
+			  <Bulk>10.45</Bulk>
+			  <WorkToMake>18000</WorkToMake>
+			</statBases>
+			<costList>
+				<Steel>80</Steel>
+				<ComponentIndustrial>4</ComponentIndustrial>
+				<WoodLog>10</WoodLog>
+			</costList>
+			<Properties>
+			  <recoilAmount>1.78</recoilAmount>
+			  <verbClass>CombatExtended.Verb_ShootCE</verbClass>
+			  <hasStandardCommand>true</hasStandardCommand>
+			  <defaultProjectile>Bullet_65x50mmSRArisaka_FMJ</defaultProjectile>
+			  <warmupTime>1.1</warmupTime>
+			  <range>51</range>
+			  <burstShotCount>5</burstShotCount>
+			  <ticksBetweenBurstShots>10</ticksBetweenBurstShots>
+			  <soundCast>Shot_Fedorov</soundCast>
+			  <soundCastTail>GunTail_Medium</soundCastTail>
+			  <muzzleFlashScale>9</muzzleFlashScale>
+			</Properties>
+			<AmmoUser>
+			  <magazineSize>25</magazineSize>
+			  <reloadTime>4</reloadTime>
+			  <ammoSet>AmmoSet_65x50mmSRArisaka</ammoSet>
+			</AmmoUser>
+			<FireModes>
+			  <aiAimMode>AimedShot</aiAimMode>
+			  <aimedBurstShotCount>3</aimedBurstShotCount>
+			  <aiUseBurstMode>TRUE</aiUseBurstMode>
+			</FireModes>
+			<weaponTags>
+				<li>IndustrialGunAdvanced</li>
+			</weaponTags>
+			<researchPrerequisite>Stage2b_TA</researchPrerequisite>
+		  </li>
+
+		  <!-- ========== Nagant 1895 ========== -->
+
+	      <li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+	      	<defName>Gun_Nagant_TA</defName>
+	      	<statBases>
+	      	  <Mass>0.80</Mass>
+	      	  <RangedWeapon_Cooldown>0.38</RangedWeapon_Cooldown>
+	      	  <SightsEfficiency>0.7</SightsEfficiency>
+	      	  <ShotSpread>0.17</ShotSpread>
+	      	  <SwayFactor>1.05</SwayFactor>
+	      	  <Bulk>2.35</Bulk>
+	      	  <WorkToMake>10000</WorkToMake>
+	      	</statBases>
+	      	<costList>
+			  <Steel>45</Steel>
+			  <ComponentIndustrial>1</ComponentIndustrial>
+			  <WoodLog>5</WoodLog>
+	      	</costList>
+	      	<Properties>
+	      	  <verbClass>CombatExtended.Verb_ShootCE</verbClass>
+	      	  <hasStandardCommand>true</hasStandardCommand>
+	      	  <defaultProjectile>Bullet_762x38mmR_FMJ</defaultProjectile>
+	      	  <warmupTime>0.6</warmupTime>
+	      	  <range>12</range>
+			  <soundCast>Shot_Nagant</soundCast>
+			  <soundCastTail>GunTail_Medium</soundCastTail>
+	      	  <muzzleFlashScale>9</muzzleFlashScale>
+	      	</Properties>
+	      	<AmmoUser>
+	      	  <magazineSize>7</magazineSize>
+	      	  <reloadTime>5.95</reloadTime>
+	      	  <ammoSet>AmmoSet_762x38mmR</ammoSet>
+	      	</AmmoUser>
+	      	<FireModes>
+	      	  <aiUseBurstMode>FALSE</aiUseBurstMode>
+	      	</FireModes>
+	      	<weaponTags>
+			  <li>Gun</li>
+	      	  <li>CE_OneHandedWeapon</li>
+	      	</weaponTags>
+	      	<researchPrerequisite>Stage0b_TA</researchPrerequisite>
+	      </li>
+
+      	  <!-- ========== Mosin 1891 ========== -->
+
+		  <li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+			<defName>Gun_Mosin_TA</defName>
+			<statBases>
+			  <Mass>4.00</Mass>
+			  <RangedWeapon_Cooldown>1.17</RangedWeapon_Cooldown>
+			  <SightsEfficiency>1</SightsEfficiency>
+			  <ShotSpread>0.03</ShotSpread>
+			  <SwayFactor>1.63</SwayFactor>
+			  <Bulk>12.32</Bulk>
+			  <WorkToMake>6000</WorkToMake>
+			</statBases>
+			<costList>
+				<Steel>50</Steel>
+				<ComponentIndustrial>3</ComponentIndustrial>
+				<WoodLog>20</WoodLog>
+			</costList>
+			<Properties>
+			  <verbClass>CombatExtended.Verb_ShootCE</verbClass>
+			  <hasStandardCommand>true</hasStandardCommand>
+			  <defaultProjectile>Bullet_762x54mmR_FMJ</defaultProjectile>
+			  <warmupTime>1.1</warmupTime>
+			  <range>55</range>
+			  <soundCast>Shot_Mosin</soundCast>
+			  <soundCastTail>GunTail_Medium</soundCastTail>
+			  <muzzleFlashScale>9</muzzleFlashScale>
+			</Properties>
+			<AmmoUser>
+			  <magazineSize>5</magazineSize>
+			  <reloadTime>4.3</reloadTime>
+			  <ammoSet>AmmoSet_762x54mmR</ammoSet>
+			</AmmoUser>
+			<FireModes>
+			  <aiAimMode>AimedShot</aiAimMode>
+			</FireModes>
+			<weaponTags>
+				<li>IndustrialGunAdvanced</li>
+			</weaponTags>
+			<researchPrerequisite>Stage0b_TA</researchPrerequisite>
+		  </li>
+
+		  <!-- ========== Winchester M1895 ========== -->
+
+		  <li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+			<defName>Gun_M1895_TA</defName>
+			<statBases>
+			  <Mass>4.20</Mass>
+			  <RangedWeapon_Cooldown>0.77</RangedWeapon_Cooldown>
+			  <SightsEfficiency>1</SightsEfficiency>
+			  <ShotSpread>0.03</ShotSpread>
+			  <SwayFactor>1.60</SwayFactor>
+			  <Bulk>11.75</Bulk>
+			  <WorkToMake>12000</WorkToMake>
+			</statBases>
+			<costList>
+				<Steel>50</Steel>
+				<ComponentIndustrial>3</ComponentIndustrial>
+				<WoodLog>20</WoodLog>
+			</costList>
+			<Properties>
+			  <verbClass>CombatExtended.Verb_ShootCE</verbClass>
+			  <hasStandardCommand>true</hasStandardCommand>
+			  <defaultProjectile>Bullet_762x54mmR_FMJ</defaultProjectile>
+			  <warmupTime>1.1</warmupTime>
+			  <range>55</range>
+			  <soundCast>Shot_M1895</soundCast>
+			  <soundCastTail>GunTail_Medium</soundCastTail>
+			  <muzzleFlashScale>9</muzzleFlashScale>
+			</Properties>
+			<AmmoUser>
+			  <magazineSize>5</magazineSize>
+			  <reloadTime>4.3</reloadTime>
+			  <ammoSet>AmmoSet_762x54mmR</ammoSet>
+			</AmmoUser>
+			<FireModes>
+			  <aiAimMode>AimedShot</aiAimMode>
+			</FireModes>
+			<weaponTags>
+				<li>IndustrialGunAdvanced</li>
+			</weaponTags>
+			<researchPrerequisite>Stage0b_TA</researchPrerequisite>
+		  </li>
+
+		  <!-- ========== M1914 Concussion Grenade ========== -->
+
+		  <!-- Projectile -->
+
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="Proj_M1914_TA"]/thingClass</xpath>
+				<value>
+					<thingClass>CombatExtended.ProjectileCE_Explosive</thingClass>
+				</value>
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="Proj_M1914_TA"]/projectile</xpath>
+				<value>
+					<projectile Class="CombatExtended.ProjectilePropertiesCE">
+						<explosionRadius>1.5</explosionRadius>
+						<damageDef>Bomb</damageDef>
+						<damageAmountBase>60</damageAmountBase>
+						<explosionDelay>100</explosionDelay>
+						<dropsCasings>true</dropsCasings>
+						<casingMoteDefname>Mote_GrenadePin</casingMoteDefname>
+						<applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
+						<speed>7</speed>
+					</projectile>
+				</value>
+			</li>
+
+			<li Class="PatchOperationSequence">
+				<success>Always</success>
+				<operations>
+					<li Class="PatchOperationTest">
+						<xpath>Defs/ThingDef[defName="Proj_M1914_TA"]/comps</xpath>
+						<success>Invert</success>
+					</li>
+					<li Class="PatchOperationAdd">
+						<xpath>Defs/ThingDef[defName="Proj_M1914_TA"]</xpath>
+						<value>
+							<comps />
+						</value>
+					</li>
+				</operations>
+			</li>
+
+		  <!-- M1914 Concussion Grenade -->
+
+			<li Class="PatchOperationAttributeSet">
+				<xpath>Defs/ThingDef[defName="Weapon_M1914_TA"]</xpath>
+				<attribute>ParentName</attribute>
+				<value>BaseWeapon</value>
+			</li>
+
+			<li Class="PatchOperationRemove">
+				<xpath>Defs/ThingDef[defName="Weapon_M1914_TA"]/recipeMaker</xpath>
+			</li>
+
+			<li Class="PatchOperationRemove">
+				<xpath>Defs/ThingDef[defName="Weapon_M1914_TA"]/costList</xpath>
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="Weapon_M1914_TA"]/label</xpath>
+				<value>
+					<label>Model 1914 grenade</label>
+				</value>
+			</li>
+
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName="Weapon_M1914_TA"]</xpath>
+				<value>
+					<equippedAngleOffset>90</equippedAngleOffset>
+				</value>
+			</li>
+
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName="Weapon_M1914_TA"]</xpath>
+				<value>
+					<thingClass>CombatExtended.AmmoThing</thingClass>
+					<stackLimit>75</stackLimit>
+					<resourceReadoutPriority>First</resourceReadoutPriority>
+				</value>
+			</li>
+
+			<li Class="PatchOperationAttributeSet">
+				<xpath>Defs/ThingDef[defName="Weapon_M1914_TA"]</xpath>
+				<attribute>Class</attribute>
+				<value>CombatExtended.AmmoDef</value>
+			</li>
+
+			<li Class="PatchOperationSequence">
+				<success>Always</success>
+				<operations>
+					<li Class="PatchOperationTest">
+						<xpath>Defs/ThingDef[defName="Weapon_M1914_TA"]/comps</xpath>
+						<success>Invert</success>
+					</li>
+					<li Class="PatchOperationAdd">
+						<xpath>Defs/ThingDef[defName="Weapon_M1914_TA"]</xpath>
+						<value>
+							<comps />
+						</value>
+					</li>
+				</operations>
+			</li>
+
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName="Weapon_M1914_TA"]/comps</xpath>
+				<value>
+				<li Class="CombatExtended.CompProperties_ExplosiveCE">
+					<damageAmountBase>60</damageAmountBase>
+					<explosiveDamageType>Bomb</explosiveDamageType>
+					<explosiveRadius>1.5</explosiveRadius>
+				</li>
+				</value>
+			</li>
+
+			<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+				<defName>Weapon_M1914_TA</defName>
+				<statBases>
+					<Mass>0.5</Mass>
+					<Bulk>0.235</Bulk>
+					<MarketValue>12.22</MarketValue>
+					<RangedWeapon_Cooldown>1</RangedWeapon_Cooldown>
+					<SightsEfficiency>0.65</SightsEfficiency>
+				</statBases>
+				<Properties>
+					<label>throw concussion grenade</label>
+					<verbClass>CombatExtended.Verb_ShootCEOneUse</verbClass>
+					<hasStandardCommand>true</hasStandardCommand>
+					<range>13.0</range>
+					<minRange>2</minRange>
+					<warmupTime>0.8</warmupTime>
+					<noiseRadius>4</noiseRadius>
+					<ai_IsBuildingDestroyer>true</ai_IsBuildingDestroyer>
+					<soundCast>ThrowGrenade</soundCast>
+					<targetParams>
+						<canTargetLocations>true</canTargetLocations>
+					</targetParams>
+					<defaultProjectile>Proj_M1914_TA</defaultProjectile>
+					<onlyManualCast>true</onlyManualCast>
+					<ignorePartialLoSBlocker>true</ignorePartialLoSBlocker>
+				</Properties>
+				<weaponTags>
+					<li>CE_AI_Grenade</li>
+					<li>CE_OneHandedWeapon</li>
+				</weaponTags>
+			</li>
+
+			</operations>
+			</match>
+		</Operation>
+	</Patch>
