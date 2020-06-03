@@ -66,34 +66,22 @@ namespace CombatExtended
         {
             bool enabled = Controller.settings.EnableAmmoSystem;
             bool simplifiedAmmo = Controller.settings.EnableSimplifiedAmmo;
-            if (enabled)
-            {
-                // Initialize list of all weapons
-                CE_Utility.allWeaponDefs.Clear();
 
-                foreach (ThingDef def in DefDatabase<ThingDef>.AllDefsListForReading)
-                {
-                    if (def.IsWeapon
-                        && (def.generateAllowChance > 0
-                            || def.tradeability.TraderCanSell()
-                            || (def.weaponTags != null && def.weaponTags.Contains("TurretGun"))))
-                        CE_Utility.allWeaponDefs.Add(def);
-                }
-                if (CE_Utility.allWeaponDefs.NullOrEmpty())
-                {
-                    Log.Warning("CE Ammo Injector found no weapon defs");
-                    return true;
-                }
-            }
-            else
+            // Initialize list of all weapons
+            CE_Utility.allWeaponDefs.Clear();
+
+            foreach (ThingDef def in DefDatabase<ThingDef>.AllDefsListForReading)
             {
-                //If the ammo system is not enabled and it appears that there are no weaponDefs at all ..
-                if (CE_Utility.allWeaponDefs.NullOrEmpty())
-                {
-                    //.. return out of the method early because nothing has to be reversed ..
-                    return true;
-                }
-                //.. else, continue the method.
+                if (def.IsWeapon
+                    && (def.generateAllowChance > 0
+                        || def.tradeability.TraderCanSell()
+                        || (def.weaponTags != null && def.weaponTags.Contains("TurretGun"))))
+                    CE_Utility.allWeaponDefs.Add(def);
+            }
+            if (CE_Utility.allWeaponDefs.NullOrEmpty())
+            {
+                Log.Warning("CE Ammo Injector found no weapon defs");
+                return true;
             }
 
             AddRemoveCaliberFromGunRecipes();
@@ -110,7 +98,6 @@ namespace CombatExtended
                     ammoDefs.UnionWith(props.ammoSet.ammoTypes.Select<AmmoLink, ThingDef>(x => x.ammo));
                 }
             }
-
             /*
             bool canCraft = (AmmoCraftingStation != null);
             
@@ -131,6 +118,7 @@ namespace CombatExtended
                 bool ammoEnabled = enabled || ammoDef.isMortarAmmo;
                 if (simplifiedAmmo && complexAmmoClasses.Contains(ammoDef.ammoClass.defName))
                     ammoEnabled = false;
+
 
                 if (ammoDef.tradeTags != null)
                 {
