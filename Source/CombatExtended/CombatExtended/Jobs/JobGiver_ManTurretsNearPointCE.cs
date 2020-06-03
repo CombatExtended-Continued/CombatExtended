@@ -28,11 +28,10 @@ namespace CombatExtended
                 return null;
             }
 
-            return new Job(JobDefOf.ManTurret, thing)
-            {
-                expiryInterval = 2000,
-                checkOverrideOnExpire = true
-            };
+            Job job = JobMaker.MakeJob(JobDefOf.ManTurret, thing);
+            job.expiryInterval = 2000;
+            job.checkOverrideOnExpire = true;
+            return job;
         }
 
         /// <remarks>Copied from <see cref="JobDriver_ManTurret.FindAmmoForTurret" />.</remarks>

@@ -6,23 +6,16 @@
 		</mods>
 		<match Class="PatchOperationSequence">
 			<operations>
-			
-				<!-- NOTE: Black Hydra is currently disabled for CE, as the original mod incorrectly uses a thingDef rather than ThingDef, which is incompatible with CE patching -->
-				
-				<li Class="PatchOperationRemove">
-					<xpath>Defs/thingDef[defName="ForsakenHydra"]</xpath>
-				</li>
 
 				<!-- ========== Forsaken Black Hydra ========== -->
 
 				<!-- (CE implementation based on BFG 9000 from CP DOOM mod, with infinite ammo as per item description in original Forsakens mod) -->
-
-				<!-- TEMPORARILY DISABLED 
+ 
 				<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
 					<defName>ForsakenHydra</defName>
 					<statBases>
 						<Mass>10.00</Mass>
-						<RangedWeapon_Cooldown>0.35</RangedWeapon_Cooldown>
+						<RangedWeapon_Cooldown>6.00</RangedWeapon_Cooldown>
 						<SightsEfficiency>1.00</SightsEfficiency>
 						<ShotSpread>0.01</ShotSpread>
 						<SwayFactor>0.88</SwayFactor>
@@ -38,7 +31,7 @@
 						<verbClass>CombatExtended.Verb_ShootCE</verbClass>
 						<hasStandardCommand>true</hasStandardCommand>
 						<defaultProjectile>Bullet_HydraBlast</defaultProjectile>
-						<warmupTime>1.3</warmupTime>
+						<warmupTime>10.00</warmupTime>
 						<ai_AvoidFriendlyFireRadius>5</ai_AvoidFriendlyFireRadius>
 						<range>62</range>
 						<soundCast>ChargeLance_Fire</soundCast>
@@ -78,14 +71,12 @@
 							</li>
 						</tools>
 					</value>
-				</li>-->
+				</li>
 
 				<!-- Patch Hydra Blast projectile to be CE compatible, with armor penetration and blast damage stats similar to vanilla CE M6 HEAT rockets
 				
 				Note that the lightning strike effect has been removed, as the Forsaken.Linking Class required is incompatible with CombatExtended.AmmoDef -->
 				
-
-				<!-- TEMPORARILY DISABLED 
 				<li Class="PatchOperationReplace">
 					<xpath>Defs/ThingDef[defName="Bullet_HydraBlast"]</xpath>
 					<value>
@@ -109,7 +100,7 @@
 							</projectile>
 						</ThingDef>
 					</value>
-				</li>-->
+				</li>
 
 			</operations>
 		</match>

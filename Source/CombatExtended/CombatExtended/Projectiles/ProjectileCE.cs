@@ -6,6 +6,7 @@ using RimWorld;
 using UnityEngine;
 using Verse;
 using Verse.Sound;
+using CombatExtended.Compatibility;
 
 namespace CombatExtended
 {
@@ -75,10 +76,6 @@ namespace CombatExtended
         private float suppressionAmount;
         public Thing mount; // GiddyUp compatibility, ignore collisions with pawns the launcher is mounting
         public float AccuracyFactor;
-
-        #region FreeIntercept
-        private static List<IntVec3> checkedCells = new List<IntVec3>();
-        #endregion
 
         #region Height
         private int lastHeightTick = -1;
@@ -421,63 +418,79 @@ namespace CombatExtended
         #endregion
 
         #region Collisions
-        static FieldInfo interceptAngleField = typeof(CompProjectileInterceptor).GetField("lastInterceptAngle", BindingFlags.NonPublic | BindingFlags.Instance);
-        static FieldInfo interceptTicksField = typeof(CompProjectileInterceptor).GetField("lastInterceptTicks", BindingFlags.NonPublic | BindingFlags.Instance);
-        static FieldInfo interceptEMPField = typeof(CompProjectileInterceptor).GetField("lastHitByEmpTicks", BindingFlags.NonPublic | BindingFlags.Instance);
-        static FieldInfo interceptDebug = typeof(CompProjectileInterceptor).GetField("debugInterceptNonHostileProjectiles", BindingFlags.NonPublic | BindingFlags.Instance);
-        private bool CheckIntercept(Thing thing, CompProjectileInterceptor interceptor, bool withDebug = false)
+        static readonly FieldInfo interceptAngleField = typeof(CompProjectileInterceptor).GetField("lastInterceptAngle", BindingFlags.NonPublic | BindingFlags.Instance);
+        static readonly FieldInfo interceptTicksField = typeof(CompProjectileInterceptor).GetField("lastInterceptTicks", BindingFlags.NonPublic | BindingFlags.Instance);
+        static readonly FieldInfo interceptDebug = typeof(CompProjectileInterceptor).GetField("debugInterceptNonHostileProjectiles", BindingFlags.NonPublic | BindingFlags.Instance);
+
+        static readonly MethodInfo interceptBreakShield = typeof(CompProjectileInterceptor).GetMethod("BreakShield", BindingFlags.NonPublic | BindingFlags.Instance);
+        private bool CheckIntercept(Thing interceptorThing, CompProjectileInterceptor interceptorComp, bool withDebug = false)
         {
-            Vector3 vector = thing.Position.ToVector3Shifted();
-            float num = interceptor.Props.radius + def.projectile.SpeedTilesPerTick + 0.1f;
+            Vector3 shieldPosition = interceptorThing.Position.ToVector3ShiftedWithAltitude(0.5f);
+            float radius = interceptorComp.Props.radius;
+            float blockRadius = radius + def.projectile.SpeedTilesPerTick + 0.1f;
 
             var newExactPos = ExactPosition;
-            
-            if ((newExactPos.x - vector.x) * (newExactPos.x - vector.x) + (newExactPos.z - vector.z) * (newExactPos.z - vector.z) > num * num)
+
+            if ((newExactPos - shieldPosition).sqrMagnitude > Mathf.Pow(blockRadius, 2))
             {
                 return false;
             }
-            if (!interceptor.Active)
+            if (!interceptorComp.Active)
             {
                 return false;
             }
-            bool flag = false;
-            if (interceptor.Props.interceptGroundProjectiles)
-            {
-                flag = !def.projectile.flyOverhead;
-            }
-            else
-            {
-				if (interceptor.Props.interceptAirProjectiles)
-				{
-					flag = def.projectile.flyOverhead;
-				}
-            }
-            if (!flag)
+
+            if (interceptorComp.Props.interceptGroundProjectiles && def.projectile.flyOverhead)
             {
                 return false;
             }
-            if ((launcher == null || !launcher.HostileTo(thing)) && !((bool)interceptDebug.GetValue(interceptor)))
+
+            if (interceptorComp.Props.interceptAirProjectiles && !def.projectile.flyOverhead)
             {
                 return false;
             }
-            if ((new Vector2(vector.x, vector.z) - new Vector2(lastExactPos.x, lastExactPos.z)).sqrMagnitude <= interceptor.Props.radius * interceptor.Props.radius)
+
+            if ((launcher == null || !launcher.HostileTo(interceptorThing)) && !((bool)interceptDebug.GetValue(interceptorComp)) && !interceptorComp.Props.interceptNonHostileProjectiles)
             {
                 return false;
             }
-            if (!GenGeo.IntersectLineCircleOutline(new Vector2(vector.x, vector.z), interceptor.Props.radius, new Vector2(lastExactPos.x, lastExactPos.z), new Vector2(newExactPos.x, newExactPos.z)))
+            if (!interceptorComp.Props.interceptOutgoingProjectiles && (shieldPosition - lastExactPos).sqrMagnitude <= Mathf.Pow((float)radius, 2))
             {
                 return false;
             }
-            interceptAngleField.SetValue(interceptor, lastExactPos.AngleToFlat(thing.TrueCenter()));
-            interceptTicksField.SetValue(interceptor, Find.TickManager.TicksGame);
-            if (def.projectile.damageDef == DamageDefOf.EMP
-                || ((def.projectile as ProjectilePropertiesCE)?.secondaryDamage?.Any(x => x.def == DamageDefOf.EMP) ?? false))
+            if (!IntersectLineSphericalOutline(shieldPosition, radius, lastExactPos, newExactPos))
             {
-                interceptEMPField.SetValue(interceptor, Find.TickManager.TicksGame);
+                return false;
+            }
+            interceptAngleField.SetValue(interceptorComp, lastExactPos.AngleToFlat(interceptorThing.TrueCenter()));
+            interceptTicksField.SetValue(interceptorComp, Find.TickManager.TicksGame);
+            var areWeLucky = Rand.Chance((def.projectile as ProjectilePropertiesCE)?.empShieldBreakChance ?? 0);
+            if (areWeLucky)
+            {
+                var firstEMPSecondaryDamage = (def.projectile as ProjectilePropertiesCE)?.secondaryDamage?.FirstOrDefault(sd => sd.def == DamageDefOf.EMP);
+                if (def.projectile.damageDef == DamageDefOf.EMP)
+                {
+                    interceptBreakShield.Invoke(interceptorComp, new object[] { new DamageInfo(def.projectile.damageDef, def.projectile.damageDef.defaultDamage) });
+                }
+                else if (firstEMPSecondaryDamage != null)
+                {
+                    interceptBreakShield.Invoke(interceptorComp, new object[] { new DamageInfo(firstEMPSecondaryDamage.def, firstEMPSecondaryDamage.def.defaultDamage) });
+                }
             }
             Effecter eff = new Effecter(EffecterDefOf.Interceptor_BlockedProjectile);
-            eff.Trigger(new TargetInfo(newExactPos.ToIntVec3(), thing.Map, false), TargetInfo.Invalid);
+            eff.Trigger(new TargetInfo(newExactPos.ToIntVec3(), interceptorThing.Map, false), TargetInfo.Invalid);
             eff.Cleanup();
+            return true;
+        }
+
+        private static bool IntersectLineSphericalOutline(Vector3 center, float radius, Vector3 pointA, Vector3 pointB)
+        {
+            var pointAInShield = (center - pointA).sqrMagnitude <= Mathf.Pow(radius, 2);
+            var pointBInShield = (center - pointB).sqrMagnitude <= Mathf.Pow(radius, 2);
+
+            if (pointAInShield && pointBInShield) { return false; }
+            if (!pointAInShield && !pointBInShield) { return false; }
+
             return true;
         }
 
@@ -496,11 +509,11 @@ namespace CombatExtended
                     return true;
                 }
             }
-			
+
             #region Sanity checks
-			if (ticksToImpact == 0 || def.projectile.flyOverhead)
-				return false;
-			
+            if (ticksToImpact == 0 || def.projectile.flyOverhead)
+                return false;
+
             if (!lastPosIV3.InBounds(Map) || !newPosIV3.InBounds(Map))
             {
                 return false;
@@ -511,7 +524,7 @@ namespace CombatExtended
                 Map.debugDrawer.FlashLine(lastPosIV3, newPosIV3);
             }
             #endregion
-            
+
             // Iterate through all cells between the last and the new position
             // INCLUDING[!!!] THE LAST AND NEW POSITIONS!
             var cells = GenSight.PointsOnLineOfSight(lastPosIV3, newPosIV3).Union(new[] { lastPosIV3, newPosIV3 }).Distinct().OrderBy(x => (x.ToVector3Shifted() - LastPos).MagnitudeHorizontalSquared());
@@ -538,14 +551,22 @@ namespace CombatExtended
         /// <returns>True if collision occured, false otherwise</returns>
         private bool CheckCellForCollision(IntVec3 cell)
         {
+            if (BlockerRegistry.CheckCellForCollisionCallback(this, cell, launcher))
+            {
+                this.ticksToImpact = 0;
+                this.landed = true;
+
+                this.Impact(null);
+                return true;
+            }
             var roofChecked = false;
             var justWallsRoofs = false;
 
             //Check for minimum PAWN collision distance
             float distFromOrigin = cell.DistanceToSquared(OriginIV3);
-            bool skipCollision = !def.projectile.alwaysFreeIntercept 
-                && (minCollisionSqr <= 1f 
-                    ? distFromOrigin < 1f 
+            bool skipCollision = !def.projectile.alwaysFreeIntercept
+                && (minCollisionSqr <= 1f
+                    ? distFromOrigin < 1f
                     : distFromOrigin <= Mathf.Min(144f, minCollisionSqr / 4));
 
             var mainThingList = new List<Thing>(Map.thingGrid.ThingsListAtFast(cell))
@@ -791,6 +812,11 @@ namespace CombatExtended
         //Modified collision with downed pawns
         private void ImpactSomething()
         {
+            if (BlockerRegistry.ImpactSomethingCallback(this, launcher))
+            {
+                this.Destroy();
+                return;
+            }
             var pos = ExactPosition.ToIntVec3();
 
             //Not modified, just mortar code
@@ -833,7 +859,7 @@ namespace CombatExtended
             landed = true;
             Impact(null);
         }
-        
+
         protected virtual void Impact(Thing hitThing)
         {
             var ignoredThings = new List<Thing>();
@@ -915,7 +941,7 @@ namespace CombatExtended
                 foreach (var thing in suppressThings)
                     ApplySuppression(thing as Pawn);
             }
-            
+
             Destroy();
         }
         #endregion

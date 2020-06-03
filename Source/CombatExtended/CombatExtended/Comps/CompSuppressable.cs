@@ -167,7 +167,7 @@ namespace CombatExtended
                 Job reactJob = SuppressionUtility.GetRunForCoverJob(pawn);
                 if (reactJob == null && IsHunkering)
                 {
-                    reactJob = new Job(CE_JobDefOf.HunkerDown, pawn);
+                    reactJob = JobMaker.MakeJob(CE_JobDefOf.HunkerDown, pawn);
                     LessonAutoActivator.TeachOpportunity(CE_ConceptDefOf.CE_Hunkering, pawn, OpportunityType.Critical);
                 }
                 if (reactJob != null && reactJob.def != pawn.CurJob?.def)

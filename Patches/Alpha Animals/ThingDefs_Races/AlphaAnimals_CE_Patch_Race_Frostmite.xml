@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+		<li>Alpha Animals</li>
+		</mods>
+
+		<match Class="PatchOperationSequence">
+			<operations>
+
+			<li Class="PatchOperationAddModExtension">
+				<xpath>/Defs/ThingDef[defName="AA_Frostmite"]</xpath>
+				<value>
+					<li Class="CombatExtended.RacePropertiesExtensionCE">
+						<bodyShape>QuadrupedLow</bodyShape>
+					</li>
+				</value>
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>/Defs/ThingDef[defName="AA_Frostmite"]/statBases/ArmorRating_Blunt</xpath>
+				<value>
+					<ArmorRating_Blunt>0.25</ArmorRating_Blunt>
+				</value>
+			</li>
+			<li Class="PatchOperationReplace">
+				<xpath>/Defs/ThingDef[defName="AA_Frostmite"]/statBases/ArmorRating_Sharp</xpath>
+				<value>
+					<ArmorRating_Sharp>0.25</ArmorRating_Sharp>
+				</value>
+			</li>
+			
+			<li Class="PatchOperationAdd">
+				<xpath>/Defs/ThingDef[defName="AA_Frostmite"]/statBases</xpath>
+				<value>
+					<MeleeDodgeChance>0.15</MeleeDodgeChance>
+					<MeleeCritChance>0.01</MeleeCritChance>
+					<MeleeParryChance>0.02</MeleeParryChance>
+				</value>
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>/Defs/ThingDef[defName="AA_Frostmite"]/tools</xpath>
+				<value>
+					<tools>
+						<li Class="CombatExtended.ToolCE">
+							<label>head-claw</label>
+							<capacities>
+								<li>Cut</li>
+							</capacities>
+							<power>6</power>
+							<cooldownTime>1.65</cooldownTime>
+							<linkedBodyPartsGroup>HeadClaw</linkedBodyPartsGroup>
+							<armorPenetrationSharp>0.2</armorPenetrationSharp>
+							<armorPenetrationBlunt>0.34</armorPenetrationBlunt>
+						</li>
+						<li Class="CombatExtended.ToolCE">
+							<capacities>
+								<li>Bite</li>
+							</capacities>
+							<power>5</power>
+							<cooldownTime>1.25</cooldownTime>
+							<linkedBodyPartsGroup>Mouth</linkedBodyPartsGroup>
+							<armorPenetrationSharp>0.1</armorPenetrationSharp>
+							<armorPenetrationBlunt>0.5</armorPenetrationBlunt>
+						</li>
+						<li Class="CombatExtended.ToolCE">
+							<label>head</label>
+							<capacities>
+								<li>Blunt</li>
+							</capacities>
+							<power>2</power>
+							<cooldownTime>1.1</cooldownTime>
+							<linkedBodyPartsGroup>HeadAttackTool</linkedBodyPartsGroup>
+							<armorPenetrationBlunt>0.2</armorPenetrationBlunt>
+							<chanceFactor>0.2</chanceFactor>
+						</li>
+					</tools>
+				</value>
+			</li>
+			
+			</operations>
+		</match>
+	</Operation>
+</Patch>

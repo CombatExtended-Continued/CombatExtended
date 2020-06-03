@@ -21,6 +21,7 @@ namespace CombatExtended
         public float armorPenetrationSharp;
         public float armorPenetrationBlunt;
 
+        public float empShieldBreakChance = 1f;
         public float Gravity => CE_Utility.GravityConst * gravityFactor;
     }
 }

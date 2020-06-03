@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+			<li>Forsakens: Fauna</li>
+		</mods>
+
+		<match Class="PatchOperationSequence">
+			<operations>
+
+				<!-- ==== Projectile_Flamebreathe ==== -->
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/ThingDef[defName="FO_FlameBreath"]/projectile</xpath>
+					<value>
+						<projectile Class="CombatExtended.ProjectilePropertiesCE">
+							<speed>30</speed>
+							<flyOverhead>false</flyOverhead>
+							<damageDef>Flame</damageDef>
+							<damageAmountBase>1</damageAmountBase>
+							<explosionRadius>1.1</explosionRadius>
+							<ai_IsIncendiary>true</ai_IsIncendiary>
+							<soundExplode>Interact_Ignite</soundExplode>
+						</projectile>
+					</value>
+				</li>
+			</operations>
+		</match>
+	</Operation>
+	
+</Patch>

@@ -1,0 +1,194 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+		<li>Alpha Animals</li>
+		</mods>
+
+		<match Class="PatchOperationSequence">
+			<operations>
+
+			<li Class="PatchOperationAddModExtension">
+				<xpath>/Defs/ThingDef[defName="AA_Bumbledrone"]</xpath>
+				<value>
+					<li Class="CombatExtended.RacePropertiesExtensionCE">
+						<bodyShape>Birdlike</bodyShape>
+					</li>
+				</value>
+			</li>
+
+			<li Class="PatchOperationAdd">
+				<xpath>/Defs/ThingDef[defName="AA_Bumbledrone"]/statBases</xpath>
+				<value>
+					<MeleeDodgeChance>0.18</MeleeDodgeChance>
+					<MeleeCritChance>0.05</MeleeCritChance>
+					<MeleeParryChance>0.04</MeleeParryChance>
+				</value>
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>/Defs/ThingDef[defName="AA_Bumbledrone"]/tools</xpath>
+				<value>
+					<tools>
+						<li Class="CombatExtended.ToolCE">
+							<capacities>
+								<li>AA_VeryToxicSting</li>
+							</capacities>
+							<power>10</power>
+							<cooldownTime>1.55</cooldownTime>
+							<linkedBodyPartsGroup>AA_Sting</linkedBodyPartsGroup>
+							<armorPenetrationSharp>1.25</armorPenetrationSharp>
+							<armorPenetrationBlunt>0.75</armorPenetrationBlunt>
+							<chanceFactor>0.8</chanceFactor>
+						</li>
+						<li Class="CombatExtended.ToolCE">
+						    <label>claws</label>
+							<capacities>
+								<li>Scratch</li>
+							</capacities>
+							<power>8</power>
+							<cooldownTime>1.2</cooldownTime>
+							<linkedBodyPartsGroup>LegAttackTool</linkedBodyPartsGroup>
+							<chanceFactor>0.1</chanceFactor>
+							<armorPenetrationSharp>0.18</armorPenetrationSharp>
+							<armorPenetrationBlunt>0.10</armorPenetrationBlunt>
+						</li>
+						<li Class="CombatExtended.ToolCE">
+							<capacities>
+								<li>Bite</li>
+							</capacities>
+							<power>8</power>
+							<cooldownTime>1.85</cooldownTime>
+							<linkedBodyPartsGroup>Mouth</linkedBodyPartsGroup>
+							<armorPenetrationSharp>0.12</armorPenetrationSharp>
+							<armorPenetrationBlunt>0.25</armorPenetrationBlunt>
+							<chanceFactor>0.1</chanceFactor>
+						</li>
+					</tools>
+				</value>
+			</li>
+
+			<li Class="PatchOperationAddModExtension">
+				<xpath>/Defs/ThingDef[defName="AA_BumbledroneHierophant"]</xpath>
+				<value>
+					<li Class="CombatExtended.RacePropertiesExtensionCE">
+						<bodyShape>Birdlike</bodyShape>
+					</li>
+				</value>
+			</li>
+
+			<li Class="PatchOperationAdd">
+				<xpath>/Defs/ThingDef[defName="AA_BumbledroneHierophant"]/statBases</xpath>
+				<value>
+					<MeleeDodgeChance>0.18</MeleeDodgeChance>
+					<MeleeCritChance>0.15</MeleeCritChance>
+					<MeleeParryChance>0.3</MeleeParryChance>
+				</value>
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>/Defs/ThingDef[defName="AA_BumbledroneHierophant"]/tools</xpath>
+				<value>
+					<tools>
+						<li Class="CombatExtended.ToolCE">
+							<capacities>
+								<li>AA_VeryToxicSting</li>
+							</capacities>
+							<power>16</power>
+							<cooldownTime>1.55</cooldownTime>
+							<linkedBodyPartsGroup>AA_Sting</linkedBodyPartsGroup>
+							<armorPenetrationSharp>1.25</armorPenetrationSharp>
+							<armorPenetrationBlunt>0.75</armorPenetrationBlunt>
+							<chanceFactor>0.5</chanceFactor>
+						</li>
+						<li Class="CombatExtended.ToolCE">
+						    <label>claws</label>
+							<capacities>
+								<li>Scratch</li>
+							</capacities>
+							<power>19</power>
+							<cooldownTime>1.2</cooldownTime>
+							<linkedBodyPartsGroup>LegAttackTool</linkedBodyPartsGroup>
+							<chanceFactor>0.5</chanceFactor>
+							<armorPenetrationSharp>0.45</armorPenetrationSharp>
+							<armorPenetrationBlunt>0.35</armorPenetrationBlunt>
+						</li>
+						<li Class="CombatExtended.ToolCE">
+							<capacities>
+								<li>Bite</li>
+							</capacities>
+							<power>10</power>
+							<cooldownTime>1.85</cooldownTime>
+							<linkedBodyPartsGroup>Mouth</linkedBodyPartsGroup>
+							<armorPenetrationSharp>0.12</armorPenetrationSharp>
+							<armorPenetrationBlunt>0.25</armorPenetrationBlunt>
+							<chanceFactor>0.1</chanceFactor>
+						</li>
+					</tools>
+				</value>
+			</li>
+			
+			<li Class="PatchOperationAddModExtension">
+				<xpath>/Defs/ThingDef[defName="AA_BumbledroneQueen"]</xpath>
+				<value>
+					<li Class="CombatExtended.RacePropertiesExtensionCE">
+						<bodyShape>Birdlike</bodyShape>
+					</li>
+				</value>
+			</li>
+
+			<li Class="PatchOperationAdd">
+				<xpath>/Defs/ThingDef[defName="AA_BumbledroneQueen"]/statBases</xpath>
+				<value>
+					<MeleeDodgeChance>0.11</MeleeDodgeChance>
+					<MeleeCritChance>0.17</MeleeCritChance>
+					<MeleeParryChance>0.04</MeleeParryChance>
+				</value>
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>/Defs/ThingDef[defName="AA_BumbledroneQueen"]/tools</xpath>
+				<value>
+					<tools>
+						<li Class="CombatExtended.ToolCE">
+							<capacities>
+								<li>AA_VeryToxicSting</li>
+							</capacities>
+							<power>15</power>
+							<cooldownTime>1.55</cooldownTime>
+							<linkedBodyPartsGroup>AA_Sting</linkedBodyPartsGroup>
+							<armorPenetrationSharp>2</armorPenetrationSharp>
+							<armorPenetrationBlunt>1</armorPenetrationBlunt>
+							<chanceFactor>0.8</chanceFactor>
+						</li>
+						<li Class="CombatExtended.ToolCE">
+						    <label>claws</label>
+							<capacities>
+								<li>Scratch</li>
+							</capacities>
+							<power>8</power>
+							<cooldownTime>1.2</cooldownTime>
+							<linkedBodyPartsGroup>LegAttackTool</linkedBodyPartsGroup>
+							<chanceFactor>0.1</chanceFactor>
+							<armorPenetrationSharp>0.2</armorPenetrationSharp>
+							<armorPenetrationBlunt>0.12</armorPenetrationBlunt>
+						</li>
+						<li Class="CombatExtended.ToolCE">
+							<capacities>
+								<li>Bite</li>
+							</capacities>
+							<power>8</power>
+							<cooldownTime>1.85</cooldownTime>
+							<linkedBodyPartsGroup>Mouth</linkedBodyPartsGroup>
+							<armorPenetrationSharp>0.12</armorPenetrationSharp>
+							<armorPenetrationBlunt>0.35</armorPenetrationBlunt>
+							<chanceFactor>0.1</chanceFactor>
+						</li>
+					</tools>
+				</value>
+			</li>
+			
+			</operations>
+		</match>
+	</Operation>
+</Patch>

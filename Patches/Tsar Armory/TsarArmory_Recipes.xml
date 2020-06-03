@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" ?>
+
+<Patch>
+	<Operation Class="PatchOperationFindMod">
+    <mods>
+		<li>Tsar Armory [1.1]</li>
+    </mods>
+		<match Class="PatchOperationSequence">
+		 <operations>
+
+		  <!-- ========== Remove Useless Recipes. ========== -->
+
+		  <li Class="PatchOperationRemove">
+			<xpath>Defs/RecipeDef[defName="Make_PM1910_Ammo_TA"]</xpath>
+		  </li>
+
+		  <li Class="PatchOperationRemove">
+			<xpath>Defs/ThingDef[defName="TableMachining"]/recipes/li[text()="Make_PM1910_Ammo_TA"]</xpath>
+		  </li>
+
+			</operations>
+			</match>
+		</Operation>
+	</Patch>

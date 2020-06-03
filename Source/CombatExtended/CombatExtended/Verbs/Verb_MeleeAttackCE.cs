@@ -356,7 +356,9 @@ namespace CombatExtended
                 {
                     //pawn.stances?.stunner.StunFor(KnockdownDuration);
                     pawn.stances?.SetStance(new Stance_Cooldown(KnockdownDuration, pawn, null));
-                    pawn.jobs?.StartJob(new Job(CE_JobDefOf.WaitKnockdown) { expiryInterval = KnockdownDuration }, JobCondition.InterruptForced, null, false, false);
+                    Job job = JobMaker.MakeJob(CE_JobDefOf.WaitKnockdown);
+                    job.expiryInterval = KnockdownDuration;
+                    pawn.jobs?.StartJob(job, JobCondition.InterruptForced, null, false, false);
                 }
             }
             isCrit = false;

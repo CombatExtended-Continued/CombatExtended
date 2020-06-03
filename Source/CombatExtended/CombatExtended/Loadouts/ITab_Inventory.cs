@@ -23,7 +23,6 @@ namespace CombatExtended
         private const float _topPadding = 20f;
         private const float _standardLineHeight = 22f;
         private static readonly Color _highlightColor = new Color(0.5f, 0.5f, 0.5f, 1f);
-        private static readonly Color _thingLabelColor = new Color(0.9f, 0.9f, 0.9f, 1f);
         private Vector2 _scrollPosition = Vector2.zero;
 
         private float _scrollViewHeight;
@@ -410,7 +409,6 @@ namespace CombatExtended
             if (num > 0.005f)
             {
                 Rect rect = new Rect(0f, curY, width, _standardLineHeight);
-                BodyPartRecord bpr = new BodyPartRecord();
                 List<BodyPartRecord> bpList = SelPawnForGear.RaceProps.body.AllParts;
                 string text = "";
                 for (int i = 0; i < bpList.Count; i++)
@@ -470,11 +468,11 @@ namespace CombatExtended
             Apparel apparel = t as Apparel;
             if (apparel != null && SelPawnForGear.apparel != null && SelPawnForGear.apparel.WornApparel.Contains(apparel))
             {
-                SelPawnForGear.jobs.TryTakeOrderedJob(new Job(JobDefOf.RemoveApparel, apparel));
+                SelPawnForGear.jobs.TryTakeOrderedJob(JobMaker.MakeJob(JobDefOf.RemoveApparel, apparel));
             }
             else if (thingWithComps != null && SelPawnForGear.equipment != null && SelPawnForGear.equipment.AllEquipmentListForReading.Contains(thingWithComps))
             {
-                SelPawnForGear.jobs.TryTakeOrderedJob(new Job(JobDefOf.DropEquipment, thingWithComps));
+                SelPawnForGear.jobs.TryTakeOrderedJob(JobMaker.MakeJob(JobDefOf.DropEquipment, thingWithComps));
             }
             else if (!t.def.destroyOnDrop)
             {
@@ -494,11 +492,13 @@ namespace CombatExtended
             Apparel apparel = t as Apparel;
             if (apparel != null && SelPawnForGear.apparel != null && SelPawnForGear.apparel.WornApparel.Contains(apparel))
             {
-                SelPawnForGear.jobs.TryTakeOrderedJob(new Job(JobDefOf.RemoveApparel, apparel) { haulDroppedApparel = true });
+                Job job = JobMaker.MakeJob(JobDefOf.RemoveApparel, apparel);
+                job.haulDroppedApparel = true;
+                SelPawnForGear.jobs.TryTakeOrderedJob(job);
             }
             else if (thingWithComps != null && SelPawnForGear.equipment != null && SelPawnForGear.equipment.AllEquipmentListForReading.Contains(thingWithComps))
             {
-                SelPawnForGear.jobs.TryTakeOrderedJob(new Job(JobDefOf.DropEquipment, thingWithComps));
+                SelPawnForGear.jobs.TryTakeOrderedJob(JobMaker.MakeJob(JobDefOf.DropEquipment, thingWithComps));
             }
             else if (!t.def.destroyOnDrop)
             {
@@ -509,7 +509,7 @@ namespace CombatExtended
 
         private void InterfaceIngest(Thing t)
         {
-            Job job = new Job(JobDefOf.Ingest, t);
+            Job job = JobMaker.MakeJob(JobDefOf.Ingest, t);
             job.count = Mathf.Min(t.stackCount, t.def.ingestible.maxNumToIngestAtOnce);
             job.count = Mathf.Min(job.count, FoodUtility.WillIngestStackCountOf(SelPawnForGear, t.def, t.GetStatValue(StatDefOf.Nutrition, true)));
             SelPawnForGear.jobs.TryTakeOrderedJob(job, JobTag.Misc);
