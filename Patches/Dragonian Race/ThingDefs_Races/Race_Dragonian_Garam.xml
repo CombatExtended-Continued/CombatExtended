@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+  <Operation Class="PatchOperationSequence">
+	<operations>
+	  <li Class="PatchOperationFindMod">
+			
+		<mods><li>Dragonian GaramRace</li></mods>
+			
+		<match Class="PatchOperationSequence">
+		<operations>
+			
+			<li Class="PatchOperationAdd">
+				<xpath>/Defs/ThingDef[@Name="DR_PawnBase"]/comps</xpath>
+				<value>
+					<li>
+					<compClass>CombatExtended.CompPawnGizmo</compClass>
+					</li>
+					<li Class="CombatExtended.CompProperties_Suppressable" />
+				</value>
+			</li>
+			
+			<li Class="PatchOperationAdd">
+				<xpath>/Defs/Garam_RaceAddon.RaceAddonThingDef[defName="Dragonian_Female"]/comps</xpath>
+				<value>
+					<li>
+					<compClass>CombatExtended.CompPawnGizmo</compClass>
+					</li>
+					<li Class="CombatExtended.CompProperties_Suppressable" />
+				</value>
+			</li>
+			
+			<li Class="PatchOperationReplace">
+                    <xpath>/Defs/ThingDef[@Name="DR_PawnBase"]/inspectorTabs/li[.="ITab_Pawn_Gear"]</xpath>
+                    <value>
+                        <li>CombatExtended.ITab_Inventory</li>
+                    </value>
+			</li>
+
+            <li Class="PatchOperationAdd">
+                    <xpath>/Defs/ThingDef[@Name="DR_PawnBase"]/comps</xpath>
+                    <value>
+                        <li Class="CombatExtended.CompProperties_Inventory" />
+                    </value>
+			</li>
+			
+			<li Class="PatchOperationAddModExtension">
+				<xpath>/Defs/Garam_RaceAddon.RaceAddonThingDef[defName="Dragonian_Female" or defName="Dragonian_Male"]</xpath>
+				<value>
+					<li Class="CombatExtended.RacePropertiesExtensionCE">
+						<bodyShape>Humanoid</bodyShape>
+					</li>
+				</value>
+			</li>
+			
+			<!-- 5.2 Speed/0.8 Size/60 kg -->
+			
+			<li Class="PatchOperationAdd">
+			 <xpath>/Defs/Garam_RaceAddon.RaceAddonThingDef[defName="Dragonian_Female" or defName="Dragonian_Male"]/statBases</xpath>
+				  <value>
+					<MeleeCritChance>1.08</MeleeCritChance>
+					<MeleeParryChance>1.06</MeleeParryChance>
+					<Suppressability>1</Suppressability>
+					<!--Innate toxic resistance of 0.6-->
+					<SmokeSensitivity>0.6</SmokeSensitivity>
+				  </value>
+			</li>
+			
+			<li Class="PatchOperationReplace">
+			 <xpath>/Defs/Garam_RaceAddon.RaceAddonThingDef[defName="Dragonian_Female" or defName="Dragonian_Male"]/statBases/MeleeDodgeChance</xpath>
+				  <value>
+					<MeleeDodgeChance>1.18</MeleeDodgeChance>
+				  </value>
+			</li>
+			
+			<!--4mm Wool (skin+scales), their vanilla armor is thrumbo level-->
+			
+			<li Class="PatchOperationReplace">
+			 <xpath>/Defs/Garam_RaceAddon.RaceAddonThingDef[defName="Dragonian_Female" or defName="Dragonian_Male"]/statBases/ArmorRating_Sharp</xpath>
+				  <value>
+					<ArmorRating_Sharp>2.7</ArmorRating_Sharp>
+				  </value>
+			</li>
+			
+			<li Class="PatchOperationReplace">
+			 <xpath>/Defs/Garam_RaceAddon.RaceAddonThingDef[defName="Dragonian_Female" or defName="Dragonian_Male"]/statBases/ArmorRating_Blunt</xpath>
+				  <value>
+					<ArmorRating_Blunt>3.4</ArmorRating_Blunt>
+				  </value>
+			</li>
+			
+			<li Class="PatchOperationReplace">
+			 <xpath>/Defs/Garam_RaceAddon.RaceAddonThingDef[defName="Dragonian_Female" or defName="Dragonian_Male"]/statBases/ArmorRating_Heat</xpath>
+				  <value>
+					<ArmorRating_Heat>0.6</ArmorRating_Heat>
+				  </value>
+			</li>
+			
+			<!--Their vanilla melee is very strong (18 verus 8.2 for humanlike)-->
+			
+			<li Class="PatchOperationReplace">
+				<xpath>/Defs/Garam_RaceAddon.RaceAddonThingDef[defName="Dragonian_Female" or defName="Dragonian_Male"]/tools</xpath> 
+				<value>
+					<tools>
+						<li Class="CombatExtended.ToolCE">
+							<label>left fist</label>
+							<capacities>
+								<li>Scratch</li>
+							</capacities>
+							<power>7</power>
+							<cooldownTime>0.89</cooldownTime>
+							<linkedBodyPartsGroup>LeftHand</linkedBodyPartsGroup>
+							<armorPenetrationSharp>0.47</armorPenetrationSharp>
+							<armorPenetrationBlunt>0.5</armorPenetrationBlunt>
+						</li>
+						<li Class="CombatExtended.ToolCE">
+							<label>right fist</label>
+							<capacities>
+								<li>Scratch</li>
+							</capacities>
+							<power>7</power>
+							<cooldownTime>0.89</cooldownTime>
+							<linkedBodyPartsGroup>RightHand</linkedBodyPartsGroup>
+							<armorPenetrationSharp>0.47</armorPenetrationSharp>
+							<armorPenetrationBlunt>0.5</armorPenetrationBlunt>
+						</li>
+						<li Class="CombatExtended.ToolCE">
+							<label>tail</label>
+							<capacities>
+								<li>Blunt</li>
+							</capacities>
+							<power>20</power>
+							<cooldownTime>2.28</cooldownTime>
+							<linkedBodyPartsGroup>Tail</linkedBodyPartsGroup>
+							<chanceFactor>0.2</chanceFactor>
+							<armorPenetrationBlunt>7.875</armorPenetrationBlunt>
+						</li>
+					</tools>
+				</value>
+			</li>
+			
+			<li Class="PatchOperationAdd">
+			 <xpath>/Defs/Garam_RaceAddon.RaceAddonThingDef[defName="Dragonian_Female" or defName="Dragonian_Male"]/raceAddonSettings/apparelRestrictionSetting/allAllow_Exceptions</xpath>
+				  <value>
+					<li>Apparel_TacVest</li>
+					<li>Apparel_Backpack</li>
+					<li>Apparel_TribalBackpack</li>
+					<li>Apparel_BallisticShield</li>
+					<li>Apparel_MeleeShield</li>
+					<li>Apparel_GasMask</li>
+					<li>Apparel_ImprovGasMask</li>
+				  </value>
+			</li>
+			
+		</operations>
+		</match>	
+	  </li>
+	</operations>	
+  </Operation>
+</Patch>

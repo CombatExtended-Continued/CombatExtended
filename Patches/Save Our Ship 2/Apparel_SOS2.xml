@@ -7,8 +7,41 @@
     </mods>
 		<match Class="PatchOperationSequence">
 		<operations>
+			
+	<!--  Survival Belt -->
+	<li Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="Apparel_SpaceSurvivalBelt"]/statBases</xpath>
+		<value>
+			<Bulk>3</Bulk>
+			<WornBulk>1</WornBulk>
+		</value>
+	 </li>
+
+	<!--  EVA Suit -->
+	 <li Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="Apparel_SpaceSuitBody"]/statBases</xpath>
+		<value>
+			<Bulk>6</Bulk>
+			<WornBulk>4</WornBulk>
+		</value>
+	 </li>
+
+	   <li Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="Apparel_SpaceSuitBody"]/equippedStatOffsets</xpath>
+		<value>
+                         <ToxicSensitivity>-0.50</ToxicSensitivity>
+		</value>
+	   </li>
+
 
 	<!--  EVA Helmet -->
+	 <li Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="Apparel_SpaceSuitHelmet"]/statBases</xpath>
+					<value>
+						<Bulk>5</Bulk>
+						<WornBulk>1</WornBulk>
+					</value>
+		</li>
 	   <li Class="PatchOperationReplace">
 		<xpath>Defs/ThingDef[defName="Apparel_SpaceSuitHelmet"]/statBases/ArmorRating_Sharp</xpath>
 			<value>
@@ -18,17 +51,95 @@
 	   <li Class="PatchOperationReplace">
 		<xpath>Defs/ThingDef[defName="Apparel_SpaceSuitHelmet"]/statBases/ArmorRating_Blunt</xpath>
 			<value>
-				<ArmorRating_Blunt>32</ArmorRating_Blunt>
+				<ArmorRating_Blunt>20</ArmorRating_Blunt>
 			</value>
 	   </li>
 	   <li Class="PatchOperationAdd">
 		<xpath>Defs/ThingDef[defName="Apparel_SpaceSuitHelmet"]/equippedStatOffsets</xpath>
 		<value>
+			<ToxicSensitivity>-0.50</ToxicSensitivity>
 			<SmokeSensitivity>-1</SmokeSensitivity>
 		</value>
 	   </li>
 			
+   <li Class="PatchOperationAdd">
+    <xpath>Defs/ThingDef[defName="Apparel_SpaceSuitHelmet"]/apparel/layers</xpath>
+    <value>
+      <li>OnHead</li>
+      <li>StrappedHead</li>
+      <li>MiddleHead</li>
+    </value>
+ </li>
+			
+				<!--  Heavy EVA Helmet -->
+
+	   <li Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Apparel_SpaceSuitHelmetHeavy"]/statBases/ArmorRating_Sharp</xpath>
+			<value>
+				<ArmorRating_Sharp>14</ArmorRating_Sharp>
+			</value>
+	   </li>
+	   <li Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Apparel_SpaceSuitHelmetHeavy"]/statBases/ArmorRating_Blunt</xpath>
+			<value>
+				<ArmorRating_Blunt>36</ArmorRating_Blunt>
+			</value>
+	   </li>
+	   <li Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="Apparel_SpaceSuitHelmetHeavy"]/equippedStatOffsets</xpath>
+		<value>
+			<ToxicSensitivity>-0.50</ToxicSensitivity>
+			<SmokeSensitivity>-1</SmokeSensitivity>
+		</value>
+	   </li>
+
+	<li Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="Apparel_SpaceSuitHelmetHeavy"]/statBases</xpath>
+					<value>
+						<Bulk>6</Bulk>
+						<WornBulk>2</WornBulk>
+					</value>
+		</li>
+			
+    <li Class="PatchOperationReplace">
+    <xpath>Defs/ThingDef[defName="Apparel_SpaceSuitHelmetHeavy"]/costList/Plasteel</xpath>
+    <value>
+      <Plasteel>50</Plasteel>
+      <DevilstrandCloth>20</DevilstrandCloth>
+    </value>
+   </li>
+			
+    <li Class="PatchOperationAdd">
+    <xpath>Defs/ThingDef[defName="Apparel_SpaceSuitHelmetHeavy"]/apparel/layers</xpath>
+    <value>
+      <li>OnHead</li>
+      <li>StrappedHead</li>
+      <li>MiddleHead</li>
+    </value>
+ </li>
+			
+		<li Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Apparel_SpaceSuitHelmetHeavy"]/statBases/Flammability</xpath>
+		<value>
+			<Flammability>0</Flammability>
+		</value>
+		</li>
+			
+		<li Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Apparel_SpaceSuitHelmetHeavy"]/statBases/MaxHitPoints</xpath>
+		<value>
+			<MaxHitPoints>200</MaxHitPoints>
+		</value>
+		</li>
+			
 	<!--  Heavy EVA Suit -->
+		<li Class="PatchOperationAdd">
+		      <xpath>Defs/ThingDef[defName="Apparel_SpaceSuitBodyHeavy"]/costList</xpath>
+		      <value>
+			 <DevilstrandCloth>50</DevilstrandCloth>
+		      </value>
+		</li>
+			
 		<li Class="PatchOperationReplace">
 			<xpath>Defs/ThingDef[defName="Apparel_SpaceSuitBodyHeavy"]/statBases/ArmorRating_Sharp</xpath>
 			<value>
@@ -40,6 +151,38 @@
 			<value>
 				<ArmorRating_Blunt>45</ArmorRating_Blunt>
 			</value>
+		</li>
+		<li Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="Apparel_SpaceSuitBodyHeavy"]/statBases</xpath>
+			<value>
+				<Bulk>100</Bulk>
+				<WornBulk>15</WornBulk>
+				<ToxicSensitivity>-0.50</ToxicSensitivity>
+				<Flammability>0</Flammability>
+			</value>
+		</li>
+
+		<li Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Apparel_SpaceSuitBodyHeavy"]/statBases/MaxHitPoints</xpath>
+		<value>
+			<MaxHitPoints>400</MaxHitPoints>
+		</value>
+		</li>
+
+		<li Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Apparel_SpaceSuitBodyHeavy"]/statBases/Mass</xpath>
+		<value>
+			<Mass>50</Mass>
+		</value>
+		</li>
+
+		<li Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="Apparel_SpaceSuitBodyHeavy"]/equippedStatOffsets</xpath>
+		<value>
+			<CarryBulk>10</CarryBulk>
+			<CarryWeight>80</CarryWeight>
+			<ToxicSensitivity>-0.50</ToxicSensitivity>
+		</value>
 		</li>
 		</operations>
 		</match>

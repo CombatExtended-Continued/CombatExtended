@@ -103,7 +103,7 @@ namespace CombatExtended.HarmonyCE
                                 Thing medThing;
                                 if (medicine != null && pawn.inventory.innerContainer.TryDrop(medicine, pawn.Position, pawn.Map, ThingPlaceMode.Direct, 1, out medThing))
                                 {
-                                    Job job = new Job(CE_JobDefOf.Stabilize, patient, medThing);
+                                    Job job = JobMaker.MakeJob(CE_JobDefOf.Stabilize, patient, medThing);
                                     job.count = 1;
                                     pawn.jobs.TryTakeOrderedJob(job);
                                     PlayerKnowledgeDatabase.KnowledgeDemonstrated(CE_ConceptDefOf.CE_Stabilizing, KnowledgeAmount.Total);
@@ -141,7 +141,7 @@ namespace CombatExtended.HarmonyCE
                             opts.Add(FloatMenuUtility.DecoratePrioritizedTask(new FloatMenuOption("PickUp".Translate(item.Label, item), delegate
                             {
                                 item.SetForbidden(false, false);
-                                Job job = new Job(JobDefOf.TakeInventory, item);
+                                Job job = JobMaker.MakeJob(JobDefOf.TakeInventory, item);
                                 job.count = 1;
                                 pawn.jobs.TryTakeOrderedJob(job, JobTag.Misc);
                                 pawn.Notify_HoldTrackerJob(job);
@@ -159,7 +159,7 @@ namespace CombatExtended.HarmonyCE
                                 opts.Add(FloatMenuUtility.DecoratePrioritizedTask(new FloatMenuOption("PickUpAll".Translate(item.Label, item), delegate
                                 {
                                     item.SetForbidden(false, false);
-                                    Job job = new Job(JobDefOf.TakeInventory, item);
+                                    Job job = JobMaker.MakeJob(JobDefOf.TakeInventory, item);
                                     job.count = item.stackCount;
                                     pawn.jobs.TryTakeOrderedJob(job, JobTag.Misc);
                                     pawn.Notify_HoldTrackerJob(job);
@@ -172,7 +172,7 @@ namespace CombatExtended.HarmonyCE
                                 Dialog_Slider window = new Dialog_Slider("PickUpCount".Translate(item.LabelShort, item), 1, to, delegate (int selectCount)
                                 {
                                     item.SetForbidden(false, false);
-                                    Job job = new Job(JobDefOf.TakeInventory, item);
+                                    Job job = JobMaker.MakeJob(JobDefOf.TakeInventory, item);
                                     job.count = selectCount;
                                     pawn.jobs.TryTakeOrderedJob(job, JobTag.Misc);
                                     pawn.Notify_HoldTrackerJob(job);
