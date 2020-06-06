@@ -69,6 +69,7 @@ Fate Grand Order - Styles Apparel Pack	|
 Ferrex Race	|
 Flak Dusters	|
 Forsakens	|
+Forsakens Fauna |
 Gas Traps And Shells	|
 Girls' Frontline Apparel Pack	|
 Girls' Frontline Styles - 404 Team	|
