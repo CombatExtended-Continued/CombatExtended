@@ -85,5 +85,17 @@ namespace CombatExtended
             var ammo = ThingDefOf.Turret_Mortar.building.turretGunDef.GetCompProperties<CompProperties_AmmoUser>();
             return ammo?.ammoSet.ammoTypes.Any(l => l.ammo == def) ?? false;
         }
+
+        public static bool IsAmmoSystemActive(AmmoDef def)
+		{
+            if (Controller.settings.EnableAmmoSystem) return true;
+            return (def != null && def.isMortarAmmo);
+		}
+
+        public static bool IsAmmoSystemActive(AmmoSetDef ammoSet)
+		{
+            if (Controller.settings.EnableAmmoSystem) return true;
+            return (ammoSet != null && ammoSet.isMortarAmmoSet);
+		}
     }
 }

@@ -69,8 +69,11 @@ namespace CombatExtended
             CELogger.Message($"Priority check completed. Got {priority}");
 
             Building_TurretGunCE turret = t as Building_TurretGunCE;
-            CELogger.Message($"Turret uses ammo? {turret.CompAmmo.UseAmmo}");
-
+            CELogger.Message($"Turret uses ammo? {turret.CompAmmo?.UseAmmo}");
+            if (!turret.Reloadable)
+            {
+                return false;
+            }
             CELogger.Message($"Total magazine size: {turret.CompAmmo.Props.magazineSize}. Needed: {turret.CompAmmo.MissingToFullMagazine}");
 
             return JobGiverUtils_Reload.CanReload(pawn, turret, forced);

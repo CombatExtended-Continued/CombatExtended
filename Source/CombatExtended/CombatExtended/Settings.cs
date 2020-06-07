@@ -164,6 +164,8 @@ namespace CombatExtended
                 list.Label("CE_Settings_ShowCaliberOnGuns_Title".Translate());
                 list.Label("CE_Settings_ReuseNeolithicProjectiles_Title".Translate());
                 list.Label("CE_Settings_RealisticCookOff_Title".Translate());
+                list.Label("CE_Settings_EnableSimplifiedAmmo_Title".Translate());
+
                 GUI.contentColor = Color.white;
             }
 
