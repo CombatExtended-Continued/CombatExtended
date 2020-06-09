@@ -59,6 +59,7 @@ Defensive Machine Gun Turret Pack	|
 Dinosauria	|
 Dragonian Race	|
 Dragons!	|
+ED-Shields	|
 Equiums Horse Race	|
 Expanded Patchleather	|
 Expanded Prosthetics and Organ Engineering (EPOE)	|
