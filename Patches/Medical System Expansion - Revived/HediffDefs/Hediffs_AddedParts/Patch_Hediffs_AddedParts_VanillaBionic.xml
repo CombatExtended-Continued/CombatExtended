@@ -106,20 +106,34 @@
 				</value>
 			</li>
 			<!-- PowerClaw -->
-			<li Class="PatchOperationAdd">
-				<xpath>Defs/HediffDef[defName="PowerClaw"]</xpath>
-				<value>
-					<stages>
-						<li>
-							<minSeverity>0.000001</minSeverity>
-							<statOffsets>
-								<ArmorRating_Sharp>0.038</ArmorRating_Sharp>
-								<ArmorRating_Blunt>0.069</ArmorRating_Blunt>
-								<ArmorRating_Heat>0.007</ArmorRating_Heat>
-							</statOffsets>
-						</li>
-					</stages>
-				</value>
+			<li Class="PatchOperationConditional">
+				<xpath>Defs/HediffDef[defName="PowerClaw"]/stages/li</xpath>
+				<nomatch Class="PatchOperationAdd">
+					<xpath>Defs/HediffDef[defName="PowerClaw"]</xpath>
+					<value>
+						<stages>
+							<li>
+								<minSeverity>0.000001</minSeverity>
+								<statOffsets>
+									<ArmorRating_Sharp>0.038</ArmorRating_Sharp>
+									<ArmorRating_Blunt>0.069</ArmorRating_Blunt>
+									<ArmorRating_Heat>0.007</ArmorRating_Heat>
+								</statOffsets>
+							</li>
+						</stages>
+					</value>
+				</nomatch>
+				<match Class="PatchOperationAdd">
+					<xpath>Defs/HediffDef[defName="PowerClaw"]/stages/li</xpath>
+					<value>
+						<minSeverity>0.000001</minSeverity>
+						<statOffsets>
+							<ArmorRating_Sharp>0.038</ArmorRating_Sharp>
+							<ArmorRating_Blunt>0.069</ArmorRating_Blunt>
+							<ArmorRating_Heat>0.007</ArmorRating_Heat>
+						</statOffsets>
+					</value>
+				</match>
 			</li>
 		</operations>
 	</Operation>
