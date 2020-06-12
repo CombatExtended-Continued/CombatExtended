@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+			<li>Medical System Expansion - Revived</li>
+		</mods>
+		<match Class="PatchOperationSequence">
+			<operations>
+				<!-- ==== Simple Prosthesis  ==== -->
+				<!-- SimpleProstheticFoot -->
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/HediffDef[defName="SimpleProstheticFoot"]</xpath>
+					<value>
+						<stages>
+							<li>
+								<minSeverity>0.000001</minSeverity>
+								<statOffsets>
+									<ArmorRating_Blunt>0.026</ArmorRating_Blunt>
+									<ArmorRating_Sharp>0.014</ArmorRating_Sharp>
+								</statOffsets>
+							</li>
+						</stages>
+					</value>
+				</li>
+				<!-- SimpleProstheticToe and SimpleProstheticFinger -->
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/HediffDef[defName="SimpleProstheticToe" or defName="SimpleProstheticFinger"]</xpath>
+					<value>
+						<stages>
+							<li>
+								<minSeverity>0.000001</minSeverity>
+								<statOffsets>
+									<ArmorRating_Blunt>0.002</ArmorRating_Blunt>
+									<ArmorRating_Sharp>0.001</ArmorRating_Sharp>
+								</statOffsets>
+							</li>
+						</stages>
+					</value>
+				</li>
+				<!-- SimpleProstheticHand -->
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/HediffDef[defName="SimpleProstheticHand"]</xpath>
+					<value>
+						<stages>
+							<li>
+								<minSeverity>0.000001</minSeverity>
+								<statOffsets>
+									<ArmorRating_Blunt>0.025</ArmorRating_Blunt>
+									<ArmorRating_Sharp>0.013</ArmorRating_Sharp>
+								</statOffsets>
+							</li>
+						</stages>
+					</value>
+				</li>
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/HediffDef[defName="SimpleProstheticHand"]/comps/li[@Class="HediffCompProperties_VerbGiver"]/tools</xpath>
+					<value>
+						<tools>
+							<li Class="CombatExtended.ToolCE">
+								<label>claw</label>
+								<capacities>
+									<li>Scratch</li>
+								</capacities>
+								<power>4</power>
+								<cooldownTime>0.96</cooldownTime>
+								<armorPenetrationSharp>0.01</armorPenetrationSharp>
+								<armorPenetrationBlunt>0.084</armorPenetrationBlunt>
+							</li>
+						</tools>
+					</value>
+				</li>
+				<!-- SimpleProstheticJaw -->
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/HediffDef[defName="SimpleProstheticJaw"]</xpath>
+					<value>
+						<stages>
+							<li>
+								<minSeverity>0.000001</minSeverity>
+								<statOffsets>
+									<ArmorRating_Blunt>0.018</ArmorRating_Blunt>
+									<ArmorRating_Sharp>0.01</ArmorRating_Sharp>
+								</statOffsets>
+							</li>
+						</stages>
+					</value>
+				</li>
+				<!-- SimpleProstheticClavicle -->
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/HediffDef[defName="SimpleProstheticClavicle"]</xpath>
+					<value>
+						<stages>
+							<li>
+								<minSeverity>0.000001</minSeverity>
+								<statOffsets>
+									<ArmorRating_Blunt>0.014</ArmorRating_Blunt>
+									<ArmorRating_Sharp>0.008</ArmorRating_Sharp>
+								</statOffsets>
+							</li>
+						</stages>
+					</value>
+				</li>
+				<!-- SimpleProstheticSternum, SimpleProstheticFemur and SimpleProstheticTibia -->
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/HediffDef[defName="SimpleProstheticSternum" or defName="SimpleProstheticFemur" or defName="SimpleProstheticTibia"]</xpath>
+					<value>
+						<stages>
+							<li>
+								<minSeverity>0.000001</minSeverity>
+								<statOffsets>
+									<ArmorRating_Blunt>0.041</ArmorRating_Blunt>
+									<ArmorRating_Sharp>0.023</ArmorRating_Sharp>
+								</statOffsets>
+							</li>
+						</stages>
+					</value>
+				</li>
+				<!-- SimpleProstheticRib -->
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/HediffDef[defName="SimpleProstheticRib"]</xpath>
+					<value>
+						<stages>
+							<li>
+								<minSeverity>0.000001</minSeverity>
+								<statOffsets>
+									<ArmorRating_Blunt>0.033</ArmorRating_Blunt>
+									<ArmorRating_Sharp>0.018</ArmorRating_Sharp>
+								</statOffsets>
+							</li>
+						</stages>
+					</value>
+				</li>
+				<!-- SimpleProstheticPelvis -->
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/HediffDef[defName="SimpleProstheticPelvis"]</xpath>
+					<value>
+						<stages>
+							<li>
+								<minSeverity>0.000001</minSeverity>
+								<statOffsets>
+									<ArmorRating_Blunt>0.138</ArmorRating_Blunt>
+									<ArmorRating_Sharp>0.075</ArmorRating_Sharp>
+								</statOffsets>
+							</li>
+						</stages>
+					</value>
+				</li>
+				<!-- SimpleProstheticHumerus and SimpleProstheticRadius -->
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/HediffDef[defName="SimpleProstheticHumerus" or defName="SimpleProstheticRadius"]</xpath>
+					<value>
+						<stages>
+							<li>
+								<minSeverity>0.000001</minSeverity>
+								<statOffsets>
+									<ArmorRating_Blunt>0.027</ArmorRating_Blunt>
+									<ArmorRating_Sharp>0.015</ArmorRating_Sharp>
+								</statOffsets>
+							</li>
+						</stages>
+					</value>
+				</li>
+			</operations>
+		</match>
+	</Operation>
+</Patch>

@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+			<li>Medical System Expansion - Revived</li>
+		</mods>
+		<match Class="PatchOperationSequence">
+			<operations>
+				<!-- ==== Special Bionic Modules  ==== -->
+				<!-- MSE_RangedPlatformModule -->
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/HediffDef[defName="MSE_RangedPlatformModule"]/stages</xpath>
+					<value>
+						<stages>
+							<li>
+								<minSeverity>0.000001</minSeverity>
+								<statOffsets>
+									<ShootingAccuracyPawn>2</ShootingAccuracyPawn>
+									<AimingAccuracy>0.2</AimingAccuracy>
+									<AimingDelayFactor>-0.1</AimingDelayFactor>
+								</statOffsets>
+							</li>
+						</stages>
+					</value>
+				</li>
+				<!-- MSE_MeleePlatformModule -->
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/HediffDef[defName="MSE_MeleePlatformModule"]/stages</xpath>
+					<value>
+						<stages>
+							<li>
+								<minSeverity>0.000001</minSeverity>
+								<statOffsets>
+									<MeleeDodgeChance>0.4</MeleeDodgeChance>
+									<MeleeHitChance>4</MeleeHitChance>
+									<MeleeCritChance>0.4</MeleeCritChance>
+									<MeleeParryChance>0.4</MeleeParryChance>
+								</statOffsets>
+							</li>
+						</stages>
+					</value>
+				</li>
+				<!-- MSE_PowerArmModule -->
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/HediffDef[defName="MSE_PowerArmModule"]/comps/li[@Class="HediffCompProperties_VerbGiver"]/tools</xpath>
+					<value>
+						<tools>
+							<li Class="CombatExtended.ToolCE">
+								<label>fist</label>
+								<capacities>
+									<li>Blunt</li>
+								</capacities>
+								<power>12</power>
+								<cooldownTime>2.6</cooldownTime>
+								<armorPenetrationBlunt>4.5</armorPenetrationBlunt>
+								<alwaysTreatAsWeapon>true</alwaysTreatAsWeapon>
+							</li>
+						</tools>
+					</value>
+				</li>
+				<!-- MSE_PowerClawModule -->
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/HediffDef[defName="MSE_PowerClawModule"]/comps/li[@Class="HediffCompProperties_VerbGiver"]/tools</xpath>
+					<value>
+						<tools>
+							<li Class="CombatExtended.ToolCE">
+								<label>Claw</label>
+								<capacities>
+									<li>Scratch</li>
+								</capacities>
+								<power>15</power>
+								<cooldownTime>1.34</cooldownTime>
+								<armorPenetrationBlunt>1.778</armorPenetrationBlunt>
+								<armorPenetrationSharp>0.36</armorPenetrationSharp>
+							</li>
+						</tools>
+					</value>
+				</li>
+				<!-- MSE_AdamantiumCoatedBoneModule -->
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/HediffDef[defName="MSE_AdamantiumCoatedBoneModule"]/stages</xpath>
+					<value>
+						<stages>
+							<li>
+								<minSeverity>0.000001</minSeverity>
+								<statOffsets>
+									<ArmorRating_Blunt>0.3</ArmorRating_Blunt>
+								</statOffsets>
+							</li>
+						</stages>
+					</value>
+				</li>
+			</operations>
+		</match>
+	</Operation>
+</Patch>
