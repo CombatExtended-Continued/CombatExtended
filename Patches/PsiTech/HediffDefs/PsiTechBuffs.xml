@@ -9,7 +9,7 @@
 				<!-- == PTMeleeMastery == -->
 				<!-- statOffsets -->
 				<li Class="PatchOperationReplace">
-					<xpath>Defs/HediffDef[defName="PTMeleeMastery"]/stages/li[1]/statOffsets</xpath>
+					<xpath>Defs/HediffDef[defName="PTMeleeMastery"]/stages/li/statOffsets[MeleeDodgeChance="30"]</xpath>
 					<value>
 						<statOffsets>
 							<MeleeDodgeChance>1</MeleeDodgeChance>
@@ -19,19 +19,19 @@
 				</li>
 
 				<!-- == PTRangedMastery == -->
-				<!-- statOffsets -->
-				<li Class="PatchOperationRemove">
-					<xpath>Defs/HediffDef[defName="PTRangedMastery"]/stages/li[1]/statOffsets/ShootingAccuracyPawn</xpath>
-				</li>
 				<!-- statFactors -->
 				<li Class="PatchOperationAdd">
-					<xpath>Defs/HediffDef[defName="PTRangedMastery"]/stages/li[1]</xpath>
+					<xpath>Defs/HediffDef[defName="PTRangedMastery"]/stages/li[statOffsets/ShootingAccuracyPawn="10"]</xpath>
 					<value>
 						<statFactors>
 							<ShootingAccuracyPawn>1.5</ShootingAccuracyPawn>
 							<AimingAccuracy>1.25</AimingAccuracy>
 						</statFactors>
 					</value>
+				</li>
+				<!-- statOffsets -->
+				<li Class="PatchOperationRemove">
+					<xpath>Defs/HediffDef[defName="PTRangedMastery"]/stages/li/statOffsets/ShootingAccuracyPawn</xpath>
 				</li>
 			</operations>
 		</match>
