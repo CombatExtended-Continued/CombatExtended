@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+			<li>Medical System Expansion - Revived</li>
+		</mods>
+		<match Class="PatchOperationSequence">
+			<operations>
+				<!-- ==== Vanilla Archotech Prosthesis  ==== -->
+				<!-- ArchotechEye -->
+				<li Class="PatchOperationTest">
+					<xpath>Defs/HediffDef[defName="ArchotechEye"]/stages</xpath>
+					<success>Invert</success>
+				</li>
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/HediffDef[defName="ArchotechEye"]</xpath>
+					<value>
+						<stages>
+							<li>
+								<minSeverity>0.000001</minSeverity>
+								<statOffsets>
+									<ArmorRating_Sharp>0.026</ArmorRating_Sharp>
+									<ArmorRating_Blunt>0.048</ArmorRating_Blunt>
+									<ArmorRating_Heat>0.004</ArmorRating_Heat>
+								</statOffsets>
+							</li>
+						</stages>
+					</value>
+				</li>
+				<!-- ArchotechArm -->
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/HediffDef[defName="ArchotechArm"]</xpath>
+					<value>
+						<stages>
+							<li>
+								<minSeverity>0.000001</minSeverity>
+								<statOffsets>
+									<ArmorRating_Sharp>0.786</ArmorRating_Sharp>
+									<ArmorRating_Blunt>1.444</ArmorRating_Blunt>
+									<ArmorRating_Heat>0.105</ArmorRating_Heat>
+								</statOffsets>
+							</li>
+						</stages>
+					</value>
+				</li>
+				<!-- ArchotechLeg -->
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/HediffDef[defName="ArchotechLeg"]</xpath>
+					<value>
+						<stages>
+							<li>
+								<minSeverity>0.000001</minSeverity>
+								<statOffsets>
+									<ArmorRating_Sharp>1.195</ArmorRating_Sharp>
+									<ArmorRating_Blunt>2.196</ArmorRating_Blunt>
+									<ArmorRating_Heat>0.159</ArmorRating_Heat>
+								</statOffsets>
+							</li>
+						</stages>
+					</value>
+				</li>
+			</operations>
+		</match>
+	</Operation>
+</Patch>

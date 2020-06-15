@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+			<li>PsiTech</li>
+		</mods>
+		<match Class="PatchOperationSequence">
+			<operations>
+				<!-- == PTMeleeMastery == -->
+				<!-- statOffsets -->
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/HediffDef[defName="PTMeleeMastery"]/stages/li/statOffsets[MeleeDodgeChance="30"]</xpath>
+					<value>
+						<statOffsets>
+							<MeleeDodgeChance>1</MeleeDodgeChance>
+							<MeleePenetrationFactor>0.5</MeleePenetrationFactor>
+						</statOffsets>
+					</value>
+				</li>
+
+				<!-- == PTRangedMastery == -->
+				<!-- statFactors -->
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/HediffDef[defName="PTRangedMastery"]/stages/li[statOffsets/ShootingAccuracyPawn="10"]</xpath>
+					<value>
+						<statFactors>
+							<ShootingAccuracyPawn>1.5</ShootingAccuracyPawn>
+							<AimingAccuracy>1.25</AimingAccuracy>
+						</statFactors>
+					</value>
+				</li>
+				<!-- statOffsets -->
+				<li Class="PatchOperationRemove">
+					<xpath>Defs/HediffDef[defName="PTRangedMastery"]/stages/li/statOffsets/ShootingAccuracyPawn</xpath>
+				</li>
+			</operations>
+		</match>
+	</Operation>
+</Patch>
