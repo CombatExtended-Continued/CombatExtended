@@ -96,6 +96,7 @@ MiningCo. MiningHelmet	|
 Misc. Robots	|
 More Mechanoids	|
 More Practical Traits	|
+More Vanilla Turrets	|
 Ni'Hal	|
 Orassans	|
 Penguin	|
