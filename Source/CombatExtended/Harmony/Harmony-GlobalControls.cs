@@ -16,7 +16,7 @@ namespace CombatExtended.HarmonyCE
         private static void Postfix(ref float curBaseY)
         {
             float offsetXFromOriginalMethod = UI.screenWidth - 200f;
-            Find.CurrentMap.GetComponent<WeatherTracker>().DoWindGUI(offsetXFromOriginalMethod + magicExtraOffset, ref curBaseY);
+            Find.CurrentMap?.GetComponent<WeatherTracker>().DoWindGUI(offsetXFromOriginalMethod + magicExtraOffset, ref curBaseY);
         }
     }
 }

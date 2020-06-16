@@ -1,0 +1,254 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+			<li>Medical System Expansion - Revived</li>
+		</mods>
+		<match Class="PatchOperationSequence">
+			<operations>
+				<!-- ==== Bionic Prosthesis  ==== -->
+				<!-- BionicLung -->
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/HediffDef[defName="BionicLung"]</xpath>
+					<value>
+						<stages>
+							<li>
+								<minSeverity>0.000001</minSeverity>
+								<statOffsets>
+									<ArmorRating_Sharp>0.233</ArmorRating_Sharp>
+									<ArmorRating_Blunt>0.429</ArmorRating_Blunt>
+									<ArmorRating_Heat>0.044</ArmorRating_Heat>
+								</statOffsets>
+							</li>
+						</stages>
+					</value>
+				</li>
+				<!-- BionicKidney -->
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/HediffDef[defName="BionicKidney"]</xpath>
+					<value>
+						<stages>
+							<li>
+								<minSeverity>0.000001</minSeverity>
+								<statOffsets>
+									<ArmorRating_Sharp>0.127</ArmorRating_Sharp>
+									<ArmorRating_Blunt>0.234</ArmorRating_Blunt>
+									<ArmorRating_Heat>0.024</ArmorRating_Heat>
+								</statOffsets>
+							</li>
+						</stages>
+					</value>
+				</li>
+				<!-- BionicLiver -->
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/HediffDef[defName="BionicLiver"]</xpath>
+					<value>
+						<stages>
+							<li>
+								<minSeverity>0.000001</minSeverity>
+								<statOffsets>
+									<ArmorRating_Sharp>0.255</ArmorRating_Sharp>
+									<ArmorRating_Blunt>0.468</ArmorRating_Blunt>
+									<ArmorRating_Heat>0.048</ArmorRating_Heat>
+								</statOffsets>
+							</li>
+						</stages>
+					</value>
+				</li>
+				<!-- BionicFoot -->
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/HediffDef[defName="BionicFoot"]</xpath>
+					<value>
+						<stages>
+							<li>
+								<minSeverity>0.000001</minSeverity>
+								<statOffsets>
+									<ArmorRating_Sharp>0.041</ArmorRating_Sharp>
+									<ArmorRating_Blunt>0.075</ArmorRating_Blunt>
+									<ArmorRating_Heat>0.008</ArmorRating_Heat>
+								</statOffsets>
+							</li>
+						</stages>
+					</value>
+				</li>
+				<!-- BionicToe -->
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/HediffDef[defName="BionicToe"]</xpath>
+					<value>
+						<stages>
+							<li>
+								<minSeverity>0.000001</minSeverity>
+								<statOffsets>
+									<ArmorRating_Sharp>0.003</ArmorRating_Sharp>
+									<ArmorRating_Blunt>0.005</ArmorRating_Blunt>
+									<ArmorRating_Heat>0.001</ArmorRating_Heat>
+								</statOffsets>
+							</li>
+						</stages>
+					</value>
+				</li>
+				<!-- BionicShoulder -->
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/HediffDef[defName="BionicShoulder"]</xpath>
+					<value>
+						<stages>
+							<li>
+								<minSeverity>0.000001</minSeverity>
+								<statOffsets>
+									<ArmorRating_Sharp>0.359</ArmorRating_Sharp>
+									<ArmorRating_Blunt>0.659</ArmorRating_Blunt>
+									<ArmorRating_Heat>0.068</ArmorRating_Heat>
+								</statOffsets>
+							</li>
+						</stages>
+					</value>
+				</li>
+				<!-- BionicHand -->
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/HediffDef[defName="BionicHand"]</xpath>
+					<value>
+						<stages>
+							<li>
+								<minSeverity>0.000001</minSeverity>
+								<statOffsets>
+									<ArmorRating_Sharp>0.038</ArmorRating_Sharp>
+									<ArmorRating_Blunt>0.069</ArmorRating_Blunt>
+									<ArmorRating_Heat>0.007</ArmorRating_Heat>
+								</statOffsets>
+							</li>
+						</stages>
+					</value>
+				</li>
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/HediffDef[defName="BionicHand"]/comps/li[@Class="HediffCompProperties_VerbGiver"]/tools</xpath>
+					<value>
+						<tools>
+							<li Class="CombatExtended.ToolCE">
+								<label>claw</label>
+								<capacities>
+									<li>Scratch</li>
+								</capacities>
+								<power>9</power>
+								<cooldownTime>0.84</cooldownTime>
+								<armorPenetrationSharp>0.02</armorPenetrationSharp>
+								<armorPenetrationBlunt>0.563</armorPenetrationBlunt>
+							</li>
+						</tools>
+					</value>
+				</li>
+				<!-- BionicFinger -->
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/HediffDef[defName="BionicFinger"]</xpath>
+					<value>
+						<stages>
+							<li>
+								<minSeverity>0.000001</minSeverity>
+								<statOffsets>
+									<ArmorRating_Sharp>0.003</ArmorRating_Sharp>
+									<ArmorRating_Blunt>0.005</ArmorRating_Blunt>
+									<ArmorRating_Heat>0.0005</ArmorRating_Heat>
+								</statOffsets>
+							</li>
+						</stages>
+					</value>
+				</li>
+				<!-- BionicJaw -->
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/HediffDef[defName="BionicJaw"]</xpath>
+					<value>
+						<stages>
+							<li>
+								<minSeverity>0.000001</minSeverity>
+								<statOffsets>
+									<ArmorRating_Sharp>0.028</ArmorRating_Sharp>
+									<ArmorRating_Blunt>0.051</ArmorRating_Blunt>
+									<ArmorRating_Heat>0.005</ArmorRating_Heat>
+								</statOffsets>
+							</li>
+						</stages>
+					</value>
+				</li>
+				<!-- BionicClavicle -->
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/HediffDef[defName="BionicClavicle"]</xpath>
+					<value>
+						<stages>
+							<li>
+								<minSeverity>0.000001</minSeverity>
+								<statOffsets>
+									<ArmorRating_Sharp>0.022</ArmorRating_Sharp>
+									<ArmorRating_Blunt>0.04</ArmorRating_Blunt>
+									<ArmorRating_Heat>0.004</ArmorRating_Heat>
+								</statOffsets>
+							</li>
+						</stages>
+					</value>
+				</li>
+				<!-- BionicSternum, BionicFemur and BionicTibia -->
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/HediffDef[defName="BionicSternum" or defName="BionicFemur" or defName="BionicTibia"]</xpath>
+					<value>
+						<stages>
+							<li>
+								<minSeverity>0.000001</minSeverity>
+								<statOffsets>
+									<ArmorRating_Sharp>0.064</ArmorRating_Sharp>
+									<ArmorRating_Blunt>0.117</ArmorRating_Blunt>
+									<ArmorRating_Heat>0.012</ArmorRating_Heat>
+								</statOffsets>
+							</li>
+						</stages>
+					</value>
+				</li>
+				<!-- BionicRib -->
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/HediffDef[defName="BionicRib"]</xpath>
+					<value>
+						<stages>
+							<li>
+								<minSeverity>0.000001</minSeverity>
+								<statOffsets>
+									<ArmorRating_Sharp>0.051</ArmorRating_Sharp>
+									<ArmorRating_Blunt>0.094</ArmorRating_Blunt>
+									<ArmorRating_Heat>0.01</ArmorRating_Heat>
+								</statOffsets>
+							</li>
+						</stages>
+					</value>
+				</li>
+				<!-- BionicPelvis -->
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/HediffDef[defName="BionicPelvis"]</xpath>
+					<value>
+						<stages>
+							<li>
+								<minSeverity>0.000001</minSeverity>
+								<statOffsets>
+									<ArmorRating_Sharp>0.212</ArmorRating_Sharp>
+									<ArmorRating_Blunt>0.39</ArmorRating_Blunt>
+									<ArmorRating_Heat>0.04</ArmorRating_Heat>
+								</statOffsets>
+							</li>
+						</stages>
+					</value>
+				</li>
+				<!-- BionicHumerus and BionicRadius -->
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/HediffDef[defName="BionicHumerus" or defName="BionicRadius"]</xpath>
+					<value>
+						<stages>
+							<li>
+								<minSeverity>0.000001</minSeverity>
+								<statOffsets>
+									<ArmorRating_Sharp>0.042</ArmorRating_Sharp>
+									<ArmorRating_Blunt>0.076</ArmorRating_Blunt>
+									<ArmorRating_Heat>0.008</ArmorRating_Heat>
+								</statOffsets>
+							</li>
+						</stages>
+					</value>
+				</li>
+			</operations>
+		</match>
+	</Operation>
+</Patch>

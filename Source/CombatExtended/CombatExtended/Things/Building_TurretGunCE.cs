@@ -48,6 +48,7 @@ namespace CombatExtended
         private CompChangeableProjectile compChangeable = null;
         public bool isReloading = false;
         private int ticksUntilAutoReload = 0;
+        private bool everSpawned = false;
 
         #endregion
 
@@ -77,17 +78,14 @@ namespace CombatExtended
             {
                 if (this.gunInt == null && Map != null)
                 {
-                    this.gunInt = ThingMaker.MakeThing(this.def.building.turretGunDef, null);
-                    this.compAmmo = gunInt.TryGetComp<CompAmmoUser>();
+                    // I am leaving this here because god knows what uses it before postmake gets called.
+                    CELogger.Warn($"Gun {this.ToString()} was referenced before PostMake. If you're seeing this, please report this to the Combat Extended team!", showOutOfDebugMode: true);
+                    MakeGun();
 
-                    InitGun();
-
-                    // FIXME: Hack to make player-crafted turrets spawn unloaded
-                    if (//Map != null && !Map.IsPlayerHome
-                        //!Faction.IsPlayer
-                        (!Map.IsPlayerHome || Faction != Faction.OfPlayer) && compAmmo != null)
+                    if (!everSpawned && (!Map.IsPlayerHome || Faction != Faction.OfPlayer))
                     {
-                        compAmmo.ResetAmmoCount();
+                        compAmmo?.ResetAmmoCount();
+                        everSpawned = true;
                     }
                 }
                 return this.gunInt;
@@ -156,6 +154,13 @@ namespace CombatExtended
             dormantComp = GetComp<CompCanBeDormant>();
             powerComp = GetComp<CompPowerTrader>();
             mannableComp = GetComp<CompMannable>();
+
+            if (!everSpawned && (!Map.IsPlayerHome || Faction != Faction.OfPlayer))
+            {
+                compAmmo?.ResetAmmoCount();
+                everSpawned = true;
+            }
+
             if (!respawningAfterLoad)
             {
                 CELogger.Message($"top is {top?.ToString() ?? "null"}");
@@ -184,6 +189,22 @@ namespace CombatExtended
         }
 
         //PostMake not added -- MakeGun-like code is run whenever Gun is called
+        //No. Fuck you. ^
+
+        public override void PostMake()
+        {
+            base.PostMake();
+
+            MakeGun();
+        }
+
+        private void MakeGun()
+        {
+            this.gunInt = ThingMaker.MakeThing(this.def.building.turretGunDef, null);
+            this.compAmmo = gunInt.TryGetComp<CompAmmoUser>();
+
+            InitGun();
+        }
 
         public override void DeSpawn(DestroyMode mode = DestroyMode.Vanish)    // Added GenClosestAmmo unsubscription
         {

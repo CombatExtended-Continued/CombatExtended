@@ -96,7 +96,7 @@ namespace CombatExtended
             List<FloatMenuOption> floatOptionList = new List<FloatMenuOption>();
 
             #region Ammo type switching
-            if (Controller.settings.EnableAmmoSystem)
+            if (compAmmo.UseAmmo)
             {
                 //List of actions to be taken on choosing a new ammo type, listed by ammoCategoryDef (FMJ/AP/HP)
                 Dictionary<AmmoCategoryDef, Action> ammoClassActions = new Dictionary<AmmoCategoryDef, Action>();

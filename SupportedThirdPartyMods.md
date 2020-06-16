@@ -59,6 +59,7 @@ Defensive Machine Gun Turret Pack	|
 Dinosauria	|
 Dragonian Race	|
 Dragons!	|
+ED-Shields	|
 Equiums Horse Race	|
 Expanded Patchleather	|
 Expanded Prosthetics and Organ Engineering (EPOE)	|
@@ -69,6 +70,7 @@ Fate Grand Order - Styles Apparel Pack	|
 Ferrex Race	|
 Flak Dusters	|
 Forsakens	|
+Forsakens Fauna |
 Gas Traps And Shells	|
 Girls' Frontline Apparel Pack	|
 Girls' Frontline Styles - 404 Team	|
@@ -94,9 +96,11 @@ MiningCo. MiningHelmet	|
 Misc. Robots	|
 More Mechanoids	|
 More Practical Traits	|
+More Vanilla Turrets	|
 Ni'Hal	|
 Orassans	|
 Penguin	|
+PsiTech	|
 Polarisbloc - Security Force	|
 Rabbie The Moonrabbit	|
 Racc Race	|
