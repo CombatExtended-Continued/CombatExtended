@@ -100,8 +100,8 @@ More Vanilla Turrets	|
 Ni'Hal	|
 Orassans	|
 Penguin	|
+PsiTech	|
 Polarisbloc - Security Force	|
-PsiTech
 Rabbie The Moonrabbit	|
 Racc Race	|
 Rah's Bionics and Surgery Expansion	|
