@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+  <Operation Class="PatchOperationSequence">
+	<operations>
+	  <li Class="PatchOperationFindMod">		
+		<mods><li>Revia Race</li></mods>		
+		<match Class="PatchOperationSequence">
+		<operations>
+			
+			<li Class="PatchOperationConditional">
+				<xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="ReviaRaceAlien"]/comps</xpath>
+				<nomatch Class="PatchOperationAdd">
+					<xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="ReviaRaceAlien"]</xpath>
+					<value>
+						<comps/>
+					</value>
+				</nomatch>
+				<match Class="PatchOperationAdd">
+					<xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="ReviaRaceAlien"]</xpath>
+					<value>
+					</value>
+				</match>
+			</li>
+			
+			<li Class="PatchOperationAddModExtension">
+				<xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="ReviaRaceAlien"]</xpath>
+				<value>
+					<li Class="CombatExtended.RacePropertiesExtensionCE">
+						<bodyShape>Humanoid</bodyShape>
+					</li>
+				</value>
+			</li>
+			
+			<li Class="PatchOperationAdd">
+				<xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="ReviaRaceAlien"]/comps</xpath>
+				<value>
+					<li>
+					<compClass>CombatExtended.CompPawnGizmo</compClass>
+					</li>
+					<li Class="CombatExtended.CompProperties_Suppressable" />
+				</value>
+			</li>
+			
+			<li Class="PatchOperationAdd">
+			 <xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="ReviaRaceAlien"]/statBases</xpath>
+				  <value>
+					<MeleeCritChance>1</MeleeCritChance>
+					<MeleeParryChance>1.25</MeleeParryChance>
+					<Suppressability>1</Suppressability>
+					<SmokeSensitivity>1</SmokeSensitivity>
+					<CarryBulk>30</CarryBulk>
+					<CarryWeight>60</CarryWeight>
+				  </value>
+			</li>
+
+      <li Class="PatchOperationAdd">
+        <xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="ReviaRaceAlien"]/alienRace/generalSettings/forcedRaceTraitEntries</xpath>
+        <value>
+          <li>
+            <defName>Bravery</defName>
+            <degree>1</degree>
+            <chance>30</chance>
+          </li>
+          <li>
+            <defName>Bravery</defName>
+            <degree>2</degree>
+            <chance>40</chance>
+          </li>
+          <li>
+            <defName>Bravery</defName>
+            <degree>-1</degree>
+            <chance>0</chance>
+          </li>
+        </value>
+      </li>
+			
+			<li Class="PatchOperationReplace">
+			 <xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="ReviaRaceAlien"]/statBases/MeleeDodgeChance</xpath>
+				  <value>
+					<MeleeDodgeChance>1.20</MeleeDodgeChance>
+				  </value>
+			</li>
+
+      <li Class="PatchOperationReplace">
+        <xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="ReviaRaceAlien"]/tools</xpath>
+        <value>
+        </value>
+      </li>  
+      
+		</operations>
+		</match>	
+	  </li>
+	</operations>	
+  </Operation>
+</Patch>
