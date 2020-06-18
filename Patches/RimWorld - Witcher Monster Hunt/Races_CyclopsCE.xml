@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+		<li>RimWorld - Witcher Monster Hunt</li>
+		</mods>
+
+		<match Class="PatchOperationSequence">
+			<operations>
+
+
+			<li Class="PatchOperationAddModExtension">
+				<xpath>Defs/ThingDef[defName="WMH_Cyclops"]</xpath>
+				<value>
+					<li Class="CombatExtended.RacePropertiesExtensionCE">
+						<bodyShape>Humanoid</bodyShape>
+					</li>
+				</value>
+			</li>
+
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName="WMH_Cyclops"]/statBases</xpath>
+				<value>
+			<AimingAccuracy>1.0</AimingAccuracy>
+			<ShootingAccuracyPawn>1</ShootingAccuracyPawn>
+					<MeleeDodgeChance>0.1</MeleeDodgeChance>
+					<MeleeCritChance>0.75</MeleeCritChance>
+			<MeleeParryChance>0.3</MeleeParryChance>
+				</value>
+			</li>
+
+                                 <li Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="WMH_Cyclops"]/statBases/MoveSpeed</xpath>
+		<value>
+			<MoveSpeed>4</MoveSpeed>
+		</value>
+			</li>
+
+
+	<li Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="WMH_Cyclops"]/statBases/ArmorRating_Blunt</xpath>
+		<value>
+			<ArmorRating_Blunt>1</ArmorRating_Blunt>
+		</value>
+	</li>
+
+	<li Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="WMH_Cyclops"]/statBases/ArmorRating_Sharp</xpath>
+		<value>
+			<ArmorRating_Sharp>0.5</ArmorRating_Sharp>
+		</value>
+	</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="WMH_Cyclops"]/tools</xpath>
+				<value>
+					<tools>
+						<li Class="CombatExtended.ToolCE">
+				<label>left fist</label>
+				<capacities>
+					<li>Blunt</li>
+				</capacities>
+							<power>54</power>
+							<cooldownTime>2.9</cooldownTime>
+							<linkedBodyPartsGroup>LeftHand</linkedBodyPartsGroup>
+							<armorPenetrationBlunt>30</armorPenetrationBlunt>
+						</li>
+						<li Class="CombatExtended.ToolCE">
+				<label>Right fist</label>
+				<capacities>
+					<li>Blunt</li>
+				</capacities>
+							<power>54</power>
+							<cooldownTime>2.9</cooldownTime>
+							<linkedBodyPartsGroup>RightHand</linkedBodyPartsGroup>
+							<armorPenetrationBlunt>30</armorPenetrationBlunt>
+						</li>
+						<li Class="CombatExtended.ToolCE">
+				<label>teeth</label>
+				<capacities>
+					<li>BiteBlunt</li>
+				</capacities>
+							<power>30</power>
+							<cooldownTime>2</cooldownTime>
+							<armorPenetrationBlunt>15</armorPenetrationBlunt>
+				                                                <linkedBodyPartsGroup>Teeth</linkedBodyPartsGroup>
+						</li>
+						<li Class="CombatExtended.ToolCE">
+							<label>head</label>
+							<capacities>
+								<li>Blunt</li>
+							</capacities>
+							<power>30</power>
+							<cooldownTime>2</cooldownTime>
+							<linkedBodyPartsGroup>HeadAttackTool</linkedBodyPartsGroup>
+							<armorPenetrationBlunt>15.55</armorPenetrationBlunt>
+							<chanceFactor>0.2</chanceFactor>
+						</li>
+					</tools>
+				</value>
+			</li>
+			</operations>
+		</match>
+	</Operation>
+</Patch>
