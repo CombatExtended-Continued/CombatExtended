@@ -3,32 +3,15 @@
 
   <Operation Class="PatchOperationFindMod">
     <mods>
-      <li>Vanilla Animals Expanded — Arid Shrubland</li>
+      <li>Vanilla Animals Expanded — Ice Sheet</li>
     </mods>
 
     <match Class="PatchOperationSequence">
       <operations>
-        <!-- === Quadruped === -->
-        <li Class="PatchOperationAddModExtension">
-          <xpath>
-            /Defs/ThingDef[
-              defName="AEXP_Coyote" or
-              defName="AEXP_Hippopotamus" or
-              defName="AEXP_Zebra" or
-              defName="AEXP_Wildebeest" or
-              defName="AEXP_Cheetah"]
-          </xpath>
-
-          <value>
-            <li Class="CombatExtended.RacePropertiesExtensionCE">
-              <bodyShape>Quadruped</bodyShape>
-            </li>
-          </value>
-        </li>
-
         <!-- === Quadruped Low === -->
         <li Class="PatchOperationAddModExtension">
-          <xpath>/Defs/ThingDef[defName="AEXP_Crocodile"]</xpath>
+          <xpath>/Defs/ThingDef[defName="AEXP_Seal" or defNAme="AEXP_Walrus"]
+          </xpath>
 
           <value>
             <li Class="CombatExtended.RacePropertiesExtensionCE">
@@ -39,7 +22,7 @@
 
         <!-- === Birdlike === -->
         <li Class="PatchOperationAddModExtension">
-          <xpath>/Defs/ThingDef[defName="AEXP_Giraffe"]</xpath>
+          <xpath>/Defs/ThingDef[defName="AEXP_Penguin"]</xpath>
 
           <value>
             <li Class="CombatExtended.RacePropertiesExtensionCE">
