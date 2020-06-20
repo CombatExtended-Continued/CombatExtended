@@ -84,12 +84,27 @@
         </li>
 
         <li Class="PatchOperationReplace">
+          <xpath>/Defs/ThingDef[defName="AEXP_Kangaroo"]/race/baseBodySize</xpath>
+
+          <value>
+            <baseBodySize>1.6</baseBodySize>
+          </value>
+        </li>
+
+        <li Class="PatchOperationReplace">
+          <xpath>/Defs/ThingDef[defName="AEXP_Kangaroo"]/race/baseHealthScale</xpath>
+
+          <value>
+            <baseHealthScale>1.1</baseHealthScale>
+          </value>
+        </li>
+
+        <li Class="PatchOperationReplace">
           <xpath>/Defs/ThingDef[defName="AEXP_Kangaroo"]/tools</xpath>
 
           <value>
             <tools>
               <li Class="CombatExtended.ToolCE">
-                <label>left hand</label>
                 <capacities>
                   <li>Scratch</li>
                 </capacities>
@@ -97,10 +112,9 @@
                 <cooldownTime>0.95</cooldownTime>
                 <armorPenetrationBlunt>0.9</armorPenetrationBlunt>
                 <armorPenetrationSharp>0.09</armorPenetrationSharp>
-                <linkedBodyPartsGroup>LeftHand</linkedBodyPartsGroup>
+                <linkedBodyPartsGroup>AEXP_RearLeftClaws</linkedBodyPartsGroup>
               </li>
               <li Class="CombatExtended.ToolCE">
-                <label>right hand</label>
                 <capacities>
                   <li>Scratch</li>
                 </capacities>
@@ -108,7 +122,7 @@
                 <cooldownTime>0.95</cooldownTime>
                 <armorPenetrationBlunt>0.35</armorPenetrationBlunt>
                 <armorPenetrationSharp>0.02</armorPenetrationSharp>
-                <linkedBodyPartsGroup>RightHand</linkedBodyPartsGroup>
+                <linkedBodyPartsGroup>AEXP_RearRightClaws</linkedBodyPartsGroup>
               </li>
               <li Class="CombatExtended.ToolCE">
                 <capacities>
