@@ -1,0 +1,23 @@
+<?xml version='1.0' encoding='utf-8' ?>
+<Patch>
+
+  <Operation Class='PatchOperationSequence'>
+    <success>Always</success>
+
+    <operations>
+      <li Class='CombatExtended.PatchOperationFindMod'>
+        <modName>Combat Extended</modName>
+      </li>
+
+      <!-- Replace vanilla thingClass for CE's -->
+      <li Class='PatchOperationReplace'>
+        <xpath>Defs/ThingDef[defName = 'VFES_Turret_FloorTurret']/thingClass</xpath>
+
+        <value>
+          <thingClass>CombatExtended.Building_TurretGunCE</thingClass>
+        </value>
+      </li>
+    </operations>
+  </Operation>
+
+</Patch>

@@ -1,0 +1,86 @@
+<?xml version='1.0' encoding='utf-8' ?>
+<Patch>
+
+  <Operation Class='PatchOperationSequence'>
+    <success>Always</success>
+
+    <operations>
+      <li Class='CombatExtended.PatchOperationFindMod'>
+        <modName>Combat Extended</modName>
+      </li>
+
+      <!-- Remove refuelable property -->
+      <li Class='PatchOperationRemove'>
+        <xpath>Defs/ThingDef[defName = 'VFES_Turret_ChargeRailgunTurret']/comps/li[@Class = 'CompProperties_Refuelable']</xpath>
+      </li>
+
+      <!-- Replace vanilla thingClass for CE's -->
+      <li Class='PatchOperationReplace'>
+        <xpath>Defs/ThingDef[defName = 'VFES_Turret_ChargeRailgunTurret']/thingClass</xpath>
+
+        <value>
+          <thingClass>CombatExtended.Building_TurretGunCE</thingClass>
+        </value>
+      </li>
+
+      <!-- Fill percent 0.65 -> 0.85 -->
+      <li Class='PatchOperationReplace'>
+        <xpath>Defs/ThingDef[defName = 'VFES_Turret_ChargeRailgunTurret']/fillPercent</xpath>
+
+        <value>
+          <fillPercent>0.85</fillPercent>
+        </value>
+      </li>
+
+      <!-- big turret = more power rite? -->
+      <li Class='PatchOperationReplace'>
+        <xpath>Defs/ThingDef[defName = 'VFES_Turret_ChargeRailgunTurret']/comps/li[@Class = 'CompProperties_Power']</xpath>
+
+        <value>
+          <li Class='CompProperties_Power'>
+            <compClass>CompPowerTrader</compClass>
+            <basePowerConsumption>3200</basePowerConsumption>
+          </li>
+        </value>
+      </li>
+
+      <!-- Turret Gun compat -->
+      <li Class='CombatExtended.PatchOperationMakeGunCECompatible'>
+        <defName>VFES_Gun_RailgunTurret</defName>
+
+        <statBases>
+          <RangedWeapon_Cooldown>2.2</RangedWeapon_Cooldown>
+          <SightsEfficiency>1.2</SightsEfficiency>
+          <ShotSpread>0.09</ShotSpread>
+          <SwayFactor>0.26</SwayFactor>
+        </statBases>
+
+        <Properties>
+          <verbClass>CombatExtended.Verb_ShootCE</verbClass>
+          <hasStandardCommand>True</hasStandardCommand>
+          <defaultProjectile>Bullet_VFES_UraniumSlug</defaultProjectile>
+          <warmupTime>2</warmupTime>
+          <range>86</range>
+          <minRange>13</minRange>
+          <burstShotCount>2</burstShotCount>
+          <ticksBetweenBurstShots>14</ticksBetweenBurstShots>
+          <soundCast>ChargeLance_Fire</soundCast>
+          <soundCastTail>GunTail_Heavy</soundCastTail>
+          <muzzleFlashScale>9</muzzleFlashScale>
+          <recoilPattern>Mounted</recoilPattern>
+        </Properties>
+
+        <AmmoUser>
+          <magazineSize>50</magazineSize>
+          <reloadTime>10</reloadTime>
+          <ammoSet>AmmoSet_VFES_UraniumSlugs</ammoSet>
+        </AmmoUser>
+
+        <weaponTags Inherit="false">
+          <li>TurretGun</li>
+        </weaponTags>
+      </li>
+    </operations>
+  </Operation>
+
+</Patch>

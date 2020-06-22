@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Patch>
+
+			<!-- ========== Explosive Barrel ========== -->
+			<Operation Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="VFES_ChemfuelBarrel"]/comps/li[@Class="CompProperties_Explosive"]</xpath>
+				<value>
+					<li Class="CompProperties_Explosive">
+						<explosiveDamageType>PrometheumFlame</explosiveDamageType>
+						<explosiveRadius>5.9</explosiveRadius>
+						<preExplosionSpawnThingDef>FilthPrometheum</preExplosionSpawnThingDef>
+						<preExplosionSpawnChance>0.4</preExplosionSpawnChance>
+						<startWickHitPointsPercent>0.95</startWickHitPointsPercent>						
+						<wickTicks>
+						  <min>0</min>
+						  <max>30</max>
+						</wickTicks>						
+					</li>
+				</value>
+			</Operation>
+
+</Patch>	

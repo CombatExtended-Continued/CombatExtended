@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Patch>
+
+	<Operation Class="PatchOperationSequence">
+		<operations>
+
+		  <!-- ========== Catapult - Patch Damage Def ========== -->
+			<li Class="PatchOperationAddModExtension">
+				<xpath>Defs/DamageDef[defName="VFES_Rock"]</xpath>
+				<value>
+					<li Class="CombatExtended.DamageDefExtensionCE">
+						<harmOnlyOutsideLayers>true</harmOnlyOutsideLayers>
+					</li>
+				</value>
+			</li>
+
+		</operations>	
+	</Operation>
+
+</Patch>			
