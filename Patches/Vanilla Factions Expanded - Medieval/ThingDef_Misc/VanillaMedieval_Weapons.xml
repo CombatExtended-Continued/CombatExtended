@@ -81,7 +81,64 @@
                     </stuffCategories>    
                     </value>
                 </li>
-					
+				
+				<!-- Heavy Mace -->	
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/ThingDef[defName="VFEM_MeleeWeapon_HeavyMace"]/tools</xpath>
+					<value>
+						<tools>
+							<li Class="CombatExtended.ToolCE">
+								<label>handle</label>
+								<capacities>
+									<li>Poke</li>
+								</capacities>
+								<power>3</power>
+								<cooldownTime>1.73</cooldownTime>
+								<armorPenetrationBlunt>0.875</armorPenetrationBlunt>
+								<linkedBodyPartsGroup>Handle</linkedBodyPartsGroup>
+							</li>
+							<li Class="CombatExtended.ToolCE">
+								<label>head</label>
+								<capacities>
+									<li>Blunt</li>
+								</capacities>
+								<power>20</power>
+								<cooldownTime>2.24</cooldownTime>
+								<chanceFactor>1.33</chanceFactor>
+								<armorPenetrationBlunt>7.875</armorPenetrationBlunt>
+								<linkedBodyPartsGroup>Head</linkedBodyPartsGroup>
+							</li>
+						</tools>
+					</value>
+				</li>
+
+				<li Class="PatchOperationAdd">
+					<xpath>/Defs/ThingDef[defName="VFEM_MeleeWeapon_HeavyMace"]</xpath>
+					<value>
+						<equippedStatOffsets>
+							<MeleeCritChance>0.42</MeleeCritChance>
+							<MeleeParryChance>0.36</MeleeParryChance>
+							<MeleeDodgeChance>0.3</MeleeDodgeChance>	
+						</equippedStatOffsets>
+					</value>
+				</li>
+
+				<li Class="PatchOperationAdd">
+					<xpath>/Defs/ThingDef[defName="VFEM_MeleeWeapon_HeavyMace"]/statBases</xpath>
+					<value>
+						<Bulk>4.5</Bulk>
+						<MeleeCounterParryBonus>.36</MeleeCounterParryBonus>
+					</value>
+				</li>
+
+                <li Class="PatchOperationReplace">
+                    <xpath>/Defs/ThingDef[defName="VFEM_MeleeWeapon_HeavyMace"]/stuffCategories</xpath>
+                    <value>
+                    <stuffCategories>
+                        <li>Steeled</li>
+                    </stuffCategories>    
+                    </value>
+                </li>	
 			</operations>
 		</match>
 	</Operation>
