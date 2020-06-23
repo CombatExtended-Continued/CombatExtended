@@ -125,6 +125,7 @@ Vanilla Apparel Expanded	|
 Vanilla Armour Expanded	|
 Vanilla Bionics Expansion	|
 Vanilla Factions Expanded - Medieval	|
+Vanilla Factions Expanded - Settlers	|
 Vanilla Vehicles Expanded	|
 Vanilla Weapons Expanded Quickdraw	|
 Vanilla-Friendly Animal Surgery	|
