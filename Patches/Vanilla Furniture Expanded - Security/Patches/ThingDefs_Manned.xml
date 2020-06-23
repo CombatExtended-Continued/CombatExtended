@@ -11,7 +11,8 @@
 		<li Class="PatchOperationRemove">
 		<xpath>Defs/ThingDef[			
 			defName = "VFES_Turret_HMGComplex" or
-			defName = "VFES_Turret_ChargeComplex"
+			defName = "VFES_Turret_ChargeComplex" or
+			defName = "VFES_Turret_Ballista"			
 		]/comps/li[@Class = "CompProperties_Refuelable"]</xpath>
 		</li>
 
@@ -264,7 +265,11 @@
 		</li>
 
 		 <!-- ========== Artillery - Base ========== -->
-
+<!--
+		<li Class="PatchOperationRemove">
+			<xpath>/Defs/ThingDef[defName="VFES_Turret_Artillery"]/comps</xpath>
+		</li>
+-->
 		<li Class="PatchOperationAdd">
 			<xpath>/Defs/ThingDef[defName="VFES_Turret_Artillery"]/building</xpath>
 			<value>
@@ -324,11 +329,11 @@
 					<hasStandardCommand>true</hasStandardCommand>
 					<defaultProjectile>Bullet_155mmHowitzerShell_HE</defaultProjectile>
 					<warmupTime>4</warmupTime>
-					<minRange>30</minRange>
-					<range>500</range>
+					<minRange>40</minRange>
+					<range>1000</range>
 					<burstShotCount>1</burstShotCount>
-					<soundCast>Bow_Recurve</soundCast>
-					<muzzleFlashScale>0</muzzleFlashScale>
+					<soundCast>VFES_Shot_Artillery</soundCast>
+					<muzzleFlashScale>20</muzzleFlashScale>
 					<indirectFirePenalty>0.2</indirectFirePenalty>
 					<targetParams>
 					  <canTargetLocations>true</canTargetLocations>
