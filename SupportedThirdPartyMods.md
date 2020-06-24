@@ -102,10 +102,12 @@ T-45b Power Armor	|
 TouhouStyle	|
 Trading Economy	|
 Turret Collection	|
+Vanilla Animals Expanded |
 Vanilla Apparel Expanded	|
 Vanilla Armour Expanded	|
 Vanilla Bionics Expansion	|
 Vanilla Factions Expanded - Medieval	|
+Vanilla Weapons Expanded |
 Vanilla Weapons Expanded Quickdraw	|
 Vanilla-Friendly Animal Surgery	|
 Vanilla-Friendly Weapon Expansion	|
