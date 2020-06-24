@@ -148,12 +148,67 @@
 			</value>
 		</li>
 		
+		<!--Implants-->
+		
 		<!--Tone down Speed torso implant dodge chance to be more inline with CE stats (also so it doesn't instantly max out dodge)-->
 		
 		<li Class="PatchOperationReplace">
 			<xpath>Defs/HediffDef[defName="FSFImplantTorsoSpeed"]/stages/li/statOffsets/MeleeDodgeChance</xpath>
 			<value>
-					<MeleeDodgeChance>+2.5</MeleeDodgeChance>
+					<MeleeDodgeChance>1</MeleeDodgeChance>
+			</value>
+		</li>
+		
+		<!--Add carry weight buff to worker frame-->
+		
+		<li Class="PatchOperationAdd">
+			<xpath>Defs/HediffDef[defName="FSFImplantTorsoWorker"]/stages/li/statOffsets</xpath>
+			<value>
+					<CarryWeight>25</CarryWeight>
+			</value>
+		</li>
+		
+		<!--Archotech Armor implant : Slightly better sharp (1 vs 0.7), much better blunt (1 vs 0.3)-->
+		
+		<li Class="PatchOperationReplace">
+			<xpath>Defs/HediffDef[defName="FSFArchotechSkinI"]/stages/li/statOffsets/ArmorRating_Sharp</xpath>
+			<value>
+					<ArmorRating_Sharp>6</ArmorRating_Sharp>
+			</value>
+		</li>
+		
+		
+		<li Class="PatchOperationReplace">
+			<xpath>Defs/HediffDef[defName="FSFArchotechSkinI"]/stages/li/statOffsets/ArmorRating_Blunt</xpath>
+			<value>
+					<ArmorRating_Blunt>15</ArmorRating_Blunt>
+					<ArmorRating_Electric>0.5</ArmorRating_Electric>
+			</value>
+		</li>
+		
+		<li Class="PatchOperationReplace">
+			<xpath>Defs/HediffDef[defName="FSFImplantBrainMeleeCombat"]/stages/li/statOffsets/MeleeDodgeChance</xpath>
+			<value>
+					<MeleeDodgeChance>1.5</MeleeDodgeChance>
+					<MeleeCritChance>0.04</MeleeCritChance>
+					<MeleeParryChance>0.05</MeleeParryChance>
+			</value>
+		</li>
+		
+		<li Class="PatchOperationReplace">
+			<xpath>Defs/HediffDef[defName="FSFImplantBrainRangedCombat"]/stages/li/statOffsets</xpath>
+			<value>
+				<statOffsets>
+					<ShootingAccuracyPawn>+1</ShootingAccuracyPawn>
+					<AimingAccuracy>+0.5</AimingAccuracy>
+				</statOffsets>
+			</value>
+		</li>
+		
+		<li Class="PatchOperationAdd">
+			<xpath>Defs/HediffDef[defName="FSFImplantTorsoRespirator"]/stages/li/statOffsets</xpath>
+			<value>
+				<SmokeSensitivity>-1.0</SmokeSensitivity>
 			</value>
 		</li>
 		

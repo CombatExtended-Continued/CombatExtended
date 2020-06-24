@@ -10,21 +10,10 @@
       <operations>
 
         <!-- === Prerequisite Replacement === -->
-        <!-- Orbital Support -->
-<!--
+        <!-- == Laser Targeting Systems == -->
         <li Class="PatchOperationReplace">
-          <xpath>Defs/ResearchProjectDef[defName="VWE_OrbitalSupport"]/prerequisites</xpath>
-          <value>
-            <prerequisites>
-              <li>CE_AdvancedLaunchers</li>
-            </prerequisites>
-          </value>
-        </li>
--->
-        <!-- Laser Targeting Systems -->
-
-        <li Class="PatchOperationReplace">
-          <xpath>Defs/ResearchProjectDef[defName="VWE_LaserTargetingSystems"]/prerequisites</xpath>
+          <xpath>/Defs/ResearchProjectDef[defName="VWE_LaserTargetingSystems"]/prerequisites</xpath>
+          
           <value>
             <prerequisites>
               <li>CE_AdvancedLaunchers</li>
@@ -36,11 +25,11 @@
         <!-- === Remove Unused Research Defs === -->
         <li Class="PatchOperationRemove">
           <xpath>
-            Defs/ResearchProjectDef[
-              defName = "VWE_HeavyWeapons" or
-              defName = "VWE_DesignatedMarksmanRifle" or
-              defName = "VWE_Flamethrower" or
-              defName = "VWE_HeavyWeapons"]
+            /Defs/ResearchProjectDef[
+              defName="VWE_HeavyWeapons" or
+              defName="VWE_DesignatedMarksmanRifle" or
+              defName="VWE_Flamethrower" or
+              defName="VWE_HeavyWeapons"]
           </xpath>
         </li>
 

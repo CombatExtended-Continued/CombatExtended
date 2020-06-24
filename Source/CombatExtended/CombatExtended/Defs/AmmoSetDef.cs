@@ -11,5 +11,7 @@ namespace CombatExtended
     public class AmmoSetDef : Def
     {
         public List<AmmoLink> ammoTypes;
+        // mortar ammo should still availabe when the ammo system is off
+        public bool isMortarAmmoSet = false;
     }
 }

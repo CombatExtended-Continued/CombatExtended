@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+			<li>Alpha Animals</li>
+		</mods>
+		
+		<match Class="PatchOperationSequence">
+			<operations>
+		
+			<!-- Adding CE's gas attributes to certain creatures, except OcularGas since it has a particular AA effect -->
+			
+				<li Class="PatchOperationAdd">
+					<xpath>/Defs/ThingDef[defName="AA_RedGas" or
+					defName="AA_SandPuff" or
+					defName="AA_Filth_Slime" or
+					defName="AA_Filth_RedSlime" or
+					defName="AA_SmokeInk"
+					]</xpath>
+					<value>
+						<thingClass>CombatExtended.Smoke</thingClass>
+					</value>
+				</li>
+			</operations>
+		</match>
+	</Operation>
+</Patch>

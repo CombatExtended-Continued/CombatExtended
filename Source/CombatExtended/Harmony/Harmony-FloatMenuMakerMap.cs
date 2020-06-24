@@ -20,7 +20,6 @@ namespace CombatExtended.HarmonyCE
     [HarmonyPatch]
     static class FloatMenuMakerMap_PatchKnowledge
     {
-        static readonly string logPrefix = "Combat Extended :: " + typeof(FloatMenuMakerMap_PatchKnowledge).Name + " :: ";
 
         const string ClassNamePart = "DisplayClass5";   //1.0: "AddHumanLikeOrders" to target <AddHumanLikeOrders>c__AnonStoreyB
         const string MethodNamePart = "g__Equip";       //1.0: "m__" to target <>m__0()
@@ -67,15 +66,17 @@ namespace CombatExtended.HarmonyCE
          * -Both when right clicking on something with a pawn selected.
          */
 
-    // __instance isn't apt, target is static.
-    // __result isn't apt, target return is void.
-    [HarmonyPostfix]
+        // __instance isn't apt, target is static.
+        // __result isn't apt, target return is void.
+        [HarmonyPostfix]
         static void AddMenuItems(Vector3 clickPos, Pawn pawn, List<FloatMenuOption> opts)
         {
             // Stabilize
             if (pawn.health.capacities.CapableOf(PawnCapacityDefOf.Manipulation))
             {
+#pragma warning disable CS0618 // You're supposed to migrate to GenUI.TargetsAt_NewTemp? But that scares me.
                 foreach (LocalTargetInfo curTarget in GenUI.TargetsAt(clickPos, TargetingParameters.ForRescue(pawn), true)) // !! This needs to be patched into A17
+#pragma warning restore CS0618
                 {
                     Pawn patient = (Pawn)curTarget.Thing;
                     if (patient.Downed
@@ -102,7 +103,7 @@ namespace CombatExtended.HarmonyCE
                                 Thing medThing;
                                 if (medicine != null && pawn.inventory.innerContainer.TryDrop(medicine, pawn.Position, pawn.Map, ThingPlaceMode.Direct, 1, out medThing))
                                 {
-                                    Job job = new Job(CE_JobDefOf.Stabilize, patient, medThing);
+                                    Job job = JobMaker.MakeJob(CE_JobDefOf.Stabilize, patient, medThing);
                                     job.count = 1;
                                     pawn.jobs.TryTakeOrderedJob(job);
                                     PlayerKnowledgeDatabase.KnowledgeDemonstrated(CE_ConceptDefOf.CE_Stabilizing, KnowledgeAmount.Total);
@@ -140,7 +141,7 @@ namespace CombatExtended.HarmonyCE
                             opts.Add(FloatMenuUtility.DecoratePrioritizedTask(new FloatMenuOption("PickUp".Translate(item.Label, item), delegate
                             {
                                 item.SetForbidden(false, false);
-                                Job job = new Job(JobDefOf.TakeInventory, item);
+                                Job job = JobMaker.MakeJob(JobDefOf.TakeInventory, item);
                                 job.count = 1;
                                 pawn.jobs.TryTakeOrderedJob(job, JobTag.Misc);
                                 pawn.Notify_HoldTrackerJob(job);
@@ -158,7 +159,7 @@ namespace CombatExtended.HarmonyCE
                                 opts.Add(FloatMenuUtility.DecoratePrioritizedTask(new FloatMenuOption("PickUpAll".Translate(item.Label, item), delegate
                                 {
                                     item.SetForbidden(false, false);
-                                    Job job = new Job(JobDefOf.TakeInventory, item);
+                                    Job job = JobMaker.MakeJob(JobDefOf.TakeInventory, item);
                                     job.count = item.stackCount;
                                     pawn.jobs.TryTakeOrderedJob(job, JobTag.Misc);
                                     pawn.Notify_HoldTrackerJob(job);
@@ -171,7 +172,7 @@ namespace CombatExtended.HarmonyCE
                                 Dialog_Slider window = new Dialog_Slider("PickUpCount".Translate(item.LabelShort, item), 1, to, delegate (int selectCount)
                                 {
                                     item.SetForbidden(false, false);
-                                    Job job = new Job(JobDefOf.TakeInventory, item);
+                                    Job job = JobMaker.MakeJob(JobDefOf.TakeInventory, item);
                                     job.count = selectCount;
                                     pawn.jobs.TryTakeOrderedJob(job, JobTag.Misc);
                                     pawn.Notify_HoldTrackerJob(job);
@@ -184,7 +185,7 @@ namespace CombatExtended.HarmonyCE
                 }
             }
         }
-        
+
         static IEnumerable<CodeInstruction> Transpiler(IEnumerable<CodeInstruction> instructions)
         {
             string targetString = "CannotPickUp";
@@ -384,7 +385,8 @@ namespace CombatExtended.HarmonyCE
                     }
                     yield return instruction;
                 }
-            } else
+            }
+            else
             {
                 // patch failure, just dump the data out
                 Log.Error(string.Concat(logPrefix, "Error applying patch to ForceWear, no change."));

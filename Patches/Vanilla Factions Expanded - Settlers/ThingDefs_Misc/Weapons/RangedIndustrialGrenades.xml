@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+
+  <Operation Class="PatchOperationFindMod">
+    <mods>
+      <li>Vanilla Factions Expanded - Settlers</li>
+    </mods>
+
+    <match Class="PatchOperationSequence">
+      <operations>
+        <!-- === Dynamite === -->
+        <!-- == Projectile == -->
+        <li Class="PatchOperationReplace">
+          <xpath>Defs/ThingDef[defName="VFES_Proj_Dynamite"]/thingClass</xpath>
+
+          <value>
+            <thingClass>CombatExtended.ProjectileCE_Explosive</thingClass>
+          </value>
+        </li>
+
+        <li Class="PatchOperationReplace">
+          <xpath>Defs/ThingDef[defName="VFES_Proj_Dynamite"]/graphicData</xpath>
+          <value>
+            <graphicData>
+              <texPath>Things/Projectile/DynamiteThrown/DynamiteThrownA</texPath>
+              <graphicClass>Graphic_Single</graphicClass>
+            </graphicData>
+          </value>
+        </li>
+
+        <li Class="PatchOperationReplace">
+          <xpath>Defs/ThingDef[defName="VFES_Proj_Dynamite"]/projectile</xpath>
+
+          <value>
+            <projectile Class="CombatExtended.ProjectilePropertiesCE">
+              <damageDef>Bomb</damageDef>
+              <explosionDelay>40</explosionDelay>
+              <explosionRadius>3.5</explosionRadius>
+              <damageAmountBase>50</damageAmountBase>
+              <armorPenetrationSharp>0</armorPenetrationSharp>
+              <armorPenetrationBlunt>0</armorPenetrationBlunt>
+              <applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
+            </projectile>
+          </value>
+        </li>
+
+        <!-- == Weapon == -->
+        <li Class="PatchOperationAttributeSet">
+          <xpath>/Defs/ThingDef[defName="VFES_Weapon_GrenadeDynamite"]</xpath>
+          <attribute>ParentName</attribute>
+          <value>BaseWeapon</value>
+        </li>
+
+        <li Class="PatchOperationRemove">
+          <xpath>Defs/ThingDef[defName="VFES_Weapon_GrenadeDynamite"]/costList</xpath>
+        </li>
+
+        <li Class="PatchOperationAdd">
+          <xpath>/Defs/ThingDef[defName="VFES_Weapon_GrenadeDynamite"]</xpath>
+
+          <value>
+            <thingClass>CombatExtended.AmmoThing</thingClass>
+            <stackLimit>75</stackLimit>
+            <resourceReadoutPriority>First</resourceReadoutPriority>
+          </value>
+        </li>
+
+        <li Class="PatchOperationSequence">
+          <success>Always</success>
+
+          <operations>
+            <li Class="PatchOperationTest">
+              <xpath>/Defs/ThingDef[defName="VFES_Weapon_GrenadeDynamite"]/comps</xpath>
+              <success>Invert</success>
+            </li>
+
+            <li Class="PatchOperationAdd">
+              <xpath>/Defs/ThingDef[defName="VFES_Weapon_GrenadeDynamite"]</xpath>
+              <value>
+                <comps />
+              </value>
+            </li>
+          </operations>
+        </li>
+
+        <li Class="PatchOperationAdd">
+          <xpath>/Defs/ThingDef[defName="VFES_Weapon_GrenadeDynamite"]/comps</xpath>
+
+          <value>
+            <li Class="CombatExtended.CompProperties_ExplosiveCE">
+              <explosiveDamageType>Bomb</explosiveDamageType>
+              <explosiveRadius>3.5</explosiveRadius>
+              <explosionSound>MortarBomb_Explode</explosionSound>
+              <applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
+            </li>
+          </value>
+        </li>
+
+        <li Class="PatchOperationAttributeSet">
+          <xpath>/Defs/ThingDef[defName="VFES_Weapon_GrenadeDynamite"]</xpath>
+
+          <attribute>Class</attribute>
+          <value>CombatExtended.AmmoDef</value>
+        </li>
+
+        <li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+          <defName>VFES_Weapon_GrenadeDynamite</defName>
+
+          <statBases>
+            <WorkToMake>12000</WorkToMake>
+            <MarketValue>5.05</MarketValue>
+            <Mass>0.4</Mass>
+            <Bulk>0.87</Bulk>
+            <SightsEfficiency>1</SightsEfficiency>
+            <RangedWeapon_Cooldown>1</RangedWeapon_Cooldown>
+          </statBases>
+
+          <Properties>
+            <label>throw dynamite stick</label>
+            <verbClass>CombatExtended.Verb_ShootCEOneUse</verbClass>
+            <hasStandardCommand>true</hasStandardCommand>
+            <defaultProjectile>VFES_Proj_Dynamite</defaultProjectile>
+            <range>12</range>
+            <minRange>3</minRange>
+            <warmupTime>1.8</warmupTime>
+            <soundCast>ThrowGrenade</soundCast>
+            <noiseRadius>4</noiseRadius>
+            <ai_IsBuildingDestroyer>true</ai_IsBuildingDestroyer>
+            <ignorePartialLoSBlocker>true</ignorePartialLoSBlocker>
+            <targetParams>
+              <canTargetLocations>true</canTargetLocations>
+            </targetParams>
+          </Properties>
+
+          <weaponTags>
+            <li>GrenadeDynamite</li>
+            <li>CE_Sidearm</li>
+            <li>CE_OneHandedWeapon</li>
+          </weaponTags>
+        </li>
+
+        <!-- == Recipe == -->
+        <li Class="PatchOperationAdd">
+          <xpath>Defs</xpath>
+
+          <value>
+            <RecipeDef ParentName="GrenadeRecipeBase">
+              <defName>Make_VFES_Weapon_GrenadeDynamite</defName>
+              <label>make dynamite sticks x10</label>
+              <description>Craft 10 dynamite sticks.</description>
+              <jobString>Making dynamite sticks.</jobString>
+              <ingredients>
+                <li>
+                  <filter>
+                    <stuffCategoriesToAllow>
+                      <li>Woody</li>
+                    </stuffCategoriesToAllow>
+                  </filter>
+                  <count>10</count>
+                </li>
+                <li>
+                  <filter>
+                    <thingDefs>
+                      <li>Chemfuel</li>
+                    </thingDefs>
+                  </filter>
+                  <count>10</count>
+                </li>
+              </ingredients>
+              <fixedIngredientFilter>
+                <stuffCategoriesToAllow>
+                  <li>Woody</li>
+                </stuffCategoriesToAllow>
+                <thingDefs>
+                  <li>Chemfuel</li>
+                </thingDefs>
+              </fixedIngredientFilter>
+              <products>
+                <VFES_Weapon_GrenadeDynamite>10</VFES_Weapon_GrenadeDynamite>
+              </products>
+            </RecipeDef>
+          </value>
+        </li>
+      </operations>
+    </match>
+  </Operation>
+
+</Patch>

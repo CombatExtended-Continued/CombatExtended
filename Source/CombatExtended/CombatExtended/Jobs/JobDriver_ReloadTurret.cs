@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using CombatExtended.CombatExtended.LoggerUtils;
 using RimWorld;
 using UnityEngine;
 using Verse;
@@ -33,9 +34,39 @@ namespace CombatExtended
 
         public override bool TryMakePreToilReservations(bool errorOnFailed)
         {
-            return pawn.Reserve(TargetA, job) && (ammo == null || pawn.Reserve(TargetB, job, Mathf.Max(1, TargetThingB.stackCount - job.count), job.count));
+            if (!pawn.Reserve(TargetA, job))
+            {
+                CELogger.Message("Combat Extended: Could not reserve turret for reloading job.");
+                return false;
+            }
+
+            var compAmmo = turret?.CompAmmo;
+
+            if (compAmmo == null)
+            {
+                CELogger.Error($"{TargetA} has no CompAmmo, this should not have been reached.");
+                return false;
+            }
+
+            if (!compAmmo.UseAmmo)
+            {
+                return true;
+            }
+
+            if (ammo == null)
+            {
+                CELogger.Message("Combat Extended: Ammo is null");
+                return false;
+            }
+            if (!pawn.Reserve(TargetB, job, Mathf.Max(1, TargetThingB.stackCount - job.count), job.count))
+            {
+                CELogger.Message("Combat Extended: Could not reserve " + Mathf.Max(1, TargetThingB.stackCount - job.count) + " of ammo.");
+                return false;
+            }
+            CELogger.Message("Combat Extended: Managed to reserve everything successfully.");
+            return true;
         }
-        
+
         public override string GetReport()
         {
             string text = CE_JobDefOf.ReloadTurret.reportString;
@@ -57,7 +88,7 @@ namespace CombatExtended
                 Log.Error(string.Concat(errorBase, "TargetThingA isn't a Building_TurretGunCE"));
                 yield return null;
             }
-           	if (compReloader == null)
+            if (compReloader == null)
             {
                 Log.Error(string.Concat(errorBase, "TargetThingA (Building_TurretGunCE) is missing its CompAmmoUser."));
                 yield return null;
@@ -72,7 +103,7 @@ namespace CombatExtended
             {
                 return (pawn.Downed || pawn.Dead || pawn.InMentalState || pawn.IsBurning()) ? JobCondition.Incompletable : JobCondition.Ongoing;
             });
-            
+
             this.FailOnIncapable(PawnCapacityDefOf.Manipulation);
 
             // Set fail condition on turret.

@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+	<Operation Class="PatchOperationFindMod">
+			<mods>
+				<li>NewRatkinPlus</li>
+			</mods>
+		<match Class="PatchOperationSequence">
+		<operations>
+
+			  <!-- ========== Ratkin Ballista ========== -->
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[@Name="RK_BaseArtilleryBuilding"]</xpath>
+					<value>
+						<ThingDef Name="RK_BaseArtilleryBuilding" ParentName="BuildingBase" Abstract="True">
+							<thingClass>CombatExtended.Building_TurretGunCE</thingClass>
+							<graphicData>
+								<texPath>Things/Building/Security/Ballista_Base</texPath>
+								<shaderType>CutoutComplex</shaderType>
+								<graphicClass>Graphic_Single</graphicClass>
+								<drawSize>(2,2)</drawSize>
+								<damageData>
+									<rect>(0.38,0.2,0.56375,0.8)</rect>
+									<cornerTL>Damage/Corner</cornerTL>
+								</damageData>
+								<shadowData>
+									<offset>(-0.13,-0.87,-0.1)</offset>
+									<volume>(0.5,0.4,1.05)</volume>
+								</shadowData>
+							</graphicData>
+							<minifiedDef>MinifiedThing</minifiedDef>
+							<altitudeLayer>Building</altitudeLayer>
+							<hasInteractionCell>True</hasInteractionCell>
+							<interactionCellOffset>(0,0,-1)</interactionCellOffset>
+							<stealable>false</stealable>
+							<size>(3,2)</size>
+							<passability>PassThroughOnly</passability>
+							<pathCost>50</pathCost>
+							<fillPercent>0.75</fillPercent>
+							<thingCategories>
+								<li>BuildingsSecurity</li>
+							</thingCategories>
+							<stuffCategories>
+								<li>Woody</li>
+							</stuffCategories>
+							<tickerType>Normal</tickerType>
+							<terrainAffordanceNeeded>Light</terrainAffordanceNeeded>
+							<designationCategory>Security</designationCategory>
+							<costStuffCount>240</costStuffCount>
+							<constructionSkillPrerequisite>5</constructionSkillPrerequisite>
+							<costList>
+								<Steel>80</Steel>
+								<ComponentIndustrial>1</ComponentIndustrial>
+							</costList>
+							<comps>
+								<li Class="CompProperties_Forbiddable"/>
+								<li Class="CompProperties_Mannable">
+									<manWorkType>Violent</manWorkType>
+								</li>
+							</comps>
+							<statBases>
+								<MaxHitPoints>180</MaxHitPoints>
+								<Flammability>0.7</Flammability>
+								<WorkToBuild>1900</WorkToBuild>
+								<Mass>30</Mass>
+								<Beauty>-20</Beauty>
+								<AccuracyTouch>0.9</AccuracyTouch>
+								<AccuracyShort>0.8</AccuracyShort>
+								<AccuracyMedium>0.75</AccuracyMedium>
+								<AccuracyLong>0.70</AccuracyLong>
+								<RangedWeapon_Cooldown>0.1</RangedWeapon_Cooldown>
+							</statBases>
+							<building>
+								<turretBurstWarmupTime>3.0</turretBurstWarmupTime>
+								<turretBurstCooldownTime>7.0</turretBurstCooldownTime>
+								<buildingTags>
+									<li>RK_Artillery</li>
+								</buildingTags>
+							</building>
+							<placeWorkers>
+								<!-- <li>PlaceWorker_NotUnderRoof</li> -->
+								<li>PlaceWorker_TurretTop</li>
+							</placeWorkers>
+							<uiIconScale>1</uiIconScale>
+							<researchPrerequisites>
+								<li>Ballista</li>
+							</researchPrerequisites>
+						</ThingDef>
+					</value>
+				</li>
+			
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="RK_Turret_Ballista_Strait"]</xpath>
+					<value>
+					  <ThingDef ParentName="BaseTurretGun">
+						<defName>RK_Turret_Ballista_Strait</defName>
+						<label>ballista</label>
+						<graphicData>
+						  <texPath>Things/Building/Security/Ballista_Turret</texPath>
+						  <graphicClass>Graphic_Single</graphicClass>
+						</graphicData>
+						<description>It is a machine that fires large arrows. It is designed to be easy to operate by Ratkin.</description>
+						<thingClass>CombatExtended.Building_TurretGunCE</thingClass>
+						<statBases>
+						  <Flammability>1.0</Flammability>
+						  <WorkToMake>31500</WorkToMake>
+						  <Mass>16.5</Mass>
+						  <Bulk>20</Bulk>	
+						  <MarketValue>2000</MarketValue>
+						  <SightsEfficiency>1</SightsEfficiency>
+						  <ShotSpread>0.04</ShotSpread>
+						  <SwayFactor>0.96</SwayFactor>
+						  <RangedWeapon_Cooldown>0.36</RangedWeapon_Cooldown>
+						</statBases>
+						<verbs>
+						  <li Class="CombatExtended.VerbPropertiesCE">
+							<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+							<hasStandardCommand>true</hasStandardCommand>
+							<defaultProjectile>Projectile_RKBallistaBolt</defaultProjectile>
+							<warmupTime>1.4</warmupTime>
+							<range>44</range>
+							<soundCast>BallistaShot</soundCast>
+							<recoilPattern>Mounted</recoilPattern>
+						  </li>
+						</verbs>
+						<comps>
+							<li>
+								<compClass>CompEquippable</compClass>
+							</li>					
+						  <li Class="CombatExtended.CompProperties_AmmoUser">
+							<magazineSize>1</magazineSize>
+							<reloadTime>8</reloadTime>
+							<ammoSet>AmmoSet_RKBallistaBolt</ammoSet>
+						  </li>
+						  <li Class="CombatExtended.CompProperties_FireModes">
+							<aiAimMode>AimedShot</aiAimMode>
+						  </li>
+						</comps>
+					  </ThingDef>					
+					</value>
+				</li>
+				
+			<!-- Bolts -->
+				<li Class="PatchOperationRemove">
+					<xpath>Defs/ThingDef[defName="BallistaBolt_Normal"]</xpath>
+				</li>
+				<li Class="PatchOperationRemove">
+					<xpath>Defs/ThingDef[defName="BallistaBolt_AP"]</xpath>
+				</li>
+				<li Class="PatchOperationRemove">
+					<xpath>Defs/ThingDef[defName="BallistaBolt_Heavy"]</xpath>
+				</li>				
+			
+		</operations>
+		</match>
+	</Operation>
+</Patch>

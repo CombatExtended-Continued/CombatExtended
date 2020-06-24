@@ -28,23 +28,27 @@ namespace CombatExtended
 
         public override bool ShouldShowFor(StatRequest req)
         {
-            return base.ShouldShowFor(req) && 
-                (Controller.settings.EnableAmmoSystem
-                    ? GunDef(req)?.GetCompProperties<CompProperties_AmmoUser>()?.ammoSet != null
-                    : (GunDef(req)?.Verbs?.Any(x => x.defaultProjectile != null) ?? false));
+            if (!base.ShouldShowFor(req)) return false;
+
+            AmmoSetDef ammoSet = GunDef(req)?.GetCompProperties<CompProperties_AmmoUser>()?.ammoSet;
+            if (AmmoUtility.IsAmmoSystemActive(ammoSet))
+            {
+                return (ammoSet != null);
+            }
+            else
+            {
+                return (GunDef(req)?.Verbs?.Any(x => x.defaultProjectile != null) ?? false);
+            }
         }
 
         public override IEnumerable<Dialog_InfoCard.Hyperlink> GetInfoCardHyperlinks(StatRequest statRequest)
         {
-            if (Controller.settings.EnableAmmoSystem)
+            var ammoSet = GunDef(statRequest)?.GetCompProperties<CompProperties_AmmoUser>().ammoSet;
+            if (ammoSet != null && AmmoUtility.IsAmmoSystemActive(ammoSet))
             {
-                var ammoSet = GunDef(statRequest)?.GetCompProperties<CompProperties_AmmoUser>().ammoSet;
-                if (ammoSet != null)
+                foreach (var ammoType in ammoSet.ammoTypes)
                 {
-                    foreach (var ammoType in ammoSet.ammoTypes)
-                    {
-                        yield return new Dialog_InfoCard.Hyperlink(ammoType.ammo);
-                    }
+                    yield return new Dialog_InfoCard.Hyperlink(ammoType.ammo);
                 }
             }
         }
@@ -53,9 +57,9 @@ namespace CombatExtended
         {
             StringBuilder stringBuilder = new StringBuilder();
 
-            if (Controller.settings.EnableAmmoSystem)
+            var ammoSet = GunDef(req)?.GetCompProperties<CompProperties_AmmoUser>().ammoSet;
+            if (AmmoUtility.IsAmmoSystemActive(ammoSet))
             {
-                var ammoSet = GunDef(req)?.GetCompProperties<CompProperties_AmmoUser>().ammoSet;
                 if (ammoSet != null)
                 {
                     // Append various ammo stats
@@ -80,9 +84,10 @@ namespace CombatExtended
 
         public override string GetStatDrawEntryLabel(StatDef stat, float value, ToStringNumberSense numberSense, StatRequest optionalReq, bool finalized = true)
         {
-            if (Controller.settings.EnableAmmoSystem)
+            var ammoSet = GunDef(optionalReq)?.GetCompProperties<CompProperties_AmmoUser>()?.ammoSet;
+            if (AmmoUtility.IsAmmoSystemActive(ammoSet))
             {
-                return GunDef(optionalReq)?.GetCompProperties<CompProperties_AmmoUser>()?.ammoSet?.LabelCap;
+                return ammoSet?.LabelCap;
             }
             else
             {

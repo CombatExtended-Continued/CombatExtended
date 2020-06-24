@@ -142,7 +142,7 @@
 
         <!-- === Flintlock === -->
         <!-- 
-          - VWE uses a custom verb with to trigger smoke effects after the gun fires, this causes trouble with CE and just overriding it doesn"t work.
+          - VWE uses a custom verb to trigger smoke effects after the gun is fired, this causes trouble with CE and just overriding it doesn't work.
           - Has to be replaced in vanilla too 
         -->
         <li Class="PatchOperationReplace">
@@ -201,7 +201,7 @@
 
         <!-- === Musket === -->
         <!-- 
-          - VWE uses a custom verb with to trigger smoke effects after the gun fires, this causes trouble with CE and just overriding it doesn't work.
+          - VWE uses a custom verb to trigger smoke effects after the gun is fired, this causes trouble with CE and just overriding it doesn't work.
           - Has to be replaced in vanilla too 
         -->
         <li Class="PatchOperationReplace">
@@ -259,9 +259,9 @@
         </li>
 
         <!-- === Throwing Knives === -->
-        <!-- Projectile -->
+        <!-- == Projectile == -->
         <li Class="PatchOperationReplace">
-          <xpath>Defs/ThingDef[defName="VWE_FlyingBlade"]/projectile</xpath>
+          <xpath>/Defs/ThingDef[defName="VWE_FlyingBlade"]/projectile</xpath>
 
           <value>
             <projectile Class="CombatExtended.ProjectilePropertiesCE">
@@ -276,11 +276,22 @@
           </value>
         </li>
 
-        <!-- Weapon -->
+        <!-- == Weapon == -->
         <li Class="PatchOperationAttributeSet">
           <xpath>/Defs/ThingDef[defName="VWE_Throwing_Knives"]</xpath>
+          
           <attribute>ParentName</attribute>
           <value>BaseWeapon</value>
+        </li>
+        
+        <li Class="PatchOperationAdd">
+          <xpath>/Defs/ThingDef[defName="VWE_Throwing_Knives"]</xpath>
+          
+          <value>
+            <thingCategories>
+              <li>WeaponsRanged</li>
+            </thingCategories>
+          </value>
         </li>
 
         <li Class="PatchOperationRemove">
@@ -288,7 +299,7 @@
         </li>
 
         <li Class="PatchOperationRemove">
-          <xpath>Defs/ThingDef[defName="VWE_Throwing_Knives"]/costStuffCount</xpath>
+          <xpath>/Defs/ThingDef[defName="VWE_Throwing_Knives"]/costStuffCount</xpath>
         </li>
 
         <li Class="PatchOperationRemove">
@@ -339,6 +350,10 @@
             <soundCast>ThrowGrenade</soundCast>
              <ai_IsBuildingDestroyer>false</ai_IsBuildingDestroyer>
           </Properties>
+          
+          <weaponTags>
+            <li>CE_OneHandedWeapon</li>
+          </weaponTags>
         </li>
 
         <li Class="PatchOperationReplace">
@@ -362,7 +377,7 @@
           </value>
         </li>
 
-        <!-- Recipe -->
+        <!-- == Recipe == -->
         <li Class="PatchOperationAdd">
           <xpath>Defs</xpath>
 
@@ -417,7 +432,7 @@
             <hasStandardCommand>True</hasStandardCommand>
             <defaultProjectile>Bullet_VWE_Whip</defaultProjectile>
             <warmupTime>1</warmupTime>
-            <range>15</range>
+            <range>6</range>
             <soundCast>VWE_Shot_Whip</soundCast>
           </Properties>
         </li>

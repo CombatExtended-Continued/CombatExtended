@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+			<li>PsiTech</li>
+		</mods>
+		<match Class="PatchOperationSequence">
+			<operations>
+				<!-- == EquipmentEnhancementDef == -->
+				<!-- RangedMods -->
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/Def[defName="EquipmentEnhancementDef"]/RangedMods</xpath>
+					<value>
+						<RangedMods>
+							<ShotSpread>-0.1</ShotSpread>
+							<SwayFactor>-0.25</SwayFactor>
+							<SightsEfficiency>0.2</SightsEfficiency>
+							<RangedWeapon_Cooldown>-0.25</RangedWeapon_Cooldown>
+						</RangedMods>
+					</value>
+				</li>
+				<!-- MeleeMods -->
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/Def[defName="EquipmentEnhancementDef"]/MeleeMods</xpath>
+					<value>
+						<MeleeMods>
+							<MeleeWeapon_DamageMultiplier>0.25</MeleeWeapon_DamageMultiplier>
+							<MeleePenetrationFactor>0.5</MeleePenetrationFactor>
+							<MeleeCounterParryBonus>0.25</MeleeCounterParryBonus>
+						</MeleeMods>
+					</value>
+				</li>
+			</operations>
+		</match>
+	</Operation>
+</Patch>

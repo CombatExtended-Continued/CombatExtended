@@ -119,7 +119,7 @@ namespace CombatExtended.HarmonyCE
                     code.opcode = OpCodes.Brtrue;
                 }
 
-                if (state == WriteState.WritePostShell && code.opcode == OpCodes.Call && code.operand == AccessTools.Method(typeof(GenDraw), nameof(GenDraw.DrawMeshNowOrLater)))
+                if (state == WriteState.WritePostShell && code.opcode == OpCodes.Call && ReferenceEquals(code.operand, AccessTools.Method(typeof(GenDraw), nameof(GenDraw.DrawMeshNowOrLater))))
                 {
                     state = WriteState.None;
 
@@ -136,7 +136,7 @@ namespace CombatExtended.HarmonyCE
                 {
                     state = WriteState.WriteHead;
                 }
-                else if (code.opcode == OpCodes.Ldsfld && code.operand == AccessTools.Field(typeof(ApparelLayerDefOf), nameof(ApparelLayerDefOf.Shell)))
+                else if (code.opcode == OpCodes.Ldsfld && ReferenceEquals(code.operand, AccessTools.Field(typeof(ApparelLayerDefOf), nameof(ApparelLayerDefOf.Shell))))
                 {
                     state = WriteState.WriteShell;
                     code.opcode = OpCodes.Callvirt;

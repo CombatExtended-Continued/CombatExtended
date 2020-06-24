@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+  <Operation Class="PatchOperationSequence">
+	<operations>
+	  <li Class="PatchOperationFindMod">
+			
+		<mods><li>Dragonian GaramRace</li><li>Dragonian Race</li></mods>
+			
+		<match Class="PatchOperationSequence">
+		<operations>
+			
+			<!--Base ver is pretty much comparable to a zeushammer (slightly less damage on swing, more damage on poke, better EMP effect)-->
+			
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="DR_BattleHammer"]/tools</xpath>
+				<value>
+					<tools>
+						<li Class="CombatExtended.ToolCE">
+							<label>handle</label>
+							<capacities>
+								<li>Poke</li>
+							</capacities>
+							<power>5</power>
+							<extraMeleeDamages>
+							<li>
+								<def>EMP</def>
+								<amount>5</amount>
+							</li>
+							</extraMeleeDamages>
+							<cooldownTime>1.37</cooldownTime>
+							<chanceFactor>0.10</chanceFactor>
+							<armorPenetrationBlunt>8.688</armorPenetrationBlunt>
+							<linkedBodyPartsGroup>Handle</linkedBodyPartsGroup>
+						</li>
+						<li Class="CombatExtended.ToolCE">
+							<label>head</label>
+							<capacities>
+							<li>Blunt</li>
+							</capacities>
+							<power>32</power>
+							<extraMeleeDamages>
+							<li>
+								<def>EMP</def>
+								<amount>15</amount>
+							</li>
+							</extraMeleeDamages>					
+							<cooldownTime>2.57</cooldownTime>
+							<armorPenetrationBlunt>118.25</armorPenetrationBlunt>
+							<linkedBodyPartsGroup>Head</linkedBodyPartsGroup>
+							<chanceFactor>0.30</chanceFactor>
+						</li>				
+					</tools>
+				</value>
+			</li>
+			
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName="DR_BattleHammer"]/statBases</xpath>
+				<value>
+					<Bulk>8</Bulk>
+					<MeleeCounterParryBonus>0.40</MeleeCounterParryBonus>
+				</value>
+			</li>
+			
+			<li Class="PatchOperationSequence">
+			<success>Always</success>
+			<operations>
+				<li Class="PatchOperationTest">
+				<xpath>Defs/ThingDef[defName="DR_BattleHammer"]/equippedStatOffsets</xpath>
+				<success>Invert</success>
+				</li>
+				<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName="DR_BattleHammer"]</xpath>
+				<value>
+					<equippedStatOffsets />
+				</value>
+				</li>
+			</operations>
+			</li>
+			
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName="DR_BattleHammer"]/equippedStatOffsets</xpath>
+				<value>
+					<MeleeCritChance>1.50</MeleeCritChance>
+					<MeleeParryChance>0.30</MeleeParryChance>
+					<MeleeDodgeChance>0.30</MeleeDodgeChance>	
+				</value>	
+			</li>
+			
+		</operations>
+		</match>	
+	  </li>
+	</operations>	
+  </Operation>
+</Patch>

@@ -12,7 +12,6 @@ namespace CombatExtended.HarmonyCE.Compatibility
     [HarmonyPatch]
     class GraphicApparelDetour_Disable
     {
-        static readonly string logPrefix = Assembly.GetExecutingAssembly().GetName().Name + " :: ";
         static List<Assembly> target_asses = new List<Assembly>();
 
         static bool Prepare()

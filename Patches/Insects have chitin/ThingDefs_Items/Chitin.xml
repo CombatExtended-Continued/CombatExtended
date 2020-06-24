@@ -1,0 +1,54 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+	<!-- Finding the mod -->
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+			<li>Insects have chitin</li>
+		</mods>
+		<!-- Once found, patching -->
+		<match Class="PatchOperationSequence">
+			<operations>
+				<!-- InsectChitin -->
+				<!-- statBases. Armor values are based on the Alpha Animals patch. -->
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="InsectChitin"]/statBases/StuffPower_Armor_Sharp</xpath>
+					<value>
+						<StuffPower_Armor_Sharp>0.25</StuffPower_Armor_Sharp>
+					</value>
+				</li>
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="InsectChitin"]/statBases/StuffPower_Armor_Blunt</xpath>
+					<value>
+						<StuffPower_Armor_Blunt>0.05</StuffPower_Armor_Blunt>
+					</value>
+				</li>
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="InsectChitin"]/statBases/StuffPower_Armor_Heat</xpath>
+					<value>
+						<StuffPower_Armor_Heat>0.025</StuffPower_Armor_Heat>
+					</value>
+				</li>
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="InsectChitin"]/statBases/SharpDamageMultiplier</xpath>
+					<value>
+						<SharpDamageMultiplier>0.6</SharpDamageMultiplier>
+					</value>
+				</li>
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="InsectChitin"]/statBases/BluntDamageMultiplier</xpath>
+					<value>
+						<BluntDamageMultiplier>0.7</BluntDamageMultiplier>
+					</value>
+				</li>
+				<!-- StuffProps -->
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="InsectChitin"]/stuffProps/statFactors</xpath>
+					<value>
+						<MeleePenetrationFactor>0.6</MeleePenetrationFactor>
+						<Mass>0.2</Mass>
+					</value>
+				</li>
+			</operations>
+		</match>
+	</Operation>
+</Patch>
