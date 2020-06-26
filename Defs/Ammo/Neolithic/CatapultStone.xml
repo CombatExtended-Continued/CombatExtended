@@ -1,0 +1,165 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+
+	<!-- ==================== Ammo Categories ========================== -->
+
+	<CombatExtended.AmmoCategoryDef>
+		<defName>CatapultStone_Sandstone</defName>
+		<label>sandstone boulder</label>
+    <labelShort>sandstone</labelShort>
+		<description>A large, heavy boulder.</description>
+	</CombatExtended.AmmoCategoryDef>
+
+	<CombatExtended.AmmoCategoryDef>
+		<defName>CatapultStone_Slate</defName>
+		<label>slate boulder</label>
+    <labelShort>slate</labelShort>
+		<description>A large, heavy boulder.</description>
+	</CombatExtended.AmmoCategoryDef>
+
+	<CombatExtended.AmmoCategoryDef>
+		<defName>CatapultStone_Marble</defName>
+		<label>marble boulder</label>
+    <labelShort>marble</labelShort>
+		<description>A large, heavy boulder.</description>
+	</CombatExtended.AmmoCategoryDef>
+
+	<CombatExtended.AmmoCategoryDef>
+		<defName>CatapultStone_Granite</defName>
+		<label>granite boulder</label>
+    <labelShort>granite</labelShort>
+		<description>A large, heavy boulder.</description>
+	</CombatExtended.AmmoCategoryDef>
+
+	<CombatExtended.AmmoCategoryDef>
+		<defName>CatapultStone_Limestone</defName>
+		<label>limestone boulder</label>
+    <labelShort>limestone</labelShort>
+		<description>A large, heavy boulder.</description>
+	</CombatExtended.AmmoCategoryDef>
+
+	<!-- ==================== Thing Categories ========================== -->
+    <ThingCategoryDef>
+      <defName>AmmoCatapultStone</defName>
+      <label>sandstone boulder</label>
+      <parent>AmmoNeolithic</parent>
+	  <iconPath>Things/Ammo/Neolithic/SlingBullet/Stone/Stone_a</iconPath>
+    </ThingCategoryDef>
+	
+	<!-- ==================== AmmoSet ========================== -->
+
+	<CombatExtended.AmmoSetDef>
+		<defName>AmmoSet_CatapultStone</defName>
+		<label>stone boulder</label>
+		<ammoTypes>
+			<ChunkSandstone>Projectile_CatapultBullet_Sandstone</ChunkSandstone>
+			<ChunkGranite>Projectile_CatapultBullet_Granite</ChunkGranite>
+			<ChunkMarble>Projectile_CatapultBullet_Marble</ChunkMarble>
+			<ChunkLimestone>Projectile_CatapultBullet_Limestone</ChunkLimestone>
+			<ChunkSlate>Projectile_CatapultBullet_Slate</ChunkSlate>			
+		</ammoTypes>
+	</CombatExtended.AmmoSetDef>
+	
+	<!-- ================== Projectile ================== -->
+
+	<ThingDef Name="BaseCatapultBullet" ParentName="BaseBullet" Abstract="true">
+		<thingClass>CombatExtended.ProjectileCE_Explosive</thingClass>
+		<graphicData>
+		  <texPath>Things/Item/Chunk/ChunkStone</texPath>
+		  <graphicClass>Graphic_Random</graphicClass>
+		  <flipExtraRotation>80</flipExtraRotation>
+		</graphicData>		
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+		  <speed>44</speed>
+		  <soundHitThickRoof>Artillery_HitThickRoof</soundHitThickRoof>
+		  <soundImpactAnticipate>MortarRound_PreImpact</soundImpactAnticipate>
+		  <soundAmbient>MortarRound_Ambient</soundAmbient>
+		  <soundExplode>MortarBomb_Explode</soundExplode>
+		  <preExplosionSpawnChance>0.4</preExplosionSpawnChance>
+		  <preExplosionSpawnThingDef>Filth_RubbleRock</preExplosionSpawnThingDef>	  
+		  <flyOverhead>true</flyOverhead>
+		  <dropsCasings>false</dropsCasings>
+		</projectile>
+	</ThingDef>
+
+	<ThingDef ParentName="BaseCatapultBullet">
+		<defName>Projectile_CatapultBullet_Sandstone</defName>
+		<label>catapult stone</label>
+			<graphicData>
+			  <color>(126,104,94)</color>
+			</graphicData>
+			<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			  <damageDef>VFES_Rock</damageDef>
+			  <damageAmountBase>250</damageAmountBase>
+			  <explosionRadius>2.5</explosionRadius>
+			  <soundExplode>VFES_Explosion_Catapult</soundExplode>
+			  <applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
+			  <ai_IsIncendiary>true</ai_IsIncendiary>
+			</projectile>			
+	</ThingDef>
+
+	<ThingDef ParentName="BaseCatapultBullet">
+		<defName>Projectile_CatapultBullet_Granite</defName>
+		<label>catapult stone</label>
+			<graphicData>
+				<color>(105,95,97)</color>
+			</graphicData>
+			<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			  <damageDef>VFES_Rock</damageDef>
+			  <damageAmountBase>250</damageAmountBase>
+			  <explosionRadius>2.5</explosionRadius>
+			  <soundExplode>VFES_Explosion_Catapult</soundExplode>
+			  <applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
+			  <ai_IsIncendiary>true</ai_IsIncendiary>
+			</projectile>			
+	</ThingDef>
+
+	<ThingDef ParentName="BaseCatapultBullet">
+		<defName>Projectile_CatapultBullet_Limestone</defName>
+		<label>catapult stone</label>
+			<graphicData>
+				<color>(158,153,135)</color>
+			</graphicData>
+			<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			  <damageDef>VFES_Rock</damageDef>
+			  <damageAmountBase>250</damageAmountBase>
+			  <explosionRadius>2.5</explosionRadius>
+			  <soundExplode>VFES_Explosion_Catapult</soundExplode>
+			  <applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
+			  <ai_IsIncendiary>true</ai_IsIncendiary>
+			</projectile>			
+	</ThingDef>
+ 
+	<ThingDef ParentName="BaseCatapultBullet">
+		<defName>Projectile_CatapultBullet_Slate</defName>
+		<label>catapult stone</label>
+			<graphicData>
+				<color>(90,90,90)</color>
+			</graphicData>
+			<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			  <damageDef>VFES_Rock</damageDef>
+			  <damageAmountBase>250</damageAmountBase>
+			  <explosionRadius>2.5</explosionRadius>
+			  <soundExplode>VFES_Explosion_Catapult</soundExplode>
+			  <applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
+			  <ai_IsIncendiary>true</ai_IsIncendiary>
+			</projectile>			
+	</ThingDef>
+
+	<ThingDef ParentName="BaseCatapultBullet">
+		<defName>Projectile_CatapultBullet_Marble</defName>
+		<label>catapult stone</label>
+			<graphicData>
+				<color>(132,135,132)</color>
+			</graphicData>
+			<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			  <damageDef>VFES_Rock</damageDef>
+			  <damageAmountBase>250</damageAmountBase>
+			  <explosionRadius>2.5</explosionRadius>
+			  <soundExplode>VFES_Explosion_Catapult</soundExplode>
+			  <applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
+			  <ai_IsIncendiary>true</ai_IsIncendiary>
+			</projectile>			
+	</ThingDef>
+ 
+</Defs>
