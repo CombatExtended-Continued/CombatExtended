@@ -239,14 +239,25 @@
 	</Operation>
 
 	<!-- Auto Mortar Top -->
+	
+	<!-- Glitter Tech Fix -->
 
-	<Operation Class="PatchOperationAdd">
-		<xpath>Defs/ThingDef[defName = "Artillery_AutoMortar"]</xpath>
-		<value>
-			<statBases>
+	<Operation Class="PatchOperationConditional">
+    		<xpath>Defs/ThingDef[defName = "Artillery_AutoMortar"]/statBases</xpath>
+		<nomatch Class="PatchOperationAdd">
+			<xpath>Defs/ThingDef[defName = "Artillery_AutoMortar"]</xpath>
+			<value>
+				<statBases>
+					<SightsEfficiency>0.5</SightsEfficiency>
+				</statBases>
+			</value>
+		</nomatch>
+		<match Class="PatchOperationAdd">
+			<xpath>Defs/ThingDef[defName = "Artillery_AutoMortar"]/statBases</xpath>
+			<value>
 				<SightsEfficiency>0.5</SightsEfficiency>
-			</statBases>
-		</value>
+			</value>
+		</match>
 	</Operation>
 
 	<Operation Class="PatchOperationAdd">
@@ -298,4 +309,4 @@
 	</Operation>
 
 	
-</Patch>	
+</Patch>
