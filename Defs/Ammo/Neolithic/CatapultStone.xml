@@ -2,46 +2,24 @@
 <Defs>
 
 	<!-- ==================== Ammo Categories ========================== -->
-
 	<CombatExtended.AmmoCategoryDef>
-		<defName>CatapultStone_Sandstone</defName>
-		<label>sandstone boulder</label>
-    <labelShort>sandstone</labelShort>
+		<defName>Catapult_Boulder</defName>
+		<label>boulder</label>
+    <labelShort>boulder</labelShort>
 		<description>A large, heavy boulder.</description>
 	</CombatExtended.AmmoCategoryDef>
 
 	<CombatExtended.AmmoCategoryDef>
-		<defName>CatapultStone_Slate</defName>
-		<label>slate boulder</label>
-    <labelShort>slate</labelShort>
-		<description>A large, heavy boulder.</description>
-	</CombatExtended.AmmoCategoryDef>
-
-	<CombatExtended.AmmoCategoryDef>
-		<defName>CatapultStone_Marble</defName>
-		<label>marble boulder</label>
-    <labelShort>marble</labelShort>
-		<description>A large, heavy boulder.</description>
-	</CombatExtended.AmmoCategoryDef>
-
-	<CombatExtended.AmmoCategoryDef>
-		<defName>CatapultStone_Granite</defName>
-		<label>granite boulder</label>
-    <labelShort>granite</labelShort>
-		<description>A large, heavy boulder.</description>
-	</CombatExtended.AmmoCategoryDef>
-
-	<CombatExtended.AmmoCategoryDef>
-		<defName>CatapultStone_Limestone</defName>
-		<label>limestone boulder</label>
-    <labelShort>limestone</labelShort>
-		<description>A large, heavy boulder.</description>
+		<defName>Catapult_Flaming</defName>
+		<label>flaming</label>
+    <labelShort>flaming</labelShort>
+		<description>A bundle of timber and other flammable materials.</description>
 	</CombatExtended.AmmoCategoryDef>
 
 	<!-- ==================== Thing Categories ========================== -->
     <ThingCategoryDef>
-      <defName>AmmoCatapultStone</defName>
-      <label>sandstone boulder</label>
+      <defName>AmmoCatapult</defName>
+      <label>catapult ammo</label>
       <parent>AmmoNeolithic</parent>
 	  <iconPath>Things/Ammo/Neolithic/SlingBullet/Stone/Stone_a</iconPath>
     </ThingCategoryDef>
@@ -49,49 +27,88 @@
 	<!-- ==================== AmmoSet ========================== -->
 
 	<CombatExtended.AmmoSetDef>
-		<defName>AmmoSet_CatapultStone</defName>
-		<label>stone boulder</label>
+		<defName>AmmoSet_Catapult</defName>
+		<label>siege engine projectiles</label>
 		<ammoTypes>
-			<ChunkSandstone>Projectile_CatapultBullet_Sandstone</ChunkSandstone>
-			<ChunkGranite>Projectile_CatapultBullet_Granite</ChunkGranite>
-			<ChunkMarble>Projectile_CatapultBullet_Marble</ChunkMarble>
-			<ChunkLimestone>Projectile_CatapultBullet_Limestone</ChunkLimestone>
-			<ChunkSlate>Projectile_CatapultBullet_Slate</ChunkSlate>			
+			<Ammo_Catapult_Boulder>Projectile_CatapultBullet_Boulder</Ammo_Catapult_Boulder>
+			<Ammo_Catapult_Flaming>Projectile_CatapultBullet_Flaming</Ammo_Catapult_Flaming>		
 		</ammoTypes>
 	</CombatExtended.AmmoSetDef>
-	
-	<!-- ================== Projectile ================== -->
 
+  <!-- ==================== Ammo ========================== -->
+  <ThingDef Class="CombatExtended.AmmoDef" Name="CatapultShellBase" ParentName="AmmoBase" Abstract="True">
+    <thingCategories>
+      <li>AmmoCatapult</li>
+    </thingCategories>
+    <stackLimit>5</stackLimit>
+    <tradeTags>
+      <li>CE_AutoEnableTrade</li>
+      <li>CE_AutoEnableCrafting_TableMachining</li>
+    </tradeTags>
+    <isMortarAmmo>true</isMortarAmmo>
+  </ThingDef>
+
+  <ThingDef Class="CombatExtended.AmmoDef" ParentName="CatapultShellBase">
+    <defName>Ammo_Catapult_Boulder</defName>
+    <label>stone</label>
+    <description>A heavy stone, cut to an appropriate size and shape to be thrown by a siege engine.</description>	
+    <graphicData>
+      <texPath>Things/Item/Chunk/ChunkStone</texPath>
+      <graphicClass>Graphic_Random</graphicClass>
+      <drawSize>0.80</drawSize>	  
+    </graphicData>
+    <statBases>
+      <Mass>12.5</Mass>
+      <MarketValue>0.5</MarketValue>
+    </statBases>
+    <ammoClass>Catapult_Boulder</ammoClass>
+  </ThingDef>
+
+  <ThingDef Class="CombatExtended.AmmoDef" ParentName="CatapultShellBase">
+    <defName>Ammo_Catapult_Flaming</defName>
+    <label>woven bundle</label>
+    <description>A woven bundle of timber, Prometheum, and other flammable materials, ignited and hurled at the enemy with a siege engine. Extremely flammable.</description>	
+    <graphicData>
+      <texPath>Things/Ammo/Cannon/HEAT</texPath>
+      <graphicClass>Graphic_Single</graphicClass>
+    </graphicData>
+    <statBases>
+      <Mass>8</Mass>
+      <MarketValue>93</MarketValue>
+      <Flammability>5.0</Flammability>	  
+    </statBases>
+    <ammoClass>Catapult_Flaming</ammoClass>
+  </ThingDef>
+
+	<!-- ================== Projectile ================== -->
 	<ThingDef Name="BaseCatapultBullet" ParentName="BaseBullet" Abstract="true">
-		<thingClass>CombatExtended.ProjectileCE_Explosive</thingClass>
-		<graphicData>
-		  <texPath>Things/Item/Chunk/ChunkStone</texPath>
-		  <graphicClass>Graphic_Random</graphicClass>
-		  <flipExtraRotation>80</flipExtraRotation>
-		</graphicData>		
+		<thingClass>CombatExtended.ProjectileCE_Explosive</thingClass>	
 		<projectile Class="CombatExtended.ProjectilePropertiesCE">
 		  <speed>44</speed>
 		  <soundHitThickRoof>Artillery_HitThickRoof</soundHitThickRoof>
 		  <soundImpactAnticipate>MortarRound_PreImpact</soundImpactAnticipate>
 		  <soundAmbient>MortarRound_Ambient</soundAmbient>
 		  <soundExplode>MortarBomb_Explode</soundExplode>
-		  <preExplosionSpawnChance>0.4</preExplosionSpawnChance>
-		  <preExplosionSpawnThingDef>Filth_RubbleRock</preExplosionSpawnThingDef>	  
 		  <flyOverhead>true</flyOverhead>
 		  <dropsCasings>false</dropsCasings>
 		</projectile>
 	</ThingDef>
 
 	<ThingDef ParentName="BaseCatapultBullet">
-		<defName>Projectile_CatapultBullet_Sandstone</defName>
+		<defName>Projectile_CatapultBullet_Boulder</defName>
 		<label>catapult stone</label>
 			<graphicData>
-			  <color>(126,104,94)</color>
+			  <texPath>Things/Item/Chunk/ChunkStone</texPath>
+			  <graphicClass>Graphic_Random</graphicClass>
+			  <flipExtraRotation>80</flipExtraRotation>
+      		  <drawSize>0.80</drawSize>	  			  
 			</graphicData>
 			<projectile Class="CombatExtended.ProjectilePropertiesCE">
 			  <damageDef>VFES_Rock</damageDef>
+		  	  <preExplosionSpawnChance>0.4</preExplosionSpawnChance>
+		  	  <preExplosionSpawnThingDef>Filth_RubbleRock</preExplosionSpawnThingDef>	  			  
 			  <damageAmountBase>250</damageAmountBase>
-			  <explosionRadius>2.5</explosionRadius>
+			  <explosionRadius>1.25</explosionRadius>
 			  <soundExplode>VFES_Explosion_Catapult</soundExplode>
 			  <applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
 			  <ai_IsIncendiary>true</ai_IsIncendiary>
@@ -99,67 +116,89 @@
 	</ThingDef>
 
 	<ThingDef ParentName="BaseCatapultBullet">
-		<defName>Projectile_CatapultBullet_Granite</defName>
-		<label>catapult stone</label>
-			<graphicData>
-				<color>(105,95,97)</color>
-			</graphicData>
+		<defName>Projectile_CatapultBullet_Flaming</defName>
+		<label>flaming bundle</label>
+		<graphicData>
+		<texPath>Things/Projectile/Mortar/Firefoam</texPath>
+		<graphicClass>Graphic_Single</graphicClass>
+		</graphicData>		
 			<projectile Class="CombatExtended.ProjectilePropertiesCE">
-			  <damageDef>VFES_Rock</damageDef>
-			  <damageAmountBase>250</damageAmountBase>
+			  <damageDef>PrometheumFlame</damageDef>
+			  <damageAmountBase>0</damageAmountBase>
+			  <armorPenetrationSharp>0</armorPenetrationSharp>
+			  <armorPenetrationBlunt>0</armorPenetrationBlunt>
 			  <explosionRadius>2.5</explosionRadius>
-			  <soundExplode>VFES_Explosion_Catapult</soundExplode>
-			  <applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
-			  <ai_IsIncendiary>true</ai_IsIncendiary>
-			</projectile>			
+			  <flyOverhead>true</flyOverhead>
+			  <preExplosionSpawnThingDef>FilthPrometheum</preExplosionSpawnThingDef>
+			  <preExplosionSpawnChance>0.3</preExplosionSpawnChance>
+			  <soundExplode>MortarIncendiary_Explode</soundExplode>
+			</projectile>		
 	</ThingDef>
 
-	<ThingDef ParentName="BaseCatapultBullet">
-		<defName>Projectile_CatapultBullet_Limestone</defName>
-		<label>catapult stone</label>
-			<graphicData>
-				<color>(158,153,135)</color>
-			</graphicData>
-			<projectile Class="CombatExtended.ProjectilePropertiesCE">
-			  <damageDef>VFES_Rock</damageDef>
-			  <damageAmountBase>250</damageAmountBase>
-			  <explosionRadius>2.5</explosionRadius>
-			  <soundExplode>VFES_Explosion_Catapult</soundExplode>
-			  <applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
-			  <ai_IsIncendiary>true</ai_IsIncendiary>
-			</projectile>			
-	</ThingDef>
- 
-	<ThingDef ParentName="BaseCatapultBullet">
-		<defName>Projectile_CatapultBullet_Slate</defName>
-		<label>catapult stone</label>
-			<graphicData>
-				<color>(90,90,90)</color>
-			</graphicData>
-			<projectile Class="CombatExtended.ProjectilePropertiesCE">
-			  <damageDef>VFES_Rock</damageDef>
-			  <damageAmountBase>250</damageAmountBase>
-			  <explosionRadius>2.5</explosionRadius>
-			  <soundExplode>VFES_Explosion_Catapult</soundExplode>
-			  <applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
-			  <ai_IsIncendiary>true</ai_IsIncendiary>
-			</projectile>			
-	</ThingDef>
+    <!-- ==================== Recipes ========================== -->
 
-	<ThingDef ParentName="BaseCatapultBullet">
-		<defName>Projectile_CatapultBullet_Marble</defName>
-		<label>catapult stone</label>
-			<graphicData>
-				<color>(132,135,132)</color>
-			</graphicData>
-			<projectile Class="CombatExtended.ProjectilePropertiesCE">
-			  <damageDef>VFES_Rock</damageDef>
-			  <damageAmountBase>250</damageAmountBase>
-			  <explosionRadius>2.5</explosionRadius>
-			  <soundExplode>VFES_Explosion_Catapult</soundExplode>
-			  <applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
-			  <ai_IsIncendiary>true</ai_IsIncendiary>
-			</projectile>			
-	</ThingDef>
+	<RecipeDef ParentName="MakeStoneBlocksBase">
+	  <defName>MakeAmmo_Catapult_Boulder</defName>
+	  <label>cut stone chunks into catapult stones</label>
+	  <description>Cuts stone chunks down to size to be thrown by a siege engine.</description>
+      <ingredients>
+        <li>
+          <filter>
+            <categories>
+              <li>StoneChunks</li>
+            </categories>
+          </filter>
+          <count>1</count>
+        </li>
+      </ingredients>
+      <fixedIngredientFilter>
+        <categories>
+          <li>StoneChunks</li>
+        </categories>
+      </fixedIngredientFilter>
+	  <recipeUsers inherit="false">
+	  	<li>TableStonecutter</li>
+	  </recipeUsers>		  
+	  <products>
+	    <Ammo_Catapult_Boulder>1</Ammo_Catapult_Boulder>
+	  </products>
+	</RecipeDef>
+
+	<RecipeDef ParentName="MakeStoneBlocksBase">
+	  <defName>MakeAmmo_Catapult_Flaming</defName>
+	  <label>make woven bundle</label>
+	  <description>craft a bundle of flammable materials to be ignited and thrown by a siege engine.</description>
+	  <ingredients>
+	  <li>
+	    <filter>
+	    <thingDefs>
+	    	<li>WoodLog</li>
+	    </thingDefs>
+	    </filter>
+	    <count>70</count>
+	  </li>
+      <li>
+        <filter>
+          <thingDefs>
+            <li>Prometheum</li>
+          </thingDefs>
+        </filter>
+        <count>7</count>
+      </li>	  
+	  </ingredients>
+	    <fixedIngredientFilter>
+	    <thingDefs>
+	    	<li>WoodLog</li>
+            <li>Prometheum</li>			
+	    </thingDefs>
+	    </fixedIngredientFilter>
+	  <recipeUsers inherit="false">
+		<li>CraftingSpot</li>
+	  </recipeUsers>	
+	  <products>
+	    <Ammo_Catapult_Flaming>5</Ammo_Catapult_Flaming>
+	  </products>
+	</RecipeDef>
+
  
 </Defs>
