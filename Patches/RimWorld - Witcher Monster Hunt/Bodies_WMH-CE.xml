@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+			<li>RimWorld - Witcher Monster Hunt</li>
+		</mods>
+		
+			<match Class="PatchOperationSequence">
+				<operations>
+					
+					<!-- SingleEyedHumanoid (Cyclops) -->
+					
+					<li Class="PatchOperationAdd">
+						<xpath>/Defs/BodyDef[defName="WMH_SingleEyedHumanoid"]//*[def="Torso" or def="Ribcage" or def="Sternum" or def="Pelvis" or def="Neck" or def="Head" or def="Skull" or def="Nose" or def="Jaw" or def="Shoulder" or def="Clavicle" or def="Arm" or def="Humerus" or def="Radius" or def="Hand" or def="Finger" or def="Waist" or def="Leg" or def="Femur" or def="Tibia" or def="Foot" or def="Toe"]/groups</xpath>
+						<value>
+							<li>CoveredByNaturalArmor</li>
+						</value>
+					</li>
+					
+					<!-- JellyFish -->
+					
+					<li Class="PatchOperationAdd">
+						<xpath>/Defs/BodyDef[defName="WMH_JellyfishBody"]//*[def="WMH_JellyfishMainBody" or def="WMH_HydrogenSac" or def="AnimalJaw"]/groups</xpath>
+						<value>
+							<li>CoveredByNaturalArmor</li>
+						</value>
+					</li>
+					
+					<!-- WingedBird / Bird -->
+					
+					<li Class="PatchOperationConditional"> <!-- Start off by adding groups to things that don't have them, just in case author decides to add them at some point -->
+						<success>Always</success>
+						<xpath>/Defs/BodyDef[defName="WMH_Bird"]//*[def="Body" or def="Tail" or def="Neck" or def="Head" or def="Skull" or def="Beak" or def="Leg" or def="Foot"]/groups</xpath>
+							<nomatch Class="PatchOperationAdd">
+							<xpath>/Defs/BodyDef[defName="WMH_Bird"]//*[def="Body" or def="Tail" or def="Neck" or def="Head" or def="Skull" or def="Beak" or def="Leg" or def="Foot"]</xpath>
+								<value>
+									<groups>
+									</groups>
+								</value>
+							</nomatch>
+					</li>
+					
+					<li Class="PatchOperationAdd"> <!-- Then add natural armor -->
+						<xpath>/Defs/BodyDef[defName="WMH_Bird"]//*[def="Body" or def="Tail" or def="Neck" or def="Head" or def="Skull" or def="Beak" or def="Leg" or def="Foot"]/groups</xpath>
+						<value>
+							<li>CoveredByNaturalArmor</li>
+						</value>
+					</li>
+					
+					<!-- WingedReptile / Reptile (Literal copy-paste of the above lines except instead of Beak it's AnimalJaw) -->
+					
+					<li Class="PatchOperationConditional"> <!-- Start off by adding groups to things that don't have them, just in case author decides to add them at some point -->
+						<success>Always</success>
+						<xpath>/Defs/BodyDef[defName="WMH_Reptile"]//*[def="Body" or def="Tail" or def="Neck" or def="Head" or def="Skull" or def="AnimalJaw" or def="Leg" or def="Foot"]/groups</xpath>
+							<nomatch Class="PatchOperationAdd">
+							<xpath>/Defs/BodyDef[defName="WMH_Reptile"]//*[def="Body" or def="Tail" or def="Neck" or def="Head" or def="Skull" or def="AnimalJaw" or def="Leg" or def="Foot"]</xpath>
+								<value>
+									<groups>
+									</groups>
+								</value>
+							</nomatch>
+					</li>
+					
+					<li Class="PatchOperationAdd"> <!-- Then add natural armor -->
+						<xpath>/Defs/BodyDef[defName="WMH_Reptile"]//*[def="Body" or def="Tail" or def="Neck" or def="Head" or def="Skull" or def="AnimalJaw" or def="Leg" or def="Foot"]/groups</xpath>
+						<value>
+							<li>CoveredByNaturalArmor</li>
+						</value>
+					</li>
+					
+					<!-- WMH_RockHumanoid -->
+					
+					<li Class="PatchOperationConditional"> <!-- Start off by adding groups to things that don't have them, just in case author decides to add them at some point -->
+						<success>Always</success>
+						<xpath>/Defs/BodyDef[defName="WMH_RockHumanoid"]//*[def="Torso" or def="WMH_RockHead" or def="WMH_RockArm" or def="WMH_RockLeg"]/groups</xpath>
+							<nomatch Class="PatchOperationAdd">
+							<xpath>/Defs/BodyDef[defName="WMH_RockHumanoid"]//*[def="Torso" or def="WMH_RockHead" or def="WMH_RockArm" or def="WMH_RockLeg"]</xpath>
+								<value>
+									<groups>
+									</groups>
+								</value>
+							</nomatch>
+					</li>
+					
+					<li Class="PatchOperationAdd"> <!-- Then add natural armor -->
+						<xpath>/Defs/BodyDef[defName="WMH_RockHumanoid"]//*[def="Torso" or def="WMH_RockHead" or def="WMH_RockArm" or def="WMH_RockLeg"]/groups</xpath>
+						<value>
+							<li>CoveredByNaturalArmor</li>
+						</value>
+					</li>
+
+				</operations>
+			</match>
+	</Operation>
+</Patch>
