@@ -21,17 +21,17 @@
       <defName>AmmoCatapult</defName>
       <label>catapult ammo</label>
       <parent>AmmoNeolithic</parent>
-	  <iconPath>Things/Ammo/Neolithic/SlingBullet/Stone/Stone_a</iconPath>
+	  <iconPath>Things/Ammo/Neolithic/Catapult/CatapultStone_a</iconPath>
     </ThingCategoryDef>
 	
 	<!-- ==================== AmmoSet ========================== -->
 
 	<CombatExtended.AmmoSetDef>
 		<defName>AmmoSet_Catapult</defName>
-		<label>siege engine projectiles</label>
+		<label>siege engine ammunition</label>
 		<ammoTypes>
 			<Ammo_Catapult_Boulder>Projectile_CatapultBullet_Boulder</Ammo_Catapult_Boulder>
-			<Ammo_Catapult_Flaming>Projectile_CatapultBullet_Flaming</Ammo_Catapult_Flaming>		
+<!--		<Ammo_Catapult_Flaming>Projectile_CatapultBullet_Flaming</Ammo_Catapult_Flaming>	-->	
 		</ammoTypes>
 	</CombatExtended.AmmoSetDef>
 
@@ -50,12 +50,13 @@
 
   <ThingDef Class="CombatExtended.AmmoDef" ParentName="CatapultShellBase">
     <defName>Ammo_Catapult_Boulder</defName>
-    <label>stone</label>
+    <label>boulder</label>
     <description>A heavy stone, cut to an appropriate size and shape to be thrown by a siege engine.</description>	
     <graphicData>
-      <texPath>Things/Item/Chunk/ChunkStone</texPath>
-      <graphicClass>Graphic_Random</graphicClass>
-      <drawSize>0.80</drawSize>	  
+	  <texPath>Things/Ammo/Neolithic/Catapult/CatapultStone_a</texPath>
+      <graphicClass>Graphic_Single</graphicClass>
+      <drawSize>0.80</drawSize>	
+      <color>(105,95,97)</color>	    
     </graphicData>
     <statBases>
       <Mass>12.5</Mass>
@@ -63,7 +64,7 @@
     </statBases>
     <ammoClass>Catapult_Boulder</ammoClass>
   </ThingDef>
-
+<!--
   <ThingDef Class="CombatExtended.AmmoDef" ParentName="CatapultShellBase">
     <defName>Ammo_Catapult_Flaming</defName>
     <label>woven bundle</label>
@@ -79,7 +80,7 @@
     </statBases>
     <ammoClass>Catapult_Flaming</ammoClass>
   </ThingDef>
-
+-->
 	<!-- ================== Projectile ================== -->
 	<ThingDef Name="BaseCatapultBullet" ParentName="BaseBullet" Abstract="true">
 		<thingClass>CombatExtended.ProjectileCE_Explosive</thingClass>	
@@ -96,25 +97,26 @@
 
 	<ThingDef ParentName="BaseCatapultBullet">
 		<defName>Projectile_CatapultBullet_Boulder</defName>
-		<label>catapult stone</label>
+		<label>boulder</label>
 			<graphicData>
-			  <texPath>Things/Item/Chunk/ChunkStone</texPath>
+			  <texPath>Things/Ammo/Neolithic/Catapult</texPath>
 			  <graphicClass>Graphic_Random</graphicClass>
 			  <flipExtraRotation>80</flipExtraRotation>
-      		  <drawSize>0.80</drawSize>	  			  
+      		  <drawSize>0.80</drawSize>	
+      		  <color>(105,95,97)</color>				  			  
 			</graphicData>
 			<projectile Class="CombatExtended.ProjectilePropertiesCE">
-			  <damageDef>VFES_Rock</damageDef>
+			  <damageDef>Blunt</damageDef>
 		  	  <preExplosionSpawnChance>0.4</preExplosionSpawnChance>
 		  	  <preExplosionSpawnThingDef>Filth_RubbleRock</preExplosionSpawnThingDef>	  			  
 			  <damageAmountBase>250</damageAmountBase>
-			  <explosionRadius>1.25</explosionRadius>
+			  <explosionRadius>1.5</explosionRadius>
 			  <soundExplode>VFES_Explosion_Catapult</soundExplode>
 			  <applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
 			  <ai_IsIncendiary>true</ai_IsIncendiary>
 			</projectile>			
 	</ThingDef>
-
+<!--
 	<ThingDef ParentName="BaseCatapultBullet">
 		<defName>Projectile_CatapultBullet_Flaming</defName>
 		<label>flaming bundle</label>
@@ -134,12 +136,12 @@
 			  <soundExplode>MortarIncendiary_Explode</soundExplode>
 			</projectile>		
 	</ThingDef>
-
+-->
     <!-- ==================== Recipes ========================== -->
 
 	<RecipeDef ParentName="MakeStoneBlocksBase">
 	  <defName>MakeAmmo_Catapult_Boulder</defName>
-	  <label>cut stone chunks into catapult stones</label>
+	  <label>cut stone chunks into boulders</label>
 	  <description>Cuts stone chunks down to size to be thrown by a siege engine.</description>
       <ingredients>
         <li>
@@ -163,7 +165,7 @@
 	    <Ammo_Catapult_Boulder>1</Ammo_Catapult_Boulder>
 	  </products>
 	</RecipeDef>
-
+<!--
 	<RecipeDef ParentName="MakeStoneBlocksBase">
 	  <defName>MakeAmmo_Catapult_Flaming</defName>
 	  <label>make woven bundle</label>
@@ -199,6 +201,6 @@
 	    <Ammo_Catapult_Flaming>5</Ammo_Catapult_Flaming>
 	  </products>
 	</RecipeDef>
-
+-->
  
 </Defs>
