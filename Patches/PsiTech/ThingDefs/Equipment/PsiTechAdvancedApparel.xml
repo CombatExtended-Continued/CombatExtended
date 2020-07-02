@@ -1,0 +1,379 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+			<li>PsiTech</li>
+		</mods>
+		<match Class="PatchOperationSequence">
+			<operations>
+				<!-- == PTPsionicCommandoArmor == -->
+				<!-- Basing all of these armor patches off marine/power armor. -->
+				<!-- statBases -->
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="PTPsionicCommandoArmor"]/statBases/ArmorRating_Sharp</xpath>
+					<value>
+						<ArmorRating_Sharp>22</ArmorRating_Sharp>
+						<Bulk>150</Bulk>
+						<WornBulk>18</WornBulk>
+					</value>
+				</li>
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="PTPsionicCommandoArmor"]/statBases/ArmorRating_Blunt</xpath>
+					<value>
+						<ArmorRating_Blunt>50</ArmorRating_Blunt>
+					</value>
+				</li>
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="PTPsionicCommandoArmor"]/statBases/Flammability</xpath>
+					<value>
+						<Flammability>0</Flammability>
+					</value>
+				</li>
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="PTPsionicCommandoArmor"]/statBases/MaxHitPoints</xpath>
+					<value>
+						<MaxHitPoints>625</MaxHitPoints>
+					</value>
+				</li>
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="PTPsionicCommandoArmor"]/statBases/Mass</xpath>
+					<value>
+						<Mass>80</Mass>
+					</value>
+				</li>
+				<!-- equippedStatOffsets -->
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="PTPsionicCommandoArmor"]/equippedStatOffsets</xpath>
+					<value>
+						<CarryWeight>80</CarryWeight>
+						<CarryBulk>10</CarryBulk>
+						<ShootingAccuracyPawn>0.2</ShootingAccuracyPawn>
+						<ToxicSensitivity>-0.5</ToxicSensitivity>
+					</value>
+				</li>
+				<li Class="PatchOperationRemove">
+					<xpath>Defs/ThingDef[defName="PTPsionicCommandoArmor"]/equippedStatOffsets/MoveSpeed</xpath>
+				</li>
+				<!-- costList -->
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="PTPsionicCommandoArmor"]/costList</xpath>
+					<value>
+						<DevilstrandCloth>60</DevilstrandCloth>
+					</value>
+				</li>
+				<!-- apparel -->
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="PTPsionicCommandoArmor"]/apparel/bodyPartGroups</xpath>
+					<value>
+						<li>Hands</li>
+						<li>Feet</li>
+					</value>
+				</li>
+
+				<!-- == PTPsionicCommandoHelmet == -->
+				<!-- statBases -->
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="PTPsionicCommandoHelmet"]/statBases/ArmorRating_Sharp</xpath>
+					<value>
+						<ArmorRating_Sharp>18</ArmorRating_Sharp>
+						<Bulk>7.5</Bulk>
+						<WornBulk>1.2</WornBulk>
+					</value>
+				</li>
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="PTPsionicCommandoHelmet"]/statBases/ArmorRating_Blunt</xpath>
+					<value>
+						<ArmorRating_Blunt>40</ArmorRating_Blunt>
+					</value>
+				</li>
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="PTPsionicCommandoHelmet"]/statBases/Flammability</xpath>
+					<value>
+						<Flammability>0</Flammability>
+					</value>
+				</li>
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="PTPsionicCommandoHelmet"]/statBases/MaxHitPoints</xpath>
+					<value>
+						<MaxHitPoints>300</MaxHitPoints>
+					</value>
+				</li>
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="PTPsionicCommandoHelmet"]/statBases/Mass</xpath>
+					<value>
+						<Mass>1.6</Mass>
+					</value>
+				</li>
+				<!-- equippedStatOffsets -->
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="PTPsionicCommandoHelmet"]/equippedStatOffsets</xpath>
+					<value>
+						<AimingAccuracy>0.2</AimingAccuracy>
+						<ToxicSensitivity>-0.5</ToxicSensitivity>
+						<SmokeSensitivity>-1</SmokeSensitivity>
+					</value>
+				</li>
+				<!-- costList -->
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="PTPsionicCommandoHelmet"]/costList/Plasteel</xpath>
+					<value>
+						<Plasteel>45</Plasteel>
+						<DevilstrandCloth>30</DevilstrandCloth>
+					</value>
+				</li>
+				<!-- apparel -->
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="PTPsionicCommandoHelmet"]/apparel/layers</xpath>
+					<value>
+						<li>OnHead</li>
+						<li>StrappedHead</li>
+						<li>MiddleHead</li>
+					</value>
+				</li>
+
+				<!-- == PTPsionicWarriorArmor == -->
+				<!-- statBases -->
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="PTPsionicWarriorArmor"]/statBases/ArmorRating_Sharp</xpath>
+					<value>
+						<ArmorRating_Sharp>20</ArmorRating_Sharp>
+						<Bulk>120</Bulk>
+						<WornBulk>15</WornBulk>
+					</value>
+				</li>
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="PTPsionicWarriorArmor"]/statBases/ArmorRating_Blunt</xpath>
+					<value>
+						<ArmorRating_Blunt>45</ArmorRating_Blunt>
+					</value>
+				</li>
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="PTPsionicWarriorArmor"]/statBases/Flammability</xpath>
+					<value>
+						<Flammability>0</Flammability>
+					</value>
+				</li>
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="PTPsionicWarriorArmor"]/statBases/MaxHitPoints</xpath>
+					<value>
+						<MaxHitPoints>500</MaxHitPoints>
+					</value>
+				</li>
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="PTPsionicWarriorArmor"]/statBases/Mass</xpath>
+					<value>
+						<Mass>60</Mass>
+					</value>
+				</li>
+				<!-- equippedStatOffsets -->
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="PTPsionicWarriorArmor"]/equippedStatOffsets</xpath>
+					<value>
+						<CarryWeight>80</CarryWeight>
+						<CarryBulk>10</CarryBulk>
+						<ShootingAccuracyPawn>0.15</ShootingAccuracyPawn>
+						<ToxicSensitivity>-0.5</ToxicSensitivity>
+					</value>
+				</li>
+				<li Class="PatchOperationRemove">
+					<xpath>Defs/ThingDef[defName="PTPsionicWarriorArmor"]/equippedStatOffsets/MoveSpeed</xpath>
+				</li>
+				<!-- costList -->
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="PTPsionicWarriorArmor"]/costList</xpath>
+					<value>
+						<DevilstrandCloth>50</DevilstrandCloth>
+					</value>
+				</li>
+				<!-- apparel -->
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="PTPsionicWarriorArmor"]/apparel/bodyPartGroups</xpath>
+					<value>
+						<li>Hands</li>
+						<li>Feet</li>
+					</value>
+				</li>
+
+				<!-- == PTPsionicWarriorHelmet == -->
+				<!-- statBases -->
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="PTPsionicWarriorHelmet"]/statBases/ArmorRating_Sharp</xpath>
+					<value>
+						<ArmorRating_Sharp>16</ArmorRating_Sharp>
+						<Bulk>6</Bulk>
+						<WornBulk>1</WornBulk>
+					</value>
+				</li>
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="PTPsionicWarriorHelmet"]/statBases/ArmorRating_Blunt</xpath>
+					<value>
+						<ArmorRating_Blunt>36</ArmorRating_Blunt>
+					</value>
+				</li>
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="PTPsionicWarriorHelmet"]/statBases/Flammability</xpath>
+					<value>
+						<Flammability>0</Flammability>
+					</value>
+				</li>
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="PTPsionicWarriorHelmet"]/statBases/MaxHitPoints</xpath>
+					<value>
+						<MaxHitPoints>240</MaxHitPoints>
+					</value>
+				</li>
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="PTPsionicWarriorHelmet"]/statBases/Mass</xpath>
+					<value>
+						<Mass>1.2</Mass>
+					</value>
+				</li>
+				<!-- equippedStatOffsets -->
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="PTPsionicWarriorHelmet"]/equippedStatOffsets</xpath>
+					<value>
+						<AimingAccuracy>0.15</AimingAccuracy>
+						<ToxicSensitivity>-0.5</ToxicSensitivity>
+						<SmokeSensitivity>-1</SmokeSensitivity>
+					</value>
+				</li>
+				<!-- costList -->
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="PTPsionicWarriorHelmet"]/costList</xpath>
+					<value>
+						<DevilstrandCloth>20</DevilstrandCloth>
+					</value>
+				</li>
+				<!-- apparel -->
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="PTPsionicWarriorHelmet"]/apparel/layers</xpath>
+					<value>
+						<li>OnHead</li>
+						<li>StrappedHead</li>
+						<li>MiddleHead</li>
+					</value>
+				</li>
+
+				<!-- == PTPsionicConduitArmor == -->
+				<!-- statBases -->
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="PTPsionicConduitArmor"]/statBases/ArmorRating_Sharp</xpath>
+					<value>
+						<ArmorRating_Sharp>18</ArmorRating_Sharp>
+						<Bulk>100</Bulk>
+						<WornBulk>15</WornBulk>
+					</value>
+				</li>
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="PTPsionicConduitArmor"]/statBases/ArmorRating_Blunt</xpath>
+					<value>
+						<ArmorRating_Blunt>41</ArmorRating_Blunt>
+					</value>
+				</li>
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="PTPsionicConduitArmor"]/statBases/Flammability</xpath>
+					<value>
+						<Flammability>0</Flammability>
+					</value>
+				</li>
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="PTPsionicConduitArmor"]/statBases/MaxHitPoints</xpath>
+					<value>
+						<MaxHitPoints>400</MaxHitPoints>
+					</value>
+				</li>
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="PTPsionicConduitArmor"]/statBases/Mass</xpath>
+					<value>
+						<Mass>40</Mass>
+					</value>
+				</li>
+				<!-- equippedStatOffsets -->
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="PTPsionicConduitArmor"]/equippedStatOffsets</xpath>
+					<value>
+						<CarryWeight>60</CarryWeight>
+						<CarryBulk>8</CarryBulk>
+						<ShootingAccuracyPawn>0.05</ShootingAccuracyPawn>
+						<ToxicSensitivity>-0.5</ToxicSensitivity>
+					</value>
+				</li>
+				<!-- costList -->
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="PTPsionicConduitArmor"]/costList</xpath>
+					<value>
+						<DevilstrandCloth>45</DevilstrandCloth>
+					</value>
+				</li>
+				<!-- apparel -->
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="PTPsionicConduitArmor"]/apparel/bodyPartGroups</xpath>
+					<value>
+						<li>Hands</li>
+						<li>Feet</li>
+					</value>
+				</li>
+
+				<!-- == PTPsionicConduitHelmet == -->
+				<!-- statBases -->
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="PTPsionicConduitHelmet"]/statBases/ArmorRating_Sharp</xpath>
+					<value>
+						<ArmorRating_Sharp>14</ArmorRating_Sharp>
+						<Bulk>5</Bulk>
+						<WornBulk>1</WornBulk>
+					</value>
+				</li>
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="PTPsionicConduitHelmet"]/statBases/ArmorRating_Blunt</xpath>
+					<value>
+						<ArmorRating_Blunt>32</ArmorRating_Blunt>
+					</value>
+				</li>
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="PTPsionicConduitHelmet"]/statBases/Flammability</xpath>
+					<value>
+						<Flammability>0</Flammability>
+					</value>
+				</li>
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="PTPsionicConduitHelmet"]/statBases/MaxHitPoints</xpath>
+					<value>
+						<MaxHitPoints>200</MaxHitPoints>
+					</value>
+				</li>
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="PTPsionicConduitHelmet"]/statBases/Mass</xpath>
+					<value>
+						<Mass>1</Mass>
+					</value>
+				</li>
+				<!-- equippedStatOffsets -->
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="PTPsionicConduitHelmet"]/equippedStatOffsets</xpath>
+					<value>
+						<AimingAccuracy>0.05</AimingAccuracy>
+						<ToxicSensitivity>-0.5</ToxicSensitivity>
+						<SmokeSensitivity>-1</SmokeSensitivity>
+					</value>
+				</li>
+				<!-- costList -->
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="PTPsionicConduitHelmet"]/costList</xpath>
+					<value>
+						<DevilstrandCloth>15</DevilstrandCloth>
+					</value>
+				</li>
+				<!-- apparel -->
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="PTPsionicConduitHelmet"]/apparel/layers</xpath>
+					<value>
+						<li>OnHead</li>
+						<li>StrappedHead</li>
+						<li>MiddleHead</li>
+					</value>
+				</li>
+			</operations>
+		</match>
+	</Operation>
+</Patch>

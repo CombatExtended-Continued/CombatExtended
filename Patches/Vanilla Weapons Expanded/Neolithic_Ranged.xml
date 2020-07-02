@@ -9,59 +9,65 @@
       <operations>
 
         <!-- === Long Bow === -->
-        <!-- Weapon -->
+        <!-- == Weapon == -->
         <li Class="CombatExtended.PatchOperationMakeGunCECompatible">
-            <defName>VWE_Bow_Long</defName>
-            <statBases>
+          <defName>VWE_Bow_Long</defName>
+
+          <statBases>
             <SightsEfficiency>0.7</SightsEfficiency>
             <ShotSpread>1</ShotSpread>
             <SwayFactor>2</SwayFactor>
             <Bulk>5.50</Bulk>
             <RangedWeapon_Cooldown>1</RangedWeapon_Cooldown>
-            </statBases>
-            <costList>
+          </statBases>
+          <costList>
             <WoodLog>65</WoodLog>
-            </costList>
-            <Properties>
+          </costList>
+
+          <Properties>
             <verbClass>CombatExtended.Verb_ShootCE</verbClass>
             <hasStandardCommand>true</hasStandardCommand>
             <defaultProjectile>Projectile_GreatArrow_Stone</defaultProjectile>
             <warmupTime>1.5</warmupTime>
             <range>37</range>
             <soundCast>Bow_Large</soundCast>
-            </Properties>
-            <AmmoUser>
+          </Properties>
+
+          <AmmoUser>
             <ammoSet>AmmoSet_GreatArrow</ammoSet>
-            </AmmoUser>
-            <FireModes />
-            <weaponTags>
+          </AmmoUser>
+          <FireModes />
+
+          <weaponTags>
             <li>NeolithicRangedBasic</li>
-            <li>NeolithicRangedHeavy</li>            
+            <li>NeolithicRangedHeavy</li>
             <li>CE_Bow</li>
-            </weaponTags>
-            <researchPrerequisite>VWE_Longbow</researchPrerequisite>
-            <AllowWithRunAndGun>false</AllowWithRunAndGun>
+          </weaponTags>
+
+          <researchPrerequisite>VWE_Longbow</researchPrerequisite>
+          <AllowWithRunAndGun>false</AllowWithRunAndGun>
         </li>
 
+        <!-- == Tools == -->
         <li Class="PatchOperationReplace">
-            <xpath>Defs/ThingDef[defName="VWE_Bow_Long"]/tools</xpath>
-            <value>
+          <xpath>Defs/ThingDef[defName="VWE_Bow_Long"]/tools</xpath>
+
+          <value>
             <tools>
-                <li Class="CombatExtended.ToolCE">
-                    <capacities>
-                        <li>Blunt</li>
-                    </capacities>
-                    <power>7</power>
-                    <cooldownTime>1.6</cooldownTime>
+              <li Class="CombatExtended.ToolCE">
+                <capacities>
+                  <li>Blunt</li>
+                </capacities>
+                <power>7</power>
+                <cooldownTime>1.6</cooldownTime>
                 <armorPenetrationBlunt>0.65</armorPenetrationBlunt>
-                </li>
+              </li>
             </tools>
-            </value>
+          </value>
         </li>
 
         <!-- === Throwing Rock === -->
-        <!-- Projectile -->
-
+        <!-- == Projectile == -->
         <li Class="PatchOperationReplace">
           <xpath>/Defs/ThingDef[defName="VWE_Rock"]/projectile</xpath>
 
@@ -76,28 +82,38 @@
           </value>
         </li>
 
-        <!-- Weapon -->
-
+        <!-- == Weapon == -->
         <li Class="PatchOperationAttributeSet">
-          <xpath>Defs/ThingDef[defName="VWE_Throwing_Rocks"]</xpath>
+          <xpath>/Defs/ThingDef[defName="VWE_Throwing_Rocks"]</xpath>
+
           <attribute>ParentName</attribute>
           <value>BaseWeapon</value>
         </li>
-
-        <li Class="PatchOperationRemove">
-          <xpath>Defs/ThingDef[defName="VWE_Throwing_Rocks"]/recipeMaker</xpath>
+        
+        <li Class="PatchOperationAdd">
+          <xpath>/Defs/ThingDef[defName="VWE_Throwing_Rocks"]</xpath>
+          
+          <value>
+            <thingCategories>
+              <li>WeaponsRanged</li>
+            </thingCategories>
+          </value>
         </li>
 
         <li Class="PatchOperationRemove">
-          <xpath>Defs/ThingDef[defName="VWE_Throwing_Rocks"]/destroyOnDrop</xpath>
+          <xpath>/Defs/ThingDef[defName="VWE_Throwing_Rocks"]/recipeMaker</xpath>
         </li>
 
         <li Class="PatchOperationRemove">
-          <xpath>Defs/ThingDef[defName="VWE_Throwing_Rocks"]/costStuffCount</xpath>
+          <xpath>/Defs/ThingDef[defName="VWE_Throwing_Rocks"]/destroyOnDrop</xpath>
         </li>
 
         <li Class="PatchOperationRemove">
-          <xpath>Defs/ThingDef[defName="VWE_Throwing_Rocks"]/stuffCategories</xpath>
+          <xpath>/Defs/ThingDef[defName="VWE_Throwing_Rocks"]/costStuffCount</xpath>
+        </li>
+
+        <li Class="PatchOperationRemove">
+          <xpath>/Defs/ThingDef[defName="VWE_Throwing_Rocks"]/stuffCategories</xpath>
         </li>
 
         <li Class="PatchOperationAdd">
@@ -112,6 +128,7 @@
 
         <li Class="PatchOperationAdd">
           <xpath>/Defs/ThingDef[defName="VWE_Throwing_Rocks"]/graphicData</xpath>
+          
           <value>
             <color>(158,153,135)</color>
           </value>
@@ -171,25 +188,26 @@
         </li>
 
         <li Class="PatchOperationReplace">
-            <xpath>Defs/ThingDef[defName="VWE_Throwing_Rocks"]/tools</xpath>
-            <value>
+          <xpath>/Defs/ThingDef[defName="VWE_Throwing_Rocks"]/tools</xpath>
+          <value>
             <tools>
-                <li Class="CombatExtended.ToolCE">
-                    <capacities>
-                        <li>Blunt</li>
-                    </capacities>
-                    <power>2</power>
-                    <cooldownTime>1.5</cooldownTime>
+              <li Class="CombatExtended.ToolCE">
+                <capacities>
+                  <li>Blunt</li>
+                </capacities>
+                <power>2</power>
+                <cooldownTime>1.5</cooldownTime>
                 <armorPenetrationBlunt>0.5</armorPenetrationBlunt>
-                </li>
+              </li>
             </tools>
-            </value>
+          </value>
         </li>
 
+        <!-- == Recipe == -->
         <li Class="PatchOperationAdd">
-            <xpath>Defs</xpath>
-            <value>
+          <xpath>Defs</xpath>
 
+          <value>
             <RecipeDef ParentName="AmmoRecipeNeolithicBase">
               <defName>MakeThrowingRocks</defName>
               <label>make throwing rocks x10</label>
@@ -199,27 +217,26 @@
               <ingredients>
                 <li>
                   <filter>
-                  <stuffCategoriesToAllow>
-                    <li>Stony</li>
-                  </stuffCategoriesToAllow>
+                    <stuffCategoriesToAllow>
+                      <li>Stony</li>
+                    </stuffCategoriesToAllow>
                   </filter>
                   <count>1</count>
                 </li>
               </ingredients>
               <fixedIngredientFilter>
                 <stuffCategoriesToAllow>
-                    <li>Stony</li>
+                  <li>Stony</li>
                 </stuffCategoriesToAllow>
               </fixedIngredientFilter>
               <recipeUsers>
                 <li>CraftingSpot</li>
-              </recipeUsers>            
+              </recipeUsers>
               <products>
                 <VWE_Throwing_Rocks>10</VWE_Throwing_Rocks>
               </products>
             </RecipeDef>
-
-            </value>
+          </value>
         </li>
 
       </operations>

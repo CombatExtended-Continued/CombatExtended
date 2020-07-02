@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+	<Operation Class="PatchOperationSequence">
+		<success></success>
+		<operations>
+			<li Class="PatchOperationFindMod">
+			<mods><li>Contractors Arsenal</li></mods>
+			<match Class="PatchOperationSequence">
+			<operations>
+			
+			<li Class="PatchOperationAddModExtension">
+				<xpath>Defs/PawnKindDef[
+					defName="Contractor_Rifleman" or
+					defName="Contractor_Medic" or
+					defName="Contractor_Marksman" or
+					defName="Contractor_Assault" or
+					defName="Contractor_Gunner" or
+					defName="Contractor_Officer" or
+					defName="Contract_Militia"
+					]</xpath>
+				<value>	
+					<li Class="CombatExtended.LoadoutPropertiesExtension">	
+						<primaryMagazineCount>
+							<min>4</min>
+							<max>6</max>
+						</primaryMagazineCount>
+						<sidearms>
+							<li>
+								<generateChance>0.25</generateChance>
+								<sidearmMoney>
+									<min>500</min>
+									<max>800</max>
+								</sidearmMoney>
+								<weaponTags>
+									<li>ContractorMisc</li>
+								</weaponTags>
+							</li>
+						</sidearms>
+					</li>
+				</value>
+			</li>
+			
+			<li Class="PatchOperationAddModExtension">
+				<xpath>Defs/PawnKindDef[
+					defName="Contractor_Explosives"
+					]</xpath>
+				<value>	
+					<li Class="CombatExtended.LoadoutPropertiesExtension">	
+						<primaryMagazineCount>
+							<min>3</min>
+							<max>6</max>
+						</primaryMagazineCount>
+						<forcedSidearm>
+							<sidearmMoney>
+								<min>550</min>
+								<max>1750</max>
+							</sidearmMoney>
+							<weaponTags>
+								<li>ContractorMisc</li>
+							</weaponTags>
+							<magazineCount>
+								<min>2</min>
+								<max>5</max>
+							</magazineCount>
+						</forcedSidearm>
+					</li>
+				</value>
+			</li>
+			
+			</operations>
+			</match>
+			</li>
+		</operations>
+	</Operation>
+</Patch>

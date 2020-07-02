@@ -5,17 +5,122 @@
     <mods>
 		<li>Save Our Ship 2</li>
     </mods>
-	<match Class="PatchOperationAddModExtension">
+		<match Class="PatchOperationSequence">
+			<operations>
+
+		<li Class="PatchOperationAddModExtension">
   	<xpath>Defs/PawnKindDef[defName="SpaceCannibal"]</xpath>
 		<value>
 		  <li Class="CombatExtended.LoadoutPropertiesExtension">
 			<primaryMagazineCount>
 			  <min>3</min>
-			  <max>6</max>
+			  <max>4</max>
 			</primaryMagazineCount>
 		  </li>
 		</value>
-	</match>
-	</Operation>
-</Patch>
+			</li>
 
+
+                                  <li Class="PatchOperationReplace">
+                   <xpath>Defs/PawnKindDef[defName="SpaceCrew"]/apparelMoney</xpath>
+                              <value>
+                              <apparelMoney>
+                                         <min>400</min>
+                                         <max>800</max>
+                             </apparelMoney>
+                              </value>
+		</li>
+
+
+   <li Class="PatchOperationReplace">
+    <xpath>Defs/PawnKindDef[defName="SpaceCrew"]/weaponMoney</xpath>
+    <value>
+      <weaponMoney>
+        <min>100</min>
+        <max>300</max>
+      </weaponMoney>
+    </value>
+			</li>
+
+		<li Class="PatchOperationAddModExtension">
+  	<xpath>Defs/PawnKindDef[defName="SpaceCrew"]</xpath>
+		<value>
+		  <li Class="CombatExtended.LoadoutPropertiesExtension">
+			<primaryMagazineCount>
+			  <min>2</min>
+			  <max>2</max>
+			</primaryMagazineCount>
+		  </li>
+		</value>
+			</li>
+
+   <li Class="PatchOperationReplace">
+    <xpath>Defs/PawnKindDef[defName="SpaceCrewMarine"]/weaponMoney</xpath>
+    <value>
+      <weaponMoney>
+        <min>500</min>
+        <max>900</max>
+      </weaponMoney>
+    </value>
+			</li>
+
+		<li Class="PatchOperationAddModExtension">
+  	<xpath>Defs/PawnKindDef[defName="SpaceCrewMarine"]</xpath>
+		<value>
+		  <li Class="CombatExtended.LoadoutPropertiesExtension">
+			<primaryMagazineCount>
+			  <min>3</min>
+			  <max>4</max>
+			</primaryMagazineCount>
+		  </li>
+		</value>
+			</li>
+
+			<li Class="PatchOperationReplace">
+    <xpath>Defs/PawnKindDef[defName="SpaceCrewMarineHeavy"]/weaponMoney</xpath>
+    <value>
+      <weaponMoney>
+        <min>600</min>
+        <max>1300</max>
+      </weaponMoney>
+    </value>
+			</li>
+
+		<li Class="PatchOperationAddModExtension">
+  	<xpath>Defs/PawnKindDef[defName="SpaceCrewMarineHeavy"]</xpath>
+		<value>
+		  <li Class="CombatExtended.LoadoutPropertiesExtension">
+			<primaryMagazineCount>
+			  <min>3</min>
+			  <max>5</max>
+			</primaryMagazineCount>
+        <sidearms>
+          <li>
+            <sidearmMoney>
+              <min>400</min>
+              <max>800</max>
+            </sidearmMoney>
+            <weaponTags>
+              <li>CE_Sidearm_Melee</li>
+            </weaponTags>
+          </li>
+        </sidearms>
+		  </li>
+		</value>
+			</li>
+
+
+ <li Class="PatchOperationReplace">
+    <xpath>Defs/PawnKindDef[defName="SpaceCrewMarineHeavy"]/combatPower</xpath>
+    <value>
+      <combatPower>280</combatPower>
+    </value>
+ </li>
+
+			</operations>		
+		</match>
+	</Operation>
+			  
+
+   
+  </Patch>

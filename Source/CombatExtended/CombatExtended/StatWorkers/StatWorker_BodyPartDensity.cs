@@ -8,7 +8,7 @@ namespace CombatExtended
     {
         protected abstract string UnitString { get; }
 
-        protected abstract float GetBaseValueFor(StatRequest req);
+        protected abstract new float GetBaseValueFor(StatRequest req);
 
         public override bool ShouldShowFor(StatRequest req)
         {

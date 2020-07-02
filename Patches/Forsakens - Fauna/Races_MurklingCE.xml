@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+			<li>Forsakens: Fauna</li>
+		</mods>
+
+		<match Class="PatchOperationSequence">
+			<operations>
+
+				<li Class="PatchOperationAddModExtension">
+					<xpath>/Defs/ThingDef[defName="FO_RMurkling"]</xpath>
+					<value>
+						<li Class="CombatExtended.RacePropertiesExtensionCE">
+							<bodyShape>QuadrupedLow</bodyShape>
+						</li>
+					</value>
+				</li>
+
+				<li Class="PatchOperationAdd">
+					<xpath>/Defs/ThingDef[defName="FO_RMurkling"]/statBases</xpath>
+					<value>
+						<MeleeDodgeChance>0.3</MeleeDodgeChance>
+						<MeleeCritChance>0.01</MeleeCritChance>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/ThingDef[defName="FO_RMurkling"]/tools</xpath>
+					<value>
+						<tools>
+							<li Class="CombatExtended.ToolCE">
+								<label>left claw</label>
+								<capacities>
+									<li>Scratch</li>
+								</capacities>
+								<power>3</power>
+								<cooldownTime>1.1</cooldownTime>
+								<linkedBodyPartsGroup>FrontLeftPaw</linkedBodyPartsGroup>
+								<armorPenetrationSharp>0.06</armorPenetrationSharp>
+								<armorPenetrationBlunt>0.1</armorPenetrationBlunt>
+							</li>
+							<li Class="CombatExtended.ToolCE">
+								<label>right claw</label>
+								<capacities>
+									<li>Scratch</li>
+								</capacities>
+								<power>3</power>
+								<cooldownTime>1.1</cooldownTime>
+								<linkedBodyPartsGroup>FrontRightPaw</linkedBodyPartsGroup>
+								<armorPenetrationSharp>0.06</armorPenetrationSharp>
+								<armorPenetrationBlunt>0.1</armorPenetrationBlunt>
+							</li>
+							<li Class="CombatExtended.ToolCE">
+								<label>plague carrier</label>
+								<capacities>
+									<li>FO_PlaguedBite</li>
+								</capacities>
+								<power>5</power>
+								<cooldownTime>1.4</cooldownTime>
+								<armorPenetrationSharp>0.33</armorPenetrationSharp>
+								<armorPenetrationBlunt>0.75</armorPenetrationBlunt>
+								<linkedBodyPartsGroup>Teeth</linkedBodyPartsGroup>
+								<chanceFactor>0.8</chanceFactor>
+							</li>
+							<li Class="CombatExtended.ToolCE">
+								<label>poisonous bite</label>
+								<capacities>
+									<li>ToxicBite</li>
+								</capacities>
+								<power>5</power>
+								<cooldownTime>1.4</cooldownTime>
+								<armorPenetrationSharp>0.33</armorPenetrationSharp>
+								<armorPenetrationBlunt>0.75</armorPenetrationBlunt>
+								<linkedBodyPartsGroup>Teeth</linkedBodyPartsGroup>
+								<chanceFactor>0.2</chanceFactor>
+							</li>
+							<li Class="CombatExtended.ToolCE">
+								<label>head</label>
+								<capacities>
+									<li>Blunt</li>
+								</capacities>
+								<power>3</power>
+								<cooldownTime>2</cooldownTime>
+								<linkedBodyPartsGroup>HeadAttackTool</linkedBodyPartsGroup>
+								<armorPenetrationBlunt>1</armorPenetrationBlunt>
+								<chanceFactor>0.1</chanceFactor>
+							</li>
+						</tools>
+					</value>
+				</li>
+			</operations>
+		</match>
+	</Operation>
+
+</Patch>

@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<Patch>
+	<Operation Class="PatchOperationFindMod">
+    <mods>
+		<li>Tsar Armory [1.1]</li>
+    </mods>
+		<match Class="PatchOperationSequence">
+		 <operations>
+
+			<!-- ========== PM 1910 ========== -->
+
+		  <li Class="PatchOperationRemove">
+			<xpath>Defs/ThingDef[defName="PM1910_Ammo_TA"]</xpath>
+		  </li>
+			
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="Turret_PM1910_TA"]/thingClass</xpath>
+				<value>
+					<thingClass>CombatExtended.Building_TurretGunCE</thingClass>
+				</value>
+			</li>
+
+			<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+				<defName>Gun_PM1910_TA</defName>
+				<statBases>
+					<RangedWeapon_Cooldown>0.35</RangedWeapon_Cooldown>
+					<SightsEfficiency>1</SightsEfficiency>
+					<ShotSpread>0.03</ShotSpread>
+					<SwayFactor>1.65</SwayFactor>
+					<Bulk>62.66</Bulk>
+				</statBases>
+				<Properties>
+					<recoilAmount>0.33</recoilAmount>
+					<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+					<hasStandardCommand>true</hasStandardCommand>
+					<defaultProjectile>Bullet_762x54mmR_FMJ</defaultProjectile>
+					<warmupTime>1.3</warmupTime>
+					<range>62</range>
+					<ticksBetweenBurstShots>12</ticksBetweenBurstShots>
+					<burstShotCount>10</burstShotCount>
+					<soundCast>Shot_Maxim</soundCast>
+					<soundCastTail>GunTail_Heavy</soundCastTail>
+					<muzzleFlashScale>12</muzzleFlashScale>
+					<recoilPattern>Mounted</recoilPattern>
+				</Properties>
+				<AmmoUser>
+					<magazineSize>250</magazineSize>
+					<reloadTime>7.8</reloadTime>
+					<ammoSet>AmmoSet_762x54mmR</ammoSet>
+				</AmmoUser>
+				<FireModes>
+					<aiUseBurstMode>FALSE</aiUseBurstMode>
+					<aiAimMode>SuppressFire</aiAimMode>
+					<aimedBurstShotCount>5</aimedBurstShotCount>
+				</FireModes>
+				<weaponTags>
+					<li>TurretGun</li>
+				</weaponTags>
+			</li>
+
+			<li Class="PatchOperationRemove">
+				<xpath>Defs/ThingDef[defName="Turret_PM1910_TA"]/comps/li[@Class = "CompProperties_Refuelable"]</xpath>
+			</li>
+
+			</operations>
+			</match>
+		</Operation>
+	</Patch>

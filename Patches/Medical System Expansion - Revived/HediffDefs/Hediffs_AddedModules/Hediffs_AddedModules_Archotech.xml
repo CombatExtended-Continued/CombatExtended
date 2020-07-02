@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+			<li>Medical System Expansion - Revived</li>
+		</mods>
+		<match Class="PatchOperationSequence">
+			<operations>
+				<!-- ==== Archotech Modules  ==== -->
+				<!-- MSE_ArchotechArmModule -->
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/HediffDef[defName="MSE_ArchotechArmModule"]/comps/li[@Class="HediffCompProperties_VerbGiver"]/tools</xpath>
+					<value>
+						<tools>
+							<li Class="CombatExtended.ToolCE">
+								<label>fist</label>
+								<capacities>
+									<li>Blunt</li>
+								</capacities>
+								<power>4</power>
+								<cooldownTime>1.25</cooldownTime>
+								<armorPenetrationBlunt>1.333</armorPenetrationBlunt>
+							</li>
+						</tools>
+					</value>
+				</li>
+				<!-- MSE_ArchotechHandModule -->
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/HediffDef[defName="MSE_ArchotechHandModule"]/comps/li[@Class="HediffCompProperties_VerbGiver"]/tools</xpath>
+					<value>
+						<tools>
+							<li Class="CombatExtended.ToolCE">
+								<label>claw</label>
+								<capacities>
+									<li>Scratch</li>
+								</capacities>
+								<power>8</power>
+								<cooldownTime>0.95</cooldownTime>
+								<armorPenetrationBlunt>0.444</armorPenetrationBlunt>
+								<armorPenetrationSharp>0.01</armorPenetrationSharp>
+							</li>
+						</tools>
+					</value>
+				</li>
+				<!-- MSE_ArchotechFingerModule -->
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/HediffDef[defName="MSE_ArchotechFingerModule"]/comps/li[@Class="HediffCompProperties_VerbGiver"]/tools</xpath>
+					<value>
+						<tools>
+							<li Class="CombatExtended.ToolCE">
+								<label>stinger</label>
+								<capacities>
+									<li>Stab</li>
+								</capacities>
+								<power>3</power>
+								<cooldownTime>0.63</cooldownTime>
+								<armorPenetrationBlunt>0.089</armorPenetrationBlunt>
+								<armorPenetrationSharp>0.04</armorPenetrationSharp>
+							</li>
+						</tools>
+					</value>
+				</li>
+			</operations>
+		</match>
+	</Operation>
+</Patch>
