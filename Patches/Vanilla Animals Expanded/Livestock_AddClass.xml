@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+
+  <Operation Class="PatchOperationFindMod">
+    <mods>
+      <li>Vanilla Animals Expanded — Livestock</li>
+    </mods>
+
+    <match Class="PatchOperationSequence">
+      <operations>
+        <!-- === Quadruped === -->
+        <li Class="PatchOperationAddModExtension">
+          <xpath>
+            /Defs/ThingDef[
+              defName="AEXP_Bison" or
+              defName="AEXP_Goat" or
+              defName="AEXP_Horse" or
+              defName="AEXP_Donkey" or
+              defName="AEXP_Yak"]
+          </xpath>
+
+          <value>
+            <li Class="CombatExtended.RacePropertiesExtensionCE">
+              <bodyShape>Quadruped</bodyShape>
+            </li>
+          </value>
+        </li>
+
+        <!-- === Quadruped Low === -->
+        <li Class="PatchOperationAddModExtension">
+          <xpath>/Defs/ThingDef[defName="AEXP_GuineaPig"]</xpath>
+
+          <value>
+            <li Class="CombatExtended.RacePropertiesExtensionCE">
+              <bodyShape>QuadrupedLow</bodyShape>
+            </li>
+          </value>
+        </li>
+
+        <!-- === Bird Like === -->
+        <li Class="PatchOperationAddModExtension">
+          <xpath>/Defs/ThingDef[defName="AEXP_Goose" or defName="AEXP_Duck"]</xpath>
+
+          <value>
+            <li Class="CombatExtended.RacePropertiesExtensionCE">
+              <bodyShape>Birdlike</bodyShape>
+            </li>
+          </value>
+        </li>
+      </operations>
+    </match>
+
+  </Operation>
+
+</Patch>
