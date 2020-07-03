@@ -77,6 +77,7 @@ Girls' Frontline Styles - 404 Team	|
 Girls' Frontline Weapon Pack	|
 Glitter Tech	|
 GouRIMet	|
+Halo - Rimworld Auxiliary Combat Armory	|
 Hand 'n' Footwear	|
 High Caliber	|
 Jernfalk's Standalone Horses	|
