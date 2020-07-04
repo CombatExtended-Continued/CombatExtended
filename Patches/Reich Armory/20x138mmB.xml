@@ -4,118 +4,198 @@
 
 <Operation Class="PatchOperationFindMod">
 		<mods>
-			<li>Kaiser Armory [1.1]</li>
+			<li>Reich Armory [1.1]</li>
 		</mods>
 	<match Class="PatchOperationAdd">
 		<xpath>Defs</xpath>
 		<value>
 
 	<ThingCategoryDef>
-		<defName>Ammo105x155mmRCannonShells</defName>
-		<label>105x155mmR cannon shell</label>
-		<parent>AmmoShells</parent>
-		<iconPath>UI/Icons/ThingCategories/CaliberCannon</iconPath>
+		<defName>Ammo20x138mmB</defName>
+		<label>20x138mmB</label>
+		<parent>AmmoHighCaliber</parent>
+		<iconPath>UI/Icons/ThingCategories/CaliberHighCaliber</iconPath>
 	</ThingCategoryDef>
 
 	<!-- ==================== AmmoSet ========================== -->
 
 	<CombatExtended.AmmoSetDef>
-		<defName>AmmoSet_105x155mmRCannonShell</defName>
-		<label>105x155mmR howitzer shells</label>
+		<defName>AmmoSet_20x138mmB</defName>
+		<label>20x138mmB</label>
 		<ammoTypes>
-			<Ammo_105x155mmRCannonShell_HE>Bullet_105x155mmRCannonShell_HE</Ammo_105x155mmRCannonShell_HE>
+      		<Ammo_20x138mmB_FMJ>Bullet_20x138mmB_FMJ</Ammo_20x138mmB_FMJ>		
+			<Ammo_20x138mmB_Incendiary>Bullet_20x138mmB_Incendiary</Ammo_20x138mmB_Incendiary>
+			<Ammo_20x138mmB_HE>Bullet_20x138mmB_HE</Ammo_20x138mmB_HE>
+			<Ammo_20x138mmB_Sabot>Bullet_20x138mmB_Sabot</Ammo_20x138mmB_Sabot>	   			
 		</ammoTypes>
 	</CombatExtended.AmmoSetDef>
 
 	<!-- ==================== Ammo ========================== -->
 
-	<ThingDef Class="CombatExtended.AmmoDef" Name="105x155mmRCannonShellBase" ParentName="AmmoBase" Abstract="True">
-		<description>Light howitzer shell used in field guns.</description>
-		<thingCategories>
-			<li>Ammo105x155mmRCannonShells</li>
-		</thingCategories>
-		<stackLimit>25</stackLimit>
+	<ThingDef Class="CombatExtended.AmmoDef" Name="Ammo20x138mmBBase" ParentName="SmallAmmoBase" Abstract="True">
+		<description>A medium caliber cartridge used by autocannons and a handful of anti-tank rifles.</description>
+		<statBases>
+			<Mass>0.3</Mass>
+			<Bulk>0.26</Bulk>
+		</statBases>
 		<tradeTags>
 			<li>CE_AutoEnableTrade</li>
-			<li>CE_AutoEnableCrafting_TableMachining</li>
+			<li>CE_AutoEnableCrafting</li>
 		</tradeTags>
-		<statBases>
-			<MaxHitPoints>150</MaxHitPoints>
-			<Mass>14.81</Mass>
-			<Bulk>10.40</Bulk>
-		</statBases>
-		<cookOffFlashScale>20</cookOffFlashScale>
-		<cookOffSound>MortarBomb_Explode</cookOffSound>
+		<thingCategories>
+			<li>Ammo20x138mmB</li>
+		</thingCategories>
+		<stackLimit>2000</stackLimit>
 	</ThingDef>
 
-	<ThingDef Class="CombatExtended.AmmoDef" ParentName="105x155mmRCannonShellBase">
-		<defName>Ammo_105x155mmRCannonShell_HE</defName>
-		<label>105x155mmR Cannon shell (HE)</label>
+    <ThingDef Class="CombatExtended.AmmoDef" ParentName="Ammo20x138mmBBase">
+      <defName>Ammo_20x138mmB_FMJ</defName>
+      <label>20x138mmB cartridge (FMJ)</label>
+      <graphicData>
+        <texPath>Things/Ammo/HighCaliber/FMJ</texPath>
+        <graphicClass>Graphic_StackCount</graphicClass>
+      </graphicData>
+      <statBases>
+        <MarketValue>1.19</MarketValue>
+      </statBases>
+      <ammoClass>FullMetalJacket</ammoClass>
+      <cookOffProjectile>Bullet_20x138mmB_FMJ</cookOffProjectile>
+    </ThingDef>
+
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="Ammo20x138mmBBase">
+		<defName>Ammo_20x138mmB_Incendiary</defName>
+		<label>20x138mmB cartridge (AP-I)</label>
 		<graphicData>
-			<texPath>Turret/leFH_16/Projectile/Shell_HE</texPath>
+			<texPath>Things/Ammo/HighCaliber/Incendiary</texPath>
 			<graphicClass>Graphic_StackCount</graphicClass>
-			<drawSize>1.30</drawSize>
 		</graphicData>
 		<statBases>
-			<MarketValue>101.44</MarketValue>
+			<MarketValue>1.57</MarketValue>
 		</statBases>
-		<ammoClass>GrenadeHE</ammoClass>
-		<detonateProjectile>Bullet_105x155mmRCannonShell_HE</detonateProjectile>
+		<ammoClass>IncendiaryAP</ammoClass>
+		<cookOffProjectile>Bullet_20x138mmB_Incendiary</cookOffProjectile>
 	</ThingDef>
+
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="Ammo20x138mmBBase">
+		<defName>Ammo_20x138mmB_HE</defName>
+		<label>20x138mmB cartridge (HE)</label>
+		<graphicData>
+			<texPath>Things/Ammo/HighCaliber/HE</texPath>
+			<graphicClass>Graphic_StackCount</graphicClass>
+		</graphicData>
+		<statBases>
+			<MarketValue>2.38</MarketValue>
+		</statBases>
+		<ammoClass>ExplosiveAP</ammoClass>
+		<cookOffProjectile>Bullet_20x138mmB_HE</cookOffProjectile>
+	</ThingDef>
+
+    <ThingDef Class="CombatExtended.AmmoDef" ParentName="Ammo20x138mmBBase">
+      <defName>Ammo_20x138mmB_Sabot</defName>
+      <label>20x138mmB cartridge (Sabot)</label>
+      <graphicData>
+        <texPath>Things/Ammo/HighCaliber/Sabot</texPath>
+        <graphicClass>Graphic_StackCount</graphicClass>
+      </graphicData>
+      <statBases>
+        <MarketValue>1.33</MarketValue>
+ 	    <Mass>0.249</Mass>
+      </statBases>
+      <ammoClass>Sabot</ammoClass>
+      <cookOffProjectile>Bullet_20x138mmB_Sabot</cookOffProjectile>
+    </ThingDef>
 
 	<!-- ================== Projectiles ================== -->
 
-	<ThingDef Class="CombatExtended.AmmoDef" Name="Base105x155mmRCannonShell" ParentName="BaseBullet" Abstract="true">
-		<graphicData>
-			<shaderType>TransparentPostLight</shaderType>
-		</graphicData>
+ 	<ThingDef ParentName="Base145x114mmBullet">
+		<defName>Bullet_20x138mmB_FMJ</defName>
+		<label>20x138mmB bullet (FMJ)</label>
 		<projectile Class="CombatExtended.ProjectilePropertiesCE">
-		  <speed>0</speed>
-		  <soundHitThickRoof>Artillery_HitThickRoof</soundHitThickRoof>
-		  <soundImpactAnticipate>MortarRound_PreImpact</soundImpactAnticipate>
-		  <soundAmbient>MortarRound_Ambient</soundAmbient>
-		  <flyOverhead>true</flyOverhead>
-		  <dropsCasings>true</dropsCasings>
-		  <casingMoteDefname>Mote_BigShell</casingMoteDefname>
-		  <gravityFactor>5</gravityFactor>
+		  <damageAmountBase>68</damageAmountBase>
+		  <armorPenetrationSharp>20</armorPenetrationSharp>
+		  <armorPenetrationBlunt>972</armorPenetrationBlunt>
+		  <speed>180</speed>
 		</projectile>
 	</ThingDef>
 
-	<ThingDef Class="CombatExtended.AmmoDef" ParentName="Base105x155mmRCannonShell">
-		<defName>Bullet_105x155mmRCannonShell_HE</defName>
-		<label>105x155mmR Cannon shell (HE)</label>
-		<thingClass>CombatExtended.ProjectileCE_Explosive</thingClass>
-	    <graphicData>
-			<texPath>Turret/leFH_16/Projectile/Bullet_10,5cm_HE</texPath>
-		<graphicClass>Graphic_Single</graphicClass>
-		<shaderType>TransparentPostLight</shaderType>
-		<drawSize>0.80</drawSize>
-		</graphicData>
+ 	<ThingDef ParentName="Base145x114mmBullet">
+		<defName>Bullet_20x138mmB_Incendiary</defName>
+		<label>20x138mmB bullet (AP-I)</label>
 		<projectile Class="CombatExtended.ProjectilePropertiesCE">
-			<damageDef>Bomb</damageDef>
-			<damageAmountBase>190</damageAmountBase>
-			<explosionRadius>3.5</explosionRadius>
-			<soundExplode>MortarBomb_Explode</soundExplode>
-			<applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
+		  <damageAmountBase>43</damageAmountBase>
+		  <armorPenetrationSharp>40</armorPenetrationSharp>
+		  <armorPenetrationBlunt>972</armorPenetrationBlunt>
+		  <speed>180</speed>
+		  <secondaryDamage>
+		  	<li>
+		  		<def>Flame_Secondary</def>
+		  		<amount>27</amount>
+		  	</li>
+		  </secondaryDamage>
 		</projectile>
-		<comps>
-			<li Class="CombatExtended.CompProperties_Fragments">
-				<fragments>
-					<Fragment_Large>15</Fragment_Large>
-					<Fragment_Small>50</Fragment_Small>
-				</fragments>
-			</li>
-		</comps>
 	</ThingDef>
+
+ 	<ThingDef ParentName="Base145x114mmBullet">
+		<defName>Bullet_20x138mmB_HE</defName>
+		<label>20x138mmB bullet (HE)</label>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+		<damageAmountBase>68</damageAmountBase>
+		<armorPenetrationSharp>20</armorPenetrationSharp>
+		<armorPenetrationBlunt>972</armorPenetrationBlunt>
+		<speed>180</speed>
+		<secondaryDamage>
+			<li>
+				<def>Bomb_Secondary</def>
+				<amount>41</amount>
+			</li>
+		</secondaryDamage>
+		</projectile>
+	</ThingDef>
+
+  <ThingDef ParentName="Base145x114mmBullet">
+    <defName>Bullet_20x138mmB_Sabot</defName>
+    <label>20x138mmB bullet (Sabot)</label>
+    <projectile Class="CombatExtended.ProjectilePropertiesCE">
+	    <speed>270</speed>
+      <damageAmountBase>36</damageAmountBase>
+      <armorPenetrationSharp>70</armorPenetrationSharp>
+      <armorPenetrationBlunt>1257.52</armorPenetrationBlunt>
+    </projectile>
+  </ThingDef>
 
 	<!-- ==================== Recipes ========================== -->
 
+    <RecipeDef ParentName="AmmoRecipeBase">
+      <defName>MakeAmmo_20x138mmB_FMJ</defName>
+      <label>make 20x138mmB (FMJ) cartridge x200</label>
+      <description>Craft 200 20x138mmB (FMJ) cartridges.</description>
+      <jobString>Making 20x138mmB (FMJ) cartridges.</jobString>
+      <ingredients>
+        <li>
+          <filter>
+            <thingDefs>
+              <li>Steel</li>
+            </thingDefs>
+          </filter>
+          <count>120</count>
+        </li>
+      </ingredients>
+      <fixedIngredientFilter>
+        <thingDefs>
+          <li>Steel</li>
+        </thingDefs>
+      </fixedIngredientFilter>
+      <products>
+        <Ammo_20x138mmB_FMJ>200</Ammo_20x138mmB_FMJ>
+      </products>
+      <workAmount>12000</workAmount>
+    </RecipeDef>
+
 	<RecipeDef ParentName="AmmoRecipeBase">
-		<defName>MakeAmmo_105x155mmRCannonShell_HE</defName>
-		<label>make 105x155mmR HE cannon shells x5</label>
-		<description>Craft 5 105x155mmR HE cannon shells.</description>
-		<jobString>Making 105x155mmR HE cannon shells.</jobString>
-		<workAmount>9000</workAmount>
+		<defName>MakeAmmo_20x138mmB_Incendiary</defName>
+		<label>make 20x138mmB (AP-I) cartridge x200</label>
+		<description>Craft 200 20x138mmB (AP-I) cartridges.</description>
+		<jobString>Making 20x138mmB (AP-I) cartridges.</jobString>
 		<ingredients>
 			<li>
 				<filter>
@@ -123,7 +203,42 @@
 						<li>Steel</li>
 					</thingDefs>
 				</filter>
-				<count>70</count>
+				<count>120</count>
+			</li>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>Prometheum</li>
+					</thingDefs>
+				</filter>
+				<count>12</count>
+			</li>
+		</ingredients>
+		<fixedIngredientFilter>
+			<thingDefs>
+				<li>Steel</li>
+				<li>Prometheum</li>
+			</thingDefs>
+		</fixedIngredientFilter>
+		<products>
+			<Ammo_20x138mmB_Incendiary>200</Ammo_20x138mmB_Incendiary>
+		</products>
+		<workAmount>16800</workAmount>
+	</RecipeDef>
+
+	<RecipeDef ParentName="AmmoRecipeBase">
+		<defName>MakeAmmo_20x138mmB_HE</defName>
+		<label>make 20x138mmB (HE) cartridge x200</label>
+		<description>Craft 200 20x138mmB (HE) cartridges.</description>
+		<jobString>Making 20x138mmB (HE) cartridges.</jobString>
+		<ingredients>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>Steel</li>
+					</thingDefs>
+				</filter>
+				<count>120</count>
 			</li>
 			<li>
 				<filter>
@@ -131,28 +246,64 @@
 						<li>FSX</li>
 					</thingDefs>
 				</filter>
-				<count>2</count>
-			</li>
-			<li>
-				<filter>
-					<thingDefs>
-						<li>ComponentIndustrial</li>
-					</thingDefs>
-				</filter>
-				<count>2</count>
+				<count>23</count>
 			</li>
 		</ingredients>
 		<fixedIngredientFilter>
 			<thingDefs>
 				<li>Steel</li>
 				<li>FSX</li>
-				<li>ComponentIndustrial</li>
 			</thingDefs>
 		</fixedIngredientFilter>
 		<products>
-			<Ammo_105x155mmRCannonShell_HE>5</Ammo_105x155mmRCannonShell_HE>
+			<Ammo_20x138mmB_HE>200</Ammo_20x138mmB_HE>
 		</products>
+		<workAmount>21200</workAmount>
 	</RecipeDef>
+
+    <RecipeDef ParentName="AmmoRecipeBase">
+      <defName>MakeAmmo_20x138mmB_Sabot</defName>
+      <label>make 20x138mmB (Sabot) cartridge x200</label>
+      <description>Craft 200 20x138mmB (Sabot) cartridges.</description>
+      <jobString>Making 20x138mmB (Sabot) cartridges.</jobString>
+      <ingredients>
+        <li>
+          <filter>
+            <thingDefs>
+              <li>Steel</li>
+            </thingDefs>
+          </filter>
+          <count>72</count>
+        </li>
+        <li>
+          <filter>
+            <thingDefs>
+              <li>Uranium</li>
+            </thingDefs>
+          </filter>
+          <count>14</count>
+        </li>
+        <li>
+          <filter>
+            <thingDefs>
+              <li>Chemfuel</li>
+            </thingDefs>
+          </filter>
+          <count>14</count>
+        </li>	  
+      </ingredients>
+      <fixedIngredientFilter>
+        <thingDefs>
+  		  <li>Chemfuel</li>	  
+          <li>Steel</li>
+  		  <li>Uranium</li>
+        </thingDefs>
+      </fixedIngredientFilter>
+      <products>
+        <Ammo_20x138mmB_Sabot>200</Ammo_20x138mmB_Sabot>
+      </products>
+      <workAmount>15600</workAmount>
+    </RecipeDef>
 
 		</value>	
 	</match>

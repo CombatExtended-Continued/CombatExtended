@@ -8,6 +8,16 @@
 		<match Class="PatchOperationSequence">
 		 <operations>
 
+		  <!-- ========== Remove Recipes ========== -->
+
+			<li Class="PatchOperationRemove">
+				<xpath>Defs/RecipeDef[defName="Make_Kar98K_Ammo_RA"]</xpath>
+			</li>
+
+			<li Class="PatchOperationRemove">
+				<xpath>Defs/ThingDef[defName="TableRA"]/recipes/li[text()="Make_Kar98K_Ammo_RA"]</xpath>
+			</li>
+
 		  <!-- ========== Tools ========== -->
 
 		  <li Class="PatchOperationReplace">
@@ -761,6 +771,53 @@
 		  	<AllowWithRunAndGun>false</AllowWithRunAndGun>
 		  </li>
 
+		  <!-- ========== Kar98k with Grenade Launcher ========== -->
+
+		  <li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+		  	<defName>Gun_Kar98K_Schiessbecher_RA</defName>
+		  	<statBases>
+		  	  <Mass>4.20</Mass>
+		  	  <RangedWeapon_Cooldown>1.17</RangedWeapon_Cooldown>
+		  	  <SightsEfficiency>1.00</SightsEfficiency>
+		  	  <ShotSpread>0.05</ShotSpread>
+		  	  <SwayFactor>1.56</SwayFactor>
+		  	  <Bulk>11.00</Bulk>
+		  	  <WorkToMake>500</WorkToMake>
+		  	</statBases>
+		  	<costList>
+			  <Gun_Kar98K_RA>1</Gun_Kar98K_RA>
+			  <Schiessbecher_RA>1</Schiessbecher_RA>
+		  	</costList>
+		  	<Properties>
+		  	  <verbClass>CombatExtended.Verb_ShootCE</verbClass>
+		  	  <hasStandardCommand>true</hasStandardCommand>
+		  	  <defaultProjectile>Bullet_30mmRifleGrenade_HE</defaultProjectile>
+		  	  <warmupTime>1.8</warmupTime>
+			  <minRange>6</minRange>	
+		  	  <range>44</range>
+			  <soundCast>Shot_Schiessbecher</soundCast>
+			  <soundCastTail>GunTail_Medium</soundCastTail>
+		  	  <muzzleFlashScale>9</muzzleFlashScale>
+			  <requireLineOfSight>false</requireLineOfSight>
+			  <targetParams>
+			  	<canTargetLocations>true</canTargetLocations>
+			  </targetParams>				
+		  	</Properties>
+		  	<AmmoUser>
+		  	  <magazineSize>1</magazineSize>
+		  	  <reloadTime>6</reloadTime>
+		  	  <ammoSet>AmmoSet_30mmRifleGrenade</ammoSet>
+		  	</AmmoUser>
+		  	<FireModes>
+		  	<aiAimMode>AimedShot</aiAimMode>
+		  	</FireModes>	  
+		  	<weaponTags>
+		  	  <li>CE_AI_Rifle</li>
+			  <li>IndustrialGunAdvanced</li>	
+		  	</weaponTags>
+		  	<researchPrerequisite>Stage1b_RA</researchPrerequisite>
+		  </li>
+
 		  <!-- ========== Kar98k with Bayonet ========== -->
 
 		  <li Class="CombatExtended.PatchOperationMakeGunCECompatible">
@@ -1023,7 +1080,7 @@
 		  	<researchPrerequisite>Stage1b_RA</researchPrerequisite>
 		  </li>
 
-		  <!-- ========== Walther VG-1 ========== -->
+		  <!-- ========== PzB 38 Anti-tank Rifle ========== -->
   
 		  <li Class="CombatExtended.PatchOperationMakeGunCECompatible">
 		  	<defName>Gun_PzB_39_RA</defName>
@@ -1044,7 +1101,7 @@
 		  	<Properties>
 		  	  <verbClass>CombatExtended.Verb_ShootCE</verbClass>
 		  	  <hasStandardCommand>true</hasStandardCommand>
-		  	  <defaultProjectile>Bullet_792x57mmMauser_FMJ</defaultProjectile>
+		  	  <defaultProjectile>Bullet_792x94mmPatronen_FMJ</defaultProjectile>
 		  	  <warmupTime>2.8</warmupTime>
 		  	  <range>62</range>
 			  <soundCast>Shot_PzB_39</soundCast>
@@ -1052,9 +1109,9 @@
 		  	  <muzzleFlashScale>9</muzzleFlashScale>
 		  	</Properties>
 		  	<AmmoUser>
-		  	  <magazineSize>10</magazineSize>
+		  	  <magazineSize>1</magazineSize>
 		  	  <reloadTime>1.6</reloadTime>
-		  	  <ammoSet>AmmoSet_792x57mmMauser</ammoSet>
+		  	  <ammoSet>AmmoSet_792x94mmPatronen</ammoSet>
 		  	</AmmoUser>
 		  	<FireModes>
 		  	<aiAimMode>AimedShot</aiAimMode>
@@ -1065,6 +1122,84 @@
 		  	</weaponTags>
 		  	<researchPrerequisite>Stage2c_RA</researchPrerequisite>
 		  	<AllowWithRunAndGun>false</AllowWithRunAndGun>
+		  </li>
+
+		  <!-- ========== Panzerfaust 60 ========== -->
+  
+		  <li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+		  	<defName>Gun_Eintossflammenwerfer_46_RA</defName>
+		  	<statBases>
+		  	  <Mass>6.80</Mass>
+		  	  <RangedWeapon_Cooldown>1.50</RangedWeapon_Cooldown>
+		  	  <SightsEfficiency>0.80</SightsEfficiency>
+		  	  <ShotSpread>0.6</ShotSpread>
+		  	  <SwayFactor>1.65</SwayFactor>
+		  	  <Bulk>11.40</Bulk>
+		  	  <WorkToMake>6000</WorkToMake>
+		  	</statBases>
+		  	<costList>
+			  <Steel>40</Steel>
+			  <ComponentIndustrial>2</ComponentIndustrial>
+			  <FSX>4</FSX>
+		  	</costList>
+		  	<Properties>
+		  	  <verbClass>CombatExtended.Verb_ShootCEOneUse</verbClass>
+		  	  <hasStandardCommand>true</hasStandardCommand>
+		  	  <defaultProjectile>Bullet_Panzerfaust60_HEAT</defaultProjectile>
+		  	  <warmupTime>1.8</warmupTime>
+		  	  <range>14</range>			
+			  <soundCast>Shot_Panzerfaust</soundCast>
+			  <soundCastTail>GunTail_Heavy</soundCastTail>			  
+       		  <muzzleFlashScale>9</muzzleFlashScale>
+		  	</Properties>
+		  	<FireModes />
+		  	<weaponTags>
+			  <li>GunHeavy</li>	
+		  	</weaponTags>
+		  	<researchPrerequisite>Stage2b_RA</researchPrerequisite>
+		  </li>
+
+		  <!-- ========== Eintossflammenwerfer 46 ========== -->
+  
+		  <li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+		  	<defName>Gun_Eintossflammenwerfer_46_RA</defName>
+		  	<statBases>
+		  	  <Mass>3.60</Mass>
+		  	  <RangedWeapon_Cooldown>1.50</RangedWeapon_Cooldown>
+		  	  <SightsEfficiency>0.80</SightsEfficiency>
+		  	  <ShotSpread>0.6</ShotSpread>
+		  	  <SwayFactor>1.65</SwayFactor>
+		  	  <Bulk>7.50</Bulk>
+		  	  <WorkToMake>6000</WorkToMake>
+		  	</statBases>
+		  	<costList>
+			  <Steel>30</Steel>
+			  <ComponentIndustrial>1</ComponentIndustrial>
+			  <Chemfuel>40</Chemfuel>
+		  	</costList>
+		  	<Properties>
+		  	  <verbClass>CombatExtended.Verb_ShootCEOneUse</verbClass>
+		  	  <hasStandardCommand>true</hasStandardCommand>
+		  	  <defaultProjectile>Bullet_Flamethrower_Napalm</defaultProjectile>
+		  	  <warmupTime>1.8</warmupTime>
+		  	  <range>11</range>
+			  <ticksBetweenBurstShots>4</ticksBetweenBurstShots>
+			  <burstShotCount>25</burstShotCount>				
+			  <soundCast>Shot_Eintoss</soundCast>
+			  <soundCastTail>GunTail_Heavy</soundCastTail>
+			  <targetParams>
+			  	<canTargetLocations>true</canTargetLocations>
+			  </targetParams>			  
+       		 <muzzleFlashScale>14</muzzleFlashScale>
+		  	</Properties>
+		  	<FireModes>
+		  	  <aiAimMode>SuppressFire</aiAimMode>
+			  <noSingleShot>true</noSingleShot>  
+		  	</FireModes>
+		  	<weaponTags>
+			  <li>GunHeavy</li>	
+		  	</weaponTags>
+		  	<researchPrerequisite>Stage2c_RA</researchPrerequisite>
 		  </li>
 
 		  <!-- M24 Stielhandgranate Concussion Grenade -->
