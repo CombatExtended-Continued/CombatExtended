@@ -12,10 +12,14 @@ namespace CombatExtended.Compatibility
     public class VanillaFurnitureExpandedShields
     {
         private static int lastCacheTick = 0;
-        private static HashSet<Building_Shield> shields;
+
+        /// <summary>
+        /// Set of shields. The type if Building because RimWorld dark magic doesn't allow using types that may not exist here.
+        ///</summary>
+        private static HashSet<Building> shields;
         private const string VFES_ModName = "Vanilla Furniture Expanded - Security";
 
-        private static readonly MethodInfo CanFunctionPropertyGetter = typeof(Building_Shield)?.GetProperty("CanFunction", BindingFlags.Instance | BindingFlags.NonPublic)?.GetGetMethod(nonPublic: true);
+        private static MethodInfo CanFunctionPropertyGetter;
         public static bool CanInstall()
         {
             if (!ModLister.HasActiveModWithName(VFES_ModName))
@@ -27,6 +31,9 @@ namespace CombatExtended.Compatibility
         }
         public static void Install()
         {
+            // Only do this after we're sure that Building_Shield is a thing.
+            CanFunctionPropertyGetter = typeof(Building_Shield)?.GetProperty("CanFunction", BindingFlags.Instance | BindingFlags.NonPublic)?.GetGetMethod(nonPublic: true);
+
             BlockerRegistry.RegisterCheckForCollisionCallback(CheckCollision);
             BlockerRegistry.RegisterImpactSomethingCallback(ImpactSomething);
         }
@@ -44,8 +51,9 @@ namespace CombatExtended.Compatibility
 
             refreshShields(map);
 
-            foreach (var shield in shields)
+            foreach (var building in shields)
             {
+                var shield = building as Building_Shield;
                 if (!ShieldInterceptsProjectile(shield, projectile, launcher))
                 {
                     continue;
@@ -69,13 +77,14 @@ namespace CombatExtended.Compatibility
 
             refreshShields(map);
 
-            var blocked = shields.Any(shield => ShieldInterceptsProjectile(shield, projectile, launcher));
+            var blocked = shields.Any(building => ShieldInterceptsProjectile(building as Building_Shield, projectile, launcher));
             CELogger.Message($"Blocked {projectile}? -- {blocked}");
             return blocked;
         }
 
-        private static bool ShieldInterceptsProjectile(Building_Shield shield, ProjectileCE projectile, Thing launcher)
+        private static bool ShieldInterceptsProjectile(Building building, ProjectileCE projectile, Thing launcher)
         {
+            var shield = building as Building_Shield;
             if (!shield.active && !(bool)CanFunctionPropertyGetter.Invoke(shield, null))
             {
                 // Shield inactive, don't intercept.
@@ -101,7 +110,8 @@ namespace CombatExtended.Compatibility
             int thisTick = Find.TickManager.TicksAbs;
             if (lastCacheTick != thisTick)
             {
-                shields = map.listerBuildings.AllBuildingsColonistOfClass<Building_Shield>().ToHashSet();
+                // Can't use AllBuildingsColonstOfClass because type may not exist.
+                shields = map.listerBuildings.allBuildingsColonist.Where(s => s is Building_Shield).ToHashSet();
                 lastCacheTick = thisTick;
             }
         }
