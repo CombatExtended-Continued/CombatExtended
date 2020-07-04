@@ -1210,18 +1210,10 @@
 				<value>BaseWeapon</value>
 			</li>
 
-			<li Class="PatchOperationRemove">
-				<xpath>Defs/ThingDef[defName="Weapon_M24_RA"]/recipeMaker</xpath>
-			</li>
-
-			<li Class="PatchOperationRemove">
-				<xpath>Defs/ThingDef[defName="Weapon_M24_RA"]/costList</xpath>
-			</li>
-
 			<li Class="PatchOperationReplace">
 				<xpath>Defs/ThingDef[defName="Weapon_M24_RA"]/label</xpath>
 				<value>
-					<label>M1915 concussion grenade</label>
+					<label>M24 concussion grenade</label>
 				</value>
 			</li>
 
@@ -1304,6 +1296,55 @@
 					<li>CE_AI_Grenade</li>
 					<li>CE_OneHandedWeapon</li>
 				</weaponTags>
+				<researchPrerequisite>Stage0b_RA</researchPrerequisite>	
+			</li>
+
+			<li Class="PatchOperationRemove">
+				<xpath>Defs/ThingDef[defName="Weapon_M24_RA"]/recipeMaker</xpath>
+			</li>
+
+			<li Class="PatchOperationRemove">
+				<xpath>Defs/ThingDef[defName="Weapon_M24_RA"]/costList</xpath>
+			</li>
+
+			<!-- Projectile -->
+
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="Proj_M24_RA"]/thingClass</xpath>
+				<value>
+					<thingClass>CombatExtended.ProjectileCE_Explosive</thingClass>
+				</value>
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="Proj_M24_RA"]/projectile</xpath>
+				<value>
+					<projectile Class="CombatExtended.ProjectilePropertiesCE">
+						<explosionRadius>2</explosionRadius>
+						<damageDef>Bomb</damageDef>
+						<damageAmountBase>56</damageAmountBase>
+						<explosionDelay>60</explosionDelay>
+						<dropsCasings>false</dropsCasings>
+						<applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
+						<speed>5</speed>
+					</projectile>
+				</value>
+			</li>
+
+			<li Class="PatchOperationSequence">
+				<success>Always</success>
+				<operations>
+					<li Class="PatchOperationTest">
+						<xpath>Defs/ThingDef[defName="Proj_M24_RA"]/comps</xpath>
+						<success>Invert</success>
+					</li>
+					<li Class="PatchOperationAdd">
+						<xpath>Defs/ThingDef[defName="Proj_M24_RA"]</xpath>
+						<value>
+							<comps />
+						</value>
+					</li>
+				</operations>
 			</li>
 
 			</operations>

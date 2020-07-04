@@ -35,7 +35,15 @@
 				]/comps/li[@Class = "CompProperties_Refuelable"]</xpath>
 			</li>
 
-			<!-- ========== Remove Vanilla Ammo Shells ========== -->
+			<!-- ========== Remove Vanilla Shells & Ammo & References ========== -->
+
+			<li Class="PatchOperationRemove">
+				<xpath>Defs/ThingDef[@Name="Base_PaK_40_Weapon_RA"]/building/fixedStorageSettings</xpath>
+			</li>
+
+			<li Class="PatchOperationRemove">
+				<xpath>Defs/ThingDef[@Name="Base_PaK_40_Weapon_RA"]/building/defaultStorageSettings</xpath>
+			</li>
 
 			<li Class="PatchOperationRemove">
 				<xpath>Defs/ThingDef[defName="Kar98K_Ammo_RA"]</xpath>
@@ -523,7 +531,7 @@
 					<li Class="CombatExtended.CompProperties_AmmoUser">
 						<magazineSize>6</magazineSize>
 						<reloadTime>5</reloadTime>
-						<ammoSet>AmmoSet_155mmHowitzerShell</ammoSet>
+						<ammoSet>AmmoSet_15cmNebelwerfer</ammoSet>
 					</li>
 				</value>
 			</li>
@@ -537,12 +545,13 @@
 						<forceNormalTimeSpeed>false</forceNormalTimeSpeed>
 						<hasStandardCommand>true</hasStandardCommand>
 						<requireLineOfSight>false</requireLineOfSight>
-						<defaultProjectile>Bullet_155mmHowitzerShell_HE</defaultProjectile>
+						<defaultProjectile>Bullet_15cmNebelwerfer_HE</defaultProjectile>
 						<warmupTime>10</warmupTime>
 						<minRange>40</minRange>
 						<range>1000</range>
-						<burstShotCount>1</burstShotCount>
-						<soundCast>Shot_le.IG_18</soundCast>
+						<burstShotCount>3</burstShotCount>
+						<ticksBetweenBurstShots>8</ticksBetweenBurstShots>
+						<soundCast>Shot_Nebelwerfer_41</soundCast>
 						<muzzleFlashScale>39</muzzleFlashScale>
 						<circularError>1</circularError>
 						<indirectFirePenalty>0.15</indirectFirePenalty>
@@ -567,13 +576,6 @@
 				<xpath>Defs/ThingDef[@Name="Base_Nebelwerfer_41_RA"]/building/turretBurstCooldownTime</xpath>
 				<value>
 					<turretBurstCooldownTime>5</turretBurstCooldownTime>
-				</value>
-			</li>
-
-			<li Class="PatchOperationAdd">
-				<xpath>Defs/ThingDef[@Name="Base_Nebelwerfer_41_RA"]/building</xpath>
-				<value>
-					<spawnedConceptLearnOpportunity>CE_MortarDirectFire</spawnedConceptLearnOpportunity>
 				</value>
 			</li>
 
