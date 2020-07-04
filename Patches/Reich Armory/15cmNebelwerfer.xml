@@ -14,7 +14,7 @@
 		<defName>Ammo15cmNebelwerfer</defName>
 		<label>15cm Nebelwerfer Rocket</label>
 		<parent>AmmoRockets</parent>
-		<iconPath>Things/Ammo/Rocket/15cmNebelwerfer/15cmNebelwerfer_a</iconPath>
+		<iconPath>Turret/Nebelwerfer_41/Projectile/Wurfgranate</iconPath>
 	</ThingCategoryDef>
 
 	<!-- ==================== AmmoSet ========================== -->
@@ -50,8 +50,8 @@
 		<defName>Ammo_15cmNebelwerfer_HE</defName>
 		<label>15cm Nebelwerfer Rocket (HE)</label>
 		<graphicData>
-			<texPath>Turret/Nebelwerfer_41/Projectile/Shell_HE</texPath>
-			<graphicClass>Graphic_StackCount</graphicClass>
+			<texPath>Turret/Nebelwerfer_41/Projectile/Shell_HE/Shell_Nebelwerfer_41_HE</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
 		</graphicData>
 		<statBases>
 			<MarketValue>298.27</MarketValue>
@@ -78,7 +78,15 @@
 			<damageAmountBase>228</damageAmountBase>
 			<explosionRadius>3.5</explosionRadius>
 			<applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
-		</projectile>	
+		</projectile>
+		<comps>
+			<li Class="CombatExtended.CompProperties_Fragments">
+				<fragments>
+					<Fragment_Large>15</Fragment_Large>
+					<Fragment_Small>30</Fragment_Small>
+				</fragments>
+			</li>
+		</comps>			
 	</ThingDef>
 
 	<!-- ==================== Recipes ========================== -->
