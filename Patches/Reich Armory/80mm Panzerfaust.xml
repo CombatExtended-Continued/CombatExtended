@@ -11,17 +11,7 @@
 
 	<!-- ================== Projectiles ================== -->
 
-	<ThingDef Class="CombatExtended.AmmoDef" Name="BasePanzerfaustRocket" ParentName="BaseBullet" Abstract="true">
-		<graphicData>
-			<shaderType>TransparentPostLight</shaderType>
-		</graphicData>
-		<projectile Class="CombatExtended.ProjectilePropertiesCE">
-			<speed>22</speed>
-			<soundAmbient>RocketPropelledLoop_Small</soundAmbient>
-		</projectile>
-	</ThingDef>	
-
-	<ThingDef Class="CombatExtended.AmmoDef" ParentName="BasePanzerfaustRocket">
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="BaseRPG7Grenade">
 		<defName>Bullet_Panzerfaust60_HEAT</defName>
 		<label>Panzerfaust 60 rocket</label>
 		<graphicData>
@@ -29,6 +19,7 @@
 			<graphicClass>Graphic_Single</graphicClass>
 		</graphicData>
 		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<speed>22</speed>
 			<damageDef>Bullet</damageDef>
 			<damageAmountBase>208</damageAmountBase>
 			<armorPenetrationSharp>200</armorPenetrationSharp>
@@ -40,13 +31,7 @@
 			<explosiveDamageType>Bomb</explosiveDamageType>
 			<explosiveRadius>1</explosiveRadius>
 			<explosionSound>MortarBomb_Explode</explosionSound>
-				<applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
-		  </li>
-		  <li Class="CombatExtended.CompProperties_Fragments">
-			<fragments>
-				<Fragment_Large>7</Fragment_Large>
-			  <Fragment_Small>35</Fragment_Small>
-			</fragments>
+			<applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
 		  </li>
 		</comps>
 	</ThingDef>

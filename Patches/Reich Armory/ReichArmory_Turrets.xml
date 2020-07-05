@@ -27,6 +27,14 @@
 			</li>
 
 			<li Class="PatchOperationRemove">
+				<xpath>Defs/ThingDef[@Name="Base_PaK_40_Weapon_RA"]/building/defaultStorageSettings/filter/disallowedThingDefs</xpath>
+			</li>
+
+			<li Class="PatchOperationRemove">
+				<xpath>Defs/ThingDef[@Name="Base_PaK_40_RA"]/inspectorTabs</xpath>
+			</li>
+
+			<li Class="PatchOperationRemove">
 				<xpath>Defs/ThingDef[
 				defName="Turret_Flak_38_Panzergrau_RA" or
 				defName="Turret_Flak_38_Dunkelgelb_RA" or	
@@ -37,13 +45,6 @@
 
 			<!-- ========== Remove Vanilla Shells & Ammo & References ========== -->
 
-			<li Class="PatchOperationRemove">
-				<xpath>Defs/ThingDef[@Name="Base_PaK_40_Weapon_RA"]/building/fixedStorageSettings</xpath>
-			</li>
-
-			<li Class="PatchOperationRemove">
-				<xpath>Defs/ThingDef[@Name="Base_PaK_40_Weapon_RA"]/building/defaultStorageSettings</xpath>
-			</li>
 
 			<li Class="PatchOperationRemove">
 				<xpath>Defs/ThingDef[defName="Kar98K_Ammo_RA"]</xpath>
@@ -297,7 +298,7 @@
 				<Properties>
 					<verbClass>CombatExtended.Verb_ShootCE</verbClass>
 					<hasStandardCommand>true</hasStandardCommand>
-					<defaultProjectile>Bullet_75x714mmRShell_AP</defaultProjectile>
+					<defaultProjectile>Bullet_75x714mmRShell_HE</defaultProjectile>
 					<warmupTime>3.7</warmupTime>
 					<range>94</range>
 					<soundCast>Shot_PaK_40</soundCast>
@@ -332,7 +333,7 @@
 				<Properties>
 					<verbClass>CombatExtended.Verb_ShootCE</verbClass>
 					<hasStandardCommand>true</hasStandardCommand>
-					<defaultProjectile>Bullet_75x714mmRShell_AP</defaultProjectile>
+					<defaultProjectile>Bullet_75x714mmRShell_HE</defaultProjectile>
 					<warmupTime>3.7</warmupTime>
 					<range>94</range>
 					<soundCast>Shot_PaK_40</soundCast>
@@ -357,7 +358,7 @@
 			</li>
 
 			<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
-				<defName>Artillery_PaK_40_Camo_RA</defName>
+				<defName>Artillery_PaK_40_Dunkelgelb_RA</defName>
 				<statBases>
 					<RangedWeapon_Cooldown>2.5</RangedWeapon_Cooldown>
 					<SightsEfficiency>2.1</SightsEfficiency>
@@ -367,7 +368,7 @@
 				<Properties>
 					<verbClass>CombatExtended.Verb_ShootCE</verbClass>
 					<hasStandardCommand>true</hasStandardCommand>
-					<defaultProjectile>Bullet_75x714mmRShell_AP</defaultProjectile>
+					<defaultProjectile>Bullet_75x714mmRShell_HE</defaultProjectile>
 					<warmupTime>3.7</warmupTime>
 					<range>94</range>
 					<soundCast>Shot_PaK_40</soundCast>
@@ -528,16 +529,10 @@
 						<li>90</li>
 						</chargeSpeeds>
 					</li>
-					<li Class="CombatExtended.CompProperties_FireModes">
-						<aiUseBurstMode>true</aiUseBurstMode>
-						<aimedBurstShotCount>3</aimedBurstShotCount>
-						<noSnapshot>true</noSnapshot>
-						<noSingleShot>false</noSingleShot>						
-					</li>					
 					<li Class="CombatExtended.CompProperties_AmmoUser">
 						<magazineSize>6</magazineSize>
 						<reloadTime>5</reloadTime>
-						<ammoSet>AmmoSet_15cmNebelwerfer</ammoSet>
+						<ammoSet>AmmoSet_155mmHowitzerShell</ammoSet>
 					</li>
 				</value>
 			</li>
@@ -551,15 +546,14 @@
 						<forceNormalTimeSpeed>false</forceNormalTimeSpeed>
 						<hasStandardCommand>true</hasStandardCommand>
 						<requireLineOfSight>false</requireLineOfSight>
-						<defaultProjectile>Bullet_15cmNebelwerfer_HE</defaultProjectile>
+						<defaultProjectile>Bullet_155mmHowitzerShell_HE</defaultProjectile>
 						<warmupTime>10</warmupTime>
 						<minRange>40</minRange>
 						<range>1000</range>
-						<burstShotCount>6</burstShotCount>
-						<ticksBetweenBurstShots>8</ticksBetweenBurstShots>
+						<burstShotCount></burstShotCount>
 						<soundCast>Shot_Nebelwerfer_41</soundCast>
 						<muzzleFlashScale>39</muzzleFlashScale>
-						<circularError>0.5</circularError>
+						<circularError>1</circularError>
 						<indirectFirePenalty>0.15</indirectFirePenalty>
 						<targetParams>
 						<canTargetLocations>true</canTargetLocations>
@@ -582,6 +576,13 @@
 				<xpath>Defs/ThingDef[@Name="Base_Nebelwerfer_41_RA"]/building/turretBurstCooldownTime</xpath>
 				<value>
 					<turretBurstCooldownTime>5</turretBurstCooldownTime>
+				</value>
+			</li>
+
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[@Name="Base_Nebelwerfer_41_RA"]/building</xpath>
+				<value>
+					<spawnedConceptLearnOpportunity>CE_MortarDirectFire</spawnedConceptLearnOpportunity>
 				</value>
 			</li>
 
