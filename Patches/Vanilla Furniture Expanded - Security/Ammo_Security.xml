@@ -35,69 +35,21 @@
 		</value>
     </li>
 
-	<!-- ========== Catapult Ammo ========== -->
-<!--	<li Class="PatchOperationAttributeAdd">
-		<xpath>Defs/ThingDef[
-		defName = "ChunkSandstone" or
-		 defName = "ChunkGranite" or
-		 defName = "ChunkMarble" or	
-		 defName = "ChunkLimestone" or	
-		 defName = "ChunkSlate"		 		 	 
-		 ]</xpath>
-		<attribute>Class</attribute>
-		<value>CombatExtended.AmmoDef</value>
-	</li>
+	<!-- ========== Raider Artillery (To circumvent the issue with vanilla shells.) ========== -->
+	<li Class="PatchOperationAdd">
+		<xpath>Defs</xpath>
+		<value>
+			<CombatExtended.AmmoSetDef>
+				<defName>AmmoSet_RaiderArtillery</defName>
+				<label>Raider Artillery</label>
+				<ammoTypes>
+				    <Shell_HighExplosive>Bullet_155mmHowitzerShell_HE</Shell_HighExplosive>
+				    <Shell_Incendiary>Bullet_155mmHowitzerShell_HE</Shell_Incendiary>				
+				</ammoTypes>	
+			</CombatExtended.AmmoSetDef>
+		</value>
+    </li>
 
-	<li Class="PatchOperationAdd">
-		<xpath>Defs/ThingDef[
-		defName = "ChunkSandstone" or
-		 defName = "ChunkGranite" or
-		 defName = "ChunkMarble" or	
-		 defName = "ChunkLimestone" or	
-		 defName = "ChunkSlate"		 		 	 
-		 ]</xpath>
-		<value>
-		 <thingCategories>
-		  <li>AmmoCatapultStone</li>
-    	 </thingCategories>		  
-		</value>
-	</li>
-	
-	<li Class="PatchOperationAdd">
-		<xpath>/Defs/ThingDef[defName="ChunkSandstone"]</xpath>
-		<value>
-			<ammoClass>CatapultStone_Sandstone</ammoClass>
-		</value>
-	</li>
-
-	<li Class="PatchOperationAdd">
-		<xpath>/Defs/ThingDef[defName="ChunkSlate"]</xpath>
-		<value>
-			<ammoClass>CatapultStone_Slate</ammoClass>
-		</value>
-	</li>
-
-	<li Class="PatchOperationAdd">
-		<xpath>/Defs/ThingDef[defName="ChunkGranite"]</xpath>
-		<value>
-			<ammoClass>CatapultStone_Granite</ammoClass>
-		</value>
-	</li>
-
-	<li Class="PatchOperationAdd">
-		<xpath>/Defs/ThingDef[defName="ChunkMarble"]</xpath>
-		<value>
-			<ammoClass>CatapultStone_Marble</ammoClass>
-		</value>
-	</li>
-
-	<li Class="PatchOperationAdd">
-		<xpath>/Defs/ThingDef[defName="ChunkLimestone"]</xpath>
-		<value>
-			<ammoClass>CatapultStone_Limestone</ammoClass>
-		</value>
-	</li>
--->
 	</operations>
 	</match>
 	</Operation>
