@@ -1,41 +1,51 @@
 # Vanilla Factions Expanded - Insectoids
 
 ## PROGRESS TRACKER
-- [ ] Bodies
-  - [ ] Boomtick
-  - [ ] Scorpion
-  - [ ] Wargling
+- [ ] Ammo
+  - [x] Plasma Ammo
+    - [x] Thing Categories
+    - [x] Ammo Sets
+    - [x] Projectiles
+    - [x] Recipes
+- [x] Bodies
+  - [x] Boomtick
+  - [x] Scorpion
+  - [x] Wargling
 - [ ] Hediffs
-- [ ] PawnKindDefs
-- [ ] Scenario
-- [ ] ThingDefs_Items
-  - [ ] Apparel
-  - [ ] Leathers
-- [ ] ThingDefs_Misc
-  - [ ] Weapons / Ammo
-  - [ ] Archotech Shield Belt
-- [ ] ThingDefs_Races
-  - [ ] Insects
-- [ ] ThingDefs_Races_VatGrown
-  - [ ] Boomtick
-  - [ ] Cuterpillar
-  - [ ] Gigascorpion
-  - [ ] Gigawig
-  - [ ] Megacricket
-  - [ ] Milkbeetle
-  - [ ] Monstosity
-  - [ ] Princess
-  - [ ] Royal Larva
-  - [ ] Royal Maggot
-  - [ ] Spiderweaver
-  - [ ] Titanbeetle
-  - [ ] VAT Gigalocust
-  - [ ] VAT Megapede
-  - [ ] VAT Megascarab
-  - [ ] VAT Megaspider
-  - [ ] VAT Spelopede
-  - [ ] Wargling
-  - [ ] Worker Ant
+- [x] PawnKindDefs
+- [x] Scenario
+- [x] ThingDefs_Items
+  - [x] Leathers
+- [x] ThingDefs_Misc
+  - [x] Apparel
+  - [x] Weapons
+  - [x] Archotech Shield Belt
+- [x] ThingDefs_Races
+  - [x] Queen
+  - [x] Royal Megaspider
+  - [x] Royal Megapede
+  - [x] Gigalocust
+  - [x] Larvae
+- [x] ThingDefs_Races_VatGrown
+  - [x] Boomtick
+  - [x] Cuterpillar
+  - [x] Gigascorpion
+  - [x] Gigawig
+  - [x] Megacricket
+  - [x] Milkbeetle
+  - [x] Monstosity
+  - [x] Princess
+  - [x] Royal Larva
+  - [x] Royal Maggot
+  - [x] Spiderweaver
+  - [x] Titanbeetle
+  - [x] VAT Gigalocust
+  - [x] VAT Megapede
+  - [x] VAT Megascarab
+  - [x] VAT Megaspider
+  - [x] VAT Spelopede
+  - [x] Wargling
+  - [x] Worker Ant
 
 ## Notes
 - Haven't decided the magazine size for the plasma weapons yet, currently the cutter / scattergun / beam rifle share a mag size of 50 each with the piercer having a 20 "round" magazine.

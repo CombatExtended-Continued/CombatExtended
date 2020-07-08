@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+
+  <Operation Class="PatchOperationFindMod">
+    <mods>
+      <li>Vanilla Factions Expanded - Insectoids</li>
+    </mods>
+
+    <match Class="PatchOperationSequence">
+      <operations>
+        <li Class="PatchOperationAdd">
+          <xpath>/Defs/ScenarioDef[defName="VFEI_MercenarySquad"]/scenario/parts</xpath>
+
+          <value>
+            <!-- === Charge Rifle === -->
+            <li Class="ScenPart_StartingThing_Defined">
+              <def>StartingThing_Defined</def>
+              <thingDef>Ammo_6x24mmCharged</thingDef>
+              <count>300</count>
+            </li>
+            <!-- === Charge Lance === -->
+            <li Class="ScenPart_StartingThing_Defined">
+              <def>StartingThing_Defined</def>
+              <thingDef>Ammo_5x35mmCharged</thingDef>
+              <count>300</count>
+            </li>
+          </value>
+        </li>
+      </operations>
+    </match>
+  </Operation>
+
+</Patch>
