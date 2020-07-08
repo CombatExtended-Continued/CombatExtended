@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+			<li>[RH] Faction: Coalition</li>
+		</mods>
+		<match Class="PatchOperationSequence">
+			<operations>
+
+				<!-- ========== Crye CAGE body armor ========== -->
+
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="RNApparel_CryeCAGE_COA"]/statBases</xpath>
+					<value>
+						<Bulk>7.5</Bulk>
+						<WornBulk>5</WornBulk>
+					</value>
+				</li>
+
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="RNApparel_CryeCAGE_COA"]/equippedStatOffsets</xpath>
+					<value>
+						<CarryBulk>10</CarryBulk>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="RNApparel_CryeCAGE_COA"]/statBases/ArmorRating_Sharp</xpath>
+					<value>
+						<ArmorRating_Sharp>15</ArmorRating_Sharp>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="RNApparel_CryeCAGE_COA"]/statBases/ArmorRating_Blunt</xpath>
+					<value>
+						<ArmorRating_Blunt>25</ArmorRating_Blunt>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="RNApparel_CryeCAGE_COA"]/statBases/ArmorRating_Heat</xpath>
+					<value>
+						<ArmorRating_Heat>0.36</ArmorRating_Heat>
+					</value>
+				</li>
+
+			<!-- ========== Crye JPC body armor (Mercs) ========== -->
+
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName="RNApparel_CryeJPC_COA" or defName="RNApparel_CryeJPC_COA_Black" or defName="RNApparel_CryeJPC_COA_Black"]/statBases</xpath>
+				<value>
+					<Bulk>6.5</Bulk>
+					<WornBulk>4.5</WornBulk>
+				</value>
+			</li>
+
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName="RNApparel_CryeJPC_COA" or defName="RNApparel_CryeJPC_COA_Black"]/equippedStatOffsets</xpath>
+				<value>
+					<CarryBulk>10</CarryBulk>
+				</value>
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="RNApparel_CryeJPC_COA" or defName="RNApparel_CryeJPC_COA_Black"]/statBases/ArmorRating_Sharp</xpath>
+				<value>
+					<ArmorRating_Sharp>15</ArmorRating_Sharp>
+				</value>
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="RNApparel_CryeJPC_COA" or defName="RNApparel_CryeJPC_COA_Black"]/statBases/ArmorRating_Blunt</xpath>
+				<value>
+					<ArmorRating_Blunt>31</ArmorRating_Blunt>
+				</value>
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="RNApparel_CryeJPC_COA" or defName="RNApparel_CryeJPC_COA_Black"]/statBases/ArmorRating_Heat</xpath>
+				<value>
+					<ArmorRating_Heat>0.36</ArmorRating_Heat>
+				</value>
+			</li>
+
+			</operations>
+		</match>
+	</Operation>
+</Patch>
