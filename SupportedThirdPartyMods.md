@@ -77,6 +77,7 @@ Girls' Frontline Styles - 404 Team	|
 Girls' Frontline Weapon Pack	|
 Glitter Tech	|
 GouRIMet	|
+Halo - Rimworld Auxiliary Combat Armory	|
 Hand 'n' Footwear	|
 High Caliber	|
 Jernfalk's Standalone Horses	|
@@ -111,6 +112,7 @@ Rim of Madness - Bones	|
 Rimefeller	|
 RimEffect - Asari of the Rims	|
 Rimfire	|
+Rimworld - Witcher Monster Hunt |
 Save Our Ship 2	|
 Sergals, Gnolls, Lions and Frogs	|
 Simply More Melee	|
@@ -121,12 +123,15 @@ TouhouStyle	|
 Trading Economy	|
 Tsar Armory	|
 Turret Collection	|
+Vanilla Animals Expanded |
 Vanilla Apparel Expanded	|
 Vanilla Armour Expanded	|
 Vanilla Bionics Expansion	|
+Vanilla Factions Expanded - Insectoids |
 Vanilla Factions Expanded - Medieval	|
 Vanilla Factions Expanded - Settlers	|
 Vanilla Vehicles Expanded	|
+Vanilla Weapons Expanded |
 Vanilla Weapons Expanded Quickdraw	|
 Vanilla-Friendly Animal Surgery	|
 Vanilla-Friendly Weapon Expansion	|
