@@ -39,6 +39,8 @@ Mod |
 [RH] Faction: Militaires Sans Frontieres	|
 [RH] Faction: Task Force 141	|
 [RH] Faction: The Ghosts	|
+[RH] Faction: UAC	|
+[RH] Faction: UAC Kit	|
 [RH] Faction: Umbra Company	|
 [RH] Faction: VOID	|
 [RH] Faction: War Mongrels	|
