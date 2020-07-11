@@ -1,0 +1,218 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+			<li>Medical System Expansion - Revived</li>
+		</mods>
+		<match Class="PatchOperationSequence">
+			<operations>
+				<!-- ==== Special Bionic Prosthesis  ==== -->
+				<!-- AntitoxinKidney -->
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/HediffDef[defName="AntitoxinKidney"]/stages</xpath>
+					<value>
+						<stages>
+							<li>
+								<minSeverity>0.000001</minSeverity>
+								<statOffsets>
+									<ArmorRating_Sharp>0.127</ArmorRating_Sharp>
+									<ArmorRating_Blunt>0.234</ArmorRating_Blunt>
+									<ArmorRating_Heat>0.024</ArmorRating_Heat>
+									<ToxicSensitivity>-0.25</ToxicSensitivity>
+								</statOffsets>
+							</li>
+						</stages>
+					</value>
+				</li>
+				<!-- MedicalLiver -->
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/HediffDef[defName="MedicalLiver"]/stages</xpath>
+					<value>
+						<stages>
+							<li>
+								<minSeverity>0.000001</minSeverity>
+								<statOffsets>
+									<ArmorRating_Sharp>0.255</ArmorRating_Sharp>
+									<ArmorRating_Blunt>0.468</ArmorRating_Blunt>
+									<ArmorRating_Heat>0.048</ArmorRating_Heat>
+									<ImmunityGainSpeed>0.25</ImmunityGainSpeed>
+								</statOffsets>
+							</li>
+						</stages>
+					</value>
+				</li>
+				<!-- EnergizedLiver -->
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/HediffDef[defName="EnergizedLiver"]/stages</xpath>
+					<value>
+						<stages>
+							<li>
+								<minSeverity>0.000001</minSeverity>
+								<statOffsets>
+									<ArmorRating_Sharp>0.255</ArmorRating_Sharp>
+									<ArmorRating_Blunt>0.468</ArmorRating_Blunt>
+									<ArmorRating_Heat>0.048</ArmorRating_Heat>
+								</statOffsets>
+								<restFallFactor>0.75</restFallFactor>
+							</li>
+						</stages>
+					</value>
+				</li>
+				<!-- PowerArm -->
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/HediffDef[defName="PowerArm"]</xpath>
+					<value>
+						<stages>
+							<li>
+								<minSeverity>0.000001</minSeverity>
+								<statOffsets>
+									<ArmorRating_Sharp>0.278</ArmorRating_Sharp>
+									<ArmorRating_Blunt>0.511</ArmorRating_Blunt>
+									<ArmorRating_Heat>0.052</ArmorRating_Heat>
+								</statOffsets>
+							</li>
+						</stages>
+					</value>
+				</li>
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/HediffDef[defName="PowerArm"]/comps/li[@Class="HediffCompProperties_VerbGiver"]/tools</xpath>
+					<value>
+						<tools>
+							<li Class="CombatExtended.ToolCE">
+								<label>fist</label>
+								<capacities>
+									<li>Blunt</li>
+								</capacities>
+								<power>25</power>
+								<cooldownTime>1.73</cooldownTime>
+								<armorPenetrationBlunt>10.125</armorPenetrationBlunt>
+								<alwaysTreatAsWeapon>true</alwaysTreatAsWeapon>
+							</li>
+						</tools>
+					</value>
+				</li>
+				<!-- MSE_PowerBlade -->
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/HediffDef[defName="MSE_PowerBlade"]</xpath>
+					<value>
+						<stages>
+							<li>
+								<minSeverity>0.000001</minSeverity>
+								<statOffsets>
+									<ArmorRating_Sharp>0.359</ArmorRating_Sharp>
+									<ArmorRating_Blunt>0.659</ArmorRating_Blunt>
+									<ArmorRating_Heat>0.068</ArmorRating_Heat>
+									<MeleeCritChance>0.11</MeleeCritChance>
+									<MeleeParryChance>0.13</MeleeParryChance>
+									<MeleeDodgeChance>0.27</MeleeDodgeChance>
+								</statOffsets>
+							</li>
+						</stages>
+					</value>
+				</li>
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/HediffDef[defName="MSE_PowerBlade"]/comps/li[@Class="HediffCompProperties_VerbGiver"]/tools</xpath>
+					<value>
+						<tools>
+							<li Class="CombatExtended.ToolCE">
+								<label>blade</label>
+								<capacities>
+									<li>Cut</li>
+								</capacities>
+								<power>37</power>
+								<cooldownTime>1.32</cooldownTime>
+								<armorPenetrationBlunt>3.375</armorPenetrationBlunt>
+								<armorPenetrationSharp>1.35</armorPenetrationSharp>
+								<alwaysTreatAsWeapon>true</alwaysTreatAsWeapon>
+							</li>
+							<li Class="CombatExtended.ToolCE">
+								<label>blade</label>
+								<capacities>
+									<li>Stab</li>
+								</capacities>
+								<power>21</power>
+								<cooldownTime>2.11</cooldownTime>
+								<armorPenetrationBlunt>1.318</armorPenetrationBlunt>
+								<armorPenetrationSharp>2.64</armorPenetrationSharp>
+								<alwaysTreatAsWeapon>true</alwaysTreatAsWeapon>
+							</li>
+						</tools>
+					</value>
+				</li>
+				<!-- BreathingSupportRib -->
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/HediffDef[defName="BreathingSupportRib"]/stages</xpath>
+					<value>
+						<stages>
+							<li>
+								<minSeverity>0.000001</minSeverity>
+								<statOffsets>
+									<ArmorRating_Sharp>0.051</ArmorRating_Sharp>
+									<ArmorRating_Blunt>0.094</ArmorRating_Blunt>
+									<ArmorRating_Heat>0.01</ArmorRating_Heat>
+								</statOffsets>
+								<capMods>
+									<li>
+										<capacity>Breathing</capacity>
+										<offset>0.10</offset>
+									</li>
+								</capMods>
+							</li>
+						</stages>
+					</value>
+				</li>
+				<!-- RelaxationRib -->
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/HediffDef[defName="RelaxationRib"]/stages</xpath>
+					<value>
+						<stages>
+							<li>
+								<minSeverity>0.000001</minSeverity>
+								<statOffsets>
+									<ArmorRating_Sharp>0.051</ArmorRating_Sharp>
+									<ArmorRating_Blunt>0.094</ArmorRating_Blunt>
+									<ArmorRating_Heat>0.01</ArmorRating_Heat>
+									<MentalBreakThreshold>-0.1</MentalBreakThreshold>
+								</statOffsets>
+							</li>
+						</stages>
+					</value>
+				</li>
+				<!-- ColdRegulatorRib -->
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/HediffDef[defName="ColdRegulatorRib"]/stages</xpath>
+					<value>
+						<stages>
+							<li>
+								<minSeverity>0.000001</minSeverity>
+								<statOffsets>
+									<ArmorRating_Sharp>0.051</ArmorRating_Sharp>
+									<ArmorRating_Blunt>0.094</ArmorRating_Blunt>
+									<ArmorRating_Heat>0.01</ArmorRating_Heat>
+									<ComfyTemperatureMin>-5</ComfyTemperatureMin>
+								</statOffsets>
+							</li>
+						</stages>
+					</value>
+				</li>
+				<!-- HeatRegulatorRib -->
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/HediffDef[defName="HeatRegulatorRib"]/stages</xpath>
+					<value>
+						<stages>
+							<li>
+								<minSeverity>0.000001</minSeverity>
+								<statOffsets>
+									<ArmorRating_Sharp>0.051</ArmorRating_Sharp>
+									<ArmorRating_Blunt>0.094</ArmorRating_Blunt>
+									<ArmorRating_Heat>0.01</ArmorRating_Heat>
+									<ComfyTemperatureMax>5</ComfyTemperatureMax>
+								</statOffsets>
+							</li>
+						</stages>
+					</value>
+				</li>
+			</operations>
+		</match>
+	</Operation>
+</Patch>

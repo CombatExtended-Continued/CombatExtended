@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+			<li>[RH] Faction: Coalition</li>
+		</mods>
+		<match Class="PatchOperationSequence">
+			<operations>
+
+
+				<!-- ========== Backpack tactical ========== -->
+
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="RNApparel_Backpack_Tactical_Multicam"]/statBases</xpath>
+					<value>
+						<Bulk>3</Bulk>
+					</value>
+				</li>
+
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="RNApparel_Backpack_Tactical_Multicam"]/equippedStatOffsets</xpath>
+					<value>
+						<CarryBulk>25</CarryBulk>
+					</value>
+				</li>
+				
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="RNApparel_Backpack_Tactical_Multicam"]/apparel
+					</xpath>
+					<value>
+						<apparel>
+							<careIfWornByCorpse>false</careIfWornByCorpse>
+							<bodyPartGroups>
+								<li>Shoulders</li>
+							</bodyPartGroups>
+							<layers>
+								<li>Backpack</li>
+							</layers>
+							<tags>
+								<li>IndustrialAdvanced</li>
+							</tags>
+							<defaultOutfitTags>
+								<li>Soldier</li>
+							</defaultOutfitTags>
+							<wornGraphicPath>Things/Apparel/Belt/AssaultBackpack</wornGraphicPath>
+						</apparel>
+					</value>
+				</li>
+
+			</operations>
+		</match>
+	</Operation>
+</Patch>

@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+		<li>RimWorld - Witcher Monster Hunt</li>
+		</mods>
+
+		<match Class="PatchOperationSequence">
+			<operations>
+
+			<li Class="PatchOperationAddModExtension">
+				<xpath>Defs/ThingDef[defName="WMH_Hym"]</xpath>
+				<value>
+					<li Class="CombatExtended.RacePropertiesExtensionCE">
+						<bodyShape>Humanoid</bodyShape>
+					</li>
+				</value>
+			</li>
+
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName="WMH_Hym"]/statBases</xpath>
+				<value>
+					<MeleeDodgeChance>0.4</MeleeDodgeChance>
+					<MeleeCritChance>0.1</MeleeCritChance>
+				</value>
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="WMH_Hym"]/tools</xpath>
+				<value>
+					<tools>
+				<li Class="CombatExtended.ToolCE">
+				<label>left fist</label>
+				<capacities>
+					<li>WMH_HymPunch</li>
+				</capacities>
+							<power>30</power>
+							<cooldownTime>2.2</cooldownTime>
+							<linkedBodyPartsGroup>LeftHand</linkedBodyPartsGroup>
+							<armorPenetrationSharp>40</armorPenetrationSharp>
+							<armorPenetrationBlunt>60</armorPenetrationBlunt>
+						</li>
+				<li Class="CombatExtended.ToolCE">
+				<label>right fist</label>
+				<capacities>
+					<li>WMH_HymPunch</li>
+				</capacities>
+							<power>30</power>
+							<cooldownTime>2.2</cooldownTime>
+							<linkedBodyPartsGroup>RightHand</linkedBodyPartsGroup>
+							<armorPenetrationSharp>40</armorPenetrationSharp>
+							<armorPenetrationBlunt>60</armorPenetrationBlunt>
+						</li>
+				<li Class="CombatExtended.ToolCE">
+				<label>head</label>
+				<capacities>
+					<li>WMH_HymPunch</li>
+				</capacities>
+				<power>10</power>
+				<cooldownTime>1.6</cooldownTime>
+				<linkedBodyPartsGroup>HeadAttackTool</linkedBodyPartsGroup>
+							<armorPenetrationSharp>40</armorPenetrationSharp>
+							<armorPenetrationBlunt>60</armorPenetrationBlunt>
+				<chanceFactor>0.2</chanceFactor>
+						</li>
+					</tools>
+				</value>
+			</li>
+			</operations>
+		</match>
+	</Operation>
+</Patch>

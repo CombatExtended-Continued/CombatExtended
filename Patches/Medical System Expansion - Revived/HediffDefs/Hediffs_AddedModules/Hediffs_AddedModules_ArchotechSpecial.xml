@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+			<li>Medical System Expansion - Revived</li>
+		</mods>
+		<match Class="PatchOperationSequence">
+			<operations>
+				<!-- ==== Special Archotech Modules  ==== -->
+				<!-- MSE_AdvancedRangedPlatformModule -->
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/HediffDef[defName="MSE_AdvancedRangedPlatformModule"]/stages</xpath>
+					<value>
+						<stages>
+							<li>
+								<minSeverity>0.000001</minSeverity>
+								<capMods>
+									<li>
+										<capacity>Manipulation</capacity>
+										<offset>0.03</offset>
+									</li>
+								</capMods>
+								<statOffsets>
+									<ShootingAccuracyPawn>4</ShootingAccuracyPawn>
+									<AimingAccuracy>0.4</AimingAccuracy>
+									<AimingDelayFactor>-0.2</AimingDelayFactor>
+								</statOffsets>
+							</li>
+						</stages>
+					</value>
+				</li>
+				<!-- MSE_AdvancedMeleePlatformModule -->
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/HediffDef[defName="MSE_AdvancedMeleePlatformModule"]/stages</xpath>
+					<value>
+						<stages>
+							<li>
+								<minSeverity>0.000001</minSeverity>
+								<capMods>
+									<li>
+										<capacity>Manipulation</capacity>
+										<offset>0.03</offset>
+									</li>
+								</capMods>
+								<statOffsets>
+									<MeleeDodgeChance>0.8</MeleeDodgeChance>
+									<MeleeHitChance>8</MeleeHitChance>
+									<MeleeCritChance>0.8</MeleeCritChance>
+									<MeleeParryChance>0.8</MeleeParryChance>
+								</statOffsets>
+							</li>
+						</stages>
+					</value>
+				</li>
+				<!-- MSE_AdvancedPowerArmModule -->
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/HediffDef[defName="MSE_AdvancedPowerArmModule"]/comps/li[@Class="HediffCompProperties_VerbGiver"]/tools</xpath>
+					<value>
+						<tools>
+							<li Class="CombatExtended.ToolCE">
+								<label>fist</label>
+								<capacities>
+									<li>Blunt</li>
+								</capacities>
+								<power>20</power>
+								<cooldownTime>1.95</cooldownTime>
+								<armorPenetrationBlunt>8</armorPenetrationBlunt>
+								<alwaysTreatAsWeapon>true</alwaysTreatAsWeapon>
+							</li>
+						</tools>
+					</value>
+				</li>
+				<!-- MSE_AdvancedPowerClawModule -->
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/HediffDef[defName="MSE_AdvancedPowerClawModule"]/comps/li[@Class="HediffCompProperties_VerbGiver"]/tools</xpath>
+					<value>
+						<tools>
+							<li Class="CombatExtended.ToolCE">
+								<label>Claw</label>
+								<capacities>
+									<li>Scratch</li>
+								</capacities>
+								<power>19</power>
+								<cooldownTime>1</cooldownTime>
+								<armorPenetrationBlunt>3.161</armorPenetrationBlunt>
+								<armorPenetrationSharp>6.33</armorPenetrationSharp>
+							</li>
+						</tools>
+					</value>
+				</li>
+				<!-- MSE_AdamantiumBoneModule -->
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/HediffDef[defName="MSE_AdamantiumBoneModule"]/stages</xpath>
+					<value>
+						<stages>
+							<li>
+								<minSeverity>0.000001</minSeverity>
+								<capMods>
+									<li>
+										<capacity>Manipulation</capacity>
+										<offset>0.03</offset>
+									</li>
+								</capMods>
+								<statOffsets>
+									<ArmorRating_Blunt>0.9</ArmorRating_Blunt>
+								</statOffsets>
+							</li>
+						</stages>
+					</value>
+				</li>
+			</operations>
+		</match>
+	</Operation>
+</Patch>

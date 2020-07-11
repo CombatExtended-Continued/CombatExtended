@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+		<li>Alpha Animals</li>
+		</mods>
+
+		<match Class="PatchOperationSequence">
+			<operations>
+
+			<li Class="PatchOperationAddModExtension">
+				<xpath>/Defs/ThingDef[defName="AA_Ravager"]</xpath>
+				<value>
+					<li Class="CombatExtended.RacePropertiesExtensionCE">
+						<bodyShape>QuadrupedLow</bodyShape>
+					</li>
+				</value>
+			</li>
+
+					<li Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="AA_Ravager"]/statBases/MoveSpeed</xpath>
+		<value>
+			<MoveSpeed>4.6</MoveSpeed>
+		</value>
+			</li>
+			
+			<li Class="PatchOperationReplace">
+				<xpath>/Defs/ThingDef[defName="AA_Ravager"]/statBases/ArmorRating_Blunt</xpath>
+				<value>
+					<ArmorRating_Blunt>4</ArmorRating_Blunt>
+				</value>
+			</li>
+			<li Class="PatchOperationReplace">
+				<xpath>/Defs/ThingDef[defName="AA_Ravager"]/statBases/ArmorRating_Sharp</xpath>
+				<value>
+					<ArmorRating_Sharp>2</ArmorRating_Sharp>
+				</value>
+			</li>
+
+
+		              <li Class="PatchOperationReplace">
+					<xpath>/Defs/ThingDef[defName="AA_Ravager"]/race/baseHealthScale</xpath>
+					<value>
+						<baseHealthScale>3.1</baseHealthScale>
+					</value>
+				</li>
+			
+			<li Class="PatchOperationAdd">
+				<xpath>/Defs/ThingDef[defName="AA_Ravager"]/statBases</xpath>
+				<value>
+					<MeleeDodgeChance>0.01</MeleeDodgeChance>
+					<MeleeCritChance>0.36</MeleeCritChance>
+					<MeleeParryChance>0.2</MeleeParryChance>
+				</value>
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>/Defs/ThingDef[defName="AA_Ravager"]/tools</xpath>
+				<value>
+					<tools>
+						<li Class="CombatExtended.ToolCE">
+							<label>triple maw</label>
+							<capacities>
+								<li>Cut</li>
+							</capacities>
+							<power>43</power>
+							<cooldownTime>3</cooldownTime>
+							<linkedBodyPartsGroup>HeadClaw</linkedBodyPartsGroup>
+							<armorPenetrationSharp>40</armorPenetrationSharp>
+							<armorPenetrationBlunt>20</armorPenetrationBlunt>
+						</li>
+						<li Class="CombatExtended.ToolCE">
+							<label>Head</label>
+							<capacities>
+								<li>Blunt</li>
+							</capacities>
+							<power>18</power>
+							<cooldownTime>2.6</cooldownTime>
+				                                                <linkedBodyPartsGroup>HeadAttackTool</linkedBodyPartsGroup>
+			                                     	<ensureLinkedBodyPartsGroupAlwaysUsable>true</ensureLinkedBodyPartsGroupAlwaysUsable>
+							<armorPenetrationBlunt>5</armorPenetrationBlunt>
+						</li>
+					</tools>
+				</value>
+			</li>
+
+			</operations>
+		</match>
+	</Operation>
+</Patch>

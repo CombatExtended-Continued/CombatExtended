@@ -77,6 +77,7 @@ Girls' Frontline Styles - 404 Team	|
 Girls' Frontline Weapon Pack	|
 Glitter Tech	|
 GouRIMet	|
+Halo - Rimworld Auxiliary Combat Armory	|
 Hand 'n' Footwear	|
 High Caliber	|
 Jernfalk's Standalone Horses	|
@@ -96,13 +97,16 @@ MiningCo. MiningHelmet	|
 Misc. Robots	|
 More Mechanoids	|
 More Practical Traits	|
+More Vanilla Turrets	|
 Ni'Hal	|
 Orassans	|
 Penguin	|
+PsiTech	|
 Polarisbloc - Security Force	|
 Rabbie The Moonrabbit	|
 Racc Race	|
 Rah's Bionics and Surgery Expansion	|
+Reich Armory	|
 Revia race |
 Right Tool: Rebalanced	|
 Rim Contractors Arsenal	|
@@ -110,6 +114,7 @@ Rim of Madness - Bones	|
 Rimefeller	|
 RimEffect - Asari of the Rims	|
 Rimfire	|
+Rimworld - Witcher Monster Hunt |
 Save Our Ship 2	|
 Sergals, Gnolls, Lions and Frogs	|
 Simply More Melee	|
@@ -120,11 +125,14 @@ TouhouStyle	|
 Trading Economy	|
 Tsar Armory	|
 Turret Collection	|
+Vanilla Animals Expanded |
 Vanilla Apparel Expanded	|
 Vanilla Armour Expanded	|
 Vanilla Bionics Expansion	|
 Vanilla Factions Expanded - Medieval	|
+Vanilla Factions Expanded - Settlers	|
 Vanilla Vehicles Expanded	|
+Vanilla Weapons Expanded |
 Vanilla Weapons Expanded Quickdraw	|
 Vanilla-Friendly Animal Surgery	|
 Vanilla-Friendly Weapon Expansion	|

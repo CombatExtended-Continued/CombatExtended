@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+	<Operation Class="PatchOperationFindMod">
+    <mods>
+		<li>[RH] Faction: Allegiance</li>
+    </mods>
+		<match Class="PatchOperationSequence">
+		 <operations>
+
+				<!-- ========== GORKA 4 ========== -->
+
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="RNApparel_combats_GORKA4_RussianArmy"]/statBases</xpath>
+					<value>
+						<Bulk>8</Bulk>
+						<WornBulk>4</WornBulk>
+						<ArmorRating_Sharp>0.075</ArmorRating_Sharp>
+						<ArmorRating_Blunt>0.1</ArmorRating_Blunt>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="RNApparel_combats_GORKA4_RussianArmy"]/statBases/StuffEffectMultiplierArmor</xpath>
+					<value>
+						<!-- Slightly tougher than vanilla pants, T-shirt and button-down shirt -->
+						<StuffEffectMultiplierArmor>2</StuffEffectMultiplierArmor>
+					</value>
+				</li>
+
+			</operations>
+			</match>
+		</Operation>
+	</Patch>

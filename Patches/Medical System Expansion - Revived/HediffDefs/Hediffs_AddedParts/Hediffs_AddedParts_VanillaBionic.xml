@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+			<li>Medical System Expansion - Revived</li>
+		</mods>
+		<match Class="PatchOperationSequence">
+			<operations>
+				<!-- ==== Vanilla Bionic Prosthesis  ==== -->
+				<!-- BionicEye and BionicEar -->
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/HediffDef[defName="BionicEye" or defName="BionicEar"]</xpath>
+					<value>
+						<stages>
+							<li>
+								<minSeverity>0.000001</minSeverity>
+								<statOffsets>
+									<ArmorRating_Sharp>0.009</ArmorRating_Sharp>
+									<ArmorRating_Blunt>0.017</ArmorRating_Blunt>
+									<ArmorRating_Heat>0.002</ArmorRating_Heat>
+								</statOffsets>
+							</li>
+						</stages>
+					</value>
+				</li>
+				<!-- BionicArm -->
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/HediffDef[defName="BionicArm"]</xpath>
+					<value>
+						<stages>
+							<li>
+								<minSeverity>0.000001</minSeverity>
+								<statOffsets>
+									<ArmorRating_Sharp>0.278</ArmorRating_Sharp>
+									<ArmorRating_Blunt>0.511</ArmorRating_Blunt>
+									<ArmorRating_Heat>0.052</ArmorRating_Heat>
+								</statOffsets>
+							</li>
+						</stages>
+					</value>
+				</li>
+				<!-- BionicLeg -->
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/HediffDef[defName="BionicLeg"]</xpath>
+					<value>
+						<stages>
+							<li>
+								<minSeverity>0.000001</minSeverity>
+								<statOffsets>
+									<ArmorRating_Sharp>0.423</ArmorRating_Sharp>
+									<ArmorRating_Blunt>0.776</ArmorRating_Blunt>
+									<ArmorRating_Heat>0.08</ArmorRating_Heat>
+								</statOffsets>
+							</li>
+						</stages>
+					</value>
+				</li>
+				<!-- BionicSpine -->
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/HediffDef[defName="BionicSpine"]</xpath>
+					<value>
+						<stages>
+							<li>
+								<minSeverity>0.000001</minSeverity>
+								<statOffsets>
+									<ArmorRating_Sharp>0.106</ArmorRating_Sharp>
+									<ArmorRating_Blunt>0.195</ArmorRating_Blunt>
+									<ArmorRating_Heat>0.02</ArmorRating_Heat>
+								</statOffsets>
+							</li>
+						</stages>
+					</value>
+				</li>
+				<!-- BionicHeart -->
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/HediffDef[defName="BionicHeart"]</xpath>
+					<value>
+						<stages>
+							<li>
+								<minSeverity>0.000001</minSeverity>
+								<statOffsets>
+									<ArmorRating_Sharp>0.17</ArmorRating_Sharp>
+									<ArmorRating_Blunt>0.312</ArmorRating_Blunt>
+									<ArmorRating_Heat>0.032</ArmorRating_Heat>
+								</statOffsets>
+							</li>
+						</stages>
+					</value>
+				</li>
+				<!-- BionicStomach -->
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/HediffDef[defName="BionicStomach"]</xpath>
+					<value>
+						<stages>
+							<li>
+								<minSeverity>0.000001</minSeverity>
+								<statOffsets>
+									<ArmorRating_Sharp>0.212</ArmorRating_Sharp>
+									<ArmorRating_Blunt>0.39</ArmorRating_Blunt>
+									<ArmorRating_Heat>0.04</ArmorRating_Heat>
+								</statOffsets>
+							</li>
+						</stages>
+					</value>
+				</li>
+				<!-- PowerClaw -->
+				<li Class="PatchOperationConditional">
+					<xpath>Defs/HediffDef[defName="PowerClaw"]/stages/li</xpath>
+					<nomatch Class="PatchOperationAdd">
+						<xpath>Defs/HediffDef[defName="PowerClaw"]</xpath>
+						<value>
+							<stages>
+								<li>
+									<minSeverity>0.000001</minSeverity>
+									<statOffsets>
+										<ArmorRating_Sharp>0.038</ArmorRating_Sharp>
+										<ArmorRating_Blunt>0.069</ArmorRating_Blunt>
+										<ArmorRating_Heat>0.007</ArmorRating_Heat>
+									</statOffsets>
+								</li>
+							</stages>
+						</value>
+					</nomatch>
+					<match Class="PatchOperationAdd">
+						<xpath>Defs/HediffDef[defName="PowerClaw"]/stages/li</xpath>
+						<value>
+							<minSeverity>0.000001</minSeverity>
+							<statOffsets>
+								<ArmorRating_Sharp>0.038</ArmorRating_Sharp>
+								<ArmorRating_Blunt>0.069</ArmorRating_Blunt>
+								<ArmorRating_Heat>0.007</ArmorRating_Heat>
+							</statOffsets>
+						</value>
+					</match>
+				</li>
+			</operations>
+		</match>
+	</Operation>
+</Patch>

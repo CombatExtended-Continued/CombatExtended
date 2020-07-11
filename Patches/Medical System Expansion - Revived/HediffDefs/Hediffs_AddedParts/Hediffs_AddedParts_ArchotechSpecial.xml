@@ -1,0 +1,251 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+			<li>Medical System Expansion - Revived</li>
+		</mods>
+		<match Class="PatchOperationSequence">
+			<operations>
+				<!-- ==== Special Archotech Prosthesis  ==== -->
+				<!-- AdvancedAntitoxinKidney -->
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/HediffDef[defName="AdvancedAntitoxinKidney"]/stages</xpath>
+					<value>
+						<stages>
+							<li>
+								<minSeverity>0.000001</minSeverity>
+								<statOffsets>
+									<ArmorRating_Sharp>0.36</ArmorRating_Sharp>
+									<ArmorRating_Blunt>0.661</ArmorRating_Blunt>
+									<ArmorRating_Heat>0.048</ArmorRating_Heat>
+									<ToxicSensitivity>-0.5</ToxicSensitivity>
+								</statOffsets>
+							</li>
+						</stages>
+					</value>
+				</li>
+				<!-- AdvancedMedicalLiver -->
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/HediffDef[defName="AdvancedMedicalLiver"]/stages</xpath>
+					<value>
+						<stages>
+							<li>
+								<minSeverity>0.000001</minSeverity>
+								<statOffsets>
+									<ArmorRating_Sharp>0.72</ArmorRating_Sharp>
+									<ArmorRating_Blunt>1.323</ArmorRating_Blunt>
+									<ArmorRating_Heat>0.096</ArmorRating_Heat>
+									<ImmunityGainSpeed>0.5</ImmunityGainSpeed>
+								</statOffsets>
+							</li>
+						</stages>
+					</value>
+				</li>
+				<!-- AdvancedEnergizedLiver -->
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/HediffDef[defName="AdvancedEnergizedLiver"]/stages</xpath>
+					<value>
+						<stages>
+							<li>
+								<minSeverity>0.000001</minSeverity>
+								<statOffsets>
+									<ArmorRating_Sharp>0.72</ArmorRating_Sharp>
+									<ArmorRating_Blunt>1.323</ArmorRating_Blunt>
+									<ArmorRating_Heat>0.096</ArmorRating_Heat>
+								</statOffsets>
+								<restFallFactor>0.5</restFallFactor>
+							</li>
+						</stages>
+					</value>
+				</li>
+				<!-- AdvancedPowerArm -->
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/HediffDef[defName="AdvancedPowerArm"]</xpath>
+					<value>
+						<stages>
+							<li>
+								<minSeverity>0.000001</minSeverity>
+								<statOffsets>
+									<ArmorRating_Sharp>0.786</ArmorRating_Sharp>
+									<ArmorRating_Blunt>1.444</ArmorRating_Blunt>
+									<ArmorRating_Heat>0.105</ArmorRating_Heat>
+								</statOffsets>
+							</li>
+						</stages>
+					</value>
+				</li>
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/HediffDef[defName="AdvancedPowerArm"]/comps/li[@Class="HediffCompProperties_VerbGiver"]/tools</xpath>
+					<value>
+						<tools>
+							<li Class="CombatExtended.ToolCE">
+								<label>fist</label>
+								<capacities>
+									<li>Blunt</li>
+								</capacities>
+								<power>41</power>
+								<cooldownTime>1.3</cooldownTime>
+								<armorPenetrationBlunt>18</armorPenetrationBlunt>
+								<alwaysTreatAsWeapon>true</alwaysTreatAsWeapon>
+							</li>
+						</tools>
+					</value>
+				</li>
+				<!-- MSE_AdvancedPowerBlade -->
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/HediffDef[defName="MSE_AdvancedPowerBlade"]</xpath>
+					<value>
+						<stages>
+							<li>
+								<minSeverity>0.000001</minSeverity>
+								<statOffsets>
+									<ArmorRating_Sharp>1.015</ArmorRating_Sharp>
+									<ArmorRating_Blunt>1.865</ArmorRating_Blunt>
+									<ArmorRating_Heat>0.135</ArmorRating_Heat>
+									<MeleeCritChance>0.11</MeleeCritChance>
+									<MeleeParryChance>0.13</MeleeParryChance>
+									<MeleeDodgeChance>0.27</MeleeDodgeChance>
+								</statOffsets>
+							</li>
+						</stages>
+					</value>
+				</li>
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/HediffDef[defName="MSE_AdvancedPowerBlade"]/comps/li[@Class="HediffCompProperties_VerbGiver"]/tools</xpath>
+					<value>
+						<tools>
+							<li Class="CombatExtended.ToolCE">
+								<label>blade</label>
+								<capacities>
+									<li>Cut</li>
+								</capacities>
+								<power>48</power>
+								<cooldownTime>1.32</cooldownTime>
+								<armorPenetrationBlunt>6</armorPenetrationBlunt>
+								<armorPenetrationSharp>24</armorPenetrationSharp>
+								<alwaysTreatAsWeapon>true</alwaysTreatAsWeapon>
+							</li>
+							<li Class="CombatExtended.ToolCE">
+								<label>blade</label>
+								<capacities>
+									<li>Stab</li>
+								</capacities>
+								<power>22</power>
+								<cooldownTime>1.58</cooldownTime>
+								<armorPenetrationBlunt>2.344</armorPenetrationBlunt>
+								<armorPenetrationSharp>46.88</armorPenetrationSharp>
+								<alwaysTreatAsWeapon>true</alwaysTreatAsWeapon>
+							</li>
+						</tools>
+					</value>
+				</li>
+				<!-- AdvancedPowerClaw -->
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/HediffDef[defName="AdvancedPowerClaw"]</xpath>
+					<value>
+						<stages>
+							<li>
+								<minSeverity>0.000001</minSeverity>
+								<statOffsets>
+									<ArmorRating_Sharp>0.107</ArmorRating_Sharp>
+									<ArmorRating_Blunt>0.196</ArmorRating_Blunt>
+									<ArmorRating_Heat>0.014</ArmorRating_Heat>
+								</statOffsets>
+							</li>
+						</stages>
+					</value>
+				</li>
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/HediffDef[defName="AdvancedPowerClaw"]/comps/li[@Class="HediffCompProperties_VerbGiver"]/tools</xpath>
+					<value>
+						<tools>
+							<li Class="CombatExtended.ToolCE">
+								<label>claw</label>
+								<capacities>
+									<li>Scratch</li>
+								</capacities>
+								<power>27</power>
+								<cooldownTime>0.67</cooldownTime>
+								<armorPenetrationSharp>14.23</armorPenetrationSharp>
+								<armorPenetrationBlunt>7.111</armorPenetrationBlunt>
+							</li>
+						</tools>
+					</value>
+				</li>
+				<!-- AdvancedBreathingSupportRib -->
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/HediffDef[defName="AdvancedBreathingSupportRib"]/stages</xpath>
+					<value>
+						<stages>
+							<li>
+								<minSeverity>0.000001</minSeverity>
+								<statOffsets>
+									<ArmorRating_Sharp>0.144</ArmorRating_Sharp>
+									<ArmorRating_Blunt>0.265</ArmorRating_Blunt>
+									<ArmorRating_Heat>0.019</ArmorRating_Heat>
+								</statOffsets>
+								<capMods>
+									<li>
+										<capacity>Breathing</capacity>
+										<offset>0.2</offset>
+									</li>
+								</capMods>
+							</li>
+						</stages>
+					</value>
+				</li>
+				<!-- AdvancedRelaxationRib -->
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/HediffDef[defName="AdvancedRelaxationRib"]/stages</xpath>
+					<value>
+						<stages>
+							<li>
+								<minSeverity>0.000001</minSeverity>
+								<statOffsets>
+									<ArmorRating_Sharp>0.144</ArmorRating_Sharp>
+									<ArmorRating_Blunt>0.265</ArmorRating_Blunt>
+									<ArmorRating_Heat>0.019</ArmorRating_Heat>
+									<MentalBreakThreshold>-0.2</MentalBreakThreshold>
+								</statOffsets>
+							</li>
+						</stages>
+					</value>
+				</li>
+				<!-- AdvancedColdRegulatorRib -->
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/HediffDef[defName="AdvancedColdRegulatorRib"]/stages</xpath>
+					<value>
+						<stages>
+							<li>
+								<minSeverity>0.000001</minSeverity>
+								<statOffsets>
+									<ArmorRating_Sharp>0.144</ArmorRating_Sharp>
+									<ArmorRating_Blunt>0.265</ArmorRating_Blunt>
+									<ArmorRating_Heat>0.019</ArmorRating_Heat>
+									<ComfyTemperatureMin>-10</ComfyTemperatureMin>
+								</statOffsets>
+							</li>
+						</stages>
+					</value>
+				</li>
+				<!-- AdvancedHeatRegulatorRib -->
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/HediffDef[defName="AdvancedHeatRegulatorRib"]/stages</xpath>
+					<value>
+						<stages>
+							<li>
+								<minSeverity>0.000001</minSeverity>
+								<statOffsets>
+									<ArmorRating_Sharp>0.144</ArmorRating_Sharp>
+									<ArmorRating_Blunt>0.265</ArmorRating_Blunt>
+									<ArmorRating_Heat>0.019</ArmorRating_Heat>
+									<ComfyTemperatureMax>10</ComfyTemperatureMax>
+								</statOffsets>
+							</li>
+						</stages>
+					</value>
+				</li>
+			</operations>
+		</match>
+	</Operation>
+</Patch>
