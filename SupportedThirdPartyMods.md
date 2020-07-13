@@ -72,6 +72,8 @@ Flak Dusters	|
 Forsakens	|
 Forsakens Fauna |
 Gas Traps And Shells	|
+GeneticRim	|
+GeneticRim Alpha Animals Patch	|
 Girls' Frontline Apparel Pack	|
 Girls' Frontline Styles - 404 Team	|
 Girls' Frontline Weapon Pack	|
