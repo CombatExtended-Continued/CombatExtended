@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+		<li>GeneticRim Alpha Animals Patch</li>
+		</mods>
+
+		<match Class="PatchOperationSequence">
+			<operations>
+
+			<!-- ============== Changing Projectile's thingClass to CE ones ================ -->
+
+			<li Class="PatchOperationReplace">
+				<xpath>/Defs/ThingDef[defName="AA_Bullet_TinyVenomBarb" or
+				defName="AA_HugeQuill" or
+				defName="AA_ExplodingWeb"
+				]/thingClass</xpath>
+				<value>
+					<thingClass>CombatExtended.BulletCE</thingClass>
+				</value>
+			</li>
+			
+			<!-- ============== Adding 'Standard' AimingAccuracy node to creatures' that use ranged attack statBases. =============== -->
+			
+			<!-- =============== Now defining Projectiles in CE Procedure ============= -->
+						
+			<li Class="PatchOperationReplace">
+				<xpath>/Defs/ThingDef[defName="AA_Bullet_TinyVenomBarb"]/projectile</xpath>
+				<value>
+					<projectile Class="CombatExtended.ProjectilePropertiesCE">
+						<flyOverhead>false</flyOverhead>
+						<damageDef>AA_ToxicSting</damageDef>
+						<damageAmountBase>2</damageAmountBase>
+						<speed>20</speed>
+						<armorPenetrationSharp>0.5</armorPenetrationSharp>
+						<armorPenetrationBlunt>0.2</armorPenetrationBlunt>
+					</projectile>
+				</value>
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>/Defs/ThingDef[defName="AA_HugeQuill"]/projectile</xpath>
+				<value>
+					<projectile Class="CombatExtended.ProjectilePropertiesCE">
+						<flyOverhead>false</flyOverhead>
+						<damageDef>AA_ToxicSting</damageDef>
+						<damageAmountBase>40</damageAmountBase>
+						<speed>16</speed>
+						<armorPenetrationSharp>6</armorPenetrationSharp>
+						<armorPenetrationBlunt>29.8</armorPenetrationBlunt>
+					</projectile>
+				</value>
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>/Defs/ThingDef[defName="AA_ExplodingWeb"]/projectile</xpath>
+				<value>
+					<projectile Class="CombatExtended.ProjectilePropertiesCE">
+						<flyOverhead>false</flyOverhead>
+						<damageDef>Bomb</damageDef>
+						<damageAmountBase>12.5</damageAmountBase>
+                                 		<explosionRadius >0.9</explosionRadius >				<speed>12</speed>
+						<secondaryDamage>
+							<li>
+							  <def>Stun</def>
+							  <amount>6</amount>
+							</li>
+						</secondaryDamage>
+					</projectile>
+				</value>
+			</li>
+			
+			
+			</operations>
+		</match>
+	</Operation>
+</Patch>
