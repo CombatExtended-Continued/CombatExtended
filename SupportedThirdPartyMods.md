@@ -49,6 +49,7 @@ AnimalCollabProj	|
 Apparello 2	|
 Arachne Race	|
 Area Rugs	|
+Auto-Mortars	|
 Better Infestations	|
 Black Widows	|
 Cupro's Alloys	|
