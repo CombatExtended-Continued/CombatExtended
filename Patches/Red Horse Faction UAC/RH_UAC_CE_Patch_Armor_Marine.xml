@@ -1,0 +1,46 @@
+<Patch>
+	<Operation Class="PatchOperationFindMod">
+    <mods>
+		<li>[RH] Faction: UAC</li>
+    </mods>
+		<match Class="PatchOperationSequence">
+		 <operations>
+
+			<!-- ========== UAC Marine Armor ========== -->		 
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[@Name="RH_UACMarineArmorBase"]/statBases</xpath>
+				<value>
+					<Bulk>100</Bulk>
+					<WornBulk>12</WornBulk>
+				</value>
+			</li>
+
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[@Name="RH_UACMarineArmorBase"]</xpath>
+				<value>
+				<equippedStatOffsets>
+					<CarryWeight>60</CarryWeight>
+					<CarryBulk>20</CarryBulk>
+					<ToxicSensitivity>-0.50</ToxicSensitivity>
+				</equippedStatOffsets>	
+				</value>
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[@Name="RH_UACMarineArmorBase"]/statBases/ArmorRating_Sharp</xpath>
+				<value>
+					<ArmorRating_Sharp>20</ArmorRating_Sharp>
+				</value>
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[@Name="RH_UACMarineArmorBase"]/statBases/ArmorRating_Blunt</xpath>
+				<value>
+					<ArmorRating_Blunt>50</ArmorRating_Blunt>
+				</value>
+			</li>
+			
+			</operations>
+			</match>
+		</Operation>
+	</Patch>
