@@ -8,122 +8,12 @@
 		<match Class="PatchOperationSequence">
 			<operations>
 			
-<!--  ========== Melee Tools ==========  -->
-
-<li Class="PatchOperationReplace">
-<xpath>Defs/ThingDef[
-defName="CEC_FiveSeven" or
-defName="CEC_BigIron" or
-defName="CEC_Thunder" or
-defName="CEC_Zipper" or 
-defName="CEC_MuffaloCannon"
-]/tools</xpath>
-<value>
-  <tools>
-  <li Class="CombatExtended.ToolCE">
-    <label>grip</label>
-    <capacities>
-    <li>Blunt</li>
-    </capacities>
-    <power>2</power>
-    <cooldownTime>1.54</cooldownTime>
-    <chanceFactor>1.5</chanceFactor>
-    <armorPenetrationBlunt>0.555</armorPenetrationBlunt>
-    <linkedBodyPartsGroup>Grip</linkedBodyPartsGroup>
-  </li>
-  <li Class="CombatExtended.ToolCE">
-    <label>muzzle</label>
-    <capacities>
-    <li>Poke</li>
-    </capacities>
-    <power>2</power>
-    <cooldownTime>1.54</cooldownTime>
-    <armorPenetrationBlunt>0.555</armorPenetrationBlunt>
-    <linkedBodyPartsGroup>Muzzle</linkedBodyPartsGroup>
-  </li>
-  </tools>
-</value>
-</li>
-
-<li Class="PatchOperationReplace">
-<xpath>Defs/ThingDef[
-defName="CEC_PDW" or
-defName="CEC_WoodlandSMG" or
-defName="CEC_SkorpionEvo" or
-defName="CEC_BurstRifle" or 
-defName="CEC_ClockworkAR" or 
-defName="CEC_SSRifle" or 
-defName="CEC_MRS" or
-defName="CEC_CompactSR" or
-defName="CEC_CombatShotgun" or
-defName="CEC_BattleRifle" or
-defName="CEC_DVLTen" or
-defName="CEC_BullpupSniper" or
-defName="CEC_AntiMaterielRifle" or
-defName="CEC_Intervention" or
-defName="CEC_TMG" or
-defName="CEC_LWAMG"           
-]/tools</xpath>
-<value>
-  <tools>
-  <li Class="CombatExtended.ToolCE">
-    <label>stock</label>
-    <capacities>
-    <li>Blunt</li>
-    </capacities>
-    <power>8</power>
-    <cooldownTime>1.55</cooldownTime>
-    <chanceFactor>1.5</chanceFactor>
-    <armorPenetrationBlunt>2.755</armorPenetrationBlunt>
-    <linkedBodyPartsGroup>Stock</linkedBodyPartsGroup>
-  </li>
-  <li Class="CombatExtended.ToolCE">
-    <label>barrel</label>
-    <capacities>
-    <li>Blunt</li>
-    </capacities>
-    <power>5</power>
-    <cooldownTime>2.02</cooldownTime>
-    <armorPenetrationBlunt>1.630</armorPenetrationBlunt>
-    <linkedBodyPartsGroup>Barrel</linkedBodyPartsGroup>
-  </li>
-  <li Class="CombatExtended.ToolCE">
-    <label>muzzle</label>
-    <capacities>
-    <li>Poke</li>
-    </capacities>
-    <power>8</power>
-    <cooldownTime>1.55</cooldownTime>
-    <armorPenetrationBlunt>2.755</armorPenetrationBlunt>
-    <linkedBodyPartsGroup>Muzzle</linkedBodyPartsGroup>
-  </li>
-  </tools>
-</value>
-</li>
-
-<li Class="PatchOperationReplace">
-<xpath>Defs/ThingDef[defName="CEC_Neopup"]/tools</xpath>
-<value>
-  <tools>
-  <li Class="CombatExtended.ToolCE">
-  <label>barrel</label>
-  <capacities>
-    <li>Blunt</li>
-  </capacities>
-  <power>10</power>
-  <cooldownTime>2.44</cooldownTime>
-  <armorPenetrationBlunt>3.5</armorPenetrationBlunt>
-  <linkedBodyPartsGroup>Barrel</linkedBodyPartsGroup>
-  </li>
-  </tools>
-</value>
-</li>
-
-<!--  ==========Guns==========  -->
+ 
+  <!--  ==========Guns==========  -->
 
 
-<!-- AN-94 -->
-<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+  <!-- AN-94 -->
+  <li Class="CombatExtended.PatchOperationMakeGunCECompatible">
     <defName>CEC_BurstRifle</defName>
     <statBases>
       <Mass>3.85</Mass>
@@ -154,8 +44,8 @@ defName="CEC_LWAMG"
       <ammoSet>AmmoSet_545x39mmSoviet</ammoSet>
     </AmmoUser>
     <FireModes>
-	  <aimedBurstShotCount>2</aimedBurstShotCount>
-	  <aiUseBurstMode>TRUE</aiUseBurstMode>
+    <aimedBurstShotCount>2</aimedBurstShotCount>
+    <aiUseBurstMode>TRUE</aiUseBurstMode>
       <aiAimMode>AimedShot</aiAimMode>
       <noSnapshot>false</noSnapshot>
       <noSingleShot>true</noSingleShot>
@@ -164,17 +54,17 @@ defName="CEC_LWAMG"
       <li>CE_AI_AssaultWeapon</li>  
     </weaponTags>
     <researchPrerequisite>PrecisionRifling</researchPrerequisite>
-</li>
+  </li>
 
-<li Class="PatchOperationReplace">
-	<xpath>Defs/ThingDef[defName="CEC_BurstRifle"]/label</xpath>
-	<value>
-		<label>AN-94</label>
-	</value>
-</li>
+  <li Class="PatchOperationReplace">
+    <xpath>Defs/ThingDef[defName="CEC_BurstRifle"]/label</xpath>
+    <value>
+      <label>AN-94</label>
+    </value>
+  </li>
 
-<!-- HK G11 -->
-<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+  <!-- HK G11 -->
+  <li Class="CombatExtended.PatchOperationMakeGunCECompatible">
     <defName>CEC_ClockworkAR</defName>
     <statBases>
       <Bulk>7.50</Bulk>
@@ -210,20 +100,20 @@ defName="CEC_LWAMG"
     </FireModes>  
     <weaponTags>
       <li>CE_AI_AssaultWeapon</li>  
-			<li>IndustrialGunAdvanced</li>      
+      <li>IndustrialGunAdvanced</li>      
     </weaponTags>
     <researchPrerequisite>Fabrication</researchPrerequisite>
-</li>
+  </li>
 
-<li Class="PatchOperationReplace">
-	<xpath>Defs/ThingDef[defName="CEC_ClockworkAR"]/label</xpath>
-	<value>
-		<label>G11</label>
-	</value>
-</li>
+  <li Class="PatchOperationReplace">
+    <xpath>Defs/ThingDef[defName="CEC_ClockworkAR"]/label</xpath>
+    <value>
+      <label>G11</label>
+    </value>
+  </li>
 
-<!-- AS Val -->
- <li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+  <!-- AS Val -->
+  <li Class="CombatExtended.PatchOperationMakeGunCECompatible">
     <defName>CEC_SSRifle</defName>
     <statBases>
       <Mass>2.50</Mass>
@@ -253,21 +143,21 @@ defName="CEC_LWAMG"
       <ammoSet>AmmoSet_9x39mmSoviet</ammoSet>
     </AmmoUser>
     <FireModes>
-	  <aimedBurstShotCount>3</aimedBurstShotCount>
-	  <aiUseBurstMode>TRUE</aiUseBurstMode>
+    <aimedBurstShotCount>3</aimedBurstShotCount>
+    <aiUseBurstMode>TRUE</aiUseBurstMode>
       <aiUseBurstMode>TRUE</aiUseBurstMode>
       <aiAimMode>AimedShot</aiAimMode>
       <aimedBurstShotCount>2</aimedBurstShotCount>
     </FireModes>
     <weaponTags>
       <li>CE_AI_AssaultWeapon</li> 
-			<li>IndustrialGunAdvanced</li>       
+      <li>IndustrialGunAdvanced</li>       
     </weaponTags>
     <researchPrerequisite>PrecisionRifling</researchPrerequisite>
-</li>
+  </li>
 
-<!-- A-545 -->
- <li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+  <!-- A-545 -->
+  <li Class="CombatExtended.PatchOperationMakeGunCECompatible">
     <defName>CEC_MRS</defName>
     <statBases>
       <Mass>3.3</Mass>
@@ -276,16 +166,16 @@ defName="CEC_LWAMG"
       <ShotSpread>0.02</ShotSpread>
       <SwayFactor>0.81</SwayFactor>
       <Bulk>3.8</Bulk>
-	    <WorkToMake>32000</WorkToMake>      
+      <WorkToMake>32000</WorkToMake>      
     </statBases>
     <Properties>
       <verbClass>CombatExtended.Verb_ShootCE</verbClass>
-	  <recoilAmount>0.62</recoilAmount>
+    <recoilAmount>0.62</recoilAmount>
       <hasStandardCommand>true</hasStandardCommand>
       <defaultProjectile>Bullet_545x39mmSoviet_FMJ</defaultProjectile>
       <warmupTime>0.95</warmupTime>
       <range>58.5</range>
-	  <burstShotCount>7</burstShotCount>
+    <burstShotCount>7</burstShotCount>
       <ticksBetweenBurstShots>5</ticksBetweenBurstShots>
       <soundCast>CEC_A545Shot</soundCast>
       <soundCastTail>GunTail_Medium</soundCastTail>
@@ -297,8 +187,8 @@ defName="CEC_LWAMG"
       <ammoSet>AmmoSet_545x39mmSoviet</ammoSet>
     </AmmoUser>
     <FireModes>
-	  <aimedBurstShotCount>5</aimedBurstShotCount>
-	  <aiUseBurstMode>TRUE</aiUseBurstMode>
+    <aimedBurstShotCount>5</aimedBurstShotCount>
+    <aiUseBurstMode>TRUE</aiUseBurstMode>
       <aiAimMode>AimedShot</aiAimMode>
       <noSnapshot>false</noSnapshot>
       <noSingleShot>false</noSingleShot>
@@ -307,17 +197,17 @@ defName="CEC_LWAMG"
       <li>CE_AI_AssaultWeapon</li>  
     </weaponTags>
     <researchPrerequisite>PrecisionRifling</researchPrerequisite>
-</li>
+  </li>
 
-<li Class="PatchOperationReplace">
-	<xpath>Defs/ThingDef[defName="CEC_MRS"]/label</xpath>
-	<value>
-		<label>A-545</label>
-	</value>
-</li>
+  <li Class="PatchOperationReplace">
+    <xpath>Defs/ThingDef[defName="CEC_MRS"]/label</xpath>
+    <value>
+      <label>A-545</label>
+    </value>
+  </li>
 
-<!-- AKS-47UN -->
- <li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+  <!-- AKS-47UN -->
+  <li Class="CombatExtended.PatchOperationMakeGunCECompatible">
     <defName>CEC_CompactSR</defName>
     <statBases>
       <Mass>2.73</Mass>
@@ -326,16 +216,16 @@ defName="CEC_LWAMG"
       <ShotSpread>0.10</ShotSpread>
       <SwayFactor>0.81</SwayFactor>
       <Bulk>3.2</Bulk>
-	    <WorkToMake>24000</WorkToMake>      
+      <WorkToMake>24000</WorkToMake>      
     </statBases>
     <Properties>
       <verbClass>CombatExtended.Verb_ShootCE</verbClass>
-	  <recoilAmount>1.4</recoilAmount>
+    <recoilAmount>1.4</recoilAmount>
       <hasStandardCommand>true</hasStandardCommand>
       <defaultProjectile>Bullet_545x39mmSoviet_FMJ</defaultProjectile>
       <warmupTime>1</warmupTime>
       <range>35</range>
-	  <burstShotCount>4</burstShotCount>
+    <burstShotCount>4</burstShotCount>
       <ticksBetweenBurstShots>10</ticksBetweenBurstShots>
       <soundCast>CEC_AKS74UShot</soundCast>
       <soundCastTail>GunTail_Medium</soundCastTail>
@@ -347,8 +237,8 @@ defName="CEC_LWAMG"
       <ammoSet>AmmoSet_545x39mmSoviet</ammoSet>
     </AmmoUser>
     <FireModes>
-	  <aimedBurstShotCount>5</aimedBurstShotCount>
-	  <aiUseBurstMode>TRUE</aiUseBurstMode>
+    <aimedBurstShotCount>5</aimedBurstShotCount>
+    <aiUseBurstMode>TRUE</aiUseBurstMode>
       <aiAimMode>AimedShot</aiAimMode>
       <noSnapshot>false</noSnapshot>
       <noSingleShot>false</noSingleShot>
@@ -357,17 +247,17 @@ defName="CEC_LWAMG"
       <li>CE_AI_AssaultWeapon</li>  
     </weaponTags>
     <researchPrerequisite>GasOperation</researchPrerequisite>
-</li>
+  </li>
 
-<li Class="PatchOperationReplace">
-	<xpath>Defs/ThingDef[defName="CEC_CompactSR"]/label</xpath>
-	<value>
-		<label>AKS-47UN</label>
-	</value>
-</li>
+  <li Class="PatchOperationReplace">
+    <xpath>Defs/ThingDef[defName="CEC_CompactSR"]/label</xpath>
+    <value>
+      <label>AKS-47UN</label>
+    </value>
+  </li>
 
-<!-- Zip 22 -->
- <li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+  <!-- Zip 22 -->
+  <li Class="CombatExtended.PatchOperationMakeGunCECompatible">
     <defName>CEC_Zipper</defName>
     <statBases>
       <Mass>0.43</Mass>
@@ -394,28 +284,28 @@ defName="CEC_LWAMG"
       <ammoSet>AmmoSet_22LR</ammoSet>
     </AmmoUser>
     <FireModes>
-	  <aiUseBurstMode>FALSE</aiUseBurstMode>
+    <aiUseBurstMode>FALSE</aiUseBurstMode>
       <aiAimMode>Snapshot</aiAimMode>
       <noSnapshot>false</noSnapshot>
       <noSingleShot>false</noSingleShot>
     </FireModes>
     <weaponTags>
-		<li>CE_Sidearm</li>
-		<li>CE_AI_Pistol</li>
-		<li>CE_OneHandedWeapon</li>
+    <li>CE_Sidearm</li>
+    <li>CE_AI_Pistol</li>
+    <li>CE_OneHandedWeapon</li>
     </weaponTags>
     <researchPrerequisite>Gunsmithing</researchPrerequisite>
-</li>
+  </li>
 
-<li Class="PatchOperationReplace">
-	<xpath>Defs/ThingDef[defName="CEC_Zipper"]/label</xpath>
-	<value>
-		<label>ZiP .22</label>
-	</value>
-</li>
+  <li Class="PatchOperationReplace">
+    <xpath>Defs/ThingDef[defName="CEC_Zipper"]/label</xpath>
+    <value>
+      <label>ZiP .22</label>
+    </value>
+  </li>
 
-<!-- Colt Dragoon -->
- <li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+  <!-- Colt Dragoon -->
+  <li Class="CombatExtended.PatchOperationMakeGunCECompatible">
     <defName>CEC_BigIron</defName>
     <statBases>
       <Mass>1.9</Mass>
@@ -442,28 +332,28 @@ defName="CEC_LWAMG"
       <ammoSet>AmmoSet_44Magnum</ammoSet>
     </AmmoUser>
     <FireModes>
-	  <aiUseBurstMode>FALSE</aiUseBurstMode>
+    <aiUseBurstMode>FALSE</aiUseBurstMode>
       <aiAimMode>Snapshot</aiAimMode>
       <noSnapshot>false</noSnapshot>
       <noSingleShot>false</noSingleShot>
     </FireModes>
     <weaponTags>
-		<li>CE_Sidearm</li>
-		<li>CE_AI_Pistol</li>
-		<li>CE_OneHandedWeapon</li>
+    <li>CE_Sidearm</li>
+    <li>CE_AI_Pistol</li>
+    <li>CE_OneHandedWeapon</li>
     </weaponTags>
     <researchPrerequisite>Gunsmithing</researchPrerequisite>
-</li>
+  </li>
 
-<li Class="PatchOperationReplace">
-	<xpath>Defs/ThingDef[defName="CEC_BigIron"]/label</xpath>
-	<value>
-		<label>Dragoon</label>
-	</value>
-</li>
+  <li Class="PatchOperationReplace">
+    <xpath>Defs/ThingDef[defName="CEC_BigIron"]/label</xpath>
+    <value>
+      <label>Dragoon</label>
+    </value>
+  </li>
 
-<!-- THUN-DER! -->
- <li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+  <!-- THUN-DER! -->
+  <li Class="CombatExtended.PatchOperationMakeGunCECompatible">
     <defName>CEC_Thunder</defName>
     <statBases>
       <Mass>7.5</Mass>
@@ -490,20 +380,20 @@ defName="CEC_LWAMG"
       <ammoSet>AmmoSet_50BMG</ammoSet>
     </AmmoUser>
     <FireModes>
-	  <aiUseBurstMode>FALSE</aiUseBurstMode>
+    <aiUseBurstMode>FALSE</aiUseBurstMode>
       <aiAimMode>AimedShot</aiAimMode>
       <noSnapshot>false</noSnapshot>
       <noSingleShot>false</noSingleShot>
     </FireModes>
     <weaponTags>
-	  <li>CE_Sidearm</li>
-	  <li>SimpleGun</li>
+    <li>CE_Sidearm</li>
+    <li>SimpleGun</li>
     </weaponTags>
     <researchPrerequisite>PrecisionRifling</researchPrerequisite>
-</li>
+  </li>
 
-<!-- FiveSeven -->
- <li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+  <!-- FiveSeven -->
+  <li Class="CombatExtended.PatchOperationMakeGunCECompatible">
     <defName>CEC_FiveSeven</defName>
     <statBases>
       <Mass>0.58</Mass>
@@ -530,28 +420,28 @@ defName="CEC_LWAMG"
       <ammoSet>AmmoSet_FN57x28mm</ammoSet>
     </AmmoUser>
     <FireModes>
-	  <aiUseBurstMode>FALSE</aiUseBurstMode>
+    <aiUseBurstMode>FALSE</aiUseBurstMode>
       <aiAimMode>Snapshot</aiAimMode>
       <noSnapshot>false</noSnapshot>
       <noSingleShot>false</noSingleShot>
     </FireModes>
     <weaponTags>
-		<li>CE_Sidearm</li>
-		<li>CE_AI_Pistol</li>
-		<li>CE_OneHandedWeapon</li>
+    <li>CE_Sidearm</li>
+    <li>CE_AI_Pistol</li>
+    <li>CE_OneHandedWeapon</li>
     </weaponTags>
     <researchPrerequisite>Gunsmithing</researchPrerequisite>
-</li>
+  </li>
 
-<li Class="PatchOperationReplace">
-	<xpath>Defs/ThingDef[defName="CEC_FiveSeven"]/label</xpath>
-	<value>
-		<label>FiveSeven</label>
-	</value>
-</li>
+  <li Class="PatchOperationReplace">
+    <xpath>Defs/ThingDef[defName="CEC_FiveSeven"]/label</xpath>
+    <value>
+      <label>FiveSeven</label>
+    </value>
+  </li>
 
-<!-- P90 -->
- <li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+  <!-- P90 -->
+  <li Class="CombatExtended.PatchOperationMakeGunCECompatible">
     <defName>CEC_PDW</defName>
     <statBases>
       <Mass>2.60</Mass>
@@ -564,12 +454,12 @@ defName="CEC_LWAMG"
     </statBases>
     <Properties>
       <verbClass>CombatExtended.Verb_ShootCE</verbClass>
-	  <recoilAmount>1.25</recoilAmount>
+    <recoilAmount>1.25</recoilAmount>
       <hasStandardCommand>true</hasStandardCommand>
       <defaultProjectile>Bullet_FN57x28mm_FMJ</defaultProjectile>
       <warmupTime>0.8</warmupTime>
       <range>21</range>
-	  <burstShotCount>10</burstShotCount>
+    <burstShotCount>10</burstShotCount>
       <ticksBetweenBurstShots>4</ticksBetweenBurstShots>
       <soundCast>CEC_P90Shot</soundCast>
       <soundCastTail>GunTail_Light</soundCastTail>
@@ -581,27 +471,27 @@ defName="CEC_LWAMG"
       <ammoSet>AmmoSet_FN57x28mm</ammoSet>
     </AmmoUser>
     <FireModes>
-	  <aimedBurstShotCount>5</aimedBurstShotCount>
-	  <aiUseBurstMode>TRUE</aiUseBurstMode>
+    <aimedBurstShotCount>5</aimedBurstShotCount>
+    <aiUseBurstMode>TRUE</aiUseBurstMode>
       <aiAimMode>AimedShot</aiAimMode>
       <noSnapshot>false</noSnapshot>
       <noSingleShot>false</noSingleShot>
     </FireModes>
     <weaponTags>
-	  <li>CE_AI_AssaultWeapon</li>
+    <li>CE_AI_AssaultWeapon</li>
     </weaponTags>
     <researchPrerequisite>BlowbackOperation</researchPrerequisite>
-</li>
+  </li>
 
-<li Class="PatchOperationReplace">
-	<xpath>Defs/ThingDef[defName="CEC_PDW"]/label</xpath>
-	<value>
-		<label>P90</label>
-	</value>
-</li>
+  <li Class="PatchOperationReplace">
+    <xpath>Defs/ThingDef[defName="CEC_PDW"]/label</xpath>
+    <value>
+      <label>P90</label>
+    </value>
+  </li>
 
-<!-- Suomi KP-31 -->
- <li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+  <!-- Suomi KP-31 -->
+  <li Class="CombatExtended.PatchOperationMakeGunCECompatible">
     <defName>CEC_WoodlandSMG</defName>
     <statBases>
       <Mass>4.6</Mass>
@@ -614,12 +504,12 @@ defName="CEC_LWAMG"
     </statBases>
     <Properties>
       <verbClass>CombatExtended.Verb_ShootCE</verbClass>
-	  <recoilAmount>1.45</recoilAmount>
+    <recoilAmount>1.45</recoilAmount>
       <hasStandardCommand>true</hasStandardCommand>
       <defaultProjectile>Bullet_9x19mmPara_FMJ</defaultProjectile>
       <warmupTime>1.0</warmupTime>
       <range>21.5</range>
-	  <burstShotCount>5</burstShotCount>
+    <burstShotCount>5</burstShotCount>
       <ticksBetweenBurstShots>4.5</ticksBetweenBurstShots>
       <soundCast>CEC_SuomiShot</soundCast>
       <soundCastTail>GunTail_Light</soundCastTail>
@@ -631,27 +521,27 @@ defName="CEC_LWAMG"
       <ammoSet>AmmoSet_9x19mmPara</ammoSet>
     </AmmoUser>
     <FireModes>
-	  <aimedBurstShotCount>3</aimedBurstShotCount>
-	  <aiUseBurstMode>TRUE</aiUseBurstMode>
+    <aimedBurstShotCount>3</aimedBurstShotCount>
+    <aiUseBurstMode>TRUE</aiUseBurstMode>
       <aiAimMode>AimedShot</aiAimMode>
       <noSnapshot>false</noSnapshot>
       <noSingleShot>false</noSingleShot>
     </FireModes>
     <weaponTags>
-	  <li>CE_AI_AssaultWeapon</li>
+    <li>CE_AI_AssaultWeapon</li>
     </weaponTags>
     <researchPrerequisite>BlowbackOperation</researchPrerequisite>
-</li>
+  </li>
 
-<li Class="PatchOperationReplace">
-	<xpath>Defs/ThingDef[defName="CEC_WoodlandSMG"]/label</xpath>
-	<value>
-		<label>KP-31</label>
-	</value>
-</li>
+  <li Class="PatchOperationReplace">
+    <xpath>Defs/ThingDef[defName="CEC_WoodlandSMG"]/label</xpath>
+    <value>
+      <label>KP-31</label>
+    </value>
+  </li>
 
-<!-- Skorpion Evo -->
- <li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+  <!-- Skorpion Evo -->
+  <li Class="CombatExtended.PatchOperationMakeGunCECompatible">
     <defName>CEC_SkorpionEvo</defName>
     <statBases>
       <Mass>2.7</Mass>
@@ -664,12 +554,12 @@ defName="CEC_LWAMG"
     </statBases>
     <Properties>
       <verbClass>CombatExtended.Verb_ShootCE</verbClass>
-	  <recoilAmount>2.6</recoilAmount>
+    <recoilAmount>2.6</recoilAmount>
       <hasStandardCommand>true</hasStandardCommand>
       <defaultProjectile>Bullet_9x19mmPara_FMJ</defaultProjectile>
       <warmupTime>0.65</warmupTime>
       <range>19</range>
-	  <burstShotCount>6</burstShotCount>
+    <burstShotCount>6</burstShotCount>
       <ticksBetweenBurstShots>4</ticksBetweenBurstShots>
       <soundCast>Shot_MachinePistol</soundCast>
       <soundCastTail>GunTail_Light</soundCastTail>
@@ -681,27 +571,27 @@ defName="CEC_LWAMG"
       <ammoSet>AmmoSet_9x19mmPara</ammoSet>
     </AmmoUser>
     <FireModes>
-	  <aimedBurstShotCount>3</aimedBurstShotCount>
-	  <aiUseBurstMode>TRUE</aiUseBurstMode>
+    <aimedBurstShotCount>3</aimedBurstShotCount>
+    <aiUseBurstMode>TRUE</aiUseBurstMode>
       <aiAimMode>AimedShot</aiAimMode>
       <noSnapshot>false</noSnapshot>
       <noSingleShot>false</noSingleShot>
     </FireModes>
     <weaponTags>
-	  <li>CE_AI_AssaultWeapon</li>
+    <li>CE_AI_AssaultWeapon</li>
     </weaponTags>
     <researchPrerequisite>BlowbackOperation</researchPrerequisite>
-</li>
+  </li>
 
-<li Class="PatchOperationReplace">
-	<xpath>Defs/ThingDef[defName="CEC_SkorpionEvo"]/label</xpath>
-	<value>
-		<label>Skorpion Evo</label>
-	</value>
-</li>
+  <li Class="PatchOperationReplace">
+    <xpath>Defs/ThingDef[defName="CEC_SkorpionEvo"]/label</xpath>
+    <value>
+      <label>Skorpion Evo</label>
+    </value>
+  </li>
 
-<!-- MG-42 -->
- <li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+  <!-- MG-42 -->
+  <li Class="CombatExtended.PatchOperationMakeGunCECompatible">
     <defName>CEC_TMG</defName>
     <statBases>
       <Mass>11.6</Mass>
@@ -714,13 +604,13 @@ defName="CEC_LWAMG"
     </statBases>
     <Properties>
       <verbClass>CombatExtended.Verb_ShootCE</verbClass>
-	  <recoilAmount>1.65</recoilAmount>
-	  <recoilPattern>Mounted</recoilPattern>
+    <recoilAmount>1.65</recoilAmount>
+    <recoilPattern>Mounted</recoilPattern>
       <hasStandardCommand>true</hasStandardCommand>
       <defaultProjectile>Bullet_792x57mmMauser_FMJ</defaultProjectile>
       <warmupTime>0.8</warmupTime>
       <range>70</range>
-	  <burstShotCount>10</burstShotCount>
+    <burstShotCount>10</burstShotCount>
       <ticksBetweenBurstShots>3</ticksBetweenBurstShots>
       <soundCast>CEC_MG42Shot</soundCast>
       <soundCastTail>GunTail_Light</soundCastTail>
@@ -732,28 +622,28 @@ defName="CEC_LWAMG"
       <ammoSet>AmmoSet_792x57mmMauser</ammoSet>
     </AmmoUser>
     <FireModes>
-	  <aimedBurstShotCount>5</aimedBurstShotCount>
-	  <aiUseBurstMode>TRUE</aiUseBurstMode>
+    <aimedBurstShotCount>5</aimedBurstShotCount>
+    <aiUseBurstMode>TRUE</aiUseBurstMode>
       <aiAimMode>SuppressFire</aiAimMode>
       <noSnapshot>false</noSnapshot>
       <noSingleShot>false</noSingleShot>
     </FireModes>
     <weaponTags>
-	  <li>CE_MachineGun</li>
-	  <li>CE_AI_Suppressive</li>
+    <li>CE_MachineGun</li>
+    <li>CE_AI_Suppressive</li>
     </weaponTags>
     <researchPrerequisite>GasOperation</researchPrerequisite>
-</li>
+  </li>
 
-<li Class="PatchOperationReplace">
-	<xpath>Defs/ThingDef[defName="CEC_TMG"]/label</xpath>
-	<value>
-		<label>MG 42</label>
-	</value>
-</li>
+  <li Class="PatchOperationReplace">
+    <xpath>Defs/ThingDef[defName="CEC_TMG"]/label</xpath>
+    <value>
+      <label>MG 42</label>
+    </value>
+  </li>
 
-<!-- LWAMG -->
- <li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+  <!-- LWAMG -->
+  <li Class="CombatExtended.PatchOperationMakeGunCECompatible">
     <defName>CEC_LWAMG</defName>
     <statBases>
       <Mass>6.31</Mass>
@@ -766,13 +656,13 @@ defName="CEC_LWAMG"
     </statBases>
     <Properties>
       <verbClass>CombatExtended.Verb_ShootCE</verbClass>
-	  <recoilAmount>1.4</recoilAmount>
-	  <recoilPattern>Mounted</recoilPattern>
+    <recoilAmount>1.4</recoilAmount>
+    <recoilPattern>Mounted</recoilPattern>
       <hasStandardCommand>true</hasStandardCommand>
       <defaultProjectile>Bullet_762x51mmNATO_FMJ</defaultProjectile>
       <warmupTime>1</warmupTime>
       <range>60</range>
-	  <burstShotCount>10</burstShotCount>
+    <burstShotCount>10</burstShotCount>
       <ticksBetweenBurstShots>6</ticksBetweenBurstShots>
       <soundCast>CEC_KnightsLWAMGShot</soundCast>
       <soundCastTail>GunTail_Light</soundCastTail>
@@ -784,28 +674,28 @@ defName="CEC_LWAMG"
       <ammoSet>AmmoSet_762x51mmNATO</ammoSet>
     </AmmoUser>
     <FireModes>
-	  <aimedBurstShotCount>5</aimedBurstShotCount>
-	  <aiUseBurstMode>TRUE</aiUseBurstMode>
+    <aimedBurstShotCount>5</aimedBurstShotCount>
+    <aiUseBurstMode>TRUE</aiUseBurstMode>
       <aiAimMode>SuppressFire</aiAimMode>
       <noSnapshot>false</noSnapshot>
       <noSingleShot>false</noSingleShot>
     </FireModes>
     <weaponTags>
-	  <li>CE_MachineGun</li>
-	  <li>CE_AI_Suppressive</li>
+    <li>CE_MachineGun</li>
+    <li>CE_AI_Suppressive</li>
     </weaponTags>
     <researchPrerequisite>PrecisionRifling</researchPrerequisite>
-</li>
+  </li>
 
-<li Class="PatchOperationReplace">
-	<xpath>Defs/ThingDef[defName="CEC_LWAMG"]/label</xpath>
-	<value>
-		<label>Knight's Armament LWAMG</label>
-	</value>
-</li>
+  <li Class="PatchOperationReplace">
+    <xpath>Defs/ThingDef[defName="CEC_LWAMG"]/label</xpath>
+    <value>
+      <label>Knight's Armament LWAMG</label>
+    </value>
+  </li>
 
-<!-- M14 -->
- <li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+  <!-- M14 -->
+  <li Class="CombatExtended.PatchOperationMakeGunCECompatible">
     <defName>CEC_BattleRifle</defName>
     <statBases>
       <Mass>4.85</Mass>
@@ -818,12 +708,12 @@ defName="CEC_LWAMG"
     </statBases>
     <Properties>
       <verbClass>CombatExtended.Verb_ShootCE</verbClass>
-	  <recoilAmount>0.94</recoilAmount>
+    <recoilAmount>0.94</recoilAmount>
       <hasStandardCommand>true</hasStandardCommand>
       <defaultProjectile>Bullet_762x51mmNATO_FMJ</defaultProjectile>
       <warmupTime>1.12</warmupTime>
       <range>48.5</range>
-	  <burstShotCount>3</burstShotCount>
+    <burstShotCount>3</burstShotCount>
       <ticksBetweenBurstShots>5</ticksBetweenBurstShots>
       <soundCast>CEC_M14Shot</soundCast>
       <soundCastTail>GunTail_Heavy</soundCastTail>
@@ -835,27 +725,27 @@ defName="CEC_LWAMG"
       <ammoSet>AmmoSet_762x51mmNATO</ammoSet>
     </AmmoUser>
     <FireModes>
-	  <aimedBurstShotCount>2</aimedBurstShotCount>
-	  <aiUseBurstMode>TRUE</aiUseBurstMode>
+    <aimedBurstShotCount>2</aimedBurstShotCount>
+    <aiUseBurstMode>TRUE</aiUseBurstMode>
       <aiAimMode>AimedShot</aiAimMode>
       <noSnapshot>false</noSnapshot>
       <noSingleShot>false</noSingleShot>
     </FireModes>
     <weaponTags>
- 	  <li>CE_AI_Rifle</li>
+    <li>CE_AI_Rifle</li>
     </weaponTags>
     <researchPrerequisite>GasOperation</researchPrerequisite>
-</li>
+  </li>
 
-<li Class="PatchOperationReplace">
-	<xpath>Defs/ThingDef[defName="CEC_BattleRifle"]/label</xpath>
-	<value>
-		<label>M14</label>
-	</value>
-</li>
+  <li Class="PatchOperationReplace">
+    <xpath>Defs/ThingDef[defName="CEC_BattleRifle"]/label</xpath>
+    <value>
+      <label>M14</label>
+    </value>
+  </li>
 
-<!-- M200 Intervention -->
- <li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+  <!-- M200 Intervention -->
+  <li Class="CombatExtended.PatchOperationMakeGunCECompatible">
     <defName>CEC_Intervention</defName>
     <statBases>
       <Mass>14.1</Mass>
@@ -882,20 +772,20 @@ defName="CEC_LWAMG"
       <ammoSet>AmmoSet_408CheyenneTactical</ammoSet>
     </AmmoUser>
     <FireModes>
-	  <aiUseBurstMode>FALSE</aiUseBurstMode>
+    <aiUseBurstMode>FALSE</aiUseBurstMode>
       <aiAimMode>AimedShot</aiAimMode>
       <noSnapshot>false</noSnapshot>
       <noSingleShot>false</noSingleShot>
     </FireModes>
     <weaponTags>
- 	  <li>CE_AI_Rifle</li>
-	  <li>SniperRifle</li>
+    <li>CE_AI_Rifle</li>
+    <li>SniperRifle</li>
     </weaponTags>
     <researchPrerequisite>PrecisionRifling</researchPrerequisite>
-</li>
+  </li>
 
-<!-- NTW-20 -->
- <li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+  <!-- NTW-20 -->
+  <li Class="CombatExtended.PatchOperationMakeGunCECompatible">
     <defName>CEC_AntiMaterielRifle</defName>
     <statBases>
       <Mass>31.0</Mass>
@@ -908,7 +798,7 @@ defName="CEC_LWAMG"
     </statBases>
     <Properties>
       <verbClass>CombatExtended.Verb_ShootCE</verbClass>
-	  <recoilPattern>Mounted</recoilPattern>
+    <recoilPattern>Mounted</recoilPattern>
       <hasStandardCommand>true</hasStandardCommand>
       <defaultProjectile>Bullet_20x82mmMauser_FMJ</defaultProjectile>
       <warmupTime>4.10</warmupTime>
@@ -923,27 +813,27 @@ defName="CEC_LWAMG"
       <ammoSet>AmmoSet_20x82mmMauser</ammoSet>
     </AmmoUser>
     <FireModes>
-	  <aiUseBurstMode>FALSE</aiUseBurstMode>
+    <aiUseBurstMode>FALSE</aiUseBurstMode>
       <aiAimMode>AimedShot</aiAimMode>
       <noSnapshot>false</noSnapshot>
       <noSingleShot>false</noSingleShot>
     </FireModes>
     <weaponTags>
- 	  <li>CE_AI_Rifle</li>
-	  <li>SniperRifle</li>
+    <li>CE_AI_Rifle</li>
+    <li>SniperRifle</li>
     </weaponTags>
     <researchPrerequisite>PrecisionRifling</researchPrerequisite>
-</li>
+  </li>
 
-<li Class="PatchOperationReplace">
-	<xpath>Defs/ThingDef[defName="CEC_AntiMaterielRifle"]/label</xpath>
-	<value>
-		<label>NTW-20</label>
-	</value>
-</li>
+  <li Class="PatchOperationReplace">
+  <xpath>Defs/ThingDef[defName="CEC_AntiMaterielRifle"]/label</xpath>
+  <value>
+    <label>NTW-20</label>
+  </value>
+  </li>
 
-<!-- DVL-10 Saboteur -->
- <li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+  <!-- DVL-10 Saboteur -->
+  <li Class="CombatExtended.PatchOperationMakeGunCECompatible">
     <defName>CEC_DVLTen</defName>
     <statBases>
       <Mass>5.2</Mass>
@@ -970,27 +860,27 @@ defName="CEC_LWAMG"
       <ammoSet>AmmoSet_762x51mmNATO</ammoSet>
     </AmmoUser>
     <FireModes>
-	  <aiUseBurstMode>FALSE</aiUseBurstMode>
+    <aiUseBurstMode>FALSE</aiUseBurstMode>
       <aiAimMode>AimedShot</aiAimMode>
       <noSnapshot>false</noSnapshot>
       <noSingleShot>false</noSingleShot>
     </FireModes>
     <weaponTags>
- 	  <li>CE_AI_Rifle</li>
-	  <li>SniperRifle</li>
+    <li>CE_AI_Rifle</li>
+    <li>SniperRifle</li>
     </weaponTags>
     <researchPrerequisite>PrecisionRifling</researchPrerequisite>
-</li>
+  </li>
 
-<li Class="PatchOperationReplace">
-	<xpath>Defs/ThingDef[defName="CEC_DVLTen"]/label</xpath>
-	<value>
-		<label>DVL-10 Saboteur</label>
-	</value>
-</li>
+  <li Class="PatchOperationReplace">
+    <xpath>Defs/ThingDef[defName="CEC_DVLTen"]/label</xpath>
+    <value>
+      <label>DVL-10 Saboteur</label>
+    </value>
+  </li>
 
-<!-- WA 2000 -->
- <li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+  <!-- WA 2000 -->
+  <li Class="CombatExtended.PatchOperationMakeGunCECompatible">
     <defName>CEC_BullpupSniper</defName>
     <statBases>
       <Mass>7.9</Mass>
@@ -1017,27 +907,27 @@ defName="CEC_LWAMG"
       <ammoSet>AmmoSet_762x51mmNATO</ammoSet>
     </AmmoUser>
     <FireModes>
-	  <aiUseBurstMode>FALSE</aiUseBurstMode>
+    <aiUseBurstMode>FALSE</aiUseBurstMode>
       <aiAimMode>AimedShot</aiAimMode>
       <noSnapshot>false</noSnapshot>
       <noSingleShot>false</noSingleShot>
     </FireModes>
     <weaponTags>
- 	  <li>CE_AI_Rifle</li>
-	  <li>SniperRifle</li>
+    <li>CE_AI_Rifle</li>
+    <li>SniperRifle</li>
     </weaponTags>
     <researchPrerequisite>PrecisionRifling</researchPrerequisite>
-</li>
+  </li>
 
-<li Class="PatchOperationReplace">
-	<xpath>Defs/ThingDef[defName="CEC_BullpupSniper"]/label</xpath>
-	<value>
-		<label>WA 2000</label>
-	</value>
-</li>
+  <li Class="PatchOperationReplace">
+    <xpath>Defs/ThingDef[defName="CEC_BullpupSniper"]/label</xpath>
+    <value>
+      <label>WA 2000</label>
+    </value>
+  </li>
 
-<!-- Super Shorty -->
- <li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+  <!-- Super Shorty -->
+  <li Class="CombatExtended.PatchOperationMakeGunCECompatible">
     <defName>CEC_MuffaloCannon</defName>
     <statBases>
       <Mass>1.8</Mass>
@@ -1062,30 +952,30 @@ defName="CEC_LWAMG"
       <magazineSize>2</magazineSize>
       <reloadTime>0.80</reloadTime>
       <ammoSet>AmmoSet_12Gauge</ammoSet>
-	  <reloadOneAtATime>true</reloadOneAtATime>
+    <reloadOneAtATime>true</reloadOneAtATime>
     </AmmoUser>
     <FireModes>
-	  <aiUseBurstMode>FALSE</aiUseBurstMode>
+    <aiUseBurstMode>FALSE</aiUseBurstMode>
       <aiAimMode>Snapshot</aiAimMode>
       <noSnapshot>false</noSnapshot>
       <noSingleShot>false</noSingleShot>
     </FireModes>
     <weaponTags>
-		<li>CE_Sidearm</li>
-		<li>CE_AI_Pistol</li>
+    <li>CE_Sidearm</li>
+    <li>CE_AI_Pistol</li>
     </weaponTags>
     <researchPrerequisite>Gunsmithing</researchPrerequisite>
-</li>
+  </li>
 
-<li Class="PatchOperationReplace">
-	<xpath>Defs/ThingDef[defName="CEC_MuffaloCannon"]/label</xpath>
-	<value>
-		<label>Super Shorty</label>
-	</value>
-</li>
+  <li Class="PatchOperationReplace">
+    <xpath>Defs/ThingDef[defName="CEC_MuffaloCannon"]/label</xpath>
+    <value>
+      <label>Super Shorty</label>
+    </value>
+  </li>
 
-<!-- UTS-15 -->
- <li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+  <!-- UTS-15 -->
+  <li Class="CombatExtended.PatchOperationMakeGunCECompatible">
     <defName>CEC_CombatShotgun</defName>
     <statBases>
       <Mass>3.1</Mass>
@@ -1110,29 +1000,29 @@ defName="CEC_LWAMG"
       <magazineSize>14</magazineSize>
       <reloadTime>0.85</reloadTime>
       <ammoSet>AmmoSet_12Gauge</ammoSet>
-	  <reloadOneAtATime>true</reloadOneAtATime>
+    <reloadOneAtATime>true</reloadOneAtATime>
     </AmmoUser>
     <FireModes>
-	  <aiUseBurstMode>FALSE</aiUseBurstMode>
+    <aiUseBurstMode>FALSE</aiUseBurstMode>
       <aiAimMode>Snapshot</aiAimMode>
       <noSnapshot>false</noSnapshot>
       <noSingleShot>false</noSingleShot>
     </FireModes>
     <weaponTags>
-	  <li>CE_AI_AssaultWeapon</li>
+    <li>CE_AI_AssaultWeapon</li>
     </weaponTags>
     <researchPrerequisite>PrecisionRifling</researchPrerequisite>
-</li>
+  </li>
 
-<li Class="PatchOperationReplace">
-	<xpath>Defs/ThingDef[defName="CEC_CombatShotgun"]/label</xpath>
-	<value>
-		<label>UTS-15</label>
-	</value>
-</li>
+  <li Class="PatchOperationReplace">
+    <xpath>Defs/ThingDef[defName="CEC_CombatShotgun"]/label</xpath>
+    <value>
+      <label>UTS-15</label>
+    </value>
+  </li>
 
-<!-- PAW-20 -->
- <li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+  <!-- PAW-20 -->
+  <li Class="CombatExtended.PatchOperationMakeGunCECompatible">
     <defName>CEC_Neopup</defName>
     <statBases>
       <Mass>5.9</Mass>
@@ -1145,16 +1035,16 @@ defName="CEC_LWAMG"
     </statBases>
     <Properties>
       <verbClass>CombatExtended.Verb_ShootCE</verbClass>
-	  <recoilAmount>2.3</recoilAmount>
+    <recoilAmount>2.3</recoilAmount>
       <hasStandardCommand>true</hasStandardCommand>
       <defaultProjectile>Bullet_20x42mmGrenade_HE</defaultProjectile>
-	  <ai_IsBuildingDestroyer>true</ai_IsBuildingDestroyer>
+    <ai_IsBuildingDestroyer>true</ai_IsBuildingDestroyer>
       <warmupTime>1</warmupTime>
       <range>35</range>
-	  <minRange>4</minRange>
-	  <targetParams>
-		<canTargetLocations>true</canTargetLocations>
-	  </targetParams>
+    <minRange>4</minRange>
+    <targetParams>
+    <canTargetLocations>true</canTargetLocations>
+    </targetParams>
       <soundCast>InfernoCannon_Fire</soundCast>
       <muzzleFlashScale>9</muzzleFlashScale>
     </Properties>
@@ -1164,73 +1054,73 @@ defName="CEC_LWAMG"
       <ammoSet>AmmoSet_20x42mmGrenade</ammoSet>
     </AmmoUser>
     <FireModes>
-	  <aiUseBurstMode>FALSE</aiUseBurstMode>
+    <aiUseBurstMode>FALSE</aiUseBurstMode>
       <aiAimMode>SuppressFire</aiAimMode>
       <noSnapshot>false</noSnapshot>
       <noSingleShot>false</noSingleShot>
     </FireModes>
     <weaponTags>
- 	  <li>CE_AI_Launcher</li>
+    <li>CE_AI_Launcher</li>
     </weaponTags>
     <researchPrerequisite>CE_Launchers</researchPrerequisite>
-</li>
+  </li>
 
-<li Class="PatchOperationReplace">
-	<xpath>Defs/ThingDef[defName="CEC_Neopup"]/label</xpath>
-	<value>
-		<label>PAW-20 Neopup</label>
-	</value>
-</li>
+  <li Class="PatchOperationReplace">
+    <xpath>Defs/ThingDef[defName="CEC_Neopup"]/label</xpath>
+    <value>
+      <label>PAW-20 Neopup</label>
+    </value>
+  </li>
 
-<!-- Tactical Sledgehammer -->
-<li Class="PatchOperationReplace">
-<xpath>/Defs/ThingDef[defName="CEC_TacticalSledgeHammer"]/tools</xpath>
+  <!-- Tactical Sledgehammer -->
+  <li Class="PatchOperationReplace">
+  <xpath>/Defs/ThingDef[defName="CEC_TacticalSledgeHammer"]/tools</xpath>
     <value>
       <tools>
-				<li Class="CombatExtended.ToolCE">
-					<label>handle</label>
-					<capacities>
-						<li>Poke</li>
-					</capacities>
-					<power>4</power>
-					<cooldownTime>1.78</cooldownTime>
-					<chanceFactor>0.10</chanceFactor>
-					<armorPenetrationBlunt>1.000</armorPenetrationBlunt>
-					<linkedBodyPartsGroup>Handle</linkedBodyPartsGroup>
-				</li>
-				<li Class="CombatExtended.ToolCE">
-					<label>head</label>
-					<capacities>
-						<li>Blunt</li>
-					</capacities>
-					<power>16</power>
-					<cooldownTime>2.91</cooldownTime>
-					<chanceFactor>0.30</chanceFactor>
-					<armorPenetrationBlunt>6.25</armorPenetrationBlunt>
-					<linkedBodyPartsGroup>Head</linkedBodyPartsGroup>
-				</li>      
+        <li Class="CombatExtended.ToolCE">
+          <label>handle</label>
+          <capacities>
+            <li>Poke</li>
+          </capacities>
+          <power>4</power>
+          <cooldownTime>1.78</cooldownTime>
+          <chanceFactor>0.10</chanceFactor>
+          <armorPenetrationBlunt>1.000</armorPenetrationBlunt>
+          <linkedBodyPartsGroup>Handle</linkedBodyPartsGroup>
+        </li>
+        <li Class="CombatExtended.ToolCE">
+          <label>head</label>
+          <capacities>
+            <li>Blunt</li>
+          </capacities>
+          <power>16</power>
+          <cooldownTime>2.91</cooldownTime>
+          <chanceFactor>0.30</chanceFactor>
+          <armorPenetrationBlunt>6.25</armorPenetrationBlunt>
+          <linkedBodyPartsGroup>Head</linkedBodyPartsGroup>
+        </li>      
       </tools>
     </value>
-</li>
+  </li>
 
-<li Class="PatchOperationAdd">
-  <xpath>/Defs/ThingDef[defName="CEC_TacticalSledgeHammer"]/statBases</xpath>
-  <value>
-    <MarketValue>2000</MarketValue>
-    <MaxHitPoints>200</MaxHitPoints>
-    <Mass>8.76</Mass>
-    <Bulk>12.0</Bulk>
-    <Flammability>0</Flammability>
-    <DeteriorationRate>0</DeteriorationRate>
-  </value>
-</li>
-<li Class="PatchOperationAdd">
-  <xpath>/Defs/ThingDef[defName="CEC_TacticalSledgeHammer"]/equippedStatOffsets</xpath>
-  <value>
-    <MeleeCritChance>0.75</MeleeCritChance>
-    <MeleeParryChance>1</MeleeParryChance>
-  </value>
-</li>
+  <li Class="PatchOperationAdd">
+    <xpath>/Defs/ThingDef[defName="CEC_TacticalSledgeHammer"]/statBases</xpath>
+    <value>
+      <MarketValue>2000</MarketValue>
+      <MaxHitPoints>200</MaxHitPoints>
+      <Mass>8.76</Mass>
+      <Bulk>12.0</Bulk>
+      <Flammability>0</Flammability>
+      <DeteriorationRate>0</DeteriorationRate>
+    </value>
+  </li>
+  <li Class="PatchOperationAdd">
+    <xpath>/Defs/ThingDef[defName="CEC_TacticalSledgeHammer"]/equippedStatOffsets</xpath>
+    <value>
+      <MeleeCritChance>0.75</MeleeCritChance>
+      <MeleeParryChance>1</MeleeParryChance>
+    </value>
+  </li>
 
 </operations>
 </match>
