@@ -29,21 +29,18 @@ namespace CombatExtended
 	{
 		#region Fields
 		static private int _tickLastPurge = 0;
-		#endregion
-		
-		#region HoldTracker Methods
-		
-		/// <summary>
-		/// Used when a pawn is about to be ordered to pickup a Thing.
-		/// </summary>
-		/// <param name="pawn"></param>
-		/// <param name="job"></param>
-		static public void Notify_HoldTrackerJob(this Pawn pawn, Job job)
+        #endregion
+
+        #region HoldTracker Methods
+
+        /// <summary>
+        /// Used when a pawn is about to be ordered to pickup a Thing.
+        /// </summary>
+        /// <param name="pawn"></param>
+        /// <param name="item"></param>
+        /// <param name="count"></param>
+        static public void Notify_HoldTrackerItem(this Pawn pawn, Thing item, int count)
 		{
-			// make sure it's the right kind of job.
-			if (job.def != JobDefOf.TakeInventory)
-				throw new ArgumentException();
-			
 			// if the pawn doesn't have a normal loadout, nothing to do...
 			if (pawn.GetLoadout().defaultLoadout)
 				return;
@@ -58,7 +55,7 @@ namespace CombatExtended
 			}
 			
 			// could check isHeld but that tells us if there is a record AND it's been picked up.
-			HoldRecord rec = recs.FirstOrDefault(hr => hr.thingDef == job.targetA.Thing.def);
+			HoldRecord rec = recs.FirstOrDefault(hr => hr.thingDef == item.def);
 			if (rec != null)
 			{
                 if (rec.pickedUp)
@@ -66,21 +63,21 @@ namespace CombatExtended
                     // modifying a record for which the pawn should have some of that thing in their inventory.
                     CompInventory inventory = pawn.TryGetComp<CompInventory>();
                     if (inventory != null)
-                        rec.count = inventory.container.TotalStackCountOfDef(rec.thingDef) + job.count;
+                        rec.count = inventory.container.TotalStackCountOfDef(rec.thingDef) + count;
                     else
-                        rec.count += job.count; // probably won't generally follow this code path but good not to throw an error if possible.
+                        rec.count += count; // probably won't generally follow this code path but good not to throw an error if possible.
                 }
                 else
                 {
                     // modifying a record that hasn't been picked up... do it blind.
-                    rec.count += job.count;
+                    rec.count += count;
                 }
                 // useful debug message...
                 //Log.Message(string.Concat("Job was issued to pickup items for this existing record: ", rec));
                 return;
 			}
 			// if we got this far we know that there isn't a record being stored for this thingDef...
-			rec = new HoldRecord(job.targetA.Thing.def, job.count);
+			rec = new HoldRecord(item.def, count);
 			recs.Add(rec);
             // useful debug message...
 			//Log.Message(string.Concat("Job was issued to pickup for this new record: ", rec));

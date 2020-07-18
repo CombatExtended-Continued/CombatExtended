@@ -144,7 +144,7 @@ namespace CombatExtended.HarmonyCE
                                 Job job = JobMaker.MakeJob(JobDefOf.TakeInventory, item);
                                 job.count = 1;
                                 pawn.jobs.TryTakeOrderedJob(job, JobTag.Misc);
-                                pawn.Notify_HoldTrackerJob(job);
+                                pawn.Notify_HoldTrackerItem(item, 1);
                                 PlayerKnowledgeDatabase.KnowledgeDemonstrated(CE_ConceptDefOf.CE_InventoryWeightBulk, KnowledgeAmount.SpecificInteraction);
                             }, MenuOptionPriority.High, null, null, 0f, null, null), pawn, item, "ReservedBy"));
                         }
@@ -162,7 +162,7 @@ namespace CombatExtended.HarmonyCE
                                     Job job = JobMaker.MakeJob(JobDefOf.TakeInventory, item);
                                     job.count = item.stackCount;
                                     pawn.jobs.TryTakeOrderedJob(job, JobTag.Misc);
-                                    pawn.Notify_HoldTrackerJob(job);
+                                    pawn.Notify_HoldTrackerItem(item, item.stackCount);
                                     PlayerKnowledgeDatabase.KnowledgeDemonstrated(CE_ConceptDefOf.CE_InventoryWeightBulk, KnowledgeAmount.SpecificInteraction);
                                 }, MenuOptionPriority.High, null, null, 0f, null, null), pawn, item, "ReservedBy"));
                             }
@@ -175,7 +175,7 @@ namespace CombatExtended.HarmonyCE
                                     Job job = JobMaker.MakeJob(JobDefOf.TakeInventory, item);
                                     job.count = selectCount;
                                     pawn.jobs.TryTakeOrderedJob(job, JobTag.Misc);
-                                    pawn.Notify_HoldTrackerJob(job);
+                                    pawn.Notify_HoldTrackerItem(item, selectCount);
                                 }, -2147483648);
                                 Find.WindowStack.Add(window);
                                 PlayerKnowledgeDatabase.KnowledgeDemonstrated(CE_ConceptDefOf.CE_InventoryWeightBulk, KnowledgeAmount.SpecificInteraction);
