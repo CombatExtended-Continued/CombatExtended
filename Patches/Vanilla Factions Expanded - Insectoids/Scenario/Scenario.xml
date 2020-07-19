@@ -8,21 +8,29 @@
 
     <match Class="PatchOperationSequence">
       <operations>
+        <!-- === Removes Charge Lance from scenario === -->
+        <li Class="PatchOperationRemove">
+          <xpath>/Defs/ScenarioDef[defName="VFEI_MercenarySquad"]/scenario/parts/li[thingDef="Gun_ChargeLance"]</xpath>
+        </li>
+
+        <!-- === Increases Charge Rifle count to 3 to replace the CL === -->
+        <li Class="PatchOperationReplace">
+          <xpath>/Defs/ScenarioDef[defName="VFEI_MercenarySquad"]/scenario/parts/li[thingDef="Gun_ChargeRifle"]/count</xpath>
+
+          <value>
+            <count>3</count>
+          </value>
+        </li>
+
+        <!-- === Adds ammo to the scenario === -->
         <li Class="PatchOperationAdd">
           <xpath>/Defs/ScenarioDef[defName="VFEI_MercenarySquad"]/scenario/parts</xpath>
 
           <value>
-            <!-- === Charge Rifle === -->
             <li Class="ScenPart_StartingThing_Defined">
               <def>StartingThing_Defined</def>
               <thingDef>Ammo_6x24mmCharged</thingDef>
-              <count>300</count>
-            </li>
-            <!-- === Charge Lance === -->
-            <li Class="ScenPart_StartingThing_Defined">
-              <def>StartingThing_Defined</def>
-              <thingDef>Ammo_5x35mmCharged</thingDef>
-              <count>300</count>
+              <count>600</count>
             </li>
           </value>
         </li>
