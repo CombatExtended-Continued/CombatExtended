@@ -110,6 +110,41 @@
 
 			</li>
 
+			<!-- ========== UAC Combat Shotgun - Eternal ========== -->
+
+			<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+				<defName>RHGun_DOOM_CombatShotgunEternal</defName>
+				<statBases>
+					<RangedWeapon_Cooldown>0.68</RangedWeapon_Cooldown>
+					<SightsEfficiency>1</SightsEfficiency>
+					<ShotSpread>0.14</ShotSpread>
+					<SwayFactor>1.49</SwayFactor>
+					<Bulk>7.67</Bulk>
+				</statBases>
+				<Properties>
+					<recoilAmount>2.26</recoilAmount>
+					<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+					<hasStandardCommand>true</hasStandardCommand>
+					<defaultProjectile>Bullet_12Gauge_Buck</defaultProjectile>
+					<warmupTime>0.7</warmupTime>
+					<range>26</range>
+					<soundCast>RHShot_DOOMCombatShotgun</soundCast>
+					<soundCastTail>GunTail_Heavy</soundCastTail>
+					<muzzleFlashScale>9</muzzleFlashScale>
+				</Properties>
+
+				<AmmoUser>
+					<magazineSize>20</magazineSize>
+					<reloadTime>4.9</reloadTime>
+					<ammoSet>AmmoSet_12Gauge</ammoSet>
+				</AmmoUser>
+
+				<FireModes>
+					<aiAimMode>Snapshot</aiAimMode>
+				</FireModes>
+
+			</li>
+
 			<!-- ========== Super Shotgun ========== -->
 
 			<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
@@ -451,6 +486,7 @@
 			<li Class="PatchOperationReplace">
 				<xpath>Defs/ThingDef[
 					defName="RHGun_DOOM_CombatShotgun" or
+					defName="RHGun_DOOM_CombatShotgunEternal" or
 					defName="RHGun_DOOM_SuperShotgun" or
 					defName="RHGun_DOOM_HeavyAssaultRifle" or
 					defName="RHGun_DOOM_PlasmaRifle" or
