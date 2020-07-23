@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+
+  <Operation Class="PatchOperationFindMod">
+    <mods>
+      <li>Vanilla Factions Expanded - Insectoids</li>
+    </mods>
+    
+    <match Class="PatchOperationSequence">
+      <operations>
+
+        <li Class="PatchOperationReplace">
+          <xpath>/Defs/HediffDef[defName="VFEI_VenomGland"]/comps/li[@Class="HediffCompProperties_VerbGiver"]/tools</xpath>
+
+          <value>
+            <tools>
+              <li Class="CombatExtended.ToolCE">
+                <label>venom gland</label>
+                <capacities>
+                  <li>SpittingOnPawn</li>
+                </capacities>
+                <power>2</power>
+                <cooldownTime>4</cooldownTime>
+                <alwaysTreatAsWeapon>true</alwaysTreatAsWeapon>
+              </li>
+            </tools>
+          </value>
+        </li>
+
+        <li Class="PatchOperationReplace">
+          <xpath>/Defs/HediffDef[defName="VFEI_PneumaticClaw"]/comps/li[@Class="HediffCompProperties_VerbGiver"]/tools</xpath>
+
+          <value>
+            <tools>
+              <li Class="CombatExtended.ToolCE">
+                <label>claw</label>
+                <capacities>
+                  <li>Blunt</li>
+                </capacities>
+                <power>25</power>
+                <cooldownTime>3.6</cooldownTime>
+                <armorPenetrationBlunt>22.05</armorPenetrationBlunt>
+                <alwaysTreatAsWeapon>true</alwaysTreatAsWeapon>
+              </li>
+            </tools>
+          </value>
+        </li>
+      </operations>
+    </match>
+  </Operation>
+
+</Patch>
