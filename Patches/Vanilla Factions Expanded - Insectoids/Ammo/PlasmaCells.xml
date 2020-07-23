@@ -1,0 +1,438 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+
+  <Operation Class="PatchOperationFindMod">
+    <mods>
+      <li>Vanilla Factions Expanded - Insectoids</li>
+    </mods>
+
+    <match Class="PatchOperationAdd">
+      <xpath>Defs</xpath>
+
+      <value>
+        <!-- === ThingCategoryDef === -->
+        <ThingCategoryDef>
+          <defName>AmmoVFEIPlasmaCells</defName>
+          <label>plasma cells</label>
+          <parent>AmmoAdvanced</parent>
+          <iconPath>UI/Icons/ThingCategories/CaliberPlasmaMedium</iconPath>
+        </ThingCategoryDef>
+
+        <!-- === AmmoSetDef === -->
+        <CombatExtended.AmmoSetDef>
+          <defName>AmmoSet_VFEI_PlasmaCutter</defName>
+          <label>plasma cells</label>
+          <ammoTypes>
+            <Ammo_VFEI_PlasmaCutter>Bullet_VFEI_PlasmaCutter</Ammo_VFEI_PlasmaCutter>
+          </ammoTypes>
+        </CombatExtended.AmmoSetDef>
+
+        <CombatExtended.AmmoSetDef>
+          <defName>AmmoSet_VFEI_PlasmaScatter</defName>
+          <label>plasma cells</label>
+          <ammoTypes>
+            <Ammo_VFEI_PlasmaScatter>Bullet_VFEI_PlasmaScatter</Ammo_VFEI_PlasmaScatter>
+          </ammoTypes>
+        </CombatExtended.AmmoSetDef>
+
+        <CombatExtended.AmmoSetDef>
+          <defName>AmmoSet_VFEI_PlasmaRifle</defName>
+          <label>plasma cells</label>
+          <ammoTypes>
+            <Ammo_VFEI_PlasmaRifle>Bullet_VFEI_PlasmaRifle</Ammo_VFEI_PlasmaRifle>
+          </ammoTypes>
+        </CombatExtended.AmmoSetDef>
+
+        <CombatExtended.AmmoSetDef>
+          <defName>AmmoSet_VFEI_PlasmaPiercer</defName>
+          <label>plasma cells</label>
+          <ammoTypes>
+            <Ammo_VFEI_PlasmaPiercer>Bullet_VFEI_PlasmaPiercer</Ammo_VFEI_PlasmaPiercer>
+          </ammoTypes>
+        </CombatExtended.AmmoSetDef>
+
+        <!-- === Ammo === -->
+        <ThingDef Class="CombatExtended.AmmoDef" ParentName="SpacerSmallAmmoBase" Name="VFEPlasmaCellsBase" Abstract="True">
+          <description>Plasma containment power cells</description>
+          <statBases>
+            <Mass>0.017</Mass>
+            <Bulk>0.01</Bulk>
+            <MarketValue>0.24</MarketValue>
+          </statBases>
+          <tradeTags>
+            <li>CE_AutoEnableTrade</li>
+            <li>CE_AutoEnableCrafting_TableMachining</li>
+          </tradeTags>
+          <thingCategories>
+            <li>AmmoVFEIPlasmaCells</li>
+          </thingCategories>
+          <ammoClass>Plasma</ammoClass>
+          <comps>
+            <li Class="CombatExtended.CompProperties_ExplosiveCE">
+              <damageAmountBase>20</damageAmountBase>
+              <explosiveDamageType>Bomb</explosiveDamageType>
+              <explosiveRadius>0.5</explosiveRadius>
+              <applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
+            </li>
+            <li Class="CombatExtended.CompProperties_Fragments">
+              <fragments>
+                <Fragment_Large>2</Fragment_Large>
+                <Fragment_Small>10</Fragment_Small>
+              </fragments>
+            </li>
+          </comps>
+        </ThingDef>
+
+        <ThingDef Class="CombatExtended.AmmoDef" ParentName="VFEPlasmaCellsBase">
+          <defName>Ammo_VFEI_PlasmaCutter</defName>
+          <label>plasma cutter cell</label>
+          <graphicData>
+            <texPath>Things/Ammo/PlasmaCell/Pistol</texPath>
+            <graphicClass>CombatExtended.Graphic_StackCountRanged</graphicClass>
+          </graphicData>
+        </ThingDef>
+
+        <ThingDef Class="CombatExtended.AmmoDef" ParentName="VFEPlasmaCellsBase">
+          <defName>Ammo_VFEI_PlasmaScatter</defName>
+          <label>plasma scattergun cell</label>
+          <graphicData>
+            <texPath>Things/Ammo/PlasmaCell/Heavy</texPath>
+            <graphicClass>CombatExtended.Graphic_StackCountRanged</graphicClass>
+          </graphicData>
+        </ThingDef>
+
+        <ThingDef Class="CombatExtended.AmmoDef" ParentName="VFEPlasmaCellsBase">
+          <defName>Ammo_VFEI_PlasmaRifle</defName>
+          <label>plasma beam rifle cell</label>
+          <graphicData>
+            <texPath>Things/Ammo/PlasmaCell/Rifle</texPath>
+            <graphicClass>CombatExtended.Graphic_StackCountRanged</graphicClass>
+          </graphicData>
+        </ThingDef>
+
+        <ThingDef Class="CombatExtended.AmmoDef" ParentName="VFEPlasmaCellsBase">
+          <defName>Ammo_VFEI_PlasmaPiercer</defName>
+          <label>plasma piercer cell</label>
+          <graphicData>
+            <texPath>Things/Ammo/PlasmaCell/Rifle</texPath>
+            <graphicClass>CombatExtended.Graphic_StackCountRanged</graphicClass>
+          </graphicData>
+        </ThingDef>
+
+        <!-- === Projectiles === -->
+        <ThingDef Class="CombatExtended.AmmoDef" Name="BaseVFEIPlasmaBullet" ParentName="BaseBullet" Abstract="true">
+          <thingClass>CombatExtended.BulletCE</thingClass>          <!-- If i don't add this the ammo won't work -->
+          <projectile Class="CombatExtended.ProjectilePropertiesCE">
+            <damageDef>Burn</damageDef>
+            <speed>160</speed>
+          </projectile>
+        </ThingDef>
+
+        <ThingDef Class="CombatExtended.AmmoDef" ParentName="BaseVFEIPlasmaBullet">
+          <defName>Bullet_VFEI_PlasmaCutter</defName>
+          <label>plasma shot</label>
+          <graphicData>
+            <texPath>Things/Item/Weapons/Plasma_Cutter</texPath>
+            <graphicClass>Graphic_Single</graphicClass>
+          </graphicData>
+          <projectile Class="CombatExtended.ProjectilePropertiesCE">
+            <damageAmountBase>8</damageAmountBase>
+            <armorPenetrationSharp>8</armorPenetrationSharp>
+            <armorPenetrationBlunt>8</armorPenetrationBlunt>
+            <empShieldBreakChance>0.2</empShieldBreakChance>
+            <secondaryDamage>
+              <li>
+                <def>Cut</def>
+                <amount>3</amount>
+              </li>
+            </secondaryDamage>
+          </projectile>
+        </ThingDef>
+
+        <ThingDef Class="CombatExtended.AmmoDef" ParentName="BaseVFEIPlasmaBullet">
+          <defName>Bullet_VFEI_PlasmaScatter</defName>
+          <label>plasma shot</label>
+          <graphicData>
+            <texPath>Things/Item/Weapons/Plasma_Scatter</texPath>
+            <graphicClass>Graphic_Single</graphicClass>
+          </graphicData>
+          <projectile Class="CombatExtended.ProjectilePropertiesCE">
+            <speed>130</speed>
+            <damageAmountBase>10</damageAmountBase>
+            <armorPenetrationSharp>8</armorPenetrationSharp>
+            <armorPenetrationBlunt>8</armorPenetrationBlunt>
+            <pelletCount>9</pelletCount>
+            <spreadMult>17.8</spreadMult>
+            <empShieldBreakChance>0.2</empShieldBreakChance>
+            <secondaryDamage>
+              <li>
+                <def>EMP</def>
+                <amount>3</amount>
+              </li>
+            </secondaryDamage>
+          </projectile>
+        </ThingDef>
+
+        <ThingDef Class="CombatExtended.AmmoDef" ParentName="BaseVFEIPlasmaBullet">
+          <defName>Bullet_VFEI_PlasmaRifle</defName>
+          <label>plasma beam</label>
+          <graphicData>
+            <texPath>Things/Item/Weapons/Plasma_Beam</texPath>
+            <graphicClass>Graphic_Single</graphicClass>
+          </graphicData>
+          <projectile Class="CombatExtended.ProjectilePropertiesCE">
+            <damageAmountBase>15</damageAmountBase>
+            <armorPenetrationSharp>10</armorPenetrationSharp>
+            <armorPenetrationBlunt>10</armorPenetrationBlunt>
+            <empShieldBreakChance>0.2</empShieldBreakChance>
+            <secondaryDamage>
+              <li>
+                <def>EMP</def>
+                <amount>3</amount>
+              </li>
+            </secondaryDamage>
+          </projectile>
+        </ThingDef>
+
+        <ThingDef Class="CombatExtended.AmmoDef" ParentName="BaseVFEIPlasmaBullet">
+          <defName>Bullet_VFEI_PlasmaPiercer</defName>
+          <label>plasma bolt</label>
+          <graphicData>
+            <texPath>Things/Item/Weapons/Plasma_Nail</texPath>
+            <graphicClass>Graphic_Single</graphicClass>
+          </graphicData>
+          <projectile Class="CombatExtended.ProjectilePropertiesCE">
+            <damageAmountBase>22</damageAmountBase>
+            <armorPenetrationSharp>18</armorPenetrationSharp>
+            <armorPenetrationBlunt>25</armorPenetrationBlunt>
+            <empShieldBreakChance>0.2</empShieldBreakChance>
+            <secondaryDamage>
+              <li>
+                <def>Stun</def>
+                <amount>3</amount>
+              </li>
+            </secondaryDamage>
+          </projectile>
+        </ThingDef>
+
+        <!-- === Recipes === -->
+        <!-- == Plasma Cutter == -->
+        <RecipeDef ParentName="ChargeAmmoRecipeBase">
+          <defName>MakeAmmo_VFEI_PlasmaCutter</defName>
+          <label>make Plasma Cutter Power Cells</label>
+          <description>Craft 500 shots worth of Plasma Cutter Power Cells.</description>
+          <jobString>Making Plasma Cutter Power Cells.</jobString>
+          <workAmount>3800</workAmount>
+          <ingredients>
+            <li>
+              <filter>
+                <thingDefs>
+                  <li>Steel</li>
+                </thingDefs>
+              </filter>
+              <count>18</count>
+            </li>
+            <li>
+              <filter>
+                <thingDefs>
+                  <li>Plasteel</li>
+                </thingDefs>
+              </filter>
+              <count>2</count>
+            </li>
+            <li>
+              <filter>
+                <thingDefs>
+                  <li>Prometheum</li>
+                </thingDefs>
+              </filter>
+              <count>5</count>
+            </li>
+            <li>
+              <filter>
+                <thingDefs>
+                  <li>ComponentIndustrial</li>
+                </thingDefs>
+              </filter>
+              <count>2</count>
+            </li>
+          </ingredients>
+          <fixedIngredientFilter>
+            <thingDefs>
+              <li>Steel</li>
+              <li>Plasteel</li>
+              <li>Prometheum</li>
+              <li>ComponentIndustrial</li>
+            </thingDefs>
+          </fixedIngredientFilter>
+          <products>
+            <Ammo_VFEI_PlasmaCutter>500</Ammo_VFEI_PlasmaCutter>
+          </products>
+        </RecipeDef>
+
+        <!-- == Plasma Scattergun == -->
+        <RecipeDef ParentName="ChargeAmmoRecipeBase">
+          <defName>MakeAmmo_VFEI_PlasmaScatter</defName>
+          <label>make Plasma Scattergun Power Cells</label>
+          <description>Craft 500 shots worth of Plasma Scattergun Power Cells.</description>
+          <jobString>Making Plasma Scattergun Power Cells.</jobString>
+          <workAmount>3800</workAmount>
+          <ingredients>
+            <li>
+              <filter>
+                <thingDefs>
+                  <li>Steel</li>
+                </thingDefs>
+              </filter>
+              <count>18</count>
+            </li>
+            <li>
+              <filter>
+                <thingDefs>
+                  <li>Plasteel</li>
+                </thingDefs>
+              </filter>
+              <count>2</count>
+            </li>
+            <li>
+              <filter>
+                <thingDefs>
+                  <li>Prometheum</li>
+                </thingDefs>
+              </filter>
+              <count>5</count>
+            </li>
+            <li>
+              <filter>
+                <thingDefs>
+                  <li>ComponentIndustrial</li>
+                </thingDefs>
+              </filter>
+              <count>2</count>
+            </li>
+          </ingredients>
+          <fixedIngredientFilter>
+            <thingDefs>
+              <li>Steel</li>
+              <li>Plasteel</li>
+              <li>Prometheum</li>
+              <li>ComponentIndustrial</li>
+            </thingDefs>
+          </fixedIngredientFilter>
+          <products>
+            <Ammo_VFEI_PlasmaScatter>500</Ammo_VFEI_PlasmaScatter>
+          </products>
+        </RecipeDef>
+
+        <!-- == Plasma Rifle == -->
+        <RecipeDef ParentName="ChargeAmmoRecipeBase">
+          <defName>MakeAmmo_VFEI_PlasmaRifle</defName>
+          <label>make Plasma Rifle Power Cells</label>
+          <description>Craft 500 shots worth of Plasma Rifle Power Cells.</description>
+          <jobString>Making Plasma Rifle Power Cells.</jobString>
+          <workAmount>3800</workAmount>
+          <ingredients>
+            <li>
+              <filter>
+                <thingDefs>
+                  <li>Steel</li>
+                </thingDefs>
+              </filter>
+              <count>18</count>
+            </li>
+            <li>
+              <filter>
+                <thingDefs>
+                  <li>Plasteel</li>
+                </thingDefs>
+              </filter>
+              <count>2</count>
+            </li>
+            <li>
+              <filter>
+                <thingDefs>
+                  <li>Prometheum</li>
+                </thingDefs>
+              </filter>
+              <count>5</count>
+            </li>
+            <li>
+              <filter>
+                <thingDefs>
+                  <li>ComponentIndustrial</li>
+                </thingDefs>
+              </filter>
+              <count>2</count>
+            </li>
+          </ingredients>
+          <fixedIngredientFilter>
+            <thingDefs>
+              <li>Steel</li>
+              <li>Plasteel</li>
+              <li>Prometheum</li>
+              <li>ComponentIndustrial</li>
+            </thingDefs>
+          </fixedIngredientFilter>
+          <products>
+            <Ammo_VFEI_PlasmaRifle>500</Ammo_VFEI_PlasmaRifle>
+          </products>
+        </RecipeDef>
+
+        <!-- == Plasma Piercer == -->
+        <RecipeDef ParentName="ChargeAmmoRecipeBase">
+          <defName>MakeAmmo_VFEI_PlasmaPiercer</defName>
+          <label>make Plasma Piercer Power Cells</label>
+          <description>Craft 500 shots worth of Plasma Piercer Power Cells.</description>
+          <jobString>Making Plasma Piercer Power Cells.</jobString>
+          <workAmount>3800</workAmount>
+          <ingredients>
+            <li>
+              <filter>
+                <thingDefs>
+                  <li>Steel</li>
+                </thingDefs>
+              </filter>
+              <count>18</count>
+            </li>
+            <li>
+              <filter>
+                <thingDefs>
+                  <li>Plasteel</li>
+                </thingDefs>
+              </filter>
+              <count>2</count>
+            </li>
+            <li>
+              <filter>
+                <thingDefs>
+                  <li>Prometheum</li>
+                </thingDefs>
+              </filter>
+              <count>5</count>
+            </li>
+            <li>
+              <filter>
+                <thingDefs>
+                  <li>ComponentIndustrial</li>
+                </thingDefs>
+              </filter>
+              <count>2</count>
+            </li>
+          </ingredients>
+          <fixedIngredientFilter>
+            <thingDefs>
+              <li>Steel</li>
+              <li>Plasteel</li>
+              <li>Prometheum</li>
+              <li>ComponentIndustrial</li>
+            </thingDefs>
+          </fixedIngredientFilter>
+          <products>
+            <Ammo_VFEI_PlasmaPiercer>500</Ammo_VFEI_PlasmaPiercer>
+          </products>
+        </RecipeDef>
+      </value>
+    </match>
+  </Operation>
+
+</Patch>

@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+
+  <Operation Class="PatchOperationFindMod">
+    <mods>
+      <li>Vanilla Factions Expanded - Insectoids</li>
+    </mods>
+
+    <match Class="PatchOperationSequence">
+      <operations>
+        <li Class="PatchOperationReplace">
+          <xpath>/Defs/ThingDef[defName="VFEI_VatGrownMegapede"]/statBases/MoveSpeed</xpath>
+
+          <value>
+            <MoveSpeed>3.0</MoveSpeed>
+            <MeleeDodgeChance>0.03</MeleeDodgeChance>
+            <MeleeCritChance>0.35</MeleeCritChance>
+            <MeleeParryChance>0.37</MeleeParryChance>
+            <PainShockThreshold>0.99</PainShockThreshold>
+          </value>
+        </li>
+
+        <li Class="PatchOperationReplace">
+          <xpath>/Defs/ThingDef[defName="VFEI_VatGrownMegapede"]/statBases/ArmorRating_Blunt</xpath>
+
+          <value>
+            <ArmorRating_Blunt>10.8</ArmorRating_Blunt>
+          </value>
+        </li>
+
+        <li Class="PatchOperationReplace">
+          <xpath>/Defs/ThingDef[defName="VFEI_VatGrownMegapede"]/statBases/ArmorRating_Sharp</xpath>
+
+          <value>
+            <ArmorRating_Sharp>3.6</ArmorRating_Sharp>
+          </value>
+        </li>
+
+        <li Class="PatchOperationReplace">
+          <xpath>/Defs/ThingDef[defName="VFEI_VatGrownMegapede"]/race/body</xpath>
+
+          <value>
+            <body>CE_ArmoredBeetleLikeWithClaw</body>
+          </value>
+        </li>
+
+        <li Class="PatchOperationReplace">
+          <xpath>/Defs/ThingDef[defName="VFEI_VatGrownMegapede"]/race/baseHealthScale</xpath>
+
+          <value>
+            <baseHealthScale>3.6</baseHealthScale>
+          </value>
+        </li>
+
+        <li Class="PatchOperationReplace">
+          <xpath>/Defs/ThingDef[defName="VFEI_VatGrownMegapede"]/tools</xpath>
+
+          <value>
+            <tools>
+              <li Class="CombatExtended.ToolCE">
+                <label>head claw</label>
+                <capacities>
+                  <li>Cut</li>
+                </capacities>
+                <power>60</power>
+                <cooldownTime>3.28</cooldownTime>
+                <linkedBodyPartsGroup>HeadClaw</linkedBodyPartsGroup>
+                <armorPenetrationSharp>2.43</armorPenetrationSharp>
+                <armorPenetrationBlunt>6</armorPenetrationBlunt>
+              </li>
+              <li Class="CombatExtended.ToolCE">
+                <label>mandibles</label>
+                <capacities>
+                  <li>ToxicBite</li>
+                </capacities>
+                <power>31</power>
+                <cooldownTime>3.4</cooldownTime>
+                <linkedBodyPartsGroup>Mouth</linkedBodyPartsGroup>
+                <armorPenetrationSharp>2.64</armorPenetrationSharp>
+                <armorPenetrationBlunt>39.6</armorPenetrationBlunt>
+              </li>
+              <li Class="CombatExtended.ToolCE">
+                <label>head</label>
+                <capacities>
+                  <li>Blunt</li>
+                </capacities>
+                <power>33</power>
+                <cooldownTime>3.51</cooldownTime>
+                <linkedBodyPartsGroup>HeadAttackTool</linkedBodyPartsGroup>
+                <chanceFactor>0.8</chanceFactor>
+                <armorPenetrationBlunt>14.175</armorPenetrationBlunt>
+              </li>
+            </tools>
+          </value>
+        </li>
+      </operations>
+    </match>
+  </Operation>
+
+</Patch>
