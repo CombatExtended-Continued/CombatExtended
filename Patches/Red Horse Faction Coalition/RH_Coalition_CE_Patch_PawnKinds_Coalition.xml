@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+	<Operation Class="PatchOperationFindMod">
+    <mods>
+		<li>[RH] Faction: Coalition</li>
+    </mods>
+		<match Class="PatchOperationSequence">
+		 <operations>
+
+			<!-- ========== Reduce meals and medicine carried by all pawns ========== -->
+
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/PawnKindDef[@Name="RH_Coalition_Base"]/invNutrition</xpath>
+				<value>
+					<invNutrition>1</invNutrition>
+				</value>
+			</li>
+
+			<li Class="PatchOperationRemove">
+				<xpath>Defs/PawnKindDef[@Name="RH_Coalition_Base"]/inventoryOptions</xpath>
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/PawnKindDef[
+					defName="RH_Coalition_Starter" or
+					defName="RH_Coalition_Scout" or
+					defName="RH_Coalition_CQB" or
+					defName="RH_Coalition_CQB_TierII" or
+					defName="RH_Coalition_Marksman" or
+					defName="RH_Coalition_Marksman_TierII" or
+					defName="RH_Coalition_Sniper" or
+					defName="RH_Coalition_Assault" or
+					defName="RH_Coalition_Assault_TierII" or
+					defName="RH_Coalition_Gunner" or
+					defName="RH_Coalition_Grenadier" or
+					defName="RH_Coalition_Boss" or
+					defName="RH_Coalition_Elite" or
+					defName="RH_Coalition_Trader"				
+				]/inventoryOptions/subOptionsChooseOne</xpath>
+				<value>
+					<subOptionsChooseOne>
+						<li>
+							<thingDef>RNMedicine_IFAK_Multicam</thingDef>
+							<countRange>
+								<min>0</min>
+								<max>1</max>
+							</countRange>
+						</li>
+						<li>
+							<thingDef>RNMedicine_MedicBag</thingDef>
+							<countRange>
+								<min>0</min>
+								<max>1</max>
+							</countRange>
+						</li>
+					</subOptionsChooseOne>
+				</value>
+			</li>
+
+			<!-- ========== Remove smokepop belt ========== -->
+
+			<li Class="PatchOperationRemove">
+				<xpath>Defs/PawnKindDef[
+					defName="RH_Coalition_Sniper" or
+					defName="RH_Coalition_Boss" or
+					defName="RH_Coalition_Elite"
+				]/apparelRequired/li[.="Apparel_SmokepopBelt"]</xpath>
+			</li>
+
+			<!-- ========== Backpacks ========== -->
+
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/PawnKindDef[
+						defName="RH_Coalition_Starter" or
+						defName="RH_Coalition_CQB" or
+						defName="RH_Coalition_CQB_TierII" or
+						defName="RH_Coalition_Marksman_TierII" or
+						defName="RH_Coalition_Sniper" or
+						defName="RH_Coalition_Assault" or
+						defName="RH_Coalition_Assault_TierII" or
+						defName="RH_Coalition_Gunner" or
+						defName="RH_Coalition_Grenadier" or
+						defName="RH_Coalition_Boss" or
+						defName="RH_Coalition_Elite"
+						]/apparelRequired</xpath>
+				<value>
+					<li>Apparel_Backpack</li>
+				</value>
+			</li>
+
+			<!-- ========== Ammo ========== -->
+
+			<li Class="PatchOperationAddModExtension">
+				<xpath>Defs/PawnKindDef[
+					defName="RH_Coalition_Starter" or
+					defName="RH_Coalition_Scout" or
+					defName="RH_Coalition_CQB" or
+					defName="RH_Coalition_CQB_TierII" or
+					defName="RH_Coalition_Marksman" or
+					defName="RH_Coalition_Marksman_TierII" or
+					defName="RH_Coalition_Sniper" or
+					defName="RH_Coalition_Assault" or
+					defName="RH_Coalition_Assault_TierII" or
+					defName="RH_Coalition_Gunner" or
+					defName="RH_Coalition_Grenadier" or
+					defName="RH_Coalition_Boss" or
+					defName="RH_Coalition_Elite" or
+					defName="RH_Coalition_Trader"		
+				]</xpath>
+				<value>
+					<li Class="CombatExtended.LoadoutPropertiesExtension">
+					<primaryMagazineCount>
+						<min>6</min>
+						<max>8</max>
+					</primaryMagazineCount>
+					</li>
+				</value>
+			</li>
+
+			<!-- ========== Weapon Money ========== -->
+
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/PawnKindDef[
+						defName="RH_Coalition_Marksman" or
+						defName="RH_Coalition_Marksman_TierII"
+						]/weaponMoney</xpath>
+				<value>
+					<weaponMoney>
+					<min>475</min>
+					<max>750</max>
+					</weaponMoney>
+				</value>
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/PawnKindDef[defName="RH_Coalition_Gunner"]/weaponMoney</xpath>
+				<value>
+					<weaponMoney>
+					<min>550</min>
+					<max>750</max>
+					</weaponMoney>
+				</value>
+			</li>
+
+			</operations>
+			</match>
+		</Operation>
+	</Patch>

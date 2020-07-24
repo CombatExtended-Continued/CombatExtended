@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+
+  <Operation Class="PatchOperationFindMod">
+    <mods>
+      <li>Vanilla Factions Expanded - Insectoids</li>
+    </mods>
+
+    <match Class="PatchOperationSequence">
+      <operations>
+        <!-- === Wargling === -->
+        <li Class="PatchOperationAdd">
+          <xpath>
+            /Defs/BodyDef[defName="VFEI_Wargling"]//*[
+            def="Shell" or
+            def="Elytra" or
+            def="Pronotum"]
+          </xpath>
+
+          <value>
+            <groups/>
+          </value>
+        </li>
+
+        <li Class="PatchOperationAdd">
+          <xpath>
+            /Defs/BodyDef[defName="VFEI_Wargling"]//*[
+            def="Shell" or
+            def="Elytra" or
+            def="Pronotum" or
+            def="VFEI_FrontClaw" or
+            def="InsectMouth" or
+            def="InsectHead"]/groups
+          </xpath>
+
+          <value>
+            <li>CoveredByNaturalArmor</li>
+          </value>
+        </li>
+      </operations>
+    </match>
+  </Operation>
+
+</Patch>

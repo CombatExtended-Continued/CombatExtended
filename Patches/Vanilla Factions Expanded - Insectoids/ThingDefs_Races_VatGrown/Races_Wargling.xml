@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+
+  <Operation Class="PatchOperationFindMod">
+    <mods>
+      <li>Vanilla Factions Expanded - Insectoids</li>
+    </mods>
+
+    <match Class="PatchOperationSequence">
+      <operations>
+        <li Class="PatchOperationReplace">
+          <xpath>/Defs/ThingDef[defName="VFEI_VatGrownWargling"]/statBases/MoveSpeed</xpath>
+
+          <value>
+            <MoveSpeed>5.8</MoveSpeed>
+            <MeleeDodgeChance>0.11</MeleeDodgeChance>
+            <MeleeCritChance>0.21</MeleeCritChance>
+            <MeleeParryChance>0.18</MeleeParryChance>
+          </value>
+        </li>
+
+        <li Class="PatchOperationReplace">
+          <xpath>/Defs/ThingDef[defName="VFEI_VatGrownWargling"]/statBases/ArmorRating_Blunt</xpath>
+
+          <value>
+            <ArmorRating_Blunt>10.8</ArmorRating_Blunt>
+          </value>
+        </li>
+
+        <li Class="PatchOperationReplace">
+          <xpath>/Defs/ThingDef[defName="VFEI_VatGrownWargling"]/statBases/ArmorRating_Sharp</xpath>
+
+          <value>
+            <ArmorRating_Sharp>3.6</ArmorRating_Sharp>
+          </value>
+        </li>
+
+        <li Class="PatchOperationReplace">
+          <xpath>/Defs/ThingDef[defName="VFEI_VatGrownWargling"]/race/baseHealthScale</xpath>
+          
+          <value>
+            <baseHealthScale>1.95</baseHealthScale>
+          </value>
+        </li>
+
+        <li Class="PatchOperationReplace">
+          <xpath>/Defs/ThingDef[defName="VFEI_VatGrownWargling"]/tools</xpath>
+          
+          <value>
+            <tools>
+              <li Class="CombatExtended.ToolCE">
+                <capacities>
+                  <li>Stab</li>
+                </capacities>
+                <power>12</power>
+                <cooldownTime>1.24</cooldownTime>
+                <linkedBodyPartsGroup>FrontLeftClaws</linkedBodyPartsGroup>
+                <armorPenetrationSharp>30</armorPenetrationSharp>
+                <armorPenetrationBlunt>15</armorPenetrationBlunt>
+              </li>
+              <li Class="CombatExtended.ToolCE">
+                <capacities>
+                  <li>Cut</li>
+                </capacities>
+                <power>33</power>
+                <cooldownTime>1.71</cooldownTime>
+                <linkedBodyPartsGroup>FrontLeftClaws</linkedBodyPartsGroup>
+                <armorPenetrationSharp>0.34</armorPenetrationSharp>
+                <armorPenetrationBlunt>2.54</armorPenetrationBlunt>
+              </li>
+              <li Class="CombatExtended.ToolCE">
+                <capacities>
+                  <li>Stab</li>
+                </capacities>
+                <power>12</power>
+                <cooldownTime>1.24</cooldownTime>
+                <linkedBodyPartsGroup>FrontRightClaws</linkedBodyPartsGroup>
+                <armorPenetrationSharp>30</armorPenetrationSharp>
+                <armorPenetrationBlunt>15</armorPenetrationBlunt>
+              </li>
+              <li Class="CombatExtended.ToolCE">
+                <capacities>
+                  <li>Cut</li>
+                </capacities>
+                <power>33</power>
+                <cooldownTime>1.71</cooldownTime>
+                <linkedBodyPartsGroup>FrontRightClaws</linkedBodyPartsGroup>
+                <armorPenetrationSharp>0.34</armorPenetrationSharp>
+                <armorPenetrationBlunt>2.54</armorPenetrationBlunt>
+              </li>
+              <li Class="CombatExtended.ToolCE">
+                <label>mandibles</label>
+                <capacities>
+                  <li>Cut</li>
+                </capacities>
+                <power>16</power>
+                <cooldownTime>1.49</cooldownTime>
+                <linkedBodyPartsGroup>Mouth</linkedBodyPartsGroup>
+                <armorPenetrationSharp>1.44</armorPenetrationSharp>
+                <armorPenetrationBlunt>1.44</armorPenetrationBlunt>
+              </li>
+              <li Class="CombatExtended.ToolCE">
+                <label>head</label>
+                <capacities>
+                  <li>Blunt</li>
+                </capacities>
+                <power>5</power>
+                <cooldownTime>1.49</cooldownTime>
+                <linkedBodyPartsGroup>HeadAttackTool</linkedBodyPartsGroup>
+                <chanceFactor>0.2</chanceFactor>
+                <armorPenetrationBlunt>1.44</armorPenetrationBlunt>
+              </li>
+            </tools>
+          </value>
+        </li>
+      </operations>
+    </match>
+  </Operation>
+
+</Patch>

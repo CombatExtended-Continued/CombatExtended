@@ -1,0 +1,386 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+		<li>Genetic Rim</li>
+		</mods>
+
+			<match Class="PatchOperationSequence">
+				<operations>
+
+			<!-- ====== Adding custom bodytype for TurtleLike creatures ======= -->
+
+					<li Class="PatchOperationAdd">
+					<xpath>/Defs</xpath>
+						<value>
+	<BodyDef>
+		<defName>GR_Arachnid</defName>
+		<label>arachnid body</label>
+		<corePart>
+			<def>Body</def>
+			<height>Middle</height>
+			<depth>Outside</depth>
+			<groups>
+				<li>CoveredByNaturalArmor</li>
+			</groups>
+			<parts>
+				<li>
+					<def>AA_Thorax</def>
+					<coverage>0.10</coverage>
+			<groups>
+				<li>CoveredByNaturalArmor</li>
+			</groups>
+				</li>
+				<li>
+					<def>Stomach</def>
+					<coverage>0.05</coverage>
+					<depth>Inside</depth>
+				</li>
+				<li>
+					<def>InsectHeart</def>
+					<coverage>0.03</coverage>
+					<depth>Inside</depth>
+				</li>
+				<li>
+					<def>Pronotum</def>
+					<coverage>0.08</coverage>
+			<groups>
+				<li>CoveredByNaturalArmor</li>
+			</groups>
+					<height>Top</height>
+					<parts>
+						<li>
+							<def>InsectHead</def>
+							<coverage>0.65</coverage>
+							<groups>
+								<li>HeadAttackTool</li>
+				                                                               <li>CoveredByNaturalArmor</li>
+							</groups>
+							<parts>
+								<li>
+									<def>Brain</def>
+									<coverage>0.2</coverage>
+									<depth>Inside</depth>
+								</li>
+								<li>
+									<def>Eye</def>
+									<customLabel>left first eye</customLabel>
+									<coverage>0.05</coverage>
+								</li>
+								<li>
+									<def>Eye</def>
+									<customLabel>left second eye</customLabel>
+									<coverage>0.05</coverage>
+								</li>
+								<li>
+									<def>Eye</def>
+									<customLabel>left third eye</customLabel>
+									<coverage>0.05</coverage>
+								</li>
+								<li>
+									<def>Eye</def>
+									<customLabel>left fourth eye</customLabel>
+									<coverage>0.05</coverage>
+								</li>
+								<li>
+									<def>Eye</def>
+									<customLabel>right first eye</customLabel>
+									<coverage>0.05</coverage>
+								</li>
+								<li>
+									<def>Eye</def>
+									<customLabel>right second eye</customLabel>
+									<coverage>0.05</coverage>
+								</li>
+								<li>
+									<def>Eye</def>
+									<customLabel>right third eye</customLabel>
+									<coverage>0.05</coverage>
+								</li>
+								<li>
+									<def>Eye</def>
+									<customLabel>right fourth eye</customLabel>
+									<coverage>0.05</coverage>
+								</li>
+								<li>
+									<def>InsectNostril</def>
+									<coverage>0.1</coverage>
+								</li>
+								<li>
+									<def>AA_InsectMouth</def>
+									<coverage>0.05</coverage>
+									<groups>
+										<li>Mouth</li>
+									</groups>
+								</li>
+							</parts>
+						</li>
+					</parts>
+				</li>
+				<li>
+					<def>InsectLeg</def>
+					<customLabel>left first leg</customLabel>
+					<coverage>0.06</coverage>
+					<height>Bottom</height>
+					<groups>
+						<li>LegAttackTool</li>
+				                               <li>CoveredByNaturalArmor</li>
+					</groups>
+				</li>
+				<li>
+					<def>InsectLeg</def>
+					<customLabel>right first leg</customLabel>
+					<coverage>0.06</coverage>
+					<height>Bottom</height>
+					<groups>
+						<li>LegAttackTool</li>
+				                               <li>CoveredByNaturalArmor</li>
+					</groups>
+				</li>
+				<li>
+					<def>InsectLeg</def>
+					<customLabel>left second leg</customLabel>
+					<coverage>0.06</coverage>
+					<height>Bottom</height>
+			<groups>
+				<li>CoveredByNaturalArmor</li>
+			</groups>
+				</li>
+				<li>
+					<def>InsectLeg</def>
+					<customLabel>right second leg</customLabel>
+					<coverage>0.06</coverage>
+					<height>Bottom</height>
+			<groups>
+				<li>CoveredByNaturalArmor</li>
+			</groups>
+				</li>
+				<li>
+					<def>InsectLeg</def>
+					<customLabel>left third leg</customLabel>
+					<coverage>0.06</coverage>
+					<height>Bottom</height>
+			<groups>
+				<li>CoveredByNaturalArmor</li>
+			</groups>
+				</li>
+				<li>
+					<def>InsectLeg</def>
+					<customLabel>right third leg</customLabel>
+					<coverage>0.06</coverage>
+					<height>Bottom</height>
+			<groups>
+				<li>CoveredByNaturalArmor</li>
+			</groups>
+				</li>
+				<li>
+					<def>InsectLeg</def>
+					<customLabel>left fourth leg</customLabel>
+					<coverage>0.06</coverage>
+					<height>Bottom</height>
+			<groups>
+				<li>CoveredByNaturalArmor</li>
+			</groups>
+				</li>
+				<li>
+					<def>InsectLeg</def>
+					<customLabel>right fourth leg</customLabel>
+					<coverage>0.06</coverage>
+					<height>Bottom</height>
+			<groups>
+				<li>CoveredByNaturalArmor</li>
+			</groups>
+				</li>
+			</parts>
+		</corePart>
+	</BodyDef>
+						</value>
+					</li>
+
+
+					<li Class="PatchOperationReplace">
+					<xpath>/Defs/ThingDef[defName="GR_Mechaspider"]/race/body</xpath>
+						<value>
+							<body>GR_Arachnid</body>
+						</value>
+					</li>
+
+			
+					<li Class="PatchOperationAdd">
+					<xpath>/Defs</xpath>
+						<value>
+							<BodyDef>
+								<defName>GR_TurtleLike</defName>
+								<label>turtle-like</label>
+									<corePart>
+									<def>AA_Shell</def>
+									<coverage>0.8</coverage>
+									<height>Middle</height>
+									<depth>Outside</depth>
+									<groups>
+										<li>CoveredByNaturalArmor</li>
+									</groups>
+									<parts>
+										<li>
+											<def>Plastron</def>
+											<coverage>0.06</coverage>
+											<height>Bottom</height>
+											<groups>
+												<li>CoveredByNaturalArmor</li>
+											</groups>
+										</li>
+										<li>
+											<def>Spine</def>
+											<coverage>0.03</coverage>
+											<depth>Inside</depth>
+										</li>
+										<li>
+											<def>Stomach</def>
+											<coverage>0.03</coverage>
+											<depth>Inside</depth>
+										</li>
+										<li>
+											<def>Heart</def>
+											<coverage>0.03</coverage>
+											<depth>Inside</depth>
+										</li>
+										<li>
+											<def>Lung</def>
+											<customLabel>left lung</customLabel>
+											<coverage>0.03</coverage>
+											<depth>Inside</depth>
+										</li>
+										<li>
+											<def>Lung</def>
+											<customLabel>right lung</customLabel>
+											<coverage>0.03</coverage>
+											<depth>Inside</depth>
+										</li>
+										<li>
+											<def>Kidney</def>
+											<customLabel>left kidney</customLabel>
+											<coverage>0.03</coverage>
+											<depth>Inside</depth>
+										</li>
+										<li>
+											<def>Kidney</def>
+											<customLabel>right kidney</customLabel>
+											<coverage>0.03</coverage>
+											<depth>Inside</depth>
+										</li>
+										<li>
+											<def>Liver</def>
+											<coverage>0.03</coverage>
+											<depth>Inside</depth>
+										</li>
+										<li>
+											<def>Head</def>
+											<coverage>0.02</coverage>
+											<groups>
+												<li>HeadAttackTool</li>
+											</groups>
+											<parts>
+												<li>
+													<def>Brain</def>
+													<coverage>0.18</coverage>
+													<depth>Inside</depth>
+												</li>
+												<li>
+													<def>Eye</def>
+													<customLabel>left eye</customLabel>
+													<coverage>0.15</coverage>
+												</li>
+												<li>
+													<def>Eye</def>
+													<customLabel>right eye</customLabel>
+													<coverage>0.15</coverage>
+												</li>
+												<li>
+													<def>Nose</def>
+													<coverage>0.15</coverage>
+													</li>
+												<li>
+													<def>TurtleBeak</def>
+													<coverage>0.20</coverage>
+													<groups>
+												<li>TurtleBeakAttackTool</li>
+												</groups>
+												</li>
+											</parts>
+										</li>
+										<li>
+											<def>Leg</def>
+											<customLabel>front left leg</customLabel>
+											<coverage>0.01</coverage>
+											<height>Bottom</height>
+										</li>
+										<li>
+											<def>Leg</def>
+											<customLabel>front right leg</customLabel>
+											<coverage>0.01</coverage>
+											<height>Bottom</height>
+										</li>
+										<li>
+											<def>Leg</def>
+											<customLabel>rear left leg</customLabel>
+											<coverage>0.01</coverage>
+											<height>Bottom</height>
+										</li>
+										<li>
+											<def>Leg</def>
+											<customLabel>rear right leg</customLabel>
+											<coverage>0.01</coverage>
+											<height>Bottom</height>
+										</li>
+									</parts>
+									</corePart>
+							</BodyDef>
+						</value>
+					</li>
+					
+					<li Class="PatchOperationAdd">
+					<xpath>/Defs</xpath>
+						<value>
+							<BodyPartDef>
+								<defName>AA_Shell</defName>
+								<label>mineral shell</label>
+								<hitPoints>100</hitPoints>
+								<skinCovered>false</skinCovered>
+								<solid>true</solid>
+								<alive>false</alive>
+								<bleedRate>0</bleedRate>
+							</BodyPartDef>
+						</value>
+					</li>
+
+					<li Class="PatchOperationReplace">
+					<xpath>/Defs/ThingDef[defName="GR_Mechaturtle"]/race/body</xpath>
+						<value>
+							<body>GR_TurtleLike</body>
+						</value>
+					</li>
+					
+					<!-- Horned Bird -->
+					
+					<!-- Add Groups -->
+					
+					<li Class="PatchOperationAdd">
+						<xpath>/Defs/BodyDef[defName="GR_HornedBird"]//*[def="Body" or def="Neck" or def="Leg" or def="Tail"]</xpath>
+						<value>
+							<groups/>
+						</value>
+					</li>
+					
+					<li Class="PatchOperationAdd">
+						<xpath>/Defs/BodyDef[defName="GR_HornedBird"]//*[def="Body" or def="Neck" or def="Head" or def="Skull" or def="Beak" or def="Leg" or def="Foot" or def="Tail"]/groups</xpath>
+						<value>
+							<li>CoveredByNaturalArmor</li>
+						</value>
+					</li>
+					
+			
+					
+				</operations>
+			</match>
+	</Operation>
+</Patch>

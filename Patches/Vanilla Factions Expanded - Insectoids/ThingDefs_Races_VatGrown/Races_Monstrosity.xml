@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+
+  <Operation Class="PatchOperationFindMod">
+    <mods>
+      <li>Vanilla Factions Expanded - Insectoids</li>
+    </mods>
+
+    <match Class="PatchOperationSequence">
+      <operations>
+        <li Class="PatchOperationReplace">
+          <xpath>/Defs/ThingDef[defName="VFEI_VatGrownMonstrosity"]/statBases/MoveSpeed</xpath>
+
+          <value>
+            <MoveSpeed>5.75</MoveSpeed>
+            <MeleeDodgeChance>0.10</MeleeDodgeChance>
+            <MeleeCritChance>0.62</MeleeCritChance>
+            <MeleeParryChance>0.26</MeleeParryChance>
+          </value>
+        </li>
+
+        <li Class="PatchOperationReplace">
+          <xpath>/Defs/ThingDef[defName="VFEI_VatGrownMonstrosity"]/statBases/ArmorRating_Blunt</xpath>
+
+          <value>
+            <ArmorRating_Blunt>60</ArmorRating_Blunt>
+          </value>
+        </li>
+
+        <li Class="PatchOperationReplace">
+          <xpath>/Defs/ThingDef[defName="VFEI_VatGrownMonstrosity"]/statBases/ArmorRating_Sharp</xpath>
+
+          <value>
+            <ArmorRating_Sharp>20</ArmorRating_Sharp>
+          </value>
+        </li>
+        
+        <li Class="PatchOperationReplace">
+          <xpath>/Defs/ThingDef[defName="VFEI_VatGrownMonstrosity"]/race/body</xpath>
+          
+          <value>
+            <body>CE_ArmoredBeetleLikeWithClaw</body>
+          </value>
+        </li>
+
+        <li Class="PatchOperationReplace">
+          <xpath>/Defs/ThingDef[defName="VFEI_VatGrownMonstrosity"]/tools</xpath>
+
+          <value>
+            <tools>
+              <li Class="CombatExtended.ToolCE">
+                <capacities>
+                  <li>Stab</li>
+                </capacities>
+                <power>23</power>
+                <cooldownTime>0.99</cooldownTime>
+                <linkedBodyPartsGroup>HeadClaw</linkedBodyPartsGroup>
+                <armorPenetrationSharp>46.88</armorPenetrationSharp>
+                <armorPenetrationBlunt>23.438</armorPenetrationBlunt>
+              </li>
+              <li Class="CombatExtended.ToolCE">
+                <label>mandibles</label>
+                <capacities>
+                  <li>ToxicBite</li>
+                </capacities>
+                <power>52</power>
+                <cooldownTime>0.85</cooldownTime>
+                <linkedBodyPartsGroup>Mouth</linkedBodyPartsGroup>
+                <armorPenetrationSharp>10</armorPenetrationSharp>
+                <armorPenetrationBlunt>12.5</armorPenetrationBlunt>
+              </li>
+              <li Class="CombatExtended.ToolCE">
+                <label>head</label>
+                <capacities>
+                  <li>Blunt</li>
+                </capacities>
+                <power>43</power>
+                <cooldownTime>0.94</cooldownTime>
+                <linkedBodyPartsGroup>HeadAttackTool</linkedBodyPartsGroup>
+                <chanceFactor>0.2</chanceFactor>
+                <armorPenetrationBlunt>18.75</armorPenetrationBlunt>
+              </li>
+            </tools>
+          </value>
+        </li>
+      </operations>
+    </match>
+  </Operation>
+
+</Patch>

@@ -1,0 +1,283 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+  <Operation Class="PatchOperationSequence">
+    <success></success>
+	<operations>
+    <li Class="PatchOperationFindMod">
+      <mods>
+        <li>Revia Race</li>
+      </mods>	
+        <match Class="PatchOperationSequence">
+          <operations>
+            <!--Revia Marauder-->
+            <!--Berserker-->
+            <li Class="PatchOperationAddModExtension">
+              <xpath>
+                Defs/PawnKindDef[defName="ReviaRaceBerserker"]
+              </xpath>
+              <value>
+                <li Class="CombatExtended.LoadoutPropertiesExtension">
+                  <sidearms>
+                    <li>
+                      <weaponTags>
+                        <li>ReviaMeleeAdvanced</li>
+                        <li>ReviaMeleeLegendary</li>
+                      </weaponTags>
+                    </li>
+                  </sidearms>
+                </li>
+              </value>
+            </li>
+            <li Class="PatchOperationAdd">
+              <xpath>Defs/PawnKindDef[defName="ReviaRaceBerserker"]/apparelTags</xpath>
+              <value>
+                <li>Apparel_TacVest</li>
+                <li>Apparel_Backpack</li>
+                <li>Apparel_TribalBackpack</li>
+              </value>
+            </li>
+            <!--Marauder-->
+            <li Class="PatchOperationAddModExtension">
+              <xpath>
+                Defs/PawnKindDef[defName="ReviaRaceMarauder"]
+              </xpath>
+              <value>
+                <li Class="CombatExtended.LoadoutPropertiesExtension">
+                  <primaryMagazineCount>
+                    <min>5</min>
+                    <max>10</max>
+                  </primaryMagazineCount>
+                  <sidearms>
+                    <li>
+                      <generateChance>0.2</generateChance>
+                      <sidearmMoney>
+                        <min>40</min>
+                        <max>100</max>
+                      </sidearmMoney>
+                      <weaponTags>
+                        <li>ReviaMeleeBasic</li>
+                        <li>ReviaMeleeIntermediate</li>
+                      </weaponTags>
+                    </li>
+                  </sidearms>
+                </li>
+              </value>
+            </li>
+            <li Class="PatchOperationAdd">
+              <xpath>Defs/PawnKindDef[defName="ReviaRaceMarauder"]/apparelTags</xpath>
+              <value>
+                <li>Apparel_TacVest</li>
+                <li>Apparel_Backpack</li>
+                <li>Apparel_TribalBackpack</li>
+              </value>
+            </li>
+            <!--Raider-->
+            <li Class="PatchOperationAddModExtension">
+              <xpath>
+                Defs/PawnKindDef[defName="ReviaRaceRaider"]
+              </xpath>
+              <value>
+                <li Class="CombatExtended.LoadoutPropertiesExtension">
+                  <sidearms>
+                    <li>
+                      <generateChance>0.2</generateChance>
+                      <sidearmMoney>
+                        <min>10</min>
+                        <max>20</max>
+                      </sidearmMoney>
+                      <weaponTags>
+                        <li>CE_Sidearm_Melee</li>
+                        <li>ReviaMeleeBasic</li>
+                      </weaponTags>
+                    </li>
+                  </sidearms>
+                </li>
+              </value>
+            </li>
+            <li Class="PatchOperationAdd">
+              <xpath>Defs/PawnKindDef[defName="ReviaRaceRaider"]/apparelTags</xpath>
+              <value>
+                <li>Apparel_TacVest</li>
+                <li>Apparel_Backpack</li>
+                <li>Apparel_TribalBackpack</li>
+              </value>
+            </li>
+            <!--Skullshatterer-->
+            <li Class="PatchOperationAdd">
+              <xpath>Defs/PawnKindDef[defName="ReviaRaceSkullshatterer"]/apparelTags</xpath>
+              <value>
+                <li>Apparel_TacVest</li>
+                <li>Apparel_Backpack</li>
+                <li>Apparel_TribalBackpack</li>
+              </value>
+            </li>
+            <!--Revia Templar-->
+            <!--High Templar-->
+            <li Class="PatchOperationAddModExtension">
+              <xpath>
+                Defs/PawnKindDef[defName="ReviaRaceHighTemplar"]
+              </xpath>
+              <value>
+                <li Class="CombatExtended.LoadoutPropertiesExtension">
+                  <primaryMagazineCount>
+                    <min>2</min>
+                    <max>4</max>
+                  </primaryMagazineCount>
+                  <sidearms>
+                    <li>
+                      <magazineCount>
+                        <min>1</min>
+                        <max>3</max>
+                      </magazineCount>
+                      <generateChance>0.6</generateChance>
+                      <weaponTags>
+                        <li>ReviaMeleeLegendary</li>
+                        <li>ReviaRangedAdvanced</li>
+                        <li>CE_Sidearm</li>
+                      </weaponTags>
+                    </li>
+                  </sidearms>
+                </li>
+              </value>
+            </li>
+            <li Class="PatchOperationAdd">
+              <xpath>Defs/PawnKindDef[defName="ReviaRaceHighTemplar"]/apparelRequired</xpath>
+              <value>
+                <li>Apparel_TacVest</li>
+                <li>Apparel_Backpack</li>
+              </value>
+            </li>
+            <li Class="PatchOperationAdd">
+              <xpath>Defs/PawnKindDef[defName="ReviaRaceHighTemplar"]/apparelTags</xpath>
+              <value>
+                <li>Apparel_TacVest</li>
+                <li>Apparel_Backpack</li>
+                <li>Apparel_TribalBackpack</li>
+              </value>
+            </li>
+            <!--Initiate-->
+            <li Class="PatchOperationAddModExtension">
+              <xpath>
+                Defs/PawnKindDef[defName="ReviaRaceInitiate"]
+              </xpath>
+              <value>
+                <li Class="CombatExtended.LoadoutPropertiesExtension">
+                  <primaryMagazineCount>
+                    <min>2</min>
+                    <max>4</max>
+                  </primaryMagazineCount>
+                  <sidearms>
+                    <li>
+                      <magazineCount>
+                        <min>1</min>
+                        <max>3</max>
+                      </magazineCount>
+                      <generateChance>0.5</generateChance>
+                      <weaponTags>
+                        <li>ReviaRangedAdvanced</li>
+                        <li>CE_Sidearm</li>
+                      </weaponTags>
+                    </li>
+                  </sidearms>
+                </li>
+              </value>
+            </li>
+            <li Class="PatchOperationAdd">
+              <xpath>Defs/PawnKindDef[defName="ReviaRaceInitiate"]/apparelTags</xpath>
+              <value>
+                <li>Apparel_TacVest</li>
+                <li>Apparel_Backpack</li>
+                <li>Apparel_TribalBackpack</li>
+              </value>
+            </li>
+            <!--Quartermaster-->
+            <li Class="PatchOperationAddModExtension">
+              <xpath>
+                Defs/PawnKindDef[defName="ReviaRaceQuartermaster"]
+              </xpath>
+              <value>
+                <li Class="CombatExtended.LoadoutPropertiesExtension">
+                  <primaryMagazineCount>
+                    <min>2</min>
+                    <max>4</max>
+                  </primaryMagazineCount>
+                  <sidearms>
+                    <li>
+                      <magazineCount>
+                        <min>1</min>
+                        <max>3</max>
+                      </magazineCount>
+                      <generateChance>0.5</generateChance>
+                      <weaponTags>
+                        <li>ReviaMeleeAdvanced</li>
+                        <li>CE_Sidearm</li>
+                      </weaponTags>
+                    </li>
+                  </sidearms>
+                </li>
+              </value>
+            </li>
+            <li Class="PatchOperationAdd">
+              <xpath>Defs/PawnKindDef[defName="ReviaRaceQuartermaster"]/apparelRequired</xpath>
+              <value>
+                <li>Apparel_TacVest</li>
+                <li>Apparel_Backpack</li>
+              </value>
+            </li>
+            <li Class="PatchOperationAdd">
+              <xpath>Defs/PawnKindDef[defName="ReviaRaceQuartermaster"]/apparelTags</xpath>
+              <value>
+                <li>Apparel_TacVest</li>
+                <li>Apparel_Backpack</li>
+                <li>Apparel_TribalBackpack</li>
+              </value>
+            </li>
+            <!--Templar-->
+            <li Class="PatchOperationAddModExtension">
+              <xpath>
+                Defs/PawnKindDef[defName="ReviaRaceTemplar"]
+              </xpath>
+              <value>
+                <li Class="CombatExtended.LoadoutPropertiesExtension">
+                  <primaryMagazineCount>
+                    <min>2</min>
+                    <max>4</max>
+                  </primaryMagazineCount>
+                  <sidearms>
+                    <li>
+                      <magazineCount>
+                        <min>1</min>
+                        <max>3</max>
+                      </magazineCount>
+                      <generateChance>0.5</generateChance>
+                      <weaponTags>
+                        <li>ReviaMeleeAdvanced</li>
+                        <li>ReviaMeleeLegendary</li>
+                        <li>CE_Sidearm</li>
+                      </weaponTags>
+                    </li>
+                  </sidearms>
+                </li>
+              </value>
+            </li>
+            <li Class="PatchOperationAdd">
+              <xpath>Defs/PawnKindDef[defName="ReviaRaceTemplar"]/apparelRequired</xpath>
+              <value>
+                <li>Apparel_TacVest</li>
+                <li>Apparel_Backpack</li>
+              </value>
+            </li>
+            <li Class="PatchOperationAdd">
+              <xpath>Defs/PawnKindDef[defName="ReviaRaceTemplar"]/apparelTags</xpath>
+              <value>
+                <li>Apparel_TacVest</li>
+                <li>Apparel_Backpack</li>
+                <li>Apparel_TribalBackpack</li>
+              </value>
+            </li>
+          </operations>
+		</match>	
+	  </li>
+	</operations>	
+  </Operation>
+</Patch>

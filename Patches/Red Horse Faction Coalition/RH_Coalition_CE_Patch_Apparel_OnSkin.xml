@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+	<Operation Class="PatchOperationFindMod">
+    <mods>
+		<li>[RH] Faction: Coalition</li>
+    </mods>
+		<match Class="PatchOperationSequence">
+		 <operations>
+
+			<!-- ========== Combat Softshell ========== -->
+
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[
+				defName="RNApparel_combats_Softshell_COA_Grey" or
+				defName="RNApparel_combats_Softshell_COA_Brown" or	
+				defName="RNApparel_combats_Softshell_COA_Black" or								
+				defName="RNApparel_combats_Softshell_COA_Olive"
+				]/statBases</xpath>
+				<value>
+					<Bulk>8</Bulk>
+					<WornBulk>3</WornBulk>
+					<ArmorRating_Sharp>0.05</ArmorRating_Sharp>
+					<ArmorRating_Blunt>0.075</ArmorRating_Blunt>
+				</value>
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="RNApparel_combats_Softshell_COA_Grey" or
+				defName="RNApparel_combats_Softshell_COA_Brown" or
+				defName="RNApparel_combats_Softshell_COA_Black" or					
+			defName="RNApparel_combats_Softshell_COA_Olive"
+			]/statBases/StuffEffectMultiplierArmor</xpath>
+			<value>
+				<!-- Slightly tougher than vanilla pants, T-shirt and button-down shirt -->
+				<StuffEffectMultiplierArmor>2</StuffEffectMultiplierArmor>
+			</value>
+		</li>
+
+			<!-- ========== Tanya Combats ========== -->
+
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName="RNApparel_Combats_MaraValkyrie"]/statBases</xpath>
+				<value>
+					<Bulk>6</Bulk>
+					<WornBulk>2.5</WornBulk>
+					<ArmorRating_Sharp>0.05</ArmorRating_Sharp>
+					<ArmorRating_Blunt>0.075</ArmorRating_Blunt>
+				</value>
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="RNApparel_Combats_MaraValkyrie"]/statBases/StuffEffectMultiplierArmor</xpath>
+				<value>
+					<!-- Slightly tougher than vanilla pants, T-shirt and button-down shirt -->
+					<StuffEffectMultiplierArmor>2</StuffEffectMultiplierArmor>
+				</value>
+			</li>
+
+			<!-- ========== Hoodie ========== -->
+
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName="RNApparel_ViperHoodie"]/statBases</xpath>
+				<value>
+					<Bulk>8</Bulk>
+					<WornBulk>3</WornBulk>
+					<ArmorRating_Sharp>0.05</ArmorRating_Sharp>
+					<ArmorRating_Blunt>0.075</ArmorRating_Blunt>
+				</value>
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="RNApparel_ViperHoodie"]/statBases/StuffEffectMultiplierArmor</xpath>
+				<value>
+
+					<StuffEffectMultiplierArmor>3</StuffEffectMultiplierArmor>
+				</value>
+			</li>
+
+			<!-- ========== Combat Shirt ========== -->
+
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName="RNApparel_Shirt_CombatsBlank"]/statBases</xpath>
+				<value>
+					<Bulk>1</Bulk>
+					<WornBulk>1</WornBulk>
+				</value>
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="RNApparel_Shirt_CombatsBlank"]/statBases/StuffEffectMultiplierArmor</xpath>
+				<value>
+					<!-- Equivalent to vanilla pants, T-shirt and button-down shirt -->
+					<StuffEffectMultiplierArmor>1</StuffEffectMultiplierArmor>
+				</value>
+			</li>
+
+			<!-- ========== Jeans & Slacks ========== -->
+
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[
+				defName="RNApparel_BlueJeans" or
+				defName="RNApparel_SlacksTan"
+				]/statBases</xpath>
+				<value>
+					<Bulk>1</Bulk>
+					<WornBulk>1</WornBulk>
+				</value>
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[
+				defName="RNApparel_BlueJeans" or
+				defName="RNApparel_SlacksTan"
+				]/statBases/StuffEffectMultiplierArmor</xpath>
+				<value>
+
+					<StuffEffectMultiplierArmor>1.5</StuffEffectMultiplierArmor>
+				</value>
+			</li>
+
+			<!-- ========== Combat Pants ========== -->
+
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[
+				defName="RNApparel_CombatPants_DMARPAT" or
+				defName="RNApparel_CombatPants_M81Camo" or	
+				defName="RNApparel_CombatPants_DPM" or
+				defName="RNApparel_CombatPants_OCP" or										
+				defName="RNApparel_CombatPants_DDPM"
+				]/statBases</xpath>
+				<value>
+					<Bulk>1</Bulk>
+					<WornBulk>1</WornBulk>
+				</value>
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[
+				defName="RNApparel_CombatPants_DMARPAT" or
+				defName="RNApparel_CombatPants_M81Camo" or	
+				defName="RNApparel_CombatPants_DPM" or
+				defName="RNApparel_CombatPants_OCP" or																	
+				defName="RNApparel_CombatPants_DDPM"
+				]/statBases/StuffEffectMultiplierArmor</xpath>
+				<value>
+
+					<StuffEffectMultiplierArmor>2</StuffEffectMultiplierArmor>
+				</value>
+			</li>
+
+		</operations>
+		</match>
+	</Operation>
+</Patch>

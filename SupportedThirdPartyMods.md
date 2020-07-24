@@ -78,6 +78,8 @@ Flak Dusters	|
 Forsakens	|
 Forsakens Fauna |
 Gas Traps And Shells	|
+Genetic Rim |
+Genetic Rim Alpha Animal Patch |
 Girls' Frontline Apparel Pack	|
 Girls' Frontline Styles - 404 Team	|
 Girls' Frontline Weapon Pack	|
@@ -113,6 +115,7 @@ Rabbie The Moonrabbit	|
 Racc Race	|
 Rah's Bionics and Surgery Expansion	|
 Reich Armory	|
+Revia race |
 Right Tool: Rebalanced	|
 Rim Contractors Arsenal	|
 Rim of Madness - Bones	|
@@ -134,6 +137,7 @@ Vanilla Animals Expanded |
 Vanilla Apparel Expanded	|
 Vanilla Armour Expanded	|
 Vanilla Bionics Expansion	|
+Vanilla Factions Expanded - Insectoids |
 Vanilla Factions Expanded - Medieval	|
 Vanilla Factions Expanded - Settlers	|
 Vanilla Vehicles Expanded	|

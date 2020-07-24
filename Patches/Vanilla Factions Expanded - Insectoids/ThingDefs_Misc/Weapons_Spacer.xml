@@ -1,0 +1,275 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+
+  <Operation Class="PatchOperationFindMod">
+    <mods>
+      <li>Vanilla Factions Expanded - Insectoids</li>
+    </mods>
+
+    <match Class="PatchOperationSequence">
+      <operations>
+        <!-- === Tools === -->
+        <li Class="PatchOperationReplace">
+          <xpath>/Defs/ThingDef[defName="VFE_Gun_Plasmacutter"]/tools</xpath>
+
+          <value>
+            <tools>
+              <li Class="CombatExtended.ToolCE">
+                <label>grip</label>
+                <capacities>
+                  <li>Blunt</li>
+                </capacities>
+                <power>2</power>
+                <cooldownTime>1.54</cooldownTime>
+                <chanceFactor>1.5</chanceFactor>
+                <armorPenetrationBlunt>0.555</armorPenetrationBlunt>
+                <linkedBodyPartsGroup>Grip</linkedBodyPartsGroup>
+              </li>
+              <li Class="CombatExtended.ToolCE">
+                <label>muzzle</label>
+                <capacities>
+                  <li>Poke</li>
+                </capacities>
+                <power>2</power>
+                <cooldownTime>1.54</cooldownTime>
+                <armorPenetrationBlunt>0.555</armorPenetrationBlunt>
+                <linkedBodyPartsGroup>Muzzle</linkedBodyPartsGroup>
+              </li>
+            </tools>
+          </value>
+        </li>
+
+        <li Class="PatchOperationReplace">
+          <xpath>/Defs/ThingDef[defName="VFE_Gun_PlasmaScattergun" or defName="VFE_Gun_Plasmapiercer" or defName="VFE_Gun_PlasmabeamRifle"]/tools</xpath>
+
+          <value>
+            <tools>
+              <li Class="CombatExtended.ToolCE">
+                <label>stock</label>
+                <capacities>
+                  <li>Blunt</li>
+                </capacities>
+                <power>8</power>
+                <cooldownTime>1.55</cooldownTime>
+                <chanceFactor>1.5</chanceFactor>
+                <armorPenetrationBlunt>2.755</armorPenetrationBlunt>
+                <linkedBodyPartsGroup>Stock</linkedBodyPartsGroup>
+              </li>
+              <li Class="CombatExtended.ToolCE">
+                <label>barrel</label>
+                <capacities>
+                  <li>Blunt</li>
+                </capacities>
+                <power>5</power>
+                <cooldownTime>2.02</cooldownTime>
+                <armorPenetrationBlunt>1.630</armorPenetrationBlunt>
+                <linkedBodyPartsGroup>Barrel</linkedBodyPartsGroup>
+              </li>
+              <li Class="CombatExtended.ToolCE">
+                <label>muzzle</label>
+                <capacities>
+                  <li>Poke</li>
+                </capacities>
+                <power>8</power>
+                <cooldownTime>1.55</cooldownTime>
+                <armorPenetrationBlunt>2.755</armorPenetrationBlunt>
+                <linkedBodyPartsGroup>Muzzle</linkedBodyPartsGroup>
+              </li>
+            </tools>
+          </value>
+        </li>
+
+        <!-- === Plasma Saw === -->
+        <li Class="PatchOperationReplace">
+          <xpath>/Defs/ThingDef[defName="VFE_Plasmasaw"]/statBases/Mass</xpath>
+
+          <value>
+            <Mass>2.8</Mass>
+            <Bulk>6.5</Bulk>
+            <MeleeCounterParryBonus>0.15</MeleeCounterParryBonus>
+          </value>
+        </li>
+
+        <li Class="PatchOperationReplace">
+          <xpath>/Defs/ThingDef[defName="VFE_Plasmasaw"]/tools</xpath>
+
+          <value>
+            <tools>
+              <li Class="CombatExtended.ToolCE">
+                <label>plasma chain</label>
+                <capacities>
+                  <li>Cut</li>
+                </capacities>
+                <power>4</power>
+                <cooldownTime>0.1</cooldownTime>
+                <armorPenetrationSharp>3.68</armorPenetrationSharp>
+                <!-- <linkedBodyPartsGroup>Chain</linkedBodyPartsGroup> -->
+                <extraMeleeDamages>
+                  <li>
+                    <def>Flame</def>
+                    <amount>2</amount>
+                    <chance>0.3</chance>
+                  </li>
+                </extraMeleeDamages>
+              </li>
+            </tools>
+          </value>
+        </li>
+
+        <!-- === Plasma Cutter === -->
+        <li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+          <defName>VFE_Gun_Plasmacutter</defName>
+
+          <statBases>
+            <WorkToMake>18000</WorkToMake>
+            <Mass>2</Mass>
+            <Bulk>2.15</Bulk>
+            <SwayFactor>1.00</SwayFactor>
+            <ShotSpread>0.15</ShotSpread>
+            <SightsEfficiency>1</SightsEfficiency>
+            <RangedWeapon_Cooldown>0.36</RangedWeapon_Cooldown>
+          </statBases>
+
+          <Properties>
+            <verbClass>CombatExtended.Verb_ShootCE</verbClass>
+            <hasStandardCommand>True</hasStandardCommand>
+            <defaultProjectile>Bullet_VFEI_PlasmaCutter</defaultProjectile>
+            <!-- <burstShotCount>3</burstShotCount> -->
+            <!-- <ticksBetweenBurstShots>5</ticksBetweenBurstShots> -->
+            <warmupTime>0.5</warmupTime>
+            <range>15</range>
+            <soundCast>VFE_PlasmaShot_Cutter</soundCast>
+            <soundCastTail>GunTail_Light</soundCastTail>
+            <muzzleFlashScale>9</muzzleFlashScale>
+          </Properties>
+
+          <AmmoUser>
+            <magazineSize>50</magazineSize>
+            <reloadTime>4</reloadTime>
+            <ammoSet>AmmoSet_VFEI_PlasmaCutter</ammoSet>
+          </AmmoUser>
+
+          <FireModes>
+            <aiAimMode>AimedShot</aiAimMode>
+          </FireModes>
+        </li>
+
+        <!-- === Plasma Scattergun === -->
+        <li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+          <defName>VFE_Gun_PlasmaScattergun</defName>
+
+          <statBases>
+            <WorkToMake>26000</WorkToMake>
+            <Mass>4.11</Mass>
+            <Bulk>5.15</Bulk>
+            <SwayFactor>1.10</SwayFactor>
+            <ShotSpread>0.20</ShotSpread>
+            <SightsEfficiency>1</SightsEfficiency>
+            <RangedWeapon_Cooldown>0.36</RangedWeapon_Cooldown>
+          </statBases>
+
+          <Properties>
+            <verbClass>CombatExtended.Verb_ShootCE</verbClass>
+            <hasStandardCommand>True</hasStandardCommand>
+            <defaultProjectile>Bullet_VFEI_PlasmaScatter</defaultProjectile>
+            <!-- <burstShotCount>3</burstShotCount> -->
+            <!-- <ticksBetweenBurstShots>5</ticksBetweenBurstShots> -->
+            <warmupTime>0.5</warmupTime>
+            <range>20</range>
+            <soundCast>VFE_PlasmaShot_Scattergun</soundCast>
+            <soundCastTail>GunTail_Medium</soundCastTail>
+            <muzzleFlashScale>9</muzzleFlashScale>
+          </Properties>
+
+          <AmmoUser>
+            <magazineSize>50</magazineSize>
+            <reloadTime>4</reloadTime>
+            <ammoSet>AmmoSet_VFEI_PlasmaScatter</ammoSet>
+          </AmmoUser>
+
+          <FireModes>
+            <aiAimMode>AimedShot</aiAimMode>
+          </FireModes>
+        </li>
+
+        <!-- === Plasma Beam Rifle === -->
+        <li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+          <defName>VFE_Gun_PlasmabeamRifle</defName>
+
+          <statBases>
+            <WorkToMake>36800</WorkToMake>
+            <Mass>4.36</Mass>
+            <Bulk>6.15</Bulk>
+            <SwayFactor>1.00</SwayFactor>
+            <ShotSpread>0.15</ShotSpread>
+            <SightsEfficiency>1</SightsEfficiency>
+            <RangedWeapon_Cooldown>0.36</RangedWeapon_Cooldown>
+          </statBases>
+
+          <Properties>
+            <recoilAmount>1.31</recoilAmount>
+            <verbClass>CombatExtended.Verb_ShootCE</verbClass>
+            <hasStandardCommand>True</hasStandardCommand>
+            <defaultProjectile>Bullet_VFEI_PlasmaRifle</defaultProjectile>
+            <burstShotCount>6</burstShotCount>
+            <ticksBetweenBurstShots>5</ticksBetweenBurstShots>
+            <warmupTime>1.0</warmupTime>
+            <range>55</range>
+            <soundCast>VFE_PlasmaShot_Beam</soundCast>
+            <soundCastTail>GunTail_Medium</soundCastTail>
+            <muzzleFlashScale>9</muzzleFlashScale>
+          </Properties>
+
+          <AmmoUser>
+            <magazineSize>50</magazineSize>
+            <reloadTime>4</reloadTime>
+            <ammoSet>AmmoSet_VFEI_PlasmaRifle</ammoSet>
+          </AmmoUser>
+
+          <FireModes>
+            <aiAimMode>AimedShot</aiAimMode>
+            <aiUseBurstMode>True</aiUseBurstMode>
+            <aimedBurstShotCount>3</aimedBurstShotCount>
+          </FireModes>
+        </li>
+
+        <!-- === Plasma Piercer === -->
+        <li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+          <defName>VFE_Gun_Plasmapiercer</defName>
+
+          <statBases>
+            <WorkToMake>36800</WorkToMake>
+            <Mass>5.20</Mass>
+            <Bulk>7.15</Bulk>
+            <SwayFactor>1.00</SwayFactor>
+            <ShotSpread>0.15</ShotSpread>
+            <SightsEfficiency>1</SightsEfficiency>
+            <RangedWeapon_Cooldown>0.36</RangedWeapon_Cooldown>
+          </statBases>
+
+          <Properties>
+            <verbClass>CombatExtended.Verb_ShootCE</verbClass>
+            <hasStandardCommand>True</hasStandardCommand>
+            <defaultProjectile>Bullet_VFEI_PlasmaPiercer</defaultProjectile>
+            <warmupTime>1.2</warmupTime>
+            <range>44</range>
+            <soundCast>VFE_PlasmaShot_Piercer</soundCast>
+            <soundCastTail>GunTail_Medium</soundCastTail>
+            <muzzleFlashScale>9</muzzleFlashScale>
+          </Properties>
+
+          <AmmoUser>
+            <magazineSize>20</magazineSize>
+            <reloadTime>4</reloadTime>
+            <ammoSet>AmmoSet_VFEI_PlasmaPiercer</ammoSet>
+          </AmmoUser>
+
+          <FireModes>
+            <aiAimMode>AimedShot</aiAimMode>
+          </FireModes>
+        </li>
+      </operations>
+    </match>
+  </Operation>
+
+</Patch>

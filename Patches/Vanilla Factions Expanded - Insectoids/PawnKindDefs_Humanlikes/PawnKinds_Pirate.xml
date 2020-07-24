@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+
+  <Operation Class="PatchOperationFindMod">
+    <mods>
+      <li>Vanilla Factions Expanded - Insectoids</li>
+    </mods>
+
+    <match Class="PatchOperationSequence">
+      <operations>
+        <li Class="PatchOperationRemove">
+          <xpath>/Defs/PawnKindDef[defName="VFEI_RiotUnit"]/modExtensions/li[@Class="VFECore.PawnKindDefExtension"]</xpath>
+        </li>
+        
+        <li Class="PatchOperationAddModExtension">
+          <xpath>/Defs/PawnKindDef[defName="VFEI_RiotUnit"]</xpath>
+          <value>
+            <li Class="CombatExtended.LoadoutPropertiesExtension">
+              <shieldMoney>
+                <min>250</min>
+                <max>700</max>
+              </shieldMoney>
+              <shieldTags>
+                <li>VFE_RiotShield</li>
+              </shieldTags>
+              <shieldChance>1</shieldChance>
+              <forcedSidearm>
+                <sidearmMoney>
+                  <min>150</min>
+                  <max>350</max>
+                </sidearmMoney>
+                <weaponTags>
+                  <li>CE_Sidearm_Melee</li>
+                </weaponTags>
+              </forcedSidearm>
+            </li>
+          </value>
+        </li>
+      </operations>
+    </match>
+  </Operation>
+
+</Patch>
