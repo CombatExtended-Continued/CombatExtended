@@ -51,6 +51,7 @@ Arachne Race	|
 Area Rugs	|
 Better Infestations	|
 Black Widows	|
+Combat Enthusiast’s Collection	|
 Cupro's Alloys	|
 Cute Penguin	|
 CyberNet	|
