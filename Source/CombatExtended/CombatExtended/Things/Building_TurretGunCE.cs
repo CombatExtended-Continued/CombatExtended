@@ -296,7 +296,7 @@ namespace CombatExtended
             {
                 ResetForcedTarget();
             }
-            if (Active && (this.mannableComp == null || this.mannableComp.MannedNow) && base.Spawned)
+            if (Active && (this.mannableComp == null || this.mannableComp.MannedNow) && base.Spawned && !(isReloading && WarmingUp))
             {
                 this.GunCompEq.verbTracker.VerbsTick();
                 if (!this.stunner.Stunned && this.GunCompEq.PrimaryVerb.state != VerbState.Bursting)
