@@ -65,12 +65,12 @@ namespace CombatExtended.CombatExtended.Jobs.Utils
 		{
 			if (pawn == null || hopefullyTurret == null)
 			{
-				CELogger.Error($"{pawn?.ToString() ?? "null pawn"} could not reload {hopefullyTurret?.ToString() ?? "null thing"} one of the two was null.");
+				CELogger.Warn($"{pawn?.ToString() ?? "null pawn"} could not reload {hopefullyTurret?.ToString() ?? "null thing"} one of the two was null.");
 				return false;
 			}
 			if (!(hopefullyTurret is Building_TurretGunCE))
 			{
-				CELogger.Error($"{pawn} could not reload {hopefullyTurret} because {hopefullyTurret} is not a Combat Extended Turret. If you are a modder, make sure to use {nameof(CombatExtended)}.{nameof(Building_TurretGunCE)} for your turret's compClass.");
+				CELogger.Warn($"{pawn} could not reload {hopefullyTurret} because {hopefullyTurret} is not a Combat Extended Turret. If you are a modder, make sure to use {nameof(CombatExtended)}.{nameof(Building_TurretGunCE)} for your turret's compClass.");
 				return false;
 			}
 			var turret = hopefullyTurret as Building_TurretGunCE;
@@ -78,7 +78,7 @@ namespace CombatExtended.CombatExtended.Jobs.Utils
 
 			if (compAmmo == null)
 			{
-				CELogger.Error($"{pawn} could not reload {turret} because turret has no {nameof(CompAmmoUser)}.");
+				CELogger.Warn($"{pawn} could not reload {turret} because turret has no {nameof(CompAmmoUser)}.");
 				return false;
 			}
 			if (turret.isReloading)
