@@ -1,14 +1,12 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <Patch>
-	<Operation Class="PatchOperationSequence">
-		<success>Always</success>
-		<operations>
+	<Operation Class="PatchOperationFindMod">
+    <mods>
+		<li>[RH] Faction: UAC</li>
+		<li>[CP] DOOM</li>
+    </mods>
 
-			<li Class="CombatExtended.PatchOperationFindMod">
-				<modName>[CP] DOOM</modName>
-			</li>
-
-			<li Class="PatchOperationAdd">
+			<match Class="PatchOperationAdd">
 				<xpath>Defs</xpath>
 				<value>
 
@@ -81,14 +79,14 @@
 						<projectile Class="CombatExtended.ProjectilePropertiesCE">
 							<speed>200</speed>
 							<damageDef>Bomb</damageDef>
-							<damageAmountBase>560</damageAmountBase>
+							<damageAmountBase>500</damageAmountBase>
 							<explosionRadius>2.5</explosionRadius>
 							<soundExplode>RHHit_DOOMBFG</soundExplode>
 							<applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
 							<secondaryDamage>
 								<li>
 									<def>Flame_Secondary</def>
-									<amount>2680</amount>
+									<amount>600</amount>
 								</li>
 							</secondaryDamage>
 						</projectile>
@@ -141,8 +139,7 @@
 					</RecipeDef>
 
 				</value>
-			</li>
-
-		</operations>
+			
+		</match>
 	</Operation>
 </Patch>

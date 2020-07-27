@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+	<Operation Class="PatchOperationFindMod">
+    <mods>
+		<li>[RH] Faction: UAC</li>
+    </mods>
+		<match Class="PatchOperationSequence">
+		<operations>
+
+		<!-- Doom Slayer's Mark -->
+		<li Class="PatchOperationReplace">
+			<xpath>Defs/HediffDef[defName="DOOMSlayer_Implant"]/stages/li/statOffsets/ArmorRating_Sharp</xpath>
+			<value>
+				<ArmorRating_Sharp>10</ArmorRating_Sharp>
+			</value>
+		</li>
+
+		<li Class="PatchOperationReplace">
+			<xpath>Defs/HediffDef[defName="DOOMSlayer_Implant"]/stages/li/statOffsets/ArmorRating_Blunt</xpath>
+			<value>
+				<ArmorRating_Blunt>20</ArmorRating_Blunt>
+			</value>
+		</li>
+
+		<!-- UAC Implants -->
+		<li Class="PatchOperationReplace">
+			<xpath>Defs/HediffDef[defName="UACSoldierSerum_Implant"]/stages/li/statOffsets/ArmorRating_Sharp</xpath>
+			<value>
+				<ArmorRating_Sharp>6</ArmorRating_Sharp>
+			</value>
+		</li>
+
+		<li Class="PatchOperationReplace">
+			<xpath>Defs/HediffDef[defName="UACSoldierSerum_Implant"]/stages/li/statOffsets/ArmorRating_Blunt</xpath>
+			<value>
+				<ArmorRating_Blunt>14</ArmorRating_Blunt>
+			</value>
+		</li>
+
+		</operations>
+		</match>
+		</Operation>
+	</Patch>
