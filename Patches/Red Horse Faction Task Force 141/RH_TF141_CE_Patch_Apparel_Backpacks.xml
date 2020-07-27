@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+	<Operation Class="PatchOperationFindMod">
+    <mods>
+		<li>[RH] Faction: Task Force 141</li>
+    </mods>
+		<match Class="PatchOperationSequence">
+		 <operations>
+
+			<!-- ========== Backpack tacticalDCU ========== -->
+
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName="RNApparel_Backpack_Tactical_DCU"]/statBases</xpath>
+				<value>
+					<Bulk>3</Bulk>
+				</value>
+			</li>
+
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName="RNApparel_Backpack_Tactical_DCU"]/equippedStatOffsets</xpath>
+				<value>
+					<CarryBulk>30</CarryBulk>
+				</value>
+			</li>
+
+			<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="RNApparel_Backpack_Tactical_DCU"]/apparel
+					</xpath>
+					<value>
+						<apparel>
+							<careIfWornByCorpse>false</careIfWornByCorpse>
+							<bodyPartGroups>
+								<li>Shoulders</li>
+							</bodyPartGroups>
+							<layers>
+								<li>Backpack</li>
+							</layers>
+							<tags>
+								<li>RH_Backpack_SlingBlack</li>
+							</tags>
+							<defaultOutfitTags>
+								<li>Soldier</li>
+							</defaultOutfitTags>
+							<wornGraphicPath>Things/Apparel/Belt/DCU_AssaultBackpack</wornGraphicPath>
+						</apparel>
+					</value>
+				</li>
+			<!-- ========== ALICE Webbing DCU ========== -->
+
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName="RNApparel_Harness_ALICE_DCU"]/statBases</xpath>
+				<value>
+					<Bulk>3</Bulk>
+				</value>
+			</li>
+
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName="RNApparel_Harness_ALICE_DCU"]/equippedStatOffsets</xpath>
+				<value>
+					<CarryBulk>10</CarryBulk>
+				</value>
+			</li>
+
+			<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="RNApparel_Harness_ALICE_DCU"]/apparel
+					</xpath>
+					<value>
+						<apparel>
+							<bodyPartGroups>
+								<li>Shoulders</li>
+							</bodyPartGroups>
+							<layers>
+								<li>Webbing</li>
+							</layers>
+							<tags>
+								<li>IndustrialMilitaryBasic</li>
+							</tags>
+							<defaultOutfitTags>
+								<li>Soldier</li>
+							</defaultOutfitTags>
+							<wornGraphicPath>Things/Apparel/Belt/DCU_ALICE_Harness</wornGraphicPath>
+						</apparel>
+					</value>
+				</li>
+
+			</operations>
+			</match>
+		</Operation>
+	</Patch>

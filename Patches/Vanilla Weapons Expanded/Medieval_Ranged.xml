@@ -5,14 +5,12 @@
     <mods>
       <li>Vanilla Weapons Expanded</li>
     </mods>
-
     <match Class="PatchOperationSequence">
       <operations>
 
         <!-- === Tools === -->
         <li Class="PatchOperationReplace">
           <xpath>/Defs/ThingDef[defName="VWE_Bow_Crossbow"]/tools</xpath>
-
           <value>
             <tools>
               <li Class="CombatExtended.ToolCE">
@@ -29,7 +27,6 @@
 
         <li Class="PatchOperationReplace">
           <xpath>/Defs/ThingDef[defName = "VWE_Gun_Flintlock"]/tools</xpath>
-
           <value>
             <tools>
               <li Class="CombatExtended.ToolCE">
@@ -59,7 +56,6 @@
 
         <li Class="PatchOperationReplace">
           <xpath>/Defs/ThingDef[defName = "VWE_Gun_Musket"]/tools</xpath>
-
           <value>
             <tools>
               <li Class="CombatExtended.ToolCE">
@@ -100,7 +96,6 @@
         <!-- === Crossbow === -->
         <li Class="CombatExtended.PatchOperationMakeGunCECompatible">
           <defName>VWE_Bow_Crossbow</defName>
-
           <statBases>
             <Bulk>6</Bulk>
             <SwayFactor>1.2</SwayFactor>
@@ -108,12 +103,10 @@
             <SightsEfficiency>1</SightsEfficiency>
             <RangedWeapon_Cooldown>1</RangedWeapon_Cooldown>
           </statBases>
-
           <costList>
             <WoodLog>70</WoodLog>
             <ComponentIndustrial>1</ComponentIndustrial>
           </costList>
-
           <Properties>
             <verbClass>CombatExtended.Verb_ShootCE</verbClass>
             <hasStandardCommand>True</hasStandardCommand>
@@ -122,17 +115,14 @@
             <range>26</range>
             <soundCast>Bow_Large</soundCast>
           </Properties>
-
           <AmmoUser>
             <magazineSize>1</magazineSize>
             <reloadTime>7</reloadTime>
             <ammoSet>AmmoSet_CrossbowBolt</ammoSet>
           </AmmoUser>
-
           <FireModes>
             <aiAimMode>AimedShot</aiAimMode>
           </FireModes>
-
           <weaponTags>
             <li>NeolithicRangedHeavy</li>
             <li>NeolithicRangedChief</li>
@@ -147,7 +137,6 @@
         -->
         <li Class="PatchOperationReplace">
           <xpath>/Defs/ThingDef[defName="VWE_Gun_Flintlock"]/verbs/li/verbClass</xpath>
-
           <value>
             <verbClass>Verb_Shoot</verbClass>
           </value>
@@ -155,7 +144,6 @@
 
         <li Class="CombatExtended.PatchOperationMakeGunCECompatible">
           <defName>VWE_Gun_Flintlock</defName>
-
           <statBases>
             <WorkToMake>3500</WorkToMake>
             <Mass>1.25</Mass>
@@ -165,13 +153,11 @@
             <SightsEfficiency>0.7</SightsEfficiency>
             <RangedWeapon_Cooldown>0.85</RangedWeapon_Cooldown>
           </statBases>
-
           <costList>
             <Steel>25</Steel>
             <WoodLog>5</WoodLog>
             <ComponentIndustrial>1</ComponentIndustrial>
           </costList>
-
           <Properties>
             <verbClass>CombatExtended.Verb_ShootCE</verbClass>
             <hasStandardCommand>True</hasStandardCommand>
@@ -182,17 +168,14 @@
             <soundCastTail>GunTail_Light</soundCastTail>
             <muzzleFlashScale>9</muzzleFlashScale>
           </Properties>
-
           <AmmoUser>
             <magazineSize>1</magazineSize>
             <reloadTime>6.5</reloadTime>
             <ammoSet>AmmoSet_SlowMusketBall</ammoSet>
           </AmmoUser>
-
           <FireModes>
             <aiAimMode>AimedShot</aiAimMode>
           </FireModes>
-
           <weaponTags>
             <li>NeolithicRangedHeavy</li>
             <li>NeolithicRangedChief</li>
@@ -206,7 +189,6 @@
         -->
         <li Class="PatchOperationReplace">
           <xpath>/Defs/ThingDef[defName="VWE_Gun_Musket"]/verbs/li/verbClass</xpath>
-
           <value>
             <verbClass>Verb_Shoot</verbClass>
           </value>
@@ -214,7 +196,6 @@
 
         <li Class="CombatExtended.PatchOperationMakeGunCECompatible">
           <defName>VWE_Gun_Musket</defName>
-
           <statBases>
             <WorkToMake>20000</WorkToMake>
             <Mass>4.8</Mass>
@@ -224,13 +205,11 @@
             <SightsEfficiency>1</SightsEfficiency>
             <RangedWeapon_Cooldown>1.35</RangedWeapon_Cooldown>
           </statBases>
-
           <costList>
             <Steel>65</Steel>
             <WoodLog>15</WoodLog>
             <ComponentIndustrial>1</ComponentIndustrial>
           </costList>
-
           <Properties>
             <verbClass>CombatExtended.Verb_ShootCE</verbClass>
             <hasStandardCommand>True</hasStandardCommand>
@@ -241,17 +220,14 @@
             <soundCastTail>GunTail_Medium</soundCastTail>
             <muzzleFlashScale>12</muzzleFlashScale>
           </Properties>
-
           <AmmoUser>
             <magazineSize>1</magazineSize>
             <reloadTime>10</reloadTime>
             <ammoSet>AmmoSet_FastMusketBall</ammoSet>
           </AmmoUser>
-
           <FireModes>
             <aiAimMode>AimedShot</aiAimMode>
           </FireModes>
-
           <weaponTags>
             <li>NeolithicRangedHeavy</li>
             <li>NeolithicRangedChief</li>
@@ -262,7 +238,6 @@
         <!-- == Projectile == -->
         <li Class="PatchOperationReplace">
           <xpath>/Defs/ThingDef[defName="VWE_FlyingBlade"]/projectile</xpath>
-
           <value>
             <projectile Class="CombatExtended.ProjectilePropertiesCE">
               <damageDef>RangedStab</damageDef>
@@ -279,14 +254,12 @@
         <!-- == Weapon == -->
         <li Class="PatchOperationAttributeSet">
           <xpath>/Defs/ThingDef[defName="VWE_Throwing_Knives"]</xpath>
-          
           <attribute>ParentName</attribute>
           <value>BaseWeapon</value>
         </li>
         
         <li Class="PatchOperationAdd">
-          <xpath>/Defs/ThingDef[defName="VWE_Throwing_Knives"]</xpath>
-          
+          <xpath>/Defs/ThingDef[defName="VWE_Throwing_Knives"]</xpath> 
           <value>
             <thingCategories>
               <li>WeaponsRanged</li>
@@ -315,7 +288,6 @@
 
         <li Class="PatchOperationAdd">
           <xpath>/Defs/ThingDef[defName="VWE_Throwing_Knives"]</xpath>
-
           <value>
             <thingClass>CombatExtended.AmmoThing</thingClass>
             <stackLimit>75</stackLimit>
@@ -325,21 +297,18 @@
 
         <li Class="PatchOperationAttributeSet">
           <xpath>/Defs/ThingDef[defName="VWE_Throwing_Knives"]</xpath>
-
           <attribute>Class</attribute>
           <value>CombatExtended.AmmoDef</value>
         </li>
 
         <li Class="CombatExtended.PatchOperationMakeGunCECompatible">
           <defName>VWE_Throwing_Knives</defName>
-
           <statBases>
             <SightsEfficiency>1</SightsEfficiency>
             <Bulk>0.35</Bulk>
             <Mass>0.15</Mass>
             <RangedWeapon_Cooldown>0.38</RangedWeapon_Cooldown>
           </statBases>
-
           <Properties>
             <label>Throw knife</label>
             <verbClass>CombatExtended.Verb_ShootCEOneUse</verbClass>
@@ -350,7 +319,6 @@
             <soundCast>ThrowGrenade</soundCast>
              <ai_IsBuildingDestroyer>false</ai_IsBuildingDestroyer>
           </Properties>
-          
           <weaponTags>
             <li>CE_OneHandedWeapon</li>
           </weaponTags>
@@ -358,7 +326,6 @@
 
         <li Class="PatchOperationReplace">
           <xpath>/Defs/ThingDef[defName="VWE_Throwing_Knives"]/tools</xpath>
-
           <value>
             <tools>
               <li Class="CombatExtended.ToolCE">
@@ -380,7 +347,6 @@
         <!-- == Recipe == -->
         <li Class="PatchOperationAdd">
           <xpath>Defs</xpath>
-
           <value>
             <RecipeDef ParentName="GrenadeRecipeBase">
               <defName>MakeVWEThrowingKnives</defName>
@@ -416,7 +382,6 @@
         <!-- === Whip === -->
         <li Class="CombatExtended.PatchOperationMakeGunCECompatible">
           <defName>VWE_Tool_Whip</defName>
-
           <statBases>
             <WorkToMake>6800</WorkToMake>
             <SightsEfficiency>1</SightsEfficiency>
@@ -426,7 +391,6 @@
             <Mass>0.9</Mass>
             <RangedWeapon_Cooldown>.48</RangedWeapon_Cooldown>
           </statBases>
-
           <Properties>
             <verbClass>CombatExtended.Verb_ShootCE</verbClass>
             <hasStandardCommand>True</hasStandardCommand>
@@ -440,7 +404,6 @@
         <!-- Tools -->
         <li Class="PatchOperationReplace">
           <xpath>/Defs/ThingDef[defName="VWE_Tool_Whip"]/tools</xpath>
-
           <value>
             <tools>
               <li Class="CombatExtended.ToolCE">

@@ -117,7 +117,7 @@ Rabbie The Moonrabbit	|
 Racc Race	|
 Rah's Bionics and Surgery Expansion	|
 Reich Armory	|
-Revia race |
+Revia Race |
 Right Tool: Rebalanced	|
 Rim Contractors Arsenal	|
 Rim of Madness - Bones	|

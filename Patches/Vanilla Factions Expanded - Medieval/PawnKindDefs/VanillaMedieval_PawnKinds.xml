@@ -8,7 +8,7 @@
 		<match Class="PatchOperationSequence">
 			<operations> 
 	
-			<!-- ========== Add Combat Extended Shields to pawns. =========== -->
+		<!-- ========== Add Combat Extended Shields to pawns. =========== -->
 
 		<li Class="PatchOperationRemove">
 			<xpath>/Defs/PawnKindDef[defName="VFEM_Medieval_Footsoldier" or defName="VFEM_Medieval_Knight"]/modExtensions/li[@Class="VFECore.PawnKindDefExtension"]/shieldMoney</xpath>
@@ -72,6 +72,15 @@
 		  	  </weaponTags>
 		  	</forcedSidearm>
 		    </li>				
+		  </value>
+		</li>
+
+		<li Class="PatchOperationAdd">
+		  <xpath>/Defs/PawnKindDef[defName="VFEM_Medieval_Bowman"]</xpath>
+		  <value>
+			<apparelRequired>
+				<li>Apparel_TribalBackpack</li>
+			</apparelRequired>			
 		  </value>
 		</li>
 
