@@ -23,11 +23,10 @@ namespace CombatExtended.HarmonyCE
                 CompInventory inventory = pawn.TryGetComp<CompInventory>();
                 if (inventory != null)
                 {
-                    int maxCount;
-                    if (inventory.CanFitInInventory(__result.targetA.Thing, out maxCount))
+                    if (inventory.CanFitInInventory(__result.targetA.Thing, out int maxCount))
                     {
                         __result.count = Mathf.Min(numToCarry, maxCount);
-                        pawn.Notify_HoldTrackerJob(__result);
+                        pawn.Notify_HoldTrackerItem(__result.targetA.Thing, __result.count);
                     }
                     else
                     {

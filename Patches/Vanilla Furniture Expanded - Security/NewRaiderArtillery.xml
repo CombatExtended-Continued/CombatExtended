@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+			<li>Vanilla Furniture Expanded - Security</li>
+		</mods>
+		<match Class="PatchOperationSequence">
+		<operations>
+	
+		<li Class="PatchOperationAdd">
+		  <xpath>Defs</xpath>
+		  <value>
+
+		  <!-- Raider Artillery. Because the sieges are only set up to supply sieges with vanilla mortars shells, we need a version that consumes those. -->
+
+		  <ThingDef ParentName="BaseArtilleryBuilding">
+			<defName>Raider_Turret_Artillery</defName>
+			<label>heavy artillery</label>
+			<description>A manned artillery that launches all kinds of shells. Capable of inflicting devastating damage to both enemy forces and structures, this military machinery excels at laying down fire support for soldiers in the field.\n\nCapable of targeting other areas of the world within a medium radius.</description>
+			<thingClass>CombatExtended.Building_TurretGunCE</thingClass>
+			<graphicData>
+			  <texPath>Things/Building/Artillery/TurretArtillery_Base</texPath>
+			  <graphicClass>Graphic_Single</graphicClass>
+			  <drawSize>(3,3)</drawSize>
+			  <damageData>
+				<rect>(0.38,0.2,0.56375,0.8)</rect>
+				<cornerTL>Damage/Corner</cornerTL>
+			  </damageData>
+			  <shadowData>
+				<offset>(-0.13,-0.87,-0.1)</offset>
+				<volume>(0.5,0.4,1.05)</volume>
+			  </shadowData>
+			</graphicData>
+			<statBases>
+			  <MaxHitPoints>250</MaxHitPoints>
+			  <WorkToBuild>3600</WorkToBuild>
+			</statBases>
+			<techLevel>Industrial</techLevel>
+			<interactionCellOffset>(0,0,-2)</interactionCellOffset>
+			<hasInteractionCell>true</hasInteractionCell>
+			<size>(3,3)</size>
+			<!-- <designationCategory /> -->
+			<rotatable>true</rotatable>
+			<stealable>false</stealable>
+			<stuffCategories>
+			  <li>Metallic</li>
+			</stuffCategories>
+			<costStuffCount>100</costStuffCount>
+			<costList>
+			  <Steel>180</Steel>
+			  <ComponentIndustrial>9</ComponentIndustrial>
+			</costList>
+			<comps>
+			</comps>
+			<terrainAffordanceNeeded>Heavy</terrainAffordanceNeeded>
+			<building>
+			  <claimable>false</claimable>
+			  <turretGunDef>Raider_Artillery_Weapon</turretGunDef>
+			  <turretTopDrawSize>3</turretTopDrawSize>
+			  <buildingTags>
+				<li>Artillery_BaseDestroyer</li>
+			  </buildingTags>
+			  <turretBurstWarmupTime>1</turretBurstWarmupTime>
+			  <turretBurstCooldownTime>1</turretBurstCooldownTime>
+			  <defaultStorageSettings Inherit="False">
+				<filter>
+				  <categories>
+					<li>MortarShells</li>
+				  </categories>
+				  <disallowedThingDefs>
+					<li>Shell_Incendiary</li>
+					<li>Shell_Firefoam</li>
+					<li>Shell_AntigrainWarhead</li>
+				  </disallowedThingDefs>
+				</filter>
+			  </defaultStorageSettings>
+			</building>
+			<uiIconPath>Things/Building/Artillery/TurretArtillery_MenuIcon</uiIconPath>
+			<uiIconScale>0.9</uiIconScale>
+			<constructionSkillPrerequisite>5</constructionSkillPrerequisite>
+			<researchPrerequisites>
+			<li>VFES_Artillery_Debug</li>
+			</researchPrerequisites>			
+		  </ThingDef>
+
+		  <ThingDef ParentName="BaseArtilleryWeapon">
+			<defName>Raider_Artillery_Weapon</defName>
+			<label>artillery</label>
+			<description>Artillery cannon capable of long range bombardment.</description>
+			<graphicData>
+			  <texPath>Things/Building/Artillery/TurretArtillery_Top</texPath>
+			  <graphicClass>Graphic_Single</graphicClass>
+			</graphicData>
+			<statBases>
+			  <SightsEfficiency>0.5</SightsEfficiency>			
+			  <RangedWeapon_Cooldown>8.5</RangedWeapon_Cooldown>
+			</statBases>
+			<weaponTags>
+			  <li>Artillery_BaseDestroyer</li>
+			  <li>TurretGun</li>
+			</weaponTags>
+			<verbs>
+			  <li Class="CombatExtended.VerbPropertiesCE">
+				<verbClass>CombatExtended.Verb_ShootMortarCE</verbClass>
+				<forceNormalTimeSpeed>false</forceNormalTimeSpeed>
+				<hasStandardCommand>true</hasStandardCommand>
+				<defaultProjectile>Bullet_155mmHowitzerShell_HE</defaultProjectile>
+				<warmupTime>4</warmupTime>
+				<minRange>40</minRange>
+				<range>1000</range>
+				<burstShotCount>1</burstShotCount>
+				<soundCast>VFES_Shot_Artillery</soundCast>
+				<muzzleFlashScale>20</muzzleFlashScale>
+				<indirectFirePenalty>0.2</indirectFirePenalty>
+				<targetParams>
+				  <canTargetLocations>true</canTargetLocations>
+				</targetParams>
+			  </li>
+			</verbs>
+			<comps>
+			  <li Class="CombatExtended.CompProperties_Charges">
+				<chargeSpeeds>
+				  <li>30</li>
+				  <li>50</li>
+				  <li>70</li>
+				  <li>90</li>
+				</chargeSpeeds>
+			  </li>
+			  <li Class="CombatExtended.CompProperties_AmmoUser">
+				<magazineSize>1</magazineSize>
+				<reloadTime>12</reloadTime>
+				<ammoSet>AmmoSet_RaiderArtillery</ammoSet>
+			  </li>
+			</comps>
+			<building>
+			  <fixedStorageSettings>
+				<filter>
+				  <categories>
+					<li>MortarShells</li>
+				  </categories>
+				</filter>
+			  </fixedStorageSettings>
+			  <defaultStorageSettings>
+				<filter>
+				  <categories>
+					<li>MortarShells</li>
+				  </categories>
+				  <disallowedThingDefs>
+					<li>Shell_Firefoam</li>
+					<li>Shell_AntigrainWarhead</li>
+				  </disallowedThingDefs>
+				</filter>
+			  </defaultStorageSettings>
+			</building>
+		  </ThingDef>
+
+		  <!-- Dummy research project. This allows raiders to spawn and build their own variation of the artillery gun without the player being able to access it. -->
+
+		<ResearchProjectDef ParentName="VFES_ResearchBase">
+			<defName>VFES_Artillery_Debug</defName>
+			<label>Combat Extended Artillery Debug</label>
+			<description>Ignore this project. A dummy research project as a workaround for raider artillery compatibility. Not intended for the player.</description>
+			<baseCost>99999</baseCost>
+			<techLevel>Ultra</techLevel>
+			<requiredResearchFacilities>
+				<li>MultiAnalyzer</li>
+			</requiredResearchFacilities>
+			<requiredResearchBuilding>HiTechResearchBench</requiredResearchBuilding>
+			<researchViewX>10</researchViewX>
+			<researchViewY>0</researchViewY>
+		</ResearchProjectDef>
+
+	
+		  </value>
+		</li>
+
+		</operations>
+		</match>
+	</Operation>
+</Patch>    

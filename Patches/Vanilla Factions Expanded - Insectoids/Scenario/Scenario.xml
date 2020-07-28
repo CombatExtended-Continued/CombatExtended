@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+
+  <Operation Class="PatchOperationFindMod">
+    <mods>
+      <li>Vanilla Factions Expanded - Insectoids</li>
+    </mods>
+
+    <match Class="PatchOperationSequence">
+      <operations>
+        <!-- === Removes Charge Lance from scenario === -->
+        <li Class="PatchOperationRemove">
+          <xpath>/Defs/ScenarioDef[defName="VFEI_MercenarySquad"]/scenario/parts/li[thingDef="Gun_ChargeLance"]</xpath>
+        </li>
+
+        <!-- === Increases Charge Rifle count to 3 to replace the CL === -->
+        <li Class="PatchOperationReplace">
+          <xpath>/Defs/ScenarioDef[defName="VFEI_MercenarySquad"]/scenario/parts/li[thingDef="Gun_ChargeRifle"]/count</xpath>
+
+          <value>
+            <count>3</count>
+          </value>
+        </li>
+
+        <!-- === Adds ammo to the scenario === -->
+        <li Class="PatchOperationAdd">
+          <xpath>/Defs/ScenarioDef[defName="VFEI_MercenarySquad"]/scenario/parts</xpath>
+
+          <value>
+            <li Class="ScenPart_StartingThing_Defined">
+              <def>StartingThing_Defined</def>
+              <thingDef>Ammo_6x24mmCharged</thingDef>
+              <count>600</count>
+            </li>
+          </value>
+        </li>
+      </operations>
+    </match>
+  </Operation>
+
+</Patch>

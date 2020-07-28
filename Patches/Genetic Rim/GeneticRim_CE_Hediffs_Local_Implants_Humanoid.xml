@@ -1,0 +1,149 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+    <Operation Class="PatchOperationFindMod">
+        <mods>
+        <li>Genetic Rim</li>
+        </mods>
+
+            <match Class="PatchOperationSequence">
+                <operations>
+
+	<!--=============== Human Hybrid Implants ====================-->
+
+	<!--=============== Bear Claw ====================-->
+
+
+        <li Class="PatchOperationReplace">
+            <xpath>Defs/HediffDef[defName="GR_BearClaws"]/comps/li[@Class="HediffCompProperties_VerbGiver"]/tools</xpath>
+            <value>
+                <tools>
+                    <li Class="CombatExtended.ToolCE">
+                    <label>bear claws</label>
+                    <capacities>
+                        <li>Scratch</li>
+                    </capacities>
+                    <power>30</power>
+                    <cooldownTime>1.36</cooldownTime>
+                    <armorPenetrationSharp>1.8</armorPenetrationSharp>
+                    <armorPenetrationBlunt>6</armorPenetrationBlunt>
+                </li>
+                </tools>
+            </value>
+        </li>
+
+	<!--=============== Digging Bear Claw ====================-->
+
+        <li Class="PatchOperationReplace">
+            <xpath>Defs/HediffDef[defName="GR_DiggingBearClaws"]/comps/li[@Class="HediffCompProperties_VerbGiver"]/tools</xpath>
+            <value>
+                <tools>
+                    <li Class="CombatExtended.ToolCE">
+                    <label>humanoid implant: digging bear claws</label>
+                    <capacities>
+                        <li>Scratch</li>
+                    </capacities>
+                    <power>21</power>
+                    <cooldownTime>1.65</cooldownTime>
+                    <armorPenetrationSharp>3</armorPenetrationSharp>
+                    <armorPenetrationBlunt>8</armorPenetrationBlunt>
+                </li>
+                </tools>
+            </value>
+        </li>
+
+
+	<!--=============== Muffalo Skin ====================-->
+
+        <li Class="PatchOperationReplace">
+            <xpath>Defs/HediffDef[defName="GR_MuffaloSkin"]/stages/li/statOffsets/ArmorRating_Sharp</xpath>
+            <value>
+                    <ArmorRating_Sharp>0.15</ArmorRating_Sharp>
+            </value>
+        </li>
+
+        <li Class="PatchOperationReplace">
+            <xpath>Defs/HediffDef[defName="GR_MuffaloSkin"]/stages/li/statOffsets/ArmorRating_Blunt</xpath>
+            <value>
+                    <ArmorRating_Blunt>0.15</ArmorRating_Blunt>
+            </value>
+        </li>
+
+	<!--=============== Thrumbo Horn ====================-->
+
+        <li Class="PatchOperationReplace">
+            <xpath>Defs/HediffDef[defName="GR_HumanThrumboHorn"]/comps/li[@Class="HediffCompProperties_VerbGiver"]/tools</xpath>
+            <value>
+                <tools>
+                    <li Class="CombatExtended.ToolCE">
+                    <label>humanoid implant: thrumbo horn</label>
+                    <capacities>
+                        <li>Cut</li>
+                        <li>Stab</li>
+                    </capacities>
+                    <power>40</power>
+                    <cooldownTime>1.5</cooldownTime>
+                    <armorPenetrationSharp>2.5</armorPenetrationSharp>
+                    <armorPenetrationBlunt>6</armorPenetrationBlunt>
+                </li>
+                </tools>
+            </value>
+        </li>
+
+	<!--=============== Thrumbo Skin ====================-->
+
+        <li Class="PatchOperationReplace">
+            <xpath>Defs/HediffDef[defName="GR_ThrumboSkin"]/stages/li/statOffsets/ArmorRating_Sharp</xpath>
+            <value>
+                    <ArmorRating_Sharp>2</ArmorRating_Sharp>
+            </value>
+        </li>
+
+        <li Class="PatchOperationReplace">
+            <xpath>Defs/HediffDef[defName="GR_ThrumboSkin"]/stages/li/statOffsets/ArmorRating_Blunt</xpath>
+            <value>
+                    <ArmorRating_Blunt>2</ArmorRating_Blunt>
+            </value>
+        </li>
+
+
+	<!--=============== Venomous Fangs ====================-->
+
+        <li Class="PatchOperationReplace">
+            <xpath>Defs/HediffDef[defName="GR_VenomousFangs"]/comps/li[@Class="HediffCompProperties_VerbGiver"]/tools</xpath>
+            <value>
+                <tools>
+                    <li Class="CombatExtended.ToolCE">
+                    <label>humanoid implant: venomous fangs</label>
+                    <capacities>
+                        <li>GR_VeryToxicBite</li>
+                    </capacities>
+                    <power>22</power>
+                    <cooldownTime>1.75</cooldownTime>
+                    <armorPenetrationSharp>1</armorPenetrationSharp>
+                    <armorPenetrationBlunt>2</armorPenetrationBlunt>
+                </li>
+                </tools>
+            </value>
+        </li>
+
+	<!--=============== Iguana Scales ====================-->
+
+        <li Class="PatchOperationReplace">
+            <xpath>Defs/HediffDef[defName="GR_IguanaScales"]/stages/li/statOffsets/ArmorRating_Sharp</xpath>
+            <value>
+                    <ArmorRating_Sharp>0.5</ArmorRating_Sharp>
+            </value>
+        </li>
+
+        <li Class="PatchOperationReplace">
+            <xpath>Defs/HediffDef[defName="GR_IguanaScales"]/stages/li/statOffsets/ArmorRating_Blunt</xpath>
+            <value>
+                    <ArmorRating_Blunt>0.5</ArmorRating_Blunt>
+            </value>
+        </li>
+
+
+		</operations>
+	</match>
+	</Operation>
+</Patch>

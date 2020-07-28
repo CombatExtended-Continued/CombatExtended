@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+
+  <Operation Class="PatchOperationFindMod">
+    <mods>
+      <li>Vanilla Animals Expanded — Cats and Dogs</li>
+    </mods>
+
+    <match Class="PatchOperationSequence">
+      <operations>
+        <!-- === Quadruped === -->
+        <li Class="PatchOperationAddModExtension">
+          <xpath>
+            /Defs/ThingDef[
+              defName="AEXP_Rottweiler" or
+              defName="AEXP_GermanShepherd" or
+              defName="AEXP_GreatDane" or
+              defName="AEXP_Poodle" or
+              defName="AEXP_Beagle" or
+              defName="AEXP_Chihuahua" or
+              defName="AEXP_Corgi" or
+              defName="AEXP_FrenchBulldog" or
+              defName="AEXP_Pug" or
+              defName="AEXP_Shih-Tzu" or
+              defName="AEXP_WelshTerrier" or
+              defName="AEXP_CatAbyssinian" or
+              defName="AEXP_CatBengal" or
+              defName="AEXP_CatBritishShorthair" or
+              defName="AEXP_CatMaineCoon" or
+              defName="AEXP_CatMunchkin" or
+              defName="AEXP_CatNorwegianForest" or
+              defName="AEXP_CatPersian" or
+              defName="AEXP_CatSiamese" or
+              defName="AEXP_CatSomali" or
+              defName="AEXP_CatSphynx"]
+          </xpath>
+
+          <value>
+            <li Class="CombatExtended.RacePropertiesExtensionCE">
+              <bodyShape>Quadruped</bodyShape>
+            </li>
+          </value>
+        </li>
+      </operations>
+    </match>
+  </Operation>
+
+</Patch>

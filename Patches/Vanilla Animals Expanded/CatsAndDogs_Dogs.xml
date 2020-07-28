@@ -1,0 +1,301 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+
+  <Operation Class="PatchOperationFindMod">
+    <mods>
+      <li>Vanilla Animals Expanded — Cats and Dogs</li>
+    </mods>
+
+    <match Class="PatchOperationSequence">
+      <operations>
+        <!-- === Small Dogs === -->
+        <li Class="PatchOperationAdd">
+          <xpath>
+            /Defs/ThingDef[
+              defName="AEXP_Beagle" or
+              defName="AEXP_Chihuahua" or
+              defName="AEXP_Corgi" or
+              defName="AEXP_FrenchBulldog" or
+              defName="AEXP_Pug" or
+              defName="AEXP_Shih-Tzu" or
+              defName="AEXP_WelshTerrier"]/statBases
+          </xpath>
+
+          <value>
+            <MeleeDodgeChance>0.17</MeleeDodgeChance>
+            <MeleeCritChance>0.01</MeleeCritChance>
+          </value>
+        </li>
+
+        <li Class="PatchOperationReplace">
+          <xpath>
+            /Defs/ThingDef[
+              defName="AEXP_Beagle" or
+              defName="AEXP_Chihuahua" or
+              defName="AEXP_Corgi" or
+              defName="AEXP_FrenchBulldog" or
+              defName="AEXP_Pug" or
+              defName="AEXP_Shih-Tzu" or
+              defName="AEXP_WelshTerrier"]/race/baseHealthScale
+          </xpath>
+
+          <value>
+            <baseHealthScale>0.3</baseHealthScale>
+          </value>
+        </li>
+
+        <li Class="PatchOperationReplace">
+          <xpath>
+            /Defs/PawnKindDef[
+              defName="AEXP_Beagle" or
+              defName="AEXP_Chihuahua" or
+              defName="AEXP_Corgi" or
+              defName="AEXP_FrenchBulldog" or
+              defName="AEXP_Pug" or
+              defName="AEXP_Shih-Tzu" or
+              defName="AEXP_WelshTerrier"]/combatPower
+          </xpath>
+
+          <value>
+            <combatPower>12</combatPower>
+          </value>
+        </li>
+        <li Class="PatchOperationReplace">
+          <xpath>
+            /Defs/ThingDef[ 
+              defName="AEXP_Beagle" or
+              defName="AEXP_Chihuahua" or
+              defName="AEXP_Corgi" or
+              defName="AEXP_FrenchBulldog" or
+              defName="AEXP_Pug" or
+              defName="AEXP_Shih-Tzu" or
+              defName="AEXP_WelshTerrier"]/tools
+          </xpath>
+
+          <value>
+            <tools>
+              <li Class="CombatExtended.ToolCE">
+                <label>left claw</label>
+                <capacities>
+                  <li>Scratch</li>
+                </capacities>
+                <power>2</power>
+                <cooldownTime>0.62</cooldownTime>
+                <linkedBodyPartsGroup>FrontLeftPaw</linkedBodyPartsGroup>
+                <armorPenetrationSharp>0.01</armorPenetrationSharp>
+                <armorPenetrationBlunt>0.015</armorPenetrationBlunt>
+              </li>
+              <li Class="CombatExtended.ToolCE">
+                <label>right claw</label>
+                <capacities>
+                  <li>Scratch</li>
+                </capacities>
+                <power>2</power>
+                <cooldownTime>0.62</cooldownTime>
+                <linkedBodyPartsGroup>FrontRightPaw</linkedBodyPartsGroup>
+                <armorPenetrationSharp>0.01</armorPenetrationSharp>
+                <armorPenetrationBlunt>0.015</armorPenetrationBlunt>
+              </li>
+              <li Class="CombatExtended.ToolCE">
+                <capacities>
+                  <li>Bite</li>
+                </capacities>
+                <power>4</power>
+                <cooldownTime>1.66</cooldownTime>
+                <linkedBodyPartsGroup>Teeth</linkedBodyPartsGroup>
+                <armorPenetrationSharp>0.03</armorPenetrationSharp>
+                <armorPenetrationBlunt>0.75</armorPenetrationBlunt>
+              </li>
+              <li Class="CombatExtended.ToolCE">
+                <label>head</label>
+                <capacities>
+                  <li>Blunt</li>
+                </capacities>
+                <power>1</power>
+                <cooldownTime>0.62</cooldownTime>
+                <linkedBodyPartsGroup>HeadAttackTool</linkedBodyPartsGroup>
+                <chanceFactor>0.2</chanceFactor>
+                <armorPenetrationBlunt>0.015</armorPenetrationBlunt>
+              </li>
+            </tools>
+          </value>
+        </li>
+
+        <!-- === Big Dogs (Labrador) === -->
+        <li Class="PatchOperationAdd">
+          <xpath>/Defs/ThingDef[ defName="AEXP_GreatDane" or defName="AEXP_Poodle"]/statBases</xpath>
+
+          <value>
+            <MeleeDodgeChance>0.19</MeleeDodgeChance>
+            <MeleeCritChance>0.06</MeleeCritChance>
+            <MeleeParryChance>0.04</MeleeParryChance>
+          </value>
+        </li>
+
+        <li Class="PatchOperationReplace">
+          <xpath>/Defs/ThingDef[ defName="AEXP_GreatDane" or defName="AEXP_Poodle"]/race/baseBodySize</xpath>
+
+          <value>
+            <baseBodySize>0.65</baseBodySize>
+          </value>
+        </li>
+
+        <li Class="PatchOperationReplace">
+          <xpath>/Defs/ThingDef[ defName="AEXP_GreatDane" or defName="AEXP_Poodle"]/race/baseHealthScale</xpath>
+
+          <value>
+            <baseHealthScale>0.65</baseHealthScale>
+          </value>
+        </li>
+
+        <li Class="PatchOperationReplace">
+          <xpath>/Defs/PawnKindDef[ defName="AEXP_GreatDane" or defName="AEXP_Poodle"]/combatPower</xpath>
+
+          <value>
+            <combatPower>50</combatPower>
+          </value>
+        </li>
+
+        <li Class="PatchOperationReplace">
+          <xpath>/Defs/ThingDef[ defName="AEXP_GreatDane" or defName="AEXP_Poodle"]/tools</xpath>
+
+          <value>
+            <tools>
+              <li Class="CombatExtended.ToolCE">
+                <label>left claw</label>
+                <capacities>
+                  <li>Scratch</li>
+                </capacities>
+                <power>5</power>
+                <cooldownTime>0.99</cooldownTime>
+                <linkedBodyPartsGroup>FrontLeftPaw</linkedBodyPartsGroup>
+                <armorPenetrationBlunt>0.288</armorPenetrationBlunt>
+                <armorPenetrationSharp>0.03</armorPenetrationSharp>
+              </li>
+              <li Class="CombatExtended.ToolCE">
+                <label>right claw</label>
+                <capacities>
+                  <li>Scratch</li>
+                </capacities>
+                <power>5</power>
+                <cooldownTime>0.99</cooldownTime>
+                <linkedBodyPartsGroup>FrontRightPaw</linkedBodyPartsGroup>
+                <armorPenetrationBlunt>0.288</armorPenetrationBlunt>
+                <armorPenetrationSharp>0.03</armorPenetrationSharp>
+              </li>
+              <li Class="CombatExtended.ToolCE">
+                <capacities>
+                  <li>Bite</li>
+                </capacities>
+                <power>12</power>
+                <cooldownTime>1.77</cooldownTime>
+                <linkedBodyPartsGroup>Teeth</linkedBodyPartsGroup>
+                <armorPenetrationBlunt>2.880</armorPenetrationBlunt>
+                <armorPenetrationSharp>0.1</armorPenetrationSharp>
+              </li>
+              <li Class="CombatExtended.ToolCE">
+                <label>head</label>
+                <capacities>
+                  <li>Blunt</li>
+                </capacities>
+                <power>1</power>
+                <cooldownTime>1.19</cooldownTime>
+                <linkedBodyPartsGroup>HeadAttackTool</linkedBodyPartsGroup>
+                <chanceFactor>0.2</chanceFactor>
+                <armorPenetrationBlunt>0.2</armorPenetrationBlunt>
+              </li>
+            </tools>
+          </value>
+        </li>
+
+        <!-- === Rottweiler / German Shepherd (Husky) === -->
+        <li Class="PatchOperationAdd">
+          <xpath>/Defs/ThingDef[ defName="AEXP_Rottweiler" or defName="AEXP_GermanShepherd"]/statBases</xpath>
+
+          <value>
+            <MeleeDodgeChance>0.22</MeleeDodgeChance>
+            <MeleeCritChance>0.05</MeleeCritChance>
+            <MeleeParryChance>0.04</MeleeParryChance>
+          </value>
+        </li>
+
+        <li Class="PatchOperationReplace">
+          <xpath>/Defs/ThingDef[ defName="AEXP_Rottweiler" or defName="AEXP_GermanShepherd"]/race/baseBodySize</xpath>
+
+          <value>
+            <baseBodySize>0.65</baseBodySize>
+          </value>
+        </li>
+
+        <li Class="PatchOperationReplace">
+          <xpath>/Defs/ThingDef[ defName="AEXP_Rottweiler" or defName="AEXP_GermanShepherd"]/race/baseHealthScale</xpath>
+
+          <value>
+            <baseHealthScale>0.65</baseHealthScale>
+          </value>
+        </li>
+
+        <li Class="PatchOperationReplace">
+          <xpath>/Defs/PawnKindDef[ defName="AEXP_Rottweiler" or defName="AEXP_GermanShepherd"]/combatPower</xpath>
+
+          <value>
+            <combatPower>60</combatPower>
+          </value>
+        </li>
+
+        <li Class="PatchOperationReplace">
+          <xpath>/Defs/ThingDef[ defName="AEXP_Rottweiler" or defName="AEXP_GermanShepherd"]/tools</xpath>
+
+          <value>
+            <tools>
+              <li Class="CombatExtended.ToolCE">
+                <label>left claw</label>
+                <capacities>
+                  <li>Scratch</li>
+                </capacities>
+                <power>6</power>
+                <cooldownTime>0.8</cooldownTime>
+                <armorPenetrationBlunt>0.450</armorPenetrationBlunt>
+                <armorPenetrationSharp>0.05</armorPenetrationSharp>
+                <linkedBodyPartsGroup>FrontLeftPaw</linkedBodyPartsGroup>
+              </li>
+              <li Class="CombatExtended.ToolCE">
+                <label>right claw</label>
+                <capacities>
+                  <li>Scratch</li>
+                </capacities>
+                <power>6</power>
+                <cooldownTime>0.8</cooldownTime>
+                <armorPenetrationBlunt>0.450</armorPenetrationBlunt>
+                <armorPenetrationSharp>0.05</armorPenetrationSharp>
+                <linkedBodyPartsGroup>FrontRightPaw</linkedBodyPartsGroup>
+              </li>
+              <li Class="CombatExtended.ToolCE">
+                <capacities>
+                  <li>Bite</li>
+                </capacities>
+                <power>19</power>
+                <cooldownTime>1.63</cooldownTime>
+                <linkedBodyPartsGroup>Teeth</linkedBodyPartsGroup>
+                <armorPenetrationSharp>0.12</armorPenetrationSharp>
+                <armorPenetrationBlunt>3.380</armorPenetrationBlunt>
+              </li>
+              <li Class="CombatExtended.ToolCE">
+                <label>head</label>
+                <capacities>
+                  <li>Blunt</li>
+                </capacities>
+                <power>1</power>
+                <cooldownTime>1.26</cooldownTime>
+                <linkedBodyPartsGroup>HeadAttackTool</linkedBodyPartsGroup>
+                <chanceFactor>0.2</chanceFactor>
+                <armorPenetrationBlunt>0.250</armorPenetrationBlunt>
+              </li>
+            </tools>
+          </value>
+        </li>
+      </operations>
+    </match>
+  </Operation>
+
+</Patch>

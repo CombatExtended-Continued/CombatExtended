@@ -2,7 +2,7 @@
 <Patch>
 
 	<!-- Neuter immediate attack -->
-
+<!--
 	<Operation Class="PatchOperationReplace">
 		<xpath>Defs/RaidStrategyDef[defName="ImmediateAttack"]/workerClass</xpath>
 		<value>
@@ -19,9 +19,9 @@
 			</points>
 		</value>
 	</Operation>
-
+-->
 	<!-- Disable Stage then attack -->
-
+<!--
 	<Operation Class="PatchOperationReplace">
 		<xpath>Defs/RaidStrategyDef[defName="StageThenAttack"]/selectionWeightPerPointsCurve/points</xpath>
 		<value>
@@ -30,14 +30,14 @@
 			</points>
 		</value>
 	</Operation>
-
+-->
 	<!-- Make advanced tactics drop-in only -->
 
 	<Operation Class="PatchOperationReplace">
 		<xpath>Defs/RaidStrategyDef[defName="ImmediateAttackSmart"]/selectionWeightPerPointsCurve/points</xpath>
 		<value>
 			<points>
-				<li>250, 0</li>
+				<li>250, 0.1</li>
 				<li>800, 0.3</li>
 				<li>2000, 0.4</li>
 			</points>
@@ -52,7 +52,7 @@
 			</points>
 		</value>
 	</Operation>
-
+<!--
 	<Operation Class="PatchOperationReplace">
 		<xpath>Defs/RaidStrategyDef[defName="ImmediateAttackSmart"]/arriveModes</xpath>
 		<value>
@@ -61,7 +61,7 @@
 			</arriveModes>
 		</value>
 	</Operation>
-
+-->
 	<!-- Unnerf sapper points -->
 
 	<Operation Class="PatchOperationReplace">

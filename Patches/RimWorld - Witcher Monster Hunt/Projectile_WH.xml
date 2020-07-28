@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+		<li>RimWorld - Witcher Monster Hunt</li>
+		</mods>
+
+		<match Class="PatchOperationSequence">
+			<operations>
+
+			<li Class="PatchOperationReplace">
+				<xpath>/Defs/ThingDef[defName="WMH_LeshyWave" or
+				defName="WMH_WyvernAcidSpit" or
+				defName="WMH_Rock" or
+				defName="WMH_WispProjectile"
+				]/thingClass</xpath>
+				<value>
+					<thingClass>CombatExtended.BulletCE</thingClass>
+				</value>
+			</li>
+
+	<li Class="PatchOperationReplace">
+				<xpath>/Defs/ThingDef[defName="WMH_WyvernAcidSpit" or
+				defName="WMH_Rock" or
+				defName="WMH_WispProjectile"
+				]/graphicData/graphicClass</xpath>
+				<value>
+					<graphicClass>Graphic_Single</graphicClass>
+				</value>
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>/Defs/ThingDef[
+				defName="WMH_Rock"
+				]/thingClass</xpath>
+				<value>
+					<thingClass>CombatExtended.ProjectileCE_Explosive</thingClass>
+				</value>
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>/Defs/ThingDef[defName="WMH_LeshyWave"]/projectile</xpath>
+				<value>
+					<projectile Class="CombatExtended.ProjectilePropertiesCE">
+						<flyOverhead>false</flyOverhead>
+						<damageDef>WMH_VeryToxicBite</damageDef>
+						<damageAmountBase>40</damageAmountBase>
+						<speed>28</speed>
+						<armorPenetrationSharp>10</armorPenetrationSharp>
+						<armorPenetrationBlunt>20.660</armorPenetrationBlunt>
+					</projectile>
+				</value>
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>/Defs/ThingDef[defName="WMH_WyvernAcidSpit"]/projectile</xpath>
+				<value>
+					<projectile Class="CombatExtended.ProjectilePropertiesCE">
+						<flyOverhead>false</flyOverhead>
+						<damageDef>WMH_AcidSpit</damageDef>
+						<damageAmountBase>40</damageAmountBase>
+						<speed>22</speed>
+						<armorPenetrationSharp>10</armorPenetrationSharp>
+						<armorPenetrationBlunt>1.660</armorPenetrationBlunt>
+					</projectile>
+				</value>
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>/Defs/ThingDef[defName="WMH_WyvernAcidSpit"]/graphicData/texPath</xpath>
+				<value>
+			<texPath>Things/Projectiles/WMH_AcidSpit/WMH_AcidSpitF</texPath>
+				</value>
+			</li>
+			
+			<li Class="PatchOperationReplace">
+				<xpath>/Defs/ThingDef[defName="WMH_WispProjectile"]/projectile</xpath>
+				<value>
+					<projectile Class="CombatExtended.ProjectilePropertiesCE">
+						<flyOverhead>false</flyOverhead>
+						<damageDef>Flame</damageDef>
+						<damageAmountBase>6</damageAmountBase>
+						<speed>13</speed>
+						<armorPenetrationSharp>16</armorPenetrationSharp>
+						<armorPenetrationBlunt>14.4</armorPenetrationBlunt>
+					</projectile>
+				</value>
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>/Defs/ThingDef[defName="WMH_WispProjectile"]/graphicData/texPath</xpath>
+				<value>
+			<texPath>Things/Projectiles/WMH_WispProjectile/WMH_WispProjectile_b</texPath>
+				</value>
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>/Defs/ThingDef[defName="WMH_Rock"]/projectile</xpath>
+				<value>
+					<projectile Class="CombatExtended.ProjectilePropertiesCE">
+						<explosionRadius>1.5</explosionRadius>
+						<damageDef>Bomb</damageDef>
+						<damageAmountBase>40</damageAmountBase>
+						<soundExplode>MortarBomb_Explode</soundExplode>
+						<speed>13</speed>
+						<armorPenetrationSharp>5</armorPenetrationSharp>
+						<armorPenetrationBlunt>25</armorPenetrationBlunt>
+						<applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
+					</projectile>
+				</value>
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>/Defs/ThingDef[defName="WMH_Rock"]/graphicData/texPath</xpath>
+				<value>
+			<texPath>Things/Projectiles/WMH_Boulder/WMH_BoulderA</texPath>
+				</value>
+			</li>
+						
+			</operations>
+		</match>
+	</Operation>
+</Patch>

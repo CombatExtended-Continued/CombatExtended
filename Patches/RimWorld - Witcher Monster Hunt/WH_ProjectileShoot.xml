@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+		<li>RimWorld - Witcher Monster Hunt</li>
+		</mods>
+
+			<match Class="PatchOperationSequence">
+				<operations>
+
+				<!-- Wyvern -->
+
+					<li Class="PatchOperationReplace">
+						<xpath>/Defs/ThingDef[defName="WMH_Wyvern"]/verbs</xpath>
+							<value>
+								<verbs>
+									<li Class="CombatExtended.VerbPropertiesCE">
+										<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+											<hasStandardCommand>true</hasStandardCommand>
+											<defaultProjectile>WMH_WyvernAcidSpit</defaultProjectile>
+											<warmupTime>1.5</warmupTime>
+											<burstShotCount>1</burstShotCount>
+											<ticksBetweenBurstShots>2</ticksBetweenBurstShots>
+											<minRange>1</minRange>
+											<range>30</range>
+											<muzzleFlashScale>0</muzzleFlashScale>
+											<commonality>0.5</commonality>
+									</li>
+								</verbs>
+							</value>
+					</li>
+
+					<!-- Leshy -->
+
+					<li Class="PatchOperationReplace">
+						<xpath>/Defs/ThingDef[defName="WMH_Leshy"]/verbs</xpath>
+							<value>
+								<verbs>
+									<li Class="CombatExtended.VerbPropertiesCE">
+										<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+											<hasStandardCommand>true</hasStandardCommand>
+											<defaultProjectile>WMH_LeshyWave</defaultProjectile>
+											<warmupTime>1</warmupTime>
+											<burstShotCount>1</burstShotCount>
+											<ticksBetweenBurstShots>2</ticksBetweenBurstShots>
+											<minRange>2</minRange>
+											<range>50</range>
+											<muzzleFlashScale>0</muzzleFlashScale>
+											<commonality>1</commonality>
+									</li>
+								</verbs>
+							</value>
+					</li>
+
+					<!-- Wisp -->
+
+					<li Class="PatchOperationReplace">
+						<xpath>/Defs/ThingDef[defName="WMH_Djinn"]/verbs</xpath>
+							<value>
+								<verbs>
+									<li Class="CombatExtended.VerbPropertiesCE">
+										<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+											<hasStandardCommand>true</hasStandardCommand>
+											<defaultProjectile>WMH_WispProjectile</defaultProjectile>
+											<warmupTime>0.3</warmupTime>
+											<burstShotCount>50</burstShotCount>
+											<ticksBetweenBurstShots>5</ticksBetweenBurstShots>
+											<minRange>1</minRange>
+											<range>36</range>
+											<muzzleFlashScale>0</muzzleFlashScale>
+											<commonality>1</commonality>
+									</li>
+								</verbs>
+							</value>
+					</li>
+
+					<!-- Cyclop -->
+
+					<li Class="PatchOperationReplace">
+						<xpath>/Defs/ThingDef[defName="WMH_Cyclops"]/verbs</xpath>
+							<value>
+								<verbs>
+									<li Class="CombatExtended.VerbPropertiesCE">
+										<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+											<hasStandardCommand>true</hasStandardCommand>
+											<defaultProjectile>WMH_Rock</defaultProjectile>
+											<warmupTime>3</warmupTime>
+											<burstShotCount>1</burstShotCount>
+											<ticksBetweenBurstShots>2</ticksBetweenBurstShots>
+											<minRange>6</minRange>
+											<range>32</range>
+											<soundCast>WMH_RockThrow</soundCast>
+											<muzzleFlashScale>0</muzzleFlashScale>
+											<ai_IsBuildingDestroyer>true</ai_IsBuildingDestroyer>
+											<commonality>0.4</commonality>
+									</li>
+								</verbs>
+							</value>
+					</li>
+
+				</operations>
+			</match>
+	</Operation>
+</Patch>

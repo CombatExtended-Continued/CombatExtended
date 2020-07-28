@@ -1,0 +1,285 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+		<li>Genetic Rim</li>
+		</mods>
+
+		<match Class="PatchOperationSequence">
+			<operations>
+
+			<!-- ============== Changing Projectile's thingClass to CE ones ================ -->
+
+			<li Class="PatchOperationReplace">
+				<xpath>/Defs/ThingDef[defName="GR_SniperFlechette" or
+				defName="GR_RazorProjectile" or
+				defName="GR_Laser" or
+				defName="GR_Disintegrator" or
+				defName="GR_StunBolt" or
+				defName="GR_PoisonBlast" or
+				defName="GR_HairballProjectile" or
+				defName="GR_GreatHairballProjectile" or
+				defName="GR_CryoBlast"
+				]/thingClass</xpath>
+				<value>
+					<thingClass>CombatExtended.BulletCE</thingClass>
+				</value>
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>/Defs/ThingDef[defName="GR_Proj_ThrownSac" or
+				defName="GR_IncendiaryMote" or
+				defName="GR_Warhead" or
+				defName="GR_PlasmaBurst" or
+				defName="GR_SmokeBomb"
+				]/thingClass</xpath>
+				<value>
+					<thingClass>CombatExtended.ProjectileCE_Explosive</thingClass>
+				</value>
+			</li>
+			
+			<!-- ============== Adding 'Standard' AimingAccuracy node to creatures' that use ranged attack statBases. =============== -->
+			
+			<!-- =============== Now defining Projectiles in CE Procedure ============= -->
+						
+			<li Class="PatchOperationReplace">
+				<xpath>/Defs/ThingDef[defName="GR_SniperFlechette"]/projectile</xpath>
+				<value>
+					<projectile Class="CombatExtended.ProjectilePropertiesCE">
+						<flyOverhead>false</flyOverhead>
+						<damageDef>Bullet</damageDef>
+						<damageAmountBase>20</damageAmountBase>
+						<speed>200</speed>
+						<armorPenetrationSharp>10</armorPenetrationSharp>
+						<armorPenetrationBlunt>30</armorPenetrationBlunt>
+					</projectile>
+				</value>
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>/Defs/ThingDef[defName="GR_RazorProjectile"]/projectile</xpath>
+				<value>
+					<projectile Class="CombatExtended.ProjectilePropertiesCE">
+						<flyOverhead>false</flyOverhead>
+						<damageDef>Cut</damageDef>
+						<damageAmountBase>20</damageAmountBase>
+						<speed>64</speed>
+						<armorPenetrationSharp>4</armorPenetrationSharp>
+						<armorPenetrationBlunt>17</armorPenetrationBlunt>
+					</projectile>
+				</value>
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>/Defs/ThingDef[defName="GR_Laser"]/projectile</xpath>
+				<value>
+					<projectile Class="CombatExtended.ProjectilePropertiesCE">
+						<flyOverhead>false</flyOverhead>
+						<damageDef>Flame</damageDef>
+						<damageAmountBase>13</damageAmountBase>
+						<speed>300</speed>
+			                                                <ai_IsIncendiary>true</ai_IsIncendiary>
+					</projectile>
+				</value>
+			</li>
+			
+			<li Class="PatchOperationReplace">
+				<xpath>/Defs/ThingDef[defName="GR_Disintegrator"]/projectile</xpath>
+				<value>
+					<projectile Class="CombatExtended.ProjectilePropertiesCE">
+						<flyOverhead>false</flyOverhead>
+						<damageDef>Flame</damageDef>
+						<damageAmountBase>1500</damageAmountBase>
+						<speed>300</speed>
+			                                                 <ai_IsIncendiary>true</ai_IsIncendiary>
+					</projectile>
+				</value>
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>/Defs/ThingDef[defName="GR_StunBolt"]/projectile</xpath>
+				<value>
+					<projectile Class="CombatExtended.ProjectilePropertiesCE">
+						<flyOverhead>false</flyOverhead>
+						<damageDef>Stun</damageDef>
+						<damageAmountBase>20</damageAmountBase>
+						<speed>140</speed>
+						<armorPenetrationSharp>2.5</armorPenetrationSharp>
+						<armorPenetrationBlunt>3</armorPenetrationBlunt>
+					</projectile>
+				</value>
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>/Defs/ThingDef[defName="GR_PoisonBlast"]/projectile</xpath>
+				<value>
+					<projectile Class="CombatExtended.ProjectilePropertiesCE">
+						<flyOverhead>false</flyOverhead>
+						<damageDef>GR_ToxicExplosion</damageDef>
+						<damageAmountBase>26</damageAmountBase>
+						<speed>78</speed>
+						<armorPenetrationSharp>40</armorPenetrationSharp>
+						<armorPenetrationBlunt>40</armorPenetrationBlunt>
+					</projectile>
+				</value>
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>/Defs/ThingDef[defName="GR_HairballProjectile"]/projectile</xpath>
+				<value>
+					<projectile Class="CombatExtended.ProjectilePropertiesCE">
+						<flyOverhead>false</flyOverhead>
+						<damageDef>GR_HairballProjectileDamage</damageDef>
+						<damageAmountBase>5</damageAmountBase>
+						<speed>18</speed>
+						<armorPenetrationBlunt>0.4</armorPenetrationBlunt>
+					</projectile>
+				</value>
+			</li>
+
+
+			<li Class="PatchOperationReplace">
+				<xpath>/Defs/ThingDef[defName="GR_GreatHairballProjectile"]/projectile</xpath>
+				<value>
+					<projectile Class="CombatExtended.ProjectilePropertiesCE">
+						<flyOverhead>false</flyOverhead>
+						<damageDef>GR_GreatHairballProjectileDamage</damageDef>
+						<damageAmountBase>14</damageAmountBase>
+						<speed>14</speed>
+						<armorPenetrationBlunt>0.85</armorPenetrationBlunt>
+					</projectile>
+				</value>
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>/Defs/ThingDef[defName="GR_CryoBlast"]/projectile</xpath>
+				<value>
+					<projectile Class="CombatExtended.ProjectilePropertiesCE">
+						<flyOverhead>false</flyOverhead>
+						<damageDef>Frostbite</damageDef>
+						<damageAmountBase>25</damageAmountBase>
+						<speed>48</speed>
+					</projectile>
+				</value>
+			</li>
+
+			
+						<!-- ======== Note: AA_ExplodingWeb wasn't used in any Race, so it wasn't included. If it gets added, just add a secondaryDamage to the corresponding projectile, with the Bomb damageDef ======== -->
+
+			<li Class="PatchOperationReplace">
+				<xpath>/Defs/ThingDef[defName="GR_Proj_ThrownSac"]/projectile</xpath>
+				<value>
+					<projectile Class="CombatExtended.ProjectilePropertiesCE">
+						<speed>10</speed>
+						<damageDef>Bomb</damageDef>
+						<damageAmountBase>30</damageAmountBase>
+			                                                <explosionRadius >2.9</explosionRadius >
+			                                                 <explosionDelay>70</explosionDelay>
+					</projectile>
+				</value>
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>/Defs/ThingDef[defName="GR_SmokeBomb"]/projectile</xpath>
+				<value>
+					<projectile Class="CombatExtended.ProjectilePropertiesCE">
+						<speed>18</speed>
+						<damageDef>Smoke</damageDef>
+						<damageAmountBase>1</damageAmountBase>
+			<explosionRadius >5.9</explosionRadius >
+			<explosionDelay>1</explosionDelay>
+			<postExplosionSpawnThingDef>Gas_Smoke</postExplosionSpawnThingDef>
+			<postExplosionSpawnThingCount>1</postExplosionSpawnThingCount>
+			<postExplosionSpawnChance>1</postExplosionSpawnChance>
+					</projectile>
+				</value>
+			</li>
+
+			
+			<li Class="PatchOperationReplace">
+				<xpath>/Defs/ThingDef[defName="GR_PlasmaBurst"]/projectile</xpath>
+				<value>
+					<projectile Class="CombatExtended.ProjectilePropertiesCE">
+						<speed>31</speed>
+						<damageDef>Bomb</damageDef>
+						<damageAmountBase>45</damageAmountBase>
+			                                                <explosionRadius >4</explosionRadius >
+			                                                <explosionDelay>1</explosionDelay>
+					</projectile>
+				</value>
+			</li>
+
+			
+			<li Class="PatchOperationReplace">
+				<xpath>/Defs/ThingDef[defName="GR_IncendiaryMote"]/projectile</xpath>
+				<value>
+					<projectile Class="CombatExtended.ProjectilePropertiesCE">
+						<speed>17</speed>
+						<damageDef>Flame</damageDef>
+						<damageAmountBase>5</damageAmountBase>
+						<explosionRadius>1.1</explosionRadius>
+						<preExplosionSpawnThingDef>Filth_Fuel</preExplosionSpawnThingDef>
+						<preExplosionSpawnChance>0.6</preExplosionSpawnChance>
+						<ai_IsIncendiary>true</ai_IsIncendiary>
+						<soundExplode>Interact_Ignite</soundExplode>
+					</projectile>
+				</value>
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>/Defs/ThingDef[defName="GR_Warhead"]/projectile</xpath>
+				<value>
+					<projectile Class="CombatExtended.ProjectilePropertiesCE">
+						<speed>60</speed>
+						<damageDef>Bomb</damageDef>
+						<damageAmountBase>250</damageAmountBase>
+						<explosionRadius>8.9</explosionRadius>
+			<explosionChanceToStartFire>0.25</explosionChanceToStartFire>
+			<explosionDamageFalloff>true</explosionDamageFalloff>
+			<explosionEffect>GiantExplosion</explosionEffect>
+			<flyOverhead>False</flyOverhead>
+			<soundHitThickRoof>Artillery_HitThickRoof</soundHitThickRoof>
+			<soundExplode>Explosion_GiantBomb</soundExplode>
+			<soundImpactAnticipate>MortarRound_PreImpact</soundImpactAnticipate>
+			<soundAmbient>MortarRound_Ambient</soundAmbient>
+						<armorPenetrationSharp>100</armorPenetrationSharp>
+						<armorPenetrationBlunt>100</armorPenetrationBlunt>
+					</projectile>
+				</value>
+			</li>
+
+	<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+		<defName>GR_Weapon_ThrownSac</defName>
+		<statBases>
+			<Mass>0.4</Mass>
+			<Bulk>0.7</Bulk>
+			<MarketValue>7.05</MarketValue>
+			<RangedWeapon_Cooldown>1</RangedWeapon_Cooldown>
+			<SightsEfficiency>0.65</SightsEfficiency>
+		</statBases>
+		<Properties>
+			<label>throw sac</label>
+			<verbClass>CombatExtended.Verb_ShootCEOneUse</verbClass>
+			<hasStandardCommand>true</hasStandardCommand>
+			<range>12</range>
+			<minRange>2.9</minRange>
+			<warmupTime>0.8</warmupTime>
+			<noiseRadius>4</noiseRadius>
+			<ai_IsBuildingDestroyer>true</ai_IsBuildingDestroyer>
+			<soundCast>ThrowMolotovCocktail</soundCast>
+			<targetParams>
+				<canTargetLocations>true</canTargetLocations>
+			</targetParams>
+			<defaultProjectile>GR_Proj_ThrownSac</defaultProjectile>
+			<onlyManualCast>true</onlyManualCast>
+			<ignorePartialLoSBlocker>true</ignorePartialLoSBlocker>
+		</Properties>
+		<weaponTags>
+			<li>CE_OneHandedWeapon</li>
+		</weaponTags>
+			</li>
+			
+			</operations>
+		</match>
+	</Operation>
+</Patch>

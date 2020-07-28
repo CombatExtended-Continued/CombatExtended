@@ -1,14 +1,12 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <Patch>
-	<Operation Class="PatchOperationSequence">
-		<success>Always</success>
-		<operations>
+	<Operation Class="PatchOperationFindMod">
+    <mods>
+		<li>[RH] Faction: UAC</li>
+		<li>[CP] DOOM</li>
+    </mods>
 
-			<li Class="CombatExtended.PatchOperationFindMod">
-				<modName>[CP] DOOM</modName>
-			</li>
-
-			<li Class="PatchOperationAdd">
+			<match Class="PatchOperationAdd">
 				<xpath>Defs</xpath>
 				<value>
 
@@ -45,8 +43,7 @@
 					</ThingDef>
 
 				</value>
-			</li>
 
-		</operations>
+		</match>
 	</Operation>
 </Patch>

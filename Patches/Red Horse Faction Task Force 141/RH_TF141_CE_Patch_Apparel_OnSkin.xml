@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <Patch>
-	<Operation Class="PatchOperationSequence">
-		<success>Always</success>
-		<operations>
-
-			<li Class="CombatExtended.PatchOperationFindMod">
-				<modName>[RH] Faction: Task Force 141</modName>
-			</li>
+	<Operation Class="PatchOperationFindMod">
+    <mods>
+		<li>[RH] Faction: Task Force 141</li>
+    </mods>
+		<match Class="PatchOperationSequence">
+		 <operations>
 
 			<!-- ========== 141 Fleece (Standard, Black, Olive) ========== -->
 
@@ -36,6 +35,7 @@
 				</value>
 			</li>
 
-		</operations>
-	</Operation>
-</Patch>
+			</operations>
+			</match>
+		</Operation>
+	</Patch>

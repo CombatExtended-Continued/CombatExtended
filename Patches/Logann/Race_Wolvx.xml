@@ -1,13 +1,15 @@
 <?xml version="1.0" encoding="utf-8" ?>
+
 <Patch>
-	<Operation Class="PatchOperationSequence">
-		<success>Always</success>
-		<operations>
-	<li Class="CombatExtended.PatchOperationFindMod">
-				<modName>Logann Race</modName>
-	</li>
+  <Operation Class="PatchOperationFindMod">
+    <mods>
+      <li>Logann Race</li>
+    </mods>
+    <match Class="PatchOperationSequence">
+      <operations>
+	  
 	<li Class="PatchOperationAddModExtension">
-		<xpath>*/AlienRace.ThingDef_AlienRace[defName="Alien_Wolvx"]</xpath>
+		<xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="Alien_Wolvx"]</xpath>
 		<value>
 			<li Class="CombatExtended.RacePropertiesExtensionCE">
 				<bodyShape>Humanoid</bodyShape>
@@ -23,7 +25,7 @@
 	<!-- ========== Renamed Basepawn. Naughty! ========== -->
 	
 	<li Class="PatchOperationAdd">
-		<xpath>*/ThingDef[@Name="BaseWolvPawn"]/comps</xpath>
+		<xpath>/Defs/ThingDef[@Name="BaseWolvPawn"]/comps</xpath>
 		<value>
 			<li>
 				<compClass>CombatExtended.CompPawnGizmo</compClass>
@@ -36,7 +38,7 @@
 	<!-- ========== Hit hard, and prefer to hit hard ========== -->
 	
 			<li Class="PatchOperationAdd">
-			<xpath>*/AlienRace.ThingDef_AlienRace[defName = "Alien_Wolvx"]/statBases</xpath>
+			<xpath>/Defs/AlienRace.ThingDef_AlienRace[defName = "Alien_Wolvx"]/statBases</xpath>
 			<value>
 			<AimingAccuracy>0.8</AimingAccuracy>
 			<MeleeDodgeChance>0.8</MeleeDodgeChance>
@@ -48,7 +50,7 @@
 			</li>
 
 			<li Class="PatchOperationReplace">
-			<xpath>*/AlienRace.ThingDef_AlienRace[defName="Alien_Wolvx"]/tools</xpath>
+			<xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="Alien_Wolvx"]/tools</xpath>
 			<value>
 			<tools>
 				<li Class="CombatExtended.ToolCE">
@@ -59,7 +61,7 @@
 				<power>12</power>
 				<cooldownTime>2</cooldownTime>
 				<linkedBodyPartsGroup>LeftHand</linkedBodyPartsGroup>
-				<armorPenetration>0.12</armorPenetration>
+                <armorPenetrationBlunt>3</armorPenetrationBlunt>
 				</li>
 				<li Class="CombatExtended.ToolCE">
 				<label>right fist</label>
@@ -69,7 +71,8 @@
 				<power>12</power>
 				<cooldownTime>2</cooldownTime>
 				<linkedBodyPartsGroup>RightHand</linkedBodyPartsGroup>
-				<armorPenetration>0.12</armorPenetration>
+                <armorPenetrationSharp>1.0</armorPenetrationSharp>
+                <armorPenetrationBlunt>2</armorPenetrationBlunt>
 				</li>
 				<li Class="CombatExtended.ToolCE">
 				<label>teeth</label>
@@ -79,7 +82,8 @@
 				<power>15</power>
 				<cooldownTime>2.5</cooldownTime>
 				<linkedBodyPartsGroup>Teeth</linkedBodyPartsGroup>
-				<armorPenetration>0.40</armorPenetration>
+                <armorPenetrationSharp>0.40</armorPenetrationSharp>
+                <armorPenetrationBlunt>1.0</armorPenetrationBlunt>
 				</li>
 			</tools>
 			</value>
@@ -93,7 +97,7 @@
 	<!-- ========== Inventory and all that jazz ========== -->
 	
 	<li Class="PatchOperationReplace">
-		<xpath>*/ThingDef[@Name="BaseWolvPawn"]/inspectorTabs/li[.="ITab_Pawn_Gear"]</xpath>
+		<xpath>/Defs/ThingDef[@Name="BaseWolvPawn"]/inspectorTabs/li[.="ITab_Pawn_Gear"]</xpath>
 		<value>
 			<li>CombatExtended.ITab_Inventory</li>
 		</value>
@@ -101,11 +105,13 @@
 
 	<li Class="PatchOperationAdd">
 	
-		<xpath>*/ThingDef[@Name="BaseWolvPawn"]/comps</xpath>
+		<xpath>/Defs/ThingDef[@Name="BaseWolvPawn"]/comps</xpath>
 		<value>
 			<li Class="CombatExtended.CompProperties_Inventory" />
 		</value>
 	</li>
-		</operations>
-	</Operation>
+	
+      </operations>
+    </match>
+  </Operation>
 </Patch>

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+
+  <Operation Class="PatchOperationFindMod">
+    <mods>
+      <li>Vanilla Animals Expanded — Tropical Rainforest</li>
+    </mods>
+
+    <match Class="PatchOperationSequence">
+      <operations>
+        <!-- === Tiger Leather === -->
+        <li Class="PatchOperationRemove">
+          <xpath>
+            /Defs/ThingDef[defName="AEXP_Leather_Tiger"]/statBases/StuffPower_Armor_Sharp |
+            /Defs/ThingDef[defName="AEXP_Leather_Tiger"]/statBases/StuffPower_Armor_Blunt
+          </xpath>
+        </li>
+
+        <li Class="PatchOperationAdd">
+          <xpath>/Defs/ThingDef[defName="AEXP_Leather_Tiger"]/statBases</xpath>
+
+          <value>
+            <StuffPower_Armor_Sharp>0.03</StuffPower_Armor_Sharp>
+            <StuffPower_Armor_Blunt>0.07</StuffPower_Armor_Blunt>
+          </value>
+        </li>
+      </operations>
+    </match>
+  </Operation>
+
+</Patch>
