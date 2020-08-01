@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+
+  <Operation Class="PatchOperationFindMod">
+    <mods>
+      <li>Vanilla Animals Expanded — Cats and Dogs</li>
+    </mods>
+
+    <match Class="PatchOperationSequence">
+      <operations>
+        <li Class="PatchOperationAdd">
+          <xpath>
+            /Defs/ThingDef[
+              defName="AEXP_CatAbyssinian" or
+              defName="AEXP_CatBengal" or
+              defName="AEXP_CatBritishShorthair" or
+              defName="AEXP_CatMaineCoon" or
+              defName="AEXP_CatMunchkin" or
+              defName="AEXP_CatNorwegianForest" or
+              defName="AEXP_CatPersian" or
+              defName="AEXP_CatSiamese" or
+              defName="AEXP_CatSomali" or
+              defName="AEXP_CatSphynx"]/statBases
+          </xpath>
+
+          <value>
+            <MeleeDodgeChance>0.23</MeleeDodgeChance>
+            <MeleeCritChance>0.02</MeleeCritChance>
+          </value>
+        </li>
+
+        <li Class="PatchOperationReplace">
+          <xpath>
+            /Defs/ThingDef[ 
+              defName="AEXP_CatAbyssinian" or
+              defName="AEXP_CatBengal" or
+              defName="AEXP_CatBritishShorthair" or
+              defName="AEXP_CatMaineCoon" or
+              defName="AEXP_CatMunchkin" or
+              defName="AEXP_CatNorwegianForest" or
+              defName="AEXP_CatPersian" or
+              defName="AEXP_CatSiamese" or
+              defName="AEXP_CatSomali" or
+              defName="AEXP_CatSphynx"]/race/baseHealthScale
+          </xpath>
+
+          <value>
+            <baseHealthScale>0.23</baseHealthScale>
+          </value>
+        </li> 
+
+        <li Class="PatchOperationReplace">
+          <xpath>
+            /Defs/PawnKindDef[
+              defName="AEXP_CatAbyssinian" or
+              defName="AEXP_CatBengal" or
+              defName="AEXP_CatBritishShorthair" or
+              defName="AEXP_CatMaineCoon" or
+              defName="AEXP_CatMunchkin" or
+              defName="AEXP_CatNorwegianForest" or
+              defName="AEXP_CatPersian" or
+              defName="AEXP_CatSiamese" or
+              defName="AEXP_CatSomali" or
+              defName="AEXP_CatSphynx"]/combatPower
+          </xpath>
+
+          <value>
+            <combatPower>14</combatPower>
+          </value>
+        </li>
+
+        <li Class="PatchOperationReplace">
+          <xpath>
+            /Defs/ThingDef[
+              defName="AEXP_CatAbyssinian" or
+              defName="AEXP_CatBengal" or
+              defName="AEXP_CatBritishShorthair" or
+              defName="AEXP_CatMaineCoon" or
+              defName="AEXP_CatMunchkin" or
+              defName="AEXP_CatNorwegianForest" or
+              defName="AEXP_CatPersian" or
+              defName="AEXP_CatSiamese" or
+              defName="AEXP_CatSomali" or
+              defName="AEXP_CatSphynx"]/tools
+          </xpath>
+
+          <value>
+            <tools>
+              <li Class="CombatExtended.ToolCE">
+                <label>left claw</label>
+                <capacities>
+                  <li>Scratch</li>
+                </capacities>
+                <power>2</power>
+                <cooldownTime>0.55</cooldownTime>
+                <linkedBodyPartsGroup>FrontLeftPaw</linkedBodyPartsGroup>
+                <surpriseAttack>
+                  <extraMeleeDamages>
+                    <li>
+                      <def>Stun</def>
+                      <amount>20</amount>
+                    </li>
+                  </extraMeleeDamages>
+                </surpriseAttack>
+                <armorPenetrationBlunt>0.042</armorPenetrationBlunt>
+                <armorPenetrationSharp>0.01</armorPenetrationSharp>
+              </li>
+              <li Class="CombatExtended.ToolCE">
+                <label>right claw</label>
+                <capacities>
+                  <li>Scratch</li>
+                </capacities>
+                <power>2</power>
+                <cooldownTime>0.55</cooldownTime>
+                <linkedBodyPartsGroup>FrontRightPaw</linkedBodyPartsGroup>
+                <surpriseAttack>
+                  <extraMeleeDamages>
+                    <li>
+                      <def>Stun</def>
+                      <amount>20</amount>
+                    </li>
+                  </extraMeleeDamages>
+                </surpriseAttack>
+                <armorPenetrationBlunt>0.042</armorPenetrationBlunt>
+                <armorPenetrationSharp>0.01</armorPenetrationSharp>
+              </li>
+              <li Class="CombatExtended.ToolCE">
+                <capacities>
+                  <li>Bite</li>
+                </capacities>
+                <power>5</power>
+                <cooldownTime>0.85</cooldownTime>
+                <linkedBodyPartsGroup>Teeth</linkedBodyPartsGroup>
+                <surpriseAttack>
+                  <extraMeleeDamages>
+                    <li>
+                      <def>Stun</def>
+                      <amount>20</amount>
+                    </li>
+                  </extraMeleeDamages>
+                </surpriseAttack>
+                <armorPenetrationBlunt>0.254</armorPenetrationBlunt>
+                <armorPenetrationSharp>0.03</armorPenetrationSharp>
+              </li>
+              <li Class="CombatExtended.ToolCE">
+                <label>head</label>
+                <capacities>
+                  <li>Blunt</li>
+                </capacities>
+                <power>1</power>
+                <cooldownTime>0.55</cooldownTime>
+                <linkedBodyPartsGroup>HeadAttackTool</linkedBodyPartsGroup>
+                <chanceFactor>0.2</chanceFactor>
+                <armorPenetrationBlunt>0.042</armorPenetrationBlunt>
+              </li>
+            </tools>
+          </value>
+        </li>
+      </operations>
+    </match>
+  </Operation>
+
+</Patch>

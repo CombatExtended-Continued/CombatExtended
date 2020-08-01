@@ -25,7 +25,7 @@
   <ThingDef Class="CombatExtended.AmmoDef" Name="12GaugeChargedBase" ParentName="SmallAmmoBase" Abstract="True">
     <description>Multi-pellet charge shot cartridge designed for shotgun-type weapons.</description>
     <statBases>
-	  <Mass>0.027</Mass>
+	  <Mass>0.026</Mass>
 	  <Bulk>0.07</Bulk>
     </statBases>
     <tradeTags>
@@ -45,7 +45,8 @@
       <graphicClass>Graphic_StackCount</graphicClass>
     </graphicData>
     <statBases>
-      <MarketValue>0.77</MarketValue>
+      <MarketValue>0.6</MarketValue>
+	    <Mass>0.028</Mass>      
     </statBases>
     <ammoClass>BuckShot</ammoClass>
   </ThingDef>
@@ -58,7 +59,8 @@
       <graphicClass>Graphic_StackCount</graphicClass>
     </graphicData>
     <statBases>
-      <MarketValue>1.58</MarketValue>
+      <MarketValue>1.75</MarketValue>
+	    <Mass>0.028</Mass>           
     </statBases>
     <ammoClass>Slug</ammoClass>
   </ThingDef>
@@ -71,7 +73,7 @@
       <graphicClass>Graphic_StackCount</graphicClass>
     </graphicData>
     <statBases>
-      <MarketValue>1.58</MarketValue>
+      <MarketValue>1.75</MarketValue>
     </statBases>
     <ammoClass>Ionized</ammoClass>
 	<generateAllowChance>0</generateAllowChance>
@@ -94,7 +96,7 @@
     <defName>Bullet_12GaugeCharged</defName>
     <label>charge shot pellet</label>
     <projectile Class="CombatExtended.ProjectilePropertiesCE">
-      <damageAmountBase>12</damageAmountBase>
+      <damageAmountBase>9</damageAmountBase>
       <secondaryDamage>
         <li>
           <def>Bomb_Secondary</def>
@@ -102,7 +104,7 @@
         </li>
       </secondaryDamage>
       <armorPenetrationSharp>6</armorPenetrationSharp>      
-      <armorPenetrationBlunt>14.4</armorPenetrationBlunt>
+      <armorPenetrationBlunt>10.8</armorPenetrationBlunt>
       <pelletCount>9</pelletCount>
       <spreadMult>17.8</spreadMult>
     </projectile>
@@ -112,15 +114,15 @@
     <defName>Bullet_12GaugeCharged_Slug</defName>
     <label>charge shot (Slug)</label>
     <projectile Class="CombatExtended.ProjectilePropertiesCE">
-      <damageAmountBase>15</damageAmountBase>
+      <damageAmountBase>17</damageAmountBase>
       <secondaryDamage>
         <li>
           <def>Bomb_Secondary</def>
-          <amount>5</amount>
+          <amount>10</amount>
         </li>
       </secondaryDamage>
       <armorPenetrationSharp>8</armorPenetrationSharp>      
-      <armorPenetrationBlunt>32.4</armorPenetrationBlunt>
+      <armorPenetrationBlunt>36</armorPenetrationBlunt>
     </projectile>
   </ThingDef>
 
@@ -137,6 +139,7 @@
       </secondaryDamage>
       <armorPenetrationSharp>8</armorPenetrationSharp>      
       <armorPenetrationBlunt>32.4</armorPenetrationBlunt>
+      <empShieldBreakChance>0.2</empShieldBreakChance>
     </projectile>
   </ThingDef>
   

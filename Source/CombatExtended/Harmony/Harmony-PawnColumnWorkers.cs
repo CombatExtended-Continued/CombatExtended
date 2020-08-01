@@ -17,7 +17,6 @@ namespace CombatExtended.HarmonyCE
      */
     static class PawnColumnWorkers_Resize
     {
-        static readonly string logPrefix = "Combat Extended :: " + typeof(PawnColumnWorkers_Resize).Name + " :: ";
 
         static readonly float orgMinWidth = 194f;
         static readonly float orgOptimalWidth = 251f;
@@ -88,7 +87,6 @@ namespace CombatExtended.HarmonyCE
      */
     static class PawnColumnWorkers_SwapButtons
     {
-        static readonly string logPrefix = "Combat Extended :: " + typeof(PawnColumnWorkers_SwapButtons).Name + " :: ";
 
         // NOTE: For the two strings below you can also change the translation string...
         private const string apparelString = "CE_Outfits"; // change this to change the word after "Edit" in the edit tooltip for outfits.
@@ -148,7 +146,7 @@ namespace CombatExtended.HarmonyCE
 
                 // Watch for calls to rect.y + 2f, we replace them with our num4 (see PawnColumnWorker_Loadout)
                 if (curCode.opcode == OpCodes.Call &&
-                    curCode.operand == typeof(Rect).GetMethod("get_y", AccessTools.all))
+                    ReferenceEquals(curCode.operand, typeof(Rect).GetMethod("get_y", AccessTools.all)))
                 {
                     if (passedFirstRectYCall && i + 1 < codes.Count && codes[i + 1].opcode == OpCodes.Ldc_R4 && codes[i + 1].operand.Equals(2f))
                     {

@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+		<li>Alpha Animals</li>
+		</mods>
+
+		<match Class="PatchOperationSequence">
+			<operations>
+
+			<li Class="PatchOperationAddModExtension">
+				<xpath>/Defs/ThingDef[defName="AA_Swarmling"]</xpath>
+				<value>
+					<li Class="CombatExtended.RacePropertiesExtensionCE">
+						<bodyShape>QuadrupedLow</bodyShape>
+					</li>
+				</value>
+			</li>
+
+			<li Class="PatchOperationAdd">
+				<xpath>/Defs/ThingDef[defName="AA_Swarmling"]/statBases</xpath>
+				<value>
+					<MeleeDodgeChance>0.33</MeleeDodgeChance>
+					<MeleeCritChance>0</MeleeCritChance>
+					<MeleeParryChance>0</MeleeParryChance>
+				</value>
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>/Defs/ThingDef[defName="AA_Swarmling"]/tools</xpath>
+				<value>
+					<tools>
+						<li Class="CombatExtended.ToolCE">
+							<label>left claw</label>
+							<capacities>
+								<li>AA_SwarmlingClaws</li>
+							</capacities>
+							<power>3</power>
+							<cooldownTime>0.75</cooldownTime>
+							<linkedBodyPartsGroup>FrontLeftClaws</linkedBodyPartsGroup>
+							<armorPenetrationSharp>0.12</armorPenetrationSharp>
+							<armorPenetrationBlunt>0.316</armorPenetrationBlunt>
+						</li>
+						<li Class="CombatExtended.ToolCE">
+							<label>right claw</label>
+							<capacities>
+								<li>AA_SwarmlingClaws</li>
+							</capacities>
+							<power>3</power>
+							<cooldownTime>0.75</cooldownTime>
+							<linkedBodyPartsGroup>FrontRightClaws</linkedBodyPartsGroup>
+							<armorPenetrationSharp>0.12</armorPenetrationSharp>
+							<armorPenetrationBlunt>0.316</armorPenetrationBlunt>
+						</li>
+						<li Class="CombatExtended.ToolCE">
+							<capacities>
+								<li>Bite</li>
+							</capacities>
+							<power>5</power>
+							<cooldownTime>1.2</cooldownTime>
+							<linkedBodyPartsGroup>Teeth</linkedBodyPartsGroup>
+							<armorPenetrationSharp>0.63</armorPenetrationSharp>
+							<armorPenetrationBlunt>0.844</armorPenetrationBlunt>
+							<chanceFactor>0.7</chanceFactor>
+						</li>
+						<li Class="CombatExtended.ToolCE">
+							<label>head</label>
+							<capacities>
+								<li>Blunt</li>
+							</capacities>
+							<power>2</power>
+							<cooldownTime>2</cooldownTime>
+							<linkedBodyPartsGroup>HeadAttackTool</linkedBodyPartsGroup>
+							<ensureLinkedBodyPartsGroupAlwaysUsable>true</ensureLinkedBodyPartsGroupAlwaysUsable>
+							<armorPenetrationBlunt>0.323</armorPenetrationBlunt>
+							<chanceFactor>0.2</chanceFactor>
+						</li>
+					</tools>
+				</value>
+			</li>
+			</operations>
+		</match>
+	</Operation>
+</Patch>

@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+		<li>Alpha Animals</li>
+		</mods>
+
+		<match Class="PatchOperationSequence">
+			<operations>
+
+			<li Class="PatchOperationAddModExtension">
+				<xpath>/Defs/ThingDef[defName="AA_Daggersnout"]</xpath>
+				<value>
+					<li Class="CombatExtended.RacePropertiesExtensionCE">
+						<bodyShape>QuadrupedLow</bodyShape>
+					</li>
+				</value>
+			</li>
+
+		<!-- Assign armor values, change replace and add depending on what exists or not -->
+			
+			<li Class="PatchOperationAdd">
+				<xpath>/Defs/ThingDef[defName="AA_Daggersnout"]</xpath>
+				<value>
+					<statBases> <!-- Actually having to add statBases.... -->
+						<ArmorRating_Blunt>15</ArmorRating_Blunt>
+						<ArmorRating_Sharp>8</ArmorRating_Sharp>
+						<MeleeDodgeChance>0.08</MeleeDodgeChance>
+						<MeleeCritChance>0.30</MeleeCritChance>
+						<MeleeParryChance>0.18</MeleeParryChance>
+					</statBases>
+				</value>
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>/Defs/ThingDef[defName="AA_Daggersnout"]/tools</xpath>
+				<value>
+					<tools>
+						<li Class="CombatExtended.ToolCE">
+								<label>snout blade</label>
+								<capacities>
+								  <li>Cut</li>
+								  <li>Stab</li>
+								</capacities>
+								<power>12</power>
+								<cooldownTime>1</cooldownTime>
+								<linkedBodyPartsGroup>AA_NoseBlade</linkedBodyPartsGroup>
+								<alwaysTreatAsWeapon>true</alwaysTreatAsWeapon>
+							<armorPenetrationBlunt>4</armorPenetrationBlunt>
+							<armorPenetrationSharp>9</armorPenetrationSharp>
+						</li>
+      
+						<li Class="CombatExtended.ToolCE">
+							<label>head</label>
+							<capacities>
+							  <li>Blunt</li>
+							</capacities>
+							<power>3</power>
+							<cooldownTime>2</cooldownTime>
+							<linkedBodyPartsGroup>HeadAttackTool</linkedBodyPartsGroup>
+							<ensureLinkedBodyPartsGroupAlwaysUsable>true</ensureLinkedBodyPartsGroupAlwaysUsable>
+							<chanceFactor>0.2</chanceFactor>
+							<armorPenetrationBlunt>5</armorPenetrationBlunt>
+						  </li>
+					</tools>
+				</value>
+			</li>
+			</operations>
+		</match>
+	</Operation>
+</Patch>

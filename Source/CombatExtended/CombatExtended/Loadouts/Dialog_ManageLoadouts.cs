@@ -25,12 +25,12 @@ namespace CombatExtended
         #region Fields
 
         private static Texture2D
-            _arrowBottom = ContentFinder<Texture2D>.Get("UI/Icons/arrowBottom"),
-            _arrowDown = ContentFinder<Texture2D>.Get("UI/Icons/arrowDown"),
-            _arrowTop = ContentFinder<Texture2D>.Get("UI/Icons/arrowTop"),
-            _arrowUp = ContentFinder<Texture2D>.Get("UI/Icons/arrowUp"),
+            //_arrowBottom = ContentFinder<Texture2D>.Get("UI/Icons/arrowBottom"),
+            //_arrowDown = ContentFinder<Texture2D>.Get("UI/Icons/arrowDown"),
+            //_arrowTop = ContentFinder<Texture2D>.Get("UI/Icons/arrowTop"),
+            //_arrowUp = ContentFinder<Texture2D>.Get("UI/Icons/arrowUp"),
             _darkBackground = SolidColorMaterials.NewSolidColorTexture(0f, 0f, 0f, .2f),
-            _iconEdit = ContentFinder<Texture2D>.Get("UI/Icons/edit"),
+            //_iconEdit = ContentFinder<Texture2D>.Get("UI/Icons/edit"),
             _iconClear = ContentFinder<Texture2D>.Get("UI/Icons/clear"),
             _iconAmmo = ContentFinder<Texture2D>.Get("UI/Icons/ammo"),
             _iconRanged = ContentFinder<Texture2D>.Get("UI/Icons/ranged"),

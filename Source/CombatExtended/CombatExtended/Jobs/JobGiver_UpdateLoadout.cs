@@ -172,7 +172,7 @@ namespace CombatExtended
                 findItem = t => curSlot.genericDef.lambda(t.GetInnerIfMinified().def);
             else
                 findItem = t => t.GetInnerIfMinified().def == curSlot.thingDef;
-            Predicate<Thing> search = t => findItem(t) && !t.IsForbidden(pawn) && pawn.CanReserve(t) && !isFoodInPrison(t);
+            Predicate<Thing> search = t => findItem(t) && !t.IsForbidden(pawn) && pawn.CanReserve(t) && !isFoodInPrison(t) && AllowedByBiocode(t, pawn);
 
             // look for a thing near the pawn.
             curThing = GenClosest.ClosestThingReachable(
@@ -218,6 +218,12 @@ namespace CombatExtended
                     else curPriority = ItemPriority.Low;
                 }
             }
+        }
+
+        private bool AllowedByBiocode(Thing thing, Pawn pawn)
+        {
+            CompBiocodable compBiocoded = thing.TryGetComp<CompBiocodable>();
+            return (compBiocoded == null || !compBiocoded.Biocoded || compBiocoded.CodedPawn == pawn);
         }
 
         /// <summary>
@@ -266,7 +272,7 @@ namespace CombatExtended
                 int count;
                 Pawn carriedBy;
                 bool doEquip = false;
-                LoadoutSlot prioritySlot = GetPrioritySlot(pawn, out priority, out closestThing, out count, out carriedBy);
+                GetPrioritySlot(pawn, out priority, out closestThing, out count, out carriedBy);
                 // moved logic to detect if should equip vs put in inventory here...
                 if (closestThing != null)
                 {
@@ -282,16 +288,17 @@ namespace CombatExtended
                         // Equip gun if unarmed or current gun is not in loadout
                         if (doEquip)
                         {
-                            return new Job(JobDefOf.Equip, closestThing);
+                            return JobMaker.MakeJob(JobDefOf.Equip, closestThing);
                         }
-                        return new Job(JobDefOf.TakeInventory, closestThing) { count = Mathf.Min(closestThing.stackCount, count) };
+                        Job job = JobMaker.MakeJob(JobDefOf.TakeInventory, closestThing);
+                        job.count = Mathf.Min(closestThing.stackCount, count);
+                        return job;
                     }
                     else
                     {
-                        return new Job(CE_JobDefOf.TakeFromOther, closestThing, carriedBy, doEquip ? pawn : null)
-                        {
-                            count = doEquip ? 1 : Mathf.Min(closestThing.stackCount, count)
-                        };
+                        Job job = JobMaker.MakeJob(CE_JobDefOf.TakeFromOther, closestThing, carriedBy, doEquip ? pawn : null);
+                        job.count = doEquip ? 1 : Mathf.Min(closestThing.stackCount, count);
+                        return job;
                     }
                 }
             }

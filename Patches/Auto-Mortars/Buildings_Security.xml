@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Patch>
+	<Operation Class="PatchOperationFindMod">
+    <mods>
+		<li>Auto-Mortars(Unofficial)</li>
+    </mods>
+		<match Class="PatchOperationSequence">
+		 <operations>
+
+			<!-- ========== Auto Mortars ========== -->
+			
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="Turret_Auto_Mortar"]/thingClass</xpath>
+				<value>
+					<thingClass>CombatExtended.Building_TurretGunCE</thingClass>
+				</value>
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="Turret_Auto_Mortar"]/building/turretBurstCooldownTime</xpath>
+				<value>
+					<turretBurstCooldownTime>10</turretBurstCooldownTime>
+				</value>
+			</li>
+			
+			<li Class="PatchOperationRemove">
+				<xpath>Defs/ThingDef[defName="Turret_Auto_Mortar"]/comps/li[@Class = "CompProperties_Refuelable"]</xpath>
+			</li>
+
+			<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+				<defName>Gun_AutoMortarTurret</defName>
+				<Properties>
+					<verbClass>CombatExtended.Verb_ShootMortarCE</verbClass>
+					<forceNormalTimeSpeed>false</forceNormalTimeSpeed>
+					<hasStandardCommand>true</hasStandardCommand>
+					<defaultProjectile>Bullet_60mmMortarShell_HE</defaultProjectile>
+					<warmupTime>1.2</warmupTime>
+					<minRange>20</minRange>
+					<range>500</range>
+					<burstShotCount>1</burstShotCount>
+					<soundCast>Mortar_LaunchA</soundCast>
+					<soundCastTail>GunTail_Heavy</soundCastTail>
+					<muzzleFlashScale>55</muzzleFlashScale>
+					<circularError>1.2</circularError>
+					<requireLineOfSight>false</requireLineOfSight>
+					<indirectFirePenalty>0.3</indirectFirePenalty>
+					<targetParams>
+						<canTargetLocations>false</canTargetLocations>
+					</targetParams>
+				</Properties>
+				<AmmoUser>
+					<magazineSize>10</magazineSize>
+					<reloadTime>5</reloadTime>
+					<ammoSet>AmmoSet_60mmMortarShell</ammoSet>
+				</AmmoUser>
+			</li>
+
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName = "Gun_AutoMortarTurret"]/comps</xpath>
+				<value>
+					<li Class="CombatExtended.CompProperties_Charges">
+					<chargeSpeeds>
+					<li>30</li>
+					<li>50</li>
+					<li>70</li>
+					<li>90</li>
+					</chargeSpeeds>
+					</li>
+				</value>
+			</li>
+
+			</operations>
+			</match>
+		</Operation>
+	</Patch>

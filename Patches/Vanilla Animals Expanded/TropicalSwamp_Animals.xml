@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+
+  <Operation Class="PatchOperationFindMod">
+    <mods>
+      <li>Vanilla Animals Expanded — Tropical Swamp</li>
+    </mods>
+
+    <match Class="PatchOperationSequence">
+      <operations>
+        <!-- === Alligator === -->
+        <li Class="PatchOperationAdd">
+          <xpath>Defs/ThingDef[defName="AEXP_Alligator"]/statBases</xpath>
+
+          <value>
+            <MeleeDodgeChance>0.1</MeleeDodgeChance>
+            <MeleeCritChance>0.24</MeleeCritChance>
+            <MeleeParryChance>0.31</MeleeParryChance>
+          </value>
+        </li>
+
+        <li Class="PatchOperationReplace">
+          <xpath>/Defs/ThingDef[defName="AEXP_Alligator"]/tools</xpath>
+
+          <value>
+            <tools>
+              <li Class="CombatExtended.ToolCE">
+                <label>bite</label>
+                <capacities>
+                  <li>Bite</li>
+                </capacities>
+                <power>24</power>
+                <cooldownTime>1.2</cooldownTime>
+                <armorPenetrationSharp>3.15</armorPenetrationSharp>
+                <armorPenetrationBlunt>15</armorPenetrationBlunt>
+                <linkedBodyPartsGroup>Teeth</linkedBodyPartsGroup>
+                <surpriseAttack>
+                  <extraMeleeDamages>
+                    <li>
+                      <def>Stun</def>
+                      <amount>14</amount>
+                    </li>
+                  </extraMeleeDamages>
+                </surpriseAttack>
+              </li>
+            </tools>
+          </value>
+        </li>
+
+        <!-- === Anaconda === -->
+        <li Class="PatchOperationAdd">
+          <xpath>Defs/ThingDef[defName="AEXP_Anaconda"]/statBases</xpath>
+
+          <value>
+            <MeleeDodgeChance>0.19</MeleeDodgeChance>
+            <MeleeCritChance>0.18</MeleeCritChance>
+            <MeleeParryChance>0.17</MeleeParryChance>
+          </value>
+        </li>
+
+        <li Class="PatchOperationReplace">
+          <xpath>/Defs/ThingDef[defName="AEXP_Anaconda"]/tools</xpath>
+
+          <value>
+            <tools>
+              <li Class="CombatExtended.ToolCE">
+                <label>bite</label>
+                <capacities>
+                  <li>Bite</li>
+                </capacities>
+                <power>14</power>
+                <cooldownTime>1.8</cooldownTime>
+                <armorPenetrationSharp>0.15</armorPenetrationSharp>
+                <armorPenetrationBlunt>0.10</armorPenetrationBlunt>
+                <linkedBodyPartsGroup>Mouth</linkedBodyPartsGroup>
+                <surpriseAttack>
+                  <extraMeleeDamages>
+                    <li>
+                      <def>Stun</def>
+                      <amount>25</amount>
+                    </li>
+                  </extraMeleeDamages>
+                </surpriseAttack>
+              </li>
+              <li Class="CombatExtended.ToolCE">
+                <label>head</label>
+                <capacities>
+                  <li>Blunt</li>
+                </capacities>
+                <power>3</power>
+                <cooldownTime>2</cooldownTime>
+                <chanceFactor>0.2</chanceFactor>
+                <armorPenetrationBlunt>0.1</armorPenetrationBlunt>
+                <linkedBodyPartsGroup>HeadAttackTool</linkedBodyPartsGroup>
+                <ensureLinkedBodyPartsGroupAlwaysUsable>true</ensureLinkedBodyPartsGroupAlwaysUsable>
+              </li>
+            </tools>
+          </value>
+        </li>
+
+        <!-- === Indian Elephant === -->
+        <li Class="PatchOperationAdd">
+          <xpath>Defs/ThingDef[defName="AEXP_IndianElephant"]/statBases</xpath>
+
+          <value>
+            <MeleeDodgeChance>0.10</MeleeDodgeChance>
+            <MeleeCritChance>0.50</MeleeCritChance>
+            <MeleeParryChance>0.30</MeleeParryChance>
+          </value>
+        </li>
+
+        <li Class="PatchOperationReplace">
+          <xpath>/Defs/ThingDef[defName="AEXP_IndianElephant"]/tools</xpath>
+
+          <value>
+            <tools>
+              <li Class="CombatExtended.ToolCE">
+                <label>left foot</label>
+                <capacities>
+                  <li>Blunt</li>
+                </capacities>
+                <power>15</power>
+                <cooldownTime>1.6</cooldownTime>
+                <armorPenetrationBlunt>7.5</armorPenetrationBlunt>
+                <linkedBodyPartsGroup>FrontLeftLeg</linkedBodyPartsGroup>
+              </li>
+              <li Class="CombatExtended.ToolCE">
+                <label>right foot</label>
+                <capacities>
+                  <li>Blunt</li>
+                </capacities>
+                <power>15</power>
+                <cooldownTime>1.6</cooldownTime>
+                <armorPenetrationBlunt>7.5</armorPenetrationBlunt>
+                <linkedBodyPartsGroup>FrontRightLeg</linkedBodyPartsGroup>
+              </li>
+              <li Class="CombatExtended.ToolCE">
+                <label>head</label>
+                <capacities>
+                  <li>Blunt</li>
+                </capacities>
+                <power>9</power>
+                <cooldownTime>1.4</cooldownTime>
+                <armorPenetrationBlunt>7.5</armorPenetrationBlunt>
+                <linkedBodyPartsGroup>HeadAttackTool</linkedBodyPartsGroup>
+                <ensureLinkedBodyPartsGroupAlwaysUsable>true</ensureLinkedBodyPartsGroupAlwaysUsable>
+              </li>
+            </tools>
+          </value>
+        </li>
+      </operations>
+    </match>
+  </Operation>
+
+</Patch>

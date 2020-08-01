@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+
+  <Operation Class="PatchOperationFindMod">
+    <mods>
+      <li>Vanilla Factions Expanded - Insectoids</li>
+    </mods>
+
+    <match Class="PatchOperationSequence">
+      <operations>
+        <li Class="PatchOperationReplace">
+          <xpath>/Defs/ThingDef[defName="VFEI_VatGrownGigascorpion"]/statBases/MoveSpeed</xpath>
+
+          <value>
+            <MoveSpeed>5.5</MoveSpeed>
+            <MeleeDodgeChance>0.07</MeleeDodgeChance>
+            <MeleeCritChance>0.68</MeleeCritChance>
+            <MeleeParryChance>0.39</MeleeParryChance>
+            <PainShockThreshold>0.99</PainShockThreshold>
+          </value>
+        </li>
+
+        <li Class="PatchOperationReplace">
+          <xpath>/Defs/ThingDef[defName="VFEI_VatGrownGigascorpion"]/statBases/ArmorRating_Blunt</xpath>
+
+          <value>
+            <ArmorRating_Blunt>30</ArmorRating_Blunt>
+          </value>
+        </li>
+
+        <li Class="PatchOperationReplace">
+          <xpath>/Defs/ThingDef[defName="VFEI_VatGrownGigascorpion"]/statBases/ArmorRating_Sharp</xpath>
+
+          <value>
+            <ArmorRating_Sharp>10</ArmorRating_Sharp>
+          </value>
+        </li>
+
+        <li Class="PatchOperationReplace">
+          <xpath>/Defs/ThingDef[defName="VFEI_VatGrownGigascorpion"]/tools</xpath>
+
+          <value>
+            <tools>
+              <li Class="CombatExtended.ToolCE">
+                <label>left pincer</label>
+                <capacities>
+                  <li>Scratch</li>
+                </capacities>
+                <power>57</power>
+                <cooldownTime>2.72</cooldownTime>
+                <linkedBodyPartsGroup>VFEI_PincerAttackTool</linkedBodyPartsGroup>
+                <armorPenetrationSharp>3.54</armorPenetrationSharp>
+                <armorPenetrationBlunt>61.875</armorPenetrationBlunt>
+              </li>
+              <li Class="CombatExtended.ToolCE">
+                <label>right pincer</label>
+                <capacities>
+                  <li>Scratch</li>
+                </capacities>
+                <power>57</power>
+                <cooldownTime>2.72</cooldownTime>
+                <linkedBodyPartsGroup>VFEI_PincerAttackTool</linkedBodyPartsGroup>
+                <armorPenetrationSharp>3.54</armorPenetrationSharp>
+                <armorPenetrationBlunt>61.875</armorPenetrationBlunt>
+              </li>
+              <li Class="CombatExtended.ToolCE">
+                <capacities>
+                  <li>VFEI_ToxicSting</li>
+                </capacities>
+                <power>18</power>
+                <cooldownTime>1.33</cooldownTime>
+                <linkedBodyPartsGroup>VFEI_Sting</linkedBodyPartsGroup>
+                <armorPenetrationSharp>40</armorPenetrationSharp>
+                <armorPenetrationBlunt>20</armorPenetrationBlunt>
+              </li>
+              <li Class="CombatExtended.ToolCE">
+                <label>head</label>
+                <capacities>
+                  <li>Blunt</li>
+                </capacities>
+                <power>26</power>
+                <cooldownTime>2.46</cooldownTime>
+                <linkedBodyPartsGroup>HeadAttackTool</linkedBodyPartsGroup>
+                <chanceFactor>0.2</chanceFactor>
+                <armorPenetrationBlunt>10.8</armorPenetrationBlunt>
+              </li>
+            </tools>
+          </value>
+        </li>
+      </operations>
+    </match>
+  </Operation>
+
+</Patch>

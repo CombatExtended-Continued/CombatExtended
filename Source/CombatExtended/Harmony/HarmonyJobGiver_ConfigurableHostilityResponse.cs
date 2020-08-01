@@ -19,7 +19,7 @@ namespace CombatExtended.HarmonyCE
 
                 if (!ammoComp.CanBeFiredNow)
                 {
-                    __result = ammoComp.HasAmmo ? new Job(CE_JobDefOf.ReloadWeapon, pawn, pawn.equipment.Primary) : new Job(JobDefOf.AttackMelee, __result.targetA);
+                    __result = ammoComp.HasAmmo ? JobMaker.MakeJob(CE_JobDefOf.ReloadWeapon, pawn, pawn.equipment.Primary) : JobMaker.MakeJob(JobDefOf.AttackMelee, __result.targetA);
                 }
             }
         }

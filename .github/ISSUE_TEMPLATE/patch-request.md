@@ -2,7 +2,7 @@
 name: Patch Request
 about: 'Request a new or updated Combat Extended compatibility patch for a mod. '
 title: "[Patch Request]:"
-labels: ''
+labels: Patch Request
 assignees: ''
 
 ---

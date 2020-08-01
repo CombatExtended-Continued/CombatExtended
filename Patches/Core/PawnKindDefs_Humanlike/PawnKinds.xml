@@ -16,14 +16,14 @@
   		<combatPower>580</combatPower>
   	</value>
   </Operation>
-
+<!--
   <Operation Class="PatchOperationAdd">
     <xpath>Defs/PawnKindDef[defName="Mech_Centipede"]</xpath>
     <value>
       <canBeSapper>true</canBeSapper>
     </value>
   </Operation>
-
+-->
   <Operation Class="PatchOperationAddModExtension">
   	<xpath>Defs/PawnKindDef[defName="Mech_Lancer" or defName="Mech_Centipede"]</xpath>
   	<value>
@@ -35,14 +35,14 @@
       </li>
   	</value>
   </Operation>
-
+<!--
   <Operation Class="PatchOperationAdd">
     <xpath>Defs/PawnKindDef[defName="Mech_Pikeman"]</xpath>
     <value>
       <canBeSapper>true</canBeSapper>
     </value>
   </Operation>
-
+-->
   <Operation Class="PatchOperationAddModExtension">
   	<xpath>Defs/PawnKindDef[defName="Mech_Pikeman"]</xpath>
   	<value>
@@ -142,7 +142,7 @@
   </Operation>
 
   <Operation Class="PatchOperationAddModExtension">
-  	<xpath>Defs/PawnKindDef[defName="Mercenary_Gunner"]</xpath>
+  	<xpath>Defs/PawnKindDef[defName="Mercenary_Gunner" or defName="Mercenary_Gunner_Acidifier"]</xpath>
   	<value>
       <li Class="CombatExtended.LoadoutPropertiesExtension">
         <primaryMagazineCount>
@@ -174,14 +174,14 @@
   </Operation>
 
   <Operation Class="PatchOperationAdd">
-    <xpath>Defs/PawnKindDef[defName="Mercenary_Sniper"]</xpath>
+    <xpath>Defs/PawnKindDef[defName="Mercenary_Sniper" or defName="Mercenary_Sniper_Acidifier"]</xpath>
     <value>
 	<weaponMoney>415~550</weaponMoney>
     </value>
   </Operation>
 
   <Operation Class="PatchOperationAddModExtension">
-  	<xpath>Defs/PawnKindDef[defName="Mercenary_Sniper"]</xpath>
+  	<xpath>Defs/PawnKindDef[defName="Mercenary_Sniper" or defName="Mercenary_Sniper_Acidifier"]</xpath>
   	<value>
       <li Class="CombatExtended.LoadoutPropertiesExtension">
         <primaryMagazineCount>
@@ -252,7 +252,7 @@
   </Operation>
 
   <Operation Class="PatchOperationAddModExtension">
-    <xpath>Defs/PawnKindDef[defName = "Mercenary_Slasher"]</xpath>
+    <xpath>Defs/PawnKindDef[defName = "Mercenary_Slasher" or defName="Mercenary_Slasher_Acidifier"]</xpath>
     <value>
       <li Class="CombatExtended.LoadoutPropertiesExtension">
         <shieldMoney>
@@ -286,7 +286,7 @@
    </Operation>	
 
   <Operation Class="PatchOperationAddModExtension">
-  	<xpath>Defs/PawnKindDef[@Name = "MercenaryEliteTierBase"]</xpath>
+  	<xpath>Defs/PawnKindDef[@Name = "MercenaryEliteTierBase"  or defName="Mercenary_Elite_Acidifier"]</xpath>
   	<value>
       <li Class="CombatExtended.LoadoutPropertiesExtension">
         <primaryMagazineCount>
@@ -616,8 +616,8 @@
     <value>
       <li Class="CombatExtended.LoadoutPropertiesExtension">
         <primaryMagazineCount>
-          <min>3</min>
-          <max>6</max>
+          <min>20</min>
+          <max>40</max>
         </primaryMagazineCount>
         <shieldMoney>
           <min>100</min>

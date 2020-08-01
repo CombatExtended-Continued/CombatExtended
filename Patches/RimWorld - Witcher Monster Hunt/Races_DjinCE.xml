@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+		<li>RimWorld - Witcher Monster Hunt</li>
+		</mods>
+
+		<match Class="PatchOperationSequence">
+			<operations>
+
+			<li Class="PatchOperationAddModExtension">
+				<xpath>Defs/ThingDef[defName="WMH_Djinn"]</xpath>
+				<value>
+					<li Class="CombatExtended.RacePropertiesExtensionCE">
+						<bodyShape>Humanoid</bodyShape>
+					</li>
+				</value>
+			</li>
+
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName="WMH_Djinn"]/statBases</xpath>
+				<value>
+			<AimingAccuracy>0.25</AimingAccuracy>
+			<ShootingAccuracyPawn>0.25</ShootingAccuracyPawn>
+					<MeleeDodgeChance>0.8</MeleeDodgeChance>
+					<MeleeCritChance>0.01</MeleeCritChance>
+				</value>
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="WMH_Djinn"]/tools</xpath>
+				<value>
+					<tools>
+				<li Class="CombatExtended.ToolCE">
+				<label>pseudopod</label>
+				<capacities>
+					<li>Blunt</li>
+				</capacities>
+				<power>9</power>
+				<cooldownTime>1.88</cooldownTime>
+				<linkedBodyPartsGroup>WMH_Pseudopods</linkedBodyPartsGroup>
+				<armorPenetrationBlunt>10</armorPenetrationBlunt>
+						</li>
+					</tools>
+				</value>
+			</li>
+			</operations>
+		</match>
+	</Operation>
+</Patch>

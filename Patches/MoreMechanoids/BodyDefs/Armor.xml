@@ -1,97 +1,69 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <Patch>
+    
+    <Operation Class="PatchOperationFindMod">
+        <mods>
+            <li>More Mechanoids</li>
+        </mods>
+        
+        <match Class="PatchOperationSequence">
+            <operations>
+                
+                <!-- Natural armor -->
+                
+                <li Class="PatchOperationAdd">
+                    <xpath>Defs/BodyDef[defName="MechanicalCrawler"]//*[def="MechanicalShell" or def="MechanicalCore" or def="MechanicalCrawlerLeg"]/groups</xpath>
+                    <value>
+                        <li>CoveredByNaturalArmor</li>
+                    </value>
+                </li>
+                
+                <li Class="PatchOperationAdd">
+                    <xpath>Defs/BodyDef[defName="MechanicalSkullywag"]//*[def="MechanicalThorax" or def="MechanicalCoreSkullywag" or def="MechanicalNeck" or def="MechanicalHead"]/groups</xpath>
+                    <value>
+                        <li>CoveredByNaturalArmor</li>
+                    </value>
+                </li>
+                
+                <li Class="PatchOperationAdd">
+                    <xpath>Defs/BodyDef[defName="MechanicalAssaulter"]//*[def="MechanicalThorax" or def="FrontShield" or def="ShieldWindow" or def="MechanicalNeck" or def="MechanicalHead" or def="MechanicalShoulder" or def="MechanicalArm" or def="MechanicalHand" or def="MechanicalFinger" or def="MechanicalLeg" or def="MechanicalFoot"]/groups</xpath>
+                    <value>
+                        <li>CoveredByNaturalArmor</li>
+                    </value>
+                </li>
+                
+                <li Class="PatchOperationAdd">
+                    <xpath>Defs/BodyDef[defName="MechanicalMammoth"]//*[def="MechanicalHead" or def="MetalTusk" or def="MechanicalMammothLeg"]/groups</xpath>
+                    <value>
+                        <li>CoveredByNaturalArmor</li>
+                    </value>
+                </li>
 
-  <!-- Natural armor -->
-
-  <Operation Class="PatchOperationSequence">
-    <success>Always</success>
-    <operations>
-      <li Class="CombatExtended.PatchOperationFindMod">
-        <modName>More Mechanoids</modName>
-      </li>
-      <li Class="PatchOperationAdd">
-        <xpath>Defs/BodyDef[defName="MechanicalCrawler"]//*[def="MechanicalShell" or def="MechanicalCore" or def="MechanicalCrawlerLeg"]/groups</xpath>
-        <value>
-          <li>CoveredByNaturalArmor</li>
-        </value>
-      </li>
-    </operations>
-  </Operation>
-
-  <Operation Class="PatchOperationSequence">
-    <success>Always</success>
-    <operations>
-      <li Class="CombatExtended.PatchOperationFindMod">
-        <modName>More Mechanoids</modName>
-      </li>
-      <li Class="PatchOperationAdd">
-        <xpath>Defs/BodyDef[defName="MechanicalSkullywag"]//*[def="MechanicalThorax" or def="MechanicalCoreSkullywag" or def="MechanicalNeck" or def="MechanicalHead"]/groups</xpath>
-        <value>
-          <li>CoveredByNaturalArmor</li>
-        </value>
-      </li>
-    </operations>
-  </Operation>
-
-  <Operation Class="PatchOperationSequence">
-    <success>Always</success>
-    <operations>
-      <li Class="CombatExtended.PatchOperationFindMod">
-        <modName>More Mechanoids</modName>
-      </li>
-      <li Class="PatchOperationAdd">
-        <xpath>Defs/BodyDef[defName="MechanicalAssaulter"]//*[def="MechanicalThorax" or def="FrontShield" or def="ShieldWindow" or def="MechanicalNeck" or def="MechanicalHead" or def="MechanicalShoulder" or def="MechanicalArm" or def="MechanicalHand" or def="MechanicalFinger" or def="MechanicalLeg" or def="MechanicalFoot"]/groups</xpath>
-        <value>
-          <li>CoveredByNaturalArmor</li>
-        </value>
-      </li>
-    </operations>
-  </Operation>
-
-  <Operation Class="PatchOperationSequence">
-    <success>Always</success>
-    <operations>
-      <li Class="CombatExtended.PatchOperationFindMod">
-        <modName>More Mechanoids</modName>
-      </li>
-      <li Class="PatchOperationAdd">
-        <xpath>Defs/BodyDef[defName="MechanicalMammoth"]//*[def="MechanicalHead" or def="MetalTusk" or def="MechanicalMammothLeg"]/groups</xpath>
-        <value>
-          <li>CoveredByNaturalArmor</li>
-        </value>
-      </li>
-      <li Class="PatchOperationAdd">
-        <xpath>Defs/BodyDef[defName="MechanicalMammoth"]//*[def="MechanicalBody" or def="ArmorPlating" or def="InternalMetalPlate" or (def="MechanicalMammothLeg" and not(groups)) or def="MechanicalMammothHoof"]</xpath>
-        <value>
-          <groups>
-            <li>CoveredByNaturalArmor</li>
-          </groups>
-        </value>
-      </li>
-    </operations>
-  </Operation>
-
-  <Operation Class="PatchOperationSequence">
-    <success>Always</success>
-    <operations>
-      <li Class="CombatExtended.PatchOperationFindMod">
-        <modName>More Mechanoids</modName>
-      </li>
-      <li Class="PatchOperationAdd">
-        <xpath>Defs/BodyDef[defName="MechanicalFlamebot"]//*[def="MechanicalBodySmall" or def="FuelContainer" or def="MechanicalHead"]/groups</xpath>
-        <value>
-          <li>CoveredByNaturalArmor</li>
-        </value>
-      </li>
-      <li Class="PatchOperationAdd">
-        <xpath>Defs/BodyDef[defName="MechanicalFlamebot"]//*[def="MechanicalCore"]/groups</xpath>
-        <value>
-          <groups>
-            <li>CoveredByNaturalArmor</li>
-          </groups>
-        </value>
-      </li>
-    </operations>
-  </Operation>
-  
+                <li Class="PatchOperationAdd">
+                    <xpath>Defs/BodyDef[defName="MechanicalMammoth"]//*[def="MechanicalBody" or def="ArmorPlating" or def="InternalMetalPlate" or (def="MechanicalMammothLeg" and not(groups)) or def="MechanicalMammothHoof"]</xpath>
+                    <value>
+                        <groups>
+                            <li>CoveredByNaturalArmor</li>
+                        </groups>
+                    </value>
+                </li>
+                
+                <li Class="PatchOperationAdd">
+                    <xpath>Defs/BodyDef[defName="MechanicalFlamebot"]//*[def="MechanicalBodySmall" or def="FuelContainer" or def="MechanicalHead"]/groups</xpath>
+                    <value>
+                        <li>CoveredByNaturalArmor</li>
+                    </value>
+                </li>
+                
+                <li Class="PatchOperationAdd">
+                    <xpath>Defs/BodyDef[defName="MechanicalFlamebot"]//*[def="MechanicalCore"]</xpath>
+                    <value>
+                        <groups>
+                            <li>CoveredByNaturalArmor</li>
+                        </groups>
+                    </value>
+                </li>
+            </operations>
+        </match>
+    </Operation>
 </Patch>

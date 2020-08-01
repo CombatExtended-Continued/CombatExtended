@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+	<Operation Class="PatchOperationFindMod">
+    <mods>
+		<li>[RH] Faction: Coalition</li>
+    </mods>
+		<match Class="PatchOperationSequence">
+		 <operations>
+
+				<!-- ========== Boonie Hats ========== -->
+
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[
+					defName="RNApparel_TanBoonie" or
+					defName="RNApparel_DPMBoonie" or
+					defName="RNApparel_DDPMBoonie"
+					]/statBases</xpath>
+					<value>
+						<Bulk>1</Bulk>
+						<WornBulk>1</WornBulk>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[
+					defName="RNApparel_TanBoonie" or
+					defName="RNApparel_DPMBoonie" or
+					defName="RNApparel_DDPMBoonie"
+					]/statBases/StuffEffectMultiplierArmor</xpath>
+					<value>
+						<!-- Equivalent to vanilla fabric hats -->
+						<StuffEffectMultiplierArmor>2</StuffEffectMultiplierArmor>
+					</value>
+				</li>
+
+				<!-- ========== Bandanas & Shemagh ========== -->
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[
+					defName="RNApparel_Balaclava_Ghost_MW" or 
+					defName="RNApparel_Bandana_DDay" or 
+					defName="RNApparel_Bandana_DDay_Blank" or 
+					defName="RHApparel_Shemagh_Scarf_Coalition"
+					]/statBases/StuffEffectMultiplierArmor</xpath>
+					<value>
+						<!-- Equivalent to vanilla pants, T-shirt and button-down shirt -->
+						<StuffEffectMultiplierArmor>1</StuffEffectMultiplierArmor>
+					</value>
+				</li>
+
+				<!-- ========== Balaclavas ========== -->
+
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[
+					defName="RNApparel_Balaclava_Operator"]/statBases</xpath>
+					<value>
+						<Bulk>1</Bulk>
+						<WornBulk>1</WornBulk>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[
+					defName="RNApparel_Balaclava_Operator"
+					]/statBases/StuffEffectMultiplierArmor</xpath>
+					<value>
+						<!-- Equivalent to vanilla tuque -->
+						<StuffEffectMultiplierArmor>2</StuffEffectMultiplierArmor>
+					</value>
+				</li>
+
+
+				<!-- ========== Tuques / Beanies ========== -->
+
+				<!-- Moved to universal Patches -->
+
+				<!-- ========== Baseball & Field Caps ========== -->
+
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[
+					defName="RNApparel_WyattCap"
+					]/statBases</xpath>
+					<value>
+						<Bulk>1</Bulk>
+						<WornBulk>1</WornBulk>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[
+					defName="RNApparel_WyattCap"
+					]/statBases/StuffEffectMultiplierArmor</xpath>
+					<value>
+						<!-- Equivalent to vanilla fabric hats -->
+						<StuffEffectMultiplierArmor>2</StuffEffectMultiplierArmor>
+					</value>
+				</li>
+
+				<!-- ========== Military Headset ========== -->
+
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="RNApparel_MilitaryHeadset"]/statBases</xpath>
+					<value>
+						<Bulk>2.5</Bulk>
+						<WornBulk>1.25</WornBulk>
+					</value>					
+				</li>
+
+			</operations>
+		</match>
+	</Operation>
+</Patch>

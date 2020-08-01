@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+
+  <Operation Class="PatchOperationFindMod">
+    <mods>
+      <li>Vanilla Animals Expanded — Desert</li>
+    </mods>
+
+    <match Class="PatchOperationSequence">
+      <operations>
+        <!-- === Lion Leather === -->
+        <li Class="PatchOperationRemove">
+          <xpath>/Defs/ThingDef[defName="AEXP_Leather_Lion"]/statBases/StuffPower_Armor_Sharp</xpath>
+        </li>
+
+        <li Class="PatchOperationAdd">
+          <xpath>/Defs/ThingDef[defName="AEXP_Leather_Lion"]/statBases</xpath>
+
+          <value>
+            <StuffPower_Armor_Sharp>0.04</StuffPower_Armor_Sharp>
+            <StuffPower_Armor_Blunt>0.07</StuffPower_Armor_Blunt>
+          </value>
+        </li>
+      </operations>
+    </match>
+  </Operation>
+
+</Patch>

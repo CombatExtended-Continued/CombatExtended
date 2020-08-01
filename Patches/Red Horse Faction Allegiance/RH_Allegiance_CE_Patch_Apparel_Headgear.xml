@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+	<Operation Class="PatchOperationFindMod">
+    <mods>
+		<li>[RH] Faction: Allegiance</li>
+    </mods>
+		<match Class="PatchOperationSequence">
+		 <operations>
+
+				<!-- ========== Balaclavas ========== -->
+				<!-- Plain Black Balaclavas removed to shared Universal patches -->
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[
+					defName="RNApparel_Balaclava_OperatorII"
+					]/statBases</xpath>
+					<value>
+						<Bulk>1</Bulk>
+						<WornBulk>1</WornBulk>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[
+					defName="RNApparel_Balaclava_OperatorII"
+					]/statBases/StuffEffectMultiplierArmor</xpath>
+					<value>
+						<!-- Equivalent to vanilla tuque -->
+						<StuffEffectMultiplierArmor>2</StuffEffectMultiplierArmor>
+					</value>
+				</li>
+
+				<!-- ========== Tuques / Beanies ========== -->
+				<!-- Moved to RH Universal Patches -->
+
+				<!-- ========== GP-5 gasmask ========== -->
+
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="RNApparel_PMGGasmask"]/statBases</xpath>
+					<value>
+						<Bulk>3</Bulk>
+						<WornBulk>1</WornBulk>
+					</value>
+				</li>
+
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="RNApparel_PMGGasmask"]/equippedStatOffsets</xpath>
+					<value>
+						<SmokeSensitivity>-1</SmokeSensitivity>
+					</value>
+				</li>
+
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="RNApparel_PMGGasmask"]/apparel/layers</xpath>
+					<value>
+						<li>StrappedHead</li>
+					</value>
+				</li>
+
+				<li Class="PatchOperationAddModExtension">
+					<xpath>Defs/ThingDef[defName="RNApparel_PMGGasmask"]</xpath>
+					<value>
+						<li Class="CombatExtended.ApparelHediffExtension">
+							<hediff>WearingGasMask</hediff>
+						</li>
+					</value>
+				</li>
+
+				<!-- ========== Military Headset ========== -->
+
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="RNApparel_MilitaryHeadsetII"]/statBases</xpath>
+					<value>
+						<Bulk>2.5</Bulk>
+						<WornBulk>1.25</WornBulk>
+					</value>					
+				</li>
+
+			</operations>
+			</match>
+		</Operation>
+	</Patch>

@@ -85,8 +85,8 @@ namespace CombatExtended
             get
             {
                 var sway = base.SwayAmplitude;
-                if (ShouldAim) sway = (sway / Mathf.Max(1, EquipmentSource.GetStatValue(CE_StatDefOf.SightsEfficiency))) * Mathf.Max(0, 1 - AimingAccuracy);
-                else if (IsSuppressed) sway *= SuppressionSwayFactor;
+                if (ShouldAim) { return sway * Mathf.Max(0, 1 - AimingAccuracy) / Mathf.Max(1, SightsEfficiency); }
+                else if (IsSuppressed) { return sway * SuppressionSwayFactor; }
                 return sway;
             }
         }

@@ -60,7 +60,8 @@ namespace CombatExtended
             if (Controller.settings.EnableAmmoSystem && initAmmo != null)
                 text = text.Replace("AmmoType", initAmmo.LabelNoCount);
             else
-                text = text.Replace("AmmoType", "CE_ReloadingGenericAmmo".Translate()); return text;
+                text = text.Replace("AmmoType", "CE_ReloadingGenericAmmo".Translate());
+            return text;
         }
 
         /// <summary>

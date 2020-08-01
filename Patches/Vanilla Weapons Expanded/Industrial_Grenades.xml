@@ -1,14 +1,12 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <Patch>
 
-  <Operation Class="PatchOperationSequence">
-    <success>Always</success>
-
-    <operations>
-      <!-- === Find VWE === -->
-      <li Class="CombatExtended.PatchOperationFindMod">
-        <modName>Vanilla Weapons Expanded</modName>
-      </li>
+  <Operation Class="PatchOperationFindMod">
+    <mods>
+      <li>Vanilla Weapons Expanded</li>
+    </mods>
+    <match Class="PatchOperationSequence">
+      <operations>
 
       <!-- === Remove Flashbang / Smoke as they're redundant === -->
       <li Class="PatchOperationRemove">
@@ -22,7 +20,7 @@
       </li>
 
       <!-- === Toxic Grenade === -->
-      <!-- Projectile -->
+      <!-- == Projectile == -->
       <li Class="PatchOperationReplace">
         <xpath>/Defs/ThingDef[defName="VWE_Projectile_ToxicGrenade"]/thingClass</xpath>
 
@@ -52,7 +50,7 @@
         </value>
       </li>
 
-      <!-- Grenade -->
+      <!-- == Grenade == -->
       <li Class="PatchOperationAdd">
         <xpath>/Defs/ThingDef[defName="VWE_ToxicGrenade"]</xpath>
 
@@ -132,7 +130,7 @@
         </weaponTags>
       </li>
 
-      <!-- Recipe -->
+      <!-- == Recipe == -->
       <li Class="PatchOperationAdd">
         <xpath>Defs</xpath>
 
@@ -176,7 +174,8 @@
       </li>
 
       <!-- === Orbital Bombardment Grenade === -->
-      <!-- Grenade -->
+      <!-- == Grenade == -->
+<!--	 
       <li Class="PatchOperationAdd">
         <xpath>/Defs/ThingDef[defName="VWE_Grenade_OPOrbBombGrenade"]</xpath>
 
@@ -256,9 +255,10 @@
           <li>CE_OneHandedWeapon</li>
         </weaponTags>
       </li>
-
-      <!-- Recipe -->
-      <li Class="PatchOperationAdd">
+-->
+      <!-- == Recipe == -->
+<!--
+     <li Class="PatchOperationAdd">
         <xpath>Defs</xpath>
 
         <value>
@@ -306,7 +306,8 @@
           </RecipeDef>
         </value>
       </li>
-    </operations>
+-->	  
+      </operations>
+    </match>
   </Operation>
-
 </Patch>
