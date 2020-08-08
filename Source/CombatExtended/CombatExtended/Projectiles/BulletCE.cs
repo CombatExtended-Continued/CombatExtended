@@ -6,6 +6,7 @@ using Verse;
 using Verse.Sound;
 using RimWorld;
 using UnityEngine;
+using HarmonyLib;
 
 namespace CombatExtended
 {
@@ -125,6 +126,52 @@ namespace CombatExtended
                 }
                 base.Impact(hitThing);
             }
+            NotifyImpact(hitThing, map, Position);
         }
+
+        private void NotifyImpact(Thing hitThing, Map map, IntVec3 position)
+        {
+            BulletImpactData impactData = new BulletImpactData
+            {
+                bullet = GenerateVanillaBullet(),
+                hitThing = hitThing,
+                impactPosition = position
+            };
+            if (hitThing != null)
+            {
+                hitThing.Notify_BulletImpactNearby(impactData);
+            }
+            int num = 9;
+            for (int i = 0; i < num; i++)
+            {
+                IntVec3 c = position + GenRadial.RadialPattern[i];
+                if (c.InBounds(map))
+                {
+                    List<Thing> thingList = c.GetThingList(map);
+                    for (int j = 0; j < thingList.Count; j++)
+                    {
+                        if (thingList[j] != hitThing)
+                        {
+                            thingList[j].Notify_BulletImpactNearby(impactData);
+                        }
+                    }
+                }
+            }
+        }
+
+        /* Used for creating instances of Bullet for use with Thing.Notify_BulletImpactNearby.
+         * Current users are SmokepopBelt and BroadshieldPack, requiring bullet.def and bullet.Launcher.
+         */
+        private Bullet GenerateVanillaBullet()
+        {
+            var bullet = new Bullet
+            {
+                def = this.def,
+                intendedTarget = this.intendedTarget,
+            };
+            Traverse.Create(bullet).Field("launcher").SetValue(this.launcher);  //Bad for performance, refactor if a more efficient solution is possible
+            return bullet;
+        }
+
     }
 }
