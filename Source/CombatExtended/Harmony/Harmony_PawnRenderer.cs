@@ -79,7 +79,8 @@ namespace CombatExtended.HarmonyCE
         private static bool IsPreShellLayer(ApparelLayerDef layer)
         {
             return layer.drawOrder < ApparelLayerDefOf.Shell.drawOrder
-                   || (layer.GetModExtension<ApparelLayerExtension>()?.IsHeadwear ?? false);
+                   || (layer.GetModExtension<ApparelLayerExtension>()?.IsHeadwear ?? false)
+                   || layer == ApparelLayerDefOf.Belt;  //Belt is not actually a pre-shell layer, but we want to treat it as such in this patch, to avoid rendering bugs with utility items (e.g: broadshield pack)
         }
 
         internal static IEnumerable<CodeInstruction> Transpiler(IEnumerable<CodeInstruction> instructions)
