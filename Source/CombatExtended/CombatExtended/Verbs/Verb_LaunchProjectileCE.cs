@@ -39,6 +39,7 @@ namespace CombatExtended
         protected CompAmmoUser compAmmo = null;
         protected CompFireModes compFireModes = null;
         protected CompChangeableProjectile compChangeable = null;
+        protected CompReloadable compReloadable = null;
         private float shotSpeed = -1;
 
         private float rotationDegrees = 0f;
@@ -150,6 +151,18 @@ namespace CombatExtended
                     compFireModes = EquipmentSource.TryGetComp<CompFireModes>();
                 }
                 return compFireModes;
+            }
+        }
+
+        public CompReloadable CompReloadable
+        {
+            get
+            {
+                if (compReloadable == null && EquipmentSource != null)
+                {
+                    compReloadable = EquipmentSource.TryGetComp<CompReloadable>();
+                }
+                return compReloadable;
             }
         }
 
@@ -572,6 +585,10 @@ namespace CombatExtended
             if (CompAmmo != null && !CompAmmo.CanBeFiredNow)
             {
                 CompAmmo?.TryStartReload();
+            }
+            if (CompReloadable != null)
+            {
+                CompReloadable.UsedOnce();
             }
             return true;
         }
