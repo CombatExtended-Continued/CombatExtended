@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+			<li>[RH] Faction: War Mongrels</li>
+		</mods>
+		<match Class="PatchOperationSequence">
+			<operations>
+			
+				<li Class="PatchOperationFindMod">
+					<mods>
+						<li>Rimefeller</li>
+					</mods>
+					
+					<!-- If Rimefeller is also installed, have the 6B7M helmets require Synthamide for crafting -->					
+					<match Class="PatchOperationSequence">
+						<operations>
+						
+							<li Class="PatchOperationReplace">
+								<xpath>Defs/ThingDef[
+				defName="RNApparel_6B71MHelmet_M89C" or
+				defName="RNApparel_6B71MHelmet_M89C_Bali" or
+				defName="RNApparel_6B71MHelmet_M89C_Cobra"
+								]/costList</xpath>
+								<value>
+									<costList>
+										<Synthamide>10</Synthamide>
+									</costList>
+								</value>
+							</li>
+						</operations>
+					</match>
+					
+					<!-- Otherwise, default to Devilstrand -->		
+					<nomatch Class="PatchOperationSequence">
+						<operations>
+						
+							<li Class="PatchOperationReplace">
+								<xpath>Defs/ThingDef[
+				defName="RNApparel_6B71MHelmet_M89C" or
+				defName="RNApparel_6B71MHelmet_M89C_Bali" or
+				defName="RNApparel_6B71MHelmet_M89C_Cobra"
+								]/costList</xpath>
+								<value>
+									<costList>
+										<DevilstrandCloth>10</DevilstrandCloth>
+									</costList>
+								</value>
+							</li>
+						</operations>
+						
+					</nomatch>
+					
+				</li>
+				
+			</operations>
+		</match>
+	</Operation>
+</Patch>

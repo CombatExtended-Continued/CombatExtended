@@ -1,68 +1,22 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <Defs>
 
-  <PawnKindDef Name="MercenaryBase" Abstract="True">
-    <race>Human</race>
-    <defaultFactionType>Pirate</defaultFactionType>
-    <backstoryCategories>
-      <li>Raider</li>
-    </backstoryCategories>
-    <chemicalAddictionChance>0.1</chemicalAddictionChance>
-    <invNutrition>2.55</invNutrition>
-    <itemQuality>Normal</itemQuality>
-    <backstoryCryptosleepCommonality>0.08</backstoryCryptosleepCommonality>
-    <maxGenerationAge>65</maxGenerationAge>
-    <combatEnhancingDrugsChance>0.15</combatEnhancingDrugsChance>
-    <combatEnhancingDrugsCount>
-      <min>0</min>
-      <max>2</max>
-    </combatEnhancingDrugsCount>
-  </PawnKindDef>
-
-  <PawnKindDef ParentName="MercenaryBase">
+  <PawnKindDef ParentName="MercenaryGunnerBase">
     <defName>MercenaryMachineGunner</defName>
     <label>mercenary machine gunner</label>
     <combatPower>110</combatPower>
-    <gearHealthRange>
-      <min>0.7</min>
-      <max>2.3</max>
-    </gearHealthRange>
-    <apparelTags>
-      <li>IndustrialBasic</li>
-      <li>IndustrialAdvanced</li>
-      <li>IndustrialMilitaryBasic</li>
-      <li>IndustrialMilitaryAdvanced</li>
-      <li>BeltDefensePop</li>
-    </apparelTags>
-    <apparelMoney>
-      <min>1500</min>
-      <max>2500</max>
-    </apparelMoney>
-    <apparelAllowHeadgearChance>0.5</apparelAllowHeadgearChance>
-    <weaponMoney>
-      <min>450</min>
-      <max>500</max>
-    </weaponMoney>
-    <weaponTags>
+    <weaponTags inherit="false">
       <li>CE_MachineGun</li>
     </weaponTags>
-    <techHediffsMoney>
-      <min>1000</min>
-      <max>1500</max>
-    </techHediffsMoney>
-    <combatEnhancingDrugsCount>
-      <min>0</min>
-      <max>2</max>
-    </combatEnhancingDrugsCount>
     <techHediffsTags>
       <li>Advanced</li>
     </techHediffsTags>
-    <techHediffsChance>0.003</techHediffsChance>
+    <techHediffsChance>0.01</techHediffsChance>
     <modExtensions>
       <li Class="CombatExtended.LoadoutPropertiesExtension">
         <primaryMagazineCount>
-          <min>1</min>
-          <max>3</max>
+          <min>2</min>
+          <max>4</max>
         </primaryMagazineCount>
         <forcedSidearm>
           <sidearmMoney>
@@ -78,21 +32,6 @@
   </PawnKindDef>
 
   <!-- ========== Tribals ========== -->
-
-  <PawnKindDef Name="TribalBase" Abstract="True">
-    <race>Human</race>
-    <defaultFactionType>TribeCivil</defaultFactionType>
-    <backstoryCategories>
-      <li>Tribal</li>
-    </backstoryCategories>
-    <maxGenerationAge>60</maxGenerationAge>
-    <chemicalAddictionChance>0.05</chemicalAddictionChance>
-    <invNutrition>2.55</invNutrition>
-    <invFoodDef>Pemmican</invFoodDef>
-    <apparelTags>
-      <li>Neolithic</li>
-    </apparelTags>
-  </PawnKindDef>
 
   <PawnKindDef ParentName="TribalBase">
     <defName>TribalGrenadier</defName>

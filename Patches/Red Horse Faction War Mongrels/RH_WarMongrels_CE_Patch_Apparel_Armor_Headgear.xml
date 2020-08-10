@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+	<Operation Class="PatchOperationFindMod">
+    <mods>
+		<li>[RH] Faction: War Mongrels</li>
+    </mods>
+		<match Class="PatchOperationSequence">
+		 <operations>
+
+			<!-- ========== Alytn Helmets ========== -->
+
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[
+				defName="RNApparel_AltynHelmet_3HoledBali"
+				]/statBases</xpath>
+				<value>
+					<Bulk>4.5</Bulk>
+					<WornBulk>2</WornBulk>
+					<ArmorRating_Sharp>6</ArmorRating_Sharp>
+					<ArmorRating_Blunt>22</ArmorRating_Blunt>
+					<ArmorRating_Heat>0.4</ArmorRating_Heat>
+				</value>
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[
+				defName="RNApparel_AltynHelmet_3HoledBali"
+				]/statBases/StuffEffectMultiplierArmor</xpath>
+				<value>
+					<StuffEffectMultiplierArmor>3</StuffEffectMultiplierArmor>
+				</value>
+			</li>
+
+			<!-- ========== 6B47 Helmets ========== -->
+
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[
+				defName="RNApparel_6B71MHelmet_M89C" or
+				defName="RNApparel_6B71MHelmet_M89C_Bali" or
+				defName="RNApparel_6B71MHelmet_M89C_Cobra"
+				]/statBases</xpath>
+				<value>
+					<Bulk>4.5</Bulk>
+					<WornBulk>1</WornBulk>
+					<ArmorRating_Sharp>6</ArmorRating_Sharp>
+					<ArmorRating_Blunt>16</ArmorRating_Blunt>
+					<ArmorRating_Heat>0.54</ArmorRating_Heat>
+				</value>
+			</li>
+			
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[
+				defName="RNApparel_6B71MHelmet_M89C" or
+				defName="RNApparel_6B71MHelmet_M89C_Bali" or
+				defName="RNApparel_6B71MHelmet_M89C_Cobra"
+				]/statBases/StuffEffectMultiplierArmor</xpath>
+				<value>
+					<StuffEffectMultiplierArmor>0.20</StuffEffectMultiplierArmor>
+				</value>
+			</li>
+
+		</operations>
+		</match>
+	</Operation>
+</Patch>

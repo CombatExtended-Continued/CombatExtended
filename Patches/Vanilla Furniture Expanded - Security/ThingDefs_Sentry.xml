@@ -93,6 +93,23 @@
 	  	</value>
 	  </li>
 
+    <li Class="PatchOperationReplace">
+      <xpath>Defs/ThingDef[
+			defName = "VFES_Turret_ChargeRailgunTurret" or 
+			defName = "VFES_Turret_ChargeTurret" or		
+			defName = "VFES_Turret_AutocannonDouble" or
+			defName = "VFES_Turret_EMPTurret" or
+			defName = "VFES_Turret_Flame" or
+			defName = "VFES_Turret_SentryGun" or
+			defName = "VFES_Turret_MilitaryTurret" or
+			defName = "VFES_Turret_FloorTurret" or		        				
+			defName = "VFES_Turret_TriRocket"			 
+      ]/building/turretBurstCooldownTime</xpath>
+      <value>
+        <turretBurstCooldownTime>1.1</turretBurstCooldownTime>
+      </value>
+    </li>
+
       <!-- Searchlight -->
 	    <li Class="PatchOperationReplace">
 	    	<xpath>Defs/ThingDef[defName = "VFES_Turret_Searchlight"]/specialDisplayRadius</xpath>
@@ -116,6 +133,10 @@
 	    </li>
 
       <!-- Flame Turret -->
+      <li Class="PatchOperationRemove">
+          <xpath>Defs/ThingDef[defName="VFES_Turret_Flame"]/costList/Chemfuel</xpath>
+      </li>
+
       <li Class="CombatExtended.PatchOperationMakeGunCECompatible">
         <defName>VFES_Gun_FlameTurret</defName>
         <statBases>
@@ -329,7 +350,7 @@
           </targetParams>
         </Properties>
         <AmmoUser>
-          <magazineSize>600</magazineSize>
+          <magazineSize>500</magazineSize>
           <reloadTime>9.2</reloadTime>
           <ammoSet>AmmoSet_762x51mmNATO</ammoSet>
         </AmmoUser>
@@ -348,6 +369,10 @@
           <value>
             <li>CE_HeavyTurret</li>
           </value>
+      </li>
+
+      <li Class="PatchOperationRemove">
+          <xpath>Defs/ThingDef[defName="VFES_Turret_TriRocket"]/costList/Shell_HighExplosive</xpath>
       </li>
 
       <li Class="CombatExtended.PatchOperationMakeGunCECompatible">
