@@ -347,7 +347,30 @@ namespace CombatExtended
                             floatOptionList.Add(equipOption);
                         }
                     }
-                    // Drop option
+                    //Reload apparel option
+                    foreach (var apparel in SelPawnForGear?.apparel?.WornApparel)
+                    {
+                        var compReloadable = apparel.TryGetComp<CompReloadable>();
+                        if (compReloadable != null && compReloadable.AmmoDef == thing.def)
+                        {
+                            if (!SelPawnForGear.Drafted)    //TODO-1.2 This should be doable for drafted pawns as well, but the job does nothing. Figure out what's wrong and remove this condition.
+                            {
+                                FloatMenuOption reloadApparelOption = new FloatMenuOption(
+                                "CE_ReloadApparel".Translate(apparel.Label, thing.Label),
+                                new Action(delegate
+                                {
+                                    //var reloadJob = JobMaker.MakeJob(JobDefOf.Reload, apparel, thing);
+                                    //SelPawnForGear.jobs.StartJob(reloadJob, JobCondition.InterruptForced, null, SelPawnForGear.CurJob?.def != reloadJob.def, true);
+
+                                    SelPawnForGear.jobs.TryTakeOrderedJob(JobMaker.MakeJob(JobDefOf.Reload, apparel, thing));
+                                })
+                            );
+                                floatOptionList.Add(reloadApparelOption);
+                            }
+                            
+                        }
+                    }
+                    // Drop and consume options
                     Action dropApparel = delegate
                     {
                         SoundDefOf.Tick_High.PlayOneShotOnCamera();
