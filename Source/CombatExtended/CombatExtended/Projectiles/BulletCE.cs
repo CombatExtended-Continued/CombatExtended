@@ -129,11 +129,15 @@ namespace CombatExtended
             NotifyImpact(hitThing, map, Position);
         }
 
+        /* Mostly imported wholesale from vanilla Bullet class,
+         * except we create a temporary Bullet object for Notify_BulletImpactNearby.
+         */
         private void NotifyImpact(Thing hitThing, Map map, IntVec3 position)
         {
+            var vanillaBullet = GenerateVanillaBullet();
             BulletImpactData impactData = new BulletImpactData
             {
-                bullet = GenerateVanillaBullet(),
+                bullet = vanillaBullet,
                 hitThing = hitThing,
                 impactPosition = position
             };
@@ -157,6 +161,7 @@ namespace CombatExtended
                     }
                 }
             }
+            vanillaBullet.Destroy();    //remove previously created object after notifications are sent
         }
 
         /* Used for creating instances of Bullet for use with Thing.Notify_BulletImpactNearby.
