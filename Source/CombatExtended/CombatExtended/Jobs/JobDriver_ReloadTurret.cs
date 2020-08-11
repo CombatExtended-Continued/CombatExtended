@@ -156,11 +156,20 @@ namespace CombatExtended
                 turret.isReloading = true;
                 waitToil.actor.pather.StopDead();
                 if (compReloader.ShouldThrowMote)
+                {
                     MoteMaker.ThrowText(turret.Position.ToVector3Shifted(), turret.Map, string.Format("CE_ReloadingTurretMote".Translate(), TargetThingA.LabelCapNoCount));
-                Thing newAmmo;
-                compReloader.TryUnload(out newAmmo);
-                if (newAmmo?.CanStackWith(ammo) ?? false)
-                    pawn.carryTracker.TryStartCarry(newAmmo, Mathf.Min(newAmmo.stackCount, compReloader.Props.magazineSize - ammo.stackCount));
+                }
+                //Thing newAmmo;
+                //compReloader.TryUnload(out newAmmo);
+                //if (newAmmo?.CanStackWith(ammo) ?? false)
+                //{
+                //    pawn.carryTracker.TryStartCarry(newAmmo, Mathf.Min(newAmmo.stackCount, compReloader.Props.magazineSize - ammo.stackCount));
+                //}
+                AmmoDef currentAmmo = compReloader.CurrentAmmo;
+                if (currentAmmo != ammo.def)    //Turrets are reloaded without unloading the mag first (if using same ammo type), to support very high capacity magazines
+                {
+                    compReloader.TryUnload(out Thing newAmmo);
+                }
             };
             waitToil.defaultCompleteMode = ToilCompleteMode.Delay;
             waitToil.defaultDuration = Mathf.CeilToInt(compReloader.Props.reloadTime.SecondsToTicks() / pawn.GetStatValue(CE_StatDefOf.ReloadSpeed));
