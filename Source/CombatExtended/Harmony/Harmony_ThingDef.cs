@@ -16,7 +16,7 @@ namespace CombatExtended.HarmonyCE
      */
 
     [HarmonyPatch]
-    internal static class HarmonyThingDef
+    internal static class Harmony_ThingDef
     {
         private static readonly string[] StatsToCull = { "ArmorPenetration", "StoppingPower", "Damage" };
         private const string BurstShotStatName = "BurstShotCount";
