@@ -7,7 +7,7 @@ using Verse;
 namespace CombatExtended.HarmonyCE
 {
     [HarmonyPatch(typeof(RimWorld.TradeUtility), "GetPricePlayerBuy")]
-    internal static class TradeUtility
+    internal static class Harmony_TradeUtility
     {
         internal static IEnumerable<CodeInstruction> Transpiler(IEnumerable<CodeInstruction> instructions)
         {

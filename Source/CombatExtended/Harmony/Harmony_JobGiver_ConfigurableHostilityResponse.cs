@@ -6,7 +6,7 @@ using Verse.AI;
 namespace CombatExtended.HarmonyCE
 {
     [HarmonyPatch(typeof(JobGiver_ConfigurableHostilityResponse), "TryGetAttackNearbyEnemyJob")]
-    internal static class HarmonyJobGiver_ConfigurableHostilityResponse
+    internal static class Harmony_JobGiver_ConfigurableHostilityResponse
     {
         internal static void Postfix(Pawn pawn, ref Job __result)
         {
