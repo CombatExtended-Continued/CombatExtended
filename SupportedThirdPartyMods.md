@@ -14,6 +14,7 @@ Mod |
 [CP] Rimmu-Nation - Weapons	|
 [CP] Spec Ops - The Line	|
 [CP] The DOOM Kit - Classic	|
+[JDS] The Forge - NCR Armory	|
 [O21] Elves	|
 [O21] Elves - Faction Addon	|
 [O21] Gith |
