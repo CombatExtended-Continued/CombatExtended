@@ -109,6 +109,7 @@ Misc. Robots	|
 More Mechanoids	|
 More Practical Traits	|
 More Vanilla Turrets	|
+Moyo - From the Depth   |
 Ni'Hal	|
 Orassans	|
 Penguin	|
@@ -140,6 +141,7 @@ Vanilla Animals Expanded |
 Vanilla Apparel Expanded	|
 Vanilla Armour Expanded	|
 Vanilla Bionics Expansion	|
+Vanilla Brewing Expanded    |
 Vanilla Factions Expanded - Insectoids |
 Vanilla Factions Expanded - Medieval	|
 Vanilla Factions Expanded - Settlers	|
