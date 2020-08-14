@@ -366,7 +366,7 @@ namespace CombatExtended
 
             //Here be new variables
             Scribe_Values.Look(ref shotAngle, "ang", 0f, true);
-            Scribe_Values.Look(ref shotRotation, "rot", 0f, true);
+            Scribe_Values.Look(ref shotRotation, "sRot", 0f, true);
             Scribe_Values.Look(ref shotHeight, "hgt", 0f, true);
             Scribe_Values.Look(ref shotSpeed, "spd", 0f, true);
             Scribe_Values.Look<bool>(ref canTargetSelf, "cts");
