@@ -14,6 +14,7 @@ Mod |
 [CP] Rimmu-Nation - Weapons	|
 [CP] Spec Ops - The Line	|
 [CP] The DOOM Kit - Classic	|
+[JDS] The Forge - NCR Armory	|
 [O21] Elves	|
 [O21] Elves - Faction Addon	|
 [O21] Gith |
@@ -108,6 +109,7 @@ Misc. Robots	|
 More Mechanoids	|
 More Practical Traits	|
 More Vanilla Turrets	|
+Moyo - From the Depth   |
 Ni'Hal	|
 Orassans	|
 Penguin	|
@@ -139,6 +141,7 @@ Vanilla Animals Expanded |
 Vanilla Apparel Expanded	|
 Vanilla Armour Expanded	|
 Vanilla Bionics Expansion	|
+Vanilla Brewing Expanded    |
 Vanilla Factions Expanded - Insectoids |
 Vanilla Factions Expanded - Medieval	|
 Vanilla Factions Expanded - Settlers	|

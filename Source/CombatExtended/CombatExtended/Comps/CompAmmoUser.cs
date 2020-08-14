@@ -501,7 +501,12 @@ namespace CombatExtended
                 // If there's less ammo in inventory than the weapon can hold, or if there's only one bullet left if reloading one at a time
                 else
                 {
-                    newMagCount = (Props.reloadOneAtATime) ? curMagCountInt + 1 : ammoThing.stackCount;
+                    int newAmmoCount = ammoThing.stackCount;
+                    if (turret != null)     //Turrets are reloaded without unloading the mag first (if using same ammo type), to support very high capacity magazines
+                    {
+                        newAmmoCount += curMagCountInt;
+                    }
+                    newMagCount = Props.reloadOneAtATime ? curMagCountInt + 1 : newAmmoCount;
                     if (ammoFromInventory)
                     {
                         CompInventory.container.Remove(ammoThing);

@@ -217,7 +217,7 @@
 					<range>86</range>
 					<minRange>12</minRange>
 					<ticksBetweenBurstShots>1</ticksBetweenBurstShots>
-					<burstShotCount>20</burstShotCount>
+					<burstShotCount>100</burstShotCount>
 					<soundCast>TC_ShotAvengerTurret</soundCast>
 					<soundCastTail>GunTail_Heavy</soundCastTail>
 					<muzzleFlashScale>16</muzzleFlashScale>
@@ -227,14 +227,14 @@
 					</targetParams>
 				</Properties>
 				<AmmoUser>
-					<magazineSize>100</magazineSize>
+					<magazineSize>1350</magazineSize>
 					<reloadTime>9.2</reloadTime>
 					<ammoSet>AmmoSet_30x173mmNATO</ammoSet>
 				</AmmoUser>
 				<FireModes>
 					<aiUseBurstMode>FALSE</aiUseBurstMode>
 					<aiAimMode>SuppressFire</aiAimMode>
-					<aimedBurstShotCount>10</aimedBurstShotCount>
+					<aimedBurstShotCount>50</aimedBurstShotCount>
 					<noSingleShot>true</noSingleShot>
 				</FireModes>
 				<weaponTags>
@@ -571,22 +571,22 @@
 			<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
 				<defName>TCEE_GatlingGunTurret_Gun</defName>
 				<statBases>
-					<RangedWeapon_Cooldown>0.36</RangedWeapon_Cooldown>
+					<RangedWeapon_Cooldown>0.35</RangedWeapon_Cooldown>
 					<SightsEfficiency>1.00</SightsEfficiency>
-					<ShotSpread>0.01</ShotSpread>
-					<SwayFactor>2.20</SwayFactor>
+					<ShotSpread>0.06</ShotSpread>
+					<SwayFactor>1.23</SwayFactor>
+					<Bulk>8.02</Bulk>
 				</statBases>
 				<Properties>
-					<recoilAmount>1.30</recoilAmount>
+					<recoilAmount>0.65</recoilAmount>
 					<verbClass>CombatExtended.Verb_ShootCE</verbClass>
 					<hasStandardCommand>true</hasStandardCommand>
-					<defaultProjectile>Bullet_20x102mmNATO_Sabot</defaultProjectile>
+					<defaultProjectile>Bullet_762x51mmNATO_FMJ</defaultProjectile>
 					<warmupTime>2.3</warmupTime>
-					<range>62</range>
+					<range>86</range>
 					<minRange>15</minRange>
-					<burstShotCount>40</burstShotCount>
+					<burstShotCount>300</burstShotCount>
 					<ticksBetweenBurstShots>1</ticksBetweenBurstShots>
-					<requireLineOfSight>false</requireLineOfSight>
 					<soundCast>GunShotA</soundCast>
 					<soundCastTail>GunTail_Light</soundCastTail>
 					<muzzleFlashScale>9</muzzleFlashScale>
@@ -596,14 +596,14 @@
 					</targetParams>
 				</Properties>
 				<AmmoUser>
-					<magazineSize>200</magazineSize>
-					<reloadTime>7.8</reloadTime>
-					<ammoSet>AmmoSet_20x102mmNATO</ammoSet>
+					<magazineSize>1500</magazineSize>
+					<reloadTime>9.2</reloadTime>
+					<ammoSet>AmmoSet_762x51mmNATO</ammoSet>
 				</AmmoUser>
 				<FireModes>
 					<aiUseBurstMode>FALSE</aiUseBurstMode>
 					<aiAimMode>SuppressFire</aiAimMode>
-					<aimedBurstShotCount>20</aimedBurstShotCount>
+					<aimedBurstShotCount>150</aimedBurstShotCount>
 					<noSingleShot>true</noSingleShot>
 				</FireModes>
 				<weaponTags>
@@ -614,7 +614,7 @@
 			<li Class="PatchOperationReplace">
 				<xpath>Defs/ThingDef[defName="TCEE_GatlingGunTurret"]/statBases/WorkToBuild</xpath>
 				<value>
-					<WorkToBuild>87000</WorkToBuild>
+					<WorkToBuild>54000</WorkToBuild>
 				</value>
 			</li>
 
@@ -622,8 +622,8 @@
 				<xpath>Defs/ThingDef[defName="TCEE_GatlingGunTurret"]/costList</xpath>
 				<value>
 					<costList>
-						<Steel>490</Steel>
-						<ComponentIndustrial>6</ComponentIndustrial>
+						<Steel>180</Steel>
+						<ComponentIndustrial>7</ComponentIndustrial>
 					</costList>
 				</value>
 			</li>
@@ -631,7 +631,7 @@
 			<li Class="PatchOperationReplace">
 				<xpath>Defs/ThingDef[defName="TCEE_GatlingGunTurret"]/specialDisplayRadius</xpath>
 				<value>
-					<specialDisplayRadius>62</specialDisplayRadius>
+					<specialDisplayRadius>86</specialDisplayRadius>
 				</value>
 			</li>
 

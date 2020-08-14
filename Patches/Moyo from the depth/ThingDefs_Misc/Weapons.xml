@@ -1,0 +1,920 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+	<Operation Class="PatchOperationSequence">
+		<success></success>
+		<operations>
+			<li Class="PatchOperationFindMod">
+			<mods><li>Moyo-From the depth</li></mods>
+			<match Class="PatchOperationSequence">
+			<operations>
+			
+			<!-- ==========  Moyo Wrench  =========== -->
+			
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="Moyo_Wrench"]/tools</xpath>
+				<value>
+				  <tools>
+					<li Class="CombatExtended.ToolCE">
+					  <label>handle</label>
+					  <capacities>
+						<li>Poke</li>
+					  </capacities>
+					  <power>4</power>
+					  <cooldownTime>1.84</cooldownTime>
+					  <armorPenetrationBlunt>1.125</armorPenetrationBlunt>
+					</li>
+					<li Class="CombatExtended.ToolCE">
+					  <label>head</label>
+					  <capacities>
+						<li>Blunt</li>
+					  </capacities>
+					  <power>19</power>
+					  <cooldownTime>2.61</cooldownTime>
+					  <chanceFactor>1.5</chanceFactor>
+					  <armorPenetrationBlunt>7.605</armorPenetrationBlunt>
+					</li>
+				  </tools>
+				</value>
+			</li>
+			
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName="Moyo_Wrench"]/statBases</xpath>
+				<value>
+					<MeleeCounterParryBonus>0.25</MeleeCounterParryBonus>
+					<Bulk>3.5</Bulk>
+				</value>
+			</li>
+			
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName="Moyo_Wrench"]/equippedStatOffsets</xpath>
+				<value>
+					  <MeleeCritChance>0.67</MeleeCritChance>
+					  <MeleeParryChance>0.25</MeleeParryChance>
+					  <MeleeDodgeChance>0.33</MeleeDodgeChance>
+				</value>
+			</li>
+			
+			<!-- ==========  Moyo Knife  =========== -->
+			
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="Moyo_Knife"]/tools</xpath>
+				<value>
+				  <tools>
+					  <li Class="CombatExtended.ToolCE">
+						<label>handle</label>
+						<capacities>
+						  <li>Poke</li>
+						</capacities>
+						<power>5</power>
+						<cooldownTime>2.01</cooldownTime>
+						<chanceFactor>0.4</chanceFactor>
+						<armorPenetrationBlunt>1.6</armorPenetrationBlunt>
+						<linkedBodyPartsGroup>Handle</linkedBodyPartsGroup>
+					  </li>
+					  <li Class="CombatExtended.ToolCE">
+						<label>point</label>
+						<capacities>
+						  <li>Stab</li>
+						</capacities>
+						<power>11</power>
+						<cooldownTime>1.26</cooldownTime>
+						<chanceFactor>1</chanceFactor>
+						<armorPenetrationBlunt>0.25</armorPenetrationBlunt>
+						<armorPenetrationSharp>1.67</armorPenetrationSharp>
+						<linkedBodyPartsGroup>Point</linkedBodyPartsGroup>
+					  </li>
+					  <li Class="CombatExtended.ToolCE">
+						<label>edge</label>
+						<capacities>
+						  <li>Cut</li>
+						</capacities>
+						<power>10</power>
+						<cooldownTime>1.18</cooldownTime>
+						<chanceFactor>1</chanceFactor>
+						<armorPenetrationBlunt>0.36</armorPenetrationBlunt>
+						<armorPenetrationSharp>1.2</armorPenetrationSharp>
+						<linkedBodyPartsGroup>Edge</linkedBodyPartsGroup>
+					  </li>
+				  </tools>
+				</value>
+			</li>
+			
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName="Moyo_Knife"]/statBases</xpath>
+				<value>
+					<MeleeCounterParryBonus>0.39</MeleeCounterParryBonus>
+					<Bulk>1.5</Bulk>
+				</value>
+			</li>
+			
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName="Moyo_Knife"]</xpath>
+				<value>
+					<equippedStatOffsets>
+					  <MeleeCritChance>0.08</MeleeCritChance>
+					  <MeleeParryChance>0.24</MeleeParryChance>
+					  <MeleeDodgeChance>1.07</MeleeDodgeChance>
+					</equippedStatOffsets>
+				</value>
+			</li>
+			
+			
+			<!-- ==========  Moyo Glaive  =========== -->
+			
+			<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+			<defName>Moyo_Spear</defName>
+				<statBases>
+					<SightsEfficiency>1.00</SightsEfficiency>
+					<ShotSpread>0.20</ShotSpread>
+					<SwayFactor>2.21</SwayFactor>
+					<Bulk>19.50</Bulk>
+					<Mass>3.60</Mass>
+					<RangedWeapon_Cooldown>0.36</RangedWeapon_Cooldown>
+				</statBases>
+				
+				<Properties>
+					<recoilAmount>1.33</recoilAmount>
+					<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+					<hasStandardCommand>true</hasStandardCommand>
+					<defaultProjectile>Bullet_6x18mmMoyo</defaultProjectile>
+					<warmupTime>0.6</warmupTime>
+					<burstShotCount>6</burstShotCount>
+					<ticksBetweenBurstShots>6</ticksBetweenBurstShots>
+					<range>16</range>
+					<soundCast>Shot_ChargeRifle</soundCast>
+					<soundCastTail>GunTail_Light</soundCastTail>
+					<muzzleFlashScale>9</muzzleFlashScale>
+				</Properties>
+				
+				<AmmoUser>
+					<magazineSize>24</magazineSize>
+					<reloadTime>4.9</reloadTime>
+					<ammoSet>AmmoSet_6x18mmMoyo</ammoSet>
+				</AmmoUser>
+				<FireModes>
+					<aimedBurstShotCount>3</aimedBurstShotCount>
+					<aiUseBurstMode>FALSE</aiUseBurstMode>
+					<aiAimMode>Snapshot</aiAimMode>
+				</FireModes>
+			</li>
+			
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName="Moyo_Spear"]/statBases</xpath>
+				<value>
+					<MeleeCounterParryBonus>1.08</MeleeCounterParryBonus>
+				</value>
+			</li>
+			
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName="Moyo_Spear"]</xpath>
+				<value>
+					<equippedStatOffsets>
+					  <MeleeCritChance>0.22</MeleeCritChance>
+					  <MeleeParryChance>1.53</MeleeParryChance>
+					  <MeleeDodgeChance>0.67</MeleeDodgeChance>
+					</equippedStatOffsets>
+				</value>
+			</li>
+			
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="Moyo_Spear"]/tools</xpath>
+				<value>
+				  <tools>
+					  <li Class="CombatExtended.ToolCE">
+						<label>Point</label>
+						<capacities>
+						  <li>Stab</li>
+						</capacities>
+						<power>12</power>
+						<extraMeleeDamages>
+							<li>
+								<def>Moyo_Cryo</def>
+								<amount>10</amount>
+							</li>
+						</extraMeleeDamages>
+						<cooldownTime>1.72</cooldownTime>
+						<chanceFactor>1</chanceFactor>
+						<armorPenetrationBlunt>2.59</armorPenetrationBlunt>
+						<armorPenetrationSharp>20.74</armorPenetrationSharp>
+						<linkedBodyPartsGroup>Point</linkedBodyPartsGroup>
+					  </li>
+					  <li Class="CombatExtended.ToolCE">
+						<label>blade</label>
+						<capacities>
+						  <li>Cut</li>
+						</capacities>
+						<power>27</power>
+						<extraMeleeDamages>
+							<li>
+								<def>Moyo_Cryo</def>
+								<amount>10</amount>
+							</li>
+						</extraMeleeDamages>
+						<cooldownTime>1.72</cooldownTime>
+						<chanceFactor>1</chanceFactor>
+						<armorPenetrationBlunt>2.59</armorPenetrationBlunt>
+						<armorPenetrationSharp>12.96</armorPenetrationSharp>
+						<linkedBodyPartsGroup>Edge</linkedBodyPartsGroup>
+					  </li>
+					  <li Class="CombatExtended.ToolCE">
+						<label>handle</label>
+						<capacities>
+						  <li>Poke</li>
+						  <li>Blunt</li>
+						</capacities>
+						<power>11</power>
+						<cooldownTime>1.38</cooldownTime>
+						<chanceFactor>0.2</chanceFactor>
+						<armorPenetrationBlunt>4.05</armorPenetrationBlunt>
+						<linkedBodyPartsGroup>Handle</linkedBodyPartsGroup>
+					  </li>
+				  </tools>
+				</value>
+			</li>
+			
+			<!-- ==========  Moyo Royal Glaive : 20% Reduction to Sway/Recoil =========== -->
+			
+			<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+			<defName>Moyo_GDSpear</defName>
+				<statBases>
+					<SightsEfficiency>1.10</SightsEfficiency>
+					<ShotSpread>0.16</ShotSpread>
+					<SwayFactor>1.784</SwayFactor>
+					<Bulk>19.50</Bulk>
+					<Mass>5.40</Mass>
+					<RangedWeapon_Cooldown>0.36</RangedWeapon_Cooldown>
+				</statBases>
+				
+				<Properties>
+					<recoilAmount>1</recoilAmount>
+					<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+					<hasStandardCommand>true</hasStandardCommand>
+					<defaultProjectile>Bullet_6x24mmMoyo</defaultProjectile>
+					<warmupTime>0.5</warmupTime>
+					<burstShotCount>6</burstShotCount>
+					<ticksBetweenBurstShots>6</ticksBetweenBurstShots>
+					<range>21</range>
+					<soundCast>Shot_ChargeRifle</soundCast>
+					<soundCastTail>GunTail_Light</soundCastTail>
+					<muzzleFlashScale>9</muzzleFlashScale>
+				</Properties>
+				
+				<AmmoUser>
+					<magazineSize>24</magazineSize>
+					<reloadTime>4.9</reloadTime>
+					<ammoSet>AmmoSet_6x24mmMoyo</ammoSet>
+				</AmmoUser>
+				<FireModes>
+					<aimedBurstShotCount>3</aimedBurstShotCount>
+					<aiUseBurstMode>FALSE</aiUseBurstMode>
+					<aiAimMode>Snapshot</aiAimMode>
+				</FireModes>
+			</li>
+			
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName="Moyo_GDSpear"]/statBases</xpath>
+				<value>
+					<MeleeCounterParryBonus>1.08</MeleeCounterParryBonus>
+				</value>
+			</li>
+			
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName="Moyo_GDSpear"]</xpath>
+				<value>
+					<equippedStatOffsets>
+					  <MeleeCritChance>0.22</MeleeCritChance>
+					  <MeleeParryChance>1.53</MeleeParryChance>
+					  <MeleeDodgeChance>0.67</MeleeDodgeChance>
+					</equippedStatOffsets>
+				</value>
+			</li>
+			
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="Moyo_GDSpear"]/tools</xpath>
+				<value>
+				  <tools>
+					  <li Class="CombatExtended.ToolCE">
+						<label>Point</label>
+						<capacities>
+						  <li>Stab</li>
+						</capacities>
+						<power>13</power>
+						<extraMeleeDamages>
+							<li>
+								<def>Moyo_Cryo</def>
+								<amount>10</amount>
+							</li>
+						</extraMeleeDamages>
+						<cooldownTime>1.76</cooldownTime>
+						<chanceFactor>1</chanceFactor>
+						<armorPenetrationBlunt>2.59</armorPenetrationBlunt>
+						<armorPenetrationSharp>36.51</armorPenetrationSharp>
+						<linkedBodyPartsGroup>Point</linkedBodyPartsGroup>
+					  </li>
+					  <li Class="CombatExtended.ToolCE">
+						<label>blade</label>
+						<capacities>
+						  <li>Cut</li>
+						</capacities>
+						<power>35</power>
+						<extraMeleeDamages>
+							<li>
+								<def>Moyo_Cryo</def>
+								<amount>10</amount>
+							</li>
+						</extraMeleeDamages>
+						<cooldownTime>1.76</cooldownTime>
+						<chanceFactor>1</chanceFactor>
+						<armorPenetrationBlunt>4.56</armorPenetrationBlunt>
+						<armorPenetrationSharp>22.85</armorPenetrationSharp>
+						<linkedBodyPartsGroup>Edge</linkedBodyPartsGroup>
+					  </li>
+					  <li Class="CombatExtended.ToolCE">
+						<label>handle</label>
+						<capacities>
+						  <li>Poke</li>
+						  <li>Blunt</li>
+						</capacities>
+						<power>11</power>
+						<cooldownTime>1.38</cooldownTime>
+						<chanceFactor>0.2</chanceFactor>
+						<armorPenetrationBlunt>4.05</armorPenetrationBlunt>
+						<linkedBodyPartsGroup>Handle</linkedBodyPartsGroup>
+					  </li>
+				  </tools>
+				</value>
+			</li>
+			
+			<!-- ==========  Moyo Piledriver : No melee bonuses but high power =========== -->
+			
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName="Moyo_Piledriver"]/statBases</xpath>
+				<value>
+					<Bulk>9.5</Bulk>
+				</value>
+			</li>
+			
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="Moyo_Piledriver"]/tools</xpath>
+				<value>
+				  <tools>
+					  <li Class="CombatExtended.ToolCE">
+						<label>body</label>
+						<capacities>
+						  <li>Blunt</li>
+						</capacities>
+						<power>8</power>
+						<cooldownTime>1.15</cooldownTime>
+						<chanceFactor>0.4</chanceFactor>
+						<armorPenetrationBlunt>2.755</armorPenetrationBlunt>
+					  </li>
+					  <li Class="CombatExtended.ToolCE">
+						<label>Stake</label>
+						<capacities>
+						  <li>Stab</li>
+						</capacities>
+						<power>33</power>
+						<cooldownTime>3.98</cooldownTime>
+						<chanceFactor>1</chanceFactor>
+						<armorPenetrationBlunt>75</armorPenetrationBlunt>
+						<armorPenetrationSharp>25</armorPenetrationSharp>
+					  </li>
+				  </tools>
+				</value>
+			</li>
+			
+			<!-- ==========  Moyo Power Fist : Powered weapon, +55MPA Blunt  =========== -->
+			
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="Moyo_PowerFist"]/tools</xpath>
+				<value>
+				  <tools>
+					<li Class="CombatExtended.ToolCE">
+					  <label>Fist</label>
+					  <capacities>
+						<li>Blunt</li>
+					  </capacities>
+					  <power>13</power>
+					  <cooldownTime>1.37</cooldownTime>
+					  <armorPenetrationBlunt>60</armorPenetrationBlunt>
+					</li>
+					<li Class="CombatExtended.ToolCE">
+					  <label>Body</label>
+					  <capacities>
+						<li>Blunt</li>
+					  </capacities>
+					  <power>13</power>
+					  <cooldownTime>1.37</cooldownTime>
+					  <armorPenetrationBlunt>60</armorPenetrationBlunt>
+					</li>
+				  </tools>
+				</value>
+			</li>
+			
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName="Moyo_PowerFist"]/statBases</xpath>
+				<value>
+					<MeleeCounterParryBonus>0.2</MeleeCounterParryBonus>
+					<Bulk>5</Bulk>
+				</value>
+			</li>
+			
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName="Moyo_PowerFist"]/equippedStatOffsets</xpath>
+				<value>
+					  <MeleeCritChance>0.85</MeleeCritChance>
+					  <MeleeParryChance>0.05</MeleeParryChance>
+					  <MeleeDodgeChance>0.17</MeleeDodgeChance>
+				</value>
+			</li>
+			
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName="Moyo_PowerFist"]/weaponTags</xpath>
+				<value>
+					<li>CE_OneHandedWeapon</li>
+				</value>
+			</li>
+			
+			<!-- ==========  Moyo Royal Power Fist : Advanced powered weapon, +75MPA Blunt  =========== -->
+			
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="Moyo_GDPowerFist"]/tools</xpath>
+				<value>
+				  <tools>
+					<li Class="CombatExtended.ToolCE">
+					  <label>Fist</label>
+					  <capacities>
+						<li>Blunt</li>
+					  </capacities>
+					  <power>17</power>
+					  <cooldownTime>1.34</cooldownTime>
+					  <armorPenetrationBlunt>81.615</armorPenetrationBlunt>
+					</li>
+					<li Class="CombatExtended.ToolCE">
+					  <label>Body</label>
+					  <capacities>
+						<li>Blunt</li>
+					  </capacities>
+					  <power>17</power>
+					  <cooldownTime>1.34</cooldownTime>
+					  <armorPenetrationBlunt>81.615</armorPenetrationBlunt>
+					</li>
+				  </tools>
+				</value>
+			</li>
+			
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName="Moyo_GDPowerFist"]/statBases</xpath>
+				<value>
+					<MeleeCounterParryBonus>0.17</MeleeCounterParryBonus>
+					<Bulk>5</Bulk>
+				</value>
+			</li>
+			
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName="Moyo_GDPowerFist"]/equippedStatOffsets</xpath>
+				<value>
+					  <MeleeCritChance>1</MeleeCritChance>
+					  <MeleeParryChance>0.04</MeleeParryChance>
+					  <MeleeDodgeChance>0.17</MeleeDodgeChance>
+				</value>
+			</li>
+			
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName="Moyo_GDPowerFist"]/weaponTags</xpath>
+				<value>
+					<li>CE_OneHandedWeapon</li>
+				</value>
+			</li>
+			
+			<!-- ========== Charge Pistol =========== -->
+			
+			<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+			<defName>Moyo_Pistol</defName>
+				<statBases>
+					<SightsEfficiency>0.80</SightsEfficiency>
+					<ShotSpread>0.18</ShotSpread>
+					<SwayFactor>1.07</SwayFactor>
+					<Bulk>2.00</Bulk>
+					<Mass>1.20</Mass>
+					<RangedWeapon_Cooldown>0.36</RangedWeapon_Cooldown>
+				</statBases>
+				
+				<Properties>
+					<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+					<hasStandardCommand>true</hasStandardCommand>
+					<defaultProjectile>Bullet_6x24mmMoyo</defaultProjectile>
+					<warmupTime>0.5</warmupTime>
+					<range>20</range>
+					<soundCast>Shot_ChargeRifle</soundCast>
+					<soundCastTail>GunTail_Light</soundCastTail>
+					<muzzleFlashScale>9</muzzleFlashScale>
+				</Properties>
+				
+				<AmmoUser>
+					<magazineSize>7</magazineSize>
+					<reloadTime>4</reloadTime>
+					<ammoSet>AmmoSet_6x24mmMoyo</ammoSet>
+				</AmmoUser>
+				<FireModes>
+					<aiAimMode>Snapshot</aiAimMode>
+				</FireModes>
+			</li>
+			
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName="Moyo_Pistol"]/weaponTags</xpath>
+				<value>
+					<li>CE_OneHandedWeapon</li>
+				</value>
+			</li>
+			
+			<!-- ========== Charge SMG =========== -->
+			
+			<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+			<defName>Moyo_ChargeSMG</defName>
+				<statBases>
+					<SightsEfficiency>1.10</SightsEfficiency>
+					<ShotSpread>0.17</ShotSpread>
+					<SwayFactor>0.98</SwayFactor>
+					<Bulk>6.80</Bulk>
+					<Mass>3.00</Mass>
+					<RangedWeapon_Cooldown>0.36</RangedWeapon_Cooldown>
+				</statBases>
+				
+				<Properties>
+					<recoilAmount>1</recoilAmount>
+					<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+					<hasStandardCommand>true</hasStandardCommand>
+					<defaultProjectile>Bullet_6x18mmMoyo</defaultProjectile>
+					<warmupTime>0.5</warmupTime>
+					<burstShotCount>6</burstShotCount>
+					<ticksBetweenBurstShots>6</ticksBetweenBurstShots>
+					<range>28</range>
+					<soundCast>Shot_ChargeRifle</soundCast>
+					<soundCastTail>GunTail_Light</soundCastTail>
+					<muzzleFlashScale>9</muzzleFlashScale>
+				</Properties>
+				
+				<AmmoUser>
+					<magazineSize>36</magazineSize>
+					<reloadTime>4</reloadTime>
+					<ammoSet>AmmoSet_6x18mmMoyo</ammoSet>
+				</AmmoUser>
+				<FireModes>
+					<aimedBurstShotCount>3</aimedBurstShotCount>
+					<aiUseBurstMode>FALSE</aiUseBurstMode>
+					<aiAimMode>Snapshot</aiAimMode>
+				</FireModes>
+			</li>
+			
+			<!-- ========== Charge Rifle =========== -->
+			
+			<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+			<defName>Moyo_ChargeRifle</defName>
+				<statBases>
+					<SightsEfficiency>1.10</SightsEfficiency>
+					<ShotSpread>0.09</ShotSpread>
+					<SwayFactor>1.53</SwayFactor>
+					<Bulk>8.80</Bulk>
+					<Mass>6.50</Mass>
+					<RangedWeapon_Cooldown>0.36</RangedWeapon_Cooldown>
+				</statBases>
+				
+				<Properties>
+					<recoilAmount>1.14</recoilAmount>
+					<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+					<hasStandardCommand>true</hasStandardCommand>
+					<defaultProjectile>Bullet_6x24mmMoyo</defaultProjectile>
+					<warmupTime>1.0</warmupTime>
+					<burstShotCount>6</burstShotCount>
+					<ticksBetweenBurstShots>6</ticksBetweenBurstShots>
+					<range>51</range>
+					<soundCast>Shot_ChargeRifle</soundCast>
+					<soundCastTail>GunTail_Light</soundCastTail>
+					<muzzleFlashScale>9</muzzleFlashScale>
+				</Properties>
+				
+				<AmmoUser>
+					<magazineSize>30</magazineSize>
+					<reloadTime>4</reloadTime>
+					<ammoSet>AmmoSet_6x24mmMoyo</ammoSet>
+				</AmmoUser>
+				<FireModes>
+					<aimedBurstShotCount>3</aimedBurstShotCount>
+					<aiUseBurstMode>TRUE</aiUseBurstMode>
+					<aiAimMode>AimedShot</aiAimMode>
+				</FireModes>
+			</li>
+			
+			<!-- ========== Charge Autocannon =========== -->
+			
+			<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+			<defName>Moyo_AutoCannon</defName>
+				<statBases>
+					<SightsEfficiency>1.10</SightsEfficiency>
+					<ShotSpread>0.09</ShotSpread>
+					<SwayFactor>2.15</SwayFactor>
+					<Bulk>12.50</Bulk>
+					<Mass>9.00</Mass>
+					<RangedWeapon_Cooldown>0.36</RangedWeapon_Cooldown>
+				</statBases>
+				
+				<Properties>
+					<recoilAmount>1.18</recoilAmount>
+					<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+					<hasStandardCommand>true</hasStandardCommand>
+					<defaultProjectile>Bullet_8x35mmMoyo</defaultProjectile>
+					<warmupTime>1.0</warmupTime>
+					<burstShotCount>8</burstShotCount>
+					<ticksBetweenBurstShots>9</ticksBetweenBurstShots>
+					<range>51</range>
+					<soundCast>Shot_NeedleGun</soundCast>
+					<soundCastTail>GunTail_Heavy</soundCastTail>
+					<muzzleFlashScale>9</muzzleFlashScale>
+				</Properties>
+				
+				<AmmoUser>
+					<magazineSize>40</magazineSize>
+					<reloadTime>7.8</reloadTime>
+					<ammoSet>AmmoSet_8x35mmMoyo</ammoSet>
+				</AmmoUser>
+				<FireModes>
+					<aimedBurstShotCount>4</aimedBurstShotCount>
+					<aiUseBurstMode>FALSE</aiUseBurstMode>
+					<aiAimMode>AimedShot</aiAimMode>
+				</FireModes>
+			</li>
+			
+			<!-- ========== Charge Precision Rifle =========== -->
+			
+			<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+			<defName>Moyo_PrecisionRifle</defName>
+				<statBases>
+					<SightsEfficiency>2.98</SightsEfficiency>
+					<ShotSpread>0.01</ShotSpread>
+					<SwayFactor>1.77</SwayFactor>
+					<Bulk>10.25</Bulk>
+					<Mass>6.25</Mass>
+					<RangedWeapon_Cooldown>0.36</RangedWeapon_Cooldown>
+				</statBases>
+				
+				<Properties>
+					<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+					<hasStandardCommand>true</hasStandardCommand>
+					<defaultProjectile>Bullet_8x35mmMoyoSniper</defaultProjectile>
+					<warmupTime>1.7</warmupTime>
+					<range>78</range>
+					<soundCast>Shot_ChargeRifle</soundCast>
+					<soundCastTail>GunTail_Light</soundCastTail>
+					<muzzleFlashScale>9</muzzleFlashScale>
+				</Properties>
+				
+				<AmmoUser>
+					<magazineSize>15</magazineSize>
+					<reloadTime>4</reloadTime>
+					<ammoSet>AmmoSet_8x35mmMoyoSniper</ammoSet>
+				</AmmoUser>
+				<FireModes>
+					<aiAimMode>AimedShot</aiAimMode>
+				</FireModes>
+			</li>
+			
+			<!-- ========== Charge Ballista =========== -->
+			
+			<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+			<defName>Moyo_BoltCaster</defName>
+				<statBases>
+					<SightsEfficiency>1.85</SightsEfficiency>
+					<ShotSpread>0.07</ShotSpread>
+					<SwayFactor>2.40</SwayFactor>
+					<Bulk>14.00</Bulk>
+					<Mass>9.50</Mass>
+					<RangedWeapon_Cooldown>0.67</RangedWeapon_Cooldown>
+				</statBases>
+				
+				<Properties>
+					<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+					<hasStandardCommand>true</hasStandardCommand>
+					<defaultProjectile>Bullet_MoyoBallista</defaultProjectile>
+					<warmupTime>2.85</warmupTime>
+					<range>65</range>
+					<soundCast>ChargeLance_Fire</soundCast>
+					<soundCastTail>GunTail_Heavy</soundCastTail>
+					<muzzleFlashScale>9</muzzleFlashScale>
+				</Properties>
+				
+				<AmmoUser>
+					<magazineSize>4</magazineSize>
+					<reloadTime>8.7</reloadTime>
+					<ammoSet>AmmoSet_MoyoBallista</ammoSet>
+				</AmmoUser>
+				<FireModes>
+					<aiAimMode>AimedShot</aiAimMode>
+				</FireModes>
+			</li>
+			
+			<!-- ========== Royal Charge Rifle =========== -->
+			
+			<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+			<defName>Moyo_HeavyChargeRifle</defName>
+				<statBases>
+					<SightsEfficiency>1.10</SightsEfficiency>
+					<ShotSpread>0.07</ShotSpread>
+					<SwayFactor>1.58</SwayFactor>
+					<Bulk>8.80</Bulk>
+					<Mass>7.00</Mass>
+					<RangedWeapon_Cooldown>0.36</RangedWeapon_Cooldown>
+				</statBases>
+				
+				<Properties>
+					<recoilAmount>1.34</recoilAmount>
+					<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+					<hasStandardCommand>true</hasStandardCommand>
+					<defaultProjectile>Bullet_8x35mmMoyo</defaultProjectile>
+					<warmupTime>1.0</warmupTime>
+					<burstShotCount>5</burstShotCount>
+					<ticksBetweenBurstShots>6</ticksBetweenBurstShots>
+					<range>55</range>
+					<soundCast>Shot_ChargeRifle</soundCast>
+					<soundCastTail>GunTail_Light</soundCastTail>
+					<muzzleFlashScale>9</muzzleFlashScale>
+				</Properties>
+				
+				<AmmoUser>
+					<magazineSize>24</magazineSize>
+					<reloadTime>4</reloadTime>
+					<ammoSet>AmmoSet_8x35mmMoyo</ammoSet>
+				</AmmoUser>
+				<FireModes>
+					<aimedBurstShotCount>3</aimedBurstShotCount>
+					<aiUseBurstMode>FALSE</aiUseBurstMode>
+					<aiAimMode>AimedShot</aiAimMode>
+				</FireModes>
+			</li>
+			
+			<!-- ========== Royal Charge Autocannon =========== -->
+			
+			<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+			<defName>Moyo_HeavyAutoCannon</defName>
+				<statBases>
+					<SightsEfficiency>1.10</SightsEfficiency>
+					<ShotSpread>0.09</ShotSpread>
+					<SwayFactor>1.65</SwayFactor>
+					<Bulk>12.50</Bulk>
+					<Mass>9.00</Mass>
+					<RangedWeapon_Cooldown>0.36</RangedWeapon_Cooldown>
+				</statBases>
+				
+				<Properties>
+					<recoilAmount>1.02</recoilAmount>
+					<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+					<hasStandardCommand>true</hasStandardCommand>
+					<defaultProjectile>Bullet_8x35mmMoyo</defaultProjectile>
+					<warmupTime>1.2</warmupTime>
+					<burstShotCount>10</burstShotCount>
+					<ticksBetweenBurstShots>6</ticksBetweenBurstShots>
+					<range>55</range>
+					<soundCast>Shot_NeedleGun</soundCast>
+					<soundCastTail>GunTail_Heavy</soundCastTail>
+					<muzzleFlashScale>9</muzzleFlashScale>
+				</Properties>
+				
+				<AmmoUser>
+					<magazineSize>40</magazineSize>
+					<reloadTime>4</reloadTime>
+					<ammoSet>AmmoSet_8x35mmMoyo</ammoSet>
+				</AmmoUser>
+				<FireModes>
+					<aimedBurstShotCount>5</aimedBurstShotCount>
+					<aiUseBurstMode>FALSE</aiUseBurstMode>
+					<aiAimMode>AimedShot</aiAimMode>
+				</FireModes>
+			</li>
+			
+			<!-- ========== Cryoblaster =========== -->
+			
+			<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+			<defName>Moyo_CryoBlaster</defName>
+				<statBases>
+					<SightsEfficiency>1.10</SightsEfficiency>
+					<ShotSpread>3</ShotSpread>
+					<SwayFactor>2.25</SwayFactor>
+					<Bulk>13.00</Bulk>
+					<Mass>9.50</Mass>
+					<RangedWeapon_Cooldown>0.36</RangedWeapon_Cooldown>
+				</statBases>
+				
+				<Properties>
+					<recoilAmount>0.05</recoilAmount>
+					<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+					<hasStandardCommand>true</hasStandardCommand>
+					<defaultProjectile>Bullet_MoyoCryocell</defaultProjectile>
+					<warmupTime>1</warmupTime>
+					<burstShotCount>40</burstShotCount>
+					<ticksBetweenBurstShots>1</ticksBetweenBurstShots>
+					<range>31</range>
+					<soundCast>MoyoCryoSpray</soundCast>
+					<soundCastTail>GunTail_Heavy</soundCastTail>
+					<muzzleFlashScale>9</muzzleFlashScale>
+					<targetParams>
+					  <canTargetLocations>true</canTargetLocations>
+					</targetParams>
+				</Properties>
+				
+				<AmmoUser>
+					<magazineSize>160</magazineSize>
+					<reloadTime>6</reloadTime>
+					<ammoSet>AmmoSet_Cryoblaster</ammoSet>
+				</AmmoUser>
+				<FireModes>
+					<aimedBurstShotCount>20</aimedBurstShotCount>
+					<aiUseBurstMode>FALSE</aiUseBurstMode>
+					<aiAimMode>AimedShot</aiAimMode>
+					<noSingleShot>true</noSingleShot>
+				</FireModes>
+			</li>
+			
+			<!-- ========== Melee Attacks =========== -->
+			
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="Moyo_CryoBlaster" or 
+				defName="Moyo_HeavyAutoCannon" or 
+				defName="Moyo_HeavyChargeRifle" or 
+				defName="Moyo_BoltCaster" or 
+				defName="Moyo_PrecisionRifle" or 
+				defName="Moyo_AutoCannon" or
+				defName="Moyo_ChargeRifle" or
+				defName="Moyo_ChargeSMG"
+				]/tools</xpath>
+				<value>
+					<tools>
+						<li Class="CombatExtended.ToolCE">
+						<label>stock</label>
+						<capacities>
+						<li>Blunt</li>
+						</capacities>
+						<power>8</power>
+						<cooldownTime>1.55</cooldownTime>
+						<chanceFactor>1.5</chanceFactor>
+						<armorPenetrationBlunt>2.755</armorPenetrationBlunt>
+						<linkedBodyPartsGroup>Stock</linkedBodyPartsGroup>
+						</li>
+						<li Class="CombatExtended.ToolCE">
+							<label>barrel</label>
+							<capacities>
+							<li>Blunt</li>
+							</capacities>
+							<power>5</power>
+							<cooldownTime>2.02</cooldownTime>
+							<armorPenetrationBlunt>1.630</armorPenetrationBlunt>
+							<linkedBodyPartsGroup>Barrel</linkedBodyPartsGroup>
+						</li>
+						<li Class="CombatExtended.ToolCE">
+						<label>muzzle</label>
+							<capacities>
+							<li>Poke</li>
+							</capacities>
+							<power>8</power>
+							<cooldownTime>1.55</cooldownTime>
+							<armorPenetrationBlunt>2.755</armorPenetrationBlunt>
+							<linkedBodyPartsGroup>Muzzle</linkedBodyPartsGroup>
+						</li>
+					</tools>
+				</value>
+			</li>
+			
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="Moyo_Pistol"]/tools</xpath>
+				<value>
+					<tools>
+						<li Class="CombatExtended.ToolCE">
+							<label>grip</label>
+							<capacities>
+							<li>Blunt</li>
+							</capacities>
+							<power>2</power>
+							<cooldownTime>1.54</cooldownTime>
+							<chanceFactor>1.5</chanceFactor>
+							<armorPenetrationBlunt>0.555</armorPenetrationBlunt>
+							<linkedBodyPartsGroup>Grip</linkedBodyPartsGroup>
+						</li>
+						<li Class="CombatExtended.ToolCE">
+							<label>muzzle</label>
+							<capacities>
+							<li>Poke</li>
+							</capacities>
+							<power>2</power>
+							<cooldownTime>1.54</cooldownTime>
+							<armorPenetrationBlunt>0.555</armorPenetrationBlunt>
+							<linkedBodyPartsGroup>Muzzle</linkedBodyPartsGroup>
+						</li>
+					</tools>
+				</value>
+			</li> 
+			
+			</operations>
+			</match>
+			</li>
+		</operations>
+	</Operation>
+</Patch>
