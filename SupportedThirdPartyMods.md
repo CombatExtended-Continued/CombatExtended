@@ -45,7 +45,7 @@ Mod |
 [RH] Faction: Umbra Company	|
 [RH] Faction: VOID	|
 [RH] Faction: War Mongrels	|
-[SS]Maid Project	|
+[SS] Maid Project	|
 [SYR] Harpy	|
 [SYR] Naga	|
 [SYR] Thrumkin	|
@@ -156,6 +156,7 @@ Vanilla Weapons Expanded - Grenades |
 Vanilla Weapons Expanded Quickdraw	|
 Vanilla-Friendly Animal Surgery	|
 Vanilla-Friendly Weapon Expansion	|
+VGP Fabrics
 Vulpine Race Pack	|
 Weapons+	|
 WWII Soviet Faction	|
