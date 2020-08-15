@@ -14,6 +14,7 @@ Mod |
 [CP] Rimmu-Nation - Weapons	|
 [CP] Spec Ops - The Line	|
 [CP] The DOOM Kit - Classic	|
+[JDS] The Forge - NCR Armory	|
 [O21] Elves	|
 [O21] Elves - Faction Addon	|
 [O21] Gith |
@@ -45,12 +46,15 @@ Mod |
 [RH] Faction: VOID	|
 [RH] Faction: War Mongrels	|
 [SS]Maid Project	|
+[SYR] Harpy	|
+[SYR] Naga	|
 [SYR] Thrumkin	|
 A Dog Said...	|
 Alpha Animals |
 Android Tiers	|
 Android Tiers++	|
 Androids	|
+Androids Expanded	|
 AnimalCollabProj	|
 Apparello 2	|
 Arachne Race	|
@@ -108,6 +112,7 @@ Misc. Robots	|
 More Mechanoids	|
 More Practical Traits	|
 More Vanilla Turrets	|
+Moyo - From the Depth   |
 Ni'Hal	|
 Orassans	|
 Penguin	|
@@ -124,6 +129,8 @@ Rim of Madness - Bones	|
 Rimefeller	|
 RimEffect - Asari of the Rims	|
 Rimfire	|
+Rimworld: Altered Carbon |
+Rimworld - The Dark Descent |
 Rimworld - Witcher Monster Hunt |
 Save Our Ship 2	|
 Sergals, Gnolls, Lions and Frogs	|
@@ -139,11 +146,13 @@ Vanilla Animals Expanded |
 Vanilla Apparel Expanded	|
 Vanilla Armour Expanded	|
 Vanilla Bionics Expansion	|
+Vanilla Brewing Expanded    |
 Vanilla Factions Expanded - Insectoids |
 Vanilla Factions Expanded - Medieval	|
 Vanilla Factions Expanded - Settlers	|
 Vanilla Vehicles Expanded	|
 Vanilla Weapons Expanded |
+Vanilla Weapons Expanded - Grenades |
 Vanilla Weapons Expanded Quickdraw	|
 Vanilla-Friendly Animal Surgery	|
 Vanilla-Friendly Weapon Expansion	|

@@ -1,0 +1,210 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+	<Operation Class="PatchOperationFindMod">
+    <mods>
+		<li>[JDS] The Forge - NCR Armory</li>
+    </mods>
+		<match Class="PatchOperationSequence">
+		 <operations>
+
+				<!-- ========== Pith and Ranger Hats ========== -->
+
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="JDS_NCR_Pith_Hat" or defName="JDS_NCR_Pith2_Hat" or defName="JDS_NCR_Ranger_Hat"]/statBases</xpath>
+					<value>
+						<Bulk>1</Bulk>
+						<WornBulk>1</WornBulk>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="JDS_NCR_Pith_Hat" or defName="JDS_NCR_Pith2_Hat" or defName="JDS_NCR_Ranger_Hat"]/statBases/ArmorRating_Sharp</xpath>
+					<value>
+						<ArmorRating_Sharp>0.05</ArmorRating_Sharp>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="JDS_NCR_Pith_Hat" or defName="JDS_NCR_Pith2_Hat" or defName="JDS_NCR_Ranger_Hat"]/statBases/ArmorRating_Blunt</xpath>
+					<value>
+						<ArmorRating_Blunt>0.075</ArmorRating_Blunt>
+					</value>
+				</li>
+
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="JDS_NCR_Pith_Hat" or defName="JDS_NCR_Pith2_Hat" or defName="JDS_NCR_Ranger_Hat"]/apparel</xpath>
+					<value>
+					  <layers>
+						<li>MiddleHead</li>
+					  </layers>
+					</value>
+				</li>
+
+				<!-- ========== Pith Hats w/ Face Wrap ========== -->
+
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="JDS_NCR_Wrap_Pith_Hat" or defName="JDS_NCR_Wrap2_Pith_Hat"]/statBases</xpath>
+					<value>
+						<Bulk>1</Bulk>
+						<WornBulk>1</WornBulk>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="JDS_NCR_Wrap_Pith_Hat" or defName="JDS_NCR_Wrap2_Pith_Hat"]/statBases/ArmorRating_Sharp</xpath>
+					<value>
+						<ArmorRating_Sharp>0.05</ArmorRating_Sharp>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="JDS_NCR_Wrap_Pith_Hat" or defName="JDS_NCR_Wrap2_Pith_Hat"]/statBases/ArmorRating_Blunt</xpath>
+					<value>
+						<ArmorRating_Blunt>0.075</ArmorRating_Blunt>
+					</value>
+				</li>
+
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="JDS_NCR_Wrap_Pith_Hat" or defName="JDS_NCR_Wrap2_Pith_Hat"]</xpath>
+					<value>
+					  <equippedStatOffsets>
+						<SmokeSensitivity>-0.10</SmokeSensitivity>
+						<ToxicSensitivity>-0.10</ToxicSensitivity>
+					  </equippedStatOffsets>	
+					</value>
+				</li>
+
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="JDS_NCR_Wrap_Pith_Hat" or defName="JDS_NCR_Wrap2_Pith_Hat"]/apparel</xpath>
+					<value>
+					  <layers>
+						<li>MiddleHead</li>
+					  </layers>
+					</value>
+				</li>
+
+				<!-- ========== Beret ========== -->
+
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="JDS_NCR_Beret"]/statBases</xpath>
+					<value>
+						<Bulk>1</Bulk>
+						<WornBulk>1</WornBulk>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="JDS_NCR_Beret"]/statBases/ArmorRating_Sharp</xpath>
+					<value>
+						<ArmorRating_Sharp>0.02</ArmorRating_Sharp>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="JDS_NCR_Beret"]/statBases/ArmorRating_Blunt</xpath>
+					<value>
+						<ArmorRating_Blunt>0.03</ArmorRating_Blunt>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="JDS_NCR_Beret"]</xpath>
+					<value>
+					<apparel>
+					  <layers>
+						<li>MiddleHead</li>
+					  </layers>
+					</apparel>	
+					</value>
+				</li>
+
+				<!-- ========== Ranger Combat Helmet ========== -->
+
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="JDS_NCR_Ranger_Combat_Helmet"]/statBases</xpath>
+					<value>
+						<Bulk>5</Bulk>
+						<WornBulk>1</WornBulk>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="JDS_NCR_Ranger_Combat_Helmet"]/statBases/ArmorRating_Sharp</xpath>
+					<value>
+						<ArmorRating_Sharp>14</ArmorRating_Sharp>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="JDS_NCR_Ranger_Combat_Helmet"]/statBases/ArmorRating_Blunt</xpath>
+					<value>
+						<ArmorRating_Blunt>32</ArmorRating_Blunt>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="JDS_NCR_Ranger_Combat_Helmet"]/equippedStatOffsets/ToxicSensitivity</xpath>
+					<value>
+						<ToxicSensitivity>-0.50</ToxicSensitivity>
+						<SmokeSensitivity>-1</SmokeSensitivity>
+					</value>
+				</li>
+
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="JDS_NCR_Ranger_Combat_Helmet"]/apparel</xpath>
+					<value>
+					  <layers>
+						<li>OnHead</li>
+						<li>StrappedHead</li>
+						<li>MiddleHead</li>
+					  </layers>	
+					</value>
+				</li>
+
+				<!-- ========== Salvaged Power Armor Helmet ========== -->
+
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="JDS_NCR_SalvagedPowerArmor_Helmet"]/statBases</xpath>
+					<value>
+						<Bulk>5</Bulk>
+						<WornBulk>1</WornBulk>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="JDS_NCR_SalvagedPowerArmor_Helmet"]/statBases/ArmorRating_Sharp</xpath>
+					<value>
+						<ArmorRating_Sharp>15</ArmorRating_Sharp>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="JDS_NCR_SalvagedPowerArmor_Helmet"]/statBases/ArmorRating_Blunt</xpath>
+					<value>
+						<ArmorRating_Blunt>34</ArmorRating_Blunt>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="JDS_NCR_SalvagedPowerArmor_Helmet"]/equippedStatOffsets/ToxicSensitivity</xpath>
+					<value>
+						<ToxicSensitivity>-0.50</ToxicSensitivity>
+						<SmokeSensitivity>-1</SmokeSensitivity>
+					</value>
+				</li>
+
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="JDS_NCR_SalvagedPowerArmor_Helmet"]/apparel</xpath>
+					<value>
+					  <layers>
+						<li>OnHead</li>
+						<li>StrappedHead</li>
+						<li>MiddleHead</li>
+					  </layers>	
+					</value>
+				</li>
+
+			</operations>
+			</match>
+		</Operation>
+	</Patch>

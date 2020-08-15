@@ -10,7 +10,9 @@ using UnityEngine;
 
 namespace CombatExtended.HarmonyCE
 {
-    [HarmonyPatch(typeof(MechClusterGenerator), "GetBuildingDefsForCluster")]
+	[HarmonyPatch(typeof(MechClusterGenerator))]
+	[HarmonyPatch("GetBuildingDefsForCluster_NewTemp")]
+	[HarmonyPatch(new Type[] { typeof(float), typeof(IntVec2), typeof(bool), typeof(float?), typeof(bool) })]
     public static class Harmony_MechClusterGenerator_GetBuildingDefsForCluster
     {
         [HarmonyPostfix]

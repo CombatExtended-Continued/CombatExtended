@@ -96,7 +96,7 @@ namespace CombatExtended
             }
         }
 
-        public override void CompTended(float quality, int batchPosition = 0)
+        public override void CompTended_NewTemp(float quality, float maxQuality, int batchPosition = 0)
         {
             if (Pawn.Spawned)
             {
