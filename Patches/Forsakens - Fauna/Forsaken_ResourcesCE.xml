@@ -37,19 +37,40 @@
 					</value>
 				</li>
 
-				<li Class="PatchOperationReplace">
+			<!-- Night Leather. It was made through Conditionals so it plays nice with Alpha Animals, regardless of load order. -->
+
+				<li Class="PatchOperationConditional">
+				<xpath>/Defs/ThingDef[defName="Leather_Night"]/statBases/StuffPower_Armor_Sharp</xpath>
+					<nomatch Class="PatchOperationAdd">
+					<xpath>/Defs/ThingDef[defName="Leather_Night"]/statBases</xpath>
+						<value>
+							<StuffPower_Armor_Sharp>0.08</StuffPower_Armor_Sharp>
+						</value>
+					</nomatch>
+					<match Class="PatchOperationReplace">
 					<xpath>/Defs/ThingDef[defName="Leather_Night"]/statBases/StuffPower_Armor_Sharp</xpath>
-					<value>
-						<StuffPower_Armor_Sharp>0.08</StuffPower_Armor_Sharp>
-					</value>
+						<value>
+							<StuffPower_Armor_Sharp>0.08</StuffPower_Armor_Sharp>
+						</value>
+					</match>
+				</li>
+				
+				<li Class="PatchOperationConditional">
+				<xpath>/Defs/ThingDef[defName="Leather_Night"]/statBases/StuffPower_Armor_Blunt</xpath>
+					<nomatch Class="PatchOperationAdd">
+					<xpath>/Defs/ThingDef[defName="Leather_Night"]/statBases</xpath>
+						<value>
+							<StuffPower_Armor_Blunt>0.06</StuffPower_Armor_Blunt>
+						</value>
+					</nomatch>
+					<match Class="PatchOperationReplace">
+					<xpath>/Defs/ThingDef[defName="Leather_Night"]/statBases/StuffPower_Armor_Blunt</xpath>
+						<value>
+							<StuffPower_Armor_Blunt>0.064</StuffPower_Armor_Blunt>
+						</value>
+					</match>
 				</li>
 
-				<li Class="PatchOperationAdd">
-					<xpath>/Defs/ThingDef[defName="Leather_Night"]/statBases</xpath>
-					<value>
-						<StuffPower_Armor_Blunt>0.064</StuffPower_Armor_Blunt>
-					</value>
-				</li>
 			</operations>
 		</match>
 	</Operation>
