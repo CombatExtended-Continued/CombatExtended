@@ -46,6 +46,8 @@ Mod |
 [RH] Faction: VOID	|
 [RH] Faction: War Mongrels	|
 [SS]Maid Project	|
+[SYR] Harpy	|
+[SYR] Naga	|
 [SYR] Thrumkin	|
 A Dog Said...	|
 Alpha Animals |
