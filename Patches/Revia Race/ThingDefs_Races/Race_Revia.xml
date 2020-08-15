@@ -3,7 +3,9 @@
   <Operation Class="PatchOperationSequence">
 	<operations>
 	  <li Class="PatchOperationFindMod">		
-		<mods><li>Revia Race</li></mods>		
+		<mods>
+      <li>Revia Race</li>
+    </mods>		
 		<match Class="PatchOperationSequence">
 		<operations>
 			
@@ -38,6 +40,22 @@
 					<compClass>CombatExtended.CompPawnGizmo</compClass>
 					</li>
 					<li Class="CombatExtended.CompProperties_Suppressable" />
+				</value>
+			</li>
+
+      <!-- It's technically not necessary to patch ReviaRaceBase because it's not actually used (I'm not sure if that's intentional or not),
+           but patching it will prevent issues in the event that it ever is. -->
+			<li Class="PatchOperationReplace">
+				<xpath>/Defs/ThingDef[@Name="ReviaRaceBase"]/inspectorTabs/li[.="ITab_Pawn_Gear"]</xpath>
+				<value>
+					<li>CombatExtended.ITab_Inventory</li>
+				</value>
+			</li>
+
+			<li Class="PatchOperationAdd">
+				<xpath>/Defs/ThingDef[@Name="ReviaRaceBase"]/comps</xpath>
+				<value>
+					<li Class="CombatExtended.CompProperties_Inventory" />
 				</value>
 			</li>
 
