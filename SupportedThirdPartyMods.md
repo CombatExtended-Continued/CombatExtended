@@ -149,6 +149,7 @@ Vanilla Factions Expanded - Medieval	|
 Vanilla Factions Expanded - Settlers	|
 Vanilla Vehicles Expanded	|
 Vanilla Weapons Expanded |
+Vanilla Weapons Expanded - Greandes |
 Vanilla Weapons Expanded Quickdraw	|
 Vanilla-Friendly Animal Surgery	|
 Vanilla-Friendly Weapon Expansion	|
