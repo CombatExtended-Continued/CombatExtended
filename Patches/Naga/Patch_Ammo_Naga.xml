@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+	<Operation Class="PatchOperationFindMod">
+			<mods>
+				<li>[SYR] Naga</li>
+			</mods>
+		<match Class="PatchOperationSequence">
+		<operations>
+
+
+
+				<li Class="PatchOperationAdd">
+					<xpath>Defs</xpath>
+					<value>
+
+						<!-- ========== 6x18mm Charged for Naga SMG ========== -->
+
+						<CombatExtended.AmmoSetDef>
+							<defName>AmmoSet_6x18mmCharged_NagaSMG</defName>
+							<label>6x18mm Charged</label>
+							<ammoTypes>
+								<Ammo_6x18mmCharged>Bullet_6x18mmCharged_NagaSMG</Ammo_6x18mmCharged>
+							</ammoTypes>
+						</CombatExtended.AmmoSetDef>
+
+						<ThingDef Class="CombatExtended.AmmoDef" ParentName="Base6x18mmChargedBullet">
+							<defName>Bullet_6x18mmCharged_NagaSMG</defName>
+							<label>6x18mm Charged bullet</label>
+							<graphicData>
+								<texPath>Things/Weapon/Bullet_Plasma</texPath>
+								<graphicClass>Graphic_Single</graphicClass>
+								<shaderType>TransparentPostLight</shaderType>
+							</graphicData>
+							<projectile Class="CombatExtended.ProjectilePropertiesCE">
+								<damageAmountBase>10</damageAmountBase>
+								<secondaryDamage>
+									<li>
+										<def>Bomb_Secondary</def>
+										<amount>3</amount>
+									</li>
+								</secondaryDamage>
+								<armorPenetrationSharp>8</armorPenetrationSharp>
+								<armorPenetrationBlunt>14.4</armorPenetrationBlunt>
+							</projectile>
+						</ThingDef>
+
+						<!-- ========== 12 Gauge Charged for Naga Shotgun ========== -->
+
+						<CombatExtended.AmmoSetDef>
+							<defName>AmmoSet_12GaugeCharged_NagaShotgun</defName>
+							<label>12 Gauge Charged</label>
+							<ammoTypes>
+								<Ammo_12GaugeCharged>Bullet_12GaugeCharged_NagaShotgun</Ammo_12GaugeCharged>
+							</ammoTypes>
+						</CombatExtended.AmmoSetDef>
+
+						<ThingDef Class="CombatExtended.AmmoDef" ParentName="Base12GaugeChargedBullet">
+							<defName>Bullet_12GaugeCharged_NagaShotgun</defName>
+							<label>charge shot pellet</label>
+							<graphicData>
+								<texPath>Things/Weapon/Bullet_PlasmaBlast</texPath>
+								<graphicClass>Graphic_Single</graphicClass>
+								<shaderType>TransparentPostLight</shaderType>
+							</graphicData>
+							<projectile Class="CombatExtended.ProjectilePropertiesCE">
+								<damageAmountBase>15</damageAmountBase>
+								<secondaryDamage>
+									<li>
+										<def>Bomb_Secondary</def>
+										<amount>5</amount>
+									</li>
+								</secondaryDamage>
+								<armorPenetrationSharp>8</armorPenetrationSharp>      
+								<armorPenetrationBlunt>32.4</armorPenetrationBlunt>
+							</projectile>
+						</ThingDef>
+
+						<!-- ========== 5x35mm Charged for Naga Rifle ========== -->
+
+						<CombatExtended.AmmoSetDef>
+							<defName>AmmoSet_5x35mmCharged_NagaRifle</defName>
+							<label>5x35mm Charged</label>
+							<ammoTypes>
+								<Ammo_5x35mmCharged>Bullet_5x35mmCharged_NagaRifle</Ammo_5x35mmCharged>
+							</ammoTypes>
+						</CombatExtended.AmmoSetDef>
+						
+						<!-- Workaround for conditionally-patched projectiles: use an existing abstract class from the generic ammo library (In this case, Base8x35mmChargedBullet) -->
+						<ThingDef Class="CombatExtended.AmmoDef" ParentName="Base8x35mmChargedBullet">
+							<defName>Bullet_5x35mmCharged_NagaRifle</defName>
+							<label>5x35mm Charged bullet</label>
+							<graphicData>
+								<texPath>Things/Weapon/Bullet_Plasma</texPath>
+								<graphicClass>Graphic_Single</graphicClass>
+								<shaderType>TransparentPostLight</shaderType>
+							</graphicData>
+							<projectile Class="CombatExtended.ProjectilePropertiesCE">
+								<damageDef>Bullet</damageDef>
+								<damageAmountBase>11</damageAmountBase>
+								<speed>200</speed>
+								<secondaryDamage>
+									<li>
+										<def>Bomb_Secondary</def>
+										<amount>2</amount>
+									</li>
+								</secondaryDamage>
+								<armorPenetrationSharp>30</armorPenetrationSharp>
+								<armorPenetrationBlunt>40</armorPenetrationBlunt>
+							</projectile>
+						</ThingDef>
+						
+						<!-- ========== 8x35mm Charged for Naga Sniper Rifle ========== -->
+
+						<CombatExtended.AmmoSetDef>
+							<defName>AmmoSet_8x35mmCharged_NagaSniper</defName>
+							<label>8x35mm Charged</label>
+							<ammoTypes>
+								<Ammo_8x35mmCharged>Bullet_8x35mmCharged_NagaSniper</Ammo_8x35mmCharged>
+							</ammoTypes>
+						</CombatExtended.AmmoSetDef>
+
+						<ThingDef Class="CombatExtended.AmmoDef" ParentName="Base8x35mmChargedBullet">
+							<defName>Bullet_8x35mmCharged_NagaSniper</defName>
+							<label>8x35mm Charged bullet</label>
+							<graphicData>
+								<texPath>Things/Weapon/Bullet_Plasma</texPath>
+								<graphicClass>Graphic_Single</graphicClass>
+								<shaderType>TransparentPostLight</shaderType>
+							</graphicData>
+							<projectile Class="CombatExtended.ProjectilePropertiesCE">
+								<damageAmountBase>19</damageAmountBase>
+								<secondaryDamage>
+									<li>
+										<def>Bomb_Secondary</def>
+										<amount>6</amount>
+									</li>
+								</secondaryDamage>
+								<armorPenetrationSharp>14</armorPenetrationSharp>
+								<armorPenetrationBlunt>57.6</armorPenetrationBlunt>
+							</projectile>
+						</ThingDef>
+						
+					</value>
+				</li>
+
+		</operations>
+		</match>
+	</Operation>
+</Patch>

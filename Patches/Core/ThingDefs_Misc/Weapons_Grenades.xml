@@ -22,6 +22,13 @@
 		</value>
 	</Operation>
 
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[@Name="BaseFragGrenadeProjectile"]/thingClass</xpath>
+		<value>
+			<thingClass>CombatExtended.ProjectileCE_Explosive</thingClass>
+		</value>
+	</Operation>
+
 	<Operation Class="PatchOperationAttributeSet">
 		<xpath>Defs/ThingDef[@Name="BaseGrenadeProjectile"]/projectile</xpath>
 		<attribute>Class</attribute>
@@ -46,22 +53,25 @@
 
 	<!-- Projectile -->
 
-	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/ThingDef[defName="Proj_GrenadeFrag"]/thingClass</xpath>
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="Proj_GrenadeFrag"]</xpath>
 		<value>
 			<thingClass>CombatExtended.ProjectileCE_Explosive</thingClass>
 		</value>
 	</Operation>
 
-	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/ThingDef[defName="Proj_GrenadeFrag"]/graphicData/texPath</xpath>
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="Proj_GrenadeFrag"]</xpath>
 		<value>
-			<texPath>Things/Projectile/Grenades/Frag</texPath>
+			<graphicData>
+                <texPath>Things/Projectile/Grenades/Frag</texPath>
+                <graphicClass>Graphic_Single</graphicClass>
+            </graphicData>
 		</value>
 	</Operation>
 
-	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/ThingDef[defName="Proj_GrenadeFrag"]/projectile</xpath>
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="Proj_GrenadeFrag"]</xpath>
 		<value>
 			<projectile Class="CombatExtended.ProjectilePropertiesCE">
 				<explosionRadius>1.5</explosionRadius>
@@ -219,8 +229,8 @@
 		</value>
 	</Operation>
 
-	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/ThingDef[defName="Proj_GrenadeMolotov"]/projectile</xpath>
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="Proj_GrenadeMolotov"]</xpath>
 		<value>
 			<projectile Class="CombatExtended.ProjectilePropertiesCE">
 				<explosionRadius>0.5</explosionRadius>
