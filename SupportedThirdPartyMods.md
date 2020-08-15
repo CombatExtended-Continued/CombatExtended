@@ -45,7 +45,7 @@ Mod |
 [RH] Faction: Umbra Company	|
 [RH] Faction: VOID	|
 [RH] Faction: War Mongrels	|
-[SS]Maid Project	|
+[SS] Maid Project	|
 [SYR] Harpy	|
 [SYR] Naga	|
 [SYR] Thrumkin	|
