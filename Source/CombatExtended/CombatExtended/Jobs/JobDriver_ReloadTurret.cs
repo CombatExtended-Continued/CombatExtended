@@ -24,7 +24,9 @@ namespace CombatExtended
             get
             {
                 if (_compReloader == null && turret != null)
+                {
                     _compReloader = turret.CompAmmo;
+                }
                 return _compReloader;
             }
         }
@@ -166,7 +168,7 @@ namespace CombatExtended
                 //    pawn.carryTracker.TryStartCarry(newAmmo, Mathf.Min(newAmmo.stackCount, compReloader.Props.magazineSize - ammo.stackCount));
                 //}
                 AmmoDef currentAmmo = compReloader.CurrentAmmo;
-                if (currentAmmo != ammo.def)    //Turrets are reloaded without unloading the mag first (if using same ammo type), to support very high capacity magazines
+                if (currentAmmo != ammo?.def)    //Turrets are reloaded without unloading the mag first (if using same ammo type), to support very high capacity magazines
                 {
                     compReloader.TryUnload(out Thing newAmmo);
                 }
