@@ -15,21 +15,7 @@ Mod |
 [CP] Spec Ops - The Line	|
 [CP] The DOOM Kit - Classic	|
 [JDS] The Forge - NCR Armory	|
-[O21] Elves	|
-[O21] Elves - Faction Addon	|
-[O21] Gith |
-[O21] Goblins	|
-[O21] Goblins - Faction Addon	|
-[O21] Half-Orcs	|
-[O21] Hobgoblins	|
-[O21] Illithids	|
-[O21] Kobolds	|
-[O21] Orcs	|
-[O21] Orcs - Faction Addon	|
-[O21] Tieflings	|
-[O21] Tieflings - Faction Addon	|
-[O21] Warforged	|
-[O21] Warforged - Faction Addon	|
+[O21] Forgotten Realms |
 [Ods] SCP Outfits Only Edition	|
 [Pratt] WWII Weapons Pack (Vanilla)	|
 [RH] Faction: Alliegence	|
