@@ -1,0 +1,395 @@
+<?xml version="1.0" encoding="utf-8" ?>
+
+<Patch>
+	<Operation Class="PatchOperationFindMod">
+    <mods>
+		<li>[JDS] The Forge - NCR Armory</li>
+    </mods>
+		<match Class="PatchOperationSequence">
+		 <operations>
+
+		  <!-- ========== Tools ========== -->
+		  <li Class="PatchOperationRemove">
+			<xpath>Defs/ThingDef[@Name="JDSNCRGunBase"]/tools</xpath>
+		  </li>
+
+		  <li Class="PatchOperationAdd">
+			<xpath>Defs/ThingDef[defName="JDS_NCR_Weapon_Hunting_Revolver" or defName="JDS_NCR_Weapon_N99_10mm_pistol"]</xpath>
+			<value>
+			  <tools>
+				<li Class="CombatExtended.ToolCE">
+				  <label>grip</label>
+				  <capacities>
+					<li>Blunt</li>
+				  </capacities>
+				  <power>2</power>
+				  <cooldownTime>1.54</cooldownTime>
+				  <chanceFactor>1.5</chanceFactor>
+				  <armorPenetrationBlunt>0.555</armorPenetrationBlunt>
+				  <linkedBodyPartsGroup>Grip</linkedBodyPartsGroup>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+				  <label>muzzle</label>
+				  <capacities>
+					<li>Poke</li>
+				  </capacities>
+				  <power>2</power>
+				  <cooldownTime>1.54</cooldownTime>
+				  <armorPenetrationBlunt>0.555</armorPenetrationBlunt>
+				  <linkedBodyPartsGroup>Muzzle</linkedBodyPartsGroup>
+				</li>
+			  </tools>
+			</value>
+		  </li>
+
+		  <li Class="PatchOperationAdd">
+			<xpath>Defs/ThingDef[defName="JDS_NCR_Weapon_Anti-Material_Rifle" or
+			defName="SDKS-501 Rifle" or
+			defName="JDS_NCR_Weapon_ServiceRifle" or
+			defName="JDS_NCR_Weapon_Lever_Action_Carbine" or
+			defName="JDS_NCR_Weapon_9mm_SMG"]</xpath>
+			<value>
+			  <tools>
+				<li Class="CombatExtended.ToolCE">
+				  <label>stock</label>
+				  <capacities>
+					<li>Blunt</li>
+				  </capacities>
+				  <power>8</power>
+				  <cooldownTime>1.55</cooldownTime>
+				  <chanceFactor>1.5</chanceFactor>
+				  <armorPenetrationBlunt>2.755</armorPenetrationBlunt>
+				  <linkedBodyPartsGroup>Stock</linkedBodyPartsGroup>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+				  <label>barrel</label>
+				  <capacities>
+					<li>Blunt</li>
+				  </capacities>
+				  <power>5</power>
+				  <cooldownTime>2.02</cooldownTime>
+				  <armorPenetrationBlunt>1.630</armorPenetrationBlunt>
+				  <linkedBodyPartsGroup>Barrel</linkedBodyPartsGroup>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+				  <label>muzzle</label>
+				  <capacities>
+					<li>Poke</li>
+				  </capacities>
+				  <power>8</power>
+				  <cooldownTime>1.55</cooldownTime>
+				  <armorPenetrationBlunt>2.755</armorPenetrationBlunt>
+				  <linkedBodyPartsGroup>Muzzle</linkedBodyPartsGroup>
+				</li>
+			  </tools>
+			</value>
+		  </li>
+
+		  <!-- ========== N99 10mm Pistol ========== -->
+
+		<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+			<defName>JDS_NCR_Weapon_N99_10mm_pistol</defName>
+			<statBases>
+				<Mass>1.36</Mass>
+				<RangedWeapon_Cooldown>0.39</RangedWeapon_Cooldown>
+				<SightsEfficiency>0.7</SightsEfficiency>
+				<ShotSpread>0.17</ShotSpread>
+				<SwayFactor>1.07</SwayFactor>
+				<Bulk>2.10</Bulk>
+				<WorkToMake>4500</WorkToMake>
+			</statBases>
+			<costList>
+				<Steel>110</Steel>
+				<ComponentIndustrial>1</ComponentIndustrial>
+			</costList>
+			<Properties>
+				<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+				<hasStandardCommand>true</hasStandardCommand>
+				<defaultProjectile>Bullet_10mmAuto_FMJ</defaultProjectile>
+				<warmupTime>0.6</warmupTime>
+				<range>12</range>
+				<soundCast>Shot_Autopistol</soundCast>
+				<soundCastTail>GunTail_Light</soundCastTail>
+				<muzzleFlashScale>9</muzzleFlashScale>
+			</Properties>
+			<AmmoUser>
+				<magazineSize>12</magazineSize>
+				<reloadTime>4</reloadTime>
+				<ammoSet>AmmoSet_10mmAuto</ammoSet>
+			</AmmoUser>
+			<FireModes>
+				<aiUseBurstMode>FALSE</aiUseBurstMode>
+			</FireModes>
+			<weaponTags>
+				<li>NCRArmory</li>
+				<li>JDS_NCRArmory_N99_10mm_pistol</li>	
+				<li>CE_OneHandedWeapon</li>
+			</weaponTags>
+			<researchPrerequisite>JDSENCRArmoryCraft</researchPrerequisite>
+		</li>
+
+		  <!-- ========== Hunting Revolver ========== -->
+
+		<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+			<defName>JDS_NCR_Weapon_Hunting_Revolver</defName>
+			<statBases>
+				<Mass>1.80</Mass>
+				<RangedWeapon_Cooldown>0.41</RangedWeapon_Cooldown>
+				<SightsEfficiency>0.7</SightsEfficiency>
+				<ShotSpread>0.15</ShotSpread>
+				<SwayFactor>0.50</SwayFactor>
+				<Bulk>3.00</Bulk>
+				<WorkToMake>6000</WorkToMake>
+			</statBases>
+			<costList>
+				<Steel>100</Steel>
+				<ComponentIndustrial>1</ComponentIndustrial>
+			</costList>
+			<Properties>
+				<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+				<hasStandardCommand>true</hasStandardCommand>
+				<defaultProjectile>Bullet_4570Gov_FMJ</defaultProjectile>
+				<warmupTime>0.723</warmupTime>
+				<range>17</range>
+				<soundCast>Shot_Revolver</soundCast>
+				<soundCastTail>GunTail_Light</soundCastTail>
+				<muzzleFlashScale>9</muzzleFlashScale>
+			</Properties>
+			<AmmoUser>
+				<magazineSize>5</magazineSize>
+				<reloadTime>3.5</reloadTime>
+				<ammoSet>AmmoSet_4570Gov</ammoSet>
+			</AmmoUser>
+			<FireModes>
+				<aiUseBurstMode>FALSE</aiUseBurstMode>
+			</FireModes>
+			<weaponTags>
+				<li>NCRArmory</li>
+				<li>JDS_NCRArmory_Hunting_Revolver</li>	
+			</weaponTags>
+			<researchPrerequisite>JDSENCRArmoryCraft</researchPrerequisite>
+		</li>
+
+			<!-- ========== 9mm SMG ========== -->
+
+		<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+			<defName>JDS_NCR_Weapon_9mm_SMG</defName>
+			<statBases>
+				<Mass>3.70</Mass>
+				<RangedWeapon_Cooldown>0.36</RangedWeapon_Cooldown>
+				<SightsEfficiency>1.00</SightsEfficiency>
+				<ShotSpread>0.16</ShotSpread>
+				<SwayFactor>1.11</SwayFactor>
+				<Bulk>5.56</Bulk>
+				<WorkToMake>5000</WorkToMake>
+			</statBases>
+			<costList>
+				<Steel>120</Steel>
+				<ComponentIndustrial>2</ComponentIndustrial>
+			</costList>
+			<Properties>
+				<recoilAmount>1.20</recoilAmount>
+				<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+				<hasStandardCommand>true</hasStandardCommand>
+				<defaultProjectile>Bullet_9x19mmPara_FMJ</defaultProjectile>
+				<warmupTime>0.6</warmupTime>
+				<range>20</range>
+				<burstShotCount>6</burstShotCount>
+				<ticksBetweenBurstShots>8</ticksBetweenBurstShots>
+				<soundCast>Shot_HeavySMG</soundCast>
+				<soundCastTail>GunTail_Heavy</soundCastTail>
+				<muzzleFlashScale>9</muzzleFlashScale>
+			</Properties>
+			<AmmoUser>
+				<magazineSize>30</magazineSize>
+				<reloadTime>4</reloadTime>
+				<ammoSet>AmmoSet_9x19mmPara</ammoSet>
+			</AmmoUser>
+			<FireModes>
+				<aiUseBurstMode>FALSE</aiUseBurstMode>
+				<aiAimMode>Snapshot</aiAimMode>
+				<aimedBurstShotCount>3</aimedBurstShotCount>
+			</FireModes>
+			<weaponTags>
+				<li>NCRArmory</li>
+				<li>JDS_NCRArmory_9mm_SMG</li>		
+			</weaponTags>
+			<researchPrerequisite>JDSENCRArmoryCraft</researchPrerequisite>						
+		</li>
+
+			<!-- ========== Brush Gun ========== -->
+
+		<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+			<defName>JDS_NCR_Weapon_Lever_Action_Carbine</defName>
+			<statBases>
+				<WorkToMake>10000</WorkToMake>
+				<Mass>4.10</Mass>
+				<Bulk>11.30</Bulk>
+				<SwayFactor>1.54</SwayFactor>
+				<ShotSpread>0.06</ShotSpread>
+				<SightsEfficiency>1</SightsEfficiency>
+				<RangedWeapon_Cooldown>0.98</RangedWeapon_Cooldown>
+			</statBases>
+			<costList>
+				<Steel>200</Steel>
+				<ComponentIndustrial>1</ComponentIndustrial>
+			</costList>
+			<Properties>
+				<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+				<hasStandardCommand>True</hasStandardCommand>
+				<defaultProjectile>Bullet_4570Gov_FMJ</defaultProjectile>
+				<warmupTime>1.1</warmupTime>
+				<range>48</range>
+				<soundCast>Shot_BoltActionRifle</soundCast>
+				<soundCastTail>GunTail_Heavy</soundCastTail>
+				<muzzleFlashScale>9</muzzleFlashScale>
+			</Properties>
+			<AmmoUser>
+				<magazineSize>6</magazineSize>
+				<reloadTime>0.85</reloadTime>
+				<ammoSet>AmmoSet_4570Gov</ammoSet>
+			</AmmoUser>
+			<FireModes>
+				<aiAimMode>AimedShot</aiAimMode>
+			</FireModes>
+			<weaponTags>
+				<li>NCRArmory</li>
+				<li>JDS_NCRArmory_Lever_Action_Carbine</li>		
+			</weaponTags>			
+			<researchPrerequisite>JDSENCRArmoryCraft</researchPrerequisite>
+		</li>
+
+			<!-- ========== NCR Service Rifle ========== -->
+
+		<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+			<defName>JDS_NCR_Weapon_ServiceRifle</defName>
+			<statBases>
+				<Mass>3.26</Mass>
+				<RangedWeapon_Cooldown>0.36</RangedWeapon_Cooldown>
+				<SightsEfficiency>1</SightsEfficiency>
+				<ShotSpread>0.07</ShotSpread>
+				<SwayFactor>1.33</SwayFactor>
+				<Bulk>10.03</Bulk>
+				<WorkToMake>11250</WorkToMake>
+			</statBases>
+			<costList>
+				<Steel>250</Steel>
+				<ComponentIndustrial>2</ComponentIndustrial>
+			</costList>
+			<Properties>
+				<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+				<hasStandardCommand>true</hasStandardCommand>
+				<defaultProjectile>Bullet_556x45mmNATO_FMJ</defaultProjectile>
+				<warmupTime>1.1</warmupTime>
+				<range>55</range>
+				<soundCast>Shot_AssaultRifle</soundCast>
+				<soundCastTail>GunTail_Medium</soundCastTail>
+				<muzzleFlashScale>9</muzzleFlashScale>
+			</Properties>
+			<AmmoUser>
+				<magazineSize>20</magazineSize>
+				<reloadTime>4</reloadTime>
+				<ammoSet>AmmoSet_556x45mmNATO</ammoSet>
+			</AmmoUser>
+			<FireModes>
+				<aiAimMode>AimedShot</aiAimMode>
+			</FireModes>
+			<weaponTags>
+				<li>NCRArmory</li>
+				<li>JDS_NCRArmory_ServiceRifle</li>	
+			</weaponTags>
+			<researchPrerequisite>JDSENCRArmoryCraft</researchPrerequisite>
+		</li>
+
+			<!-- ========== Sniper Rifle ========== -->
+
+		<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+			<defName>JDS_NCR_Weapon_SDKS-501_Rifle</defName>
+			<statBases>
+				<Mass>7.30</Mass>
+				<RangedWeapon_Cooldown>1.36</RangedWeapon_Cooldown>
+				<SightsEfficiency>2.0</SightsEfficiency>
+				<ShotSpread>0.05</ShotSpread>
+				<SwayFactor>1.35</SwayFactor>
+				<Bulk>11.92</Bulk>
+				<WorkToMake>11000</WorkToMake>
+			</statBases>
+			<costList>
+				<Steel>300</Steel>
+				<Plasteel>80</Plasteel>		
+				<ComponentIndustrial>3</ComponentIndustrial>
+			</costList>
+			<Properties>
+				<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+				<hasStandardCommand>true</hasStandardCommand>
+				<defaultProjectile>Bullet_762x51mmNATO_FMJ</defaultProjectile>
+				<warmupTime>1.8</warmupTime>
+				<range>75</range>
+				<soundCast>Shot_SniperRifle</soundCast>
+				<soundCastTail>GunTail_Heavy</soundCastTail>
+				<muzzleFlashScale>9</muzzleFlashScale>
+			</Properties>
+			<AmmoUser>
+				<magazineSize>5</magazineSize>
+				<reloadTime>4</reloadTime>
+				<ammoSet>AmmoSet_762x51mmNATO</ammoSet>
+			</AmmoUser>
+			<FireModes>
+				<aiAimMode>AimedShot</aiAimMode>
+			</FireModes>
+			<weaponTags>
+				<li>NCRArmory</li>
+				<li>JDS_NCRArmory_SDKS-501_Rifle</li>	
+			</weaponTags>
+			<researchPrerequisite>JDSENCRArmoryCraft</researchPrerequisite>
+			<AllowWithRunAndGun>false</AllowWithRunAndGun>
+		</li>
+
+			<!-- ========== Anti-Materiel Rifle ========== -->
+
+		<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+			<defName>JDS_NCR_Weapon_Anti-Material_Rifle</defName>
+			<statBases>
+				<Mass>13.80</Mass>
+				<RangedWeapon_Cooldown>1.38</RangedWeapon_Cooldown>
+				<SightsEfficiency>2.6</SightsEfficiency>
+				<ShotSpread>0.03</ShotSpread>
+				<SwayFactor>2.00</SwayFactor>
+				<Bulk>14.80</Bulk>
+				<WorkToMake>12000</WorkToMake>
+			</statBases>
+			<costList>
+				<Steel>320</Steel>
+				<Plasteel>120</Plasteel>
+				<ComponentIndustrial>3</ComponentIndustrial>
+			</costList>
+			<Properties>
+				<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+				<hasStandardCommand>true</hasStandardCommand>
+				<defaultProjectile>Bullet_50BMG_FMJ</defaultProjectile>
+				<warmupTime>3.3</warmupTime>
+				<range>86</range>
+				<soundCast>Shot_SniperRifle</soundCast>
+				<soundCastTail>GunTail_Heavy</soundCastTail>
+				<muzzleFlashScale>9</muzzleFlashScale>
+			</Properties>
+			<AmmoUser>
+				<magazineSize>8</magazineSize>
+				<reloadTime>4</reloadTime>
+				<ammoSet>AmmoSet_50BMG</ammoSet>
+			</AmmoUser>
+			<FireModes>
+				<aiAimMode>AimedShot</aiAimMode>
+			</FireModes>
+			<weaponTags>
+				<li>NCRArmory</li>
+				<li>JDS_NCRArmory_Anti-Material_Rifle</li>		
+			</weaponTags>
+			<researchPrerequisite>JDSENCRArmoryCraft</researchPrerequisite>
+			<AllowWithRunAndGun>false</AllowWithRunAndGun>
+		</li>
+
+			</operations>
+			</match>
+		</Operation>
+	</Patch>

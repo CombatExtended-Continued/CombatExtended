@@ -21,7 +21,7 @@ namespace CombatExtended.HarmonyCE
     static class FloatMenuMakerMap_PatchKnowledge
     {
 
-        const string ClassNamePart = "DisplayClass5";   //1.0: "AddHumanLikeOrders" to target <AddHumanLikeOrders>c__AnonStoreyB
+        const string ClassNamePart = "DisplayClass8";   //1.0: "AddHumanLikeOrders" to target <AddHumanLikeOrders>c__AnonStoreyB
         const string MethodNamePart = "g__Equip";       //1.0: "m__" to target <>m__0()
 
         // Target the class containing several KnowledgeDemonstrated, MakeStaticMote, Mote_FeedbackEquip ..

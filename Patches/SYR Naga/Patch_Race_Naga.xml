@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+	<Operation Class="PatchOperationFindMod">
+			<mods>
+				<li>[SYR] Naga</li>
+			</mods>
+		<match Class="PatchOperationSequence">
+		<operations>
+
+		<li Class="PatchOperationSequence">
+		<success>Always</success>
+		<operations>
+			<li Class="PatchOperationTest">
+			<xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="Naga"]/comps</xpath>
+			<success>Invert</success>
+			</li>
+			<li Class="PatchOperationAdd">
+			<xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="Naga"]</xpath>
+			<value>
+				<comps />
+			</value>
+			</li>
+		</operations>
+		</li>
+		
+		<li Class="PatchOperationAddModExtension">
+			<xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="Naga"]</xpath>
+			<value>
+				<li Class="CombatExtended.RacePropertiesExtensionCE">
+					<bodyShape>Humanoid</bodyShape>
+				</li>
+			</value>
+		</li>
+
+		<li Class="PatchOperationReplace">
+		 <xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="Naga"]/statBases/Mass</xpath>
+			  <!-- Nagas are too light in the original mod, only 80kg for a 5.5m THICC snake -->
+			  <value>
+				<Mass>100</Mass>
+			  </value>
+		</li>
+
+		<!-- Melee Tool & Basestats Defs -->
+		<li Class="PatchOperationAdd">
+		 <xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="Naga"]/statBases</xpath>
+			  <!-- Stats are calculated for a 5.5m long, 340kg Naga -->
+			  <value>
+			    <UnarmedDamage>0.9</UnarmedDamage>
+				<MeleeCritChance>1.23</MeleeCritChance>
+				<MeleeParryChance>1.21</MeleeParryChance>
+				<MeleeDodgeChance>1.24</MeleeDodgeChance>
+				<AimingAccuracy>1.1</AimingAccuracy>
+				<Suppressability>1.2</Suppressability>
+			  </value>
+		</li>
+		
+		<li Class="PatchOperationReplace">
+			<xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="Naga"]/tools</xpath> 
+			<value>
+				<tools>
+				  <li Class="CombatExtended.ToolCE">
+						<label>left fist</label>
+						<capacities>
+							<li>Blunt</li>
+						</capacities>
+						<power>1</power>
+						<cooldownTime>1.26</cooldownTime>
+						<linkedBodyPartsGroup>LeftHand</linkedBodyPartsGroup>
+						<chanceFactor>0.25</chanceFactor>
+						<armorPenetrationBlunt>0.25</armorPenetrationBlunt>
+
+				  </li>
+				  <li Class="CombatExtended.ToolCE">
+						<label>right fist</label>
+						<capacities>
+							<li>Blunt</li>
+						</capacities>
+						<power>1</power>
+						<cooldownTime>1.26</cooldownTime>
+						<linkedBodyPartsGroup>RightHand</linkedBodyPartsGroup>
+						<chanceFactor>0.25</chanceFactor>
+						<armorPenetrationBlunt>0.25</armorPenetrationBlunt>
+				   </li>
+					<li Class="CombatExtended.ToolCE">
+						<label>fangs</label>
+						<capacities>
+							<li>ToxicBite</li>
+						</capacities>
+						<power>5</power>
+						<cooldownTime>1.11</cooldownTime>
+						<linkedBodyPartsGroup>Fangs</linkedBodyPartsGroup>
+						<chanceFactor>1</chanceFactor>
+						<armorPenetrationSharp>1.5</armorPenetrationSharp>
+						<armorPenetrationBlunt>0.15</armorPenetrationBlunt>
+				  </li>
+					<li Class="CombatExtended.ToolCE">
+						<label>tail</label>
+						<capacities>
+							<li>Blunt</li>
+						</capacities>
+						<power>15</power>
+						<cooldownTime>3.17</cooldownTime>
+						<linkedBodyPartsGroup>TailAttackTool</linkedBodyPartsGroup>
+						<ensureLinkedBodyPartsGroupAlwaysUsable>true</ensureLinkedBodyPartsGroupAlwaysUsable>
+						<chanceFactor>0.05</chanceFactor>
+						<armorPenetrationBlunt>0.25</armorPenetrationBlunt>
+				  </li>					  
+				</tools>
+			</value>
+		</li>
+
+		<li Class="PatchOperationAdd">
+			<xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="Naga"]/comps</xpath>
+			<value>
+				<li>
+				  <compClass>CombatExtended.CompPawnGizmo</compClass>
+				</li>
+				<li Class="CombatExtended.CompProperties_Suppressable" />
+			</value>
+		</li>
+
+		</operations>
+		</match>
+	</Operation>
+</Patch>

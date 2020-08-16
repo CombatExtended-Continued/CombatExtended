@@ -866,6 +866,10 @@
     <xpath>Defs/ThingDef[defName="Gun_Minigun"]/recipeMaker</xpath>
   </Operation>
 
+  <Operation Class="PatchOperationRemove">
+    <xpath>Defs/ThingDef[defName="Gun_Minigun"]/weaponTags</xpath>
+  </Operation>
+
   <Operation Class="PatchOperationAdd">
     <xpath>Defs/ThingDef[defName="Gun_Minigun"]/statBases</xpath>
     <value>
@@ -1148,8 +1152,8 @@
     </weaponTags>
   </Operation>
 
-  <Operation Class="PatchOperationAdd">
-    <xpath>Defs/ThingDef[defName="Gun_ChargeBlasterHeavy"]</xpath>
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/ThingDef[@Name="Gun_ChargeBlasterHeavyBase"]/tools</xpath>
     <value>
       <tools>
         <li Class="CombatExtended.ToolCE">
