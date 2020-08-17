@@ -1,0 +1,57 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+
+<Patch>
+	<Operation Class="PatchOperationFindMod">
+	<mods>
+		<li>Vanilla Factions Expanded - Vikings</li>
+	</mods>
+		<match Class="PatchOperationSequence">
+		<operations>
+		
+		<li Class="PatchOperationAdd">
+			<xpath>/Defs/ThingDef[defName = "VFEV_Honey"]/statBases</xpath>
+			<value>
+				<Bulk>0.05</Bulk>
+			</value>
+		</li>
+
+		<li Class="PatchOperationAdd">
+			<xpath>/Defs/ThingDef[defName = "VFEV_LothurrAntler"]/statBases</xpath>
+			<value>
+				<Bulk>8</Bulk>
+			</value>
+		</li>
+
+		<li Class="PatchOperationReplace">
+			<xpath>/Defs/ThingDef[defName = "VFEV_LothurrAntler"]/tools</xpath>
+			<value>
+				<tools>
+				<li Class="CombatExtended.ToolCE">
+					<label>grip</label>
+					<capacities>
+					<li>Blunt</li>
+					</capacities>
+					<power>2</power>
+					<cooldownTime>1.54</cooldownTime>
+					<chanceFactor>1.5</chanceFactor>
+					<armorPenetrationBlunt>0.555</armorPenetrationBlunt>
+					<linkedBodyPartsGroup>Grip</linkedBodyPartsGroup>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>muzzle</label>
+					<capacities>
+					<li>Poke</li>
+					</capacities>
+					<power>2</power>
+					<cooldownTime>1.54</cooldownTime>
+					<armorPenetrationBlunt>0.555</armorPenetrationBlunt>
+					<linkedBodyPartsGroup>Muzzle</linkedBodyPartsGroup>
+				</li>
+				</tools>
+			</value>
+		</li>
+
+		</operations>
+		</match>
+	</Operation>
+</Patch>
