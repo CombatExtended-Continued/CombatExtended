@@ -1,0 +1,308 @@
+<?xml version="1.0" encoding="utf-8" ?>
+
+<Patch>
+
+	<Operation Class="PatchOperationFindMod">
+    <mods>
+		<li>Rimsenal - Federation Faction Pack</li>
+    </mods>
+		<match Class="PatchOperationSequence">
+		<operations>		
+
+		<li Class="PatchOperationAdd">
+		<xpath>Defs</xpath>
+		<value>
+
+	<!-- ==========  Harvester Cannon =========== -->
+	<ThingDef Class="CombatExtended.AmmoDef" Name="BaseHarvesterCannonBullet" ParentName="BaseBullet" Abstract="true">
+		<graphicData>
+			<texPath>Things/Projectile/Laser</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+		</graphicData>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageDef>Optic</damageDef>
+			<speed>100</speed>
+			<dropsCasings>false</dropsCasings>
+		</projectile>
+	</ThingDef>
+
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="BaseHarvesterCannonBullet">
+		<defName>Bullet_HarvesterCannon</defName>
+		<thingClass>CombatExtended.ProjectileCE_Explosive</thingClass>
+		<label>energy bolt</label>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageAmountBase>12</damageAmountBase>
+			<armorPenetrationBlunt>5</armorPenetrationBlunt>
+			<armorPenetrationSharp>14</armorPenetrationSharp>
+			<explosionRadius>1</explosionRadius>
+		</projectile>
+	</ThingDef>
+	
+	<!-- ==========  Plasma Bombard Projectile =========== -->
+	<ThingDef Name="BasePlasmaTurretBombardBullet" ParentName="BaseBullet" Abstract="true">
+		<graphicData>
+			<texPath>Things/Projectile/Plasma</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+			<shaderType>TransparentPostLight</shaderType>
+		</graphicData>
+		<thingClass>CombatExtended.ProjectileCE_Explosive</thingClass>			
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageDef>Plasma</damageDef>
+			<speed>80</speed>
+			<flyOverhead>true</flyOverhead>
+			<dropsCasings>false</dropsCasings>
+		</projectile>
+	</ThingDef>
+
+	<ThingDef ParentName="BasePlasmaTurretBombardBullet">
+		<defName>Bullet_PlasmaTurretBombard</defName>
+		<thingClass>CombatExtended.ProjectileCE_Explosive</thingClass>
+		<label>energy bolt</label>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageAmountBase>25</damageAmountBase>
+			<armorPenetrationBlunt>5</armorPenetrationBlunt>
+			<armorPenetrationSharp>14</armorPenetrationSharp>
+			<explosionRadius>2.5</explosionRadius>
+		</projectile>
+	</ThingDef>
+
+	<!-- ==========  Crucible Cannon Projectile =========== -->
+	
+	<ThingDef Name="BaseCrucibleCannonBullet" ParentName="BaseBullet" Abstract="true">
+		<graphicData>
+			<texPath>Things/Projectile/Mlaser</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+		</graphicData>
+		<thingClass>CombatExtended.ProjectileCE_Explosive</thingClass>			
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageDef>Optic</damageDef>
+			<speed>90</speed>
+			<dropsCasings>false</dropsCasings>
+		</projectile>
+	</ThingDef>
+
+	<ThingDef ParentName="BaseCrucibleCannonBullet">
+		<defName>Bullet_CrucibleCannon</defName>
+		<thingClass>CombatExtended.ProjectileCE_Explosive</thingClass>
+		<label>energy bolt</label>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageAmountBase>15</damageAmountBase>
+			<armorPenetrationBlunt>5</armorPenetrationBlunt>
+			<armorPenetrationSharp>20</armorPenetrationSharp>
+			<explosionRadius>1</explosionRadius>
+		</projectile>
+	</ThingDef>
+
+	<!-- ==========  Plasma Rifle Projectile =========== -->
+	
+	<ThingDef Name="BasePlasmaRifleBullet" ParentName="BaseBullet" Abstract="true">
+		<graphicData>
+			<texPath>Things/Projectile/Plasma</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+		</graphicData>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageDef>Plasma</damageDef>
+			<speed>40</speed>
+			<dropsCasings>false</dropsCasings>
+		</projectile>
+	</ThingDef>
+
+	<ThingDef ParentName="BasePlasmaRifleBullet">
+		<defName>Bullet_PlasmaRifle</defName>
+		<thingClass>CombatExtended.ProjectileCE_Explosive</thingClass>
+		<label>plasma sphere</label>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageAmountBase>15</damageAmountBase>
+			<armorPenetrationBlunt>5</armorPenetrationBlunt>
+			<armorPenetrationSharp>16</armorPenetrationSharp>
+			<explosionRadius>1.5</explosionRadius>
+		</projectile>
+	</ThingDef>
+	
+	<!-- ==========  Plasma Bomb Projectile =========== -->
+
+	<ThingDef ParentName="BasePlasmaCasterBullet">
+		<defName>Bullet_PlasmaBomb</defName>
+		<thingClass>CombatExtended.ProjectileCE_Explosive</thingClass>
+		<label>plasma bomb</label>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageAmountBase>100</damageAmountBase>
+			<armorPenetrationBase>0.5</armorPenetrationBase>
+			<explosionRadius>4</explosionRadius>
+			<explosionDelay>20</explosionDelay>
+		</projectile>
+	</ThingDef>
+	
+	<!-- ==========  EMP Bomb Projectile =========== -->
+	
+	<ThingDef Name="BaseEMPBombBullet" ParentName="BaseBullet" Abstract="true">
+		<graphicData>
+			<texPath>Things/A16/MechPlasma</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+		</graphicData>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageDef>EMP</damageDef>
+			<speed>30</speed>
+			<dropsCasings>false</dropsCasings>
+		</projectile>
+	</ThingDef>
+
+	<ThingDef ParentName="BaseEMPBombBullet">
+		<defName>Bullet_EMPBomb</defName>
+		<thingClass>CombatExtended.ProjectileCE_Explosive</thingClass>
+		<label>EMP</label>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageAmountBase>100</damageAmountBase>
+			<armorPenetrationBase>0.5</armorPenetrationBase>
+			<explosionRadius>5.5</explosionRadius>
+			<explosionDelay>20</explosionDelay>
+		</projectile>
+	</ThingDef>
+	
+	<!-- ==========  Auxiliary Pistol Projectile =========== -->
+
+	<ThingDef ParentName="BaseCrucibleRifleBullet">
+		<defName>Bullet_AuxiliaryPistol</defName>
+		<label>energy bolt</label>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageAmountBase>8</damageAmountBase>
+			<armorPenetrationBlunt>1.5</armorPenetrationBlunt>
+			<armorPenetrationSharp>8</armorPenetrationSharp>
+		</projectile>
+	</ThingDef>
+	
+	<!-- ==========  Makeshift Crucible Rifle Projectile =========== -->
+
+	<ThingDef ParentName="BaseCrucibleRifleBullet">
+		<defName>Bullet_MakeshiftCrucibleRifle</defName>
+		<label>energy bolt</label>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageAmountBase>13</damageAmountBase>
+			<armorPenetrationBlunt>2.5</armorPenetrationBlunt>
+			<armorPenetrationSharp>10</armorPenetrationSharp>
+		</projectile>
+	</ThingDef>
+
+	<!-- ==========  Crucible Rifle Projectile =========== -->
+	
+	<ThingDef Name="BaseCrucibleRifleBullet" ParentName="BaseBullet" Abstract="true">
+		<graphicData>
+			<texPath>Things/Projectile/Laser</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+		</graphicData>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageDef>Optic</damageDef>
+			<speed>80</speed>
+			<dropsCasings>false</dropsCasings>
+		</projectile>
+	</ThingDef>
+
+	<ThingDef ParentName="BaseCrucibleRifleBullet">
+		<defName>Bullet_CrucibleRifle</defName>
+		<label>energy bolt</label>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageAmountBase>12</damageAmountBase>
+			<armorPenetrationBlunt>3</armorPenetrationBlunt>
+			<armorPenetrationSharp>12</armorPenetrationSharp>
+		</projectile>
+	</ThingDef>
+	
+	<!-- ==========  Crucible Pistol Projectile =========== -->
+
+	<ThingDef ParentName="BaseCrucibleRifleBullet">
+		<defName>Bullet_CruciblePistol</defName>
+		<label>energy bolt</label>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageAmountBase>10</damageAmountBase>
+			<armorPenetrationBlunt>1.5</armorPenetrationBlunt>
+			<armorPenetrationSharp>10</armorPenetrationSharp>
+		</projectile>
+	</ThingDef>
+	
+	<!-- ==========  Heat Cannon Projectile =========== -->
+	
+	<ThingDef Name="BaseHeatCannonBullet" ParentName="BaseBullet" Abstract="true">
+		<graphicData>
+			<texPath>Things/Projectile/Pulse</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+			<shaderType>TransparentPostLight</shaderType>
+		</graphicData>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageDef>Flame</damageDef>
+			<speed>80</speed>
+			<dropsCasings>false</dropsCasings>
+		</projectile>
+	</ThingDef>
+
+	<ThingDef ParentName="BaseHeatCannonBullet">
+		<defName>Bullet_HeatCannon</defName>
+		<thingClass>CombatExtended.ProjectileCE_Explosive</thingClass>
+		<label>heat bolt</label>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageAmountBase>5</damageAmountBase>
+			<armorPenetrationBlunt>3.5</armorPenetrationBlunt>
+			<armorPenetrationSharp>9</armorPenetrationSharp>
+			<explosionRadius>0.5</explosionRadius>
+		</projectile>
+	</ThingDef>
+	
+	<!-- ==========  Crucible Precision Rifle Projectile =========== -->
+
+	<ThingDef ParentName="BaseCrucibleRifleBullet">
+		<defName>Bullet_CruciblePrecisionRifle</defName>
+		<label>energy bolt</label>			
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageAmountBase>20</damageAmountBase>
+			<armorPenetrationBlunt>1.5</armorPenetrationBlunt>
+			<armorPenetrationSharp>10</armorPenetrationSharp>
+		</projectile>
+	</ThingDef>
+	
+	<!-- ==========  Plasma Caster Projectile =========== -->
+	
+	<ThingDef Name="BasePlasmaCasterBullet" ParentName="BaseBullet" Abstract="true">
+		<graphicData>
+			<texPath>Things/Projectile/Flux</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+			<shaderType>TransparentPostLight</shaderType>
+		</graphicData>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageDef>Plasma</damageDef>
+			<speed>30</speed>
+			<dropsCasings>false</dropsCasings>
+		</projectile>
+	</ThingDef>
+
+	<ThingDef ParentName="BasePlasmaCasterBullet">
+		<defName>Bullet_PlasmaCaster</defName>
+		<thingClass>CombatExtended.ProjectileCE_Explosive</thingClass>
+		<label>plasma sphere</label>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageAmountBase>15</damageAmountBase>
+			<armorPenetrationBlunt>30</armorPenetrationBlunt>
+			<armorPenetrationSharp>8</armorPenetrationSharp>
+			<explosionRadius>2.5</explosionRadius>
+		</projectile>
+	</ThingDef>
+	
+	<!-- ==========  Crucible Carbine Projectile =========== -->
+	
+	<ThingDef ParentName="BaseCrucibleRifleBullet">
+		<defName>Bullet_CrucibleCarbine</defName>
+		<label>energy bolt</label>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageAmountBase>10</damageAmountBase>
+			<armorPenetrationBlunt>3.5</armorPenetrationBlunt>
+			<armorPenetrationSharp>9</armorPenetrationSharp>
+		</projectile>
+	</ThingDef>
+		
+
+		</value>
+		</li>
+
+		</operations>
+		</match>
+	</Operation>
+</Patch>
+			

@@ -1,0 +1,222 @@
+<?xml version="1.0" encoding="utf-8" ?>
+
+<Patch>
+	<Operation Class="PatchOperationFindMod">
+			<mods>
+				<li>Rimsenal - Feral Faction Pack</li>
+			</mods>
+		<match Class="PatchOperationSequence">
+		<operations>
+
+			<!-- Feral Glaive-->			
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="MeleeWeapon_FeralGlaive"]/tools</xpath>
+				<value>
+					<tools>
+					  <li Class="CombatExtended.ToolCE">
+						<label>shaft</label>
+						<capacities>
+						  <li>Blunt</li>
+						</capacities>
+						<power>6</power>
+						<cooldownTime>1.31</cooldownTime>
+						<armorPenetrationBlunt>2.025</armorPenetrationBlunt>
+						<linkedBodyPartsGroup>Shaft</linkedBodyPartsGroup>
+					  </li>
+					  <li Class="CombatExtended.ToolCE">
+						<label>edge</label>
+						<capacities>
+						  <li>Cut</li>
+						</capacities>
+						<power>47</power>
+						<cooldownTime>2.9</cooldownTime>
+						<chanceFactor>1.165</chanceFactor>
+						<armorPenetrationBlunt>8.1</armorPenetrationBlunt>
+						<armorPenetrationSharp>1.62</armorPenetrationSharp>
+						<linkedBodyPartsGroup>Edge</linkedBodyPartsGroup>
+					  </li>
+					  <li Class="CombatExtended.ToolCE">
+						<label>point</label>
+						<capacities>
+						  <li>Stab</li>
+						</capacities>
+						<power>40</power>
+						<cooldownTime>1.16</cooldownTime>
+						<chanceFactor>1.165</chanceFactor>
+						<armorPenetrationBlunt>2.025</armorPenetrationBlunt>
+						<armorPenetrationSharp>2.03</armorPenetrationSharp>
+						<linkedBodyPartsGroup>Point</linkedBodyPartsGroup>
+					  </li>						
+					</tools>
+				</value>
+			</li>
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName="MeleeWeapon_FeralGlaive"]/statBases</xpath>
+				<value>
+					<Bulk>12</Bulk>
+				</value>
+			</li>
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName="MeleeWeapon_FeralGlaive"]</xpath>
+				<value>
+					<modExtensions>
+					  <li Class="CombatExtended.GunDrawExtension">
+						<DrawSize>1.6,1.5</DrawSize>
+						<DrawOffset>0.35,0.30</DrawOffset>
+					  </li>
+					</modExtensions>
+				</value>
+			</li>			
+
+			<!-- Feral Knife -->			
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="MeleeWeapon_FeralCleaver"]/tools</xpath>
+				<value>
+					<tools>
+						<li Class="CombatExtended.ToolCE">
+						  <label>handle</label>
+						  <capacities>
+							<li>Blunt</li>
+						  </capacities>
+						  <power>3</power>
+						  <cooldownTime>1.89</cooldownTime>
+						  <armorPenetrationBlunt>0.65</armorPenetrationBlunt>
+						  <linkedBodyPartsGroup>Handle</linkedBodyPartsGroup>
+						</li>					
+						<li Class="CombatExtended.ToolCE">
+						  <label>edge</label>
+						  <capacities>
+							<li>Cut</li>
+						  </capacities>
+						  <power>15</power>
+						  <cooldownTime>1.6</cooldownTime>
+						  <chanceFactor>1.33</chanceFactor>
+						  <armorPenetrationBlunt>0.612</armorPenetrationBlunt>
+						  <armorPenetrationSharp>0.39</armorPenetrationSharp>
+						  <linkedBodyPartsGroup>Edge</linkedBodyPartsGroup>
+						</li>
+						<li Class="CombatExtended.ToolCE">
+						  <label>point</label>
+						  <capacities>
+							<li>Stab</li>
+						  </capacities>
+						  <power>17</power>
+						  <cooldownTime>1.44</cooldownTime>
+						  <chanceFactor>1.1</chanceFactor>
+						  <armorPenetrationBlunt>0.425</armorPenetrationBlunt>
+						  <armorPenetrationSharp>0.43</armorPenetrationSharp>
+						  <linkedBodyPartsGroup>Point</linkedBodyPartsGroup>
+						</li>		
+					</tools>
+				</value>
+			</li>
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName="MeleeWeapon_FeralCleaver"]/statBases</xpath>
+				<value>
+					<Bulk>4.5</Bulk>
+				</value>
+			</li>
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName="MeleeWeapon_FeralCleaver"]/weaponTags</xpath>
+				<value>
+					<li>CE_OneHandedWeapon</li>
+				</value>
+			</li>
+
+		<!--=== Mutant Weapons ===-->				
+			<!-- Carver Axes -->			
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="Carver"]/tools</xpath>
+				<value>
+					<tools>
+					  <li Class="CombatExtended.ToolCE">
+						<label>edge</label>
+						<capacities>
+						  <li>Cut</li>
+						</capacities>
+						<power>47</power>
+						<cooldownTime>2.9</cooldownTime>
+						<chanceFactor>1.165</chanceFactor>
+						<armorPenetrationBlunt>8.1</armorPenetrationBlunt>
+						<armorPenetrationSharp>1.62</armorPenetrationSharp>
+						<linkedBodyPartsGroup>Edge</linkedBodyPartsGroup>
+					  </li>
+					  <li Class="CombatExtended.ToolCE">
+						<label>point</label>
+						<capacities>
+						  <li>Stab</li>
+						</capacities>
+						<power>40</power>
+						<cooldownTime>1.16</cooldownTime>
+						<chanceFactor>1.165</chanceFactor>
+						<armorPenetrationBlunt>2.025</armorPenetrationBlunt>
+						<armorPenetrationSharp>2.03</armorPenetrationSharp>
+						<linkedBodyPartsGroup>Point</linkedBodyPartsGroup>
+					  </li>				
+					</tools>
+				</value>
+			</li>
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName="Carver"]/statBases</xpath>
+				<value>
+					<Bulk>12</Bulk>
+				</value>
+			</li>
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName="Carver"]/weaponTags</xpath>
+				<value>
+					<li>CE_OneHandedWeapon</li>
+				</value>
+			</li>
+
+			<!-- Sunderer -->			
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="Sunderer"]/tools</xpath>
+				<value>
+					<tools>
+					<li Class="CombatExtended.ToolCE">
+					  <label>shaft</label>
+					  <capacities>
+						<li>Blunt</li>
+					  </capacities>
+					  <power>7</power>
+					  <cooldownTime>1.1</cooldownTime>
+					  <armorPenetrationBlunt>2.45</armorPenetrationBlunt>
+					  <linkedBodyPartsGroup>Shaft</linkedBodyPartsGroup>
+					</li>
+					<li Class="CombatExtended.ToolCE">
+					  <label>point</label>
+					  <capacities>
+						<li>Poke</li>
+					  </capacities>
+					  <power>4</power>
+					  <cooldownTime>1.53</cooldownTime>
+					  <armorPenetrationBlunt>1.2</armorPenetrationBlunt>
+					  <linkedBodyPartsGroup>Shaft</linkedBodyPartsGroup>
+					</li>
+					<li Class="CombatExtended.ToolCE">
+						<label>edge</label>
+						<capacities>
+							<li>Cut</li>
+						</capacities>
+						<power>36</power>
+						<cooldownTime>3.82</cooldownTime>
+						<chanceFactor>1.33</chanceFactor>
+						<armorPenetrationBlunt>4</armorPenetrationBlunt>
+						<armorPenetrationSharp>3.91</armorPenetrationSharp>
+						<linkedBodyPartsGroup>Edge</linkedBodyPartsGroup>
+					</li>
+					</tools>
+				</value>
+			</li>
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName="Sunderer"]/statBases</xpath>
+				<value>
+					<Bulk>14</Bulk>
+				</value>
+			</li>
+			
+		</operations>
+		</match>
+	</Operation>
+</Patch> 

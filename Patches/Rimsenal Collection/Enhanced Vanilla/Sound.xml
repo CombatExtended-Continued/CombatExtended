@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<Patch>
+
+	<Operation Class="PatchOperationFindMod">
+    <mods>
+		<li>Rimsenal - Enhanced Vanilla Pack</li>
+    </mods>
+		<match Class="PatchOperationSequence">
+		 <operations>	
+			
+				<!-- ========== Smart Sniper Rifle sound replacement =========== -->
+			
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/SoundDef[defName="RS_ShotSSR"]/subSounds</xpath>
+				<value>
+				<subSounds>
+					<li>
+						<grains>
+							<li Class="AudioGrain_Clip">
+								<clipPath>Things/SupressedSmartSniper</clipPath>
+							</li>
+						</grains>
+						<pitchRange>
+							<min>0.9152174</min>
+							<max>1.042391</max>
+						</pitchRange>
+					</li>
+				</subSounds>
+				</value>
+			</li>
+			
+		</operations>
+		</match>
+	</Operation>
+			
+</Patch>
