@@ -211,9 +211,12 @@ namespace CombatExtended
             rect.width -= 24f;
             if (CanControl || (SelPawnForGear.Faction == Faction.OfPlayer && SelPawnForGear.RaceProps.packAnimal) || (showDropButtonIfPrisoner && SelPawnForGear.IsPrisonerOfColony))
             {
+                var dropForbidden = IsItemDropForbidden(thing);
+                Color color = dropForbidden ? Color.grey : Color.white;
+                Color mouseoverColor = dropForbidden ? Color.grey : GenUI.MouseoverColor;
                 Rect dropRect = new Rect(rect.width - 24f, y, 24f, 24f);
-                TooltipHandler.TipRegion(dropRect, "DropThing".Translate());
-                if (Widgets.ButtonImage(dropRect, TexButton.Drop))
+                TooltipHandler.TipRegion(dropRect, dropForbidden ? "DropThingLocked".Translate() : "DropThing".Translate());
+                if (Widgets.ButtonImage(dropRect, TexButton.Drop, color, mouseoverColor) && !dropForbidden)
                 {
                     SoundDefOf.Tick_High.PlayOneShotOnCamera();
                     InterfaceDrop(thing);
@@ -310,6 +313,11 @@ namespace CombatExtended
                             {
                                 equipOption = new FloatMenuOption("CannotEquip".Translate(eqLabel) + ": " + "BiocodedCodedForSomeoneElse".Translate(), null);
                             }
+                            else if (SelPawnForGear.IsQuestLodger() && !EquipmentUtility.QuestLodgerCanEquip(eq, SelPawnForGear))
+                            {
+                                var forbiddenEquipOrPutAway = SelPawnForGear.equipment.AllEquipmentListForReading.Contains(eq) ? "CE_CannotPutAway".Translate(eqLabel) : "CannotEquip".Translate(eqLabel);
+                                equipOption = new FloatMenuOption(forbiddenEquipOrPutAway + ": " + "QuestRelated".Translate(), null);
+                            }
                             else if (SelPawnForGear.equipment.AllEquipmentListForReading.Contains(eq) && SelPawnForGear.inventory != null)
                             {
                                 equipOption = new FloatMenuOption("CE_PutAway".Translate(eqLabel),
@@ -361,20 +369,10 @@ namespace CombatExtended
                             );
                                 floatOptionList.Add(reloadApparelOption);
                             }
-                            
+
                         }
                     }
-                    // Drop and consume options
-                    Action dropApparel = delegate
-                    {
-                        SoundDefOf.Tick_High.PlayOneShotOnCamera();
-                        InterfaceDrop(thing);
-                    };
-                    Action dropApparelHaul = delegate
-                    {
-                        SoundDefOf.Tick_High.PlayOneShotOnCamera();
-                        InterfaceDropHaul(thing);
-                    };
+                    // Consume option
                     if (CanControl && thing.IngestibleNow && base.SelPawn.RaceProps.CanEverEat(thing))
                     {
                         Action eatFood = delegate
@@ -392,8 +390,26 @@ namespace CombatExtended
                             floatOptionList.Add(new FloatMenuOption(label, eatFood));
                         }
                     }
-                    floatOptionList.Add(new FloatMenuOption("DropThing".Translate(), dropApparel));
-                    floatOptionList.Add(new FloatMenuOption("CE_DropThingHaul".Translate(), dropApparelHaul));
+                    // Drop, and drop&haul options
+                    if (IsItemDropForbidden(eq))
+                    {
+                        floatOptionList.Add(new FloatMenuOption("CE_CannotDropThing".Translate() + ": " + "DropThingLocked".Translate(), null));
+                        floatOptionList.Add(new FloatMenuOption("CE_CannotDropThingHaul".Translate() + ": " + "DropThingLocked".Translate(), null));
+                    }
+                    else
+                    {
+                        floatOptionList.Add(new FloatMenuOption("DropThing".Translate(), new Action(delegate
+                        {
+                            SoundDefOf.Tick_High.PlayOneShotOnCamera();
+                            InterfaceDrop(thing);
+                        })));
+                        floatOptionList.Add(new FloatMenuOption("CE_DropThingHaul".Translate(), new Action(delegate
+                        {
+                            SoundDefOf.Tick_High.PlayOneShotOnCamera();
+                            InterfaceDropHaul(thing);
+                        })));
+                    }
+                    // Stop holding in inventory option
                     if (CanControl && SelPawnForGear.HoldTrackerIsHeld(thing))
                     {
                         Action forgetHoldTracker = delegate
@@ -555,6 +571,12 @@ namespace CombatExtended
                 value *= 100f;
             }
             return value.ToStringByStyle(asPercent ? ToStringStyle.FloatMaxOne : ToStringStyle.FloatMaxTwo) + unit;
+        }
+
+        private bool IsItemDropForbidden(Thing thing)
+        {
+            return (thing is Apparel eqApparel && SelPawnForGear.apparel.IsLocked(eqApparel))
+                || (thing.def.IsWeapon && SelPawnForGear.IsQuestLodger() && !EquipmentUtility.QuestLodgerCanUnequip(thing, SelPawnForGear));
         }
 
         #endregion Methods
