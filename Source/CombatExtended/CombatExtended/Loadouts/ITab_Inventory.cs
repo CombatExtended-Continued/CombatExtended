@@ -316,7 +316,7 @@ namespace CombatExtended
                             else if (SelPawnForGear.IsQuestLodger() && !EquipmentUtility.QuestLodgerCanEquip(eq, SelPawnForGear))
                             {
                                 var forbiddenEquipOrPutAway = SelPawnForGear.equipment.AllEquipmentListForReading.Contains(eq) ? "CE_CannotPutAway".Translate(eqLabel) : "CannotEquip".Translate(eqLabel);
-                                equipOption = new FloatMenuOption(forbiddenEquipOrPutAway + ": " + "QuestRelated".Translate(), null);
+                                equipOption = new FloatMenuOption(forbiddenEquipOrPutAway + ": " + "CE_CannotChangeEquipment".Translate(), null);
                             }
                             else if (SelPawnForGear.equipment.AllEquipmentListForReading.Contains(eq) && SelPawnForGear.inventory != null)
                             {
