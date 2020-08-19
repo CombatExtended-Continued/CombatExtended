@@ -53,6 +53,46 @@
 				</value>
 			</li>
 			
+			<li Class="PatchOperationConditional">
+				   <xpath>/Defs/FactionDef[@Name="RB_PlayerFactionBase"]/apparelStuffFilter</xpath>
+				<match Class="PatchOperationConditional">
+					<xpath>/Defs/FactionDef[@Name="RB_PlayerFactionBase"]/apparelStuffFilter/thingDefs</xpath>
+					<match Class="PatchOperationConditional">
+						<xpath>/Defs/FactionDef[@Name="RB_PlayerFactionBase"]/apparelStuffFilter/thingDefs/li["Steel"]</xpath>
+						<match Class="PatchOperationReplace">
+							<xpath>/Defs/FactionDef[@Name="RB_PlayerFactionBase"]/apparelStuffFilter/thingDefs/li["Steel"]</xpath>
+							<value>
+								<li>Steel</li>
+							</value>
+						</match>
+						<nomatch Class="PatchOperationAdd">
+							<xpath>/Defs/FactionDef[@Name="RB_PlayerFactionBase"]/apparelStuffFilter/thingDefs</xpath>
+							<value>
+								<li>Steel</li>
+							</value>
+						</nomatch>
+					</match>
+					<nomatch Class="PatchOperationAdd">
+						<xpath>/Defs/FactionDef[@Name="RB_PlayerFactionBase"]/apparelStuffFilter</xpath>
+						<value>
+							<thingDefs>
+								<li>Steel</li>
+							</thingDefs>
+						</value>
+					</nomatch>
+				</match>
+				<nomatch Class="PatchOperationAdd">
+					<xpath>/Defs/FactionDef[@Name="RB_PlayerFactionBase"]</xpath>
+					<value>
+						<apparelStuffFilter>
+							<thingDefs>
+								<li>Steel</li>
+							</thingDefs>
+						</apparelStuffFilter>
+					</value>
+				</nomatch>
+			</li>
+			
 		</operations>
 		</match>	
 	  </li>
