@@ -180,12 +180,6 @@ namespace CombatExtended
                         LoadoutManager.AddLoadout(loadout);
                         SelPawnForGear.SetLoadout(loadout);
 
-                        // UNDONE ideally we'd open the assign (MainTabWindow_OutfitsAndLoadouts) tab as if the user clicked on it here.
-                        // (ProfoundDarkness) But I have no idea how to do that just yet.  The attempts I made seem to put the RimWorld UI into a bit of a bad state.
-                        //                     ie opening the tab like the dialog below.
-                        //                    Need to understand how RimWorld switches tabs and see if something similar can be done here
-                        //                     (or just remove the unfinished marker).
-
                         // Opening this window is the same way as if from the assign tab so should be correct.
                         Find.WindowStack.Add(new Dialog_ManageLoadouts(SelPawnForGear.GetLoadout()));
 
@@ -419,31 +413,26 @@ namespace CombatExtended
         // RimWorld.ITab_Pawn_Gear
         private void TryDrawOverallArmor(ref float curY, float width, StatDef stat, string label, string unit)
         {
-            if (SelPawnForGear.RaceProps.body != BodyDefOf.Human)
-            {
-                return;
-            }
-            float num = 0f;
+            float naturalArmor = SelPawnForGear.GetStatValue(stat);
+            float averageArmor = naturalArmor;
             List<Apparel> wornApparel = SelPawnForGear.apparel.WornApparel;
-            for (int i = 0; i < wornApparel.Count; i++)
+            foreach (Apparel apparel in wornApparel)
             {
-                num += wornApparel[i].GetStatValue(stat, true) * wornApparel[i].def.apparel.HumanBodyCoverage;
+                averageArmor += apparel.GetStatValue(stat, true) * apparel.def.apparel.HumanBodyCoverage;
             }
-            if (num > 0.005f)
+            if (averageArmor > 0.0001f)
             {
                 Rect rect = new Rect(0f, curY, width, _standardLineHeight);
-                List<BodyPartRecord> bpList = SelPawnForGear.RaceProps.body.AllParts;
                 string text = "";
-                for (int i = 0; i < bpList.Count; i++)
+                foreach (BodyPartRecord bodyPart in SelPawnForGear.RaceProps.body.AllParts)
                 {
-                    float armorValue = 0f;
-                    BodyPartRecord part = bpList[i];
+                    BodyPartRecord part = bodyPart;
+                    float armorValue = bodyPart.IsInGroup(CE_BodyPartGroupDefOf.CoveredByNaturalArmor) ? naturalArmor : 0f;
                     if (part.depth == BodyPartDepth.Outside && (part.coverage >= 0.1 || (part.def == BodyPartDefOf.Eye || part.def == BodyPartDefOf.Neck)))
                     {
                         text += part.LabelCap + ": ";
-                        for (int j = wornApparel.Count - 1; j >= 0; j--)
+                        foreach (Apparel apparel in wornApparel)
                         {
-                            Apparel apparel = wornApparel[j];
                             if (apparel.def.apparel.CoversBodyPart(part))
                             {
                                 armorValue += apparel.GetStatValue(stat, true);
@@ -456,7 +445,7 @@ namespace CombatExtended
 
                 Widgets.Label(rect, label.Truncate(200f, null));
                 rect.xMin += 200;
-                Widgets.Label(rect, formatArmorValue(num, unit));
+                Widgets.Label(rect, formatArmorValue(averageArmor, unit));
                 curY += _standardLineHeight;
             }
         }
