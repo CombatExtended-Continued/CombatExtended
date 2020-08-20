@@ -166,7 +166,7 @@ namespace CombatExtended
             }
         }
 
-        private bool IsAttacking => ShooterPawn?.CurJobDef == JobDefOf.AttackStatic || ShooterPawn?.stances?.curStance is Stance_Warmup;
+        private bool IsAttacking => ShooterPawn?.CurJobDef == JobDefOf.AttackStatic || WarmingUp;
 
 
         #endregion
