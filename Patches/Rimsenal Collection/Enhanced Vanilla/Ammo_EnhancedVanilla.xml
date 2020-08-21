@@ -34,56 +34,50 @@
 
 		<!-- ================== Projectiles ================== -->
 
-		<ThingDef Class="CombatExtended.AmmoDef" ParentName="BaseProjectileNeolithic" Name="BaseThrowingClubProjectile" Abstract="true">
-			<graphicData>
-				<texPath>Things/A16/ThrowingClubs</texPath>
-				<graphicClass>Graphic_Single</graphicClass>
-			</graphicData>
-			<projectile Class="CombatExtended.ProjectilePropertiesCE">
-				<damageDef>Blunt</damageDef>
-			</projectile>
-		</ThingDef>
-
 		<!-- The amount of arrows usable over the ammo lifetime for each resource cost is equal to
 		[r / (1 - x)];
 			x = preExplosionSpawnChance,
 			r = resource cost. -->
 
-		<ThingDef Class="CombatExtended.AmmoDef" ParentName="BaseThrowingClubProjectile">
+		<ThingDef ParentName="BasePilumProjectile">
 			<defName>Club_Thrown</defName>
 			<label>club</label>
+			<graphicData>
+				<texPath>Things/A16/ThrowingClubs</texPath>
+				<graphicClass>Graphic_Single</graphicClass>
+			</graphicData>			
 			<projectile Class="CombatExtended.ProjectilePropertiesCE">
+				<damageDef>Blunt</damageDef>			
 				<damageAmountBase>15</damageAmountBase>
 				<speed>12</speed>
 				<armorPenetrationBlunt>0.18</armorPenetrationBlunt>
+				<preExplosionSpawnChance>0.50</preExplosionSpawnChance>
+				<preExplosionSpawnThingDef>Gun_ThrowingClubs</preExplosionSpawnThingDef>				
 			</projectile>
 		</ThingDef>
 
 	<!-- ================== Projectiles ================== -->
-
-		<ThingDef Class="CombatExtended.AmmoDef" ParentName="BaseProjectileNeolithic" Name="BaseThrowingAxeProjectile" Abstract="true">
-			<graphicData>
-				<texPath>Things/A16/ThrowingAxes</texPath>
-				<graphicClass>Graphic_Single</graphicClass>
-			</graphicData>
-			<projectile Class="CombatExtended.ProjectilePropertiesCE">
-				<damageDef>Cut</damageDef>
-			</projectile>
-		</ThingDef>
 		
 		<!-- The amount of arrows usable over the ammo lifetime for each resource cost is equal to
 		[r / (1 - x)];
 			x = preExplosionSpawnChance,
 			r = resource cost. -->
 		
-		<ThingDef Class="CombatExtended.AmmoDef" ParentName="BaseThrowingAxeProjectile">
+		<ThingDef Class="CombatExtended.AmmoDef" ParentName="BasePilumProjectile">
 			<defName>Axe_Thrown</defName>
 			<label>axe</label>
+			<graphicData>
+				<texPath>Things/A16/ThrowingAxes</texPath>
+				<graphicClass>Graphic_Single</graphicClass>
+			</graphicData>			
 			<projectile Class="CombatExtended.ProjectilePropertiesCE">
+				<damageDef>Cut</damageDef>			
 				<damageAmountBase>16</damageAmountBase>
 				<speed>12</speed>
 				<armorPenetrationSharp>1.4</armorPenetrationSharp>
 				<armorPenetrationBlunt>27</armorPenetrationBlunt>
+				<preExplosionSpawnChance>0.80</preExplosionSpawnChance>
+				<preExplosionSpawnThingDef>Gun_ThrowingAxes</preExplosionSpawnThingDef>				
 			</projectile>
 		</ThingDef>
 
@@ -142,33 +136,24 @@
 		
 		<!-- ================== Projectiles ================== -->
 
-		<ThingDef Name="BaseCompoundArrowProjectile" ParentName="BaseBullet" Abstract="true">
-			<graphicData>
-				<texPath>Things/Projectile/Arrow_Small</texPath>
-				<graphicClass>Graphic_Single</graphicClass>
-			</graphicData>
-			<projectile Class="CombatExtended.ProjectilePropertiesCE">
-				<damageDef>Arrow</damageDef>
-				<speed>100</speed>
-			</projectile>
-		</ThingDef>
-
 		<!-- The amount of arrows usable over the ammo lifetime for each resource cost is equal to
 			[r / (1 - x)];
 				x = preExplosionSpawnChance,
 				r = resource cost. -->
 
-		<ThingDef ParentName="BaseCompoundArrowProjectile">
+		<ThingDef ParentName="BaseArrowProjectile">
 			<defName>Projectile_CompoundArrow_Broadhead</defName>
 			<label>compound arrow</label>
 			<graphicData>
-				<texPath>ThirdParty/Rimsenal/CompoundArrows</texPath>
-				<graphicClass>Graphic_StackCount</graphicClass>
+				<texPath>Things/Projectile/Arrows/Arrow_Plasteel</texPath>
+				<graphicClass>Graphic_Single</graphicClass>
 			</graphicData>
 			<projectile Class="CombatExtended.ProjectilePropertiesCE">
+				<damageDef>Arrow</damageDef>
+				<speed>100</speed>			
 				<damageAmountBase>7</damageAmountBase>
 				<armorPenetrationBlunt>2.34</armorPenetrationBlunt>
-				<armorPenetrationSharp>2</armorPenetrationSharp>
+				<armorPenetrationSharp>2.5</armorPenetrationSharp>
 				<preExplosionSpawnChance>0.5</preExplosionSpawnChance>
 				<preExplosionSpawnThingDef>Ammo_CompoundArrow_Broadhead</preExplosionSpawnThingDef>
 			</projectile>
@@ -212,23 +197,6 @@
 	</RecipeDef>
 
 			</value>	
-		</li>
-
-	<!-- Patched in to prevent errors due to missing ThingDefs -->
-		<li Class="PatchOperationAdd">
-			<xpath>Defs/ThingDef[defName="Club_Thrown"]/projectile</xpath>
-			<value>
-				<preExplosionSpawnChance>0.50</preExplosionSpawnChance>
-				<preExplosionSpawnThingDef>Gun_ThrowingClubs</preExplosionSpawnThingDef>
-			</value>
-		</li>
-
-		<li Class="PatchOperationAdd">
-			<xpath>Defs/ThingDef[defName="Axe_Thrown"]/projectile</xpath>
-			<value>
-				<preExplosionSpawnChance>0.80</preExplosionSpawnChance>
-				<preExplosionSpawnThingDef>Gun_ThrowingAxes</preExplosionSpawnThingDef>
-			</value>
 		</li>
 		
 	<!-- Enable Mechanoid Charge Ammo + Recipes -->
@@ -333,35 +301,35 @@
 		<li Class="PatchOperationAdd">
 			<xpath>Defs</xpath>
 			<value>
-					<RecipeDef ParentName="AmmoRecipeNeolithicBase">
-					<defName>MakeAmmo_Gun_ThrowingClub</defName>
-					<label>make throwing club x5</label>
-					<description>Craft 5 throwing clubs.</description>
-					<jobString>Making throwing clubs.</jobString>
-					<workAmount>400</workAmount>
-					<ingredients>
-						<li>
-						<filter>
-							<thingDefs>
-							<li>WoodLog</li>
-							</thingDefs>
-						</filter>
-						<count>10</count>
-						</li>
-					</ingredients>
-					<fixedIngredientFilter>
+				<RecipeDef ParentName="AmmoRecipeNeolithicBase">
+				<defName>MakeAmmo_Gun_ThrowingClub</defName>
+				<label>make throwing club x5</label>
+				<description>Craft 5 throwing clubs.</description>
+				<jobString>Making throwing clubs.</jobString>
+				<workAmount>400</workAmount>
+				<ingredients>
+					<li>
+					<filter>
 						<thingDefs>
 						<li>WoodLog</li>
 						</thingDefs>
-					</fixedIngredientFilter>
-					<recipeUsers>
-						<li>CraftingSpot</li>
-					</recipeUsers>		
-					<products>
-						<Gun_ThrowingClubs>5</Gun_ThrowingClubs>
-					</products>
-					</RecipeDef>
-		</value>
+					</filter>
+					<count>10</count>
+					</li>
+				</ingredients>
+				<fixedIngredientFilter>
+					<thingDefs>
+					<li>WoodLog</li>
+					</thingDefs>
+				</fixedIngredientFilter>
+				<recipeUsers>
+					<li>CraftingSpot</li>
+				</recipeUsers>		
+				<products>
+					<Gun_ThrowingClubs>5</Gun_ThrowingClubs>
+				</products>
+				</RecipeDef>
+			</value>
 		</li>
 
 		<li Class="PatchOperationAdd">

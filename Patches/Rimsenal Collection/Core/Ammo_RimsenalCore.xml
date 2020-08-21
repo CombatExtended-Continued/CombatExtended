@@ -64,23 +64,17 @@
 
 	<!-- ================== Projectiles ================== -->
 
-	<ThingDef Name="BasePistolYPBullet" ParentName="BaseBullet" Abstract="true">
+	<ThingDef ParentName="Base45ACPBullet">
+		<defName>Bullet_PistolYP_CC</defName>
+		<label>9x21mm YP bullet (CC)</label>
 		<graphicData>
 			<texPath>Things/Projectile/Shard</texPath>
 			<graphicClass>Graphic_Single</graphicClass>
-		</graphicData>
+		</graphicData>		
 		<projectile Class="CombatExtended.ProjectilePropertiesCE">
 			<damageDef>Shredder</damageDef>
 			<speed>72</speed>
-			<dropsCasings>false</dropsCasings>
-		</projectile>
-	</ThingDef>
-
-
-	<ThingDef ParentName="BasePistolYPBullet">
-		<defName>Bullet_PistolYP_CC</defName>
-		<label>9x21mm YP bullet (CC)</label>
-		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<dropsCasings>false</dropsCasings>		
 			<damageAmountBase>16</damageAmountBase>
 			<armorPenetrationBlunt>28</armorPenetrationBlunt>
 			<armorPenetrationSharp>2.8</armorPenetrationSharp>
@@ -170,22 +164,17 @@
 
 		<!-- ================== Projectiles ================== -->
 
-		<ThingDef Name="BaseRifleYPBullet" ParentName="BaseBullet" Abstract="true">
+		<ThingDef ParentName="Base556x45mmNATOBullet">
+			<defName>Bullet_RifleYP_CC</defName>
+			<label>5.45x45mm YP bullet (CC)</label>
 			<graphicData>
 				<texPath>Things/Projectile/Shard</texPath>
 				<graphicClass>Graphic_Single</graphicClass>
-			</graphicData>
+			</graphicData>			
 			<projectile Class="CombatExtended.ProjectilePropertiesCE">
 				<damageDef>Shredder</damageDef>
 				<speed>80</speed>
-				<dropsCasings>false</dropsCasings>
-			</projectile>
-		</ThingDef>
-
-		<ThingDef ParentName="BaseRifleYPBullet">
-			<defName>Bullet_RifleYP_CC</defName>
-			<label>5.45x45mm YP bullet (CC)</label>
-			<projectile Class="CombatExtended.ProjectilePropertiesCE">
+				<dropsCasings>false</dropsCasings>			
 				<damageAmountBase>16</damageAmountBase>
 				<armorPenetrationBlunt>34</armorPenetrationBlunt>
 				<armorPenetrationSharp>4.5</armorPenetrationSharp>	
@@ -275,23 +264,17 @@
 
 	<!-- ================== Projectiles ================== -->
 
-	<ThingDef Name="BaseSpikeYPBullet" ParentName="BaseBullet" Abstract="true">
+	<ThingDef ParentName="Base556x45mmNATOBullet">
+		<defName>Bullet_SpikeYP_CC</defName>
+		<label>7.62x55mm YP bullet (CC)</label>
 		<graphicData>
 			<texPath>Things/Projectile/Spike</texPath>
 			<graphicClass>Graphic_Single</graphicClass>
-		</graphicData>
+		</graphicData>		
 		<projectile Class="CombatExtended.ProjectilePropertiesCE">
 			<damageDef>Shredder</damageDef>
 			<speed>100</speed>
-			<dropsCasings>false</dropsCasings>
-		</projectile>
-	</ThingDef>
-
-
-	<ThingDef ParentName="BaseSpikeYPBullet">
-		<defName>Bullet_SpikeYP_CC</defName>
-		<label>7.62x55mm YP bullet (CC)</label>
-		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<dropsCasings>false</dropsCasings>		
 			<damageAmountBase>8</damageAmountBase>
 			<armorPenetrationBlunt>50</armorPenetrationBlunt>
 			<armorPenetrationSharp>10</armorPenetrationSharp>			
@@ -331,7 +314,7 @@
 
 	<!-- ================== YP Microwave - Projectiles ================== -->
 
-	<ThingDef ParentName="BaseBullet">
+	<ThingDef ParentName="Base556x45mmNATOBullet">
 		<defName>Bullet_GeugGwang_CE</defName>
 		<label>microwave</label>
 		<graphicData>
@@ -402,24 +385,18 @@
 
 	<!-- ================== Projectiles ================== -->
 
-	<ThingDef Name="BaseTEPowerCoreBullet" ParentName="BaseBullet" Abstract="true">
+	<ThingDef ParentName="Base556x45mmNATOBullet">
+		<defName>Bullet_TEPowerCore_KE</defName>
+		<label>TE energy blast (KE)</label>
 		<graphicData>
 			<texPath>Things/Projectile/ImpactB</texPath>
 			<graphicClass>Graphic_Single</graphicClass>
-		</graphicData>
+		</graphicData>		
+		<thingClass>CombatExtended.ProjectileCE_Explosive</thingClass>
 		<projectile Class="CombatExtended.ProjectilePropertiesCE">
 			<damageDef>KineticImpact</damageDef>
 			<speed>120</speed>
-			<dropsCasings>false</dropsCasings>
-		</projectile>
-	</ThingDef>
-
-
-	<ThingDef ParentName="BaseTEPowerCoreBullet">
-		<defName>Bullet_TEPowerCore_KE</defName>
-		<label>TE energy blast (KE)</label>
-		<thingClass>CombatExtended.ProjectileCE_Explosive</thingClass>
-		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<dropsCasings>false</dropsCasings>		
 			<damageAmountBase>8</damageAmountBase>
 			<explosionRadius>0.5</explosionRadius>
 			<armorPenetrationBlunt>80</armorPenetrationBlunt>
@@ -508,23 +485,17 @@
 
 	<!-- ================== Projectiles ================== -->
 
-	<ThingDef Name="BaseTEPowerChargeBullet" ParentName="BaseBullet" Abstract="true">
+	<ThingDef ParentName="Base556x45mmNATOBullet">
+		<defName>Bullet_TEPowerCharge_KE</defName>
+		<label>TE energy blast (KE)</label>
 		<graphicData>
 			<texPath>Things/Projectile/ImpactM</texPath>
 			<graphicClass>Graphic_Single</graphicClass>
-		</graphicData>
+		</graphicData>		
 		<projectile Class="CombatExtended.ProjectilePropertiesCE">
 			<damageDef>Crush</damageDef>
 			<speed>48</speed>
-			<dropsCasings>false</dropsCasings>
-		</projectile>
-	</ThingDef>
-
-
-	<ThingDef ParentName="BaseTEPowerChargeBullet">
-		<defName>Bullet_TEPowerCharge_KE</defName>
-		<label>TE energy blast (KE)</label>
-		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<dropsCasings>false</dropsCasings>		
 			<damageAmountBase>10</damageAmountBase>
 			<armorPenetrationBlunt>40</armorPenetrationBlunt>
 		</projectile>
@@ -612,24 +583,18 @@
 
 	<!-- ================== Projectiles ================== -->
 
-	<ThingDef Name="BaseTEEnergyCanisterBullet" ParentName="BaseBullet" Abstract="true">
-		<graphicData>
-			<texPath>Things/Projectile/ImpactB</texPath>
-			<graphicClass>Graphic_Single</graphicClass>
-		</graphicData>
-		<projectile Class="CombatExtended.ProjectilePropertiesCE">
-			<damageDef>KineticImpact</damageDef>
-			<speed>70</speed>
-			<dropsCasings>false</dropsCasings>
-		</projectile>
-	</ThingDef>
-
-
-	<ThingDef ParentName="BaseTEEnergyCanisterBullet">
+	<ThingDef ParentName="BaseRPG7Grenade">
 		<defName>Bullet_TEEnergyCanister_KE</defName>
 		<thingClass>CombatExtended.ProjectileCE_Explosive</thingClass>
 		<label>TE energy blast (KE)</label>
+		<graphicData>
+			<texPath>Things/Projectile/ImpactB</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+		</graphicData>		
 		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageDef>KineticImpact</damageDef>
+			<speed>70</speed>
+			<dropsCasings>false</dropsCasings>		
 			<damageAmountBase>16</damageAmountBase>
 			<explosionRadius>1</explosionRadius>
 			<armorPenetrationBlunt>40</armorPenetrationBlunt>
@@ -718,23 +683,17 @@
 
 	<!-- ================== Projectiles ================== -->
 
-	<ThingDef Name="BaseTEConcentratedPowerChargeBullet" ParentName="BaseBullet" Abstract="true">
+	<ThingDef ParentName="Base556x45mmNATOBullet">
+		<defName>Bullet_TEConcentratedPowerCharge_KE</defName>
+		<label>TE energy blast (KE)</label>
 		<graphicData>
 			<texPath>Things/Projectile/ImpactL</texPath>
 			<graphicClass>Graphic_Single</graphicClass>
-		</graphicData>
+		</graphicData>		
 		<projectile Class="CombatExtended.ProjectilePropertiesCE">
 			<damageDef>Crush</damageDef>
 			<speed>88</speed>
-			<dropsCasings>false</dropsCasings>
-		</projectile>
-	</ThingDef>
-
-
-	<ThingDef ParentName="BaseTEConcentratedPowerChargeBullet">
-		<defName>Bullet_TEConcentratedPowerCharge_KE</defName>
-		<label>TE energy blast (KE)</label>
-		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<dropsCasings>false</dropsCasings>		
 			<damageAmountBase>20</damageAmountBase>
 			<armorPenetrationBlunt>40</armorPenetrationBlunt>
 		</projectile>
@@ -822,22 +781,17 @@
 	
 	<!-- ================== Projectiles ================== -->
 
-	<ThingDef Name="BaseJISlagBullet" ParentName="BaseBullet" Abstract="true">
+	<ThingDef ParentName="Base556x45mmNATOBullet">
+		<defName>Bullet_JI_Slag</defName>
+		<label>Semi-molten slag</label>
 		<graphicData>
 			<texPath>Things/Projectile/Slug</texPath>
 			<graphicClass>Graphic_Single</graphicClass>
-		</graphicData>
+		</graphicData>		
 		<projectile Class="CombatExtended.ProjectilePropertiesCE">
 			<damageDef>Bullet</damageDef>
 			<speed>32</speed>
-			<dropsCasings>true</dropsCasings>
-		</projectile>
-	</ThingDef>
-
-	<ThingDef ParentName="BaseJISlagBullet">
-		<defName>Bullet_JI_Slag</defName>
-		<label>Semi-molten slag</label>
-		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<dropsCasings>true</dropsCasings>		
 			<damageAmountBase>7</damageAmountBase>
 				  <secondaryDamage>
 					<li>
@@ -951,24 +905,17 @@
 	
 	<!-- ================== Projectiles ================== -->
 
-	<ThingDef Name="Base90mmJIRocket" ParentName="BaseBullet" Abstract="true">
-		<graphicData>
-			<shaderType>TransparentPostLight</shaderType>
-		</graphicData>
-		<projectile Class="CombatExtended.ProjectilePropertiesCE">
-			<speed>60</speed>
-			<soundAmbient>RocketPropelledLoop_Small</soundAmbient>
-		</projectile>
-	</ThingDef>	
-
-	<ThingDef ParentName="Base90mmJIRocket">
+	<ThingDef ParentName="BaseRPG7Grenade">
 		<defName>Bullet_90mmJI_HEDP</defName>
 		<label>90mm JI rocket (HEDP)</label>
 		<graphicData>
 			<texPath>Things/Projectile/Rocket</texPath>
 			<graphicClass>Graphic_Single</graphicClass>
+			<shaderType>TransparentPostLight</shaderType>			
 		</graphicData>
 		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<speed>60</speed>
+			<soundAmbient>RocketPropelledLoop_Small</soundAmbient>		
 			<damageDef>Bullet</damageDef>
 			<damageAmountBase>200</damageAmountBase>
 			<armorPenetrationBlunt>25</armorPenetrationBlunt>
@@ -1090,22 +1037,17 @@
 	
 	<!-- ================== Projectiles ================== -->
 
-	<ThingDef Name="BaseJISlugBullet" ParentName="BaseBullet" Abstract="true">
+	<ThingDef ParentName="Base556x45mmNATOBullet">
+		<defName>Bullet_JI_Molten</defName>
+		<label>molten slug</label>
 		<graphicData>
 			<texPath>Things/Projectile/Slug</texPath>
 			<graphicClass>Graphic_Single</graphicClass>
-		</graphicData>
+		</graphicData>		
 		<projectile Class="CombatExtended.ProjectilePropertiesCE">
 			<damageDef>Bullet</damageDef>
 			<speed>40</speed>
-			<dropsCasings>true</dropsCasings>
-		</projectile>
-	</ThingDef>
-
-	<ThingDef ParentName="BaseJISlugBullet">
-		<defName>Bullet_JI_Molten</defName>
-		<label>molten slug</label>
-		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<dropsCasings>true</dropsCasings>		
 			<damageAmountBase>16</damageAmountBase>
 				  <secondaryDamage>
 					<li>
@@ -1200,22 +1142,17 @@
 	
 	<!-- ================== Projectiles ================== -->
 
-	<ThingDef Name="BaseJIAMRBullet" ParentName="BaseBullet" Abstract="true">
+	<ThingDef ParentName="Base556x45mmNATOBullet">
+		<defName>Bullet_JI_AMR</defName>
+		<label>Machined alloy slug</label>
 		<graphicData>
 			<texPath>Things/Projectile/Slug</texPath>
 			<graphicClass>Graphic_Single</graphicClass>
-		</graphicData>
+		</graphicData>		
 		<projectile Class="CombatExtended.ProjectilePropertiesCE">
 			<damageDef>Bullet</damageDef>
 			<speed>64</speed>
-			<dropsCasings>true</dropsCasings>
-		</projectile>
-	</ThingDef>
-
-	<ThingDef ParentName="BaseJIAMRBullet">
-		<defName>Bullet_JI_AMR</defName>
-		<label>Machined alloy slug</label>
-		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<dropsCasings>true</dropsCasings>		
 			<damageAmountBase>25</damageAmountBase>
 				  <secondaryDamage>
 					<li>

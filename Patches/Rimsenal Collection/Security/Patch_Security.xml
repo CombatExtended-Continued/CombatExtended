@@ -7,6 +7,14 @@
 		<match Class="PatchOperationSequence">
 		 <operations>
 
+			<li Class="PatchOperationRemove">
+				<xpath>Defs/ThingDef[defName="Missile_HE"]</xpath>
+			</li>
+
+			<li Class="PatchOperationRemove">
+				<xpath>Defs/ThingDef[defName="Missile_AP"]</xpath>
+			</li>
+
 			<li Class="PatchOperationReplace">
 				<xpath>Defs/ThingDef[@Name = "BaseMCBuilding"]/thingClass</xpath>
 				<value>
@@ -292,7 +300,7 @@
 				<defName>Gun_NestMissile</defName>
 				<statBases>
 					<RangedWeapon_Cooldown>2</RangedWeapon_Cooldown>
-					<SightsEfficiency>1</SightsEfficiency>
+					<SightsEfficiency>3</SightsEfficiency>
 					<ShotSpread>0.02</ShotSpread>
 					<SwayFactor>1.89</SwayFactor>
 					<Bulk>20</Bulk>
@@ -311,7 +319,7 @@
 				</Properties>
 				<AmmoUser>
 					<magazineSize>1</magazineSize>
-					<reloadTime>4</reloadTime>
+					<reloadTime>10</reloadTime>
 					<ammoSet>AmmoSet_ATGM</ammoSet>
 				</AmmoUser>
 				<FireModes>
@@ -333,7 +341,7 @@
 					<defName>Artillery_MC</defName>
 					<label>molten cannon</label>
 					<graphicData>
-					  <texPath>Things/Item/Equipment/WeaponRanged/ChargeRifle</texPath>
+					  <texPath>Things/Building/MC</texPath>
 					  <graphicClass>Graphic_Single</graphicClass>
 					</graphicData>
 					<description>An enormous cannon that fires a projectile of molten metal. Though less useful against soft targets than conventional artillery and limited to a direct fire role, but definitely more powerful, it is nevertheless the ideal anti-mechanoid cannon, and is extensively employed in the ongoing mechanoid war on Jotunheim Prime. Fires molten shells.</description>

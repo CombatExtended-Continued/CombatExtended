@@ -14,24 +14,20 @@
 
 		<!-- ==================== Fake Bullet ========================== -->
 
-		<ThingDef Name="BaseFakeBullet" ParentName="BaseBullet" Abstract="true">
+		<ThingDef ParentName="Base556x45mmNATOBullet">
+			<defName>Bullet_FakeBullet_CE</defName>
+			<label>dummy round</label>
 			<graphicData>
 				<texPath>Things/Projectile/Bullet_Small</texPath>
 				<graphicClass>Graphic_Single</graphicClass>
-			</graphicData>
+			</graphicData>			
 			<projectile Class="CombatExtended.ProjectilePropertiesCE">
 				<damageDef>Bullet</damageDef>
 				<speed>120</speed>
-				<dropsCasings>false</dropsCasings>
-			</projectile>
-		</ThingDef>
-
-		<ThingDef ParentName="BaseFakeBullet">
-			<defName>Bullet_FakeBullet_CE</defName>
-			<label>dummy round</label>
-			<projectile Class="CombatExtended.ProjectilePropertiesCE">
+				<dropsCasings>false</dropsCasings>			
 				<damageAmountBase>0</damageAmountBase>
 				<armorPenetrationBlunt>0</armorPenetrationBlunt>
+				<armorPenetrationSharp>0</armorPenetrationSharp>				
 			</projectile>
 		</ThingDef>
 
@@ -95,29 +91,21 @@
 
 		<!-- ================== Projectiles ================== -->
 
-		<ThingDef Name="BaseMoltenCannonShell" ParentName="BaseBullet" Abstract="true">
-			<graphicData>
-		<shaderType>TransparentPostLight</shaderType>
-			</graphicData>
-			<projectile Class="CombatExtended.ProjectilePropertiesCE">
-				<speed>200</speed>
-				<soundExplode>MortarBomb_Explode</soundExplode>
-				<flyOverhead>false</flyOverhead>
-				<dropsCasings>false</dropsCasings>
-			</projectile>
-		</ThingDef>
-
-		<ThingDef ParentName="BaseMoltenCannonShell">
+		<ThingDef ParentName="Base90mmCannonShell">
 			<defName>Bullet_MoltenShell</defName>
 			<label>molten shell</label>
 			<graphicData>
 					<texPath>Things/Projectile/Cannon/HEAT</texPath>
 					<graphicClass>Graphic_Single</graphicClass>
+					<shaderType>TransparentPostLight</shaderType>					
 				</graphicData>
 			<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<speed>200</speed>
+			<soundExplode>MortarBomb_Explode</soundExplode>
+			<flyOverhead>false</flyOverhead>
+			<dropsCasings>false</dropsCasings>			
 			<damageDef>Bullet</damageDef>
 			<damageAmountBase>204</damageAmountBase>
-			<soundExplode>MortarBomb_Explode</soundExplode>
 			<armorPenetrationSharp>700</armorPenetrationSharp>
 			<armorPenetrationBlunt>38.1</armorPenetrationBlunt>	  
 			</projectile>
@@ -214,7 +202,7 @@
 			<Mass>10</Mass>
 			<Bulk>10</Bulk>
 			</statBases>
-			<ammoClass>RocketHE</ammoClass>
+			<ammoClass>GrenadeHE</ammoClass>
 			<comps>
 			<li Class="CombatExtended.CompProperties_ExplosiveCE">
 				<damageAmountBase>100</damageAmountBase>
@@ -261,18 +249,8 @@
 		</ThingDef>
 
 		<!-- ================== Projectiles ================== -->
-		<ThingDef Name="BaseATGMProjectile" ParentName="BaseBullet" Abstract="true">
-			<graphicData>
-			<shaderType>TransparentPostLight</shaderType>
-			</graphicData>
-			<projectile Class="CombatExtended.ProjectilePropertiesCE">
-			<speed>64</speed>
-			<soundAmbient>RocketPropelledLoop_Small</soundAmbient>
-			</projectile>
-		</ThingDef>
 
-
-		<ThingDef ParentName="BaseATGMProjectile">
+		<ThingDef ParentName="BaseBullet">
 			<defName>Bullet_ATGM_HE</defName>
 			<label>Anti-tank guided missile (HE)</label>
 			<graphicData>
@@ -289,6 +267,8 @@
 			<explosionRadius>3.5</explosionRadius>
 			<soundExplode>MortarBomb_Explode</soundExplode>
 			<applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
+			<speed>64</speed>
+			<soundAmbient>RocketPropelledLoop_Small</soundAmbient>			
 			</projectile>
 			<comps>
 			<li Class="CombatExtended.CompProperties_Fragments">
@@ -300,7 +280,7 @@
 			</comps>
 		</ThingDef>
 
-		<ThingDef ParentName="BaseATGMProjectile">
+		<ThingDef ParentName="BaseBullet">
 			<defName>Bullet_ATGM_AP</defName>
 			<label>Anti-tank guided missile (HEAT)</label>
 			<graphicData>
@@ -314,6 +294,8 @@
 			<soundExplode>MortarBomb_Explode</soundExplode>
 			<armorPenetrationSharp>900</armorPenetrationSharp>
 			<armorPenetrationBlunt>38.687</armorPenetrationBlunt>
+			<speed>64</speed>
+			<soundAmbient>RocketPropelledLoop_Small</soundAmbient>				
 			</projectile>
 			<comps>
 			<li Class="CombatExtended.CompProperties_ExplosiveCE">
