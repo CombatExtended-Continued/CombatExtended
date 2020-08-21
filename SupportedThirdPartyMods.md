@@ -129,6 +129,11 @@ Rim of Madness - Bones	|
 Rimefeller	|
 RimEffect - Asari of the Rims	|
 Rimfire	|
+Rimsenal - Core |
+Rimsenal - Enhanced Vanilla |
+Rimsenal - Federation Faction Pack |
+Rimsenal - Feral Faction Pack |
+Rimsenal - Security Pack |
 Rimworld: Altered Carbon |
 Rimworld - The Dark Descent |
 Rimworld - Witcher Monster Hunt |
