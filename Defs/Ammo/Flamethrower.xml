@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <Defs>
 
-    <ThingCategoryDef>
-      <defName>AmmoFlamethrower</defName>
-      <label>flamethrower fuel</label>
-      <parent>AmmoAdvanced</parent>
-      <iconPath>UI/Icons/ThingCategories/CaliberFuel</iconPath>
-    </ThingCategoryDef>
-	
-	<!-- ==================== AmmoSet ========================== -->
+  <ThingCategoryDef>
+    <defName>AmmoFlamethrower</defName>
+    <label>flamethrower fuel</label>
+    <parent>AmmoAdvanced</parent>
+    <iconPath>UI/Icons/ThingCategories/CaliberFuel</iconPath>
+  </ThingCategoryDef>
+
+  <!-- ==================== AmmoSet ========================== -->
 
   <CombatExtended.AmmoSetDef>
     <defName>AmmoSet_Flamethrower</defName>
@@ -18,8 +18,8 @@
       <Ammo_Flamethrower_Prometheum>Bullet_Flamethrower_Prometheum</Ammo_Flamethrower_Prometheum>
     </ammoTypes>
   </CombatExtended.AmmoSetDef>
-	
-	<!-- ==================== Ammo ========================== -->
+
+  <!-- ==================== Ammo ========================== -->
 
   <ThingDef Class="CombatExtended.AmmoDef" Name="FlamethrowerBase" ParentName="SpacerSmallAmmoBase" Abstract="True">
     <description>Fuel for use with a flamethrower.</description>
@@ -29,10 +29,10 @@
       <Mass>0.05</Mass>
       <Bulk>0.1</Bulk>
     </statBases>
-	<tradeTags>
-	  <li>CE_AutoEnableTrade</li>
-	  <li>CE_AutoEnableCrafting_DrugLab</li>
-	</tradeTags>
+    <tradeTags>
+      <li>CE_AutoEnableTrade</li>
+      <li>CE_AutoEnableCrafting_DrugLab</li>
+    </tradeTags>
     <thingCategories>
       <li>AmmoFlamethrower</li>
     </thingCategories>
@@ -51,19 +51,19 @@
     </statBases>
     <ammoClass>NapalmFuel</ammoClass>
     <comps>
-		  <li Class="CombatExtended.CompProperties_ExplosiveCE">
-			<damageAmountBase>2</damageAmountBase>
-			<explosiveDamageType>Flame</explosiveDamageType>
-			<explosiveRadius>1</explosiveRadius>
-			<preExplosionSpawnThingDef>Filth_Fuel</preExplosionSpawnThingDef>
-			<preExplosionSpawnChance>1</preExplosionSpawnChance>
-		  </li>
+      <li Class="CombatExtended.CompProperties_ExplosiveCE">
+        <damageAmountBase>2</damageAmountBase>
+        <explosiveDamageType>Flame</explosiveDamageType>
+        <explosiveRadius>1</explosiveRadius>
+        <preExplosionSpawnThingDef>Filth_Fuel</preExplosionSpawnThingDef>
+        <preExplosionSpawnChance>1</preExplosionSpawnChance>
+      </li>
     </comps>
   </ThingDef>
 
   <ThingDef Class="CombatExtended.AmmoDef" ParentName="FlamethrowerBase">
     <defName>Ammo_Flamethrower_Prometheum</defName>
-    <label>jellied Prometheum</label>
+    <label>jellied prometheum</label>
     <graphicData>
       <texPath>Things/Ammo/FuelCell/Incendiary</texPath>
       <graphicClass>Graphic_StackCount</graphicClass>
@@ -73,17 +73,17 @@
     </statBases>
     <ammoClass>JelliedPrometheumFuel</ammoClass>
     <comps>
-	  <li Class="CombatExtended.CompProperties_ExplosiveCE">
-		<damageAmountBase>5</damageAmountBase>
-		<explosiveDamageType>PrometheumFlame</explosiveDamageType>
-		<explosiveRadius>1.2</explosiveRadius>
-		<preExplosionSpawnThingDef>FilthPrometheum</preExplosionSpawnThingDef>
-		<preExplosionSpawnChance>1</preExplosionSpawnChance>
-	  </li>
+      <li Class="CombatExtended.CompProperties_ExplosiveCE">
+        <damageAmountBase>5</damageAmountBase>
+        <explosiveDamageType>PrometheumFlame</explosiveDamageType>
+        <explosiveRadius>1.2</explosiveRadius>
+        <preExplosionSpawnThingDef>FilthPrometheum</preExplosionSpawnThingDef>
+        <preExplosionSpawnChance>1</preExplosionSpawnChance>
+      </li>
     </comps>
   </ThingDef>
-	
-	<!-- ================== Projectiles ================== -->
+
+  <!-- ================== Projectiles ================== -->
 
   <ThingDef Name="BaseFlamethrowerBullet" ParentName="BaseBullet" Abstract="true">
     <graphicData>
@@ -115,7 +115,7 @@
   <ThingDef ParentName="BaseFlamethrowerBullet">
     <defName>Bullet_Flamethrower_Prometheum</defName>
     <thingClass>CombatExtended.ProjectileCE_Explosive</thingClass>
-    <label>jellied Prometheum stream</label>
+    <label>jellied prometheum stream</label>
     <projectile Class="CombatExtended.ProjectilePropertiesCE">
       <damageDef>PrometheumFlame</damageDef>
       <damageAmountBase>5</damageAmountBase>
@@ -126,8 +126,8 @@
       <ai_IsIncendiary>true</ai_IsIncendiary>
     </projectile>
   </ThingDef>
-  
-	<!-- ==================== Recipes ========================== -->
+
+  <!-- ==================== Recipes ========================== -->
 
   <RecipeDef Name="FlamethrowerAmmoRecipeBase" ParentName="AmmoRecipeBase" Abstract="true">
     <workSpeedStat>DrugSynthesisSpeed</workSpeedStat>
@@ -163,9 +163,9 @@
 
   <RecipeDef ParentName="FlamethrowerAmmoRecipeBase">
     <defName>MakeAmmo_Flamethrower_Prometheum</defName>
-    <label>make jellied Prometheum x100</label>
-    <description>Craft 100 units of jellied Prometheum.</description>
-    <jobString>Making jellied Prometheum.</jobString>
+    <label>make jellied prometheum x100</label>
+    <description>Craft 100 units of jellied prometheum.</description>
+    <jobString>Making jellied prometheum.</jobString>
     <ingredients>
       <li>
         <filter>
@@ -185,5 +185,5 @@
       <Ammo_Flamethrower_Prometheum>100</Ammo_Flamethrower_Prometheum>
     </products>
   </RecipeDef>
-	
+
 </Defs>
