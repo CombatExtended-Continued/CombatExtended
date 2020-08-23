@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+
+  <Operation Class="PatchOperationFindMod">
+    <mods>
+      <li>Vanilla Furniture Expanded - Production</li>
+    </mods>
+    <match Class="PatchOperationSequence">
+      <operations>
+
+      <li Class="PatchOperationAdd">
+        <xpath>/Defs/ThingDef[
+        @Name="Ammo_6mmRailgun_Sabot" or
+        @Name="Ammo_8mmRailgun_Sabot" or
+        @Name="Ammo_12mmRailgun_Sabot" or
+        @Name="20x42mmGrenadeBase" or
+        @Name="25x40mmGrenadeBase" or 
+        @Name="25x59mmGrenadeBase" or 
+        @Name="30x29mmGrenadeBase" or 
+        @Name="35x32mmSRGrenadeBase" or 
+        @Name="40x46mmGrenadeBase" or  
+        @Name="40x47mmGrenadeBase" or 
+        @Name="40x53mmGrenadeBase" or 
+        @Name="40x53mmVOG25GrenadeBase" or 
+        @Name="50mmGS50GrenadeBase" or 
+        @Name="83mmPIATGrenadeBase" or            
+        @Name="20mmFliegerfaustBase" or 
+        @Name="70mmAPKWSBase" or
+        @Name="83mmSMAWBase" or 
+        @Name="84x246mmRBase" or
+        @Name="88mmRPzBRocketBase" or 
+        @Name="130mmType63Base" or 
+        @Name="M6A1RocketBase" or
+        @Name="M6A3RocketBase" or
+        @Name="M74Base" or
+        @Name="RPG7GrenadeBase" or
+        @Name="RPG32RocketBase" or
+        @Name="SPG9GrenadeBase" or
+        @Name="TomahawkLAMBase" or
+        @Name="28cmSpgrShellBase" or
+        @Name="Ammo40x365mmBoforsBase" or
+        @Name="50mmType89MortarShellBase" or
+        @Name="Ammo57x483mmBoforsBase" or
+        @Name="60mmMortarShellBaseCraftableBase" or
+        @Name="81mmMortarShellBaseCraftableBase" or
+        @Name="90mmCannonShellBase" or
+        @Name="100x695mmRCannonShellBase" or
+        @Name="120mmCannonShellBase" or
+        @Name="155mmHowitzerShellBase" or
+        @Name="762x385mmRCannonShellBase"
+        ]/tradeTags</xpath> 
+        <value>
+          <li>CE_AutoEnableCrafting_VFE_TableMachiningLarge</li>
+        </value>
+      </li>
+
+      <li Class="PatchOperationAdd">
+        <xpath>/Defs/ThingDef[
+        @Name="AmmoCrossbowBoltBase" or
+        @Name="MusketBallBase" or
+        @Name="AmmoArrowBase" or
+        @Name="AmmoGreatArrowBase" or
+        @Name="AmmoSlingBulletBase"
+        ]/tradeTags</xpath> 
+        <value>
+          <li>CE_AutoEnableCrafting_VFE_TableSmithyLarge</li>
+        </value>
+      </li>
+
+      <li Class="PatchOperationAdd">
+        <xpath>/Defs/ThingDef[@Name="FlamethrowerBase"]/tradeTags</xpath> 
+        <value>
+          <li>CE_AutoEnableCrafting_VFE_TableDrugLabElectric</li>
+        </value>
+      </li>
+
+      </operations>
+    </match>
+  </Operation>
+
+</Patch>
