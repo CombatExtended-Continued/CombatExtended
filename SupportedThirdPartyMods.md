@@ -16,6 +16,7 @@ Mod |
 [CP] The DOOM Kit - Classic	|
 [JDS] The Forge - NCR Armory	|
 [O21] Forgotten Realms |
+[O21] Mechadroids |
 [Ods] SCP Outfits Only Edition	|
 [Pratt] WWII Weapons Pack (Vanilla)	|
 [RH] Faction: Alliegence	|
