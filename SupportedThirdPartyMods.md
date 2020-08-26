@@ -84,6 +84,7 @@ GouRIMet	|
 Halo - Rimworld Auxiliary Combat Armory	|
 Hand 'n' Footwear	|
 High Caliber	|
+JDS Exiled Dawn	|
 Jernfalk's Standalone Horses	|
 Kaiser Armory	|
 K.L.K - Styles Apparel Pack	|

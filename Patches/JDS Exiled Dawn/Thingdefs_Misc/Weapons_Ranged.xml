@@ -1,0 +1,292 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+  <Operation Class="PatchOperationSequence">
+	<operations>
+	  <li Class="PatchOperationFindMod">
+			
+		<mods><li>[JDS] Exiled Dawn</li><li>[JDS] The Forge - Exiled Dawn Armory</li></mods>
+			
+		<match Class="PatchOperationSequence">
+		<operations>
+			
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="JDSExiledDawn_Reforged_Plasma_Shortstop" or 
+				defName="JDSExiledDawn_Reforged_Plasma_Shooter" or 
+				defName="JDSExiledDawn_Reforged_Plasma_Rifle" or 
+				defName="JDSExiledDawn_Reforged_Plasma_Rail" or 
+				defName="JDSExiledDawn_Reforged_Cannon"]/tools</xpath>
+				<value>
+					<tools>
+						<li Class="CombatExtended.ToolCE">
+						<label>stock</label>
+						<capacities>
+						<li>Blunt</li>
+						</capacities>
+						<power>8</power>
+						<cooldownTime>1.55</cooldownTime>
+						<chanceFactor>1.5</chanceFactor>
+						<armorPenetrationBlunt>2.755</armorPenetrationBlunt>
+						<linkedBodyPartsGroup>Stock</linkedBodyPartsGroup>
+						</li>
+						<li Class="CombatExtended.ToolCE">
+							<label>barrel</label>
+							<capacities>
+							<li>Blunt</li>
+							</capacities>
+							<power>5</power>
+							<cooldownTime>2.02</cooldownTime>
+							<armorPenetrationBlunt>1.630</armorPenetrationBlunt>
+							<linkedBodyPartsGroup>Barrel</linkedBodyPartsGroup>
+						</li>
+						<li Class="CombatExtended.ToolCE">
+						<label>muzzle</label>
+							<capacities>
+							<li>Poke</li>
+							</capacities>
+							<power>8</power>
+							<cooldownTime>1.55</cooldownTime>
+							<armorPenetrationBlunt>2.755</armorPenetrationBlunt>
+							<linkedBodyPartsGroup>Muzzle</linkedBodyPartsGroup>
+						</li>
+					</tools>
+				</value>
+			</li>
+			
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="JDSExiledDawn_Reforged_Plasma_Minigun"]/tools</xpath>
+				<value>
+					<tools>
+						<li Class="CombatExtended.ToolCE">
+							<label>barrel</label>
+							<capacities>
+							<li>Blunt</li>
+							</capacities>
+							<power>5</power>
+							<cooldownTime>2.02</cooldownTime>
+							<armorPenetrationBlunt>1.630</armorPenetrationBlunt>
+							<linkedBodyPartsGroup>Barrel</linkedBodyPartsGroup>
+						</li>
+						<li Class="CombatExtended.ToolCE">
+						<label>muzzle</label>
+							<capacities>
+							<li>Poke</li>
+							</capacities>
+							<power>8</power>
+							<cooldownTime>1.55</cooldownTime>
+							<armorPenetrationBlunt>2.755</armorPenetrationBlunt>
+							<linkedBodyPartsGroup>Muzzle</linkedBodyPartsGroup>
+						</li>
+					</tools>
+				</value>
+			</li>
+			
+			<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+				<defName>JDSExiledDawn_Reforged_Plasma_Shortstop</defName>
+				<statBases>
+					<Bulk>6.50</Bulk>
+					<Mass>2.50</Mass>
+					<RangedWeapon_Cooldown>0.36</RangedWeapon_Cooldown>
+					<SightsEfficiency>1.00</SightsEfficiency>
+					<SwayFactor>0.90</SwayFactor>
+					<ShotSpread>0.09</ShotSpread>
+				</statBases>
+				<Properties>
+					<recoilAmount>1.55</recoilAmount>
+					<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+					<hasStandardCommand>true</hasStandardCommand>
+					<defaultProjectile>Bullet_6x24mmCharged</defaultProjectile>
+					<warmupTime>0.6</warmupTime>
+					<range>31</range>
+					<burstShotCount>6</burstShotCount>
+					<ticksBetweenBurstShots>5</ticksBetweenBurstShots>
+					<soundCast>reforged_plasma_shortstop_shot</soundCast>
+					<soundCastTail>GunTail_Light</soundCastTail>
+					<muzzleFlashScale>9</muzzleFlashScale>
+				</Properties>
+				<AmmoUser>
+					<magazineSize>30</magazineSize>
+					<reloadTime>4</reloadTime>
+					<ammoSet>AmmoSet_ExileLight</ammoSet>
+				</AmmoUser>
+				<FireModes>
+					<aimedBurstShotCount>3</aimedBurstShotCount>
+					<aiUseBurstMode>FALSE</aiUseBurstMode>
+					<aiAimMode>Snapshot</aiAimMode>
+				</FireModes>
+			</li>
+			
+			<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+				<defName>JDSExiledDawn_Reforged_Plasma_Shooter</defName>
+				<statBases>
+					<Bulk>8.50</Bulk>
+					<Mass>3.50</Mass>
+					<RangedWeapon_Cooldown>0.36</RangedWeapon_Cooldown>
+					<SightsEfficiency>1.00</SightsEfficiency>
+					<SwayFactor>1.20</SwayFactor>
+					<ShotSpread>0.05</ShotSpread>
+				</statBases>
+				<Properties>
+					<recoilAmount>1.79</recoilAmount>
+					<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+					<hasStandardCommand>true</hasStandardCommand>
+					<defaultProjectile>Bullet_ExilePlasmaMid</defaultProjectile>
+					<warmupTime>1.1</warmupTime>
+					<range>51</range>
+					<burstShotCount>6</burstShotCount>
+					<ticksBetweenBurstShots>5</ticksBetweenBurstShots>
+					<soundCast>reforged_plasma_shooter_shot</soundCast>
+					<soundCastTail>GunTail_Light</soundCastTail>
+					<muzzleFlashScale>9</muzzleFlashScale>
+				</Properties>
+				<AmmoUser>
+					<magazineSize>30</magazineSize>
+					<reloadTime>4</reloadTime>
+					<ammoSet>AmmoSet_ExileMid</ammoSet>
+				</AmmoUser>
+				<FireModes>
+					<aimedBurstShotCount>3</aimedBurstShotCount>
+					<aiUseBurstMode>TRUE</aiUseBurstMode>
+					<aiAimMode>AimedShot</aiAimMode>
+				</FireModes>
+			</li>
+			
+			<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+				<defName>JDSExiledDawn_Reforged_Plasma_Rifle</defName>
+				<statBases>
+					<Bulk>10.50</Bulk>
+					<Mass>4.50</Mass>
+					<RangedWeapon_Cooldown>0.36</RangedWeapon_Cooldown>
+					<SightsEfficiency>1.00</SightsEfficiency>
+					<SwayFactor>1.50</SwayFactor>
+					<ShotSpread>0.04</ShotSpread>
+				</statBases>
+				<Properties>
+					<recoilAmount>1.85</recoilAmount>
+					<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+					<hasStandardCommand>true</hasStandardCommand>
+					<defaultProjectile>Bullet_ExilePlasmaHeavy</defaultProjectile>
+					<warmupTime>1.1</warmupTime>
+					<range>55</range>
+					<burstShotCount>6</burstShotCount>
+					<ticksBetweenBurstShots>6</ticksBetweenBurstShots>
+					<soundCast>reforged_Plasma_rifle_shot</soundCast>
+					<soundCastTail>GunTail_Light</soundCastTail>
+					<muzzleFlashScale>9</muzzleFlashScale>
+				</Properties>
+				<AmmoUser>
+					<magazineSize>20</magazineSize>
+					<reloadTime>4</reloadTime>
+					<ammoSet>AmmoSet_ExileRifle</ammoSet>
+				</AmmoUser>
+				<FireModes>
+					<aimedBurstShotCount>3</aimedBurstShotCount>
+					<aiUseBurstMode>TRUE</aiUseBurstMode>
+					<aiAimMode>AimedShot</aiAimMode>
+				</FireModes>
+			</li>
+			
+			<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+				<defName>JDSExiledDawn_Reforged_Plasma_Rail</defName>
+				<statBases>
+					<Bulk>12.50</Bulk>
+					<Mass>10.50</Mass>
+					<RangedWeapon_Cooldown>0.39</RangedWeapon_Cooldown>
+					<SightsEfficiency>2.24</SightsEfficiency>
+					<SwayFactor>2.34</SwayFactor>
+					<ShotSpread>0.01</ShotSpread>
+				</statBases>
+				<Properties>
+					<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+					<hasStandardCommand>true</hasStandardCommand>
+					<defaultProjectile>Bullet_ExilePlasmaAccelerated</defaultProjectile>
+					<warmupTime>2.8</warmupTime>
+					<range>86</range>
+					<soundCast>reforged_plasma_rail_shot</soundCast>
+					<soundCastTail>GunTail_Light</soundCastTail>
+					<muzzleFlashScale>9</muzzleFlashScale>
+				</Properties>
+				<AmmoUser>
+					<magazineSize>8</magazineSize>
+					<reloadTime>4</reloadTime>
+					<ammoSet>AmmoSet_ExileAccelerated</ammoSet>
+				</AmmoUser>
+				<FireModes>
+					<aiAimMode>AimedShot</aiAimMode>
+				</FireModes>
+			</li>
+			
+			<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+				<defName>JDSExiledDawn_Reforged_Cannon</defName>
+				<statBases>
+					<Bulk>8.00</Bulk>
+					<Mass>5.00</Mass>
+					<RangedWeapon_Cooldown>0.46</RangedWeapon_Cooldown>
+					<SightsEfficiency>1.00</SightsEfficiency>
+					<SwayFactor>1.35</SwayFactor>
+					<ShotSpread>0.16</ShotSpread>
+				</statBases>
+				<Properties>
+					<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+					<hasStandardCommand>true</hasStandardCommand>
+					<defaultProjectile>Bullet_30x64mmFuel_Incendiary</defaultProjectile>
+					<warmupTime>1.1</warmupTime>
+					<range>40</range>
+					<soundCast>Shot_IncendiaryLauncher</soundCast>
+					<soundCastTail>GunTail_Medium</soundCastTail>
+					<muzzleFlashScale>9</muzzleFlashScale>
+					<targetParams>
+						<canTargetLocations>true</canTargetLocations>
+					</targetParams>
+				</Properties>
+				<AmmoUser>
+					<magazineSize>8</magazineSize>
+					<reloadTime>4</reloadTime>
+					<ammoSet>AmmoSet_30x64mmFuel</ammoSet>
+				</AmmoUser>
+				<FireModes>
+					<aiAimMode>AimedShot</aiAimMode>
+				</FireModes>
+			</li>
+			
+			<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+				<defName>JDSExiledDawn_Reforged_Plasma_Minigun</defName>
+				<statBases>
+					<Bulk>14.50</Bulk>
+					<Mass>18</Mass>
+					<RangedWeapon_Cooldown>0.35</RangedWeapon_Cooldown>
+					<SightsEfficiency>1.00</SightsEfficiency>
+					<SwayFactor>3.25</SwayFactor>
+					<ShotSpread>0.05</ShotSpread>
+				</statBases>
+				<Properties>
+					<recoilAmount>0.79</recoilAmount>
+					<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+					<hasStandardCommand>true</hasStandardCommand>
+					<defaultProjectile>Bullet_ExilePlasmaPistol</defaultProjectile>
+					<warmupTime>2.1</warmupTime>
+					<range>55</range>
+					<burstShotCount>50</burstShotCount>
+					<ticksBetweenBurstShots>1</ticksBetweenBurstShots>
+					<soundCast>reforged_plasma_minigun_shot</soundCast>
+					<soundCastTail>GunTail_Light</soundCastTail>
+					<muzzleFlashScale>9</muzzleFlashScale>
+					<recoilPattern>Mounted</recoilPattern>
+				</Properties>
+				<AmmoUser>
+					<magazineSize>150</magazineSize>
+					<reloadTime>9.2</reloadTime>
+					<ammoSet>AmmoSet_ExileLight</ammoSet>
+				</AmmoUser>
+				<FireModes>
+					<aimedBurstShotCount>25</aimedBurstShotCount>
+					<aiUseBurstMode>FALSE</aiUseBurstMode>
+					<aiAimMode>SuppressFire</aiAimMode>
+				</FireModes>
+			</li>
+			
+		</operations>
+		</match>	
+	  </li>
+	</operations>	
+  </Operation>
+</Patch>
