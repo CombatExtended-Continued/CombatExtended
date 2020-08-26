@@ -76,6 +76,7 @@ Glitter Tech	|
 GouRIMet	|
 Hand 'n' Footwear	|
 High Caliber	|
+JDS Exiled Dawn	|
 Jernfalk's Standalone Horses	|
 K.L.K - Styles Apparel Pack	|
 Kijin Race 2.0     	|     
