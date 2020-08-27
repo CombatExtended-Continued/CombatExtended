@@ -123,17 +123,13 @@ namespace CombatExtended.CombatExtended.Jobs.Utils
 			return true;
 		}
 
-		private static Thing FindBestAmmo(Pawn pawn, Building_TurretGunCE reloadable)
+		private static Thing FindBestAmmo(Pawn pawn, Building_TurretGunCE turret)
 		{
-			//ThingFilter filter = refuelable.TryGetComp<CompRefuelable>().Props.fuelFilter;
-			AmmoDef requestedAmmo = reloadable.CompAmmo.SelectedAmmo;
-			// try to find currently selected ammo first
-			var bestAmmo = FindBestAmmo(pawn, requestedAmmo);
-			// this code is mostly for siege raids, so they can use all the ammo dropped (and get more ammo)
-			// otherwise, they will wait forever for an HE ammo drop, without using the incendiary shells next to them
-			if (bestAmmo == null && !pawn.IsColonist && requestedAmmo.AmmoSetDefs != null)
+			AmmoDef requestedAmmo = turret.CompAmmo.SelectedAmmo;	
+			var bestAmmo = FindBestAmmo(pawn, requestedAmmo);   // try to find currently selected ammo first
+			if (bestAmmo == null && turret.CompAmmo.EmptyMagazine && requestedAmmo.AmmoSetDefs != null)
 			{
-				// if there isn't any, try to find some ammo from same ammo set
+				//Turret's selected ammo not available, and magazine is empty. Pick a new ammo from the set to load.
 				foreach (AmmoSetDef set in requestedAmmo.AmmoSetDefs)
 				{
 					foreach (AmmoLink link in set.ammoTypes)
