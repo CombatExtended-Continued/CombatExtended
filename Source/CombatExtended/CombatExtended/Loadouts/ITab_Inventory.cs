@@ -575,7 +575,7 @@ namespace CombatExtended
 
         private bool IsItemDropForbidden(Thing thing)
         {
-            return (thing is Apparel eqApparel && SelPawnForGear.apparel.IsLocked(eqApparel))
+            return (thing is Apparel eqApparel && (SelPawnForGear.apparel?.IsLocked(eqApparel) ?? false))
                 || (thing.def.IsWeapon && SelPawnForGear.IsQuestLodger() && !EquipmentUtility.QuestLodgerCanUnequip(thing, SelPawnForGear));
         }
 
