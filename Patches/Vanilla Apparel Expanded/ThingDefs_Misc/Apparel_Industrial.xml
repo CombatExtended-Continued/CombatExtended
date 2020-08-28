@@ -77,6 +77,12 @@
 						<StuffEffectMultiplierArmor>1.4</StuffEffectMultiplierArmor>
 					</value>
 				</li>
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="VAE_Apparel_MilitaryUniform"]/costList/Steel</xpath>
+					<value>
+						<Steel>10</Steel>
+					</value>
+				</li>
 
 				<!-- == VAE_Apparel_BuildersJacket == -->
 				<!-- statBases -->
@@ -85,7 +91,7 @@
 					<value>
 						<Bulk>5</Bulk>
 						<WornBulk>1</WornBulk>
-						<ArmorRating_Sharp>0.55</ArmorRating_Sharp>
+						<ArmorRating_Sharp>0.2</ArmorRating_Sharp>
 					</value>
 				</li>
 				<li Class="PatchOperationReplace">
@@ -94,11 +100,17 @@
 						<ArmorRating_Blunt>0.4</ArmorRating_Blunt>
 					</value>
 				</li>
-				<!-- cloth cost -->
+				<!-- material cost -->
 				<li Class="PatchOperationReplace">
 					<xpath>Defs/ThingDef[defName="VAE_Apparel_BuildersJacket"]/costList/Cloth</xpath>
 					<value>
-						<Cloth>20</Cloth>
+						<Cloth>60</Cloth>
+					</value>
+				</li>
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="VAE_Apparel_BuildersJacket"]/costList/Silver</xpath>
+					<value>
+						<Silver>10</Silver>
 					</value>
 				</li>
 
@@ -107,7 +119,7 @@
 				<li Class="PatchOperationReplace">
 					<xpath>Defs/ThingDef[defName="VAE_Apparel_DoctorScrubs"]/costList/Cloth</xpath>
 					<value>
-						<Cloth>30</Cloth>
+						<Cloth>50</Cloth>
 					</value>
 				</li>
 
@@ -119,13 +131,6 @@
 						<Bulk>7.5</Bulk>
 						<WornBulk>1</WornBulk>
 						<ArmorRating_Sharp>0.1</ArmorRating_Sharp>
-					</value>
-				</li>
-				<!-- cloth cost -->
-				<li Class="PatchOperationReplace">
-					<xpath>Defs/ThingDef[defName="VAE_Apparel_LabCoat"]/costList/Cloth</xpath>
-					<value>
-						<Cloth>40</Cloth>
 					</value>
 				</li>
 
@@ -146,30 +151,29 @@
 					</value>
 				</li>
 				<li Class="PatchOperationReplace">
-					<xpath>Defs/ThingDef[defName="VAE_Apparel_CasualTShirt" or defName="VAE_Apparel_Shorts" or defName="VAE_Apparel_Skirt" or defName="VAE_Apparel_Trousers"]/costStuffCount</xpath>
+					<xpath>Defs/ThingDef[defName="VAE_Apparel_CasualTShirt" or defName="VAE_Apparel_Shorts" or defName="VAE_Apparel_Skirt"]/costStuffCount</xpath>
 					<value>
 						<costStuffCount>20</costStuffCount>
 					</value>
 				</li>
 				<li Class="PatchOperationReplace">
-					<xpath>Defs/ThingDef[defName="VAE_Apparel_ShirtandTie" or defName="VAE_Apparel_Overalls" or defName="VAE_Apparel_FleeceShirt" or defName="VAE_Apparel_SheriffShirt"]/costStuffCount</xpath>
+					<xpath>Defs/ThingDef[defName="VAE_Apparel_ShirtandTie" or defName="VAE_Apparel_Overalls" or defName="VAE_Apparel_FleeceShirt" or defName="VAE_Apparel_SheriffShirt" or defName="VAE_Apparel_Trousers"]/costStuffCount</xpath>
 					<value>
 						<costStuffCount>25</costStuffCount>
 					</value>
 				</li>
 				<li Class="PatchOperationReplace">
-					<xpath>Defs/ThingDef[defName="VAE_Apparel_Hoodie" or defName="VAE_Apparel_Jeans" or defName="VAE_Apparel_ChefsUniform" or defName="VAE_Apparel_MilitaryUniform"]/costStuffCount</xpath>
+					<xpath>Defs/ThingDef[defName="VAE_Apparel_Hoodie" or defName="VAE_Apparel_Jeans" or defName="VAE_Apparel_ChefsUniform"]/costStuffCount</xpath>
 					<value>
 						<costStuffCount>30</costStuffCount>
 					</value>
 				</li>
 				<li Class="PatchOperationReplace">
-					<xpath>Defs/ThingDef[defName="VAE_Apparel_SuitJacket" or defName="VAE_Apparel_MilitaryJacket" or defName="VAE_Apparel_Jumpsuit"]/costStuffCount</xpath>
+					<xpath>Defs/ThingDef[defName="VAE_Apparel_MilitaryUniform" or defName="VAE_Apparel_Jumpsuit" or defName="VAE_Apparel_MilitaryJacket" or defName="VAE_Apparel_SuitJacket"]/costStuffCount</xpath>
 					<value>
-						<costStuffCount>40</costStuffCount>
+						<costStuffCount>60</costStuffCount>
 					</value>
 				</li>
-				<!-- Hopefully I don't forget to remove the content of the comments because they're more or less more helpful for me to distinguish when a new tier of cost count begins. -->
 			</operations>
 		</match>
 	</Operation>
