@@ -49,6 +49,7 @@ Apparello 2	|
 Arachne Race	|
 Area Rugs	|
 Auto-Mortars	|
+Beeralope Squad	|
 Better Infestations	|
 Black Widows	|
 Combat Enthusiast’s Collection	|

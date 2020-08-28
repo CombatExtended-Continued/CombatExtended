@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+	<Operation Class="PatchOperationSequence">
+	  <operations>
+		<li Class="PatchOperationFindMod">
+		
+		  <mods><li>Beeralope Squad</li></mods>
+			<match Class="PatchOperationSequence">
+			  <operations>
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="NaturalBeer"]/tools</xpath>
+					<value>
+						<tools>
+							<li Class="CombatExtended.ToolCE">
+								<capacities>
+									<li>Blunt</li>
+								</capacities>
+								<power>2</power>
+								<cooldownTime>2.22</cooldownTime>
+								<chanceFactor>1.33</chanceFactor>
+								<armorPenetrationBlunt>0.338</armorPenetrationBlunt>
+								<linkedBodyPartsGroup>Base</linkedBodyPartsGroup>
+							</li>
+							<li Class="CombatExtended.ToolCE">
+								<label>neck</label>
+								<capacities>
+									<li>Poke</li>
+								</capacities>
+								<power>1</power>
+								<cooldownTime>3.33</cooldownTime>
+								<armorPenetrationBlunt>0.150</armorPenetrationBlunt>
+								<linkedBodyPartsGroup>Neck</linkedBodyPartsGroup>
+							</li>
+						</tools>
+					</value>
+				</li>
+				
+				<!--Add weapon tags for 1-handing-->
+				
+				<li Class="PatchOperationSequence">
+					<success>Always</success>
+					<operations>
+						<li Class="PatchOperationTest">
+							<xpath>Defs/ThingDef[defName="NaturalBeer"]/weaponTags</xpath>
+							<success>Invert</success>
+						</li>
+						<li Class="PatchOperationAdd">
+							<xpath>Defs/ThingDef[defName="NaturalBeer"]</xpath>
+							<value>
+								<weaponTags />
+							</value>
+						</li>
+					</operations>
+				</li>
+
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="NaturalBeer"]/weaponTags</xpath>
+					<value>
+						<li>CE_OneHandedWeapon</li>
+					</value>
+				</li>
+			  </operations>
+			</match>
+	    </li>
+		
+	  </operations>
+	</Operation>
+	
+</Patch>
