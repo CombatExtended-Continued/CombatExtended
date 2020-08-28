@@ -14,6 +14,8 @@ Mod |
 [CP] Rimmu-Nation - Weapons	|
 [CP] Spec Ops - The Line	|
 [CP] The DOOM Kit - Classic	|
+[JDS] Exiled Dawn |
+[JDS] The Forge - Exiled Dawn |
 [JDS] The Forge - NCR Armory	|
 [O21] Forgotten Realms |
 [O21] Mechadroids |
@@ -84,7 +86,6 @@ GouRIMet	|
 Halo - Rimworld Auxiliary Combat Armory	|
 Hand 'n' Footwear	|
 High Caliber	|
-JDS Exiled Dawn	|
 Jernfalk's Standalone Horses	|
 Kaiser Armory	|
 K.L.K - Styles Apparel Pack	|
