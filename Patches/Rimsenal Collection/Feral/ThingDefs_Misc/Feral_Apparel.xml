@@ -97,20 +97,26 @@
 			<li Class="PatchOperationAdd">
 				<xpath>Defs/ThingDef[defName="Apparel_ScrapArmor"]/statBases</xpath>
 				<value>
-					<Bulk>6</Bulk>
-					<WornBulk>3</WornBulk>					
+					<Bulk>10</Bulk>
+					<WornBulk>5</WornBulk>					
 				</value>
 			</li>
 			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="Apparel_ScrapArmor"]/statBases/Mass</xpath>
+				<value>
+					<Mass>20</Mass>		
+				</value>
+			</li>			
+			<li Class="PatchOperationReplace">
 				<xpath>/Defs/ThingDef[defName="Apparel_ScrapArmor"]/statBases/ArmorRating_Blunt</xpath>
 				<value>
-					<ArmorRating_Blunt>20</ArmorRating_Blunt>
+					<ArmorRating_Blunt>12</ArmorRating_Blunt>
 				</value>			
 			</li>
 			<li Class="PatchOperationReplace">
 				<xpath>/Defs/ThingDef[defName="Apparel_ScrapArmor"]/statBases/ArmorRating_Sharp</xpath>
 				<value>
-					<ArmorRating_Sharp>12</ArmorRating_Sharp>
+					<ArmorRating_Sharp>6</ArmorRating_Sharp>
 				</value>
 			</li>
 			
@@ -118,14 +124,20 @@
 			<li Class="PatchOperationAdd">
 				<xpath>Defs/ThingDef[defName="Apparel_FeralMail"]/statBases</xpath>
 				<value>
-					<Bulk>9</Bulk>
-					<WornBulk>6</WornBulk>					
+					<Bulk>8</Bulk>
+					<WornBulk>3</WornBulk>					
 				</value>
 			</li>
 			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="Apparel_FeralMail"]/statBases/Mass</xpath>
+				<value>
+					<Mass>13</Mass>						
+				</value>
+			</li>			
+			<li Class="PatchOperationReplace">
 				<xpath>/Defs/ThingDef[defName="Apparel_FeralMail"]/statBases/ArmorRating_Blunt</xpath>
 				<value>
-					<ArmorRating_Blunt>16</ArmorRating_Blunt>
+					<ArmorRating_Blunt>8</ArmorRating_Blunt>
 				</value>			
 			</li>
 			<li Class="PatchOperationReplace">
@@ -139,19 +151,30 @@
 			<li Class="PatchOperationAdd">
 				<xpath>Defs/ThingDef[defName="Apparel_FeralExo"]/statBases</xpath>
 				<value>
-					<Bulk>20</Bulk>
-					<WornBulk>14</WornBulk>					
+					<Bulk>110</Bulk>
+					<WornBulk>18</WornBulk>					
 				</value>
 			</li>
-
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="Apparel_FeralExo"]/statBases/Mass</xpath>
+				<value>
+					<Mass>60</Mass>		
+				</value>
+			</li>					
 			<li Class="PatchOperationAdd">
 				<xpath>Defs/ThingDef[defName="Apparel_FeralExo"]/equippedStatOffsets</xpath>
 				<value>
-					<CarryWeight>75</CarryWeight>
-					<CarryBulk>30</CarryBulk>
+					<CarryWeight>70</CarryWeight>
+					<CarryBulk>10</CarryBulk>
 					<ToxicSensitivity>-0.45</ToxicSensitivity>
 			</value>
 		    </li>
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName="Apparel_FeralExo"]/costList</xpath>
+				<value>
+					<DevilstrandCloth>30</DevilstrandCloth>
+				</value>
+			</li>			
 			<li Class="PatchOperationReplace">
 				<xpath>/Defs/ThingDef[defName="Apparel_FeralExo"]/statBases/ArmorRating_Blunt</xpath>
 				<value>
@@ -164,7 +187,13 @@
 					<ArmorRating_Sharp>18</ArmorRating_Sharp>
 				</value>
 			</li>
-			
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/thingDef[defName="Apparel_FeralExo"]/apparel/bodyPartGroups</xpath>
+				<value>
+					<li>Hands</li>
+					<li>Feet</li>
+				</value>
+			</li>			
 		</operations>
 		</match>
 	</Operation>
