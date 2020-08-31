@@ -8,12 +8,49 @@
     <match Class="PatchOperationSequence">
       <operations>
 
+        <!-- === Common === -->
         <li Class="PatchOperationAddModExtension">
           <xpath>/Defs/ThingDef[defName="CMSlime" or defName="CMSlimeBlue" or defName="CMSlimeRed"]</xpath>
           <value>
             <li Class="CombatExtended.RacePropertiesExtensionCE">
               <bodyShape>QuadrupedLow</bodyShape>
             </li>
+          </value>
+        </li>
+
+        <li Class="PatchOperationAdd">
+          <xpath>/Defs/ThingDef[defName="CMSlime" or defName="CMSlimeRed"]</xpath>
+          <value>
+            <damageMultipliers>
+              <li>
+                <damageDef>Bomb</damageDef>
+                <multiplier>1.2</multiplier>
+              </li>
+              <li>
+                <damageDef>Thermobaric</damageDef>
+                <multiplier>1.5</multiplier>
+              </li>
+            </damageMultipliers>
+          </value>
+        </li>
+
+        <li Class="PatchOperationAdd">
+          <xpath>/Defs/ThingDef[defName="CMSlimeBlue"]</xpath>
+          <value>
+            <damageMultipliers>
+              <li>
+                <damageDef>Bomb</damageDef>
+                <multiplier>2.66</multiplier>
+              </li>
+              <li>
+                <damageDef>Flame</damageDef>
+                <multiplier>3</multiplier>
+              </li>
+              <li>
+                <damageDef>Thermobaric</damageDef>
+                <multiplier>3.2</multiplier>
+              </li>
+            </damageMultipliers>
           </value>
         </li>
 
@@ -30,21 +67,21 @@
         <li Class="PatchOperationReplace">
           <xpath>/Defs/ThingDef[defName="CMSlime"]/statBases/ArmorRating_Blunt</xpath>
           <value>
-            <ArmorRating_Blunt>0.15</ArmorRating_Blunt>
+            <ArmorRating_Blunt>1.55</ArmorRating_Blunt>
           </value>
         </li>
 
         <li Class="PatchOperationReplace">
           <xpath>/Defs/ThingDef[defName="CMSlime"]/statBases/ArmorRating_Sharp</xpath>
           <value>
-            <ArmorRating_Sharp>0.1</ArmorRating_Sharp>
+            <ArmorRating_Sharp>1.35</ArmorRating_Sharp>
           </value>
         </li>
 
         <li Class="PatchOperationReplace">
           <xpath>/Defs/ThingDef[defName="CMSlime"]/race/baseHealthScale</xpath>
           <value>
-            <baseHealthScale>3</baseHealthScale>
+            <baseHealthScale>6</baseHealthScale>
           </value>
         </li>
 
@@ -79,21 +116,21 @@
         <li Class="PatchOperationReplace">
           <xpath>/Defs/ThingDef[defName="CMSlimeBlue"]/statBases/ArmorRating_Blunt</xpath>
           <value>
-            <ArmorRating_Blunt>0.55</ArmorRating_Blunt>
+            <ArmorRating_Blunt>2.11</ArmorRating_Blunt>
           </value>
         </li>
 
         <li Class="PatchOperationReplace">
           <xpath>/Defs/ThingDef[defName="CMSlimeBlue"]/statBases/ArmorRating_Sharp</xpath>
           <value>
-            <ArmorRating_Sharp>0.25</ArmorRating_Sharp>
+            <ArmorRating_Sharp>1.45</ArmorRating_Sharp>
           </value>
         </li>
 
         <li Class="PatchOperationReplace">
           <xpath>/Defs/ThingDef[defName="CMSlimeBlue"]/race/baseHealthScale</xpath>
           <value>
-            <baseHealthScale>7</baseHealthScale>
+            <baseHealthScale>14</baseHealthScale>
           </value>
         </li>
 
@@ -136,21 +173,21 @@
         <li Class="PatchOperationReplace">
           <xpath>/Defs/ThingDef[defName="CMSlimeRed"]/statBases/ArmorRating_Blunt</xpath>
           <value>
-            <ArmorRating_Blunt>0.05</ArmorRating_Blunt>
+            <ArmorRating_Blunt>1.35</ArmorRating_Blunt>
           </value>
         </li>
 
         <li Class="PatchOperationReplace">
           <xpath>/Defs/ThingDef[defName="CMSlimeRed"]/statBases/ArmorRating_Sharp</xpath>
           <value>
-            <ArmorRating_Sharp>0.10</ArmorRating_Sharp>
+            <ArmorRating_Sharp>1.25</ArmorRating_Sharp>
           </value>
         </li>
 
         <li Class="PatchOperationReplace">
           <xpath>/Defs/ThingDef[defName="CMSlimeRed"]/race/baseHealthScale</xpath>
           <value>
-            <baseHealthScale>5</baseHealthScale>
+            <baseHealthScale>6</baseHealthScale>
           </value>
         </li>
 
