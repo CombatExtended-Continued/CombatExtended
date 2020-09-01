@@ -12,5 +12,7 @@ namespace CombatExtended
     public class CE_DamageArmorCategoryDefOf
     {
         public static DamageArmorCategoryDef Blunt;
+        public static DamageArmorCategoryDef Heat;
+        public static DamageArmorCategoryDef Electric;
     }
 }

@@ -14,22 +14,11 @@ Mod |
 [CP] Rimmu-Nation - Weapons	|
 [CP] Spec Ops - The Line	|
 [CP] The DOOM Kit - Classic	|
+[JDS] Exiled Dawn |
+[JDS] The Forge - Exiled Dawn |
 [JDS] The Forge - NCR Armory	|
-[O21] Elves	|
-[O21] Elves - Faction Addon	|
-[O21] Gith |
-[O21] Goblins	|
-[O21] Goblins - Faction Addon	|
-[O21] Half-Orcs	|
-[O21] Hobgoblins	|
-[O21] Illithids	|
-[O21] Kobolds	|
-[O21] Orcs	|
-[O21] Orcs - Faction Addon	|
-[O21] Tieflings	|
-[O21] Tieflings - Faction Addon	|
-[O21] Warforged	|
-[O21] Warforged - Faction Addon	|
+[O21] Forgotten Realms |
+[O21] Mechadroids |
 [Ods] SCP Outfits Only Edition	|
 [Pratt] WWII Weapons Pack (Vanilla)	|
 [RH] Faction: Alliegence	|
@@ -60,6 +49,7 @@ Apparello 2	|
 Arachne Race	|
 Area Rugs	|
 Auto-Mortars	|
+Beeralope Squad	|
 Better Infestations	|
 Black Widows	|
 Combat Enthusiast’s Collection	|
@@ -69,10 +59,14 @@ CyberNet	|
 Cybernetic Organism and Neural Network	|
 Defensive Machine Gun Turret Pack	|
 Dinosauria	|
+Dragon's Descent |
 Dragonian Race	|
 Dragons!	|
 ED-Shields	|
 Equiums Horse Race	|
+Erin's Critter Collection |
+Erin's Forest Critters |
+Erin's Fox Squirrel |
 Expanded Patchleather	|
 Expanded Prosthetics and Organ Engineering (EPOE)	|
 Extended Storage	|
@@ -150,6 +144,7 @@ Vanilla Brewing Expanded    |
 Vanilla Factions Expanded - Insectoids |
 Vanilla Factions Expanded - Medieval	|
 Vanilla Factions Expanded - Settlers	|
+Vanilla Furniture Expanded - Production	|
 Vanilla Vehicles Expanded	|
 Vanilla Weapons Expanded |
 Vanilla Weapons Expanded - Grenades |

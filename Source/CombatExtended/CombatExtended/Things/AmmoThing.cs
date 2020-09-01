@@ -22,37 +22,6 @@ namespace CombatExtended
 
         #region Methods
 
-      /*public override string DescriptionFlavor
-        {
-            get
-            {
-                if (AmmoDef != null && AmmoDef.ammoClass != null)
-                {
-                    StringBuilder stringBuilder = new StringBuilder();
-                    stringBuilder.AppendLine(base.DescriptionFlavor);
-
-                    // Append ammo class description
-                    stringBuilder.AppendLine("\n" + AmmoDef.ammoClass.LabelCap + ":");
-                    stringBuilder.AppendLine(AmmoDef.ammoClass.description);
-
-                    // Append guns that use this caliber
-                    var users = AmmoDef.Users;
-                    if (!users.NullOrEmpty())
-                    {
-                        stringBuilder.AppendLine("\n" + "CE_UsedBy".Translate() + ":");
-                        foreach (var user in users)
-                        {
-                            stringBuilder.AppendLine("   -" + user.LabelCap);
-                        }
-                    }
-
-                    return stringBuilder.ToString().TrimEndNewlines();
-                }
-
-                return base.DescriptionFlavor;
-            }
-        }*/
-
         public override void PreApplyDamage(ref DamageInfo dinfo, out bool absorbed)
         {
             base.PreApplyDamage(ref dinfo, out absorbed);
@@ -94,7 +63,7 @@ namespace CombatExtended
             // Cook off ammo based on how much damage we've taken so far
             if (numToCookOff > 0 && Rand.Chance((float)numToCookOff / def.stackLimit))
             {
-                if(TryLaunchCookOffProjectile() || TryDetonate())
+                if (TryLaunchCookOffProjectile() || TryDetonate())
                 {
                     // Reduce stack count
                     if (stackCount > 1)
@@ -148,7 +117,7 @@ namespace CombatExtended
                     if (detProps != null)
                     {
                         GenExplosionCE.DoExplosion(Position, Map, detProps.explosionRadius, detProps.damageDef,
-                            this, detProps.GetDamageAmount(1), detProps.GetArmorPenetration(1),
+                            this, detProps.GetDamageAmount(1), GenExplosionCE.GetExplosionAP(detProps),
                             detProps.soundExplode,
                             null, def, null, detProps.postExplosionSpawnThingDef, detProps.postExplosionSpawnChance,
                             detProps.postExplosionSpawnThingCount, detProps.applyDamageToExplosionCellsNeighbors,

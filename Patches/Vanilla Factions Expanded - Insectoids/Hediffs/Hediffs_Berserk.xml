@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+
+  <Operation Class="PatchOperationFindMod">
+    <mods>
+      <li>Vanilla Factions Expanded - Insectoids</li>
+    </mods>
+
+    <match Class="PatchOperationAdd">
+      <xpath>Defs</xpath>
+
+      <value>
+        <!-- === Berserk Hediff === -->
+        <HediffDef>
+          <hediffClass>HediffWithComps</hediffClass>
+          <defName>VFEI_Berserk</defName>
+          <label>berserk</label>
+          <description>.</description>
+          <defaultLabelColor>(0.9, 1.0, 0.35)</defaultLabelColor>
+          <initialSeverity>1</initialSeverity>
+          <comps>
+            <li Class="HediffCompProperties_CauseMentalState">
+              <animalMentalState>ManhunterPermanent</animalMentalState>
+              <animalMentalStateAlias>Manhunter</animalMentalStateAlias>
+              <humanMentalState>Berserk</humanMentalState>
+              <letterDef>ThreatSmall</letterDef>
+              <mtbDaysToCauseMentalState>0.001</mtbDaysToCauseMentalState>
+            </li>
+          </comps>
+        </HediffDef>
+
+        <!-- === Berserk Damage === -->
+        <DamageDef>
+          <workerClass>DamageWorker_AddGlobal</workerClass>
+          <defName>VFEI_PsychicDamage</defName>
+          <label>psychic</label>
+          <hediff>VFEI_Berserk</hediff>
+          <canInterruptJobs>true</canInterruptJobs>
+          <makesBlood>false</makesBlood>
+          <harmsHealth>false</harmsHealth>
+          <defaultDamage>0</defaultDamage>
+          <explosionCellMote>Mote_BlastExtinguisher</explosionCellMote>
+          <explosionColorEdge>(1, 1, 1, 0.05)</explosionColorEdge>
+          <soundExplosion>Explosion_Smoke</soundExplosion>
+          <combatLogRules>Damage_Smoke</combatLogRules>
+        </DamageDef>
+      </value>
+    </match>
+  </Operation>
+
+</Patch>

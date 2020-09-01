@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+  <Operation Class="PatchOperationSequence">
+	<operations>
+	  <li Class="PatchOperationFindMod">
+			
+		<mods><li>[JDS] Exiled Dawn</li><li>[JDS] The Forge - Exiled Dawn Armory</li></mods>
+			
+		<match Class="PatchOperationSequence">
+		<operations>
+			
+			<li Class="PatchOperationAdd">
+				<xpath>Defs</xpath>
+				<value>
+					<CombatExtended.AmmoSetDef>
+						<defName>AmmoSet_ExileLight</defName>
+						<label>Light Plasma Cell</label>
+						<ammoTypes>
+						  <Ammo_PlasmaCellPistol>Bullet_ExilePlasmaPistol</Ammo_PlasmaCellPistol>
+						</ammoTypes>
+					</CombatExtended.AmmoSetDef>
+				</value>
+			</li>
+			
+			<li Class="PatchOperationAdd">
+				<xpath>Defs</xpath>
+				<value>
+					<CombatExtended.AmmoSetDef>
+						<defName>AmmoSet_ExileMid</defName>
+						<label>Rifle Plasma Cell</label>
+						<ammoTypes>
+						  <Ammo_PlasmaCellRifle>Bullet_ExilePlasmaMid</Ammo_PlasmaCellRifle>
+						</ammoTypes>
+					</CombatExtended.AmmoSetDef>
+				</value>
+			</li>
+			
+			<li Class="PatchOperationAdd">
+				<xpath>Defs</xpath>
+				<value>
+					<CombatExtended.AmmoSetDef>
+						<defName>AmmoSet_ExileRifle</defName>
+						<label>Rifle Plasma Cell (Accelerated)</label>
+						<ammoTypes>
+						  <Ammo_PlasmaCellRifle>Bullet_ExilePlasmaHeavy</Ammo_PlasmaCellRifle>
+						</ammoTypes>
+					</CombatExtended.AmmoSetDef>
+				</value>
+			</li>
+			
+			<li Class="PatchOperationAdd">
+				<xpath>Defs</xpath>
+				<value>
+					<CombatExtended.AmmoSetDef>
+						<defName>AmmoSet_ExileAccelerated</defName>
+						<label>Heavy Plasma Cell</label>
+						<ammoTypes>
+						  <Ammo_PlasmaCellHeavy>Bullet_ExilePlasmaAccelerated</Ammo_PlasmaCellHeavy>
+						</ammoTypes>
+					</CombatExtended.AmmoSetDef>
+				</value>
+			</li>
+			
+			<li Class="PatchOperationAdd">
+				<xpath>Defs</xpath>
+				<value>
+					<ThingDef Class="CombatExtended.AmmoDef" ParentName="Base556x45mmNATOBullet">
+						<defName>Bullet_ExilePlasmaPistol</defName>
+						<label>Low Density Plasma Bullet</label>
+						<graphicData>
+						  <texPath>Things/Misc/Plasma_Bullet</texPath>
+						  <graphicClass>Graphic_Single</graphicClass>
+						</graphicData>
+						<projectile Class="CombatExtended.ProjectilePropertiesCE">
+						  <speed>100</speed>
+						  <damageDef>Flame_Secondary</damageDef>
+						  <damageAmountBase>7</damageAmountBase>
+						</projectile>
+					</ThingDef>
+				</value>
+			</li>
+			
+			<li Class="PatchOperationAdd">
+				<xpath>Defs</xpath>
+				<value>
+					<ThingDef Class="CombatExtended.AmmoDef" ParentName="Base556x45mmNATOBullet">
+						<defName>Bullet_ExilePlasmaMid</defName>
+						<label>Median Density Plasma Bullet</label>
+						<graphicData>
+						  <texPath>Things/Misc/Plasma_Bullet</texPath>
+						  <graphicClass>Graphic_Single</graphicClass>
+						</graphicData>
+						<projectile Class="CombatExtended.ProjectilePropertiesCE">
+						  <speed>150</speed>
+						  <damageDef>Flame_Secondary</damageDef>
+						  <damageAmountBase>9</damageAmountBase>
+						</projectile>
+					</ThingDef>
+				</value>
+			</li>
+			
+			<li Class="PatchOperationAdd">
+				<xpath>Defs</xpath>
+				<value>
+					<ThingDef Class="CombatExtended.AmmoDef" ParentName="Base556x45mmNATOBullet">
+						<defName>Bullet_ExilePlasmaHeavy</defName>
+						<label>High Density Plasma Bullet</label>
+						<graphicData>
+						  <texPath>Things/Misc/Plasma_Bullet</texPath>
+						  <graphicClass>Graphic_Single</graphicClass>
+						</graphicData>
+						<projectile Class="CombatExtended.ProjectilePropertiesCE">
+						  <speed>150</speed>
+						  <damageDef>Flame_Secondary</damageDef>
+						  <damageAmountBase>12</damageAmountBase>
+						</projectile>
+					</ThingDef>
+				</value>
+			</li>
+			
+			<li Class="PatchOperationAdd">
+				<xpath>Defs</xpath>
+				<value>
+					<ThingDef Class="CombatExtended.AmmoDef" ParentName="Base556x45mmNATOBullet">
+						<defName>Bullet_ExilePlasmaAccelerated</defName>
+						<label>Accelerated Plasma Bullet</label>
+						<graphicData>
+						  <texPath>Things/Misc/Plasma_Bullet</texPath>
+						  <graphicClass>Graphic_Single</graphicClass>
+						</graphicData>
+						<projectile Class="CombatExtended.ProjectilePropertiesCE">
+						  <speed>200</speed>
+						  <damageDef>Flame_Secondary</damageDef>
+						  <damageAmountBase>33</damageAmountBase>
+						</projectile>
+					</ThingDef>
+				</value>
+			</li>
+			
+		</operations>
+		</match>	
+	  </li>
+	</operations>	
+  </Operation>
+</Patch>

@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+			<li>[O21] Forgotten Realms</li>
+		</mods>
+		<match Class="PatchOperationSequence">
+			<operations>
+
+				<li Class="PatchOperationAddModExtension">
+					<xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="O21_Alien_Hobgoblin"]</xpath>
+					<value>
+						<li Class="CombatExtended.RacePropertiesExtensionCE">
+							<bodyShape>Humanoid</bodyShape>
+						</li>
+					</value>
+				</li>
+
+				<li Class="PatchOperationSequence">
+					<success>Always</success>
+					<operations>
+						<li Class="PatchOperationTest">
+							<xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="O21_Alien_Hobgoblin"]/comps</xpath>
+							<success>Invert</success>
+						</li>
+						<li Class="PatchOperationAdd">
+							<xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="O21_Alien_Hobgoblin"]</xpath>
+							<value>
+								<comps />
+							</value>
+						</li>
+					</operations>
+				</li>
+
+				<!-- Goblins are cowardly, cruel, and brutal. This extendeds to their larger breathern. -->
+				<li Class="PatchOperationAdd">
+					<xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="O21_Alien_Hobgoblin"]/alienRace/generalSettings/forcedRaceTraitEntries</xpath>
+					<value>
+						<li>
+							<defName>Beauty</defName>
+							<degree>-1</degree>
+							<chance>20</chance>
+						</li>
+						<li>
+							<defName>Greedy</defName>
+							<chance>10</chance>
+						</li>
+						<li>
+							<defName>Xenophobia</defName>
+							<degree>-1</degree>
+							<chance>10</chance>
+						</li>
+					</value>
+				</li>
+
+				<!-- The typical hobgoblin stands slightly taller than the average human. -->
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="O21_Alien_Hobgoblin"]/race/baseBodySize</xpath>
+					<value>
+						<baseBodySize>1.15</baseBodySize>
+					</value>
+				</li>
+
+				<li Class="PatchOperationAdd">
+					<xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="O21_Alien_Hobgoblin"]/statBases/MoveSpeed</xpath>
+					<value>
+						<MoveSpeed>4.3</MoveSpeed>
+					</value>
+				</li>
+
+				<li Class="PatchOperationAdd">
+					<xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="O21_Alien_Hobgoblin"]/statBases</xpath>
+					<value>
+						<MeleeDodgeChance>0.90</MeleeDodgeChance>
+						<MeleeCritChance>1.1</MeleeCritChance>
+						<MeleeParryChance>1</MeleeParryChance>
+						<SmokeSensitivity>1</SmokeSensitivity>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="O21_Alien_Hobgoblin"]/tools</xpath>
+					<value>
+						<tools>
+							<li Class="CombatExtended.ToolCE">
+								<label>left fist</label>
+								<capacities>
+									<li>Blunt</li>
+								</capacities>
+								<power>2</power>
+								<cooldownTime>1.5</cooldownTime>
+								<linkedBodyPartsGroup>LeftHand</linkedBodyPartsGroup>
+								<armorPenetrationBlunt>0.5</armorPenetrationBlunt>
+							</li>
+							<li Class="CombatExtended.ToolCE">
+								<label>right fist</label>
+								<capacities>
+									<li>Blunt</li>
+								</capacities>
+								<power>2</power>
+								<cooldownTime>1.5</cooldownTime>
+								<linkedBodyPartsGroup>RightHand</linkedBodyPartsGroup>
+								<armorPenetrationBlunt>0.5</armorPenetrationBlunt>
+							</li>
+							<li Class="CombatExtended.ToolCE">
+								<label>head</label>
+								<capacities>
+									<li>Blunt</li>
+								</capacities>
+								<power>3</power>
+								<cooldownTime>4.96</cooldownTime>
+								<linkedBodyPartsGroup>HeadAttackTool</linkedBodyPartsGroup>
+								<chanceFactor>0.2</chanceFactor>
+								<armorPenetrationBlunt>0.938</armorPenetrationBlunt>
+							</li>
+							<li Class="CombatExtended.ToolCE">
+								<capacities>
+									<li>Bite</li>
+								</capacities>
+								<power>5</power>
+								<cooldownTime>1.57</cooldownTime>
+								<chanceFactor>0.33</chanceFactor>
+								<linkedBodyPartsGroup>Teeth</linkedBodyPartsGroup>
+								<armorPenetrationSharp>0.03</armorPenetrationSharp>
+								<armorPenetrationBlunt>0.6</armorPenetrationBlunt>
+							</li>
+						</tools>
+					</value>
+				</li>
+
+				<li Class="PatchOperationAdd">
+					<xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="O21_Alien_Hobgoblin"]/comps</xpath>
+					<value>
+						<li>
+							<compClass>CombatExtended.CompPawnGizmo</compClass>
+						</li>
+						<li Class="CombatExtended.CompProperties_Suppressable" />
+					</value>
+				</li>
+
+			</operations>
+		</match>
+	</Operation>
+</Patch>
