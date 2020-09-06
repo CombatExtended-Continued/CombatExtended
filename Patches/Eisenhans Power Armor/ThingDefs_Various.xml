@@ -1,0 +1,294 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+
+  <Operation Class="PatchOperationFindMod">
+    <mods>
+      <li>Iron Harvest Pkp 17 "Eisenhans" Powerarmor</li>
+    </mods>
+    <match Class="PatchOperationSequence">
+      <operations>
+
+        <!-- === Helmet === -->
+        <li Class="PatchOperationAdd">
+          <xpath>/Defs/ThingDef[defName="Apparel_Eisenhans_Helmet"]/statBases</xpath>
+          <value>
+            <Bulk>4</Bulk>
+            <WornBulk>2</WornBulk>
+          </value>
+        </li>
+
+        <li Class="PatchOperationReplace">
+          <xpath>/Defs/ThingDef[defName="Apparel_Eisenhans_Helmet"]/statBases/Flammability</xpath>
+          <value>
+            <Flammability>0</Flammability>
+          </value>
+        </li>
+
+        <li Class="PatchOperationReplace">
+          <xpath>/Defs/ThingDef[defName="Apparel_Eisenhans_Helmet"]/statBases/MaxHitPoints</xpath>
+          <value>
+            <MaxHitPoints>150</MaxHitPoints>
+          </value>
+        </li>
+
+        <li Class="PatchOperationReplace">
+          <xpath>/Defs/ThingDef[defName="Apparel_Eisenhans_Helmet"]/statBases/ArmorRating_Sharp</xpath>
+          <value>
+            <ArmorRating_Sharp>12</ArmorRating_Sharp>
+          </value>
+        </li>
+
+        <li Class="PatchOperationReplace">
+          <xpath>/Defs/ThingDef[defName="Apparel_Eisenhans_Helmet"]/statBases/ArmorRating_Blunt</xpath>
+          <value>
+            <ArmorRating_Blunt>20</ArmorRating_Blunt>
+          </value>
+        </li>
+
+        <li Class="PatchOperationReplace">
+          <xpath>/Defs/ThingDef[defName="Apparel_Eisenhans_Helmet"]/equippedStatOffsets</xpath>
+          <value>
+            <equippedStatOffsets>
+              <PsychicSensitivity>-0.1</PsychicSensitivity>
+              <ToxicSensitivity>-0.50</ToxicSensitivity>
+              <SmokeSensitivity>-1</SmokeSensitivity>
+              <ShootingAccuracyPawn>-0.10</ShootingAccuracyPawn>
+            </equippedStatOffsets>
+          </value>
+        </li>
+
+        <li Class="PatchOperationReplace">
+          <xpath>/Defs/ThingDef[defName="Apparel_Eisenhans_Helmet"]/costList</xpath>
+          <value>
+            <costList>
+              <Steel>80</Steel>
+              <Cloth>20</Cloth>
+              <ComponentIndustrial>2</ComponentIndustrial>
+            </costList>
+          </value>
+        </li>
+
+        <li Class="PatchOperationAdd">
+          <xpath>/Defs/ThingDef[defName="Apparel_Eisenhans_Helmet"]/apparel/layers</xpath>
+          <value>
+            <li>OnHead</li>
+            <li>StrappedHead</li>
+            <li>MiddleHead</li>
+          </value>
+        </li>
+
+        <!-- === Armor === -->
+        <li Class="PatchOperationAdd">
+          <xpath>/Defs/ThingDef[defName="Apparel_Eisenhans_Powerarmor"]/statBases</xpath>
+          <value>
+            <Bulk>120</Bulk>
+            <WornBulk>15</WornBulk>
+          </value>
+        </li>
+
+        <li Class="PatchOperationReplace">
+          <xpath>/Defs/ThingDef[defName="Apparel_Eisenhans_Powerarmor"]/statBases/MaxHitPoints</xpath>
+          <value>
+            <MaxHitPoints>300</MaxHitPoints>
+          </value>
+        </li>
+
+        <li Class="PatchOperationReplace">
+          <xpath>/Defs/ThingDef[defName="Apparel_Eisenhans_Powerarmor"]/statBases/Mass</xpath>
+          <value>
+            <Mass>50</Mass>
+          </value>
+        </li>
+
+        <li Class="PatchOperationReplace">
+          <xpath>/Defs/ThingDef[defName="Apparel_Eisenhans_Powerarmor"]/statBases/Flammability</xpath>
+          <value>
+            <Flammability>0</Flammability>
+          </value>
+        </li>
+
+        <li Class="PatchOperationReplace">
+          <xpath>/Defs/ThingDef[defName="Apparel_Eisenhans_Powerarmor"]/statBases/ArmorRating_Sharp</xpath>
+          <value>
+            <ArmorRating_Sharp>13</ArmorRating_Sharp>
+          </value>
+        </li>
+
+        <li Class="PatchOperationReplace">
+          <xpath>/Defs/ThingDef[defName="Apparel_Eisenhans_Powerarmor"]/statBases/ArmorRating_Blunt</xpath>
+          <value>
+            <ArmorRating_Blunt>24</ArmorRating_Blunt>
+          </value>
+        </li>
+
+        <li Class="PatchOperationReplace">
+          <xpath>/Defs/ThingDef[defName="Apparel_Eisenhans_Powerarmor"]/costList</xpath>
+          <value>
+            <costList>
+              <Steel>180</Steel>
+              <Cloth>40</Cloth>
+              <ComponentIndustrial>5</ComponentIndustrial>
+            </costList>
+          </value>
+        </li>
+
+        <li Class="PatchOperationReplace">
+          <xpath>/Defs/ThingDef[defName="Apparel_Eisenhans_Powerarmor"]/equippedStatOffsets</xpath>
+          <value>
+            <equippedStatOffsets>
+              <CarryWeight>80</CarryWeight>
+              <CarryBulk>15</CarryBulk>
+              <ToxicSensitivity>-0.50</ToxicSensitivity>
+              <MoveSpeed>-2</MoveSpeed>
+            </equippedStatOffsets>
+          </value>
+        </li>
+
+        <li Class="PatchOperationAdd">
+          <xpath>/Defs/ThingDef[defName="Apparel_Eisenhans_Powerarmor"]/apparel/bodyPartGroups</xpath>
+          <value>
+            <li>Hands</li>
+            <li>Feet</li>
+          </value>
+        </li>
+
+        <li Class="PatchOperationRemove">
+          <xpath>
+            /Defs/ThingDef[defName="Proj_IncendiaryMortarEisenhand"] |
+            /Defs/ThingDef[defName="Proj_ExplosiveMortarEisenhans"] |
+            /Defs/ThingDef[defName="Proj_EmpMortarEisenhans"] |
+            /Defs/ThingDef[defName="Proj_SmokeMortarEisenhans"]
+          </xpath>
+        </li>
+
+        <li Class="PatchOperationReplace">
+          <xpath>/Defs/ThingDef[defName="Apparel_Eisenhans_Powerarmor"]/comps/li[@Class="CompProperties_Reloadable"]/ammoDef</xpath>
+          <value>
+            <ammoDef>Shell_60mmMortar_HE</ammoDef>
+          </value>
+        </li>
+
+        <li Class="PatchOperationReplace">
+          <xpath>/Defs/ThingDef[defName="Apparel_Eisenhans_Powerarmor"]/comps/li[@Class="CompProperties_Reloadable"]/maxCharges</xpath>
+          <value>
+            <maxCharges>2</maxCharges>
+          </value>
+        </li>
+
+        <li Class="PatchOperationReplace">
+          <xpath>/Defs/ThingDef[defName="Apparel_Eisenhans_Powerarmor"]/comps/li[@Class="CompProperties_Reloadable"]/ammoCountPerCharge</xpath>
+          <value>
+            <ammoCountPerCharge>1</ammoCountPerCharge>
+          </value>
+        </li>
+
+        <li Class="PatchOperationAdd">
+          <xpath>/Defs/ThingDef[defName="Apparel_Eisenhans_Powerarmor"]/comps</xpath>
+          <value>
+            <li Class="CombatExtended.CompProperties_Charges">
+              <chargeSpeeds>
+                <li>30</li>
+                <li>50</li>
+                <li>70</li>
+                <li>90</li>
+              </chargeSpeeds>
+            </li>
+          </value>
+        </li>
+
+        <li Class="PatchOperationReplace">
+          <xpath>/Defs/ThingDef[defName="Apparel_Eisenhans_Powerarmor"]/verbs</xpath>
+          <value>
+            <verbs>
+              <li Class="CombatExtended.VerbPropertiesCE">
+                <label>launch 60mm shell</label>
+                <verbClass>CombatExtended.Verb_LaunchProjectileStaticCE</verbClass>
+                <hasStandardCommand>true</hasStandardCommand>
+                <onlyManualCast>True</onlyManualCast>
+                <warmupTime>2</warmupTime>
+                <range>40</range>
+                <minRange>5</minRange>
+                <ai_IsBuildingDestroyer>true</ai_IsBuildingDestroyer>
+                <soundAiming>EisenhansMortar_Aiming</soundAiming>
+                <soundCast>Shot_EisenhansMortar</soundCast>
+                <soundCastTail>GunTail_Medium</soundCastTail>
+                <muzzleFlashScale>14</muzzleFlashScale>
+                <drawHighlightWithLineOfSight>true</drawHighlightWithLineOfSight>
+                <targetParams>
+                  <canTargetLocations>true</canTargetLocations>
+                </targetParams>
+                <ignorePartialLoSBlocker>true</ignorePartialLoSBlocker>
+                <defaultProjectile>Bullet_60mmMortarShell_HE</defaultProjectile>
+                <rangedFireRulepack>Combat_RangedFire_Thrown</rangedFireRulepack>
+              </li>
+            </verbs>
+          </value>
+        </li>
+
+        <!-- === Battering Ram === -->
+        <li Class="PatchOperationReplace">
+          <xpath>/Defs/ThingDef[defName="MeleeWeapon_EisenhansBatteringRam"]/stuffCategories</xpath>
+          <value>
+            <stuffCategories>
+              <li>Metallic_Weapon</li>
+            </stuffCategories>
+          </value>
+        </li>
+
+        <li Class="PatchOperationReplace">
+          <xpath>/Defs/ThingDef[defName="MeleeWeapon_EisenhansBatteringRam"]/costList/ComponentIndustrial</xpath>
+          <value>
+            <ComponentIndustrial>4</ComponentIndustrial>
+          </value>
+        </li>
+
+        <li Class="PatchOperationReplace">
+          <xpath>/Defs/ThingDef[defName="MeleeWeapon_EisenhansBatteringRam"]/statBases/Mass</xpath>
+          <value>
+            <Mass>12</Mass>
+            <Bulk>14</Bulk>
+            <MeleeCounterParryBonus>0.38</MeleeCounterParryBonus>
+          </value>
+        </li>
+
+        <li Class="PatchOperationAdd">
+          <xpath>/Defs/ThingDef[defName="MeleeWeapon_EisenhansBatteringRam"]</xpath>
+          <value>
+            <equippedStatOffsets>
+              <MeleeCritChance>0.42</MeleeCritChance>
+              <MeleeParryChance>0.24</MeleeParryChance>
+              <MeleeDodgeChance>0.1</MeleeDodgeChance>
+            </equippedStatOffsets>
+          </value>
+        </li>
+
+        <li Class="PatchOperationReplace">
+          <xpath>/Defs/ThingDef[defName="MeleeWeapon_EisenhansBatteringRam"]/tools</xpath>
+          <value>
+            <tools>
+              <li Class="CombatExtended.ToolCE">
+              <label>head</label>
+              <capacities>
+                <li>Blunt</li>
+              </capacities>
+              <power>18</power>
+              <cooldownTime>2.1</cooldownTime>
+              <armorPenetrationBlunt>8.625</armorPenetrationBlunt>
+              <linkedBodyPartsGroup>Head</linkedBodyPartsGroup>
+              <extraMeleeDamages>
+                <li>
+                  <def>EMP</def>
+                  <amount>6</amount>
+                  <chance>0.75</chance>
+                </li>
+              </extraMeleeDamages>
+            </li>
+            </tools>
+          </value>
+        </li>
+
+      </operations>
+    </match>
+  </Operation>
+
+</Patch>
