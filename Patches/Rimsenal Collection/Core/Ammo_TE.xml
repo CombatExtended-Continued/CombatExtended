@@ -1,0 +1,419 @@
+<Patch>
+
+	<Operation Class="PatchOperationFindMod">
+    <mods>
+		<li>Rimsenal - Core</li>
+    </mods>
+		<match Class="PatchOperationSequence">
+		 <operations>		
+
+
+		<li Class="PatchOperationAdd">
+			<xpath>Defs</xpath>
+			<value>
+
+
+	<!-- ==================== TE Power Core ========================== -->
+
+	<ThingCategoryDef>
+		<defName>AmmoTEPowerCore</defName>
+		<label>TE Power Core</label>
+		<parent>AmmoRifles</parent>
+    <iconPath>UI/Icons/ThingCategories/CaliberRifle</iconPath>
+	</ThingCategoryDef>
+	
+	<!-- ==================== AmmoSet ========================== -->
+
+	<CombatExtended.AmmoSetDef>
+		<defName>AmmoSet_TEPowerCore</defName>
+		<label>TE Power Core</label>
+		<ammoTypes>
+			<Ammo_TEPowerCore_KE>Bullet_TEPowerCore_KE</Ammo_TEPowerCore_KE>
+		</ammoTypes>
+	</CombatExtended.AmmoSetDef>
+	
+	<!-- ==================== Ammo ========================== -->
+	
+	<ThingDef Class="CombatExtended.AmmoDef" Name="TEPowerCoreBase" ParentName="SmallAmmoBase" Abstract="True">
+		<description>Power core used to power the Tisiphone Enterprise Kinetic Lance.</description>
+		<statBases>
+		<Mass>0.012</Mass>
+		<Bulk>0.03</Bulk>
+		</statBases>
+	<tradeTags>
+		<li>CE_AutoEnableTrade</li>
+		<li>CE_AutoEnableCrafting</li>
+	</tradeTags>
+		<thingCategories>
+			<li>AmmoTEPowerCore</li>
+		</thingCategories>
+	</ThingDef>
+
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="TEPowerCoreBase">
+		<defName>Ammo_TEPowerCore_KE</defName>
+		<label>TE Power Core (KE)</label>
+		<graphicData>
+			<texPath>ThirdParty/Rimsenal/TE</texPath>
+			<graphicClass>Graphic_StackCount</graphicClass>
+		</graphicData>
+		<statBases>
+			<MarketValue>0.36</MarketValue>
+		</statBases>
+		<ammoClass>KineticEnergy</ammoClass>
+	</ThingDef>
+
+	<!-- ================== Projectiles ================== -->
+
+	<ThingDef ParentName="Base556x45mmNATOBullet">
+		<defName>Bullet_TEPowerCore_KE</defName>
+		<label>TE energy blast (KE)</label>
+		<graphicData>
+			<texPath>Things/Projectile/ImpactB</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+		</graphicData>		
+		<thingClass>CombatExtended.ProjectileCE_Explosive</thingClass>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageDef>KineticImpact</damageDef>
+			<speed>120</speed>
+			<dropsCasings>false</dropsCasings>		
+			<damageAmountBase>8</damageAmountBase>
+			<explosionRadius>0.5</explosionRadius>
+			<armorPenetrationBlunt>80</armorPenetrationBlunt>
+		</projectile>
+	</ThingDef>
+
+	<!-- ==================== Recipe: TE Power Core ========================== -->
+	<RecipeDef ParentName="AmmoRecipeBase">
+		<defName>MakeAmmo_TEPowerCore_KE</defName>
+		<label>make TE Power Cores (KE) x500</label>
+		<description>Craft 500 TE Power Cores (KE).</description>
+		<jobString>Making TE Power Cores (KE).</jobString>
+		<ingredients>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>Steel</li>
+					</thingDefs>
+				</filter>
+				<count>50</count>
+			</li>
+		</ingredients>
+		<fixedIngredientFilter>
+			<thingDefs>
+				<li>Steel</li>
+			</thingDefs>
+		</fixedIngredientFilter>
+		<researchPrerequisite>KineticTech</researchPrerequisite>
+		<recipeUsers Inherit="False">
+			<li>TETable</li>
+		</recipeUsers>		
+		<products>
+			<Ammo_TEPowerCore_KE>500</Ammo_TEPowerCore_KE>
+		</products>
+	<workAmount>5000</workAmount>
+	</RecipeDef>
+
+	<!-- ==================== TE Power Charge ========================== -->
+
+	<ThingCategoryDef>
+		<defName>AmmoTEPowerCharge</defName>
+		<label>TE Power Charge</label>
+		<parent>AmmoRifles</parent>
+    <iconPath>UI/Icons/ThingCategories/CaliberRifle</iconPath>
+	</ThingCategoryDef>
+	
+	<!-- ==================== AmmoSet ========================== -->
+
+	<CombatExtended.AmmoSetDef>
+		<defName>AmmoSet_TEPowerCharge</defName>
+		<label>TE Power Charge</label>
+		<ammoTypes>
+			<Ammo_TEPowerCharge_KE>Bullet_TEPowerCharge_KE</Ammo_TEPowerCharge_KE>
+		</ammoTypes>
+	</CombatExtended.AmmoSetDef>
+	
+	<!-- ==================== Ammo ========================== -->
+	
+	<ThingDef Class="CombatExtended.AmmoDef" Name="TEPowerChargeBase" ParentName="SmallAmmoBase" Abstract="True">
+		<description>Power charge used in Tisiphone Enterprise arms.</description>
+		<statBases>
+		<Mass>0.012</Mass>
+		<Bulk>0.03</Bulk>
+		</statBases>
+	<tradeTags>
+		<li>CE_AutoEnableTrade</li>
+		<li>CE_AutoEnableCrafting</li>
+	</tradeTags>
+		<thingCategories>
+			<li>AmmoTEPowerCharge</li>
+		</thingCategories>
+	</ThingDef>
+
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="TEPowerChargeBase">
+		<defName>Ammo_TEPowerCharge_KE</defName>
+		<label>TE Power Charge (KE)</label>
+		<graphicData>
+			<texPath>ThirdParty/Rimsenal/TE</texPath>
+			<graphicClass>Graphic_StackCount</graphicClass>
+		</graphicData>
+		<statBases>
+			<MarketValue>0.12</MarketValue>
+		</statBases>
+		<ammoClass>KineticEnergy</ammoClass>
+	</ThingDef>
+
+	<!-- ================== Projectiles ================== -->
+
+	<ThingDef ParentName="Base556x45mmNATOBullet">
+		<defName>Bullet_TEPowerCharge_KE</defName>
+		<label>TE energy blast (KE)</label>
+		<graphicData>
+			<texPath>Things/Projectile/ImpactM</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+		</graphicData>		
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageDef>Crush</damageDef>
+			<speed>48</speed>
+			<dropsCasings>false</dropsCasings>		
+			<damageAmountBase>10</damageAmountBase>
+			<armorPenetrationBlunt>40</armorPenetrationBlunt>
+		</projectile>
+	</ThingDef>
+
+	<!-- ==================== Recipe: TE Power Charge ========================== -->
+	<RecipeDef ParentName="AmmoRecipeBase">
+		<defName>MakeAmmo_TEPowerCharge_KE</defName>
+		<label>make TE Power Charges (KE) x500</label>
+		<description>Craft 500 TE Power Charges (KE).</description>
+		<jobString>Making TE Power Charges (KE).</jobString>
+		<ingredients>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>Steel</li>
+					</thingDefs>
+				</filter>
+				<count>60</count>
+			</li>
+		</ingredients>
+		<fixedIngredientFilter>
+			<thingDefs>
+				<li>Steel</li>
+			</thingDefs>
+		</fixedIngredientFilter>
+		<researchPrerequisite>KineticTech</researchPrerequisite>
+		<recipeUsers Inherit="False">
+			<li>TETable</li>
+		</recipeUsers>			
+		<products>
+			<Ammo_TEPowerCharge_KE>500</Ammo_TEPowerCharge_KE>
+		</products>
+	<workAmount>6000</workAmount>
+	</RecipeDef>
+
+	<!-- ==================== TE Energy Canister ========================== -->
+
+	<ThingCategoryDef>
+		<defName>AmmoTEEnergyCanister</defName>
+		<label>TE Energy Canister</label>
+		<parent>AmmoRifles</parent>
+    <iconPath>UI/Icons/ThingCategories/CaliberRifle</iconPath>
+	</ThingCategoryDef>
+	
+	<!-- ==================== AmmoSet ========================== -->
+
+	<CombatExtended.AmmoSetDef>
+		<defName>AmmoSet_TEEnergyCanister</defName>
+		<label>TE Energy Canister</label>
+		<ammoTypes>
+			<Ammo_TEEnergyCanister_KE>Bullet_TEEnergyCanister_KE</Ammo_TEEnergyCanister_KE>
+		</ammoTypes>
+	</CombatExtended.AmmoSetDef>
+	
+	<!-- ==================== Ammo ========================== -->
+	
+	<ThingDef Class="CombatExtended.AmmoDef" Name="TEEnergyCanisterBase" ParentName="SmallAmmoBase" Abstract="True">
+		<description>Energy canister used in Tisiphone Enterprise Micro-AoE weapons, the projectiles have a small explosive effect.</description>
+		<statBases>
+		<Mass>0.012</Mass>
+		<Bulk>0.03</Bulk>
+		</statBases>
+	<tradeTags>
+		<li>CE_AutoEnableTrade</li>
+		<li>CE_AutoEnableCrafting</li>
+	</tradeTags>
+		<thingCategories>
+			<li>AmmoTEEnergyCanister</li>
+		</thingCategories>
+	</ThingDef>
+
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="TEEnergyCanisterBase">
+		<defName>Ammo_TEEnergyCanister_KE</defName>
+		<label>TE Energy Canister (KE)</label>
+		<graphicData>
+			<texPath>ThirdParty/Rimsenal/TE</texPath>
+			<graphicClass>Graphic_StackCount</graphicClass>
+		</graphicData>
+		<statBases>
+			<MarketValue>0.36</MarketValue>
+		</statBases>
+		<ammoClass>KineticEnergy</ammoClass>
+	</ThingDef>
+
+	<!-- ================== Projectiles ================== -->
+
+	<ThingDef ParentName="BaseRPG7Grenade">
+		<defName>Bullet_TEEnergyCanister_KE</defName>
+		<thingClass>CombatExtended.ProjectileCE_Explosive</thingClass>
+		<label>TE energy blast (KE)</label>
+		<graphicData>
+			<texPath>Things/Projectile/ImpactB</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+		</graphicData>		
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageDef>KineticImpact</damageDef>
+			<speed>70</speed>
+			<dropsCasings>false</dropsCasings>		
+			<damageAmountBase>16</damageAmountBase>
+			<explosionRadius>1</explosionRadius>
+			<armorPenetrationBlunt>40</armorPenetrationBlunt>
+		</projectile>
+	</ThingDef>
+
+	<!-- ==================== Recipe: TE Energy Canister ========================== -->
+	<RecipeDef ParentName="AmmoRecipeBase">
+		<defName>MakeAmmo_TEEnergyCanister_KE</defName>
+		<label>make TE Energy Canisters (KE) x500</label>
+		<description>Craft 500 TE Energy Canisters (KE).</description>
+		<jobString>Making TE Energy Canisters (KE).</jobString>
+		<ingredients>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>Steel</li>
+					</thingDefs>
+				</filter>
+				<count>60</count>
+			</li>
+		</ingredients>
+		<fixedIngredientFilter>
+			<thingDefs>
+				<li>Steel</li>
+			</thingDefs>
+		</fixedIngredientFilter>
+		<researchPrerequisite>KineticTech</researchPrerequisite>
+		<recipeUsers Inherit="False">
+			<li>TETable</li>
+		</recipeUsers>			
+		<products>
+			<Ammo_TEEnergyCanister_KE>500</Ammo_TEEnergyCanister_KE>
+		</products>
+	<workAmount>6000</workAmount>
+	</RecipeDef>
+
+	<!-- ==================== TE Concentrated Power Charge ========================== -->
+
+	<ThingCategoryDef>
+		<defName>AmmoTEConcentratedPowerCharge</defName>
+		<label>TE Concentrated Power Charge</label>
+		<parent>AmmoRifles</parent>
+    <iconPath>UI/Icons/ThingCategories/CaliberRifle</iconPath>
+	</ThingCategoryDef>
+	
+	<!-- ==================== AmmoSet ========================== -->
+
+	<CombatExtended.AmmoSetDef>
+		<defName>AmmoSet_TEConcentratedPowerCharge</defName>
+		<label>TE Concentrated Power Charge</label>
+		<ammoTypes>
+			<Ammo_TEConcentratedPowerCharge_KE>Bullet_TEConcentratedPowerCharge_KE</Ammo_TEConcentratedPowerCharge_KE>
+		</ammoTypes>
+	</CombatExtended.AmmoSetDef>
+	
+	<!-- ==================== Ammo ========================== -->
+	
+	<ThingDef Class="CombatExtended.AmmoDef" Name="TEConcentratedPowerChargeBase" ParentName="SmallAmmoBase" Abstract="True">
+		<description>Power charged used in Tisiphone Enterprise long distance weapons, the overloaded power charge has enhanced power and speed.</description>
+		<statBases>
+		<Mass>0.012</Mass>
+		<Bulk>0.03</Bulk>
+		</statBases>
+	<tradeTags>
+		<li>CE_AutoEnableTrade</li>
+		<li>CE_AutoEnableCrafting</li>
+	</tradeTags>
+		<thingCategories>
+			<li>AmmoTEConcentratedPowerCharge</li>
+		</thingCategories>
+	</ThingDef>
+
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="TEConcentratedPowerChargeBase">
+		<defName>Ammo_TEConcentratedPowerCharge_KE</defName>
+		<label>TE Concentrated Power Charge (KE)</label>
+		<graphicData>
+			<texPath>ThirdParty/Rimsenal/TE</texPath>
+			<graphicClass>Graphic_StackCount</graphicClass>
+		</graphicData>
+		<statBases>
+			<MarketValue>0.12</MarketValue>
+		</statBases>
+		<ammoClass>KineticEnergy</ammoClass>
+	</ThingDef>
+
+	<!-- ================== Projectiles ================== -->
+
+	<ThingDef ParentName="Base556x45mmNATOBullet">
+		<defName>Bullet_TEConcentratedPowerCharge_KE</defName>
+		<label>TE energy blast (KE)</label>
+		<graphicData>
+			<texPath>Things/Projectile/ImpactL</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+		</graphicData>		
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageDef>Crush</damageDef>
+			<speed>88</speed>
+			<dropsCasings>false</dropsCasings>		
+			<damageAmountBase>20</damageAmountBase>
+			<armorPenetrationBlunt>40</armorPenetrationBlunt>
+		</projectile>
+	</ThingDef>
+
+	<!-- ==================== Recipe: TE Concentrated Power Charge ========================== -->
+	<RecipeDef ParentName="AmmoRecipeBase">
+		<defName>MakeAmmo_TEConcentratedPowerCharge_KE</defName>
+		<label>make TE Concentrated Power Charges (KE) x500</label>
+		<description>Craft 500 TE Concentrated Power Charges (KE).</description>
+		<jobString>Making TE Concentrated Power Charges (KE).</jobString>
+		<ingredients>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>Steel</li>
+					</thingDefs>
+				</filter>
+				<count>60</count>
+			</li>
+		</ingredients>
+		<fixedIngredientFilter>
+			<thingDefs>
+				<li>Steel</li>
+			</thingDefs>
+		</fixedIngredientFilter>
+		<researchPrerequisite>KineticTech</researchPrerequisite>
+		<recipeUsers Inherit="False">
+			<li>TETable</li>
+		</recipeUsers>			
+		<products>
+			<Ammo_TEConcentratedPowerCharge_KE>500</Ammo_TEConcentratedPowerCharge_KE>
+		</products>
+	<workAmount>6000</workAmount>
+	</RecipeDef>
+
+		</value>
+		</li>
+
+		</operations>
+		</match>
+	</Operation>
+</Patch>
+			
