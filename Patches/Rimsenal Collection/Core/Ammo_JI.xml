@@ -7,141 +7,52 @@
 		<match Class="PatchOperationSequence">
 		 <operations>		
 
-
 		<li Class="PatchOperationAdd">
 			<xpath>Defs</xpath>
 			<value>
 
-	<!-- ==================== JI Slag Shell ========================== -->
+	<!-- ==================== JI Molten Fragmentation ========================== -->
 
-	<ThingCategoryDef>
-		<defName>AmmoSlag</defName>
-		<label>Molten Slag Round</label>
-		<parent>AmmoRifles</parent>
-    <iconPath>ThirdParty/Rimsenal/JI/JI_Slag/SlagCartridge_c</iconPath>
-	</ThingCategoryDef>
-	
-	<!-- ==================== AmmoSet ========================== -->
-
-	<CombatExtended.AmmoSetDef>
-		<defName>AmmoSet_JISlag</defName>
-		<label>Slag round</label>
-		<ammoTypes>
-			<Ammo_JI_Slag>Bullet_JI_Slag</Ammo_JI_Slag>
- 		</ammoTypes>
-	</CombatExtended.AmmoSetDef>
-	
-	<!-- ==================== Ammo ========================== -->
-
-	<ThingDef Class="CombatExtended.AmmoDef" Name="BaseJISlag" ParentName="SmallAmmoBase" Abstract="True">
-		<description>Bits of jagged scrap metal, loosely bound together with a bonding agent, heated and fired from Jotun Interstellar weapons in a semi-molten state at high velocity.</description>
-		<statBases>
-		<Mass>0.04</Mass>
-		<Bulk>0.09</Bulk>
-		</statBases>
-		<tradeTags>
-			<li>CE_AutoEnableTrade</li>
-			<li>CE_AutoEnableCrafting</li>
-		</tradeTags>
-		<thingCategories>
-			<li>AmmoSlag</li>
-		</thingCategories>
-	</ThingDef>
-
-	<ThingDef Class="CombatExtended.AmmoDef" ParentName="BaseJISlug">
-		<defName>Ammo_JI_Slag</defName>
-		<label>Slag round</label>
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="BaseFragment">
+		<defName>Fragment_Molten</defName>
+		<label>molten splatter</label>
 		<graphicData>
-			<texPath>ThirdParty/Rimsenal/JI/JI_Slag</texPath>
-			<graphicClass>Graphic_StackCount</graphicClass>
-		</graphicData>
-		<statBases>
-			<MarketValue>0.10</MarketValue>
-		</statBases>
-		<ammoClass>Slag</ammoClass>
-	</ThingDef>
-	
-	<!-- ================== Projectiles ================== -->
-
-	<ThingDef ParentName="Base556x45mmNATOBullet">
-		<defName>Bullet_JI_Slag</defName>
-		<label>Semi-molten slag</label>
-		<graphicData>
-			<texPath>Things/Projectile/Slug</texPath>
+			<texPath>Things/Projectile/Fragments/Fragment_Small</texPath>
 			<graphicClass>Graphic_Single</graphicClass>
-		</graphicData>		
+		</graphicData>
 		<projectile Class="CombatExtended.ProjectilePropertiesCE">
-			<damageDef>Bullet</damageDef>
-			<speed>32</speed>
-			<dropsCasings>true</dropsCasings>		
-			<damageAmountBase>7</damageAmountBase>
-				  <secondaryDamage>
-					<li>
-					  <def>Flame_Secondary</def>
-					  <amount>3</amount>
-					</li>
-				  </secondaryDamage>			
-			<armorPenetrationBlunt>4</armorPenetrationBlunt>
-			<armorPenetrationSharp>8</armorPenetrationSharp>
-			<pelletCount>6</pelletCount>			
-			<spreadMult>25</spreadMult>				
+			<damageDef>Burn</damageDef>
+			<damageAmountBase>5</damageAmountBase>
+			<speed>30</speed>
+			<armorPenetrationSharp>1</armorPenetrationSharp>
+			<armorPenetrationBlunt>3</armorPenetrationBlunt>
+			<gravityFactor>20</gravityFactor>
 		</projectile>
 	</ThingDef>
-
-	<!-- ==================== Recipe: JI Slag Shell ========================== -->
-	<RecipeDef ParentName="AmmoRecipeBase">
-		<defName>MakeAmmo_JI_Slag</defName>
-		<label>make machined alloy slug x500</label>
-		<description>Craft 500 machined alloy slugs.</description>
-		<jobString>Making machined alloy slugs.</jobString>
-		<ingredients>
-			<li>
-				<filter>
-					<thingDefs>
-						<li>Steel</li>
-					</thingDefs>
-				</filter>
-				<count>30</count>
-			</li>
-		</ingredients>
-		<fixedIngredientFilter>
-			<thingDefs>
-				<li>Steel</li>
-			</thingDefs>
-		</fixedIngredientFilter>
-		<researchPrerequisite>SiegeTech</researchPrerequisite>
-		<recipeUsers Inherit="False">
-			<li>JITable</li>
-		</recipeUsers>		
-		<products>
-			<Ammo_JI_Slag>500</Ammo_JI_Slag>
-		</products>
-		<workAmount>3000</workAmount>	
-	</RecipeDef>
 
 	<!-- ==================== JI Rocket Shells ========================== -->
 
     <ThingCategoryDef>
-      <defName>Ammo90mmJIRockets</defName>
-      <label>90mm JI Siege Shells</label>
+      <defName>AmmoJIRockets</defName>
+      <label>JI Siege Rockets</label>
       <parent>AmmoRockets</parent>
       <iconPath>UI/Icons/ThingCategories/CaliberRocket</iconPath>
     </ThingCategoryDef>
-	
+
 	<!-- ==================== AmmoSet ========================== -->
 
-  <CombatExtended.AmmoSetDef>
-    <defName>AmmoSet_90mmJIRocket</defName>
-    <label>90mm rocket (HEDP)</label>
-	<ammoTypes>
-	  <Ammo_90mmJI_DP>Bullet_90mmJI_HEDP</Ammo_90mmJI_DP>
-	</ammoTypes>
-  </CombatExtended.AmmoSetDef>
-	
+	<CombatExtended.AmmoSetDef>
+		<defName>AmmoSet_JIRocket</defName>
+		<label>Siege rocket</label>
+		<ammoTypes>
+		<Ammo_JIRocket>Bullet_JISiegeRocket</Ammo_JIRocket>
+		</ammoTypes>
+	</CombatExtended.AmmoSetDef>
+
 	<!-- ==================== Ammo ========================== -->
 
   <ThingDef Class="CombatExtended.AmmoDef" Name="88mmRPzBRocketBase" ParentName="AmmoBase" Abstract="True">
-    <description>Bulky, 90mm dual-purose rocket shells fired by the Jotun Interstellar siege cannon. An outer casing of high explosives around a shaped-charge core give make it a versatile round, capable of engaging both armored foes and grouped enemies.</description>
+    <description>Bulky siege rockets, fired by the heaviest of Jotun Interstellar weaponry. An outer casing of high explosives around a shaped-charge core makes it capable of engaging both hard and soft targets.</description>
     <statBases>
       <MaxHitPoints>150</MaxHitPoints>
     </statBases>
@@ -150,7 +61,7 @@
       <li>CE_AutoEnableCrafting_TableMachining</li>
     </tradeTags>
     <thingCategories>
-      <li>Ammo90mmJIRockets</li>
+      <li>AmmoJIRockets</li>
     </thingCategories>
     <stackLimit>25</stackLimit>
     <cookOffFlashScale>40</cookOffFlashScale>
@@ -158,8 +69,8 @@
   </ThingDef>
 
   <ThingDef Class="CombatExtended.AmmoDef" ParentName="88mmRPzBRocketBase">
-    <defName>Ammo_90mmJI_DP</defName>
-    <label>90mm rocket siege rocket (HEDP)</label>
+    <defName>Ammo_JIRocket</defName>
+    <label>Siege rocket</label>
     <graphicData>
       <texPath>ThirdParty/Rimsenal/JI/JI_Shell</texPath>
       <graphicClass>Graphic_StackCount</graphicClass>
@@ -169,7 +80,7 @@
 	  <Mass>4</Mass>
 	  <Bulk>9</Bulk>
     </statBases>
-	<ammoClass>RocketHEDP</ammoClass>
+	<ammoClass>RocketHE</ammoClass>
     <comps>
 	  <li Class="CombatExtended.CompProperties_ExplosiveCE">
 		<damageAmountBase>50</damageAmountBase>
@@ -179,7 +90,7 @@
 	  </li>	
 	  <li Class="CombatExtended.CompProperties_Fragments">
         <fragments>
-          <Fragment_Large>16</Fragment_Large>
+          <Fragment_Large>3</Fragment_Large>
         </fragments>
 	  </li>	  
     </comps>
@@ -188,15 +99,15 @@
 	<!-- ================== Projectiles ================== -->
 
 	<ThingDef ParentName="BaseRPG7Grenade">
-		<defName>Bullet_90mmJI_HEDP</defName>
-		<label>90mm JI rocket (HEDP)</label>
+		<defName>Bullet_JISiegeRocket</defName>
+		<label>Siege rocket</label>
 		<graphicData>
 			<texPath>Things/Projectile/Rocket</texPath>
 			<graphicClass>Graphic_Single</graphicClass>
 			<shaderType>TransparentPostLight</shaderType>			
 		</graphicData>
 		<projectile Class="CombatExtended.ProjectilePropertiesCE">
-			<speed>60</speed>
+			<speed>80</speed>
 			<soundAmbient>RocketPropelledLoop_Small</soundAmbient>		
 			<damageDef>Bullet</damageDef>
 			<damageAmountBase>200</damageAmountBase>
@@ -207,24 +118,19 @@
 		  <li Class="CombatExtended.CompProperties_ExplosiveCE">
 			<damageAmountBase>98</damageAmountBase>
 			<explosiveDamageType>Bomb</explosiveDamageType>
-			<explosiveRadius>4</explosiveRadius>
+			<explosiveRadius>2.5</explosiveRadius>
 			<explosionSound>Explosion_GiantBomb</explosionSound>
 			<applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
 		  </li>	
-		<li Class="CombatExtended.CompProperties_Fragments">
-			<fragments>
-				<Fragment_Large>16</Fragment_Large>
-			</fragments>
-		  </li>		
 		</comps>
 	</ThingDef>
 
 	<!-- ==================== Recipe: JI Rocket Shells ========================== -->
 	<RecipeDef ParentName="AmmoRecipeBase">
-	<defName>MakeAmmo_90mmJI_DP</defName>
-	<label>make 90mm siege rockets x5</label>
-	<description>Craft 5 90mm JI HEDP rockets.</description>
-	<jobString>Making 90mm JI HEDP rockets.</jobString>
+	<defName>MakeAmmo_JIRocket</defName>
+	<label>make siege rockets x5</label>
+	<description>Craft 5 JI siege rockets rockets.</description>
+	<jobString>Making JI siege rockets rockets.</jobString>
 	<workAmount>7500</workAmount>
 	<ingredients>
 		<li>
@@ -264,15 +170,129 @@
 		<li>JITable</li>
 	</recipeUsers>		
 	<products>
-		<Ammo_90mmJI_DP>5</Ammo_90mmJI_DP>
+		<Ammo_JIRocket>5</Ammo_JIRocket>
 	</products>	
 	</RecipeDef>	
 
+	<!-- ==================== JI Alloy ========================== -->
+
+	<ThingCategoryDef>
+		<defName>AmmoAlloy</defName>
+		<label>Semi-molten Alloy Round</label>
+		<parent>AmmoRifles</parent>
+    <iconPath>ThirdParty/Rimsenal/JI/JI_Molten/MoltenCartridge_c</iconPath>
+	</ThingCategoryDef>
+	
+	<!-- ==================== AmmoSet ========================== -->
+
+	<CombatExtended.AmmoSetDef>
+		<defName>AmmoSet_JISlag</defName>
+		<label>Semi-molten round</label>
+		<ammoTypes>
+			<Ammo_JI_Alloy>Bullet_JI_Slag</Ammo_JI_Alloy>
+ 		</ammoTypes>
+	</CombatExtended.AmmoSetDef>
+	
+	<!-- ==================== Ammo ========================== -->
+
+	<ThingDef Class="CombatExtended.AmmoDef" Name="BaseJIAlloy" ParentName="SmallAmmoBase" Abstract="True">
+		<description>A dense, strong alloy with extremely high thermal conductivity, specially manufactured for use by Jotun Interstellar molten weaponry.</description>
+		<statBases>
+		<Mass>0.04</Mass>
+		<Bulk>0.09</Bulk>
+		</statBases>
+		<tradeTags>
+			<li>CE_AutoEnableTrade</li>
+			<li>CE_AutoEnableCrafting</li>
+		</tradeTags>
+		<thingCategories>
+			<li>AmmoAlloy</li>
+		</thingCategories>
+	</ThingDef>
+
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="BaseJIAlloy">
+		<defName>Ammo_JI_Alloy</defName>
+		<label>High-density alloy</label>
+		<graphicData>
+			<texPath>ThirdParty/Rimsenal/JI/JI_Molten</texPath>
+			<graphicClass>Graphic_StackCount</graphicClass>
+		</graphicData>
+		<statBases>
+			<MarketValue>0.10</MarketValue>
+		</statBases>
+		<ammoClass>Slag</ammoClass>
+	</ThingDef>
+	
+	<!-- ================== Projectiles ================== -->
+
+	<ThingDef ParentName="Base556x45mmNATOBullet">
+		<defName>Bullet_JI_Slag</defName>
+		<label>Semi-molten alloy</label>
+		<graphicData>
+			<texPath>Things/Projectile/Slug</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+		</graphicData>		
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageDef>Bullet</damageDef>
+			<speed>200</speed>
+			<dropsCasings>false</dropsCasings>		
+			<damageAmountBase>7</damageAmountBase>
+				  <secondaryDamage>
+					<li>
+					  <def>Flame_Secondary</def>
+					  <amount>3</amount>
+					</li>
+				  </secondaryDamage>			
+			<armorPenetrationBlunt>4</armorPenetrationBlunt>
+			<armorPenetrationSharp>8</armorPenetrationSharp>
+			<pelletCount>6</pelletCount>			
+			<spreadMult>25</spreadMult>				
+		</projectile>
+		<comps>
+		  <li Class="CombatExtended.CompProperties_Fragments">
+			<fragments>
+			  <Fragment_Molten>2</Fragment_Molten>
+			</fragments>
+		  </li>
+		</comps>			
+	</ThingDef>
+
+	<!-- ==================== Recipe: JI Alloy ========================== -->
+	<RecipeDef ParentName="AmmoRecipeBase">
+		<defName>MakeAmmo_JI_Alloy</defName>
+		<label>make alloy x500</label>
+		<description>Craft 500 alloy.</description>
+		<jobString>Making alloy.</jobString>
+		<ingredients>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>Steel</li>
+					</thingDefs>
+				</filter>
+				<count>30</count>
+			</li>
+		</ingredients>
+		<fixedIngredientFilter>
+			<thingDefs>
+				<li>Steel</li>
+			</thingDefs>
+		</fixedIngredientFilter>
+		<researchPrerequisite>SiegeTech</researchPrerequisite>
+		<recipeUsers Inherit="False">
+			<li>JITable</li>
+		</recipeUsers>		
+		<products>
+			<Ammo_JI_Alloy>500</Ammo_JI_Alloy>
+		</products>
+		<workAmount>3000</workAmount>	
+	</RecipeDef>
+	
 	<!-- ==================== JI Molten Slug ========================== -->
 
 	<ThingCategoryDef>
 		<defName>AmmoMoltenSlug</defName>
-		<label>Molten Slug</label>
+		<label>Semi-molten alloy</label>
 		<parent>AmmoRifles</parent>
     <iconPath>ThirdParty/Rimsenal/JI/JI_Molten/MoltenCartridge_c</iconPath>
 	</ThingCategoryDef>
@@ -283,53 +303,23 @@
 		<defName>AmmoSet_JIStandard</defName>
 		<label>molten slug</label>
 		<ammoTypes>
-			<Ammo_JI_Molten>Bullet_JI_Molten</Ammo_JI_Molten>
+			<Ammo_JI_Alloy>Bullet_JI_Molten</Ammo_JI_Alloy>
  		</ammoTypes>
 	</CombatExtended.AmmoSetDef>
-	
-	<!-- ==================== Ammo ========================== -->
-
-	<ThingDef Class="CombatExtended.AmmoDef" Name="BaseJISlug" ParentName="SmallAmmoBase" Abstract="True">
-		<description>Large, solid alloy slugs, heated and fired from Jotun Interstellar weapons in a semi-molten state at high velocity.</description>
-		<statBases>
-		<Mass>0.04</Mass>
-		<Bulk>0.07</Bulk>
-		</statBases>
-		<tradeTags>
-			<li>CE_AutoEnableTrade</li>
-			<li>CE_AutoEnableCrafting</li>
-		</tradeTags>
-		<thingCategories>
-			<li>AmmoMoltenSlug</li>
-		</thingCategories>
-	</ThingDef>
-
-	<ThingDef Class="CombatExtended.AmmoDef" ParentName="BaseJISlug">
-		<defName>Ammo_JI_Molten</defName>
-		<label>Molten slug</label>
-		<graphicData>
-			<texPath>ThirdParty/Rimsenal/JI/JI_Molten</texPath>
-			<graphicClass>Graphic_StackCount</graphicClass>
-		</graphicData>
-		<statBases>
-			<MarketValue>0.10</MarketValue>
-		</statBases>
-		<ammoClass>MoltenSlug</ammoClass>
-	</ThingDef>
 	
 	<!-- ================== Projectiles ================== -->
 
 	<ThingDef ParentName="Base556x45mmNATOBullet">
 		<defName>Bullet_JI_Molten</defName>
-		<label>molten slug</label>
+		<label>Semi-molten alloy</label>
 		<graphicData>
 			<texPath>Things/Projectile/Slug</texPath>
 			<graphicClass>Graphic_Single</graphicClass>
 		</graphicData>		
 		<projectile Class="CombatExtended.ProjectilePropertiesCE">
 			<damageDef>Bullet</damageDef>
-			<speed>40</speed>
-			<dropsCasings>true</dropsCasings>		
+			<speed>200</speed>
+			<dropsCasings>false</dropsCasings>		
 			<damageAmountBase>16</damageAmountBase>
 				  <secondaryDamage>
 					<li>
@@ -340,101 +330,38 @@
 			<armorPenetrationBlunt>50</armorPenetrationBlunt>
 			<armorPenetrationSharp>15</armorPenetrationSharp>
 		</projectile>
+		<comps>
+		  <li Class="CombatExtended.CompProperties_Fragments">
+			<fragments>
+			  <Fragment_Molten>3</Fragment_Molten>
+			</fragments>
+		  </li>
+		</comps>			
 	</ThingDef>
 
-	<!-- ==================== Recipe: JI Molten Slug ========================== -->
-	<RecipeDef ParentName="AmmoRecipeBase">
-		<defName>MakeAmmo_JI_Molten</defName>
-		<label>make machined alloy slug x500</label>
-		<description>Craft 500 machined alloy slugs.</description>
-		<jobString>Making machined alloy slugs.</jobString>
-		<ingredients>
-			<li>
-				<filter>
-					<thingDefs>
-						<li>Steel</li>
-					</thingDefs>
-				</filter>
-				<count>40</count>
-			</li>
-		</ingredients>
-		<fixedIngredientFilter>
-			<thingDefs>
-				<li>Steel</li>
-			</thingDefs>
-		</fixedIngredientFilter>
-		<researchPrerequisite>MoltenTech</researchPrerequisite>
-		<recipeUsers Inherit="False">
-			<li>JITable</li>
-		</recipeUsers>		
-		<products>
-			<Ammo_JI_Molten>500</Ammo_JI_Molten>
-		</products>
-		<workAmount>4000</workAmount>	
-	</RecipeDef>
-
-	<!-- ==================== JI AMR Slug ========================== -->
-
-	<ThingCategoryDef>
-		<defName>AmmoAMRSlug</defName>
-		<label>Machined Alloy Slug</label>
-		<parent>AmmoRifles</parent>
-    <iconPath>ThirdParty/Rimsenal/JI/JI_AMR/AMRCartridge_c</iconPath>
-	</ThingCategoryDef>
-	
 	<!-- ==================== AmmoSet ========================== -->
 
 	<CombatExtended.AmmoSetDef>
 		<defName>AmmoSet_JI_AMR</defName>
 		<label>High-density alloy slug</label>
 		<ammoTypes>
-			<Ammo_JI_AMR>Bullet_JI_AMR</Ammo_JI_AMR>
+			<Ammo_JI_Alloy>Bullet_JI_AMR</Ammo_JI_Alloy>
  		</ammoTypes>
 	</CombatExtended.AmmoSetDef>
-	
-	<!-- ==================== Ammo ========================== -->
-
-	<ThingDef Class="CombatExtended.AmmoDef" Name="BaseJIAMR" ParentName="SmallAmmoBase" Abstract="True">
-		<description>Large, solid alloy slugs, heated and fired from Jotun Interstellar weapons in a semi-molten state at high velocity. This round, for the AMR, lacks a solid core, reducing its effectiveness against thick armor.</description>
-		<statBases>
-		<Mass>0.05</Mass>
-		<Bulk>0.1</Bulk>
-		</statBases>
-		<tradeTags>
-			<li>CE_AutoEnableTrade</li>
-			<li>CE_AutoEnableCrafting</li>
-		</tradeTags>
-		<thingCategories>
-			<li>AmmoAMRSlug</li>
-		</thingCategories>
-	</ThingDef>
-
-	<ThingDef Class="CombatExtended.AmmoDef" ParentName="BaseJIAMR">
-		<defName>Ammo_JI_AMR</defName>
-		<label>High-density alloy slug</label>
-		<graphicData>
-			<texPath>ThirdParty/Rimsenal/JI/JI_AMR</texPath>
-			<graphicClass>Graphic_StackCount</graphicClass>
-		</graphicData>
-		<statBases>
-			<MarketValue>0.12</MarketValue>
-		</statBases>
-		<ammoClass>HDSlug</ammoClass>
-	</ThingDef>
 	
 	<!-- ================== Projectiles ================== -->
 
 	<ThingDef ParentName="Base556x45mmNATOBullet">
 		<defName>Bullet_JI_AMR</defName>
-		<label>Machined alloy slug</label>
+		<label>Semi-molten alloy</label>
 		<graphicData>
-			<texPath>Things/Projectile/Slug</texPath>
+			<texPath>Things/Projectile/Shell</texPath>
 			<graphicClass>Graphic_Single</graphicClass>
 		</graphicData>		
 		<projectile Class="CombatExtended.ProjectilePropertiesCE">
 			<damageDef>Bullet</damageDef>
-			<speed>64</speed>
-			<dropsCasings>true</dropsCasings>		
+			<speed>200</speed>
+			<dropsCasings>false</dropsCasings>		
 			<damageAmountBase>25</damageAmountBase>
 				  <secondaryDamage>
 					<li>
@@ -445,38 +372,14 @@
 			<armorPenetrationBlunt>50</armorPenetrationBlunt>
 			<armorPenetrationSharp>30</armorPenetrationSharp>
 		</projectile>
+		<comps>
+		  <li Class="CombatExtended.CompProperties_Fragments">
+			<fragments>
+			  <Fragment_Molten>6</Fragment_Molten>
+			</fragments>
+		  </li>
+		</comps>		
 	</ThingDef>
-
-	<!-- ==================== Recipe: JI AMR Slug ========================== -->
-	<RecipeDef ParentName="AmmoRecipeBase">
-		<defName>MakeAmmo_JI_AMR</defName>
-		<label>make machined alloy AMR rounds x500</label>
-		<description>Craft 500 machined alloy AMR arounds.</description>
-		<jobString>Making machined AMR rounds.</jobString>
-		<ingredients>
-			<li>
-				<filter>
-					<thingDefs>
-						<li>Steel</li>
-					</thingDefs>
-				</filter>
-				<count>40</count>
-			</li>
-		</ingredients>
-		<fixedIngredientFilter>
-			<thingDefs>
-				<li>Steel</li>
-			</thingDefs>
-		</fixedIngredientFilter>
-		<researchPrerequisite>MoltenTech</researchPrerequisite>
-		<recipeUsers Inherit="False">
-			<li>JITable</li>
-		</recipeUsers>
-		<products>
-			<Ammo_JI_AMR>500</Ammo_JI_AMR>
-		</products>
-	<workAmount>4000</workAmount>		
-	</RecipeDef>
 
 		</value>
 		</li>

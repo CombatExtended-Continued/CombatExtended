@@ -112,13 +112,21 @@
 		</graphicData>		
 		<thingClass>CombatExtended.ProjectileCE_Explosive</thingClass>
 		<projectile Class="CombatExtended.ProjectilePropertiesCE">
-			<damageDef>KineticImpact</damageDef>
 			<speed>120</speed>
-			<dropsCasings>false</dropsCasings>		
-			<damageAmountBase>8</damageAmountBase>
-			<explosionRadius>0.5</explosionRadius>
+			<damageDef>Bullet</damageDef>
+			<damageAmountBase>10</damageAmountBase>
+			<armorPenetrationSharp>70</armorPenetrationSharp>
 			<armorPenetrationBlunt>80</armorPenetrationBlunt>
 		</projectile>
+		<comps>
+		  <li Class="CombatExtended.CompProperties_ExplosiveCE">
+			<damageAmountBase>40</damageAmountBase>
+			<explosiveDamageType>Bomb</explosiveDamageType>
+			<explosiveRadius>0.5</explosiveRadius>
+			<explosionSound>MortarBomb_Explode</explosionSound>
+			<applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
+		  </li>
+		</comps>
 	</ThingDef>
 
 	<!-- ==================== TE Power Charge ========================== -->

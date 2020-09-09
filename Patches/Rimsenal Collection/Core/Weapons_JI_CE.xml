@@ -108,9 +108,9 @@
 				<value>
 					<statBases>
 						<WorkToMake>35500</WorkToMake>
-						<SightsEfficiency>0.6</SightsEfficiency>
+						<SightsEfficiency>0.7</SightsEfficiency>
 						<ShotSpread>0.18</ShotSpread>
-						<SwayFactor>1.15</SwayFactor>
+						<SwayFactor>1.65</SwayFactor>
 						<Bulk>4</Bulk>
 						<Mass>5.75</Mass>
 						<RangedWeapon_Cooldown>0.65</RangedWeapon_Cooldown>
@@ -168,8 +168,7 @@
 						<hasStandardCommand>true</hasStandardCommand>
 						<defaultProjectile>Bullet_JI_Molten</defaultProjectile>
 						<warmupTime>1.4</warmupTime>
-						<burstShotCount>5</burstShotCount>
-						<ticksBetweenBurstShots>4</ticksBetweenBurstShots>
+						<ammoConsumedPerShotCount>2</ammoConsumedPerShotCount>
 						<range>52</range>
 						<soundCast>RS_ShotJI</soundCast>
 						<soundCastTail>GunTail_Medium</soundCastTail>
@@ -183,19 +182,27 @@
 				<value>
 					<comps>
 						<li Class="CombatExtended.CompProperties_AmmoUser">				
-							<magazineSize>25</magazineSize>
+							<magazineSize>40</magazineSize>
 							<reloadTime>4.3</reloadTime>
 							<ammoSet>AmmoSet_JIStandard</ammoSet>
 						</li>
 						<li Class="CombatExtended.CompProperties_FireModes">
-							  <aimedBurstShotCount>3</aimedBurstShotCount>
-							  <aiUseBurstMode>TRUE</aiUseBurstMode>
+							  <aiUseBurstMode>false</aiUseBurstMode>
 							  <aiAimMode>AimedShot</aiAimMode>		
 						</li>
 					</comps>					
 				</value>
 			</li>			
-			
+			<li Class="PatchOperationAddModExtension">
+				<xpath>Defs/thingDef[defName="JI_Hrunting"]</xpath>
+				<value>
+				<li Class="CombatExtended.GunDrawExtension">
+					<DrawSize>1,1</DrawSize>
+					<DrawOffset>0,0.2</DrawOffset>
+				</li>
+				</value>
+			</li>	
+
 			<!-- ========== Gramr AMR =========== -->
 			<li Class="PatchOperationReplace">
 				<xpath>Defs/thingDef[defName="JI_Gramr"]/statBases</xpath>
@@ -221,6 +228,7 @@
 						<hasStandardCommand>true</hasStandardCommand>
 						<defaultProjectile>Bullet_JI_AMR</defaultProjectile>
 						<warmupTime>3.1</warmupTime>
+						<ammoConsumedPerShotCount>5</ammoConsumedPerShotCount>
 						<range>90</range>
 						<soundCast>RS_ShotJI</soundCast>
 						<soundCastTail>GunTail_Heavy</soundCastTail>
@@ -234,20 +242,29 @@
 				<value>
 					<comps>
 						<li Class="CombatExtended.CompProperties_AmmoUser">				
-							<magazineSize>5</magazineSize>
+							<magazineSize>25</magazineSize>
 							<reloadTime>8</reloadTime>
 							<ammoSet>AmmoSet_JI_AMR</ammoSet>
 						</li>
 						<li Class="CombatExtended.CompProperties_FireModes">
-							  <aiUseBurstMode>FALSE</aiUseBurstMode>
-							  <aiAimMode>AimedShot</aiAimMode>			
+							<aiUseBurstMode>FALSE</aiUseBurstMode>
+							<aiAimMode>AimedShot</aiAimMode>			
 						</li>
 					</comps>
 					<weaponTags>
 					</weaponTags>						
 				</value>
 			</li>			
-			
+			<li Class="PatchOperationAddModExtension">
+				<xpath>Defs/thingDef[defName="JI_Gramr"]</xpath>
+				<value>
+				<li Class="CombatExtended.GunDrawExtension">
+					<DrawSize>1.1,1.1</DrawSize>
+					<DrawOffset>0,0.2</DrawOffset>
+				</li>
+				</value>
+			</li>	
+
 			<!-- ========== Grendel Rocket Launcher =========== -->  			
 			<li Class="PatchOperationReplace">
 				<xpath>Defs/thingDef[defName="JI_Grendel"]/statBases</xpath>
@@ -271,7 +288,7 @@
 						<recoilAmount>4.5</recoilAmount>
 						<verbClass>CombatExtended.Verb_ShootCE</verbClass>
 						<hasStandardCommand>true</hasStandardCommand>
-						<defaultProjectile>Bullet_90mmJI_HEDP</defaultProjectile>
+						<defaultProjectile>Bullet_JISiegeRocket</defaultProjectile>
 						<warmupTime>2.4</warmupTime>
 						<range>88</range>
 						<soundCast>RS_ShotJI</soundCast>
@@ -289,9 +306,10 @@
 				<value>
 					<comps>
 						<li Class="CombatExtended.CompProperties_AmmoUser">				
-							<magazineSize>3</magazineSize>
-							<reloadTime>8</reloadTime>
-							<ammoSet>AmmoSet_90mmJIRocket</ammoSet>
+							<magazineSize>4</magazineSize>
+							<reloadTime>2</reloadTime>
+							<ammoSet>AmmoSet_JIRocket</ammoSet>
+							<reloadOneAtATime>true</reloadOneAtATime>
 						</li>
 						<li Class="CombatExtended.CompProperties_FireModes">
 						  <aiUseBurstMode>FALSE</aiUseBurstMode>
@@ -302,14 +320,24 @@
 					</weaponTags>					
 				</value>
 			</li>
-			
+
+			<li Class="PatchOperationAddModExtension">
+				<xpath>Defs/thingDef[defName="JI_Grendel"]</xpath>
+				<value>
+				<li Class="CombatExtended.GunDrawExtension">
+					<DrawSize>1.1,1.1</DrawSize>
+					<DrawOffset>0,0</DrawOffset>
+				</li>
+				</value>
+			</li>	
+
 			<!-- ==========  Suppression Cannon =========== -->
 			<li Class="PatchOperationReplace">
 				<xpath>Defs/thingDef[defName="JI_Muspell"]/statBases</xpath>
 				<value>
 					<statBases>
 						<WorkToMake>62500</WorkToMake>
-						<SightsEfficiency>0.95</SightsEfficiency>
+						<SightsEfficiency>1.1</SightsEfficiency>
 						<ShotSpread>0.1</ShotSpread>
 						<SwayFactor>1.78</SwayFactor>
 						<Bulk>12.5</Bulk>
@@ -323,14 +351,14 @@
 				<value>
 					<verbs>
 					<li Class="CombatExtended.VerbPropertiesCE">					
-					  <recoilAmount>1.82</recoilAmount>
+					  <recoilAmount>1.22</recoilAmount>
 					  <verbClass>CombatExtended.Verb_ShootCE</verbClass>
 					  <hasStandardCommand>true</hasStandardCommand>
 					  <defaultProjectile>Bullet_JI_Molten</defaultProjectile>
 					  <warmupTime>2.25</warmupTime>
 					  <range>78</range>
-					  <ticksBetweenBurstShots>7</ticksBetweenBurstShots>
-					  <burstShotCount>12</burstShotCount>
+					  <ticksBetweenBurstShots>4</ticksBetweenBurstShots>
+					  <burstShotCount>20</burstShotCount>
 						<soundCast>RS_ShotMuspell</soundCast>
 						<soundCastTail>GunTail_Medium</soundCastTail>
 					  <muzzleFlashScale>12</muzzleFlashScale>
@@ -347,12 +375,12 @@
 				<value>
 					<comps>
 						<li Class="CombatExtended.CompProperties_AmmoUser">				
-							<magazineSize>36</magazineSize>
+							<magazineSize>200</magazineSize>
 							<reloadTime>4</reloadTime>
 							<ammoSet>AmmoSet_JIStandard</ammoSet>
 						</li>
 						<li Class="CombatExtended.CompProperties_FireModes">
-						  <aimedBurstShotCount>5</aimedBurstShotCount>
+						  <aimedBurstShotCount>10</aimedBurstShotCount>
 						  <aiUseBurstMode>FALSE</aiUseBurstMode>
 						  <aiAimMode>SuppressFire</aiAimMode>			
 						</li>
@@ -361,14 +389,24 @@
 					</weaponTags>						
 				</value>
 			</li>			
-			
+			<li Class="PatchOperationAddModExtension">
+				<xpath>Defs/thingDef[defName="JI_Muspell"]</xpath>
+				<value>
+				<li Class="CombatExtended.GunDrawExtension">
+					<DrawSize>1.1,1.1</DrawSize>
+					<DrawOffset>0,0.2</DrawOffset>
+				</li>
+				</value>
+			</li>	
+
+
 			<!-- Siege Shotgun -->
 			<li Class="PatchOperationReplace">
 				<xpath>Defs/thingDef[defName="JI_Fafnir"]/statBases</xpath>
 				<value>
 					<statBases>
 						<WorkToMake>54500</WorkToMake>
-						<SightsEfficiency>0.65</SightsEfficiency>
+						<SightsEfficiency>1.1</SightsEfficiency>
 						<ShotSpread>0.1</ShotSpread>
 						<SwayFactor>1.38</SwayFactor>
 						<Bulk>11</Bulk>
@@ -409,7 +447,16 @@
 					</weaponTags>						
 				</value>
 			</li>			
-			
+			<li Class="PatchOperationAddModExtension">
+				<xpath>Defs/thingDef[defName="JI_Fafnir"]</xpath>
+				<value>
+				<li Class="CombatExtended.GunDrawExtension">
+					<DrawSize>1.1,1.1</DrawSize>
+					<DrawOffset>0,0.2</DrawOffset>
+				</li>
+				</value>
+			</li>	
+
 		</operations>
 		</match>
 	</Operation>
