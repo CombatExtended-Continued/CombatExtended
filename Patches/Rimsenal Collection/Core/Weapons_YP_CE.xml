@@ -108,12 +108,12 @@
 				<value>
 					<statBases>
 						<WorkToMake>48500</WorkToMake>
-						<SightsEfficiency>1.0</SightsEfficiency>
+						<SightsEfficiency>1.1</SightsEfficiency>
 						<ShotSpread>0.14</ShotSpread>
 						<SwayFactor>1.21</SwayFactor>
 						<Bulk>8.20</Bulk>
 						<Mass>3.12</Mass>
-						<RangedWeapon_Cooldown>0.25</RangedWeapon_Cooldown>
+						<RangedWeapon_Cooldown>0.2</RangedWeapon_Cooldown>
 					</statBases>				
 				</value>
 			</li>				
@@ -125,10 +125,10 @@
 						<recoilAmount>1.48</recoilAmount>
 						<verbClass>CombatExtended.Verb_ShootCE</verbClass>
 						<hasStandardCommand>true</hasStandardCommand>
-						<defaultProjectile>Bullet_RifleYP_CC</defaultProjectile>
-						<warmupTime>0.6</warmupTime>
-						<burstShotCount>8</burstShotCount>
-						<ticksBetweenBurstShots>3</ticksBetweenBurstShots>
+						<defaultProjectile>Bullet_RifleYP</defaultProjectile>
+						<warmupTime>0.4</warmupTime>
+						<burstShotCount>10</burstShotCount>
+						<ticksBetweenBurstShots>2</ticksBetweenBurstShots>
 						<range>42</range>
 						<soundCast>RS_ShotShard</soundCast>
 						<soundCastTail>GunTail_Light</soundCastTail>
@@ -142,22 +142,16 @@
 				<value>
 					<comps>
 						<li Class="CombatExtended.CompProperties_AmmoUser">				
-							<magazineSize>40</magazineSize>
+							<magazineSize>50</magazineSize>
 							<reloadTime>4</reloadTime>
 							<ammoSet>AmmoSet_RifleYP</ammoSet>
 						</li>
 						<li Class="CombatExtended.CompProperties_FireModes">
-							<aimedBurstShotCount>4</aimedBurstShotCount>
+							<aimedBurstShotCount>5</aimedBurstShotCount>
 							<aiUseBurstMode>TRUE</aiUseBurstMode>
 							<aiAimMode>AimedShot</aiAimMode>	
 						</li>
 					</comps>	
-				</value>
-			</li>
-			<li Class="PatchOperationReplace">
-				<xpath>Defs/thingDef[defName="YP_SeoLi"]/description</xpath>
-				<value>
-					<description>Compared to a conventional assault rifle, the Yunwha Precision "Seoli(Frost)" Shard Rifle is equipped with a larger magazine and a higher rate of fire.</description>
 				</value>
 			</li>
 			
@@ -167,9 +161,9 @@
 				<value>
 					<statBases>
 						<WorkToMake>42500</WorkToMake>
-						<SightsEfficiency>2.0</SightsEfficiency>
-						<ShotSpread>0.20</ShotSpread>
-						<SwayFactor>0.91</SwayFactor>
+						<SightsEfficiency>2.5</SightsEfficiency>
+						<ShotSpread>0.05</ShotSpread>
+						<SwayFactor>0.20</SwayFactor>
 						<Bulk>9.70</Bulk>
 						<Mass>2.85</Mass>
 						<RangedWeapon_Cooldown>0.12</RangedWeapon_Cooldown>
@@ -184,8 +178,8 @@
 						<recoilAmount>1.37</recoilAmount>
 						<verbClass>CombatExtended.Verb_ShootCE</verbClass>
 						<hasStandardCommand>true</hasStandardCommand>
-						<defaultProjectile>Bullet_RifleYP_CC</defaultProjectile>
-						<warmupTime>1.1</warmupTime>
+						<defaultProjectile>Bullet_PistolYP</defaultProjectile>
+						<warmupTime>0.3</warmupTime>
 						<burstShotCount>5</burstShotCount>
 						<ticksBetweenBurstShots>5</ticksBetweenBurstShots>
 						<range>24</range>
@@ -203,7 +197,7 @@
 						<li Class="CombatExtended.CompProperties_AmmoUser">				
 							<magazineSize>25</magazineSize>
 							<reloadTime>4</reloadTime>
-							<ammoSet>AmmoSet_RifleYP</ammoSet>
+							<ammoSet>AmmoSet_PistolYP</ammoSet>
 						</li>
 						<li Class="CombatExtended.CompProperties_FireModes">
 							<aimedBurstShotCount>3</aimedBurstShotCount>
@@ -211,12 +205,6 @@
 							<aiUseBurstMode>TRUE</aiUseBurstMode>	
 						</li>						
 					</comps>					
-				</value>
-			</li>
-			<li Class="PatchOperationReplace">
-				<xpath>Defs/thingDef[defName="YP_SagPung"]/description</xpath>
-				<value>
-					<description>The Yunhwa Precision 'SagPung(Boreas)' swarmer is the combination of the Vector Shot and the Shard Rifle. It has a GuidedRailSystem™ just like the Vector Shot which makes it incredibly accurate. It is an ideal tool for dealing with soft targets at sub rifle range.</description>
 				</value>
 			</li>
 		
@@ -242,7 +230,7 @@
 					<li Class="CombatExtended.VerbPropertiesCE">					
 						<verbClass>CombatExtended.Verb_ShootCE</verbClass>
 						<hasStandardCommand>true</hasStandardCommand>
-						<defaultProjectile>Bullet_SpikeYP_CC</defaultProjectile>
+						<defaultProjectile>Bullet_SpikeYP</defaultProjectile>
 						<warmupTime>1.3</warmupTime>
 						<range>75</range>
 						<soundCast>RS_ShotSpike</soundCast>
@@ -288,15 +276,12 @@
 				<xpath>Defs/thingDef[defName="YP_SeolHwa"]/verbs</xpath>
 				<value>
 					<verbs>
-					<li Class="CombatExtended.VerbPropertiesCE">					
-						<recoilAmount>1.74</recoilAmount>
+					<li Class="CombatExtended.VerbPropertiesCE">
 						<verbClass>CombatExtended.Verb_ShootCE</verbClass>
 						<hasStandardCommand>true</hasStandardCommand>
-						<defaultProjectile>Bullet_PistolYP_CC</defaultProjectile>
-						<warmupTime>0.6</warmupTime>
-						<burstShotCount>2</burstShotCount>
+						<defaultProjectile>Bullet_PistolYP</defaultProjectile>
+						<warmupTime>0.2</warmupTime>
 						<ammoConsumedPerShotCount>2</ammoConsumedPerShotCount>
-						<ticksBetweenBurstShots>0</ticksBetweenBurstShots>
 						<range>12</range>
 						<soundCast>RS_ShotShard</soundCast>
 						<soundCastTail>GunTail_Light</soundCastTail>
@@ -377,7 +362,7 @@
 						<recoilAmount>1.24</recoilAmount>
 						<verbClass>CombatExtended.Verb_ShootCE</verbClass>
 						<hasStandardCommand>true</hasStandardCommand>
-						<defaultProjectile>Bullet_PistolYP_CC</defaultProjectile>
+						<defaultProjectile>Bullet_PistolYP</defaultProjectile>
 						<warmupTime>0.6</warmupTime>
 						<burstShotCount>6</burstShotCount>
 						<ticksBetweenBurstShots>3</ticksBetweenBurstShots>

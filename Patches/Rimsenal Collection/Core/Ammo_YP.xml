@@ -16,7 +16,7 @@
 
 	<ThingCategoryDef>
 		<defName>AmmoPistolYP</defName>
-		<label>9x21mm YP</label>
+		<label>Small YP</label>
 		<parent>AmmoPistols</parent>
     <iconPath>UI/Icons/ThingCategories/CaliberPistol</iconPath>
 	</ThingCategoryDef>
@@ -25,9 +25,9 @@
 
 	<CombatExtended.AmmoSetDef>
 		<defName>AmmoSet_PistolYP</defName>
-		<label>9x21mm YP</label>
+		<label>Small YP</label>
 		<ammoTypes>
-			<Ammo_PistolYP_CC>Bullet_PistolYP_CC</Ammo_PistolYP_CC>
+			<Ammo_PistolYP>Bullet_PistolYP</Ammo_PistolYP>
 		</ammoTypes>
 	</CombatExtended.AmmoSetDef>
 	
@@ -49,8 +49,8 @@
 	</ThingDef>
 
 	<ThingDef Class="CombatExtended.AmmoDef" ParentName="PistolYPBase">
-		<defName>Ammo_PistolYP_CC</defName>
-		<label>9x21mm YP cartridge (CC)</label>
+		<defName>Ammo_PistolYP</defName>
+		<label>Small YP cartridge</label>
 		<graphicData>
 			<texPath>ThirdParty/Rimsenal/YP</texPath>
 			<graphicClass>Graphic_StackCount</graphicClass>
@@ -59,14 +59,14 @@
 			<MarketValue>0.08</MarketValue>
 		</statBases>
 		<ammoClass>CarbonCrystal</ammoClass>
-		<cookOffProjectile>Bullet_PistolYP_CC</cookOffProjectile>
+		<cookOffProjectile>Bullet_PistolYP</cookOffProjectile>
 	</ThingDef>
 
 	<!-- ================== Projectiles ================== -->
 
 	<ThingDef ParentName="Base45ACPBullet">
-		<defName>Bullet_PistolYP_CC</defName>
-		<label>9x21mm YP bullet (CC)</label>
+		<defName>Bullet_PistolYP</defName>
+		<label>Small carbon crystal</label>
 		<graphicData>
 			<texPath>Things/Projectile/Shard</texPath>
 			<graphicClass>Graphic_Single</graphicClass>
@@ -74,7 +74,9 @@
 		<projectile Class="CombatExtended.ProjectilePropertiesCE">
 			<damageDef>Shredder</damageDef>
 			<speed>72</speed>
-			<dropsCasings>false</dropsCasings>		
+			<dropsCasings>false</dropsCasings>
+			<pelletCount>2</pelletCount>
+			<spreadMult>15</spreadMult>		
 			<damageAmountBase>16</damageAmountBase>
 			<armorPenetrationBlunt>28</armorPenetrationBlunt>
 			<armorPenetrationSharp>2.8</armorPenetrationSharp>
@@ -83,10 +85,10 @@
 
 		<!-- ==================== Recipe: YP Pistol ========================== -->
 		<RecipeDef ParentName="AmmoRecipeBase">
-			<defName>MakeAmmo_PistolYP_CC</defName>
-			<label>make 9x21mm YP (CC) cartridge x500</label>
-			<description>Craft 500 9x21mm YP (CC) cartridges.</description>
-			<jobString>Making 9x21mm YP (CC) cartridges.</jobString>
+			<defName>MakeAmmo_PistolYP</defName>
+			<label>make Small YP cartridge x500</label>
+			<description>Craft 500 Small YP cartridges.</description>
+			<jobString>Making Small YP cartridges.</jobString>
 			<ingredients>
 				<li>
 					<filter>
@@ -107,7 +109,7 @@
 				<li>YPTable</li>
 			</recipeUsers>		
 			<products>
-				<Ammo_PistolYP_CC>500</Ammo_PistolYP_CC>
+				<Ammo_PistolYP>500</Ammo_PistolYP>
 			</products>
 		<workAmount>3500</workAmount>
 		</RecipeDef>
@@ -116,7 +118,7 @@
 
 		<ThingCategoryDef>
 			<defName>AmmoRifleYP</defName>
-			<label>5.45x45mm YP</label>
+			<label>Large YP</label>
 			<parent>AmmoRifles</parent>
 		<iconPath>UI/Icons/ThingCategories/CaliberRifle</iconPath>
 		</ThingCategoryDef>
@@ -125,9 +127,9 @@
 
 		<CombatExtended.AmmoSetDef>
 			<defName>AmmoSet_RifleYP</defName>
-			<label>5.45x45mm YP</label>
+			<label>Large YP</label>
 			<ammoTypes>
-				<Ammo_RifleYP_CC>Bullet_RifleYP_CC</Ammo_RifleYP_CC>
+				<Ammo_RifleYP>Bullet_RifleYP</Ammo_RifleYP>
 			</ammoTypes>
 		</CombatExtended.AmmoSetDef>
 		
@@ -149,8 +151,8 @@
 		</ThingDef>
 
 		<ThingDef Class="CombatExtended.AmmoDef" ParentName="RifleYPBase">
-			<defName>Ammo_RifleYP_CC</defName>
-			<label>5.45x45mm YP cartridge (CC)</label>
+			<defName>Ammo_RifleYP</defName>
+			<label>Large YP cartridge</label>
 			<graphicData>
 				<texPath>ThirdParty/Rimsenal/YP</texPath>
 				<graphicClass>Graphic_StackCount</graphicClass>
@@ -159,14 +161,14 @@
 				<MarketValue>0.09</MarketValue>
 			</statBases>
 			<ammoClass>CarbonCrystal</ammoClass>
-			<cookOffProjectile>Bullet_RifleYP_CC</cookOffProjectile>
+			<cookOffProjectile>Bullet_RifleYP</cookOffProjectile>
 		</ThingDef>
 
 		<!-- ================== Projectiles ================== -->
 
 		<ThingDef ParentName="Base556x45mmNATOBullet">
-			<defName>Bullet_RifleYP_CC</defName>
-			<label>5.45x45mm YP bullet (CC)</label>
+			<defName>Bullet_RifleYP</defName>
+			<label>Large carbon crystal</label>
 			<graphicData>
 				<texPath>Things/Projectile/Shard</texPath>
 				<graphicClass>Graphic_Single</graphicClass>
@@ -183,10 +185,10 @@
 
 		<!-- ==================== Recipe: YP Rifle ========================== -->
 		<RecipeDef ParentName="AmmoRecipeBase">
-			<defName>MakeAmmo_RifleYP_CC</defName>
-			<label>make 5.45x45mm YP (CC) cartridge x500</label>
-			<description>Craft 500 5.45x45mm YP (CC) cartridges.</description>
-			<jobString>Making 5.45x45mm YP (CC) cartridges.</jobString>
+			<defName>MakeAmmo_RifleYP</defName>
+			<label>make Large YP cartridge x500</label>
+			<description>Craft 500 Large YP cartridges.</description>
+			<jobString>Making Large YP cartridges.</jobString>
 			<ingredients>
 				<li>
 					<filter>
@@ -207,7 +209,7 @@
 				<li>YPTable</li>
 			</recipeUsers>		
 			<products>
-				<Ammo_RifleYP_CC>500</Ammo_RifleYP_CC>
+				<Ammo_RifleYP>500</Ammo_RifleYP>
 			</products>
 		<workAmount>3500</workAmount>
 		</RecipeDef>
@@ -216,7 +218,7 @@
 
 	<ThingCategoryDef>
 		<defName>AmmoSpikeYP</defName>
-		<label>7.62x55mm YP</label>
+		<label>Heavy YP</label>
 		<parent>AmmoRifles</parent>
     <iconPath>UI/Icons/ThingCategories/CaliberRifle</iconPath>
 	</ThingCategoryDef>
@@ -225,16 +227,16 @@
 
 	<CombatExtended.AmmoSetDef>
 		<defName>AmmoSet_SpikeYP</defName>
-		<label>7.62x55mm YP</label>
+		<label>Heavy YP</label>
 		<ammoTypes>
-			<Ammo_SpikeYP_CC>Bullet_SpikeYP_CC</Ammo_SpikeYP_CC>
+			<Ammo_SpikeYP>Bullet_SpikeYP</Ammo_SpikeYP>
 		</ammoTypes>
 	</CombatExtended.AmmoSetDef>
 	
 	<!-- ==================== Ammo ========================== -->
 	
 	<ThingDef Class="CombatExtended.AmmoDef" Name="SpikeYPBase" ParentName="SmallAmmoBase" Abstract="True">
-		<description>High-velocity spike made of synthesized carbon crystals, fired by Yunhwa Precision sniper rifles. While effective against armor, the spikes' tendency to remain intact after striking a target decreases thier stopping power.</description>
+		<description>High-velocity spike made of synthesized carbon crystals, fired by Yunhwa Precision sniper rifles. While more effective against armor, the spikes' tendency to remain intact after striking a target decreases thier stopping power.</description>
 		<statBases>
 		<Mass>0.02</Mass>
 		<Bulk>0.07</Bulk>
@@ -249,8 +251,8 @@
 	</ThingDef>
 
 	<ThingDef Class="CombatExtended.AmmoDef" ParentName="SpikeYPBase">
-		<defName>Ammo_SpikeYP_CC</defName>
-		<label>7.62x55mm YP cartridge (CC)</label>
+		<defName>Ammo_SpikeYP</defName>
+		<label>Heavy YP cartridge</label>
 		<graphicData>
 			<texPath>ThirdParty/Rimsenal/YP</texPath>
 			<graphicClass>Graphic_StackCount</graphicClass>
@@ -259,14 +261,14 @@
 			<MarketValue>0.12</MarketValue>
 		</statBases>
 		<ammoClass>CarbonCrystal</ammoClass>
-		<cookOffProjectile>Bullet_SpikeYP_CC</cookOffProjectile>
+		<cookOffProjectile>Bullet_SpikeYP</cookOffProjectile>
 	</ThingDef>
 
 	<!-- ================== Projectiles ================== -->
 
 	<ThingDef ParentName="Base556x45mmNATOBullet">
-		<defName>Bullet_SpikeYP_CC</defName>
-		<label>7.62x55mm YP bullet (CC)</label>
+		<defName>Bullet_SpikeYP</defName>
+		<label>Heavy carbon crystal</label>
 		<graphicData>
 			<texPath>Things/Projectile/Spike</texPath>
 			<graphicClass>Graphic_Single</graphicClass>
@@ -275,18 +277,18 @@
 			<damageDef>Shredder</damageDef>
 			<speed>100</speed>
 			<dropsCasings>false</dropsCasings>		
-			<damageAmountBase>11</damageAmountBase>
-			<armorPenetrationBlunt>50</armorPenetrationBlunt>
-			<armorPenetrationSharp>10</armorPenetrationSharp>			
+			<damageAmountBase>12</damageAmountBase>
+			<armorPenetrationBlunt>55</armorPenetrationBlunt>
+			<armorPenetrationSharp>12</armorPenetrationSharp>			
 		</projectile>
 	</ThingDef>
 
 	<!-- ==================== Recipe: YP Spike ========================== -->
 	<RecipeDef ParentName="AmmoRecipeBase">
-		<defName>MakeAmmo_SpikeYP_CC</defName>
-		<label>make 7.62x55mm YP (CC) cartridge x500</label>
-		<description>Craft 500 7.62x55mm YP (CC) cartridges.</description>
-		<jobString>Making 7.62x55mm YP (CC) cartridges.</jobString>
+		<defName>MakeAmmo_SpikeYP</defName>
+		<label>make Heavy YP cartridge x500</label>
+		<description>Craft 500 Heavy YP cartridges.</description>
+		<jobString>Making Heavy YP cartridges.</jobString>
 		<ingredients>
 			<li>
 				<filter>
@@ -307,7 +309,7 @@
 			<li>YPTable</li>
 		</recipeUsers>			
 		<products>
-			<Ammo_SpikeYP_CC>500</Ammo_SpikeYP_CC>
+			<Ammo_SpikeYP>500</Ammo_SpikeYP>
 		</products>
 	<workAmount>3500</workAmount>
 	</RecipeDef>
@@ -316,7 +318,7 @@
 
 	<ThingDef ParentName="Base556x45mmNATOBullet">
 		<defName>Bullet_GeugGwang_CE</defName>
-		<label>microwave</label>
+		<label>microwave pulse</label>
 		<graphicData>
 		  <texPath>Things/Projectile/Microwave</texPath>
 		  <graphicClass>Graphic_Single</graphicClass>
