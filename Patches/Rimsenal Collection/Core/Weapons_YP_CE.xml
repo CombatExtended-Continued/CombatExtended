@@ -277,11 +277,14 @@
 				<value>
 					<verbs>
 					<li Class="CombatExtended.VerbPropertiesCE">
+						<recoilAmount>1.6</recoilAmount>
 						<verbClass>CombatExtended.Verb_ShootCE</verbClass>
 						<hasStandardCommand>true</hasStandardCommand>
 						<defaultProjectile>Bullet_PistolYP</defaultProjectile>
 						<warmupTime>0.2</warmupTime>
 						<ammoConsumedPerShotCount>2</ammoConsumedPerShotCount>
+						<burstShotCount>8</burstShotCount>
+						<ticksBetweenBurstShots>2</ticksBetweenBurstShots>						
 						<range>12</range>
 						<soundCast>RS_ShotShard</soundCast>
 						<soundCastTail>GunTail_Light</soundCastTail>
@@ -299,7 +302,11 @@
 							<reloadTime>4</reloadTime>
 							<ammoSet>AmmoSet_PistolYP</ammoSet>
 						</li>
-						<li Class="CombatExtended.CompProperties_FireModes" />						
+						<li Class="CombatExtended.CompProperties_FireModes">
+							<aimedBurstShotCount>3</aimedBurstShotCount>
+							<aiUseBurstMode>FALSE</aiUseBurstMode>
+							<aiAimMode>Snapshot</aiAimMode>	
+						</li>													
 					</comps>					
 				</value>
 			</li>
