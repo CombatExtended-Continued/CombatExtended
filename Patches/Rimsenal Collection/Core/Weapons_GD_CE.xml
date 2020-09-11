@@ -14,7 +14,6 @@
 			<li Class="PatchOperationReplace">
 				<xpath>Defs/ThingDef[defName="GD_MSSH" or
 				defName="GD_MSST" or
-				defName="GD_MSSS" or
 				defName="GD_MSSF" or
 				defName="GD_TacticalPistol"
 				]/tools</xpath>
@@ -303,7 +302,35 @@
 					</weaponTags>					
 				</value>
 			</li>
-			
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/thingDef[defName="GD_MSSS"]/tools</xpath>
+				<value>
+				  <tools>
+					<li Class="CombatExtended.ToolCE">
+					  <label>grip</label>
+					  <capacities>
+						<li>Blunt</li>
+					  </capacities>
+					  <power>2</power>
+					  <cooldownTime>1.54</cooldownTime>
+					  <chanceFactor>1.5</chanceFactor>
+					  <armorPenetrationBlunt>0.555</armorPenetrationBlunt>
+					  <linkedBodyPartsGroup>Grip</linkedBodyPartsGroup>
+					</li>
+					<li Class="CombatExtended.ToolCE">
+					  <label>muzzle</label>
+					  <capacities>
+						<li>Poke</li>
+					  </capacities>
+					  <power>2</power>
+					  <cooldownTime>1.54</cooldownTime>
+					  <armorPenetrationBlunt>0.555</armorPenetrationBlunt>
+					  <linkedBodyPartsGroup>Muzzle</linkedBodyPartsGroup>
+					</li>
+				  </tools>
+				</value>
+			</li>
+
 			<!-- ==========  Modular Flakker =========== -->
 			<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
 				<defName>GD_MSSF</defName>
