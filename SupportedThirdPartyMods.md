@@ -111,6 +111,7 @@ More Vanilla Turrets	|
 Moyo - From the Depth   |
 Ni'Hal	|
 Orassans	|
+Palm Cats   |
 Penguin	|
 PsiTech	|
 Polarisbloc - Security Force	|
