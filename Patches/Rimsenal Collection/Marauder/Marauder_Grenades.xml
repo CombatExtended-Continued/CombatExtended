@@ -1,0 +1,186 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+
+	<Operation Class="PatchOperationFindMod">
+			<mods>
+				<li>Rimsenal - Marauders</li>
+			</mods>
+		<match Class="PatchOperationSequence">
+		<operations>
+
+	<!-- ========== Kill recipe maker ========== -->
+
+	<li Class="PatchOperationAttributeSet">
+		<xpath>Defs/ThingDef[defName="RSWeapon_PipeBombs"]</xpath>
+		<attribute>ParentName</attribute>
+		<value>BaseWeapon</value>
+	</li>
+
+	<li Class="PatchOperationRemove">
+		<xpath>Defs/ThingDef[defName="RSWeapon_PipeBombs"]/costList</xpath>
+	</li>
+
+	<!-- ========== Pipe Bomb ========== -->
+
+	<!-- Projectile -->
+
+	<li Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Proj_PipeBomb"]/thingClass</xpath>
+		<value>
+			<thingClass>CombatExtended.ProjectileCE_Explosive</thingClass>
+		</value>
+	</li>
+
+	<li Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Proj_PipeBomb"]/graphicData/texPath</xpath>
+		<value>
+			<texPath>Things/Projectile/PipeBomb</texPath>
+		</value>
+	</li>
+
+	<li Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Proj_PipeBomb"]/label</xpath>
+		<value>
+			<label>pipe bomb</label>
+		</value>
+	</li>
+
+	<li Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Proj_PipeBomb"]/projectile</xpath>
+		<value>
+			<projectile Class="CombatExtended.ProjectilePropertiesCE">
+				<explosionRadius>0.5</explosionRadius>
+				<damageDef>Bomb</damageDef>
+				<damageAmountBase>15</damageAmountBase>
+				<explosionDelay>60</explosionDelay>
+				<dropsCasings>false</dropsCasings>
+				<casingMoteDefname>Mote_GrenadePin</casingMoteDefname>
+				<applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
+				<speed>4</speed>
+			</projectile>
+		</value>
+	</li>
+
+	<li Class="PatchOperationSequence">
+		<success>Always</success>
+		<operations>
+			<li Class="PatchOperationTest">
+				<xpath>Defs/ThingDef[defName="Proj_PipeBomb"]/comps</xpath>
+				<success>Invert</success>
+			</li>
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName="Proj_PipeBomb"]</xpath>
+				<value>
+					<comps />
+				</value>
+			</li>
+		</operations>
+	</li>
+
+	<li Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="Proj_PipeBomb"]/comps</xpath>
+		<value>
+			<li Class="CombatExtended.CompProperties_ExplosiveCE">
+				<fragments>			
+					<Fragment_Small>8</Fragment_Small>
+				</fragments>
+			</li>
+		</value>
+	</li>
+
+	<!-- Item -->
+
+	<li Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="RSWeapon_PipeBombs"]/graphicData</xpath>
+		<value>
+			<graphicData>
+				<texPath>Things/Ammo/Pipebomb</texPath>
+				<graphicClass>Graphic_StackCount</graphicClass>
+				<onGroundRandomRotateAngle>0</onGroundRandomRotateAngle>
+			</graphicData>
+		</value>
+	</li>
+
+	<li Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="RSWeapon_PipeBombs"]</xpath>
+		<value>
+			<thingClass>CombatExtended.AmmoThing</thingClass>
+			<stackLimit>100</stackLimit>
+			<resourceReadoutPriority>First</resourceReadoutPriority>
+		</value>
+	</li>
+
+	<li Class="PatchOperationAttributeSet">
+		<xpath>Defs/ThingDef[defName="RSWeapon_PipeBombs"]</xpath>
+		<attribute>Class</attribute>
+		<value>CombatExtended.AmmoDef</value>
+	</li>
+
+	<li Class="PatchOperationSequence">
+		<success>Always</success>
+		<operations>
+			<li Class="PatchOperationTest">
+				<xpath>Defs/ThingDef[defName="RSWeapon_PipeBombs"]/comps</xpath>
+				<success>Invert</success>
+			</li>
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName="RSWeapon_PipeBombs"]</xpath>
+				<value>
+					<comps />
+				</value>
+			</li>
+		</operations>
+	</li>
+
+	<li Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="RSWeapon_PipeBombs"]/comps</xpath>
+		<value>
+			<li Class="CombatExtended.CompProperties_ExplosiveCE">
+				<damageAmountBase>15</damageAmountBase>
+				<explosiveDamageType>Bomb</explosiveDamageType>
+				<explosionRadius>0.5</explosionRadius>
+				<fragments>			
+					<Fragment_Small>8</Fragment_Small>
+				</fragments>
+			</li>
+		</value>
+	</li>
+
+	<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+		<defName>RSWeapon_PipeBombs</defName>
+		<statBases>
+			<Mass>0.992</Mass>
+			<Bulk>1.09</Bulk>
+			<MarketValue>12.22</MarketValue>
+			<RangedWeapon_Cooldown>1</RangedWeapon_Cooldown>
+			<SightsEfficiency>0.65</SightsEfficiency>
+		</statBases>
+		<Properties>
+			<label>throw pipe bomb</label>
+			<verbClass>CombatExtended.Verb_ShootCEOneUse</verbClass>
+			<hasStandardCommand>true</hasStandardCommand>
+			<range>10.0</range>
+			<minRange>4</minRange>
+			<warmupTime>0.8</warmupTime>
+			<noiseRadius>4</noiseRadius>
+			<ai_IsBuildingDestroyer>true</ai_IsBuildingDestroyer>
+			<soundCast>ThrowGrenade</soundCast>
+			<targetParams>
+				<canTargetLocations>true</canTargetLocations>
+			</targetParams>
+			<defaultProjectile>Proj_PipeBomb</defaultProjectile>
+			<onlyManualCast>true</onlyManualCast>
+			<ignorePartialLoSBlocker>true</ignorePartialLoSBlocker>
+		</Properties>
+		<weaponTags>
+			<li>CE_AI_Grenade</li>
+			<li>CE_OneHandedWeapon</li>
+		</weaponTags>
+	</li>
+
+		</operations>
+		</match>
+	</Operation>
+
+</Patch>
+

@@ -1,0 +1,163 @@
+<Patch>
+
+	<Operation Class="PatchOperationFindMod">
+    <mods>
+		<li>Rimsenal - Core</li>
+    </mods>
+		<match Class="PatchOperationSequence">
+		 <operations>		
+
+
+		<li Class="PatchOperationAdd">
+			<xpath>Defs</xpath>
+			<value>
+
+	<!-- ==================== 4.6x30 Hybrid - AmmoSet ========================== -->
+
+	<CombatExtended.AmmoSetDef>
+		<defName>AmmoSet_46x30mmHybrid</defName>
+		<label>4.6x30mm Hybrid</label>
+		<ammoTypes>
+			<Ammo_46x30mm_FMJ>Bullet_46x30mmHybrid_FMJ</Ammo_46x30mm_FMJ>
+			<Ammo_46x30mm_AP>Bullet_46x30mmHybrid_AP</Ammo_46x30mm_AP>
+			<Ammo_46x30mm_HP>Bullet_46x30mmHybrid_HP</Ammo_46x30mm_HP>
+		</ammoTypes>
+	</CombatExtended.AmmoSetDef>
+
+	<!-- ================== Projectiles ================== -->
+
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="Base46x30mmBullet">
+		<defName>Bullet_46x30mmHybrid_FMJ</defName>
+		<label>4.6x30mm hybrid bullet (FMJ)</label>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<speed>144</speed>
+			<damageAmountBase>10</damageAmountBase>
+			<armorPenetrationSharp>7</armorPenetrationSharp>
+			<armorPenetrationBlunt>14</armorPenetrationBlunt>
+		</projectile>
+	</ThingDef>
+
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="Base46x30mmBullet">
+		<defName>Bullet_46x30mmHybrid_AP</defName>
+		<label>4.6x30mm hybrid bullet (AP)</label>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<speed>144</speed>
+			<damageAmountBase>6</damageAmountBase>
+			<armorPenetrationSharp>14</armorPenetrationSharp>
+			<armorPenetrationBlunt>14</armorPenetrationBlunt>
+		</projectile>
+	</ThingDef>
+
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="Base46x30mmBullet">
+		<defName>Bullet_46x30mmHybrid_HP</defName>
+		<label>4.6x30mm hybrid bullet (HP)</label>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageAmountBase>12</damageAmountBase>
+			<armorPenetrationSharp>4</armorPenetrationSharp>
+			<armorPenetrationBlunt>14</armorPenetrationBlunt>
+		</projectile>
+	</ThingDef>
+
+	<!-- ==================== 5.56 Hybrid - AmmoSet ========================== -->
+
+	<CombatExtended.AmmoSetDef>
+		<defName>AmmoSet_556x45mmNATOHybrid</defName>
+		<label>5.56x45mm NATO Hybrid</label>
+		<ammoTypes>
+			<Ammo_556x45mmNATO_FMJ>Bullet_556x45mmNATOHybrid_FMJ</Ammo_556x45mmNATO_FMJ>
+			<Ammo_556x45mmNATO_AP>Bullet_556x45mmNATOHybrid_AP</Ammo_556x45mmNATO_AP>
+			<Ammo_556x45mmNATO_HP>Bullet_556x45mmNATOHybrid_HP</Ammo_556x45mmNATO_HP>
+		    <Ammo_556x45mmNATO_Incendiary>Bullet_556x45mmNATOHybrid_Incendiary</Ammo_556x45mmNATO_Incendiary>
+			<Ammo_556x45mmNATO_HE>Bullet_556x45mmNATOHybrid_HE</Ammo_556x45mmNATO_HE>
+			<Ammo_556x45mmNATO_Sabot>Bullet_556x45mmNATOHybrid_Sabot</Ammo_556x45mmNATO_Sabot>				
+		</ammoTypes>
+	</CombatExtended.AmmoSetDef>
+
+	<!-- ================== Projectiles ================== -->
+
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="Base556x45mmNATOBullet">
+		<defName>Bullet_556x45mmNATOHybrid_FMJ</defName>
+		<label>5.56mm NATO hybrid bullet (FMJ)</label>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<speed>222</speed>
+			<damageAmountBase>16</damageAmountBase>
+			<armorPenetrationSharp>7</armorPenetrationSharp>
+			<armorPenetrationBlunt>49.18</armorPenetrationBlunt>
+		</projectile>
+	</ThingDef>
+
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="Base556x45mmNATOBullet">
+		<defName>Bullet_556x45mmNATOHybrid_AP</defName>
+		<label>5.56mm NATO hybrid bullet (AP)</label>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<speed>222</speed>
+			<damageAmountBase>10</damageAmountBase>
+			<armorPenetrationSharp>14</armorPenetrationSharp>
+			<armorPenetrationBlunt>49.18</armorPenetrationBlunt>
+		</projectile>
+	</ThingDef>
+
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="Base556x45mmNATOBullet">
+		<defName>Bullet_556x45mmNATOHybrid_HP</defName>
+		<label>5.56mm NATO hybrid bullet (HP)</label>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<speed>222</speed>
+			<damageAmountBase>20</damageAmountBase>
+			<armorPenetrationSharp>4</armorPenetrationSharp>
+			<armorPenetrationBlunt>49.18</armorPenetrationBlunt>
+		</projectile>
+	</ThingDef>
+
+	  <ThingDef Class="CombatExtended.AmmoDef" ParentName="Base556x45mmNATOBullet">
+		<defName>Bullet_556x45mmNATOHybrid_Incendiary</defName>
+		<label>5.56mm NATO hybrid bullet (AP-I)</label>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<speed>222</speed>
+		  <damageAmountBase>10</damageAmountBase>
+		  <armorPenetrationSharp>14</armorPenetrationSharp>
+		  <armorPenetrationBlunt>49.18</armorPenetrationBlunt>
+		  <secondaryDamage>
+			<li>
+			  <def>Flame_Secondary</def>
+			  <amount>6</amount>
+			</li>
+		  </secondaryDamage>
+		</projectile>
+	  </ThingDef>
+	  
+	  <ThingDef Class="CombatExtended.AmmoDef" ParentName="Base556x45mmNATOBullet">
+		<defName>Bullet_556x45mmNATOHybrid_HE</defName>
+		<label>5.56mm NATO hybrid bullet (HE)</label>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<speed>222</speed>
+		  <damageAmountBase>16</damageAmountBase>
+		  <armorPenetrationSharp>7</armorPenetrationSharp>
+		  <armorPenetrationBlunt>49.18</armorPenetrationBlunt>
+		  <secondaryDamage>
+				<li>
+			  	<def>Bomb_Secondary</def>
+			  	<amount>9</amount>
+				</li>
+		  </secondaryDamage>
+		</projectile>
+	  </ThingDef>
+
+	  <ThingDef Class="CombatExtended.AmmoDef" ParentName="Base556x45mmNATOBullet">
+		<defName>Bullet_556x45mmNATOHybrid_Sabot</defName>
+		<label>5.56mm NATO hybrid bullet (Sabot)</label>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+		  <damageAmountBase>8</damageAmountBase>
+		  <armorPenetrationSharp>24.5</armorPenetrationSharp>
+		  <armorPenetrationBlunt>63.66</armorPenetrationBlunt>
+		  <speed>332</speed>
+		</projectile>
+	  </ThingDef>
+
+		</value>
+		</li>
+
+		</operations>
+		</match>
+	</Operation>
+</Patch>
+			
