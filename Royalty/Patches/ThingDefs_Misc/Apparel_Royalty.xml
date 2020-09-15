@@ -14,9 +14,19 @@
 	<!-- ========== Corset ========== -->
 
 	<Operation Class="PatchOperationAdd">
-		<xpath>Defs/ThingDef[defName="Apparel_Corset"]/statBases</xpath>
+		<xpath>Defs/ThingDef[defName="Apparel_Corset" or defName="Apparel_CrownStellic"]/statBases</xpath>
 		<value>
 			<StuffEffectMultiplierArmor>2</StuffEffectMultiplierArmor>
+		</value>
+	</Operation>
+
+
+	<!-- ========== Cape ========== -->
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Apparel_Cape"]/statBases/StuffEffectMultiplierArmor</xpath>
+		<value>
+			<StuffEffectMultiplierArmor>4</StuffEffectMultiplierArmor>
 		</value>
 	</Operation>
 
