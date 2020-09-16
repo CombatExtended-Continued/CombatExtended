@@ -1,0 +1,743 @@
+<?xml version="1.0" encoding="utf-8" ?>
+
+<Patch>
+	<Operation Class="PatchOperationFindMod">
+    <mods>
+		<li>Rimsenal - Core</li>
+    </mods>
+		<match Class="PatchOperationSequence">
+		<operations>
+
+		<!-- ========== Remove Recipe Maker & Verbs ========== -->			
+		<li Class="PatchOperationRemove">
+			<xpath>Defs/ThingDef[defName="YP_BaegYa" or
+			defName="JI_Dunder" or
+			defName="GD_Bobcat" or
+			defName="TE_Grief" or
+			@Name="BaseRSGrenade"
+			]/recipeMaker</xpath>
+		</li>		
+
+
+		<li Class="PatchOperationRemove">
+			<xpath>Defs/ThingDef[defName="YP_BaegYa" or
+			defName="JI_Dunder" or
+			defName="GD_Bobcat" or
+			defName="TE_Grief"
+			]/costList</xpath>
+		</li>			
+
+		<!-- Without this mod, Grief and Bobcat don't work, and it logs at ForcedMissRadius error.-->
+		<li Class="PatchOperationRemove">
+			<xpath>Defs/ThingDef[defName="YP_BaegYa" or
+			defName="JI_Dunder" or 
+			defName="GD_Bobcat" or 
+			defName="TE_Grief"
+			]/verbs</xpath>
+		</li>		
+
+		<!-- Change TickerType.-->
+		<li Class="PatchOperationAdd">
+			<xpath>Defs/ThingDef[defName="YP_BaegYa" or
+			defName="JI_Dunder" or 
+			defName="GD_Bobcat" or 
+			defName="TE_Grief"
+			]</xpath>
+			<value>
+				<tickerType>Normal</tickerType>
+			</value>
+		</li>		
+
+		<!-- ========== Projectile thingClass ========== -->
+
+		<li Class="PatchOperationReplace">
+			<xpath>Defs/ThingDef[defName="Proj_BaegYa" or
+			defName="Proj_Dunder" or
+			defName="Proj_Bobcat" or
+			defName="Proj_Grief"			
+			]/thingClass</xpath>
+			<value>
+				<thingClass>CombatExtended.ProjectileCE_Explosive</thingClass>
+			</value>
+		</li>		
+		
+		<!-- ========== Projectile ========== -->	
+		
+		<li Class="PatchOperationReplace">
+			<xpath>Defs/ThingDef[defName="Proj_BaegYa"]/projectile</xpath>
+			<value>
+				<projectile Class="CombatExtended.ProjectilePropertiesCE">
+				  <explosionRadius>4</explosionRadius>
+				  <damageDef>Microwave</damageDef>
+				  <damageAmountBase>1</damageAmountBase>
+				  <explosionDelay>50</explosionDelay>
+				  <dropsCasings>false</dropsCasings>
+				  <speed>5</speed>
+				  <casingMoteDefname>Mote_GrenadePin</casingMoteDefname>
+				  <applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
+				</projectile>
+			</value>
+		</li>	
+		
+		<li Class="PatchOperationReplace">
+			<xpath>Defs/ThingDef[defName="Proj_Dunder"]/projectile</xpath>
+			<value>
+				<projectile Class="CombatExtended.ProjectilePropertiesCE">
+				  <explosionRadius>4.5</explosionRadius>
+				  <damageDef>Bomb</damageDef>
+				  <damageAmountBase>200</damageAmountBase>
+				  <explosionDelay>500</explosionDelay>
+				  <dropsCasings>false</dropsCasings>
+				  <speed>5</speed>
+				  <casingMoteDefname>Mote_GrenadePin</casingMoteDefname>
+				  <applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
+				</projectile>
+			</value>
+		</li>	
+		
+		<li Class="PatchOperationReplace">
+			<xpath>Defs/ThingDef[defName="Proj_Bobcat"]/projectile</xpath>
+			<value>
+				<projectile Class="CombatExtended.ProjectilePropertiesCE">
+				  <explosionRadius>1</explosionRadius>
+				  <damageDef>Bomb</damageDef>
+				  <damageAmountBase>10</damageAmountBase>
+				  <explosionDelay>80</explosionDelay>
+				  <dropsCasings>true</dropsCasings>
+				  <speed>5</speed>
+				  <casingMoteDefname>Mote_GrenadePin</casingMoteDefname>
+				  <applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
+				</projectile>
+			</value>
+		</li>	
+		
+		<li Class="PatchOperationReplace">
+			<xpath>Defs/ThingDef[defName="Proj_Grief"]/projectile</xpath>
+			<value>
+				<projectile Class="CombatExtended.ProjectilePropertiesCE">
+				  <explosionRadius>4</explosionRadius>
+				  <damageDef>KineticImpact</damageDef>
+				  <damageAmountBase>10</damageAmountBase>
+				  <explosionDelay>80</explosionDelay>
+				  <dropsCasings>false</dropsCasings>
+				  <speed>5</speed>
+				  <casingMoteDefname>Mote_GrenadePin</casingMoteDefname>
+			<applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
+				</projectile>
+			</value>
+		</li>	
+
+		<!-- ========== Check Comp ========== -->		
+
+		<li Class="PatchOperationSequence">
+		<success>Always</success>
+		<operations>
+			<li Class="PatchOperationTest">
+			<xpath>Defs/ThingDef[defName="Proj_BaegYa"]/comps</xpath>
+			<success>Invert</success>
+			</li>
+			<li Class="PatchOperationAdd">
+			<xpath>Defs/ThingDef[defName="Proj_BaegYa"]</xpath>
+			<value>
+				<comps />
+			</value>
+			</li>
+		</operations>
+		</li>
+
+		<li Class="PatchOperationSequence">
+		<success>Always</success>
+		<operations>
+			<li Class="PatchOperationTest">
+			<xpath>Defs/ThingDef[defName="Proj_Dunder"]/comps</xpath>
+			<success>Invert</success>
+			</li>
+			<li Class="PatchOperationAdd">
+			<xpath>Defs/ThingDef[defName="Proj_Dunder"]</xpath>
+			<value>
+				<comps />
+			</value>
+			</li>
+		</operations>
+		</li>	
+
+		<li Class="PatchOperationSequence">
+		<success>Always</success>
+		<operations>
+			<li Class="PatchOperationTest">
+			<xpath>Defs/ThingDef[defName="Proj_Bobcat"]/comps</xpath>
+			<success>Invert</success>
+			</li>
+			<li Class="PatchOperationAdd">
+			<xpath>Defs/ThingDef[defName="Proj_Bobcat"]</xpath>
+			<value>
+				<comps />
+			</value>
+			</li>
+		</operations>
+		</li>	
+		
+		<li Class="PatchOperationSequence">
+		<success>Always</success>
+		<operations>
+			<li Class="PatchOperationTest">
+			<xpath>Defs/ThingDef[defName="Proj_Grief"]/comps</xpath>
+			<success>Invert</success>
+			</li>
+			<li Class="PatchOperationAdd">
+			<xpath>Defs/ThingDef[defName="Proj_Grief"]</xpath>
+			<value>
+				<comps />
+			</value>
+			</li>
+		</operations>
+		</li>		
+		
+		<!-- ========== Add Fragmentation ========== -->		
+		
+		<li Class="PatchOperationAdd">
+			<xpath>Defs/ThingDef[defName="Proj_BaegYa"]/comps</xpath>
+			<value>
+				<li Class="CombatExtended.CompProperties_Fragments">
+				  <fragments>
+					<Fragment_Small>0</Fragment_Small>
+				  </fragments>
+				</li>
+			</value>
+		</li>
+
+		<li Class="PatchOperationAdd">
+			<xpath>Defs/ThingDef[defName="Proj_Dunder"]/comps</xpath>
+			<value>
+				<li Class="CombatExtended.CompProperties_Fragments">
+				  <fragments>
+					<Fragment_Small>0</Fragment_Small>
+				  </fragments>
+				</li>
+			</value>
+		</li>	
+
+		<li Class="PatchOperationAdd">
+			<xpath>Defs/ThingDef[defName="Proj_Bobcat"]/comps</xpath>
+			<value>
+				<li Class="CombatExtended.CompProperties_Fragments">
+				  <fragments>
+					<Fragment_Small>30</Fragment_Small>
+				  </fragments>
+				</li>
+			</value>
+		</li>
+
+		<li Class="PatchOperationAdd">
+			<xpath>Defs/ThingDef[defName="Proj_Grief"]/comps</xpath>
+			<value>
+				<li Class="CombatExtended.CompProperties_Fragments">
+				  <fragments>
+					<Fragment_Small>0</Fragment_Small>
+				  </fragments>
+				</li>
+			</value>
+		</li>
+		
+		<!-- Weapon Stack and Appearance -->
+
+		<li Class="PatchOperationAdd">
+			<xpath>Defs/ThingDef[defName="YP_BaegYa" or
+			defName="JI_Dunder" or
+			defName="GD_Bobcat" or
+			defName="TE_Grief"
+			]/graphicData</xpath>
+			<value>
+				  <onGroundRandomRotateAngle>0</onGroundRandomRotateAngle>
+			</value>
+		</li>
+
+		<li Class="PatchOperationAdd">
+			<xpath>Defs/ThingDef[defName="YP_BaegYa" or
+			defName="JI_Dunder" or
+			defName="GD_Bobcat" or
+			defName="TE_Grief"
+			]</xpath>
+			<value>
+				<thingClass>CombatExtended.AmmoThing</thingClass>
+				<stackLimit>75</stackLimit>
+				<resourceReadoutPriority>First</resourceReadoutPriority>
+			</value>
+		</li>
+
+		<li Class="PatchOperationAttributeSet">
+			<xpath>Defs/ThingDef[defName="YP_BaegYa" or
+			defName="JI_Dunder" or
+			defName="GD_Bobcat" or
+			defName="TE_Grief"
+			]</xpath>
+			<attribute>Class</attribute>
+			<value>CombatExtended.AmmoDef</value>
+		</li>
+		
+		<!-- Weapon Check Comps -->	
+		
+		<li Class="PatchOperationSequence">
+		<success>Always</success>
+		<operations>
+			<li Class="PatchOperationTest">
+			<xpath>Defs/ThingDef[defName="YP_BaegYa"]/comps</xpath>
+			<success>Invert</success>
+			</li>
+			<li Class="PatchOperationAdd">
+			<xpath>Defs/ThingDef[defName="YP_BaegYa"]</xpath>
+			<value>
+				<comps />
+			</value>
+			</li>
+		</operations>
+		</li>
+
+		<li Class="PatchOperationSequence">
+		<success>Always</success>
+		<operations>
+			<li Class="PatchOperationTest">
+			<xpath>Defs/ThingDef[defName="JI_Dunder"]/comps</xpath>
+			<success>Invert</success>
+			</li>
+			<li Class="PatchOperationAdd">
+			<xpath>Defs/ThingDef[defName="JI_Dunder"]</xpath>
+			<value>
+				<comps />
+			</value>
+			</li>
+		</operations>
+		</li>
+
+		<li Class="PatchOperationSequence">
+		<success>Always</success>
+		<operations>
+			<li Class="PatchOperationTest">
+			<xpath>Defs/ThingDef[defName="GD_Bobcat"]/comps</xpath>
+			<success>Invert</success>
+			</li>
+			<li Class="PatchOperationAdd">
+			<xpath>Defs/ThingDef[defName="GD_Bobcat"]</xpath>
+			<value>
+				<comps />
+			</value>
+			</li>
+		</operations>
+		</li>
+
+		<li Class="PatchOperationSequence">
+		<success>Always</success>
+		<operations>
+			<li Class="PatchOperationTest">
+			<xpath>Defs/ThingDef[defName="TE_Grief"]/comps</xpath>
+			<success>Invert</success>
+			</li>
+			<li Class="PatchOperationAdd">
+			<xpath>Defs/ThingDef[defName="TE_Grief"]</xpath>
+			<value>
+				<comps />
+			</value>
+			</li>
+		</operations>
+		</li>
+		
+		<!-- Weapon Values -->		
+		
+		<li Class="PatchOperationAdd">
+			<xpath>Defs/ThingDef[defName="YP_BaegYa"]/comps</xpath>
+			<value>
+				<li Class="CombatExtended.CompProperties_ExplosiveCE">
+				  <damageAmountBase>40</damageAmountBase>
+				  <explosiveDamageType>Bomb</explosiveDamageType>
+				  <explosiveRadius>1.5</explosiveRadius>
+				</li>
+				<li Class="CombatExtended.CompProperties_Fragments">
+					<fragments>
+						<Fragment_Small>20</Fragment_Small>
+					</fragments>
+				</li>				
+			</value>
+		</li>
+
+	  <li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+		<defName>YP_BaegYa</defName>
+		<statBases>
+				<Mass>0.4</Mass>
+				<MarketValue>5.25</MarketValue>
+				<RangedWeapon_Cooldown>1</RangedWeapon_Cooldown>
+				<SightsEfficiency>1</SightsEfficiency>
+		</statBases>
+		<Properties>
+			<label>throw microwave grenade</label>
+			<verbClass>CombatExtended.Verb_ShootCEOneUse</verbClass>
+			<hasStandardCommand>true</hasStandardCommand>
+			<range>10.0</range>
+		  <minRange>4</minRange>
+			<warmupTime>0.8</warmupTime>
+			<noiseRadius>4</noiseRadius>
+			<ai_IsBuildingDestroyer>true</ai_IsBuildingDestroyer>
+			<soundCast>ThrowGrenade</soundCast>
+			<targetParams>
+			  <canTargetLocations>true</canTargetLocations>
+			</targetParams>
+			<defaultProjectile>Proj_BaegYa</defaultProjectile>
+			<onlyManualCast>true</onlyManualCast>
+		  <ignorePartialLoSBlocker>true</ignorePartialLoSBlocker>
+		</Properties>
+		<weaponTags>
+				<li>CE_AI_Grenade</li>
+				<li>CE_OneHandedWeapon</li>
+		</weaponTags>
+	  </li>
+
+		<li Class="PatchOperationAdd">
+			<xpath>Defs/ThingDef[defName="JI_Dunder"]/comps</xpath>
+			<value>
+				<li Class="CombatExtended.CompProperties_ExplosiveCE">
+				  <damageAmountBase>40</damageAmountBase>
+				  <explosiveDamageType>Bomb</explosiveDamageType>
+				  <explosiveRadius>1.5</explosiveRadius>
+
+				</li>
+				<li Class="CombatExtended.CompProperties_Fragments">
+					<fragments>
+						<Fragment_Small>50</Fragment_Small>
+					</fragments>
+				</li>					
+			</value>
+		</li>
+
+	  <li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+		<defName>JI_Dunder</defName>
+		<statBases>
+				<Mass>5.0</Mass>
+				<MarketValue>5.25</MarketValue>
+				<RangedWeapon_Cooldown>1</RangedWeapon_Cooldown>
+				<SightsEfficiency>1</SightsEfficiency>
+		</statBases>
+		<Properties>
+			<label>throw satchel charge</label>
+			<verbClass>CombatExtended.Verb_ShootCEOneUse</verbClass>
+			<hasStandardCommand>true</hasStandardCommand>
+			<range>10.0</range>
+		  <minRange>4</minRange>
+			<warmupTime>0.8</warmupTime>
+			<noiseRadius>4</noiseRadius>
+			<ai_IsBuildingDestroyer>true</ai_IsBuildingDestroyer>
+			<soundCast>ThrowGrenade</soundCast>
+			<targetParams>
+			  <canTargetLocations>true</canTargetLocations>
+			</targetParams>
+			<defaultProjectile>Proj_Dunder</defaultProjectile>
+			<onlyManualCast>true</onlyManualCast>
+		  <ignorePartialLoSBlocker>true</ignorePartialLoSBlocker>
+		</Properties>
+		<weaponTags>
+				<li>CE_AI_Grenade</li>
+				<li>CE_OneHandedWeapon</li>
+		</weaponTags>
+	  </li> 
+	 
+		<li Class="PatchOperationAdd">
+			<xpath>Defs/ThingDef[defName="GD_Bobcat"]/comps</xpath>
+			<value>
+				<li Class="CombatExtended.CompProperties_ExplosiveCE">
+				  <damageAmountBase>40</damageAmountBase>
+				  <explosiveDamageType>Bomb</explosiveDamageType>
+				  <explosiveRadius>1.5</explosiveRadius>
+				</li>
+				<li Class="CombatExtended.CompProperties_Fragments">
+				  <fragments>
+					<Fragment_Small>50</Fragment_Small>
+				  </fragments>
+				</li>					
+			</value>
+		</li>
+
+	  <li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+		<defName>GD_Bobcat</defName>
+		<statBases>
+				<Mass>0.4</Mass>
+				<MarketValue>5.25</MarketValue>
+				<RangedWeapon_Cooldown>1</RangedWeapon_Cooldown>
+				<SightsEfficiency>1</SightsEfficiency>
+				<ShotSpread>1.0</ShotSpread>
+		</statBases>
+		<Properties>
+			<label>throw mini grenades</label>
+			<verbClass>CombatExtended.Verb_ShootCEOneUse</verbClass>
+			<hasStandardCommand>true</hasStandardCommand>
+			<range>10.0</range>
+		  <minRange>4</minRange>
+			<warmupTime>0.8</warmupTime>
+			<noiseRadius>4</noiseRadius>
+			<ai_IsBuildingDestroyer>true</ai_IsBuildingDestroyer>
+			<soundCast>ThrowGrenade</soundCast>
+		  <burstShotCount>3</burstShotCount>
+		  <ticksBetweenBurstShots>3</ticksBetweenBurstShots>		
+			<targetParams>
+			  <canTargetLocations>true</canTargetLocations>
+			</targetParams>
+			<defaultProjectile>Proj_Bobcat</defaultProjectile>
+			<onlyManualCast>true</onlyManualCast>
+		  <ignorePartialLoSBlocker>true</ignorePartialLoSBlocker>
+		</Properties>
+		<weaponTags>
+				<li>CE_AI_Grenade</li>
+				<li>CE_OneHandedWeapon</li>
+		</weaponTags>
+	  </li>
+
+		<li Class="PatchOperationAdd">
+			<xpath>Defs/ThingDef[defName="TE_Grief"]/comps</xpath>
+			<value>
+				<li Class="CombatExtended.CompProperties_ExplosiveCE">
+				  <damageAmountBase>40</damageAmountBase>
+				  <explosiveDamageType>Bomb</explosiveDamageType>
+				  <explosiveRadius>1.5</explosiveRadius>
+				</li>
+				<li Class="CombatExtended.CompProperties_Fragments">
+				  <fragments>
+					<Fragment_Small>20</Fragment_Small>
+				  </fragments>
+				</li>					
+			</value>
+		</li>
+
+	  <li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+		<defName>TE_Grief</defName>
+		<statBases>
+				<Mass>0.4</Mass>
+				<MarketValue>5.25</MarketValue>
+				<RangedWeapon_Cooldown>1</RangedWeapon_Cooldown>
+				<SightsEfficiency>1</SightsEfficiency>
+		</statBases>
+		<Properties>
+			<label>throw impact grenade</label>
+			<verbClass>CombatExtended.Verb_ShootCEOneUse</verbClass>
+			<hasStandardCommand>true</hasStandardCommand>
+			<range>10.0</range>
+		  <minRange>4</minRange>
+			<warmupTime>0.8</warmupTime>
+			<noiseRadius>4</noiseRadius>
+			<ai_IsBuildingDestroyer>true</ai_IsBuildingDestroyer>
+			<soundCast>ThrowGrenade</soundCast>
+			<targetParams>
+			  <canTargetLocations>true</canTargetLocations>
+			</targetParams>
+			<defaultProjectile>Proj_Grief</defaultProjectile>
+			<onlyManualCast>true</onlyManualCast>
+		  <ignorePartialLoSBlocker>true</ignorePartialLoSBlocker>
+		</Properties>
+		<weaponTags>
+				<li>CE_AI_Grenade</li>
+				<li>CE_OneHandedWeapon</li>
+		</weaponTags>
+	  </li>
+
+		<li Class="PatchOperationAdd">
+		<xpath>Defs</xpath>
+		<value>
+
+			<RecipeDef Name="RSExplosive_RecipeBase" Abstract="true">
+				<workSpeedStat>GeneralLaborSpeed</workSpeedStat>
+				<effectWorking>Cook</effectWorking>
+				<soundWorking>Recipe_Smith</soundWorking>
+				<workSkill>Crafting</workSkill>
+				<unfinishedThingDef>UnfinishedGun</unfinishedThingDef>
+				<fixedIngredientFilter>
+					<thingDefs>
+					<li>Plasteel</li>
+					<li>ComponentIndustrial</li>
+					<li>FSX</li>
+					</thingDefs>
+				</fixedIngredientFilter>
+			</RecipeDef>
+
+			<!-- YP BaegYa Microwave Grenades -->
+			<RecipeDef ParentName="RSExplosive_RecipeBase">
+				<defName>Craft_10_BaegYa</defName>
+				<label>Craft 10 microwave grenades</label>
+				<description>Craft 10 BaegYa microwave grenades.</description>
+				<jobString>Crafting microwave grenades</jobString>
+				<ingredients>
+					<li>
+						<filter>
+						<thingDefs>
+						<li>ComponentIndustrial</li>
+						</thingDefs>
+						</filter>
+						<count>1</count>
+					</li>
+					<li>
+						<filter>
+						<thingDefs>
+						<li>Plasteel</li>
+						</thingDefs>
+						</filter>
+						<count>5</count>
+					</li>
+					<li>
+						<filter>
+						<thingDefs>
+						<li>FSX</li>
+						</thingDefs>
+						</filter>
+						<count>2</count>
+					</li>        
+				</ingredients>
+					  <researchPrerequisite>ShardTech</researchPrerequisite>
+					  <skillRequirements>
+						<Crafting>9</Crafting>
+					  </skillRequirements>
+				<products>
+					<YP_BaegYa>10</YP_BaegYa>
+				</products>
+				<workAmount>20000</workAmount>
+				<recipeUsers>
+						<li>YPTable</li>
+				</recipeUsers>
+			</RecipeDef>
+
+
+			<!-- JI Dunder Satchel Charge -->
+			<RecipeDef ParentName="RSExplosive_RecipeBase">
+				<defName>Craft_10_Dunder</defName>
+				<label>Craft 10 satchel charges</label>
+				<description>Craft 10 Dunder satchel charges.</description>
+				<jobString>Crafting satchel charges</jobString>
+				<ingredients>
+					<li>
+						<filter>
+						<thingDefs>
+						<li>ComponentIndustrial</li>
+						</thingDefs>
+						</filter>
+					<count>2</count>
+					</li>
+					<li>
+						<filter>
+						<thingDefs>
+						<li>Steel</li>
+						</thingDefs>
+						</filter>
+						<count>30</count>
+					</li>
+					<li>
+						<filter>
+						<thingDefs>
+						<li>FSX</li>
+						</thingDefs>
+						</filter>
+						<count>10</count>
+					</li>        
+				</ingredients>
+					  <researchPrerequisite>MoltenTech</researchPrerequisite>
+					  <skillRequirements>
+						<Crafting>9</Crafting>
+					  </skillRequirements>
+				<products>
+				<JI_Dunder>10</JI_Dunder>
+				</products>
+				<workAmount>20000</workAmount>
+				<recipeUsers>
+						<li>JITable</li>
+				</recipeUsers>
+			</RecipeDef>
+
+
+			<!-- GD Bobcat Micro Grenades -->
+			<RecipeDef ParentName="RSExplosive_RecipeBase">
+				<defName>Craft_10_Bobcat</defName>
+				<label>Craft 10 micro grenades</label>
+				<description>Craft 10 Bobcat micro grenades.</description>
+				<jobString>Crafting micro grenades</jobString>
+				<ingredients>
+					<li>
+						<filter>
+						<thingDefs>
+						<li>ComponentIndustrial</li>
+						</thingDefs>
+						</filter>
+						<count>2</count>
+					</li>
+					<li>
+						<filter>
+						<thingDefs>
+						<li>Plasteel</li>
+						</thingDefs>
+						</filter>
+						<count>5</count>
+					</li>
+					<li>
+						<filter>
+						<thingDefs>
+						<li>FSX</li>
+						</thingDefs>
+						</filter>
+						<count>2</count>
+					</li>        
+				</ingredients>
+					  <researchPrerequisite>DefenceTech</researchPrerequisite>
+				<products>
+					<GD_Bobcat>10</GD_Bobcat>
+				</products>
+				<workAmount>20000</workAmount>
+				<recipeUsers>
+						<li>GDTable</li>
+				</recipeUsers>
+			</RecipeDef>
+
+
+			<!-- TE Grief Impact Grenades -->
+			<RecipeDef ParentName="RSExplosive_RecipeBase">
+				<defName>Craft_10_Grief</defName>
+				<label>Craft 10 impact grenades</label>
+				<description>Craft 10 Grief impact grenades.</description>
+				<jobString>Crafting impact grenades</jobString>
+				<ingredients>
+					<li>
+						<filter>
+						<thingDefs>
+						<li>ComponentIndustrial</li>
+						</thingDefs>
+						</filter>
+						<count>2</count>
+					</li>
+					<li>
+						<filter>
+						<thingDefs>
+						<li>Steel</li>
+						</thingDefs>
+						</filter>
+						<count>25</count>
+					</li>
+					<li>
+						<filter>
+						<thingDefs>
+						<li>FSX</li>
+						</thingDefs>
+						</filter>
+						<count>1</count>
+					</li>        
+				</ingredients>
+					<researchPrerequisite>KineticTech</researchPrerequisite>
+					  <skillRequirements>
+						<Crafting>9</Crafting>
+					  </skillRequirements>
+				<products>
+				<TE_Grief>10</TE_Grief>
+				</products>
+				<workAmount>20000</workAmount>
+				<recipeUsers>
+					<li>TETable</li>
+				</recipeUsers>
+			</RecipeDef>
+
+		</value>
+		</li>
+ 
+		</operations>
+		</match>
+	</Operation>
+</Patch>
