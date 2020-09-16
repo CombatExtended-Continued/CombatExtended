@@ -1,171 +1,170 @@
 <?xml version="1.0" encoding="utf-8" ?>
-<Patch>
-	<Operation Class="PatchOperationSequence">
-		<success>Always</success>
-		<operations>
-			<!-- Let's get this brea- mod patched. -->
-			<li Class="CombatExtended.PatchOperationFindMod">
-				<modName>Vanilla Armour Expanded</modName>
-			</li>
+<Patch>	
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+			<li>Vanilla Armour Expanded</li>
+		</mods>
+		<match Class="PatchOperationSequence">
+			<operations>
+				<!-- == VAE_Headgear_Balaclava == -->
+				<!-- statBases -->
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="VAE_Headgear_Balaclava"]/statBases/StuffEffectMultiplierArmor</xpath>
+					<value>
+						<Bulk>0.5</Bulk>
+						<StuffEffectMultiplierArmor>1.5</StuffEffectMultiplierArmor>
+					</value>
+				</li>
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="VAE_Headgear_Balaclava"]/apparel/layers</xpath>
+					<value>
+						<layers>
+							<li>OnHead</li>
+						</layers>
+					</value>
+				</li>
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="VAE_Headgear_Balaclava"]/apparel/bodyPartGroups</xpath>
+					<value>
+						<bodyPartGroups>
+							<li>UpperHead</li>
+							<li>Teeth</li>
+						</bodyPartGroups>
+					</value>
+				</li>
 
-			<!-- == VAE_Headgear_Balaclava == -->
-			<!-- statBases -->
-			<li Class="PatchOperationReplace">
-				<xpath>Defs/ThingDef[defName="VAE_Headgear_Balaclava"]/statBases/StuffEffectMultiplierArmor</xpath>
-				<value>
-					<Bulk>0.5</Bulk>
-					<StuffEffectMultiplierArmor>1.5</StuffEffectMultiplierArmor>
-				</value>
-			</li>
-			<li Class="PatchOperationReplace">
-				<xpath>Defs/ThingDef[defName="VAE_Headgear_Balaclava"]/apparel/layers</xpath>
-				<value>
-					<layers>
-						<li>OnHead</li>
-					</layers>
-				</value>
-			</li>
-			<li Class="PatchOperationReplace">
-				<xpath>Defs/ThingDef[defName="VAE_Headgear_Balaclava"]/apparel/bodyPartGroups</xpath>
-				<value>
-					<bodyPartGroups>
-						<li>UpperHead</li>
-						<li>Teeth</li>
-					</bodyPartGroups>
-				</value>
-			</li>
-
-			<!-- == VAE_Headgear_NightVisionGoggles == -->
-			<!-- statBases -->
-			<li Class="PatchOperationReplace">
-				<xpath>Defs/ThingDef[defName="VAE_Headgear_NightVisionGoggles"]/statBases/ArmorRating_Sharp</xpath>
-				<value>
-					<ArmorRating_Sharp>0.8</ArmorRating_Sharp>
-					<WornBulk>1</WornBulk>
-				</value>
-			</li>
-			<li Class="PatchOperationReplace">
-				<xpath>Defs/ThingDef[defName="VAE_Headgear_BallisticGoggles"]/statBases/ArmorRating_Blunt</xpath>
-				<value>
-					<ArmorRating_Blunt>0.2</ArmorRating_Blunt>
-				</value>
-			</li>
-			<!-- Miscellaneous -->
-			<li Class="PatchOperationReplace">
-				<xpath>Defs/ThingDef[defName="VAE_Headgear_NightVisionGoggles"]/equippedStatOffsets</xpath>
-				<value>
-					<equippedStatOffsets>
-						<AimingAccuracy>0.15</AimingAccuracy>
-					</equippedStatOffsets>
-				</value>
-			</li>
-			<li Class="PatchOperationAdd">
-				<xpath>Defs/ThingDef[defName="VAE_Headgear_NightVisionGoggles"]/apparel/layers</xpath>
-				<value>
-					<li>MiddleHead</li>
-					<li>StrappedHead</li>
-				</value>
-			</li>
-
-			<!-- == VAE_Headgear_BallisticGoggles == -->
-			<!-- statBases -->
-			<li Class="PatchOperationReplace">
-				<xpath>Defs/ThingDef[defName="VAE_Headgear_BallisticGoggles"]/statBases/ArmorRating_Sharp</xpath>
-				<value>
-					<Bulk>0.5</Bulk>
-					<WornBulk>0.5</WornBulk>
-					<ArmorRating_Sharp>6</ArmorRating_Sharp>
-				</value>
-			</li>
-			<li Class="PatchOperationReplace">
-				<xpath>Defs/ThingDef[defName="VAE_Headgear_BallisticGoggles"]/statBases/ArmorRating_Blunt</xpath>
-				<value>
-					<ArmorRating_Blunt>9</ArmorRating_Blunt>
-				</value>
-			</li>
-			<li Class="PatchOperationReplace">
-				<xpath>Defs/ThingDef[defName="VAE_Headgear_BallisticGoggles"]/statBases/ArmorRating_Heat</xpath>
-				<value>
-					<ArmorRating_Heat>0.366</ArmorRating_Heat>
-				</value>
-			</li>
-			<!-- Miscellaneous -->
-			<li Class="PatchOperationReplace">
-				<xpath>Defs/ThingDef[defName="VAE_Headgear_BallisticGoggles"]/description</xpath>
-				<value>
-					<description>A pair of reinforced goggles capable of stopping a bullet. They seem to be tinted, stopping the glare from the sun, allowing the wearer to fire a bit more precisely.</description>
-				</value>
-			</li>
-			<li Class="PatchOperationAdd">
-				<xpath>Defs/ThingDef[defName="VAE_Headgear_BallisticGoggles"]/costList</xpath>
-				<value>
-					<DevilstrandCloth>10</DevilstrandCloth>
-				</value>
-			</li>
-			<li Class="PatchOperationReplace">
-				<xpath>Defs/ThingDef[defName="VAE_Headgear_BallisticGoggles"]/equippedStatOffsets</xpath>
-				<value>
-					<equippedStatOffsets>
-						<AimingAccuracy>0.05</AimingAccuracy>
-					</equippedStatOffsets>
-				</value>
-			</li>
-			<li Class="PatchOperationReplace">
-				<xpath>Defs/ThingDef[defName="VAE_Headgear_BallisticGoggles"]/apparel/layers</xpath>
-				<value>
-					<layers>
+				<!-- == VAE_Headgear_NightVisionGoggles == -->
+				<!-- statBases -->
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="VAE_Headgear_NightVisionGoggles"]/statBases/ArmorRating_Sharp</xpath>
+					<value>
+						<ArmorRating_Sharp>0.8</ArmorRating_Sharp>
+						<WornBulk>1</WornBulk>
+					</value>
+				</li>
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="VAE_Headgear_BallisticGoggles"]/statBases/ArmorRating_Blunt</xpath>
+					<value>
+						<ArmorRating_Blunt>0.2</ArmorRating_Blunt>
+					</value>
+				</li>
+				<!-- Miscellaneous -->
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="VAE_Headgear_NightVisionGoggles"]/equippedStatOffsets</xpath>
+					<value>
+						<equippedStatOffsets>
+							<AimingAccuracy>0.15</AimingAccuracy>
+						</equippedStatOffsets>
+					</value>
+				</li>
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="VAE_Headgear_NightVisionGoggles"]/apparel/layers</xpath>
+					<value>
 						<li>MiddleHead</li>
-					</layers>
-				</value>
-			</li>
+						<li>StrappedHead</li>
+					</value>
+				</li>
 
-			<!-- == VAE_Headgear_GhillieHood == -->
-			<!-- statBases -->
-			<li Class="PatchOperationAdd">
-				<xpath>Defs/ThingDef[defName="VAE_Headgear_GhillieHood"]/statBases</xpath>
-				<value>
-					<Bulk>2</Bulk>
-					<WornBulk>0.5</WornBulk>
-				</value>
-			</li>
-			<!-- Miscellaneous -->
-			<li Class="PatchOperationReplace">
-				<xpath>Defs/ThingDef[defName="VAE_Headgear_GhillieHood"]/equippedStatOffsets/ShootingAccuracyPawn</xpath>
-				<value>
-					<AimingAccuracy>0.1</AimingAccuracy>
-				</value>
-			</li>
-			<li Class="PatchOperationAdd">
-				<xpath>Defs/ThingDef[defName="VAE_Headgear_GhillieHood"]/apparel/layers</xpath>
-				<value>
-					<li>MiddleHead</li>
-				</value>
-			</li>
+				<!-- == VAE_Headgear_BallisticGoggles == -->
+				<!-- statBases -->
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="VAE_Headgear_BallisticGoggles"]/statBases/ArmorRating_Sharp</xpath>
+					<value>
+						<Bulk>0.5</Bulk>
+						<WornBulk>0.5</WornBulk>
+						<ArmorRating_Sharp>6</ArmorRating_Sharp>
+					</value>
+				</li>
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="VAE_Headgear_BallisticGoggles"]/statBases/ArmorRating_Blunt</xpath>
+					<value>
+						<ArmorRating_Blunt>9</ArmorRating_Blunt>
+					</value>
+				</li>
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="VAE_Headgear_BallisticGoggles"]/statBases/ArmorRating_Heat</xpath>
+					<value>
+						<ArmorRating_Heat>0.366</ArmorRating_Heat>
+					</value>
+				</li>
+				<!-- Miscellaneous -->
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="VAE_Headgear_BallisticGoggles"]/description</xpath>
+					<value>
+						<description>A pair of reinforced goggles capable of stopping a bullet. They seem to be tinted, stopping the glare from the sun, allowing the wearer to fire a bit more precisely.</description>
+					</value>
+				</li>
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="VAE_Headgear_BallisticGoggles"]/costList</xpath>
+					<value>
+						<DevilstrandCloth>10</DevilstrandCloth>
+					</value>
+				</li>
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="VAE_Headgear_BallisticGoggles"]/equippedStatOffsets</xpath>
+					<value>
+						<equippedStatOffsets>
+							<AimingAccuracy>0.05</AimingAccuracy>
+						</equippedStatOffsets>
+					</value>
+				</li>
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="VAE_Headgear_BallisticGoggles"]/apparel/layers</xpath>
+					<value>
+						<layers>
+							<li>MiddleHead</li>
+						</layers>
+					</value>
+				</li>
 
-			<!-- == VAE_Headgear_HAZMATMask == -->
-			<!-- statBases -->
-			<li Class="PatchOperationReplace">
-				<xpath>Defs/ThingDef[defName="VAE_Headgear_HAZMATMask"]/statBases/StuffEffectMultiplierArmor</xpath>
-				<value>
-					<StuffEffectMultiplierArmor>5</StuffEffectMultiplierArmor>
-					<Bulk>6</Bulk>
-					<WornBulk>1.5</WornBulk>
-				</value>
-			</li>
-			<!-- Miscellaneous -->
-			<li Class="PatchOperationReplace">
-				<xpath>Defs/ThingDef[defName="VAE_Headgear_HAZMATMask"]/equippedStatOffsets/WorkSpeedGlobal</xpath>
-				<value>
-					<SmokeSensitivity>-1</SmokeSensitivity>
-				</value>
-			</li>
-			<li Class="PatchOperationAdd">
-				<xpath>Defs/ThingDef[defName="VAE_Headgear_HAZMATMask"]/apparel/layers</xpath>
-				<value>
-					<li>MiddleHead</li>
-					<li>StrappedHead</li>
-				</value>
-			</li>
-		</operations>
+				<!-- == VAE_Headgear_GhillieHood == -->
+				<!-- statBases -->
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="VAE_Headgear_GhillieHood"]/statBases</xpath>
+					<value>
+						<Bulk>2</Bulk>
+						<WornBulk>0.5</WornBulk>
+					</value>
+				</li>
+				<!-- Miscellaneous -->
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="VAE_Headgear_GhillieHood"]/equippedStatOffsets/ShootingAccuracyPawn</xpath>
+					<value>
+						<AimingAccuracy>0.1</AimingAccuracy>
+					</value>
+				</li>
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="VAE_Headgear_GhillieHood"]/apparel/layers</xpath>
+					<value>
+						<li>MiddleHead</li>
+					</value>
+				</li>
+
+				<!-- == VAE_Headgear_HAZMATMask == -->
+				<!-- statBases -->
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="VAE_Headgear_HAZMATMask"]/statBases/StuffEffectMultiplierArmor</xpath>
+					<value>
+						<StuffEffectMultiplierArmor>5</StuffEffectMultiplierArmor>
+						<Bulk>6</Bulk>
+						<WornBulk>1.5</WornBulk>
+					</value>
+				</li>
+				<!-- Miscellaneous -->
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="VAE_Headgear_HAZMATMask"]/equippedStatOffsets/WorkSpeedGlobal</xpath>
+					<value>
+						<SmokeSensitivity>-1</SmokeSensitivity>
+					</value>
+				</li>
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="VAE_Headgear_HAZMATMask"]/apparel/layers</xpath>
+					<value>
+						<li>MiddleHead</li>
+						<li>StrappedHead</li>
+					</value>
+				</li>
+			</operations>
+		</match>
 	</Operation>
 </Patch>

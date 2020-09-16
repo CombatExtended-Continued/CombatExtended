@@ -46,6 +46,24 @@ namespace CombatExtended
                 stringBuilder.AppendLine("   " + "CE_DescExplosionRadius".Translate() + ": " + props.explosionRadius.ToStringByStyle(ToStringStyle.FloatOne));
             }
 
+            // Sharp / blunt AP
+            if (props.explosionRadius > 0)
+            {
+                if (props.damageDef.armorCategory != CE_DamageArmorCategoryDefOf.Heat
+                    && props.damageDef.armorCategory != CE_DamageArmorCategoryDefOf.Electric
+                    && props.damageDef != DamageDefOf.Stun
+                    && props.damageDef != DamageDefOf.Extinguish
+                    && props.damageDef != DamageDefOf.Smoke)
+                {
+                    stringBuilder.AppendLine("   " + "CE_DescBluntPenetration".Translate() + ": " + GenExplosionCE.GetExplosionAP(props) + " " + "CE_MPa".Translate());
+                }
+            }
+            else
+            {
+                stringBuilder.AppendLine("   " + "CE_DescSharpPenetration".Translate() + ": " + props.armorPenetrationSharp.ToStringByStyle(ToStringStyle.FloatTwo) + " " + "CE_mmRHA".Translate());
+                stringBuilder.AppendLine("   " + "CE_DescBluntPenetration".Translate() + ": " + props.armorPenetrationBlunt.ToStringByStyle(ToStringStyle.FloatTwo) + " " + "CE_MPa".Translate());
+            }
+
             // Secondary explosion
             var secExpProps = projectileDef.GetCompProperties<CompProperties_ExplosiveCE>();
             if (secExpProps != null)
@@ -53,21 +71,12 @@ namespace CombatExtended
                 if (secExpProps.explosiveRadius > 0)
                 {
                     stringBuilder.AppendLine("   " + "CE_DescSecondaryExplosion".Translate() + ":");
+                    stringBuilder.AppendLine("   " + "   " + "CE_DescDamage".Translate() + ": " + secExpProps.damageAmountBase.ToStringByStyle(ToStringStyle.Integer) + " (" + secExpProps.explosiveDamageType.LabelCap + ")");
                     stringBuilder.AppendLine("   " + "   " + "CE_DescExplosionRadius".Translate() + ": " + secExpProps.explosiveRadius.ToStringByStyle(ToStringStyle.FloatOne));
-                    stringBuilder.AppendLine("   " + "   " + "CE_DescDamage".Translate() + ": " +
-                                             secExpProps.damageAmountBase.ToStringByStyle(ToStringStyle.Integer) + " (" + secExpProps.explosiveDamageType.LabelCap + ")");
                 }
-              /* Fragrange never did anything
-                if (secExpProps.fragRange > 0)
-                {
-                    stringBuilder.AppendLine("   " + "CE_DescFragRange".Translate() + ": " + secExpProps.fragRange.ToStringByStyle(ToStringStyle.FloatTwo));
-                }*/
             }
 
-            // CE stats
-            stringBuilder.AppendLine("   " + "CE_DescSharpPenetration".Translate() + ": " + props.armorPenetrationSharp.ToStringByStyle(ToStringStyle.FloatTwo) + " " + "CE_mmRHA".Translate());
-            stringBuilder.AppendLine("   " + "CE_DescBluntPenetration".Translate() + ": " + props.armorPenetrationBlunt.ToStringByStyle(ToStringStyle.FloatTwo) + " " + "CE_MPa".Translate());
-
+            // Pellets
             if (props.pelletCount > 1)
             {
                 stringBuilder.AppendLine("   " + "CE_DescPelletCount".Translate() + ": " + GenText.ToStringByStyle(props.pelletCount, ToStringStyle.Integer));
@@ -75,6 +84,20 @@ namespace CombatExtended
             if (props.spreadMult != 1)
             {
                 stringBuilder.AppendLine("   " + "CE_DescSpreadMult".Translate() + ": " + props.spreadMult.ToStringByStyle(ToStringStyle.PercentZero));
+            }
+
+            // Fragments
+            var fragmentComp = projectileDef.GetCompProperties<CompProperties_Fragments>();
+            if (fragmentComp != null)
+            {
+                stringBuilder.AppendLine("   " + "CE_DescFragments".Translate() + ":");
+                foreach (var fragmentDef in fragmentComp.fragments)
+                {
+                    var fragmentProps = fragmentDef?.thingDef?.projectile as ProjectilePropertiesCE;
+                    stringBuilder.AppendLine("   " + "   " + fragmentDef.LabelCap);
+                    stringBuilder.AppendLine("   " + "   " + "   " + "CE_DescSharpPenetration".Translate() + ": " + fragmentProps?.armorPenetrationSharp.ToStringByStyle(ToStringStyle.FloatTwo) + " " + "CE_mmRHA".Translate());
+                    stringBuilder.AppendLine("   " + "   " + "   " + "CE_DescBluntPenetration".Translate() + ": " + fragmentProps?.armorPenetrationBlunt.ToStringByStyle(ToStringStyle.FloatTwo) + " " + "CE_MPa".Translate());
+                }
             }
 
             return stringBuilder.ToString();
@@ -87,15 +110,15 @@ namespace CombatExtended
         }
 
         public static bool IsAmmoSystemActive(AmmoDef def)
-		{
+        {
             if (Controller.settings.EnableAmmoSystem) return true;
             return (def != null && def.isMortarAmmo);
-		}
+        }
 
         public static bool IsAmmoSystemActive(AmmoSetDef ammoSet)
-		{
+        {
             if (Controller.settings.EnableAmmoSystem) return true;
             return (ammoSet != null && ammoSet.isMortarAmmoSet);
-		}
+        }
     }
 }

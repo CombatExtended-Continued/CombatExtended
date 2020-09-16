@@ -916,7 +916,7 @@ namespace CombatExtended
                 if (def.projectile.explosionRadius > 0)
                 {
                     GenExplosionCE.DoExplosion(explodePos.ToIntVec3(), Map, def.projectile.explosionRadius,
-                        def.projectile.damageDef, launcher, def.projectile.GetDamageAmount(1), def.projectile.GetDamageAmount(1) * 0.1f,
+                        def.projectile.damageDef, launcher, def.projectile.GetDamageAmount(1), GenExplosionCE.GetExplosionAP(def.projectile),
                         def.projectile.soundExplode, equipmentDef,
                         def, null, def.projectile.postExplosionSpawnThingDef, def.projectile.postExplosionSpawnChance, def.projectile.postExplosionSpawnThingCount,
                         def.projectile.applyDamageToExplosionCellsNeighbors, def.projectile.preExplosionSpawnThingDef, def.projectile.preExplosionSpawnChance,

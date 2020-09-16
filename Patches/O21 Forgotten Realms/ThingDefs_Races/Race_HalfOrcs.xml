@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+			<li>[O21] Forgotten Realms</li>
+		</mods>
+		<match Class="PatchOperationSequence">
+			<operations>
+
+				<!-- You just *know* there's a human bard somewhere out there that's responsible for this. -->
+				<li Class="PatchOperationAddModExtension">
+					<xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="O21_Alien_HalfOrc"]</xpath>
+					<value>
+						<li Class="CombatExtended.RacePropertiesExtensionCE">
+							<bodyShape>Humanoid</bodyShape>
+						</li>
+					</value>
+				</li>
+
+				<li Class="PatchOperationSequence">
+					<success>Always</success>
+					<operations>
+						<li Class="PatchOperationTest">
+							<xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="O21_Alien_HalfOrc"]/comps</xpath>
+							<success>Invert</success>
+						</li>
+						<li Class="PatchOperationAdd">
+							<xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="O21_Alien_HalfOrc"]</xpath>
+							<value>
+								<comps />
+							</value>
+						</li>
+					</operations>
+				</li>
+
+				<!-- The average half-orc is both larger and taller than your average human. -->
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="O21_Alien_HalfOrc"]/race/baseBodySize</xpath>
+					<value>
+						<baseBodySize>1.1</baseBodySize>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="O21_Alien_HalfOrc"]/statBases/MoveSpeed</xpath>
+					<value>
+						<MoveSpeed>4.35</MoveSpeed>
+					</value>
+				</li>
+
+				<!-- Half-orcs benefit from their hybrid parents, mixing human agility with orc strength. -->
+				<li Class="PatchOperationAdd">
+					<xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="O21_Alien_HalfOrc"]/statBases</xpath>
+					<value>
+						<MeleeDodgeChance>0.95</MeleeDodgeChance>
+						<MeleeCritChance>1.05</MeleeCritChance>
+						<MeleeParryChance>1</MeleeParryChance>
+						<SmokeSensitivity>0.90</SmokeSensitivity>
+						<CarryWeight>41</CarryWeight>
+						<CarryBulk>22</CarryBulk>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="O21_Alien_HalfOrc"]/tools</xpath>
+					<value>
+						<tools>
+							<li Class="CombatExtended.ToolCE">
+								<label>left fist</label>
+								<capacities>
+									<li>Blunt</li>
+								</capacities>
+								<power>2</power>
+								<cooldownTime>1.42</cooldownTime>
+								<linkedBodyPartsGroup>LeftHand</linkedBodyPartsGroup>
+								<armorPenetrationBlunt>0.4</armorPenetrationBlunt>
+							</li>
+							<li Class="CombatExtended.ToolCE">
+								<label>right fist</label>
+								<capacities>
+									<li>Blunt</li>
+								</capacities>
+								<power>2</power>
+								<cooldownTime>1.42</cooldownTime>
+								<linkedBodyPartsGroup>RightHand</linkedBodyPartsGroup>
+								<armorPenetrationBlunt>0.4</armorPenetrationBlunt>
+							</li>
+							<li Class="CombatExtended.ToolCE">
+								<label>head</label>
+								<capacities>
+									<li>Blunt</li>
+								</capacities>
+								<power>3</power>
+								<cooldownTime>4.88</cooldownTime>
+								<linkedBodyPartsGroup>HeadAttackTool</linkedBodyPartsGroup>
+								<chanceFactor>0.2</chanceFactor>
+								<armorPenetrationBlunt>0.875</armorPenetrationBlunt>
+							</li>
+							<li Class="CombatExtended.ToolCE">
+								<capacities>
+									<li>Bite</li>
+								</capacities>
+								<power>5</power>
+								<cooldownTime>1.57</cooldownTime>
+								<chanceFactor>0.33</chanceFactor>
+								<linkedBodyPartsGroup>Teeth</linkedBodyPartsGroup>
+								<armorPenetrationSharp>0.02</armorPenetrationSharp>
+								<armorPenetrationBlunt>0.6</armorPenetrationBlunt>
+							</li>
+						</tools>
+					</value>
+				</li>
+
+				<li Class="PatchOperationAdd">
+					<xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="O21_Alien_HalfOrc"]/comps</xpath>
+					<value>
+						<li>
+							<compClass>CombatExtended.CompPawnGizmo</compClass>
+						</li>
+						<li Class="CombatExtended.CompProperties_Suppressable" />
+					</value>
+				</li>
+
+			</operations>
+		</match>
+	</Operation>
+</Patch>

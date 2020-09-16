@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+  <Operation Class="PatchOperationSequence">
+	<operations>
+	  <li Class="PatchOperationFindMod">
+			
+		<mods><li>[JDS] Exiled Dawn</li></mods>
+			
+		<match Class="PatchOperationSequence">
+		<operations>
+			
+			<li Class="PatchOperationAddModExtension">
+				<xpath>Defs/PawnKindDef[defName="ExiledDawn_Common_Trader" or 
+					defName="ExiledDawn_Fighter_FieldMarshalRanged" or 
+					defName="ExiledDawn_Fighter_KnightCaptainRanged" or 
+					@Name="ExiledDawnRangedBase" or 
+					@Name="ExiledDawnGrenadierBase" or
+					@Name="ExiledDawnScholarBase"
+					]</xpath>
+				<value>
+					<li Class="CombatExtended.LoadoutPropertiesExtension">	
+						<primaryMagazineCount>
+							<min>6</min>
+							<max>8</max>
+						</primaryMagazineCount>
+					</li>
+				</value>
+			</li>
+			
+			<li Class="PatchOperationAddModExtension">
+				<xpath>Defs/PawnKindDef[defName="ExiledDawn_Fighter_Knight" or 
+					defName="ExiledDawn_Fighter_FieldMarshalMelee" or 
+					@Name="ExiledDawnMeleeBase"
+					]</xpath>
+				<value>
+					<li Class="CombatExtended.LoadoutPropertiesExtension">	
+						<shieldMoney>
+						  <min>800</min>
+						  <max>2000</max>
+						</shieldMoney>
+						<shieldTags>
+						  <li>OutlanderShield</li>
+						</shieldTags>
+					</li>
+				</value>
+			</li>
+			
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/PawnKindDef[@Name="ExiledDawnFighterBase"]</xpath>
+				<value>
+					<apparelTags>
+					  <li>IndustrialBasic</li>
+					</apparelTags>
+				</value>
+			</li>
+			
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/PawnKindDef[
+					defName="ExiledDawn_Fighter_KnightCaptainRanged"
+				]</xpath>
+				<value>
+					<apparelRequired/>
+				</value>
+			</li>
+			
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/PawnKindDef[defName="ExiledDawn_Common_Trader" or
+					defName="ExiledDawn_Fighter_1TrooperRanged" or
+					defName="ExiledDawn_Fighter_2TrooperRanged" or
+					defName="ExiledDawn_Fighter_3TrooperRanged" or
+					defName="ExiledDawn_Fighter_1Grenadier" or
+					defName="ExiledDawn_Fighter_2Grenadier" or
+					defName="ExiledDawn_Fighter_3Grenadier" or
+					defName="ExiledDawn_Fighter_FieldMarshalRanged" or
+					defName="ExiledDawn_Fighter_KnightCaptainRanged" or
+					defName="ExiledDawn_Fighter_KnightCaptainMelee" or
+					@Name="ExiledDawnScholarBase"
+				]/apparelRequired</xpath>
+				<value>
+					<li>Apparel_Backpack</li>
+				</value>
+			</li>
+			
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/PawnKindDef[@Name="ExiledDawnMeleeBase"]/combatPower</xpath>
+				<value>
+					<combatPower>135</combatPower>
+				</value>
+			</li>
+			
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/PawnKindDef[@Name="ExiledDawnRangedBase"]/combatPower</xpath>
+				<value>
+					<combatPower>145</combatPower>
+				</value>
+			</li>
+			
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/PawnKindDef[@Name="ExiledDawnGrenadierBase"]/combatPower</xpath>
+				<value>
+					<combatPower>145</combatPower>
+				</value>
+			</li>
+			
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/PawnKindDef[@Name="ExiledDawnFieldMarshalBase"]/combatPower</xpath>
+				<value>
+					<combatPower>155</combatPower>
+				</value>
+			</li>
+			
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/PawnKindDef[@Name="ExiledDawnScholarBase"]/combatPower</xpath>
+				<value>
+					<combatPower>225</combatPower>
+				</value>
+			</li>
+			
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/PawnKindDef[defName="ExiledDawn_Fighter_Knight"]/combatPower</xpath>
+				<value>
+					<combatPower>250</combatPower>
+				</value>
+			</li>
+			
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/PawnKindDef[@Name="ExiledDawnKnightCaptainBase"]/combatPower</xpath>
+				<value>
+					<combatPower>265</combatPower>
+				</value>
+			</li>
+		</operations>
+		</match>	
+	  </li>
+	</operations>	
+  </Operation>
+</Patch>

@@ -15,7 +15,6 @@ namespace CombatExtended
     {
         public float damageAmountBase = -1;
         public List<ThingDefCountClass> fragments = new List<ThingDefCountClass>();
-      //public float fragRange = 0f;
         public float fragSpeedFactor = 1f;
 
         /// <summary>Default value 1.9f as for CompProperties_Explosive</summary>

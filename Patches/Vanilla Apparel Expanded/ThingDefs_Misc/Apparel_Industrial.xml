@@ -1,121 +1,180 @@
 <?xml version="1.0" encoding="utf-8" ?>
-<Patch>
-	<Operation Class="PatchOperationSequence">
-		<success>Always</success>
-		<operations>
-			<!-- CJ: "Ah ####, here we go again." -->
-			<li Class="CombatExtended.PatchOperationFindMod">
-				<modName>Vanilla Apparel Expanded</modName>
-			</li>
+<Patch>	
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+			<li>Vanilla Apparel Expanded</li>
+		</mods>
+		<match Class="PatchOperationSequence">
+			<operations>
+				<!-- == VAE_Apparel_CasualTShirt, VAE_Apparel_ShirtandTie, VAE_Apparel_Trousers, VAE_Headgear_Fedora, VAE_Apparel_Overalls, VAE_Apparel_Hoodie and VAE_Apparel_FleeceShirt == -->
+				<!-- statBases -->
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="VAE_Apparel_CasualTShirt" or defName="VAE_Apparel_ShirtandTie" or defName="VAE_Apparel_Trousers" or defName="VAE_Headgear_Fedora" or defName="VAE_Apparel_Overalls" or defName="VAE_Apparel_Hoodie" or defName="VAE_Apparel_FleeceShirt"]/statBases/StuffEffectMultiplierArmor</xpath>
+					<value>
+						<StuffEffectMultiplierArmor>1</StuffEffectMultiplierArmor>
+					</value>
+				</li>
 
-			<!-- == VAE_Apparel_CasualTShirt, VAE_Apparel_ShirtandTie, VAE_Apparel_Trousers, VAE_Headgear_Fedora, VAE_Apparel_Overalls, VAE_Apparel_Hoodie and VAE_Apparel_FleeceShirt == -->
-			<!-- statBases -->
-			<li Class="PatchOperationReplace">
-				<xpath>Defs/ThingDef[defName="VAE_Apparel_CasualTShirt" or defName="VAE_Apparel_ShirtandTie" or defName="VAE_Apparel_Trousers" or defName="VAE_Headgear_Fedora" or defName="VAE_Apparel_Overalls" or defName="VAE_Apparel_Hoodie" or defName="VAE_Apparel_FleeceShirt"]/statBases/StuffEffectMultiplierArmor</xpath>
-				<value>
-					<StuffEffectMultiplierArmor>1</StuffEffectMultiplierArmor>
-				</value>
-			</li>
+				<!-- == VAE_Apparel_Shorts, VAE_Apparel_Skirt and VAE_Apparel_TankTop == -->
+				<!-- statBases -->
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="VAE_Apparel_Shorts" or defName="VAE_Apparel_Skirt" or defName="VAE_Apparel_TankTop"]/statBases/StuffEffectMultiplierArmor</xpath>
+					<value>
+						<Bulk>0.5</Bulk>
+						<StuffEffectMultiplierArmor>0.8</StuffEffectMultiplierArmor>
+					</value>
+				</li>
 
-			<!-- == VAE_Apparel_Shorts, VAE_Apparel_Skirt and VAE_Apparel_TankTop == -->
-			<!-- statBases -->
-			<li Class="PatchOperationReplace">
-				<xpath>Defs/ThingDef[defName="VAE_Apparel_Shorts" or defName="VAE_Apparel_Skirt" or defName="VAE_Apparel_TankTop"]/statBases/StuffEffectMultiplierArmor</xpath>
-				<value>
-					<Bulk>0.5</Bulk>
-					<StuffEffectMultiplierArmor>0.8</StuffEffectMultiplierArmor>
-				</value>
-			</li>
+				<!-- == VAE_Apparel_SuitJacket == -->
+				<!-- statBases -->
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="VAE_Apparel_SuitJacket"]/statBases/StuffEffectMultiplierArmor</xpath>
+					<value>
+						<Bulk>5</Bulk>
+						<WornBulk>1</WornBulk>
+						<StuffEffectMultiplierArmor>5</StuffEffectMultiplierArmor>
+					</value>
+				</li>
 
-			<!-- == VAE_Apparel_SuitJacket == -->
-			<!-- statBases -->
-			<li Class="PatchOperationReplace">
-				<xpath>Defs/ThingDef[defName="VAE_Apparel_SuitJacket"]/statBases/StuffEffectMultiplierArmor</xpath>
-				<value>
-					<Bulk>5</Bulk>
-					<WornBulk>1</WornBulk>
-					<StuffEffectMultiplierArmor>5</StuffEffectMultiplierArmor>
-				</value>
-			</li>
+				<!-- == VAE_Apparel_Jeans and VAE_Apparel_Jumpsuit == -->
+				<!-- statBases -->
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="VAE_Apparel_Jeans" or defName="VAE_Apparel_Jumpsuit"]/statBases/StuffEffectMultiplierArmor</xpath>
+					<value>
+						<Bulk>1.5</Bulk>
+						<WornBulk>0.5</WornBulk>
+						<StuffEffectMultiplierArmor>1.3</StuffEffectMultiplierArmor>
+					</value>
+				</li>
 
-			<!-- == VAE_Apparel_Jeans and VAE_Apparel_Jumpsuit == -->
-			<!-- statBases -->
-			<li Class="PatchOperationReplace">
-				<xpath>Defs/ThingDef[defName="VAE_Apparel_Jeans" or defName="VAE_Apparel_Jumpsuit"]/statBases/StuffEffectMultiplierArmor</xpath>
-				<value>
-					<Bulk>1.5</Bulk>
-					<WornBulk>0.5</WornBulk>
-					<StuffEffectMultiplierArmor>1.3</StuffEffectMultiplierArmor>
-				</value>
-			</li>
+				<!-- == VAE_Apparel_ChefsUniform == -->
+				<!-- statBases -->
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="VAE_Apparel_ChefsUniform"]/statBases/StuffEffectMultiplierArmor</xpath>
+					<value>
+						<StuffEffectMultiplierArmor>1.2</StuffEffectMultiplierArmor>
+					</value>
+				</li>
 
-			<!-- == VAE_Apparel_ChefsUniform == -->
-			<!-- statBases -->
-			<li Class="PatchOperationReplace">
-				<xpath>Defs/ThingDef[defName="VAE_Apparel_ChefsUniform"]/statBases/StuffEffectMultiplierArmor</xpath>
-				<value>
-					<StuffEffectMultiplierArmor>1.2</StuffEffectMultiplierArmor>
-				</value>
-			</li>
+				<!-- == VAE_Apparel_MilitaryJacket == -->
+				<!-- statBases -->
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="VAE_Apparel_MilitaryJacket"]/statBases/StuffEffectMultiplierArmor</xpath>
+					<value>
+						<Bulk>5</Bulk>
+						<WornBulk>1</WornBulk>
+						<StuffEffectMultiplierArmor>6</StuffEffectMultiplierArmor>
+					</value>
+				</li>
 
-			<!-- == VAE_Apparel_MilitaryJacket == -->
-			<!-- statBases -->
-			<li Class="PatchOperationReplace">
-				<xpath>Defs/ThingDef[defName="VAE_Apparel_MilitaryJacket"]/statBases/StuffEffectMultiplierArmor</xpath>
-				<value>
-					<Bulk>5</Bulk>
-					<WornBulk>1</WornBulk>
-					<StuffEffectMultiplierArmor>6</StuffEffectMultiplierArmor>
-				</value>
-			</li>
+				<!-- == VAE_Apparel_MilitaryUniform == -->
+				<!-- statBases -->
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="VAE_Apparel_MilitaryUniform"]/statBases/StuffEffectMultiplierArmor</xpath>
+					<value>
+						<Bulk>2</Bulk>
+						<WornBulk>0.5</WornBulk>
+						<StuffEffectMultiplierArmor>1.4</StuffEffectMultiplierArmor>
+					</value>
+				</li>
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="VAE_Apparel_MilitaryUniform"]/costList/Steel</xpath>
+					<value>
+						<Steel>10</Steel>
+					</value>
+				</li>
 
-			<!-- == VAE_Apparel_MilitaryUniform == -->
-			<!-- statBases -->
-			<li Class="PatchOperationReplace">
-				<xpath>Defs/ThingDef[defName="VAE_Apparel_MilitaryUniform"]/statBases/StuffEffectMultiplierArmor</xpath>
-				<value>
-					<Bulk>2</Bulk>
-					<WornBulk>0.5</WornBulk>
-					<StuffEffectMultiplierArmor>1.4</StuffEffectMultiplierArmor>
-				</value>
-			</li>
+				<!-- == VAE_Apparel_BuildersJacket == -->
+				<!-- statBases -->
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="VAE_Apparel_BuildersJacket"]/statBases/ArmorRating_Sharp</xpath>
+					<value>
+						<Bulk>5</Bulk>
+						<WornBulk>1</WornBulk>
+						<ArmorRating_Sharp>0.2</ArmorRating_Sharp>
+					</value>
+				</li>
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="VAE_Apparel_BuildersJacket"]/statBases/ArmorRating_Blunt</xpath>
+					<value>
+						<ArmorRating_Blunt>0.4</ArmorRating_Blunt>
+					</value>
+				</li>
+				<!-- material cost -->
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="VAE_Apparel_BuildersJacket"]/costList/Cloth</xpath>
+					<value>
+						<Cloth>60</Cloth>
+					</value>
+				</li>
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="VAE_Apparel_BuildersJacket"]/costList/Silver</xpath>
+					<value>
+						<Silver>10</Silver>
+					</value>
+				</li>
 
-			<!-- == VAE_Apparel_BuildersJacket == -->
-			<!-- statBases -->
-			<li Class="PatchOperationReplace">
-				<xpath>Defs/ThingDef[defName="VAE_Apparel_BuildersJacket"]/statBases/ArmorRating_Sharp</xpath>
-				<value>
-					<Bulk>5</Bulk>
-					<WornBulk>1</WornBulk>
-					<ArmorRating_Sharp>0.55</ArmorRating_Sharp>
-				</value>
-			</li>
-			<li Class="PatchOperationReplace">
-				<xpath>Defs/ThingDef[defName="VAE_Apparel_BuildersJacket"]/statBases/ArmorRating_Blunt</xpath>
-				<value>
-					<ArmorRating_Blunt>0.4</ArmorRating_Blunt>
-				</value>
-			</li>
+				<!-- == VAE_Apparel_DoctorScrubs == -->
+				<!-- cloth cost -->
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="VAE_Apparel_DoctorScrubs"]/costList/Cloth</xpath>
+					<value>
+						<Cloth>50</Cloth>
+					</value>
+				</li>
 
-			<!-- == VAE_Apparel_LabCoat == -->
-			<!-- statBases -->
-			<li Class="PatchOperationReplace">
-				<xpath>Defs/ThingDef[defName="VAE_Apparel_LabCoat"]/statBases/ArmorRating_Sharp</xpath>
-				<value>
-					<Bulk>7.5</Bulk>
-					<WornBulk>1</WornBulk>
-					<ArmorRating_Sharp>0.1</ArmorRating_Sharp>
-				</value>
-			</li>
+				<!-- == VAE_Apparel_LabCoat == -->
+				<!-- statBases -->
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="VAE_Apparel_LabCoat"]/statBases/ArmorRating_Sharp</xpath>
+					<value>
+						<Bulk>7.5</Bulk>
+						<WornBulk>1</WornBulk>
+						<ArmorRating_Sharp>0.1</ArmorRating_Sharp>
+					</value>
+				</li>
 
-			<!-- == VAE_Apparel_SheriffShirt == -->
-			<!-- statBases -->
-			<li Class="PatchOperationReplace">
-				<xpath>Defs/ThingDef[defName="VAE_Apparel_SheriffShirt"]/statBases/StuffEffectMultiplierArmor</xpath>
-				<value>
-					<StuffEffectMultiplierArmor>1.1</StuffEffectMultiplierArmor>
-				</value>
-			</li>
-		</operations>
+				<!-- == VAE_Apparel_SheriffShirt == -->
+				<!-- statBases -->
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="VAE_Apparel_SheriffShirt"]/statBases/StuffEffectMultiplierArmor</xpath>
+					<value>
+						<StuffEffectMultiplierArmor>1.1</StuffEffectMultiplierArmor>
+					</value>
+				</li>
+
+				<!-- == costStuffCounts == -->
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="VAE_Apparel_TankTop"]/costStuffCount</xpath>
+					<value>
+						<costStuffCount>15</costStuffCount>
+					</value>
+				</li>
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="VAE_Apparel_CasualTShirt" or defName="VAE_Apparel_Shorts" or defName="VAE_Apparel_Skirt"]/costStuffCount</xpath>
+					<value>
+						<costStuffCount>20</costStuffCount>
+					</value>
+				</li>
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="VAE_Apparel_ShirtandTie" or defName="VAE_Apparel_Overalls" or defName="VAE_Apparel_FleeceShirt" or defName="VAE_Apparel_SheriffShirt" or defName="VAE_Apparel_Trousers"]/costStuffCount</xpath>
+					<value>
+						<costStuffCount>25</costStuffCount>
+					</value>
+				</li>
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="VAE_Apparel_Hoodie" or defName="VAE_Apparel_Jeans" or defName="VAE_Apparel_ChefsUniform"]/costStuffCount</xpath>
+					<value>
+						<costStuffCount>30</costStuffCount>
+					</value>
+				</li>
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="VAE_Apparel_MilitaryUniform" or defName="VAE_Apparel_Jumpsuit" or defName="VAE_Apparel_MilitaryJacket" or defName="VAE_Apparel_SuitJacket"]/costStuffCount</xpath>
+					<value>
+						<costStuffCount>60</costStuffCount>
+					</value>
+				</li>
+			</operations>
+		</match>
 	</Operation>
 </Patch>

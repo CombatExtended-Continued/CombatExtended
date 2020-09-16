@@ -1,0 +1,32 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+
+<Patch>
+	<Operation Class="PatchOperationFindMod">
+    <mods>
+		<li>Rimsenal - Federation Faction Pack</li>
+    </mods>
+		<match Class="PatchOperationSequence">
+		<operations>
+
+		<li Class="PatchOperationAddModExtension">
+		<xpath>/Defs/DamageDef[defName="Optic"]</xpath>
+			<value>
+				<li Class="CombatExtended.DamageDefExtensionCE">
+					<isAmbientDamage>true</isAmbientDamage>
+				</li>
+			</value>
+		</li>
+
+		<li Class="PatchOperationAddModExtension">
+		<xpath>/Defs/DamageDef[defName="Plasma"]</xpath>
+			<value>
+				<li Class="CombatExtended.DamageDefExtensionCE">
+					<isAmbientDamage>true</isAmbientDamage>
+				</li>
+			</value>
+		</li>
+
+		</operations>
+		</match>
+	</Operation>
+</Patch>
