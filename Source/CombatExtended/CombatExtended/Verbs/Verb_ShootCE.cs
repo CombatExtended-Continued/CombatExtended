@@ -69,7 +69,7 @@ namespace CombatExtended
                         if (IsSuppressed) return false;
 
                         // Check for RunAndGun mod
-                        if (ShooterPawn.pather.Moving)
+                        if (ShooterPawn.pather?.Moving ?? false)
                         {
                             return false;
                         }
@@ -146,7 +146,7 @@ namespace CombatExtended
                 {
                     WarmupComplete();
                 }
-                if (!(caster is Building_TurretGunCE) && ShooterPawn?.stances.curStance?.GetType() != typeof(Stance_Warmup))
+                if (!(caster is Building_TurretGunCE) && ShooterPawn?.stances?.curStance?.GetType() != typeof(Stance_Warmup))
                 {
                     _isAiming = false;
                 }

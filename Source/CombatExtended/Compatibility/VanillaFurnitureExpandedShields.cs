@@ -85,7 +85,7 @@ namespace CombatExtended.Compatibility
         private static bool ShieldInterceptsProjectile(Building building, ProjectileCE projectile, Thing launcher)
         {
             var shield = building as Building_Shield;
-            if (!shield.active && !(bool)CanFunctionPropertyGetter.Invoke(shield, null))
+            if (!shield.active || !(bool)CanFunctionPropertyGetter.Invoke(shield, null) || shield.Energy == 0)
             {
                 // Shield inactive, don't intercept.
                 return false;

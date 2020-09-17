@@ -88,6 +88,7 @@ GouRIMet	|
 Halo - Rimworld Auxiliary Combat Armory	|
 Hand 'n' Footwear	|
 High Caliber	|
+Iron Harvest Pkp 17 "Eisenhans" Powerarmor	|
 Jernfalk's Standalone Horses	|
 Kaiser Armory	|
 K.L.K - Styles Apparel Pack	|
@@ -103,12 +104,14 @@ Medical System Expansion	|
 Megafauna	|
 MiningCo. MiningHelmet	|
 Misc. Robots	|
+More Consumables And Mutagens Reworked |
 More Mechanoids	|
 More Practical Traits	|
 More Vanilla Turrets	|
 Moyo - From the Depth   |
 Ni'Hal	|
 Orassans	|
+Palm Cats   |
 Penguin	|
 PsiTech	|
 Polarisbloc - Security Force	|
