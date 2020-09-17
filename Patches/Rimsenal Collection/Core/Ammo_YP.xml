@@ -133,6 +133,14 @@
 			</ammoTypes>
 		</CombatExtended.AmmoSetDef>
 		
+		<CombatExtended.AmmoSetDef>
+			<defName>AmmoSet_SwarmerYP</defName>
+			<label>Large YP</label>
+			<ammoTypes>
+				<Ammo_RifleYP>Bullet_SwarmerYP</Ammo_RifleYP>
+			</ammoTypes>
+		</CombatExtended.AmmoSetDef>
+		
 		<!-- ==================== Ammo ========================== -->
 		
 		<ThingDef Class="CombatExtended.AmmoDef" Name="RifleYPBase" ParentName="SmallAmmoBase" Abstract="True">
@@ -180,6 +188,25 @@
 				<damageAmountBase>16</damageAmountBase>
 				<armorPenetrationBlunt>34</armorPenetrationBlunt>
 				<armorPenetrationSharp>4.5</armorPenetrationSharp>	
+			</projectile>
+		</ThingDef>
+		
+		<ThingDef ParentName="Base556x45mmNATOBullet">
+			<defName>Bullet_SwarmerYP</defName>
+			<label>sagpung swarm</label>
+			<graphicData>
+				<texPath>Things/Projectile/Swarm</texPath>
+				<graphicClass>Graphic_Single</graphicClass>
+			</graphicData>			
+			<projectile Class="CombatExtended.ProjectilePropertiesCE">
+				<damageDef>Shredder</damageDef>
+				<speed>40</speed>
+				<dropsCasings>false</dropsCasings>			
+				<damageAmountBase>6</damageAmountBase>
+				<armorPenetrationBlunt>5</armorPenetrationBlunt>
+				<armorPenetrationSharp>3.5</armorPenetrationSharp>	
+				<pelletCount>12</pelletCount>
+				<spreadMult>1</spreadMult>	
 			</projectile>
 		</ThingDef>
 
@@ -233,6 +260,14 @@
 		</ammoTypes>
 	</CombatExtended.AmmoSetDef>
 	
+	<CombatExtended.AmmoSetDef>
+		<defName>AmmoSet_VectorYP</defName>
+		<label>Heavy YP</label>
+		<ammoTypes>
+			<Ammo_SpikeYP>Bullet_VectorYP</Ammo_SpikeYP>
+		</ammoTypes>
+	</CombatExtended.AmmoSetDef>
+	
 	<!-- ==================== Ammo ========================== -->
 	
 	<ThingDef Class="CombatExtended.AmmoDef" Name="SpikeYPBase" ParentName="SmallAmmoBase" Abstract="True">
@@ -275,11 +310,33 @@
 		</graphicData>		
 		<projectile Class="CombatExtended.ProjectilePropertiesCE">
 			<damageDef>Shredder</damageDef>
-			<speed>100</speed>
+			<speed>180</speed>
 			<dropsCasings>false</dropsCasings>		
 			<damageAmountBase>12</damageAmountBase>
 			<armorPenetrationBlunt>55</armorPenetrationBlunt>
-			<armorPenetrationSharp>12</armorPenetrationSharp>			
+			<armorPenetrationSharp>30</armorPenetrationSharp>			
+		</projectile>
+	</ThingDef>
+	
+	<ThingDef ParentName="Base556x45mmNATOBullet">
+		<defName>Bullet_VectorYP</defName>
+		<label>Heavy carbon crystal</label>
+		<graphicData>
+			<texPath>Things/Projectile/Spike</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+		</graphicData>		
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageDef>Shredder</damageDef>
+			<speed>130</speed>
+			<soundHitThickRoof>RS_ShotShard</soundHitThickRoof>
+			<flyOverhead>true</flyOverhead>
+			<gravityFactor>450</gravityFactor>
+			<dropsCasings>false</dropsCasings>		
+			<damageAmountBase>4</damageAmountBase>
+			<armorPenetrationBlunt>55</armorPenetrationBlunt>
+			<armorPenetrationSharp>4.5</armorPenetrationSharp>
+			<pelletCount>4</pelletCount>
+			<spreadMult>40</spreadMult>	
 		</projectile>
 	</ThingDef>
 

@@ -110,7 +110,7 @@
 			<speed>80</speed>
 			<soundAmbient>RocketPropelledLoop_Small</soundAmbient>		
 			<damageDef>Bullet</damageDef>
-			<damageAmountBase>200</damageAmountBase>
+			<damageAmountBase>210</damageAmountBase>
 			<armorPenetrationBlunt>25</armorPenetrationBlunt>
 			<armorPenetrationSharp>500</armorPenetrationSharp>			
 		</projectile>
@@ -369,8 +369,8 @@
 					  <amount>5</amount>
 					</li>
 				  </secondaryDamage>			
-			<armorPenetrationBlunt>65</armorPenetrationBlunt>
-			<armorPenetrationSharp>300</armorPenetrationSharp>
+			<armorPenetrationBlunt>300</armorPenetrationBlunt>
+			<armorPenetrationSharp>65</armorPenetrationSharp>
 		</projectile>
 		<comps>
 		  <li Class="CombatExtended.CompProperties_Fragments">
@@ -381,9 +381,55 @@
 		</comps>		
 	</ThingDef>
 
+
+		
+	<!-- ==================== JI Suppressor Shot ========================== -->
+	
+	<!-- ==================== AmmoSet ========================== -->
+
+	<CombatExtended.AmmoSetDef>
+		<defName>AmmoSet_JISuppressor</defName>
+		<label>molten slug</label>
+		<ammoTypes>
+			<Ammo_JI_Alloy>Bullet_JI_Suppressor</Ammo_JI_Alloy>
+ 		</ammoTypes>
+	</CombatExtended.AmmoSetDef>
+	
+	<!-- ================== Projectiles ================== -->
+
+	<ThingDef ParentName="Base556x45mmNATOBullet">
+		<defName>Bullet_JI_Suppressor</defName>
+		<label>Semi-molten alloy</label>
+		<graphicData>
+			<texPath>Things/Projectile/Slug</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+		</graphicData>		
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageDef>Bullet</damageDef>
+			<speed>120</speed>
+			<dropsCasings>false</dropsCasings>		
+			<damageAmountBase>9</damageAmountBase>
+				  <secondaryDamage>
+					<li>
+					  <def>Flame_Secondary</def>
+					  <amount>3</amount>
+					</li>
+				  </secondaryDamage>			
+			<armorPenetrationBlunt>30</armorPenetrationBlunt>
+			<armorPenetrationSharp>12</armorPenetrationSharp>
+		</projectile>
+		<comps>
+		  <li Class="CombatExtended.CompProperties_Fragments">
+			<fragments>
+			  <Fragment_Molten>1</Fragment_Molten>
+			</fragments>
+		  </li>
+		</comps>			
+	</ThingDef>
+
+
 		</value>
 		</li>
-
 		</operations>
 		</match>
 	</Operation>
