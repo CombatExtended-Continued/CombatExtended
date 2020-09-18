@@ -7,7 +7,9 @@
 	</mods>
 		<match Class="PatchOperationSequence">
 		<operations>
-		
+
+
+		<!-- Add Bulk to items. -->
 		<li Class="PatchOperationAdd">
 			<xpath>/Defs/ThingDef[defName = "VFEV_Honey"]/statBases</xpath>
 			<value>
@@ -15,6 +17,14 @@
 			</value>
 		</li>
 
+		<li Class="PatchOperationAdd">
+			<xpath>/Defs/ThingDef[defName = "VFEV_Sweetroll"]/statBases</xpath>
+			<value>
+				<Bulk>0.25</Bulk>
+			</value>
+		</li>
+
+		<!-- Give Lothurr Antler Bulk and Melee tools. -->
 		<li Class="PatchOperationAdd">
 			<xpath>/Defs/ThingDef[defName = "VFEV_LothurrAntler"]/statBases</xpath>
 			<value>
@@ -50,6 +60,49 @@
 				</tools>
 			</value>
 		</li>
+
+		<!-- Patch leathers. -->
+		<li Class="PatchOperationAdd">
+			<xpath>/Defs/ThingDef[defName="VFEV_Leather_Fenrir"]/statBases</xpath>
+			<value>
+				<StuffPower_Armor_Sharp>0.75</StuffPower_Armor_Sharp>
+			</value>
+		</li>
+
+		<li Class="PatchOperationAdd">
+			<xpath>/Defs/ThingDef[defName="VFEV_Leather_Fenrir"]/statBases</xpath>
+			<value>
+				<StuffPower_Armor_Blunt>0.085</StuffPower_Armor_Blunt>
+			</value>
+		</li>
+
+		<li Class="PatchOperationAdd">
+			<xpath>/Defs/ThingDef[defName="VFEV_Leather_Lothurr"]/statBases</xpath>
+			<value>
+				<StuffPower_Armor_Sharp>0.6</StuffPower_Armor_Sharp>
+			</value>
+		</li>
+
+		<li Class="PatchOperationAdd">
+			<xpath>/Defs/ThingDef[defName="VFEV_Leather_Lothurr"]/statBases</xpath>
+			<value>
+				<StuffPower_Armor_Blunt>0.07</StuffPower_Armor_Blunt>
+			</value>
+		</li>
+
+		<li Class="PatchOperationAdd">
+			<xpath>/Defs/ThingDef[defName="VFEV_Leather_Njorun"]/statBases</xpath>
+			<value>
+				<StuffPower_Armor_Sharp>0.1</StuffPower_Armor_Sharp>
+			</value>
+		</li>
+
+		<li Class="PatchOperationAdd">
+			<xpath>/Defs/ThingDef[defName="VFEV_Leather_Njorun"]/statBases</xpath>
+			<value>
+				<StuffPower_Armor_Blunt>0.08</StuffPower_Armor_Blunt>
+			</value>
+		</li>		
 
 		</operations>
 		</match>
