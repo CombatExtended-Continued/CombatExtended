@@ -9,7 +9,7 @@
       <operations>
 
         <!-- === Autocleaner === -->
-        <li Class="PatchOperationAdd">
+        <li Class="PatchOperationReplace">
           <xpath>/Defs/ThingDef[defName="Autocleaner"]/statBases/ArmorRating_Heat</xpath>
           <value>
             <ArmorRating_Heat>0.3</ArmorRating_Heat>
@@ -19,11 +19,18 @@
           </value>
         </li>
 
+        <li Class="PatchOperationReplace">
+          <xpath>/Defs/ThingDef[defName="Autocleaner"]/race/baseBodySize</xpath>
+          <value>
+            <baseBodySize>0.20</baseBodySize>
+          </value>
+        </li>
+
         <li Class="PatchOperationAddModExtension">
           <xpath>/Defs/ThingDef[defName="Autocleaner"]</xpath>
           <value>
             <li Class="CombatExtended.RacePropertiesExtensionCE">
-              <bodyShape>Vehicle</bodyShape>
+              <bodyShape>QuadrupedLow</bodyShape>
             </li>
           </value>
         </li>
