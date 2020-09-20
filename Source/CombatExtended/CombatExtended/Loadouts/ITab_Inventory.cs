@@ -431,8 +431,8 @@ namespace CombatExtended
         {
             float naturalArmor = SelPawnForGear.GetStatValue(stat);
             float averageArmor = naturalArmor;
-            List<Apparel> wornApparel = SelPawnForGear.apparel.WornApparel;
-            foreach (Apparel apparel in wornApparel)
+            List<Apparel> wornApparel = SelPawnForGear.apparel?.WornApparel;
+            foreach (Apparel apparel in wornApparel ?? Enumerable.Empty<Apparel>())
             {
                 averageArmor += apparel.GetStatValue(stat, true) * apparel.def.apparel.HumanBodyCoverage;
             }
@@ -447,7 +447,7 @@ namespace CombatExtended
                     if (part.depth == BodyPartDepth.Outside && (part.coverage >= 0.1 || (part.def == BodyPartDefOf.Eye || part.def == BodyPartDefOf.Neck)))
                     {
                         text += part.LabelCap + ": ";
-                        foreach (Apparel apparel in wornApparel)
+                        foreach (Apparel apparel in wornApparel ?? Enumerable.Empty<Apparel>())
                         {
                             if (apparel.def.apparel.CoversBodyPart(part))
                             {
