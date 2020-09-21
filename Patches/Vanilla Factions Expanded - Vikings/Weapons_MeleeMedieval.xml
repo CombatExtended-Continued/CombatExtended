@@ -70,24 +70,6 @@
 			</value>
 		</li>
 
-		<!-- Add tags -->
-
-		<li Class="PatchOperationSequence">
-		<success>Always</success>
-		<operations>
-			<li Class="PatchOperationTest">
-			<xpath>Defs/ThingDef[defName="VFE_MeleeWeapon_Seax"]/weaponTags</xpath>
-			<success>Invert</success>
-			</li>
-			<li Class="PatchOperationAdd">
-			<xpath>Defs/ThingDef[defName="VFE_MeleeWeapon_Seax"]</xpath>
-			<value>
-				<weaponTags />
-			</value>
-			</li>
-		</operations>
-		</li>
-
 		<li Class="PatchOperationAdd">
 			<xpath>Defs/ThingDef[defName="VFE_MeleeWeapon_Seax"]/weaponTags</xpath>
 			<value>
@@ -137,11 +119,13 @@
         </li>
 
         <li Class="PatchOperationAdd">
-          <xpath>/Defs/ThingDef[defName="VFE_MeleeWeapon_BeardedAxe"]/equippedStatOffsets</xpath>
+          <xpath>/Defs/ThingDef[defName="VFE_MeleeWeapon_BeardedAxe"]</xpath>
           <value>
+          <equippedStatOffsets>
             <MeleeCritChance>0.03</MeleeCritChance>
             <MeleeParryChance>0.20</MeleeParryChance>
             <MeleeDodgeChance>0.27</MeleeDodgeChance>
+          </equippedStatOffsets>  
           </value>
         </li>
 
@@ -194,11 +178,13 @@
         </li>
 
         <li Class="PatchOperationAdd">
-          <xpath>/Defs/ThingDef[defName="VFE_MeleeWeapon_DaneAxe"]/equippedStatOffsets</xpath>
+          <xpath>/Defs/ThingDef[defName="VFE_MeleeWeapon_DaneAxe"]</xpath>
           <value>
+          <equippedStatOffsets>
             <MeleeCritChance>0.06</MeleeCritChance>
             <MeleeParryChance>0.75</MeleeParryChance>
             <MeleeDodgeChance>0.50</MeleeDodgeChance>
+          </equippedStatOffsets>
           </value>
         </li>
 
