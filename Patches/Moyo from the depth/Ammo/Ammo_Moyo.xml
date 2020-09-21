@@ -162,6 +162,14 @@
 						</ammoTypes>
 					</CombatExtended.AmmoSetDef>
 					
+					<CombatExtended.AmmoSetDef>
+						<defName>AmmoSet_CryoRifle</defName>
+						<label>Moyo Cryocell</label>
+						<ammoTypes>
+							<Ammo_MoyoCryocell>Bullet_MoyoCryocannon</Ammo_MoyoCryocell>
+						</ammoTypes>
+					</CombatExtended.AmmoSetDef>
+					
 					<CombatExtended.AmmoCategoryDef>
 						<defName>MoyoCryo</defName>
 						<label>Cryo Cell</label>
@@ -173,11 +181,11 @@
 					<ThingDef Class="CombatExtended.AmmoDef" ParentName="SpacerSmallAmmoBase">
 						<defName>Ammo_MoyoCryocell</defName>
 						<label>Moyo cryocell</label>
-						<description>Weaponized cryofreezing cell for Cryoblasters.</description>
+						<description>Weaponized cryofreezing cell for Moyo cryotech weapons.</description>
 						<statBases>
-							<Mass>0.014</Mass>
+							<Mass>0.02</Mass>
 							<Bulk>0.01</Bulk>
-							<MarketValue>0.23</MarketValue>
+							<MarketValue>1.56</MarketValue>
 						</statBases>
 						<tradeTags>
 							<li>CE_AutoEnableTrade</li>
@@ -227,15 +235,37 @@
 						  <gravityFactor>2</gravityFactor>
 						</projectile>
 					</ThingDef>
+					
+					<ThingDef ParentName="BaseFlamethrowerBullet">
+						<defName>Bullet_MoyoCryocannon</defName>
+						<thingClass>CombatExtended.ProjectileCE_Explosive</thingClass>
+						<label>moyo cryoblast</label>
+						<graphicData>
+						  <texPath>Things/Weapons/MoyoCBBlast3</texPath>
+						  <graphicClass>Graphic_Single</graphicClass>
+						  <shaderType>TransparentPostLight</shaderType>
+						  <drawSize>1.5</drawSize>
+						</graphicData>
+						<projectile Class="CombatExtended.ProjectilePropertiesCE">
+						  <damageDef>Moyo_Cryo</damageDef>
+						  <speed>90</speed>
+						  <damageAmountBase>60</damageAmountBase>
+						  <preExplosionSpawnThingDef>Filth_CBWater</preExplosionSpawnThingDef>
+						  <preExplosionSpawnChance>0.5</preExplosionSpawnChance>
+						  <soundExplode>MoyoCryoShatter</soundExplode>
+						  <explosionRadius>3.5</explosionRadius>
+						  <ai_IsIncendiary>false</ai_IsIncendiary>
+						</projectile>
+					</ThingDef>
 
 					<!-- ==================== Recipes ========================== -->
 
 					<RecipeDef ParentName="ChargeAmmoRecipeBase">
 						<defName>MakeAmmo_MoyoCryocell</defName>
-						<label>make Moyo cryocells x20</label>
-						<description>Craft 20 Moyo cryocells.</description>
+						<label>make Moyo cryocells x500</label>
+						<description>Craft 500 Moyo cryocells.</description>
 						<jobString>Making Moyo cryocells.</jobString>
-						<workAmount>3400</workAmount>
+						<workAmount>7000</workAmount>
 						<ingredients>
 							<li>
 								<filter>
@@ -243,7 +273,7 @@
 										<li>Steel</li>
 									</thingDefs>
 								</filter>
-								<count>14</count>
+								<count>30</count>
 							</li>
 							<li>
 								<filter>
@@ -251,7 +281,7 @@
 										<li>Plasteel</li>
 									</thingDefs>
 								</filter>
-								<count>2</count>
+								<count>6</count>
 							</li>
 							<li>
 								<filter>
@@ -259,7 +289,7 @@
 										<li>ComponentIndustrial</li>
 									</thingDefs>
 								</filter>
-								<count>2</count>
+								<count>6</count>
 							</li>
 						</ingredients>
 						<fixedIngredientFilter>
