@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+
+  <Operation Class="PatchOperationFindMod">
+		<mods>
+			<li>Dishonored Assassin Mask</li>
+		</mods>
+		<match Class="PatchOperationSequence">
+		    <operations>
+				<!-- Recipe edits -->
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="Apparel_AssasssinMask"]/costList</xpath>
+					<value>
+						<costList>
+							<Cloth>20</Cloth>
+							<Steel>15</Steel>
+							<ComponentIndustrial>3</ComponentIndustrial>
+						</costList>
+					</value>
+				</li>
+			    <!-- statBases -->
+			    <li Class="PatchOperationReplace">
+			        <xpath>Defs/ThingDef[defName="Apparel_AssasssinMask"]/statBases/StuffEffectMultiplierArmor</xpath>
+					<value>
+						<Bulk>1.5</Bulk>
+						<WornBulk>3.0</WornBulk>
+						<StuffEffectMultiplierArmor>4</StuffEffectMultiplierArmor>
+					</value>
+			    </li>
+				<!-- Misc -->
+				<li Class="PatchOperationAdd">
+				    <xpath>Defs/ThingDef[defName="Apparel_AssasssinMask"]</xpath>
+					<value>
+					    <equippedStatOffsets>
+						    <SmokeSensitivity>-0.6</SmokeSensitivity>
+							<ToxicSensitivity>-0.2</ToxicSensitivity>
+						</equippedStatOffsets>
+					</value>
+				</li>
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="Apparel_AssasssinMask"]/apparel/layers</xpath>
+					<value>
+						<li>OnHead</li>
+						<li>StrappedHead</li>
+						<li>MiddleHead</li>
+					</value>
+				</li>
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="Apparel_AssasssinMask"]/apparel/bodyPartGroups</xpath>
+					<value>
+						<li>Eyes</li>
+						<li>Teeth</li>
+					</value>
+				</li>
+			</operations>
+		</match>
+	</Operation>
+</Patch>
