@@ -48,6 +48,7 @@ AnimalCollabProj	|
 Apparello 2	|
 Arachne Race	|
 Area Rugs	|
+Autocleaner	|
 Auto-Mortars	|
 Beeralope Squad	|
 Better Infestations	|
