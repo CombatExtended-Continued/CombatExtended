@@ -6,6 +6,7 @@ using RimWorld;
 using Verse;
 using Verse.AI;
 using Verse.Sound;
+using CombatExtended.HarmonyCE;
 
 namespace CombatExtended
 {
@@ -45,6 +46,11 @@ namespace CombatExtended
         private const float BaseCritChance = 0.1f;
         private const float BaseDodgeChance = 0.1f;
         private const float BaseParryChance = 0.2f;
+
+        // Melee targeting variable
+        // This value is multiplied with the pawn's melee skill when choosing which body part will be targeted
+        // A pawn with melee skill level 20 against a pawn with melee skill level 0 will have 3x (1 + multiplier) chance to target more vulnerable bodyparts, compared to just rolling the dice
+        private const float MeleeSkillChanceMult = 2f;
 
         #endregion
 
@@ -261,10 +267,65 @@ namespace CombatExtended
                 damageInfo.SetHitPart(neck);
             }
 
+           
+
             damageInfo.SetBodyRegion(bodyRegion);
             damageInfo.SetWeaponBodyPartGroup(bodyPartGroupDef);
             damageInfo.SetWeaponHediff(hediffDef);
             damageInfo.SetAngle(direction);
+
+            // iv2b START
+
+            // Calculate odds of targeting vulnerable bodyparts, excluding social fights and beating prisoners
+            if (target.Thing is Pawn p && !(CasterPawn.IsColonist && (p.IsColonist || p.IsPrisoner)))
+            {
+                //int meleeSkill = CasterPawn.skills.GetSkill(SkillDefOf.Melee).Level;
+                int meleeSkill = CasterPawn?.skills?.GetSkill(SkillDefOf.Melee)?.Level ?? 0;
+                meleeSkill -= p.skills?.GetSkill(SkillDefOf.Melee)?.Level ?? 0;
+
+                if (meleeSkill > 0)
+                {
+                    var pawnParts = p.health.hediffSet.GetNotMissingParts(BodyPartHeight.Undefined, BodyPartDepth.Outside);
+                    var tempDInfo = damageInfo;
+                    bool armorDeflected;
+                    bool armorReduced;
+                    bool shieldAbsorbed;
+
+                    var dmgList = new List<KeyValuePair<BodyPartRecord, float>>();
+                    //Log.Clear();
+                    // For each bodypart the target has
+                    foreach (BodyPartRecord part in pawnParts)
+                    {
+                        // If it can be targeted
+                        if (part.def.conceptual)
+                            continue;
+
+                        // Check how much damage would be dealt when attacking it
+                        LastAttackVerb = this;
+                        tempDInfo = ArmorUtilityCE.GetAfterArmorDamage(damageInfo, p, part, out armorDeflected, out armorReduced, out shieldAbsorbed, true);
+                        LastAttackVerb = null;
+
+                        dmgList.Add(new KeyValuePair<BodyPartRecord, float>(part, tempDInfo.Amount));
+                        Log.Message(part.LabelShort +" | "+ tempDInfo.Amount);
+                    }
+
+                    if (dmgList.Count > 0)
+                    {
+
+                        dmgList = dmgList.OrderBy(o => o.Value).ToList();
+
+                        // Additional hit chance is based off melee skill
+                        int max = (int)((dmgList.Count - 1) * (1.0f + (Mathf.Pow(meleeSkill / 20.0f, 2) * MeleeSkillChanceMult)));
+
+                        int partPicked = Mathf.Clamp(Rand.RangeInclusive(0, max), 0, dmgList.Count - 1);
+
+                        damageInfo.SetHitPart(dmgList[partPicked].Key);
+                    }
+                }
+            }
+
+            //iv2b END
+
             yield return damageInfo;
             if (this.tool != null && this.tool.extraMeleeDamages != null)
             {
@@ -337,6 +398,7 @@ namespace CombatExtended
         {
             DamageWorker.DamageResult result = new DamageWorker.DamageResult();
             IEnumerable<DamageInfo> damageInfosToApply = DamageInfosToApply(target, isCrit);
+
             foreach (DamageInfo current in damageInfosToApply)
             {
                 if (target.ThingDestroyed)

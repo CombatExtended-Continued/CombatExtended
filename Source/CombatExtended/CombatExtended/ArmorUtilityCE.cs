@@ -36,8 +36,9 @@ namespace CombatExtended
         /// <param name="armorReduced">Whether sharp damage was deflected by armor</param>
         /// <param name="shieldAbsorbed">Returns true if attack did not penetrate pawn's melee shield</param>
         /// <param name="armorDeflected">Whether the attack was completely absorbed by the armor</param>
+        /// /// <param name="isCheck">Whether the function is being used to check simulated damage amount, won't damage armor</param>
         /// <returns>If shot is deflected returns a new dinfo cloned from the original with damage amount, Def and ForceHitPart adjusted for deflection, otherwise a clone with only the damage adjusted</returns>
-        public static DamageInfo GetAfterArmorDamage(DamageInfo originalDinfo, Pawn pawn, BodyPartRecord hitPart, out bool armorDeflected, out bool armorReduced, out bool shieldAbsorbed)
+        public static DamageInfo GetAfterArmorDamage(DamageInfo originalDinfo, Pawn pawn, BodyPartRecord hitPart, out bool armorDeflected, out bool armorReduced, out bool shieldAbsorbed, bool isCheck = false)
         {
             shieldAbsorbed = false;
             armorDeflected = false;
@@ -96,7 +97,7 @@ namespace CombatExtended
                         }
                     }
                     // Try to penetrate the shield
-                    if (blockedByShield && !TryPenetrateArmor(dinfo.Def, shield.GetStatValue(dinfo.Def.armorCategory.armorRatingStat), ref penAmount, ref dmgAmount, shield))
+                    if (blockedByShield && !TryPenetrateArmor(dinfo.Def, shield.GetStatValue(dinfo.Def.armorCategory.armorRatingStat), ref penAmount, ref dmgAmount, shield, 0, isCheck))
                     {
                         shieldAbsorbed = true;
                         armorDeflected = true;
@@ -111,7 +112,7 @@ namespace CombatExtended
                                 var secDinfo = sec.GetDinfo();
                                 var pen = secDinfo.ArmorPenetrationInt; //GetPenetrationValue(originalDinfo);
                                 var dmg = (float)secDinfo.Amount;
-                                TryPenetrateArmor(secDinfo.Def, shield.GetStatValue(secDinfo.Def.armorCategory.armorRatingStat), ref pen, ref dmg, shield);
+                                TryPenetrateArmor(secDinfo.Def, shield.GetStatValue(secDinfo.Def.armorCategory.armorRatingStat), ref pen, ref dmg, shield, 0, isCheck);
                             }
                         }
 
@@ -126,7 +127,7 @@ namespace CombatExtended
 
                     if (app != null
                         && app.def.apparel.CoversBodyPart(hitPart)
-                        && !TryPenetrateArmor(dinfo.Def, app.GetStatValue(dinfo.Def.armorCategory.armorRatingStat), ref penAmount, ref dmgAmount, app))
+                        && !TryPenetrateArmor(dinfo.Def, app.GetStatValue(dinfo.Def.armorCategory.armorRatingStat), ref penAmount, ref dmgAmount, app, 0, isCheck))
                     {
                         // Hit was deflected, convert damage type
                         //armorReduced = true;
@@ -167,7 +168,7 @@ namespace CombatExtended
                 var armorAmount = coveredByArmor ? pawn.GetStatValue(dinfo.Def.armorCategory.armorRatingStat) : 0;
 
                 // Only apply damage reduction when penetrating armored body parts
-                if (!TryPenetrateArmor(dinfo.Def, armorAmount, ref penAmount, ref dmgAmount, null, partDensity))
+                if (!TryPenetrateArmor(dinfo.Def, armorAmount, ref penAmount, ref dmgAmount, null, partDensity, isCheck))
                 {
                     dinfo.SetHitPart(curPart);
                     if (isSharp && coveredByArmor)
@@ -176,7 +177,7 @@ namespace CombatExtended
                         dinfo = GetDeflectDamageInfo(dinfo, curPart, ref dmgAmount, ref penAmount);
 
                         // Fetch armor rating stat again in case of deflection conversion to blunt
-                        TryPenetrateArmor(dinfo.Def, pawn.GetStatValue(dinfo.Def.armorCategory.armorRatingStat), ref penAmount, ref dmgAmount, null, partDensity);
+                        TryPenetrateArmor(dinfo.Def, pawn.GetStatValue(dinfo.Def.armorCategory.armorRatingStat), ref penAmount, ref dmgAmount, null, partDensity, isCheck);
                     }
                     break;
                 }
@@ -201,8 +202,9 @@ namespace CombatExtended
         /// <param name="dmgAmount">The pre-armor amount of damage</param>
         /// <param name="armor">The armor apparel</param>
         /// <param name="partDensity">When penetrating body parts, the body part density</param>
+        /// <param name="isCheck">Whether the function is being used to check simulated damage amount, won't damage armor</param>
         /// <returns>False if the attack is deflected, true otherwise</returns>
-        private static bool TryPenetrateArmor(DamageDef def, float armorAmount, ref float penAmount, ref float dmgAmount, Thing armor = null, float partDensity = 0)
+        private static bool TryPenetrateArmor(DamageDef def, float armorAmount, ref float penAmount, ref float dmgAmount, Thing armor = null, float partDensity = 0, bool isCheck = false)
         {
             // Calculate deflection
             var isSharpDmg = def.armorCategory == DamageArmorCategoryDefOf.Sharp;
@@ -220,7 +222,7 @@ namespace CombatExtended
             newPenAmount -= partDensity;    // Factor partDensity only after damage calculations
 
             // Apply damage to armor
-            if (armor != null)
+            if (armor != null && !isCheck)
             {
                 var isSoftArmor = armor.Stuff != null && armor.Stuff.stuffProps.categories.Any(s => softStuffs.Contains(s));
                 if (isSoftArmor)
