@@ -88,7 +88,6 @@ GouRIMet	|
 Halo - Rimworld Auxiliary Combat Armory	|
 Hand 'n' Footwear	|
 High Caliber	|
-Iron Harvest Pkp 17 "Eisenhans" Powerarmor	|
 Jernfalk's Standalone Horses	|
 Kaiser Armory	|
 K.L.K - Styles Apparel Pack	|
@@ -104,14 +103,12 @@ Medical System Expansion	|
 Megafauna	|
 MiningCo. MiningHelmet	|
 Misc. Robots	|
-More Consumables And Mutagens Reworked |
 More Mechanoids	|
 More Practical Traits	|
 More Vanilla Turrets	|
 Moyo - From the Depth   |
 Ni'Hal	|
 Orassans	|
-Palm Cats   |
 Penguin	|
 PsiTech	|
 Polarisbloc - Security Force	|
@@ -126,11 +123,6 @@ Rim of Madness - Bones	|
 Rimefeller	|
 RimEffect - Asari of the Rims	|
 Rimfire	|
-Rimsenal - Core |
-Rimsenal - Enhanced Vanilla |
-Rimsenal - Federation Faction Pack |
-Rimsenal - Feral Faction Pack |
-Rimsenal - Security Pack |
 Rimworld: Altered Carbon |
 Rimworld - The Dark Descent |
 Rimworld - Witcher Monster Hunt |
@@ -140,6 +132,7 @@ Simply More Melee	|
 Soviet Armory	|
 Spartan Foundry	|
 T-45b Power Armor	|
+The Mantodean insectoid race	|
 TouhouStyle	|
 Trading Economy	|
 Tsar Armory	|
