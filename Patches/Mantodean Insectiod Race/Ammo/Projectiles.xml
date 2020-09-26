@@ -24,7 +24,7 @@
 						<projectile Class="CombatExtended.ProjectilePropertiesCE">
 							<speed>35</speed>
 							<damageDef>MantoPoison</damageDef>
-							<damageAmountBase>1</damageAmountBase>
+							<damageAmountBase>9</damageAmountBase>
 							<armorPenetrationSharp>0</armorPenetrationSharp>
 							<armorPenetrationBlunt>0</armorPenetrationBlunt>
 							<preExplosionSpawnThingDef>Filth_Slime</preExplosionSpawnThingDef>
@@ -33,6 +33,13 @@
 							<gravityFactor>4</gravityFactor>
 						</projectile>
 					</ThingDef>
+				</value>
+			</li>
+			
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/DamageDef[defName="MantoPoison"]/additionalHediffs/li[hediff="ToxicBuildup"]/severityPerDamageDealt</xpath>
+				<value>
+					<severityPerDamageDealt>0.02</severityPerDamageDealt>
 				</value>
 			</li>
 			
@@ -59,7 +66,7 @@
 
 					<ThingDef Class="CombatExtended.AmmoDef" ParentName="SpacerSmallAmmoBase">
 						<defName>Ammo_Mantogel</defName>
-						<label>Toxic compound</label>
+						<label>mantodean toxic gel</label>
 						<description>Toxic thermal compound used in mantodean bio-launchers</description>
 						<statBases>
 							<Mass>0.50</Mass>
@@ -83,9 +90,9 @@
 
 					<RecipeDef ParentName="ChargeAmmoRecipeBase">
 						<defName>MakeAmmo_Mantogel</defName>
-						<label>make mantodean biogel x100</label>
-						<description>Craft 100 mantodean biogel.</description>
-						<jobString>Making mantodean biogel.</jobString>
+						<label>make mantodean toxic gel x100</label>
+						<description>Craft 100 mantodean toxic gel.</description>
+						<jobString>Making mantodean toxic gel.</jobString>
 						<workAmount>8000</workAmount>
 						<ingredients>
 							<li>
