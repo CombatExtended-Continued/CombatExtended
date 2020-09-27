@@ -49,8 +49,11 @@ namespace CombatExtended
 
         // Melee targeting variable
         // This value is multiplied with the pawn's melee skill when choosing which body part will be targeted
-        // A pawn with melee skill level 20 against a pawn with melee skill level 0 will have 3x (1 + multiplier) chance to target more vulnerable bodyparts, compared to just rolling the dice
-        private const float MeleeSkillChanceMult = 2f;
+        // A pawn with melee skill level 20 against a pawn with melee skill level 0 will have ~11x (1 + multiplier) chance to target more vulnerable bodyparts, compared to just rolling the dice
+        private const float MeleeSkillChanceMult = 10f;
+        // This value is a multiplier applied when attacking an downed target
+        // When this occurs the defender's melee skill is not checked as they can't defend themselves
+        private const float MeleeDownedChanceMult = 3f;
 
         #endregion
 
@@ -274,25 +277,40 @@ namespace CombatExtended
             damageInfo.SetWeaponHediff(hediffDef);
             damageInfo.SetAngle(direction);
 
-            // iv2b START
+            // END 1:1 COPY
+
+            Log.Clear();
 
             // Calculate odds of targeting vulnerable bodyparts, excluding social fights and beating prisoners
             if (target.Thing is Pawn p && !(CasterPawn.IsColonist && (p.IsColonist || p.IsPrisoner)))
             {
-                //int meleeSkill = CasterPawn.skills.GetSkill(SkillDefOf.Melee).Level;
                 int meleeSkill = CasterPawn?.skills?.GetSkill(SkillDefOf.Melee)?.Level ?? 0;
-                meleeSkill -= p.skills?.GetSkill(SkillDefOf.Melee)?.Level ?? 0;
 
+                // If the target is downed, don't check for melee skill and apply a multiplier instead
+                if (!p.Downed) 
+                {
+                    meleeSkill -= p.skills?.GetSkill(SkillDefOf.Melee)?.Level ?? 0;
+                }
+                else
+                {
+                    meleeSkill = (int) (meleeSkill * MeleeDownedChanceMult);
+                }
+
+                // If the pawn is skilled enough to receive a bonus
                 if (meleeSkill > 0)
                 {
-                    var pawnParts = p.health.hediffSet.GetNotMissingParts(BodyPartHeight.Undefined, BodyPartDepth.Outside);
+                    var pawnParts = p.health.hediffSet.GetNotMissingParts(BodyPartHeight.Undefined, BodyPartDepth.Undefined);
                     var tempDInfo = damageInfo;
                     bool armorDeflected;
                     bool armorReduced;
                     bool shieldAbsorbed;
 
-                    var dmgList = new List<KeyValuePair<BodyPartRecord, float>>();
-                    //Log.Clear();
+                    var dmgList = new List<BodyPartRecord>();
+                    var noDmgList =  new List<BodyPartRecord>();
+
+                    // I calculate the added hit chance for vulnerable body parts
+                    float hitMult = meleeSkill / 20.0f * MeleeSkillChanceMult + 1.0f;
+
                     // For each bodypart the target has
                     foreach (BodyPartRecord part in pawnParts)
                     {
@@ -305,26 +323,50 @@ namespace CombatExtended
                         tempDInfo = ArmorUtilityCE.GetAfterArmorDamage(damageInfo, p, part, out armorDeflected, out armorReduced, out shieldAbsorbed, true);
                         LastAttackVerb = null;
 
-                        dmgList.Add(new KeyValuePair<BodyPartRecord, float>(part, tempDInfo.Amount));
-                        Log.Message(part.LabelShort +" | "+ tempDInfo.Amount);
+                        // Store part into list, based on whether damage would be dealt or not
+                        if(tempDInfo.Amount > 0)
+                        {
+                            dmgList.Insert(Rand.RangeInclusive(0,dmgList.Count), part); // Insert in random order
+                        }
+                        else
+                        {
+                            noDmgList.Add(part);
+                        }
+                            
                     }
 
+                    // If there is at least 1 vulnerable body part
                     if (dmgList.Count > 0)
                     {
+                        float seed = Rand.Value;
+                        bool selected = false;
 
-                        dmgList = dmgList.OrderBy(o => o.Value).ToList();
+                        // Check if the pawn should strike a vulnerable bodypart, taking into account coverage
+                        foreach (BodyPartRecord b in dmgList)
+                        {
+                            if(seed < b.coverageAbs * hitMult)
+                            {
+                                damageInfo.SetHitPart(b);
+                                selected = true;
+                                break;
+                            }
+                            else
+                            {
+                                seed -= b.coverageAbs * hitMult;
+                            }
+                            
+                        }
 
-                        // Additional hit chance is based off melee skill
-                        int max = (int)((dmgList.Count - 1) * (1.0f + (Mathf.Pow(meleeSkill / 20.0f, 2) * MeleeSkillChanceMult)));
-
-                        int partPicked = Mathf.Clamp(Rand.RangeInclusive(0, max), 0, dmgList.Count - 1);
-
-                        damageInfo.SetHitPart(dmgList[partPicked].Key);
+                        // If the check fails, target anything else, coverage doesn't matter here as damage dealt will be 0
+                        if (!selected)
+                        {
+                            damageInfo.SetHitPart(noDmgList[Rand.Range(0, noDmgList.Count)]); // doesn't matter which, always deals 0 damage, ignoring coverage
+                        }
                     }
                 }
             }
 
-            //iv2b END
+            // START 1:1 COPY
 
             yield return damageInfo;
             if (this.tool != null && this.tool.extraMeleeDamages != null)
