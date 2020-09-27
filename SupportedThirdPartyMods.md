@@ -140,6 +140,7 @@ Sergals, Gnolls, Lions and Frogs	|
 Simply More Melee	|
 Soviet Armory	|
 Spartan Foundry	|
+The Mantodean insectoid race	|
 T-45b Power Armor	|
 TouhouStyle	|
 Trading Economy	|
