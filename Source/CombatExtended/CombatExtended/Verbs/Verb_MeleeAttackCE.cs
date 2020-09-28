@@ -279,8 +279,6 @@ namespace CombatExtended
 
             // END 1:1 COPY
 
-            Log.Clear();
-
             // Calculate odds of targeting vulnerable bodyparts, excluding social fights and beating prisoners
             if (target.Thing is Pawn p && !(CasterPawn.IsColonist && (p.IsColonist || p.IsPrisoner)))
             {
