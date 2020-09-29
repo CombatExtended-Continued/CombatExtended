@@ -59,7 +59,9 @@ Cute Penguin	|
 CyberNet	|
 Cybernetic Organism and Neural Network	|
 Defensive Machine Gun Turret Pack	|
-Dinosauria	|
+Dinosauria |
+Dishonored Assassin Coat |
+Dishonored Assassin Mask |
 Dragon's Descent |
 Dragonian Race	|
 Dragons!	|
