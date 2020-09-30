@@ -1,0 +1,160 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+
+<Patch>
+	<Operation Class="PatchOperationFindMod">
+	<mods>
+		<li>Vanilla Factions Expanded - Vikings</li>
+	</mods>
+		<match Class="PatchOperationSequence">
+		<operations>
+
+
+		<!-- Add Bulk to items. -->
+		<li Class="PatchOperationAdd">
+			<xpath>/Defs/ThingDef[defName = "VFEV_Honey"]/statBases</xpath>
+			<value>
+				<Bulk>0.05</Bulk>
+			</value>
+		</li>
+
+		<li Class="PatchOperationAdd">
+			<xpath>/Defs/ThingDef[defName = "VFEV_Sweetroll"]/statBases</xpath>
+			<value>
+				<Bulk>0.25</Bulk>
+			</value>
+		</li>
+
+
+
+		<!-- Give Mead Bulk and Melee tools. -->
+
+		<li Class="PatchOperationAdd">
+			<xpath>/Defs/ThingDef[defName = "VFEV_Mead"]/statBases</xpath>
+			<value>
+				<Bulk>3.5</Bulk>
+			</value>
+		</li>
+
+	        <li Class="PatchOperationReplace">
+          <xpath>/Defs/ThingDef[defName="VFEV_Mead"]/tools</xpath>
+          <value>
+            <tools>
+				<li Class="CombatExtended.ToolCE">
+					<capacities>
+						<li>Blunt</li>
+					</capacities>
+					<power>2</power>
+					<cooldownTime>2.22</cooldownTime>
+					<chanceFactor>1.33</chanceFactor>
+					<armorPenetrationBlunt>0.338</armorPenetrationBlunt>
+					<linkedBodyPartsGroup>Base</linkedBodyPartsGroup>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>neck</label>
+					<capacities>
+						<li>Poke</li>
+					</capacities>
+					<power>1</power>
+					<cooldownTime>3.33</cooldownTime>
+					<armorPenetrationBlunt>0.150</armorPenetrationBlunt>
+					<linkedBodyPartsGroup>Neck</linkedBodyPartsGroup>
+				</li>
+            </tools>
+          </value>
+        </li>
+		
+		<li Class="PatchOperationAdd">
+			<xpath>Defs/ThingDef[defName="VFEV_Mead"]</xpath>
+			<value>
+				<equippedStatOffsets>
+					<MeleeCritChance>0.1</MeleeCritChance>
+					<MeleeParryChance>0.33</MeleeParryChance>
+					<MeleeDodgeChance>0.07</MeleeDodgeChance>	
+				</equippedStatOffsets>
+			</value>
+		</li>	
+
+		<!-- Give Lothurr Antler Bulk and Melee tools. -->
+		<li Class="PatchOperationAdd">
+			<xpath>/Defs/ThingDef[defName = "VFEV_LothurrAntler"]/statBases</xpath>
+			<value>
+				<Bulk>8</Bulk>
+			</value>
+		</li>
+
+		<li Class="PatchOperationReplace">
+			<xpath>/Defs/ThingDef[defName = "VFEV_LothurrAntler"]/tools</xpath>
+			<value>
+				<tools>
+				<li Class="CombatExtended.ToolCE">
+					<label>grip</label>
+					<capacities>
+					<li>Blunt</li>
+					</capacities>
+					<power>2</power>
+					<cooldownTime>1.54</cooldownTime>
+					<chanceFactor>1.5</chanceFactor>
+					<armorPenetrationBlunt>0.555</armorPenetrationBlunt>
+					<linkedBodyPartsGroup>Grip</linkedBodyPartsGroup>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>muzzle</label>
+					<capacities>
+					<li>Poke</li>
+					</capacities>
+					<power>2</power>
+					<cooldownTime>1.54</cooldownTime>
+					<armorPenetrationBlunt>0.555</armorPenetrationBlunt>
+					<linkedBodyPartsGroup>Muzzle</linkedBodyPartsGroup>
+				</li>
+				</tools>
+			</value>
+		</li>
+
+		<!-- Patch leathers. -->
+		<li Class="PatchOperationReplace">
+			<xpath>/Defs/ThingDef[defName="VFEV_Leather_Fenrir"]/statBases/StuffPower_Armor_Sharp</xpath>
+			<value>
+				<StuffPower_Armor_Sharp>0.75</StuffPower_Armor_Sharp>
+			</value>
+		</li>
+
+		<li Class="PatchOperationReplace">
+			<xpath>/Defs/ThingDef[defName="VFEV_Leather_Fenrir"]/statBases/StuffPower_Armor_Blunt</xpath>
+			<value>
+				<StuffPower_Armor_Blunt>0.085</StuffPower_Armor_Blunt>
+			</value>
+		</li>
+
+		<li Class="PatchOperationReplace">
+			<xpath>/Defs/ThingDef[defName="VFEV_Leather_Lothurr"]/statBases/StuffPower_Armor_Sharp</xpath>
+			<value>
+				<StuffPower_Armor_Sharp>0.6</StuffPower_Armor_Sharp>
+			</value>
+		</li>
+
+		<li Class="PatchOperationReplace">
+			<xpath>/Defs/ThingDef[defName="VFEV_Leather_Lothurr"]/statBases/StuffPower_Armor_Blunt</xpath>
+			<value>
+				<StuffPower_Armor_Blunt>0.07</StuffPower_Armor_Blunt>
+			</value>
+		</li>
+
+		<li Class="PatchOperationReplace">
+			<xpath>/Defs/ThingDef[defName="VFEV_Leather_Njorun"]/statBases/StuffPower_Armor_Sharp</xpath>
+			<value>
+				<StuffPower_Armor_Sharp>0.1</StuffPower_Armor_Sharp>
+			</value>
+		</li>
+
+		<li Class="PatchOperationReplace">
+			<xpath>/Defs/ThingDef[defName="VFEV_Leather_Njorun"]/statBases/StuffPower_Armor_Blunt</xpath>
+			<value>
+				<StuffPower_Armor_Blunt>0.08</StuffPower_Armor_Blunt>
+			</value>
+		</li>		
+
+		</operations>
+		</match>
+	</Operation>
+</Patch>

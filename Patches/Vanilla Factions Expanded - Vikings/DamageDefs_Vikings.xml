@@ -1,0 +1,42 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+
+<Patch>
+	<Operation Class="PatchOperationFindMod">
+	<mods>
+		<li>Vanilla Factions Expanded - Vikings</li>
+	</mods>
+		<match Class="PatchOperationAdd">
+		<xpath>Defs</xpath>
+		<value>
+
+	<ToolCapacityDef>
+		<defName>CE_CryptoCut</defName>
+		<label>cut</label>
+	</ToolCapacityDef>
+
+	<DamageDef ParentName="CutBase">
+		<defName>CE_CryptoCut</defName>
+		<label>the cutting and hypothermic damage of advanced crypto weaponry</label>
+		<additionalHediffs>
+		<li>
+			<hediff>Hypothermia</hediff>
+			<severityPerDamageDealt>0.01</severityPerDamageDealt>
+		</li>
+		</additionalHediffs>
+	</DamageDef>
+
+	<DamageDef ParentName="Bullet">
+		<defName>CE_Crypto</defName>
+		<label>the ballistic and hypothermic damage of advanced crypto munitions</label>
+		<additionalHediffs>
+		<li>
+			<hediff>Hypothermia</hediff>
+			<severityPerDamageDealt>0.01</severityPerDamageDealt>
+		</li>
+		</additionalHediffs>
+	</DamageDef>
+
+		</value>
+		</match>
+	</Operation>
+</Patch>

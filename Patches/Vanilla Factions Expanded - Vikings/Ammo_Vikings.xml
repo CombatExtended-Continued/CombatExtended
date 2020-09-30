@@ -1,0 +1,418 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+
+<Patch>
+	<Operation Class="PatchOperationFindMod">
+	<mods>
+		<li>Vanilla Factions Expanded - Vikings</li>
+	</mods>
+		<match Class="PatchOperationAdd">
+		<xpath>Defs</xpath>
+		<value>
+
+	<!-- ==================== Ammo Categories ========================== -->
+
+	<CombatExtended.AmmoCategoryDef>
+		<defName>Crypto</defName>
+		<label>crypto</label>
+		<description>Metal-cored projectiles wrapped in an unstable crypto technology, capable of dealing both ballistic and cold damage.</description>
+	</CombatExtended.AmmoCategoryDef>
+
+	<!-- ==================== Thing Categories ========================== -->
+
+	<ThingCategoryDef>
+		<defName>AmmoCryptoRifle</defName>
+		<label>crypto rifle</label>
+		<parent>AmmoAdvanced</parent>
+		<iconPath>UI/Icons/ThingCategories/CaliberCharge</iconPath>
+	</ThingCategoryDef>
+
+	<ThingCategoryDef>
+		<defName>AmmoCryptoPistol</defName>
+		<label>crypto pistol</label>
+		<parent>AmmoAdvanced</parent>
+		<iconPath>UI/Icons/ThingCategories/CaliberCharge</iconPath>
+	</ThingCategoryDef>
+
+	<ThingCategoryDef>
+		<defName>AmmoCryptoBolt</defName>
+		<label>crypto bolt</label>
+		<parent>AmmoAdvanced</parent>
+		<iconPath>UI/Icons/ThingCategories/CaliberCharge</iconPath>
+	</ThingCategoryDef>
+
+	<ThingCategoryDef>
+		<defName>AmmoCryptoHeavyBolt</defName>
+		<label>crypto heavy bolt</label>
+		<parent>AmmoAdvanced</parent>
+		<iconPath>UI/Icons/ThingCategories/CaliberCharge</iconPath>
+	</ThingCategoryDef>
+
+	<!-- ==================== AmmoSet ========================== -->
+
+	<CombatExtended.AmmoSetDef>
+		<defName>AmmoSet_CryptoRifle</defName>
+		<label>Crypto Rifle</label>
+		<ammoTypes>
+		<Ammo_CryptoRifle>Bullet_CryptoRifle</Ammo_CryptoRifle>
+		</ammoTypes>
+	</CombatExtended.AmmoSetDef>
+
+	<CombatExtended.AmmoSetDef>
+		<defName>AmmoSet_CryptoPistol</defName>
+		<label>Crypto Pistol</label>
+		<ammoTypes>
+		<Ammo_CryptoPistol>Bullet_CryptoPistol</Ammo_CryptoPistol>
+		</ammoTypes>
+	</CombatExtended.AmmoSetDef>
+
+	<CombatExtended.AmmoSetDef>
+		<defName>AmmoSet_CryptoBolt</defName>
+		<label>Crypto Bolt</label>
+		<ammoTypes>
+		<Ammo_CryptoBolt>Bullet_CryptoBolt</Ammo_CryptoBolt>
+		</ammoTypes>
+	</CombatExtended.AmmoSetDef>
+
+	<CombatExtended.AmmoSetDef>
+		<defName>AmmoSet_CryptoHeavyBolt</defName>
+		<label>Crypto Bolt</label>
+		<ammoTypes>
+		<Ammo_CryptoHeavyBolt>Bullet_CryptoHeavyBolt</Ammo_CryptoHeavyBolt>
+		</ammoTypes>
+	</CombatExtended.AmmoSetDef>
+
+	<!-- ==================== Ammo ========================== -->
+
+	<ThingDef Class="CombatExtended.AmmoDef" Name="CryptoAmmoBase" ParentName="SpacerSmallAmmoBase" Abstract="True">
+		<description>Metal-cored projectiles wrapped in unstable crypto technology contained with an energy field. Capable of dealing both ballistic damage and causing serious hypothermia.</description>
+		<graphicData>
+		<texPath>ThirdParty/VanillaExpanded/Crypto</texPath>
+		<graphicClass>Graphic_StackCount</graphicClass>
+		</graphicData>
+		<tradeTags>
+			<li>CE_AutoEnableTrade</li>
+			<li>CE_AutoEnableCrafting</li>
+		</tradeTags>
+		<ammoClass>Crypto</ammoClass>
+		<stackLimit>2500</stackLimit>		
+	</ThingDef>
+
+	<ThingDef Class="CombatExtended.AmmoDef" Name="CryptoPistolBase" ParentName="CryptoAmmoBase">
+		<defName>Ammo_CryptoRifle</defName>
+		<label>crypto rifle cartridge</label>
+		<graphicData>
+		<drawSize>0.75</drawSize>
+		</graphicData>   		
+		<statBases>
+			<MarketValue>0.7</MarketValue>
+			<Mass>0.01</Mass>
+			<Bulk>0.01</Bulk>
+		</statBases>		
+		<thingCategories>
+			<li>AmmoCryptoRifle</li>
+		</thingCategories>		
+	</ThingDef>
+
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="CryptoAmmoBase">
+		<defName>Ammo_CryptoPistol</defName>
+		<label>crypto pistol cartridge</label>
+		<graphicData>
+		<drawSize>0.70</drawSize>
+		</graphicData>   
+		<statBases>
+			<MarketValue>0.69</MarketValue>
+			<Mass>0.008</Mass>
+			<Bulk>0.01</Bulk>		
+		</statBases>
+		<thingCategories>
+		<li>AmmoCryptoPistol</li>
+		</thingCategories>		
+	</ThingDef>
+
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="CryptoAmmoBase">
+		<defName>Ammo_CryptoBolt</defName>
+		<label>crypto bolt</label>
+		<graphicData>
+		<drawSize>0.8</drawSize>
+		</graphicData>   
+		<statBases>
+			<MarketValue>0.69</MarketValue>
+			<Mass>0.008</Mass>
+			<Bulk>0.01</Bulk>		
+		</statBases>
+		<thingCategories>
+		<li>AmmoCryptoBolt</li>
+		</thingCategories>		
+	</ThingDef>
+
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="CryptoAmmoBase">
+		<defName>Ammo_CryptoHeavyBolt</defName>
+		<label>heavy crypto bolt</label>
+		<graphicData>
+		<drawSize>1</drawSize>
+		</graphicData>   
+		<statBases>
+			<MarketValue>0.69</MarketValue>
+			<Mass>0.10</Mass>
+			<Bulk>0.05</Bulk>		
+		</statBases>
+		<thingCategories>
+		<li>AmmoCryptoHeavyBolt</li>
+		</thingCategories>		
+	</ThingDef>
+
+	<!-- ================== Projectiles ================== -->
+
+	<ThingDef ParentName="Base6x24mmChargedBullet">
+		<defName>Bullet_CryptoRifle</defName>
+		<label>crypto bullet</label>
+<!--	<thingClass>VFEV.CryptoBullet</thingClass> -->
+		<graphicData>
+			<texPath>Things/Projectile/CryptoBullet</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+			<shaderType>TransparentPostLight</shaderType>
+			<drawSize>0.60</drawSize>
+		</graphicData>		
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageDef>CE_Crypto</damageDef>
+			<damageAmountBase>11</damageAmountBase>
+			<speed>120</speed>		
+			<armorPenetrationSharp>22.5</armorPenetrationSharp>
+			<armorPenetrationBlunt>26</armorPenetrationBlunt>
+		</projectile>
+	</ThingDef>
+
+	<ThingDef ParentName="Base6x18mmChargedBullet">
+		<defName>Bullet_CryptoPistol</defName>
+		<label>crypto bullet</label>
+<!--	<thingClass>VFEV.CryptoBullet</thingClass> -->
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageDef>CE_Crypto</damageDef>		
+			<damageAmountBase>9</damageAmountBase>
+			<speed>120</speed>	
+			<armorPenetrationSharp>16</armorPenetrationSharp>
+			<armorPenetrationBlunt>18</armorPenetrationBlunt>
+		</projectile>
+	</ThingDef>
+
+	<ThingDef ParentName="Base6x24mmChargedBullet">
+		<defName>Bullet_CryptoBolt</defName>
+		<label>crypto bolt</label>
+<!--	<thingClass>VFEV.CryptoBullet</thingClass> -->
+		<graphicData>
+			<texPath>Things/Projectile/CryptoBolt</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+			<shaderType>TransparentPostLight</shaderType>
+			<drawSize>1.00</drawSize>
+		</graphicData>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageDef>CE_Crypto</damageDef>		
+			<damageAmountBase>24</damageAmountBase>
+			<speed>120</speed>	
+			<armorPenetrationSharp>14</armorPenetrationSharp>
+			<armorPenetrationBlunt>26</armorPenetrationBlunt>
+		</projectile>
+	</ThingDef>
+
+	<ThingDef ParentName="Base6x24mmChargedBullet">
+		<defName>Bullet_CryptoHeavyBolt</defName>
+		<label>heavy crypto bolt</label>
+<!--	<thingClass>VFEV.CryptoBullet</thingClass> -->
+		<graphicData>
+			<texPath>Things/Projectile/CryptoBolt</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+			<shaderType>TransparentPostLight</shaderType>
+			<drawSize>1.0</drawSize>
+		</graphicData>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageDef>CE_Crypto</damageDef>		
+			<damageAmountBase>52</damageAmountBase>
+			<speed>120</speed>	
+			<armorPenetrationSharp>24</armorPenetrationSharp>
+			<armorPenetrationBlunt>64</armorPenetrationBlunt>
+		</projectile>
+	</ThingDef>
+
+	<!-- ==================== Recipes ========================== -->
+
+	<RecipeDef ParentName="ChargeAmmoRecipeBase">
+		<defName>MakeAmmo_CryptoRifle</defName>
+		<label>make crypto rifle cartridge x500</label>
+		<description>Craft 500 crypto rifle cartridge cartridges.</description>
+		<jobString>Making crypto rifle cartridge cartridges.</jobString>
+		<ingredients>
+		<li>
+			<filter>
+			<thingDefs>
+				<li>Plasteel</li>
+			</thingDefs>
+			</filter>
+			<count>6</count>
+		</li>
+		<li>
+			<filter>
+			<thingDefs>
+				<li>Steel</li>
+			</thingDefs>
+			</filter>
+			<count>8</count>
+		</li>	  
+		<li>
+			<filter>
+			<thingDefs>
+				<li>ComponentIndustrial</li>
+			</thingDefs>
+			</filter>
+			<count>8</count>
+		</li>
+		</ingredients>
+		<fixedIngredientFilter>
+		<thingDefs>
+			<li>Plasteel</li>
+			<li>Steel</li>		
+			<li>ComponentIndustrial</li>
+		</thingDefs>
+		</fixedIngredientFilter>
+		<products>
+		<Ammo_CryptoRifle>500</Ammo_CryptoRifle>
+		</products>
+		<workAmount>8600</workAmount>		
+	</RecipeDef>
+
+	<RecipeDef ParentName="ChargeAmmoRecipeBase">
+		<defName>MakeAmmo_CryptoPistol</defName>
+		<label>make crypto pistol cartridge x500</label>
+		<description>Craft 500 crypto pistol cartridges.</description>
+		<jobString>Making crypto pistol cartridges.</jobString>
+		<ingredients>
+		<li>
+			<filter>
+			<thingDefs>
+				<li>Plasteel</li>
+			</thingDefs>
+			</filter>
+			<count>8</count>
+		</li>
+		<li>
+			<filter>
+			<thingDefs>
+				<li>Steel</li>
+			</thingDefs>
+			</filter>
+			<count>6</count>
+		</li>	  
+		<li>
+			<filter>
+			<thingDefs>
+				<li>ComponentIndustrial</li>
+			</thingDefs>
+			</filter>
+			<count>8</count>
+		</li>
+		</ingredients>
+		<fixedIngredientFilter>
+		<thingDefs>
+			<li>Plasteel</li>
+			<li>Steel</li>		
+			<li>ComponentIndustrial</li>
+		</thingDefs>
+		</fixedIngredientFilter>
+		<products>
+		<Ammo_CryptoPistol>500</Ammo_CryptoPistol>
+		</products>
+		<workAmount>9800</workAmount>
+	</RecipeDef>
+
+	<RecipeDef ParentName="ChargeAmmoRecipeBase">
+		<defName>MakeAmmo_CryptoBolt</defName>
+		<label>make crypto bolt x50</label>
+		<description>Craft 50 crypto bolt.</description>
+		<jobString>Making crypto bolt.</jobString>
+		<ingredients>
+		<li>
+			<filter>
+			<thingDefs>
+				<li>Plasteel</li>
+			</thingDefs>
+			</filter>
+			<count>10</count>
+		</li>
+		<li>
+			<filter>
+			<thingDefs>
+				<li>Steel</li>
+			</thingDefs>
+			</filter>
+			<count>8</count>
+		</li>	  
+		<li>
+			<filter>
+			<thingDefs>
+				<li>ComponentIndustrial</li>
+			</thingDefs>
+			</filter>
+			<count>2</count>
+		</li>
+		</ingredients>
+		<fixedIngredientFilter>
+		<thingDefs>
+			<li>Plasteel</li>
+			<li>Steel</li>		
+			<li>ComponentIndustrial</li>
+		</thingDefs>
+		</fixedIngredientFilter>
+		<products>
+		<Ammo_CryptoPistol>50</Ammo_CryptoPistol>
+		</products>
+		<workAmount>10400</workAmount>
+	</RecipeDef>
+
+	<RecipeDef ParentName="ChargeAmmoRecipeBase">
+		<defName>MakeAmmo_CryptoHeavyBolt</defName>
+		<label>make heavy crypto bolt x50</label>
+		<description>Craft 50 heavy crypto bolt.</description>
+		<jobString>Making heavy crypto bolt.</jobString>
+		<ingredients>
+		<li>
+			<filter>
+			<thingDefs>
+				<li>Plasteel</li>
+			</thingDefs>
+			</filter>
+			<count>12</count>
+		</li>
+		<li>
+			<filter>
+			<thingDefs>
+				<li>Steel</li>
+			</thingDefs>
+			</filter>
+			<count>10</count>
+		</li>	  
+		<li>
+			<filter>
+			<thingDefs>
+				<li>ComponentIndustrial</li>
+			</thingDefs>
+			</filter>
+			<count>2</count>
+		</li>
+		</ingredients>
+		<fixedIngredientFilter>
+		<thingDefs>
+			<li>Plasteel</li>
+			<li>Steel</li>		
+			<li>ComponentIndustrial</li>
+		</thingDefs>
+		</fixedIngredientFilter>
+		<products>
+		<Ammo_CryptoHeavyBolt>50</Ammo_CryptoHeavyBolt>
+		</products>
+		<workAmount>14400</workAmount>
+	</RecipeDef>
+
+
+		</value>
+		</match>
+	</Operation>
+</Patch>
