@@ -8,7 +8,7 @@
 		<match Class="PatchOperationSequence">
 			<operations>
 
-			<!-- Add Bulk -->
+			<!-- Add Bulk and thingCategories -->
 
 			<li Class="PatchOperationAdd">
 				<xpath>Defs/ThingDef[
@@ -21,6 +21,21 @@
 				]/statBases</xpath>
 				<value>
 					<Bulk>0.03</Bulk>
+				</value>
+			</li>
+
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[
+				defName="Mithril" or
+				defName="Orichalcum" or
+				defName="Adamantite" or
+				defName="Tozra" or
+				defName="Solorite" or
+				defName="Skelsshkrum"
+				]/stuffProps/categories</xpath>
+				<value>
+					<li>Metallic_Weapon</li>
+					<li>Steeled</li>
 				</value>
 			</li>
 
@@ -64,6 +79,14 @@
 				</value>
 			</li>
 
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName="Orichalcum"]/stuffProps/statFactors</xpath>
+				<value>
+					<MeleeWeapon_CooldownMultiplier>1.1</MeleeWeapon_CooldownMultiplier>
+					<Mass>1.4</Mass>
+				</value>
+			</li>
+
 			<!-- Adamantite -->
 
 			<li Class="PatchOperationReplace">
@@ -97,6 +120,13 @@
 				</value>
 			</li>
 
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName="Tozra"]/stuffProps/statFactors</xpath>
+				<value>
+					<MeleePenetrationFactor>1.5</MeleePenetrationFactor>
+				</value>
+			</li>
+
 			<!-- Solorite -->
 
 			<li Class="PatchOperationReplace">
@@ -110,6 +140,13 @@
 				<xpath>Defs/ThingDef[defName="Tozra"]/statBases/StuffPower_Armor_Blunt</xpath>
 				<value>
 					<StuffPower_Armor_Blunt>0.2</StuffPower_Armor_Blunt>
+				</value>
+			</li>
+
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName="Tozra"]/stuffProps/statFactors</xpath>
+				<value>
+					<MeleePenetrationFactor>0.7</MeleePenetrationFactor>
 				</value>
 			</li>
 
