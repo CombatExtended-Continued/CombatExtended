@@ -72,6 +72,7 @@ Expanded Patchleather	|
 Expanded Prosthetics and Organ Engineering (EPOE)	|
 Extended Storage	|
 Fallout Traits	|
+Fantasy Metals Reforged |
 FashionRIMsta	|
 Fate Grand Order - Styles Apparel Pack	|
 Ferrex Race	|
