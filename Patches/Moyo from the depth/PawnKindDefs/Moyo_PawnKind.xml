@@ -18,11 +18,12 @@
 				defName="Moyo_Resercher" or
 				defName="Moyo_TopSmuggler" or
 				defName="Moyo_MiddleSmuggler" or
-				@Name="Moyo_SoldierLight" or
-				@Name="Moyo_SoliderStandard" or
+				@Name="MoyoSoldierLight" or
+				@Name="MoyoSoliderStandard" or
 				defName="Moyo_leader" or
 				@Name="MoyoGuardian" or
-				@Name="MoyoGuardianAssault"
+				@Name="MoyoGuardianAssault" or
+				@Name="MoyoGeneral"
 				]</xpath>
 				<value>
 					<li Class="CombatExtended.LoadoutPropertiesExtension">
@@ -69,7 +70,8 @@
 				@Name="MoyoSoldierHeavy" or
 				@Name="MoyoSoldierAssult" or
 				@Name="MoyoGuardian" or
-				@Name="MoyoGuardianAssault"
+				@Name="MoyoGuardianAssault" or
+				@Name="MoyoGeneral"
 				]/apparelRequired</xpath>
 				<value>
 					<li>Apparel_Backpack</li>
@@ -121,7 +123,10 @@
 			</li>
 			
 			<li Class="PatchOperationReplace">
-				<xpath>Defs/PawnKindDef[@Name="MoyoGuardian" or @Name="MoyoGuardianAssault"]/combatPower</xpath>
+				<xpath>Defs/PawnKindDef[
+				@Name="MoyoGuardian" or 
+				@Name="MoyoGuardianAssault" or 
+				@Name="MoyoGeneral"]/combatPower</xpath>
 				<value>
 					<combatPower>320</combatPower>
 				</value>
