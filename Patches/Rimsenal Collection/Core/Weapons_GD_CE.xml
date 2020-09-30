@@ -1,0 +1,660 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<Patch>
+	<Operation Class="PatchOperationFindMod">
+    <mods>
+		<li>Rimsenal - Core</li>
+    </mods>
+		<match Class="PatchOperationSequence">
+		<operations>
+
+			<!-- ==========  Melee Tools =========== -->
+			
+			<!-- Pistols -->
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="GD_MSSH" or
+				defName="GD_MSST" or
+				defName="GD_MSSF" or
+				defName="GD_TacticalPistol"
+				]/tools</xpath>
+				<value>
+				  <tools>
+					<li Class="CombatExtended.ToolCE">
+					  <label>grip</label>
+					  <capacities>
+						<li>Blunt</li>
+					  </capacities>
+					  <power>2</power>
+					  <cooldownTime>1.54</cooldownTime>
+					  <chanceFactor>1.5</chanceFactor>
+					  <armorPenetrationBlunt>0.555</armorPenetrationBlunt>
+					  <linkedBodyPartsGroup>Grip</linkedBodyPartsGroup>
+					</li>
+					<li Class="CombatExtended.ToolCE">
+					  <label>muzzle</label>
+					  <capacities>
+						<li>Poke</li>
+					  </capacities>
+					  <power>2</power>
+					  <cooldownTime>1.54</cooldownTime>
+					  <armorPenetrationBlunt>0.555</armorPenetrationBlunt>
+					  <linkedBodyPartsGroup>Muzzle</linkedBodyPartsGroup>
+					</li>
+				  </tools>
+				</value>
+			</li>
+			<!-- Long guns-->			
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="GD_HybridRifle" or
+				defName="GD_ModularCarbine" or
+				defName="GD_ModularRifle" or
+				defName="GD_ModularDMR" or
+				defName="GD_ModularLMG" or
+				defName="GD_GrenadeLauncher"
+				]/tools</xpath>
+				<value>
+				  <tools>
+					<li Class="CombatExtended.ToolCE">
+					  <label>stock</label>
+					  <capacities>
+						<li>Blunt</li>
+					  </capacities>
+					  <power>8</power>
+					  <cooldownTime>1.55</cooldownTime>
+					  <chanceFactor>1.5</chanceFactor>
+					  <armorPenetrationBlunt>2.755</armorPenetrationBlunt>
+					  <linkedBodyPartsGroup>Stock</linkedBodyPartsGroup>
+					</li>
+					<li Class="CombatExtended.ToolCE">
+					  <label>barrel</label>
+					  <capacities>
+						<li>Blunt</li>
+					  </capacities>
+					  <power>5</power>
+					  <cooldownTime>2.02</cooldownTime>
+					  <armorPenetrationBlunt>1.630</armorPenetrationBlunt>
+					  <linkedBodyPartsGroup>Barrel</linkedBodyPartsGroup>
+					</li>
+					<li Class="CombatExtended.ToolCE">
+					  <label>muzzle</label>
+					  <capacities>
+						<li>Poke</li>
+					  </capacities>
+					  <power>8</power>
+					  <cooldownTime>1.55</cooldownTime>
+					  <armorPenetrationBlunt>2.755</armorPenetrationBlunt>
+					  <linkedBodyPartsGroup>Muzzle</linkedBodyPartsGroup>
+					</li>
+				  </tools>
+				</value>
+			</li>
+			<!-- Carcal -->			
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/thingDef[defName="GD_HVSMG"]</xpath>
+				<value>
+				  <tools>
+					<li Class="CombatExtended.ToolCE">
+					  <label>stock</label>
+					  <capacities>
+						<li>Blunt</li>
+					  </capacities>
+					  <power>8</power>
+					  <cooldownTime>1.55</cooldownTime>
+					  <chanceFactor>1.5</chanceFactor>
+					  <armorPenetrationBlunt>2.755</armorPenetrationBlunt>
+					  <linkedBodyPartsGroup>Stock</linkedBodyPartsGroup>
+					</li>
+					<li Class="CombatExtended.ToolCE">
+					  <label>barrel</label>
+					  <capacities>
+						<li>Blunt</li>
+					  </capacities>
+					  <power>5</power>
+					  <cooldownTime>2.02</cooldownTime>
+					  <armorPenetrationBlunt>1.630</armorPenetrationBlunt>
+					  <linkedBodyPartsGroup>Barrel</linkedBodyPartsGroup>
+					</li>
+					<li Class="CombatExtended.ToolCE">
+					  <label>muzzle</label>
+					  <capacities>
+						<li>Poke</li>
+					  </capacities>
+					  <power>8</power>
+					  <cooldownTime>1.55</cooldownTime>
+					  <armorPenetrationBlunt>2.755</armorPenetrationBlunt>
+					  <linkedBodyPartsGroup>Muzzle</linkedBodyPartsGroup>
+					</li>
+				  </tools>
+				</value>
+			</li>
+			
+			<!-- ==========  "Black Panther" Hybrid Rifle =========== -->
+			<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+				<defName>GD_HybridRifle</defName>
+				<statBases>
+					<Mass>3.5</Mass>
+					<RangedWeapon_Cooldown>0.36</RangedWeapon_Cooldown>
+					<SightsEfficiency>1.1</SightsEfficiency>
+					<ShotSpread>0.15</ShotSpread>
+					<SwayFactor>1.4</SwayFactor>
+					<Bulk>10</Bulk>
+				</statBases>
+				<Properties>
+					<recoilAmount>1.66</recoilAmount>
+					<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+					<hasStandardCommand>true</hasStandardCommand>
+					<defaultProjectile>Bullet_556x45mmNATOHybrid_FMJ</defaultProjectile>
+					<warmupTime>1.05</warmupTime>
+					<range>58</range>
+					<burstShotCount>6</burstShotCount>
+					<ticksBetweenBurstShots>3.5</ticksBetweenBurstShots>
+					<soundCast>ShotGRH</soundCast>
+					<soundCastTail>GunTail_Medium</soundCastTail>
+					<muzzleFlashScale>9</muzzleFlashScale>
+				</Properties>
+				<AmmoUser>
+					<magazineSize>35</magazineSize>
+					<reloadTime>5</reloadTime>
+					<ammoSet>AmmoSet_556x45mmNATOHybrid</ammoSet>
+				</AmmoUser>
+				<FireModes>
+					<aimedBurstShotCount>3</aimedBurstShotCount>
+					<aiUseBurstMode>TRUE</aiUseBurstMode>
+					<aiAimMode>AimedShot</aiAimMode>
+				</FireModes>
+				<weaponTags>
+					<li>CE_AI_Rifle</li>
+				</weaponTags>
+			</li>
+
+			<!-- ==========  Hybrid Ocelot =========== -->
+			<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+				<defName>GD_MSSH</defName>
+				<statBases>
+					<WorkToMake>50</WorkToMake>
+					<SightsEfficiency>1.0</SightsEfficiency>
+					<ShotSpread>0.09</ShotSpread>
+					<SwayFactor>0.7</SwayFactor>
+					<Bulk>2.40</Bulk>
+					<Mass>1.35</Mass>
+					<RangedWeapon_Cooldown>0.33</RangedWeapon_Cooldown>
+				</statBases>
+				<Properties>
+					<recoilAmount>1.5</recoilAmount>
+					<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+					<hasStandardCommand>true</hasStandardCommand>
+					<defaultProjectile>Bullet_46x30mmHybrid_FMJ</defaultProjectile>
+					<warmupTime>0.55</warmupTime>
+					<burstShotCount>3</burstShotCount>
+					<ticksBetweenBurstShots>6</ticksBetweenBurstShots>
+					<range>16</range>
+					<soundCast>ShotGRH</soundCast>
+					<soundCastTail>GunTail_Light</soundCastTail>
+					<muzzleFlashScale>9</muzzleFlashScale>
+				</Properties>
+				<AmmoUser>
+					<magazineSize>15</magazineSize>
+					<reloadTime>5</reloadTime>
+					<ammoSet>AmmoSet_46x30mmHybrid</ammoSet>
+				</AmmoUser>
+				<FireModes>
+				<aimedBurstShotCount>2</aimedBurstShotCount>				
+				</FireModes>
+				<weaponTags>
+				    <li>CE_Sidearm</li>
+					<li>CE_AI_Pistol</li>
+					<li>CE_OneHandedWeapon</li>
+				</weaponTags>
+			</li>
+			
+			<!-- ==========  Modular Triple-shot =========== -->
+			<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+				<defName>GD_MSST</defName>
+				<statBases>
+					<WorkToMake>50</WorkToMake>
+					<SightsEfficiency>0.7</SightsEfficiency>
+					<ShotSpread>0.18</ShotSpread>
+					<SwayFactor>1.15</SwayFactor>
+					<Bulk>2.20</Bulk>
+					<Mass>1.25</Mass>
+					<RangedWeapon_Cooldown>0.37</RangedWeapon_Cooldown>
+				</statBases>
+				<Properties>
+					<recoilAmount>1.58</recoilAmount>
+					<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+					<hasStandardCommand>true</hasStandardCommand>
+					<defaultProjectile>Bullet_46x30mm_FMJ</defaultProjectile>
+					<warmupTime>0.6</warmupTime>
+					<burstShotCount>6</burstShotCount>
+					<ticksBetweenBurstShots>1</ticksBetweenBurstShots>
+					<range>12</range>
+					<soundCast>ShotLynx</soundCast>
+					<soundCastTail>GunTail_Light</soundCastTail>
+					<muzzleFlashScale>9</muzzleFlashScale>
+				</Properties>
+				<AmmoUser>
+					<magazineSize>12</magazineSize>
+					<reloadTime>4</reloadTime>
+					<ammoSet>AmmoSet_46x30mm</ammoSet>
+				</AmmoUser>
+				<FireModes>
+				<noSingleShot>true</noSingleShot>				
+				</FireModes>
+				<weaponTags>
+				    <li>CE_Sidearm</li>
+					<li>CE_AI_Pistol</li>
+					<li>CE_OneHandedWeapon</li>
+				</weaponTags>
+			</li>
+
+			<!-- ==========  Modular Spitfire =========== -->
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/thingDef[defName="GD_MSSS"]/statBases</xpath>
+				<value>
+					<statBases>
+						<WorkToMake>50</WorkToMake>
+						<SightsEfficiency>0.6</SightsEfficiency>
+						<ShotSpread>0.2</ShotSpread>
+						<SwayFactor>1.3</SwayFactor>
+						<Bulk>2.70</Bulk>
+						<Mass>1.51</Mass>
+						<RangedWeapon_Cooldown>0.36</RangedWeapon_Cooldown>
+					</statBases>				
+				</value>
+			</li>		
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/thingDef[defName="GD_MSSS"]/verbs</xpath>
+				<value>
+					<verbs>
+					<li Class="CombatExtended.VerbPropertiesCE">					
+						<recoilAmount>1.58</recoilAmount>
+						<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+						<hasStandardCommand>true</hasStandardCommand>
+						<defaultProjectile>Bullet_46x30mm_FMJ</defaultProjectile>
+						<warmupTime>0.6</warmupTime>
+						<burstShotCount>5</burstShotCount>
+						<ticksBetweenBurstShots>4</ticksBetweenBurstShots>
+						<range>12</range>
+						<soundCast>ShotLynx</soundCast>
+						<soundCastTail>GunTail_Light</soundCastTail>
+						<muzzleFlashScale>9</muzzleFlashScale>
+					</li>	
+					</verbs>				
+				</value>
+			</li>			
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/thingDef[defName="GD_MSSS"]</xpath>
+				<value>
+					<comps>
+						<li Class="CombatExtended.CompProperties_AmmoUser">				
+							<magazineSize>12</magazineSize>
+							<reloadTime>4</reloadTime>
+							<ammoSet>AmmoSet_46x30mm</ammoSet>
+						</li>
+						<li Class="CombatExtended.CompProperties_FireModes">
+							<aimedBurstShotCount>3</aimedBurstShotCount>		
+						</li>
+					</comps>
+					<weaponTags>
+						<li>CE_Sidearm</li>
+						<li>CE_AI_Pistol</li>
+						<li>CE_OneHandedWeapon</li>
+					</weaponTags>					
+				</value>
+			</li>
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/thingDef[defName="GD_MSSS"]/tools</xpath>
+				<value>
+				  <tools>
+					<li Class="CombatExtended.ToolCE">
+					  <label>grip</label>
+					  <capacities>
+						<li>Blunt</li>
+					  </capacities>
+					  <power>2</power>
+					  <cooldownTime>1.54</cooldownTime>
+					  <chanceFactor>1.5</chanceFactor>
+					  <armorPenetrationBlunt>0.555</armorPenetrationBlunt>
+					  <linkedBodyPartsGroup>Grip</linkedBodyPartsGroup>
+					</li>
+					<li Class="CombatExtended.ToolCE">
+					  <label>muzzle</label>
+					  <capacities>
+						<li>Poke</li>
+					  </capacities>
+					  <power>2</power>
+					  <cooldownTime>1.54</cooldownTime>
+					  <armorPenetrationBlunt>0.555</armorPenetrationBlunt>
+					  <linkedBodyPartsGroup>Muzzle</linkedBodyPartsGroup>
+					</li>
+				  </tools>
+				</value>
+			</li>
+
+			<!-- ==========  Modular Flakker =========== -->
+			<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+				<defName>GD_MSSF</defName>
+				<statBases>
+					<WorkToMake>50</WorkToMake>
+					<SightsEfficiency>0.7</SightsEfficiency>
+					<ShotSpread>0.36</ShotSpread>
+					<SwayFactor>1.22</SwayFactor>
+					<Bulk>1.90</Bulk>
+					<Mass>1.75</Mass>
+					<RangedWeapon_Cooldown>1.06</RangedWeapon_Cooldown>
+				</statBases>
+				<Properties>
+					<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+					<hasStandardCommand>true</hasStandardCommand>
+					<defaultProjectile>Bullet_25x40mmGrenade_HE</defaultProjectile>
+					<warmupTime>0.6</warmupTime>
+					<range>12</range>
+					<soundCast>ShotLynx</soundCast>
+					<soundCastTail>GunTail_Light</soundCastTail>
+					<muzzleFlashScale>9</muzzleFlashScale>
+				</Properties>
+				<AmmoUser>
+					<magazineSize>1</magazineSize>
+					<reloadTime>2.6</reloadTime>
+					<ammoSet>AmmoSet_25x40mmGrenade</ammoSet>
+				</AmmoUser>
+				<FireModes>
+				</FireModes>
+				<weaponTags>
+					<li>CE_OneHandedWeapon</li>
+				</weaponTags>
+			</li>
+
+			<!-- ==========  Tactical Pistol =========== -->
+			<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+				<defName>GD_TacticalPistol</defName>
+				<statBases>
+					<Mass>1.25</Mass>
+					<RangedWeapon_Cooldown>0.38</RangedWeapon_Cooldown>
+					<SightsEfficiency>0.7</SightsEfficiency>
+					<ShotSpread>0.18</ShotSpread>
+					<SwayFactor>1.02</SwayFactor>
+					<Bulk>1.25</Bulk>
+				</statBases>
+				<Properties>
+					<recoilAmount>2</recoilAmount>
+					<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+					<hasStandardCommand>true</hasStandardCommand>
+					<defaultProjectile>Bullet_45ACP_FMJ</defaultProjectile>
+					<warmupTime>0.6</warmupTime>
+					<range>12</range>
+					<soundCast>ShotLynx</soundCast>
+					<soundCastTail>GunTail_Light</soundCastTail>
+					<muzzleFlashScale>9</muzzleFlashScale>
+				</Properties>
+				<AmmoUser>
+					<magazineSize>14</magazineSize>
+					<reloadTime>4</reloadTime>
+					<ammoSet>AmmoSet_45ACP</ammoSet>
+				</AmmoUser>
+				<FireModes>
+				</FireModes>
+				<weaponTags>
+					<li>CE_OneHandedWeapon</li>
+				</weaponTags>
+			</li>
+
+			<!-- ==========  Modular Carbine =========== -->
+			<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+				<defName>GD_ModularCarbine</defName>
+				<statBases>
+					<Mass>2.5</Mass>
+					<RangedWeapon_Cooldown>0.36</RangedWeapon_Cooldown>
+					<SightsEfficiency>1</SightsEfficiency>
+					<ShotSpread>0.12</ShotSpread>
+					<SwayFactor>0.89</SwayFactor>
+					<Bulk>6.4</Bulk>
+				</statBases>
+				<Properties>
+					<recoilAmount>1.71</recoilAmount>
+					<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+					<hasStandardCommand>true</hasStandardCommand>
+					<defaultProjectile>Bullet_556x45mmNATO_FMJ</defaultProjectile>
+					<warmupTime>1.1</warmupTime>
+					<range>32</range>
+					<burstShotCount>6</burstShotCount>
+					<ticksBetweenBurstShots>5</ticksBetweenBurstShots>
+					<soundCast>ShotGRC</soundCast>
+					<soundCastTail>GunTail_Medium</soundCastTail>
+					<muzzleFlashScale>9</muzzleFlashScale>
+				</Properties>
+				<AmmoUser>
+					<magazineSize>25</magazineSize>
+					<reloadTime>4.5</reloadTime>
+					<ammoSet>AmmoSet_556x45mmNATO</ammoSet>
+				</AmmoUser>
+				<FireModes>
+					<aiUseBurstMode>false</aiUseBurstMode>
+					<aiAimMode>AimedShot</aiAimMode>
+					<aimedBurstShotCount>3</aimedBurstShotCount>
+				</FireModes>
+			</li>
+
+			<!-- ==========  Modular Rifle =========== -->
+			<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+				<defName>GD_ModularRifle</defName>
+				<statBases>
+					<Mass>3.5</Mass>
+					<RangedWeapon_Cooldown>0.36</RangedWeapon_Cooldown>
+					<SightsEfficiency>1</SightsEfficiency>
+					<ShotSpread>0.08</ShotSpread>
+					<SwayFactor>1.36</SwayFactor>
+					<Bulk>9.8</Bulk>
+				</statBases>
+				<Properties>
+					<recoilAmount>1.4</recoilAmount>
+					<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+					<hasStandardCommand>true</hasStandardCommand>
+					<defaultProjectile>Bullet_556x45mmNATO_FMJ</defaultProjectile>
+					<warmupTime>1.1</warmupTime>
+					<range>55</range>
+					<burstShotCount>6</burstShotCount>
+					<ticksBetweenBurstShots>4</ticksBetweenBurstShots>
+					<soundCast>ShotGRC</soundCast>
+					<soundCastTail>GunTail_Medium</soundCastTail>
+					<muzzleFlashScale>9</muzzleFlashScale>
+				</Properties>
+				<AmmoUser>
+					<magazineSize>30</magazineSize>
+					<reloadTime>4.5</reloadTime>
+					<ammoSet>AmmoSet_556x45mmNATO</ammoSet>
+				</AmmoUser>
+				<FireModes>
+					<aimedBurstShotCount>3</aimedBurstShotCount>
+					<aiUseBurstMode>TRUE</aiUseBurstMode>
+					<aiAimMode>AimedShot</aiAimMode>
+				</FireModes>
+				<weaponTags>
+					<li>CE_AI_Rifle</li>
+				</weaponTags>
+			</li>
+
+			<!-- ==========  Modular DMR =========== -->
+			<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+				<defName>GD_ModularDMR</defName>
+				<statBases>
+					<Mass>3.91</Mass>
+					<RangedWeapon_Cooldown>0.5</RangedWeapon_Cooldown>
+					<SightsEfficiency>1.86</SightsEfficiency>
+					<ShotSpread>0.07</ShotSpread>
+					<SwayFactor>1.32</SwayFactor>
+					<Bulk>8.85</Bulk>
+				</statBases>
+				<Properties>
+					<recoilAmount>2.11</recoilAmount>
+					<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+					<hasStandardCommand>true</hasStandardCommand>
+					<defaultProjectile>Bullet_762x51mmNATO_FMJ</defaultProjectile>
+					<warmupTime>1.3</warmupTime>
+					<range>75</range>
+					<soundCast>ShotGRM</soundCast>
+					<soundCastTail>GunTail_Heavy</soundCastTail>
+					<muzzleFlashScale>9</muzzleFlashScale>
+				</Properties>
+				<AmmoUser>
+					<magazineSize>15</magazineSize>
+					<reloadTime>4</reloadTime>
+					<ammoSet>AmmoSet_762x51mmNATO</ammoSet>
+				</AmmoUser>
+				<FireModes>
+					<aiUseBurstMode>False</aiUseBurstMode>
+					<aiAimMode>AimedShot</aiAimMode>
+				</FireModes>
+				<weaponTags>
+					<li>SniperRifle</li>
+				</weaponTags>
+			</li>
+
+			<!-- ==========  Modular LMG =========== -->
+			<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+				<defName>GD_ModularLMG</defName>
+				<statBases>
+					<Mass>6.8</Mass>
+					<RangedWeapon_Cooldown>0.55</RangedWeapon_Cooldown>
+					<SightsEfficiency>1</SightsEfficiency>
+					<ShotSpread>0.07</ShotSpread>
+					<SwayFactor>1.2</SwayFactor>
+					<Bulk>11.4</Bulk>
+				</statBases>
+				<Properties>
+					<recoilAmount>0.87</recoilAmount>
+					<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+					<hasStandardCommand>true</hasStandardCommand>
+					<defaultProjectile>Bullet_556x45mmNATO_FMJ</defaultProjectile>
+					<warmupTime>1.25</warmupTime>
+					<range>75</range>
+					<burstShotCount>10</burstShotCount>
+					<ticksBetweenBurstShots>4</ticksBetweenBurstShots>
+					<soundCast>ShotGRS</soundCast>
+					<soundCastTail>GunTail_Medium</soundCastTail>
+					<muzzleFlashScale>9</muzzleFlashScale>
+				</Properties>
+				<AmmoUser>
+					<magazineSize>50</magazineSize>
+					<reloadTime>4.5</reloadTime>
+					<ammoSet>AmmoSet_556x45mmNATO</ammoSet>
+				</AmmoUser>
+				<FireModes>
+					<aimedBurstShotCount>5</aimedBurstShotCount>
+					<aiUseBurstMode>False</aiUseBurstMode>
+					<aiAimMode>SuppressFire</aiAimMode>
+				</FireModes>
+				<weaponTags>
+					<li>CE_MachineGun</li>
+				</weaponTags>
+			</li>
+
+			<!-- ==========  Caracal SMG =========== -->
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/thingDef[defName="GD_HVSMG"]/statBases</xpath>
+				<value>
+					<statBases>
+						<WorkToMake>50</WorkToMake>
+						<SightsEfficiency>1</SightsEfficiency>
+						<ShotSpread>0.17</ShotSpread>
+						<SwayFactor>0.55</SwayFactor>
+						<Bulk>2.31</Bulk>
+						<Mass>3.2</Mass>
+						<RangedWeapon_Cooldown>0.36</RangedWeapon_Cooldown>
+					</statBases>				
+				</value>
+			</li>				
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/thingDef[defName="GD_HVSMG"]/verbs</xpath>
+				<value>
+					<verbs>
+					<li Class="CombatExtended.VerbPropertiesCE">					
+						<recoilAmount>1.58</recoilAmount>
+						<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+						<hasStandardCommand>true</hasStandardCommand>
+						<defaultProjectile>Bullet_9x19mmPara_FMJ</defaultProjectile>
+						<warmupTime>0.6</warmupTime>
+						<burstShotCount>6</burstShotCount>
+						<ticksBetweenBurstShots>7</ticksBetweenBurstShots>
+						<range>16</range>
+						<soundCast>ShotCaracal</soundCast>
+						<soundCastTail>GunTail_Light</soundCastTail>
+						<muzzleFlashScale>9</muzzleFlashScale>
+					</li>	
+					</verbs>				
+				</value>
+			</li>
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/thingDef[defName="GD_HVSMG"]</xpath>
+				<value>
+					<comps>
+						<li Class="CombatExtended.CompProperties_AmmoUser">				
+							<magazineSize>36</magazineSize>
+							<reloadTime>4.5</reloadTime>
+							<ammoSet>AmmoSet_9x19mmPara</ammoSet>
+						</li>
+						<li Class="CombatExtended.CompProperties_FireModes">
+							<aimedBurstShotCount>3</aimedBurstShotCount>		
+						</li>
+					</comps>
+					<weaponTags>
+						<li>CE_SMG</li>
+						<li>CE_AI_AssaultWeapon</li>
+					</weaponTags>					
+				</value>
+			</li>			
+
+			<!-- ==========  GD Multi Launcher =========== -->
+			<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+				<defName>GD_GrenadeLauncher</defName>
+				<statBases>
+					<WorkToMake>55000</WorkToMake>
+					<Mass>5.5</Mass>
+					<RangedWeapon_Cooldown>0.39</RangedWeapon_Cooldown>
+					<SightsEfficiency>1.1</SightsEfficiency>
+					<ShotSpread>0.18</ShotSpread>
+					<SwayFactor>1.15</SwayFactor>
+					<Bulk>6.0</Bulk>
+				</statBases>
+				<Properties>
+					<recoilAmount>2.58</recoilAmount>
+					<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+					<hasStandardCommand>true</hasStandardCommand>
+					<defaultProjectile>Bullet_25x40mmGrenade_HE</defaultProjectile>
+					<warmupTime>1.1</warmupTime>
+					<range>40</range>
+					<minRange>2</minRange>
+					<targetParams>
+						<canTargetLocations>true</canTargetLocations>
+					</targetParams>
+					<soundCast>ShotGdgrenade</soundCast>
+					<soundCastTail>GunTail_Medium</soundCastTail>
+					<muzzleFlashScale>14</muzzleFlashScale>
+				</Properties>
+				<AmmoUser>
+					<magazineSize>8</magazineSize>
+					<reloadTime>5.1</reloadTime>
+					<ammoSet>AmmoSet_25x40mmGrenade</ammoSet>
+				</AmmoUser>
+				<FireModes>
+					<aiUseBurstMode>False</aiUseBurstMode>
+					<aiAimMode>SuppressFire</aiAimMode>
+				</FireModes>
+			</li>
+
+			<li Class="PatchOperationRemove">
+				<xpath>Defs/thingDef[defName="GD_BSLauncher"]</xpath>
+			</li>	
+				
+			<li Class="PatchOperationRemove">
+				<xpath>Defs/thingDef[defName="GD_INGrenadeLauncher"]</xpath>
+			</li>	
+				
+			<li Class="PatchOperationRemove">
+				<xpath>Defs/thingDef[defName="GD_SKGrenadeLauncher"]</xpath>
+			</li>	
+			
+		</operations>
+		</match>
+	</Operation>
+</Patch>

@@ -1,0 +1,418 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+	<Operation Class="PatchOperationFindMod">
+    <mods>
+		<li>Rimsenal - Core</li>
+    </mods>
+		<match Class="PatchOperationSequence">
+		<operations>
+
+			<!-- ==========  Melee Tools =========== -->
+
+			<!-- Pistols -->
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/thingDef[defName="TE_KineticPistol"]</xpath>
+				<value>
+				  <tools>
+					<li Class="CombatExtended.ToolCE">
+					  <label>grip</label>
+					  <capacities>
+						<li>Blunt</li>
+					  </capacities>
+					  <power>2</power>
+					  <cooldownTime>1.54</cooldownTime>
+					  <chanceFactor>1.5</chanceFactor>
+					  <armorPenetrationBlunt>0.555</armorPenetrationBlunt>
+					  <linkedBodyPartsGroup>Grip</linkedBodyPartsGroup>
+					</li>
+					<li Class="CombatExtended.ToolCE">
+					  <label>muzzle</label>
+					  <capacities>
+						<li>Poke</li>
+					  </capacities>
+					  <power>2</power>
+					  <cooldownTime>1.54</cooldownTime>
+					  <armorPenetrationBlunt>0.555</armorPenetrationBlunt>
+					  <linkedBodyPartsGroup>Muzzle</linkedBodyPartsGroup>
+					</li>
+				  </tools>
+				</value>
+			</li>
+			<!-- Long guns-->			
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/thingDef[defName="TE_KineticRifle" or
+				defName="TE_ThuddGun" or
+				defName="TE_KineticLongRifle" or
+				defName="TE_StormCannon"				
+				]</xpath>
+				<value>
+				  <tools>
+					<li Class="CombatExtended.ToolCE">
+					  <label>stock</label>
+					  <capacities>
+						<li>Blunt</li>
+					  </capacities>
+					  <power>8</power>
+					  <cooldownTime>1.55</cooldownTime>
+					  <chanceFactor>1.5</chanceFactor>
+					  <armorPenetrationBlunt>2.755</armorPenetrationBlunt>
+					  <linkedBodyPartsGroup>Stock</linkedBodyPartsGroup>
+					</li>
+					<li Class="CombatExtended.ToolCE">
+					  <label>barrel</label>
+					  <capacities>
+						<li>Blunt</li>
+					  </capacities>
+					  <power>5</power>
+					  <cooldownTime>2.02</cooldownTime>
+					  <armorPenetrationBlunt>1.630</armorPenetrationBlunt>
+					  <linkedBodyPartsGroup>Barrel</linkedBodyPartsGroup>
+					</li>
+					<li Class="CombatExtended.ToolCE">
+					  <label>muzzle</label>
+					  <capacities>
+						<li>Poke</li>
+					  </capacities>
+					  <power>8</power>
+					  <cooldownTime>1.55</cooldownTime>
+					  <armorPenetrationBlunt>2.755</armorPenetrationBlunt>
+					  <linkedBodyPartsGroup>Muzzle</linkedBodyPartsGroup>
+					</li>
+				  </tools>
+				</value>
+			</li>
+			<!-- Heavy Weapons -->			
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/thingDef[defName="TE_KineticLance"]</xpath>
+				<value>
+				  <tools>
+					<li Class="CombatExtended.ToolCE">
+					  <label>barrel</label>
+					  <capacities>
+						<li>Blunt</li>
+					  </capacities>
+					  <power>10</power>
+					  <cooldownTime>2.44</cooldownTime>
+					  <armorPenetrationBlunt>3.5</armorPenetrationBlunt>
+					  <linkedBodyPartsGroup>Barrel</linkedBodyPartsGroup>
+					</li>
+				  </tools>
+				</value>
+			</li>
+			
+			<!-- ==========  TE Kinetic Rifle  =========== -->
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/thingDef[defName="TE_KineticRifle"]/statBases</xpath>
+				<value>
+					<statBases>
+						<WorkToMake>50800</WorkToMake>
+						<SightsEfficiency>1.0</SightsEfficiency>
+						<ShotSpread>0.14</ShotSpread>
+						<SwayFactor>1.25</SwayFactor>
+						<Bulk>9.20</Bulk>
+						<Mass>3.30</Mass>
+						<RangedWeapon_Cooldown>0.36</RangedWeapon_Cooldown>
+					</statBases>				
+				</value>
+			</li>				
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/thingDef[defName="TE_KineticRifle"]/verbs</xpath>
+				<value>
+					<verbs>
+						<li Class="CombatExtended.VerbPropertiesCE">					
+						<recoilAmount>1.56</recoilAmount>
+						<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+						<hasStandardCommand>true</hasStandardCommand>
+						<defaultProjectile>Bullet_TEPowerCharge_KE</defaultProjectile>
+						<warmupTime>0.9</warmupTime>
+						<ammoConsumedPerShotCount>2</ammoConsumedPerShotCount>
+						<burstShotCount>5</burstShotCount>
+						<ticksBetweenBurstShots>6</ticksBetweenBurstShots>
+						<range>44</range>
+						<soundCast>ImpactM</soundCast>
+						<soundCastTail>GunTail_Medium</soundCastTail>
+						<muzzleFlashScale>8</muzzleFlashScale>
+						</li>	
+					</verbs>				
+				</value>
+			</li>
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/thingDef[defName="TE_KineticRifle"]</xpath>
+				<value>
+					<comps>
+						<li Class="CombatExtended.CompProperties_AmmoUser">				
+							<magazineSize>60</magazineSize>
+							<reloadTime>4</reloadTime>
+							<ammoSet>AmmoSet_TEPowerCharge</ammoSet>
+						</li>
+						<li Class="CombatExtended.CompProperties_FireModes">
+							<aimedBurstShotCount>3</aimedBurstShotCount>
+							<aiUseBurstMode>TRUE</aiUseBurstMode>	
+						</li>						
+					</comps>					
+				</value>
+			</li>
+			
+			<!-- ==========  TE Kinetic Pistol  =========== -->
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/thingDef[defName="TE_KineticPistol"]/statBases</xpath>
+				<value>
+					<statBases>
+						<WorkToMake>30800</WorkToMake>
+						<SightsEfficiency>0.7</SightsEfficiency>
+						<ShotSpread>0.17</ShotSpread>
+						<SwayFactor>0.93</SwayFactor>
+						<Bulk>1.70</Bulk>
+						<Mass>1.10</Mass>
+						<RangedWeapon_Cooldown>0.36</RangedWeapon_Cooldown>
+					</statBases>				
+				</value>
+			</li>				
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/thingDef[defName="TE_KineticPistol"]/verbs</xpath>
+				<value>
+					<verbs>
+						<li Class="CombatExtended.VerbPropertiesCE">					
+							<recoilAmount>1.8</recoilAmount>
+							<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+							<hasStandardCommand>true</hasStandardCommand>
+							<defaultProjectile>Bullet_TEPowerCharge_KE</defaultProjectile>
+							<warmupTime>0.4</warmupTime>
+							<ammoConsumedPerShotCount>2</ammoConsumedPerShotCount>
+							<range>12</range>
+							<soundCast>ImpactM</soundCast>
+							<soundCastTail>GunTail_Medium</soundCastTail>
+							<muzzleFlashScale>8</muzzleFlashScale>
+						</li>	
+					</verbs>				
+				</value>
+			</li>
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/thingDef[defName="TE_KineticPistol"]</xpath>
+				<value>
+					<comps>
+						<li Class="CombatExtended.CompProperties_AmmoUser">				
+							<magazineSize>18</magazineSize>
+							<reloadTime>4</reloadTime>
+							<ammoSet>AmmoSet_TEPowerCharge</ammoSet>
+						</li>
+						<li Class="CombatExtended.CompProperties_FireModes">
+						</li>						
+					</comps>					
+				</value>
+			</li>
+			
+			<!-- ==========  TE Thudd Gun  =========== -->
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/thingDef[defName="TE_ThuddGun"]/statBases</xpath>
+				<value>
+					<statBases>
+						<WorkToMake>46800</WorkToMake>
+						<SightsEfficiency>1.0</SightsEfficiency>
+						<ShotSpread>0.21</ShotSpread>
+						<SwayFactor>1.37</SwayFactor>
+						<Bulk>9.60</Bulk>
+						<Mass>4.11</Mass>
+						<RangedWeapon_Cooldown>0.36</RangedWeapon_Cooldown>
+					</statBases>				
+				</value>
+			</li>				
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/thingDef[defName="TE_ThuddGun"]/verbs</xpath>
+				<value>
+					<verbs>
+						<li Class="CombatExtended.VerbPropertiesCE">					
+							<recoilAmount>1.48</recoilAmount>
+							<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+							<hasStandardCommand>true</hasStandardCommand>
+							<defaultProjectile>Bullet_TEEnergyCanister_KE</defaultProjectile>
+							<ammoConsumedPerShotCount>20</ammoConsumedPerShotCount>
+							<warmupTime>0.9</warmupTime>
+							<range>32</range>
+							<soundCast>ImpactB</soundCast>
+							<soundCastTail>GunTail_Heavy</soundCastTail>
+							<muzzleFlashScale>12</muzzleFlashScale>
+						</li>	
+					</verbs>				
+				</value>
+			</li>
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/thingDef[defName="TE_ThuddGun"]</xpath>
+				<value>
+					<comps>
+						<li Class="CombatExtended.CompProperties_AmmoUser">				
+							<magazineSize>200</magazineSize>
+							<reloadTime>4</reloadTime>
+							<ammoSet>AmmoSet_TEEnergyCanister</ammoSet>
+						</li>
+						<li Class="CombatExtended.CompProperties_FireModes">
+						</li>						
+					</comps>					
+				</value>
+			</li>
+		
+			<!-- ==========  TE Kinetic Long Rifle  =========== -->
+		<li Class="PatchOperationReplace">
+				<xpath>Defs/thingDef[defName="TE_KineticLongRifle"]/statBases</xpath>
+				<value>
+					<statBases>
+						<WorkToMake>46800</WorkToMake>
+						<SightsEfficiency>2.60</SightsEfficiency>
+						<ShotSpread>0.08</ShotSpread>
+						<SwayFactor>1.74</SwayFactor>
+						<Bulk>12.10</Bulk>
+						<Mass>4.50</Mass>
+						<RangedWeapon_Cooldown>0.5</RangedWeapon_Cooldown>
+					</statBases>				
+				</value>
+			</li>				
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/thingDef[defName="TE_KineticLongRifle"]/verbs</xpath>
+				<value>
+					<verbs>
+						<li Class="CombatExtended.VerbPropertiesCE">					
+							<recoilAmount>2.01</recoilAmount>
+							<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+							<hasStandardCommand>true</hasStandardCommand>
+							<defaultProjectile>Bullet_TEConcentratedPowerCharge_KE</defaultProjectile>
+							<warmupTime>1.1</warmupTime>
+							<ammoConsumedPerShotCount>6</ammoConsumedPerShotCount>
+							<range>75</range>
+							<soundCast>ImpactB</soundCast>
+							<soundCastTail>GunTail_Heavy</soundCastTail>
+							<muzzleFlashScale>12</muzzleFlashScale>
+						</li>	
+					</verbs>				
+				</value>
+			</li>
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/thingDef[defName="TE_KineticLongRifle"]</xpath>
+				<value>
+				<comps>
+					<li Class="CombatExtended.CompProperties_AmmoUser">				
+						<magazineSize>60</magazineSize>
+						<reloadTime>4</reloadTime>
+						<ammoSet>AmmoSet_TEConcentratedPowerCharge</ammoSet>
+					</li>
+					<li Class="CombatExtended.CompProperties_FireModes">
+						<aiAimMode>AimedShot</aiAimMode>						
+					</li>
+				</comps>	
+				</value>
+			</li>
+		
+			<!-- ==========  TE Storm Cannon  =========== -->
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/thingDef[defName="TE_StormCannon"]/statBases</xpath>
+				<value>
+					<statBases>
+						<WorkToMake>65800</WorkToMake>
+						<SightsEfficiency>1.0</SightsEfficiency>
+						<ShotSpread>0.18</ShotSpread>
+						<SwayFactor>1.34</SwayFactor>
+						<Bulk>12.60</Bulk>
+						<Mass>6.85</Mass>
+						<RangedWeapon_Cooldown>0.55</RangedWeapon_Cooldown>
+					</statBases>				
+				</value>
+			</li>				
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/thingDef[defName="TE_StormCannon"]/verbs</xpath>
+				<value>
+					<verbs>
+						<li Class="CombatExtended.VerbPropertiesCE">					
+							<recoilAmount>1.25</recoilAmount>
+							<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+							<hasStandardCommand>true</hasStandardCommand>
+							<defaultProjectile>Bullet_TEEnergyCanister_KE</defaultProjectile>
+							<warmupTime>1.75</warmupTime>
+							<burstShotCount>6</burstShotCount>
+							<ticksBetweenBurstShots>12</ticksBetweenBurstShots>
+							<ammoConsumedPerShotCount>10</ammoConsumedPerShotCount>
+							<range>62</range>
+							<soundCast>ImpactB</soundCast>
+							<soundCastTail>GunTail_Heavy</soundCastTail>
+							<muzzleFlashScale>12</muzzleFlashScale>
+							<targetParams>
+								<canTargetLocations>true</canTargetLocations>
+							</targetParams>
+						</li>	
+					</verbs>				
+				</value>
+			</li>
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/thingDef[defName="TE_StormCannon"]</xpath>
+				<value>
+					<comps>
+						<li Class="CombatExtended.CompProperties_AmmoUser">				
+							<magazineSize>300</magazineSize>
+							<reloadTime>4</reloadTime>
+							<ammoSet>AmmoSet_TEEnergyCanister</ammoSet>
+						</li>
+						<li Class="CombatExtended.CompProperties_FireModes">
+							<aimedBurstShotCount>3</aimedBurstShotCount>
+							<aiUseBurstMode>TRUE</aiUseBurstMode>						
+						</li>						
+					</comps>					
+				</value>
+			</li>
+		
+			<!-- ==========  TE Kinetic Lance  =========== -->
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/thingDef[defName="TE_KineticLance"]/statBases</xpath>
+				<value>
+					<statBases>
+						<WorkToMake>65800</WorkToMake>
+						<SightsEfficiency>2.1</SightsEfficiency>
+						<ShotSpread>0.12</ShotSpread>
+						<SwayFactor>1.82</SwayFactor>
+						<Bulk>18.00</Bulk>
+						<Mass>10</Mass>
+						<RangedWeapon_Cooldown>1.1</RangedWeapon_Cooldown>
+					</statBases>				
+				</value>
+			</li>				
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/thingDef[defName="TE_KineticLance"]/verbs</xpath>
+				<value>
+					<verbs>
+						<li Class="CombatExtended.VerbPropertiesCE">					
+							<recoilAmount>0.88</recoilAmount>
+							<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+							<hasStandardCommand>true</hasStandardCommand>
+							<defaultProjectile>Bullet_TEPowerCore_KE</defaultProjectile>
+							<warmupTime>2.5</warmupTime>
+							<burstShotCount>40</burstShotCount>
+							<ticksBetweenBurstShots>2</ticksBetweenBurstShots>
+							<ammoConsumedPerShotCount>5</ammoConsumedPerShotCount>
+							<range>33</range>
+							<soundCast>ImpactB</soundCast>
+							<soundCastTail>GunTail_Heavy</soundCastTail>
+							<muzzleFlashScale>12</muzzleFlashScale>
+						</li>	
+					</verbs>				
+				</value>
+			</li>
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/thingDef[defName="TE_KineticLance"]</xpath>
+				<value>
+					<comps>
+						<li Class="CombatExtended.CompProperties_AmmoUser">				
+							<magazineSize>400</magazineSize>
+							<reloadTime>8</reloadTime>
+							<ammoSet>AmmoSet_TEPowerCore</ammoSet>
+						</li>
+						<li Class="CombatExtended.CompProperties_FireModes">
+							<aimedBurstShotCount>20</aimedBurstShotCount>
+							<noSingleShot>true</noSingleShot>
+							<aiUseBurstMode>TRUE</aiUseBurstMode>					
+						</li>						
+					</comps>					
+				</value>
+			</li>
+
+			
+		</operations>
+		</match>
+	</Operation>
+</Patch>

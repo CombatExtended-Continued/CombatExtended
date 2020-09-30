@@ -1,0 +1,717 @@
+<?xml version="1.0" encoding="utf-8" ?>
+
+<Patch>
+	<Operation Class="PatchOperationFindMod">
+    <mods>
+		<li>Rimsenal - Core</li>
+    </mods>
+		<match Class="PatchOperationSequence">
+		 <operations>
+
+			<!-- ==========  Carbon Jumpsuit =========== -->
+
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/thingDef[defName="Carbonsuit"]/statBases</xpath>
+				<value>
+					<Bulk>4</Bulk>
+				</value>
+			</li>
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/thingDef[defName="Carbonsuit"]/statBases/ArmorRating_Sharp</xpath>
+				<value>
+					<ArmorRating_Sharp>1</ArmorRating_Sharp>
+				</value>
+			</li>
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/thingDef[defName="Carbonsuit"]/statBases/ArmorRating_Blunt</xpath>
+				<value>
+					<ArmorRating_Blunt>4</ArmorRating_Blunt>
+				</value>
+			</li>						
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/thingDef[defName="Carbonsuit"]/statBases/ArmorRating_Heat</xpath>
+				<value>
+					<ArmorRating_Heat>0.5</ArmorRating_Heat>
+				</value>
+			</li>
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/thingDef[defName="Carbonsuit"]/apparel/bodyPartGroups</xpath>
+				<value>
+					<li>Feet</li>
+				</value>
+			</li>
+
+			<!-- ========== Pioneer Armor =========== -->
+
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/thingDef[defName="Apparel_PioneerArmor"]/statBases</xpath>
+				<value>
+					<Bulk>100</Bulk>
+					<WornBulk>15</WornBulk>
+				</value>
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/thingDef[defName="Apparel_PioneerArmor"]/statBases/Mass</xpath>
+				<value>
+					<Mass>45</Mass>
+				</value>
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/thingDef[defName="Apparel_PioneerArmor"]/statBases/ArmorRating_Sharp</xpath>
+				<value>
+					<ArmorRating_Sharp>17</ArmorRating_Sharp>
+				</value>
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/thingDef[defName="Apparel_PioneerArmor"]/statBases/ArmorRating_Blunt</xpath>
+				<value>
+					<ArmorRating_Blunt>38</ArmorRating_Blunt>
+				</value>
+			</li>
+
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/thingDef[defName="Apparel_PioneerArmor"]/costList</xpath>
+				<value>
+					<DevilstrandCloth>35</DevilstrandCloth>
+				</value>
+			</li>
+
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/thingDef[defName="Apparel_PioneerArmor"]/equippedStatOffsets</xpath>
+				<value>
+					<CarryWeight>60</CarryWeight>
+					<CarryBulk>15</CarryBulk>
+				</value>
+			</li>
+
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/thingDef[defName="Apparel_PioneerArmor"]/apparel/bodyPartGroups</xpath>
+				<value>
+					<li>Hands</li>
+					<li>Feet</li>
+				</value>
+			</li>
+
+
+			<!-- ========== Pioneer Helmet =========== -->
+
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/thingDef[defName="Apparel_PioneerH"]/statBases</xpath>
+				<value>
+					<Bulk>5</Bulk>
+					<WornBulk>1</WornBulk>
+				</value>
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/thingDef[defName="Apparel_PioneerH"]/statBases/ArmorRating_Sharp</xpath>
+				<value>
+					<ArmorRating_Sharp>18</ArmorRating_Sharp>
+				</value>
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/thingDef[defName="Apparel_PioneerH"]/statBases/ArmorRating_Blunt</xpath>
+				<value>
+					<ArmorRating_Blunt>36</ArmorRating_Blunt>
+				</value>
+			</li>
+
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/thingDef[defName="Apparel_PioneerH"]/equippedStatOffsets</xpath>
+				<value>
+					<SmokeSensitivity>-1</SmokeSensitivity>
+				</value>
+			</li>
+			
+			<!-- ========== Drop Suit =========== -->
+
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/thingDef[defName="Apparel_Dropsuit"]/statBases</xpath>
+				<value>
+					<Bulk>90</Bulk>
+					<WornBulk>12</WornBulk>
+				</value>
+			</li>
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/thingDef[defName="Apparel_Dropsuit"]/apparel/bodyPartGroups</xpath>
+				<value>
+					<li>Hands</li>
+					<li>Feet</li>
+				</value>
+			</li>
+
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/thingDef[defName="Apparel_Dropsuit"]/equippedStatOffsets</xpath>
+				<value>
+					<CarryWeight>15</CarryWeight>
+					<CarryBulk>8</CarryBulk>
+				</value>
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/thingDef[defName="Apparel_Dropsuit"]/statBases/ArmorRating_Sharp</xpath>
+				<value>
+					<ArmorRating_Sharp>18</ArmorRating_Sharp>
+				</value>
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/thingDef[defName="Apparel_Dropsuit"]/statBases/ArmorRating_Blunt</xpath>
+				<value>
+					<ArmorRating_Blunt>40</ArmorRating_Blunt>
+				</value>
+			</li>
+
+			<!-- ========== Dropsuit Helmet =========== -->
+
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/thingDef[defName="Apparel_DropsuitH"]/statBases</xpath>
+				<value>
+					<Bulk>5</Bulk>
+					<WornBulk>1</WornBulk>
+				</value>
+			</li>
+			
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/thingDef[defName="Apparel_DropsuitH"]/statBases/ArmorRating_Sharp</xpath>
+				<value>
+					<ArmorRating_Sharp>16</ArmorRating_Sharp>
+				</value>
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/thingDef[defName="Apparel_DropsuitH"]/statBases/ArmorRating_Blunt</xpath>
+				<value>
+					<ArmorRating_Blunt>36</ArmorRating_Blunt>
+				</value>
+			</li>
+
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/thingDef[defName="Apparel_DropsuitH"]/equippedStatOffsets</xpath>
+				<value>
+					<SmokeSensitivity>-1</SmokeSensitivity>
+				</value>
+			</li>
+			
+			<!-- ========== Nervesuit =========== -->
+
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/thingDef[defName="Apparel_Strikesuit"]/statBases</xpath>
+				<value>
+					<Bulk>80</Bulk>
+					<WornBulk>8</WornBulk>
+				</value>
+			</li>
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/thingDef[defName="Apparel_Strikesuit"]/apparel/bodyPartGroups</xpath>
+				<value>
+					<li>Hands</li>
+					<li>Feet</li>
+				</value>
+			</li>
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/thingDef[defName="Apparel_Strikesuit"]/equippedStatOffsets</xpath>
+				<value>
+					<CarryWeight>10</CarryWeight>
+					<CarryBulk>5</CarryBulk>
+				</value>
+			</li>
+			
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/thingDef[defName="Apparel_Strikesuit"]/statBases/ArmorRating_Sharp</xpath>
+				<value>
+					<ArmorRating_Sharp>11</ArmorRating_Sharp>
+				</value>
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/thingDef[defName="Apparel_Strikesuit"]/statBases/ArmorRating_Blunt</xpath>
+				<value>
+					<ArmorRating_Blunt>23</ArmorRating_Blunt>
+				</value>
+			</li>			
+			
+			<!-- ========== Nervesuit helmet =========== -->
+
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/thingDef[defName="Apparel_StrikesuitH"]/statBases</xpath>
+				<value>
+					<Bulk>3</Bulk>
+					<WornBulk>1</WornBulk>
+				</value>
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/thingDef[defName="Apparel_StrikesuitH"]/statBases/ArmorRating_Sharp</xpath>
+				<value>
+					<ArmorRating_Sharp>9.5</ArmorRating_Sharp>
+				</value>
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/thingDef[defName="Apparel_StrikesuitH"]/statBases/ArmorRating_Blunt</xpath>
+				<value>
+					<ArmorRating_Blunt>18</ArmorRating_Blunt>
+				</value>
+			</li>
+			
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/thingDef[defName="Apparel_StrikesuitH"]/equippedStatOffsets</xpath>
+				<value>
+					<Suppressability>-0.25</Suppressability>
+					<SmokeSensitivity>-1</SmokeSensitivity>
+				</value>
+			</li>
+			
+			<!-- ========== Assault Armor =========== -->
+
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/thingDef[defName="Apparel_AssaultArmor"]/statBases</xpath>
+				<value>
+					<Bulk>120</Bulk>
+					<WornBulk>20</WornBulk>
+				</value>
+			</li>
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/thingDef[defName="Apparel_AssaultArmor"]/statBases/Mass</xpath>
+				<value>
+					<Mass>60</Mass>
+				</value>
+			</li>
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/thingDef[defName="Apparel_AssaultArmor"]/statBases/ArmorRating_Sharp</xpath>
+				<value>
+					<ArmorRating_Sharp>26</ArmorRating_Sharp>
+				</value>
+			</li>
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/thingDef[defName="Apparel_AssaultArmor"]/statBases/ArmorRating_Blunt</xpath>
+				<value>
+					<ArmorRating_Blunt>58.5</ArmorRating_Blunt>
+				</value>
+			</li>			
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/thingDef[defName="Apparel_AssaultArmor"]/equippedStatOffsets</xpath>
+				<value>
+					<CarryWeight>40</CarryWeight>
+					<CarryBulk>10</CarryBulk>
+				</value>
+			</li>
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/thingDef[defName="Apparel_AssaultArmor"]/apparel/bodyPartGroups</xpath>
+				<value>
+					<li>Hands</li>
+					<li>Feet</li>
+				</value>
+			</li>
+			
+			<li Class="PatchOperationConditional">
+				<xpath>/Defs/thingDef[defName="Apparel_AssaultArmor"]/verbs</xpath>
+				<match Class="PatchOperationSequence">
+				<operations>
+
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/thingDef[defName="Apparel_AssaultArmor"]/verbs</xpath>
+					<value>
+						<verbs>
+							<li Class="CombatExtended.VerbPropertiesCE">
+								<label>launch EMP grenade</label>
+								<verbClass>CombatExtended.Verb_LaunchProjectileStaticCE</verbClass>
+								<hasStandardCommand>true</hasStandardCommand>
+								<onlyManualCast>True</onlyManualCast>
+								<warmupTime>1.5</warmupTime>
+								<range>40</range>
+								<minRange>5</minRange>
+								<ai_IsBuildingDestroyer>true</ai_IsBuildingDestroyer>
+								<soundCast>Shot_IncendiaryLauncher</soundCast>
+								<soundCastTail>GunTail_Medium</soundCastTail>
+								<muzzleFlashScale>14</muzzleFlashScale>
+								<drawHighlightWithLineOfSight>true</drawHighlightWithLineOfSight>
+								<targetParams>
+									<canTargetLocations>true</canTargetLocations>
+								</targetParams>
+								<ignorePartialLoSBlocker>true</ignorePartialLoSBlocker>
+								<defaultProjectile>Bullet_30x29mmGrenade_EMP</defaultProjectile>
+								<rangedFireRulepack>Combat_RangedFire_Thrown</rangedFireRulepack>
+							</li>
+						</verbs>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/thingDef[defName="Apparel_AssaultArmor"]/comps/li[@Class="CompProperties_Reloadable"]/ammoDef</xpath>
+					<value>
+						<ammoDef>Ammo_30x29mmGrenade_EMP</ammoDef>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/thingDef[defName="Apparel_AssaultArmor"]/comps/li[@Class="CompProperties_Reloadable"]/ammoCountPerCharge</xpath>
+					<value>
+						<ammoCountPerCharge>1</ammoCountPerCharge>
+					</value>
+				</li>
+
+				</operations>
+				</match>
+			</li>
+			
+			<!-- ========== Assault Helmet =========== -->
+
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/thingDef[defName="Apparel_AssaultArmorH"]/statBases</xpath>
+				<value>
+					<Bulk>8</Bulk>
+					<WornBulk>2</WornBulk>
+				</value>
+			</li>
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/thingDef[defName="Apparel_AssaultArmorH"]/statBases/ArmorRating_Sharp</xpath>
+				<value>
+					<ArmorRating_Sharp>20</ArmorRating_Sharp>
+				</value>
+			</li>
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/thingDef[defName="Apparel_AssaultArmorH"]/statBases/ArmorRating_Blunt</xpath>
+				<value>
+					<ArmorRating_Blunt>45</ArmorRating_Blunt>
+				</value>
+			</li>
+			
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/thingDef[defName="Apparel_AssaultArmorH"]/equippedStatOffsets</xpath>
+				<value>
+					<SmokeSensitivity>-1</SmokeSensitivity>
+				</value>
+			</li>
+			
+			<!-- ========== Fire Support Armor =========== -->
+
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/thingDef[defName="Apparel_FSArmor"]/statBases</xpath>
+				<value>
+					<Bulk>80</Bulk>
+					<WornBulk>15</WornBulk>
+				</value>
+			</li>
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/thingDef[defName="Apparel_FSArmor"]/statBases/Mass</xpath>
+				<value>
+					<Mass>55</Mass>
+				</value>
+			</li>
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/thingDef[defName="Apparel_FSArmor"]/statBases/ArmorRating_Sharp</xpath>
+				<value>
+					<ArmorRating_Sharp>15</ArmorRating_Sharp>
+				</value>
+			</li>
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/thingDef[defName="Apparel_FSArmor"]/statBases/ArmorRating_Blunt</xpath>
+				<value>
+					<ArmorRating_Blunt>30</ArmorRating_Blunt>
+				</value>
+			</li>			
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/thingDef[defName="Apparel_FSArmor"]/equippedStatOffsets</xpath>
+				<value>
+					<CarryWeight>90</CarryWeight>
+					<CarryBulk>40</CarryBulk>
+				</value>
+			</li>
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/thingDef[defName="Apparel_FSArmor"]/apparel/bodyPartGroups</xpath>
+				<value>
+					<li>Hands</li>
+					<li>Feet</li>
+				</value>
+			</li>
+			<!-- ========== Fire Support Helmet =========== -->
+
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/thingDef[defName="Apparel_FSArmorH"]/statBases</xpath>
+				<value>
+					<Bulk>7</Bulk>
+					<WornBulk>1.5</WornBulk>
+				</value>
+			</li>
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/thingDef[defName="Apparel_FSArmorH"]/statBases/ArmorRating_Sharp</xpath>
+				<value>
+					<ArmorRating_Sharp>14</ArmorRating_Sharp>
+				</value>
+			</li>
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/thingDef[defName="Apparel_FSArmorH"]/statBases/ArmorRating_Blunt</xpath>
+				<value>
+					<ArmorRating_Blunt>28</ArmorRating_Blunt>
+				</value>
+			</li>
+
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/thingDef[defName="Apparel_FSArmorH"]/equippedStatOffsets</xpath>
+				<value>
+					<SmokeSensitivity>-1</SmokeSensitivity>
+				</value>
+			</li>
+			
+			<!-- ========== Reflactor Carapace =========== -->
+
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/thingDef[defName="Apparel_ReflactorArmor"]/statBases</xpath>
+				<value>
+					<Bulk>100</Bulk>
+					<WornBulk>15</WornBulk>
+				</value>
+			</li>
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/thingDef[defName="Apparel_ReflactorArmor"]/statBases/Mass</xpath>
+				<value>
+					<Mass>50</Mass>
+				</value>
+			</li>
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/thingDef[defName="Apparel_ReflactorArmor"]/statBases/ArmorRating_Sharp</xpath>
+				<value>
+					<ArmorRating_Sharp>20</ArmorRating_Sharp>
+				</value>
+			</li>
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/thingDef[defName="Apparel_ReflactorArmor"]/statBases/ArmorRating_Heat</xpath>
+				<value>
+					<ArmorRating_Heat>10</ArmorRating_Heat>
+				</value>
+			</li>
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/thingDef[defName="Apparel_ReflactorArmor"]/statBases/ArmorRating_Blunt</xpath>
+				<value>
+					<ArmorRating_Blunt>42</ArmorRating_Blunt>
+				</value>
+			</li>			
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/thingDef[defName="Apparel_ReflactorArmor"]/equippedStatOffsets</xpath>
+				<value>
+					<CarryWeight>40</CarryWeight>
+					<CarryBulk>10</CarryBulk>
+				</value>
+			</li>
+
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/thingDef[defName="Apparel_ReflactorArmor"]/apparel/bodyPartGroups</xpath>
+				<value>
+					<li>Hands</li>
+					<li>Feet</li>
+				</value>
+			</li>
+
+			<!-- ========== Reflactor Helmet =========== -->
+
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/thingDef[defName="Apparel_ReflactorArmorH"]/statBases</xpath>
+				<value>
+					<Bulk>5</Bulk>
+					<WornBulk>1.1</WornBulk>
+				</value>
+			</li>
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/thingDef[defName="Apparel_ReflactorArmorH"]/statBases/ArmorRating_Sharp</xpath>
+				<value>
+					<ArmorRating_Sharp>18</ArmorRating_Sharp>
+				</value>
+			</li>
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/thingDef[defName="Apparel_ReflactorArmorH"]/statBases/ArmorRating_Heat</xpath>
+				<value>
+					<ArmorRating_Heat>10</ArmorRating_Heat>
+				</value>
+			</li>
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/thingDef[defName="Apparel_ReflactorArmorH"]/statBases/ArmorRating_Blunt</xpath>
+				<value>
+					<ArmorRating_Blunt>35</ArmorRating_Blunt>
+				</value>
+			</li>
+
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/thingDef[defName="Apparel_ReflactorArmorH"]</xpath>
+				<value>
+					<equippedStatOffsets>
+						<SmokeSensitivity>-1</SmokeSensitivity>
+					</equippedStatOffsets>	
+				</value>
+			</li>
+			
+			<!-- ========== Hazard Carapace =========== -->
+
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/thingDef[defName="Apparel_HazardCarapace"]/statBases</xpath>
+				<value>
+					<Bulk>100</Bulk>
+					<WornBulk>18</WornBulk>
+				</value>
+			</li>
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/thingDef[defName="Apparel_HazardCarapace"]/statBases/Mass</xpath>
+				<value>
+					<Mass>55</Mass>
+				</value>
+			</li>
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/thingDef[defName="Apparel_HazardCarapace"]/statBases/ArmorRating_Sharp</xpath>
+				<value>
+					<ArmorRating_Sharp>22</ArmorRating_Sharp>
+				</value>
+			</li>
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/thingDef[defName="Apparel_HazardCarapace"]/statBases/ArmorRating_Blunt</xpath>
+				<value>
+					<ArmorRating_Blunt>36</ArmorRating_Blunt>
+				</value>
+			</li>			
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/thingDef[defName="Apparel_HazardCarapace"]/statBases/ArmorRating_Heat</xpath>
+				<value>
+					<ArmorRating_Heat>1.4</ArmorRating_Heat>
+				</value>
+			</li>
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/thingDef[defName="Apparel_HazardCarapace"]/equippedStatOffsets</xpath>
+				<value>
+					<CarryWeight>45</CarryWeight>
+					<CarryBulk>25</CarryBulk>
+				</value>
+			</li>
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/thingDef[defName="Apparel_HazardCarapace"]/apparel/bodyPartGroups</xpath>
+				<value>
+					<li>Hands</li>
+					<li>Feet</li>
+				</value>
+			</li>
+
+			<!-- ========== Hazard Helmet =========== -->
+
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/thingDef[defName="Apparel_HazardCarapaceH"]/statBases</xpath>
+				<value>
+					<Bulk>5</Bulk>
+					<WornBulk>1.0</WornBulk>
+				</value>
+			</li>
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/thingDef[defName="Apparel_HazardCarapaceH"]/statBases/ArmorRating_Sharp</xpath>
+				<value>
+					<ArmorRating_Sharp>19</ArmorRating_Sharp>
+				</value>
+			</li>
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/thingDef[defName="Apparel_HazardCarapaceH"]/statBases/ArmorRating_Blunt</xpath>
+				<value>
+					<ArmorRating_Blunt>32</ArmorRating_Blunt>
+				</value>
+			</li>
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/thingDef[defName="Apparel_HazardCarapaceH"]/statBases/ArmorRating_Heat</xpath>
+				<value>
+					<ArmorRating_Heat>1.5</ArmorRating_Heat>
+				</value>
+			</li>
+
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/thingDef[defName="Apparel_HazardCarapaceH"]/equippedStatOffsets</xpath>
+				<value>
+					<SmokeSensitivity>-1</SmokeSensitivity>
+				</value>
+			</li>
+
+			<!-- ========== CQ Armor =========== -->
+
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/thingDef[defName="Apparel_CloseCombatArmor"]/statBases</xpath>
+				<value>
+					<Bulk>65</Bulk>
+					<WornBulk>12</WornBulk>
+				</value>
+			</li>
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/thingDef[defName="Apparel_CloseCombatArmor"]/statBases/Mass</xpath>
+				<value>
+					<Mass>30</Mass>
+				</value>
+			</li>
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/thingDef[defName="Apparel_CloseCombatArmor"]/statBases/ArmorRating_Sharp</xpath>
+				<value>
+					<ArmorRating_Sharp>16</ArmorRating_Sharp>
+				</value>
+			</li>
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/thingDef[defName="Apparel_CloseCombatArmor"]/statBases/ArmorRating_Heat</xpath>
+				<value>
+					<ArmorRating_Heat>0.7</ArmorRating_Heat>
+				</value>
+			</li>
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/thingDef[defName="Apparel_CloseCombatArmor"]/statBases/ArmorRating_Blunt</xpath>
+				<value>
+					<ArmorRating_Blunt>35</ArmorRating_Blunt>
+				</value>
+			</li>
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/thingDef[defName="Apparel_CloseCombatArmor"]/equippedStatOffsets</xpath>
+				<value>
+					<CarryWeight>40</CarryWeight>
+					<CarryBulk>20</CarryBulk>
+				</value>
+			</li>
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/thingDef[defName="Apparel_CloseCombatArmor"]/apparel/bodyPartGroups</xpath>
+				<value>
+					<li>Hands</li>
+					<li>Feet</li>
+				</value>
+			</li>
+
+			<!-- ========== CQ Helmet =========== -->
+
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/thingDef[defName="Apparel_CloseCombatHelmet"]/statBases</xpath>
+				<value>
+					<Bulk>5</Bulk>
+					<WornBulk>1.0</WornBulk>
+				</value>
+			</li>
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/thingDef[defName="Apparel_CloseCombatHelmet"]/statBases/ArmorRating_Sharp</xpath>
+				<value>
+					<ArmorRating_Sharp>14</ArmorRating_Sharp>
+				</value>
+			</li>
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/thingDef[defName="Apparel_CloseCombatHelmet"]/statBases/ArmorRating_Heat</xpath>
+				<value>
+					<ArmorRating_Heat>0.85</ArmorRating_Heat>
+				</value>
+			</li>
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/thingDef[defName="Apparel_CloseCombatHelmet"]/statBases/ArmorRating_Blunt</xpath>
+				<value>
+					<ArmorRating_Blunt>32</ArmorRating_Blunt>
+				</value>
+			</li>
+
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/thingDef[defName="Apparel_CloseCombatHelmet"]/equippedStatOffsets</xpath>
+				<value>
+					<SmokeSensitivity>-1</SmokeSensitivity>
+				</value>
+			</li>
+
+		</operations>
+		</match>
+	</Operation>
+</Patch>

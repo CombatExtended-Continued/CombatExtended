@@ -1,0 +1,177 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+	<Operation Class="PatchOperationFindMod">
+    <mods>
+		<li>Rimsenal - Core</li>
+    </mods>
+		<match Class="PatchOperationSequence">
+		<operations>
+
+  <!-- ==================== AmmoSet ========================== -->
+
+	<li Class="PatchOperationAdd">
+		<xpath>Defs/CombatExtended.AmmoSetDef[defName="AmmoSet_25x40mmGrenade"]/ammoTypes</xpath>
+		<value>
+			<Ammo_25x40mmGrenade_Buck>Bullet_25mmGauge_Buck</Ammo_25x40mmGrenade_Buck>
+			<Ammo_25x40mmGrenade_INC>Bullet_25x40mmGrenade_INC</Ammo_25x40mmGrenade_INC>			
+		</value>
+	</li>	
+
+  <!-- ==================== Ammo ========================== -->
+
+	<li Class="PatchOperationAdd">
+		<xpath>Defs</xpath>
+		<value>
+
+		  <ThingDef Class="CombatExtended.AmmoDef" ParentName="25x40mmGrenadeBase">
+			<defName>Ammo_25x40mmGrenade_Buck</defName>
+			<label>25x40mm grenade (Buck)</label>
+			<graphicData>
+			  <texPath>ThirdParty/Rimsenal/GrenadeLauncher/BS</texPath>
+			  <graphicClass>Graphic_StackCount</graphicClass>
+			</graphicData>
+			<statBases>
+			  <MarketValue>0.96</MarketValue>
+			</statBases>
+			<ammoClass>BuckShot</ammoClass>
+			<cookOffProjectile>Bullet_25mmGauge_Buck</cookOffProjectile>
+		  </ThingDef>
+
+		  <ThingDef Class="CombatExtended.AmmoDef" ParentName="25x40mmGrenadeBase">
+			<defName>Ammo_25x40mmGrenade_INC</defName>
+			<label>25x40mm grenade (Incendiary)</label>
+			<graphicData>
+			  <texPath>ThirdParty/Rimsenal/GrenadeLauncher/INC</texPath>
+			  <graphicClass>Graphic_StackCount</graphicClass>
+			</graphicData>
+			<statBases>
+			  <MarketValue>0.96</MarketValue>
+			</statBases>
+			<ammoClass>ThermobaricFuel</ammoClass>
+			<comps>
+				<li Class="CombatExtended.CompProperties_ExplosiveCE">
+					<damageAmountBase>1</damageAmountBase>
+					<explosiveDamageType>PrometheumFlame</explosiveDamageType>
+					<explosiveRadius>0.5</explosiveRadius>
+					<preExplosionSpawnThingDef>FilthPrometheum</preExplosionSpawnThingDef>
+					<preExplosionSpawnChance>1</preExplosionSpawnChance>
+				</li>
+			</comps>
+		  </ThingDef>
+
+  <!-- ================== Projectiles ================== -->
+
+		  <ThingDef ParentName="Base12GaugeBullet">
+			<defName>Bullet_25mmGauge_Buck</defName>
+			<label>buckshot pellet</label>
+			<graphicData>
+			  <texPath>Things/Projectile/Shotgun_Pellet</texPath>
+			  <graphicClass>Graphic_Single</graphicClass>
+			</graphicData>
+			<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			  <damageAmountBase>9</damageAmountBase>
+			  <pelletCount>16</pelletCount>
+			  <armorPenetrationSharp>4</armorPenetrationSharp>
+			  <armorPenetrationBlunt>5.7</armorPenetrationBlunt>
+			  <spreadMult>40</spreadMult>
+			  <dropsCasings>false</dropsCasings>	  
+			</projectile>
+		  </ThingDef>
+
+		  <ThingDef ParentName="Base25x40mmGrenadeBullet">
+			<defName>Bullet_25x40mmGrenade_INC</defName>
+			<label>25x40mm grenade (Incendiary)</label>
+			<projectile Class="CombatExtended.ProjectilePropertiesCE">
+				<explosionRadius>1</explosionRadius>
+				<damageDef>PrometheumFlame</damageDef>
+				<damageAmountBase>4</damageAmountBase>
+				<preExplosionSpawnThingDef>FilthPrometheum</preExplosionSpawnThingDef>
+				<preExplosionSpawnChance>1</preExplosionSpawnChance>
+			</projectile>
+		  </ThingDef>
+
+		</value>
+	</li>	
+
+  <!-- ==================== Recipes ========================== -->
+	<li Class="PatchOperationAdd">
+		<xpath>Defs</xpath>
+		<value>
+		
+		  <RecipeDef ParentName="AmmoRecipeBase">
+			<defName>MakeAmmo_25x40mmGrenade_Buck</defName>
+			<label>make 25x40mm buckshot rounds x100</label>
+			<description>Craft 100 25x40mm buckshot rounds.</description>
+			<jobString>Making 25x40mm buckshot rounds.</jobString>
+			<ingredients>
+			  <li>
+				<filter>
+				  <thingDefs>
+					<li>Steel</li>
+				  </thingDefs>
+				</filter>
+				<count>32</count>
+			  </li>
+			</ingredients>
+			<fixedIngredientFilter>
+			  <thingDefs>
+				<li>Steel</li>
+			  </thingDefs>
+			</fixedIngredientFilter>
+			<products>
+			  <Ammo_25x40mmGrenade_Buck>100</Ammo_25x40mmGrenade_Buck>
+			</products>
+			<workAmount>3200</workAmount>
+		  </RecipeDef>
+
+		  <RecipeDef ParentName="AmmoRecipeBase">
+			<defName>MakeAmmo_25x40mmGrenade_INC</defName>
+			<label>make 25x40mm Incendiary grenades x100</label>
+			<description>Craft 100 25x40mm Incendiary grenades.</description>
+			<jobString>Making 25x40mm Incendiary grenades.</jobString>
+			<ingredients>
+			  <li>
+				<filter>
+				  <thingDefs>
+					<li>Steel</li>
+				  </thingDefs>
+				</filter>
+				<count>32</count>
+			  </li>
+			  <li>
+				<filter>
+				  <thingDefs>
+					<li>Prometheum</li>
+				  </thingDefs>
+				</filter>
+				<count>4</count>
+			  </li>
+			  <li>
+				<filter>
+				  <thingDefs>
+					<li>ComponentIndustrial</li>
+				  </thingDefs>
+				</filter>
+				<count>2</count>
+			  </li>
+			</ingredients>
+			<fixedIngredientFilter>
+			  <thingDefs>
+				<li>Steel</li>
+				<li>Prometheum</li>
+				<li>ComponentIndustrial</li>
+			  </thingDefs>
+			</fixedIngredientFilter>
+			<products>
+			  <Ammo_25x40mmGrenade_INC>100</Ammo_25x40mmGrenade_INC>
+			</products>
+			<workAmount>600</workAmount>
+		  </RecipeDef>
+		  
+		</value>
+	</li>	
+		
+		</operations>
+		</match>
+	</Operation>
+</Patch>

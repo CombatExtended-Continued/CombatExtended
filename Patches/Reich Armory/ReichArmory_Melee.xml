@@ -3,14 +3,14 @@
 <Patch>
 	<Operation Class="PatchOperationFindMod">
     <mods>
-		<li>Reich Armory [1.1]</li>
+		<li>Reich Armory [1.2]</li>
     </mods>
 		<match Class="PatchOperationSequence">
 		 <operations>
 
         <!-- === Shovel === -->
         <li Class="PatchOperationAdd">
-          <xpath>/Defs/ThingDef[defName="MeleeWeapon_Feldspaten"]/statBases</xpath>
+          <xpath>/Defs/ThingDef[@Name="Feldspaten_RA"]/statBases</xpath>
           <value>
             <Bulk>6</Bulk>
             <MeleeCounterParryBonus>0.40</MeleeCounterParryBonus>
@@ -18,7 +18,7 @@
         </li>
 
         <li Class="PatchOperationAdd">
-          <xpath>/Defs/ThingDef[defName="MeleeWeapon_Feldspaten"]/equippedStatOffsets</xpath>
+          <xpath>/Defs/ThingDef[@Name="Feldspaten_RA"]/equippedStatOffsets</xpath>
           <value>
             <MeleeCritChance>0.2</MeleeCritChance>
             <MeleeParryChance>0.40</MeleeParryChance>
@@ -27,7 +27,7 @@
         </li>
 
         <li Class="PatchOperationReplace">
-          <xpath>/Defs/ThingDef[defName="MeleeWeapon_Feldspaten"]/tools</xpath>
+          <xpath>/Defs/ThingDef[@Name="Feldspaten_RA"]/tools</xpath>
           <value>
             <tools>
               <li Class="CombatExtended.ToolCE">

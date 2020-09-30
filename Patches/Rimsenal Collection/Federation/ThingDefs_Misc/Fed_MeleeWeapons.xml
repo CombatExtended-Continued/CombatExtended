@@ -1,0 +1,68 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+
+<Patch>
+	<Operation Class="PatchOperationFindMod">
+			<mods>
+				<li>Rimsenal - Federation Faction Pack</li>
+			</mods>
+		<match Class="PatchOperationSequence">
+		<operations>
+
+			<!-- 'Verdict' Concussion Baton -->	
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="AD_ConcussionBaton"]/tools</xpath>
+				<value>
+					<tools>
+						<li Class="CombatExtended.ToolCE">
+							<label>handle</label>
+							<capacities>
+							  <li>Poke</li>
+							</capacities>
+							<power>2</power>
+							<cooldownTime>1.59</cooldownTime>
+							<armorPenetrationBlunt>0.625</armorPenetrationBlunt>
+							<linkedBodyPartsGroup>Handle</linkedBodyPartsGroup>
+						</li>						
+						<li Class="CombatExtended.ToolCE">
+							<label>shaft</label>
+							<labelUsedInLogging>false</labelUsedInLogging>
+							<capacities>
+							  <li>Blunt</li>
+							</capacities>
+							<power>15</power>
+							<cooldownTime>0.63</cooldownTime>
+							<armorPenetrationBlunt>5.625</armorPenetrationBlunt>
+							<linkedBodyPartsGroup>Head</linkedBodyPartsGroup>
+						</li>						
+					</tools>
+				</value>
+			</li>
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName="AD_ConcussionBaton"]/statBases</xpath>
+				<value>
+					<Bulk>2.5</Bulk>
+					<MeleeCounterParryBonus>0.24</MeleeCounterParryBonus>					
+				</value>
+			</li>
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName="AD_ConcussionBaton"]</xpath>
+				<value>
+					<equippedStatOffsets>
+						<MeleeCritChance>0.42</MeleeCritChance>
+						<MeleeParryChance>0.24</MeleeParryChance>
+						<MeleeDodgeChance>0.2</MeleeDodgeChance>						
+					</equippedStatOffsets>
+				</value>
+			</li>			
+
+		  <li Class="PatchOperationAdd">
+			<xpath>Defs/ThingDef[defName="AD_ConcussionBaton"]/weaponTags</xpath>
+			<value>
+			   <li>CE_OnehandedWeapon</li>
+			</value>
+		  </li>
+			
+		</operations>
+		</match>
+	</Operation>
+</Patch>  

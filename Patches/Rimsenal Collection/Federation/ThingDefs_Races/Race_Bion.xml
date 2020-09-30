@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="utf-8" ?>
+
+<Patch>
+	<Operation Class="PatchOperationFindMod">
+			<mods>
+				<li>Rimsenal - Federation Faction Pack</li>
+			</mods>
+		<match Class="PatchOperationSequence">
+		<operations>			
+
+			<!-- ========== Bion Base & Stalker ========== -->
+			<li Class="PatchOperationAddModExtension">
+				<xpath>/Defs/ThingDef[defName="Bion_Base"]</xpath>
+				<value>
+					<li Class="CombatExtended.RacePropertiesExtensionCE">
+						<bodyShape>Humanoid</bodyShape>
+					</li>
+				</value>
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>/Defs/ThingDef[defName="Bion_Base"]/statBases/ArmorRating_Blunt</xpath>
+				<value>
+				  <ArmorRating_Blunt>30</ArmorRating_Blunt>			
+				</value>
+			</li>
+			
+			<li Class="PatchOperationReplace">
+				<xpath>/Defs/ThingDef[defName="Bion_Base"]/statBases/ArmorRating_Sharp</xpath>
+				<value>
+				  <ArmorRating_Sharp>22</ArmorRating_Sharp>			
+				</value>
+			</li>			
+
+			<li Class="PatchOperationReplace">
+				<xpath>/Defs/ThingDef[defName="Bion_Stalker"]/statBases/ArmorRating_Sharp</xpath>
+				<value>
+				  <ArmorRating_Sharp>18</ArmorRating_Sharp>			
+				</value>
+			</li>		
+
+			<li Class="PatchOperationAdd">
+				<xpath>/Defs/ThingDef[defName="Bion_Base" or defName="Bion_Stalker"]/statBases</xpath>
+				<value>
+					<CarryWeight>50</CarryWeight>
+					<CarryBulk>50</CarryBulk>
+					<MeleeDodgeChance>1.1</MeleeDodgeChance>
+					<MeleeCritChance>1.1</MeleeCritChance>
+					<MeleeParryChance>1.1</MeleeParryChance>
+					<SmokeSensitivity>0</SmokeSensitivity>
+				</value>
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>/Defs/ThingDef[defName="Bion_Base" or defName="Bion_Stalker"]/tools</xpath>
+				<value>
+					<tools>
+						<li Class="CombatExtended.ToolCE">
+							<label>head</label>
+							<capacities>
+							  <li>Blunt</li>
+							</capacities>
+							<power>4</power>
+							<cooldownTime>5.05</cooldownTime>
+							<linkedBodyPartsGroup>HeadAttackTool</linkedBodyPartsGroup>
+							<armorPenetrationBlunt>1</armorPenetrationBlunt>
+							<ensureLinkedBodyPartsGroupAlwaysUsable>true</ensureLinkedBodyPartsGroupAlwaysUsable>
+							<chanceFactor>0.2</chanceFactor>
+						</li>					
+						<li Class="CombatExtended.ToolCE">
+							<label>left fist</label>
+							<capacities>
+							  <li>Blunt</li>
+							</capacities>
+							<power>2</power>
+							<cooldownTime>1.5</cooldownTime>
+							<linkedBodyPartsGroup>LeftHand</linkedBodyPartsGroup>
+							<surpriseAttack>
+							  <extraMeleeDamages>
+								<li>
+								  <def>Stun</def>
+								  <amount>14</amount>
+								</li>
+							  </extraMeleeDamages>
+							</surpriseAttack>
+							<armorPenetrationBlunt>0.5</armorPenetrationBlunt>
+						</li>
+						<li Class="CombatExtended.ToolCE">
+							<label>right fist</label>
+							<capacities>
+							  <li>Blunt</li>
+							</capacities>
+							<power>2</power>
+							<cooldownTime>1.5</cooldownTime>
+							<linkedBodyPartsGroup>RightHand</linkedBodyPartsGroup>
+							<surpriseAttack>
+							  <extraMeleeDamages>
+								<li>
+								  <def>Stun</def>
+								  <amount>14</amount>
+								</li>
+							  </extraMeleeDamages>
+							</surpriseAttack>
+							<armorPenetrationBlunt>0.5</armorPenetrationBlunt>
+						</li>										
+					</tools>
+				</value>
+			</li>
+
+			<li Class="PatchOperationSequence">
+			<success>Always</success>
+			<operations>
+				<li Class="PatchOperationTest">
+				<xpath>Defs/ThingDef[defName="Bion_Base"]/comps</xpath>
+				<success>Invert</success>
+				</li>
+				<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName="Bion_Base"]</xpath>
+				<value>
+					<comps />
+				</value>
+				</li>
+			</operations>
+			</li>
+			<!--
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName="Bion_Base"]/comps</xpath>
+				<value>
+					<li>
+					  <compClass>CombatExtended.CompPawnGizmo</compClass>
+					</li>
+					<li Class="CombatExtended.CompProperties_Suppressable" />
+				</value>
+			</li>
+			-->
+		</operations>
+		</match>
+	</Operation>
+</Patch>  

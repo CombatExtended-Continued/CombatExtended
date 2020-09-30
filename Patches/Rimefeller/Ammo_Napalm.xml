@@ -1,156 +1,149 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8" ?>
 <Patch>
 
-	<Operation Class="PatchOperationFindMod">
+  <Operation Class="PatchOperationFindMod">
     <mods>
-		<li>Rimefeller</li>
+      <li>Rimefeller</li>
     </mods>
-		<match Class="PatchOperationSequence">
-		<success>Always</success>
-		 <operations>
-		 
-		 
-		<!-- Add Shell Recipes -->
-			<li Class="PatchOperationAdd">
-				<xpath>Defs</xpath>
-				<value>
-					  <RecipeDef ParentName="AmmoRecipeBase">
-						<defName>MakeShell_Napalm</defName>
-						<label>make 81mm napalm mortar shells x5</label>
-						<description>Craft 5 81mm Napalm mortar shells.</description>
-						<jobString>Making 81mm napalm mortar shells.</jobString>
-						<ingredients>
-						  <li>
-							<filter>
-							  <thingDefs>
-								<li>Steel</li>
-							  </thingDefs>
-							</filter>
-							<count>20</count>
-						  </li>
-						  <li>
-							<filter>
-							  <thingDefs>
-								<li>ComponentIndustrial</li>
-							  </thingDefs>
-							</filter>
-							<count>1</count>
-						  </li>
-						  <li>
-							<filter>
-							  <thingDefs>
-								<li>Napalm</li>
-							  </thingDefs>
-							</filter>
-							<count>15</count>
-						  </li>
-						</ingredients>
-						<fixedIngredientFilter>
-						  <thingDefs>
-							<li>Steel</li>
-							<li>ComponentIndustrial</li>
-							<li>Napalm</li>
-						  </thingDefs>
-						</fixedIngredientFilter>
-						<products>
-						  <Shell_Napalm>5</Shell_Napalm>
-						</products>
-					  </RecipeDef>
-					</value>
-				</li>
-		
-			<!-- Add Shells to AmmoSet -->
-			<li Class="PatchOperationAdd">
-				<xpath>Defs/CombatExtended.AmmoSetDef[defName="AmmoSet_81mmMortarShell"]/ammoTypes</xpath>
-				<value>
-				<Shell_Napalm>Bullet_Shell_Napalm</Shell_Napalm>		
-				</value>
-			</li>
-			
-			<!-- Add CE Ammo.Def to Shells & Ammo-->
-			<li Class="PatchOperationAttributeAdd">
-				<xpath>Defs/ThingDef[defName="Shell_Napalm"]</xpath>
-				<attribute>Class</attribute>
-				<value>CombatExtended.AmmoDef</value>
-			</li>
+    <match Class="PatchOperationSequence">
+      <operations>
 
-			<!-- Add New Shell Base-->
-			<li Class="PatchOperationAttributeSet">
-				<xpath>Defs/ThingDef[defName="Shell_Napalm"]</xpath>
-				<attribute>ParentName</attribute>
-				<value>81mmMortarShellBaseCraftableBase</value>
-			</li>
+        <!-- === AmmoCategory === -->
+        <li Class="PatchOperationAdd">
+          <xpath>Defs</xpath>
+          <value>
+            <CombatExtended.AmmoCategoryDef>
+              <defName>Napalm</defName>
+              <label>napalm</label>
+              <labelShort>napalm</labelShort>
+              <description>a highly flammable sticky jelly used in incendiary bombs and flamethrowers, consisting of gasoline thickened with special soaps.</description>
+            </CombatExtended.AmmoCategoryDef>
+          </value>
+        </li>
 
-			 <!-- Remove Stuff -->
-			<li Class="PatchOperationRemove">
-				<xpath>Defs/ThingDef[defName="Shell_Napalm"]/projectileWhenLoaded</xpath>
-			</li> 
+        <!-- === Shell === -->
+        <li Class="PatchOperationReplace">
+          <xpath>/Defs/ThingDef[defName="Shell_Napalm"]</xpath>
+          <value>
+            <ThingDef Class="CombatExtended.AmmoDef" ParentName="81mmMortarShellBaseCraftableBase">
+              <defName>Shell_Napalm</defName>
+              <label>81mm mortar shell (Napalm)</label>
+              <graphicData>
+                <texPath>Things/Item/Resource/Shell/Shell_Incendiary</texPath>
+                <graphicClass>Graphic_StackCount</graphicClass>
+              </graphicData>
+              <statBases>
+                <Mass>4.3</Mass>
+                <Bulk>6.5</Bulk>
+              </statBases>
+              <ammoClass>Napalm</ammoClass>
+              <comps>
+                <li Class="CompProperties_Explosive">
+                  <explosiveRadius>3.3</explosiveRadius>
+                  <explosiveDamageType>Flame</explosiveDamageType>
+                  <explosiveExpandPerStackcount>0</explosiveExpandPerStackcount>
+                  <startWickHitPointsPercent>0.7</startWickHitPointsPercent>
+                  <preExplosionSpawnThingDef>Filth_NapalmTrail</preExplosionSpawnThingDef>
+                  <preExplosionSpawnChance>0.5</preExplosionSpawnChance>
+                  <postExplosionSpawnThingDef>Filth_Fuel</postExplosionSpawnThingDef>
+                  <postExplosionSpawnChance>1.0</postExplosionSpawnChance>
+                  <applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
+                  <explodeOnKilled>True</explodeOnKilled>
+                  <wickTicks>30~60</wickTicks>
+                </li>
+              </comps>
+            </ThingDef>
+          </value>
+        </li>
 
-			<!-- Add Shell Mass and Tradability-->
-				<li Class="PatchOperationAdd">
-				<xpath>Defs/ThingDef[defName="Shell_Napalm"]</xpath>
-				<value>
-				<statBases>
-					<Mass>4.3</Mass>
-					<Bulk>6.5</Bulk>	
-				</statBases>					
-				</value>
-			</li>
+        <!-- === Projectile === -->
+        <li Class="PatchOperationReplace">
+          <xpath>/Defs/ThingDef[defName="Bullet_Shell_Napalm"]</xpath>
+          <value>
+            <ThingDef ParentName="Base81mmMortarShell">
+              <defName>Bullet_Shell_Napalm</defName>
+              <label>81mm mortar shell (Napalm)</label>
+              <graphicData>
+                <texPath>Things/Projectile/ShellIncendiary</texPath>
+                <graphicClass>Graphic_Single</graphicClass>
+                <shaderType>TransparentPostLight</shaderType>
+              </graphicData>
+              <projectile Class="CombatExtended.ProjectilePropertiesCE">
+                <damageDef>Flame</damageDef>
+                <speed>41</speed>
+                <explosionRadius>2.9</explosionRadius>
+                <preExplosionSpawnThingDef>Filth_NapalmTrail</preExplosionSpawnThingDef>
+                <preExplosionSpawnChance>0.25</preExplosionSpawnChance>
+                <flyOverhead>true</flyOverhead>
+                <soundHitThickRoof>Artillery_HitThickRoof</soundHitThickRoof>
+                <soundExplode>MortarIncendiary_Explode</soundExplode>
+                <soundImpactAnticipate>MortarRound_PreImpact</soundImpactAnticipate>
+                <soundAmbient>MortarRound_Ambient</soundAmbient>
+                <ai_IsIncendiary>true</ai_IsIncendiary>
+              </projectile>
+            </ThingDef>
+          </value>
+        </li>
 
-			<!-- Add Shell Ammo Type-->
-			<li Class="PatchOperationAdd">
-				<xpath>Defs/ThingDef[defName="Shell_Napalm"]</xpath>
-				<value>
-					<ammoClass>Napalm</ammoClass>				
-				</value>
-			</li>	
-			
-			<!-- Add CE Explosives Comps to Shells -->			
-			<li Class="PatchOperationReplace">
-				<xpath>Defs/ThingDef[defName="Shell_Napalm"]/comps</xpath>
-				<value>
-				<comps>				
-				  <li Class="CompProperties_Explosive">
-					<explosiveRadius>3.3</explosiveRadius>
-					<explosiveDamageType>Flame</explosiveDamageType>
-					<explosiveExpandPerStackcount>0</explosiveExpandPerStackcount>
-					<startWickHitPointsPercent>0.7</startWickHitPointsPercent>
-					<preExplosionSpawnThingDef>Filth_NapalmTrail</preExplosionSpawnThingDef>
-					<preExplosionSpawnChance>0.25</preExplosionSpawnChance>
-					<postExplosionSpawnThingDef>Filth_Fuel</postExplosionSpawnThingDef>
-					<postExplosionSpawnChance>1.0</postExplosionSpawnChance>
-					<wickTicks>
-					  <min>10</min>
-					  <max>30</max>
-					</wickTicks>
-				  </li>
-				</comps>				  
-				</value>
-			</li>
+        <!-- === AmmoSet === -->
+        <li Class="PatchOperationAdd">
+          <xpath>/Defs/CombatExtended.AmmoSetDef[defName="AmmoSet_81mmMortarShell"]/ammoTypes</xpath>
+          <value>
+            <Shell_Napalm>Bullet_Shell_Napalm</Shell_Napalm>
+          </value>
+        </li>
 
-			
-			<!-- Add New Bullet Base-->
-			<li Class="PatchOperationAttributeSet">
-				<xpath>Defs/ThingDef[defName="Bullet_Shell_Napalm"]</xpath>
-				<attribute>ParentName</attribute>
-				<value>Base81mmMortarShell</value>
-			</li>
-			
-			<!-- Projectiles -->		
-			<li Class="PatchOperationAttributeAdd">
-				<xpath>Defs/ThingDef[defName="Bullet_Shell_Napalm"]/projectile</xpath>
-				<attribute>Class</attribute>
-				<value>CombatExtended.ProjectilePropertiesCE</value>
-			</li>
-			
-			<li Class="PatchOperationReplace">
-				<xpath>Defs/ThingDef[defName="Bullet_Shell_Napalm"]/thingClass</xpath>
-				<value>
-				    <thingClass>CombatExtended.ProjectileCE_Explosive</thingClass>
-				</value>
-			</li>
+        <!-- === Recipe === -->
+        <li Class="PatchOperationAdd">
+          <xpath>Defs</xpath>
+          <value>
+            <RecipeDef ParentName="AmmoRecipeBase">
+              <defName>MakeShell_Napalm</defName>
+              <label>make 81mm napalm mortar shells x5</label>
+              <description>Craft 5 81mm Napalm mortar shells.</description>
+              <jobString>Making 81mm napalm mortar shells.</jobString>
+              <ingredients>
+                <li>
+                  <filter>
+                    <thingDefs>
+                      <li>Steel</li>
+                    </thingDefs>
+                  </filter>
+                  <count>42</count>
+                </li>
+                <li>
+                  <filter>
+                    <thingDefs>
+                      <li>ComponentIndustrial</li>
+                    </thingDefs>
+                  </filter>
+                  <count>1</count>
+                </li>
+                <li>
+                  <filter>
+                    <thingDefs>
+                      <li>Napalm</li>
+                    </thingDefs>
+                  </filter>
+                  <count>15</count>
+                </li>
+              </ingredients>
+              <fixedIngredientFilter>
+                <thingDefs>
+                  <li>Steel</li>
+                  <li>ComponentIndustrial</li>
+                  <li>Napalm</li>
+                </thingDefs>
+              </fixedIngredientFilter>
+              <products>
+                <Shell_Napalm>5</Shell_Napalm>
+              </products>
+            </RecipeDef>
+          </value>
+        </li>
 
-		</operations>
-		</match>
-	</Operation>
+      </operations>
+    </match>
+  </Operation>
+
 </Patch>

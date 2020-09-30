@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+			<li>Fantasy Metals Reforged</li>
+		</mods>
+		<match Class="PatchOperationSequence">
+			<operations>
+
+			<!-- Add Bulk and thingCategories -->
+
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[
+				defName="Mithril" or
+				defName="Orichalcum" or
+				defName="Adamantite" or
+				defName="Tozra" or
+				defName="Solorite" or
+				defName="Skelsshkrum"
+				]/statBases</xpath>
+				<value>
+					<Bulk>0.03</Bulk>
+				</value>
+			</li>
+
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[
+				defName="Mithril" or
+				defName="Orichalcum" or
+				defName="Adamantite" or
+				defName="Tozra" or
+				defName="Solorite" or
+				defName="Skelsshkrum"
+				]/stuffProps/categories</xpath>
+				<value>
+					<li>Metallic_Weapon</li>
+					<li>Steeled</li>
+				</value>
+			</li>
+
+			<!-- Mithril -->
+
+			<!-- From 'The Hobbit,' Mithril is described as triple the strength of steel. -->
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="Mithril"]/statBases/StuffPower_Armor_Sharp</xpath>
+				<value>
+					<StuffPower_Armor_Sharp>3</StuffPower_Armor_Sharp>
+				</value>
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="Mithril"]/statBases/StuffPower_Armor_Blunt</xpath>
+				<value>
+					<StuffPower_Armor_Blunt>3.2</StuffPower_Armor_Blunt>
+				</value>
+			</li>
+
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName="Mithril"]/stuffProps/statFactors</xpath>
+				<value>
+					<Mass>0.7</Mass>
+				</value>
+			</li>
+
+			<!-- Orichalcum -->
+
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="Orichalcum"]/statBases/StuffPower_Armor_Sharp</xpath>
+				<value>
+					<StuffPower_Armor_Sharp>1.3</StuffPower_Armor_Sharp>
+				</value>
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="Orichalcum"]/statBases/StuffPower_Armor_Blunt</xpath>
+				<value>
+					<StuffPower_Armor_Blunt>1.5</StuffPower_Armor_Blunt>
+				</value>
+			</li>
+
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName="Orichalcum"]/stuffProps/statFactors</xpath>
+				<value>
+					<MeleeWeapon_CooldownMultiplier>1.1</MeleeWeapon_CooldownMultiplier>
+					<Mass>1.4</Mass>
+				</value>
+			</li>
+
+			<!-- Adamantite -->
+
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="Adamantite"]/statBases/StuffPower_Armor_Sharp</xpath>
+				<value>
+					<StuffPower_Armor_Sharp>3.4</StuffPower_Armor_Sharp>
+				</value>
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="Adamantite"]/statBases/StuffPower_Armor_Blunt</xpath>
+				<value>
+					<StuffPower_Armor_Blunt>4.2</StuffPower_Armor_Blunt>
+				</value>
+			</li>
+
+			<!-- Tozra -->
+
+			<!-- Nothing to indicate it's any good as armor, so we'll say it's not. -->
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="Tozra"]/statBases/StuffPower_Armor_Sharp</xpath>
+				<value>
+					<StuffPower_Armor_Sharp>0.7</StuffPower_Armor_Sharp>
+				</value>
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="Tozra"]/statBases/StuffPower_Armor_Blunt</xpath>
+				<value>
+					<StuffPower_Armor_Blunt>0.9</StuffPower_Armor_Blunt>
+				</value>
+			</li>
+
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName="Tozra"]/stuffProps/statFactors</xpath>
+				<value>
+					<MeleePenetrationFactor>1.5</MeleePenetrationFactor>
+				</value>
+			</li>
+
+			<!-- Solorite -->
+
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="Solorite"]/statBases/StuffPower_Armor_Sharp</xpath>
+				<value>
+					<StuffPower_Armor_Sharp>0.3</StuffPower_Armor_Sharp>
+				</value>
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="Solorite"]/statBases/StuffPower_Armor_Blunt</xpath>
+				<value>
+					<StuffPower_Armor_Blunt>0.2</StuffPower_Armor_Blunt>
+				</value>
+			</li>
+
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName="Solorite"]/stuffProps/statFactors</xpath>
+				<value>
+					<MeleePenetrationFactor>0.7</MeleePenetrationFactor>
+				</value>
+			</li>
+
+			<!-- Skelsshkrum -->
+
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="Skelsshkrum"]/statBases/StuffPower_Armor_Sharp</xpath>
+				<value>
+					<StuffPower_Armor_Sharp>0.8</StuffPower_Armor_Sharp>
+				</value>
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="Skelsshkrum"]/statBases/StuffPower_Armor_Blunt</xpath>
+				<value>
+					<StuffPower_Armor_Blunt>4.6</StuffPower_Armor_Blunt>
+				</value>
+			</li>
+
+		</operations>
+		</match>
+	</Operation>
+</Patch>

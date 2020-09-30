@@ -1,0 +1,552 @@
+<?xml version="1.0" encoding="utf-8" ?>
+
+<Patch>
+
+	<Operation Class="PatchOperationFindMod">
+			<mods>
+				<li>Rimsenal - Marauders</li>
+			</mods>
+		<match Class="PatchOperationSequence">
+		<operations>
+
+  <!-- ========== Tools ========== -->
+
+  <li Class="PatchOperationReplace">
+    <xpath>Defs/ThingDef[defName="RSGun_Contender" or defName="RSGun_DDP"]/tools</xpath>
+    <value>
+      <tools>
+        <li Class="CombatExtended.ToolCE">
+          <label>grip</label>
+          <capacities>
+            <li>Blunt</li>
+          </capacities>
+          <power>2</power>
+          <cooldownTime>1.54</cooldownTime>
+          <chanceFactor>1.5</chanceFactor>
+          <armorPenetrationBlunt>0.555</armorPenetrationBlunt>
+          <linkedBodyPartsGroup>Grip</linkedBodyPartsGroup>
+        </li>
+        <li Class="CombatExtended.ToolCE">
+          <label>muzzle</label>
+          <capacities>
+            <li>Poke</li>
+          </capacities>
+          <power>2</power>
+          <cooldownTime>1.54</cooldownTime>
+          <armorPenetrationBlunt>0.555</armorPenetrationBlunt>
+          <linkedBodyPartsGroup>Muzzle</linkedBodyPartsGroup>
+        </li>
+      </tools>
+    </value>
+  </li>
+
+  <li Class="PatchOperationReplace">
+    <xpath>Defs/ThingDef[defName="RSGun_TExpress" or defName="RSGun_TrenchCarbine" or defName="RSGun_VarmintRifle" or defName="RSGun_DMR" or defName="RSGun_CSAS"
+			or defName="RSGun_BoomPipe" or defName="RSGun_FlakCannon"]/tools
+	</xpath>
+    <value>
+      <tools>
+        <li Class="CombatExtended.ToolCE">
+          <label>stock</label>
+          <capacities>
+            <li>Blunt</li>
+          </capacities>
+          <power>8</power>
+          <cooldownTime>1.55</cooldownTime>
+          <chanceFactor>1.5</chanceFactor>
+          <armorPenetrationBlunt>2.755</armorPenetrationBlunt>
+          <linkedBodyPartsGroup>Stock</linkedBodyPartsGroup>
+        </li>
+        <li Class="CombatExtended.ToolCE">
+          <label>barrel</label>
+          <capacities>
+            <li>Blunt</li>
+          </capacities>
+          <power>5</power>
+          <cooldownTime>2.02</cooldownTime>
+          <armorPenetrationBlunt>1.630</armorPenetrationBlunt>
+          <linkedBodyPartsGroup>Barrel</linkedBodyPartsGroup>
+        </li>
+        <li Class="CombatExtended.ToolCE">
+          <label>muzzle</label>
+          <capacities>
+            <li>Poke</li>
+          </capacities>
+          <power>8</power>
+          <cooldownTime>1.55</cooldownTime>
+          <armorPenetrationBlunt>2.755</armorPenetrationBlunt>
+          <linkedBodyPartsGroup>Muzzle</linkedBodyPartsGroup>
+        </li>
+      </tools>
+    </value>
+  </li>
+
+  <li Class="PatchOperationReplace">
+    <xpath>Defs/ThingDef[defName="RSGun_ChainSAW"]/tools</xpath>
+    <value>
+      <tools>
+        <li Class="CombatExtended.ToolCE">
+          <label>barrel</label>
+          <capacities>
+            <li>Blunt</li>
+          </capacities>
+          <power>10</power>
+          <cooldownTime>2.44</cooldownTime>
+          <armorPenetrationBlunt>3.5</armorPenetrationBlunt>
+          <linkedBodyPartsGroup>Barrel</linkedBodyPartsGroup>
+        </li>
+      </tools>
+    </value>
+  </li>
+
+  <!-- ========== Contender ========== -->
+
+  <li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+    <defName>RSGun_Contender</defName>
+    <statBases>
+      <Mass>1.58</Mass>
+      <RangedWeapon_Cooldown>0.91</RangedWeapon_Cooldown>
+      <SightsEfficiency>0.7</SightsEfficiency>
+      <ShotSpread>0.1</ShotSpread>
+      <SwayFactor>2.01</SwayFactor>
+      <Bulk>4.45</Bulk>
+      <WorkToMake>4000</WorkToMake>
+    </statBases>
+    <Properties>
+      <verbClass>CombatExtended.Verb_ShootCE</verbClass>
+      <hasStandardCommand>true</hasStandardCommand>
+      <defaultProjectile>Bullet_3006Springfield_FMJ</defaultProjectile>
+      <warmupTime>0.6</warmupTime>
+      <range>15</range>
+      <soundCast>Shot_Revolver</soundCast>
+      <soundCastTail>GunTail_Light</soundCastTail>
+      <muzzleFlashScale>9</muzzleFlashScale>
+    </Properties>
+    <AmmoUser>
+      <magazineSize>1</magazineSize>
+      <reloadTime>3.5</reloadTime>
+      <ammoSet>AmmoSet_3006Springfield</ammoSet>
+    </AmmoUser>
+    <FireModes>
+      <aiAimMode>Snapshot</aiAimMode>
+      <noSnapshot>false</noSnapshot>
+      <noSingleShot>false</noSingleShot>
+    </FireModes>
+    <weaponTags>
+      <li>CE_Sidearm</li>
+      <li>CE_AI_Pistol</li>
+      <li>CE_OneHandedWeapon</li>
+      <li>StoneCrownTier1</li>	  
+    </weaponTags>
+    <researchPrerequisite>Gunsmithing</researchPrerequisite>
+  </li>
+
+  <!-- ========== Dual Dueling Pistols ========== -->
+
+  <li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+    <defName>RSGun_DDP</defName>
+    <statBases>
+      <Mass>1.9</Mass>
+      <RangedWeapon_Cooldown>0.38</RangedWeapon_Cooldown>
+      <SightsEfficiency>0.7</SightsEfficiency>
+      <ShotSpread>0.16</ShotSpread>
+      <SwayFactor>2.28</SwayFactor>
+      <Bulk>5.34</Bulk>
+      <WorkToMake>5000</WorkToMake>
+    </statBases>
+    <Properties>
+      <verbClass>CombatExtended.Verb_ShootCE</verbClass>
+      <hasStandardCommand>true</hasStandardCommand>
+      <defaultProjectile>Bullet_32ACP_FMJ</defaultProjectile>
+      <warmupTime>0.6</warmupTime>
+      <range>12</range>
+      <soundCast>Shot_Autopistol</soundCast>
+      <soundCastTail>GunTail_Light</soundCastTail>
+      <muzzleFlashScale>9</muzzleFlashScale>
+    </Properties>
+    <AmmoUser>
+      <magazineSize>20</magazineSize>
+      <reloadTime>8</reloadTime>
+      <ammoSet>AmmoSet_32ACP</ammoSet>
+    </AmmoUser>
+    <FireModes>
+      <aiUseBurstMode>FALSE</aiUseBurstMode>
+    </FireModes>
+    <weaponTags>
+      <li>CE_Sidearm</li>
+      <li>CE_AI_Pistol</li>
+      <li>StoneCrownTier2</li>	  
+    </weaponTags>
+    <researchPrerequisite>BlowbackOperation</researchPrerequisite>
+  </li>
+
+  <!-- ========== "Thrumbo Express" Big Game Rifle ========== -->
+
+  <li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+    <defName>RSGun_TExpress</defName>
+    <statBases>
+      <Mass>4.6</Mass>
+      <RangedWeapon_Cooldown>0.9</RangedWeapon_Cooldown>
+      <ShotSpread>0.05</ShotSpread>
+      <SwayFactor>4.60</SwayFactor>
+      <Bulk>10.2</Bulk>
+      <SightsEfficiency>1</SightsEfficiency>
+      <WorkToMake>9500</WorkToMake>
+    </statBases>
+    <Properties>
+      <verbClass>CombatExtended.Verb_ShootCE</verbClass>
+      <hasStandardCommand>true</hasStandardCommand>
+      <defaultProjectile>Bullet_470NitroExpress_FMJ</defaultProjectile>
+      <warmupTime>1.1</warmupTime>
+      <range>59</range>
+      <soundCast>Shot_BoltActionRifle</soundCast>
+      <soundCastTail>GunTail_Medium</soundCastTail>
+      <muzzleFlashScale>9</muzzleFlashScale>
+    </Properties>
+    <AmmoUser>
+      <magazineSize>5</magazineSize>
+      <reloadOneAtATime>true</reloadOneAtATime>
+      <reloadTime>0.85</reloadTime>
+      <ammoSet>AmmoSet_470NitroExpress</ammoSet>
+    </AmmoUser>
+    <FireModes>
+      <aiAimMode>AimedShot</aiAimMode>
+    </FireModes>
+    <weaponTags>
+      <li>CE_AI_AssaultWeapon</li>
+      <li>StoneCrownTier3</li>	  
+    </weaponTags>
+    <researchPrerequisite>Gunsmithing</researchPrerequisite>
+  </li>
+
+  <!-- ========== Trench Carbine ========== -->
+
+  <li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+    <defName>RSGun_TrenchCarbine</defName>
+    <statBases>
+      <Mass>4.6</Mass>
+      <RangedWeapon_Cooldown>0.36</RangedWeapon_Cooldown>
+      <SightsEfficiency>0.7</SightsEfficiency>
+      <ShotSpread>0.09</ShotSpread>
+      <SwayFactor>1.35</SwayFactor>
+      <Bulk>6.3</Bulk>
+      <WorkToMake>11000</WorkToMake>
+    </statBases>
+    <Properties>
+      <recoilAmount>1.17</recoilAmount>	
+      <verbClass>CombatExtended.Verb_ShootCE</verbClass>
+      <hasStandardCommand>true</hasStandardCommand>
+      <defaultProjectile>Bullet_545x39mmSoviet_FMJ</defaultProjectile>
+      <burstShotCount>6</burstShotCount>
+      <ticksBetweenBurstShots>7</ticksBetweenBurstShots>	  
+      <warmupTime>1.1</warmupTime>
+      <range>31</range>
+      <soundCast>Shot_AssaultRifle</soundCast>
+      <soundCastTail>GunTail_Medium</soundCastTail>
+      <muzzleFlashScale>9</muzzleFlashScale>
+    </Properties>
+    <AmmoUser>
+      <magazineSize>30</magazineSize>
+      <reloadTime>4</reloadTime>
+      <ammoSet>AmmoSet_545x39mmSoviet</ammoSet>
+    </AmmoUser>
+    <FireModes>
+      <aimedBurstShotCount>3</aimedBurstShotCount>
+      <aiUseBurstMode>TRUE</aiUseBurstMode>
+      <aiAimMode>AimedShot</aiAimMode>
+      <noSnapshot>false</noSnapshot>
+      <noSingleShot>false</noSingleShot>	  
+    </FireModes>
+    <weaponTags>
+      <li>CE_AI_Rifle</li>
+    </weaponTags>
+    <researchPrerequisite>BlowbackOperation</researchPrerequisite>
+  </li>
+
+
+  <!-- ========== Storm Rifle ========== -->
+
+  <li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+    <defName>RSGun_StormRifle</defName>
+    <statBases>
+      <Mass>3.25</Mass>
+      <RangedWeapon_Cooldown>0.36</RangedWeapon_Cooldown>
+      <SightsEfficiency>1.1</SightsEfficiency>
+      <ShotSpread>0.07</ShotSpread>
+      <SwayFactor>1.07</SwayFactor>
+      <Bulk>7.45</Bulk>
+      <WorkToMake>40000</WorkToMake>
+    </statBases>
+    <Properties>
+      <recoilAmount>1.54</recoilAmount>
+      <verbClass>CombatExtended.Verb_ShootCE</verbClass>
+      <hasStandardCommand>true</hasStandardCommand>
+      <defaultProjectile>Bullet_556x45mmNATO_FMJ</defaultProjectile>
+      <warmupTime>1</warmupTime>
+      <range>48</range>
+      <burstShotCount>6</burstShotCount>
+      <ticksBetweenBurstShots>6</ticksBetweenBurstShots>
+      <soundCast>Shot_AssaultRifle</soundCast>
+      <soundCastTail>GunTail_Medium</soundCastTail>
+      <muzzleFlashScale>9</muzzleFlashScale>
+    </Properties>
+    <AmmoUser>
+      <magazineSize>30</magazineSize>
+      <reloadTime>4</reloadTime>
+      <ammoSet>AmmoSet_556x45mmNATO</ammoSet>
+    </AmmoUser>
+    <FireModes>
+      <aimedBurstShotCount>3</aimedBurstShotCount>
+      <aiUseBurstMode>TRUE</aiUseBurstMode>
+      <aiAimMode>AimedShot</aiAimMode>
+      <noSnapshot>false</noSnapshot>
+      <noSingleShot>false</noSingleShot>	  
+    </FireModes>
+    <weaponTags>
+      <li>IronRosesTier2</li>
+    </weaponTags>
+    <researchPrerequisite>PrecisionRifling</researchPrerequisite>
+  </li>
+
+  <!-- ========== Chain SAW ========== -->
+
+  <li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+    <defName>RSGun_ChainSAW</defName>
+    <statBases>
+      <Mass>10.40</Mass>
+      <RangedWeapon_Cooldown>0.36</RangedWeapon_Cooldown>
+      <SightsEfficiency>1</SightsEfficiency>
+      <ShotSpread>0.06</ShotSpread>
+      <SwayFactor>2.60</SwayFactor>
+      <Bulk>17.60</Bulk>
+      <WorkToMake>30000</WorkToMake>
+    </statBases>
+    <Properties>
+      <recoilAmount>1.34</recoilAmount>
+      <verbClass>CombatExtended.Verb_ShootCE</verbClass>
+      <hasStandardCommand>true</hasStandardCommand>
+      <defaultProjectile>Bullet_762x51mmNATO_FMJ</defaultProjectile>
+      <warmupTime>1.1</warmupTime>
+      <range>68</range>
+      <burstShotCount>10</burstShotCount>
+      <ticksBetweenBurstShots>6</ticksBetweenBurstShots>
+      <soundCast>Shot_AssaultRifle</soundCast>
+      <soundCastTail>GunTail_Medium</soundCastTail>
+      <muzzleFlashScale>9</muzzleFlashScale>
+    </Properties>
+    <AmmoUser>
+      <magazineSize>200</magazineSize>
+      <reloadTime>7.8</reloadTime>
+      <ammoSet>AmmoSet_762x51mmNATO</ammoSet>
+    </AmmoUser>
+    <FireModes>
+      <aimedBurstShotCount>5</aimedBurstShotCount>
+      <aiUseBurstMode>FALSE</aiUseBurstMode>
+      <aiAimMode>SuppressFire</aiAimMode>
+    </FireModes>
+    <weaponTags>
+      <li>IronRosesTier3</li>
+    </weaponTags> 
+    <researchPrerequisite>PrecisionRifling</researchPrerequisite>	
+  </li>
+
+  <!-- ========== Varmint Rifle ========== -->
+
+  <li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+    <defName>RSGun_VarmintRifle</defName>
+    <statBases>
+      <Mass>3.63</Mass>
+      <RangedWeapon_Cooldown>1.16</RangedWeapon_Cooldown>
+      <SightsEfficiency>2.24</SightsEfficiency>
+      <ShotSpread>0.06</ShotSpread>
+      <SwayFactor>1.52</SwayFactor>
+      <Bulk>11.18</Bulk>
+      <WorkToMake>12000</WorkToMake>
+    </statBases>
+    <Properties>
+      <verbClass>CombatExtended.Verb_ShootCE</verbClass>
+      <hasStandardCommand>true</hasStandardCommand>
+      <defaultProjectile>Bullet_556x45mmNATO_FMJ</defaultProjectile>
+      <warmupTime>1.3</warmupTime>
+      <range>60</range>
+      <soundCast>Shot_BoltActionRifle</soundCast>
+      <soundCastTail>GunTail_Heavy</soundCastTail>
+      <muzzleFlashScale>9</muzzleFlashScale>
+    </Properties>
+    <AmmoUser>
+      <magazineSize>10</magazineSize>
+      <reloadTime>4</reloadTime>
+      <ammoSet>AmmoSet_556x45mmNATO</ammoSet>
+    </AmmoUser>
+    <FireModes>
+      <aiAimMode>AimedShot</aiAimMode>
+    </FireModes>
+    <weaponTags>
+      <li>VeilWalkersTier1</li>
+    </weaponTags>
+    <researchPrerequisite>PrecisionRifling</researchPrerequisite>
+    <AllowWithRunAndGun>false</AllowWithRunAndGun>
+  </li>
+
+  <!-- ========== DMR ========== -->
+
+  <li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+    <defName>RSGun_DMR</defName>
+    <statBases>
+      <Mass>4.3</Mass>
+      <RangedWeapon_Cooldown>0.37</RangedWeapon_Cooldown>
+      <SightsEfficiency>2.24</SightsEfficiency>
+      <ShotSpread>0.09</ShotSpread>
+      <SwayFactor>1.47</SwayFactor>
+      <Bulk>10</Bulk>
+      <WorkToMake>45000</WorkToMake>
+    </statBases>
+    <Properties>
+      <verbClass>CombatExtended.Verb_ShootCE</verbClass>
+      <hasStandardCommand>true</hasStandardCommand>
+      <defaultProjectile>Bullet_762x54mmR_FMJ</defaultProjectile>
+      <warmupTime>1.3</warmupTime>
+      <range>72</range>
+      <soundCast>Shot_SniperRifle</soundCast>
+      <soundCastTail>GunTail_Heavy</soundCastTail>
+      <muzzleFlashScale>9</muzzleFlashScale>
+    </Properties>
+    <AmmoUser>
+      <magazineSize>10</magazineSize>
+      <reloadTime>4</reloadTime>
+      <ammoSet>AmmoSet_762x54mmR</ammoSet>
+    </AmmoUser>
+    <FireModes>
+      <aiAimMode>AimedShot</aiAimMode>
+    </FireModes>
+    <weaponTags>
+      <li>VeilWalkersTier2</li>
+    </weaponTags>
+    <researchPrerequisite>PrecisionRifling</researchPrerequisite>
+    <AllowWithRunAndGun>false</AllowWithRunAndGun>
+  </li>
+
+  <!-- ========== CSAS ========== -->
+
+  <li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+    <defName>RSGun_CSAS</defName>
+    <statBases>
+      <Mass>6</Mass>
+      <RangedWeapon_Cooldown>0.42</RangedWeapon_Cooldown>
+      <SightsEfficiency>2.42</SightsEfficiency>
+      <ShotSpread>0.05</ShotSpread>
+      <SwayFactor>1.87</SwayFactor>
+      <Bulk>12</Bulk>
+      <WorkToMake>45000</WorkToMake>
+    </statBases>
+    <Properties>
+      <verbClass>CombatExtended.Verb_ShootCE</verbClass>
+      <hasStandardCommand>true</hasStandardCommand>
+      <defaultProjectile>Bullet_50BMG_FMJ</defaultProjectile>
+      <warmupTime>1.45</warmupTime>
+      <range>75</range>
+      <soundCast>Shot_BoltActionRifle</soundCast>
+      <soundCastTail>GunTail_Heavy</soundCastTail>
+      <muzzleFlashScale>9</muzzleFlashScale>
+    </Properties>
+    <AmmoUser>
+      <magazineSize>10</magazineSize>
+      <reloadTime>4</reloadTime>
+      <ammoSet>AmmoSet_50BMG</ammoSet>
+    </AmmoUser>
+    <FireModes>
+      <aiAimMode>AimedShot</aiAimMode>
+    </FireModes>
+    <weaponTags>
+      <li>VeilWalkersTier3</li>
+    </weaponTags>
+    <researchPrerequisite>PrecisionRifling</researchPrerequisite>
+    <AllowWithRunAndGun>false</AllowWithRunAndGun>
+  </li>
+
+  <!-- ========== Boompipe ========== -->
+
+  <li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+    <defName>RSGun_BoomPipe</defName>
+    <statBases>
+      <Mass>2.7</Mass>
+      <RangedWeapon_Cooldown>0.93</RangedWeapon_Cooldown>
+      <SightsEfficiency>1</SightsEfficiency>
+      <ShotSpread>0.16</ShotSpread>
+      <SwayFactor>1</SwayFactor>
+      <Bulk>7.31</Bulk>
+      <WorkToMake>10000</WorkToMake>
+    </statBases>
+    <Properties>
+      <verbClass>CombatExtended.Verb_ShootCE</verbClass>
+      <hasStandardCommand>true</hasStandardCommand>
+      <defaultProjectile>Bullet_556x45mmNATO_FMJ</defaultProjectile>
+      <warmupTime>1.1</warmupTime>
+      <range>40</range>
+      <soundCast>Shot_BoltActionRifle</soundCast>
+      <soundCastTail>GunTail_Heavy</soundCastTail>
+      <muzzleFlashScale>9</muzzleFlashScale>
+    </Properties>
+    <AmmoUser>
+      <magazineSize>1</magazineSize>
+      <reloadTime>0.85</reloadTime>
+      <ammoSet>AmmoSet_40x46mmGrenade</ammoSet>
+    </AmmoUser>
+    <FireModes>
+      <aiAimMode>SuppressFire</aiAimMode>
+    </FireModes>
+    <weaponTags>
+      <li>SmokeyToothTier2</li>
+    </weaponTags>
+    <researchPrerequisite>PrecisionRifling</researchPrerequisite>
+    <AllowWithRunAndGun>false</AllowWithRunAndGun>
+  </li>
+
+  <!-- ========== Flak Cannon ========== -->
+
+  <li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+    <defName>RSGun_FlakCannon</defName>
+    <statBases>
+      <Mass>7.6</Mass>
+      <RangedWeapon_Cooldown>1.16</RangedWeapon_Cooldown>
+      <SightsEfficiency>1</SightsEfficiency>
+      <ShotSpread>0.05</ShotSpread>
+      <SwayFactor>1.86</SwayFactor>
+      <Bulk>13</Bulk>
+	  <WorkToMake>10000</WorkToMake>
+    </statBases>
+    <Properties>
+      <recoilAmount>9.75</recoilAmount>
+      <verbClass>CombatExtended.Verb_ShootCE</verbClass>
+      <hasStandardCommand>true</hasStandardCommand>
+      <defaultProjectile>Bullet_25x59mmGrenade_HE</defaultProjectile>
+      <warmupTime>1.1</warmupTime>
+      <range>68</range>
+      <burstShotCount>10</burstShotCount>
+      <ticksBetweenBurstShots>9</ticksBetweenBurstShots>
+      <soundCast>Shot_AssaultRifle</soundCast>
+      <soundCastTail>GunTail_Medium</soundCastTail>
+      <muzzleFlashScale>9</muzzleFlashScale>
+    </Properties>
+    <AmmoUser>
+      <magazineSize>20</magazineSize>
+      <reloadTime>7.8</reloadTime>
+      <ammoSet>AmmoSet_25x59mmGrenade</ammoSet>
+    </AmmoUser>
+    <FireModes>
+      <aimedBurstShotCount>4</aimedBurstShotCount>
+      <aiUseBurstMode>FALSE</aiUseBurstMode>
+      <aiAimMode>SuppressFire</aiAimMode>
+    </FireModes>
+    <weaponTags>
+      <li>SmokeyToothTier3</li>
+    </weaponTags>
+    <researchPrerequisite>PrecisionRifling</researchPrerequisite>
+  </li>
+
+		</operations>
+		</match>
+	</Operation>
+
+</Patch>
+

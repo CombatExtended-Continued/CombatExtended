@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+
+  <Operation Class="PatchOperationFindMod">
+    <mods>
+      <li>[O21] Mechadroids</li>
+    </mods>
+    <match Class="PatchOperationSequence">
+      <operations>
+
+        <!-- ========== Give ammo to droids ========== -->
+        <li Class="PatchOperationAddModExtension">
+          <xpath>
+            /Defs/PawnKindDef[defName="O21_Mechadroid_Villager" or defName="O21_Mechadroid_Primus"]
+          </xpath>
+          <value>
+            <li Class="CombatExtended.LoadoutPropertiesExtension">
+              <primaryMagazineCount>
+                <min>3</min>
+                <max>5</max>
+              </primaryMagazineCount>
+            </li>
+          </value>
+        </li>
+
+        <li Class="PatchOperationAddModExtension">
+          <xpath>
+            /Defs/PawnKindDef[defName="O21_Mechadroid_Guard"]
+          </xpath>
+          <value>
+            <li Class="CombatExtended.LoadoutPropertiesExtension">
+              <primaryMagazineCount>
+                <min>4</min>
+                <max>7</max>
+              </primaryMagazineCount>
+            </li>
+          </value>
+        </li>
+
+
+      </operations>
+    </match>
+  </Operation>
+</Patch>    

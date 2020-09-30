@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<Patch>
+	<Operation Class="PatchOperationFindMod">
+			<mods>
+				<li>Rimsenal - Federation Faction Pack</li>
+			</mods>
+		<match Class="PatchOperationSequence">
+		<operations>
+			
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[
+					defName="Harmonizer" or
+					defName="Harvester"
+				]/thingClass</xpath>
+				<value>
+					<thingClass>CombatExtended.Building_TurretGunCE</thingClass>
+				</value>
+			</li>			
+			
+			<!-- ==========  Harvester Cannon  =========== -->
+			
+			<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+			<defName>Gun_Harvester</defName>
+				<statBases>
+					<SightsEfficiency>1.0</SightsEfficiency>
+					<ShotSpread>0.12</ShotSpread>
+					<SwayFactor>0.80</SwayFactor>
+					<Bulk>22.00</Bulk>
+					<Mass>18.50</Mass>
+					<RangedWeapon_Cooldown>1.55</RangedWeapon_Cooldown>
+				</statBases>
+				<Properties>
+					<recoilAmount>1.12</recoilAmount>
+					<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+					<hasStandardCommand>true</hasStandardCommand>
+					<defaultProjectile>Bullet_HarvesterCannon</defaultProjectile>
+					<warmupTime>1.55</warmupTime>
+					<ticksBetweenBurstShots>10</ticksBetweenBurstShots>
+					<burstShotCount>10</burstShotCount>
+					<range>55</range>
+					<soundCast>RS_ShotCR</soundCast>
+					<soundCastTail>GunTail_Medium</soundCastTail>
+					<muzzleFlashScale>12</muzzleFlashScale>
+					<targetParams>
+						<canTargetLocations>true</canTargetLocations>
+					</targetParams>
+					<recoilPattern>Mounted</recoilPattern>
+				</Properties>
+				<FireModes>
+					<aimedBurstShotCount>5</aimedBurstShotCount>
+					<aiUseBurstMode>TRUE</aiUseBurstMode>
+				</FireModes>
+			</li>
+			
+			<!-- ==========  Plasma Bombard  =========== -->
+			<li Class="PatchOperationAdd">			
+				<xpath>Defs/ThingDef[defName="Harmonizer"]</xpath>
+				<value>
+					<placeWorkers>
+					  <li>PlaceWorker_NotUnderRoof</li>
+					  <li>PlaceWorker_TurretTop</li>
+					</placeWorkers>
+				</value>				
+			</li>
+
+			<li Class="PatchOperationRemove">
+				<xpath>Defs/ThingDef[defName="Gun_PB"]/weaponTags</xpath>
+			</li>
+			
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName = "Gun_PB"]</xpath>
+				<value>
+					<comps>
+					  <li Class="CombatExtended.CompProperties_Charges">
+						<chargeSpeeds>
+						  <li>30</li>
+						  <li>50</li>
+						  <li>70</li>
+						  <li>90</li>
+						</chargeSpeeds>
+					  </li>
+					</comps>
+				</value>
+			</li>
+			
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName = "Gun_PB"]/verbs</xpath>
+				<value>
+					<verbs>
+					  <li Class="CombatExtended.VerbPropertiesCE">
+						<verbClass>CombatExtended.Verb_ShootMortarCE</verbClass>
+						<forceNormalTimeSpeed>false</forceNormalTimeSpeed>
+						<hasStandardCommand>true</hasStandardCommand>
+						<defaultProjectile>Bullet_PlasmaTurretBombard</defaultProjectile>
+						<warmupTime>3.55</warmupTime>
+						<range>500</range>
+						<minRange>25</minRange>
+						<burstShotCount>10</burstShotCount>
+						<soundCast>RS_ShotHarmonizer</soundCast>
+						<soundCastTail>GunTail_Heavy</soundCastTail>
+						<muzzleFlashScale>26</muzzleFlashScale>
+						<circularError>1.5</circularError>
+						<indirectFirePenalty>0.3</indirectFirePenalty>
+						<targetParams>
+						  <canTargetLocations>true</canTargetLocations>
+						</targetParams>
+					  </li>
+					</verbs>
+				</value>
+			</li>
+			
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName="Gun_PB"]</xpath>
+				<value>
+					<weaponTags>
+					  <li>Artillery</li>
+					  <li>TurretGun</li>					  
+					</weaponTags>
+				</value>				
+			</li>
+			
+		</operations>
+		</match>
+	</Operation>
+</Patch>  

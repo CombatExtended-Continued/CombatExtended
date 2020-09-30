@@ -166,7 +166,7 @@ namespace CombatExtended
             }
         }
 
-        private bool IsAttacking => ShooterPawn?.CurJobDef == JobDefOf.AttackStatic || ShooterPawn?.stances?.curStance is Stance_Warmup;
+        private bool IsAttacking => ShooterPawn?.CurJobDef == JobDefOf.AttackStatic || WarmingUp;
 
 
         #endregion
@@ -208,6 +208,10 @@ namespace CombatExtended
         /// </summary>
         public override void WarmupComplete()
         {
+            if (ShooterPawn != null && ShooterPawn.pather == null)
+            {
+                return; //Pawn has started a jump pack animation, or otherwise became despawned temporarily
+            }
             // attack shooting expression
             if ((ShooterPawn?.Spawned ?? false) && currentTarget.Thing is Pawn && Rand.Chance(0.25f))
             {

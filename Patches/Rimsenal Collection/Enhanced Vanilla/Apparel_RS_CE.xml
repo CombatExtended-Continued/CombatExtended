@@ -1,0 +1,264 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+
+<Patch>
+
+	<Operation Class="PatchOperationFindMod">
+    <mods>
+		<li>Rimsenal - Enhanced Vanilla Pack</li>
+    </mods>
+		<match Class="PatchOperationSequence">
+		 <operations>	
+			
+			<!-- ========== Tactical "Armor" =========== -->
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="Apparel_TacVest" and techLevel="Spacer"]</xpath>
+				<value>
+				  <ThingDef ParentName="ApparelMakeableBase">
+					<defName>Apparel_TacArmor</defName>
+					<label>tactical armor</label>
+					<description>An ergonomically designed body armor. This type of armor increase wearer's combat efficiency.</description>
+					<techLevel>Spacer</techLevel>
+					<graphicData> <texPath>Things/Apparel/TacVest</texPath>
+					<graphicClass>Graphic_Single</graphicClass> </graphicData>
+					<statBases>
+					  <Mass>7</Mass>
+					  <Bulk>6</Bulk>
+					  <WornBulk>5</WornBulk>
+					  <WorkToMake>15000</WorkToMake>
+					  <MaxHitPoints>290</MaxHitPoints>
+					  <ArmorRating_Blunt>32</ArmorRating_Blunt>
+					  <ArmorRating_Sharp>10</ArmorRating_Sharp>
+					  <ArmorRating_Heat>0.34</ArmorRating_Heat>
+					  <Insulation_Cold>1</Insulation_Cold>
+					  <EquipDelay>4</EquipDelay>
+					</statBases>
+					<equippedStatOffsets>
+						<CarryBulk>10</CarryBulk>
+						<ReloadSpeed>0.10</ReloadSpeed>
+					</equippedStatOffsets>					
+					<thingCategories>
+					  <li>Apparel</li>
+					</thingCategories>
+					<recipeMaker>
+					  <unfinishedThingDef>UnfinishedTechArmor</unfinishedThingDef>
+					  <researchPrerequisite>ComplexClothing</researchPrerequisite>
+					  <recipeUsers Inherit="False">
+						<li>FabricationBench</li>
+					  </recipeUsers>
+					  <skillRequirements>
+						<Crafting>7</Crafting>
+					  </skillRequirements>
+					</recipeMaker>
+					<costList>
+					  <ComponentSpacer>1</ComponentSpacer>
+					  <Plasteel>50</Plasteel>
+					  <DevilstrandCloth>25</DevilstrandCloth>
+					</costList>
+					  <generateCommonality>0.5</generateCommonality>
+					<apparel>
+					  <defaultOutfitTags>
+						<li>Soldier</li>
+					  </defaultOutfitTags>
+					  <bodyPartGroups>
+						<li>Torso</li>
+						<li>Shoulders</li>
+						<li>Neck</li>						
+					  </bodyPartGroups>
+					  <wornGraphicPath>Things/Apparel/TacVest</wornGraphicPath>
+					  <layers>
+						<li>Middle</li>
+					  </layers>
+					  <tags>
+						<li>SpacerMilitary</li>
+					  </tags>
+					</apparel>
+				  </ThingDef>
+				</value>
+			</li>
+			
+			<!-- ========== Tactical Helmet =========== -->
+			
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName="Apparel_TacHelmet"]/statBases</xpath>
+				<value>
+					<Bulk>3</Bulk>
+				</value>
+			</li>
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="Apparel_TacHelmet"]/statBases/ArmorRating_Sharp</xpath>
+				<value>
+					<ArmorRating_Sharp>10</ArmorRating_Sharp>
+				</value>
+			</li>
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="Apparel_TacHelmet"]/statBases/ArmorRating_Blunt</xpath>
+				<value>
+					<ArmorRating_Blunt>32</ArmorRating_Blunt>
+				</value>
+			</li>
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="Apparel_TacHelmet"]/statBases/ArmorRating_Heat</xpath>
+				<value>
+					<ArmorRating_Heat>0.50</ArmorRating_Heat>
+				</value>
+			</li>
+			<li Class="PatchOperationAdd">
+			<xpath>Defs/ThingDef[defName="Apparel_TacHelmet"]/costList</xpath>
+				<value>
+					<DevilstrandCloth>15</DevilstrandCloth>
+				</value>
+			</li>
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="Apparel_TacHelmet"]/costList/Plasteel</xpath>
+				<value>
+					<Plasteel>25</Plasteel>
+				</value>
+			</li>
+			
+			<li Class="PatchOperationRemove">
+				<xpath>Defs/ThingDef[defName="Apparel_TacHelmet"]/apparel/bodyPartGroups/li[.="Neck"]</xpath>
+			</li>
+			
+			<!-- ========== Exoframe =========== -->
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName="Apparel_Exoframe"]/statBases</xpath>
+				<value>
+					<Bulk>35</Bulk>
+					<WornBulk>5</WornBulk>
+				</value>
+			</li>
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="Apparel_Exoframe"]/statBases/Mass</xpath>
+				<value>
+					<Mass>10</Mass>
+				</value>
+			</li>
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="Apparel_Exoframe"]/statBases/WorkToMake</xpath>
+				<value>
+					<WorkToMake>38000</WorkToMake>
+				</value>
+			</li>
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="Apparel_Exoframe"]/statBases/MaxHitPoints</xpath>
+				<value>
+					<MaxHitPoints>300</MaxHitPoints>
+				</value>
+			</li>
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName="Apparel_Exoframe"]/costList</xpath>
+				<value>
+					<Uranium>10</Uranium>
+				</value>
+			</li>
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName="Apparel_Exoframe"]/equippedStatOffsets</xpath>
+				<value>
+					<CarryWeight>50</CarryWeight>
+					<CarryBulk>10</CarryBulk>
+				</value>
+			</li>
+			
+			<!-- ========== Protective Gear =========== -->
+			
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName="Apparel_ProtectiveGear"]/statBases</xpath>
+				<value>
+					<Bulk>80</Bulk>
+					<WornBulk>18</WornBulk>
+				</value>
+			</li>
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="Apparel_ProtectiveGear"]/statBases/WorkToMake</xpath>
+				<value>
+					<WorkToMake>42000</WorkToMake>
+				</value>
+			</li>
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="Apparel_ProtectiveGear"]/statBases/Mass</xpath>
+				<value>
+					<Mass>20</Mass>
+				</value>
+			</li>
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="Apparel_ProtectiveGear"]/statBases/ArmorRating_Sharp</xpath>
+				<value>
+					<ArmorRating_Sharp>10</ArmorRating_Sharp>
+				</value>
+			</li>
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="Apparel_ProtectiveGear"]/statBases/ArmorRating_Blunt</xpath>
+				<value>
+					<ArmorRating_Blunt>22.5</ArmorRating_Blunt>
+				</value>
+			</li>
+			<li Class="PatchOperationRemove">
+				<xpath>Defs/ThingDef[defName="Apparel_ProtectiveGear"]/equippedStatOffsets/MoveSpeed</xpath>
+			</li>
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName="Apparel_ProtectiveGear"]/equippedStatOffsets</xpath>
+				<value>
+					<ToxicSensitivity>-0.30</ToxicSensitivity>
+					<MeleeDodgeChance>-0.15</MeleeDodgeChance>
+				</value>
+			</li>
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName="Apparel_ProtectiveGear"]/apparel/bodyPartGroups</xpath>
+				<value>
+					<li>Hands</li>
+					<li>Feet</li>
+				</value>
+			</li>
+
+			<!-- ========== Protective Helmet =========== -->
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName="Apparel_ProtectiveHelmet"]/statBases</xpath>
+				<value>
+					<Bulk>6</Bulk>
+					<WornBulk>1</WornBulk>
+				</value>
+			</li>
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="Apparel_ProtectiveHelmet"]/statBases/WorkToMake</xpath>
+				<value>
+					<WorkToMake>14000</WorkToMake>
+				</value>
+			</li>
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="Apparel_ProtectiveHelmet"]/statBases/Mass</xpath>
+				<value>
+					<Mass>4.5</Mass>
+				</value>
+			</li>
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="Apparel_ProtectiveHelmet"]/statBases/ArmorRating_Sharp</xpath>
+				<value>
+					<ArmorRating_Sharp>10</ArmorRating_Sharp>
+				</value>
+			</li>
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="Apparel_ProtectiveHelmet"]/statBases/ArmorRating_Blunt</xpath>
+				<value>
+					<ArmorRating_Blunt>22.5</ArmorRating_Blunt>
+				</value>
+			</li>
+			<li Class="PatchOperationRemove">
+				<xpath>Defs/ThingDef[defName="Apparel_ProtectiveHelmet"]/equippedStatOffsets/MoveSpeed</xpath>
+			</li>
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName="Apparel_ProtectiveHelmet"]/equippedStatOffsets</xpath>
+				<value>
+					<ToxicSensitivity>-0.20</ToxicSensitivity>
+					<SmokeSensitivity>-1</SmokeSensitivity>	
+					<AimingAccuracy>-0.2</AimingAccuracy>
+					<MeleeHitChance>-1</MeleeHitChance>
+				</value>
+			</li>
+			
+		</operations>
+		</match>
+	</Operation>
+
+</Patch>
+			
+			
