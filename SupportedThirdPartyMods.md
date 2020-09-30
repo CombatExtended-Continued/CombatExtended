@@ -45,6 +45,7 @@ Android Tiers++	|
 Androids	|
 Androids Expanded	|
 AnimalCollabProj	|
+Animal Armor: Vanilla	|
 Apparello 2	|
 Arachne Race	|
 Area Rugs	|
