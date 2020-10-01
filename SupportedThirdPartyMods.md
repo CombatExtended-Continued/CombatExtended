@@ -109,6 +109,7 @@ Medical System Expansion	|
 Megafauna	|
 MiningCo. MiningHelmet	|
 Misc. Core	|
+Misc. MAI |
 Misc. Robots	|
 More Consumables And Mutagens Reworked |
 More Mechanoids	|
