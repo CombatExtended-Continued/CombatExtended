@@ -45,9 +45,11 @@ Android Tiers++	|
 Androids	|
 Androids Expanded	|
 AnimalCollabProj	|
+Animal Armor: Vanilla	|
 Apparello 2	|
 Arachne Race	|
 Area Rugs	|
+Autocleaner	|
 Auto-Mortars	|
 Beeralope Squad	|
 Better Infestations	|
@@ -58,7 +60,9 @@ Cute Penguin	|
 CyberNet	|
 Cybernetic Organism and Neural Network	|
 Defensive Machine Gun Turret Pack	|
-Dinosauria	|
+Dinosauria |
+Dishonored Assassin Coat |
+Dishonored Assassin Mask |
 Dragon's Descent |
 Dragonian Race	|
 Dragons!	|
@@ -71,6 +75,7 @@ Expanded Patchleather	|
 Expanded Prosthetics and Organ Engineering (EPOE)	|
 Extended Storage	|
 Fallout Traits	|
+Fantasy Metals Reforged |
 FashionRIMsta	|
 Fate Grand Order - Styles Apparel Pack	|
 Ferrex Race	|
@@ -88,6 +93,7 @@ GouRIMet	|
 Halo - Rimworld Auxiliary Combat Armory	|
 Hand 'n' Footwear	|
 High Caliber	|
+Idhale Race	|
 Iron Harvest Pkp 17 "Eisenhans" Powerarmor	|
 Jernfalk's Standalone Horses	|
 Kaiser Armory	|
@@ -109,6 +115,7 @@ More Mechanoids	|
 More Practical Traits	|
 More Vanilla Turrets	|
 Moyo - From the Depth   |
+NNearmare Race	|
 Ni'Hal	|
 Orassans	|
 Palm Cats   |
@@ -136,9 +143,11 @@ Rimworld - The Dark Descent |
 Rimworld - Witcher Monster Hunt |
 Save Our Ship 2	|
 Sergals, Gnolls, Lions and Frogs	|
+Silkiera Race	|
 Simply More Melee	|
 Soviet Armory	|
 Spartan Foundry	|
+The Mantodean insectoid race	|
 T-45b Power Armor	|
 TouhouStyle	|
 Trading Economy	|
@@ -152,6 +161,7 @@ Vanilla Brewing Expanded    |
 Vanilla Factions Expanded - Insectoids |
 Vanilla Factions Expanded - Medieval	|
 Vanilla Factions Expanded - Settlers	|
+Vanilla Factions Expanded - Vikings	|
 Vanilla Furniture Expanded - Production	|
 Vanilla Vehicles Expanded	|
 Vanilla Weapons Expanded |
@@ -165,4 +175,5 @@ Weapons+	|
 WWII Soviet Faction	|
 Xenn Race	|
 Xenohumans	|
+Xenoorca Race	|
 Zombieland	|
