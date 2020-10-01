@@ -117,7 +117,7 @@ More Mechanoids	|
 More Practical Traits	|
 More Vanilla Turrets	|
 Moyo - From the Depth   |
-NNearmare Race	|
+Nearmare Race	|
 Ni'Hal	|
 Orassans	|
 Palm Cats   |
