@@ -1,0 +1,284 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+	<Operation Class="PatchOperationSequence">
+		<success></success>
+		<operations>
+			<li Class="PatchOperationFindMod">
+			<mods><li>[1.2]Xenoorca Race</li></mods>
+			<match Class="PatchOperationSequence">
+			<operations>
+			
+			<!-- ==========  Remove Grenade  =========== -->
+			
+			<li Class="PatchOperationRemove">
+				<xpath>Defs//ThingDef[defName="Weapon_GrenadeFrag_XO"]</xpath>
+			</li>
+			
+			<li Class="PatchOperationRemove">
+				<xpath>Defs//ThingDef[defName="Proj_GrenadeFrag_XO"]</xpath>
+			</li>
+			
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="Gun_AssaultRifle_XO" or defName="Gun_SniperRifle_XO" or defName="Gun_PumpShotgun_XO" or defName="Gun_ChargeRifle_XO"]/tools</xpath>
+				<value>
+				  <tools>
+					<li Class="CombatExtended.ToolCE">
+					  <label>stock</label>
+					  <capacities>
+						<li>Blunt</li>
+					  </capacities>
+					  <power>8</power>
+					  <cooldownTime>1.55</cooldownTime>
+					  <chanceFactor>1.5</chanceFactor>
+					  <armorPenetrationBlunt>2.755</armorPenetrationBlunt>
+					  <linkedBodyPartsGroup>Stock</linkedBodyPartsGroup>
+					</li>
+					<li Class="CombatExtended.ToolCE">
+					  <label>barrel</label>
+					  <capacities>
+						<li>Blunt</li>
+					  </capacities>
+					  <power>5</power>
+					  <cooldownTime>2.02</cooldownTime>
+					  <armorPenetrationBlunt>1.630</armorPenetrationBlunt>
+					  <linkedBodyPartsGroup>Barrel</linkedBodyPartsGroup>
+					</li>
+					<li Class="CombatExtended.ToolCE">
+					  <label>muzzle</label>
+					  <capacities>
+						<li>Poke</li>
+					  </capacities>
+					  <power>8</power>
+					  <cooldownTime>1.55</cooldownTime>
+					  <armorPenetrationBlunt>2.755</armorPenetrationBlunt>
+					  <linkedBodyPartsGroup>Muzzle</linkedBodyPartsGroup>
+					</li>
+				  </tools>
+				</value>
+			</li>
+			
+			<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+				<defName>Gun_AssaultRifle_XO</defName>
+				<statBases>
+				  <Mass>3.5</Mass>
+				  <RangedWeapon_Cooldown>0.36</RangedWeapon_Cooldown>
+				  <SightsEfficiency>1</SightsEfficiency>
+				  <ShotSpread>0.09</ShotSpread>
+				  <SwayFactor>1.02</SwayFactor>
+				  <Bulk>6.65</Bulk>
+				  <WorkToMake>30000</WorkToMake>
+				</statBases>
+				<costList>
+				  <Steel>50</Steel>
+				  <ComponentIndustrial>6</ComponentIndustrial>
+				  <Chemfuel>10</Chemfuel>
+				</costList>
+				<Properties>
+				  <recoilAmount>1.48</recoilAmount>
+				  <verbClass>CombatExtended.Verb_ShootCE</verbClass>
+				  <hasStandardCommand>true</hasStandardCommand>
+				  <defaultProjectile>Bullet_556x45mmNATO_FMJ</defaultProjectile>
+				  <warmupTime>1.1</warmupTime>
+				  <range>55</range>
+				  <burstShotCount>6</burstShotCount>
+				  <ticksBetweenBurstShots>4</ticksBetweenBurstShots>
+				  <soundCast>Shot_AssaultRifle</soundCast>
+				  <soundCastTail>GunTail_Medium</soundCastTail>
+				  <muzzleFlashScale>9</muzzleFlashScale>
+				</Properties>
+				<AmmoUser>
+				  <magazineSize>30</magazineSize>
+				  <reloadTime>4.5</reloadTime>
+				  <ammoSet>AmmoSet_556x45mmNATO</ammoSet>
+				</AmmoUser>
+				<FireModes>
+				  <aimedBurstShotCount>3</aimedBurstShotCount>
+				  <aiUseBurstMode>TRUE</aiUseBurstMode>
+				  <aiAimMode>AimedShot</aiAimMode>
+				</FireModes>
+				<researchPrerequisite>PrecisionRifling</researchPrerequisite>
+			</li>
+			
+			<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+				<defName>Gun_SniperRifle_XO</defName>
+				<statBases>
+				  <Mass>7.30</Mass>
+				  <RangedWeapon_Cooldown>1.36</RangedWeapon_Cooldown>
+				  <SightsEfficiency>2.6</SightsEfficiency>
+				  <ShotSpread>0.05</ShotSpread>
+				  <SwayFactor>1.92</SwayFactor>
+				  <Bulk>11.92</Bulk>
+				  <WorkToMake>30000</WorkToMake>
+				</statBases>
+				<costList>
+				  <Steel>60</Steel>
+				  <ComponentIndustrial>5</ComponentIndustrial>
+				  <Chemfuel>15</Chemfuel>
+				</costList>
+				<Properties>
+				  <verbClass>CombatExtended.Verb_ShootCE</verbClass>
+				  <hasStandardCommand>true</hasStandardCommand>
+				  <defaultProjectile>Bullet_762x51mmNATO_FMJ</defaultProjectile>
+				  <warmupTime>1.6</warmupTime>
+				  <range>75</range>
+				  <soundCast>Shot_SniperRifle</soundCast>
+				  <soundCastTail>GunTail_Heavy</soundCastTail>
+				  <muzzleFlashScale>9</muzzleFlashScale>
+				</Properties>
+				<AmmoUser>
+				  <magazineSize>5</magazineSize>
+				  <reloadTime>4</reloadTime>
+				  <ammoSet>AmmoSet_762x51mmNATO</ammoSet>
+				</AmmoUser>
+				<FireModes>
+				  <aiAimMode>AimedShot</aiAimMode>
+				</FireModes>
+				<researchPrerequisite>PrecisionRifling</researchPrerequisite>
+			</li>
+			
+			<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+				<defName>Gun_PumpShotgun_XO</defName>
+				<statBases>
+				  <Mass>3.00</Mass>
+				  <RangedWeapon_Cooldown>1.0</RangedWeapon_Cooldown>
+				  <ShotSpread>0.14</ShotSpread>
+				  <SwayFactor>1.20</SwayFactor>
+				  <Bulk>9.0</Bulk>
+				  <SightsEfficiency>1</SightsEfficiency>
+				  <WorkToMake>9500</WorkToMake>
+				</statBases>
+				<costList>
+				  <Steel>45</Steel>
+				  <Chemfuel>10</Chemfuel>
+				  <ComponentIndustrial>1</ComponentIndustrial>
+				</costList>
+				<Properties>
+				  <verbClass>CombatExtended.Verb_ShootCE</verbClass>
+				  <hasStandardCommand>true</hasStandardCommand>
+				  <defaultProjectile>Bullet_12Gauge_Buck</defaultProjectile>
+				  <warmupTime>0.6</warmupTime>
+				  <range>16</range>
+				  <soundCast>Shot_Shotgun</soundCast>
+				  <soundCastTail>GunTail_Heavy</soundCastTail>
+				  <muzzleFlashScale>9</muzzleFlashScale>
+				</Properties>
+				<AmmoUser>
+				  <magazineSize>5</magazineSize>
+				  <reloadOneAtATime>true</reloadOneAtATime>
+				  <reloadTime>0.85</reloadTime>
+				  <ammoSet>AmmoSet_12Gauge</ammoSet>
+				</AmmoUser>
+				<FireModes />
+				<researchPrerequisite>Gunsmithing</researchPrerequisite>
+			</li>
+			
+			<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+				<defName>Gun_ChargeRifle_XO</defName>
+				<statBases>
+				  <Mass>3.0</Mass>
+				  <RangedWeapon_Cooldown>0.36</RangedWeapon_Cooldown>
+				  <SightsEfficiency>1.10</SightsEfficiency>
+				  <ShotSpread>0.08</ShotSpread>
+				  <SwayFactor>1.20</SwayFactor>
+				  <Bulk>7.00</Bulk>
+				  <WorkToMake>48000</WorkToMake>
+				</statBases>
+				<costList>
+				  <Steel>45</Steel>
+				  <Plasteel>25</Plasteel>
+				  <ComponentIndustrial>10</ComponentIndustrial>
+				  <Chemfuel>10</Chemfuel>
+				</costList>
+				<Properties>
+				  <recoilAmount>1.51</recoilAmount>
+				  <verbClass>CombatExtended.Verb_ShootCE</verbClass>
+				  <hasStandardCommand>true</hasStandardCommand>
+				  <defaultProjectile>Bullet_6x24mmCharged</defaultProjectile>
+				  <warmupTime>1.0</warmupTime>
+				  <range>55</range>
+				  <ticksBetweenBurstShots>5</ticksBetweenBurstShots>
+				  <burstShotCount>6</burstShotCount>
+				  <soundCast>Shot_ChargeRifle</soundCast>
+				  <soundCastTail>GunTail_Medium</soundCastTail>
+				  <muzzleFlashScale>9</muzzleFlashScale>
+				</Properties>
+				<AmmoUser>
+				  <magazineSize>30</magazineSize>
+				  <reloadTime>4</reloadTime>
+				  <ammoSet>AmmoSet_6x24mmCharged</ammoSet>
+				</AmmoUser>
+				<FireModes>
+				  <aimedBurstShotCount>3</aimedBurstShotCount>
+				  <aiUseBurstMode>TRUE</aiUseBurstMode>
+				  <aiAimMode>AimedShot</aiAimMode>
+				</FireModes>
+				<researchPrerequisite>ChargedShot</researchPrerequisite>
+			</li>
+			
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="MeleeWeapon_Trident_XO"]/tools</xpath>
+				<value>
+					<tools>
+					  <li Class="CombatExtended.ToolCE">
+						<label>shaft</label>
+						<capacities>
+						  <li>Blunt</li>
+						</capacities>
+						<power>6</power>
+						<cooldownTime>1.31</cooldownTime>
+						<armorPenetrationBlunt>2.025</armorPenetrationBlunt>
+						<linkedBodyPartsGroup>Shaft</linkedBodyPartsGroup>
+					  </li>
+					  <li Class="CombatExtended.ToolCE">
+						<label>edge</label>
+						<capacities>
+						  <li>Cut</li>
+						</capacities>
+						<power>47</power>
+						<cooldownTime>2.9</cooldownTime>
+						<chanceFactor>1.165</chanceFactor>
+						<armorPenetrationBlunt>8.1</armorPenetrationBlunt>
+						<armorPenetrationSharp>1.62</armorPenetrationSharp>
+						<linkedBodyPartsGroup>Edge</linkedBodyPartsGroup>
+					  </li>
+					  <li Class="CombatExtended.ToolCE">
+						<label>point</label>
+						<capacities>
+						  <li>Stab</li>
+						</capacities>
+						<power>40</power>
+						<cooldownTime>1.16</cooldownTime>
+						<chanceFactor>1.165</chanceFactor>
+						<armorPenetrationBlunt>2.025</armorPenetrationBlunt>
+						<armorPenetrationSharp>2.03</armorPenetrationSharp>
+						<linkedBodyPartsGroup>Point</linkedBodyPartsGroup>
+					  </li>
+					</tools>
+				</value>
+			</li>
+			
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName="MeleeWeapon_Trident_XO"]/statBases</xpath>
+				<value>
+					<MeleeCounterParryBonus>1.08</MeleeCounterParryBonus>
+					<Bulk>10</Bulk>
+				</value>
+			</li>
+			
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName="MeleeWeapon_Trident_XO"]</xpath>
+				<value>
+					<equippedStatOffsets>
+					  <MeleeCritChance>0.22</MeleeCritChance>
+					  <MeleeParryChance>1.53</MeleeParryChance>
+					  <MeleeDodgeChance>0.67</MeleeDodgeChance>
+					</equippedStatOffsets>
+				</value>
+			</li>
+			
+			</operations>
+			</match>
+			</li>
+		</operations>
+	</Operation>
+</Patch>

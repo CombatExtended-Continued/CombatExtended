@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+	<Operation Class="PatchOperationSequence">
+		<success></success>
+		<operations>
+			<li Class="PatchOperationFindMod">
+			<mods><li>[1.2]Silkiera Race</li></mods>
+			<match Class="PatchOperationSequence">
+			<operations>
+				
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="HAR_SK_Weapon_a"]/tools</xpath>
+					<value>
+						<tools>
+						  <li Class="CombatExtended.ToolCE">
+							<label>shaft</label>
+							<capacities>
+							  <li>Blunt</li>
+							</capacities>
+							<power>6</power>
+							<cooldownTime>1.31</cooldownTime>
+							<armorPenetrationBlunt>2.025</armorPenetrationBlunt>
+							<linkedBodyPartsGroup>Shaft</linkedBodyPartsGroup>
+						  </li>
+						  <li Class="CombatExtended.ToolCE">
+							<label>edge</label>
+							<capacities>
+							  <li>Cut</li>
+							</capacities>
+							<power>47</power>
+							<cooldownTime>2.9</cooldownTime>
+							<chanceFactor>1.165</chanceFactor>
+							<armorPenetrationBlunt>8.1</armorPenetrationBlunt>
+							<armorPenetrationSharp>1.62</armorPenetrationSharp>
+							<linkedBodyPartsGroup>Edge</linkedBodyPartsGroup>
+						  </li>
+						  <li Class="CombatExtended.ToolCE">
+							<label>point</label>
+							<capacities>
+							  <li>Stab</li>
+							</capacities>
+							<power>40</power>
+							<cooldownTime>1.16</cooldownTime>
+							<chanceFactor>1.165</chanceFactor>
+							<armorPenetrationBlunt>2.025</armorPenetrationBlunt>
+							<armorPenetrationSharp>2.03</armorPenetrationSharp>
+							<linkedBodyPartsGroup>Point</linkedBodyPartsGroup>
+						  </li>
+						</tools>
+					</value>
+				</li>
+				
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="HAR_SK_Weapon_a"]/statBases</xpath>
+					<value>
+						<MeleeCounterParryBonus>1.08</MeleeCounterParryBonus>
+						<Bulk>10</Bulk>
+					</value>
+				</li>
+				
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="HAR_SK_Weapon_a"]/equippedStatOffsets</xpath>
+					<value>
+					  <MeleeCritChance>0.22</MeleeCritChance>
+					  <MeleeParryChance>1.53</MeleeParryChance>
+					  <MeleeDodgeChance>0.67</MeleeDodgeChance>
+					</value>
+				</li>
+				
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="HAR_SK_Weapon_b"]/tools</xpath>
+					<value>
+						<tools>
+							<li Class="CombatExtended.ToolCE">
+								<label>shaft</label>
+								<capacities>
+									<li>Blunt</li>
+								</capacities>
+								<power>7</power>
+								<cooldownTime>1.35</cooldownTime>
+								<chanceFactor>0.15</chanceFactor>
+								<armorPenetrationBlunt>2.25</armorPenetrationBlunt>
+								<linkedBodyPartsGroup>Shaft</linkedBodyPartsGroup>
+							</li>
+							<li Class="CombatExtended.ToolCE">
+								<label>shaft</label>
+								<capacities>
+									<li>Poke</li>
+								</capacities>
+								<power>4</power>
+								<cooldownTime>1.78</cooldownTime>
+								<chanceFactor>0.05</chanceFactor>
+								<armorPenetrationBlunt>1</armorPenetrationBlunt>
+								<linkedBodyPartsGroup>Point</linkedBodyPartsGroup>
+							</li>
+							<li Class="CombatExtended.ToolCE">
+								<label>head</label>
+								<capacities>
+									<li>Stab</li>
+								</capacities>
+								<power>18</power>
+								<cooldownTime>1.19</cooldownTime>
+								<chanceFactor>1.00</chanceFactor>
+								<armorPenetrationBlunt>2.25</armorPenetrationBlunt>
+								<armorPenetrationSharp>1.5</armorPenetrationSharp>
+								<linkedBodyPartsGroup>Head</linkedBodyPartsGroup>
+							</li>
+						</tools>
+					</value>
+				</li>
+
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="HAR_SK_Weapon_b"]/statBases</xpath>
+					<value>
+						<Bulk>10</Bulk>
+						<MeleeCounterParryBonus>1.68</MeleeCounterParryBonus>
+					</value>
+				</li>
+
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="HAR_SK_Weapon_b"]/equippedStatOffsets</xpath>
+					<value>
+						<MeleeCritChance>0.17</MeleeCritChance>
+						<MeleeParryChance>1.45</MeleeParryChance>
+						<MeleeDodgeChance>0.9</MeleeDodgeChance>
+					</value>
+				</li>
+			
+			</operations>
+			</match>
+			</li>
+		</operations>
+	</Operation>
+</Patch>

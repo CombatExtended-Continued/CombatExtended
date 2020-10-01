@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+
+  <Operation Class="PatchOperationFindMod">
+    <mods>
+      <li>More Consumables and Mutagens Reworked</li>
+    </mods>
+    <match Class="PatchOperationSequence">
+      <operations>
+
+        <!-- === Bleed Rates === -->
+        <li Class="PatchOperationAdd">
+          <xpath>/Defs/BodyPartDef[defName="SlimeBody"]</xpath>
+          <value>
+            <bleedRate>1.5</bleedRate>
+          </value>
+        </li>
+
+        <li Class="PatchOperationReplace">
+          <xpath>/Defs/BodyPartDef[defName="SlimeHeart"]/bleedRate</xpath>
+          <value>
+            <bleedRate>18.75</bleedRate>
+          </value>
+        </li>
+      
+      </operations>
+    </match>
+  </Operation>
+
+</Patch>

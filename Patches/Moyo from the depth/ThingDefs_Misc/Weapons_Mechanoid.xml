@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+	<Operation Class="PatchOperationSequence">
+		<success></success>
+		<operations>
+			<li Class="PatchOperationFindMod">
+			<mods><li>Moyo-From the depth</li></mods>
+			<match Class="PatchOperationSequence">
+			<operations>
+			
+			<!-- ========== Cryopod Cryorifle =========== -->
+			
+			<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+			<defName>Moyo_CryoRifle</defName>
+				<statBases>
+					<SightsEfficiency>1.00</SightsEfficiency>
+					<ShotSpread>0.05</ShotSpread>
+					<SwayFactor>0.86</SwayFactor>
+					<Bulk>20</Bulk>
+					<Mass>22</Mass>
+					<RangedWeapon_Cooldown>2.5</RangedWeapon_Cooldown>
+				</statBases>
+				
+				<Properties>
+					<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+					<hasStandardCommand>true</hasStandardCommand>
+					<defaultProjectile>Bullet_MoyoCryocannon</defaultProjectile>
+					<warmupTime>4.3</warmupTime>
+					<ammoConsumedPerShotCount>50</ammoConsumedPerShotCount>
+					<range>55</range>
+					<soundCast>ChargeLance_Fire</soundCast>
+					<soundCastTail>GunTail_Heavy</soundCastTail>
+					<muzzleFlashScale>9</muzzleFlashScale>
+					<targetParams>
+					  <canTargetLocations>true</canTargetLocations>
+					</targetParams>
+				</Properties>
+				
+				<AmmoUser>
+					<magazineSize>100</magazineSize>
+					<reloadTime>9.8</reloadTime>
+					<ammoSet>AmmoSet_CryoRifle</ammoSet>
+				</AmmoUser>
+				<FireModes>
+					<aiAimMode>AimedShot</aiAimMode>
+				</FireModes>
+			</li>
+			
+			<!-- ========== Melee Attacks =========== -->
+			
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="Moyo_CryoRifle"]/tools</xpath>
+				<value>
+					<tools>
+						<li Class="CombatExtended.ToolCE">
+						  <label>barrel</label>
+						  <capacities>
+							<li>Blunt</li>
+						  </capacities>
+						  <power>10</power>
+						  <cooldownTime>2.44</cooldownTime>
+						  <armorPenetrationBlunt>3.5</armorPenetrationBlunt>
+						  <linkedBodyPartsGroup>Barrel</linkedBodyPartsGroup>
+						</li>
+					</tools>
+				</value>
+			</li> 
+			
+			</operations>
+			</match>
+			</li>
+		</operations>
+	</Operation>
+</Patch>

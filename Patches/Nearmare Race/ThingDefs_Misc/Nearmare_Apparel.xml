@@ -1,0 +1,256 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+  <Operation Class="PatchOperationSequence">
+	<operations>
+	  <li Class="PatchOperationFindMod">
+			
+		<mods><li>[1.2]Nearmare Race</li></mods>
+			
+		<match Class="PatchOperationSequence">
+		<operations>
+		
+			<!--========= Stuffable =========-->
+			
+			<!--Skin Layer minimum protection-->
+			
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[
+				defName="HAR_NM_Os_P" or
+				defName="HAR_NM_Os_Pb" or
+				defName="HAR_NM_Os_Pc" or
+				defName="HAR_NM_Os_Pd" or
+				defName="HAR_NM_Os_Pe"
+				]/statBases/StuffEffectMultiplierArmor</xpath>
+				<value>
+					<StuffEffectMultiplierArmor>0.25</StuffEffectMultiplierArmor>
+					<Bulk>0.5</Bulk>
+					<WornBulk>0.25</WornBulk>
+				</value>
+			</li>
+			
+			<!--Middle Low-->
+			
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[
+				defName="HAR_NM_RiderS"
+				]/statBases/StuffEffectMultiplierArmor</xpath>
+				<value>
+					<StuffEffectMultiplierArmor>0.5</StuffEffectMultiplierArmor>
+					<Bulk>1</Bulk>
+					<WornBulk>1</WornBulk>
+				</value>
+			</li>
+			
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[
+				defName="HAR_NM_Tshirt" or
+				defName="HAR_NM_Itimai" or
+				defName="HAR_NM_NurseS"
+				]/statBases/StuffEffectMultiplierArmor</xpath>
+				<value>
+					<StuffEffectMultiplierArmor>1</StuffEffectMultiplierArmor>
+					<Bulk>1</Bulk>
+					<WornBulk>1</WornBulk>
+				</value>
+			</li>
+			
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[
+				defName="HAR_NM_Sc_Uniform" or
+				defName="HAR_NM_SShirts"
+				]/statBases/StuffEffectMultiplierArmor</xpath>
+				<value>
+					<StuffEffectMultiplierArmor>1.5</StuffEffectMultiplierArmor>
+					<Bulk>1</Bulk>
+					<WornBulk>1</WornBulk>
+				</value>
+			</li>
+			
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[
+				defName="HAR_NM_Blouse"
+				]/statBases/StuffEffectMultiplierArmor</xpath>
+				<value>
+					<StuffEffectMultiplierArmor>2</StuffEffectMultiplierArmor>
+					<Bulk>1</Bulk>
+					<WornBulk>1</WornBulk>
+				</value>
+			</li>
+			
+			<!--Middle Mid-->
+			
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[
+				defName="HAR_NM_BDress" or
+				defName="HAR_NM_WDress" or
+				defName="HAR_NM_China" or
+				defName="HAR_NM_Maid" or
+				defName="HAR_NM_Kimono" or
+				defName="HAR_NM_Miko"
+				]/statBases/StuffEffectMultiplierArmor</xpath>
+				<value>
+					<StuffEffectMultiplierArmor>3</StuffEffectMultiplierArmor>
+					<Bulk>3</Bulk>
+					<WornBulk>1</WornBulk>
+				</value>
+			</li>
+			
+			<!--Middle Metallic-->
+			
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[
+				defName="HAR_NM_DLArmor"
+				]/statBases/StuffEffectMultiplierArmor</xpath>
+				<value>
+					<StuffEffectMultiplierArmor>3.5</StuffEffectMultiplierArmor>
+					<Bulk>60</Bulk>
+					<WornBulk>10</WornBulk>
+				</value>
+			</li>
+			
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName="HAR_NM_DLArmor"]/apparel/bodyPartGroups</xpath>
+				<value>
+					<li>Hands</li>
+					<li>Feet</li>
+				</value>
+			</li>
+			
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[
+				defName="HAR_NM_KArmor"
+				]/statBases/StuffEffectMultiplierArmor</xpath>
+				<value>
+					<StuffEffectMultiplierArmor>1.5</StuffEffectMultiplierArmor>
+					<Bulk>60</Bulk>
+					<WornBulk>5</WornBulk>
+				</value>
+			</li>
+			
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName="HAR_NM_KArmor"]/apparel/bodyPartGroups</xpath>
+				<value>
+					<li>Hands</li>
+					<li>Feet</li>
+				</value>
+			</li>
+			
+			<!--Shell-->
+			
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[
+				defName="HAR_NM_Sh_K" or
+				defName="HAR_NM_Sh_Kb" or
+				defName="HAR_NM_Sh_Kc" or
+				defName="HAR_NM_Sh_Kd" or
+				defName="HAR_NM_Sh_Ke" or
+				defName="HAR_NM_Sh_Ho" or
+				defName="HAR_NM_Sh_SKo"
+				]/statBases/StuffEffectMultiplierArmor</xpath>
+				<value>
+					<StuffEffectMultiplierArmor>10</StuffEffectMultiplierArmor>
+					<Bulk>10</Bulk>
+					<WornBulk>5</WornBulk>
+				</value>
+			</li>
+			
+			<!--Shell Metallic
+			
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[
+				defName="HAR_NM_Sh_BKo"
+				]/statBases/StuffEffectMultiplierArmor</xpath>
+				<value>
+					<StuffEffectMultiplierArmor>5</StuffEffectMultiplierArmor>
+					<Bulk>1</Bulk>
+					<WornBulk>1</WornBulk>
+				</value>
+			</li>
+			
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[
+				defName="HAR_NM_Sh_BKo"
+				]/costList/Steel</xpath>
+				<value>
+					<Steel>150</Steel>
+				</value>
+			</li>
+			
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[
+				defName="HAR_NM_Sh_BKo"
+				]</xpath>
+				<value>
+					<costStuffCount>150</costStuffCount>
+					<stuffCategories>
+						<li>Metallic</li>
+					</stuffCategories>
+				</value>
+			</li>
+			-->
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName="HAR_NM_Sh_BKo"]/apparel/bodyPartGroups</xpath>
+				<value>
+					<li>Legs</li>
+					<li>Hands</li>
+					<li>Feet</li>
+				</value>
+			</li>
+			
+			<!--Overhead-->
+			
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[
+				defName="HAR_NM_MCt" or
+				defName="HAR_NM_Tar"
+				]/statBases/StuffEffectMultiplierArmor</xpath>
+				<value>
+					<StuffEffectMultiplierArmor>2.5</StuffEffectMultiplierArmor>
+					<Bulk>1</Bulk>
+					<WornBulk>1</WornBulk>
+				</value>
+			</li>
+			
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[
+				defName="HAR_NM_MHK" or
+				defName="HAR_NM_Cts" or
+				defName="HAR_NM_MRbn"
+				]/statBases/StuffEffectMultiplierArmor</xpath>
+				<value>
+					<StuffEffectMultiplierArmor>3</StuffEffectMultiplierArmor>
+					<Bulk>1</Bulk>
+					<WornBulk>1</WornBulk>
+				</value>
+			</li>
+			
+			<!--Overhead Armor-->
+			
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[
+				defName="HAR_NM_HArmor"
+				]/statBases/StuffEffectMultiplierArmor</xpath>
+				<value>
+					<StuffEffectMultiplierArmor>3.5</StuffEffectMultiplierArmor>
+					<Bulk>3</Bulk>
+					<WornBulk>1</WornBulk>
+				</value>
+			</li>
+			
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[
+				defName="HAR_NM_HCArmor"
+				]/statBases/StuffEffectMultiplierArmor</xpath>
+				<value>
+					<StuffEffectMultiplierArmor>1</StuffEffectMultiplierArmor>
+					<Bulk>3</Bulk>
+					<WornBulk>1</WornBulk>
+				</value>
+			</li>
+			
+		</operations>
+		</match>	
+	  </li>
+	</operations>	
+  </Operation>
+</Patch>
