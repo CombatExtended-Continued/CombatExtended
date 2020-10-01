@@ -108,6 +108,7 @@ Mechanoids Extraordinaire	|
 Medical System Expansion	|
 Megafauna	|
 MiningCo. MiningHelmet	|
+Misc. Core	|
 Misc. Robots	|
 More Consumables And Mutagens Reworked |
 More Mechanoids	|
