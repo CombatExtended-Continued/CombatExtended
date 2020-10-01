@@ -277,8 +277,6 @@ namespace CombatExtended
             damageInfo.SetWeaponHediff(hediffDef);
             damageInfo.SetAngle(direction);
 
-            // END 1:1 COPY
-
             // Calculate odds of targeting vulnerable bodyparts, excluding social fights and beating prisoners
             if (target.Thing is Pawn p && !(CasterPawn.IsColonist && (p.IsColonist || p.IsPrisoner)))
             {
@@ -363,8 +361,6 @@ namespace CombatExtended
                     }
                 }
             }
-
-            // START 1:1 COPY
 
             yield return damageInfo;
             if (this.tool != null && this.tool.extraMeleeDamages != null)
