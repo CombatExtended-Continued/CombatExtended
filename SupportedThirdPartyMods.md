@@ -45,9 +45,11 @@ Android Tiers++	|
 Androids	|
 Androids Expanded	|
 AnimalCollabProj	|
+Animal Armor: Vanilla	|
 Apparello 2	|
 Arachne Race	|
 Area Rugs	|
+Autocleaner	|
 Auto-Mortars	|
 Beeralope Squad	|
 Better Infestations	|
@@ -58,7 +60,9 @@ Cute Penguin	|
 CyberNet	|
 Cybernetic Organism and Neural Network	|
 Defensive Machine Gun Turret Pack	|
-Dinosauria	|
+Dinosauria |
+Dishonored Assassin Coat |
+Dishonored Assassin Mask |
 Dragon's Descent |
 Dragonian Race	|
 Dragons!	|
@@ -71,6 +75,7 @@ Expanded Patchleather	|
 Expanded Prosthetics and Organ Engineering (EPOE)	|
 Extended Storage	|
 Fallout Traits	|
+Fantasy Metals Reforged |
 FashionRIMsta	|
 Fate Grand Order - Styles Apparel Pack	|
 Ferrex Race	|
@@ -103,6 +108,7 @@ Mechanoids Extraordinaire	|
 Medical System Expansion	|
 Megafauna	|
 MiningCo. MiningHelmet	|
+Misc. Core	|
 Misc. MAI |
 Misc. Robots	|
 More Consumables And Mutagens Reworked |
@@ -140,6 +146,7 @@ Sergals, Gnolls, Lions and Frogs	|
 Simply More Melee	|
 Soviet Armory	|
 Spartan Foundry	|
+The Mantodean insectoid race	|
 T-45b Power Armor	|
 TouhouStyle	|
 Trading Economy	|
@@ -153,6 +160,7 @@ Vanilla Brewing Expanded    |
 Vanilla Factions Expanded - Insectoids |
 Vanilla Factions Expanded - Medieval	|
 Vanilla Factions Expanded - Settlers	|
+Vanilla Factions Expanded - Vikings	|
 Vanilla Furniture Expanded - Production	|
 Vanilla Vehicles Expanded	|
 Vanilla Weapons Expanded |

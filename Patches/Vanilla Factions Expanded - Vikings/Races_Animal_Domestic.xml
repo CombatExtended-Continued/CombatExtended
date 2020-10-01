@@ -1,0 +1,168 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+
+<Patch>
+	<Operation Class="PatchOperationFindMod">
+	<mods>
+		<li>Vanilla Factions Expanded - Vikings</li>
+	</mods>
+		<match Class="PatchOperationSequence">
+		<operations>
+
+	<!-- ========== Wooly Cow ========== -->
+
+	<li Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="VFEV_WoolyCow"]/statBases</xpath>
+		<value>
+			<MeleeDodgeChance>0.08</MeleeDodgeChance>
+			<MeleeCritChance>0.13</MeleeCritChance>
+			<MeleeParryChance>0.18</MeleeParryChance>
+		</value>
+	</li>
+
+	<li Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="VFEV_WoolyCow"]/tools</xpath>
+		<value>
+		<tools>
+			<li Class="CombatExtended.ToolCE">
+				<capacities>
+					<li>Bite</li>
+				</capacities>
+				<power>1</power>
+				<cooldownTime>1</cooldownTime>
+				<linkedBodyPartsGroup>Teeth</linkedBodyPartsGroup>
+				<armorPenetrationBlunt>0.1</armorPenetrationBlunt>
+			</li>
+			<li Class="CombatExtended.ToolCE">
+				<label>horns</label>
+				<capacities>
+					<li>Stab</li>
+				</capacities>
+				<power>19</power>
+				<cooldownTime>2.12</cooldownTime>
+				<chanceFactor>0.65</chanceFactor>
+				<linkedBodyPartsGroup>HeadAttackTool</linkedBodyPartsGroup>
+				<armorPenetrationSharp>0.03</armorPenetrationSharp>
+				<armorPenetrationBlunt>2</armorPenetrationBlunt>
+			</li>
+		</tools>
+		</value>
+	</li>
+
+	<li Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="VFEV_WoolyCow"]/race/baseBodySize</xpath>
+		<value>
+			<baseBodySize>1.7</baseBodySize>
+		</value>
+	</li>
+
+	<li Class="PatchOperationAddModExtension">
+		<xpath>Defs/ThingDef[defName="VFEV_WoolyCow"]</xpath>
+		<value>
+			<li Class="CombatExtended.RacePropertiesExtensionCE">
+				<bodyShape>Quadruped</bodyShape>
+			</li>
+		</value>
+	</li>
+
+	<li Class="PatchOperationReplace">
+		<xpath>Defs/PawnKindDef[defName="VFEV_WoolyCow"]/combatPower</xpath>
+		<value>
+			<combatPower>40</combatPower>
+		</value>
+	</li>
+
+
+	<li Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="VFEV_Wolfhound"]/statBases</xpath>
+		<value>
+			<MeleeDodgeChance>0.22</MeleeDodgeChance>
+			<MeleeCritChance>0.05</MeleeCritChance>
+			<MeleeParryChance>0.04</MeleeParryChance>
+		</value>
+	</li>
+
+	<li Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="VFEV_Wolfhound"]/tools</xpath>
+		<value>
+		<tools>
+			<li Class="CombatExtended.ToolCE">
+				<label>left claw</label>
+				<capacities>
+					<li>Scratch</li>
+				</capacities>
+				<power>6</power>
+				<cooldownTime>0.8</cooldownTime>
+				<armorPenetrationBlunt>0.450</armorPenetrationBlunt>
+				<armorPenetrationSharp>0.05</armorPenetrationSharp>
+				<linkedBodyPartsGroup>FrontLeftPaw</linkedBodyPartsGroup>
+			</li>
+			<li Class="CombatExtended.ToolCE">
+				<label>right claw</label>
+				<capacities>
+					<li>Scratch</li>
+				</capacities>
+				<power>6</power>
+				<cooldownTime>0.8</cooldownTime>
+				<armorPenetrationBlunt>0.450</armorPenetrationBlunt>
+				<armorPenetrationSharp>0.05</armorPenetrationSharp>
+				<linkedBodyPartsGroup>FrontRightPaw</linkedBodyPartsGroup>
+			</li>
+			<li Class="CombatExtended.ToolCE">
+				<capacities>
+					<li>Bite</li>
+				</capacities>
+				<power>19</power>
+				<cooldownTime>1.63</cooldownTime>
+				<linkedBodyPartsGroup>Teeth</linkedBodyPartsGroup>
+				<armorPenetrationSharp>0.12</armorPenetrationSharp>
+				<armorPenetrationBlunt>3.380</armorPenetrationBlunt>
+			</li>
+			<li Class="CombatExtended.ToolCE">
+				<label>head</label>
+				<capacities>
+					<li>Blunt</li>
+				</capacities>
+				<power>1</power>
+				<cooldownTime>1.26</cooldownTime>
+				<linkedBodyPartsGroup>HeadAttackTool</linkedBodyPartsGroup>
+				<chanceFactor>0.2</chanceFactor>
+				<armorPenetrationBlunt>0.250</armorPenetrationBlunt>
+			</li>
+		</tools>
+		</value>
+	</li>
+
+	<li Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="VFEV_Wolfhound"]/race/baseBodySize</xpath>
+		<value>
+			<baseBodySize>0.80</baseBodySize>
+		</value>
+	</li>
+
+	<li Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="VFEV_Wolfhound"]/race/baseHealthScale</xpath>
+		<value>
+			<baseHealthScale>0.80</baseHealthScale>
+		</value>
+	</li>
+
+	<li Class="PatchOperationAddModExtension">
+		<xpath>Defs/ThingDef[defName="VFEV_Wolfhound"]</xpath>
+		<value>
+			<li Class="CombatExtended.RacePropertiesExtensionCE">
+				<bodyShape>Quadruped</bodyShape>
+			</li>
+		</value>
+	</li>
+
+	<li Class="PatchOperationReplace">
+		<xpath>Defs/PawnKindDef[defName="VFEV_Wolfhound"]/combatPower</xpath>
+		<value>
+			<combatPower>60</combatPower>
+		</value>
+	</li>
+
+		</operations>
+		</match>
+	</Operation>
+</Patch>

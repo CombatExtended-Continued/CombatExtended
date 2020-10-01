@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8" ?>
+
+<Patch>
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+			<li>Dishonored Assassin Coat</li>
+		</mods>
+		<match Class="PatchOperationSequence">
+		    <operations>
+				<!-- recipeEdits -->
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="Apparel_AssassinCoatMale"]/costStuffCount</xpath>
+					<value>
+						<costStuffCount>100</costStuffCount>
+					</value>
+				</li>
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="Apparel_AssassinCoatMale"]</xpath>
+					<value>
+						<costList>
+							<Cloth>25</Cloth>
+						</costList>
+					</value>
+				</li>
+				<!-- statBases -->
+				<li Class="PatchOperationReplace">
+			        <xpath>Defs/ThingDef[defName="Apparel_AssassinCoatMale"]/statBases/StuffEffectMultiplierArmor</xpath>
+					<value>
+						<Bulk>1.5</Bulk>
+						<WornBulk>2</WornBulk>
+						<StuffEffectMultiplierArmor>6</StuffEffectMultiplierArmor>
+					</value>
+			    </li>
+				<!-- Misc -->
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="Apparel_AssassinCoatMale"]/apparel/layers</xpath>
+					<value>
+						<li>Webbing</li>
+					</value>
+				</li>
+				<li Class="PatchOperationAdd">
+				    <xpath>Defs/ThingDef[defName="Apparel_AssassinCoatMale"]</xpath>
+					<value>
+					    <equippedStatOffsets>
+							<ReloadSpeed>0.1</ReloadSpeed>
+							<MoveSpeed>0.15</MoveSpeed>
+						    <CarryBulk>15</CarryBulk>
+							<ToxicSensitivity>-0.3</ToxicSensitivity>
+						</equippedStatOffsets>
+					</value>
+				</li>
+			</operations>
+		</match>
+	</Operation>
+</Patch>

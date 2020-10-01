@@ -1,0 +1,215 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+
+<Patch>
+	<Operation Class="PatchOperationFindMod">
+	<mods>
+		<li>Vanilla Factions Expanded - Vikings</li>
+	</mods>
+		<match Class="PatchOperationSequence">
+		<operations>
+
+		<!-- Guardian Helmet -->
+
+		<li Class="PatchOperationReplace">
+			<xpath>Defs/ThingDef[defName="VFEV_Apparel_GuardianHelmet"]/statBases/StuffEffectMultiplierArmor</xpath>
+			<value>
+				<StuffEffectMultiplierArmor>3</StuffEffectMultiplierArmor>
+			</value>
+		</li>
+
+		<li Class="PatchOperationAdd">
+			<xpath>Defs/ThingDef[defName="VFEV_Apparel_GuardianHelmet"]/statBases</xpath>
+			<value>
+				<Bulk>5</Bulk>
+				<WornBulk>1</WornBulk>
+			</value>
+		</li>
+
+		<!-- Leather Helmet -->
+
+		<li Class="PatchOperationReplace">
+			<xpath>Defs/ThingDef[defName="VFEV_Apparel_LeatherHelmet"]/statBases/StuffEffectMultiplierArmor</xpath>
+			<value>
+				<StuffEffectMultiplierArmor>4</StuffEffectMultiplierArmor>
+			</value>
+		</li>
+
+		<li Class="PatchOperationAdd">
+			<xpath>Defs/ThingDef[defName="VFEV_Apparel_LeatherHelmet"]/statBases</xpath>
+			<value>
+				<Bulk>3.5</Bulk>
+				<WornBulk>1</WornBulk>
+			</value>
+		</li>
+
+		<!-- Ravager Helmet -->
+
+		<li Class="PatchOperationReplace">
+			<xpath>Defs/ThingDef[defName="VFEV_Apparel_RavagerHelmet"]/statBases/StuffEffectMultiplierArmor</xpath>
+			<value>
+				<StuffEffectMultiplierArmor>3</StuffEffectMultiplierArmor>
+			</value>
+		</li>
+
+		<li Class="PatchOperationAdd">
+			<xpath>Defs/ThingDef[defName="VFEV_Apparel_RavagerHelmet"]/statBases</xpath>
+			<value>
+				<Bulk>5</Bulk>
+				<WornBulk>1</WornBulk>
+			</value>
+		</li>
+
+		<!-- Moose Headdress -->
+
+		<li Class="PatchOperationReplace">
+			<xpath>Defs/ThingDef[defName="VFEV_MooseHeaddress"]/statBases/StuffEffectMultiplierArmor</xpath>
+			<value>
+				<StuffEffectMultiplierArmor>10</StuffEffectMultiplierArmor>
+			</value>
+		</li>
+
+		<li Class="PatchOperationAdd">
+			<xpath>Defs/ThingDef[defName="VFEV_MooseHeaddress"]/statBases</xpath>
+			<value>
+				<Bulk>8</Bulk>
+				<WornBulk>2.5</WornBulk>
+			</value>
+		</li>
+
+		<!-- Bear Headdress -->
+
+		<li Class="PatchOperationReplace">
+			<xpath>Defs/ThingDef[defName="VFEV_BearHeaddress"]/statBases/StuffEffectMultiplierArmor</xpath>
+			<value>
+				<StuffEffectMultiplierArmor>10</StuffEffectMultiplierArmor>
+			</value>
+		</li>
+
+		<li Class="PatchOperationAdd">
+			<xpath>Defs/ThingDef[defName="VFEV_BearHeaddress"]/statBases</xpath>
+			<value>
+				<Bulk>8</Bulk>
+				<WornBulk>2.5</WornBulk>
+			</value>
+		</li>
+
+		<li Class="PatchOperationAdd">
+			<xpath>Defs/ThingDef[defName="VFEV_BearHeaddress"]</xpath>
+			<value>
+				<equippedStatOffsets>
+				<Suppressability>-10</Suppressability>
+				<PainShockThreshold>0.80</PainShockThreshold>
+				</equippedStatOffsets>
+			</value>
+		</li>
+
+		<!-- Jarl Crown -->
+
+		<li Class="PatchOperationReplace">
+			<xpath>Defs/ThingDef[defName="VFEV_JarlCrown"]/statBases/StuffEffectMultiplierArmor</xpath>
+			<value>
+				<StuffEffectMultiplierArmor>1.5</StuffEffectMultiplierArmor>
+			</value>
+		</li>
+
+		<li Class="PatchOperationAdd">
+			<xpath>Defs/ThingDef[defName="VFEV_JarlCrown"]/statBases</xpath>
+			<value>
+				<Bulk>3</Bulk>
+				<WornBulk>1.5</WornBulk>
+			</value>
+		</li>
+
+		<!-- Crypto Helmet Base -->
+
+		<li Class="PatchOperationAdd">
+			<xpath>Defs/ThingDef[@Name="VFEV_ApparelCryptoHelmetPowerBase"]/apparel/layers</xpath>
+			<value>
+			<li>OnHead</li>
+			<li>StrappedHead</li>
+			<li>MiddleHead</li>
+			</value>
+		</li>
+
+		<!-- Crypto Light Helmet -->
+
+		<li Class="PatchOperationAdd">
+			<xpath>Defs/ThingDef[defName="VFEV_Apparel_CryptoLightHelmet"]</xpath>
+			<value>
+			<statBases>
+				<Bulk>4</Bulk>
+				<WornBulk>1</WornBulk>
+				<Flammability>0</Flammability>
+				<MaxHitPoints>190</MaxHitPoints>
+				<ArmorRating_Sharp>12</ArmorRating_Sharp>
+				<ArmorRating_Blunt>28</ArmorRating_Blunt>
+			</statBases>
+			</value>
+		</li>
+
+		<li Class="PatchOperationAdd">
+			<xpath>Defs/ThingDef[defName="VFEV_Apparel_CryptoLightHelmet"]</xpath>
+			<value>
+			<equippedStatOffsets>
+				<PsychicSensitivity>-0.2</PsychicSensitivity>
+				<AimingAccuracy>0.1</AimingAccuracy>
+				<ToxicSensitivity>-0.50</ToxicSensitivity>
+				<SmokeSensitivity>-1</SmokeSensitivity>
+			</equippedStatOffsets>
+			</value>
+		</li>
+
+		<!-- Crypto Heavy Helmet -->
+
+		<li Class="PatchOperationAdd">
+			<xpath>Defs/ThingDef[defName="VFEV_Apparel_CryptoHeavyHelmet"]/statBases</xpath>
+			<value>
+			<Bulk>5</Bulk>
+			<WornBulk>1</WornBulk>
+			</value>
+		</li>
+
+		<li Class="PatchOperationReplace">
+			<xpath>Defs/ThingDef[defName="VFEV_Apparel_CryptoHeavyHelmet"]/statBases/Flammability</xpath>
+			<value>
+			<Flammability>0</Flammability>
+			</value>
+		</li>
+
+		<li Class="PatchOperationReplace">
+			<xpath>Defs/ThingDef[defName="VFEV_Apparel_CryptoHeavyHelmet"]/statBases/MaxHitPoints</xpath>
+			<value>
+			<MaxHitPoints>240</MaxHitPoints>
+			</value>
+		</li>
+
+		<li Class="PatchOperationReplace">
+			<xpath>Defs/ThingDef[defName="VFEV_Apparel_CryptoHeavyHelmet"]/statBases/ArmorRating_Sharp</xpath>
+			<value>
+			<ArmorRating_Sharp>16</ArmorRating_Sharp>
+			</value>
+		</li>
+
+		<li Class="PatchOperationReplace">
+			<xpath>Defs/ThingDef[defName="VFEV_Apparel_CryptoHeavyHelmet"]/statBases/ArmorRating_Blunt</xpath>
+			<value>
+			<ArmorRating_Blunt>36</ArmorRating_Blunt>
+			</value>
+		</li>
+
+		<li Class="PatchOperationAdd">
+			<xpath>Defs/ThingDef[defName="VFEV_Apparel_CryptoHeavyHelmet"]</xpath>
+			<value>
+				<equippedStatOffsets>
+				<PsychicSensitivity>-0.2</PsychicSensitivity>
+				<AimingAccuracy>0.15</AimingAccuracy>
+				<ToxicSensitivity>-0.50</ToxicSensitivity>
+				<SmokeSensitivity>-1</SmokeSensitivity>
+				</equippedStatOffsets>
+			</value>
+		</li>
+
+		</operations>
+		</match>
+	</Operation>
+</Patch>
