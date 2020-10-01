@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+  <Operation Class="PatchOperationSequence">
+	<operations>
+	  <li Class="PatchOperationFindMod">
+			
+		<mods><li>[1.2]Silkiera Race</li></mods>
+			
+		<match Class="PatchOperationSequence">
+		<operations>
+		
+			<!--========= Stuffable =========-->
+			
+			<!--Skin Layer minimum protection-->
+			
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[
+				defName="HAR_SK_AO_a"
+				]/statBases/StuffEffectMultiplierArmor</xpath>
+				<value>
+					<StuffEffectMultiplierArmor>0.25</StuffEffectMultiplierArmor>
+					<Bulk>0.5</Bulk>
+					<WornBulk>0.25</WornBulk>
+				</value>
+			</li>
+			
+			<!--Middle Mid-->
+			
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[
+				defName="HAR_SK_AT_a" or
+				defName="HAR_SK_AT_b" or
+				defName="HAR_SK_AT_c"
+				]/statBases/StuffEffectMultiplierArmor</xpath>
+				<value>
+					<StuffEffectMultiplierArmor>3</StuffEffectMultiplierArmor>
+					<Bulk>3</Bulk>
+					<WornBulk>1</WornBulk>
+				</value>
+			</li>
+			
+			<!--Shell-->
+			
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[
+				defName="HAR_SK_AS_a"
+				]/statBases/StuffEffectMultiplierArmor</xpath>
+				<value>
+					<StuffEffectMultiplierArmor>10</StuffEffectMultiplierArmor>
+					<Bulk>10</Bulk>
+					<WornBulk>5</WornBulk>
+				</value>
+			</li>
+			
+			<!--Overhead-->
+			
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[
+				defName="HAR_SK_AH_a" or
+				defName="HAR_SK_AH_b" or
+				defName="HAR_SK_AH_c"
+				]/statBases/StuffEffectMultiplierArmor</xpath>
+				<value>
+					<StuffEffectMultiplierArmor>3</StuffEffectMultiplierArmor>
+					<Bulk>1</Bulk>
+					<WornBulk>1</WornBulk>
+				</value>
+			</li>
+			
+		</operations>
+		</match>	
+	  </li>
+	</operations>	
+  </Operation>
+</Patch>

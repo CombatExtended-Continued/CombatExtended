@@ -93,6 +93,7 @@ GouRIMet	|
 Halo - Rimworld Auxiliary Combat Armory	|
 Hand 'n' Footwear	|
 High Caliber	|
+Idhale Race	|
 Iron Harvest Pkp 17 "Eisenhans" Powerarmor	|
 Jernfalk's Standalone Horses	|
 Kaiser Armory	|
@@ -116,6 +117,7 @@ More Mechanoids	|
 More Practical Traits	|
 More Vanilla Turrets	|
 Moyo - From the Depth   |
+NNearmare Race	|
 Ni'Hal	|
 Orassans	|
 Palm Cats   |
@@ -143,6 +145,7 @@ Rimworld - The Dark Descent |
 Rimworld - Witcher Monster Hunt |
 Save Our Ship 2	|
 Sergals, Gnolls, Lions and Frogs	|
+Silkiera Race	|
 Simply More Melee	|
 Soviet Armory	|
 Spartan Foundry	|
@@ -174,4 +177,5 @@ Weapons+	|
 WWII Soviet Faction	|
 Xenn Race	|
 Xenohumans	|
+Xenoorca Race	|
 Zombieland	|
