@@ -1,0 +1,352 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+
+<Patch>
+	<Operation Class="PatchOperationFindMod">
+	<mods>
+		<li>Vanilla Factions Expanded - Vikings</li>
+	</mods>
+		<match Class="PatchOperationSequence">
+		<operations>
+
+    <!-- === Light Crypto Axe === -->
+
+    <li Class="PatchOperationReplace">
+      <xpath>/Defs/ThingDef[defName="VFEV_CryptoLightAxe"]/tools</xpath>
+      <value>
+        <tools>
+          <li Class="CombatExtended.ToolCE">
+            <label>handle</label>
+            <capacities>
+              <li>Poke</li>
+            </capacities>
+            <power>3</power>
+            <cooldownTime>1.66</cooldownTime>
+            <chanceFactor>0.10</chanceFactor>
+            <armorPenetrationBlunt>0.75</armorPenetrationBlunt>
+            <linkedBodyPartsGroup>Handle</linkedBodyPartsGroup>
+          </li>
+          <li Class="CombatExtended.ToolCE">
+            <label>edge</label>
+            <capacities>
+              <li>VFEV_Cut</li>
+            </capacities>
+            <power>29</power>
+            <cooldownTime>2.63</cooldownTime>
+            <chanceFactor>0.30</chanceFactor>
+            <armorPenetrationBlunt>4.85</armorPenetrationBlunt>
+            <armorPenetrationSharp>8</armorPenetrationSharp>
+            <linkedBodyPartsGroup>Edge</linkedBodyPartsGroup>
+          </li>
+        </tools>
+      </value>
+    </li>
+
+    <li Class="PatchOperationAdd">
+      <xpath>/Defs/ThingDef[defName="VFEV_CryptoLightAxe"]/statBases</xpath>
+      <value>
+        <Bulk>4</Bulk>
+        <MeleeCounterParryBonus>0.20</MeleeCounterParryBonus>
+      </value>
+    </li>
+
+    <li Class="PatchOperationAdd">
+      <xpath>/Defs/ThingDef[defName="VFEV_CryptoLightAxe"]</xpath>
+      <value>
+      <equippedStatOffsets>
+        <MeleeCritChance>0.23</MeleeCritChance>
+        <MeleeParryChance>0.20</MeleeParryChance>
+        <MeleeDodgeChance>0.27</MeleeDodgeChance>
+      </equippedStatOffsets>  
+      </value>
+    </li>
+
+    <li Class="PatchOperationAdd">
+      <xpath>/Defs/ThingDef[defName="VFEV_CryptoLightAxe"]/weaponTags</xpath>
+      <value>
+        <li>CE_OneHandedWeapon</li>
+      </value>
+    </li>
+
+    <!-- === Heavy Crypto Axe === -->
+
+    <li Class="PatchOperationReplace">
+      <xpath>/Defs/ThingDef[defName="VFEV_CryptoHeavyAxe"]/tools</xpath>
+      <value>
+        <tools>
+          <li Class="CombatExtended.ToolCE">
+            <label>handle</label>
+            <capacities>
+              <li>Poke</li>
+            </capacities>
+            <power>4</power>
+            <cooldownTime>1.78</cooldownTime>
+            <chanceFactor>0.10</chanceFactor>
+            <armorPenetrationBlunt>1</armorPenetrationBlunt>
+            <linkedBodyPartsGroup>Handle</linkedBodyPartsGroup>
+          </li>
+          <li Class="CombatExtended.ToolCE">
+            <label>edge</label>
+            <capacities>
+              <li>VFEV_Cut</li>
+            </capacities>
+            <power>39</power>
+            <cooldownTime>3.09</cooldownTime>
+            <chanceFactor>0.30</chanceFactor>
+            <armorPenetrationBlunt>4.84</armorPenetrationBlunt>
+            <armorPenetrationSharp>20</armorPenetrationSharp>
+            <linkedBodyPartsGroup>Edge</linkedBodyPartsGroup>
+          </li>
+        </tools>
+      </value>
+    </li>
+
+    <li Class="PatchOperationAdd">
+      <xpath>/Defs/ThingDef[defName="VFEV_CryptoHeavyAxe"]/statBases</xpath>
+      <value>
+        <Bulk>8</Bulk>
+        <MeleeCounterParryBonus>1</MeleeCounterParryBonus>
+      </value>
+    </li>
+
+    <li Class="PatchOperationAdd">
+      <xpath>/Defs/ThingDef[defName="VFEV_CryptoHeavyAxe"]</xpath>
+      <value>
+      <equippedStatOffsets>
+        <MeleeCritChance>0.26</MeleeCritChance>
+        <MeleeParryChance>0.75</MeleeParryChance>
+        <MeleeDodgeChance>0.50</MeleeDodgeChance>
+      </equippedStatOffsets>
+      </value>
+    </li>
+
+
+    <!-- === Melee Tools === -->
+
+    <li Class="PatchOperationReplace">
+      <xpath>Defs/ThingDef[defName="VFEV_CryptoPistol"]/tools</xpath>
+      <value>
+        <tools>
+          <li Class="CombatExtended.ToolCE">
+            <label>grip</label>
+            <capacities>
+              <li>Blunt</li>
+            </capacities>
+            <power>2</power>
+            <cooldownTime>1.54</cooldownTime>
+            <chanceFactor>1.5</chanceFactor>
+            <armorPenetrationBlunt>0.555</armorPenetrationBlunt>
+            <linkedBodyPartsGroup>Grip</linkedBodyPartsGroup>
+          </li>
+          <li Class="CombatExtended.ToolCE">
+            <label>muzzle</label>
+            <capacities>
+              <li>Poke</li>
+            </capacities>
+            <power>2</power>
+            <cooldownTime>1.54</cooldownTime>
+            <armorPenetrationBlunt>0.555</armorPenetrationBlunt>
+            <linkedBodyPartsGroup>Muzzle</linkedBodyPartsGroup>
+          </li>
+        </tools>
+      </value>
+    </li>
+
+    <li Class="PatchOperationReplace">
+      <xpath>Defs/ThingDef[defName="VFEV_CryptoLightCrossbow" or defName="VFEV_CryptoRifle"]/tools</xpath>
+      <value>
+        <tools>
+          <li Class="CombatExtended.ToolCE">
+            <label>stock</label>
+            <capacities>
+              <li>Blunt</li>
+            </capacities>
+            <power>8</power>
+            <cooldownTime>1.55</cooldownTime>
+            <chanceFactor>1.5</chanceFactor>
+            <armorPenetrationBlunt>2.755</armorPenetrationBlunt>
+            <linkedBodyPartsGroup>Stock</linkedBodyPartsGroup>
+          </li>
+          <li Class="CombatExtended.ToolCE">
+            <label>barrel</label>
+            <capacities>
+              <li>Blunt</li>
+            </capacities>
+            <power>5</power>
+            <cooldownTime>2.02</cooldownTime>
+            <armorPenetrationBlunt>1.630</armorPenetrationBlunt>
+            <linkedBodyPartsGroup>Barrel</linkedBodyPartsGroup>
+          </li>
+          <li Class="CombatExtended.ToolCE">
+            <label>muzzle</label>
+            <capacities>
+              <li>Poke</li>
+            </capacities>
+            <power>8</power>
+            <cooldownTime>1.55</cooldownTime>
+            <armorPenetrationBlunt>2.755</armorPenetrationBlunt>
+            <linkedBodyPartsGroup>Muzzle</linkedBodyPartsGroup>
+          </li>
+        </tools>
+      </value>
+    </li>
+
+    <li Class="PatchOperationReplace">
+      <xpath>Defs/ThingDef[defName="VFEV_CryptoHeavyCrossbow"]/tools</xpath>
+      <value>
+        <tools>
+          <li Class="CombatExtended.ToolCE">
+            <label>stirrup</label>
+            <capacities>
+              <li>Blunt</li>
+            </capacities>
+            <power>10</power>
+            <cooldownTime>2.44</cooldownTime>
+            <armorPenetrationBlunt>3.5</armorPenetrationBlunt>
+            <linkedBodyPartsGroup>Barrel</linkedBodyPartsGroup>
+          </li>
+        </tools>
+      </value>
+    </li>
+
+    <!-- === Heavy Crypto Crossbow === -->
+
+    <li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+      <defName>VFEV_CryptoHeavyCrossbow</defName>
+      <statBases>
+        <Bulk>10</Bulk>
+				<SwayFactor>2.00</SwayFactor>
+				<ShotSpread>0.07</ShotSpread>
+        <SightsEfficiency>1.8</SightsEfficiency>
+        <RangedWeapon_Cooldown>1</RangedWeapon_Cooldown>
+      </statBases>
+      <Properties>
+        <verbClass>CombatExtended.Verb_ShootCE</verbClass>
+        <hasStandardCommand>True</hasStandardCommand>
+        <defaultProjectile>Bullet_CryptoHeavyBolt</defaultProjectile>
+        <warmupTime>1</warmupTime>
+        <range>55</range>
+        <soundCast>VFEV_CryptoLightCrossbowShot</soundCast>
+        <soundCastTail>GunTail_Light</soundCastTail>
+        <muzzleFlashScale>9</muzzleFlashScale>
+      </Properties>
+      <AmmoUser>
+        <magazineSize>1</magazineSize>
+        <reloadTime>5.5</reloadTime>
+        <ammoSet>AmmoSet_CryptoHeavyBolt</ammoSet>
+      </AmmoUser>
+      <FireModes>
+        <aiAimMode>AimedShot</aiAimMode>
+      </FireModes>
+    </li>
+
+    <!-- === Light Crypto Crossbow === -->
+
+    <li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+      <defName>VFEV_CryptoLightCrossbow</defName>
+      <statBases>
+        <Bulk>7</Bulk>
+        <ShotSpread>0.07</ShotSpread>
+        <SwayFactor>1.33</SwayFactor>
+        <SightsEfficiency>1.1</SightsEfficiency>
+        <RangedWeapon_Cooldown>1</RangedWeapon_Cooldown>
+      </statBases>
+      <Properties>
+        <verbClass>CombatExtended.Verb_ShootCE</verbClass>
+        <hasStandardCommand>True</hasStandardCommand>
+        <defaultProjectile>Bullet_CryptoBolt</defaultProjectile>
+        <warmupTime>1</warmupTime>
+        <range>55</range>
+        <soundCast>Bow_Large</soundCast>
+      </Properties>
+      <AmmoUser>
+        <magazineSize>1</magazineSize>
+        <reloadTime>3.5</reloadTime>
+        <ammoSet>AmmoSet_CryptoBolt</ammoSet>
+      </AmmoUser>
+      <weaponTags>
+        <li>CE_OneHandedWeapon</li>
+      </weaponTags>     
+      <FireModes>
+        <aiAimMode>AimedShot</aiAimMode>
+      </FireModes>
+    </li>
+
+    <!-- === Crypto Pistol === -->
+
+    <li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+      <defName>VFEV_CryptoPistol</defName>
+      <statBases>
+        <WorkToMake>17500</WorkToMake>
+        <Mass>1.50</Mass>
+        <Bulk>2.60</Bulk>
+        <SwayFactor>1.07</SwayFactor>
+        <ShotSpread>0.15</ShotSpread>
+        <SightsEfficiency>0.8</SightsEfficiency>
+        <RangedWeapon_Cooldown>0.36</RangedWeapon_Cooldown>
+      </statBases>
+      <Properties>
+        <verbClass>CombatExtended.Verb_ShootCE</verbClass>
+        <hasStandardCommand>True</hasStandardCommand>
+        <defaultProjectile>Bullet_CryptoPistol</defaultProjectile>
+        <burstShotCount>3</burstShotCount>
+        <ticksBetweenBurstShots>5</ticksBetweenBurstShots>
+        <warmupTime>0.5</warmupTime>
+        <range>20</range>
+        <soundCast>VFEV_CryptoPistolShot</soundCast>
+        <soundCastTail>GunTail_Light</soundCastTail>
+        <muzzleFlashScale>9</muzzleFlashScale>
+      </Properties>
+      <AmmoUser>
+        <magazineSize>14</magazineSize>
+        <reloadTime>4</reloadTime>
+        <ammoSet>AmmoSet_CryptoPistol</ammoSet>
+      </AmmoUser>
+      <FireModes>
+        <aiAimMode>AimedShot</aiAimMode>
+      </FireModes>
+      <weaponTags>
+        <li>CE_OneHandedWeapon</li>
+      </weaponTags>
+    </li>
+
+    <!-- === Crypto Rifle === -->
+
+    <li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+      <defName>VFEV_CryptoRifle</defName>
+      <statBases>
+        <Mass>3.0</Mass>
+        <RangedWeapon_Cooldown>0.36</RangedWeapon_Cooldown>
+        <SightsEfficiency>1.10</SightsEfficiency>
+        <ShotSpread>0.08</ShotSpread>
+        <SwayFactor>1.20</SwayFactor>
+        <Bulk>7.00</Bulk>
+      </statBases>
+      <Properties>
+        <recoilAmount>1.51</recoilAmount>
+        <verbClass>CombatExtended.Verb_ShootCE</verbClass>
+        <hasStandardCommand>true</hasStandardCommand>
+        <defaultProjectile>Bullet_CryptoRifle</defaultProjectile>
+        <warmupTime>1.0</warmupTime>
+        <range>55</range>
+        <ticksBetweenBurstShots>4</ticksBetweenBurstShots>
+        <burstShotCount>6</burstShotCount>
+        <soundCast>VFEV_CryptoRifleShot</soundCast>
+        <soundCastTail>GunTail_Medium</soundCastTail>
+        <muzzleFlashScale>9</muzzleFlashScale>
+      </Properties>
+      <AmmoUser>
+        <magazineSize>20</magazineSize>
+        <reloadTime>4</reloadTime>
+        <ammoSet>AmmoSet_CryptoRifle</ammoSet>
+      </AmmoUser>
+      <FireModes>
+        <aimedBurstShotCount>2</aimedBurstShotCount>
+        <aiUseBurstMode>TRUE</aiUseBurstMode>
+        <aiAimMode>AimedShot</aiAimMode>
+      </FireModes>
+    </li>
+
+		</operations>
+		</match>
+	</Operation>
+</Patch>

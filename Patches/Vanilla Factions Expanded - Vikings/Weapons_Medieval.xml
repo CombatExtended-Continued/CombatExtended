@@ -1,0 +1,500 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+
+<Patch>
+	<Operation Class="PatchOperationFindMod">
+	<mods>
+		<li>Vanilla Factions Expanded - Vikings</li>
+	</mods>
+		<match Class="PatchOperationSequence">
+		<operations>
+
+      <!-- === Seax === -->
+
+      <li Class="PatchOperationReplace">
+        <xpath>Defs/ThingDef[defName="VFE_MeleeWeapon_Seax"]/tools</xpath>
+        <value>
+          <tools>
+            <li Class="CombatExtended.ToolCE">
+              <label>handle</label>
+              <capacities>
+                <li>Poke</li>
+              </capacities>
+              <power>1</power>
+              <cooldownTime>1.19</cooldownTime>
+              <armorPenetrationBlunt>0.2</armorPenetrationBlunt>
+              <linkedBodyPartsGroup>Handle</linkedBodyPartsGroup>
+            </li>
+            <li Class="CombatExtended.ToolCE">
+              <label>blade</label>
+              <capacities>
+                <li>Cut</li>
+              </capacities>
+              <power>11</power>
+              <cooldownTime>1.33</cooldownTime>
+              <armorPenetrationBlunt>0.288</armorPenetrationBlunt>
+              <armorPenetrationSharp>0.26</armorPenetrationSharp>
+              <linkedBodyPartsGroup>Blade</linkedBodyPartsGroup>
+            </li>
+            <li Class="CombatExtended.ToolCE">
+              <label>point</label>
+              <capacities>
+                <li>Stab</li>
+              </capacities>
+              <power>16</power>
+              <cooldownTime>1.26</cooldownTime>
+              <chanceFactor>1.33</chanceFactor>
+              <armorPenetrationBlunt>0.2</armorPenetrationBlunt>
+              <armorPenetrationSharp>0.34</armorPenetrationSharp>
+              <linkedBodyPartsGroup>Point</linkedBodyPartsGroup>
+            </li>
+          </tools>
+        </value>
+      </li>
+
+      <li Class="PatchOperationAdd">
+        <xpath>Defs/ThingDef[defName="VFE_MeleeWeapon_Seax"]/statBases</xpath>
+        <value>
+          <Bulk>1</Bulk>
+          <MeleeCounterParryBonus>0.5</MeleeCounterParryBonus>
+        </value>
+      </li>
+
+      <li Class="PatchOperationAdd">
+        <xpath>Defs/ThingDef[defName="VFE_MeleeWeapon_Seax"]</xpath>
+        <value>
+          <equippedStatOffsets>
+            <MeleeCritChance>0.63</MeleeCritChance>
+            <MeleeParryChance>0.5</MeleeParryChance>
+            <MeleeDodgeChance>0.13</MeleeDodgeChance>	
+          </equippedStatOffsets>
+        </value>
+      </li>
+
+      <li Class="PatchOperationAdd">
+        <xpath>Defs/ThingDef[defName="VFE_MeleeWeapon_Seax"]/weaponTags</xpath>
+        <value>
+          <li>CE_OneHandedWeapon</li>
+        </value>
+      </li>
+
+      <!-- === Bearded Axe === -->
+
+      <li Class="PatchOperationReplace">
+        <xpath>/Defs/ThingDef[defName="VFE_MeleeWeapon_BeardedAxe"]/tools</xpath>
+        <value>
+          <tools>
+            <li Class="CombatExtended.ToolCE">
+              <label>handle</label>
+              <capacities>
+                <li>Poke</li>
+              </capacities>
+              <power>3</power>
+              <cooldownTime>1.66</cooldownTime>
+              <chanceFactor>0.10</chanceFactor>
+              <armorPenetrationBlunt>0.75</armorPenetrationBlunt>
+              <linkedBodyPartsGroup>Handle</linkedBodyPartsGroup>
+            </li>
+            <li Class="CombatExtended.ToolCE">
+              <label>edge</label>
+              <capacities>
+                <li>Cut</li>
+              </capacities>
+              <power>24</power>
+              <cooldownTime>3.49</cooldownTime>
+              <chanceFactor>0.30</chanceFactor>
+              <armorPenetrationBlunt>3</armorPenetrationBlunt>
+              <armorPenetrationSharp>0.6</armorPenetrationSharp>
+              <linkedBodyPartsGroup>Edge</linkedBodyPartsGroup>
+            </li>
+          </tools>
+        </value>
+      </li>
+
+      <li Class="PatchOperationAdd">
+        <xpath>/Defs/ThingDef[defName="VFE_MeleeWeapon_BeardedAxe"]/statBases</xpath>
+        <value>
+          <Bulk>4</Bulk>
+          <MeleeCounterParryBonus>0.20</MeleeCounterParryBonus>
+        </value>
+      </li>
+
+      <li Class="PatchOperationAdd">
+        <xpath>/Defs/ThingDef[defName="VFE_MeleeWeapon_BeardedAxe"]</xpath>
+        <value>
+        <equippedStatOffsets>
+          <MeleeCritChance>0.03</MeleeCritChance>
+          <MeleeParryChance>0.20</MeleeParryChance>
+          <MeleeDodgeChance>0.27</MeleeDodgeChance>
+        </equippedStatOffsets>  
+        </value>
+      </li>
+
+      <li Class="PatchOperationAdd">
+        <xpath>/Defs/ThingDef[defName="VFE_MeleeWeapon_BeardedAxe"]/weaponTags</xpath>
+        <value>
+          <li>CE_OneHandedWeapon</li>
+        </value>
+      </li>
+
+      <!-- === Dane Axe === -->
+
+      <li Class="PatchOperationReplace">
+        <xpath>/Defs/ThingDef[defName="VFE_MeleeWeapon_DaneAxe"]/tools</xpath>
+        <value>
+          <tools>
+            <li Class="CombatExtended.ToolCE">
+              <label>handle</label>
+              <capacities>
+                <li>Poke</li>
+              </capacities>
+              <power>4</power>
+              <cooldownTime>1.78</cooldownTime>
+              <chanceFactor>0.10</chanceFactor>
+              <armorPenetrationBlunt>1</armorPenetrationBlunt>
+              <linkedBodyPartsGroup>Handle</linkedBodyPartsGroup>
+            </li>
+            <li Class="CombatExtended.ToolCE">
+              <label>edge</label>
+              <capacities>
+                <li>Cut</li>
+              </capacities>
+              <power>31</power>
+              <cooldownTime>4.09</cooldownTime>
+              <chanceFactor>0.30</chanceFactor>
+              <armorPenetrationBlunt>4.84</armorPenetrationBlunt>
+              <armorPenetrationSharp>0.97</armorPenetrationSharp>
+              <linkedBodyPartsGroup>Edge</linkedBodyPartsGroup>
+            </li>
+          </tools>
+        </value>
+      </li>
+
+      <li Class="PatchOperationAdd">
+        <xpath>/Defs/ThingDef[defName="VFE_MeleeWeapon_DaneAxe"]/statBases</xpath>
+        <value>
+          <Bulk>8</Bulk>
+          <MeleeCounterParryBonus>1</MeleeCounterParryBonus>
+        </value>
+      </li>
+
+      <li Class="PatchOperationAdd">
+        <xpath>/Defs/ThingDef[defName="VFE_MeleeWeapon_DaneAxe"]</xpath>
+        <value>
+        <equippedStatOffsets>
+          <MeleeCritChance>0.06</MeleeCritChance>
+          <MeleeParryChance>0.75</MeleeParryChance>
+          <MeleeDodgeChance>0.50</MeleeDodgeChance>
+        </equippedStatOffsets>
+        </value>
+      </li>
+
+      <!-- === Throwing Axe === -->
+
+			<li Class="PatchOperationAttributeSet">
+				<xpath>Defs/ThingDef[defName="VFE_ThrowingAxe"]</xpath>
+				<attribute>ParentName</attribute>
+				<value>BaseWeapon</value>				
+			</li>	
+
+			<li Class="PatchOperationRemove">
+				<xpath>Defs/ThingDef[defName="VFE_ThrowingAxe"]/costStuffCount</xpath>
+			</li>
+
+			<li Class="PatchOperationRemove">
+				<xpath>Defs/ThingDef[defName="VFE_ThrowingAxe"]/recipeMaker</xpath>
+			</li>
+
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName="VFE_ThrowingAxe"]</xpath>
+				<value>
+					<thingCategories>
+						<li>WeaponsRanged</li>
+					</thingCategories>					
+				</value>				
+			</li>		
+
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="VFE_ThrowingAxe"]/statBases</xpath>
+				<value>
+					<statBases>
+						<SightsEfficiency>0.8</SightsEfficiency>
+						<ShotSpread>0.6</ShotSpread>
+						<SwayFactor>2</SwayFactor>
+						<Bulk>1.25</Bulk>
+						<Mass>0.75</Mass>
+						<RangedWeapon_Cooldown>1.5</RangedWeapon_Cooldown>
+					</statBases>
+					<stackLimit>25</stackLimit>				
+				</value>
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="VFE_ThrowingAxe"]/verbs</xpath>
+				<value>
+				<verbs>
+					<li Class="CombatExtended.VerbPropertiesCE">
+						<verbClass>CombatExtended.Verb_ShootCEOneUse</verbClass>
+						<hasStandardCommand>true</hasStandardCommand>
+						<defaultProjectile>Vikings_ThrowingAxe_Thrown</defaultProjectile>
+						<warmupTime>1.5</warmupTime>
+						<range>16</range>
+						<soundCast>Interact_BeatFire</soundCast>
+					</li>
+				</verbs>
+				</value>
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="VFE_ThrowingAxe"]/tools</xpath>
+				<value>	
+						<tools>
+							<li Class="CombatExtended.ToolCE">
+								<label>handle</label>
+								<capacities>
+									<li>Blunt</li>
+								</capacities>
+								<power>2</power>
+								<cooldownTime>1.4</cooldownTime>
+								<armorPenetrationBlunt>0.375</armorPenetrationBlunt>
+								<linkedBodyPartsGroup>Handle</linkedBodyPartsGroup>
+							</li>
+							<li Class="CombatExtended.ToolCE">
+								<label>edge</label>
+								<capacities>
+									<li>Cut</li>
+								</capacities>
+								<power>18</power>
+								<cooldownTime>2.62</cooldownTime>
+								<chanceFactor>1.5</chanceFactor>
+								<armorPenetrationBlunt>1.5</armorPenetrationBlunt>
+								<armorPenetrationSharp>1.25</armorPenetrationSharp>
+								<linkedBodyPartsGroup>Edge</linkedBodyPartsGroup>
+							</li>
+						</tools>
+				</value>
+			</li>
+
+      <!-- === Harpoon === -->
+
+			<li Class="PatchOperationAttributeSet">
+				<xpath>Defs/ThingDef[defName="VFE_Harpoon"]</xpath>
+				<attribute>ParentName</attribute>
+				<value>BaseWeapon</value>				
+			</li>	
+
+			<li Class="PatchOperationRemove">
+				<xpath>Defs/ThingDef[defName="VFE_Harpoon"]/costStuffCount</xpath>
+			</li>
+
+			<li Class="PatchOperationRemove">
+				<xpath>Defs/ThingDef[defName="VFE_Harpoon"]/costList</xpath>
+			</li>
+
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName="VFE_Harpoon"]</xpath>
+				<value>
+					<thingCategories>
+						<li>WeaponsRanged</li>
+					</thingCategories>					
+				</value>				
+			</li>		
+
+			<li Class="PatchOperationRemove">
+				<xpath>Defs/ThingDef[defName="VFE_Harpoon"]/recipeMaker</xpath>
+			</li>
+	
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="VFE_Harpoon"]/statBases</xpath>
+				<value>
+					<statBases>
+            <MarketValue>7.26</MarketValue>
+            <SightsEfficiency>0.45</SightsEfficiency>
+            <ShotSpread>1.5</ShotSpread>
+            <SwayFactor>2.5</SwayFactor>
+            <Bulk>7.54</Bulk>
+            <Mass>2.00</Mass>
+            <RangedWeapon_Cooldown>1</RangedWeapon_Cooldown>
+					</statBases>
+					<stackLimit>25</stackLimit>				
+				</value>
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="VFE_Harpoon"]/verbs</xpath>
+				<value>
+				<verbs>
+					<li Class="CombatExtended.VerbPropertiesCE">
+						<verbClass>CombatExtended.Verb_ShootCEOneUse</verbClass>
+						<hasStandardCommand>true</hasStandardCommand>
+						<defaultProjectile>Vikings_Harpoon_Thrown</defaultProjectile>
+						<warmupTime>0.8</warmupTime>
+						<range>16</range>
+						<soundCast>Interact_BeatFire</soundCast>
+					</li>
+				</verbs>
+				</value>
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="VFE_Harpoon"]/tools</xpath>
+				<value>	
+						<tools>
+              <li Class="CombatExtended.ToolCE">
+                <label>shaft</label>
+                <capacities>
+                  <li>Blunt</li>
+                </capacities>
+                <power>7</power>
+                <cooldownTime>1.35</cooldownTime>
+                <armorPenetrationBlunt>2.25</armorPenetrationBlunt>
+                <linkedBodyPartsGroup>Shaft</linkedBodyPartsGroup>
+              </li>
+              <li Class="CombatExtended.ToolCE">
+                <label>point</label>
+                <capacities>
+                  <li>Stab</li>
+                </capacities>
+                <power>15</power>
+                <cooldownTime>1.37</cooldownTime>
+                <chanceFactor>1.5</chanceFactor>
+                <armorPenetrationBlunt>1.69</armorPenetrationBlunt>
+                <armorPenetrationSharp>0.34</armorPenetrationSharp>
+                <linkedBodyPartsGroup>Point</linkedBodyPartsGroup>
+              </li>
+						</tools>
+				</value>
+			</li>
+
+      <!-- === Add Projectiles and Recipes for the Harpoon and Throwing Axe === -->
+
+			<li Class="PatchOperationAdd">
+				<xpath>Defs</xpath>
+				<value>
+
+        <ThingDef Class="CombatExtended.AmmoDef" ParentName="BasePilumProjectile">
+          <defName>Vikings_ThrowingAxe_Thrown</defName>
+          <label>thrown axe</label>
+          <graphicData>
+        <texPath>Things/Projectile/AxeThrown/AxeThrownB</texPath>
+        <graphicClass>Graphic_Single</graphicClass>
+          </graphicData>			
+          <projectile Class="CombatExtended.ProjectilePropertiesCE">
+            <damageDef>Cut</damageDef>			
+            <damageAmountBase>16</damageAmountBase>
+            <speed>12</speed>
+            <armorPenetrationSharp>1.4</armorPenetrationSharp>
+            <armorPenetrationBlunt>27</armorPenetrationBlunt>
+            <preExplosionSpawnChance>0.50</preExplosionSpawnChance>
+            <preExplosionSpawnThingDef>VFE_ThrowingAxe</preExplosionSpawnThingDef>				
+          </projectile>
+        </ThingDef>
+
+        <ThingDef Class="CombatExtended.AmmoDef" ParentName="BasePilumProjectile">
+          <defName>Vikings_Harpoon_Thrown</defName>
+          <label>thrown harpoon</label>
+          <projectile Class="CombatExtended.ProjectilePropertiesCE">
+            <damageAmountBase>12</damageAmountBase>
+            <speed>8</speed>
+            <armorPenetrationBlunt>4.54</armorPenetrationBlunt>
+            <armorPenetrationSharp>1.8</armorPenetrationSharp>
+            <secondaryDamage>
+              <li>
+                <def>Stun</def>
+                <amount>16</amount>
+              </li>
+            </secondaryDamage>
+            <preExplosionSpawnChance>0.40</preExplosionSpawnChance>
+            <preExplosionSpawnThingDef>VFE_Harpoon</preExplosionSpawnThingDef>
+          </projectile>
+        </ThingDef>
+
+        <RecipeDef ParentName="AmmoRecipeNeolithicBase">
+          <defName>MakeAmmo_VFE_Harpoon</defName>
+          <label>make harpoons x5</label>
+          <description>Craft 5 harpoons.</description>
+        <workSpeedStat>GeneralLaborSpeed</workSpeedStat>
+        <workSkill>Crafting</workSkill>
+        <recipeUsers>
+          <li>ElectricSmithy</li>
+          <li>FueledSmithy</li>
+          <li>CraftingSpot</li>
+        </recipeUsers>
+        <effectWorking>Smelt</effectWorking>
+        <unfinishedThingDef>UnfinishedWeapon</unfinishedThingDef>
+          <workAmount>1700</workAmount>	
+          <jobString>Making harpoons.</jobString>
+          <ingredients>
+            <li>
+              <filter>
+                <thingDefs>
+                  <li>WoodLog</li>
+                </thingDefs>
+              </filter>
+              <count>4</count>
+            </li>
+            <li>
+              <filter>
+                <thingDefs>
+                  <li>Steel</li>
+                </thingDefs>
+              </filter>
+              <count>13</count>
+            </li>
+          </ingredients>
+          <fixedIngredientFilter>
+            <thingDefs>
+              <li>WoodLog</li>
+              <li>Steel</li>
+            </thingDefs>
+          </fixedIngredientFilter>
+          <products>
+            <VFE_Harpoon>5</VFE_Harpoon>
+          </products>
+        </RecipeDef>
+
+				<RecipeDef ParentName="AmmoRecipeNeolithicBase">
+				<defName>MakeAmmo_VFE_ThrowingAxe</defName>
+				<label>make throwing axe x5</label>
+				<description>Craft 5 throwing axes.</description>
+				<jobString>Making throwing axes.</jobString>
+				<workAmount>900</workAmount>
+        <ingredients>
+          <li>
+            <filter>
+              <thingDefs>
+                <li>WoodLog</li>
+              </thingDefs>
+            </filter>
+            <count>4</count>
+          </li>
+          <li>
+            <filter>
+              <thingDefs>
+                <li>Steel</li>
+              </thingDefs>
+            </filter>
+            <count>7</count>
+          </li>
+        </ingredients>
+        <fixedIngredientFilter>
+          <thingDefs>
+            <li>WoodLog</li>
+            <li>Steel</li>
+          </thingDefs>
+        </fixedIngredientFilter>
+				<recipeUsers>
+					<li>ElectricSmithy</li>
+					<li>FueledSmithy</li>
+				</recipeUsers>		
+				<products>
+					<VFE_ThrowingAxe>5</VFE_ThrowingAxe>
+				</products>
+				</RecipeDef>
+
+				</value>				
+			</li>	
+
+		</operations>
+		</match>
+	</Operation>
+</Patch>
