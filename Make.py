@@ -103,33 +103,31 @@ with XMLOpen(CSPROJ) as csproj:
             if reference.endswith(".dll"):
                 libraries.append(RIMWORLD+"/"+reference)
 
-    if 0:...
-    else:
-        for reference in ['mscorlib.dll']:
-            libraries.append(RIMWORLD+'/'+reference)
+    for reference in ['mscorlib.dll']:
+        libraries.append(RIMWORLD+'/'+reference)
         
-        for reference in csproj.getElementsByTagName("Reference"):
-            hintPath = reference.getElementsByTagName("HintPath")
-            if hintPath:
-                hintPath = hintPath[0].firstChild.data.strip()
-                hintPath = hintPath.replace("\\", "/")
-                hintPath = hintPath.replace("../../../../RimWorldWin64_Data/Managed", RIMWORLD)
-                hintPath = base_dir+'/'+hintPath
+    for reference in csproj.getElementsByTagName("Reference"):
+        hintPath = reference.getElementsByTagName("HintPath")
+    if hintPath:
+            hintPath = hintPath[0].firstChild.data.strip()
+            hintPath = hintPath.replace("\\", "/")
+            hintPath = hintPath.replace("../../../../RimWorldWin64_Data/Managed", RIMWORLD)
+            hintPath = base_dir+'/'+hintPath
+        else:
+            hintPath = RIMWORLD+"/"+reference.attributes['Include'].value + '.dll'
+        if "0Harmony" in hintPath:
+            continue
+        if not os.path.exists(hintPath):
+            l = hintPath.rsplit('/', 1)[1]
+            for f in libraries:
+                if f.endswith(l):
+                    found = True
+                    break
             else:
-                hintPath = RIMWORLD+"/"+reference.attributes['Include'].value + '.dll'
-            if "0Harmony" in hintPath:
-                continue
-            if not os.path.exists(hintPath):
-                l = hintPath.rsplit('/', 1)[1]
-                for f in libraries:
-                    if f.endswith(l):
-                        found = True
-                        break
-                else:
-                    print(f"Library not found: {hintPath}")
+                print(f"Library not found: {hintPath}")
                 
-                continue
-            libraries.append(hintPath)
+            continue
+        libraries.append(hintPath)
 
     for d, subds, files in os.walk(base_dir):
         for f in files:
