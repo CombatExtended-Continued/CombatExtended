@@ -7,7 +7,7 @@ import subprocess
 cwd = os.path.dirname(os.path.abspath(__file__))
 
 usage = f"""
-python Make.py [--reference <path/to/rimworld>] [--harmony <path/to/0Harmony.dll>] [-o <output/path.dll>] [--csproj <path/to/Source/CombatExtended.csproj>]
+python Make.py [--reference <path/to/rimworld>] [--harmony <path/to/0Harmony.dll>] [-o <output/path.dll>] [--csproj <path/to/Source/CombatExtended.csproj>] [--all-libs] [--verbose]
 
 If unspecified: 
   reference defaults to $RWREFERENCE or {os.path.abspath(cwd+'/../..')}
@@ -17,6 +17,9 @@ If unspecified:
   reference can point either to the base RimWorld directory, or to a directory containing all assemblies needed to compile (including 0Harmony.dll)
     
   harmony points to the 0Harmony.dll to use.  If omitted, $reference, $reference/Mods, and $reference/../../workshop/294100/2009463077 and $PWD are searched to find 0Harmony.dll
+
+  all-libs adds all libraries in $reference (or $reference/RimWorld*_Data/Managed) will be added to the library list
+  verbose outputs the values of $reference, $csproj, and $harmony after resolving them.
 """
 
 if "--help" in sys.argv or "-h" in sys.argv:
@@ -89,6 +92,9 @@ if cindex > -1:
 else:
     CSPROJ = "Source/CombatExtended/CombatExtended.csproj"
 
+base_dir = CSPROJ.rsplit('/',1)[0]
+
+    
 with XMLOpen(CSPROJ) as csproj:
     libraries = [HARMONY]
     sources = []
@@ -96,7 +102,8 @@ with XMLOpen(CSPROJ) as csproj:
         for reference in os.listdir(RIMWORLD):
             if reference.endswith(".dll"):
                 libraries.append(RIMWORLD+"/"+reference)
-        
+
+    if 0:...
     else:
         for reference in ['mscorlib.dll']:
             libraries.append(RIMWORLD+'/'+reference)
@@ -107,17 +114,46 @@ with XMLOpen(CSPROJ) as csproj:
                 hintPath = hintPath[0].firstChild.data.strip()
                 hintPath = hintPath.replace("\\", "/")
                 hintPath = hintPath.replace("../../../../RimWorldWin64_Data/Managed", RIMWORLD)
+                hintPath = base_dir+'/'+hintPath
             else:
                 hintPath = RIMWORLD+"/"+reference.attributes['Include'].value + '.dll'
             if "0Harmony" in hintPath:
                 continue
             if not os.path.exists(hintPath):
-                print(f"Library not found: {hintPath}")
+                l = hintPath.rsplit('/', 1)[1]
+                for f in libraries:
+                    if f.endswith(l):
+                        found = True
+                        break
+                else:
+                    print(f"Library not found: {hintPath}")
+                
                 continue
             libraries.append(hintPath)
-        
+
+    for d, subds, files in os.walk(base_dir):
+        for f in files:
+            if f.endswith('.cs'):
+                p = os.path.join(d,f)
+                p = p.split(base_dir+'/', 1)[1]
+                sources.append(p)
+                
     for source in csproj.getElementsByTagName("Compile"):
-        sources.append("Source/CombatExtended/"+source.attributes['Include'].value.replace("\\", "/"))
+        if 'Include' in source.attributes:
+            sources.append("Source/CombatExtended/"+source.attributes['Include'].value.replace("\\", "/"))
+        if 'Remove' in source.attributes:
+            v = source.attributes['Remove'].value.replace('\\', '/')
+            if v in sources:
+                sources.remove(v)
+            else:
+                if v.endswith('**'):
+                    print("Removing wildcard:",v)
+                    sl = len(sources)
+                    sources = [i for i in sources if not i.startswith(v[:-2])]
+                    print(f"Removed {sl-len(sources)}")
+                else:
+                    print("Directive to exclude non-existent file:", v)
+    sources = [(base_dir+'/'+i) for i in sources]
 
 args = ["mcs", "-nostdlib", "-langversion:Experimental", "-target:library", f'-out:{OUTPUT}', *sources, *[f'-r:{r}' for r in libraries]]
 
