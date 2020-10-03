@@ -121,7 +121,7 @@ namespace CombatExtended.Compatibility
             bool flyOverhead = projectile.def.projectile.flyOverhead;
             if (!flyOverhead)
             {
-                return true;
+                return false;
             }
             Map map = projectile.Map;
             getShields(map);
