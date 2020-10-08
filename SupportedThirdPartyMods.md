@@ -178,4 +178,5 @@ WWII Soviet Faction	|
 Xenn Race	|
 Xenohumans	|
 Xenoorca Race	|
+Zeta Reticulans |
 Zombieland	|
