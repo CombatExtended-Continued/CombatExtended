@@ -105,10 +105,10 @@ with XMLOpen(CSPROJ) as csproj:
 
     for reference in ['mscorlib.dll']:
         libraries.append(RIMWORLD+'/'+reference)
-        
+
     for reference in csproj.getElementsByTagName("Reference"):
         hintPath = reference.getElementsByTagName("HintPath")
-    if hintPath:
+        if hintPath:
             hintPath = hintPath[0].firstChild.data.strip()
             hintPath = hintPath.replace("\\", "/")
             hintPath = hintPath.replace("../../../../RimWorldWin64_Data/Managed", RIMWORLD)
@@ -125,7 +125,7 @@ with XMLOpen(CSPROJ) as csproj:
                     break
             else:
                 print(f"Library not found: {hintPath}")
-                
+
             continue
         libraries.append(hintPath)
 
@@ -160,9 +160,4 @@ if VERBOSE:
     print(RIMWORLD)
     print(CSPROJ)
 
-t = subprocess.Popen(args)
-
-
-
-t.wait()
-raise SystemExit(t.poll())
+os.execvp(args[0], args)
