@@ -350,7 +350,7 @@ namespace CombatExtended
                         }
                     }
                     //Reload apparel option
-		    IEnumerable<thing> worn_apparel = SelPawnForGear?.apparel?.WornApparel ?? Enumerable.Empty<Thing>();
+		            IEnumerable<Apparel> worn_apparel = SelPawnForGear?.apparel?.WornApparel ?? Enumerable.Empty<Apparel>();
                     foreach (var apparel in worn_apparel)
                     {
                         var compReloadable = apparel.TryGetComp<CompReloadable>();
