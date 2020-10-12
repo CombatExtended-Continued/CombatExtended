@@ -71,6 +71,7 @@ Equiums Horse Race	|
 Erin's Critter Collection |
 Erin's Forest Critters |
 Erin's Fox Squirrel |
+Erin's Mountain Animals |
 Expanded Patchleather	|
 Expanded Prosthetics and Organ Engineering (EPOE)	|
 Extended Storage	|
