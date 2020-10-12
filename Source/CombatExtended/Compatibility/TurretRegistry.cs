@@ -21,20 +21,20 @@ namespace CombatExtended.Compatibility
 
     public static class TurretRegistry
     {
-        private static bool enabled = false;
-        private static Dictionary<Type, SetReloadingFunction> setReloading;
-        private static Dictionary<Type, GetReloadingFunction> getReloading;
-        private static Dictionary<Type, GetAmmoFunction> getAmmo;
-        private static Dictionary<Type, GetGunFunction> getGun;
-
+	private static bool enabled = false;
+	private static Dictionary<Type, SetReloadingFunction> setReloading;
+	private static Dictionary<Type, GetReloadingFunction> getReloading;
+	private static Dictionary<Type, GetAmmoFunction> getAmmo;
+	private static Dictionary<Type, GetGunFunction> getGun;
+	
         private static void Enable()
         {
             enabled = true;
-            setReloading = new Dictionary<Type, SetReloadingFunction>();
-            getReloading = new Dictionary<Type, GetReloadingFunction>();
-            getAmmo      = new Dictionary<Type, GetAmmoFunction>();
-            getGun       = new Dictionary<Type, GetGunFunction>();
-            
+	    setReloading = new Dictionary<Type, SetReloadingFunction>();
+	    getReloading = new Dictionary<Type, GetReloadingFunction>();
+	    getAmmo      = new Dictionary<Type, GetAmmoFunction>();
+	    getGun       = new Dictionary<Type, GetGunFunction>();
+	    
         }
 
         public static void RegisterReloadableTurret(Type turretType, SetReloadingFunction setReload, GetReloadingFunction getReload, GetGunFunction gun, GetAmmoFunction ammo=null)
@@ -43,115 +43,115 @@ namespace CombatExtended.Compatibility
             {
                 Enable();
             }
-            getReloading[turretType] = getReload;
-            setReloading[turretType] = setReload;
+	    getReloading[turretType] = getReload;
+	    setReloading[turretType] = setReload;
 
-            getAmmo[turretType] = ammo;
-            getGun[turretType] = gun;
+	    getAmmo[turretType] = ammo;
+	    getGun[turretType] = gun;
         }
 
-        public static void SetReloading(this Building_Turret turret, bool reloading) {
-            var ceturret = turret as Building_TurretGunCE;
-            if (ceturret!=null) {
-                ceturret.isReloading = reloading;
-                return;
-            }
-            if (enabled) {
-                SetReloadingFunction func;
-                if (setReloading.TryGetValue(turret.GetType(), out func)) {
-                    func(turret, reloading);
-                    return;
-                }
-            }
-            CELogger.Warn("Asked to set reloading on an unknown turret type: "+turret);
-        }
+	public static void SetReloading(this Building_Turret turret, bool reloading) {
+	    var ceturret = turret as Building_TurretGunCE;
+	    if (ceturret!=null) {
+		ceturret.isReloading = reloading;
+		return;
+	    }
+	    if (enabled) {
+		SetReloadingFunction func;
+		if (setReloading.TryGetValue(turret.GetType(), out func)) {
+		    func(turret, reloading);
+		    return;
+		}
+	    }
+	    CELogger.Warn("Asked to set reloading on an unknown turret type: "+turret);
+	}
 
-        public static bool GetReloading(this Building_Turret turret) {
-            var ceturret = turret as Building_TurretGunCE;
-            if (ceturret!=null) {
-                return ceturret.isReloading;
-            }
-            if (enabled) {
-                GetReloadingFunction func;
-                if (getReloading.TryGetValue(turret.GetType(), out func)) {
-                    return func(turret);
-                }
-            }
-            CELogger.Warn("Asked to get reloading on an unknown turret type: "+turret);
-            return false;
-        }
+	public static bool GetReloading(this Building_Turret turret) {
+	    var ceturret = turret as Building_TurretGunCE;
+	    if (ceturret!=null) {
+		return ceturret.isReloading;
+	    }
+	    if (enabled) {
+		GetReloadingFunction func;
+		if (getReloading.TryGetValue(turret.GetType(), out func)) {
+		    return func(turret);
+		}
+	    }
+	    CELogger.Warn("Asked to get reloading on an unknown turret type: "+turret);
+	    return false;
+	}
 
-        public static CompAmmoUser GetAmmo(this Building_Turret turret) {
-            var ceturret = turret as Building_TurretGunCE;
-            if (ceturret!=null) {
-                return ceturret.CompAmmo;
-            }
-            if (enabled) {
-                GetAmmoFunction func;
-                if (getAmmo.TryGetValue(turret.GetType(), out func)) {
-                    return func(turret);
-                }
-                GetGunFunction gfunc;
-                if (getGun.TryGetValue(turret.GetType(), out gfunc)) {
-                    return gfunc(turret)?.TryGetComp<CompAmmoUser>();
-                }
+	public static CompAmmoUser GetAmmo(this Building_Turret turret) {
+	    var ceturret = turret as Building_TurretGunCE;
+	    if (ceturret!=null) {
+		return ceturret.CompAmmo;
+	    }
+	    if (enabled) {
+		GetAmmoFunction func;
+		if (getAmmo.TryGetValue(turret.GetType(), out func)) {
+		    return func(turret);
+		}
+		GetGunFunction gfunc;
+		if (getGun.TryGetValue(turret.GetType(), out gfunc)) {
+		    return gfunc(turret)?.TryGetComp<CompAmmoUser>();
+		}
+		
+	    }
+	    CELogger.Warn("Asked to get ammo on an unknown turret type: "+turret);
+	    return null;
+	}
 
-            }
-            CELogger.Warn("Asked to get ammo on an unknown turret type: "+turret);
-            return null;
-        }
+	public static Thing GetGun(this Building_Turret turret) {
+	    var ceturret = turret as Building_TurretGunCE;
+	    if (ceturret!=null) {
+		return ceturret.Gun;
+	    }
+	    if (enabled) {
+		GetGunFunction gfunc;
+		if (getGun.TryGetValue(turret.GetType(), out gfunc)) {
+		    return gfunc(turret);
+		}
+		
+	    }
+	    CELogger.Warn("Asked to get gun on an unknown turret type: "+turret);
+	    return null;
+	}
 
-        public static Thing GetGun(this Building_Turret turret) {
-            var ceturret = turret as Building_TurretGunCE;
-            if (ceturret!=null) {
-                return ceturret.Gun;
-            }
-            if (enabled) {
-                GetGunFunction gfunc;
-                if (getGun.TryGetValue(turret.GetType(), out gfunc)) {
-                    return gfunc(turret);
-                }
+	public static CompMannable GetMannable(this Building_Turret turret) {
+	    var ceturret = turret as Building_TurretGunCE;
+	    if (ceturret!=null) {
+		return ceturret.MannableComp;
+	    }
+	    return turret.TryGetComp<CompMannable>();
+	}
 
-            }
-            CELogger.Warn("Asked to get gun on an unknown turret type: "+turret);
-            return null;
-        }
+	public static bool GetReloadable(this Building_Turret turret) {
+	    return turret.GetAmmo()?.HasMagazine ?? false;
+	}
+	
+	public static bool ShouldReload(this Building_Turret turret, float threshold=0.5f, bool ensure_ammo_type=true) {
+	    var ammo = turret.GetAmmo();
+	    if (ammo==null) {
+		return false;
+	    }
+	    return (ammo.HasMagazine && ammo.CurMagCount <= ammo.Props.magazineSize * threshold) || (ammo.CurrentAmmo != ammo.SelectedAmmo);
+	}
 
-        public static CompMannable GetMannable(this Building_Turret turret) {
-            var ceturret = turret as Building_TurretGunCE;
-            if (ceturret!=null) {
-                return ceturret.MannableComp;
-            }
-            return turret.TryGetComp<CompMannable>();
-        }
+	public static void TryForceReload(this Building_Turret turret) {
+	    turret.TryOrderReload(true);
+	}
 
-        public static bool GetReloadable(this Building_Turret turret) {
-            return turret.GetAmmo()?.HasMagazine ?? false;
-        }
-
-        public static bool ShouldReload(this Building_Turret turret, float threshold=0.5f, bool ensure_ammo_type=true) {
-            var ammo = turret.GetAmmo();
-            if (ammo==null) {
-                return false;
-            }
-            return (ammo.HasMagazine && ammo.CurMagCount <= ammo.Props.magazineSize * threshold) || (ammo.CurrentAmmo != ammo.SelectedAmmo);
-        }
-
-        public static void TryForceReload(this Building_Turret turret) {
-            turret.TryOrderReload(true);
-        }
-
-        public static void TryOrderReload(this Building_Turret turret, bool forced = false)
+	public static void TryOrderReload(this Building_Turret turret, bool forced = false)
         {
-            var ceturret = turret as Building_TurretGunCE;
-            if (ceturret!=null) {
-                ceturret.TryOrderReload(forced);;
-                return;
-            }
-            var compAmmo = turret.GetAmmo();
+	    var ceturret = turret as Building_TurretGunCE;
+	    if (ceturret!=null) {
+		ceturret.TryOrderReload(forced);;
+		return;
+	    }
+	    var compAmmo = turret.GetAmmo();
             if ((compAmmo.CurrentAmmo == compAmmo.SelectedAmmo && (!compAmmo.HasMagazine || compAmmo.CurMagCount == compAmmo.Props.magazineSize)))
                 return;
-            var mannableComp = turret.GetMannable();
+	    var mannableComp = turret.GetMannable();
             if (!mannableComp?.MannedNow ?? true)
             {
                 return;
@@ -180,6 +180,6 @@ namespace CombatExtended.Compatibility
         }
 
 
-
+	
     }
 }
