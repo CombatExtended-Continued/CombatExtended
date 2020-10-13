@@ -1,76 +1,74 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <Patch>
-	<!-- ========== Check For Our Feline Modholders ========== -->
-	<Operation Class="PatchOperationSequence">
-		<success>Always</success>
-		<operations>
-	<li Class="CombatExtended.PatchOperationFindMod">
-				<modName>Orassans</modName>
-	</li>
-	<!-- ========== Make Ori Humanoid ========== -->
-	<!-- ========== Monkeys, I guess??? ========== -->
-	<li Class="PatchOperationAddModExtension">
-		<xpath>*/ThingDef[defName="Ori"]</xpath>
-		<value>
-			<li Class="CombatExtended.RacePropertiesExtensionCE">
-				<bodyShape>Humanoid</bodyShape>
-			</li>
-		</value>
-	</li>
-	
-	<!-- ========== Patch Ori Melee Attacks ========== -->
-	<!-- ========== yeah its just monkey stats ========== -->
-	<!-- alm here - if you used monkey stats, then i will too use monkey stats in 1.6 -->
-	
-	<li Class="PatchOperationReplace">
-		<xpath>Defs/ThingDef[defName="Ori"]/tools</xpath>
-		<value>
-			<tools>
-				<li Class="CombatExtended.ToolCE">
-					<label>left hand</label>
-					<capacities>
-						<li>Blunt</li>
-					</capacities>
-					<power>1</power>
-					<cooldownTime>1.19</cooldownTime>
-					<linkedBodyPartsGroup>LeftHand</linkedBodyPartsGroup>
-					<armorPenetrationBlunt>0.2</armorPenetrationBlunt>
+
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+			<li>Orassans</li>
+		</mods>
+		<match Class="PatchOperationSequence">
+			<operations>
+
+				<li Class="PatchOperationAddModExtension">
+					<xpath>/Defs/ThingDef[defName="Ori"]</xpath>
+					<value>
+						<li Class="CombatExtended.RacePropertiesExtensionCE">
+							<bodyShape>Humanoid</bodyShape>
+						</li>
+					</value>
 				</li>
-				<li Class="CombatExtended.ToolCE">
-					<label>right hand</label>
-					<capacities>
-						<li>Blunt</li>
-					</capacities>
-					<power>1</power>
-					<cooldownTime>1.19</cooldownTime>
-					<linkedBodyPartsGroup>RightHand</linkedBodyPartsGroup>
-					<armorPenetrationBlunt>0.2</armorPenetrationBlunt>
+
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/ThingDef[defName="Ori"]/tools</xpath>
+					<value>
+						<tools>
+							<li Class="CombatExtended.ToolCE">
+								<label>left hand</label>
+								<capacities>
+									<li>Blunt</li>
+								</capacities>
+								<power>1</power>
+								<cooldownTime>1.19</cooldownTime>
+								<linkedBodyPartsGroup>LeftHand</linkedBodyPartsGroup>
+								<armorPenetrationBlunt>0.2</armorPenetrationBlunt>
+							</li>
+							<li Class="CombatExtended.ToolCE">
+								<label>right hand</label>
+								<capacities>
+									<li>Blunt</li>
+								</capacities>
+								<power>1</power>
+								<cooldownTime>1.19</cooldownTime>
+								<linkedBodyPartsGroup>RightHand</linkedBodyPartsGroup>
+								<armorPenetrationBlunt>0.2</armorPenetrationBlunt>
+							</li>
+							<li Class="CombatExtended.ToolCE">
+								<capacities>
+									<li>Bite</li>
+								</capacities>
+								<power>2</power>
+								<cooldownTime>1.11</cooldownTime>
+								<linkedBodyPartsGroup>Teeth</linkedBodyPartsGroup>
+								<armorPenetrationSharp>0.01</armorPenetrationSharp>
+								<armorPenetrationBlunt>0.150</armorPenetrationBlunt>
+							</li>
+							<li Class="CombatExtended.ToolCE">
+								<label>head</label>
+								<capacities>
+									<li>Blunt</li>
+								</capacities>
+								<power>1</power>
+								<cooldownTime>1.19</cooldownTime>
+								<linkedBodyPartsGroup>HeadAttackTool</linkedBodyPartsGroup>
+								<chanceFactor>0.2</chanceFactor>
+								<armorPenetrationBlunt>0.2</armorPenetrationBlunt>
+							</li>
+						</tools>
+					</value>
 				</li>
-				<li Class="CombatExtended.ToolCE">
-					<capacities>
-						<li>Bite</li>
-					</capacities>
-					<power>2</power>
-					<cooldownTime>1.11</cooldownTime>
-					<linkedBodyPartsGroup>Teeth</linkedBodyPartsGroup>
-					<armorPenetrationSharp>0.01</armorPenetrationSharp>					
-					<armorPenetrationBlunt>0.150</armorPenetrationBlunt>
-				</li>
-				<li Class="CombatExtended.ToolCE">
-					<label>head</label>
-					<capacities>
-						<li>Blunt</li>
-					</capacities>
-					<power>1</power>
-					<cooldownTime>1.19</cooldownTime>
-					<linkedBodyPartsGroup>HeadAttackTool</linkedBodyPartsGroup>
-					<chanceFactor>0.2</chanceFactor>
-					<armorPenetrationBlunt>0.2</armorPenetrationBlunt>
-				</li>
-			</tools>
-		</value>
-	</li>
-	</operations>
+
+			</operations>
+		</match>
 	</Operation>
+
 </Patch>
 	
