@@ -14,16 +14,18 @@ namespace CombatExtended
     {
         private void LogImpact(Thing hitThing, out LogEntry_DamageResult logEntry)
         {
+	    var ed = equipmentDef;
+	    if (ed==null) ed = ThingDef.Named("Gun_Autopistol");
             logEntry =
                 new BattleLogEntry_RangedImpact(
                     launcher,
                     hitThing,
                     intendedTarget,
-                    equipmentDef,
+                    ed,
                     def,
                     null //CoverDef Missing!
                     );
-            if (!(launcher is AmmoThing))
+             if (!(launcher is AmmoThing))
                 Find.BattleLog.Add(logEntry);
         }
 
