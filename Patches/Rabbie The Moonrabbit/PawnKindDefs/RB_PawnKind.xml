@@ -8,6 +8,23 @@
 			
 		<match Class="PatchOperationSequence">
 		<operations>
+		
+			<!--Backpack-->
+			
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/PawnKindDef[
+				defName="RB_Wanderer" or
+				defName="RB_SubOfficer" or
+				defName="RB_EliteOfficer" or
+				defName="RB_FSniper" or
+				defName="RB_FMachinegunner"
+				]/apparelRequired</xpath>
+				<value>
+					<li>Apparel_Backpack</li>
+				</value>
+			</li>
+			
+			
 			<!--Regular-->
 			
 			<li Class="PatchOperationAddModExtension">
