@@ -96,6 +96,7 @@ High Caliber	|
 Idhale Race	|
 Iron Harvest Pkp 17 "Eisenhans" Powerarmor	|
 Jernfalk's Standalone Horses	|
+Jernalk's Skeletal Legion (Continued)	|
 Kaiser Armory	|
 K.L.K - Styles Apparel Pack	|
 Kijin Race 2.0     	|     
