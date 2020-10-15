@@ -6,6 +6,7 @@
         <li>Expanded Prosthetics and Organ Engineering - Forked</li>
     </mods>
 	<match Class="PatchOperationSequence">
+		<success></success>
 		<operations>
 		
 			<li Class="PatchOperationReplace">
@@ -142,6 +143,7 @@
 				<value>
 					<statOffsets>
 						<ShootingAccuracyPawn>+1</ShootingAccuracyPawn>
+						<AimingAccuracy>0.5</AimingAccuracy>
 						<AimingDelayFactor>-0.15</AimingDelayFactor>
 						<MentalBreakThreshold>-0.06</MentalBreakThreshold>
 						<Suppressability>-0.50</Suppressability>
@@ -153,6 +155,7 @@
 				<value>
 					<statOffsets>
 						<ShootingAccuracyPawn>-1.2</ShootingAccuracyPawn>
+						<AimingAccuracy>-0.6</AimingAccuracy>
 						<MentalBreakThreshold>-0.14</MentalBreakThreshold>
 						<MeleeHitChance>8</MeleeHitChance>
 						<MeleeCritChance>0.50</MeleeCritChance>
@@ -168,38 +171,63 @@
 					<MeleeDodgeChance>0.05</MeleeDodgeChance>
 				</value>
 			</li>
-			<li Class="PatchOperationAdd">
-				<xpath>Defs/HediffDef[defName="EPOE_InstinctOptimizedEyes"]/stages/li[minSeverity="0.99"]/statOffsets</xpath>
-				<value>
-					<MeleeCritChance>0.075</MeleeCritChance>
-					<MeleeParryChance>0.075</MeleeParryChance>
-				</value>
+			
+			<li Class="PatchOperationConditional">
+				<xpath>Defs/HediffDef[defName="EPOE_InstinctOptimizedEyes"]/stages/li[minSeverity="0.99"]/statOffsets/MeleeCritChance</xpath>
+				<nomatch Class="PatchOperationAdd">
+					<xpath>Defs/HediffDef[defName="EPOE_InstinctOptimizedEyes"]/stages/li[minSeverity="0.99"]/statOffsets</xpath>
+					<value>
+						<MeleeCritChance>0.075</MeleeCritChance>
+						<MeleeParryChance>0.075</MeleeParryChance>
+					</value>
+				</nomatch>
+				<match Class="PatchOperationAdd">
+					<xpath>Defs/HediffDef[defName="EPOE_InstinctOptimizedEyes"]/stages/li[minSeverity="0.99"]/statOffsets</xpath>
+					<value>
+					</value>
+				</match>
 			</li>
 			<li Class="PatchOperationReplace">
 				<xpath>Defs/HediffDef[defName="EPOE_InstinctOptimizedEyes"]/stages/li[label="Optimizing"]/statOffsets/ShootingAccuracyPawn</xpath>
 				<value>
-					<ShootingAccuracyPawn>0.1</ShootingAccuracyPawn>
+					<AimingAccuracy>0.1</AimingAccuracy>
 				</value>
 			</li>
 			<li Class="PatchOperationReplace">
 				<xpath>Defs/HediffDef[defName="EPOE_InstinctOptimizedEyes"]/stages/li[minSeverity="0.99"]/statOffsets/ShootingAccuracyPawn</xpath>
 				<value>
-					<ShootingAccuracyPawn>0.25</ShootingAccuracyPawn>
+					<AimingAccuracy>0.25</AimingAccuracy>
 				</value>
 			</li>
-			<li Class="PatchOperationAdd">
-				<xpath>Defs/HediffDef[defName="EPOE_InstinctOptimizedHand"]/stages/li[label="Optimizing"]/statOffsets</xpath>
-				<value>
-					<MeleeCritChance>0.15</MeleeCritChance>
-					<MeleeParryChance>0.15</MeleeParryChance>
-				</value>
+			<li Class="PatchOperationConditional">
+				<xpath>Defs/HediffDef[defName="EPOE_InstinctOptimizedHand"]/stages/li[label="Optimizing"]/statOffsets/MeleeCritChance</xpath>
+				<nomatch Class="PatchOperationAdd">
+					<xpath>Defs/HediffDef[defName="EPOE_InstinctOptimizedHand"]/stages/li[label="Optimizing"]/statOffsets</xpath>
+					<value>
+						<MeleeCritChance>0.15</MeleeCritChance>
+						<MeleeParryChance>0.15</MeleeParryChance>
+					</value>
+				</nomatch>
+				<match Class="PatchOperationAdd">
+					<xpath>Defs/HediffDef[defName="EPOE_InstinctOptimizedHand"]/stages/li[label="Optimizing"]/statOffsets</xpath>
+					<value>
+					</value>
+				</match>
 			</li>
-			<li Class="PatchOperationAdd">
-				<xpath>Defs/HediffDef[defName="EPOE_InstinctOptimizedHand"]/stages/li[minSeverity="0.99"]/statOffsets</xpath>
-				<value>
-					<MeleeCritChance>0.25</MeleeCritChance>
-					<MeleeParryChance>0.25</MeleeParryChance>
-				</value>
+			<li Class="PatchOperationConditional">
+				<xpath>Defs/HediffDef[defName="EPOE_InstinctOptimizedHand"]/stages/li[minSeverity="0.99"]/statOffsets/MeleeCritChance</xpath>
+				<nomatch Class="PatchOperationAdd">
+					<xpath>Defs/HediffDef[defName="EPOE_InstinctOptimizedHand"]/stages/li[minSeverity="0.99"]/statOffsets</xpath>
+					<value>
+						<MeleeCritChance>0.25</MeleeCritChance>
+						<MeleeParryChance>0.25</MeleeParryChance>
+					</value>
+				</nomatch>
+				<match Class="PatchOperationAdd">
+					<xpath>Defs/HediffDef[defName="EPOE_InstinctOptimizedHand"]/stages/li[minSeverity="0.99"]/statOffsets</xpath>
+					<value>
+					</value>
+				</match>
 			</li>
 			<li Class="PatchOperationReplace">
 				<xpath>Defs/HediffDef[defName="EPOE_InstinctOptimizedFoot"]/stages/li[label="Optimizing"]/statOffsets/MeleeDodgeChance</xpath>
@@ -229,6 +257,7 @@
 					</tools>
 				</value>
 			</li>
+			
 		</operations>
 	</match>
 	</Operation>
