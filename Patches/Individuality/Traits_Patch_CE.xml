@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>	
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+			<li>[SYR] Individuality</li>
+		</mods>
+		<match Class="PatchOperationSequence">
+			<operations>
+				<li Class="PatchOperationRemove">
+				<xpath>/Defs/TraitDef[defName = "SYR_StrongBack"]/degreeDatas/li[1]/statOffsets/CarryingCapacity</xpath>			
+				</li>
+				
+				<li Class="PatchOperationAdd">
+				<xpath>/Defs/TraitDef[defName = "SYR_StrongBack"]/degreeDatas/li[1]/statOffsets</xpath>
+					<value>
+						  <CarryWeight>+20</CarryWeight>
+					</value>				
+				</li>
+				<li Class="PatchOperationAdd">
+				<xpath>/Defs/TraitDef[defName = "SYR_StrongBack"]/degreeDatas/li[1]/statOffsets</xpath>
+					<value>
+						  <CarryBulk>+20</CarryBulk>
+					</value>				
+				</li>
+			</operations>
+		</match>
+	</Operation>
+		
+</Patch>
