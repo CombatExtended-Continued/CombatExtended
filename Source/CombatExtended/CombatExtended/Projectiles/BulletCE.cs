@@ -14,8 +14,7 @@ namespace CombatExtended
     {
         private void LogImpact(Thing hitThing, out LogEntry_DamageResult logEntry)
         {
-	    var ed = equipmentDef;
-	    if (ed==null) ed = ThingDef.Named("Gun_Autopistol");
+	    var ed = equipmentDef ?? ThingDef.Named("Gun_Autopistol");
             logEntry =
                 new BattleLogEntry_RangedImpact(
                     launcher,
