@@ -220,7 +220,7 @@
 									<capacities>
 										<li>KijinSword</li>
 									</capacities>
-									<power>32</power>
+									<power>22</power>
 									<cooldownTime>2.06</cooldownTime>
 									<chanceFactor>1.33</chanceFactor>
 									<armorPenetrationBlunt>0</armorPenetrationBlunt>
@@ -228,6 +228,16 @@
 									<linkedBodyPartsGroup>Edge</linkedBodyPartsGroup>
 								</li>
 							</tools>
+						</value>
+					</li>
+					
+					<li Class="PatchOperationAdd">
+						<xpath>Defs</xpath>
+						<value>
+						  <DamageDef ParentName="Flame">
+							<defName>Flame_Nopenetration</defName>
+							<harmAllLayersUntilOutside>false</harmAllLayersUntilOutside>
+						  </DamageDef>
 						</value>
 					</li>
 					
@@ -256,7 +266,7 @@
 							</equippedStatOffsets>
 						</value>
 					</li>
-					<!-- -->
+					
 				</operations>
 				</match>
 			</li>
