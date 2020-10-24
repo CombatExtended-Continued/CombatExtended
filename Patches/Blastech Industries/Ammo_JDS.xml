@@ -1,0 +1,203 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+
+	<Operation Class="PatchOperationFindMod">
+    <mods>
+		<li>[JDS] Star Wars BlasTech Industries</li>
+    </mods>
+		<match Class="PatchOperationSequence">
+		<operations>		
+
+<!--
+		  <li Class="PatchOperationReplace">
+			<xpath>Defs/DamageDef[
+			defName="Blaster_Damage"
+			]/armorCategory</xpath>
+			<value>
+			<armorCategory>Sharp</armorCategory>
+			</value>
+		  </li>
+
+		  <li Class="PatchOperationReplace">
+			<xpath>Defs/DamageDef[
+			defName="Blaster_Damage"
+			]/hediff</xpath>
+			<value>
+			<hediff>Burn</hediff>
+			</value>
+		  </li>
+-->
+
+		  <li Class="PatchOperationRemove">
+			<xpath>Defs/DamageDef[
+			defName="Blaster_Damage"
+			]</xpath>
+		  </li>
+
+		  <li Class="PatchOperationAdd">
+			<xpath>Defs</xpath>
+			<value>
+
+  <DamageDef>
+    <defName>Blaster_Damage</defName>
+    <label>blaster bolt</label>
+    <workerClass>DamageWorker_AddInjury</workerClass>
+    <externalViolence>true</externalViolence>
+    <isExplosive>true</isExplosive>
+    <deathMessage>{0} has been shot to death.</deathMessage>
+    <hediff>Burn</hediff>
+    <harmAllLayersUntilOutside>true</harmAllLayersUntilOutside>
+    <impactSoundType>Blunt</impactSoundType>
+    <armorCategory>Sharp</armorCategory>
+    <minDamageToFragment>15</minDamageToFragment>
+    <defaultDamage>3</defaultDamage>
+    <buildingDamageFactor>3</buildingDamageFactor>
+    <plantDamageFactor>3</plantDamageFactor>
+    <explosionAffectOutsidePartsOnly>false</explosionAffectOutsidePartsOnly>
+    <explosionHeatEnergyPerCell>5</explosionHeatEnergyPerCell>
+    <explosionCellMote>Mote_BlastFlame</explosionCellMote>
+    <explosionColorCenter>(1, 0.5, 0.3)</explosionColorCenter>
+    <explosionColorEdge>(0.6, 0.5, 0.4)</explosionColorEdge>
+    <soundExplosion>Explosion_Flame</soundExplosion>
+    <combatLogRules>Damage_Flame</combatLogRules>
+    <canUseDeflectMetalEffect>false</canUseDeflectMetalEffect>
+  </DamageDef>
+
+			</value>
+		  </li>
+
+
+		  <li Class="PatchOperationAdd">
+			<xpath>Defs</xpath>
+			<value>
+			
+			
+	<ThingDef ParentName="Base556x45mmNATOBullet">
+		<defName>Bullet_Blaster_Blue_Mid</defName>
+		<label>blaster bolt</label>
+		<graphicData>
+			<texPath>Things/Projectile/Bullet_Laser</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+		</graphicData>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageDef>Blaster_Damage</damageDef>
+			<speed>150</speed>
+			<dropsCasings>false</dropsCasings>
+			<damageAmountBase>13</damageAmountBase>
+			<armorPenetrationBlunt>3</armorPenetrationBlunt>
+			<armorPenetrationSharp>18</armorPenetrationSharp>		
+		</projectile>
+	</ThingDef>
+	
+	<ThingDef ParentName="Base762x51mmNATOBullet">
+		<defName>Bullet_Blaster_Blue_High</defName>
+		<label>blaster bolt</label>
+		<graphicData>
+			<texPath>Things/Projectile/Bullet_Laser</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+		</graphicData>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageDef>Blaster_Damage</damageDef>
+			<speed>150</speed>
+			<dropsCasings>false</dropsCasings>
+			<damageAmountBase>25</damageAmountBase>
+			<armorPenetrationBlunt>3</armorPenetrationBlunt>
+			<armorPenetrationSharp>23</armorPenetrationSharp>		
+		</projectile>
+	</ThingDef>
+
+	<ThingDef ParentName="Base45ACPBullet">
+		<defName>Bullet_Blaster_Blue_Low</defName>
+		<label>blaster bolt</label>
+		<graphicData>
+			<texPath>Things/Projectile/Bullet_Laser</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+		</graphicData>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageDef>Blaster_Damage</damageDef>
+			<speed>130</speed>
+			<dropsCasings>false</dropsCasings>
+			<damageAmountBase>8</damageAmountBase>
+			<armorPenetrationBlunt>3</armorPenetrationBlunt>
+			<armorPenetrationSharp>15</armorPenetrationSharp>		
+		</projectile>
+	</ThingDef>
+
+	<ThingDef ParentName="Base45ACPBullet">
+		<defName>Bullet_Blaster_Red_Low</defName>
+		<label>blaster bolt</label>
+		<graphicData>
+			<texPath>Things/Projectile/Red_Bullet_Laser</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+		</graphicData>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageDef>Blaster_Damage</damageDef>
+			<speed>130</speed>
+			<dropsCasings>false</dropsCasings>
+			<damageAmountBase>7</damageAmountBase>
+			<armorPenetrationBlunt>3</armorPenetrationBlunt>
+			<armorPenetrationSharp>15</armorPenetrationSharp>		
+		</projectile>
+	</ThingDef>
+	
+	<ThingDef ParentName="Base556x45mmNATOBullet">
+		<defName>Bullet_Blaster_Red_Mid</defName>
+		<label>blaster bolt</label>
+		<graphicData>
+			<texPath>Things/Projectile/Red_Bullet_Laser</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+		</graphicData>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageDef>Blaster_Damage</damageDef>
+			<speed>150</speed>
+			<dropsCasings>false</dropsCasings>
+			<damageAmountBase>10</damageAmountBase>
+			<armorPenetrationBlunt>3</armorPenetrationBlunt>
+			<armorPenetrationSharp>18</armorPenetrationSharp>		
+		</projectile>
+	</ThingDef>	
+	
+	<ThingDef ParentName="Base556x45mmNATOBullet">
+		<defName>Bullet_Blaster_Red_High</defName>
+		<label>blaster bolt</label>
+		<graphicData>
+			<texPath>Things/Projectile/Red_Bullet_Laser</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+		</graphicData>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageDef>Blaster_Damage</damageDef>
+			<speed>150</speed>
+			<dropsCasings>false</dropsCasings>
+			<damageAmountBase>23</damageAmountBase>
+			<armorPenetrationBlunt>3</armorPenetrationBlunt>
+			<armorPenetrationSharp>23</armorPenetrationSharp>		
+		</projectile>
+	</ThingDef>
+	
+	<ThingDef ParentName="Base40x365mmBoforsBullet">
+		<defName>Bullet_B2Cannon</defName>
+		<thingClass>CombatExtended.ProjectileCE_Explosive</thingClass>
+		<label>b-2 droid wrist cannon shot</label>
+		<graphicData>
+			<texPath>Things/Projectile/Red_Bullet_cannon</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+			<shaderType>TransparentPostLight</shaderType>
+		</graphicData>		
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageDef>Blaster_Damage</damageDef>
+			<speed>80</speed>
+			<dropsCasings>false</dropsCasings>		
+			<damageAmountBase>60</damageAmountBase>
+			<armorPenetrationBlunt>35</armorPenetrationBlunt>
+			<armorPenetrationSharp>15</armorPenetrationSharp>
+			<explosionRadius>1.0</explosionRadius>
+		</projectile>
+	</ThingDef>
+			
+			</value>
+		  </li>
+
+		</operations>
+		</match>
+	</Operation>
+</Patch>

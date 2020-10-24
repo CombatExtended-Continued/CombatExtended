@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+
+	<Operation Class="PatchOperationFindMod">
+    <mods>
+		<li>[JDS] Star Wars BlasTech Industries</li>
+    </mods>
+		<match Class="PatchOperationSequence">
+		
+		<operations>		
+		  <li Class="PatchOperationAdd">
+			<xpath>Defs/ThingDef[
+			defName="DC-15A_Blaster_Rifle"				
+			]</xpath>
+			<value>
+				<modExtensions>
+					<li Class="CombatExtended.GunDrawExtension">
+						<DrawSize>1.5,1.5</DrawSize>
+						<DrawOffset>0,0</DrawOffset>
+					</li>
+				</modExtensions>
+			</value>
+		  </li>
+
+		  <li Class="PatchOperationAdd">
+			<xpath>Defs/ThingDef[
+			defName="Mando_Heavy_Weapon"				
+			]</xpath>
+			<value>
+				<modExtensions>
+					<li Class="CombatExtended.GunDrawExtension">
+						<DrawSize>1.35,1.35</DrawSize>
+						<DrawOffset>.5,.15</DrawOffset>
+					</li>
+				</modExtensions>
+			</value>
+		  </li>
+		  
+		  <li Class="PatchOperationReplace">
+			<xpath>Defs/ThingDef[
+			defName="Mando_Heavy_Weapon"				
+			]/graphicData/drawSize</xpath>
+		<value>
+		  <drawSize>1.6</drawSize>
+		  </value>
+		  </li>
+
+		</operations>
+		</match>
+	</Operation>
+</Patch>
