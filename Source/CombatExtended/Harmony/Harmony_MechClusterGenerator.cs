@@ -15,6 +15,8 @@ namespace CombatExtended.HarmonyCE
 	[HarmonyPatch(new Type[] { typeof(float), typeof(IntVec2), typeof(bool), typeof(float?), typeof(bool) })]
     public static class Harmony_MechClusterGenerator_GetBuildingDefsForCluster
     {
+		internal static ThingDef mechAmmoBeacon = DefDatabase<ThingDef>.GetNamed("CombatExtended_MechAmmoBeacon");
+
         [HarmonyPostfix]
         public static void PostFix(float points, ref List<ThingDef> __result)
 		{
@@ -24,18 +26,15 @@ namespace CombatExtended.HarmonyCE
 					&& x.building.turretGunDef != null
 					&& x.building.turretGunDef.GetCompProperties<CompProperties_AmmoUser>()?.ammoSet != null))
 			{
-				int count = 1;
 				if (points > 3000)
-				{
-					__result.Add(DefDatabase<ThingDef>.GetNamed("CombatExtended_MechAmmoBeacon"));
-					count++;
+                {
+                    __result.Add(mechAmmoBeacon);
 				}
 				if (points > 7000)
 				{
-					__result.Add(DefDatabase<ThingDef>.GetNamed("CombatExtended_MechAmmoBeacon"));
-					count++;
+					__result.Add(mechAmmoBeacon);
 				}
-				__result.Add(DefDatabase<ThingDef>.GetNamed("CombatExtended_MechAmmoBeacon"));
+				__result.Add(mechAmmoBeacon);
 			}
         }
     }
