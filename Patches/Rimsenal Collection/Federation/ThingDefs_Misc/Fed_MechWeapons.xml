@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<Patch>
+	<Operation Class="PatchOperationFindMod">
+			<mods>
+				<li>Rimsenal - Federation Faction Pack</li>
+			</mods>
+		<match Class="PatchOperationSequence">
+		<operations>
+			
+			<!-- ==========  AD Plasma Bombard  =========== -->
+			<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+			<defName>AD_PlasmaBombard</defName>
+				<statBases>
+					<SightsEfficiency>1.0</SightsEfficiency>
+					<ShotSpread>0.10</ShotSpread>
+					<SwayFactor>0.91</SwayFactor>
+					<Bulk>30</Bulk>
+					<Mass>25</Mass>
+					<RangedWeapon_Cooldown>5</RangedWeapon_Cooldown>
+				</statBases>
+				<Properties>
+					<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+					<hasStandardCommand>true</hasStandardCommand>
+					<defaultProjectile>Bullet_PlasmaMechBombard</defaultProjectile>
+					<warmupTime>4</warmupTime>
+					<range>56</range>
+					<soundCast>RS_ShotHarmonizer</soundCast>
+					<muzzleFlashScale>17</muzzleFlashScale>
+					<soundCastTail>GunTail_Heavy</soundCastTail>
+				</Properties>
+				<FireModes>
+					<aiAimMode>AimedShot</aiAimMode>
+				</FireModes>
+			</li>
+			
+			<!-- ==========  AD Crucible Cannon  =========== -->
+			<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+			<defName>AD_CrucibleCannon</defName>
+				<statBases>
+					<SightsEfficiency>1.0</SightsEfficiency>
+					<ShotSpread>0.08</ShotSpread>
+					<SwayFactor>1.21</SwayFactor>
+					<Bulk>28.00</Bulk>
+					<Mass>24.00</Mass>
+					<RangedWeapon_Cooldown>8</RangedWeapon_Cooldown>
+				</statBases>
+				<Properties>
+					<recoilAmount>1.18</recoilAmount>
+					<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+					<hasStandardCommand>true</hasStandardCommand>
+					<defaultProjectile>Bullet_CrucibleCannon</defaultProjectile>
+					<warmupTime>2.6</warmupTime>
+					<burstShotCount>13</burstShotCount>
+					<ticksBetweenBurstShots>22</ticksBetweenBurstShots>
+					<range>75</range>
+					<soundCast>RS_ShotCR</soundCast>
+				</Properties>
+				<FireModes>
+					<aimedBurstShotCount>5</aimedBurstShotCount>
+					<aiAimMode>AimedShot</aiAimMode>
+				</FireModes>
+			</li>
+			
+		</operations>
+		</match>
+	</Operation>
+</Patch>  

@@ -1,41 +1,47 @@
 <?xml version="1.0" encoding="utf-8" ?>
-<Patch>
-	<Operation Class="PatchOperationSequence">
-		<success>Always</success>
-		<operations>
-			<!-- There's a snake in my boot! -->
-			<li Class="CombatExtended.PatchOperationFindMod">
-				<modName>Vanilla Apparel Expanded</modName>
-			</li>
+<Patch>	
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+			<li>Vanilla Apparel Expanded</li>
+		</mods>
+		<match Class="PatchOperationSequence">
+			<operations>
+				<!-- == VAE_Footwear_Boots == -->
+				<!-- statBases -->
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="VAE_Footwear_Boots"]/statBases/Mass</xpath>
+					<value>
+						<WornBulk>0.5</WornBulk>
+						<Mass>0.8</Mass>
+					</value>
+				</li>
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="VAE_Footwear_Boots"]/statBases/StuffEffectMultiplierArmor</xpath>
+					<value>
+						<StuffEffectMultiplierArmor>3</StuffEffectMultiplierArmor>
+					</value>
+				</li>
+				<!-- Miscellaneous -->
+				<li Class="PatchOperationRemove">
+					<xpath>Defs/ThingDef[defName="VAE_Footwear_Boots"]/equippedStatOffsets</xpath>
+				</li>
 
-			<!-- == VAE_Footwear_Boots == -->
-			<!-- statBases -->
-			<li Class="PatchOperationReplace">
-				<xpath>Defs/ThingDef[defName="VAE_Footwear_Boots"]/statBases/Mass</xpath>
-				<value>
-					<WornBulk>0.5</WornBulk>
-					<Mass>0.8</Mass>
-				</value>
-			</li>
-			<li Class="PatchOperationReplace">
-				<xpath>Defs/ThingDef[defName="VAE_Footwear_Boots"]/statBases/StuffEffectMultiplierArmor</xpath>
-				<value>
-					<StuffEffectMultiplierArmor>3</StuffEffectMultiplierArmor>
-				</value>
-			</li>
-			<!-- Miscellaneous -->
-			<li Class="PatchOperationRemove">
-				<xpath>Defs/ThingDef[defName="VAE_Footwear_Boots"]/equippedStatOffsets</xpath>
-			</li>
-
-			<!-- == VAE_Footwear_Shoes == -->
-			<!-- statBases -->
-			<li Class="PatchOperationReplace">
-				<xpath>Defs/ThingDef[defName="VAE_Footwear_Shoes"]/statBases/StuffEffectMultiplierArmor</xpath>
-				<value>
-					<StuffEffectMultiplierArmor>2</StuffEffectMultiplierArmor>
-				</value>
-			</li>
-		</operations>
+				<!-- == VAE_Footwear_Shoes == -->
+				<!-- statBases -->
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="VAE_Footwear_Shoes"]/statBases/StuffEffectMultiplierArmor</xpath>
+					<value>
+						<StuffEffectMultiplierArmor>2</StuffEffectMultiplierArmor>
+					</value>
+				</li>
+				<!-- Miscellaneous -->
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="VAE_Footwear_Shoes"]/costStuffCount</xpath>
+					<value>
+						<costStuffCount>20</costStuffCount>
+					</value>
+				</li>
+			</operations>
+		</match>
 	</Operation>
 </Patch>

@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8" ?>
+
+<Patch>
+	<Operation Class="PatchOperationFindMod">
+			<mods>
+				<li>Rimsenal - Federation Faction Pack</li>
+			</mods>
+		<match Class="PatchOperationSequence">
+		<operations>			
+
+			<!-- ========== Mech - Seeker ========== -->
+			<li Class="PatchOperationAddModExtension">
+				<xpath>/Defs/ThingDef[defName="Mech_Seeker"]</xpath>
+				<value>
+					<li Class="CombatExtended.RacePropertiesExtensionCE">
+						<bodyShape>Humanoid</bodyShape>
+					</li>
+				</value>
+			</li>
+
+			<li Class="PatchOperationAdd">
+				<xpath>/Defs/ThingDef[defName="Mech_Seeker"]/statBases</xpath>
+				<value>
+				  <ArmorRating_Blunt>10</ArmorRating_Blunt>			
+				</value>
+			</li>
+			
+			<li Class="PatchOperationReplace">
+				<xpath>/Defs/ThingDef[defName="Mech_Seeker"]/statBases/ArmorRating_Sharp</xpath>
+				<value>
+				  <ArmorRating_Sharp>6</ArmorRating_Sharp>			
+				</value>
+			</li>			
+
+			<li Class="PatchOperationAdd">
+				<xpath>/Defs/ThingDef[defName="Mech_Seeker"]/statBases</xpath>
+				<value>
+					<CarryWeight>20</CarryWeight>
+					<CarryBulk>20</CarryBulk>
+					<AimingAccuracy>0.3</AimingAccuracy>
+					<ShootingAccuracyPawn>0.3</ShootingAccuracyPawn>
+					<MeleeDodgeChance>0.6</MeleeDodgeChance>
+					<MeleeCritChance>0.6</MeleeCritChance>
+					<MeleeParryChance>0.6</MeleeParryChance>
+					<SmokeSensitivity>0</SmokeSensitivity>
+				</value>
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>/Defs/ThingDef[defName="Mech_Seeker"]/tools</xpath>
+				<value>
+					<tools>
+						<li Class="CombatExtended.ToolCE">
+							<label>head</label>
+							<capacities>
+							  <li>Blunt</li>
+							</capacities>
+							<power>3</power>
+							<cooldownTime>2</cooldownTime>
+							<linkedBodyPartsGroup>HeadAttackTool</linkedBodyPartsGroup>
+							<armorPenetrationBlunt>0.5</armorPenetrationBlunt>
+							<ensureLinkedBodyPartsGroupAlwaysUsable>true</ensureLinkedBodyPartsGroupAlwaysUsable>
+						</li>															
+					</tools>
+				</value>
+			</li>
+		
+		</operations>
+		</match>
+	</Operation>
+</Patch>  

@@ -1,0 +1,309 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+	<Operation Class="PatchOperationSequence">
+		<success></success>
+		<operations>
+			<li Class="PatchOperationFindMod">
+			<mods><li>[1.2]Silkiera Race</li></mods>
+			<match Class="PatchOperationSequence">
+			<operations>
+				
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="HAR_SK_Weapon_a"]/tools</xpath>
+					<value>
+						<tools>
+						  <li Class="CombatExtended.ToolCE">
+							<label>shaft</label>
+							<capacities>
+							  <li>Blunt</li>
+							</capacities>
+							<power>6</power>
+							<cooldownTime>1.31</cooldownTime>
+							<armorPenetrationBlunt>2.025</armorPenetrationBlunt>
+							<linkedBodyPartsGroup>Shaft</linkedBodyPartsGroup>
+						  </li>
+						  <li Class="CombatExtended.ToolCE">
+							<label>edge</label>
+							<capacities>
+							  <li>Cut</li>
+							</capacities>
+							<power>47</power>
+							<cooldownTime>2.9</cooldownTime>
+							<chanceFactor>1.165</chanceFactor>
+							<armorPenetrationBlunt>8.1</armorPenetrationBlunt>
+							<armorPenetrationSharp>1.62</armorPenetrationSharp>
+							<linkedBodyPartsGroup>Edge</linkedBodyPartsGroup>
+						  </li>
+						  <li Class="CombatExtended.ToolCE">
+							<label>point</label>
+							<capacities>
+							  <li>Stab</li>
+							</capacities>
+							<power>40</power>
+							<cooldownTime>1.16</cooldownTime>
+							<chanceFactor>1.165</chanceFactor>
+							<armorPenetrationBlunt>2.025</armorPenetrationBlunt>
+							<armorPenetrationSharp>2.03</armorPenetrationSharp>
+							<linkedBodyPartsGroup>Point</linkedBodyPartsGroup>
+						  </li>
+						</tools>
+					</value>
+				</li>
+				
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="HAR_SK_Weapon_a"]/statBases</xpath>
+					<value>
+						<MeleeCounterParryBonus>1.08</MeleeCounterParryBonus>
+						<Bulk>10</Bulk>
+					</value>
+				</li>
+				
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="HAR_SK_Weapon_a"]/equippedStatOffsets</xpath>
+					<value>
+					  <MeleeCritChance>0.22</MeleeCritChance>
+					  <MeleeParryChance>1.53</MeleeParryChance>
+					  <MeleeDodgeChance>0.67</MeleeDodgeChance>
+					</value>
+				</li>
+				
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="HAR_SK_Weapon_b"]/tools</xpath>
+					<value>
+						<tools>
+							<li Class="CombatExtended.ToolCE">
+								<label>shaft</label>
+								<capacities>
+									<li>Blunt</li>
+								</capacities>
+								<power>7</power>
+								<cooldownTime>1.35</cooldownTime>
+								<chanceFactor>0.15</chanceFactor>
+								<armorPenetrationBlunt>2.25</armorPenetrationBlunt>
+								<linkedBodyPartsGroup>Shaft</linkedBodyPartsGroup>
+							</li>
+							<li Class="CombatExtended.ToolCE">
+								<label>shaft</label>
+								<capacities>
+									<li>Poke</li>
+								</capacities>
+								<power>4</power>
+								<cooldownTime>1.78</cooldownTime>
+								<chanceFactor>0.05</chanceFactor>
+								<armorPenetrationBlunt>1</armorPenetrationBlunt>
+								<linkedBodyPartsGroup>Point</linkedBodyPartsGroup>
+							</li>
+							<li Class="CombatExtended.ToolCE">
+								<label>head</label>
+								<capacities>
+									<li>Stab</li>
+								</capacities>
+								<power>18</power>
+								<cooldownTime>1.19</cooldownTime>
+								<chanceFactor>1.00</chanceFactor>
+								<armorPenetrationBlunt>2.25</armorPenetrationBlunt>
+								<armorPenetrationSharp>1.5</armorPenetrationSharp>
+								<linkedBodyPartsGroup>Head</linkedBodyPartsGroup>
+							</li>
+						</tools>
+					</value>
+				</li>
+
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="HAR_SK_Weapon_b"]/statBases</xpath>
+					<value>
+						<Bulk>10</Bulk>
+						<MeleeCounterParryBonus>1.68</MeleeCounterParryBonus>
+					</value>
+				</li>
+
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="HAR_SK_Weapon_b"]/equippedStatOffsets</xpath>
+					<value>
+						<MeleeCritChance>0.17</MeleeCritChance>
+						<MeleeParryChance>1.45</MeleeParryChance>
+						<MeleeDodgeChance>0.9</MeleeDodgeChance>
+					</value>
+				</li>
+				
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[
+					defName="Gun_AssaultRifle_SK" or 
+					defName="Gun_IncendiaryLauncher_SK"
+					]/tools</xpath>
+					<value>
+					  <tools>
+						<li Class="CombatExtended.ToolCE">
+						  <label>stock</label>
+						  <capacities>
+							<li>Blunt</li>
+						  </capacities>
+						  <power>8</power>
+						  <cooldownTime>1.55</cooldownTime>
+						  <chanceFactor>1.5</chanceFactor>
+						  <armorPenetrationBlunt>2.755</armorPenetrationBlunt>
+						  <linkedBodyPartsGroup>Stock</linkedBodyPartsGroup>
+						</li>
+						<li Class="CombatExtended.ToolCE">
+						  <label>barrel</label>
+						  <capacities>
+							<li>Blunt</li>
+						  </capacities>
+						  <power>5</power>
+						  <cooldownTime>2.02</cooldownTime>
+						  <armorPenetrationBlunt>1.630</armorPenetrationBlunt>
+						  <linkedBodyPartsGroup>Barrel</linkedBodyPartsGroup>
+						</li>
+						<li Class="CombatExtended.ToolCE">
+						  <label>muzzle</label>
+						  <capacities>
+							<li>Poke</li>
+						  </capacities>
+						  <power>8</power>
+						  <cooldownTime>1.55</cooldownTime>
+						  <armorPenetrationBlunt>2.755</armorPenetrationBlunt>
+						  <linkedBodyPartsGroup>Muzzle</linkedBodyPartsGroup>
+						</li>
+					  </tools>
+					</value>
+				</li>
+				
+				<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+					<defName>Gun_AssaultRifle_SK</defName>
+					<statBases>
+					  <Mass>3.26</Mass>
+					  <RangedWeapon_Cooldown>0.36</RangedWeapon_Cooldown>
+					  <SightsEfficiency>1</SightsEfficiency>
+					  <ShotSpread>0.14</ShotSpread>
+					  <SwayFactor>1.33</SwayFactor>
+					  <Bulk>10.03</Bulk>
+					  <WorkToMake>30000</WorkToMake>
+					</statBases>
+					<costList>
+					  <Steel>65</Steel>
+					  <Plasteel>30</Plasteel>
+					  <ComponentIndustrial>7</ComponentIndustrial>
+					  <Chemfuel>10</Chemfuel>
+					</costList>
+					<Properties>
+					  <recoilAmount>1.53</recoilAmount>
+					  <verbClass>CombatExtended.Verb_ShootCE</verbClass>
+					  <hasStandardCommand>true</hasStandardCommand>
+					  <defaultProjectile>Bullet_SK_AR_Napalm</defaultProjectile>
+					  <warmupTime>1.1</warmupTime>
+					  <range>55</range>
+					  <burstShotCount>6</burstShotCount>
+					  <ticksBetweenBurstShots>4</ticksBetweenBurstShots>
+					  <soundCast>Shot_Revolver</soundCast>
+					  <soundCastTail>GunTail_Light</soundCastTail>
+					  <muzzleFlashScale>9</muzzleFlashScale>
+					</Properties>
+					<AmmoUser>
+					  <magazineSize>30</magazineSize>
+					  <reloadTime>4</reloadTime>
+					  <ammoSet>AmmoSet_AssaultRifle_SK</ammoSet>
+					</AmmoUser>
+					<FireModes>
+					  <aimedBurstShotCount>3</aimedBurstShotCount>
+					  <aiUseBurstMode>FALSE</aiUseBurstMode>
+					  <aiAimMode>AimedShot</aiAimMode>
+					</FireModes>
+				</li>
+				
+				<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+					<defName>Gun_IncendiaryLauncher_SK</defName>
+					<statBases>
+					  <Mass>8</Mass>
+					  <RangedWeapon_Cooldown>0.43</RangedWeapon_Cooldown>
+					  <SightsEfficiency>1</SightsEfficiency>
+					  <ShotSpread>0.15</ShotSpread>
+					  <SwayFactor>1.8</SwayFactor>
+					  <Bulk>10</Bulk>
+					  <WorkToMake>39500</WorkToMake>
+					</statBases>
+					<costList>
+					  <Steel>65</Steel>
+					  <Plasteel>30</Plasteel>
+					  <ComponentIndustrial>7</ComponentIndustrial>
+					  <Chemfuel>10</Chemfuel>
+					</costList>
+					<Properties>
+					  <verbClass>CombatExtended.Verb_ShootCE</verbClass>
+					  <hasStandardCommand>true</hasStandardCommand>
+					  <defaultProjectile>Bullet_30x64mmFuel_Incendiary</defaultProjectile>
+					  <warmupTime>1.1</warmupTime>
+					  <range>40</range>
+					  <burstShotCount>0</burstShotCount>
+					  <soundCast>Shot_IncendiaryLauncher</soundCast>
+					  <soundCastTail>GunTail_Medium</soundCastTail>
+					  <muzzleFlashScale>14</muzzleFlashScale>
+					  <targetParams>
+						<canTargetLocations>true</canTargetLocations>
+					  </targetParams>
+					</Properties>
+					<AmmoUser>
+					  <magazineSize>5</magazineSize>
+					  <reloadTime>4</reloadTime>
+					  <ammoSet>AmmoSet_30x64mmFuel</ammoSet>
+					</AmmoUser>
+					<FireModes>
+					  <aiUseBurstMode>FALSE</aiUseBurstMode>
+					  <aiAimMode>SuppressFire</aiAimMode>
+					</FireModes>
+					<AllowWithRunAndGun>false</AllowWithRunAndGun>
+				</li>
+				
+				<!--Bottle-->
+				
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="HAR_SK_Meal_c"]/tools</xpath>
+					<value>
+						<tools>
+							<li Class="CombatExtended.ToolCE">
+								<capacities>
+									<li>Blunt</li>
+								</capacities>
+								<power>2</power>
+								<cooldownTime>2.22</cooldownTime>
+								<chanceFactor>1.33</chanceFactor>
+								<armorPenetrationBlunt>0.338</armorPenetrationBlunt>
+								<linkedBodyPartsGroup>Base</linkedBodyPartsGroup>
+							</li>
+							<li Class="CombatExtended.ToolCE">
+								<label>neck</label>
+								<capacities>
+									<li>Poke</li>
+								</capacities>
+								<power>1</power>
+								<cooldownTime>3.33</cooldownTime>
+								<armorPenetrationBlunt>0.150</armorPenetrationBlunt>
+								<linkedBodyPartsGroup>Neck</linkedBodyPartsGroup>
+							</li>
+						</tools>
+					</value>
+				</li>
+
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="HAR_SK_Meal_c"]/statBases</xpath>
+					<value>
+						<MeleeCounterParryBonus>0.33</MeleeCounterParryBonus>
+					</value>
+				</li>
+
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="HAR_SK_Meal_c"]</xpath>
+					<value>
+						<equippedStatOffsets>
+							<MeleeCritChance>0.1</MeleeCritChance>
+							<MeleeParryChance>0.33</MeleeParryChance>
+							<MeleeDodgeChance>0.07</MeleeDodgeChance>	
+						</equippedStatOffsets>
+					</value>
+				</li>
+				
+			</operations>
+			</match>
+			</li>
+		</operations>
+	</Operation>
+</Patch>

@@ -1,0 +1,370 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+  <Operation Class="PatchOperationSequence">
+	<operations>
+	  <li Class="PatchOperationFindMod">
+			
+		<mods><li>[JDS] Exiled Dawn</li><li>[JDS] The Forge - Exiled Dawn Armory</li></mods>
+			
+		<match Class="PatchOperationSequence">
+		<operations>
+			
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName="JDSExiledDawn_Melee_Reforged_Eternal_Glory" or
+					defName="JDSExiledDawn_Melee_Reforged_WarCleaver" or
+					defName="JDSExiledDawn_Melee_Reforged_Oathkeeper" or
+					defName="JDSExiledDawn_Melee_Reforged_Bludgeon"
+				]/weaponTags</xpath>
+				<value>
+					<li>CE_OneHandedWeapon</li>
+				</value>
+			</li>
+			
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="JDSExiledDawn_Melee_Reforged_Eternal_Glory"]/tools</xpath>
+				<value>
+					<tools>
+						<li Class="CombatExtended.ToolCE">
+							<label>handle</label>
+							<capacities>
+							<li>Poke</li>
+							</capacities>
+							<power>2</power>
+							<cooldownTime>1.54</cooldownTime>
+							<chanceFactor>0.5</chanceFactor>
+							<armorPenetrationBlunt>0.55</armorPenetrationBlunt>
+							<linkedBodyPartsGroup>Handle</linkedBodyPartsGroup>
+						</li>
+						<li Class="CombatExtended.ToolCE">
+							<label>point</label>
+							<capacities>
+							<li>Stab</li>
+							</capacities>
+							<power>11</power>
+							<cooldownTime>1.18</cooldownTime>
+							<armorPenetrationBlunt>0.36</armorPenetrationBlunt>
+							<armorPenetrationSharp>6.89</armorPenetrationSharp>
+							<linkedBodyPartsGroup>Blade</linkedBodyPartsGroup>
+						</li>
+					</tools>
+				</value>
+			</li>
+			
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName="JDSExiledDawn_Melee_Reforged_Eternal_Glory"]/statBases</xpath>
+				<value>
+					<Bulk>6.5</Bulk>
+					<MeleeCounterParryBonus>0.65</MeleeCounterParryBonus>				
+				</value>
+			</li>
+
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName="JDSExiledDawn_Melee_Reforged_Eternal_Glory"]</xpath>
+				<value>
+					<equippedStatOffsets>
+						<MeleeCritChance>1.82</MeleeCritChance>
+						<MeleeParryChance>0.45</MeleeParryChance>
+						<MeleeDodgeChance>0.4</MeleeDodgeChance>	
+					</equippedStatOffsets>
+				</value>
+			</li>
+			
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="JDSExiledDawn_Melee_Reforged_WarCleaver"]/tools</xpath>
+				<value>
+					<tools>
+						<li Class="CombatExtended.ToolCE">
+							<label>handle</label>
+							<capacities>
+							<li>Poke</li>
+							</capacities>
+							<power>2</power>
+							<cooldownTime>1.54</cooldownTime>
+							<chanceFactor>0.5</chanceFactor>
+							<armorPenetrationBlunt>0.55</armorPenetrationBlunt>
+							<linkedBodyPartsGroup>Handle</linkedBodyPartsGroup>
+						</li>
+						<li Class="CombatExtended.ToolCE">
+							<label>blade</label>
+							<capacities>
+							<li>Cut</li>
+							</capacities>
+							<power>25</power>
+							<cooldownTime>1.54</cooldownTime>
+							<armorPenetrationBlunt>1.238</armorPenetrationBlunt>
+							<armorPenetrationSharp>3.67</armorPenetrationSharp>
+							<linkedBodyPartsGroup>Blade</linkedBodyPartsGroup>
+						</li>
+					</tools>
+				</value>
+			</li>
+			
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName="JDSExiledDawn_Melee_Reforged_WarCleaver"]/statBases</xpath>
+				<value>
+					<Bulk>6.5</Bulk>
+					<MeleeCounterParryBonus>0.82</MeleeCounterParryBonus>				
+				</value>
+			</li>
+
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName="JDSExiledDawn_Melee_Reforged_WarCleaver"]</xpath>
+				<value>
+					<equippedStatOffsets>
+						<MeleeCritChance>0.45</MeleeCritChance>
+						<MeleeParryChance>0.36</MeleeParryChance>
+						<MeleeDodgeChance>0.4</MeleeDodgeChance>	
+					</equippedStatOffsets>
+				</value>
+			</li>
+			
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="JDSExiledDawn_Melee_Reforged_Oathkeeper"]/tools</xpath>
+				<value>
+					<tools>
+						<li Class="CombatExtended.ToolCE">
+							<label>handle</label>
+							<capacities>
+							<li>Poke</li>
+							</capacities>
+							<power>3</power>
+							<cooldownTime>1.69</cooldownTime>
+							<chanceFactor>0.5</chanceFactor>
+							<armorPenetrationBlunt>0.8</armorPenetrationBlunt>
+							<linkedBodyPartsGroup>Handle</linkedBodyPartsGroup>
+						</li>
+						<li Class="CombatExtended.ToolCE">
+							<label>blade</label>
+							<capacities>
+							<li>Cut</li>
+							</capacities>
+							<power>26</power>
+							<cooldownTime>3.75</cooldownTime>
+							<armorPenetrationBlunt>2.592</armorPenetrationBlunt>
+							<armorPenetrationSharp>5.67</armorPenetrationSharp>
+							<linkedBodyPartsGroup>Blade</linkedBodyPartsGroup>
+						</li>
+					</tools>
+				</value>
+			</li>
+			
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName="JDSExiledDawn_Melee_Reforged_Oathkeeper"]/statBases</xpath>
+				<value>
+					<Bulk>7</Bulk>
+					<MeleeCounterParryBonus>0.59</MeleeCounterParryBonus>				
+				</value>
+			</li>
+
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName="JDSExiledDawn_Melee_Reforged_Oathkeeper"]</xpath>
+				<value>
+					<equippedStatOffsets>
+						<MeleeCritChance>0.21</MeleeCritChance>
+						<MeleeParryChance>0.38</MeleeParryChance>
+						<MeleeDodgeChance>0.5</MeleeDodgeChance>	
+					</equippedStatOffsets>
+				</value>
+			</li>
+			
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="JDSExiledDawn_Melee_Reforged_Bludgeon"]/tools</xpath>
+				<value>
+					<tools>
+						<li Class="CombatExtended.ToolCE">
+							<label>handle</label>
+							<capacities>
+							<li>Poke</li>
+							</capacities>
+							<power>3</power>
+							<cooldownTime>1.69</cooldownTime>
+							<chanceFactor>0.5</chanceFactor>
+							<armorPenetrationBlunt>0.8</armorPenetrationBlunt>
+							<linkedBodyPartsGroup>Handle</linkedBodyPartsGroup>
+						</li>
+						<li Class="CombatExtended.ToolCE">
+							<label>head</label>
+							<capacities>
+							<li>Blunt</li>
+							</capacities>
+							<power>18</power>
+							<cooldownTime>2.19</cooldownTime>
+							<armorPenetrationBlunt>7.2</armorPenetrationBlunt>
+							<linkedBodyPartsGroup>Head</linkedBodyPartsGroup>
+						</li>
+					</tools>
+				</value>
+			</li>
+			
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName="JDSExiledDawn_Melee_Reforged_Bludgeon"]/statBases</xpath>
+				<value>
+					<Bulk>7</Bulk>
+					<MeleeCounterParryBonus>0.78</MeleeCounterParryBonus>				
+				</value>
+			</li>
+
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName="JDSExiledDawn_Melee_Reforged_Bludgeon"]</xpath>
+				<value>
+					<equippedStatOffsets>
+						<MeleeCritChance>0.53</MeleeCritChance>
+						<MeleeParryChance>0.28</MeleeParryChance>
+						<MeleeDodgeChance>0.5</MeleeDodgeChance>	
+					</equippedStatOffsets>
+				</value>
+			</li>
+			
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="JDSExiledDawn_Melee_Reforged_WarSpear"]/tools</xpath>
+				<value>
+					<tools>
+						<li Class="CombatExtended.ToolCE">
+							<label>handle</label>
+							<capacities>
+							<li>Poke</li>
+							</capacities>
+							<power>8</power>
+							<cooldownTime>2.87</cooldownTime>
+							<chanceFactor>0.5</chanceFactor>
+							<armorPenetrationBlunt>2.588</armorPenetrationBlunt>
+							<linkedBodyPartsGroup>Handle</linkedBodyPartsGroup>
+						</li>
+						<li Class="CombatExtended.ToolCE">
+							<label>point</label>
+							<capacities>
+							<li>Stab</li>
+							</capacities>
+							<power>26</power>
+							<cooldownTime>1.23</cooldownTime>
+							<armorPenetrationBlunt>2.588</armorPenetrationBlunt>
+							<armorPenetrationSharp>9.59</armorPenetrationSharp>
+							<linkedBodyPartsGroup>Point</linkedBodyPartsGroup>
+						</li>
+					</tools>
+				</value>
+			</li>
+			
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName="JDSExiledDawn_Melee_Reforged_WarSpear"]/statBases</xpath>
+				<value>
+					<Bulk>12</Bulk>
+					<MeleeCounterParryBonus>1.42</MeleeCounterParryBonus>				
+				</value>
+			</li>
+
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName="JDSExiledDawn_Melee_Reforged_WarSpear"]</xpath>
+				<value>
+					<equippedStatOffsets>
+						<MeleeCritChance>0.29</MeleeCritChance>
+						<MeleeParryChance>1.39</MeleeParryChance>
+						<MeleeDodgeChance>0.93</MeleeDodgeChance>	
+					</equippedStatOffsets>
+				</value>
+			</li>
+			
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="JDSExiledDawn_Melee_Reforged_Headhunter"]/tools</xpath>
+				<value>
+					<tools>
+						<li Class="CombatExtended.ToolCE">
+							<label>handle</label>
+							<capacities>
+							<li>Poke</li>
+							</capacities>
+							<power>8</power>
+							<cooldownTime>2.22</cooldownTime>
+							<chanceFactor>0.5</chanceFactor>
+							<armorPenetrationBlunt>2.588</armorPenetrationBlunt>
+							<linkedBodyPartsGroup>Handle</linkedBodyPartsGroup>
+						</li>
+						<li Class="CombatExtended.ToolCE">
+							<label>blade</label>
+							<capacities>
+							<li>Cut</li>
+							</capacities>
+							<power>43</power>
+							<cooldownTime>2.51</cooldownTime>
+							<armorPenetrationBlunt>3.726</armorPenetrationBlunt>
+							<armorPenetrationSharp>8.28</armorPenetrationSharp>
+							<linkedBodyPartsGroup>Blade</linkedBodyPartsGroup>
+						</li>
+					</tools>
+				</value>
+			</li>
+			
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName="JDSExiledDawn_Melee_Reforged_Headhunter"]/statBases</xpath>
+				<value>
+					<Bulk>12</Bulk>
+					<MeleeCounterParryBonus>3.02</MeleeCounterParryBonus>				
+				</value>
+			</li>
+
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName="JDSExiledDawn_Melee_Reforged_Headhunter"]</xpath>
+				<value>
+					<equippedStatOffsets>
+						<MeleeCritChance>0.09</MeleeCritChance>
+						<MeleeParryChance>0.52</MeleeParryChance>
+						<MeleeDodgeChance>0.83</MeleeDodgeChance>	
+					</equippedStatOffsets>
+				</value>
+			</li>			
+			
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="JDSExiledDawn_Melee_Reforged_Alpha"]/tools</xpath>
+				<value>
+					<tools>
+						<li Class="CombatExtended.ToolCE">
+							<label>handle</label>
+							<capacities>
+							<li>Poke</li>
+							</capacities>
+							<power>3</power>
+							<cooldownTime>1.55</cooldownTime>
+							<chanceFactor>0.5</chanceFactor>
+							<armorPenetrationBlunt>0.8</armorPenetrationBlunt>
+							<linkedBodyPartsGroup>Handle</linkedBodyPartsGroup>
+						</li>
+						<li Class="CombatExtended.ToolCE">
+							<label>blade</label>
+							<capacities>
+							<li>Cut</li>
+							</capacities>
+							<power>55</power>
+							<cooldownTime>2.03</cooldownTime>
+							<armorPenetrationBlunt>4.6</armorPenetrationBlunt>
+							<armorPenetrationSharp>6.82</armorPenetrationSharp>
+							<linkedBodyPartsGroup>Blade</linkedBodyPartsGroup>
+						</li>
+					</tools>
+				</value>
+			</li>
+			
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName="JDSExiledDawn_Melee_Reforged_Alpha"]/statBases</xpath>
+				<value>
+					<Bulk>12</Bulk>
+					<MeleeCounterParryBonus>1.39</MeleeCounterParryBonus>				
+				</value>
+			</li>
+
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName="JDSExiledDawn_Melee_Reforged_Alpha"]</xpath>
+				<value>
+					<equippedStatOffsets>
+						<MeleeCritChance>0.17</MeleeCritChance>
+						<MeleeParryChance>1.04</MeleeParryChance>
+						<MeleeDodgeChance>0.8</MeleeDodgeChance>	
+					</equippedStatOffsets>
+				</value>
+			</li>
+			
+		</operations>
+		</match>	
+	  </li>
+	</operations>	
+  </Operation>
+</Patch>

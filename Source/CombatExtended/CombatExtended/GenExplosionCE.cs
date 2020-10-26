@@ -43,13 +43,13 @@ namespace CombatExtended
 
             if (explosionSound == null)
             {
-                Log.Error("CombatExtended :: SoundDef was null for DamageDef "+damType.defName+" as well as instigator "+instigator.ThingID);
+                Log.Error("CombatExtended :: SoundDef was null for DamageDef " + damType.defName + " as well as instigator " + instigator.ThingID);
             }
 
-            damAmount = Mathf.RoundToInt(damAmount*scaleFactor);
+            damAmount = Mathf.RoundToInt(damAmount * scaleFactor);
             radius *= scaleFactor;
             armorPenetration *= scaleFactor;
-            
+
             ExplosionCE explosion = GenSpawn.Spawn(CE_ThingDefOf.ExplosionCE, center, map) as ExplosionCE;
             IntVec3? needLOSToCell = null;
             IntVec3? needLOSToCell2 = null;
@@ -83,7 +83,7 @@ namespace CombatExtended
             if (destroyAfterwards && !explosionParentToDestroy.Destroyed)
                 explosionParentToDestroy?.Kill();
         }
-        
+
         //Exact copy (1.1)
         private static void CalculateNeededLOSToCells(IntVec3 position, Map map, float direction, out IntVec3? needLOSToCell1, out IntVec3? needLOSToCell2)
         {
@@ -149,6 +149,10 @@ namespace CombatExtended
                     needLOSToCell2 = new IntVec3?(intVec3);
                 }
             }
+        }
+        public static float GetExplosionAP(ProjectileProperties props)
+        {
+            return props.GetDamageAmount(1) * 0.1f;
         }
     }
 }

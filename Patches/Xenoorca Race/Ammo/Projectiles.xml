@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+  <Operation Class="PatchOperationSequence">
+	<operations>
+	  <li Class="PatchOperationFindMod">
+			
+		<mods><li>[1.2]Nearmare Race</li></mods>
+			
+		<match Class="PatchOperationSequence">
+		<operations>
+			
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="Geist_Knife_Projectile"]</xpath>
+				<value>
+					<ThingDef Class="CombatExtended.AmmoDef" ParentName="BaseGreatArrowProjectile">
+						<defName>Geist_Knife_Projectile</defName>
+						<label>縛刃『ガイスト』</label>
+						<graphicData>
+						  <texPath>HAR_NM/Weapons/W_NM_Knife2</texPath>
+						  <graphicClass>Graphic_Single</graphicClass>
+						</graphicData>
+						<projectile Class="CombatExtended.ProjectilePropertiesCE">
+						  <speed>25</speed>
+						  <damageDef>Damage_Geist</damageDef>
+						  <damageAmountBase>1</damageAmountBase>
+						  <armorPenetrationSharp>6</armorPenetrationSharp>
+						  <armorPenetrationBlunt>0.025</armorPenetrationBlunt>
+						</projectile>
+					</ThingDef>
+				</value>
+			</li>
+			
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="Larva_SKnife_Projectile"]</xpath>
+				<value>
+					<ThingDef Class="CombatExtended.AmmoDef" ParentName="BaseGreatArrowProjectile">
+						<defName>Larva_SKnife_Projectile</defName>
+						<label>憑剣『ラルヴァ』</label>
+						<graphicData>
+						  <texPath>HAR_NM/Weapons/W_NM_SKnife2</texPath>
+						  <graphicClass>Graphic_Single</graphicClass>
+						</graphicData>
+						<projectile Class="CombatExtended.ProjectilePropertiesCE">
+						  <speed>35</speed>
+						  <damageDef>Damage_Larva</damageDef>
+						  <damageAmountBase>10</damageAmountBase>
+						  <armorPenetrationSharp>14</armorPenetrationSharp>
+						  <armorPenetrationBlunt>1.25</armorPenetrationBlunt>
+						</projectile>
+					</ThingDef>
+				</value>
+			</li>
+			
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="Rugeiyu_Pilum_Thrown"]</xpath>
+				<value>
+					<ThingDef Class="CombatExtended.AmmoDef" ParentName="BaseGreatArrowProjectile">
+						<defName>Rugeiyu_Pilum_Thrown</defName>
+						<label>魔槍『ルゲイエ』</label>
+						<graphicData>
+						  <texPath>HAR_NM/Weapons/W_NM_lance2</texPath>
+						  <graphicClass>Graphic_Single</graphicClass>
+						</graphicData>
+						<projectile Class="CombatExtended.ProjectilePropertiesCE">
+						  <speed>25</speed>
+						  <damageDef>Damage_Rugeiyu</damageDef>
+						  <damageAmountBase>3</damageAmountBase>
+						  <armorPenetrationSharp>7</armorPenetrationSharp>
+						  <armorPenetrationBlunt>1.25</armorPenetrationBlunt>
+						</projectile>
+					</ThingDef>
+				</value>
+			</li>
+			
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/DamageDef[defName="Damage_Genocide_Bomb"]/armorCategory</xpath>
+				<value>
+					<armorCategory>Electric</armorCategory>
+				</value>
+			</li>
+			
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="Nearmaere_WildHunt_B"]</xpath>
+				<value>
+					<ThingDef Class="CombatExtended.AmmoDef" ParentName="BaseGreatArrowProjectile">
+						<defName>Nearmaere_WildHunt_B</defName>
+						<label>夢杖『ワイルドハント』</label>
+						<graphicData>
+						  <texPath>HAR_NM/Weapons/W_NM_Rod2</texPath>
+						  <graphicClass>Graphic_Single</graphicClass>
+						  <shaderType>TransparentPostLight</shaderType>
+						</graphicData>
+						<thingClass>CombatExtended.ProjectileCE_Explosive</thingClass>
+						<projectile Class="CombatExtended.ProjectilePropertiesCE">
+						  <speed>35</speed>
+						  <damageDef>Damage_Genocide_Bomb</damageDef>
+						  <damageAmountBase>3</damageAmountBase>
+						  <armorPenetrationSharp>0</armorPenetrationSharp>
+						  <armorPenetrationBlunt>0</armorPenetrationBlunt>
+						  <explosionRadius>25</explosionRadius>
+						  <gravityFactor>4</gravityFactor>
+						</projectile>
+					</ThingDef>
+				</value>
+			</li>
+			
+		</operations>
+		</match>	
+	  </li>
+	</operations>	
+  </Operation>
+</Patch>

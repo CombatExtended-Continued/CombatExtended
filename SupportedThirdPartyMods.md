@@ -14,8 +14,11 @@ Mod |
 [CP] Rimmu-Nation - Weapons	|
 [CP] Spec Ops - The Line	|
 [CP] The DOOM Kit - Classic	|
+[JDS] Exiled Dawn |
+[JDS] The Forge - Exiled Dawn |
 [JDS] The Forge - NCR Armory	|
 [O21] Forgotten Realms |
+[O21] Mechadroids |
 [Ods] SCP Outfits Only Edition	|
 [Pratt] WWII Weapons Pack (Vanilla)	|
 [RH] Faction: Alliegence	|
@@ -42,10 +45,13 @@ Android Tiers++	|
 Androids	|
 Androids Expanded	|
 AnimalCollabProj	|
+Animal Armor: Vanilla	|
 Apparello 2	|
 Arachne Race	|
 Area Rugs	|
+Autocleaner	|
 Auto-Mortars	|
+Beeralope Squad	|
 Better Infestations	|
 Black Widows	|
 Combat Enthusiast’s Collection	|
@@ -54,15 +60,23 @@ Cute Penguin	|
 CyberNet	|
 Cybernetic Organism and Neural Network	|
 Defensive Machine Gun Turret Pack	|
-Dinosauria	|
+Dinosauria |
+Dishonored Assassin Coat |
+Dishonored Assassin Mask |
+Dragon's Descent |
 Dragonian Race	|
 Dragons!	|
 ED-Shields	|
 Equiums Horse Race	|
+Erin's Critter Collection |
+Erin's Forest Critters |
+Erin's Fox Squirrel |
+Erin's Mountain Animals |
 Expanded Patchleather	|
 Expanded Prosthetics and Organ Engineering (EPOE)	|
 Extended Storage	|
 Fallout Traits	|
+Fantasy Metals Reforged |
 FashionRIMsta	|
 Fate Grand Order - Styles Apparel Pack	|
 Ferrex Race	|
@@ -80,7 +94,10 @@ GouRIMet	|
 Halo - Rimworld Auxiliary Combat Armory	|
 Hand 'n' Footwear	|
 High Caliber	|
+Idhale Race	|
+Iron Harvest Pkp 17 "Eisenhans" Powerarmor	|
 Jernfalk's Standalone Horses	|
+Jernalk's Skeletal Legion (Continued)	|
 Kaiser Armory	|
 K.L.K - Styles Apparel Pack	|
 Kijin Race 2.0     	|     
@@ -94,13 +111,18 @@ Mechanoids Extraordinaire	|
 Medical System Expansion	|
 Megafauna	|
 MiningCo. MiningHelmet	|
+Misc. Core	|
+Misc. MAI |
 Misc. Robots	|
+More Consumables And Mutagens Reworked |
 More Mechanoids	|
 More Practical Traits	|
 More Vanilla Turrets	|
 Moyo - From the Depth   |
+Nearmare Race	|
 Ni'Hal	|
 Orassans	|
+Palm Cats   |
 Penguin	|
 PsiTech	|
 Polarisbloc - Security Force	|
@@ -115,14 +137,21 @@ Rim of Madness - Bones	|
 Rimefeller	|
 RimEffect - Asari of the Rims	|
 Rimfire	|
+Rimsenal - Core |
+Rimsenal - Enhanced Vanilla |
+Rimsenal - Federation Faction Pack |
+Rimsenal - Feral Faction Pack |
+Rimsenal - Security Pack |
 Rimworld: Altered Carbon |
 Rimworld - The Dark Descent |
 Rimworld - Witcher Monster Hunt |
 Save Our Ship 2	|
 Sergals, Gnolls, Lions and Frogs	|
+Silkiera Race	|
 Simply More Melee	|
 Soviet Armory	|
 Spartan Foundry	|
+The Mantodean insectoid race	|
 T-45b Power Armor	|
 TouhouStyle	|
 Trading Economy	|
@@ -136,6 +165,8 @@ Vanilla Brewing Expanded    |
 Vanilla Factions Expanded - Insectoids |
 Vanilla Factions Expanded - Medieval	|
 Vanilla Factions Expanded - Settlers	|
+Vanilla Factions Expanded - Vikings	|
+Vanilla Furniture Expanded - Production	|
 Vanilla Vehicles Expanded	|
 Vanilla Weapons Expanded |
 Vanilla Weapons Expanded - Grenades |
@@ -148,4 +179,6 @@ Weapons+	|
 WWII Soviet Faction	|
 Xenn Race	|
 Xenohumans	|
+Xenoorca Race	|
+Zeta Reticulans |
 Zombieland	|

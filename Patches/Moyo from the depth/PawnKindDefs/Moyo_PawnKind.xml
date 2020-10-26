@@ -18,10 +18,12 @@
 				defName="Moyo_Resercher" or
 				defName="Moyo_TopSmuggler" or
 				defName="Moyo_MiddleSmuggler" or
-				defName="Moyo_SoldierLight" or
-				defName="Moyo_SoliderStandard" or
-				defName="Moyo_Guardian" or
-				defName="Moyo_GuardianAssault"
+				@Name="MoyoSoldierLight" or
+				@Name="MoyoSoliderStandard" or
+				defName="Moyo_leader" or
+				@Name="MoyoGuardian" or
+				@Name="MoyoGuardianAssault" or
+				@Name="MoyoGeneral"
 				]</xpath>
 				<value>
 					<li Class="CombatExtended.LoadoutPropertiesExtension">
@@ -34,7 +36,7 @@
 			</li>
 			
 			<li Class="PatchOperationAddModExtension">
-				<xpath>Defs/PawnKindDef[defName="Moyo_SoldierHeavy"]</xpath>
+				<xpath>Defs/PawnKindDef[@Name="MoyoSoldierHeavy"]</xpath>
 				<value>
 					<li Inherit="False" Class="CombatExtended.LoadoutPropertiesExtension">
 					<primaryMagazineCount>
@@ -63,12 +65,13 @@
 			
 			<li Class="PatchOperationAdd">
 				<xpath>Defs/PawnKindDef[
-				defName="Moyo_SoldierLight" or
-				defName="Moyo_SoliderStandard" or
-				defName="Moyo_SoldierHeavy" or
-				defName="Moyo_SoldierAssult" or
-				defName="Moyo_Guardian" or
-				defName="Moyo_GuardianAssault"
+				@Name="MoyoSoldierLight" or
+				@Name="MoyoSoliderStandard" or
+				@Name="MoyoSoldierHeavy" or
+				@Name="MoyoSoldierAssult" or
+				@Name="MoyoGuardian" or
+				@Name="MoyoGuardianAssault" or
+				@Name="MoyoGeneral"
 				]/apparelRequired</xpath>
 				<value>
 					<li>Apparel_Backpack</li>
@@ -92,37 +95,40 @@
 			<!--Point Adjustments-->
 			
 			<li Class="PatchOperationReplace">
-				<xpath>Defs/PawnKindDef[defName="Moyo_SoldierLight"]/combatPower</xpath>
+				<xpath>Defs/PawnKindDef[@Name="MoyoSoldierLight"]/combatPower</xpath>
 				<value>
 					<combatPower>190</combatPower>
 				</value>
 			</li>
 			
 			<li Class="PatchOperationReplace">
-				<xpath>Defs/PawnKindDef[defName="Moyo_SoliderStandard"]/combatPower</xpath>
+				<xpath>Defs/PawnKindDef[@Name="MoyoSoliderStandard"]/combatPower</xpath>
 				<value>
-					<combatPower>250</combatPower>
+					<combatPower>220</combatPower>
 				</value>
 			</li>
 			
 			<li Class="PatchOperationReplace">
-				<xpath>Defs/PawnKindDef[defName="Moyo_SoldierHeavy"]/combatPower</xpath>
+				<xpath>Defs/PawnKindDef[@Name="MoyoSoldierHeavy"]/combatPower</xpath>
 				<value>
-					<combatPower>250</combatPower>
+					<combatPower>220</combatPower>
 				</value>
 			</li>
 			
 			<li Class="PatchOperationReplace">
-				<xpath>Defs/PawnKindDef[defName="Moyo_SoldierAssult"]/combatPower</xpath>
+				<xpath>Defs/PawnKindDef[@Name="MoyoSoldierAssult"]/combatPower</xpath>
 				<value>
-					<combatPower>235</combatPower>
+					<combatPower>225</combatPower>
 				</value>
 			</li>
 			
 			<li Class="PatchOperationReplace">
-				<xpath>Defs/PawnKindDef[defName="Moyo_Guardian" or defName="Moyo_GuardianAssault"]/combatPower</xpath>
+				<xpath>Defs/PawnKindDef[
+				@Name="MoyoGuardian" or 
+				@Name="MoyoGuardianAssault" or 
+				@Name="MoyoGeneral"]/combatPower</xpath>
 				<value>
-					<combatPower>380</combatPower>
+					<combatPower>320</combatPower>
 				</value>
 			</li>
 			

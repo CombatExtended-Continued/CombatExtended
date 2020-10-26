@@ -15,7 +15,25 @@
   <Operation Class="PatchOperationAdd">
     <xpath>Defs/ThingDef[defName="Apparel_HatLadies" or defName="Apparel_HatTop"]/apparel</xpath>
     <value>
-		<layers inherit="false">
+		<layers Inherit="false">
+			<li>MiddleHead</li>
+		</layers>
+    </value>
+  </Operation>
+
+  <!-- ========== Beret ========== -->
+
+  <Operation Class="PatchOperationAdd">
+    <xpath>Defs/ThingDef[defName="Apparel_Beret"]/statBases</xpath>
+    <value>
+		  <StuffEffectMultiplierArmor>3</StuffEffectMultiplierArmor>	  
+    </value>
+  </Operation>
+
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/ThingDef[defName="Apparel_Beret"]/apparel/layers</xpath>
+    <value>
+		<layers Inherit="false">
 			<li>MiddleHead</li>
 		</layers>
     </value>
@@ -24,14 +42,14 @@
   <!-- ========== Coronet, Crown ========== -->
 
   <Operation Class="PatchOperationAdd">
-    <xpath>Defs/ThingDef[defName="Apparel_Coronet" or defName="Apparel_Crown"]/statBases</xpath>
+    <xpath>Defs/ThingDef[defName="Apparel_Coronet" or defName="Apparel_Crown" or defName="Apparel_CrownStellic"]/statBases</xpath>
     <value>
       <StuffEffectMultiplierArmor>5</StuffEffectMultiplierArmor>
     </value>
   </Operation>
 
   <Operation Class="PatchOperationReplace">
-    <xpath>Defs/ThingDef[defName="Apparel_Coronet" or defName="Apparel_Crown"]/apparel/layers/li[.="Overhead"]</xpath>
+    <xpath>Defs/ThingDef[defName="Apparel_Coronet" or defName="Apparel_Crown" or defName="Apparel_CrownStellic"]/apparel/layers/li[.="Overhead"]</xpath>
     <value>
       <li>MiddleHead</li>
     </value>
@@ -57,6 +75,60 @@
     <xpath>Defs/ThingDef[defName="Apparel_PsyfocusHelmet"]/apparel/layers/li[.="Overhead"]</xpath>
     <value>
       <li>MiddleHead</li>
+    </value>
+  </Operation>
+
+  <!-- ========== Psychic Skullcap ========== -->
+
+  <Operation Class="PatchOperationAdd">
+    <xpath>Defs/ThingDef[defName="Apparel_EltexSkullcap"]/statBases</xpath>
+    <value>
+      <ArmorRating_Sharp>0.05</ArmorRating_Sharp>
+    </value>
+  </Operation>
+
+  <Operation Class="PatchOperationAdd">
+    <xpath>Defs/ThingDef[defName="Apparel_EltexSkullcap"]/statBases</xpath>
+    <value>
+      <ArmorRating_Blunt>0.08</ArmorRating_Blunt>
+    </value>
+  </Operation>
+
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/ThingDef[defName="Apparel_EltexSkullcap"]/apparel/layers/li[.="Overhead"]</xpath>
+    <value>
+      <li>MiddleHead</li>
+    </value>
+  </Operation>
+
+  <!-- ========== Gunlink ========== -->
+
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/ThingDef[defName="Apparel_Gunlink"]/statBases/ArmorRating_Sharp</xpath>
+    <value>
+      <ArmorRating_Sharp>0.01</ArmorRating_Sharp>
+    </value>
+  </Operation>
+
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/ThingDef[defName="Apparel_Gunlink"]/statBases/ArmorRating_Blunt</xpath>
+    <value>
+      <ArmorRating_Blunt>0.01</ArmorRating_Blunt>
+    </value>
+  </Operation>
+
+	<Operation Class="PatchOperationAttributeAdd">
+  	<xpath>Defs/ThingDef[defName="Apparel_Gunlink"]/equippedStatOffsets</xpath>
+    <attribute>Inherit</attribute>
+    <value>false</value>
+	</Operation>
+
+  <Operation Class="PatchOperationAdd">
+    <xpath>Defs/ThingDef[defName="Apparel_Gunlink"]/apparel</xpath>
+    <value>
+    <layers Inherit="false">
+      <li>StrappedHead</li>
+    </layers>  
     </value>
   </Operation>
 
@@ -99,7 +171,7 @@
   </Operation>
 
   <Operation Class="PatchOperationAdd">
-    <xpath>Defs/ThingDef[defName="Apparel_ArmorHelmetCataphract"]</xpath>
+    <xpath>Defs/ThingDef[@Name="ApparelArmorHelmetCataphractBase"]</xpath>
     <value>
       <equippedStatOffsets>
         <PsychicSensitivity>-0.2</PsychicSensitivity>

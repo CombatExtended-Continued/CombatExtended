@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+
+  <Operation Class="PatchOperationFindMod">
+    <mods>
+      <li>Moyo-From the depth</li>
+    </mods>
+
+    <match Class="PatchOperationSequence">
+      <operations>
+        <!-- === Scorpion === -->
+        <li Class="PatchOperationAdd">
+          <xpath>
+            /Defs/BodyDef[defName="Moyo_Hexapod"]//*[
+            def="Hexapod_TentacleJoint"]
+          </xpath>
+
+          <value>
+            <groups/>
+          </value>
+        </li>
+
+        <li Class="PatchOperationAdd">
+          <xpath>
+            /Defs/BodyDef[defName="Moyo_Hexapod"]//*[
+            def="HexapodHeadShell" or 
+            def="Hexapod_TentacleJoint" or 
+            def="Hexapod_Tentacle"
+			]/groups
+          </xpath>
+
+          <value>
+            <li>CoveredByNaturalArmor</li>
+          </value>
+        </li>
+		
+		<!-- === Scorpion === -->
+        <li Class="PatchOperationAdd">
+          <xpath>
+            /Defs/BodyDef[defName="Moyo_Pressurepod"]//*[
+            def="PressurePod_Seg1" or 
+            def="pressurepod_ArmJoint" or 
+			def="pressurepod_Leg" or 
+			def="PressurePod_Seg2" or 
+			def="PressurePod_Seg3" or 
+			def="PressurePod_Seg4" or 
+			def="PressurePod_Seg5"]
+          </xpath>
+
+          <value>
+            <groups/>
+          </value>
+        </li>
+
+        <li Class="PatchOperationAdd">
+          <xpath>
+            /Defs/BodyDef[defName="Moyo_Pressurepod"]//*[
+            def="PressurePod_Seg1" or 
+            def="pressurepod_ArmJoint" or 
+			def="pressurepod_Leg" or 
+			def="PressurePod_Seg2" or 
+			def="PressurePod_Seg3" or 
+			def="PressurePod_Seg4" or 
+			def="PressurePod_Seg5" or 
+            def="MechanicalHead" or 
+            def="pressurepod_club"]/groups
+          </xpath>
+
+          <value>
+            <li>CoveredByNaturalArmor</li>
+          </value>
+        </li>
+      </operations>
+    </match>
+  </Operation>
+
+</Patch>

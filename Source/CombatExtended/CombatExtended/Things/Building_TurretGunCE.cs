@@ -38,6 +38,7 @@ namespace CombatExtended
         protected TurretTop top;
         protected CompPowerTrader powerComp;
         protected CompCanBeDormant dormantComp;
+        protected CompInitiatable initiatableComp;
         protected CompMannable mannableComp;
 
         public static Material ForcedTargetLineMat = MaterialPool.MatFrom(GenDraw.LineTexPath, ShaderDatabase.Transparent, new Color(1f, 0.5f, 0.5f));
@@ -54,7 +55,7 @@ namespace CombatExtended
 
         #region Properties
         // Core properties
-        public bool Active => (powerComp == null || powerComp.PowerOn) && (dormantComp == null || dormantComp.Awake);
+        public bool Active => (powerComp == null || powerComp.PowerOn) && (dormantComp == null || dormantComp.Awake) && (initiatableComp == null || initiatableComp.Initiated);
         public CompEquippable GunCompEq => Gun.TryGetComp<CompEquippable>();
         public override LocalTargetInfo CurrentTarget => currentTargetInt;
         private bool WarmingUp => burstWarmupTicksLeft > 0;
@@ -152,6 +153,7 @@ namespace CombatExtended
             Map.GetComponent<TurretTracker>().Register(this);
 
             dormantComp = GetComp<CompCanBeDormant>();
+            initiatableComp = GetComp<CompInitiatable>();
             powerComp = GetComp<CompPowerTrader>();
             mannableComp = GetComp<CompMannable>();
 
@@ -229,12 +231,13 @@ namespace CombatExtended
             Scribe_Values.Look<int>(ref this.burstWarmupTicksLeft, "burstWarmupTicksLeft", 0, false);
             Scribe_TargetInfo.Look(ref this.currentTargetInt, "currentTarget");
             Scribe_Values.Look<bool>(ref this.holdFire, "holdFire", false, false);
+	    Scribe_Values.Look<bool>(ref this.everSpawned, "everSpawned", false, false);
             BackCompatibility.PostExposeData(this);
         }
 
         public override bool ClaimableBy(Faction by)        // Core method
         {
-            return base.ClaimableBy(by) && (this.mannableComp == null || this.mannableComp.ManningPawn == null) && (!this.Active || this.mannableComp != null) && (this.dormantComp == null || this.dormantComp.Awake || (this.powerComp != null && !this.powerComp.PowerOn));
+            return base.ClaimableBy(by) && (this.mannableComp == null || this.mannableComp.ManningPawn == null) && (!this.Active || this.mannableComp != null) && (((this.dormantComp == null || this.dormantComp.Awake) && (this.initiatableComp == null || this.initiatableComp.Initiated)) || (this.powerComp != null && !this.powerComp.PowerOn));
         }
 
         public override void OrderAttack(LocalTargetInfo targ)      // Core method

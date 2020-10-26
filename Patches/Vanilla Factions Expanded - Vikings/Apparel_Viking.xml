@@ -1,0 +1,216 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+
+<Patch>
+	<Operation Class="PatchOperationFindMod">
+	<mods>
+		<li>Vanilla Factions Expanded - Vikings</li>
+	</mods>
+		<match Class="PatchOperationSequence">
+		<operations>
+
+		<!-- Guardian Armor -->
+
+		<li Class="PatchOperationReplace">
+			<xpath>Defs/ThingDef[defName="VFEV_Apparel_GuardianArmor"]/statBases/StuffEffectMultiplierArmor</xpath>
+			<value>
+				<StuffEffectMultiplierArmor>3</StuffEffectMultiplierArmor>
+			</value>
+		</li>
+
+		<li Class="PatchOperationAdd">
+			<xpath>Defs/ThingDef[defName="VFEV_Apparel_GuardianArmor"]/statBases</xpath>
+			<value>
+				<Bulk>80</Bulk>
+				<WornBulk>10</WornBulk>
+			</value>
+		</li>
+
+		<li Class="PatchOperationRemove">
+			<xpath>Defs/ThingDef[defName="VFEV_Apparel_GuardianArmor"]/equippedStatOffsets/MoveSpeed</xpath>
+		</li>
+
+		<li Class="PatchOperationReplace">
+			<xpath>Defs/ThingDef[defName="VFEV_Apparel_GuardianArmor"]/equippedStatOffsets/MeleeDodgeChance</xpath>
+			<value>
+				<MeleeDodgeChance>-0.10</MeleeDodgeChance>
+			</value>
+		</li>
+
+		<li Class="PatchOperationAdd">
+			<xpath>Defs/ThingDef[defName="VFEV_Apparel_GuardianArmor"]/apparel/bodyPartGroups</xpath>
+			<value>
+				<li>Hands</li>
+				<li>Feet</li>
+			</value>
+		</li>
+
+		<!-- Leather Armor -->
+
+		<li Class="PatchOperationReplace">
+			<xpath>Defs/ThingDef[defName="VFEV_LeatherArmor"]/statBases/StuffEffectMultiplierArmor</xpath>
+			<value>
+				<StuffEffectMultiplierArmor>6</StuffEffectMultiplierArmor>
+			</value>
+		</li>
+
+		<li Class="PatchOperationAdd">
+			<xpath>Defs/ThingDef[defName="VFEV_LeatherArmor"]/statBases</xpath>
+			<value>
+				<Bulk>12</Bulk>
+				<WornBulk>4</WornBulk>
+			</value>
+		</li>
+
+		<li Class="PatchOperationAdd">
+			<xpath>Defs/ThingDef[defName="VFEV_LeatherArmor"]/apparel/bodyPartGroups</xpath>
+			<value>
+				<li>Feet</li>
+			</value>
+		</li>
+
+		<!-- Ravager Armor -->
+
+		<li Class="PatchOperationReplace">
+			<xpath>Defs/ThingDef[defName="VFEV_Apparel_RavagerArmor"]/statBases/StuffEffectMultiplierArmor</xpath>
+			<value>
+				<StuffEffectMultiplierArmor>10</StuffEffectMultiplierArmor>
+			</value>
+		</li>
+
+		<li Class="PatchOperationAdd">
+			<xpath>Defs/ThingDef[defName="VFEV_Apparel_RavagerArmor"]/statBases</xpath>
+			<value>
+				<Bulk>14</Bulk>
+				<WornBulk>4</WornBulk>
+			</value>
+		</li>
+
+		<li Class="PatchOperationAdd">
+			<xpath>Defs/ThingDef[defName="VFEV_Apparel_RavagerArmor"]/apparel/bodyPartGroups</xpath>
+			<value>
+				<li>Hands</li>
+				<li>Feet</li>
+			</value>
+		</li>
+
+		<!-- Jarl Cape -->
+
+		<li Class="PatchOperationReplace">
+			<xpath>Defs/ThingDef[defName="VFEV_Apparel_JarlCape"]/statBases/StuffEffectMultiplierArmor</xpath>
+			<value>
+				<Bulk>7.75</Bulk>
+				<WornBulk>1.5</WornBulk>
+				<StuffEffectMultiplierArmor>2.5</StuffEffectMultiplierArmor>
+			</value>
+		</li>
+
+		<!-- Royal Fur Coat -->
+
+		<li Class="PatchOperationReplace">
+			<xpath>Defs/ThingDef[defName="VFEV_Apparel_RoyalFurCoat"]/statBases/StuffEffectMultiplierArmor</xpath>
+			<value>
+				<Bulk>7.75</Bulk>
+				<WornBulk>1.5</WornBulk>
+				<StuffEffectMultiplierArmor>2.5</StuffEffectMultiplierArmor>
+			</value>
+		</li>
+
+		<!-- Crypto Armor Base -->
+
+		<li Class="PatchOperationAdd">
+			<xpath>Defs/ThingDef[@Name="VFEV_ApparelArmorCryptoBase"]/apparel/bodyPartGroups</xpath>
+			<value>
+				<li>Hands</li>
+				<li>Feet</li>
+			</value>
+		</li>
+
+		<!-- Crypto Armor -->
+
+		<li Class="PatchOperationAdd">
+			<xpath>Defs/ThingDef[defName="VFEV_CryptoArmor"]/statBases</xpath>
+			<value>
+				<Bulk>80</Bulk>
+				<WornBulk>12</WornBulk>
+			</value>
+		</li>
+
+		<li Class="PatchOperationReplace">
+			<xpath>Defs/ThingDef[defName="VFEV_CryptoArmor"]/statBases/MaxHitPoints</xpath>
+			<value>
+				<MaxHitPoints>350</MaxHitPoints>
+			</value>
+		</li>
+
+		<li Class="PatchOperationReplace">
+			<xpath>Defs/ThingDef[defName="VFEV_CryptoArmor"]/statBases/Mass</xpath>
+			<value>
+				<Mass>45</Mass>
+			</value>
+		</li>
+
+		<li Class="PatchOperationReplace">
+			<xpath>Defs/ThingDef[defName="VFEV_CryptoArmor"]/statBases/Flammability</xpath>
+			<value>
+				<Flammability>0</Flammability>
+			</value>
+		</li>
+
+		<li Class="PatchOperationReplace">
+			<xpath>Defs/ThingDef[defName="VFEV_CryptoArmor"]/statBases/ArmorRating_Sharp</xpath>
+			<value>
+				<ArmorRating_Sharp>18</ArmorRating_Sharp>
+			</value>
+		</li>
+
+		<li Class="PatchOperationReplace">
+			<xpath>Defs/ThingDef[defName="VFEV_CryptoArmor"]/statBases/ArmorRating_Blunt</xpath>
+			<value>
+				<ArmorRating_Blunt>46</ArmorRating_Blunt>
+			</value>
+		</li>
+
+		<li Class="PatchOperationAdd">
+			<xpath>Defs/ThingDef[defName="VFEV_CryptoArmor"]</xpath>
+			<value>
+			<equippedStatOffsets>
+				<CarryWeight>25</CarryWeight>
+				<CarryBulk>15</CarryBulk>
+				<ToxicSensitivity>-0.50</ToxicSensitivity>
+			</equippedStatOffsets>
+			</value>
+		</li>
+
+		<!-- Heavy Crypto Armor -->
+
+		<li Class="PatchOperationAdd">
+			<xpath>Defs/ThingDef[defName="VFEV_CryptoHeavyArmor"]</xpath>
+			<value>
+				<statBases>
+				<Bulk>100</Bulk>
+				<WornBulk>15</WornBulk>
+				<MaxHitPoints>475</MaxHitPoints>
+				<Mass>50</Mass>
+				<Flammability>0</Flammability>
+				<ArmorRating_Sharp>20</ArmorRating_Sharp>
+				<ArmorRating_Blunt>45</ArmorRating_Blunt>
+				</statBases>
+			</value>
+		</li>
+
+		<li Class="PatchOperationAdd">
+			<xpath>Defs/ThingDef[defName="VFEV_CryptoHeavyArmor"]</xpath>
+			<value>
+			<equippedStatOffsets>
+				<CarryWeight>80</CarryWeight>
+				<CarryBulk>20</CarryBulk>
+				<ShootingAccuracyPawn>0.15</ShootingAccuracyPawn>
+				<ToxicSensitivity>-0.50</ToxicSensitivity>
+			</equippedStatOffsets>
+			</value>
+		</li>
+
+		</operations>
+		</match>
+	</Operation>
+</Patch>

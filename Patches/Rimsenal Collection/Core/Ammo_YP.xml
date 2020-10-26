@@ -1,0 +1,334 @@
+<Patch>
+
+	<Operation Class="PatchOperationFindMod">
+    <mods>
+		<li>Rimsenal - Core</li>
+    </mods>
+		<match Class="PatchOperationSequence">
+		 <operations>		
+
+
+		<li Class="PatchOperationAdd">
+			<xpath>Defs</xpath>
+			<value>
+
+	<!-- ==================== YP Pistol ========================== -->
+	
+	<!-- ==================== AmmoSet ========================== -->
+
+	<CombatExtended.AmmoSetDef>
+		<defName>AmmoSet_PistolYP</defName>
+		<label>Small YP</label>
+		<ammoTypes>
+			<Ammo_RifleYP>Bullet_PistolYP</Ammo_RifleYP>
+		</ammoTypes>
+	</CombatExtended.AmmoSetDef>
+
+	<!-- ================== Projectiles ================== -->
+
+	<ThingDef ParentName="Base45ACPBullet">
+		<defName>Bullet_PistolYP</defName>
+		<label>Carbon crystal</label>
+		<graphicData>
+			<texPath>Things/Projectile/Shard</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+		</graphicData>		
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageDef>Shredder</damageDef>
+			<speed>72</speed>
+			<dropsCasings>false</dropsCasings>
+			<pelletCount>2</pelletCount>
+			<spreadMult>15</spreadMult>		
+			<damageAmountBase>18</damageAmountBase>
+			<armorPenetrationBlunt>28</armorPenetrationBlunt>
+			<armorPenetrationSharp>2.8</armorPenetrationSharp>
+		</projectile>
+	</ThingDef>
+
+	<!-- ==================== YP Rifle ========================== -->
+
+		<ThingCategoryDef>
+			<defName>AmmoRifleYP</defName>
+			<label>Light YP</label>
+			<parent>AmmoRifles</parent>
+		<iconPath>UI/Icons/ThingCategories/CaliberRifle</iconPath>
+		</ThingCategoryDef>
+		
+		<!-- ==================== AmmoSet ========================== -->
+
+		<CombatExtended.AmmoSetDef>
+			<defName>AmmoSet_RifleYP</defName>
+			<label>Light YP</label>
+			<ammoTypes>
+				<Ammo_RifleYP>Bullet_RifleYP</Ammo_RifleYP>
+			</ammoTypes>
+		</CombatExtended.AmmoSetDef>
+		
+		<CombatExtended.AmmoSetDef>
+			<defName>AmmoSet_SwarmerYP</defName>
+			<label>Light YP</label>
+			<ammoTypes>
+				<Ammo_RifleYP>Bullet_SwarmerYP</Ammo_RifleYP>
+			</ammoTypes>
+		</CombatExtended.AmmoSetDef>
+		
+		<!-- ==================== Ammo ========================== -->
+		
+		<ThingDef Class="CombatExtended.AmmoDef" Name="RifleYPBase" ParentName="SmallAmmoBase" Abstract="True">
+			<description>Small, high-velocity crystal bullet used in Yunhwa Precision arms.</description>
+			<statBases>
+			<Mass>0.01</Mass>
+			<Bulk>0.02</Bulk>
+			</statBases>
+		<tradeTags>
+			<li>CE_AutoEnableTrade</li>
+			<li>CE_AutoEnableCrafting</li>
+		</tradeTags>
+			<thingCategories>
+				<li>AmmoRifleYP</li>
+			</thingCategories>
+		</ThingDef>
+
+		<ThingDef Class="CombatExtended.AmmoDef" ParentName="RifleYPBase">
+			<defName>Ammo_RifleYP</defName>
+			<label>Light YP cartridge</label>
+			<graphicData>
+				<texPath>ThirdParty/Rimsenal/YP</texPath>
+				<graphicClass>Graphic_StackCount</graphicClass>
+			</graphicData>
+			<statBases>
+				<MarketValue>0.09</MarketValue>
+			</statBases>
+			<ammoClass>CarbonCrystal</ammoClass>
+			<cookOffProjectile>Bullet_RifleYP</cookOffProjectile>
+		</ThingDef>
+
+		<!-- ================== Projectiles ================== -->
+
+		<ThingDef ParentName="Base556x45mmNATOBullet">
+			<defName>Bullet_RifleYP</defName>
+			<label>Carbon crystal</label>
+			<graphicData>
+				<texPath>Things/Projectile/Shard</texPath>
+				<graphicClass>Graphic_Single</graphicClass>
+			</graphicData>			
+			<projectile Class="CombatExtended.ProjectilePropertiesCE">
+				<damageDef>Shredder</damageDef>
+				<speed>80</speed>
+				<dropsCasings>false</dropsCasings>			
+				<damageAmountBase>20</damageAmountBase>
+				<armorPenetrationBlunt>34</armorPenetrationBlunt>
+				<armorPenetrationSharp>4.5</armorPenetrationSharp>	
+			</projectile>
+		</ThingDef>
+		
+		<ThingDef ParentName="Base556x45mmNATOBullet">
+			<defName>Bullet_SwarmerYP</defName>
+			<label>sagpung swarm</label>
+			<graphicData>
+				<texPath>Things/Projectile/Swarm</texPath>
+				<graphicClass>Graphic_Single</graphicClass>
+			</graphicData>			
+			<projectile Class="CombatExtended.ProjectilePropertiesCE">
+				<damageDef>Shredder</damageDef>
+				<speed>40</speed>
+				<dropsCasings>false</dropsCasings>			
+				<damageAmountBase>6</damageAmountBase>
+				<armorPenetrationBlunt>5</armorPenetrationBlunt>
+				<armorPenetrationSharp>3.5</armorPenetrationSharp>	
+				<pelletCount>12</pelletCount>
+				<spreadMult>1</spreadMult>	
+			</projectile>
+		</ThingDef>
+
+		<!-- ==================== Recipe: YP Rifle ========================== -->
+		<RecipeDef ParentName="AmmoRecipeBase">
+			<defName>MakeAmmo_RifleYP</defName>
+			<label>make Light YP cartridge x500</label>
+			<description>Craft 500 Light YP cartridges.</description>
+			<jobString>Making Light YP cartridges.</jobString>
+			<ingredients>
+				<li>
+					<filter>
+						<thingDefs>
+							<li>Steel</li>
+						</thingDefs>
+					</filter>
+					<count>35</count>
+				</li>
+			</ingredients>
+			<fixedIngredientFilter>
+				<thingDefs>
+					<li>Steel</li>
+				</thingDefs>
+			</fixedIngredientFilter>
+			<researchPrerequisite>ShardTech</researchPrerequisite>
+			<recipeUsers Inherit="False">
+				<li>YPTable</li>
+			</recipeUsers>		
+			<products>
+				<Ammo_RifleYP>500</Ammo_RifleYP>
+			</products>
+		<workAmount>3500</workAmount>
+		</RecipeDef>
+
+	<!-- ==================== YP Spike ========================== -->
+
+	<ThingCategoryDef>
+		<defName>AmmoSpikeYP</defName>
+		<label>Heavy YP</label>
+		<parent>AmmoRifles</parent>
+    <iconPath>UI/Icons/ThingCategories/CaliberRifle</iconPath>
+	</ThingCategoryDef>
+	
+	<!-- ==================== AmmoSet ========================== -->
+
+	<CombatExtended.AmmoSetDef>
+		<defName>AmmoSet_SpikeYP</defName>
+		<label>Heavy YP</label>
+		<ammoTypes>
+			<Ammo_SpikeYP>Bullet_SpikeYP</Ammo_SpikeYP>
+		</ammoTypes>
+	</CombatExtended.AmmoSetDef>
+	
+	<CombatExtended.AmmoSetDef>
+		<defName>AmmoSet_VectorYP</defName>
+		<label>Heavy YP</label>
+		<ammoTypes>
+			<Ammo_SpikeYP>Bullet_VectorYP</Ammo_SpikeYP>
+		</ammoTypes>
+	</CombatExtended.AmmoSetDef>
+	
+	<!-- ==================== Ammo ========================== -->
+	
+	<ThingDef Class="CombatExtended.AmmoDef" Name="SpikeYPBase" ParentName="SmallAmmoBase" Abstract="True">
+		<description>High-velocity spike made of synthesized carbon crystals, fired by Yunhwa Precision equipment. While more effective against armor, the spikes' tendency to remain intact after striking a target decreases thier stopping power.</description>
+		<statBases>
+		<Mass>0.015</Mass>
+		<Bulk>0.02</Bulk>
+		</statBases>
+	<tradeTags>
+		<li>CE_AutoEnableTrade</li>
+		<li>CE_AutoEnableCrafting</li>
+	</tradeTags>
+		<thingCategories>
+			<li>AmmoSpikeYP</li>
+		</thingCategories>
+	</ThingDef>
+
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="SpikeYPBase">
+		<defName>Ammo_SpikeYP</defName>
+		<label>Heavy YP cartridge</label>
+		<graphicData>
+			<texPath>ThirdParty/Rimsenal/YP</texPath>
+			<graphicClass>Graphic_StackCount</graphicClass>
+		</graphicData>
+		<statBases>
+			<MarketValue>0.12</MarketValue>
+		</statBases>
+		<ammoClass>CarbonCrystal</ammoClass>
+		<cookOffProjectile>Bullet_SpikeYP</cookOffProjectile>
+	</ThingDef>
+
+	<!-- ================== Projectiles ================== -->
+
+	<ThingDef ParentName="Base556x45mmNATOBullet">
+		<defName>Bullet_SpikeYP</defName>
+		<label>Heavy carbon crystal</label>
+		<graphicData>
+			<texPath>Things/Projectile/Spike</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+		</graphicData>		
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageDef>Shredder</damageDef>
+			<speed>240</speed>
+			<dropsCasings>false</dropsCasings>		
+			<damageAmountBase>14</damageAmountBase>
+			<armorPenetrationBlunt>55</armorPenetrationBlunt>
+			<armorPenetrationSharp>30</armorPenetrationSharp>			
+		</projectile>
+	</ThingDef>
+	
+	<ThingDef ParentName="Base556x45mmNATOBullet">
+		<defName>Bullet_VectorYP</defName>
+		<label>Vector shot</label>
+		<graphicData>
+			<texPath>Things/Projectile/Spike</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+		</graphicData>		
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageDef>Shredder</damageDef>
+			<speed>130</speed>
+			<soundHitThickRoof>RS_ShotShard</soundHitThickRoof>
+			<flyOverhead>true</flyOverhead>
+			<gravityFactor>450</gravityFactor>
+			<dropsCasings>false</dropsCasings>		
+			<damageAmountBase>5</damageAmountBase>
+			<armorPenetrationBlunt>55</armorPenetrationBlunt>
+			<armorPenetrationSharp>4.5</armorPenetrationSharp>
+			<pelletCount>4</pelletCount>
+			<spreadMult>40</spreadMult>	
+		</projectile>
+	</ThingDef>
+
+	<!-- ==================== Recipe: YP Spike ========================== -->
+	<RecipeDef ParentName="AmmoRecipeBase">
+		<defName>MakeAmmo_SpikeYP</defName>
+		<label>make Heavy YP cartridge x500</label>
+		<description>Craft 500 Heavy YP cartridges.</description>
+		<jobString>Making Heavy YP cartridges.</jobString>
+		<ingredients>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>Steel</li>
+					</thingDefs>
+				</filter>
+				<count>35</count>
+			</li>
+		</ingredients>
+		<fixedIngredientFilter>
+			<thingDefs>
+				<li>Steel</li>
+			</thingDefs>
+		</fixedIngredientFilter>
+		<researchPrerequisite>ShardTech</researchPrerequisite>
+		<recipeUsers Inherit="False">
+			<li>YPTable</li>
+		</recipeUsers>			
+		<products>
+			<Ammo_SpikeYP>500</Ammo_SpikeYP>
+		</products>
+	<workAmount>3500</workAmount>
+	</RecipeDef>
+
+	<!-- ================== YP Microwave - Projectiles ================== -->
+
+	<ThingDef ParentName="Base556x45mmNATOBullet">
+		<defName>Bullet_GeugGwang_CE</defName>
+		<label>microwave pulse</label>
+		<graphicData>
+		  <texPath>Things/Projectile/Microwave</texPath>
+		  <graphicClass>Graphic_Single</graphicClass>
+		  <shaderType>TransparentPostLight</shaderType>
+		</graphicData>		
+		<thingClass>CombatExtended.ProjectileCE_Explosive</thingClass>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageDef>Microwave</damageDef>
+			<speed>999</speed>
+			<dropsCasings>false</dropsCasings>		
+			<explosionRadius>1.5</explosionRadius>
+			<damageAmountBase>1</damageAmountBase>
+			<applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
+			<ai_IsIncendiary>true</ai_IsIncendiary>			
+		</projectile>
+	</ThingDef>
+
+		</value>
+		</li>
+
+		</operations>
+		</match>
+	</Operation>
+</Patch>
+			

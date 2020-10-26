@@ -1,0 +1,230 @@
+<Patch>
+
+	<Operation Class="PatchOperationFindMod">
+    <mods>
+		<li>Rimsenal - Feral Faction Pack</li>
+    </mods>
+		<match Class="PatchOperationSequence">
+		<operations>		
+
+		<li Class="PatchOperationAdd">
+		<xpath>Defs</xpath>
+		<value>
+	<!-- ==================== Scrap Metal ========================== -->  
+
+	<ThingCategoryDef>
+		<defName>AmmoFeralScrap</defName> 
+		<label>scrap metal</label> 
+		<parent>AmmoRifles</parent> 
+		<iconPath>ThirdParty/Rimsenal/Nail/Nail_c</iconPath> 
+	</ThingCategoryDef>  
+
+	<!-- ==================== AmmoSet ========================== -->  
+
+	<CombatExtended.AmmoSetDef>
+		<defName>AmmoSet_Feral_Scrap</defName> 
+		<label>scrap</label> 
+		<ammoTypes>     
+			<Ammo_Feral_Scrap>Bullet_Feral_Scrap</Ammo_Feral_Scrap> 
+		</ammoTypes> 
+	</CombatExtended.AmmoSetDef>  
+ 
+	<!-- ==================== Ammo ========================== -->  
+	
+	 <ThingDef Class="CombatExtended.AmmoDef" Name="BaseScrap" ParentName="SmallAmmoBase" Abstract="True"> 
+	 <description>Bits of jagged scrap metal.</description> 
+	 <statBases>
+		<Mass>0.04</Mass>     
+		<Bulk>0.1</Bulk> 
+	 </statBases> 
+		<destroyOnDrop>True</destroyOnDrop> 
+	 <thingCategories>
+		<li>AmmoFeralScrap</li> 
+	 </thingCategories> 
+	 </ThingDef>  
+	 
+	 <ThingDef Class="CombatExtended.AmmoDef" ParentName="BaseScrap"> 
+	 <defName>Ammo_Feral_Scrap</defName> 
+	 <label>Bits of jagged scrap metal</label> 
+	 <graphicData>     
+		<texPath>ThirdParty/Rimsenal/Nail</texPath>
+		<graphicClass>Graphic_StackCount</graphicClass>
+	 </graphicData>
+	 <statBases>
+		<MarketValue>0.01</MarketValue> 
+	 </statBases>
+	 <ammoClass>FeralNail</ammoClass> 
+	</ThingDef>
+
+
+	<!-- ================== Projectiles ================== --> 
+
+ 	<ThingDef ParentName="Base556x45mmNATOBullet"> 
+	<defName>Bullet_Feral_Scrap</defName> 
+	<label>scrap metal</label>
+	<graphicData> 
+		<texPath>Things/Projectile/Scrap</texPath> 
+		<graphicClass>Graphic_Single</graphicClass> 
+	</graphicData> 	 
+	<projectile Class="CombatExtended.ProjectilePropertiesCE"> 
+		<damageAmountBase>10</damageAmountBase> 
+		<armorPenetrationBlunt>15</armorPenetrationBlunt>
+		<armorPenetrationSharp>2</armorPenetrationSharp>		 
+		<pelletCount>20</pelletCount> 
+		<spreadMult>17.8</spreadMult>
+		<damageDef>Bullet</damageDef> 
+		<speed>50</speed> 
+		<dropsCasings>false</dropsCasings> 		 
+	</projectile> 
+	</ThingDef>
+
+	<!-- ==================== Nails ========================== -->
+
+	<ThingCategoryDef>
+		<defName>AmmoFeralNail</defName>
+		<label>nail</label>
+		<parent>AmmoRifles</parent>
+    	<iconPath>ThirdParty/Rimsenal/Nail/Nail_c</iconPath>
+	</ThingCategoryDef>
+	
+	<!-- ==================== AmmoSet ========================== -->
+
+	<CombatExtended.AmmoSetDef>
+		<defName>AmmoSet_Feral_Nail</defName>
+		<label>nail</label>
+		<ammoTypes>
+			<Ammo_Feral_Nail>Bullet_Feral_Nail</Ammo_Feral_Nail>
+ 		</ammoTypes>
+	</CombatExtended.AmmoSetDef>
+	
+	<!-- ==================== Ammo ========================== -->
+
+	<ThingDef Class="CombatExtended.AmmoDef" Name="BaseFeralNail" ParentName="SmallAmmoBase" Abstract="True">
+		<description>A pointed, slightly rusty carpentry nail a few inches long. While an extremely inaccurate projectile at best, its shape means it tends to tumble when it strikes a target, leaving large wounds.</description>
+		<statBases>
+		<Mass>0.02</Mass>
+		<Bulk>0.02</Bulk>
+		</statBases>
+	<tradeTags>
+		<li>CE_AutoEnableTrade</li>
+		<li>CE_AutoEnableCrafting</li>
+	</tradeTags>
+		<thingCategories>
+			<li>AmmoFeralNail</li>
+		</thingCategories>
+	</ThingDef>
+
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="BaseFeralNail">
+		<defName>Ammo_Feral_Nail</defName>
+		<label>Nail</label>
+		<graphicData>
+			<texPath>ThirdParty/Rimsenal/Nail</texPath>
+			<graphicClass>Graphic_StackCount</graphicClass>
+		</graphicData>
+		<statBases>
+			<MarketValue>0.02</MarketValue>
+		</statBases>
+		<ammoClass>FeralNail</ammoClass>
+	</ThingDef>
+	
+	<!-- ================== Projectiles ================== -->
+
+	<ThingDef ParentName="Base556x45mmNATOBullet">
+		<defName>Bullet_Feral_Nail</defName>
+		<label>Nail</label>
+		<graphicData>
+			<texPath>Projectile/Nail</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+		</graphicData>		
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageDef>Bullet</damageDef>
+			<speed>60</speed>
+			<dropsCasings>false</dropsCasings>		
+			<damageAmountBase>8</damageAmountBase>
+			<armorPenetrationBlunt>10</armorPenetrationBlunt>
+			<armorPenetrationSharp>2.5</armorPenetrationSharp>			
+		</projectile>
+	</ThingDef>
+  
+	<!-- ==================== Recipes ========================== -->
+
+	<RecipeDef ParentName="AmmoRecipeBase">
+		<defName>MakeAmmo_Feral_Nail</defName>
+		<label>make nails x500</label>
+		<description>Craft 500 steel nails.</description>
+		<jobString>Making nails.</jobString>
+		<ingredients>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>Steel</li>
+					</thingDefs>
+				</filter>
+				<count>15</count>
+			</li>
+		</ingredients>
+		<fixedIngredientFilter>
+			<thingDefs>
+				<li>Steel</li>
+			</thingDefs>
+		</fixedIngredientFilter>
+		<products>
+			<Ammo_Feral_Nail>500</Ammo_Feral_Nail>
+		</products>
+	</RecipeDef>
+	
+	<!-- ==================== Twin 9x19mm Para ========================== -->
+	
+	<CombatExtended.AmmoSetDef>
+		<defName>AmmoSet_9x19mmParaTwin</defName>
+		<label>Twin 9x19mm Para</label>
+		<ammoTypes>
+			<Ammo_9x19mmPara_FMJ>Bullet_9x19mmParaTwin_FMJ</Ammo_9x19mmPara_FMJ>
+			<Ammo_9x19mmPara_AP>Bullet_9x19mmParaTwin_AP</Ammo_9x19mmPara_AP>
+			<Ammo_9x19mmPara_HP>Bullet_9x19mmParaTwin_HP</Ammo_9x19mmPara_HP>
+		</ammoTypes>
+	</CombatExtended.AmmoSetDef>
+	
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="Base9x19mmParaBullet">
+		<defName>Bullet_9x19mmParaTwin_FMJ</defName>
+		<label>9mm Para bullet (FMJ)</label>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageAmountBase>11</damageAmountBase>
+			<pelletCount>2</pelletCount>
+			<spreadMult>2</spreadMult>	
+			<armorPenetrationSharp>4</armorPenetrationSharp>
+			<armorPenetrationBlunt>9.66</armorPenetrationBlunt>
+		</projectile>
+	</ThingDef>
+
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="Base9x19mmParaBullet">
+		<defName>Bullet_9x19mmParaTwin_AP</defName>
+		<label>9mm Para bullet (AP)</label>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageAmountBase>7</damageAmountBase>
+			<pelletCount>2</pelletCount>
+			<spreadMult>2</spreadMult>	
+			<armorPenetrationSharp>8</armorPenetrationSharp>
+			<armorPenetrationBlunt>9.66</armorPenetrationBlunt>
+		</projectile>
+	</ThingDef>
+
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="Base9x19mmParaBullet">
+		<defName>Bullet_9x19mmParaTwin_HP</defName>
+		<label>9mm Para bullet (HP)</label>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageAmountBase>13</damageAmountBase>
+			<pelletCount>2</pelletCount>
+			<spreadMult>2</spreadMult>	
+			<armorPenetrationSharp>2</armorPenetrationSharp>
+			<armorPenetrationBlunt>9.66</armorPenetrationBlunt>
+		</projectile>
+	</ThingDef>
+		
+		</value>
+		</li>
+
+		</operations>
+		</match>
+	</Operation>
+</Patch>

@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8" ?>
+
+<Patch>
+	<Operation Class="PatchOperationFindMod">
+			<mods>
+				<li>Rimsenal - Federation Faction Pack</li>
+			</mods>
+		<match Class="PatchOperationSequence">
+		<operations>			
+
+			<!-- ========== Mech - Federator ========== -->
+			<li Class="PatchOperationAddModExtension">
+				<xpath>/Defs/ThingDef[defName="Mech_Federator"]</xpath>
+				<value>
+					<li Class="CombatExtended.RacePropertiesExtensionCE">
+						<bodyShape>Humanoid</bodyShape>
+					</li>
+				</value>
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>/Defs/ThingDef[defName="Mech_Federator"]/statBases/ArmorRating_Blunt</xpath>
+				<value>
+				  <ArmorRating_Blunt>40</ArmorRating_Blunt>			
+				</value>
+			</li>
+			
+			<li Class="PatchOperationReplace">
+				<xpath>/Defs/ThingDef[defName="Mech_Federator"]/statBases/ArmorRating_Sharp</xpath>
+				<value>
+				  <ArmorRating_Sharp>35</ArmorRating_Sharp>			
+				</value>
+			</li>			
+
+			<li Class="PatchOperationAdd">
+				<xpath>/Defs/ThingDef[defName="Mech_Federator"]/statBases</xpath>
+				<value>
+					<CarryWeight>60</CarryWeight>
+					<CarryBulk>60</CarryBulk>
+					<AimingAccuracy>1</AimingAccuracy>
+					<ShootingAccuracyPawn>1</ShootingAccuracyPawn>
+					<MeleeDodgeChance>1</MeleeDodgeChance>
+					<MeleeCritChance>1</MeleeCritChance>
+					<MeleeParryChance>1</MeleeParryChance>
+					<SmokeSensitivity>0</SmokeSensitivity>
+				</value>
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>/Defs/ThingDef[defName="Mech_Federator"]/tools</xpath>
+				<value>
+					<tools>
+						<li Class="CombatExtended.ToolCE">
+							<label>head</label>
+							<capacities>
+							  <li>Blunt</li>
+							</capacities>
+							<power>35</power>
+							<cooldownTime>3.67</cooldownTime>
+							<linkedBodyPartsGroup>HeadAttackTool</linkedBodyPartsGroup>
+							<armorPenetrationBlunt>15</armorPenetrationBlunt>
+							<ensureLinkedBodyPartsGroupAlwaysUsable>true</ensureLinkedBodyPartsGroupAlwaysUsable>
+							<chanceFactor>0.2</chanceFactor>
+						</li>					
+						<li Class="CombatExtended.ToolCE">
+							<label>left fist</label>
+							<capacities>
+							  <li>Blunt</li>
+							</capacities>
+							<power>35</power>
+							<cooldownTime>2.67</cooldownTime>
+							<linkedBodyPartsGroup>LeftHand</linkedBodyPartsGroup>
+							<surpriseAttack>
+							  <extraMeleeDamages>
+								<li>
+								  <def>Stun</def>
+								  <amount>14</amount>
+								</li>
+							  </extraMeleeDamages>
+							</surpriseAttack>
+							<armorPenetrationBlunt>15</armorPenetrationBlunt>
+						</li>
+						<li Class="CombatExtended.ToolCE">
+							<label>right fist</label>
+							<capacities>
+							  <li>Blunt</li>
+							</capacities>
+							<power>35</power>
+							<cooldownTime>2.67</cooldownTime>
+							<linkedBodyPartsGroup>RightHand</linkedBodyPartsGroup>
+							<surpriseAttack>
+							  <extraMeleeDamages>
+								<li>
+								  <def>Stun</def>
+								  <amount>14</amount>
+								</li>
+							  </extraMeleeDamages>
+							</surpriseAttack>
+							<armorPenetrationBlunt>15</armorPenetrationBlunt>
+						</li>										
+					</tools>
+				</value>
+			</li>
+			
+		</operations>
+		</match>
+	</Operation>
+</Patch>  

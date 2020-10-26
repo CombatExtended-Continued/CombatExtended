@@ -76,7 +76,7 @@ namespace CombatExtended.HarmonyCE.Compatibility
                     {
                         ready = true;
                     }
-                    if (ready && code.opcode == OpCodes.Bne_Un)
+                    if (ready && code.opcode == OpCodes.Beq_S)
                     {
                         patch.Last().operand = code.operand;
                         foreach (var c in patch)

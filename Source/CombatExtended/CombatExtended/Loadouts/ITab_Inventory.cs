@@ -350,7 +350,8 @@ namespace CombatExtended
                         }
                     }
                     //Reload apparel option
-                    foreach (var apparel in SelPawnForGear?.apparel?.WornApparel)
+		            IEnumerable<Apparel> worn_apparel = SelPawnForGear?.apparel?.WornApparel ?? Enumerable.Empty<Apparel>();
+                    foreach (var apparel in worn_apparel)
                     {
                         var compReloadable = apparel.TryGetComp<CompReloadable>();
                         if (compReloadable != null && compReloadable.AmmoDef == thing.def && compReloadable.NeedsReload(true))
@@ -431,8 +432,8 @@ namespace CombatExtended
         {
             float naturalArmor = SelPawnForGear.GetStatValue(stat);
             float averageArmor = naturalArmor;
-            List<Apparel> wornApparel = SelPawnForGear.apparel.WornApparel;
-            foreach (Apparel apparel in wornApparel)
+            List<Apparel> wornApparel = SelPawnForGear.apparel?.WornApparel;
+            foreach (Apparel apparel in wornApparel ?? Enumerable.Empty<Apparel>())
             {
                 averageArmor += apparel.GetStatValue(stat, true) * apparel.def.apparel.HumanBodyCoverage;
             }
@@ -447,7 +448,7 @@ namespace CombatExtended
                     if (part.depth == BodyPartDepth.Outside && (part.coverage >= 0.1 || (part.def == BodyPartDefOf.Eye || part.def == BodyPartDefOf.Neck)))
                     {
                         text += part.LabelCap + ": ";
-                        foreach (Apparel apparel in wornApparel)
+                        foreach (Apparel apparel in wornApparel ?? Enumerable.Empty<Apparel>())
                         {
                             if (apparel.def.apparel.CoversBodyPart(part))
                             {
@@ -575,7 +576,7 @@ namespace CombatExtended
 
         private bool IsItemDropForbidden(Thing thing)
         {
-            return (thing is Apparel eqApparel && SelPawnForGear.apparel.IsLocked(eqApparel))
+            return (thing is Apparel eqApparel && (SelPawnForGear.apparel?.IsLocked(eqApparel) ?? false))
                 || (thing.def.IsWeapon && SelPawnForGear.IsQuestLodger() && !EquipmentUtility.QuestLodgerCanUnequip(thing, SelPawnForGear));
         }
 

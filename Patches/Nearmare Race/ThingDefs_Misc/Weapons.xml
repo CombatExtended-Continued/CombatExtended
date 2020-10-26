@@ -1,0 +1,334 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+	<Operation Class="PatchOperationSequence">
+		<success></success>
+		<operations>
+			<li Class="PatchOperationFindMod">
+			<mods><li>[1.2]Nearmare Race</li></mods>
+			<match Class="PatchOperationSequence">
+			<operations>
+			
+			<!-- ==========  Geist Knife  =========== -->
+			
+			<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+			<defName>Geist_Knife</defName>
+				<statBases>
+					<SightsEfficiency>0.70</SightsEfficiency>
+					<ShotSpread>1.5</ShotSpread>
+					<SwayFactor>0.85</SwayFactor>
+					<Bulk>1</Bulk>
+					<Mass>2</Mass>
+					<RangedWeapon_Cooldown>0.3</RangedWeapon_Cooldown>
+				</statBases>
+				
+				<Properties>
+					<recoilAmount>0</recoilAmount>
+					<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+					<hasStandardCommand>true</hasStandardCommand>
+					<defaultProjectile>Geist_Knife_Projectile</defaultProjectile>
+					<warmupTime>0.3</warmupTime>
+					<range>20</range>
+					<soundCast>Interact_BeatFire</soundCast>
+					<rangedFireRulepack>Combat_RangedFire_Thrown</rangedFireRulepack>
+				</Properties>
+				<FireModes>
+				</FireModes>
+			</li>
+			
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName="Geist_Knife"]/statBases</xpath>
+				<value>
+					<MeleeCounterParryBonus>0.15</MeleeCounterParryBonus>
+				</value>
+			</li>
+			
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName="Geist_Knife"]</xpath>
+				<value>
+					<equippedStatOffsets>
+						<MeleeCritChance>0.5</MeleeCritChance>
+						<MeleeParryChance>0.15</MeleeParryChance>
+						<MeleeDodgeChance>0.05</MeleeDodgeChance>	
+					</equippedStatOffsets>
+				</value>
+			</li>
+			
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="Geist_Knife"]/tools</xpath>
+				<value>
+					<tools>
+						<li Class="CombatExtended.ToolCE">
+							<label>handle</label>
+							<capacities>
+								<li>Poke</li>
+							</capacities>
+							<power>1</power>
+							<cooldownTime>1.26</cooldownTime>
+							<armorPenetrationBlunt>0.250</armorPenetrationBlunt>
+							<linkedBodyPartsGroup>Handle</linkedBodyPartsGroup>
+						</li>
+						<li Class="CombatExtended.ToolCE">
+							<label>blade</label>
+							<capacities>
+								<li>Cut</li>
+							</capacities>
+							<power>10</power>
+							<cooldownTime>1.18</cooldownTime>
+							<armorPenetrationBlunt>0.36</armorPenetrationBlunt>
+							<armorPenetrationSharp>0.32</armorPenetrationSharp>
+							<linkedBodyPartsGroup>Blade</linkedBodyPartsGroup>
+						</li>
+						<li Class="CombatExtended.ToolCE">
+							<label>point</label>
+							<capacities>
+								<li>Stab</li>
+							</capacities>
+							<power>11</power>
+							<cooldownTime>1.26</cooldownTime>
+							<chanceFactor>1.33</chanceFactor>
+							<armorPenetrationBlunt>0.25</armorPenetrationBlunt>
+							<armorPenetrationSharp>0.42</armorPenetrationSharp>
+							<linkedBodyPartsGroup>Point</linkedBodyPartsGroup>
+						</li>
+					</tools>
+				</value>
+			</li>
+			
+			<!-- ==========  Larva Knife  =========== -->
+			
+			<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+			<defName>Larva_SKnife</defName>
+				<statBases>
+					<SightsEfficiency>1.25</SightsEfficiency>
+					<ShotSpread>0.20</ShotSpread>
+					<SwayFactor>1.25</SwayFactor>
+					<Bulk>1</Bulk>
+					<Mass>2</Mass>
+					<RangedWeapon_Cooldown>1.26</RangedWeapon_Cooldown>
+				</statBases>
+				
+				<Properties>
+					<recoilAmount>0</recoilAmount>
+					<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+					<hasStandardCommand>true</hasStandardCommand>
+					<defaultProjectile>Larva_SKnife_Projectile</defaultProjectile>
+					<warmupTime>0.6</warmupTime>
+					<range>62</range>
+					<soundCast>Interact_BeatFire</soundCast>
+					<rangedFireRulepack>Combat_RangedFire_Thrown</rangedFireRulepack>
+				</Properties>
+				<FireModes>
+				</FireModes>
+			</li>
+			
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName="Larva_SKnife"]/statBases</xpath>
+				<value>
+					<MeleeCounterParryBonus>0.15</MeleeCounterParryBonus>
+				</value>
+			</li>
+			
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName="Larva_SKnife"]</xpath>
+				<value>
+					<equippedStatOffsets>
+						<MeleeCritChance>0.5</MeleeCritChance>
+						<MeleeParryChance>0.15</MeleeParryChance>
+						<MeleeDodgeChance>0.05</MeleeDodgeChance>	
+					</equippedStatOffsets>
+				</value>
+			</li>
+			
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="Larva_SKnife"]/tools</xpath>
+				<value>
+					<tools>
+						<li Class="CombatExtended.ToolCE">
+							<label>handle</label>
+							<capacities>
+								<li>Poke</li>
+							</capacities>
+							<power>1</power>
+							<cooldownTime>1.26</cooldownTime>
+							<armorPenetrationBlunt>0.250</armorPenetrationBlunt>
+							<linkedBodyPartsGroup>Handle</linkedBodyPartsGroup>
+						</li>
+						<li Class="CombatExtended.ToolCE">
+							<label>blade</label>
+							<capacities>
+								<li>Cut</li>
+							</capacities>
+							<power>10</power>
+							<cooldownTime>1.18</cooldownTime>
+							<armorPenetrationBlunt>0.36</armorPenetrationBlunt>
+							<armorPenetrationSharp>0.32</armorPenetrationSharp>
+							<linkedBodyPartsGroup>Blade</linkedBodyPartsGroup>
+						</li>
+						<li Class="CombatExtended.ToolCE">
+							<label>point</label>
+							<capacities>
+								<li>Stab</li>
+							</capacities>
+							<power>11</power>
+							<cooldownTime>1.26</cooldownTime>
+							<chanceFactor>1.33</chanceFactor>
+							<armorPenetrationBlunt>0.25</armorPenetrationBlunt>
+							<armorPenetrationSharp>0.42</armorPenetrationSharp>
+							<linkedBodyPartsGroup>Point</linkedBodyPartsGroup>
+						</li>
+					</tools>
+				</value>
+			</li>
+			
+			
+			<!-- ==========  Rugeiyo Pila  =========== -->
+			
+			<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+			<defName>Rugeiyu_Pila</defName>
+				<statBases>
+					<SightsEfficiency>0.85</SightsEfficiency>
+					<ShotSpread>2</ShotSpread>
+					<SwayFactor>1.85</SwayFactor>
+					<Bulk>10</Bulk>
+					<Mass>4</Mass>
+					<RangedWeapon_Cooldown>1.19</RangedWeapon_Cooldown>
+				</statBases>
+				
+				<Properties>
+					<recoilAmount>0</recoilAmount>
+					<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+					<hasStandardCommand>true</hasStandardCommand>
+					<defaultProjectile>Rugeiyu_Pilum_Thrown</defaultProjectile>
+					<warmupTime>0.6</warmupTime>
+					<burstShotCount>5</burstShotCount>
+					<ticksBetweenBurstShots>20</ticksBetweenBurstShots>
+					<range>51</range>
+					<soundCast>Interact_BeatFire</soundCast>
+					<rangedFireRulepack>Combat_RangedFire_Thrown</rangedFireRulepack>
+				</Properties>
+				<FireModes>
+					<aimedBurstShotCount>3</aimedBurstShotCount>
+					<aiUseBurstMode>FALSE</aiUseBurstMode>
+					<aiAimMode>Snapshot</aiAimMode>
+				</FireModes>
+			</li>
+			
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName="Rugeiyu_Pila"]/statBases</xpath>
+				<value>
+					<MeleeCounterParryBonus>1.08</MeleeCounterParryBonus>
+				</value>
+			</li>
+			
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName="Rugeiyu_Pila"]</xpath>
+				<value>
+					<equippedStatOffsets>
+						<MeleeCritChance>0.17</MeleeCritChance>
+						<MeleeParryChance>1.45</MeleeParryChance>
+						<MeleeDodgeChance>0.9</MeleeDodgeChance>
+					</equippedStatOffsets>
+				</value>
+			</li>
+			
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="Rugeiyu_Pila"]/tools</xpath>
+				<value>
+					<tools>
+						<li Class="CombatExtended.ToolCE">
+							<label>shaft</label>
+							<capacities>
+								<li>Blunt</li>
+							</capacities>
+							<power>7</power>
+							<cooldownTime>1.35</cooldownTime>
+							<chanceFactor>0.15</chanceFactor>
+							<armorPenetrationBlunt>2.25</armorPenetrationBlunt>
+							<linkedBodyPartsGroup>Shaft</linkedBodyPartsGroup>
+						</li>
+						<li Class="CombatExtended.ToolCE">
+							<label>shaft</label>
+							<capacities>
+								<li>Poke</li>
+							</capacities>
+							<power>4</power>
+							<cooldownTime>1.78</cooldownTime>
+							<chanceFactor>0.05</chanceFactor>
+							<armorPenetrationBlunt>1</armorPenetrationBlunt>
+							<linkedBodyPartsGroup>Point</linkedBodyPartsGroup>
+						</li>
+						<li Class="CombatExtended.ToolCE">
+							<label>head</label>
+							<capacities>
+								<li>Stab</li>
+							</capacities>
+							<power>18</power>
+							<cooldownTime>1.19</cooldownTime>
+							<chanceFactor>1.00</chanceFactor>
+							<armorPenetrationBlunt>2.25</armorPenetrationBlunt>
+							<armorPenetrationSharp>1.5</armorPenetrationSharp>
+							<linkedBodyPartsGroup>Head</linkedBodyPartsGroup>
+						</li>
+					</tools>
+				</value>
+			</li>
+			
+			<!-- ==========  Wild Hunt  =========== -->
+			
+			<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+			<defName>Nearmaere_WildHunt</defName>
+				<statBases>
+					<SightsEfficiency>1.00</SightsEfficiency>
+					<ShotSpread>0.20</ShotSpread>
+					<SwayFactor>1.85</SwayFactor>
+					<Bulk>10</Bulk>
+					<Mass>4</Mass>
+					<RangedWeapon_Cooldown>40</RangedWeapon_Cooldown>
+				</statBases>
+				
+				<Properties>
+					<recoilAmount>0</recoilAmount>
+					<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+					<hasStandardCommand>true</hasStandardCommand>
+					<defaultProjectile>Nearmaere_WildHunt_B</defaultProjectile>
+					<warmupTime>20</warmupTime>
+					<range>86</range>
+					<soundCast>InfernoCannon_Fire</soundCast>
+					<soundCastTail>GunTail_Light</soundCastTail>
+					<muzzleFlashScale>14</muzzleFlashScale>
+					<rangedFireRulepack>Combat_RangedFire_Thrown</rangedFireRulepack>
+					<targetParams>
+						<canTargetLocations>true</canTargetLocations>
+					</targetParams>
+					<onlyManualCast>true</onlyManualCast>
+					<ignorePartialLoSBlocker>true</ignorePartialLoSBlocker>
+				</Properties>
+				<FireModes>
+				</FireModes>
+			</li>
+			
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="Nearmaere_WildHunt"]/tools</xpath>
+				<value>
+					<tools>
+						<li Class="CombatExtended.ToolCE">
+							<label>head</label>
+							<capacities>
+								<li>Blunt</li>
+							</capacities>
+							<power>5</power>
+							<cooldownTime>2.85</cooldownTime>
+							<chanceFactor>0.30</chanceFactor>
+							<armorPenetrationBlunt>1.69</armorPenetrationBlunt>
+							<linkedBodyPartsGroup>Head</linkedBodyPartsGroup>
+						</li>
+					</tools>
+				</value>
+			</li>
+			
+			</operations>
+			</match>
+			</li>
+		</operations>
+	</Operation>
+</Patch>
