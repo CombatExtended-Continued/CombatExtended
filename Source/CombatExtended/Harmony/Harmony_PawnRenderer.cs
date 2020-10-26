@@ -40,26 +40,36 @@ namespace CombatExtended.HarmonyCE
         private const float YOffsetIntervalClothes = 0.00306122447f;
 
         private static Rot4 north = Rot4.North; // this otherwise creates a new instance per invocation
+        private static int[] headwearGraphics = new int[16];
+        // Working under the assumption that
+        //  A. The rendering function will always be single threaded (if not this needs to be an array of threadID length)
+        //  B. A single pawn will never have more than 16 headlayers at once (this number could be decreased... but what would it change?)
 
         private static void DrawHeadApparel(PawnRenderer renderer, Mesh mesh, Vector3 rootLoc, Vector3 headLoc, Vector3 headOffset, Rot4 bodyFacing, Quaternion quaternion, bool portrait, ref bool hideHair)
         {
             var apparelGraphics = renderer.graphics.apparelGraphics;
-            List<ApparelGraphicRecord> headwearGraphics = new List<ApparelGraphicRecord>();
+            var currentSize = 0;
+            int i = 0;
 
-            foreach(var apparel in apparelGraphics)
+            // Using a manual loop without a List or an Array prevents allocation or MoveNext() functions being called, especially since this array should normally be quite small.
+            for(i = 0; i < apparelGraphics.Count; i++)
             {
-                if(apparel.sourceApparel.def.apparel.LastLayer.GetModExtension<ApparelLayerExtension>()?.IsHeadwear ?? false) 
-                    headwearGraphics.Add(apparel);
+                if (apparelGraphics[i].sourceApparel.def.apparel.LastLayer.GetModExtension<ApparelLayerExtension>()?.IsHeadwear ?? false)
+                {
+                    headwearGraphics[currentSize++] = i; // Store index to apparelrecord instead of the actual apparel
+                }
             }
 
-            if (headwearGraphics.Count == 0)
+            if (currentSize == 0)
                 return;
 
-            var interval = YOffsetIntervalClothes / headwearGraphics.Count;
+            var interval = YOffsetIntervalClothes / currentSize;
             var headwearPos = headLoc;
 
-            foreach (var apparelRecord in headwearGraphics)
+            for (i = 0; i < currentSize; i++)
             {
+                var apparelRecord = apparelGraphics[headwearGraphics[i]]; // originalArray[indexWeFoundApparelRecordAt]
+
                 if (!apparelRecord.sourceApparel.def.apparel.hatRenderedFrontOfFace)
                 {
                     headwearPos.y += interval;
