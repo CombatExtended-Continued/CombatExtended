@@ -48,7 +48,7 @@ namespace CombatExtended.HarmonyCE
         private static void DrawHeadApparel(PawnRenderer renderer, Mesh mesh, Vector3 rootLoc, Vector3 headLoc, Vector3 headOffset, Rot4 bodyFacing, Quaternion quaternion, bool portrait, ref bool hideHair)
         {
             var apparelGraphics = renderer.graphics.apparelGraphics;
-            var currentSize = 0;
+            var headwearSize = 0;
             int i = 0;
 
             // Using a manual loop without a List or an Array prevents allocation or MoveNext() functions being called, especially since this array should normally be quite small.
@@ -56,17 +56,17 @@ namespace CombatExtended.HarmonyCE
             {
                 if (apparelGraphics[i].sourceApparel.def.apparel.LastLayer.GetModExtension<ApparelLayerExtension>()?.IsHeadwear ?? false)
                 {
-                    headwearGraphics[currentSize++] = i; // Store index to apparelrecord instead of the actual apparel
+                    headwearGraphics[headwearSize++] = i; // Store index to apparelrecord instead of the actual apparel
                 }
             }
 
-            if (currentSize == 0)
+            if (headwearSize == 0)
                 return;
 
-            var interval = YOffsetIntervalClothes / currentSize;
+            var interval = YOffsetIntervalClothes / headwearSize;
             var headwearPos = headLoc;
 
-            for (i = 0; i < currentSize; i++)
+            for (i = 0; i < headwearSize; i++)
             {
                 var apparelRecord = apparelGraphics[headwearGraphics[i]]; // originalArray[indexWeFoundApparelRecordAt]
 
