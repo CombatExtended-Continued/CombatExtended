@@ -74,6 +74,7 @@ Erin's Fox Squirrel |
 Erin's Mountain Animals |
 Expanded Patchleather	|
 Expanded Prosthetics and Organ Engineering (EPOE)	|
+Expanded Prosthetics and Organ Engineering (EPOE) - Forked	|
 Extended Storage	|
 Fallout Traits	|
 Fantasy Metals Reforged |
