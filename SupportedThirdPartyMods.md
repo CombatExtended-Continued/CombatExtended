@@ -71,8 +71,10 @@ Equiums Horse Race	|
 Erin's Critter Collection |
 Erin's Forest Critters |
 Erin's Fox Squirrel |
+Erin's Mountain Animals |
 Expanded Patchleather	|
 Expanded Prosthetics and Organ Engineering (EPOE)	|
+Expanded Prosthetics and Organ Engineering (EPOE) - Forked	|
 Extended Storage	|
 Fallout Traits	|
 Fantasy Metals Reforged |
@@ -96,6 +98,7 @@ High Caliber	|
 Idhale Race	|
 Iron Harvest Pkp 17 "Eisenhans" Powerarmor	|
 Jernfalk's Standalone Horses	|
+Jernalk's Skeletal Legion (Continued)	|
 Kaiser Armory	|
 K.L.K - Styles Apparel Pack	|
 Kijin Race 2.0     	|     
@@ -178,4 +181,5 @@ WWII Soviet Faction	|
 Xenn Race	|
 Xenohumans	|
 Xenoorca Race	|
+Zeta Reticulans |
 Zombieland	|

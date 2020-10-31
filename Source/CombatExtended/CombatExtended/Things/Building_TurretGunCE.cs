@@ -231,6 +231,7 @@ namespace CombatExtended
             Scribe_Values.Look<int>(ref this.burstWarmupTicksLeft, "burstWarmupTicksLeft", 0, false);
             Scribe_TargetInfo.Look(ref this.currentTargetInt, "currentTarget");
             Scribe_Values.Look<bool>(ref this.holdFire, "holdFire", false, false);
+	    Scribe_Values.Look<bool>(ref this.everSpawned, "everSpawned", false, false);
             BackCompatibility.PostExposeData(this);
         }
 

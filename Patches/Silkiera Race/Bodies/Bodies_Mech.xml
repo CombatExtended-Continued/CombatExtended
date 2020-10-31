@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+
+  <Operation Class="PatchOperationFindMod">
+    <mods>
+      <li>[1.2]Silkiera Race</li>
+    </mods>
+
+    <match Class="PatchOperationSequence">
+      <operations>
+        <!-- === Nearmare Summon === -->
+        <li Class="PatchOperationAdd">
+          <xpath>
+            /Defs/BodyDef[defName="HAR_SK_Mechanoid_Bodies"]//*[
+            def="MechanicalThorax" or
+            def="MechanicalNeck" or
+            def="MechanicalShoulder" or
+            def="MechanicalArm" or
+            def="MechanicalHand" or
+			def="MechanicalLeg" or
+			def="MechanicalFoot"]
+          </xpath>
+
+          <value>
+            <groups/>
+          </value>
+        </li>
+
+        <li Class="PatchOperationAdd">
+          <xpath>
+            /Defs/BodyDef[defName="HAR_SK_Mechanoid_Bodies"]//*[
+            def="MechanicalThorax" or
+            def="MechanicalNeck" or
+            def="MechanicalHead" or
+            def="MechanicalShoulder" or
+            def="MechanicalArm" or
+			def="Blade" or
+			def="MechanicalHand" or
+			def="MechanicalFinger" or
+			def="MechanicalLeg" or
+			def="MechanicalFoot"
+			]/groups
+          </xpath>
+
+          <value>
+            <li>CoveredByNaturalArmor</li>
+          </value>
+        </li>
+      </operations>
+    </match>
+  </Operation>
+
+</Patch>
