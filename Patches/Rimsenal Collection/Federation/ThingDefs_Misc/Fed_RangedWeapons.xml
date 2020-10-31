@@ -181,35 +181,6 @@
 			</li>
 
 			<!-- ==========  AD Crucible Rifle  =========== -->
-			<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
-			<defName>AD_CrucibleCarbine</defName>
-				<statBases>
-					<WorkToMake>52000</WorkToMake>
-					<SightsEfficiency>1.0</SightsEfficiency>
-					<ShotSpread>0.16</ShotSpread>
-					<SwayFactor>1.44</SwayFactor>
-					<Bulk>9.50</Bulk>
-					<Mass>4.80</Mass>
-					<RangedWeapon_Cooldown>0.95</RangedWeapon_Cooldown>
-				</statBases>
-				<Properties>
-					<recoilAmount>1.56</recoilAmount>
-					<verbClass>CombatExtended.Verb_ShootCE</verbClass>
-					<hasStandardCommand>true</hasStandardCommand>
-					<defaultProjectile>Bullet_CrucibleRifle</defaultProjectile>
-					<warmupTime>1.1</warmupTime>
-					<burstShotCount>6</burstShotCount>
-					<ticksBetweenBurstShots>35</ticksBetweenBurstShots>
-					<range>55</range>
-					<soundCast>RS_ShotCR</soundCast>
-					<muzzleFlashScale>12</muzzleFlashScale>
-				</Properties>
-				<FireModes>
-					<aimedBurstShotCount>3</aimedBurstShotCount>
-					<aiUseBurstMode>TRUE</aiUseBurstMode>
-					<aiAimMode>AimedShot</aiAimMode>
-				</FireModes>
-			</li>
 
 			<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
 			<defName>AD_CrucibleRifle</defName>
@@ -295,6 +266,9 @@
 					<soundCast>RS_ShotCP</soundCast>
 					<muzzleFlashScale>12</muzzleFlashScale>
 				</Properties>
+				<weaponTags>
+					<li>CE_OneHandedWeapon</li>
+				</weaponTags>
 				<FireModes />
 			</li>
 			
@@ -529,7 +503,10 @@
 					<soundCast>RS_ShotCR</soundCast>
 					<muzzleFlashScale>10</muzzleFlashScale>
 				</Properties>
-				<FireModes />
+				<FireModes>
+					<aimedBurstShotCount>3</aimedBurstShotCount>
+					<aiUseBurstMode>FALSE</aiUseBurstMode>
+				</FireModes>
 			</li>
 			
 		</operations>

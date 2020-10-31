@@ -1,644 +1,574 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8" ?>
 <Patch>
 
-  <Operation Class="PatchOperationSequence">
-    <success>Always</success>
-    <operations>
-      <li Class="CombatExtended.PatchOperationFindMod">
-        <modName>Orassans</modName>
-      </li>
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+			<li>Orassans</li>
+		</mods>
+		<match Class="PatchOperationSequence">
+			<operations>
 
-      <!-- Orassan Rocket Launcher -->
-			<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
-				<defName>Gun_OrassanRocket</defName>
-				<statBases>
-					<Bulk>5.2</Bulk>
-					<Mass>3.0</Mass>
-					<SwayFactor>0.9</SwayFactor>
-					<ShotSpread>0.9</ShotSpread>
-					<SightsEfficiency>2</SightsEfficiency>
-					<RangedWeapon_Cooldown>1.5</RangedWeapon_Cooldown>
-					<WorkToMake>32000</WorkToMake>
-				</statBases>
+				<!-- === Tools === -->
+				<li Class="PatchOperationReplace">
+					<xpath>
+						/Defs/ThingDef[
+							defName = "Gun_OrassanPistol" or
+							defName = "Gun_OrassanAEPistol" or
+							defName = "Gun_OrassanSMG"
+						]/tools
+					</xpath>
+					<value>
+						<tools>
+							<li Class="CombatExtended.ToolCE">
+								<label>grip</label>
+								<capacities>
+									<li>Blunt</li>
+								</capacities>
+								<power>2</power>
+								<cooldownTime>1.54</cooldownTime>
+								<chanceFactor>1.5</chanceFactor>
+								<armorPenetrationBlunt>0.555</armorPenetrationBlunt>
+								<linkedBodyPartsGroup>Grip</linkedBodyPartsGroup>
+							</li>
+							<li Class="CombatExtended.ToolCE">
+								<label>muzzle</label>
+								<capacities>
+									<li>Poke</li>
+								</capacities>
+								<power>2</power>
+								<cooldownTime>1.54</cooldownTime>
+								<armorPenetrationBlunt>0.555</armorPenetrationBlunt>
+								<linkedBodyPartsGroup>Muzzle</linkedBodyPartsGroup>
+							</li>
+						</tools>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>
+						/Defs/ThingDef[
+							defName = "Gun_OrassanShotgun" or
+							defName = "Gun_OrassanRifle" or
+							defName = "Gun_OrassanLMG" or
+							defName = "Gun_OrassanSniper" or
+							defName = "Gun_OrassanDMR"
+						]/tools
+					</xpath>
+					<value>
+						<tools>
+							<li Class="CombatExtended.ToolCE">
+								<label>stock</label>
+								<capacities>
+									<li>Blunt</li>
+								</capacities>
+								<power>8</power>
+								<cooldownTime>1.55</cooldownTime>
+								<chanceFactor>1.5</chanceFactor>
+								<armorPenetrationBlunt>2.755</armorPenetrationBlunt>
+								<linkedBodyPartsGroup>Stock</linkedBodyPartsGroup>
+							</li>
+							<li Class="CombatExtended.ToolCE">
+								<label>barrel</label>
+								<capacities>
+									<li>Blunt</li>
+								</capacities>
+								<power>5</power>
+								<cooldownTime>2.02</cooldownTime>
+								<armorPenetrationBlunt>1.630</armorPenetrationBlunt>
+								<linkedBodyPartsGroup>Barrel</linkedBodyPartsGroup>
+							</li>
+							<li Class="CombatExtended.ToolCE">
+								<label>muzzle</label>
+								<capacities>
+									<li>Poke</li>
+								</capacities>
+								<power>8</power>
+								<cooldownTime>1.55</cooldownTime>
+								<armorPenetrationBlunt>2.755</armorPenetrationBlunt>
+								<linkedBodyPartsGroup>Muzzle</linkedBodyPartsGroup>
+							</li>
+						</tools>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>
+						/Defs/ThingDef[
+							defName = "Gun_CryoLauncher" or
+							defName = "Gun_OrassanRocket"
+						]/tools
+					</xpath>
+					<value>
+						<tools>
+							<li Class="CombatExtended.ToolCE">
+								<label>barrel</label>
+								<capacities>
+									<li>Blunt</li>
+								</capacities>
+								<power>10</power>
+								<cooldownTime>2.44</cooldownTime>
+								<armorPenetrationBlunt>3.5</armorPenetrationBlunt>
+								<linkedBodyPartsGroup>Barrel</linkedBodyPartsGroup>
+							</li>
+						</tools>
+					</value>
+				</li>
+
+				<!-- === Pistol === -->
+				<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+					<defName>Gun_OrassanPistol</defName>
+					<statBases>
+						<Mass>1</Mass>
+						<RangedWeapon_Cooldown>0.30</RangedWeapon_Cooldown>
+						<SightsEfficiency>0.50</SightsEfficiency>
+						<ShotSpread>0.17</ShotSpread>
+						<SwayFactor>1.37</SwayFactor>
+						<Bulk>1</Bulk>
+					</statBases>
+					<Properties>
+						<recoilAmount>2.40</recoilAmount>
+						<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+						<hasStandardCommand>true</hasStandardCommand>
+						<defaultProjectile>Bullet_6x18mmCharged</defaultProjectile>
+						<warmupTime>0.55</warmupTime>
+						<range>10</range>
+						<burstShotCount>2</burstShotCount>
+						<ticksBetweenBurstShots>10</ticksBetweenBurstShots>
+						<soundCast>Opistol</soundCast>
+						<soundCastTail>GunTail_Light</soundCastTail>
+					</Properties>
+					<AmmoUser>
+						<magazineSize>10</magazineSize>
+						<reloadTime>2</reloadTime>
+						<ammoSet>AmmoSet_6x18mmCharged</ammoSet>
+					</AmmoUser>
+					<FireModes>
+						<aimedBurstShotCount>2</aimedBurstShotCount>
+						<aiAimMode>AimedShot</aiAimMode>
+					</FireModes>
+					<weaponTags>
+						<li>CE_OneHandedWeapon</li>
+					</weaponTags>
+				</li>
+
+				<!-- === Heavy Pistol === -->
+				<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+					<defName>Gun_OrassanAEPistol</defName>
+					<statBases>
+						<Mass>3</Mass>
+						<RangedWeapon_Cooldown>2.1</RangedWeapon_Cooldown>
+						<SightsEfficiency>0.40</SightsEfficiency>
+						<ShotSpread>0.35</ShotSpread>
+						<SwayFactor>2</SwayFactor>
+						<Bulk>3</Bulk>
+					</statBases>
+					<Properties>
+						<recoilAmount>10</recoilAmount>
+						<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+						<hasStandardCommand>true</hasStandardCommand>
+						<defaultProjectile>Bullet_8x35mmCharged</defaultProjectile>
+						<warmupTime>0.40</warmupTime>
+						<range>18</range>
+						<soundCast>OTFalcon</soundCast>
+						<soundCastTail>GunTail_Light</soundCastTail>
+					</Properties>
+					<AmmoUser>
+						<magazineSize>5</magazineSize>
+						<reloadTime>3</reloadTime>
+						<ammoSet>AmmoSet_8x35mmCharged</ammoSet>
+					</AmmoUser>
+					<FireModes>
+					</FireModes>
+					<weaponTags>
+						<li>CE_OneHandedWeapon</li>
+					</weaponTags>
+				</li>
+
+				<!-- === SMG === -->
+				<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+					<defName>Gun_OrassanSMG</defName>
+					<statBases>
+						<Mass>3</Mass>
+						<RangedWeapon_Cooldown>0.33</RangedWeapon_Cooldown>
+						<SightsEfficiency>1.2</SightsEfficiency>
+						<ShotSpread>0.08</ShotSpread>
+						<SwayFactor>0.88</SwayFactor>
+						<Bulk>6</Bulk>
+					</statBases>
+					<Properties>
+						<recoilAmount>1.41</recoilAmount>
+						<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+						<hasStandardCommand>true</hasStandardCommand>
+						<defaultProjectile>Bullet_6x18mmCharged</defaultProjectile>
+						<warmupTime>0.55</warmupTime>
+						<range>17</range>
+						<soundCast>Opistol</soundCast>
+						<soundCastTail>GunTail_Light</soundCastTail>
+					</Properties>
+					<AmmoUser>
+						<magazineSize>30</magazineSize>
+						<reloadTime>4</reloadTime>
+						<ammoSet>AmmoSet_6x18mmCharged</ammoSet>
+					</AmmoUser>
+					<FireModes>
+						<aimedBurstShotCount>4</aimedBurstShotCount>
+						<aiAimMode>AimedShot</aiAimMode>
+					</FireModes>
+					<weaponTags>
+						<li>CE_OneHandedWeapon</li>
+					</weaponTags>
+				</li>
+
+				<!-- === Shotgun === -->
+				<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+					<defName>Gun_OrassanShotgun</defName>
+					<statBases>
+						<Mass>3</Mass>
+						<RangedWeapon_Cooldown>0.89</RangedWeapon_Cooldown>
+						<SightsEfficiency>1.1</SightsEfficiency>
+						<ShotSpread>0.12</ShotSpread>
+						<SwayFactor>1.1</SwayFactor>
+						<Bulk>7</Bulk>
+					</statBases>
+					<Properties>
+						<recoilAmount>2.1</recoilAmount>
+						<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+						<hasStandardCommand>true</hasStandardCommand>
+						<defaultProjectile>Bullet_12GaugeCharged</defaultProjectile>
+						<warmupTime>0.7</warmupTime>
+						<range>25</range>
+						<soundCast>OShotgun</soundCast>
+						<soundCastTail>GunTail_Medium</soundCastTail>
+					</Properties>
+					<AmmoUser>
+						<magazineSize>10</magazineSize>
+						<reloadTime>2</reloadTime>
+						<reloadOneAtATime>true</reloadOneAtATime>
+						<ammoSet>AmmoSet_12GaugeCharged</ammoSet>
+					</AmmoUser>
+					<FireModes>
+					</FireModes>
+					<weaponTags>
+						<li>AdvancedGun</li>
+					</weaponTags>
+				</li>
+
+				<!-- === Rifle === -->
+				<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+					<defName>Gun_OrassanRifle</defName>
+					<statBases>
+						<Mass>2.7</Mass>
+						<RangedWeapon_Cooldown>0.36</RangedWeapon_Cooldown>
+						<SightsEfficiency>1.10</SightsEfficiency>
+						<ShotSpread>0.07</ShotSpread>
+						<SwayFactor>1.17</SwayFactor>
+						<Bulk>8.00</Bulk>
+						<WorkToMake>62000</WorkToMake>
+					</statBases>
 					<costList>
-					  <Plasteel>50</Plasteel>
-					  <Uranium>20</Uranium>
-					  <Steel>75</Steel>
-					  <ComponentSpacer>4</ComponentSpacer>
-					  <ComponentIndustrial>10</ComponentIndustrial>
+						<Uranium>5</Uranium>
+						<Steel>100</Steel>
+						<Plasteel>100</Plasteel>
+						<ComponentSpacer>1</ComponentSpacer>
+						<ComponentIndustrial>5</ComponentIndustrial>
 					</costList>
-				<Properties>
-					<recoilAmount>0.0</recoilAmount>
-					<verbClass>CombatExtended.Verb_ShootCE</verbClass>
-					<hasStandardCommand>true</hasStandardCommand>
-					<defaultProjectile>Bullet_RPG7Grenade_HEAT</defaultProjectile>
-					<warmupTime>1.85</warmupTime>
-					<range>38</range>
-					<minRange>5</minRange>
-					<soundCast>OLaunchers</soundCast>
-					<muzzleFlashScale>14</muzzleFlashScale>
-				</Properties>
-				<AmmoUser>
-					<magazineSize>1</magazineSize>
-					<reloadTime>8</reloadTime>
-					<ammoSet>AmmoSet_RPG7Grenade</ammoSet>
-				</AmmoUser>
-				<FireModes>
-				</FireModes>
-				<weaponTags>
-				</weaponTags>
-			</li>
-			<li Class="PatchOperationReplace">
-				<xpath>Defs/ThingDef[defName="Gun_OrassanRocket"]/tools</xpath>
-				<value>
-					<tools>
-						<li Class="CombatExtended.ToolCE">
-						  <label>barrel</label>
-						  <capacities>
-							<li>Blunt</li>
-						  </capacities>
-						  <power>10</power>
-						  <cooldownTime>2.44</cooldownTime>
-						  <armorPenetrationBlunt>3.5</armorPenetrationBlunt>
-						  <linkedBodyPartsGroup>Barrel</linkedBodyPartsGroup>
-						</li>
-					</tools>
-				</value>
-			</li>
-	  
-      <!-- Orassan Pistol -->
-			<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
-				<defName>Gun_OrassanPistol</defName>
-				<statBases>
-					<Mass>1</Mass>
-					<RangedWeapon_Cooldown>0.30</RangedWeapon_Cooldown>
-					<SightsEfficiency>0.50</SightsEfficiency>
-					<ShotSpread>0.17</ShotSpread>
-					<SwayFactor>1.37</SwayFactor>
-					<Bulk>1</Bulk>
-				</statBases>
-				<Properties>
-					<recoilAmount>2.40</recoilAmount>
-					<verbClass>CombatExtended.Verb_ShootCE</verbClass>
-					<hasStandardCommand>true</hasStandardCommand>
-					<defaultProjectile>Bullet_6x18mmCharged</defaultProjectile>
-					<warmupTime>0.55</warmupTime>
-					<range>10</range>
-					<burstShotCount>2</burstShotCount>
-					<ticksBetweenBurstShots>10</ticksBetweenBurstShots>
-					<soundCast>Opistol</soundCast>
-					<soundCastTail>GunTail_Light</soundCastTail>
-				</Properties>
-				<AmmoUser>
-					<magazineSize>10</magazineSize>
-					<reloadTime>2</reloadTime>
-					<ammoSet>AmmoSet_6x18mmCharged</ammoSet>
-				</AmmoUser>
-				<FireModes>
-					<aimedBurstShotCount>2</aimedBurstShotCount>
-					<aiAimMode>AimedShot</aiAimMode>
-				</FireModes>
-				<weaponTags>
-					<li>CE_OneHandedWeapon</li>
-				</weaponTags>
-			</li>
-			<li Class="PatchOperationReplace">
-				<xpath>Defs/ThingDef[defName="Gun_OrassanPistol"]/tools</xpath>
-				<value>
-					<tools>
-						<li Class="CombatExtended.ToolCE">
-						  <label>grip</label>
-						  <capacities>
-							<li>Blunt</li>
-						  </capacities>
-						  <power>2</power>
-						  <cooldownTime>1.54</cooldownTime>
-						  <chanceFactor>1.5</chanceFactor>
-						  <armorPenetrationBlunt>0.555</armorPenetrationBlunt>
-						  <linkedBodyPartsGroup>Grip</linkedBodyPartsGroup>
-						</li>
-						<li Class="CombatExtended.ToolCE">
-						  <label>muzzle</label>
-						  <capacities>
-							<li>Poke</li>
-						  </capacities>
-						  <power>2</power>
-						  <cooldownTime>1.54</cooldownTime>
-						  <armorPenetrationBlunt>0.555</armorPenetrationBlunt>
-						  <linkedBodyPartsGroup>Muzzle</linkedBodyPartsGroup>
-						</li>
-					</tools>
-				</value>
-			</li>
-			
-      <!-- Orassan Big Pistol -->
-			<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
-				<defName>Gun_OrassanAEPistol</defName>
-				<statBases>
-					<Mass>3</Mass>
-					<RangedWeapon_Cooldown>2.1</RangedWeapon_Cooldown>
-					<SightsEfficiency>0.40</SightsEfficiency>
-					<ShotSpread>0.35</ShotSpread>
-					<SwayFactor>2</SwayFactor>
-					<Bulk>3</Bulk>
-				</statBases>
-				<Properties>
-					<recoilAmount>10</recoilAmount>
-					<verbClass>CombatExtended.Verb_ShootCE</verbClass>
-					<hasStandardCommand>true</hasStandardCommand>
-					<defaultProjectile>Bullet_12x64mmCharged</defaultProjectile>
-					<warmupTime>0.40</warmupTime>
-					<range>18</range>
-					<soundCast>OTFalcon</soundCast>
-					<soundCastTail>GunTail_Light</soundCastTail>
-				</Properties>
-				<AmmoUser>
-					<magazineSize>5</magazineSize>
-					<reloadTime>3</reloadTime>
-					<ammoSet>AmmoSet_12x64mmCharged</ammoSet>
-				</AmmoUser>
-				<FireModes>
-				</FireModes>
-				<weaponTags>
-					<li>CE_OneHandedWeapon</li>
-				</weaponTags>
-			</li>
-			<li Class="PatchOperationReplace">
-				<xpath>Defs/ThingDef[defName="Gun_OrassanAEPistol"]/tools</xpath>
-				<value>
-					<tools>
-						<li Class="CombatExtended.ToolCE">
-						  <label>grip</label>
-						  <capacities>
-							<li>Blunt</li>
-						  </capacities>
-						  <power>2</power>
-						  <cooldownTime>1.54</cooldownTime>
-						  <chanceFactor>1.5</chanceFactor>
-						  <armorPenetrationBlunt>0.555</armorPenetrationBlunt>
-						  <linkedBodyPartsGroup>Grip</linkedBodyPartsGroup>
-						</li>
-						<li Class="CombatExtended.ToolCE">
-						  <label>muzzle</label>
-						  <capacities>
-							<li>Poke</li>
-						  </capacities>
-						  <power>2</power>
-						  <cooldownTime>1.54</cooldownTime>
-						  <armorPenetrationBlunt>0.555</armorPenetrationBlunt>
-						  <linkedBodyPartsGroup>Muzzle</linkedBodyPartsGroup>
-						</li>
-					</tools>
-				</value>
-			</li>
-			<!-- Orassan SMG -->
-			<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
-				<defName>Gun_OrassanSMG</defName>
-				<statBases>
-					<Mass>3</Mass>
-					<RangedWeapon_Cooldown>0.33</RangedWeapon_Cooldown>
-					<SightsEfficiency>1.2</SightsEfficiency>
-					<ShotSpread>0.08</ShotSpread>
-					<SwayFactor>0.88</SwayFactor>
-					<Bulk>6</Bulk>
-				</statBases>
-				<Properties>
-					<recoilAmount>1.41</recoilAmount>
-					<verbClass>CombatExtended.Verb_ShootCE</verbClass>
-					<hasStandardCommand>true</hasStandardCommand>
-					<defaultProjectile>Bullet_6x24mmCharged</defaultProjectile>
-					<warmupTime>0.55</warmupTime>
-					<range>17</range>
-					<soundCast>Opistol</soundCast>
-					<soundCastTail>GunTail_Light</soundCastTail>
-				</Properties>
-				<AmmoUser>
-					<magazineSize>30</magazineSize>
-					<reloadTime>4</reloadTime>
-					<ammoSet>AmmoSet_6x18mmCharged</ammoSet>
-				</AmmoUser>
-				<FireModes>
-					<aimedBurstShotCount>4</aimedBurstShotCount>
-					<aiAimMode>AimedShot</aiAimMode>
-				</FireModes>
-				<weaponTags>
-					<li>CE_OneHandedWeapon</li>
-				</weaponTags>
-			</li>
-			<li Class="PatchOperationReplace">
-				<xpath>Defs/ThingDef[defName="Gun_OrassanSMG"]/tools</xpath>
-				<value>
-					<tools>
-						<li Class="CombatExtended.ToolCE">
-						  <label>stock</label>
-						  <capacities>
-							<li>Blunt</li>
-						  </capacities>
-						  <power>8</power>
-						  <cooldownTime>1.55</cooldownTime>
-						  <chanceFactor>1.5</chanceFactor>
-						  <armorPenetrationBlunt>2.755</armorPenetrationBlunt>
-						  <linkedBodyPartsGroup>Stock</linkedBodyPartsGroup>
-						</li>
-						<li Class="CombatExtended.ToolCE">
-						  <label>barrel</label>
-						  <capacities>
-							<li>Blunt</li>
-						  </capacities>
-						  <power>5</power>
-						  <cooldownTime>2.02</cooldownTime>
-						  <armorPenetrationBlunt>1.630</armorPenetrationBlunt>
-						  <linkedBodyPartsGroup>Barrel</linkedBodyPartsGroup>
-						</li>
-						<li Class="CombatExtended.ToolCE">
-						  <label>muzzle</label>
-						  <capacities>
-							<li>Poke</li>
-						  </capacities>
-						  <power>8</power>
-						  <cooldownTime>1.55</cooldownTime>
-						  <armorPenetrationBlunt>2.755</armorPenetrationBlunt>
-						  <linkedBodyPartsGroup>Muzzle</linkedBodyPartsGroup>
-						</li>
-					</tools>
-				</value>
-			</li>
-      <!-- Orassan Shotgun -->
-			<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
-				<defName>Gun_OrassanShotgun</defName>
-				<statBases>
-					<Mass>3</Mass>
-					<RangedWeapon_Cooldown>0.89</RangedWeapon_Cooldown>
-					<SightsEfficiency>1.1</SightsEfficiency>
-					<ShotSpread>0.12</ShotSpread>
-					<SwayFactor>1.1</SwayFactor>
-					<Bulk>7</Bulk>
-				</statBases>
-				<Properties>
-					<recoilAmount>2.1</recoilAmount>
-					<verbClass>CombatExtended.Verb_ShootCE</verbClass>
-					<hasStandardCommand>true</hasStandardCommand>
-					<defaultProjectile>Bullet_12GaugeCharged</defaultProjectile>
-					<warmupTime>0.7</warmupTime>
-					<range>25</range>
-					<soundCast>OShotgun</soundCast>
-					<soundCastTail>GunTail_Light</soundCastTail>
-				</Properties>
-				<AmmoUser>
-					<magazineSize>8</magazineSize>
-					<reloadTime>2</reloadTime>
-					<ammoSet>AmmoSet_12GaugeCharged</ammoSet>
-				</AmmoUser>
-				<FireModes>
-				</FireModes>
-				<weaponTags>
-					<li>AdvancedGun</li>
-				</weaponTags>
-			</li>
-			<li Class="PatchOperationReplace">
-				<xpath>Defs/ThingDef[defName="Gun_OrassanShotgun"]/tools</xpath>
-				<value>
-					<tools>
-						<li Class="CombatExtended.ToolCE">
-						  <label>stock</label>
-						  <capacities>
-							<li>Blunt</li>
-						  </capacities>
-						  <power>8</power>
-						  <cooldownTime>1.55</cooldownTime>
-						  <chanceFactor>1.5</chanceFactor>
-						  <armorPenetrationBlunt>2.755</armorPenetrationBlunt>
-						  <linkedBodyPartsGroup>Stock</linkedBodyPartsGroup>
-						</li>
-						<li Class="CombatExtended.ToolCE">
-						  <label>barrel</label>
-						  <capacities>
-							<li>Blunt</li>
-						  </capacities>
-						  <power>5</power>
-						  <cooldownTime>2.02</cooldownTime>
-						  <armorPenetrationBlunt>1.630</armorPenetrationBlunt>
-						  <linkedBodyPartsGroup>Barrel</linkedBodyPartsGroup>
-						</li>
-						<li Class="CombatExtended.ToolCE">
-						  <label>muzzle</label>
-						  <capacities>
-							<li>Poke</li>
-						  </capacities>
-						  <power>8</power>
-						  <cooldownTime>1.55</cooldownTime>
-						  <armorPenetrationBlunt>2.755</armorPenetrationBlunt>
-						  <linkedBodyPartsGroup>Muzzle</linkedBodyPartsGroup>
-						</li>
-					</tools>
-				</value>
-			</li>
-	 
-	  
-      <!-- Orassan Rifle -->
-		   <li Class="CombatExtended.PatchOperationMakeGunCECompatible">
-			<defName>Gun_OrassanRifle</defName>
-			<statBases>
-			  <Mass>2.7</Mass>
-			  <RangedWeapon_Cooldown>0.36</RangedWeapon_Cooldown>
-			  <SightsEfficiency>1.10</SightsEfficiency>
-			  <ShotSpread>0.07</ShotSpread>
-			  <SwayFactor>1.17</SwayFactor>
-			  <Bulk>8.00</Bulk>
-			  <WorkToMake>62000</WorkToMake>
-			</statBases>
-			<costList>
-			  <Uranium>5</Uranium>
-			  <Steel>100</Steel>
-			  <Plasteel>100</Plasteel>
-			  <ComponentSpacer>1</ComponentSpacer>
-			  <ComponentIndustrial>5</ComponentIndustrial>
-			</costList>
-			<Properties>
-			  <recoilAmount>1.2</recoilAmount>
-			  <verbClass>CombatExtended.Verb_ShootCE</verbClass>
-			  <hasStandardCommand>true</hasStandardCommand>
-			  <defaultProjectile>Bullet_6x24mmCharged</defaultProjectile>
-			  <warmupTime>1.2</warmupTime>
-			  <range>58</range>
-			  <ticksBetweenBurstShots>4</ticksBetweenBurstShots>
-			  <burstShotCount>5</burstShotCount>
-			  <soundCast>ORifle</soundCast>
-			  <soundCastTail>GunTail_Medium</soundCastTail>
-			  <muzzleFlashScale>9</muzzleFlashScale>
-			</Properties>
-			<AmmoUser>
-			  <magazineSize>35</magazineSize>
-			  <reloadTime>4</reloadTime>
-			  <ammoSet>AmmoSet_6x24mmCharged</ammoSet>
-			</AmmoUser>
-			<FireModes>
-			  <aimedBurstShotCount>3</aimedBurstShotCount>
-			  <aiUseBurstMode>true</aiUseBurstMode>
-			  <aiAimMode>AimedShot</aiAimMode>
-			</FireModes>
-			<weaponTags>
-			</weaponTags>
-		  </li>
-		  
-		  <li Class="PatchOperationReplace">
-				<xpath>Defs/ThingDef[defName="Gun_OrassanLMG"]/tools</xpath>
-				<value>
-					<tools>
-						<li Class="CombatExtended.ToolCE">
-						  <label>stock</label>
-						  <capacities>
-							<li>Blunt</li>
-						  </capacities>
-						  <power>8</power>
-						  <cooldownTime>1.55</cooldownTime>
-						  <chanceFactor>1.5</chanceFactor>
-						  <armorPenetrationBlunt>2.755</armorPenetrationBlunt>
-						  <linkedBodyPartsGroup>Stock</linkedBodyPartsGroup>
-						</li>
-						<li Class="CombatExtended.ToolCE">
-						  <label>barrel</label>
-						  <capacities>
-							<li>Blunt</li>
-						  </capacities>
-						  <power>5</power>
-						  <cooldownTime>2.02</cooldownTime>
-						  <armorPenetrationBlunt>1.630</armorPenetrationBlunt>
-						  <linkedBodyPartsGroup>Barrel</linkedBodyPartsGroup>
-						</li>
-						<li Class="CombatExtended.ToolCE">
-						  <label>muzzle</label>
-						  <capacities>
-							<li>Poke</li>
-						  </capacities>
-						  <power>8</power>
-						  <cooldownTime>1.55</cooldownTime>
-						  <armorPenetrationBlunt>2.755</armorPenetrationBlunt>
-						  <linkedBodyPartsGroup>Muzzle</linkedBodyPartsGroup>
-						</li>
-					</tools>
-				</value>
-			</li>
-	  
-      <!-- Orassan LMG -->
-		   <li Class="CombatExtended.PatchOperationMakeGunCECompatible">
-			<defName>Gun_OrassanLMG</defName>
-			<statBases>
-			  <Mass>2.7</Mass>
-			  <RangedWeapon_Cooldown>0.36</RangedWeapon_Cooldown>
-			  <SightsEfficiency>1.10</SightsEfficiency>
-			  <ShotSpread>0.07</ShotSpread>
-			  <SwayFactor>1.17</SwayFactor>
-			  <Bulk>8.00</Bulk>
-			  <WorkToMake>62000</WorkToMake>
-			</statBases>
-			<costList>
-			  <Uranium>5</Uranium>
-			  <Steel>100</Steel>
-			  <Plasteel>100</Plasteel>
-			  <ComponentSpacer>1</ComponentSpacer>
-			  <ComponentIndustrial>5</ComponentIndustrial>
-			</costList>
-			<Properties>
-			  <recoilAmount>1</recoilAmount>
-			  <verbClass>CombatExtended.Verb_ShootCE</verbClass>
-			  <hasStandardCommand>true</hasStandardCommand>
-			  <defaultProjectile>Bullet_6x24mmCharged</defaultProjectile>
-			  <warmupTime>1.7</warmupTime>
-			  <range>58</range>
-			  <ticksBetweenBurstShots>6</ticksBetweenBurstShots>
-			  <burstShotCount>15</burstShotCount>
-			  <soundCast>ORifle</soundCast>
-			  <soundCastTail>GunTail_Medium</soundCastTail>
-			  <muzzleFlashScale>9</muzzleFlashScale>
-			  <recoilPattern>Mounted</recoilPattern>
-			</Properties>
-			<AmmoUser>
-			  <magazineSize>90</magazineSize>
-			  <reloadTime>5</reloadTime>
-			  <ammoSet>AmmoSet_6x24mmCharged</ammoSet>
-			</AmmoUser>
-			  <FireModes>
-				<aiUseBurstMode>FALSE</aiUseBurstMode>
-				<aiAimMode>SuppressFire</aiAimMode>
-				<aimedBurstShotCount>5</aimedBurstShotCount>
-			  </FireModes>
-			<weaponTags>
-			</weaponTags>
-		  </li>
-		  <li Class="PatchOperationReplace">
-				<xpath>Defs/ThingDef[defName="Gun_OrassanLMG"]/tools</xpath>
-				<value>
-					<tools>
-						<li Class="CombatExtended.ToolCE">
-						  <label>stock</label>
-						  <capacities>
-							<li>Blunt</li>
-						  </capacities>
-						  <power>8</power>
-						  <cooldownTime>1.55</cooldownTime>
-						  <chanceFactor>1.5</chanceFactor>
-						  <armorPenetrationBlunt>2.755</armorPenetrationBlunt>
-						  <linkedBodyPartsGroup>Stock</linkedBodyPartsGroup>
-						</li>
-						<li Class="CombatExtended.ToolCE">
-						  <label>barrel</label>
-						  <capacities>
-							<li>Blunt</li>
-						  </capacities>
-						  <power>5</power>
-						  <cooldownTime>2.02</cooldownTime>
-						  <armorPenetrationBlunt>1.630</armorPenetrationBlunt>
-						  <linkedBodyPartsGroup>Barrel</linkedBodyPartsGroup>
-						</li>
-						<li Class="CombatExtended.ToolCE">
-						  <label>muzzle</label>
-						  <capacities>
-							<li>Poke</li>
-						  </capacities>
-						  <power>8</power>
-						  <cooldownTime>1.55</cooldownTime>
-						  <armorPenetrationBlunt>2.755</armorPenetrationBlunt>
-						  <linkedBodyPartsGroup>Muzzle</linkedBodyPartsGroup>
-						</li>
-					</tools>
-				</value>
-			</li>
-	  
-	  <!-- Orassan Sniper -->
-			<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
-				<defName>Gun_OrassanSniper</defName>
-				<statBases>
-					<Mass>3.0</Mass>
-					<RangedWeapon_Cooldown>0.32</RangedWeapon_Cooldown>
-					<SightsEfficiency>3</SightsEfficiency>
-					<ShotSpread>0.03</ShotSpread>
-					<SwayFactor>1.3</SwayFactor>
-					<Bulk>12</Bulk>
-				</statBases>
-				<Properties>
-					<recoilAmount>1.60</recoilAmount>
-					<verbClass>CombatExtended.Verb_ShootCE</verbClass>
-					<hasStandardCommand>true</hasStandardCommand>
-					<defaultProjectile>Bullet_6x24mmCharged</defaultProjectile>
-					<warmupTime>2</warmupTime>
-					<range>64</range>
-					<soundCast>OSniper</soundCast>
-					<soundCastTail>GunTail_Light</soundCastTail>
-				</Properties>
-				<AmmoUser>
-					<magazineSize>10</magazineSize>
-					<reloadTime>2</reloadTime>
-					<ammoSet>AmmoSet_8x35mmCharged</ammoSet>
-				</AmmoUser>
-				<FireModes>
-					<aiAimMode>AimedShot</aiAimMode>
-				</FireModes>
-				<weaponTags>
-					<li>OrassanSniper</li>
-				</weaponTags>
-			</li>
-			<li Class="PatchOperationReplace">
-				<xpath>Defs/ThingDef[defName="Gun_OrassanSniper"]/tools</xpath>
-				<value>
-					<tools>
-						<li Class="CombatExtended.ToolCE">
-						  <label>stock</label>
-						  <capacities>
-							<li>Blunt</li>
-						  </capacities>
-						  <power>8</power>
-						  <cooldownTime>1.55</cooldownTime>
-						  <chanceFactor>1.5</chanceFactor>
-						  <armorPenetrationBlunt>2.755</armorPenetrationBlunt>
-						  <linkedBodyPartsGroup>Stock</linkedBodyPartsGroup>
-						</li>
-						<li Class="CombatExtended.ToolCE">
-						  <label>barrel</label>
-						  <capacities>
-							<li>Blunt</li>
-						  </capacities>
-						  <power>5</power>
-						  <cooldownTime>2.02</cooldownTime>
-						  <armorPenetrationBlunt>1.630</armorPenetrationBlunt>
-						  <linkedBodyPartsGroup>Barrel</linkedBodyPartsGroup>
-						</li>
-						<li Class="CombatExtended.ToolCE">
-						  <label>muzzle</label>
-						  <capacities>
-							<li>Poke</li>
-						  </capacities>
-						  <power>8</power>
-						  <cooldownTime>1.55</cooldownTime>
-						  <armorPenetrationBlunt>2.755</armorPenetrationBlunt>
-						  <linkedBodyPartsGroup>Muzzle</linkedBodyPartsGroup>
-						</li>
-					</tools>
-				</value>
-			</li>
-	  
-	  <!-- Orassan CryoLauncher -->
-	  <!-- Yeah its just the rocketlauncher again -->
-	  <!-- I'll get back to this when I can make a unique ammotype -->
-	  <!-- You never got back to this after so many years. -Alm -->
-			<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
-				<defName>Gun_CryoLauncher</defName>
-				<statBases>
-					<Bulk>5.2</Bulk>
-					<Mass>3.0</Mass>
-					<SwayFactor>0.9</SwayFactor>
-					<ShotSpread>0.9</ShotSpread>
-					<SightsEfficiency>2</SightsEfficiency>
-					<RangedWeapon_Cooldown>1.5</RangedWeapon_Cooldown>
-					<WorkToMake>32000</WorkToMake>
-				</statBases>
+					<Properties>
+						<recoilAmount>1.2</recoilAmount>
+						<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+						<hasStandardCommand>true</hasStandardCommand>
+						<defaultProjectile>Bullet_6x24mmCharged</defaultProjectile>
+						<warmupTime>1</warmupTime>
+						<range>58</range>
+						<ticksBetweenBurstShots>5</ticksBetweenBurstShots>
+						<burstShotCount>6</burstShotCount>
+						<soundCast>ORifle</soundCast>
+						<soundCastTail>GunTail_Medium</soundCastTail>
+						<muzzleFlashScale>9</muzzleFlashScale>
+					</Properties>
+					<AmmoUser>
+						<magazineSize>30</magazineSize>
+						<reloadTime>4</reloadTime>
+						<ammoSet>AmmoSet_6x24mmCharged</ammoSet>
+					</AmmoUser>
+					<FireModes>
+						<aimedBurstShotCount>3</aimedBurstShotCount>
+						<aiUseBurstMode>true</aiUseBurstMode>
+						<aiAimMode>AimedShot</aiAimMode>
+					</FireModes>
+					<weaponTags>
+					</weaponTags>
+				</li>
+
+				<!-- === LMG === -->
+				<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+					<defName>Gun_OrassanLMG</defName>
+					<statBases>
+						<Mass>2.7</Mass>
+						<RangedWeapon_Cooldown>0.36</RangedWeapon_Cooldown>
+						<SightsEfficiency>1.10</SightsEfficiency>
+						<ShotSpread>0.07</ShotSpread>
+						<SwayFactor>1.17</SwayFactor>
+						<Bulk>8.00</Bulk>
+						<WorkToMake>62000</WorkToMake>
+					</statBases>
 					<costList>
-					  <Plasteel>50</Plasteel>
-					  <Uranium>20</Uranium>
-					  <Steel>75</Steel>
-					  <ComponentSpacer>4</ComponentSpacer>
-					  <ComponentIndustrial>10</ComponentIndustrial>
+						<Uranium>5</Uranium>
+						<Steel>100</Steel>
+						<Plasteel>100</Plasteel>
+						<ComponentSpacer>1</ComponentSpacer>
+						<ComponentIndustrial>5</ComponentIndustrial>
 					</costList>
-				<Properties>
-					<recoilAmount>0.0</recoilAmount>
-					<verbClass>CombatExtended.Verb_ShootCE</verbClass>
-					<hasStandardCommand>true</hasStandardCommand>
-					<defaultProjectile>Bullet_RPG7Grenade_HEAT</defaultProjectile>
-					<warmupTime>1.85</warmupTime>
-					<range>38</range>
-					<minRange>5</minRange>
-					<soundCast>OLaunchers</soundCast>
-					<muzzleFlashScale>14</muzzleFlashScale>
-				</Properties>
-				<AmmoUser>
-					<magazineSize>1</magazineSize>
-					<reloadTime>8</reloadTime>
-					<ammoSet>AmmoSet_RPG7Grenade</ammoSet>
-				</AmmoUser>
-				<FireModes>
-				</FireModes>
-				<weaponTags>
-				</weaponTags>
-			</li>
-			<li Class="PatchOperationReplace">
-				<xpath>Defs/ThingDef[defName="Gun_CryoLauncher"]/tools</xpath>
-				<value>
-					<tools>
-						<li Class="CombatExtended.ToolCE">
-						  <label>barrel</label>
-						  <capacities>
-							<li>Blunt</li>
-						  </capacities>
-						  <power>10</power>
-						  <cooldownTime>2.44</cooldownTime>
-						  <armorPenetrationBlunt>3.5</armorPenetrationBlunt>
-						  <linkedBodyPartsGroup>Barrel</linkedBodyPartsGroup>
-						</li>
-					</tools>
-				</value>
-			</li>
-      <!-- etc.. -->
-    </operations>
-  </Operation>
+					<Properties>
+						<recoilAmount>1.16</recoilAmount>
+						<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+						<hasStandardCommand>true</hasStandardCommand>
+						<defaultProjectile>Bullet_6x24mmCharged</defaultProjectile>
+						<warmupTime>1.2</warmupTime>
+						<range>62</range>
+						<ticksBetweenBurstShots>5</ticksBetweenBurstShots>
+						<burstShotCount>10</burstShotCount>
+						<soundCast>ORifle</soundCast>
+						<soundCastTail>GunTail_Medium</soundCastTail>
+						<muzzleFlashScale>9</muzzleFlashScale>
+						<targetParams>
+							<canTargetLocations>true</canTargetLocations>
+						</targetParams>
+						<recoilPattern>Mounted</recoilPattern>
+					</Properties>
+					<AmmoUser>
+						<magazineSize>90</magazineSize>
+						<reloadTime>5</reloadTime>
+						<ammoSet>AmmoSet_6x24mmCharged</ammoSet>
+					</AmmoUser>
+					<FireModes>
+						<aiUseBurstMode>FALSE</aiUseBurstMode>
+						<aiAimMode>SuppressFire</aiAimMode>
+						<aimedBurstShotCount>5</aimedBurstShotCount>
+					</FireModes>
+					<weaponTags>
+						<li>CE_MachineGun</li>
+					</weaponTags>
+				</li>
+
+				<!-- === Sniper === -->
+				<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+					<defName>Gun_OrassanSniper</defName>
+					<statBases>
+						<Mass>3.0</Mass>
+						<Bulk>12</Bulk>
+						<SightsEfficiency>3</SightsEfficiency>
+						<ShotSpread>0.03</ShotSpread>
+						<SwayFactor>1.3</SwayFactor>
+						<RangedWeapon_Cooldown>0.36</RangedWeapon_Cooldown>
+					</statBases>
+					<Properties>
+						<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+						<hasStandardCommand>true</hasStandardCommand>
+						<defaultProjectile>Bullet_8x35mmCharged</defaultProjectile>
+						<warmupTime>2</warmupTime>
+						<range>80</range>
+						<soundCast>OSniper</soundCast>
+						<soundCastTail>GunTail_Heavy</soundCastTail>
+					</Properties>
+					<AmmoUser>
+						<magazineSize>10</magazineSize>
+						<reloadTime>4</reloadTime>
+						<ammoSet>AmmoSet_8x35mmCharged</ammoSet>
+					</AmmoUser>
+					<FireModes>
+						<aiAimMode>AimedShot</aiAimMode>
+					</FireModes>
+					<weaponTags>
+						<li>OrassanSniper</li>
+					</weaponTags>
+				</li>
+
+				<!-- === DMR === -->
+				<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+					<defName>Gun_OrassanDMR</defName>
+					<statBases>
+						<Mass>3.0</Mass>
+						<RangedWeapon_Cooldown>0.32</RangedWeapon_Cooldown>
+						<SightsEfficiency>3</SightsEfficiency>
+						<ShotSpread>0.03</ShotSpread>
+						<SwayFactor>1.3</SwayFactor>
+						<Bulk>12</Bulk>
+					</statBases>
+					<Properties>
+						<recoilAmount>1.60</recoilAmount>
+						<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+						<hasStandardCommand>true</hasStandardCommand>
+						<defaultProjectile>Bullet_6x24mmCharged</defaultProjectile>
+						<warmupTime>1</warmupTime>
+						<range>64</range>
+						<soundCast>OTFalcon</soundCast>
+						<soundCastTail>GunTail_Heavy</soundCastTail>
+					</Properties>
+					<AmmoUser>
+						<magazineSize>10</magazineSize>
+						<reloadTime>4</reloadTime>
+						<ammoSet>AmmoSet_6x24mmCharged</ammoSet>
+					</AmmoUser>
+					<FireModes>
+						<aiAimMode>AimedShot</aiAimMode>
+					</FireModes>
+					<weaponTags>
+						<li>OrassanSniper</li>
+					</weaponTags>
+				</li>
+
+				<!-- === Cryo Launcher === -->
+				<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+					<defName>Gun_CryoLauncher</defName>
+					<statBases>
+						<Bulk>5.2</Bulk>
+						<Mass>3.0</Mass>
+						<SwayFactor>0.9</SwayFactor>
+						<ShotSpread>0.9</ShotSpread>
+						<SightsEfficiency>2</SightsEfficiency>
+						<RangedWeapon_Cooldown>1.5</RangedWeapon_Cooldown>
+						<WorkToMake>32000</WorkToMake>
+					</statBases>
+					<costList>
+						<Plasteel>50</Plasteel>
+						<Uranium>20</Uranium>
+						<Steel>75</Steel>
+						<ComponentSpacer>4</ComponentSpacer>
+						<ComponentIndustrial>10</ComponentIndustrial>
+					</costList>
+					<Properties>
+						<recoilAmount>0.0</recoilAmount>
+						<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+						<hasStandardCommand>true</hasStandardCommand>
+						<defaultProjectile>Bullet_CryBolt</defaultProjectile>
+						<warmupTime>2</warmupTime>
+						<range>44</range>
+						<minRange>5</minRange>
+						<soundCast>OLaunchers</soundCast>
+						<soundCastTail>GunTail_Medium</soundCastTail>
+						<onlyManualCast>true</onlyManualCast>
+						<stopBurstWithoutLos>false</stopBurstWithoutLos>
+						<targetParams>
+							<canTargetLocations>true</canTargetLocations>
+						</targetParams>
+						<muzzleFlashScale>14</muzzleFlashScale>
+					</Properties>
+					<FireModes>
+					</FireModes>
+					<weaponTags>
+						<li>OrassanCryo</li>
+					</weaponTags>
+				</li>
+
+				<!-- === Rocket Launcher === -->
+				<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+					<defName>Gun_OrassanRocket</defName>
+					<statBases>
+						<Bulk>5.2</Bulk>
+						<Mass>3.0</Mass>
+						<SwayFactor>0.9</SwayFactor>
+						<ShotSpread>0.9</ShotSpread>
+						<SightsEfficiency>2</SightsEfficiency>
+						<RangedWeapon_Cooldown>1.5</RangedWeapon_Cooldown>
+						<WorkToMake>32000</WorkToMake>
+					</statBases>
+					<costList>
+						<Plasteel>50</Plasteel>
+						<Uranium>20</Uranium>
+						<Steel>75</Steel>
+						<ComponentSpacer>4</ComponentSpacer>
+						<ComponentIndustrial>10</ComponentIndustrial>
+					</costList>
+					<Properties>
+						<recoilAmount>0.0</recoilAmount>
+						<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+						<hasStandardCommand>true</hasStandardCommand>
+						<defaultProjectile>Bullet_RPG7Grenade_HEAT</defaultProjectile>
+						<warmupTime>1.85</warmupTime>
+						<range>44</range>
+						<minRange>5</minRange>
+						<soundCast>OLaunchers</soundCast>
+						<soundCastTail>GunTail_Heavy</soundCastTail>
+						<onlyManualCast>true</onlyManualCast>
+						<stopBurstWithoutLos>false</stopBurstWithoutLos>
+						<targetParams>
+							<canTargetLocations>true</canTargetLocations>
+						</targetParams>
+						<muzzleFlashScale>14</muzzleFlashScale>
+					</Properties>
+					<AmmoUser>
+						<magazineSize>1</magazineSize>
+						<reloadTime>8</reloadTime>
+						<ammoSet>AmmoSet_RPG7Grenade</ammoSet>
+					</AmmoUser>
+					<FireModes>
+					</FireModes>
+					<weaponTags>
+						<li>OrassanMissile</li>
+					</weaponTags>
+				</li>
+
+				<!-- === Kitty Claws (Sabre) === -->
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/ThingDef[defName="MeleeWeapon_kittyclaws"]/tools</xpath>
+					<value>
+						<tools>
+							<li Class="CombatExtended.ToolCE">
+								<label>hand guard</label>
+								<capacities>
+									<li>Blunt</li>
+								</capacities>
+								<power>6</power>
+								<cooldownTime>1.12</cooldownTime>
+								<armorPenetrationBlunt>1.8</armorPenetrationBlunt>
+							</li>
+							<li Class="CombatExtended.ToolCE">
+								<label>point</label>
+								<capacities>
+									<li>Stab</li>
+								</capacities>
+								<power>19</power>
+								<cooldownTime>1.12</cooldownTime>
+								<armorPenetrationSharp>28.8</armorPenetrationSharp>
+								<armorPenetrationBlunt>1.8</armorPenetrationBlunt>
+								<linkedBodyPartsGroup>Point</linkedBodyPartsGroup>
+							</li>
+							<li Class="CombatExtended.ToolCE">
+								<label>edge</label>
+								<capacities>
+									<li>Cut</li>
+								</capacities>
+								<power>52</power>
+								<cooldownTime>0.9</cooldownTime>
+								<armorPenetrationSharp>10.37</armorPenetrationSharp>
+								<armorPenetrationBlunt>5.832</armorPenetrationBlunt>
+								<linkedBodyPartsGroup>Blade</linkedBodyPartsGroup>
+							</li>
+						</tools>
+					</value>
+				</li>
+
+				<li Class="PatchOperationAdd">
+					<xpath>/Defs/ThingDef[defName="MeleeWeapon_kittyclaws"]</xpath>
+					<value>
+						<equippedStatOffsets>
+							<MeleeCritChance>0.63</MeleeCritChance>
+							<MeleeParryChance>0.75</MeleeParryChance>
+							<MeleeDodgeChance>0.4</MeleeDodgeChance>
+						</equippedStatOffsets>
+					</value>
+				</li>
+
+				<li Class="PatchOperationAdd">
+					<xpath>/Defs/ThingDef[defName="MeleeWeapon_kittyclaws"]/statBases</xpath>
+					<value>
+						<Bulk>7</Bulk>
+						<MeleeCounterParryBonus>1</MeleeCounterParryBonus>
+					</value>
+				</li>
+
+			</operations>
+		</match>
+	</Operation>
 
 </Patch>

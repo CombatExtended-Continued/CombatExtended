@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+
+  <Operation Class="PatchOperationFindMod">
+    <mods>
+      <li>Jernalk's Skeletal Legion (continued)</li>
+	  <li>Jernalk's Skeletal Legion</li>
+    </mods>
+
+    <match Class="PatchOperationSequence">
+      <operations>
+	    <!--All bones should be covered-->
+        <li Class="PatchOperationAdd">
+          <xpath>
+            /Defs/BodyDef[defName="Skeletal"]//*/groups
+          </xpath>
+
+          <value>
+            <li>CoveredByNaturalArmor</li>
+          </value>
+        </li>
+      </operations>
+    </match>
+  </Operation>
+
+</Patch>
