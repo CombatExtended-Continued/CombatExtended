@@ -1,0 +1,377 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+  <Operation Class="PatchOperationSequence">
+	<operations>
+	  <li Class="PatchOperationFindMod">
+			
+		<mods><li>The GiantRace</li></mods>
+			
+		<match Class="PatchOperationSequence">
+		<operations>
+			<!--========= Melee =========-->
+			
+			<!--Log Club-->
+			
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="GI_GiantClub"]/tools</xpath>
+				<value>
+					<tools>
+						<li Class="CombatExtended.ToolCE">
+							<label>handle</label>
+							<capacities>
+								<li>Poke</li>
+							</capacities>
+							<power>11</power>
+							<cooldownTime>2.51</cooldownTime>
+							<armorPenetrationBlunt>3.76</armorPenetrationBlunt>
+							<linkedBodyPartsGroup>Handle</linkedBodyPartsGroup>
+						</li>
+						<li Class="CombatExtended.ToolCE">
+							<label>head</label>
+							<capacities>
+								<li>Blunt</li>
+							</capacities>
+							<power>36</power>
+							<cooldownTime>3.76</cooldownTime>
+							<chanceFactor>2</chanceFactor>
+							<armorPenetrationBlunt>15.6</armorPenetrationBlunt>
+							<linkedBodyPartsGroup>Head</linkedBodyPartsGroup>
+						</li>
+					</tools>
+				</value>
+			</li>
+			
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName="GI_GiantClub"]/statBases</xpath>
+				<value>
+					<Bulk>15.5</Bulk>
+					<MeleeCounterParryBonus>0.15</MeleeCounterParryBonus>
+				</value>
+			</li>
+			
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName="GI_GiantClub"]/equippedStatOffsets</xpath>
+				<value>
+						<MeleeCritChance>0.65</MeleeCritChance>
+						<MeleeParryChance>0.15</MeleeParryChance>
+						<MeleeDodgeChance>0.2</MeleeDodgeChance>
+				</value>
+			</li>
+			
+			<!--Ivory Pick-->
+			
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="GI_IvoryClub"]/tools</xpath>
+				<value>
+					<tools>
+						<li Class="CombatExtended.ToolCE">
+							<label>handle</label>
+							<capacities>
+								<li>Poke</li>
+							</capacities>
+							<power>14</power>
+							<cooldownTime>2.51</cooldownTime>
+							<armorPenetrationBlunt>5.1</armorPenetrationBlunt>
+							<linkedBodyPartsGroup>Handle</linkedBodyPartsGroup>
+						</li>
+						<li Class="CombatExtended.ToolCE">
+							<label>head</label>
+							<capacities>
+								<li>Stab</li>
+								<li>Scratch</li>
+							</capacities>
+							<power>44</power>
+							<cooldownTime>4.02</cooldownTime>
+							<chanceFactor>2</chanceFactor>
+							<armorPenetrationSharp>0.91</armorPenetrationSharp>
+							<armorPenetrationBlunt>20.4</armorPenetrationBlunt>
+							<linkedBodyPartsGroup>Head</linkedBodyPartsGroup>
+						</li>
+					</tools>
+				</value>
+			</li>
+			
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName="GI_IvoryClub"]/statBases</xpath>
+				<value>
+					<Bulk>15.5</Bulk>
+					<MeleeCounterParryBonus>0.15</MeleeCounterParryBonus>
+				</value>
+			</li>
+			
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName="GI_IvoryClub"]/equippedStatOffsets</xpath>
+				<value>
+						<MeleeCritChance>0.65</MeleeCritChance>
+						<MeleeParryChance>0.15</MeleeParryChance>
+						<MeleeDodgeChance>0.2</MeleeDodgeChance>
+				</value>
+			</li>
+			
+			<!--Mammoth Hammer-->
+			
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="GI_MammothHammer"]/tools</xpath>
+				<value>
+					<tools>
+						<li Class="CombatExtended.ToolCE">
+							<label>handle</label>
+							<capacities>
+								<li>Poke</li>
+							</capacities>
+							<power>16</power>
+							<cooldownTime>2.79</cooldownTime>
+							<armorPenetrationBlunt>6</armorPenetrationBlunt>
+							<linkedBodyPartsGroup>Handle</linkedBodyPartsGroup>
+						</li>
+						<li Class="CombatExtended.ToolCE">
+							<label>head</label>
+							<capacities>
+								<li>Stab</li>
+								<li>Scratch</li>
+							</capacities>
+							<power>46</power>
+							<cooldownTime>4.19</cooldownTime>
+							<chanceFactor>2</chanceFactor>
+							<armorPenetrationSharp>2.29</armorPenetrationSharp>
+							<armorPenetrationBlunt>24</armorPenetrationBlunt>
+							<linkedBodyPartsGroup>Head</linkedBodyPartsGroup>
+						</li>
+					</tools>
+				</value>
+			</li>
+			
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName="GI_MammothHammer"]/statBases</xpath>
+				<value>
+					<Bulk>18.5</Bulk>
+					<MeleeCounterParryBonus>0.24</MeleeCounterParryBonus>
+				</value>
+			</li>
+			
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName="GI_MammothHammer"]/equippedStatOffsets</xpath>
+				<value>
+						<MeleeCritChance>0.67</MeleeCritChance>
+						<MeleeParryChance>0.24</MeleeParryChance>
+						<MeleeDodgeChance>0.2</MeleeDodgeChance>
+				</value>
+			</li>
+			
+			<!--Thrumbo Blade-->
+			
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="GI_ThrumboSpineBlade"]/tools</xpath>
+				<value>
+					<tools>
+					  <li Class="CombatExtended.ToolCE">
+						<label>base</label>
+						<capacities>
+						  <li>Blunt</li>
+						</capacities>
+						<power>20</power>
+						<cooldownTime>2.98</cooldownTime>
+						<armorPenetrationBlunt>7.8</armorPenetrationBlunt>
+					  </li>
+					  <li Class="CombatExtended.ToolCE">
+						<label>blade</label>
+						<capacities>
+						  <li>Cut</li>
+						</capacities>
+						<power>108</power>
+						<cooldownTime>1.75</cooldownTime>
+						<chanceFactor>1.165</chanceFactor>
+						<armorPenetrationBlunt>22.542</armorPenetrationBlunt>
+						<armorPenetrationSharp>3.01</armorPenetrationSharp>
+					  </li>
+					  <li Class="CombatExtended.ToolCE">
+						<label>point</label>
+						<capacities>
+						  <li>Stab</li>
+						</capacities>
+						<power>45</power>
+						<cooldownTime>2.98</cooldownTime>
+						<chanceFactor>1.165</chanceFactor>
+						<armorPenetrationBlunt>7.8</armorPenetrationBlunt>
+						<armorPenetrationSharp>15.6</armorPenetrationSharp>
+					  </li>
+					</tools>
+				</value>
+			</li>
+			
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName="GI_ThrumboSpineBlade"]/statBases</xpath>
+				<value>
+					<MeleeCounterParryBonus>0.8</MeleeCounterParryBonus>
+					<Bulk>22.5</Bulk>
+				</value>
+			</li>
+			
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName="GI_ThrumboSpineBlade"]/equippedStatOffsets</xpath>
+				<value>
+					  <MeleeCritChance>1</MeleeCritChance>
+					  <MeleeParryChance>0.6</MeleeParryChance>
+					  <MeleeDodgeChance>0.4</MeleeDodgeChance>
+				</value>
+			</li>
+			
+			<!--Cleaver-->
+			
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="GI_Cleaver"]/tools</xpath>
+				<value>
+					<tools>
+					  <li Class="CombatExtended.ToolCE">
+						<label>base</label>
+						<capacities>
+						  <li>Blunt</li>
+						</capacities>
+						<power>14</power>
+						<cooldownTime>2.72</cooldownTime>
+						<armorPenetrationBlunt>5.4</armorPenetrationBlunt>
+					  </li>
+					  <li Class="CombatExtended.ToolCE">
+						<label>blade</label>
+						<capacities>
+						  <li>Cut</li>
+						</capacities>
+						<power>97</power>
+						<cooldownTime>2.53</cooldownTime>
+						<chanceFactor>1.165</chanceFactor>
+						<armorPenetrationBlunt>17.496</armorPenetrationBlunt>
+						<armorPenetrationSharp>2.7</armorPenetrationSharp>
+					  </li>
+					  <li Class="CombatExtended.ToolCE">
+						<label>point</label>
+						<capacities>
+						  <li>Stab</li>
+						</capacities>
+						<power>45</power>
+						<cooldownTime>2.72</cooldownTime>
+						<chanceFactor>1.165</chanceFactor>
+						<armorPenetrationBlunt>5.4</armorPenetrationBlunt>
+						<armorPenetrationSharp>6.75</armorPenetrationSharp>
+					  </li>
+					</tools>
+				</value>
+			</li>
+			
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName="GI_Cleaver"]/statBases</xpath>
+				<value>
+					<MeleeCounterParryBonus>1</MeleeCounterParryBonus>
+					<Bulk>17.75</Bulk>
+				</value>
+			</li>
+			
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName="GI_Cleaver"]/equippedStatOffsets</xpath>
+				<value>
+					  <MeleeCritChance>0.63</MeleeCritChance>
+					  <MeleeParryChance>0.75</MeleeParryChance>
+					  <MeleeDodgeChance>0.4</MeleeDodgeChance>
+				</value>
+			</li>
+			
+			<!--Warhammer-->
+			
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="GI_Hammer"]/tools</xpath>
+				<value>
+					<tools>
+						<li Class="CombatExtended.ToolCE">
+							<label>handle</label>
+							<capacities>
+								<li>Poke</li>
+							</capacities>
+							<power>18</power>
+							<cooldownTime>2.93</cooldownTime>
+							<armorPenetrationBlunt>7.25</armorPenetrationBlunt>
+							<linkedBodyPartsGroup>Handle</linkedBodyPartsGroup>
+						</li>
+						<li Class="CombatExtended.ToolCE">
+							<label>head</label>
+							<capacities>
+								<li>Blunt</li>
+							</capacities>
+							<power>74</power>
+							<cooldownTime>3.99</cooldownTime>
+							<chanceFactor>2</chanceFactor>
+							<armorPenetrationBlunt>35.09</armorPenetrationBlunt>
+							<linkedBodyPartsGroup>Head</linkedBodyPartsGroup>
+						</li>
+					</tools>
+				</value>
+			</li>
+			
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName="GI_Hammer"]/statBases</xpath>
+				<value>
+					<Bulk>18.25</Bulk>
+					<MeleeCounterParryBonus>0.24</MeleeCounterParryBonus>
+				</value>
+			</li>
+			
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName="GI_Hammer"]/equippedStatOffsets</xpath>
+				<value>
+						<MeleeCritChance>2.5</MeleeCritChance>
+						<MeleeParryChance>0.18</MeleeParryChance>
+						<MeleeDodgeChance>0.3</MeleeDodgeChance>
+				</value>
+			</li>
+			
+			<!--War Ram-->
+			
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="GI_Ram"]/tools</xpath>
+				<value>
+					<tools>
+						<li Class="CombatExtended.ToolCE">
+							<label>handle</label>
+							<capacities>
+								<li>Poke</li>
+							</capacities>
+							<power>31</power>
+							<cooldownTime>3.39</cooldownTime>
+							<armorPenetrationBlunt>13</armorPenetrationBlunt>
+							<linkedBodyPartsGroup>Handle</linkedBodyPartsGroup>
+						</li>
+						<li Class="CombatExtended.ToolCE">
+							<label>head</label>
+							<capacities>
+								<li>Blunt</li>
+							</capacities>
+							<power>105</power>
+							<cooldownTime>5.95</cooldownTime>
+							<chanceFactor>2</chanceFactor>
+							<armorPenetrationBlunt>51.84</armorPenetrationBlunt>
+							<linkedBodyPartsGroup>Head</linkedBodyPartsGroup>
+						</li>
+					</tools>
+				</value>
+			</li>
+			
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName="GI_Ram"]/statBases</xpath>
+				<value>
+					<Bulk>25.25</Bulk>
+					<MeleeCounterParryBonus>0.05</MeleeCounterParryBonus>
+				</value>
+			</li>
+			
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName="GI_Ram"]/equippedStatOffsets</xpath>
+				<value>
+						<MeleeCritChance>1.5</MeleeCritChance>
+						<MeleeParryChance>0.05</MeleeParryChance>
+				</value>
+			</li>
+			
+		</operations>
+		</match>	
+	  </li>
+	</operations>	
+  </Operation>
+</Patch>
