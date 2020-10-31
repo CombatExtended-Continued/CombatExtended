@@ -153,6 +153,7 @@ Soviet Armory	|
 Spartan Foundry	|
 The Mantodean insectoid race	|
 T-45b Power Armor	|
+The Giantrace	|
 TouhouStyle	|
 Trading Economy	|
 Tsar Armory	|
