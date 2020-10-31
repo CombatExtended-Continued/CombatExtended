@@ -14,9 +14,9 @@ namespace CombatExtended.HarmonyCE
     {
         internal static bool Prefix(Explosion __instance, ref int __result, IntVec3 c)
         {
-            if (__instance is ExplosionCE)
+            if (__instance is ExplosionCE explosionCE)
             {
-                __result = (__instance as ExplosionCE).GetDamageAmountAtCE(c);
+                __result = explosionCE.GetDamageAmountAtCE(c);
                 return false;
             }
             return true;
@@ -28,9 +28,9 @@ namespace CombatExtended.HarmonyCE
     {
         internal static bool Prefix(Explosion __instance, ref float __result, IntVec3 c)
         {
-            if (__instance is ExplosionCE)
+            if (__instance is ExplosionCE explosionCE)
             {
-                __result = (__instance as ExplosionCE).GetArmorPenetrationAtCE(c);
+                __result = explosionCE.GetArmorPenetrationAtCE(c);
                 return false;
             }
             return true;

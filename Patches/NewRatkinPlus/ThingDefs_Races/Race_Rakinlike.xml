@@ -101,7 +101,7 @@
 			</value>
 		</li>
 
-		<!--Adding Inventory Support-->
+		<!-- Adding Inventory Support-->
 		<li Class="PatchOperationAdd">
 			<xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="Ratkin"]</xpath>
 			<value>
@@ -126,6 +126,19 @@
 				</li>
 				<li Class="CombatExtended.CompProperties_Suppressable" />
 			</value>
+		</li>
+
+		<!-- Tweak weaponList -->
+		<li Class="PatchOperationRemove">
+			<xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="Ratkin"]/alienRace/raceRestriction/weaponList/li[text()="RK_LongSword"]</xpath>
+		</li>
+
+		<li Class="PatchOperationRemove">
+			<xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="Ratkin"]/alienRace/raceRestriction/weaponList/li[text()="RK_FlechetteRifle"]</xpath>
+		</li>
+
+		<li Class="PatchOperationRemove">
+			<xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="Ratkin"]/alienRace/raceRestriction/weaponList/li[text()="RK_FlechetteSniperRifle"]</xpath>
 		</li>
 
 		</operations>
