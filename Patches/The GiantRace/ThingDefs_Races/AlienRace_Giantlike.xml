@@ -73,24 +73,22 @@
 			
 			<!--Giant size prevents use of loadbearing gear, and reasonably, shields.-->
 			
-			<!--Comps at the end because I am 100% sure the basepawn name type is going to change, and putting it here should prevent it from breaking as badly when that happens-->
-			
 			<li Class="PatchOperationReplace">
-                    <xpath>/Defs/ThingDef[@Name="RS_PawnBase"]/inspectorTabs/li[.="ITab_Pawn_Gear"]</xpath>
+                    <xpath>/Defs/ThingDef[@Name="GI_PawnBase"]/inspectorTabs/li[.="ITab_Pawn_Gear"]</xpath>
                     <value>
                         <li>CombatExtended.ITab_Inventory</li>
                     </value>
 			</li>
 
             <li Class="PatchOperationAdd">
-                    <xpath>/Defs/ThingDef[@Name="RS_PawnBase"]/comps</xpath>
+                    <xpath>/Defs/ThingDef[@Name="GI_PawnBase"]/comps</xpath>
                     <value>
                         <li Class="CombatExtended.CompProperties_Inventory" />
                     </value>
 			</li>
 			
 			<li Class="PatchOperationAdd">
-				<xpath>/Defs/ThingDef[@Name="RS_PawnBase"]/comps</xpath>
+				<xpath>/Defs/ThingDef[@Name="GI_PawnBase"]/comps</xpath>
 				<value>
 					<li>
 					<compClass>CombatExtended.CompPawnGizmo</compClass>
