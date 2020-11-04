@@ -28,7 +28,7 @@ namespace CombatExtended
         protected Vector2 origin;
 
         private IntVec3 originInt = new IntVec3(0, -1000, 0);
-        protected IntVec3 OriginIV3
+        public IntVec3 OriginIV3
         {
             get
             {
@@ -324,7 +324,7 @@ namespace CombatExtended
             }
         }
 
-        private Material shadowMaterial;
+        private Material[] shadowMaterial;
         private Material ShadowMaterial
         {
             get
@@ -332,9 +332,19 @@ namespace CombatExtended
                 if (shadowMaterial == null)
                 {
                     //Get fully black version of this.Graphic
-                    shadowMaterial = Graphic.GetColoredVersion(ShaderDatabase.Transparent, Color.black, Color.black).MatSingle;
+		    var g = Graphic as Graphic_Collection;
+		    if (g!=null)
+		    {
+			shadowMaterial = GetShadowMaterial(g);
+		    }
+		
+		    else
+		    {
+			shadowMaterial = new Material[1];
+			shadowMaterial[0] = Graphic.GetColoredVersion(ShaderDatabase.Transparent, Color.black, Color.black).MatSingle;
+		    }
                 }
-                return shadowMaterial;
+                return shadowMaterial[Rand.Range(0, this.shadowMaterial.Length)];
             }
         }
         #endregion
@@ -1003,5 +1013,15 @@ namespace CombatExtended
         #endregion
 
         #endregion
+
+	public static Material[] GetShadowMaterial(Graphic_Collection g) {
+	    FieldInfo subGraphics = typeof(Graphic_Collection).GetField("subGraphics", BindingFlags.NonPublic | BindingFlags.Public | BindingFlags.Instance);
+	    Graphic[] collection = (Graphic[]) subGraphics.GetValue(g);
+	    Material[] shadows = new Material[collection.Length];
+	    for (int i=0; i<collection.Length; i++) {
+		shadows[i] = collection[i].GetColoredVersion(ShaderDatabase.Transparent, Color.black, Color.black).MatSingle;
+	    }
+	    return shadows;
+	}
     }
 }
