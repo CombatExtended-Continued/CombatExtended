@@ -1,0 +1,38 @@
+# This automates rebuilding the assembly in Development
+
+name: Build-Development
+
+on:
+  # Manually or when a commit is pushed to Development.
+  # The commit performed by this script *will not* trigger an additional build (loop)
+  workflow_dispatch:
+  push:
+    branches: [ Development ]
+
+jobs:
+  build_assembly:
+    # Could use windows with dotnet, but I don't know the tooling.
+    # Also, mono is the less advanced compiler, so if it builds successfully here, it'll work anywhere.
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+        # have to use a personal access token to commit back to Development despite its restricted merging.
+        with:
+          token: ${{ secrets.PAT }}
+      - name: prepare rebuild
+        # unlike in build-pr, we aren't pulling unreviewed code, so we can just use the build script from this branch.
+        run: |
+          # Get the reference assembly from nuget
+          wget https://www.nuget.org/api/v2/package/Krafs.Rimworld.Ref/1.2.2753 -O rwref.zip
+          unzip rwref.zip -d reference
+      - name: build
+        run: python3 Make.py --all-libs --reference reference/ref/net472/
+      - uses: stefanzweifel/git-auto-commit-action@v4
+        with:
+          commit_message: Rebuild Assembly
+          branch: Development
+          file_pattern: ./Assemblies/CombatExtended.dll
+          # --force to override the restricted merging
+          push_options: '--force'
+      
