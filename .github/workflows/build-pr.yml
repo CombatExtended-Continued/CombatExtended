@@ -1,0 +1,64 @@
+name: Build-PR-test
+
+on:
+  # run in a read-write copy of the target of the PR (CombatExtended-Continued/CombatExtended/Development)
+  pull_request_target: 
+    branches: [ Development ]
+
+jobs:
+  build:
+    # Could use windows with dotnet, but I don't know the tooling.
+    # Also, mono is the less advanced compiler, so if it builds successfully here, it'll work anywhere.
+    runs-on: ubuntu-latest 
+
+    steps:
+      - uses: actions/checkout@v2
+      - name: prepare rebuild
+        run: |
+          # Set up who gets blamed for the added assembly
+          git config --global user.email "actions@github.com"
+          git config --global user.name "GitHub Actions"
+
+          # Grab the code from the PR, using the version from the PR in case of conflicts.
+          git pull --allow-unrelated-histories -X theirs origin ${{ github.event.pull_request.head.sha }}:
+
+          # Grab the RimWorld reference assemblies from nuget
+          wget https://www.nuget.org/api/v2/package/Krafs.Rimworld.Ref/1.2.2753 -O rwref.zip
+          unzip rwref.zip -d reference
+
+          # We've checked out code from a PR, we can't trust it (it could dump environment variables or otherwise do unapproved things)
+          # So we grab the build script from the trusted repo.  It does mean changes to the build script itself won't get auto-tested,
+          # but that's unavoidable in a PR.
+          wget https://raw.githubusercontent.com/CombatExtended-Continued/CombatExtended/Development/Make.py -O - > Make.py
+
+      # It would be better to only create the destination branch once we know the build will succeed, but we have to commit the pull from line 23 or it chokes.
+      - uses: peterjgrainger/action-create-branch@v2.0.1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          branch: test-branch-${{ github.event.pull_request.head.ref }}-${{ github.run_number }}
+      - uses: stefanzweifel/git-auto-commit-action@v4
+        with:
+          commit_message: Make Test Branch
+          branch: test-branch-${{ github.event.pull_request.head.ref }}-${{ github.run_number }}
+          skip_dirty_check: true
+
+      - name: build
+        run: |
+          python3 Make.py --all-libs --reference reference/ref/net472/
+
+      - uses: stefanzweifel/git-auto-commit-action@v4
+        with:
+          commit_message: Rebuild Assembly
+          branch: test-branch-${{ github.event.pull_request.head.ref }}-${{ github.run_number }}
+          skip_dirty_check: true
+          file_pattern: ./Assemblies/CombatExtended.dll
+
+
+      - name: Create comment
+        uses: peter-evans/create-or-update-comment@v1
+        with:
+          issue-number: ${{ github.event.pull_request.number }}
+          body: |
+            The testing branch for this PR is [test-branch-${{ github.event.pull_request.head.ref }}-${{ github.run_number }}](https://github.com/${{ github.repository }}/tree/test-branch-${{ github.event.pull_request.head.ref }}-${{ github.run_number }})
+          
