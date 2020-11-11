@@ -31,7 +31,7 @@ namespace CombatExtended.HarmonyCE
             WriteShell,
             WritePostShell
         }
-
+        
         // Sync these with vanilla PawnRenderer constants
         private const float YOffsetBehind = 0.00306122447f;
         private const float YOffsetHead = 0.0244897958f;
@@ -39,18 +39,37 @@ namespace CombatExtended.HarmonyCE
         private const float YOffsetPostHead = 0.03367347f;
         private const float YOffsetIntervalClothes = 0.00306122447f;
 
+        private static Rot4 north = Rot4.North; // this otherwise creates a new instance per invocation
+        private static int[] headwearGraphics = new int[16];
+        // Working under the assumption that
+        //  A. The rendering function will always be single threaded (if not this needs to be an array of threadID length)
+        //  B. A single pawn will never have more than 16 headlayers at once (this number could be decreased... but what would it change?)
+
         private static void DrawHeadApparel(PawnRenderer renderer, Mesh mesh, Vector3 rootLoc, Vector3 headLoc, Vector3 headOffset, Rot4 bodyFacing, Quaternion quaternion, bool portrait, ref bool hideHair)
         {
             var apparelGraphics = renderer.graphics.apparelGraphics;
-            var headwearGraphics = apparelGraphics.Where(a => a.sourceApparel.def.apparel.LastLayer.GetModExtension<ApparelLayerExtension>()?.IsHeadwear ?? false).ToArray();
-            if (!headwearGraphics.Any())
+            var headwearSize = 0;
+            int i = 0;
+
+            // Using a manual loop without a List or an Array prevents allocation or MoveNext() functions being called, especially since this array should normally be quite small.
+            for(i = 0; i < apparelGraphics.Count; i++)
+            {
+                if (apparelGraphics[i].sourceApparel.def.apparel.LastLayer.GetModExtension<ApparelLayerExtension>()?.IsHeadwear ?? false)
+                {
+                    headwearGraphics[headwearSize++] = i; // Store index to apparelrecord instead of the actual apparel
+                }
+            }
+
+            if (headwearSize == 0)
                 return;
 
-            var interval = YOffsetIntervalClothes / headwearGraphics.Length;
+            var interval = YOffsetIntervalClothes / headwearSize;
             var headwearPos = headLoc;
 
-            foreach (var apparelRecord in headwearGraphics)
+            for (i = 0; i < headwearSize; i++)
             {
+                var apparelRecord = apparelGraphics[headwearGraphics[i]]; // originalArray[indexWeFoundApparelRecordAt]
+
                 if (!apparelRecord.sourceApparel.def.apparel.hatRenderedFrontOfFace)
                 {
                     headwearPos.y += interval;
@@ -64,7 +83,7 @@ namespace CombatExtended.HarmonyCE
                     var maskMat = apparelRecord.graphic.MatAt(bodyFacing);
                     maskMat = renderer.graphics.flasher.GetDamagedMat(maskMat);
                     var maskLoc = rootLoc + headOffset;
-                    maskLoc.y += !(bodyFacing == Rot4.North) ? YOffsetPostHead : YOffsetBehind;
+                    maskLoc.y += !(bodyFacing == north) ? YOffsetPostHead : YOffsetBehind;
                     GenDraw.DrawMeshNowOrLater(mesh, maskLoc, quaternion, maskMat, portrait);
                 }
             }
@@ -73,7 +92,7 @@ namespace CombatExtended.HarmonyCE
         private static float GetPostShellOffset(PawnRenderer renderer)
         {
             var apparelGraphics = renderer.graphics.apparelGraphics.Where(a => a.sourceApparel.def.apparel.LastLayer.drawOrder >= ApparelLayerDefOf.Shell.drawOrder).ToList();
-            return apparelGraphics.Any() ? YOffsetIntervalClothes / apparelGraphics.Count : 0;
+            return apparelGraphics.Count == 0 ? 0 : YOffsetIntervalClothes / apparelGraphics.Count;
         }
 
         private static bool IsPreShellLayer(ApparelLayerDef layer)
@@ -152,6 +171,8 @@ namespace CombatExtended.HarmonyCE
     [HarmonyPatch(typeof(PawnRenderer), "DrawEquipmentAiming")]
     internal static class Harmony_PawnRenderer_DrawEquipmentAiming
     {
+        public static Rot4 south = Rot4.South; // creates new invocation per call otherwise
+
         private static void DrawMeshModified(Mesh mesh, Vector3 position, Quaternion rotation, Material mat, int layer, Thing eq, float aimAngle)
         {
             var drawData = eq.def.GetModExtension<GunDrawExtension>() ?? new GunDrawExtension();
@@ -184,10 +205,9 @@ namespace CombatExtended.HarmonyCE
             return codes;
         }
 
-        internal static void Prefix(PawnRenderer __instance, ref Vector3 drawLoc)
+        internal static void Prefix(PawnRenderer __instance, Pawn ___pawn, ref Vector3 drawLoc)
         {
-            var pawn = (Pawn)AccessTools.Field(typeof(PawnRenderer), "pawn").GetValue(__instance);
-            if (pawn.Rotation == Rot4.South)
+            if (___pawn.Rotation == south)
             {
                 drawLoc.y++;
             }

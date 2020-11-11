@@ -28,7 +28,7 @@ namespace CombatExtended.HarmonyCE
                         __result.count = Mathf.Min(numToCarry, maxCount);
                         pawn.Notify_HoldTrackerItem(__result.targetA.Thing, __result.count);
                     }
-                    else
+                    else // this should patch WorkGiver_Train && WorkGiver_Tame `JobOnThing`
                     {
                         Messages.Message("CE_TamerInventoryFull".Translate(), pawn, MessageTypeDefOf.RejectInput);
                         __result = null;
