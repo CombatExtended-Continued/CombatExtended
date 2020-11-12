@@ -1,0 +1,86 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+
+	<RecipeDef ParentName="MakeStoneBlocksBase">
+		<defName>Make_FSXFromMeat</defName>
+		<label>Synthesize 10 FSX</label>
+		<description>Synthesize 10 FSX from a mixture of chemfuel and meat.</description>
+		<jobString>Synthesizing FSX</jobString>
+		<ingredients>
+		<li>
+		<filter>
+			<thingDefs>
+				<li>Chemfuel</li>
+			</thingDefs>
+		</filter>
+		<count>10</count>
+		</li>
+		<li>
+			<filter>
+			<categories>
+				<li>MeatRaw</li>
+			</categories>
+			</filter>
+			<count>40</count>
+		</li>
+		</ingredients>
+		<fixedIngredientFilter>
+		<thingDefs>
+			<li>Chemfuel</li>		
+		</thingDefs>
+		<categories>
+			<li>MeatRaw</li>
+		</categories>
+		<disallowedThingDefs>
+			<li>Meat_Boomalope</li>		  
+		</disallowedThingDefs>			
+		</fixedIngredientFilter>
+		<workAmount>800</workAmount>
+		<workSkill>Crafting</workSkill>		
+		<workSpeedStat>DrugSynthesisSpeed</workSpeedStat>
+		<effectWorking>Smith</effectWorking>
+		<soundWorking>Recipe_Drug</soundWorking>
+		<targetCountAdjustment>35</targetCountAdjustment>		
+		<recipeUsers Inherit="false">
+			<li>DrugLab</li>
+		</recipeUsers>		
+		<products>
+			<FSX>10</FSX>
+		</products>
+	</RecipeDef>
+
+	<RecipeDef ParentName="MakeStoneBlocksBase">
+		<defName>Make_FSXFromBoomMeat</defName>
+		<label>Synthesize 10 FSX from boomalope meat</label>
+		<description>Synthesize 10 FSX from the volatile chemicals in boomalope tissue.</description>
+		<jobString>Synthesizing FSX</jobString>
+		<ingredients>
+		<li>
+		<filter>
+			<thingDefs>
+				<li>Meat_Boomalope</li>
+			</thingDefs>
+		</filter>
+		<count>40</count>
+		</li>
+		</ingredients>
+		<fixedIngredientFilter>
+		<thingDefs>
+			<li>Meat_Boomalope</li>		
+		</thingDefs>
+		</fixedIngredientFilter>
+		<workAmount>800</workAmount>
+		<workSkill>Crafting</workSkill>		
+		<workSpeedStat>DrugSynthesisSpeed</workSpeedStat>
+		<effectWorking>Smith</effectWorking>
+		<soundWorking>Recipe_Drug</soundWorking>
+		<targetCountAdjustment>35</targetCountAdjustment>		
+		<recipeUsers Inherit="false">
+			<li>DrugLab</li>
+		</recipeUsers>		
+		<products>
+			<FSX>10</FSX>
+		</products>
+	</RecipeDef>
+
+</Defs>
