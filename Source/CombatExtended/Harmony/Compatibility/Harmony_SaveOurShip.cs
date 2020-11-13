@@ -62,7 +62,7 @@ namespace CombatExtended.HarmonyCE.Compatibility
                 }
                 else
                 {
-                    return allowedShellSettings?.AllowedToAccept(x) ?? true;
+                    return allowedShellsSettings?.AllowedToAccept(x) ?? true;
                 }
             };
 
