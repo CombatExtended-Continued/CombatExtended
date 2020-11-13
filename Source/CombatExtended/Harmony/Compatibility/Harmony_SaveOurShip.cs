@@ -17,6 +17,9 @@ namespace CombatExtended.HarmonyCE.Compatibility
                                         SingleOrDefault(assembly => assembly.GetName().Name == "ShipsHaveInsides");
         static MethodBase targetMethod = null;
 
+        static readonly List<String> shellDefNames = new List<String> { "ShipTorpedo_HighExplosive", "ShipTorpedo_EMP", "ShipTorpedo_Antimatter" };
+            
+
 	internal static bool Prepare()
 	{
 	    if (ass == null)
@@ -45,36 +48,33 @@ namespace CombatExtended.HarmonyCE.Compatibility
 
 	public static void Postfix(Pawn pawn, Building_Turret tube, ref Thing __result)
 	{
-	    if (__result!=null) {
+	    if (__result != null)
+            {
 		return;
 	    }
 	    var turret = tube as Building_ShipTurret;
 	    StorageSettings allowedShellsSettings = ThingCompUtility.TryGetComp<CompChangeableProjectilePlural>(turret.gun).allowedShellsSettings;
 	    Predicate<Thing> pred = (Thing x) =>
             {
-	        if (!ForbidUtility.IsForbidden(x, pawn) && ReservationUtility.CanReserve(pawn, x, 1, -1, (ReservationLayerDef)null, false))
+	        if (ForbidUtility.IsForbidden(x, pawn) || !ReservationUtility.CanReserve(pawn, x, 1, -1, (ReservationLayerDef)null, false))
                 {
-                    if (allowedShellsSettings != null)
-                    {
-                        return allowedShellsSettings.AllowedToAccept(x);
-                    }
-                    return true;
+                    return false;
                 }
-                return false;
+                else
+                {
+                    return allowedShellSettings?.AllowedToAccept(x) ?? true;
+                }
             };
-            var val = ThingDef.Named("ShipTorpedo_HighExplosive");
-	    __result = GenClosest.ClosestThingReachable(pawn.Position, pawn.Map, ThingRequest.ForDef(val), PathEndMode.ClosestTouch, TraverseParms.For(pawn), 9999f, pred);
-	    if (__result!=null) {
-		return;
-	    }
-	    val = ThingDef.Named("ShipTorpedo_EMP");
-	    __result = GenClosest.ClosestThingReachable(pawn.Position, pawn.Map, ThingRequest.ForDef(val), PathEndMode.ClosestTouch, TraverseParms.For(pawn), 9999f, pred);
-	    if (__result!=null) {
-		return;
-	    }
-	    val = ThingDef.Named("ShipTorpedo_Antimatter");
-            __result = GenClosest.ClosestThingReachable(pawn.Position, pawn.Map, ThingRequest.ForDef(val), PathEndMode.ClosestTouch, TraverseParms.For(pawn), 9999f, pred);
+
+            foreach (String defName in shellDefNames)
+            {
+                var val = ThingDef.Named(defName);
+                __result = GenClosest.ClosestThingReachable(pawn.Position, pawn.Map, ThingRequest.ForDef(val), PathEndMode.ClosestTouch, TraverseParms.For(pawn), 9999f, pred);
+                if (__result != null)
+                {
+                    return;
+                }
+            }            
 	}
-	
     }
 }
