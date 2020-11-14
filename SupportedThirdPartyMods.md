@@ -55,6 +55,7 @@ Auto-Mortars	|
 Beeralope Squad	|
 Better Infestations	|
 Black Widows	|
+Carbon	|
 Combat Enthusiast’s Collection	|
 Cupro's Alloys	|
 Cute Penguin	|
