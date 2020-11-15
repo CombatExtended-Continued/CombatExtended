@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+			<li>Vanilla Furniture Expanded - Security</li>
+		</mods>
+		<match Class="PatchOperationSequence">
+		<operations>
+
+
+    <!-- Searchlight -->
+
+	  <li Class="PatchOperationAdd">
+	  	<xpath>Defs</xpath>
+	  	<value>
+
+      <ThingDef>
+        <category>Projectile</category>
+        <defName>SpotlightBeam</defName>
+        <label>spotlight beam</label>
+        <thingClass>Building</thingClass>
+        <altitudeLayer>Gas</altitudeLayer>
+        <passability>Standable</passability>
+        <blockWind>false</blockWind>
+        <castEdgeShadows>false</castEdgeShadows>
+        <fillPercent>0.1</fillPercent>
+        <coversFloor>false</coversFloor>
+        <holdsRoof>false</holdsRoof>
+        <blockLight>false</blockLight>
+        <mineable>false</mineable>
+        <selectable>false</selectable>
+        <leaveResourcesWhenKilled>false</leaveResourcesWhenKilled>
+        <rotatable>false</rotatable>
+        <tickerType>Normal</tickerType>
+        <statBases>
+          <MaxHitPoints>10</MaxHitPoints>
+          <Mass>0.01</Mass>
+          <Flammability>0</Flammability>
+          <MarketValue>0.1</MarketValue>
+        </statBases>
+        <comps>
+          <li Class="CompProperties_Glower">
+            <glowRadius>8</glowRadius>
+            <glowColor>(255,255,255,0)</glowColor>
+          </li>
+          <li Class="CompProperties_Lifespan">
+            <lifespanTicks>30</lifespanTicks>
+          </li>
+        </comps>
+        <graphicData>
+          <texPath>Things/Projectile/Blank</texPath>
+          <graphicClass>Graphic_Single</graphicClass>
+          <shaderType>TransparentPostLight</shaderType>
+        </graphicData>
+        <building>
+          <isInert>true</isInert>
+          <isNaturalRock>false</isNaturalRock>
+          <canBuildNonEdificesUnder>false</canBuildNonEdificesUnder>
+          <deconstructible>false</deconstructible>
+        </building>
+        <useHitPoints>false</useHitPoints>
+      </ThingDef>
+
+      <ThingDef ParentName="BaseBullet">
+        <defName>Projectile_SearchlightBeam</defName>
+        <label>searchlight beam</label>
+        <graphicData>
+          <texPath>Things/Projectile/Blank</texPath>
+          <graphicClass>Graphic_Single</graphicClass>
+          <shaderType>TransparentPostLight</shaderType>
+        </graphicData>
+        <thingClass>CombatExtended.ProjectileCE_Explosive</thingClass>
+        <projectile Class="CombatExtended.ProjectilePropertiesCE">
+          <damageDef>Bullet</damageDef>
+          <damageAmountBase>0</damageAmountBase>
+          <explosionDelay>0</explosionDelay>
+          <speed>999</speed>
+          <flyOverhead>false</flyOverhead>
+          <preExplosionSpawnThingDef>SpotlightBeam</preExplosionSpawnThingDef>
+        </projectile>
+      </ThingDef>
+
+	  	</value>
+	  </li>
+
+	  <li Class="PatchOperationReplace">
+	  	<xpath>Defs/ThingDef[defName = "VFES_Gun_Searchlight"]/statBases/RangedWeapon_Cooldown</xpath>
+	  	<value>
+        <RangedWeapon_Cooldown>60</RangedWeapon_Cooldown>
+	  	</value>
+	  </li>
+
+    <li Class="PatchOperationReplace">
+      <xpath>/Defs/ThingDef[defName = "VFES_Gun_Searchlight"]/verbs/li</xpath>
+      <value>   
+        <li Class="CombatExtended.VerbPropertiesCE">
+        <recoilAmount>0.01</recoilAmount>
+        <burstShotCount>1</burstShotCount>
+        <ticksBetweenBurstShots>100</ticksBetweenBurstShots>
+        <verbClass>CombatExtended.Verb_ShootCE</verbClass>
+        <hasStandardCommand>true</hasStandardCommand>
+        <defaultProjectile>Projectile_SearchlightBeam</defaultProjectile>
+        <warmupTime>1.3</warmupTime>
+        <range>78</range>
+        <recoilPattern>Mounted</recoilPattern>
+        </li>
+      </value>
+    </li>
+
+    <li Class="PatchOperationAdd">
+      <xpath>/Defs/ThingDef[defName = "VFES_Gun_Searchlight"]/statBases</xpath>
+      <value>   
+        <SightsEfficiency>10</SightsEfficiency>
+      </value>
+    </li>
+
+    <li Class="PatchOperationReplace">
+      <xpath>/Defs/ThingDef[defName = "VFES_Turret_Searchlight"]/specialDisplayRadius</xpath>
+      <value>
+        <specialDisplayRadius>78</specialDisplayRadius>
+      </value>
+    </li>
+
+    <li Class="PatchOperationReplace">
+      <xpath>/Defs/ThingDef[defName = "VFES_Gun_Searchlight"]/modExtensions/li[@Class="VFESecurity.ExtendedVerbProperties"]/illuminatedRadius</xpath>
+      <value>
+        <illuminatedRadius>6</illuminatedRadius>
+      </value>
+    </li>
+
+		</operations>
+		</match>
+	</Operation>
+</Patch>    
