@@ -14,6 +14,7 @@ Mod |
 [CP] Rimmu-Nation - Weapons	|
 [CP] Spec Ops - The Line	|
 [CP] The DOOM Kit - Classic	|
+[HLX] Rimworld: UNSC Armoury |
 [JDS] Exiled Dawn |
 [JDS] The Forge - Exiled Dawn |
 [JDS] The Forge - NCR Armory	|
