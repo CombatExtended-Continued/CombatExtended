@@ -2,9 +2,9 @@
 <Defs>
 
 	<RecipeDef ParentName="MakeStoneBlocksBase">
-		<defName>Make_FSXFromMeat</defName>
+		<defName>Make_FSXDrugLab</defName>
 		<label>Synthesize 10 FSX</label>
-		<description>Synthesize 10 FSX from a mixture of chemfuel and meat.</description>
+		<description>Synthesize 10 FSX from chemfuel using simple chemistry equipment.</description>
 		<jobString>Synthesizing FSX</jobString>
 		<ingredients>
 		<li>
@@ -13,34 +13,19 @@
 				<li>Chemfuel</li>
 			</thingDefs>
 		</filter>
-		<count>10</count>
-		</li>
-		<li>
-			<filter>
-			<categories>
-				<li>MeatRaw</li>
-			</categories>
-			</filter>
-			<count>40</count>
+		<count>100</count>
 		</li>
 		</ingredients>
 		<fixedIngredientFilter>
 		<thingDefs>
 			<li>Chemfuel</li>		
-		</thingDefs>
-		<categories>
-			<li>MeatRaw</li>
-		</categories>
-		<disallowedThingDefs>
-			<li>Meat_Boomalope</li>		  
-		</disallowedThingDefs>			
+		</thingDefs>		
 		</fixedIngredientFilter>
-		<workAmount>800</workAmount>
+		<workAmount>1000</workAmount>
 		<workSkill>Crafting</workSkill>		
 		<workSpeedStat>DrugSynthesisSpeed</workSpeedStat>
 		<effectWorking>Smith</effectWorking>
-		<soundWorking>Recipe_Drug</soundWorking>
-		<targetCountAdjustment>35</targetCountAdjustment>		
+		<soundWorking>Recipe_Drug</soundWorking>	
 		<recipeUsers Inherit="false">
 			<li>DrugLab</li>
 		</recipeUsers>		
@@ -50,37 +35,37 @@
 	</RecipeDef>
 
 	<RecipeDef ParentName="MakeStoneBlocksBase">
-		<defName>Make_FSXFromBoomMeat</defName>
-		<label>Synthesize 10 FSX from boomalope meat</label>
-		<description>Synthesize 10 FSX from the volatile chemicals in boomalope tissue.</description>
+		<defName>Make_FSXRefinery</defName>
+		<label>Synthesize 10 FSX</label>
+		<description>Synthesize 10 FSX from chemfuel using the biofuel refinery's more efficient systems.</description>
 		<jobString>Synthesizing FSX</jobString>
 		<ingredients>
 		<li>
 		<filter>
 			<thingDefs>
-				<li>Meat_Boomalope</li>
+				<li>Chemfuel</li>
 			</thingDefs>
 		</filter>
-		<count>40</count>
+		<count>80</count>
 		</li>
 		</ingredients>
 		<fixedIngredientFilter>
 		<thingDefs>
-			<li>Meat_Boomalope</li>		
-		</thingDefs>
+			<li>Chemfuel</li>		
+		</thingDefs>		
 		</fixedIngredientFilter>
 		<workAmount>800</workAmount>
 		<workSkill>Crafting</workSkill>		
 		<workSpeedStat>DrugSynthesisSpeed</workSpeedStat>
 		<effectWorking>Smith</effectWorking>
-		<soundWorking>Recipe_Drug</soundWorking>
-		<targetCountAdjustment>35</targetCountAdjustment>		
+		<soundWorking>Recipe_Drug</soundWorking>	
 		<recipeUsers Inherit="false">
-			<li>DrugLab</li>
+			<li>BiofuelRefinery</li>
 		</recipeUsers>		
 		<products>
 			<FSX>10</FSX>
 		</products>
 	</RecipeDef>
+
 
 </Defs>
