@@ -270,6 +270,94 @@
 				</value>
 			</li>
 			
+			<!-- Trooper Type -->
+			
+			<li Class="PatchOperationReplace">
+			 <xpath>/Defs/PawnKindDef[defName="HAR_SK_Mechanoid_Kind_e"]/combatPower</xpath>
+				  <value>
+					<combatPower>100</combatPower>
+				  </value>
+			</li>
+			
+			<li Class="PatchOperationAddModExtension">
+				<xpath>/Defs/ThingDef[defName="HAR_SK_Mechanoid_race_e"]</xpath>
+				<value>
+					<li Class="CombatExtended.RacePropertiesExtensionCE">
+						<bodyShape>Humanoid</bodyShape>
+					</li>
+				</value>
+			</li>
+
+			
+			<li Class="PatchOperationAdd">
+			 <xpath>/Defs/ThingDef[defName="HAR_SK_Mechanoid_race_e"]/statBases</xpath>
+				  <value>
+					<Suppressability>0</Suppressability>
+					<SmokeSensitivity>0</SmokeSensitivity>
+					<MeleeDodgeChance>0.19</MeleeDodgeChance>
+					<MeleeCritChance>0.22</MeleeCritChance>
+					<MeleeParryChance>0.09</MeleeParryChance>
+				  </value>
+			</li>
+			
+			<li Class="PatchOperationReplace">
+			 <xpath>/Defs/ThingDef[defName="HAR_SK_Mechanoid_race_e"]/statBases/ArmorRating_Sharp</xpath>
+				  <value>
+					<ArmorRating_Sharp>4</ArmorRating_Sharp>
+				  </value>
+			</li>
+			
+			<li Class="PatchOperationReplace">
+			 <xpath>/Defs/ThingDef[defName="HAR_SK_Mechanoid_race_e"]/statBases/ArmorRating_Blunt</xpath>
+				  <value>
+					<ArmorRating_Blunt>6</ArmorRating_Blunt>
+				  </value>
+			</li>
+			
+			<li Class="PatchOperationReplace">
+				<xpath>/Defs/ThingDef[defName="HAR_SK_Mechanoid_race_e"]/tools</xpath> 
+				<value>
+					<tools>
+						<li Class="CombatExtended.ToolCE">
+							<label>left blade</label>
+							<capacities>
+								<li>Cut</li>
+							</capacities>
+							<power>12</power>
+							<cooldownTime>1.65</cooldownTime>
+							<linkedBodyPartsGroup>LeftBlade</linkedBodyPartsGroup>
+							<armorPenetrationSharp>2.07</armorPenetrationSharp>
+							<armorPenetrationBlunt>5.4</armorPenetrationBlunt>
+							<alwaysTreatAsWeapon>true</alwaysTreatAsWeapon>
+						</li>
+						<li Class="CombatExtended.ToolCE">
+							<label>right blade</label>
+							<capacities>
+								<li>Cut</li>
+							</capacities>
+							<power>12</power>
+							<cooldownTime>2.07</cooldownTime>
+							<linkedBodyPartsGroup>RightBlade</linkedBodyPartsGroup>
+							<armorPenetrationSharp>2.16</armorPenetrationSharp>
+							<armorPenetrationBlunt>5.4</armorPenetrationBlunt>
+							<alwaysTreatAsWeapon>true</alwaysTreatAsWeapon>
+						</li>
+						<li Class="CombatExtended.ToolCE">
+							<label>head</label>
+							<capacities>
+								<li>Blunt</li>
+							</capacities>
+							<power>6</power>
+							<cooldownTime>5.9</cooldownTime>
+							<linkedBodyPartsGroup>HeadAttackTool</linkedBodyPartsGroup>
+							<chanceFactor>0.2</chanceFactor>
+							<armorPenetrationSharp>0</armorPenetrationSharp>
+							<armorPenetrationBlunt>1.875</armorPenetrationBlunt>
+						</li>
+					</tools>
+				</value>
+			</li>
+			
 		</operations>
 		</match>	
 	  </li>
