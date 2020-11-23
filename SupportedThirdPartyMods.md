@@ -15,6 +15,7 @@ Mod |
 [CP] Spec Ops - The Line	|
 [CP] The DOOM Kit - Classic	|
 [JDS] Exiled Dawn |
+[JDS] Star Wars BlasTech Industries |
 [JDS] The Forge - Exiled Dawn |
 [JDS] The Forge - NCR Armory	|
 [O21] Forgotten Realms |
@@ -54,6 +55,7 @@ Auto-Mortars	|
 Beeralope Squad	|
 Better Infestations	|
 Black Widows	|
+Carbon	|
 Combat Enthusiast’s Collection	|
 Cupro's Alloys	|
 Cute Penguin	|
@@ -128,6 +130,7 @@ Palm Cats   |
 Penguin	|
 PsiTech	|
 Polarisbloc - Security Force	|
+Prestige Specialist Armours	|
 Rabbie The Moonrabbit	|
 Racc Race	|
 Rah's Bionics and Surgery Expansion	|
@@ -153,6 +156,8 @@ Silkiera Race	|
 Simply More Melee	|
 Soviet Armory	|
 Spartan Foundry	|
+Star Wars - Factions |
+Star Wars - Factions (Continued) |
 The Mantodean insectoid race	|
 T-45b Power Armor	|
 The Giantrace	|
