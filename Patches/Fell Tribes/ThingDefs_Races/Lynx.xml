@@ -1,14 +1,12 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <Patch>
-	<!-- ========== Make sure the mod is there first ========== -->
-	<Operation Class="PatchOperationSequence">
-		<success>Always</success>
-		<operations>
-			<!-- ========== Look for the mod ========== -->
-			<li Class="CombatExtended.PatchOperationFindMod">
-				<modName>Fell Tribes</modName>
-			</li>
-			<!-- ========== Found the mod ========== -->
+
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+			<li>Fell Tribes</li>
+		</mods>
+		<match Class="PatchOperationSequence">
+			<operations>
 
 			<!-- ========== Now patch the basics... ========== -->
 			<li Class="PatchOperationAddModExtension">
@@ -30,12 +28,14 @@
 				<!-- === Shouldn't need to change this at all		  === -->
 				<!-- === Unless you changed the name of your BasePawn === -->
 				<!-- === In which case change "BasePawn" to that name === -->
-				<xpath>Defs/ThingDef[@Name="BasePawn"]/comps</xpath>
+				<xpath>Defs/AlienRace.ThingDef_AlienRace[defName = "Alien_Lynx"]</xpath>
 				<value>
+				<comps>				
 					<li>
 						<compClass>CombatExtended.CompPawnGizmo</compClass>
 					</li>
 					<li Class="CombatExtended.CompProperties_Suppressable" />
+				</comps>					
 				</value>
 			</li>
 
@@ -93,10 +93,8 @@
 					</tools>
 				</value>
 			</li>
-		</operations>
-	</Operation>
 
-	<!-- === Congratulations! Your alien is Combat Ready!	 === -->
-	<!-- === If your alien comes with extra guns and gear,	 === -->
-	<!-- === Congratulations! You're not even close to done! === -->
-</Patch>
+			</operations>
+		</match>
+	</Operation>
+</Patch>	
