@@ -7,7 +7,7 @@ name: Build-Development
 on:
   workflow_dispatch:
   push:
-    branches: [ Development ]
+    branches: [ Development, WorkflowTest ]
     paths: Source/**
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
@@ -32,7 +32,7 @@ jobs:
       - uses: stefanzweifel/git-auto-commit-action@v4
         with:
           commit_message: Rebuild Assembly
-          branch: Development
+          branch: WorkflowTest
           file_pattern: ./Assemblies/CombatExtended.dll
           push_options: '--force'
       
