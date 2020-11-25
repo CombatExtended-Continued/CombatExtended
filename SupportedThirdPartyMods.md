@@ -137,6 +137,7 @@ Prestige Specialist Armours	|
 Rabbie The Moonrabbit	|
 Racc Race	|
 Rah's Bionics and Surgery Expansion	|
+Redcoat Apparel	|
 Reich Armory	|
 Revia Race |
 Right Tool: Rebalanced	|
