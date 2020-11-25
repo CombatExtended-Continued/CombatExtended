@@ -1,0 +1,93 @@
+# This is a basic workflow to help you get started with Actions
+
+name: PR-Branch-And-Build
+
+# Controls when the action will run. Triggers the workflow on push or pull request
+# events but only for the test-gh-actions branch
+on:
+  workflow_dispatch:
+    inputs:
+      target_branch:
+        description: Branch name to create/reset and build
+        required: true
+  pull_request_target:
+    branches: [ Development ]
+    paths: Source/**
+
+# A workflow run is made up of one or more jobs that can run sequentially or in parallel
+jobs:
+  # This job ensures a test branch exists for the PR
+  branch:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: peterjgrainger/action-create-branch@v2.0.1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          branch: test-branch-${{ github.event.inputs.target_branch }}-${{ github.event.pull_request.number }}-${{ github.event.pull_request.head.ref }}
+
+  # This job resets the test branch to Development/HEAD and then applies the PR to it.
+  reset:
+    needs: branch
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          ref: test-branch-${{ github.event.inputs.target_branch }}-${{ github.event.pull_request.number }}-${{ github.event.pull_request.head.ref }}
+          fetch-depth: 0
+      - name: Reset and pull
+        run: |
+          git config --global user.email "actions@github.com"
+          git config --global user.name "GitHub Actions"
+
+          git pull --no-commit --allow-unrelated-histories -X theirs origin pull/${{ github.event.pull_request.number }}/head:
+          git status
+        
+      - uses: stefanzweifel/git-auto-commit-action@v4
+        with:
+          commit_message: "Reset and apply PR"
+          branch: test-branch-${{ github.event.inputs.target_branch }}-${{ github.event.pull_request.number }}-${{ github.event.pull_request.head.ref }}
+
+      - name: Debug
+        run: |
+
+          git status
+  
+  # Build the assembly in the test branch
+  build:
+    needs: reset
+    # The type of runner that the job will run on
+    runs-on: ubuntu-latest
+
+    # Steps represent a sequence of tasks that will be executed as part of the job
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          ref: test-branch-${{ github.event.inputs.target_branch }}-${{ github.event.pull_request.number }}-${{ github.event.pull_request.head.ref }}
+      
+      - name: build
+        run: |
+          wget https://www.nuget.org/api/v2/package/Krafs.Rimworld.Ref/1.2.2753 -O rwref.zip
+          unzip rwref.zip -d reference
+          wget https://raw.githubusercontent.com/perkinslr/CombatExtended/Development/Make.py -O - > Make.py
+          git status
+          ls -l reference/ref/net472
+          python3 Make.py --all-libs --verbose --reference reference/ref/net472/
+          git status
+
+      - uses: stefanzweifel/git-auto-commit-action@v4
+        with:
+          commit_message: Rebuild Assembly
+          file_pattern: ./Assemblies/CombatExtended.dll
+          branch: test-branch-${{ github.event.inputs.target_branch }}-${{ github.event.pull_request.number }}-${{ github.event.pull_request.head.ref }}
+
+
+
+      - name: Create comment
+        uses: peter-evans/create-or-update-comment@v1
+        with:
+          issue-number: ${{ github.event.pull_request.number }}
+          body: |
+            The testing branch for this PR is [test-branch-${{ github.event.inputs.target_branch }}-${{ github.event.pull_request.number }}-${{ github.event.pull_request.head.ref }}](https://github.com/${{ github.repository }}/tree/test-branch-${{ github.event.inputs.target_branch }}-${{ github.event.pull_request.number }}-${{ github.event.pull_request.head.ref }})
+          

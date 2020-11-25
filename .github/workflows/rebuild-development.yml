@@ -1,0 +1,38 @@
+# This is a basic workflow to help you get started with Actions
+
+name: Build-Development
+
+# Controls when the action will run. Triggers the workflow on push or pull request
+# events but only for the test-gh-actions branch
+on:
+  workflow_dispatch:
+  push:
+    branches: [ Development ]
+    paths: Source/**
+
+# A workflow run is made up of one or more jobs that can run sequentially or in parallel
+jobs:
+  # This workflow contains a single job called "build"
+  build:
+    # The type of runner that the job will run on
+    runs-on: ubuntu-latest
+
+    # Steps represent a sequence of tasks that will be executed as part of the job
+    steps:
+      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+      - uses: actions/checkout@v2
+        with:
+          token: ${{ secrets.PAT }}
+      - name: prepare rebuild
+        run: |
+          wget https://www.nuget.org/api/v2/package/Krafs.Rimworld.Ref/1.2.2753 -O rwref.zip
+          unzip rwref.zip -d reference
+      - name: build
+        run: python3 Make.py --all-libs --reference reference/ref/net472/
+      - uses: stefanzweifel/git-auto-commit-action@v4
+        with:
+          commit_message: Rebuild Assembly
+          branch: Development
+          file_pattern: ./Assemblies/CombatExtended.dll
+          push_options: '--force'
+      
