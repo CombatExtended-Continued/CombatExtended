@@ -19,33 +19,37 @@ jobs:
       uses: warrenbuckley/Setup-MSBuild@v1
     - name: Build with MSBuild
       run: msbuild Source/CombatExtended.sln -p:Configuration=Release
-    - name: Copy Assemblies
-      run: Copy-Item -Path ".\Assemblies\" -Destination ".\dist\Assemblies" -Recurse
-    - name: Copy About
-      run: Copy-Item -Path ".\About\" -Destination ".\dist\About" -Recurse
-    - name: Copy Defs
-      run: Copy-Item -Path ".\Defs\" -Destination ".\dist\Defs" -Recurse
-    - name: Copy Languages
-      run: Copy-Item -Path ".\Languages\" -Destination ".\dist\Languages" -Recurse
-    - name: Copy Patches
-      run: Copy-Item -Path ".\Patches\" -Destination ".\dist\Patches" -Recurse
-    - name: Copy Royalty
-      run: Copy-Item -Path ".\Royalty\" -Destination ".\dist\Royalty" -Recurse
-    - name: Copy Sounds
-      run: Copy-Item -Path ".\Sounds\" -Destination ".\dist\Sounds" -Recurse
-    - name: Copy Textures
-      run: Copy-Item -Path ".\Textures\" -Destination ".\dist\Textures" -Recurse
-    - name: Copy LoadFolders.xml
-      run: Copy-Item -Path ".\LoadFolders.xml" -Destination ".\dist"
-    - name: Copy README.md
-      run: Copy-Item -Path ".\README.md" -Destination ".\dist"
-    - name: Copy SupportedThirdPartyMods.md
-      run: Copy-Item -Path ".\SupportedThirdPartyMods.md" -Destination ".\dist"
-    - name: Upload artifact
-      uses: actions/upload-artifact@v1.0.0
+    # - name: Copy Assemblies
+    #   run: Copy-Item -Path ".\Assemblies\" -Destination ".\dist\Assemblies" -Recurse
+    # - name: Copy About
+    #   run: Copy-Item -Path ".\About\" -Destination ".\dist\About" -Recurse
+    # - name: Copy Defs
+    #   run: Copy-Item -Path ".\Defs\" -Destination ".\dist\Defs" -Recurse
+    # - name: Copy Languages
+    #   run: Copy-Item -Path ".\Languages\" -Destination ".\dist\Languages" -Recurse
+    # - name: Copy Patches
+    #   run: Copy-Item -Path ".\Patches\" -Destination ".\dist\Patches" -Recurse
+    # - name: Copy Royalty
+    #   run: Copy-Item -Path ".\Royalty\" -Destination ".\dist\Royalty" -Recurse
+    # - name: Copy Sounds
+    #   run: Copy-Item -Path ".\Sounds\" -Destination ".\dist\Sounds" -Recurse
+    # - name: Copy Textures
+    #   run: Copy-Item -Path ".\Textures\" -Destination ".\dist\Textures" -Recurse
+    # - name: Copy LoadFolders.xml
+    #   run: Copy-Item -Path ".\LoadFolders.xml" -Destination ".\dist"
+    # - name: Copy README.md
+    #   run: Copy-Item -Path ".\README.md" -Destination ".\dist"
+    # - name: Copy SupportedThirdPartyMods.md
+    #   run: Copy-Item -Path ".\SupportedThirdPartyMods.md" -Destination ".\dist"
+    - name: Zip Assets
+      uses: papeloto/action-zip@v1
       with:
-        # Artifact name
-        name: CombatExtended
-        # Directory containing files to upload
-        path: dist
-
+        files: Assemblies/ About/ Defs/ Languages/ Patches/ Royalty/ Sounds/ Textures/ LoadFolders.xml README.md SupportedThirdPartyMods.md
+        dest: build.zip
+    - name: Upload to S3
+      uses: shallwefootball/s3-upload-action@master
+      with:
+        aws_key_id: ${{ secrets.AWS_KEY_ID }}
+        aws_secret_access_key: ${{ secrets.AWS_SECRET_ACCESS_KEY}}
+        aws_bucket: ${{ secrets.AWS_BUCKET }}
+        source_dir: 'build.zip'
