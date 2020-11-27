@@ -1,0 +1,39 @@
+using Verse;
+using ProjectRimFactory.Industry;
+using System;
+
+namespace CombatExtended.Compatibility
+{
+    static class ProjectRimFactoryCompat
+    {
+        public static bool CanInstall()
+        {
+            return ModLister.GetModWithIdentifier("spdskatr.projectrimfactory") != null;
+        }
+
+        public static void Install()
+        {
+            Building_FuelingMachine.RegisterRefuelable(typeof(Building_TurretGunCE), FindCompAmmoUser, TestAmmo, ReloadAction);
+        }
+
+        private static int TestAmmo(object compObject, Thing ammo)
+        {
+            var comp = compObject as CompAmmoUser;
+            if (ammo.def != comp.CurrentAmmo) { return 0; }
+            return Math.Min(comp.MissingToFullMagazine, ammo.stackCount);
+        }
+
+        private static void ReloadAction(object compObject, Thing ammo)
+        {
+            var comp = compObject as CompAmmoUser;
+            comp.LoadAmmo(ammo);
+        }
+
+        static object FindCompAmmoUser(Building building)
+        {
+            var compAmmoUser = (building as Building_TurretGunCE).CompAmmo;
+            if (!compAmmoUser.FullMagazine) return compAmmoUser;
+            return null;
+        }
+    }
+}
