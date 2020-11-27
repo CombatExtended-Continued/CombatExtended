@@ -11,15 +11,8 @@ jobs:
 
     steps:
     - uses: actions/checkout@v2
-    - name: Setup Nuget.exe
-      uses: warrenbuckley/Setup-Nuget@v1
-    - name: Restore packages
-      run: nuget restore Source/CombatExtended.sln
-    - name: Setup MSBuild.exe
-      uses: warrenbuckley/Setup-MSBuild@v1
-    - name: Build with MSBuild
-      run: msbuild Source/CombatExtended.sln -p:Configuration=Release
-    # - name: Copy Assemblies
+    - name: build
+      run: python3 Make.py --all-libs --reference reference/ref/net472/     # - name: Copy Assemblies
     #   run: Copy-Item -Path ".\Assemblies\" -Destination ".\dist\Assemblies" -Recurse
     # - name: Copy About
     #   run: Copy-Item -Path ".\About\" -Destination ".\dist\About" -Recurse
