@@ -21,10 +21,11 @@ jobs:
         git pull --no-commit --allow-unrelated-histories -X theirs origin pull/${{ github.event.pull_request.number }}${{ github.event.inputs.PR }}/head:
         git status
         wget https://raw.githubusercontent.org/CombatExtended-Continued/CombatExtended/Development/Make.py -O Make.py
-        mkdir Assemblies
+        mkdir -p Assemblies
+        mkdir -p ${{ runner.temp }}/downloads
     - name: build
       run: |
-        python3 Make.py --download-libs --all-libs 
+        TEMP=${{ runner.temp }}/ python3 Make.py --download-libs --all-libs 
     - name: Zip Assets
       uses: papeloto/action-zip@v1
       with:
