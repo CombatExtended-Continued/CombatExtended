@@ -4,7 +4,7 @@
 	<RecipeDef ParentName="MakeStoneBlocksBase">
 		<defName>Make_FSXDrugLab</defName>
 		<label>Synthesize 10 FSX</label>
-		<description>Synthesize 10 FSX from chemfuel using simple chemistry equipment.</description>
+		<description>Synthesize 10 FSX from chemfuel using chemistry equipment.</description>
 		<jobString>Synthesizing FSX</jobString>
 		<ingredients>
 		<li>
@@ -22,13 +22,16 @@
 		</thingDefs>		
 		</fixedIngredientFilter>
 		<workAmount>1000</workAmount>
-		<workSkill>Crafting</workSkill>		
+		<workSkill>Intellectual</workSkill>		
 		<workSpeedStat>DrugSynthesisSpeed</workSpeedStat>
-		<effectWorking>Smith</effectWorking>
+		<effectWorking>Cook</effectWorking>
 		<soundWorking>Recipe_Drug</soundWorking>	
 		<recipeUsers Inherit="false">
 			<li>DrugLab</li>
-		</recipeUsers>		
+		</recipeUsers>	
+		<skillRequirements>
+			<Intellectual>4</Intellectual>
+		</skillRequirements>	
 		<products>
 			<FSX>7</FSX>
 		</products>
@@ -37,7 +40,7 @@
 	<RecipeDef ParentName="MakeStoneBlocksBase">
 		<defName>Make_FSXRefinery</defName>
 		<label>Synthesize 10 FSX</label>
-		<description>Synthesize 10 FSX from chemfuel using the biofuel refinery's more efficient systems.</description>
+		<description>Use the refinery to synthesize 10 FSX from chemfuel.</description>
 		<jobString>Synthesizing FSX</jobString>
 		<ingredients>
 		<li>
@@ -54,11 +57,11 @@
 			<li>Chemfuel</li>		
 		</thingDefs>		
 		</fixedIngredientFilter>
-		<workAmount>850</workAmount>
+		<workAmount>800</workAmount>
 		<workSkill>Crafting</workSkill>		
-		<workSpeedStat>DrugSynthesisSpeed</workSpeedStat>
-		<effectWorking>Smith</effectWorking>
-		<soundWorking>Recipe_Drug</soundWorking>	
+    	<workSpeedStat>GeneralLaborSpeed</workSpeedStat>
+		<effectWorking>Cook</effectWorking>
+		<soundWorking>Recipe_Cremate</soundWorking>	
 		<recipeUsers Inherit="false">
 			<li>BiofuelRefinery</li>
 		</recipeUsers>		
