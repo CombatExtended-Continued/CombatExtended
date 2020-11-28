@@ -1,8 +1,7 @@
 name: Build
 on:
+  workflow_dispatch:
   push:
-    branches: [ master, Development ]
-  pull_request:
     branches: [ master, Development ]
 
 jobs:
@@ -12,29 +11,9 @@ jobs:
     steps:
     - uses: actions/checkout@v2
     - name: build
-      run: python3 Make.py --all-libs
-    # - name: Copy Assemblies
-    #   run: Copy-Item -Path ".\Assemblies\" -Destination ".\dist\Assemblies" -Recurse
-    # - name: Copy About
-    #   run: Copy-Item -Path ".\About\" -Destination ".\dist\About" -Recurse
-    # - name: Copy Defs
-    #   run: Copy-Item -Path ".\Defs\" -Destination ".\dist\Defs" -Recurse
-    # - name: Copy Languages
-    #   run: Copy-Item -Path ".\Languages\" -Destination ".\dist\Languages" -Recurse
-    # - name: Copy Patches
-    #   run: Copy-Item -Path ".\Patches\" -Destination ".\dist\Patches" -Recurse
-    # - name: Copy Royalty
-    #   run: Copy-Item -Path ".\Royalty\" -Destination ".\dist\Royalty" -Recurse
-    # - name: Copy Sounds
-    #   run: Copy-Item -Path ".\Sounds\" -Destination ".\dist\Sounds" -Recurse
-    # - name: Copy Textures
-    #   run: Copy-Item -Path ".\Textures\" -Destination ".\dist\Textures" -Recurse
-    # - name: Copy LoadFolders.xml
-    #   run: Copy-Item -Path ".\LoadFolders.xml" -Destination ".\dist"
-    # - name: Copy README.md
-    #   run: Copy-Item -Path ".\README.md" -Destination ".\dist"
-    # - name: Copy SupportedThirdPartyMods.md
-    #   run: Copy-Item -Path ".\SupportedThirdPartyMods.md" -Destination ".\dist"
+      run: |
+        mkdir Assemblies
+        python3 Make.py --download-libs --all-libs 
     - name: Zip Assets
       uses: papeloto/action-zip@v1
       with:
@@ -47,3 +26,4 @@ jobs:
         aws_secret_access_key: ${{ secrets.AWS_SECRET_ACCESS_KEY}}
         aws_bucket: ${{ secrets.AWS_BUCKET }}
         source_dir: 'build.zip'
+
