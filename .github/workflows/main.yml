@@ -13,7 +13,7 @@ jobs:
     - name: build
       run: |
         mkdir Assemblies
-        mkdir -p ${{ runner.temp }}
+        mkdir -p ${{ runner.temp }}/downloads
         TEMP=${{ runner.temp }}/ python3 Make.py --download-libs --all-libs 
     - name: Zip Assets
       uses: papeloto/action-zip@v1
