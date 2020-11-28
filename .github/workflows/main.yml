@@ -14,17 +14,22 @@ jobs:
       run: |
         mkdir -p Assemblies
         mkdir -p ${{ runner.temp }}/downloads
-        TEMP=${{ runner.temp }}/ python3 Make.py --download-libs --all-libs 
-    - name: Zip Assets
-      uses: papeloto/action-zip@v1
-      with:
-        files: Assemblies/ About/ Defs/ Languages/ Patches/ Royalty/ Sounds/ Textures/ LoadFolders.xml README.md SupportedThirdPartyMods.md
-        dest: build.zip
+        TEMP=${{ runner.temp }}/ python3 Make.py --download-libs --all-libs
+    - name: package
+      run: |
+        mkdir build
+        cp -r Assemblies/ About/ Defs/ Languages/ Patches/ Royalty/ Sounds/ Textures/ LoadFolders.xml README.md SupportedThirdPartyMods.md build
+        
+#    - name: Zip Assets
+#      uses: papeloto/action-zip@v1
+#      with:
+#        files: 
+#        dest: build.zip
     - name: Upload to S3
       uses: shallwefootball/s3-upload-action@master
       with:
         aws_key_id: ${{ secrets.AWS_KEY_ID }}
         aws_secret_access_key: ${{ secrets.AWS_SECRET_ACCESS_KEY}}
         aws_bucket: ${{ secrets.AWS_BUCKET }}
-        source_dir: 'build.zip'
+        source_dir: 'build'
 
