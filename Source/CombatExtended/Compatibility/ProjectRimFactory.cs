@@ -19,13 +19,15 @@ namespace CombatExtended.Compatibility
         private static int TestAmmo(object compObject, Thing ammo)
         {
             var comp = compObject as CompAmmoUser;
-            if (ammo.def != comp.CurrentAmmo) { return 0; }
+            // Not the correct ammo type (I'm looking at FMJ, but turret asks for AP)
+            if (ammo.def != comp.SelectedAmmo) { return 0; }
             return Math.Min(comp.MissingToFullMagazine, ammo.stackCount);
         }
 
         private static void ReloadAction(object compObject, Thing ammo)
         {
             var comp = compObject as CompAmmoUser;
+            if (ammo.def != comp.CurrentAmmo) { comp.TryUnload(); }
             comp.LoadAmmo(ammo);
         }
 
