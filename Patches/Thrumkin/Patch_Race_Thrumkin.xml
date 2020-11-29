@@ -26,15 +26,48 @@
 					<li Class="CombatExtended.CompProperties_Suppressable" />
 				</value>
 			</li>
+			<!-- thrumkin rebalances -->
 			<li Class="PatchOperationAdd">
 				<xpath>Defs/AlienRace.ThingDef_AlienRace[defName = "Thrumkin"]/statBases</xpath>
 				<value>
+					<!-- combat stats -->
 					<AimingAccuracy>0.9</AimingAccuracy>
 					<MeleeCritChance>1.34</MeleeCritChance>
 					<MeleeParryChance>1.27</MeleeParryChance>
 					<Suppressability>0.8</Suppressability>
 					<ReloadSpeed>0.9</ReloadSpeed>
 					<MeleeDodgeChance>1.06</MeleeDodgeChance>
+				</value>
+			</li>
+			<!-- should've modified the values sooner -->
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/AlienRace.ThingDef_AlienRace[defName = "Thrumkin"]/statBases/Mass</xpath>
+				<value>
+					<Mass>120</Mass>
+				</value>
+			</li>
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/AlienRace.ThingDef_AlienRace[defName = "Thrumkin"]/statBases/ArmorRating_Sharp</xpath>
+				<value>
+					<ArmorRating_Sharp>2</ArmorRating_Sharp>
+				</value>
+			</li>
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/AlienRace.ThingDef_AlienRace[defName = "Thrumkin"]/statBases/ArmorRating_Blunt</xpath>
+				<value>
+					<ArmorRating_Blunt>3</ArmorRating_Blunt>
+				</value>
+			</li>
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/AlienRace.ThingDef_AlienRace[defName = "Thrumkin"]/statBases/LeatherAmount</xpath>
+				<value>
+					<LeatherAmount>20</LeatherAmount>
+				</value>
+			</li>
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/AlienRace.ThingDef_AlienRace[defName = "Thrumkin"]/comps/li[@Class="CompProperties_Shearable"]/woolAmount</xpath>
+				<value>
+					<woolAmount>10</woolAmount>
 				</value>
 			</li>
 			<!-- Unarmed -->
@@ -47,24 +80,24 @@
 							<capacities>
 								<li>Scratch</li>
 							</capacities>
-							<power>34</power>
-							<cooldownTime>2.39</cooldownTime>
+							<power>35</power>
+							<cooldownTime>1.73</cooldownTime>
 							<linkedBodyPartsGroup>HornAttackTool</linkedBodyPartsGroup>
 							<chanceFactor>0.4</chanceFactor>
-							<armorPenetrationSharp>0.25</armorPenetrationSharp>
-							<armorPenetrationBlunt>3.669</armorPenetrationBlunt>
+							<armorPenetrationSharp>0.2</armorPenetrationSharp>
+							<armorPenetrationBlunt>2.996</armorPenetrationBlunt>
 						</li>
 						<li Class="CombatExtended.ToolCE">
 							<label>horn</label>
 							<capacities>
 								<li>Stab</li>
 							</capacities>
-							<power>21</power>
-							<cooldownTime>2.39</cooldownTime>
+							<power>22</power>
+							<cooldownTime>2.08</cooldownTime>
 							<linkedBodyPartsGroup>HornAttackTool</linkedBodyPartsGroup>
 							<chanceFactor>0.4</chanceFactor>
-							<armorPenetrationSharp>2.45</armorPenetrationSharp>
-							<armorPenetrationBlunt>3.669</armorPenetrationBlunt>
+							<armorPenetrationSharp>1.39</armorPenetrationSharp>
+							<armorPenetrationBlunt>2.081</armorPenetrationBlunt>
 						</li>
 						<li Class="CombatExtended.ToolCE">
 							<label>left fist</label>
@@ -72,7 +105,7 @@
 								<li>Blunt</li>
 							</capacities>
 							<power>2</power>
-							<cooldownTime>1.12</cooldownTime>
+							<cooldownTime>1.16</cooldownTime>
 							<linkedBodyPartsGroup>LeftHand</linkedBodyPartsGroup>
 							<surpriseAttack>
 							<extraMeleeDamages>
@@ -82,7 +115,7 @@
 								</li>
 							</extraMeleeDamages>
 							</surpriseAttack>
-							<armorPenetrationBlunt>0.528</armorPenetrationBlunt>
+							<armorPenetrationBlunt>0.595</armorPenetrationBlunt>
 						</li>
 						<li Class="CombatExtended.ToolCE">
 							<label>right fist</label>
@@ -90,7 +123,7 @@
 								<li>Blunt</li>
 							</capacities>
 							<power>2</power>
-							<cooldownTime>1.12</cooldownTime>
+							<cooldownTime>1.16</cooldownTime>
 							<linkedBodyPartsGroup>RightHand</linkedBodyPartsGroup>
 							<surpriseAttack>
 								<extraMeleeDamages>
@@ -100,7 +133,7 @@
 									</li>
 								</extraMeleeDamages>
 							</surpriseAttack>
-							<armorPenetrationBlunt>0.528</armorPenetrationBlunt>
+							<armorPenetrationBlunt>0.595</armorPenetrationBlunt>
 						</li>
 						<li Class="CombatExtended.ToolCE">
 							<label>teeth</label>
@@ -108,11 +141,11 @@
 								<li>Bite</li>
 							</capacities>
 							<power>13</power>
-							<cooldownTime>1.9</cooldownTime>
+							<cooldownTime>1.94</cooldownTime>
 							<linkedBodyPartsGroup>Teeth</linkedBodyPartsGroup>
 							<chanceFactor>0.2</chanceFactor>
 							<armorPenetrationSharp>0.01</armorPenetrationSharp>
-							<armorPenetrationBlunt>1.467</armorPenetrationBlunt>
+							<armorPenetrationBlunt>1.561</armorPenetrationBlunt>
 						</li>
 						<li Class="CombatExtended.ToolCE">
 							<label>head</label>
@@ -120,11 +153,11 @@
 								<li>Blunt</li>
 							</capacities>
 							<power>3</power>
-							<cooldownTime>4.78</cooldownTime>
+							<cooldownTime>3.12</cooldownTime>
 							<linkedBodyPartsGroup>HeadAttackTool</linkedBodyPartsGroup>
 							<ensureLinkedBodyPartsGroupAlwaysUsable>true</ensureLinkedBodyPartsGroupAlwaysUsable>
 							<chanceFactor>0.3</chanceFactor>
-							<armorPenetrationBlunt>0.917</armorPenetrationBlunt>
+							<armorPenetrationBlunt>0.925</armorPenetrationBlunt>
 						</li>
 					</tools>
 				</value>
