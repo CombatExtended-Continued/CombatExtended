@@ -8,7 +8,7 @@ namespace CombatExtended.Compatibility
     {
         public static bool CanInstall()
         {
-            return ModLister.GetModWithIdentifier("spdskatr.projectrimfactory") != null;
+            return ModLister.GetActiveModWithIdentifier("spdskatr.projectrimfactory") != null;
         }
 
         public static void Install()
