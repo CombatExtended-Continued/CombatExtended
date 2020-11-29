@@ -10,7 +10,7 @@
 		<operations>		
 
 
-		  <li Class="PatchOperationAddModExtension">
+		<li Class="PatchOperationAddModExtension">
 			<xpath>Defs/PawnKindDef[
 			defName="PJ_RebVillager" or
 			defName="PJ_RebCouncilman" or
@@ -21,16 +21,16 @@
 			defName="PJ_RebMerc"
 			]</xpath>
 			<value>
-			  <li Class="CombatExtended.LoadoutPropertiesExtension">
+				<li Class="CombatExtended.LoadoutPropertiesExtension">
 				<primaryMagazineCount>
-				  <min>3</min>
-				  <max>6</max>
+					<min>3</min>
+					<max>6</max>
 				</primaryMagazineCount>
-			  </li>
+				</li>
 			</value>
-		  </li>
-		  
-		  <li Class="PatchOperationAddModExtension">
+		</li>
+
+		<li Class="PatchOperationAddModExtension">
 			<xpath>Defs/PawnKindDef[
 			defName="PJ_ImpInspector" or
 			defName="PJ_ImpTaxOfficer" or
@@ -42,16 +42,16 @@
 			defName="PJ_ScoutTrooper"
 			]</xpath>
 			<value>
-			  <li Class="CombatExtended.LoadoutPropertiesExtension">
+				<li Class="CombatExtended.LoadoutPropertiesExtension">
 				<primaryMagazineCount>
-				  <min>3</min>
-				  <max>6</max>
+					<min>3</min>
+					<max>6</max>
 				</primaryMagazineCount>
-			  </li>
+				</li>
 			</value>
-		  </li>
-			
-		  <li Class="PatchOperationAddModExtension">
+		</li>
+
+		<li Class="PatchOperationAddModExtension">
 			<xpath>Defs/PawnKindDef[
 			defName="PJ_ScumSoldier" or
 			defName="PJ_Ruffian" or
@@ -59,54 +59,48 @@
 			defName="PJ_BountyHunter" 
 			]</xpath>
 			<value>
-			  <li Class="CombatExtended.LoadoutPropertiesExtension">
+				<li Class="CombatExtended.LoadoutPropertiesExtension">
 				<primaryMagazineCount>
-				  <min>3</min>
-				  <max>6</max>
+					<min>3</min>
+					<max>6</max>
 				</primaryMagazineCount>
-			  </li>
+				</li>
 			</value>
-		  </li>
+		</li>  
 		  
-		  
-			<li Class="PatchOperationAdd">
-				<xpath>Defs/ThingDef[defName="Apparel_Backpack"]/apparel/tags</xpath>
+		<li Class="PatchOperationAdd">
+			<xpath>Defs/ThingDef[defName="Apparel_Backpack"]/apparel/tags</xpath>
+			<value>
+				<li>PJ_Imp</li>
+				<li>PJ_Rebel</li>
+				<li>PJ_Scum</li>
+			</value>
+		</li>
+			
+			
+		<li Class="PatchOperationConditional">
+			<xpath>/Defs/ThingDef[defName="PJ_ImperialCredit"]/statBases</xpath>
+			<nomatch Class="PatchOperationAdd">
+				<xpath>/Defs/ThingDef[defName="PJ_ImperialCredit"]</xpath>
 				<value>
-					<li>PJ_Imp</li>
-					<li>PJ_Rebel</li>
-					<li>PJ_Scum</li>
+					<statBases/>
 				</value>
-			</li>
-			
-			
-			<li Class="PatchOperationConditional">
-				<xpath>/Defs/ThingDef[defName="PJ_ImperialCredit"]/statBases</xpath>
-				<nomatch Class="PatchOperationAdd">
-					<xpath>/Defs/ThingDef[defName="PJ_ImperialCredit"]</xpath>
-					<value>
-						<statBases/>
-					</value>
-				</nomatch>
-				<match Class="PatchOperationAdd">
-					<xpath>/Defs/ThingDef[defName="PJ_ImperialCredit"]</xpath>
-					<value>
-					</value>
-				</match>
-			</li>
-
-
-			<li Class="PatchOperationAdd">
-				<xpath>Defs/ThingDef[defName="PJ_ImperialCredit"]/statBases</xpath>
+			</nomatch>
+			<match Class="PatchOperationAdd">
+				<xpath>/Defs/ThingDef[defName="PJ_ImperialCredit"]</xpath>
 				<value>
-					<Bulk>0.001</Bulk>
 				</value>
-			</li>
-			
+			</match>
+		</li>
 
-		
 
-		
-  
+		<li Class="PatchOperationAdd">
+			<xpath>Defs/ThingDef[defName="PJ_ImperialCredit"]/statBases</xpath>
+			<value>
+				<Bulk>0.001</Bulk>
+			</value>
+		</li>
+			  
 		</operations>
 		</match>
 	</Operation>
