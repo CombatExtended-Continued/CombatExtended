@@ -195,16 +195,26 @@
 		</value>
 	</Operation>
 
-	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/ThingDef[defName="Boomalope"]/comps/li[@Class="CompProperties_Milkable"]</xpath>
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="Boomalope"]/comps</xpath>
 		<value>
 			<li Class="CombatExtended.CompProperties_ShearableRenameable">
-			  <compClass>CombatExtended.CompShearableRenameable</compClass>
-			  <growthLabel>Chemical fullness</growthLabel>
-			  <shearIntervalDays>10</shearIntervalDays>
-			  <woolAmount>10</woolAmount>
-			  <woolDef>FSX</woolDef>
+				<compClass>CombatExtended.CompShearableRenameable</compClass>
+				<growthLabel>Secretion level</growthLabel>
+				<shearIntervalDays>10</shearIntervalDays>
+				<woolAmount>10</woolAmount>
+				<woolDef>FSX</woolDef>
 			</li>
+		</value>
+	</Operation>
+
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="Boomalope"]</xpath>
+		<value>
+			<butcherProducts>
+			<FSX>14</FSX>
+			</butcherProducts>
 		</value>
 	</Operation>
 
