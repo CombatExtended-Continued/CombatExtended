@@ -11,10 +11,14 @@ namespace CombatExtended.Compatibility
                 EDShields.Install();
             }
 
-            Log.Message($"VanillaFurnitureExpandedShields.CanInstall() - {VanillaFurnitureExpandedShields.CanInstall()}");
             if (VanillaFurnitureExpandedShields.CanInstall())
             {
                 VanillaFurnitureExpandedShields.Install();
+            }
+
+            if (ProjectRimFactoryCompat.CanInstall())
+            {
+                ProjectRimFactoryCompat.Install();
             }
         }
     }
