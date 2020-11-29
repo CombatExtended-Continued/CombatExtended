@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="utf-8" ?>
+
+<Patch>
+	<Operation Class="PatchOperationFindMod">
+			<mods>
+				<li>Psysword</li>
+			</mods>
+		<match Class="PatchOperationSequence">
+		<operations>
+
+			<!-- Psysword -->			
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="MeleeWeapon_PsySword"]/tools</xpath>
+				<value>
+					<tools>
+						<li Class="CombatExtended.ToolCE">
+						  <label>handle</label>
+						  <capacities>
+							<li>Blunt</li>
+						  </capacities>
+						  <power>6</power>
+						  <cooldownTime>1.89</cooldownTime>
+						  <armorPenetrationBlunt>0.65</armorPenetrationBlunt>
+						  <linkedBodyPartsGroup>Handle</linkedBodyPartsGroup>
+						</li>	
+				
+						<li Class="CombatExtended.ToolCE">
+						  <label>edge</label>
+						  <capacities>
+							<li>Cut</li>
+						  </capacities>
+						  <power>27</power>
+        <extraMeleeDamages>
+          <li>
+            <def>Psy_SwordCut</def>
+            <amount>13</amount>
+            <chance>0.7</chance>
+          </li>
+        </extraMeleeDamages>
+						  <cooldownTime>1.46</cooldownTime>
+						  <armorPenetrationBlunt>8</armorPenetrationBlunt>
+						  <armorPenetrationSharp>4</armorPenetrationSharp>
+						  <linkedBodyPartsGroup>Edge</linkedBodyPartsGroup>
+						</li>
+
+						<li Class="CombatExtended.ToolCE">
+						  <label>point</label>
+						  <capacities>
+							<li>Stab</li>
+						  </capacities>
+						  <power>24</power>
+        <extraMeleeDamages>
+          <li>
+            <def>Psy_SwordStab</def>
+            <amount>12</amount>
+            <chance>0.7</chance>
+          </li>
+        </extraMeleeDamages>
+						  <cooldownTime>1.44</cooldownTime>
+						  <chanceFactor>1.33</chanceFactor>
+						  <armorPenetrationBlunt>4</armorPenetrationBlunt>
+						  <armorPenetrationSharp>8</armorPenetrationSharp>
+						  <linkedBodyPartsGroup>Point</linkedBodyPartsGroup>
+						</li>		
+					</tools>
+				</value>
+			</li>
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName="MeleeWeapon_PsySword"]</xpath>
+				<value>
+	                                                              <statBases>
+					<Bulk>7</Bulk>
+      		                                                <MeleeCounterParryBonus>0.9</MeleeCounterParryBonus>
+                                                                              </statBases>
+				</value>
+			</li>
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName="MeleeWeapon_PsySword"]/equippedStatOffsets</xpath>
+				<value>
+				<MeleeCritChance>1.0</MeleeCritChance>
+				<MeleeParryChance>0.70</MeleeParryChance>
+				<MeleeDodgeChance>0.50</MeleeDodgeChance>	
+				</value>
+			</li>
+
+			<!-- Psysword  bladelink-->			
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="MeleeWeapon_PsySwordBladelink"]/tools</xpath>
+				<value>
+					<tools>
+						<li Class="CombatExtended.ToolCE">
+						  <label>handle</label>
+						  <capacities>
+							<li>Blunt</li>
+						  </capacities>
+						  <power>6</power>
+						  <cooldownTime>1.89</cooldownTime>
+						  <armorPenetrationBlunt>0.65</armorPenetrationBlunt>
+						  <linkedBodyPartsGroup>Handle</linkedBodyPartsGroup>
+						</li>	
+				
+						<li Class="CombatExtended.ToolCE">
+						  <label>edge</label>
+						  <capacities>
+							<li>Cut</li>
+						  </capacities>
+						  <power>28</power>
+        <extraMeleeDamages>
+          <li>
+            <def>Psy_SwordCut</def>
+            <amount>18</amount>
+            <chance>0.7</chance>
+          </li>
+        </extraMeleeDamages>
+						  <cooldownTime>1.36</cooldownTime>
+						  <armorPenetrationBlunt>9</armorPenetrationBlunt>
+						  <armorPenetrationSharp>7</armorPenetrationSharp>
+						  <linkedBodyPartsGroup>Edge</linkedBodyPartsGroup>
+						</li>
+
+						<li Class="CombatExtended.ToolCE">
+						  <label>point</label>
+						  <capacities>
+							<li>Stab</li>
+						  </capacities>
+						  <power>25</power>
+        <extraMeleeDamages>
+          <li>
+            <def>Psy_SwordStab</def>
+            <amount>18</amount>
+            <chance>0.7</chance>
+          </li>
+        </extraMeleeDamages>
+						  <cooldownTime>1.34</cooldownTime>
+						  <chanceFactor>1.33</chanceFactor>
+						  <armorPenetrationBlunt>5</armorPenetrationBlunt>
+						  <armorPenetrationSharp>12</armorPenetrationSharp>
+						  <linkedBodyPartsGroup>Point</linkedBodyPartsGroup>
+						</li>		
+					</tools>
+				</value>
+			</li>
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName="MeleeWeapon_PsySwordBladelink"]/statBases</xpath>
+				<value>
+					<Bulk>7</Bulk>
+      		                                                <MeleeCounterParryBonus>0.9</MeleeCounterParryBonus>
+				</value>
+			</li>
+
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName="MeleeWeapon_PsySwordBladelink"]/equippedStatOffsets</xpath>
+				<value>
+				<MeleeCritChance>1.2</MeleeCritChance>
+				<MeleeParryChance>0.80</MeleeParryChance>
+				<MeleeDodgeChance>0.75</MeleeDodgeChance>	
+				</value>
+			</li>
+
+			
+		</operations>
+		</match>
+	</Operation>
+</Patch> 
