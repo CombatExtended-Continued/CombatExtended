@@ -1,0 +1,1207 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+
+	<Operation Class="PatchOperationFindMod">
+    <mods>
+		<li>[JDS] Star Wars BlasTech Industries</li>
+    </mods>
+		<match Class="PatchOperationSequence">
+		<operations>
+				
+				<!-- DC Series -->
+					<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[
+					defName="DC-17_Blaster_Pistol" or
+					defName="DC17B_Blaster_Pistol"
+					]/tools</xpath>
+					<value>
+					  <tools>
+						<li Class="CombatExtended.ToolCE">
+						  <label>grip</label>
+						  <capacities>
+							<li>Blunt</li>
+						  </capacities>
+						  <power>2</power>
+						  <cooldownTime>1.54</cooldownTime>
+						  <chanceFactor>1.5</chanceFactor>
+						  <armorPenetrationBlunt>0.555</armorPenetrationBlunt>
+						  <linkedBodyPartsGroup>Grip</linkedBodyPartsGroup>
+						</li>
+						<li Class="CombatExtended.ToolCE">
+						  <label>muzzle</label>
+						  <capacities>
+							<li>Poke</li>
+						  </capacities>
+						  <power>2</power>
+						  <cooldownTime>1.54</cooldownTime>
+						  <armorPenetrationBlunt>0.555</armorPenetrationBlunt>
+						  <linkedBodyPartsGroup>Muzzle</linkedBodyPartsGroup>
+						</li>
+					  </tools>
+					</value>
+				  </li>
+
+				  <li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[
+					defName="DC-15S_Blaster_Carbine" or
+					defName="DC-15A_Blaster_Rifle" or
+					defName="Z6_Rotary_Blaster_Cannon" or
+					defName="DC-17M_Repeating_Blaster_Rifle" or			
+					defName="DC15x_Sinper_Rifle"				
+					]/tools</xpath>
+					<value>
+					  <tools>
+						<li Class="CombatExtended.ToolCE">
+						  <label>stock</label>
+						  <capacities>
+							<li>Blunt</li>
+						  </capacities>
+						  <power>8</power>
+						  <cooldownTime>1.55</cooldownTime>
+						  <chanceFactor>1.5</chanceFactor>
+						  <armorPenetrationBlunt>2.755</armorPenetrationBlunt>
+						  <linkedBodyPartsGroup>Stock</linkedBodyPartsGroup>
+						</li>
+						<li Class="CombatExtended.ToolCE">
+						  <label>barrel</label>
+						  <capacities>
+							<li>Blunt</li>
+						  </capacities>
+						  <power>5</power>
+						  <cooldownTime>2.02</cooldownTime>
+						  <armorPenetrationBlunt>1.630</armorPenetrationBlunt>
+						  <linkedBodyPartsGroup>Barrel</linkedBodyPartsGroup>
+						</li>
+						<li Class="CombatExtended.ToolCE">
+						  <label>muzzle</label>
+						  <capacities>
+							<li>Poke</li>
+						  </capacities>
+						  <power>8</power>
+						  <cooldownTime>1.55</cooldownTime>
+						  <armorPenetrationBlunt>2.755</armorPenetrationBlunt>
+						  <linkedBodyPartsGroup>Muzzle</linkedBodyPartsGroup>
+						</li>
+					  </tools>
+					</value>
+				  </li>
+			
+				<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+					<defName>DC-15S_Blaster_Carbine</defName>
+						<statBases>
+							<SightsEfficiency>1.0</SightsEfficiency>
+							<ShotSpread>0.14</ShotSpread>
+							<SwayFactor>1.01</SwayFactor>
+							<Bulk>6.35</Bulk>
+							<Mass>3.5</Mass>
+							<RangedWeapon_Cooldown>.065</RangedWeapon_Cooldown>
+						</statBases>
+						<Properties>
+							<recoilAmount>1.53</recoilAmount>
+							<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+							<hasStandardCommand>true</hasStandardCommand>
+							<defaultProjectile>Bullet_Blaster_Blue_Mid</defaultProjectile>
+							<warmupTime>0.8</warmupTime>
+							<burstShotCount>3</burstShotCount>
+							<ticksBetweenBurstShots>10</ticksBetweenBurstShots>
+							<range>40</range>
+							<soundCast>DC-15S_Blaster_Carbine_Shot</soundCast>
+							<muzzleFlashScale>9</muzzleFlashScale>
+							<soundCastTail>GunTail_Heavy</soundCastTail>
+						</Properties>
+						<FireModes>
+							<aimedBurstShotCount>2</aimedBurstShotCount>
+							<aiUseBurstMode>FALSE</aiUseBurstMode>
+							<aiAimMode>AimedShot</aiAimMode>
+						</FireModes>
+				</li>
+				
+				<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+					<defName>DC-15A_Blaster_Rifle</defName>
+						<statBases>
+							<SightsEfficiency>1.0</SightsEfficiency>
+							<ShotSpread>0.04</ShotSpread>
+							<SwayFactor>1.70</SwayFactor>
+							<Bulk>12.25</Bulk>
+							<Mass>4.3</Mass>
+							<RangedWeapon_Cooldown>1.2</RangedWeapon_Cooldown>
+						</statBases>
+						<Properties>
+							<recoilAmount>1.73</recoilAmount>
+							<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+							<hasStandardCommand>true</hasStandardCommand>
+							<defaultProjectile>Bullet_Blaster_Blue_Mid</defaultProjectile>
+							<warmupTime>0.6</warmupTime>
+							<burstShotCount>6</burstShotCount>
+							<ticksBetweenBurstShots>9</ticksBetweenBurstShots>
+							<range>55</range>
+							<soundCast>DC-15A_Blaster_Rifle_Shot</soundCast>
+							<muzzleFlashScale>9</muzzleFlashScale>
+							<soundCastTail>GunTail_Light</soundCastTail>
+						</Properties>
+						<FireModes>
+							<aimedBurstShotCount>3</aimedBurstShotCount>
+							<aiUseBurstMode>FALSE</aiUseBurstMode>
+							<aiAimMode>AimedShot</aiAimMode>
+						</FireModes>
+				</li>
+				
+				<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+					<defName>DC-17M_Repeating_Blaster_Rifle</defName>
+						<statBases>
+							<SightsEfficiency>1.0</SightsEfficiency>
+							<ShotSpread>0.14</ShotSpread>
+							<SwayFactor>1.34</SwayFactor>
+							<Bulk>7.20</Bulk>
+							<Mass>3.5</Mass>
+							<RangedWeapon_Cooldown>.5</RangedWeapon_Cooldown>
+						</statBases>
+						<Properties>
+							<recoilAmount>1.48</recoilAmount>
+							<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+							<hasStandardCommand>true</hasStandardCommand>
+							<defaultProjectile>Bullet_Blaster_Blue_Mid</defaultProjectile>
+							<warmupTime>0.8</warmupTime>
+							<burstShotCount>5</burstShotCount>
+							<ticksBetweenBurstShots>10</ticksBetweenBurstShots>
+							<range>30</range>
+							<soundCast>DC-17_Blaster_Pistol_Shot</soundCast>
+							<muzzleFlashScale>9</muzzleFlashScale>
+							<soundCastTail>GunTail_Heavy</soundCastTail>
+						</Properties>
+						<FireModes>
+							<aimedBurstShotCount>2</aimedBurstShotCount>
+							<aiUseBurstMode>FALSE</aiUseBurstMode>
+							<aiAimMode>AimedShot</aiAimMode>
+						</FireModes>
+				</li>
+				
+
+				<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+					<defName>DC15x_Sinper_Rifle</defName>
+						<statBases>
+							<SightsEfficiency>2.3</SightsEfficiency>
+							<ShotSpread>0.04</ShotSpread>
+							<SwayFactor>1.7</SwayFactor>
+							<Bulk>12.25</Bulk>
+							<Mass>5</Mass>
+							<RangedWeapon_Cooldown>2</RangedWeapon_Cooldown>
+						</statBases>
+						<Properties>
+							<recoilAmount>1.48</recoilAmount>
+							<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+							<hasStandardCommand>true</hasStandardCommand>
+							<defaultProjectile>Bullet_Blaster_Blue_High</defaultProjectile>
+							<warmupTime>3</warmupTime>
+							<range>75</range>
+							<soundCast>38x-targeting-rifle-sound-effects-battlefront-ii</soundCast>
+							<muzzleFlashScale>10</muzzleFlashScale>
+							<soundCastTail>GunTail_Heavy</soundCastTail>
+						</Properties>
+						<FireModes>
+							<aiAimMode>AimedShot</aiAimMode>
+						</FireModes>
+				</li>
+
+
+				<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+					<defName>Z6_Rotary_Blaster_Cannon</defName>
+						<statBases>
+							<SightsEfficiency>1.0</SightsEfficiency>
+							<ShotSpread>0.06</ShotSpread>
+							<SwayFactor>1.32</SwayFactor>
+							<Bulk>8.02</Bulk>
+							<Mass>30</Mass>
+							<RangedWeapon_Cooldown>2</RangedWeapon_Cooldown>
+						</statBases>
+						<Properties>
+							<recoilAmount>0.68</recoilAmount>
+							<recoilPattern>Mounted</recoilPattern>
+							<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+							<hasStandardCommand>true</hasStandardCommand>
+							<defaultProjectile>Bullet_Blaster_Blue_Low</defaultProjectile>
+							<warmupTime>1.5</warmupTime>
+							<ticksBetweenBurstShots>7</ticksBetweenBurstShots>
+							<burstShotCount>100</burstShotCount>
+							<range>60</range>
+							<soundCast>Z6_Rotary_Blaster_Cannon_Shot</soundCast>
+							<muzzleFlashScale>9</muzzleFlashScale>
+							<soundCastTail>GunTail_Medium</soundCastTail>
+						</Properties>
+						<FireModes>
+							<aimedBurstShotCount>50</aimedBurstShotCount>
+							<aiUseBurstMode>FALSE</aiUseBurstMode>
+							<aiAimMode>SuppressFire</aiAimMode>
+						</FireModes>
+				</li>
+
+
+				<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+					<defName>DC-17_Blaster_Pistol</defName>
+						<statBases>
+							<SightsEfficiency>1.0</SightsEfficiency>
+							<ShotSpread>0.18</ShotSpread>
+							<SwayFactor>0.87</SwayFactor>
+							<Bulk>1.75</Bulk>
+							<Mass>1.5</Mass>
+							<RangedWeapon_Cooldown>.9</RangedWeapon_Cooldown>
+						</statBases>
+						<Properties>
+							<recoilAmount>1.48</recoilAmount>
+							<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+							<hasStandardCommand>true</hasStandardCommand>
+							<defaultProjectile>Bullet_Blaster_Blue_Low</defaultProjectile>
+							<warmupTime>0.05</warmupTime>
+							<range>15</range>
+							<soundCast>DC-17_Blaster_Pistol_Shot</soundCast>
+							<muzzleFlashScale>7</muzzleFlashScale>
+							<soundCastTail>GunTail_Light</soundCastTail>
+						</Properties>
+						<FireModes />
+				</li>
+				
+				<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+					<defName>DC17B_Blaster_Pistol</defName>
+						<statBases>
+							<SightsEfficiency>1.0</SightsEfficiency>
+							<ShotSpread>0.18</ShotSpread>
+							<SwayFactor>0.87</SwayFactor>
+							<Bulk>1.75</Bulk>
+							<Mass>1.5</Mass>
+							<RangedWeapon_Cooldown>.9</RangedWeapon_Cooldown>
+						</statBases>
+						<Properties>
+							<recoilAmount>1.48</recoilAmount>
+							<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+							<hasStandardCommand>true</hasStandardCommand>
+							<defaultProjectile>Bullet_Blaster_Blue_Low</defaultProjectile>
+							<warmupTime>0.05</warmupTime>
+							<range>20</range>
+							<soundCast>DC-17_Blaster_Pistol_Shot</soundCast>
+							<muzzleFlashScale>7</muzzleFlashScale>
+							<soundCastTail>GunTail_Light</soundCastTail>
+						</Properties>
+						<FireModes />
+				</li>
+				
+				
+				<!-- E Series -->
+				  <li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[
+					defName="SE-14_Light_Blaster_Pistol"
+					]/tools</xpath>
+					<value>
+					  <tools>
+						<li Class="CombatExtended.ToolCE">
+						  <label>grip</label>
+						  <capacities>
+							<li>Blunt</li>
+						  </capacities>
+						  <power>2</power>
+						  <cooldownTime>1.54</cooldownTime>
+						  <chanceFactor>1.5</chanceFactor>
+						  <armorPenetrationBlunt>0.555</armorPenetrationBlunt>
+						  <linkedBodyPartsGroup>Grip</linkedBodyPartsGroup>
+						</li>
+						<li Class="CombatExtended.ToolCE">
+						  <label>muzzle</label>
+						  <capacities>
+							<li>Poke</li>
+						  </capacities>
+						  <power>2</power>
+						  <cooldownTime>1.54</cooldownTime>
+						  <armorPenetrationBlunt>0.555</armorPenetrationBlunt>
+						  <linkedBodyPartsGroup>Muzzle</linkedBodyPartsGroup>
+						</li>
+					  </tools>
+					</value>
+				  </li>
+
+				  <li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[
+					defName="E-5_Blaster_Rifle" or	
+					defName="EE-3_Carbine_Rifle" or			
+					defName="E-5S_Sniper_Rifle"			
+					]/tools</xpath>
+					<value>
+					  <tools>
+						<li Class="CombatExtended.ToolCE">
+						  <label>stock</label>
+						  <capacities>
+							<li>Blunt</li>
+						  </capacities>
+						  <power>8</power>
+						  <cooldownTime>1.55</cooldownTime>
+						  <chanceFactor>1.5</chanceFactor>
+						  <armorPenetrationBlunt>2.755</armorPenetrationBlunt>
+						  <linkedBodyPartsGroup>Stock</linkedBodyPartsGroup>
+						</li>
+						<li Class="CombatExtended.ToolCE">
+						  <label>barrel</label>
+						  <capacities>
+							<li>Blunt</li>
+						  </capacities>
+						  <power>5</power>
+						  <cooldownTime>2.02</cooldownTime>
+						  <armorPenetrationBlunt>1.630</armorPenetrationBlunt>
+						  <linkedBodyPartsGroup>Barrel</linkedBodyPartsGroup>
+						</li>
+						<li Class="CombatExtended.ToolCE">
+						  <label>muzzle</label>
+						  <capacities>
+							<li>Poke</li>
+						  </capacities>
+						  <power>8</power>
+						  <cooldownTime>1.55</cooldownTime>
+						  <armorPenetrationBlunt>2.755</armorPenetrationBlunt>
+						  <linkedBodyPartsGroup>Muzzle</linkedBodyPartsGroup>
+						</li>
+					  </tools>
+					</value>
+				  </li>
+
+				<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+					<defName>SE-14_Light_Blaster_Pistol</defName>
+						<statBases>
+							<SightsEfficiency>1.5</SightsEfficiency>
+							<ShotSpread>0.18</ShotSpread>
+							<SwayFactor>0.87</SwayFactor>
+							<Bulk>1.75</Bulk>
+							<Mass>1.5</Mass>
+							<RangedWeapon_Cooldown>.4</RangedWeapon_Cooldown>
+						</statBases>
+						<Properties>
+							<recoilAmount>1.48</recoilAmount>
+							<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+							<hasStandardCommand>true</hasStandardCommand>
+							<defaultProjectile>Bullet_Blaster_Red_Low</defaultProjectile>
+							<warmupTime>0.25</warmupTime>
+							<range>20</range>
+							<soundCast>E-5_Bblaster_Rifle_Shot</soundCast>
+							<muzzleFlashScale>7</muzzleFlashScale>
+							<soundCastTail>GunTail_Light</soundCastTail>
+						</Properties>
+						<FireModes />
+				</li>
+				
+				
+				<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+					<defName>E-5_Blaster_Rifle</defName>
+						<statBases>
+							<SightsEfficiency>1.0</SightsEfficiency>
+							<ShotSpread>0.14</ShotSpread>
+							<SwayFactor>1.34</SwayFactor>
+							<Bulk>7.20</Bulk>
+							<Mass>2.2</Mass>
+							<RangedWeapon_Cooldown>.65</RangedWeapon_Cooldown>
+						</statBases>
+						<Properties>
+							<recoilAmount>1.48</recoilAmount>
+							<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+							<hasStandardCommand>true</hasStandardCommand>
+							<defaultProjectile>Bullet_Blaster_Red_Mid</defaultProjectile>
+							<warmupTime>0.8</warmupTime>
+							<burstShotCount>3</burstShotCount>
+							<ticksBetweenBurstShots>10</ticksBetweenBurstShots>
+							<range>35</range>
+							<soundCast>E-5_Bblaster_Rifle_Shot</soundCast>
+							<muzzleFlashScale>6</muzzleFlashScale>
+							<soundCastTail>GunTail_Heavy</soundCastTail>
+						</Properties>
+						<FireModes>
+							<aiAimMode>AimedShot</aiAimMode>
+						</FireModes>
+				</li>
+
+
+				<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+					<defName>EE-3_Carbine_Rifle</defName>
+						<statBases>
+							<SightsEfficiency>1.5</SightsEfficiency>
+							<ShotSpread>0.14</ShotSpread>
+							<SwayFactor>1.34</SwayFactor>
+							<Bulk>7.20</Bulk>
+							<Mass>2.2</Mass>
+							<RangedWeapon_Cooldown>.65</RangedWeapon_Cooldown>
+						</statBases>
+						<Properties>
+							<recoilAmount>1.48</recoilAmount>
+							<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+							<hasStandardCommand>true</hasStandardCommand>
+							<defaultProjectile>Bullet_Blaster_Red_Mid</defaultProjectile>
+							<warmupTime>0.8</warmupTime>
+							<burstShotCount>3</burstShotCount>
+							<ticksBetweenBurstShots>10</ticksBetweenBurstShots>
+							<range>40</range>
+							<soundCast>16_Carbine_Rifle_Shot</soundCast>
+							<muzzleFlashScale>9</muzzleFlashScale>
+							<soundCastTail>GunTail_Heavy</soundCastTail>
+						</Properties>
+						<FireModes>
+							<aiAimMode>AimedShot</aiAimMode>
+						</FireModes>
+				</li>
+
+
+				<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+					<defName>E-5S_Sniper_Rifle</defName>
+						<statBases>
+							<SightsEfficiency>2.5</SightsEfficiency>
+							<ShotSpread>0.14</ShotSpread>
+							<SwayFactor>1.34</SwayFactor>
+							<Bulk>7.20</Bulk>
+							<Mass>2.2</Mass>
+							<RangedWeapon_Cooldown>2</RangedWeapon_Cooldown>
+						</statBases>
+						<Properties>
+							<recoilAmount>1.48</recoilAmount>
+							<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+							<hasStandardCommand>true</hasStandardCommand>
+							<defaultProjectile>Bullet_Blaster_Red_High</defaultProjectile>
+							<warmupTime>3</warmupTime>
+							<range>75</range>
+							<soundCast>E-5_Bblaster_Rifle_Shot</soundCast>
+							<muzzleFlashScale>10</muzzleFlashScale>
+							<soundCastTail>GunTail_Light</soundCastTail>
+						</Properties>
+						<FireModes>
+							<aiAimMode>AimedShot</aiAimMode>
+						</FireModes>
+				</li>
+				
+				
+				<!-- Westar Series-->
+				  <li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[
+					defName="Westar-34_Blaster_Pistol" or
+					defName="Westar-35_Blaster_Pistol"
+					]/tools</xpath>
+					<value>
+					  <tools>
+						<li Class="CombatExtended.ToolCE">
+						  <label>grip</label>
+						  <capacities>
+							<li>Blunt</li>
+						  </capacities>
+						  <power>2</power>
+						  <cooldownTime>1.54</cooldownTime>
+						  <chanceFactor>1.5</chanceFactor>
+						  <armorPenetrationBlunt>0.555</armorPenetrationBlunt>
+						  <linkedBodyPartsGroup>Grip</linkedBodyPartsGroup>
+						</li>
+						<li Class="CombatExtended.ToolCE">
+						  <label>muzzle</label>
+						  <capacities>
+							<li>Poke</li>
+						  </capacities>
+						  <power>2</power>
+						  <cooldownTime>1.54</cooldownTime>
+						  <armorPenetrationBlunt>0.555</armorPenetrationBlunt>
+						  <linkedBodyPartsGroup>Muzzle</linkedBodyPartsGroup>
+						</li>
+					  </tools>
+					</value>
+				  </li>
+
+				  <li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[
+					defName="Westar-M5_Blaster_Rifle"			
+					]/tools</xpath>
+					<value>
+					  <tools>
+						<li Class="CombatExtended.ToolCE">
+						  <label>stock</label>
+						  <capacities>
+							<li>Blunt</li>
+						  </capacities>
+						  <power>8</power>
+						  <cooldownTime>1.55</cooldownTime>
+						  <chanceFactor>1.5</chanceFactor>
+						  <armorPenetrationBlunt>2.755</armorPenetrationBlunt>
+						  <linkedBodyPartsGroup>Stock</linkedBodyPartsGroup>
+						</li>
+						<li Class="CombatExtended.ToolCE">
+						  <label>barrel</label>
+						  <capacities>
+							<li>Blunt</li>
+						  </capacities>
+						  <power>5</power>
+						  <cooldownTime>2.02</cooldownTime>
+						  <armorPenetrationBlunt>1.630</armorPenetrationBlunt>
+						  <linkedBodyPartsGroup>Barrel</linkedBodyPartsGroup>
+						</li>
+						<li Class="CombatExtended.ToolCE">
+						  <label>muzzle</label>
+						  <capacities>
+							<li>Poke</li>
+						  </capacities>
+						  <power>8</power>
+						  <cooldownTime>1.55</cooldownTime>
+						  <armorPenetrationBlunt>2.755</armorPenetrationBlunt>
+						  <linkedBodyPartsGroup>Muzzle</linkedBodyPartsGroup>
+						</li>
+					  </tools>
+					</value>
+				  </li>
+
+				<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+					<defName>Westar-34_Blaster_Pistol</defName>
+						<statBases>
+							<SightsEfficiency>1.0</SightsEfficiency>
+							<ShotSpread>0.18</ShotSpread>
+							<SwayFactor>0.87</SwayFactor>
+							<Bulk>1.75</Bulk>
+							<Mass>1.5</Mass>
+							<RangedWeapon_Cooldown>.4</RangedWeapon_Cooldown>
+						</statBases>
+						<Properties>
+							<recoilAmount>1.48</recoilAmount>
+							<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+							<hasStandardCommand>true</hasStandardCommand>
+							<defaultProjectile>Bullet_Blaster_Red_Mid</defaultProjectile>
+							<warmupTime>0.25</warmupTime>
+							<range>15</range>
+							<soundCast>1Mandalorian_Blaster_Weapon_Shot</soundCast>
+							<muzzleFlashScale>7</muzzleFlashScale>
+							<soundCastTail>GunTail_Light</soundCastTail>
+						</Properties>
+						<FireModes />
+				</li>
+				
+				<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+					<defName>Westar-35_Blaster_Pistol</defName>
+						<statBases>
+							<SightsEfficiency>1.0</SightsEfficiency>
+							<ShotSpread>0.18</ShotSpread>
+							<SwayFactor>0.87</SwayFactor>
+							<Bulk>1.75</Bulk>
+							<Mass>1.5</Mass>
+							<RangedWeapon_Cooldown>.4</RangedWeapon_Cooldown>
+						</statBases>
+						<Properties>
+							<recoilAmount>1.48</recoilAmount>
+							<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+							<hasStandardCommand>true</hasStandardCommand>
+							<defaultProjectile>Bullet_Blaster_Red_Mid</defaultProjectile>
+							<warmupTime>0.25</warmupTime>
+							<range>20</range>
+							<soundCast>1Mandalorian_Blaster_Weapon_Shot</soundCast>
+							<muzzleFlashScale>7</muzzleFlashScale>
+							<soundCastTail>GunTail_Light</soundCastTail>
+						</Properties>
+						<FireModes />
+				</li>
+				
+				<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+					<defName>Westar-M5_Blaster_Rifle</defName>
+						<statBases>
+							<SightsEfficiency>1.3</SightsEfficiency>
+							<ShotSpread>0.14</ShotSpread>
+							<SwayFactor>1.34</SwayFactor>
+							<Bulk>7.20</Bulk>
+							<Mass>3.5</Mass>
+							<RangedWeapon_Cooldown>1.2</RangedWeapon_Cooldown>
+						</statBases>
+						<Properties>
+							<recoilAmount>1.48</recoilAmount>
+							<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+							<hasStandardCommand>true</hasStandardCommand>
+							<defaultProjectile>Bullet_Blaster_Red_Mid</defaultProjectile>
+							<warmupTime>0.6</warmupTime>
+							<burstShotCount>6</burstShotCount>
+							<ticksBetweenBurstShots>9</ticksBetweenBurstShots>
+							<range>35</range>
+							<soundCast>DC-15A_Blaster_Rifle_Shot</soundCast>
+							<muzzleFlashScale>9</muzzleFlashScale>
+							<soundCastTail>GunTail_Light</soundCastTail>
+						</Properties>
+						<FireModes>
+							<aimedBurstShotCount>3</aimedBurstShotCount>
+							<aiUseBurstMode>TRUE</aiUseBurstMode>
+							<aiAimMode>AimedShot</aiAimMode>
+						</FireModes>
+				</li>
+				
+				<!-- Droid -->
+				  <li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[
+					defName="B-2_Super_Droid_Wrist_Blaster" or
+					defName="Droidekas_Blaster" or
+					defName="B-2_Super_Droid_Wrist_Cannon"
+					]/tools</xpath>
+					<value>
+					  <tools>
+						<li Class="CombatExtended.ToolCE">
+						  <label>grip</label>
+						  <capacities>
+							<li>Blunt</li>
+						  </capacities>
+						  <power>8</power>
+						  <cooldownTime>1.54</cooldownTime>
+						  <armorPenetrationBlunt>0.555</armorPenetrationBlunt>
+						  <linkedBodyPartsGroup>Grip</linkedBodyPartsGroup>
+						</li>
+						<li Class="CombatExtended.ToolCE">
+						  <label>barrel</label>
+						  <capacities>
+							<li>Poke</li>
+						  </capacities>
+						  <power>8</power>
+						  <cooldownTime>1.54</cooldownTime>
+						  <chanceFactor>2</chanceFactor>
+						  <armorPenetrationBlunt>0.555</armorPenetrationBlunt>
+						  <linkedBodyPartsGroup>Barrel</linkedBodyPartsGroup>
+						</li>
+					  </tools>
+					</value>
+				  </li>
+
+				<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+					<defName>B-2_Super_Droid_Wrist_Blaster</defName>
+						<statBases>
+							<SightsEfficiency>1.0</SightsEfficiency>
+							<ShotSpread>0.14</ShotSpread>
+							<SwayFactor>1.01</SwayFactor>
+							<Bulk>10</Bulk>
+							<Mass>5</Mass>
+							<RangedWeapon_Cooldown>.4</RangedWeapon_Cooldown>
+						</statBases>
+						<Properties>
+							<recoilAmount>1.53</recoilAmount>
+							<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+							<hasStandardCommand>true</hasStandardCommand>
+							<defaultProjectile>Bullet_Blaster_Red_Mid</defaultProjectile>
+							<warmupTime>0.25</warmupTime>
+							<burstShotCount>2</burstShotCount>
+							<ticksBetweenBurstShots>14</ticksBetweenBurstShots>
+							<range>40</range>
+							<soundCast>B-2_Wrist_Blaster_Shot</soundCast>
+							<muzzleFlashScale>7</muzzleFlashScale>
+							<soundCastTail>GunTail_Light</soundCastTail>
+						</Properties>
+						<FireModes>
+							<aiAimMode>AimedShot</aiAimMode>
+						</FireModes>
+				</li>
+
+				<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+					<defName>Droidekas_Blaster</defName>
+						<statBases>
+							<SightsEfficiency>1.0</SightsEfficiency>
+							<ShotSpread>0.14</ShotSpread>
+							<SwayFactor>1.01</SwayFactor>
+							<Bulk>10</Bulk>
+							<Mass>5</Mass>
+							<RangedWeapon_Cooldown>.4</RangedWeapon_Cooldown>
+						</statBases>
+						<Properties>
+							<recoilAmount>1.53</recoilAmount>
+							<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+							<hasStandardCommand>true</hasStandardCommand>
+							<defaultProjectile>Bullet_Blaster_Red_Mid</defaultProjectile>
+							<warmupTime>0.25</warmupTime>
+							<burstShotCount>2</burstShotCount>
+							<ticksBetweenBurstShots>10</ticksBetweenBurstShots>
+							<range>25</range>
+							<soundCast>Droidek_Shot</soundCast>
+							<muzzleFlashScale>7</muzzleFlashScale>
+							<soundCastTail>GunTail_Light</soundCastTail>
+						</Properties>
+				</li>
+				
+				<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+					<defName>B-2_Super_Droid_Wrist_Cannon</defName>
+						<statBases>
+							<SightsEfficiency>1.0</SightsEfficiency>
+							<ShotSpread>0.24</ShotSpread>
+							<SwayFactor>1.48</SwayFactor>
+							<Bulk>12.70</Bulk>
+							<Mass>7.50</Mass>
+							<RangedWeapon_Cooldown>1.9</RangedWeapon_Cooldown>
+						</statBases>
+						<Properties>
+							<recoilAmount>1.58</recoilAmount>
+							<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+							<hasStandardCommand>true</hasStandardCommand>
+							<defaultProjectile>Bullet_B2Cannon</defaultProjectile>
+							<warmupTime>1.2</warmupTime>
+							<ticksBetweenBurstShots>50</ticksBetweenBurstShots>
+							<range>38</range>
+							<soundCast>B-2_Wrist_Cannon_Shot</soundCast>
+							<soundCastTail>GunTail_Heavy</soundCastTail>
+							<muzzleFlashScale>9</muzzleFlashScale>
+							<targetParams>
+								<canTargetLocations>true</canTargetLocations>
+							</targetParams>
+						</Properties>
+						<FireModes>
+							<aiAimMode>AimedShot</aiAimMode>
+						</FireModes>
+				</li>
+
+				<!-- Mando -->
+				  <li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[
+					defName="Mando_Blaster_Carbine" or	
+					defName="Mando_Heavy_Weapon" or			
+					defName="Amban_Rifle"			
+					]/tools</xpath>
+					<value>
+					  <tools>
+						<li Class="CombatExtended.ToolCE">
+						  <label>stock</label>
+						  <capacities>
+							<li>Blunt</li>
+						  </capacities>
+						  <power>8</power>
+						  <cooldownTime>1.55</cooldownTime>
+						  <chanceFactor>1.5</chanceFactor>
+						  <armorPenetrationBlunt>2.755</armorPenetrationBlunt>
+						  <linkedBodyPartsGroup>Stock</linkedBodyPartsGroup>
+						</li>
+						<li Class="CombatExtended.ToolCE">
+						  <label>barrel</label>
+						  <capacities>
+							<li>Blunt</li>
+						  </capacities>
+						  <power>5</power>
+						  <cooldownTime>2.02</cooldownTime>
+						  <armorPenetrationBlunt>1.630</armorPenetrationBlunt>
+						  <linkedBodyPartsGroup>Barrel</linkedBodyPartsGroup>
+						</li>
+						<li Class="CombatExtended.ToolCE">
+						  <label>muzzle</label>
+						  <capacities>
+							<li>Poke</li>
+						  </capacities>
+						  <power>8</power>
+						  <cooldownTime>1.55</cooldownTime>
+						  <armorPenetrationBlunt>2.755</armorPenetrationBlunt>
+						  <linkedBodyPartsGroup>Muzzle</linkedBodyPartsGroup>
+						</li>
+					  </tools>
+					</value>
+				  </li>
+
+				<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+					<defName>Mando_Blaster_Carbine</defName>
+						<statBases>
+							<SightsEfficiency>1.5</SightsEfficiency>
+							<ShotSpread>0.18</ShotSpread>
+							<SwayFactor>0.87</SwayFactor>
+							<Bulk>3.75</Bulk>
+							<Mass>2.5</Mass>
+							<RangedWeapon_Cooldown>1.2</RangedWeapon_Cooldown>
+						</statBases>
+						<Properties>
+							<recoilAmount>1.48</recoilAmount>
+							<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+							<hasStandardCommand>true</hasStandardCommand>
+							<defaultProjectile>Bullet_Blaster_Red_Mid</defaultProjectile>
+							<warmupTime>0.6</warmupTime>
+							<burstShotCount>3</burstShotCount>
+							<ticksBetweenBurstShots>10</ticksBetweenBurstShots>
+							<range>35</range>
+							<soundCast>3Mandalorian_Blaster_Weapon_Shot</soundCast>
+							<muzzleFlashScale>7</muzzleFlashScale>
+							<soundCastTail>GunTail_Light</soundCastTail>
+						</Properties>
+						<FireModes>
+							<aimedBurstShotCount>2</aimedBurstShotCount>
+							<aiUseBurstMode>TRUE</aiUseBurstMode>
+							<aiAimMode>AimedShot</aiAimMode>
+						</FireModes>
+				</li>
+				
+				
+				<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+					<defName>Mando_Heavy_Weapon</defName>
+						<statBases>
+							<SightsEfficiency>1.0</SightsEfficiency>
+							<ShotSpread>0.06</ShotSpread>
+							<SwayFactor>1.32</SwayFactor>
+							<Bulk>8.02</Bulk>
+							<Mass>30</Mass>
+							<RangedWeapon_Cooldown>2</RangedWeapon_Cooldown>
+						</statBases>
+						<Properties>
+							<recoilAmount>0.78</recoilAmount>
+							<recoilPattern>Mounted</recoilPattern>
+							<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+							<hasStandardCommand>true</hasStandardCommand>
+							<defaultProjectile>Bullet_Blaster_Red_Low</defaultProjectile>
+							<warmupTime>1.5</warmupTime>
+							<burstShotCount>100</burstShotCount>
+							<ticksBetweenBurstShots>7</ticksBetweenBurstShots>
+							<range>62</range>
+							<soundCast>4Mandalorian_Blaster_Weapon_Shot</soundCast>
+							<muzzleFlashScale>9</muzzleFlashScale>
+							<soundCastTail>GunTail_Medium</soundCastTail>
+						</Properties>
+						<FireModes>
+							<aimedBurstShotCount>2</aimedBurstShotCount>
+							<aiUseBurstMode>FALSE</aiUseBurstMode>
+							<aiAimMode>SuppressFire</aiAimMode>
+						</FireModes>
+				</li>
+
+
+				<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+					<defName>Amban_Rifle</defName>
+						<statBases>
+							<SightsEfficiency>1.5</SightsEfficiency>
+							<ShotSpread>0.14</ShotSpread>
+							<SwayFactor>1.34</SwayFactor>
+							<Bulk>7.20</Bulk>
+							<Mass>2.2</Mass>
+							<RangedWeapon_Cooldown>1.2</RangedWeapon_Cooldown>
+						</statBases>
+						<Properties>
+							<recoilAmount>1.48</recoilAmount>
+							<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+							<hasStandardCommand>true</hasStandardCommand>
+							<defaultProjectile>Bullet_Blaster_Red_High</defaultProjectile>
+							<warmupTime>0.6</warmupTime>
+							<range>60</range>
+							<soundCast>3Mandalorian_Blaster_Weapon_Shot</soundCast>
+							<muzzleFlashScale>9</muzzleFlashScale>
+							<soundCastTail>GunTail_Light</soundCastTail>
+						</Properties>
+						<FireModes>
+							<aiAimMode>AimedShot</aiAimMode>
+						</FireModes>
+				</li>
+				
+			
+				<!-- Ammo -->
+				
+				  <li Class="PatchOperationRemove">
+					<xpath>Defs/DamageDef[
+					defName="Blaster_Damage"
+					]</xpath>
+				  </li>
+
+				  <li Class="PatchOperationAdd">
+					<xpath>Defs</xpath>
+					<value>
+
+					  <DamageDef>
+						<defName>Blaster_Damage</defName>
+						<label>blaster bolt</label>
+						<workerClass>DamageWorker_AddInjury</workerClass>
+						<externalViolence>true</externalViolence>
+						<isExplosive>true</isExplosive>
+						<deathMessage>{0} has been shot to death.</deathMessage>
+						<hediff>Burn</hediff>
+						<harmAllLayersUntilOutside>true</harmAllLayersUntilOutside>
+						<impactSoundType>Blunt</impactSoundType>
+						<armorCategory>Sharp</armorCategory>
+						<minDamageToFragment>15</minDamageToFragment>
+						<defaultDamage>3</defaultDamage>
+						<buildingDamageFactor>3</buildingDamageFactor>
+						<plantDamageFactor>3</plantDamageFactor>
+						<explosionAffectOutsidePartsOnly>false</explosionAffectOutsidePartsOnly>
+						<explosionHeatEnergyPerCell>5</explosionHeatEnergyPerCell>
+						<explosionCellMote>Mote_BlastFlame</explosionCellMote>
+						<explosionColorCenter>(1, 0.5, 0.3)</explosionColorCenter>
+						<explosionColorEdge>(0.6, 0.5, 0.4)</explosionColorEdge>
+						<soundExplosion>Explosion_Flame</soundExplosion>
+						<combatLogRules>Damage_Flame</combatLogRules>
+						<canUseDeflectMetalEffect>false</canUseDeflectMetalEffect>
+					  </DamageDef>
+
+					</value>
+				  </li>
+
+
+				  <li Class="PatchOperationAdd">
+					<xpath>Defs</xpath>
+					<value>
+					
+							
+					<ThingDef ParentName="Base556x45mmNATOBullet">
+						<defName>Bullet_Blaster_Blue_Mid</defName>
+						<label>blaster bolt</label>
+						<graphicData>
+							<texPath>Things/Projectile/Bullet_Laser</texPath>
+							<graphicClass>Graphic_Single</graphicClass>
+						</graphicData>
+						<projectile Class="CombatExtended.ProjectilePropertiesCE">
+							<damageDef>Blaster_Damage</damageDef>
+							<speed>150</speed>
+							<dropsCasings>false</dropsCasings>
+							<damageAmountBase>13</damageAmountBase>
+							<armorPenetrationBlunt>3</armorPenetrationBlunt>
+							<armorPenetrationSharp>18</armorPenetrationSharp>		
+						</projectile>
+					</ThingDef>
+					
+					<ThingDef ParentName="Base762x51mmNATOBullet">
+						<defName>Bullet_Blaster_Blue_High</defName>
+						<label>blaster bolt</label>
+						<graphicData>
+							<texPath>Things/Projectile/Bullet_Laser</texPath>
+							<graphicClass>Graphic_Single</graphicClass>
+						</graphicData>
+						<projectile Class="CombatExtended.ProjectilePropertiesCE">
+							<damageDef>Blaster_Damage</damageDef>
+							<speed>150</speed>
+							<dropsCasings>false</dropsCasings>
+							<damageAmountBase>25</damageAmountBase>
+							<armorPenetrationBlunt>3</armorPenetrationBlunt>
+							<armorPenetrationSharp>23</armorPenetrationSharp>		
+						</projectile>
+					</ThingDef>
+
+					<ThingDef ParentName="Base45ACPBullet">
+						<defName>Bullet_Blaster_Blue_Low</defName>
+						<label>blaster bolt</label>
+						<graphicData>
+							<texPath>Things/Projectile/Bullet_Laser</texPath>
+							<graphicClass>Graphic_Single</graphicClass>
+						</graphicData>
+						<projectile Class="CombatExtended.ProjectilePropertiesCE">
+							<damageDef>Blaster_Damage</damageDef>
+							<speed>130</speed>
+							<dropsCasings>false</dropsCasings>
+							<damageAmountBase>8</damageAmountBase>
+							<armorPenetrationBlunt>3</armorPenetrationBlunt>
+							<armorPenetrationSharp>15</armorPenetrationSharp>		
+						</projectile>
+					</ThingDef>
+
+					<ThingDef ParentName="Base45ACPBullet">
+						<defName>Bullet_Blaster_Red_Low</defName>
+						<label>blaster bolt</label>
+						<graphicData>
+							<texPath>Things/Projectile/Red_Bullet_Laser</texPath>
+							<graphicClass>Graphic_Single</graphicClass>
+						</graphicData>
+						<projectile Class="CombatExtended.ProjectilePropertiesCE">
+							<damageDef>Blaster_Damage</damageDef>
+							<speed>130</speed>
+							<dropsCasings>false</dropsCasings>
+							<damageAmountBase>7</damageAmountBase>
+							<armorPenetrationBlunt>3</armorPenetrationBlunt>
+							<armorPenetrationSharp>15</armorPenetrationSharp>		
+						</projectile>
+					</ThingDef>
+					
+					<ThingDef ParentName="Base556x45mmNATOBullet">
+						<defName>Bullet_Blaster_Red_Mid</defName>
+						<label>blaster bolt</label>
+						<graphicData>
+							<texPath>Things/Projectile/Red_Bullet_Laser</texPath>
+							<graphicClass>Graphic_Single</graphicClass>
+						</graphicData>
+						<projectile Class="CombatExtended.ProjectilePropertiesCE">
+							<damageDef>Blaster_Damage</damageDef>
+							<speed>150</speed>
+							<dropsCasings>false</dropsCasings>
+							<damageAmountBase>10</damageAmountBase>
+							<armorPenetrationBlunt>3</armorPenetrationBlunt>
+							<armorPenetrationSharp>18</armorPenetrationSharp>		
+						</projectile>
+					</ThingDef>	
+					
+					<ThingDef ParentName="Base556x45mmNATOBullet">
+						<defName>Bullet_Blaster_Red_High</defName>
+						<label>blaster bolt</label>
+						<graphicData>
+							<texPath>Things/Projectile/Red_Bullet_Laser</texPath>
+							<graphicClass>Graphic_Single</graphicClass>
+						</graphicData>
+						<projectile Class="CombatExtended.ProjectilePropertiesCE">
+							<damageDef>Blaster_Damage</damageDef>
+							<speed>150</speed>
+							<dropsCasings>false</dropsCasings>
+							<damageAmountBase>23</damageAmountBase>
+							<armorPenetrationBlunt>3</armorPenetrationBlunt>
+							<armorPenetrationSharp>23</armorPenetrationSharp>		
+						</projectile>
+					</ThingDef>
+					
+					<ThingDef ParentName="Base40x365mmBoforsBullet">
+						<defName>Bullet_B2Cannon</defName>
+						<thingClass>CombatExtended.ProjectileCE_Explosive</thingClass>
+						<label>b-2 droid wrist cannon shot</label>
+						<graphicData>
+							<texPath>Things/Projectile/Red_Bullet_cannon</texPath>
+							<graphicClass>Graphic_Single</graphicClass>
+							<shaderType>TransparentPostLight</shaderType>
+						</graphicData>		
+						<projectile Class="CombatExtended.ProjectilePropertiesCE">
+							<damageDef>Blaster_Damage</damageDef>
+							<speed>80</speed>
+							<dropsCasings>false</dropsCasings>		
+							<damageAmountBase>60</damageAmountBase>
+							<armorPenetrationBlunt>35</armorPenetrationBlunt>
+							<armorPenetrationSharp>15</armorPenetrationSharp>
+							<explosionRadius>1.0</explosionRadius>
+						</projectile>
+					</ThingDef>
+							
+					</value>
+				  </li>
+
+
+				  <li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[
+					defName="DC-15A_Blaster_Rifle"				
+					]</xpath>
+					<value>
+						<modExtensions>
+							<li Class="CombatExtended.GunDrawExtension">
+								<DrawSize>1.5,1.5</DrawSize>
+								<DrawOffset>0,0</DrawOffset>
+							</li>
+						</modExtensions>
+					</value>
+				  </li>
+
+				  <li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[
+					defName="Mando_Heavy_Weapon"				
+					]</xpath>
+					<value>
+						<modExtensions>
+							<li Class="CombatExtended.GunDrawExtension">
+								<DrawSize>1.35,1.35</DrawSize>
+								<DrawOffset>.5,.15</DrawOffset>
+							</li>
+						</modExtensions>
+					</value>
+				  </li>
+				  
+				  <li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[
+					defName="Mando_Heavy_Weapon"				
+					]/graphicData/drawSize</xpath>
+				<value>
+				  <drawSize>1.6</drawSize>
+				  </value>
+				  </li>
+			
+				
+				<!-- Melee -->
+				
+				
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="Electrostaff"]/tools</xpath>
+				<value>
+					<tools>
+						<li Class="CombatExtended.ToolCE">
+							<label>jab</label>
+							<capacities>
+								<li>Blunt</li>
+							</capacities>
+							<power>20</power>
+							<cooldownTime>1.35</cooldownTime>
+							<chanceFactor>1.6</chanceFactor>
+							<armorPenetrationBlunt>2.25</armorPenetrationBlunt>
+							<linkedBodyPartsGroup>Shaft</linkedBodyPartsGroup>
+						</li>
+						<li Class="CombatExtended.ToolCE">
+							<label>head</label>
+							<capacities>
+								<li>Electrostaff_Stun</li>
+							</capacities>
+							<power>20</power>
+							<cooldownTime>1.2</cooldownTime>
+							<chanceFactor>1.00</chanceFactor>
+							<armorPenetrationBlunt>2.25</armorPenetrationBlunt>
+							<linkedBodyPartsGroup>Head</linkedBodyPartsGroup>
+						</li>
+					</tools>
+				</value>
+			</li>
+
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName="Electrostaff"]/statBases</xpath>
+				<value>
+					<Bulk>10</Bulk>
+					<MeleeCounterParryBonus>1.68</MeleeCounterParryBonus>
+				</value>
+			</li>
+
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName="Electrostaff"]</xpath>
+				<value>
+					<equippedStatOffsets>
+						<MeleeCritChance>0.17</MeleeCritChance>
+						<MeleeParryChance>1.45</MeleeParryChance>
+						<MeleeDodgeChance>0.9</MeleeDodgeChance>
+					</equippedStatOffsets>
+				</value>
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="Vibrosword"]/tools</xpath>
+				<value>
+					<tools>
+						<li Class="CombatExtended.ToolCE">
+							<label>handle</label>
+							<capacities>
+								<li>Poke</li>
+							</capacities>
+							<power>2</power>
+							<cooldownTime>1.44</cooldownTime>
+							<armorPenetrationBlunt>0.425</armorPenetrationBlunt>
+							<linkedBodyPartsGroup>Handle</linkedBodyPartsGroup>
+						</li>
+						<li Class="CombatExtended.ToolCE">
+							<label>point</label>
+							<capacities>
+								<li>Stab</li>
+							</capacities>
+							<power>27</power>
+							<cooldownTime>1.44</cooldownTime>
+							<armorPenetrationBlunt>0.425</armorPenetrationBlunt>
+							<armorPenetrationSharp>12</armorPenetrationSharp>
+							<linkedBodyPartsGroup>Point</linkedBodyPartsGroup>
+						</li>
+						<li Class="CombatExtended.ToolCE">
+							<label>edge</label>
+							<capacities>
+								<li>Cut</li>
+							</capacities>
+							<power>20</power>
+							<cooldownTime>1.34</cooldownTime>
+							<chanceFactor>1.33</chanceFactor>
+							<armorPenetrationBlunt>0.956</armorPenetrationBlunt>
+							<armorPenetrationSharp>9</armorPenetrationSharp>
+							<linkedBodyPartsGroup>Edge</linkedBodyPartsGroup>
+						</li>
+					</tools>
+				</value>
+			</li>
+
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName="Vibrosword"]/statBases</xpath>
+				<value>
+					<Bulk>3.5</Bulk>
+					<MeleeCounterParryBonus>0.35</MeleeCounterParryBonus>				
+				</value>
+			</li>
+
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName="Vibrosword"]</xpath>
+				<value>
+					<equippedStatOffsets>
+						<MeleeCritChance>0.2</MeleeCritChance>
+						<MeleeParryChance>0.35</MeleeParryChance>
+						<MeleeDodgeChance>0.2</MeleeDodgeChance>	
+					</equippedStatOffsets>
+				</value>
+			</li>
+				
+		
+		
+		</operations>
+		</match>
+	</Operation>
+	
+	
+
+
+</Patch>

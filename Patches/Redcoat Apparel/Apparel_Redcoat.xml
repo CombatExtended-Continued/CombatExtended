@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+			<li>Redcoat Apparel</li>
+		</mods>
+		<match Class="PatchOperationSequence">
+			<operations>
+				<!-- Redcoat -->
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[
+					defName="RCA_plainshirtvest" or
+					defName="RCA_breeches"
+					]/statBases/StuffEffectMultiplierArmor</xpath>
+					<value>
+						<StuffEffectMultiplierArmor>1</StuffEffectMultiplierArmor>
+						<Bulk>1</Bulk>
+					</value>
+				</li>
+				
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[
+					@Name="RCA_coat_base" or
+					@Name="RCA_regcoat_base"
+					]/statBases/StuffEffectMultiplierArmor</xpath>
+					<value>
+						<StuffEffectMultiplierArmor>5</StuffEffectMultiplierArmor>
+						<Bulk>2.5</Bulk>
+						<WornBulk>1</WornBulk>
+					</value>
+				</li>
+				
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[
+					defName="RCA_watchcloak" or
+					defName="RCA_capote"
+					]/statBases/StuffEffectMultiplierArmor</xpath>
+					<value>
+						<StuffEffectMultiplierArmor>5</StuffEffectMultiplierArmor>
+						<Bulk>7.5</Bulk>
+						<WornBulk>1</WornBulk>
+					</value>
+				</li>
+				
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[
+					@Name="CockedHatBase" or
+					defName="RCA_bearskin" or
+					defName="RCA_beaverhat" or
+					@Name="ForageCapBase"
+					]/statBases/StuffEffectMultiplierArmor</xpath>
+					<value>
+						<StuffEffectMultiplierArmor>2</StuffEffectMultiplierArmor>
+						<Bulk>0.5</Bulk>
+					</value>
+				</li>
+				
+				<li Class="PatchOperationConditional">
+					<xpath>/Defs/ThingDef[defName="RCA_beltcbox"]/equippedStatOffsets</xpath>
+					<nomatch Class="PatchOperationAdd">
+						<xpath>/Defs/ThingDef[defName="RCA_beltcbox"]</xpath>
+						<value>
+							<equippedStatOffsets>
+								<CarryBulk>10</CarryBulk>
+							</equippedStatOffsets>
+						</value>
+					</nomatch>
+					<match Class="PatchOperationAdd">
+						<xpath>/Defs/ThingDef[defName="RCA_beltcbox"]/equippedStatOffsets</xpath>
+						<value>
+							<CarryBulk>10</CarryBulk>
+						</value>
+					</match>
+				</li>
+
+			</operations>
+		</match>
+	</Operation>
+</Patch>
+

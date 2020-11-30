@@ -5,12 +5,39 @@ using Verse.AI;
 
 namespace CombatExtended.HarmonyCE
 {
+
+
     [HarmonyPatch(typeof(ShieldBelt), "AllowVerbCast")]
     internal static class ShieldBelt_PatchAllowVerbCast
     {
         internal static void Postfix(ref bool __result, IntVec3 root, Map map, LocalTargetInfo targ, Verb verb)
         {
-            //Original: 
+            var mark = verb as Verb_MarkForArtillery;
+            if (mark!=null)
+            {
+                __result = true;
+                return;
+            }
+
+            if (!Controller.settings.TurretsBreakShields)
+            {
+                if (verb is Verb_LaunchProjectileCE || verb is Verb_LaunchProjectile)
+                {
+                    Pawn casterPawn = verb.caster as Pawn;
+                    if (casterPawn == null)
+                    {
+                        __result = true;
+                        return;
+                    }
+                    if (verb.caster is Building_Turret)
+                    {
+                        __result = true;
+                        return;
+                    }
+                }
+            }
+            
+            //Original:
             //          return !(verb is Verb_LaunchProjectile) || ReachabilityImmediate.CanReachImmediate(root, targ, map, PathEndMode.Touch, null);
 
             //Preferred form:
@@ -26,15 +53,15 @@ namespace CombatExtended.HarmonyCE
              *  1   0   1   0       0
              *  1   1   0   1       1
              *  1   1   1   1       1
-             * 
+             *
              * A = verb is Verb_LaunchProjectile
              * B = ReachabilityImmediate(..)
              * C = verb is Verb_LaunchProjectile_CE
              * D = (!A) || B
              * E = (!A && !C) || B
-             * 
+             *
              * We know A, C and D. Can we get E?
-             * 
+             *
              *  A   C   D       E
              *  0   0   1       1
              *  0   1   1       0
@@ -44,7 +71,7 @@ namespace CombatExtended.HarmonyCE
              *  1   1   0       0
              *  1   0   1       1
              *  1   1   1       1
-             *  
+             *
              *  This can only be distinguished if we know B, in which case the solution is B.
              *  And interestingly, the result is correct otherwise! See how D == E for all entries except for line 2.
              */
@@ -65,6 +92,9 @@ namespace CombatExtended.HarmonyCE
         private const int SHORT_SHIELD_RECHARGE_TIME =  2 * GenTicks.TicksPerRealSecond;
         internal static void Postfix(ShieldBelt __instance, ref int ___ticksToReset, int ___StartingTicksToReset)
         {
+            if (!Controller.settings.TurretsBreakShields) {
+                return;
+            }
             if (__instance.Wearer?.CurJob?.def == JobDefOf.ManTurret && (__instance.Wearer?.jobs?.curDriver?.OnLastToil ?? false))
             {
                 if (__instance.ShieldState == ShieldState.Active)
@@ -72,7 +102,7 @@ namespace CombatExtended.HarmonyCE
                     Traverse.Create(__instance).Method("Break").GetValue();
                     ___ticksToReset = SHORT_SHIELD_RECHARGE_TIME;
                 }
-                if (___ticksToReset < SHORT_SHIELD_RECHARGE_TIME) 
+                if (___ticksToReset < SHORT_SHIELD_RECHARGE_TIME)
                 {
                     ___ticksToReset = SHORT_SHIELD_RECHARGE_TIME;
                 }

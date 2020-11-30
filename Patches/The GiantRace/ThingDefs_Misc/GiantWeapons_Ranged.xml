@@ -1,0 +1,920 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+  <Operation Class="PatchOperationSequence">
+	<operations>
+	  <li Class="PatchOperationFindMod">
+			
+		<mods><li>The GiantRace</li></mods>
+			
+		<match Class="PatchOperationSequence">
+		<operations>
+			<!--========= Ranged =========-->
+			<!-- Comps and Classes -->
+			
+			<li Class="PatchOperationAttributeSet">
+			  <xpath>/Defs/ThingDef[@Name="GiantBaseRange"]</xpath>
+			  <attribute>ParentName</attribute>
+			  <value>BaseWeaponAndAmmoNeolithic</value>
+			</li>
+			
+			<li Class="PatchOperationAttributeSet">
+			  <xpath>/Defs/ThingDef[defName="GI_Jackstones_granite"]</xpath>
+			  <attribute>Class</attribute>
+			  <value>CombatExtended.AmmoDef</value>
+			</li>
+
+			<li Class="PatchOperationSequence">
+			  <success>Always</success>
+			  <operations>
+				<li Class="PatchOperationTest">
+				  <xpath>/Defs/ThingDef[defName="GI_Jackstones_granite"]/comps</xpath>
+				  <success>Invert</success>
+				</li>
+				<li Class="PatchOperationAdd">
+				  <xpath>/Defs/ThingDef[defName="GI_Jackstones_granite"]</xpath>
+				  <value>
+					<comps />
+				  </value>
+				</li>
+			  </operations>
+			</li>
+			
+			<li Class="PatchOperationAttributeSet">
+			  <xpath>/Defs/ThingDef[defName="GI_Jackstones_limestone"]</xpath>
+			  <attribute>Class</attribute>
+			  <value>CombatExtended.AmmoDef</value>
+			</li>
+
+			<li Class="PatchOperationSequence">
+			  <success>Always</success>
+			  <operations>
+				<li Class="PatchOperationTest">
+				  <xpath>/Defs/ThingDef[defName="GI_Jackstones_limestone"]/comps</xpath>
+				  <success>Invert</success>
+				</li>
+				<li Class="PatchOperationAdd">
+				  <xpath>/Defs/ThingDef[defName="GI_Jackstones_limestone"]</xpath>
+				  <value>
+					<comps />
+				  </value>
+				</li>
+			  </operations>
+			</li>
+			
+			<li Class="PatchOperationAttributeSet">
+			  <xpath>/Defs/ThingDef[defName="GI_Jackstones_granite"]</xpath>
+			  <attribute>Class</attribute>
+			  <value>CombatExtended.AmmoDef</value>
+			</li>
+
+			<li Class="PatchOperationSequence">
+			  <success>Always</success>
+			  <operations>
+				<li Class="PatchOperationTest">
+				  <xpath>/Defs/ThingDef[defName="GI_Jackstones_granite"]/comps</xpath>
+				  <success>Invert</success>
+				</li>
+				<li Class="PatchOperationAdd">
+				  <xpath>/Defs/ThingDef[defName="GI_Jackstones_granite"]</xpath>
+				  <value>
+					<comps />
+				  </value>
+				</li>
+			  </operations>
+			</li>
+			
+			<li Class="PatchOperationAttributeSet">
+			  <xpath>/Defs/ThingDef[defName="GI_Javelin"]</xpath>
+			  <attribute>Class</attribute>
+			  <value>CombatExtended.AmmoDef</value>
+			</li>
+
+			<li Class="PatchOperationSequence">
+			  <success>Always</success>
+			  <operations>
+				<li Class="PatchOperationTest">
+				  <xpath>/Defs/ThingDef[defName="GI_Javelin"]/comps</xpath>
+				  <success>Invert</success>
+				</li>
+				<li Class="PatchOperationAdd">
+				  <xpath>/Defs/ThingDef[defName="GI_Javelin"]</xpath>
+				  <value>
+					<comps />
+				  </value>
+				</li>
+			  </operations>
+			</li>
+			
+			<li Class="PatchOperationAttributeSet">
+			  <xpath>/Defs/ThingDef[defName="GI_Scrapmetal"]</xpath>
+			  <attribute>Class</attribute>
+			  <value>CombatExtended.AmmoDef</value>
+			</li>
+
+			<li Class="PatchOperationSequence">
+			  <success>Always</success>
+			  <operations>
+				<li Class="PatchOperationTest">
+				  <xpath>/Defs/ThingDef[defName="GI_Scrapmetal"]/comps</xpath>
+				  <success>Invert</success>
+				</li>
+				<li Class="PatchOperationAdd">
+				  <xpath>/Defs/ThingDef[defName="GI_Scrapmetal"]</xpath>
+				  <value>
+					<comps />
+				  </value>
+				</li>
+			  </operations>
+			</li>
+			
+			<li Class="PatchOperationAttributeSet">
+			  <xpath>/Defs/ThingDef[defName="GI_Rockpillar_granite"]</xpath>
+			  <attribute>Class</attribute>
+			  <value>CombatExtended.AmmoDef</value>
+			</li>
+
+			<li Class="PatchOperationSequence">
+			  <success>Always</success>
+			  <operations>
+				<li Class="PatchOperationTest">
+				  <xpath>/Defs/ThingDef[defName="GI_Rockpillar_granite"]/comps</xpath>
+				  <success>Invert</success>
+				</li>
+				<li Class="PatchOperationAdd">
+				  <xpath>/Defs/ThingDef[defName="GI_Rockpillar_granite"]</xpath>
+				  <value>
+					<comps />
+				  </value>
+				</li>
+			  </operations>
+			</li>
+			
+			<li Class="PatchOperationAttributeSet">
+			  <xpath>/Defs/ThingDef[defName="GI_Rockpillar_Marble"]</xpath>
+			  <attribute>Class</attribute>
+			  <value>CombatExtended.AmmoDef</value>
+			</li>
+
+			<li Class="PatchOperationSequence">
+			  <success>Always</success>
+			  <operations>
+				<li Class="PatchOperationTest">
+				  <xpath>/Defs/ThingDef[defName="GI_Rockpillar_Marble"]/comps</xpath>
+				  <success>Invert</success>
+				</li>
+				<li Class="PatchOperationAdd">
+				  <xpath>/Defs/ThingDef[defName="GI_Rockpillar_Marble"]</xpath>
+				  <value>
+					<comps />
+				  </value>
+				</li>
+			  </operations>
+			</li>
+			
+			<li Class="PatchOperationAdd">
+				<xpath>/Defs/ThingDef[
+				defName="GI_Jackstones_limestone" or
+				defName="GI_Jackstones_granite" or
+				defName="GI_Javelin" or
+				defName="GI_Scrapmetal" or
+				defName="GI_Rockpillar_granite" or
+				defName="GI_Rockpillar_Marble"
+				]</xpath>
+				<value>
+					<stackLimit>25</stackLimit>
+				</value>
+			</li>
+			
+			<li Class="PatchOperationRemove">
+				<xpath>/Defs/ThingDef[
+				defName="GI_Jackstones_limestone" or
+				defName="GI_Jackstones_granite" or
+				defName="GI_Javelin" or
+				defName="GI_Scrapmetal" or
+				defName="GI_Rockpillar_granite" or
+				defName="GI_Rockpillar_Marble"
+				]/costList</xpath>
+			</li>
+			
+			<li Class="PatchOperationRemove">
+				<xpath>/Defs/ThingDef[
+				defName="GI_Jackstones_limestone" or
+				defName="GI_Jackstones_granite" or
+				defName="GI_Javelin" or
+				defName="GI_Scrapmetal" or
+				defName="GI_Rockpillar_granite" or
+				defName="GI_Rockpillar_Marble"
+				]/statBases/WorkToMake</xpath>
+			</li>
+			
+			<li Class="PatchOperationRemove">
+				<xpath>/Defs/ThingDef[
+				defName="GI_Jackstones_limestone" or
+				defName="GI_Jackstones_granite" or
+				defName="GI_Javelin" or
+				defName="GI_Scrapmetal" or
+				defName="GI_Rockpillar_granite" or
+				defName="GI_Rockpillar_Marble"
+				]/recipeMaker</xpath>
+			</li>
+			
+			<li Class="PatchOperationAdd">
+				<xpath>/Defs/ThingDef[
+				defName="GI_Jackstones_limestone" or
+				defName="GI_Jackstones_granite" or
+				defName="GI_Javelin" or
+				defName="GI_Scrapmetal" or
+				defName="GI_Rockpillar_granite" or
+				defName="GI_Rockpillar_Marble"
+				]/statBases</xpath>
+				<value>
+					<MarketValue>0.05</MarketValue>
+					<MarketValue>0.18</MarketValue>
+					<MarketValue>0.09</MarketValue>
+				</value>
+			</li>
+			
+			<li Class="PatchOperationAdd">
+				<xpath>/Defs/ThingDef[
+				defName="GI_Jackstones_limestone" or
+				defName="GI_Jackstones_granite"
+				]/statBases</xpath>
+				<value>
+					<MarketValue>0.05</MarketValue>
+				</value>
+			</li>
+			
+			<li Class="PatchOperationAdd">
+				<xpath>/Defs/ThingDef[
+				defName="GI_Javelin" or
+				defName="GI_Scrapmetal"
+				]/statBases</xpath>
+				<value>
+					<MarketValue>0.18</MarketValue>
+				</value>
+			</li>
+			
+			<li Class="PatchOperationAdd">
+				<xpath>/Defs/ThingDef[
+				defName="GI_Rockpillar_granite" or
+				defName="GI_Rockpillar_Marble"
+				]/statBases</xpath>
+				<value>
+					<MarketValue>0.09</MarketValue>
+				</value>
+			</li>
+
+			
+			
+			
+			<!-- == Recipes == -->
+			
+			<li Class="PatchOperationAdd">
+			  <xpath>Defs</xpath>
+			  <value>
+				<RecipeDef ParentName="AmmoRecipeNeolithicBase">
+				  <defName>Make_GI_Jackstones_limestone</defName>
+				  <label>make limestone jackstones x10</label>
+				  <description>Craft 10 limestone jackstones.</description>
+				  <jobString>Making limestone jackstones.</jobString>
+				  <workAmount>500</workAmount>
+				  <ingredients>
+				  <li>
+					<filter>
+					  <thingDefs>
+						<li>BlocksLimestone</li>
+					  </thingDefs>
+					</filter>
+					<count>25</count>
+				  </li>
+				  </ingredients>
+				  <fixedIngredientFilter>
+					  <thingDefs>
+						<li>BlocksLimestone</li>
+					  </thingDefs>
+				  </fixedIngredientFilter>
+				  <recipeUsers>
+					<li>CraftingSpot</li>
+					<li>ElectricSmithy</li>
+					<li>FueledSmithy</li>
+				  </recipeUsers>
+				  <products>
+					<GI_Jackstones_limestone>10</GI_Jackstones_limestone>
+				  </products>
+				</RecipeDef>
+			  </value>
+			</li>
+			
+			<li Class="PatchOperationAdd">
+			  <xpath>Defs</xpath>
+			  <value>
+				<RecipeDef ParentName="AmmoRecipeNeolithicBase">
+				  <defName>Make_GI_Jackstones_granite</defName>
+				  <label>make granite jackstones x10</label>
+				  <description>Craft 10 granite jackstones.</description>
+				  <jobString>Making granite jackstones.</jobString>
+				  <workAmount>500</workAmount>
+				  <ingredients>
+				  <li>
+					<filter>
+					  <thingDefs>
+						<li>BlocksGranite</li>
+					  </thingDefs>
+					</filter>
+					<count>25</count>
+				  </li>
+				  </ingredients>
+				  <fixedIngredientFilter>
+					  <thingDefs>
+						<li>BlocksGranite</li>
+					  </thingDefs>
+				  </fixedIngredientFilter>
+				  <recipeUsers>
+					<li>CraftingSpot</li>
+					<li>ElectricSmithy</li>
+					<li>FueledSmithy</li>
+				  </recipeUsers>
+				  <products>
+					<GI_Jackstones_granite>10</GI_Jackstones_granite>
+				  </products>
+				</RecipeDef>
+			  </value>
+			</li>
+			
+			<li Class="PatchOperationAdd">
+			  <xpath>Defs</xpath>
+			  <value>
+				<RecipeDef ParentName="AmmoRecipeNeolithicBase">
+				  <defName>Make_GI_Javelin</defName>
+				  <label>make giant javelin x10</label>
+				  <description>Craft 10 giant javelins.</description>
+				  <jobString>Making giant javelins.</jobString>
+				  <workAmount>8500</workAmount>
+				  <ingredients>
+				  <li>
+					<filter>
+					  <thingDefs>
+						<li>WoodLog</li>
+					  </thingDefs>
+					</filter>
+					<count>120</count>
+				  </li>
+				  <li>
+					<filter>
+					  <thingDefs>
+						<li>ElephantTusk</li>
+					  </thingDefs>
+					</filter>
+					<count>3</count>
+				  </li>
+				  </ingredients>
+				  <fixedIngredientFilter>
+					  <thingDefs>
+						<li>WoodLog</li>
+						<li>ElephantTusk</li>
+					  </thingDefs>
+				  </fixedIngredientFilter>
+				  <recipeUsers>
+					<li>CraftingSpot</li>
+					<li>ElectricSmithy</li>
+					<li>FueledSmithy</li>
+				  </recipeUsers>
+				  <products>
+					<GI_Javelin>10</GI_Javelin>
+				  </products>
+				</RecipeDef>
+			  </value>
+			</li>
+			
+			<li Class="PatchOperationAdd">
+			  <xpath>Defs</xpath>
+			  <value>
+				<RecipeDef ParentName="AmmoRecipeNeolithicBase">
+				  <defName>Make_GI_Scrapmetal</defName>
+				  <label>make scrapmetal bundle x25</label>
+				  <description>Craft 10 scrapmetal bundles.</description>
+				  <jobString>Making scrapmetal bundles.</jobString>
+				  <workAmount>3800</workAmount>
+				  <ingredients>
+				  <li>
+					<filter>
+					  <thingDefs>
+						<li>Steel</li>
+					  </thingDefs>
+					</filter>
+					<count>120</count>
+				  </li>
+				  </ingredients>
+				  <fixedIngredientFilter>
+					  <thingDefs>
+						<li>BlocksGranite</li>
+					  </thingDefs>
+				  </fixedIngredientFilter>
+				  <recipeUsers>
+					<li>ElectricSmithy</li>
+					<li>FueledSmithy</li>
+				  </recipeUsers>
+				  <products>
+					<GI_Scrapmetal>25</GI_Scrapmetal>
+				  </products>
+				</RecipeDef>
+			  </value>
+			</li>
+			
+			<li Class="PatchOperationAdd">
+			  <xpath>Defs</xpath>
+			  <value>
+				<RecipeDef ParentName="AmmoRecipeNeolithicBase">
+				  <defName>Make_Rockpillar_granite</defName>
+				  <label>make granite rockpillar x25</label>
+				  <description>Craft 10 granite rockpillars.</description>
+				  <jobString>Making granite rockpillars.</jobString>
+				  <workAmount>18500</workAmount>
+				  <ingredients>
+				  <li>
+					<filter>
+					  <thingDefs>
+						<li>BlocksGranite</li>
+					  </thingDefs>
+					</filter>
+					<count>250</count>
+				  </li>
+				  </ingredients>
+				  <fixedIngredientFilter>
+					  <thingDefs>
+						<li>BlocksGranite</li>
+					  </thingDefs>
+				  </fixedIngredientFilter>
+				  <recipeUsers>
+					<li>ElectricSmithy</li>
+					<li>FueledSmithy</li>
+				  </recipeUsers>
+				  <products>
+					<GI_Rockpillar_granite>25</GI_Rockpillar_granite>
+				  </products>
+				</RecipeDef>
+			  </value>
+			</li>
+			
+			<li Class="PatchOperationAdd">
+			  <xpath>Defs</xpath>
+			  <value>
+				<RecipeDef ParentName="AmmoRecipeNeolithicBase">
+				  <defName>Make_Rockpillar_marble</defName>
+				  <label>make marble rockpillar x25</label>
+				  <description>Craft 25 marble rockpillars.</description>
+				  <jobString>Making marble rockpillars.</jobString>
+				  <workAmount>18500</workAmount>
+				  <ingredients>
+				  <li>
+					<filter>
+					  <thingDefs>
+						<li>BlocksMarble</li>
+					  </thingDefs>
+					</filter>
+					<count>250</count>
+				  </li>
+				  </ingredients>
+				  <fixedIngredientFilter>
+					  <thingDefs>
+						<li>BlocksGranite</li>
+					  </thingDefs>
+				  </fixedIngredientFilter>
+				  <recipeUsers>
+					<li>ElectricSmithy</li>
+					<li>FueledSmithy</li>
+				  </recipeUsers>
+				  <products>
+					<GI_Rockpillar_Marble>25</GI_Rockpillar_Marble>
+				  </products>
+				</RecipeDef>
+			  </value>
+			</li>
+			
+			<!-- Compat -->
+			
+			<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+			  <defName>GI_Jackstones_granite</defName>
+			  <statBases>
+				<Mass>8</Mass>
+				<Bulk>5</Bulk>
+				<MarketValue>0.09</MarketValue>
+				<SightsEfficiency>0.6</SightsEfficiency>
+				<RangedWeapon_Cooldown>1</RangedWeapon_Cooldown>
+				<ShotSpread>1.5</ShotSpread>
+				<SwayFactor>2.5</SwayFactor>
+			  </statBases>
+			  <Properties>
+				<label>throw jackstone</label>
+				<verbClass>CombatExtended.Verb_ShootCEOneUse</verbClass>
+				<hasStandardCommand>true</hasStandardCommand>
+				<defaultProjectile>GI_Jackstones_granite_Thrown</defaultProjectile>
+				<range>12</range>
+				<warmupTime>1.8</warmupTime>
+				<soundCast>Interact_BeatFire</soundCast>
+				<noiseRadius>4</noiseRadius>
+				<ai_IsBuildingDestroyer>false</ai_IsBuildingDestroyer>
+			  </Properties>
+			  <FireModes>
+				<aiAimMode>AimedShot</aiAimMode>
+			  </FireModes>
+			  <AllowWithRunAndGun>false</AllowWithRunAndGun>
+			</li>
+			
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="GI_Jackstones_granite"]/tools</xpath>
+				<value>
+					<tools>
+						<li Class="CombatExtended.ToolCE">
+							<label>stone fist</label>
+							<capacities>
+								<li>Blunt</li>
+							</capacities>
+							<power>19</power>
+							<cooldownTime>2.25</cooldownTime>
+							<armorPenetrationBlunt>7.56</armorPenetrationBlunt>
+						</li>
+					</tools>
+				</value>
+			</li>
+			
+			<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+			  <defName>GI_Jackstones_limestone</defName>
+			  <statBases>
+				<Mass>8</Mass>
+				<Bulk>5</Bulk>
+				<MarketValue>0.09</MarketValue>
+				<SightsEfficiency>0.6</SightsEfficiency>
+				<RangedWeapon_Cooldown>1</RangedWeapon_Cooldown>
+				<ShotSpread>1.5</ShotSpread>
+				<SwayFactor>2.5</SwayFactor>
+			  </statBases>
+			  <Properties>
+				<label>throw jackstone</label>
+				<verbClass>CombatExtended.Verb_ShootCEOneUse</verbClass>
+				<hasStandardCommand>true</hasStandardCommand>
+				<defaultProjectile>GI_Jackstones_granite_Thrown</defaultProjectile>
+				<range>12</range>
+				<warmupTime>1.8</warmupTime>
+				<soundCast>Interact_BeatFire</soundCast>
+				<noiseRadius>4</noiseRadius>
+				<ai_IsBuildingDestroyer>false</ai_IsBuildingDestroyer>
+			  </Properties>
+			  <FireModes />
+			  <AllowWithRunAndGun>false</AllowWithRunAndGun>
+			</li>
+			
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="GI_Jackstones_limestone"]/tools</xpath>
+				<value>
+					<tools>
+						<li Class="CombatExtended.ToolCE">
+							<label>stone fist</label>
+							<capacities>
+								<li>Blunt</li>
+							</capacities>
+							<power>19</power>
+							<cooldownTime>2.25</cooldownTime>
+							<armorPenetrationBlunt>7.56</armorPenetrationBlunt>
+						</li>
+					</tools>
+				</value>
+			</li>
+			
+			<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+			  <defName>GI_Javelin</defName>
+			  <statBases>
+				<Mass>10.2</Mass>
+				<Bulk>12</Bulk>
+				<MarketValue>0.09</MarketValue>
+				<SightsEfficiency>0.6</SightsEfficiency>
+				<RangedWeapon_Cooldown>1</RangedWeapon_Cooldown>
+				<ShotSpread>1.5</ShotSpread>
+				<SwayFactor>2.5</SwayFactor>
+			  </statBases>
+			  <Properties>
+				<label>throw jackstone</label>
+				<verbClass>CombatExtended.Verb_ShootCEOneUse</verbClass>
+				<hasStandardCommand>true</hasStandardCommand>
+				<defaultProjectile>GI_Javelin_Thrown</defaultProjectile>
+				<range>16</range>
+				<warmupTime>1.8</warmupTime>
+				<soundCast>Interact_BeatFire</soundCast>
+				<noiseRadius>4</noiseRadius>
+				<ai_IsBuildingDestroyer>false</ai_IsBuildingDestroyer>
+			  </Properties>
+			  <FireModes />
+			  <AllowWithRunAndGun>false</AllowWithRunAndGun>
+			</li>
+			
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="GI_Javelin"]/tools</xpath>
+				<value>
+					<tools>
+						<li Class="CombatExtended.ToolCE">
+							<label>shaft</label>
+							<capacities>
+								<li>Blunt</li>
+							</capacities>
+							<power>16</power>
+							<cooldownTime>2.79</cooldownTime>
+							<armorPenetrationBlunt>6</armorPenetrationBlunt>
+							<linkedBodyPartsGroup>Handle</linkedBodyPartsGroup>
+						</li>
+						<li Class="CombatExtended.ToolCE">
+							<label>head</label>
+							<capacities>
+								<li>Stab</li>
+							</capacities>
+							<power>46</power>
+							<cooldownTime>4.19</cooldownTime>
+							<chanceFactor>2</chanceFactor>
+							<armorPenetrationSharp>2.29</armorPenetrationSharp>
+							<armorPenetrationBlunt>24</armorPenetrationBlunt>
+							<linkedBodyPartsGroup>Head</linkedBodyPartsGroup>
+						</li>
+					</tools>
+				</value>
+			</li>
+			
+			<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+			  <defName>GI_Scrapmetal</defName>
+			  <statBases>
+				<Mass>6.6</Mass>
+				<Bulk>5</Bulk>
+				<MarketValue>0.09</MarketValue>
+				<SightsEfficiency>0.6</SightsEfficiency>
+				<RangedWeapon_Cooldown>1</RangedWeapon_Cooldown>
+				<ShotSpread>10</ShotSpread>
+				<SwayFactor>2.5</SwayFactor>
+			  </statBases>
+			  <Properties>
+				<label>throw jackstone</label>
+				<verbClass>CombatExtended.Verb_ShootCEOneUse</verbClass>
+				<hasStandardCommand>true</hasStandardCommand>
+				<defaultProjectile>GI_Scrapmetal_Thrown</defaultProjectile>
+				<range>12</range>
+				<warmupTime>1.8</warmupTime>
+				<soundCast>Interact_BeatFire</soundCast>
+				<noiseRadius>4</noiseRadius>
+				<ai_IsBuildingDestroyer>false</ai_IsBuildingDestroyer>
+			  </Properties>
+			  <FireModes />
+			</li>
+			
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="GI_Scrapmetal"]/tools</xpath>
+				<value>
+					<tools>
+						<li Class="CombatExtended.ToolCE">
+							<label>scrap fist</label>
+							<capacities>
+								<li>Blunt</li>
+							</capacities>
+							<power>19</power>
+							<cooldownTime>2.25</cooldownTime>
+							<armorPenetrationBlunt>7.56</armorPenetrationBlunt>
+						</li>
+					</tools>
+				</value>
+			</li>
+			
+			<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+			  <defName>GI_Rockpillar_granite</defName>
+			  <statBases>
+				<Mass>18</Mass>
+				<Bulk>14</Bulk>
+				<MarketValue>0.09</MarketValue>
+				<SightsEfficiency>0.6</SightsEfficiency>
+				<RangedWeapon_Cooldown>1</RangedWeapon_Cooldown>
+				<ShotSpread>1.5</ShotSpread>
+				<SwayFactor>2.5</SwayFactor>
+			  </statBases>
+			  <Properties>
+				<verbClass>CombatExtended.Verb_ShootCEOneUse</verbClass>
+				<hasStandardCommand>true</hasStandardCommand>
+				<defaultProjectile>GI_Rockpillar_Marble_Thrown</defaultProjectile>
+				<range>8</range>
+				<warmupTime>1.8</warmupTime>
+				<soundCast>Interact_BeatFire</soundCast>
+				<noiseRadius>4</noiseRadius>
+				<ai_IsBuildingDestroyer>false</ai_IsBuildingDestroyer>
+			  </Properties>
+			  <FireModes />
+			  <AllowWithRunAndGun>false</AllowWithRunAndGun>
+			</li>
+			
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="GI_Rockpillar_granite"]/tools</xpath>
+				<value>
+					<tools>
+						<li Class="CombatExtended.ToolCE">
+							<label>pillar</label>
+							<capacities>
+								<li>Blunt</li>
+							</capacities>
+							<power>18</power>
+							<cooldownTime>2.93</cooldownTime>
+							<armorPenetrationBlunt>7.25</armorPenetrationBlunt>
+						</li>
+					</tools>
+				</value>
+			</li>
+			
+			<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+			  <defName>GI_Rockpillar_Marble</defName>
+			  <statBases>
+				<Mass>18</Mass>
+				<Bulk>14</Bulk>
+				<MarketValue>0.09</MarketValue>
+				<SightsEfficiency>0.6</SightsEfficiency>
+				<RangedWeapon_Cooldown>1</RangedWeapon_Cooldown>
+				<ShotSpread>1.5</ShotSpread>
+				<SwayFactor>2.5</SwayFactor>
+			  </statBases>
+			  <Properties>
+				<verbClass>CombatExtended.Verb_ShootCEOneUse</verbClass>
+				<hasStandardCommand>true</hasStandardCommand>
+				<defaultProjectile>GI_Rockpillar_Marble_Thrown</defaultProjectile>
+				<range>8</range>
+				<warmupTime>1.8</warmupTime>
+				<soundCast>Interact_BeatFire</soundCast>
+				<noiseRadius>4</noiseRadius>
+				<ai_IsBuildingDestroyer>false</ai_IsBuildingDestroyer>
+			  </Properties>
+			  <AllowWithRunAndGun>false</AllowWithRunAndGun>
+			  <FireModes />
+			</li>
+			
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="GI_Rockpillar_Marble"]/tools</xpath>
+				<value>
+					<tools>
+						<li Class="CombatExtended.ToolCE">
+							<label>pillar</label>
+							<capacities>
+								<li>Blunt</li>
+							</capacities>
+							<power>18</power>
+							<cooldownTime>2.93</cooldownTime>
+							<armorPenetrationBlunt>7.25</armorPenetrationBlunt>
+						</li>
+					</tools>
+				</value>
+			</li>
+			
+			<!--Ammo-->
+			
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="GI_Jackstones_granite_Thrown"]</xpath>
+				<value>
+					<ThingDef Class="CombatExtended.AmmoDef" ParentName="BasePilumProjectile">
+						<defName>GI_Jackstones_granite_Thrown</defName>
+						<label>Jackstones</label>
+						<graphicData>
+						  <texPath>Giant/Weapons/Neolithic/GI_Jackstones_Thrown</texPath>
+						  <graphicClass>Graphic_Single</graphicClass>
+						  <drawSize>1.0</drawSize>
+						  <color>(155,145,147)</color>
+						</graphicData>
+						<projectile Class="CombatExtended.ProjectilePropertiesCE">
+							<damageDef>RangedBlunt</damageDef>
+							<damageAmountBase>39</damageAmountBase>
+							<speed>4</speed>
+							<armorPenetrationBlunt>24</armorPenetrationBlunt>
+							<armorPenetrationSharp>0</armorPenetrationSharp>
+							<preExplosionSpawnChance>0.75</preExplosionSpawnChance>	<!-- 4 javelins per resource -->
+							<preExplosionSpawnThingDef>GI_Jackstones_granite</preExplosionSpawnThingDef>
+						</projectile>
+					</ThingDef>
+				</value>
+
+			</li>
+			
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="GI_Jackstones_limestone_Thrown"]</xpath>
+				<value>
+					<ThingDef Class="CombatExtended.AmmoDef" ParentName="BasePilumProjectile">
+						<defName>GI_Jackstones_limestone_Thrown</defName>
+						<label>Jackstones</label>
+						<graphicData>
+						  <texPath>Giant/Weapons/Neolithic/GI_Jackstones_Thrown</texPath>
+						  <graphicClass>Graphic_Single</graphicClass>
+						  <drawSize>1.0</drawSize>
+						  <color>(208,203,185)</color>
+						</graphicData>
+						<projectile Class="CombatExtended.ProjectilePropertiesCE">
+							<damageDef>RangedBlunt</damageDef>
+							<damageAmountBase>39</damageAmountBase>
+							<speed>4</speed>
+							<armorPenetrationBlunt>24</armorPenetrationBlunt>
+							<armorPenetrationSharp>0</armorPenetrationSharp>
+							<preExplosionSpawnChance>0.75</preExplosionSpawnChance>	<!-- 4 javelins per resource -->
+							<preExplosionSpawnThingDef>GI_Jackstones_granite</preExplosionSpawnThingDef>
+						</projectile>
+					</ThingDef>
+				</value>
+			</li>
+			
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="GI_Javelin_Thrown"]</xpath>
+				<value>
+					<ThingDef Class="CombatExtended.AmmoDef" ParentName="BasePilumProjectile">
+						<defName>GI_Javelin_Thrown</defName>
+						<label>Javelin</label>
+						<graphicData>
+						  <texPath>Giant/Weapons/Neolithic/GI_Javelin_Thrown</texPath>
+						  <graphicClass>Graphic_Single</graphicClass>
+						  <drawSize>2.6</drawSize>
+						</graphicData>
+						<projectile Class="CombatExtended.ProjectilePropertiesCE">
+							<damageAmountBase>45</damageAmountBase>
+							<speed>5</speed>
+							<armorPenetrationBlunt>67.5</armorPenetrationBlunt>
+							<armorPenetrationSharp>5</armorPenetrationSharp>
+							<preExplosionSpawnChance>0.50</preExplosionSpawnChance>	<!-- 4 javelins per resource -->
+							<preExplosionSpawnThingDef>GI_Javelin</preExplosionSpawnThingDef>
+						</projectile>
+					</ThingDef>
+				</value>
+			</li>
+			
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="GI_Scrapmetal_Thrown"]</xpath>
+				<value>
+					<ThingDef Class="CombatExtended.AmmoDef" ParentName="BasePilumProjectile">
+						<defName>GI_Scrapmetal_Thrown</defName>
+						<label>Scrapmetal</label>
+						<graphicData>
+						  <texPath>Giant/Weapons/Neolithic/GI_Scrapmetal_Thrown</texPath>
+						  <graphicClass>Graphic_Single</graphicClass>
+						  <drawSize>1.2</drawSize>
+						</graphicData>
+						<projectile Class="CombatExtended.ProjectilePropertiesCE">
+							<pelletCount>12</pelletCount>
+							<spreadMult>2</spreadMult>
+							<damageAmountBase>12</damageAmountBase>
+							<speed>5</speed>
+							<armorPenetrationBlunt>3.12</armorPenetrationBlunt>
+							<armorPenetrationSharp>2</armorPenetrationSharp>
+						</projectile>
+					</ThingDef>
+				</value>
+			</li>
+			
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="GI_Rockpillar_granite_Thrown"]</xpath>
+				<value>
+					<ThingDef Class="CombatExtended.AmmoDef" ParentName="BasePilumProjectile">
+						<defName>GI_Rockpillar_granite_Thrown</defName>
+						<label>Jackstones</label>
+						<graphicData>
+						  <texPath>Giant/Weapons/Medieval/GI_Rockpillar_Thrown</texPath>
+						  <graphicClass>Graphic_Single</graphicClass>
+						  <drawSize>3.2</drawSize>
+						  <color>(155,145,147)</color>
+						</graphicData>
+						<projectile Class="CombatExtended.ProjectilePropertiesCE">
+							<damageDef>RangedBlunt</damageDef>
+							<damageAmountBase>57</damageAmountBase>
+							<speed>4</speed>
+							<armorPenetrationBlunt>72</armorPenetrationBlunt>
+							<armorPenetrationSharp>0</armorPenetrationSharp>
+							<preExplosionSpawnChance>0.25</preExplosionSpawnChance>	<!-- 4 javelins per resource -->
+							<preExplosionSpawnThingDef>GI_Rockpillar_granite</preExplosionSpawnThingDef>
+						</projectile>
+					</ThingDef>
+				</value>
+			</li>
+			
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="GI_Rockpillar_Marble_Thrown"]</xpath>
+				<value>
+					<ThingDef Class="CombatExtended.AmmoDef" ParentName="BasePilumProjectile">
+						<defName>GI_Rockpillar_Marble_Thrown</defName>
+						<label>Rockpillar</label>
+						<graphicData>
+						  <texPath>Giant/Weapons/Medieval/GI_Rockpillar_Thrown</texPath>
+						  <graphicClass>Graphic_Single</graphicClass>
+						  <drawSize>3.2</drawSize>
+						  <color>(132,135,132)</color>
+						</graphicData>
+						<projectile Class="CombatExtended.ProjectilePropertiesCE">
+							<damageDef>RangedBlunt</damageDef>
+							<damageAmountBase>57</damageAmountBase>
+							<speed>4</speed>
+							<armorPenetrationBlunt>72</armorPenetrationBlunt>
+							<armorPenetrationSharp>0</armorPenetrationSharp>
+							<preExplosionSpawnChance>0.25</preExplosionSpawnChance>	<!-- 4 javelins per resource -->
+							<preExplosionSpawnThingDef>GI_Rockpillar_Marble</preExplosionSpawnThingDef>
+						</projectile>
+					</ThingDef>
+				</value>
+			</li>
+			
+		</operations>
+		</match>	
+	  </li>
+	</operations>	
+  </Operation>
+</Patch>
