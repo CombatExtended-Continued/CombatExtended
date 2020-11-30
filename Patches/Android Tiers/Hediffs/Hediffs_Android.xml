@@ -8,6 +8,49 @@
     </mods>
 	<match Class="PatchOperationSequence">
 		<operations>
+		
+		
+		<!--Hydraulics-->
+		
+		<li Class="PatchOperationAdd">
+			<xpath>Defs/HediffDef[defName="HydraulicArm"]/stages/li/statOffsets</xpath>
+			<value>
+				<CarryWeight>2.5</CarryWeight>
+				<CarryBulk>5</CarryBulk>
+			</value>
+		</li>
+		
+		<li Class="PatchOperationAdd">
+			<xpath>Defs/HediffDef[defName="HydraulicLeg"]/stages/li/statOffsets</xpath>
+			<value>
+				<CarryWeight>25</CarryWeight>
+				<MoveSpeed>-0.25</MoveSpeed>
+			</value>
+		</li>
+		
+		<li Class="PatchOperationReplace">
+			<xpath>Defs/HediffDef[defName="HydraulicLeg"]/addedPartProps/partEfficiency</xpath>
+			<value>
+				<partEfficiency>0.80</partEfficiency>
+			</value>
+		</li>
+		
+		<li Class="PatchOperationAdd">
+			<xpath>Defs/HediffDef[defName="HydraulicFrame"]/stages/li/statOffsets</xpath>
+			<value>
+				<CarryWeight>15</CarryWeight>
+				<CarryBulk>30</CarryBulk>
+				<MoveSpeed>-0.75</MoveSpeed>
+			</value>
+		</li>
+		
+		<li Class="PatchOperationReplace">
+			<xpath>Defs/HediffDef[defName="HydraulicFrame"]/stages/li/capMods/li[capacity="Moving"]/offset</xpath>
+			<value>
+				<offset>-0.10</offset>
+			</value>
+		</li>
+		
 		<!--Arms-->
 		
 		<li Class="PatchOperationReplace">
@@ -218,6 +261,7 @@
 			<value>
 					<ArmorRating_Sharp>4</ArmorRating_Sharp>
 					<ArmorRating_Heat>0.1</ArmorRating_Heat>
+					<ArmorRating_Electric>0.1</ArmorRating_Electric>
 			</value>
 		</li>
 		

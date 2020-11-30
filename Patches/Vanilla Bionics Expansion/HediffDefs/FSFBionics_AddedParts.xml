@@ -5,6 +5,8 @@
     <mods>
         <li>[FSF] Vanilla Bionics Expansion</li>
 		<li>[FSF] Advanced Bionics Expansion</li>
+		<li>[FSF] Vanilla Bionics Expansion (Legacy Version)</li>
+		<li>[FSF] Advanced Bionics Expansion Legacy Version</li>
     </mods>
 	<match Class="PatchOperationSequence">
 		<operations>
@@ -48,6 +50,53 @@
 		<li Class="PatchOperationRemove">
 			<xpath>Defs/HediffDef[defName="FSFArchotechJaw" or defName="FSFBionicJaw"]/comps/li[@Class="HediffCompProperties_VerbGiver"]</xpath>
 		</li>
+		</operations>
+	</match>
+	</Operation>
+	
+	<Operation Class="PatchOperationFindMod">
+    <mods>
+		<li>[FSF] Vanilla Bionics Expansion</li>
+        <li>[FSF] Advanced Bionics Expansion</li>
+    </mods>
+	<match Class="PatchOperationSequence">
+		<operations>
+		
+		<li Class="PatchOperationReplace">
+			<xpath>Defs/HediffDef[defName="FSFBionicFieldArm"]/comps/li[@Class="HediffCompProperties_VerbGiver"]/tools</xpath>
+			<value>
+				<tools>
+					<li Class="CombatExtended.ToolCE">
+					<label>fist</label>
+					<capacities>
+						<li>Blunt</li>
+					</capacities>
+					<power>5</power>
+					<cooldownTime>1.11</cooldownTime>
+					<armorPenetrationBlunt>1.688</armorPenetrationBlunt>
+					</li>
+				</tools>
+			</value>
+		</li>
+		
+		<li Class="PatchOperationReplace">
+			<xpath>Defs/HediffDef[defName="FSFBionicDrillArm"]/comps/li[@Class="HediffCompProperties_VerbGiver"]/tools</xpath>
+			<value>
+				<tools>
+					<li Class="CombatExtended.ToolCE">
+					<label>drill</label>
+					<capacities>
+						<li>Stab</li>
+					</capacities>
+					<power>8</power>
+					<cooldownTime>1.25</cooldownTime>
+					<armorPenetrationSharp>0.09</armorPenetrationSharp>
+					<armorPenetrationBlunt>0.72</armorPenetrationBlunt>
+					</li>
+				</tools>
+			</value>
+		</li>
+		
 		</operations>
 	</match>
 	</Operation>

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+
+	<Operation Class="PatchOperationFindMod">
+    <mods>
+		<li>Marilyn the Mincho Worshipper Witch</li>
+    </mods>
+	<match Class="PatchOperationSequence">
+		<operations>
+		<!--Simmilar to Armorskin but less blunt-->
+		
+		<li Class="PatchOperationReplace">
+			<xpath>Defs/HediffDef[defName="MinchoWitch_MintchocoBiofilm"]/stages/li/statOffsets/ArmorRating_Sharp</xpath>
+			<value>
+					<ArmorRating_Sharp>2</ArmorRating_Sharp>
+			</value>
+		</li>
+		
+		<li Class="PatchOperationReplace">
+			<xpath>Defs/HediffDef[defName="MinchoWitch_MintchocoBiofilm"]/stages/li/statOffsets/ArmorRating_Blunt</xpath>
+			<value>
+					<ArmorRating_Blunt>1.25</ArmorRating_Blunt>
+			</value>
+		</li>
+		
+		</operations>
+	</match>
+	</Operation>
+</Patch>
+

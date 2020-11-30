@@ -1,0 +1,196 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+			<li>Prestige Specialist Armours</li>
+		</mods>
+		<match Class="PatchOperationSequence">
+			<operations>
+				<!-- Grenadier armor -->
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="Apparel_ArmorGrenadierPrestige"]/statBases/ArmorRating_Sharp</xpath>
+					<value>
+						<ArmorRating_Sharp>18</ArmorRating_Sharp>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="Apparel_ArmorGrenadierPrestige"]/statBases/ArmorRating_Blunt</xpath>
+					<value>
+						<ArmorRating_Blunt>41</ArmorRating_Blunt>
+					</value>
+				</li>
+
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="Apparel_ArmorGrenadierPrestige"]/costList</xpath>
+					<value>
+						<DevilstrandCloth>50</DevilstrandCloth>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/ThingDef[defName="Apparel_ArmorGrenadierPrestige"]/verbs</xpath>
+					<value>
+						<verbs>
+							<li Class="CombatExtended.VerbPropertiesCE">
+								<label>launch 30x29mm grenade</label>
+								<verbClass>CombatExtended.Verb_LaunchProjectileStaticCE</verbClass>
+								<hasStandardCommand>true</hasStandardCommand>
+								<onlyManualCast>True</onlyManualCast>
+								<warmupTime>1.5</warmupTime>
+								<range>40</range>
+								<minRange>5</minRange>
+								<ai_IsBuildingDestroyer>true</ai_IsBuildingDestroyer>
+								<soundCast>Shot_IncendiaryLauncher</soundCast>
+								<soundCastTail>GunTail_Medium</soundCastTail>
+								<muzzleFlashScale>14</muzzleFlashScale>
+								<drawHighlightWithLineOfSight>true</drawHighlightWithLineOfSight>
+								<targetParams>
+									<canTargetLocations>true</canTargetLocations>
+								</targetParams>
+								<ignorePartialLoSBlocker>true</ignorePartialLoSBlocker>
+								<defaultProjectile>Bullet_30x29mmGrenade_HE</defaultProjectile>
+								<rangedFireRulepack>Combat_RangedFire_Thrown</rangedFireRulepack>
+							</li>
+						</verbs>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/ThingDef[defName="Apparel_ArmorGrenadierPrestige"]/comps/li[@Class="CompProperties_Reloadable"]/ammoDef</xpath>
+					<value>
+						<ammoDef>Ammo_30x29mmGrenade_HE</ammoDef>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/ThingDef[defName="Apparel_ArmorGrenadierPrestige"]/comps/li[@Class="CompProperties_Reloadable"]/ammoCountPerCharge</xpath>
+					<value>
+						<ammoCountPerCharge>1</ammoCountPerCharge>
+					</value>
+				</li>
+
+				<!-- Phoenix armor -->
+
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="Apparel_ArmorPhoenixPrestige"]/statBases</xpath>
+					<value>
+						<Bulk>110</Bulk>
+						<WornBulk>18</WornBulk>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="Apparel_ArmorPhoenixPrestige"]/statBases/Flammability</xpath>
+					<value>
+						<Flammability>0</Flammability>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="Apparel_ArmorPhoenixPrestige"]/statBases/ArmorRating_Sharp</xpath>
+					<value>
+						<ArmorRating_Sharp>26</ArmorRating_Sharp>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="Apparel_ArmorPhoenixPrestige"]/statBases/ArmorRating_Blunt</xpath>
+					<value>
+						<ArmorRating_Blunt>55</ArmorRating_Blunt>
+					</value>
+				</li>
+
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="Apparel_ArmorPhoenixPrestige"]/costList</xpath>
+					<value>
+						<DevilstrandCloth>60</DevilstrandCloth>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/ThingDef[defName="Apparel_ArmorPhoenixPrestige"]/verbs</xpath>
+					<value>
+						<verbs>
+							<li Class="CombatExtended.VerbPropertiesCE">
+								<label>launch 30x64mm incendiary</label>
+								<verbClass>CombatExtended.Verb_LaunchProjectileStaticCE</verbClass>
+								<hasStandardCommand>true</hasStandardCommand>
+								<onlyManualCast>True</onlyManualCast>
+								<warmupTime>1.5</warmupTime>
+								<range>40</range>
+								<minRange>5</minRange>
+								<ai_IsBuildingDestroyer>true</ai_IsBuildingDestroyer>
+								<soundCast>Shot_IncendiaryLauncher</soundCast>
+								<soundCastTail>GunTail_Medium</soundCastTail>
+								<muzzleFlashScale>14</muzzleFlashScale>
+								<drawHighlightWithLineOfSight>true</drawHighlightWithLineOfSight>
+								<targetParams>
+									<canTargetLocations>true</canTargetLocations>
+								</targetParams>
+								<ignorePartialLoSBlocker>true</ignorePartialLoSBlocker>
+								<defaultProjectile>Bullet_30x64mmFuel_Incendiary</defaultProjectile>
+								<rangedFireRulepack>Combat_RangedFire_Thrown</rangedFireRulepack>
+							</li>
+						</verbs>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/ThingDef[defName="Apparel_ArmorPhoenixPrestige"]/comps/li[@Class="CompProperties_Reloadable"]/ammoDef</xpath>
+					<value>
+						<ammoDef>Ammo_30x64mmFuel_Incendiary</ammoDef>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/ThingDef[defName="Apparel_ArmorPhoenixPrestige"]/comps/li[@Class="CompProperties_Reloadable"]/ammoCountPerCharge</xpath>
+					<value>
+						<ammoCountPerCharge>1</ammoCountPerCharge>
+					</value>
+				</li>
+
+				<!-- ========== Locust Armor ========== -->
+
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="Apparel_ArmorLocustPrestige"]/statBases</xpath>
+					<value>
+						<Bulk>85</Bulk>
+						<WornBulk>15</WornBulk>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="Apparel_ArmorLocustPrestige"]/statBases/ArmorRating_Sharp</xpath>
+					<value>
+						<ArmorRating_Sharp>15</ArmorRating_Sharp>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="Apparel_ArmorLocustPrestige"]/statBases/ArmorRating_Blunt</xpath>
+					<value>
+						<ArmorRating_Blunt>38</ArmorRating_Blunt>
+					</value>
+				</li>
+
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="Apparel_ArmorLocustPrestige"]/costList</xpath>
+					<value>
+						<DevilstrandCloth>40</DevilstrandCloth>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="Apparel_ArmorLocustPrestige"]/statBases/JumpRange</xpath>
+					<value>
+						<JumpRange>30</JumpRange>
+					</value>
+				</li>
+
+			</operations>
+		</match>
+	</Operation>
+</Patch>
+
