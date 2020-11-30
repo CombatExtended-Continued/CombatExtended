@@ -129,6 +129,7 @@ Polarisbloc - Security Force	|
 Rabbie The Moonrabbit	|
 Racc Race	|
 Rah's Bionics and Surgery Expansion	|
+Rakkle the rattle snake Race mod  |
 Reich Armory	|
 Revia Race |
 Right Tool: Rebalanced	|
