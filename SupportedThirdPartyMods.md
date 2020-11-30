@@ -6,7 +6,6 @@ If the mod(s) you are interested in isn't on this list, first confirm that the m
 
 Mod |
 --- |
-[CP] British Military Kit	|
 [CP] DOOM	|
 [CP] Metal Gear Solid	|
 [CP] Red Horse Furniture	|
@@ -36,6 +35,7 @@ Mod |
 [RH] Faction: Umbra Company	|
 [RH] Faction: VOID	|
 [RH] Faction: War Mongrels	|
+[RWY] Advanced Mechanoid Warfare    |
 [SS] Maid Project	|
 [SYR] Harpy	|
 [SYR] Naga	|
