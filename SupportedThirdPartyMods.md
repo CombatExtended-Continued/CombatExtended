@@ -139,8 +139,9 @@ PsiTech	|
 Rabbie The Moonrabbit	|
 Racc Race	|
 Rah's Bionics and Surgery Expansion	|
+Rakkle The Rattle Snake Race Mod  |
 Redcoat Apparel	|
-Reich Armory	|
+Reich Armory  |
 Revia Race |
 Right Tool: Rebalanced	|
 Rim Contractors Arsenal	|
