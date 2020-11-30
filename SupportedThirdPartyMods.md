@@ -132,9 +132,10 @@ Ni'Hal	|
 Orassans	|
 Palm Cats   |
 Penguin	|
-PsiTech	|
 Polarisbloc - Security Force	|
 Prestige Specialist Armours	|
+Prostheses+ |
+PsiTech	|
 Rabbie The Moonrabbit	|
 Racc Race	|
 Rah's Bionics and Surgery Expansion	|
