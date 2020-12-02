@@ -31,7 +31,7 @@ jobs:
         ls -l id_ecdsa*
         md5sum id_ecdsa
         md5sum id_ecdsa.pub
-        echo put build.zip | sftp -P 2022 -i ./id_ecdsa combatextended@45.55.3.11
+        echo put build.zip | sftp -oStrictHostKeyChecking=no -P 2022 -i ./id_ecdsa combatextended@45.55.3.11
       
       shell: bash
       env:
