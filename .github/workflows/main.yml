@@ -26,9 +26,8 @@ jobs:
         dest: build.zip
     - name: Upload to DO
       run: |
-        echo "$SSH_KEY" > id_ecdsa.base64
+        printf "$SSH_KEY" > id_ecdsa
         echo "$SSH_KEY_PUB" > id_ecdsa.pub
-        python3 -c "import base64; print(base64.decodebytes(eval(open('id_ecdsa.base64').read())).decode('charmap'))" > id_ecdsa
         echo put build.zip | sftp -P 2022 -i ./id_ecdsa combatextended@45.55.3.11
       
       shell: bash
