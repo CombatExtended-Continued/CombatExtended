@@ -20,7 +20,7 @@ jobs:
         git config --global user.name "GitHub Actions"
         git pull --no-commit --allow-unrelated-histories -X theirs origin pull/${{ github.event.pull_request.number }}${{ github.event.inputs.PR }}/head:
         git status
-        wget https://raw.githubusercontent.org/CombatExtended-Continued/CombatExtended/chore_ci2/Make.py -O Make.py
+        wget https://raw.githubusercontent.com/CombatExtended-Continued/CombatExtended/chore_ci2/Make.py -O Make.py
         mkdir -p Assemblies
         mkdir -p ${{ runner.temp }}/downloads
     - name: build
