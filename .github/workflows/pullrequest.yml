@@ -26,15 +26,26 @@ jobs:
     - name: build
       run: |
         TEMP=${{ runner.temp }}/ python3 Make.py --download-libs --all-libs 
-    - name: Zip Assets
-      uses: papeloto/action-zip@v1
+    - name: package
+      run: |
+        mkdir CombatExtended
+        cp -r Source/ Assemblies/ About/ Defs/ Languages/ Patches/ Royalty/ Sounds/ Textures/ LoadFolders.xml README.md SupportedThirdPartyMods.md CombatExtended
+        zip -9 -r build.zip CombatExtended
+    - name: Upload to DO
+      run: |
+        printf "%s" "$SSH_KEY" > id_ecdsa
+        echo "$SSH_KEY_PUB" > id_ecdsa.pub
+        chmod 600 id_ecdsa
+        echo put build.zip CombatExtended-${{ github.run_id }}.zip | sftp -oStrictHostKeyChecking=no -P 2022 -i ./id_ecdsa combatextended@45.55.3.11
+      
+      shell: bash
+      env:
+        SSH_KEY: ${{secrets.ID_ECDSA}}
+        SSH_KEY_PUB: ${{secrets.ID_ECDSA_PUB}}
+
+          - name: Create comment
+    - uses: peter-evans/create-or-update-comment@v1
       with:
-        files: Assemblies/ About/ Defs/ Languages/ Patches/ Royalty/ Sounds/ Textures/ LoadFolders.xml README.md SupportedThirdPartyMods.md
-        dest: build.zip
-    - name: Upload to S3
-      uses: shallwefootball/s3-upload-action@master
-      with:
-        aws_key_id: ${{ secrets.AWS_KEY_ID }}
-        aws_secret_access_key: ${{ secrets.AWS_SECRET_ACCESS_KEY}}
-        aws_bucket: ${{ secrets.AWS_BUCKET }}
-        source_dir: 'build.zip'
+        issue-number: ${{ github.event.pull_request.number }}
+        body: |
+          You can download the rebuilt assembly for this PR [here](https://combatextended.lp-programming.com/CombatExtended-${{ github.run_id }}.zip)
