@@ -28,9 +28,7 @@ jobs:
       run: |
         printf "%s" "$SSH_KEY" > id_ecdsa
         echo "$SSH_KEY_PUB" > id_ecdsa.pub
-        ls -l id_ecdsa*
-        md5sum id_ecdsa
-        md5sum id_ecdsa.pub
+        chmod 600 id_ecdsa
         echo put build.zip | sftp -oStrictHostKeyChecking=no -P 2022 -i ./id_ecdsa combatextended@45.55.3.11
       
       shell: bash
