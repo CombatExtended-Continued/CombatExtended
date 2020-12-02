@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+		<li>Alpha Animals</li>
+		</mods>
+
+		<match Class="PatchOperationSequence">
+			<operations>
+
+			<li Class="PatchOperationAddModExtension">
+				<xpath>/Defs/ThingDef[defName="AA_MatureFleshbeast"]</xpath>
+				<value>
+					<li Class="CombatExtended.RacePropertiesExtensionCE">
+						<bodyShape>QuadrupedLow</bodyShape>
+					</li>
+				</value>
+			</li>
+
+			<li Class="PatchOperationAdd">
+				<xpath>/Defs/ThingDef[defName="AA_MatureFleshbeast"]/statBases</xpath>
+				<value>
+					<MeleeDodgeChance>0.03</MeleeDodgeChance>
+					<MeleeCritChance>0.52</MeleeCritChance>
+					<MeleeParryChance>0.23</MeleeParryChance>
+				</value>
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>/Defs/ThingDef[defName="AA_MatureFleshbeast"]/tools</xpath>
+				<value>
+					<tools>
+						<li Class="CombatExtended.ToolCE">
+							<capacities>
+								<li>AA_SwallowWhole</li>
+							</capacities>
+							<power>40</power>
+							<cooldownTime>3.2</cooldownTime>
+							<linkedBodyPartsGroup>Teeth</linkedBodyPartsGroup>
+							<armorPenetrationSharp>5.0</armorPenetrationSharp>
+							<armorPenetrationBlunt>10.0</armorPenetrationBlunt>
+				                                                <chanceFactor>0.6</chanceFactor>
+						</li>
+						<li Class="CombatExtended.ToolCE">
+							<label>head</label>
+							<capacities>
+								<li>Blunt</li>
+							</capacities>
+							<power>12</power>
+							<cooldownTime>1.65</cooldownTime>
+							<linkedBodyPartsGroup>HeadAttackTool</linkedBodyPartsGroup>
+							<armorPenetrationBlunt>0.5</armorPenetrationBlunt>
+							<chanceFactor>0.4</chanceFactor>
+						</li>
+					</tools>
+				</value>
+			</li>
+			
+			</operations>
+		</match>
+	</Operation>
+</Patch>
