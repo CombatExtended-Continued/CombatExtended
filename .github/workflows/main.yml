@@ -26,7 +26,7 @@ jobs:
         dest: build.zip
     - name: Upload to DO
       run: |
-        printf "$SSH_KEY" > id_ecdsa
+        printf "%s" "$SSH_KEY" > id_ecdsa
         echo "$SSH_KEY_PUB" > id_ecdsa.pub
         ls -l id_ecdsa*
         md5sum id_ecdsa
