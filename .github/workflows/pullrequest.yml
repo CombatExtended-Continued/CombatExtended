@@ -52,3 +52,10 @@ jobs:
         issue-number: ${{ github.event.pull_request.number }}
         body: |
           You can download the rebuilt assembly for this PR [here](https://combatextended.lp-programming.com/CombatExtended-${{ github.run_id }}.zip)
+    - name: Add Label
+      uses: actions-ecosystem/action-add-labels@v1
+        with:
+          github_token: ${{ secrets.github_token }}
+          labels: "Download in Comments"
+          number: ${{ github.event.pull_request.number }}
+          
