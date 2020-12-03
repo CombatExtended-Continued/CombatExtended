@@ -68,10 +68,18 @@
 			<li Class="PatchOperationReplace">
 				<xpath>Defs/ThingDef[defName="AncientMail"]/statBases/StuffEffectMultiplierArmor</xpath>
 				<value>
-					<StuffEffectMultiplierArmor>1.341</StuffEffectMultiplierArmor>
+					<StuffEffectMultiplierArmor>1.8</StuffEffectMultiplierArmor>
 				</value>
 			</li>
 			
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="AncientMail"]/stuffCategories</xpath>
+				<value>
+					<stuffCategories>
+						<li>Steeled</li>
+					</stuffCategories>
+				</value>
+			</li>
 			
 			<li Class="PatchOperationRemove">
 				<xpath>Defs/ThingDef[defName="AncientMail"]/equippedStatOffsets/MoveSpeed</xpath>
@@ -146,7 +154,6 @@
 			</li>
 			
 			
-			
 			<li Class="PatchOperationConditional">
 				<xpath>Defs/ThingDef[@Name="TM_ArtifactBase"]/statBases</xpath>
 				<nomatch Class="PatchOperationAdd">
@@ -165,7 +172,7 @@
 			<li Class="PatchOperationAdd">
 				<xpath>Defs/ThingDef[@Name="TM_ArtifactBase"]/statBases</xpath>
 				<value>
-					<Bulk>1</Bulk>
+					<Bulk>0.35</Bulk>
 					<WornBulk>0.1</WornBulk>
 				</value>
 			</li>
