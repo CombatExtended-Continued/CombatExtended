@@ -111,7 +111,7 @@ base_dir = CSPROJ.rsplit('/',1)[0]
 with XMLOpen(CSPROJ) as csproj:
     quiet = "" if VERBOSE else "-q"
     if DOWNLOAD_LIBS:
-        os.system("mkdir -p {tdir}/downloads/unpack")
+        os.system(f"mkdir -p {tdir}/downloads/unpack")
         for idx, package in enumerate(csproj.getElementsByTagName("PackageReference")):
             name = package.attributes['Include'].value
             version = package.attributes['Version'].value
@@ -181,7 +181,7 @@ with XMLOpen(CSPROJ) as csproj:
                     print("Directive to exclude non-existent file:", v)
     sources = [(base_dir+'/'+i) for i in sources]
 
-args = ["mcs", "-nostdlib", "-langversion:Experimental", "-target:library", f'-out:{OUTPUT}', *sources, *[f'-r:{r}' for r in libraries]]
+args = ["mcs", "-warnaserror", "-nostdlib", "-langversion:Experimental", "-target:library", f'-out:{OUTPUT}', *sources, *[f'-r:{r}' for r in libraries]]
 
 if VERBOSE:
     print(HARMONY)
