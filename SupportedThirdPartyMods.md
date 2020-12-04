@@ -6,7 +6,6 @@ If the mod(s) you are interested in isn't on this list, first confirm that the m
 
 Mod |
 --- |
-[CP] British Military Kit	|
 [CP] DOOM	|
 [CP] Metal Gear Solid	|
 [CP] Red Horse Furniture	|
@@ -14,6 +13,7 @@ Mod |
 [CP] Rimmu-Nation - Weapons	|
 [CP] Spec Ops - The Line	|
 [CP] The DOOM Kit - Classic	|
+[HLX] Rimworld: UNSC Armoury |
 [JDS] Exiled Dawn |
 [JDS] Star Wars BlasTech Industries |
 [JDS] The Forge - Exiled Dawn |
@@ -35,6 +35,7 @@ Mod |
 [RH] Faction: Umbra Company	|
 [RH] Faction: VOID	|
 [RH] Faction: War Mongrels	|
+[RWY] Advanced Mechanoid Warfare    |
 [SS] Maid Project	|
 [SYR] Harpy	|
 [SYR] Naga	|
@@ -131,13 +132,16 @@ Ni'Hal	|
 Orassans	|
 Palm Cats   |
 Penguin	|
-PsiTech	|
 Polarisbloc - Security Force	|
 Prestige Specialist Armours	|
+Prostheses+ |
+PsiTech	|
 Rabbie The Moonrabbit	|
 Racc Race	|
 Rah's Bionics and Surgery Expansion	|
-Reich Armory	|
+Rakkle The Rattle Snake Race Mod  |
+Redcoat Apparel	|
+Reich Armory  |
 Revia Race |
 Right Tool: Rebalanced	|
 Rim Contractors Arsenal	|

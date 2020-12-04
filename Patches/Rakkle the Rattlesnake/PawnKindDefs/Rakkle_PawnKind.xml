@@ -1,0 +1,231 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+  <Operation Class="PatchOperationSequence">
+	<operations>
+	  <li Class="PatchOperationFindMod">
+			
+		<mods><li>Rakkle the rattle snake Race mod</li></mods>
+			
+		<match Class="PatchOperationSequence">
+		<operations>
+			<!--Regular-->
+			
+			<li Class="PatchOperationAddModExtension">
+				<xpath>Defs/PawnKindDef[@Name="FRUBasePawnKind"]</xpath>
+				<value>
+					<li Class="CombatExtended.LoadoutPropertiesExtension">
+					<primaryMagazineCount>
+						<min>1</min>
+						<max>3</max>
+					</primaryMagazineCount>
+					<sidearms>
+					<li>
+						<generateChance>0.15</generateChance>
+						<sidearmMoney>
+							<min>20</min>
+							<max>120</max>
+						</sidearmMoney>
+						<weaponTags>
+							<li>CE_Sidearm_Melee</li>
+						</weaponTags>
+					</li>
+					</sidearms>
+					</li>
+				</value>
+			</li>
+			
+			<!--Cradle-->
+			
+			<li Class="PatchOperationAddModExtension">
+				<xpath>Defs/PawnKindDef[defName="CRD_Kidnapper"]</xpath>
+				<value>
+					<li Class="CombatExtended.LoadoutPropertiesExtension">
+					<primaryMagazineCount>
+						<min>2</min>
+						<max>3</max>
+					</primaryMagazineCount>
+					<sidearms>
+					<li>
+						<generateChance>0.2</generateChance>
+						<sidearmMoney>
+							<min>20</min>
+							<max>120</max>
+						</sidearmMoney>
+						<weaponTags>
+							<li>CE_Sidearm_Melee</li>
+						</weaponTags>
+					</li>
+					</sidearms>
+					</li>
+				</value>
+			</li>
+			
+			<li Class="PatchOperationAddModExtension">
+				<xpath>Defs/PawnKindDef[defName="CRD_Gunner"]</xpath>
+				<value>
+					<li Class="CombatExtended.LoadoutPropertiesExtension">
+					<primaryMagazineCount>
+						<min>6</min>
+						<max>8</max>
+					</primaryMagazineCount>
+					<sidearms>
+					<li>
+						<generateChance>0.2</generateChance>
+						<sidearmMoney>
+							<min>50</min>
+							<max>200</max>
+						</sidearmMoney>
+						<weaponTags>
+							<li>CE_Sidearm_Melee</li>
+						</weaponTags>
+					</li>
+					</sidearms>
+					</li>
+				</value>
+			</li>
+			
+			<li Class="PatchOperationAddModExtension">
+				<xpath>Defs/PawnKindDef[defName="CRD_Sapper"]</xpath>
+				<value>
+				  <li Class="CombatExtended.LoadoutPropertiesExtension">
+					<primaryMagazineCount>
+					  <min>10</min>
+					  <max>30</max>
+					</primaryMagazineCount>
+					<forcedSidearm>
+					  <sidearmMoney>
+						<min>250</min>
+						<max>100</max>
+					  </sidearmMoney>
+					  <weaponTags>
+						<li>CE_Sidearm</li>
+					  </weaponTags>
+					<magazineCount>
+					  <min>2</min>
+					  <max>5</max>
+					</magazineCount>          
+					</forcedSidearm>
+				  </li>
+				</value>
+			</li>
+			
+			<li Class="PatchOperationAddModExtension">
+				<xpath>Defs/PawnKindDef[defName="CRD_HeavyGunner"]</xpath>
+				<value>
+				  <li Class="CombatExtended.LoadoutPropertiesExtension">
+					<primaryMagazineCount>
+					  <min>1</min>
+					  <max>4</max>
+					</primaryMagazineCount>
+					<forcedSidearm>
+					  <sidearmMoney>
+						<min>150</min>
+						<max>350</max>
+					  </sidearmMoney>
+					  <weaponTags>
+						<li>CE_SMG</li>
+					  </weaponTags>
+					  <magazineCount>
+						<min>0</min>
+						<max>1</max>
+					  </magazineCount>
+					</forcedSidearm>
+					<sidearms>
+					  <li>
+						<generateChance>0.5</generateChance>
+						<sidearmMoney>
+						  <min>60</min>
+						  <max>150</max>
+						</sidearmMoney>
+						<weaponTags>
+						  <li>CE_Sidearm_Melee</li>
+						</weaponTags>
+					  </li>
+					</sidearms>
+				  </li>
+				</value>
+			</li>
+			
+			<li Class="PatchOperationAddModExtension">
+				<xpath>Defs/PawnKindDef[
+				defName="CradleLeader" or
+				defName="CRD_EliteGunner"
+				]</xpath>
+				<value>
+					<li Class="CombatExtended.LoadoutPropertiesExtension">
+					<primaryMagazineCount>
+						<min>6</min>
+						<max>8</max>
+					</primaryMagazineCount>
+					<sidearms>
+					<li>
+						<generateChance>0.2</generateChance>
+						<sidearmMoney>
+							<min>50</min>
+							<max>200</max>
+						</sidearmMoney>
+						<weaponTags>
+							<li>CE_Sidearm_Melee</li>
+						</weaponTags>
+					</li>
+					</sidearms>
+					</li>
+				</value>
+			</li>
+			
+			<li Class="PatchOperationAddModExtension">
+				<xpath>Defs/PawnKindDef[defName="CRD_Slasher"]</xpath>
+				<value>
+				  <li Class="CombatExtended.LoadoutPropertiesExtension">
+					<shieldMoney>
+					  <min>500</min>
+					  <max>800</max>
+					</shieldMoney>
+					<shieldTags>
+					  <li>OutlanderShield</li>
+					</shieldTags>
+					<shieldChance>0.9</shieldChance>
+				  </li>
+				</value>
+			</li>
+			
+			<li Class="PatchOperationAddModExtension">
+				<xpath>Defs/PawnKindDef[defName="CRD_EliteSlasher"]</xpath>
+				<value>
+				  <li Class="CombatExtended.LoadoutPropertiesExtension">
+					<shieldMoney>
+					  <min>800</min>
+					  <max>1400</max>
+					</shieldMoney>
+					<shieldTags>
+					  <li>OutlanderShield</li>
+					</shieldTags>
+					<shieldChance>0.9</shieldChance>
+				  </li>
+				</value>
+			</li>
+			
+			<li Class="PatchOperationAdd">
+				<xpath>/Defs/PawnKindDef[
+				defName="CradleLeader"
+				]/weaponTags</xpath>
+				<value>
+				<li>SpacerGun</li>
+				</value>
+			</li>
+
+			<li Class="PatchOperationAdd">
+				<xpath>/Defs/PawnKindDef[
+				defName="CRD_EliteGunner"
+				]/weaponTags</xpath>
+				<value>
+				<li>SpacerGun</li>
+				</value>
+			</li>			
+			
+		</operations>
+		</match>	
+	  </li>
+	</operations>	
+  </Operation>
+</Patch>

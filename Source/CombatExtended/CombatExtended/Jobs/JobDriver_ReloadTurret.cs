@@ -114,6 +114,10 @@ namespace CombatExtended
             else
                 this.FailOnDestroyedNullOrForbidden(TargetIndex.A);
 
+            // If someone else magically reloaded our turret while we were reloading, fail.
+            // This happens when Project RimFactory's refueling machine is set up.
+            this.FailOn(() => compReloader.MissingToFullMagazine == 0);
+
             // Perform ammo system specific activities, failure condition and hauling
             if (compReloader.UseAmmo)
             {

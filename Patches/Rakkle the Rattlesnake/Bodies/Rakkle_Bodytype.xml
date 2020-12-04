@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+
+  <Operation Class="PatchOperationFindMod">
+    <mods>
+      <li>Rakkle the rattle snake Race mod</li>
+    </mods>
+
+    <match Class="PatchOperationSequence">
+      <operations>
+        <!-- === Sholder/Arm Groups === -->
+        <li Class="PatchOperationAdd">
+          <xpath>/Defs/BodyDef[defName="Rakkle"]//*[customLabel="right shoulder"]/groups</xpath>
+          <value>
+            <li>RightShoulder</li>
+          </value>
+        </li>
+		
+		<li Class="PatchOperationAdd">
+          <xpath>/Defs/BodyDef[defName="Rakkle"]//*[customLabel="left shoulder"]/groups</xpath>
+          <value>
+            <li>LeftShoulder</li>
+          </value>
+        </li>
+		
+		<li Class="PatchOperationAdd">
+          <xpath>/Defs/BodyDef[defName="Rakkle"]//*[customLabel="right arm"]/groups</xpath>
+          <value>
+            <li>RightArm</li>
+          </value>
+        </li>
+		
+		<li Class="PatchOperationAdd">
+          <xpath>/Defs/BodyDef[defName="Rakkle"]//*[customLabel="left arm"]/groups</xpath>
+          <value>
+            <li>LeftArm</li>
+          </value>
+        </li>
+		
+		<!-- === Natural Armor === -->
+        <li Class="PatchOperationAdd">
+          <xpath>/Defs/BodyDef[defName="Rakkle"]//*[
+		  def="Torso" or 
+		  def="Neck" or 
+		  def="Head" or
+		  def="Ear" or
+		  def="Nose" or
+		  def="Jaw" or
+		  def="Shoulder" or
+		  def="Arm" or
+		  def="Hand" or
+		  def="Finger" or
+		  def="RS_UpperTail" or
+		  def="RS_LowerTail" or
+		  def="Lower_BellyScale" or
+		  def="RS_Rattle"]/groups</xpath>
+          <value>
+            <li>CoveredByNaturalArmor</li>
+          </value>
+        </li>
+      </operations>
+    </match>
+  </Operation>
+
+</Patch>
