@@ -109,16 +109,18 @@ base_dir = CSPROJ.rsplit('/',1)[0]
 
     
 with XMLOpen(CSPROJ) as csproj:
-
+    quiet = "" if VERBOSE else "-q"
     if DOWNLOAD_LIBS:
         os.system("mkdir -p {tdir}/downloads/unpack")
         for idx, package in enumerate(csproj.getElementsByTagName("PackageReference")):
             name = package.attributes['Include'].value
             version = package.attributes['Version'].value
             print(f"Downloading {version} of {name} from nuget")
-            if os.system(f"wget -q https://www.nuget.org/api/v2/package/{name}/{version} -O {tdir}/downloads/rwref-{idx}.zip"):
+            if os.system(f"wget {quiet} https://www.nuget.org/api/v2/package/{name}/{version} -O {tdir}/downloads/rwref-{idx}.zip"):
                 raise Exception(f"Can't find version {version} of {name} on nuget")
-            os.system(f"unzip -q -o {tdir}/downloads/rwref-{idx}.zip -d {tdir}/downloads/unpack")
+            os.system(f"unzip {quiet} -o {tdir}/downloads/rwref-{idx}.zip -d {tdir}/downloads/unpack")
+        if VERBOSE:
+            print(os.listdir(tdir+'/downloads'))
         os.system(f"cp -r {tdir}/downloads/unpack/ref/net472/* {tdir}/rwreference")
         os.system(f"cp -r {tdir}/downloads/unpack/lib/net472/* {tdir}/rwreference")
     

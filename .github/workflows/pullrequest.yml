@@ -6,7 +6,7 @@ on:
         description: PR Number
         required: true
   pull_request_target:
-    branches: [ master, Development, WorkflowTest ]
+    branches: [ master, Development ]
     paths: Source/**
 
 jobs:
@@ -16,7 +16,6 @@ jobs:
     steps:
     - uses: actions/checkout@v2
       with:
-        ref: WorkflowTest
         fetch-depth: 0
     - name: Prebuild
       run: |
@@ -24,7 +23,7 @@ jobs:
         git config --global user.name "GitHub Actions"
         git pull --no-commit --allow-unrelated-histories -X theirs origin pull/${{ github.event.pull_request.number }}${{ github.event.inputs.PR }}/head:
         git status
-        wget https://raw.githubusercontent.com/CombatExtended-Continued/CombatExtended/chore_ci2/Make.py -O Make.py
+        wget https://raw.githubusercontent.com/CombatExtended-Continued/CombatExtended/Development/Make.py -O Make.py
         mkdir -p Assemblies
         mkdir -p ${{ runner.temp }}/downloads
     - name: build
@@ -40,7 +39,7 @@ jobs:
         printf "%s" "$SSH_KEY" > id_ecdsa
         echo "$SSH_KEY_PUB" > id_ecdsa.pub
         chmod 600 id_ecdsa
-        echo put build.zip CombatExtended-${{ github.run_id }}.zip | sftp -oStrictHostKeyChecking=no -P 2022 -i ./id_ecdsa combatextended@45.55.3.11
+        echo put build.zip CombatExtended-${{ github.run_id }}.zip | sftp -oStrictHostKeyChecking=no -P 2022 -i ./id_ecdsa combatextended@combatextended.lp-programming.com
       
       shell: bash
       env:
