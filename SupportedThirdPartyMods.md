@@ -57,6 +57,7 @@ Beeralope Squad	|
 Better Infestations	|
 Black Widows	|
 Carbon	|
+Clay Soldier Race |
 Combat Enthusiast’s Collection	|
 Cupro's Alloys	|
 Cute Penguin	|
