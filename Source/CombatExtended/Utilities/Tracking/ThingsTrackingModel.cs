@@ -94,7 +94,6 @@ namespace CombatExtended.Utilities
                 sortedThings[things.Count] = new ThingPositionInfo(thing);
                 indexByThing[thing] = 0;
                 things.Add(thing);
-                return;
             }
             else
             {
