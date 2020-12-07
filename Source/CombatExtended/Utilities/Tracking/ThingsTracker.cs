@@ -175,28 +175,21 @@ namespace CombatExtended.Utilities
 
         public ThingsTrackingModel GetModelFor(TrackedThingsRequestCategory category)
         {
-            ThingsTrackingModel result;
             switch (category)
             {
                 case TrackedThingsRequestCategory.Pawns:
-                    result = pawnsTracker;
-                    break;
+                    return pawnsTracker;
                 case TrackedThingsRequestCategory.Ammo:
-                    result = ammoTracker;
-                    break;
+                    return ammoTracker;
                 case TrackedThingsRequestCategory.Apparel:
-                    result = apparelTracker;
-                    break;
+                    return apparelTracker;
                 case TrackedThingsRequestCategory.Weapons:
-                    result = weaponsTracker;
-                    break;
+                    return weaponsTracker;
                 case TrackedThingsRequestCategory.Medicine:
-                    result = medicineTracker;
-                    break;
+                    return medicineTracker;
                 default:
                     throw new NotSupportedException();
             }
-            return result;
         }
 
         public static bool IsValidTrackableThing(Thing thing)
@@ -211,24 +204,25 @@ namespace CombatExtended.Utilities
 
         public void Notify_Spawned(Thing thing)
         {
-            if (IsValidTrackableThing(thing))
-                Register(thing);
+            if (!IsValidTrackableThing(thing))
+                return;
+            Register(thing);
         }
 
         public void Notify_DeSpawned(Thing thing)
         {
-            if (IsValidTrackableThing(thing))
-                Remove(thing);
+            if (!IsValidTrackableThing(thing))
+                return;
+            Remove(thing);
         }
 
         public void Notify_PositionChanged(Thing thing)
         {
-            if (IsValidTrackableThing(thing))
-            {
-                ThingsTrackingModel[] trackers = GetModelsFor(thing.def);
-                for (int i = 0; i < trackers.Length; i++)
-                    trackers[i]?.Notify_ThingPositionChanged(thing);
-            }
+            if (!IsValidTrackableThing(thing))
+                return;
+            ThingsTrackingModel[] trackers = GetModelsFor(thing.def);
+            for (int i = 0; i < trackers.Length; i++)
+                trackers[i]?.Notify_ThingPositionChanged(thing);
         }
     }
 }

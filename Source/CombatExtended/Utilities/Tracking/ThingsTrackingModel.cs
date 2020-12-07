@@ -118,9 +118,7 @@ namespace CombatExtended.Utilities
             if (!indexByThing.ContainsKey(thing))
                 return;
             int index = indexByThing[thing];
-            int i;
-
-            for (i = index + 1; i < things.Count; i++)
+            for (int i = index + 1; i < things.Count; i++)
             {
                 indexByThing[sortedThings[i].thing] = i - 1;
                 sortedThings[i - 1] = sortedThings[i];
