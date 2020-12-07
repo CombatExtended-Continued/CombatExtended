@@ -163,14 +163,7 @@ namespace CombatExtended.Utilities
             return result;
         }
 
-        public ThingsTrackingModel[] GetModelsFor(Thing thing)
-        {
-            var result = trackers[thing.def.index];
-            if (result[0] != null)
-                return result;
-            result[0] = new ThingsTrackingModel(thing.def, map, this);
-            return result;
-        }
+        public ThingsTrackingModel[] GetModelsFor(Thing thing) => GetModelsFor(thing.def);
 
         public ThingsTrackingModel GetModelFor(TrackedThingsRequestCategory category)
         {
