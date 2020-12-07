@@ -52,6 +52,7 @@ namespace CombatExtended
         private bool debugDrawPartialLoSChecks = false;
         private bool debugEnableInventoryValidation = false;
         private bool debugDrawTargetCoverChecks = false;
+        private bool debugGenClosetPawn = false;
         private bool debugShowTreeCollisionChance = false;
         private bool debugShowSuppressionBuildup = false;
         private bool debugDrawInterceptChecks = false;
@@ -62,7 +63,7 @@ namespace CombatExtended
         public bool DebugDrawTargetCoverChecks => debugDrawTargetCoverChecks;
         public bool DebugShowTreeCollisionChance => debugShowTreeCollisionChance;
         public bool DebugShowSuppressionBuildup => debugShowSuppressionBuildup;
-
+        public bool DebugGenClosetPawn => debugGenClosetPawn;
         #endregion
 
         private bool lastAmmoSystemStatus;
@@ -133,6 +134,7 @@ namespace CombatExtended
 
             list.CheckboxLabeled("Draw intercept checks", ref debugDrawInterceptChecks, "Displays projectile checks for intercept.");
             list.CheckboxLabeled("Draw partial LoS checks", ref debugDrawPartialLoSChecks, "Displays line of sight checks against partial cover.");
+            list.CheckboxLabeled("Draw debug things in range", ref debugGenClosetPawn);
             list.CheckboxLabeled("Draw target cover checks", ref debugDrawTargetCoverChecks, "Displays highest cover of target as it is selected.");
             list.CheckboxLabeled("Enable inventory validation", ref debugEnableInventoryValidation, "Inventory will refresh its cache every tick and log any discrepancies.");
             list.CheckboxLabeled("Display tree collision chances", ref debugShowTreeCollisionChance, "Projectiles will display chances of coliding with trees as they pass by.");
@@ -146,7 +148,7 @@ namespace CombatExtended
             list.Label("CE_Settings_HeaderAmmo".Translate());
             Text.Font = GameFont.Small;
             list.Gap();
-            
+
             list.CheckboxLabeled("CE_Settings_EnableAmmoSystem_Title".Translate(), ref enableAmmoSystem, "CE_Settings_EnableAmmoSystem_Desc".Translate());
             list.GapLine();
             if (enableAmmoSystem)
