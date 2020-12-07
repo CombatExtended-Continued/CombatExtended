@@ -80,7 +80,7 @@ namespace CombatExtended.Utilities
             this.parent = parent;
         }
 
-         public void Register(Thing thing)
+        public void Register(Thing thing)
         {
             if (indexByThing.ContainsKey(thing))
                 return;
@@ -289,7 +289,6 @@ namespace CombatExtended.Utilities
             tracker.Remove(thing);
         }
 
-
         public ThingTrackingModel GetModelFor(ThingDef def)
         {
             if (def == null || def.thingClass == typeof(Pawn) || def.category == ThingCategory.Pawn || def.race != null)
@@ -317,6 +316,8 @@ namespace CombatExtended.Utilities
             if (thing.def.category == ThingCategory.Filth)
                 return false;
             if (thing.def.category == ThingCategory.Building)
+                return false;
+            if (thing.def.category == ThingCategory.Gas)
                 return false;
             return true;
         }
