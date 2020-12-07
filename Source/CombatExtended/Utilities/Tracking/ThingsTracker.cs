@@ -57,31 +57,32 @@ namespace CombatExtended.Utilities
             foreach (var def in DefDatabase<AmmoDef>.AllDefs)
                 trackers[def.index][1] = ammoTracker;
 
-            if (validDefs == null)
+            if (validDefs != null)
+                return;
+
+            validDefs = new bool[ushort.MaxValue];
+            foreach (var def in DefDatabase<ThingDef>.AllDefs)
             {
-                validDefs = new bool[ushort.MaxValue];
-                foreach (var def in DefDatabase<ThingDef>.AllDefs)
-                {
-                    if (def.category == ThingCategory.Mote)
-                        validDefs[def.index] = false;
-                    else if (def.category == ThingCategory.Filth)
-                        validDefs[def.index] = false;
-                    else if (def.category == ThingCategory.Building)
-                        validDefs[def.index] = false;
-                    else if (def.category == ThingCategory.Gas)
-                        validDefs[def.index] = false;
-                    else if (def.category == ThingCategory.Plant)
-                        validDefs[def.index] = false;
-                    else
-                        validDefs[def.index] = true;
-                }
+                if (def.category == ThingCategory.Mote)
+                    validDefs[def.index] = false;
+                else if (def.category == ThingCategory.Filth)
+                    validDefs[def.index] = false;
+                else if (def.category == ThingCategory.Building)
+                    validDefs[def.index] = false;
+                else if (def.category == ThingCategory.Gas)
+                    validDefs[def.index] = false;
+                else if (def.category == ThingCategory.Plant)
+                    validDefs[def.index] = false;
+                else
+                    validDefs[def.index] = true;
             }
+
         }
 
         public override void MapComponentOnGUI()
         {
             base.MapComponentOnGUI();
-            if (!Controller.settings.DebugGenClosetPawn) { return; }
+            if (Controller.settings.DebugGenClosetPawn)
             {
                 if (Find.Selector.SelectedObjects.Count > 0)
                 {
@@ -163,7 +164,14 @@ namespace CombatExtended.Utilities
             return result;
         }
 
-        public ThingsTrackingModel[] GetModelsFor(Thing thing) => GetModelsFor(thing.def);
+        public ThingsTrackingModel[] GetModelsFor(Thing thing)
+        {
+            var result = trackers[thing.def.index];
+            if (result[0] != null)
+                return result;
+            result[0] = new ThingsTrackingModel(thing.def, map, this);
+            return result;
+        }
 
         public ThingsTrackingModel GetModelFor(TrackedThingsRequestCategory category)
         {
