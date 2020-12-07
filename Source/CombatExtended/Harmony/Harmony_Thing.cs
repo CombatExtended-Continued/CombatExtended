@@ -50,9 +50,9 @@ namespace CombatExtended.HarmonyCE
 
                         yield return new CodeInstruction(OpCodes.Ldarg_0);
                         yield return new CodeInstruction(OpCodes.Call, AccessTools.PropertyGetter(typeof(Thing), nameof(Thing.Map)));
-                        yield return new CodeInstruction(OpCodes.Call, AccessTools.Method(typeof(ThingTracker), nameof(ThingTracker.GetTracker)));
+                        yield return new CodeInstruction(OpCodes.Call, AccessTools.Method(typeof(ThingsTracker), nameof(ThingsTracker.GetTracker)));
                         yield return new CodeInstruction(OpCodes.Ldarg_0);
-                        yield return new CodeInstruction(OpCodes.Call, AccessTools.Method(typeof(ThingTracker), nameof(ThingTracker.Notify_PositionChanged)));
+                        yield return new CodeInstruction(OpCodes.Call, AccessTools.Method(typeof(ThingsTracker), nameof(ThingsTracker.Notify_PositionChanged)));
 
                         codes[i + 1].labels.Add(l1);
                         continue;
@@ -68,7 +68,7 @@ namespace CombatExtended.HarmonyCE
     {
         public static void Prefix(Thing __instance)
         {
-            ThingTracker.GetTracker(__instance.Map)?.Notify_DeSpawned(__instance);
+            ThingsTracker.GetTracker(__instance.Map)?.Notify_DeSpawned(__instance);
         }
     }
 
@@ -77,7 +77,7 @@ namespace CombatExtended.HarmonyCE
     {
         public static void Postfix(Thing __instance)
         {
-            ThingTracker.GetTracker(__instance.Map)?.Notify_Spawned(__instance);
+            ThingsTracker.GetTracker(__instance.Map)?.Notify_Spawned(__instance);
         }
     }
 }
