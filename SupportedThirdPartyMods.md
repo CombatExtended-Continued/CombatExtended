@@ -155,9 +155,10 @@ Rimsenal - Enhanced Vanilla |
 Rimsenal - Federation Faction Pack |
 Rimsenal - Feral Faction Pack |
 Rimsenal - Security Pack |
-Rimworld: Altered Carbon |
 Rimworld - The Dark Descent |
 Rimworld - Witcher Monster Hunt |
+Rimworld of Magic |
+Rimworld: Altered Carbon |
 Save Our Ship 2	|
 Sergals, Gnolls, Lions and Frogs	|
 Silkiera Race	|
@@ -168,7 +169,7 @@ Star Wars - Factions |
 Star Wars - Factions (Continued) |
 The Mantodean insectoid race	|
 T-45b Power Armor	|
-The Giantrace	|
+The GiantRace	|
 TouhouStyle	|
 Trading Economy	|
 Tsar Armory	|
