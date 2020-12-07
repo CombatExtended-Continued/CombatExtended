@@ -7,211 +7,10 @@ using Verse;
 
 namespace CombatExtended.Utilities
 {
-    public class ThingsTrackingModel
-    {
-        private struct ThingPositionInfo : IComparable<ThingPositionInfo>
-        {
-            public Thing thing;
-            public int createdOn;
-
-            public bool IsValid => thing.Spawned;
-            public int Age => GenTicks.TicksGame - createdOn;
-
-            public ThingPositionInfo(Thing thing)
-            {
-                this.thing = thing;
-                this.createdOn = GenTicks.TicksGame;
-            }
-
-            public override int GetHashCode()
-            {
-                return thing.thingIDNumber;
-            }
-
-            public override bool Equals(object obj)
-            {
-                return obj.GetHashCode() == GetHashCode();
-            }
-
-            public override string ToString()
-            {
-                return $"{thing.ToString()}:{thing.Position.ToString()}:{createdOn.ToString()}";
-            }
-
-            public int CompareTo(ThingPositionInfo other)
-            {
-                return thing.Position.x.CompareTo(other.thing.Position.x);
-            }
-
-            public static bool operator >(ThingPositionInfo operand1, ThingPositionInfo operand2)
-            {
-                return operand1.CompareTo(operand2) == 1;
-            }
-
-            public static bool operator <(ThingPositionInfo operand1, ThingPositionInfo operand2)
-            {
-                return operand1.CompareTo(operand2) == -1;
-            }
-
-            public static bool operator >=(ThingPositionInfo operand1, ThingPositionInfo operand2)
-            {
-                return operand1.CompareTo(operand2) >= 0;
-            }
-
-            public static bool operator <=(ThingPositionInfo operand1, ThingPositionInfo operand2)
-            {
-                return operand1.CompareTo(operand2) <= 0;
-            }
-        }
-
-        public readonly ThingDef def;
-        public readonly ThingsTracker parent;
-        public readonly Map map;
-
-        public Dictionary<Thing, int> indexByThing = new Dictionary<Thing, int>();
-
-        private HashSet<Thing> things = new HashSet<Thing>();
-        private ThingPositionInfo[] sortedThings = new ThingPositionInfo[100];
-
-        public ThingsTrackingModel(ThingDef def, Map map, ThingsTracker parent)
-        {
-            this.def = def;
-            this.map = map;
-            this.parent = parent;
-        }
-
-        public void Register(Thing thing)
-        {
-            if (indexByThing.ContainsKey(thing))
-                return;
-            if (things.Count + 1 >= sortedThings.Length)
-            {
-                ThingPositionInfo[] temp = new ThingPositionInfo[sortedThings.Length * 2];
-                for (int i = 0; i < sortedThings.Length; i++)
-                    temp[i] = sortedThings[i];
-                sortedThings = temp;
-            }
-            if (things.Count == 0)
-            {
-                sortedThings[things.Count] = new ThingPositionInfo(thing);
-                indexByThing[thing] = 0;
-                things.Add(thing);
-                return;
-            }
-            else
-            {
-                sortedThings[things.Count] = new ThingPositionInfo(thing);
-                indexByThing[thing] = things.Count - 1;
-                things.Add(thing);
-
-                int i = things.Count - 1;
-                while (i - 1 >= 0 && sortedThings[i] < sortedThings[i - 1])
-                {
-                    Swap<ThingPositionInfo>(i - 1, i, sortedThings);
-                    indexByThing[sortedThings[i].thing] = i;
-                    indexByThing[sortedThings[i - 1].thing] = i - 1;
-                    i--;
-                }
-            }
-        }
-
-        public void Remove(Thing thing)
-        {
-            if (!indexByThing.ContainsKey(thing))
-                return;
-            int index = indexByThing[thing];
-            int i;
-
-            for (i = index + 1; i < things.Count; i++)
-            {
-                indexByThing[sortedThings[i].thing] = i - 1;
-                sortedThings[i - 1] = sortedThings[i];
-            }
-            indexByThing.Remove(thing);
-            things.Remove(thing);
-        }
-
-        public void Notify_ThingPositionChanged(Thing thing)
-        {
-            int i;
-            int index = indexByThing[thing];
-
-            i = index;
-            while (i + 1 < things.Count && sortedThings[i] > sortedThings[i + 1])
-            {
-                Swap<ThingPositionInfo>(i + 1, i, sortedThings);
-                indexByThing[sortedThings[i].thing] = i;
-                indexByThing[sortedThings[i + 1].thing] = i + 1;
-                i++;
-            }
-            i = index;
-            while (i - 1 >= 0 && sortedThings[i] < sortedThings[i - 1])
-            {
-                Swap<ThingPositionInfo>(i - 1, i, sortedThings);
-                indexByThing[sortedThings[i].thing] = i;
-                indexByThing[sortedThings[i - 1].thing] = i - 1;
-                i--;
-            }
-        }
-
-        public IEnumerable<Thing> ThingsInRangeOf(IntVec3 cell, float range)
-        {
-            int bottom = 0;
-            int top = things.Count;
-            int mid = (top + bottom) / 2;
-            int index;
-            int limiter = 0;
-            IntVec3 midPosition;
-            while (top != bottom && limiter++ < 20)
-            {
-                mid = (top + bottom) / 2;
-                midPosition = sortedThings[mid].thing.Position;
-                if (midPosition.DistanceTo(cell) <= range)
-                    break;
-                if (midPosition.x > cell.x)
-                    top = mid - 1;
-                else if (midPosition.x < cell.x)
-                    bottom = mid + 1;
-                else
-                {
-                    break;
-                }
-            }
-
-            index = mid;
-            while (index < things.Count)
-            {
-                Thing t = sortedThings[index].thing;
-                IntVec3 curPosition = t.Position;
-                if (Mathf.Abs(curPosition.x - cell.x) > range)
-                    break;
-                if (curPosition.DistanceTo(cell) <= range)
-                    yield return t;
-                index++;
-            }
-            index = mid - 1;
-            while (index >= 0)
-            {
-                Thing t = sortedThings[index].thing;
-                IntVec3 curPosition = t.Position;
-                if (Mathf.Abs(curPosition.x - cell.x) > range)
-                    break;
-                if (curPosition.DistanceTo(cell) <= range)
-                    yield return t;
-                index--;
-            }
-        }
-
-        private static void Swap<T>(int a, int b, T[] list)
-        {
-            T temp = list[a];
-            list[a] = list[b];
-            list[b] = temp;
-        }
-    }
-
     public class ThingsTracker : MapComponent
     {
+        private static bool[] validDefs;
+
         private static Map[] maps = new Map[20];
         private static ThingsTracker[] comps = new ThingsTracker[20];
 
@@ -228,13 +27,55 @@ namespace CombatExtended.Utilities
             return map.GetComponent<ThingsTracker>();
         }
 
-        private ThingsTrackingModel[] trackers;
+        private ThingsTrackingModel[][] trackers;
         private ThingsTrackingModel pawnsTracker;
+        private ThingsTrackingModel weaponsTracker;
+        private ThingsTrackingModel apparelTracker;
+        private ThingsTrackingModel ammoTracker;
+        private ThingsTrackingModel medicineTracker;
 
         public ThingsTracker(Map map) : base(map)
         {
             pawnsTracker = new ThingsTrackingModel(null, map, this);
-            trackers = new ThingsTrackingModel[DefDatabase<ThingDef>.AllDefs.Max((def) => def.index) + 1];
+            weaponsTracker = new ThingsTrackingModel(null, map, this);
+            ammoTracker = new ThingsTrackingModel(null, map, this);
+            apparelTracker = new ThingsTrackingModel(null, map, this);
+            medicineTracker = new ThingsTrackingModel(null, map, this);
+
+            trackers = new ThingsTrackingModel[DefDatabase<ThingDef>.AllDefs.Max((def) => def.index) + 1][];
+            for (int i = 0; i < trackers.Length; i++)
+                trackers[i] = new ThingsTrackingModel[2];
+
+            foreach (var def in DefDatabase<ThingDef>.AllDefs.Where(d => d.race != null || d.category == ThingCategory.Pawn))
+                trackers[def.index][1] = pawnsTracker;
+            foreach (var def in DefDatabase<ThingDef>.AllDefs.Where(d => d.IsWeapon))
+                trackers[def.index][1] = weaponsTracker;
+            foreach (var def in DefDatabase<ThingDef>.AllDefs.Where(d => d.IsApparel))
+                trackers[def.index][1] = apparelTracker;
+            foreach (var def in DefDatabase<ThingDef>.AllDefs.Where(d => d.IsMedicine))
+                trackers[def.index][1] = medicineTracker;
+            foreach (var def in DefDatabase<AmmoDef>.AllDefs)
+                trackers[def.index][1] = ammoTracker;
+
+            if (validDefs == null)
+            {
+                validDefs = new bool[ushort.MaxValue];
+                foreach (var def in DefDatabase<ThingDef>.AllDefs)
+                {
+                    if (def.category == ThingCategory.Mote)
+                        validDefs[def.index] = false;
+                    else if (def.category == ThingCategory.Filth)
+                        validDefs[def.index] = false;
+                    else if (def.category == ThingCategory.Building)
+                        validDefs[def.index] = false;
+                    else if (def.category == ThingCategory.Gas)
+                        validDefs[def.index] = false;
+                    else if (def.category == ThingCategory.Plant)
+                        validDefs[def.index] = false;
+                    else
+                        validDefs[def.index] = true;
+                }
+            }
         }
 
         public override void MapComponentOnGUI()
@@ -242,103 +83,151 @@ namespace CombatExtended.Utilities
             base.MapComponentOnGUI();
             if (Controller.settings.DebugGenClosetPawn)
             {
-                if (Find.Selector.SelectedPawns.Count > 0)
+                if (Find.Selector.SelectedObjects.Count > 0)
                 {
-                    var pawn = Find.Selector.SelectedPawns.First();
-                    var others = GenClosest.PawnsInRange(pawn.Position, map, 10);
-                    Vector2 a = UI.MapToUIPosition(pawn.DrawPos);
-                    Vector2 b;
-                    Vector2 mid;
-                    Rect rect;
-                    foreach (var other in others)
+                    var thing = Find.Selector.SelectedObjects.Where(s => s is Thing).Select(s => s as Thing).First();
+                    if (IsValidTrackableThing(thing))
                     {
-                        b = UI.MapToUIPosition(other.DrawPos);
-                        Widgets.DrawLine(a, b, Color.red, 1);
+                        IEnumerable<Thing> others;
+                        if (thing is Pawn pawn)
+                            others = GenClosest.PawnsInRange(thing.Position, map, 50);
+                        else if (thing is AmmoThing)
+                            others = GenClosest.AmmoInRange(thing.Position, map, 50);
+                        else if (thing.def.IsApparel)
+                            others = GenClosest.ApparelInRange(thing.Position, map, 50);
+                        else if (thing.def.IsWeapon)
+                            others = GenClosest.WeaponsInRange(thing.Position, map, 50);
+                        else
+                            others = GenClosest.SimilarInRange(thing, 50);
+                        Vector2 a = UI.MapToUIPosition(thing.DrawPos);
+                        Vector2 b;
+                        Vector2 mid;
+                        Rect rect;
+                        foreach (var other in others)
+                        {
+                            b = UI.MapToUIPosition(other.DrawPos);
+                            Widgets.DrawLine(a, b, Color.red, 1);
 
-                        mid = (a + b) / 2;
-                        rect = new Rect(mid.x - 25, mid.y - 15, 50, 30);
-                        Widgets.DrawBox(rect);
-                        Widgets.Label(rect, $"{other.Position.DistanceTo(pawn.Position)}m");
+                            mid = (a + b) / 2;
+                            rect = new Rect(mid.x - 25, mid.y - 15, 50, 30);
+                            Widgets.DrawBox(rect);
+                            Widgets.Label(rect, $"{other.Position.DistanceTo(thing.Position)}m");
+                        }
                     }
                 }
             }
         }
 
+        public IEnumerable<Thing> ThingsInRangeOf(TrackedThingsRequestCategory category, IntVec3 cell, float range)
+        {
+            ThingsTrackingModel tracker = GetModelFor(category);
+            return tracker.ThingsInRangeOf(cell, range);
+        }
+
         public IEnumerable<Thing> ThingsInRangeOf(ThingDef def, IntVec3 cell, float range)
         {
-            ThingsTrackingModel tracker = GetModelFor(def);
-            return tracker.ThingsInRangeOf(cell, range);
+            if (!IsValidTrackableDef(def))
+                throw new NotSupportedException();
+            ThingsTrackingModel[] trackers = GetModelsFor(def);
+            return trackers[0].ThingsInRangeOf(cell, range);
         }
 
         public IEnumerable<Thing> SimilarInRangeOf(Thing thing, float range)
         {
-            ThingsTrackingModel tracker = GetModelFor(thing);
-            return tracker.ThingsInRangeOf(thing.Position, range); ;
+            if (!IsValidTrackableThing(thing))
+                throw new NotSupportedException();
+            ThingsTrackingModel[] trackers = GetModelsFor(thing);
+            return trackers[0].ThingsInRangeOf(thing.Position, range); ;
         }
 
         public void Register(Thing thing)
         {
-            ThingsTrackingModel tracker = GetModelFor(thing);
-            tracker.Register(thing);
+            ThingsTrackingModel[] trackers = GetModelsFor(thing);
+            for (int i = 0; i < trackers.Length; i++)
+                trackers[i]?.Register(thing);
         }
 
         public void Remove(Thing thing)
         {
-            ThingsTrackingModel tracker = GetModelFor(thing);
-            tracker.Remove(thing);
+            ThingsTrackingModel[] trackers = GetModelsFor(thing);
+            for (int i = 0; i < trackers.Length; i++)
+                trackers[i]?.Remove(thing);
         }
 
-        public ThingsTrackingModel GetModelFor(ThingDef def)
+
+        public ThingsTrackingModel[] GetModelsFor(ThingDef def)
         {
-            if (def == null || def.thingClass == typeof(Pawn) || def.category == ThingCategory.Pawn || def.race != null)
-                return pawnsTracker;
             var result = trackers[def.index];
-            if (result != null)
+            if (result[0] != null)
                 return result;
-            return trackers[def.index] = new ThingsTrackingModel(def, map, this);
+            result[0] = new ThingsTrackingModel(def, map, this);
+            return result;
         }
 
-        public ThingsTrackingModel GetModelFor(Thing thing)
+        public ThingsTrackingModel[] GetModelsFor(Thing thing)
         {
-            if (thing is Pawn || thing.def.race != null)
-                return pawnsTracker;
             var result = trackers[thing.def.index];
-            if (result != null)
+            if (result[0] != null)
                 return result;
-            return trackers[thing.def.index] = new ThingsTrackingModel(thing.def, map, this);
+            result[0] = new ThingsTrackingModel(thing.def, map, this);
+            return result;
         }
 
-        public bool IsValidThing(Thing thing)
+        public ThingsTrackingModel GetModelFor(TrackedThingsRequestCategory category)
         {
-            if (thing.def.category == ThingCategory.Mote)
-                return false;
-            if (thing.def.category == ThingCategory.Filth)
-                return false;
-            if (thing.def.category == ThingCategory.Building)
-                return false;
-            if (thing.def.category == ThingCategory.Gas)
-                return false;
-            return true;
+            ThingsTrackingModel result;
+            switch (category)
+            {
+                case TrackedThingsRequestCategory.Pawns:
+                    result = pawnsTracker;
+                    break;
+                case TrackedThingsRequestCategory.Ammo:
+                    result = ammoTracker;
+                    break;
+                case TrackedThingsRequestCategory.Apparel:
+                    result = apparelTracker;
+                    break;
+                case TrackedThingsRequestCategory.Weapons:
+                    result = weaponsTracker;
+                    break;
+                case TrackedThingsRequestCategory.Medicine:
+                    result = medicineTracker;
+                    break;
+                default:
+                    throw new NotSupportedException();
+            }
+            return result;
+        }
+
+        public static bool IsValidTrackableThing(Thing thing)
+        {
+            return validDefs[thing.def.index];
+        }
+
+        public static bool IsValidTrackableDef(ThingDef def)
+        {
+            return validDefs[def.index];
         }
 
         public void Notify_Spawned(Thing thing)
         {
-            if (IsValidThing(thing))
+            if (IsValidTrackableThing(thing))
                 Register(thing);
         }
 
         public void Notify_DeSpawned(Thing thing)
         {
-            if (IsValidThing(thing))
+            if (IsValidTrackableThing(thing))
                 Remove(thing);
         }
 
         public void Notify_PositionChanged(Thing thing)
         {
-            if (IsValidThing(thing))
+            if (IsValidTrackableThing(thing))
             {
-                ThingsTrackingModel tracker = GetModelFor(thing.def);
-                tracker.Notify_ThingPositionChanged(thing);
+                ThingsTrackingModel[] trackers = GetModelsFor(thing.def);
+                for (int i = 0; i < trackers.Length; i++)
+                    trackers[i]?.Notify_ThingPositionChanged(thing);
             }
         }
     }

@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using RimWorld;
 using Verse;
 using Verse.AI;
 
@@ -29,7 +30,37 @@ namespace CombatExtended.Utilities
         public static IEnumerable<Pawn> PawnsInRange(this IntVec3 cell, Map map, float range)
         {
             ThingsTracker tracker = map.GetThingTracker();
-            return tracker.ThingsInRangeOf(null, cell, range).Select(t => t as Pawn);
+            return tracker.ThingsInRangeOf(TrackedThingsRequestCategory.Pawns, cell, range).Select(t => t as Pawn);
+        }
+
+        public static IEnumerable<Pawn> HostilesInRange(this IntVec3 cell, Map map, Faction faction, float range)
+        {
+            ThingsTracker tracker = map.GetThingTracker();
+            return tracker.ThingsInRangeOf(TrackedThingsRequestCategory.Pawns, cell, range).Where(t => t.Faction?.HostileTo(faction) ?? false).Select(t => t as Pawn);
+        }
+
+        public static IEnumerable<AmmoThing> AmmoInRange(this IntVec3 cell, Map map, float range)
+        {
+            ThingsTracker tracker = map.GetThingTracker();
+            return tracker.ThingsInRangeOf(TrackedThingsRequestCategory.Ammo, cell, range).Select(t => t as AmmoThing);
+        }
+
+        public static IEnumerable<ThingWithComps> WeaponsInRange(this IntVec3 cell, Map map, float range)
+        {
+            ThingsTracker tracker = map.GetThingTracker();
+            return tracker.ThingsInRangeOf(TrackedThingsRequestCategory.Weapons, cell, range).Select(t => t as ThingWithComps);
+        }
+
+        public static IEnumerable<ThingWithComps> MedicineInRange(this IntVec3 cell, Map map, float range)
+        {
+            ThingsTracker tracker = map.GetThingTracker();
+            return tracker.ThingsInRangeOf(TrackedThingsRequestCategory.Medicine, cell, range).Select(t => t as ThingWithComps);
+        }
+
+        public static IEnumerable<Apparel> ApparelInRange(this IntVec3 cell, Map map, float range)
+        {
+            ThingsTracker tracker = map.GetThingTracker();
+            return tracker.ThingsInRangeOf(TrackedThingsRequestCategory.Apparel, cell, range).Select(t => t as Apparel);
         }
 
         public static IEnumerable<Thing> SimilarInRange(this Thing thing, float range, PathEndMode pathEndMode = PathEndMode.None, TraverseMode traverseMode = TraverseMode.ByPawn, Danger danger = Danger.Unspecified)
@@ -47,7 +78,7 @@ namespace CombatExtended.Utilities
         public static IEnumerable<Pawn> PawnsInRange(this IntVec3 cell, Map map, float range, PathEndMode pathEndMode = PathEndMode.None, TraverseMode traverseMode = TraverseMode.ByPawn, Danger danger = Danger.Unspecified)
         {
             ThingsTracker tracker = map.GetThingTracker();
-            return ThingsReachableFrom(map, tracker.ThingsInRangeOf(null, cell, range), cell, pathEndMode, traverseMode, danger).Select(t => t as Pawn);
+            return ThingsReachableFrom(map, tracker.ThingsInRangeOf(TrackedThingsRequestCategory.Pawns, cell, range), cell, pathEndMode, traverseMode, danger).Select(t => t as Pawn);
         }
 
         private static IEnumerable<Thing> ThingsReachableFrom(Map map, IEnumerable<Thing> things, IntVec3 position, PathEndMode pathEndMode, TraverseMode traverseMode, Danger danger = Danger.Unspecified)
