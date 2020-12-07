@@ -89,7 +89,7 @@ namespace CombatExtended.Utilities
                     if (IsValidTrackableThing(thing))
                     {
                         IEnumerable<Thing> others;
-                        if (thing is Pawn pawn)
+                        if (thing is Pawn)
                             others = GenClosest.PawnsInRange(thing.Position, map, 50);
                         else if (thing is AmmoThing)
                             others = GenClosest.AmmoInRange(thing.Position, map, 50);
