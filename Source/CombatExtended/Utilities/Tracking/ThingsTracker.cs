@@ -119,6 +119,8 @@ namespace CombatExtended.Utilities
             }
         }
 
+        public IEnumerable<Thing> SimilarInRangeOf(Thing thing, float range) => ThingsInRangeOf(thing.def, thing.Position, range);
+
         public IEnumerable<Thing> ThingsInRangeOf(TrackedThingsRequestCategory category, IntVec3 cell, float range)
         {
             ThingsTrackingModel tracker = GetModelFor(category);
@@ -131,14 +133,6 @@ namespace CombatExtended.Utilities
                 throw new NotSupportedException();
             ThingsTrackingModel[] trackers = GetModelsFor(def);
             return trackers[0].ThingsInRangeOf(cell, range);
-        }
-
-        public IEnumerable<Thing> SimilarInRangeOf(Thing thing, float range)
-        {
-            if (!IsValidTrackableThing(thing))
-                throw new NotSupportedException();
-            ThingsTrackingModel[] trackers = GetModelsFor(thing);
-            return trackers[0].ThingsInRangeOf(thing.Position, range); ;
         }
 
         public void Register(Thing thing)
@@ -155,21 +149,14 @@ namespace CombatExtended.Utilities
                 trackers[i]?.Remove(thing);
         }
 
+        public ThingsTrackingModel[] GetModelsFor(Thing thing) => GetModelsFor(thing.def);
+
         public ThingsTrackingModel[] GetModelsFor(ThingDef def)
         {
             var result = trackers[def.index];
             if (result[0] != null)
                 return result;
             result[0] = new ThingsTrackingModel(def, map, this);
-            return result;
-        }
-
-        public ThingsTrackingModel[] GetModelsFor(Thing thing)
-        {
-            var result = trackers[thing.def.index];
-            if (result[0] != null)
-                return result;
-            result[0] = new ThingsTrackingModel(thing.def, map, this);
             return result;
         }
 
@@ -194,10 +181,7 @@ namespace CombatExtended.Utilities
 
         public static bool IsValidTrackableThing(Thing thing) => IsValidTrackableDef(thing.def);
 
-        public static bool IsValidTrackableDef(ThingDef def)
-        {
-            return validDefs[def.index];
-        }
+        public static bool IsValidTrackableDef(ThingDef def) => validDefs[def.index];
 
         public void Notify_Spawned(Thing thing)
         {
