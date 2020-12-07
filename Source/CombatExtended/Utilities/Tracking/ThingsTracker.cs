@@ -81,7 +81,7 @@ namespace CombatExtended.Utilities
         public override void MapComponentOnGUI()
         {
             base.MapComponentOnGUI();
-            if (Controller.settings.DebugGenClosetPawn)
+            if (!Controller.settings.DebugGenClosetPawn) { return; }
             {
                 if (Find.Selector.SelectedObjects.Count > 0)
                 {
