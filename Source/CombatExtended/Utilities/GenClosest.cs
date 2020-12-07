@@ -83,15 +83,13 @@ namespace CombatExtended.Utilities
 
         private static IEnumerable<Thing> ThingsReachableFrom(Map map, IEnumerable<Thing> things, IntVec3 position, PathEndMode pathEndMode, TraverseMode traverseMode, Danger danger = Danger.Unspecified)
         {
-            foreach (Thing t in things)
-                if (map.reachability.CanReach(position, t, pathEndMode, traverseMode, danger))
-                    yield return t;
+            return things.Where(t => map.reachability.CanReach(position, t, pathEndMode, traverseMode, danger));
         }
 
         private static IEnumerable<Thing> ThingsReachableFrom(Map map, IEnumerable<Thing> things, Thing thing, PathEndMode pathEndMode, TraverseMode traverseMode, Danger danger = Danger.Unspecified)
         {
             IntVec3 position = thing.Position;
-            things.Filter(t -> map.reachability.CanReach(position, t, pathEndMode, traverseMode, danger))
+            return things.Where(t => map.reachability.CanReach(position, t, pathEndMode, traverseMode, danger));
         }
     }
 }

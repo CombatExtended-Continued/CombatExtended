@@ -154,7 +154,6 @@ namespace CombatExtended.Utilities
                 trackers[i]?.Remove(thing);
         }
 
-
         public ThingsTrackingModel[] GetModelsFor(ThingDef def)
         {
             var result = trackers[def.index];
