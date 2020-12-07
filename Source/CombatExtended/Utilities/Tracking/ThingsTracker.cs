@@ -192,10 +192,7 @@ namespace CombatExtended.Utilities
             }
         }
 
-        public static bool IsValidTrackableThing(Thing thing)
-        {
-            return validDefs[thing.def.index];
-        }
+        public static bool IsValidTrackableThing(Thing thing) => IsValidTrackableDef(thing.def);
 
         public static bool IsValidTrackableDef(ThingDef def)
         {
