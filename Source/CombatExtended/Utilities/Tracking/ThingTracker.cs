@@ -123,7 +123,7 @@ namespace CombatExtended.Utilities
             for (int i = index + 1; i < things.Count; i++)
             {
                 indexByThing[sortedThings[i].thing] = i - 1;
-                sortedThings[index - 1] = sortedThings[i];
+                sortedThings[i - 1] = sortedThings[i];
             }
             indexByThing.Remove(thing);
             things.Remove(thing);
