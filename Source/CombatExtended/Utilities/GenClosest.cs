@@ -9,44 +9,44 @@ namespace CombatExtended.Utilities
 {
     public static class GenClosest
     {
-        public static ThingTracker GetThingTracker(this Map map)
+        public static ThingsTracker GetThingTracker(this Map map)
         {
-            return ThingTracker.GetTracker(map);
+            return ThingsTracker.GetTracker(map);
         }
 
         public static IEnumerable<Thing> SimilarInRange(this Thing thing, float range)
         {
-            ThingTracker tracker = thing.Map.GetThingTracker();
+            ThingsTracker tracker = thing.Map.GetThingTracker();
             return tracker.SimilarInRangeOf(thing, range);
         }
 
         public static IEnumerable<Thing> ThingsByDefInRange(this IntVec3 cell, Map map, ThingDef thingDef, float range)
         {
-            ThingTracker tracker = map.GetThingTracker();
+            ThingsTracker tracker = map.GetThingTracker();
             return tracker.ThingsInRangeOf(thingDef, cell, range);
         }
 
         public static IEnumerable<Pawn> PawnsInRange(this IntVec3 cell, Map map, float range)
         {
-            ThingTracker tracker = map.GetThingTracker();
+            ThingsTracker tracker = map.GetThingTracker();
             return tracker.ThingsInRangeOf(null, cell, range).Select(t => t as Pawn);
         }
 
         public static IEnumerable<Thing> SimilarInRange(this Thing thing, float range, PathEndMode pathEndMode = PathEndMode.None, TraverseMode traverseMode = TraverseMode.ByPawn, Danger danger = Danger.Unspecified)
         {
-            ThingTracker tracker = thing.Map.GetThingTracker();
+            ThingsTracker tracker = thing.Map.GetThingTracker();
             return ThingsReachableFrom(thing.Map, tracker.SimilarInRangeOf(thing, range), thing, pathEndMode, traverseMode, danger);
         }
 
         public static IEnumerable<Thing> ThingsByDefInRange(this IntVec3 cell, Map map, ThingDef thingDef, float range, PathEndMode pathEndMode = PathEndMode.None, TraverseMode traverseMode = TraverseMode.ByPawn, Danger danger = Danger.Unspecified)
         {
-            ThingTracker tracker = map.GetThingTracker();
+            ThingsTracker tracker = map.GetThingTracker();
             return ThingsReachableFrom(map, tracker.ThingsInRangeOf(thingDef, cell, range), cell, pathEndMode, traverseMode, danger);
         }
 
         public static IEnumerable<Pawn> PawnsInRange(this IntVec3 cell, Map map, float range, PathEndMode pathEndMode = PathEndMode.None, TraverseMode traverseMode = TraverseMode.ByPawn, Danger danger = Danger.Unspecified)
         {
-            ThingTracker tracker = map.GetThingTracker();
+            ThingsTracker tracker = map.GetThingTracker();
             return ThingsReachableFrom(map, tracker.ThingsInRangeOf(null, cell, range), cell, pathEndMode, traverseMode, danger).Select(t => t as Pawn);
         }
 

@@ -7,7 +7,7 @@ using Verse;
 
 namespace CombatExtended.Utilities
 {
-    public class ThingTrackingModel
+    public class ThingsTrackingModel
     {
         private struct ThingPositionInfo : IComparable<ThingPositionInfo>
         {
@@ -65,7 +65,7 @@ namespace CombatExtended.Utilities
         }
 
         public readonly ThingDef def;
-        public readonly ThingTracker parent;
+        public readonly ThingsTracker parent;
         public readonly Map map;
 
         public Dictionary<Thing, int> indexByThing = new Dictionary<Thing, int>();
@@ -73,7 +73,7 @@ namespace CombatExtended.Utilities
         private HashSet<Thing> things = new HashSet<Thing>();
         private ThingPositionInfo[] sortedThings = new ThingPositionInfo[100];
 
-        public ThingTrackingModel(ThingDef def, Map map, ThingTracker parent)
+        public ThingsTrackingModel(ThingDef def, Map map, ThingsTracker parent)
         {
             this.def = def;
             this.map = map;
@@ -210,12 +210,12 @@ namespace CombatExtended.Utilities
         }
     }
 
-    public class ThingTracker : MapComponent
+    public class ThingsTracker : MapComponent
     {
         private static Map[] maps = new Map[20];
-        private static ThingTracker[] comps = new ThingTracker[20];
+        private static ThingsTracker[] comps = new ThingsTracker[20];
 
-        public static ThingTracker GetTracker(Map map)
+        public static ThingsTracker GetTracker(Map map)
         {
             var index = map.Index;
             if (index >= 0 && index < comps.Length)
@@ -223,18 +223,18 @@ namespace CombatExtended.Utilities
                 if (maps[index] == map)
                     return comps[index];
                 maps[index] = map;
-                return comps[index] = map.GetComponent<ThingTracker>();
+                return comps[index] = map.GetComponent<ThingsTracker>();
             }
-            return map.GetComponent<ThingTracker>();
+            return map.GetComponent<ThingsTracker>();
         }
 
-        private ThingTrackingModel[] trackers;
-        private ThingTrackingModel pawnsTracker;
+        private ThingsTrackingModel[] trackers;
+        private ThingsTrackingModel pawnsTracker;
 
-        public ThingTracker(Map map) : base(map)
+        public ThingsTracker(Map map) : base(map)
         {
-            pawnsTracker = new ThingTrackingModel(null, map, this);
-            trackers = new ThingTrackingModel[DefDatabase<ThingDef>.AllDefs.Max((def) => def.index) + 1];
+            pawnsTracker = new ThingsTrackingModel(null, map, this);
+            trackers = new ThingsTrackingModel[DefDatabase<ThingDef>.AllDefs.Max((def) => def.index) + 1];
         }
 
         public override void MapComponentOnGUI()
@@ -245,7 +245,7 @@ namespace CombatExtended.Utilities
                 if (Find.Selector.SelectedPawns.Count > 0)
                 {
                     var pawn = Find.Selector.SelectedPawns.First();
-                    var others = SimilarInRangeOf(pawn, 10);
+                    var others = GenClosest.PawnsInRange(pawn.Position, map, 10);
                     Vector2 a = UI.MapToUIPosition(pawn.DrawPos);
                     Vector2 b;
                     Vector2 mid;
@@ -266,46 +266,46 @@ namespace CombatExtended.Utilities
 
         public IEnumerable<Thing> ThingsInRangeOf(ThingDef def, IntVec3 cell, float range)
         {
-            ThingTrackingModel tracker = GetModelFor(def);
+            ThingsTrackingModel tracker = GetModelFor(def);
             return tracker.ThingsInRangeOf(cell, range);
         }
 
         public IEnumerable<Thing> SimilarInRangeOf(Thing thing, float range)
         {
-            ThingTrackingModel tracker = GetModelFor(thing);
+            ThingsTrackingModel tracker = GetModelFor(thing);
             return tracker.ThingsInRangeOf(thing.Position, range); ;
         }
 
         public void Register(Thing thing)
         {
-            ThingTrackingModel tracker = GetModelFor(thing);
+            ThingsTrackingModel tracker = GetModelFor(thing);
             tracker.Register(thing);
         }
 
         public void Remove(Thing thing)
         {
-            ThingTrackingModel tracker = GetModelFor(thing);
+            ThingsTrackingModel tracker = GetModelFor(thing);
             tracker.Remove(thing);
         }
 
-        public ThingTrackingModel GetModelFor(ThingDef def)
+        public ThingsTrackingModel GetModelFor(ThingDef def)
         {
             if (def == null || def.thingClass == typeof(Pawn) || def.category == ThingCategory.Pawn || def.race != null)
                 return pawnsTracker;
             var result = trackers[def.index];
             if (result != null)
                 return result;
-            return trackers[def.index] = new ThingTrackingModel(def, map, this);
+            return trackers[def.index] = new ThingsTrackingModel(def, map, this);
         }
 
-        public ThingTrackingModel GetModelFor(Thing thing)
+        public ThingsTrackingModel GetModelFor(Thing thing)
         {
             if (thing is Pawn || thing.def.race != null)
                 return pawnsTracker;
             var result = trackers[thing.def.index];
             if (result != null)
                 return result;
-            return trackers[thing.def.index] = new ThingTrackingModel(thing.def, map, this);
+            return trackers[thing.def.index] = new ThingsTrackingModel(thing.def, map, this);
         }
 
         public bool IsValidThing(Thing thing)
@@ -337,7 +337,7 @@ namespace CombatExtended.Utilities
         {
             if (IsValidThing(thing))
             {
-                ThingTrackingModel tracker = GetModelFor(thing.def);
+                ThingsTrackingModel tracker = GetModelFor(thing.def);
                 tracker.Notify_ThingPositionChanged(thing);
             }
         }
