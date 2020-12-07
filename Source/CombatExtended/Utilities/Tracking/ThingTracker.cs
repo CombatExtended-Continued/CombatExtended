@@ -246,7 +246,6 @@ namespace CombatExtended.Utilities
                 {
                     var pawn = Find.Selector.SelectedPawns.First();
                     var others = SimilarInRangeOf(pawn, 10);
-
                     Vector2 a = UI.MapToUIPosition(pawn.DrawPos);
                     Vector2 b;
                     Vector2 mid;
