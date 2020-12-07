@@ -80,9 +80,9 @@ namespace CombatExtended.Utilities
             this.parent = parent;
         }
 
-        public void Register(Thing thing)
+         public void Register(Thing thing)
         {
-            if (things.Contains(thing))
+            if (indexByThing.ContainsKey(thing))
                 return;
             if (things.Count + 1 >= sortedThings.Length)
             {
@@ -94,14 +94,14 @@ namespace CombatExtended.Utilities
             if (things.Count == 0)
             {
                 sortedThings[things.Count] = new ThingPositionInfo(thing);
-                indexByThing.Add(thing, 0);
+                indexByThing[thing] = 0;
                 things.Add(thing);
                 return;
             }
             else
             {
                 sortedThings[things.Count] = new ThingPositionInfo(thing);
-                indexByThing.Add(thing, things.Count - 1);
+                indexByThing[thing] = things.Count - 1;
                 things.Add(thing);
 
                 int i = things.Count - 1;
@@ -117,10 +117,12 @@ namespace CombatExtended.Utilities
 
         public void Remove(Thing thing)
         {
-            if (!things.Contains(thing))
+            if (!indexByThing.ContainsKey(thing))
                 return;
-            var index = indexByThing[thing];
-            for (int i = index + 1; i < things.Count; i++)
+            int index = indexByThing[thing];
+            int i;
+
+            for (i = index + 1; i < things.Count; i++)
             {
                 indexByThing[sortedThings[i].thing] = i - 1;
                 sortedThings[i - 1] = sortedThings[i];
