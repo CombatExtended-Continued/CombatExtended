@@ -1,0 +1,292 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+
+	<Operation Class="PatchOperationFindMod">
+    <mods>
+		<li>A RimWorld of Magic</li>
+    </mods>
+		<match Class="PatchOperationSequence">
+		<operations>
+			
+				<!-- Pylon -->
+			
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[
+					defName="DefensePylon" or
+					defName="DefensePylon_I" or
+					defName="DefensePylon_II" or
+					defName="DefensePylon_III" or
+					defName="TM_TechnoTurret_Base" or
+					defName="TM_60mmMortar_Base"
+					]/fillPercent</xpath>
+					<value>
+						<fillPercent>0.85</fillPercent>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[
+					defName="TM_LightningTotem" or
+					defName="TM_HealingTotem" or
+					defName="TM_EarthTotem"
+					]/fillPercent</xpath>
+					<value>
+						<fillPercent>0.50</fillPercent>
+					</value>
+				</li>
+				
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="Bullet_DefensePylon"]/projectile</xpath>
+					<value>
+						<projectile Class="CombatExtended.ProjectilePropertiesCE">
+							<armorPenetrationBlunt>20</armorPenetrationBlunt>
+							<armorPenetrationSharp>5</armorPenetrationSharp>
+							<dropsCasings>false</dropsCasings>
+							<damageDef>TM_MagicMissile_Weak</damageDef>
+							<damageAmountBase>8</damageAmountBase>
+							<speed>70</speed>
+						</projectile>
+					</value>
+				</li>
+				
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="Bullet_DefensePylon"]</xpath>
+					<value>
+						<thingClass>CombatExtended.BulletCE</thingClass>
+					</value>
+				</li>
+				
+				
+				<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+					<defName>Launcher_DefensePylon</defName>
+					<statBases>
+						<RangedWeapon_Cooldown>.6</RangedWeapon_Cooldown>
+						<SightsEfficiency>1.00</SightsEfficiency>
+						<ShotSpread>0.10</ShotSpread>
+						<SwayFactor>1.00</SwayFactor>
+					</statBases>
+					<Properties>
+						<recoilAmount>1.19</recoilAmount>
+						<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+						<hasStandardCommand>true</hasStandardCommand>
+						<defaultProjectile>Bullet_DefensePylon</defaultProjectile>
+						<warmupTime>1.5</warmupTime>
+						<range>32</range>
+						<soundCast>GunShotA</soundCast>
+						<soundCastTail>GunTail_Light</soundCastTail>
+						<muzzleFlashScale>3</muzzleFlashScale>
+						<recoilPattern>Mounted</recoilPattern>
+					</Properties>
+					<FireModes>
+						<aiAimMode>AimedShot</aiAimMode>
+						<noSnapshot>true</noSnapshot>
+						<noSingleShot>true</noSingleShot>
+					</FireModes>
+					<weaponTags>
+						<li>TurretGun</li>
+					</weaponTags>
+				</li>
+				
+				<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+					<defName>Launcher_DefensePylon_I</defName>
+					<statBases>
+						<RangedWeapon_Cooldown>.6</RangedWeapon_Cooldown>
+						<SightsEfficiency>1.00</SightsEfficiency>
+						<ShotSpread>0.10</ShotSpread>
+						<SwayFactor>1.00</SwayFactor>
+					</statBases>
+					<Properties>
+						<recoilAmount>1.19</recoilAmount>
+						<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+						<hasStandardCommand>true</hasStandardCommand>
+						<defaultProjectile>Bullet_DefensePylon</defaultProjectile>
+						<warmupTime>1.5</warmupTime>
+						<range>36</range>
+						<ticksBetweenBurstShots>1</ticksBetweenBurstShots>
+						<burstShotCount>3</burstShotCount>
+						<soundCast>GunShotA</soundCast>
+						<soundCastTail>GunTail_Light</soundCastTail>
+						<muzzleFlashScale>4</muzzleFlashScale>
+						<recoilPattern>Mounted</recoilPattern>
+					</Properties>
+					<FireModes>
+						<aiUseBurstMode>FALSE</aiUseBurstMode>
+						<aiAimMode>AimedShot</aiAimMode>
+						<noSnapshot>true</noSnapshot>
+						<noSingleShot>true</noSingleShot>
+					</FireModes>
+					<weaponTags>
+						<li>TurretGun</li>
+					</weaponTags>
+				</li>
+				
+				<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+					<defName>Launcher_DefensePylon_II</defName>
+					<statBases>
+						<RangedWeapon_Cooldown>.6</RangedWeapon_Cooldown>
+						<SightsEfficiency>1.00</SightsEfficiency>
+						<ShotSpread>0.10</ShotSpread>
+						<SwayFactor>1.00</SwayFactor>
+					</statBases>
+					<Properties>
+						<recoilAmount>1.19</recoilAmount>
+						<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+						<hasStandardCommand>true</hasStandardCommand>
+						<defaultProjectile>Bullet_DefensePylon</defaultProjectile>
+						<warmupTime>1.5</warmupTime>
+						<range>40</range>
+						<ticksBetweenBurstShots>1</ticksBetweenBurstShots>
+						<burstShotCount>4</burstShotCount>
+						<soundCast>GunShotA</soundCast>
+						<soundCastTail>GunTail_Light</soundCastTail>
+						<muzzleFlashScale>5</muzzleFlashScale>
+						<recoilPattern>Mounted</recoilPattern>
+					</Properties>
+					<FireModes>
+						<aiUseBurstMode>FALSE</aiUseBurstMode>
+						<aiAimMode>AimedShot</aiAimMode>
+						<noSnapshot>true</noSnapshot>
+						<noSingleShot>true</noSingleShot>
+					</FireModes>
+					<weaponTags>
+						<li>TurretGun</li>
+					</weaponTags>
+				</li>
+				
+				<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+					<defName>Launcher_DefensePylon_III</defName>
+					<statBases>
+						<RangedWeapon_Cooldown>.6</RangedWeapon_Cooldown>
+						<SightsEfficiency>1.00</SightsEfficiency>
+						<ShotSpread>0.10</ShotSpread>
+						<SwayFactor>1.00</SwayFactor>
+					</statBases>
+					<Properties>
+						<recoilAmount>1.19</recoilAmount>
+						<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+						<hasStandardCommand>true</hasStandardCommand>
+						<defaultProjectile>Bullet_DefensePylon</defaultProjectile>
+						<warmupTime>1.5</warmupTime>
+						<range>44</range>
+						<ticksBetweenBurstShots>1</ticksBetweenBurstShots>
+						<burstShotCount>5</burstShotCount>
+						<soundCast>GunShotA</soundCast>
+						<soundCastTail>GunTail_Light</soundCastTail>
+						<muzzleFlashScale>6</muzzleFlashScale>
+						<recoilPattern>Mounted</recoilPattern>
+					</Properties>
+					<FireModes>
+						<aiUseBurstMode>FALSE</aiUseBurstMode>
+						<aiAimMode>AimedShot</aiAimMode>
+						<noSnapshot>true</noSnapshot>
+						<noSingleShot>true</noSingleShot>
+					</FireModes>
+					<weaponTags>
+						<li>TurretGun</li>
+					</weaponTags>
+				</li>
+				
+				
+				<!-- Mark IV -->
+				
+				<!--
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="Bullet_Mark-IV"]/projectile</xpath>
+					<value>
+						<projectile Class="CombatExtended.ProjectilePropertiesCE">
+							<damageAmountBase>7</damageAmountBase>
+							<armorPenetrationSharp>6</armorPenetrationSharp>
+							<armorPenetrationBlunt>10.860</armorPenetrationBlunt>
+							<dropsCasings>true</dropsCasings>
+							<speed>90</speed>
+						</projectile>
+					</value>
+				</li>
+				
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="Bullet_Mark-IV"]</xpath>
+					<value>
+						<thingClass>CombatExtended.BulletCE</thingClass>
+					</value>
+				</li>-->
+				
+				<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+					<defName>Gun_Mark-IV</defName>
+					<statBases>
+						<RangedWeapon_Cooldown>.6</RangedWeapon_Cooldown>
+						<SightsEfficiency>1.00</SightsEfficiency>
+						<ShotSpread>0.10</ShotSpread>
+						<SwayFactor>1.00</SwayFactor>
+					</statBases>
+					<Properties>
+						<recoilAmount>1.19</recoilAmount>
+						<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+						<hasStandardCommand>true</hasStandardCommand>
+						<defaultProjectile>Bullet_45ACP_AP</defaultProjectile>
+						<warmupTime>1.5</warmupTime>
+						<range>45</range>
+						<ticksBetweenBurstShots>10</ticksBetweenBurstShots>
+						<burstShotCount>6</burstShotCount>
+						<soundCast>Shot_Revolver</soundCast>
+						<soundCastTail>GunTail_Heavy</soundCastTail>
+						<muzzleFlashScale>11</muzzleFlashScale>
+						<recoilPattern>Mounted</recoilPattern>
+					</Properties>
+					<FireModes>
+						<aiUseBurstMode>FALSE</aiUseBurstMode>
+						<aiAimMode>AimedShot</aiAimMode>
+						<noSnapshot>true</noSnapshot>
+						<noSingleShot>true</noSingleShot>
+					</FireModes>
+					<weaponTags>
+						<li>TurretGun</li>
+					</weaponTags>
+				</li>
+				
+				<!--
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="Bullet_Shell_TechnoTurretExplosive"]/projectile</xpath>
+					<value>
+						<projectile Class="CombatExtended.ProjectilePropertiesCE">
+							<damageDef>Bomb</damageDef>
+							<damageAmountBase>15</damageAmountBase>
+							<explosionRadius>1.5</explosionRadius>
+							<applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
+							<soundHitThickRoof>Artillery_HitThickRoof</soundHitThickRoof>
+							<soundExplode>MortarBomb_Explode</soundExplode>
+							<soundImpactAnticipate>MortarRound_PreImpact</soundImpactAnticipate>
+							<soundAmbient>MortarRound_Ambient</soundAmbient>
+							<speed>45</speed>
+						</projectile>
+					</value>
+				</li>
+				
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="Bullet_Shell_TechnoTurretExplosive"]/thingClass</xpath>
+					<value>
+						<thingClass>CombatExtended.ProjectileCE_Explosive</thingClass>
+					</value>
+				</li>
+
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="Bullet_Shell_TechnoTurretExplosive"]</xpath>
+					<value>
+						<comps>
+						  <li Class="CombatExtended.CompProperties_Fragments">
+							<fragments>
+							  <Fragment_Small>11</Fragment_Small>
+							</fragments>
+						  </li>
+						</comps>
+					</value>
+				</li>
+				-->
+				
+				
+				
+				
+		</operations>
+		</match>
+	</Operation>
+	
+</Patch>
