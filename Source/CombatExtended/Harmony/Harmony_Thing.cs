@@ -31,6 +31,45 @@ namespace CombatExtended.HarmonyCE
     {
         private static FieldInfo fPosition = AccessTools.Field(typeof(Thing), "positionInt");
 
+        // The goal is to notify the things tracker of a thing entering a new cell
+        // 
+        // ]-------------------------------------------------------[
+        // The patch target Thing.Postion (setter)
+        //
+        //if (value == positionInt)
+        //{
+        //    return;
+        //}
+        //if (Spawned)
+        //{
+        //    if (def.AffectsRegions)
+        //    {
+        //        Log.Warning("Changed position of a spawned thing which affects regions. This is not supported.");
+        //    }
+        //    DirtyMapMesh(Map);
+        //    RegionListersUpdater.DeregisterInRegions(this, Map);
+        //    Map.thingGrid.Deregister(this);
+        //}
+        //positionInt = value;
+        // <------------------- Patch insert code here
+        //if (Spawned)
+        //{
+        //    Map.thingGrid.Register(this);
+        //    RegionListersUpdater.RegisterInRegions(this, Map);
+        //    DirtyMapMesh(Map);
+        //    if (def.AffectsReachability)
+        //    {
+        //        Map.reachability.ClearCache();
+        //    }
+        //}
+        // ]-------------------------------------------------------[
+        // The injected code
+        //
+        // if(this.Spawned)
+        // {
+        //      ThingsTracker.GetTracker(Map).Notify_PositionChanged(this);
+        // }
+
         public static IEnumerable<CodeInstruction> Transpiler(IEnumerable<CodeInstruction> instructions, ILGenerator generator)
         {
             var codes = instructions.ToList();
