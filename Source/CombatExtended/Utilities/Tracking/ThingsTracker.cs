@@ -82,39 +82,38 @@ namespace CombatExtended.Utilities
         public override void MapComponentOnGUI()
         {
             base.MapComponentOnGUI();
-            if (Controller.settings.DebugGenClosetPawn)
+            if (!Controller.settings.DebugGenClosetPawn)
+                return;
+            if (Find.Selector.SelectedObjects.Count == 0)
+                return;
+            var thing = Find.Selector.SelectedObjects.Where(s => s is Thing).Select(s => s as Thing).First();
+            if (IsValidTrackableThing(thing))
             {
-                if (Find.Selector.SelectedObjects.Count > 0)
+                IEnumerable<Thing> others;
+                if (thing is Pawn)
+                    others = GenClosest.PawnsInRange(thing.Position, map, 50);
+                else if (thing is AmmoThing)
+                    others = GenClosest.AmmoInRange(thing.Position, map, 50);
+                else if (thing.def.IsApparel)
+                    others = GenClosest.ApparelInRange(thing.Position, map, 50);
+                else if (thing.def.IsWeapon)
+                    others = GenClosest.WeaponsInRange(thing.Position, map, 50);
+                else
+                    others = GenClosest.SimilarInRange(thing, 50);
+                Vector2 a = UI.MapToUIPosition(thing.DrawPos);
+                Vector2 b;
+                Vector2 mid;
+                Rect rect;
+                int index = 0;
+                foreach (var other in others)
                 {
-                    var thing = Find.Selector.SelectedObjects.Where(s => s is Thing).Select(s => s as Thing).First();
-                    if (IsValidTrackableThing(thing))
-                    {
-                        IEnumerable<Thing> others;
-                        if (thing is Pawn)
-                            others = GenClosest.PawnsInRange(thing.Position, map, 50);
-                        else if (thing is AmmoThing)
-                            others = GenClosest.AmmoInRange(thing.Position, map, 50);
-                        else if (thing.def.IsApparel)
-                            others = GenClosest.ApparelInRange(thing.Position, map, 50);
-                        else if (thing.def.IsWeapon)
-                            others = GenClosest.WeaponsInRange(thing.Position, map, 50);
-                        else
-                            others = GenClosest.SimilarInRange(thing, 50);
-                        Vector2 a = UI.MapToUIPosition(thing.DrawPos);
-                        Vector2 b;
-                        Vector2 mid;
-                        Rect rect;
-                        foreach (var other in others)
-                        {
-                            b = UI.MapToUIPosition(other.DrawPos);
-                            Widgets.DrawLine(a, b, Color.red, 1);
+                    b = UI.MapToUIPosition(other.DrawPos);
+                    Widgets.DrawLine(a, b, Color.red, 1);
 
-                            mid = (a + b) / 2;
-                            rect = new Rect(mid.x - 25, mid.y - 15, 50, 30);
-                            Widgets.DrawBox(rect);
-                            Widgets.Label(rect, $"{other.Position.DistanceTo(thing.Position)}m");
-                        }
-                    }
+                    mid = (a + b) / 2;
+                    rect = new Rect(mid.x - 25, mid.y - 15, 50, 30);
+                    Widgets.DrawBox(rect);
+                    Widgets.Label(rect, $"({index++}). {other.Position.DistanceTo(thing.Position)}m");
                 }
             }
         }

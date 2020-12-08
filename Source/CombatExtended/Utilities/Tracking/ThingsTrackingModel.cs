@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Verse;
@@ -66,9 +67,8 @@ namespace CombatExtended.Utilities
         public readonly ThingsTracker parent;
         public readonly Map map;
 
-        public Dictionary<Thing, int> indexByThing = new Dictionary<Thing, int>();
-
-        private HashSet<Thing> things = new HashSet<Thing>();
+        private int count = 0;
+        private Dictionary<Thing, int> indexByThing = new Dictionary<Thing, int>();
         private ThingPositionInfo[] sortedThings = new ThingPositionInfo[100];
 
         public ThingsTrackingModel(ThingDef def, Map map, ThingsTracker parent)
@@ -82,33 +82,25 @@ namespace CombatExtended.Utilities
         {
             if (indexByThing.ContainsKey(thing))
                 return;
-            if (things.Count + 1 >= sortedThings.Length)
+            if (count + 1 >= sortedThings.Length)
             {
                 ThingPositionInfo[] temp = new ThingPositionInfo[sortedThings.Length * 2];
                 for (int i = 0; i < sortedThings.Length; i++)
                     temp[i] = sortedThings[i];
                 sortedThings = temp;
             }
-            if (things.Count == 0)
-            {
-                sortedThings[things.Count] = new ThingPositionInfo(thing);
-                indexByThing[thing] = 0;
-                things.Add(thing);
-            }
-            else
-            {
-                sortedThings[things.Count] = new ThingPositionInfo(thing);
-                indexByThing[thing] = things.Count - 1;
-                things.Add(thing);
 
-                int i = things.Count - 1;
-                while (i - 1 >= 0 && sortedThings[i] < sortedThings[i - 1])
-                {
-                    Swap<ThingPositionInfo>(i - 1, i, sortedThings);
-                    indexByThing[sortedThings[i].thing] = i;
-                    indexByThing[sortedThings[i - 1].thing] = i - 1;
-                    i--;
-                }
+            sortedThings[count] = new ThingPositionInfo(thing);
+            indexByThing[thing] = count;
+            count++;
+
+            int index = count - 1;
+            while (index - 1 >= 0 && sortedThings[index] < sortedThings[index - 1])
+            {
+                Swap<ThingPositionInfo>(index - 1, index, sortedThings);
+                indexByThing[sortedThings[index].thing] = index;
+                indexByThing[sortedThings[index - 1].thing] = index - 1;
+                index--;
             }
         }
 
@@ -117,13 +109,13 @@ namespace CombatExtended.Utilities
             if (!indexByThing.ContainsKey(thing))
                 return;
             int index = indexByThing[thing];
-            for (int i = index + 1; i < things.Count; i++)
+            for (int i = index + 1; i < count; i++)
             {
                 indexByThing[sortedThings[i].thing] = i - 1;
                 sortedThings[i - 1] = sortedThings[i];
             }
             indexByThing.Remove(thing);
-            things.Remove(thing);
+            count--;
         }
 
         public void Notify_ThingPositionChanged(Thing thing)
@@ -132,7 +124,7 @@ namespace CombatExtended.Utilities
             int index = indexByThing[thing];
 
             i = index;
-            while (i + 1 < things.Count && sortedThings[i] > sortedThings[i + 1])
+            while (i + 1 < count && sortedThings[i] > sortedThings[i + 1])
             {
                 Swap<ThingPositionInfo>(i + 1, i, sortedThings);
                 indexByThing[sortedThings[i].thing] = i;
@@ -152,9 +144,9 @@ namespace CombatExtended.Utilities
         public IEnumerable<Thing> ThingsInRangeOf(IntVec3 cell, float range)
         {
             int bottom = 0;
-            int top = things.Count;
-            int mid = (top + bottom) / 2;
             int index;
+            int top = count;
+            int mid = (top + bottom) / 2;
             int limiter = 0;
             IntVec3 midPosition;
             while (top != bottom && limiter++ < 20)
@@ -172,9 +164,8 @@ namespace CombatExtended.Utilities
                     break;
                 }
             }
-
             index = mid;
-            while (index < things.Count)
+            while (index < count)
             {
                 Thing t = sortedThings[index].thing;
                 IntVec3 curPosition = t.Position;
