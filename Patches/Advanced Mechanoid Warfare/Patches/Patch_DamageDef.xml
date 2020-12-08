@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+
+	<Operation Class="PatchOperationFindMod">
+    <mods>
+		<li>[RWY]Advanced Mechanoid Warfare</li>
+    </mods>
+		<match Class="PatchOperationSequence">
+		<operations>
+		
+			<li Class="PatchOperationReplace">
+				<xpath>/Defs/DamageDef[defName="NovaBomb"]/defaultDamage</xpath>
+				<value>
+					<defaultDamage>80</defaultDamage>
+				</value>
+			</li>
+			
+			<li Class="PatchOperationReplace">
+				<xpath>/Defs/DamageDef[defName="NovaBomb"]/defaultArmorPenetration</xpath>
+				<value>
+					<defaultArmorPenetration>130</defaultArmorPenetration>
+				</value>
+			</li>
+			
+			<li Class="PatchOperationReplace">
+				<xpath>/Defs/DamageDef[defName="NovaBomb"]/armorCategory</xpath>
+				<value>
+					<armorCategory>Blunt</armorCategory>
+				</value>
+			</li>
+			
+			<li Class="PatchOperationReplace">
+				<xpath>/Defs/DamageDef[defName="NovaBomb"]/workerClass</xpath>
+				<value>
+					<workerClass>CombatExtended.DamageWorker_BluntCE</workerClass>
+				</value>
+			</li>
+			
+			
+		</operations>
+		</match>
+	</Operation>
+	
+</Patch>

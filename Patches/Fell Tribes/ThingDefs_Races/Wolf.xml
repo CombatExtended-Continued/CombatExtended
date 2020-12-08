@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+			<li>Fell Tribes</li>
+		</mods>
+		<match Class="PatchOperationSequence">
+			<operations>
+
+			<!-- ========== Now patch the basics... ========== -->
+			<li Class="PatchOperationAddModExtension">
+				<!-- === Note to future furball compatibility nerds: 		=== -->
+				<!-- === Paste the defName of your horrible alien there   |	=== -->
+				<!-- === 												  V	=== -->
+				<xpath>Defs/AlienRace.ThingDef_AlienRace[defName="Alien_Wolf"]</xpath>
+				<value>
+					<li Class="CombatExtended.RacePropertiesExtensionCE">
+						<bodyShape>Humanoid</bodyShape>
+					</li>
+				</value>
+			</li>
+
+			<!-- ========== Done! ========== -->
+			<!-- ========== Now for the gun settings and suppression ========== -->
+
+			<li Class="PatchOperationAdd">
+				<!-- === Shouldn't need to change this at all		  === -->
+				<!-- === Unless you changed the name of your BasePawn === -->
+				<!-- === In which case change "BasePawn" to that name === -->
+				<xpath>Defs/AlienRace.ThingDef_AlienRace[defName = "Alien_Wolf"]</xpath>
+				<value>
+				<comps>				
+					<li>
+						<compClass>CombatExtended.CompPawnGizmo</compClass>
+					</li>
+					<li Class="CombatExtended.CompProperties_Suppressable" />
+				</comps>					
+				</value>
+			</li>
+
+			<!-- === Patch their default melee attacks === -->
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/AlienRace.ThingDef_AlienRace[defName = "Alien_Wolf"]/statBases</xpath>
+				<value>
+					<AimingAccuracy>1</AimingAccuracy>
+					<MeleeDodgeChance>1</MeleeDodgeChance>
+					<MeleeCritChance>1.15</MeleeCritChance>
+					<MeleeParryChance>1</MeleeParryChance>
+					<ReloadSpeed>1</ReloadSpeed>
+					<Suppressability>1</Suppressability>
+				</value>
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/AlienRace.ThingDef_AlienRace[defName="Alien_Wolf"]/tools</xpath>
+				<value>
+					<tools>
+						<li Class="CombatExtended.ToolCE">
+							<label>left claws</label>
+							<capacities>
+								<li>Scratch</li>
+							</capacities>
+							<power>7</power>
+							<cooldownTime>1.15</cooldownTime>
+							<linkedBodyPartsGroup>LeftHand</linkedBodyPartsGroup>
+							<armorPenetrationSharp>0.1</armorPenetrationSharp>
+							<armorPenetrationBlunt>0.462</armorPenetrationBlunt>
+						</li>
+						<li Class="CombatExtended.ToolCE">
+							<label>right claws</label>
+							<capacities>
+								<li>Scratch</li>
+							</capacities>
+							<power>7</power>
+							<cooldownTime>1.15</cooldownTime>
+							<linkedBodyPartsGroup>RightHand</linkedBodyPartsGroup>
+							<armorPenetrationSharp>0.1</armorPenetrationSharp>
+							<armorPenetrationBlunt>0.462</armorPenetrationBlunt>
+						</li>
+						<li Class="CombatExtended.ToolCE">
+							<label>teeth</label>
+							<capacities>
+								<li>Bite</li>
+							</capacities>
+							<power>10</power>
+							<cooldownTime>1.37</cooldownTime>
+							<linkedBodyPartsGroup>Teeth</linkedBodyPartsGroup>
+							<armorPenetrationSharp>0.02</armorPenetrationSharp>
+							<armorPenetrationBlunt>0.923</armorPenetrationBlunt>
+							<chanceFactor>0.2</chanceFactor>
+						</li>
+					</tools>
+				</value>
+			</li>
+
+			</operations>
+		</match>
+	</Operation>
+</Patch>	

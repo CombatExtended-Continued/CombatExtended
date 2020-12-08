@@ -1,0 +1,886 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+
+	<Operation Class="PatchOperationFindMod">
+    <mods>
+		<li>[RWY]Advanced Mechanoid Warfare</li>
+    </mods>
+		<match Class="PatchOperationSequence">
+		<operations>
+			
+			
+			
+			<li Class="PatchOperationReplace">
+				<xpath>/Defs/ThingDef[defName="BreacherGrenade"]/thingClass</xpath>
+				<value>
+					<thingClass>CombatExtended.ProjectileCE_Explosive</thingClass>
+				</value>
+			</li>
+			
+			<li Class="PatchOperationReplace">
+				<xpath>/Defs/ThingDef[defName="BreacherGrenade"]/projectile</xpath>
+				<value>
+					<projectile Class="CombatExtended.ProjectilePropertiesCE">
+					  <explosionRadius>2.5</explosionRadius>
+					  <damageDef>Bomb</damageDef>
+					  <damageAmountBase>33</damageAmountBase> <!-- 70mm Mech Grenade damage / 4 -->
+					  <applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
+					  <speed>20</speed>
+					  <dropsCasings>false</dropsCasings>
+					</projectile>
+					<comps>
+					  <li Class="CombatExtended.CompProperties_Fragments">
+						<fragments>
+							<Fragment_Small>10</Fragment_Small>
+						</fragments>
+					  </li>
+					</comps>
+				</value>
+			</li>
+			
+			
+			<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+				<defName>Weapon_BreacherAMW</defName>
+					<statBases>
+						<SightsEfficiency>1.0</SightsEfficiency>
+						<ShotSpread>0.14</ShotSpread>
+						<SwayFactor>1.01</SwayFactor>
+						<Bulk>3.5</Bulk>
+						<Mass>6</Mass>
+						<RangedWeapon_Cooldown>3.55</RangedWeapon_Cooldown>
+					</statBases>
+					<Properties>
+						<recoilAmount>1.53</recoilAmount>
+						<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+						<hasStandardCommand>true</hasStandardCommand>
+						<range>32</range>
+						<burstShotCount>4</burstShotCount>
+						<warmupTime>2.3</warmupTime>
+						<noiseRadius>7</noiseRadius>
+						<ai_IsBuildingDestroyer>true</ai_IsBuildingDestroyer>
+						<soundCast>DiskLaunch</soundCast>
+						<targetParams>
+							<canTargetLocations>true</canTargetLocations>
+						</targetParams>
+						<defaultProjectile>BreacherGrenade</defaultProjectile>
+						<ignorePartialLoSBlocker>true</ignorePartialLoSBlocker>
+					</Properties>
+					<FireModes>
+						<aiAimMode>AimedShot</aiAimMode>
+					</FireModes>
+					<weaponTags>
+						<li>CE_AI_Launcher</li>
+					</weaponTags>
+			</li>
+			
+			<li Class="PatchOperationReplace">
+				<xpath>/Defs/ThingDef[defName="Bullet_PlasmaSpit"]/thingClass</xpath>
+				<value>
+					<thingClass>CombatExtended.ProjectileCE_Explosive</thingClass>
+				</value>
+			</li>
+			
+			<li Class="PatchOperationReplace">
+				<xpath>/Defs/ThingDef[defName="Bullet_PlasmaSpit"]/projectile</xpath>
+				<value>
+					<projectile Class="CombatExtended.ProjectilePropertiesCE">
+					  <damageDef>Bomb</damageDef>
+					  <damageAmountBase>309</damageAmountBase>
+					  <explosionRadius>3.2</explosionRadius>
+					  <speed>75</speed>
+					  <applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
+					  <dropsCasings>false</dropsCasings>
+					</projectile>
+				</value>
+			</li>
+			
+
+			<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+				<defName>Gun_PlasmaSpitInternal</defName>
+					<statBases>
+						<SightsEfficiency>1.0</SightsEfficiency>
+						<ShotSpread>0.14</ShotSpread>
+						<SwayFactor>1.01</SwayFactor>
+						<Bulk>3.5</Bulk>
+						<Mass>6</Mass>
+						<RangedWeapon_Cooldown>4</RangedWeapon_Cooldown>
+					</statBases>
+					<Properties>
+						<recoilAmount>1.53</recoilAmount>
+						<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+						<hasStandardCommand>true</hasStandardCommand>
+						<defaultProjectile>Bullet_PlasmaSpit</defaultProjectile>
+						<warmupTime>4.3</warmupTime>
+						<range>54</range>
+						<!--<ai_AvoidFriendlyFireRadius>5</ai_AvoidFriendlyFireRadius>-->
+						<soundCast>HeavyLaunch</soundCast>
+						<soundCastTail>GunTail_Heavy</soundCastTail>
+						<muzzleFlashScale>7</muzzleFlashScale>
+						<ignorePartialLoSBlocker>true</ignorePartialLoSBlocker>
+					</Properties>
+					<FireModes>
+						<aiAimMode>AimedShot</aiAimMode>
+					</FireModes>
+					<weaponTags>
+						<li>CE_AI_Launcher</li>
+					</weaponTags>
+			</li>
+			
+			
+			<li Class="PatchOperationReplace">
+				<xpath>/Defs/ThingDef[defName="Bullet_KineticWing"]/thingClass</xpath>
+				<value>
+					<thingClass>CombatExtended.ProjectileCE_Explosive</thingClass>
+				</value>
+			</li>
+			
+			<li Class="PatchOperationReplace">
+				<xpath>/Defs/ThingDef[defName="Bullet_KineticWing"]/projectile</xpath>
+				<value>
+					<projectile Class="CombatExtended.ProjectilePropertiesCE">
+					  <damageDef>Bullet</damageDef>
+					  <damageAmountBase>50</damageAmountBase>
+					  <!--<soundExplode>MortarBomb_Explode</soundExplode>-->
+					  <armorPenetrationSharp>30</armorPenetrationSharp>
+					  <armorPenetrationBlunt>38.005</armorPenetrationBlunt>
+					  <flyOverhead>true</flyOverhead>
+					  <gravityFactor>20</gravityFactor>
+					  <speed>105</speed>
+					  <dropsCasings>false</dropsCasings>
+					</projectile>
+					<comps>
+					  <li Class="CombatExtended.CompProperties_ExplosiveCE">
+						<damageAmountBase>64</damageAmountBase>
+						<explosiveDamageType>Bomb</explosiveDamageType>
+						<explosiveRadius>1.5</explosiveRadius>
+						<applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
+					  </li>
+					  <li Class="CombatExtended.CompProperties_Fragments">
+						<fragments>
+							<Fragment_Small>10</Fragment_Small>
+						</fragments>
+					  </li>
+					</comps>
+				</value>
+			</li>
+			
+
+			<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+				<defName>Gun_KineticWingInternal</defName>
+					<statBases>
+						<SightsEfficiency>1.0</SightsEfficiency>
+						<ShotSpread>0.14</ShotSpread>
+						<SwayFactor>1.01</SwayFactor>
+						<Bulk>3.5</Bulk>
+						<Mass>6</Mass>
+						<RangedWeapon_Cooldown>4</RangedWeapon_Cooldown>
+					</statBases>
+					<Properties>
+						<recoilAmount>1</recoilAmount>
+						<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+						<hasStandardCommand>true</hasStandardCommand>
+						<defaultProjectile>Bullet_KineticWing</defaultProjectile>
+						<warmupTime>5.3</warmupTime>
+						<range>66</range>
+						<ticksBetweenBurstShots>7</ticksBetweenBurstShots>
+						<burstShotCount>5</burstShotCount>
+						<!--<ai_AvoidFriendlyFireRadius>4</ai_AvoidFriendlyFireRadius>-->
+						<soundCast>Mortar_LaunchA</soundCast>
+						<soundCastTail>GunTail_Heavy</soundCastTail>
+						<muzzleFlashScale>7</muzzleFlashScale>
+						<ignorePartialLoSBlocker>true</ignorePartialLoSBlocker>
+						<targetParams>
+							<canTargetLocations>true</canTargetLocations>
+						</targetParams>
+					</Properties>
+					<FireModes>
+						<aiAimMode>AimedShot</aiAimMode>
+					</FireModes>
+					<weaponTags>
+						<li>CE_AI_Launcher</li>
+					</weaponTags>
+			</li>
+			
+			
+			<li Class="PatchOperationReplace">
+				<xpath>/Defs/ThingDef[defName="Bullet_PlasmaRocket"]/thingClass</xpath>
+				<value>
+					<thingClass>CombatExtended.ProjectileCE_Explosive</thingClass>
+				</value>
+			</li>
+			
+			<li Class="PatchOperationReplace">
+				<xpath>/Defs/ThingDef[defName="Bullet_PlasmaRocket"]/projectile</xpath>
+				<value>
+					<projectile Class="CombatExtended.ProjectilePropertiesCE">
+					  <damageDef>NovaBomb</damageDef>
+					  <damageAmountBase>45</damageAmountBase>
+					  <armorPenetrationSharp>0</armorPenetrationSharp>
+					  <armorPenetrationBlunt>30</armorPenetrationBlunt>
+					  <explosionRadius>1.5</explosionRadius>
+					  <applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
+					  <flyOverhead>false</flyOverhead>
+					  <speed>50</speed>
+					</projectile>
+					<comps>
+					  <li Class="CombatExtended.CompProperties_Fragments">
+						<fragments>
+							<Fragment_Small>10</Fragment_Small>
+						</fragments>
+					  </li>
+					</comps>
+				</value>
+			</li>
+			
+			
+			<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+				<defName>Gun_PRInternal</defName>
+					<statBases>
+						<SightsEfficiency>1.0</SightsEfficiency>
+						<ShotSpread>0.14</ShotSpread>
+						<SwayFactor>1.01</SwayFactor>
+						<Bulk>5</Bulk>
+						<Mass>10</Mass>
+						<RangedWeapon_Cooldown>5.6</RangedWeapon_Cooldown>
+					</statBases>
+					<Properties>
+						<recoilAmount>1</recoilAmount>
+						<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+						<hasStandardCommand>true</hasStandardCommand>
+						<defaultProjectile>Bullet_PlasmaRocket</defaultProjectile>
+						<warmupTime>3.13</warmupTime>
+						<range>38</range>
+						<ticksBetweenBurstShots>7</ticksBetweenBurstShots>
+						<burstShotCount>4</burstShotCount>
+						<soundCast>HeavyLaunch</soundCast>
+						<soundCastTail>GunTail_Heavy</soundCastTail>
+						<muzzleFlashScale>7</muzzleFlashScale>
+						<ignorePartialLoSBlocker>true</ignorePartialLoSBlocker>
+						<targetParams>
+							<canTargetLocations>true</canTargetLocations>
+						</targetParams>
+					</Properties>
+					<FireModes>
+						<aiAimMode>AimedShot</aiAimMode>
+					</FireModes>
+					<weaponTags>
+						<li>CE_AI_Launcher</li>
+					</weaponTags>
+			</li>
+			
+			
+			<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+				<defName>Gun_NomadRifle</defName>
+					<statBases>
+						<SightsEfficiency>1.0</SightsEfficiency>
+						<ShotSpread>0.14</ShotSpread>
+						<SwayFactor>1.45</SwayFactor>
+						<Bulk>7.5</Bulk>
+						<Mass>8</Mass>
+						<RangedWeapon_Cooldown>1.6</RangedWeapon_Cooldown>
+					</statBases>
+					<Properties>
+						<recoilAmount>1.53</recoilAmount>
+						<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+						<hasStandardCommand>true</hasStandardCommand>
+						<defaultProjectile>Bullet_NomadShot</defaultProjectile>
+						<warmupTime>1.11</warmupTime>
+						<range>45</range>
+						<ticksBetweenBurstShots>4</ticksBetweenBurstShots>
+						<burstShotCount>5</burstShotCount>
+						<soundCast>NomadRifle</soundCast>
+						<soundCastTail>GunTail_Heavy</soundCastTail>
+						<muzzleFlashScale>8</muzzleFlashScale>
+					</Properties>
+					<FireModes>
+						<aiAimMode>AimedShot</aiAimMode>
+					</FireModes>
+					<AmmoUser>
+						<magazineSize>24</magazineSize>
+						<reloadTime>3</reloadTime>
+						<ammoSet>AmmoSet_Nomad</ammoSet>
+					</AmmoUser>
+			</li>
+			
+			<li Class="PatchOperationReplace">
+				<xpath>/Defs/ThingDef[defName="Bullet_CryoLiquid"]/thingClass</xpath>
+				<value>
+					<thingClass>CombatExtended.ProjectileCE_Explosive</thingClass>
+				</value>
+			</li>
+			
+			<li Class="PatchOperationReplace">
+				<xpath>/Defs/ThingDef[defName="Bullet_CryoLiquid"]/projectile</xpath>
+				<value>
+					<projectile Class="CombatExtended.ProjectilePropertiesCE">
+					  <damageDef>CryoFlame</damageDef>
+					  <damageAmountBase>4</damageAmountBase>
+					  <armorPenetrationSharp>0</armorPenetrationSharp>
+					  <armorPenetrationBlunt>20</armorPenetrationBlunt>
+					  <explosionRadius>1.2</explosionRadius>
+					  <speed>40</speed>
+					  <applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
+					</projectile>
+				</value>
+			</li>
+			
+			
+			<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+				<defName>Gun_CryoInternal</defName>
+					<statBases>
+						<SightsEfficiency>1.0</SightsEfficiency>
+						<ShotSpread>0.14</ShotSpread>
+						<SwayFactor>1.01</SwayFactor>
+						<Bulk>5</Bulk>
+						<Mass>10</Mass>
+						<RangedWeapon_Cooldown>5.6</RangedWeapon_Cooldown>
+					</statBases>
+					<Properties>
+						<recoilAmount>1.53</recoilAmount>
+						<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+						<hasStandardCommand>true</hasStandardCommand>
+						<defaultProjectile>Bullet_CryoLiquid</defaultProjectile>
+						<warmupTime>1.83</warmupTime>
+						<range>22</range>
+						<ticksBetweenBurstShots>3</ticksBetweenBurstShots>
+						<burstShotCount>14</burstShotCount>
+						<soundCast>Shot_ChargeBlaster</soundCast>
+						<soundCastTail>GunTail_Heavy</soundCastTail>
+						<muzzleFlashScale>3</muzzleFlashScale>
+						<ignorePartialLoSBlocker>true</ignorePartialLoSBlocker>
+						<targetParams>
+							<canTargetLocations>true</canTargetLocations>
+						</targetParams>
+					</Properties>
+					<FireModes>
+						<aiAimMode>AimedShot</aiAimMode>
+					</FireModes>
+					<weaponTags>
+						<li>CE_AI_Launcher</li>
+					</weaponTags>
+			</li>
+			
+			
+			
+			<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+				<defName>Gun_Shreder</defName>
+					<statBases>
+						<SightsEfficiency>1.0</SightsEfficiency>
+						<ShotSpread>0.14</ShotSpread>
+						<SwayFactor>1.53</SwayFactor>
+						<Bulk>5</Bulk>
+						<Mass>10</Mass>
+						<RangedWeapon_Cooldown>2.9</RangedWeapon_Cooldown>
+					</statBases>
+					<Properties>
+						<recoilAmount>1.53</recoilAmount>
+						<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+						<hasStandardCommand>true</hasStandardCommand>
+						<defaultProjectile>Bullet_NomadShot</defaultProjectile>
+						<warmupTime>2.01</warmupTime>
+						<range>58</range>
+						<ticksBetweenBurstShots>4</ticksBetweenBurstShots>
+						<burstShotCount>55</burstShotCount>
+						<soundCast>Shreder</soundCast>
+						<soundCastTail>GunTail_Heavy</soundCastTail>
+						<muzzleFlashScale>8</muzzleFlashScale>
+					</Properties>
+					<FireModes>
+						<aiAimMode>SuppressFire</aiAimMode>
+					</FireModes>
+					<AmmoUser>
+						<magazineSize>220</magazineSize>
+						<reloadTime>7</reloadTime>
+						<ammoSet>AmmoSet_Nomad</ammoSet>
+					</AmmoUser>
+			</li>
+			
+			<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+				<defName>Gun_StalkerRifle</defName>
+					<statBases>
+						<SightsEfficiency>2.0</SightsEfficiency>
+						<ShotSpread>0.14</ShotSpread>
+						<SwayFactor>1.53</SwayFactor>
+						<Bulk>5</Bulk>
+						<Mass>10</Mass>
+						<RangedWeapon_Cooldown>2.9</RangedWeapon_Cooldown>
+					</statBases>
+					<Properties>
+						<recoilAmount>1.53</recoilAmount>
+						<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+						<hasStandardCommand>true</hasStandardCommand>
+						<defaultProjectile>Bullet_StalkersShot</defaultProjectile>
+						<warmupTime>1.01</warmupTime>
+						<range>64</range>
+						<ticksBetweenBurstShots>4</ticksBetweenBurstShots>
+						<burstShotCount>1</burstShotCount>
+						<soundCast>StalkerRail</soundCast>
+						<soundCastTail>GunTail_Heavy</soundCastTail>
+						<muzzleFlashScale>15</muzzleFlashScale>
+					</Properties>
+					<FireModes>
+						<aiAimMode>AimedShot</aiAimMode>
+					</FireModes>
+					<AmmoUser>
+						<magazineSize>12</magazineSize>
+						<reloadTime>3</reloadTime>
+						<ammoSet>AmmoSet_Stalker</ammoSet>
+					</AmmoUser>
+			</li>
+			
+			<li Class="PatchOperationRemove">
+				<xpath>/Defs/ThingDef[defName="Gun_UWMEmp"]</xpath>
+			</li>
+			
+			<li Class="PatchOperationRemove">
+				<xpath>/Defs/ThingDef[defName="Gun_UWMFire"]</xpath>
+			</li>
+			
+			<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+				<defName>Gun_UWMCharge</defName>
+					<statBases>
+						<SightsEfficiency>1.0</SightsEfficiency>
+						<ShotSpread>0.14</ShotSpread>
+						<SwayFactor>1.53</SwayFactor>
+						<Bulk>5</Bulk>
+						<Mass>10</Mass>
+						<RangedWeapon_Cooldown>2.9</RangedWeapon_Cooldown>
+					</statBases>
+					<Properties>
+						<recoilAmount>1.53</recoilAmount>
+						<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+						<hasStandardCommand>true</hasStandardCommand>
+						<defaultProjectile>Bullet_UWMChargeShot</defaultProjectile>
+						<warmupTime>1.31</warmupTime>
+						<range>22</range>
+						<ticksBetweenBurstShots>7</ticksBetweenBurstShots>
+						<burstShotCount>7</burstShotCount>
+						<soundCast>SmallLaser</soundCast>
+						<soundCastTail>GunTail_Heavy</soundCastTail>
+						<muzzleFlashScale>2</muzzleFlashScale>
+					</Properties>
+					<FireModes>
+						<aiAimMode>AimedShot</aiAimMode>
+					</FireModes>
+					<AmmoUser>
+						<magazineSize>42</magazineSize>
+						<reloadTime>3</reloadTime>
+						<ammoSet>AmmoSet_UMW</ammoSet>
+					</AmmoUser>
+			</li>
+			
+			
+			<li Class="PatchOperationReplace">
+				<xpath>/Defs/ThingDef[defName="Bullet_ChargeCannon"]/thingClass</xpath>
+				<value>
+					<thingClass>CombatExtended.ProjectileCE_Explosive</thingClass>
+				</value>
+			</li>
+			
+			<li Class="PatchOperationReplace">
+				<xpath>/Defs/ThingDef[defName="Bullet_ChargeCannon"]/projectile</xpath>
+				<value>
+					<projectile Class="CombatExtended.ProjectilePropertiesCE">
+					  <explosionRadius>3.4</explosionRadius >
+					  <damageDef>Bomb</damageDef>
+					  <damageAmountBase>60</damageAmountBase>
+					  <armorPenetrationBlunt>48</armorPenetrationBlunt>
+					  <applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
+					  <speed>75</speed>
+					</projectile>
+					<comps>
+					  <li Class="CombatExtended.CompProperties_Fragments">
+						<fragments>
+						  <Fragment_Small>26</Fragment_Small>
+						</fragments>
+					  </li>
+					</comps>
+					
+				</value>
+			</li>
+			
+			
+			<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+				<defName>Gun_ChargeCannonAWM</defName>
+					<statBases>
+						<SightsEfficiency>1.0</SightsEfficiency>
+						<ShotSpread>0.14</ShotSpread>
+						<SwayFactor>1.01</SwayFactor>
+						<Bulk>40</Bulk>
+						<Mass>25</Mass>
+						<RangedWeapon_Cooldown>7</RangedWeapon_Cooldown>
+					</statBases>
+					<Properties>
+						<recoilAmount>1.53</recoilAmount>
+						<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+						<hasStandardCommand>true</hasStandardCommand>
+						<defaultProjectile>Bullet_ChargeCannon</defaultProjectile>
+						<warmupTime>3.5</warmupTime>
+						<range>57</range>
+						<ticksBetweenBurstShots>7</ticksBetweenBurstShots>
+						<burstShotCount>1</burstShotCount>
+						<soundCast>HeavyLaunch</soundCast>
+						<soundCastTail>GunTail_Heavy</soundCastTail>
+						<muzzleFlashScale>27</muzzleFlashScale>
+						<ignorePartialLoSBlocker>true</ignorePartialLoSBlocker>
+						<targetParams>
+							<canTargetLocations>true</canTargetLocations>
+						</targetParams>
+					</Properties>
+					<FireModes>
+						<aiAimMode>AimedShot</aiAimMode>
+					</FireModes>
+					<weaponTags>
+						<li>CE_AI_Launcher</li>
+					</weaponTags>
+			</li>
+			
+			
+			<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+				<defName>Gun_IonLense</defName>
+					<statBases>
+						<SightsEfficiency>1.0</SightsEfficiency>
+						<ShotSpread>0.14</ShotSpread>
+						<SwayFactor>1.53</SwayFactor>
+						<Bulk>5</Bulk>
+						<Mass>10</Mass>
+						<RangedWeapon_Cooldown>7</RangedWeapon_Cooldown>
+					</statBases>
+					<Properties>
+						<recoilAmount>1.53</recoilAmount>
+						<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+						<hasStandardCommand>true</hasStandardCommand>
+						<defaultProjectile>Bullet_IonLenseShot</defaultProjectile>
+						<warmupTime>2.7</warmupTime>
+						<range>40</range>
+						<ticksBetweenBurstShots>2</ticksBetweenBurstShots>
+						<burstShotCount>15</burstShotCount>
+						<soundCast>SmallLaser</soundCast>
+						<soundCastTail>GunTail_Heavy</soundCastTail>
+						<muzzleFlashScale>6</muzzleFlashScale>
+					</Properties>
+					<FireModes>
+						<aiAimMode>SuppressFire</aiAimMode>
+					</FireModes>
+					<AmmoUser>
+						<magazineSize>60</magazineSize>
+						<reloadTime>3</reloadTime>
+						<ammoSet>AmmoSet_Lens</ammoSet>
+					</AmmoUser>
+			</li>
+
+
+			<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+				<defName>Gun_Vaporizer</defName>
+					<statBases>
+						<SightsEfficiency>1.0</SightsEfficiency>
+						<ShotSpread>0.14</ShotSpread>
+						<SwayFactor>1.53</SwayFactor>
+						<Bulk>5</Bulk>
+						<Mass>10</Mass>
+						<RangedWeapon_Cooldown>3.3</RangedWeapon_Cooldown>
+					</statBases>
+					<Properties>
+						<recoilAmount>1.53</recoilAmount>
+						<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+						<hasStandardCommand>true</hasStandardCommand>
+						<defaultProjectile>Bullet_VaporizerShot</defaultProjectile>
+						<warmupTime>2.33</warmupTime>
+						<range>36</range>
+						<soundCast>HeavyLaunch</soundCast>
+						<soundCastTail>GunTail_Heavy</soundCastTail>
+						<muzzleFlashScale>14</muzzleFlashScale>
+					</Properties>
+					<FireModes>
+						<aiAimMode>AimedShot</aiAimMode>
+					</FireModes>
+					<AmmoUser>
+						<magazineSize>7</magazineSize>
+						<reloadTime>3</reloadTime>
+						<ammoSet>AmmoSet_Vapor</ammoSet>
+					</AmmoUser>
+			</li>
+
+			<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+				<defName>Gun_BladeCannon</defName>
+					<statBases>
+						<SightsEfficiency>1.0</SightsEfficiency>
+						<ShotSpread>0.14</ShotSpread>
+						<SwayFactor>1.53</SwayFactor>
+						<Bulk>5</Bulk>
+						<Mass>10</Mass>
+						<RangedWeapon_Cooldown>3.3</RangedWeapon_Cooldown>
+					</statBases>
+					<Properties>
+						<recoilAmount>1.53</recoilAmount>
+						<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+						<hasStandardCommand>true</hasStandardCommand>
+						<defaultProjectile>Bullet_EBlade</defaultProjectile>
+						<warmupTime>2.63</warmupTime>
+						<range>38</range>
+						<soundCast>DiskLaunch</soundCast>
+						<soundCastTail>GunTail_Heavy</soundCastTail>
+						<muzzleFlashScale>22</muzzleFlashScale>
+					</Properties>
+					<FireModes>
+						<aiAimMode>AimedShot</aiAimMode>
+					</FireModes>
+			</li>
+			
+			
+			<li Class="PatchOperationReplace">
+				<xpath>/Defs/ThingDef[defName="Bullet_SupShard"]/projectile</xpath>
+				<value>
+					<projectile Class="CombatExtended.ProjectilePropertiesCE">
+					  <damageDef>Bullet</damageDef>
+					  <damageAmountBase>5</damageAmountBase>
+					  <armorPenetrationSharp>12</armorPenetrationSharp>
+					  <armorPenetrationBlunt>8</armorPenetrationBlunt>
+					  <speed>40</speed>
+					</projectile>
+				</value>
+			</li>
+			
+			<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+				<defName>Gun_VortexLaser</defName>
+					<statBases>
+						<SightsEfficiency>1.0</SightsEfficiency>
+						<ShotSpread>0.14</ShotSpread>
+						<SwayFactor>1.53</SwayFactor>
+						<Bulk>5</Bulk>
+						<Mass>10</Mass>
+						<RangedWeapon_Cooldown>2.93</RangedWeapon_Cooldown>
+					</statBases>
+					<Properties>
+						<recoilAmount>1.53</recoilAmount>
+						<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+						<hasStandardCommand>true</hasStandardCommand>
+						<defaultProjectile>Bullet_IonLenseShot</defaultProjectile>
+						<warmupTime>3.31</warmupTime>
+						<range>64</range>
+						<ticksBetweenBurstShots>7</ticksBetweenBurstShots>
+						<burstShotCount>15</burstShotCount>
+						<soundCast>MediumLaser</soundCast>
+						<soundCastTail>GunTail_Heavy</soundCastTail>
+						<muzzleFlashScale>5</muzzleFlashScale>
+					</Properties>
+					<FireModes>
+						<aiAimMode>SuppressFire</aiAimMode>
+					</FireModes>
+					<AmmoUser>
+						<magazineSize>60</magazineSize>
+						<reloadTime>3</reloadTime>
+						<ammoSet>AmmoSet_Lens</ammoSet>
+					</AmmoUser>
+			</li>
+			
+			<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+				<defName>Gun_AnarGattling</defName>
+					<statBases>
+						<SightsEfficiency>1.0</SightsEfficiency>
+						<ShotSpread>0.14</ShotSpread>
+						<SwayFactor>1.53</SwayFactor>
+						<Bulk>5</Bulk>
+						<Mass>10</Mass>
+						<RangedWeapon_Cooldown>4.93</RangedWeapon_Cooldown>
+					</statBases>
+					<Properties>
+						<recoilAmount>1.53</recoilAmount>
+						<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+						<hasStandardCommand>true</hasStandardCommand>
+						<defaultProjectile>Bullet_NomadShot</defaultProjectile>
+						<warmupTime>3.11</warmupTime>
+						<range>41</range>
+						<ticksBetweenBurstShots>7</ticksBetweenBurstShots>
+						<burstShotCount>23</burstShotCount>
+						<soundCast>MediumLaser</soundCast>
+						<soundCastTail>GunTail_Heavy</soundCastTail>
+						<muzzleFlashScale>5</muzzleFlashScale>
+					</Properties>
+					<FireModes>
+						<aiAimMode>SuppressFire</aiAimMode>
+					</FireModes>
+					<AmmoUser>
+						<magazineSize>92</magazineSize>
+						<reloadTime>3</reloadTime>
+						<ammoSet>AmmoSet_Nomad</ammoSet>
+					</AmmoUser>
+			</li>
+			
+			
+			<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+				<defName>Gun_Headhunter</defName>
+					<statBases>
+						<SightsEfficiency>2.0</SightsEfficiency>
+						<ShotSpread>0.14</ShotSpread>
+						<SwayFactor>1.53</SwayFactor>
+						<Bulk>5</Bulk>
+						<Mass>10</Mass>
+						<RangedWeapon_Cooldown>2.9</RangedWeapon_Cooldown>
+					</statBases>
+					<Properties>
+						<recoilAmount>1.53</recoilAmount>
+						<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+						<hasStandardCommand>true</hasStandardCommand>
+						<defaultProjectile>Bullet_HeadhunterShot</defaultProjectile>
+						<warmupTime>2.41</warmupTime>
+						<range>61</range>
+						<ticksBetweenBurstShots>7</ticksBetweenBurstShots>
+						<burstShotCount>1</burstShotCount>
+						<soundCast>StalkerRail</soundCast>
+						<soundCastTail>GunTail_Heavy</soundCastTail>
+						<muzzleFlashScale>18</muzzleFlashScale>
+					</Properties>
+					<FireModes>
+						<aiAimMode>AimedShot</aiAimMode>
+					</FireModes>
+					<AmmoUser>
+						<magazineSize>3</magazineSize>
+						<reloadTime>3</reloadTime>
+						<ammoSet>AmmoSet_Headhunter</ammoSet>
+					</AmmoUser>
+			</li>
+			
+			
+			<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+				<defName>AMW_Gun_SNomadRifle</defName>
+					<statBases>
+						<SightsEfficiency>0.9</SightsEfficiency>
+						<ShotSpread>0.14</ShotSpread>
+						<SwayFactor>1.56</SwayFactor>
+						<Bulk>7.5</Bulk>
+						<Mass>8</Mass>
+						<RangedWeapon_Cooldown>1.97</RangedWeapon_Cooldown>
+					</statBases>
+					<Properties>
+						<recoilAmount>1.53</recoilAmount>
+						<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+						<hasStandardCommand>true</hasStandardCommand>
+						<defaultProjectile>Bullet_NomadShot</defaultProjectile>
+						<warmupTime>1.61</warmupTime>
+						<range>38</range>
+						<ticksBetweenBurstShots>4</ticksBetweenBurstShots>
+						<burstShotCount>5</burstShotCount>
+						<soundCast>NomadRifle</soundCast>
+						<soundCastTail>GunTail_Heavy</soundCastTail>
+						<muzzleFlashScale>8</muzzleFlashScale>
+					</Properties>
+					<FireModes>
+						<aiAimMode>AimedShot</aiAimMode>
+					</FireModes>
+					<AmmoUser>
+						<magazineSize>24</magazineSize>
+						<reloadTime>3</reloadTime>
+						<ammoSet>AmmoSet_Nomad</ammoSet>
+					</AmmoUser>
+			</li>
+			
+			
+			<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+				<defName>AMW_Gun_SShreder</defName>
+					<statBases>
+						<SightsEfficiency>1.0</SightsEfficiency>
+						<ShotSpread>0.14</ShotSpread>
+						<SwayFactor>1.53</SwayFactor>
+						<Bulk>5</Bulk>
+						<Mass>10</Mass>
+						<RangedWeapon_Cooldown>2.9</RangedWeapon_Cooldown>
+					</statBases>
+					<Properties>
+						<recoilAmount>1.63</recoilAmount>
+						<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+						<hasStandardCommand>true</hasStandardCommand>
+						<defaultProjectile>Bullet_ShrederShot</defaultProjectile>
+						<warmupTime>2.37</warmupTime>
+						<range>43</range>
+						<ticksBetweenBurstShots>4</ticksBetweenBurstShots>
+						<burstShotCount>55</burstShotCount>
+						<soundCast>Shreder</soundCast>
+						<soundCastTail>GunTail_Heavy</soundCastTail>
+						<muzzleFlashScale>8</muzzleFlashScale>
+					</Properties>
+					<FireModes>
+						<aiAimMode>SuppressFire</aiAimMode>
+					</FireModes>
+					<AmmoUser>
+						<magazineSize>220</magazineSize>
+						<reloadTime>7</reloadTime>
+						<ammoSet>AmmoSet_Nomad</ammoSet>
+					</AmmoUser>
+			</li>
+			
+			<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+				<defName>AMW_Gun_SStalkerRifle</defName>
+					<statBases>
+						<SightsEfficiency>1.5</SightsEfficiency>
+						<ShotSpread>0.14</ShotSpread>
+						<SwayFactor>1.53</SwayFactor>
+						<Bulk>5</Bulk>
+						<Mass>10</Mass>
+						<RangedWeapon_Cooldown>2.9</RangedWeapon_Cooldown>
+					</statBases>
+					<Properties>
+						<recoilAmount>1.53</recoilAmount>
+						<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+						<hasStandardCommand>true</hasStandardCommand>
+						<defaultProjectile>Bullet_StalkersShot</defaultProjectile>
+						<warmupTime>2.17</warmupTime>
+						<range>72</range>
+						<ticksBetweenBurstShots>4</ticksBetweenBurstShots>
+						<burstShotCount>1</burstShotCount>
+						<soundCast>StalkerRail</soundCast>
+						<soundCastTail>GunTail_Heavy</soundCastTail>
+						<muzzleFlashScale>15</muzzleFlashScale>
+					</Properties>
+					<FireModes>
+						<aiAimMode>AimedShot</aiAimMode>
+					</FireModes>
+					<AmmoUser>
+						<magazineSize>12</magazineSize>
+						<reloadTime>3</reloadTime>
+						<ammoSet>AmmoSet_Stalker</ammoSet>
+					</AmmoUser>
+			</li>
+			
+			
+			<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+				<defName>AMW_Gun_SChargeCannonAWM</defName>
+					<statBases>
+						<SightsEfficiency>1.0</SightsEfficiency>
+						<ShotSpread>0.14</ShotSpread>
+						<SwayFactor>1.01</SwayFactor>
+						<Bulk>40</Bulk>
+						<Mass>25</Mass>
+						<RangedWeapon_Cooldown>7</RangedWeapon_Cooldown>
+					</statBases>
+					<Properties>
+						<recoilAmount>1.53</recoilAmount>
+						<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+						<hasStandardCommand>true</hasStandardCommand>
+						<defaultProjectile>Bullet_ChargeCannon</defaultProjectile>
+						<warmupTime>4.5</warmupTime>
+						<range>64</range>
+						<soundCast>HeavyLaunch</soundCast>
+						<soundCastTail>GunTail_Heavy</soundCastTail>
+						<muzzleFlashScale>27</muzzleFlashScale>
+						<ignorePartialLoSBlocker>true</ignorePartialLoSBlocker>
+						<targetParams>
+							<canTargetLocations>true</canTargetLocations>
+						</targetParams>
+					</Properties>
+					<FireModes>
+						<aiAimMode>AimedShot</aiAimMode>
+					</FireModes>
+					<weaponTags>
+						<li>CE_AI_Launcher</li>
+					</weaponTags>
+			</li>
+			
+			
+			
+			
+		</operations>
+		</match>
+	</Operation>
+	
+</Patch>

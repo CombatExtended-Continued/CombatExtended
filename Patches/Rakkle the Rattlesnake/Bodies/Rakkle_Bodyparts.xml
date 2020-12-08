@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+
+  <Operation Class="PatchOperationFindMod">
+    <mods>
+      <li>Rakkle the rattle snake Race mod</li>
+    </mods>
+
+    <match Class="PatchOperationSequence">
+      <operations>
+        <!-- === Bleed Rate === -->
+		  <li Class="PatchOperationAdd">
+			<xpath>Defs/BodyPartDef[
+			defName="RS_UpperTail" or 
+			defName="RS_LowerTail" or 
+			defName="RS_Rattle" or 
+			defName="Lower_BellyScale"
+			]</xpath>
+			<value>
+			  <bleedRate>1.5</bleedRate>
+			</value>
+		  </li>
+      </operations>
+    </match>
+  </Operation>
+
+</Patch>
