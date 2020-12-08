@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+  <Operation Class="PatchOperationSequence">
+	<operations>
+	  <li Class="PatchOperationFindMod">
+			
+		<mods><li>Rakkle the rattle snake Race mod</li></mods>
+			
+		<match Class="PatchOperationSequence">
+		<operations>
+			
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ScenarioDef[defName="RS_Scenario"]/scenario/parts</xpath>
+				<value>
+					<li Class="ScenPart_StartingThing_Defined">
+						<def>StartingThing_Defined</def>
+						<thingDef>Ammo_303British_FMJ</thingDef>
+						<count>200</count>
+					</li>
+				</value>
+			</li>
+			
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ScenarioDef[defName="RS_Scenario"]/scenario/parts/li[thingDef="Apparel_FlakPants"]</xpath>
+				<value>
+					<li Class="ScenPart_StartingThing_Defined">
+						<def>StartingThing_Defined</def>
+						<thingDef>Apparel_FlakPants</thingDef>
+						<stuff>Cloth</stuff>
+						<count>1</count>
+					</li>
+				</value>
+			</li>
+			
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ScenarioDef[defName="RS_Scenario"]/scenario/parts/li[thingDef="Apparel_FlakVest"]</xpath>
+				<value>
+					<li Class="ScenPart_StartingThing_Defined">
+						<def>StartingThing_Defined</def>
+						<thingDef>Apparel_FlakVest</thingDef>
+						<stuff>Steel</stuff>
+						<count>1</count>
+					</li>
+				</value>
+			</li>
+			
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ScenarioDef[defName="RS_Scenario"]/scenario/parts/li[thingDef="Apparel_AdvancedHelmet"]</xpath>
+				<value>
+					<li Class="ScenPart_StartingThing_Defined">
+						<def>StartingThing_Defined</def>
+						<thingDef>Apparel_AdvancedHelmet</thingDef>
+						<count>1</count>
+					</li>
+				</value>
+			</li>
+			
+		</operations>
+		</match>	
+	  </li>
+	</operations>	
+  </Operation>
+</Patch>

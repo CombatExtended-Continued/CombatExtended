@@ -24,14 +24,6 @@ namespace CombatExtended.HarmonyCE
         typeof(Vector3), typeof(float), typeof(bool), typeof(Rot4), typeof(Rot4), typeof(RotDrawMode), typeof(bool), typeof(bool), typeof(bool))]
     internal static class Harmony_PawnRenderer_RenderPawnInternal
     {
-        private enum WriteState
-        {
-            None,
-            WriteHead,
-            WriteShell,
-            WritePostShell
-        }
-        
         // Sync these with vanilla PawnRenderer constants
         private const float YOffsetBehind = 0.00306122447f;
         private const float YOffsetHead = 0.0244897958f;
@@ -102,17 +94,18 @@ namespace CombatExtended.HarmonyCE
                    || layer == ApparelLayerDefOf.Belt;  //Belt is not actually a pre-shell layer, but we want to treat it as such in this patch, to avoid rendering bugs with utility items (e.g: broadshield pack)
         }
 
+        [HarmonyPriority(Priority.Last)] // Fix for VFE-V compat (:
         internal static IEnumerable<CodeInstruction> Transpiler(IEnumerable<CodeInstruction> instructions)
         {
-            var state = WriteState.None;
+            int stage = 0;
+
             foreach (var code in instructions)
             {
-                if (state == WriteState.WriteHead)
-                {
-                    if (code.opcode == OpCodes.Ldloc_S && ((LocalBuilder)code.operand).LocalIndex == 14)
-                    {
-                        state = WriteState.None;
+                { // 1. Insert calls for head renderer
 
+                    // Look for Ldloc.s 14 (only one in the method), VFE vikings modify the IL just before, so it is not easy to contextualise. If it breaks make sure to check compat with Alien Races & VFE-Vikings/Beards
+                    if (code.operand is LocalBuilder lb && lb.LocalIndex == 14 && code.opcode == OpCodes.Ldloc_S)
+                    {
                         // Insert new calls for head renderer
                         yield return new CodeInstruction(OpCodes.Ldarg_0);
                         yield return new CodeInstruction(OpCodes.Ldloc_S, 15);
@@ -126,41 +119,47 @@ namespace CombatExtended.HarmonyCE
                         yield return new CodeInstruction(OpCodes.Callvirt, AccessTools.Method(typeof(Harmony_PawnRenderer_RenderPawnInternal), nameof(DrawHeadApparel)));
 
                         yield return code;
+
+                        continue;
                     }
 
-                    continue;
                 }
 
-                if (state == WriteState.WriteShell)
-                {
-                    state = WriteState.WritePostShell;
+                { // 2. Replace Post Shell Rendering 
+                    
+                    // Replace ApparelLayerDef::lastLayer != ApparelLayerDefOf::Shell with IsPreShellLayer(ApparelLayerDef::lastLayer)
 
-                    // Write new calls for post shell rendering
-                    code.opcode = OpCodes.Brtrue;
+                    if (stage == 0 && code.opcode == OpCodes.Ldsfld && ReferenceEquals(code.operand, AccessTools.Field(typeof(ApparelLayerDefOf), nameof(ApparelLayerDefOf.Shell))))
+                    {
+                        code.opcode = OpCodes.Callvirt;
+                        code.operand = AccessTools.Method(typeof(Harmony_PawnRenderer_RenderPawnInternal), nameof(IsPreShellLayer));
+
+                        stage = 1;  
+                    } else
+
+                    // We replace ApparelDef != ApparelDef with a bool, so we need to change bne.un.s to brtrue
+                    if (stage == 1)
+                    {
+                        code.opcode = OpCodes.Brtrue;
+
+                        stage = 2;
+                    }
+
                 }
 
-                if (state == WriteState.WritePostShell && code.opcode == OpCodes.Call && ReferenceEquals(code.operand, AccessTools.Method(typeof(GenDraw), nameof(GenDraw.DrawMeshNowOrLater))))
-                {
-                    state = WriteState.None;
+                { // 3. Insert our own Post Shell Offset Code
+                    if (stage == 2 && code.opcode == OpCodes.Call && ReferenceEquals(code.operand, AccessTools.Method(typeof(GenDraw), nameof(GenDraw.DrawMeshNowOrLater))))
+                    {
+                        yield return new CodeInstruction(OpCodes.Ldloca_S, 2);
+                        yield return new CodeInstruction(OpCodes.Dup);
+                        yield return new CodeInstruction(OpCodes.Ldfld, AccessTools.Field(typeof(Vector3), nameof(Vector3.y)));
+                        yield return new CodeInstruction(OpCodes.Ldarg_0);
+                        yield return new CodeInstruction(OpCodes.Callvirt, AccessTools.Method(typeof(Harmony_PawnRenderer_RenderPawnInternal), nameof(GetPostShellOffset)));
+                        yield return new CodeInstruction(OpCodes.Add);
+                        yield return new CodeInstruction(OpCodes.Stfld, AccessTools.Field(typeof(Vector3), nameof(Vector3.y)));
 
-                    yield return new CodeInstruction(OpCodes.Ldloca_S, 2);
-                    yield return new CodeInstruction(OpCodes.Dup);
-                    yield return new CodeInstruction(OpCodes.Ldfld, AccessTools.Field(typeof(Vector3), nameof(Vector3.y)));
-                    yield return new CodeInstruction(OpCodes.Ldarg_0);
-                    yield return new CodeInstruction(OpCodes.Callvirt, AccessTools.Method(typeof(Harmony_PawnRenderer_RenderPawnInternal), nameof(GetPostShellOffset)));
-                    yield return new CodeInstruction(OpCodes.Add);
-                    yield return new CodeInstruction(OpCodes.Stfld, AccessTools.Field(typeof(Vector3), nameof(Vector3.y)));
-                }
-
-                if (code.opcode == OpCodes.Stloc_S && ((LocalBuilder)code.operand).LocalIndex == 15)
-                {
-                    state = WriteState.WriteHead;
-                }
-                else if (code.opcode == OpCodes.Ldsfld && ReferenceEquals(code.operand, AccessTools.Field(typeof(ApparelLayerDefOf), nameof(ApparelLayerDefOf.Shell))))
-                {
-                    state = WriteState.WriteShell;
-                    code.opcode = OpCodes.Callvirt;
-                    code.operand = AccessTools.Method(typeof(Harmony_PawnRenderer_RenderPawnInternal), nameof(IsPreShellLayer));
+                        stage = -1;
+                    }
                 }
 
                 yield return code;

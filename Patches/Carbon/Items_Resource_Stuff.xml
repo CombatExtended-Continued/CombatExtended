@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+			<li>Carbon</li>
+		</mods>
+		<match Class="PatchOperationSequence">
+			<operations>
+
+				<!-- === Item Bulk === -->
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="CarbonWeave" or defName="CarbonFiber" or defName="Diamond"]/statBases</xpath>
+					<value>
+						<Bulk>0.3</Bulk>
+					</value>
+				</li>
+
+				<!-- === Carbon Weave === -->
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="CarbonWeave"]/stuffProps</xpath>
+					<value>
+						<statOffsets>
+							<Mass>0.325</Mass>
+							<WornBulk>0.25</WornBulk>
+						</statOffsets>
+					</value>
+				</li>
+
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="CarbonWeave"]/stuffProps/statFactors</xpath>
+					<value>
+						<Mass>1.65</Mass>
+						<WornBulk>1.65</WornBulk>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="CarbonWeave"]/statBases/StuffPower_Armor_Sharp</xpath>
+					<value>
+						<StuffPower_Armor_Sharp>0.6</StuffPower_Armor_Sharp>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="CarbonWeave"]/statBases/StuffPower_Armor_Blunt</xpath>
+					<value>
+						<StuffPower_Armor_Blunt>0.1</StuffPower_Armor_Blunt>
+					</value>
+				</li>
+
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="CarbonWeave"]/stuffProps/categories</xpath>
+					<value>
+						<li>SoftArmor</li>
+					</value>
+				</li>
+
+				<!-- === Carbon Fiber === -->
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="CarbonFiber"]/statBases/StuffPower_Armor_Sharp</xpath>
+					<value>
+						<StuffPower_Armor_Sharp>1.2</StuffPower_Armor_Sharp>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="CarbonFiber"]/statBases/StuffPower_Armor_Blunt</xpath>
+					<value>
+						<StuffPower_Armor_Blunt>1.6</StuffPower_Armor_Blunt>
+					</value>
+				</li>
+				
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="CarbonFiber"]/stuffProps/categories</xpath>
+					<value>
+						<li>Metallic_Weapon</li>
+						<li>Steeled</li>
+					</value>
+				</li>
+
+				<!-- === Diamond === -->
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="Diamond"]/statBases/StuffPower_Armor_Sharp</xpath>
+					<value>
+						<StuffPower_Armor_Sharp>2.2</StuffPower_Armor_Sharp>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="Diamond"]/statBases/StuffPower_Armor_Blunt</xpath>
+					<value>
+						<StuffPower_Armor_Blunt>0.6</StuffPower_Armor_Blunt>
+					</value>
+				</li>
+
+			</operations>
+		</match>
+	</Operation>
+
+</Patch>

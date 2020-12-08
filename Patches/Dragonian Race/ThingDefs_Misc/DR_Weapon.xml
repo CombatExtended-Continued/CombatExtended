@@ -89,6 +89,108 @@
 		</operations>
 		</match>	
 	  </li>
+	  
+	  <li Class="PatchOperationFindMod">
+			
+		<mods><li>Dragonian GaramRace</li></mods>
+			
+		<match Class="PatchOperationSequence">
+		<operations>
+			
+			<!--Equivalent to hammer-->
+			
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="DR_BattleBlade"]/tools</xpath>
+				<value>
+					<tools>
+						<li Class="CombatExtended.ToolCE">
+							<label>handle</label>
+							<capacities>
+								<li>Poke</li>
+							</capacities>
+							<power>5</power>
+							<cooldownTime>1.97</cooldownTime>
+							<chanceFactor>0.10</chanceFactor>
+							<armorPenetrationBlunt>1.5</armorPenetrationBlunt>
+							<linkedBodyPartsGroup>Handle</linkedBodyPartsGroup>
+						</li>
+						<li Class="CombatExtended.ToolCE">
+							<label>blade</label>
+							<capacities>
+							<li>Cut</li>
+							</capacities>
+							<power>51</power>
+							<extraMeleeDamages>
+							<li>
+								<def>Flame</def>
+								<amount>8</amount>
+								<chance>0.3</chance>
+							</li>
+							</extraMeleeDamages>					
+							<cooldownTime>1.97</cooldownTime>
+							<armorPenetrationSharp>6.67</armorPenetrationSharp>
+							<armorPenetrationBlunt>6</armorPenetrationBlunt>
+							<chanceFactor>1</chanceFactor>
+						</li>	
+						<li Class="CombatExtended.ToolCE">
+							<label>point</label>
+							<labelUsedInLogging>false</labelUsedInLogging>
+							<capacities>
+								<li>Stab</li>
+							</capacities>
+							<power>24</power>
+							<extraMeleeDamages>
+							<li>
+								<def>Flame</def>
+								<amount>8</amount>
+								<chance>0.3</chance>
+							</li>
+							</extraMeleeDamages>					
+							<cooldownTime>1.57</cooldownTime>
+							<armorPenetrationSharp>11.25</armorPenetrationSharp>
+							<armorPenetrationBlunt>3.375</armorPenetrationBlunt>
+							<chanceFactor>1.2</chanceFactor>
+						</li>	
+					</tools>
+				</value>
+			</li>
+			
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName="DR_BattleBlade"]/statBases</xpath>
+				<value>
+					<Bulk>8</Bulk>
+					<MeleeCounterParryBonus>0.40</MeleeCounterParryBonus>
+				</value>
+			</li>
+			
+			<li Class="PatchOperationSequence">
+			<success>Always</success>
+			<operations>
+				<li Class="PatchOperationTest">
+				<xpath>Defs/ThingDef[defName="DR_BattleBlade"]/equippedStatOffsets</xpath>
+				<success>Invert</success>
+				</li>
+				<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName="DR_BattleBlade"]</xpath>
+				<value>
+					<equippedStatOffsets />
+				</value>
+				</li>
+			</operations>
+			</li>
+			
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName="DR_BattleBlade"]/equippedStatOffsets</xpath>
+				<value>
+					<MeleeCritChance>1.50</MeleeCritChance>
+					<MeleeParryChance>0.30</MeleeParryChance>
+					<MeleeDodgeChance>0.30</MeleeDodgeChance>	
+				</value>	
+			</li>
+			
+		</operations>
+		</match>	
+	  </li>
 	</operations>	
   </Operation>
 </Patch>

@@ -9,42 +9,33 @@
 		<match Class="PatchOperationSequence">
 		<operations>
 			
+			<li Class="PatchOperationConditional">
+				<xpath>/Defs/Garam_RaceAddon.RaceAddonThingDef[@Name="DR_RaceBase"]/comps</xpath>
+				<nomatch Class="PatchOperationAdd">
+					<xpath>/Defs/Garam_RaceAddon.RaceAddonThingDef[@Name="DR_RaceBase"]</xpath>
+					<value>
+						<comps/>
+					</value>
+				</nomatch>
+				<match Class="PatchOperationAdd">
+					<xpath>/Defs/Garam_RaceAddon.RaceAddonThingDef[@Name="DR_RaceBase"]</xpath>
+					<value>
+					</value>
+				</match>
+			</li>
+			
 			<li Class="PatchOperationAdd">
-				<xpath>/Defs/ThingDef[@Name="DR_PawnBase"]/comps</xpath>
+				<xpath>/Defs/Garam_RaceAddon.RaceAddonThingDef[@Name="DR_RaceBase"]/comps</xpath>
 				<value>
 					<li>
 					<compClass>CombatExtended.CompPawnGizmo</compClass>
 					</li>
 					<li Class="CombatExtended.CompProperties_Suppressable" />
 				</value>
-			</li>
-			
-			<li Class="PatchOperationAdd">
-				<xpath>/Defs/Garam_RaceAddon.RaceAddonThingDef[defName="Dragonian_Female"]/comps</xpath>
-				<value>
-					<li>
-					<compClass>CombatExtended.CompPawnGizmo</compClass>
-					</li>
-					<li Class="CombatExtended.CompProperties_Suppressable" />
-				</value>
-			</li>
-			
-			<li Class="PatchOperationReplace">
-                    <xpath>/Defs/ThingDef[@Name="DR_PawnBase"]/inspectorTabs/li[.="ITab_Pawn_Gear"]</xpath>
-                    <value>
-                        <li>CombatExtended.ITab_Inventory</li>
-                    </value>
-			</li>
-
-            <li Class="PatchOperationAdd">
-                    <xpath>/Defs/ThingDef[@Name="DR_PawnBase"]/comps</xpath>
-                    <value>
-                        <li Class="CombatExtended.CompProperties_Inventory" />
-                    </value>
 			</li>
 			
 			<li Class="PatchOperationAddModExtension">
-				<xpath>/Defs/Garam_RaceAddon.RaceAddonThingDef[defName="Dragonian_Female" or defName="Dragonian_Male"]</xpath>
+				<xpath>/Defs/Garam_RaceAddon.RaceAddonThingDef[@Name="DR_RaceBase"]</xpath>
 				<value>
 					<li Class="CombatExtended.RacePropertiesExtensionCE">
 						<bodyShape>Humanoid</bodyShape>
@@ -55,7 +46,7 @@
 			<!-- 5.2 Speed/0.8 Size/60 kg -->
 			
 			<li Class="PatchOperationAdd">
-			 <xpath>/Defs/Garam_RaceAddon.RaceAddonThingDef[defName="Dragonian_Female" or defName="Dragonian_Male"]/statBases</xpath>
+			 <xpath>/Defs/Garam_RaceAddon.RaceAddonThingDef[@Name="DR_RaceBase"]/statBases</xpath>
 				  <value>
 					<MeleeCritChance>1.08</MeleeCritChance>
 					<MeleeParryChance>1.06</MeleeParryChance>
@@ -66,7 +57,7 @@
 			</li>
 			
 			<li Class="PatchOperationReplace">
-			 <xpath>/Defs/Garam_RaceAddon.RaceAddonThingDef[defName="Dragonian_Female" or defName="Dragonian_Male"]/statBases/MeleeDodgeChance</xpath>
+			 <xpath>/Defs/Garam_RaceAddon.RaceAddonThingDef[@Name="DR_RaceBase"]/statBases/MeleeDodgeChance</xpath>
 				  <value>
 					<MeleeDodgeChance>1.18</MeleeDodgeChance>
 				  </value>
@@ -75,21 +66,21 @@
 			<!--4mm Wool (skin+scales), their vanilla armor is thrumbo level-->
 			
 			<li Class="PatchOperationReplace">
-			 <xpath>/Defs/Garam_RaceAddon.RaceAddonThingDef[defName="Dragonian_Female" or defName="Dragonian_Male"]/statBases/ArmorRating_Sharp</xpath>
+			 <xpath>/Defs/Garam_RaceAddon.RaceAddonThingDef[@Name="DR_RaceBase"]/statBases/ArmorRating_Sharp</xpath>
 				  <value>
 					<ArmorRating_Sharp>2.7</ArmorRating_Sharp>
 				  </value>
 			</li>
 			
 			<li Class="PatchOperationReplace">
-			 <xpath>/Defs/Garam_RaceAddon.RaceAddonThingDef[defName="Dragonian_Female" or defName="Dragonian_Male"]/statBases/ArmorRating_Blunt</xpath>
+			 <xpath>/Defs/Garam_RaceAddon.RaceAddonThingDef[@Name="DR_RaceBase"]/statBases/ArmorRating_Blunt</xpath>
 				  <value>
 					<ArmorRating_Blunt>3.4</ArmorRating_Blunt>
 				  </value>
 			</li>
 			
 			<li Class="PatchOperationReplace">
-			 <xpath>/Defs/Garam_RaceAddon.RaceAddonThingDef[defName="Dragonian_Female" or defName="Dragonian_Male"]/statBases/ArmorRating_Heat</xpath>
+			 <xpath>/Defs/Garam_RaceAddon.RaceAddonThingDef[@Name="DR_RaceBase"]/statBases/ArmorRating_Heat</xpath>
 				  <value>
 					<ArmorRating_Heat>0.6</ArmorRating_Heat>
 				  </value>
@@ -98,7 +89,7 @@
 			<!--Their vanilla melee is very strong (18 verus 8.2 for humanlike)-->
 			
 			<li Class="PatchOperationReplace">
-				<xpath>/Defs/Garam_RaceAddon.RaceAddonThingDef[defName="Dragonian_Female" or defName="Dragonian_Male"]/tools</xpath> 
+				<xpath>/Defs/Garam_RaceAddon.RaceAddonThingDef[@Name="DR_RaceBase"]/tools</xpath> 
 				<value>
 					<tools>
 						<li Class="CombatExtended.ToolCE">
@@ -139,7 +130,7 @@
 			</li>
 			
 			<li Class="PatchOperationAdd">
-			 <xpath>/Defs/Garam_RaceAddon.RaceAddonThingDef[defName="Dragonian_Female" or defName="Dragonian_Male"]/raceAddonSettings/apparelRestrictionSetting/allAllow_Exceptions</xpath>
+			 <xpath>/Defs/Garam_RaceAddon.RaceAddonThingDef[@Name="DR_RaceBase"]/raceAddonSettings/apparelRestrictionSetting/allAllow_Exceptions</xpath>
 				  <value>
 					<li>Apparel_TacVest</li>
 					<li>Apparel_Backpack</li>

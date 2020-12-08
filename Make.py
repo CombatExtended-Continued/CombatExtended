@@ -4,10 +4,14 @@ import os
 from xml.dom.minidom import parse as XMLOpen
 import subprocess
 
+import tempfile
+
+tdir = tempfile.gettempdir()
+
 cwd = os.path.dirname(os.path.abspath(__file__))
 
 usage = f"""
-python Make.py [--reference <path/to/rimworld>] [--harmony <path/to/0Harmony.dll>] [-o <output/path.dll>] [--csproj <path/to/Source/CombatExtended.csproj>] [--all-libs] [--verbose]
+python Make.py [--reference <path/to/rimworld>] [--harmony <path/to/0Harmony.dll>] [-o <output/path.dll>] [--csproj <path/to/Source/CombatExtended.csproj>] [--all-libs] [--verbose] [--download-libs]
 
 If unspecified: 
   reference defaults to $RWREFERENCE or {os.path.abspath(cwd+'/../..')}
@@ -20,6 +24,8 @@ If unspecified:
 
   all-libs adds all libraries in $reference (or $reference/RimWorld*_Data/Managed) will be added to the library list
   verbose outputs the values of $reference, $csproj, and $harmony after resolving them.
+
+  download-libs fetches reference libraries from nuget.org to $TMP/rwreference, then sets reference to $TMP/rwreference
 """
 
 if "--help" in sys.argv or "-h" in sys.argv:
@@ -27,6 +33,8 @@ if "--help" in sys.argv or "-h" in sys.argv:
     raise SystemExit(1)
 
 VERBOSE = "--verbose" in sys.argv or "-v" in sys.argv
+
+DOWNLOAD_LIBS = '--download-libs' in sys.argv
 
 def findHarmony(ref):
     if "0Harmony.dll" in os.listdir(ref):
@@ -64,17 +72,22 @@ def findArg(s):
     return -1
 
 rindex =  findArg("--reference")
-if rindex > -1:
-    RIMWORLD = sys.argv[rindex+1]
+if DOWNLOAD_LIBS:
+    os.system(f'mkdir -p {tdir}/rwreference')
+    RIMWORLD = f"{tdir}/rwreference"
+    HARMONY = f"{tdir}/rwreference/0Harmony.dll"
 else:
-    RIMWORLD = os.environ.get("RWREFERENCE", cwd+'/../..')
-RIMWORLD = findRimworld(RIMWORLD)
+    if rindex > -1:
+        RIMWORLD = sys.argv[rindex+1]
+    else:
+        RIMWORLD = os.environ.get("RWREFERENCE", cwd+'/../..')    
+    RIMWORLD = findRimworld(RIMWORLD)
         
-hindex = findArg("--harmony")
-if hindex > -1:
-    HARMONY = sys.argv[hindex + 1]
-else:
-    HARMONY = findHarmony(RIMWORLD)
+    hindex = findArg("--harmony")
+    if hindex > -1:
+        HARMONY = sys.argv[hindex + 1]
+    else:
+        HARMONY = findHarmony(RIMWORLD)
 
 
     
@@ -96,6 +109,21 @@ base_dir = CSPROJ.rsplit('/',1)[0]
 
     
 with XMLOpen(CSPROJ) as csproj:
+    quiet = "" if VERBOSE else "-q"
+    if DOWNLOAD_LIBS:
+        os.system(f"mkdir -p {tdir}/downloads/unpack")
+        for idx, package in enumerate(csproj.getElementsByTagName("PackageReference")):
+            name = package.attributes['Include'].value
+            version = package.attributes['Version'].value
+            print(f"Downloading {version} of {name} from nuget")
+            if os.system(f"wget {quiet} https://www.nuget.org/api/v2/package/{name}/{version} -O {tdir}/downloads/rwref-{idx}.zip"):
+                raise Exception(f"Can't find version {version} of {name} on nuget")
+            os.system(f"unzip {quiet} -o {tdir}/downloads/rwref-{idx}.zip -d {tdir}/downloads/unpack")
+        if VERBOSE:
+            print(os.listdir(tdir+'/downloads'))
+        os.system(f"cp -r {tdir}/downloads/unpack/ref/net472/* {tdir}/rwreference")
+        os.system(f"cp -r {tdir}/downloads/unpack/lib/net472/* {tdir}/rwreference")
+    
     libraries = [HARMONY]
     sources = []
     if "--all-libs" in sys.argv:
@@ -153,7 +181,7 @@ with XMLOpen(CSPROJ) as csproj:
                     print("Directive to exclude non-existent file:", v)
     sources = [(base_dir+'/'+i) for i in sources]
 
-args = ["mcs", "-nostdlib", "-langversion:Experimental", "-target:library", f'-out:{OUTPUT}', *sources, *[f'-r:{r}' for r in libraries]]
+args = ["mcs", "-warnaserror", "-nostdlib", "-langversion:Experimental", "-target:library", f'-out:{OUTPUT}', *sources, *[f'-r:{r}' for r in libraries]]
 
 if VERBOSE:
     print(HARMONY)

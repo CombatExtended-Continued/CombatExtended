@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+  <Operation Class="PatchOperationSequence">
+	<operations>
+	  <li Class="PatchOperationFindMod">
+			
+		<mods><li>The GiantRace</li></mods>
+			
+		<match Class="PatchOperationSequence">
+		<operations>
+			
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="HC_WoollyMammoth"]/statBases/MoveSpeed</xpath>
+				<value>
+					<MoveSpeed>5</MoveSpeed>
+					<MeleeDodgeChance>0.08</MeleeDodgeChance>
+					<MeleeCritChance>0.79</MeleeCritChance>
+					<MeleeParryChance>0.51</MeleeParryChance>
+					<ArmorRating_Blunt>0.325</ArmorRating_Blunt>
+					<ArmorRating_Sharp>0.17</ArmorRating_Sharp>
+				</value>
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="HC_WoollyMammoth"]/tools</xpath>
+				<value>
+					<tools>
+						<li Class="CombatExtended.ToolCE">
+							<label>tusk</label>
+							<capacities>
+								<li>Poke</li>
+							</capacities>
+							<power>67</power>
+							<cooldownTime>3.57</cooldownTime>
+							<linkedBodyPartsGroup>TuskAttackTool</linkedBodyPartsGroup>
+							<armorPenetrationBlunt>31.226</armorPenetrationBlunt>	
+						</li>
+						<li Class="CombatExtended.ToolCE">
+							<label>left foot</label>
+							<capacities>
+								<li>Blunt</li>
+							</capacities>
+							<power>31</power>
+							<cooldownTime>2.57</cooldownTime>
+							<linkedBodyPartsGroup>FrontLeftLeg</linkedBodyPartsGroup>
+							<armorPenetrationBlunt>12.960</armorPenetrationBlunt>	
+						</li>
+						<li Class="CombatExtended.ToolCE">
+							<label>right foot</label>
+							<capacities>
+								<li>Blunt</li>
+							</capacities>
+							<power>31</power>
+							<cooldownTime>2.57</cooldownTime>
+							<linkedBodyPartsGroup>FrontRightLeg</linkedBodyPartsGroup>
+							<armorPenetrationBlunt>12.960</armorPenetrationBlunt>	
+						</li>
+						<li Class="CombatExtended.ToolCE">
+							<label>head</label>
+							<capacities>
+								<li>Blunt</li>
+							</capacities>
+							<power>55</power>
+							<cooldownTime>3.99</cooldownTime>
+							<linkedBodyPartsGroup>HeadAttackTool</linkedBodyPartsGroup>
+							<chanceFactor>0.2</chanceFactor>
+							<armorPenetrationBlunt>25</armorPenetrationBlunt>	
+						</li>
+					</tools>
+				</value>
+			</li>
+
+			<li Class="PatchOperationAddModExtension">
+				<xpath>Defs/ThingDef[defName="HC_WoollyMammoth"]</xpath>
+				<value>
+					<li Class="CombatExtended.RacePropertiesExtensionCE">
+						<bodyShape>Quadruped</bodyShape>
+					</li>
+				</value>
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/PawnKindDef[defName="HC_WoollyMammoth"]/combatPower</xpath>
+				<value>
+					<combatPower>250</combatPower>
+				</value>
+			</li>
+			
+		</operations>
+		</match>	
+	  </li>
+	</operations>	
+  </Operation>
+</Patch>
