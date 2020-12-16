@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+
+  <Operation Class="PatchOperationFindMod">
+    <mods>
+      <li>[JDS] EFT Apparel</li>
+    </mods>
+    <match Class="PatchOperationSequence">
+      <operations>
+      
+        <!-- === Balaclava === -->
+        <li Class="PatchOperationReplace">
+					<xpath>/Defs/ThingDef[@Name="JDSFrontierFaceMaskBase"]/apparel/layers</xpath>
+					<value>
+						<layers>
+							<li>OnHead</li>
+						</layers>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/ThingDef[@Name="JDSFrontierFaceMaskBase"]/apparel/bodyPartGroups</xpath>
+					<value>
+						<bodyPartGroups>
+						  <li>UpperHead</li>
+              <li>Teeth</li>
+						</bodyPartGroups>
+					</value>
+				</li>
+
+        <li Class="PatchOperationRemove">
+          <xpath>
+            /Defs/ThingDef[defName="JDSTarkov_Headgear_Balaclava"]/statBases/ArmorRating_Sharp |
+            /Defs/ThingDef[defName="JDSTarkov_Headgear_Balaclava"]/statBases/ArmorRating_Blunt |
+            /Defs/ThingDef[defName="JDSTarkov_Headgear_Balaclava"]/statBases/Insulation_Cold |
+            /Defs/ThingDef[defName="JDSTarkov_Headgear_Balaclava"]/statBases/Insulation_Heat
+          </xpath>
+        </li>
+
+        <li Class="PatchOperationAdd">
+          <xpath>/Defs/ThingDef[defName="JDSTarkov_Headgear_Balaclava"]/statBases</xpath>
+          <value>
+            <Bulk>1</Bulk>
+            <WornBulk>1</WornBulk>
+            <StuffEffectMultiplierArmor>2</StuffEffectMultiplierArmor>
+            <StuffEffectMultiplierInsulation_Cold>0.6</StuffEffectMultiplierInsulation_Cold>
+            <StuffEffectMultiplierInsulation_Heat>0.12</StuffEffectMultiplierInsulation_Heat>
+          </value>
+        </li>
+
+      </operations>
+    </match>
+  </Operation>
+
+</Patch>

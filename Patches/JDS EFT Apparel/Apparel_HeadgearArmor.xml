@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+
+  <Operation Class="PatchOperationFindMod">
+    <mods>
+      <li>[JDS] EFT Apparel</li>
+    </mods>
+    <match Class="PatchOperationSequence">
+      <operations>
+
+        <!-- === Helmets - Shielded Base === -->
+        <li Class="PatchOperationAttributeSet">
+          <xpath>
+            /Defs/ThingDef[
+              defName = "JDSTarkov_Headgear_Kolpak-1S_Riot_Helmet_Shield" or
+              defName = "JDSTarkov_Headgear_SHPM_Firefighter_Helmet_Shield" or
+              defName = "JDSTarkov_Headgear_PSH-97_Djeta_Helmet_Shield_UI" or
+              defName = "JDSTarkov_Headgear_Kiver_M_Helmet_Shield" or
+              defName = "JDSTarkov_Headgear_ZSh-1-2M_Helmet_Shield" or
+              defName = "JDSTarkov_Headgear_BNTI_LSHZ-2DTM_Helmet_Shield" or
+              defName = "JDSTarkov_Headgear_BNTI_LSHZ-2DTM_Helmet_Full" or
+              defName = "JDSTarkov_Headgear_Maska_1Sch_Helmet_Shield" or
+              defName = "JDSTarkov_Headgear_Altyn_Helmet_Shield" or
+              defName = "JDSTarkov_Headgear_Vulkan-5_Heavy_Helmet_Shield"
+            ]
+          </xpath>
+          <attribute>ParentName</attribute>
+          <value>JDSFrontierHeadgearShieldBase</value>
+        </li>
+
+        <!-- === Helmets - Shielded (Eyes) Base === -->
+        <li Class="PatchOperationAttributeSet">
+          <xpath>/Defs/ThingDef[defName="JDSTarkov_Headgear_Ops-Core_Fast_MT_Helmet_Shield"]</xpath>
+          <attribute>ParentName</attribute>
+          <value>JDSFrontierHeadgearShieldUpBase</value>
+        </li>
+
+        <!-- === Helmets - Soft === -->
+        <!-- === Hlemets - Light === -->
+        <!-- === Helmets - Medium === -->
+        <!-- === Helmets - Heavy === -->
+
+      </operations>
+    </match>
+  </Operation>
+
+</Patch>
