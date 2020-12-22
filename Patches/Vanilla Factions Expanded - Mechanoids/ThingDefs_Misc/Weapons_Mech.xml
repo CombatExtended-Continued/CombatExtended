@@ -41,12 +41,64 @@
       </AmmoUser>
       <FireModes>
         <aiAimMode>AimedShot</aiAimMode>
-        <noSnapshot>true</noSnapshot>
-        <noSingleShot>true</noSingleShot>
+		<aimedBurstShotCount>5</aimedBurstShotCount>
       </FireModes>
     </li>
+	
+	<li Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="VFE_Gun_CombatMechanoidGun"]/tools</xpath>
+		<value>
+		  <tools>
+			<li Class="CombatExtended.ToolCE">
+			  <label>barrel</label>
+			  <capacities>
+				<li>Blunt</li>
+			  </capacities>
+			  <power>5</power>
+			  <cooldownTime>2.02</cooldownTime>
+			  <armorPenetrationBlunt>1.630</armorPenetrationBlunt>
+			  <linkedBodyPartsGroup>Barrel</linkedBodyPartsGroup>
+			</li>
+		  </tools>
+		</value>
+	</li>
 
     <!-- ========== Light Charge Blaster ========== -->
+	
+	<li Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[@Name="VFE_Gun_ChargeBlasterLightBase"]/statBases</xpath>
+		<value>
+		  <statBases>
+			<Mass>3.0</Mass>
+			<MarketValue>1000</MarketValue>
+			<RangedWeapon_Cooldown>0.36</RangedWeapon_Cooldown>
+			<SightsEfficiency>1.10</SightsEfficiency>
+			<ShotSpread>0.08</ShotSpread>
+			<SwayFactor>1.20</SwayFactor>
+			<Bulk>7.00</Bulk>
+			<WorkToMake>10000</WorkToMake>
+		  </statBases>
+		</value>
+	</li>
+	
+    <li Class="PatchOperationReplace">
+      <xpath>Defs/ThingDef[@Name="VFE_Gun_ChargeBlasterLightBase"]/tools</xpath>
+      <value>
+        <tools>
+          <li Class="CombatExtended.ToolCE">
+            <label>barrel</label>
+            <capacities>
+              <li>Blunt</li>
+            </capacities>
+            <power>11</power>
+            <cooldownTime>2.74</cooldownTime>
+            <armorPenetrationBlunt>3.75</armorPenetrationBlunt>
+            <linkedBodyPartsGroup>Barrel</linkedBodyPartsGroup>
+          </li>
+        </tools>
+      </value>
+    </li>
+	
     <li Class="CombatExtended.PatchOperationMakeGunCECompatible">
       <defName>VFE_Gun_ChargeBlasterLight</defName>
       <statBases>
@@ -64,11 +116,11 @@
         <hasStandardCommand>true</hasStandardCommand>
         <defaultProjectile>Bullet_6x24mmCharged</defaultProjectile>
         <warmupTime>1.0</warmupTime>
-        <range>55</range>
+        <range>31</range>
         <ticksBetweenBurstShots>5</ticksBetweenBurstShots>
         <burstShotCount>6</burstShotCount>
-        <soundCast>Shot_ChargeRifle</soundCast>
-        <soundCastTail>GunTail_Medium</soundCastTail>
+        <soundCast>Shot_ChargeBlaster</soundCast>
+        <soundCastTail>GunTail_Heavy</soundCastTail>
         <muzzleFlashScale>9</muzzleFlashScale>
       </Properties>
       <AmmoUser>
@@ -79,9 +131,46 @@
       <FireModes>
         <aimedBurstShotCount>3</aimedBurstShotCount>
         <aiUseBurstMode>TRUE</aiUseBurstMode>
-        <aiAimMode>AimedShot</aiAimMode>
       </FireModes>
     </li>
+	
+	<!--Increased burst count and 20% reduced recoil-->
+	
+	<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+      <defName>VFE_Gun_AdvancedChargeBlasterLight</defName>
+      <statBases>
+        <Mass>3.0</Mass>
+        <RangedWeapon_Cooldown>0.36</RangedWeapon_Cooldown>
+        <SightsEfficiency>1.10</SightsEfficiency>
+        <ShotSpread>0.08</ShotSpread>
+        <SwayFactor>1.20</SwayFactor>
+        <Bulk>7.00</Bulk>
+        <WorkToMake>48000</WorkToMake>
+      </statBases>
+      <Properties>
+        <recoilAmount>1.21</recoilAmount>
+        <verbClass>CombatExtended.Verb_ShootCE</verbClass>
+        <hasStandardCommand>true</hasStandardCommand>
+        <defaultProjectile>Bullet_6x24mmCharged</defaultProjectile>
+        <warmupTime>1.0</warmupTime>
+        <range>35</range>
+        <ticksBetweenBurstShots>5</ticksBetweenBurstShots>
+        <burstShotCount>10</burstShotCount>
+        <soundCast>Shot_ChargeBlaster</soundCast>
+        <soundCastTail>GunTail_Heavy</soundCastTail>
+        <muzzleFlashScale>9</muzzleFlashScale>
+      </Properties>
+      <AmmoUser>
+        <magazineSize>50</magazineSize>
+        <reloadTime>4</reloadTime>
+        <ammoSet>AmmoSet_6x24mmCharged</ammoSet>
+      </AmmoUser>
+      <FireModes>
+        <aimedBurstShotCount>5</aimedBurstShotCount>
+        <aiUseBurstMode>TRUE</aiUseBurstMode>
+      </FireModes>
+    </li>
+	
 
     <!-- ========== Remove VFE Advanced Needle Gun and patch in replacement. ========== -->
 
@@ -95,9 +184,9 @@
         <ThingDef ParentName="BaseGunWithQuality">
           <defName>VFE_AdvancedExplosiveBoltProjector</defName>
           <label>explosive bolt projector</label>
-          <description>A low-velocity, high-trajectory fire support system deployed by mechanoid Pikeman. While inaccurate and slow-firing, it remains a potent weapon against static targets.</description>
+          <description>A low-velocity, high-trajectory fire support system deployed by mechanoid Pikeman. The advanced variant features a triple shot system, permitting saturation bombardment.</description>
           <graphicData>
-            <texPath>Things/Item/Equipment/WeaponRanged/NeedleGun</texPath>
+            <texPath>Things/Item/Equipment/WeaponRanged/AdvancedNeedlegun</texPath>
             <graphicClass>Graphic_Single</graphicClass>
           </graphicData>
           <soundInteract>Interact_Rifle</soundInteract>
@@ -229,7 +318,7 @@
         </tools>
       </value>
     </li>
-
+	
 	<!-- ========== Advanced Heavy Charge Blaster ========== -->
 	
 	<!--Increased burst count and 20% reduced recoil-->
