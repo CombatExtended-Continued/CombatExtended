@@ -309,6 +309,58 @@
     </FireModes>
   </li>
 
+  <!-- ========== Auto Mortar ========== -->
+
+	<li Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName = "VFE_AutoMortar"]</xpath>
+		<value>
+      <statBases>
+        <SightsEfficiency>0.5</SightsEfficiency>
+      </statBases>		  
+		</value>
+	</li>
+
+	<li Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName = "VFE_AutoMortar"]</xpath>
+		<value>
+			<comps>
+			  <li Class="CombatExtended.CompProperties_Charges">
+			    <chargeSpeeds>
+			      <li>30</li>
+			      <li>50</li>
+			      <li>70</li>
+			      <li>90</li>
+			    </chargeSpeeds>
+			  </li>
+			</comps>			  
+		</value>
+	</li>
+
+	<li Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName = "VFE_AutoMortar"]/verbs</xpath>
+		<value>
+			<verbs>
+			  <li Class="CombatExtended.VerbPropertiesCE">
+			    <verbClass>CombatExtended.Verb_ShootMortarCE</verbClass>
+			    <forceNormalTimeSpeed>false</forceNormalTimeSpeed>
+			    <hasStandardCommand>true</hasStandardCommand>
+			    <defaultProjectile>Bullet_ChargeMortarShell</defaultProjectile>
+			    <warmupTime>11</warmupTime>
+			    <minRange>32</minRange>
+			    <range>700</range>
+			    <burstShotCount>1</burstShotCount>
+			    <soundCast>Mortar_LaunchA</soundCast>
+			    <muzzleFlashScale>16</muzzleFlashScale>
+			    <circularError>3</circularError>
+			    <indirectFirePenalty>0.4</indirectFirePenalty>
+			    <targetParams>
+			      <canTargetLocations>true</canTargetLocations>
+			    </targetParams>
+			  </li>
+			</verbs>
+		</value>
+	</li>
+
       </operations>
     </match>
   </Operation>
