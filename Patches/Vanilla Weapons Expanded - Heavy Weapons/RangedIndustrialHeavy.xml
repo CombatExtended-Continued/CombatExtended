@@ -1,0 +1,333 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+
+  <Operation Class="PatchOperationFindMod">
+    <mods>
+      <li>Vanilla Weapons Expanded - Heavy Weapons</li>
+    </mods>
+    <match Class="PatchOperationSequence">
+      <operations>
+
+        <!-- === verbClass === -->
+        <li Class="PatchOperationReplace">
+          <xpath>
+            /Defs/ThingDef[
+              defName = "VWE_Gun_Autocannon" or
+              defName = "VWE_Gun_HandheldMortar" or
+              defName = "VWE_Gun_HeavyFlamer" or
+              defName = "VWE_Gun_SwarmMissileLauncher" or
+              defName = "VWE_Gun_UraniumSlugRifle"
+            ]/verbs/li/verbClass
+          </xpath>
+          <value>
+            <verbClass>Verb_Shoot</verbClass>
+          </value>
+        </li>
+
+        <!-- === CompOversizedWeapon === -->
+        <li Class="PatchOperationRemove">
+          <xpath>
+            /Defs/ThingDef[
+              defName = "VWE_Gun_Autocannon" or
+              defName = "VWE_Gun_HandheldMortar" or
+              defName = "VWE_Gun_HeavyFlamer" or
+              defName = "VWE_Gun_SwarmMissileLauncher" or
+              defName = "VWE_Gun_UraniumSlugRifle"
+            ]/comps/li[compClass="CompOversizedWeapon.CompOversizedWeapon"]
+          </xpath>
+        </li>
+
+        <!-- === Tools === -->
+        <li Class="PatchOperationReplace">
+          <xpath>
+            /Defs/ThingDef[
+              defName = "VWE_Gun_Autocannon" or
+              defName = "VWE_Gun_HandheldMortar" or
+              defName = "VWE_Gun_HeavyFlamer" or
+              defName = "VWE_Gun_SwarmMissileLauncher" or
+              defName = "VWE_Gun_UraniumSlugRifle"
+            ]/tools
+          </xpath>
+          <value>
+            <tools>
+              <li Class="CombatExtended.ToolCE">
+                <label>stock</label>
+                <capacities>
+                  <li>Blunt</li>
+                </capacities>
+                <power>8</power>
+                <cooldownTime>1.55</cooldownTime>
+                <chanceFactor>1.5</chanceFactor>
+                <armorPenetrationBlunt>2.755</armorPenetrationBlunt>
+                <linkedBodyPartsGroup>Stock</linkedBodyPartsGroup>
+              </li>
+              <li Class="CombatExtended.ToolCE">
+                <label>barrel</label>
+                <capacities>
+                  <li>Blunt</li>
+                </capacities>
+                <power>10</power>
+                <cooldownTime>2.44</cooldownTime>
+                <armorPenetrationBlunt>3.5</armorPenetrationBlunt>
+                <linkedBodyPartsGroup>Barrel</linkedBodyPartsGroup>
+              </li>
+            </tools>
+          </value>
+        </li>
+
+        <!-- === Autocannon === -->
+        <li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+          <defName>VWE_Gun_Autocannon</defName>
+          <statBases>
+            <Mass>25</Mass>
+            <Bulk>22</Bulk>
+            <SwayFactor>1.54</SwayFactor>
+            <ShotSpread>0.23</ShotSpread>
+            <SightsEfficiency>0.5</SightsEfficiency>
+            <RangedWeapon_Cooldown>0.56</RangedWeapon_Cooldown>
+          </statBases>
+          <Properties>
+            <recoilAmount>2.68</recoilAmount>
+            <verbClass>CombatExtended.Verb_ShootCE</verbClass>
+            <hasStandardCommand>True</hasStandardCommand>
+            <defaultProjectile>Bullet_20x102mmNATO_FMJ</defaultProjectile>
+            <burstShotCount>10</burstShotCount>
+            <ticksBetweenBurstShots>11</ticksBetweenBurstShots>
+            <warmupTime>3</warmupTime>
+            <range>50</range>
+            <minRange>3</minRange>
+            <soundCast>Shot_Autocannon</soundCast>
+            <soundCastTail>GunTail_Heavy</soundCastTail>
+            <muzzleFlashScale>12</muzzleFlashScale>
+          </Properties>
+          <AmmoUser>
+            <magazineSize>50</magazineSize>
+            <reloadTime>6</reloadTime>
+            <ammoSet>AmmoSet_20x102mmNATO</ammoSet>
+          </AmmoUser>
+          <FireModes>
+            <aiAimMode>AimedShot</aiAimMode>
+            <aiUseBurstMode>True</aiUseBurstMode>
+            <aimedBurstShotCount>5</aimedBurstShotCount>
+          </FireModes>
+          <researchPrerequisite>CE_TurretHeavyWeapons</researchPrerequisite>
+          <AllowWithRunAndGun>false</AllowWithRunAndGun>
+        </li>
+
+        <li Class="PatchOperationAddModExtension">
+          <xpath>/Defs/ThingDef[defName="VWE_Gun_Autocannon"]</xpath>
+          <value>
+            <li Class="CombatExtended.GunDrawExtension">
+              <DrawSize>1.3,1.3</DrawSize>
+              <DrawOffset>0.10,-0.22</DrawOffset>
+            </li>
+          </value>
+        </li>
+
+        <!-- === Handheld Mortar === -->
+        <li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+          <defName>VWE_Gun_HandheldMortar</defName>
+          <statBases>
+            <Mass>30</Mass>
+            <Bulk>30</Bulk>
+            <SwayFactor>1.24</SwayFactor>
+            <ShotSpread>0.10</ShotSpread>
+            <SightsEfficiency>0.5</SightsEfficiency>
+            <RangedWeapon_Cooldown>1</RangedWeapon_Cooldown>
+          </statBases>
+          <Properties>
+            <verbClass>CombatExtended.Verb_ShootMortarCE</verbClass>
+            <hasStandardCommand>True</hasStandardCommand>
+            <defaultProjectile>Bullet_60mmMortarShell_HE</defaultProjectile>
+            <warmupTime>3.5</warmupTime>
+            <range>66</range>
+            <minRange>16</minRange>
+            <soundCast>Mortar_LaunchA</soundCast>
+            <soundCastTail>GunTail_Heavy</soundCastTail>
+            <muzzleFlashScale>16</muzzleFlashScale>
+            <circularError>1</circularError>
+            <indirectFirePenalty>0.2</indirectFirePenalty>
+            <targetParams>
+              <canTargetLocations>true</canTargetLocations>
+            </targetParams>
+          </Properties>
+          <AmmoUser>
+            <magazineSize>1</magazineSize>
+            <reloadTime>6.8</reloadTime>
+            <ammoSet>AmmoSet_60mmMortarShell</ammoSet>
+          </AmmoUser>
+          <FireModes>
+            <aiAimMode>AimedShot</aiAimMode>
+          </FireModes>
+          <researchPrerequisite>CE_TurretHeavyWeapons</researchPrerequisite>
+          <AllowWithRunAndGun>false</AllowWithRunAndGun>
+        </li>
+
+        <li Class="PatchOperationAdd">
+          <xpath>/Defs/ThingDef[defName="VWE_Gun_HandheldMortar"]/comps</xpath>
+          <value>
+            <li Class="CombatExtended.CompProperties_Charges">
+              <chargeSpeeds>
+                <li>30</li>
+                <li>50</li>
+                <li>70</li>
+                <li>90</li>
+              </chargeSpeeds>
+            </li>
+          </value>
+        </li>
+
+        <li Class="PatchOperationAddModExtension">
+          <xpath>/Defs/ThingDef[defName="VWE_Gun_HandheldMortar"]</xpath>
+          <value>
+            <li Class="CombatExtended.GunDrawExtension">
+              <DrawSize>1.3,1.3</DrawSize>
+              <DrawOffset>0.10,-0.20</DrawOffset>
+            </li>
+          </value>
+        </li>
+
+        <!-- === Heavy Flamer === -->
+        <li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+          <defName>VWE_Gun_HeavyFlamer</defName>
+          <statBases>
+            <Mass>18</Mass>
+            <Bulk>22</Bulk>
+            <SwayFactor>1.54</SwayFactor>
+            <ShotSpread>0.10</ShotSpread>
+            <SightsEfficiency>0.5</SightsEfficiency>
+            <RangedWeapon_Cooldown>0.56</RangedWeapon_Cooldown>
+          </statBases>
+          <Properties>
+            <verbClass>CombatExtended.Verb_ShootCE</verbClass>
+            <hasStandardCommand>True</hasStandardCommand>
+            <defaultProjectile>Bullet_20x102mmNATO_FMJ</defaultProjectile>
+            <burstShotCount>20</burstShotCount>
+            <ticksBetweenBurstShots>13</ticksBetweenBurstShots>
+            <warmupTime>1.8</warmupTime>
+            <range>26</range>
+            <minRange>3</minRange>
+            <soundCast>InfernoCannon_Fire</soundCast>
+            <soundCastTail>GunTail_Light</soundCastTail>
+            <muzzleFlashScale>12</muzzleFlashScale>
+            <targetParams>
+              <canTargetLocations>true</canTargetLocations>
+            </targetParams>
+          </Properties>
+          <AmmoUser>
+            <magazineSize>75</magazineSize>
+            <reloadTime>5.6</reloadTime>
+            <ammoSet>AmmoSet_Flamethrower</ammoSet>
+          </AmmoUser>
+          <FireModes>
+            <aiAimMode>SuppressFire</aiAimMode>
+          </FireModes>
+          <researchPrerequisite>CE_TurretHeavyWeapons</researchPrerequisite>
+          <AllowWithRunAndGun>false</AllowWithRunAndGun>
+        </li>
+
+        <li Class="PatchOperationAddModExtension">
+          <xpath>/Defs/ThingDef[defName="VWE_Gun_HeavyFlamer"]</xpath>
+          <value>
+            <li Class="CombatExtended.GunDrawExtension">
+              <DrawSize>1.3,1.3</DrawSize>
+              <DrawOffset>0.10,-0.20</DrawOffset>
+            </li>
+          </value>
+        </li>
+
+        <!-- === Missile Launcher === -->
+        <li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+          <defName>VWE_Gun_SwarmMissileLauncher</defName>
+          <statBases>
+            <Mass>25</Mass>
+            <Bulk>30</Bulk>
+            <SwayFactor>1.54</SwayFactor>
+            <ShotSpread>0.10</ShotSpread>
+            <SightsEfficiency>0.5</SightsEfficiency>
+            <RangedWeapon_Cooldown>0.56</RangedWeapon_Cooldown>
+          </statBases>
+          <Properties>
+            <recoilAmount>3.54</recoilAmount>
+            <verbClass>CombatExtended.Verb_ShootCEOneUse</verbClass>
+            <hasStandardCommand>True</hasStandardCommand>
+            <defaultProjectile>Bullet_84mmAT4_HEAT</defaultProjectile>
+            <burstShotCount>18</burstShotCount>
+            <ticksBetweenBurstShots>15</ticksBetweenBurstShots>
+            <warmupTime>2</warmupTime>
+            <range>52</range>
+            <soundCast>InfernoCannon_Fire</soundCast>
+            <soundCastTail>GunTail_Heavy</soundCastTail>
+            <onlyManualCast>true</onlyManualCast>
+				    <stopBurstWithoutLos>false</stopBurstWithoutLos>
+            <muzzleFlashScale>12</muzzleFlashScale>
+            <targetParams>
+              <canTargetLocations>true</canTargetLocations>
+            </targetParams>
+          </Properties>
+          <FireModes>
+            <aiAimMode>AimedShot</aiAimMode>
+          </FireModes>
+          <researchPrerequisite>CE_TurretHeavyWeapons</researchPrerequisite>
+          <AllowWithRunAndGun>false</AllowWithRunAndGun>
+        </li>
+
+        <li Class="PatchOperationAddModExtension">
+          <xpath>/Defs/ThingDef[defName="VWE_Gun_SwarmMissileLauncher"]</xpath>
+          <value>
+            <li Class="CombatExtended.GunDrawExtension">
+              <DrawSize>1.3,1.3</DrawSize>
+              <DrawOffset>0.10,-0.20</DrawOffset>
+            </li>
+          </value>
+        </li>
+
+        <!-- === Slug Rifle === -->
+        <li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+          <defName>VWE_Gun_UraniumSlugRifle</defName>
+          <statBases>
+            <Mass>25</Mass>
+            <Bulk>22</Bulk>
+            <SwayFactor>1.54</SwayFactor>
+            <ShotSpread>0.10</ShotSpread>
+            <SightsEfficiency>0.7</SightsEfficiency>
+            <RangedWeapon_Cooldown>0.56</RangedWeapon_Cooldown>
+          </statBases>
+          <Properties>
+            <verbClass>CombatExtended.Verb_ShootCE</verbClass>
+            <hasStandardCommand>True</hasStandardCommand>
+            <defaultProjectile>Bullet_30x170mm_AP</defaultProjectile>
+            <warmupTime>4.5</warmupTime>
+            <range>62</range>
+            <minRange>9</minRange>
+            <soundCast>Shot_TurretSniper</soundCast>
+            <soundCastTail>GunTail_Heavy</soundCastTail>
+            <muzzleFlashScale>10</muzzleFlashScale>
+          </Properties>
+          <AmmoUser>
+            <magazineSize>10</magazineSize>
+            <reloadTime>5.6</reloadTime>
+            <ammoSet>AmmoSet_30x170mm</ammoSet>
+          </AmmoUser>
+          <FireModes>
+            <aiAimMode>AimedShot</aiAimMode>
+          </FireModes>
+          <researchPrerequisite>CE_TurretHeavyWeapons</researchPrerequisite>
+          <AllowWithRunAndGun>false</AllowWithRunAndGun>
+        </li>
+
+        <li Class="PatchOperationAddModExtension">
+          <xpath>/Defs/ThingDef[defName="VWE_Gun_UraniumSlugRifle"]</xpath>
+          <value>
+            <li Class="CombatExtended.GunDrawExtension">
+              <DrawSize>1.4,1.4</DrawSize>
+              <DrawOffset>0.15,-0.22</DrawOffset>
+            </li>
+          </value>
+        </li>
+
+      </operations>
+    </match>
+  </Operation>
+
+</Patch>
