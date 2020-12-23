@@ -1,0 +1,303 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+  <Operation Class="PatchOperationSequence">
+	<operations>
+	  <li Class="PatchOperationFindMod">
+			
+		<mods><li>Anty the war ant race</li></mods>
+			
+		<match Class="PatchOperationSequence">
+		<operations>
+			
+			<!-- ==================== Boltcaster ========================== -->
+			
+			<li Class="PatchOperationAdd">
+				<xpath>Defs</xpath>
+				<value>
+					<!-- ==================== AmmoSets ========================== -->
+
+					<CombatExtended.AmmoSetDef>
+						<defName>AmmoSet_AntyAcidRifle</defName>
+						<label>Acid Shot</label>
+						<ammoTypes>
+							<Ammo_AntyAcidRifle>Bullet_AntyAcidRifle</Ammo_AntyAcidRifle>
+						</ammoTypes>
+					</CombatExtended.AmmoSetDef>
+					
+					<CombatExtended.AmmoSetDef>
+						<defName>AmmoSet_AntyAcidLauncher</defName>
+						<label>Acid Launcher</label>
+						<ammoTypes>
+							<Ammo_AntyAcidRifle>Bullet_AntyAcidLauncher</Ammo_AntyAcidRifle>
+						</ammoTypes>
+					</CombatExtended.AmmoSetDef>
+					
+					<CombatExtended.AmmoSetDef>
+						<defName>AmmoSet_AntyGlueLauncher</defName>
+						<label>Glue Launcher</label>
+						<ammoTypes>
+							<Ammo_AntyGlueLauncher>Bullet_AntyGlueLauncher</Ammo_AntyGlueLauncher>
+						</ammoTypes>
+					</CombatExtended.AmmoSetDef>
+					
+					<CombatExtended.AmmoSetDef>
+						<defName>AmmoSet_AntyAcidCrossbow</defName>
+						<label>Acid Bolt</label>
+						<ammoTypes>
+							<Ammo_CrossbowBolt_AntyAcid>Projectile_CrossbowBolt_AntyAcid</Ammo_CrossbowBolt_AntyAcid>
+						</ammoTypes>
+					</CombatExtended.AmmoSetDef>
+					
+					<CombatExtended.AmmoCategoryDef>
+						<defName>AntyAcid</defName>
+						<label>Acid</label>
+						<description>Anty Bioacid.</description>
+					</CombatExtended.AmmoCategoryDef>
+					
+					<CombatExtended.AmmoCategoryDef>
+						<defName>AntyGlue</defName>
+						<label>Glue</label>
+						<description>Anty Glue.</description>
+					</CombatExtended.AmmoCategoryDef>
+					
+					<CombatExtended.AmmoCategoryDef>
+						<defName>AntyBolt</defName>
+						<label>Acid</label>
+						<description>Acid Bolt.</description>
+					</CombatExtended.AmmoCategoryDef>
+
+					<!-- ==================== Ammo ========================== -->
+
+					<ThingDef Class="CombatExtended.AmmoDef" ParentName="SpacerSmallAmmoBase">
+						<defName>Ammo_AntyAcidRifle</defName>
+						<label>Anty Acid Cartridge</label>
+						<description>Specialised munitions filled with acid produced by anty, used in a number of their weapons.</description>
+						<statBases>
+							<Mass>0.02</Mass>
+							<Bulk>0.02</Bulk>
+							<MarketValue>0.1</MarketValue>
+						</statBases>
+						<tradeTags>
+							<li>CE_AutoEnableTrade</li>
+						</tradeTags>
+						<thingCategories>
+							<li>AmmoAdvanced</li>
+						</thingCategories>
+						<stackLimit>1000</stackLimit>
+						<graphicData>
+							<texPath>Things/Ammo/Railgun/HighCaliber</texPath>
+							<graphicClass>CombatExtended.Graphic_StackCountRanged</graphicClass>
+						</graphicData>
+						<ammoClass>AntyAcid</ammoClass>
+					</ThingDef>
+					
+					<ThingDef Class="CombatExtended.AmmoDef" ParentName="SpacerSmallAmmoBase">
+						<defName>Ammo_AntyGlueLauncher</defName>
+						<label>anty glue canister</label>
+						<description>Container holding glue for use in anty support weapons.</description>
+						<statBases>
+						  <Mass>0.08</Mass>
+						  <Bulk>0.14</Bulk>
+						  <MarketValue>3.5</MarketValue>
+						</statBases>
+						<graphicData>
+						  <texPath>Things/Ammo/FuelCell/Foam</texPath>
+						  <graphicClass>Graphic_StackCount</graphicClass>
+						</graphicData>
+						<tradeTags>
+							<li>CE_AutoEnableTrade</li>
+						</tradeTags>
+						<thingCategories>
+							<li>AmmoAdvanced</li>
+						</thingCategories>
+						<stackLimit>200</stackLimit>
+						<ammoClass>AntyGlue</ammoClass>
+					</ThingDef>
+					
+					<ThingDef Class="CombatExtended.AmmoDef" ParentName="AmmoCrossbowBoltBase">
+						<defName>Ammo_CrossbowBolt_AntyAcid</defName>
+						<label>crossbow bolt (Acid)</label>
+						<graphicData>
+						  <texPath>Things/Ammo/Neolithic/Bolt/Steel</texPath>
+						  <graphicClass>Graphic_StackCount</graphicClass>
+						</graphicData>
+						<statBases>
+						  <MarketValue>0.66</MarketValue>
+						</statBases>
+						<ammoClass>AntyBolt</ammoClass>
+					</ThingDef>
+
+					<!-- ================== Projectiles ================== -->
+
+					<ThingDef Class="CombatExtended.AmmoDef" ParentName="Base762x39mmSovietBullet">
+						<defName>Bullet_AntyAcidRifle</defName>
+						<label>Anty Acid Shot</label>
+						<graphicData>
+							<texPath>Things/Projectile/Bullet_Small</texPath>
+							<graphicClass>Graphic_Single</graphicClass>
+						</graphicData>
+						<projectile Class="CombatExtended.ProjectilePropertiesCE">
+							<damageDef>AcidBullet</damageDef>
+							<damageAmountBase>9</damageAmountBase>
+							<armorPenetrationSharp>0</armorPenetrationSharp>
+							<armorPenetrationBlunt>25</armorPenetrationBlunt>
+						</projectile>
+					</ThingDef>
+					
+					<ThingDef ParentName="Base25x40mmGrenadeBullet">
+						<defName>Bullet_AntyAcidLauncher</defName>
+						<label>Anty Acid grenade</label>
+						<projectile Class="CombatExtended.ProjectilePropertiesCE">
+						  <explosionRadius>2.1</explosionRadius>
+						  <damageDef>AcidBomb</damageDef>
+						  <preExplosionSpawnThingDef>Filth_AntyAcid</preExplosionSpawnThingDef>
+						  <preExplosionSpawnChance>0.2</preExplosionSpawnChance>
+						</projectile>
+					</ThingDef>
+					
+					<ThingDef ParentName="Base40x46mmGrenadeBullet">
+						<defName>Bullet_AntyGlueLauncher</defName>
+						<label>glue grenade</label>
+						<projectile Class="CombatExtended.ProjectilePropertiesCE">
+							<explosionRadius>4.1</explosionRadius>
+							<damageDef>glueBomb</damageDef>
+						</projectile>
+					</ThingDef>
+					
+					<ThingDef Class="CombatExtended.AmmoDef" ParentName="BaseCrossbowBoltProjectile">
+						<defName>Projectile_CrossbowBolt_AntyAcid</defName>
+						<label>crossbow bolt (acid)</label>
+						<graphicData>
+							<texPath>Things/Projectile/Arrows/Arrow_Steel</texPath>
+							<graphicClass>Graphic_Single</graphicClass>
+						</graphicData>
+						<projectile Class="CombatExtended.ProjectilePropertiesCE">
+							<damageDef>AcidArrow</damageDef>
+							<damageAmountBase>8</damageAmountBase>
+							<armorPenetrationBlunt>6.5</armorPenetrationBlunt>
+							<armorPenetrationSharp>2.5</armorPenetrationSharp>
+							<speed>17</speed>			
+						</projectile>
+					</ThingDef>
+
+					<!-- ==================== Recipes ========================== -->
+
+					<RecipeDef ParentName="AmmoRecipeBase">
+						<defName>MakeAmmo_AntyAcidRifle</defName>
+						<label>make anty acid cartridge x500</label>
+						<description>Craft 500 anty acid cartridges.</description>
+						<jobString>Making anty acid cartridges.</jobString>
+						<researchPrerequisite>AntyAcidweapon_B</researchPrerequisite>
+						<ingredients>
+							<li>
+								<filter>
+									<thingDefs>
+										<li>AntyExoskeleton</li>
+									</thingDefs>
+								</filter>
+								<count>18</count>
+							</li>
+						</ingredients>
+						<fixedIngredientFilter>
+							<thingDefs>
+								<li>AntyExoskeleton</li>
+							</thingDefs>
+						</fixedIngredientFilter>
+						<products>
+							<Ammo_AntyAcidRifle>500</Ammo_AntyAcidRifle>
+						</products>
+						<workAmount>1800</workAmount>
+						<recipeUsers>
+							<li>AntyCopyTableMachining</li>
+						</recipeUsers>
+					</RecipeDef>
+					
+					<RecipeDef ParentName="AmmoRecipeBase">
+						<defName>MakeAmmo_AntyGlueLauncher</defName>
+						<label>make anty glue grenade x50</label>
+						<description>Craft 50 anty glue grenades.</description>
+						<jobString>Making anty glue grenades.</jobString>
+						<researchPrerequisite>Combatglue</researchPrerequisite>
+						<ingredients>
+						  <li>
+							<filter>
+							  <thingDefs>
+								<li>AntyExoskeleton</li>
+							  </thingDefs>
+							</filter>
+							<count>8</count>
+						  </li>
+						  <li>
+							<filter>
+							  <thingDefs>
+								<li>ComponentIndustrial</li>
+							  </thingDefs>
+							</filter>
+							<count>2</count>
+						  </li>		  
+						</ingredients>
+						<fixedIngredientFilter>
+						  <thingDefs>
+							<li>AntyExoskeleton</li>
+							<li>ComponentIndustrial</li>		
+						  </thingDefs>
+						</fixedIngredientFilter>
+						<products>
+						  <Ammo_AntyGlueLauncher>50</Ammo_AntyGlueLauncher>
+						</products>
+						<workAmount>11400</workAmount>	
+						<recipeUsers>
+							<li>AntyCopyTableMachining</li>
+						</recipeUsers>
+					</RecipeDef>
+					
+					<RecipeDef ParentName="AmmoRecipeNeolithicBase">
+						<defName>MakeAmmo_CrossbowBolt_AntyAcid</defName>
+						<label>make acid crossbow bolts x10</label>
+						<description>Craft 10 acid crossbow bolts.</description>
+						<jobString>Making acid crossbow bolts.</jobString>
+						<ingredients>
+						  <li>
+							<filter>
+							  <thingDefs>
+								<li>WoodLog</li>
+							  </thingDefs>
+							</filter>
+							<count>2</count>
+						  </li>
+						  <li>
+							<filter>
+							  <thingDefs>
+								<li>AntyExoskeleton</li>
+							  </thingDefs>
+							</filter>
+							<count>2</count>
+						  </li>
+						</ingredients>
+						<fixedIngredientFilter>
+						  <thingDefs>
+							<li>WoodLog</li>
+							<li>AntyExoskeleton</li>
+						  </thingDefs>
+						</fixedIngredientFilter>
+						<products>
+						  <Ammo_CrossbowBolt_AntyAcid>10</Ammo_CrossbowBolt_AntyAcid>
+						</products>
+						<workAmount>400</workAmount>	
+					</RecipeDef>
+				</value>
+			</li>
+			
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/DamageDef[defName="AcidBomb"]/defaultArmorPenetration</xpath>
+				<value>
+					<defaultArmorPenetration>20</defaultArmorPenetration>
+				</value>
+			</li>
+			
+		</operations>
+		</match>	
+	  </li>
+	</operations>	
+  </Operation>
+</Patch>

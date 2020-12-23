@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+
+  <Operation Class="PatchOperationFindMod">
+    <mods>
+      <li>Vanilla Animals Expanded — Temperate Forest</li>
+    </mods>
+
+    <match Class="PatchOperationSequence">
+      <operations>
+        <!-- === Quadruped Low === -->
+        <li Class="PatchOperationAddModExtension">
+          <xpath>/Defs/ThingDef[defName="AEXP_RedPanda" or defName="AEXP_Hedgehog" or defName="AEXP_Badger" or defName="AEXP_Beaver"]
+          </xpath>
+          <value>
+            <li Class="CombatExtended.RacePropertiesExtensionCE">
+              <bodyShape>QuadrupedLow</bodyShape>
+            </li>
+          </value>
+        </li>
+
+			<li Class="PatchOperationAddModExtension">
+				<xpath>
+					Defs/ThingDef[
+						defName="AEXP_WildGoose"]
+				</xpath>
+				<value>
+					<li Class="CombatExtended.RacePropertiesExtensionCE">
+						<bodyShape>Birdlike</bodyShape>
+					</li>
+				</value>
+			</li>
+
+      </operations>
+    </match>
+  </Operation>
+
+</Patch>

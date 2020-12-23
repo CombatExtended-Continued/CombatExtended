@@ -205,6 +205,71 @@
 				</value>
 			</li>
 			
+			<!--Fireblade : Royalty Only-->
+			
+			<li Class="PatchOperationConditional">
+				<xpath>/Defs/ThingDef[defName="Kijin_FlameSword"]</xpath>
+				<match Class="PatchOperationSequence">
+				<operations>
+					<li Class="PatchOperationReplace">
+						<xpath>/Defs/ThingDef[defName="Kijin_FlameSword"]/tools</xpath>
+						<value>
+							<tools>
+								<li Class="CombatExtended.ToolCE">
+									<label>edge</label>
+									<capacities>
+										<li>KijinSword</li>
+									</capacities>
+									<power>22</power>
+									<cooldownTime>2.06</cooldownTime>
+									<chanceFactor>1.33</chanceFactor>
+									<armorPenetrationBlunt>0</armorPenetrationBlunt>
+									<armorPenetrationSharp>0</armorPenetrationSharp>
+									<linkedBodyPartsGroup>Edge</linkedBodyPartsGroup>
+								</li>
+							</tools>
+						</value>
+					</li>
+					
+					<li Class="PatchOperationAdd">
+						<xpath>Defs</xpath>
+						<value>
+						  <DamageDef ParentName="Flame">
+							<defName>Flame_Nopenetration</defName>
+							<harmAllLayersUntilOutside>false</harmAllLayersUntilOutside>
+						  </DamageDef>
+						</value>
+					</li>
+					
+					<li Class="PatchOperationReplace">
+						<xpath>Defs/ManeuverDef[defName="Kijin_Sword"]/verb/verbClass</xpath>
+						<value>
+							<verbClass>CombatExtended.Verb_MeleeAttackCE</verbClass>
+						</value>
+					</li>
+					
+					<li Class="PatchOperationAdd">
+						<xpath>Defs/ThingDef[defName="Kijin_FlameSword"]/statBases</xpath>
+						<value>
+							<Bulk>8.5</Bulk>
+							<MeleeCounterParryBonus>0.90</MeleeCounterParryBonus>
+						</value>
+					</li>
+
+					<li Class="PatchOperationAdd">
+						<xpath>Defs/ThingDef[defName="Kijin_FlameSword"]</xpath>
+						<value>
+							<equippedStatOffsets>
+								<MeleeCritChance>1.10</MeleeCritChance>
+								<MeleeParryChance>0.70</MeleeParryChance>
+								<MeleeDodgeChance>0.50</MeleeDodgeChance>	
+							</equippedStatOffsets>
+						</value>
+					</li>
+					
+				</operations>
+				</match>
+			</li>
 			
 		</operations>
 		</match>	

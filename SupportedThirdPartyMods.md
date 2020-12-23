@@ -6,7 +6,6 @@ If the mod(s) you are interested in isn't on this list, first confirm that the m
 
 Mod |
 --- |
-[CP] British Military Kit	|
 [CP] DOOM	|
 [CP] Metal Gear Solid	|
 [CP] Red Horse Furniture	|
@@ -14,7 +13,9 @@ Mod |
 [CP] Rimmu-Nation - Weapons	|
 [CP] Spec Ops - The Line	|
 [CP] The DOOM Kit - Classic	|
+[HLX] Rimworld: UNSC Armoury |
 [JDS] Exiled Dawn |
+[JDS] Star Wars BlasTech Industries |
 [JDS] The Forge - Exiled Dawn |
 [JDS] The Forge - NCR Armory	|
 [O21] Forgotten Realms |
@@ -34,6 +35,7 @@ Mod |
 [RH] Faction: Umbra Company	|
 [RH] Faction: VOID	|
 [RH] Faction: War Mongrels	|
+[RWY] Advanced Mechanoid Warfare    |
 [SS] Maid Project	|
 [SYR] Harpy	|
 [SYR] Naga	|
@@ -46,6 +48,7 @@ Androids	|
 Androids Expanded	|
 AnimalCollabProj	|
 Animal Armor: Vanilla	|
+Anty the War Ant Race |
 Apparello 2	|
 Arachne Race	|
 Area Rugs	|
@@ -54,6 +57,8 @@ Auto-Mortars	|
 Beeralope Squad	|
 Better Infestations	|
 Black Widows	|
+Carbon	|
+Clay Soldier Race |
 Combat Enthusiast’s Collection	|
 Cupro's Alloys	|
 Cute Penguin	|
@@ -71,13 +76,17 @@ Equiums Horse Race	|
 Erin's Critter Collection |
 Erin's Forest Critters |
 Erin's Fox Squirrel |
+Erin's Mountain Animals |
+Expanded Materials - Metals |
 Expanded Patchleather	|
 Expanded Prosthetics and Organ Engineering (EPOE)	|
+Expanded Prosthetics and Organ Engineering (EPOE) - Forked	|
 Extended Storage	|
 Fallout Traits	|
 Fantasy Metals Reforged |
 FashionRIMsta	|
 Fate Grand Order - Styles Apparel Pack	|
+Fell Tribes	|
 Ferrex Race	|
 Flak Dusters	|
 Forsakens	|
@@ -96,6 +105,7 @@ High Caliber	|
 Idhale Race	|
 Iron Harvest Pkp 17 "Eisenhans" Powerarmor	|
 Jernfalk's Standalone Horses	|
+Jernalk's Skeletal Legion (Continued)	|
 Kaiser Armory	|
 K.L.K - Styles Apparel Pack	|
 Kijin Race 2.0     	|     
@@ -105,9 +115,11 @@ Leeani Playable Race	|
 Let's Have a Cat!	|
 Logann Race	|
 Magical Menagerie	|
+Marilyn the Mincho Worshipper Witch |
 Mechanoids Extraordinaire	|
 Medical System Expansion	|
 Megafauna	|
+Mincho, The Mint Choco Slime  |
 MiningCo. MiningHelmet	|
 Misc. Core	|
 Misc. MAI |
@@ -122,12 +134,16 @@ Ni'Hal	|
 Orassans	|
 Palm Cats   |
 Penguin	|
-PsiTech	|
 Polarisbloc - Security Force	|
+Prestige Specialist Armours	|
+Prostheses+ |
+PsiTech	|
 Rabbie The Moonrabbit	|
 Racc Race	|
 Rah's Bionics and Surgery Expansion	|
-Reich Armory	|
+Rakkle The Rattle Snake Race Mod  |
+Redcoat Apparel	|
+Reich Armory  |
 Revia Race |
 Right Tool: Rebalanced	|
 Rim Contractors Arsenal	|
@@ -140,17 +156,21 @@ Rimsenal - Enhanced Vanilla |
 Rimsenal - Federation Faction Pack |
 Rimsenal - Feral Faction Pack |
 Rimsenal - Security Pack |
-Rimworld: Altered Carbon |
 Rimworld - The Dark Descent |
 Rimworld - Witcher Monster Hunt |
+Rimworld of Magic |
+Rimworld: Altered Carbon |
 Save Our Ship 2	|
 Sergals, Gnolls, Lions and Frogs	|
 Silkiera Race	|
 Simply More Melee	|
 Soviet Armory	|
 Spartan Foundry	|
+Star Wars - Factions |
+Star Wars - Factions (Continued) |
 The Mantodean insectoid race	|
 T-45b Power Armor	|
+The GiantRace	|
 TouhouStyle	|
 Trading Economy	|
 Tsar Armory	|
