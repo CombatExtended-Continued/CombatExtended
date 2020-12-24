@@ -188,6 +188,7 @@ Vanilla Weapons Expanded - Grenades |
 Vanilla Weapons Expanded Quickdraw	|
 Vanilla-Friendly Animal Surgery	|
 Vanilla-Friendly Weapon Expansion	|
+VFE - Mechanoids : Unoffical Add-On |
 VGP Fabrics
 Vulpine Race Pack	|
 Weapons+	|
