@@ -185,6 +185,7 @@ Vanilla Factions Expanded - Medieval	|
 Vanilla Factions Expanded - Settlers	|
 Vanilla Factions Expanded - Vikings	|
 Vanilla Furniture Expanded - Production	|
+Vanilla Furniture Expanded -  Security |
 Vanilla Vehicles Expanded	|
 Vanilla Weapons Expanded |
 Vanilla Weapons Expanded - Grenades |
