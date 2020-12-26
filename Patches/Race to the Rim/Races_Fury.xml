@@ -12,7 +12,7 @@
 			<xpath>Defs/ThingDef[defName="RttR_Fury"]</xpath>
 			<value>
 				<li Class="CombatExtended.RacePropertiesExtensionCE">
-					<bodyShape>Birdlike</bodyShape>
+					<bodyShape>Quadruped</bodyShape>
 				</li>
 			</value>
 		</li>
@@ -20,9 +20,9 @@
 		<li Class="PatchOperationAdd">
 			<xpath>Defs/ThingDef[defName="RttR_Fury"]/statBases</xpath>
 			<value>
-				<MeleeDodgeChance>0.13</MeleeDodgeChance>
-				<MeleeCritChance>1.75</MeleeCritChance>
-				<MeleeParryChance>0.54</MeleeParryChance>
+				<MeleeDodgeChance>0.23</MeleeDodgeChance>
+				<MeleeCritChance>0.20</MeleeCritChance>
+				<MeleeParryChance>0.08</MeleeParryChance>
 				<SightsEfficiency>1</SightsEfficiency>
 			</value>
 		</li>
@@ -30,68 +30,75 @@
 		<li Class="PatchOperationReplace">
 			<xpath>Defs/ThingDef[defName="RttR_Fury"]/tools</xpath>
 			<value>
-				<tools>
-					<li Class="CombatExtended.ToolCE">
-						<label>first tail</label>
-						<capacities>
-							<li>RttR_Anesthesia</li>
-						</capacities>
-						<power>7</power>
-						<cooldownTime>1.5</cooldownTime>
-						<linkedBodyPartsGroup>RttR_FirstTailAttackTool</linkedBodyPartsGroup>
-						<armorPenetrationBlunt>3.5</armorPenetrationBlunt>
-						<armorPenetrationSharp>2.5</armorPenetrationSharp>						
-					</li>
-					<li Class="CombatExtended.ToolCE">
-						<label>second tail</label>
-						<capacities>
-							<li>RttR_Dazing</li>
-						</capacities>
-						<power>7</power>
-						<cooldownTime>1.5</cooldownTime>
-						<linkedBodyPartsGroup>RttR_SecondTailAttackTool</linkedBodyPartsGroup>
-					</li>
-					<li Class="CombatExtended.ToolCE">
-						<label>third tail</label>
-						<capacities>
-							<li>RttR_Toxic</li>
-						</capacities>
-						<power>7</power>
-						<cooldownTime>1.5</cooldownTime>
-						<linkedBodyPartsGroup>RttR_ThirdTailAttackTool</linkedBodyPartsGroup>
-						<armorPenetrationBlunt>3.5</armorPenetrationBlunt>
-						<armorPenetrationSharp>2.5</armorPenetrationSharp>							
-					</li>
-					<li Class="CombatExtended.ToolCE">
-						<capacities>
-							<li>Bite</li>
-						</capacities>
-						<power>12</power>
-						<cooldownTime>2.05</cooldownTime>
-						<linkedBodyPartsGroup>Teeth</linkedBodyPartsGroup>
-						<surpriseAttack>
-							<extraMeleeDamages>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<label>left claw</label>
+					<capacities>
+						<li>Scratch</li>
+					</capacities>
+					<power>7</power>
+					<cooldownTime>0.97</cooldownTime>
+					<linkedBodyPartsGroup>FrontLeftPaw</linkedBodyPartsGroup>
+					<surpriseAttack>
+						<extraMeleeDamages>
 							<li>
 								<def>Stun</def>
-								<amount>21</amount>
+								<amount>20</amount>
 							</li>
-							</extraMeleeDamages>
-						</surpriseAttack>
-						<armorPenetrationSharp>1.05</armorPenetrationSharp>
-						<armorPenetrationBlunt>6</armorPenetrationBlunt>
-					</li>
-					<li Class="CombatExtended.ToolCE">
-						<label>head</label>
-						<capacities>
-							<li>Blunt</li>
-						</capacities>
-						<power>5</power>
-						<cooldownTime>2</cooldownTime>
-						<linkedBodyPartsGroup>HeadAttackTool</linkedBodyPartsGroup>
-						<ensureLinkedBodyPartsGroupAlwaysUsable>true</ensureLinkedBodyPartsGroupAlwaysUsable>
-						<chanceFactor>0.2</chanceFactor>
-					</li>
-				</tools>				
+						</extraMeleeDamages>
+					</surpriseAttack>
+					<armorPenetrationSharp>0.35</armorPenetrationSharp>
+					<armorPenetrationBlunt>0.423</armorPenetrationBlunt>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>right claw</label>
+					<capacities>
+						<li>Scratch</li>
+					</capacities>
+					<power>7</power>
+					<cooldownTime>0.97</cooldownTime>
+					<linkedBodyPartsGroup>FrontRightPaw</linkedBodyPartsGroup>
+					<surpriseAttack>
+						<extraMeleeDamages>
+							<li>
+								<def>Stun</def>
+								<amount>20</amount>
+							</li>
+						</extraMeleeDamages>
+					</surpriseAttack>
+					<armorPenetrationSharp>0.35</armorPenetrationSharp>
+					<armorPenetrationBlunt>0.423</armorPenetrationBlunt>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<capacities>
+						<li>Bite</li>
+					</capacities>
+					<power>18</power>
+					<cooldownTime>1.35</cooldownTime>
+					<linkedBodyPartsGroup>Teeth</linkedBodyPartsGroup>
+					<surpriseAttack>
+						<extraMeleeDamages>
+							<li>
+								<def>Stun</def>
+								<amount>20</amount>
+							</li>
+						</extraMeleeDamages>
+					</surpriseAttack>
+					<armorPenetrationSharp>1.25</armorPenetrationSharp>
+					<armorPenetrationBlunt>1.35</armorPenetrationBlunt>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>head</label>
+					<capacities>
+						<li>Blunt</li>
+					</capacities>
+					<power>2</power>
+					<cooldownTime>0.97</cooldownTime>
+					<linkedBodyPartsGroup>HeadAttackTool</linkedBodyPartsGroup>
+					<chanceFactor>0.2</chanceFactor>
+					<armorPenetrationBlunt>0.423</armorPenetrationBlunt>
+				</li>
+			</tools>			
 			</value>
 		</li>
 
