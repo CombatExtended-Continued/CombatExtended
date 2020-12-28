@@ -165,7 +165,7 @@ namespace CombatExtended
                 list.CheckboxLabeled("CE_Settings_ReuseNeolithicProjectiles_Title".Translate(), ref reuseNeolithicProjectiles, "CE_Settings_ReuseNeolithicProjectiles_Desc".Translate());
                 list.CheckboxLabeled("CE_Settings_RealisticCookOff_Title".Translate(), ref realisticCookOff, "CE_Settings_RealisticCookOff_Desc".Translate());
                 list.CheckboxLabeled("CE_Settings_EnableSimplifiedAmmo_Title".Translate(), ref enableSimplifiedAmmo, "CE_Settings_EnableSimplifiedAmmo_Desc".Translate()); ;
-                list.CheckboxLabeled("Infinite Ammo", ref infiniteAmmo, ""); ;
+                list.CheckboxLabeled("CE_Settings_InfiniteAmmo_Title".Translate(), ref infiniteAmmo, "CE_Settings_InfiniteAmmo_Desc".Translate()); ;
             }
             else
             {
@@ -177,7 +177,7 @@ namespace CombatExtended
                 list.Label("CE_Settings_ReuseNeolithicProjectiles_Title".Translate());
                 list.Label("CE_Settings_RealisticCookOff_Title".Translate());
                 list.Label("CE_Settings_EnableSimplifiedAmmo_Title".Translate());
-                list.Label("Infinite Ammo");
+                list.Label("CE_Settings_InfiniteAmmo_Title".Translate());
 
                 GUI.contentColor = Color.white;
             }
