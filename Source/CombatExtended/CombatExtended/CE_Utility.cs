@@ -113,12 +113,41 @@ namespace CombatExtended
         #region Misc
         public static List<ThingDef> allWeaponDefs = new List<ThingDef>();
 
+        /// <summary>
+        /// Maps def name to ammo def. Used when Infinite Ammo is on. Otherwise is null.
+        /// </summary>
+        public static Dictionary<string, AmmoDef> allAmmoDefs;
+        /// <summary>
+        /// Holds a cached ammo thing that is lazily filled and used when Infinite Ammo is on. 
+        /// </summary>
+        public static Dictionary<string, AmmoThing> cachedAmmoThing = new Dictionary<string, AmmoThing>();
+
         public static readonly FieldInfo cachedLabelCapInfo = typeof(Def).GetField("cachedLabelCap", BindingFlags.NonPublic | BindingFlags.Instance);
 
         public static void UpdateLabel(this Def def, string label)
         {
             def.label = label;
             cachedLabelCapInfo.SetValue(def, new TaggedString(""));
+        }
+
+        public static AmmoThing GetInfiniteAmmoThing(string defName)
+        {
+	        if (cachedAmmoThing.TryGetValue(defName, out var ammoThing))
+	        {
+		        // Found a cached thing
+		        ammoThing.stackCount = int.MaxValue;
+		        return ammoThing;
+	        }
+                
+	        // Could not find a cached thing. Create one.
+	        var def = allAmmoDefs[defName];
+	        ammoThing = (AmmoThing)ThingMaker.MakeThing(def);
+	        ammoThing.stackCount = int.MaxValue;
+                
+	        // Add it to the cache for later use.
+	        cachedAmmoThing.Add(def.defName, ammoThing);
+
+	        return ammoThing;
         }
 
         /// <summary>

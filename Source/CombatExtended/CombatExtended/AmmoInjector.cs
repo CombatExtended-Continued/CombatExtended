@@ -23,11 +23,12 @@ namespace CombatExtended
     {
         public static readonly FieldInfo _allRecipesCached = typeof(ThingDef).GetField("allRecipesCached", BindingFlags.Instance | BindingFlags.NonPublic);
 
-        public const string destroyWithAmmoDisabledTag = "CE_Ammo";               // The trade tag which automatically deleted this ammo with the ammo system disabled
-        private const string enableTradeTag = "CE_AutoEnableTrade";             // The trade tag which designates ammo defs for being automatically switched to Tradeability.Stockable
-        private const string enableCraftingTag = "CE_AutoEnableCrafting";        // The trade tag which designates ammo defs for having their crafting recipes automatically added to the crafting table
+        public const string destroyWithAmmoDisabledTag = "CE_Ammo";       // The trade tag which automatically deleted this ammo with the ammo system disabled
+        private const string enableTradeTag = "CE_AutoEnableTrade";       // The trade tag which designates ammo defs for being automatically switched to Tradeability.Stockable
+        private const string enableCraftingTag = "CE_AutoEnableCrafting"; // The trade tag which designates ammo defs for having their crafting recipes automatically added to the crafting table
         // these ammo classes are disabled when simplified ammo is turned on
-        private static HashSet<string> complexAmmoClasses = new HashSet<string>(new string[] {
+        private static HashSet<string> complexAmmoClasses = new HashSet<string>(new string[]
+        {
             // pistol + rifle + high caliber
             "ArmorPiercing", "HollowPoint", "Sabot", "IncendiaryAP", "ExplosiveAP",
             // shotguns
@@ -59,12 +60,12 @@ namespace CombatExtended
             {
                 Log.Error("Combat Extended :: Ammo injector failed to get injected");
             }
-            ThingSetMakerUtility.Reset();   // Reset pool of spawnable ammos for quests, etc.
+            ThingSetMakerUtility.Reset(); // Reset pool of spawnable ammos for quests, etc.
         }
 
         public static bool InjectAmmos()
         {
-            bool enabled = Controller.settings.EnableAmmoSystem;
+            bool enabled = Controller.settings.EnableAmmoSystem && !Controller.settings.InfiniteAmmo;
             bool simplifiedAmmo = Controller.settings.EnableSimplifiedAmmo;
 
             // Initialize list of all weapons
@@ -107,6 +108,8 @@ namespace CombatExtended
             }
             */
 
+            if (Controller.settings.InfiniteAmmo)
+                CE_Utility.allAmmoDefs = new Dictionary<string, AmmoDef>(ammoDefs.Count);
             // Loop through all weaponDef's unique ammoType.ammo values
             foreach (AmmoDef ammoDef in ammoDefs)
             {
@@ -220,6 +223,9 @@ namespace CombatExtended
                         }
                     }
                 }
+
+                if (Controller.settings.InfiniteAmmo)
+                    CE_Utility.allAmmoDefs.Add(ammoDef.defName, ammoDef);
             }
 
             /*
@@ -292,7 +298,7 @@ namespace CombatExtended
                     }
                 }
             }
-            _allRecipesCached.SetValue(benchDef, null);  // Set ammoCraftingStation.AllRecipes to null so it will reset
+            _allRecipesCached.SetValue(benchDef, null); // Set ammoCraftingStation.AllRecipes to null so it will reset
         }
 
         public static bool gunRecipesShowCaliber = false;
@@ -314,8 +320,8 @@ namespace CombatExtended
                         {
                             var label = x.label + (shouldHaveLabels ? " (" + (string)ammoSet.LabelCap + ")" : "");
 
-                            recipeDef.UpdateLabel("RecipeMake".Translate(label));           //Just setting recipeDef.label doesn't update Jobs nor existing recipeUsers. We need UpdateLabel.
-                            recipeDef.jobString = "RecipeMakeJobString".Translate(label);   //The jobString should also be updated to reflect the name change.
+                            recipeDef.UpdateLabel("RecipeMake".Translate(label));         //Just setting recipeDef.label doesn't update Jobs nor existing recipeUsers. We need UpdateLabel.
+                            recipeDef.jobString = "RecipeMakeJobString".Translate(label); //The jobString should also be updated to reflect the name change.
                         }
                     }
                 });

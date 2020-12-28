@@ -157,6 +157,16 @@ namespace CombatExtended
                 compAmmo.ResetAmmoCount();
                 return;
             }
+
+            // When infinite ammo is enabled, ammo is removed from the menus. So we should check for menuHidden variable
+            if (Controller.settings.InfiniteAmmo)
+            {
+                var available = compAmmo.Props.ammoSet.ammoTypes.Where(x => x.ammo.generateAllowChance > 0).Select(x => x.ammo);
+                var selected = available.RandomElementByWeight(a => a.generateAllowChance);
+                compAmmo.ResetAmmoCount(selected);
+                return;
+            }
+            
             // Determine ammo
             IEnumerable<AmmoDef> availableAmmo = compAmmo.Props.ammoSet.ammoTypes.Where(a => a.ammo.alwaysHaulable && !a.ammo.menuHidden && a.ammo.generateAllowChance > 0f).Select(a => a.ammo); //Running out of options. alwaysHaulable does exist in xml.
             AmmoDef ammoToLoad = availableAmmo.RandomElementByWeight(a => a.generateAllowChance);

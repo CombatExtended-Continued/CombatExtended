@@ -8,7 +8,7 @@ namespace CombatExtended.CombatExtended.LoggerUtils
         /// Am I in debug mode? Set this to <c>true</c> and recompile for more log output.
         /// TODO: Maybe change this to a toggleable setting if I ever have the time to figure out how <3.
         /// </summary>
-        private static readonly bool isInDebugMode = false;
+        private static readonly bool isInDebugMode = Controller.settings.DebugLogs;
 
         public static void Message(string message, bool showOutOfDebugMode = false, [System.Runtime.CompilerServices.CallerMemberName] string memberName = "")
         {

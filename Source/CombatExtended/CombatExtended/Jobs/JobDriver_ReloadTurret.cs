@@ -50,7 +50,8 @@ namespace CombatExtended
                 return false;
             }
 
-            if (!compAmmo.UseAmmo)
+            // No need to reserve ammo if we don't use ammo or we have InfiniteAmmo on
+            if (!compAmmo.UseAmmo || Controller.settings.InfiniteAmmo)
             {
                 return true;
             }
@@ -97,8 +98,16 @@ namespace CombatExtended
             }
             if (compReloader.UseAmmo && ammo == null)
             {
-                Log.Error(string.Concat(errorBase, "TargetThingB is either null or not an AmmoThing."));
-                yield return null;
+                if (Controller.settings.InfiniteAmmo)
+                {
+                    TargetThingB = CE_Utility.GetInfiniteAmmoThing(compReloader.SelectedAmmo.defName);
+                }
+                else
+                {
+
+                    Log.Error(string.Concat(errorBase, "TargetThingB is either null or not an AmmoThing."));
+                    yield return null;
+                }
             }
 
             AddEndCondition(delegate
@@ -119,7 +128,7 @@ namespace CombatExtended
             this.FailOn(() => compReloader.MissingToFullMagazine == 0);
 
             // Perform ammo system specific activities, failure condition and hauling
-            if (compReloader.UseAmmo)
+            if (compReloader.UseAmmo && !Controller.settings.InfiniteAmmo)
             {
                 var toilGoToCell = Toils_Goto.GotoCell(ammo.Position, PathEndMode.Touch).FailOnBurningImmobile(TargetIndex.B);
                 var toilCarryThing = Toils_Haul.StartCarryThing(TargetIndex.B).FailOnBurningImmobile(TargetIndex.B);

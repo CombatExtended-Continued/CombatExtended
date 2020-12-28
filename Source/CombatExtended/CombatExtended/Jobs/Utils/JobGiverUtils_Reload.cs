@@ -125,7 +125,13 @@ namespace CombatExtended.CombatExtended.Jobs.Utils
 
 		private static Thing FindBestAmmo(Pawn pawn, Building_TurretGunCE turret)
 		{
-			AmmoDef requestedAmmo = turret.CompAmmo.SelectedAmmo;	
+			AmmoDef requestedAmmo = turret.CompAmmo.SelectedAmmo;
+
+			if (Controller.settings.InfiniteAmmo)
+			{
+				return CE_Utility.GetInfiniteAmmoThing(requestedAmmo.defName);
+			}
+			
 			var bestAmmo = FindBestAmmo(pawn, requestedAmmo);   // try to find currently selected ammo first
 			if (bestAmmo == null && turret.CompAmmo.EmptyMagazine && requestedAmmo.AmmoSetDefs != null)
 			{

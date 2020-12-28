@@ -134,6 +134,9 @@ namespace CombatExtended
         /// <returns>int amount of AmmoDef found in AmmoList.</returns>
         public int AmmoCountOfDef(AmmoDef def)
         {
+            if (Controller.settings.InfiniteAmmo)
+                return int.MaxValue;
+            
         	return ammoListCached.Where(t => t.def == def).Sum(t => t.stackCount);
         }
 

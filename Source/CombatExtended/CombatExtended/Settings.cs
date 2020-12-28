@@ -38,6 +38,7 @@ namespace CombatExtended
         private bool reuseNeolithicProjectiles = true;
         private bool realisticCookOff = false;
         private bool enableSimplifiedAmmo = false;
+        private bool infiniteAmmo = false;
 
         public bool EnableAmmoSystem => enableAmmoSystem;
         public bool RightClickAmmoSelect => rightClickAmmoSelect;
@@ -47,6 +48,7 @@ namespace CombatExtended
         public bool ReuseNeolithicProjectiles => reuseNeolithicProjectiles;
         public bool RealisticCookOff => realisticCookOff;
         public bool EnableSimplifiedAmmo => enableSimplifiedAmmo;
+        public bool InfiniteAmmo => infiniteAmmo;
 
         // Debug settings - make sure all of these default to false for the release build
         private bool debugDrawPartialLoSChecks = false;
@@ -55,6 +57,7 @@ namespace CombatExtended
         private bool debugShowTreeCollisionChance = false;
         private bool debugShowSuppressionBuildup = false;
         private bool debugDrawInterceptChecks = false;
+        private bool debugLogs = false;
 
         public bool DebugDrawInterceptChecks => debugDrawInterceptChecks;
         public bool DebugDrawPartialLoSChecks => debugDrawPartialLoSChecks;
@@ -62,6 +65,7 @@ namespace CombatExtended
         public bool DebugDrawTargetCoverChecks => debugDrawTargetCoverChecks;
         public bool DebugShowTreeCollisionChance => debugShowTreeCollisionChance;
         public bool DebugShowSuppressionBuildup => debugShowSuppressionBuildup;
+        public bool DebugLogs => debugLogs;
 
         #endregion
 
@@ -87,6 +91,7 @@ namespace CombatExtended
             Scribe_Values.Look(ref debugDrawTargetCoverChecks, "debugDrawTargetCoverChecks", false);
             Scribe_Values.Look(ref debugShowTreeCollisionChance, "debugShowTreeCollisionChance", false);
             Scribe_Values.Look(ref debugShowSuppressionBuildup, "debugShowSuppressionBuildup", false);
+            Scribe_Values.Look(ref debugLogs, "debugLogs", false);
 #endif
 
             // Ammo settings
@@ -98,6 +103,7 @@ namespace CombatExtended
             Scribe_Values.Look(ref reuseNeolithicProjectiles, "reuseNeolithicProjectiles", true);
             Scribe_Values.Look(ref realisticCookOff, "realisticCookOff", false);
             Scribe_Values.Look(ref enableSimplifiedAmmo, "enableSimplifiedAmmo", false);
+            Scribe_Values.Look(ref infiniteAmmo, "infiniteAmmo", false);
 
             Scribe_Values.Look(ref ShowTutorialPopup, "ShowTutorialPopup", true);
 
@@ -137,6 +143,7 @@ namespace CombatExtended
             list.CheckboxLabeled("Enable inventory validation", ref debugEnableInventoryValidation, "Inventory will refresh its cache every tick and log any discrepancies.");
             list.CheckboxLabeled("Display tree collision chances", ref debugShowTreeCollisionChance, "Projectiles will display chances of coliding with trees as they pass by.");
             list.CheckboxLabeled("Display suppression buildup", ref debugShowSuppressionBuildup, "Pawns will display buildup numbers when taking suppression.");
+            list.CheckboxLabeled("Debug Logs", ref debugLogs, "Prints additional logs");
 #endif
 
             // Do ammo settings
@@ -158,6 +165,7 @@ namespace CombatExtended
                 list.CheckboxLabeled("CE_Settings_ReuseNeolithicProjectiles_Title".Translate(), ref reuseNeolithicProjectiles, "CE_Settings_ReuseNeolithicProjectiles_Desc".Translate());
                 list.CheckboxLabeled("CE_Settings_RealisticCookOff_Title".Translate(), ref realisticCookOff, "CE_Settings_RealisticCookOff_Desc".Translate());
                 list.CheckboxLabeled("CE_Settings_EnableSimplifiedAmmo_Title".Translate(), ref enableSimplifiedAmmo, "CE_Settings_EnableSimplifiedAmmo_Desc".Translate()); ;
+                list.CheckboxLabeled("Infinite Ammo", ref infiniteAmmo, ""); ;
             }
             else
             {
@@ -169,6 +177,7 @@ namespace CombatExtended
                 list.Label("CE_Settings_ReuseNeolithicProjectiles_Title".Translate());
                 list.Label("CE_Settings_RealisticCookOff_Title".Translate());
                 list.Label("CE_Settings_EnableSimplifiedAmmo_Title".Translate());
+                list.Label("Infinite Ammo");
 
                 GUI.contentColor = Color.white;
             }

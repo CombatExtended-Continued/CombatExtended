@@ -96,7 +96,7 @@ namespace CombatExtended
             List<FloatMenuOption> floatOptionList = new List<FloatMenuOption>();
 
             #region Ammo type switching
-            if (compAmmo.UseAmmo)
+            if (compAmmo.UseAmmo || Controller.settings.InfiniteAmmo)
             {
                 //List of actions to be taken on choosing a new ammo type, listed by ammoCategoryDef (FMJ/AP/HP)
                 Dictionary<AmmoCategoryDef, Action> ammoClassActions = new Dictionary<AmmoCategoryDef, Action>();
@@ -118,7 +118,7 @@ namespace CombatExtended
 
                         // If we have no inventory available (e.g. manned turret), add all possible ammo types to the selection
                         // Otherwise, iterate through all suitable ammo types and check if they're in our inventory
-                        if (user.CompInventory?.ammoList?.Any(x => x.def == ammoDef) ?? true)
+                        if (Controller.settings.InfiniteAmmo || (user.CompInventory?.ammoList?.Any(x => x.def == ammoDef) ?? true))
                         {
                             if (!ammoClassAmounts.ContainsKey(ammoClass))
                                 ammoClassAmounts.Add(ammoClass, new int[2]);

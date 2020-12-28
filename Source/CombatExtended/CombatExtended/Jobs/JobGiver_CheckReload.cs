@@ -126,13 +126,23 @@ namespace CombatExtended
                 // Is the gun loaded with ammo not in a Loadout/HoldTracker?
                 if (tmpComp.UseAmmo && pawnHasLoadout && !TrackingSatisfied(pawn, ammoType, magazineSize))
 				{
-					// Do we have ammo in the inventory that the gun uses which satisfies requirements? (expensive)
-					AmmoDef matchAmmo = tmpComp.Props.ammoSet.ammoTypes
-						.Where(al => al.ammo != ammoType)
-						.Select(al => al.ammo)
-						.FirstOrDefault(ad => TrackingSatisfied(pawn, ad, magazineSize) 
-						                && inventory.AmmoCountOfDef(ad) >= magazineSize);
-					
+					AmmoDef matchAmmo;
+
+					// If we are using infinite ammo we don't need to look into inventory.
+					if (Controller.settings.InfiniteAmmo)
+					{
+						matchAmmo = CE_Utility.allAmmoDefs[ammoType.defName];
+					}
+					else
+					{
+						// Do we have ammo in the inventory that the gun uses which satisfies requirements? (expensive)
+						matchAmmo = tmpComp.Props.ammoSet.ammoTypes
+							.Where(al => al.ammo != ammoType)
+							.Select(al => al.ammo)
+							.FirstOrDefault(ad => TrackingSatisfied(pawn, ad, magazineSize) 
+								&& inventory.AmmoCountOfDef(ad) >= magazineSize);	
+					}
+
 					if (matchAmmo != null)
 					{
 						reloadWeapon = gun;

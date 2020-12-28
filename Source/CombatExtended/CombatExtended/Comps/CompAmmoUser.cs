@@ -108,7 +108,7 @@ namespace CombatExtended
         {
             get
             {
-                return CompInventory != null && CompInventory.ammoList.Any(x => Props.ammoSet.ammoTypes.Any(a => a.ammo == x.def));
+                return CompInventory != null && (Controller.settings.InfiniteAmmo || CompInventory.ammoList.Any(x => Props.ammoSet.ammoTypes.Any(a => a.ammo == x.def)));
             }
         }
         public bool HasMagazine => Props.magazineSize > 0;
@@ -396,7 +396,7 @@ namespace CombatExtended
             if (!HasMagazine || (Holder == null && turret == null))
                 return false; // nothing to do as we are in a bad state;
 
-            if (!UseAmmo || curMagCountInt == 0)
+            if (!UseAmmo || curMagCountInt == 0 || Controller.settings.InfiniteAmmo)
                 return true; // nothing to do but we aren't in a bad state either.  Claim success.
 
             if (Props.reloadOneAtATime && !forceUnload && selectedAmmo == CurrentAmmo && turret == null)
@@ -547,6 +547,12 @@ namespace CombatExtended
             if (CompInventory == null)
             {
                 return false;
+            }
+
+            if (Controller.settings.InfiniteAmmo)
+            {
+                ammoThing = CE_Utility.GetInfiniteAmmoThing(selectedAmmo.defName);
+                return true;
             }
 
             // Try finding suitable ammoThing for currently set ammo first
