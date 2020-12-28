@@ -173,8 +173,6 @@ namespace CombatExtended
                 Thing thing = curJob.GetTarget(targetInd).Thing;
                 var pawnVictim = thing as Pawn;
 
-                
-
                 if (!CastPositionFinder.TryFindCastPosition(new CastPositionRequest
                 {
                     caster = toil.actor,
