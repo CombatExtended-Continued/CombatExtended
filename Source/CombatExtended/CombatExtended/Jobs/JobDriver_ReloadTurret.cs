@@ -104,7 +104,6 @@ namespace CombatExtended
                 }
                 else
                 {
-
                     Log.Error(string.Concat(errorBase, "TargetThingB is either null or not an AmmoThing."));
                     yield return null;
                 }

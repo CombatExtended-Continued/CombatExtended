@@ -158,7 +158,7 @@ namespace CombatExtended
                 return;
             }
 
-            // When infinite ammo is enabled, ammo is removed from the menus. So we should check for menuHidden variable
+            // When infinite ammo is enabled, ammo is removed from the menus. So we should not check for menuHidden variable
             if (Controller.settings.InfiniteAmmo)
             {
                 var available = compAmmo.Props.ammoSet.ammoTypes.Where(x => x.ammo.generateAllowChance > 0).Select(x => x.ammo);
