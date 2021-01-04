@@ -21,16 +21,19 @@ namespace CombatExtended.HarmonyCE
                 // Check for inventory space
                 int numToCarry = __result.count;
                 CompInventory inventory = pawn.TryGetComp<CompInventory>();
+
+                float minNutrition = JobDriver_InteractAnimal.RequiredNutritionPerFeed(tamee);
+                int requiredThingCount = Mathf.CeilToInt(minNutrition / FoodUtility.GetNutrition(__result.targetA.Thing, FoodUtility.GetFinalIngestibleDef(__result.targetA.Thing)));
+                
                 if (inventory != null)
                 {
-                    if (inventory.CanFitInInventory(__result.targetA.Thing, out int maxCount))
+                    if (inventory.CanFitInInventory(__result.targetA.Thing, out int maxCount) && requiredThingCount <= maxCount)
                     {
                         __result.count = Mathf.Min(numToCarry, maxCount);
                         pawn.Notify_HoldTrackerItem(__result.targetA.Thing, __result.count);
                     }
-                    else // this should patch WorkGiver_Train && WorkGiver_Tame `JobOnThing`
+                    else 
                     {
-                        Messages.Message("CE_TamerInventoryFull".Translate(), pawn, MessageTypeDefOf.RejectInput);
                         __result = null;
                     }
                 }
