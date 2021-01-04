@@ -12,7 +12,7 @@ namespace CombatExtended
     public class Command_ReloadArmor : Command_Action
     {
         List<Command_ReloadArmor> others;
-	public CompReloadable compReloadable;
+        public CompReloadable compReloadable;
 
         public override bool GroupsWith(Gizmo other)
         {

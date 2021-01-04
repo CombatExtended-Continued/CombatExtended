@@ -24,9 +24,9 @@ namespace CombatExtended.HarmonyCE
 	    {
 		ThingWithComps gear = __instance.parent;
 		Pawn wearer = __instance.Wearer;
-		Job j=null;
+		Job j = null;
 		bool gotJob = Harmony_JobGiver_Reload_TryGiveJob.Prefix(wearer, ref j);
-		if (j!=null)
+		if (j != null)
 		{
 		    wearer.jobs.StartJob(j, JobCondition.InterruptForced, null, wearer.CurJob?.def != j.def, true);
 		}
