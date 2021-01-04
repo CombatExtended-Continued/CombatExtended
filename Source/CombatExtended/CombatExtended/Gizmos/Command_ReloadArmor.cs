@@ -11,26 +11,12 @@ namespace CombatExtended
 {
     public class Command_ReloadArmor : Command_Action
     {
-        List<Command_ReloadArmor> others;
         public CompReloadable compReloadable;
 
         public override bool GroupsWith(Gizmo other)
         {
             var order = other as Command_ReloadArmor;
             return order != null;
-        }
-
-        public override void MergeWith(Gizmo other)
-        {
-            var order = other as Command_ReloadArmor;
-
-            if (others == null)
-            {
-                others = new List<Command_ReloadArmor>();
-                others.Add(this);
-            }
-
-            others.Add(order);
         }
 
         public override void ProcessInput(Event ev)
