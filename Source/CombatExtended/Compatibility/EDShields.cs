@@ -21,6 +21,7 @@ namespace CombatExtended.Compatibility
         public static List<Building> shields;
 
         public static int lastCacheTick = 0;
+        public static Map lastCacheMap = null;
 
         public static bool CanInstall()
         {
@@ -152,10 +153,11 @@ namespace CombatExtended.Compatibility
         public static void getShields(Map map)
         {
             int thisTick = Find.TickManager.TicksAbs;
-            if (lastCacheTick != thisTick) {
+            if (lastCacheTick != thisTick || lastCacheMap != map) {
                 List<Building> buildings = map.listerBuildings.allBuildingsColonist;
                 shields = buildings.Where(b => b is Building_Shield).ToList();
                 lastCacheTick = thisTick;
+                lastCacheMap = map;
             }
         }
 
