@@ -22,38 +22,9 @@
 		<defName>AmmoSet_OGLasStd</defName>
 		<label>Las charge (Imperial)</label>
 		<ammoTypes>
-			<OGI_Ammo_LasGun>OGI_Bullet_LasGun</OGI_Ammo_LasGun>
+			<Ammo_OGLasStd>OGI_Bullet_LasGun</Ammo_OGLasStd>
 		</ammoTypes>
 	</CombatExtended.AmmoSetDef>
-
-        <!-- ==================== Bullet ========================== -->
-
-        <ThingDef Class="OgsLasers.LaserBeamDefCE" ParentName="BaseBullet">
-	  <defName>OGI_Bullet_LasGun</defName>
-	  <label>las blast</label>
-	  <description>A focused pinpoint laser beam which is strong enough to take an ordinary human arm off with one shot but is not as effective against the more durable alien bodies and stronger types of personal armour.</description>
-	  <textures>
-	    <li>Things/Mote/LongSparkThrown</li>
-	  </textures>
-	  <seam>0</seam>
-	  <projectile Class="CombatExtended.ProjectilePropertiesCE">
-	    <damageDef>Bullet</damageDef>
-	    <damageAmountBase>10</damageAmountBase>
-	    <armorPenetrationSharp>12</armorPenetrationSharp>
-	    <armorPenetrationBlunt>28</armorPenetrationBlunt>
-	  </projectile>
-	  <modExtensions>
-	    <li Class="ProjectileImpactFX.EffectProjectileExtension">
-	      <explosionMote>true</explosionMote>
-	      <explosionMoteSize>0.25</explosionMoteSize>
-	      <ImpactMoteDef>Mote_YellowSparkFlash</ImpactMoteDef>
-	      <ImpactMoteSize>1</ImpactMoteSize>
-	      <ImpactGlowMoteDef>Mote_ExplosionFlash</ImpactGlowMoteDef>
-	      <ImpactGlowMoteSize>2.5</ImpactGlowMoteSize>
-	    </li>
-	  </modExtensions>
-	</ThingDef>
-
 
 	<!-- ==================== Ammo ========================== -->
 
@@ -72,73 +43,53 @@
 		</thingCategories>
 	</ThingDef>
 
-	<ThingDef Class="OgsLasers.LaserBeamDefCE" ParentName="OGLasChargeBase">
-	  <defName>OGI_Ammo_LasGun</defName>
-	  <label>Las charge (Imperial)</label>
-          <graphicData>
-	    <texPath>Things/Ammo/Charged/Regular</texPath>
-	    <graphicClass>Graphic_StackCount</graphicClass>
-	  </graphicData>
-	  <ammoClass>OGLasAC</ammoClass>
-	  <statBases>
-	    <MarketValue>0.95</MarketValue>
-	  </statBases>
-	
-	  <description>A focused pinpoint laser beam which is strong enough to take an ordinary human arm off with one shot but is not as effective against the more durable alien bodies and stronger types of personal armour.</description>
-	  <textures>
-	    <li>Things/Projectile/Charge_Small</li>
-	    <li>Things/Mote/LongSparkThrown</li>
-	  </textures>
-	  <seam>0</seam>
-	  <projectile Class="CombatExtended.ProjectilePropertiesCE">
-	    <damageDef>Bullet</damageDef>
-	    <damageAmountBase>10</damageAmountBase>
-	    <armorPenetrationSharp>12</armorPenetrationSharp>
-	    <armorPenetrationBlunt>28</armorPenetrationBlunt>
-	  </projectile>
-	  <modExtensions>
-	    <li Class="ProjectileImpactFX.EffectProjectileExtension">
-	      <explosionMote>true</explosionMote>
-	      <explosionMoteSize>0.25</explosionMoteSize>
-	      <ImpactMoteDef>Mote_YellowSparkFlash</ImpactMoteDef>
-	      <ImpactMoteSize>1</ImpactMoteSize>
-	      <ImpactGlowMoteDef>Mote_ExplosionFlash</ImpactGlowMoteDef>
-	      <ImpactGlowMoteSize>2.5</ImpactGlowMoteSize>
-	    </li>
-	  </modExtensions>
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="OGLasChargeBase">
+		<defName>Ammo_OGLasStd</defName>
+		<label>Las charge (Imperial)</label>
+		<graphicData>
+			<texPath>Things/Ammo/Charged/Regular</texPath>
+			<graphicClass>Graphic_StackCount</graphicClass>
+		</graphicData>
+		<statBases>
+			<MarketValue>0.95</MarketValue>
+		</statBases>
+		<ammoClass>OGLasAC</ammoClass>
 	</ThingDef>
 
+	<!-- ==================== Recipes ========================== -->
 	<RecipeDef ParentName="AmmoRecipeBase">
-	  <defName>MakeAmmo_OGI_Bullet_LasGun</defName>
-	  <label>make Las cartridge (I) x180</label>
-	  <description>Craft 180 Las cartridges.</description>
-	  <jobString>Making Las cartridges.</jobString>
-	  <ingredients>
-	    <li>
-	      <filter>
-		<thingDefs>
-		  <li>Plasteel</li>
-		</thingDefs>
-	      </filter>
-	      <count>3</count>
-	    </li>
-	    <li>
-	      <filter>
-		<thingDefs>
-		  <li>ComponentIndustrial</li>
-		</thingDefs>
-	      </filter>
-	      <count>3</count>
-	    </li>
-	  </ingredients>
-	  <fixedIngredientFilter>
-	    <thingDefs>
-	      <li>Plasteel</li>
-	      <li>ComponentIndustrial</li>
-	    </thingDefs>
-	  </fixedIngredientFilter>
-	  <products>
-	    <OGI_Bullet_LasGun>180</OGI_Bullet_LasGun>
-	  </products>
+		<defName>MakeAmmo_OGLasStd</defName>
+		<label>make Las cartridge (I) x180</label>
+		<description>Craft 180 Las cartridges.</description>
+		<jobString>Making Las cartridges.</jobString>
+		<ingredients>
+			<li>
+				<filter>
+					<thingDefs>
+					<li>Plasteel</li>
+					</thingDefs>
+				</filter>
+				<count>3</count>
+			</li>
+			<li>
+				<filter>
+					<thingDefs>
+					<li>ComponentIndustrial</li>
+					</thingDefs>
+				</filter>
+				<count>3</count>
+			</li>
+		</ingredients>
+		<fixedIngredientFilter>
+			<thingDefs>
+				<li>Plasteel</li>
+				<li>ComponentIndustrial</li>
+			</thingDefs>
+		</fixedIngredientFilter>
+		<products>
+			<Ammo_OGLasStd>180</Ammo_OGLasStd>
+		</products>
+		<!--researchPrerequisite>OG_Common_Tech_Weapons_Laser</researchPrerequisite-->
 	</RecipeDef>
+
 </Defs>

@@ -1,4 +1,41 @@
 <Defs>
+
+<!-- ====================== Las Blast ===================== -->
+<ThingDef Class="OgsLasers.LaserBeamDefCE" ParentName="BaseBullet">
+  <thingClass>OgsLasers.LaserBeamCE</thingClass>
+  <defName>OGI_Bullet_LasGun</defName>
+  <graphicData>
+      <graphicClass>Graphic_Single</graphicClass>
+      <texPath>Things/Projectile/LasShotLrg</texPath>
+      <shaderType>TransparentPostLight</shaderType>
+      <drawSize>1.5</drawSize>
+    </graphicData>
+    <label>las blast</label>
+    <beamGraphic>BeamGraphic</beamGraphic>
+  <description>A focused pinpoint laser beam which is strong enough to take an ordinary human arm off with one shot but is not as effective against the more durable alien bodies and stronger types of personal armour.</description>
+  <textures>
+    <li>Things/Mote/LongSparkThrown</li>
+  </textures>
+  <seam>0</seam>
+  <projectile Class="CombatExtended.ProjectilePropertiesCE">
+    <damageDef>Bullet</damageDef>
+    <damageAmountBase>10</damageAmountBase>
+    <armorPenetrationSharp>12</armorPenetrationSharp>
+    <armorPenetrationBlunt>28</armorPenetrationBlunt>
+  </projectile>
+  <modExtensions>
+    <li Class="ProjectileImpactFX.EffectProjectileExtension">
+      <explosionMote>true</explosionMote>
+      <explosionMoteSize>0.25</explosionMoteSize>
+      <ImpactMoteDef>Mote_YellowSparkFlash</ImpactMoteDef>
+      <ImpactMoteSize>1</ImpactMoteSize>
+      <ImpactGlowMoteDef>Mote_ExplosionFlash</ImpactGlowMoteDef>
+      <ImpactGlowMoteSize>2.5</ImpactGlowMoteSize>
+    </li>
+  </modExtensions>
+</ThingDef>
+
+ 
 <!-- ====================== Las Gun - Base ===================== -->
 <ThingDef Name="OG_Imperial_LasGun" ParentName="BaseHumanMakeableGun" Abstract="True">
 	<label>lasgun (I)</label>

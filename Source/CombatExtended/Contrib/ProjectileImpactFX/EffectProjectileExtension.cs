@@ -77,7 +77,7 @@ namespace ProjectileImpactFX
             {
                 if (hitThing != null && hitThing is Pawn pawn)
                 {
-                    ImpactMoteDef = ThingDef.Named("Mote_Blood_Puff");
+                    ImpactMoteDef = ThingDef.Named("Mote_BloodPuff");
                     if (sound != null)
                     {
                         sound.PlayOneShot(new TargetInfo(loc.ToIntVec3(), map, false));
@@ -152,7 +152,7 @@ namespace ProjectileImpactFX
             {
                 if (hitThing != null && hitThing is Pawn pawn)
                 {
-                    ImpactMoteDef = ThingDef.Named("Mote_Blood_Puff");
+                    ImpactMoteDef = ThingDef.Named("Mote_BloodPuff");
                     if (sound != null)
                     {
                         sound.PlayOneShot(new TargetInfo(loc.ToIntVec3(), map, false));
