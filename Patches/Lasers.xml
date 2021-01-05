@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+
+	<Operation Class="PatchOperationSequence">
+		<!--success>Always</success-->
+		<operations>
+				<!-- ====================== LasGun ===================== -->
+				<!-- ====================== M Galaxy Pattern ===================== -->
+				<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+					<defName>OGI_Gun_LasGun_Galaxy</defName>
+					<statBases>
+						<Mass>2.3</Mass>
+						<RangedWeapon_Cooldown>1.70</RangedWeapon_Cooldown>
+						<SightsEfficiency>1.0</SightsEfficiency>
+						<ShotSpread>0.15</ShotSpread>
+						<SwayFactor>1.2</SwayFactor>
+						<Bulk>2.2</Bulk>
+					</statBases>
+					<Properties>
+						<recoilAmount>0.1</recoilAmount>
+						<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+						<hasStandardCommand>true</hasStandardCommand>
+						<defaultProjectile>OGI_Bullet_LasGun</defaultProjectile>
+						<warmupTime>1</warmupTime>
+						<range>45</range>
+						<soundCast>Shot_ChargeRifle</soundCast>
+						<soundCastTail>GunTail_Medium</soundCastTail>
+						<muzzleFlashScale>10</muzzleFlashScale>
+						<ticksBetweenBurstShots>10</ticksBetweenBurstShots>
+						<burstShotCount>3</burstShotCount>
+						<targetParams>
+							<canTargetLocations>true</canTargetLocations>
+						</targetParams>
+					</Properties>
+					<AmmoUser>
+						<magazineSize>80</magazineSize>
+						<reloadTime>2.5</reloadTime>
+						<ammoSet>AmmoSet_OGLasStd</ammoSet>
+					</AmmoUser>
+					<FireModes>
+						<aiAimMode>AimedShot</aiAimMode>
+						<aiUseBurstMode>TRUE</aiUseBurstMode>	
+					</FireModes>
+					<weaponTags>
+
+					</weaponTags>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="OGI_Gun_LasGun_Galaxy"]/tools</xpath>
+					<value>
+						<tools>
+							<li Class="CombatExtended.ToolCE">
+								<label>stock</label>
+								<capacities>
+									<li>Blunt</li>
+								</capacities>
+								<power>9</power>
+								<cooldownTime>1.8</cooldownTime>
+								<armorPenetrationBlunt>2.755</armorPenetrationBlunt>
+							</li>
+							<li Class="CombatExtended.ToolCE">
+								<label>barrel</label>
+								<capacities>
+									<li>Blunt</li>
+									<li>Poke</li>
+								</capacities>
+								<power>10</power>
+								<cooldownTime>1.9</cooldownTime>
+								<armorPenetrationBlunt>2.755</armorPenetrationBlunt>
+							</li>
+						</tools>
+					</value>
+				</li>
+
+
+		</operations>
+	</Operation>
+
+</Patch>
