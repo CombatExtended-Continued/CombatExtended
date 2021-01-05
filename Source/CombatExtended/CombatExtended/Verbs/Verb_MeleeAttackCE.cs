@@ -277,86 +277,89 @@ namespace CombatExtended
             damageInfo.SetWeaponHediff(hediffDef);
             damageInfo.SetAngle(direction);
 
-            // Calculate odds of targeting vulnerable bodyparts, excluding social fights and beating prisoners
-            if (target.Thing is Pawn p && !(CasterPawn.IsColonist && (p.IsColonist || p.IsPrisoner)))
+            if (Controller.settings.ExperimentalMeleeBuffs)
             {
-                int meleeSkill = CasterPawn?.skills?.GetSkill(SkillDefOf.Melee)?.Level ?? 0;
-
-                // If the target is downed, don't check for melee skill and apply a multiplier instead
-                if (!p.Downed) 
+                // Calculate odds of targeting vulnerable bodyparts, excluding social fights and beating prisoners
+                if (target.Thing is Pawn p && !(CasterPawn.IsColonist && (p.IsColonist || p.IsPrisoner)))
                 {
-                    meleeSkill -= p.skills?.GetSkill(SkillDefOf.Melee)?.Level ?? 0;
-                }
-                else
-                {
-                    meleeSkill = (int) (meleeSkill * MeleeDownedChanceMult);
-                }
+                    int meleeSkill = CasterPawn?.skills?.GetSkill(SkillDefOf.Melee)?.Level ?? 0;
 
-                // If the pawn is skilled enough to receive a bonus
-                if (meleeSkill > 0)
-                {
-                    var pawnParts = p.health.hediffSet.GetNotMissingParts(BodyPartHeight.Undefined, BodyPartDepth.Undefined);
-                    var tempDInfo = damageInfo;
-                    bool armorDeflected;
-                    bool armorReduced;
-                    bool shieldAbsorbed;
-
-                    var dmgList = new List<BodyPartRecord>();
-                    var noDmgList =  new List<BodyPartRecord>();
-
-                    // I calculate the added hit chance for vulnerable body parts
-                    float hitMult = meleeSkill / 20.0f * MeleeSkillChanceMult + 1.0f;
-
-                    // For each bodypart the target has
-                    foreach (BodyPartRecord part in pawnParts)
+                    // If the target is downed, don't check for melee skill and apply a multiplier instead
+                    if (!p.Downed)
                     {
-                        // If it can be targeted
-                        if (part.def.conceptual)
-                            continue;
-
-                        // Check how much damage would be dealt when attacking it
-                        LastAttackVerb = this;
-                        tempDInfo = ArmorUtilityCE.GetAfterArmorDamage(damageInfo, p, part, out armorDeflected, out armorReduced, out shieldAbsorbed, true);
-                        LastAttackVerb = null;
-
-                        // Store part into list, based on whether damage would be dealt or not
-                        if(tempDInfo.Amount > 0)
-                        {
-                            dmgList.Insert(Rand.RangeInclusive(0,dmgList.Count), part); // Insert in random order
-                        }
-                        else
-                        {
-                            noDmgList.Add(part);
-                        }
-                            
+                        meleeSkill -= p.skills?.GetSkill(SkillDefOf.Melee)?.Level ?? 0;
+                    }
+                    else
+                    {
+                        meleeSkill = (int) (meleeSkill * MeleeDownedChanceMult);
                     }
 
-                    // If there is at least 1 vulnerable body part
-                    if (dmgList.Count > 0)
+                    // If the pawn is skilled enough to receive a bonus
+                    if (meleeSkill > 0)
                     {
-                        float seed = Rand.Value;
-                        bool selected = false;
+                        var pawnParts = p.health.hediffSet.GetNotMissingParts(BodyPartHeight.Undefined, BodyPartDepth.Undefined);
+                        var tempDInfo = damageInfo;
+                        bool armorDeflected;
+                        bool armorReduced;
+                        bool shieldAbsorbed;
 
-                        // Check if the pawn should strike a vulnerable bodypart, taking into account coverage
-                        foreach (BodyPartRecord b in dmgList)
+                        var dmgList = new List<BodyPartRecord>();
+                        var noDmgList = new List<BodyPartRecord>();
+
+                        // I calculate the added hit chance for vulnerable body parts
+                        float hitMult = meleeSkill / 20.0f * MeleeSkillChanceMult + 1.0f;
+
+                        // For each bodypart the target has
+                        foreach (BodyPartRecord part in pawnParts)
                         {
-                            if(seed < b.coverageAbs * hitMult)
+                            // If it can be targeted
+                            if (part.def.conceptual)
+                                continue;
+
+                            // Check how much damage would be dealt when attacking it
+                            LastAttackVerb = this;
+                            tempDInfo = ArmorUtilityCE.GetAfterArmorDamage(damageInfo, p, part, out armorDeflected, out armorReduced, out shieldAbsorbed, true);
+                            LastAttackVerb = null;
+
+                            // Store part into list, based on whether damage would be dealt or not
+                            if (tempDInfo.Amount > 0)
                             {
-                                damageInfo.SetHitPart(b);
-                                selected = true;
-                                break;
+                                dmgList.Insert(Rand.RangeInclusive(0, dmgList.Count), part); // Insert in random order
                             }
                             else
                             {
-                                seed -= b.coverageAbs * hitMult;
+                                noDmgList.Add(part);
                             }
-                            
+
                         }
 
-                        // If the check fails, target anything else, coverage doesn't matter here as damage dealt will be 0
-                        if (!selected)
+                        // If there is at least 1 vulnerable body part
+                        if (dmgList.Count > 0)
                         {
-                            damageInfo.SetHitPart(noDmgList[Rand.Range(0, noDmgList.Count)]); // doesn't matter which, always deals 0 damage, ignoring coverage
+                            float seed = Rand.Value;
+                            bool selected = false;
+
+                            // Check if the pawn should strike a vulnerable bodypart, taking into account coverage
+                            foreach (BodyPartRecord b in dmgList)
+                            {
+                                if (seed < b.coverageAbs * hitMult)
+                                {
+                                    damageInfo.SetHitPart(b);
+                                    selected = true;
+                                    break;
+                                }
+                                else
+                                {
+                                    seed -= b.coverageAbs * hitMult;
+                                }
+
+                            }
+
+                            // If the check fails, target anything else, coverage doesn't matter here as damage dealt will be 0
+                            if (!selected)
+                            {
+                                damageInfo.SetHitPart(noDmgList[Rand.Range(0, noDmgList.Count)]); // doesn't matter which, always deals 0 damage, ignoring coverage
+                            }
                         }
                     }
                 }
