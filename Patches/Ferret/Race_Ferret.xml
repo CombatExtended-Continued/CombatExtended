@@ -4,10 +4,10 @@
 		<success>Always</success>
 		<operations>
 	<li Class="CombatExtended.PatchOperationFindMod">
-				<modName>Ferrex Race 1.0</modName>
+				<modName>Ferrex Race (Continued)</modName>
 	</li>
 	<li Class="PatchOperationAddModExtension">
-		<xpath>*/AlienRace.ThingDef_AlienRace[defName="Alien_Ferrex"]</xpath>
+		<xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="Alien_Ferrex"]</xpath>
 		<value>
 			<li Class="CombatExtended.RacePropertiesExtensionCE">
 				<bodyShape>Humanoid</bodyShape>
@@ -19,7 +19,7 @@
 	<!-- ========== Also Makes Em Suppressable ========== -->
 	
 	<li Class="PatchOperationAdd">
-		<xpath>*/ThingDef[@Name="BaseFerretPawn"]/comps</xpath>
+		<xpath>/Defs/ThingDef[@Name="BaseFerretPawn"]/comps</xpath>
 		<value>
 			<li>
 				<compClass>CombatExtended.CompPawnGizmo</compClass>
@@ -31,7 +31,7 @@
 	<!-- ========== Punch punch, no claws or teeth. Fair enough! ========== -->
 	
 			<li Class="PatchOperationAdd">
-			<xpath>*/AlienRace.ThingDef_AlienRace[defName = "Alien_Ferrex"]/statBases</xpath>
+			<xpath>/Defs/AlienRace.ThingDef_AlienRace[defName = "Alien_Ferrex"]/statBases</xpath>
 			<value>
 			<AimingAccuracy>1</AimingAccuracy>
 			<MeleeDodgeChance>1</MeleeDodgeChance>
@@ -43,7 +43,7 @@
 			</li>
 
 			<li Class="PatchOperationReplace">
-			<xpath>*/AlienRace.ThingDef_AlienRace[defName="Alien_Ferrex"]/tools</xpath>
+			<xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="Alien_Ferrex"]/tools</xpath>
 			<value>
 			<tools>
 				<li Class="CombatExtended.ToolCE">
@@ -64,7 +64,8 @@
 				<power>6</power>
 				<cooldownTime>1.3</cooldownTime>
 				<linkedBodyPartsGroup>RightHand</linkedBodyPartsGroup>
-				<armorPenetration>0.12</armorPenetration>
+				<armorPenetrationSharp>0.07</armorPenetrationSharp>
+<armorPenetrationBlunt>0.338</armorPenetrationBlunt>
 				</li>
 				<li Class="CombatExtended.ToolCE">
 				<label>teeth</label>
@@ -74,7 +75,8 @@
 				<power>9</power>
 				<cooldownTime>1.6</cooldownTime>
 				<linkedBodyPartsGroup>Teeth</linkedBodyPartsGroup>
-				<armorPenetration>0.16</armorPenetration>
+				<armorPenetrationSharp>0.09</armorPenetrationSharp>
+					<armorPenetrationBlunt>1.690</armorPenetrationBlunt>
 				</li>
 			</tools>
 			</value>
@@ -88,7 +90,7 @@
 	<!-- ========== Inventory and all that jazz ========== -->
 	
 	<li Class="PatchOperationReplace">
-		<xpath>*/ThingDef[@Name="BaseFerretPawn"]/inspectorTabs/li[.="ITab_Pawn_Gear"]</xpath>
+		<xpath>/Defs/ThingDef[@Name="BaseFerretPawn"]/inspectorTabs/li[.="ITab_Pawn_Gear"]</xpath>
 		<value>
 			<li>CombatExtended.ITab_Inventory</li>
 		</value>
@@ -96,7 +98,7 @@
 
 	<li Class="PatchOperationAdd">
 	
-		<xpath>*/ThingDef[@Name="BaseFerretPawn"]/comps</xpath>
+		<xpath>/Defs/ThingDef[@Name="BaseFerretPawn"]/comps</xpath>
 		<value>
 			<li Class="CombatExtended.CompProperties_Inventory" />
 		</value>
