@@ -42,6 +42,7 @@ Mod |
 [SYR] Thrumkin	|
 A Dog Said...	|
 Alpha Animals |
+Alpha Biomes | 
 Android Tiers	|
 Android Tiers++	|
 Androids	|
