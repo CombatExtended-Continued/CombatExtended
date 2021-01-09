@@ -1,16 +1,53 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <Patch>
 
-  <Operation Class="PatchOperationFindMod">
-    <mods>
-      <li>Race to the Rim</li>
-    </mods>
-    <match Class="PatchOperationSequence">
-      <operations>
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+			<li>Race to the Rim</li>
+		</mods>
 
+		<match Class="PatchOperationSequence">
+		<operations>
 
-      </operations>
-    </match>
-  </Operation>
+			<!-- === Projectile Base === -->
+
+				<!-- These use VE ThingClass -->
+				<!--
+				defName="RttR_NightmareBreath" or 
+				defName="RttR_RazorwhipBreath" or
+				defName="RttR_TripleStrykeBreath" or 
+				defName="RttR_StormcutterBreath" or 
+				defName="RttR_TerribleTerrorBreath" or 
+				defName="RttR_NadderBreath" or 	
+				-->		
+			
+			<li Class="PatchOperationReplace">
+				<xpath>/Defs/ThingDef[
+				@Name="RttR_BaseAnimalProjectile" or
+				defName="RttR_FlameBreath" or
+				defName="RttR_TinyFlameBreath" or
+				defName="RttR_FlightmareBreath" or
+				defName="RttR_GronckleBreath" or
+				defName="RttR_StreamFlameBreath" or
+				defName="RttR_Furybreath" or	
+				defName="RttR_StreamFlameBreath" or
+				defName="RttR_GasBall" or
+				defName="RttR_WaterBreath"												
+				]/thingClass</xpath>
+				<value>
+					<thingClass>CombatExtended.ProjectileCE_Explosive</thingClass>
+				</value>
+			</li>		
+			
+			<li Class="PatchOperationReplace">
+				<xpath>/Defs/ThingDef[@Name="RttR_BaseAnimalProjectile"]/projectile/speed</xpath>
+				<value>
+					<speed>40</speed>
+				</value>
+			</li>
+
+		</operations>		
+		</match>
+	</Operation>
 
 </Patch>
