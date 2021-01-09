@@ -8,18 +8,10 @@
 			<li Class="CombatExtended.PatchOperationFindMod">
 				<modName>Arachne Race</modName>
 			</li>
-
-			<li Class="PatchOperationAdd">
-				<success>Always</success>
-				<xpath>*/ThingDef[@Name="BasePawn"]/comps</xpath>
-				<value>
-					<li Class="CombatExtended.CompProperties_Inventory" />
-				</value>
-			</li>
 			
 			<li Class="PatchOperationAddModExtension">
 				<success>Always</success>
-				<xpath>*/AlienRace.ThingDef_AlienRace[defName="Arachne"]</xpath>
+				<xpath>Defs/AlienRace.ThingDef_AlienRace[defName="Arachne"]</xpath>
 				<value>
 					<li Class="CombatExtended.RacePropertiesExtensionCE">
 						<bodyShape>Humanoid</bodyShape>
@@ -28,7 +20,7 @@
 			</li>
 			
 			<li Class="PatchOperationAdd">
-				<xpath>*/AlienRace.ThingDef_AlienRace[defName="Arachne"]/statBases</xpath>
+				<xpath>Defs/AlienRace.ThingDef_AlienRace[defName="Arachne"]/statBases</xpath>
 				<value>
 					<AimingAccuracy>1</AimingAccuracy>
 					<MeleeCritChance>1.1</MeleeCritChance>
@@ -40,7 +32,7 @@
 					
 			<li Class="PatchOperationReplace">
 				<success>Always</success>
-				<xpath>*/AlienRace.ThingDef_AlienRace[defName="Arachne"]/tools</xpath>
+				<xpath>Defs/AlienRace.ThingDef_AlienRace[defName="Arachne"]/tools</xpath>
 				<value>
 					<tools>
 						<li Class="CombatExtended.ToolCE">
@@ -127,11 +119,11 @@
 				<success>Always</success>
 				<operations>
 					<li Class="PatchOperationTest">
-						<xpath>*/AlienRace.ThingDef_AlienRace[defName="Arachne"]/comps</xpath>
+						<xpath>Defs/AlienRace.ThingDef_AlienRace[defName="Arachne"]/comps</xpath>
 						<success>Invert</success>
 					</li>
 					<li Class="PatchOperationAdd">
-						<xpath>*/AlienRace.ThingDef_AlienRace[defName="Arachne"]</xpath>
+						<xpath>Defs/AlienRace.ThingDef_AlienRace[defName="Arachne"]</xpath>
 						<value>
 							<comps />
 						</value>
@@ -141,7 +133,7 @@
 
 			<li Class="PatchOperationAdd">
 			<success>Always</success>
-				<xpath>*/AlienRace.ThingDef_AlienRace[defName="Arachne"]/comps</xpath>
+				<xpath>Defs/AlienRace.ThingDef_AlienRace[defName="Arachne"]/comps</xpath>
 				<value>
 					<li>
 					  <compClass>CombatExtended.CompPawnGizmo</compClass>
