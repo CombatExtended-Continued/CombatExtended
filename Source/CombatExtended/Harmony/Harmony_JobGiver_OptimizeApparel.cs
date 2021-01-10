@@ -9,8 +9,9 @@ using Verse.AI;
 
 namespace CombatExtended.HarmonyCE
 {
-    /* Overrides the CompReloadable reload job if the pawn has suitable ammo in their inventory.
-     * If no inventory ammo is available, base method is allowed to execute (reload from stockpiles).
+    /* Intercepts the outfit manager's attempts to equip a shield or shield belt.
+     * If the current loadout has a projectile weapon in it, does not let the outfit manager grab a shield belt.
+     * If the current loadout has a shield in it, does not let the outfit manager grab a shield.
      */
     [HarmonyPatch(typeof(JobGiver_OptimizeApparel), "ApparelScoreGain_NewTmp")]
     internal static class Harmony_JobGiver_OptimizeApparel_ApparelScoreGain_NewTmp
