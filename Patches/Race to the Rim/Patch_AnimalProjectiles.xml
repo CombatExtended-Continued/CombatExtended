@@ -38,11 +38,35 @@
 					<thingClass>CombatExtended.ProjectileCE_Explosive</thingClass>
 				</value>
 			</li>		
-			
+
+			<li Class="PatchOperationAttributeAdd">
+				<xpath>/Defs/ThingDef[
+				@Name="RttR_BaseAnimalProjectile" or
+				defName="RttR_FlameBreath" or
+				defName="RttR_TinyFlameBreath" or
+				defName="RttR_FlightmareBreath" or
+				defName="RttR_GronckleBreath" or
+				defName="RttR_StreamFlameBreath" or
+				defName="RttR_Furybreath" or	
+				defName="RttR_StreamFlameBreath" or
+				defName="RttR_GasBall" or
+				defName="RttR_WaterBreath"												
+				]/projectile</xpath>
+        <attribute>Class</attribute>
+        <value>CombatExtended.ProjectilePropertiesCE</value>
+			</li>		
+
 			<li Class="PatchOperationReplace">
 				<xpath>/Defs/ThingDef[@Name="RttR_BaseAnimalProjectile"]/projectile/speed</xpath>
 				<value>
 					<speed>40</speed>
+				</value>
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>/Defs/ThingDef[@Name="RttR_BaseAnimalProjectile"]/projectile/flyOverhead</xpath>
+				<value>
+          <flyOverhead>false</flyOverhead>
 				</value>
 			</li>
 
