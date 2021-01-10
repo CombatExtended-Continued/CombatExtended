@@ -1,12 +1,11 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <Patch>
-
-	<Operation Class="PatchOperationSequence">
-		<success>Always</success>
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+			<li>Mechanoids Extraordinaire</li>
+		</mods>
+		<match Class="PatchOperationSequence">
 		<operations>
-			<li Class="CombatExtended.PatchOperationFindMod">
-				<modName>Mechanoids Extraordinaire</modName>
-			</li>
 			<li Class="PatchOperationReplace">
 				<xpath>Defs/ThingDef[defName="Weapon_GrenadeLauncher_ME"]/label</xpath>
 				<value>
@@ -49,6 +48,6 @@
 				</weaponTags>
 			</li>
 		</operations>
+		</match>
 	</Operation>
-
 </Patch>
