@@ -350,10 +350,9 @@ namespace CombatExtended
                         }
                     }
                     //Thing we're hovering over is a shield
-                    if (thing is Apparel_Shield)
+                    if (thing is Apparel_Shield shield)
                     {
                         FloatMenuOption stowShieldOption;
-                        Apparel shield = thing as Apparel;
                         //shield is already being worn
                         if (SelPawnForGear.apparel != null && SelPawnForGear.apparel.WornApparel.Contains(shield))
                         {
