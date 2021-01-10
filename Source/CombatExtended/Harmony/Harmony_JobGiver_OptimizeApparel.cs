@@ -23,7 +23,7 @@ namespace CombatExtended.HarmonyCE
                 __result = -1000f;
                 return false;
             }
-            if (ap is Apparel_Shield && pawn.GetLoadout().containsShield)
+            if (ap is Apparel_Shield && (pawn.GetLoadout().containsShield || pawn.inventory.innerContainer.FirstOrDefault(x => x is Apparel_Shield) != null))
             {
                 __result = -1000f;
                 return false;
