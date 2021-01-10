@@ -38,4 +38,25 @@ namespace CombatExtended.HarmonyCE
             pawn.health.RemoveHediff(hediff);
         }
     }
+
+    [HarmonyPatch(typeof(Pawn_ApparelTracker), "Wear")]
+    internal static class Harmony_ApparelTracker_Wear
+    {
+        internal static void Postfix(Pawn_ApparelTracker __instance, Apparel newApparel)
+        {
+            Pawn owner = __instance.pawn;
+            //We are equipping a shield and our current primary weapon is not a valid one-handed.
+            if(newApparel is Apparel_Shield && !owner.equipment.Primary.def.weaponTags.Contains("CE_OneHandedWeapon"))
+            {
+                CompInventory compInventory = owner.TryGetComp<CompInventory>();
+                //Find the first thing that is one-handed
+                ThingWithComps eq = owner.inventory.innerContainer.FirstOrDefault(s => s.def.weaponTags.Contains("CE_OneHandedWeapon")) as ThingWithComps;
+                if (eq != null && eq.TryGetComp<CompEquippable>() != null)
+                {
+                    //equip it
+                    compInventory.TrySwitchToWeapon(eq);
+                }
+            }
+        }
+    }
 }
