@@ -12,8 +12,8 @@ namespace CombatExtended.HarmonyCE
     /* Overrides the CompReloadable reload job if the pawn has suitable ammo in their inventory.
      * If no inventory ammo is available, base method is allowed to execute (reload from stockpiles).
      */
-    [HarmonyPatch(typeof(JobGiver_OptimizeApparel), "ApparelScoreGain")]
-    internal static class Harmony_JobGiver_OptimizeApparel_ApparelScoreGain
+    [HarmonyPatch(typeof(JobGiver_OptimizeApparel), "ApparelScoreGain_NewTmp")]
+    internal static class Harmony_JobGiver_OptimizeApparel_ApparelScoreGain_NewTmp
     {
         internal static bool Prefix(Pawn pawn, Apparel ap, ref float __result)
         {
@@ -22,25 +22,11 @@ namespace CombatExtended.HarmonyCE
                 __result = -1000f;
                 return false;
             }
-
-            if (ap is Apparel_Shield)
+            if (ap is Apparel_Shield && pawn.GetLoadout().containsShield)
             {
-                foreach (LoadoutSlot potentialshield in pawn.GetLoadout().Slots)
-                {
-                    if (potentialshield.count < 1)
-                        continue;
-                    foreach (ThingCategoryDef ApparelItem in potentialshield.thingDef.thingCategories)
-                    {
-                        // we have a shield in the inventory
-                        if (ApparelItem.defName == "Shields")
-                        {
-                            __result = -1000f;
-                            return false;
-                        }
-                    }
-                }
+                __result = -1000f;
+                return false;
             }
-
             return true;
         }
     }

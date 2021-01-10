@@ -18,6 +18,7 @@ namespace CombatExtended
 
         public bool canBeDeleted = true;
         public bool defaultLoadout = false; //NOTE: assumed that there is only ever one loadout which is marked default.
+        public bool containsShield = false;
         public string label;
         internal int uniqueID;
         private List<LoadoutSlot> _slots = new List<LoadoutSlot>();
@@ -132,7 +133,13 @@ namespace CombatExtended
             if (old != null)
         		old.count += slot.count;
         	else
-            	_slots.Add(slot);
+            {
+                _slots.Add(slot);
+                if (!containsShield && slot.thingDef.thingCategories.Contains(CE_ThingCategoryDefOf.Shields))
+                {
+                    containsShield = true;
+                }
+            }
         }
 
         /// <summary>
@@ -173,6 +180,14 @@ namespace CombatExtended
         public void RemoveSlot(LoadoutSlot slot)
         {
             _slots.Remove(slot);
+            if (containsShield && slot.thingDef.thingCategories.Contains(CE_ThingCategoryDefOf.Shields))
+            {
+                //slot being removed was for a shield. Check if any other shields remain
+                if (Slots.FirstOrDefault(s => s.count >= 1 && s.thingDef.thingCategories.Contains(CE_ThingCategoryDefOf.Shields)) == null )
+                {
+                    containsShield = false;
+                }
+            }
         }
 
         /// <summary>

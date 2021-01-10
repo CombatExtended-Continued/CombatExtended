@@ -83,16 +83,12 @@ namespace CombatExtended.HarmonyCE
                 if (shieldAllowed)
                 {
                     //New equipment is valid with shield, equip shield from inventory if one exists
-                    foreach (Thing potentialshield in owner.inventory.innerContainer)
+                    Apparel potentialshield = owner.inventory.innerContainer.FirstOrDefault(x => x is Apparel_Shield) as Apparel;
+                    // we have a shield in the inventory
+                    if (potentialshield != null)
                     {
-                        foreach (ThingCategoryDef ApparelItem in potentialshield.def.thingCategories)
-                        {
-                            // we have a shield in the inventory
-                            if (ApparelItem.defName == "Shields")
-                            {
-                                owner.apparel.Wear(potentialshield as Apparel);
-                            }
-                        }
+                        owner.inventory.innerContainer.Remove(potentialshield);
+                        owner.apparel.Wear(potentialshield as Apparel);
                     }
                 }
             }

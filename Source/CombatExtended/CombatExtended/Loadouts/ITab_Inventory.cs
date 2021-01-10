@@ -370,6 +370,7 @@ namespace CombatExtended
                             stowShieldOption = new FloatMenuOption("Equip".Translate(shield.Label),
                                 new Action(delegate
                                 {
+                                    SelPawnForGear.inventory.innerContainer.Remove(shield);
                                     SelPawnForGear.apparel.Wear(shield);
                                 }));
                         }
