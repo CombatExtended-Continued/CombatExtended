@@ -140,6 +140,7 @@ Prostheses+ |
 PsiTech	|
 Rabbie The Moonrabbit	|
 Racc Race	|
+Race to the Rim |
 Rah's Bionics and Surgery Expansion	|
 Rakkle The Rattle Snake Race Mod  |
 Redcoat Apparel	|
