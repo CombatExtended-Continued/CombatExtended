@@ -1,12 +1,11 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <Patch>
-
-	<Operation Class="PatchOperationSequence">
-		<success>Always</success>
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+		<li>Rimfire 2.5</li>
+		</mods>
+		<match Class="PatchOperationSequence">
 		<operations>
-			<li Class="CombatExtended.PatchOperationFindMod">
-				<modName>Rimfire 2.5</modName>
-			</li>
 			<!-- ========== Short crossbow ========== -->
 			<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
 				<defName>RF_ShortCrossbow</defName>
@@ -65,5 +64,6 @@
 				</value>
 			</li>
 		</operations>
+		</match>
 	</Operation>
 </Patch>
