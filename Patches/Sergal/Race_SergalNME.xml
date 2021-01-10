@@ -1,13 +1,12 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <Patch>
-	<!-- ========== Make sure the mod is there first ========== -->
-	<Operation Class="PatchOperationSequence">
-		<success>Always</success>
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+			<li>Sergals and Gnolls</li>
+		</mods>
+		<match Class="PatchOperationSequence">
 		<operations>
-	<!-- ========== Look for Sil... uh ========== -->
-	<li Class="CombatExtended.PatchOperationFindMod">
-				<modName>Sergals and Gnolls</modName>
-	</li>
+
 	<!-- ========== Whats an NME? ========== -->
 	
 	<!-- ========== Turn our NME boys into NME *boys*? ========== -->
@@ -92,6 +91,7 @@
 	<!-- === then change 'em			   === -->
 
 		</operations>
+		</match>
 	</Operation>
 	
 	<!-- === Congratulations! Your alien is Combat Ready!	 === -->

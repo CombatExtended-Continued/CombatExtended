@@ -1,13 +1,11 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <Patch>
-	<!-- Black Widow pawn kinds. -->
-	<Operation Class="PatchOperationSequence">
-		<success>Always</success>
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+			<li>Black Widows 2.0</li>
+		</mods>
+		<match Class="PatchOperationSequence">
 		<operations>
-			<!-- ======== Check for the mod. ======== -->
-			<li Class="CombatExtended.PatchOperationFindMod">
-				<modName>Black Widows 2.0</modName>
-			</li>
 
 			<!-- ======== Black Widow faction. ======== -->
 			<!-- ==== BlackWidowMatron ==== -->
@@ -157,5 +155,6 @@
 				</value>
 			</li>
 		</operations>
+		</match>
 	</Operation>
 </Patch>
