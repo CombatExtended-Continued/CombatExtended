@@ -1,14 +1,15 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <Patch>
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+		<li>A Dog Said...</li>
+		</mods>
+
+		<match Class="PatchOperationSequence">
+		<operations>
 
   <!-- ========== Simple prosthetics ========== -->
 
-  <Operation Class="PatchOperationSequence">
-    <success>Always</success>
-    <operations>
-      <li Class="CombatExtended.PatchOperationFindMod">
-        <modName>A Dog Said...</modName>
-      </li>
       <li Class="PatchOperationReplace">
         <xpath>Defs/HediffDef[defName="SimpleProstheticLegAnimal" or defName="SimpleProstheticArmAnimal"]/comps/li[@Class="HediffCompProperties_VerbGiver"]/verbs</xpath>
         <value>
@@ -41,17 +42,9 @@
             </tools>
         </value>
       </li>
-    </operations>
-  </Operation>
 
   <!-- ========== Bionics ========== -->
 
-  <Operation Class="PatchOperationSequence">
-    <success>Always</success>
-    <operations>
-      <li Class="CombatExtended.PatchOperationFindMod">
-        <modName>A Dog Said...</modName>
-      </li>
       <li Class="PatchOperationReplace">
         <xpath>Defs/HediffDef[defName="BionicLegAnimal" or defName="BionicArmAnimal"]/comps/li[@Class="HediffCompProperties_VerbGiver"]/verbs</xpath>
         <value>
@@ -85,6 +78,8 @@
             </tools>
         </value>
       </li>
-    </operations>
-  </Operation>
+
+		</operations>
+		</match>
+	</Operation>
 </Patch>
