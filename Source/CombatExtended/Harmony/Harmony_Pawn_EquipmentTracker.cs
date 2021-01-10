@@ -62,7 +62,7 @@ namespace CombatExtended.HarmonyCE
         {
             Pawn owner = __instance.pawn;
             Apparel wornshield = owner.apparel.WornApparel.FirstOrDefault(x => x is Apparel_Shield);
-            bool shieldAllowed = (newEq.def.IsMeleeWeapon && !newEq.def.weaponTags.Contains("Shield_NoSidearm")) || newEq.def.weaponTags.Contains("Shield_Sidearm");
+            bool shieldAllowed = newEq.def.weaponTags.Contains("CE_OneHandedWeapon");
             // Are we wearing a shield?
             if (wornshield != null)
             {
