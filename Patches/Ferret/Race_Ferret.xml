@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <Patch>
-	<Operation Class="PatchOperationSequence">
-		<success>Always</success>
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+			<li>Ferrex Race 1.0</li>
+		</mods>
+		<match Class="PatchOperationSequence">
 		<operations>
-	<li Class="CombatExtended.PatchOperationFindMod">
-				<modName>Ferrex Race 1.0</modName>
-	</li>
 	<li Class="PatchOperationAddModExtension">
 		<xpath>Defs/AlienRace.ThingDef_AlienRace[defName="Alien_Ferrex"]</xpath>
 		<value>
@@ -102,5 +102,6 @@
 		</value>
 	</li>
 		</operations>
+		</match>
 	</Operation>
 </Patch>
