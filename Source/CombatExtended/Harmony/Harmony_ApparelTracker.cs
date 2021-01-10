@@ -46,11 +46,11 @@ namespace CombatExtended.HarmonyCE
         {
             Pawn owner = __instance.pawn;
             //We are equipping a shield and our current primary weapon is not a valid one-handed.
-            if(newApparel is Apparel_Shield && !owner.equipment.Primary.def.weaponTags.Contains("CE_OneHandedWeapon"))
+            if (newApparel is Apparel_Shield && !(owner.equipment?.Primary?.def?.weaponTags?.Contains("CE_OneHandedWeapon") ?? false))
             {
                 CompInventory compInventory = owner.TryGetComp<CompInventory>();
                 //Find the first thing that is one-handed
-                ThingWithComps eq = owner.inventory.innerContainer.FirstOrDefault(s => s.def.weaponTags.Contains("CE_OneHandedWeapon")) as ThingWithComps;
+                ThingWithComps eq = owner.inventory.innerContainer.FirstOrDefault(s => s.def.weaponTags?.Contains("CE_OneHandedWeapon") ?? false) as ThingWithComps;
                 if (eq != null && eq.TryGetComp<CompEquippable>() != null)
                 {
                     //equip it
