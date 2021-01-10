@@ -353,7 +353,7 @@ namespace CombatExtended
                     if (thing is Apparel_Shield)
                     {
                         FloatMenuOption stowShieldOption;
-                        Apparel shield = t as Apparel;
+                        Apparel shield = thing as Apparel;
                         //shield is already being worn
                         if (SelPawnForGear.apparel != null && SelPawnForGear.apparel.WornApparel.Contains(shield))
                         {
@@ -367,13 +367,11 @@ namespace CombatExtended
                         //shield is not currently being worn
                         else
                         {
-                            stowShieldOption = new FloatMenuOption("Equip".Translate(shield.label),
+                            stowShieldOption = new FloatMenuOption("Equip".Translate(shield.Label),
                                 new Action(delegate
                                 {
-                                    SelPawnForGear.apparel.Remove(shield);
-                                    SelPawnForGear.inventory.innerContainer.TryAddOrTransfer(shield, false);
+                                    SelPawnForGear.apparel.Wear(shield);
                                 }));
-                            owner.apparel.Wear(shield);
                         }
                         
                         floatOptionList.Add(stowShieldOption);

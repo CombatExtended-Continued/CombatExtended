@@ -55,16 +55,60 @@ namespace CombatExtended.HarmonyCE
         }
     }
 
+    [HarmonyPatch(typeof(Pawn_EquipmentTracker), "AddEquipment")]
+    static class Pawn_EquipmentTracker_ShieldPatchAddEquipment
+    {
+        static void Postfix(Pawn_EquipmentTracker __instance, ThingWithComps newEq)
+        {
+            Pawn owner = __instance.pawn;
+            Apparel wornshield = owner.apparel.WornApparel.FirstOrDefault(x => x is Apparel_Shield);
+            bool shieldAllowed = (newEq.def.IsMeleeWeapon && !newEq.def.weaponTags.Contains("Shield_NoSidearm")) || newEq.def.weaponTags.Contains("Shield_Sidearm");
+            // Are we wearing a shield?
+            if (wornshield != null)
+            {
+                //confirming the equipment is a weapon. Needed??
+                if (newEq.def.IsWeapon)
+                {
+                    if(!shieldAllowed)
+                    {
+                        //Stow shield
+                        owner.apparel.Remove(wornshield);
+                        owner.inventory.innerContainer.TryAddOrTransfer(wornshield, false);
+                    }
+                }
+            }
+            else
+            {
+                //Not currently wearing a shield
+                if (shieldAllowed)
+                {
+                    //New equipment is valid with shield, equip shield from inventory if one exists
+                    foreach (Thing potentialshield in owner.inventory.innerContainer)
+                    {
+                        foreach (ThingCategoryDef ApparelItem in potentialshield.def.thingCategories)
+                        {
+                            // we have a shield in the inventory
+                            if (ApparelItem.defName == "Shields")
+                            {
+                                owner.apparel.Wear(potentialshield as Apparel);
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    } 
+
     /* Dev Notes: 
      * This one can't simply be done as a postfix.
      * The return does verb.TryStartCastOn() which changes game state.
      * On the other hand should be do-able with a method replacer...
      */
 
-     /*
-      * Commented out for A18 as the method seems to have been removed. Need to figure out where it went/whether this patch is still needed
-      * -NIA
-      */
+    /*
+     * Commented out for A18 as the method seems to have been removed. Need to figure out where it went/whether this patch is still needed
+     * -NIA
+     */
 
     /*
     [HarmonyPatch(typeof(Pawn_EquipmentTracker), "TryStartAttack")]
