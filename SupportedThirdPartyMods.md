@@ -127,6 +127,7 @@ Misc. Robots	|
 More Consumables And Mutagens Reworked |
 More Mechanoids	|
 More Practical Traits	|
+More Utility Packs	|
 More Vanilla Turrets	|
 Moyo - From the Depth   |
 Nearmare Race	|
@@ -198,6 +199,7 @@ Vanilla Storytellers Expanded - Perry Persistent |
 VGP Fabrics
 Vulpine Race Pack	|
 Weapons+	|
+WWII German Uniforms - V's Edit |
 WWII Soviet Faction	|
 Xenn Race	|
 Xenohumans	|
