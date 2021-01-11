@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8" ?>
-<Patch>
 
-	<Operation Class="PatchOperationSequence">
-		<success>Always</success>
-		<operations>
-			<li Class="PatchOperationFindMod">
-				<mods><li>Xenn Race (Continued)</li></mods>
-			</li>
+<Patch>
+	<Operation Class="PatchOperationFindMod">
+    <mods>
+		<li>Xenn Race (Continued)</li>
+    </mods>
+		<match Class="PatchOperationSequence">
+		 <operations>
 			<!-- ========== Power Armor with Duster ========== -->
 	<li Class="PatchOperationAdd">
 		<xpath>Defs/ThingDef[defName="Xenn_Armored_DusterXX"]/statBases</xpath>
@@ -208,7 +208,7 @@
 	</li>
 			<!-- ========== Shadez ========== -->
 			<li Class="PatchOperationReplace">
-				<xpath>*/ThingDef[defName = "XennSunglasses"]/statBases/Mass</xpath>
+				<xpath>Defs/ThingDef[defName = "XennSunglasses"]/statBases/Mass</xpath>
 				<value>
 					<Mass>1</Mass>
 					<Bulk>5</Bulk>
@@ -216,13 +216,13 @@
 				</value>
 			</li>
 			<li Class="PatchOperationReplace">
-				<xpath>*/ThingDef[defName = "XennSunglasses"]/statBases/ArmorRating_Sharp</xpath>
+				<xpath>Defs/ThingDef[defName = "XennSunglasses"]/statBases/ArmorRating_Sharp</xpath>
 				<value>
 					<ArmorRating_Sharp>0.17</ArmorRating_Sharp>
 				</value>
 			</li>
-		</operations>
-	</Operation>
-
-</Patch>
+      </operations>
+    </match>
+  </Operation>
+</Patch>	
 

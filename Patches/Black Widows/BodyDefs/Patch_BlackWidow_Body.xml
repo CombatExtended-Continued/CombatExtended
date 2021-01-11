@@ -1,13 +1,12 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
+
 <Patch>
-	<!-- Black Widow mod's body defs. -->
-	<Operation Class="PatchOperationSequence">
-		<success>Always</success>
-		<operations>
-			<!-- ======== Check for the mod. ======== -->
-			<li Class="PatchOperationFindMod">
-				<mods><li>Black Widows (Continued)</li></mods>
-			</li>
+	<Operation Class="PatchOperationFindMod">
+    <mods>
+		<li>Black Widows (Continued)</li>
+    </mods>
+		<match Class="PatchOperationSequence">
+		 <operations>
 
 			<!-- ======== Black Widow alien race. ======== -->
 			<!-- ==== Natural armor coverage. ==== -->
@@ -64,6 +63,8 @@
 					<li>RightShoulder</li>
 				</value>
 			</li>
-		</operations>
-	</Operation>
+
+      </operations>
+    </match>
+  </Operation>
 </Patch>

@@ -1,12 +1,13 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<Patch>
 
-	<Operation Class="PatchOperationSequence">
-		<success>Always</success>
-		<operations>
-	<li Class="PatchOperationFindMod">
-		<mods><li>Racc Race (Continued)</li></mods>
-	</li>
+<Patch>
+	<Operation Class="PatchOperationFindMod">
+    <mods>
+		<li>Racc Race (Continued)</li>
+    </mods>
+		<match Class="PatchOperationSequence">
+		 <operations>
+
 			<!-- ========== Scoot ========== -->
 			<li Class="PatchOperationAddModExtension">
 				<xpath>/Defs/PawnKindDef[defName="RaccColonist"]</xpath>
@@ -318,6 +319,7 @@
 				  </li>
 				</value>
 			</li>
-		</operations>
-	</Operation>
-</Patch>
+      </operations>
+    </match>
+  </Operation>
+</Patch>	

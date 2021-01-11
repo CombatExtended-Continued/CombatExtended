@@ -1,12 +1,13 @@
-<?xml version="1.0" encoding="utf-8"?>
-<Patch>
+<?xml version="1.0" encoding="utf-8" ?>
 
-  <Operation Class="PatchOperationSequence">
-    <success>Always</success>
-    <operations>
-	<li Class="PatchOperationFindMod">
-		<mods><li>Ferrex Race (Continued)</li></mods>
-	</li>
+<Patch>
+	<Operation Class="PatchOperationFindMod">
+    <mods>
+		<li>Ferrex Race (Continued)</li>
+    </mods>
+		<match Class="PatchOperationSequence">
+		 <operations>
+
       <!-- Ferrex F90 (P90) -->
 	  <!-- Stolen from CE Guns' Vector until I can figure out how to make it P90-y -->
       <li Class="CombatExtended.PatchOperationMakeGunCECompatible">
@@ -203,7 +204,7 @@
 				</value>
 			</li>
 	  
-    </operations>
+      </operations>
+    </match>
   </Operation>
-
-</Patch>
+</Patch>			  

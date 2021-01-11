@@ -1,13 +1,12 @@
 <?xml version="1.0" encoding="utf-8" ?>
+
 <Patch>
-	<!-- ========== Make sure the mod is there first ========== -->
-	<Operation Class="PatchOperationSequence">
-		<success>Always</success>
-		<operations>
-			<!-- ========== Look for Fido ========== -->
-			<li Class="PatchOperationFindMod">
-				<mods><li>Xenn Race (Continued)</li></mods>
-			</li>
+	<Operation Class="PatchOperationFindMod">
+    <mods>
+		<li>Xenn Race (Continued)</li>
+    </mods>
+		<match Class="PatchOperationSequence">
+		 <operations>
 			<!-- ========== Found Fido ========== -->
 
 			<!-- ========== Turn our dog boys into dog *boys* ========== -->
@@ -120,10 +119,7 @@
 					<li Class="CombatExtended.CompProperties_Inventory" />
 				</value>
 			</li>
-		</operations>
-	</Operation>
-
-	<!-- === Congratulations! Your alien is Combat Ready!	 === -->
-	<!-- === If your alien comes with extra guns and gear,	 === -->
-	<!-- === Congratulations! You're not even close to done! === -->
-</Patch>
+      </operations>
+    </match>
+  </Operation>
+</Patch>			  
