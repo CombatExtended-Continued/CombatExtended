@@ -135,7 +135,7 @@ namespace CombatExtended
         	else
             {
                 _slots.Add(slot);
-                if (!containsShield && slot.thingDef.thingCategories.Contains(CE_ThingCategoryDefOf.Shields))
+                if (!containsShield && (slot?.thingDef?.thingCategories?.Contains(CE_ThingCategoryDefOf.Shields) ?? false))
                 {
                     containsShield = true;
                 }
