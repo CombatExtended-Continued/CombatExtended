@@ -165,6 +165,7 @@ Sergals, Gnolls, Lions and Frogs	|
 Silkiera Race	|
 Simply More Melee	|
 Soviet Armory	|
+Space Worms (Continued) |
 Spartan Foundry	|
 Star Wars - Factions |
 Star Wars - Factions (Continued) |
