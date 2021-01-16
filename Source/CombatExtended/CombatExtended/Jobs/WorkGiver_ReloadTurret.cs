@@ -64,9 +64,9 @@ namespace CombatExtended
         
         public override bool HasJobOnThing(Pawn pawn, Thing t, bool forced = false)
         {
-            // Should never happen anymore, as only TurretGunCEs should be returned from PotentialWorkThingsGlobal
-            Building_Turret turret = t as Building_Turret;
-            if (turret == null) {
+            // Should never happen anymore, as only BuildingTurrets should be returned from PotentialWorkThingsGlobal
+	    if (!(t is Building_Turret turret))
+	    {
                 return false;
             }
             

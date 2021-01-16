@@ -71,8 +71,8 @@ namespace CombatExtended.CombatExtended.Jobs.Utils
 				return false;
 			}
 			
-			var turret = thing as Building_Turret;
-			if (turret == null) {
+			if (!(thing is Building_Turret turret))
+			{
 				CELogger.Warn($"{pawn} could not reload {thing} because {thing} is not a Turret. If you are a modder, make sure to use {nameof(CombatExtended)}.{nameof(Building_TurretGunCE)} for your turret's compClass.");
 				return false;
 			}
