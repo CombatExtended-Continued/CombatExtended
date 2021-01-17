@@ -82,6 +82,7 @@ Expanded Patchleather	|
 Expanded Prosthetics and Organ Engineering (EPOE)	|
 Expanded Prosthetics and Organ Engineering (EPOE) - Forked	|
 Extended Storage	|
+Fallout New Vegas - Elite Riot Gear |
 Fallout Traits	|
 Fantasy Metals Reforged |
 FashionRIMsta	|
