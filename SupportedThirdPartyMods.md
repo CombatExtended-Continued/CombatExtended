@@ -125,6 +125,7 @@ MiningCo. MiningHelmet	|
 Misc. Core	|
 Misc. MAI |
 Misc. Robots	|
+Mister Meeseeks |
 More Consumables And Mutagens Reworked |
 More Mechanoids	|
 More Practical Traits	|
