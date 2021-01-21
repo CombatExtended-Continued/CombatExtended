@@ -137,6 +137,7 @@ Ni'Hal	|
 Orassans	|
 Palm Cats   |
 Penguin	|
+Playable Geth |
 Polarisbloc - Security Force	|
 Prestige Specialist Armours	|
 Prostheses+ |
