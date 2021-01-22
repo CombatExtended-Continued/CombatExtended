@@ -104,28 +104,35 @@
 			<MeleeDodgeChance>0.04</MeleeDodgeChance>
 			<MeleeCritChance>0.76</MeleeCritChance>
 			<MeleeParryChance>0.45</MeleeParryChance>
-			<Flammability>0.6</Flammability>
+			<Flammability>0</Flammability>
 		</value>
 	</li>
 
 	<li Class="PatchOperationAdd">
 		<xpath>Defs/ThingDef[defName="VFEV_Mech_Odin"]/statBases</xpath>
 		<value>
-			<ArmorRating_Blunt>8</ArmorRating_Blunt>
+			<ArmorRating_Blunt>10</ArmorRating_Blunt>
 		</value>
 	</li>
 
 	<li Class="PatchOperationAdd">
 		<xpath>Defs/ThingDef[defName="VFEV_Mech_Odin"]/statBases</xpath>
 		<value>
-			<ArmorRating_Sharp>4</ArmorRating_Sharp>
+			<ArmorRating_Sharp>6</ArmorRating_Sharp>
+		</value>
+	</li>
+			
+	<li Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="VFEV_Mech_Odin"]/statBases</xpath>
+		<value>
+			<ArmorRating_Heat>2.00</ArmorRating_Heat>
 		</value>
 	</li>
 
 	<li Class="PatchOperationReplace">
 		<xpath>Defs/ThingDef[defName="VFEV_Mech_Odin"]/race/baseHealthScale</xpath>
 		<value>
-			<baseHealthScale>20</baseHealthScale>
+			<baseHealthScale>10</baseHealthScale>
 		</value>
 	</li>
 
@@ -134,26 +141,28 @@
 		<value>
 		<tools>
 			<li Class="CombatExtended.ToolCE">
-				<label>left fist</label>
+				<label>left blade</label>
 				<capacities>
-				<li>Blunt</li>
+				<li>Cut</li>
 				</capacities>
-				<power>12.0</power>
+				<power>56.0</power>
 				<cooldownTime>2</cooldownTime>
 				<linkedBodyPartsGroup>LeftHand</linkedBodyPartsGroup>
 				<alwaysTreatAsWeapon>true</alwaysTreatAsWeapon>
-				<armorPenetrationBlunt>6</armorPenetrationBlunt>				
+				<armorPenetrationSharp>24</armorPenetrationSharp>
+				<armorPenetrationBlunt>50</armorPenetrationBlunt>				
 			</li>
 			<li Class="CombatExtended.ToolCE">
-				<label>right fist</label>
+				<label>right blade</label>
 				<capacities>
-				<li>Blunt</li>
+				<li>Cut</li>
 				</capacities>
-				<power>12.0</power>
+				<power>56.0</power>
 				<cooldownTime>2</cooldownTime>
 				<linkedBodyPartsGroup>RightHand</linkedBodyPartsGroup>
 				<alwaysTreatAsWeapon>true</alwaysTreatAsWeapon>
-				<armorPenetrationBlunt>6</armorPenetrationBlunt>				
+				<armorPenetrationSharp>24</armorPenetrationSharp>
+				<armorPenetrationBlunt>50</armorPenetrationBlunt>				
 			</li>
 			<li Class="CombatExtended.ToolCE">
 				<label>head</label>
@@ -164,7 +173,7 @@
 				<cooldownTime>3.20</cooldownTime>
 				<linkedBodyPartsGroup>HeadAttackTool</linkedBodyPartsGroup>
 				<armorPenetrationSharp>0</armorPenetrationSharp>
-				<armorPenetrationBlunt>12</armorPenetrationBlunt>
+				<armorPenetrationBlunt>24</armorPenetrationBlunt>
 				<alwaysTreatAsWeapon>true</alwaysTreatAsWeapon>
 			</li>	
 		</tools>
@@ -183,7 +192,7 @@
 	<li Class="PatchOperationReplace">
 		<xpath>Defs/PawnKindDef[defName="VFEV_Mech_Odin"]/combatPower</xpath>
 		<value>
-			<combatPower>500</combatPower>
+			<combatPower>600</combatPower>
 		</value>
 	</li>
 
