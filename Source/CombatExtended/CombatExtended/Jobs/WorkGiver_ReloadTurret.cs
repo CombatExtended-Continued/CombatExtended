@@ -4,6 +4,8 @@ using Verse;
 using Verse.AI;
 using CombatExtended.CombatExtended.LoggerUtils;
 using CombatExtended.CombatExtended.Jobs.Utils;
+using CombatExtended.Compatibility;
+
 
 namespace CombatExtended
 {
@@ -16,11 +18,13 @@ namespace CombatExtended
         private float GetThingPriority(Pawn pawn, Thing t, bool forced = false)
         {
             CELogger.Message($"pawn: {pawn}. t: {t}. forced: {forced}");
-            Building_TurretGunCE turret = t as Building_TurretGunCE;
+            Building_Turret turret = t as Building_Turret;
 
-            if (!turret.Active) return 1f;
-            if (turret.EmptyMagazine) return 9f;
-            if (turret.AutoReloadableMagazine) return 5f;
+	    
+
+            if (!((turret as Building_TurretGunCE)?.Active ?? true)) return 1f;
+            if (turret.GetAmmo()?.EmptyMagazine ?? false) return 9f;
+            if (turret.GetMannable()==null) return 5f;
             return 1f;
         }
 
@@ -60,21 +64,22 @@ namespace CombatExtended
         
         public override bool HasJobOnThing(Pawn pawn, Thing t, bool forced = false)
         {
-            // Should never happen anymore, as only TurretGunCEs should be returned from PotentialWorkThingsGlobal
-            if (!(t is Building_TurretGunCE)) {
+            // Should never happen anymore, as only BuildingTurrets should be returned from PotentialWorkThingsGlobal
+	    if (!(t is Building_Turret turret))
+	    {
                 return false;
             }
             
             var priority = GetThingPriority(pawn, t, forced);
             CELogger.Message($"Priority check completed. Got {priority}");
 
-            Building_TurretGunCE turret = t as Building_TurretGunCE;
-            CELogger.Message($"Turret uses ammo? {turret.CompAmmo?.UseAmmo}");
-            if (!turret.Reloadable)
+	    var ammo = turret.GetAmmo();
+            CELogger.Message($"Turret uses ammo? {ammo?.UseAmmo}");
+            if (!turret.GetReloadable())
             {
                 return false;
             }
-            CELogger.Message($"Total magazine size: {turret.CompAmmo.Props.magazineSize}. Needed: {turret.CompAmmo.MissingToFullMagazine}");
+            CELogger.Message($"Total magazine size: {ammo.Props.magazineSize}. Needed: {ammo.MissingToFullMagazine}");
 
             return JobGiverUtils_Reload.CanReload(pawn, turret, forced);
         }
@@ -96,7 +101,7 @@ namespace CombatExtended
         /// <returns></returns>
         public override Job JobOnThing(Pawn pawn, Thing t, bool forced = false)
         {
-            Building_TurretGunCE turret = t as Building_TurretGunCE;
+            Building_Turret turret = t as Building_Turret;
             if (turret == null)
             {
                 CELogger.Error($"{pawn} tried to make a reload job on a {t} which isn't a turret. This should never be reached.");
