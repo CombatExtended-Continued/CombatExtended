@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <Patch>
-	<Operation Class="PatchOperationSequence">
-		<success>Always</success>
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+		<li>Cupro's Alloys (Continued)</li>
+		</mods>
+		<match Class="PatchOperationSequence">
 		<operations>
-			<li Class="CombatExtended.PatchOperationFindMod">
-				<modName>Cupro's Alloys (Continued)</modName>
-			</li>
 
 			<!-- ======== CAL_ShinyIngotBase ======== -->
 			<li Class="PatchOperationReplace">
@@ -198,5 +198,6 @@
 				<xpath>Defs/ThingDef[defName="CAL_Electrum"]/statBases/BluntDamageMultiplier</xpath>
 			</li>
 		</operations>
+		</match>
 	</Operation>
 </Patch>

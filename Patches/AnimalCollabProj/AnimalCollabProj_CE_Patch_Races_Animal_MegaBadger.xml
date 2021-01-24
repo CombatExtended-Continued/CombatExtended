@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <Patch>
-	<Operation Class="PatchOperationSequence">
-		<success>Always</success>
-		<operations>
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+		<li>AnimalCollabProj</li>
+		</mods>
 
-			<li Class="CombatExtended.PatchOperationFindMod">
-				<modName>AnimalCollabProj</modName>
-			</li>
+		<match Class="PatchOperationSequence">
+			<operations>
 
 			<li Class="PatchOperationAdd">
 				<xpath>Defs/ThingDef[defName="ACPMegabadger"]/statBases</xpath>
@@ -95,6 +95,7 @@
 				</value>
 			</li>
 
-		</operations>
+			</operations>
+		</match>
 	</Operation>
 </Patch>
