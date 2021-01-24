@@ -14,6 +14,7 @@ Mod |
 [CP] Spec Ops - The Line	|
 [CP] The DOOM Kit - Classic	|
 [HLX] Rimworld: UNSC Armoury |
+[JDS] EFT Apparel |
 [JDS] Exiled Dawn |
 [JDS] Star Wars BlasTech Industries |
 [JDS] The Forge - Exiled Dawn |

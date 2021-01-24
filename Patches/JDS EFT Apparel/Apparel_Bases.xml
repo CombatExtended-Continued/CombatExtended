@@ -8,6 +8,46 @@
     <match Class="PatchOperationSequence">
       <operations>
 
+        <!-- === Military Cap / Baseball Caps / Beanie / Ushanka ===  -->
+        <li Class="PatchOperationAdd">
+          <xpath>Defs</xpath>
+          <value>
+            <ThingDef Name="EFTHeadgearCaps" ParentName="JDSFrontierFaceMaskBase" Abstract="True">
+              <apparel Inherit="False">
+                <bodyPartGroups>
+                  <li>UpperHead</li>
+                </bodyPartGroups>
+                <layers>
+                  <li>Overhead</li>
+                </layers>
+                <tags>
+                  <li>MilitaryHeadgear</li>
+                </tags>
+                <defaultOutfitTags>
+                  <li>Soldier</li>
+                </defaultOutfitTags>
+              </apparel>
+            </ThingDef>
+
+            <ThingDef Name="EFTHeadgearBeanie" ParentName="JDSFrontierFaceMaskBase" Abstract="True">
+              <apparel Inherit="False">
+                <bodyPartGroups>
+                  <li>UpperHead</li>
+                </bodyPartGroups>
+                <layers>
+                  <li>MiddleHead</li>
+                </layers>
+                <tags>
+                  <li>MilitaryHeadgear</li>
+                </tags>
+                <defaultOutfitTags>
+                  <li>Soldier</li>
+                </defaultOutfitTags>
+              </apparel>
+            </ThingDef>
+          </value>
+        </li>        
+
         <!-- === Helmets - Shieldless === -->
         <li Class="PatchOperationReplace">
           <xpath>/Defs/ThingDef[@Name="JDSFrontierHeadgearBase"]/apparel</xpath>
@@ -31,11 +71,11 @@
           </value>
         </li>
 
-        <!-- === Helmets - Shielded === -->
+        <!-- === Helmets - Shielded / Eye Shield === -->
         <li Class="PatchOperationAdd">
           <xpath>Defs</xpath>
           <value>
-            <ThingDef Name="JDSFrontierHeadgearShieldBase" ParentName="JDSFrontierHeadgearBase" Abstract="True">
+            <ThingDef Name="EFTHeadgearShield" ParentName="JDSFrontierHeadgearBase" Abstract="True">
               <apparel Inherit="False">
                 <bodyPartGroups>
                   <li>FullHead</li>
@@ -53,14 +93,8 @@
                 <useDeflectMetalEffect>true</useDeflectMetalEffect>
               </apparel>
             </ThingDef>
-          </value>
-        </li>
 
-        <!-- === Helmets - Shielded (Eyes) === -->
-        <li Class="PatchOperationAdd">
-          <xpath>Defs</xpath>
-          <value>
-            <ThingDef Name="JDSFrontierHeadgearShieldUpBase" ParentName="JDSFrontierHeadgearBase" Abstract="True">
+            <ThingDef Name="EFTHeadgearEyeShield" ParentName="JDSFrontierHeadgearBase" Abstract="True">
               <apparel Inherit="False">
                 <bodyPartGroups>
                   <li>UpperHead</li>

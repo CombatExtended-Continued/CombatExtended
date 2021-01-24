@@ -1,0 +1,455 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+
+  <Operation Class="PatchOperationFindMod">
+    <mods>
+      <li>[JDS] EFT Apparel</li>
+    </mods>
+    <match Class="PatchOperationSequence">
+      <operations>
+
+        <!-- === Backpacks  === -->
+        <!-- <li Class="PatchOperationAdd">
+          <xpath>Defs</xpath>
+          <value>
+            <ThingDef Name="EFTHeadgearBackpacks" ParentName="JDSFrontierBackpackBase" Abstract="True">
+              <apparel Inherit="False">
+                <careIfWornByCorpse>false</careIfWornByCorpse>
+                <bodyPartGroups>
+                  <li>Shoulders</li>
+                </bodyPartGroups>
+                <layers>
+                  <li>Backpack</li>
+                </layers>
+                <tags>
+                  <li>MilitaryBackpack</li>
+                </tags>
+                <defaultOutfitTags>
+                  <li>Soldier</li>
+                </defaultOutfitTags>
+              </apparel>
+            </ThingDef>
+          </value>
+        </li> -->
+
+        <!-- <li Class="PatchOperationAttributeSet">
+          <xpath>
+            /Defs/ThingDef[
+              defName = "JDSTarkov_Backpack_TacticalSling" or
+              defName = "JDSTarkov_Backpack_T-Bag" or
+              defName = "JDSTarkov_Backpack_Beta2Bag" or
+              defName = "JDSTarkov_Backpack_MBSS" or
+              defName = "JDSTarkov_Backpack_DayPack" or
+              defName = "JDSTarkov_Backpack_SFMP" or
+              defName = "JDSTarkov_Backpack_Paratus" or
+              defName = "JDSTarkov_Backpack_Tri-Zip" or
+              defName = "JDSTarkov_Backpack_F5bag" or
+              defName = "JDSTarkov_Backpack_Mechanism" or
+              defName = "JDSTarkov_Backpack_AttackTwo" or
+              defName = "JDSTarkov_Backpack_ArmyBag" or
+              defName = "JDSTarkov_Backpack_Berkut" or
+              defName = "JDSTarkov_Backpack_6SH118bag" or
+              defName = "JDSTarkov_Backpack_F4Bag" or
+              defName = "JDSTarkov_Backpack_Blackjack50Bag" or
+              defName = "JDSTarkov_Backpack_Pilgrim" or
+              defName = "JDSTarkov_Backpack_ScavBP"
+            ]
+          </xpath>
+          <attribute>ParentName</attribute>
+          <value>EFTHeadgearBackpacks</value>
+        </li> -->
+
+        <li Class="PatchOperationRemove">
+          <xpath>
+            /Defs/ThingDef[
+              defName = "JDSTarkov_Backpack_TacticalSling" or
+              defName = "JDSTarkov_Backpack_T-Bag" or
+              defName = "JDSTarkov_Backpack_Beta2Bag" or
+              defName = "JDSTarkov_Backpack_MBSS" or
+              defName = "JDSTarkov_Backpack_DayPack" or
+              defName = "JDSTarkov_Backpack_SFMP" or
+              defName = "JDSTarkov_Backpack_Paratus" or
+              defName = "JDSTarkov_Backpack_Tri-Zip" or
+              defName = "JDSTarkov_Backpack_F5bag" or
+              defName = "JDSTarkov_Backpack_Mechanism" or
+              defName = "JDSTarkov_Backpack_AttackTwo" or
+              defName = "JDSTarkov_Backpack_ArmyBag" or
+              defName = "JDSTarkov_Backpack_Berkut" or
+              defName = "JDSTarkov_Backpack_6SH118bag" or
+              defName = "JDSTarkov_Backpack_F4Bag" or
+              defName = "JDSTarkov_Backpack_Blackjack50Bag" or
+              defName = "JDSTarkov_Backpack_Pilgrim" or
+              defName = "JDSTarkov_Backpack_ScavBP"
+            ]/statBases/CarryingCapacity
+          </xpath>
+        </li>
+
+        <!-- == Sling Packs == -->
+        <li Class="PatchOperationAdd">
+          <xpath>
+            /Defs/ThingDef[
+              defName = "JDSTarkov_Backpack_TacticalSling" or
+              defName = "JDSTarkov_Backpack_T-Bag"
+            ]/statBases
+          </xpath>
+          <value>
+            <Bulk>2</Bulk>
+            <WornBulk>2</WornBulk>
+          </value>
+        </li>
+
+        <li Class="PatchOperationAdd">
+          <xpath>
+            /Defs/ThingDef[
+              defName = "JDSTarkov_Backpack_TacticalSling" or
+              defName = "JDSTarkov_Backpack_T-Bag"
+            ]
+          </xpath>
+          <value>
+            <equippedStatOffsets>
+              <CarryBulk>10</CarryBulk>
+            </equippedStatOffsets>
+          </value>
+        </li>
+
+        <!-- <li Class="PatchOperationReplace">
+          <xpath>/Defs/ThingDef[defName="JDSTarkov_Backpack_TacticalSling"]/apparel</xpath>
+          <value>
+            <apparel>
+              <wornGraphicPath>Things/Backpack/Tactical_Sling_Bag/Tactical_Sling_Bag</wornGraphicPath>
+              <tags>
+                <li>EFT_Backpack</li>
+                <li>EFT_ScavsGear</li>
+                <li>EFT_ScavsRaiderGear</li>
+              </tags>
+            </apparel>
+          </value>
+        </li>
+
+        <li Class="PatchOperationReplace">
+          <xpath>/Defs/ThingDef[defName="JDSTarkov_Backpack_T-Bag"]/apparel</xpath>
+          <value>
+            <apparel>
+              <wornGraphicPath>Things/Backpack/Transformer_Bag/Transformer_Bag</wornGraphicPath>
+              <tags>
+                <li>EFT_Backpack</li>
+                <li>EFT_ScavsGear</li>
+                <li>EFT_ScavsRaiderGear</li>
+              </tags>
+            </apparel>
+          </value>
+        </li> -->
+
+        <!-- == Small Packs == -->
+        <li Class="PatchOperationAdd">
+          <xpath>
+            /Defs/ThingDef[
+              defName = "JDSTarkov_Backpack_Beta2Bag" or
+              defName = "JDSTarkov_Backpack_MBSS" or
+              defName = "JDSTarkov_Backpack_DayPack" or
+              defName = "JDSTarkov_Backpack_SFMP"
+            ]/statBases
+          </xpath>
+          <value>
+            <Bulk>3</Bulk>
+            <WornBulk>3</WornBulk>
+          </value>
+        </li>
+
+        <li Class="PatchOperationAdd">
+          <xpath>
+            /Defs/ThingDef[
+              defName = "JDSTarkov_Backpack_Beta2Bag" or
+              defName = "JDSTarkov_Backpack_MBSS" or
+              defName = "JDSTarkov_Backpack_DayPack" or
+              defName = "JDSTarkov_Backpack_SFMP"
+            ]
+          </xpath>
+          <value>
+            <equippedStatOffsets>
+              <CarryBulk>30</CarryBulk>
+            </equippedStatOffsets>
+          </value>
+        </li>
+
+        <!-- <li Class="PatchOperationReplace">
+          <xpath>/Defs/ThingDef[defName="JDSTarkov_Backpack_Beta2Bag"]/apparel</xpath>
+          <value>
+            <apparel>
+              <wornGraphicPath>Things/Backpack/Ana_Tactical_Beta2_Backpack/Ana_Tactical_Beta2_Backpack</wornGraphicPath>
+              <tags>
+                <li>EFT_Backpack</li>
+                <li>EFT_ScavsRaiderGear</li>
+              </tags>
+            </apparel>
+          </value>
+        </li>
+
+        <li Class="PatchOperationReplace">
+          <xpath>/Defs/ThingDef[defName="JDSTarkov_Backpack_MBSS"]/apparel</xpath>
+          <value>
+            <apparel>
+               <wornGraphicPath>Things/Backpack/Flyye_MBSS_Backpack/Flyye_MBSS_Backpack</wornGraphicPath>
+              <tags>
+                <li>EFT_Backpack</li>
+                <li>EFT_ScavsGear</li>
+                <li>EFT_ScavsRaiderGear</li>
+              </tags>
+            </apparel>
+          </value>
+        </li>
+
+        <li Class="PatchOperationReplace">
+          <xpath>/Defs/ThingDef[defName="JDSTarkov_Backpack_DayPack"]/apparel</xpath>
+          <value>
+            <apparel>
+              <wornGraphicPath>Things/Backpack/LBT-8005A_Backpack/LBT-8005A_Backpack</wornGraphicPath>
+              <tags>
+                <li>EFT_Backpack</li>
+                <li>EFT_ScavsGear</li>
+              </tags>
+            </apparel>
+          </value>
+        </li>
+
+        <li Class="PatchOperationReplace">
+          <xpath>/Defs/ThingDef[defName="JDSTarkov_Backpack_SFMP"]/apparel</xpath>
+          <value>
+            <apparel>
+              <wornGraphicPath>Things/Backpack/Slim_Field_Med_Pack/Slim_Field_Med_Pack</wornGraphicPath>
+              <tags>
+                <li>EFT_Backpack</li>
+              </tags>
+            </apparel>
+          </value>
+        </li> -->
+
+        <!-- == Medium Packs == -->
+        <li Class="PatchOperationAdd">
+          <xpath>
+            /Defs/ThingDef[
+              defName = "JDSTarkov_Backpack_Paratus" or
+              defName = "JDSTarkov_Backpack_Tri-Zip" or
+              defName = "JDSTarkov_Backpack_F5bag" or
+              defName = "JDSTarkov_Backpack_Mechanism" or
+              defName = "JDSTarkov_Backpack_AttackTwo" or
+              defName = "JDSTarkov_Backpack_ArmyBag" or
+              defName = "JDSTarkov_Backpack_Berkut"
+            ]/statBases
+          </xpath>
+          <value>
+            <Bulk>5</Bulk>
+            <WornBulk>5</WornBulk>
+          </value>
+        </li>
+
+        <li Class="PatchOperationAdd">
+          <xpath>
+            /Defs/ThingDef[
+              defName = "JDSTarkov_Backpack_Paratus" or
+              defName = "JDSTarkov_Backpack_Tri-Zip" or
+              defName = "JDSTarkov_Backpack_F5bag" or
+              defName = "JDSTarkov_Backpack_Mechanism" or
+              defName = "JDSTarkov_Backpack_AttackTwo" or
+              defName = "JDSTarkov_Backpack_ArmyBag" or
+              defName = "JDSTarkov_Backpack_Berkut"
+            ]
+          </xpath>
+          <value>
+            <equippedStatOffsets>
+              <CarryBulk>50</CarryBulk>
+            </equippedStatOffsets>
+          </value>
+        </li>
+
+        <!-- <li Class="PatchOperationReplace">
+          <xpath>/Defs/ThingDef[defName="JDSTarkov_Backpack_Paratus"]/apparel</xpath>
+          <value>
+            <apparel>
+              <wornGraphicPath>Things/Backpack/3-Day_Operator_Tactical_Backpack/3-Day_Operator_Tactical_Backpack</wornGraphicPath>
+              <tags>
+                <li>EFT_Backpack</li>
+                <li>EFT_ScavsRaiderGear</li>
+              </tags>
+            </apparel>
+          </value>
+        </li>
+
+        <li Class="PatchOperationReplace">
+          <xpath>/Defs/ThingDef[defName="JDSTarkov_Backpack_Tri-Zip"]/apparel</xpath>
+          <value>
+            <apparel>
+              <wornGraphicPath>Things/Backpack/Camelbak_Tri-Zip_backpack/Camelbak_Tri-Zip_backpack</wornGraphicPath>
+              <tags>
+                <li>EFT_Backpack</li>
+              </tags>
+            </apparel>
+          </value>
+        </li>
+
+        <li Class="PatchOperationReplace">
+          <xpath>/Defs/ThingDef[defName="JDSTarkov_Backpack_F5bag"]/apparel</xpath>
+          <value>
+            <apparel>
+              <wornGraphicPath>Things/Backpack/Eberlestock_F5_Switchblade_Backpack/Eberlestock_F5_Switchblade_Backpack</wornGraphicPath>
+              <tags>
+                <li>EFT_Backpack</li>
+                <li>EFT_ScavsRaiderGear</li>
+              </tags>
+            </apparel>
+          </value>
+        </li>
+
+        <li Class="PatchOperationReplace">
+          <xpath>/Defs/ThingDef[defName="JDSTarkov_Backpack_Mechanism"]/apparel</xpath>
+          <value>
+            <apparel>
+              <wornGraphicPath>Things/Backpack/Oakley_Mechanism_Backpack/Oakley_Mechanism_Backpack</wornGraphicPath>
+              <tags>
+                <li>EFT_Backpack</li>
+              </tags>
+            </apparel>
+          </value>
+        </li>
+
+        <li Class="PatchOperationReplace">
+          <xpath>/Defs/ThingDef[defName="JDSTarkov_Backpack_AttackTwo"]/apparel</xpath>
+          <value>
+            <apparel>
+              <wornGraphicPath>Things/Backpack/SSO_Attack 2_Raid_Backpack/SSO_Attack 2_Raid_Backpack</wornGraphicPath>
+              <tags>
+                <li>EFT_Backpack</li>
+                <li>EFT_ScavsRaiderGear</li>
+              </tags>
+            </apparel>
+          </value>
+        </li>
+
+        <li Class="PatchOperationReplace">
+          <xpath>/Defs/ThingDef[defName="JDSTarkov_Backpack_ArmyBag"]/apparel</xpath>
+          <value>
+            <apparel>
+              <wornGraphicPath>Things/Backpack/VKBO_Army_Bag/VKBO_Army_Bag</wornGraphicPath>
+              <tags>
+                <li>EFT_Backpack</li>
+                <li>EFT_ScavsGear</li>
+              </tags>
+            </apparel>
+          </value>
+        </li>
+
+        <li Class="PatchOperationReplace">
+          <xpath>/Defs/ThingDef[defName="JDSTarkov_Backpack_Berkut"]/apparel</xpath>
+          <value>
+            <apparel>
+              <wornGraphicPath>Things/Backpack/Wartech_Berkut_Backpack/Wartech_Berkut_Backpack</wornGraphicPath>
+              <tags>
+                <li>EFT_Backpack</li>
+                <li>EFT_ScavsRaiderGear</li>
+              </tags>
+            </apparel>
+          </value>
+        </li> -->
+
+        <!-- == Large Packs == -->
+        <li Class="PatchOperationAdd">
+          <xpath>
+            /Defs/ThingDef[
+              defName = "JDSTarkov_Backpack_6SH118bag" or
+              defName = "JDSTarkov_Backpack_F4Bag" or
+              defName = "JDSTarkov_Backpack_Blackjack50Bag" or
+              defName = "JDSTarkov_Backpack_Pilgrim" or
+              defName = "JDSTarkov_Backpack_ScavBP"
+            ]/statBases
+          </xpath>
+          <value>
+            <Bulk>10</Bulk>
+            <WornBulk>10</WornBulk>
+          </value>
+        </li>
+
+        <li Class="PatchOperationAdd">
+          <xpath>
+            /Defs/ThingDef[
+              defName = "JDSTarkov_Backpack_6SH118bag" or
+              defName = "JDSTarkov_Backpack_F4Bag" or
+              defName = "JDSTarkov_Backpack_Blackjack50Bag" or
+              defName = "JDSTarkov_Backpack_Pilgrim" or
+              defName = "JDSTarkov_Backpack_ScavBP"
+            ]
+          </xpath>
+          <value>
+            <equippedStatOffsets>
+              <CarryBulk>100</CarryBulk>
+            </equippedStatOffsets>
+          </value>
+        </li>
+
+        <!-- <li Class="PatchOperationReplace">
+          <xpath>/Defs/ThingDef[defName="JDSTarkov_Backpack_6SH118bag"]/apparel</xpath>
+          <value>
+            <apparel>
+              <wornGraphicPath>Things/Backpack/6SH118_Raid_Backpack/6SH118_Raid_Backpack</wornGraphicPath>
+              <tags>
+                <li>EFT_Backpack</li>
+              </tags>
+            </apparel>
+          </value>
+        </li>
+
+        <li Class="PatchOperationReplace">
+          <xpath>/Defs/ThingDef[defName="JDSTarkov_Backpack_F4Bag"]/apparel</xpath>
+          <value>
+            <apparel>
+              <wornGraphicPath>Things/Backpack/Eberlestock_F4_Terminator_Backpack/Eberlestock_F4_Terminator_Backpack</wornGraphicPath>
+              <tags>
+                <li>EFT_Backpack</li>
+              </tags>
+            </apparel>
+          </value>
+        </li>
+
+        <li Class="PatchOperationReplace">
+          <xpath>/Defs/ThingDef[defName="JDSTarkov_Backpack_Blackjack50Bag"]/apparel</xpath>
+          <value>
+            <apparel>
+              <wornGraphicPath>Things/Backpack/Mystery_Ranch_Blackjack_Backpack/Mystery_Ranch_Blackjack_Backpack</wornGraphicPath>
+              <tags>
+                <li>EFT_Backpack</li>
+              </tags>
+            </apparel>
+          </value>
+        </li>
+
+        <li Class="PatchOperationReplace">
+          <xpath>/Defs/ThingDef[defName="JDSTarkov_Backpack_Pilgrim"]/apparel</xpath>
+          <value>
+            <apparel>
+              <wornGraphicPath>Things/Backpack/Pilgrim_Tourist_Backpack/Pilgrim_Tourist_Backpack</wornGraphicPath>
+              <tags>
+                <li>EFT_Backpack</li>
+                <li>EFT_ScavsGear</li>
+              </tags>
+            </apparel>
+          </value>
+        </li>
+
+        <li Class="PatchOperationReplace">
+          <xpath>/Defs/ThingDef[defName="JDSTarkov_Backpack_ScavBP"]/apparel</xpath>
+          <value>
+            <apparel>
+              <wornGraphicPath>Things/Backpack/Scav_Backpack/Scav_Backpack</wornGraphicPath>
+              <tags>
+                <li>EFT_Backpack</li>
+                <li>EFT_ScavsGear</li>
+                <li>EFT_ScavsRaiderGear</li>
+              </tags>
+            </apparel>
+          </value>
+        </li> -->
+
+      </operations>
+    </match>
+  </Operation>
+
+</Patch>

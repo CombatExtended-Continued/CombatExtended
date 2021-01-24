@@ -8,7 +8,7 @@
     <match Class="PatchOperationSequence">
       <operations>
       
-        <!-- === Balaclava === -->
+        <!-- === Balaclavas === -->
         <li Class="PatchOperationReplace">
 					<xpath>/Defs/ThingDef[@Name="JDSFrontierFaceMaskBase"]/apparel/layers</xpath>
 					<value>
@@ -30,21 +30,159 @@
 
         <li Class="PatchOperationRemove">
           <xpath>
-            /Defs/ThingDef[defName="JDSTarkov_Headgear_Balaclava"]/statBases/ArmorRating_Sharp |
-            /Defs/ThingDef[defName="JDSTarkov_Headgear_Balaclava"]/statBases/ArmorRating_Blunt |
-            /Defs/ThingDef[defName="JDSTarkov_Headgear_Balaclava"]/statBases/Insulation_Cold |
-            /Defs/ThingDef[defName="JDSTarkov_Headgear_Balaclava"]/statBases/Insulation_Heat
+            /Defs/ThingDef[
+              defName = "JDSTarkov_Headgear_Balaclava" or
+              defName = "JDSTarkov_Headwear_Balaclava2_Mask" or
+              defName = "JDSTarkov_Headwear_Balaclava3_Mask" or
+              defName = "JDSTarkov_Headwear_Balaclava4_Mask" or
+              defName = "JDSTarkov_Headwear_Balaclava5_Mask" or
+              defName = "JDSTarkov_Headwear_Balaclava6_Mask" or
+              defName = "JDSTarkov_Headwear_Balaclava7_Mask"
+            ]/statBases/ArmorRating_Sharp |
+            /Defs/ThingDef[
+              defName = "JDSTarkov_Headgear_Balaclava" or
+              defName = "JDSTarkov_Headwear_Balaclava2_Mask" or
+              defName = "JDSTarkov_Headwear_Balaclava3_Mask" or
+              defName = "JDSTarkov_Headwear_Balaclava4_Mask" or
+              defName = "JDSTarkov_Headwear_Balaclava5_Mask" or
+              defName = "JDSTarkov_Headwear_Balaclava6_Mask" or
+              defName = "JDSTarkov_Headwear_Balaclava7_Mask"
+            ]/statBases/ArmorRating_Blunt |
+            /Defs/ThingDef[
+              defName = "JDSTarkov_Headgear_Balaclava" or
+              defName = "JDSTarkov_Headwear_Balaclava2_Mask" or
+              defName = "JDSTarkov_Headwear_Balaclava3_Mask" or
+              defName = "JDSTarkov_Headwear_Balaclava4_Mask" or
+              defName = "JDSTarkov_Headwear_Balaclava5_Mask" or
+              defName = "JDSTarkov_Headwear_Balaclava6_Mask" or
+              defName = "JDSTarkov_Headwear_Balaclava7_Mask"
+            ]/statBases/Insulation_Cold |
+            /Defs/ThingDef[
+              defName = "JDSTarkov_Headgear_Balaclava" or
+              defName = "JDSTarkov_Headwear_Balaclava2_Mask" or
+              defName = "JDSTarkov_Headwear_Balaclava3_Mask" or
+              defName = "JDSTarkov_Headwear_Balaclava4_Mask" or
+              defName = "JDSTarkov_Headwear_Balaclava5_Mask" or
+              defName = "JDSTarkov_Headwear_Balaclava6_Mask" or
+              defName = "JDSTarkov_Headwear_Balaclava7_Mask"
+            ]/statBases/Insulation_Heat
           </xpath>
         </li>
 
         <li Class="PatchOperationAdd">
-          <xpath>/Defs/ThingDef[defName="JDSTarkov_Headgear_Balaclava"]/statBases</xpath>
+          <xpath>
+            /Defs/ThingDef[
+              defName = "JDSTarkov_Headgear_Balaclava" or
+              defName = "JDSTarkov_Headwear_Balaclava2_Mask" or
+              defName = "JDSTarkov_Headwear_Balaclava3_Mask" or
+              defName = "JDSTarkov_Headwear_Balaclava4_Mask" or
+              defName = "JDSTarkov_Headwear_Balaclava5_Mask" or
+              defName = "JDSTarkov_Headwear_Balaclava6_Mask" or
+              defName = "JDSTarkov_Headwear_Balaclava7_Mask"
+            ]/statBases
+          </xpath>
           <value>
             <Bulk>1</Bulk>
             <WornBulk>1</WornBulk>
             <StuffEffectMultiplierArmor>2</StuffEffectMultiplierArmor>
             <StuffEffectMultiplierInsulation_Cold>0.6</StuffEffectMultiplierInsulation_Cold>
             <StuffEffectMultiplierInsulation_Heat>0.12</StuffEffectMultiplierInsulation_Heat>
+          </value>
+        </li>
+
+        <!-- === Beanie === -->
+        <li Class="PatchOperationAttributeSet">
+          <xpath>/Defs/ThingDef[defName="JDSTarkov_Headwear_Beanie"]</xpath>
+          <attribute>ParentName</attribute>
+          <value>EFTHeadgearBeanie</value>
+        </li>
+
+        <li Class="PatchOperationRemove">
+          <xpath>/Defs/ThingDef[defName="JDSTarkov_Headwear_Beanie"]/ArmorRating_Sharp</xpath>
+          <xpath>/Defs/ThingDef[defName="JDSTarkov_Headwear_Beanie"]/ArmorRating_Blunt</xpath>
+          <xpath>/Defs/ThingDef[defName="JDSTarkov_Headwear_Beanie"]/Insulation_Cold</xpath>
+        </li>
+
+        <li Class="PatchOperationAdd">
+          <xpath>/Defs/ThingDef[defName="JDSTarkov_Headwear_Beanie"]/statBases</xpath>
+          <value>
+            <Bulk>1</Bulk>
+            <WornBulk>1</WornBulk>
+            <ArmorRating_Sharp>0.1</ArmorRating_Sharp>
+            <ArmorRating_Blunt>0.1</ArmorRating_Blunt>
+            <Insulation_Cold>1</Insulation_Cold> <!-- Personally i think 22 is too much. -->
+          </value>
+        </li>
+
+        <!-- === Military Cap / Baseball Caps / Ushanka === -->
+        <li Class="PatchOperationAttributeSet">
+          <xpath>
+            /Defs/ThingDef[
+              defName = "JDSTarkov_Headwear_Army_Cap" or
+              defName = "JDSTarkov_Headwear_Baseball_Cap_Black" or
+              defName = "JDSTarkov_Headwear_Baseball_Cap_Green" or
+              defName = "JDSTarkov_Headwear_Baseball_Cap_Tan" or
+              defName = "JDSTarkov_Headwear_Ushanka_Cap"
+            ]
+          </xpath>
+          <attribute>ParentName</attribute>
+          <value>EFTHeadgearCaps</value>
+        </li>
+
+        <li Class="PatchOperationRemove">
+          <xpath>
+            /Defs/ThingDef[
+              defName = "JDSTarkov_Headwear_Army_Cap" or
+              defName = "JDSTarkov_Headwear_Baseball_Cap_Black" or
+              defName = "JDSTarkov_Headwear_Baseball_Cap_Green" or
+              defName = "JDSTarkov_Headwear_Baseball_Cap_Tan" or
+              defName = "JDSTarkov_Headwear_Ushanka_Cap"
+            ]/ArmorRating_Sharp
+          </xpath>
+          <xpath>
+            /Defs/ThingDef[
+              defName = "JDSTarkov_Headwear_Army_Cap" or
+              defName = "JDSTarkov_Headwear_Baseball_Cap_Black" or
+              defName = "JDSTarkov_Headwear_Baseball_Cap_Green" or
+              defName = "JDSTarkov_Headwear_Baseball_Cap_Tan" or
+              defName = "JDSTarkov_Headwear_Ushanka_Cap"
+            ]/ArmorRating_Blunt
+          </xpath>
+          <xpath>
+            /Defs/ThingDef[
+              defName = "JDSTarkov_Headwear_Army_Cap" or
+              defName = "JDSTarkov_Headwear_Baseball_Cap_Black" or
+              defName = "JDSTarkov_Headwear_Baseball_Cap_Green" or
+              defName = "JDSTarkov_Headwear_Baseball_Cap_Tan"
+            ]/Insulation_Cold
+          </xpath>
+        </li>
+
+        <li Class="PatchOperationAdd">
+          <xpath>
+            /Defs/ThingDef[
+              defName = "JDSTarkov_Headwear_Army_Cap" or
+              defName = "JDSTarkov_Headwear_Baseball_Cap_Black" or
+              defName = "JDSTarkov_Headwear_Baseball_Cap_Green" or
+              defName = "JDSTarkov_Headwear_Baseball_Cap_Tan"
+            ]/statBases
+          </xpath>
+          <value>
+            <Bulk>1</Bulk>
+            <WornBulk>1</WornBulk>
+            <ArmorRating_Sharp>0.1</ArmorRating_Sharp>
+            <ArmorRating_Blunt>0.1</ArmorRating_Blunt>
+            <Insulation_Cold>0.50</Insulation_Cold>
+          </value>
+        </li>
+
+        <li Class="PatchOperationAdd">
+          <xpath>/Defs/ThingDef[defName="JDSTarkov_Headwear_Ushanka_Cap"]/statBases</xpath>
+          <value>
+            <Bulk>2</Bulk>
+            <WornBulk>3</WornBulk>
+            <ArmorRating_Sharp>0.2</ArmorRating_Sharp>
+            <ArmorRating_Blunt>0.2</ArmorRating_Blunt>
           </value>
         </li>
 
