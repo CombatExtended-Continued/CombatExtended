@@ -697,7 +697,7 @@
 					<hasStandardCommand>true</hasStandardCommand>
 					<defaultProjectile>Bullet_MoyoBallista</defaultProjectile>
 					<warmupTime>2.85</warmupTime>
-					<range>65</range>
+					<range>55</range>
 					<soundCast>ChargeLance_Fire</soundCast>
 					<soundCastTail>GunTail_Heavy</soundCastTail>
 					<muzzleFlashScale>9</muzzleFlashScale>
@@ -791,6 +791,40 @@
 				</FireModes>
 			</li>
 			
+			<!-- ========== Royal Charge Ballista =========== -->
+			
+			<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+			<defName>Moyo_HeavyBoltCaster</defName>
+				<statBases>
+					<SightsEfficiency>2.05</SightsEfficiency>
+					<ShotSpread>0.07</ShotSpread>
+					<SwayFactor>2.55</SwayFactor>
+					<Bulk>14.00</Bulk>
+					<Mass>11</Mass>
+					<RangedWeapon_Cooldown>0.67</RangedWeapon_Cooldown>
+				</statBases>
+				
+				<Properties>
+					<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+					<hasStandardCommand>true</hasStandardCommand>
+					<defaultProjectile>Bullet_MoyoBallista</defaultProjectile>
+					<warmupTime>2.45</warmupTime>
+					<range>62</range>
+					<soundCast>ChargeLance_Fire</soundCast>
+					<soundCastTail>GunTail_Heavy</soundCastTail>
+					<muzzleFlashScale>9</muzzleFlashScale>
+				</Properties>
+				
+				<AmmoUser>
+					<magazineSize>4</magazineSize>
+					<reloadTime>8.7</reloadTime>
+					<ammoSet>AmmoSet_MoyoBallista</ammoSet>
+				</AmmoUser>
+				<FireModes>
+					<aiAimMode>AimedShot</aiAimMode>
+				</FireModes>
+			</li>
+			
 			<!-- ========== Cryoblaster =========== -->
 			
 			<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
@@ -840,6 +874,7 @@
 				<xpath>Defs/ThingDef[defName="Moyo_CryoBlaster" or 
 				defName="Moyo_HeavyAutoCannon" or 
 				defName="Moyo_HeavyChargeRifle" or 
+				defName="Moyo_HeavyBoltCaster" or 
 				defName="Moyo_BoltCaster" or 
 				defName="Moyo_PrecisionRifle" or 
 				defName="Moyo_AutoCannon" or

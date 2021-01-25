@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+  <Operation Class="PatchOperationSequence">
+	<operations>
+	  <li Class="PatchOperationFindMod">
+			
+		<mods><li>Clay Soldier Race</li></mods>
+			
+		<match Class="PatchOperationSequence">
+		<operations>
+			
+			<li Class="PatchOperationConditional">
+				<xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="Claymanman"]/comps</xpath>
+				<nomatch Class="PatchOperationAdd">
+					<xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="Claymanman"]</xpath>
+					<value>
+						<comps/>
+					</value>
+				</nomatch>
+				<match Class="PatchOperationAdd">
+					<xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="Claymanman"]</xpath>
+					<value>
+					</value>
+				</match>
+			</li>
+			
+            <li Class="PatchOperationAdd">
+				<xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="Claymanman"]/comps</xpath>
+				<value>
+					<li Class="CombatExtended.CompProperties_Inventory" />
+					<li>
+					<compClass>CombatExtended.CompPawnGizmo</compClass>
+					</li>
+				</value>
+			</li>
+			
+			<li Class="PatchOperationAddModExtension">
+				<xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="Claymanman"]</xpath>
+				<value>
+					<li Class="CombatExtended.RacePropertiesExtensionCE">
+						<bodyShape>Humanoid</bodyShape>
+					</li>
+				</value>
+			</li>
+
+			
+			<li Class="PatchOperationAdd">
+			 <xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="Claymanman"]/statBases</xpath>
+				  <value>
+					<MeleeCritChance>1</MeleeCritChance>
+					<MeleeParryChance>1</MeleeParryChance>
+					<Suppressability>0</Suppressability>
+					<SmokeSensitivity>0</SmokeSensitivity>
+				  </value>
+			</li>
+			
+			<!--Human-->
+			
+			<li Class="PatchOperationReplace">
+				<xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="Claymanman"]/tools</xpath> 
+				<value>
+					<tools>
+						<li Class="CombatExtended.ToolCE">
+							<label>left fist</label>
+							<capacities>
+								<li>Blunt</li>
+							</capacities>
+							<power>1</power>
+							<cooldownTime>1.26</cooldownTime>
+							<linkedBodyPartsGroup>LeftHand</linkedBodyPartsGroup>
+							<armorPenetrationBlunt>0.250</armorPenetrationBlunt>
+						</li>
+						<li Class="CombatExtended.ToolCE">
+							<label>right fist</label>
+							<capacities>
+								<li>Blunt</li>
+							</capacities>
+							<power>1</power>
+							<cooldownTime>1.26</cooldownTime>
+							<linkedBodyPartsGroup>RightHand</linkedBodyPartsGroup>
+							<armorPenetrationBlunt>0.250</armorPenetrationBlunt>
+						</li>
+						<li Class="CombatExtended.ToolCE">
+							<label>head</label>
+							<capacities>
+								<li>Blunt</li>
+							</capacities>
+							<power>2</power>
+							<cooldownTime>4.49</cooldownTime>
+							<linkedBodyPartsGroup>HeadAttackTool</linkedBodyPartsGroup>
+							<chanceFactor>0.2</chanceFactor>
+							<armorPenetrationBlunt>0.625</armorPenetrationBlunt>
+						</li>
+					</tools>
+				</value>
+			</li>
+			
+			<!-- ========== Add loadout update behavior ========== -->
+
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThinkTreeDef[defName="CL_Golem"]/thinkRoot/subNodes/li[@Class="ThinkNode_ConditionalColonist"]/subNodes</xpath>
+				<value>
+					<li Class="CombatExtended.JobGiver_UpdateLoadout"/>
+					<li Class="CombatExtended.JobGiver_CheckReload"/>
+				</value>
+			</li>
+			
+		</operations>
+		</match>	
+	  </li>
+	</operations>	
+  </Operation>
+</Patch>

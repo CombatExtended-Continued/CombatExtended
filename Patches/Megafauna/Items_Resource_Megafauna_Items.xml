@@ -1,121 +1,120 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <Patch>
-	<Operation Class="PatchOperationSequence">
-		<success>Always</success>
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+			<li>Megafauna</li>
+		</mods>
+		<match Class="PatchOperationSequence">
 		<operations>
 
-			<!-- ==== Check for the mod. ==== -->
-			<li Class="CombatExtended.PatchOperationFindMod">
-				<modName>Megafauna</modName>
-			</li>
+		<!-- ====== Mammoth Tusk ====== -->
 
-			<!-- ====== Mammoth Tusk ====== -->
+		<li Class="PatchOperationReplace">
+			<xpath>Defs/ThingDef[defName="MammothTusk"]/description</xpath>
+			<value>
+				<description>A mammoth's tusk. Very durable and valuable. Too unwieldy to be used as a weapon.</description>
+			</value>
+		</li>
 
-			<li Class="PatchOperationReplace">
-				<xpath>Defs/ThingDef[defName="MammothTusk"]/description</xpath>
-				<value>
-					<description>A mammoth's tusk. Very durable and valuable. Too unwieldy to be used as a weapon.</description>
-				</value>
-			</li>
+		<li Class="PatchOperationRemove">
+			<xpath>Defs/ThingDef[defName="MammothTusk"]/tools</xpath>
+		</li>
 
-			<li Class="PatchOperationRemove">
-				<xpath>Defs/ThingDef[defName="MammothTusk"]/tools</xpath>
-			</li>
+		<li Class="PatchOperationAttributeSet">
+			<xpath>Defs/ThingDef[defName="MammothTusk"]</xpath>
+			<attribute>ParentName</attribute>
+			<value>ResourceBase</value>
+		</li>
 
-			<li Class="PatchOperationAttributeSet">
-				<xpath>Defs/ThingDef[defName="MammothTusk"]</xpath>
-				<attribute>ParentName</attribute>
-				<value>ResourceBase</value>
-			</li>
+		<!-- ====== Elasmotherium Horn ====== -->
 
-			<!-- ====== Elasmotherium Horn ====== -->
+		<li Class="PatchOperationReplace">
+			<xpath>Defs/ThingDef[defName="ElasmotheriumHorn"]/description</xpath>
+			<value>
+				<description>An elasmotherium's horn. Too unwieldy to be used as a weapon.</description>
+			</value>
+		</li>
 
-			<li Class="PatchOperationReplace">
-				<xpath>Defs/ThingDef[defName="ElasmotheriumHorn"]/description</xpath>
-				<value>
-					<description>An elasmotherium's horn. Too unwieldy to be used as a weapon.</description>
-				</value>
-			</li>
+		<li Class="PatchOperationRemove">
+			<xpath>Defs/ThingDef[defName="ElasmotheriumHorn"]/tools</xpath>
+		</li>
 
-			<li Class="PatchOperationRemove">
-				<xpath>Defs/ThingDef[defName="ElasmotheriumHorn"]/tools</xpath>
-			</li>
+		<li Class="PatchOperationAttributeSet">
+			<xpath>Defs/ThingDef[defName="ElasmotheriumHorn"]</xpath>
+			<attribute>ParentName</attribute>
+			<value>ResourceBase</value>
+		</li>
 
-			<li Class="PatchOperationAttributeSet">
-				<xpath>Defs/ThingDef[defName="ElasmotheriumHorn"]</xpath>
-				<attribute>ParentName</attribute>
-				<value>ResourceBase</value>
-			</li>
+		<!-- ====== Smilodon Fangs ====== -->
 
-			<!-- ====== Smilodon Fangs ====== -->
+		<li Class="PatchOperationReplace">
+			<xpath>Defs/ThingDef[defName="SmilodonFangs"]/description</xpath>
+			<value>
+				<description>A dead smilodon's pair of canines.A fantastic trophy.</description>
+			</value>
+		</li>
 
-			<li Class="PatchOperationReplace">
-				<xpath>Defs/ThingDef[defName="SmilodonFangs"]/description</xpath>
-				<value>
-					<description>A dead smilodon's pair of canines.A fantastic trophy.</description>
-				</value>
-			</li>
+		<li Class="PatchOperationRemove">
+			<xpath>Defs/ThingDef[defName="SmilodonFangs"]/tools</xpath>
+		</li>
 
-			<li Class="PatchOperationRemove">
-				<xpath>Defs/ThingDef[defName="SmilodonFangs"]/tools</xpath>
-			</li>
+		<li Class="PatchOperationAttributeSet">
+			<xpath>Defs/ThingDef[defName="SmilodonFangs"]</xpath>
+			<attribute>ParentName</attribute>
+			<value>ResourceBase</value>
+		</li>
 
-			<li Class="PatchOperationAttributeSet">
-				<xpath>Defs/ThingDef[defName="SmilodonFangs"]</xpath>
-				<attribute>ParentName</attribute>
-				<value>ResourceBase</value>
-			</li>
+		<!-- ====== Deinotherium Tusk ====== -->
 
-			<!-- ====== Deinotherium Tusk ====== -->
+		<li Class="PatchOperationReplace">
+			<xpath>Defs/ThingDef[defName="DeinotheriumTusk"]/description</xpath>
+			<value>
+				<description>A deinotherium's tusk. Very durable and valuable. Too unwieldy to be used as a weapon.</description>
+			</value>
+		</li>
 
-			<li Class="PatchOperationReplace">
-				<xpath>Defs/ThingDef[defName="DeinotheriumTusk"]/description</xpath>
-				<value>
-					<description>A deinotherium's tusk. Very durable and valuable. Too unwieldy to be used as a weapon.</description>
-				</value>
-			</li>
+		<li Class="PatchOperationRemove">
+			<xpath>Defs/ThingDef[defName="DeinotheriumTusk"]/tools</xpath>
+		</li>
 
-			<li Class="PatchOperationRemove">
-				<xpath>Defs/ThingDef[defName="DeinotheriumTusk"]/tools</xpath>
-			</li>
+		<li Class="PatchOperationAttributeSet">
+			<xpath>Defs/ThingDef[defName="DeinotheriumTusk"]</xpath>
+			<attribute>ParentName</attribute>
+			<value>ResourceBase</value>
+		</li>
 
-			<li Class="PatchOperationAttributeSet">
-				<xpath>Defs/ThingDef[defName="DeinotheriumTusk"]</xpath>
-				<attribute>ParentName</attribute>
-				<value>ResourceBase</value>
-			</li>
+		<!-- ====== Zygolophodon Tusk ====== -->
 
-			<!-- ====== Zygolophodon Tusk ====== -->
+		<li Class="PatchOperationRemove">
+			<xpath>Defs/ThingDef[defName="ZygolophodonTusk"]/tools</xpath>
+		</li>
 
-			<li Class="PatchOperationRemove">
-				<xpath>Defs/ThingDef[defName="ZygolophodonTusk"]/tools</xpath>
-			</li>
+		<li Class="PatchOperationAttributeSet">
+			<xpath>Defs/ThingDef[defName="ZygolophodonTusk"]</xpath>
+			<attribute>ParentName</attribute>
+			<value>ResourceBase</value>
+		</li>
 
-			<li Class="PatchOperationAttributeSet">
-				<xpath>Defs/ThingDef[defName="ZygolophodonTusk"]</xpath>
-				<attribute>ParentName</attribute>
-				<value>ResourceBase</value>
-			</li>
+		<!-- ====== PlatybelodonTusk ====== -->
 
-			<!-- ====== PlatybelodonTusk ====== -->
+		<li Class="PatchOperationReplace">
+			<xpath>Defs/ThingDef[defName="PlatybelodonTusk"]/description</xpath>
+			<value>
+				<description>A platybelodon's tusk. Somewhat small, compared to those of other proboscidea. Very valuable.</description>
+			</value>
+		</li>
 
-			<li Class="PatchOperationReplace">
-				<xpath>Defs/ThingDef[defName="PlatybelodonTusk"]/description</xpath>
-				<value>
-					<description>A platybelodon's tusk. Somewhat small, compared to those of other proboscidea. Very valuable.</description>
-				</value>
-			</li>
+		<li Class="PatchOperationRemove">
+			<xpath>Defs/ThingDef[defName="PlatybelodonTusk"]/tools</xpath>
+		</li>
 
-			<li Class="PatchOperationRemove">
-				<xpath>Defs/ThingDef[defName="PlatybelodonTusk"]/tools</xpath>
-			</li>
-
-			<li Class="PatchOperationAttributeSet">
-				<xpath>Defs/ThingDef[defName="PlatybelodonTusk"]</xpath>
-				<attribute>ParentName</attribute>
-				<value>ResourceBase</value>
-			</li>
+		<li Class="PatchOperationAttributeSet">
+			<xpath>Defs/ThingDef[defName="PlatybelodonTusk"]</xpath>
+			<attribute>ParentName</attribute>
+			<value>ResourceBase</value>
+		</li>
 
 		</operations>
+		</match>
 	</Operation>
 </Patch>
