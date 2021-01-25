@@ -5,6 +5,7 @@
     <mods>
         <li>Star Wars - Factions (Continued)</li>
         <li>Star Wars - Factions</li>
+		<li>[JDS] Star Wars BlasTech Industries</li>
     </mods>
 		<match Class="PatchOperationAdd">
 			<xpath>Defs</xpath>
@@ -80,9 +81,9 @@
 
 		  <ThingDef Class="CombatExtended.AmmoDef" ParentName="SWPlasmaGasCartridgeBase">
 			<defName>Ammo_SWPlasmaGasCartridge</defName>
-			<label>Plasma Gas Cartridges </label>
+			<label>Plasma Gas Cartridges</label>
 			<graphicData>
-			  <texPath>Ammo/Red</texPath>
+			  <texPath>Things/Ammo/Charged/Concentrated</texPath>
 			  <graphicClass>Graphic_StackCount</graphicClass>
 			</graphicData>
 			<statBases>
@@ -94,9 +95,9 @@
 
 		  <ThingDef Class="CombatExtended.AmmoDef" ParentName="SWPlasmaGasCartridgeBase">
 			<defName>Ammo_SWPlasmaGasCartridge_AP</defName>
-			<label>Plasma Gas Cartridges  (Imp)</label>
+			<label>Plasma Gas Cartridges (Imp)</label>
 			<graphicData>
-			  <texPath>Ammo/Green</texPath>
+			  <texPath>Things/Ammo/Charged/Regular</texPath>
 			  <graphicClass>Graphic_StackCount</graphicClass>
 			</graphicData>
 			<statBases>
@@ -108,9 +109,9 @@
 
 		  <ThingDef Class="CombatExtended.AmmoDef" ParentName="SWPlasmaGasCartridgeBase">
 			<defName>Ammo_SWPlasmaGasCartridge_Ion</defName>
-			<label>Plasma Gas Cartridges  (Stun)</label>
+			<label>Plasma Gas Cartridges (Stun)</label>
 			<graphicData>
-			  <texPath>Ammo/Blue</texPath>
+			  <texPath>Things/Ammo/Charged/Ion</texPath>
 			  <graphicClass>Graphic_StackCount</graphicClass>
 			</graphicData>
 			<statBases>
@@ -363,6 +364,117 @@
 		  </value>
 		</match>
 	</Operation>
-
-
+  <!-- Projectile Ammo Fix -->
+  
+  <Operation Class="PatchOperationFindMod">
+    <mods>
+      <li>[JDS] Star Wars BlasTech Industries</li>
+    </mods>
+    <match Class="PatchOperationFindMod">
+      <mods>
+        <li>Star Wars - Factions</li>
+        <li>Star Wars - Factions (Continued)</li>
+      </mods>
+      <nomatch Class="PatchOperationSequence">
+        <operations>
+        
+          <!-- Both are used by Blastech Industries -->
+          <li Class="PatchOperationReplace">
+          <xpath>/Defs/ThingDef[defName="Bullet_SWPlasmaGasCartridgeBlue"]/graphicData</xpath>
+          <value>
+            <graphicData>
+              <texPath>Things/Projectile/Bullet_Laser</texPath>
+              <graphicClass>Graphic_Single</graphicClass>
+            </graphicData>
+          </value>
+        </li>
+        <li Class="PatchOperationReplace">
+          <xpath>/Defs/ThingDef[defName="Bullet_SWPlasmaGasCartridge"]/graphicData</xpath>
+          <value>
+            <graphicData>
+              <texPath>Things/Projectile/Red_Bullet_Laser</texPath>
+              <graphicClass>Graphic_Single</graphicClass>
+            </graphicData>
+          </value>
+        </li>
+        
+        <!-- Unused projectiles get a dummy texture -->
+        <li Class="PatchOperationReplace">
+          <xpath>
+            /Defs/ThingDef[
+              defName = "Bullet_SWPlasmaGasCartridge_AP" or
+              defName = "Bullet_SWPlasmaGasCartridge_Ion" or
+              defName = "Bullet_SWBigPlasmaGasCartridge" or
+              defName = "Bullet_SWBigPlasmaGasCartridge_AP" or
+              defName = "Bullet_SWBigPlasmaGasCartridge_Ion"
+            ]/graphicData</xpath>
+          <value>
+            <graphicData>
+              <texPath>Things/Projectile/Yellow_Bullet_Laser</texPath>
+              <graphicClass>Graphic_Single</graphicClass>
+            </graphicData>
+          </value>
+        </li>
+        
+        </operations>
+      </nomatch>
+    </match>
+  </Operation>
+  
+  <!-- Projectile Ammo Fix -->
+  <Operation Class="PatchOperationFindMod">
+    <mods>
+      <li>[JDS] Star Wars BlasTech Industries</li>
+    </mods>
+    <match Class="PatchOperationFindMod">
+      <mods>
+        <li>Star Wars - Factions</li>
+        <li>Star Wars - Factions (Continued)</li>
+      </mods>
+      <nomatch Class="PatchOperationSequence">
+        <operations>
+        
+          <!-- Both are used by Blastech Industries -->
+          <li Class="PatchOperationReplace">
+          <xpath>/Defs/ThingDef[defName="Bullet_SWPlasmaGasCartridgeBlue"]/graphicData</xpath>
+          <value>
+            <graphicData>
+              <texPath>Things/Projectile/Bullet_Laser</texPath>
+              <graphicClass>Graphic_Single</graphicClass>
+            </graphicData>
+          </value>
+        </li>
+        <li Class="PatchOperationReplace">
+          <xpath>/Defs/ThingDef[defName="Bullet_SWPlasmaGasCartridge"]/graphicData</xpath>
+          <value>
+            <graphicData>
+              <texPath>Things/Projectile/Red_Bullet_Laser</texPath>
+              <graphicClass>Graphic_Single</graphicClass>
+            </graphicData>
+          </value>
+        </li>
+        
+        <!-- Unused projectiles get a dummy texture -->
+        <li Class="PatchOperationReplace">
+          <xpath>
+            /Defs/ThingDef[
+              defName = "Bullet_SWPlasmaGasCartridge_AP" or
+              defName = "Bullet_SWPlasmaGasCartridge_Ion" or
+              defName = "Bullet_SWBigPlasmaGasCartridge" or
+              defName = "Bullet_SWBigPlasmaGasCartridge_AP" or
+              defName = "Bullet_SWBigPlasmaGasCartridge_Ion"
+            ]/graphicData</xpath>
+          <value>
+            <graphicData>
+              <texPath>Things/Projectile/Yellow_Bullet_Laser</texPath>
+              <graphicClass>Graphic_Single</graphicClass>
+            </graphicData>
+          </value>
+        </li>
+        
+        </operations>
+      </nomatch>
+    </match>
+  </Operation>
+  
 </Patch>

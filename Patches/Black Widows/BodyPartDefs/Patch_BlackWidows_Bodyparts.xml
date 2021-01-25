@@ -1,13 +1,12 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
+
 <Patch>
-	<!-- Black Widow mod's bodypart defs. -->
-	<Operation Class="PatchOperationSequence">
-		<success>Always</success>
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+			<li>Black Widows 2.0</li>
+		</mods>
+		<match Class="PatchOperationSequence">
 		<operations>
-			<!-- ==== Check for the mod. ==== -->
-			<li Class="CombatExtended.PatchOperationFindMod">
-				<modName>Black Widows 2.0</modName>
-			</li>
 
 			<!-- ==== BionicPedipalp ==== -->
 			<li Class="PatchOperationReplace">
@@ -69,5 +68,6 @@
 				</value>
 			</li>
 		</operations>
+		</match>
 	</Operation>
 </Patch>

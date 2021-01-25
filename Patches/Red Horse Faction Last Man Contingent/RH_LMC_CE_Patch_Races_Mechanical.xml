@@ -1,17 +1,17 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <Patch>
-	<Operation Class="PatchOperationSequence">
-		<success>Always</success>
+<!--
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+		<li>[RH] Faction: Last Man Contingent</li>
+		</mods>
+		<match Class="PatchOperationSequence">
 		<operations>
-
-			<li Class="CombatExtended.PatchOperationFindMod">
-				<modName>[RH] Faction: Last Man Contingent</modName>
-			</li>
-			
+	-->		
 			<!-- Core CE patches already cover BaseMechanoid abstract class -->
 
 			<!-- ========== T-55 Main Battle Tank ========== -->
-
+<!--
 			<li Class="PatchOperationAddModExtension">
 				<xpath>Defs/ThingDef[defName="RHRace_T55_MBT"]</xpath>
 				<value>
@@ -26,11 +26,8 @@
 				<value>
 					<ArmorRating_Electric>0.975</ArmorRating_Electric>
 					<Mass>3456.2</Mass>
-					<!-- This value gets multipled by 10 (for body size), and summed with a 1438 kg D-10 gun, giving a total of 36 metric tonnes -->
 					<CarryWeight>284</CarryWeight>
-					<!-- This value gets multipled by 10 (for body size) -->
 					<CarryBulk>200</CarryBulk>
-					<!-- This value gets multipled by 10 (for body size) -->
 					<AimingAccuracy>1.0</AimingAccuracy>
 					<ShootingAccuracyPawn>1</ShootingAccuracyPawn>
 					<MeleeDodgeChance>0.02</MeleeDodgeChance>
@@ -92,5 +89,7 @@
 			</li>
 
 		</operations>
+		</match>
 	</Operation>
+-->	
 </Patch>
