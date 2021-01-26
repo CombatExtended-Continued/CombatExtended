@@ -1,0 +1,292 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+
+	<Operation Class="PatchOperationFindMod">
+    <mods>
+		<li>[RWY]Advanced Mechanoid Warfare</li>
+    </mods>
+		<match Class="PatchOperationSequence">
+		<operations>
+			
+			
+			
+			<li Class="PatchOperationRemove">
+				<xpath>/Defs/ThingDef[defName="Bullet_NomadShot"]</xpath>
+			</li>
+			
+			<li Class="PatchOperationRemove">
+				<xpath>/Defs/ThingDef[defName="Bullet_StalkersShot"]</xpath>
+			</li>
+			
+			<li Class="PatchOperationRemove">
+				<xpath>/Defs/ThingDef[defName="Bullet_UWMChargeShot"]</xpath>
+			</li>
+			
+			<li Class="PatchOperationRemove">
+				<xpath>/Defs/ThingDef[defName="Bullet_UWMFireShot"]</xpath>
+			</li>
+			
+			<li Class="PatchOperationRemove">
+				<xpath>/Defs/ThingDef[defName="Bullet_UWMEmpShot"]</xpath>
+			</li>
+			
+			<li Class="PatchOperationRemove">
+				<xpath>/Defs/ThingDef[defName="Bullet_IonLenseShot"]</xpath>
+			</li>
+			
+			<li Class="PatchOperationRemove">
+				<xpath>/Defs/ThingDef[defName="Bullet_VaporizerShot"]</xpath>
+			</li>
+			
+			<li Class="PatchOperationRemove">
+				<xpath>/Defs/ThingDef[defName="Bullet_EBlade"]</xpath>
+			</li>
+			
+			<li Class="PatchOperationRemove">
+				<xpath>/Defs/ThingDef[defName="Bullet_HeadhunterShot"]</xpath>
+			</li>
+			
+			
+			
+			<li Class="PatchOperationAdd">
+				<xpath>/Defs</xpath>
+				<value>
+				
+				  <ThingDef Class="CombatExtended.AmmoDef" ParentName="Base6x24mmChargedBullet">
+					<defName>Bullet_UWMChargeShot</defName>
+					<label>Unstable bullet</label>
+					<graphicData>
+					  <texPath>Things/Equipment/WeaponRanged/Projectiles/NomadShot</texPath>
+					  <graphicClass>Graphic_Single</graphicClass>
+					  <shaderType>TransparentPostLight</shaderType>
+					</graphicData>
+					<projectile Class="CombatExtended.ProjectilePropertiesCE">
+					  <damageAmountBase>12</damageAmountBase>
+					  <secondaryDamage>
+						<li>
+						  <def>Bomb_Secondary</def>
+						  <amount>6</amount>
+						</li>
+					  </secondaryDamage>
+					  <armorPenetrationSharp>14</armorPenetrationSharp>
+					  <armorPenetrationBlunt>57.6</armorPenetrationBlunt>
+					  <speed>120</speed>
+					</projectile>
+				  </ThingDef>
+				
+				<ThingDef Class="CombatExtended.AmmoDef" ParentName="Base6x24mmChargedBullet">
+					<defName>Bullet_UWMFireShot</defName>
+					<label>Unstable bullet</label>
+					<graphicData>
+					  <texPath>Things/Equipment/WeaponRanged/Projectiles/FireBlob</texPath>
+					  <graphicClass>Graphic_Single</graphicClass>
+					  <shaderType>TransparentPostLight</shaderType>
+					</graphicData>
+					<projectile Class="CombatExtended.ProjectilePropertiesCE">
+					  <damageAmountBase>7</damageAmountBase>
+					  <armorPenetrationSharp>14</armorPenetrationSharp>
+					  <armorPenetrationBlunt>57.6</armorPenetrationBlunt>
+					  <damageDef>Flame</damageDef>
+					  <speed>65</speed>
+					</projectile>
+				  </ThingDef>
+				
+				<ThingDef Class="CombatExtended.AmmoDef" ParentName="Base6x24mmChargedBullet">
+					<defName>Bullet_UWMEmpShot</defName>
+					<label>Unstable bullet</label>
+					<graphicData>
+					  <texPath>Things/Equipment/WeaponRanged/Projectiles/UnstableEmp</texPath>
+					  <graphicClass>Graphic_Single</graphicClass>
+					  <shaderType>TransparentPostLight</shaderType>
+					</graphicData>
+					<projectile Class="CombatExtended.ProjectilePropertiesCE">
+					  <damageAmountBase>7</damageAmountBase>
+					  <armorPenetrationSharp>14</armorPenetrationSharp>
+					  <armorPenetrationBlunt>57.6</armorPenetrationBlunt>
+					  <damageDef>EMP</damageDef>
+					  <speed>65</speed>
+					</projectile>
+				  </ThingDef>
+				
+				
+				  <ThingDef Class="CombatExtended.AmmoDef" ParentName="Base6x24mmChargedBullet">
+					<defName>Bullet_NomadShot</defName>
+					<label>Unstable bullet</label>
+					<graphicData>
+					  <texPath>Things/Equipment/WeaponRanged/Projectiles/NomadShot</texPath>
+					  <graphicClass>Graphic_Single</graphicClass>
+					  <shaderType>TransparentPostLight</shaderType>
+					</graphicData>
+					<projectile Class="CombatExtended.ProjectilePropertiesCE">
+					  <damageAmountBase>7</damageAmountBase>
+					  <secondaryDamage>
+						<li>
+						  <def>Bomb_Secondary</def>
+						  <amount>10</amount>
+						</li>
+					  </secondaryDamage>
+					  <armorPenetrationSharp>22</armorPenetrationSharp>
+					  <armorPenetrationBlunt>14.4</armorPenetrationBlunt>
+					  <damageDef>Bullet</damageDef>
+					  <speed>120</speed>
+					</projectile>
+				  </ThingDef>
+				  
+				  <ThingDef Class="CombatExtended.AmmoDef" ParentName="Base6x24mmChargedBullet">
+					<defName>Bullet_StalkersShot</defName>
+					<label>Unstable bullet</label>
+					<graphicData>
+					  <texPath>Things/Equipment/WeaponRanged/Projectiles/StalkersShot</texPath>
+					  <graphicClass>Graphic_Single</graphicClass>
+					  <shaderType>TransparentPostLight</shaderType>
+					</graphicData>
+					<projectile Class="CombatExtended.ProjectilePropertiesCE">
+					  <damageAmountBase>7</damageAmountBase>
+					  <secondaryDamage>
+						<li>
+						  <def>Bomb_Secondary</def>
+						  <amount>10</amount>
+						</li>
+					  </secondaryDamage>
+					  <armorPenetrationSharp>26</armorPenetrationSharp>
+					  <armorPenetrationBlunt>14.4</armorPenetrationBlunt>
+					  <damageDef>Bullet</damageDef>
+					  <speed>150</speed>
+					</projectile>
+				  </ThingDef>
+				  
+				  <ThingDef Class="CombatExtended.AmmoDef" ParentName="Base6x24mmChargedBullet">
+					<defName>Bullet_IonLenseShot</defName>
+					<label>Unstable bullet</label>
+					<graphicData>
+					  <texPath>Things/Equipment/WeaponRanged/Projectiles/IonLenseShot</texPath>
+					  <graphicClass>Graphic_Single</graphicClass>
+					  <shaderType>TransparentPostLight</shaderType>
+					</graphicData>
+					<projectile Class="CombatExtended.ProjectilePropertiesCE">
+					  <damageAmountBase>9</damageAmountBase>
+					  <armorPenetrationSharp>26</armorPenetrationSharp>
+					  <armorPenetrationBlunt>3</armorPenetrationBlunt>
+					  <damageDef>Bullet</damageDef>
+					  <speed>150</speed>
+					</projectile>
+				  </ThingDef>
+				  
+				  <ThingDef Class="CombatExtended.AmmoDef" ParentName="Base6x24mmChargedBullet">
+					<defName>Bullet_VaporizerShot</defName>
+					<label>Unstable bullet</label>
+					<graphicData>
+					  <texPath>Things/Equipment/WeaponRanged/Projectiles/VaporizerShot</texPath>
+					  <graphicClass>Graphic_Single</graphicClass>
+					  <drawSize>3.1</drawSize>
+					  <shaderType>TransparentPostLight</shaderType>
+					</graphicData>
+					<projectile Class="CombatExtended.ProjectilePropertiesCE">
+					  <damageAmountBase>27</damageAmountBase>
+					  <armorPenetrationSharp>14</armorPenetrationSharp>
+					  <armorPenetrationBlunt>57.6</armorPenetrationBlunt>
+					  <damageDef>Bullet</damageDef>
+					  <speed>85</speed>
+					</projectile>
+				  </ThingDef>
+				  
+				  <ThingDef Class="CombatExtended.AmmoDef" ParentName="Base6x24mmChargedBullet">
+					<defName>Bullet_HeadhunterShot</defName>
+					<label>Unstable bullet</label>
+					<graphicData>
+					  <texPath>Things/Equipment/WeaponRanged/Projectiles/HeadhunterShot</texPath>
+					  <graphicClass>Graphic_Single</graphicClass>
+					  <drawSize>3.1</drawSize>
+					  <shaderType>TransparentPostLight</shaderType>
+					</graphicData>
+					<projectile Class="CombatExtended.ProjectilePropertiesCE">
+					  <damageAmountBase>31</damageAmountBase>
+					  <armorPenetrationSharp>12</armorPenetrationSharp>
+					  <armorPenetrationBlunt>57.6</armorPenetrationBlunt>
+					  <damageDef>Bullet</damageDef>
+					  <speed>120</speed>
+					</projectile>
+				  </ThingDef>
+				  
+				  <ThingDef Class="CombatExtended.AmmoDef" ParentName="Base6x24mmChargedBullet">
+					<defName>Bullet_EBlade</defName>
+					<label>Unstable bullet</label>
+					<graphicData>
+					  <texPath>Things/Equipment/WeaponRanged/Projectiles/EBlade</texPath>
+					  <graphicClass>Graphic_Single</graphicClass>
+					  <drawSize>1.2</drawSize>
+					  <shaderType>TransparentPostLight</shaderType>
+					</graphicData>
+					<projectile Class="CombatExtended.ProjectilePropertiesCE">
+					  <damageAmountBase>24</damageAmountBase>
+					  <armorPenetrationSharp>14</armorPenetrationSharp>
+					  <armorPenetrationBlunt>57.6</armorPenetrationBlunt>
+					  <damageDef>Bullet</damageDef>
+					  <speed>85</speed>
+					</projectile>
+				  </ThingDef>
+				  
+				  
+				  <CombatExtended.AmmoSetDef>
+					<defName>AmmoSet_UMW</defName>
+					<label>Universal Weapon Module</label>
+					<ammoTypes>
+					  <Ammo_8x35mmCharged>Bullet_UWMChargeShot</Ammo_8x35mmCharged>
+					  <Ammo_PlasmaCellRifle>Bullet_UWMFireShot</Ammo_PlasmaCellRifle>
+					  <Ammo_8x35mmCharged_Ion>Bullet_UWMEmpShot</Ammo_8x35mmCharged_Ion>
+					</ammoTypes>
+				  </CombatExtended.AmmoSetDef>	
+
+				  <CombatExtended.AmmoSetDef>
+					<defName>AmmoSet_Nomad</defName>
+					<label>Unstable Shot</label>
+					<ammoTypes>
+					  <Ammo_5x35mmCharged>Bullet_NomadShot</Ammo_5x35mmCharged>
+					</ammoTypes>
+				  </CombatExtended.AmmoSetDef>
+				  
+				  <CombatExtended.AmmoSetDef>
+					<defName>AmmoSet_Stalker</defName>
+					<label>Unstable Shot</label>
+					<ammoTypes>
+					  <Ammo_5x35mmCharged>Bullet_StalkersShot</Ammo_5x35mmCharged>
+					</ammoTypes>
+				  </CombatExtended.AmmoSetDef>
+
+				  <CombatExtended.AmmoSetDef>
+					<defName>AmmoSet_Lens</defName>
+					<label>Unstable Shot</label>
+					<ammoTypes>
+					  <Ammo_5x35mmCharged>Bullet_IonLenseShot</Ammo_5x35mmCharged>
+					</ammoTypes>
+				  </CombatExtended.AmmoSetDef>			
+				
+				<CombatExtended.AmmoSetDef>
+					<defName>AmmoSet_Vapor</defName>
+					<label>Unstable Shot</label>
+					<ammoTypes>
+					  <Ammo_5x35mmCharged>Bullet_VaporizerShot</Ammo_5x35mmCharged>
+					</ammoTypes>
+				  </CombatExtended.AmmoSetDef>			
+				
+				<CombatExtended.AmmoSetDef>
+					<defName>AmmoSet_Headhunter</defName>
+					<label>Unstable Shot</label>
+					<ammoTypes>
+					  <Ammo_5x35mmCharged>Bullet_HeadhunterShot</Ammo_5x35mmCharged>
+					</ammoTypes>
+				  </CombatExtended.AmmoSetDef>			
+				
+				  
+				</value>
+			</li>
+			
+			
+
+			
+			
+		</operations>
+		</match>
+	</Operation>
+	
+</Patch>

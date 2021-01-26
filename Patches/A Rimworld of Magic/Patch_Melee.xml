@@ -1,0 +1,409 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+
+	<Operation Class="PatchOperationFindMod">
+    <mods>
+		<li>A RimWorld of Magic</li>
+    </mods>
+		<match Class="PatchOperationSequence">
+		<operations>
+			
+			
+			
+			
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="TM_ElephantSpear"]/tools</xpath>
+				<value>
+					<tools>
+					  <li Class="CombatExtended.ToolCE">
+						<label>shaft</label>
+						<capacities>
+						  <li>Blunt</li>
+						</capacities>
+						<power>6</power>
+						<cooldownTime>1.31</cooldownTime>
+						<armorPenetrationBlunt>2.025</armorPenetrationBlunt>
+						<linkedBodyPartsGroup>Shaft</linkedBodyPartsGroup>
+					  </li>
+					  <li Class="CombatExtended.ToolCE">
+						<label>edge</label>
+						<capacities>
+						  <li>Cut</li>
+						</capacities>
+						<power>24</power>
+						<cooldownTime>1.8</cooldownTime>
+						<chanceFactor>1.165</chanceFactor>
+						<armorPenetrationBlunt>8.1</armorPenetrationBlunt>
+						<armorPenetrationSharp>1.62</armorPenetrationSharp>
+						<linkedBodyPartsGroup>Edge</linkedBodyPartsGroup>
+					  </li>
+					  <li Class="CombatExtended.ToolCE">
+						<label>point</label>
+						<capacities>
+						  <li>Stab</li>
+						</capacities>
+						<power>22</power>
+						<cooldownTime>1.16</cooldownTime>
+						<chanceFactor>1.165</chanceFactor>
+						<armorPenetrationBlunt>2.025</armorPenetrationBlunt>
+						<armorPenetrationSharp>2.03</armorPenetrationSharp>
+						<linkedBodyPartsGroup>Point</linkedBodyPartsGroup>
+					  </li>
+					</tools>
+				</value>
+			</li>
+			
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName="TM_ElephantSpear"]/statBases</xpath>
+				<value>
+					<Bulk>10</Bulk>
+					<MeleeCounterParryBonus>1.68</MeleeCounterParryBonus>
+				</value>
+			</li>
+			
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName="TM_ElephantSpear"]</xpath>
+				<value>
+					<equippedStatOffsets>
+						<MeleeCritChance>0.17</MeleeCritChance>
+						<MeleeParryChance>1.45</MeleeParryChance>
+						<MeleeDodgeChance>0.9</MeleeDodgeChance>
+					</equippedStatOffsets>
+				</value>
+			</li>
+			
+			
+			<!-- Gladius with better stats (like crit and parry) -->
+			
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="TM_ElephantTusk"]/tools</xpath>
+				<value>
+					<tools>
+						<li Class="CombatExtended.ToolCE">
+							<label>handle</label>
+							<capacities>
+								<li>Poke</li>
+							</capacities>
+							<power>8</power>
+							<cooldownTime>1.44</cooldownTime>
+							<armorPenetrationBlunt>0.425</armorPenetrationBlunt>
+							<linkedBodyPartsGroup>Handle</linkedBodyPartsGroup>
+						</li>
+						<li Class="CombatExtended.ToolCE">
+							<label>point</label>
+							<capacities>
+								<li>Stab</li>
+							</capacities>
+							<power>27</power>
+							<cooldownTime>1.44</cooldownTime>
+							<armorPenetrationBlunt>0.425</armorPenetrationBlunt>
+							<armorPenetrationSharp>0.48</armorPenetrationSharp>
+							<linkedBodyPartsGroup>Point</linkedBodyPartsGroup>
+						</li>
+						<li Class="CombatExtended.ToolCE">
+							<label>edge</label>
+							<capacities>
+								<li>Cut</li>
+							</capacities>
+							<power>20</power>
+							<cooldownTime>1.34</cooldownTime>
+							<chanceFactor>1.33</chanceFactor>
+							<armorPenetrationBlunt>0.956</armorPenetrationBlunt>
+							<armorPenetrationSharp>0.43</armorPenetrationSharp>
+							<linkedBodyPartsGroup>Edge</linkedBodyPartsGroup>
+						</li>
+					</tools>
+				</value>
+			</li>
+
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName="TM_ElephantTusk"]/statBases</xpath>
+				<value>
+					<Bulk>3.5</Bulk>
+					<MeleeCounterParryBonus>0.75</MeleeCounterParryBonus>				
+				</value>
+			</li>
+
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName="TM_ElephantTusk"]</xpath>
+				<value>
+					<equippedStatOffsets>
+						<MeleeCritChance>0.6</MeleeCritChance>
+						<MeleeParryChance>0.5</MeleeParryChance>
+						<MeleeDodgeChance>0.4</MeleeDodgeChance>	
+					</equippedStatOffsets>
+				</value>
+			</li>
+			
+			
+			
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="TM_ThrumboSaber"]/tools</xpath>
+				<value>
+					<tools>
+						<li Class="CombatExtended.ToolCE">
+							<label>handle</label>
+							<capacities>
+								<li>Poke</li>
+							</capacities>
+							<power>8</power>
+							<cooldownTime>0.5</cooldownTime>
+							<armorPenetrationBlunt>0.425</armorPenetrationBlunt>
+							<linkedBodyPartsGroup>Handle</linkedBodyPartsGroup>
+						</li>
+						<li Class="CombatExtended.ToolCE">
+							<label>point</label>
+							<capacities>
+								<li>Stab</li>
+							</capacities>
+							<power>32</power>
+							<cooldownTime>1.44</cooldownTime>
+							<armorPenetrationBlunt>0.425</armorPenetrationBlunt>
+							<armorPenetrationSharp>0.48</armorPenetrationSharp>
+							<linkedBodyPartsGroup>Point</linkedBodyPartsGroup>
+						</li>
+						<li Class="CombatExtended.ToolCE">
+							<label>edge</label>
+							<capacities>
+								<li>Cut</li>
+							</capacities>
+							<power>25</power>
+							<cooldownTime>1.34</cooldownTime>
+							<chanceFactor>1.33</chanceFactor>
+							<armorPenetrationBlunt>0.956</armorPenetrationBlunt>
+							<armorPenetrationSharp>0.43</armorPenetrationSharp>
+							<linkedBodyPartsGroup>Edge</linkedBodyPartsGroup>
+						</li>
+					</tools>
+				</value>
+			</li>
+
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName="TM_ThrumboSaber"]/statBases</xpath>
+				<value>
+					<Bulk>3.5</Bulk>
+					<MeleeCounterParryBonus>0.75</MeleeCounterParryBonus>				
+				</value>
+			</li>
+
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName="TM_ThrumboSaber"]</xpath>
+				<value>
+					<equippedStatOffsets>
+						<MeleeCritChance>0.6</MeleeCritChance>
+						<MeleeParryChance>0.5</MeleeParryChance>
+						<MeleeDodgeChance>0.4</MeleeDodgeChance>	
+					</equippedStatOffsets>
+				</value>
+			</li>
+			
+			<!-- VWE Battleaxe with double the sharp penetration -->
+			
+			<li Class="PatchOperationAdd">
+			  <xpath>/Defs/ThingDef[defName="TM_ThrumboAxe"]/statBases</xpath>
+			  <value>
+				<Bulk>13</Bulk>
+				<MeleeCounterParryBonus>1.5</MeleeCounterParryBonus>
+			  </value>
+			</li>
+
+			<li Class="PatchOperationAdd">
+			  <xpath>/Defs/ThingDef[defName="TM_ThrumboAxe"]</xpath>
+			  <value>
+				<equippedStatOffsets>
+				  <MeleeCritChance>0.3</MeleeCritChance>
+				  <MeleeParryChance>1.6</MeleeParryChance>
+				  <MeleeDodgeChance>0.56</MeleeDodgeChance>
+				</equippedStatOffsets>
+			  </value>
+			</li>
+
+			<li Class="PatchOperationReplace">
+			  <xpath>/Defs/ThingDef[defName="TM_ThrumboAxe"]/tools</xpath>
+			  <value>
+				<tools>
+				  <li Class="CombatExtended.ToolCE">
+					<label>edge</label>
+					<capacities>
+					  <li>Cut</li>
+					</capacities>
+					<power>48</power>
+					<cooldownTime>3.4</cooldownTime>
+					<chanceFactor>1.165</chanceFactor>
+					<armorPenetrationBlunt>10.4</armorPenetrationBlunt>
+					<armorPenetrationSharp>3.6</armorPenetrationSharp>
+					<linkedBodyPartsGroup>Edge</linkedBodyPartsGroup>
+				  </li>
+				  <li Class="CombatExtended.ToolCE">
+					<label>point</label>
+					<capacities>
+					  <li>Stab</li>
+					</capacities>
+					<power>41</power>
+					<cooldownTime>1.8</cooldownTime>
+					<chanceFactor>1.165</chanceFactor>
+					<armorPenetrationBlunt>2.3</armorPenetrationBlunt>
+					<armorPenetrationSharp>4.4</armorPenetrationSharp>
+					<linkedBodyPartsGroup>Point</linkedBodyPartsGroup>
+				  </li>
+				</tools>
+			  </value>
+			</li>
+			
+			
+			<!-- Longsword with much higher crit chance -->
+			
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="TM_Ruunbled"]/tools</xpath>
+				<value>
+					<tools>
+						<li Class="CombatExtended.ToolCE">
+							<label>handle</label>
+							<capacities>
+								<li>Poke</li>
+							</capacities>
+							<power>3</power>
+							<cooldownTime>1.69</cooldownTime>
+							<chanceFactor>0.05</chanceFactor>
+							<armorPenetrationBlunt>0.8</armorPenetrationBlunt>
+							<linkedBodyPartsGroup>Handle</linkedBodyPartsGroup>
+						</li>
+						<li Class="CombatExtended.ToolCE">
+							<label>point</label>
+							<capacities>
+								<li>Stab</li>
+							</capacities>
+							<power>18</power>
+							<cooldownTime>1.69</cooldownTime>
+							<chanceFactor>0.60</chanceFactor>
+							<armorPenetrationBlunt>0.8</armorPenetrationBlunt>
+							<armorPenetrationSharp>1.6</armorPenetrationSharp>
+							<linkedBodyPartsGroup>Point</linkedBodyPartsGroup>
+						</li>
+						<li Class="CombatExtended.ToolCE">
+							<label>edge</label>
+							<capacities>
+								<li>Cut</li>
+							</capacities>
+							<power>36</power>
+							<cooldownTime>1.56</cooldownTime>
+							<chanceFactor>0.30</chanceFactor>
+							<armorPenetrationBlunt>2.592</armorPenetrationBlunt>
+							<armorPenetrationSharp>0.58</armorPenetrationSharp>
+							<linkedBodyPartsGroup>Edge</linkedBodyPartsGroup>
+						</li>
+					</tools>
+				</value>
+			</li>
+
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName="TM_Ruunbled"]/statBases</xpath>
+				<value>
+					<Bulk>8</Bulk>
+					<MeleeCounterParryBonus>1</MeleeCounterParryBonus>
+				</value>
+			</li>
+
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName="TM_Ruunbled"]</xpath>
+				<value>
+					<equippedStatOffsets>
+						<MeleeCritChance>1.4</MeleeCritChance>
+						<MeleeParryChance>0.75</MeleeParryChance>
+						<MeleeDodgeChance>0.4</MeleeDodgeChance>	
+					</equippedStatOffsets>
+				</value>
+			</li>
+			
+			
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="TM_DemonFang"]/tools</xpath>
+				<value>
+					<tools>
+						<li Class="CombatExtended.ToolCE">
+							<label>handle</label>
+							<capacities>
+								<li>Poke</li>
+							</capacities>
+							<power>1</power>
+							<cooldownTime>.93</cooldownTime>
+							<armorPenetrationBlunt>0.250</armorPenetrationBlunt>
+							<linkedBodyPartsGroup>Handle</linkedBodyPartsGroup>
+						</li>
+						<li Class="CombatExtended.ToolCE">
+							<label>stab</label>
+							<capacities>
+							  <li>Stab</li>
+							</capacities>
+							<power>12</power>
+							<cooldownTime>.93</cooldownTime>
+							<armorPenetrationBlunt>0.36</armorPenetrationBlunt>
+							<armorPenetrationSharp>0.32</armorPenetrationSharp>
+							<linkedBodyPartsGroup>Blade</linkedBodyPartsGroup>
+						</li>
+						<li Class="CombatExtended.ToolCE">
+							<label>edge</label>
+							<capacities>
+							  <li>Cut</li>
+							</capacities>
+							<power>10</power>
+							<cooldownTime>0.78</cooldownTime>
+							<chanceFactor>1.33</chanceFactor>
+							<armorPenetrationBlunt>0.25</armorPenetrationBlunt>
+							<armorPenetrationSharp>0.42</armorPenetrationSharp>
+							<linkedBodyPartsGroup>Point</linkedBodyPartsGroup>
+						</li>
+					</tools>
+				</value>
+			</li>
+
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName="TM_DemonFang"]/statBases</xpath>
+				<value>
+					<Bulk>1</Bulk>
+					<MeleeCounterParryBonus>0.15</MeleeCounterParryBonus>
+				</value>
+			</li>
+
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName="TM_DemonFang"]</xpath>
+				<value>
+					<equippedStatOffsets>
+						<MeleeCritChance>0.5</MeleeCritChance>
+						<MeleeParryChance>0.15</MeleeParryChance>
+						<MeleeDodgeChance>0.05</MeleeDodgeChance>	
+					</equippedStatOffsets>
+				</value>
+			</li>
+			
+			<!-- Add tags -->
+
+			<li Class="PatchOperationSequence">
+			<success>Always</success>
+			<operations>
+				<li Class="PatchOperationTest">
+				<xpath>Defs/ThingDef[defName="TM_DemonFang"]/weaponTags</xpath>
+				<success>Invert</success>
+				</li>
+				<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName="TM_DemonFang"]</xpath>
+				<value>
+					<weaponTags />
+				</value>
+				</li>
+			</operations>
+			</li>
+
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName="TM_DemonFang"]/weaponTags</xpath>
+				<value>
+					<li>CE_OneHandedWeapon</li>
+				</value>
+			</li>
+			
+			
+		</operations>
+		</match>
+	</Operation>
+	
+</Patch>

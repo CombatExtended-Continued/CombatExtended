@@ -6,7 +6,6 @@ If the mod(s) you are interested in isn't on this list, first confirm that the m
 
 Mod |
 --- |
-[CP] British Military Kit	|
 [CP] DOOM	|
 [CP] Metal Gear Solid	|
 [CP] Red Horse Furniture	|
@@ -36,6 +35,7 @@ Mod |
 [RH] Faction: Umbra Company	|
 [RH] Faction: VOID	|
 [RH] Faction: War Mongrels	|
+[RWY] Advanced Mechanoid Warfare    |
 [SS] Maid Project	|
 [SYR] Harpy	|
 [SYR] Naga	|
@@ -48,6 +48,7 @@ Androids	|
 Androids Expanded	|
 AnimalCollabProj	|
 Animal Armor: Vanilla	|
+Anty the War Ant Race |
 Apparello 2	|
 Arachne Race	|
 Area Rugs	|
@@ -57,6 +58,7 @@ Beeralope Squad	|
 Better Infestations	|
 Black Widows	|
 Carbon	|
+Clay Soldier Race |
 Combat Enthusiast’s Collection	|
 Cupro's Alloys	|
 Cute Penguin	|
@@ -154,9 +156,10 @@ Rimsenal - Enhanced Vanilla |
 Rimsenal - Federation Faction Pack |
 Rimsenal - Feral Faction Pack |
 Rimsenal - Security Pack |
-Rimworld: Altered Carbon |
 Rimworld - The Dark Descent |
 Rimworld - Witcher Monster Hunt |
+Rimworld of Magic |
+Rimworld: Altered Carbon |
 Save Our Ship 2	|
 Sergals, Gnolls, Lions and Frogs	|
 Silkiera Race	|
@@ -167,7 +170,7 @@ Star Wars - Factions |
 Star Wars - Factions (Continued) |
 The Mantodean insectoid race	|
 T-45b Power Armor	|
-The Giantrace	|
+The GiantRace	|
 TouhouStyle	|
 Trading Economy	|
 Tsar Armory	|

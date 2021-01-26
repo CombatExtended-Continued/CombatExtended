@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+
+	<Operation Class="PatchOperationFindMod">
+    <mods>
+		<li>[RWY]Advanced Mechanoid Warfare</li>
+    </mods>
+		<match Class="PatchOperationSequence">
+		<operations>
+			
+			<!--
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[@Name="AAMW_Turret_AutoMortarBase"]/thingClass</xpath>
+				<value>
+					<thingClass>CombatExtended.Building_TurretGunCE</thingClass>
+				</value>
+			</li>
+			
+			
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[@Name="AAMW_Turret_AutoMortarBase"]/building/turretBurstCooldownTime</xpath>
+				<value>
+					<turretBurstCooldownTime>10</turretBurstCooldownTime>
+				</value>
+			</li>
+			-->
+			
+			<li Class="PatchOperationRemove">
+				<xpath>Defs/ThingDef[defName="AMW_Turret_AutoMortar"]</xpath>
+			</li>
+			
+			
+			<li Class="PatchOperationAdd">
+				<xpath>Defs</xpath>
+				<value>
+					
+					  <ThingDef ParentName="AMW_Turret_AutoMortarBase">
+						<defName>AMW_Turret_AutoMortar</defName>
+						<label>automated mortar complex</label>
+						<description>A fully automated mortar complex. Fires a volley of 3 explosive shells and does not require to be reloaded or manned in order to operate. However it requires a lot of power to manufacture shells quickly and it can only fire explosive shells.</description>
+						<terrainAffordanceNeeded>Heavy</terrainAffordanceNeeded>
+						<building>
+						  <turretGunDef>AMW_Gun_AAComplex</turretGunDef>
+						</building>
+						<thingClass>CombatExtended.Building_TurretGunCE</thingClass>
+						  <uiIconPath>Things/Buildings/Turrets/AMW_AutoArtillery</uiIconPath>
+						  <uiIconScale>0.9</uiIconScale>
+					  </ThingDef>
+					
+				</value>
+			</li>
+			
+			
+			
+			
+			
+			<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+				<defName>AMW_Gun_AAComplex</defName>
+				<Properties>
+					<verbClass>CombatExtended.Verb_ShootMortarCE</verbClass>
+					<forceNormalTimeSpeed>false</forceNormalTimeSpeed>
+					<hasStandardCommand>true</hasStandardCommand>
+					<defaultProjectile>Bullet_81mmMortarShell_HE</defaultProjectile>
+					<warmupTime>1.2</warmupTime>
+					<minRange>20</minRange>
+					<range>500</range>
+					<burstShotCount>3</burstShotCount>
+					<soundCast>Mortar_LaunchA</soundCast>
+					<soundCastTail>GunTail_Heavy</soundCastTail>
+					<muzzleFlashScale>55</muzzleFlashScale>
+					<circularError>1.2</circularError>
+					<requireLineOfSight>false</requireLineOfSight>
+					<indirectFirePenalty>0.3</indirectFirePenalty>
+					<targetParams>
+						<canTargetLocations>false</canTargetLocations>
+					</targetParams>
+				</Properties>
+			</li>
+			
+			
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName = "AMW_Gun_AAComplex"]</xpath>
+				<value>
+				<comps>
+					<li Class="CombatExtended.CompProperties_Charges">
+					<chargeSpeeds>
+					<li>30</li>
+					<li>50</li>
+					<li>70</li>
+					<li>90</li>
+					</chargeSpeeds>
+					</li>
+				</comps>
+				</value>
+			</li>
+			
+			
+			
+		</operations>
+		</match>
+	</Operation>
+	
+</Patch>
