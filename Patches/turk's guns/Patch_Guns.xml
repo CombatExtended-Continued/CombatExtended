@@ -10,25 +10,7 @@
 	<match Class="PatchOperationSequence">
 		<operations>
 		<li Class="PatchOperationReplace">
-		 <xpath>Defs/ThingDef[defName="Gun_AATwelve"]/tools</xpath>
-		 <value>
-		  <tools>
-		   <li Class="CombatExtended.ToolCE">
-		    <label>stock</label>
-			<capacities>
-			 <li>Blunt</li>
-			</capacities>
-			<power>7</power>
-			<cooldownTime>2</cooldownTime>
-			<armorPenetrationBlunt>0.6</armorPenetrationBlunt>
-			<linkedBodyPartsGroup>Stock</linkedBodyPartsGroup>
-		   </li>
-		  </tools>
-		 </value>
-		</li>
-		
-		<li Class="PatchOperationReplace">
-		 <xpath>Defs/ThingDef[defName="Gun_HAMR"]/tools</xpath>
+		 <xpath>Defs/ThingDef[defName="Gun_AATwelve" or defName="Gun_HAMR"]/tools</xpath>
 		 <value>
 		  <tools>
 		   <li Class="CombatExtended.ToolCE">
@@ -37,14 +19,35 @@
 			 <li>Blunt</li>
 			</capacities>
 			<power>8</power>
-			<cooldownTime>2.2</cooldownTime>
-			<armorPenetrationBlunt>0.6</armorPenetrationBlunt>
+			<cooldownTime>1.55</cooldownTime>
+			<chanceFactor>1.5</chanceFactor>
+			<armorPenetrationBlunt>2.755</armorPenetrationBlunt>
 			<linkedBodyPartsGroup>Stock</linkedBodyPartsGroup>
+		   </li>
+		   <li Class="CombatExtended.ToolCE">
+		    <label>barrel</label>
+			<capacities>
+			 <li>Blunt</li>
+			</capacities>
+			<power>5</power>
+			<cooldownTime>2.02</cooldownTime>
+			<armorPenetrationBlunt>1.630</armorPenetrationBlunt>
+			<linkedBodyPartsGroup>Barrel</linkedBodyPartsGroup>
+		   </li>
+		   <li Class="CombatExtended.ToolCE">
+		    <label>muzzle</label>
+			<capacities>
+			 <li>Poke</li>
+			</capacities>
+			<power>8</power>
+			<cooldownTime>1.55</cooldownTime>
+			<armorPenetrationBlunt>2.755</armorPenetrationBlunt>
+			<linkedBodyPartsGroup>Muzzle</linkedBodyPartsGroup>
 		   </li>
 		  </tools>
 		 </value>
 		</li>
-		
+
 		<li Class="PatchOperationReplace">
 		 <xpath>Defs/ThingDef[defName="Gun_Skorpion"]/tools</xpath>
 		 <value>
@@ -54,35 +57,28 @@
 			<capacities>
 			 <li>Blunt</li>
 			</capacities>
-			<power>9</power>
-			<cooldownTime>2</cooldownTime>
-			<armorPenetrationBlunt>0.5</armorPenetrationBlunt>
+			<power>2</power>
+			<cooldownTime>1.54</cooldownTime>
+			<chanceFactor>1.5</chanceFactor>
+			<armorPenetrationBlunt>0.555</armorPenetrationBlunt>
 			<linkedBodyPartsGroup>Grip</linkedBodyPartsGroup>
 		   </li>
-		  </tools>
-		 </value>
-		</li>
-		
-		<li Class="PatchOperationReplace">
-		 <xpath>Defs/ThingDef[defName="Gun_MX21FourSmol"]/tools</xpath>
-		 <value>
-		  <tools>
 		   <li Class="CombatExtended.ToolCE">
-		    <label>barrels</label>
+		    <label>muzzle</label>
 			<capacities>
-			 <li>Blunt</li>
+			 <li>Poke</li>
 			</capacities>
-			<power>12</power>
-			<cooldownTime>2</cooldownTime>
-			<armorPenetrationBlunt>0.5</armorPenetrationBlunt>
-			<linkedBodyPartsGroup>Barrels</linkedBodyPartsGroup>
+			<power>2</power>
+			<cooldownTime>1.54</cooldownTime>
+			<armorPenetrationBlunt>0.555</armorPenetrationBlunt>
+			<linkedBodyPartsGroup>Muzzle</linkedBodyPartsGroup>
 		   </li>
 		  </tools>
 		 </value>
 		</li>
 		
 		<li Class="PatchOperationReplace">
-		 <xpath>Defs/ThingDef[defName="Gun_MX21Four"]/tools</xpath>
+		 <xpath>Defs/ThingDef[defName="Gun_MX21FourSmol" or defName="Gun_MX21Four"]/tools</xpath>
 		 <value>
 		  <tools>
 		   <li Class="CombatExtended.ToolCE">
@@ -90,9 +86,9 @@
 			<capacities>
 			 <li>Blunt</li>
 			</capacities>
-			<power>12</power>
-			<cooldownTime>2.1</cooldownTime>
-			<armorPenetrationBlunt>0.55</armorPenetrationBlunt>
+			<power>10</power>
+			<cooldownTime>2.44</cooldownTime>
+			<armorPenetrationBlunt>3.5</armorPenetrationBlunt>
 			<linkedBodyPartsGroup>Barrels</linkedBodyPartsGroup>
 		   </li>
 		  </tools>
@@ -233,41 +229,48 @@
 		<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
 		  <defName>Gun_MX21Four</defName>
 		  <statBases>
-		    <WorkToMake>60000</WorkToMake>
+		    <WorkToMake>80500</WorkToMake>
 		    <SightsEfficiency>1.0</SightsEfficiency>
 			<ShotSpread>0.06</ShotSpread>
-			<SwayFactor>2.05</SwayFactor>
-			<Bulk>9.32</Bulk>
-			<Mass>13.20</Mass>
-			<RangedWeapon_Cooldown>0.45</RangedWeapon_Cooldown>
+			<SwayFactor>1.32</SwayFactor>
+			<Bulk>8.02</Bulk>
+			<Mass>39.00</Mass>
+			<RangedWeapon_Cooldown>0.35</RangedWeapon_Cooldown>
 		  </statBases>
 		  <costList>
-		  <Steel>150</Steel>
-		  <ComponentIndustrial>12</ComponentIndustrial>
+		  <Steel>200</Steel>
+		  <Plasteel>55</Plasteel>
+		  <ComponentIndustrial>15</ComponentIndustrial>
 		  </costList>
 		  <Properties>
-		    <recoilAmount>0.77</recoilAmount>
+		    <recoilAmount>0.58</recoilAmount>
+			<recoilPattern>Mounted</recoilPattern>
 		    <verbClass>CombatExtended.Verb_ShootCE</verbClass>
 			<hasStandardCommand>true</hasStandardCommand>
-			<defaultProjectile>Bullet_556x45mmNATO_FMJ</defaultProjectile>
+			<defaultProjectile>Bullet_762x51mmNATO_FMJ</defaultProjectile>
 			<burstShotCount>300</burstShotCount>
 			<ticksBetweenBurstShots>1</ticksBetweenBurstShots>
-			<warmupTime>2.1</warmupTime>
-			<range>75</range>
+			<warmupTime>2.3</warmupTime>
+			<range>62</range>
 			<soundCast>Shot_Minigun</soundCast>
 			<soundCastTail>GunTail_Medium</soundCastTail>
 			<muzzleFlashScale>9</muzzleFlashScale>
 		  </Properties>
 		  <AmmoUser>
-		    <magazineSize>1500</magazineSize>
-			<reloadTime>7.8</reloadTime>
-			<ammoSet>AmmoSet_556x45mmNATO</ammoSet>
+		    <magazineSize>600</magazineSize>
+			<reloadTime>9.2</reloadTime>
+			<ammoSet>AmmoSet_762x51mmNATO</ammoSet>
 		  </AmmoUser>
 		  <FireModes>
-		    <aiAimMode>SuppressFire</aiAimMode>
+		    <aiAimMode>AimedShot</aiAimMode>
+			<noSingleShot>true</noSingleShot>
+			<noSnapshot>true</noSnapshot>
             <aiUseBurstMode>false</aiUseBurstMode>
             <aimedBurstShotCount>150</aimedBurstShotCount>
 		  </FireModes>
+		  <weaponTags>
+			<li>CE_AI_Suppressive</li>
+		  </weaponTags>
 		  <researchPrerequisite>PrecisionRifling</researchPrerequisite>
 		</li>
 		
