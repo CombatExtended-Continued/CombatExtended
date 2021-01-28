@@ -49,7 +49,7 @@
 		</li>
 
 		<li Class="PatchOperationReplace">
-		 <xpath>Defs/ThingDef[defName="Gun_Skorpion"]/tools</xpath>
+		 <xpath>Defs/ThingDef[defName="Gun_Skorpion" or defName="Gun_TaurusJudge"]/tools</xpath>
 		 <value>
 		  <tools>
 		   <li Class="CombatExtended.ToolCE">
@@ -313,6 +313,53 @@
             <aimedBurstShotCount>150</aimedBurstShotCount>
 		  </FireModes>
 		  <researchPrerequisite>PrecisionRifling</researchPrerequisite>
+		</li>
+		<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+		  <defName>Gun_TaurusJudge</defName>
+		      <statBases>
+				<WorkToMake>4500</WorkToMake>
+				<SightsEfficiency>0.7</SightsEfficiency>
+				<ShotSpread>0.19</ShotSpread>
+				<SwayFactor>0.91</SwayFactor>
+				<Bulk>1.90</Bulk>
+				<Mass>0.82</Mass>
+				<RangedWeapon_Cooldown>0.41</RangedWeapon_Cooldown>
+			  </statBases>
+			  <costList>
+				<Steel>25</Steel>
+				<ComponentIndustrial>2</ComponentIndustrial>
+			  </costList>
+			  <Properties>
+				<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+				<hasStandardCommand>true</hasStandardCommand>
+				<defaultProjectile>Bullet_45Colt_FMJ</defaultProjectile>
+				<warmupTime>0.6</warmupTime>
+				<range>12</range>
+				<soundCast>Shot_Revolver</soundCast>
+				<soundCastTail>GunTail_Light</soundCastTail>
+				<muzzleFlashScale>9</muzzleFlashScale>
+			  </Properties>
+			  <AmmoUser>
+				<magazineSize>5</magazineSize>
+				<reloadTime>3.5</reloadTime>
+				<ammoSet>AmmoSet_45Colt410Bore</ammoSet>
+			  </AmmoUser>
+			  <FireModes>
+			  <aiAimMode>Snapshot</aiAimMode>
+			  </FireModes>
+			  <weaponTags>
+				<li>SimpleGun</li>
+				<li>CE_Sidearm</li>
+			  </weaponTags>
+		</li>
+		<li Class="PatchOperationFindMod">
+			<success>Always</success>
+			<mods>
+			<li>Combat Extended Guns</li>
+			</mods>
+		<match Class="PatchOperationRemove">
+			<xpath>Defs/ThingDef[defName="Gun_TaurusJudge"]</xpath>
+		</match>
 		</li>
 		</operations>
 		</match>
