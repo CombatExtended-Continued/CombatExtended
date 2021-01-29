@@ -1,15 +1,16 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <Patch>	
+
 	<Operation Class="PatchOperationFindMod">
 		<mods>
 			<li>Vanilla Armour Expanded</li>
 		</mods>
 		<match Class="PatchOperationSequence">
 			<operations>
-				<!-- == VAE_Apparel_BulletproofVest == -->
-				<!-- statBases -->
+
+				<!-- === Bulletproof Vest === -->
 				<li Class="PatchOperationReplace">
-					<xpath>Defs/ThingDef[defName="VAE_Apparel_BulletproofVest"]/statBases/Mass</xpath>
+					<xpath>/Defs/ThingDef[defName="VAE_Apparel_BulletproofVest"]/statBases/Mass</xpath>
 					<value>
 						<Bulk>5</Bulk>
 						<WornBulk>1</WornBulk>
@@ -17,37 +18,38 @@
 						<StuffEffectMultiplierArmor>12</StuffEffectMultiplierArmor>
 					</value>
 				</li>
+
 				<li Class="PatchOperationRemove">
-					<xpath>Defs/ThingDef[defName="VAE_Apparel_BulletproofVest"]/statBases/ArmorRating_Sharp</xpath>
+					<xpath>
+						/Defs/ThingDef[defName="VAE_Apparel_BulletproofVest"]/statBases/ArmorRating_Sharp |
+						/Defs/ThingDef[defName="VAE_Apparel_BulletproofVest"]/statBases/ArmorRating_Blunt |
+						/Defs/ThingDef[defName="VAE_Apparel_BulletproofVest"]/costList
+					</xpath>
 				</li>
-				<li Class="PatchOperationRemove">
-					<xpath>Defs/ThingDef[defName="VAE_Apparel_BulletproofVest"]/statBases/ArmorRating_Blunt</xpath>
-				</li>
+
 				<li Class="PatchOperationReplace">
-					<xpath>Defs/ThingDef[defName="VAE_Apparel_BulletproofVest"]/statBases/MaxHitPoints</xpath>
+					<xpath>/Defs/ThingDef[defName="VAE_Apparel_BulletproofVest"]/statBases/MaxHitPoints</xpath>
 					<value>
 						<MaxHitPoints>125</MaxHitPoints>
 					</value>
 				</li>
-				<!-- Miscellaneous -->
+
 				<li Class="PatchOperationReplace">
-					<xpath>Defs/ThingDef[defName="VAE_Apparel_BulletproofVest"]/description</xpath>
+					<xpath>/Defs/ThingDef[defName="VAE_Apparel_BulletproofVest"]/description</xpath>
 					<value>
 						<description>An armor vest made from flexible and resistant fabric or leather. Despite being cheaper and lighter than other armor vests, it still offers some protection against gunfire.</description>
 					</value>
 				</li>
+
 				<li Class="PatchOperationReplace">
-					<xpath>Defs/ThingDef[defName="VAE_Apparel_BulletproofVest"]/label</xpath>
+					<xpath>/Defs/ThingDef[defName="VAE_Apparel_BulletproofVest"]/label</xpath>
 					<value>
 						<label>soft armor vest</label>
 					</value>
 				</li>
-				<li Class="PatchOperationRemove">
-					<xpath>Defs/ThingDef[defName="VAE_Apparel_BulletproofVest"]/costList</xpath>
-				</li>
-				<!-- The bulletproof vest is now makeable from any fabric or leather that's sufficiently protective. Pretty much like a flak jacket or pants, but now in vest form. -->
+
 				<li Class="PatchOperationAdd">
-					<xpath>Defs/ThingDef[defName="VAE_Apparel_BulletproofVest"]</xpath>
+					<xpath>/Defs/ThingDef[defName="VAE_Apparel_BulletproofVest"]</xpath>
 					<value>
 						<costStuffCount>80</costStuffCount>
 						<stuffCategories>
@@ -56,55 +58,56 @@
 					</value>
 				</li>
 
-				<!-- == VAE_Apparel_GhillieSuit == -->
-				<!-- statBases -->
+				<!-- === Ghillie Suit === -->
 				<li Class="PatchOperationAdd">
-					<xpath>Defs/ThingDef[defName="VAE_Apparel_GhillieSuit"]/statBases</xpath>
+					<xpath>/Defs/ThingDef[defName="VAE_Apparel_GhillieSuit"]/statBases</xpath>
 					<value>
 						<Bulk>31</Bulk>
 						<WornBulk>4.7</WornBulk>
 					</value>
 				</li>
-				<!-- Miscellaneous -->
+
 				<li Class="PatchOperationReplace">
-					<xpath>Defs/ThingDef[defName="VAE_Apparel_GhillieSuit"]/equippedStatOffsets/ShootingAccuracyPawn</xpath>
+					<xpath>/Defs/ThingDef[defName="VAE_Apparel_GhillieSuit"]/equippedStatOffsets/ShootingAccuracyPawn</xpath>
 					<value>
 						<AimingAccuracy>0.05</AimingAccuracy>
 					</value>
 				</li>
 
-				<!-- == VAE_Apparel_AdvancedVest == -->
-				<!-- statBases -->
+				<!-- === Advanced Vest === -->
 				<li Class="PatchOperationReplace">
-					<xpath>Defs/ThingDef[defName="VAE_Apparel_AdvancedVest"]/statBases/Mass</xpath>
+					<xpath>/Defs/ThingDef[defName="VAE_Apparel_AdvancedVest"]/statBases/Mass</xpath>
 					<value>
 						<Bulk>5</Bulk>
 						<WornBulk>3</WornBulk>
 						<Mass>15</Mass>
 					</value>
 				</li>
+
 				<li Class="PatchOperationReplace">
-					<xpath>Defs/ThingDef[defName="VAE_Apparel_AdvancedVest"]/statBases/StuffEffectMultiplierArmor</xpath>
+					<xpath>/Defs/ThingDef[defName="VAE_Apparel_AdvancedVest"]/statBases/StuffEffectMultiplierArmor</xpath>
 					<value>
 						<StuffEffectMultiplierArmor>8</StuffEffectMultiplierArmor>
 					</value>
 				</li>
+
 				<li Class="PatchOperationAdd">
-					<xpath>Defs/ThingDef[defName="VAE_Apparel_AdvancedVest"]/statBases</xpath>
+					<xpath>/Defs/ThingDef[defName="VAE_Apparel_AdvancedVest"]/statBases</xpath>
 					<value>
 						<ArmorRating_Sharp>2</ArmorRating_Sharp>
 						<ArmorRating_Blunt>3</ArmorRating_Blunt>
 					</value>
 				</li>
+
 				<li Class="PatchOperationReplace">
-					<xpath>Defs/ThingDef[defName="VAE_Apparel_AdvancedVest"]/statBases/MaxHitPoints</xpath>
+					<xpath>/Defs/ThingDef[defName="VAE_Apparel_AdvancedVest"]/statBases/MaxHitPoints</xpath>
 					<value>
 						<MaxHitPoints>150</MaxHitPoints>
 					</value>
 				</li>
-				<!-- Miscellaneous -->
+
 				<li Class="PatchOperationReplace">
-					<xpath>Defs/ThingDef[defName="VAE_Apparel_AdvancedVest"]/costList</xpath>
+					<xpath>/Defs/ThingDef[defName="VAE_Apparel_AdvancedVest"]/costList</xpath>
 					<value>
 						<costList>
 							<Plasteel>20</Plasteel>
@@ -112,46 +115,51 @@
 						</costList>
 					</value>
 				</li>
+
 				<li Class="PatchOperationReplace">
-					<xpath>Defs/ThingDef[defName="VAE_Apparel_AdvancedVest"]/costStuffCount</xpath>
+					<xpath>/Defs/ThingDef[defName="VAE_Apparel_AdvancedVest"]/costStuffCount</xpath>
 					<value>
 						<costStuffCount>90</costStuffCount>
 					</value>
 				</li>
+
 				<li Class="PatchOperationReplace">
-					<xpath>Defs/ThingDef[defName="VAE_Apparel_AdvancedVest"]/stuffCategories/li[.="Metallic"]</xpath>
+					<xpath>/Defs/ThingDef[defName="VAE_Apparel_AdvancedVest"]/stuffCategories/li[.="Metallic"]</xpath>
 					<value>
 						<li>Steeled</li>
 					</value>
 				</li>
 
-				<!-- == VAE_Apparel_HAZMATSuit == -->
-				<!-- statBases -->
+				<!-- === HAZMAT Suit === -->
 				<li Class="PatchOperationAdd">
-					<xpath>Defs/ThingDef[defName="VAE_Apparel_HAZMATSuit"]/statBases</xpath>
+					<xpath>/Defs/ThingDef[defName="VAE_Apparel_HAZMATSuit"]/statBases</xpath>
 					<value>
 						<Bulk>93.33</Bulk>
 						<WornBulk>14</WornBulk>
 					</value>
 				</li>
+
 				<li Class="PatchOperationReplace">
-					<xpath>Defs/ThingDef[defName="VAE_Apparel_HAZMATSuit"]/statBases/StuffEffectMultiplierArmor</xpath>
+					<xpath>/Defs/ThingDef[defName="VAE_Apparel_HAZMATSuit"]/statBases/StuffEffectMultiplierArmor</xpath>
 					<value>
 						<StuffEffectMultiplierArmor>10</StuffEffectMultiplierArmor>
 					</value>
 				</li>
-				<!-- Miscellaneous -->
+
 				<li Class="PatchOperationRemove">
-					<xpath>Defs/ThingDef[defName="VAE_Apparel_HAZMATSuit"]/equippedStatOffsets/MoveSpeed</xpath>
+					<xpath>/Defs/ThingDef[defName="VAE_Apparel_HAZMATSuit"]/equippedStatOffsets/MoveSpeed</xpath>
 				</li>
+
 				<li Class="PatchOperationAdd">
-					<xpath>Defs/ThingDef[defName="VAE_Apparel_HAZMATSuit"]/apparel/bodyPartGroups</xpath>
+					<xpath>/Defs/ThingDef[defName="VAE_Apparel_HAZMATSuit"]/apparel/bodyPartGroups</xpath>
 					<value>
 						<li>Hands</li>
 						<li>Feet</li>
 					</value>
 				</li>
+
 			</operations>
 		</match>
 	</Operation>
+
 </Patch>
