@@ -311,7 +311,12 @@ namespace CombatExtended
                     }
                     targetHeight = VerbPropsCE.ignorePartialLoSBlocker ? 0 : targetRange.Average;
                 }
-                angleRadians += ProjectileCE.GetShotAngle(ShotSpeed, (newTargetLoc - sourceLoc).magnitude, targetHeight - ShotHeight, Projectile.projectile.flyOverhead, projectilePropsCE.Gravity);
+                if (projectilePropsCE.isInstant) {
+                    angleRadians += Mathf.Atan2((newTargetLoc - sourceLoc).magnitude, targetHeight - ShotHeight);
+                }
+                else {
+                    angleRadians += ProjectileCE.GetShotAngle(ShotSpeed, (newTargetLoc - sourceLoc).magnitude, targetHeight - ShotHeight, Projectile.projectile.flyOverhead, projectilePropsCE.Gravity);
+                }
             }
 
             // ----------------------------------- STEP 4: Mechanical variation
@@ -572,15 +577,32 @@ namespace CombatExtended
                 projectile.intendedTarget = currentTarget.Thing;
                 projectile.mount = caster.Position.GetThingList(caster.Map).FirstOrDefault(t => t is Pawn && t != caster);
                 projectile.AccuracyFactor = report.accuracyFactor * report.swayDegrees * ((numShotsFired + 1) * 0.75f);
-                projectile.Launch(
-                    Shooter,    //Shooter instead of caster to give turret operators' records the damage/kills obtained
-                    sourceLoc,
-                    shotAngle,
-                    shotRotation,
-                    ShotHeight,
-                    ShotSpeed,
-                    EquipmentSource
-                );
+                bool flag = true;
+                if (projectile.def.projectile is ProjectilePropertiesCE pprop) {
+                    if (pprop.isInstant) {
+                        flag = false;
+                        projectile.RayCast(
+                                           Shooter,
+                                           verbProps,
+                                           sourceLoc,
+                                           shotAngle,
+                                           shotRotation,
+                                           ShotHeight,
+                                           ShotSpeed,
+                                           EquipmentSource);
+                    }
+                }
+                if (flag) {
+                    projectile.Launch(
+                                      Shooter,    //Shooter instead of caster to give turret operators' records the damage/kills obtained
+                                      sourceLoc,
+                                      shotAngle,
+                                      shotRotation,
+                                      ShotHeight,
+                                      ShotSpeed,
+                                      EquipmentSource
+                                      );
+                }
                 pelletMechanicsOnly = true;
             }
            /// Log.Message("Fired from "+caster.ThingID+" at "+ShotHeight); /// 

@@ -33,7 +33,7 @@ namespace OgsLasers
             effecter.Cleanup();
         }
 
-        void SpawnBeam(Vector3 a, Vector3 b)
+        public void SpawnBeam(Vector3 a, Vector3 b)
         {
             LaserBeamGraphicCE graphic = ThingMaker.MakeThing(def.beamGraphic, null) as LaserBeamGraphicCE;
             if (graphic == null) return;

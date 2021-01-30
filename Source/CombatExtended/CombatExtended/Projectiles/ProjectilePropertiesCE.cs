@@ -18,9 +18,10 @@ namespace CombatExtended
         public bool dropsCasings = false;
         public string casingMoteDefname = "Mote_EmptyCasing";
         public float gravityFactor = 1;
+        public bool isInstant = false;
         public float armorPenetrationSharp;
         public float armorPenetrationBlunt;
-
+        
         public float empShieldBreakChance = 1f;
         public float Gravity => CE_Utility.GravityConst * gravityFactor;
     }

@@ -7,6 +7,7 @@ using UnityEngine;
 using Verse;
 using Verse.Sound;
 using CombatExtended.Compatibility;
+using OgsLasers;
 
 namespace CombatExtended
 {
@@ -384,6 +385,62 @@ namespace CombatExtended
             Scribe_Values.Look<bool>(ref castShadow, "cS", true);
         }
         #endregion
+
+        public virtual void RayCast(Thing launcher, VerbProperties verbProps, Vector2 origin, float shotAngle, float shotRotation, float shotHeight = 0f, float shotSpeed = -1f, Thing equipment = null) {
+            ProjectilePropertiesCE pprops = def.projectile as ProjectilePropertiesCE;
+            shotRotation = Mathf.Deg2Rad * shotRotation + (float)(3.14159/2.0f);
+            shotAngle -= (float)(3.14159/2.0f);
+            Vector3 direction = new Vector3(Mathf.Cos(shotRotation) * Mathf.Cos(shotAngle), Mathf.Sin(shotAngle), Mathf.Sin(shotRotation) * Mathf.Cos(shotAngle));
+            Vector3 origin3 = new Vector3(origin.x, shotHeight, origin.y);
+            Map map = launcher.Map;
+            Vector3 destination = direction * verbProps.range + origin3;
+            this.shotAngle = shotAngle;
+            this.shotHeight = shotHeight;
+            this.shotRotation = shotRotation;
+            this.launcher = launcher;
+            this.origin = origin;
+            equipmentDef = equipment?.def ?? null;
+            Ray ray = new Ray(origin3, direction);
+            var lbce = this as LaserBeamCE;
+            for (int i=1; i < verbProps.range; i++) {
+                
+                Vector3 tp = ray.GetPoint(i);
+                if (tp.y > CollisionVertical.WallCollisionHeight) {
+                    break;
+                }
+                if (tp.y < 0) {
+                    destination = tp;
+                    landed = true;
+                    ExactPosition = tp;
+                    Position = ExactPosition.ToIntVec3();
+                    break;
+                }
+                foreach (Thing thing in Map.thingGrid.ThingsListAtFast(tp.ToIntVec3())) {
+                    var bounds = CE_Utility.GetBoundsFor(thing);
+                    if (!bounds.IntersectRay(ray, out var dist)) {
+                        continue;
+                    }
+                    ExactPosition = tp;
+                    destination = tp;
+                    landed = true;
+                    LastPos = destination;
+                    ExactPosition = destination;
+                    Position = ExactPosition.ToIntVec3();
+                    if (lbce!=null) {
+                        lbce.SpawnBeam(origin3, destination);
+                    }
+
+                    Impact(thing);
+                    return;
+                    
+                }
+                 
+            }
+            if (lbce!=null) {
+                lbce.SpawnBeam(origin3, destination);
+            }
+
+        }
 
         #region Launch
         /// <summary>
