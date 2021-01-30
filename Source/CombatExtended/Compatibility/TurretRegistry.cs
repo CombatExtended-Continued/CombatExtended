@@ -51,8 +51,7 @@ namespace CombatExtended.Compatibility
         }
 
 	public static void SetReloading(this Building_Turret turret, bool reloading) {
-	    var ceturret = turret as Building_TurretGunCE;
-	    if (ceturret!=null) {
+	    if (turret is Building_TurretGunCE ceturret) {
 		ceturret.isReloading = reloading;
 		return;
 	    }
@@ -67,8 +66,7 @@ namespace CombatExtended.Compatibility
 	}
 
 	public static bool GetReloading(this Building_Turret turret) {
-	    var ceturret = turret as Building_TurretGunCE;
-	    if (ceturret!=null) {
+	    if (turret is Building_TurretGunCE ceturret) {
 		return ceturret.isReloading;
 	    }
 	    if (enabled) {
@@ -82,8 +80,7 @@ namespace CombatExtended.Compatibility
 	}
 
 	public static CompAmmoUser GetAmmo(this Building_Turret turret) {
-	    var ceturret = turret as Building_TurretGunCE;
-	    if (ceturret!=null) {
+	    if (turret is Building_TurretGunCE ceturret) {
 		return ceturret.CompAmmo;
 	    }
 	    if (enabled) {
@@ -102,8 +99,7 @@ namespace CombatExtended.Compatibility
 	}
 
 	public static Thing GetGun(this Building_Turret turret) {
-	    var ceturret = turret as Building_TurretGunCE;
-	    if (ceturret!=null) {
+	    if (turret is Building_TurretGunCE ceturret) {
 		return ceturret.Gun;
 	    }
 	    if (enabled) {
@@ -118,8 +114,7 @@ namespace CombatExtended.Compatibility
 	}
 
 	public static CompMannable GetMannable(this Building_Turret turret) {
-	    var ceturret = turret as Building_TurretGunCE;
-	    if (ceturret!=null) {
+	    if (turret is Building_TurretGunCE ceturret) {
 		return ceturret.MannableComp;
 	    }
 	    return turret.TryGetComp<CompMannable>();
@@ -129,12 +124,12 @@ namespace CombatExtended.Compatibility
 	    return turret.GetAmmo()?.HasMagazine ?? false;
 	}
 	
-	public static bool ShouldReload(this Building_Turret turret, float threshold=0.5f, bool ensure_ammo_type=true) {
+	public static bool ShouldReload(this Building_Turret turret, float threshold=0.5f, bool ensureAmmoType=true) {
 	    var ammo = turret.GetAmmo();
 	    if (ammo==null) {
 		return false;
 	    }
-	    return (ammo.HasMagazine && ammo.CurMagCount <= ammo.Props.magazineSize * threshold) || (ammo.CurrentAmmo != ammo.SelectedAmmo);
+	    return (ammo.HasMagazine && ammo.CurMagCount <= ammo.Props.magazineSize * threshold) || (ensureAmmoType && ammo.CurrentAmmo != ammo.SelectedAmmo);
 	}
 
 	public static void TryForceReload(this Building_Turret turret) {
@@ -143,8 +138,7 @@ namespace CombatExtended.Compatibility
 
 	public static void TryOrderReload(this Building_Turret turret, bool forced = false)
         {
-	    var ceturret = turret as Building_TurretGunCE;
-	    if (ceturret!=null) {
+	    if (turret is Building_TurretGunCE ceturret) {
 		ceturret.TryOrderReload(forced);;
 		return;
 	    }

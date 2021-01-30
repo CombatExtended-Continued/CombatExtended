@@ -1,12 +1,11 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <Patch>
-
-	<Operation Class="PatchOperationSequence">
-		<success>Always</success>
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+			<li>Arachne Race</li>
+		</mods>
+		<match Class="PatchOperationSequence">
 		<operations>
-			<li Class="CombatExtended.PatchOperationFindMod">
-				<modName>Arachne Race</modName>
-			</li>
 			<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
 				<defName>ArachnePninety</defName>
 				<statBases>
@@ -83,6 +82,6 @@
 			</value>
 			</li>
 		</operations>
+		</match>
 	</Operation>
-
 </Patch>
