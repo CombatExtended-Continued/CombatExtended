@@ -141,9 +141,6 @@ namespace CombatExtended.HarmonyCE
                 foreach (var part in parts)
                 {
                     coverageAbs += part.coverageAbs;
-                }
-                foreach (var part in parts)
-                {
                     float combustibility = 1.0f;
                     foreach (Apparel item in apparel)
                     {
@@ -153,8 +150,9 @@ namespace CombatExtended.HarmonyCE
                             break;
                         }
                     }
-                    mult += part.coverageAbs / coverageAbs * combustibility;
+                    mult += part.coverageAbs * combustibility;
                 }
+                mult /= coverageAbs;
                 __instance.fireSize += 0.00055f * mult * 1.5f;
                 if (__instance.fireSize < Fire.MinFireSize) {
                     __instance.Destroy(DestroyMode.Vanish);
