@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using Verse;
 
-namespace OgsLasers
+namespace CombatExtended.Lasers
 {
     class SpinningLaserGunTurret : SpinningLaserGunBase
     {

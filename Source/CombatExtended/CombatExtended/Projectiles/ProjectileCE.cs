@@ -7,7 +7,7 @@ using UnityEngine;
 using Verse;
 using Verse.Sound;
 using CombatExtended.Compatibility;
-using OgsLasers;
+using CombatExtended.Lasers;
 
 namespace CombatExtended
 {

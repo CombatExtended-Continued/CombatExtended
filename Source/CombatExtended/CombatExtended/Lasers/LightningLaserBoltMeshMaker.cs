@@ -4,7 +4,7 @@ using UnityEngine;
 using Verse;
 using Verse.Noise;
 
-namespace OgsLasers
+namespace CombatExtended.Lasers
 {
     // Token: 0x0200045A RID: 1114
     public static class LightningLaserBoltMeshMaker

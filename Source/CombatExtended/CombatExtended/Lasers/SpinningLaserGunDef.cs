@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using Verse;
 
-namespace OgsLasers
+namespace CombatExtended.Lasers
 {
     public class SpinningLaserGunDef : LaserGunDef
     {

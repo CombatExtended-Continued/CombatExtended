@@ -6,7 +6,7 @@ using System.Text;
 using Verse;
 using Verse.AI;
 
-namespace OgsLasers
+namespace CombatExtended.Lasers
 {
     public class LaserColor
     {

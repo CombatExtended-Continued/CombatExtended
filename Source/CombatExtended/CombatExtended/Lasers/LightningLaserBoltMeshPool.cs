@@ -2,7 +2,7 @@
 using UnityEngine;
 using Verse;
 
-namespace OgsLasers
+namespace CombatExtended.Lasers
 {
     // Token: 0x02000459 RID: 1113
     public static class LightningLaserBoltMeshPool

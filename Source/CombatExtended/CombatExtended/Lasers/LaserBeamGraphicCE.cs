@@ -5,7 +5,7 @@ using System.Text;
 using UnityEngine;
 using Verse;
 
-namespace OgsLasers
+namespace CombatExtended.Lasers
 {
     public class LaserBeamGraphicCE :Thing
     {

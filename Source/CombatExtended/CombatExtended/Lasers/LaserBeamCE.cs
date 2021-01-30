@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using Verse.Sound;
 using CombatExtended;
 
-namespace OgsLasers
+namespace CombatExtended.Lasers
 {
     public class LaserBeamCE : BulletCE
     {

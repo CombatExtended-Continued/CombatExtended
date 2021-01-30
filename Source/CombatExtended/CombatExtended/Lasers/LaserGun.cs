@@ -5,7 +5,7 @@ using UnityEngine;
 using Verse;
 using Verse.AI;
 
-namespace OgsLasers
+namespace CombatExtended.Lasers
 {
 
     public class LaserGun : ThingWithComps, IBeamColorThing, IDrawnWeaponWithRotation

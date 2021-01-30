@@ -1,6 +1,6 @@
 ﻿using Verse;
 
-namespace OgsLasers
+namespace CombatExtended.Lasers
 {
     public class LaserBeamDecoration
     {
