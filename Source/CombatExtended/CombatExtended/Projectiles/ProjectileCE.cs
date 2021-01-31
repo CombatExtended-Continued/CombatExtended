@@ -420,6 +420,19 @@ namespace CombatExtended
                     if (!bounds.IntersectRay(ray, out var dist)) {
                         continue;
                     }
+                    if (i<2 && thing != intendedTarget) {
+                        continue;
+                    }
+                    if (thing is Plant plant) {
+                        if (!Rand.Chance(thing.def.fillPercent * plant.Growth)) {
+                            continue;
+                        }
+                    }
+                    else if (thing is Building) {
+                        if (!Rand.Chance(thing.def.fillPercent)) {
+                            continue;
+                        }
+                    }
                     ExactPosition = tp;
                     destination = tp;
                     landed = true;
