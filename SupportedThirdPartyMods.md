@@ -110,7 +110,9 @@ Jernalk's Skeletal Legion (Continued)	|
 Kaiser Armory	|
 K.L.K - Styles Apparel Pack	|
 Kijin Race 2.0     	|     
-Kill la Kill Styles Pack    	|   
+Kill la Kill Styles Pack    |
+Kit's Industrial Weapons |   
+Kit's Roman Weapons |   
 Kurin, The Three Tailed Fox	|
 Leeani Playable Race	|
 Let's Have a Cat!	|
