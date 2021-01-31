@@ -325,7 +325,7 @@ namespace CombatExtended
             // ----------------------------------- STEP 4: Mechanical variation
 
             // Get shotvariation, in angle Vector2 RADIANS.
-            Vector2 spreadVec = report.GetRandSpreadVec();
+            Vector2 spreadVec = projectilePropsCE.isInstant? new Vector2(0,0) : report.GetRandSpreadVec() ;
 
             // ----------------------------------- STEP 5: Finalization
 
@@ -563,9 +563,11 @@ namespace CombatExtended
             }
             bool instant = false;
 
+            float spreadDegrees = 0;
 
             if (Projectile.projectile is ProjectilePropertiesCE pprop) {
                 instant = pprop.isInstant;
+                spreadDegrees = (EquipmentSource?.GetStatValue(StatDef.Named("ShotSpread")) ?? 0) * pprop.spreadMult;
             }
 
             ShiftVecReport report = ShiftVecReportFor(currentTarget);
@@ -596,6 +598,7 @@ namespace CombatExtended
                                        shotRotation,
                                        ShotHeight,
                                        ShotSpeed,
+                                       spreadDegrees,
                                        EquipmentSource);
 
                 }

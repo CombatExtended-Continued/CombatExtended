@@ -10,6 +10,7 @@ namespace CombatExtended.Lasers
 {
     public class LaserBeamCE : BulletCE
     {
+        public float DamageModifier = 1.0f;
         public new LaserBeamDefCE def => base.def as LaserBeamDefCE;
 
         public override void Draw()
@@ -179,7 +180,7 @@ namespace CombatExtended.Lasers
                 MoteMaker.MakeStaticMote(this.ExactPosition, map, ThingDefOf.Mote_ShotHit_Dirt, 1f);
                 if (base.Position.GetTerrain(map).takeSplashes)
                 {
-                    MoteMaker.MakeWaterSplash(this.ExactPosition, map, Mathf.Sqrt((float)this.def.projectile.GetDamageAmount(1f, null)) * 1f, 4f);
+                    MoteMaker.MakeWaterSplash(this.ExactPosition, map, Mathf.Sqrt((float)this.def.projectile.GetDamageAmount(1f, null) * DamageModifier) * 1f, 4f);
                 }
             }
         }
@@ -188,7 +189,8 @@ namespace CombatExtended.Lasers
         {
             get
             {
-                return this.def.projectile.GetDamageAmount(1f, null);
+                var da = this.def.projectile.GetDamageAmount(1f, null) * DamageModifier;
+                return this.def.projectile.GetDamageAmount(1f, null) * DamageModifier;
             }
         }
 
@@ -222,7 +224,7 @@ namespace CombatExtended.Lasers
             float explosionRadius = this.def.projectile.explosionRadius;
             DamageDef damageDef = this.def.projectile.damageDef;
             Thing launcher = this.launcher;
-            int damageAmount = this.def.projectile.GetDamageAmount(1f, null);
+            int damageAmount = (int)(this.def.projectile.GetDamageAmount(1f, null) * DamageModifier);
             SoundDef soundExplode = this.def.projectile.soundExplode;
             ThingDef equipmentDef = this.equipmentDef;
             ThingDef def = this.def;
