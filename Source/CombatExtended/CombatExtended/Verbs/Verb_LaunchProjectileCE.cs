@@ -234,7 +234,7 @@ namespace CombatExtended
         /// <summary>
         /// Shifts the original target position in accordance with target leading, range estimation and weather/lighting effects
         /// </summary>
-        protected virtual void ShiftTarget(ShiftVecReport report, bool calculateMechanicalOnly = false)
+        protected virtual void ShiftTarget(ShiftVecReport report, bool calculateMechanicalOnly = false, bool isInstant = false)
         {
             if (!calculateMechanicalOnly)
             {
@@ -262,7 +262,10 @@ namespace CombatExtended
                 newTargetLoc = sourceLoc + (newTargetLoc - sourceLoc).normalized * estimatedTargDist;
 
                 // Lead a moving target
-                newTargetLoc += report.GetRandLeadVec();
+                if (!isInstant) {
+
+                    newTargetLoc += report.GetRandLeadVec();
+                }
 
                 // ----------------------------------- STEP 3: Recoil, Skewing, Skill checks, Cover calculations
 
@@ -558,6 +561,13 @@ namespace CombatExtended
                 Log.Error(EquipmentSource.LabelCap + " tried firing with pelletCount less than 1.");
                 return false;
             }
+            bool instant = false;
+
+
+            if (Projectile.projectile is ProjectilePropertiesCE pprop) {
+                instant = pprop.isInstant;
+            }
+
             ShiftVecReport report = ShiftVecReportFor(currentTarget);
             bool pelletMechanicsOnly = false;
             for (int i = 0; i < projectilePropsCE.pelletCount; i++)
@@ -565,7 +575,7 @@ namespace CombatExtended
 
                 ProjectileCE projectile = (ProjectileCE)ThingMaker.MakeThing(Projectile, null);
                 GenSpawn.Spawn(projectile, shootLine.Source, caster.Map);
-                ShiftTarget(report, pelletMechanicsOnly);
+                ShiftTarget(report, pelletMechanicsOnly, instant);
 
                 //New aiming algorithm
                 projectile.canTargetSelf = false;
@@ -577,22 +587,19 @@ namespace CombatExtended
                 projectile.intendedTarget = currentTarget.Thing;
                 projectile.mount = caster.Position.GetThingList(caster.Map).FirstOrDefault(t => t is Pawn && t != caster);
                 projectile.AccuracyFactor = report.accuracyFactor * report.swayDegrees * ((numShotsFired + 1) * 0.75f);
-                bool flag = true;
-                if (projectile.def.projectile is ProjectilePropertiesCE pprop) {
-                    if (pprop.isInstant) {
-                        flag = false;
-                        projectile.RayCast(
-                                           Shooter,
-                                           verbProps,
-                                           sourceLoc,
-                                           shotAngle,
-                                           shotRotation,
-                                           ShotHeight,
-                                           ShotSpeed,
-                                           EquipmentSource);
-                    }
+                if (instant) {
+                    projectile.RayCast(
+                                       Shooter,
+                                       verbProps,
+                                       sourceLoc,
+                                       shotAngle,
+                                       shotRotation,
+                                       ShotHeight,
+                                       ShotSpeed,
+                                       EquipmentSource);
+
                 }
-                if (flag) {
+                else  {
                     projectile.Launch(
                                       Shooter,    //Shooter instead of caster to give turret operators' records the damage/kills obtained
                                       sourceLoc,
