@@ -387,7 +387,7 @@ namespace CombatExtended
         #endregion
 
         public virtual void RayCast(Thing launcher, VerbProperties verbProps, Vector2 origin, float shotAngle, float shotRotation, float shotHeight = 0f, float shotSpeed = -1f, float spreadDegrees = 0f, Thing equipment = null) {
-            const float magicLaserDamageConstant = 579.4654736935049f;
+            const float magicLaserDamageConstant = 1789.255934470907f;
             ProjectilePropertiesCE pprops = def.projectile as ProjectilePropertiesCE;
             shotRotation = Mathf.Deg2Rad * shotRotation + (float)(3.14159/2.0f);
             shotAngle -= (float)(3.14159/2.0f);
@@ -403,9 +403,9 @@ namespace CombatExtended
             equipmentDef = equipment?.def ?? null;
             Ray ray = new Ray(origin3, direction);
             var lbce = this as LaserBeamCE;
-            float spreadRadius = Mathf.Sin(spreadDegrees * Mathf.Deg2Rad);
+            float spreadRadius = Mathf.Sin(spreadDegrees / 2.0f * Mathf.Deg2Rad);
             for (int i=1; i < verbProps.range; i++) {
-                float spreadArea = (i * spreadRadius + 0.01f) * (i * spreadRadius + 0.01f) * 3.1415f;
+                float spreadArea = (i * spreadRadius + 0.01f) * (i * spreadRadius + 0.01f) * 3.14159f;
                 lbce.DamageModifier = 1 / (magicLaserDamageConstant * spreadArea);
                 
                 Vector3 tp = ray.GetPoint(i);
