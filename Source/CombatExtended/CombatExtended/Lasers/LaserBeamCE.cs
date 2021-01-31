@@ -189,7 +189,6 @@ namespace CombatExtended.Lasers
         {
             get
             {
-                var da = this.def.projectile.GetDamageAmount(1f, null) * DamageModifier;
                 return this.def.projectile.GetDamageAmount(1f, null) * DamageModifier;
             }
         }
