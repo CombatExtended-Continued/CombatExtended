@@ -49,8 +49,39 @@
           </value>
         </li>
 
-        <!-- == 6B5-16 / 6B3TM-01M / 6B5-15 / ANA Tactical M2 / ANA Tactical M1 / Cry Precn AVS ==  -->
+        <!-- === ReloadSpeed === -->
         <li Class="PatchOperationAdd">
+          <xpath>
+            /Defs/ThingDef[
+              defName = "JDSTarkov_6B5-16_Zh-86_rig" or
+              defName = "JDSTarkov_6B3TM-01M" or
+              defName = "JDSTarkov_6B5-15_Zh-86_rig" or
+              defName = "JDSTarkov_5_11_Tactec_plate_carrier"
+            ]/equippedStatOffsets
+          </xpath>
+          <value>
+            <ReloadSpeed>0.05</ReloadSpeed>
+          </value>
+        </li>
+
+        <li Class="PatchOperationAdd">
+          <xpath>
+            /Defs/ThingDef[
+              defName = "JDSTarkov_ANA_Tactical_M2_rig" or
+              defName = "JDSTarkov_ANA_Tactical_M1_rig" or
+              defName = "JDSTarkov_Crye_Precision_AVS" or
+              defName = "JDSTarkov_Ars_Arma_A18_Skanda" or
+              defName = "JDSTarkov_Wartech_TV-110_rig" or
+              defName = "JDSTarkov_Ars_Arma_CPC_MOD_2_rig"
+            ]/equippedStatOffsets
+          </xpath>
+          <value>
+            <ReloadSpeed>0.1</ReloadSpeed>
+          </value>
+        </li>
+
+        <!-- == 6B5-16 / 6B3TM-01M / 6B5-15 / ANA Tactical M2 / ANA Tactical M1 / Cry Precn AVS ==  -->
+        < Class="PatchOperationAdd">
           <xpath>
             /Defs/ThingDef[
               defName = "JDSTarkov_6B5-16_Zh-86_rig" or
@@ -65,7 +96,7 @@
             <Bulk>7.5</Bulk>
             <WornBulk>1.5</WornBulk>
           </value>
-        </li>
+        </>
 
         <!-- == 6B5-16 / 6B3TM-01M / 6B5-15 / ANA Tactical M2 / ANA Tactical M1 / Cry Prec AVS / Ars Arma A18 / Wartech TV-110 ==  -->
         <li Class="PatchOperationReplace">
@@ -288,6 +319,7 @@
           </xpath>
           <value>
             <CarryBulk>10</CarryBulk>
+            <ReloadSpeed>0.06</ReloadSpeed>
           </value>
         </li>
 
@@ -303,6 +335,7 @@
           </xpath>
           <value>
             <CarryBulk>18</CarryBulk>
+            <ReloadSpeed>0.1</ReloadSpeed>
           </value>
         </li>
 
@@ -318,6 +351,7 @@
           </xpath>
           <value>
             <CarryBulk>30</CarryBulk>
+            <ReloadSpeed>0.12</ReloadSpeed>
           </value>
         </li>
 
