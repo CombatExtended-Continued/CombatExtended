@@ -595,6 +595,10 @@ namespace CombatExtended
 
             ShiftVecReport report = ShiftVecReportFor(currentTarget);
             bool pelletMechanicsOnly = false;
+
+            var shotHeight = ShotHeight;
+            shotAngle += AdjustShotHeight(caster, currentTarget, ref shotHeight);
+
             for (int i = 0; i < projectilePropsCE.pelletCount; i++)
             {
 
@@ -619,7 +623,7 @@ namespace CombatExtended
                                        sourceLoc,
                                        shotAngle,
                                        shotRotation,
-                                       ShotHeight,
+                                       shotHeight,
                                        ShotSpeed,
                                        spreadDegrees,
                                        EquipmentSource);
@@ -631,7 +635,7 @@ namespace CombatExtended
                                       sourceLoc,
                                       shotAngle,
                                       shotRotation,
-                                      ShotHeight,
+                                      shotHeight,
                                       ShotSpeed,
                                       EquipmentSource
                                       );
