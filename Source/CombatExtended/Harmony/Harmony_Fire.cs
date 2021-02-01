@@ -125,6 +125,41 @@ namespace CombatExtended.HarmonyCE
                 }
             }
         }
+        internal static void Postfix(Fire __instance)
+        {
+            if (__instance.Spawned && __instance.parent is Pawn pawn)
+            {
+                __instance.fireSize -= pawn.GetStatValue(StatDefOf.Flammability, true) * 150 * 0.00055f;
+                float mult = 0.0f;
+                var apparel = pawn.apparel?.WornApparel ?? null;
+                if (apparel==null)
+                {
+                    return;
+                }
+                var parts = pawn.health.hediffSet.GetNotMissingParts(BodyPartHeight.Undefined, BodyPartDepth.Outside);
+                float coverageAbs = 0;
+                foreach (var part in parts)
+                {
+                    coverageAbs += part.coverageAbs;
+                    float combustibility = 1.0f;
+                    foreach (Apparel item in apparel)
+                    {
+                        if (item.def.apparel.CoversBodyPart(part))
+                        {
+                            combustibility = ((item.GetStatValue(StatDefOf.Flammability, true)) - 0.1f) / 0.50f;
+                            break;
+                        }
+                    }
+                    mult += part.coverageAbs * combustibility;
+                }
+                mult /= coverageAbs;
+                __instance.fireSize += 0.00055f * mult * 1.5f;
+                if (__instance.fireSize < Fire.MinFireSize) {
+                    __instance.Destroy(DestroyMode.Vanish);
+                }
+            }
+        }
+
     }
 
     [HarmonyPatch(typeof(Fire), "TrySpread")]

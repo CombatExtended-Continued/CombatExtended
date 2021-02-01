@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <Patch>
-	<Operation Class="PatchOperationSequence">
-		<success>Always</success>
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+			<li>Arachne Race</li>
+		</mods>
+		<match Class="PatchOperationSequence">
 		<operations>
-
-			<li Class="CombatExtended.PatchOperationFindMod">
-				<modName>Arachne Race</modName>
-			</li>
 			
 			<li Class="PatchOperationAdd">
 				<xpath>Defs/ThingDef[defName="Leather_Arachne"]/statBases</xpath>
@@ -23,11 +22,14 @@
 			</li>
 			
 			<li Class="PatchOperationAdd">
-				<xpath>Defs/ThingDef[defName="Leather_Arachne"]/stuffProps/categories</xpath>
+				<xpath>Defs/ThingDef[defName="Leather_Arachne"]/stuffProps</xpath>
 				<value>
-					<li>SoftArmor</li>
+					<categories>
+						<li>SoftArmor</li>
+					</categories>	
 				</value>
 			</li>
 		</operations>
+		</match>
 	</Operation>
 </Patch>

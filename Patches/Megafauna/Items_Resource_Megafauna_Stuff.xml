@@ -1,30 +1,30 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <Patch>
-	<Operation Class="PatchOperationSequence">
-		<success>Always</success>
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+			<li>Megafauna</li>
+		</mods>
+		<match Class="PatchOperationSequence">
 		<operations>
-			<!-- ==== Check for the mod. ==== -->
-			<li Class="CombatExtended.PatchOperationFindMod">
-				<modName>Megafauna</modName>
-			</li>
 
-			<!--========== Wool ============-->
+		<!--========== Wool ============-->
 
-			<li Class="PatchOperationReplace">
-				<xpath>Defs/ThingDef[defName="MammothWool" or defName="JosephoartigasiaWool"]/statBases/StuffPower_Armor_Sharp</xpath>
-				<value>
-					<StuffPower_Armor_Sharp>0.03</StuffPower_Armor_Sharp>
-				</value>
-			</li>
+		<li Class="PatchOperationReplace">
+			<xpath>Defs/ThingDef[defName="MammothWool" or defName="JosephoartigasiaWool"]/statBases/StuffPower_Armor_Sharp</xpath>
+			<value>
+				<StuffPower_Armor_Sharp>0.03</StuffPower_Armor_Sharp>
+			</value>
+		</li>
 
-			<li Class="PatchOperationReplace">
-				<xpath>Defs/ThingDef[defName="ElasmotheriumWool"]/statBases/StuffPower_Armor_Sharp</xpath>
-				<value>
-					<StuffPower_Armor_Sharp>0.04</StuffPower_Armor_Sharp>
-				</value>
-			</li>
+		<li Class="PatchOperationReplace">
+			<xpath>Defs/ThingDef[defName="ElasmotheriumWool"]/statBases/StuffPower_Armor_Sharp</xpath>
+			<value>
+				<StuffPower_Armor_Sharp>0.04</StuffPower_Armor_Sharp>
+			</value>
+		</li>
 
 
 		</operations>
+		</match>
 	</Operation>
 </Patch>

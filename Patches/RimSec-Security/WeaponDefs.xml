@@ -1,0 +1,207 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+
+  <Operation Class="PatchOperationFindMod">
+    <mods>
+      <li>Rimsec Security</li>
+    </mods>
+
+    <match Class="PatchOperationSequence">
+      <operations>
+
+        <!-- === Tools === -->
+        <li Class="PatchOperationReplace">
+          <xpath>/Defs/ThingDef[ defName="RSWeaponDLG" or defName="RSWeaponEHG" or defName="RSWeaponSHAG"
+          ]/tools</xpath>
+          <value>
+            <tools>
+              <li Class="CombatExtended.ToolCE">
+                <label>stock</label>
+                <capacities>
+                  <li>Blunt</li>
+                </capacities>
+                <power>8</power>
+                <cooldownTime>1.55</cooldownTime>
+                <chanceFactor>1.5</chanceFactor>
+                <armorPenetrationBlunt>2.755</armorPenetrationBlunt>
+                <linkedBodyPartsGroup>Stock</linkedBodyPartsGroup>
+              </li>
+              <li Class="CombatExtended.ToolCE">
+                <label>barrel</label>
+                <capacities>
+                  <li>Blunt</li>
+                </capacities>
+                <power>5</power>
+                <cooldownTime>2.02</cooldownTime>
+                <armorPenetrationBlunt>1.630</armorPenetrationBlunt>
+                <linkedBodyPartsGroup>Barrel</linkedBodyPartsGroup>
+              </li>
+              <li Class="CombatExtended.ToolCE">
+                <label>muzzle</label>
+                <capacities>
+                  <li>Poke</li>
+                </capacities>
+                <power>8</power>
+                <cooldownTime>1.55</cooldownTime>
+                <armorPenetrationBlunt>2.755</armorPenetrationBlunt>
+                <linkedBodyPartsGroup>Muzzle</linkedBodyPartsGroup>
+              </li>
+            </tools>
+          </value>
+        </li>
+
+
+        <!-- === DLG-20 === -->
+        <li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+          <defName>RSWeaponDLG</defName>
+
+          <statBases>
+            <Mass>3.5</Mass>
+            <Bulk>6.2</Bulk>
+            <SwayFactor>1.04</SwayFactor>
+            <ShotSpread>0.09</ShotSpread>
+            <SightsEfficiency>1.2</SightsEfficiency>
+            <RangedWeapon_Cooldown>0.36</RangedWeapon_Cooldown>
+          </statBases>
+
+          <Properties>
+            <recoilAmount>1.30</recoilAmount>
+            <verbClass>CombatExtended.Verb_ShootCE</verbClass>
+            <hasStandardCommand>True</hasStandardCommand>
+            <defaultProjectile>Bullet_6x24mmSRS</defaultProjectile>
+            <burstShotCount>6</burstShotCount>
+            <ticksBetweenBurstShots>6</ticksBetweenBurstShots>
+            <warmupTime>0.6</warmupTime>
+            <range>55</range>
+            <soundCast>Shot_HeavySMG</soundCast>
+            <soundCastTail>GunTail_Heavy</soundCastTail>
+            <muzzleFlashScale>9</muzzleFlashScale>
+          </Properties>
+
+          <AmmoUser>
+            <magazineSize>30</magazineSize>
+            <reloadTime>4</reloadTime>
+            <ammoSet>AmmoSet_6x24mmSRS</ammoSet>
+          </AmmoUser>
+
+          <FireModes>
+            <aiAimMode>AimedShot</aiAimMode>
+            <aiUseBurstMode>True</aiUseBurstMode>
+            <aimedBurstShotCount>3</aimedBurstShotCount>
+          </FireModes>
+
+          <weaponTags>
+            <li>RSDLG20</li>
+            <li>RSPeacekeeperGun</li>
+          </weaponTags>
+        </li>
+
+        <!-- === EHG-22 === -->
+        <li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+          <defName>RSWeaponEHG</defName>
+
+          <statBases>
+            <WorkToMake>75500</WorkToMake>
+            <Mass>32.0</Mass>
+            <Bulk>28.0</Bulk>
+            <SwayFactor>1.35</SwayFactor>
+            <ShotSpread>0.10</ShotSpread>
+            <SightsEfficiency>1</SightsEfficiency>
+            <RangedWeapon_Cooldown>0.56</RangedWeapon_Cooldown>
+          </statBases>
+          <costList>
+            <Steel>150</Steel>
+            <Plasteel>15</Plasteel>
+            <Chemfuel>20</Chemfuel>
+            <ComponentIndustrial>10</ComponentIndustrial>
+          </costList>
+          <Properties>
+            <verbClass>CombatExtended.Verb_ShootCE</verbClass>
+            <hasStandardCommand>True</hasStandardCommand>
+            <defaultProjectile>Bullet_6x18mmSRS</defaultProjectile>
+            <burstShotCount>50</burstShotCount>
+            <ticksBetweenBurstShots>1</ticksBetweenBurstShots>
+            <warmupTime>2.5</warmupTime>
+            <range>62</range>
+            <soundCast>Shot_ChargeRifle</soundCast>
+            <soundCastTail>GunTail_Medium</soundCastTail>
+            <muzzleFlashScale>9</muzzleFlashScale>
+            <recoilAmount>1.24</recoilAmount>
+            <recoilPattern>Regular</recoilPattern>
+          </Properties>
+          <AmmoUser>
+            <magazineSize>500</magazineSize>
+            <reloadTime>9.2</reloadTime>
+            <ammoSet>AmmoSet_6x18mmSRS</ammoSet>
+          </AmmoUser>
+          <FireModes>
+            <aiAimMode>SuppressFire</aiAimMode>
+            <aimedBurstShotCount>20</aimedBurstShotCount>
+          </FireModes>
+          <weaponTags>
+            <li>RSEHG22</li>
+            <li>RSPeacekeeperGun</li>
+          </weaponTags>
+          <AllowWithRunAndGun>false</AllowWithRunAndGun>
+        </li>
+
+        <!-- === SHAG-1 === -->
+        <li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+          <defName>RSWeaponSHAG</defName>
+
+          <statBases>
+            <WorkToMake>80000</WorkToMake>
+            <Mass>48.0</Mass>
+            <Bulk>42.0</Bulk>
+            <SwayFactor>1.40</SwayFactor>
+            <ShotSpread>0.10</ShotSpread>
+            <SightsEfficiency>1.10</SightsEfficiency>
+            <RangedWeapon_Cooldown>0.66</RangedWeapon_Cooldown>
+          </statBases>
+
+          <costList>
+            <Steel>350</Steel>
+            <Plasteel>20</Plasteel>
+            <Chemfuel>20</Chemfuel>
+            <ComponentIndustrial>25</ComponentIndustrial>
+          </costList>
+
+          <Properties>
+            <verbClass>CombatExtended.Verb_ShootCE</verbClass>
+            <hasStandardCommand>True</hasStandardCommand>
+            <defaultProjectile>Bullet_8mmRailgun_Sabot</defaultProjectile>
+            <burstShotCount>6</burstShotCount>
+            <ticksBetweenBurstShots>10</ticksBetweenBurstShots>
+            <warmupTime>1.5</warmupTime>
+            <range>90</range>
+            <soundCast>RSShot_Shag</soundCast>
+            <soundCastTail>GunTail_Medium</soundCastTail>
+            <muzzleFlashScale>9</muzzleFlashScale>
+            <recoilAmount>1.75</recoilAmount>
+          </Properties>
+
+          <AmmoUser>
+            <magazineSize>60</magazineSize>
+            <reloadTime>5</reloadTime>
+            <ammoSet>AmmoSet_8mmRailgun</ammoSet>
+          </AmmoUser>
+
+          <FireModes>
+            <aiAimMode>AimedShot</aiAimMode>
+            <aimedBurstShotCount>3</aimedBurstShotCount>
+          </FireModes>
+
+          <weaponTags>
+            <li>RSSHAG1</li>
+            <li>RSPeacekeeperGun</li>
+          </weaponTags>
+
+          <AllowWithRunAndGun>false</AllowWithRunAndGun>
+        </li>
+
+
+      </operations>
+    </match>
+  </Operation>
+
+</Patch>
