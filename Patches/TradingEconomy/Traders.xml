@@ -1,18 +1,17 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <Patch>
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+			<li>[A17] Trading Economy Mod 1.4 </li>
+		</mods>
+		<match Class="PatchOperationSequence">
+		<operations>
 
-  <!-- ========== Simple prosthetics ========== -->
-
-  <Operation Class="PatchOperationSequence">
-    <success>Always</success>
-    <operations>
-      <li Class="CombatExtended.PatchOperationFindMod">
-        <modName>[A17] Trading Economy Mod 1.4 </modName>
-      </li>
       <li Class="PatchOperationRemove">
       	<xpath>Defs/TraderKindDef[defName="FactionBase_WalkblemMilitary" or defName="Caravan_WalkblemTradings_Turrets"]/stockGenerators/li[thingDef="Turret_MortarIncendiary" or thingDef="Turret_MortarEMP"]</xpath>
       </li>
     </operations>
+    </match>
   </Operation>
 
 </Patch>

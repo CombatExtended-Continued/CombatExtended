@@ -1,12 +1,11 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="utf-8" ?>
 <Patch>
-
-	<Operation Class="PatchOperationSequence">
-		<success>Always</success>
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+			<li>[XND] Vanilla-Friendly Animal Surgery</li>
+		</mods>
+		<match Class="PatchOperationSequence">
 		<operations>
-			<li Class="CombatExtended.PatchOperationFindMod">
-				<modName>[XND] Vanilla-Friendly Animal Surgery</modName>
-			</li>
 			<!-- tiny -->
 			<li Class="PatchOperationReplace">
 				<xpath>Defs/HediffDef[defName="SimpleProstheticAnimalArmTiny"]/comps/li/tools</xpath>
@@ -93,6 +92,6 @@
 				</value>
 			</li>
 		</operations>
+		</match>
 	</Operation>
-
 </Patch>

@@ -14,6 +14,8 @@ Mod |
 [CP] Spec Ops - The Line	|
 [CP] The DOOM Kit - Classic	|
 [HLX] Rimworld: UNSC Armoury |
+[HLX] ReGrowth - Mutated Animals Pack |
+[JDS] EFT Apparel |
 [JDS] Exiled Dawn |
 [JDS] Star Wars BlasTech Industries |
 [JDS] The Forge - Exiled Dawn |
@@ -58,6 +60,7 @@ Beeralope Squad	|
 Better Infestations	|
 Black Widows	|
 Carbon	|
+Civilization Beyond Earth Armor Sets    |
 Clay Soldier Race |
 Combat Enthusiast’s Collection	|
 Cupro's Alloys	|
@@ -82,6 +85,7 @@ Expanded Patchleather	|
 Expanded Prosthetics and Organ Engineering (EPOE)	|
 Expanded Prosthetics and Organ Engineering (EPOE) - Forked	|
 Extended Storage	|
+Fallout New Vegas - Elite Riot Gear |
 Fallout Traits	|
 Fantasy Metals Reforged |
 FashionRIMsta	|
@@ -109,7 +113,9 @@ Jernalk's Skeletal Legion (Continued)	|
 Kaiser Armory	|
 K.L.K - Styles Apparel Pack	|
 Kijin Race 2.0     	|     
-Kill la Kill Styles Pack    	|   
+Kill la Kill Styles Pack    |
+Kit's Industrial Weapons |   
+Kit's Roman Weapons |   
 Kurin, The Three Tailed Fox	|
 Leeani Playable Race	|
 Let's Have a Cat!	|
@@ -124,9 +130,11 @@ MiningCo. MiningHelmet	|
 Misc. Core	|
 Misc. MAI |
 Misc. Robots	|
+Mister Meeseeks |
 More Consumables And Mutagens Reworked |
 More Mechanoids	|
 More Practical Traits	|
+More Utility Packs	|
 More Vanilla Turrets	|
 Moyo - From the Depth   |
 Nearmare Race	|
@@ -134,6 +142,7 @@ Ni'Hal	|
 Orassans	|
 Palm Cats   |
 Penguin	|
+Playable Geth |
 Polarisbloc - Security Force	|
 Prestige Specialist Armours	|
 Prostheses+ |
@@ -167,6 +176,7 @@ Sergals, Gnolls, Lions and Frogs	|
 Silkiera Race	|
 Simply More Melee	|
 Soviet Armory	|
+Space Worms (Continued) |
 Spartan Foundry	|
 Star Wars - Factions |
 Star Wars - Factions (Continued) |
@@ -176,6 +186,7 @@ The GiantRace	|
 TouhouStyle	|
 Trading Economy	|
 Tsar Armory	|
+Turk's Guns |
 Turret Collection	|
 Vanilla Animals Expanded |
 Vanilla Apparel Expanded	|
@@ -195,9 +206,12 @@ Vanilla Weapons Expanded Quickdraw	|
 Vanilla-Friendly Animal Surgery	|
 Vanilla-Friendly Weapon Expansion	|
 Vanilla Storytellers Expanded - Perry Persistent |
+VFE - Mechanoids : Drones |
+VFE - Mechanoids : Unoffical Add-On |
 VGP Fabrics
 Vulpine Race Pack	|
 Weapons+	|
+WWII German Uniforms - V's Edit |
 WWII Soviet Faction	|
 Xenn Race	|
 Xenohumans	|
