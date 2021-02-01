@@ -203,6 +203,8 @@ Vanilla Weapons Expanded Quickdraw	|
 Vanilla-Friendly Animal Surgery	|
 Vanilla-Friendly Weapon Expansion	|
 Vanilla Storytellers Expanded - Perry Persistent |
+VFE - Mechanoids : Drones |
+VFE - Mechanoids : Unoffical Add-On |
 VGP Fabrics
 Vulpine Race Pack	|
 Weapons+	|
