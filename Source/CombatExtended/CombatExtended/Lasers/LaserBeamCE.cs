@@ -60,15 +60,23 @@ namespace CombatExtended.Lasers
         public Vector3 destination => new Vector3(base.Destination.x,0, base.Destination.y);
         public Vector3 Origin => new Vector3(base.origin.x,0, base.origin.y);
 
+
         protected override void Impact(Thing hitThing)
+        {
+            LaserGunDef defWeapon = equipmentDef as LaserGunDef;
+            Vector3 dir = (destination - Origin).normalized;
+            Vector3 a = Origin + dir * (defWeapon == null ? 0.9f : defWeapon.barrelLength);
+            Impact(hitThing, a);
+        }
+
+        public void Impact(Thing hitThing, Vector3 muzzle)
         {
             bool shielded = hitThing.IsShielded() && def.IsWeakToShields;
 
             LaserGunDef defWeapon = equipmentDef as LaserGunDef;
-            Vector3 dir = (destination - Origin).normalized;
-            dir.y = 0;
+            Vector3 dir = (destination - muzzle).normalized;
 
-            Vector3 a = Origin + dir * (defWeapon == null ? 0.9f : defWeapon.barrelLength);
+
             Vector3 b;
             if (hitThing == null)
             {
@@ -76,9 +84,7 @@ namespace CombatExtended.Lasers
             }
             else if (shielded)
             {
-                Rand.PushState();
                 b = hitThing.TrueCenter() - dir.RotatedBy(Rand.Range(-22.5f, 22.5f)) * 0.8f;
-                Rand.PopState();
             }
             else if ((destination - hitThing.TrueCenter()).magnitude < 1)
             {
@@ -87,13 +93,9 @@ namespace CombatExtended.Lasers
             else
             {
                 b = hitThing.TrueCenter();
-                Rand.PushState();
                 b.x += Rand.Range(-0.5f, 0.5f);
                 b.z += Rand.Range(-0.5f, 0.5f);
-                Rand.PopState();
             }
-            a.y = b.y = def.Altitude;
-            SpawnBeam(a, b);
             /*
             bool createsExplosion = this.def.projectile.explosionRadius>0f;
             if (createsExplosion)
@@ -111,17 +113,10 @@ namespace CombatExtended.Lasers
                     weapon = turret.Gun as IDrawnWeaponWithRotation;
                 }
             }
-            if (weapon != null)
-            {
-                float angle = (b - a).AngleFlat() - (destination - a).AngleFlat();
-                weapon.RotationOffset = (angle + 180) % 360 - 180;
-            }
             if (hitThing == null)
             {
                 TriggerEffect(def.explosionEffect, b);
-                Rand.PushState();
                 bool flag2 = this.def.causefireChance > 0f && Rand.Chance(this.def.causefireChance);
-                Rand.PopState();
                 if (flag2)
                 {
                     FireUtility.TryStartFireIn(b.ToIntVec3(), pawn.Map, 0.01f);
@@ -134,7 +129,7 @@ namespace CombatExtended.Lasers
                 {
                 //    weaponDamageMultiplier *= def.shieldDamageMultiplier;
 
-                    SpawnBeamReflections(a, b, 5);
+                    SpawnBeamReflections(muzzle, b, 5);
                 }
 
                 Rand.PushState();
@@ -151,7 +146,7 @@ namespace CombatExtended.Lasers
                 AddedEffect(hitThing);
             }
             Map map = base.Map;
-            base.Impact(hitThing);
+//            base.Impact(hitThing);
             if (this.equipmentDef==null)
             {
                 this.equipmentDef = this.launcher.def;
