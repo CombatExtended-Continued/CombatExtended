@@ -183,6 +183,7 @@ The GiantRace	|
 TouhouStyle	|
 Trading Economy	|
 Tsar Armory	|
+Turk's Guns |
 Turret Collection	|
 Vanilla Animals Expanded |
 Vanilla Apparel Expanded	|
