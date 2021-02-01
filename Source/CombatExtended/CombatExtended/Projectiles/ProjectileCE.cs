@@ -450,19 +450,22 @@ namespace CombatExtended
                     LastPos = destination;
                     ExactPosition = destination;
                     Position = ExactPosition.ToIntVec3();
-                    if (lbce!=null) {
-                        lbce.SpawnBeam(origin3, destination);
-                    }
 
-                    Impact(thing);
+                    lbce.SpawnBeam(muzzle, destination);
+
+                    lbce.Impact(thing, muzzle);
+
                     return;
                     
                 }
                  
             }
             if (lbce!=null) {
-                lbce.SpawnBeam(origin3, destination);
+                lbce.SpawnBeam(muzzle, destination);
+                Destroy(DestroyMode.Vanish);
+                return;
             }
+
 
         }
 
