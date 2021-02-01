@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8" ?>
+
+<Patch>
+	<Operation Class="PatchOperationFindMod">
+    <mods>
+		<li>Civilization Beyond Earth Armor Sets</li>
+    </mods>
+		<match Class="PatchOperationSequence">
+		 <operations>
+
+		<!-- ========== Tools ========== -->
+
+		<li Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Tier1_Carbine_Soldier"]/tools</xpath>
+		<value>
+			<tools>
+			<li Class="CombatExtended.ToolCE">
+				<label>stock</label>
+				<capacities>
+				<li>Blunt</li>
+				</capacities>
+				<power>8</power>
+				<cooldownTime>1.55</cooldownTime>
+				<chanceFactor>1.5</chanceFactor>
+				<armorPenetrationBlunt>2.755</armorPenetrationBlunt>
+				<linkedBodyPartsGroup>Stock</linkedBodyPartsGroup>
+			</li>
+			<li Class="CombatExtended.ToolCE">
+				<label>barrel</label>
+				<capacities>
+				<li>Blunt</li>
+				</capacities>
+				<power>5</power>
+				<cooldownTime>2.02</cooldownTime>
+				<armorPenetrationBlunt>1.630</armorPenetrationBlunt>
+				<linkedBodyPartsGroup>Barrel</linkedBodyPartsGroup>
+			</li>
+			<li Class="CombatExtended.ToolCE">
+				<label>muzzle</label>
+				<capacities>
+				<li>Poke</li>
+				</capacities>
+				<power>8</power>
+				<cooldownTime>1.55</cooldownTime>
+				<armorPenetrationBlunt>2.755</armorPenetrationBlunt>
+				<linkedBodyPartsGroup>Muzzle</linkedBodyPartsGroup>
+			</li>
+			</tools>
+		</value>
+		</li>
+
+		<!-- ========== T1 Carbine ========== -->
+
+		<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+			<defName>Tier1_Carbine_Soldier</defName>
+			<statBases>
+				<Mass>3.5</Mass>
+				<RangedWeapon_Cooldown>0.36</RangedWeapon_Cooldown>
+				<SightsEfficiency>1.1</SightsEfficiency>
+				<ShotSpread>0.07</ShotSpread>
+				<SwayFactor>1.33</SwayFactor>
+				<Bulk>10.03</Bulk>
+			</statBases>
+			<Properties>
+				<recoilAmount>1.53</recoilAmount>
+				<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+				<hasStandardCommand>true</hasStandardCommand>
+				<defaultProjectile>Bullet_556x45mmNATO_FMJ</defaultProjectile>
+				<warmupTime>1.1</warmupTime>
+				<range>42</range>
+				<burstShotCount>6</burstShotCount>
+				<ticksBetweenBurstShots>3</ticksBetweenBurstShots>
+				<soundCast>Tier1_SMG_Gun_Sound</soundCast>
+				<soundCastTail>GunTail_Medium</soundCastTail>
+				<muzzleFlashScale>9</muzzleFlashScale>
+			</Properties>
+			<AmmoUser>
+				<magazineSize>60</magazineSize>
+				<reloadTime>4</reloadTime>
+				<ammoSet>AmmoSet_556x45mmNATO</ammoSet>
+			</AmmoUser>
+			<FireModes>
+			<aimedBurstShotCount>3</aimedBurstShotCount>
+			<aiUseBurstMode>TRUE</aiUseBurstMode>
+			<aiAimMode>AimedShot</aiAimMode>
+			</FireModes>
+			<weaponTags>
+				<li>CE_AI_Rifle</li>
+			</weaponTags>
+			<researchPrerequisite>GasOperation</researchPrerequisite>
+		</li>
+
+			</operations>
+			</match>
+		</Operation>
+	</Patch>
