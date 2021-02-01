@@ -59,6 +59,7 @@ Beeralope Squad	|
 Better Infestations	|
 Black Widows	|
 Carbon	|
+Civilization Beyond Earth Armor Sets    |
 Clay Soldier Race |
 Combat Enthusiast’s Collection	|
 Cupro's Alloys	|
