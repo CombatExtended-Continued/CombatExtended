@@ -393,6 +393,29 @@ namespace CombatExtended
             return report;
         }
 
+        public float AdjustShotHeight(Thing caster, LocalTargetInfo target, ref float shotHeight)
+        {
+            /* TODO:  This really should determine how much the shooter needs to rise up for a *good* shot.  
+               If we're shooting at something tall, we might not need to rise at all, if we're shooting at 
+               something short, we might need to rise *more* than just above the cover.  This at least handles 
+               cases where we're below cover, but the taret is taller than the cover */
+            GetHighestCoverAndSmokeForTarget(target, out Thing cover, out float smoke);
+            var shooterHeight = CE_Utility.GetBoundsFor(caster).max.y;
+            var coverHeight = CE_Utility.GetBoundsFor(cover).max.y;
+            if (coverHeight > shotHeight)
+            {
+                var centerOfVisibleTarget = (CE_Utility.GetBoundsFor(target.Thing).max.y - coverHeight) / 2 + coverHeight;
+                if (centerOfVisibleTarget > shooterHeight)
+                {
+                    centerOfVisibleTarget = shooterHeight;
+                }
+                float wobble = Mathf.Asin(UnityEngine.Random.Range(shotHeight-centerOfVisibleTarget, centerOfVisibleTarget - shotHeight));
+                shotHeight = centerOfVisibleTarget;
+                return wobble;
+            }
+            return 0;
+        }
+
         /// <summary>
         /// Checks for cover along the flight path of the bullet, doesn't check for walls or trees, only intended for cover with partial fillPercent
         /// </summary>
