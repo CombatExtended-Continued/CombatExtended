@@ -404,6 +404,9 @@ namespace CombatExtended
             Ray ray = new Ray(origin3, direction);
             var lbce = this as LaserBeamCE;
             float spreadRadius = Mathf.Sin(spreadDegrees / 2.0f * Mathf.Deg2Rad);
+
+            LaserGunDef defWeapon = equipmentDef as LaserGunDef;
+            Vector3 muzzle = ray.GetPoint( (defWeapon == null ? 0.9f : defWeapon.barrelLength) );
             for (int i=1; i < verbProps.range; i++) {
                 float spreadArea = (i * spreadRadius + 0.01f) * (i * spreadRadius + 0.01f) * 3.14159f;
                 lbce.DamageModifier = 1 / (magicLaserDamageConstant * spreadArea);
@@ -421,6 +424,9 @@ namespace CombatExtended
                     break;
                 }
                 foreach (Thing thing in Map.thingGrid.ThingsListAtFast(tp.ToIntVec3())) {
+                    if (this == thing) {
+                        continue;
+                    }
                     var bounds = CE_Utility.GetBoundsFor(thing);
                     if (!bounds.IntersectRay(ray, out var dist)) {
                         continue;
