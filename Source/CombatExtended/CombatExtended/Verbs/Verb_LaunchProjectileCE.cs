@@ -402,9 +402,9 @@ namespace CombatExtended
             GetHighestCoverAndSmokeForTarget(target, out Thing cover, out float smoke);
             var shooterHeight = CE_Utility.GetBoundsFor(caster).max.y;
             var coverHeight = CE_Utility.GetBoundsFor(cover).max.y;
-            if (coverHeight > shotHeight)
+            var centerOfVisibleTarget = (CE_Utility.GetBoundsFor(target.Thing).max.y - coverHeight) / 2 + coverHeight;
+            if (centerOfVisibleTarget > shotHeight)
             {
-                var centerOfVisibleTarget = (CE_Utility.GetBoundsFor(target.Thing).max.y - coverHeight) / 2 + coverHeight;
                 if (centerOfVisibleTarget > shooterHeight)
                 {
                     centerOfVisibleTarget = shooterHeight;
@@ -596,8 +596,6 @@ namespace CombatExtended
             ShiftVecReport report = ShiftVecReportFor(currentTarget);
             bool pelletMechanicsOnly = false;
 
-            var shotHeight = ShotHeight;
-            shotAngle += AdjustShotHeight(caster, currentTarget, ref shotHeight);
 
             for (int i = 0; i < projectilePropsCE.pelletCount; i++)
             {
@@ -617,11 +615,14 @@ namespace CombatExtended
                 projectile.mount = caster.Position.GetThingList(caster.Map).FirstOrDefault(t => t is Pawn && t != caster);
                 projectile.AccuracyFactor = report.accuracyFactor * report.swayDegrees * ((numShotsFired + 1) * 0.75f);
                 if (instant) {
+                    var shotHeight = ShotHeight;
+                    float tsa = AdjustShotHeight(caster, currentTarget, ref shotHeight);
+
                     projectile.RayCast(
                                        Shooter,
                                        verbProps,
                                        sourceLoc,
-                                       shotAngle,
+                                       shotAngle + tsa,
                                        shotRotation,
                                        shotHeight,
                                        ShotSpeed,
@@ -635,7 +636,7 @@ namespace CombatExtended
                                       sourceLoc,
                                       shotAngle,
                                       shotRotation,
-                                      shotHeight,
+                                      ShotHeight,
                                       ShotSpeed,
                                       EquipmentSource
                                       );
