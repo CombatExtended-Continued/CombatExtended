@@ -193,6 +193,7 @@ Vanilla Armour Expanded	|
 Vanilla Bionics Expansion	|
 Vanilla Brewing Expanded    |
 Vanilla Factions Expanded - Insectoids |
+Vanilla Factions Expanded - Mechanoids	|
 Vanilla Factions Expanded - Medieval	|
 Vanilla Factions Expanded - Settlers	|
 Vanilla Factions Expanded - Vikings	|
