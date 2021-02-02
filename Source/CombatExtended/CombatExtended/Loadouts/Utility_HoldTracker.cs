@@ -196,9 +196,14 @@ namespace CombatExtended
             if (loadout == null || (loadout != null && loadout.Slots.NullOrEmpty()) || pawn.equipment?.Primary == null)
                 return false;
 
+            //Check if equipment is part of the loadout
             LoadoutSlot eqSlot = loadout.Slots.FirstOrDefault(s => s.count >= 1 && ((s.thingDef != null && s.thingDef == pawn.equipment.Primary.def)
                                                                                     || (s.genericDef != null && s.genericDef.lambda(pawn.equipment.Primary.def))));
-            if (eqSlot == null)
+
+            //Check if equipment is in the forced pick-up items list
+            HoldRecord eqRecord = pawn.GetHoldRecords()?.FirstOrDefault(s => s.count >= 1 && s.thingDef != null && s.thingDef == pawn.equipment.Primary.def);
+
+            if (eqSlot == null && eqRecord == null)
             {
                 dropEquipment = pawn.equipment.Primary;
                 return true;
