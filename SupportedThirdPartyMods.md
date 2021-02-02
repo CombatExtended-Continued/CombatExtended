@@ -159,6 +159,7 @@ Rim of Madness - Bones	|
 Rimefeller	|
 RimEffect - Asari of the Rims	|
 Rimfire	|
+RimSec Security |
 Rimsenal - Core |
 Rimsenal - Enhanced Vanilla |
 Rimsenal - Federation Faction Pack |
