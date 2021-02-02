@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8" ?>
+
+<Patch>
+
+	<Operation Class="PatchOperationFindMod">
+    <mods>
+        <li>Kit's Roman Weapons</li>
+    </mods>
+		<match Class="PatchOperationSequence">
+			<operations>			
+
+			<li Class="PatchOperationRemove">
+				<xpath>Defs/ThingDef[defName = "KIT_Turret_Scorpio"]/comps/li[@Class = "CompProperties_Refuelable"]</xpath>
+			</li>
+
+			<li Class="PatchOperationReplace">
+			<xpath>Defs/ThingDef[defName = "KIT_Turret_Scorpio"]/thingClass</xpath>
+			<value>
+				<thingClass>CombatExtended.Building_TurretGunCE</thingClass>
+			</value>
+			</li>
+
+			<li Class="PatchOperationReplace">
+			<xpath>Defs/ThingDef[defName = "KIT_Turret_Scorpio"]/fillPercent</xpath>
+			<value>
+				<fillPercent>0.85</fillPercent>
+			</value>
+		</li>
+
+			<!-- ========== Scorpio - Weapon ========== -->
+			<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+			<defName>KIT_Gun_Scorpio</defName>
+			<statBases>
+				<SightsEfficiency>1</SightsEfficiency>
+				<ShotSpread>1</ShotSpread>
+				<SwayFactor>1</SwayFactor>
+				<Bulk>4.00</Bulk>
+				<RangedWeapon_Cooldown>1.8</RangedWeapon_Cooldown>
+			</statBases>
+			<Properties>
+				<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+				<hasStandardCommand>true</hasStandardCommand>
+				<defaultProjectile>Pilum_Fired</defaultProjectile>
+				<warmupTime>1.4</warmupTime>
+				<range>40</range>
+				<soundCast>KIT_Shot_Scorpio</soundCast>
+				<soundCastTail>GunTail_Medium</soundCastTail>
+				<recoilPattern>Mounted</recoilPattern>
+			</Properties>
+			<AmmoUser>
+				<magazineSize>1</magazineSize>
+				<reloadTime>6</reloadTime>
+				<ammoSet>AmmoSet_Javelins</ammoSet>
+			</AmmoUser>
+			<FireModes>
+				<aiAimMode>AimedShot</aiAimMode>
+				<noSnapshot>true</noSnapshot>
+				<noSingleShot>false</noSingleShot>
+			</FireModes>
+			</li>
+
+			<li Class="PatchOperationAdd">
+			<xpath>/Defs/ThingDef[defName = "KIT_Gun_Scorpio"]/weaponTags</xpath>
+			<value>
+				<li>TurretGun</li>
+			</value>
+			</li>
+				
+			</operations>
+		</match>
+	</Operation>
+</Patch>

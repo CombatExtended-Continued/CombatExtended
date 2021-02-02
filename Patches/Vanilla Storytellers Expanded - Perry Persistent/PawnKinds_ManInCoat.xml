@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+
+  <Operation Class="PatchOperationFindMod">
+    <mods>
+      <li>Vanilla Storytellers Expanded - Perry Persistent</li>
+    </mods>
+
+    <match Class="PatchOperationSequence">
+      <operations>
+        <!-- ===Man in coat === -->
+        <li Class="PatchOperationAddModExtension">
+          <xpath>/Defs/PawnKindDef[ defName="VSE_ManInTheCoat"]</xpath>
+          <value>
+            <li Class="CombatExtended.LoadoutPropertiesExtension">
+              <primaryMagazineCount>
+                <min>3</min>
+                <max>5</max>
+              </primaryMagazineCount>
+            </li>
+          </value>
+        </li>
+        
+      <li Class="PatchOperationReplace">
+			<xpath>/Defs/PawnKindDef[defName="VSE_ManInTheCoat"]/invNutrition</xpath>
+				<value>
+					<invNutrition>6</invNutrition>
+				</value>
+			</li>
+
+      <li Class="PatchOperationAdd">
+        <xpath>/Defs/PawnKindDef[defName="VSE_ManInTheCoat"]/apparelRequired</xpath>
+        <value>
+          <li>Apparel_Backpack</li>		
+        </value>
+      </li>
+        
+      </operations>
+    </match>
+
+  </Operation>
+
+</Patch>

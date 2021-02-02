@@ -181,7 +181,7 @@ with XMLOpen(CSPROJ) as csproj:
                     print("Directive to exclude non-existent file:", v)
     sources = [(base_dir+'/'+i) for i in sources]
 
-args = ["mcs", "-warnaserror", "-nostdlib", "-langversion:Experimental", "-target:library", f'-out:{OUTPUT}', *sources, *[f'-r:{r}' for r in libraries]]
+args = ["csc", "-warnaserror", "-nostdlib", "-target:library", f'-out:{OUTPUT}', *sources, *[f'-r:{r}' for r in libraries]]
 
 if VERBOSE:
     print(HARMONY)
