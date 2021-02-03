@@ -579,8 +579,27 @@ namespace CombatExtended
                     ? distFromOrigin < 1f
                     : distFromOrigin <= Mathf.Min(144f, minCollisionSqr / 4));
 
-            var mainThingList = new List<Thing>(Map.thingGrid.ThingsListAtFast(cell))
-                .Where(t => justWallsRoofs ? t.def.Fillage == FillCategory.Full : (t is Pawn || t.def.Fillage != FillCategory.None)).ToList();
+            //Replaced LINQ with for loop with try catch for better compatibility with RimThreaded
+            List<Thing> thingsListAtFast = base.Map.thingGrid.ThingsListAtFast(cell);
+            List<Thing> mainThingList = new List<Thing>();
+            for (int i = 0; i < thingsListAtFast.Count; i++) {
+                Thing thing;
+                try {
+                    thing = thingsListAtFast[i];
+                } catch (ArgumentOutOfRangeException) {
+                    break;
+                }
+                if(justWallsRoofs) {
+                    if(thing != null && thing.def != null && thing.def.Fillage == FillCategory.Full) {
+                        mainThingList.Add(thing);
+                    }
+                }					
+                else {
+                    if(thing != null && (thing is Pawn || thing.def.Fillage != FillCategory.None)) {
+                        mainThingList.Add(thing);
+                    }
+                }
+            }
 
             //Find pawns in adjacent cells and append them to main list
             if (!justWallsRoofs)

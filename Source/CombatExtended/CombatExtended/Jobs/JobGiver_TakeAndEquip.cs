@@ -589,7 +589,24 @@ namespace CombatExtended
             {
                 return 0;
             }
-            IEnumerable<Pawn> pawns = map.mapPawns.FreeHumanlikesSpawnedOfFaction(pawn.Faction).Where(p => p.Faction != Faction.OfPlayer && !p.Downed);
+            //Replaced LINQ with for loop with try catch for better compatibility with RimThreaded
+            List<Pawn> spawnedPawnsInFaction = map.mapPawns.SpawnedPawnsInFaction(pawn.Faction);
+            List<Pawn> pawns = new List<Pawn>();
+            for (int index = 0; index < spawnedPawnsInFaction.Count; index++)
+            {
+                Pawn spawnedPawnInFaction;
+                try
+                {
+                    spawnedPawnInFaction = spawnedPawnsInFaction[index];
+                } catch (ArgumentOutOfRangeException)
+                {
+                    break;
+                }
+                if (spawnedPawnInFaction.HostFaction == null && spawnedPawnInFaction.RaceProps.Humanlike && spawnedPawnInFaction.Faction != Faction.OfPlayer && !spawnedPawnInFaction.Downed)
+                {
+                    pawns.Add(spawnedPawnInFaction);
+                }
+            }
             if (pawns == null)
                 return 0;
             else
