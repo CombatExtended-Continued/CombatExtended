@@ -137,6 +137,7 @@ More Utility Packs	|
 More Vanilla Turrets	|
 Moyo - From the Depth   |
 Nearmare Race	|
+NewRatkinPlus |
 Ni'Hal	|
 Orassans	|
 Palm Cats   |
