@@ -1,0 +1,142 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+			<li>Censored Armory [1.2]</li>
+		</mods>
+		<match Class="PatchOperationAdd">
+			<xpath>Defs</xpath>
+			<value>
+
+				<ThingCategoryDef>
+					<defName>Ammo15cmNebelwerfer</defName>
+					<label>15cm Nebelwerfer Rocket</label>
+					<parent>AmmoRockets</parent>
+					<iconPath>Turret/Nebelwerfer_41/Projectile/Wurfgranate</iconPath>
+				</ThingCategoryDef>
+
+				<!-- ==================== AmmoSet ========================== -->
+
+				<CombatExtended.AmmoSetDef>
+					<defName>AmmoSet_15cmNebelwerfer</defName>
+					<label>15cm Nebelwerfer Rockets</label>
+					<ammoTypes>
+						<Ammo_15cmNebelwerfer_HE>Bullet_15cmNebelwerfer_HE</Ammo_15cmNebelwerfer_HE>
+					</ammoTypes>
+					<isMortarAmmoSet>true</isMortarAmmoSet>
+				</CombatExtended.AmmoSetDef>
+
+				<!-- ==================== Ammo ========================== -->
+
+				<ThingDef Class="CombatExtended.AmmoDef" Name="15cmNebelwerferBase" ParentName="AmmoBase" Abstract="True">
+					<description>158mm heavy rocket typically used in multi-barrel rocket artillery launchers.</description>
+					<statBases>
+						<MaxHitPoints>300</MaxHitPoints>
+					</statBases>
+					<tradeTags>
+						<li>CE_AutoEnableTrade</li>
+						<li>CE_AutoEnableCrafting_TableMachining</li>
+					</tradeTags>
+					<thingCategories>
+						<li>Ammo15cmNebelwerfer</li>
+					</thingCategories>
+					<stackLimit>25</stackLimit>
+					<cookOffFlashScale>25</cookOffFlashScale>
+					<cookOffSound>MortarBomb_Explode</cookOffSound>
+				</ThingDef>
+
+				<ThingDef Class="CombatExtended.AmmoDef" ParentName="15cmNebelwerferBase">
+					<defName>Ammo_15cmNebelwerfer_HE</defName>
+					<label>15cm Nebelwerfer Rocket (HE)</label>
+					<graphicData>
+						<texPath>Turret/Nebelwerfer_41/Projectile/Shell_HE/Shell_Nebelwerfer_41_HE</texPath>
+						<graphicClass>Graphic_Single</graphicClass>
+					</graphicData>
+					<statBases>
+						<MarketValue>298.27</MarketValue>
+						<Mass>31.8</Mass>
+						<Bulk>57.59</Bulk>
+					</statBases>
+					<ammoClass>GrenadeHE</ammoClass>
+					<detonateProjectile>Bullet_15cmNebelwerfer_HE</detonateProjectile>
+				</ThingDef>
+
+				<!-- ================== Projectiles ================== -->
+
+				<ThingDef Class="CombatExtended.AmmoDef" ParentName="Base130mmType63">
+					<defName>Bullet_15cmNebelwerfer_HE</defName>
+					<thingClass>CombatExtended.ProjectileCE_Explosive</thingClass>
+					<label>15cm Nebelwerfer Rocket (HE)</label>
+					<graphicData>
+						<texPath>Turret/Nebelwerfer_41/Projectile/Bullet_Nebelwerfer_41_HE</texPath>
+						<graphicClass>Graphic_Single</graphicClass>
+					</graphicData>
+					<projectile Class="CombatExtended.ProjectilePropertiesCE">
+						<speed>69</speed>
+						<damageDef>Bomb</damageDef>
+						<damageAmountBase>228</damageAmountBase>
+						<explosionRadius>3.5</explosionRadius>
+						<applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
+					</projectile>
+					<comps>
+						<li Class="CombatExtended.CompProperties_Fragments">
+							<fragments>
+								<Fragment_Large>15</Fragment_Large>
+								<Fragment_Small>30</Fragment_Small>
+							</fragments>
+						</li>
+					</comps>
+				</ThingDef>
+
+				<!-- ==================== Recipes ========================== -->
+
+				<RecipeDef ParentName="AmmoRecipeBase">
+					<defName>MakeAmmo_15cmNebelwerfer_HE</defName>
+					<label>make 15cm Nebelwerfer HE rocket</label>
+					<description>Craft a 15cm Nebelwerfer HE rockets.</description>
+					<jobString>Making 15cm Nebelwerfer HE rockets.</jobString>
+					<workAmount>44600</workAmount>
+					<ingredients>
+						<li>
+							<filter>
+								<thingDefs>
+									<li>Steel</li>
+								</thingDefs>
+							</filter>
+							<count>382</count>
+						</li>
+						<li>
+							<filter>
+								<thingDefs>
+									<li>ComponentIndustrial</li>
+								</thingDefs>
+							</filter>
+							<count>4</count>
+						</li>
+						<li>
+							<filter>
+								<thingDefs>
+									<li>FSX</li>
+								</thingDefs>
+							</filter>
+							<count>23</count>
+						</li>
+					</ingredients>
+					<fixedIngredientFilter>
+						<thingDefs>
+							<li>Steel</li>
+							<li>ComponentIndustrial</li>
+							<li>FSX</li>
+						</thingDefs>
+					</fixedIngredientFilter>
+					<products>
+						<Ammo_15cmNebelwerfer_HE>6</Ammo_15cmNebelwerfer_HE>
+					</products>
+				</RecipeDef>
+
+			</value>
+		</match>
+	</Operation>
+
+</Patch>

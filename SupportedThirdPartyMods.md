@@ -60,6 +60,7 @@ Beeralope Squad	|
 Better Infestations	|
 Black Widows	|
 Carbon	|
+Censored Armory  |
 Clay Soldier Race |
 Combat Enthusiast’s Collection	|
 Cupro's Alloys	|
@@ -151,7 +152,6 @@ Racc Race	|
 Rah's Bionics and Surgery Expansion	|
 Rakkle The Rattle Snake Race Mod  |
 Redcoat Apparel	|
-Reich Armory  |
 Revia Race |
 Right Tool: Rebalanced	|
 Rim Contractors Arsenal	|
