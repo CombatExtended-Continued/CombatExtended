@@ -57,9 +57,6 @@
 			defName="B-2_Super_Droid_Wrist_Cannon" or
 			defName="Mando_Blaster_Carbine" or	
 			defName="Mando_Heavy_Weapon" or			
-			defName="Amban_Rifle" or
-			defName="Westar-34_Blaster_Pistol" or
-			defName="Westar-35_Blaster_Pistol" or
 			defName="Westar-M5_Blaster_Rifle"	
 			]/verbs/li[@Class="CombatExtended.VerbPropertiesCE"]/defaultProjectile</xpath>
 			<value>
@@ -78,14 +75,39 @@
 			defName="B-2_Super_Droid_Wrist_Cannon" or
 			defName="Mando_Blaster_Carbine" or	
 			defName="Mando_Heavy_Weapon" or			
-			defName="Amban_Rifle" or
-			defName="Westar-34_Blaster_Pistol" or
-			defName="Westar-35_Blaster_Pistol" or
 			defName="Westar-M5_Blaster_Rifle"	
 			]/comps</xpath>
 			<value>
 				<li Class="CombatExtended.CompProperties_AmmoUser">
 					<ammoSet>AmmoSet_SWPlasmaGasCartridge</ammoSet>
+				</li>
+			</value>
+		</li>
+		
+		
+		<!--Yellow-->
+		
+		
+		<li Class="PatchOperationReplace">
+			<xpath>Defs/ThingDef[
+			defName="Amban_Rifle" or
+			defName="Westar-34_Blaster_Pistol" or
+			defName="Westar-35_Blaster_Pistol"
+			]/verbs/li[@Class="CombatExtended.VerbPropertiesCE"]/defaultProjectile</xpath>
+			<value>
+				<defaultProjectile>Bullet_SWPlasmaGasCartridgeYellow</defaultProjectile>
+			</value>
+		</li>
+		
+		<li Class="PatchOperationAdd">
+			<xpath>Defs/ThingDef[
+			defName="Amban_Rifle" or
+			defName="Westar-34_Blaster_Pistol" or
+			defName="Westar-35_Blaster_Pistol"
+			]/comps</xpath>
+			<value>
+				<li Class="CombatExtended.CompProperties_AmmoUser">
+					<ammoSet>AmmoSet_SWPlasmaGasCartridgeYellow</ammoSet>
 				</li>
 			</value>
 		</li>
