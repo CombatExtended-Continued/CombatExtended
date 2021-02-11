@@ -14,6 +14,8 @@ Mod |
 [CP] Spec Ops - The Line	|
 [CP] The DOOM Kit - Classic	|
 [HLX] Rimworld: UNSC Armoury |
+[HLX] ReGrowth - Mutated Animals Pack |
+[JDS] EFT Apparel |
 [JDS] Exiled Dawn |
 [JDS] Star Wars BlasTech Industries |
 [JDS] The Forge - Exiled Dawn |
@@ -110,7 +112,9 @@ Jernalk's Skeletal Legion (Continued)	|
 Kaiser Armory	|
 K.L.K - Styles Apparel Pack	|
 Kijin Race 2.0     	|     
-Kill la Kill Styles Pack    	|   
+Kill la Kill Styles Pack    |
+Kit's Industrial Weapons |   
+Kit's Roman Weapons |   
 Kurin, The Three Tailed Fox	|
 Leeani Playable Race	|
 Let's Have a Cat!	|
@@ -133,6 +137,7 @@ More Utility Packs	|
 More Vanilla Turrets	|
 Moyo - From the Depth   |
 Nearmare Race	|
+NewRatkinPlus |
 Ni'Hal	|
 Orassans	|
 Palm Cats   |
@@ -155,6 +160,7 @@ Rim of Madness - Bones	|
 Rimefeller	|
 RimEffect - Asari of the Rims	|
 Rimfire	|
+RimSec Security |
 Rimsenal - Core |
 Rimsenal - Enhanced Vanilla |
 Rimsenal - Federation Faction Pack |
@@ -181,6 +187,7 @@ The GiantRace	|
 TouhouStyle	|
 Trading Economy	|
 Tsar Armory	|
+Turk's Guns |
 Turret Collection	|
 Vanilla Animals Expanded |
 Vanilla Apparel Expanded	|
@@ -188,6 +195,7 @@ Vanilla Armour Expanded	|
 Vanilla Bionics Expansion	|
 Vanilla Brewing Expanded    |
 Vanilla Factions Expanded - Insectoids |
+Vanilla Factions Expanded - Mechanoids	|
 Vanilla Factions Expanded - Medieval	|
 Vanilla Factions Expanded - Settlers	|
 Vanilla Factions Expanded - Vikings	|
@@ -200,6 +208,8 @@ Vanilla Weapons Expanded Quickdraw	|
 Vanilla-Friendly Animal Surgery	|
 Vanilla-Friendly Weapon Expansion	|
 Vanilla Storytellers Expanded - Perry Persistent |
+VFE - Mechanoids : Drones |
+VFE - Mechanoids : Unoffical Add-On |
 VGP Fabrics
 Vulpine Race Pack	|
 Weapons+	|

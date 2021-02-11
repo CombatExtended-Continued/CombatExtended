@@ -48,6 +48,22 @@
 						</ammoTypes>
 					</CombatExtended.AmmoSetDef>
 					
+					<CombatExtended.AmmoSetDef>
+						<defName>AmmoSet_AntyRedAcidLauncher</defName>
+						<label>Acid Launcher</label>
+						<ammoTypes>
+							<Ammo_AntyAcidRed>Bullet_AntyRedAcidLauncher</Ammo_AntyAcidRed>
+						</ammoTypes>
+					</CombatExtended.AmmoSetDef>
+					
+					<CombatExtended.AmmoSetDef>
+						<defName>AmmoSet_AntyAcidGlue</defName>
+						<label>Acid Shot</label>
+						<ammoTypes>
+							<Ammo_AntyAcidRifle>Bullet_AntyAcidGlue</Ammo_AntyAcidRifle>
+						</ammoTypes>
+					</CombatExtended.AmmoSetDef>
+					
 					<CombatExtended.AmmoCategoryDef>
 						<defName>AntyAcid</defName>
 						<label>Acid</label>
@@ -64,6 +80,12 @@
 						<defName>AntyBolt</defName>
 						<label>Acid</label>
 						<description>Acid Bolt.</description>
+					</CombatExtended.AmmoCategoryDef>
+					
+					<CombatExtended.AmmoCategoryDef>
+						<defName>AntyRedAcid</defName>
+						<label>Acid</label>
+						<description>Red Acid.</description>
 					</CombatExtended.AmmoCategoryDef>
 
 					<!-- ==================== Ammo ========================== -->
@@ -114,6 +136,29 @@
 						<ammoClass>AntyGlue</ammoClass>
 					</ThingDef>
 					
+					<ThingDef Class="CombatExtended.AmmoDef" ParentName="SpacerSmallAmmoBase">
+						<defName>Ammo_AntyAcidRed</defName>
+						<label>Anty Hydroheliumion Cartridge</label>
+						<description>High strength mixture made of Anty-acid combined with Refleum.</description>
+						<statBases>
+							<Mass>0.02</Mass>
+							<Bulk>0.02</Bulk>
+							<MarketValue>0.4</MarketValue>
+						</statBases>
+						<tradeTags>
+							<li>CE_AutoEnableTrade</li>
+						</tradeTags>
+						<thingCategories>
+							<li>AmmoAdvanced</li>
+						</thingCategories>
+						<stackLimit>1000</stackLimit>
+						<graphicData>
+							<texPath>Things/Ammo/Railgun/HighCaliber</texPath>
+							<graphicClass>CombatExtended.Graphic_StackCountRanged</graphicClass>
+						</graphicData>
+						<ammoClass>AntyRedAcid</ammoClass>
+					</ThingDef>
+					
 					<ThingDef Class="CombatExtended.AmmoDef" ParentName="AmmoCrossbowBoltBase">
 						<defName>Ammo_CrossbowBolt_AntyAcid</defName>
 						<label>crossbow bolt (Acid)</label>
@@ -131,13 +176,13 @@
 
 					<ThingDef Class="CombatExtended.AmmoDef" ParentName="Base762x39mmSovietBullet">
 						<defName>Bullet_AntyAcidRifle</defName>
-						<label>Anty Acid Shot</label>
+						<label>Acid Bullet</label>
 						<graphicData>
-							<texPath>Things/Projectile/Bullet_Small</texPath>
+							<texPath>Things/Weapons/jan</texPath>
 							<graphicClass>Graphic_Single</graphicClass>
 						</graphicData>
 						<projectile Class="CombatExtended.ProjectilePropertiesCE">
-							<damageDef>AcidBullet</damageDef>
+							<damageDef>AT_AcidBullet</damageDef>
 							<damageAmountBase>9</damageAmountBase>
 							<armorPenetrationSharp>0</armorPenetrationSharp>
 							<armorPenetrationBlunt>25</armorPenetrationBlunt>
@@ -146,13 +191,50 @@
 					
 					<ThingDef ParentName="Base25x40mmGrenadeBullet">
 						<defName>Bullet_AntyAcidLauncher</defName>
-						<label>Anty Acid grenade</label>
+						<label>Acid Grenade</label>
+						<graphicData>
+							<texPath>Things/Weapons/lan</texPath>
+							<graphicClass>Graphic_Single</graphicClass>
+						</graphicData>
 						<projectile Class="CombatExtended.ProjectilePropertiesCE">
-						  <explosionRadius>2.1</explosionRadius>
-						  <damageDef>AcidBomb</damageDef>
+						  <explosionRadius>0</explosionRadius>
+						  <damageDef>AT_AcidBomb</damageDef>
 						  <preExplosionSpawnThingDef>Filth_AntyAcid</preExplosionSpawnThingDef>
 						  <preExplosionSpawnChance>0.2</preExplosionSpawnChance>
 						</projectile>
+						<comps>
+						  <li Class="CombatExtended.CompProperties_ExplosiveCE">
+							<explosiveDamageType>AT_AcidBomb</explosiveDamageType>
+							<explosiveRadius>2.1</explosiveRadius>
+							<preExplosionSpawnThingDef>Filth_AntyAcid</preExplosionSpawnThingDef>
+							<preExplosionSpawnChance>0.2</preExplosionSpawnChance>
+							<applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
+						  </li>
+						</comps>
+					</ThingDef>
+					
+					<ThingDef ParentName="Base25x40mmGrenadeBullet">
+						<defName>Bullet_AntyRedAcidLauncher</defName>
+						<label>Red Burst Bullet</label>
+						<graphicData>
+							<texPath>Things/Weapons/kan</texPath>
+							<graphicClass>Graphic_Single</graphicClass>
+							<shaderType>TransparentPostLight</shaderType>
+						</graphicData>
+						<projectile Class="CombatExtended.ProjectilePropertiesCE">
+						  <damageDef>AT_AcidBomb_B</damageDef>
+						  <preExplosionSpawnThingDef>Filth_ApproachSmoke_B</preExplosionSpawnThingDef>
+						  <preExplosionSpawnChance>0.2</preExplosionSpawnChance>
+						</projectile>
+						<comps>
+						  <li Class="CombatExtended.CompProperties_ExplosiveCE">
+							<explosiveDamageType>AT_AcidBomb_B</explosiveDamageType>
+							<explosiveRadius>2.1</explosiveRadius>
+							<preExplosionSpawnThingDef>Filth_ApproachSmoke_B</preExplosionSpawnThingDef>
+							<preExplosionSpawnChance>0.2</preExplosionSpawnChance>
+							<applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
+						  </li>
+						</comps>
 					</ThingDef>
 					
 					<ThingDef ParentName="Base40x46mmGrenadeBullet">
@@ -160,7 +242,7 @@
 						<label>glue grenade</label>
 						<projectile Class="CombatExtended.ProjectilePropertiesCE">
 							<explosionRadius>4.1</explosionRadius>
-							<damageDef>glueBomb</damageDef>
+							<damageDef>AT_glueBomb</damageDef>
 						</projectile>
 					</ThingDef>
 					
@@ -172,11 +254,32 @@
 							<graphicClass>Graphic_Single</graphicClass>
 						</graphicData>
 						<projectile Class="CombatExtended.ProjectilePropertiesCE">
-							<damageDef>AcidArrow</damageDef>
+							<damageDef>AT_AcidArrow</damageDef>
 							<damageAmountBase>8</damageAmountBase>
 							<armorPenetrationBlunt>6.5</armorPenetrationBlunt>
 							<armorPenetrationSharp>2.5</armorPenetrationSharp>
 							<speed>17</speed>			
+						</projectile>
+					</ThingDef>
+					
+					<ThingDef Class="CombatExtended.AmmoDef" ParentName="Base762x39mmSovietBullet">
+						<defName>Bullet_AntyAcidGlue</defName>
+						<label>Acid Bullet</label>
+						<graphicData>
+							<texPath>Things/Weapons/jan</texPath>
+							<graphicClass>Graphic_Single</graphicClass>
+						</graphicData>
+						<projectile Class="CombatExtended.ProjectilePropertiesCE">
+							<damageDef>AT_glueBullet</damageDef>
+							<damageAmountBase>1</damageAmountBase>
+							<armorPenetrationSharp>0</armorPenetrationSharp>
+							<armorPenetrationBlunt>70</armorPenetrationBlunt>
+							<secondaryDamage>
+								<li>
+								<def>AT_AcidBullet</def>
+								<amount>5</amount>
+								</li>
+							 </secondaryDamage>
 						</projectile>
 					</ThingDef>
 
@@ -200,6 +303,45 @@
 						</ingredients>
 						<fixedIngredientFilter>
 							<thingDefs>
+								<li>AntyExoskeleton</li>
+							</thingDefs>
+						</fixedIngredientFilter>
+						<products>
+							<Ammo_AntyAcidRifle>500</Ammo_AntyAcidRifle>
+						</products>
+						<workAmount>1800</workAmount>
+						<recipeUsers>
+							<li>AntyCopyTableMachining</li>
+						</recipeUsers>
+					</RecipeDef>
+					
+					<RecipeDef ParentName="AmmoRecipeBase">
+						<defName>MakeAmmo_AntyAcidRed</defName>
+						<label>make anty Hydroheliumion cartridge x500</label>
+						<description>Craft 500 anty Hydroheliumion cartridges.</description>
+						<jobString>Making anty Hydroheliumion cartridges.</jobString>
+						<researchPrerequisite>hydroheliumion</researchPrerequisite>
+						<ingredients>
+							<li>
+								<filter>
+									<thingDefs>
+										<li>AntyExoskeleton</li>
+									</thingDefs>
+								</filter>
+								<count>18</count>
+							</li>
+							<li>
+								<filter>
+									<thingDefs>
+										<li>Refleum</li>
+									</thingDefs>
+								</filter>
+								<count>18</count>
+							</li>
+						</ingredients>
+						<fixedIngredientFilter>
+							<thingDefs>
+								<li>Refleum</li>
 								<li>AntyExoskeleton</li>
 							</thingDefs>
 						</fixedIngredientFilter>
@@ -289,9 +431,141 @@
 			</li>
 			
 			<li Class="PatchOperationReplace">
-				<xpath>Defs/DamageDef[defName="AcidBomb"]/defaultArmorPenetration</xpath>
+				<xpath>Defs/DamageDef[defName="AT_AcidBomb"]/defaultArmorPenetration</xpath>
 				<value>
 					<defaultArmorPenetration>20</defaultArmorPenetration>
+				</value>
+			</li>
+			
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/DamageDef[defName="AT_AcidBomb"]/defaultDamage</xpath>
+				<value>
+					<defaultDamage>16</defaultDamage>
+				</value>
+			</li>
+			
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/DamageDef[defName="AT_AcidBomb_B"]/defaultArmorPenetration</xpath>
+				<value>
+					<defaultArmorPenetration>1000</defaultArmorPenetration>
+				</value>
+			</li>
+			
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/DamageDef[defName="AT_AcidBomb_B"]/defaultDamage</xpath>
+				<value>
+					<defaultDamage>16</defaultDamage>
+				</value>
+			</li>
+			
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="BulletCombatSmokeLauncher"]</xpath>
+				<value>
+					<ThingDef ParentName="Base25x40mmGrenadeBullet">
+						<defName>BulletCombatSmokeLauncher</defName>
+						<label>Refleum gas Grenade</label>
+						<graphicData>
+							<texPath>Things/Weapons/lan</texPath>
+							<graphicClass>Graphic_Single</graphicClass>
+							<shaderType>TransparentPostLight</shaderType>
+							<color>(0.6, 0.2, 0.2)</color>
+						</graphicData>
+						<projectile Class="CombatExtended.ProjectilePropertiesCE">
+							<speed>50</speed>
+							<damageDef>AT_AcidBomb_B</damageDef>
+							<preExplosionSpawnThingDef>Filth_ApproachSmoke_B</preExplosionSpawnThingDef>
+							<preExplosionSpawnChance>1</preExplosionSpawnChance>
+							<explosionRadius>0</explosionRadius>
+							<explosionDelay>30</explosionDelay>
+						</projectile>
+						<comps>
+						  <li Class="CombatExtended.CompProperties_ExplosiveCE">
+							<explosiveDamageType>AT_AcidBomb_B</explosiveDamageType>
+							<explosiveRadius>6.9</explosiveRadius>
+							<preExplosionSpawnThingDef>Filth_ApproachSmoke_B</preExplosionSpawnThingDef>
+							<preExplosionSpawnChance>1</preExplosionSpawnChance>
+							<applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
+						  </li>
+						</comps>
+					</ThingDef>
+				</value>
+			</li>
+			
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="AT_BulletTargetingLauncher"]</xpath>
+				<value>
+					<ThingDef ParentName="Base25x40mmGrenadeBullet">
+						<defName>AT_BulletTargetingLauncher</defName>
+						<label>Targeting Grenade</label>
+						<graphicData>
+							<texPath>Things/Weapons/lan</texPath>
+							<graphicClass>Graphic_Single</graphicClass>
+							<shaderType>TransparentPostLight</shaderType>
+							<color>(0.6, 0.2, 0.2)</color>
+						</graphicData>
+						<projectile Class="CombatExtended.ProjectilePropertiesCE">
+							<speed>50</speed>
+							<damageDef>AT_TargetBomb</damageDef>
+							<explosionRadius>1.9</explosionRadius>
+							<explosionDelay>30</explosionDelay>
+						</projectile>
+					</ThingDef>
+				</value>
+			</li>
+			
+			<li Class="PatchOperationReplace">
+				<xpath>/Defs/ThingDef[defName="AT_Apparel_CombatSmoke"]/verbs</xpath>
+				<value>
+					<verbs>
+						<li Class="CombatExtended.VerbPropertiesCE">
+							<label>launch Refleum gas Grenade</label>
+							<verbClass>CombatExtended.Verb_LaunchProjectileStaticCE</verbClass>
+							<hasStandardCommand>true</hasStandardCommand>
+							<onlyManualCast>True</onlyManualCast>
+							<warmupTime>1.1</warmupTime>
+							<range>40</range>
+							<minRange>5</minRange>
+							<ai_IsBuildingDestroyer>false</ai_IsBuildingDestroyer>
+							<soundCast>Shot_IncendiaryLauncher</soundCast>
+							<soundCastTail>GunTail_Medium</soundCastTail>
+							<muzzleFlashScale>14</muzzleFlashScale>
+							<drawHighlightWithLineOfSight>true</drawHighlightWithLineOfSight>
+							<targetParams>
+								<canTargetLocations>true</canTargetLocations>
+							</targetParams>
+							<ignorePartialLoSBlocker>true</ignorePartialLoSBlocker>
+							<defaultProjectile>BulletCombatSmokeLauncher</defaultProjectile>
+							<rangedFireRulepack>Combat_RangedFire_Thrown</rangedFireRulepack>
+						</li>
+					</verbs>
+				</value>
+			</li>
+			
+			<li Class="PatchOperationReplace">
+				<xpath>/Defs/ThingDef[defName="AT_Apparel_pheromone_TP"]/verbs</xpath>
+				<value>
+					<verbs>
+						<li Class="CombatExtended.VerbPropertiesCE">
+							<label>launch Targeting pheromone</label>
+							<verbClass>CombatExtended.Verb_LaunchProjectileStaticCE</verbClass>
+							<hasStandardCommand>true</hasStandardCommand>
+							<onlyManualCast>True</onlyManualCast>
+							<warmupTime>1.1</warmupTime>
+							<range>40</range>
+							<minRange>5</minRange>
+							<ai_IsBuildingDestroyer>false</ai_IsBuildingDestroyer>
+							<soundCast>Shot_IncendiaryLauncher</soundCast>
+							<soundCastTail>GunTail_Medium</soundCastTail>
+							<muzzleFlashScale>14</muzzleFlashScale>
+							<drawHighlightWithLineOfSight>true</drawHighlightWithLineOfSight>
+							<targetParams>
+								<canTargetLocations>true</canTargetLocations>
+							</targetParams>
+							<ignorePartialLoSBlocker>true</ignorePartialLoSBlocker>
+							<defaultProjectile>AT_BulletTargetingLauncher</defaultProjectile>
+							<rangedFireRulepack>Combat_RangedFire_Thrown</rangedFireRulepack>
+						</li>
+					</verbs>
 				</value>
 			</li>
 			

@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+
+  <Operation Class="PatchOperationFindMod">
+    <mods>
+      <li>Vanilla Animals Expanded — Endangered</li>
+      <li>Vanilla Animals Expanded — Ice Sheet</li>      
+    </mods>
+
+    <match Class="PatchOperationSequence">
+      <operations>
+        <!-- === Raw Fish === -->
+        <li Class="PatchOperationReplace">
+          <xpath>/Defs/ThingDef[defName="AEXP_RawFish"]/tools</xpath>
+
+          <value>
+            <tools>
+              <li Class="CombatExtended.ToolCE">
+                <label>raw fish</label>
+                <capacities>
+                  <li>Blunt</li>
+                </capacities>
+                <power>3</power>
+                <armorPenetrationBlunt>0.4</armorPenetrationBlunt>
+                <cooldownTime>2</cooldownTime>
+              </li>
+            </tools>
+          </value>
+        </li>
+
+        <li Class="PatchOperationAdd">
+          <xpath>Defs/ThingDef[defName="AEXP_RawFish"]/statBases</xpath>
+          <value>
+            <MeleeCounterParryBonus>0.33</MeleeCounterParryBonus>
+          </value>
+        </li>
+
+        <li Class="PatchOperationAdd">
+          <xpath>Defs/ThingDef[defName="AEXP_RawFish"]</xpath>
+          <value>
+            <equippedStatOffsets>
+              <MeleeCritChance>0.1</MeleeCritChance>
+              <MeleeParryChance>0.33</MeleeParryChance>
+              <MeleeDodgeChance>0.07</MeleeDodgeChance>	
+            </equippedStatOffsets>
+          </value>
+        </li>
+
+        <li Class="PatchOperationSequence">
+          <success>Always</success>
+          <operations>
+            <li Class="PatchOperationTest">
+              <xpath>Defs/ThingDef[defName="AEXP_RawFish"]/weaponTags</xpath>
+              <success>Invert</success>
+            </li>
+            <li Class="PatchOperationAdd">
+              <xpath>Defs/ThingDef[defName="AEXP_RawFish"]</xpath>
+              <value>
+                <weaponTags />
+              </value>
+            </li>
+          </operations>
+        </li>
+
+        <li Class="PatchOperationAdd">
+          <xpath>Defs/ThingDef[defName="AEXP_RawFish"]/weaponTags</xpath>
+          <value>
+            <li>CE_OneHandedWeapon</li>
+          </value>
+        </li>
+
+      </operations>
+    </match>
+  </Operation>
+
+</Patch>
