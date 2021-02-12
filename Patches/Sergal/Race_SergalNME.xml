@@ -1,13 +1,12 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <Patch>
-	<!-- ========== Make sure the mod is there first ========== -->
-	<Operation Class="PatchOperationSequence">
-		<success>Always</success>
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+			<li>Sergals and Gnolls</li>
+		</mods>
+		<match Class="PatchOperationSequence">
 		<operations>
-	<!-- ========== Look for Sil... uh ========== -->
-	<li Class="CombatExtended.PatchOperationFindMod">
-				<modName>Sergals and Gnolls</modName>
-	</li>
+
 	<!-- ========== Whats an NME? ========== -->
 	
 	<!-- ========== Turn our NME boys into NME *boys*? ========== -->
@@ -16,7 +15,7 @@
 	<!-- === Note to future furball compatibility nerds: 		=== -->
 	<!-- === Paste the defName of your horrible alien there   |	=== -->
 	<!-- === 												  V	=== -->
-		<xpath>*/AlienRace.ThingDef_AlienRace[defName="Alien_SergalNME"]</xpath>
+		<xpath>Defs/AlienRace.ThingDef_AlienRace[defName="Alien_SergalNME"]</xpath>
 		<value>
 			<li Class="CombatExtended.RacePropertiesExtensionCE">
 				<bodyShape>Humanoid</bodyShape>
@@ -26,26 +25,14 @@
 
 	<!-- ========== Gives Gun Gizmos to Serg HUD thing ========== -->
 	<!-- ========== Also Makes Em Suppressable		   ========== -->
-	
-	<li Class="PatchOperationAdd">
-	<!-- === Shouldn't need to change this at all		  === -->
-	<!-- === Unless you changed the name of your BasePawn === -->
-	<!-- === In which case change "BasePawn" to that name === -->
-		<xpath>*/ThingDef[@Name="BasePawn"]/comps</xpath>
-		<value>
-			<li>
-				<compClass>CombatExtended.CompPawnGizmo</compClass>
-			</li>
-			<li Class="CombatExtended.CompProperties_Suppressable" />
-		</value>
-	</li>
+
 	
 	<!-- === Patch Serg default melee attacks === -->
 	<!-- === Sidewards eyeballs thrash depth perception === -->
 	<!-- === Sweet swipeys tho 	=== -->
 
 			<li Class="PatchOperationAdd">
-			<xpath>*/AlienRace.ThingDef_AlienRace[defName = "Alien_SergalNME"]/statBases</xpath>
+			<xpath>Defs/AlienRace.ThingDef_AlienRace[defName = "Alien_SergalNME"]/statBases</xpath>
 			<value>
 			<AimingAccuracy>0.9</AimingAccuracy>
 			<MeleeDodgeChance>2.5</MeleeDodgeChance>
@@ -57,7 +44,7 @@
 			</li>
 
 			<li Class="PatchOperationReplace">
-			<xpath>*/AlienRace.ThingDef_AlienRace[defName="Alien_SergalNME"]/tools</xpath>
+			<xpath>Defs/AlienRace.ThingDef_AlienRace[defName="Alien_SergalNME"]/tools</xpath>
 			<value>
 			<tools>
 				<li Class="CombatExtended.ToolCE">
@@ -102,22 +89,9 @@
 	<!-- === Again, no need to change 'em  === -->
 	<!-- === Unless you changed it         === -->
 	<!-- === then change 'em			   === -->
-	
-	<li Class="PatchOperationReplace">
-		<xpath>*/ThingDef[@Name="BasePawn"]/inspectorTabs/li[.="ITab_Pawn_Gear"]</xpath>
-		<value>
-			<li>CombatExtended.ITab_Inventory</li>
-		</value>
-	</li>
 
-	<li Class="PatchOperationAdd">
-	
-		<xpath>*/ThingDef[@Name="BasePawn"]/comps</xpath>
-		<value>
-			<li Class="CombatExtended.CompProperties_Inventory" />
-		</value>
-	</li>
 		</operations>
+		</match>
 	</Operation>
 	
 	<!-- === Congratulations! Your alien is Combat Ready!	 === -->

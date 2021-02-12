@@ -1,0 +1,424 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+
+  <Operation Class="PatchOperationFindMod">
+    <mods>
+      <li>Vanilla Factions Expanded - Mechanoids</li>
+    </mods>
+
+    <match Class="PatchOperationSequence">
+      <operations>
+			<!-- ========== Ship Charge Blaster ========== -->
+
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="VFE_Turret_ChargeBlasterCannon"]/thingClass</xpath>
+				<value>
+					<thingClass>CombatExtended.Building_TurretGunCE</thingClass>
+				</value>
+			</li>
+
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName="VFE_Turret_ChargeBlasterCannon"]/statBases</xpath>
+				<value>
+					<AimingAccuracy>0.5</AimingAccuracy>
+				</value>
+			</li>
+			
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="VFE_Turret_ChargeBlasterCannon"]/statBases/Mass</xpath>
+				<value>
+					<Mass>80</Mass>
+				</value>
+			</li>
+
+			<li Class="PatchOperationRemove">
+				<xpath>Defs/ThingDef[defName="VFE_Turret_ChargeBlasterCannon"]/comps/li[@Class = "CompProperties_Explosive"]</xpath>
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="VFE_Turret_ChargeBlasterCannon"]/fillPercent</xpath>
+				<value>
+					<fillPercent>0.85</fillPercent>
+				</value>
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="VFE_Turret_ChargeBlasterCannon"]/building/turretBurstCooldownTime</xpath>
+				<value>
+					<turretBurstCooldownTime>1</turretBurstCooldownTime>
+				</value>
+			</li>
+			
+			<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+				<defName>VFE_Gun_ChargeBlasterCannon</defName>
+				<statBases>
+				  <Mass>35.00</Mass>
+				  <RangedWeapon_Cooldown>0.36</RangedWeapon_Cooldown>
+				  <SightsEfficiency>1</SightsEfficiency>
+				  <ShotSpread>0.01</ShotSpread>
+				  <SwayFactor>1.33</SwayFactor>
+				  <Bulk>13.00</Bulk>
+				</statBases>
+				<Properties>
+				  <recoilAmount>1.28</recoilAmount>
+				  <verbClass>CombatExtended.Verb_ShootCE</verbClass>
+				  <hasStandardCommand>true</hasStandardCommand>
+				  <defaultProjectile>Bullet_12x64mmCharged</defaultProjectile>
+				  <warmupTime>2.5</warmupTime>
+				  <range>75</range>
+				  <ticksBetweenBurstShots>6</ticksBetweenBurstShots>
+				  <burstShotCount>20</burstShotCount>
+				  <soundCast>Shot_ChargeBlaster</soundCast>
+				  <soundCastTail>GunTail_Heavy</soundCastTail>
+				  <muzzleFlashScale>9</muzzleFlashScale>
+				</Properties>
+				<FireModes>
+				  <aiAimMode>SuppressFire</aiAimMode>
+				  <noSingleShot>true</noSingleShot>
+				</FireModes>
+			</li>
+			
+			<!-- ========== Ship Charge Lance ========== -->
+
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="VFE_Turret_ChargeLanceCannon"]/thingClass</xpath>
+				<value>
+					<thingClass>CombatExtended.Building_TurretGunCE</thingClass>
+				</value>
+			</li>
+
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName="VFE_Turret_ChargeLanceCannon"]/statBases</xpath>
+				<value>
+					<AimingAccuracy>1</AimingAccuracy>
+				</value>
+			</li>
+			
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="VFE_Turret_ChargeLanceCannon"]/statBases/Mass</xpath>
+				<value>
+					<Mass>80</Mass>
+				</value>
+			</li>
+
+			<li Class="PatchOperationRemove">
+				<xpath>Defs/ThingDef[defName="VFE_Turret_ChargeLanceCannon"]/comps/li[@Class = "CompProperties_Explosive"]</xpath>
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="VFE_Turret_ChargeLanceCannon"]/fillPercent</xpath>
+				<value>
+					<fillPercent>0.85</fillPercent>
+				</value>
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="VFE_Turret_ChargeLanceCannon"]/building/turretBurstCooldownTime</xpath>
+				<value>
+					<turretBurstCooldownTime>1</turretBurstCooldownTime>
+				</value>
+			</li>
+			
+			<!--It's supposed to presumably be the same threat as a HCB turret, so we'll have it use railgun sabot shots-->
+			
+			<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+				<defName>VFE_Gun_ChargeLanceCannon</defName>
+				<statBases>
+				  <Mass>35.00</Mass>
+				  <RangedWeapon_Cooldown>0.35</RangedWeapon_Cooldown>
+				  <SightsEfficiency>1</SightsEfficiency>
+				  <ShotSpread>0.01</ShotSpread>
+				  <SwayFactor>0.44</SwayFactor>
+				  <Bulk>13.00</Bulk>
+				</statBases>
+				<Properties>
+				  <verbClass>CombatExtended.Verb_ShootCE</verbClass>
+				  <hasStandardCommand>true</hasStandardCommand>
+				  <defaultProjectile>Bullet_12mmRailgun_Sabot</defaultProjectile>
+				  <warmupTime>4.2</warmupTime>
+				  <range>86</range>
+				  <burstShotCount>1</burstShotCount>
+				  <soundCast>ChargeLance_Fire</soundCast>
+				  <soundCastTail>GunTail_Heavy</soundCastTail>
+				  <muzzleFlashScale>9</muzzleFlashScale>
+				  <minRange>5</minRange>
+				</Properties>
+				<FireModes>
+				  <aiAimMode>AimedShot</aiAimMode>
+				  <noSnapshot>true</noSnapshot>
+				</FireModes>
+			</li>
+			
+			<!-- ========== Auto Inferno Cannon ========== -->
+
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="VFE_Turret_InfernoLauncherArtillery"]/thingClass</xpath>
+				<value>
+					<thingClass>CombatExtended.Building_TurretGunCE</thingClass>
+				</value>
+			</li>
+
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName="VFE_Turret_InfernoLauncherArtillery"]/statBases</xpath>
+				<value>
+					<AimingAccuracy>0.5</AimingAccuracy>
+				</value>
+			</li>
+			
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="VFE_Turret_InfernoLauncherArtillery"]/statBases/Mass</xpath>
+				<value>
+					<Mass>325</Mass>
+				</value>
+			</li>
+
+			<li Class="PatchOperationRemove">
+				<xpath>Defs/ThingDef[defName="VFE_Turret_InfernoLauncherArtillery"]/comps/li[@Class = "CompProperties_Explosive"]</xpath>
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="VFE_Turret_InfernoLauncherArtillery"]/fillPercent</xpath>
+				<value>
+					<fillPercent>0.85</fillPercent>
+				</value>
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="VFE_Turret_InfernoLauncherArtillery"]/building/turretBurstCooldownTime</xpath>
+				<value>
+					<turretBurstCooldownTime>12.53</turretBurstCooldownTime>
+				</value>
+			</li>
+			
+			<!--Reload is added onto the cooldown-->
+			
+			<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+				<defName>VFE_Gun_InfernoArtillery</defName>
+				<statBases>
+				  <Mass>300.00</Mass>
+				  <RangedWeapon_Cooldown>12.53</RangedWeapon_Cooldown>
+				  <SightsEfficiency>1</SightsEfficiency>
+				  <ShotSpread>0.01</ShotSpread>
+				  <SwayFactor>0.82</SwayFactor>
+				  <Bulk>20.00</Bulk>
+				</statBases>
+				<Properties>
+				  <recoilAmount>3.5</recoilAmount>
+				  <verbClass>CombatExtended.Verb_ShootCE</verbClass>
+				  <hasStandardCommand>true</hasStandardCommand>
+				  <defaultProjectile>Bullet_80x256mmFuel_Thermobaric</defaultProjectile>
+				  <warmupTime>4.3</warmupTime>
+				  <range>86</range>
+				  <ticksBetweenBurstShots>60</ticksBetweenBurstShots>
+				  <burstShotCount>3</burstShotCount>
+				  <soundCast>InfernoCannon_Fire</soundCast>
+				  <soundCastTail>GunTail_Light</soundCastTail>
+				  <muzzleFlashScale>14</muzzleFlashScale>
+				  <ai_AvoidFriendlyFireRadius>5</ai_AvoidFriendlyFireRadius>
+				  <minRange>5</minRange>
+				  <ai_IsBuildingDestroyer>true</ai_IsBuildingDestroyer>
+				  <recoilPattern>Mounted</recoilPattern>
+				</Properties>
+				<FireModes>
+				  <aiAimMode>AimedShot</aiAimMode>
+				  <noSnapshot>true</noSnapshot>
+				</FireModes>
+			</li>
+			
+			<!-- ========== Auto Mortar ========== -->
+
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="VFE_Turret_AutoMortarCannon"]/thingClass</xpath>
+				<value>
+					<thingClass>CombatExtended.Building_TurretGunCE</thingClass>
+				</value>
+			</li>
+
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName="VFE_Turret_AutoMortarCannon"]/statBases</xpath>
+				<value>
+					<AimingAccuracy>0.5</AimingAccuracy>
+				</value>
+			</li>
+			
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="VFE_Turret_AutoMortarCannon"]/statBases/Mass</xpath>
+				<value>
+					<Mass>75</Mass>
+				</value>
+			</li>
+
+			<li Class="PatchOperationRemove">
+				<xpath>Defs/ThingDef[defName="VFE_Turret_AutoMortarCannon"]/comps/li[@Class = "CompProperties_Explosive"]</xpath>
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="VFE_Turret_AutoMortarCannon"]/fillPercent</xpath>
+				<value>
+					<fillPercent>0.85</fillPercent>
+				</value>
+			</li>
+			
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName = "VFE_Gun_AutoMortarCannon"]</xpath>
+				<value>
+					<statBases>
+						<SightsEfficiency>0.5</SightsEfficiency>
+					</statBases>
+				</value>
+			</li>
+			
+			<!--Test for comps and add if not present-->
+			
+			<li Class="PatchOperationConditional">
+				<xpath>/Defs/ThingDef[defName="VFE_Gun_AutoMortarCannon"]/comps</xpath>
+				<nomatch Class="PatchOperationAdd">
+					<xpath>/Defs/ThingDef[defName="VFE_Gun_AutoMortarCannon"]</xpath>
+					<value>
+						<comps/>
+					</value>
+				</nomatch>
+				<match Class="PatchOperationAdd">
+					<xpath>/Defs/ThingDef[defName="VFE_Gun_AutoMortarCannon"]</xpath>
+					<value>
+					</value>
+				</match>
+			</li>
+
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName = "VFE_Gun_AutoMortarCannon"]/comps</xpath>
+				<value>
+					  <li Class="CombatExtended.CompProperties_Charges">
+						<chargeSpeeds>
+						  <li>30</li>
+						  <li>50</li>
+						  <li>70</li>
+						  <li>90</li>
+						</chargeSpeeds>
+					  </li>
+				</value>
+			</li>
+			
+			<!--Test for tags and add if not present-->
+			
+			<li Class="PatchOperationConditional">
+				<xpath>/Defs/ThingDef[defName="VFE_Gun_AutoMortarCannon"]/weaponTags</xpath>
+				<nomatch Class="PatchOperationAdd">
+					<xpath>/Defs/ThingDef[defName="VFE_Gun_AutoMortarCannon"]</xpath>
+					<value>
+						<weaponTags/>
+					</value>
+				</nomatch>
+				<match Class="PatchOperationAdd">
+					<xpath>/Defs/ThingDef[defName="VFE_Gun_AutoMortarCannon"]</xpath>
+					<value>
+					</value>
+				</match>
+			</li>
+
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName = "VFE_Gun_AutoMortarCannon"]/weaponTags</xpath>
+				<value>
+					<li>TurretGun</li>
+				</value>
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName = "VFE_Gun_AutoMortarCannon"]/verbs</xpath>
+				<value>
+					<verbs>
+					  <li Class="CombatExtended.VerbPropertiesCE">
+						<verbClass>CombatExtended.Verb_ShootMortarCE</verbClass>
+						<forceNormalTimeSpeed>false</forceNormalTimeSpeed>
+						<hasStandardCommand>true</hasStandardCommand>
+						<defaultProjectile>Bullet_ChargeMortarShell</defaultProjectile>
+						<warmupTime>5.5</warmupTime>
+						<minRange>32</minRange>
+						<range>700</range>
+						<burstShotCount>1</burstShotCount>
+						<soundCast>Mortar_LaunchA</soundCast>
+						<muzzleFlashScale>16</muzzleFlashScale>
+						<circularError>1</circularError>
+						<indirectFirePenalty>0.2</indirectFirePenalty>
+						<targetParams>
+						  <canTargetLocations>true</canTargetLocations>
+						</targetParams>
+					  </li>
+					</verbs>
+				</value>
+			</li>
+			
+			<!-- ========== Ship Charge Railgun ========== -->
+
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="VFE_Turret_ChargeRailgun"]/thingClass</xpath>
+				<value>
+					<thingClass>CombatExtended.Building_TurretGunCE</thingClass>
+				</value>
+			</li>
+
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName="VFE_Turret_ChargeRailgun"]/statBases</xpath>
+				<value>
+					<AimingAccuracy>3</AimingAccuracy>
+				</value>
+			</li>
+			
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="VFE_Turret_ChargeRailgun"]/statBases/Mass</xpath>
+				<value>
+					<Mass>800</Mass>
+				</value>
+			</li>
+
+			<li Class="PatchOperationRemove">
+				<xpath>Defs/ThingDef[defName="VFE_Turret_ChargeRailgun"]/comps/li[@Class = "CompProperties_Explosive"]</xpath>
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="VFE_Turret_ChargeRailgun"]/fillPercent</xpath>
+				<value>
+					<fillPercent>0.99</fillPercent>
+				</value>
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="VFE_Turret_ChargeRailgun"]/building/turretBurstCooldownTime</xpath>
+				<value>
+					<turretBurstCooldownTime>18.9</turretBurstCooldownTime>
+				</value>
+			</li>
+			
+			<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+				<defName>VFE_Gun_ChargeRailgun</defName>
+				<statBases>
+				  <Mass>35.00</Mass>
+				  <RangedWeapon_Cooldown>0.36</RangedWeapon_Cooldown>
+				  <SightsEfficiency>4.5</SightsEfficiency>
+				  <ShotSpread>0.01</ShotSpread>
+				  <SwayFactor>1.33</SwayFactor>
+				  <Bulk>13.00</Bulk>
+				</statBases>
+				<Properties>
+				  <recoilAmount>5</recoilAmount>
+				  <verbClass>CombatExtended.Verb_ShootCE</verbClass>
+				  <hasStandardCommand>true</hasStandardCommand>
+				  <defaultProjectile>VFE_Bullet_ChargeRailgun_CE</defaultProjectile>
+				  <warmupTime>5.2</warmupTime>
+				  <range>500</range>
+				  <burstShotCount>1</burstShotCount>
+				  <soundCast>VFE_Shot_ChargeRailgun</soundCast>
+				  <soundCastTail>GunTail_Heavy</soundCastTail>
+				  <muzzleFlashScale>16</muzzleFlashScale>
+				</Properties>
+				<FireModes>
+				  <aiAimMode>AimedShot</aiAimMode>
+				  <noSnapshot>true</noSnapshot>
+				</FireModes>
+			</li>
+			
+      </operations>
+    </match>
+  </Operation>
+
+</Patch>

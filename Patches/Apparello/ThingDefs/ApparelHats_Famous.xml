@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <Patch>
-
-	<Operation Class="PatchOperationSequence">
-		<success>Always</success>
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+			<li>Apparello 2</li>
+		</mods>
+		<match Class="PatchOperationSequence">
 		<operations>
-			<li Class="CombatExtended.PatchOperationFindMod">
-				<modName>Apparello 2</modName>
-			</li>
 			<!-- ========== Doom helmet ========== -->
 			<li Class="PatchOperationAdd">
 				<xpath>Defs/ThingDef[defName = "Apparello_Doom"]/statBases</xpath>
@@ -163,7 +162,7 @@
 				</value>
 			</li>
 		</operations>
+		</match>
 	</Operation>
-
 </Patch>
 

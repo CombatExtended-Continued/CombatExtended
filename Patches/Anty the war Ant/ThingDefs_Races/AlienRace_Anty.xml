@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+  <Operation Class="PatchOperationSequence">
+	<operations>
+	  <li Class="PatchOperationFindMod">
+			
+		<mods><li>Anty the war ant race</li></mods>
+			
+		<match Class="PatchOperationSequence">
+		<operations>
+
+            <li Class="PatchOperationAdd">
+				<xpath>/Defs/ThingDef[@Name="AT_PawnBase"]</xpath>
+				<value>
+					<comps>
+					</comps>					
+				</value>
+			</li>
+
+            <li Class="PatchOperationAdd">
+				<xpath>/Defs/ThingDef[@Name="AT_PawnBase"]/comps</xpath>
+				<value>
+					<li>
+					<compClass>CombatExtended.CompPawnGizmo</compClass>
+					</li>
+					<li Class="CombatExtended.CompProperties_Suppressable" />
+				</value>
+			</li>
+
+            <li Class="PatchOperationAdd">
+                    <xpath>/Defs/ThingDef[@Name="AT_PawnBase"]/comps</xpath>
+                    <value>
+                        <li Class="CombatExtended.CompProperties_Inventory" />
+                    </value>
+			</li>
+			
+			<li Class="PatchOperationAddModExtension">
+				<xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="Anty"]</xpath>
+				<value>
+					<li Class="CombatExtended.RacePropertiesExtensionCE">
+						<bodyShape>Humanoid</bodyShape>
+					</li>
+				</value>
+			</li>
+
+			
+			<li Class="PatchOperationAdd">
+			 <xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="Anty"]/statBases</xpath>
+				  <value>
+					<MeleeCritChance>1</MeleeCritChance>
+					<MeleeParryChance>1</MeleeParryChance>
+					<Suppressability>0.5</Suppressability>
+					<SmokeSensitivity>0.9</SmokeSensitivity>
+				  </value>
+			</li>
+			
+			<!--Only bite-->
+			
+			<li Class="PatchOperationReplace">
+				<xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="Anty"]/tools</xpath> 
+				<value>
+					<tools>
+						<li Class="CombatExtended.ToolCE">
+							<label>teeth</label>
+							<capacities>
+								<li>Bite</li>
+							</capacities>
+							<power>3</power>
+							<cooldownTime>1.5</cooldownTime>
+							<linkedBodyPartsGroup>Teeth</linkedBodyPartsGroup>
+							<chanceFactor>1</chanceFactor>
+							<armorPenetrationSharp>0.1</armorPenetrationSharp>
+							<armorPenetrationBlunt>0.5</armorPenetrationBlunt>
+						</li>
+					</tools>
+				</value>
+			</li>
+			
+			
+		</operations>
+		</match>	
+	  </li>
+	</operations>	
+  </Operation>
+</Patch>
