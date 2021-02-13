@@ -63,7 +63,7 @@ namespace CombatExtended
                     // modifying a record for which the pawn should have some of that thing in their inventory.
                     CompInventory inventory = pawn.TryGetComp<CompInventory>();
                     if (inventory != null)
-                        rec.count = inventory.container.TotalStackCountOfDef(rec.thingDef) + count;
+                        rec.count = GetMagazineAwareStackCount(inventory, rec.thingDef) + count;
                     else
                         rec.count += count; // probably won't generally follow this code path but good not to throw an error if possible.
                 }
@@ -422,6 +422,30 @@ namespace CombatExtended
                 }
             } // else
             return false;
+        }
+
+        /// <summary>
+        /// Gets the total count of a thingDef inside an inventory.
+        /// If thingDef is an ammo type, result will include rounds inside weapons magazines, matching behaviour in GetExcessThing.
+        /// </summary>
+        /// <param name="inventory">The inventory to check for stack count.</param>
+        /// <param name="thingDef">The thingDef to look for.</param>
+        /// <returns>Inventory count for specified item.</returns>
+        static private int GetMagazineAwareStackCount(CompInventory inventory, ThingDef thingDef)
+        {
+            int inventoryCount = inventory.container.TotalStackCountOfDef(thingDef);
+            if (thingDef is AmmoDef)
+            {
+                foreach(Thing inventoryItem in inventory.container)
+                {
+                    CompAmmoUser ammoUser = inventoryItem.TryGetComp<CompAmmoUser>();
+                    if (ammoUser != null && ammoUser.CurrentAmmo == thingDef)
+                    {
+                        inventoryCount += ammoUser.CurMagCount;
+                    }
+                }
+            }
+            return inventoryCount;
         }
         #endregion
     }
