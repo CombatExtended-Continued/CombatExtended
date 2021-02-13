@@ -1,0 +1,44 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+			<li>Censored Armory [1.2]</li>
+		</mods>
+		<match Class="PatchOperationAdd">
+			<xpath>Defs</xpath>
+			<value>
+
+				<!-- ================== Projectiles ================== -->
+
+				<ThingDef Class="CombatExtended.AmmoDef" ParentName="BaseRPG7Grenade">
+					<defName>Bullet_Panzerfaust60_HEAT</defName>
+					<label>Panzerfaust 60 rocket</label>
+					<graphicData>
+						<texPath>Weapon/Heavy/Projectile/Bullet_Faustpatrone</texPath>
+						<graphicClass>Graphic_Single</graphicClass>
+					</graphicData>
+					<projectile Class="CombatExtended.ProjectilePropertiesCE">
+						<speed>22</speed>
+						<damageDef>Bullet</damageDef>
+						<damageAmountBase>208</damageAmountBase>
+						<armorPenetrationSharp>200</armorPenetrationSharp>
+						<armorPenetrationBlunt>37.321</armorPenetrationBlunt>
+					</projectile>
+					<comps>
+						<li Class="CombatExtended.CompProperties_ExplosiveCE">
+							<damageAmountBase>124</damageAmountBase>
+							<explosiveDamageType>Bomb</explosiveDamageType>
+							<explosiveRadius>1</explosiveRadius>
+							<explosionSound>MortarBomb_Explode</explosionSound>
+							<applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
+						</li>
+					</comps>
+				</ThingDef>
+
+			</value>
+		</match>
+	</Operation>
+
+
+</Patch>
