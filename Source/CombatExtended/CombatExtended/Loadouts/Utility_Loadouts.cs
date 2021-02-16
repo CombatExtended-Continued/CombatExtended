@@ -346,7 +346,17 @@ namespace CombatExtended
         	
         	return loadout;
         }
-        
+
+        public static bool IsItemQuestLocked(this Pawn pawn, Thing thing)
+        {
+            if (pawn == null || thing == null)
+            {
+                return false;
+            }
+            return (thing is Apparel eqApparel && (pawn.apparel?.IsLocked(eqApparel) ?? false))
+                || (thing.def.IsWeapon && pawn.IsQuestLodger() && !EquipmentUtility.QuestLodgerCanUnequip(thing, pawn));
+        }
+
         #endregion Methods
     }
 }

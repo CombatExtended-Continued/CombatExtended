@@ -196,6 +196,11 @@ namespace CombatExtended
             if (loadout == null || (loadout != null && loadout.Slots.NullOrEmpty()) || pawn.equipment?.Primary == null)
                 return false;
 
+            if (pawn.IsItemQuestLocked(pawn.equipment?.Primary))
+            {
+                return false;
+            }
+
             //Check if equipment is part of the loadout
             LoadoutSlot eqSlot = loadout.Slots.FirstOrDefault(s => s.count >= 1 && ((s.thingDef != null && s.thingDef == pawn.equipment.Primary.def)
                                                                                     || (s.genericDef != null && s.genericDef.lambda(pawn.equipment.Primary.def))));
@@ -247,6 +252,10 @@ namespace CombatExtended
                     // hand out any inventory item not covered by a HoldRecord.
                     foreach (Thing thing in pawn.inventory.innerContainer)
                     {
+                        if (pawn.IsItemQuestLocked(thing))
+                        {
+                            continue;   //quest requirements prevent this from being dropped, skip to next thing in inventory
+                        }
                         int numContained = pawn.inventory.innerContainer.TotalStackCountOfDef(thing.def);
                         HoldRecord rec = recs.FirstOrDefault(hr => hr.thingDef == thing.def);
                         if (rec == null)
@@ -268,9 +277,9 @@ namespace CombatExtended
                 }
                 else
                 {
-                    // we have nither a HoldTracker nor a Loadout that we can ask, so just pick stuff at random from Inventory.
-                    dropThing = pawn.inventory.innerContainer.RandomElement<Thing>();
-                    dropCount = dropThing.stackCount;
+                    // we have nither a HoldTracker nor a Loadout that we can ask, so just pick a random non-quest item from Inventory.
+                    dropThing = pawn.inventory.innerContainer.Where(inventoryItem => !pawn.IsItemQuestLocked(inventoryItem))?.RandomElement();
+                    dropCount = dropThing?.stackCount ?? 0;
                 }
             }
             else
@@ -388,7 +397,7 @@ namespace CombatExtended
                         if (rec == null)
                         {
                             // the item we have extra of has no HoldRecord, drop it.
-                            dropThing = inventory.container.FirstOrDefault(t => t.def == def);
+                            dropThing = inventory.container.FirstOrDefault(t => t.def == def && !pawn.IsItemQuestLocked(t));
                             if (dropThing != null)
                             {
                                 dropCount = listing[def].value > dropThing.stackCount ? dropThing.stackCount : listing[def].value;
@@ -398,7 +407,7 @@ namespace CombatExtended
                         else if (rec.count < listing[def].value)
                         {
                             // the item we have extra of HAS a HoldRecord but the amount carried is above the limit of the HoldRecord, drop extra.
-                            dropThing = pawn.inventory.innerContainer.FirstOrDefault(t => t.def == def);
+                            dropThing = pawn.inventory.innerContainer.FirstOrDefault(t => t.def == def && !pawn.IsItemQuestLocked(t));
                             if (dropThing != null)
                             {
                                 dropCount = listing[def].value - rec.count;
@@ -412,7 +421,7 @@ namespace CombatExtended
                 {
                     foreach (ThingDef def in listing.Keys)
                     {
-                        dropThing = inventory.container.FirstOrDefault(t => t.GetInnerIfMinified().def == def);
+                        dropThing = inventory.container.FirstOrDefault(t => t.GetInnerIfMinified().def == def && !pawn.IsItemQuestLocked(t));
                         if (dropThing != null)
                         {
                             dropCount = listing[def].value > dropThing.stackCount ? dropThing.stackCount : listing[def].value;
