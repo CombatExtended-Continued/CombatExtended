@@ -445,7 +445,7 @@ namespace CombatExtended
             int inventoryCount = inventory.container.TotalStackCountOfDef(thingDef);
             if (thingDef is AmmoDef)
             {
-                foreach(Thing inventoryItem in inventory.container)
+                foreach (Thing inventoryItem in inventory.container)
                 {
                     CompAmmoUser ammoUser = inventoryItem.TryGetComp<CompAmmoUser>();
                     if (ammoUser != null && ammoUser.CurrentAmmo == thingDef)
