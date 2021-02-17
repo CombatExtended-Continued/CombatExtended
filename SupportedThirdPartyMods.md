@@ -99,6 +99,7 @@ Gas Traps And Shells	|
 Genetic Rim |
 Genetic Rim Alpha Animal Patch |
 GeneticRim Cosmic Horrors Patch |
+GeneticRim Dinosauria Patch |
 Girls' Frontline Apparel Pack	|
 Girls' Frontline Styles - 404 Team	|
 Girls' Frontline Weapon Pack	|
