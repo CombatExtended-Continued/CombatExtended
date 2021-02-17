@@ -333,17 +333,18 @@ namespace CombatExtended
         {
             get
             {
-                if (shadowMaterial != null) return shadowMaterial[Rand.Range(0, this.shadowMaterial.Length)];
-
-                //Get fully black version of this.Graphic
-                if (Graphic is Graphic_Collection g)
+                if (shadowMaterial == null)
                 {
-                    shadowMaterial = GetShadowMaterial(g);
-                }
-                else
-                {
-                    shadowMaterial = new Material[1];
-                    shadowMaterial[0] = Graphic.GetColoredVersion(ShaderDatabase.Transparent, Color.black, Color.black).MatSingle;
+                    //Get fully black version of this.Graphic
+                    if (Graphic is Graphic_Collection g)
+                    {
+                        shadowMaterial = GetShadowMaterial(g);
+                    }
+                    else
+                    {
+                        shadowMaterial = new Material[1];
+                        shadowMaterial[0] = Graphic.GetColoredVersion(ShaderDatabase.Transparent, Color.black, Color.black).MatSingle;
+                    }
                 }
 
                 return shadowMaterial[Rand.Range(0, this.shadowMaterial.Length)];
