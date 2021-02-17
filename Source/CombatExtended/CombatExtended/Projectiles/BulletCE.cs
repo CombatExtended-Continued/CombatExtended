@@ -29,7 +29,7 @@ namespace CombatExtended
                     def,
                     null //CoverDef Missing!
                     );
-             if ((launcher is AmmoThing))
+             if ((launcher is AmmoThing) == false)
                 Find.BattleLog.Add(logEntry);
         }
 
