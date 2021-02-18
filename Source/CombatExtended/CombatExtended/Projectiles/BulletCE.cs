@@ -29,7 +29,7 @@ namespace CombatExtended
                     def,
                     null //CoverDef Missing!
                     );
-             if ((launcher is AmmoThing) == false)
+             if (!(launcher is AmmoThing))
                 Find.BattleLog.Add(logEntry);
         }
 
@@ -40,7 +40,7 @@ namespace CombatExtended
             Map map = base.Map;
             LogEntry_DamageResult logEntry = null;
 
-            if (cookOff == false && (logMisses || hitThing is Pawn || hitThing is Building_Turret))
+            if (!cookOff && (logMisses || hitThing is Pawn || hitThing is Building_Turret))
             {
                 LogImpact(hitThing, out logEntry);
             }
