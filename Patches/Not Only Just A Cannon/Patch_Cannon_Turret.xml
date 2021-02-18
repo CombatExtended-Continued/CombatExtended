@@ -775,7 +775,92 @@
 		</li>
 		
 		
+		<!--   DRAGONATOR   -->
+			
+        <li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+          <defName>Weapon_Dragonator</defName>
+
+          <statBases>
+			  <SightsEfficiency>1</SightsEfficiency>
+			  <ShotSpread>0.3</ShotSpread>
+			  <SwayFactor>1.34</SwayFactor>
+			  <RangedWeapon_Cooldown>3.2</RangedWeapon_Cooldown>
+          </statBases>
+
+          <Properties>
+            <recoilAmount>1.52</recoilAmount>
+            <verbClass>CombatExtended.Verb_ShootCE</verbClass>
+            <hasStandardCommand>True</hasStandardCommand>
+            <defaultProjectile>Bullet_DragonatorSpike</defaultProjectile>
+			<burstShotCount />
+            <warmupTime>5</warmupTime>
+			<requireLineOfSight>true</requireLineOfSight>
+            <range>20</range>
+			<soundCast>MortarBomb_Explode</soundCast>
+			<muzzleFlashScale>2</muzzleFlashScale>
+			<targetParams>
+			  <canTargetLocations>true</canTargetLocations>
+			</targetParams>
+            <recoilPattern>Mounted</recoilPattern>
+          </Properties>
+
+          <AmmoUser>
+            <magazineSize>1</magazineSize>
+            <reloadTime>30</reloadTime>
+            <ammoSet>AmmoSet_Dragonator</ammoSet>
+          </AmmoUser>
+
+          <FireModes>
+			<aiAimMode>AimedShot</aiAimMode>
+          </FireModes>
+        </li>
+
+        <li Class="PatchOperationReplace">
+          <xpath>/Defs/ThingDef[defName="Turret_Dragonator"]/thingClass</xpath>
+          <value>
+            <thingClass>CombatExtended.Building_TurretGunCE</thingClass>
+          </value>
+        </li>
 		
+		<li Class="PatchOperationAdd">
+          <xpath>/Defs/ThingDef[defName="Turret_Dragonator"]</xpath>
+          <value>
+            <specialDisplayRadius>86</specialDisplayRadius>
+          </value>
+        </li>
+
+		
+        <li Class="PatchOperationRemove">
+          <xpath>/Defs/ThingDef[defName="Turret_Dragonator"]/comps/li[@Class="CompProperties_Refuelable"]</xpath>
+        </li>
+		
+		
+        <li Class="PatchOperationReplace">
+          <xpath>/Defs/ThingDef[defName="Turret_Dragonator"]/building/turretBurstCooldownTime</xpath>
+          <value>
+            <turretBurstCooldownTime>1</turretBurstCooldownTime>
+          </value>
+        </li>
+		
+		
+        <li Class="PatchOperationReplace">
+          <xpath>/Defs/ThingDef[defName="Turret_Dragonator"]/statBases/ShootingAccuracyTurret</xpath>
+          <value>
+            <ShootingAccuracyTurret>1</ShootingAccuracyTurret>
+          </value>
+        </li>
+
+		
+        <li Class="PatchOperationAdd">
+          <xpath>/Defs/ThingDef[defName="Turret_Dragonator"]</xpath>
+          <value>
+			<hasInteractionCell>True</hasInteractionCell>
+			<interactionCellOffset>(0,0,-2)</interactionCellOffset>
+			<size>(3,3)</size>
+          </value>
+        </li>
+		
+
 		
 		
 		<!--

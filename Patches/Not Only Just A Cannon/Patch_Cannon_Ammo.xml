@@ -61,7 +61,8 @@
 				  <speed>100</speed>
 				  <soundExplode>MortarBomb_Explode</soundExplode>
 				  <flyOverhead>false</flyOverhead>
-				  <dropsCasings>false</dropsCasings>
+				  <dropsCasings>true</dropsCasings>
+				  <casingMoteDefname>Mote_BigShell</casingMoteDefname>
 				</projectile>
 			  </ThingDef>
 
@@ -801,6 +802,74 @@
 				</RecipeDef>
 			  
 			  
+			  <CombatExtended.AmmoSetDef>
+				<defName>AmmoSet_Dragonator</defName>
+				<label>Dragonator Spike</label>
+				<ammoTypes>
+				  <Ammo_DragonatorSpike>Bullet_DragonatorSpike</Ammo_DragonatorSpike>
+				</ammoTypes>
+				<isMortarAmmoSet>true</isMortarAmmoSet>
+			  </CombatExtended.AmmoSetDef>
+			  
+			  
+			   <ThingDef Class="CombatExtended.AmmoDef" ParentName="164mmCannonShellBase">
+				<defName>Ammo_DragonatorSpike</defName>
+				<label>Dragonator Spike</label>
+				<graphicData>
+				  <texPath>Things/Item/Dragonator</texPath>
+				  <graphicClass>Graphic_StackCount</graphicClass>
+				  <drawSize>(2)</drawSize>
+				</graphicData>
+				<stackLimit>3</stackLimit>
+				<statBases>
+				  <MarketValue>20</MarketValue>
+				</statBases>
+				<ammoClass>SteelSlingBullet</ammoClass>
+			  </ThingDef>
+
+			  <ThingDef Class="CombatExtended.AmmoDef" ParentName="Base164mmCannonShell">
+				<defName>Bullet_DragonatorSpike</defName>
+				<label>Dragonator Spike</label>
+				<thingClass>CombatExtended.BulletCE</thingClass>
+				<graphicData>
+				  <texPath>Things/Projectile/Dragonator</texPath>
+				  <graphicClass>Graphic_Single</graphicClass>
+				  <drawSize>2,4</drawSize>
+				</graphicData>
+				<projectile Class="CombatExtended.ProjectilePropertiesCE">
+				  <damageDef>Bullet</damageDef>
+				  <damageAmountBase>450</damageAmountBase>
+				  <armorPenetrationSharp>50</armorPenetrationSharp>
+				  <armorPenetrationBlunt>400</armorPenetrationBlunt>
+				</projectile>
+			  </ThingDef>
+			  
+			  	<RecipeDef ParentName="MakeStoneBlocksBase">
+				  <defName>MakeAmmo_DragonatorSpike</defName>
+				  <label>forge dragonator spike</label>
+				  <description>Forges steel into dragonator spikes</description>
+				<ingredients>
+				  <li>
+					<filter>
+					  <thingDefs>
+						<li>Steel</li>
+					  </thingDefs>
+					</filter>
+					<count>150</count>
+				  </li>
+				</ingredients>
+				<fixedIngredientFilter>
+				  <thingDefs>
+					<li>Steel</li>
+				  </thingDefs>
+				</fixedIngredientFilter>	  
+				  <products>
+					<Ammo_DragonatorSpike>1</Ammo_DragonatorSpike>
+				  </products>
+				</RecipeDef>
+				
+				
+				
 			</value>
 			</li>
 			
