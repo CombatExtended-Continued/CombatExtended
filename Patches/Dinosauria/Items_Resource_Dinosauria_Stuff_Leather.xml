@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <Patch>
-	<Operation Class="PatchOperationSequence">
-		<success>Always</success>
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+			<li>Dinosauria</li>
+		</mods>
+		<match Class="PatchOperationSequence">
 		<operations>
-			<!-- ==== Check for the mod. ==== -->
-			<li Class="CombatExtended.PatchOperationFindMod">
-				<modName>Dinosauria</modName>
-			</li>
 
 			<!--========== Basic leathers ============-->
 
@@ -95,11 +94,14 @@
 
 			<!--========== Leather_Tyrannosaurus, Leather_Spinosaurus, Leather_Bluefuzz, Leather_ArmoredDino ============-->
 			<li Class="PatchOperationAdd">
-				<xpath>/Defs/ThingDef[defName="Leather_Tyrannosaurus" or defName="Leather_Spinosaurus" or defName="Leather_Bluefuzz" or defName="Leather_ArmoredDino"]/stuffProps/categories</xpath>
+				<xpath>/Defs/ThingDef[defName="Leather_Tyrannosaurus" or defName="Leather_Spinosaurus" or defName="Leather_Bluefuzz" or defName="Leather_ArmoredDino"]/stuffProps</xpath>
 				<value>
-					<li>SoftArmor</li>
+					<categories>
+						<li>SoftArmor</li>
+					</categories>	
 				</value>
 			</li>
 		</operations>
+		</match>
 	</Operation>
 </Patch>

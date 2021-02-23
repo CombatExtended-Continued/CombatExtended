@@ -1,12 +1,11 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <Patch>
-
-	<Operation Class="PatchOperationSequence">
-		<success>Always</success>
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+			<li>Hand 'n' Footwear</li>
+		</mods>
+		<match Class="PatchOperationSequence">
 		<operations>
-			<li Class="CombatExtended.PatchOperationFindMod">
-				<modName>Hand 'n' Footwear</modName>
-			</li>
 			<!-- ========== All footwear ========== -->
 			<li Class="PatchOperationReplace">
 				<xpath>/ThingDefs/ThingDef[defName = "Apparel_Shoes" or defName = "Apparel_TribalBoots" or defName = "Apparel_CowboyBoots" or defName = "Apparel_CombatBoots"]/apparel/layers/li</xpath>
@@ -60,6 +59,6 @@
 				</value>
 			</li>
 		</operations>
+		</match>
 	</Operation>
-
 </Patch>
