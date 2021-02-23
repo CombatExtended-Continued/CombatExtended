@@ -211,7 +211,7 @@ namespace CombatExtended
             rect.width -= 24f;
             if (CanControl || (SelPawnForGear.Faction == Faction.OfPlayer && SelPawnForGear.RaceProps.packAnimal) || (showDropButtonIfPrisoner && SelPawnForGear.IsPrisonerOfColony))
             {
-                var dropForbidden = IsItemDropForbidden(thing);
+                var dropForbidden = SelPawnForGear.IsItemQuestLocked(thing);
                 Color color = dropForbidden ? Color.grey : Color.white;
                 Color mouseoverColor = dropForbidden ? Color.grey : GenUI.MouseoverColor;
                 Rect dropRect = new Rect(rect.width - 24f, y, 24f, 24f);
@@ -350,7 +350,7 @@ namespace CombatExtended
                         }
                     }
                     //Reload apparel option
-		    var worn_apparel = SelPawnForGear?.apparel?.WornApparel;
+                    var worn_apparel = SelPawnForGear?.apparel?.WornApparel;
                     foreach (var apparel in worn_apparel)
                     {
                         var compReloadable = apparel.TryGetComp<CompReloadable>();
@@ -392,7 +392,7 @@ namespace CombatExtended
                         }
                     }
                     // Drop, and drop&haul options
-                    if (IsItemDropForbidden(eq))
+                    if (SelPawnForGear.IsItemQuestLocked(eq))
                     {
                         floatOptionList.Add(new FloatMenuOption("CE_CannotDropThing".Translate() + ": " + "DropThingLocked".Translate(), null));
                         floatOptionList.Add(new FloatMenuOption("CE_CannotDropThingHaul".Translate() + ": " + "DropThingLocked".Translate(), null));
@@ -572,12 +572,6 @@ namespace CombatExtended
                 value *= 100f;
             }
             return value.ToStringByStyle(asPercent ? ToStringStyle.FloatMaxOne : ToStringStyle.FloatMaxTwo) + unit;
-        }
-
-        private bool IsItemDropForbidden(Thing thing)
-        {
-            return (thing is Apparel eqApparel && (SelPawnForGear.apparel?.IsLocked(eqApparel) ?? false))
-                || (thing.def.IsWeapon && SelPawnForGear.IsQuestLodger() && !EquipmentUtility.QuestLodgerCanUnequip(thing, SelPawnForGear));
         }
 
         #endregion Methods
