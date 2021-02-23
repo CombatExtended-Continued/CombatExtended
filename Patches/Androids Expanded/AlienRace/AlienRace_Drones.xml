@@ -1,147 +1,127 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <Patch>
-	<Operation Class="PatchOperationSequence">
-	  <operations>
-		<li Class="PatchOperationFindMod">
-		
-		  <mods><li>Androids Expanded</li></mods>
-			<match Class="PatchOperationSequence">
-			  <operations>
-				<!--Test for comps-->
-				
+
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+			<li>Androids Expanded</li>
+			<li>Androids Expanded (Continued)</li>
+		</mods>
+		<match Class="PatchOperationSequence">
+			<operations>
+
+				<!-- === Comps === -->
 				<li Class="PatchOperationSequence">
-				  <success>Always</success>
-				  <operations>
-				    <li Class="PatchOperationTest">
-					  <xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="NChefDrone"]/comps</xpath>
-					  <success>Invert</success>
-					</li>
-					<li Class="PatchOperationAdd">
-					  <xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="NChefDrone"]</xpath>
-					  <value><comps /></value>
-					</li>
-				  </operations>
+					<success>Always</success>
+					<operations>
+						<li Class="PatchOperationTest">
+							<xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="NChefDrone"]/comps</xpath>
+							<success>Invert</success>
+						</li>
+						<li Class="PatchOperationAdd">
+							<xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="NChefDrone"]</xpath>
+							<value>
+								<comps />
+							</value>
+						</li>
+					</operations>
 				</li>
-				
+
 				<li Class="PatchOperationSequence">
-				  <success>Always</success>
-				  <operations>
-				    <li Class="PatchOperationTest">
-					  <xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="NEngiDrone"]/comps</xpath>
-					  <success>Invert</success>
-					</li>
-					<li Class="PatchOperationAdd">
-					  <xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="NEngiDrone"]</xpath>
-					  <value><comps /></value>
-					</li>
-				  </operations>
+					<success>Always</success>
+					<operations>
+						<li Class="PatchOperationTest">
+							<xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="NEngiDrone"]/comps</xpath>
+							<success>Invert</success>
+						</li>
+						<li Class="PatchOperationAdd">
+							<xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="NEngiDrone"]</xpath>
+							<value>
+								<comps />
+							</value>
+						</li>
+					</operations>
 				</li>
-				
+
 				<li Class="PatchOperationSequence">
-				  <success>Always</success>
-				  <operations>
-				    <li Class="PatchOperationTest">
-					  <xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="NMedicDrone"]/comps</xpath>
-					  <success>Invert</success>
-					</li>
-					<li Class="PatchOperationAdd">
-					  <xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="NMedicDrone"]</xpath>
-					  <value><comps /></value>
-					</li>
-				  </operations>
+					<success>Always</success>
+					<operations>
+						<li Class="PatchOperationTest">
+							<xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="NMedicDrone"]/comps</xpath>
+							<success>Invert</success>
+						</li>
+						<li Class="PatchOperationAdd">
+							<xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="NMedicDrone"]</xpath>
+							<value>
+								<comps />
+							</value>
+						</li>
+					</operations>
 				</li>
-				
+
 				<li Class="PatchOperationAddModExtension">
-				  <xpath>/Defs/AlienRace.ThingDef_AlienRace[
-				  defName="NChefDrone" or
-				  defName="NEngiDrone" or
-				  defName="NMedicDrone"
-				  ]</xpath>
-				  <value>
-					<li Class="CombatExtended.RacePropertiesExtensionCE">
-					  <bodyShape>QuadrupedLow</bodyShape>
-					</li>
-				  </value>
+					<xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="NChefDrone" or defName="NEngiDrone" or defName="NMedicDrone"]</xpath>
+					<value>
+						<li Class="CombatExtended.RacePropertiesExtensionCE">
+							<bodyShape>QuadrupedLow</bodyShape>
+						</li>
+					</value>
 				</li>
-				
+
 				<li Class="PatchOperationAdd">
-				  <xpath>/Defs/AlienRace.ThingDef_AlienRace[
-				  defName="NChefDrone" or
-				  defName="NEngiDrone" or
-				  defName="NMedicDrone"
-				  ]/comps</xpath>
-				  <value>
-				    <li>
-					  <compClass>CombatExtended.CompPawnGizmo</compClass>
-					</li>
-				  </value>
+					<xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="NChefDrone" or defName="NEngiDrone" or defName="NMedicDrone"]/comps</xpath>
+					<value>
+						<li>
+							<compClass>CombatExtended.CompPawnGizmo</compClass>
+						</li>
+					</value>
 				</li>
-				
-				
-				<!--Drones-->
-				
+
+				<!-- === Drones === -->
 				<li Class="PatchOperationAdd">
-				  <xpath>/Defs/AlienRace.ThingDef_AlienRace[
-				  defName="NChefDrone" or
-				  defName="NEngiDrone" or
-				  defName="NMedicDrone"
+					<xpath>/Defs/AlienRace.ThingDef_AlienRace[ defName="NChefDrone" or defName="NEngiDrone" or defName="NMedicDrone"
 				  ]/statBases</xpath>
-				  <value>
-				    <MeleeDodgeChance>0.5</MeleeDodgeChance>
-					<MeleeCritChance>0.5</MeleeCritChance>
-					<MeleeParryChance>0.5</MeleeParryChance>
-					<SmokeSensitivity>0</SmokeSensitivity>
-				  </value>
+					<value>
+						<MeleeDodgeChance>0.5</MeleeDodgeChance>
+						<MeleeCritChance>0.5</MeleeCritChance>
+						<MeleeParryChance>0.5</MeleeParryChance>
+						<SmokeSensitivity>0</SmokeSensitivity>
+					</value>
 				</li>
 				<!--0.5mm Steel-->
 				<li Class="PatchOperationReplace">
-				  <xpath>/Defs/AlienRace.ThingDef_AlienRace[
-				  defName="NChefDrone" or
-				  defName="NEngiDrone" or
-				  defName="NMedicDrone"
-				  ]/statBases/ArmorRating_Sharp</xpath>
-				  <value>
-				    <ArmorRating_Sharp>0.5</ArmorRating_Sharp>
-				  </value>
+					<xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="NChefDrone" or defName="NEngiDrone" or defName="NMedicDrone"]/statBases/ArmorRating_Sharp</xpath>
+					<value>
+						<ArmorRating_Sharp>0.5</ArmorRating_Sharp>
+					</value>
 				</li>
-				
+
 				<li Class="PatchOperationReplace">
-				  <xpath>/Defs/AlienRace.ThingDef_AlienRace[
-				  defName="NChefDrone" or
-				  defName="NEngiDrone" or
-				  defName="NMedicDrone"
-				  ]/statBases/ArmorRating_Blunt</xpath>
-				  <value>
-				    <ArmorRating_Blunt>0.75</ArmorRating_Blunt>
-				  </value>
+					<xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="NChefDrone" or defName="NEngiDrone" or defName="NMedicDrone"]/statBases/ArmorRating_Blunt</xpath>
+					<value>
+						<ArmorRating_Blunt>0.75</ArmorRating_Blunt>
+					</value>
 				</li>
-				
+
 				<li Class="PatchOperationReplace">
-				  <xpath>/Defs/AlienRace.ThingDef_AlienRace[
-				  defName="NChefDrone" or
-				  defName="NEngiDrone" or
-				  defName="NMedicDrone"
-				  ]/tools</xpath>
-				  <value>
-				    <tools>
-					  <li Class="CombatExtended.ToolCE">
-						<label>tool strike</label>
-						<capacities>
-						  <li>Blunt</li>
-						</capacities>
-						<power>1</power>
-						<cooldownTime>1.688</cooldownTime>
-						<linkedBodyPartsGroup>DroneHand</linkedBodyPartsGroup>
-						<armorPenetrationBlunt>0.525</armorPenetrationBlunt>
-					  </li>
-					</tools>
-				  </value>
+					<xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="NChefDrone" or defName="NEngiDrone" or defName="NMedicDrone"]/tools</xpath>
+					<value>
+						<tools>
+							<li Class="CombatExtended.ToolCE">
+								<label>tool strike</label>
+								<capacities>
+									<li>Blunt</li>
+								</capacities>
+								<power>1</power>
+								<cooldownTime>1.688</cooldownTime>
+								<linkedBodyPartsGroup>DroneHand</linkedBodyPartsGroup>
+								<armorPenetrationBlunt>0.525</armorPenetrationBlunt>
+							</li>
+						</tools>
+					</value>
 				</li>
-				
-			  </operations>
-			</match>
-	    </li>
-		
-	  </operations>
+
+			</operations>
+		</match>
 	</Operation>
+
 </Patch>
