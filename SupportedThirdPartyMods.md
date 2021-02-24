@@ -15,11 +15,14 @@ Mod |
 [CP] The DOOM Kit - Classic	|
 [HLX] Rimworld: UNSC Armoury |
 [HLX] ReGrowth - Mutated Animals Pack |
+[HLX] Ultratech: Altered Carbon
+[HLX] Ultratech: Altered Carbon - Armoury
 [JDS] EFT Apparel |
 [JDS] Exiled Dawn |
 [JDS] Star Wars BlasTech Industries |
 [JDS] The Forge - Exiled Dawn |
 [JDS] The Forge - NCR Armory	|
+[KV] Hand 'n' Footwear	|
 [O21] Forgotten Realms |
 [O21] Mechadroids |
 [Ods] SCP Outfits Only Edition	|
@@ -105,7 +108,6 @@ Girls' Frontline Weapon Pack	|
 Glitter Tech	|
 GouRIMet	|
 Halo - Rimworld Auxiliary Combat Armory	|
-Hand 'n' Footwear	|
 High Caliber	|
 Idhale Race	|
 Iron Harvest Pkp 17 "Eisenhans" Powerarmor	|
@@ -170,7 +172,6 @@ Rimsenal - Security Pack |
 Rimworld - The Dark Descent |
 Rimworld - Witcher Monster Hunt |
 Rimworld of Magic |
-Rimworld: Altered Carbon |
 Save Our Ship 2	|
 SCP |
 SCP - Clothing Only	|
