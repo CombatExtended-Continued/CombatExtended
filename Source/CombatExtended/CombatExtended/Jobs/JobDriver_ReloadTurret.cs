@@ -4,6 +4,8 @@ using RimWorld;
 using UnityEngine;
 using Verse;
 using Verse.AI;
+using CombatExtended.Compatibility;
+
 
 namespace CombatExtended
 {
@@ -16,7 +18,7 @@ namespace CombatExtended
         #region Properties
         private string errorBase => this.GetType().Assembly.GetName().Name + " :: " + this.GetType().Name + " :: ";
 
-        private Building_TurretGunCE turret => TargetThingA as Building_TurretGunCE;
+        private Building_Turret turret => TargetThingA as Building_Turret;
         private AmmoThing ammo => TargetThingB as AmmoThing;
 
         private CompAmmoUser compReloader
@@ -25,7 +27,7 @@ namespace CombatExtended
             {
                 if (_compReloader == null && turret != null)
                 {
-                    _compReloader = turret.CompAmmo;
+                    _compReloader = turret.GetAmmo();
                 }
                 return _compReloader;
             }
@@ -42,7 +44,7 @@ namespace CombatExtended
                 return false;
             }
 
-            var compAmmo = turret?.CompAmmo;
+            var compAmmo = turret?.GetAmmo();
 
             if (compAmmo == null)
             {
@@ -152,14 +154,14 @@ namespace CombatExtended
             yield return Toils_Goto.GotoCell(turret.Position, PathEndMode.Touch);
 
             //If pawn fails reloading from this point, reset isReloading
-            this.AddFinishAction(delegate { turret.isReloading = false; });
+            this.AddFinishAction(delegate { turret.SetReloading(false); });
 
             // Wait in place
             Toil waitToil = new Toil() { actor = pawn };
             waitToil.initAction = delegate
             {
                 // Initial relaod process activities.
-                turret.isReloading = true;
+                turret.SetReloading(true);
                 waitToil.actor.pather.StopDead();
                 if (compReloader.ShouldThrowMote)
                 {
@@ -187,7 +189,7 @@ namespace CombatExtended
             reloadToil.initAction = delegate
             {
                 compReloader.LoadAmmo(ammo);
-                turret.isReloading = false;
+                turret.SetReloading(false);
             };
             //if (compReloader.useAmmo) reloadToil.EndOnDespawnedOrNull(TargetIndex.B);
             yield return reloadToil;

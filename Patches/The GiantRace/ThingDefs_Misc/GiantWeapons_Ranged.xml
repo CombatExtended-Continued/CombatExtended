@@ -11,10 +11,57 @@
 			<!--========= Ranged =========-->
 			<!-- Comps and Classes -->
 			
-			<li Class="PatchOperationAttributeSet">
+			<li Class="PatchOperationAttributeRemove">
 			  <xpath>/Defs/ThingDef[@Name="GiantBaseRange"]</xpath>
 			  <attribute>ParentName</attribute>
-			  <value>BaseWeaponAndAmmoNeolithic</value>
+			</li>
+			
+			<li Class="PatchOperationAdd">
+				<xpath>/Defs/ThingDef[@Name="GiantBaseRange"]</xpath>
+				<value>
+					<equipmentType>Primary</equipmentType>
+					<pathCost>10</pathCost>
+					<graphicData>
+						<onGroundRandomRotateAngle>35</onGroundRandomRotateAngle>
+					</graphicData>
+					<menuHidden>False</menuHidden>
+					<destroyOnDrop>False</destroyOnDrop>
+					<thingClass>CombatExtended.AmmoThing</thingClass>
+					<label>unspecified ammunition</label>
+					<category>Item</category>
+					<resourceReadoutPriority>Middle</resourceReadoutPriority>
+					<useHitPoints>true</useHitPoints>
+					<statBases>
+					  <MaxHitPoints>100</MaxHitPoints>
+					  <Beauty>-5</Beauty>
+					  <Flammability>1</Flammability>
+					  <DeteriorationRate>2</DeteriorationRate>
+					  <SellPriceFactor>0.5</SellPriceFactor>
+					</statBases>
+					<selectable>true</selectable>
+					<altitudeLayer>Item</altitudeLayer>
+					<stackLimit>5000</stackLimit>
+					<soundInteract>Metal_Drop</soundInteract>
+					<soundDrop>Metal_Drop</soundDrop>
+					<alwaysHaulable>true</alwaysHaulable>
+					<drawGUIOverlay>true</drawGUIOverlay>
+					<rotatable>false</rotatable>
+					<tradeTags>
+						<li>CE_Ammo</li>
+					</tradeTags>
+					<tradeability>None</tradeability>
+					<tickerType>Normal</tickerType>
+				</value>
+			</li>
+			
+			<li Class="PatchOperationAdd">
+				<xpath>/Defs/ThingDef[@Name="GiantBaseRange"]/comps</xpath>
+				<value>
+					<li Class="CompProperties_Forbiddable"/>
+					<li>
+						<compClass>CompEquippable</compClass>
+					</li>
+				</value>
 			</li>
 			
 			<li Class="PatchOperationAttributeSet">

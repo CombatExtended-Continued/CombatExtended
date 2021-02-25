@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+	<Operation Class="PatchOperationFindMod">
+    <mods>
+		<li>Rimsec Security</li>
+    </mods>
+		<match Class="PatchOperationSequence">
+		 <operations>
+
+			<!-- ======= Ammo ======= -->
+
+            <!-- Defender Series -->
+			<li Class="PatchOperationAddModExtension">
+				<xpath>Defs/PawnKindDef[
+                        @Name="RSPeacekeeperDefenderPawnKindBase"
+				]</xpath>
+				<value>
+					<li Class="CombatExtended.LoadoutPropertiesExtension">
+					<primaryMagazineCount>
+						<min>3</min>
+						<max>6</max>
+					</primaryMagazineCount>
+					</li>
+				</value>
+			</li>
+
+            <!-- Enforcer Series -->
+            <li Class="PatchOperationAddModExtension">
+				<xpath>Defs/PawnKindDef[
+                        @Name="RSPeacekeeperEnforcerPawnKindBase"
+				]</xpath>
+				<value>
+					<li Class="CombatExtended.LoadoutPropertiesExtension">
+					<primaryMagazineCount>
+						<min>2</min>
+						<max>3</max>
+					</primaryMagazineCount>
+					</li>
+				</value>
+			</li>
+
+            <!-- Sentinel Series -->
+            <li Class="PatchOperationAddModExtension">
+				<xpath>Defs/PawnKindDef[
+                        @Name="RSPeacekeeperSentinelPawnKindBase"
+				]</xpath>
+				<value>
+					<li Class="CombatExtended.LoadoutPropertiesExtension">
+					<primaryMagazineCount>
+						<min>5</min>
+						<max>8</max>
+					</primaryMagazineCount>
+					</li>
+				</value>
+			</li>
+
+            <!-- ======= Combat Power ======= -->
+
+            <!-- Defender Series -->
+            <li Class="PatchOperationReplace">
+			<xpath>/Defs/PawnKindDef[
+            defName="RSPeacekeeperDefenderPawnKind" or
+            defName="RSPeacekeeperDefenderForestPawnKind" or
+            defName="RSPeacekeeperDefenderDesertPawnKind" or
+            defName="RSPeacekeeperDefenderWinterPawnKind"
+            ]/combatPower</xpath>
+				<value>
+					<combatPower>180</combatPower>
+				</value>
+			</li>
+
+
+            <!-- Enforcer Series -->
+            <li Class="PatchOperationReplace">
+			<xpath>/Defs/PawnKindDef[
+            defName="RSPeacekeeperEnforcerPawnKind" or
+            defName="RSPeacekeeperEnforcerForestPawnKind" or
+            defName="RSPeacekeeperEnforcerDesertPawnKind" or
+            defName="RSPeacekeeperEnforcerWinterPawnKind"
+            ]/combatPower</xpath>
+				<value>
+					<combatPower>225</combatPower>
+				</value>
+			</li>
+
+            <!-- Defender Series -->
+            <li Class="PatchOperationReplace">
+			<xpath>/Defs/PawnKindDef[
+            defName="RSPeacekeeperSentinelPawnKind" or
+            defName="RSPeacekeeperSentinelForestPawnKind" or
+            defName="RSPeacekeeperSentinelDesertPawnKind" or
+            defName="RSPeacekeeperSentinelWinterPawnKind"
+            ]/combatPower</xpath>
+				<value>
+					<combatPower>400</combatPower>
+				</value>
+			</li>
+
+			</operations>
+			</match>
+		</Operation>
+	</Patch>

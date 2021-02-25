@@ -1,26 +1,25 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <Patch>
-	<Operation Class="PatchOperationSequence">
-		<success>Always</success>
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+			<li>Dinosauria</li>
+		</mods>
+		<match Class="PatchOperationSequence">
 		<operations>
-		
-			<!-- ==== Check for the mod. ==== -->
-			<li Class="CombatExtended.PatchOperationFindMod">
-				<modName>Dinosauria</modName>
-			</li>
 
-			<!-- ====== Triceratops Horn ====== -->
+		<!-- ====== Triceratops Horn ====== -->
 
-			<li Class="PatchOperationRemove">
-				<xpath>Defs/ThingDef[defName="TriceratopsHorn"]/tools</xpath>
-			</li>
+		<li Class="PatchOperationRemove">
+			<xpath>Defs/ThingDef[defName="TriceratopsHorn"]/tools</xpath>
+		</li>
 
-			<li Class="PatchOperationAttributeSet">
-				<xpath>Defs/ThingDef[defName="TriceratopsHorn"]</xpath>
-				<attribute>ParentName</attribute>
-				<value>ResourceBase</value>
-			</li>
+		<li Class="PatchOperationAttributeSet">
+			<xpath>Defs/ThingDef[defName="TriceratopsHorn"]</xpath>
+			<attribute>ParentName</attribute>
+			<value>ResourceBase</value>
+		</li>
 
 		</operations>
+		</match>
 	</Operation>
 </Patch>

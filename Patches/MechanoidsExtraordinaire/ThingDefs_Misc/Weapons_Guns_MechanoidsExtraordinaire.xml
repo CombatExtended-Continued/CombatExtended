@@ -1,14 +1,13 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <Patch>
-
-	<Operation Class="PatchOperationSequence">
-		<success>Always</success>
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+			<li>Mechanoids Extraordinaire</li>
+		</mods>
+		<match Class="PatchOperationSequence">
 		<operations>
-			<li Class="CombatExtended.PatchOperationFindMod">
-				<modName>Mechanoids Extraordinaire</modName>
-			</li>
 			<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
-				<defName>Gun_InfernoCannonChimera</defName>
+				<defName>Gun_InfernoCannonChimeraME</defName>
 				<statBases>
 					<Mass>300.00</Mass>
 					<RangedWeapon_Cooldown>2.53</RangedWeapon_Cooldown>
@@ -41,6 +40,6 @@
 				</weaponTags>
 			</li>
 		</operations>
+		</match>
 	</Operation>
-
 </Patch>

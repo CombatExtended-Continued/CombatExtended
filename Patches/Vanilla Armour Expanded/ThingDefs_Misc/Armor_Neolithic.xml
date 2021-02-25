@@ -1,87 +1,96 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <Patch>	
+
 	<Operation Class="PatchOperationFindMod">
 		<mods>
 			<li>Vanilla Armour Expanded</li>
 		</mods>
 		<match Class="PatchOperationSequence">
 			<operations>
-				<!-- == VAE_Apparel_WoodenArmor == -->
-				<!-- statBases -->
+				
+				<!-- === Wooden Armor === -->
 				<li Class="PatchOperationReplace">
-					<xpath>Defs/ThingDef[defName="VAE_Apparel_WoodenArmor"]/statBases/Mass</xpath>
+					<xpath>/Defs/ThingDef[defName="VAE_Apparel_WoodenArmor"]/statBases/Mass</xpath>
 					<value>
 						<Bulk>5</Bulk>
 						<WornBulk>5</WornBulk>
 						<Mass>12</Mass>
 					</value>
 				</li>
+
 				<li Class="PatchOperationReplace">
-					<xpath>Defs/ThingDef[defName="VAE_Apparel_WoodenArmor"]/statBases/ArmorRating_Sharp</xpath>
+					<xpath>/Defs/ThingDef[defName="VAE_Apparel_WoodenArmor"]/statBases/ArmorRating_Sharp</xpath>
 					<value>
 						<ArmorRating_Sharp>0.9</ArmorRating_Sharp>
 					</value>
 				</li>
+
 				<li Class="PatchOperationReplace">
-					<xpath>Defs/ThingDef[defName="VAE_Apparel_WoodenArmor"]/statBases/ArmorRating_Blunt</xpath>
+					<xpath>/Defs/ThingDef[defName="VAE_Apparel_WoodenArmor"]/statBases/ArmorRating_Blunt</xpath>
 					<value>
 						<ArmorRating_Blunt>0.4</ArmorRating_Blunt>
 					</value>
 				</li>
+
 				<li Class="PatchOperationReplace">
-					<xpath>Defs/ThingDef[defName="VAE_Apparel_WoodenArmor"]/statBases/MaxHitPoints</xpath>
+					<xpath>/Defs/ThingDef[defName="VAE_Apparel_WoodenArmor"]/statBases/MaxHitPoints</xpath>
 					<value>
 						<MaxHitPoints>75</MaxHitPoints>
 					</value>
 				</li>
+
 				<li Class="PatchOperationRemove">
-					<xpath>Defs/ThingDef[defName="VAE_Apparel_WoodenArmor"]/statBases/ArmorRating_Heat</xpath>
+					<xpath>/Defs/ThingDef[defName="VAE_Apparel_WoodenArmor"]/statBases/ArmorRating_Heat</xpath>
 				</li>
-				<!-- Miscellaneous -->
+
 				<li Class="PatchOperationReplace">
-					<xpath>Defs/ThingDef[defName="VAE_Apparel_WoodenArmor"]/description</xpath>
+					<xpath>/Defs/ThingDef[defName="VAE_Apparel_WoodenArmor"]/description</xpath>
 					<value>
 						<description>A vest with wooden logs and planks covering the front and back. No one should be using this in an actual firefight, but anything is better than nothing.</description>
 					</value>
 				</li>
 
-				<!-- == VAE_Headgear_StoneWarMask == -->
-				<!-- statBases -->
+				<!-- === Stone War Mask === -->
 				<li Class="PatchOperationReplace">
-					<xpath>Defs/ThingDef[defName="VAE_Headgear_StoneWarMask"]/statBases/Mass</xpath>
+					<xpath>/Defs/ThingDef[defName="VAE_Headgear_StoneWarMask"]/statBases/Mass</xpath>
 					<value>
 						<Bulk>6</Bulk>
 						<WornBulk>1.5</WornBulk>
 						<Mass>5.1</Mass>
 					</value>
 				</li>
+				
 				<li Class="PatchOperationReplace">
-					<xpath>Defs/ThingDef[defName="VAE_Headgear_StoneWarMask"]/statBases/ArmorRating_Sharp</xpath>
+					<xpath>/Defs/ThingDef[defName="VAE_Headgear_StoneWarMask"]/statBases/ArmorRating_Sharp</xpath>
 					<value>
 						<StuffEffectMultiplierArmor>2.5</StuffEffectMultiplierArmor>
 					</value>
 				</li>
+
 				<li Class="PatchOperationRemove">
-					<xpath>Defs/ThingDef[defName="VAE_Headgear_StoneWarMask"]/statBases/ArmorRating_Blunt</xpath>
+					<xpath>/Defs/ThingDef[defName="VAE_Headgear_StoneWarMask"]/statBases/ArmorRating_Blunt</xpath>
 				</li>
-				<!-- Miscellaneous -->
+
 				<li Class="PatchOperationReplace">
-					<xpath>Defs/ThingDef[defName="VAE_Headgear_StoneWarMask"]/equippedStatOffsets/MoveSpeed</xpath>
+					<xpath>/Defs/ThingDef[defName="VAE_Headgear_StoneWarMask"]/equippedStatOffsets/MoveSpeed</xpath>
 					<value>
 						<Suppressability>-0.1</Suppressability>
 						<AimingAccuracy>-0.2</AimingAccuracy>
 						<MeleeHitChance>-1</MeleeHitChance>
 					</value>
 				</li>
+
 				<li Class="PatchOperationAdd">
-					<xpath>Defs/ThingDef[defName="VAE_Headgear_StoneWarMask"]/apparel/layers</xpath>
+					<xpath>/Defs/ThingDef[defName="VAE_Headgear_StoneWarMask"]/apparel/layers</xpath>
 					<value>
 						<li>OnHead</li>
 						<li>MiddleHead</li>
 						<li>StrappedHead</li>
 					</value>
 				</li>
+
 			</operations>
 		</match>
 	</Operation>
+
 </Patch>

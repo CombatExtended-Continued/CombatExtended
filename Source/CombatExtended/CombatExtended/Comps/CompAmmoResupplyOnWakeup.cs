@@ -7,6 +7,7 @@ using Verse;
 using UnityEngine;
 using Verse.AI.Group;
 using System.Reflection;
+using CombatExtended.Compatibility;
 
 namespace CombatExtended
 {
@@ -41,7 +42,7 @@ namespace CombatExtended
         public bool EnoughAmmoAround(Building_TurretGunCE turret)
         {
             //Prevent ammo being dropped as a result of the turret being reloaded at the time
-            if (turret.isReloading || turret.FullMagazine)
+            if (turret.GetReloading() || turret.ShouldReload(1.0f))
                 return true;
 
             var ammoComp = turret.CompAmmo;
