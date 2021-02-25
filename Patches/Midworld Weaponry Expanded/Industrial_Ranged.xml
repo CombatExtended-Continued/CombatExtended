@@ -13,9 +13,7 @@
 		
 		<li Class="PatchOperationReplace">
 			<xpath>
-				/Defs/ThingDef[
-					defName = "Gun_AdvancedRifle" or 
-					defName = "Gun_CompactRifle"]/tools
+				/Defs/ThingDef[defName = "Gun_AdvancedRifle"]/tools
 			</xpath>
 			<value>
 				<tools>
@@ -53,6 +51,37 @@
 				</tools>
 			</value>
 		</li>
+			
+		<li Class="PatchOperationReplace">
+			<xpath>
+				/Defs/ThingDef[defName = "Gun_CompactRifle"]/tools
+			</xpath>
+			<value>
+				<tools>
+					<li Class="CombatExtended.ToolCE">
+						<label>barrel</label>
+						<capacities>
+							<li>Blunt</li>
+						</capacities>
+						<power>5</power>
+						<cooldownTime>2.02</cooldownTime>
+						<armorPenetrationBlunt>1.630</armorPenetrationBlunt>
+						<linkedBodyPartsGroup>Barrel</linkedBodyPartsGroup>
+					</li>
+					<li Class="CombatExtended.ToolCE">
+						<label>muzzle</label>
+						<capacities>
+							<li>Poke</li>
+						</capacities>
+						<power>8</power>
+						<cooldownTime>1.55</cooldownTime>
+						<armorPenetrationBlunt>2.755</armorPenetrationBlunt>
+						<linkedBodyPartsGroup>Muzzle</linkedBodyPartsGroup>
+					</li>
+				</tools>
+			</value>
+		</li>
+
 
 		<li Class="PatchOperationReplace">
 			<xpath>/Defs/ThingDef[defName="Gun_AdvancedGrenadeLauncher"]/tools</xpath>
