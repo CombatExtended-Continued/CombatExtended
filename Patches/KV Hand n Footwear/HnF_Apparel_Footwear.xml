@@ -10,17 +10,11 @@
 
 				<!-- ========== All footwear ========== -->
 				<li Class="PatchOperationReplace">
-					<xpath>
-						/Defs/ThingDef[
-							defName = "Apparel_Shoes" or 
-							defName = "Apparel_TribalBoots" or 
-							defName = "Apparel_CowboyBoots" or 
-							defName = "Apparel_CombatBoots" or
-							defNAme = "Apparel_PowerBoots"
-						]/apparel/layers/li
-					</xpath>
+					<xpath>/Defs/ThingDef[@Name="FootArmorMakeableBase"]/apparel/layers</xpath>
 					<value>
-						<li>Shell</li>
+						<layers>
+							<li>Shell</li>
+						</layers>
 					</value>
 				</li>
 
@@ -28,9 +22,15 @@
 				<li Class="PatchOperationAdd">
 					<xpath>/Defs/ThingDef[defName="Apparel_TribalBoots"]/statBases</xpath>
 					<value>
-						<StuffEffectMultiplierArmor>1</StuffEffectMultiplierArmor>
 						<Bulk>1.5</Bulk>
 						<WornBulk>0.5</WornBulk>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/ThingDef[defName="Apparel_TribalBoots"]/statBases/StuffEffectMultiplierArmor</xpath>
+					<value>
+						<StuffEffectMultiplierArmor>1</StuffEffectMultiplierArmor>
 					</value>
 				</li>
 
@@ -38,9 +38,15 @@
 				<li Class="PatchOperationAdd">
 					<xpath>/Defs/ThingDef[defName="Apparel_CowboyBoots"]/statBases</xpath>
 					<value>
-						<StuffEffectMultiplierArmor>2</StuffEffectMultiplierArmor>
 						<Bulk>2</Bulk>
 						<WornBulk>0.5</WornBulk>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/ThingDef[defName="Apparel_CowboyBoots"]/statBases/StuffEffectMultiplierArmor</xpath>
+					<value>
+						<StuffEffectMultiplierArmor>2</StuffEffectMultiplierArmor>
 					</value>
 				</li>
 
