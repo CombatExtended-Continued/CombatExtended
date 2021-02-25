@@ -3,18 +3,19 @@
 
   <Operation Class="PatchOperationFindMod">
     <mods>
-      <li>Rimworld: Altered Carbon</li>
+      <li>[HLX] Ultratech: Altered Carbon - Armoury</li>
     </mods>
-
     <match Class="PatchOperationSequence">
       <operations>
+
         <!-- === Tools === -->
         <li Class="PatchOperationReplace">
           <xpath>
 				    /Defs/ThingDef[
               defName = "AC_Gun_BullpupPistol" or 
               defName = "AC_Gun_QuickfirePistol" or
-              defName = "AC_Gun_MACRevolver"]/tools
+              defName = "AC_Gun_MACRevolver"
+            ]/tools
           </xpath>
           <value>
             <tools>
@@ -85,7 +86,6 @@
         <!-- === Bullpup Pistol === -->
         <li Class="CombatExtended.PatchOperationMakeGunCECompatible">
           <defName>AC_Gun_BullpupPistol</defName>
-
           <statBases>
             <Mass>1.69</Mass>
             <Bulk>3.10</Bulk>
@@ -94,7 +94,6 @@
             <SightsEfficiency>1.1</SightsEfficiency>
             <RangedWeapon_Cooldown>0.36</RangedWeapon_Cooldown>
           </statBases>
-
           <Properties>
             <recoilAmount>1.99</recoilAmount>
             <verbClass>CombatExtended.Verb_ShootCE</verbClass>
@@ -108,17 +107,14 @@
             <soundCastTail>GunTail_Light</soundCastTail>
             <muzzleFlashScale>9</muzzleFlashScale>
           </Properties>
-
           <AmmoUser>
             <magazineSize>20</magazineSize>
             <reloadTime>4</reloadTime>
             <ammoSet>AmmoSet_45ACP</ammoSet>
           </AmmoUser>
-
           <FireModes>
             <aiAimMode>Snapshot</aiAimMode>
           </FireModes>
-
           <weaponTags>
             <li>SpacerGun</li>
             <li>AC_LateIndustrialGun</li>
@@ -130,7 +126,6 @@
         <!-- === GunDrawExtension === -->
         <li Class="PatchOperationAddModExtension">
           <xpath>/Defs/ThingDef[defName="AC_Gun_BullpupPistol"]</xpath>
-
           <value>
             <li Class="CombatExtended.GunDrawExtension">
               <DrawSize>0.80,0.80</DrawSize>
@@ -142,7 +137,6 @@
         <!-- === Quickfire Pistol === -->
         <li Class="CombatExtended.PatchOperationMakeGunCECompatible">
           <defName>AC_Gun_QuickfirePistol</defName>
-
           <statBases>
             <Mass>1.39</Mass>
             <Bulk>2.25</Bulk>
@@ -151,7 +145,6 @@
             <SightsEfficiency>1.1</SightsEfficiency>
             <RangedWeapon_Cooldown>0.36</RangedWeapon_Cooldown>
           </statBases>
-
           <Properties>
             <recoilAmount>1.29</recoilAmount>
             <verbClass>CombatExtended.Verb_ShootCE</verbClass>
@@ -165,17 +158,14 @@
             <soundCastTail>GunTail_Light</soundCastTail>
             <muzzleFlashScale>9</muzzleFlashScale>
           </Properties>
-
           <AmmoUser>
             <magazineSize>15</magazineSize>
             <reloadTime>4</reloadTime>
             <ammoSet>AmmoSet_10mmAuto</ammoSet>
           </AmmoUser>
-
           <FireModes>
             <aiAimMode>Snapshot</aiAimMode>
           </FireModes>
-
           <weaponTags>
             <li>SpacerGun</li>
             <li>AC_LateIndustrialGun</li>
@@ -187,7 +177,6 @@
         <!-- === GunDrawExtension === -->
         <li Class="PatchOperationAddModExtension">
           <xpath>/Defs/ThingDef[defName="AC_Gun_QuickfirePistol"]</xpath>
-
           <value>
             <li Class="CombatExtended.GunDrawExtension">
               <DrawSize>0.65,0.65</DrawSize>
@@ -199,7 +188,6 @@
         <!-- === MAC Revolver === -->
         <li Class="CombatExtended.PatchOperationMakeGunCECompatible">
           <defName>AC_Gun_MACRevolver</defName>
-
           <statBases>
             <Mass>1.89</Mass>
             <Bulk>2.80</Bulk>
@@ -208,7 +196,6 @@
             <SightsEfficiency>1.1</SightsEfficiency>
             <RangedWeapon_Cooldown>0.45</RangedWeapon_Cooldown>
           </statBases>
-
           <Properties>
             <verbClass>CombatExtended.Verb_ShootCE</verbClass>
             <hasStandardCommand>True</hasStandardCommand>
@@ -219,17 +206,14 @@
             <soundCastTail>GunTail_Medium</soundCastTail>
             <muzzleFlashScale>9</muzzleFlashScale>
           </Properties>
-
           <AmmoUser>
             <magazineSize>5</magazineSize>
             <reloadTime>4.5</reloadTime>
             <ammoSet>AmmoSet_8x35mmCharged</ammoSet>
           </AmmoUser>
-
           <FireModes>
             <aiAimMode>Snapshot</aiAimMode>
           </FireModes>
-
           <weaponTags>
             <li>SpacerGun</li>
             <li>AC_LateIndustrialGun</li>
@@ -241,7 +225,6 @@
         <!-- === GunDrawExtension === -->
         <li Class="PatchOperationAddModExtension">
           <xpath>/Defs/ThingDef[defName="AC_Gun_MACRevolver"]</xpath>
-
           <value>
             <li Class="CombatExtended.GunDrawExtension">
               <DrawSize>0.80,0.80</DrawSize>
@@ -253,7 +236,6 @@
         <!-- === Shock PDW === -->
         <li Class="CombatExtended.PatchOperationMakeGunCECompatible">
           <defName>AC_Gun_ShockPDW</defName>
-
           <statBases>
             <Mass>3.2</Mass>
             <Bulk>5.00</Bulk>
@@ -262,7 +244,6 @@
             <SightsEfficiency>1.1</SightsEfficiency>
             <RangedWeapon_Cooldown>0.36</RangedWeapon_Cooldown>
           </statBases>
-
           <Properties>
             <recoilAmount>1.30</recoilAmount>
             <verbClass>CombatExtended.Verb_ShootCE</verbClass>
@@ -276,19 +257,16 @@
             <soundCastTail>GunTail_Heavy</soundCastTail>
             <muzzleFlashScale>9</muzzleFlashScale>
           </Properties>
-
           <AmmoUser>
             <magazineSize>30</magazineSize>
             <reloadTime>4</reloadTime>
             <ammoSet>AmmoSet_6x24mmCharged</ammoSet>
           </AmmoUser>
-
           <FireModes>
             <aiAimMode>AimedShot</aiAimMode>
             <aiUseBurstMode>True</aiUseBurstMode>
             <aimedBurstShotCount>3</aimedBurstShotCount>
           </FireModes>
-
           <weaponTags>
             <li>SpacerGun</li>
             <li>AC_LateIndustrialGun</li>
@@ -298,7 +276,6 @@
         <!-- === GunDrawExtension === -->
         <li Class="PatchOperationAddModExtension">
           <xpath>/Defs/ThingDef[defName="AC_Gun_ShockPDW"]</xpath>
-
           <value>
             <li Class="CombatExtended.GunDrawExtension">
               <DrawSize>0.88,0.88</DrawSize>
@@ -310,7 +287,6 @@
         <!-- === MAC Rifle === -->
         <li Class="CombatExtended.PatchOperationMakeGunCECompatible">
           <defName>AC_Gun_MACRifle</defName>
-
           <statBases>
             <Mass>5.40</Mass>
             <Bulk>11.10</Bulk>
@@ -319,7 +295,6 @@
             <SightsEfficiency>4</SightsEfficiency>
             <RangedWeapon_Cooldown>1.38</RangedWeapon_Cooldown>
           </statBases>
-
           <Properties>
             <verbClass>CombatExtended.Verb_ShootCE</verbClass>
             <hasStandardCommand>True</hasStandardCommand>
@@ -330,17 +305,14 @@
             <soundCastTail>GunTail_Medium</soundCastTail>
             <muzzleFlashScale>9</muzzleFlashScale>
           </Properties>
-
           <AmmoUser>
             <magazineSize>10</magazineSize>
             <reloadTime>4</reloadTime>
             <ammoSet>AmmoSet_76x34mmRailgun</ammoSet>
           </AmmoUser>
-
           <FireModes>
             <aiAimMode>AimedShot</aiAimMode>
           </FireModes>
-
           <weaponTags>
             <li>SpacerGun</li>
             <li>AC_LateIndustrialGun</li>
@@ -351,7 +323,6 @@
         <!-- === GunDrawExtension === -->
         <li Class="PatchOperationAddModExtension">
           <xpath>/Defs/ThingDef[defName="AC_Gun_MACRifle"]</xpath>
-
           <value>
             <li Class="CombatExtended.GunDrawExtension">
               <DrawSize>1,1</DrawSize>
@@ -359,6 +330,7 @@
             </li>
           </value>
         </li>
+
       </operations>
     </match>
   </Operation>
