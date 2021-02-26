@@ -123,6 +123,7 @@ Let's Have a Cat!	|
 Logann Race	|
 Magical Menagerie	|
 Marilyn the Mincho Worshipper Witch |
+Mass Effect - Playable Geth |
 Mechanoids Extraordinaire	|
 Medical System Expansion	|
 Megafauna	|
@@ -144,7 +145,6 @@ Ni'Hal	|
 Orassans	|
 Palm Cats   |
 Penguin	|
-Playable Geth |
 Polarisbloc - Security Force	|
 Prestige Specialist Armours	|
 Prostheses+ |
