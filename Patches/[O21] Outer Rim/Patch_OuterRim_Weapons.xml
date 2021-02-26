@@ -1,0 +1,210 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+	
+	<Operation Class="PatchOperationFindMod">
+    <mods>
+		<li>Outer Rim - Tatooine (Continued)</li>
+    </mods>
+		<match Class="PatchOperationSequence">
+		<operations>
+		
+		<li Class="PatchOperationAdd">
+			<xpath>Defs</xpath>
+			<value>
+			
+			  <ThingDef Class="CombatExtended.AmmoDef" ParentName="Base6x24mmChargedBullet">
+				<defName>Bullet_Ion_Energy</defName>
+				<label>Ion Energy</label>
+				<thingClass>CombatExtended.ProjectileCE_Explosive</thingClass>
+				<graphicData>
+				  <texPath>Things/Projectile/Bullet_Ion_Energy</texPath>
+				  <graphicClass>Graphic_Single</graphicClass>
+				</graphicData>
+				<projectile Class="CombatExtended.ProjectilePropertiesCE">
+				  <damageDef>EMP</damageDef>
+				  <damageAmountBase>23</damageAmountBase>
+				  <speed>60</speed>
+				  <gravityFactor>0.5</gravityFactor>
+				  <explosionRadius>1.5</explosionRadius>
+				  <applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
+				</projectile>
+			  </ThingDef>
+			  
+			  <CombatExtended.AmmoSetDef>
+				<defName>AmmoSet_Tusken</defName>
+				<label>12 Gauge</label>
+				<ammoTypes>
+				  <Ammo_12Gauge_Slug>Bullet_12Gauge_Slug</Ammo_12Gauge_Slug>
+				</ammoTypes>
+			  </CombatExtended.AmmoSetDef>
+				
+			</value>
+		</li>
+		
+		<li Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[
+		defName="O21_JawaIonBlaster" or
+		defName="O21_TuskenCycler"
+		]/tools</xpath>
+		<value>
+		  <tools>
+			<li Class="CombatExtended.ToolCE">
+			  <label>stock</label>
+			  <capacities>
+				<li>Blunt</li>
+			  </capacities>
+			  <power>8</power>
+			  <cooldownTime>1.55</cooldownTime>
+			  <chanceFactor>1.5</chanceFactor>
+			  <armorPenetrationBlunt>2.755</armorPenetrationBlunt>
+			  <linkedBodyPartsGroup>Stock</linkedBodyPartsGroup>
+			</li>
+			<li Class="CombatExtended.ToolCE">
+			  <label>barrel</label>
+			  <capacities>
+				<li>Blunt</li>
+			  </capacities>
+			  <power>5</power>
+			  <cooldownTime>2.02</cooldownTime>
+			  <armorPenetrationBlunt>1.630</armorPenetrationBlunt>
+			  <linkedBodyPartsGroup>Barrel</linkedBodyPartsGroup>
+			</li>
+			<li Class="CombatExtended.ToolCE">
+			  <label>muzzle</label>
+			  <capacities>
+				<li>Poke</li>
+			  </capacities>
+			  <power>8</power>
+			  <cooldownTime>1.55</cooldownTime>
+			  <armorPenetrationBlunt>2.755</armorPenetrationBlunt>
+			  <linkedBodyPartsGroup>Muzzle</linkedBodyPartsGroup>
+			</li>
+		  </tools>
+		</value>
+		</li>
+		
+		<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+			<defName>O21_JawaIonBlaster</defName>
+				<statBases>
+				  <SightsEfficiency>0.7</SightsEfficiency>
+				  <ShotSpread>0.21</ShotSpread>
+				  <SwayFactor>1.32</SwayFactor>
+				  <Bulk>3.00</Bulk>
+				  <Mass>4.10</Mass>
+				  <RangedWeapon_Cooldown>2.5</RangedWeapon_Cooldown>
+				</statBases>
+				<Properties>
+					<recoilAmount>1.53</recoilAmount>
+					<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+					<hasStandardCommand>true</hasStandardCommand>
+					<defaultProjectile>Bullet_Ion_Energy</defaultProjectile>
+					<warmupTime>2</warmupTime>
+					<range>35</range>
+					<soundCast>Shot_Shotgun</soundCast>
+					<soundCastTail>GunTail_Heavy</soundCastTail>
+					<muzzleFlashScale>12</muzzleFlashScale>
+					<targetParams>
+					  <canTargetLocations>true</canTargetLocations>
+					</targetParams>
+				</Properties>
+				<FireModes>
+					<aiAimMode>AimedShot</aiAimMode>
+				</FireModes>
+				<!--
+				<AmmoUser>
+					<magazineSize>18</magazineSize>
+					<reloadTime>3.7</reloadTime>
+					<ammoSet>AmmoSet_SWPlasmaGasCartridgeJawa</ammoSet>
+				</AmmoUser>
+				-->
+		</li>
+		
+		<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+			<defName>O21_TuskenCycler</defName>
+				<statBases>
+				  <SightsEfficiency>0.9</SightsEfficiency>
+				  <ShotSpread>0.5</ShotSpread>
+				  <SwayFactor>1.8</SwayFactor>
+				  <Bulk>3.00</Bulk>
+				  <Mass>4.10</Mass>
+				  <RangedWeapon_Cooldown>1.5</RangedWeapon_Cooldown>
+				</statBases>
+				<Properties>
+					<recoilAmount>1.53</recoilAmount>
+					<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+					<hasStandardCommand>true</hasStandardCommand>
+					<defaultProjectile>Bullet_12Gauge_Slug</defaultProjectile>
+					<warmupTime>2</warmupTime>
+					<range>45</range>
+					<ticksBetweenBurstShots>12</ticksBetweenBurstShots>
+					<burstShotCount>2</burstShotCount>
+					<soundCast>Shot_Shotgun</soundCast>
+					<soundCastTail>GunTail_Heavy</soundCastTail>
+					<muzzleFlashScale>9</muzzleFlashScale>
+				</Properties>
+				<FireModes>
+					<aiAimMode>AimedShot</aiAimMode>
+				</FireModes>
+				<AmmoUser>
+					<magazineSize>16</magazineSize>
+					<reloadTime>4.0</reloadTime>
+					<ammoSet>AmmoSet_Tusken</ammoSet>
+				</AmmoUser>
+		</li>
+		
+		
+		<li Class="PatchOperationReplace">
+			<xpath>Defs/ThingDef[defName="O21_Gaderffii"]/tools</xpath>
+			<value>
+				<tools>
+					<li Class="CombatExtended.ToolCE">
+						<label>shaft</label>
+						<capacities>
+							<li>Blunt</li>
+							<li>Poke</li>
+						</capacities>
+						<power>16</power>
+						<cooldownTime>1</cooldownTime>
+						<armorPenetrationBlunt>0.425</armorPenetrationBlunt>
+						<!--<linkedBodyPartsGroup>Handle</linkedBodyPartsGroup>-->
+					</li>
+					<li Class="CombatExtended.ToolCE">
+						<label>point</label>
+						<capacities>
+							<li>Stab</li>
+						</capacities>
+						<power>23</power>
+						<cooldownTime>3.5</cooldownTime>
+						<armorPenetrationBlunt>0.956</armorPenetrationBlunt>
+						<armorPenetrationSharp>2</armorPenetrationSharp>
+						<linkedBodyPartsGroup>Point</linkedBodyPartsGroup>
+					</li>
+				</tools>
+			</value>
+		</li>
+		
+		<li Class="PatchOperationAdd">
+			<xpath>Defs/ThingDef[defName="O21_Gaderffii"]/statBases</xpath>
+			<value>
+				<Bulk>8.5</Bulk>
+				<MeleeCounterParryBonus>1.68</MeleeCounterParryBonus>				
+			</value>
+		</li>
+		
+		<li Class="PatchOperationAdd">
+			<xpath>Defs/ThingDef[defName="O21_Gaderffii"]</xpath>
+			<value>
+				<equippedStatOffsets>
+					<MeleeCritChance>0.17</MeleeCritChance>
+					<MeleeParryChance>1.45</MeleeParryChance>
+					<MeleeDodgeChance>0.9</MeleeDodgeChance>	
+				</equippedStatOffsets>
+			</value>
+		</li>
+		
+		
+		</operations>
+		</match>
+	</Operation>
+	
+</Patch>

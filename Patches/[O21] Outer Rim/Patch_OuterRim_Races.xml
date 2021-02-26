@@ -1,0 +1,214 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+	
+	<Operation Class="PatchOperationFindMod">
+    <mods>
+		<li>Outer Rim - Tatooine (Continued)</li>
+    </mods>
+		<match Class="PatchOperationSequence">
+		<operations>
+		
+		<!-- Jawa -->
+		
+		<li Class="PatchOperationAddModExtension">
+			<xpath>Defs/AlienRace.ThingDef_AlienRace[defName="Alien_Jawa"]</xpath>
+			<value>
+				<li Class="CombatExtended.RacePropertiesExtensionCE">
+					<bodyShape>Humanoid</bodyShape>
+				</li>
+			</value>
+		</li>
+
+		<li Class="PatchOperationAdd">
+			<xpath>Defs/AlienRace.ThingDef_AlienRace[defName="Alien_Jawa"]/statBases</xpath>
+			<value>
+				<MeleeDodgeChance>1.35</MeleeDodgeChance>
+				<MeleeCritChance>0.75</MeleeCritChance>
+				<MeleeParryChance>0.9</MeleeParryChance>
+			</value>
+		</li>
+
+		<li Class="PatchOperationReplace">
+			<xpath>Defs/AlienRace.ThingDef_AlienRace[defName="Alien_Jawa"]/tools</xpath>
+			<value>
+				<tools>
+					<li Class="CombatExtended.ToolCE">
+						<label>left fist</label>
+						<capacities>
+							<li>Blunt</li>
+						</capacities>
+						<power>0.8</power>
+						<cooldownTime>1.26</cooldownTime>
+						<linkedBodyPartsGroup>LeftHand</linkedBodyPartsGroup>
+						<armorPenetrationBlunt>0.250</armorPenetrationBlunt>
+					</li>
+					<li Class="CombatExtended.ToolCE">
+						<label>right fist</label>
+						<capacities>
+							<li>Blunt</li>
+						</capacities>
+						<power>0.8</power>
+						<cooldownTime>1.26</cooldownTime>
+						<linkedBodyPartsGroup>RightHand</linkedBodyPartsGroup>
+						<armorPenetrationBlunt>0.250</armorPenetrationBlunt>
+					</li>
+					<li Class="CombatExtended.ToolCE">
+						<label>head</label>
+						<capacities>
+							<li>Blunt</li>
+						</capacities>
+						<power>1.6</power>
+						<cooldownTime>4.49</cooldownTime>
+						<linkedBodyPartsGroup>HeadAttackTool</linkedBodyPartsGroup>
+						<chanceFactor>0.2</chanceFactor>
+						<armorPenetrationBlunt>0.625</armorPenetrationBlunt>
+					</li>
+				</tools>
+			</value>
+		</li>
+
+		<li Class="PatchOperationSequence">
+		<success>Always</success>
+			<operations>
+				<li Class="PatchOperationTest">
+				<xpath>Defs/AlienRace.ThingDef_AlienRace[defName="Alien_Jawa"]/comps</xpath>
+				<success>Invert</success>
+				</li>
+				<li Class="PatchOperationAdd">
+				<xpath>Defs/AlienRace.ThingDef_AlienRace[defName="Alien_Jawa"]</xpath>
+				<value>
+					<comps />
+				</value>
+				</li>
+			</operations>
+		</li>
+
+		<li Class="PatchOperationAdd">
+			<xpath>Defs/AlienRace.ThingDef_AlienRace[defName="Alien_Jawa"]/comps</xpath>
+			<value>
+				<li>
+				  <compClass>CombatExtended.CompPawnGizmo</compClass>
+				</li>
+				<li Class="CombatExtended.CompProperties_Suppressable" />
+			</value>
+		</li>
+			
+		<li Class="PatchOperationReplace">
+			<xpath>Defs/AlienRace.ThingDef_AlienRace[defName="Alien_Jawa"]/race/baseBodySize</xpath>
+			<value>
+				  <baseBodySize>0.8</baseBodySize>
+			</value>
+		</li>
+		
+		<li Class="PatchOperationReplace">
+			<xpath>Defs/AlienRace.ThingDef_AlienRace[defName="Alien_Jawa"]/race/baseHealthScale</xpath>
+			<value>
+				  <baseHealthScale>0.8</baseHealthScale>
+			</value>
+		</li>
+		
+		<!-- Tusken -->
+		
+		<li Class="PatchOperationAddModExtension">
+			<xpath>Defs/AlienRace.ThingDef_AlienRace[defName="Alien_TuskenRaider"]</xpath>
+			<value>
+				<li Class="CombatExtended.RacePropertiesExtensionCE">
+					<bodyShape>Humanoid</bodyShape>
+				</li>
+			</value>
+		</li>
+
+		<li Class="PatchOperationAdd">
+			<xpath>Defs/AlienRace.ThingDef_AlienRace[defName="Alien_TuskenRaider"]/statBases</xpath>
+			<value>
+				<MeleeDodgeChance>0.9</MeleeDodgeChance>
+				<MeleeCritChance>1</MeleeCritChance>
+				<MeleeParryChance>1</MeleeParryChance>
+			</value>
+		</li>
+
+		<li Class="PatchOperationReplace">
+			<xpath>Defs/AlienRace.ThingDef_AlienRace[defName="Alien_TuskenRaider"]/tools</xpath>
+			<value>
+				<tools>
+					<li Class="CombatExtended.ToolCE">
+						<label>left fist</label>
+						<capacities>
+							<li>Blunt</li>
+						</capacities>
+						<power>1.1</power>
+						<cooldownTime>1.26</cooldownTime>
+						<linkedBodyPartsGroup>LeftHand</linkedBodyPartsGroup>
+						<armorPenetrationBlunt>0.250</armorPenetrationBlunt>
+					</li>
+					<li Class="CombatExtended.ToolCE">
+						<label>right fist</label>
+						<capacities>
+							<li>Blunt</li>
+						</capacities>
+						<power>1.1</power>
+						<cooldownTime>1.26</cooldownTime>
+						<linkedBodyPartsGroup>RightHand</linkedBodyPartsGroup>
+						<armorPenetrationBlunt>0.250</armorPenetrationBlunt>
+					</li>
+					<li Class="CombatExtended.ToolCE">
+						<label>head</label>
+						<capacities>
+							<li>Blunt</li>
+						</capacities>
+						<power>2.2</power>
+						<cooldownTime>4.49</cooldownTime>
+						<linkedBodyPartsGroup>HeadAttackTool</linkedBodyPartsGroup>
+						<chanceFactor>0.2</chanceFactor>
+						<armorPenetrationBlunt>0.625</armorPenetrationBlunt>
+					</li>
+				</tools>
+			</value>
+		</li>
+
+		<li Class="PatchOperationSequence">
+		<success>Always</success>
+			<operations>
+				<li Class="PatchOperationTest">
+				<xpath>Defs/AlienRace.ThingDef_AlienRace[defName="Alien_TuskenRaider"]/comps</xpath>
+				<success>Invert</success>
+				</li>
+				<li Class="PatchOperationAdd">
+				<xpath>Defs/AlienRace.ThingDef_AlienRace[defName="Alien_TuskenRaider"]</xpath>
+				<value>
+					<comps />
+				</value>
+				</li>
+			</operations>
+		</li>
+
+		<li Class="PatchOperationAdd">
+			<xpath>Defs/AlienRace.ThingDef_AlienRace[defName="Alien_TuskenRaider"]/comps</xpath>
+			<value>
+				<li>
+				  <compClass>CombatExtended.CompPawnGizmo</compClass>
+				</li>
+				<li Class="CombatExtended.CompProperties_Suppressable" />
+			</value>
+		</li>
+			
+		<li Class="PatchOperationReplace">
+			<xpath>Defs/AlienRace.ThingDef_AlienRace[defName="Alien_TuskenRaider"]/race/baseBodySize</xpath>
+			<value>
+				  <baseBodySize>1.1</baseBodySize>
+			</value>
+		</li>
+		
+		<li Class="PatchOperationReplace">
+			<xpath>Defs/AlienRace.ThingDef_AlienRace[defName="Alien_TuskenRaider"]/race/baseHealthScale</xpath>
+			<value>
+				  <baseHealthScale>1.1</baseHealthScale>
+			</value>
+		</li>
+		
+		
+		</operations>
+		</match>
+	</Operation>
+	
+</Patch>
