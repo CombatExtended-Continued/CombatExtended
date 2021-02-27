@@ -71,7 +71,6 @@ Defensive Machine Gun Turret Pack	|
 Dinosauria |
 Dishonored Assassin Coat |
 Dishonored Assassin Mask |
-Dragon's Descent |
 Dragonian Race	|
 Dragons!	|
 ED-Shields	|
