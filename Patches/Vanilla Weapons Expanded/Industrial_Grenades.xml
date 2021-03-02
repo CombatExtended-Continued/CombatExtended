@@ -8,305 +8,160 @@
     <match Class="PatchOperationSequence">
       <operations>
 
-      <!-- === Remove Flashbang / Smoke as they're redundant === -->
-      <li Class="PatchOperationRemove">
-        <xpath>
+        <!-- === Remove Flashbang / Smoke as they're redundant === -->
+        <li Class="PatchOperationRemove">
+          <xpath>
           /Defs/ThingDef[
             defName = "VWE_Projectile_FlashGrenade" or 
             defName = "VWE_Projectile_SmokeGrenade" or
             defName = "VWE_FlashGrenade" or
             defName = "VWE_SmokeGrenade"]
-        </xpath>
-      </li>
+          </xpath>
+        </li>
 
-      <!-- === Toxic Grenade === -->
-      <!-- == Projectile == -->
-      <li Class="PatchOperationReplace">
-        <xpath>/Defs/ThingDef[defName="VWE_Projectile_ToxicGrenade"]/thingClass</xpath>
+        <!-- === Toxic Grenade === -->
+        <!-- == Projectile == -->
+        <li Class="PatchOperationReplace">
+          <xpath>/Defs/ThingDef[defName="VWE_Projectile_ToxicGrenade"]/thingClass</xpath>
+          <value>
+            <thingClass>CombatExtended.ProjectileCE_Explosive</thingClass>
+          </value>
+        </li>
 
-        <value>
-          <thingClass>CombatExtended.ProjectileCE_Explosive</thingClass>
-        </value>
-      </li>
+        <li Class="PatchOperationReplace">
+          <xpath>/Defs/ThingDef[defName="VWE_Projectile_ToxicGrenade"]/projectile</xpath>
+          <value>
+            <projectile Class="CombatExtended.ProjectilePropertiesCE">
+              <damageDef>VWE_ToxicGas</damageDef>
+              <explosionRadius>3.9</explosionRadius>
+              <damageAmountBase>10</damageAmountBase>
+              <explosionDelay>60</explosionDelay>
+              <dropsCasings>true</dropsCasings>
+              <flyOverhead>false</flyOverhead>
+              <soundExplode>DispensePaste</soundExplode>
+              <postExplosionSpawnThingDef>VWE_ToxicGasCloud</postExplosionSpawnThingDef>
+              <postExplosionSpawnChance>1</postExplosionSpawnChance>
+              <postExplosionSpawnThingCount>1</postExplosionSpawnThingCount>
+              <applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
+              <casingMoteDefname>Mote_GrenadePin</casingMoteDefname>
+            </projectile>
+          </value>
+        </li>
 
-      <li Class="PatchOperationReplace">
-        <xpath>/Defs/ThingDef[defName="VWE_Projectile_ToxicGrenade"]/projectile</xpath>
+        <!-- == Grenade == -->
+        <li Class="PatchOperationAdd">
+          <xpath>/Defs/ThingDef[defName="VWE_ToxicGrenade"]</xpath>
+          <value>
+            <thingClass>CombatExtended.AmmoThing</thingClass>
+            <stackLimit>75</stackLimit>
+            <resourceReadoutPriority>First</resourceReadoutPriority>
+          </value>
+        </li>
 
-        <value>
-          <projectile Class="CombatExtended.ProjectilePropertiesCE">
-            <damageDef>VWE_ToxicGas</damageDef>
-            <explosionRadius>3.9</explosionRadius>
-            <damageAmountBase>10</damageAmountBase>
-            <explosionDelay>60</explosionDelay>
-            <dropsCasings>true</dropsCasings>
-            <flyOverhead>false</flyOverhead>
-            <soundExplode>DispensePaste</soundExplode>
-            <postExplosionSpawnThingDef>VWE_ToxicGasCloud</postExplosionSpawnThingDef>
-            <postExplosionSpawnChance>1</postExplosionSpawnChance>
-            <postExplosionSpawnThingCount>1</postExplosionSpawnThingCount>
-            <applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
-            <casingMoteDefname>Mote_GrenadePin</casingMoteDefname>
-          </projectile>
-        </value>
-      </li>
+        <li Class="PatchOperationAttributeSet">
+          <xpath>/Defs/ThingDef[defName="VWE_ToxicGrenade"]</xpath>
+          <attribute>Class</attribute>
+          <value>CombatExtended.AmmoDef</value>
+        </li>
 
-      <!-- == Grenade == -->
-      <li Class="PatchOperationAdd">
-        <xpath>/Defs/ThingDef[defName="VWE_ToxicGrenade"]</xpath>
+        <li Class="PatchOperationSequence">
+          <success>Always</success>
+          <operations>
+            <li Class="PatchOperationTest">
+              <xpath>/Defs/ThingDef[defName="VWE_ToxicGrenade"]/comps</xpath>
+              <success>Invert</success>
+            </li>
+            <li Class="PatchOperationAdd">
+              <xpath>/Defs/ThingDef[defName="VWE_ToxicGrenade"]</xpath>
+              <value>
+                <comps />
+              </value>
+            </li>
+          </operations>
+        </li>
 
-        <value>
-          <thingClass>CombatExtended.AmmoThing</thingClass>
-          <stackLimit>75</stackLimit>
-          <resourceReadoutPriority>First</resourceReadoutPriority>
-        </value>
-      </li>
+        <li Class="PatchOperationAdd">
+          <xpath>/Defs/ThingDef[defName="VWE_ToxicGrenade"]/comps</xpath>
+          <value>
+            <li Class="CombatExtended.CompProperties_ExplosiveCE">
+              <explosiveDamageType>Bomb</explosiveDamageType>
+              <explosiveRadius>1.66</explosiveRadius>
+            </li>
+          </value>
+        </li>
 
-      <li Class="PatchOperationAttributeSet">
-        <xpath>/Defs/ThingDef[defName="VWE_ToxicGrenade"]</xpath>
+        <li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+          <defName>VWE_ToxicGrenade</defName>
+          <statBases>
+            <Mass>1</Mass>
+            <MarketValue>2.25</MarketValue>
+            <SightsEfficiency>1</SightsEfficiency>
+            <RangedWeapon_Cooldown>1</RangedWeapon_Cooldown>
+          </statBases>
+          <Properties>
+            <label>throw toxic grenade</label>
+            <verbClass>CombatExtended.Verb_ShootCEOneUse</verbClass>
+            <hasStandardCommand>true</hasStandardCommand>
+            <defaultProjectile>VWE_Projectile_ToxicGrenade</defaultProjectile>
+            <range>12</range>
+            <warmupTime>1.8</warmupTime>
+            <soundCast>ThrowGrenade</soundCast>
+            <noiseRadius>4</noiseRadius>
+            <ai_IsBuildingDestroyer>false</ai_IsBuildingDestroyer>
+            <onlyManualCast>true</onlyManualCast>
+            <ignorePartialLoSBlocker>true</ignorePartialLoSBlocker>
+            <targetParams>
+              <canTargetLocations>true</canTargetLocations>
+            </targetParams>
+          </Properties>
+          <weaponTags>
+            <li>CE_AI_Grenade</li>
+            <li>CE_OneHandedWeapon</li>
+          </weaponTags>
+        </li>
 
-        <attribute>Class</attribute>
-        <value>CombatExtended.AmmoDef</value>
-      </li>
+        <!-- == Recipe == -->
+        <li Class="PatchOperationAdd">
+          <xpath>Defs</xpath>
+          <value>
+            <RecipeDef ParentName="GrenadeRecipeBase">
+              <defName>MakeVWEToxicGrenade</defName>
+              <label>make toxic grenades x10</label>
+              <description>Craft 10 toxic grenades.</description>
+              <jobString>Making toxic grenades.</jobString>
+              <ingredients>
+                <li>
+                  <filter>
+                    <thingDefs>
+                      <li>Chemfuel</li>
+                    </thingDefs>
+                  </filter>
+                  <count>10</count>
+                </li>
+                <li>
+                  <filter>
+                    <categories>
+                      <li>MeatRaw</li>
+                    </categories>
+                  </filter>
+                  <count>10</count>
+                </li>
+              </ingredients>
+              <fixedIngredientFilter>
+                <thingDefs>
+                  <li>Chemfuel</li>
+                </thingDefs>
+                <categories>
+                  <li>MeatRaw</li>
+                </categories>
+              </fixedIngredientFilter>
+              <products>
+                <VWE_ToxicGrenade>10</VWE_ToxicGrenade>
+              </products>
+            </RecipeDef>
+          </value>
+        </li>
 
-      <li Class="PatchOperationSequence">
-        <success>Always</success>
-
-        <operations>
-          <li Class="PatchOperationTest">
-            <xpath>/Defs/ThingDef[defName="VWE_ToxicGrenade"]/comps</xpath>
-            <success>Invert</success>
-          </li>
-
-          <li Class="PatchOperationAdd">
-            <xpath>/Defs/ThingDef[defName="VWE_ToxicGrenade"]</xpath>
-            <value>
-              <comps />
-            </value>
-          </li>
-        </operations>
-      </li>
-
-      <li Class="PatchOperationAdd">
-        <xpath>/Defs/ThingDef[defName="VWE_ToxicGrenade"]/comps</xpath>
-
-        <value>
-          <li Class="CombatExtended.CompProperties_ExplosiveCE">
-		<explosiveDamageType>Bomb</explosiveDamageType>
-		<explosiveRadius>1.66</explosiveRadius>	
-          </li>
-        </value>
-      </li>
-
-      <li Class="CombatExtended.PatchOperationMakeGunCECompatible">
-        <defName>VWE_ToxicGrenade</defName>
-
-        <statBases>
-          <Mass>1</Mass>
-          <MarketValue>2.25</MarketValue>
-          <SightsEfficiency>1</SightsEfficiency>
-          <RangedWeapon_Cooldown>1</RangedWeapon_Cooldown>
-        </statBases>
-
-        <Properties>
-          <label>throw toxic grenade</label>
-          <verbClass>CombatExtended.Verb_ShootCEOneUse</verbClass>
-          <hasStandardCommand>true</hasStandardCommand>
-          <defaultProjectile>VWE_Projectile_ToxicGrenade</defaultProjectile>
-          <range>12</range>
-          <warmupTime>1.8</warmupTime>
-          <soundCast>ThrowGrenade</soundCast>
-          <noiseRadius>4</noiseRadius>
-          <ai_IsBuildingDestroyer>false</ai_IsBuildingDestroyer>
-          <onlyManualCast>true</onlyManualCast>
-          <ignorePartialLoSBlocker>true</ignorePartialLoSBlocker>
-          <targetParams>
-            <canTargetLocations>true</canTargetLocations>
-          </targetParams>
-        </Properties>
-
-        <weaponTags>
-          <li>CE_AI_Grenade</li>
-          <li>CE_OneHandedWeapon</li>
-        </weaponTags>
-      </li>
-
-      <!-- == Recipe == -->
-      <li Class="PatchOperationAdd">
-        <xpath>Defs</xpath>
-
-        <value>
-          <RecipeDef ParentName="GrenadeRecipeBase">
-            <defName>MakeVWEToxicGrenade</defName>
-            <label>make toxic grenades x10</label>
-            <description>Craft 10 toxic grenades.</description>
-            <jobString>Making toxic grenades.</jobString>
-            <ingredients>
-              <li>
-                <filter>
-                  <thingDefs>
-                    <li>Chemfuel</li>
-                  </thingDefs>
-                </filter>
-                <count>10</count>
-              </li>
-              <li>
-                <filter>
-                  <categories>
-                    <li>MeatRaw</li>
-                  </categories>
-                </filter>
-                <count>10</count>
-              </li>
-            </ingredients>
-            <fixedIngredientFilter>
-              <thingDefs>
-                <li>Chemfuel</li>
-              </thingDefs>
-              <categories>
-                <li>MeatRaw</li>
-              </categories>
-            </fixedIngredientFilter>
-            <products>
-              <VWE_ToxicGrenade>10</VWE_ToxicGrenade>
-            </products>
-          </RecipeDef>
-        </value>
-      </li>
-
-      <!-- === Orbital Bombardment Grenade === -->
-      <!-- == Grenade == -->
-<!--	 
-      <li Class="PatchOperationAdd">
-        <xpath>/Defs/ThingDef[defName="VWE_Grenade_OPOrbBombGrenade"]</xpath>
-
-        <value>
-          <thingClass>CombatExtended.AmmoThing</thingClass>
-          <stackLimit>5</stackLimit>
-          <resourceReadoutPriority>First</resourceReadoutPriority>
-        </value>
-      </li>
-
-      <li Class="PatchOperationAttributeSet">
-        <xpath>/Defs/ThingDef[defName="VWE_Grenade_OPOrbBombGrenade"]</xpath>
-
-        <attribute>Class</attribute>
-        <value>CombatExtended.AmmoDef</value>
-      </li>
-
-      <li Class="PatchOperationSequence">
-        <success>Always</success>
-
-        <operations>
-          <li Class="PatchOperationTest">
-            <xpath>/Defs/ThingDef[defName="VWE_Grenade_OPOrbBombGrenade"]/comps</xpath>
-            <success>Invert</success>
-          </li>
-
-          <li Class="PatchOperationAdd">
-            <xpath>/Defs/ThingDef[defName="VWE_Grenade_OPOrbBombGrenade"]</xpath>
-            <value>
-              <comps />
-            </value>
-          </li>
-        </operations>
-      </li>
-
-      <li Class="PatchOperationAdd">
-        <xpath>/Defs/ThingDef[defName="VWE_Grenade_OPOrbBombGrenade"]/comps</xpath>
-
-        <value>
-          <li Class="CombatExtended.CompProperties_ExplosiveCE">
-            <explosionRadius>4</explosionRadius>
-            <explosionDamageDef>Bomb</explosionDamageDef>
-          </li>
-        </value>
-      </li>
-
-      <li Class="CombatExtended.PatchOperationMakeGunCECompatible">
-        <defName>VWE_Grenade_OPOrbBombGrenade</defName>
-
-        <statBases>
-          <Mass>1</Mass>
-          <MarketValue>2.25</MarketValue>
-          <SightsEfficiency>1</SightsEfficiency>
-          <RangedWeapon_Cooldown>1</RangedWeapon_Cooldown>
-        </statBases>
-
-        <Properties>
-          <label>throw marker grenade</label>
-          <verbClass>CombatExtended.Verb_ShootCEOneUse</verbClass>
-          <hasStandardCommand>true</hasStandardCommand>
-          <defaultProjectile>VWE_Grenade_OPOrbBomb</defaultProjectile>
-          <range>30</range>
-          <minRange>14</minRange>
-          <warmupTime>1.5</warmupTime>
-          <soundCast>ThrowGrenade</soundCast>
-          <noiseRadius>4</noiseRadius>
-          <ai_IsBuildingDestroyer>true</ai_IsBuildingDestroyer>
-          <onlyManualCast>true</onlyManualCast>
-          <ignorePartialLoSBlocker>true</ignorePartialLoSBlocker>
-          <targetParams>
-            <canTargetLocations>true</canTargetLocations>
-          </targetParams>
-        </Properties>
-
-        <weaponTags>
-          <li>CE_AI_Grenade</li>
-          <li>CE_OneHandedWeapon</li>
-        </weaponTags>
-      </li>
--->
-      <!-- == Recipe == -->
-<!--
-     <li Class="PatchOperationAdd">
-        <xpath>Defs</xpath>
-
-        <value>
-          <RecipeDef ParentName="GrenadeRecipeBase">
-            <defName>MakeVWEOrbGrenade</defName>
-            <label>make orbital bombardment grenade x5</label>
-            <description>Craft 5 orbital bombardment grenade</description>
-            <jobString>Making 5 orbital bombardment grenade.</jobString>
-            <ingredients>
-              <li>
-                <filter>
-                  <thingDefs>
-                    <li>Plasteel</li>
-                  </thingDefs>
-                </filter>
-                <count>10</count>
-              </li>
-              <li>
-                <filter>
-                  <thingDefs>
-                    <li>FSX</li>
-                  </thingDefs>
-                </filter>
-                <count>10</count>
-              </li>
-              <li>
-                <filter>
-                  <thingDefs>
-                    <li>ComponentSpacer</li>
-                  </thingDefs>
-                </filter>
-                <count>5</count>
-              </li>
-            </ingredients>
-            <fixedIngredientFilter>
-              <thingDefs>
-                <li>Plasteel</li>
-                <li>FSX</li>
-                <li>ComponentSpacer</li>
-              </thingDefs>
-            </fixedIngredientFilter>
-            <products>
-              <VWE_Grenade_OPOrbBombGrenade>5</VWE_Grenade_OPOrbBombGrenade>
-            </products>
-          </RecipeDef>
-        </value>
-      </li>
--->	  
       </operations>
     </match>
   </Operation>

@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+
+	<Operation Class="PatchOperationFindMod">
+	<mods>
+		<li>Race to the Rim</li>
+	</mods>
+	<match Class="PatchOperationSequence">
+		<operations>
+
+		<li Class="PatchOperationAddModExtension">
+			<xpath>Defs/ThingDef[defName="RttR_TripleStryke"]</xpath>
+			<value>
+				<li Class="CombatExtended.RacePropertiesExtensionCE">
+					<bodyShape>Quadruped</bodyShape>
+				</li>
+			</value>
+		</li>
+
+		<li Class="PatchOperationAdd">
+			<xpath>Defs/ThingDef[defName="RttR_TripleStryke"]/statBases</xpath>
+			<value>
+				<MeleeDodgeChance>0.15</MeleeDodgeChance>
+				<MeleeCritChance>0.23</MeleeCritChance>
+				<MeleeParryChance>0.06</MeleeParryChance>
+				<SightsEfficiency>1</SightsEfficiency>
+			</value>
+		</li>
+
+		<li Class="PatchOperationReplace">
+			<xpath>Defs/ThingDef[defName="RttR_TripleStryke"]/tools</xpath>
+			<value>
+				<tools>
+					<li Class="CombatExtended.ToolCE">
+						<label>first tail</label>
+						<capacities>
+							<li>RttR_Anesthesia</li>
+						</capacities>
+						<power>7</power>
+						<cooldownTime>1.5</cooldownTime>
+						<linkedBodyPartsGroup>RttR_FirstTailAttackTool</linkedBodyPartsGroup>
+						<armorPenetrationBlunt>3.5</armorPenetrationBlunt>
+						<armorPenetrationSharp>2.5</armorPenetrationSharp>						
+					</li>
+					<li Class="CombatExtended.ToolCE">
+						<label>second tail</label>
+						<capacities>
+							<li>RttR_Dazing</li>
+						</capacities>
+						<power>7</power>
+						<cooldownTime>1.5</cooldownTime>
+						<linkedBodyPartsGroup>RttR_SecondTailAttackTool</linkedBodyPartsGroup>
+					</li>
+					<li Class="CombatExtended.ToolCE">
+						<label>third tail</label>
+						<capacities>
+							<li>RttR_Toxic</li>
+						</capacities>
+						<power>7</power>
+						<cooldownTime>1.5</cooldownTime>
+						<linkedBodyPartsGroup>RttR_ThirdTailAttackTool</linkedBodyPartsGroup>
+						<armorPenetrationBlunt>3.5</armorPenetrationBlunt>
+						<armorPenetrationSharp>2.5</armorPenetrationSharp>							
+					</li>
+					<li Class="CombatExtended.ToolCE">
+						<capacities>
+							<li>Bite</li>
+						</capacities>
+						<power>12</power>
+						<cooldownTime>2.05</cooldownTime>
+						<linkedBodyPartsGroup>Teeth</linkedBodyPartsGroup>
+						<surpriseAttack>
+							<extraMeleeDamages>
+							<li>
+								<def>Stun</def>
+								<amount>21</amount>
+							</li>
+							</extraMeleeDamages>
+						</surpriseAttack>
+						<armorPenetrationSharp>1.05</armorPenetrationSharp>
+						<armorPenetrationBlunt>6</armorPenetrationBlunt>
+					</li>
+					<li Class="CombatExtended.ToolCE">
+						<label>head</label>
+						<capacities>
+							<li>Blunt</li>
+						</capacities>
+						<power>5</power>
+						<cooldownTime>2</cooldownTime>
+						<linkedBodyPartsGroup>HeadAttackTool</linkedBodyPartsGroup>
+						<ensureLinkedBodyPartsGroupAlwaysUsable>true</ensureLinkedBodyPartsGroupAlwaysUsable>
+						<chanceFactor>0.2</chanceFactor>
+					</li>
+				</tools>				
+			</value>
+		</li>
+
+		<li Class="PatchOperationReplace">
+			<xpath>Defs/ThingDef[defName="RttR_TripleStryke"]/verbs</xpath>
+			<value>
+				<verbs>
+				<li Class="CombatExtended.VerbPropertiesCE">
+					<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+					<hasStandardCommand>true</hasStandardCommand>
+					<defaultProjectile>Bullet_Flamethrower_Napalm</defaultProjectile>
+					<burstShotCount>1</burstShotCount>
+					<ticksBetweenBurstShots>1</ticksBetweenBurstShots>
+					<warmupTime>5</warmupTime>
+					<range>25</range>
+					<minRange>2</minRange>
+					<soundCast>RttR_FireBreathSound</soundCast>
+					<muzzleFlashScale>1</muzzleFlashScale>
+					<commonality>0.9</commonality>
+					<targetParams>
+						<canTargetLocations>true</canTargetLocations>
+					</targetParams>
+					<recoilAmount>0.4</recoilAmount>
+				</li>
+				</verbs>
+			</value>
+		</li>
+
+		</operations>
+	</match>
+	</Operation>
+
+</Patch>

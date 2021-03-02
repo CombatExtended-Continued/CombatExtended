@@ -1,235 +1,227 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <Patch>
-	<Operation Class="PatchOperationSequence">
-	  <operations>
-		<li Class="PatchOperationFindMod">
-		
-		  <mods><li>Androids Expanded</li></mods>
-			<match Class="PatchOperationSequence">
-			  <operations>
-				<!--Test for comps-->
-				
+
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+			<li>Androids Expanded</li>
+			<li>Androids Expanded (Continued)</li>
+		</mods>
+		<match Class="PatchOperationSequence">
+			<operations>
+
+				<!-- === Comps === -->
 				<li Class="PatchOperationSequence">
-				  <success>Always</success>
-				  <operations>
-				    <li Class="PatchOperationTest">
-					  <xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="ChjSpacerDroid"]/comps</xpath>
-					  <success>Invert</success>
-					</li>
-					<li Class="PatchOperationAdd">
-					  <xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="ChjSpacerDroid"]</xpath>
-					  <value><comps /></value>
-					</li>
-				  </operations>
+					<success>Always</success>
+					<operations>
+						<li Class="PatchOperationTest">
+							<xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="ChjSpacerDroid"]/comps</xpath>
+							<success>Invert</success>
+						</li>
+						<li Class="PatchOperationAdd">
+							<xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="ChjSpacerDroid"]</xpath>
+							<value>
+								<comps />
+							</value>
+						</li>
+					</operations>
 				</li>
-				
+
 				<li Class="PatchOperationSequence">
-				  <success>Always</success>
-				  <operations>
-				    <li Class="PatchOperationTest">
-					  <xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="ChjSpacerBattleDroid"]/comps</xpath>
-					  <success>Invert</success>
-					</li>
-					<li Class="PatchOperationAdd">
-					  <xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="ChjSpacerBattleDroid"]</xpath>
-					  <value><comps /></value>
-					</li>
-				  </operations>
+					<success>Always</success>
+					<operations>
+						<li Class="PatchOperationTest">
+							<xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="ChjSpacerBattleDroid"]/comps</xpath>
+							<success>Invert</success>
+						</li>
+						<li Class="PatchOperationAdd">
+							<xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="ChjSpacerBattleDroid"]</xpath>
+							<value>
+								<comps />
+							</value>
+						</li>
+					</operations>
 				</li>
-				
+
 				<li Class="PatchOperationAddModExtension">
-				  <xpath>/Defs/AlienRace.ThingDef_AlienRace[
-				  defName="ChjSpacerDroid" or
-				  defName="ChjSpacerBattleDroid"
-				  ]</xpath>
-				  <value>
-					<li Class="CombatExtended.RacePropertiesExtensionCE">
-					  <bodyShape>Humanoid</bodyShape>
-					</li>
-				  </value>
+					<xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="ChjSpacerDroid" or defName="ChjSpacerBattleDroid"]</xpath>
+					<value>
+						<li Class="CombatExtended.RacePropertiesExtensionCE">
+							<bodyShape>Humanoid</bodyShape>
+						</li>
+					</value>
 				</li>
-				
+
 				<li Class="PatchOperationAdd">
-				  <xpath>/Defs/AlienRace.ThingDef_AlienRace[
-				  defName="ChjSpacerDroid" or
-				  defName="ChjSpacerBattleDroid"
-				  ]/comps</xpath>
-				  <value>
-				    <li>
-					  <compClass>CombatExtended.CompPawnGizmo</compClass>
-					</li>
-				  </value>
+					<xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="ChjSpacerDroid" or defName="ChjSpacerBattleDroid"]/comps</xpath>
+					<value>
+						<li>
+							<compClass>CombatExtended.CompPawnGizmo</compClass>
+						</li>
+					</value>
 				</li>
-				
-				
-				<!--Worker Droid-->
-				
+
+				<!-- === Worker Droid === -->
 				<li Class="PatchOperationAdd">
-				  <xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="ChjSpacerDroid"]/statBases</xpath>
-				  <value>
-				    <MeleeDodgeChance>1</MeleeDodgeChance>
-					<MeleeCritChance>1</MeleeCritChance>
-					<MeleeParryChance>1</MeleeParryChance>
-					<SmokeSensitivity>0</SmokeSensitivity>
-				  </value>
+					<xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="ChjSpacerDroid"]/statBases</xpath>
+					<value>
+						<MeleeDodgeChance>1</MeleeDodgeChance>
+						<MeleeCritChance>1</MeleeCritChance>
+						<MeleeParryChance>1</MeleeParryChance>
+						<SmokeSensitivity>0</SmokeSensitivity>
+					</value>
 				</li>
-				<!--2mm Plasteel-->
+
 				<li Class="PatchOperationReplace">
-				  <xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="ChjSpacerDroid"]/statBases/ArmorRating_Sharp</xpath>
-				  <value>
-				    <ArmorRating_Sharp>4</ArmorRating_Sharp>
-				  </value>
+					<xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="ChjSpacerDroid"]/statBases/ArmorRating_Sharp</xpath>
+					<value>
+						<ArmorRating_Sharp>4</ArmorRating_Sharp>
+					</value>
 				</li>
-				
+
 				<li Class="PatchOperationReplace">
-				  <xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="ChjSpacerDroid"]/statBases/ArmorRating_Blunt</xpath>
-				  <value>
-				    <ArmorRating_Blunt>6</ArmorRating_Blunt>
-				  </value>
+					<xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="ChjSpacerDroid"]/statBases/ArmorRating_Blunt</xpath>
+					<value>
+						<ArmorRating_Blunt>6</ArmorRating_Blunt>
+					</value>
 				</li>
-				
-				<!--Equivalent to bionics-->
-				
+
 				<li Class="PatchOperationReplace">
-				  <xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="ChjSpacerDroid"]/tools</xpath>
-				  <value>
-				    <tools>
-					  <li Class="CombatExtended.ToolCE">
-						<label>left fist</label>
-						<capacities>
-						  <li>Blunt</li>
-						</capacities>
-						<power>5</power>
-						<cooldownTime>1.11</cooldownTime>
-						<linkedBodyPartsGroup>LeftHand</linkedBodyPartsGroup>
-						<armorPenetrationBlunt>1.688</armorPenetrationBlunt>
-					  </li>
-					  
-					  <li Class="CombatExtended.ToolCE">
-						<label>right fist</label>
-						<capacities>
-						  <li>Blunt</li>
-						</capacities>
-						<power>5</power>
-						<cooldownTime>1.11</cooldownTime>
-						<linkedBodyPartsGroup>RightHand</linkedBodyPartsGroup>
-						<armorPenetrationBlunt>1.688</armorPenetrationBlunt>
-					  </li>
-					  
-					  <li Class="CombatExtended.ToolCE">
-						<label>head</label>
-						<capacities>
-						  <li>Blunt</li>
-						</capacities>
-						<power>2</power>
-						<cooldownTime>4.49</cooldownTime>
-						<linkedBodyPartsGroup>HeadAttackTool</linkedBodyPartsGroup>
-						<armorPenetrationBlunt>0.625</armorPenetrationBlunt>
-					  </li>
-					</tools>
-				  </value>
+					<xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="ChjSpacerDroid"]/tools</xpath>
+					<value>
+						<tools>
+							<li Class="CombatExtended.ToolCE">
+								<label>left fist</label>
+								<capacities>
+									<li>Blunt</li>
+								</capacities>
+								<power>5</power>
+								<cooldownTime>1.11</cooldownTime>
+								<linkedBodyPartsGroup>LeftHand</linkedBodyPartsGroup>
+								<armorPenetrationBlunt>1.688</armorPenetrationBlunt>
+							</li>
+
+							<li Class="CombatExtended.ToolCE">
+								<label>right fist</label>
+								<capacities>
+									<li>Blunt</li>
+								</capacities>
+								<power>5</power>
+								<cooldownTime>1.11</cooldownTime>
+								<linkedBodyPartsGroup>RightHand</linkedBodyPartsGroup>
+								<armorPenetrationBlunt>1.688</armorPenetrationBlunt>
+							</li>
+
+							<li Class="CombatExtended.ToolCE">
+								<label>head</label>
+								<capacities>
+									<li>Blunt</li>
+								</capacities>
+								<power>2</power>
+								<cooldownTime>4.49</cooldownTime>
+								<linkedBodyPartsGroup>HeadAttackTool</linkedBodyPartsGroup>
+								<armorPenetrationBlunt>0.625</armorPenetrationBlunt>
+							</li>
+						</tools>
+					</value>
 				</li>
-				
-				<!--Advanced Battledroid-->
-				
+
+				<!-- === Battle Droid === -->
 				<li Class="PatchOperationAdd">
-				  <xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="ChjSpacerBattleDroid"]/statBases</xpath>
-				  <value>
-					<MeleeCritChance>1.4</MeleeCritChance>
-					<MeleeParryChance>1.5</MeleeParryChance>
-					<SmokeSensitivity>0</SmokeSensitivity>
-				  </value>
-				</li>
-				<!--Recon Armor Equivalent-->
-				<li Class="PatchOperationReplace">
-				  <xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="ChjSpacerBattleDroid"]/statBases/ArmorRating_Sharp</xpath>
-				  <value>
-				    <ArmorRating_Sharp>16</ArmorRating_Sharp>
-				  </value>
+					<xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="ChjSpacerBattleDroid"]/statBases</xpath>
+					<value>
+						<MeleeCritChance>1.4</MeleeCritChance>
+						<MeleeParryChance>1.5</MeleeParryChance>
+						<SmokeSensitivity>0</SmokeSensitivity>
+					</value>
 				</li>
 				
 				<li Class="PatchOperationReplace">
-				  <xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="ChjSpacerBattleDroid"]/statBases/ArmorRating_Blunt</xpath>
-				  <value>
-				    <ArmorRating_Blunt>36</ArmorRating_Blunt>
-				  </value>
+					<xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="ChjSpacerBattleDroid"]/statBases/ArmorRating_Sharp</xpath>
+					<value>
+						<ArmorRating_Sharp>16</ArmorRating_Sharp>
+					</value>
 				</li>
-				
+
 				<li Class="PatchOperationReplace">
-				  <xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="ChjSpacerBattleDroid"]/tools</xpath>
-				  <value>
-				    <tools>
-					  <li Class="CombatExtended.ToolCE">
-						<label>left razor-fist</label>
-						<capacities>
-						  <li>Cut</li>
-						  <li>Stab</li>
-						  <li>Blunt</li>
-						</capacities>
-						<power>27</power>
-						<cooldownTime>1.76</cooldownTime>
-						<linkedBodyPartsGroup>LeftDroidHand</linkedBodyPartsGroup>
-						<armorPenetrationBlunt>60</armorPenetrationBlunt>
-						<armorPenetrationSharp>24</armorPenetrationSharp>
-					  </li>
-					  <li Class="CombatExtended.ToolCE">
-						<label>right razor-fist</label>
-						<capacities>
-						  <li>Cut</li>
-						  <li>Stab</li>
-						  <li>Blunt</li>
-						</capacities>
-						<power>27</power>
-						<cooldownTime>1.76</cooldownTime>
-						<linkedBodyPartsGroup>RightDroidHand</linkedBodyPartsGroup>
-						<armorPenetrationBlunt>60</armorPenetrationBlunt>
-						<armorPenetrationSharp>24</armorPenetrationSharp>
-					  </li>
-					  <li Class="CombatExtended.ToolCE">
-						<label>lower left razor-fist</label>
-						<capacities>
-						  <li>Cut</li>
-						  <li>Stab</li>
-						  <li>Blunt</li>
-						</capacities>
-						<power>27</power>
-						<cooldownTime>1.76</cooldownTime>
-						<linkedBodyPartsGroup>LeftDroidHand</linkedBodyPartsGroup>
-						<armorPenetrationBlunt>60</armorPenetrationBlunt>
-						<armorPenetrationSharp>24</armorPenetrationSharp>
-					  </li>
-					  <li Class="CombatExtended.ToolCE">
-						<label>lower right razor-fist</label>
-						<capacities>
-						  <li>Cut</li>
-						  <li>Stab</li>
-						  <li>Blunt</li>
-						</capacities>
-						<power>27</power>
-						<cooldownTime>1.76</cooldownTime>
-						<linkedBodyPartsGroup>LowerRightDroidHand</linkedBodyPartsGroup>
-						<armorPenetrationBlunt>60</armorPenetrationBlunt>
-						<armorPenetrationSharp>24</armorPenetrationSharp>
-					  </li>
-					  <li Class="CombatExtended.ToolCE">
-						<label>head</label>
-						<capacities>
-						  <li>Blunt</li>
-						</capacities>
-						<power>11</power>
-						<chanceFactor>0.33</chanceFactor>
-						<cooldownTime>2.52</cooldownTime>
-						<linkedBodyPartsGroup>HeadAttackTool</linkedBodyPartsGroup>
-						<armorPenetrationBlunt>4</armorPenetrationBlunt>
-					  </li>
-					</tools>
-				  </value>
+					<xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="ChjSpacerBattleDroid"]/statBases/ArmorRating_Blunt</xpath>
+					<value>
+						<ArmorRating_Blunt>36</ArmorRating_Blunt>
+					</value>
 				</li>
-				
-			  </operations>
-			</match>
-	    </li>
-		
-	  </operations>
+
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="ChjSpacerBattleDroid"]/tools</xpath>
+					<value>
+						<tools>
+							<li Class="CombatExtended.ToolCE">
+								<label>left razor-fist</label>
+								<capacities>
+									<li>Cut</li>
+									<li>Stab</li>
+									<li>Blunt</li>
+								</capacities>
+								<power>27</power>
+								<cooldownTime>1.76</cooldownTime>
+								<linkedBodyPartsGroup>LeftDroidHand</linkedBodyPartsGroup>
+								<armorPenetrationBlunt>60</armorPenetrationBlunt>
+								<armorPenetrationSharp>24</armorPenetrationSharp>
+							</li>
+							<li Class="CombatExtended.ToolCE">
+								<label>right razor-fist</label>
+								<capacities>
+									<li>Cut</li>
+									<li>Stab</li>
+									<li>Blunt</li>
+								</capacities>
+								<power>27</power>
+								<cooldownTime>1.76</cooldownTime>
+								<linkedBodyPartsGroup>RightDroidHand</linkedBodyPartsGroup>
+								<armorPenetrationBlunt>60</armorPenetrationBlunt>
+								<armorPenetrationSharp>24</armorPenetrationSharp>
+							</li>
+							<li Class="CombatExtended.ToolCE">
+								<label>lower left razor-fist</label>
+								<capacities>
+									<li>Cut</li>
+									<li>Stab</li>
+									<li>Blunt</li>
+								</capacities>
+								<power>27</power>
+								<cooldownTime>1.76</cooldownTime>
+								<linkedBodyPartsGroup>LeftDroidHand</linkedBodyPartsGroup>
+								<armorPenetrationBlunt>60</armorPenetrationBlunt>
+								<armorPenetrationSharp>24</armorPenetrationSharp>
+							</li>
+							<li Class="CombatExtended.ToolCE">
+								<label>lower right razor-fist</label>
+								<capacities>
+									<li>Cut</li>
+									<li>Stab</li>
+									<li>Blunt</li>
+								</capacities>
+								<power>27</power>
+								<cooldownTime>1.76</cooldownTime>
+								<linkedBodyPartsGroup>LowerRightDroidHand</linkedBodyPartsGroup>
+								<armorPenetrationBlunt>60</armorPenetrationBlunt>
+								<armorPenetrationSharp>24</armorPenetrationSharp>
+							</li>
+							<li Class="CombatExtended.ToolCE">
+								<label>head</label>
+								<capacities>
+									<li>Blunt</li>
+								</capacities>
+								<power>11</power>
+								<chanceFactor>0.33</chanceFactor>
+								<cooldownTime>2.52</cooldownTime>
+								<linkedBodyPartsGroup>HeadAttackTool</linkedBodyPartsGroup>
+								<armorPenetrationBlunt>4</armorPenetrationBlunt>
+							</li>
+						</tools>
+					</value>
+				</li>
+
+			</operations>
+		</match>
 	</Operation>
+
 </Patch>
