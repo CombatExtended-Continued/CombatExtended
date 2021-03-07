@@ -15,11 +15,13 @@ Mod |
 [CP] The DOOM Kit - Classic	|
 [HLX] Rimworld: UNSC Armoury |
 [HLX] ReGrowth - Mutated Animals Pack |
+[HLX] Ultratech: Altered Carbon - Armoury
 [JDS] EFT Apparel |
 [JDS] Exiled Dawn |
 [JDS] Star Wars BlasTech Industries |
 [JDS] The Forge - Exiled Dawn |
 [JDS] The Forge - NCR Armory	|
+[KV] Hand 'n' Footwear	|
 [O21] Forgotten Realms |
 [O21] Mechadroids |
 [Ods] SCP Outfits Only Edition	|
@@ -71,7 +73,6 @@ Defensive Machine Gun Turret Pack	|
 Dinosauria |
 Dishonored Assassin Coat |
 Dishonored Assassin Mask |
-Dragon's Descent |
 Dragonian Race	|
 Dragons!	|
 ED-Shields	|
@@ -99,13 +100,13 @@ Gas Traps And Shells	|
 Genetic Rim |
 Genetic Rim Alpha Animal Patch |
 GeneticRim Cosmic Horrors Patch |
+GeneticRim Dinosauria Patch |
 Girls' Frontline Apparel Pack	|
 Girls' Frontline Styles - 404 Team	|
 Girls' Frontline Weapon Pack	|
 Glitter Tech	|
 GouRIMet	|
 Halo - Rimworld Auxiliary Combat Armory	|
-Hand 'n' Footwear	|
 High Caliber	|
 Idhale Race	|
 Iron Harvest Pkp 17 "Eisenhans" Powerarmor	|
@@ -123,6 +124,7 @@ Let's Have a Cat!	|
 Logann Race	|
 Magical Menagerie	|
 Marilyn the Mincho Worshipper Witch |
+Mass Effect - Playable Geth |
 Mechanoids Extraordinaire	|
 Medical System Expansion	|
 Megafauna	|
@@ -144,13 +146,13 @@ Ni'Hal	|
 Orassans	|
 Palm Cats   |
 Penguin	|
-Playable Geth |
 Polarisbloc - Security Force	|
 Prestige Specialist Armours	|
 Prostheses+ |
 PsiTech	|
 Rabbie The Moonrabbit	|
 Racc Race	|
+Race to the Rim |
 Rah's Bionics and Surgery Expansion	|
 Rakkle The Rattle Snake Race Mod  |
 Redcoat Apparel	|
@@ -170,7 +172,6 @@ Rimsenal - Security Pack |
 Rimworld - The Dark Descent |
 Rimworld - Witcher Monster Hunt |
 Rimworld of Magic |
-Rimworld: Altered Carbon |
 Save Our Ship 2	|
 SCP |
 SCP - Clothing Only	|
