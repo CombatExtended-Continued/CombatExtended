@@ -222,14 +222,14 @@ namespace CombatExtended
                 
                 // If the hunter's shooting skill is below skillThreshold, hunter gets closer to not miss their shots
                 // I assumed level 10 is a good enough shooter to stay at maximum distance and don't miss 
-                const float skillThreshold = 10f;
+                const float skillThreshold = 5f;
                 float skillFactor = Mathf.Clamp01(hunter.skills.GetSkill(SkillDefOf.Shooting).Level / skillThreshold);
                 
                 float weaponRange = curJob.verbToUse.verbProps.range;
 
                 // Add additional offset to create a safe margin just in case something weird happens 
                 const int additionalOffset = 5;
-                float optimal = weaponRange * bodySizeFactor * skillFactor - moveOffset - additionalOffset;
+                float optimal = weaponRange * bodySizeFactor * skillFactor;
                 
                 // In some cases optimal range gets lower than the normal range that we calculated for non-manhunting animals.
                 // For example when the hunter has 0 shooting skill, optimal range will be negative.
