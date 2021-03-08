@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <Patch>
-	
+
 	<Operation Class="PatchOperationFindMod">
     <mods>
 		<li>Star Wars - Astromech Droids (Continued)</li>
     </mods>
 		<match Class="PatchOperationSequence">
 		<operations>
-			
+
 			<li Class="PatchOperationSequence">
 			<success>Always</success>
 				<operations>
@@ -23,7 +23,7 @@
 					</li>
 				</operations>
 			</li>
-			
+
 			<li Class="PatchOperationSequence">
 			<success>Always</success>
 				<operations>
@@ -39,7 +39,7 @@
 					</li>
 				</operations>
 			</li>
-			
+
 			<li Class="PatchOperationSequence">
 			<success>Always</success>
 				<operations>
@@ -55,7 +55,7 @@
 					</li>
 				</operations>
 			</li>
-			
+
 			<li Class="PatchOperationSequence">
 			<success>Always</success>
 				<operations>
@@ -71,7 +71,7 @@
 					</li>
 				</operations>
 			</li>
-			
+
 			<li Class="PatchOperationSequence">
 			<success>Always</success>
 				<operations>
@@ -87,7 +87,7 @@
 					</li>
 				</operations>
 			</li>
-			
+
 			<li Class="PatchOperationSequence">
 			<success>Always</success>
 				<operations>
@@ -103,7 +103,7 @@
 					</li>
 				</operations>
 			</li>
-			
+
 			<li Class="PatchOperationSequence">
 			<success>Always</success>
 				<operations>
@@ -119,7 +119,7 @@
 					</li>
 				</operations>
 			</li>
-			
+
 			<li Class="PatchOperationAddModExtension">
 				<xpath>Defs/AlienRace.ThingDef_AlienRace[
 				defName="BB_Astromech" or
@@ -136,7 +136,7 @@
 					</li>
 				</value>
 			</li>
-			
+
 			<li Class="PatchOperationAdd">
 				<xpath>Defs/AlienRace.ThingDef_AlienRace[
 				defName="BB_Astromech" or
@@ -154,8 +154,8 @@
 					<!--<li Class="CombatExtended.CompProperties_Suppressable" />-->
 				</value>
 			</li>
-			
-			
+
+
 			<li Class="PatchOperationAdd">
 				<xpath>Defs/AlienRace.ThingDef_AlienRace[
 				defName="BB_Astromech" or
@@ -174,8 +174,8 @@
 					<CarryBulk>30</CarryBulk>
 				</value>
 			</li>
-			
-				
+
+
 			<li Class="PatchOperationReplace">
 				<xpath>Defs/AlienRace.ThingDef_AlienRace[
 				defName="BB_Astromech" or
@@ -190,7 +190,7 @@
 							<capacities>
 								<li>Blunt</li>
 							</capacities>
-							<power>6</power>
+							<power>3</power>
 							<cooldownTime>2</cooldownTime>
 							<linkedBodyPartsGroup>Hands</linkedBodyPartsGroup>
 							<armorPenetrationSharp>0</armorPenetrationSharp>
@@ -201,7 +201,7 @@
 							<capacities>
 								<li>Cut</li>
 							</capacities>
-							<power>10</power>
+							<power>5</power>
 							<cooldownTime>2</cooldownTime>
 							<linkedBodyPartsGroup>Hands</linkedBodyPartsGroup>
 							<armorPenetrationSharp>1</armorPenetrationSharp>
@@ -210,10 +210,16 @@
 						<li Class="CombatExtended.ToolCE">
 							<label>Electric Arc Welder</label>
 							<capacities>
-								<li>Cut</li>
 								<li>Stab</li>
 							</capacities>
-							<power>8</power>
+							<extraMeleeDamages>
+							<li>
+								<def>Flame_Secondary</def>
+								<amount>3</amount>
+								<chance>1</chance>
+							</li>
+							</extraMeleeDamages>
+							<power>1</power>
 							<cooldownTime>2</cooldownTime>
 							<linkedBodyPartsGroup>Hands</linkedBodyPartsGroup>
 							<armorPenetrationSharp>13</armorPenetrationSharp>
@@ -224,7 +230,7 @@
 							<capacities>
 								<li>Blunt</li>
 							</capacities>
-							<power>5</power>
+							<power>2.5</power>
 							<cooldownTime>1.8</cooldownTime>
 							<linkedBodyPartsGroup>HeadAttackTool</linkedBodyPartsGroup>
 							<armorPenetrationSharp>0</armorPenetrationSharp>
@@ -233,7 +239,7 @@
 					</tools>
 				</value>
 			</li>
-			
+
 			<li Class="PatchOperationReplace">
 				<xpath>Defs/AlienRace.ThingDef_AlienRace[defName="C1_Astromech"]/tools</xpath>
 				<value>
@@ -243,7 +249,7 @@
 							<capacities>
 								<li>Blunt</li>
 							</capacities>
-							<power>6</power>
+							<power>3</power>
 							<cooldownTime>2</cooldownTime>
 							<linkedBodyPartsGroup>Hands</linkedBodyPartsGroup>
 							<armorPenetrationSharp>0</armorPenetrationSharp>
@@ -254,7 +260,7 @@
 							<capacities>
 								<li>Blunt</li>
 							</capacities>
-							<power>5</power>
+							<power>2.5</power>
 							<cooldownTime>1.8</cooldownTime>
 							<linkedBodyPartsGroup>HeadAttackTool</linkedBodyPartsGroup>
 							<armorPenetrationSharp>0</armorPenetrationSharp>
@@ -263,7 +269,7 @@
 					</tools>
 				</value>
 			</li>
-			
+
 			<li Class="PatchOperationReplace">
 				<xpath>Defs/AlienRace.ThingDef_AlienRace[defName="R4_Astromech"]/tools</xpath>
 				<value>
@@ -273,7 +279,7 @@
 							<capacities>
 								<li>Cut</li>
 							</capacities>
-							<power>10</power>
+							<power>5</power>
 							<cooldownTime>2</cooldownTime>
 							<linkedBodyPartsGroup>Hands</linkedBodyPartsGroup>
 							<armorPenetrationSharp>1</armorPenetrationSharp>
@@ -282,10 +288,16 @@
 						<li Class="CombatExtended.ToolCE">
 							<label>Electric Arc Welder</label>
 							<capacities>
-								<li>Cut</li>
 								<li>Stab</li>
 							</capacities>
-							<power>8</power>
+							<extraMeleeDamages>
+							<li>
+								<def>Flame_Secondary</def>
+								<amount>3</amount>
+								<chance>1</chance>
+							</li>
+							</extraMeleeDamages>
+							<power>1</power>
 							<cooldownTime>2</cooldownTime>
 							<linkedBodyPartsGroup>Hands</linkedBodyPartsGroup>
 							<armorPenetrationSharp>13</armorPenetrationSharp>
@@ -296,7 +308,7 @@
 							<capacities>
 								<li>Blunt</li>
 							</capacities>
-							<power>5</power>
+							<power>2.5</power>
 							<cooldownTime>1.8</cooldownTime>
 							<linkedBodyPartsGroup>HeadAttackTool</linkedBodyPartsGroup>
 							<armorPenetrationSharp>0</armorPenetrationSharp>
@@ -305,7 +317,7 @@
 					</tools>
 				</value>
 			</li>
-			
+
 			<li Class="PatchOperationReplace">
 				<xpath>Defs/AlienRace.ThingDef_AlienRace[defName="R5_Astromech"]/tools</xpath>
 				<value>
@@ -315,7 +327,7 @@
 							<capacities>
 								<li>Stab</li>
 							</capacities>
-							<power>6</power>
+							<power>3</power>
 							<cooldownTime>2</cooldownTime>
 							<linkedBodyPartsGroup>Hands</linkedBodyPartsGroup>
 							<armorPenetrationSharp>0.4</armorPenetrationSharp>
@@ -326,7 +338,7 @@
 							<capacities>
 								<li>Stab</li>
 							</capacities>
-							<power>6</power>
+							<power>3</power>
 							<cooldownTime>5</cooldownTime>
 							<linkedBodyPartsGroup>Hands</linkedBodyPartsGroup>
 							<armorPenetrationSharp>0.4</armorPenetrationSharp>
@@ -337,7 +349,7 @@
 							<capacities>
 								<li>Blunt</li>
 							</capacities>
-							<power>5</power>
+							<power>2.5</power>
 							<cooldownTime>1.8</cooldownTime>
 							<linkedBodyPartsGroup>HeadAttackTool</linkedBodyPartsGroup>
 							<armorPenetrationSharp>0</armorPenetrationSharp>
@@ -346,15 +358,15 @@
 					</tools>
 				</value>
 			</li>
-			
-			
+
+
 			<li Class="PatchOperationAdd">
 				<xpath>Defs/BodyDef[defName="Astromech_BB_Body"]//*[def="SW_Droid_Hull_Sphere" or def="SW_Droid_Neck" or def="SW_Droid_Arm" or def="SW_Astromech_Head"]/groups</xpath>
 				<value>
 					<li>CoveredByNaturalArmor</li>
 				</value>
 			</li>
-			
+
 			<li Class="PatchOperationAdd">
 				<xpath>Defs/BodyDef[defName="Astromech_BB_Body"]//*[def="SW_Droid_IntellexIV" or def="SW_Droid_Auditory_Sensor" or def="SW_Droid_Charge_Arm" or def="SW_Droid_Electric_Arc_Welder" or def="SW_Droid_Circular_Saw"
 				or def="SW_Droid_Repair_Arm" or def="SW_Droid_Computer_Scomp_Link" or def="SW_Droid_Loudspeaker"]</xpath>
@@ -362,14 +374,14 @@
 					<depth>Inside</depth>
 				</value>
 			</li>
-			
+
 			<li Class="PatchOperationAdd">
 				<xpath>Defs/BodyDef[defName="Astromech_C1_Body"]//*[def="SW_Droid_Hull" or def="SW_Droid_Arm" or def="SW_Astromech_Head" or def="SW_Droid_Motorized_Tread"]/groups</xpath>
 				<value>
 					<li>CoveredByNaturalArmor</li>
 				</value>
 			</li>
-			
+
 			<li Class="PatchOperationAdd">
 				<xpath>Defs/BodyDef[defName="Astromech_C1_Body"]//*[def="SW_Droid_IntellexIV" or def="SW_Droid_Auditory_Sensor" or def="SW_Droid_Charge_Arm" or def="SW_Droid_Repair_Arm" or def="SW_Droid_Loudspeaker"
 				or def="SW_Droid_Computer_Scomp_Link"]</xpath>
@@ -377,14 +389,14 @@
 					<depth>Inside</depth>
 				</value>
 			</li>
-			
+
 			<li Class="PatchOperationAdd">
 				<xpath>Defs/BodyDef[defName="Astromech_R2_R6_R0_Body"]//*[def="SW_Droid_Hull" or def="SW_Droid_Arm" or def="SW_Astromech_Head" or def="SW_Droid_Motorized_Tread"]/groups</xpath>
 				<value>
 					<li>CoveredByNaturalArmor</li>
 				</value>
 			</li>
-			
+
 			<li Class="PatchOperationAdd">
 				<xpath>Defs/BodyDef[defName="Astromech_R2_R6_R0_Body"]//*[def="SW_Droid_IntellexIV" or def="SW_Droid_Auditory_Sensor" or def="SW_Droid_Charge_Arm" or def="SW_Droid_Electric_Arc_Welder" or def="SW_Droid_Circular_Saw"
 				or def="SW_Droid_Repair_Arm" or def="SW_Droid_Computer_Scomp_Link" or def="SW_Droid_Loudspeaker"]</xpath>
@@ -392,14 +404,14 @@
 					<depth>Inside</depth>
 				</value>
 			</li>
-			
+
 			<li Class="PatchOperationAdd">
 				<xpath>Defs/BodyDef[defName="Astromech_R4_Body"]//*[def="SW_Droid_R4_Hull" or def="SW_Droid_Arm" or def="SW_Astromech_Head" or def="SW_Droid_Motorized_Tread"]/groups</xpath>
 				<value>
 					<li>CoveredByNaturalArmor</li>
 				</value>
 			</li>
-			
+
 			<li Class="PatchOperationAdd">
 				<xpath>Defs/BodyDef[defName="Astromech_R4_Body"]//*[def="SW_Droid_IntellexIV" or def="SW_Droid_Auditory_Sensor" or def="SW_Droid_Electric_Arc_Welder" or def="SW_Droid_Circular_Saw"
 				or def="SW_Droid_Repair_Arm" or def="SW_Droid_Computer_Scomp_Link" or def="SW_Droid_Loudspeaker"]</xpath>
@@ -407,14 +419,14 @@
 					<depth>Inside</depth>
 				</value>
 			</li>
-			
+
 			<li Class="PatchOperationAdd">
 				<xpath>Defs/BodyDef[defName="Astromech_R5_Body"]//*[def="SW_Droid_R5_Hull" or def="SW_Droid_Arm" or def="SW_Astromech_R5_Head" or def="SW_Droid_R5_Motorized_Tread"]/groups</xpath>
 				<value>
 					<li>CoveredByNaturalArmor</li>
 				</value>
 			</li>
-			
+
 			<li Class="PatchOperationAdd">
 				<xpath>Defs/BodyDef[defName="Astromech_R5_Body"]//*[def="SW_Droid_IntellexIV" or def="SW_Droid_Auditory_Sensor" or def="SW_Droid_Electric_Arc_Welder" or def="SW_Droid_Circular_Saw"
 				or def="SW_Droid_R5_Repair_Arm" or def="SW_Droid_Computer_Scomp_Link" or def="SW_Droid_Loudspeaker"]</xpath>
@@ -422,7 +434,7 @@
 					<depth>Inside</depth>
 				</value>
 			</li>
-			
+
 			<li Class="PatchOperationReplace">
 				<xpath>Defs/AlienRace.ThingDef_AlienRace[
 				defName="BB_Astromech" or
@@ -466,11 +478,11 @@
 					<ArmorRating_Heat>0</ArmorRating_Heat>
 				</value>
 			</li>
-			
-			
-			
+
+
+
 		</operations>
 		</match>
 	</Operation>
-	
-</Patch>
+
+</Patch> 
