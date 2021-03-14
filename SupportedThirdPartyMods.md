@@ -181,6 +181,7 @@ Simply More Melee	|
 Soviet Armory	|
 Space Worms (Continued) |
 Spartan Foundry	|
+Star Wars - Droids |
 Star Wars - Factions |
 Star Wars - Factions (Continued) |
 The Mantodean insectoid race	|
