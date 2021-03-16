@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+	<!-- Hooray, more updating -->
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+			<li>Dragon's Descent</li>
+		</mods>
+		<match Class="PatchOperationSequence">
+			<operations>
+				<!-- ======== DragonsBlood (Dragon's blood potion) ======== -->
+				<!-- ====== statBases ====== -->
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="DragonsBlood"]/statBases</xpath>
+					<value>
+						<Bulk>0.5</Bulk>
+					</value>
+				</li>
+
+				<!-- ======== DragonsBloodHigh ======== -->
+				<!-- ====== stages ====== -->
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/HediffDef[defName="DragonsBloodHigh"]/stages/li[1]</xpath>
+					<value>
+						<statOffsets>
+							<Suppressability>-0.25</Suppressability>
+						</statOffsets>
+					</value>
+				</li>
+			</operations>
+		</match>
+	</Operation>
+</Patch>
