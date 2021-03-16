@@ -74,6 +74,7 @@ Dinosauria |
 Dishonored Assassin Coat |
 Dishonored Assassin Mask |
 Dragonian Race	|
+Dragon's Descent    |
 Dragons!	|
 ED-Shields	|
 Equiums Horse Race	|
