@@ -104,21 +104,28 @@
 			<MeleeDodgeChance>0.04</MeleeDodgeChance>
 			<MeleeCritChance>0.76</MeleeCritChance>
 			<MeleeParryChance>0.45</MeleeParryChance>
-			<Flammability>0.6</Flammability>
+			<Flammability>0</Flammability>
 		</value>
 	</li>
 
 	<li Class="PatchOperationAdd">
 		<xpath>Defs/ThingDef[defName="VFEV_Mech_Odin"]/statBases</xpath>
 		<value>
-			<ArmorRating_Blunt>8</ArmorRating_Blunt>
+			<ArmorRating_Blunt>1</ArmorRating_Blunt>
 		</value>
 	</li>
 
 	<li Class="PatchOperationAdd">
 		<xpath>Defs/ThingDef[defName="VFEV_Mech_Odin"]/statBases</xpath>
 		<value>
-			<ArmorRating_Sharp>4</ArmorRating_Sharp>
+			<ArmorRating_Sharp>0.25</ArmorRating_Sharp>
+		</value>
+	</li>
+
+	<li Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="VFEV_Mech_Odin"]/statBases</xpath>
+		<value>
+			<ArmorRating_Heat>2</ArmorRating_Heat>
 		</value>
 	</li>
 
@@ -129,31 +136,61 @@
 		</value>
 	</li>
 
+	<li Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="VFEV_Mech_Odin"]</xpath>
+		<value>
+			<damageMultipliers>
+				<li>
+					<damageDef>VFEV_Cut</damageDef>
+					<multiplier>2</multiplier>
+				</li>			
+				<li>
+					<damageDef>Cut</damageDef>
+					<multiplier>2</multiplier>
+				</li>
+				<li>
+					<damageDef>Stab</damageDef>
+					<multiplier>2</multiplier>
+				</li>
+				<li>
+					<damageDef>Bullet</damageDef>
+					<multiplier>0.8</multiplier>
+				</li>											
+				<li>
+					<damageDef>Flame</damageDef>
+					<multiplier>0</multiplier>
+				</li>
+			</damageMultipliers>
+		</value>
+	</li>
+
 	<li Class="PatchOperationReplace">
 		<xpath>Defs/ThingDef[defName="VFEV_Mech_Odin"]/tools</xpath>
 		<value>
 		<tools>
 			<li Class="CombatExtended.ToolCE">
-				<label>left fist</label>
+				<label>left blade</label>
 				<capacities>
-				<li>Blunt</li>
+					<li>Cut</li>
 				</capacities>
-				<power>12.0</power>
+				<power>24.0</power>
 				<cooldownTime>2</cooldownTime>
 				<linkedBodyPartsGroup>LeftHand</linkedBodyPartsGroup>
 				<alwaysTreatAsWeapon>true</alwaysTreatAsWeapon>
-				<armorPenetrationBlunt>6</armorPenetrationBlunt>				
+				<armorPenetrationSharp>8</armorPenetrationSharp>
+				<armorPenetrationBlunt>10</armorPenetrationBlunt>				
 			</li>
 			<li Class="CombatExtended.ToolCE">
-				<label>right fist</label>
+				<label>right blade</label>
 				<capacities>
-				<li>Blunt</li>
+					<li>Cut</li>
 				</capacities>
-				<power>12.0</power>
+				<power>24.0</power>
 				<cooldownTime>2</cooldownTime>
 				<linkedBodyPartsGroup>RightHand</linkedBodyPartsGroup>
 				<alwaysTreatAsWeapon>true</alwaysTreatAsWeapon>
-				<armorPenetrationBlunt>6</armorPenetrationBlunt>				
+				<armorPenetrationSharp>8</armorPenetrationSharp>
+				<armorPenetrationBlunt>10</armorPenetrationBlunt>				
 			</li>
 			<li Class="CombatExtended.ToolCE">
 				<label>head</label>
@@ -164,7 +201,7 @@
 				<cooldownTime>3.20</cooldownTime>
 				<linkedBodyPartsGroup>HeadAttackTool</linkedBodyPartsGroup>
 				<armorPenetrationSharp>0</armorPenetrationSharp>
-				<armorPenetrationBlunt>12</armorPenetrationBlunt>
+				<armorPenetrationBlunt>15</armorPenetrationBlunt>
 				<alwaysTreatAsWeapon>true</alwaysTreatAsWeapon>
 			</li>	
 		</tools>
@@ -183,7 +220,7 @@
 	<li Class="PatchOperationReplace">
 		<xpath>Defs/PawnKindDef[defName="VFEV_Mech_Odin"]/combatPower</xpath>
 		<value>
-			<combatPower>500</combatPower>
+			<combatPower>600</combatPower>
 		</value>
 	</li>
 
