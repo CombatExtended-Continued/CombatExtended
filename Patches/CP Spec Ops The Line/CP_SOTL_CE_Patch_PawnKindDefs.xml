@@ -10,7 +10,7 @@
 			<!-- ========== Reduce meals and medicine carried by all pawns ========== -->
 
 			<li Class="PatchOperationReplace">
-				<xpath>Defs/PawnKindDef[@Name="RH_FOX_Bare"]/invNutrition</xpath>
+				<xpath>Defs/PawnKindDef[@Name="RH_DeltaSOTL_Bare"]/invNutrition</xpath>
 				<value>
 					<invNutrition>1</invNutrition>
 				</value>
@@ -39,6 +39,27 @@
 
 			<li Class="PatchOperationAddModExtension">
 				<xpath>Defs/PawnKindDef[defName="RH_SOTL_Delta_QRF"]</xpath>
+				<value>
+					<li Class="CombatExtended.LoadoutPropertiesExtension">
+						<primaryMagazineCount>
+							<min>6</min>
+							<max>8</max>
+						</primaryMagazineCount>
+					</li>
+				</value>
+			</li>
+
+			<!-- ========== Delta Rogue Operator pawns should spawn with ammo appropriate to their primary weapon ========== -->
+
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/PawnKindDef[defName="RH_SOTL_Delta_Rogue"]/inventoryOptions/subOptionsChooseOne/li/countRange</xpath>
+				<value>
+					<countRange>0~2</countRange>
+				</value>
+			</li>
+
+			<li Class="PatchOperationAddModExtension">
+				<xpath>Defs/PawnKindDef[defName="RH_SOTL_Delta_Rogue"]</xpath>
 				<value>
 					<li Class="CombatExtended.LoadoutPropertiesExtension">
 						<primaryMagazineCount>
