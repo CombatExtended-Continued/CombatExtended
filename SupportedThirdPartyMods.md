@@ -111,6 +111,7 @@ Halo - Rimworld Auxiliary Combat Armory	|
 High Caliber	|
 Idhale Race	|
 Iron Harvest Pkp 17 "Eisenhans" Powerarmor	|
+Japanese Dogs   |
 Jernfalk's Standalone Horses	|
 Jernalk's Skeletal Legion (Continued)	|
 Kaiser Armory	|
