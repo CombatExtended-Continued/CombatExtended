@@ -46,6 +46,7 @@ Mod |
 [SYR] Thrumkin	|
 A Dog Said...	|
 Alpha Animals |
+Ancient Fallout Armory  |
 Android Tiers	|
 Android Tiers++	|
 Androids	|
