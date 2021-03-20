@@ -191,6 +191,7 @@ T-45b Power Armor	|
 The GiantRace	|
 TouhouStyle	|
 Trading Economy	|
+Tribal Warrior Set! |
 Tsar Armory	|
 Turk's Guns |
 Turret Collection	|
