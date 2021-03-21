@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+
+	<Operation Class="PatchOperationFindMod">
+    <mods>
+        <li>Alpha Biomes</li>
+    </mods>
+	<match Class="PatchOperationSequence">
+		<operations>
+
+		<!-- ========== Poison Dart ========== -->
+
+		<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+			<defName>AB_WeaponPoisonDart</defName>
+			<statBases>
+				<RangedWeapon_Cooldown>0.36</RangedWeapon_Cooldown>
+				<SightsEfficiency>0.7</SightsEfficiency>
+				<ShotSpread>0.07</ShotSpread>
+				<SwayFactor>1</SwayFactor>
+				<Bulk>1</Bulk>
+			</statBases>
+			<Properties>
+				<verbClass>CombatExtended.Verb_ShootCEOneUse</verbClass>
+				<hasStandardCommand>true</hasStandardCommand>
+				<defaultProjectile>AB_WeaponPoisonDartProjectile</defaultProjectile>
+				<warmupTime>1</warmupTime>
+				<range>14</range>
+				<soundCast>ThrowGrenade</soundCast>
+				<muzzleFlashScale>0</muzzleFlashScale>
+			</Properties>
+			<FireModes>
+				<aiAimMode>AimedShot</aiAimMode>
+			</FireModes>
+		</li>
+
+		<li Class="PatchOperationAdd">
+			<xpath>Defs/ThingDef[defName="AB_WeaponPoisonDart"]</xpath>
+			<value>
+				<equippedAngleOffset>60</equippedAngleOffset>
+			</value>
+		</li>
+
+		<li Class="PatchOperationAttributeSet">
+			<xpath>Defs/ThingDef[defName="AB_WeaponPoisonDartProjectile"]/projectile</xpath>
+			<attribute>Class</attribute>
+			<value>CombatExtended.ProjectilePropertiesCE</value>
+		</li>
+
+		<li Class="PatchOperationAdd">
+			<xpath>Defs/ThingDef[defName="AB_WeaponPoisonDartProjectile"]/projectile</xpath>
+			<value>
+				<armorPenetrationSharp>1.5</armorPenetrationSharp>
+				<armorPenetrationBlunt>2.5</armorPenetrationBlunt>
+			</value>
+		</li>
+
+		<li Class="PatchOperationReplace">
+			<xpath>Defs/ThingDef[defName="AB_WeaponPoisonDartProjectile"]/projectile/speed</xpath>
+			<value>
+				<speed>12</speed>
+			</value>
+		</li>
+
+		<li Class="PatchOperationReplace">
+			<xpath>Defs/ThingDef[defName="AB_WeaponPoisonDartProjectile"]/projectile/damageAmountBase</xpath>
+			<value>
+				<damageAmountBase>5</damageAmountBase>
+			</value>
+		</li>
+
+		</operations>
+	</match>
+	</Operation>
+</Patch>
+
