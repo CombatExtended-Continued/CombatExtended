@@ -46,6 +46,7 @@ Mod |
 [SYR] Thrumkin	|
 A Dog Said...	|
 Alpha Animals |
+Ancient Eastern Armory  |
 Android Tiers	|
 Android Tiers++	|
 Androids	|
@@ -80,6 +81,7 @@ ED-Shields	|
 Equiums Horse Race	|
 Erin's Critter Collection |
 Erin's Forest Critters |
+Erin's Friendly Ferrets |
 Erin's Fox Squirrel |
 Erin's Mountain Animals |
 Expanded Materials - Metals |
