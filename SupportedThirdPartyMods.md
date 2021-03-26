@@ -146,7 +146,9 @@ Moyo - From the Depth   |
 Nearmare Race	|
 NewRatkinPlus |
 Ni'Hal	|
+Not Only Just a Cannon  |
 Orassans	|
+Outer Rim - Tatooine    |
 Palm Cats   |
 Penguin	|
 Polarisbloc - Security Force	|
