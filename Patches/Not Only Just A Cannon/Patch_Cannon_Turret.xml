@@ -1,0 +1,914 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+	
+	<Operation Class="PatchOperationFindMod">
+    <mods>
+		<li>Not Only just a cannon</li>
+    </mods>
+		<match Class="PatchOperationSequence">
+		<operations>
+			
+		<!-- Mortars won't place if they have show radius -->
+			
+        <li Class="PatchOperationReplace">
+          <xpath>/Defs/ThingDef[@Name="BaseCannonBuilding"]/placeWorkers</xpath>
+          <value>
+			<placeWorkers>
+			  <li>PlaceWorker_PreventInteractionSpotOverlap</li>
+			  <li>PlaceWorker_TurretTop</li>
+			</placeWorkers>
+          </value>
+        </li>
+		
+		
+		<!--   CANNON   -->
+			
+        <li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+          <defName>Weapon_Cannon</defName>
+
+          <statBases>
+			  <SightsEfficiency>1</SightsEfficiency>
+			  <ShotSpread>0.3</ShotSpread>
+			  <SwayFactor>1.34</SwayFactor>
+			  <RangedWeapon_Cooldown>3.2</RangedWeapon_Cooldown>
+          </statBases>
+
+          <Properties>
+            <recoilAmount>1.52</recoilAmount>
+            <verbClass>CombatExtended.Verb_ShootCE</verbClass>
+            <hasStandardCommand>True</hasStandardCommand>
+            <defaultProjectile>Bullet_164mmCannonShell_HE</defaultProjectile>
+			<burstShotCount />
+            <warmupTime>5</warmupTime>
+			<requireLineOfSight>true</requireLineOfSight>
+            <range>86</range>
+			<soundCast>MortarBomb_Explode</soundCast>
+			<muzzleFlashScale>32</muzzleFlashScale>
+			<targetParams>
+			  <canTargetLocations>true</canTargetLocations>
+			</targetParams>
+            <recoilPattern>Mounted</recoilPattern>
+          </Properties>
+
+          <AmmoUser>
+            <magazineSize>1</magazineSize>
+            <reloadTime>15</reloadTime>
+            <ammoSet>AmmoSet_164mmCannonBall</ammoSet>
+          </AmmoUser>
+
+          <FireModes>
+			<aiAimMode>AimedShot</aiAimMode>
+          </FireModes>
+        </li>
+
+        <li Class="PatchOperationAdd">
+          <xpath>/Defs/ThingDef[defName="Turret_Cannon"]</xpath>
+          <value>
+            <thingClass>CombatExtended.Building_TurretGunCE</thingClass>
+          </value>
+        </li>
+		
+		<li Class="PatchOperationAdd">
+          <xpath>/Defs/ThingDef[defName="Turret_Cannon"]</xpath>
+          <value>
+            <specialDisplayRadius>86</specialDisplayRadius>
+          </value>
+        </li>
+
+		
+        <li Class="PatchOperationRemove">
+          <xpath>/Defs/ThingDef[defName="Weapon_Cannon"]/comps/li[@Class="CompProperties_ChangeableProjectile"]</xpath>
+        </li>
+		
+        <li Class="PatchOperationRemove">
+          <xpath>/Defs/ThingDef[defName="Weapon_Cannon"]/building</xpath>
+        </li>
+		
+		
+        <li Class="PatchOperationAdd">
+          <xpath>/Defs/ThingDef[defName="Turret_Cannon"]</xpath>
+          <value>
+            <fillPercent>0.85</fillPercent>
+          </value>
+        </li>
+		
+		
+        <li Class="PatchOperationReplace">
+          <xpath>/Defs/ThingDef[defName="Turret_Cannon"]/building/turretBurstCooldownTime</xpath>
+          <value>
+            <turretBurstCooldownTime>1</turretBurstCooldownTime>
+          </value>
+        </li>
+		
+		
+        <li Class="PatchOperationAdd">
+          <xpath>/Defs/ThingDef[defName="Turret_Cannon"]/statBases</xpath>
+          <value>
+            <ShootingAccuracyTurret>1</ShootingAccuracyTurret>
+          </value>
+        </li>
+		
+		<!--   SWIVEL GUN   -->
+		
+        <li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+          <defName>Weapon_SwivelGun</defName>
+
+          <statBases>
+			  <SightsEfficiency>1</SightsEfficiency>
+			  <ShotSpread>0.3</ShotSpread>
+			  <SwayFactor>1.34</SwayFactor>
+			  <RangedWeapon_Cooldown>2.71</RangedWeapon_Cooldown>
+          </statBases>
+
+          <Properties>
+            <recoilAmount>1.52</recoilAmount>
+            <verbClass>CombatExtended.Verb_ShootCE</verbClass>
+            <hasStandardCommand>True</hasStandardCommand>
+            <defaultProjectile>Bullet_164mmCannonShell_HE</defaultProjectile>
+			<burstShotCount />
+            <warmupTime>4.5</warmupTime>
+			<requireLineOfSight>true</requireLineOfSight>
+            <range>86</range>
+			<soundCast>MortarBomb_Explode</soundCast>
+			<muzzleFlashScale>32</muzzleFlashScale>
+			<targetParams>
+			  <canTargetLocations>true</canTargetLocations>
+			</targetParams>
+            <recoilPattern>Mounted</recoilPattern>
+          </Properties>
+
+          <AmmoUser>
+            <magazineSize>1</magazineSize>
+            <reloadTime>8.5</reloadTime>
+            <ammoSet>AmmoSet_164mmCannonBallChamber</ammoSet>
+          </AmmoUser>
+
+          <FireModes>
+			<aiAimMode>AimedShot</aiAimMode>
+          </FireModes>
+        </li>
+
+        <li Class="PatchOperationAdd">
+          <xpath>/Defs/ThingDef[defName="Swivel_Gun"]</xpath>
+          <value>
+            <thingClass>CombatExtended.Building_TurretGunCE</thingClass>
+          </value>
+        </li>
+
+		
+        <li Class="PatchOperationRemove">
+          <xpath>/Defs/ThingDef[defName="Weapon_SwivelGun"]/comps/li[@Class="CompProperties_ChangeableProjectile"]</xpath>
+        </li>
+		
+        <li Class="PatchOperationRemove">
+          <xpath>/Defs/ThingDef[defName="Weapon_SwivelGun"]/building</xpath>
+        </li>
+		
+		
+        <li Class="PatchOperationAdd">
+          <xpath>/Defs/ThingDef[defName="Swivel_Gun"]</xpath>
+          <value>
+            <fillPercent>0.85</fillPercent>
+          </value>
+        </li>
+		
+		
+        <li Class="PatchOperationReplace">
+          <xpath>/Defs/ThingDef[defName="Swivel_Gun"]/building/turretBurstCooldownTime</xpath>
+          <value>
+            <turretBurstCooldownTime>1</turretBurstCooldownTime>
+          </value>
+        </li>
+		
+		
+        <li Class="PatchOperationAdd">
+          <xpath>/Defs/ThingDef[defName="Swivel_Gun"]/statBases</xpath>
+          <value>
+            <ShootingAccuracyTurret>1</ShootingAccuracyTurret>
+          </value>
+        </li>
+		
+		<!--   PIVOT GUN   -->
+		
+		<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+          <defName>Weapon_PivotGun</defName>
+
+          <statBases>
+			  <SightsEfficiency>1</SightsEfficiency>
+			  <ShotSpread>0.3</ShotSpread>
+			  <SwayFactor>1.34</SwayFactor>
+			  <RangedWeapon_Cooldown>3.2</RangedWeapon_Cooldown>
+          </statBases>
+
+          <Properties>
+            <recoilAmount>1.52</recoilAmount>
+            <verbClass>CombatExtended.Verb_ShootCE</verbClass>
+            <hasStandardCommand>True</hasStandardCommand>
+            <defaultProjectile>Bullet_164mmCannonShell_HE</defaultProjectile>
+			<burstShotCount />
+            <warmupTime>5</warmupTime>
+			<requireLineOfSight>true</requireLineOfSight>
+            <range>86</range>
+			<soundCast>MortarBomb_Explode</soundCast>
+			<muzzleFlashScale>32</muzzleFlashScale>
+			<targetParams>
+			  <canTargetLocations>true</canTargetLocations>
+			</targetParams>
+            <recoilPattern>Mounted</recoilPattern>
+          </Properties>
+
+          <AmmoUser>
+            <magazineSize>1</magazineSize>
+            <reloadTime>8.5</reloadTime>
+            <ammoSet>AmmoSet_164mmCannonBallChamber</ammoSet>
+          </AmmoUser>
+
+          <FireModes>
+			<aiAimMode>AimedShot</aiAimMode>
+          </FireModes>
+        </li>
+
+        <li Class="PatchOperationAdd">
+          <xpath>/Defs/ThingDef[defName="Turret_PivotGun"]</xpath>
+          <value>
+            <thingClass>CombatExtended.Building_TurretGunCE</thingClass>
+          </value>
+        </li>
+		
+		<li Class="PatchOperationAdd">
+          <xpath>/Defs/ThingDef[defName="Turret_PivotGun"]</xpath>
+          <value>
+            <specialDisplayRadius>86</specialDisplayRadius>
+          </value>
+        </li>
+		
+        <li Class="PatchOperationRemove">
+          <xpath>/Defs/ThingDef[defName="Weapon_PivotGun"]/comps/li[@Class="CompProperties_ChangeableProjectile"]</xpath>
+        </li>
+		
+        <li Class="PatchOperationRemove">
+          <xpath>/Defs/ThingDef[defName="Weapon_PivotGun"]/building</xpath>
+        </li>
+		
+		
+        <li Class="PatchOperationAdd">
+          <xpath>/Defs/ThingDef[defName="Turret_PivotGun"]</xpath>
+          <value>
+            <fillPercent>0.85</fillPercent>
+          </value>
+        </li>
+		
+		
+        <li Class="PatchOperationReplace">
+          <xpath>/Defs/ThingDef[defName="Turret_PivotGun"]/building/turretBurstCooldownTime</xpath>
+          <value>
+            <turretBurstCooldownTime>1</turretBurstCooldownTime>
+          </value>
+        </li>
+		
+		
+        <li Class="PatchOperationAdd">
+          <xpath>/Defs/ThingDef[defName="Turret_PivotGun"]/statBases</xpath>
+          <value>
+            <ShootingAccuracyTurret>1</ShootingAccuracyTurret>
+          </value>
+        </li>
+		
+		<!--   FORTRESS CANNON   -->
+		
+		<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+          <defName>Weapon_FortedCannon</defName>
+
+          <statBases>
+			  <SightsEfficiency>1</SightsEfficiency>
+			  <ShotSpread>0.15</ShotSpread>
+			  <SwayFactor>1.04</SwayFactor>
+			  <RangedWeapon_Cooldown>2.71</RangedWeapon_Cooldown>
+          </statBases>
+			
+          <Properties>
+            <recoilAmount>1.52</recoilAmount>
+            <verbClass>CombatExtended.Verb_ShootCE</verbClass>
+            <hasStandardCommand>True</hasStandardCommand>
+            <defaultProjectile>Bullet_164mmCannonShell_HE</defaultProjectile>
+			<burstShotCount />
+            <warmupTime>5</warmupTime>
+			<requireLineOfSight>true</requireLineOfSight>
+            <range>86</range>
+			<soundCast>MortarBomb_Explode</soundCast>
+			<muzzleFlashScale>32</muzzleFlashScale>
+			<targetParams>
+			  <canTargetLocations>true</canTargetLocations>
+			</targetParams>
+            <recoilPattern>Mounted</recoilPattern>
+          </Properties>
+			
+          <AmmoUser>
+            <magazineSize>1</magazineSize>
+            <reloadTime>15</reloadTime>
+            <ammoSet>AmmoSet_164mmCannonBall</ammoSet>
+          </AmmoUser>
+			
+          <FireModes>
+			<aiAimMode>AimedShot</aiAimMode>
+          </FireModes>
+        </li>
+
+        <li Class="PatchOperationAdd">
+          <xpath>/Defs/ThingDef[defName="Forted_Cannon"]</xpath>
+          <value>
+            <thingClass>CombatExtended.Building_TurretGunCE</thingClass>
+          </value>
+        </li>
+		
+		<li Class="PatchOperationAdd">
+          <xpath>/Defs/ThingDef[defName="Forted_Cannon"]</xpath>
+          <value>
+            <specialDisplayRadius>86</specialDisplayRadius>
+          </value>
+        </li>
+
+        <li Class="PatchOperationRemove">
+          <xpath>/Defs/ThingDef[defName="Weapon_FortedCannon"]/comps/li[@Class="CompProperties_ChangeableProjectile"]</xpath>
+        </li>
+		
+        <li Class="PatchOperationRemove">
+          <xpath>/Defs/ThingDef[defName="Weapon_FortedCannon"]/building</xpath>
+        </li>
+		
+		
+        <li Class="PatchOperationAdd">
+          <xpath>/Defs/ThingDef[defName="Forted_Cannon"]</xpath>
+          <value>
+            <fillPercent>0.85</fillPercent>
+          </value>
+        </li>
+		
+		
+        <li Class="PatchOperationReplace">
+          <xpath>/Defs/ThingDef[defName="Forted_Cannon"]/building/turretBurstCooldownTime</xpath>
+          <value>
+            <turretBurstCooldownTime>1</turretBurstCooldownTime>
+          </value>
+        </li>
+		
+		
+        <li Class="PatchOperationAdd">
+          <xpath>/Defs/ThingDef[defName="Forted_Cannon"]/statBases</xpath>
+          <value>
+            <ShootingAccuracyTurret>1</ShootingAccuracyTurret>
+          </value>
+        </li>
+		
+		<!--   COEHORN   -->
+		
+		<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+          <defName>Weapon_Coehorn</defName>
+
+          <statBases>
+			  <SightsEfficiency>0.5</SightsEfficiency>
+			  <ShotSpread>0.3</ShotSpread>
+			  <SwayFactor>1.34</SwayFactor>
+			  <RangedWeapon_Cooldown>2.71</RangedWeapon_Cooldown>
+          </statBases>
+			
+          <Properties>
+			<verbClass>CombatExtended.Verb_ShootMortarCE</verbClass>
+			<forceNormalTimeSpeed>false</forceNormalTimeSpeed>
+			<hasStandardCommand>true</hasStandardCommand>
+			<defaultProjectile>Bullet_164mmCannonShell_HE_Mortar</defaultProjectile>
+			<warmupTime>3</warmupTime>
+			<minRange>15</minRange>
+			<range>50</range>
+			<burstShotCount>1</burstShotCount>
+			<soundCast>MortarBomb_Explode</soundCast>
+			<muzzleFlashScale>32</muzzleFlashScale>
+			<circularError>1.5</circularError>
+			<indirectFirePenalty>0.6</indirectFirePenalty>
+			<targetParams>
+			  <canTargetLocations>true</canTargetLocations>
+			</targetParams>
+          </Properties>
+			
+          <AmmoUser>
+            <magazineSize>1</magazineSize>
+            <reloadTime>10</reloadTime>
+            <ammoSet>AmmoSet_164mmCannonBall_MortarSmall</ammoSet>
+          </AmmoUser>
+			
+          <FireModes>
+			<aiAimMode>AimedShot</aiAimMode>
+          </FireModes>
+        </li>
+
+        <li Class="PatchOperationAdd">
+          <xpath>/Defs/ThingDef[defName="Turret_Coehorn"]</xpath>
+          <value>
+            <thingClass>CombatExtended.Building_TurretGunCE</thingClass>
+          </value>
+        </li>
+		
+		<li Class="PatchOperationAdd">
+          <xpath>/Defs/ThingDef[defName="Turret_Coehorn"]</xpath>
+          <value>
+            <specialDisplayRadius>50</specialDisplayRadius>
+          </value>
+        </li>
+		
+        <li Class="PatchOperationRemove">
+          <xpath>/Defs/ThingDef[defName="Weapon_Coehorn"]/comps/li[@Class="CompProperties_ChangeableProjectile"]</xpath>
+        </li>
+		
+        <li Class="PatchOperationRemove">
+          <xpath>/Defs/ThingDef[defName="Weapon_Coehorn"]/building</xpath>
+        </li>
+		
+		
+        <li Class="PatchOperationAdd">
+          <xpath>/Defs/ThingDef[defName="Turret_Coehorn"]</xpath>
+          <value>
+            <fillPercent>0.85</fillPercent>
+          </value>
+        </li>
+		
+		
+        <li Class="PatchOperationReplace">
+          <xpath>/Defs/ThingDef[defName="Turret_Coehorn"]/building/turretBurstCooldownTime</xpath>
+          <value>
+            <turretBurstCooldownTime>2</turretBurstCooldownTime>
+          </value>
+        </li>
+		
+		
+        <li Class="PatchOperationAdd">
+          <xpath>/Defs/ThingDef[defName="Turret_Coehorn"]/statBases</xpath>
+          <value>
+            <ShootingAccuracyTurret>1</ShootingAccuracyTurret>
+          </value>
+        </li>
+		
+		
+		<li Class="PatchOperationAdd">
+			<xpath>Defs/ThingDef[defName = "Weapon_Coehorn"]/comps</xpath>
+			<value>
+				  <li Class="CombatExtended.CompProperties_Charges">
+					<chargeSpeeds>
+					  <li>30</li>
+					  <li>50</li>
+					  <li>70</li>
+					  <li>90</li>
+					</chargeSpeeds>
+				  </li>
+				  <li Class="CombatExtended.CompProperties_AmmoUser">
+					<magazineSize>1</magazineSize>
+					<reloadTime>10</reloadTime>
+					<ammoSet>AmmoSet_164mmCannonBall_MortarSmall</ammoSet>
+				  </li>
+			</value>
+		</li>
+
+		<li Class="PatchOperationAdd">
+			<xpath>Defs/ThingDef[defName = "Weapon_Coehorn"]/weaponTags</xpath>
+			<value>
+				<li>TurretGun</li>
+			</value>
+		</li>
+		
+		
+		<li Class="PatchOperationSequence">
+		<success>Always</success>
+		<operations>
+			<li Class="PatchOperationTest">
+			<xpath>Defs/ThingDef[defName="Turret_Coehorn"]/tradeTags</xpath>
+			<success>Invert</success>
+			</li>
+			<li Class="PatchOperationAdd">
+			<xpath>Defs/ThingDef[defName="Turret_Coehorn"]</xpath>
+			<value>
+				<tradeTags />
+			</value>
+			</li>
+		</operations>
+		</li>
+		
+		<li Class="PatchOperationAdd">
+			<xpath>Defs/ThingDef[defName="Turret_Coehorn"]/tradeTags</xpath>
+			<value>
+				<li>CE_Turret</li>
+			</value>
+		</li>
+		
+		<!--   EARLY MORTAR   -->
+		
+		<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+          <defName>Weapon_Early_Mortar</defName>
+
+          <statBases>
+			  <SightsEfficiency>0.5</SightsEfficiency>
+			  <ShotSpread>0.3</ShotSpread>
+			  <SwayFactor>1.34</SwayFactor>
+			  <RangedWeapon_Cooldown>2.71</RangedWeapon_Cooldown>
+          </statBases>
+			
+          <Properties>
+			<verbClass>CombatExtended.Verb_ShootMortarCE</verbClass>
+			<forceNormalTimeSpeed>false</forceNormalTimeSpeed>
+			<hasStandardCommand>true</hasStandardCommand>
+			<defaultProjectile>Bullet_164mmCannonShell_HE_Mortar</defaultProjectile>
+			<warmupTime>4</warmupTime>
+			<minRange>20</minRange>
+			<range>700</range>
+			<burstShotCount>1</burstShotCount>
+			<soundCast>MortarBomb_Explode</soundCast>
+			<muzzleFlashScale>32</muzzleFlashScale>
+			<circularError>1.3</circularError>
+			<indirectFirePenalty>0.4</indirectFirePenalty>
+			<targetParams>
+			  <canTargetLocations>true</canTargetLocations>
+			</targetParams>
+          </Properties>
+			
+          <AmmoUser>
+            <magazineSize>1</magazineSize>
+            <reloadTime>15</reloadTime>
+            <ammoSet>AmmoSet_164mmCannonBall_Mortar</ammoSet>
+          </AmmoUser>
+			
+          <FireModes>
+			<aiAimMode>AimedShot</aiAimMode>
+          </FireModes>
+        </li>
+
+        <li Class="PatchOperationAdd">
+          <xpath>/Defs/ThingDef[defName="Turret_Early_Mortar"]</xpath>
+          <value>
+            <thingClass>CombatExtended.Building_TurretGunCE</thingClass>
+          </value>
+        </li>
+		
+		<li Class="PatchOperationAdd">
+          <xpath>/Defs/ThingDef[defName="Turret_Early_Mortar"]</xpath>
+          <value>
+            <specialDisplayRadius>20</specialDisplayRadius>
+          </value>
+        </li>
+		
+        <li Class="PatchOperationRemove">
+          <xpath>/Defs/ThingDef[defName="Weapon_Early_Mortar"]/comps/li[@Class="CompProperties_ChangeableProjectile"]</xpath>
+        </li>
+		
+        <li Class="PatchOperationRemove">
+          <xpath>/Defs/ThingDef[defName="Weapon_Early_Mortar"]/building</xpath>
+        </li>
+		
+		
+        <li Class="PatchOperationAdd">
+          <xpath>/Defs/ThingDef[defName="Turret_Early_Mortar"]</xpath>
+          <value>
+            <fillPercent>0.85</fillPercent>
+          </value>
+        </li>
+		
+		
+        <li Class="PatchOperationReplace">
+          <xpath>/Defs/ThingDef[defName="Turret_Early_Mortar"]/building/turretBurstCooldownTime</xpath>
+          <value>
+            <turretBurstCooldownTime>2</turretBurstCooldownTime>
+          </value>
+        </li>
+		
+		
+        <li Class="PatchOperationAdd">
+          <xpath>/Defs/ThingDef[defName="Turret_Early_Mortar"]/statBases</xpath>
+          <value>
+            <ShootingAccuracyTurret>1</ShootingAccuracyTurret>
+          </value>
+        </li>
+		
+		
+		<li Class="PatchOperationAdd">
+			<xpath>Defs/ThingDef[defName = "Weapon_Early_Mortar"]/comps</xpath>
+			<value>
+				  <li Class="CombatExtended.CompProperties_Charges">
+					<chargeSpeeds>
+					  <li>30</li>
+					  <li>50</li>
+					  <li>70</li>
+					  <li>90</li>
+					</chargeSpeeds>
+				  </li>
+				  <li Class="CombatExtended.CompProperties_AmmoUser">
+					<magazineSize>1</magazineSize>
+					<reloadTime>15</reloadTime>
+					<ammoSet>AmmoSet_164mmCannonBall_Mortar</ammoSet>
+				  </li>
+			</value>
+		</li>
+
+		<li Class="PatchOperationAdd">
+			<xpath>Defs/ThingDef[defName = "Weapon_Early_Mortar"]/weaponTags</xpath>
+			<value>
+				<li>TurretGun</li>
+			</value>
+		</li>
+		
+		
+		<li Class="PatchOperationSequence">
+		<success>Always</success>
+		<operations>
+			<li Class="PatchOperationTest">
+			<xpath>Defs/ThingDef[defName="Turret_Early_Mortar"]/tradeTags</xpath>
+			<success>Invert</success>
+			</li>
+			<li Class="PatchOperationAdd">
+			<xpath>Defs/ThingDef[defName="Turret_Early_Mortar"]</xpath>
+			<value>
+				<tradeTags />
+			</value>
+			</li>
+		</operations>
+		</li>
+		
+		<li Class="PatchOperationAdd">
+			<xpath>Defs/ThingDef[defName="Turret_Early_Mortar"]/tradeTags</xpath>
+			<value>
+				<li>CE_Turret</li>
+			</value>
+		</li>
+		
+		<!--   FORTED MORTAR   -->
+		
+		<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+          <defName>Weapon_Forted_Mortar</defName>
+
+          <statBases>
+			  <SightsEfficiency>0.5</SightsEfficiency>
+			  <ShotSpread>0.3</ShotSpread>
+			  <SwayFactor>1.34</SwayFactor>
+			  <RangedWeapon_Cooldown>2.71</RangedWeapon_Cooldown>
+          </statBases>
+			
+          <Properties>
+			<verbClass>CombatExtended.Verb_ShootMortarCE</verbClass>
+			<forceNormalTimeSpeed>false</forceNormalTimeSpeed>
+			<hasStandardCommand>true</hasStandardCommand>
+			<defaultProjectile>Bullet_164mmCannonShell_HE_Mortar</defaultProjectile>
+			<warmupTime>4</warmupTime>
+			<minRange>32</minRange>
+			<range>700</range>
+			<burstShotCount>1</burstShotCount>
+			<soundCast>MortarBomb_Explode</soundCast>
+			<muzzleFlashScale>32</muzzleFlashScale>
+			<circularError>1</circularError>
+			<indirectFirePenalty>0.3</indirectFirePenalty>
+			<targetParams>
+			  <canTargetLocations>true</canTargetLocations>
+			</targetParams>
+          </Properties>
+			
+          <AmmoUser>
+            <magazineSize>1</magazineSize>
+            <reloadTime>15</reloadTime>
+            <ammoSet>AmmoSet_164mmCannonBall_Mortar</ammoSet>
+          </AmmoUser>
+			
+          <FireModes>
+			<aiAimMode>AimedShot</aiAimMode>
+          </FireModes>
+        </li>
+
+        <li Class="PatchOperationAdd">
+          <xpath>/Defs/ThingDef[defName="Turret_Forted_Mortar"]</xpath>
+          <value>
+            <thingClass>CombatExtended.Building_TurretGunCE</thingClass>
+          </value>
+        </li>
+		
+		<li Class="PatchOperationAdd">
+          <xpath>/Defs/ThingDef[defName="Turret_Forted_Mortar"]</xpath>
+          <value>
+            <specialDisplayRadius>32</specialDisplayRadius>
+          </value>
+        </li>
+		
+        <li Class="PatchOperationRemove">
+          <xpath>/Defs/ThingDef[defName="Weapon_Forted_Mortar"]/comps/li[@Class="CompProperties_ChangeableProjectile"]</xpath>
+        </li>
+		
+        <li Class="PatchOperationRemove">
+          <xpath>/Defs/ThingDef[defName="Weapon_Forted_Mortar"]/building</xpath>
+        </li>
+		
+		
+        <li Class="PatchOperationAdd">
+          <xpath>/Defs/ThingDef[defName="Turret_Forted_Mortar"]</xpath>
+          <value>
+            <fillPercent>0.85</fillPercent>
+          </value>
+        </li>
+		
+		
+        <li Class="PatchOperationReplace">
+          <xpath>/Defs/ThingDef[defName="Turret_Forted_Mortar"]/building/turretBurstCooldownTime</xpath>
+          <value>
+            <turretBurstCooldownTime>2</turretBurstCooldownTime>
+          </value>
+        </li>
+		
+		
+        <li Class="PatchOperationAdd">
+          <xpath>/Defs/ThingDef[defName="Turret_Forted_Mortar"]/statBases</xpath>
+          <value>
+            <ShootingAccuracyTurret>1</ShootingAccuracyTurret>
+          </value>
+        </li>
+		
+		
+		<li Class="PatchOperationAdd">
+			<xpath>Defs/ThingDef[defName = "Weapon_Forted_Mortar"]/comps</xpath>
+			<value>
+				  <li Class="CombatExtended.CompProperties_Charges">
+					<chargeSpeeds>
+					  <li>30</li>
+					  <li>50</li>
+					  <li>70</li>
+					  <li>90</li>
+					</chargeSpeeds>
+				  </li>
+				  <li Class="CombatExtended.CompProperties_AmmoUser">
+					<magazineSize>1</magazineSize>
+					<reloadTime>15</reloadTime>
+					<ammoSet>AmmoSet_164mmCannonBall_Mortar</ammoSet>
+				  </li>
+			</value>
+		</li>
+
+		<li Class="PatchOperationAdd">
+			<xpath>Defs/ThingDef[defName = "Weapon_Forted_Mortar"]/weaponTags</xpath>
+			<value>
+				<li>TurretGun</li>
+			</value>
+		</li>
+		
+		
+		<li Class="PatchOperationSequence">
+		<success>Always</success>
+		<operations>
+			<li Class="PatchOperationTest">
+			<xpath>Defs/ThingDef[defName="Turret_Forted_Mortar"]/tradeTags</xpath>
+			<success>Invert</success>
+			</li>
+			<li Class="PatchOperationAdd">
+			<xpath>Defs/ThingDef[defName="Turret_Forted_Mortar"]</xpath>
+			<value>
+				<tradeTags />
+			</value>
+			</li>
+		</operations>
+		</li>
+		
+		<li Class="PatchOperationAdd">
+			<xpath>Defs/ThingDef[defName="Turret_Forted_Mortar"]/tradeTags</xpath>
+			<value>
+				<li>CE_Turret</li>
+			</value>
+		</li>
+		
+		
+		<!--   DRAGONATOR   -->
+			
+        <li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+          <defName>Weapon_Dragonator</defName>
+
+          <statBases>
+			  <SightsEfficiency>1</SightsEfficiency>
+			  <ShotSpread>0.3</ShotSpread>
+			  <SwayFactor>1.34</SwayFactor>
+			  <RangedWeapon_Cooldown>3.2</RangedWeapon_Cooldown>
+          </statBases>
+
+          <Properties>
+            <recoilAmount>1.52</recoilAmount>
+            <verbClass>CombatExtended.Verb_ShootCE</verbClass>
+            <hasStandardCommand>True</hasStandardCommand>
+            <defaultProjectile>Bullet_DragonatorSpike</defaultProjectile>
+			<burstShotCount />
+            <warmupTime>5</warmupTime>
+			<requireLineOfSight>true</requireLineOfSight>
+            <range>20</range>
+			<soundCast>MortarBomb_Explode</soundCast>
+			<muzzleFlashScale>2</muzzleFlashScale>
+			<targetParams>
+			  <canTargetLocations>true</canTargetLocations>
+			</targetParams>
+            <recoilPattern>Mounted</recoilPattern>
+          </Properties>
+
+          <AmmoUser>
+            <magazineSize>1</magazineSize>
+            <reloadTime>30</reloadTime>
+            <ammoSet>AmmoSet_Dragonator</ammoSet>
+          </AmmoUser>
+
+          <FireModes>
+			<aiAimMode>AimedShot</aiAimMode>
+          </FireModes>
+        </li>
+
+        <li Class="PatchOperationReplace">
+          <xpath>/Defs/ThingDef[defName="Turret_Dragonator"]/thingClass</xpath>
+          <value>
+            <thingClass>CombatExtended.Building_TurretGunCE</thingClass>
+          </value>
+        </li>
+		
+		<li Class="PatchOperationAdd">
+          <xpath>/Defs/ThingDef[defName="Turret_Dragonator"]</xpath>
+          <value>
+            <specialDisplayRadius>86</specialDisplayRadius>
+          </value>
+        </li>
+
+		
+        <li Class="PatchOperationRemove">
+          <xpath>/Defs/ThingDef[defName="Turret_Dragonator"]/comps/li[@Class="CompProperties_Refuelable"]</xpath>
+        </li>
+		
+		
+        <li Class="PatchOperationReplace">
+          <xpath>/Defs/ThingDef[defName="Turret_Dragonator"]/building/turretBurstCooldownTime</xpath>
+          <value>
+            <turretBurstCooldownTime>1</turretBurstCooldownTime>
+          </value>
+        </li>
+		
+		
+        <li Class="PatchOperationReplace">
+          <xpath>/Defs/ThingDef[defName="Turret_Dragonator"]/statBases/ShootingAccuracyTurret</xpath>
+          <value>
+            <ShootingAccuracyTurret>1</ShootingAccuracyTurret>
+          </value>
+        </li>
+
+		
+        <li Class="PatchOperationAdd">
+          <xpath>/Defs/ThingDef[defName="Turret_Dragonator"]</xpath>
+          <value>
+			<hasInteractionCell>True</hasInteractionCell>
+			<interactionCellOffset>(0,0,-2)</interactionCellOffset>
+			<size>(3,3)</size>
+          </value>
+        </li>
+		
+
+		
+		
+		<!--
+        <li Class="PatchOperationReplace">
+          <xpath>/Defs/ThingDef[defName="Weapon_Cannon"]/building/fixedStorageSettings/filter/categories/li</xpath>
+          <value>
+			  <li>Ammo164mmCannonShells</li>
+          </value>
+        </li>
+		
+		<li Class="PatchOperationReplace">
+          <xpath>/Defs/ThingDef[defName="Weapon_Cannon"]/building/defaultStorageSettings/filter/categories/li</xpath>
+          <value>
+			  <li>Ammo164mmCannonShells</li>
+          </value>
+        </li>
+		
+		
+		<li Class="PatchOperationRemove">
+          <xpath>/Defs/ThingDef[
+		  defName="Swivel_Gun" or
+		  defName="Turret_PivotGun" or
+		  defName="Forted_Cannon" or
+		  defName="Turret_Coehorn" or
+		  defName="Turret_Early_Mortar" or
+		  defName="Turret_Forted_Mortar"
+		  ]/building/buildingTags/li[1]</xpath>
+        </li>
+		
+		<li Class="PatchOperationReplace">
+          <xpath>/Defs/ThingDef[
+		  defName="Weapon_SwivelGun" or
+		  defName="Weapon_PivotGun" or
+		  defName="Weapon_FortedCannon" or
+		  defName="Weapon_Coehorn" or
+		  defName="Weapon_Early_Mortar" or
+		  defName="Weapon_Forted_Mortar"
+		  ]/weaponTags</xpath>
+		  <value>
+			<weaponTags>
+			  <li>TurretGun</li>
+			</weaponTags>
+		  </value>
+        </li>
+		-->
+		
+		</operations>
+		</match>
+	</Operation>
+	
+</Patch>
