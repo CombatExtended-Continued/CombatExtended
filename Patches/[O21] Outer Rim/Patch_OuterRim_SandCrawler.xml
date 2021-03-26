@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+	
+	<Operation Class="PatchOperationFindMod">
+    <mods>
+		<li>Outer Rim - Tatooine Sandcrawler (Continued)</li>
+    </mods>
+		<match Class="PatchOperationSequence">
+		<operations>
+		
+			<li Class="PatchOperationAdd">
+				<xpath>Defs</xpath>
+				<value>
+					<CombatExtended.BodyShapeDef>
+						<defName>Sandcrawler_Shape</defName>
+						<width>0.25</width>
+						<widthLaying>0.25</widthLaying>
+						<height>0.01</height>
+						<heightLaying>0.01</heightLaying>
+					</CombatExtended.BodyShapeDef>
+				</value>
+			</li>
+			
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="Sandcrawler"]/race/baseBodySize</xpath>
+				<value>
+					<baseBodySize>10</baseBodySize>
+				</value>
+			</li>
+			
+			<li Class="PatchOperationAddModExtension">
+				<xpath>Defs/ThingDef[defName="Sandcrawler"]</xpath>
+				<value>
+					<li Class="CombatExtended.RacePropertiesExtensionCE">
+						<bodyShape>Sandcrawler_Shape</bodyShape>
+					</li>
+				</value>
+			</li>
+
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName="Sandcrawler"]/statBases</xpath>
+				<value>
+					<CarryWeight>400</CarryWeight>
+					<CarryBulk>80</CarryBulk>
+					<MeleeDodgeChance>0</MeleeDodgeChance>
+					<MeleeCritChance>0</MeleeCritChance>
+					<MeleeParryChance>0</MeleeParryChance>
+					<MaxHitPoints>1000</MaxHitPoints>
+					<SmokeSensitivity>0</SmokeSensitivity>
+				</value>
+			</li>
+			
+			
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="Sandcrawler"]/statBases/ArmorRating_Blunt</xpath>
+				<value>
+					<ArmorRating_Blunt>30</ArmorRating_Blunt>
+				</value>
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="Sandcrawler"]/statBases/ArmorRating_Sharp</xpath>
+				<value>
+					<ArmorRating_Sharp>15</ArmorRating_Sharp>
+				</value>
+			</li>
+			
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="Sandcrawler"]/tools</xpath>
+				<value>
+					<tools>
+					<li Class="CombatExtended.ToolCE">
+						<label>head</label>
+						<capacities>
+							<li>Blunt</li>
+						</capacities>
+						<power>35</power>
+						<cooldownTime>3.51</cooldownTime>
+						<linkedBodyPartsGroup>HeadAttackTool</linkedBodyPartsGroup>
+						<armorPenetrationSharp>0</armorPenetrationSharp>
+						<armorPenetrationBlunt>15</armorPenetrationBlunt>
+						<alwaysTreatAsWeapon>true</alwaysTreatAsWeapon>
+					</li>
+					</tools>
+				</value>
+			</li>
+			
+			
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/BodyDef[defName="MechanicalSandcrawler"]//*[def="FrontHatch"]/groups</xpath>
+				<value>
+					<li>CoveredByNaturalArmor</li>
+				</value>
+			</li>
+
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/BodyDef[defName="MechanicalSandcrawler"]//*[def="FrontWindow" or def="Reactor" or def="FluidReprocessor"]</xpath>
+				<value>
+					<groups>
+						<li>CoveredByNaturalArmor</li>
+					</groups>
+				</value>
+			</li>
+		
+		</operations>
+		</match>
+	</Operation>
+	
+</Patch>
