@@ -47,6 +47,7 @@ Mod |
 A Dog Said...	|
 Alpha Animals |
 Alpha Biomes |
+Ancient Fallout Armory  |
 Android Tiers	|
 Android Tiers++	|
 Androids	|
