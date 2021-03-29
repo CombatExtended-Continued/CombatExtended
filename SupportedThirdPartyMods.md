@@ -46,7 +46,9 @@ Mod |
 [SYR] Thrumkin	|
 A Dog Said...	|
 Alpha Animals |
+Alpha Biomes |
 Ancient Eastern Armory  |
+Ancient Fallout Armory  |
 Android Tiers	|
 Android Tiers++	|
 Androids	|
@@ -147,7 +149,9 @@ Moyo - From the Depth   |
 Nearmare Race	|
 NewRatkinPlus |
 Ni'Hal	|
+Not Only Just a Cannon  |
 Orassans	|
+Outer Rim - Tatooine    |
 Palm Cats   |
 Penguin	|
 Polarisbloc - Security Force	|
