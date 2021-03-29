@@ -47,6 +47,7 @@ Mod |
 A Dog Said...	|
 Alpha Animals |
 Alpha Biomes |
+Ancient Eastern Armory  |
 Ancient Fallout Armory  |
 Android Tiers	|
 Android Tiers++	|
@@ -82,6 +83,7 @@ ED-Shields	|
 Equiums Horse Race	|
 Erin's Critter Collection |
 Erin's Forest Critters |
+Erin's Friendly Ferrets |
 Erin's Fox Squirrel |
 Erin's Mountain Animals |
 Expanded Materials - Metals |
@@ -195,6 +197,7 @@ T-45b Power Armor	|
 The GiantRace	|
 TouhouStyle	|
 Trading Economy	|
+Tribal Warrior Set! |
 Tsar Armory	|
 Turk's Guns |
 Turret Collection	|
