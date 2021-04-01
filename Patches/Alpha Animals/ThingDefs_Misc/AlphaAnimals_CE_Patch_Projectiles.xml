@@ -2,16 +2,13 @@
 <Patch>
 	<Operation Class="PatchOperationFindMod">
 		<mods>
-		<li>Alpha Animals</li>
+			<li>Alpha Animals</li>
 		</mods>
-
 		<match Class="PatchOperationSequence">
 			<operations>
-
-			<!-- ============== Changing Projectile's thingClass to CE ones ================ -->
-
-			<li Class="PatchOperationAdd">
-				<xpath>/Defs/ThingDef[defName="AA_AcidicWeb" or
+				<!-- ============== Changing Projectile's thingClass to CE ones ================ -->
+				<li Class="PatchOperationAdd">
+					<xpath>/Defs/ThingDef[defName="AA_AcidicWeb" or
 				defName="AA_Bullet_Barb" or
 				defName="AA_Bullet_VenomBarb" or
 				defName="AA_FireWeb" or
@@ -24,31 +21,30 @@
 				defName="AA_FireSpit" or
 				defName="AA_AcidicVomit"
 				]</xpath>
-				<value>
-					<thingClass>CombatExtended.BulletCE</thingClass>
-				</value>
-			</li>
-
-			<li Class="PatchOperationReplace">
-				<xpath>/Defs/ThingDef[defName="AA_Bullet_Rock" or
+					<value>
+						<thingClass>CombatExtended.BulletCE</thingClass>
+					</value>
+				</li>
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/ThingDef[defName="AA_Bullet_Rock" or
 				defName="AA_ToxicInk" or
 				defName="AA_IncendiaryMote"
 				]/thingClass</xpath>
-				<value>
-					<thingClass>CombatExtended.ProjectileCE_Explosive</thingClass>
-				</value>
-			</li>
-			
-			<!-- ============== Adding 'Standard' AimingAccuracy node to creatures' that use ranged attack statBases. =============== -->
-			
-			<li Class="PatchOperationAdd">
-				<xpath>/Defs/ThingDef[defName="AA_BlackSpelopede" or
+					<value>
+						<thingClass>CombatExtended.ProjectileCE_Explosive</thingClass>
+					</value>
+				</li>
+				<!-- ============== Adding 'Standard' AimingAccuracy node to creatures' that use ranged attack statBases. =============== -->
+				<li Class="PatchOperationAdd">
+					<xpath>/Defs/ThingDef[defName="AA_BlackSpelopede" or
 				defName="AA_BlackSpider" or
 				defName="AA_Barbslinger" or
 				defName="AA_Blizzarisk" or defName="AA_BlizzariskClutchMother" or
 				defName="AA_Cinderlisk" or
-				defName="AA_Dunealisk" or defName="AA_DunealiskClutchMother" or
-				defName="AA_Feralisk" or defName="AA_FeraliskClutchMother" or
+				defName="AA_Dunealisk" or 
+				defName="AA_DunealiskClutchMother" or
+				defName="AA_Feralisk" or 
+				defName="AA_FeraliskClutchMother" or
 				defName="AA_GreenGoo" or
 				defName="AA_InfectedAerofleet" or
 				defName="AA_Junglelisk" or
@@ -62,314 +58,289 @@
 				defName="AA_TetraSlug" or
 				defName="AA_Thermadon"
 				]/statBases</xpath>
-				<value>
-					<AimingAccuracy>0.8</AimingAccuracy>
-				</value>
-			</li>
-
-			<!-- Different accuracy for spammy stuff -->
-
-			<li Class="PatchOperationAdd">
-				<xpath>/Defs/ThingDef[defName="AA_Needlepost" or
+					<value>
+						<AimingAccuracy>0.8</AimingAccuracy>
+					</value>
+				</li>
+				<!-- Different accuracy for spammy stuff -->
+				<li Class="PatchOperationAdd">
+					<xpath>/Defs/ThingDef[defName="AA_Needlepost" or
 				defName="AA_Needleroll"]/statBases</xpath>
-				<value>
-					<AimingAccuracy>0.3</AimingAccuracy>
-				</value>
-			</li>
-			
-			<!-- Different accuracy for Gallatross since his Projectile isn't directly under his control (it's just a random boulder he picks off the ground with his psionic abilities) -->
-
-			<li Class="PatchOperationAdd">
-				<xpath>/Defs/ThingDef[defName="AA_Gallatross"]/statBases</xpath>
-				<value>
-					<AimingAccuracy>0.6</AimingAccuracy>
-				</value>
-			</li>
-				
-			<!-- Dunelisk web, does burn damage but does not set the target on fire -->
-				
-			<li Class="PatchOperationAdd"> 
-			<xpath>/Defs</xpath>
-				<value>
-	<ThingDef ParentName="BaseBullet">
-		<defName>AA_BurnWeb</defName>
-		<label>burning web</label>
-		<thingClass>CombatExtended.BulletCE</thingClass>
-
-		<graphicData>
-			<texPath>Things/Projectiles/AA_Web</texPath>
-			<graphicClass>Graphic_Single</graphicClass>
-			<drawSize>2</drawSize>
-		</graphicData>
-					<projectile Class="CombatExtended.ProjectilePropertiesCE">
-						<flyOverhead>false</flyOverhead>
-						<damageDef>Burn</damageDef>
-						<damageAmountBase>6</damageAmountBase>
-						<speed>15</speed>
-						<armorPenetrationBlunt>3</armorPenetrationBlunt>
-						<!-- Adding secondary damage with CE's Procedure instead of AA's AnimalProjectile -->
-						<secondaryDamage>
-							<li>
-							  <def>Stun</def>
-							  <amount>8</amount>
+					<value>
+						<AimingAccuracy>0.3</AimingAccuracy>
+					</value>
+				</li>
+				<!-- Different accuracy for Gallatross since his Projectile isn't directly under his control (it's just a random boulder he picks off the ground with his psionic abilities) -->
+				<li Class="PatchOperationAdd">
+					<xpath>/Defs/ThingDef[defName="AA_Gallatross"]/statBases</xpath>
+					<value>
+						<AimingAccuracy>0.6</AimingAccuracy>
+					</value>
+				</li>
+				<!-- Dunelisk web, does burn damage but does not set the target on fire -->
+				<li Class="PatchOperationAdd">
+					<xpath>/Defs</xpath>
+					<value>
+						<ThingDef ParentName="BaseBullet">
+							<defName>AA_BurnWeb</defName>
+							<label>burning web</label>
+							<thingClass>CombatExtended.BulletCE</thingClass>
+							<graphicData>
+								<texPath>Things/Projectiles/AA_Web</texPath>
+								<graphicClass>Graphic_Single</graphicClass>
+								<drawSize>2</drawSize>
+							</graphicData>
+							<projectile Class="CombatExtended.ProjectilePropertiesCE">
+								<flyOverhead>false</flyOverhead>
+								<damageDef>Burn</damageDef>
+								<damageAmountBase>6</damageAmountBase>
+								<speed>15</speed>
+								<armorPenetrationBlunt>3</armorPenetrationBlunt>
+								<!-- Adding secondary damage with CE's Procedure instead of AA's AnimalProjectile -->
+								<secondaryDamage>
+									<li>
+										<def>Stun</def>
+										<amount>8</amount>
+									</li>
+								</secondaryDamage>
+							</projectile>
+						</ThingDef>
+					</value>
+				</li>
+				<!-- =============== Now defining Projectiles in CE Procedure ============= -->
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/ThingDef[defName="AA_Bullet_Barb"]/projectile</xpath>
+					<value>
+						<projectile Class="CombatExtended.ProjectilePropertiesCE">
+							<flyOverhead>false</flyOverhead>
+							<damageDef>AA_ToxicSting</damageDef>
+							<damageAmountBase>7</damageAmountBase>
+							<speed>34</speed>
+							<armorPenetrationSharp>1.5</armorPenetrationSharp>
+							<armorPenetrationBlunt>1.440</armorPenetrationBlunt>
+						</projectile>
+					</value>
+				</li>
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/ThingDef[defName="AA_PoisonBolt"]/projectile</xpath>
+					<value>
+						<projectile Class="CombatExtended.ProjectilePropertiesCE">
+							<flyOverhead>false</flyOverhead>
+							<damageDef>AA_ToxicSting</damageDef>
+							<damageAmountBase>11</damageAmountBase>
+							<speed>27</speed>
+							<armorPenetrationSharp>7.5</armorPenetrationSharp>
+							<armorPenetrationBlunt>1.6</armorPenetrationBlunt>
+						</projectile>
+					</value>
+				</li>
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/ThingDef[defName="AA_RedPoisonBolt"]/projectile</xpath>
+					<value>
+						<projectile Class="CombatExtended.ProjectilePropertiesCE">
+							<flyOverhead>false</flyOverhead>
+							<damageDef>AA_ToxicSting</damageDef>
+							<damageAmountBase>12</damageAmountBase>
+							<speed>27</speed>
+							<armorPenetrationSharp>6</armorPenetrationSharp>
+							<armorPenetrationBlunt>1.660</armorPenetrationBlunt>
+						</projectile>
+					</value>
+				</li>
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/ThingDef[defName="AA_Plasma"]/projectile</xpath>
+					<value>
+						<projectile Class="CombatExtended.ProjectilePropertiesCE">
+							<flyOverhead>false</flyOverhead>
+							<damageDef>Flame</damageDef>
+							<damageAmountBase>24</damageAmountBase>
+							<speed>30</speed>
+							<armorPenetrationSharp>16</armorPenetrationSharp>
+							<armorPenetrationBlunt>14.4</armorPenetrationBlunt>
+						</projectile>
+					</value>
+				</li>
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/ThingDef[defName="AA_Quill"]/projectile</xpath>
+					<value>
+						<projectile Class="CombatExtended.ProjectilePropertiesCE">
+							<flyOverhead>false</flyOverhead>
+							<damageDef>AA_ToxicSting</damageDef>
+							<damageAmountBase>20</damageAmountBase>
+							<speed>20</speed>
+							<armorPenetrationSharp>3</armorPenetrationSharp>
+							<armorPenetrationBlunt>3</armorPenetrationBlunt>
+						</projectile>
+					</value>
+				</li>
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/ThingDef[defName="AA_Bullet_VenomBarb"]/projectile</xpath>
+					<value>
+						<projectile Class="CombatExtended.ProjectilePropertiesCE">
+							<flyOverhead>false</flyOverhead>
+							<damageDef>AA_ToxicSting</damageDef>
+							<damageAmountBase>7</damageAmountBase>
+							<speed>27</speed>
+							<armorPenetrationSharp>1.5</armorPenetrationSharp>
+							<armorPenetrationBlunt>1.440</armorPenetrationBlunt>
+						</projectile>
+					</value>
+				</li>
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/ThingDef[defName="AA_Bullet_Rock"]/projectile</xpath>
+					<value>
+						<projectile Class="CombatExtended.ProjectilePropertiesCE">
+							<explosionRadius>1.5</explosionRadius>
+							<damageDef>Bomb</damageDef>
+							<damageAmountBase>40</damageAmountBase>
+							<soundExplode>MortarBomb_Explode</soundExplode>
+							<speed>14</speed>
+							<armorPenetrationSharp>5</armorPenetrationSharp>
+							<armorPenetrationBlunt>25</armorPenetrationBlunt>
+							<applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
+						</projectile>
+					</value>
+				</li>
+				<li Class="PatchOperationAdd">
+					<xpath>/Defs/ThingDef[defName="AA_Bullet_Rock"]</xpath>
+					<value>
+						<comps>
+							<li Class="CombatExtended.CompProperties_Fragments">
+								<fragments>
+									<Fragment_Small>14</Fragment_Small>
+									<Fragment_Large>4</Fragment_Large>
+								</fragments>
 							</li>
-						</secondaryDamage>
-					</projectile>
-	</ThingDef>
-				</value>
-			</li>
-			
-			<!-- =============== Now defining Projectiles in CE Procedure ============= -->
-						
-			<li Class="PatchOperationReplace">
-				<xpath>/Defs/ThingDef[defName="AA_Bullet_Barb"]/projectile</xpath>
-				<value>
-					<projectile Class="CombatExtended.ProjectilePropertiesCE">
-						<flyOverhead>false</flyOverhead>
-						<damageDef>AA_ToxicSting</damageDef>
-						<damageAmountBase>7</damageAmountBase>
-						<speed>34</speed>
-						<armorPenetrationSharp>1.5</armorPenetrationSharp>
-						<armorPenetrationBlunt>1.440</armorPenetrationBlunt>
-					</projectile>
-				</value>
-			</li>
-
-			<li Class="PatchOperationReplace">
-				<xpath>/Defs/ThingDef[defName="AA_PoisonBolt"]/projectile</xpath>
-				<value>
-					<projectile Class="CombatExtended.ProjectilePropertiesCE">
-						<flyOverhead>false</flyOverhead>
-						<damageDef>AA_ToxicSting</damageDef>
-						<damageAmountBase>11</damageAmountBase>
-						<speed>27</speed>
-						<armorPenetrationSharp>7.5</armorPenetrationSharp>
-						<armorPenetrationBlunt>1.6</armorPenetrationBlunt>
-					</projectile>
-				</value>
-			</li>
-
-			<li Class="PatchOperationReplace">
-				<xpath>/Defs/ThingDef[defName="AA_RedPoisonBolt"]/projectile</xpath>
-				<value>
-					<projectile Class="CombatExtended.ProjectilePropertiesCE">
-						<flyOverhead>false</flyOverhead>
-						<damageDef>AA_ToxicSting</damageDef>
-						<damageAmountBase>12</damageAmountBase>
-						<speed>27</speed>
-						<armorPenetrationSharp>6</armorPenetrationSharp>
-						<armorPenetrationBlunt>1.660</armorPenetrationBlunt>
-					</projectile>
-				</value>
-			</li>
-			
-			<li Class="PatchOperationReplace">
-				<xpath>/Defs/ThingDef[defName="AA_Plasma"]/projectile</xpath>
-				<value>
-					<projectile Class="CombatExtended.ProjectilePropertiesCE">
-						<flyOverhead>false</flyOverhead>
-						<damageDef>Flame</damageDef>
-						<damageAmountBase>24</damageAmountBase>
-						<speed>30</speed>
-						<armorPenetrationSharp>16</armorPenetrationSharp>
-						<armorPenetrationBlunt>14.4</armorPenetrationBlunt>
-					</projectile>
-				</value>
-			</li>
-
-			<li Class="PatchOperationReplace">
-				<xpath>/Defs/ThingDef[defName="AA_Quill"]/projectile</xpath>
-				<value>
-					<projectile Class="CombatExtended.ProjectilePropertiesCE">
-						<flyOverhead>false</flyOverhead>
-						<damageDef>AA_ToxicSting</damageDef>
-						<damageAmountBase>20</damageAmountBase>
-						<speed>20</speed>
-						<armorPenetrationSharp>3</armorPenetrationSharp>
-						<armorPenetrationBlunt>3</armorPenetrationBlunt>
-					</projectile>
-				</value>
-			</li>
-
-			<li Class="PatchOperationReplace">
-				<xpath>/Defs/ThingDef[defName="AA_Bullet_VenomBarb"]/projectile</xpath>
-				<value>
-					<projectile Class="CombatExtended.ProjectilePropertiesCE">
-						<flyOverhead>false</flyOverhead>
-						<damageDef>AA_ToxicSting</damageDef>
-						<damageAmountBase>7</damageAmountBase>
-						<speed>27</speed>
-						<armorPenetrationSharp>1.5</armorPenetrationSharp>
-						<armorPenetrationBlunt>1.440</armorPenetrationBlunt>
-					</projectile>
-				</value>
-			</li>
-
-			<li Class="PatchOperationReplace">
-				<xpath>/Defs/ThingDef[defName="AA_Bullet_Rock"]/projectile</xpath>
-				<value>
-					<projectile Class="CombatExtended.ProjectilePropertiesCE">
-						<explosionRadius>1.5</explosionRadius>
-						<damageDef>Bomb</damageDef>
-						<damageAmountBase>40</damageAmountBase>
-						<soundExplode>MortarBomb_Explode</soundExplode>
-						<speed>14</speed>
-						<armorPenetrationSharp>5</armorPenetrationSharp>
-						<armorPenetrationBlunt>25</armorPenetrationBlunt>
-						<applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
-					</projectile>
-				</value>
-			</li>
-			
-			<li Class="PatchOperationAdd">
-				<xpath>/Defs/ThingDef[defName="AA_Bullet_Rock"]</xpath>
-				<value>
-					<comps>				
-						<li Class="CombatExtended.CompProperties_Fragments">
-							<fragments>
-							<Fragment_Small>14</Fragment_Small>
-							<Fragment_Large>4</Fragment_Large>
-							</fragments>
-						</li>
-					</comps>
-				</value>
-			</li>
-
-			<li Class="PatchOperationReplace">
-				<xpath>/Defs/ThingDef[defName="AA_FrostWeb"]/projectile</xpath>
-				<value>
-					<projectile Class="CombatExtended.ProjectilePropertiesCE">
-						<flyOverhead>false</flyOverhead>
-						<damageDef>Frostbite</damageDef>
-						<damageAmountBase>6</damageAmountBase>
-						<speed>15</speed>
-						<armorPenetrationBlunt>3</armorPenetrationBlunt>
-						<!-- Adding secondary damage with CE's Procedure instead of AA's AnimalProjectile -->
-						<secondaryDamage>
-							<li>
-							  <def>Stun</def>
-							  <amount>8</amount>
-							</li>
-						</secondaryDamage>
-					</projectile>
-				</value>
-			</li>
-
-			<li Class="PatchOperationReplace">
-				<xpath>/Defs/ThingDef[defName="AA_FireWeb"]/projectile</xpath>
-				<value>
-					<projectile Class="CombatExtended.ProjectilePropertiesCE">
-						<flyOverhead>false</flyOverhead>
-						<damageDef>Flame</damageDef>
-						<damageAmountBase>3</damageAmountBase>
-						<speed>15</speed>
-						<armorPenetrationBlunt>3</armorPenetrationBlunt>
-						<!-- Adding secondary damage with CE's Procedure instead of AA's AnimalProjectile -->
-						<secondaryDamage>
-							<li>
-							  <def>Stun</def>
-							  <amount>8</amount>
-							</li>
-						</secondaryDamage>
-					</projectile>
-				</value>
-			</li>
-
-			<li Class="PatchOperationReplace">
-				<xpath>/Defs/ThingDef[defName="AA_AcidicWeb"]/projectile</xpath>
-				<value>
-					<projectile Class="CombatExtended.ProjectilePropertiesCE">
-						<flyOverhead>false</flyOverhead>
-						<damageDef>AA_AcidSpit</damageDef>
-						<damageAmountBase>6</damageAmountBase>
-						<speed>15</speed>
-						<armorPenetrationBlunt>3</armorPenetrationBlunt>
-						<!-- Adding secondary damage with CE's Procedure instead of AA's AnimalProjectile -->
-						<secondaryDamage>
-							<li>
-							  <def>Stun</def>
-							  <amount>8</amount>
-							</li>
-						</secondaryDamage>
-					</projectile>
-				</value>
-			</li>
-			
-						<!-- ======== Note: AA_ExplodingWeb wasn't used in any Race, so it wasn't included. If it gets added, just add a secondaryDamage to the corresponding projectile, with the Bomb damageDef ======== -->
-			
-			<li Class="PatchOperationReplace">
-				<xpath>/Defs/ThingDef[defName="AA_Web"]/projectile</xpath>
-				<value>
-					<projectile Class="CombatExtended.ProjectilePropertiesCE">
-						<flyOverhead>false</flyOverhead>
-						<damageDef>Stun</damageDef>
-						<damageAmountBase>15</damageAmountBase>
-						<speed>15</speed>
-						<armorPenetrationBlunt>0.25</armorPenetrationBlunt>
-					</projectile>
-				</value>
-			</li>
-			
-			<li Class="PatchOperationReplace">
-				<xpath>/Defs/ThingDef[defName="AA_IncendiaryMote"]/projectile</xpath>
-				<value>
-					<projectile Class="CombatExtended.ProjectilePropertiesCE">
-						<speed>30</speed>
-						<damageDef>Flame</damageDef>
-						<damageAmountBase>10</damageAmountBase>
-						<explosionRadius>1.1</explosionRadius>
-						<preExplosionSpawnThingDef>Filth_Fuel</preExplosionSpawnThingDef>
-						<preExplosionSpawnChance>0.6</preExplosionSpawnChance>
-						<ai_IsIncendiary>true</ai_IsIncendiary>
-						<soundExplode>Interact_Ignite</soundExplode>
-					</projectile>
-				</value>
-			</li>
-
-			<li Class="PatchOperationReplace">
-				<xpath>/Defs/ThingDef[defName="AA_ToxicInk"]/projectile</xpath>
-				<value>
-					<projectile Class="CombatExtended.ProjectilePropertiesCE">
-						<speed>25</speed>
-						<damageDef>AA_ToxicBolt</damageDef>
-						<damageAmountBase>40</damageAmountBase>
-						<explosionRadius>3</explosionRadius>
-						<soundHitThickRoof>Artillery_HitThickRoof</soundHitThickRoof>
-						<soundExplode>MortarBomb_Explode</soundExplode>
-						<soundAmbient>MortarRound_Ambient</soundAmbient>
-						<postExplosionSpawnThingDef>AA_SmokeInk</postExplosionSpawnThingDef>
-						<postExplosionSpawnThingCount>1</postExplosionSpawnThingCount>
-						<postExplosionSpawnChance>1</postExplosionSpawnChance>
-						<armorPenetrationSharp>12</armorPenetrationSharp>
-					</projectile>
-				</value>
-			</li>
-
-			<li Class="PatchOperationReplace">
-				<xpath>/Defs/ThingDef[defName="AA_FireSpit"]/projectile</xpath>
-				<value>
-					<projectile Class="CombatExtended.ProjectilePropertiesCE">
-						<flyOverhead>false</flyOverhead>
-						<damageDef>Flame</damageDef>
-						<damageAmountBase>4</damageAmountBase>
-						<speed>15</speed>
-						<ai_IsIncendiary>true</ai_IsIncendiary>
-					</projectile>
-				</value>
-			</li>
-			
-			<li Class="PatchOperationReplace">
-				<xpath>/Defs/ThingDef[defName="AA_AcidicVomit"]/projectile</xpath>
-				<value>
-					<projectile Class="CombatExtended.ProjectilePropertiesCE">
-						<flyOverhead>false</flyOverhead>
-						<damageDef>AA_AcidSpit</damageDef>
-						<damageAmountBase>6</damageAmountBase>
-						<speed>20</speed>
-					</projectile>
-				</value>
-			</li>
-			
+						</comps>
+					</value>
+				</li>
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/ThingDef[defName="AA_FrostWeb"]/projectile</xpath>
+					<value>
+						<projectile Class="CombatExtended.ProjectilePropertiesCE">
+							<flyOverhead>false</flyOverhead>
+							<damageDef>Frostbite</damageDef>
+							<damageAmountBase>6</damageAmountBase>
+							<speed>15</speed>
+							<armorPenetrationBlunt>3</armorPenetrationBlunt>
+							<!-- Adding secondary damage with CE's Procedure instead of AA's AnimalProjectile -->
+							<secondaryDamage>
+								<li>
+									<def>Stun</def>
+									<amount>8</amount>
+								</li>
+							</secondaryDamage>
+						</projectile>
+					</value>
+				</li>
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/ThingDef[defName="AA_FireWeb"]/projectile</xpath>
+					<value>
+						<projectile Class="CombatExtended.ProjectilePropertiesCE">
+							<flyOverhead>false</flyOverhead>
+							<damageDef>Flame</damageDef>
+							<damageAmountBase>3</damageAmountBase>
+							<speed>15</speed>
+							<armorPenetrationBlunt>3</armorPenetrationBlunt>
+							<!-- Adding secondary damage with CE's Procedure instead of AA's AnimalProjectile -->
+							<secondaryDamage>
+								<li>
+									<def>Stun</def>
+									<amount>8</amount>
+								</li>
+							</secondaryDamage>
+						</projectile>
+					</value>
+				</li>
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/ThingDef[defName="AA_AcidicWeb"]/projectile</xpath>
+					<value>
+						<projectile Class="CombatExtended.ProjectilePropertiesCE">
+							<flyOverhead>false</flyOverhead>
+							<damageDef>AA_AcidSpit</damageDef>
+							<damageAmountBase>6</damageAmountBase>
+							<speed>15</speed>
+							<armorPenetrationBlunt>3</armorPenetrationBlunt>
+							<!-- Adding secondary damage with CE's Procedure instead of AA's AnimalProjectile -->
+							<secondaryDamage>
+								<li>
+									<def>Stun</def>
+									<amount>8</amount>
+								</li>
+							</secondaryDamage>
+						</projectile>
+					</value>
+				</li>
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/ThingDef[defName="AA_AcidicVomit"]/projectile</xpath>
+					<value>
+						<projectile Class="CombatExtended.ProjectilePropertiesCE">
+							<damageDef>AA_AcidSpit</damageDef>
+							<flyOverhead>false</flyOverhead>
+							<damageAmountBase>6</damageAmountBase>
+							<speed>20</speed>
+							<armorPenetrationBlunt>3</armorPenetrationBlunt>
+						</projectile>
+					</value>
+				</li>
+				<!-- ======== Note: AA_ExplodingWeb wasn't used in any Race, so it wasn't included. If it gets added, just add a secondaryDamage to the corresponding projectile, with the Bomb damageDef ======== -->
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/ThingDef[defName="AA_Web"]/projectile</xpath>
+					<value>
+						<projectile Class="CombatExtended.ProjectilePropertiesCE">
+							<flyOverhead>false</flyOverhead>
+							<damageDef>Stun</damageDef>
+							<damageAmountBase>15</damageAmountBase>
+							<speed>15</speed>
+							<armorPenetrationBlunt>0.25</armorPenetrationBlunt>
+						</projectile>
+					</value>
+				</li>
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/ThingDef[defName="AA_IncendiaryMote"]/projectile</xpath>
+					<value>
+						<projectile Class="CombatExtended.ProjectilePropertiesCE">
+							<speed>30</speed>
+							<damageDef>Flame</damageDef>
+							<damageAmountBase>10</damageAmountBase>
+							<explosionRadius>1.1</explosionRadius>
+							<preExplosionSpawnThingDef>Filth_Fuel</preExplosionSpawnThingDef>
+							<preExplosionSpawnChance>0.6</preExplosionSpawnChance>
+							<ai_IsIncendiary>true</ai_IsIncendiary>
+							<soundExplode>Interact_Ignite</soundExplode>
+						</projectile>
+					</value>
+				</li>
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/ThingDef[defName="AA_ToxicInk"]/projectile</xpath>
+					<value>
+						<projectile Class="CombatExtended.ProjectilePropertiesCE">
+							<speed>25</speed>
+							<damageDef>AA_ToxicBolt</damageDef>
+							<damageAmountBase>40</damageAmountBase>
+							<explosionRadius>3</explosionRadius>
+							<soundHitThickRoof>Artillery_HitThickRoof</soundHitThickRoof>
+							<soundExplode>MortarBomb_Explode</soundExplode>
+							<soundAmbient>MortarRound_Ambient</soundAmbient>
+							<postExplosionSpawnThingDef>AA_SmokeInk</postExplosionSpawnThingDef>
+							<postExplosionSpawnThingCount>1</postExplosionSpawnThingCount>
+							<postExplosionSpawnChance>1</postExplosionSpawnChance>
+							<armorPenetrationSharp>12</armorPenetrationSharp>
+						</projectile>
+					</value>
+				</li>
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/ThingDef[defName="AA_FireSpit"]/projectile</xpath>
+					<value>
+						<projectile Class="CombatExtended.ProjectilePropertiesCE">
+							<flyOverhead>false</flyOverhead>
+							<damageDef>Flame</damageDef>
+							<damageAmountBase>4</damageAmountBase>
+							<speed>15</speed>
+							<ai_IsIncendiary>true</ai_IsIncendiary>
+						</projectile>
+					</value>
+				</li>
 			</operations>
 		</match>
 	</Operation>
