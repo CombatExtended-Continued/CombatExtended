@@ -21,7 +21,8 @@
 				defName="AA_Quill" or
 				defName="AA_RedPoisonBolt" or
 				defName="AA_Web" or
-				defName="AA_FireSpit"
+				defName="AA_FireSpit" or
+				defName="AA_AcidicVomit
 				]</xpath>
 				<value>
 					<thingClass>CombatExtended.BulletCE</thingClass>
@@ -353,6 +354,18 @@
 						<damageAmountBase>4</damageAmountBase>
 						<speed>15</speed>
 						<ai_IsIncendiary>true</ai_IsIncendiary>
+					</projectile>
+				</value>
+			</li>
+			
+			<li Class="PatchOperationReplace">
+				<xpath>/Defs/ThingDef[defName="AA_AcidicVomit"]/projectile</xpath>
+				<value>
+					<projectile Class="CombatExtended.ProjectilePropertiesCE">
+						<flyOverhead>false</flyOverhead>
+						<damageDef>AA_AcidSpit</damageDef>
+						<damageAmountBase>6</damageAmountBase>
+						<speed>20</speed>
 					</projectile>
 				</value>
 			</li>
