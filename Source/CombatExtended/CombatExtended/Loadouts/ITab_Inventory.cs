@@ -339,7 +339,7 @@ namespace CombatExtended
                                 }
                                 equipOption = new FloatMenuOption(
                                     equipOptionLabel,
-                                    (SelPawnForGear.story != null && SelPawnForGear.WorkTagIsDisabled(WorkTags.Violent))
+                                    (SelPawnForGear.story != null && SelPawnForGear.WorkTagIsDisabled(WorkTags.Violent) && !eq.def.IsNonLethalWeapon())
                                     ? null
                                     : new Action(delegate
                                     {

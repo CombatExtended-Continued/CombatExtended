@@ -417,4 +417,36 @@ namespace CombatExtended.HarmonyCE
             return true;
         }
     }
+
+    //Make non-lethal weapons equippable by non-violent pawns
+    [HarmonyPatch(typeof(FloatMenuMakerMap), "AddHumanlikeOrders")]
+    class Harmony_FloatMenuMakerMap_AddHumanlikeOrders_Patch
+    {
+        [HarmonyTranspiler]
+        static IEnumerable<CodeInstruction> Transpiler(IEnumerable<CodeInstruction> instructions)
+        {
+            bool patchApplied = false;
+            List<CodeInstruction> instructionsArray = instructions.ToList();
+            for (int i = 0; i < instructions.Count(); i++)
+            {
+                if (instructionsArray[i].opcode == OpCodes.Callvirt && ReferenceEquals(instructionsArray[i].operand, AccessTools.PropertyGetter(typeof(ThingDef), nameof(ThingDef.IsWeapon))))
+                {
+                    instructionsArray[i].opcode = OpCodes.Call;
+                    instructionsArray[i].operand = AccessTools.Method(typeof(Harmony_FloatMenuMakerMap_AddHumanlikeOrders_Patch), nameof(IsLethalWeapon));
+                    patchApplied = true;
+                    break;
+                }
+            }
+            if (!patchApplied)
+            {
+                Log.Error($"{MethodBase.GetCurrentMethod().DeclaringType} did not find opcode to apply transpiler patch.");
+            }
+            return instructionsArray;
+        }
+
+        private static bool IsLethalWeapon(ThingDef thingDef)
+        {
+            return thingDef?.IsNonLethalWeapon() != true;
+        }
+    }
 }

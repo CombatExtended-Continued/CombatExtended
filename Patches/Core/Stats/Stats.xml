@@ -235,6 +235,14 @@
 			<noSkillFactor>2.6</noSkillFactor>
 		</value>
 	</Operation>
+    
+    <!-- Prevent consistency check errors, as non-violent pawns can use non-lethal weapons in CE. -->
+    <Operation Class="PatchOperationAdd">
+		<xpath>Defs/StatDef[defName="ShootingAccuracyPawn"]</xpath>
+		<value>
+			<neverDisabled>true</neverDisabled>
+		</value>
+	</Operation>
 
 	<!-- Move speed -->
 
