@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+			<li>Alpha Animals</li>
+		</mods>
+		<match Class="PatchOperationSequence">
+			<operations>
+				<li Class="PatchOperationAddModExtension">
+					<xpath>/Defs/ThingDef[defName="AA_GreyCoatedMouflon"]</xpath>
+					<value>
+						<li Class="CombatExtended.RacePropertiesExtensionCE">
+							<bodyShape>Quadruped</bodyShape>
+						</li>
+					</value>
+				</li>
+				<!-- Don't know about balancing -->
+				<li Class="PatchOperationAdd">
+					<xpath>/Defs/ThingDef[defName="AA_GreyCoatedMouflon"]/statBases</xpath>
+					<value>
+						<MeleeDodgeChance>0.20</MeleeDodgeChance>
+						<MeleeCritChance>0.15</MeleeCritChance>
+						<MeleeParryChance>0.05</MeleeParryChance>
+					</value>
+				</li>
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/ThingDef[defName="AA_GreyCoatedMouflon"]/tools</xpath>
+					<value>
+						<tools>
+							<li>
+								<label>left hoof</label>
+								<capacities>
+									<li>Poke</li>
+								</capacities>
+								<power>8</power>
+								<cooldownTime>2.3</cooldownTime>
+								<linkedBodyPartsGroup>FrontLeftLeg</linkedBodyPartsGroup>
+							</li>
+							<li>
+								<label>right hoof</label>
+								<capacities>
+									<li>Poke</li>
+								</capacities>
+								<power>8</power>
+								<cooldownTime>2.3</cooldownTime>
+								<linkedBodyPartsGroup>FrontRightLeg</linkedBodyPartsGroup>
+							</li>
+							<li>
+								<capacities>
+									<li>Bite</li>
+								</capacities>
+								<power>3</power>
+								<cooldownTime>2.3</cooldownTime>
+								<linkedBodyPartsGroup>Teeth</linkedBodyPartsGroup>
+							</li>
+							<li>
+								<label>horns</label>
+								<capacities>
+									<li>Scratch</li>
+								</capacities>
+								<power>5</power>
+								<cooldownTime>2.0</cooldownTime>
+								<linkedBodyPartsGroup>HeadAttackTool</linkedBodyPartsGroup>
+							</li>
+						</tools>
+					</value>
+				</li>
+			</operations>
+		</match>
+	</Operation>
+</Patch>
