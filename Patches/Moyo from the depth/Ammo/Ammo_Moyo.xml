@@ -320,6 +320,103 @@
 				</value>
 			</li>
 			
+			<!-- ==================== Abysteel Nail ========================== -->
+			
+			<li Class="PatchOperationAdd">
+				<xpath>Defs</xpath>
+				<value>
+					<!-- ==================== AmmoSets ========================== -->
+
+					<CombatExtended.AmmoSetDef>
+						<defName>AmmoSet_Abyssnail</defName>
+						<label>Moyo alloy nail</label>
+						<ammoTypes>
+							<Ammo_Abyssnail>Bullet_Abyssnail</Ammo_Abyssnail>
+						</ammoTypes>
+					</CombatExtended.AmmoSetDef>
+					
+					<CombatExtended.AmmoCategoryDef>
+						<defName>MoyoNail</defName>
+						<label>Nail</label>
+						<description>High velocity alloy nail.</description>
+					</CombatExtended.AmmoCategoryDef>
+
+					<!-- ==================== Ammo ========================== -->
+
+					<ThingDef Class="CombatExtended.AmmoDef" ParentName="SpacerSmallAmmoBase">
+						<defName>Ammo_Abyssnail</defName>
+						<label>Abyssteel Nail</label>
+						<description>Machined nails made of abyssteel.</description>
+						<statBases>
+							<Mass>1.02</Mass>
+							<Bulk>2.87</Bulk>
+							<MarketValue>27.22</MarketValue>
+						</statBases>
+						<tradeTags>
+							<li>CE_AutoEnableTrade</li>
+							<li>CE_AutoEnableCrafting_TableMachining</li>
+						</tradeTags>
+						<thingCategories>
+							<li>AmmoAdvanced</li>
+						</thingCategories>
+						<stackLimit>500</stackLimit>
+						<graphicData>
+							<texPath>ThirdParty/Rimsenal/Nail</texPath>
+							<graphicClass>Graphic_StackCount</graphicClass>
+							<color>(60,60,180)</color>
+						</graphicData>
+						<ammoClass>MoyoNail</ammoClass>
+					</ThingDef>
+
+					<!-- ================== Projectiles ================== -->
+
+					<ThingDef Class="CombatExtended.AmmoDef" ParentName="Base6x24mmChargedBullet">
+						<defName>Bullet_Abyssnail</defName>
+						<label>abyssteel nail</label>
+						<graphicData>
+							<texPath>Things/Weapons/MoyoNail</texPath>
+							<graphicClass>Graphic_Single</graphicClass>
+							<drawSize>1</drawSize>
+						</graphicData>
+						<projectile Class="CombatExtended.ProjectilePropertiesCE">
+							<speed>200</speed>
+							<damageDef>Bullet</damageDef>
+							<damageAmountBase>10</damageAmountBase>
+							<armorPenetrationSharp>12</armorPenetrationSharp>
+							<armorPenetrationBlunt>20</armorPenetrationBlunt>
+						</projectile>
+					</ThingDef>
+
+					<!-- ==================== Recipes ========================== -->
+
+					<RecipeDef ParentName="ChargeAmmoRecipeBase">
+						<defName>MakeAmmo_Abyssnail</defName>
+						<label>make abyssteel nails x500</label>
+						<description>Craft 500 abyssteel nails.</description>
+						<jobString>Making abyssteel nails.</jobString>
+						<workAmount>2500</workAmount>
+						<ingredients>
+							<li>
+								<filter>
+									<thingDefs>
+										<li>Moyo_Abyssteel</li>
+									</thingDefs>
+								</filter>
+								<count>5</count>
+							</li>
+						</ingredients>
+						<fixedIngredientFilter>
+							<thingDefs>
+								<li>Moyo_Abyssteel</li>
+							</thingDefs>
+						</fixedIngredientFilter>
+						<products>
+							<Ammo_Abyssnail>500</Ammo_Abyssnail>
+						</products>
+					</RecipeDef>
+				</value>
+			</li>
+			
 			<!-- ==================== Moyo Specific Ammosets ========================== -->
 			
 			<!--6x18 Moyo-->
@@ -477,6 +574,93 @@
 						<label>6x24mm Charged bullet (Ion)</label>
 						<graphicData>
 						  <texPath>Things/Weapons/MoyoSmallBolt</texPath>
+						  <graphicClass>Graphic_Single</graphicClass>
+						</graphicData>
+						<projectile Class="CombatExtended.ProjectilePropertiesCE">
+						  <speed>200</speed>
+						  <damageAmountBase>12</damageAmountBase>
+						  <secondaryDamage>
+							<li>
+							  <def>EMP</def>
+							  <amount>7</amount>
+							</li>
+						  </secondaryDamage>
+						  <armorPenetrationSharp>18</armorPenetrationSharp>
+						  <armorPenetrationBlunt>40</armorPenetrationBlunt>
+						</projectile>
+					</ThingDef>
+					
+				</value>
+			</li>
+			
+			<!--6x24 Warped-->
+			
+			<li Class="PatchOperationAdd">
+				<xpath>Defs</xpath>
+				<value>
+					<CombatExtended.AmmoSetDef>
+						<defName>AmmoSet_6x24mmWMoyo</defName>
+						<label>6x24mm Charged Bullet</label>
+						<ammoTypes>
+						  <Ammo_6x24mmCharged>Bullet_6x24mmWMoyo</Ammo_6x24mmCharged>
+						  <Ammo_6x24mmCharged_AP>Bullet_6x24mmWMoyo_AP</Ammo_6x24mmCharged_AP>
+						  <Ammo_6x24mmCharged_Ion>Bullet_6x24mmWMoyo_Ion</Ammo_6x24mmCharged_Ion>
+						</ammoTypes>
+					</CombatExtended.AmmoSetDef>
+				</value>
+			</li>
+			
+			<li Class="PatchOperationAdd">
+				<xpath>Defs</xpath>
+				<value>
+				
+					<ThingDef Class="CombatExtended.AmmoDef" ParentName="Base6x24mmChargedBullet">
+						<defName>Bullet_6x24mmWMoyo</defName>
+						<label>6x24mm Charged bullet</label>
+						<graphicData>
+						  <texPath>Things/Weapons/Warped/ARWarped_Bullet</texPath>
+						  <graphicClass>Graphic_Single</graphicClass>
+						</graphicData>
+						<projectile Class="CombatExtended.ProjectilePropertiesCE">
+						  <speed>200</speed>
+						  <damageAmountBase>15</damageAmountBase>
+						  <secondaryDamage>
+							<li>
+							  <def>Bomb_Secondary</def>
+							  <amount>4</amount>
+							</li>
+						  </secondaryDamage>
+						  <armorPenetrationSharp>14</armorPenetrationSharp>
+						  <armorPenetrationBlunt>40</armorPenetrationBlunt>
+						</projectile>
+					</ThingDef>
+					
+					<ThingDef Class="CombatExtended.AmmoDef" ParentName="Base6x24mmChargedBullet">
+						<defName>Bullet_6x24mmWMoyo_AP</defName>
+						<label>6x24mm Charged bullet (Conc.)</label>
+						<graphicData>
+						  <texPath>Things/Weapons/Warped/ARWarped_Bullet</texPath>
+						  <graphicClass>Graphic_Single</graphicClass>
+						</graphicData>
+						<projectile Class="CombatExtended.ProjectilePropertiesCE">
+						  <speed>200</speed>
+						  <damageAmountBase>12</damageAmountBase>
+						  <secondaryDamage>
+							<li>
+							  <def>Bomb_Secondary</def>
+							  <amount>2</amount>
+							</li>
+						  </secondaryDamage>
+						  <armorPenetrationSharp>28</armorPenetrationSharp>
+						  <armorPenetrationBlunt>40</armorPenetrationBlunt>
+						</projectile>
+					</ThingDef>
+					
+					<ThingDef Class="CombatExtended.AmmoDef" ParentName="Base6x24mmChargedBullet">
+						<defName>Bullet_6x24mmWMoyo_Ion</defName>
+						<label>6x24mm Charged bullet (Ion)</label>
+						<graphicData>
+						  <texPath>Things/Weapons/Warped/ARWarped_Bullet</texPath>
 						  <graphicClass>Graphic_Single</graphicClass>
 						</graphicData>
 						<projectile Class="CombatExtended.ProjectilePropertiesCE">
