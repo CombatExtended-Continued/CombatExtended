@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+			<li>Alpha Animals</li>
+		</mods>
+		<match Class="PatchOperationSequence">
+			<operations>
+				<li Class="PatchOperationAddModExtension">
+					<xpath>/Defs/ThingDef[defName="AA_Thunderbeast"]</xpath>
+					<value>
+						<li Class="CombatExtended.RacePropertiesExtensionCE">
+							<bodyShape>Quadruped</bodyShape>
+						</li>
+					</value>
+				</li>
+				<!-- Don't know about balancing -->
+				<li Class="PatchOperationAdd">
+					<xpath>/Defs/ThingDef[defName="AA_Thunderbeast"]/statBases</xpath>
+					<value>
+						<MeleeDodgeChance>0.20</MeleeDodgeChance>
+						<MeleeCritChance>0.15</MeleeCritChance>
+						<MeleeParryChance>0.05</MeleeParryChance>
+					</value>
+				</li>
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/ThingDef[defName="AA_Thunderbeast"]/tools</xpath>
+					<value>
+						<tools>
+							<li>
+								<label>horn</label>
+								<capacities>
+									<li>AA_Electric</li>
+								</capacities>
+								<power>25</power>
+								<cooldownTime>2.0</cooldownTime>
+								<linkedBodyPartsGroup>HornAttackTool</linkedBodyPartsGroup>
+								<armorPenetrationBlunt>2.7</armorPenetrationBlunt>
+								<armorPenetrationSharp>1.25</armorPenetrationSharp>
+							</li>
+							<li>
+								<capacities>
+									<li>Bite</li>
+								</capacities>
+								<power>20</power>
+								<cooldownTime>2.0</cooldownTime>
+								<linkedBodyPartsGroup>Teeth</linkedBodyPartsGroup>
+								<chanceFactor>0.4</chanceFactor>
+								<armorPenetrationBlunt>1.7</armorPenetrationBlunt>
+								<armorPenetrationSharp>1.15</armorPenetrationSharp>
+							</li>
+							<li>
+								<label>head</label>
+								<capacities>
+									<li>AA_Electric</li>
+								</capacities>
+								<power>6</power>
+								<cooldownTime>2.10</cooldownTime>
+								<linkedBodyPartsGroup>HeadAttackTool</linkedBodyPartsGroup>
+								<chanceFactor>0.2</chanceFactor>
+							</li>
+						</tools>
+					</value>
+				</li>
+			</operations>
+		</match>
+	</Operation>
+</Patch>
