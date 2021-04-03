@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+			<li>Alpha Animals</li>
+		</mods>
+		<match Class="PatchOperationSequence">
+			<operations>
+				<li Class="PatchOperationAddModExtension">
+					<xpath>/Defs/ThingDef[defName="AA_Erin"]</xpath>
+					<value>
+						<li Class="CombatExtended.RacePropertiesExtensionCE">
+							<bodyShape>Quadruped</bodyShape>
+						</li>
+					</value>
+				</li>
+				<!-- Don't know about balancing -->
+				<li Class="PatchOperationAdd">
+					<xpath>/Defs/ThingDef[defName="AA_Erin"]/statBases</xpath>
+					<value>
+						<MeleeDodgeChance>0.40</MeleeDodgeChance>
+						<MeleeCritChance>0.20</MeleeCritChance>
+						<MeleeParryChance>0.10</MeleeParryChance>
+					</value>
+				</li>
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/ThingDef[defName="AA_Erin"]/tools</xpath>
+					<value>
+						<tools>
+							<li>
+								<label>left claw</label>
+								<capacities>
+									<li>Scratch</li>
+								</capacities>
+								<power>18</power>
+								<cooldownTime>2.1</cooldownTime>
+								<linkedBodyPartsGroup>FrontLeftClaws</linkedBodyPartsGroup>
+								<surpriseAttack>
+									<extraMeleeDamages>
+										<li>
+											<def>Stun</def>
+											<amount>20</amount>
+										</li>
+									</extraMeleeDamages>
+								</surpriseAttack>
+							</li>
+							<li>
+								<label>right claw</label>
+								<capacities>
+									<li>Scratch</li>
+								</capacities>
+								<power>18</power>
+								<cooldownTime>2.1</cooldownTime>
+								<linkedBodyPartsGroup>FrontRightClaws</linkedBodyPartsGroup>
+								<surpriseAttack>
+									<extraMeleeDamages>
+										<li>
+											<def>Stun</def>
+											<amount>20</amount>
+										</li>
+									</extraMeleeDamages>
+								</surpriseAttack>
+							</li>
+							<li>
+								<label>fangs</label>
+								<capacities>
+									<li>Bite</li>
+								</capacities>
+								<power>26</power>
+								<cooldownTime>2.6</cooldownTime>
+								<linkedBodyPartsGroup>Teeth</linkedBodyPartsGroup>
+								<chanceFactor>0.9</chanceFactor>
+								<surpriseAttack>
+									<extraMeleeDamages>
+										<li>
+											<def>Stun</def>
+											<amount>35</amount>
+										</li>
+									</extraMeleeDamages>
+								</surpriseAttack>
+							</li>
+							<li>
+								<label>head</label>
+								<capacities>
+									<li>Blunt</li>
+								</capacities>
+								<power>10</power>
+								<cooldownTime>2</cooldownTime>
+								<linkedBodyPartsGroup>HeadAttackTool</linkedBodyPartsGroup>
+								<ensureLinkedBodyPartsGroupAlwaysUsable>true</ensureLinkedBodyPartsGroupAlwaysUsable>
+								<chanceFactor>0.2</chanceFactor>
+							</li>
+						</tools>
+					</value>
+				</li>
+			</operations>
+		</match>
+	</Operation>
+</Patch>
