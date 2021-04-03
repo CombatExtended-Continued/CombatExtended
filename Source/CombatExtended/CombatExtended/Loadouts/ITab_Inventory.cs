@@ -349,6 +349,33 @@ namespace CombatExtended
                             floatOptionList.Add(equipOption);
                         }
                     }
+                    //Thing we're hovering over is a shield
+                    if (thing is Apparel_Shield shield)
+                    {
+                        FloatMenuOption stowShieldOption;
+                        //shield is already being worn
+                        if (SelPawnForGear.apparel != null && SelPawnForGear.apparel.WornApparel.Contains(shield))
+                        {
+                            stowShieldOption = new FloatMenuOption("CE_PutAway".Translate(shield.Label),
+                                new Action(delegate
+                                {
+                                    SelPawnForGear.apparel.Remove(shield);
+                                    SelPawnForGear.inventory.innerContainer.TryAddOrTransfer(shield, false);
+                                }));
+                        }
+                        //shield is not currently being worn
+                        else
+                        {
+                            stowShieldOption = new FloatMenuOption("Equip".Translate(shield.Label),
+                                new Action(delegate
+                                {
+                                    SelPawnForGear.inventory.innerContainer.Remove(shield);
+                                    SelPawnForGear.apparel.Wear(shield);
+                                }));
+                        }
+                        
+                        floatOptionList.Add(stowShieldOption);
+                    }
                     //Reload apparel option
                     var worn_apparel = SelPawnForGear?.apparel?.WornApparel;
                     foreach (var apparel in worn_apparel)
