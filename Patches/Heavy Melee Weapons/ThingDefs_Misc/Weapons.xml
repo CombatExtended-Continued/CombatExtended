@@ -1,0 +1,385 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+	<Operation Class="PatchOperationSequence">
+		<success></success>
+		<operations>
+			<li Class="PatchOperationFindMod">
+			<mods><li>Heavy Melee Weapons</li></mods>
+			<match Class="PatchOperationSequence">
+			<operations>
+			
+			<!-- ==========  Maul  =========== -->
+			
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="HMW_MeleeWeapon_PsychicWarhammer" or 
+				defName="HMW_MeleeWeapon_PersonaPsychicWarhammer"]/tools</xpath>
+				<value>
+				  <tools>
+					<li Class="CombatExtended.ToolCE">
+					  <label>handle</label>
+					  <capacities>
+						<li>Poke</li>
+					  </capacities>
+					  <power>4</power>
+					  <cooldownTime>1.78</cooldownTime>
+					  <armorPenetrationBlunt>1</armorPenetrationBlunt>
+					</li>
+					<li Class="CombatExtended.ToolCE">
+					  <label>head</label>
+					  <capacities>
+						<li>Blunt</li>
+					  </capacities>
+					  <power>40</power>
+					  <cooldownTime>2.75</cooldownTime>
+					  <chanceFactor>1.5</chanceFactor>
+					  <armorPenetrationBlunt>1200</armorPenetrationBlunt>
+					</li>
+				  </tools>
+				</value>
+			</li>
+			
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName="HMW_MeleeWeapon_PsychicWarhammer"]/statBases</xpath>
+				<value>
+					<MeleeCounterParryBonus>0.10</MeleeCounterParryBonus>
+				</value>
+			</li>
+			
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName="HMW_MeleeWeapon_PsychicWarhammer"]/equippedStatOffsets</xpath>
+				<value>
+					  <MeleeCritChance>0.05</MeleeCritChance>
+					  <MeleeParryChance>0.50</MeleeParryChance>
+					  <MeleeDodgeChance>0.05</MeleeDodgeChance>
+				</value>
+			</li>
+			
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName="HMW_MeleeWeapon_PersonaPsychicWarhammer"]/statBases</xpath>
+				<value>
+					<MeleeCounterParryBonus>0.30</MeleeCounterParryBonus>
+				</value>
+			</li>
+			
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName="HMW_MeleeWeapon_PersonaPsychicWarhammer"]/equippedStatOffsets</xpath>
+				<value>
+					  <MeleeCritChance>0.25</MeleeCritChance>
+					  <MeleeParryChance>0.70</MeleeParryChance>
+					  <MeleeDodgeChance>0.25</MeleeDodgeChance>
+				</value>
+			</li>
+			
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="HMW_MeleeWeapon_PsychicWarhammer" or 
+				defName="HMW_MeleeWeapon_PersonaPsychicWarhammer"]/statBases/Mass</xpath>
+				<value>
+					<Mass>25</Mass>
+					<Bulk>20</Bulk>
+				</value>
+			</li>
+			
+			<!-- ==========  Heavy Monosword  =========== -->
+			
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="HMW_MeleeWeapon_HeavyMonoSword" or 
+				defName="HMW_MeleeWeapon_PersonaHeavyMonoSword"]/tools</xpath>
+				<value>
+				  <tools>
+					  <li Class="CombatExtended.ToolCE">
+						<label>handle</label>
+						<capacities>
+						  <li>Poke</li>
+						</capacities>
+						<power>9</power>
+						<cooldownTime>1.32</cooldownTime>
+						<chanceFactor>0.2</chanceFactor>
+						<armorPenetrationBlunt>3.375</armorPenetrationBlunt>
+						<linkedBodyPartsGroup>Handle</linkedBodyPartsGroup>
+					  </li>
+					  <li Class="CombatExtended.ToolCE">
+						<label>point</label>
+						<capacities>
+						  <li>Stab</li>
+						</capacities>
+						<power>29</power>
+						<cooldownTime>3.12</cooldownTime>
+						<chanceFactor>1.2</chanceFactor>
+						<armorPenetrationBlunt>5.415</armorPenetrationBlunt>
+						<armorPenetrationSharp>67.7</armorPenetrationSharp>
+						<linkedBodyPartsGroup>Point</linkedBodyPartsGroup>
+					  </li>
+					  <li Class="CombatExtended.ToolCE">
+						<label>edge</label>
+						<capacities>
+						  <li>Cut</li>
+						</capacities>
+						<power>80</power>
+						<cooldownTime>3.36</cooldownTime>
+						<chanceFactor>1</chanceFactor>
+						<armorPenetrationBlunt>12.5</armorPenetrationBlunt>
+						<armorPenetrationSharp>35.72</armorPenetrationSharp>
+						<linkedBodyPartsGroup>Edge</linkedBodyPartsGroup>
+					  </li>
+				  </tools>
+				</value>
+			</li>
+			
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName="HMW_MeleeWeapon_HeavyMonoSword"]/statBases</xpath>
+				<value>
+					<MeleeCounterParryBonus>0.10</MeleeCounterParryBonus>
+				</value>
+			</li>
+			
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName="HMW_MeleeWeapon_HeavyMonoSword"]</xpath>
+				<value>
+					<equippedStatOffsets>
+					  <MeleeCritChance>0.05</MeleeCritChance>
+					  <MeleeParryChance>0.50</MeleeParryChance>
+					  <MeleeDodgeChance>0.05</MeleeDodgeChance>
+					</equippedStatOffsets>
+				</value>
+			</li>
+			
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName="HMW_MeleeWeapon_PersonaHeavyMonoSword"]/statBases</xpath>
+				<value>
+					<MeleeCounterParryBonus>0.30</MeleeCounterParryBonus>
+				</value>
+			</li>
+			
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName="HMW_MeleeWeapon_PersonaHeavyMonoSword"]</xpath>
+				<value>
+					<equippedStatOffsets>
+					  <MeleeCritChance>0.25</MeleeCritChance>
+					  <MeleeParryChance>0.70</MeleeParryChance>
+					  <MeleeDodgeChance>0.25</MeleeDodgeChance>
+					</equippedStatOffsets>
+				</value>
+			</li>
+			
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="HMW_MeleeWeapon_HeavyMonoSword" or 
+				defName="HMW_MeleeWeapon_PersonaHeavyMonoSword"]/statBases/Mass</xpath>
+				<value>
+					<Mass>25</Mass>
+					<Bulk>20</Bulk>
+				</value>
+			</li>
+			
+			<!-- ==========  Zeusblade  =========== -->
+			
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="HMW_MeleeWeapon_ZeusSword" or 
+				defName="HMW_MeleeWeapon_PersonaZeusSword"]/tools</xpath>
+				<value>
+				  <tools>
+					  <li Class="CombatExtended.ToolCE">
+						<label>Point</label>
+						<capacities>
+						  <li>Stab</li>
+						</capacities>
+						<power>38</power>
+						<extraMeleeDamages>
+							<li>
+								<def>EMP</def>
+								<amount>10</amount>
+							</li>
+						</extraMeleeDamages>
+						<cooldownTime>3.12</cooldownTime>
+						<chanceFactor>1</chanceFactor>
+						<armorPenetrationBlunt>5.415</armorPenetrationBlunt>
+						<armorPenetrationSharp>43.32</armorPenetrationSharp>
+						<linkedBodyPartsGroup>Point</linkedBodyPartsGroup>
+					  </li>
+					  <li Class="CombatExtended.ToolCE">
+						<label>blade</label>
+						<capacities>
+						  <li>Cut</li>
+						</capacities>
+						<power>68</power>
+						<extraMeleeDamages>
+							<li>
+								<def>EMP</def>
+								<amount>10</amount>
+							</li>
+						</extraMeleeDamages>
+						<cooldownTime>3.94</cooldownTime>
+						<chanceFactor>1</chanceFactor>
+						<armorPenetrationBlunt>9.68</armorPenetrationBlunt>
+						<armorPenetrationSharp>32.7</armorPenetrationSharp>
+						<linkedBodyPartsGroup>Edge</linkedBodyPartsGroup>
+					  </li>
+					  <li Class="CombatExtended.ToolCE">
+						<label>handle</label>
+						<capacities>
+						  <li>Poke</li>
+						  <li>Blunt</li>
+						</capacities>
+						<power>24</power>
+						<cooldownTime>1.12</cooldownTime>
+						<chanceFactor>0.2</chanceFactor>
+						<armorPenetrationBlunt>4.05</armorPenetrationBlunt>
+						<linkedBodyPartsGroup>Handle</linkedBodyPartsGroup>
+					  </li>
+				  </tools>
+				</value>
+			</li>
+			
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName="HMW_MeleeWeapon_ZeusSword"]/statBases</xpath>
+				<value>
+					<MeleeCounterParryBonus>0.10</MeleeCounterParryBonus>
+				</value>
+			</li>
+			
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName="HMW_MeleeWeapon_ZeusSword"]</xpath>
+				<value>
+					<equippedStatOffsets>
+					  <MeleeCritChance>0.05</MeleeCritChance>
+					  <MeleeParryChance>0.50</MeleeParryChance>
+					  <MeleeDodgeChance>0.05</MeleeDodgeChance>
+					</equippedStatOffsets>
+				</value>
+			</li>
+			
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName="HMW_MeleeWeapon_PersonaZeusSword"]/statBases</xpath>
+				<value>
+					<MeleeCounterParryBonus>0.30</MeleeCounterParryBonus>
+				</value>
+			</li>
+			
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName="HMW_MeleeWeapon_PersonaZeusSword"]</xpath>
+				<value>
+					<equippedStatOffsets>
+					  <MeleeCritChance>0.25</MeleeCritChance>
+					  <MeleeParryChance>0.70</MeleeParryChance>
+					  <MeleeDodgeChance>0.25</MeleeDodgeChance>
+					</equippedStatOffsets>
+				</value>
+			</li>
+			
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="HMW_MeleeWeapon_ZeusSword" or 
+				defName="HMW_MeleeWeapon_PersonaZeusSword"]/statBases/Mass</xpath>
+				<value>
+					<Mass>25</Mass>
+					<Bulk>20</Bulk>
+				</value>
+			</li>
+			
+			<!-- ==========  Flame Lance  =========== -->
+			
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="HMW_MeleeWeapon_FlameLance" or 
+				defName="HMW_MeleeWeapon_PersonaFlameLance"]/tools</xpath>
+				<value>
+				  <tools>
+					  <li Class="CombatExtended.ToolCE">
+						<label>Point</label>
+						<capacities>
+						  <li>Stab</li>
+						</capacities>
+						<power>48</power>
+						<extraMeleeDamages>
+							<li>
+								<def>Flame</def>
+								<amount>10</amount>
+							</li>
+						</extraMeleeDamages>
+						<cooldownTime>3.91</cooldownTime>
+						<chanceFactor>1</chanceFactor>
+						<armorPenetrationBlunt>9.72</armorPenetrationBlunt>
+						<armorPenetrationSharp>97.2</armorPenetrationSharp>
+						<linkedBodyPartsGroup>Point</linkedBodyPartsGroup>
+					  </li>
+					  <li Class="CombatExtended.ToolCE">
+						<label>blade</label>
+						<capacities>
+						  <li>Cut</li>
+						</capacities>
+						<power>55</power>
+						<extraMeleeDamages>
+							<li>
+								<def>Flame</def>
+								<amount>10</amount>
+							</li>
+						</extraMeleeDamages>
+						<cooldownTime>3.68</cooldownTime>
+						<chanceFactor>1</chanceFactor>
+						<armorPenetrationBlunt>9.68</armorPenetrationBlunt>
+						<armorPenetrationSharp>27.6</armorPenetrationSharp>
+						<linkedBodyPartsGroup>Edge</linkedBodyPartsGroup>
+					  </li>
+					  <li Class="CombatExtended.ToolCE">
+						<label>handle</label>
+						<capacities>
+						  <li>Poke</li>
+						</capacities>
+						<power>9</power>
+						<cooldownTime>1.32</cooldownTime>
+						<chanceFactor>0.2</chanceFactor>
+						<armorPenetrationBlunt>3.375</armorPenetrationBlunt>
+						<linkedBodyPartsGroup>Handle</linkedBodyPartsGroup>
+					  </li>
+				  </tools>
+				</value>
+			</li>
+			
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName="HMW_MeleeWeapon_FlameLance"]/statBases</xpath>
+				<value>
+					<MeleeCounterParryBonus>0.10</MeleeCounterParryBonus>
+				</value>
+			</li>
+			
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName="HMW_MeleeWeapon_FlameLance"]</xpath>
+				<value>
+					<equippedStatOffsets>
+					  <MeleeCritChance>0.05</MeleeCritChance>
+					  <MeleeParryChance>0.50</MeleeParryChance>
+					  <MeleeDodgeChance>0.05</MeleeDodgeChance>
+					</equippedStatOffsets>
+				</value>
+			</li>
+			
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName="HMW_MeleeWeapon_PersonaFlameLance"]/statBases</xpath>
+				<value>
+					<MeleeCounterParryBonus>0.30</MeleeCounterParryBonus>
+				</value>
+			</li>
+			
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName="HMW_MeleeWeapon_PersonaFlameLance"]</xpath>
+				<value>
+					<equippedStatOffsets>
+					  <MeleeCritChance>0.25</MeleeCritChance>
+					  <MeleeParryChance>0.70</MeleeParryChance>
+					  <MeleeDodgeChance>0.25</MeleeDodgeChance>
+					</equippedStatOffsets>
+				</value>
+			</li>
+			
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="HMW_MeleeWeapon_FlameLance" or 
+				defName="HMW_MeleeWeapon_PersonaFlameLance"]/statBases/Mass</xpath>
+				<value>
+					<Mass>25</Mass>
+					<Bulk>20</Bulk>
+				</value>
+			</li>
+			
+			</operations>
+			</match>
+			</li>
+		</operations>
+	</Operation>
+</Patch>
