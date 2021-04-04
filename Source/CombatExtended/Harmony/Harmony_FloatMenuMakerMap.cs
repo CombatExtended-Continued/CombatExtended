@@ -446,7 +446,7 @@ namespace CombatExtended.HarmonyCE
 
         private static bool IsLethalWeapon(ThingDef thingDef)
         {
-            return thingDef?.IsNonLethalWeapon() != true;
+            return !(thingDef?.IsNonLethalWeapon() ?? false);
         }
     }
 }

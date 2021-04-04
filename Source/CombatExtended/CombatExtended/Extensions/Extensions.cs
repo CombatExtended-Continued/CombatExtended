@@ -11,7 +11,7 @@ namespace CombatExtended
     {
         public static bool IsNonLethalWeapon(this ThingDef thingDef)
         {
-            return thingDef?.weaponTags?.Contains("CE_AI_Nonlethal") == true;
+            return thingDef?.weaponTags?.Contains("CE_AI_Nonlethal") ?? false;
         }
     }
 }

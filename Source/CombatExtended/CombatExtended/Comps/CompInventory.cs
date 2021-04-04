@@ -323,7 +323,7 @@ namespace CombatExtended
                 newEq = meleeWeaponListCached.FirstOrDefault();
 
             // Equip the weapon
-            if (newEq != null && (newEq?.def?.IsNonLethalWeapon() == true || !parentPawn.WorkTagIsDisabled(WorkTags.Violent)))
+            if (newEq != null && (newEq?.def?.IsNonLethalWeapon() ?? false || !parentPawn.WorkTagIsDisabled(WorkTags.Violent)))
             {
                 TrySwitchToWeapon(newEq);
             }

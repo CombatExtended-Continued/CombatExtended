@@ -47,7 +47,7 @@ namespace CombatExtended.HarmonyCE
 
         private static bool WorkTagIsDisabledExceptNonLethal(Pawn pawn, WorkTags workTags)
         {
-            if (workTags == WorkTags.Violent && pawn.equipment?.Primary?.def?.IsNonLethalWeapon() == true)
+            if (workTags == WorkTags.Violent && (pawn.equipment?.Primary?.def?.IsNonLethalWeapon() ?? false))
             {
                 return false;
             }
