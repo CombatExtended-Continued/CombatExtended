@@ -565,10 +565,8 @@ namespace CombatExtended
                 //New aiming algorithm
                 projectile.canTargetSelf = false;
 
-                var targDist = (sourceLoc - currentTarget.Cell.ToIntVec2.ToVector2Shifted()).magnitude;
-                if (targDist <= 2)
-                    targDist *= 2;  // Double to account for divide by 4 in ProjectileCE minimum collision distance calculations
-                projectile.minCollisionSqr = Mathf.Pow(targDist, 2);
+                var targetDistance = (sourceLoc - currentTarget.Cell.ToIntVec2.ToVector2Shifted()).magnitude;
+                projectile.minCollisionDistance = Mathf.Min(1.5f, targetDistance * 0.75f);
                 projectile.intendedTarget = currentTarget.Thing;
                 projectile.mount = caster.Position.GetThingList(caster.Map).FirstOrDefault(t => t is Pawn && t != caster);
                 projectile.AccuracyFactor = report.accuracyFactor * report.swayDegrees * ((numShotsFired + 1) * 0.75f);
@@ -742,7 +740,7 @@ namespace CombatExtended
                     if (cover != null && cover != ShooterPawn && cover != caster && cover != targetThing && !cover.IsPlant() && !(cover is Pawn && cover.HostileTo(caster)))
                     {
                         //Shooter pawns don't attempt to shoot targets partially obstructed by their own faction members or allies, except when close enough to fire over their shoulder
-                        if (cover is Pawn cellPawn && cellPawn.Faction != null && ShooterPawn?.Faction != null && (ShooterPawn.Faction == cellPawn.Faction || ShooterPawn.Faction.RelationKindWith(cellPawn.Faction) == FactionRelationKind.Ally) && !cellPawn.AdjacentTo8WayOrInside(ShooterPawn))
+                        if (cover is Pawn cellPawn && !cellPawn.Downed && cellPawn.Faction != null && ShooterPawn?.Faction != null && (ShooterPawn.Faction == cellPawn.Faction || ShooterPawn.Faction.RelationKindWith(cellPawn.Faction) == FactionRelationKind.Ally) && !cellPawn.AdjacentTo8WayOrInside(ShooterPawn))
                         {
                             return false;
                         }

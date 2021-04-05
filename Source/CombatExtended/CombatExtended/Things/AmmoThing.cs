@@ -143,7 +143,7 @@ namespace CombatExtended
 
                 // Launch in random direction
                 projectile.canTargetSelf = true;
-                projectile.minCollisionSqr = 0f;
+                projectile.minCollisionDistance = 0f;
                 projectile.logMisses = false;
                 projectile.Launch(this,
                     new Vector2(DrawPos.x, DrawPos.z),
