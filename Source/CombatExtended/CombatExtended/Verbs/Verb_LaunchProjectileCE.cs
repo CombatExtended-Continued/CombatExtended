@@ -286,11 +286,11 @@ namespace CombatExtended
                 {
                     var victimVert = new CollisionVertical(currentTarget.Thing);
                     var targetRange = victimVert.HeightRange;   //Get lower and upper heights of the target
-                                                                /*if (currentTarget.Thing is Building && CompFireModes?.CurrentAimMode == AimMode.SuppressFire)
-                                                                {
-                                                                    targetRange.min = targetRange.max;
-                                                                    targetRange.max = targetRange.min + 1f;
-                                                                }*/
+                    /*if (currentTarget.Thing is Building && CompFireModes?.CurrentAimMode == AimMode.SuppressFire)
+                    {
+                        targetRange.min = targetRange.max;
+                        targetRange.max = targetRange.min + 1f;
+                    }*/
                     if (targetRange.min < coverRange.max)   //Some part of the target is hidden behind some cover
                     {
                         // - It is possible for targetRange.max < coverRange.max, technically, in which case the shooter will never hit until the cover is gone.
@@ -583,7 +583,7 @@ namespace CombatExtended
                 );
                 pelletMechanicsOnly = true;
             }
-           /// Log.Message("Fired from "+caster.ThingID+" at "+ShotHeight); /// 
+            /// Log.Message("Fired from "+caster.ThingID+" at "+ShotHeight); /// 
             pelletMechanicsOnly = false;
             numShotsFired++;
             if (CompAmmo != null && !CompAmmo.CanBeFiredNow)
@@ -615,8 +615,7 @@ namespace CombatExtended
          * -NIA
          */
 
-        private static List<IntVec3> tempDestList = new List<IntVec3>();
-        private static List<IntVec3> tempLeanShootSources = new List<IntVec3>();
+        private List<IntVec3> tempLeanShootSources = new List<IntVec3>();
 
         public bool TryFindCEShootLineFromTo(IntVec3 root, LocalTargetInfo targ, out ShootLine resultingLine)
         {
@@ -660,15 +659,14 @@ namespace CombatExtended
                 resultingLine = new ShootLine(root, dest);
                 return true;
             }
+
             // For pawns, calculate possible lean locations
             if (CasterIsPawn)
             {
-                // Next check lean sources
                 ShootLeanUtility.LeanShootingSourcesFromTo(root, cellRect.ClosestCellTo(root), caster.Map, tempLeanShootSources);
-                foreach (var leanLoc in tempLeanShootSources)
+                foreach (var leanLoc in tempLeanShootSources.OrderBy(c => c.DistanceTo(targ.Cell)))
                 {
-                    var leanOffset = (leanLoc - root).ToVector3() * 0.5f;
-
+                    var leanOffset = (leanLoc - root).ToVector3() * 0.51f;  //using exactly 0.5f makes it always round up, which causes issues if offset is negative, when adding leanOffset to shotSource. Setting to 0.51f to fix.
                     if (CanHitFromCellIgnoringRange(shotSource + leanOffset, targ, out dest))
                     {
                         resultingLine = new ShootLine(leanLoc, dest);
@@ -690,16 +688,11 @@ namespace CombatExtended
                     goodDest = IntVec3.Invalid;
                     return false;
                 }
-                tempDestList.Clear();
-                tempDestList.Add(targ.Cell);
 
-                foreach (var dest in tempDestList)
-                {
-                    if (CanHitCellFromCellIgnoringRange(shotSource, dest, targ.Thing))
-                    {   // if any of the locations the target is at or can lean to for shooting can be shot by the shooter then lets have the shooter shoot.
-                        goodDest = dest;
-                        return true;
-                    }
+                if (CanHitCellFromCellIgnoringRange(shotSource, targ.Cell, targ.Thing))
+                {   // if any of the locations the target is at or can lean to for shooting can be shot by the shooter then lets have the shooter shoot.
+                    goodDest = targ.Cell;
+                    return true;
                 }
             }
             else if (CanHitCellFromCellIgnoringRange(shotSource, targ.Cell, targ.Thing))
@@ -787,7 +780,7 @@ namespace CombatExtended
                 };
 
                 // Add validator to parameters
-                foreach (IntVec3 curCell in SightUtility.GetCellsOnLine(shotSource, targetLoc.ToVector3(), caster.Map))
+                foreach (IntVec3 curCell in GenSight.PointsOnLineOfSight(shotSource.ToIntVec3(), targetLoc))
                 {
                     if (Controller.settings.DebugDrawPartialLoSChecks)
                         caster.Map.debugDrawer.FlashCell(curCell, 0.4f);
