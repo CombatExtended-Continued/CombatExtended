@@ -1,0 +1,365 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+	<Operation Class="PatchOperationSequence">
+		<success>Always</success>
+		<operations>
+
+			<li Class="CombatExtended.PatchOperationFindMod">
+				<modName>Kit's Gunpowder Weapons</modName>
+			</li>
+			
+				<!-- ======== Arquebus ======== -->
+				
+				<li Class="PatchOperationReplace">
+				  <xpath>/Defs/ThingDef[defName = "KIT_Gun_Arquebus"]/tools</xpath>
+					<value>
+						<tools>
+							<li Class="CombatExtended.ToolCE">
+								<label>stock</label>
+								<capacities>
+									<li>Blunt</li>
+								</capacities>
+								<power>8</power>
+								<cooldownTime>1.55</cooldownTime>
+								<chanceFactor>1.5</chanceFactor>
+								<armorPenetrationBlunt>2.755</armorPenetrationBlunt>
+								<linkedBodyPartsGroup>Stock</linkedBodyPartsGroup>
+							</li>
+							<li Class="CombatExtended.ToolCE">
+								<label>barrel</label>
+								<capacities>
+									<li>Blunt</li>
+								</capacities>
+								<power>5</power>
+								<cooldownTime>2.02</cooldownTime>
+								<armorPenetrationBlunt>1.630</armorPenetrationBlunt>
+								<linkedBodyPartsGroup>Barrel</linkedBodyPartsGroup>
+							</li>
+							<li Class="CombatExtended.ToolCE">
+								<label>muzzle</label>
+								<capacities>
+									<li>Poke</li>
+								</capacities>
+								<power>8</power>
+								<cooldownTime>1.55</cooldownTime>
+								<armorPenetrationBlunt>2.755</armorPenetrationBlunt>
+								<linkedBodyPartsGroup>Muzzle</linkedBodyPartsGroup>
+							</li>
+						</tools>
+					</value>
+				</li>
+				
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/ThingDef[defName="KIT_Gun_Arquebus"]/verbs/li/verbClass</xpath>
+						<value>
+						<verbClass>Verb_Shoot</verbClass>
+					</value>
+				</li>
+				
+				<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+					<defName>KIT_Gun_Arquebus</defName>
+					<statBases>
+						<WorkToMake>12500</WorkToMake>
+						<Mass>7.5</Mass>
+						<Bulk>13</Bulk>
+						<SwayFactor>2</SwayFactor>
+						<ShotSpread>0.10</ShotSpread>
+						<SightsEfficiency>1</SightsEfficiency>
+						<RangedWeapon_Cooldown>4.8</RangedWeapon_Cooldown>
+					</statBases>
+					<costList>
+						<Steel>20</Steel>
+						<WoodLog>20</WoodLog>
+						<ComponentIndustrial>1</ComponentIndustrial>
+					</costList>
+					<Properties>
+						<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+						<hasStandardCommand>True</hasStandardCommand>
+						<defaultProjectile>Bullet_MusketBall</defaultProjectile>
+						<warmupTime>1.85</warmupTime>
+						<range>26</range>
+						<soundCast>KIT_Arquebus</soundCast>
+						<soundCastTail>GunTail_Light</soundCastTail>
+						<muzzleFlashScale>9</muzzleFlashScale>
+					</Properties>
+					<AmmoUser>
+						<magazineSize>1</magazineSize>
+						<reloadTime>12</reloadTime>
+						<ammoSet>AmmoSet_MusketBall</ammoSet>
+					</AmmoUser>
+					<FireModes>
+						<aiAimMode>AimedShot</aiAimMode>
+					</FireModes>
+					<weaponTags>
+						<li>NeolithicRangedHeavy</li>
+						<li>NeolithicRangedChief</li>
+					</weaponTags>
+				</li>
+				
+				<!-- ======== Bayonet Musket ======== -->
+				
+				<li Class="PatchOperationReplace">
+				  <xpath>/Defs/ThingDef[defName = "KIT_Gun_BayonetMusket"]/tools</xpath>
+					<value>
+						<tools>
+							<li Class="CombatExtended.ToolCE">
+								<label>stock</label>
+								<capacities>
+									<li>Blunt</li>
+								</capacities>
+								<power>8</power>
+								<cooldownTime>1.55</cooldownTime>
+								<chanceFactor>1.5</chanceFactor>
+								<armorPenetrationBlunt>2.755</armorPenetrationBlunt>
+								<linkedBodyPartsGroup>Stock</linkedBodyPartsGroup>
+							</li>
+							<li Class="CombatExtended.ToolCE">
+								<label>barrel</label>
+								<capacities>
+									<li>Blunt</li>
+								</capacities>
+								<power>5</power>
+								<cooldownTime>2.02</cooldownTime>
+								<armorPenetrationBlunt>1.630</armorPenetrationBlunt>
+								<linkedBodyPartsGroup>Barrel</linkedBodyPartsGroup>
+							</li>
+							<li Class="CombatExtended.ToolCE">
+								<label>bayonet</label>
+								<capacities>
+									<li>Stab</li>
+								</capacities>
+								<power>14</power>
+								<cooldownTime>1.55</cooldownTime>
+								<armorPenetrationSharp>1.755</armorPenetrationSharp>
+								<linkedBodyPartsGroup>Muzzle</linkedBodyPartsGroup>
+							</li>
+						</tools>
+					</value>
+				</li>
+				
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/ThingDef[defName="KIT_Gun_BayonetMusket"]/verbs/li/verbClass</xpath>
+						<value>
+						<verbClass>Verb_Shoot</verbClass>
+					</value>
+				</li>
+				
+				<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+					<defName>KIT_Gun_BayonetMusket</defName>
+					<statBases>
+						<WorkToMake>14500</WorkToMake>
+						<Mass>5.5</Mass>
+						<Bulk>12</Bulk>
+						<SwayFactor>2</SwayFactor>
+						<ShotSpread>0.10</ShotSpread>
+						<SightsEfficiency>1</SightsEfficiency>
+						<RangedWeapon_Cooldown>4.8</RangedWeapon_Cooldown>
+					</statBases>
+					<costList>
+						<Steel>40</Steel>
+						<WoodLog>40</WoodLog>
+						<ComponentIndustrial>2</ComponentIndustrial>
+					</costList>
+					<Properties>
+						<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+						<hasStandardCommand>True</hasStandardCommand>
+						<defaultProjectile>Bullet_MusketBall</defaultProjectile>
+						<warmupTime>1.85</warmupTime>
+						<range>34</range>
+						<soundCast>KIT_BayonetMusket</soundCast>
+						<soundCastTail>GunTail_Medium</soundCastTail>
+						<muzzleFlashScale>9</muzzleFlashScale>
+					</Properties>
+					<AmmoUser>
+						<magazineSize>1</magazineSize>
+						<reloadTime>10</reloadTime>
+						<ammoSet>AmmoSet_MusketBall</ammoSet>
+					</AmmoUser>
+					<FireModes>
+						<aiAimMode>AimedShot</aiAimMode>
+					</FireModes>
+					<weaponTags>
+						<li>NeolithicRangedHeavy</li>
+						<li>NeolithicRangedChief</li>
+					</weaponTags>
+				</li>
+				
+				<!-- ======== Blunderbuss ======== -->
+				
+				<li Class="PatchOperationReplace">
+				  <xpath>/Defs/ThingDef[defName = "KIT_Gun_Blunderbuss"]/tools</xpath>
+					<value>
+						<tools>
+							<li Class="CombatExtended.ToolCE">
+								<label>stock</label>
+								<capacities>
+									<li>Blunt</li>
+								</capacities>
+								<power>8</power>
+								<cooldownTime>1.55</cooldownTime>
+								<chanceFactor>1.5</chanceFactor>
+								<armorPenetrationBlunt>2.755</armorPenetrationBlunt>
+								<linkedBodyPartsGroup>Stock</linkedBodyPartsGroup>
+							</li>
+							<li Class="CombatExtended.ToolCE">
+								<label>barrel</label>
+								<capacities>
+									<li>Blunt</li>
+								</capacities>
+								<power>5</power>
+								<cooldownTime>2.02</cooldownTime>
+								<armorPenetrationBlunt>1.630</armorPenetrationBlunt>
+								<linkedBodyPartsGroup>Barrel</linkedBodyPartsGroup>
+							</li>
+							<li Class="CombatExtended.ToolCE">
+								<label>muzzle</label>
+								<capacities>
+									<li>Poke</li>
+								</capacities>
+								<power>8</power>
+								<cooldownTime>1.55</cooldownTime>
+								<armorPenetrationBlunt>2.755</armorPenetrationBlunt>
+								<linkedBodyPartsGroup>Muzzle</linkedBodyPartsGroup>
+							</li>
+						</tools>
+					</value>
+				</li>
+				
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/ThingDef[defName="KIT_Gun_Blunderbuss"]/verbs/li/verbClass</xpath>
+						<value>
+						<verbClass>Verb_Shoot</verbClass>
+					</value>
+				</li>
+				
+				<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+					<defName>KIT_Gun_Blunderbuss</defName>
+					<statBases>
+						<WorkToMake>13500</WorkToMake>
+						<Mass>6.5</Mass>
+						<Bulk>12.5</Bulk>
+						<SwayFactor>2</SwayFactor>
+						<ShotSpread>0.10</ShotSpread>
+						<SightsEfficiency>1</SightsEfficiency>
+						<RangedWeapon_Cooldown>4.8</RangedWeapon_Cooldown>
+					</statBases>
+					<costList>
+						<Steel>30</Steel>
+						<WoodLog>30</WoodLog>
+						<ComponentIndustrial>1</ComponentIndustrial>
+					</costList>
+					<Properties>
+						<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+						<hasStandardCommand>True</hasStandardCommand>
+						<defaultProjectile>Bullet_BlunderShot_Ball</defaultProjectile>
+						<warmupTime>1.85</warmupTime>
+						<range>15</range>
+						<soundCast>Shot_Shotgun</soundCast>
+						<soundCastTail>GunTail_Light</soundCastTail>
+						<muzzleFlashScale>9</muzzleFlashScale>
+					</Properties>
+					<AmmoUser>
+						<magazineSize>1</magazineSize>
+						<reloadTime>10</reloadTime>
+						<ammoSet>AmmoSet_BlunderShot</ammoSet>
+					</AmmoUser>
+					<FireModes>
+						<aiAimMode>AimedShot</aiAimMode>
+					</FireModes>
+					<weaponTags>
+						<li>NeolithicRangedHeavy</li>
+						<li>NeolithicRangedChief</li>
+					</weaponTags>
+				</li>
+				
+				<!-- ======== Hand Mortar ======== -->
+				
+				<li Class="PatchOperationReplace">
+				  <xpath>/Defs/ThingDef[defName = "KIT_Gun_HandMortar"]/tools</xpath>
+					<value>
+						<tools>
+							<li Class="CombatExtended.ToolCE">
+								<label>stock</label>
+								<capacities>
+									<li>Blunt</li>
+								</capacities>
+								<power>8</power>
+								<cooldownTime>1.55</cooldownTime>
+								<chanceFactor>1.5</chanceFactor>
+								<armorPenetrationBlunt>2.755</armorPenetrationBlunt>
+								<linkedBodyPartsGroup>Stock</linkedBodyPartsGroup>
+							</li>
+							<li Class="CombatExtended.ToolCE">
+								<label>barrel</label>
+								<capacities>
+									<li>Blunt</li>
+								</capacities>
+								<power>5</power>
+								<cooldownTime>2.02</cooldownTime>
+								<armorPenetrationBlunt>1.630</armorPenetrationBlunt>
+								<linkedBodyPartsGroup>Barrel</linkedBodyPartsGroup>
+							</li>
+							<li Class="CombatExtended.ToolCE">
+								<label>muzzle</label>
+								<capacities>
+									<li>Poke</li>
+								</capacities>
+								<power>8</power>
+								<cooldownTime>1.55</cooldownTime>
+								<armorPenetrationBlunt>2.755</armorPenetrationBlunt>
+								<linkedBodyPartsGroup>Muzzle</linkedBodyPartsGroup>
+							</li>
+						</tools>
+					</value>
+				</li>
+				
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/ThingDef[defName="KIT_Gun_HandMortar"]/verbs/li/verbClass</xpath>
+						<value>
+						<verbClass>Verb_Shoot</verbClass>
+					</value>
+				</li>
+				
+				<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+					<defName>KIT_Gun_HandMortar</defName>
+					<statBases>
+						<WorkToMake>10500</WorkToMake>
+						<Mass>4.5</Mass>
+						<Bulk>10.5</Bulk>
+						<SwayFactor>2</SwayFactor>
+						<ShotSpread>0.10</ShotSpread>
+						<SightsEfficiency>1</SightsEfficiency>
+						<RangedWeapon_Cooldown>4.8</RangedWeapon_Cooldown>
+					</statBases>
+					<costList>
+						<Steel>35</Steel>
+						<WoodLog>35</WoodLog>
+						<ComponentIndustrial>2</ComponentIndustrial>
+					</costList>
+					<Properties>
+						<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+						<hasStandardCommand>True</hasStandardCommand>
+						<defaultProjectile>Bullet_MortarGrenade</defaultProjectile>
+						<warmupTime>2.5</warmupTime>
+						<range>48</range>
+						<soundCast>KIT_HandMortar</soundCast>
+						<soundCastTail>GunTail_Medium</soundCastTail>
+						<muzzleFlashScale>14</muzzleFlashScale>
+					</Properties>
+					<AmmoUser>
+						<magazineSize>1</magazineSize>
+						<reloadTime>10</reloadTime>
+						<ammoSet>AmmoSet_MortarGrenade</ammoSet>
+					</AmmoUser>
+					<FireModes>
+						<aiAimMode>AimedShot</aiAimMode>
+					</FireModes>
+					<weaponTags>
+						<li>NeolithicRangedHeavy</li>
+						<li>NeolithicRangedChief</li>
+					</weaponTags>
+				</li>
+			</operations>
+	</Operation>
+	
+</Patch>
