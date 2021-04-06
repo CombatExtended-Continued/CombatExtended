@@ -80,6 +80,7 @@ Dragonian Race	|
 Dragon's Descent    |
 Dragons!	|
 ED-Shields	|
+Epona The centaur race  |
 Equiums Horse Race	|
 Erin's Critter Collection |
 Erin's Forest Critters |
