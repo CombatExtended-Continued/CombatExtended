@@ -186,7 +186,7 @@
 						<extraMeleeDamages>
 							<li>
 								<def>EMP</def>
-								<amount>10</amount>
+								<amount>15</amount>
 							</li>
 						</extraMeleeDamages>
 						<cooldownTime>3.12</cooldownTime>
@@ -204,7 +204,7 @@
 						<extraMeleeDamages>
 							<li>
 								<def>EMP</def>
-								<amount>10</amount>
+								<amount>15</amount>
 							</li>
 						</extraMeleeDamages>
 						<cooldownTime>3.94</cooldownTime>
@@ -371,6 +371,87 @@
 			<li Class="PatchOperationReplace">
 				<xpath>Defs/ThingDef[defName="HMW_MeleeWeapon_FlameLance" or 
 				defName="HMW_MeleeWeapon_PersonaFlameLance"]/statBases/Mass</xpath>
+				<value>
+					<Mass>25</Mass>
+					<Bulk>20</Bulk>
+				</value>
+			</li>
+			
+			<!-- ==========  Heavy Zeushammer  =========== -->
+			
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="HMW_MeleeWeapon_HeavyZeushammer" or 
+				defName="HMW_MeleeWeapon_PersonaHeavyZeushammer"]/tools</xpath>
+				<value>
+				  <tools>
+					<li Class="CombatExtended.ToolCE">
+					  <label>handle</label>
+					  <capacities>
+						<li>Poke</li>
+					  </capacities>
+					  <power>4</power>
+					  <cooldownTime>1.78</cooldownTime>
+					  <armorPenetrationBlunt>1</armorPenetrationBlunt>
+					</li>
+					<li Class="CombatExtended.ToolCE">
+					  <label>head</label>
+					  <capacities>
+						<li>Blunt</li>
+					  </capacities>
+					  <power>72</power>
+					  <extraMeleeDamages>
+						<li>
+							<def>EMP</def>
+							<amount>20</amount>
+						</li>
+					  </extraMeleeDamages>
+					  <cooldownTime>5.17</cooldownTime>
+					  <chanceFactor>1.5</chanceFactor>
+					  <armorPenetrationBlunt>412.5</armorPenetrationBlunt>
+					</li>
+				  </tools>
+				</value>
+			</li>
+			
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName="HMW_MeleeWeapon_HeavyZeushammer"]/statBases</xpath>
+				<value>
+					<MeleeCounterParryBonus>0.10</MeleeCounterParryBonus>
+				</value>
+			</li>
+			
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName="HMW_MeleeWeapon_HeavyZeushammer"]</xpath>
+				<value>
+					<equippedStatOffsets>
+					  <MeleeCritChance>0.05</MeleeCritChance>
+					  <MeleeParryChance>0.50</MeleeParryChance>
+					  <MeleeDodgeChance>0.05</MeleeDodgeChance>
+					</equippedStatOffsets>
+				</value>
+			</li>
+			
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName="HMW_MeleeWeapon_PersonaHeavyZeushammer"]/statBases</xpath>
+				<value>
+					<MeleeCounterParryBonus>0.30</MeleeCounterParryBonus>
+				</value>
+			</li>
+			
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName="HMW_MeleeWeapon_PersonaHeavyZeushammer"]</xpath>
+				<value>
+					<equippedStatOffsets>
+					  <MeleeCritChance>0.25</MeleeCritChance>
+					  <MeleeParryChance>0.70</MeleeParryChance>
+					  <MeleeDodgeChance>0.25</MeleeDodgeChance>
+					</equippedStatOffsets>
+				</value>
+			</li>
+			
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="HMW_MeleeWeapon_HeavyZeushammer" or 
+				defName="HMW_MeleeWeapon_PersonaHeavyZeushammer"]/statBases/Mass</xpath>
 				<value>
 					<Mass>25</Mass>
 					<Bulk>20</Bulk>
