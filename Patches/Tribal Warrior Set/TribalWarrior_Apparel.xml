@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+
+  <Operation Class="PatchOperationFindMod">
+    <mods>
+      <li>Tribal Warrior Set!</li>
+    </mods>
+    <match Class="PatchOperationSequence">
+      <operations>
+
+		<!-- Tribalwear -->
+
+		<li Class="PatchOperationAdd">
+			<xpath>Defs/ThingDef[defName = "Gunmar_Apparel_Tribal"]/statBases</xpath>
+			<value>
+				<Bulk>1</Bulk>
+				<WornBulk>1</WornBulk>
+			</value>
+		</li>
+
+		<li Class="PatchOperationReplace">
+			<xpath>Defs/ThingDef[defName= "Gunmar_Apparel_Tribal"]/statBases/StuffEffectMultiplierArmor</xpath>
+			<value>
+				<StuffEffectMultiplierArmor>3</StuffEffectMultiplierArmor>
+			</value>
+		</li>
+
+		<!-- Thick Pelt Armor -->
+
+		<li Class="PatchOperationAdd">
+			<xpath>Defs/ThingDef[defName = "Gunmar_Apparel_ThickPeltArmor"]/statBases</xpath>
+			<value>
+				<Bulk>5</Bulk>
+				<WornBulk>2</WornBulk>
+			</value>
+		</li>
+
+		<li Class="PatchOperationReplace">
+			<xpath>Defs/ThingDef[defName= "Gunmar_Apparel_ThickPeltArmor"]/statBases/StuffEffectMultiplierArmor</xpath>
+			<value>
+				<StuffEffectMultiplierArmor>2</StuffEffectMultiplierArmor>
+				<ArmorRating_Blunt>1</ArmorRating_Blunt>
+				<ArmorRating_Sharp>0.30</ArmorRating_Sharp>
+			</value>
+		</li>
+
+		<!-- Pelt Cap / Pelt Mantle -->
+
+		<li Class="PatchOperationAdd">
+			<xpath>Defs/ThingDef[defName="Gunmar_Apparel_PeltMantle" or defName="Gunmar_Apparel_SunshadePeltMantle"]/statBases</xpath>
+			<value>
+				<Bulk>3</Bulk>
+				<WornBulk>1</WornBulk>
+			</value>
+		</li>
+
+		<li Class="PatchOperationReplace">
+			<xpath>Defs/ThingDef[defName="Gunmar_Apparel_PeltMantle" or defName="Gunmar_Apparel_SunshadePeltMantle"]/statBases/StuffEffectMultiplierArmor</xpath>
+			<value>
+				<StuffEffectMultiplierArmor>3</StuffEffectMultiplierArmor>
+			</value>
+		</li>
+
+		<!-- Sunshade Pelt Cap -->
+
+		<li Class="PatchOperationAdd">
+			<xpath>Defs/ThingDef[defName= "Gunmar_Apparel_PeltCap" or defName = "Gunmar_Apparel_SunshadePeltCap"]/statBases</xpath>
+			<value>
+				<Bulk>1</Bulk>
+				<WornBulk>1</WornBulk>
+			</value>
+		</li>
+
+		<li Class="PatchOperationReplace">
+			<xpath>Defs/ThingDef[defName= "Gunmar_Apparel_PeltCap" or defName= "Gunmar_Apparel_SunshadePeltCap"]/statBases/StuffEffectMultiplierArmor</xpath>
+			<value>
+				<StuffEffectMultiplierArmor>1.25</StuffEffectMultiplierArmor>
+			</value>
+		</li>
+
+		<!-- Pelt Leggings -->
+
+		<li Class="PatchOperationAdd">
+			<xpath>Defs/ThingDef[defName = "Gunmar_Apparel_PeltLeggings" or defName="Gunmar_Apparel_PeltBoots"]/statBases</xpath>
+			<value>
+				<Bulk>1</Bulk>
+				<WornBulk>1</WornBulk>
+			</value>
+		</li>
+
+		<li Class="PatchOperationReplace">
+			<xpath>Defs/ThingDef[defName= "Gunmar_Apparel_PeltLeggings" or defName="Gunmar_Apparel_PeltBoots"]/statBases/StuffEffectMultiplierArmor</xpath>
+			<value>
+				<StuffEffectMultiplierArmor>3.5</StuffEffectMultiplierArmor>
+			</value>
+		</li>
+
+		</operations>
+		</match>
+	</Operation>
+
+</Patch>
+

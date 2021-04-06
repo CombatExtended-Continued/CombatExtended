@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+			<li>Dragon's Descent</li>
+		</mods>
+		<match Class="PatchOperationSequence">
+			<operations>
+				<!-- Dragon Breath -->
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/AbilityDef[defName="DragonBreath"]/verbProperties/range</xpath>
+					<value>
+						<range>17</range>
+					</value>
+				</li>
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/AbilityDef[defName="DragonBreath"]/verbProperties/minRange</xpath>
+					<value>
+						<minRange>3</minRange>
+					</value>
+				</li>
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/AbilityDef[defName="DragonBreath"]/comps/li[@Class="DD.AbilityCompProperties_CastVerb"]/verbProperties/li</xpath>
+					<value>
+						<li Class="CombatExtended.VerbPropertiesCE">
+							<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+							<hasStandardCommand>true</hasStandardCommand>
+							<ai_IsBuildingDestroyer>true</ai_IsBuildingDestroyer>
+							<defaultProjectile>Projectile_DragonBreath</defaultProjectile>
+							<range>17</range>
+							<burstShotCount>25</burstShotCount>
+							<ticksBetweenBurstShots>2</ticksBetweenBurstShots>
+							<minRange>3</minRange>
+							<soundCast>DragonBreathShot</soundCast>
+							<muzzleFlashScale>1</muzzleFlashScale>
+							<recoilAmount>1</recoilAmount>
+							<recoilPattern>Mounted</recoilPattern> <!-- Less vertical, more horizontal recoil. -->
+						</li>
+					</value>
+				</li>
+				<!-- Dragon Spit -->
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/AbilityDef[defName="DragonSpit"]/verbProperties/range</xpath>
+					<value>
+						<range>30</range>
+					</value>
+				</li>
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/AbilityDef[defName="DragonSpit"]/verbProperties/minRange</xpath>
+					<value>
+						<minRange>9</minRange>
+					</value>
+				</li>
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/AbilityDef[defName="DragonSpit"]/verbProperties/warmupTime</xpath>
+					<value>
+						<warmupTime>1</warmupTime>
+					</value>
+				</li>
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/AbilityDef[defName="DragonSpit"]/comps/li[@Class="DD.AbilityCompProperties_CastVerb"]/verbProperties/li</xpath>
+					<value>
+						<li Class="CombatExtended.VerbPropertiesCE">
+							<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+							<hasStandardCommand>true</hasStandardCommand>
+							<ai_IsBuildingDestroyer>true</ai_IsBuildingDestroyer>
+							<defaultProjectile>Projectile_DragonSpit</defaultProjectile>
+							<range>30</range>
+							<burstShotCount>3</burstShotCount>
+							<ticksBetweenBurstShots>18</ticksBetweenBurstShots>
+							<minRange>9</minRange>
+							<soundCast>DragonBreathShot</soundCast>
+							<muzzleFlashScale>1</muzzleFlashScale>
+							<recoilAmount>0.4</recoilAmount>
+							<recoilPattern>Mounted</recoilPattern> <!-- Less vertical, more horizontal recoil. -->
+						</li>
+					</value>
+				</li>
+			</operations>
+		</match>
+	</Operation>
+</Patch>

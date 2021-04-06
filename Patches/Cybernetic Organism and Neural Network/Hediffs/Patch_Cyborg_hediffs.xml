@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <Patch>
-	<Operation Class="PatchOperationSequence">
-		<success>Always</success>
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+			<li>Cybernetic Organism and Neural Network</li>
+		</mods>
+		<match Class="PatchOperationSequence">
 		<operations>
-			<!-- ==== Checking for the mod ==== -->
-			<li Class="CombatExtended.PatchOperationFindMod">
-				<modName>Cybernetic Organism and Neural Network</modName>
-			</li>
 
 			<!-- ==== Cyborg(?) Hediffs ==== -->
 			<!-- Trunken_hediff_EnergyFist -->
@@ -28,18 +27,16 @@
 			</li>
 			<!-- Trunken_hediff_OuterBlade -->
 			<li Class="PatchOperationAdd">
-				<xpath>Defs/HediffDef[defName="Trunken_hediff_OuterBlade"]</xpath>
+				<xpath>Defs/HediffDef[defName="Trunken_hediff_OuterBlade"]/stages</xpath>
 				<value>
-					<stages>
-						<li>
+					<li>
 							<minSeverity>0.000001</minSeverity>
 							<statOffsets>
 								<MeleeDodgeChance>0.4</MeleeDodgeChance>
 								<MeleeCritChance>0.14</MeleeCritChance>
 								<MeleeParryChance>0.4</MeleeParryChance>
 							</statOffsets>
-						</li>
-					</stages>
+					</li>
 				</value>
 			</li>
 			<li Class="PatchOperationReplace">
@@ -252,5 +249,6 @@
 				</value>
 			</li>
 		</operations>
+		</match>
 	</Operation>
 </Patch>

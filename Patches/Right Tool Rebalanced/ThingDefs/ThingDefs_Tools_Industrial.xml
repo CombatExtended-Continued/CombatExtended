@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <Patch>
-
-	<Operation Class="PatchOperationSequence">
-		<success>Always</success>
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+			<li>Right Tool Rebalanced</li>
+		</mods>
+		<match Class="PatchOperationSequence">
 		<operations>
-			<li Class="CombatExtended.PatchOperationFindMod">
-				<modName>Right Tool Rebalanced</modName>
-			</li>
 			<!-- ========== Pickaxe ========== -->
 			<li Class="PatchOperationReplace">
 				<xpath>Defs/ThingDef[defName="RTFTJ_Pickaxe"]/tools</xpath>
@@ -360,6 +359,7 @@
 				</value>
 			</li>
 		</operations>
+		</match>
 	</Operation>
 	
 </Patch>

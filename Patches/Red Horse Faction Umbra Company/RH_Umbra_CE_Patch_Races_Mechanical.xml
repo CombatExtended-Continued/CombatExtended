@@ -1,17 +1,17 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <Patch>
-	<Operation Class="PatchOperationSequence">
-		<success>Always</success>
+<!--
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+		<li>[RH] Faction: Umbra Company</li>
+		</mods>
+		<match Class="PatchOperationSequence">
 		<operations>
-
-			<li Class="CombatExtended.PatchOperationFindMod">
-				<modName>[RH] Faction: Umbra Company</modName>
-			</li>
-
+-->
 			<!-- Core CE patches already cover BaseMechanoid abstract class -->
 
 			<!-- ========== BTR-70 Armored Personnel Carrier ========== -->
-
+<!--
 			<li Class="PatchOperationAddModExtension">
 				<xpath>Defs/ThingDef[defName="RHRace_BTR70_APC"]</xpath>
 				<value>
@@ -26,11 +26,8 @@
 				<value>
 					<ArmorRating_Electric>0.975</ArmorRating_Electric>
 					<Mass>1150.0</Mass>
-					<!-- This value gets multipled by 10 (for body size), giving a total of 11.5 metric tonnes -->
 					<CarryWeight>15</CarryWeight>
-					<!-- This value gets multipled by 10 (for body size) -->
 					<CarryBulk>16</CarryBulk>
-					<!-- This value gets multipled by 10 (for body size) -->
 					<AimingAccuracy>1.0</AimingAccuracy>
 					<ShootingAccuracyPawn>1</ShootingAccuracyPawn>
 					<MeleeDodgeChance>0.02</MeleeDodgeChance>
@@ -50,7 +47,6 @@
 				<xpath>Defs/ThingDef[defName="RHRace_BTR70_APC"]/statBases/ArmorRating_Sharp</xpath>
 				<value>
 					<ArmorRating_Sharp>8</ArmorRating_Sharp>
-					<!-- Compromise between 9 mm at the front and 7 mm at the sides -->
 				</value>
 			</li>
 
@@ -93,5 +89,7 @@
 			</li>
 
 		</operations>
+		</match>
 	</Operation>
+-->	
 </Patch>

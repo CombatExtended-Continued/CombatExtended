@@ -26,7 +26,7 @@
 			  <verbClass>CombatExtended.Verb_ShootCE</verbClass>
 			  <hasStandardCommand>true</hasStandardCommand>
 			  <defaultProjectile>Bullet_120mmCannonShell_HE</defaultProjectile>
-			  <warmupTime>5</warmupTime>
+			  <warmupTime>4.5</warmupTime>
 			  <range>88</range>
 			  <minRange>8</minRange>
 			  <soundCast>120mm</soundCast>
@@ -87,11 +87,11 @@
 			  <verbClass>CombatExtended.Verb_ShootCE</verbClass>
 			  <hasStandardCommand>true</hasStandardCommand>
 			  <defaultProjectile>Bullet_Flamethrower_Prometheum</defaultProjectile>
-			  <warmupTime>0.15</warmupTime>
+			  <warmupTime>0.3</warmupTime>
 			  <range>16</range>
 			  <ticksBetweenBurstShots>1</ticksBetweenBurstShots>
 			  <burstShotCount>5</burstShotCount>
-			  <soundCast>ThrowMolotovCocktail</soundCast>
+			  <soundCast>HissFlamethrower</soundCast>
 			  <muzzleFlashScale>2</muzzleFlashScale>
 				<ai_IsBuildingDestroyer>true</ai_IsBuildingDestroyer>
 			</Properties>
@@ -107,6 +107,66 @@
 				<li>AA_MechanoidFlamethrower</li>
 			</weaponTags>
 			</li>
+				
+			<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+			<defName>AA_CryogenicGun</defName>
+			  <statBases>
+			  <Mass>2.00</Mass>
+			  <RangedWeapon_Cooldown>0.36</RangedWeapon_Cooldown>
+			  <SightsEfficiency>0.8</SightsEfficiency>
+			  <ShotSpread>0.3</ShotSpread>
+			  <SwayFactor>1.33</SwayFactor>
+			  <Bulk>1.00</Bulk>
+			</statBases>
+			<Properties>
+			  <recoilAmount>0</recoilAmount>
+			  <verbClass>CombatExtended.Verb_ShootCE</verbClass>
+			  <hasStandardCommand>true</hasStandardCommand>
+			  <defaultProjectile>AA_CryoBulletCE</defaultProjectile>
+			  <warmupTime>0.9</warmupTime>
+			  <range>15</range>
+			  <ticksBetweenBurstShots>5</ticksBetweenBurstShots>
+			  <burstShotCount>3</burstShotCount>
+			  <soundCast>AA_Cryogun</soundCast>
+			  <muzzleFlashScale>2</muzzleFlashScale>
+			</Properties>
+			<AmmoUser>
+			  <magazineSize>80</magazineSize>
+			  <reloadTime>4</reloadTime>
+			</AmmoUser>
+			<FireModes>
+			  <aiAimMode>Snapshot</aiAimMode>
+			</FireModes>
+			<weaponTags>
+				<li>AA_MechanoidCryoweapon</li>
+			</weaponTags>
+			</li>
+				
+	<li Class="PatchOperationAdd"> 
+			<xpath>/Defs</xpath>
+				<value>
+	<ThingDef ParentName="AA_BaseMechProjectile">
+		<defName>AA_CryoBulletCE</defName>
+    <thingClass>CombatExtended.ProjectileCE_Explosive</thingClass>
+		<label>cryogenic pellet</label>
+		<graphicData>
+			<texPath>Things/Projectiles/AA_Cryo</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+			<shaderType>TransparentPostLight</shaderType>
+		</graphicData>
+    <projectile Class="CombatExtended.ProjectilePropertiesCE">
+      <flyOverhead>false</flyOverhead>
+			<speed>40</speed>
+			<damageDef>Frostbite</damageDef>
+			<damageAmountBase>3</damageAmountBase>
+			<explosionRadius>3</explosionRadius>						
+			<soundExplode>AA_Cryogun</soundExplode>
+      <armorPenetrationSharp>0</armorPenetrationSharp>
+      <armorPenetrationBlunt>0</armorPenetrationBlunt>			
+    </projectile>
+	</ThingDef>
+        </value>
+	</li>
 			
 
 			</operations>

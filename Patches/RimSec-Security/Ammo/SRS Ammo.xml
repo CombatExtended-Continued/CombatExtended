@@ -1,0 +1,306 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+    <Operation Class="PatchOperationFindMod">
+        <mods>
+            <li>Rimsec Security</li>
+        </mods>
+
+        <match Class="PatchOperationSequence">
+            <operations>
+
+                <!-- ======== 6x24mm SRS ======== -->
+
+                <li Class="PatchOperationAdd">
+                    <xpath>Defs</xpath>
+                    <value>
+                        <CombatExtended.AmmoSetDef>
+                            <defName>AmmoSet_6x24mmSRS</defName>
+                            <label>6x24mm Charged Bullet (DLG)</label>
+                            <ammoTypes>
+                                <Ammo_6x24mmCharged>Bullet_6x24mmSRS</Ammo_6x24mmCharged>
+                                <Ammo_6x24mmCharged_AP>Bullet_6x24mmSRS_AP</Ammo_6x24mmCharged_AP>
+                                <Ammo_6x24mmCharged_Ion>Bullet_6x24mmSRS_Ion</Ammo_6x24mmCharged_Ion>
+                            </ammoTypes>
+                        </CombatExtended.AmmoSetDef>
+                    </value>
+                </li>
+
+                <li Class="PatchOperationAdd">
+                    <xpath>Defs</xpath>
+                    <value>
+                        <ThingDef Class="CombatExtended.AmmoDef" ParentName="Base6x24mmChargedBullet">
+                            <defName>Bullet_6x24mmSRS</defName>
+                            <label>6x24mm Charged SRS bullet</label>
+                            <graphicData>
+                                <texPath>Things/laserbolt</texPath>
+                                <graphicClass>Graphic_Single</graphicClass>
+                            </graphicData>
+                            <projectile Class="CombatExtended.ProjectilePropertiesCE">
+                                <speed>160</speed>
+                                <damageAmountBase>13</damageAmountBase>
+                                <secondaryDamage>
+                                    <li>
+                                        <def>Bomb_Secondary</def>
+                                        <amount>4</amount>
+                                    </li>
+                                </secondaryDamage>
+                                <armorPenetrationSharp>12</armorPenetrationSharp>
+                                <armorPenetrationBlunt>25.6</armorPenetrationBlunt>
+                            </projectile>
+                        </ThingDef>
+                    </value>
+                </li>
+
+                <li Class="PatchOperationAdd">
+                    <xpath>Defs</xpath>
+                    <value>
+                        <ThingDef Class="CombatExtended.AmmoDef" ParentName="Base6x24mmChargedBullet">
+                            <defName>Bullet_6x24mmSRS_AP</defName>
+                            <label>6x24mm Charged SRS bullet (Conc.)</label>
+                            <graphicData>
+                                <texPath>Things/laserbolt</texPath>
+                                <graphicClass>Graphic_Single</graphicClass>
+                            </graphicData>
+                            <projectile Class="CombatExtended.ProjectilePropertiesCE">
+                                <speed>160</speed>
+                                <damageAmountBase>10</damageAmountBase>
+                                <secondaryDamage>
+                                    <li>
+                                        <def>Bomb_Secondary</def>
+                                        <amount>2</amount>
+                                    </li>
+                                </secondaryDamage>
+                                <armorPenetrationSharp>24</armorPenetrationSharp>
+                                <armorPenetrationBlunt>25.6</armorPenetrationBlunt>
+                            </projectile>
+                        </ThingDef>
+                    </value>
+                </li>
+
+                <li Class="PatchOperationAdd">
+                    <xpath>Defs</xpath>
+                    <value>
+                        <ThingDef Class="CombatExtended.AmmoDef" ParentName="Base6x24mmChargedBullet">
+                            <defName>Bullet_6x24mmSRS_Ion</defName>
+                            <label>6x24mm Charged SRS bullet (Ion)</label>
+                            <graphicData>
+                                <texPath>Things/laserbolt</texPath>
+                                <graphicClass>Graphic_Single</graphicClass>
+                            </graphicData>
+                            <projectile Class="CombatExtended.ProjectilePropertiesCE">
+                                <speed>160</speed>
+                                <damageAmountBase>10</damageAmountBase>
+                                <secondaryDamage>
+                                    <li>
+                                        <def>EMP</def>
+                                        <amount>6</amount>
+                                    </li>
+                                </secondaryDamage>
+                                <armorPenetrationSharp>18</armorPenetrationSharp>
+                                <armorPenetrationBlunt>25.6</armorPenetrationBlunt>
+                                <empShieldBreakChance>0.2</empShieldBreakChance>
+                            </projectile>
+                        </ThingDef>
+                    </value>
+                </li>
+
+
+
+                <!-- ======== 6x18mm SRS ======== -->
+
+                <li Class="PatchOperationAdd">
+                    <xpath>Defs</xpath>
+                    <value>
+                        <CombatExtended.AmmoSetDef>
+                            <defName>AmmoSet_6x18mmSRS</defName>
+                            <label>6x18mm Charged Bullet (EHG)</label>
+                            <ammoTypes>
+                                <Ammo_6x18mmCharged>Bullet_6x18mmSRS</Ammo_6x18mmCharged>
+                                <Ammo_6x18mmCharged_AP>Bullet_6x18mmSRS_AP</Ammo_6x18mmCharged_AP>
+                                <Ammo_6x18mmCharged_Ion>Bullet_6x18mmSRS_Ion</Ammo_6x18mmCharged_Ion>
+                            </ammoTypes>
+                        </CombatExtended.AmmoSetDef>
+                    </value>
+                </li>
+
+                <li Class="PatchOperationAdd">
+                    <xpath>Defs</xpath>
+                    <value>
+                        <ThingDef Class="CombatExtended.AmmoDef" ParentName="Base6x18mmChargedBullet">
+                            <defName>Bullet_6x18mmSRS</defName>
+                            <label>6x18mm Charged SRS bullet</label>
+                            <graphicData>
+                                <texPath>Things/purplelaserbolt</texPath>
+                                <graphicClass>Graphic_Single</graphicClass>
+                            </graphicData>
+                            <projectile Class="CombatExtended.ProjectilePropertiesCE">
+                                <speed>120</speed>
+                                <damageAmountBase>10</damageAmountBase>
+                                <secondaryDamage>
+                                    <li>
+                                        <def>Bomb_Secondary</def>
+                                        <amount>3</amount>
+                                    </li>
+                                </secondaryDamage>
+                                <armorPenetrationSharp>8</armorPenetrationSharp>
+                                <armorPenetrationBlunt>14.4</armorPenetrationBlunt>
+                            </projectile>
+                        </ThingDef>
+                    </value>
+                </li>
+
+                <li Class="PatchOperationAdd">
+                    <xpath>Defs</xpath>
+                    <value>
+                        <ThingDef Class="CombatExtended.AmmoDef" ParentName="Base6x18mmChargedBullet">
+                            <defName>Bullet_6x18mmSRS_AP</defName>
+                            <label>6x18mm Charged SRS bullet (Conc.)</label>
+                            <graphicData>
+                                <texPath>Things/purplelaserbolt</texPath>
+                                <graphicClass>Graphic_Single</graphicClass>
+                            </graphicData>
+                            <projectile Class="CombatExtended.ProjectilePropertiesCE">
+                                <speed>120</speed>
+                                <damageAmountBase>8</damageAmountBase>
+                                <secondaryDamage>
+                                    <li>
+                                        <def>Bomb_Secondary</def>
+                                        <amount>1</amount>
+                                    </li>
+                                </secondaryDamage>
+                                <armorPenetrationSharp>16</armorPenetrationSharp>
+                                <armorPenetrationBlunt>14.4</armorPenetrationBlunt>
+                            </projectile>
+                        </ThingDef>
+                    </value>
+                </li>
+
+                <li Class="PatchOperationAdd">
+                    <xpath>Defs</xpath>
+                    <value>
+                        <ThingDef Class="CombatExtended.AmmoDef" ParentName="Base6x18mmChargedBullet">
+                            <defName>Bullet_6x18mmSRS_Ion</defName>
+                            <label>6x18mm Charged SRS bullet (Ion)</label>
+                            <graphicData>
+                                <texPath>Things/purplelaserbolt</texPath>
+                                <graphicClass>Graphic_Single</graphicClass>
+                            </graphicData>
+                            <projectile Class="CombatExtended.ProjectilePropertiesCE">
+                                <speed>120</speed>
+                                <damageAmountBase>8</damageAmountBase>
+                                <secondaryDamage>
+                                    <li>
+                                        <def>EMP</def>
+                                        <amount>5</amount>
+                                    </li>
+                                </secondaryDamage>
+                                <armorPenetrationSharp>12</armorPenetrationSharp>
+                                <armorPenetrationBlunt>14.4</armorPenetrationBlunt>
+                                <empShieldBreakChance>1</empShieldBreakChance>
+                            </projectile>
+                        </ThingDef>
+                    </value>
+                </li>
+
+
+
+                <!-- ======== 8x35mm SRS ======== -->
+
+                <li Class="PatchOperationAdd">
+                    <xpath>Defs</xpath>
+                    <value>
+                        <CombatExtended.AmmoSetDef>
+                            <defName>AmmoSet_8x35mmSRS</defName>
+                            <label>8x35mm Charged Bullet (HLT)</label>
+                            <ammoTypes>
+                                <Ammo_8x35mmCharged>Bullet_8x35mmSRS</Ammo_8x35mmCharged>
+                                <Ammo_8x35mmCharged_AP>Bullet_8x35mmSRS_AP</Ammo_8x35mmCharged_AP>
+                                <Ammo_8x35mmCharged_Ion>Bullet_8x35mmSRS_Ion</Ammo_8x35mmCharged_Ion>
+                            </ammoTypes>
+                        </CombatExtended.AmmoSetDef>
+                    </value>
+                </li>
+
+                <li Class="PatchOperationAdd">
+                    <xpath>Defs</xpath>
+                    <value>
+                        <ThingDef Class="CombatExtended.AmmoDef" ParentName="Base8x35mmChargedBullet">
+                            <defName>Bullet_8x35mmSRS</defName>
+                            <label>8x35mm Charged SRS bullet</label>
+                            <graphicData>
+                                <texPath>Things/Building/Turrets/HLT/HLT_projectile</texPath>
+                                <graphicClass>Graphic_Single</graphicClass>
+                            </graphicData>
+                            <projectile Class="CombatExtended.ProjectilePropertiesCE">
+                                <damageAmountBase>19</damageAmountBase>
+                                <speed>160</speed>
+                                <secondaryDamage>
+                                    <li>
+                                        <def>Bomb_Secondary</def>
+                                        <amount>6</amount>
+                                    </li>
+                                </secondaryDamage>
+                                <armorPenetrationSharp>14</armorPenetrationSharp>
+                                <armorPenetrationBlunt>57.6</armorPenetrationBlunt>
+                            </projectile>
+                        </ThingDef>
+                    </value>
+                </li>
+
+                <li Class="PatchOperationAdd">
+                    <xpath>Defs</xpath>
+                    <value>
+                        <ThingDef Class="CombatExtended.AmmoDef" ParentName="Base8x35mmChargedBullet">
+                            <defName>Bullet_8x35mmSRS_AP</defName>
+                            <label>8x35mm Charged SRS bullet (Conc.)</label>
+                            <graphicData>
+                                <texPath>Things/Building/Turrets/HLT/HLT_projectile</texPath>
+                                <graphicClass>Graphic_Single</graphicClass>
+                            </graphicData>
+                            <projectile Class="CombatExtended.ProjectilePropertiesCE">
+                                <damageAmountBase>15</damageAmountBase>
+                                <speed>160</speed>
+                                <secondaryDamage>
+                                    <li>
+                                        <def>Bomb_Secondary</def>
+                                        <amount>2</amount>
+                                    </li>
+                                </secondaryDamage>
+                                <armorPenetrationSharp>28</armorPenetrationSharp>
+                                <armorPenetrationBlunt>57.6</armorPenetrationBlunt>
+                            </projectile>
+                        </ThingDef>
+                    </value>
+                </li>
+
+                <li Class="PatchOperationAdd">
+                    <xpath>Defs</xpath>
+                    <value>
+                        <ThingDef Class="CombatExtended.AmmoDef" ParentName="Base8x35mmChargedBullet">
+                            <defName>Bullet_8x35mmSRS_Ion</defName>
+                            <label>8x35mm Charged SRS bullet (Ion)</label>
+                            <graphicData>
+                                <texPath>Things/Building/Turrets/HLT/HLT_projectile</texPath>
+                                <graphicClass>Graphic_Single</graphicClass>
+                            </graphicData>
+                            <projectile Class="CombatExtended.ProjectilePropertiesCE">
+                                <damageAmountBase>15</damageAmountBase>
+                                <speed>160</speed>
+                                <secondaryDamage>
+                                    <li>
+                                        <def>EMP</def>
+                                        <amount>9</amount>
+                                    </li>
+                                </secondaryDamage>
+                                <armorPenetrationSharp>21</armorPenetrationSharp>
+                                <armorPenetrationBlunt>57.6</armorPenetrationBlunt>
+                                <empShieldBreakChance>0.2</empShieldBreakChance>
+                            </projectile>
+                        </ThingDef>
+                    </value>
+                </li>
+
+            </operations>
+        </match>
+    </Operation>
+</Patch>

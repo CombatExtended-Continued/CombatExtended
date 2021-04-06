@@ -1,0 +1,368 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+
+  <Operation Class="PatchOperationFindMod">
+    <mods>
+      <li>[JDS] EFT Apparel</li>
+    </mods>
+    <match Class="PatchOperationSequence">
+      <operations>
+
+        <!-- === Armored === -->
+        <li Class="PatchOperationAdd">
+          <xpath>/Defs/ThingDef[@Name="JDSFrontierChestRigBase"]/apparel/layers</xpath>
+          <value>
+            <li>Webbing</li>
+          </value>
+        </li>
+        
+        <!-- == Remove CarryingCapacity == -->
+        <li Class="PatchOperationRemove">
+          <xpath>
+            /Defs/ThingDef[
+              defName = "JDSTarkov_6B5-16_Zh-86_rig" or
+              defName = "JDSTarkov_6B3TM-01M" or
+              defName = "JDSTarkov_6B5-15_Zh-86_rig" or
+              defName = "JDSTarkov_ANA_Tactical_M2_rig" or
+              defName = "JDSTarkov_ANA_Tactical_M1_rig" or
+              defName = "JDSTarkov_Crye_Precision_AVS" or
+              defName = "JDSTarkov_Ars_Arma_A18_Skanda" or
+              defName = "JDSTarkov_Wartech_TV-110_rig" or
+              defName = "JDSTarkov_5_11_Tactec_plate_carrier" or
+              defName = "JDSTarkov_Ars_Arma_CPC_MOD_2_rig"
+            ]/equippedStatOffsets/CarryingCapacity
+          </xpath>
+        </li>
+
+        <!-- == Add CarryBulk == -->
+        <li Class="PatchOperationAdd">
+          <xpath>
+            /Defs/ThingDef[
+              defName = "JDSTarkov_6B5-16_Zh-86_rig" or
+              defName = "JDSTarkov_6B3TM-01M" or
+              defName = "JDSTarkov_6B5-15_Zh-86_rig" or
+              defName = "JDSTarkov_ANA_Tactical_M2_rig" or
+              defName = "JDSTarkov_5_11_Tactec_plate_carrier" or
+              defName = "JDSTarkov_ANA_Tactical_M1_rig" or
+              defName = "JDSTarkov_Crye_Precision_AVS" or
+              defName = "JDSTarkov_Ars_Arma_A18_Skanda" or
+              defName = "JDSTarkov_Wartech_TV-110_rig" or
+              defName = "JDSTarkov_Ars_Arma_CPC_MOD_2_rig"
+            ]/equippedStatOffsets
+          </xpath>
+          <value>
+            <CarryBulk>15</CarryBulk>
+          </value>
+        </li>
+
+        <!-- === ReloadSpeed === -->
+        <li Class="PatchOperationAdd">
+          <xpath>
+            /Defs/ThingDef[
+              defName = "JDSTarkov_6B5-16_Zh-86_rig" or
+              defName = "JDSTarkov_6B3TM-01M" or
+              defName = "JDSTarkov_6B5-15_Zh-86_rig" or
+              defName = "JDSTarkov_5_11_Tactec_plate_carrier"
+            ]/equippedStatOffsets
+          </xpath>
+          <value>
+            <ReloadSpeed>0.05</ReloadSpeed>
+          </value>
+        </li>
+
+        <li Class="PatchOperationAdd">
+          <xpath>
+            /Defs/ThingDef[
+              defName = "JDSTarkov_ANA_Tactical_M2_rig" or
+              defName = "JDSTarkov_ANA_Tactical_M1_rig" or
+              defName = "JDSTarkov_Crye_Precision_AVS" or
+              defName = "JDSTarkov_Ars_Arma_A18_Skanda" or
+              defName = "JDSTarkov_Wartech_TV-110_rig" or
+              defName = "JDSTarkov_Ars_Arma_CPC_MOD_2_rig"
+            ]/equippedStatOffsets
+          </xpath>
+          <value>
+            <ReloadSpeed>0.1</ReloadSpeed>
+          </value>
+        </li>
+
+        <!-- == 6B5-16 / 6B3TM-01M / 6B5-15 / ANA Tactical M2 / ANA Tactical M1 / Cry Precn AVS ==  -->
+        <li Class="PatchOperationAdd">
+          <xpath>
+            /Defs/ThingDef[
+              defName = "JDSTarkov_6B5-16_Zh-86_rig" or
+              defName = "JDSTarkov_6B3TM-01M" or
+              defName = "JDSTarkov_6B5-15_Zh-86_rig" or
+              defName = "JDSTarkov_ANA_Tactical_M2_rig" or
+              defName = "JDSTarkov_ANA_Tactical_M1_rig" or
+              defName = "JDSTarkov_Crye_Precision_AVS"
+            ]/statBases
+          </xpath>
+          <value>
+            <Bulk>7.5</Bulk>
+            <WornBulk>1.5</WornBulk>
+          </value>
+        </li>
+
+        <!-- == 6B5-16 / 6B3TM-01M / 6B5-15 / ANA Tactical M2 / ANA Tactical M1 / Cry Prec AVS / Ars Arma A18 / Wartech TV-110 ==  -->
+        <li Class="PatchOperationReplace">
+          <xpath>
+            /Defs/ThingDef[
+              defName = "JDSTarkov_6B5-16_Zh-86_rig" or
+              defName = "JDSTarkov_6B3TM-01M" or
+              defName = "JDSTarkov_6B5-15_Zh-86_rig" or
+              defName = "JDSTarkov_ANA_Tactical_M2_rig" or
+              defName = "JDSTarkov_ANA_Tactical_M1_rig" or
+              defName = "JDSTarkov_Crye_Precision_AVS" or
+              defName = "JDSTarkov_Ars_Arma_A18_Skanda" or
+              defName = "JDSTarkov_Wartech_TV-110_rig"
+            ]/statBases/ArmorRating_Sharp
+          </xpath>
+          <value>
+            <ArmorRating_Sharp>14</ArmorRating_Sharp>
+          </value>
+        </li>
+
+        <li Class="PatchOperationReplace">
+          <xpath>
+            /Defs/ThingDef[
+              defName = "JDSTarkov_6B5-16_Zh-86_rig" or
+              defName = "JDSTarkov_6B3TM-01M" or
+              defName = "JDSTarkov_6B5-15_Zh-86_rig" or
+              defName = "JDSTarkov_ANA_Tactical_M2_rig" or
+              defName = "JDSTarkov_ANA_Tactical_M1_rig" or
+              defName = "JDSTarkov_Crye_Precision_AVS" or
+              defName = "JDSTarkov_Ars_Arma_A18_Skanda" or
+              defName = "JDSTarkov_Wartech_TV-110_rig"
+            ]/statBases/ArmorRating_Blunt
+          </xpath>
+          <value>
+            <ArmorRating_Blunt>24</ArmorRating_Blunt>
+          </value>
+        </li>
+
+        <li Class="PatchOperationReplace">
+          <xpath>
+            /Defs/ThingDef[
+              defName = "JDSTarkov_6B5-16_Zh-86_rig" or
+              defName = "JDSTarkov_6B3TM-01M" or
+              defName = "JDSTarkov_6B5-15_Zh-86_rig" or
+              defName = "JDSTarkov_ANA_Tactical_M2_rig" or
+              defName = "JDSTarkov_ANA_Tactical_M1_rig" or
+              defName = "JDSTarkov_Crye_Precision_AVS" or
+              defName = "JDSTarkov_Ars_Arma_A18_Skanda" or
+              defName = "JDSTarkov_Wartech_TV-110_rig"
+            ]/statBases/ArmorRating_Heat
+          </xpath>
+          <value>
+            <ArmorRating_Heat>0.36</ArmorRating_Heat>
+          </value>
+        </li>
+
+        <!-- == Ars Arma A18 / Wartech TV-110 / 5.11 Tactec / Ars Arma CPC == -->
+        <li Class="PatchOperationAdd">
+          <xpath>
+            /Defs/ThingDef[
+              defName = "JDSTarkov_Ars_Arma_A18_Skanda" or
+              defName = "JDSTarkov_Wartech_TV-110_rig" or
+              defName = "JDSTarkov_5_11_Tactec_plate_carrier" or
+              defName = "JDSTarkov_Ars_Arma_CPC_MOD_2_rig"
+            ]/statBases
+          </xpath>
+          <value>
+            <Bulk>5</Bulk>
+            <WornBulk>3</WornBulk>
+          </value>
+        </li>
+
+        <!-- == 5.11 Tactec / Ars Arma CPC == -->
+        <li Class="PatchOperationReplace">
+          <xpath>
+            /Defs/ThingDef[
+              defName = "JDSTarkov_5_11_Tactec_plate_carrier" or
+              defName = "JDSTarkov_Ars_Arma_CPC_MOD_2_rig"
+            ]/statBases/ArmorRating_Sharp
+          </xpath>
+          <value>
+            <ArmorRating_Sharp>16</ArmorRating_Sharp>
+          </value>
+        </li>
+
+        <li Class="PatchOperationReplace">
+          <xpath>
+            /Defs/ThingDef[
+              defName = "JDSTarkov_5_11_Tactec_plate_carrier" or
+              defName = "JDSTarkov_Ars_Arma_CPC_MOD_2_rig"
+            ]/statBases/ArmorRating_Blunt
+          </xpath>
+          <value>
+            <ArmorRating_Blunt>28</ArmorRating_Blunt>
+          </value>
+        </li>
+
+        <li Class="PatchOperationReplace">
+          <xpath>
+            /Defs/ThingDef[
+              defName = "JDSTarkov_5_11_Tactec_plate_carrier" or
+              defName = "JDSTarkov_Ars_Arma_CPC_MOD_2_rig"
+            ]/statBases/ArmorRating_Heat
+          </xpath>
+          <value>
+            <ArmorRating_Heat>0.36</ArmorRating_Heat>
+          </value>
+        </li>
+
+        <!-- === Unarmored === -->
+
+        <li Class="PatchOperationAdd">
+          <xpath>Defs</xpath>
+          <value>
+            <ThingDef Name="EFTWebbingBase" ParentName="JDSFrontierChestRigBase" Abstract="True">
+              <apparel Inherit="False">
+                <bodyPartGroups>
+                  <li>Shoulders</li>
+                </bodyPartGroups>
+                <layers>
+                  <li>Webbing</li>
+                </layers>
+                <tags>
+                  <li>MilitaryArmor</li>
+                </tags>
+                <defaultOutfitTags>
+                  <li>Soldier</li>
+                </defaultOutfitTags>
+              </apparel>
+            </ThingDef>
+          </value>
+        </li>
+
+        <li Class="PatchOperationAttributeSet">
+          <xpath>
+            /Defs/ThingDef[
+              defName = "JDSTarkov_Scav_Vest" or
+              defName = "JDSTarkov_Spiritus_Systems" or
+              defName = "JDSTarkov_SOE_Micro" or
+              defName = "JDSTarkov_Wartech_TV-109_Rig" or
+              defName = "JDSTarkov_UMTBS_6sh112_Rig" or
+              defName = "JDSTarkov_Splav_Tarzan_M22_Rig" or
+              defName = "JDSTarkov_Haley_Strategic_D3CRX" or
+              defName = "JDSTarkov_Triton_M43-A" or
+              defName = "JDSTarkov_Commando_Chest_Harness" or
+              defName = "JDSTarkov_Direct_Action_Compact" or
+              defName = "JDSTarkov_LBT-1961A_Load_Bearing" or
+              defName = "JDSTarkov_BlackRock" or
+              defName = "JDSTarkov_Wartech_MK3_Rig" or
+              defName = "JDSTarkov_ANA_Tactical" or
+              defName = "JDSTarkov_Velocity_Systems" or
+              defName = "JDSTarkov_Belt-A"
+            ]
+          </xpath>
+          <attribute>ParentName</attribute>
+          <value>EFTWebbingBase</value>
+        </li>
+
+        <!-- == Remove Stuff  == -->
+        <li Class="PatchOperationRemove">
+          <xpath>
+            /Defs/ThingDef[
+              defName = "JDSTarkov_Scav_Vest" or
+              defName = "JDSTarkov_Spiritus_Systems" or
+              defName = "JDSTarkov_SOE_Micro" or
+              defName = "JDSTarkov_Wartech_TV-109_Rig" or
+              defName = "JDSTarkov_UMTBS_6sh112_Rig" or
+              defName = "JDSTarkov_Splav_Tarzan_M22_Rig" or
+              defName = "JDSTarkov_Haley_Strategic_D3CRX" or
+              defName = "JDSTarkov_Triton_M43-A" or
+              defName = "JDSTarkov_Commando_Chest_Harness" or
+              defName = "JDSTarkov_Direct_Action_Compact" or
+              defName = "JDSTarkov_LBT-1961A_Load_Bearing" or
+              defName = "JDSTarkov_BlackRock" or
+              defName = "JDSTarkov_Wartech_MK3_Rig" or
+              defName = "JDSTarkov_ANA_Tactical" or
+              defName = "JDSTarkov_Velocity_Systems" or
+              defName = "JDSTarkov_Belt-A"
+            ]/statBases/ArmorRating_Sharp |
+            /Defs/ThingDef[
+              defName = "JDSTarkov_Triton_M43-A" or
+              defName = "JDSTarkov_BlackRock" or
+              defName = "JDSTarkov_Wartech_MK3_Rig" or
+              defName = "JDSTarkov_ANA_Tactical" or
+              defName = "JDSTarkov_Velocity_Systems" or
+              defName = "JDSTarkov_Belt-A"
+            ]/statBases/ArmorRating_Blunt |
+            /Defs/ThingDef[
+              defName = "JDSTarkov_Scav_Vest" or
+              defName = "JDSTarkov_Spiritus_Systems" or
+              defName = "JDSTarkov_SOE_Micro" or
+              defName = "JDSTarkov_Wartech_TV-109_Rig" or
+              defName = "JDSTarkov_UMTBS_6sh112_Rig" or
+              defName = "JDSTarkov_Splav_Tarzan_M22_Rig" or
+              defName = "JDSTarkov_Haley_Strategic_D3CRX" or
+              defName = "JDSTarkov_Triton_M43-A" or
+              defName = "JDSTarkov_Commando_Chest_Harness" or
+              defName = "JDSTarkov_Direct_Action_Compact" or
+              defName = "JDSTarkov_LBT-1961A_Load_Bearing" or
+              defName = "JDSTarkov_BlackRock" or
+              defName = "JDSTarkov_Wartech_MK3_Rig" or
+              defName = "JDSTarkov_ANA_Tactical" or
+              defName = "JDSTarkov_Velocity_Systems" or
+              defName = "JDSTarkov_Belt-A"
+            ]/equippedStatOffsets/CarryingCapacity
+          </xpath>
+        </li>
+
+        <!-- == Add CarryBulk == -->
+        <li Class="PatchOperationAdd">
+          <xpath>
+            /Defs/ThingDef[
+              defName = "JDSTarkov_Scav_Vest" or
+              defName = "JDSTarkov_Spiritus_Systems" or
+              defName = "JDSTarkov_SOE_Micro" or
+              defName = "JDSTarkov_Wartech_TV-109_Rig" or
+              defName = "JDSTarkov_UMTBS_6sh112_Rig" or
+              defName = "JDSTarkov_Splav_Tarzan_M22_Rig"
+            ]/equippedStatOffsets
+          </xpath>
+          <value>
+            <CarryBulk>10</CarryBulk>
+            <ReloadSpeed>0.06</ReloadSpeed>
+          </value>
+        </li>
+
+        <li Class="PatchOperationAdd">
+          <xpath>
+            /Defs/ThingDef[
+              defName = "JDSTarkov_Haley_Strategic_D3CRX" or
+              defName = "JDSTarkov_Triton_M43-A" or
+              defName = "JDSTarkov_Commando_Chest_Harness" or
+              defName = "JDSTarkov_Direct_Action_Compact" or
+              defName = "JDSTarkov_LBT-1961A_Load_Bearing"
+            ]/equippedStatOffsets
+          </xpath>
+          <value>
+            <CarryBulk>18</CarryBulk>
+            <ReloadSpeed>0.1</ReloadSpeed>
+          </value>
+        </li>
+
+        <li Class="PatchOperationAdd">
+          <xpath>
+            /Defs/ThingDef[
+              defName = "JDSTarkov_BlackRock" or
+              defName = "JDSTarkov_Wartech_MK3_Rig" or
+              defName = "JDSTarkov_ANA_Tactical" or
+              defName = "JDSTarkov_Velocity_Systems" or
+              defName = "JDSTarkov_Belt-A"
+            ]/equippedStatOffsets
+          </xpath>
+          <value>
+            <CarryBulk>30</CarryBulk>
+            <ReloadSpeed>0.12</ReloadSpeed>
+          </value>
+        </li>
+
+      </operations>
+    </match>
+  </Operation>
+
+</Patch>

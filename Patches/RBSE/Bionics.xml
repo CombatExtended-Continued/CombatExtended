@@ -1,202 +1,92 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <Patch>
+  <Operation Class="PatchOperationFindMod">
+    <mods>
+      <li>Rah's Bionics and Surgery Expansion</li>
+    </mods>
+    <match Class="PatchOperationSequence">
+      <operations>
 
-  <!-- ========== Simple prosthetics ========== -->
+        <li Class="PatchOperationRemove">
+          <xpath>/Defs/HediffDef[defName="SimpleProstheticHand" or defName="SimpleProstheticArm"]/comps/li[@Class="HediffCompProperties_VerbGiver"]</xpath>
+        </li>
 
-  <Operation Class="PatchOperationSequence">
-    <success>Always</success>
-    <operations>
-      <li Class="CombatExtended.PatchOperationFindMod">
-        <modName>Rah's Bionics and Surgery Expansion</modName>
-      </li>
-      <li Class="PatchOperationRemove">
-      	<xpath>Defs/HediffDef[defName="SimpleProstheticHand" or defName="SimpleProstheticArm"]/comps/li[@Class="HediffCompProperties_VerbGiver"]</xpath>
-      </li>
-    </operations>
-  </Operation>
+        <!-- ========== Bionics ========== -->
 
-	  <Operation Class="PatchOperationSequence">
-    <success>Always</success>
-    <operations>
-      <li Class="CombatExtended.PatchOperationFindMod">
-        <modName>RBSE Hardcore Edition</modName>
-      </li>
-      <li Class="PatchOperationRemove">
-      	<xpath>Defs/HediffDef[defName="SimpleProstheticHand" or defName="SimpleProstheticArm"]/comps/li[@Class="HediffCompProperties_VerbGiver"]</xpath>
-      </li>
-    </operations>
-  </Operation>
-
-  <!-- ========== Bionics ========== -->
-
-  <Operation Class="PatchOperationSequence">
-    <success>Always</success>
-    <operations>
-      <li Class="CombatExtended.PatchOperationFindMod">
-        <modName>Rah's Bionics and Surgery Expansion</modName>
-      </li>
-      <li Class="PatchOperationReplace">
-      	<xpath>Defs/HediffDef[defName="BionicHand"]/comps/li[@Class="HediffCompProperties_VerbGiver"]/verbs</xpath>
-      	<value>
+        <li Class="PatchOperationReplace">
+          <xpath>/Defs/HediffDef[defName="BionicHand"]/comps/li[@Class="HediffCompProperties_VerbGiver"]/tools</xpath>
+          <value>
             <tools>
-               <li Class="CombatExtended.ToolCE">
-                  <label>bionic fist</label>
-                  <capacities>
-                     <li>Blunt</li>
-                  </capacities>
-                  <power>3</power>
-				  <armorPenetrationBlunt>0.75</armorPenetrationBlunt>
-                  <cooldownTime>1.66</cooldownTime>
-               </li>
+              <li Class="CombatExtended.ToolCE">
+                <label>bionic fist</label>
+                <capacities>
+                  <li>Blunt</li>
+                </capacities>
+                <power>3</power>
+                <armorPenetrationBlunt>0.75</armorPenetrationBlunt>
+                <cooldownTime>1.66</cooldownTime>
+              </li>
             </tools>
-      	</value>
-      </li>
-      <li Class="PatchOperationReplace">
-      	<xpath>Defs/HediffDef[defName="PowerArm"]/comps/li[@Class="HediffCompProperties_VerbGiver"]/verbs</xpath>
-      	<value>
-            <tools>
-               <li Class="CombatExtended.ToolCE">
-                  <label>bionic fist</label>
-                  <capacities>
-                     <li>Cut</li>
-                  </capacities>
-                  <power>9</power>
-				  <armorPenetrationBlunt>0.75</armorPenetrationBlunt>
-				  <armorPenetrationSharp>0.15</armorPenetrationSharp>
-                  <cooldownTime>1.66</cooldownTime>
-               </li>
-            </tools>
-      	</value>
-      </li>
-    </operations>
-  </Operation>
+          </value>
+        </li>
 
-	  <Operation Class="PatchOperationSequence">
-    <success>Always</success>
-    <operations>
-      <li Class="CombatExtended.PatchOperationFindMod">
-        <modName>RBSE Hardcore Edition</modName>
-      </li>
-      <li Class="PatchOperationReplace">
-      	<xpath>Defs/HediffDef[defName="BionicHand"]/comps/li[@Class="HediffCompProperties_VerbGiver"]/verbs</xpath>
-      	<value>
+        <li Class="PatchOperationReplace">
+          <xpath>/Defs/HediffDef[defName="PowerArm"]/comps/li[@Class="HediffCompProperties_VerbGiver"]/tools</xpath>
+          <value>
             <tools>
-               <li Class="CombatExtended.ToolCE">
-                  <label>bionic fist</label>
-                  <capacities>
-                     <li>Blunt</li>
-                  </capacities>
-                  <power>3</power>
-				  <armorPenetrationBlunt>0.75</armorPenetrationBlunt>
-                  <cooldownTime>1.66</cooldownTime>
-               </li>
-            </tools> 
-      	</value>
-      </li>
-      <li Class="PatchOperationReplace">
-      	<xpath>Defs/HediffDef[defName="PowerArm"]/comps/li[@Class="HediffCompProperties_VerbGiver"]/verbs</xpath>
-      	<value>
-            <tools>
-               <li Class="CombatExtended.ToolCE">
-                  <label>bionic fist</label>
-                  <capacities>
-                     <li>Cut</li>
-                  </capacities>
-                  <power>9</power>
-				  <armorPenetrationBlunt>0.75</armorPenetrationBlunt>
-				  <armorPenetrationSharp>0.15</armorPenetrationSharp>
-                  <cooldownTime>1.66</cooldownTime>
-               </li>
-            </tools> 
-      	</value>
-      </li>
-    </operations>
-  </Operation>
+              <li Class="CombatExtended.ToolCE">
+                <label>bionic fist</label>
+                <capacities>
+                  <li>Cut</li>
+                </capacities>
+                <power>9</power>
+                <armorPenetrationBlunt>0.75</armorPenetrationBlunt>
+                <armorPenetrationSharp>0.15</armorPenetrationSharp>
+                <cooldownTime>1.66</cooldownTime>
+              </li>
+            </tools>
+          </value>
+        </li>
 
-  <!-- ========== Advanced Bionics ========== -->
+        <!-- ========== Advanced Bionics ========== -->
 
-  <Operation Class="PatchOperationSequence">
-    <success>Always</success>
-    <operations>
-      <li Class="CombatExtended.PatchOperationFindMod">
-        <modName>Rah's Bionics and Surgery Expansion</modName>
-      </li>
-      <li Class="PatchOperationReplace">
-      	<xpath>Defs/HediffDef[defName="AdvancedPowerArm"]/comps/li[@Class="HediffCompProperties_VerbGiver"]/verbs</xpath>
-      	<value>
+        <li Class="PatchOperationReplace">
+          <xpath>/Defs/HediffDef[defName="AdvancedPowerArm"]/comps/li[@Class="HediffCompProperties_VerbGiver"]/tools</xpath>
+          <value>
             <tools>
-               <li Class="CombatExtended.ToolCE">
-                  <label>bionic fist</label>
-                  <capacities>
-                     <li>Scratch</li>
-                  </capacities>
-                  <power>22</power>
-				  <armorPenetrationBlunt>4.75</armorPenetrationBlunt>
-				  <armorPenetrationSharp>0.96</armorPenetrationSharp>
-                  <cooldownTime>0.76</cooldownTime>
-               </li>
+              <li Class="CombatExtended.ToolCE">
+                <label>bionic fist</label>
+                <capacities>
+                  <li>Scratch</li>
+                </capacities>
+                <power>22</power>
+                <armorPenetrationBlunt>4.75</armorPenetrationBlunt>
+                <armorPenetrationSharp>0.96</armorPenetrationSharp>
+                <cooldownTime>0.76</cooldownTime>
+              </li>
             </tools>
-      	</value>
-      </li>
-      <li Class="PatchOperationReplace">
-      	<xpath>Defs/HediffDef[defName="AdvancedBionicArm" or defName="AdvancedBionicHand"]/comps/li[@Class="HediffCompProperties_VerbGiver"]/verbs</xpath>
-      	<value>
-            <tools>
-               <li Class="CombatExtended.ToolCE">
-                  <label>bionic fist</label>
-                  <capacities>
-                     <li>Blunt</li>
-                  </capacities>
-                  <power>9</power>
-				  <armorPenetrationBlunt>3</armorPenetrationBlunt>				  
-                  <cooldownTime>0.83</cooldownTime>
-               </li>
-            </tools>
-      	</value>
-      </li>
-    </operations>
-  </Operation>
+          </value>
+        </li>
 
-	  <Operation Class="PatchOperationSequence">
-    <success>Always</success>
-    <operations>
-      <li Class="CombatExtended.PatchOperationFindMod">
-        <modName>RBSE Hardcore Edition</modName>
-      </li>
-      <li Class="PatchOperationReplace">
-      	<xpath>Defs/HediffDef[defName="AdvancedPowerArm"]/comps/li[@Class="HediffCompProperties_VerbGiver"]/verbs</xpath>
-      	<value>
+        <li Class="PatchOperationReplace">
+          <xpath>/Defs/HediffDef[defName="AdvancedBionicArm" or defName="AdvancedBionicHand"]/comps/li[@Class="HediffCompProperties_VerbGiver"]/tools</xpath>
+          <value>
             <tools>
-               <li Class="CombatExtended.ToolCE">
-                  <label>bionic fist</label>
-                  <capacities>
-                     <li>Scratch</li>
-                  </capacities>
-                  <power>22</power>
-				  <armorPenetrationBlunt>4.75</armorPenetrationBlunt>
-				  <armorPenetrationSharp>0.96</armorPenetrationSharp>
-                  <cooldownTime>0.76</cooldownTime>
-               </li>
+              <li Class="CombatExtended.ToolCE">
+                <label>bionic fist</label>
+                <capacities>
+                  <li>Blunt</li>
+                </capacities>
+                <power>9</power>
+                <armorPenetrationBlunt>3</armorPenetrationBlunt>
+                <cooldownTime>0.83</cooldownTime>
+              </li>
             </tools>
-      	</value>
-      </li>
-      <li Class="PatchOperationReplace">
-      	<xpath>Defs/HediffDef[defName="AdvancedBionicArm" or defName="AdvancedBionicHand"]/comps/li[@Class="HediffCompProperties_VerbGiver"]/verbs</xpath>
-      	<value>
-            <tools>
-               <li Class="CombatExtended.ToolCE">
-                  <label>bionic fist</label>
-                  <capacities>
-                     <li>Blunt</li>
-                  </capacities>
-                  <power>9</power>
-				  <armorPenetrationBlunt>3</armorPenetrationBlunt>				  
-                  <cooldownTime>0.83</cooldownTime>
-               </li>
-            </tools>
-      	</value>
-      </li>
-    </operations>
+          </value>
+        </li>
+
+      </operations>
+    </match>
   </Operation>
 
 </Patch>

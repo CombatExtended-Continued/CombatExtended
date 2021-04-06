@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>	
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+			<li>SCP</li>
+			<li>SCP - Clothing Only</li>
+		</mods>
+		<match Class="PatchOperationSequence">
+		<operations>
+
+		<!-- Hats-->
+
+		<li Class="PatchOperationReplace">
+			<xpath>Defs/ThingDef[defName="Apparel_GOCStrikeTeamBoonie" or
+			defName="Apparel_SCPSecurityTaskForceCap" or
+			defName="Apparel_CIInsurgentCap" or
+			defName="Apparel_CIInsurgentBoonie" or 
+			defName="Apparel_CIInsurgentBeret" 
+			]/statBases/StuffEffectMultiplierArmor</xpath>
+			<value>
+				<StuffEffectMultiplierArmor>2</StuffEffectMultiplierArmor>
+			</value>
+		</li>
+
+		<li Class="PatchOperationReplace">
+			<xpath>Defs/ThingDef[defName="Apparel_GOCStrikeTeamBoonie" or
+			defName="Apparel_SCPSecurityTaskForceCap" or
+			defName="Apparel_CIInsurgentCap" or
+			defName="Apparel_CIInsurgentBoonie" or 
+			defName="Apparel_CIInsurgentBeret"]/apparel/layers</xpath>
+			<value>
+				<layers>
+					<li>MiddleHead</li>
+				</layers>
+			</value>
+		</li>
+
+		<li Class="PatchOperationReplace">
+			<xpath>Defs/ThingDef[defName="Apparel_CIInsurgentBalaclava"]/statBases/StuffEffectMultiplierArmor</xpath>
+			<value>
+				<Bulk>0.5</Bulk>
+				<StuffEffectMultiplierArmor>1.5</StuffEffectMultiplierArmor>
+			</value>
+		</li>
+		<li Class="PatchOperationReplace">
+			<xpath>Defs/ThingDef[defName="Apparel_CIInsurgentBalaclava"]/apparel/layers</xpath>
+			<value>
+				<layers>
+					<li>OnHead</li>
+				</layers>
+			</value>
+		</li>
+
+		<!-- FAST Helmet -->
+		<li Class="PatchOperationAdd">
+			<xpath>Defs/ThingDef[defName="Apparel_SCPMobileTaskForceHelmet" or
+			defName="Apparel_SCPMobileTaskForceHelmetMask" or
+			defName="Apparel_SCPMobileTaskForceHelmetGasmask"
+			]/statBases</xpath>
+			<value>
+				<Bulk>3.5</Bulk>
+				<WornBulk>1</WornBulk>
+				<ArmorRating_Sharp>8</ArmorRating_Sharp>
+				<ArmorRating_Blunt>16</ArmorRating_Blunt>
+				<ArmorRating_Heat>0.54</ArmorRating_Heat>
+			</value>
+		</li>
+
+		<li Class="PatchOperationReplace">
+			<xpath>Defs/ThingDef[defName="Apparel_SCPMobileTaskForceHelmet" or
+			defName="Apparel_SCPMobileTaskForceHelmetMask" or
+			defName="Apparel_SCPMobileTaskForceHelmetGasmask"]/statBases/StuffEffectMultiplierArmor</xpath>
+			<value>
+				<StuffEffectMultiplierArmor>0.20</StuffEffectMultiplierArmor>
+			</value>
+		</li>  
+
+
+		<!-- ACH Helmet -->
+
+		<li Class="PatchOperationAdd">
+			<xpath>Defs/ThingDef[defName="Apparel_CIInsurgentHelmet" or
+			defName="Apparel_CIInsurgentHelmetMask" or
+			defName="Apparel_CIInsurgentHelmetGasmask" or
+			defName="Apparel_SCPGuardHelmet" or
+			defName="Apparel_GOCSecurityHelmet"
+			]/statBases</xpath>
+			<value>
+				<Bulk>4</Bulk>
+				<WornBulk>1</WornBulk>
+				<ArmorRating_Sharp>7</ArmorRating_Sharp>
+				<ArmorRating_Blunt>16</ArmorRating_Blunt>
+				<ArmorRating_Heat>0.54</ArmorRating_Heat>
+			</value>
+		</li>
+
+		<li Class="PatchOperationReplace">
+			<xpath>Defs/ThingDef[defName="Apparel_CIInsurgentHelmet" or
+			defName="Apparel_CIInsurgentHelmetMask" or
+			defName="Apparel_CIInsurgentHelmetGasmask" or
+			defName="Apparel_SCPGuardHelmet" or
+			defName="Apparel_GOCSecurityHelmet"
+			]/statBases/StuffEffectMultiplierArmor</xpath>
+			<value>
+				<StuffEffectMultiplierArmor>0.20</StuffEffectMultiplierArmor>
+			</value>
+		</li>
+
+		<!-- Felin Helmet -->
+
+		<li Class="PatchOperationAdd">
+			<xpath>Defs/ThingDef[defName="Apparel_GOCStrikeTeamHelmet" or
+			defName="Apparel_GOCStrikeTeamHelmetMask" or
+			defName="Apparel_GOCStrikeTeamHelmetGasmask"
+			]/statBases</xpath>
+			<value>
+				<Bulk>4</Bulk>
+				<WornBulk>1</WornBulk>
+				<ArmorRating_Sharp>6</ArmorRating_Sharp>
+				<ArmorRating_Blunt>14</ArmorRating_Blunt>
+				<ArmorRating_Heat>0.5</ArmorRating_Heat>
+			</value>
+		</li>
+
+		<li Class="PatchOperationReplace">
+			<xpath>Defs/ThingDef[defName="Apparel_GOCStrikeTeamHelmet" or
+			defName="Apparel_GOCStrikeTeamHelmetMask" or
+			defName="Apparel_GOCStrikeTeamHelmetGasmask"
+			]/statBases/StuffEffectMultiplierArmor</xpath>
+			<value>
+				<StuffEffectMultiplierArmor>0.20</StuffEffectMultiplierArmor>
+			</value>
+		</li>
+
+		<!-- Gas Mask -->
+		
+		<li Class="PatchOperationAddModExtension">
+			<xpath>Defs/ThingDef[defName="Apparel_SCPMobileTaskForceHelmetGasmask" or
+			defName="Apparel_GOCStrikeTeamHelmetGasmask" or
+			defName="Apparel_CIInsurgentHelmetGasmask"]</xpath>
+			<value>
+				<li Class="CombatExtended.ApparelHediffExtension">
+					<hediff>WearingGasMask</hediff>
+				</li>
+			</value>
+		</li>
+
+		</operations>
+		</match>
+	</Operation>
+</Patch>

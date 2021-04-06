@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <Patch>
-	<Operation Class="PatchOperationSequence">
-		<success>Always</success>
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+		<li>[RH] Faction: Militaires Sans Frontieres</li>
+		</mods>
+		<match Class="PatchOperationSequence">
 		<operations>
-
-			<li Class="CombatExtended.PatchOperationFindMod">
-				<modName>[RH] Faction: Militaires Sans Frontieres</modName>
-			</li>
 
 			<li Class="PatchOperationAdd">
 				<xpath>Defs/ScenarioDef[defName="RH_Scenario_MSF"]/scenario/parts</xpath>
@@ -35,5 +34,6 @@
 			</li>
 
 		</operations>
+		</match>
 	</Operation>
 </Patch>

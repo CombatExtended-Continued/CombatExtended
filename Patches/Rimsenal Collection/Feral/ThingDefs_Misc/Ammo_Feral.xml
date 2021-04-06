@@ -19,6 +19,13 @@
 		<iconPath>ThirdParty/Rimsenal/Nail/Nail_c</iconPath> 
 	</ThingCategoryDef>  
 
+	<CombatExtended.AmmoCategoryDef>
+		<defName>FeralScrap</defName>
+		<label>scrap</label>
+		<labelShort>scrap</labelShort>
+		<description>Bits of metal scraps</description>
+	</CombatExtended.AmmoCategoryDef>
+
 	<!-- ==================== AmmoSet ========================== -->  
 
 	<CombatExtended.AmmoSetDef>
@@ -45,7 +52,7 @@
 	 
 	 <ThingDef Class="CombatExtended.AmmoDef" ParentName="BaseScrap"> 
 	 <defName>Ammo_Feral_Scrap</defName> 
-	 <label>Bits of jagged scrap metal</label> 
+	 <label>bits of jagged scrap metal</label> 
 	 <graphicData>     
 		<texPath>ThirdParty/Rimsenal/Nail</texPath>
 		<graphicClass>Graphic_StackCount</graphicClass>
@@ -53,7 +60,7 @@
 	 <statBases>
 		<MarketValue>0.01</MarketValue> 
 	 </statBases>
-	 <ammoClass>FeralNail</ammoClass> 
+	 <ammoClass>FeralScrap</ammoClass> 
 	</ThingDef>
 
 
@@ -63,7 +70,7 @@
 	<defName>Bullet_Feral_Scrap</defName> 
 	<label>scrap metal</label>
 	<graphicData> 
-		<texPath>Things/Projectile/Scrap</texPath> 
+		<texPath>Projectile/Scrap</texPath> 
 		<graphicClass>Graphic_Single</graphicClass> 
 	</graphicData> 	 
 	<projectile Class="CombatExtended.ProjectilePropertiesCE"> 
@@ -86,7 +93,14 @@
 		<parent>AmmoRifles</parent>
     	<iconPath>ThirdParty/Rimsenal/Nail/Nail_c</iconPath>
 	</ThingCategoryDef>
-	
+
+	<CombatExtended.AmmoCategoryDef>
+		<defName>FeralNail</defName>
+		<label>nail</label>
+		<labelShort>nail</labelShort>
+		<description>Rusty, pointy nails arranged in strips.</description>
+	</CombatExtended.AmmoCategoryDef>
+
 	<!-- ==================== AmmoSet ========================== -->
 
 	<CombatExtended.AmmoSetDef>
@@ -116,7 +130,7 @@
 
 	<ThingDef Class="CombatExtended.AmmoDef" ParentName="BaseFeralNail">
 		<defName>Ammo_Feral_Nail</defName>
-		<label>Nail</label>
+		<label>nail</label>
 		<graphicData>
 			<texPath>ThirdParty/Rimsenal/Nail</texPath>
 			<graphicClass>Graphic_StackCount</graphicClass>
@@ -131,7 +145,7 @@
 
 	<ThingDef ParentName="Base556x45mmNATOBullet">
 		<defName>Bullet_Feral_Nail</defName>
-		<label>Nail</label>
+		<label>nail</label>
 		<graphicData>
 			<texPath>Projectile/Nail</texPath>
 			<graphicClass>Graphic_Single</graphicClass>

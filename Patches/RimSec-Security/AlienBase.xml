@@ -1,0 +1,256 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+			<li>Rimsec Security</li>
+		</mods>
+		<match Class="PatchOperationSequence">
+			<operations>
+
+				<!-- Body Shape -->
+				<li Class="PatchOperationAdd">
+					<xpath>/Defs/AlienRace.ThingDef_AlienRace[ @Name="RSPeacekeeperDefenderBase" or @Name="RSPeacekeeperEnforcerBase" or @Name="RSPeacekeeperSentinelBase"
+				  ]/modExtensions</xpath>
+					<value>
+						<li Class="CombatExtended.RacePropertiesExtensionCE">
+							<bodyShape>Humanoid</bodyShape>
+						</li>
+					</value>
+				</li>
+
+				<!-- Gizmos -->
+				<li Class="PatchOperationAdd">
+					<xpath>/Defs/AlienRace.ThingDef_AlienRace[ @Name="RSPeacekeeperDefenderBase" or @Name="RSPeacekeeperEnforcerBase" or @Name="RSPeacekeeperSentinelBase"
+				  ]/comps</xpath>
+					<value>
+						<li>
+							<compClass>CombatExtended.CompPawnGizmo</compClass>
+						</li>
+					</value>
+				</li>
+
+
+				<!--Defender Series-->
+
+				<li Class="PatchOperationAdd">
+					<xpath>/Defs/AlienRace.ThingDef_AlienRace[@Name="RSPeacekeeperDefenderBase"]/statBases</xpath>
+					<value>
+						<MeleeDodgeChance>1</MeleeDodgeChance>
+						<MeleeCritChance>1.2</MeleeCritChance>
+						<MeleeParryChance>1.2</MeleeParryChance>
+						<SmokeSensitivity>0</SmokeSensitivity>
+						<CarryBulk>60</CarryBulk>
+						<CarryWeight>60</CarryWeight>
+					</value>
+				</li>
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/AlienRace.ThingDef_AlienRace[@Name="RSPeacekeeperDefenderBase"]/statBases/ArmorRating_Sharp</xpath>
+					<value>
+						<ArmorRating_Sharp>12</ArmorRating_Sharp>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/AlienRace.ThingDef_AlienRace[@Name="RSPeacekeeperDefenderBase"]/statBases/ArmorRating_Blunt</xpath>
+					<value>
+						<ArmorRating_Blunt>26</ArmorRating_Blunt>
+					</value>
+				</li>
+
+
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/AlienRace.ThingDef_AlienRace[@Name="RSPeacekeeperDefenderBase"]/tools</xpath>
+					<value>
+						<tools>
+							<li Class="CombatExtended.ToolCE">
+								<label>left fist</label>
+								<capacities>
+									<li>Blunt</li>
+								</capacities>
+								<power>5</power>
+								<cooldownTime>1.11</cooldownTime>
+								<linkedBodyPartsGroup>LeftHand</linkedBodyPartsGroup>
+								<armorPenetrationBlunt>1.688</armorPenetrationBlunt>
+							</li>
+
+							<li Class="CombatExtended.ToolCE">
+								<label>right fist</label>
+								<capacities>
+									<li>Blunt</li>
+								</capacities>
+								<power>5</power>
+								<cooldownTime>1.11</cooldownTime>
+								<linkedBodyPartsGroup>RightHand</linkedBodyPartsGroup>
+								<armorPenetrationBlunt>1.688</armorPenetrationBlunt>
+							</li>
+
+							<li Class="CombatExtended.ToolCE">
+								<label>head</label>
+								<capacities>
+									<li>Blunt</li>
+								</capacities>
+								<power>2</power>
+								<cooldownTime>4.49</cooldownTime>
+								<linkedBodyPartsGroup>HeadAttackTool</linkedBodyPartsGroup>
+								<armorPenetrationBlunt>0.625</armorPenetrationBlunt>
+							</li>
+						</tools>
+					</value>
+				</li>
+
+				<!--Enforcer Series-->
+
+				<li Class="PatchOperationAdd">
+					<xpath>/Defs/AlienRace.ThingDef_AlienRace[@Name="RSPeacekeeperEnforcerBase"]/statBases</xpath>
+					<value>
+						<MeleeDodgeChance>1.2</MeleeDodgeChance>
+						<MeleeCritChance>1.3</MeleeCritChance>
+						<MeleeParryChance>1.3</MeleeParryChance>
+						<SmokeSensitivity>0</SmokeSensitivity>
+						<CarryBulk>60</CarryBulk>
+						<CarryWeight>60</CarryWeight>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/AlienRace.ThingDef_AlienRace[@Name="RSPeacekeeperEnforcerBase"]/statBases/ArmorRating_Sharp</xpath>
+					<value>
+						<ArmorRating_Sharp>16</ArmorRating_Sharp>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/AlienRace.ThingDef_AlienRace[@Name="RSPeacekeeperEnforcerBase"]/statBases/ArmorRating_Blunt</xpath>
+					<value>
+						<ArmorRating_Blunt>34</ArmorRating_Blunt>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/AlienRace.ThingDef_AlienRace[@Name="RSPeacekeeperEnforcerBase"]/tools</xpath>
+					<value>
+						<tools>
+							<li Class="CombatExtended.ToolCE">
+								<label>left fist</label>
+								<capacities>
+									<li>Blunt</li>
+								</capacities>
+								<power>5</power>
+								<cooldownTime>1.11</cooldownTime>
+								<linkedBodyPartsGroup>LeftHand</linkedBodyPartsGroup>
+								<armorPenetrationBlunt>1.688</armorPenetrationBlunt>
+							</li>
+
+							<li Class="CombatExtended.ToolCE">
+								<label>right fist</label>
+								<capacities>
+									<li>Blunt</li>
+								</capacities>
+								<power>5</power>
+								<cooldownTime>1.11</cooldownTime>
+								<linkedBodyPartsGroup>RightHand</linkedBodyPartsGroup>
+								<armorPenetrationBlunt>1.688</armorPenetrationBlunt>
+							</li>
+
+							<li Class="CombatExtended.ToolCE">
+								<label>head</label>
+								<capacities>
+									<li>Blunt</li>
+								</capacities>
+								<power>2</power>
+								<cooldownTime>4.49</cooldownTime>
+								<linkedBodyPartsGroup>HeadAttackTool</linkedBodyPartsGroup>
+								<armorPenetrationBlunt>0.625</armorPenetrationBlunt>
+							</li>
+						</tools>
+					</value>
+				</li>
+
+				<!-- Reduce health scale since they have adequate armor-->
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/AlienRace.ThingDef_AlienRace[@Name="RSPeacekeeperEnforcerBase"]/race/baseHealthScale</xpath>
+					<value>
+						<baseHealthScale>1.6</baseHealthScale>
+					</value>
+				</li>
+
+
+				<!--Sentinel Series-->
+
+				<li Class="PatchOperationAdd">
+					<xpath>/Defs/AlienRace.ThingDef_AlienRace[@Name="RSPeacekeeperSentinelBase"]/statBases</xpath>
+					<value>
+						<MeleeCritChance>1.6</MeleeCritChance>
+						<MeleeParryChance>1.6</MeleeParryChance>
+						<SmokeSensitivity>0</SmokeSensitivity>
+						<CarryBulk>60</CarryBulk>
+						<CarryWeight>60</CarryWeight>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/AlienRace.ThingDef_AlienRace[@Name="RSPeacekeeperSentinelBase"]/statBases/ArmorRating_Sharp</xpath>
+					<value>
+						<ArmorRating_Sharp>20</ArmorRating_Sharp>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/AlienRace.ThingDef_AlienRace[@Name="RSPeacekeeperSentinelBase"]/statBases/ArmorRating_Blunt</xpath>
+					<value>
+						<ArmorRating_Blunt>42</ArmorRating_Blunt>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/AlienRace.ThingDef_AlienRace[@Name="RSPeacekeeperSentinelBase"]/tools</xpath>
+					<value>
+						<tools>
+							<li Class="CombatExtended.ToolCE">
+								<label>left fist</label>
+								<capacities>
+									<li>Blunt</li>
+								</capacities>
+								<power>18</power>
+								<cooldownTime>1.42</cooldownTime>
+								<linkedBodyPartsGroup>LeftHand</linkedBodyPartsGroup>
+								<armorPenetrationBlunt>24</armorPenetrationBlunt>
+							</li>
+
+							<li Class="CombatExtended.ToolCE">
+								<label>right fist</label>
+								<capacities>
+									<li>Blunt</li>
+								</capacities>
+								<power>18</power>
+								<cooldownTime>1.42</cooldownTime>
+								<linkedBodyPartsGroup>RightHand</linkedBodyPartsGroup>
+								<armorPenetrationBlunt>24</armorPenetrationBlunt>
+							</li>
+
+							<li Class="CombatExtended.ToolCE">
+								<label>head</label>
+								<capacities>
+									<li>Blunt</li>
+								</capacities>
+								<power>8</power>
+								<cooldownTime>3.52</cooldownTime>
+								<linkedBodyPartsGroup>HeadAttackTool</linkedBodyPartsGroup>
+								<armorPenetrationBlunt>4</armorPenetrationBlunt>
+							</li>
+						</tools>
+					</value>
+				</li>
+
+				<!-- Reduce health scale since they have adequate armor-->
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/AlienRace.ThingDef_AlienRace[@Name="RSPeacekeeperSentinelBase"]/race/baseHealthScale</xpath>
+					<value>
+						<baseHealthScale>2.5</baseHealthScale>
+					</value>
+				</li>
+
+			</operations>
+		</match>
+	</Operation>
+</Patch>

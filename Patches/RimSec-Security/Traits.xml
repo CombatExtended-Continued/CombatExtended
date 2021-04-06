@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+  <Operation Class="PatchOperationSequence">
+	<operations>
+	  <li Class="PatchOperationFindMod">
+			
+		<mods><li>Rimsec Security</li></mods>
+			
+		<match Class="PatchOperationSequence">
+		<operations>
+			
+			<!-- Security Model -->
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/TraitDef[defName="RSTraitSecurity"]/degreeDatas/li/statOffsets/ArmorRating_Sharp</xpath>
+				<value>
+					<ArmorRating_Sharp>2</ArmorRating_Sharp>
+				</value>
+			</li>
+			
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/TraitDef[defName="RSTraitSecurity"]/degreeDatas/li/statOffsets/ArmorRating_Blunt</xpath>
+				<value>
+					<ArmorRating_Blunt>4</ArmorRating_Blunt>
+				</value>
+			</li>
+
+            <!-- Forest Model -->
+            <li Class="PatchOperationReplace">
+				<xpath>Defs/TraitDef[defName="RSTraitForest"]/degreeDatas/li/statOffsets</xpath>
+				<value>
+                  <statOffsets>
+					<MeleeDodgeChance>0.2</MeleeDodgeChance>
+					<MeleeCritChance>0.2</MeleeCritChance>
+					<MeleeParryChance>0.1</MeleeParryChance>
+                    <MoveSpeed>1</MoveSpeed>
+                  </statOffsets>
+				</value>
+			</li>
+
+            <!-- Winter Model-->
+            <li Class="PatchOperationReplace">
+				<xpath>Defs/TraitDef[defName="RSTraitWinter"]/degreeDatas/li/statOffsets/ShootingAccuracyPawn</xpath>
+				<value>
+					<AimingAccuracy>1.2</AimingAccuracy>
+				</value>
+			</li>
+			
+		</operations>
+		</match>	
+	  </li>
+	</operations>	
+  </Operation>
+</Patch>

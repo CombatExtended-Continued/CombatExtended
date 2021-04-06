@@ -4,198 +4,172 @@
   <Operation Class="PatchOperationFindMod">
     <mods>
       <li>Androids Expanded</li>
+      <li>Androids Expanded (Continued)</li>
     </mods>
-
     <match Class="PatchOperationSequence">
       <operations>
+
         <!-- === Droid === -->
         <li Class="PatchOperationAdd">
-          <xpath>
-            /Defs/BodyDef[defName="DroidBody"]//*[
-            def="DroidNeck"
-			]
-          </xpath>
-
+          <xpath>/Defs/BodyDef[defName="DroidBody"]//*[def="DroidNeck"]</xpath>
           <value>
             <groups/>
           </value>
         </li>
 
         <li Class="PatchOperationAdd">
-          <xpath>
+          <xpath>  
             /Defs/BodyDef[defName="DroidBody"]//*[
-            def="Chasis" or 
-            def="Head" or 
-            def="DroidNeck" or 
-            def="Jaw" or 
-            def="Frame" or 
-            def="LeftDroidShoulder" or 
-			def="LeftDroidArm" or 
-			def="LeftDroidHand" or 
-			def="LeftHandDroidPinky" or 
-			def="LeftHandDroidMiddleFinger" or 
-			def="LeftHandDroidIndexFinger" or 
-			def="LeftHandDroidThumb" or 
-			def="RightDroidShoulder" or 
-			def="RightDroidArm" or 
-			def="RightDroidHand" or 
-			def="RightHandDroidPinky" or 
-			def="RightHandDroidMiddleFinger" or 
-			def="RightHandDroidIndexFinger" or 
-			def="RightHandDroidThumb" or 
-			def="LeftDroidLeg" or 
-			def="LeftDroidFoot" or 
-			def="RightDroidLeg" or 
-			def="RightDroidFoot"
-			]/groups
+              def="Chasis" or 
+              def="Head" or 
+              def="DroidNeck" or 
+              def="Jaw" or 
+              def="Frame" or 
+              def="LeftDroidShoulder" or 
+              def="LeftDroidArm" or 
+              def="LeftDroidHand" or 
+              def="LeftHandDroidPinky" or 
+              def="LeftHandDroidMiddleFinger" or 
+              def="LeftHandDroidIndexFinger" or 
+              def="LeftHandDroidThumb" or 
+              def="RightDroidShoulder" or 
+              def="RightDroidArm" or 
+              def="RightDroidHand" or 
+              def="RightHandDroidPinky" or 
+              def="RightHandDroidMiddleFinger" or 
+              def="RightHandDroidIndexFinger" or 
+              def="RightHandDroidThumb" or 
+              def="LeftDroidLeg" or 
+              def="LeftDroidFoot" or 
+              def="RightDroidLeg" or
+              def="RightDroidFoot"
+			      ]/groups
           </xpath>
 
           <value>
             <li>CoveredByNaturalArmor</li>
           </value>
         </li>
-		
-		<li Class="PatchOperationAdd">
-          <xpath>
-            /Defs/BodyDef[defName="DroidBody"]//*[def="LeftDroidShoulder"]/groups
+
+        <li Class="PatchOperationAdd">
+          <xpath>/Defs/BodyDef[defName="DroidBody"]//*[def="LeftDroidShoulder"]/groups
           </xpath>
           <value>
             <li>LeftShoulder</li>
           </value>
         </li>
-		
-		<li Class="PatchOperationAdd">
-          <xpath>
-            /Defs/BodyDef[defName="DroidBody"]//*[def="LeftDroidArm"]/groups
+
+        <li Class="PatchOperationAdd">
+          <xpath>/Defs/BodyDef[defName="DroidBody"]//*[def="LeftDroidArm"]/groups
           </xpath>
           <value>
             <li>LeftArm</li>
           </value>
         </li>
-		
-		<li Class="PatchOperationAdd">
-          <xpath>
-            /Defs/BodyDef[defName="DroidBody"]//*[def="RightDroidShoulder"]/groups
+
+        <li Class="PatchOperationAdd">
+          <xpath>/Defs/BodyDef[defName="DroidBody"]//*[def="RightDroidShoulder"]/groups
           </xpath>
           <value>
             <li>RightShoulder</li>
           </value>
         </li>
-		
-		<li Class="PatchOperationAdd">
-          <xpath>
-            /Defs/BodyDef[defName="DroidBody"]//*[def="RightDroidArm"]/groups
+
+        <li Class="PatchOperationAdd">
+          <xpath>/Defs/BodyDef[defName="DroidBody"]//*[def="RightDroidArm"]/groups
           </xpath>
           <value>
             <li>RightArm</li>
           </value>
         </li>
-		
-		<!-- === Wardroid === -->
-        <li Class="PatchOperationAdd">
-          <xpath>
-            /Defs/BodyDef[defName="WardroidBody"]//*[
-            def="DroidNeck"
-			]
-          </xpath>
 
+        <!-- === Wardroid === -->
+        <li Class="PatchOperationAdd">
+          <xpath>/Defs/BodyDef[defName="WardroidBody"]//*[def="DroidNeck"]</xpath>
           <value>
             <groups/>
           </value>
         </li>
 
         <li Class="PatchOperationAdd">
-          <xpath>
-            /Defs/BodyDef[defName="WardroidBody"]//*[
-            def="Chasis" or 
-            def="Head" or 
-            def="DroidNeck" or 
-            def="Jaw" or 
-            def="Frame" or 
-            def="LeftDroidShoulder" or 
-			def="LeftDroidArm" or 
-			def="LeftDroidHand" or 
-			def="LeftHandDroidPinky" or 
-			def="LeftHandDroidMiddleFinger" or 
-			def="LeftHandDroidIndexFinger" or 
-			def="LeftHandDroidThumb" or 
-			def="RightDroidShoulder" or 
-			def="RightDroidArm" or 
-			def="RightDroidHand" or 
-			def="RightHandDroidPinky" or 
-			def="RightHandDroidMiddleFinger" or 
-			def="RightHandDroidIndexFinger" or 
-			def="RightHandDroidThumb" or 
-			def="LowerLeftDroidShoulder" or 
-			def="LowerLeftDroidArm" or 
-			def="LowerLeftDroidHand" or 
-			def="LowerLeftHandDroidPinky" or 
-			def="LowerLeftHandDroidMiddleFinger" or 
-			def="LowerLeftHandDroidIndexFinger" or 
-			def="LowerLeftHandDroidThumb" or 
-			def="LowerRightDroidShoulder" or 
-			def="LowerRightDroidArm" or 
-			def="LowerRightDroidHand" or 
-			def="LowerRightHandDroidPinky" or 
-			def="LowerRightHandDroidMiddleFinger" or 
-			def="LowerRightHandDroidIndexFinger" or 
-			def="LowerRightHandDroidThumb" or 
-			def="LeftDroidLeg" or 
-			def="LeftDroidFoot" or 
-			def="RightDroidLeg" or 
-			def="RightDroidFoot"
-			]/groups
+          <xpath> 
+            /Defs/BodyDef[
+              defName="WardroidBody"]//*[ 
+                def="Chasis" or 
+                def="Head" or 
+                def="DroidNeck" or 
+                def="Jaw" or 
+                def="Frame" or 
+                def="LeftDroidShoulder" or 
+                def="LeftDroidArm" or 
+                def="LeftDroidHand" or 
+                def="LeftHandDroidPinky" or 
+                def="LeftHandDroidMiddleFinger" or 
+                def="LeftHandDroidIndexFinger" or 
+                def="LeftHandDroidThumb" or 
+                def="RightDroidShoulder" or 
+                def="RightDroidArm" or 
+                def="RightDroidHand" or 
+                def="RightHandDroidPinky" or 
+                def="RightHandDroidMiddleFinger" or 
+                def="RightHandDroidIndexFinger" or 
+                def="RightHandDroidThumb" or 
+                def="LowerLeftDroidShoulder" or 
+                def="LowerLeftDroidArm" or 
+                def="LowerLeftDroidHand" or 
+                def="LowerLeftHandDroidPinky" or 
+                def="LowerLeftHandDroidMiddleFinger" or 
+                def="LowerLeftHandDroidIndexFinger" or 
+                def="LowerLeftHandDroidThumb" or 
+                def="LowerRightDroidShoulder" or 
+                def="LowerRightDroidArm" or 
+                def="LowerRightDroidHand" or 
+                def="LowerRightHandDroidPinky" or 
+                def="LowerRightHandDroidMiddleFinger" or 
+                def="LowerRightHandDroidIndexFinger" or 
+                def="LowerRightHandDroidThumb" or 
+                def="LeftDroidLeg" or 
+                def="LeftDroidFoot" or 
+                def="RightDroidLeg" or 
+                def="RightDroidFoot"
+			      ]/groups
           </xpath>
-
           <value>
             <li>CoveredByNaturalArmor</li>
           </value>
         </li>
-		
-		<li Class="PatchOperationAdd">
-          <xpath>
-            /Defs/BodyDef[defName="WardroidBody"]//*[def="LeftDroidShoulder"]/groups
-          </xpath>
+
+        <li Class="PatchOperationAdd">
+          <xpath>/Defs/BodyDef[defName="WardroidBody"]//*[def="LeftDroidShoulder"]/groups</xpath>
           <value>
             <li>LeftShoulder</li>
           </value>
         </li>
-		
-		<li Class="PatchOperationAdd">
-          <xpath>
-            /Defs/BodyDef[defName="WardroidBody"]//*[def="LeftDroidArm"]/groups
-          </xpath>
+
+        <li Class="PatchOperationAdd">
+          <xpath>/Defs/BodyDef[defName="WardroidBody"]//*[def="LeftDroidArm"]/groups</xpath>
           <value>
             <li>LeftArm</li>
           </value>
         </li>
-		
-		<li Class="PatchOperationAdd">
-          <xpath>
-            /Defs/BodyDef[defName="WardroidBody"]//*[def="RightDroidShoulder"]/groups
-          </xpath>
+
+        <li Class="PatchOperationAdd">
+          <xpath>/Defs/BodyDef[defName="WardroidBody"]//*[def="RightDroidShoulder"]/groups</xpath>
           <value>
             <li>RightShoulder</li>
           </value>
         </li>
-		
-		<li Class="PatchOperationAdd">
-          <xpath>
-            /Defs/BodyDef[defName="DroidBody"]//*[def="RightDroidArm"]/groups
-          </xpath>
+
+        <li Class="PatchOperationAdd">
+          <xpath>/Defs/BodyDef[defName="DroidBody"]//*[def="RightDroidArm"]/groups</xpath>
           <value>
             <li>RightArm</li>
           </value>
         </li>
-		
-		<!-- === Drone Body === -->
-        <li Class="PatchOperationAdd">
-          <xpath>
-            /Defs/BodyDef[defName="DroneBody"]//*[
-            def="DroneNeck"
-			]
-          </xpath>
 
+        <!-- === Drone Body === -->
+        <li Class="PatchOperationAdd">
+          <xpath>/Defs/BodyDef[defName="DroneBody"]//*[ def="DroneNeck"]</xpath>
           <value>
             <groups/>
           </value>
@@ -203,24 +177,25 @@
 
         <li Class="PatchOperationAdd">
           <xpath>
-            /Defs/BodyDef[defName="DroneBody"]//*[
-            def="DroneShell" or 
-            def="DroneNeck" or 
-            def="DroneHead" or 
-            def="DroneShoulder" or 
-            def="DroneArm" or 
-            def="DroneHand" or 
-			def="LeftDroneLeg" or 
-			def="LeftDroneFoot" or 
-			def="RightDroneLeg" or 
-			def="RightDroneFoot"
-			]/groups
+            /Defs/BodyDef[
+              defName="DroneBody"]//*[
+                def="DroneShell" or 
+                def="DroneNeck" or 
+                def="DroneHead" or 
+                def="DroneShoulder" or 
+                def="DroneArm" or 
+                def="DroneHand" or 
+                def="LeftDroneLeg" or 
+                def="LeftDroneFoot" or 
+                def="RightDroneLeg" or 
+                def="RightDroneFoot"
+			      ]/groups
           </xpath>
-
           <value>
             <li>CoveredByNaturalArmor</li>
           </value>
         </li>
+
       </operations>
     </match>
   </Operation>
