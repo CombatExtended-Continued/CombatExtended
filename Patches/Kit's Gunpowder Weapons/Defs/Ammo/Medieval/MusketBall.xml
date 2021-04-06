@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+
+	<ThingCategoryDef>
+		<defName>AmmoMusketBall</defName>
+		<label>Musket Ball</label>
+		<parent>AmmoRifles</parent>
+    <iconPath>UI/Icons/ThingCategories/CaliberRifle</iconPath>
+	</ThingCategoryDef>
+	
+	<!-- ==================== AmmoSet ========================== -->
+
+	<CombatExtended.AmmoSetDef>
+		<defName>AmmoSet_MusketBall</defName>
+		<label>Musket Ball</label>
+		<ammoTypes>
+			<Ammo_MusketBall>Bullet_MusketBall</Ammo_MusketBall>
+		</ammoTypes>
+	</CombatExtended.AmmoSetDef>
+	
+	<!-- ==================== Ammo ========================== -->
+
+	<ThingDef Class="CombatExtended.AmmoDef" Name="MusketBallBase" ParentName="SmallAmmoBase" Abstract="True">
+		<description>It's just a ball of lead (Well, steel because lead doesn't exist). That get's shot out of a gun. That's it.</description>
+		<statBases>
+		<Mass>0.037</Mass>
+		<Bulk>0.3</Bulk>
+		</statBases>
+		<tradeTags>
+			<li>CE_AutoEnableTrade</li>
+			<li>CE_AutoEnableCrafting_FueledSmithy</li>
+			<li>CE_AutoEnableCrafting_ElectricSmithy</li>
+		</tradeTags>
+		<thingCategories>
+			<li>MusketBall</li>
+		</thingCategories>
+	</ThingDef>
+
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="MusketBallBase">
+		<defName>Ammo_MusketBall</defName>
+		<label>Musket Ball</label>
+		<graphicData>
+			<texPath>Things/Ammo/Neolithic/SlingBullet/Steel</texPath>
+			<graphicClass>Graphic_StackCount</graphicClass>
+		</graphicData>
+		<statBases>
+			<MarketValue>0.35</MarketValue>
+		</statBases>
+		<ammoClass>MusketBall</ammoClass>
+	</ThingDef>
+	
+	<!-- ================== Projectile Base ================== -->
+	
+	<ThingDef Name="MusketBallBullet" ParentName="BaseBullet" Abstract="true">
+		<graphicData>
+			<texPath>Things/Projectile/Bullet_big</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+		</graphicData>
+		<projectile>
+			<damageDef>Bullet</damageDef>
+			<dropsCasings>false</dropsCasings>
+		</projectile>
+	</ThingDef>
+
+	<!-- ================== Projectiles (High Velocity) ================== -->
+
+	<ThingDef ParentName="MusketBallBullet">
+		<defName>Bullet_MusketBall</defName>
+		<label>Musket Ball</label>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<speed>90</speed>	
+			<damageAmountBase>26</damageAmountBase>		
+			<armorPenetrationSharp>6</armorPenetrationSharp>
+			<armorPenetrationBlunt>35.8</armorPenetrationBlunt>				
+		</projectile>
+	</ThingDef>
+  
+	<!-- ==================== Recipes ========================== -->
+
+	<RecipeDef ParentName="AmmoRecipeBase">
+		<defName>MakeAmmo_MusketBall</defName>
+		<label>Make Musket Balls x50</label>
+		<description>Craft 50 Musket Balls.</description>
+		<jobString>Making Musket Balls.</jobString>
+    	<workAmount>5000</workAmount>		
+		<ingredients>
+			<li>
+			<filter>
+				<thingDefs>
+					<li>Steel</li>
+				</thingDefs>
+			</filter>
+			<count>10</count>
+			</li>
+		</ingredients>
+		<fixedIngredientFilter>
+			<thingDefs>
+				<li>Steel</li>
+			</thingDefs>
+		</fixedIngredientFilter>
+		<products>
+			<Ammo_MusketBall>50</Ammo_MusketBall>
+		</products>
+	</RecipeDef>
+	
+</Defs>
