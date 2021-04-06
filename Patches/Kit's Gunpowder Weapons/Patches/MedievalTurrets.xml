@@ -7,222 +7,199 @@
 			<li Class="CombatExtended.PatchOperationFindMod">
 				<modName>Kit's Gunpowder Weapons</modName>
 			</li>
-			
-				<!-- ========== Organ Gun ========== -->
-
-				<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
-					<defName>KIT_Gun_Organ</defName>
-					<statBases>
-						<RangedWeapon_Cooldown>0.36</RangedWeapon_Cooldown>
-						<SightsEfficiency>1</SightsEfficiency>
-						<ShotSpread>0.01</ShotSpread>
-						<SwayFactor>1.59</SwayFactor>
-						<Bulk>18.54</Bulk>
-					</statBases>
-					<Properties>
-						<recoilAmount>1.65</recoilAmount>
-						<verbClass>CombatExtended.Verb_ShootCE</verbClass>
-						<hasStandardCommand>true</hasStandardCommand>
-						<defaultProjectile>Bullet_MusketBall</defaultProjectile>
-						<warmupTime>2.5</warmupTime>
-						<range>48</range>
-						<ticksBetweenBurstShots>5</ticksBetweenBurstShots>
-						<burstShotCount>7</burstShotCount>
-						<soundCast>KIT_Shot_Organ</soundCast>
-						<soundCastTail>GunTail_Medium</soundCastTail>
-						<targetParams>
-							<canTargetLocations>true</canTargetLocations>
-						</targetParams>
-						<muzzleFlashScale>9</muzzleFlashScale>
-						<recoilPattern>Mounted</recoilPattern>
-					</Properties>
-					<AmmoUser>
-						<magazineSize>75</magazineSize>
-						<reloadTime>7.8</reloadTime>
-						<ammoSet>AmmoSet_MusketBall</ammoSet>
-					</AmmoUser>
-					<FireModes>
-						<aiUseBurstMode>FALSE</aiUseBurstMode>
-						<aiAimMode>SuppressFire</aiAimMode>
-						<aimedBurstShotCount>5</aimedBurstShotCount>
-					</FireModes>
-					<weaponTags>
-						<li>TurretGun</li>
-					</weaponTags>
-				</li>
-
-				<li Class="PatchOperationReplace">
-					<xpath>Defs/ThingDef[defName="KIT_Turret_Organ"]/specialDisplayRadius</xpath>
-					<value>
-						<specialDisplayRadius>48</specialDisplayRadius>
-					</value>
-				</li>
 				
-				<li Class="PatchOperationReplace">
-					<xpath>Defs/ThingDef[defName="Turret_Organ"]/statBases/WorkToBuild</xpath>
-					<value>
-						<WorkToBuild>25000</WorkToBuild>
-					</value>
-				</li>
+					<!-- ========== Organ Gun ========== -->
 
-				<!-- ========== 12 Pounder ========== -->
+					<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+						<defName>KIT_Gun_Organ</defName>
+						<statBases>
+							<RangedWeapon_Cooldown>0.36</RangedWeapon_Cooldown>
+							<SightsEfficiency>1</SightsEfficiency>
+							<ShotSpread>0.01</ShotSpread>
+							<SwayFactor>1.59</SwayFactor>
+							<Bulk>18.54</Bulk>
+						</statBases>
+						<Properties>
+							<recoilAmount>1.65</recoilAmount>
+							<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+							<hasStandardCommand>true</hasStandardCommand>
+							<defaultProjectile>Bullet_FastMusketBall</defaultProjectile>
+							<warmupTime>2.5</warmupTime>
+							<range>48</range>
+							<ticksBetweenBurstShots>5</ticksBetweenBurstShots>
+							<burstShotCount>7</burstShotCount>
+							<soundCast>KIT_Shot_Organ</soundCast>
+							<soundCastTail>GunTail_Medium</soundCastTail>
+							<muzzleFlashScale>9</muzzleFlashScale>
+							<recoilPattern>Mounted</recoilPattern>
+						</Properties>
+						<AmmoUser>
+							<magazineSize>75</magazineSize>
+							<reloadTime>7.8</reloadTime>
+							<ammoSet>AmmoSet_FastMusketBall</ammoSet>
+						</AmmoUser>
+						<FireModes>
+							<aiUseBurstMode>FALSE</aiUseBurstMode>
+							<aiAimMode>SuppressFire</aiAimMode>
+							<aimedBurstShotCount>5</aimedBurstShotCount>
+						</FireModes>
+						<weaponTags>
+							<li>TurretGun</li>
+						</weaponTags>
+					</li>
 
-				<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
-					<defName>KIT_Gun_12Pounder</defName>
-					<statBases>
-						<RangedWeapon_Cooldown>1.50</RangedWeapon_Cooldown>
-						<SightsEfficiency>1</SightsEfficiency>
-						<ShotSpread>0.2</ShotSpread>
-						<SwayFactor>2.16</SwayFactor>
-						<Bulk>18.5</Bulk>
-					</statBases>
-					<Properties>
-						<recoilAmount>0</recoilAmount>
-						<verbClass>CombatExtended.Verb_ShootCE</verbClass>
-						<hasStandardCommand>true</hasStandardCommand>
-						<defaultProjectile>Bullet_CannonBall_Steel</defaultProjectile>
-						<warmupTime>2.5</warmupTime>
-						<range>58</range>
-						<minRange>3</minRange>
-						<soundCast>KIT_Shot_12Pounder</soundCast>
-						<soundCastTail>GunTail_Medium</soundCastTail>
-						<onlyManualCast>true</onlyManualCast>
-						<stopBurstWithoutLos>false</stopBurstWithoutLos>
-						<muzzleFlashScale>30</muzzleFlashScale>
-						<targetParams>
-							<canTargetLocations>true</canTargetLocations>
-						</targetParams>
-						<recoilPattern>Mounted</recoilPattern>
-					</Properties>
-					<AmmoUser>
-						<magazineSize>1</magazineSize>
-						<reloadTime>8.6</reloadTime>
-						<ammoSet>AmmoSet_CannonBall</ammoSet>
-					</AmmoUser>
-					<FireModes>
-						<aiUseBurstMode>FALSE</aiUseBurstMode>
-						<aiAimMode>AimedShot</aiAimMode>
-						<noSnapshot>true</noSnapshot>
-					</FireModes>
-					<weaponTags>
-						<li>TurretGun</li>
-					</weaponTags>
-				</li>
+					<li Class="PatchOperationReplace">
+						<xpath>Defs/ThingDef[defName="KIT_Turret_Organ"]/specialDisplayRadius</xpath>
+						<value>
+							<specialDisplayRadius>48</specialDisplayRadius>
+						</value>
+					</li>
+					
+					<!-- ========== 12 Pounder ========== -->
 
-				<li Class="PatchOperationReplace">
-					<xpath>Defs/ThingDef[defName="KIT_Turret_12Pounder"]/specialDisplayRadius</xpath>
-					<value>
-						<specialDisplayRadius>58</specialDisplayRadius>
-					</value>
-				</li>
-				
-				<li Class="PatchOperationReplace">
-					<xpath>Defs/ThingDef[defName="Turret_12Pounder"]/statBases/WorkToBuild</xpath>
-					<value>
-						<WorkToBuild>25000</WorkToBuild>
-					</value>
-				</li>
-				
-				<!-- ========== Bombard ========== -->
+					<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+						<defName>KIT_Gun_12Pounder</defName>
+						<statBases>
+							<RangedWeapon_Cooldown>1.50</RangedWeapon_Cooldown>
+							<SightsEfficiency>1</SightsEfficiency>
+							<ShotSpread>0.2</ShotSpread>
+							<SwayFactor>2.16</SwayFactor>
+							<Bulk>18.5</Bulk>
+						</statBases>
+						<Properties>
+							<recoilAmount>0</recoilAmount>
+							<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+							<hasStandardCommand>true</hasStandardCommand>
+							<defaultProjectile>Bullet_CannonBall_Steel</defaultProjectile>
+							<warmupTime>2.5</warmupTime>
+							<range>58</range>
+							<minRange>3</minRange>
+							<soundCast>KIT_Shot_12Pounder</soundCast>
+							<soundCastTail>GunTail_Medium</soundCastTail>
+							<onlyManualCast>true</onlyManualCast>
+							<stopBurstWithoutLos>false</stopBurstWithoutLos>
+							<muzzleFlashScale>30</muzzleFlashScale>
+							<targetParams>
+								<canTargetLocations>true</canTargetLocations>
+							</targetParams>
+							<recoilPattern>Mounted</recoilPattern>
+						</Properties>
+						<AmmoUser>
+							<magazineSize>1</magazineSize>
+							<reloadTime>8.6</reloadTime>
+							<ammoSet>AmmoSet_CannonBall</ammoSet>
+						</AmmoUser>
+						<FireModes>
+							<aiUseBurstMode>FALSE</aiUseBurstMode>
+							<aiAimMode>AimedShot</aiAimMode>
+							<noSnapshot>true</noSnapshot>
+						</FireModes>
+						<weaponTags>
+							<li>TurretGun</li>
+						</weaponTags>
+					</li>
 
-				<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
-					<defName>KIT_Gun_Bombard</defName>
-					<statBases>
-						<RangedWeapon_Cooldown>1.50</RangedWeapon_Cooldown>
-						<SightsEfficiency>1</SightsEfficiency>
-						<ShotSpread>0.2</ShotSpread>
-						<SwayFactor>2.16</SwayFactor>
-						<Bulk>24</Bulk>
-					</statBases>
-					<Properties>
-						<recoilAmount>0</recoilAmount>
-						<verbClass>CombatExtended.Verb_ShootCE</verbClass>
-						<hasStandardCommand>true</hasStandardCommand>
-						<defaultProjectile>Bullet_LargeCannonBall_Steel</defaultProjectile>
-						<warmupTime>2.5</warmupTime>
-						<range>78</range>
-						<minRange>3</minRange>
-						<soundCast>KIT_Shot_Bombard</soundCast>
-						<soundCastTail>GunTail_Medium</soundCastTail>
-						<onlyManualCast>true</onlyManualCast>
-						<stopBurstWithoutLos>false</stopBurstWithoutLos>
-						<muzzleFlashScale>9</muzzleFlashScale>
-						<targetParams>
-							<canTargetLocations>true</canTargetLocations>
-						</targetParams>
-						<recoilPattern>Mounted</recoilPattern>
-					</Properties>
-					<AmmoUser>
-						<magazineSize>1</magazineSize>
-						<reloadTime>7.5</reloadTime>
-						<ammoSet>AmmoSet_LargeCannonBall</ammoSet>
-					</AmmoUser>
-					<FireModes>
-						<aiUseBurstMode>FALSE</aiUseBurstMode>
-						<aiAimMode>AimedShot</aiAimMode>
-						<noSnapshot>true</noSnapshot>
-					</FireModes>
-					<weaponTags>
-						<li>TurretGun</li>
-					</weaponTags>
-				</li>
+					<li Class="PatchOperationReplace">
+						<xpath>Defs/ThingDef[defName="KIT_Turret_12Pounder"]/specialDisplayRadius</xpath>
+						<value>
+							<specialDisplayRadius>58</specialDisplayRadius>
+						</value>
+					</li>
+					
+					<!-- ========== Bombard ========== -->
 
-				<li Class="PatchOperationReplace">
-					<xpath>Defs/ThingDef[defName="KIT_Turret_Bombard"]/specialDisplayRadius</xpath>
-					<value>
-						<specialDisplayRadius>78</specialDisplayRadius>
-					</value>
-				</li>
-				
-				<li Class="PatchOperationReplace">
-					<xpath>Defs/ThingDef[defName="Turret_Bombard"]/statBases/WorkToBuild</xpath>
-					<value>
-						<WorkToBuild>25000</WorkToBuild>
-					</value>
-				</li>
+					<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+						<defName>KIT_Gun_Bombard</defName>
+						<statBases>
+							<RangedWeapon_Cooldown>1.50</RangedWeapon_Cooldown>
+							<SightsEfficiency>1</SightsEfficiency>
+							<ShotSpread>0.2</ShotSpread>
+							<SwayFactor>2.16</SwayFactor>
+							<Bulk>24</Bulk>
+						</statBases>
+						<Properties>
+							<recoilAmount>0</recoilAmount>
+							<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+							<hasStandardCommand>true</hasStandardCommand>
+							<defaultProjectile>Bullet_LargeCannonBall_Steel</defaultProjectile>
+							<warmupTime>2.5</warmupTime>
+							<range>78</range>
+							<minRange>3</minRange>
+							<soundCast>KIT_Shot_Bombard</soundCast>
+							<soundCastTail>GunTail_Medium</soundCastTail>
+							<onlyManualCast>true</onlyManualCast>
+							<stopBurstWithoutLos>false</stopBurstWithoutLos>
+							<muzzleFlashScale>9</muzzleFlashScale>
+							<targetParams>
+								<canTargetLocations>true</canTargetLocations>
+							</targetParams>
+							<recoilPattern>Mounted</recoilPattern>
+						</Properties>
+						<AmmoUser>
+							<magazineSize>1</magazineSize>
+							<reloadTime>7.5</reloadTime>
+							<ammoSet>AmmoSet_LargeCannonBall</ammoSet>
+						</AmmoUser>
+						<FireModes>
+							<aiUseBurstMode>FALSE</aiUseBurstMode>
+							<aiAimMode>AimedShot</aiAimMode>
+							<noSnapshot>true</noSnapshot>
+						</FireModes>
+						<weaponTags>
+							<li>TurretGun</li>
+						</weaponTags>
+					</li>
 
-				<!-- ========== Common to many or all Turrets ========== -->
-<!--
-				<li Class="PatchOperationReplace">
-					<xpath>Defs/ThingDef[
-						defName="KIT_Gun_Organ" or
-						defName="KIT_Gun_12Pounder" or
-						defName="KIT_Gun_Bombard"
-					]/thingClass</xpath>
-					<value>
-						<thingClass>CombatExtended.Building_TurretGunCE</thingClass>
-					</value>
-				</li>
+					<li Class="PatchOperationReplace">
+						<xpath>Defs/ThingDef[defName="KIT_Turret_Bombard"]/specialDisplayRadius</xpath>
+						<value>
+							<specialDisplayRadius>78</specialDisplayRadius>
+						</value>
+					</li>
 
-				<li Class="PatchOperationReplace">
-					<xpath>Defs/ThingDef[
-						defName="KIT_Gun_Organ"
-					]/fillPercent</xpath>
-					<value>
-						<fillPercent>0.85</fillPercent>
-					</value>
-				</li>
+					<!-- ========== Common to many or all Turrets ========== -->
 
-				<li Class="PatchOperationRemove">
-					<xpath>Defs/ThingDef[
-						defName="KIT_Gun_Organ" or
-						defName="KIT_Gun_12Pounder" or
-						defName="KIT_Gun_Bombard"
-					]/comps/li[@Class = "CompProperties_Refuelable"]</xpath>
-				</li>
+					<li Class="PatchOperationReplace">
+						<xpath>Defs/ThingDef[
+							defName="KIT_Turret_Organ" or
+							defName="KIT_Turret_12Pounder" or
+							defName="KIT_Turret_Bombard"
+						]/thingClass</xpath>
+						<value>
+							<thingClass>CombatExtended.Building_TurretGunCE</thingClass>
+						</value>
+					</li>
 
-				<li Class="PatchOperationAdd">
-					<xpath>Defs/ThingDef[
-						defName="KIT_Gun_Organ" or
-						defName="KIT_Gun_12Pounder" or
-						defName="KIT_Gun_Bombard"
-						]/statBases</xpath>
-					<value>
-						<AimingAccuracy>1</AimingAccuracy>
-						<ShootingAccuracyTurret>1</ShootingAccuracyTurret>
-					</value>
-				</li>
--->
-			</operations>
+					<li Class="PatchOperationReplace">
+						<xpath>Defs/ThingDef[
+							defName="KIT_Turret_Organ" or
+							defName="KIT_Turret_12Pounder" or
+							defName="KIT_Turret_Bombard"
+						]/fillPercent</xpath>
+						<value>
+							<fillPercent>0.85</fillPercent>
+						</value>
+					</li>
+
+					<li Class="PatchOperationRemove">
+						<xpath>Defs/ThingDef[
+							defName="KIT_Turret_Organ" or
+							defName="KIT_Turret_12Pounder" or
+							defName="KIT_Turret_Bombard"
+						]/comps/li[@Class = "CompProperties_Refuelable"]</xpath>
+					</li>
+
+					<li Class="PatchOperationAdd">
+						<xpath>Defs/ThingDef[
+							defName="KIT_Turret_Organ" or
+							defName="KIT_Turret_12Pounder" or
+							defName="KIT_Turret_Bombard"
+							]/statBases</xpath>
+						<value>
+							<AimingAccuracy>1</AimingAccuracy>
+							<ShootingAccuracyTurret>1</ShootingAccuracyTurret>
+						</value>
+					</li>
+				</operations>
 	</Operation>
 </Patch> 
