@@ -130,6 +130,7 @@ More Practical Traits	|
 More Vanilla Turrets	|
 Moyo - From the Depth   |
 Nearmare Race	|
+Neclose Race	|
 Ni'Hal	|
 Orassans	|
 Palm Cats   |
