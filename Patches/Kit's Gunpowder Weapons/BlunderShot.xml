@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+
+	<ThingCategoryDef>
+		<defName>AmmoBlunderShot</defName>
+		<label>Blunder Shot</label>
+		<parent>AmmoShotguns</parent>
+		<iconPath>UI/Icons/ThingCategories/CaliberShotgun</iconPath>
+	</ThingCategoryDef>
+
+	<!-- ==================== AmmoSet ========================== -->
+
+	<CombatExtended.AmmoSetDef>
+		<defName>AmmoSet_BlunderShot</defName>
+		<label>Blunder Shot</label>
+		<ammoTypes>
+			<Ammo_BlunderShot_Ball>Bullet_BlunderShot_Ball</Ammo_BlunderShot_Ball>
+			<!--
+			<Ammo_BlunderShot_Rock>Bullet_BlunderShot_Rock</Ammo_BlunderShot_Rock>
+			<Ammo_BlunderShot_Wood>Bullet_BlunderShot_Wood</Ammo_BlunderShot_Wood> 
+			-->
+		</ammoTypes>
+	</CombatExtended.AmmoSetDef>
+
+	<!-- ==================== Ammo ========================== -->
+
+	<ThingDef Class="CombatExtended.AmmoDef" Name="12GaugeBase" ParentName="SmallAmmoBase" Abstract="True">
+		<description>Just random stuff shoved down a barrel.</description>
+		<statBases>
+			<Mass>0.023</Mass>
+			<Bulk>0.6</Bulk>
+		</statBases>
+		<tradeTags>
+			<li>CE_AutoEnableTrade</li>
+			<li>CE_AutoEnableCrafting_FueledSmithy</li>
+			<li>CE_AutoEnableCrafting_ElectricSmithy</li>
+		</tradeTags>
+		<thingCategories>
+			<li>BlunderShot</li>
+		</thingCategories>
+		<stackLimit>5000</stackLimit>
+	</ThingDef>
+
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="12GaugeBase">
+		<defName>Ammo_BlunderShot_Ball</defName>
+		<label>Blunder Shot (Ball)</label>
+		<graphicData>
+			<texPath>Things/Ammo/Neolithic/SlingBullet/Stone</texPath>
+			<graphicClass>Graphic_StackCount</graphicClass>
+		</graphicData>
+		<statBases>
+			<MarketValue>0.1</MarketValue>
+		</statBases>
+		<ammoClass>BlunderShot</ammoClass>
+	</ThingDef>
+
+	<!-- ================== Projectiles ================== -->
+
+	<ThingDef Class="CombatExtended.AmmoDef" Name="Base12GaugeBullet" ParentName="BaseBullet" Abstract="true">
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageDef>Bullet</damageDef>
+			<speed>64</speed>
+			<dropsCasings>false</dropsCasings>
+		</projectile>
+	</ThingDef>
+
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="Base12GaugeBullet">
+		<defName>Bullet_BlunderShot_Ball</defName>
+		<label>Lead balls</label>
+		<graphicData>
+			<texPath>Things/Projectile/Shotgun_Pellet</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+		</graphicData>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageAmountBase>18</damageAmountBase>
+			<pelletCount>8</pelletCount>
+			<armorPenetrationSharp>5</armorPenetrationSharp>
+			<armorPenetrationBlunt>10</armorPenetrationBlunt>
+			<spreadMult>21.5</spreadMult>
+		</projectile>
+	</ThingDef>
+
+	<!-- ==================== Recipes ========================== -->
+
+	<RecipeDef ParentName="AmmoRecipeBase">
+		<defName>MakeAmmo_BlunderShot_Ball</defName>
+		<label>Make Blunder Shot (Ball) x20</label>
+		<description>Craft 20 Blunder Shot (Ball).</description>
+		<jobString>Making Blunder Shot (Ball)</jobString>
+		<ingredients>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>Steel</li>
+					</thingDefs>
+				</filter>
+				<count>8</count>
+			</li>
+		</ingredients>
+		<fixedIngredientFilter>
+			<thingDefs>
+				<li>Steel</li>
+			</thingDefs>
+		</fixedIngredientFilter>
+		<products>
+			<Ammo_BlunderShot_Ball>20</Ammo_BlunderShot_Ball>
+		</products>
+		<workAmount>1000</workAmount>
+	</RecipeDef>
+	
+</Defs>
