@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <Patch>
-	<Operation Class="PatchOperationSequence">
-		<success>Always</success>
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+				<li>AnimalCollabProj</li>
+		</mods>
+		<match Class="PatchOperationSequence">
 		<operations>
-
-			<li Class="CombatExtended.PatchOperationFindMod">
-				<modName>AnimalCollabProj</modName>
-			</li>
 
 			<li Class="PatchOperationAddModExtension">
 				<xpath>
@@ -15,7 +14,6 @@
 						defName="ACPBlackRhinoceros" or 
 						defName="ACPBlackwolf" or 
 						defName="ACPDirewolf" or 
-						defName="ACPGiraffe" or 
 						defName="ACPHippopotamus" or 
 						defName="ACPHorse" or 
 						defName="ACPLlama" or
@@ -77,6 +75,7 @@
 				<xpath>
 					Defs/ThingDef[
 						@Name="GooseThingBase" or
+						defName="ACPGiraffe" or 
 						defName="ACPDuck" or 
 						defName="ACPFlamingo" or 
 						defName="ACPGreatBustard" or 
@@ -95,6 +94,7 @@
 			</li>
 
 		</operations>
+		</match>
 	</Operation>
 </Patch>
 

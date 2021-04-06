@@ -1,0 +1,209 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+
+  <Operation Class="PatchOperationFindMod">
+    <mods>
+      <li>Race to the Rim</li>
+    </mods>
+    <match Class="PatchOperationSequence">
+      <operations>
+
+        <!-- === RttR Raw Fish === -->
+        <li Class="PatchOperationReplace">
+          <xpath>/Defs/ThingDef[defName="RttR_RawFish"]/tools</xpath>
+          <value>
+            <tools>
+              <li Class="CombatExtended.ToolCE">
+                <label>raw fish</label>
+                <capacities>
+                  <li>Blunt</li>
+                </capacities>
+                <power>3</power>
+                <armorPenetrationBlunt>0.4</armorPenetrationBlunt>
+                <cooldownTime>2</cooldownTime>
+              </li>
+            </tools>
+          </value>
+        </li>
+
+        <li Class="PatchOperationAdd">
+          <xpath>Defs/ThingDef[defName="RttR_RawFish"]/statBases</xpath>
+          <value>
+            <MeleeCounterParryBonus>0.33</MeleeCounterParryBonus>
+          </value>
+        </li>
+
+        <li Class="PatchOperationAdd">
+          <xpath>Defs/ThingDef[defName="RttR_RawFish"]</xpath>
+          <value>
+            <equippedStatOffsets>
+              <MeleeCritChance>0.1</MeleeCritChance>
+              <MeleeParryChance>0.33</MeleeParryChance>
+              <MeleeDodgeChance>0.07</MeleeDodgeChance>
+            </equippedStatOffsets>
+          </value>
+        </li>
+
+        <li Class="PatchOperationSequence">
+          <success>Always</success>
+          <operations>
+            <li Class="PatchOperationTest">
+              <xpath>Defs/ThingDef[defName="RttR_RawFish"]/weaponTags</xpath>
+              <success>Invert</success>
+            </li>
+            <li Class="PatchOperationAdd">
+              <xpath>Defs/ThingDef[defName="RttR_RawFish"]</xpath>
+              <value>
+                <weaponTags />
+              </value>
+            </li>
+          </operations>
+        </li>
+
+        <li Class="PatchOperationAdd">
+          <xpath>Defs/ThingDef[defName="RttR_RawFish"]/weaponTags</xpath>
+          <value>
+            <li>CE_OneHandedWeapon</li>
+          </value>
+        </li>
+
+        <!-- === Gronckle Iron === -->
+        <li Class="PatchOperationAdd">
+          <xpath>Defs/ThingDef[defName="RttR_GronckleIron"]/statBases</xpath>
+          <value>
+            <Bulk>0.03</Bulk>
+          </value>
+        </li>
+
+        <li Class="PatchOperationAdd">
+          <xpath>Defs/ThingDef[defName="RttR_GronckleIron"]/stuffProps/categories</xpath>
+          <value>
+            <li>Metallic_Weapon</li>
+            <li>Steeled</li>
+          </value>
+        </li>
+
+        <li Class="PatchOperationAdd">
+          <xpath>Defs/ThingDef[defName="RttR_GronckleIron"]/stuffProps/statFactors</xpath>
+          <value>
+            <Mass>0.9</Mass>
+          </value>
+        </li>
+
+        <li Class="PatchOperationReplace">
+          <xpath>Defs/ThingDef[defName="RttR_GronckleIron"]/statBases/StuffPower_Armor_Sharp</xpath>
+          <value>
+            <StuffPower_Armor_Sharp>1.05</StuffPower_Armor_Sharp>
+          </value>
+        </li>
+
+        <li Class="PatchOperationReplace">
+          <xpath>Defs/ThingDef[defName="RttR_GronckleIron"]/statBases/StuffPower_Armor_Blunt</xpath>
+          <value>
+            <StuffPower_Armor_Blunt>1.60</StuffPower_Armor_Blunt>
+          </value>
+        </li>
+
+        <li Class="PatchOperationReplace">
+          <xpath>Defs/ThingDef[defName="RttR_GronckleIron"]/statBases/StuffPower_Armor_Heat</xpath>
+          <value>
+            <StuffPower_Armor_Heat>0</StuffPower_Armor_Heat>
+          </value>
+        </li>
+
+        <li Class="PatchOperationRemove">
+          <xpath>Defs/ThingDef[defName="RttR_GronckleIron"]/statBases/StuffPower_Armor_Heat</xpath>
+        </li>
+
+        <!-- === Nadder Spike === -->
+        <li Class="PatchOperationReplace">
+          <xpath>Defs/ThingDef[defName="RttR_WoodLog"]/tools</xpath>
+          <value>
+            <tools>
+              <li Class="CombatExtended.ToolCE">
+                <capacities>
+                  <li>Blunt</li>
+                </capacities>
+                <power>2</power>
+                <cooldownTime>0.99</cooldownTime>
+                <armorPenetrationBlunt>0.288</armorPenetrationBlunt>
+              </li>
+            </tools>
+          </value>
+        </li>
+
+        <li Class="PatchOperationAdd">
+          <xpath>Defs/ThingDef[defName="RttR_WoodLog"]</xpath>
+          <value>
+            <equippedStatOffsets>
+              <MeleeCritChance>0.2</MeleeCritChance>
+              <MeleeParryChance>1</MeleeParryChance>
+              <MeleeDodgeChance>0.13</MeleeDodgeChance>
+            </equippedStatOffsets>
+          </value>
+        </li>
+
+        <li Class="PatchOperationAdd">
+          <xpath>Defs/ThingDef[defName="RttR_WoodLog"]/statBases</xpath>
+          <value>
+            <Bulk>0.07</Bulk>
+            <MeleeCounterParryBonus>1.33</MeleeCounterParryBonus>
+          </value>
+        </li>
+
+        <li Class="PatchOperationReplace">
+          <xpath>Defs/ThingDef[defName="RttR_WoodLog"]/statBases/StuffPower_Armor_Sharp</xpath>
+          <value>
+            <StuffPower_Armor_Sharp>0.1</StuffPower_Armor_Sharp>
+          </value>
+        </li>
+
+        <li Class="PatchOperationReplace">
+          <xpath>Defs/ThingDef[defName="RttR_WoodLog"]/statBases/StuffPower_Armor_Blunt</xpath>
+          <value>
+            <StuffPower_Armor_Blunt>0.2</StuffPower_Armor_Blunt>
+          </value>
+        </li>
+
+        <li Class="PatchOperationReplace">
+          <xpath>Defs/ThingDef[defName="RttR_WoodLog"]/statBases/StuffPower_Armor_Heat</xpath>
+          <value>
+            <StuffPower_Armor_Heat>0.025</StuffPower_Armor_Heat>
+          </value>
+        </li>
+
+        <li Class="PatchOperationReplace">
+          <xpath>Defs/ThingDef[defName="RttR_WoodLog"]/statBases/SharpDamageMultiplier</xpath>
+          <value>
+            <SharpDamageMultiplier>0.7</SharpDamageMultiplier>
+          </value>
+        </li>
+
+        <li Class="PatchOperationReplace">
+          <xpath>Defs/ThingDef[defName="RttR_WoodLog"]/statBases/BluntDamageMultiplier</xpath>
+          <value>
+            <BluntDamageMultiplier>0.5</BluntDamageMultiplier>
+          </value>
+        </li>
+
+        <li Class="PatchOperationAdd">
+          <xpath>Defs/ThingDef[defName="RttR_WoodLog"]/stuffProps/statFactors</xpath>
+          <value>
+            <Mass>0.3</Mass>
+            <MeleePenetrationFactor>0.3</MeleePenetrationFactor>
+          </value>
+        </li>
+
+        <!-- === Flightmare Algae === -->
+        <li Class="PatchOperationAdd">
+          <xpath>Defs/ThingDef[defName="RttR_FlightmareAlgae"]/statBases</xpath>
+          <value>
+            <Bulk>0.07</Bulk>
+          </value>
+        </li>
+
+      </operations>
+    </match>
+  </Operation>
+
+</Patch>

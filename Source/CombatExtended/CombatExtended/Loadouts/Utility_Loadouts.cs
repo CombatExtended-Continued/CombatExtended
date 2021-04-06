@@ -71,8 +71,8 @@ namespace CombatExtended
 
             // bar
             bool overburdened = current > capacity;
-			float fillPercentage = overburdened ? 1f : (float.IsNaN(current / capacity) ? 1f : current / capacity);
-			if (overburdened)
+            float fillPercentage = overburdened ? 1f : (float.IsNaN(current / capacity) ? 1f : current / capacity);
+            if (overburdened)
             {
                 Widgets.FillableBar(barRect, fillPercentage, OverburdenedTex);
                 DrawBarThreshold(barRect, capacity / current, 1f);
@@ -177,11 +177,11 @@ namespace CombatExtended
                 (count != 1 ? " x" + count : "") +
                 "\n" + def.GetWeightTip(count) + "\n" + def.GetBulkTip(count);
         }
-        
+
         public static string GetWeightAndBulkTip(this LoadoutGenericDef def, int count = 1)
         {
-        	return "CE_Weight".Translate() + ": " + StatDefOf.Mass.ValueToString(def.mass * count, StatDefOf.Mass.toStringNumberSense) + "\n" +
-        		"CE_Bulk".Translate() + ": " + CE_StatDefOf.Bulk.ValueToString(def.bulk * count, CE_StatDefOf.Bulk.toStringNumberSense);
+            return "CE_Weight".Translate() + ": " + StatDefOf.Mass.ValueToString(def.mass * count, StatDefOf.Mass.toStringNumberSense) + "\n" +
+                "CE_Bulk".Translate() + ": " + CE_StatDefOf.Bulk.ValueToString(def.bulk * count, CE_StatDefOf.Bulk.toStringNumberSense);
         }
 
         public static string GetWeightTip(this ThingDef def, int count = 1)
@@ -195,7 +195,7 @@ namespace CombatExtended
         {
             return
                 "CE_Weight".Translate() + ": " + StatDefOf.Mass.ValueToString(thing.GetStatValue(StatDefOf.Mass) * count, StatDefOf.Mass.toStringNumberSense);
-           //old "CE_Weight".Translate() + ": " + CE_StatDefOf.Weight.ValueToString(thing.GetStatValue(CE_StatDefOf.Weight) * count, CE_StatDefOf.Weight.toStringNumberSense);
+            //old "CE_Weight".Translate() + ": " + CE_StatDefOf.Weight.ValueToString(thing.GetStatValue(CE_StatDefOf.Weight) * count, CE_StatDefOf.Weight.toStringNumberSense);
         }
 
         public static string GetWeightTip(this Loadout loadout)
@@ -268,11 +268,11 @@ namespace CombatExtended
                 return 0;
             }
             else if (ys.Length % 2 == 0)
-                return (ys[(int)(ys.Length / 2) - 1] + ys[(int)(ys.Length / 2)])/2;
+                return (ys[(int)(ys.Length / 2) - 1] + ys[(int)(ys.Length / 2)]) / 2;
             else
                 return ys[Mathf.FloorToInt(ys.Length / 2f)];
         }
-        
+
         /// <summary>
         /// Generates a loadout from a pawn's current equipment and inventory.  Attempts to put items which fit in Generics that are default/DropExcess into said Generic.
         /// </summary>
@@ -280,73 +280,87 @@ namespace CombatExtended
         /// <returns>Loadout which was generated based on Pawn's inventory.</returns>
         public static Loadout GenerateLoadoutFromPawn(this Pawn pawn)
         {
-        	// generate the name for this new pawn based loadout.
-        	string newName = string.Concat(pawn.Name.ToStringShort, " ", "CE_DefaultLoadoutName".Translate());
-        	Regex reNum = new Regex(@"^(.*?)\d+$");
-        	if (reNum.IsMatch(newName))
-        		newName = reNum.Replace(newName, @"$1");
-        	newName = LoadoutManager.GetUniqueLabel(newName);
-        	
-        	// set basic loadout properties.
-        	Loadout loadout = new Loadout(newName);
-        	loadout.defaultLoadout = false;
-        	loadout.canBeDeleted = true;
-        	
-        	LoadoutSlot slot = null;
-        	
-        	// grab the pawn's current equipment as a loadoutslot.
-        	if (pawn.equipment?.Primary != null)
-        	{
-        		slot = new LoadoutSlot(pawn.equipment.Primary.def);
-        		loadout.AddSlot(slot);
-        	}
-        	
-        	// get a list of generics which are drop only.  Assumes that anything that doesn't fit here is a Specific slot later.
-        	IEnumerable<LoadoutGenericDef> generics = DefDatabase<LoadoutGenericDef>.AllDefs.Where(gd => gd.defaultCountType == LoadoutCountType.dropExcess);
-        	
-        	// enumerate each item in the pawn's inventory and add appropriate slots.
-        	foreach (Thing thing in pawn.inventory.innerContainer)
-        	{
-        		LoadoutGenericDef foundGeneric = null;
-        		// first check if it's a generic-able item...
-        		foreach(LoadoutGenericDef generic in generics)
-        		{
-        			if (generic.lambda(thing.def))
-        			{
-        				foundGeneric = generic;
-        				break;
-        			}
-        		}
-        		
-        		// assign a loadout slot that fits the thing.
-        		if (foundGeneric != null)
-        		{
-        			slot = new LoadoutSlot(foundGeneric, thing.stackCount);
-        		} else {
-        			slot = new LoadoutSlot(thing.def, thing.stackCount);
-        		}
-        		
-        		// add the slot (this also takes care of adding to existing slots)
-        		loadout.AddSlot(slot);
-        	}
-        	
-        	// finally check the loadout and make sure that it has sufficient generics like what happens with a new loadout in the management UI.
-        	foreach (LoadoutGenericDef generic in generics.Where(gd => gd.isBasic))
-        	{
-        		slot = loadout.Slots.FirstOrDefault(s => s.genericDef == generic);
-        		if (slot != null)
-        		{
-        			if (slot.count < slot.genericDef.defaultCount)
-        				slot.count = slot.genericDef.defaultCount;
-        		} else {
-        			slot = new LoadoutSlot(generic);
-        			loadout.AddSlot(slot);
-        		}
-        	}
-        	
-        	return loadout;
+            // generate the name for this new pawn based loadout.
+            string newName = string.Concat(pawn.Name.ToStringShort, " ", "CE_DefaultLoadoutName".Translate());
+            Regex reNum = new Regex(@"^(.*?)\d+$");
+            if (reNum.IsMatch(newName))
+                newName = reNum.Replace(newName, @"$1");
+            newName = LoadoutManager.GetUniqueLabel(newName);
+
+            // set basic loadout properties.
+            Loadout loadout = new Loadout(newName);
+            loadout.defaultLoadout = false;
+            loadout.canBeDeleted = true;
+
+            LoadoutSlot slot = null;
+
+            // grab the pawn's current equipment as a loadoutslot.
+            if (pawn.equipment?.Primary != null)
+            {
+                slot = new LoadoutSlot(pawn.equipment.Primary.def);
+                loadout.AddSlot(slot);
+            }
+
+            // get a list of generics which are drop only.  Assumes that anything that doesn't fit here is a Specific slot later.
+            IEnumerable<LoadoutGenericDef> generics = DefDatabase<LoadoutGenericDef>.AllDefs.Where(gd => gd.defaultCountType == LoadoutCountType.dropExcess);
+
+            // enumerate each item in the pawn's inventory and add appropriate slots.
+            foreach (Thing thing in pawn.inventory.innerContainer)
+            {
+                LoadoutGenericDef foundGeneric = null;
+                // first check if it's a generic-able item...
+                foreach (LoadoutGenericDef generic in generics)
+                {
+                    if (generic.lambda(thing.def))
+                    {
+                        foundGeneric = generic;
+                        break;
+                    }
+                }
+
+                // assign a loadout slot that fits the thing.
+                if (foundGeneric != null)
+                {
+                    slot = new LoadoutSlot(foundGeneric, thing.stackCount);
+                }
+                else
+                {
+                    slot = new LoadoutSlot(thing.def, thing.stackCount);
+                }
+
+                // add the slot (this also takes care of adding to existing slots)
+                loadout.AddSlot(slot);
+            }
+
+            // finally check the loadout and make sure that it has sufficient generics like what happens with a new loadout in the management UI.
+            foreach (LoadoutGenericDef generic in generics.Where(gd => gd.isBasic))
+            {
+                slot = loadout.Slots.FirstOrDefault(s => s.genericDef == generic);
+                if (slot != null)
+                {
+                    if (slot.count < slot.genericDef.defaultCount)
+                        slot.count = slot.genericDef.defaultCount;
+                }
+                else
+                {
+                    slot = new LoadoutSlot(generic);
+                    loadout.AddSlot(slot);
+                }
+            }
+
+            return loadout;
         }
-        
+
+        public static bool IsItemQuestLocked(this Pawn pawn, Thing thing)
+        {
+            if (pawn == null || thing == null)
+            {
+                return false;
+            }
+            return (thing is Apparel eqApparel && (pawn.apparel?.IsLocked(eqApparel) ?? false))
+                || (thing.def.IsWeapon && pawn.IsQuestLodger() && !EquipmentUtility.QuestLodgerCanUnequip(thing, pawn));
+        }
+
         #endregion Methods
     }
 }

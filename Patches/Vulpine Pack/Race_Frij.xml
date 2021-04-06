@@ -1,13 +1,15 @@
 <?xml version="1.0" encoding="utf-8" ?>
+
 <Patch>
-	<!-- ========== Make sure the mod is there first ========== -->
-	<Operation Class="PatchOperationSequence">
-		<success>Always</success>
-		<operations>
-	<!-- ========== Look for Fenni ========== -->
-	<li Class="CombatExtended.PatchOperationFindMod">
-				<modName>Vulpine Race Pack</modName>
-	</li>
+
+	<Operation Class="PatchOperationFindMod">
+    <mods>
+		<li>Vulpine Race Pack</li>
+		<li>Vulpine Race Pack (Continued)</li>
+    </mods>
+		<match Class="PatchOperationSequence">
+			<operations>
+
 	<!-- ========== Found Fenni ========== -->
 	
 	<!-- ========== Turn our dog boys into dog *boys* ========== -->
@@ -16,27 +18,11 @@
 	<!-- === Note to future furball compatibility nerds: 		=== -->
 	<!-- === Paste the defName of your horrible alien there   |	=== -->
 	<!-- === 												  V	=== -->
-		<xpath>*/AlienRace.ThingDef_AlienRace[defName="Alien_Frijjid"]</xpath>
+		<xpath>Defs/AlienRace.ThingDef_AlienRace[defName="Alien_Frijjid"]</xpath>
 		<value>
 			<li Class="CombatExtended.RacePropertiesExtensionCE">
 				<bodyShape>Humanoid</bodyShape>
 			</li>
-		</value>
-	</li>
-
-	<!-- ========== Gives Gun Gizmos to Fennex HUD thing ========== -->
-	<!-- ========== Also Makes Em Suppressable		   ========== -->
-	
-	<li Class="PatchOperationAdd">
-	<!-- === Shouldn't need to change this at all		  === -->
-	<!-- === Unless you changed the name of your BasePawn === -->
-	<!-- === In which case change "BasePawn" to that name === -->
-		<xpath>*/ThingDef[@Name="BasePawn"]/comps</xpath>
-		<value>
-			<li>
-				<compClass>CombatExtended.CompPawnGizmo</compClass>
-			</li>
-			<li Class="CombatExtended.CompProperties_Suppressable" />
 		</value>
 	</li>
 	
@@ -46,7 +32,7 @@
 	<!-- === to actually do damage. Try attacking a raccoon with an === -->
 	<!-- === unpatched melee attack. I'll wait.						=== -->
 			<li Class="PatchOperationAdd">
-			<xpath>*/AlienRace.ThingDef_AlienRace[defName = "Alien_Frijjid"]/statBases</xpath>
+			<xpath>Defs/AlienRace.ThingDef_AlienRace[defName = "Alien_Frijjid"]/statBases</xpath>
 			<value>
 			<AimingAccuracy>1</AimingAccuracy>
 			<MeleeDodgeChance>1.6</MeleeDodgeChance>
@@ -58,7 +44,7 @@
 			</li>
 
 			<li Class="PatchOperationReplace">
-			<xpath>*/AlienRace.ThingDef_AlienRace[defName="Alien_Frijjid"]/tools</xpath>
+			<xpath>Defs/AlienRace.ThingDef_AlienRace[defName="Alien_Frijjid"]/tools</xpath>
 			<value>
 			<tools>
 				<li Class="CombatExtended.ToolCE">
@@ -69,7 +55,8 @@
 				<power>5</power>
 				<cooldownTime>0.8</cooldownTime>
 				<linkedBodyPartsGroup>LeftHand</linkedBodyPartsGroup>
-				<armorPenetration>0.10</armorPenetration>
+				<armorPenetrationSharp>0.1</armorPenetrationSharp>
+                <armorPenetrationBlunt>0.462</armorPenetrationBlunt>
 				</li>
 				<li Class="CombatExtended.ToolCE">
 				<label>right claws</label>
@@ -79,7 +66,8 @@
 				<power>5</power>
 				<cooldownTime>0.8</cooldownTime>
 				<linkedBodyPartsGroup>RightHand</linkedBodyPartsGroup>
-				<armorPenetration>0.10</armorPenetration>
+				<armorPenetrationSharp>0.1</armorPenetrationSharp>
+                <armorPenetrationBlunt>0.462</armorPenetrationBlunt>
 				</li>
 				<li Class="CombatExtended.ToolCE">
 				<label>teeth</label>
@@ -89,7 +77,8 @@
 				<power>7</power>
 				<cooldownTime>1.2</cooldownTime>
 				<linkedBodyPartsGroup>Teeth</linkedBodyPartsGroup>
-				<armorPenetration>0.16</armorPenetration>
+				<armorPenetrationSharp>0.02</armorPenetrationSharp>
+                <armorPenetrationBlunt>0.923</armorPenetrationBlunt>
 				</li>
 			</tools>
 			</value>
@@ -102,24 +91,8 @@
 	<!-- === Unless you changed it         === -->
 	<!-- === then change 'em			   === -->
 	
-	<li Class="PatchOperationReplace">
-		<xpath>*/ThingDef[@Name="BasePawn"]/inspectorTabs/li[.="ITab_Pawn_Gear"]</xpath>
-		<value>
-			<li>CombatExtended.ITab_Inventory</li>
-		</value>
-	</li>
-
-	<li Class="PatchOperationAdd">
-	
-		<xpath>*/ThingDef[@Name="BasePawn"]/comps</xpath>
-		<value>
-			<li Class="CombatExtended.CompProperties_Inventory" />
-		</value>
-	</li>
-		</operations>
+			</operations>		
+		</match>
 	</Operation>
-	
-	<!-- === Congratulations! Your alien is Combat Ready!	 === -->
-	<!-- === If your alien comes with extra guns and gear,	 === -->
-	<!-- === Congratulations! You're not even close to done! === -->
-</Patch>
+			  
+  </Patch>

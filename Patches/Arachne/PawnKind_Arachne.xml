@@ -1,17 +1,14 @@
 <?xml version="1.0" encoding="utf-8" ?>
-
 <Patch>
-
-	<Operation Class="PatchOperationSequence">
-		<success>Always</success>
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+			<li>Arachne Race</li>
+		</mods>
+		<match Class="PatchOperationSequence">
 		<operations>
-
-			<li Class="CombatExtended.PatchOperationFindMod">
-				<modName>Arachne Race</modName>
-			</li>
   
 			  <li Class="PatchOperationAddModExtension">
-				<xpath>/Defs/PawnKindDef[defName="ArachneColonist"]</xpath>
+				<xpath>/Defs/PawnKindDef[defName="Arachne_Colonist"]</xpath>
 				<value>
 				  <li Class="CombatExtended.LoadoutPropertiesExtension">
 					<primaryMagazineCount>
@@ -19,23 +16,23 @@
 					  <max>3</max>
 					</primaryMagazineCount>
 					<sidearms>
-										<li>
-											<generateChance>0.5</generateChance>
-											<sidearmMoney>
-												<min>50</min>
-												<max>1000</max>
-											</sidearmMoney>
-											<weaponTags>
-												<li>CE_Sidearm_Melee</li>
-											</weaponTags>
-										</li>
-									</sidearms>
+						<li>
+							<generateChance>0.5</generateChance>
+							<sidearmMoney>
+								<min>50</min>
+								<max>1000</max>
+							</sidearmMoney>
+							<weaponTags>
+								<li>CE_Sidearm_Melee</li>
+							</weaponTags>
+						</li>
+					</sidearms>
 				  </li>
 				</value>
 			  </li>
 			  
 			  <li Class="PatchOperationAddModExtension">
-				<xpath>/Defs/PawnKindDef[defName="ArachneSettler"]</xpath>
+				<xpath>/Defs/PawnKindDef[defName="Arachne_Settler"]</xpath>
 				<value>
 				  <li Class="CombatExtended.LoadoutPropertiesExtension">
 					<primaryMagazineCount>
@@ -43,23 +40,23 @@
 					  <max>3</max>
 					</primaryMagazineCount>
 					<sidearms>
-										<li>
-											<generateChance>0.5</generateChance>
-											<sidearmMoney>
-												<min>50</min>
-												<max>1000</max>
-											</sidearmMoney>
-											<weaponTags>
-												<li>CE_Sidearm_Melee</li>
-											</weaponTags>
-										</li>
-									</sidearms>
+						<li>
+							<generateChance>0.5</generateChance>
+							<sidearmMoney>
+								<min>50</min>
+								<max>1000</max>
+							</sidearmMoney>
+							<weaponTags>
+								<li>CE_Sidearm_Melee</li>
+							</weaponTags>
+						</li>
+					</sidearms>
 				  </li>
 				</value>
 			  </li>
 				
 			  <li Class="PatchOperationAddModExtension">
-				<xpath>/Defs/PawnKindDef[defName="ArachneTrader"]</xpath>
+				<xpath>/Defs/PawnKindDef[defName="Arachne_Trader"]</xpath>
 				<value>
 				  <li Class="CombatExtended.LoadoutPropertiesExtension">
 					<primaryMagazineCount>
@@ -67,97 +64,23 @@
 					  <max>1</max>
 					</primaryMagazineCount>
 					<sidearms>
-										<li>
-											<generateChance>0.5</generateChance>
-											<sidearmMoney>
-												<min>500</min>
-												<max>2000</max>
-											</sidearmMoney>
-											<weaponTags>
-												<li>CE_Sidearm_Melee</li>
-											</weaponTags>
-										</li>
-									</sidearms>
-				  </li>
-				</value>
-			  </li>
-				
-			  <li Class="PatchOperationAddModExtension">
-				<xpath>/Defs/PawnKindDef[defName="ArachneSlave"]</xpath>
-				<value>
-				  <li Class="CombatExtended.LoadoutPropertiesExtension">
-					<primaryMagazineCount>
-					  <min>0</min>
-					  <max>0</max>
-					</primaryMagazineCount>
-					<sidearms>
-										<li>
-											<generateChance>0.5</generateChance>
-											<sidearmMoney>
-												<min>0</min>
-												<max>10</max>
-											</sidearmMoney>
-											<weaponTags>
-												<li>CE_Sidearm_Melee</li>
-											</weaponTags>
-										</li>
-									</sidearms>
-				  </li>
-				</value>
-			  </li>
-				
-			  <li Class="PatchOperationAddModExtension">
-				<xpath>/Defs/PawnKindDef[defName="ArachneDefector"]</xpath>
-				<value>
-				  <li Class="CombatExtended.LoadoutPropertiesExtension">
-					<primaryMagazineCount>
-					  <min>1</min>
-					  <max>4</max>
-					</primaryMagazineCount>
-					<sidearms>
-										<li>
-											<generateChance>0.5</generateChance>
-											<sidearmMoney>
-												<min>200</min>
-												<max>2000</max>
-											</sidearmMoney>
-											<weaponTags>
-												<li>CE_Sidearm_Melee</li>
-												<li>ArachneSword</li>
-											</weaponTags>
-										</li>
-									</sidearms>
+						<li>
+							<generateChance>0.5</generateChance>
+							<sidearmMoney>
+								<min>500</min>
+								<max>2000</max>
+							</sidearmMoney>
+							<weaponTags>
+								<li>CE_Sidearm_Melee</li>
+							</weaponTags>
+						</li>
+					</sidearms>
 				  </li>
 				</value>
 			  </li>
 					
 			  <li Class="PatchOperationAddModExtension">
-				<xpath>/Defs/PawnKindDef[defName="ArachneRefugee"]</xpath>
-				<value>
-				  <li Class="CombatExtended.LoadoutPropertiesExtension">
-					<primaryMagazineCount>
-					  <min>0</min>
-					  <max>0</max>
-					</primaryMagazineCount>
-					<sidearms>
-										<li>
-											<generateChance>0.5</generateChance>
-											<sidearmMoney>
-												<min>0</min>
-												<max>60</max>
-											</sidearmMoney>
-											<weaponTags>
-												<li>CE_Sidearm_Melee</li>
-												<li>ArachneSword</li>
-											</weaponTags>
-										</li>
-									</sidearms>
-				  </li>
-				</value>
-			  </li>
-					
-			  <li Class="PatchOperationAddModExtension">
-				<xpath>/Defs/PawnKindDef[defName="ArachneSoldier"]</xpath>
+				<xpath>/Defs/PawnKindDef[defName="Arachne_Soldier"]</xpath>
 				<value>
 				  <li Class="CombatExtended.LoadoutPropertiesExtension">
 					<primaryMagazineCount>
@@ -165,122 +88,148 @@
 					  <max>6</max>
 					</primaryMagazineCount>
 					<sidearms>
-										<li>
-											<generateChance>0.5</generateChance>
-											<sidearmMoney>
-												<min>1000</min>
-												<max>3000</max>
-											</sidearmMoney>
-											<weaponTags>
-												<li>CE_Sidearm_Melee</li>
-												<li>ArachneSword</li>
-											</weaponTags>
-										</li>
-									</sidearms>
+						<li>
+							<generateChance>0.5</generateChance>
+							<sidearmMoney>
+								<min>1000</min>
+								<max>3000</max>
+							</sidearmMoney>
+							<weaponTags>
+								<li>CE_Sidearm_Melee</li>
+								<li>ArachneSword</li>
+							</weaponTags>
+						</li>
+					</sidearms>
 				  </li>
 				</value>
 			  </li>
-					
+
 			  <li Class="PatchOperationAddModExtension">
-				<xpath>/Defs/PawnKindDef[defName="ArachneElite"]</xpath>
+				<xpath>/Defs/PawnKindDef[defName="Arachne_Valkyrie"]</xpath>
 				<value>
 				  <li Class="CombatExtended.LoadoutPropertiesExtension">
 					<primaryMagazineCount>
-					  <min>2</min>
-					  <max>4</max>
+					  <min>3</min>
+					  <max>6</max>
 					</primaryMagazineCount>
 					<sidearms>
-										<li>
-											<generateChance>0.5</generateChance>
-											<sidearmMoney>
-												<min>1000</min>
-												<max>4000</max>
-											</sidearmMoney>
-											<weaponTags>
-												<li>CE_Sidearm_Melee</li>
-												<li>ArachneSword</li>
-											</weaponTags>
-										</li>
-									</sidearms>
+						<li>
+							<generateChance>0.5</generateChance>
+							<sidearmMoney>
+								<min>1000</min>
+								<max>3000</max>
+							</sidearmMoney>
+							<weaponTags>
+								<li>CE_Sidearm_Melee</li>
+								<li>ArachneSword</li>
+							</weaponTags>
+						</li>
+					</sidearms>
 				  </li>
 				</value>
 			  </li>
-					 
+
 			  <li Class="PatchOperationAddModExtension">
-				<xpath>/Defs/PawnKindDef[defName="ArachneMilitia"]</xpath>
+				<xpath>/Defs/PawnKindDef[defName="Arachne_Scout"]</xpath>
 				<value>
 				  <li Class="CombatExtended.LoadoutPropertiesExtension">
 					<primaryMagazineCount>
-					  <min>2</min>
-					  <max>4</max>
+					  <min>3</min>
+					  <max>6</max>
+					</primaryMagazineCount>
+					<sidearms>
+						<li>
+							<generateChance>0.5</generateChance>
+							<sidearmMoney>
+								<min>1000</min>
+								<max>3000</max>
+							</sidearmMoney>
+							<weaponTags>
+								<li>CE_Sidearm_Melee</li>
+								<li>ArachneSword</li>
+							</weaponTags>
+						</li>
+					</sidearms>
+				  </li>
+				</value>
+			  </li>
+
+			  <li Class="PatchOperationAddModExtension">
+				<xpath>/Defs/PawnKindDef[@Name="ArachneGrenadierBase"]</xpath>
+				<value>
+				  <li Class="CombatExtended.LoadoutPropertiesExtension">
+					<primaryMagazineCount>
+					  <min>3</min>
+					  <max>6</max>
 					</primaryMagazineCount>
 				   <sidearms>
-										<li>
-											<generateChance>0.5</generateChance>
-											<sidearmMoney>
-												<min>100</min>
-												<max>2000</max>
-											</sidearmMoney>
-											<weaponTags>
-												<li>CE_Sidearm_Melee</li>
-												<li>ArachneSword</li>
-											</weaponTags>
-										</li>
-									</sidearms>
+						<li>
+							<generateChance>0.5</generateChance>
+							<sidearmMoney>
+								<min>100</min>
+								<max>2000</max>
+							</sidearmMoney>
+							<weaponTags>
+								<li>CE_Sidearm_Melee</li>
+								<li>ArachneSword</li>
+							</weaponTags>
+						</li>
+					</sidearms>
+				  </li>
+				</value>
+			  </li>
+
+			  <li Class="PatchOperationAddModExtension">
+				<xpath>/Defs/PawnKindDef[@Name="ArachneMidTierBase"]</xpath>
+				<value>
+				  <li Class="CombatExtended.LoadoutPropertiesExtension">
+					<primaryMagazineCount>
+					  <min>3</min>
+					  <max>6</max>
+					</primaryMagazineCount>
+				   <sidearms>
+						<li>
+							<generateChance>0.5</generateChance>
+							<sidearmMoney>
+								<min>100</min>
+								<max>2000</max>
+							</sidearmMoney>
+							<weaponTags>
+								<li>CE_Sidearm_Melee</li>
+								<li>ArachneSword</li>
+							</weaponTags>
+						</li>
+					</sidearms>
 				  </li>
 				</value>
 			  </li>
 						  
 			  <li Class="PatchOperationAddModExtension">
-				<xpath>/Defs/PawnKindDef[defName="ArachneAssault"]</xpath>
+				<xpath>/Defs/PawnKindDef[@Name="ArachneEliteTierBase"]</xpath>
 				<value>
 				  <li Class="CombatExtended.LoadoutPropertiesExtension">
 					<primaryMagazineCount>
 					  <min>3</min>
-					  <max>4</max>
+					  <max>6</max>
 					</primaryMagazineCount>
 				   <sidearms>
-										<li>
-											<generateChance>0.5</generateChance>
-											<sidearmMoney>
-												<min>2000</min>
-												<max>5000</max>
-											</sidearmMoney>
-											<weaponTags>
-												<li>CE_Sidearm_Melee</li>
-												<li>ArachneSword</li>
-											</weaponTags>
-										</li>
-									</sidearms>
-				  </li>
-				</value>
-			  </li>
-						  
-			  <li Class="PatchOperationAddModExtension">
-				<xpath>/Defs/PawnKindDef[defName="ArachneAssassin"]</xpath>
-				<value>
-				  <li Class="CombatExtended.LoadoutPropertiesExtension">
-					<primaryMagazineCount>
-					  <min>3</min>
-					  <max>4</max>
-					</primaryMagazineCount>
-					<sidearms>
-										<li>
-											<generateChance>0.5</generateChance>
-											<sidearmMoney>
-												<min>4000</min>
-												<max>8000</max>
-											</sidearmMoney>
-											<weaponTags>
-												<li>CE_Sidearm_Melee</li>
-												<li>ArachneSword</li>
-											</weaponTags>
-										</li>
-									</sidearms>
+						<li>
+							<generateChance>0.5</generateChance>
+							<sidearmMoney>
+								<min>2000</min>
+								<max>5000</max>
+							</sidearmMoney>
+							<weaponTags>
+								<li>CE_Sidearm_Melee</li>
+								<li>ArachneSword</li>
+							</weaponTags>
+						</li>
+					</sidearms>
 				  </li>
 				</value>
 			  </li>
       
 		</operations>
+		</match>
 	</Operation>
 </Patch>

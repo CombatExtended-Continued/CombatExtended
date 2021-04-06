@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+
+  <Operation Class="PatchOperationFindMod">
+    <mods>
+      <li>Vanilla Animals Expanded — Endangered</li>
+    </mods>
+
+    <match Class="PatchOperationSequence">
+      <operations>
+        <!-- === Quadruped === -->
+        <li Class="PatchOperationAddModExtension">
+        <xpath>
+          Defs/ThingDef[
+            defName="AEXP_BlackRhino" or
+            defName="AEXP_Quagga" or
+            defName="AEXP_Panda" or
+            defName="AEXP_Bonobo"
+          ]
+        </xpath>
+          <value>
+            <li Class="CombatExtended.RacePropertiesExtensionCE">
+              <bodyShape>Quadruped</bodyShape>
+            </li>
+          </value>
+        </li>
+
+        <!-- === Quadruped Low === -->
+        <li Class="PatchOperationAddModExtension">
+        <xpath>
+          Defs/ThingDef[
+            defName="AEXP_BlackFootedFerret" 
+          ]
+        </xpath>
+          <value>
+            <li Class="CombatExtended.RacePropertiesExtensionCE">
+              <bodyShape>QuadrupedLow</bodyShape>
+            </li>
+          </value>
+        </li>
+
+        <!-- === Humanoid === -->
+        <li Class="PatchOperationAddModExtension">
+          <xpath>
+            Defs/ThingDef[
+              defName="AEXP_RockhopperPenguin"
+            ]
+          </xpath>
+          <value>
+            <li Class="CombatExtended.RacePropertiesExtensionCE">
+              <bodyShape>Humanoid</bodyShape>
+            </li>
+          </value>
+        </li>
+
+      </operations>
+    </match>
+
+  </Operation>
+
+</Patch>

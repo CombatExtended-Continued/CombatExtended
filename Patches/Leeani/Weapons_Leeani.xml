@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <Patch>
-
-	<Operation Class="PatchOperationSequence">
-		<success>Always</success>
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+			<li>Leeani Playable Race</li>
+		</mods>
+		<match Class="PatchOperationSequence">
 		<operations>
-			<li Class="CombatExtended.PatchOperationFindMod">
-				<modName>Leeani Playable Race</modName>
-			</li>
 			<!-- ========== Quarterstaff ========== -->
 			<!-- ========== Lifted wholesale from VFWE_MELEE ========== -->
 			<li Class="PatchOperationReplace">
@@ -50,5 +49,6 @@
 				</value>
 			</li>
 		</operations>
+		</match>
 	</Operation>
 </Patch>

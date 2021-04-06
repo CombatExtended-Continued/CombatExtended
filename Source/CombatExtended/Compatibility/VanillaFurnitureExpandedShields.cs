@@ -12,6 +12,7 @@ namespace CombatExtended.Compatibility
     public class VanillaFurnitureExpandedShields
     {
         private static int lastCacheTick = 0;
+        private static Map lastCacheMap = null;
 
         /// <summary>
         /// Set of shields. The type if Building because RimWorld dark magic doesn't allow using types that may not exist here.
@@ -108,11 +109,12 @@ namespace CombatExtended.Compatibility
         private static void refreshShields(Map map)
         {
             int thisTick = Find.TickManager.TicksAbs;
-            if (lastCacheTick != thisTick)
+            if (lastCacheTick != thisTick || lastCacheMap != map)
             {
                 // Can't use AllBuildingsColonstOfClass because type may not exist.
                 shields = map.listerBuildings.allBuildingsColonist.Where(s => s is Building_Shield).ToHashSet();
                 lastCacheTick = thisTick;
+                lastCacheMap = map;
             }
         }
     }

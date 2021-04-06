@@ -1,19 +1,19 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <Patch>
-	<Operation Class="PatchOperationSequence">
-		<success>Always</success>
+<!--	
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+		<li>[RH] Faction: Cordis Die</li>
+		</mods>
+		<match Class="PatchOperationSequence">
 		<operations>
-
-			<li Class="CombatExtended.PatchOperationFindMod">
-				<modName>[RH] Faction: Cordis Die</modName>
-			</li>
-
+-->
 			<!-- ========== M134 Minigun ========== -->
 
 			<!-- Errata:
 			
 			The original Cordis Die mod incorrectly defines the .50 cal GAU-19 "Death Machine" as the CLAW's primary weapon, but the GAU-19 is a large three-barrelled weapon rather than the smaller six-barrelled weapon seen in the actual Black Ops 2 game; the correct weapon is thus the 7.62mm M134 Minigun -->
-
+<!--
 			<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
 				<defName>RNGun_DeathMachine_Minigun</defName>
 				<statBases>
@@ -40,7 +40,6 @@
 				<AmmoUser>
 					<magazineSize>500</magazineSize>
 					<reloadTime>0</reloadTime>
-					<!--Allow instantaneous reload inside the CLAW unit-->
 					<ammoSet>AmmoSet_762x51mmNATO</ammoSet>
 				</AmmoUser>
 				<FireModes>
@@ -90,5 +89,7 @@ Whereas most self-loading guns are powered by the energy from the gunpowder with
 			</li>
 
 		</operations>
+		</match>
 	</Operation>
+-->
 </Patch>

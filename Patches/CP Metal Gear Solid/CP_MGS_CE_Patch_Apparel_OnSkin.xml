@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <Patch>
-	<Operation Class="PatchOperationSequence">
-		<success>Always</success>
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+		<li>[CP] Metal Gear Solid</li>
+		</mods>
+		<match Class="PatchOperationSequence">
 		<operations>
-
-			<li Class="CombatExtended.PatchOperationFindMod">
-				<modName>[CP] Metal Gear Solid</modName>
-			</li>
 
 			<!-- ========== sneaking suit FOX & sneaking suit FOXHOUND ========== -->
 
@@ -62,16 +61,7 @@
 				</value>
 			</li>
 
-			<li Class="PatchOperationReplace">
-				<xpath>Defs/ThingDef[
-					defName="RNApparel_SneakingSuit_FOX" or 
-					defName="RNApparel_SneakingSuit_FOXHOUND"
-				]/statBases/StuffEffectMultiplierArmor</xpath>
-				<value>
-					<StuffEffectMultiplierArmor>3</StuffEffectMultiplierArmor>
-				</value>
-			</li>
-
 		</operations>
+		</match>
 	</Operation>
 </Patch>

@@ -1,13 +1,12 @@
 <?xml version="1.0" encoding="utf-8" ?>
+
 <Patch>
-	<!-- ========== Make sure the mod is there first ========== -->
-	<Operation Class="PatchOperationSequence">
-		<success>Always</success>
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+			<li>Xenn Race</li>
+		</mods>
+		<match Class="PatchOperationSequence">
 		<operations>
-			<!-- ========== Look for Fido ========== -->
-			<li Class="CombatExtended.PatchOperationFindMod">
-				<modName>Xenn Race</modName>
-			</li>
 			<!-- ========== Found Fido ========== -->
 
 			<!-- ========== Turn our dog boys into dog *boys* ========== -->
@@ -121,6 +120,7 @@
 				</value>
 			</li>
 		</operations>
+		</match>
 	</Operation>
 
 	<!-- === Congratulations! Your alien is Combat Ready!	 === -->

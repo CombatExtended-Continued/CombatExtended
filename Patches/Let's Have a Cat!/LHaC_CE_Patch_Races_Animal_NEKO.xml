@@ -1,186 +1,186 @@
-<?xml version='1.0' encoding='utf-8'?>
+<?xml version="1.0" encoding="utf-8" ?>
 <Patch>
-	<Operation Class="PatchOperationSequence">
-		<success>Always</success>
-		<operations>	
-
-			<li Class="CombatExtended.PatchOperationFindMod">
-				<modName>Let's Have a Cat!</modName>
-			</li>
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+			<li>Let's Have a Cat!</li>
+		</mods>
+		<match Class="PatchOperationSequence">
+		<operations>
 			
-			<!-- Same stats and melee tools as cats from the vanilla game (Core) -->
+		<!-- Same stats and melee tools as cats from the vanilla game (Core) -->
 
-			<li Class="PatchOperationAdd">
-				<xpath>Defs/ThingDef[
-					defName="akaNEKO_A_Shorthair" or
-					defName="akaNEKO_J_Bobtail" or
-					defName="akaNEKO_kijitora" or
-					defName="akaNEKO_kuroneko" or
-					defName="akaNEKO_Maine_Coon" or
-					defName="akaNEKO_N_Forest_Cat" or
-					defName="akaNEKO_Persian" or
-					defName="akaNEKO_Russian_Blue" or
-					defName="akaNEKO_Scottish_Fold" or
-					defName="akaNEKO_Scottish_Fold_Long" or
-					defName="akaNEKO_shironeko" or
-					defName="akaNEKO_Siamese"
-				]/statBases</xpath>
-				<value>
-					<MeleeDodgeChance>0.23</MeleeDodgeChance>
-					<MeleeCritChance>0.02</MeleeCritChance>
-				</value>
-			</li>
+		<li Class="PatchOperationAdd">
+			<xpath>Defs/ThingDef[
+				defName="akaNEKO_A_Shorthair" or
+				defName="akaNEKO_J_Bobtail" or
+				defName="akaNEKO_kijitora" or
+				defName="akaNEKO_kuroneko" or
+				defName="akaNEKO_Maine_Coon" or
+				defName="akaNEKO_N_Forest_Cat" or
+				defName="akaNEKO_Persian" or
+				defName="akaNEKO_Russian_Blue" or
+				defName="akaNEKO_Scottish_Fold" or
+				defName="akaNEKO_Scottish_Fold_Long" or
+				defName="akaNEKO_shironeko" or
+				defName="akaNEKO_Siamese"
+			]/statBases</xpath>
+			<value>
+				<MeleeDodgeChance>0.23</MeleeDodgeChance>
+				<MeleeCritChance>0.02</MeleeCritChance>
+			</value>
+		</li>
 
-			<li Class="PatchOperationReplace">
-				<xpath>Defs/ThingDef[
-					defName="akaNEKO_A_Shorthair" or
-					defName="akaNEKO_J_Bobtail" or
-					defName="akaNEKO_kijitora" or
-					defName="akaNEKO_kuroneko" or
-					defName="akaNEKO_Maine_Coon" or
-					defName="akaNEKO_N_Forest_Cat" or
-					defName="akaNEKO_Persian" or
-					defName="akaNEKO_Russian_Blue" or
-					defName="akaNEKO_Scottish_Fold" or
-					defName="akaNEKO_Scottish_Fold_Long" or
-					defName="akaNEKO_shironeko" or
-					defName="akaNEKO_Siamese"				
-				]/tools</xpath>
-				<value>
-					<tools>
-						<li Class="CombatExtended.ToolCE">
-							<label>left claw</label>
-							<capacities>
-								<li>Scratch</li>
-							</capacities>
-							<power>2</power>
-							<cooldownTime>0.55</cooldownTime>
-							<linkedBodyPartsGroup>FrontLeftPaw</linkedBodyPartsGroup>
-							<surpriseAttack>
-								<extraMeleeDamages>
-									<li>
-										<def>Stun</def>
-										<amount>20</amount>
-									</li>
-								</extraMeleeDamages>
-							</surpriseAttack>
-							<armorPenetrationBlunt>0.042</armorPenetrationBlunt>
-							<armorPenetrationSharp>0.01</armorPenetrationSharp>
-						</li>
-						<li Class="CombatExtended.ToolCE">
-							<label>right claw</label>
-							<capacities>
-								<li>Scratch</li>
-							</capacities>
-							<power>2</power>
-							<cooldownTime>0.55</cooldownTime>
-							<linkedBodyPartsGroup>FrontRightPaw</linkedBodyPartsGroup>
-							<surpriseAttack>
-								<extraMeleeDamages>
-									<li>
-										<def>Stun</def>
-										<amount>20</amount>
-									</li>
-								</extraMeleeDamages>
-							</surpriseAttack>
-							<armorPenetrationBlunt>0.042</armorPenetrationBlunt>
-							<armorPenetrationSharp>0.01</armorPenetrationSharp>
-						</li>
-						<li Class="CombatExtended.ToolCE">
-							<capacities>
-								<li>Bite</li>
-							</capacities>
-							<power>5</power>
-							<cooldownTime>0.85</cooldownTime>
-							<linkedBodyPartsGroup>Teeth</linkedBodyPartsGroup>
-							<surpriseAttack>
-								<extraMeleeDamages>
-									<li>
-										<def>Stun</def>
-										<amount>20</amount>
-									</li>
-								</extraMeleeDamages>
-							</surpriseAttack>
-							<armorPenetrationBlunt>0.254</armorPenetrationBlunt>
-							<armorPenetrationSharp>0.03</armorPenetrationSharp>
-						</li>
-						<li Class="CombatExtended.ToolCE">
-							<label>head</label>
-							<capacities>
-								<li>Blunt</li>
-							</capacities>
-							<power>1</power>
-							<cooldownTime>0.55</cooldownTime>
-							<linkedBodyPartsGroup>HeadAttackTool</linkedBodyPartsGroup>
-							<chanceFactor>0.2</chanceFactor>
-							<armorPenetrationBlunt>0.042</armorPenetrationBlunt>
-						</li>
-					</tools>
-				</value>
-			</li>
-
-			<li Class="PatchOperationReplace">
-				<xpath>Defs/ThingDef[
-					defName="akaNEKO_A_Shorthair" or
-					defName="akaNEKO_J_Bobtail" or
-					defName="akaNEKO_kijitora" or
-					defName="akaNEKO_kuroneko" or
-					defName="akaNEKO_Maine_Coon" or
-					defName="akaNEKO_N_Forest_Cat" or
-					defName="akaNEKO_Persian" or
-					defName="akaNEKO_Russian_Blue" or
-					defName="akaNEKO_Scottish_Fold" or
-					defName="akaNEKO_Scottish_Fold_Long" or
-					defName="akaNEKO_shironeko" or
-					defName="akaNEKO_Siamese"
-				]/race/baseHealthScale</xpath>
-				<value>
-					<baseHealthScale>0.23</baseHealthScale>
-				</value>
-			</li>
-
-			<li Class="PatchOperationAddModExtension">
-				<xpath>Defs/ThingDef[
-					defName="akaNEKO_A_Shorthair" or
-					defName="akaNEKO_J_Bobtail" or
-					defName="akaNEKO_kijitora" or
-					defName="akaNEKO_kuroneko" or
-					defName="akaNEKO_Maine_Coon" or
-					defName="akaNEKO_N_Forest_Cat" or
-					defName="akaNEKO_Persian" or
-					defName="akaNEKO_Russian_Blue" or
-					defName="akaNEKO_Scottish_Fold" or
-					defName="akaNEKO_Scottish_Fold_Long" or
-					defName="akaNEKO_shironeko" or
-					defName="akaNEKO_Siamese"
-				]</xpath>
-				<value>
-					<li Class="CombatExtended.RacePropertiesExtensionCE">
-						<bodyShape>Quadruped</bodyShape>
+		<li Class="PatchOperationReplace">
+			<xpath>Defs/ThingDef[
+				defName="akaNEKO_A_Shorthair" or
+				defName="akaNEKO_J_Bobtail" or
+				defName="akaNEKO_kijitora" or
+				defName="akaNEKO_kuroneko" or
+				defName="akaNEKO_Maine_Coon" or
+				defName="akaNEKO_N_Forest_Cat" or
+				defName="akaNEKO_Persian" or
+				defName="akaNEKO_Russian_Blue" or
+				defName="akaNEKO_Scottish_Fold" or
+				defName="akaNEKO_Scottish_Fold_Long" or
+				defName="akaNEKO_shironeko" or
+				defName="akaNEKO_Siamese"				
+			]/tools</xpath>
+			<value>
+				<tools>
+					<li Class="CombatExtended.ToolCE">
+						<label>left claw</label>
+						<capacities>
+							<li>Scratch</li>
+						</capacities>
+						<power>2</power>
+						<cooldownTime>0.55</cooldownTime>
+						<linkedBodyPartsGroup>FrontLeftPaw</linkedBodyPartsGroup>
+						<surpriseAttack>
+							<extraMeleeDamages>
+								<li>
+									<def>Stun</def>
+									<amount>20</amount>
+								</li>
+							</extraMeleeDamages>
+						</surpriseAttack>
+						<armorPenetrationBlunt>0.042</armorPenetrationBlunt>
+						<armorPenetrationSharp>0.01</armorPenetrationSharp>
 					</li>
-				</value>
-			</li>
+					<li Class="CombatExtended.ToolCE">
+						<label>right claw</label>
+						<capacities>
+							<li>Scratch</li>
+						</capacities>
+						<power>2</power>
+						<cooldownTime>0.55</cooldownTime>
+						<linkedBodyPartsGroup>FrontRightPaw</linkedBodyPartsGroup>
+						<surpriseAttack>
+							<extraMeleeDamages>
+								<li>
+									<def>Stun</def>
+									<amount>20</amount>
+								</li>
+							</extraMeleeDamages>
+						</surpriseAttack>
+						<armorPenetrationBlunt>0.042</armorPenetrationBlunt>
+						<armorPenetrationSharp>0.01</armorPenetrationSharp>
+					</li>
+					<li Class="CombatExtended.ToolCE">
+						<capacities>
+							<li>Bite</li>
+						</capacities>
+						<power>5</power>
+						<cooldownTime>0.85</cooldownTime>
+						<linkedBodyPartsGroup>Teeth</linkedBodyPartsGroup>
+						<surpriseAttack>
+							<extraMeleeDamages>
+								<li>
+									<def>Stun</def>
+									<amount>20</amount>
+								</li>
+							</extraMeleeDamages>
+						</surpriseAttack>
+						<armorPenetrationBlunt>0.254</armorPenetrationBlunt>
+						<armorPenetrationSharp>0.03</armorPenetrationSharp>
+					</li>
+					<li Class="CombatExtended.ToolCE">
+						<label>head</label>
+						<capacities>
+							<li>Blunt</li>
+						</capacities>
+						<power>1</power>
+						<cooldownTime>0.55</cooldownTime>
+						<linkedBodyPartsGroup>HeadAttackTool</linkedBodyPartsGroup>
+						<chanceFactor>0.2</chanceFactor>
+						<armorPenetrationBlunt>0.042</armorPenetrationBlunt>
+					</li>
+				</tools>
+			</value>
+		</li>
 
-			<li Class="PatchOperationReplace">
-				<xpath>Defs/PawnKindDef[
-					defName="akaNEKO_A_Shorthair" or
-					defName="akaNEKO_J_Bobtail" or
-					defName="akaNEKO_kijitora" or
-					defName="akaNEKO_kuroneko" or
-					defName="akaNEKO_Maine_Coon" or
-					defName="akaNEKO_N_Forest_Cat" or
-					defName="akaNEKO_Persian" or
-					defName="akaNEKO_Russian_Blue" or
-					defName="akaNEKO_Scottish_Fold" or
-					defName="akaNEKO_Scottish_Fold_Long" or
-					defName="akaNEKO_shironeko" or
-					defName="akaNEKO_Siamese"
-				]/combatPower</xpath>
-				<value>
-					<combatPower>14</combatPower>
-				</value>
-			</li>
+		<li Class="PatchOperationReplace">
+			<xpath>Defs/ThingDef[
+				defName="akaNEKO_A_Shorthair" or
+				defName="akaNEKO_J_Bobtail" or
+				defName="akaNEKO_kijitora" or
+				defName="akaNEKO_kuroneko" or
+				defName="akaNEKO_Maine_Coon" or
+				defName="akaNEKO_N_Forest_Cat" or
+				defName="akaNEKO_Persian" or
+				defName="akaNEKO_Russian_Blue" or
+				defName="akaNEKO_Scottish_Fold" or
+				defName="akaNEKO_Scottish_Fold_Long" or
+				defName="akaNEKO_shironeko" or
+				defName="akaNEKO_Siamese"
+			]/race/baseHealthScale</xpath>
+			<value>
+				<baseHealthScale>0.23</baseHealthScale>
+			</value>
+		</li>
+
+		<li Class="PatchOperationAddModExtension">
+			<xpath>Defs/ThingDef[
+				defName="akaNEKO_A_Shorthair" or
+				defName="akaNEKO_J_Bobtail" or
+				defName="akaNEKO_kijitora" or
+				defName="akaNEKO_kuroneko" or
+				defName="akaNEKO_Maine_Coon" or
+				defName="akaNEKO_N_Forest_Cat" or
+				defName="akaNEKO_Persian" or
+				defName="akaNEKO_Russian_Blue" or
+				defName="akaNEKO_Scottish_Fold" or
+				defName="akaNEKO_Scottish_Fold_Long" or
+				defName="akaNEKO_shironeko" or
+				defName="akaNEKO_Siamese"
+			]</xpath>
+			<value>
+				<li Class="CombatExtended.RacePropertiesExtensionCE">
+					<bodyShape>Quadruped</bodyShape>
+				</li>
+			</value>
+		</li>
+
+		<li Class="PatchOperationReplace">
+			<xpath>Defs/PawnKindDef[
+				defName="akaNEKO_A_Shorthair" or
+				defName="akaNEKO_J_Bobtail" or
+				defName="akaNEKO_kijitora" or
+				defName="akaNEKO_kuroneko" or
+				defName="akaNEKO_Maine_Coon" or
+				defName="akaNEKO_N_Forest_Cat" or
+				defName="akaNEKO_Persian" or
+				defName="akaNEKO_Russian_Blue" or
+				defName="akaNEKO_Scottish_Fold" or
+				defName="akaNEKO_Scottish_Fold_Long" or
+				defName="akaNEKO_shironeko" or
+				defName="akaNEKO_Siamese"
+			]/combatPower</xpath>
+			<value>
+				<combatPower>14</combatPower>
+			</value>
+		</li>
 
 		</operations>
+		</match>
 	</Operation>
 </Patch>
