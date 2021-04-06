@@ -148,6 +148,7 @@ More Utility Packs	|
 More Vanilla Turrets	|
 Moyo - From the Depth   |
 Nearmare Race	|
+Neclose Race	|
 NewRatkinPlus |
 Ni'Hal	|
 Not Only Just a Cannon  |
