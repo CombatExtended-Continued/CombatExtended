@@ -21,7 +21,7 @@
 				defName="AA_FireSpit" or
 				defName="AA_AcidicVomit" or
 				defName="AA_AcidBolt" or
-				defName="AA_ElectricBolt"
+				defName="AA_LaserBullet"
 				]</xpath>
 					<value>
 						<thingClass>CombatExtended.BulletCE</thingClass>
@@ -356,7 +356,7 @@
 						</projectile>
 					</value>
 				</li>
-				<li Class="PatchOperationReplace">
+				<!-- <li Class="PatchOperationReplace">
 					<xpath>/Defs/ThingDef[defName="AA_ElectricBolt"]/projectile</xpath>
 					<value>
 						<projectile Class="CombatExtended.ProjectilePropertiesCE">
@@ -364,6 +364,18 @@
 							<damageDef>AA_Electric</damageDef>
 							<damageAmountBase>15</damageAmountBase>
 							<speed>75</speed>
+						</projectile>
+					</value>
+				</li> -->
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/VFECore.ExpandableProjectileDef[defName="AA_LaserBullet"]/projectile</xpath>
+					<value>
+						<projectile Class="CombatExtended.ProjectilePropertiesCE">
+							<damageDef>Flame</damageDef>
+							<flyOverhead>false</flyOverhead>
+							<damageAmountBase>10</damageAmountBase>
+							<ai_IsIncendiary>true</ai_IsIncendiary>
+							<speed>20</speed>
 						</projectile>
 					</value>
 				</li>
