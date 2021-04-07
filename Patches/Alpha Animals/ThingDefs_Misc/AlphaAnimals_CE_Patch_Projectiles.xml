@@ -20,7 +20,8 @@
 				defName="AA_Web" or
 				defName="AA_FireSpit" or
 				defName="AA_AcidicVomit" or
-				defName="AA_AcidBolt"
+				defName="AA_AcidBolt" or
+				defName="AA_ElectricBolt"
 				]</xpath>
 					<value>
 						<thingClass>CombatExtended.BulletCE</thingClass>
@@ -57,7 +58,8 @@
 				defName="AA_RedGoo" or
 				defName="AA_RedSpore" or
 				defName="AA_TetraSlug" or
-				defName="AA_Thermadon"
+				defName="AA_Thermadon" or
+				defName="AA_Thunderbeast"
 				]/statBases</xpath>
 					<value>
 						<AimingAccuracy>0.8</AimingAccuracy>
@@ -351,6 +353,17 @@
 							<damageAmountBase>5</damageAmountBase>
 							<speed>40</speed>
 							<armorPenetrationSharp>7</armorPenetrationSharp>
+						</projectile>
+					</value>
+				</li>
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/ThingDef[defName="AA_ElectricBolt"]/projectile</xpath>
+					<value>
+						<projectile Class="CombatExtended.ProjectilePropertiesCE">
+							<flyOverhead>false</flyOverhead>
+							<damageDef>AA_Electric</damageDef>
+							<damageAmountBase>15</damageAmountBase>
+							<speed>75</speed>
 						</projectile>
 					</value>
 				</li>
