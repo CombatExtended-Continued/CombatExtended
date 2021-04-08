@@ -524,7 +524,7 @@ namespace CombatExtended
             }
 
             #region Sanity checks
-            if (ticksToImpact == 0 || def.projectile.flyOverhead)
+            if (ticksToImpact < 0 || def.projectile.flyOverhead)
                 return false;
 
             if (!lastPosIV3.InBounds(Map) || !newPosIV3.InBounds(Map))
