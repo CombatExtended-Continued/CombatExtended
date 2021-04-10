@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+
+	<ThingCategoryDef>
+		<defName>CannonBall</defName>
+		<label>Cannon Ball</label>
+		<parent>AmmoShells</parent>
+		<iconPath>UI/Icons/ThingCategories/CaliberCannon</iconPath>
+	</ThingCategoryDef>
+
+	<!-- ==================== AmmoSet ========================== -->
+
+	<CombatExtended.AmmoSetDef>
+		<defName>AmmoSet_CannonBall</defName>
+		<label>Cannon Ball</label>
+		<ammoTypes>
+			<Ammo_CannonBall_Steel>Bullet_CannonBall_Steel</Ammo_CannonBall_Steel>
+		</ammoTypes>
+	</CombatExtended.AmmoSetDef>
+
+	<!-- ==================== Ammo ========================== -->
+
+	<ThingDef Class="CombatExtended.AmmoDef" Name="90mmCannonShellBase" ParentName="AmmoBase" Abstract="True">
+		<description>A head-sized ball of metal.</description>
+		<thingCategories>
+			<li>CannonBall</li>
+		</thingCategories>
+		<stackLimit>25</stackLimit>
+		<tradeTags>
+			<li>CE_AutoEnableTrade</li>
+			<li>CE_AutoEnableCrafting_FueledSmithy</li>
+			<li>CE_AutoEnableCrafting_ElectricSmithy</li>
+		</tradeTags>
+		<statBases>
+			<MaxHitPoints>450</MaxHitPoints>
+			<Mass>12</Mass>
+			<Bulk>10</Bulk>
+		</statBases>
+	</ThingDef>
+
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="90mmCannonShellBase">
+		<defName>Ammo_CannonBall_Steel</defName>
+		<label>Cannon Ball</label>
+		<graphicData>
+			<texPath>Things/Ammo/Cannon/SteelBall</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+		</graphicData>
+		<statBases>
+			<MarketValue>.35</MarketValue>
+		</statBases>
+		<ammoClass>CannonBall</ammoClass>
+		<detonateProjectile>Bullet_CannonBall_Steel</detonateProjectile>
+	</ThingDef>
+
+	<!-- ================== Projectiles ================== -->
+
+	<ThingDef Class="CombatExtended.AmmoDef" Name="Base90mmCannonShell" ParentName="BaseBullet" Abstract="true">
+		<graphicData>
+			<shaderType>TransparentPostLight</shaderType>
+		</graphicData>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<speed>280</speed>
+			<soundExplode>MortarBomb_Explode</soundExplode>
+			<flyOverhead>false</flyOverhead>
+			<dropsCasings>false</dropsCasings>
+		</projectile>
+	</ThingDef>
+
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="Base90mmCannonShell">
+		<defName>Bullet_CannonBall_Steel</defName>
+		<label>Cannon Ball</label>
+		<thingClass>CombatExtended.BulletCE</thingClass>
+		<graphicData>
+			<texPath>Things/Projectile/Cannon/SteelBall</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+		</graphicData>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageDef>Bullet</damageDef>
+			<damageAmountBase>60.8</damageAmountBase>
+			<armorPenetrationSharp>4</armorPenetrationSharp>
+			<armorPenetrationBlunt>18.181</armorPenetrationBlunt>
+		</projectile>
+		<comps>
+			<li Class="CombatExtended.CompProperties_ExplosiveCE">
+				<damageAmountBase>12</damageAmountBase>
+				<explosiveDamageType>Bomb</explosiveDamageType>
+				<explosiveRadius>1.5</explosiveRadius>
+				<explosionSound>MortarBomb_Explode</explosionSound>
+				<applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
+			</li>
+			<li Class="CombatExtended.CompProperties_Fragments">
+				<fragments>
+					<Fragment_Large>2</Fragment_Large>
+					<Fragment_Small>12</Fragment_Small>
+				</fragments>
+		  </li>
+		</comps>
+	</ThingDef>
+
+	<!-- ==================== Recipes ========================== -->
+
+	<RecipeDef ParentName="AmmoRecipeBase">
+		<defName>MakeAmmo_CannonBall_Steel</defName>
+		<label>Make Steel Cannon Balls x5</label>
+		<description>Craft 5 Steel Cannon Balls</description>
+		<jobString>Making Steel Cannon Balls</jobString>
+		<workAmount>24000</workAmount>
+		<ingredients>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>Steel</li>
+					</thingDefs>
+				</filter>
+				<count>50</count>
+			</li>
+		</ingredients>
+		<fixedIngredientFilter>
+			<thingDefs>
+				<li>Steel</li>
+			</thingDefs>
+		</fixedIngredientFilter>
+		<products>
+			<Ammo_CannonBall_Steel>5</Ammo_CannonBall_Steel>
+		</products>
+	</RecipeDef>
+
+</Defs>

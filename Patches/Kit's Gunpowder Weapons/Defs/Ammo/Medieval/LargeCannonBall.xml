@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+
+	<ThingCategoryDef>
+		<defName>LargeCannonBall</defName>
+		<label>Large Cannon Ball</label>
+		<parent>AmmoShells</parent>
+		<iconPath>UI/Icons/ThingCategories/CaliberMortar</iconPath>
+	</ThingCategoryDef>
+
+	<!-- ==================== AmmoSet ========================== -->
+
+	<CombatExtended.AmmoSetDef>
+		<defName>AmmoSet_LargeCannonBall</defName>
+		<label>Large Cannon Ball</label>
+		<ammoTypes>
+			<Shell_LargeCannonBall_Steel>Bullet_LargeCannonBall_Steel</Shell_LargeCannonBall_Steel>
+		</ammoTypes>
+		<isMortarAmmoSet>true</isMortarAmmoSet>
+	</CombatExtended.AmmoSetDef>
+
+	<!-- ==================== Ammo ========================== -->
+
+	<ThingDef Class="CombatExtended.AmmoDef" Name="81mmMortarShellBase" ParentName="AmmoBase" Abstract="True">
+		<description>A large ball with the sole purpose of hitting the ground so hard that it causes shrapnel.</description>
+		<statBases>
+			<MaxHitPoints>550</MaxHitPoints>
+		</statBases>
+		<thingCategories>
+			<li>LargeCannonBall</li>
+		</thingCategories>
+		<stackLimit>25</stackLimit>
+		<isMortarAmmo>true</isMortarAmmo>
+	</ThingDef>
+
+	<ThingDef Class="CombatExtended.AmmoDef" Name="81mmMortarShellBaseCraftableBase" ParentName="81mmMortarShellBase" Abstract="True">
+		<tradeTags>
+			<li>CE_AutoEnableTrade</li>
+			<li>CE_AutoEnableCrafting_FueledSmithy</li>
+			<li>CE_AutoEnableCrafting_ElectricSmithy</li>
+		</tradeTags>
+	</ThingDef>
+
+	<!-- Need to override mortar shell because of hardcoded vanilla references -->
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="81mmMortarShellBaseCraftableBase">
+		<defName>Shell_LargeCannonBall_Steel</defName>
+		<label>Large Cannon Ball</label>
+		<graphicData>
+			<texPath>Things/Ammo/Mortar/LargeSteelBall</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+		</graphicData>
+		<statBases>
+			<MarketValue>.5</MarketValue>
+			<Mass>16</Mass>
+			<Bulk>12</Bulk>
+		</statBases>
+		<ammoClass>LargeCannonBall</ammoClass>
+		<detonateProjectile>Bullet_LargeCannonBall_Steel</detonateProjectile>
+		<comps>
+			<!-- Vanilla values -->
+			<li Class="CompProperties_Explosive">
+			<explosiveRadius>4</explosiveRadius>
+			<explosiveDamageType>Bomb</explosiveDamageType>
+			<!--<explosiveExpandPerStackcount>0.4</explosiveExpandPerStackcount>-->
+			<startWickHitPointsPercent>0.7</startWickHitPointsPercent>
+			<applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
+			<explodeOnKilled>True</explodeOnKilled>
+			<wickTicks>30~60</wickTicks>
+		  </li>
+		</comps>
+	</ThingDef>
+
+	<!-- ================== Projectiles ================== -->
+
+	<ThingDef Name="Base81mmMortarShell" ParentName="BaseBullet" Abstract="true">
+		<thingClass>CombatExtended.ProjectileCE_Explosive</thingClass>
+		<graphicData>
+			<shaderType>TransparentPostLight</shaderType>
+		</graphicData>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<speed>0</speed>
+			<soundHitThickRoof>Artillery_HitThickRoof</soundHitThickRoof>
+			<soundImpactAnticipate>MortarRound_PreImpact</soundImpactAnticipate>
+			<soundAmbient>MortarRound_Ambient</soundAmbient>
+			<flyOverhead>true</flyOverhead>
+			<dropsCasings>false</dropsCasings>
+			<casingMoteDefname>Mote_BigShell</casingMoteDefname>
+			<gravityFactor>5</gravityFactor>
+		</projectile>
+	</ThingDef>
+
+	<ThingDef ParentName="Base81mmMortarShell">
+		<defName>Bullet_LargeCannonBall_Steel</defName>
+		<label>Large Cannon Ball</label>
+		<graphicData>
+		  <texPath>Things/Projectile/Mortar/LargeSteelBall</texPath>
+		  <graphicClass>Graphic_Single</graphicClass>
+		</graphicData>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+		  <damageDef>Bomb</damageDef>
+		  <damageAmountBase>56</damageAmountBase>
+		  <armorPenetrationSharp>0</armorPenetrationSharp>
+		  <armorPenetrationBlunt>86</armorPenetrationBlunt>
+		  <explosionRadius>2.5</explosionRadius>
+		  <flyOverhead>true</flyOverhead>
+		  <soundExplode>MortarBomb_Explode</soundExplode>
+		  <applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
+		  <ai_IsIncendiary>false</ai_IsIncendiary>
+		</projectile>
+		<comps>
+		  <li Class="CombatExtended.CompProperties_Fragments">
+			<fragments>
+				<Fragment_Large>12</Fragment_Large>
+				<Fragment_Small>32</Fragment_Small>
+			</fragments>
+		  </li>
+		</comps>
+	</ThingDef>
+
+	<!-- ==================== Recipes ========================== -->
+
+	<RecipeDef ParentName="AmmoRecipeBase">
+		<defName>MakeShell_LargeCannonBall_Steel</defName>
+		<label>Make Steel Large Cannon Balls x5</label>
+		<description>Craft 5 Steel Large Cannon Balls</description>
+		<jobString>Making Steel Large Cannon Balls</jobString>
+		<ingredients>
+			<li>
+			<filter>
+				<thingDefs>
+					<li>Steel</li>
+				</thingDefs>
+			</filter>
+			<count>100</count>
+			</li>
+		</ingredients>
+		<fixedIngredientFilter>
+			<thingDefs>
+				<li>Steel</li>
+			</thingDefs>
+		</fixedIngredientFilter>
+		<products>
+			<Shell_LargeCannonBall_Steel>5</Shell_LargeCannonBall_Steel>
+		</products>
+		<workAmount>28000</workAmount>
+	</RecipeDef>
+
+</Defs>
