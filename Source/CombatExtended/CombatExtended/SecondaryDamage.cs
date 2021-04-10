@@ -14,6 +14,7 @@ namespace CombatExtended
 
         public DamageDef def;
         public int amount;
+        public float chance = 1f;
 
         public DamageInfo GetDinfo()
         {

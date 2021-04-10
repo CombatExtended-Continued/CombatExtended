@@ -30,12 +30,12 @@ namespace CombatExtended.HarmonyCE
 
         internal static IEnumerable<CodeInstruction> Transpiler(IEnumerable<CodeInstruction> instructions)
         {
-        
+
             var codes = instructions.ToList();
-           
+
             // Find armor block
             var armorBlockEnd = codes.FirstIndexOf(c => ReferenceEquals(c.operand, typeof(ArmorUtility).GetMethod("GetPostArmorDamage", AccessTools.all)));
-          
+
             int armorBlockStart = -1;
 
             for (int i = armorBlockEnd; i > 0; i--)
@@ -88,7 +88,7 @@ namespace CombatExtended.HarmonyCE
                 _applyingSecondary = true;
                 foreach (var sec in props.secondaryDamage)
                 {
-                    if (pawn.Dead)
+                    if (pawn.Dead || !(UnityEngine.Random.Range(0f, 1f) <= sec.chance))
                     {
                         break;
                     }
