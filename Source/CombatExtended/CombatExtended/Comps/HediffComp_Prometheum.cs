@@ -18,6 +18,12 @@ namespace CombatExtended
 
             if (Pawn.IsHashIntervalTick(GenTicks.TicksPerRealSecond))
             {
+                if (Pawn.Position.GetThingList(Pawn.Map).Any(x => x.def == ThingDefOf.Filth_FireFoam))
+                {
+                    //clear prometheum-soaked hediff
+                    severityAdjustment = -1000;
+                    return;
+                }
                 Fire fire = Pawn.GetAttachment(ThingDefOf.Fire) as Fire;
                 if (fire == null && Pawn.Spawned)
                 {
