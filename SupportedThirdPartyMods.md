@@ -110,6 +110,7 @@ Kaiser Armory	|
 K.L.K - Styles Apparel Pack	|
 Kijin Race 2.0     	|     
 Kill la Kill Styles Pack    	|   
+Kit's VFE Weapons |
 Kurin, The Three Tailed Fox	|
 Leeani Playable Race	|
 Let's Have a Cat!	|
