@@ -1,0 +1,185 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+	<Operation Class="PatchOperationFindMod">
+	    <mods>
+		<li>Vanilla Weapons Expanded - Quickdraw</li>
+	    </mods>
+	    <match Class="PatchOperationSequence">
+	        <operations>
+			
+				<!-- ========== Deringer ========== -->
+		<li Class="PatchOperationReplace">
+          <xpath>/Defs/ThingDef[defName="VWEFT_Gun_Derringer"]/verbs/li/verbClass</xpath>
+          <value>
+            <verbClass>Verb_Shoot</verbClass>
+          </value>
+        </li>
+		
+			<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+				<defName>VWEFT_Gun_Derringer</defName>
+				<statBases>
+					<Mass>0.45</Mass>
+					<RangedWeapon_Cooldown>0.38</RangedWeapon_Cooldown>
+					<SightsEfficiency>0.7</SightsEfficiency>
+					<ShotSpread>0.2</ShotSpread>
+					<SwayFactor>0.53</SwayFactor>
+					<Bulk>1.15</Bulk>
+					<WorkToMake>4500</WorkToMake>
+				</statBases>
+				<costList>
+					<Steel>25</Steel>
+					<ComponentIndustrial>3</ComponentIndustrial>
+				</costList>
+				<Properties>
+					<recoilAmount>2.42</recoilAmount>					
+					<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+					<hasStandardCommand>true</hasStandardCommand>
+					<defaultProjectile>Bullet_41Rimfire_FMJ</defaultProjectile>
+					<warmupTime>0.6</warmupTime>
+					<range>12</range>
+					<soundCast>Shot_Revolver</soundCast>
+					<muzzleFlashScale>9</muzzleFlashScale>
+				</Properties>
+				<AmmoUser>
+					<magazineSize>2</magazineSize>
+					<reloadOneAtATime>true</reloadOneAtATime>
+					<reloadTime>0.85</reloadTime>
+					<ammoSet>AmmoSet_41Rimfire</ammoSet>
+				</AmmoUser>
+				<FireModes>
+				</FireModes>
+				<weaponTags>
+					<li>CE_Sidearm</li>
+					<li>CE_AI_Pistol</li>
+					<li>CE_OneHandedWeapon</li>
+				</weaponTags>
+				<researchPrerequisite>Gunsmithing</researchPrerequisite>
+			</li>
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="VWEFT_Gun_Derringer"]/tools</xpath>
+				<value>
+					<tools>
+						<li Class="CombatExtended.ToolCE">
+							<label>grip</label>
+							<capacities>
+								<li>Blunt</li>
+							</capacities>
+							<power>8</power>
+							<cooldownTime>1.6</cooldownTime>
+							<chanceFactor>1.5</chanceFactor>
+							<armorPenetration>0.102</armorPenetration>
+							<linkedBodyPartsGroup>Grip</linkedBodyPartsGroup>
+						</li>
+						<li Class="CombatExtended.ToolCE">
+							<label>muzzle</label>
+							<capacities>
+								<li>Poke</li>
+							</capacities>
+							<power>8</power>
+							<cooldownTime>1.6</cooldownTime>
+							<armorPenetration>0.075</armorPenetration>
+							<linkedBodyPartsGroup>Muzzle</linkedBodyPartsGroup>
+						</li>
+					</tools>
+				</value>
+			</li>
+			
+				<!-- ========== Lever-action Shotgun ========== -->
+     <li Class="PatchOperationReplace">
+          <xpath>/Defs/ThingDef[defName="VWEFT_Gun_LeverActionShotgun"]/verbs/li/verbClass</xpath>
+          <value>
+            <verbClass>Verb_Shoot</verbClass>
+          </value>
+        </li>
+		
+	<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+    <defName>VWEFT_Gun_LeverActionShotgun</defName>
+	
+    <statBases>
+      <Mass>2.6</Mass>
+      <RangedWeapon_Cooldown>1.0</RangedWeapon_Cooldown>
+      <ShotSpread>0.14</ShotSpread>
+      <SwayFactor>1.20</SwayFactor>
+      <Bulk>7.0</Bulk>
+      <SightsEfficiency>1</SightsEfficiency>
+      <WorkToMake>7000</WorkToMake>
+    </statBases>
+	
+    <costList>
+      <Steel>40</Steel>
+      <ComponentIndustrial>3</ComponentIndustrial>
+    </costList>
+	
+    <Properties>
+      <verbClass>CombatExtended.Verb_ShootCE</verbClass>
+      <hasStandardCommand>true</hasStandardCommand>
+      <defaultProjectile>Bullet_12Gauge_Buck</defaultProjectile>
+      <warmupTime>0.05</warmupTime>
+      <range>16</range>
+      <soundCast>Shot_Shotgun</soundCast>
+      <soundCastTail>GunTail_Heavy</soundCastTail>
+      <muzzleFlashScale>9</muzzleFlashScale>
+    </Properties>
+	
+    <AmmoUser>
+      <magazineSize>5</magazineSize>
+      <reloadOneAtATime>true</reloadOneAtATime>
+      <reloadTime>0.85</reloadTime>
+      <ammoSet>AmmoSet_12Gauge</ammoSet>
+    </AmmoUser>
+	
+	     <FireModes>
+          <aiAimMode>AimedShot</aiAimMode>
+          </FireModes>
+		  
+    <weaponTags>
+      <li>CE_AI_AssaultWeapon</li>
+    </weaponTags>
+	<researchPrerequisite>Gunsmithing</researchPrerequisite>
+  </li>
+  
+         <li Class="PatchOperationReplace">
+          <xpath>/Defs/ThingDef[defName="VWEFT_Gun_LeverActionShotgun"]/tools</xpath>
+
+          <value>
+            <tools>
+              <li Class="CombatExtended.ToolCE">
+                <label>stock</label>
+                <capacities>
+                  <li>Blunt</li>
+                </capacities>
+                <power>8</power>
+                <cooldownTime>1.55</cooldownTime>
+                <chanceFactor>1.5</chanceFactor>
+                <armorPenetrationBlunt>2.755</armorPenetrationBlunt>
+                <linkedBodyPartsGroup>Stock</linkedBodyPartsGroup>
+              </li>
+              <li Class="CombatExtended.ToolCE">
+                <label>barrel</label>
+                <capacities>
+                  <li>Blunt</li>
+                </capacities>
+                <power>5</power>
+                <cooldownTime>2.02</cooldownTime>
+                <armorPenetrationBlunt>1.630</armorPenetrationBlunt>
+                <linkedBodyPartsGroup>Barrel</linkedBodyPartsGroup>
+              </li>
+              <li Class="CombatExtended.ToolCE">
+                <label>muzzle</label>
+                <capacities>
+                  <li>Poke</li>
+                </capacities>
+                <power>8</power>
+                <cooldownTime>1.55</cooldownTime>
+                <armorPenetrationBlunt>2.755</armorPenetrationBlunt>
+                <linkedBodyPartsGroup>Muzzle</linkedBodyPartsGroup>
+              </li>
+            </tools>
+          </value>
+        </li>
+
+		  </operations>
+    </match>
+  </Operation>
+
+</Patch>
