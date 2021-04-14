@@ -1,102 +1,102 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <Patch>
-	<Operation Class="PatchOperationSequence">
-		<success>Always</success>
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+			<li>More Vanilla Turrets 1.1</li>
+		</mods>
+		<match Class="PatchOperationSequence">
 		<operations>
 
-			<li Class="CombatExtended.PatchOperationFindMod">
-				<modName>More Vanilla Turrets 1.1</modName>
-			</li>
+		<!-- ========== Define 81mm plasma mortar shell and unique ammoset for Devastator Mortar ========== -->
 
-			<!-- ========== Define 81mm plasma mortar shell and unique ammoset for Devastator Mortar ========== -->
+		<li Class="PatchOperationAdd">
+			<xpath>Defs</xpath>
+			<value>
 
-			<li Class="PatchOperationAdd">
-				<xpath>Defs</xpath>
-				<value>
+				<CombatExtended.AmmoSetDef>
+					<defName>AmmoSet_81mmMortarShell_Plasma</defName>
+					<label>81mm mortar shells</label>
+					<ammoTypes>
+						<Shell_Plasma>Bullet_81mmMortarShell_Plasma</Shell_Plasma>
+					</ammoTypes>
+				</CombatExtended.AmmoSetDef>
 
-					<CombatExtended.AmmoSetDef>
-						<defName>AmmoSet_81mmMortarShell_Plasma</defName>
-						<label>81mm mortar shells</label>
-						<ammoTypes>
-							<Shell_Plasma>Bullet_81mmMortarShell_Plasma</Shell_Plasma>
-						</ammoTypes>
-					</CombatExtended.AmmoSetDef>
+				<ThingDef Class="CombatExtended.AmmoDef" ParentName="81mmMortarShellBaseCraftableBase">
+					<defName>Shell_Plasma</defName>
+					<label>81mm mortar shell (Plasma)</label>
+					<graphicData>
+						<texPath>ThirdParty/More Vanilla Turrets/PlasmaMortarShell</texPath>
+						<graphicClass>Graphic_Single</graphicClass>
+					</graphicData>
+					<statBases>
+						<MarketValue>237</MarketValue>
+						<Mass>6.5</Mass>
+						<Bulk>8.17</Bulk>
+					</statBases>
+					<ammoClass>Plasma</ammoClass>
+					<detonateProjectile>Bullet_81mmMortarShell_Plasma</detonateProjectile>
+				</ThingDef>
 
-					<ThingDef Class="CombatExtended.AmmoDef" ParentName="81mmMortarShellBaseCraftableBase">
-						<defName>Shell_Plasma</defName>
-						<label>81mm mortar shell (Plasma)</label>
-						<graphicData>
-							<texPath>ThirdParty/More Vanilla Turrets/PlasmaMortarShell</texPath>
-							<graphicClass>Graphic_Single</graphicClass>
-						</graphicData>
-						<statBases>
-							<MarketValue>237</MarketValue>
-							<Mass>6.5</Mass>
-							<Bulk>8.17</Bulk>
-						</statBases>
-						<ammoClass>Plasma</ammoClass>
-						<detonateProjectile>Bullet_81mmMortarShell_Plasma</detonateProjectile>
-					</ThingDef>
+				<ThingDef Class="CombatExtended.AmmoDef" ParentName="Base81mmMortarShell">
+					<defName>Bullet_81mmMortarShell_Plasma</defName>
+					<label>81mm mortar shell (Plasma)</label>
+					<graphicData>
+						<texPath>ThirdParty/More Vanilla Turrets/PlasmaMortarProj</texPath>
+						<graphicClass>Graphic_Single</graphicClass>
+					</graphicData>
+					<projectile Class="CombatExtended.ProjectilePropertiesCE">
+						<damageDef>Bomb</damageDef>
+						<damageAmountBase>524</damageAmountBase>
+						<armorPenetrationSharp>0</armorPenetrationSharp>
+						<armorPenetrationBlunt>0</armorPenetrationBlunt>
+						<explosionRadius>5</explosionRadius>
+						<flyOverhead>true</flyOverhead>
+						<explosionChanceToStartFire>0.75</explosionChanceToStartFire>
+						<applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
+						<explosionEffect>GiantExplosion</explosionEffect>
+						<soundExplode>Explosion_GiantBomb</soundExplode>
+					</projectile>
+				</ThingDef>
 
-					<ThingDef Class="CombatExtended.AmmoDef" ParentName="Base81mmMortarShell">
-						<defName>Bullet_81mmMortarShell_Plasma</defName>
-						<label>81mm mortar shell (Plasma)</label>
-						<graphicData>
-							<texPath>ThirdParty/More Vanilla Turrets/PlasmaMortarProj</texPath>
-							<graphicClass>Graphic_Single</graphicClass>
-						</graphicData>
-						<projectile Class="CombatExtended.ProjectilePropertiesCE">
-							<damageDef>Bomb</damageDef>
-							<damageAmountBase>524</damageAmountBase>
-							<armorPenetrationSharp>0</armorPenetrationSharp>
-							<armorPenetrationBlunt>0</armorPenetrationBlunt>
-							<explosionRadius>5</explosionRadius>
-							<flyOverhead>true</flyOverhead>
-							<explosionChanceToStartFire>0.75</explosionChanceToStartFire>
-							<applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
-							<explosionEffect>GiantExplosion</explosionEffect>
-							<soundExplode>Explosion_GiantBomb</soundExplode>
-						</projectile>
-					</ThingDef>
+				<RecipeDef ParentName="AmmoRecipeBase">
+					<defName>MakeShell_Plasma</defName>
+					<label>make 81mm Plasma mortar shells x5</label>
+					<description>Craft 5 81mm Plasma mortar shells.</description>
+					<jobString>Making 81mm Plasma mortar shells.</jobString>
+					<workAmount>49200</workAmount>
+					<ingredients>
+						<li>
+							<filter>
+								<thingDefs>
+									<li>Plasteel</li>
+								</thingDefs>
+							</filter>
+							<count>120</count>
+						</li>
+						<li>
+							<filter>
+								<thingDefs>
+									<li>ComponentIndustrial</li>
+								</thingDefs>
+							</filter>
+							<count>2</count>
+						</li>
+					</ingredients>
+					<fixedIngredientFilter>
+						<thingDefs>
+							<li>Plasteel</li>
+							<li>ComponentIndustrial</li>
+						</thingDefs>
+					</fixedIngredientFilter>
+					<products>
+						<Shell_Plasma>5</Shell_Plasma>
+					</products>
+				</RecipeDef>
 
-					<RecipeDef ParentName="AmmoRecipeBase">
-						<defName>MakeShell_Plasma</defName>
-						<label>make 81mm Plasma mortar shells x5</label>
-						<description>Craft 5 81mm Plasma mortar shells.</description>
-						<jobString>Making 81mm Plasma mortar shells.</jobString>
-						<workAmount>49200</workAmount>
-						<ingredients>
-							<li>
-								<filter>
-									<thingDefs>
-										<li>Plasteel</li>
-									</thingDefs>
-								</filter>
-								<count>120</count>
-							</li>
-							<li>
-								<filter>
-									<thingDefs>
-										<li>ComponentIndustrial</li>
-									</thingDefs>
-								</filter>
-								<count>2</count>
-							</li>
-						</ingredients>
-						<fixedIngredientFilter>
-							<thingDefs>
-								<li>Plasteel</li>
-								<li>ComponentIndustrial</li>
-							</thingDefs>
-						</fixedIngredientFilter>
-						<products>
-							<Shell_Plasma>5</Shell_Plasma>
-						</products>
-					</RecipeDef>
-
-				</value>
-			</li>
+			</value>
+		</li>
 
 		</operations>
+		</match>
 	</Operation>
 </Patch> 

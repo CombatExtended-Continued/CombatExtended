@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+
+  <Operation Class="PatchOperationFindMod">
+    <mods>
+      <li>Vanilla Factions Expanded - Mechanoids</li>
+    </mods>
+
+    <match Class="PatchOperationSequence">
+      <operations>
+		
+		  <li Class="PatchOperationReplace">
+			<xpath>Defs/PawnKindDef[defName="VFE_Mech_Centipede" or defName="VFE_Mech_AdvancedCentipede"]/combatPower</xpath>
+			<value>
+				<combatPower>580</combatPower>
+			</value>
+		  </li>
+		  
+		  <li Class="PatchOperationAddModExtension">
+			<xpath>Defs/PawnKindDef[defName="VFE_Mech_Centipede" or
+			defName="VFE_Mech_AdvancedCentipede" or			 
+			defName="VFE_Mech_AdvancedLancer" or
+			defName="VFE_Mech_Lancer"
+			]</xpath>
+			<value>
+			  <li Class="CombatExtended.LoadoutPropertiesExtension">
+				<primaryMagazineCount>
+				  <min>10</min>
+				  <max>10</max>
+				</primaryMagazineCount>
+			  </li>
+			</value>
+		  </li>
+		  
+		  <li Class="PatchOperationAddModExtension">
+			<xpath>Defs/PawnKindDef[defName="VFE_Mech_Knight" or 
+			defName="VFE_Mech_AdvancedKnight" or
+			defName="VFE_Mech_Pikeman"
+			]</xpath>
+			<value>
+			  <li Class="CombatExtended.LoadoutPropertiesExtension">
+				<primaryMagazineCount>
+				  <min>3</min>
+				  <max>5</max>
+				</primaryMagazineCount>
+			  </li>
+			</value>
+		  </li>
+		  
+		  <li Class="PatchOperationAddModExtension">
+			<xpath>Defs/PawnKindDef[defName="VFE_Mech_AdvancedPikeman"]</xpath>
+			<value>
+			  <li Class="CombatExtended.LoadoutPropertiesExtension">
+				<primaryMagazineCount>
+				  <min>6</min>
+				  <max>8</max>
+				</primaryMagazineCount>
+			  </li>
+			</value>
+		  </li>
+		
+      </operations>
+    </match>
+  </Operation>
+
+</Patch>

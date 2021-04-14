@@ -1,120 +1,121 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <Patch>
-	
-	<Operation Class="PatchOperationSequence">
-		<success>Always</success>
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+			<li>[v1.0] Jernfalk's Standalone Horses</li>
+		</mods>
+		<match Class="PatchOperationSequence">
 		<operations>
-			<li Class="CombatExtended.PatchOperationFindMod">
-				<modName>[v1.0] Jernfalk's Standalone Horses</modName>
-			</li>
-			
-			<li Class="PatchOperationAddModExtension">
-				<xpath>Defs/ThingDef[defName="Jernfalk_Horse"]</xpath>
-				<value>
-					<li Class="CombatExtended.RacePropertiesExtensionCE">
-						<bodyShape>Quadruped</bodyShape>
+		
+		<li Class="PatchOperationAddModExtension">
+			<xpath>Defs/ThingDef[defName="Jernfalk_Horse"]</xpath>
+			<value>
+				<li Class="CombatExtended.RacePropertiesExtensionCE">
+					<bodyShape>Quadruped</bodyShape>
+				</li>
+			</value>
+		</li>
+		
+		<li Class="PatchOperationAdd">
+			<xpath>Defs/ThingDef[defName="Jernfalk_Horse"]/statBases</xpath>
+			<value>
+				<MeleeDodgeChance>0.15</MeleeDodgeChance>
+				<MeleeCritChance>0.2</MeleeCritChance>
+				<MeleeParryChance>0.05</MeleeParryChance>
+			</value>
+		</li>
+		<li Class="PatchOperationReplace">
+			<xpath>Defs/ThingDef[defName="Jernfalk_Horse"]/tools</xpath>
+			<value>
+				<tools Inherit="False">
+					<li Class="CombatExtended.ToolCE">
+						<label>left hoof</label>
+						<cooldownTime>1.65</cooldownTime>
+						<power>9</power>
+						<capacities>
+							<li>Blunt</li>
+						</capacities>
+						<linkedBodyPartsGroup>FrontLeftLeg</linkedBodyPartsGroup>
+						<armorPenetration>0.102</armorPenetration>
 					</li>
-				</value>
-			</li>
-			
-			<li Class="PatchOperationAdd">
-				<xpath>Defs/ThingDef[defName="Jernfalk_Horse"]/statBases</xpath>
-				<value>
-					<MeleeDodgeChance>0.15</MeleeDodgeChance>
-					<MeleeCritChance>0.2</MeleeCritChance>
-					<MeleeParryChance>0.05</MeleeParryChance>
-				</value>
-			</li>
-			<li Class="PatchOperationReplace">
-				<xpath>Defs/ThingDef[defName="Jernfalk_Horse"]/tools</xpath>
-				<value>
-					<tools Inherit="False">
-						<li Class="CombatExtended.ToolCE">
-							<label>left hoof</label>
-							<cooldownTime>1.65</cooldownTime>
-							<power>9</power>
-							<capacities>
-								<li>Blunt</li>
-							</capacities>
-							<linkedBodyPartsGroup>FrontLeftLeg</linkedBodyPartsGroup>
-							<armorPenetration>0.102</armorPenetration>
-						</li>
-						<li Class="CombatExtended.ToolCE">
-							<label>right hoof</label>
-							<cooldownTime>1.65</cooldownTime>
-							<power>9</power>
-							<capacities>
-								<li>Blunt</li>
-							</capacities>
-							<linkedBodyPartsGroup>FrontRightLeg</linkedBodyPartsGroup>
-							<armorPenetration>0.102</armorPenetration>
-						</li>
-						<li Class="CombatExtended.ToolCE">
-							<cooldownTime>1</cooldownTime>
-							<power>4</power>
-							<capacities>
-								<li>Bite</li>
-							</capacities>
-							<linkedBodyPartsGroup>Teeth</linkedBodyPartsGroup>
-							<armorPenetration>0.128</armorPenetration>
-						</li>
-					</tools>
-				</value>
-			</li>
-			<li Class="PatchOperationAddModExtension">
-				<xpath>Defs/ThingDef[defName="Jernfalk_WoolyHorse"]</xpath>
-				<value>
-					<li Class="CombatExtended.RacePropertiesExtensionCE">
-						<bodyShape>Quadruped</bodyShape>
+					<li Class="CombatExtended.ToolCE">
+						<label>right hoof</label>
+						<cooldownTime>1.65</cooldownTime>
+						<power>9</power>
+						<capacities>
+							<li>Blunt</li>
+						</capacities>
+						<linkedBodyPartsGroup>FrontRightLeg</linkedBodyPartsGroup>
+						<armorPenetration>0.102</armorPenetration>
 					</li>
-				</value>
-			</li>
-			<li Class="PatchOperationAdd">
-				<xpath>Defs/ThingDef[defName="Jernfalk_WoolyHorse"]/statBases</xpath>
-				<value>
-					<MeleeDodgeChance>0.16</MeleeDodgeChance>
-					<MeleeCritChance>0.22</MeleeCritChance>
-					<MeleeParryChance>0.06</MeleeParryChance>
-				</value>
-			</li>
-			<li Class="PatchOperationReplace">
-				<xpath>Defs/ThingDef[defName="Jernfalk_WoolyHorse"]/tools</xpath>
-				<value>
-					<tools Inherit="False">
-						<li Class="CombatExtended.ToolCE">
-							<label>left hoof</label>
-							<cooldownTime>1.65</cooldownTime>
-							<power>9</power>
-							<capacities>
-								<li>Blunt</li>
-							</capacities>
-							<linkedBodyPartsGroup>FrontLeftLeg</linkedBodyPartsGroup>
-							<armorPenetration>0.102</armorPenetration>
-						</li>
-						<li Class="CombatExtended.ToolCE">
-							<label>right hoof</label>
-							<cooldownTime>1.65</cooldownTime>
-							<power>9</power>
-							<capacities>
-								<li>Blunt</li>
-							</capacities>
-							<linkedBodyPartsGroup>FrontRightLeg</linkedBodyPartsGroup>
-							<armorPenetration>0.102</armorPenetration>
-						</li>
-						<li Class="CombatExtended.ToolCE">
-							<cooldownTime>1</cooldownTime>
-							<power>4</power>
-							<capacities>
-								<li>Bite</li>
-							</capacities>
-							<linkedBodyPartsGroup>Teeth</linkedBodyPartsGroup>
-							<chanceFactor>0.2</chanceFactor>							
-							<armorPenetration>0.128</armorPenetration>
-						</li>
-					</tools>
-				</value>
-			</li>
+					<li Class="CombatExtended.ToolCE">
+						<cooldownTime>1</cooldownTime>
+						<power>4</power>
+						<capacities>
+							<li>Bite</li>
+						</capacities>
+						<linkedBodyPartsGroup>Teeth</linkedBodyPartsGroup>
+						<armorPenetration>0.128</armorPenetration>
+					</li>
+				</tools>
+			</value>
+		</li>
+		<li Class="PatchOperationAddModExtension">
+			<xpath>Defs/ThingDef[defName="Jernfalk_WoolyHorse"]</xpath>
+			<value>
+				<li Class="CombatExtended.RacePropertiesExtensionCE">
+					<bodyShape>Quadruped</bodyShape>
+				</li>
+			</value>
+		</li>
+		<li Class="PatchOperationAdd">
+			<xpath>Defs/ThingDef[defName="Jernfalk_WoolyHorse"]/statBases</xpath>
+			<value>
+				<MeleeDodgeChance>0.16</MeleeDodgeChance>
+				<MeleeCritChance>0.22</MeleeCritChance>
+				<MeleeParryChance>0.06</MeleeParryChance>
+			</value>
+		</li>
+		<li Class="PatchOperationReplace">
+			<xpath>Defs/ThingDef[defName="Jernfalk_WoolyHorse"]/tools</xpath>
+			<value>
+				<tools Inherit="False">
+					<li Class="CombatExtended.ToolCE">
+						<label>left hoof</label>
+						<cooldownTime>1.65</cooldownTime>
+						<power>9</power>
+						<capacities>
+							<li>Blunt</li>
+						</capacities>
+						<linkedBodyPartsGroup>FrontLeftLeg</linkedBodyPartsGroup>
+						<armorPenetration>0.102</armorPenetration>
+					</li>
+					<li Class="CombatExtended.ToolCE">
+						<label>right hoof</label>
+						<cooldownTime>1.65</cooldownTime>
+						<power>9</power>
+						<capacities>
+							<li>Blunt</li>
+						</capacities>
+						<linkedBodyPartsGroup>FrontRightLeg</linkedBodyPartsGroup>
+						<armorPenetration>0.102</armorPenetration>
+					</li>
+					<li Class="CombatExtended.ToolCE">
+						<cooldownTime>1</cooldownTime>
+						<power>4</power>
+						<capacities>
+							<li>Bite</li>
+						</capacities>
+						<linkedBodyPartsGroup>Teeth</linkedBodyPartsGroup>
+						<chanceFactor>0.2</chanceFactor>							
+						<armorPenetration>0.128</armorPenetration>
+					</li>
+				</tools>
+			</value>
+		</li>
+		
 		</operations>
+		</match>
 	</Operation>
 	
 </Patch>

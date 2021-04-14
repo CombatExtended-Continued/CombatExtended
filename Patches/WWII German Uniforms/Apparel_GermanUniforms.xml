@@ -1,0 +1,228 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+
+  <Operation Class="PatchOperationFindMod">
+    <mods>
+      <li>WWII German Uniforms - V's Edit</li>
+    </mods>
+    <match Class="PatchOperationSequence">
+      <operations>
+
+		<!-- Harnesses, Belts, Accessories -->
+		<li Class="PatchOperationAdd">
+			<xpath>Defs/ThingDef[defName = "Apparel_3RHarnessA" or
+			defName = "Apparel_3RHarnessRif" or
+			defName = "Apparel_3ROfficerbelt" or
+			defName = "Apparel_3RFeldgendararmerieGorget" or
+			defName = "Apparel_3RHarnessFal"
+			]/equippedStatOffsets</xpath>
+			<value>
+				<CarryWeight>10</CarryWeight>
+			</value>
+		</li>
+
+		<li Class="PatchOperationReplace">
+			<xpath>Defs/ThingDef[defName = "Apparel_3RHarnessA" or
+			defName = "Apparel_3RHarnessRif" or
+			defName = "Apparel_3ROfficerbelt" or
+			defName = "Apparel_3RFeldgendararmerieGorget" or
+			defName = "Apparel_3RHarnessFal"
+			]/statBases/ArmorRating_Sharp</xpath>
+			<value>
+				<ArmorRating_Sharp>0.05</ArmorRating_Sharp>
+			</value>
+		</li>
+
+		<li Class="PatchOperationReplace">
+			<xpath>Defs/ThingDef[defName = "Apparel_3RHarnessA" or
+			defName = "Apparel_3RHarnessRif" or
+			defName = "Apparel_3ROfficerbelt" or
+			defName = "Apparel_3RFeldgendararmerieGorget" or
+			defName = "Apparel_3RHarnessFal"
+			]/statBases/ArmorRating_Blunt</xpath>
+			<value>
+				<ArmorRating_Blunt>0.08</ArmorRating_Blunt>
+			</value>
+		</li>
+
+		<!-- Hats -->
+		<li Class="PatchOperationReplace">
+			<xpath>Defs/ThingDef[defName = "Apparel_3RM40Inf" or
+			defName = "Apparel_3RM43Inf" or
+			defName = "Apparel_3ROfficerCapInf" or
+			defName = "Apparel_3RFieldMarshalCap"
+			]/statBases/ArmorRating_Sharp</xpath>
+			<value>
+				<ArmorRating_Sharp>0.03</ArmorRating_Sharp>
+			</value>
+		</li>
+
+		<li Class="PatchOperationReplace">
+			<xpath>Defs/ThingDef[defName = "Apparel_3RM40Inf" or
+			defName = "Apparel_3RM43Inf" or
+			defName = "Apparel_3ROfficerCapInf" or
+			defName = "Apparel_3RFieldMarshalCap"
+			]/statBases/ArmorRating_Blunt</xpath>
+			<value>
+				<ArmorRating_Blunt>0.05</ArmorRating_Blunt>
+			</value>
+		</li>
+
+		<!-- Helmets -->
+
+		<!-- Bulk -->		
+		<li Class="PatchOperationAdd">
+			<xpath>Defs/ThingDef[defName = "Apparel_3RStahlhelmM42Inf" or
+			defName = "Apparel_3RStahlhelmM42InfStraps" or
+			defName = "Apparel_3RStahlhelmM42InfSniper" or
+			defName = "Apparel_3RStahlhelmM42coverSplinter" or
+			defName = "Apparel_3RStahlhelmM42Gogg" or
+			defName = "Apparel_3RStahlhelmM42Winter" or
+			defName = "Apparel_3RM38Fal" or
+			defName = "Apparel_3RM38FalCam" or
+			defName = "Apparel_3RM38FalWinter"			
+			]/statBases</xpath>
+			<value>
+				<Bulk>4</Bulk>
+			</value>
+		</li>
+
+		<!-- M42 Helmet -->
+		<li Class="PatchOperationReplace">
+			<xpath>Defs/ThingDef[defName = "Apparel_3RStahlhelmM42Inf" or
+			defName = "Apparel_3RStahlhelmM42InfStraps" or
+			defName = "Apparel_3RStahlhelmM42InfSniper" or
+			defName = "Apparel_3RStahlhelmM42coverSplinter" or
+			defName = "Apparel_3RStahlhelmM42Gogg" or
+			defName = "Apparel_3RStahlhelmM42Winter"
+			]/statBases/ArmorRating_Sharp</xpath>
+			<value>
+				<ArmorRating_Sharp>1.8</ArmorRating_Sharp>
+			</value>
+		</li>	
+
+		<li Class="PatchOperationReplace">
+			<xpath>Defs/ThingDef[defName = "Apparel_3RStahlhelmM42Inf" or
+			defName = "Apparel_3RStahlhelmM42InfStraps" or
+			defName = "Apparel_3RStahlhelmM42InfSniper" or
+			defName = "Apparel_3RStahlhelmM42coverSplinter" or
+			defName = "Apparel_3RStahlhelmM42Gogg" or 
+			defName = "Apparel_3RStahlhelmM42Winter"
+			]/statBases/ArmorRating_Blunt</xpath>
+			<value>
+				<ArmorRating_Blunt>2.7</ArmorRating_Blunt>
+			</value>
+		</li>
+
+		<!-- M38 Helmet -->
+		<li Class="PatchOperationReplace">
+			<xpath>Defs/ThingDef[defName = "Apparel_3RM38Fal" or
+			defName = "Apparel_3RM38FalCam" or
+			defName = "Apparel_3RM38FalWinter"
+			]/statBases/ArmorRating_Sharp</xpath>
+			<value>
+				<ArmorRating_Sharp>1.5</ArmorRating_Sharp>
+			</value>
+		</li>
+		
+		<li Class="PatchOperationReplace">
+			<xpath>Defs/ThingDef[defName = "Apparel_3RM38Fal" or
+			defName = "Apparel_3RM38FalCam" or
+			defName = "Apparel_3RM38FalWinter"
+			]/statBases/ArmorRating_Blunt</xpath>
+			<value>
+				<ArmorRating_Blunt>2.25</ArmorRating_Blunt>
+			</value>
+		</li>
+
+		<!-- Uniforms -->
+
+		<!-- Fatigues -->
+		<li Class="PatchOperationAdd">
+			<xpath>Defs/ThingDef[defName = "Apparel_3RInfUniform" or
+			defName = "Apparel_3RInfSplitUniform" or
+			defName = "Apparel_3RInfOfficerUniform" or
+			defName = "Apparel_3RFalUniform" or 
+			defName = "Apparel_3RFieldMarshal"]/statBases</xpath>
+			<value>
+				<Bulk>4</Bulk>
+				<WornBulk>2.5</WornBulk>
+			</value>
+		</li>
+
+		<li Class="PatchOperationReplace">
+			<xpath>Defs/ThingDef[defName = "Apparel_3RInfUniform" or
+			defName = "Apparel_3RInfSplitUniform" or
+			defName = "Apparel_3RInfOfficerUniform" or
+			defName = "Apparel_3RFalUniform" or 
+			defName = "Apparel_3RFieldMarshal"
+			]/statBases/ArmorRating_Blunt</xpath>
+			<value>
+				<ArmorRating_Blunt>0.15</ArmorRating_Blunt>
+			</value>
+		</li>
+
+		<li Class="PatchOperationReplace">
+			<xpath>Defs/ThingDef[defName = "Apparel_3RInfUniform" or
+			defName = "Apparel_3RInfSplitUniform" or
+			defName = "Apparel_3RInfOfficerUniform" or
+			defName = "Apparel_3RFalUniform" or 
+			defName = "Apparel_3RFieldMarshal"
+			]/statBases/ArmorRating_Sharp</xpath>
+			<value>
+				<ArmorRating_Sharp>0.2</ArmorRating_Sharp>
+			</value>
+		</li>
+
+		<!-- Coats -->
+		<li Class="PatchOperationAdd">
+			<xpath>Defs/ThingDef[defName = "Apparel_3RNaziTrenchCoat" or defName = "Apparel_3RNaziCoat"]/statBases</xpath>
+			<value>
+				<Bulk>1</Bulk>
+				<WornBulk>1</WornBulk>
+			</value>
+		</li>
+
+		<li Class="PatchOperationReplace">
+			<xpath>Defs/ThingDef[defName = "Apparel_3RNaziTrenchCoat" or defName = "Apparel_3RNaziCoat"]/statBases/ArmorRating_Blunt</xpath>
+			<value>
+				<ArmorRating_Blunt>0.2</ArmorRating_Blunt>
+			</value>
+		</li>
+
+		<li Class="PatchOperationReplace">
+			<xpath>Defs/ThingDef[defName = "Apparel_3RNaziTrenchCoat" or defName = "Apparel_3RNaziCoat"]/statBases/ArmorRating_Sharp</xpath>
+			<value>
+				<ArmorRating_Sharp>0.3</ArmorRating_Sharp>
+			</value>
+		</li>
+
+		<!-- Poncho -->
+		<li Class="PatchOperationAdd">
+			<xpath>Defs/ThingDef[defName = "Apparel_3RZelt"]/statBases</xpath>
+			<value>
+				<Bulk>1</Bulk>
+				<WornBulk>0.75</WornBulk>
+			</value>
+		</li>
+
+		<li Class="PatchOperationReplace">
+			<xpath>Defs/ThingDef[defName = "Apparel_3RZelt"]/statBases/ArmorRating_Blunt</xpath>
+			<value>
+				<ArmorRating_Blunt>0.03</ArmorRating_Blunt>
+			</value>
+		</li>
+
+		<li Class="PatchOperationReplace">
+			<xpath>Defs/ThingDef[defName = "Apparel_3RZelt"]/statBases/ArmorRating_Sharp</xpath>
+			<value>
+				<ArmorRating_Sharp>0.05</ArmorRating_Sharp>
+			</value>
+		</li>
+
+		</operations>
+		</match>
+	</Operation>
+
+</Patch>
+

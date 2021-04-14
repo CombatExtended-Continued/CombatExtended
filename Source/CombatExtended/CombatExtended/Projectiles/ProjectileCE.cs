@@ -324,6 +324,10 @@ namespace CombatExtended
             }
         }
 
+
+        // Todo: When rimworld harmony updates to 2.0.4 use FieldRefAccess
+        private static readonly FieldInfo subGraphics = typeof(Graphic_Collection).GetField("subGraphics", BindingFlags.NonPublic | BindingFlags.Public | BindingFlags.Instance);
+
         private Material[] shadowMaterial;
         private Material ShadowMaterial
         {
@@ -332,18 +336,17 @@ namespace CombatExtended
                 if (shadowMaterial == null)
                 {
                     //Get fully black version of this.Graphic
-		    var g = Graphic as Graphic_Collection;
-		    if (g!=null)
-		    {
-			shadowMaterial = GetShadowMaterial(g);
-		    }
-		
-		    else
-		    {
-			shadowMaterial = new Material[1];
-			shadowMaterial[0] = Graphic.GetColoredVersion(ShaderDatabase.Transparent, Color.black, Color.black).MatSingle;
-		    }
+                    if (Graphic is Graphic_Collection g)
+                    {
+                        shadowMaterial = GetShadowMaterial(g);
+                    }
+                    else
+                    {
+                        shadowMaterial = new Material[1];
+                        shadowMaterial[0] = Graphic.GetColoredVersion(ShaderDatabase.Transparent, Color.black, Color.black).MatSingle;
+                    }
                 }
+
                 return shadowMaterial[Rand.Range(0, this.shadowMaterial.Length)];
             }
         }
@@ -798,7 +801,8 @@ namespace CombatExtended
             else
             {
                 //Projectile
-                Graphics.DrawMesh(MeshPool.plane10, DrawPos, DrawRotation, def.DrawMatSingle, 0);
+                //Graphics.DrawMesh(MeshPool.plane10, DrawPos, DrawRotation, def.DrawMatSingle, 0);
+                Graphics.DrawMesh(MeshPool.GridPlane(def.graphicData.drawSize), DrawPos, DrawRotation, def.DrawMatSingle, 0);
 
                 //Shadow
                 if (castShadow)
@@ -810,7 +814,8 @@ namespace CombatExtended
                     //EXPERIMENTAL: + (new CollisionVertical(ExactPosition.ToIntVec3().GetEdifice(Map))).Max);
 
                     //TODO : Vary ShadowMat plane
-                    Graphics.DrawMesh(MeshPool.plane08, shadowPos, ExactRotation, ShadowMaterial, 0);
+                    //Graphics.DrawMesh(MeshPool.plane08, shadowPos, ExactRotation, ShadowMaterial, 0);
+                    Graphics.DrawMesh(MeshPool.GridPlane(def.graphicData.drawSize), shadowPos, ExactRotation, ShadowMaterial, 0);
                 }
 
                 Comps_PostDraw();
@@ -916,8 +921,8 @@ namespace CombatExtended
             {
                 //Handle anything explosive
 
-                if (hitThing is Pawn && (hitThing as Pawn).Dead)
-                    ignoredThings.Add((hitThing as Pawn).Corpse);
+                if (hitThing is Pawn pawn && pawn.Dead)
+                    ignoredThings.Add(pawn.Corpse);
 
                 var suppressThings = new List<Pawn>();
                 var dir = new float?(origin.AngleTo(Vec2Position()));
@@ -935,8 +940,7 @@ namespace CombatExtended
 
                     // Apply suppression around impact area
                     if (explodePos.y < SuppressionRadius)
-                        suppressThings.AddRange(GenRadial.RadialDistinctThingsAround(explodePos.ToIntVec3(), Map, SuppressionRadius + def.projectile.explosionRadius, true)
-                            .Where(x => x is Pawn).Select(x => x as Pawn));
+                        suppressThings.AddRange(GenRadial.RadialDistinctThingsAround(explodePos.ToIntVec3(), Map, SuppressionRadius + def.projectile.explosionRadius, true).OfType<Pawn>());
                 }
 
                 if (explodingComp != null)
@@ -944,12 +948,12 @@ namespace CombatExtended
                     explodingComp.Explode(this, explodePos, Map, 1f, dir, ignoredThings);
 
                     if (explodePos.y < SuppressionRadius)
-                        suppressThings.AddRange(GenRadial.RadialDistinctThingsAround(explodePos.ToIntVec3(), Map, SuppressionRadius + (explodingComp.props as CompProperties_ExplosiveCE).explosiveRadius, true)
-                        .Where(x => x is Pawn).Select(x => x as Pawn));
+                        suppressThings.AddRange(GenRadial
+                            .RadialDistinctThingsAround(explodePos.ToIntVec3(), Map, SuppressionRadius + (explodingComp.props as CompProperties_ExplosiveCE).explosiveRadius, true).OfType<Pawn>());
                 }
 
                 foreach (var thing in suppressThings)
-                    ApplySuppression(thing as Pawn);
+                    ApplySuppression(thing);
             }
 
             Destroy();
@@ -1012,16 +1016,13 @@ namespace CombatExtended
         }
         #endregion
 
-        #endregion
+        private static Material[] GetShadowMaterial(Graphic_Collection g) {
+            var collection = (Graphic[]) subGraphics.GetValue(g);
+            var shadows = collection.Select(item => item.GetColoredVersion(ShaderDatabase.Transparent, Color.black, Color.black).MatSingle).ToArray();
 
-	public static Material[] GetShadowMaterial(Graphic_Collection g) {
-	    FieldInfo subGraphics = typeof(Graphic_Collection).GetField("subGraphics", BindingFlags.NonPublic | BindingFlags.Public | BindingFlags.Instance);
-	    Graphic[] collection = (Graphic[]) subGraphics.GetValue(g);
-	    Material[] shadows = new Material[collection.Length];
-	    for (int i=0; i<collection.Length; i++) {
-		shadows[i] = collection[i].GetColoredVersion(ShaderDatabase.Transparent, Color.black, Color.black).MatSingle;
-	    }
-	    return shadows;
-	}
+            return shadows;
+        }
+
+        #endregion
     }
 }

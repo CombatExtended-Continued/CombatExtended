@@ -1,0 +1,189 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Patch>
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+			<li>Rimsec Security</li>
+		</mods>
+		<match Class="PatchOperationSequence">
+			<operations>
+
+				<!-- ========== Light Laser Turret ========== -->
+
+				<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+					<defName>RSTurretLLTGun</defName>
+					<statBases>
+						<RangedWeapon_Cooldown>0.35</RangedWeapon_Cooldown>
+						<SightsEfficiency>2</SightsEfficiency>
+						<ShotSpread>0.06</ShotSpread>
+						<SwayFactor>0.65</SwayFactor>
+						<Bulk>13.70</Bulk>
+					</statBases>
+					<Properties>
+						<recoilAmount>0.70</recoilAmount>
+						<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+						<hasStandardCommand>true</hasStandardCommand>
+						<defaultProjectile>Bullet_6x24mmSRS</defaultProjectile>
+						<warmupTime>1.3</warmupTime>
+						<range>62</range>
+						<ticksBetweenBurstShots>6</ticksBetweenBurstShots>
+						<burstShotCount>15</burstShotCount>
+						<soundCast>RSLLTProjectileLaunch</soundCast>
+						<soundCastTail>GunTail_Heavy</soundCastTail>
+						<targetParams>
+							<canTargetLocations>true</canTargetLocations>
+						</targetParams>
+						<muzzleFlashScale>12</muzzleFlashScale>
+						<recoilPattern>Mounted</recoilPattern>
+					</Properties>
+					<AmmoUser>
+						<magazineSize>150</magazineSize>
+						<reloadTime>6.0</reloadTime>
+						<ammoSet>AmmoSet_6x24mmSRS</ammoSet>
+					</AmmoUser>
+					<FireModes>
+						<aiUseBurstMode>FALSE</aiUseBurstMode>
+						<aiAimMode>SuppressFire</aiAimMode>
+						<aimedBurstShotCount>5</aimedBurstShotCount>
+					</FireModes>
+				</li>
+
+
+				<!-- ========== Heavy Laser Turret ========== -->
+
+				<!-- Replace the custom verb with the a common vanilla one, since custom verbs are not patchable -->
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="RSTurretHLTGun"]/verbs/li[1]/verbClass</xpath>
+					<value>
+						<verbClass>Verb_Shoot</verbClass>
+					</value>
+				</li>
+
+				<!-- Replace the custom place worker with the vanilla one -->
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[@Name="RSTurretHLTBase"]/placeWorkers/li[2]</xpath>
+					<value>
+						<li>PlaceWorker_ShowTurretRadius</li>
+					</value>
+				</li>
+
+				<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+					<defName>RSTurretHLTGun</defName>
+					<statBases>
+						<RangedWeapon_Cooldown>0.45</RangedWeapon_Cooldown>
+						<SightsEfficiency>1.8</SightsEfficiency>
+						<ShotSpread>0.09</ShotSpread>
+						<SwayFactor>0.95</SwayFactor>
+						<Bulk>40</Bulk>
+					</statBases>
+					<Properties>
+						<recoilAmount>0.90</recoilAmount>
+						<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+						<hasStandardCommand>true</hasStandardCommand>
+						<defaultProjectile>Bullet_8x35mmSRS</defaultProjectile>
+						<warmupTime>1.5</warmupTime>
+						<range>78</range>
+						<ticksBetweenBurstShots>6</ticksBetweenBurstShots>
+						<burstShotCount>15</burstShotCount>
+						<soundCast>RSHLTProjectileLaunch</soundCast>
+						<soundCastTail>GunTail_Heavy</soundCastTail>
+						<targetParams>
+							<canTargetLocations>true</canTargetLocations>
+						</targetParams>
+						<muzzleFlashScale>12</muzzleFlashScale>
+						<recoilPattern>Mounted</recoilPattern>
+					</Properties>
+					<AmmoUser>
+						<magazineSize>350</magazineSize>
+						<reloadTime>9.5</reloadTime>
+						<ammoSet>AmmoSet_8x35mmSRS</ammoSet>
+					</AmmoUser>
+					<FireModes>
+						<aiUseBurstMode>FALSE</aiUseBurstMode>
+						<aiAimMode>SuppressFire</aiAimMode>
+						<aimedBurstShotCount>8</aimedBurstShotCount>
+					</FireModes>
+				</li>
+
+
+				<!-- ========== HAAC ========== -->
+
+				<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+					<defName>RSTurretHAACGun</defName>
+					<statBases>
+						<RangedWeapon_Cooldown>0.95</RangedWeapon_Cooldown>
+						<SightsEfficiency>3.2</SightsEfficiency>
+						<ShotSpread>0.05</ShotSpread>
+						<SwayFactor>0.40</SwayFactor>
+						<Bulk>62</Bulk>
+					</statBases>
+					<Properties>
+						<recoilAmount>2.70</recoilAmount>
+						<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+						<hasStandardCommand>true</hasStandardCommand>
+						<defaultProjectile>Bullet_12mmRailgun_Sabot</defaultProjectile>
+						<warmupTime>2.3</warmupTime>
+						<range>116</range>
+						<minRange>5</minRange>
+						<soundCast>RSHAACProjectileLaunch</soundCast>
+						<soundCastTail>GunTail_Heavy</soundCastTail>
+						<targetParams>
+							<canTargetLocations>true</canTargetLocations>
+						</targetParams>
+						<muzzleFlashScale>18</muzzleFlashScale>
+						<recoilPattern>Mounted</recoilPattern>
+					</Properties>
+					<AmmoUser>
+						<magazineSize>50</magazineSize>
+						<reloadTime>9.5</reloadTime>
+						<ammoSet>AmmoSet_12mmRailgun</ammoSet>
+					</AmmoUser>
+					<FireModes>
+						<aiUseBurstMode>FALSE</aiUseBurstMode>
+						<aiAimMode>AimedShot</aiAimMode>
+						<noSnapshot>true</noSnapshot>
+					</FireModes>
+				</li>
+
+				<!-- ========== Common to all Turrets ========== -->
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[ @Name="RSTurretLLTBase" or @Name="RSTurretHLTBase" or @Name="RSTurretHAACBase"
+				]/thingClass</xpath>
+					<value>
+						<thingClass>CombatExtended.Building_TurretGunCE</thingClass>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[ @Name="RSTurretLLTBase" or @Name="RSTurretHLTBase" or @Name="RSTurretHAACBase"
+				]/fillPercent</xpath>
+					<value>
+						<fillPercent>0.85</fillPercent>
+					</value>
+				</li>
+
+				<li Class="PatchOperationRemove">
+					<xpath>Defs/ThingDef[ defName="RSTurretLLT" or defName="RSTurretHLT" or defName="RSTurretHAAC"
+				]/comps/li[@Class = "CompProperties_Refuelable"]</xpath>
+				</li>
+
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[ defName="RSTurretLLT" or defName="RSTurretHLT" or defName="RSTurretHAAC"
+				]/statBases</xpath>
+					<value>
+						<AimingAccuracy>1</AimingAccuracy>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[ defName="RSTurretLLT" or defName="RSTurretHLT" or defName="RSTurretHAAC"
+                ]/statBases/ShootingAccuracyTurret</xpath>
+					<value>
+						<ShootingAccuracyTurret>1</ShootingAccuracyTurret>
+					</value>
+				</li>
+
+			</operations>
+		</match>
+	</Operation>
+</Patch>

@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <Patch>
-
-	<Operation Class="PatchOperationSequence">
-		<success>Always</success>
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+			<li>Apparello 2</li>
+		</mods>
+		<match Class="PatchOperationSequence">
 		<operations>
-			<li Class="CombatExtended.PatchOperationFindMod">
-				<modName>Apparello 2</modName>
-			</li>
 			<!-- ========== XCOM ========== -->
 			<li Class="PatchOperationAdd">
 				<xpath>Defs/ThingDef[defName = "Apparello_XcomOne"]/equippedStatOffsets</xpath>
@@ -14,6 +13,7 @@
 					<CarryBulk>5</CarryBulk>
 				</value>
 			</li>
+
 			<!-- ========== Padded vest ========== -->
 			<li Class="PatchOperationAdd">
 				<xpath>Defs/ThingDef[defName = "Apparello_Sheet"]/statBases</xpath>
@@ -22,6 +22,7 @@
 					<WornBulk>5</WornBulk>
 				</value>
 			</li>
+
 			<!-- ========== Ammo belt ========== -->
 			<li Class="PatchOperationReplace">
 				<xpath>Defs/ThingDef[defName = "Apparello_Ammobelt"]/equippedStatOffsets/AimingDelayFactor</xpath>
@@ -30,27 +31,30 @@
 					<ReloadSpeed>0.05</ReloadSpeed>
 				</value>
 			</li>
+
 			<!-- ========== Trader coat ========== -->
 			<li Class="PatchOperationAdd">
-				<xpath>Defs/ThingDef[defName = "Apparello_Trypophobia"]/statBases</xpath>
+				<xpath>Defs/ThingDef[defName = "Apparello_Trypophobiaa"]/statBases</xpath>
 				<value>
 					<Bulk>15</Bulk>
 					<WornBulk>3</WornBulk>
 				</value>
 			</li>
 			<li Class="PatchOperationAdd">
-				<xpath>Defs/ThingDef[defName = "Apparello_Trypophobia"]/equippedStatOffsets</xpath>
+				<xpath>Defs/ThingDef[defName = "Apparello_Trypophobiaa"]/equippedStatOffsets</xpath>
 				<value>
 					<CarryBulk>50</CarryBulk>
 					<ReloadSpeed>0.05</ReloadSpeed>
 				</value>
 			</li>
+			<!--
 			<li Class="PatchOperationAdd">
-				<xpath>Defs/ThingDef[defName = "Apparello_Trypophobia"]/apparel/layers</xpath>
+				<xpath>Defs/ThingDef[defName = "Apparello_Trypophobiaa"]/apparel/layers</xpath>
 				<value>
 					<li>Belt</li>
 				</value>
 			</li>
+			-->
 			<!-- ========== Tribal shield ========== -->
 			<li Class="PatchOperationAttributeSet">
 				<xpath>Defs/ThingDef[defName = "Apparello_Tribalshield"]</xpath>
@@ -106,7 +110,7 @@
 				</value>
 			</li>
 		</operations>
+		</match>
 	</Operation>
-
 </Patch>
 

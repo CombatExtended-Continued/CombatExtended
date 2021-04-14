@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+			<li>Race to the Rim</li>
+		</mods>
+
+		<match Class="PatchOperationSequence">
+			<operations>
+
+				<!-- These use VE ThingClass -->
+				<li Class="PatchOperationAdd">
+					<xpath>Defs</xpath>
+					<value>
+						<ThingDef Name="RttRFlameCEBase" ParentName="RttR_BaseAnimalProjectile" Abstract="True">
+							<thingClass>CombatExtended.ProjectileCE_Explosive</thingClass>
+							<projectile Class="CombatExtended.ProjectilePropertiesCE">
+								<speed>40</speed>
+								<damageDef>Flame</damageDef>
+								<damageAmountBase>2</damageAmountBase>
+								<explosionRadius>1.1</explosionRadius>
+								<ai_IsIncendiary>true</ai_IsIncendiary>
+								<soundExplode>Interact_Ignite</soundExplode>
+								<flyOverhead>false</flyOverhead>
+							</projectile>
+						</ThingDef>
+						<ThingDef ParentName="RttRFlameCEBase">
+							<defName>RttR_NightmareBreathCE</defName>
+							<label>nightmare breath</label>
+							<graphicData>
+								<texPath>Things/Projectiles/FireEffects/Proj_NightmareFire/Proj_NightmareFireA</texPath>
+								<graphicClass>Graphic_Single</graphicClass>
+								<shaderType>TransparentPostLight</shaderType>
+							</graphicData>
+						</ThingDef>
+						<ThingDef ParentName="RttRFlameCEBase">
+							<defName>RttR_RazorwhipBreathCE</defName>
+							<label>razorwhip breath</label>
+							<graphicData>
+								<texPath>Things/Projectiles/FireEffects/Proj_RazorwhipFire/Proj_RazorwhipFireA</texPath>
+								<graphicClass>Graphic_Single</graphicClass>
+								<shaderType>TransparentPostLight</shaderType>
+							</graphicData>
+						</ThingDef>
+						<ThingDef ParentName="RttRFlameCEBase">
+							<defName>RttR_TripleStrykeBreathCE</defName>
+							<label>triple stryke breath</label>
+							<graphicData>
+								<texPath>Things/Projectiles/FireEffects/Proj_TripleStrykeFire/Proj_TripleStrykeFireA</texPath>
+								<graphicClass>Graphic_Single</graphicClass>
+								<shaderType>TransparentPostLight</shaderType>
+							</graphicData>
+						</ThingDef>
+						<ThingDef ParentName="RttRFlameCEBase">
+							<defName>RttR_StormcutterBreathCE</defName>
+							<label>stormcutter breath</label>
+							<graphicData>
+								<texPath>Things/Projectiles/FireEffects/Proj_StormcutterFire/Proj_StormcutterFireA</texPath>
+								<graphicClass>Graphic_Single</graphicClass>
+								<shaderType>TransparentPostLight</shaderType>
+							</graphicData>
+						</ThingDef>
+						<ThingDef ParentName="RttRFlameCEBase">
+							<defName>RttR_TerribleTerrorBreathCE</defName>
+							<label>terrible terror breath</label>
+							<graphicData>
+								<texPath>Things/Projectiles/FireEffects/Proj_TerribleTerrorFire/Proj_TerribleTerrorA</texPath>
+								<graphicClass>Graphic_Single</graphicClass>
+								<shaderType>TransparentPostLight</shaderType>
+							</graphicData>
+						</ThingDef>
+						<ThingDef ParentName="RttRFlameCEBase">
+							<defName>RttR_NadderBreathCE</defName>
+							<label>nadder breath</label>
+							<graphicData>
+								<texPath>Things/Projectiles/FireEffects/Proj_NadderFire/Proj_NadderFireA</texPath>
+								<graphicClass>Graphic_Single</graphicClass>
+								<shaderType>TransparentPostLight</shaderType>
+							</graphicData>
+						</ThingDef>
+					</value>
+				</li>
+
+				<!-- === Projectile Base === -->
+				<li Class="PatchOperationReplace">
+					<xpath>
+						/Defs/ThingDef[
+							@Name="RttR_BaseAnimalProjectile" or 
+							defName="RttR_FlameBreath" or 
+							defName="RttR_TinyFlameBreath" or 
+							defName="RttR_FlightmareBreath" or 
+							defName="RttR_GronckleBreath" or 
+							defName="RttR_StreamFlameBreath" or 
+							defName="RttR_Furybreath" or 
+							defName="RttR_StreamFlameBreath" or 
+							defName="RttR_GasBall" or 
+							defName="RttR_WaterBreath"												
+						]/thingClass
+					</xpath>
+					<value>
+						<thingClass>CombatExtended.ProjectileCE_Explosive</thingClass>
+					</value>
+				</li>
+
+				<li Class="PatchOperationAttributeAdd">
+					<xpath>
+						/Defs/ThingDef[
+							@Name="RttR_BaseAnimalProjectile" or
+							defName="RttR_FlameBreath" or 
+							defName="RttR_TinyFlameBreath" or 
+							defName="RttR_FlightmareBreath" or 
+							defName="RttR_GronckleBreath" or 
+							defName="RttR_StreamFlameBreath" or 
+							defName="RttR_Furybreath" or 
+							defName="RttR_StreamFlameBreath" or 
+							defName="RttR_GasBall" or 
+							defName="RttR_WaterBreath"												
+						]/projectile
+					</xpath>
+					<attribute>Class</attribute>
+					<value>CombatExtended.ProjectilePropertiesCE</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/ThingDef[@Name="RttR_BaseAnimalProjectile"]/projectile/speed</xpath>
+					<value>
+						<speed>40</speed>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/ThingDef[@Name="RttR_BaseAnimalProjectile"]/projectile/flyOverhead</xpath>
+					<value>
+						<flyOverhead>false</flyOverhead>
+					</value>
+				</li>
+
+			</operations>
+		</match>
+	</Operation>
+
+</Patch>

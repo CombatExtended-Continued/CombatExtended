@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <Patch>
-
-	<Operation Class="PatchOperationSequence">
-		<success>Always</success>
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+			<li>Apparello 2</li>
+		</mods>
+		<match Class="PatchOperationSequence">
 		<operations>
-			<li Class="CombatExtended.PatchOperationFindMod">
-				<modName>Apparello 2</modName>
-			</li>
 			<!-- ========== Science goggles, shades, aviators, visors ========== -->
 			<li Class="PatchOperationAdd">
 				<xpath>Defs/ThingDef[defName = "Apparello_Goggles" or defName="Apparello_Shadess" or defName="Apparello_Piloggle"]/statBases</xpath>
@@ -48,7 +47,7 @@
 				</value>
 			</li>
 		</operations>
+		</match>
 	</Operation>
-
 </Patch>
 

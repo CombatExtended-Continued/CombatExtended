@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+	
+	<Operation Class="PatchOperationFindMod">
+    <mods>
+		<li>Outer Rim - Tatooine (Continued)</li>
+    </mods>
+		<match Class="PatchOperationSequence">
+		<operations>
+			
+			
+		<li Class="PatchOperationAdd">
+			<xpath>Defs/ThingDef[defName="O21_OuterRim_JawaRobe" or defName="O21_OuterRim_TuskenRaiderRobeA" or defName="O21_OuterRim_TuskenRaiderRobeB"]</xpath>
+			<value>
+				<equippedStatOffsets>
+				  <CarryBulk>40</CarryBulk>
+				</equippedStatOffsets>
+			</value>
+		</li>
+		
+		<li Class="PatchOperationReplace">
+			<xpath>Defs/ThingDef[defName="O21_OuterRim_JawaRobe" or defName="O21_OuterRim_TuskenRaiderRobeA" or defName="O21_OuterRim_TuskenRaiderRobeB"]/statBases/StuffEffectMultiplierArmor</xpath>
+			<value>
+				<StuffEffectMultiplierArmor>10</StuffEffectMultiplierArmor>
+			</value>
+		</li>
+		
+		<li Class="PatchOperationAdd">
+			<xpath>Defs/ThingDef[defName="O21_OuterRim_JawaRobe" or defName="O21_OuterRim_TuskenRaiderRobeA" or defName="O21_OuterRim_TuskenRaiderRobeB"]/statBases</xpath>
+			<value>
+				<Bulk>7.5</Bulk>
+				<WornBulk>2</WornBulk>
+			</value>
+		</li>
+		
+		<li Class="PatchOperationAdd">
+			<xpath>Defs/ThingDef[defName="O21_OuterRim_JawaRobe" or defName="O21_OuterRim_TuskenRaiderRobeA" or defName="O21_OuterRim_TuskenRaiderRobeB"]/apparel/layers</xpath>
+			<value>
+				<li>Backpack</li>
+				<li>Webbing</li>
+			</value>
+		</li>
+		
+		<li Class="PatchOperationReplace">
+			<xpath>Defs/ThingDef[defName="Leather_Jawa"]/statBases/StuffPower_Armor_Sharp</xpath>
+			<value>
+				<StuffPower_Armor_Sharp>0.05</StuffPower_Armor_Sharp>
+			</value>
+		</li>
+		
+		<li Class="PatchOperationAdd">
+			<xpath>Defs/ThingDef[defName="Leather_Jawa"]/statBases</xpath>
+			<value>
+				<StuffPower_Armor_Blunt>0.02</StuffPower_Armor_Blunt>
+			</value>
+		</li>
+		
+			
+		</operations>
+		</match>
+	</Operation>
+	
+</Patch>

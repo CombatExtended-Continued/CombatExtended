@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+  <Operation Class="PatchOperationSequence">
+	<operations>
+	  <li Class="PatchOperationFindMod">
+			
+		<mods><li>[1.2]Neclose Race</li></mods>
+			
+		<match Class="PatchOperationSequence">
+		<operations>
+		
+            <li Class="PatchOperationReplace">
+                    <xpath>/Defs/ThingDef[@Name="HAR_Neclose_BaseNRPawn"]/inspectorTabs/li[.="ITab_Pawn_Gear"]</xpath>
+                    <value>
+                        <li>CombatExtended.ITab_Inventory</li>
+                    </value>
+			</li>
+
+            <li Class="PatchOperationAdd">
+                    <xpath>/Defs/ThingDef[@Name="HAR_Neclose_BaseNRPawn"]/comps</xpath>
+                    <value>
+                        <li Class="CombatExtended.CompProperties_Inventory" />
+                    </value>
+			</li>
+			
+			<li Class="PatchOperationAdd">
+				<xpath>/Defs/ThingDef[@Name="HAR_Neclose_BaseNRPawn"]/comps</xpath>
+				<value>
+					<li>
+					<compClass>CombatExtended.CompPawnGizmo</compClass>
+					</li>
+					<li Class="CombatExtended.CompProperties_Suppressable" />
+				</value>
+			</li>
+			
+			<li Class="PatchOperationAddModExtension">
+				<xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="HAR_Neclose"]</xpath>
+				<value>
+					<li Class="CombatExtended.RacePropertiesExtensionCE">
+						<bodyShape>Humanoid</bodyShape>
+					</li>
+				</value>
+			</li>
+
+			
+			<li Class="PatchOperationAdd">
+			 <xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="HAR_Neclose"]/statBases</xpath>
+				  <value>
+					<Suppressability>1</Suppressability>
+					<SmokeSensitivity>0.2</SmokeSensitivity>
+					<MeleeCritChance>1.00</MeleeCritChance>
+					<MeleeParryChance>1.00</MeleeParryChance>
+				  </value>
+			</li>
+			
+			<li Class="PatchOperationReplace">
+			 <xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="HAR_Neclose"]/statBases/ArmorRating_Sharp</xpath>
+				  <value>
+					<ArmorRating_Sharp>0.25</ArmorRating_Sharp>
+				  </value>
+			</li>
+			
+			<li Class="PatchOperationReplace">
+			 <xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="HAR_Neclose"]/statBases/ArmorRating_Blunt</xpath>
+				  <value>
+					<ArmorRating_Blunt>0.25</ArmorRating_Blunt>
+				  </value>
+			</li>
+			
+			<li Class="PatchOperationReplace">
+				<xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="HAR_Neclose"]/tools</xpath> 
+				<value>
+					<tools>
+						<li Class="CombatExtended.ToolCE">
+							<label>teeth</label>
+							<capacities>
+								<li>HAR_NC_Damage_a</li>
+							</capacities>
+							<power>20</power>
+							<cooldownTime>3.05</cooldownTime>
+							<extraMeleeDamages>
+							<li>
+								<def>HAR_NC_Damage_b</def>
+								<amount>5</amount>
+							</li>
+							<li>
+								<def>EMP</def>
+								<amount>10</amount>
+							</li>
+							</extraMeleeDamages>
+							<linkedBodyPartsGroup>Teeth</linkedBodyPartsGroup>
+							<chanceFactor>1</chanceFactor>
+							<armorPenetrationSharp>6.75</armorPenetrationSharp>
+							<armorPenetrationBlunt>12.35</armorPenetrationBlunt>
+							<alwaysTreatAsWeapon>true</alwaysTreatAsWeapon>
+						</li>
+						<li Class="CombatExtended.ToolCE">
+							<label>left fist</label>
+							<capacities>
+								<li>HAR_NC_Damage_a</li>
+							</capacities>
+							<power>10</power>
+							<cooldownTime>1.66</cooldownTime>
+							<extraMeleeDamages>
+							<li>
+								<def>HAR_NC_Damage_b</def>
+								<amount>5</amount>
+							</li>
+							<li>
+								<def>EMP</def>
+								<amount>8</amount>
+							</li>
+							</extraMeleeDamages>
+							<linkedBodyPartsGroup>LeftHand</linkedBodyPartsGroup>
+							<armorPenetrationSharp>2.75</armorPenetrationSharp>
+							<armorPenetrationBlunt>7.75</armorPenetrationBlunt>
+						</li>
+						<li Class="CombatExtended.ToolCE">
+							<label>right fist</label>
+							<capacities>
+								<li>HAR_NC_Damage_a</li>
+							</capacities>
+							<power>10</power>
+							<cooldownTime>1.66</cooldownTime>
+							<extraMeleeDamages>
+							<li>
+								<def>HAR_NC_Damage_b</def>
+								<amount>5</amount>
+							</li>
+							<li>
+								<def>EMP</def>
+								<amount>8</amount>
+							</li>
+							</extraMeleeDamages>
+							<linkedBodyPartsGroup>RightHand</linkedBodyPartsGroup>
+							<armorPenetrationSharp>2.75</armorPenetrationSharp>
+							<armorPenetrationBlunt>7.75</armorPenetrationBlunt>
+						</li>
+					</tools>
+				</value>
+			</li>
+			
+			<li Class="PatchOperationAdd">
+			 <xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="HAR_Neclose"]/alienRace/raceRestriction/whiteApparelList</xpath>
+				  <value>
+					<li>Apparel_TacVest</li>
+					<li>Apparel_Backpack</li>
+					<li>Apparel_TribalBackpack</li>
+					<li>Apparel_BallisticShield</li>
+					<li>Apparel_MeleeShield</li>
+					<li>Apparel_GasMask</li>
+					<li>Apparel_ImprovGasMask</li>
+				  </value>
+			</li>
+			
+			
+		</operations>
+		</match>	
+	  </li>
+	</operations>	
+  </Operation>
+</Patch>

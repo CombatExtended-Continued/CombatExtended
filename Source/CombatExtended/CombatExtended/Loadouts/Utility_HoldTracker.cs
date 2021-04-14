@@ -61,11 +61,7 @@ namespace CombatExtended
                 if (rec.pickedUp)
                 {
                     // modifying a record for which the pawn should have some of that thing in their inventory.
-                    CompInventory inventory = pawn.TryGetComp<CompInventory>();
-                    if (inventory != null)
-                        rec.count = inventory.container.TotalStackCountOfDef(rec.thingDef) + count;
-                    else
-                        rec.count += count; // probably won't generally follow this code path but good not to throw an error if possible.
+                    rec.count = GetMagazineAwareStackCount(pawn, rec.thingDef) + count;
                 }
                 else
                 {
@@ -196,9 +192,19 @@ namespace CombatExtended
             if (loadout == null || (loadout != null && loadout.Slots.NullOrEmpty()) || pawn.equipment?.Primary == null)
                 return false;
 
+            if (pawn.IsItemQuestLocked(pawn.equipment?.Primary))
+            {
+                return false;
+            }
+
+            //Check if equipment is part of the loadout
             LoadoutSlot eqSlot = loadout.Slots.FirstOrDefault(s => s.count >= 1 && ((s.thingDef != null && s.thingDef == pawn.equipment.Primary.def)
                                                                                     || (s.genericDef != null && s.genericDef.lambda(pawn.equipment.Primary.def))));
-            if (eqSlot == null)
+
+            //Check if equipment is in the forced pick-up items list
+            HoldRecord eqRecord = pawn.GetHoldRecords()?.FirstOrDefault(s => s.count >= 1 && s.thingDef != null && s.thingDef == pawn.equipment.Primary.def);
+
+            if (eqSlot == null && eqRecord == null)
             {
                 dropEquipment = pawn.equipment.Primary;
                 return true;
@@ -242,6 +248,10 @@ namespace CombatExtended
                     // hand out any inventory item not covered by a HoldRecord.
                     foreach (Thing thing in pawn.inventory.innerContainer)
                     {
+                        if (pawn.IsItemQuestLocked(thing))
+                        {
+                            continue;   //quest requirements prevent this from being dropped, skip to next thing in inventory
+                        }
                         int numContained = pawn.inventory.innerContainer.TotalStackCountOfDef(thing.def);
                         HoldRecord rec = recs.FirstOrDefault(hr => hr.thingDef == thing.def);
                         if (rec == null)
@@ -263,9 +273,9 @@ namespace CombatExtended
                 }
                 else
                 {
-                    // we have nither a HoldTracker nor a Loadout that we can ask, so just pick stuff at random from Inventory.
-                    dropThing = pawn.inventory.innerContainer.RandomElement<Thing>();
-                    dropCount = dropThing.stackCount;
+                    // we have nither a HoldTracker nor a Loadout that we can ask, so just pick a random non-quest item from Inventory.
+                    dropThing = pawn.inventory.innerContainer.Where(inventoryItem => !pawn.IsItemQuestLocked(inventoryItem))?.RandomElement();
+                    dropCount = dropThing?.stackCount ?? 0;
                 }
             }
             else
@@ -383,7 +393,7 @@ namespace CombatExtended
                         if (rec == null)
                         {
                             // the item we have extra of has no HoldRecord, drop it.
-                            dropThing = inventory.container.FirstOrDefault(t => t.def == def);
+                            dropThing = inventory.container.FirstOrDefault(t => t.def == def && !pawn.IsItemQuestLocked(t));
                             if (dropThing != null)
                             {
                                 dropCount = listing[def].value > dropThing.stackCount ? dropThing.stackCount : listing[def].value;
@@ -393,7 +403,7 @@ namespace CombatExtended
                         else if (rec.count < listing[def].value)
                         {
                             // the item we have extra of HAS a HoldRecord but the amount carried is above the limit of the HoldRecord, drop extra.
-                            dropThing = pawn.inventory.innerContainer.FirstOrDefault(t => t.def == def);
+                            dropThing = pawn.inventory.innerContainer.FirstOrDefault(t => t.def == def && !pawn.IsItemQuestLocked(t));
                             if (dropThing != null)
                             {
                                 dropCount = listing[def].value - rec.count;
@@ -407,7 +417,7 @@ namespace CombatExtended
                 {
                     foreach (ThingDef def in listing.Keys)
                     {
-                        dropThing = inventory.container.FirstOrDefault(t => t.GetInnerIfMinified().def == def);
+                        dropThing = inventory.container.FirstOrDefault(t => t.GetInnerIfMinified().def == def && !pawn.IsItemQuestLocked(t));
                         if (dropThing != null)
                         {
                             dropCount = listing[def].value > dropThing.stackCount ? dropThing.stackCount : listing[def].value;
@@ -417,6 +427,49 @@ namespace CombatExtended
                 }
             } // else
             return false;
+        }
+
+        /// <summary>
+        /// Gets the total count of a thingDef in a pawn's inventory.
+        /// If thingDef is an ammo type, result will include rounds inside weapons magazines, matching behaviour in GetExcessThing.
+        /// </summary>
+        /// <param name="pawn">The pawn to check for stack count.</param>
+        /// <param name="thingDef">The thingDef to look for.</param>
+        /// <returns>Inventory count for specified item.</returns>
+        static private int GetMagazineAwareStackCount(Pawn pawn, ThingDef thingDef)
+        {
+            int itemCount = 0;
+
+            //Add stack count from inventory
+            CompInventory inventory = pawn?.TryGetComp<CompInventory>();
+            itemCount += inventory?.container?.TotalStackCountOfDef(thingDef) ?? 0;
+            
+            if (thingDef is AmmoDef)
+            {
+                //Add stack count from equipped primary (magazine ammo)
+                if (pawn?.equipment?.Primary != null)
+                {
+                    CompAmmoUser ammoUser = pawn.equipment.Primary.TryGetComp<CompAmmoUser>();
+                    if (ammoUser != null && ammoUser.HasMagazine && ammoUser.CurrentAmmo == thingDef)
+                    {
+                        itemCount += ammoUser.CurMagCount;
+                    }
+                }
+
+                //Add stack count from inventory stored weapons (magazine ammo)
+                if (inventory?.container != null)
+                {
+                    foreach (Thing inventoryItem in inventory.container)
+                    {
+                        CompAmmoUser ammoUser = inventoryItem.TryGetComp<CompAmmoUser>();
+                        if (ammoUser != null && ammoUser.HasMagazine && ammoUser.CurrentAmmo == thingDef)
+                        {
+                            itemCount += ammoUser.CurMagCount;
+                        }
+                    }
+                }
+            }
+            return itemCount;
         }
         #endregion
     }

@@ -8,7 +8,15 @@
 			
 		<match Class="PatchOperationSequence">
 		<operations>
-		
+
+            <li Class="PatchOperationAdd">
+				<xpath>/Defs/ThingDef[@Name="AT_PawnBase"]</xpath>
+				<value>
+					<comps>
+					</comps>					
+				</value>
+			</li>
+
             <li Class="PatchOperationAdd">
 				<xpath>/Defs/ThingDef[@Name="AT_PawnBase"]/comps</xpath>
 				<value>
@@ -17,13 +25,6 @@
 					</li>
 					<li Class="CombatExtended.CompProperties_Suppressable" />
 				</value>
-			</li>
-			
-			<li Class="PatchOperationReplace">
-                    <xpath>/Defs/ThingDef[@Name="AT_PawnBase"]/inspectorTabs/li[.="ITab_Pawn_Gear"]</xpath>
-                    <value>
-                        <li>CombatExtended.ITab_Inventory</li>
-                    </value>
 			</li>
 
             <li Class="PatchOperationAdd">

@@ -1,6 +1,8 @@
 ﻿using RimWorld;
 using Verse;
 using Verse.AI;
+using CombatExtended.Compatibility;
+
 
 // ReSharper disable CheckNamespace
 // ReSharper disable InconsistentNaming
@@ -37,7 +39,7 @@ namespace CombatExtended
         /// <remarks>Copied from <see cref="JobDriver_ManTurret.FindAmmoForTurret" />.</remarks>
         private static Thing FindAmmoForTurret(Pawn pawn, Thing turret)
         {
-            var compAmmo = (turret as Building_TurretGunCE)?.CompAmmo;
+	    var compAmmo = (turret as Building_Turret)?.GetAmmo();
             if (compAmmo == null || !compAmmo.UseAmmo)
             {
                 return null;

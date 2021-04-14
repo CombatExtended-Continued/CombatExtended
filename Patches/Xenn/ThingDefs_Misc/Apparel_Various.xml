@@ -1,214 +1,208 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <Patch>
-
-	<Operation Class="PatchOperationSequence">
-		<success>Always</success>
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+			<li>Xenn Race</li>
+		</mods>
+		<match Class="PatchOperationSequence">
 		<operations>
-			<li Class="CombatExtended.PatchOperationFindMod">
-				<modName>Xenn Race</modName>
-			</li>
 			<!-- ========== Power Armor with Duster ========== -->
-	<li Class="PatchOperationAdd">
-		<xpath>Defs/ThingDef[defName="Xenn_Armored_DusterXX"]/statBases</xpath>
-		<value>
-			<Bulk>90</Bulk>
-			<WornBulk>12</WornBulk>
-		</value>
-	</li>
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName="Xenn_Armored_DusterXX"]/statBases</xpath>
+				<value>
+					<Bulk>90</Bulk>
+					<WornBulk>12</WornBulk>
+				</value>
+			</li>
 
-	<li Class="PatchOperationReplace">
-		<xpath>Defs/ThingDef[defName="Xenn_Armored_DusterXX"]/statBases/MaxHitPoints</xpath>
-		<value>
-			<MaxHitPoints>550</MaxHitPoints>
-		</value>
-	</li>
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="Xenn_Armored_DusterXX"]/statBases/MaxHitPoints</xpath>
+				<value>
+					<MaxHitPoints>550</MaxHitPoints>
+				</value>
+			</li>
 
-	<li Class="PatchOperationReplace">
-		<xpath>Defs/ThingDef[defName="Xenn_Armored_DusterXX"]/statBases/Mass</xpath>
-		<value>
-			<Mass>51</Mass>
-		</value>
-	</li>
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="Xenn_Armored_DusterXX"]/statBases/Mass</xpath>
+				<value>
+					<Mass>51</Mass>
+				</value>
+			</li>
 
-	<li Class="PatchOperationReplace">
-		<xpath>Defs/ThingDef[defName="Xenn_Armored_DusterXX"]/statBases/ArmorRating_Sharp</xpath>
-		<value>
-			<ArmorRating_Sharp>1.1</ArmorRating_Sharp>
-		</value>
-	</li>
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="Xenn_Armored_DusterXX"]/statBases/ArmorRating_Sharp</xpath>
+				<value>
+					<ArmorRating_Sharp>1.1</ArmorRating_Sharp>
+				</value>
+			</li>
 
-	<li Class="PatchOperationReplace">
-		<xpath>Defs/ThingDef[defName="Xenn_Armored_DusterXX"]/statBases/ArmorRating_Blunt</xpath>
-		<value>
-			<ArmorRating_Blunt>0.5</ArmorRating_Blunt>
-		</value>
-	</li>
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="Xenn_Armored_DusterXX"]/statBases/ArmorRating_Blunt</xpath>
+				<value>
+					<ArmorRating_Blunt>0.5</ArmorRating_Blunt>
+				</value>
+			</li>
 
-	<li Class="PatchOperationAdd">
-		<xpath>Defs/ThingDef[defName="Xenn_Armored_DusterXX"]/costList</xpath>
-		<value>
-			<DevilstrandCloth>75</DevilstrandCloth>
-		</value>
-	</li>
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName="Xenn_Armored_DusterXX"]/costList</xpath>
+				<value>
+					<DevilstrandCloth>75</DevilstrandCloth>
+				</value>
+			</li>
 
-	<li Class="PatchOperationRemove">
-		<xpath>Defs/ThingDef[defName="Xenn_Armored_DusterXX"]/equippedStatOffsets/MoveSpeed</xpath>
-	</li>
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName="Xenn_Armored_DusterXX"]</xpath>
+				<value>
+					<equippedStatOffsets>
+						<CarryWeight>110</CarryWeight>
+						<CarryBulk>25</CarryBulk>
+						<ShootingAccuracyPawn>0.10</ShootingAccuracyPawn>
+						<ToxicSensitivity>-0.60</ToxicSensitivity>
+					</equippedStatOffsets>				
+				</value>
+			</li>
 
-	<li Class="PatchOperationAdd">
-		<xpath>Defs/ThingDef[defName="Xenn_Armored_DusterXX"]/equippedStatOffsets</xpath>
-		<value>
-			<CarryWeight>110</CarryWeight>
-			<CarryBulk>25</CarryBulk>
-			<ShootingAccuracyPawn>0.10</ShootingAccuracyPawn>
-			<ToxicSensitivity>-0.60</ToxicSensitivity>
-		</value>
-	</li>
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName="Xenn_Armored_DusterXX"]/apparel/bodyPartGroups</xpath>
+				<value>
+					<li>Hands</li>
+					<li>Feet</li>
 
-	<li Class="PatchOperationAdd">
-		<xpath>Defs/ThingDef[defName="Xenn_Armored_DusterXX"]/apparel/bodyPartGroups</xpath>
-		<value>
-			<li>Hands</li>
-			<li>Feet</li>
+				</value>
+			</li>
+					
+					<!-- ========== Power Armor with *Arctic* Duster ========== -->
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName="Xenn_Armored_DusterXXArc"]/statBases</xpath>
+				<value>
+					<Bulk>90</Bulk>
+					<WornBulk>12</WornBulk>
+				</value>
+			</li>
 
-		</value>
-	</li>
-			
-			<!-- ========== Power Armor with *Arctic* Duster ========== -->
-	<li Class="PatchOperationAdd">
-		<xpath>Defs/ThingDef[defName="Xenn_Armored_DusterXXArc"]/statBases</xpath>
-		<value>
-			<Bulk>90</Bulk>
-			<WornBulk>12</WornBulk>
-		</value>
-	</li>
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="Xenn_Armored_DusterXXArc"]/statBases/MaxHitPoints</xpath>
+				<value>
+					<MaxHitPoints>550</MaxHitPoints>
+				</value>
+			</li>
 
-	<li Class="PatchOperationReplace">
-		<xpath>Defs/ThingDef[defName="Xenn_Armored_DusterXXArc"]/statBases/MaxHitPoints</xpath>
-		<value>
-			<MaxHitPoints>550</MaxHitPoints>
-		</value>
-	</li>
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="Xenn_Armored_DusterXXArc"]/statBases/Mass</xpath>
+				<value>
+					<Mass>51</Mass>
+				</value>
+			</li>
 
-	<li Class="PatchOperationReplace">
-		<xpath>Defs/ThingDef[defName="Xenn_Armored_DusterXXArc"]/statBases/Mass</xpath>
-		<value>
-			<Mass>51</Mass>
-		</value>
-	</li>
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="Xenn_Armored_DusterXXArc"]/statBases/ArmorRating_Sharp</xpath>
+				<value>
+					<ArmorRating_Sharp>1.1</ArmorRating_Sharp>
+				</value>
+			</li>
 
-	<li Class="PatchOperationReplace">
-		<xpath>Defs/ThingDef[defName="Xenn_Armored_DusterXXArc"]/statBases/ArmorRating_Sharp</xpath>
-		<value>
-			<ArmorRating_Sharp>1.1</ArmorRating_Sharp>
-		</value>
-	</li>
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="Xenn_Armored_DusterXXArc"]/statBases/ArmorRating_Blunt</xpath>
+				<value>
+					<ArmorRating_Blunt>0.5</ArmorRating_Blunt>
+				</value>
+			</li>
 
-	<li Class="PatchOperationReplace">
-		<xpath>Defs/ThingDef[defName="Xenn_Armored_DusterXXArc"]/statBases/ArmorRating_Blunt</xpath>
-		<value>
-			<ArmorRating_Blunt>0.5</ArmorRating_Blunt>
-		</value>
-	</li>
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName="Xenn_Armored_DusterXXArc"]/costList</xpath>
+				<value>
+					<DevilstrandCloth>75</DevilstrandCloth>
+				</value>
+			</li>
 
-	<li Class="PatchOperationAdd">
-		<xpath>Defs/ThingDef[defName="Xenn_Armored_DusterXXArc"]/costList</xpath>
-		<value>
-			<DevilstrandCloth>75</DevilstrandCloth>
-		</value>
-	</li>
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName="Xenn_Armored_DusterXXArc"]</xpath>
+				<value>
+					<equippedStatOffsets>
+						<CarryWeight>110</CarryWeight>
+						<CarryBulk>25</CarryBulk>
+						<ShootingAccuracyPawn>0.10</ShootingAccuracyPawn>
+						<ToxicSensitivity>-0.60</ToxicSensitivity>
+					</equippedStatOffsets>
+				</value>
+			</li>
 
-	<li Class="PatchOperationRemove">
-		<xpath>Defs/ThingDef[defName="Xenn_Armored_DusterXXArc"]/equippedStatOffsets/MoveSpeed</xpath>
-	</li>
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName="Xenn_Armored_DusterXXArc"]/apparel/bodyPartGroups</xpath>
+				<value>
+					<li>Hands</li>
+					<li>Feet</li>
+				</value>
+			</li>
 
-	<li Class="PatchOperationAdd">
-		<xpath>Defs/ThingDef[defName="Xenn_Armored_DusterXXArc"]/equippedStatOffsets</xpath>
-		<value>
-			<CarryWeight>110</CarryWeight>
-			<CarryBulk>25</CarryBulk>
-			<ShootingAccuracyPawn>0.10</ShootingAccuracyPawn>
-			<ToxicSensitivity>-0.60</ToxicSensitivity>
-		</value>
-	</li>
+					<!-- ========== Power Armor with *Jungle* Duster ========== -->
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName="Xenn_Armored_DusterXXJ"]/statBases</xpath>
+				<value>
+					<Bulk>90</Bulk>
+					<WornBulk>12</WornBulk>
+				</value>
+			</li>
 
-	<li Class="PatchOperationAdd">
-		<xpath>Defs/ThingDef[defName="Xenn_Armored_DusterXXArc"]/apparel/bodyPartGroups</xpath>
-		<value>
-			<li>Hands</li>
-			<li>Feet</li>
-		</value>
-	</li>
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="Xenn_Armored_DusterXXJ"]/statBases/MaxHitPoints</xpath>
+				<value>
+					<MaxHitPoints>550</MaxHitPoints>
+				</value>
+			</li>
 
-			<!-- ========== Power Armor with *Jungle* Duster ========== -->
-	<li Class="PatchOperationAdd">
-		<xpath>Defs/ThingDef[defName="Xenn_Armored_DusterXXJ"]/statBases</xpath>
-		<value>
-			<Bulk>90</Bulk>
-			<WornBulk>12</WornBulk>
-		</value>
-	</li>
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="Xenn_Armored_DusterXXJ"]/statBases/Mass</xpath>
+				<value>
+					<Mass>51</Mass>
+				</value>
+			</li>
 
-	<li Class="PatchOperationReplace">
-		<xpath>Defs/ThingDef[defName="Xenn_Armored_DusterXXJ"]/statBases/MaxHitPoints</xpath>
-		<value>
-			<MaxHitPoints>550</MaxHitPoints>
-		</value>
-	</li>
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="Xenn_Armored_DusterXXJ"]/statBases/ArmorRating_Sharp</xpath>
+				<value>
+					<ArmorRating_Sharp>1.1</ArmorRating_Sharp>
+				</value>
+			</li>
 
-	<li Class="PatchOperationReplace">
-		<xpath>Defs/ThingDef[defName="Xenn_Armored_DusterXXJ"]/statBases/Mass</xpath>
-		<value>
-			<Mass>51</Mass>
-		</value>
-	</li>
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="Xenn_Armored_DusterXXJ"]/statBases/ArmorRating_Blunt</xpath>
+				<value>
+					<ArmorRating_Blunt>0.5</ArmorRating_Blunt>
+				</value>
+			</li>
 
-	<li Class="PatchOperationReplace">
-		<xpath>Defs/ThingDef[defName="Xenn_Armored_DusterXXJ"]/statBases/ArmorRating_Sharp</xpath>
-		<value>
-			<ArmorRating_Sharp>1.1</ArmorRating_Sharp>
-		</value>
-	</li>
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName="Xenn_Armored_DusterXXJ"]/costList</xpath>
+				<value>
+					<DevilstrandCloth>75</DevilstrandCloth>
+				</value>
+			</li>
 
-	<li Class="PatchOperationReplace">
-		<xpath>Defs/ThingDef[defName="Xenn_Armored_DusterXXJ"]/statBases/ArmorRating_Blunt</xpath>
-		<value>
-			<ArmorRating_Blunt>0.5</ArmorRating_Blunt>
-		</value>
-	</li>
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName="Xenn_Armored_DusterXXJ"]</xpath>
+				<value>
+					<equippedStatOffsets>
+						<CarryWeight>110</CarryWeight>
+						<CarryBulk>25</CarryBulk>
+						<ShootingAccuracyPawn>0.10</ShootingAccuracyPawn>
+						<ToxicSensitivity>-0.60</ToxicSensitivity>
+					</equippedStatOffsets>			
+				</value>
+			</li>
 
-	<li Class="PatchOperationAdd">
-		<xpath>Defs/ThingDef[defName="Xenn_Armored_DusterXXJ"]/costList</xpath>
-		<value>
-			<DevilstrandCloth>75</DevilstrandCloth>
-		</value>
-	</li>
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName="Xenn_Armored_DusterXXJ"]/apparel/bodyPartGroups</xpath>
+				<value>
+					<li>Hands</li>
+					<li>Feet</li>
+					
+				</value>
+			</li>
 
-	<li Class="PatchOperationRemove">
-		<xpath>Defs/ThingDef[defName="Xenn_Armored_DusterXXJ"]/equippedStatOffsets/MoveSpeed</xpath>
-	</li>
-
-	<li Class="PatchOperationAdd">
-		<xpath>Defs/ThingDef[defName="Xenn_Armored_DusterXXJ"]/equippedStatOffsets</xpath>
-		<value>
-			<CarryWeight>110</CarryWeight>
-			<CarryBulk>25</CarryBulk>
-			<ShootingAccuracyPawn>0.10</ShootingAccuracyPawn>
-			<ToxicSensitivity>-0.60</ToxicSensitivity>
-		</value>
-	</li>
-
-	<li Class="PatchOperationAdd">
-		<xpath>Defs/ThingDef[defName="Xenn_Armored_DusterXXJ"]/apparel/bodyPartGroups</xpath>
-		<value>
-			<li>Hands</li>
-			<li>Feet</li>
-			
-		</value>
-	</li>
 			<!-- ========== Shadez ========== -->
 			<li Class="PatchOperationReplace">
-				<xpath>*/ThingDef[defName = "XennSunglasses"]/statBases/Mass</xpath>
+				<xpath>Defs/ThingDef[defName = "XennSunglasses"]/statBases/Mass</xpath>
 				<value>
 					<Mass>1</Mass>
 					<Bulk>5</Bulk>
@@ -216,13 +210,12 @@
 				</value>
 			</li>
 			<li Class="PatchOperationReplace">
-				<xpath>*/ThingDef[defName = "XennSunglasses"]/statBases/ArmorRating_Sharp</xpath>
+				<xpath>Defs/ThingDef[defName = "XennSunglasses"]/statBases/ArmorRating_Sharp</xpath>
 				<value>
 					<ArmorRating_Sharp>0.17</ArmorRating_Sharp>
 				</value>
 			</li>
 		</operations>
+		</match>
 	</Operation>
-
 </Patch>
-

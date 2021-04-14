@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <Patch>
-	<Operation Class="PatchOperationSequence">
-		<success>Always</success>
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+			<li>Magical Menagerie</li>
+		</mods>
+		<match Class="PatchOperationSequence">
 		<operations>
-
-			<li Class="CombatExtended.PatchOperationFindMod">
-				<modName>Magical Menagerie</modName>
-			</li>
 
 			<li Class="PatchOperationReplace">
 				<xpath>Defs/ThingDef[defName="MM_Quill"]/projectile</xpath>
@@ -76,5 +75,6 @@
 			</li>
 
 		</operations>
+		</match>
 	</Operation>
 </Patch>

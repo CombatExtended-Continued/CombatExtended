@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8" ?>
+
+<Patch>
+
+	<Operation Class="PatchOperationFindMod">
+    <mods>
+        <li>Kit's Roman Weapons</li>
+    </mods>
+		<match Class="PatchOperationSequence">
+			<operations>			
+
+			<!-- Scutum -->
+			<li Class="PatchOperationReplace">
+				<xpath>/Defs/ThingDef[defName="KIT_Shield_Scutum"]</xpath>
+				<value>
+						<ThingDef ParentName="ShieldBase">
+						<defName>KIT_Shield_Scutum</defName>
+						<label>scutum shield</label>
+						<description>A large stony shield, with the front decoratively painted. Offers a great amount of protection against melee and ranged attacks.</description>
+						<techLevel>Medieval</techLevel>
+						<graphicData>
+							<texPath>Things/Shield/ScutumShield</texPath>
+							<graphicClass>Graphic_Single</graphicClass>
+							<drawSize>0.83</drawSize>
+						</graphicData>
+						<thingCategories Inherit="False">
+							<li>Shields</li>
+						</thingCategories>
+						<stuffCategories>
+							<li>Stony</li>
+						</stuffCategories>
+						<costStuffCount>80</costStuffCount>
+						<recipeMaker>
+							<researchPrerequisite>Smithing</researchPrerequisite>		
+							<recipeUsers>
+							<li>FueledSmithy</li>
+							<li>ElectricSmithy</li>		
+							</recipeUsers>
+						</recipeMaker>		
+						<statBases>
+							<WorkToMake>12000</WorkToMake>
+							<MaxHitPoints>145</MaxHitPoints>
+							<ArmorRating_Sharp>1.75</ArmorRating_Sharp>
+							<ArmorRating_Blunt>6</ArmorRating_Blunt>	  
+							<Mass>8</Mass>
+							<Bulk>8</Bulk>
+							<WornBulk>6</WornBulk>
+						</statBases>
+						<equippedStatOffsets>
+							<ReloadSpeed>-0.1</ReloadSpeed>
+							<MeleeHitChance>-1</MeleeHitChance>
+							<ShootingAccuracyPawn>-0.2</ShootingAccuracyPawn>
+							<AimingAccuracy>-0.05</AimingAccuracy>
+							<Suppressability>-0.25</Suppressability>
+							<MeleeCritChance>-0.08</MeleeCritChance>
+							<MeleeParryChance>1.0</MeleeParryChance>
+						</equippedStatOffsets>
+						<apparel>
+						<tags>
+							<li>ClassicalShield</li>
+						</tags>
+						</apparel>
+						<modExtensions>
+						<li Class="CombatExtended.ShieldDefExtension">
+							<shieldCoverage>
+							<li>Hands</li>
+							<li>Arms</li>
+							<li>Shoulders</li>
+							<li>Torso</li>
+							<li>Neck</li>
+							</shieldCoverage>
+							<crouchCoverage>
+							<li>Legs</li>
+							</crouchCoverage>
+							<drawAsTall>false</drawAsTall>
+						</li>
+						</modExtensions>
+						</ThingDef>					
+				</value>
+			</li>
+				
+			</operations>
+		</match>
+	</Operation>
+</Patch>

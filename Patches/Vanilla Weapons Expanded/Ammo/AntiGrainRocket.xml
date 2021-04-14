@@ -5,72 +5,39 @@
     <mods>
       <li>Vanilla Weapons Expanded</li>
     </mods>
-
     <match Class="PatchOperationSequence">
       <operations>
-
-        <!-- === Ammo === -->
-        <!-- <li Class="PatchOperationAdd">
-          <xpath>Defs</xpath>
-
-          <value>
-            <ThingDef Class="CombatExtended.AmmoDef" ParentName="AmmoBase">
-              <defName>Ammo_ChargeRL</defName>
-              <ammoClass>RocketFrag</ammoClass>
-              <statBases>
-                <Mass>1</Mass>
-                <Bulk>1</Bulk>
-              </statBases>
-              <comps>
-                <li Class="CombatExtended.CompProperties_ExplosiveCE">
-                  <explosionDamage>50</explosionDamage>
-                  <explosiveDamageType>VWE_Shock</explosiveDamageType>
-                  <explosiveRadius>1.5</explosiveRadius>
-                  <soundExplode>MortarBomb_Explode</soundExplode>
-                  <applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
-                  <fragments>
-                    <Fragment_Large>400</Fragment_Large>
-                  </fragments>
-                </li>
-              </comps>
-            </ThingDef>
-          </value>
-        </li> -->
 
         <!-- === Projectile === -->
         <li Class="PatchOperationAdd">
           <xpath>Defs</xpath>
-
           <value>
             <ThingDef Class="CombatExtended.AmmoDef" ParentName="BaseSPG9Grenade">
               <defName>Bullet_AntiGrainRocket</defName>
               <thingClass>CombatExtended.ProjectileCE_Explosive</thingClass>
-              <label>anti grain rockets</label>
+              <label>anti-grain rocket</label>
               <graphicData>
                 <texPath>Things/Projectile/RPG/Frag</texPath>
                 <graphicClass>Graphic_Single</graphicClass>
                 <shaderType>TransparentPostLight</shaderType>
               </graphicData>
               <projectile Class="CombatExtended.ProjectilePropertiesCE">
-                <speed>65</speed>
-                <damageDef>VWE_Shock</damageDef>
-                <damageAmountBase>100</damageAmountBase>
-                <armorPenetrationSharp>300</armorPenetrationSharp>
-                <armorPenetrationBlunt>31.584</armorPenetrationBlunt>
-                <soundAmbient>RocketPropelledLoop_Small</soundAmbient>
+                <speed>100</speed>  
+                <damageDef>EMP</damageDef>
+                <explosionRadius>8</explosionRadius>
+                <damageAmountBase>300</damageAmountBase>
               </projectile>
               <comps>
                 <li Class="CombatExtended.CompProperties_ExplosiveCE">
-                  <damageAmountBase>50</damageAmountBase>
-                  <explosiveDamageType>VWE_Shock</explosiveDamageType>
-                  <explosiveRadius>4.5</explosiveRadius>
+                  <damageAmountBase>250</damageAmountBase>
+                  <explosiveDamageType>Bomb</explosiveDamageType>
+                  <explosiveRadius>8</explosiveRadius>
                   <explosionSound>MortarBomb_Explode</explosionSound>
                   <applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
                 </li>
                 <li Class="CombatExtended.CompProperties_Fragments">
                   <fragments>
-                    <Fragment_Large>5</Fragment_Large>
-                    <Fragment_Small>50</Fragment_Small>
+                    <Fragment_Small>100</Fragment_Small>
                   </fragments>
                 </li>
               </comps>

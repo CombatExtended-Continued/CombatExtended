@@ -7,6 +7,8 @@ using UnityEngine;
 using Verse;
 using Verse.AI;
 using Verse.Noise;
+using CombatExtended.Compatibility;
+
 
 namespace CombatExtended.CombatExtended.Jobs.Utils
 {
@@ -22,9 +24,9 @@ namespace CombatExtended.CombatExtended.Jobs.Utils
 		/// </summary>
 		private const int MagicMaxPawns = 10;
 
-		public static Job MakeReloadJob(Pawn pawn, Building_TurretGunCE turret)
+		public static Job MakeReloadJob(Pawn pawn, Building_Turret turret)
 		{
-			var compAmmo = turret.CompAmmo;
+			var compAmmo = turret.GetAmmo();
 			if (compAmmo == null)
 			{
 				CELogger.Error($"{pawn} tried to create a reload job on a thing ({turret}) that's not reloadable.");
@@ -45,13 +47,13 @@ namespace CombatExtended.CombatExtended.Jobs.Utils
 			CELogger.Message($"Making a reload job for {pawn}, {turret} and {ammo}");
 
 			Job job = JobMaker.MakeJob(CE_JobDefOf.ReloadTurret, turret, ammo);
-			job.count = Mathf.Min(ammo.stackCount, turret.CompAmmo.MissingToFullMagazine);
+			job.count = Mathf.Min(ammo.stackCount, compAmmo.MissingToFullMagazine);
 			return job;
 		}
 
-		private static Job MakeReloadJobNoAmmo(Building_TurretGunCE turret)
+		private static Job MakeReloadJobNoAmmo(Building_Turret turret)
 		{
-			var compAmmo = turret.CompAmmo;
+ 		        var compAmmo = turret.GetAmmo();
 			if (compAmmo == null)
 			{
 				CELogger.Error("Tried to create a reload job on a thing that's not reloadable.");
@@ -61,27 +63,27 @@ namespace CombatExtended.CombatExtended.Jobs.Utils
 			return JobMaker.MakeJob(CE_JobDefOf.ReloadTurret, turret, null);
 		}
 
-		public static bool CanReload(Pawn pawn, Thing hopefullyTurret, bool forced = false, bool emergency = false)
+		public static bool CanReload(Pawn pawn, Thing thing, bool forced = false, bool emergency = false)
 		{
-			if (pawn == null || hopefullyTurret == null)
+			if (pawn == null || thing == null)
 			{
-				CELogger.Warn($"{pawn?.ToString() ?? "null pawn"} could not reload {hopefullyTurret?.ToString() ?? "null thing"} one of the two was null.");
+				CELogger.Warn($"{pawn?.ToString() ?? "null pawn"} could not reload {thing?.ToString() ?? "null thing"} one of the two was null.");
 				return false;
 			}
-			if (!(hopefullyTurret is Building_TurretGunCE))
+			
+			if (!(thing is Building_Turret turret))
 			{
-				CELogger.Warn($"{pawn} could not reload {hopefullyTurret} because {hopefullyTurret} is not a Combat Extended Turret. If you are a modder, make sure to use {nameof(CombatExtended)}.{nameof(Building_TurretGunCE)} for your turret's compClass.");
+				CELogger.Warn($"{pawn} could not reload {thing} because {thing} is not a Turret. If you are a modder, make sure to use {nameof(CombatExtended)}.{nameof(Building_TurretGunCE)} for your turret's compClass.");
 				return false;
 			}
-			var turret = hopefullyTurret as Building_TurretGunCE;
-			var compAmmo = turret.CompAmmo;
+			var compAmmo = turret.GetAmmo();
 
 			if (compAmmo == null)
 			{
 				CELogger.Warn($"{pawn} could not reload {turret} because turret has no {nameof(CompAmmoUser)}.");
 				return false;
 			}
-			if (turret.isReloading)
+			if (turret.GetReloading())
 			{
 				CELogger.Message($"{pawn} could not reload {turret} because turret is already reloading.");
 				JobFailReason.Is("CE_TurretAlreadyReloading".Translate());
@@ -110,7 +112,7 @@ namespace CombatExtended.CombatExtended.Jobs.Utils
 				JobFailReason.Is("CE_TurretNonAllied".Translate());
 				return false;
 			}
-			if ((turret.MannableComp?.ManningPawn != pawn) && !pawn.CanReserveAndReach(turret, PathEndMode.ClosestTouch, forced ? Danger.Deadly : pawn.NormalMaxDanger(), MagicMaxPawns))
+			if ((turret.GetMannable()?.ManningPawn != pawn) && !pawn.CanReserveAndReach(turret, PathEndMode.ClosestTouch, forced ? Danger.Deadly : pawn.NormalMaxDanger(), MagicMaxPawns))
 			{
 				CELogger.Message($"{pawn} could not reload {turret} because turret is manned (or was recently manned) by someone else.");
 				return false;
@@ -123,11 +125,12 @@ namespace CombatExtended.CombatExtended.Jobs.Utils
 			return true;
 		}
 
-		private static Thing FindBestAmmo(Pawn pawn, Building_TurretGunCE turret)
+		private static Thing FindBestAmmo(Pawn pawn, Building_Turret turret)
 		{
-			AmmoDef requestedAmmo = turret.CompAmmo.SelectedAmmo;	
+			var ammoComp = turret.GetAmmo();
+			AmmoDef requestedAmmo = ammoComp.SelectedAmmo;	
 			var bestAmmo = FindBestAmmo(pawn, requestedAmmo);   // try to find currently selected ammo first
-			if (bestAmmo == null && turret.CompAmmo.EmptyMagazine && requestedAmmo.AmmoSetDefs != null)
+			if (bestAmmo == null && ammoComp.EmptyMagazine && requestedAmmo.AmmoSetDefs != null && turret.Faction == Faction.OfPlayer)
 			{
 				//Turret's selected ammo not available, and magazine is empty. Pick a new ammo from the set to load.
 				foreach (AmmoSetDef set in requestedAmmo.AmmoSetDefs)
@@ -164,10 +167,11 @@ namespace CombatExtended.CombatExtended.Jobs.Utils
 		/// <param name="pawn"></param>
 		/// <param name="reloadable"></param>
 		/// <returns></returns>
-		private static List<Thing> FindAllAmmo(Pawn pawn, Building_TurretGunCE reloadable)
+		private static List<Thing> FindAllAmmo(Pawn pawn, Building_Turret reloadable)
 		{
-			int quantity = reloadable.CompAmmo.MissingToFullMagazine;
-			var ammoKind = reloadable.CompAmmo.SelectedAmmo;
+			var compAmmo = reloadable.GetAmmo();
+			int quantity = compAmmo.MissingToFullMagazine;
+			var ammoKind = compAmmo.SelectedAmmo;
 			Predicate<Thing> validator = (Thing potentialAmmo) =>
 			{
 				if (potentialAmmo.IsForbidden(pawn) || !pawn.CanReserve(potentialAmmo))

@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+  <Operation Class="PatchOperationSequence">
+	<operations>
+	  <li Class="PatchOperationFindMod">
+			
+		<mods><li>Epona Race</li></mods>
+			
+		<match Class="PatchOperationSequence">
+		<operations>
+		
+			
+			<li Class="PatchOperationAdd">
+				<xpath>/Defs/ThingDef[@Name="EponaCentaur_PawnBase"]/comps</xpath>
+				<value>
+					<li>
+					<compClass>CombatExtended.CompPawnGizmo</compClass>
+					</li>
+					<li Class="CombatExtended.CompProperties_Suppressable" />
+				</value>
+			</li>
+			
+			<li Class="PatchOperationReplace">
+                    <xpath>/Defs/ThingDef[@Name="EponaCentaur_PawnBase"]/inspectorTabs/li[.="ITab_Pawn_Gear"]</xpath>
+                    <value>
+                        <li>CombatExtended.ITab_Inventory</li>
+                    </value>
+			</li>
+
+            <li Class="PatchOperationAdd">
+                    <xpath>/Defs/ThingDef[@Name="EponaCentaur_PawnBase"]/comps</xpath>
+                    <value>
+                        <li Class="CombatExtended.CompProperties_Inventory" />
+                    </value>
+			</li>
+			
+			<li Class="PatchOperationAddModExtension">
+				<xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="Alien_Eponalike"]</xpath>
+				<value>
+					<li Class="CombatExtended.RacePropertiesExtensionCE">
+						<bodyShape>Humanoid</bodyShape>
+					</li>
+				</value>
+			</li>
+
+			
+			<li Class="PatchOperationAdd">
+			 <xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="Alien_Eponalike"]/statBases</xpath>
+				  <value>
+				    <!--Quadruped means better leverage, especially on offense.-->
+					<MeleeCritChance>1.15</MeleeCritChance>
+					<MeleeParryChance>1.10</MeleeParryChance>
+					<Suppressability>1</Suppressability>
+					<SmokeSensitivity>1</SmokeSensitivity>
+					<CarryBulk>32</CarryBulk>
+				  </value>
+			</li>
+			
+			<li Class="PatchOperationReplace">
+				<xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="Alien_Eponalike"]/tools</xpath> 
+				<value>
+					<tools>
+						<li Class="CombatExtended.ToolCE">
+							<label>left fist</label>
+							<capacities>
+								<li>Blunt</li>
+							</capacities>
+							<power>1</power>
+							<cooldownTime>1.25</cooldownTime>
+							<linkedBodyPartsGroup>LeftHand</linkedBodyPartsGroup>
+							<armorPenetrationBlunt>0.313</armorPenetrationBlunt>
+						</li>
+						<li Class="CombatExtended.ToolCE">
+							<label>right fist</label>
+							<capacities>
+								<li>Blunt</li>
+							</capacities>
+							<power>1</power>
+							<cooldownTime>1.25</cooldownTime>
+							<linkedBodyPartsGroup>RightHand</linkedBodyPartsGroup>
+							<armorPenetrationBlunt>0.313</armorPenetrationBlunt>
+						</li>
+						<li Class="CombatExtended.ToolCE">
+							<label>hooves</label>
+							<capacities>
+								<li>Blunt</li>
+							</capacities>
+							<power>10</power>
+							<cooldownTime>2.5</cooldownTime>
+							<chanceFactor>0.5</chanceFactor>
+							<linkedBodyPartsGroup>CentaurHooves</linkedBodyPartsGroup>
+							<armorPenetrationBlunt>3.850</armorPenetrationBlunt>
+						</li>
+					</tools>
+				</value>
+			</li>
+			
+			<!--Quadruped means better leverage, especially on offense.-->
+			
+			<li Class="PatchOperationAdd">
+			 <xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="Alien_Eponalike"]/alienRace/raceRestriction/whiteApparelList</xpath>
+				  <value>
+					<li>Apparel_BallisticShield</li>
+					<li>Apparel_MeleeShield</li>
+					<li>Apparel_GasMask</li>
+					<li>Apparel_ImprovGasMask</li>
+				  </value>
+			</li>
+			
+			
+		</operations>
+		</match>	
+	  </li>
+	</operations>	
+  </Operation>
+</Patch>
