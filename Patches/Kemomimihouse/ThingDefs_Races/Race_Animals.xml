@@ -1,0 +1,589 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+  <Operation Class="PatchOperationSequence">
+	<operations>
+	  <li Class="PatchOperationFindMod">
+			
+		<mods><li>kemomimihouse</li></mods>
+			
+		<match Class="PatchOperationSequence">
+		<operations>
+			
+			<li Class="PatchOperationAddModExtension">
+				<xpath>/Defs/ThingDef[
+				defName="akame" or
+				defName="aome" or
+				defName="hana" or
+				defName="kon" or
+				defName="kuro" or
+				defName="miko" or
+				defName="siro" or
+				defName="yuki"
+				]</xpath>
+				<value>
+					<li Class="CombatExtended.RacePropertiesExtensionCE">
+						<bodyShape>Humanoid</bodyShape>
+					</li>
+				</value>
+			</li>
+			
+			<li Class="PatchOperationAdd">
+				<xpath>/Defs/ThingDef[
+				defName="akame" or
+				defName="aome" or
+				defName="hana" or
+				defName="kon" or
+				defName="kuro" or
+				defName="miko" or
+				defName="siro" or
+				defName="yuki"
+				]/comps</xpath>
+				<value>
+					<li Class="CombatExtended.CompProperties_Inventory" />
+				</value>
+			</li>
+
+			
+			<li Class="PatchOperationAdd">
+			 <xpath>/Defs/ThingDef[defName="akame" or
+				defName="aome" or
+				defName="hana" or
+				defName="kon" or
+				defName="kuro" or
+				defName="miko" or
+				defName="siro" or
+				defName="yuki"
+				]/statBases</xpath>
+				  <value>
+					<Suppressability>0</Suppressability>
+					<SmokeSensitivity>1</SmokeSensitivity>
+				  </value>
+			</li>
+			
+			<!-- Siro-->
+			
+			<li Class="PatchOperationReplace">
+				<xpath>/Defs/ThingDef[defName="siro"]/statBases/ArmorRating_Sharp</xpath>
+				<value>
+					<ArmorRating_Sharp>4</ArmorRating_Sharp>
+					<MeleeCritChance>0.75</MeleeCritChance>
+					<MeleeParryChance>0.75</MeleeParryChance>
+				</value>
+			</li>
+			
+			<li Class="PatchOperationReplace">
+			 <xpath>/Defs/ThingDef[defName="siro"]/statBases/ArmorRating_Blunt</xpath>
+				  <value>
+					<ArmorRating_Blunt>1.4</ArmorRating_Blunt>
+				  </value>
+			</li>
+			
+			<li Class="PatchOperationReplace">
+				<xpath>/Defs/ThingDef[defName="siro"]/tools</xpath> 
+				<value>
+					<tools>
+						<li Class="CombatExtended.ToolCE">
+							<label>忍刀</label>
+							<capacities>
+							  <li>Cut</li>
+							  <li>Stab</li>
+							</capacities>
+							<cooldownTime>0.53</cooldownTime>
+							<power>25</power>
+							<linkedBodyPartsGroup>LeftHand</linkedBodyPartsGroup>
+							<armorPenetrationBlunt>2.25</armorPenetrationBlunt>
+							<armorPenetrationSharp>2.82</armorPenetrationSharp>
+						</li>
+						<li Class="CombatExtended.ToolCE">
+							<label>忍刀</label>
+							<capacities>
+							  <li>Cut</li>
+							  <li>Stab</li>
+							</capacities>
+							<cooldownTime>0.53</cooldownTime>
+							<power>25</power>
+							<linkedBodyPartsGroup>RightHand</linkedBodyPartsGroup>
+							<armorPenetrationBlunt>2.25</armorPenetrationBlunt>
+							<armorPenetrationSharp>2.82</armorPenetrationSharp>
+						</li>
+					</tools>
+				</value>
+			</li>
+			
+			<!-- Kon -->
+			
+			<li Class="PatchOperationReplace">
+				<xpath>/Defs/ThingDef[defName="kon"]/statBases/ArmorRating_Sharp</xpath>
+				<value>
+					<ArmorRating_Sharp>5</ArmorRating_Sharp>
+					<MeleeCritChance>0.80</MeleeCritChance>
+					<MeleeParryChance>0.60</MeleeParryChance>
+				</value>
+			</li>
+			
+			<li Class="PatchOperationReplace">
+			 <xpath>/Defs/ThingDef[defName="kon"]/statBases/ArmorRating_Blunt</xpath>
+				  <value>
+					<ArmorRating_Blunt>7.5</ArmorRating_Blunt>
+				  </value>
+			</li>
+			
+			<li Class="PatchOperationReplace">
+				<xpath>/Defs/ThingDef[defName="kon"]/tools</xpath> 
+				<value>
+					<tools>
+						<li Class="CombatExtended.ToolCE">
+							<label>刀</label>
+							<capacities>
+							  <li>Cut</li>
+							  <li>Stab</li>
+							</capacities>
+							<cooldownTime>1</cooldownTime>
+							<power>35</power>
+							<linkedBodyPartsGroup>LeftHand</linkedBodyPartsGroup>
+							<armorPenetrationBlunt>4.5</armorPenetrationBlunt>
+							<armorPenetrationSharp>3.5</armorPenetrationSharp>
+						</li>
+						<li Class="CombatExtended.ToolCE">
+							<label>刀</label>
+							<capacities>
+							  <li>Cut</li>
+							  <li>Stab</li>
+							</capacities>
+							<cooldownTime>1</cooldownTime>
+							<power>35</power>
+							<linkedBodyPartsGroup>RightHand</linkedBodyPartsGroup>
+							<armorPenetrationBlunt>4.5</armorPenetrationBlunt>
+							<armorPenetrationSharp>3.5</armorPenetrationSharp>
+						</li>
+					</tools>
+				</value>
+			</li>
+			
+			<!-- Hana -->
+			
+			<li Class="PatchOperationReplace">
+				<xpath>/Defs/ThingDef[defName="hana"]/statBases/ArmorRating_Sharp</xpath>
+				<value>
+					<ArmorRating_Sharp>2.5</ArmorRating_Sharp>
+					<MeleeCritChance>0.2</MeleeCritChance>
+					<MeleeParryChance>0.3</MeleeParryChance>
+				</value>
+			</li>
+			
+			<li Class="PatchOperationReplace">
+			 <xpath>/Defs/ThingDef[defName="hana"]/statBases/ArmorRating_Blunt</xpath>
+				  <value>
+					<ArmorRating_Blunt>0.5</ArmorRating_Blunt>
+				  </value>
+			</li>
+			
+			<li Class="PatchOperationReplace">
+				<xpath>/Defs/ThingDef[defName="hana"]/tools</xpath> 
+				<value>
+					<tools>
+						<li Class="CombatExtended.ToolCE">
+							<label>パンチ</label>
+							<capacities>
+							  <li>Blunt</li>
+							</capacities>
+							<cooldownTime>2</cooldownTime>
+							<power>1</power>
+							<linkedBodyPartsGroup>LeftHand</linkedBodyPartsGroup>
+							<armorPenetrationBlunt>0.125</armorPenetrationBlunt>
+						</li>
+						<li Class="CombatExtended.ToolCE">
+							<label>パンチ</label>
+							<capacities>
+							  <li>Blunt</li>
+							</capacities>
+							<cooldownTime>2</cooldownTime>
+							<power>1</power>
+							<linkedBodyPartsGroup>RightHand</linkedBodyPartsGroup>
+							<armorPenetrationBlunt>0.125</armorPenetrationBlunt>
+						</li>
+					</tools>
+				</value>
+			</li>
+			
+			<!-- Miko -->
+			
+			<li Class="PatchOperationReplace">
+				<xpath>/Defs/ThingDef[defName="miko"]/statBases/ArmorRating_Sharp</xpath>
+				<value>
+					<ArmorRating_Sharp>4</ArmorRating_Sharp>
+					<MeleeCritChance>1.20</MeleeCritChance>
+					<MeleeParryChance>1.00</MeleeParryChance>
+					<ShotSpread>2</ShotSpread>
+				</value>
+			</li>
+			
+			<li Class="PatchOperationReplace">
+			 <xpath>/Defs/ThingDef[defName="miko"]/statBases/ArmorRating_Blunt</xpath>
+				  <value>
+					<ArmorRating_Blunt>6</ArmorRating_Blunt>
+				  </value>
+			</li>
+			
+			<li Class="PatchOperationReplace">
+				<xpath>/Defs/ThingDef[defName="miko"]/tools</xpath> 
+				<value>
+					<tools>
+						<li Class="CombatExtended.ToolCE">
+							<label>パンチ</label>
+							<capacities>
+							  <li>Blunt</li>
+							</capacities>
+							<cooldownTime>0.8</cooldownTime>
+							<power>30</power>
+							<linkedBodyPartsGroup>LeftHand</linkedBodyPartsGroup>
+							<armorPenetrationBlunt>16</armorPenetrationBlunt>
+						</li>
+						<li Class="CombatExtended.ToolCE">
+							<label>パンチ</label>
+							<capacities>
+							  <li>Blunt</li>
+							</capacities>
+							<cooldownTime>0.8</cooldownTime>
+							<power>30</power>
+							<linkedBodyPartsGroup>RightHand</linkedBodyPartsGroup>
+							<armorPenetrationBlunt>16</armorPenetrationBlunt>
+						</li>
+					</tools>
+				</value>
+			</li>
+			
+			<!-- Akame/Aome -->
+			
+			<li Class="PatchOperationReplace">
+				<xpath>/Defs/ThingDef[defName="akame" or defName="aome"]/statBases/ArmorRating_Sharp</xpath>
+				<value>
+					<ArmorRating_Sharp>2.5</ArmorRating_Sharp>
+					<MeleeCritChance>0.25</MeleeCritChance>
+					<MeleeParryChance>0.25</MeleeParryChance>
+					<ShotSpread>1</ShotSpread>
+				</value>
+			</li>
+			
+			<li Class="PatchOperationReplace">
+			 <xpath>/Defs/ThingDef[defName="akame" or defName="aome"]/statBases/ArmorRating_Blunt</xpath>
+				  <value>
+					<ArmorRating_Blunt>0.1</ArmorRating_Blunt>
+				  </value>
+			</li>
+			
+			<li Class="PatchOperationReplace">
+				<xpath>/Defs/ThingDef[defName="akame" or defName="aome"]/tools</xpath> 
+				<value>
+					<tools>
+						<li Class="CombatExtended.ToolCE">
+							<label>クマゴン</label>
+							<capacities>
+							  <li>Cut</li>
+							  <li>Stab</li>
+							</capacities>
+							<cooldownTime>1.2</cooldownTime>
+							<power>15</power>
+							<linkedBodyPartsGroup>LeftHand</linkedBodyPartsGroup>
+							<armorPenetrationBlunt>1.8</armorPenetrationBlunt>
+							<armorPenetrationSharp>0.7</armorPenetrationSharp>
+						</li>
+						<li Class="CombatExtended.ToolCE">
+							<label>クマゴン</label>
+							<capacities>
+							  <li>Cut</li>
+							  <li>Stab</li>
+							</capacities>
+							<cooldownTime>1.2</cooldownTime>
+							<power>15</power>
+							<linkedBodyPartsGroup>RightHand</linkedBodyPartsGroup>
+							<armorPenetrationBlunt>1.8</armorPenetrationBlunt>
+							<armorPenetrationSharp>0.7</armorPenetrationSharp>
+						</li>
+					</tools>
+				</value>
+			</li>
+			
+			<!-- Kuro -->
+			
+			<li Class="PatchOperationReplace">
+				<xpath>/Defs/ThingDef[defName="kuro"]/statBases/ArmorRating_Sharp</xpath>
+				<value>
+					<ArmorRating_Sharp>5</ArmorRating_Sharp>
+					<MeleeCritChance>0.75</MeleeCritChance>
+					<MeleeParryChance>0.90</MeleeParryChance>
+					<ShotSpread>2</ShotSpread>
+				</value>
+			</li>
+			
+			<li Class="PatchOperationReplace">
+			 <xpath>/Defs/ThingDef[defName="kuro"]/statBases/ArmorRating_Blunt</xpath>
+				  <value>
+					<ArmorRating_Blunt>7.5</ArmorRating_Blunt>
+				  </value>
+			</li>
+			
+			<li Class="PatchOperationReplace">
+				<xpath>/Defs/ThingDef[defName="kuro"]/tools</xpath> 
+				<value>
+					<tools>
+						<li Class="CombatExtended.ToolCE">
+							<label>忍刀</label>
+							<capacities>
+							  <li>Cut</li>
+							  <li>Stab</li>
+							</capacities>
+							<cooldownTime>0.25</cooldownTime>
+							<power>10</power>
+							<linkedBodyPartsGroup>LeftHand</linkedBodyPartsGroup>
+							<armorPenetrationBlunt>2.00</armorPenetrationBlunt>
+							<armorPenetrationSharp>2.25</armorPenetrationSharp>
+						</li>
+						<li Class="CombatExtended.ToolCE">
+							<label>忍刀</label>
+							<capacities>
+							  <li>Cut</li>
+							  <li>Stab</li>
+							</capacities>
+							<cooldownTime>0.25</cooldownTime>
+							<power>10</power>
+							<linkedBodyPartsGroup>RightHand</linkedBodyPartsGroup>
+							<armorPenetrationBlunt>2.00</armorPenetrationBlunt>
+							<armorPenetrationSharp>2.25</armorPenetrationSharp>
+						</li>
+					</tools>
+				</value>
+			</li>
+			
+			<!-- yuki -->
+			
+			<li Class="PatchOperationReplace">
+				<xpath>/Defs/ThingDef[defName="yuki"]/statBases/ArmorRating_Sharp</xpath>
+				<value>
+					<ArmorRating_Sharp>80</ArmorRating_Sharp>
+					<MeleeCritChance>0.6</MeleeCritChance>
+					<MeleeParryChance>0.6</MeleeParryChance>
+					<ShotSpread>1</ShotSpread>
+				</value>
+			</li>
+			
+			<li Class="PatchOperationReplace">
+			 <xpath>/Defs/ThingDef[defName="yuki"]/statBases/ArmorRating_Blunt</xpath>
+				  <value>
+					<ArmorRating_Blunt>200</ArmorRating_Blunt>
+				  </value>
+			</li>
+			
+			<li Class="PatchOperationReplace">
+				<xpath>/Defs/ThingDef[defName="yuki"]/tools</xpath> 
+				<value>
+					<tools>
+						<li Class="CombatExtended.ToolCE">
+							<label>ドラゴンクロー</label>
+							<capacities>
+							  <li>Blunt</li>
+							</capacities>
+							<cooldownTime>2</cooldownTime>
+							<power>1</power>
+							<linkedBodyPartsGroup>LeftHand</linkedBodyPartsGroup>
+							<armorPenetrationBlunt>0.125</armorPenetrationBlunt>
+						</li>
+						<li Class="CombatExtended.ToolCE">
+							<label>ドラゴンクロー</label>
+							<capacities>
+							  <li>Blunt</li>
+							</capacities>
+							<cooldownTime>2</cooldownTime>
+							<power>1</power>
+							<linkedBodyPartsGroup>RightHand</linkedBodyPartsGroup>
+							<armorPenetrationBlunt>0.125</armorPenetrationBlunt>
+						</li>
+					</tools>
+				</value>
+			</li>
+			
+			<!-- verbs -->
+			
+			<li Class="PatchOperationReplace">
+				<xpath>/Defs/ThingDef[defName="miko"]/verbs/li</xpath>
+				<value>
+				  <li Class="CombatExtended.VerbPropertiesCE">
+				  <verbClass>CombatExtended.Verb_ShootCE</verbClass>
+				  <hasStandardCommand>true</hasStandardCommand>
+				  <defaultProjectile>Projectile_mikoshot</defaultProjectile>
+				  <warmupTime>1.6</warmupTime>
+				  <burstShotCount>6</burstShotCount>
+				  <ticksBetweenBurstShots>12</ticksBetweenBurstShots>
+				  <minRange>1</minRange>
+				  <range>36</range>
+				  <soundCast>BulletImpact_Wood</soundCast>
+				  <soundCastTail>GunTail_Heavy</soundCastTail>
+				  </li>
+				</value>
+			</li>
+			
+			<li Class="PatchOperationReplace">
+				<xpath>/Defs/ThingDef[defName="akame"]/verbs/li</xpath>
+				<value>
+				  <li Class="CombatExtended.VerbPropertiesCE">
+				  <verbClass>CombatExtended.Verb_ShootCE</verbClass>
+				  <hasStandardCommand>true</hasStandardCommand>
+				  <defaultProjectile>Projectile_kumagonshot</defaultProjectile>
+				  <warmupTime>2</warmupTime>
+				  <burstShotCount>1</burstShotCount>
+				  <ticksBetweenBurstShots>12</ticksBetweenBurstShots>
+				  <minRange>1</minRange>
+				  <range>30</range>
+				  <soundCast>ThrowGrenade</soundCast>
+				  <soundCastTail>GunTail_Heavy</soundCastTail>
+				  </li>
+				</value>
+			</li>
+			
+			<li Class="PatchOperationReplace">
+				<xpath>/Defs/ThingDef[defName="aome"]/verbs/li</xpath>
+				<value>
+				  <li Class="CombatExtended.VerbPropertiesCE">
+				  <verbClass>CombatExtended.Verb_ShootCE</verbClass>
+				  <hasStandardCommand>true</hasStandardCommand>
+				  <defaultProjectile>Projectile_kumagoroushot</defaultProjectile>
+				  <warmupTime>2</warmupTime>
+				  <burstShotCount>1</burstShotCount>
+				  <ticksBetweenBurstShots>12</ticksBetweenBurstShots>
+				  <minRange>1</minRange>
+				  <range>30</range>
+				  <soundCast>Pawn_Melee_Punch_HitPawn</soundCast>
+				  <soundCastTail>GunTail_Light</soundCastTail>
+				  </li>
+				</value>
+			</li>
+			
+			<li Class="PatchOperationReplace">
+				<xpath>/Defs/ThingDef[defName="kuro"]/verbs/li</xpath>
+				<value>
+				  <li Class="CombatExtended.VerbPropertiesCE">
+				  <verbClass>CombatExtended.Verb_ShootCE</verbClass>
+				  <hasStandardCommand>true</hasStandardCommand>
+				  <defaultProjectile>Projectile_kuroshot</defaultProjectile>
+				  <warmupTime>1.6</warmupTime>
+				  <burstShotCount>8</burstShotCount>
+				  <ticksBetweenBurstShots>12</ticksBetweenBurstShots>
+				  <minRange>1</minRange>
+				  <range>25</range>
+				  <soundCast>BulletImpact_Wood</soundCast>
+				  <soundCastTail>GunTail_Light</soundCastTail>
+				  </li>
+				</value>
+			</li>
+			
+			<li Class="PatchOperationReplace">
+				<xpath>/Defs/ThingDef[defName="yuki"]/verbs/li</xpath>
+				<value>
+				  <li Class="CombatExtended.VerbPropertiesCE">
+				  <verbClass>CombatExtended.Verb_ShootCE</verbClass>
+				  <hasStandardCommand>true</hasStandardCommand>
+				  <defaultProjectile>Projectile_yukishot</defaultProjectile>
+				  <warmupTime>3</warmupTime>
+				  <burstShotCount>1</burstShotCount>
+				  <ticksBetweenBurstShots>12</ticksBetweenBurstShots>
+				  <minRange>1</minRange>
+				  <range>30</range>
+				  <soundCast>ThrowGrenade</soundCast>
+				  <soundCastTail>GunTail_Light</soundCastTail>
+				  </li>
+				</value>
+			</li>
+			
+			<!-- Projectile -->
+			
+			<li Class="PatchOperationAdd">
+				<xpath>/Defs/ThingDef[defName="Projectile_mikoshot" or
+				defName="Projectile_kumagonshot" or
+				defName="Projectile_kumagoroushot" or
+				defName="Projectile_kuroshot" or
+				defName="Projectile_yukishot"]</xpath>
+				<value>
+					<thingClass>CombatExtended.BulletCE</thingClass>
+				</value>
+			</li>
+			
+			<!-- Projectile -->
+			
+			<li Class="PatchOperationReplace">
+				<xpath>/Defs/ThingDef[defName="Projectile_mikoshot"]/projectile</xpath>
+				<value>
+					<projectile Class="CombatExtended.ProjectilePropertiesCE">
+						<speed>30</speed>
+						<flyOverhead>false</flyOverhead>
+						<damageDef>Flame</damageDef>
+						<damageAmountBase>8</damageAmountBase>
+					</projectile>
+				</value>
+			</li>
+			
+			<li Class="PatchOperationReplace">
+				<xpath>/Defs/ThingDef[defName="Projectile_kumagonshot"]/projectile</xpath>
+				<value>
+					<projectile Class="CombatExtended.ProjectilePropertiesCE">
+					  <flyOverhead>false</flyOverhead>
+					  <speed>15</speed>
+					  <damageDef>Bullet</damageDef>
+					  <stoppingPower>1.5</stoppingPower>
+					  <armorPenetrationBase>0.25</armorPenetrationBase>
+					  <damageAmountBase>16</damageAmountBase>
+					  <armorPenetrationSharp>3</armorPenetrationSharp>
+					  <armorPenetrationBlunt>25</armorPenetrationBlunt>
+					</projectile>
+				</value>
+			</li>
+			
+			<li Class="PatchOperationReplace">
+				<xpath>/Defs/ThingDef[defName="Projectile_kumagoroushot"]/projectile</xpath>
+				<value>
+					<projectile Class="CombatExtended.ProjectilePropertiesCE">
+					  <flyOverhead>false</flyOverhead>
+					  <speed>25</speed>
+					  <damageDef>Bullet_harapan</damageDef>
+					  <stoppingPower>1.5</stoppingPower>
+					  <armorPenetrationBase>0.25</armorPenetrationBase>
+					  <damageAmountBase>16</damageAmountBase>
+					  <armorPenetrationSharp>3</armorPenetrationSharp>
+					  <armorPenetrationBlunt>25</armorPenetrationBlunt>
+					</projectile>
+				</value>
+			</li>
+			
+			<li Class="PatchOperationReplace">
+				<xpath>/Defs/ThingDef[defName="Projectile_kuroshot"]/projectile</xpath>
+				<value>
+					<projectile Class="CombatExtended.ProjectilePropertiesCE">
+					  <flyOverhead>false</flyOverhead>
+					  <speed>20</speed>
+					  <damageDef>Bullet</damageDef>
+					  <stoppingPower>1.5</stoppingPower>
+					  <armorPenetrationBase>0.25</armorPenetrationBase>
+					  <damageAmountBase>10</damageAmountBase>
+					  <armorPenetrationSharp>3</armorPenetrationSharp>
+					  <armorPenetrationBlunt>25</armorPenetrationBlunt>
+					</projectile>
+				</value>
+			</li>
+			
+			<li Class="PatchOperationReplace">
+				<xpath>/Defs/ThingDef[defName="Projectile_yukishot"]/projectile</xpath>
+				<value>
+					<projectile Class="CombatExtended.ProjectilePropertiesCE">
+					  <flyOverhead>false</flyOverhead>
+					  <speed>20</speed>
+					  <damageDef>Frostbite</damageDef>
+					  <stoppingPower>0.1</stoppingPower>
+					  <damageAmountBase>1</damageAmountBase>
+					</projectile>
+				</value>
+			</li>
+		</operations>
+		</match>	
+	  </li>
+	</operations>	
+  </Operation>
+</Patch>
