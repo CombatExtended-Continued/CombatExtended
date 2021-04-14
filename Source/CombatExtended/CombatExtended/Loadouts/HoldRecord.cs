@@ -71,15 +71,11 @@ namespace CombatExtended
         /// </summary>
         public void ExposeData()
         {
-            Log.Message("Saving _def");
             Scribe_Defs.Look(ref _def, "ThingDef");
-            Log.Message("Saving count");
             Scribe_Values.Look(ref count, "count");
-            Log.Message("Saving pickedUp");
             Scribe_Values.Look(ref pickedUp, "pickedUp");
             if (!pickedUp)
             {
-                Log.Message("Saving tickOfPickedupJob");
                 Scribe_Values.Look(ref _tickJobIssued, "tickOfPickupJob");
             }
         }
