@@ -286,11 +286,6 @@ namespace CombatExtended
                 {
                     var victimVert = new CollisionVertical(currentTarget.Thing);
                     var targetRange = victimVert.HeightRange;   //Get lower and upper heights of the target
-                    /*if (currentTarget.Thing is Building && CompFireModes?.CurrentAimMode == AimMode.SuppressFire)
-                    {
-                        targetRange.min = targetRange.max;
-                        targetRange.max = targetRange.min + 1f;
-                    }*/
                     if (targetRange.min < coverRange.max)   //Some part of the target is hidden behind some cover
                     {
                         // - It is possible for targetRange.max < coverRange.max, technically, in which case the shooter will never hit until the cover is gone.
