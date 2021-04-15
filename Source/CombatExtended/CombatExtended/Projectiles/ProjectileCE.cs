@@ -7,6 +7,8 @@ using UnityEngine;
 using Verse;
 using Verse.Sound;
 using CombatExtended.Compatibility;
+using CombatExtended.Lasers;
+using ProjectileImpactFX;
 
 namespace CombatExtended
 {
@@ -384,6 +386,89 @@ namespace CombatExtended
             Scribe_Values.Look<bool>(ref castShadow, "cS", true);
         }
         #endregion
+
+        public virtual void RayCast(Thing launcher, VerbProperties verbProps, Vector2 origin, float shotAngle, float shotRotation, float shotHeight = 0f, float shotSpeed = -1f, float spreadDegrees = 0f, Thing equipment = null) {
+            const float magicLaserDamageConstant = 1789.255934470907f;
+            ProjectilePropertiesCE pprops = def.projectile as ProjectilePropertiesCE;
+            shotRotation = Mathf.Deg2Rad * shotRotation + (float)(3.14159/2.0f);
+            Vector3 direction = new Vector3(Mathf.Cos(shotRotation) * Mathf.Cos(shotAngle), Mathf.Sin(shotAngle), Mathf.Sin(shotRotation) * Mathf.Cos(shotAngle));
+            Vector3 origin3 = new Vector3(origin.x, shotHeight, origin.y);
+            Map map = launcher.Map;
+            Vector3 destination = direction * verbProps.range + origin3;
+            this.shotAngle = shotAngle;
+            this.shotHeight = shotHeight;
+            this.shotRotation = shotRotation;
+            this.launcher = launcher;
+            this.origin = origin;
+            equipmentDef = equipment?.def ?? null;
+            Ray ray = new Ray(origin3, direction);
+            var lbce = this as LaserBeamCE;
+            float spreadRadius = Mathf.Sin(spreadDegrees / 2.0f * Mathf.Deg2Rad);
+
+            LaserGunDef defWeapon = equipmentDef as LaserGunDef;
+            Vector3 muzzle = ray.GetPoint( (defWeapon == null ? 0.9f : defWeapon.barrelLength) );
+	    var it_bounds = CE_Utility.GetBoundsFor(intendedTarget);
+            for (int i=1; i < verbProps.range; i++) {
+                float spreadArea = (i * spreadRadius + 0.01f) * (i * spreadRadius + 0.01f) * 3.14159f;
+                lbce.DamageModifier = 1 / (magicLaserDamageConstant * spreadArea);
+                
+                Vector3 tp = ray.GetPoint(i);
+                if (tp.y > CollisionVertical.WallCollisionHeight) {
+                    break;
+                }
+                if (tp.y < 0) {
+                    destination = tp;
+                    landed = true;
+                    ExactPosition = tp;
+                    Position = ExactPosition.ToIntVec3();
+                    break;
+                }
+                foreach (Thing thing in Map.thingGrid.ThingsListAtFast(tp.ToIntVec3())) {
+                    if (this == thing) {
+                        continue;
+                    }
+                    var bounds = CE_Utility.GetBoundsFor(thing);
+                    if (!bounds.IntersectRay(ray, out var dist)) {
+                        continue;
+                    }
+                    if (i<2 && thing != intendedTarget) {
+                        continue;
+                    }
+
+                    if (thing is Plant plant) {
+                        if (!Rand.Chance(thing.def.fillPercent * plant.Growth)) {
+                            continue;
+                        }
+                    }
+                    else if (thing is Building) {
+                        if (!Rand.Chance(thing.def.fillPercent)) {
+                            continue;
+                        }
+                    }
+                    ExactPosition = tp;
+                    destination = tp;
+                    landed = true;
+                    LastPos = destination;
+                    ExactPosition = destination;
+                    Position = ExactPosition.ToIntVec3();
+
+                    lbce.SpawnBeam(muzzle, destination);
+
+                    lbce.Impact(thing, muzzle);
+
+                    return;
+                    
+                }
+                 
+            }
+            if (lbce!=null) {
+                lbce.SpawnBeam(muzzle, destination);
+                Destroy(DestroyMode.Vanish);
+                return;
+            }
+
+
+        }
 
         #region Launch
         /// <summary>
@@ -784,6 +869,21 @@ namespace CombatExtended
             {
                 ambientSustainer.Maintain();
             }
+
+	    if (def.HasModExtension<TrailerProjectileExtension>())
+	    {
+		var trailer = def.GetModExtension<TrailerProjectileExtension>();
+		if (trailer != null)
+		{
+		    if (ticksToImpact % trailer.trailerMoteInterval == 0)
+		    {
+			for (int i = 0; i < trailer.motesThrown; i++)
+                            {
+                                TrailThrower.ThrowSmoke(DrawPos, trailer.trailMoteSize, Map, trailer.trailMoteDef);
+                            }
+		    }
+		}
+	    }
         }
 
         /// <summary>
@@ -874,6 +974,15 @@ namespace CombatExtended
 
         protected virtual void Impact(Thing hitThing)
         {
+	    if (def.HasModExtension<EffectProjectileExtension>())
+	    {
+		def.GetModExtension<EffectProjectileExtension>()?.ThrowMote(ExactPosition,
+									    Map,
+									    def.projectile.damageDef.explosionCellMote,
+									    def.projectile.damageDef.explosionColorCenter,
+									    def.projectile.damageDef.soundExplosion,
+									    hitThing);
+	    }
             var ignoredThings = new List<Thing>();
 
             //Spawn things from preExplosionSpawnThingDef != null
