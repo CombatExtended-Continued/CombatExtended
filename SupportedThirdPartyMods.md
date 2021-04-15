@@ -122,6 +122,7 @@ Japanese Dogs   |
 Jernfalk's Standalone Horses	|
 Jernalk's Skeletal Legion (Continued)	|
 Kaiser Armory	|
+Kemomimihouse |
 Kenshi Armory |
 K.L.K - Styles Apparel Pack	|
 Kijin Race 2.0     	|     

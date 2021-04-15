@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="utf-8" ?>
+
+<Patch>
+
+	<Operation Class="PatchOperationFindMod">
+    <mods>
+        <li>kemomimihouse</li>
+    </mods>
+		<match Class="PatchOperationSequence">
+			<operations>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="MeleeWeapon_konkatana"]/tools</xpath>
+					<value>
+						<tools>
+							<li Class="CombatExtended.ToolCE">
+								<label>handle</label>
+								<capacities>
+									<li>Poke</li>
+								</capacities>
+								<power>3</power>
+								<cooldownTime>1.69</cooldownTime>
+								<chanceFactor>0.15</chanceFactor>
+								<armorPenetrationBlunt>0.8</armorPenetrationBlunt>
+								<linkedBodyPartsGroup>Handle</linkedBodyPartsGroup>
+							</li>
+							<li Class="CombatExtended.ToolCE">
+								<label>point</label>
+								<capacities>
+									<li>Stab</li>
+								</capacities>
+								<power>14</power>
+								<cooldownTime>1.69</cooldownTime>
+								<chanceFactor>1</chanceFactor>
+								<armorPenetrationSharp>1.6</armorPenetrationSharp>
+								<armorPenetrationBlunt>0.8</armorPenetrationBlunt>
+								<linkedBodyPartsGroup>Point</linkedBodyPartsGroup>
+							</li>
+							<li Class="CombatExtended.ToolCE">
+								<label>edge</label>
+								<capacities>
+									<li>Cut</li>
+								</capacities>
+								<power>38</power>
+								<cooldownTime>1.05</cooldownTime>
+								<chanceFactor>1</chanceFactor>
+								<armorPenetrationSharp>0.97</armorPenetrationSharp>
+								<armorPenetrationBlunt>3.872</armorPenetrationBlunt>
+								<linkedBodyPartsGroup>Edge</linkedBodyPartsGroup>
+							</li>					
+						</tools>
+					</value>
+				</li>
+
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="MeleeWeapon_konkatana"]/statBases</xpath>
+					<value>
+						<Bulk>8</Bulk>
+						<MeleeCounterParryBonus>1.19</MeleeCounterParryBonus>
+					</value>
+				</li>
+
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="MeleeWeapon_konkatana"]</xpath>
+					<value>
+						<equippedStatOffsets>
+						<MeleeCritChance>1.43</MeleeCritChance>
+						<MeleeParryChance>0.57</MeleeParryChance>
+						<MeleeDodgeChance>0.33</MeleeDodgeChance>
+						</equippedStatOffsets>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="MeleeWeapon_sirokatana"]/tools</xpath>
+					<value>
+						<tools>
+							<li Class="CombatExtended.ToolCE">
+								<label>handle</label>
+								<capacities>
+									<li>Poke</li>
+								</capacities>
+								<power>1</power>
+								<cooldownTime>1.19</cooldownTime>
+								<chanceFactor>0.15</chanceFactor>
+								<armorPenetrationBlunt>0.2</armorPenetrationBlunt>
+								<linkedBodyPartsGroup>Handle</linkedBodyPartsGroup>
+							</li>
+							<li Class="CombatExtended.ToolCE">
+								<label>point</label>
+								<capacities>
+									<li>Stab</li>
+								</capacities>
+								<power>7</power>
+								<cooldownTime>0.8</cooldownTime>
+								<chanceFactor>1</chanceFactor>
+								<armorPenetrationSharp>1.5</armorPenetrationSharp>
+								<armorPenetrationBlunt>0.45</armorPenetrationBlunt>
+								<linkedBodyPartsGroup>Point</linkedBodyPartsGroup>
+							</li>
+							<li Class="CombatExtended.ToolCE">
+								<label>edge</label>
+								<capacities>
+									<li>Cut</li>
+								</capacities>
+								<power>23</power>
+								<cooldownTime>0.63</cooldownTime>
+								<chanceFactor>1</chanceFactor>
+								<armorPenetrationSharp>0.84</armorPenetrationSharp>
+								<armorPenetrationBlunt>1.25</armorPenetrationBlunt>
+								<linkedBodyPartsGroup>Edge</linkedBodyPartsGroup>
+							</li>					
+						</tools>
+					</value>
+				</li>
+
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="MeleeWeapon_sirokatana"]/statBases</xpath>
+					<value>
+						<Bulk>8</Bulk>
+						<MeleeCounterParryBonus>1.43</MeleeCounterParryBonus>
+					</value>
+				</li>
+
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="MeleeWeapon_sirokatana"]</xpath>
+					<value>
+						<equippedStatOffsets>
+						<MeleeCritChance>0.48</MeleeCritChance>
+						<MeleeParryChance>1.07</MeleeParryChance>
+						<MeleeDodgeChance>0.5</MeleeDodgeChance>
+						</equippedStatOffsets>
+					</value>
+				</li>
+
+			</operations>
+		</match>
+	</Operation>
+</Patch>
