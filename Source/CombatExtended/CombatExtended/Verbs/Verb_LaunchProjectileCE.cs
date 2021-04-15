@@ -610,7 +610,7 @@ namespace CombatExtended
 
                 ProjectileCE projectile = (ProjectileCE)ThingMaker.MakeThing(Projectile, null);
                 GenSpawn.Spawn(projectile, shootLine.Source, caster.Map);
-                ShiftTarget(report, pelletMechanicsOnly);
+                ShiftTarget(report, pelletMechanicsOnly, instant);
 
                 //New aiming algorithm
                 projectile.canTargetSelf = false;
@@ -622,15 +622,32 @@ namespace CombatExtended
                 projectile.intendedTarget = currentTarget.Thing;
                 projectile.mount = caster.Position.GetThingList(caster.Map).FirstOrDefault(t => t is Pawn && t != caster);
                 projectile.AccuracyFactor = report.accuracyFactor * report.swayDegrees * ((numShotsFired + 1) * 0.75f);
-                projectile.Launch(
-                    Shooter,    //Shooter instead of caster to give turret operators' records the damage/kills obtained
-                    sourceLoc,
-                    shotAngle,
-                    shotRotation,
-                    ShotHeight,
-                    ShotSpeed,
-                    EquipmentSource
-                );
+                if (instant) {
+                    var shotHeight = ShotHeight;
+                    float tsa = AdjustShotHeight(caster, currentTarget, ref shotHeight);
+                    projectile.RayCast(
+                                       Shooter,
+                                       verbProps,
+                                       sourceLoc,
+                                       shotAngle + tsa,
+                                       shotRotation,
+                                       shotHeight,
+                                       ShotSpeed,
+                                       spreadDegrees,
+                                       EquipmentSource);
+
+                }
+                else  {
+                    projectile.Launch(
+                                      Shooter,    //Shooter instead of caster to give turret operators' records the damage/kills obtained
+                                      sourceLoc,
+                                      shotAngle,
+                                      shotRotation,
+                                      ShotHeight,
+                                      ShotSpeed,
+                                      EquipmentSource
+                                      );
+                }
                 pelletMechanicsOnly = true;
             }
            /// Log.Message("Fired from "+caster.ThingID+" at "+ShotHeight); /// 
