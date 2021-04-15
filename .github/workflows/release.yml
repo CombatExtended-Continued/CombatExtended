@@ -1,4 +1,4 @@
-name: Build Branch
+name: Build Release
 on:
   release:
     types:
@@ -33,9 +33,3 @@ jobs:
         asset_name: CombatExtended-${{ github.event.release.tag_name }}.zip
         asset_content_type: application/octet-stream
       
-      shell: bash
-      env:
-        SSH_KEY: ${{secrets.ID_ECDSA}}
-        SSH_KEY_PUB: ${{secrets.ID_ECDSA_PUB}}
-
-
