@@ -88,7 +88,7 @@ namespace CombatExtended.HarmonyCE
                 _applyingSecondary = true;
                 foreach (var sec in props.secondaryDamage)
                 {
-                    if (pawn.Dead || !(UnityEngine.Random.Range(0f, 1f) <= sec.chance))
+                    if (pawn.Dead || !Rand.Chance(sec.chance))
                     {
                         break;
                     }

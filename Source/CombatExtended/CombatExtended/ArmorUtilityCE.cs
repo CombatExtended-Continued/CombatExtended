@@ -107,7 +107,7 @@ namespace CombatExtended
                         {
                             foreach (var sec in props.secondaryDamage)
                             {
-                                if (shield.Destroyed || !(UnityEngine.Random.Range(0f, 1f) <= sec.chance)) break;
+                                if (shield.Destroyed || !Rand.Chance(sec.chance)) break;
                                 var secDinfo = sec.GetDinfo();
                                 var pen = secDinfo.ArmorPenetrationInt; //GetPenetrationValue(originalDinfo);
                                 var dmg = (float)secDinfo.Amount;

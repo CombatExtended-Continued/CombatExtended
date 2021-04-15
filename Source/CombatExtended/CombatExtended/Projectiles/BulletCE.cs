@@ -94,7 +94,7 @@ namespace CombatExtended
                     {
                         foreach (SecondaryDamage cur in projectilePropsCE.secondaryDamage)
                         {
-                            if (hitThing.Destroyed || !(UnityEngine.Random.Range(0f, 1f) <= cur.chance)) break;
+                            if (hitThing.Destroyed || !Rand.Chance(cur.chance)) break;
 
                             var secDinfo = cur.GetDinfo(dinfo);
                             hitThing.TakeDamage(secDinfo).AssociateWithLog(logEntry);
