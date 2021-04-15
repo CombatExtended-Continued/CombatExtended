@@ -6,6 +6,7 @@ using RimWorld;
 using Verse;
 using UnityEngine;
 using Verse.AI;
+using CombatExtended.Compatibility;
 
 namespace CombatExtended
 {
@@ -43,7 +44,7 @@ namespace CombatExtended
 
             if (compAmmo.UseAmmo && (compAmmo.CompInventory != null || compAmmo.turret != null) || action == null)
             {
-                bool currentlyMannedTurret = compAmmo.turret?.MannableComp?.MannedNow ?? false;
+                bool currentlyMannedTurret = compAmmo.turret?.GetMannable()?.MannedNow ?? false;
                 if (Controller.settings.RightClickAmmoSelect && action != null && (compAmmo.turret == null || currentlyMannedTurret))
                 {
                     base.ProcessInput(ev);
@@ -133,14 +134,14 @@ namespace CombatExtended
 
                             if (user.SelectedAmmo == ammoDef)
                             {
-                                if (Controller.settings.AutoReloadOnChangeAmmo && user.turret?.MannableComp == null && user.CurMagCount < user.Props.magazineSize)
+                                if (Controller.settings.AutoReloadOnChangeAmmo && user.turret?.GetMannable() == null && user.CurMagCount < user.Props.magazineSize)
                                     del += other.action;
                             }
                             else
                             {
                                 del += delegate { user.SelectedAmmo = ammoDef; };
 
-                                if (Controller.settings.AutoReloadOnChangeAmmo && user.turret?.MannableComp == null)
+                                if (Controller.settings.AutoReloadOnChangeAmmo && user.turret?.GetMannable() == null)
                                     del += other.action;
                             }
 
@@ -186,7 +187,7 @@ namespace CombatExtended
             foreach (var other in others)
             {
                 var user = other.compAmmo;
-                if (user.HasMagazine && user.Wielder != null || (user.turret?.MannableComp?.MannedNow ?? false))
+                if (user.HasMagazine && user.Wielder != null || (user.turret?.GetMannable()?.MannedNow ?? false))
                 {
                     reload = true;
                     reloadDel += other.action;

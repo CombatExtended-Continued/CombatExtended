@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+
+  <Operation Class="PatchOperationFindMod">
+    <mods>
+      <li>More Utility Packs</li>
+    </mods>
+    <match Class="PatchOperationSequence">
+      <operations>
+
+		<!-- Robot Rig -->
+		<li Class="PatchOperationAdd">
+			<xpath>Defs/ThingDef[defName = "SGC_Apparel_RoboticRig"]/statBases</xpath>
+			<value>
+				<Bulk>10</Bulk>
+			</value>
+		</li>
+
+		<li Class="PatchOperationAdd">
+			<xpath>Defs/ThingDef[defName = "SGC_Apparel_RoboticRig"]/equippedStatOffsets</xpath>
+			<value>
+				<CarryBulk>15</CarryBulk>
+				<CarryWeight>25</CarryWeight>
+			</value>
+		</li>
+
+		<!-- Medical Bag -->
+		<li Class="PatchOperationAdd">
+			<xpath>Defs/ThingDef[defName = "SGC_Apparel_TraumaKit"]/statBases</xpath>
+			<value>
+				<Bulk>8</Bulk>
+			</value>
+		</li>
+
+		<li Class="PatchOperationAdd">
+			<xpath>Defs/ThingDef[defName = "SGC_Apparel_TraumaKit"]/equippedStatOffsets</xpath>
+			<value>
+				<CarryBulk>20</CarryBulk>
+			</value>
+		</li>
+
+		<!-- Survival Pack -->
+		<li Class="PatchOperationAdd">
+			<xpath>Defs/ThingDef[defName = "SGC_Apparel_SurvivalPack"]/statBases</xpath>
+			<value>
+				<Bulk>10</Bulk>
+			</value>
+		</li>
+
+		<li Class="PatchOperationReplace">
+			<xpath>Defs/ThingDef[defName = "SGC_Apparel_SurvivalPack"]/equippedStatOffsets/CarryingCapacity</xpath>
+			<value>
+				<CarryBulk>30</CarryBulk>
+			</value>
+		</li>
+
+		<!-- Rescue Frame -->
+		<li Class="PatchOperationAdd">
+			<xpath>Defs/ThingDef[defName = "SGC_Apparel_RescueFrame"]/statBases</xpath>
+			<value>
+				<Bulk>12</Bulk>
+			</value>
+		</li>
+
+		<li Class="PatchOperationAdd">
+			<xpath>Defs/ThingDef[defName = "SGC_Apparel_RescueFrame"]/equippedStatOffsets</xpath>
+			<value>
+				<CarryBulk>10</CarryBulk>
+				<CarryWeight>20</CarryWeight>
+			</value>
+		</li>
+
+		</operations>
+		</match>
+	</Operation>
+
+</Patch>
+

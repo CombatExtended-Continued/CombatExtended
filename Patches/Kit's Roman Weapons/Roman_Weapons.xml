@@ -1,0 +1,385 @@
+<?xml version="1.0" encoding="utf-8" ?>
+
+<Patch>
+
+	<Operation Class="PatchOperationFindMod">
+    <mods>
+        <li>Kit's Roman Weapons</li>
+    </mods>
+		<match Class="PatchOperationSequence">
+			<operations>
+
+		<!-- === Dolabra === -->
+
+		<li Class="PatchOperationReplace">
+			<xpath>/Defs/ThingDef[defName="KIT_MeleeWeapon_Dolabra"]/tools</xpath>
+			<value>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<label>handle</label>
+					<capacities>
+						<li>Poke</li>
+					</capacities>
+					<power>4</power>
+					<cooldownTime>1.78</cooldownTime>
+					<chanceFactor>0.10</chanceFactor>
+					<armorPenetrationBlunt>1</armorPenetrationBlunt>
+					<linkedBodyPartsGroup>Handle</linkedBodyPartsGroup>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>edge</label>
+					<capacities>
+						<li>Cut</li>
+					</capacities>
+					<power>28</power>
+					<cooldownTime>2.79</cooldownTime>
+					<chanceFactor>0.30</chanceFactor>
+					<armorPenetrationBlunt>6.25</armorPenetrationBlunt>
+					<armorPenetrationSharp>0.63</armorPenetrationSharp>
+					<linkedBodyPartsGroup>Edge</linkedBodyPartsGroup>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>spike</label>
+					<capacities>
+						<li>Cut</li>
+					</capacities>
+					<power>20</power>
+					<cooldownTime>3.49</cooldownTime>
+					<chanceFactor>0.30</chanceFactor>
+					<armorPenetrationBlunt>6.25</armorPenetrationBlunt>
+					<armorPenetrationSharp>2.09</armorPenetrationSharp>
+					<linkedBodyPartsGroup>Edge</linkedBodyPartsGroup>
+				</li>				
+			</tools>
+			</value>
+		</li>
+
+		<li Class="PatchOperationAdd">
+			<xpath>/Defs/ThingDef[defName="KIT_MeleeWeapon_Dolabra"]/statBases</xpath>
+			<value>
+				<Bulk>4</Bulk>
+				<MeleeCounterParryBonus>0.20</MeleeCounterParryBonus>
+			</value>
+		</li>
+
+		<li Class="PatchOperationAdd">
+			<xpath>/Defs/ThingDef[defName="KIT_MeleeWeapon_Dolabra"]/equippedStatOffsets</xpath>
+			<value>
+				<MeleeCritChance>0.03</MeleeCritChance>
+				<MeleeParryChance>0.20</MeleeParryChance>
+				<MeleeDodgeChance>0.27</MeleeDodgeChance>
+			</value>
+		</li>
+
+		<!-- === Pugio === -->
+
+		<li Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="KIT_MeleeWeapon_Pugio"]/tools</xpath>
+		<value>
+			<tools>
+			<li Class="CombatExtended.ToolCE">
+				<label>handle</label>
+				<capacities>
+				<li>Poke</li>
+				</capacities>
+				<power>1</power>
+				<cooldownTime>1.29</cooldownTime>
+				<armorPenetrationBlunt>0.275</armorPenetrationBlunt>
+				<linkedBodyPartsGroup>Handle</linkedBodyPartsGroup>
+			</li>
+			<li Class="CombatExtended.ToolCE">
+				<label>blade</label>
+				<capacities>
+				<li>Cut</li>
+				</capacities>
+				<power>12</power>
+				<cooldownTime>1.42</cooldownTime>
+				<armorPenetrationBlunt>0.396</armorPenetrationBlunt>
+				<armorPenetrationSharp>0.35</armorPenetrationSharp>
+				<linkedBodyPartsGroup>Blade</linkedBodyPartsGroup>
+			</li>
+			<li Class="CombatExtended.ToolCE">
+				<label>point</label>
+				<capacities>
+				<li>Stab</li>
+				</capacities>
+				<power>21</power>
+				<cooldownTime>1.29</cooldownTime>
+				<chanceFactor>1.33</chanceFactor>
+				<armorPenetrationBlunt>0.275</armorPenetrationBlunt>
+				<armorPenetrationSharp>0.31</armorPenetrationSharp>
+				<linkedBodyPartsGroup>Point</linkedBodyPartsGroup>
+			</li>
+			</tools>
+		</value>
+		</li>
+
+		<li Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="KIT_MeleeWeapon_Pugio"]/statBases</xpath>
+		<value>
+			<Bulk>1</Bulk>
+			<MeleeCounterParryBonus>0.5</MeleeCounterParryBonus>
+		</value>
+		</li>
+
+		<li Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="KIT_MeleeWeapon_Pugio"]</xpath>
+		<value>
+			<equippedStatOffsets>
+			<MeleeCritChance>0.63</MeleeCritChance>
+			<MeleeParryChance>0.5</MeleeParryChance>
+			<MeleeDodgeChance>0.13</MeleeDodgeChance>	
+			</equippedStatOffsets>
+		</value>
+		</li>
+
+		<li Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="KIT_MeleeWeapon_Pugio"]/weaponTags</xpath>
+		<value>
+			<li>CE_OneHandedWeapon</li>
+		</value>
+		</li>
+
+		<!-- Hasta -->	
+
+		<li Class="PatchOperationReplace">
+			<xpath>Defs/ThingDef[defName="KIT_MeleeWeapon_Hasta"]/tools</xpath>
+			<value>
+				<tools>
+					<li Class="CombatExtended.ToolCE">
+						<label>shaft</label>
+						<capacities>
+							<li>Blunt</li>
+						</capacities>
+						<power>7</power>
+						<cooldownTime>1.35</cooldownTime>
+						<chanceFactor>0.15</chanceFactor>
+						<armorPenetrationBlunt>2.25</armorPenetrationBlunt>
+						<linkedBodyPartsGroup>Shaft</linkedBodyPartsGroup>
+					</li>
+					<li Class="CombatExtended.ToolCE">
+						<label>shaft</label>
+						<capacities>
+							<li>Poke</li>
+						</capacities>
+						<power>4</power>
+						<cooldownTime>1.78</cooldownTime>
+						<chanceFactor>0.05</chanceFactor>
+						<armorPenetrationBlunt>1</armorPenetrationBlunt>
+						<linkedBodyPartsGroup>Point</linkedBodyPartsGroup>
+					</li>
+					<li Class="CombatExtended.ToolCE">
+						<label>head</label>
+						<capacities>
+							<li>Stab</li>
+						</capacities>
+						<power>18</power>
+						<cooldownTime>1.19</cooldownTime>
+						<chanceFactor>1.00</chanceFactor>
+						<armorPenetrationBlunt>2.25</armorPenetrationBlunt>
+						<armorPenetrationSharp>1.75</armorPenetrationSharp>
+						<linkedBodyPartsGroup>Head</linkedBodyPartsGroup>
+					</li>
+				</tools>
+			</value>
+		</li>
+
+		<li Class="PatchOperationAdd">
+			<xpath>Defs/ThingDef[defName="KIT_MeleeWeapon_Hasta"]/statBases</xpath>
+			<value>
+				<Bulk>10</Bulk>
+				<MeleeCounterParryBonus>1.68</MeleeCounterParryBonus>
+			</value>
+		</li>
+
+		<li Class="PatchOperationAdd">
+			<xpath>Defs/ThingDef[defName="KIT_MeleeWeapon_Hasta"]</xpath>
+			<value>
+				<equippedStatOffsets>
+					<MeleeCritChance>0.17</MeleeCritChance>
+					<MeleeParryChance>1.45</MeleeParryChance>
+					<MeleeDodgeChance>0.9</MeleeDodgeChance>
+				</equippedStatOffsets>
+			</value>
+		</li>
+
+		<!-- Falx -->	
+		<li Class="PatchOperationReplace">
+			<xpath>/Defs/ThingDef[defName="KIT_MeleeWeapon_Falx"]/tools</xpath>
+			<value>
+				<tools>
+					<li Class="CombatExtended.ToolCE">
+						<label>handle</label>
+						<capacities>
+							<li>Blunt</li>
+						</capacities>
+						<power>3</power>
+						<cooldownTime>1.63</cooldownTime>
+						<chanceFactor>0.10</chanceFactor>
+						<armorPenetrationBlunt>0.7</armorPenetrationBlunt>
+						<linkedBodyPartsGroup>Handle</linkedBodyPartsGroup>
+					</li>
+					<li Class="CombatExtended.ToolCE">
+						<label>edge</label>
+						<capacities>
+							<li>Cut</li>
+						</capacities>
+						<power>32</power>
+						<cooldownTime>1.56</cooldownTime>
+						<chanceFactor>0.30</chanceFactor>
+						<armorPenetrationBlunt>2.268</armorPenetrationBlunt>
+						<armorPenetrationSharp>0.51</armorPenetrationSharp>
+						<linkedBodyPartsGroup>Edge</linkedBodyPartsGroup>
+					</li>
+				</tools>
+			</value>
+		</li>
+
+		<li Class="PatchOperationAdd">
+			<xpath>/Defs/ThingDef[defName="KIT_MeleeWeapon_Falx"]/equippedStatOffsets</xpath>
+			<value>
+				<MeleeCritChance>0.29</MeleeCritChance>
+				<MeleeParryChance>1</MeleeParryChance>
+				<MeleeDodgeChance>0.47</MeleeDodgeChance>	
+			</value>
+		</li>
+
+		<li Class="PatchOperationAdd">
+			<xpath>/Defs/ThingDef[defName="KIT_MeleeWeapon_Falx"]/statBases</xpath>
+			<value>
+				<Bulk>7</Bulk>
+				<MeleeCounterParryBonus>1.33</MeleeCounterParryBonus>
+			</value>
+		</li>
+
+		<!-- === Plumbata === -->
+		<li Class="PatchOperationReplace">
+			<xpath>/Defs/ThingDef[defName="KIT_WeaponRanged_Plumbatae"]</xpath>
+			<value>
+
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="BaseWeaponAndAmmoNeolithic">
+		<defName>KIT_WeaponRanged_Plumbatae</defName>
+		<label>plumbata</label>
+		<description>A handful of darts. Can inflict injuries in close range. Simple but effective.</description>
+		<graphicData>
+			<texPath>Things/Projectile/PlumbataeThrown</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+			<onGroundRandomRotateAngle>0</onGroundRandomRotateAngle>
+		</graphicData>
+		<soundInteract>Interact_Grenade</soundInteract>
+		<statBases>
+			<MarketValue>2.36</MarketValue>
+			<SightsEfficiency>0.45</SightsEfficiency>
+			<ShotSpread>1.5</ShotSpread>
+			<SwayFactor>2.5</SwayFactor>
+			<Bulk>3.5</Bulk>
+			<Mass>0.5</Mass>
+			<RangedWeapon_Cooldown>1</RangedWeapon_Cooldown>
+		</statBases>
+		<equippedAngleOffset>30</equippedAngleOffset>
+		<stackLimit>50</stackLimit>
+		<weaponTags>
+			<li>NeolithicRanged</li>
+			 <li>MedievalRangedBasic</li>
+			<li>CE_OneHandedWeapon</li>
+			<li>CE_AI_Rifle</li>
+		</weaponTags>
+		<tradeTags>
+			<li>CE_AutoEnableTrade</li>
+		</tradeTags>
+		<verbs>
+			<li Class="CombatExtended.VerbPropertiesCE">
+				<verbClass>CombatExtended.Verb_ShootCEOneUse</verbClass>
+				<hasStandardCommand>true</hasStandardCommand>
+				<defaultProjectile>KitPlumbata_Thrown</defaultProjectile>
+				<warmupTime>1.5</warmupTime>
+				<range>14</range>
+				<soundCast>Interact_Grenade</soundCast>
+			</li>
+		</verbs>
+		<tools>
+			<li Class="CombatExtended.ToolCE">
+				<label>handle</label>
+				<capacities>
+					<li>Poke</li>
+				</capacities>
+				<power>1</power>
+				<cooldownTime>1.26</cooldownTime>
+				<armorPenetrationBlunt>0.250</armorPenetrationBlunt>
+				<linkedBodyPartsGroup>Handle</linkedBodyPartsGroup>
+			</li>
+			<li Class="CombatExtended.ToolCE">
+				<label>point</label>
+				<capacities>
+					<li>Stab</li>
+				</capacities>
+				<power>8</power>
+				<cooldownTime>1.26</cooldownTime>
+				<chanceFactor>1.33</chanceFactor>
+				<armorPenetrationBlunt>0.20</armorPenetrationBlunt>
+				<armorPenetrationSharp>0.42</armorPenetrationSharp>
+				<linkedBodyPartsGroup>Point</linkedBodyPartsGroup>
+			</li>
+		</tools>
+		<ammoClass>Javelin</ammoClass>
+	</ThingDef>
+
+	<RecipeDef ParentName="AmmoRecipeNeolithicBase">
+		<defName>MakeAmmo_KIT_WeaponRanged_Plumbatae</defName>
+		<label>make plumbata x10</label>
+		<description>Craft 10 plumbata.</description>
+		<workSpeedStat>GeneralLaborSpeed</workSpeedStat>
+		<workSkill>Crafting</workSkill>
+		<recipeUsers>
+			<li>ElectricSmithy</li>
+			<li>FueledSmithy</li>
+			<li>CraftingSpot</li>
+		</recipeUsers>
+		<effectWorking>Smelt</effectWorking>
+		<unfinishedThingDef>UnfinishedWeapon</unfinishedThingDef>
+		<workAmount>2500</workAmount>	
+		<jobString>Making plumbata.</jobString>
+		<ingredients>
+		<li>
+			<filter>
+			<thingDefs>
+				<li>Steel</li>
+			</thingDefs>
+			</filter>
+			<count>20</count>
+		</li>
+		</ingredients>
+		<fixedIngredientFilter>
+		<thingDefs>
+			<li>Steel</li>
+		</thingDefs>
+		</fixedIngredientFilter>
+		<products>
+		<KIT_WeaponRanged_Plumbatae>10</KIT_WeaponRanged_Plumbatae>
+		</products>
+	</RecipeDef>
+
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="BasePilumProjectile">
+		<defName>KitPlumbata_Thrown</defName>
+		<label>plumbata</label>
+		<graphicData>
+			<texPath>Things/Projectile/PlumbataeThrown</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+		</graphicData>		
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageAmountBase>8</damageAmountBase>
+			<speed>7</speed>
+			<armorPenetrationBlunt>2.36</armorPenetrationBlunt>
+			<armorPenetrationSharp>2</armorPenetrationSharp>
+			<preExplosionSpawnChance>0.65</preExplosionSpawnChance>	<!-- 4 javelins per resource -->
+			<preExplosionSpawnThingDef>KIT_WeaponRanged_Plumbatae</preExplosionSpawnThingDef>
+		</projectile>
+	</ThingDef>
+
+			</value>
+		</li>
+
+			</operations>
+		</match>
+	</Operation>
+</Patch>

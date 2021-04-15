@@ -1,0 +1,260 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+			<li>Midworld Weaponry Expanded</li>
+		</mods>
+		<match Class="PatchOperationSequence">
+		<operations>
+
+		<!-- === Tools === -->
+	
+		
+		<li Class="PatchOperationReplace">
+			<xpath>
+				/Defs/ThingDef[defName = "Gun_AdvancedRifle"]/tools
+			</xpath>
+			<value>
+				<tools>
+					<li Class="CombatExtended.ToolCE">
+						<label>stock</label>
+						<capacities>
+							<li>Blunt</li>
+						</capacities>
+						<power>8</power>
+						<cooldownTime>1.55</cooldownTime>
+						<chanceFactor>1.5</chanceFactor>
+						<armorPenetrationBlunt>2.755</armorPenetrationBlunt>
+						<linkedBodyPartsGroup>Stock</linkedBodyPartsGroup>
+					</li>
+					<li Class="CombatExtended.ToolCE">
+						<label>barrel</label>
+						<capacities>
+							<li>Blunt</li>
+						</capacities>
+						<power>5</power>
+						<cooldownTime>2.02</cooldownTime>
+						<armorPenetrationBlunt>1.630</armorPenetrationBlunt>
+						<linkedBodyPartsGroup>Barrel</linkedBodyPartsGroup>
+					</li>
+					<li Class="CombatExtended.ToolCE">
+						<label>muzzle</label>
+						<capacities>
+							<li>Poke</li>
+						</capacities>
+						<power>8</power>
+						<cooldownTime>1.55</cooldownTime>
+						<armorPenetrationBlunt>2.755</armorPenetrationBlunt>
+						<linkedBodyPartsGroup>Muzzle</linkedBodyPartsGroup>
+					</li>
+				</tools>
+			</value>
+		</li>
+			
+		<li Class="PatchOperationReplace">
+			<xpath>
+				/Defs/ThingDef[defName = "Gun_CompactRifle"]/tools
+			</xpath>
+			<value>
+				<tools>
+					<li Class="CombatExtended.ToolCE">
+						<label>barrel</label>
+						<capacities>
+							<li>Blunt</li>
+						</capacities>
+						<power>5</power>
+						<cooldownTime>2.02</cooldownTime>
+						<armorPenetrationBlunt>1.630</armorPenetrationBlunt>
+						<linkedBodyPartsGroup>Barrel</linkedBodyPartsGroup>
+					</li>
+					<li Class="CombatExtended.ToolCE">
+						<label>muzzle</label>
+						<capacities>
+							<li>Poke</li>
+						</capacities>
+						<power>8</power>
+						<cooldownTime>1.55</cooldownTime>
+						<armorPenetrationBlunt>2.755</armorPenetrationBlunt>
+						<linkedBodyPartsGroup>Muzzle</linkedBodyPartsGroup>
+					</li>
+				</tools>
+			</value>
+		</li>
+
+
+		<li Class="PatchOperationReplace">
+			<xpath>/Defs/ThingDef[defName="Gun_AdvancedGrenadeLauncher"]/tools</xpath>
+			<value>
+				<tools>
+					<li Class="CombatExtended.ToolCE">
+						<label>barrel</label>
+						<capacities>
+							<li>Blunt</li>
+						</capacities>
+						<power>10</power>
+						<cooldownTime>2.44</cooldownTime>
+						<armorPenetrationBlunt>3.5</armorPenetrationBlunt>
+						<linkedBodyPartsGroup>Barrel</linkedBodyPartsGroup>
+					</li>
+				</tools>
+			</value>
+		</li>
+
+		
+		
+		
+		<!-- === Advanced Assault Rifle === -->
+		<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+			<defName>Gun_AdvancedRifle</defName>
+			<statBases>
+				<WorkToMake>40000</WorkToMake>
+				<Mass>4.00</Mass>
+				<Bulk>7.50</Bulk>
+				<SwayFactor>1.24</SwayFactor>
+				<ShotSpread>0.11</ShotSpread>
+				<SightsEfficiency>1.2</SightsEfficiency>
+				<RangedWeapon_Cooldown>0.34</RangedWeapon_Cooldown>
+			</statBases>
+			<costList>
+				<Steel>55</Steel>
+				<Chemfuel>15</Chemfuel>
+				<Gold>7</Gold>
+				<ComponentIndustrial>6</ComponentIndustrial>
+			</costList>
+			<Properties>
+				<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+				<hasStandardCommand>True</hasStandardCommand>
+				<defaultProjectile>Bullet_545x39mmSoviet_FMJ</defaultProjectile>
+				<burstShotCount>6</burstShotCount>
+				<ticksBetweenBurstShots>6</ticksBetweenBurstShots>
+				<warmupTime>1.1</warmupTime>
+				<range>48</range>
+				<soundCast>Shot_AssaultRifle</soundCast>
+				<soundCastTail>GunTail_Medium</soundCastTail>
+				<muzzleFlashScale>9</muzzleFlashScale>
+				<recoilAmount>2.12</recoilAmount>
+			</Properties>
+			<AmmoUser>
+				<magazineSize>60</magazineSize>
+				<reloadTime>4</reloadTime>
+				<ammoSet>AmmoSet_545x39mmSoviet</ammoSet>
+			</AmmoUser>
+			<FireModes>
+				<aiAimMode>AimedShot</aiAimMode>
+				<aiUseBurstMode>True</aiUseBurstMode>
+				<aimedBurstShotCount>3</aimedBurstShotCount>
+			</FireModes>
+			<weaponTags>
+				<li>IndustrialGunAdvanced</li>
+			</weaponTags>
+			<!-- Required Research Rework -->
+			<researchPrerequisite>PrecisionRifling</researchPrerequisite>
+		</li>
+
+	
+		<!-- === Compact Rifle === -->
+		<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+			<defName>Gun_CompactRifle</defName>
+			<statBases>
+				<WorkToMake>20000</WorkToMake>
+				<Mass>2.65</Mass>
+				<Bulk>4.00</Bulk>
+				<SwayFactor>2.15</SwayFactor>
+				<ShotSpread>0.15</ShotSpread>
+				<SightsEfficiency>1</SightsEfficiency>
+				<RangedWeapon_Cooldown>0.35</RangedWeapon_Cooldown>
+			</statBases>
+			<costList>
+				<Steel>45</Steel>
+				<WoodLog>7</WoodLog>
+				<ComponentIndustrial>4</ComponentIndustrial>
+			</costList>
+			<Properties>
+				<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+				<hasStandardCommand>True</hasStandardCommand>
+				<defaultProjectile>Bullet_545x39mmSoviet_FMJ</defaultProjectile>
+				<burstShotCount>6</burstShotCount>
+				<ticksBetweenBurstShots>6</ticksBetweenBurstShots>
+				<warmupTime>1.0</warmupTime>
+				<range>35</range>
+				<soundCast>Shot_AssaultRifle</soundCast>
+				<soundCastTail>GunTail_Medium</soundCastTail>
+				<muzzleFlashScale>9</muzzleFlashScale>
+				<recoilAmount>1.83</recoilAmount>
+			</Properties>
+			<AmmoUser>
+				<magazineSize>30</magazineSize>
+				<reloadTime>4</reloadTime>
+				<ammoSet>AmmoSet_545x39mmSoviet</ammoSet>
+			</AmmoUser>
+			<FireModes>
+				<aiAimMode>AimedShot</aiAimMode>
+				<aiUseBurstMode>True</aiUseBurstMode>
+				<aimedBurstShotCount>3</aimedBurstShotCount>
+			</FireModes>
+			<weaponTags>
+				<li>IndustrialGunAdvanced</li>
+			</weaponTags>
+			<!-- Required Research Rework -->
+			<researchPrerequisite>PrecisionRifling</researchPrerequisite>
+		</li>
+
+		
+		<!-- ===Advanced  Grenade Launcher === -->
+		<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+			<defName>Gun_AdvancedGrenadeLauncher</defName>
+			<statBases>
+				<WorkToMake>35500</WorkToMake>
+				<Mass>8.50</Mass>
+				<Bulk>9.00</Bulk>
+				<SwayFactor>1.31</SwayFactor>
+				<ShotSpread>0.18</ShotSpread>
+				<SightsEfficiency>1.15</SightsEfficiency>
+				<RangedWeapon_Cooldown>0.40</RangedWeapon_Cooldown>
+			</statBases>
+			<costList>
+				<Steel>60</Steel>
+				<Chemfuel>10</Chemfuel>
+				<Uranium>15</Uranium>
+				<ComponentIndustrial>5</ComponentIndustrial>
+			</costList>
+			<Properties>
+				<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+				<hasStandardCommand>true</hasStandardCommand>
+				<defaultProjectile>Bullet_40x46mmGrenade_HE</defaultProjectile>
+				<warmupTime>1</warmupTime>
+				<range>50</range>
+				<minRange>4</minRange>
+				<soundCast>InfernoCannon_Fire</soundCast>
+				<muzzleFlashScale>14</muzzleFlashScale>
+				<recoilAmount>2.93</recoilAmount>
+				<ai_IsBuildingDestroyer>True</ai_IsBuildingDestroyer>
+				<ignorePartialLoSBlocker>True</ignorePartialLoSBlocker>
+				<targetParams>
+					<canTargetLocations>True</canTargetLocations>
+				</targetParams>
+			</Properties>
+			<AmmoUser>
+				<magazineSize>6</magazineSize>
+				<reloadTime>5.1</reloadTime>
+				<ammoSet>AmmoSet_40x46mmGrenade</ammoSet>
+			</AmmoUser>
+			<FireModes>
+				<aiAimMode>SuppressFire</aiAimMode>
+				<aiUseBurstMode>False</aiUseBurstMode>
+			</FireModes>
+			<weaponTags>
+				<li>GunHeavy</li>
+			</weaponTags>
+			<researchPrerequisite>CE_Launchers</researchPrerequisite>
+
+			<!-- Disallow with Run And Gun -->
+			<AllowWithRunAndGun>false</AllowWithRunAndGun>
+	</li>
+		
+			</operations>
+		</match>
+	</Operation>
+
+</Patch>

@@ -1,12 +1,16 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <Patch>
-	<Operation Class="PatchOperationSequence">
-		<success>Always</success>
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+		<li>[RH] Faction: Cordis Die</li>
+		</mods>
+		<match Class="PatchOperationFindMod">
+			<mods>
+				<li>[CP] Rimmu-Nation - Weapons</li>
+				
+			</mods>
+		<nomatch Class="PatchOperationSequence">			
 		<operations>
-
-			<li Class="CombatExtended.PatchOperationFindMod">
-				<modName>[RH] Faction: Cordis Die</modName>
-			</li>
 
 			<!-- ==================== Weapons research prerequisite patches ==================== -->
 			
@@ -43,5 +47,7 @@
 			</li>
 			
 		</operations>
+		</nomatch>		
+		</match>
 	</Operation>
 </Patch>

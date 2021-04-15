@@ -1,0 +1,319 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+	
+	<Operation Class="PatchOperationFindMod">
+    <mods>
+		<li>Star Wars - Support Droids (Continued)</li>
+    </mods>
+		<match Class="PatchOperationSequence">
+		<operations>
+			
+			<li Class="PatchOperationSequence">
+			<success>Always</success>
+				<operations>
+					<li Class="PatchOperationTest">
+					<xpath>Defs/AlienRace.ThingDef_AlienRace[defName="21B_Medical"]/comps</xpath>
+					<success>Invert</success>
+					</li>
+					<li Class="PatchOperationAdd">
+					<xpath>Defs/AlienRace.ThingDef_AlienRace[defName="21B_Medical"]</xpath>
+					<value>
+						<comps />
+					</value>
+					</li>
+				</operations>
+			</li>
+			
+			<li Class="PatchOperationSequence">
+			<success>Always</success>
+				<operations>
+					<li Class="PatchOperationTest">
+					<xpath>Defs/AlienRace.ThingDef_AlienRace[defName="FX7_MedicalAssistant"]/comps</xpath>
+					<success>Invert</success>
+					</li>
+					<li Class="PatchOperationAdd">
+					<xpath>Defs/AlienRace.ThingDef_AlienRace[defName="FX7_MedicalAssistant"]</xpath>
+					<value>
+						<comps />
+					</value>
+					</li>
+				</operations>
+			</li>
+			
+			<li Class="PatchOperationSequence">
+			<success>Always</success>
+				<operations>
+					<li Class="PatchOperationTest">
+					<xpath>Defs/AlienRace.ThingDef_AlienRace[defName="GNK_Power"]/comps</xpath>
+					<success>Invert</success>
+					</li>
+					<li Class="PatchOperationAdd">
+					<xpath>Defs/AlienRace.ThingDef_AlienRace[defName="GNK_Power"]</xpath>
+					<value>
+						<comps />
+					</value>
+					</li>
+				</operations>
+			</li>
+			
+			<li Class="PatchOperationSequence">
+			<success>Always</success>
+				<operations>
+					<li Class="PatchOperationTest">
+					<xpath>Defs/AlienRace.ThingDef_AlienRace[defName="MSE6_Repair"]/comps</xpath>
+					<success>Invert</success>
+					</li>
+					<li Class="PatchOperationAdd">
+					<xpath>Defs/AlienRace.ThingDef_AlienRace[defName="MSE6_Repair"]</xpath>
+					<value>
+						<comps />
+					</value>
+					</li>
+				</operations>
+			</li>
+			
+			<li Class="PatchOperationSequence">
+			<success>Always</success>
+				<operations>
+					<li Class="PatchOperationTest">
+					<xpath>Defs/AlienRace.ThingDef_AlienRace[defName="Viper_Probe"]/comps</xpath>
+					<success>Invert</success>
+					</li>
+					<li Class="PatchOperationAdd">
+					<xpath>Defs/AlienRace.ThingDef_AlienRace[defName="Viper_Probe"]</xpath>
+					<value>
+						<comps />
+					</value>
+					</li>
+				</operations>
+			</li>
+			
+			<li Class="PatchOperationAddModExtension">
+				<xpath>Defs/AlienRace.ThingDef_AlienRace[
+				defName="21B_Medical" or
+				defName="FX7_MedicalAssistant" or
+				defName="GNK_Power"
+				]</xpath>
+				<value>
+					<li Class="CombatExtended.RacePropertiesExtensionCE">
+						<bodyShape>Humanoid</bodyShape>
+					</li>
+				</value>
+			</li>
+			
+			<li Class="PatchOperationAddModExtension">
+				<xpath>Defs/AlienRace.ThingDef_AlienRace[
+				defName="MSE6_Repair"
+				]</xpath>
+				<value>
+					<li Class="CombatExtended.RacePropertiesExtensionCE">
+						<bodyShape>Quadruped</bodyShape>
+					</li>
+				</value>
+			</li>
+			
+			<li Class="PatchOperationAddModExtension">
+				<xpath>Defs/AlienRace.ThingDef_AlienRace[
+				defName="Viper_Probe"
+				]</xpath>
+				<value>
+					<li Class="CombatExtended.RacePropertiesExtensionCE">
+						<bodyShape>Birdlike</bodyShape>
+					</li>
+				</value>
+			</li>
+			
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/AlienRace.ThingDef_AlienRace[
+				defName="21B_Medical" or
+				defName="FX7_MedicalAssistant" or
+				defName="GNK_Power" or
+				defName="MSE6_Repair" or
+				defName="Viper_Probe"
+				]/comps</xpath>
+				<value>
+					<li>
+					  <compClass>CombatExtended.CompPawnGizmo</compClass>
+					</li>
+				</value>
+			</li>
+			
+			
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/AlienRace.ThingDef_AlienRace[
+				defName="21B_Medical" or
+				defName="FX7_MedicalAssistant" or
+				defName="GNK_Power" or
+				defName="MSE6_Repair" or
+				defName="Viper_Probe"
+				]/statBases</xpath>
+				<value>
+					<MeleeCritChance>1</MeleeCritChance>
+					<MeleeParryChance>0</MeleeParryChance>
+					<SmokeSensitivity>0</SmokeSensitivity>
+					<CarryBulk>30</CarryBulk>
+				</value>
+			</li>
+			
+			
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/AlienRace.ThingDef_AlienRace[
+				defName="21B_Medical"
+				]/tools</xpath>
+				<value>
+					<tools>
+						<li Class="CombatExtended.ToolCE">
+							<label>left fist</label>
+							<capacities>
+								<li>Blunt</li>
+							</capacities>
+							<power>1</power>
+							<cooldownTime>1.26</cooldownTime>
+							<linkedBodyPartsGroup>Hands</linkedBodyPartsGroup>
+							<armorPenetrationBlunt>0.250</armorPenetrationBlunt>
+						</li>
+						<li Class="CombatExtended.ToolCE">
+							<label>right fist</label>
+							<capacities>
+								<li>Blunt</li>
+							</capacities>
+							<power>1</power>
+							<cooldownTime>1.26</cooldownTime>
+							<linkedBodyPartsGroup>Hands</linkedBodyPartsGroup>
+							<armorPenetrationBlunt>0.250</armorPenetrationBlunt>
+						</li>
+						<li Class="CombatExtended.ToolCE">
+							<label>head</label>
+							<capacities>
+								<li>Blunt</li>
+							</capacities>
+							<power>2</power>
+							<cooldownTime>4.49</cooldownTime>
+							<linkedBodyPartsGroup>HeadAttackTool</linkedBodyPartsGroup>
+							<armorPenetrationBlunt>0.625</armorPenetrationBlunt>
+						</li>
+					</tools>
+				</value>
+			</li>
+			
+			
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/AlienRace.ThingDef_AlienRace[
+				defName="FX7_MedicalAssistant" or
+				defName="Viper_Probe"
+				]/tools</xpath>
+				<value>
+					<tools>
+						<li Class="CombatExtended.ToolCE">
+							<label>left fist</label>
+							<capacities>
+								<li>Blunt</li>
+							</capacities>
+							<power>1</power>
+							<cooldownTime>1.26</cooldownTime>
+							<linkedBodyPartsGroup>Hands</linkedBodyPartsGroup>
+							<armorPenetrationBlunt>0.250</armorPenetrationBlunt>
+						</li>
+						<li Class="CombatExtended.ToolCE">
+							<label>right fist</label>
+							<capacities>
+								<li>Blunt</li>
+							</capacities>
+							<power>1</power>
+							<cooldownTime>1.26</cooldownTime>
+							<linkedBodyPartsGroup>Hands</linkedBodyPartsGroup>
+							<armorPenetrationBlunt>0.250</armorPenetrationBlunt>
+						</li>
+					</tools>
+				</value>
+			</li>
+			
+			
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/BodyDef[defName="GNK_Droid_Body"]//*[def="SW_Droid_Hull" or def="SW_Droid_Loudspeaker" or def="SW_Droid_Power_PlugIn_Socket" or def="SW_Droid_Arm" or def="SW_Droid_Leg" or def="SW_Droid_Foot" or def="SW_Droid_Hand"]/groups</xpath>
+				<value>
+					<li>CoveredByNaturalArmor</li>
+				</value>
+			</li>
+			
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/BodyDef[defName="MSE6_Droid_Body"]//*[def="SW_Droid_Hull" or def="SW_Droid_Arm" or def="SW_Droid_Hand" or def="SW_Droid_Leg"]/groups</xpath>
+				<value>
+					<li>CoveredByNaturalArmor</li>
+				</value>
+			</li>
+			
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/BodyDef[defName="Viper_Droid_Body"]//*[def="SW_Droid_Hull" or def="SW_Viper_Head"]/groups</xpath>
+				<value>
+					<li>CoveredByNaturalArmor</li>
+				</value>
+			</li>
+			
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/BodyDef[defName="FX7_Droid_Body"]//*[def="SW_Droid_Hull" or def="SW_Droid_Rotator_Base"]/groups</xpath>
+				<value>
+					<li>CoveredByNaturalArmor</li>
+				</value>
+			</li>
+			
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/BodyDef[defName="FX7_Droid_Body"]//*[def="SW_Droid_Arm" or def="SW_Droid_Hand"]</xpath>
+				<value>
+					<depth>Inside</depth>
+				</value>
+			</li>
+			
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/BodyDef[defName="21B_Droid_Body"]//*[def="SW_Droid_Hull" or def="SW_Medical_Head" or def="SW_Droid_Shoulder" or def="SW_Droid_Arm" or def="SW_Droid_Hand" or def="Waist" or def="SW_Droid_Leg" or def="SW_Droid_Foot"]/groups</xpath>
+				<value>
+					<li>CoveredByNaturalArmor</li>
+				</value>
+			</li>
+			
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/AlienRace.ThingDef_AlienRace[
+				defName="21B_Medical" or
+				defName="FX7_MedicalAssistant" or
+				defName="GNK_Power" or
+				defName="MSE6_Repair" or
+				defName="Viper_Probe"
+				]/statBases/ArmorRating_Blunt</xpath>
+				<value>
+					<ArmorRating_Blunt>0.1</ArmorRating_Blunt>
+				</value>
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/AlienRace.ThingDef_AlienRace[
+				defName="21B_Medical" or
+				defName="FX7_MedicalAssistant" or
+				defName="GNK_Power" or
+				defName="MSE6_Repair" or
+				defName="Viper_Probe"
+				]/statBases/ArmorRating_Sharp</xpath>
+				<value>
+					<ArmorRating_Sharp>0.4</ArmorRating_Sharp>
+				</value>
+			</li>
+			
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/AlienRace.ThingDef_AlienRace[
+				defName="21B_Medical" or
+				defName="FX7_MedicalAssistant" or
+				defName="GNK_Power" or
+				defName="MSE6_Repair" or
+				defName="Viper_Probe"
+				]/statBases/ArmorRating_Heat</xpath>
+				<value>
+					<ArmorRating_Heat>0</ArmorRating_Heat>
+				</value>
+			</li>
+			
+			
+			
+		</operations>
+		</match>
+	</Operation>
+	
+</Patch>

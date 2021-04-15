@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+
+  <Operation Class="PatchOperationFindMod">
+    <mods>
+      <li>[HLX] Ultratech: Altered Carbon - Armoury</li>
+    </mods>
+    <match Class="PatchOperationSequence">
+      <operations>
+
+        <!-- === Protectorate Helmet === -->
+        <li Class="PatchOperationAdd">
+          <xpath>/Defs/ThingDef[@Name="AC_ApparelArmorHelmetProtectorateBase"]/statBases</xpath>
+          <value>
+            <Bulk>4</Bulk>
+            <WornBulk>1</WornBulk>
+          </value>
+        </li>
+
+        <li Class="PatchOperationReplace">
+          <xpath>/Defs/ThingDef[@Name="AC_ApparelArmorHelmetProtectorateBase"]/statBases/Flammability</xpath>
+          <value>
+            <Flammability>0</Flammability>
+          </value>
+        </li>
+
+        <li Class="PatchOperationReplace">
+          <xpath>/Defs/ThingDef[@Name="AC_ApparelArmorHelmetProtectorateBase"]/statBases/MaxHitPoints</xpath>
+          <value>
+            <MaxHitPoints>200</MaxHitPoints>
+          </value>
+        </li>
+
+        <li Class="PatchOperationReplace">
+          <xpath>/Defs/ThingDef[@Name="AC_ApparelArmorHelmetProtectorateBase"]/statBases/ArmorRating_Sharp</xpath>
+          <value>
+            <ArmorRating_Sharp>14</ArmorRating_Sharp>
+          </value>
+        </li>
+
+        <li Class="PatchOperationReplace">
+          <xpath>/Defs/ThingDef[@Name="AC_ApparelArmorHelmetProtectorateBase"]/statBases/ArmorRating_Blunt</xpath>
+          <value>
+            <ArmorRating_Blunt>32</ArmorRating_Blunt>
+          </value>
+        </li>
+
+        <li Class="PatchOperationAdd">
+          <xpath>/Defs/ThingDef[@Name="AC_ApparelArmorHelmetProtectorateBase"]/costList</xpath>
+          <value>
+            <DevilstrandCloth>20</DevilstrandCloth>
+          </value>
+        </li>
+
+        <li Class="PatchOperationAdd">
+          <xpath>/Defs/ThingDef[@Name="AC_ApparelArmorHelmetProtectorateBase"]</xpath>
+          <value>
+            <equippedStatOffsets>
+              <PsychicSensitivity>-0.2</PsychicSensitivity>
+              <AimingAccuracy>0.15</AimingAccuracy>
+              <ToxicSensitivity>-0.50</ToxicSensitivity>
+              <SmokeSensitivity>-1</SmokeSensitivity>
+            </equippedStatOffsets>
+          </value>
+        </li>
+
+        <li Class="PatchOperationAdd">
+          <xpath>/Defs/ThingDef[@Name="AC_ApparelArmorHelmetProtectorateBase"]/apparel/layers</xpath>
+          <value>
+            <li>OnHead</li>
+            <li>StrappedHead</li>
+            <li>MiddleHead</li>
+          </value>
+        </li>
+
+        <!-- === Protectorate Armor === -->
+        <li Class="PatchOperationReplace">
+          <xpath>/Defs/ThingDef[@Name="AC_ApparelArmorProtectorateBase"]/statBases/Mass</xpath>
+          <value>
+            <Mass>45</Mass>
+            <Bulk>90</Bulk>
+            <WornBulk>12</WornBulk>
+          </value>
+        </li>
+
+        <li Class="PatchOperationReplace">
+          <xpath>/Defs/ThingDef[@Name="AC_ApparelArmorProtectorateBase"]/statBases/MaxHitPoints</xpath>
+          <value>
+            <MaxHitPoints>450</MaxHitPoints>
+          </value>
+        </li>
+
+        <li Class="PatchOperationReplace">
+          <xpath>/Defs/ThingDef[@Name="AC_ApparelArmorProtectorateBase"]/statBases/Flammability</xpath>
+          <value>
+            <Flammability>0</Flammability>
+          </value>
+        </li>
+
+        <li Class="PatchOperationReplace">
+          <xpath>/Defs/ThingDef[@Name="AC_ApparelArmorProtectorateBase"]/statBases/ArmorRating_Sharp</xpath>
+          <value>
+            <ArmorRating_Sharp>18</ArmorRating_Sharp>
+          </value>
+        </li>
+
+        <li Class="PatchOperationReplace">
+          <xpath>/Defs/ThingDef[@Name="AC_ApparelArmorProtectorateBase"]/statBases/ArmorRating_Blunt</xpath>
+          <value>
+            <ArmorRating_Blunt>42</ArmorRating_Blunt>
+          </value>
+        </li>
+
+        <li Class="PatchOperationAdd">
+          <xpath>/Defs/ThingDef[@Name="AC_ApparelArmorProtectorateBase"]/costList</xpath>
+          <value>
+            <DevilstrandCloth>50</DevilstrandCloth>
+          </value>
+        </li>
+
+        <li Class="PatchOperationRemove">
+          <xpath>/Defs/ThingDef[@Name="AC_ApparelArmorProtectorateBase"]/equippedStatOffsets/MoveSpeed</xpath>
+        </li>
+
+        <li Class="PatchOperationAdd">
+          <xpath>/Defs/ThingDef[@Name="AC_ApparelArmorProtectorateBase"]/equippedStatOffsets</xpath>
+          <value>
+            <CarryWeight>80</CarryWeight>
+            <CarryBulk>10</CarryBulk>
+            <ShootingAccuracyPawn>0.15</ShootingAccuracyPawn>
+            <ToxicSensitivity>-0.50</ToxicSensitivity>
+          </value>
+        </li>
+
+        <li Class="PatchOperationAdd">
+          <xpath>/Defs/ThingDef[@Name="AC_ApparelArmorProtectorateBase"]/apparel/bodyPartGroups</xpath>
+          <value>
+            <li>Hands</li>
+            <li>Feet</li>
+          </value>
+        </li>
+
+      </operations>
+    </match>
+  </Operation>
+
+</Patch>
