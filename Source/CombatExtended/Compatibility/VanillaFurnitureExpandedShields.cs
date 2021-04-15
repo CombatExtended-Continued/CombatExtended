@@ -60,11 +60,15 @@ namespace CombatExtended.Compatibility
                     continue;
                 }
 
+		projectile.ExactPosition = BlockerRegistry.GetExactPosition(projectile.OriginIV3.ToVector3(),
+									    exactPosition,
+									    new Vector3(shield.Position.x, 0, shield.Position.z),
+									    shield.ShieldRadius * shield.ShieldRadius);
+
                 if (!(projectile is ProjectileCE_Explosive))
                 {
                     shield.AbsorbDamage(projectile.def.projectile.GetDamageAmount(launcher), projectile.def.projectile.damageDef, projectile.ExactRotation.eulerAngles.y);
                 }
-                projectile.ExactPosition = cell.ToVector3();
                 return true;
 
             }
@@ -92,18 +96,15 @@ namespace CombatExtended.Compatibility
                 return false;
             }
 
-            var shieldRadiusSquared = shield.ShieldRadius * shield.ShieldRadius;
-            if (launcher.Position.DistanceToSquared(shield.Position) <= shieldRadiusSquared)
-            {
-                // Launcher inside shield, don't intercept.
-                return false;
-            }
-            if (projectile.Position.DistanceToSquared(shield.Position) <= shieldRadiusSquared)
-            {
-                // Launcher outside, projectile inside, intercept.
-                return true;
-            }
-            return false;
+	    if (shield.coveredCells.Contains(launcher.Position))
+	    {
+	      return false;
+	    }
+	    if (!shield.coveredCells.Contains(projectile.Position))
+	    {
+	      return false;
+	    }
+	    return true;
         }
 
         private static void refreshShields(Map map)
@@ -112,7 +113,9 @@ namespace CombatExtended.Compatibility
             if (lastCacheTick != thisTick || lastCacheMap != map)
             {
                 // Can't use AllBuildingsColonstOfClass because type may not exist.
-                shields = map.listerBuildings.allBuildingsColonist.Where(s => s is Building_Shield).ToHashSet();
+
+		IEnumerable<Building> ls = map.GetComponent<ListerThingsExtended>().listerShieldGens;
+		shields = ls.ToHashSet();
                 lastCacheTick = thisTick;
                 lastCacheMap = map;
             }
