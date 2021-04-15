@@ -67,7 +67,8 @@ namespace CombatExtended
 	      float damageAmountBase = DamageAmount;
 	      var projectilePropsCE = (ProjectilePropertiesCE)def.projectile;
 	      var isSharpDmg = def.projectile.damageDef.armorCategory == DamageArmorCategoryDefOf.Sharp;
-              var penetration = PenetrationAmount;  
+              var penetration = PenetrationAmount;
+	      var damDefCE = def.projectile.damageDef.GetModExtension<DamageDefExtensionCE>() ?? new DamageDefExtensionCE();
 	      var dinfo = new DamageInfo(
                     def.projectile.damageDef,
                     damageAmountBase,
