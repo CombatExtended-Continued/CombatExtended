@@ -792,6 +792,9 @@ namespace CombatExtended
                 Vector3 targetPos;
                 if (targetThing != null)
                 {
+		    float shotHeight = shotSource.y;
+		    AdjustShotHeight(caster, targetThing, ref shotHeight);
+		    shotSource.y = shotHeight;
                     Vector3 targDrawPos = targetThing.DrawPos;
                     targetPos = new Vector3(targDrawPos.x, new CollisionVertical(targetThing).Max, targDrawPos.z);
                     var targPawn = targetThing as Pawn;
