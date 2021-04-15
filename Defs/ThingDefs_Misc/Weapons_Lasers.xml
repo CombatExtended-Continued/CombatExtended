@@ -1,0 +1,146 @@
+<Defs>
+
+<!-- ====================== Las Blast ===================== -->
+<ThingDef Class="CombatExtended.Lasers.LaserBeamDefCE" ParentName="BaseBullet">
+  <thingClass>CombatExtended.Lasers.LaserBeamCE</thingClass>
+  <defName>OGI_Bullet_LasGun</defName>
+  <graphicData>
+      <graphicClass>Graphic_Single</graphicClass>
+      <texPath>Things/Projectile/LasShotLrg</texPath>
+      <shaderType>TransparentPostLight</shaderType>
+      <drawSize>1.5</drawSize>
+    </graphicData>
+    <label>las blast</label>
+    <beamGraphic>BeamGraphic</beamGraphic>
+  <description>A focused pinpoint laser beam which is strong enough to take an ordinary human arm off with one shot but is not as effective against the more durable alien bodies and stronger types of personal armour.</description>
+  <textures>
+    <li>Things/Mote/LongSparkThrown</li>
+  </textures>
+  <seam>0</seam>
+  <projectile Class="CombatExtended.ProjectilePropertiesCE">
+    <damageDef>Bullet</damageDef>
+    <damageAmountBase>24</damageAmountBase>
+    <armorPenetrationSharp>12</armorPenetrationSharp>
+    <armorPenetrationBlunt>28</armorPenetrationBlunt>
+    <isInstant>true</isInstant>
+  </projectile>
+  <modExtensions>
+    <li Class="ProjectileImpactFX.EffectProjectileExtension">
+      <explosionMote>true</explosionMote>
+      <explosionMoteSize>0.25</explosionMoteSize>
+      <ImpactMoteDef>Mote_YellowSparkFlash</ImpactMoteDef>
+      <ImpactMoteSize>1</ImpactMoteSize>
+      <ImpactGlowMoteDef>Mote_ExplosionFlash</ImpactGlowMoteDef>
+      <ImpactGlowMoteSize>2.5</ImpactGlowMoteSize>
+    </li>
+  </modExtensions>
+</ThingDef>
+
+ 
+<!-- ====================== Las Gun - Base ===================== -->
+<ThingDef Name="OG_Imperial_LasGun" ParentName="BaseHumanMakeableGun" Abstract="True">
+	<label>lasgun (I)</label>
+	<soundInteract>Interact_Rifle</soundInteract>
+	<statBases>
+		<WorkToMake>47500</WorkToMake>
+		<!--MarketValue>500</MarketValue-->
+		<Mass>3.5</Mass>
+	</statBases>
+	<recipeMaker>
+		<skillRequirements>
+			<Crafting>7</Crafting>
+		</skillRequirements>
+	</recipeMaker>
+	<weaponTags>
+		<li>Lasgun</li>
+	</weaponTags>
+	<tradeTags>
+		<li>OGIRanged</li>
+	</tradeTags>
+	<generateCommonality>1.0</generateCommonality>
+	<equippedStatOffsets>
+	
+	</equippedStatOffsets>
+</ThingDef>
+
+<!-- ====================== Lasguns ===================== -->
+<!-- ====================== M-Galaxy Pattern ===================== -->
+<ThingDef ParentName="OG_Imperial_LasGun">
+	<defName>OGI_Gun_LasGun_Galaxy</defName>
+	<label>m-galaxy pattern lasgun (I)</label>
+	<description>The Lasgun, also sometimes referred to as a Lasrifle, is a directed-energy antipersonnel weapon used by the military forces of the Imperium of Man, and it is the most common and widely-used type of laser weapon in the galaxy. Lasguns are reliable, easy to maintain and to produce, and are readily available on most Imperial worlds. The Lasgun is strong enough to take an ordinary human arm off with one shot but is not as effective against the more durable alien bodies and stronger types of personal armour. A Lasgun's beam also cauterizes the wounds it inflicts due to the immense heat given off by the shot.
+	
+	Although thousands of variant models, marks and patterns exist the standard Lasgun pattern used by the Imperial Guard is the M35 "M-Galaxy" Lasgun, first put into use in 2546.789.M35.</description>
+	<graphicData>
+      <texPath>Things/Item/Equipment/WeaponRanged/ChargeRifle</texPath>
+      <graphicClass>Graphic_Single</graphicClass>
+	</graphicData>  
+	<soundInteract>Interact_Rifle</soundInteract>
+	<statBases>
+		<!--MarketValue>500</MarketValue-->
+		<Mass>2.3</Mass>
+		<AccuracyTouch>0.65</AccuracyTouch>
+		<AccuracyShort>0.75</AccuracyShort>
+		<AccuracyMedium>0.70</AccuracyMedium>
+		<AccuracyLong>0.60</AccuracyLong>
+		<RangedWeapon_Cooldown>1.50</RangedWeapon_Cooldown>
+	</statBases>
+	<costList>
+		<Steel>75</Steel>
+		<Plasteel>30</Plasteel>
+		<ComponentIndustrial>4</ComponentIndustrial>
+	</costList>
+	<techLevel>Spacer</techLevel>
+	<weaponTags>
+	
+	</weaponTags>
+	<tradeTags>
+	
+	</tradeTags>
+	<generateCommonality>1.0</generateCommonality>
+	<equippedStatOffsets>
+	
+	</equippedStatOffsets>
+	<verbs>
+		<li>
+			<verbClass>Verb_Shoot</verbClass>
+			<label>B</label>
+			<hasStandardCommand>true</hasStandardCommand>
+			<defaultProjectile>OGI_Bullet_LasGun</defaultProjectile>
+			<warmupTime>0.75</warmupTime>
+			<range>31</range>
+			<ticksBetweenBurstShots>20</ticksBetweenBurstShots>
+			<burstShotCount>3</burstShotCount>
+			<soundCast>Shot_ChargeRifle</soundCast>
+			<soundCastTail>GunTail_Medium</soundCastTail>
+			<muzzleFlashScale>14</muzzleFlashScale>
+			<targetParams>
+				<canTargetLocations>true</canTargetLocations>
+			</targetParams>
+		</li>
+	</verbs>
+	<comps>		
+	
+	</comps>
+	<tools>
+		<li>
+			<label>stock</label>
+			<capacities>
+				<li>Blunt</li>
+			</capacities>
+			<power>9</power>
+			<cooldownTime>1.8</cooldownTime>
+		</li>
+		<li>
+			<label>barrel</label>
+			<capacities>
+				<li>Blunt</li>
+			</capacities>
+			<power>10</power>
+			<cooldownTime>1.9</cooldownTime>
+		</li>
+	</tools>
+	
+</ThingDef>
+ 
+</Defs>
