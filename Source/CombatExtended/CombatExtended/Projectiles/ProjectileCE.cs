@@ -62,7 +62,7 @@ namespace CombatExtended
         protected ThingDef equipmentDef;
         protected Thing launcher;
         public Thing intendedTarget;
-        public float minCollisionSqr;
+        public float minCollisionDistance;
         public bool canTargetSelf;
         public bool castShadow = true;
         public bool logMisses = true;
@@ -524,7 +524,7 @@ namespace CombatExtended
             }
 
             #region Sanity checks
-            if (ticksToImpact == 0 || def.projectile.flyOverhead)
+            if (ticksToImpact < 0 || def.projectile.flyOverhead)
                 return false;
 
             if (!lastPosIV3.InBounds(Map) || !newPosIV3.InBounds(Map))
@@ -573,36 +573,24 @@ namespace CombatExtended
                 return true;
             }
             var roofChecked = false;
-            var justWallsRoofs = false;
 
-            //Check for minimum PAWN collision distance
-            float distFromOrigin = cell.DistanceToSquared(OriginIV3);
-            bool skipCollision = !def.projectile.alwaysFreeIntercept
-                && (minCollisionSqr <= 1f
-                    ? distFromOrigin < 1f
-                    : distFromOrigin <= Mathf.Min(144f, minCollisionSqr / 4));
-
-            var mainThingList = new List<Thing>(Map.thingGrid.ThingsListAtFast(cell))
-                .Where(t => justWallsRoofs ? t.def.Fillage == FillCategory.Full : (t is Pawn || t.def.Fillage != FillCategory.None)).ToList();
+            var mainThingList = new List<Thing>(Map.thingGrid.ThingsListAtFast(cell)).Where(t => t is Pawn || t.def.Fillage != FillCategory.None).ToList();
 
             //Find pawns in adjacent cells and append them to main list
-            if (!justWallsRoofs)
+            var adjList = new List<IntVec3>();
+            adjList.AddRange(GenAdj.CellsAdjacentCardinal(cell, Rot4.FromAngleFlat(shotRotation), new IntVec2(collisionCheckSize, 0)).ToList());
+
+            //Iterate through adjacent cells and find all the pawns
+            foreach (var curCell in adjList)
             {
-                var adjList = new List<IntVec3>();
-                adjList.AddRange(GenAdj.CellsAdjacentCardinal(cell, Rot4.FromAngleFlat(shotRotation), new IntVec2(collisionCheckSize, 0)).ToList());
-
-                //Iterate through adjacent cells and find all the pawns
-                foreach (var curCell in adjList)
+                if (curCell != cell && curCell.InBounds(Map))
                 {
-                    if (curCell != cell && curCell.InBounds(Map))
-                    {
-                        mainThingList.AddRange(Map.thingGrid.ThingsListAtFast(curCell)
-                        .Where(x => x is Pawn));
+                    mainThingList.AddRange(Map.thingGrid.ThingsListAtFast(curCell)
+                    .Where(x => x is Pawn));
 
-                        if (Controller.settings.DebugDrawInterceptChecks)
-                        {
-                            Map.debugDrawer.FlashCell(curCell, 0.7f);
-                        }
+                    if (Controller.settings.DebugDrawInterceptChecks)
+                    {
+                        Map.debugDrawer.FlashCell(curCell, 0.7f);
                     }
                 }
             }
@@ -622,13 +610,18 @@ namespace CombatExtended
                 if ((thing == launcher || thing == mount) && !canTargetSelf) continue;
 
                 // Check for collision
-                if ((!skipCollision || thing == intendedTarget) && TryCollideWith(thing))
-                    return true;
+                if (thing == intendedTarget || def.projectile.alwaysFreeIntercept || thing.Position.DistanceTo(OriginIV3) >= minCollisionDistance)
+                {
+                    if (TryCollideWith(thing))
+                    {
+                        return true;
+                    }
+                }
 
                 // Apply suppression. The height here is NOT that of the bullet in CELL,
                 // it is the height at the END OF THE PATH. This is because SuppressionRadius
                 // is not considered an EXACT limit.
-                if (!justWallsRoofs && ExactPosition.y < SuppressionRadius)
+                if (ExactPosition.y < SuppressionRadius)
                 {
                     var pawn = thing as Pawn;
                     if (pawn != null)
@@ -1016,8 +1009,9 @@ namespace CombatExtended
         }
         #endregion
 
-        private static Material[] GetShadowMaterial(Graphic_Collection g) {
-            var collection = (Graphic[]) subGraphics.GetValue(g);
+        private static Material[] GetShadowMaterial(Graphic_Collection g)
+        {
+            var collection = (Graphic[])subGraphics.GetValue(g);
             var shadows = collection.Select(item => item.GetColoredVersion(ShaderDatabase.Transparent, Color.black, Color.black).MatSingle).ToArray();
 
             return shadows;
