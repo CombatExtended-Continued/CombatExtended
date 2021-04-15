@@ -21,8 +21,10 @@ namespace CombatExtended
         public override void TickLong()
         {
             base.TickLong();
-            if (!Destroyed)
+            if (Destroyed)
             {
+              return;
+            }
                 float temperature = Position.GetTemperature(base.Map);
                 if (temperature > IgnitionTemp)
                 {
