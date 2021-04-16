@@ -161,7 +161,17 @@
 			<AimingAccuracy>0.25</AimingAccuracy>
 		</value>
 	</Operation>
-  
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName = "Turret_Sniper"]/comps/li[@Class="CompProperties_Power"]</xpath>
+		<value>
+			<li Class="CompProperties_Power">
+				<compClass>CompPowerTrader</compClass>
+				<basePowerConsumption>1500</basePowerConsumption>
+			</li>	
+		</value>
+	</Operation>
+
 	<Operation Class="PatchOperationReplace">
 		<xpath>Defs/ThingDef[defName = "Turret_Sniper"]/statBases/ShootingAccuracyTurret</xpath>
 		<value>
@@ -229,7 +239,17 @@
 	</Operation>
 
 	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/ThingDef[defName = "Turret_Autocannon"]/statBases/MaxHitPoints</xpath>
+		<xpath>Defs/ThingDef[defName = "Turret_Autocannon"]/comps/li[@Class="CompProperties_Power"]</xpath>
+		<value>
+			<li Class="CompProperties_Power">
+				<compClass>CompPowerTrader</compClass>
+				<basePowerConsumption>1250</basePowerConsumption>
+			</li>	
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[@Name = "AutocannonTurret"]/statBases/MaxHitPoints</xpath>
 		<value>
 			<MaxHitPoints>500</MaxHitPoints>
 		</value>
