@@ -52,7 +52,7 @@
 		    <hasStandardCommand>true</hasStandardCommand>
 		    <defaultProjectile>Bullet_CannonBall_Steel</defaultProjectile>
 		    <warmupTime>1.4</warmupTime>
-		    <range>78</range>
+		    <range>108</range>
 		    <soundCast>KIT_Shot_12Pounder</soundCast>
 		    <soundCastTail>GunTail_Medium</soundCastTail>
 		    <recoilPattern>Mounted</recoilPattern>
@@ -120,37 +120,46 @@
 
 		<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
 		<defName>KIT_Gun_Bombard</defName>
-		  <statBases>
-		    <SightsEfficiency>1.50</SightsEfficiency>
-		    <ShotSpread>0.6</ShotSpread>
-		    <SwayFactor>2.16</SwayFactor>
-		    <Bulk>24</Bulk>
-		    <RangedWeapon_Cooldown>2</RangedWeapon_Cooldown>
-		  </statBases>
-		  <Properties>
-		    <verbClass>CombatExtended.Verb_ShootCE</verbClass>
-		    <hasStandardCommand>true</hasStandardCommand>
-		    <defaultProjectile>Bullet_LargeCannonBall_Steel</defaultProjectile>
-		    <warmupTime>2.5</warmupTime>
-		    <range>64</range>
-			<minRange>3</minRange>
-		    <soundCast>KIT_Shot_Bombard</soundCast>
-		    <soundCastTail>GunTail_Medium</soundCastTail>
-			<muzzleFlashScale>9</muzzleFlashScale>
-		    <recoilPattern>Mounted</recoilPattern>
-		  </Properties>
-		  <AmmoUser>
-		    <magazineSize>1</magazineSize>
-		    <reloadTime>7.5</reloadTime>
-		    <ammoSet>AmmoSet_LargeCannonBall</ammoSet>
-		  </AmmoUser>
-		  <FireModes>
-		    <aiAimMode>AimedShot</aiAimMode>
-		    <noSnapshot>true</noSnapshot>
-		    <noSingleShot>false</noSingleShot>
-		  </FireModes>
+			<Properties>
+				<verbClass>CombatExtended.Verb_ShootMortarCE</verbClass>
+				<forceNormalTimeSpeed>false</forceNormalTimeSpeed>
+				<hasStandardCommand>true</hasStandardCommand>
+				<defaultProjectile>Bullet_LargeCannonBall_Steel</defaultProjectile>
+				<warmupTime>1.2</warmupTime>
+				<minRange>15</minRange>
+				<range>156</range>
+				<burstShotCount>1</burstShotCount>
+				<soundCast>KIT_Shot_Bombard</soundCast>
+				<soundCastTail>GunTail_Medium</soundCastTail>
+				<muzzleFlashScale>8</muzzleFlashScale>
+				<circularError>1.2</circularError>
+				<requireLineOfSight>false</requireLineOfSight>
+				<indirectFirePenalty>0.3</indirectFirePenalty>
+				<targetParams>
+					<canTargetLocations>true</canTargetLocations>
+				</targetParams>
+			</Properties>
+			<AmmoUser>
+				<magazineSize>1</magazineSize>
+				<reloadTime>7.5</reloadTime>
+				<ammoSet>AmmoSet_LargeCannonBall</ammoSet>
+			</AmmoUser>
 		</Operation>
 
+		<Operation Class="PatchOperationAdd">
+			<xpath>Defs/ThingDef[defName = "KIT_Gun_Bombard"]/comps</xpath>
+			<value>
+				<li Class="CombatExtended.CompProperties_Charges">
+					<chargeSpeeds>
+						<li>30</li>
+						<li>50</li>
+						<li>70</li>
+						<li>90</li>
+					</chargeSpeeds>
+				</li>
+			</value>
+		</Operation>
+			
 		<Operation Class="PatchOperationAdd">
 		  <xpath>/Defs/ThingDef[defName = "KIT_Gun_Bombard"]/weaponTags</xpath>
 		  <value>
