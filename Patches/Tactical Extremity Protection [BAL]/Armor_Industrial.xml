@@ -9,6 +9,7 @@
 			<operations>
 
 				<!-- === Assault Rig === -->
+
 				<li Class="PatchOperationAdd">
 					<xpath>/Defs/ThingDef[defName="TEP_AssaultRig"]/statBases</xpath>
 					<value>
@@ -35,6 +36,13 @@
 					<xpath>/Defs/ThingDef[defName="TEP_AssaultRig"]/equippedStatOffsets</xpath>
 				</li>
 
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="TEP_AssaultRig"]/stuffCategories/li[.="Metallic"]</xpath>
+					<value>
+						<li>Steeled</li>
+					</value>
+				</li>
+
 				<!-- === Frontier Carapace === -->
 
 				<li Class="PatchOperationAdd">
@@ -48,19 +56,37 @@
 				<li Class="PatchOperationReplace">
 					<xpath>/Defs/ThingDef[defName="TEP_FrontierCarapace"]/statBases/StuffEffectMultiplierArmor</xpath>
 					<value>
-						<StuffEffectMultiplierArmor>10</StuffEffectMultiplierArmor>
+						<StuffEffectMultiplierArmor>4</StuffEffectMultiplierArmor>
+					</value>
+				</li>
+
+				<li Class="PatchOperationAdd">
+					<xpath>/Defs/ThingDef[defName="TEP_FrontierCarapace"]/statBases</xpath>
+					<value>
+						<ArmorRating_Sharp>6</ArmorRating_Sharp>
 					</value>
 				</li>
 
 				<li Class="PatchOperationReplace">
 					<xpath>/Defs/ThingDef[defName="TEP_FrontierCarapace"]/statBases/ArmorRating_Blunt</xpath>
 					<value>
-						<ArmorRating_Blunt>4</ArmorRating_Blunt>
+						<ArmorRating_Blunt>9</ArmorRating_Blunt>
 					</value>
 				</li>
 
-				<li Class="PatchOperationRemove">
-					<xpath>/Defs/ThingDef[defName="TEP_FrontierCarapace"]/equippedStatOffsets</xpath>
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/ThingDef[defName="TEP_FrontierCarapace"]/equippedStatOffsets/CarryingCapacity</xpath>
+					<value>
+						<CarryBulk>35</CarryBulk>
+						<CarryWeight>5</CarryWeight>
+					</value>					
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="TEP_FrontierCarapace"]/stuffCategories/li[.="Metallic"]</xpath>
+					<value>
+						<li>Steeled</li>
+					</value>
 				</li>
 
 				<!-- === Light Arm Protectors === -->
@@ -93,6 +119,13 @@
 					</value>
 				</li>
 
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="TEP_LightArmProtectors"]/stuffCategories/li[.="Metallic"]</xpath>
+					<value>
+						<li>Steeled</li>
+					</value>
+				</li>
+
 				<!-- === Light Leg Protectors === -->
 
 				<li Class="PatchOperationAdd">
@@ -116,6 +149,13 @@
 
 				<li Class="PatchOperationRemove">
 					<xpath>/Defs/ThingDef[defName="TEP_LightLegProtectors"]/equippedStatOffsets</xpath>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="TEP_LightLegProtectors"]/stuffCategories/li[.="Metallic"]</xpath>
+					<value>
+						<li>Steeled</li>
+					</value>
 				</li>
 
 				<!-- === Heavy Arm Protectors === -->
@@ -148,6 +188,13 @@
 					</value>
 				</li>
 
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="TEP_HeavyArmProtectors"]/stuffCategories/li[.="Metallic"]</xpath>
+					<value>
+						<li>Steeled</li>
+					</value>
+				</li>
+
 				<!-- === Heavy Leg Protectors === -->
 
 				<li Class="PatchOperationAdd">
@@ -167,6 +214,13 @@
 
 				<li Class="PatchOperationRemove">
 					<xpath>/Defs/ThingDef[defName="TEP_HeavyLegProtectors"]/statBases/ArmorRating_Sharp</xpath>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="TEP_HeavyLegProtectors"]/stuffCategories/li[.="Metallic"]</xpath>
+					<value>
+						<li>Steeled</li>
+					</value>
 				</li>
 
 				<!-- === Light Faceshield === -->
@@ -190,6 +244,7 @@
 					<xpath>/Defs/ThingDef[defName="TEP_LightFaceshield"]/statBases/ArmorRating_Blunt</xpath>
 				</li>
 
+
 				<!-- === Heavy Faceshield === -->
 
 				<li Class="PatchOperationAdd">
@@ -207,6 +262,13 @@
 					</value>
 				</li>
 
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="TEP_HeavyFaceshield"]/stuffCategories/li[.="Metallic"]</xpath>
+					<value>
+						<li>Steeled</li>
+					</value>
+				</li>
+
 				<!-- === Flak Duster === -->
 
 				<li Class="PatchOperationAdd">
@@ -220,21 +282,21 @@
 				<li Class="PatchOperationReplace">
 					<xpath>/Defs/ThingDef[defName="TEP_FlakDuster"]/statBases/ArmorRating_Sharp</xpath>
 					<value>
-						<ArmorRating_Sharp>3.5</ArmorRating_Sharp>
+						<ArmorRating_Sharp>2</ArmorRating_Sharp>
 					</value>
 				</li>
 				
 				<li Class="PatchOperationReplace">
 					<xpath>/Defs/ThingDef[defName="TEP_FlakDuster"]/statBases/ArmorRating_Blunt</xpath>
 					<value>
-						<ArmorRating_Blunt>5</ArmorRating_Blunt>
+						<ArmorRating_Blunt>1.5</ArmorRating_Blunt>
 					</value>
 				</li>
 
 				<li Class="PatchOperationReplace">
 					<xpath>/Defs/ThingDef[defName="TEP_FlakDuster"]/statBases/StuffEffectMultiplierArmor</xpath>
 					<value>
-						<StuffEffectMultiplierArmor>3</StuffEffectMultiplierArmor>
+						<StuffEffectMultiplierArmor>4</StuffEffectMultiplierArmor>
 					</value>
 				</li>
 
@@ -249,23 +311,16 @@
 				</li>
 
 				<li Class="PatchOperationReplace">
-					<xpath>/Defs/ThingDef[defName="TEP_FlakParka"]/statBases/Mass</xpath>
-					<value>
-						<Mass>12</Mass>
-					</value>
-				</li>
-
-				<li Class="PatchOperationReplace">
 					<xpath>/Defs/ThingDef[defName="TEP_FlakParka"]/statBases/ArmorRating_Sharp</xpath>
 					<value>
-						<ArmorRating_Sharp>3.5</ArmorRating_Sharp>
+						<ArmorRating_Sharp>2</ArmorRating_Sharp>
 					</value>
 				</li>
 				
 				<li Class="PatchOperationReplace">
 					<xpath>/Defs/ThingDef[defName="TEP_FlakParka"]/statBases/ArmorRating_Blunt</xpath>
 					<value>
-						<ArmorRating_Blunt>5</ArmorRating_Blunt>
+						<ArmorRating_Blunt>1.5</ArmorRating_Blunt>
 					</value>
 				</li>
 
