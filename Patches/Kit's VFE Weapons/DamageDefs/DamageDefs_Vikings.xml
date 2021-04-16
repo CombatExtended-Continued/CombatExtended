@@ -1,0 +1,46 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+
+<Patch>
+	<Operation Class="PatchOperationFindMod">
+	<mods>
+		<li>Kit's VFE Weapons</li>
+	</mods>
+		<match Class="PatchOperationAdd">
+		<xpath>Defs</xpath>
+		<value>
+
+	<ToolCapacityDef>
+		<defName>CE_CryptoBlunt</defName>
+		<label>blunt</label>
+	</ToolCapacityDef>
+	
+
+	<DamageDef ParentName="BluntBase">
+		<defName>CE_CryptoBlunt</defName>
+		<label>the crushing and hypothermic damage of advanced crypto weaponry</label>
+		<additionalHediffs>
+		<li>
+			<hediff>Hypothermia</hediff>
+			<severityPerDamageDealt>0.01</severityPerDamageDealt>
+		</li>
+		</additionalHediffs>
+	</DamageDef>
+	
+	<ManeuverDef>
+		<defName>CE_Cryptosmash</defName>
+		<requiredCapacity>CE_CryptoBlunt</requiredCapacity>
+		<verb>
+		  <verbClass Class="CombatExtended.VerbPropertiesCE">CombatExtended.Verb_MeleeAttackCE</verbClass>
+		  <meleeDamageDef>CE_CryptoBlunt</meleeDamageDef>
+		</verb>
+		<logEntryDef>MeleeAttack</logEntryDef>
+		<combatLogRulesHit>Maneuver_Smash_MeleeHit</combatLogRulesHit>
+		<combatLogRulesDeflect>Maneuver_Smash_MeleeDeflect</combatLogRulesDeflect>
+		<combatLogRulesMiss>Maneuver_Smash_MeleeMiss</combatLogRulesMiss>
+		<combatLogRulesDodge>Maneuver_Smash_MeleeDodge</combatLogRulesDodge>
+	</ManeuverDef>
+
+		</value>
+		</match>
+	</Operation>
+</Patch>
