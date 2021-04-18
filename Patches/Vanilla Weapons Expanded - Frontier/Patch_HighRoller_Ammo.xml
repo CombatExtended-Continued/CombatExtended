@@ -1,0 +1,445 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+
+<Patch>
+
+<Operation Class="PatchOperationFindMod">
+		<mods>
+			<li>Vanilla Weapons Expanded - Frontier</li>
+		</mods>
+	<match Class="PatchOperationAdd">
+		<xpath>Defs</xpath>
+		<value>
+
+	<!-- ==================== AmmoSet ========================== -->
+
+	<CombatExtended.AmmoSetDef>
+		<defName>AmmoSet_44MagnumHR</defName>
+		<label>.44 Magnum</label>
+		<ammoTypes>
+			<Ammo_44Magnum_FMJ>Bullet_44MagnumHR_FMJ</Ammo_44Magnum_FMJ>
+			<Ammo_44Magnum_AP>Bullet_44MagnumHR_AP</Ammo_44Magnum_AP>
+			<Ammo_44Magnum_HP>Bullet_44MagnumHR_HP</Ammo_44Magnum_HP>
+		</ammoTypes>
+	</CombatExtended.AmmoSetDef>
+
+	<!-- ==================== Ammo ========================== -->
+
+	<!-- ================== Projectiles ================== -->
+
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="Base44MagnumBullet">
+		<defName>Bullet_44MagnumHR_FMJ</defName>
+		<label>.44 Magnum bullet (FMJ)</label>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageAmountBase>15</damageAmountBase>
+			<armorPenetrationSharp>8</armorPenetrationSharp>
+			<armorPenetrationBlunt>23.280</armorPenetrationBlunt>
+			<secondaryDamage>
+				<li>
+				  <def>Bullet</def>
+				  <amount>15</amount>
+				  <chance>0.10</chance>
+				</li>
+			</secondaryDamage>			
+		</projectile>
+	</ThingDef>
+
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="Base44MagnumBullet">
+		<defName>Bullet_44MagnumHR_AP</defName>
+		<label>.44 Magnum bullet (AP)</label>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageAmountBase>10</damageAmountBase>
+			<armorPenetrationSharp>16</armorPenetrationSharp>
+			<armorPenetrationBlunt>23.280</armorPenetrationBlunt>
+			<secondaryDamage>
+				<li>
+                  <def>Bullet</def>
+                  <amount>10</amount>
+                  <chance>0.10</chance>
+				</li>
+			</secondaryDamage>			
+		</projectile>
+	</ThingDef>
+
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="Base44MagnumBullet">
+		<defName>Bullet_44MagnumHR_HP</defName>
+		<label>.44 Magnum bullet (HP)</label>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageAmountBase>19</damageAmountBase>
+			<armorPenetrationSharp>4</armorPenetrationSharp>
+			<armorPenetrationBlunt>23.280</armorPenetrationBlunt>
+			<secondaryDamage>
+				<li>
+                  <def>Bullet</def>
+                  <amount>19</amount>
+                  <chance>0.10</chance>
+				</li>
+			</secondaryDamage>
+		</projectile>
+	</ThingDef>
+
+	<!-- ==================== AmmoSet ========================== -->
+
+	<CombatExtended.AmmoSetDef>
+		<defName>AmmoSet_763x25mmMauserHR</defName>
+		<label>7.63x25mm Mauser</label>
+		<ammoTypes>
+			<Ammo_763x25mmMauser_FMJ>Bullet_763x25mmMauserHR_FMJ</Ammo_763x25mmMauser_FMJ>
+			<Ammo_763x25mmMauser_AP>Bullet_763x25mmMauserHR_AP</Ammo_763x25mmMauser_AP>
+			<Ammo_763x25mmMauser_HP>Bullet_763x25mmMauserHR_HP</Ammo_763x25mmMauser_HP>
+		</ammoTypes>
+	</CombatExtended.AmmoSetDef>
+
+	<!-- ==================== Ammo ========================== -->
+
+	<!-- ================== Projectiles ================== -->
+
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="Base763x25mmMauserBullet">
+		<defName>Bullet_763x25mmMauserHR_FMJ</defName>
+		<label>7.63mm Mauser bullet (FMJ)</label>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageAmountBase>10</damageAmountBase>
+			<armorPenetrationSharp>5</armorPenetrationSharp>
+			<armorPenetrationBlunt>10.9</armorPenetrationBlunt>
+			<secondaryDamage>
+				<li>
+				  <def>Bullet</def>
+				  <amount>10</amount>
+				  <chance>0.10</chance>
+				</li>
+			</secondaryDamage>            
+		</projectile>
+	</ThingDef>
+
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="Base763x25mmMauserBullet">
+		<defName>Bullet_763x25mmMauserHR_AP</defName>
+		<label>7.63mm Mauser bullet (AP)</label>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageAmountBase>7</damageAmountBase>
+			<armorPenetrationSharp>10</armorPenetrationSharp>
+			<armorPenetrationBlunt>10.9</armorPenetrationBlunt>
+			<secondaryDamage>
+				<li>
+				  <def>Bullet</def>
+				  <amount>7</amount>
+				  <chance>0.10</chance>
+				</li>
+			</secondaryDamage>            
+		</projectile>
+	</ThingDef>
+
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="Base763x25mmMauserBullet">
+		<defName>Bullet_763x25mmMauserHR_HP</defName>
+		<label>7.63mm Mauser bullet (HP)</label>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageAmountBase>13</damageAmountBase>
+			<armorPenetrationSharp>3</armorPenetrationSharp>
+			<armorPenetrationBlunt>10.9</armorPenetrationBlunt>
+			<secondaryDamage>
+				<li>
+				  <def>Bullet</def>
+				  <amount>13</amount>
+				  <chance>0.10</chance>
+				</li>
+			</secondaryDamage>            
+		</projectile>
+	</ThingDef>
+
+	<!-- ==================== AmmoSet ========================== -->
+
+	<CombatExtended.AmmoSetDef>
+		<defName>AmmoSet_4570GovHR</defName>
+		<label>.45-70 Government</label>
+		<ammoTypes>
+			<Ammo_4570Gov_FMJ>Bullet_4570GovHR_FMJ</Ammo_4570Gov_FMJ>
+			<Ammo_4570Gov_AP>Bullet_4570GovHR_AP</Ammo_4570Gov_AP>
+			<Ammo_4570Gov_HP>Bullet_4570GovHR_HP</Ammo_4570Gov_HP>
+		    <Ammo_4570Gov_Incendiary>Bullet_4570GovHR_Incendiary</Ammo_4570Gov_Incendiary>
+			<Ammo_4570Gov_HE>Bullet_4570GovHR_HE</Ammo_4570Gov_HE>
+			<Ammo_4570Gov_Sabot>Bullet_4570GovHR_Sabot</Ammo_4570Gov_Sabot>					
+		</ammoTypes>
+	</CombatExtended.AmmoSetDef>
+	
+	<!-- ==================== Ammo ========================== -->
+
+	<!-- ================== Projectiles ================== -->
+
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="Base4570GovBullet">
+		<defName>Bullet_4570GovHR_FMJ</defName>
+		<label>.45-70 Government cartridge (FMJ)</label>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageAmountBase>20</damageAmountBase>
+			<armorPenetrationSharp>9</armorPenetrationSharp>
+			<armorPenetrationBlunt>47.32</armorPenetrationBlunt>
+			<secondaryDamage>
+				<li>
+				  <def>Bullet</def>
+				  <amount>20</amount>
+				  <chance>0.10</chance>
+				</li>
+			</secondaryDamage>			
+		</projectile>
+	</ThingDef>
+
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="Base4570GovBullet">
+		<defName>Bullet_4570GovHR_AP</defName>
+		<label>.45-70 Government cartridge (AP)</label>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageAmountBase>13</damageAmountBase>
+			<armorPenetrationSharp>18</armorPenetrationSharp>
+			<armorPenetrationBlunt>47.32</armorPenetrationBlunt>
+			<secondaryDamage>
+				<li>
+				  <def>Bullet</def>
+				  <amount>13</amount>
+				  <chance>0.10</chance>
+				</li>
+			</secondaryDamage>			
+		</projectile>
+	</ThingDef>
+
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="Base4570GovBullet">
+		<defName>Bullet_4570GovHR_HP</defName>
+		<label>.45-70 Government cartridge (HP)</label>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageAmountBase>25</damageAmountBase>
+			<armorPenetrationSharp>5</armorPenetrationSharp>
+			<armorPenetrationBlunt>47.32</armorPenetrationBlunt>
+			<secondaryDamage>
+				<li>
+				  <def>Bullet</def>
+				  <amount>25</amount>
+				  <chance>0.10</chance>
+				</li>
+			</secondaryDamage>			
+		</projectile>
+	</ThingDef>
+
+	  <ThingDef Class="CombatExtended.AmmoDef" ParentName="Base4570GovBullet">
+		<defName>Bullet_4570GovHR_Incendiary</defName>
+		<label>.45-70 bullet (AP-I)</label>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+		  <damageAmountBase>13</damageAmountBase>
+		  <armorPenetrationSharp>18</armorPenetrationSharp>
+		  <armorPenetrationBlunt>47.32</armorPenetrationBlunt>
+		  <secondaryDamage>
+				<li>
+			  	<def>Flame_Secondary</def>
+			  	<amount>8</amount>
+				</li>
+				<li>
+				  <def>Bullet</def>
+				  <amount>13</amount>
+				  <chance>0.10</chance>
+				</li>				
+				<li>
+				  <def>Flame_Secondary</def>
+				  <amount>8</amount>
+				  <chance>0.10</chance>
+				</li>				
+		  </secondaryDamage>
+		</projectile>
+	  </ThingDef>
+	  
+	  <ThingDef Class="CombatExtended.AmmoDef" ParentName="Base4570GovBullet">
+		<defName>Bullet_4570GovHR_HE</defName>
+		<label>.45-70 bullet (HE)</label>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+		  <damageAmountBase>20</damageAmountBase>
+		  <armorPenetrationSharp>9</armorPenetrationSharp>
+		  <armorPenetrationBlunt>47.32</armorPenetrationBlunt>
+		  <secondaryDamage>
+				<li>
+			  	<def>Bomb_Secondary</def>
+			  	<amount>12</amount>
+				</li>
+				<li>
+				  <def>Bullet</def>
+				  <amount>20</amount>
+				  <chance>0.10</chance>
+				</li>
+				<li>
+				  <def>Bomb_Secondary</def>
+				  <amount>12</amount>
+				  <chance>0.10</chance>
+				</li>								
+		  </secondaryDamage>
+		</projectile>
+	  </ThingDef>
+
+	  <ThingDef Class="CombatExtended.AmmoDef" ParentName="Base4570GovBullet">
+		<defName>Bullet_4570GovHR_Sabot</defName>
+		<label>.45-70 bullet (Sabot)</label>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+		  <damageAmountBase>11</damageAmountBase>
+		  <armorPenetrationSharp>31.5</armorPenetrationSharp>
+		  <armorPenetrationBlunt>60.68</armorPenetrationBlunt>
+		  <speed>128</speed>
+			<secondaryDamage>
+				<li>
+				  <def>Bullet</def>
+				  <amount>11</amount>
+				  <chance>0.10</chance>
+				</li>
+			</secondaryDamage>		  
+		</projectile>
+	  </ThingDef>
+
+  <!-- ==================== AmmoSet ========================== -->
+
+  <CombatExtended.AmmoSetDef>
+    <defName>AmmoSet_12GaugeHR</defName>
+    <label>12 Gauge</label>
+    <ammoTypes>
+      <Ammo_12Gauge_Buck>Bullet_12GaugeHR_Buck</Ammo_12Gauge_Buck>
+      <Ammo_12Gauge_Slug>Bullet_12GaugeHR_Slug</Ammo_12Gauge_Slug>
+      <Ammo_12Gauge_Beanbag>Bullet_12Gauge_Beanbag</Ammo_12Gauge_Beanbag>
+      <Ammo_12Gauge_ElectroSlug>Bullet_12GaugeHR_ElectroSlug</Ammo_12Gauge_ElectroSlug>
+    </ammoTypes>
+  </CombatExtended.AmmoSetDef>
+
+  <!-- ==================== Ammo ========================== -->
+
+  <!-- ================== Projectiles ================== -->
+
+  <ThingDef Class="CombatExtended.AmmoDef" ParentName="Base12GaugeBullet">
+    <defName>Bullet_12GaugeHR_Buck</defName>
+    <label>buckshot pellet</label>
+    <graphicData>
+      <texPath>Things/Projectile/Shotgun_Pellet</texPath>
+      <graphicClass>Graphic_Single</graphicClass>
+    </graphicData>
+    <projectile Class="CombatExtended.ProjectilePropertiesCE">
+      <damageAmountBase>8</damageAmountBase>
+      <pelletCount>9</pelletCount>
+      <armorPenetrationSharp>4</armorPenetrationSharp>
+      <armorPenetrationBlunt>4.52</armorPenetrationBlunt>
+      <spreadMult>17.8</spreadMult>
+			<secondaryDamage>
+				<li>
+				  <def>Bullet</def>
+				  <amount>9</amount>
+				  <chance>0.10</chance>
+				</li>
+			</secondaryDamage>      
+    </projectile>
+  </ThingDef>
+
+  <ThingDef Class="CombatExtended.AmmoDef" ParentName="Base12GaugeBullet">
+    <defName>Bullet_12GaugeHR_Slug</defName>
+    <label>shotgun slug</label>
+    <graphicData>
+      <texPath>Things/Projectile/Bullet_big</texPath>
+      <graphicClass>Graphic_Single</graphicClass>
+    </graphicData>
+    <projectile Class="CombatExtended.ProjectilePropertiesCE">
+      <speed>110</speed>
+      <damageAmountBase>28</damageAmountBase>
+      <armorPenetrationSharp>6</armorPenetrationSharp>
+      <armorPenetrationBlunt>85.2</armorPenetrationBlunt>
+			<secondaryDamage>
+				<li>
+				  <def>Bullet</def>
+				  <amount>28</amount>
+				  <chance>0.10</chance>
+				</li>
+			</secondaryDamage>      
+    </projectile>
+  </ThingDef>
+
+  <ThingDef Class="CombatExtended.AmmoDef" ParentName="Base12GaugeBullet">
+    <defName>Bullet_12GaugeHR_ElectroSlug</defName>
+    <label>EMP slug</label>
+    <graphicData>
+      <texPath>Things/Projectile/Bullet_big</texPath>
+      <graphicClass>Graphic_Single</graphicClass>
+    </graphicData>
+    <projectile Class="CombatExtended.ProjectilePropertiesCE">
+      <speed>30</speed>
+      <damageDef>EMP</damageDef>
+      <damageAmountBase>12</damageAmountBase>
+      <armorPenetrationSharp>0</armorPenetrationSharp>
+      <armorPenetrationBlunt>0</armorPenetrationBlunt>
+      <empShieldBreakChance>0.2</empShieldBreakChance>
+			<secondaryDamage>
+				<li>
+				  <def>EMP</def>
+				  <amount>12</amount>
+				  <chance>0.10</chance>
+				</li>
+			</secondaryDamage>      
+    </projectile>
+  </ThingDef>
+
+	<!-- ==================== AmmoSet ========================== -->
+
+	<CombatExtended.AmmoSetDef>
+		<defName>AmmoSet_25ACPHR</defName>
+		<label>.25 ACP</label>
+		<ammoTypes>
+			<Ammo_25ACP_FMJ>Bullet_25ACPHR_FMJ</Ammo_25ACP_FMJ>
+			<Ammo_25ACP_AP>Bullet_25ACPHR_AP</Ammo_25ACP_AP>
+			<Ammo_25ACP_HP>Bullet_25ACPHR_HP</Ammo_25ACP_HP>			
+		</ammoTypes>
+	</CombatExtended.AmmoSetDef>
+
+	<!-- ==================== Ammo ========================== -->
+
+	<!-- ================== Projectiles ================== -->
+
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="Base25ACPBullet">
+		<defName>Bullet_25ACPHR_FMJ</defName>
+		<label>.25 ACP bullet (FMJ)</label>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageAmountBase>11</damageAmountBase>
+			<armorPenetrationSharp>3</armorPenetrationSharp>
+			<armorPenetrationBlunt>17.32</armorPenetrationBlunt>
+			<secondaryDamage>
+				<li>
+				  <def>Bullet</def>
+				  <amount>11</amount>
+				  <chance>0.10</chance>
+				</li>
+			</secondaryDamage>            
+		</projectile>
+	</ThingDef>
+
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="Base25ACPBullet">
+		<defName>Bullet_25ACPHR_AP</defName>
+		<label>.25 ACP bullet (AP)</label>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageAmountBase>7</damageAmountBase>
+			<armorPenetrationSharp>6</armorPenetrationSharp>
+			<armorPenetrationBlunt>17.32</armorPenetrationBlunt>
+			<secondaryDamage>
+				<li>
+				  <def>Bullet</def>
+				  <amount>7</amount>
+				  <chance>0.10</chance>
+				</li>
+			</secondaryDamage>            
+		</projectile>
+	</ThingDef>
+
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="Base25ACPBullet">
+		<defName>Bullet_25ACPHR_HP</defName>
+		<label>.25 ACP bullet (HP)</label>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageAmountBase>15</damageAmountBase>
+			<armorPenetrationSharp>2</armorPenetrationSharp>
+			<armorPenetrationBlunt>17.32</armorPenetrationBlunt>
+			<secondaryDamage>
+				<li>
+				  <def>Bullet</def>
+				  <amount>15</amount>
+				  <chance>0.10</chance>
+				</li>
+			</secondaryDamage>            
+		</projectile>
+	</ThingDef>
+
+		</value>	
+	</match>
+</Operation>
+			  
+
+</Patch>

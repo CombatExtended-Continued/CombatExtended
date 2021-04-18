@@ -1,0 +1,236 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+
+<Patch>
+	<Operation Class="PatchOperationFindMod">
+	<mods>
+		<li>Vanilla Weapons Expanded - Tribal</li>
+	</mods>
+		<match Class="PatchOperationSequence">
+		<operations>
+
+    <!-- Heavy Club -->
+
+    <li Class="PatchOperationReplace">
+      <xpath>Defs/ThingDef[defName="VWE_MeleeWeapon_HeavyClub"]/tools</xpath>
+      <value>
+        <tools>
+          <li Class="CombatExtended.ToolCE">
+            <label>handle</label>
+            <capacities>
+              <li>Poke</li>
+            </capacities>
+            <power>4</power>
+            <cooldownTime>1.78</cooldownTime>
+            <armorPenetrationBlunt>1</armorPenetrationBlunt>
+            <linkedBodyPartsGroup>Handle</linkedBodyPartsGroup>
+          </li>
+          <li Class="CombatExtended.ToolCE">
+            <label>head</label>
+            <capacities>
+              <li>Blunt</li>
+            </capacities>
+            <power>11</power>
+            <cooldownTime>3.48</cooldownTime>
+            <chanceFactor>1.33</chanceFactor>
+            <armorPenetrationBlunt>4</armorPenetrationBlunt>
+            <linkedBodyPartsGroup>Head</linkedBodyPartsGroup>
+          </li>
+        </tools>
+      </value>
+    </li>
+
+    <li Class="PatchOperationAdd">
+      <xpath>Defs/ThingDef[defName="VWE_MeleeWeapon_HeavyClub"]/statBases</xpath>
+      <value>
+            <Bulk>4</Bulk>
+            <MeleeCounterParryBonus>0.15</MeleeCounterParryBonus>
+      </value>
+    </li>
+
+    <li Class="PatchOperationAdd">
+      <xpath>Defs/ThingDef[defName="VWE_MeleeWeapon_HeavyClub"]</xpath>
+      <value>
+        <equippedStatOffsets>
+          <MeleeCritChance>0.67</MeleeCritChance>
+          <MeleeParryChance>0.15</MeleeParryChance>
+          <MeleeDodgeChance>0.2</MeleeDodgeChance>	
+        </equippedStatOffsets>
+      </value>
+    </li>
+
+    <!-- Light Club -->
+
+    <li Class="PatchOperationReplace">
+      <xpath>Defs/ThingDef[defName="VWE_MeleeWeapon_LightClub"]/tools</xpath>
+      <value>
+        <tools>
+          <li Class="CombatExtended.ToolCE">
+            <label>handle</label>
+            <capacities>
+              <li>Poke</li>
+            </capacities>
+            <power>4</power>
+            <cooldownTime>1.78</cooldownTime>
+            <armorPenetrationBlunt>1</armorPenetrationBlunt>
+            <linkedBodyPartsGroup>Handle</linkedBodyPartsGroup>
+          </li>
+          <li Class="CombatExtended.ToolCE">
+            <label>head</label>
+            <capacities>
+              <li>Blunt</li>
+            </capacities>
+            <power>11</power>
+            <cooldownTime>3.48</cooldownTime>
+            <chanceFactor>1.33</chanceFactor>
+            <armorPenetrationBlunt>4</armorPenetrationBlunt>
+            <linkedBodyPartsGroup>Head</linkedBodyPartsGroup>
+          </li>
+        </tools>
+      </value>
+    </li>
+
+    <li Class="PatchOperationAdd">
+      <xpath>Defs/ThingDef[defName="VWE_MeleeWeapon_LightClub"]/statBases</xpath>
+      <value>
+            <Bulk>4</Bulk>
+            <MeleeCounterParryBonus>0.15</MeleeCounterParryBonus>
+      </value>
+    </li>
+
+    <li Class="PatchOperationAdd">
+      <xpath>Defs/ThingDef[defName="VWE_MeleeWeapon_LightClub"]</xpath>
+      <value>
+        <equippedStatOffsets>
+          <MeleeCritChance>0.67</MeleeCritChance>
+          <MeleeParryChance>0.15</MeleeParryChance>
+          <MeleeDodgeChance>0.2</MeleeDodgeChance>	
+        </equippedStatOffsets>
+      </value>
+    </li>
+
+    <li Class="PatchOperationAdd">
+      <xpath>Defs/ThingDef[defName="VWE_MeleeWeapon_LightClub"]/weaponTags</xpath>
+      <value>
+        <li>CE_OneHandedWeapon</li>
+      </value>
+    </li>
+
+    <!-- === Tribal Axe === -->
+
+    <li Class="PatchOperationReplace">
+        <xpath>/Defs/ThingDef[defName="VWE_MeleeWeapon_TribalAxe"]/tools</xpath>
+        <value>
+        <tools>
+            <li Class="CombatExtended.ToolCE">
+            <label>handle</label>
+            <capacities>
+                <li>Poke</li>
+            </capacities>
+            <power>3</power>
+            <cooldownTime>1.59</cooldownTime>
+            <chanceFactor>0.10</chanceFactor>
+            <armorPenetrationBlunt>0.625</armorPenetrationBlunt>
+            <linkedBodyPartsGroup>Handle</linkedBodyPartsGroup>
+            </li>
+            <li Class="CombatExtended.ToolCE">
+            <label>edge</label>
+            <capacities>
+                <li>Cut</li>
+            </capacities>
+            <power>17</power>
+            <cooldownTime>3.52</cooldownTime>
+            <chanceFactor>0.30</chanceFactor>
+            <armorPenetrationBlunt>2.025</armorPenetrationBlunt>
+            <armorPenetrationSharp>0.68</armorPenetrationSharp>
+            <linkedBodyPartsGroup>Edge</linkedBodyPartsGroup>
+            </li>
+        </tools>
+        </value>
+    </li>
+
+    <li Class="PatchOperationAdd">
+        <xpath>/Defs/ThingDef[defName="VWE_MeleeWeapon_TribalAxe"]/statBases</xpath>
+        <value>
+        <Bulk>4</Bulk>
+        <MeleeCounterParryBonus>0.15</MeleeCounterParryBonus>
+        </value>
+    </li>
+
+    <li Class="PatchOperationAdd">
+        <xpath>/Defs/ThingDef[defName="VWE_MeleeWeapon_TribalAxe"]</xpath>
+        <value>
+        <equippedStatOffsets>
+          <MeleeCritChance>0.10</MeleeCritChance>
+          <MeleeParryChance>0.15</MeleeParryChance>
+          <MeleeDodgeChance>0.20</MeleeDodgeChance>
+        </equippedStatOffsets>  
+        </value>
+    </li>
+
+    <li Class="PatchOperationAdd">
+        <xpath>/Defs/ThingDef[defName="VWE_MeleeWeapon_TribalAxe"]/weaponTags</xpath>
+        <value>
+            <li>CE_OneHandedWeapon</li>
+        </value>
+    </li>
+
+    <!-- === Shiv === -->
+
+	<li Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="VWE_MeleeWeapon_Shiv"]/tools</xpath>
+		<value>
+        <tools>
+            <li Class="CombatExtended.ToolCE">
+                <label>handle</label>
+                <capacities>
+                    <li>Blunt</li>
+                </capacities>
+                <power>4</power>
+                <cooldownTime>1.2</cooldownTime>
+                <armorPenetration>0.071</armorPenetration>
+                <linkedBodyPartsGroup>Handle</linkedBodyPartsGroup>
+            </li>
+            <li Class="CombatExtended.ToolCE">
+                <label>point</label>
+                <capacities>
+                    <li>Stab</li>
+                </capacities>
+                <power>9.5</power>
+                <cooldownTime>1.2</cooldownTime>
+                <chanceFactor>1.33</chanceFactor>
+                <armorPenetration>0.208</armorPenetration>
+                <linkedBodyPartsGroup>Point</linkedBodyPartsGroup>
+            </li>
+        </tools>
+		</value>
+	</li>
+
+	<li Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="VWE_MeleeWeapon_Shiv"]/statBases</xpath>
+		<value>
+      		<Bulk>0.15</Bulk>
+		</value>
+	</li>
+
+	<li Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="VWE_MeleeWeapon_Shiv"]</xpath>
+		<value>
+        <equippedStatOffsets>
+            <MeleeCritChance>0.1</MeleeCritChance>
+            <MeleeParryChance>0.1</MeleeParryChance>
+            <MeleeDodgeChance>0.05</MeleeDodgeChance>
+        </equippedStatOffsets>
+		</value>
+	</li>
+
+	<li Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="VWE_MeleeWeapon_Shiv"]/weaponTags</xpath>
+		<value>
+            <li>CE_OneHandedWeapon</li>
+		</value>
+	</li>
+
+		</operations>
+		</match>
+	</Operation>
+</Patch>
