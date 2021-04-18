@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+
+  <Operation Class="PatchOperationFindMod">
+    <mods>
+      <li>Vanilla Weapons Expanded - Non-Lethal</li>
+    </mods>
+    <match Class="PatchOperationSequence">
+      <operations>
+
+        <!-- === Toxic Grenade === -->
+        <!-- == Projectile == -->
+        <li Class="PatchOperationReplace">
+          <xpath>/Defs/ThingDef[defName="VWENL_Projectile_TearGasGrenade"]/thingClass</xpath>
+          <value>
+            <thingClass>CombatExtended.ProjectileCE_Explosive</thingClass>
+          </value>
+        </li>
+
+        <li Class="PatchOperationReplace">
+          <xpath>/Defs/ThingDef[defName="VWENL_Projectile_TearGasGrenade"]/projectile</xpath>
+          <value>
+            <projectile Class="CombatExtended.ProjectilePropertiesCE">
+              <damageDef>VWE_ToxicGas</damageDef>
+              <explosionRadius>3.9</explosionRadius>
+              <damageAmountBase>1</damageAmountBase>
+              <explosionDelay>100</explosionDelay>
+              <dropsCasings>true</dropsCasings>
+              <flyOverhead>false</flyOverhead>
+              <soundExplode>DispensePaste</soundExplode>
+              <postExplosionSpawnThingDef>VWENL_TearGasCloud</postExplosionSpawnThingDef>
+              <postExplosionSpawnChance>1</postExplosionSpawnChance>
+              <postExplosionSpawnThingCount>1</postExplosionSpawnThingCount>
+              <applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
+              <casingMoteDefname>Mote_GrenadePin</casingMoteDefname>
+            </projectile>
+          </value>
+        </li>
+
+        <!-- == Grenade == -->
+        <li Class="PatchOperationAdd">
+          <xpath>/Defs/ThingDef[defName="VWE_TearGasGrenade"]</xpath>
+          <value>
+            <thingClass>CombatExtended.AmmoThing</thingClass>
+            <stackLimit>75</stackLimit>
+            <resourceReadoutPriority>First</resourceReadoutPriority>
+          </value>
+        </li>
+
+        <li Class="PatchOperationAttributeSet">
+          <xpath>/Defs/ThingDef[defName="VWE_TearGasGrenade"]</xpath>
+          <attribute>Class</attribute>
+          <value>CombatExtended.AmmoDef</value>
+        </li>
+
+        <li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+          <defName>VWE_TearGasGrenade</defName>
+          <statBases>
+            <Mass>1</Mass>
+            <MarketValue>2.25</MarketValue>
+            <SightsEfficiency>1</SightsEfficiency>
+            <RangedWeapon_Cooldown>1</RangedWeapon_Cooldown>
+          </statBases>
+          <Properties>
+            <label>throw tear gas</label>
+            <verbClass>CombatExtended.Verb_ShootCEOneUse</verbClass>
+            <hasStandardCommand>true</hasStandardCommand>
+            <defaultProjectile>VWENL_Projectile_TearGasGrenade</defaultProjectile>
+            <range>12</range>
+            <warmupTime>1.8</warmupTime>
+            <soundCast>ThrowGrenade</soundCast>
+            <noiseRadius>4</noiseRadius>
+            <ai_IsBuildingDestroyer>false</ai_IsBuildingDestroyer>
+            <onlyManualCast>true</onlyManualCast>
+            <ignorePartialLoSBlocker>true</ignorePartialLoSBlocker>
+            <targetParams>
+              <canTargetLocations>true</canTargetLocations>
+            </targetParams>
+          </Properties>
+          <weaponTags>
+            <li>CE_OneHandedWeapon</li>
+          </weaponTags>
+        </li>
+
+        <!-- == Recipe == -->
+        <li Class="PatchOperationAdd">
+          <xpath>Defs</xpath>
+          <value>
+            <RecipeDef ParentName="GrenadeRecipeBase">
+              <defName>MakeVWENLTearGasGrenade</defName>
+              <label>make tear gas grenades x10</label>
+              <description>Craft 10 tear gas grenades.</description>
+              <jobString>Making tear gas grenades.</jobString>
+              <ingredients>
+                <li>
+                  <filter>
+                    <thingDefs>
+                      <li>Steel</li>
+                    </thingDefs>
+                  </filter>
+                  <count>10</count>
+                </li>
+                <li>
+                  <filter>
+                    <thingDefs>
+                      <li>Neutroamine</li>
+                    </thingDefs>
+                  </filter>
+                  <count>10</count>
+                </li>
+              </ingredients>
+              <fixedIngredientFilter>
+                <thingDefs>
+                  <li>Steel</li>
+                  <li>Neutroamine</li>
+                </thingDefs>
+              </fixedIngredientFilter>
+              <products>
+                <VWE_TearGasGrenade>10</VWE_TearGasGrenade>
+              </products>
+            </RecipeDef>
+          </value>
+        </li>
+
+      </operations>
+    </match>
+  </Operation>
+</Patch>

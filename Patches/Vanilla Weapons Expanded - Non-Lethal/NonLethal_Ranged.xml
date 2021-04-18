@@ -1,0 +1,256 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+
+<Operation Class="PatchOperationFindMod">
+	<mods>
+		<li>Vanilla Weapons Expanded - Non-Lethal</li>
+	</mods>
+	<match Class="PatchOperationSequence">
+		<operations>
+
+	<!-- === Tools === -->
+
+	<li Class="PatchOperationReplace">
+		<xpath>/Defs/ThingDef[defName="VWE_Gun_Taser" or defName="VWE_Gun_RubberBulletPistol"]/tools</xpath>
+		<value>
+		<tools>
+			<li Class="CombatExtended.ToolCE">
+				<label>grip</label>
+				<capacities>
+					<li>Blunt</li>
+				</capacities>
+				<power>2</power>
+				<cooldownTime>1.54</cooldownTime>
+				<chanceFactor>1.5</chanceFactor>
+				<armorPenetrationBlunt>0.555</armorPenetrationBlunt>
+				<linkedBodyPartsGroup>Grip</linkedBodyPartsGroup>
+			</li>
+			<li Class="CombatExtended.ToolCE">
+				<label>muzzle</label>
+				<capacities>
+					<li>Poke</li>
+				</capacities>
+				<power>2</power>
+				<cooldownTime>1.54</cooldownTime>
+				<armorPenetrationBlunt>0.555</armorPenetrationBlunt>
+				<linkedBodyPartsGroup>Muzzle</linkedBodyPartsGroup>
+			</li>
+		</tools>
+		</value>
+	</li>
+
+	<li Class="PatchOperationReplace">
+		<xpath>/Defs/ThingDef[defName = "VWE_Gun_DartGun"]/tools</xpath>
+		<value>
+		<tools>
+			<li Class="CombatExtended.ToolCE">
+				<label>stock</label>
+				<capacities>
+					<li>Blunt</li>
+				</capacities>
+				<power>8</power>
+				<cooldownTime>1.55</cooldownTime>
+				<chanceFactor>1.5</chanceFactor>
+				<armorPenetrationBlunt>2.755</armorPenetrationBlunt>
+				<linkedBodyPartsGroup>Stock</linkedBodyPartsGroup>
+			</li>
+			<li Class="CombatExtended.ToolCE">
+				<label>barrel</label>
+				<capacities>
+					<li>Blunt</li>
+				</capacities>
+				<power>5</power>
+				<cooldownTime>2.02</cooldownTime>
+				<armorPenetrationBlunt>1.630</armorPenetrationBlunt>
+				<linkedBodyPartsGroup>Barrel</linkedBodyPartsGroup>
+			</li>
+			<li Class="CombatExtended.ToolCE">
+				<label>muzzle</label>
+				<capacities>
+					<li>Poke</li>
+				</capacities>
+				<power>8</power>
+				<cooldownTime>1.55</cooldownTime>
+				<armorPenetrationBlunt>2.755</armorPenetrationBlunt>
+				<linkedBodyPartsGroup>Muzzle</linkedBodyPartsGroup>
+			</li>
+		</tools>
+		</value>
+	</li>
+
+	<li Class="PatchOperationReplace">
+		<xpath>/Defs/ThingDef[defName="VWE_Gun_TearGasLauncher"]/tools</xpath>
+		<value>
+		<tools>
+			<li Class="CombatExtended.ToolCE">
+				<label>barrel</label>
+				<capacities>
+					<li>Blunt</li>
+				</capacities>
+				<power>10</power>
+				<cooldownTime>2.44</cooldownTime>
+				<armorPenetrationBlunt>3.5</armorPenetrationBlunt>
+				<linkedBodyPartsGroup>Barrel</linkedBodyPartsGroup>
+			</li>
+		</tools>
+		</value>
+	</li>
+
+	<!-- ========== Taser ========== -->
+
+	<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+	<defName>VWE_Gun_Taser</defName>
+	<statBases>
+		<Mass>0.21</Mass>
+		<RangedWeapon_Cooldown>0.38</RangedWeapon_Cooldown>
+		<SightsEfficiency>0.60</SightsEfficiency>
+		<ShotSpread>0.67</ShotSpread>
+		<SwayFactor>1.07</SwayFactor>
+		<Bulk>1.85</Bulk>
+	</statBases>
+	<Properties>
+		<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+		<hasStandardCommand>true</hasStandardCommand>
+		<defaultProjectile>Bullet_45ACP_FMJ</defaultProjectile>
+		<warmupTime>0.6</warmupTime>
+		<range>7</range>
+		<soundCast>VWE_TaserShot_Electricity</soundCast>
+		<soundCastTail>GunTail_Heavy</soundCastTail>
+		<muzzleFlashScale>9</muzzleFlashScale>
+	</Properties>
+	<AmmoUser>
+		<magazineSize>2</magazineSize>
+		<reloadTime>5.4</reloadTime>
+		<ammoSet>AmmoSet_45ACP</ammoSet>
+	</AmmoUser>
+	<FireModes>
+		<aiUseBurstMode>FALSE</aiUseBurstMode>
+	</FireModes>
+	<weaponTags>
+		<li>NonLethal</li>
+		<li>CE_OneHandedWeapon</li>
+	</weaponTags>
+	</li>
+
+	<!-- ========== Rubber Bullet Pistol ========== -->
+
+	<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+	<defName>VWE_Gun_RubberBulletPistol</defName>
+	<statBases>
+		<Mass>1.11</Mass>
+		<RangedWeapon_Cooldown>0.38</RangedWeapon_Cooldown>
+		<SightsEfficiency>0.7</SightsEfficiency>
+		<ShotSpread>0.17</ShotSpread>
+		<SwayFactor>1.07</SwayFactor>
+		<Bulk>2.10</Bulk>
+	</statBases>
+	<Properties>
+		<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+		<hasStandardCommand>true</hasStandardCommand>
+		<defaultProjectile>Bullet_45ACP_FMJ</defaultProjectile>
+		<warmupTime>0.6</warmupTime>
+		<range>12</range>
+		<soundCast>VWENL_Shot_RubberBulletPistol</soundCast>
+		<soundCastTail>GunTail_Light</soundCastTail>
+		<muzzleFlashScale>9</muzzleFlashScale>
+	</Properties>
+	<AmmoUser>
+		<magazineSize>2</magazineSize>
+		<reloadTime>5.4</reloadTime>
+		<ammoSet>AmmoSet_45ACP</ammoSet>
+	</AmmoUser>
+	<FireModes>
+		<aiUseBurstMode>FALSE</aiUseBurstMode>
+	</FireModes>
+	<weaponTags>
+		<li>NonLethal</li>
+		<li>CE_OneHandedWeapon</li>
+	</weaponTags>
+	</li>
+
+	<!-- ========== Dart Gun ========== -->
+
+	<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+	<defName>VWE_Gun_DartGun</defName>
+	<statBases>
+		<Mass>3</Mass>
+		<RangedWeapon_Cooldown>0.36</RangedWeapon_Cooldown>
+		<SightsEfficiency>2.6</SightsEfficiency>
+		<ShotSpread>0.21</ShotSpread>
+		<SwayFactor>1.33</SwayFactor>
+		<Bulk>10.03</Bulk>
+	</statBases>
+	<costList>
+      <Steel>60</Steel>
+      <ComponentIndustrial>5</ComponentIndustrial>
+	</costList>
+	<Properties>
+		<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+		<hasStandardCommand>true</hasStandardCommand>
+		<defaultProjectile>Bullet_556x45mmNATO_FMJ</defaultProjectile>
+		<warmupTime>1.1</warmupTime>
+		<range>55</range>
+        <soundCast>VWENL_Shot_DartGun</soundCast>
+        <soundCastTail>GunTail_Heavy</soundCastTail>
+		<muzzleFlashScale>9</muzzleFlashScale>
+	</Properties>
+	<AmmoUser>
+		<magazineSize>1</magazineSize>
+		<reloadTime>2.4</reloadTime>
+		<ammoSet>AmmoSet_556x45mmNATO</ammoSet>
+	</AmmoUser>
+	<FireModes>
+		<aiAimMode>AimedShot</aiAimMode>
+	</FireModes>
+	</li>
+
+	<!-- === Tear Gas Launcher === -->
+	<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+		<defName>VWE_Gun_TearGasLauncher</defName>
+		<statBases>
+			<Mass>5.35</Mass>
+			<Bulk>5.70</Bulk>
+			<SwayFactor>1.31</SwayFactor>
+			<ShotSpread>0.18</ShotSpread>
+			<SightsEfficiency>1</SightsEfficiency>
+			<RangedWeapon_Cooldown>0.39</RangedWeapon_Cooldown>
+		</statBases>
+		<costList>
+			<Steel>65</Steel>
+			<ComponentIndustrial>3</ComponentIndustrial>
+		</costList>
+		<Properties>
+			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+			<hasStandardCommand>true</hasStandardCommand>
+			<defaultProjectile>Bullet_40x46mmGrenade_HE</defaultProjectile>
+			<warmupTime>1</warmupTime>
+			<range>40</range>
+			<soundCast>VWE_Shot_GrenadeLauncher</soundCast>
+			<soundCastTail>GunTail_Medium</soundCastTail>			
+			<muzzleFlashScale>14</muzzleFlashScale>
+			<ai_IsBuildingDestroyer>True</ai_IsBuildingDestroyer>
+			<ignorePartialLoSBlocker>True</ignorePartialLoSBlocker>
+			<targetParams>
+				<canTargetLocations>True</canTargetLocations>
+			</targetParams>
+		</Properties>
+		<AmmoUser>
+			<magazineSize>1</magazineSize>
+			<reloadTime></reloadTime>
+			<ammoSet>AmmoSet_40x46mmGrenade</ammoSet>
+		</AmmoUser>
+		<FireModes>
+			<aiAimMode>AimedShot</aiAimMode>
+			<aiUseBurstMode>False</aiUseBurstMode>
+		</FireModes>
+		<weaponTags>
+			<li>NonLethal</li>
+		</weaponTags>
+
+	</li>
+
+		</operations>
+	</match>
+</Operation>
+
+</Patch>
