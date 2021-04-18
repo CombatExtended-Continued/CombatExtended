@@ -222,9 +222,12 @@ Vanilla Furniture Expanded - Production	|
 Vanilla Furniture Expanded -  Security |
 Vanilla Vehicles Expanded	|
 Vanilla Weapons Expanded |
+Vanilla Weapons Expanded - Frontier	|
 Vanilla Weapons Expanded - Grenades |
 Vanilla Weapons Expanded - Heavy Weapons |
-Vanilla Weapons Expanded Quickdraw	|
+Vanilla Weapons Expanded - Non-Lethal	|
+Vanilla Weapons Expanded - Quickdraw	|
+Vanilla Weapons Expanded - Tribal	|
 Vanilla-Friendly Animal Surgery	|
 Vanilla-Friendly Weapon Expansion	|
 Vanilla Storytellers Expanded - Perry Persistent |
