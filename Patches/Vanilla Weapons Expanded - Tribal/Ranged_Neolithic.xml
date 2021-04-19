@@ -43,22 +43,40 @@
     <!-- === Throwing Shard === -->
     <!-- == Projectile == -->
     <li Class="PatchOperationReplace">
-      <xpath>/Defs/ThingDef[defName="VWE_FlyingShard"]/projectile</xpath>
+      <xpath>/Defs/ThingDef[defName="VWE_FlyingShard"]</xpath>
       <value>
-        <projectile Class="CombatExtended.ProjectilePropertiesCE">
-          <damageDef>RangedStab</damageDef>
-          <damageAmountBase>10</damageAmountBase>
-          <flyOverhead>false</flyOverhead>
-          <speed>14</speed>
-          <armorPenetrationBlunt>0.55</armorPenetrationBlunt>
-          <armorPenetrationSharp>0.76</armorPenetrationSharp>
-          <preExplosionSpawnChance>0.60</preExplosionSpawnChance>
-          <preExplosionSpawnThingDef>VWE_Throwing_Shards</preExplosionSpawnThingDef>
-        </projectile>
+        <ThingDef ParentName="BasePilumProjectile">
+          <defName>VWE_FlyingShard</defName>
+          <label>shard</label>
+          <graphicData>
+            <texPath>Things/Projectile/ShardThrown</texPath>
+            <graphicClass>Graphic_Single</graphicClass>
+          </graphicData>	
+          <projectile Class="CombatExtended.ProjectilePropertiesCE">
+            <damageDef>RangedStab</damageDef>
+            <damageAmountBase>10</damageAmountBase>
+            <flyOverhead>false</flyOverhead>
+            <speed>14</speed>
+            <armorPenetrationBlunt>0.55</armorPenetrationBlunt>
+            <armorPenetrationSharp>0.76</armorPenetrationSharp>
+            <preExplosionSpawnChance>0.60</preExplosionSpawnChance>
+            <preExplosionSpawnThingDef>VWE_Throwing_Shards</preExplosionSpawnThingDef>
+          </projectile>
+        </ThingDef>
       </value>
     </li>
 
     <!-- == Weapon == -->
+    <li Class="PatchOperationReplace">
+      <xpath>/Defs/ThingDef[defName="VWE_Throwing_Shards"]/graphicData</xpath>
+      <value>
+        <graphicData>
+          <texPath>Things/Projectile/ShardThrown</texPath>
+          <graphicClass>Graphic_Single</graphicClass>
+        </graphicData>  
+      </value>
+    </li>
+
     <li Class="PatchOperationAttributeSet">
       <xpath>/Defs/ThingDef[defName="VWE_Throwing_Shards"]</xpath>
       <attribute>ParentName</attribute>
@@ -84,13 +102,6 @@
 
     <li Class="PatchOperationRemove">
       <xpath>/Defs/ThingDef[defName="VWE_Throwing_Shards"]/stuffCategories</xpath>
-    </li>
-
-    <li Class="PatchOperationAdd">
-      <xpath>/Defs/ThingDef[defName="VWE_Throwing_Shards"]/graphicData</xpath>
-      <value>
-        <color>(105,105,105)</color>
-      </value>
     </li>
 
     <li Class="PatchOperationAdd">
@@ -136,16 +147,26 @@
       <value>
         <tools>
           <li Class="CombatExtended.ToolCE">
+            <label>handle</label>
+            <capacities>
+              <li>Poke</li>
+            </capacities>
+            <power>1</power>
+            <cooldownTime>1.26</cooldownTime>
+            <armorPenetrationBlunt>0.250</armorPenetrationBlunt>
+            <linkedBodyPartsGroup>Handle</linkedBodyPartsGroup>
+          </li>
+          <li Class="CombatExtended.ToolCE">
             <label>point</label>
             <capacities>
-              <li>Blunt</li>
+              <li>Stab</li>
             </capacities>
-            <power>14</power>
-            <cooldownTime>1.2</cooldownTime>
-            <chanceFactor>1.88</chanceFactor>
-            <armorPenetrationBlunt>0.55</armorPenetrationBlunt>
-            <armorPenetrationSharp>0.76</armorPenetrationSharp>
-            <linkedBodyPartsGroup>Head</linkedBodyPartsGroup>
+            <power>10</power>
+            <cooldownTime>1.26</cooldownTime>
+            <chanceFactor>1.33</chanceFactor>
+            <armorPenetrationBlunt>0.25</armorPenetrationBlunt>
+            <armorPenetrationSharp>0.36</armorPenetrationSharp>
+            <linkedBodyPartsGroup>Point</linkedBodyPartsGroup>
           </li>
         </tools>
       </value>
@@ -215,6 +236,16 @@
 	</li>
 
 	<!-- Grenade -->
+
+	<li Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="VWE_Weapon_FireBomb"]/graphicData</xpath>
+		<value>
+      <graphicData>
+        <texPath>Things/Projectile/FireBombThrown</texPath>
+        <graphicClass>Graphic_Single</graphicClass>
+      </graphicData> 
+		</value>
+	</li>
 
 	<li Class="PatchOperationAdd">
 		<xpath>Defs/ThingDef[defName="VWE_Weapon_FireBomb"]</xpath>
