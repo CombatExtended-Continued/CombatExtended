@@ -199,6 +199,7 @@ Spartan Foundry	|
 Star Wars - Droids |
 Star Wars - Factions |
 Star Wars - Factions (Continued) |
+Tactical Extremity Protection [BAL] |
 The Mantodean insectoid race	|
 T-45b Power Armor	|
 The GiantRace	|
