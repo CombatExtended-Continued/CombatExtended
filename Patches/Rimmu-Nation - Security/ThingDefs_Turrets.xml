@@ -1,0 +1,344 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+			<li>[CP] Rimmu-Nation - Security</li>
+		</mods>
+		<match Class="PatchOperationSequence">
+		<operations>
+
+		<li Class="PatchOperationRemove">
+		<xpath>Defs/ThingDef[			
+			defName = "RNTurret_SentryGun" or
+			defName = "RNTurret_SentrySMG" or
+			defName = "RNTurret_SentrySniper" or
+			defName = "RNTurret_SentryNLAR"										
+		]/comps/li[@Class = "CompProperties_Refuelable"]</xpath>
+		</li>
+
+		<li Class="PatchOperationReplace">
+        <xpath>Defs/ThingDef[
+			defName = "RNTurret_SentryGun" or
+			defName = "RNTurret_SentrySMG" or
+			defName = "RNTurret_SentrySniper" or
+			defName = "RNTurret_SSMTurret" or
+			defName = "RNTurret_SentryNLAR"				 			
+		]/thingClass</xpath>
+        <value>
+          <thingClass>CombatExtended.Building_TurretGunCE</thingClass>
+        </value>
+		</li>
+
+        <li Class="PatchOperationReplace">
+        <xpath>Defs/ThingDef[	
+			defName = "RNTurret_SentryGun" or
+			defName = "RNTurret_SentrySniper" or
+			defName = "RNTurret_SentryNLAR"		
+		]/fillPercent</xpath>
+        <value>
+          <fillPercent>0.85</fillPercent>
+        </value>
+      </li>
+
+	  <li Class="PatchOperationAdd">
+	  	<xpath>Defs/ThingDef[
+			defName = "RNTurret_SentryGun" or
+			defName = "RNTurret_SentryNLAR"			  
+		]/statBases</xpath>
+	  	<value>
+	  		<AimingAccuracy>0.25</AimingAccuracy>
+	  	</value>
+	  </li>
+
+		<li Class="PatchOperationRemove">
+			<xpath>/Defs/ThingDef[
+			defName = "RNTurret_SentryGun" or
+			defName = "RNTurret_SentrySMG" or
+			defName = "RNTurret_SentrySniper" or
+			defName = "RNTurret_SSMTurret" or
+			defName = "RNTurret_SentryNLAR"	
+			]/comps/li[@Class="CompProperties_Explosive"]</xpath>
+		</li>
+
+	  <li Class="PatchOperationReplace">
+	  	<xpath>Defs/ThingDef[
+			defName = "RNTurret_SentrySniper"			  
+		]/statBases/ShootingAccuracyTurret</xpath>
+	  	<value>
+	  		<ShootingAccuracyTurret>0.5</ShootingAccuracyTurret>
+	  	</value>
+	  </li>
+
+		<!-- ========== Sentry Gun ========== -->
+
+		<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+			<defName>RNGun_SentryGun</defName>
+			<statBases>
+				<RangedWeapon_Cooldown>0.35</RangedWeapon_Cooldown>
+				<SightsEfficiency>1.00</SightsEfficiency>
+				<ShotSpread>0.06</ShotSpread>
+				<SwayFactor>1.31</SwayFactor>
+				<Bulk>8.02</Bulk>
+			</statBases>
+			<Properties>
+				<recoilAmount>0.59</recoilAmount>
+				<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+				<hasStandardCommand>true</hasStandardCommand>
+				<defaultProjectile>Bullet_762x51mmNATO_FMJ</defaultProjectile>
+				<warmupTime>2.3</warmupTime>
+				<range>62</range>
+				<ticksBetweenBurstShots>1</ticksBetweenBurstShots>
+				<burstShotCount>100</burstShotCount>
+				<soundCast>Shot_Minigun</soundCast>
+				<soundCastTail>GunTail_Heavy</soundCastTail>
+				<muzzleFlashScale>10</muzzleFlashScale>
+				<recoilPattern>Mounted</recoilPattern>
+			</Properties>
+			<AmmoUser>
+				<magazineSize>500</magazineSize>
+				<reloadTime>9.2</reloadTime>
+				<ammoSet>AmmoSet_762x51mmNATO</ammoSet>
+			</AmmoUser>
+			<FireModes>
+				<aiAimMode>AimedShot</aiAimMode>
+				<noSnapshot>true</noSnapshot>
+				<noSingleShot>true</noSingleShot>
+			</FireModes>
+			<weaponTags>
+				<li>TurretGun</li>
+			</weaponTags>
+		</li>
+
+		<!-- ========== SMG Sentry Gun ========== -->
+
+		<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+			<defName>RNGun_SentrySMG</defName>
+			<statBases>
+				<Mass>2.60</Mass>
+				<RangedWeapon_Cooldown>0.36</RangedWeapon_Cooldown>
+				<SightsEfficiency>1.00</SightsEfficiency>
+				<ShotSpread>0.12</ShotSpread>
+				<SwayFactor>0.77</SwayFactor>
+				<Bulk>10</Bulk>
+			</statBases>
+			<Properties>
+				<recoilAmount>1.05</recoilAmount>
+				<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+				<hasStandardCommand>true</hasStandardCommand>
+				<defaultProjectile>Bullet_FN57x28mm_FMJ</defaultProjectile>
+				<warmupTime>0.5</warmupTime>
+				<range>31</range>
+				<burstShotCount>5</burstShotCount>
+				<ticksBetweenBurstShots>4</ticksBetweenBurstShots>
+				<soundCast>RNP90Shot</soundCast>
+				<soundCastTail>GunTail_Light</soundCastTail>
+				<muzzleFlashScale>9</muzzleFlashScale>
+			</Properties>
+			<AmmoUser>
+				<magazineSize>50</magazineSize>
+				<reloadTime>4.5</reloadTime>
+				<ammoSet>AmmoSet_FN57x28mm</ammoSet>
+			</AmmoUser>
+			<FireModes>
+				<aiAimMode>AimedShot</aiAimMode>
+				<noSnapshot>true</noSnapshot>
+				<noSingleShot>true</noSingleShot>
+			</FireModes>			
+		</li>
+
+		<!-- ========== Sniper Turret ========== -->
+
+		<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+			<defName>RNGun_SentrySniper</defName>
+			<statBases>
+				<RangedWeapon_Cooldown>5</RangedWeapon_Cooldown>
+				<SightsEfficiency>2</SightsEfficiency>
+				<ShotSpread>0.01</ShotSpread>
+				<SwayFactor>1.23</SwayFactor>
+				<Bulk>11.90</Bulk>
+			</statBases>
+			<Properties>
+				<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+				<hasStandardCommand>true</hasStandardCommand>
+				<defaultProjectile>Bullet_50BMG_FMJ</defaultProjectile>
+				<warmupTime>4.1</warmupTime>
+				<range>86</range>
+				<ticksBetweenBurstShots>9</ticksBetweenBurstShots>
+				<soundCast>RNShot50Cal</soundCast>
+				<soundCastTail>GunTail_Light</soundCastTail>
+				<muzzleFlashScale>18</muzzleFlashScale>
+				<recoilPattern>Mounted</recoilPattern>
+			</Properties>
+			<AmmoUser>
+				<magazineSize>20</magazineSize>
+				<reloadTime>4.5</reloadTime>
+				<ammoSet>AmmoSet_50BMG</ammoSet>
+			</AmmoUser>			
+			<FireModes>
+				<aiUseBurstMode>FALSE</aiUseBurstMode>
+				<aiAimMode>AimedShot</aiAimMode>
+				<noSnapshot>true</noSnapshot>
+			</FireModes>
+			<weaponTags>
+				<li>TurretGun</li>
+			</weaponTags>
+		</li>
+
+		<!-- ========== NL Turret ========== -->
+
+		<li Class="PatchOperationReplace">
+			<xpath>/Defs/ThingDef[defName="RNTurret_SentryNLAR"]/label</xpath>
+			<value>
+				<label>sentry shotgun turret</label>
+			</value>
+		</li>
+
+		<li Class="PatchOperationReplace">
+			<xpath>/Defs/ThingDef[defName="RNTurret_SentryNLAR"]/description</xpath>
+			<value>
+				<description>A versatile turret capable of firing a variety of different munitions, including buckshot, EMP slugs, and non-lethal beanbag projectiles, though the bulky shells mean the ammo capacity is somewhat limited. Its dumb AI brain can't be directly controlled, so beware of friendly fire.</description>
+			</value>
+		</li>
+
+		<li Class="PatchOperationReplace">
+			<xpath>/Defs/ThingDef[defName="RNGun_SentryNLAR"]/label</xpath>
+			<value>
+				<label>sentry shotgun</label>
+			</value>
+		</li>
+
+		<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+			<defName>RNGun_SentryNLAR</defName>
+			<statBases>
+				<RangedWeapon_Cooldown>0.35</RangedWeapon_Cooldown>
+				<SightsEfficiency>1</SightsEfficiency>
+				<ShotSpread>0.12</ShotSpread>
+				<SwayFactor>0.82</SwayFactor>
+				<Bulk>20.00</Bulk>
+			</statBases>
+			<Properties>
+			  <recoilAmount>0.76</recoilAmount>
+			  <verbClass>CombatExtended.Verb_ShootCE</verbClass>
+			  <hasStandardCommand>true</hasStandardCommand>
+			  <defaultProjectile>Bullet_12Gauge_Beanbag</defaultProjectile>
+			  <warmupTime>1.3</warmupTime>
+			  <range>16</range>
+			  <ticksBetweenBurstShots>2</ticksBetweenBurstShots>
+			  <burstShotCount>10</burstShotCount>
+			  <soundCast>GunShotA</soundCast>
+			  <soundCastTail>GunTail_Light</soundCastTail>
+			  <muzzleFlashScale>9</muzzleFlashScale>
+			  <recoilPattern>Mounted</recoilPattern>
+			</Properties>
+			<AmmoUser>
+			  <magazineSize>20</magazineSize>
+			  <reloadTime>12</reloadTime>
+			  <ammoSet>AmmoSet_12Gauge</ammoSet>
+			</AmmoUser>
+			<FireModes>
+			  <aiAimMode>AimedShot</aiAimMode>
+			  <noSnapshot>true</noSnapshot>
+			  <noSingleShot>true</noSingleShot>
+			</FireModes>
+		</li>
+
+		<!-- ========== SSM ========== -->
+
+		<!-- SSM Base -->
+
+		<li Class="PatchOperationReplace">
+			<xpath>Defs/ThingDef[defName="RNTurret_SSM"]/thingClass</xpath>
+			<value>
+				<thingClass>CombatExtended.Building_TurretGunCE</thingClass>
+			</value>
+		</li>
+
+		<li Class="PatchOperationAdd">
+			<xpath>Defs/ThingDef[defName="RNTurret_SSM"]/statBases</xpath>
+			<value>
+				<ShootingAccuracyTurret>0.75</ShootingAccuracyTurret>
+			</value>
+		</li>
+
+
+		<!-- SSM Top -->
+		
+		<!-- Glitter Tech Fix -->
+
+		<li Class="PatchOperationConditional">
+				<xpath>Defs/ThingDef[defName = "RNArtillery_SSMTurret"]/statBases</xpath>
+			<nomatch Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName = "RNArtillery_SSMTurret"]</xpath>
+				<value>
+					<statBases>
+						<SightsEfficiency>1</SightsEfficiency>
+					</statBases>
+				</value>
+			</nomatch>
+			<match Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName = "RNArtillery_SSMTurret"]/statBases</xpath>
+				<value>
+					<SightsEfficiency>1</SightsEfficiency>
+				</value>
+			</match>
+		</li>
+
+		<li Class="PatchOperationAdd">
+			<xpath>Defs/ThingDef[defName = "RNArtillery_SSMTurret"]</xpath>
+			<value>
+				<comps>
+				<li Class="CombatExtended.CompProperties_Charges">
+					<chargeSpeeds>
+					<li>30</li>
+					<li>50</li>
+					<li>70</li>
+					<li>90</li>
+					</chargeSpeeds>
+				</li>
+				<li Class="CombatExtended.CompProperties_AmmoUser">
+					<magazineSize>3</magazineSize>
+					<reloadTime>8</reloadTime>
+					<ammoSet>AmmoSet_130mmType63_SSM</ammoSet>
+				</li>				
+				</comps>			  
+			</value>
+		</li>
+
+		<li Class="PatchOperationAdd">
+			<xpath>Defs/ThingDef[defName = "RNArtillery_SSMTurret"]/weaponTags</xpath>
+			<value>
+				<li>TurretGun</li>
+			</value>
+		</li>
+
+		<li Class="PatchOperationReplace">
+			<xpath>Defs/ThingDef[defName = "RNArtillery_SSMTurret"]/verbs</xpath>
+			<value>
+				<verbs>
+				<li Class="CombatExtended.VerbPropertiesCE">
+					<verbClass>CombatExtended.Verb_ShootMortarCE</verbClass>
+					<forceNormalTimeSpeed>false</forceNormalTimeSpeed>
+					<hasStandardCommand>true</hasStandardCommand>
+					<defaultProjectile>Bullet_130mmType63_SSM</defaultProjectile>
+					<warmupTime>11</warmupTime>
+					<minRange>32</minRange>
+					<range>700</range>
+					<burstShotCount>1</burstShotCount>
+					<soundCast>InfernoCannon_Fire</soundCast>
+					<soundCastTail>GunTail_Heavy</soundCastTail>
+					<muzzleFlashScale>16</muzzleFlashScale>
+					<circularError>0.1</circularError>
+					<indirectFirePenalty>0.1</indirectFirePenalty>
+					<targetParams>
+					<canTargetLocations>true</canTargetLocations>
+					</targetParams>
+				</li>
+				</verbs>
+			</value>
+		</li>
+
+		</operations>
+		</match>
+	</Operation>
+</Patch>    

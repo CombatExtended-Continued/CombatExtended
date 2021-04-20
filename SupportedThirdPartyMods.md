@@ -10,6 +10,7 @@ Mod |
 [CP] Metal Gear Solid	|
 [CP] Red Horse Furniture	|
 [CP] Rimmu-Nation - Clothing	|
+[CP] Rimmu-Nation - Security	|
 [CP] Rimmu-Nation - Weapons	|
 [CP] Spec Ops - The Line	|
 [CP] The DOOM Kit - Classic	|
