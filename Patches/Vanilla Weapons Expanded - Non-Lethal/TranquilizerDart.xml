@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+
+  <Operation Class="PatchOperationFindMod">
+    <mods>
+      <li>Vanilla Weapons Expanded - Non-Lethal</li>
+    </mods>
+    <match Class="PatchOperationSequence">
+      <operations>
+
+      <li Class="PatchOperationAdd">
+        <xpath>Defs</xpath>
+        <value>
+
+		<!-- ==================== AmmoSet ========================== -->
+
+		<CombatExtended.AmmoSetDef>
+			<defName>AmmoSet_DartRifle_NonLethal</defName>
+			<label>dart rifle</label>
+			<ammoTypes>
+				<Ammo_DartRifle_NL>Bullet_DartRifle_NL</Ammo_DartRifle_NL>
+			</ammoTypes>
+		</CombatExtended.AmmoSetDef>
+
+		<!-- ==================== Ammo ========================== -->	
+
+		<ThingDef Class="CombatExtended.AmmoDef" ParentName="762x51mmNATOBase">
+			<defName>Ammo_DartRifle_NL</defName>
+			<label>dart rifle cartridge</label>
+			<graphicData>
+				<texPath>ThirdParty/CP Metal Gear Solid/Rifle/NL</texPath>
+				<graphicClass>Graphic_StackCount</graphicClass>
+			</graphicData>
+			<statBases>
+				<MarketValue>0.85</MarketValue>
+			</statBases>
+			<ammoClass>TranqNonLethal</ammoClass>
+			<cookOffProjectile>Bullet_DartRifle_NL</cookOffProjectile>
+		</ThingDef>
+
+		<!-- ================== Projectiles ================== -->
+
+		<ThingDef Class="CombatExtended.AmmoDef" ParentName="Base762x51mmNATOBullet">
+			<defName>Bullet_DartRifle_NL</defName>
+			<label>tranquilizer dart</label>
+			<projectile Class="CombatExtended.ProjectilePropertiesCE">
+				<damageDef>VWE_AnestheticDart</damageDef>
+				<damageAmountBase>2</damageAmountBase>
+				<armorPenetrationSharp>1.85</armorPenetrationSharp>
+				<armorPenetrationBlunt>12.85</armorPenetrationBlunt>
+				<speed>30</speed>
+			</projectile>
+		</ThingDef>
+
+		<!-- ==================== Recipes ========================== -->
+
+		<RecipeDef ParentName="AmmoRecipeBase">
+			<defName>MakeAmmo_DartRifle_NL</defName>
+			<label>make dart rifle cartridge x200</label>
+			<description>Craft 200 dart rifle cartridges.</description>
+			<jobString>Making dart rifle cartridges.</jobString>
+			<ingredients>
+				<li>
+					<filter>
+						<thingDefs>
+							<li>Steel</li>
+						</thingDefs>
+					</filter>
+					<count>18</count>
+				</li>
+				<li>
+					<filter>
+						<thingDefs>
+							<li>Neutroamine</li>
+						</thingDefs>
+					</filter>
+					<count>12</count>
+				</li>
+			</ingredients>
+			<fixedIngredientFilter>
+				<thingDefs>
+					<li>Steel</li>
+					<li>Neutroamine</li>
+				</thingDefs>
+			</fixedIngredientFilter>
+			<products>
+				<Ammo_DartRifle_NL>200</Ammo_DartRifle_NL>
+			</products>
+			<workAmount>3800</workAmount>
+		</RecipeDef>
+
+        </value>
+      </li>
+
+      </operations>
+    </match>
+  </Operation>
+
+</Patch>
