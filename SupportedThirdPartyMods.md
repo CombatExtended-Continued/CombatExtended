@@ -223,6 +223,7 @@ Vanilla Furniture Expanded - Production	|
 Vanilla Furniture Expanded -  Security |
 Vanilla Vehicles Expanded	|
 Vanilla Weapons Expanded |
+Vanilla Weapons Expanded - Coilguns |
 Vanilla Weapons Expanded - Grenades |
 Vanilla Weapons Expanded - Heavy Weapons |
 Vanilla Weapons Expanded Quickdraw	|
