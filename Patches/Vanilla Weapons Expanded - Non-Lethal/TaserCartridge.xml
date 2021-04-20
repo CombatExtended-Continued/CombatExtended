@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+
+  <Operation Class="PatchOperationFindMod">
+    <mods>
+      <li>Vanilla Weapons Expanded - Non-Lethal</li>
+    </mods>
+    <match Class="PatchOperationSequence">
+      <operations>
+
+      <li Class="PatchOperationAdd">
+        <xpath>Defs</xpath>
+        <value>
+
+	<ThingCategoryDef>
+		<defName>AmmoTaser</defName>
+		<label>taser cartridge</label>
+		<parent>AmmoPistols</parent>
+		<iconPath>UI/Icons/ThingCategories/CaliberPistol</iconPath>
+	</ThingCategoryDef>
+
+	<!-- ==================== AmmoSet ========================== -->
+
+	<CombatExtended.AmmoSetDef>
+		<defName>AmmoSet_Taser</defName>
+		<label>taser cartridge</label>
+		<ammoTypes>
+			<Ammo_Taser>Bullet_Taser</Ammo_Taser>
+		</ammoTypes>
+	</CombatExtended.AmmoSetDef>
+
+	<!-- ==================== Ammo ========================== -->
+
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="45ACPBase">
+		<defName>Ammo_Taser</defName>
+		<label>taser cartridge</label>
+		<description>A nitrogen powered cartridge, firing a pair of thin wires to deliver an incapacitating shock to foes.</description>    
+		<graphicData>
+			<texPath>Things/Ammo/PlasmaCell/Pistol</texPath>
+			<graphicClass>CombatExtended.Graphic_StackCountRanged</graphicClass>
+		</graphicData>
+		<statBases>
+			<MarketValue>0.85</MarketValue>
+			<Mass>0.05</Mass>
+			<Bulk>0.05</Bulk>      
+		</statBases>
+		<ammoClass>ElectroSlug</ammoClass>
+	</ThingDef>
+
+	<!-- ================== Projectiles ================== -->
+
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="Base45ACPBullet">
+		<defName>Bullet_Taser</defName>
+		<label>taser prong</label>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageAmountBase>2</damageAmountBase>
+      <damageDef>Stab</damageDef>
+			<secondaryDamage>
+				<li>
+				  <def>Stun</def>
+				  <amount>32</amount>
+				  <chance>0.8</chance>
+				</li>
+			</secondaryDamage>                 
+			<armorPenetrationSharp>0.25</armorPenetrationSharp>
+			<armorPenetrationBlunt>3</armorPenetrationBlunt>
+			<speed>18</speed>
+			<dropsCasings>false</dropsCasings>      
+		</projectile>
+	</ThingDef>
+
+	<!-- ==================== Recipes ========================== -->
+
+	<RecipeDef ParentName="AmmoRecipeBase">
+		<defName>MakeAmmo_45ACP_FMJ</defName>
+		<label>make .45 ACP (FMJ) cartridge x500</label>
+		<description>Craft 500 .45 ACP (FMJ) cartridges.</description>
+		<jobString>Making .45 ACP (FMJ) cartridges.</jobString>
+		<ingredients>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>Steel</li>
+					</thingDefs>
+				</filter>
+				<count>5</count>
+			</li>
+		</ingredients>
+		<fixedIngredientFilter>
+			<thingDefs>
+				<li>Steel</li>
+			</thingDefs>
+		</fixedIngredientFilter>
+		<products>
+			<Ammo_Taser>500</Ammo_Taser>
+		</products>
+		<workAmount>2200</workAmount>
+	</RecipeDef>
+
+  <RecipeDef ParentName="AmmoRecipeBase">
+    <defName>MakeAmmo_Taser</defName>
+    <label>make taser cartridge x50</label>
+    <description>Craft 50 taser cartridges.</description>
+    <jobString>Making taser cartridges.</jobString>
+    <ingredients>
+      <li>
+        <filter>
+          <thingDefs>
+            <li>Steel</li>
+          </thingDefs>
+        </filter>
+        <count>15</count>
+      </li>
+      <li>
+        <filter>
+          <thingDefs>
+            <li>ComponentIndustrial</li>
+          </thingDefs>
+        </filter>
+        <count>2</count>
+      </li>
+      <li>
+        <filter>
+          <thingDefs>
+            <li>Chemfuel</li>
+          </thingDefs>
+        </filter>
+        <count>10</count>
+      </li>      
+    </ingredients>
+    <fixedIngredientFilter>
+      <thingDefs>
+        <li>Steel</li>
+        <li>ComponentIndustrial</li>
+        <li>Chemfuel</li>
+      </thingDefs>
+    </fixedIngredientFilter>
+    <products>
+    	<Ammo_Taser>50</Ammo_Taser>
+    </products>
+    <workAmount>2400</workAmount>
+  </RecipeDef>
+
+        </value>
+      </li>
+
+      </operations>
+    </match>
+  </Operation>
+
+</Patch>
