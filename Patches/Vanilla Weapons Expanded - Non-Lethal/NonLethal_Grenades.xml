@@ -10,8 +10,8 @@
 
         <!-- === Toxic Grenade === -->
         <!-- == Projectile == -->
-        <li Class="PatchOperationReplace">
-          <xpath>/Defs/ThingDef[defName="VWENL_Projectile_TearGasGrenade"]/thingClass</xpath>
+        <li Class="PatchOperationAdd">
+          <xpath>/Defs/ThingDef[defName="VWENL_Projectile_TearGasGrenade"]</xpath>
           <value>
             <thingClass>CombatExtended.ProjectileCE_Explosive</thingClass>
           </value>
@@ -21,7 +21,7 @@
           <xpath>/Defs/ThingDef[defName="VWENL_Projectile_TearGasGrenade"]/projectile</xpath>
           <value>
             <projectile Class="CombatExtended.ProjectilePropertiesCE">
-              <damageDef>VWE_ToxicGas</damageDef>
+              <damageDef>VWENL_TearGas</damageDef>
               <explosionRadius>3.9</explosionRadius>
               <damageAmountBase>1</damageAmountBase>
               <explosionDelay>100</explosionDelay>
