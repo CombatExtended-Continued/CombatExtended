@@ -269,30 +269,30 @@
 				<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
 					<defName>VWE_Gun_LightSMG</defName>
 					<statBases>
-						<WorkToMake>13000</WorkToMake>
 						<Mass>3.50</Mass>
-						<Bulk>4.45</Bulk>
-						<SwayFactor>2.65</SwayFactor>
-						<ShotSpread>0.12</ShotSpread>
-						<SightsEfficiency>0.70</SightsEfficiency>
 						<RangedWeapon_Cooldown>0.36</RangedWeapon_Cooldown>
+						<SightsEfficiency>0.70</SightsEfficiency>
+						<ShotSpread>0.12</ShotSpread>
+						<SwayFactor>3.30</SwayFactor>
+						<Bulk>4.70</Bulk>
+						<WorkToMake>13000</WorkToMake>
 					</statBases>
 					<costList>
 						<Steel>30</Steel>
 						<ComponentIndustrial>5</ComponentIndustrial>
 					</costList>
 					<Properties>
+						<recoilAmount>1.39</recoilAmount>
 						<verbClass>CombatExtended.Verb_ShootCE</verbClass>
-						<hasStandardCommand>True</hasStandardCommand>
+						<hasStandardCommand>true</hasStandardCommand>
 						<defaultProjectile>Bullet_9x19mmPara_FMJ</defaultProjectile>
+						<warmupTime>0.6</warmupTime>
+						<range>25</range>
 						<burstShotCount>6</burstShotCount>
 						<ticksBetweenBurstShots>6</ticksBetweenBurstShots>
-						<warmupTime>0.6</warmupTime>
-						<range>20</range>
 						<soundCast>VWE_Shot_LightSMG</soundCast>
 						<soundCastTail>GunTail_Light</soundCastTail>
 						<muzzleFlashScale>9</muzzleFlashScale>
-						<recoilAmount>1.39</recoilAmount>
 					</Properties>
 					<AmmoUser>
 						<magazineSize>30</magazineSize>
@@ -300,14 +300,14 @@
 						<ammoSet>AmmoSet_9x19mmPara</ammoSet>
 					</AmmoUser>
 					<FireModes>
+						<aiUseBurstMode>FALSE</aiUseBurstMode>
 						<aiAimMode>Snapshot</aiAimMode>
-						<aiUseBurstMode>True</aiUseBurstMode>
 						<aimedBurstShotCount>3</aimedBurstShotCount>
 					</FireModes>
 					<weaponTags>
 						<li>IndustrialGunAdvanced</li>
-						<li>CE_Sidearm</li>
-						<li>CE_OneHandedWeapon</li>
+						<li>CE_AI_AssaultWeapon</li>
+						<li>CE_SMG</li>
 					</weaponTags>
 				</li>
 
@@ -610,7 +610,7 @@
 						<magazineSize>7</magazineSize>
 						<reloadTime>0.85</reloadTime>
 						<ammoSet>AmmoSet_44-40Winchester</ammoSet>
-            <reloadOneAtATime>true</reloadOneAtATime>
+						<reloadOneAtATime>true</reloadOneAtATime>
 					</AmmoUser>
 					<FireModes>
 						<aiAimMode>AimedShot</aiAimMode>
