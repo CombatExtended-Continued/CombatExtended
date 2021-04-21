@@ -164,6 +164,80 @@
 				</value>
 			</li>
 			
+			<!-- ==================== Flamer Variant ========================== -->
+			
+			<li Class="PatchOperationAdd">
+				<xpath>Defs</xpath>
+				<value>
+					<CombatExtended.AmmoSetDef>
+						<defName>AmmoSet_NuckelaveeShotgun</defName>
+						<label>Thermal Shot</label>
+						<ammoTypes>
+						  <Ammo_30x64mmFuel_Incendiary>Bullet_Epona_NapalmShotgun</Ammo_30x64mmFuel_Incendiary>
+						</ammoTypes>
+					</CombatExtended.AmmoSetDef>
+				</value>
+			</li>
+			
+			<li Class="PatchOperationAdd">
+				<xpath>Defs</xpath>
+				<value>
+					<ThingDef Class="CombatExtended.AmmoDef" ParentName="Base6x18mmChargedBullet">
+						<defName>Bullet_Epona_NapalmShotgun</defName>
+						<label>shotgun_blast</label>
+						<graphicData>
+						  <texPath>Things/WeaponRanged/Projectile/DragonbreathProjectile</texPath>
+						  <graphicClass>Graphic_Single</graphicClass>
+						</graphicData>
+						<projectile Class="CombatExtended.ProjectilePropertiesCE">
+						  <speed>70</speed>
+						  <damageDef>EponaFlameshot</damageDef>
+						  <damageAmountBase>4</damageAmountBase>
+						  <pelletCount>6</pelletCount>
+						  <spreadMult>17.8</spreadMult>
+						  <armorPenetrationSharp>0</armorPenetrationSharp>
+						  <armorPenetrationBlunt>0</armorPenetrationBlunt>
+						</projectile>
+					</ThingDef>
+				</value>
+			</li>
+			
+			<!-- ==================== Railgun Variant ========================== -->
+			
+			<li Class="PatchOperationAdd">
+				<xpath>Defs</xpath>
+				<value>
+					<CombatExtended.AmmoSetDef>
+						<defName>AmmoSet_6mmEponaShock</defName>
+						<label>6mm Railgun</label>
+						<ammoTypes>
+							<Ammo_6mmRailgun_Sabot>Bullet_6mmEponaShock</Ammo_6mmRailgun_Sabot>
+						</ammoTypes>
+					</CombatExtended.AmmoSetDef>
+				</value>
+			</li>
+			
+			<li Class="PatchOperationAdd">
+				<xpath>Defs</xpath>
+				<value>
+					<ThingDef Class="CombatExtended.AmmoDef" ParentName="Base6x18mmChargedBullet">
+						<defName>Bullet_6mmEponaShock</defName>
+						<label>6mm Railgun bullet (Neurotoxin)</label>
+						<graphicData>
+							<texPath>Things/Projectile/Bullet_Small</texPath>
+							<graphicClass>Graphic_Single</graphicClass>
+						</graphicData>
+						<projectile Class="CombatExtended.ProjectilePropertiesCE">
+							<damageDef>EponaShocker</damageDef>
+							<damageAmountBase>7</damageAmountBase>
+							<armorPenetrationSharp>24</armorPenetrationSharp>
+							<armorPenetrationBlunt>25.6</armorPenetrationBlunt>
+							<speed>120</speed>
+						</projectile>
+					</ThingDef>
+				</value>
+			</li>
+			
 		</operations>
 		</match>	
 	  </li>

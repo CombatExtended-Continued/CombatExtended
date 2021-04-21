@@ -161,12 +161,85 @@
 				</FireModes>
 			</li>
 			
+			<!-- ========== Hippogryph Railgun =========== -->
+			
+			<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+				<defName>Epona_HippogryphRailgun</defName>
+				<statBases>
+				  <Mass>8.5</Mass>
+				  <RangedWeapon_Cooldown>0.36</RangedWeapon_Cooldown>
+				  <SightsEfficiency>2.60</SightsEfficiency>
+				  <ShotSpread>0.07</ShotSpread>
+				  <SwayFactor>1.89</SwayFactor>
+				  <Bulk>12.85</Bulk>
+				</statBases>
+				<Properties>
+				  <recoilAmount>2.25</recoilAmount>
+				  <verbClass>CombatExtended.Verb_ShootCE</verbClass>
+				  <hasStandardCommand>true</hasStandardCommand>
+				  <defaultProjectile>Bullet_6mmRailgun_Sabot</defaultProjectile>
+				  <warmupTime>1.5</warmupTime>
+				  <range>75</range>
+				  <soundCast>Epona_RailgunSound</soundCast>
+				  <soundCastTail>GunTail_Heavy</soundCastTail>
+				  <muzzleFlashScale>9</muzzleFlashScale>
+				</Properties>
+				<AmmoUser>
+				  <magazineSize>5</magazineSize>
+				  <reloadTime>4</reloadTime>
+				  <ammoSet>AmmoSet_8mmRailgun</ammoSet>
+				</AmmoUser>
+				<FireModes>
+				  <aimedBurstShotCount>3</aimedBurstShotCount>
+				  <aiUseBurstMode>TRUE</aiUseBurstMode>
+				  <aiAimMode>AimedShot</aiAimMode>
+				</FireModes>
+			</li>
+			
+			<!-- ========== Nightmare =========== -->
+			
+			<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+				<defName>Epona_NightmareShock</defName>
+				<statBases>
+				  <Mass>2.0</Mass>
+				  <RangedWeapon_Cooldown>0.36</RangedWeapon_Cooldown>
+				  <SightsEfficiency>1</SightsEfficiency>
+				  <ShotSpread>0.07</ShotSpread>
+				  <SwayFactor>0.85</SwayFactor>
+				  <Bulk>6.25</Bulk>
+				</statBases>
+				<Properties>
+				  <recoilAmount>2.52</recoilAmount>
+				  <verbClass>CombatExtended.Verb_ShootCE</verbClass>
+				  <hasStandardCommand>true</hasStandardCommand>
+				  <defaultProjectile>Bullet_6mmEponaShock</defaultProjectile>
+				  <warmupTime>0.50</warmupTime>
+				  <range>31</range>
+				  <burstShotCount>5</burstShotCount>
+				  <ticksBetweenBurstShots>6</ticksBetweenBurstShots>
+				  <soundCast>Epona_SilencerSound</soundCast>
+				  <soundCastTail>GunTail_Light</soundCastTail>
+				  <muzzleFlashScale>9</muzzleFlashScale>
+				</Properties>
+				<AmmoUser>
+				  <magazineSize>30</magazineSize>
+				  <reloadTime>4</reloadTime>
+				  <ammoSet>AmmoSet_6mmEponaShock</ammoSet>
+				</AmmoUser>
+				<FireModes>
+				  <aimedBurstShotCount>3</aimedBurstShotCount>
+				  <aiUseBurstMode>FALSE</aiUseBurstMode>
+				</FireModes>
+			</li>
+			
 			<!-- ========== Melee Attacks =========== -->
 			
 			<li Class="PatchOperationReplace">
 				<xpath>Defs/ThingDef[defName="Epona_PegasusShock" or 
 				defName="Epona_PegasusShards" or 
-				defName="Epona_PegasusMolten"
+				defName="Epona_PegasusMolten" or 
+				defName="Epona_HippogryphRailgun" or 
+				defName="Epona_NightmareShock"
 				]/tools</xpath>
 				<value>
 					<tools>
@@ -225,6 +298,7 @@
 					</tools>
 				</value>
 			</li>
+			
 			
 			</operations>
 			</match>
