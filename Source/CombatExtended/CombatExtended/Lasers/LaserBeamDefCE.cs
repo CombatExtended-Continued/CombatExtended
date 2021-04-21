@@ -57,8 +57,8 @@ namespace CombatExtended.Lasers
                     }
                     for (int ii = 0; ii < list.Count; ii++)
                     {
-
-                        materials.Add(MaterialPool.MatFrom(textures[i] + "/" + list[ii].name, ShaderDatabase.TransparentPostLight));
+			var mat = MaterialPool.MatFrom(textures[i] + "/" + list[ii].name, ShaderDatabase.TransparentPostLight);
+			mat.color = this.graphicData.color;
                     }
                 }
             }
@@ -66,7 +66,9 @@ namespace CombatExtended.Lasers
             {
                 for (int i = 0; i < textures.Count; i++)
                 {
-                    materials.Add(MaterialPool.MatFrom(textures[i], ShaderDatabase.TransparentPostLight));
+		    var mat = MaterialPool.MatFrom(textures[i], ShaderDatabase.TransparentPostLight);
+		    mat.color = this.graphicData.color;
+		    materials.Add(mat);
                 }
             }
         }
