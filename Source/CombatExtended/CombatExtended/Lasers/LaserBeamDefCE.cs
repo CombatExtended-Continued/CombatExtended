@@ -84,7 +84,7 @@ namespace CombatExtended.Lasers
 
             if (index >= materials.Count || index < 0)
                 index = 0;
-
+	    materials[index].color = this.graphicData.color;
             return materials[index];
         }
 
