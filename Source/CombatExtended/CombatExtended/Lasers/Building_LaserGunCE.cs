@@ -3,6 +3,7 @@ using RimWorld;
 using System.Collections.Generic;
 using Verse;
 using Verse.Sound;
+using System.Reflection;
 
 namespace CombatExtended.Lasers
 {
@@ -14,6 +15,7 @@ namespace CombatExtended.Lasers
     // AdeptusMechanicus.Building_LaserGunCE
     public class Building_LaserGunCE : Building_TurretGunCE, IBeamColorThing
     {
+	private static MethodInfo ChangeStoredEnergy = typeof(PowerNet).GetMethod("ChangeStoredEnergy", BindingFlags.Instance | BindingFlags.NonPublic);
         public bool isCharged = false;
         public int previousBurstCooldownTicksLeft = 0;
 
@@ -37,24 +39,7 @@ namespace CombatExtended.Lasers
             Scribe_Values.Look<int>(ref beamColorIndex, "beamColorIndex", -1, false);
         }
 
-        /*
-        public override IEnumerable<FloatMenuOption> GetFloatMenuOptions(Pawn pawn)
-        {
-            foreach (FloatMenuOption o in base.GetFloatMenuOptions(pawn))
-            {
-                if (o != null) yield return o;
-            }
 
-            if (!def.supportsColors) yield break;
-            
-            foreach (FloatMenuOption o in LaserColor.GetChangeBeamColorFloatMenuOptions(this, pawn))
-            {
-                if (o != null) yield return o;
-            }
-            
-            yield break;
-        }
-    */
 
         public override void SpawnSetup(Map map, bool respawningAfterLoad)
         {
@@ -94,27 +79,15 @@ namespace CombatExtended.Lasers
         {
             if (powerComp.PowerNet == null) return 0;
 
-            float availablePower = 0;
-            foreach (var battery in powerComp.PowerNet.batteryComps)
-            {
-                availablePower += battery.StoredEnergy;
-            }
-            return availablePower;
+	    return powerComp.PowerNet.CurrentStoredEnergy();
+
         }
         public bool Drain(float amount)
         {
             if (amount <= 0) return true;
             if (AvailablePower() < amount) return false;
 
-            foreach (var battery in powerComp.PowerNet.batteryComps)
-            {
-                var drain = battery.StoredEnergy > amount ? amount : battery.StoredEnergy;
-                battery.DrawPower(drain);
-                amount -= drain;
-
-                if (amount <= 0) break;
-            }
-
+	    ChangeStoredEnergy.Invoke(powerComp.PowerNet, new object[]{-amount});
             return true;
         }
 
