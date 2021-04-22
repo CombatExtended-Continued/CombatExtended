@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+			<li>Vanilla Factions Expanded - Laser</li>
+		</mods>
+		<match Class="PatchOperationSequence">
+			<operations> 
+	
+		<!-- ========== Give ammo to Mercenary Marine ========== -->
+		<li Class="PatchOperationAddModExtension">
+		  <xpath>/Defs/PawnKindDef[defName="Mercenary_Marine"]</xpath>
+		  <value>
+		    <li Class="CombatExtended.LoadoutPropertiesExtension">
+		  	<primaryMagazineCount>
+		  	  <min>4</min>
+		  	  <max>7</max>
+		  	</primaryMagazineCount>
+		    </li>				
+		  </value>
+		</li>
+		  
+			</operations>
+		</match>
+	</Operation>
+
+
+
+</Patch>
