@@ -15,7 +15,8 @@ namespace CombatExtended.HarmonyCE
     {
         internal static bool Prefix(Pawn pawn, Apparel ap, ref float __result)
         {
-            if (ap is Apparel_Shield && (pawn?.equipment?.Primary?.def?.weaponTags?.Contains(Apparel_Shield.OneHandedTag) ?? false))
+            var hasOneHandedWeapon = pawn?.equipment?.Primary?.def?.weaponTags?.Contains(Apparel_Shield.OneHandedTag) ?? false;
+            if (ap is Apparel_Shield && pawn?.equipment?.Primary != null && !hasOneHandedWeapon)
             {
                 __result = -1000f;
                 return false;
