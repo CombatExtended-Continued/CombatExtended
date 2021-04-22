@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+  <Operation Class="PatchOperationSequence">
+	<operations>
+	  <li Class="PatchOperationFindMod">
+			
+		<mods><li>Moyo-From the depth</li></mods>
+		<match Class="PatchOperationFindMod">
+		<mods>
+		<li>Dragonian GaramRace</li>
+		<li>Dragonian Race</li>
+		</mods>
+			<match Class="PatchOperationSequence">
+			<operations>
+				
+				<!--Dragon Dress-->
+				
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[@Name="Moyo_DragonDress"]/statBases</xpath>
+					<value>
+						<Bulk>7.5</Bulk>
+						<WornBulk>1</WornBulk>
+					</value>
+				</li>
+				
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[@Name="Moyo_DragonDress"]/statBases/ArmorRating_Sharp</xpath>
+					<value>
+						<ArmorRating_Sharp>7.5</ArmorRating_Sharp>
+						<ArmorRating_Electric>0.60</ArmorRating_Electric>
+					</value>
+				</li>
+				
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[@Name="Moyo_DragonDress"]/statBases/ArmorRating_Blunt</xpath>
+					<value>
+						<ArmorRating_Blunt>11.25</ArmorRating_Blunt>
+					</value>
+				</li>
+				
+			</operations>
+			</match>
+		</match>
+	  </li>
+	</operations>	
+  </Operation>
+</Patch>

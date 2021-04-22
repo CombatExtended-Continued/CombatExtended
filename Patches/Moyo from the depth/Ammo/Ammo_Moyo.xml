@@ -345,8 +345,8 @@
 
 					<ThingDef Class="CombatExtended.AmmoDef" ParentName="SpacerSmallAmmoBase">
 						<defName>Ammo_Abyssnail</defName>
-						<label>Abyssteel Nail</label>
-						<description>Machined nails made of abyssteel.</description>
+						<label>Abyssal Nail</label>
+						<description>Machined alloy nails.</description>
 						<statBases>
 							<Mass>0.02</Mass>
 							<Bulk>0.01</Bulk>
@@ -371,7 +371,7 @@
 
 					<ThingDef Class="CombatExtended.AmmoDef" ParentName="Base6x24mmChargedBullet">
 						<defName>Bullet_Abyssnail</defName>
-						<label>abyssteel nail</label>
+						<label>abyssal nail</label>
 						<graphicData>
 							<texPath>Things/Weapons/MoyoNail</texPath>
 							<graphicClass>Graphic_Single</graphicClass>
@@ -380,9 +380,9 @@
 						<projectile Class="CombatExtended.ProjectilePropertiesCE">
 							<speed>200</speed>
 							<damageDef>Bullet</damageDef>
-							<damageAmountBase>10</damageAmountBase>
-							<armorPenetrationSharp>12</armorPenetrationSharp>
-							<armorPenetrationBlunt>20</armorPenetrationBlunt>
+							<damageAmountBase>5</damageAmountBase>
+							<armorPenetrationSharp>11</armorPenetrationSharp>
+							<armorPenetrationBlunt>8</armorPenetrationBlunt>
 						</projectile>
 					</ThingDef>
 
@@ -390,15 +390,15 @@
 
 					<RecipeDef ParentName="ChargeAmmoRecipeBase">
 						<defName>MakeAmmo_Abyssnail</defName>
-						<label>make abyssteel nails x500</label>
-						<description>Craft 500 abyssteel nails.</description>
-						<jobString>Making abyssteel nails.</jobString>
+						<label>make abyssal nails x500</label>
+						<description>Craft 500 abyssal nails.</description>
+						<jobString>Making abyssal nails.</jobString>
 						<workAmount>2500</workAmount>
 						<ingredients>
 							<li>
 								<filter>
 									<thingDefs>
-										<li>Moyo_Abyssteel</li>
+										<li>Steel</li>
 									</thingDefs>
 								</filter>
 								<count>5</count>
@@ -406,7 +406,7 @@
 						</ingredients>
 						<fixedIngredientFilter>
 							<thingDefs>
-								<li>Moyo_Abyssteel</li>
+								<li>Steel</li>
 							</thingDefs>
 						</fixedIngredientFilter>
 						<products>
@@ -592,7 +592,7 @@
 				</value>
 			</li>
 			
-			<!--6x24 Warped-->
+			<!--6x24 Warped : Removed
 			
 			<li Class="PatchOperationAdd">
 				<xpath>Defs</xpath>
@@ -678,6 +678,8 @@
 					
 				</value>
 			</li>
+			-->
+			
 			
 			<!--8x35 Moyo-->
 			
