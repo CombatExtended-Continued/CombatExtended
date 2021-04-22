@@ -57,6 +57,22 @@
 					</CombatExtended.AmmoSetDef>
 					
 					<CombatExtended.AmmoSetDef>
+						<defName>AmmoSet_AntyRedAcidLine</defName>
+						<label>Acid Line Blaster</label>
+						<ammoTypes>
+							<Ammo_AntyAcidRed>Bullet_AntyRedAcidLine</Ammo_AntyAcidRed>
+						</ammoTypes>
+					</CombatExtended.AmmoSetDef>
+					
+					<CombatExtended.AmmoSetDef>
+						<defName>AmmoSet_AntyRedAcidCluster</defName>
+						<label>Acid Launcher</label>
+						<ammoTypes>
+							<Ammo_AntyAcidRed>Bullet_AntyRedAcidCluster</Ammo_AntyAcidRed>
+						</ammoTypes>
+					</CombatExtended.AmmoSetDef>
+					
+					<CombatExtended.AmmoSetDef>
 						<defName>AmmoSet_AntyAcidGlue</defName>
 						<label>Acid Shot</label>
 						<ammoTypes>
@@ -189,6 +205,30 @@
 						</projectile>
 					</ThingDef>
 					
+					<ThingDef Class="CombatExtended.AmmoDef" ParentName="Base762x39mmSovietBullet">
+						<defName>Bullet_AntyRedAcidLine</defName>
+						<label>Red Burst Bullet</label>
+						<graphicData>
+							<texPath>Things/Weapons/kan</texPath>
+							<graphicClass>Graphic_Single</graphicClass>
+						</graphicData>
+						<projectile Class="CombatExtended.ProjectilePropertiesCE">
+							<damageDef>AT_AcidBullet</damageDef>
+							<damageAmountBase>1</damageAmountBase>
+							<armorPenetrationSharp>0</armorPenetrationSharp>
+							<armorPenetrationBlunt>1000</armorPenetrationBlunt>
+							<pelletCount>5</pelletCount>
+							<spreadMult>15</spreadMult>
+							<secondaryDamage>
+								<li>
+								  <def>Stun</def>
+								  <amount>3</amount>
+								  <chance>0.05</chance>
+								</li>
+							</secondaryDamage>
+						</projectile>
+					</ThingDef>
+					
 					<ThingDef ParentName="Base25x40mmGrenadeBullet">
 						<defName>Bullet_AntyAcidLauncher</defName>
 						<label>Acid Grenade</label>
@@ -225,6 +265,62 @@
 						  <damageDef>AT_AcidBomb_B</damageDef>
 						  <preExplosionSpawnThingDef>Filth_ApproachSmoke_B</preExplosionSpawnThingDef>
 						  <preExplosionSpawnChance>0.2</preExplosionSpawnChance>
+						</projectile>
+						<comps>
+						  <li Class="CombatExtended.CompProperties_ExplosiveCE">
+							<explosiveDamageType>AT_AcidBomb_B</explosiveDamageType>
+							<explosiveRadius>2.1</explosiveRadius>
+							<preExplosionSpawnThingDef>Filth_ApproachSmoke_B</preExplosionSpawnThingDef>
+							<preExplosionSpawnChance>0.2</preExplosionSpawnChance>
+							<applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
+						  </li>
+						</comps>
+					</ThingDef>
+					
+					<ThingDef ParentName="Base25x40mmGrenadeBullet">
+						<defName>Bullet_AntyRedAcidCluster</defName>
+						<label>Red Burst Cluster</label>
+						<graphicData>
+							<texPath>Things/Weapons/kan</texPath>
+							<graphicClass>Graphic_Single</graphicClass>
+							<shaderType>TransparentPostLight</shaderType>
+						</graphicData>
+						<projectile Class="CombatExtended.ProjectilePropertiesCE">
+						  <damageDef>AT_AcidBomb_B</damageDef>
+						  <preExplosionSpawnThingDef>Filth_ApproachSmoke_B</preExplosionSpawnThingDef>
+						  <preExplosionSpawnChance>0.2</preExplosionSpawnChance>
+						</projectile>
+						<comps>
+						  <li Class="CombatExtended.CompProperties_Fragments">
+							<fragments>
+							  <Bullet_AntyRedAcidCluster_Frag>50</Bullet_AntyRedAcidCluster_Frag>
+							</fragments>
+						  </li>
+						  <li Class="CombatExtended.CompProperties_ExplosiveCE">
+							<explosiveDamageType>AT_AcidBomb_B</explosiveDamageType>
+							<explosiveRadius>2.1</explosiveRadius>
+							<preExplosionSpawnThingDef>Filth_ApproachSmoke_B</preExplosionSpawnThingDef>
+							<preExplosionSpawnChance>0.2</preExplosionSpawnChance>
+							<applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
+						  </li>
+						</comps>
+					</ThingDef>
+					
+					<ThingDef ParentName="Base25x40mmGrenadeBullet">
+						<defName>Bullet_AntyRedAcidCluster_Frag</defName>
+						<label>Red Burst Cluster</label>
+						<graphicData>
+							<texPath>Things/Weapons/Han</texPath>
+							<graphicClass>Graphic_Single</graphicClass>
+							<shaderType>TransparentPostLight</shaderType>
+						</graphicData>
+						<projectile Class="CombatExtended.ProjectilePropertiesCE">
+						  <damageDef>AT_AcidBomb_B</damageDef>
+						  <speed>12</speed>
+						  <preExplosionSpawnThingDef>Filth_ApproachSmoke_B</preExplosionSpawnThingDef>
+						  <preExplosionSpawnChance>0.2</preExplosionSpawnChance>
+						  <explosionDelay>20</explosionDelay>
+						  <gravityFactor>15</gravityFactor>
 						</projectile>
 						<comps>
 						  <li Class="CombatExtended.CompProperties_ExplosiveCE">
