@@ -592,7 +592,7 @@ namespace CombatExtended
             bool instant = false;
 
             float spreadDegrees = 0;
-	    float aperatureSize = 0;
+            float aperatureSize = 0;
 
             if (Projectile.projectile is ProjectilePropertiesCE pprop) {
                 instant = pprop.isInstant;
