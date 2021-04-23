@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+
+  <Operation Class="PatchOperationFindMod">
+    <mods>
+      <li>Vanilla Weapons Expanded - Non-Lethal</li>
+    </mods>
+    <match Class="PatchOperationSequence">
+      <operations>
+
+      <li Class="PatchOperationAdd">
+        <xpath>Defs</xpath>
+        <value>
+
+  <!-- ==================== AmmoSet ========================== -->
+
+  <CombatExtended.AmmoSetDef>
+    <defName>AmmoSet_40x46mmGrenadeNL</defName>
+    <label>40x46mm Grenades</label>
+    <ammoTypes>
+      <Ammo_40x46mmGrenade_CN>Bullet_40x46mmGrenade_CN</Ammo_40x46mmGrenade_CN>  
+    </ammoTypes>
+  </CombatExtended.AmmoSetDef>
+
+  <!-- ==================== Ammo ========================== -->
+
+  <ThingDef Class="CombatExtended.AmmoDef" ParentName="40x46mmGrenadeBase">
+    <defName>Ammo_40x46mmGrenade_CN</defName>
+    <label>40x46mm grenade (CN)</label>
+    <description>Low velocity grenade filled with a non-lethal chemical irritant, intended for crowd control.</description>
+    <graphicData>
+      <texPath>Things/Ammo/GrenadeLauncher/GS50_SMK</texPath>
+      <graphicClass>Graphic_StackCount</graphicClass>
+    </graphicData>
+    <statBases>
+      <MarketValue>5.37</MarketValue>
+    </statBases>
+    <stackLimit>200</stackLimit>
+    <ammoClass>CNGas</ammoClass>
+	<detonateProjectile>Bullet_40x46mmGrenade_CN</detonateProjectile>
+  </ThingDef>
+
+  <!-- ================== Projectiles ================== -->
+
+  <ThingDef ParentName="Base40x46mmGrenadeBullet">
+    <defName>Bullet_40x46mmGrenade_CN</defName>
+    <label>40x46mm grenade (CN)</label>
+    <projectile Class="CombatExtended.ProjectilePropertiesCE">
+      <explosionRadius>3.9</explosionRadius>
+      <damageDef>VWENL_TearGas</damageDef>
+      <postExplosionSpawnThingDef>VWENL_TearGasCloud</postExplosionSpawnThingDef>
+      <preExplosionSpawnChance>1</preExplosionSpawnChance>
+      <postExplosionSpawnThingCount>1</postExplosionSpawnThingCount>
+    </projectile>
+  </ThingDef>
+
+  <!-- ==================== Recipes ========================== -->
+
+  <RecipeDef ParentName="AmmoRecipeBase">
+    <defName>MakeAmmo_40x46mmGrenade_CN</defName>
+    <label>make 40x46mm CN grenades x100</label>
+    <description>Craft 100 40x46mm CN grenades.</description>
+    <jobString>Making 40x46mm CN grenades.</jobString>
+    <ingredients>
+      <li>
+        <filter>
+          <thingDefs>
+            <li>Steel</li>
+          </thingDefs>
+        </filter>
+        <count>50</count>
+      </li>
+      <li>
+        <filter>
+          <thingDefs>
+            <li>Neutroamine</li>
+          </thingDefs>
+        </filter>
+        <count>10</count>
+      </li>
+      <li>
+        <filter>
+          <thingDefs>
+            <li>ComponentIndustrial</li>
+          </thingDefs>
+        </filter>
+        <count>2</count>
+      </li>
+    </ingredients>
+    <fixedIngredientFilter>
+      <thingDefs>
+        <li>Steel</li>
+        <li>Neutroamine</li>
+        <li>ComponentIndustrial</li>
+      </thingDefs>
+    </fixedIngredientFilter>
+    <products>
+      <Ammo_40x46mmGrenade_CN>100</Ammo_40x46mmGrenade_CN>
+    </products>
+    <workAmount>9000</workAmount>
+  </RecipeDef>
+
+        </value>
+      </li>
+
+      </operations>
+    </match>
+  </Operation>
+
+</Patch>

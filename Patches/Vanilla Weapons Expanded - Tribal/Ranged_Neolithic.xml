@@ -1,0 +1,358 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+
+<Patch>
+	<Operation Class="PatchOperationFindMod">
+	<mods>
+		<li>Vanilla Weapons Expanded - Tribal</li>
+	</mods>
+		<match Class="PatchOperationSequence">
+		<operations>
+
+    <!-- ========== Sling ========== -->
+    <li Class='CombatExtended.PatchOperationMakeGunCECompatible'>
+      <defName>VWE_Sling</defName>
+      <statBases>
+        <SightsEfficiency>0.6</SightsEfficiency>
+        <ShotSpread>1</ShotSpread>
+        <SwayFactor>2</SwayFactor>
+        <Bulk>0.8</Bulk>
+        <RangedWeapon_Cooldown>3.2</RangedWeapon_Cooldown>
+      </statBases>
+      <Properties>
+        <verbClass>CombatExtended.Verb_ShootCE</verbClass>
+        <hasStandardCommand>True</hasStandardCommand>
+        <defaultProjectile>Projectile_SlingBullet_Stone</defaultProjectile>
+        <warmupTime>2.4</warmupTime>
+        <range>32</range>
+        <soundCast>Bow_Small</soundCast>
+        <muzzleFlashScale>9</muzzleFlashScale>
+      </Properties>
+      <AmmoUser>
+        <reloadTime>3.8</reloadTime>
+        <ammoSet>AmmoSet_SlingBullet</ammoSet>
+      </AmmoUser>
+      <FireModes>
+        <aiAimMode>AimedShot</aiAimMode>
+      </FireModes>
+    </li>
+
+    <li Class="PatchOperationRemove">
+      <xpath>/Defs/ThingDef[defName="VWE_Sling"]/tools</xpath>
+    </li>
+
+    <!-- === Throwing Shard === -->
+    <!-- == Projectile == -->
+    <li Class="PatchOperationReplace">
+      <xpath>/Defs/ThingDef[defName="VWE_FlyingShard"]</xpath>
+      <value>
+        <ThingDef ParentName="BasePilumProjectile">
+          <defName>VWE_FlyingShard</defName>
+          <label>shard</label>
+          <graphicData>
+            <texPath>Things/Projectile/ShardThrown</texPath>
+            <graphicClass>Graphic_Single</graphicClass>
+          </graphicData>	
+          <projectile Class="CombatExtended.ProjectilePropertiesCE">
+            <damageDef>RangedStab</damageDef>
+            <damageAmountBase>7</damageAmountBase>
+            <flyOverhead>false</flyOverhead>
+            <speed>14</speed>
+            <armorPenetrationBlunt>0.45</armorPenetrationBlunt>
+            <armorPenetrationSharp>0.26</armorPenetrationSharp>
+            <preExplosionSpawnChance>0.60</preExplosionSpawnChance>
+            <preExplosionSpawnThingDef>VWE_Throwing_Shards</preExplosionSpawnThingDef>
+          </projectile>
+        </ThingDef>
+      </value>
+    </li>
+
+    <!-- == Weapon == -->
+    <li Class="PatchOperationReplace">
+      <xpath>/Defs/ThingDef[defName="VWE_Throwing_Shards"]/graphicData</xpath>
+      <value>
+        <graphicData>
+          <texPath>Things/Projectile/ShardThrown</texPath>
+          <graphicClass>Graphic_Single</graphicClass>
+        </graphicData>  
+      </value>
+    </li>
+
+    <li Class="PatchOperationAttributeSet">
+      <xpath>/Defs/ThingDef[defName="VWE_Throwing_Shards"]</xpath>
+      <attribute>ParentName</attribute>
+      <value>BaseWeapon</value>
+    </li>
+    
+    <li Class="PatchOperationAdd">
+      <xpath>/Defs/ThingDef[defName="VWE_Throwing_Shards"]</xpath> 
+      <value>
+        <thingCategories>
+          <li>WeaponsRanged</li>
+        </thingCategories>
+      </value>
+    </li>
+
+    <li Class="PatchOperationRemove">
+      <xpath>/Defs/ThingDef[defName="VWE_Throwing_Shards"]/recipeMaker</xpath>
+    </li>
+
+    <li Class="PatchOperationRemove">
+      <xpath>/Defs/ThingDef[defName="VWE_Throwing_Shards"]/costStuffCount</xpath>
+    </li>
+
+    <li Class="PatchOperationRemove">
+      <xpath>/Defs/ThingDef[defName="VWE_Throwing_Shards"]/stuffCategories</xpath>
+    </li>
+
+    <li Class="PatchOperationAdd">
+      <xpath>/Defs/ThingDef[defName="VWE_Throwing_Shards"]</xpath>
+      <value>
+        <thingClass>CombatExtended.AmmoThing</thingClass>
+        <stackLimit>75</stackLimit>
+        <resourceReadoutPriority>First</resourceReadoutPriority>
+      </value>
+    </li>
+
+    <li Class="PatchOperationAttributeSet">
+      <xpath>/Defs/ThingDef[defName="VWE_Throwing_Shards"]</xpath>
+      <attribute>Class</attribute>
+      <value>CombatExtended.AmmoDef</value>
+    </li>
+
+    <li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+      <defName>VWE_Throwing_Shards</defName>
+      <statBases>
+        <SightsEfficiency>0.45</SightsEfficiency>
+        <Bulk>0.35</Bulk>
+        <Mass>0.15</Mass>
+        <RangedWeapon_Cooldown>0.38</RangedWeapon_Cooldown>
+      </statBases>
+      <Properties>
+        <label>Throw shard</label>
+        <verbClass>CombatExtended.Verb_ShootCEOneUse</verbClass>
+        <hasStandardCommand>True</hasStandardCommand>
+        <defaultProjectile>VWE_FlyingShard</defaultProjectile>
+        <warmupTime>1</warmupTime>
+        <range>9</range>
+        <soundCast>ThrowGrenade</soundCast>
+          <ai_IsBuildingDestroyer>false</ai_IsBuildingDestroyer>
+      </Properties>
+      <weaponTags>
+        <li>CE_OneHandedWeapon</li>
+      </weaponTags>
+    </li>
+
+    <li Class="PatchOperationReplace">
+      <xpath>/Defs/ThingDef[defName="VWE_Throwing_Shards"]/tools</xpath>
+      <value>
+        <tools>
+          <li Class="CombatExtended.ToolCE">
+            <label>handle</label>
+            <capacities>
+              <li>Poke</li>
+            </capacities>
+            <power>1</power>
+            <cooldownTime>1.26</cooldownTime>
+            <armorPenetrationBlunt>0.250</armorPenetrationBlunt>
+            <linkedBodyPartsGroup>Handle</linkedBodyPartsGroup>
+          </li>
+          <li Class="CombatExtended.ToolCE">
+            <label>point</label>
+            <capacities>
+              <li>Stab</li>
+            </capacities>
+            <power>10</power>
+            <cooldownTime>1.26</cooldownTime>
+            <chanceFactor>1.33</chanceFactor>
+            <armorPenetrationBlunt>0.25</armorPenetrationBlunt>
+            <armorPenetrationSharp>0.36</armorPenetrationSharp>
+            <linkedBodyPartsGroup>Point</linkedBodyPartsGroup>
+          </li>
+        </tools>
+      </value>
+    </li>
+
+    <!-- == Recipe == -->
+    <li Class="PatchOperationAdd">
+      <xpath>Defs</xpath>
+      <value>
+        <RecipeDef ParentName="GrenadeRecipeBase">
+          <defName>MakeVWEThrowingShard</defName>
+          <label>make throwing shards x10</label>
+          <description>Craft 10 throwing shards.</description>
+          <jobString>Making throwing shards.</jobString>
+          <workAmount>800</workAmount>
+          <ingredients>
+            <li>
+              <filter>
+              <stuffCategoriesToAllow>
+                <li>Metallic</li>
+                <li>Stony</li>
+              </stuffCategoriesToAllow>              
+              </filter>
+              <count>20</count>
+            </li>
+          </ingredients>
+          <fixedIngredientFilter>
+            <stuffCategoriesToAllow>
+              <li>Metallic</li>
+              <li>Stony</li>
+            </stuffCategoriesToAllow>   
+          </fixedIngredientFilter>
+          <products>
+            <VWE_Throwing_Shards>10</VWE_Throwing_Shards>
+          </products>
+          <recipeUsers>
+            <li>CraftingSpot</li>
+          </recipeUsers>
+        </RecipeDef>
+      </value>
+    </li>
+
+	<!-- ========== Fire Bomb ========== -->
+
+	<!-- Projectile -->
+
+	<li Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="VWE_Proj_FireBomb"]/projectile</xpath>
+		<value>
+			<projectile Class="CombatExtended.ProjectilePropertiesCE">
+				<explosionRadius>0.5</explosionRadius>
+				<damageDef>Flame</damageDef>
+				<damageAmountBase>10</damageAmountBase>
+				<preExplosionSpawnThingDef>Filth_Fuel</preExplosionSpawnThingDef>
+				<preExplosionSpawnChance>1</preExplosionSpawnChance>
+				<speed>5</speed>
+				<ai_IsIncendiary>true</ai_IsIncendiary>
+			</projectile>
+		</value>
+	</li>
+
+	<li Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="VWE_Proj_FireBomb"]</xpath>
+		<value>
+			<thingClass>CombatExtended.Projectile_FireTrail</thingClass>
+		</value>
+	</li>
+
+	<!-- Grenade -->
+
+	<li Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="VWE_Weapon_FireBomb"]/graphicData</xpath>
+		<value>
+      <graphicData>
+        <texPath>Things/Projectile/FireBombThrown</texPath>
+        <graphicClass>Graphic_Single</graphicClass>
+      </graphicData> 
+		</value>
+	</li>
+
+	<li Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="VWE_Weapon_FireBomb"]</xpath>
+		<value>
+			<thingClass>CombatExtended.AmmoThing</thingClass>
+			<stackLimit>50</stackLimit>
+			<resourceReadoutPriority>First</resourceReadoutPriority>
+		</value>
+	</li>
+
+	<li Class="PatchOperationAttributeSet">
+		<xpath>Defs/ThingDef[defName="VWE_Weapon_FireBomb"]</xpath>
+		<attribute>Class</attribute>
+		<value>CombatExtended.AmmoDef</value>
+	</li>
+
+	<li Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="VWE_Weapon_FireBomb"]/comps</xpath>
+		<value>
+		  <li Class="CombatExtended.CompProperties_ExplosiveCE">
+			<damageAmountBase>1</damageAmountBase>
+			<explosiveDamageType>Flame</explosiveDamageType>
+			<explosiveRadius>0.5</explosiveRadius>
+				<preExplosionSpawnThingDef>Filth_Fuel</preExplosionSpawnThingDef>
+				<preExplosionSpawnChance>1</preExplosionSpawnChance>
+		  </li>
+		</value>
+	</li>
+
+	<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+		<defName>VWE_Weapon_FireBomb</defName>
+		<statBases>
+			<Mass>0.6</Mass>
+			<Bulk>1.8</Bulk>
+			<MarketValue>3</MarketValue>
+			<RangedWeapon_Cooldown>1</RangedWeapon_Cooldown>
+			<SightsEfficiency>0.65</SightsEfficiency>
+		</statBases>
+		<Properties>
+			<label>throw firebomb</label>
+			<verbClass>CombatExtended.Verb_ShootCEOneUse</verbClass>
+			<hasStandardCommand>true</hasStandardCommand>
+			<range>10</range>
+			<minRange>3</minRange>
+			<warmupTime>1.8</warmupTime>
+			<noiseRadius>4</noiseRadius>
+			<ai_IsBuildingDestroyer>true</ai_IsBuildingDestroyer>
+			<soundCast>ThrowMolotovCocktail</soundCast>
+			<targetParams>
+				<canTargetLocations>true</canTargetLocations>
+			</targetParams>
+			<defaultProjectile>VWE_Proj_FireBomb</defaultProjectile>
+			<ignorePartialLoSBlocker>true</ignorePartialLoSBlocker>
+		</Properties>
+		<weaponTags>
+			<li>CE_OneHandedWeapon</li>
+		</weaponTags>
+	</li>
+
+  <li Class="PatchOperationRemove">
+    <xpath>Defs/ThingDef[defName="VWE_Weapon_FireBomb"]/recipeMaker</xpath>
+  </li>
+
+  <li Class="PatchOperationAdd">
+    <xpath>Defs</xpath>
+    <value>
+      <RecipeDef ParentName="GrenadeRecipeBase">
+        <defName>MakeFireBomb</defName>
+        <label>make fire bombs x10</label>
+        <description>Craft 10 fire bombs.</description>
+        <jobString>Making fire bombs.</jobString>
+        <workAmount>1200</workAmount>
+        <recipeUsers>
+          <li>CraftingSpot</li>
+        </recipeUsers>
+        <ingredients>
+          <li>
+            <filter>
+              <thingDefs>
+                <li>Cloth</li>
+              </thingDefs>
+            </filter>
+            <count>20</count>
+          </li>
+          <li>
+            <filter>
+              <thingDefs>
+                <li>Chemfuel</li>
+              </thingDefs>
+            </filter>
+            <count>20</count>
+          </li>
+        </ingredients>
+        <fixedIngredientFilter>
+          <thingDefs>
+            <li>Cloth</li>
+            <li>Chemfuel</li>
+          </thingDefs>
+        </fixedIngredientFilter>
+        <products>
+          <VWE_Weapon_FireBomb>10</VWE_Weapon_FireBomb>
+        </products>
+      </RecipeDef>
+    </value>
+  </li>
+
+ 		</operations>
+		</match>
+	</Operation>
+</Patch>

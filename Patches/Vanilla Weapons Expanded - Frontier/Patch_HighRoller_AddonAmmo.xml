@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8" ?>
+
+<Patch>
+<Operation Class="PatchOperationFindMod">
+	<mods>
+		<li>Vanilla Weapons Expanded - Frontier</li>
+	</mods>
+	<match Class="PatchOperationFindMod">
+		<mods>
+			<li>Vanilla Weapons Expanded - Quickdraw</li>
+		</mods>
+		<match Class="PatchOperationAdd">
+            <xpath>Defs</xpath>
+            <value>
+
+	<!-- ==================== AmmoSet ========================== -->
+
+	<CombatExtended.AmmoSetDef>
+		<defName>AmmoSet_41RimfireHR</defName>
+		<label>.41 Rimfire</label>
+		<ammoTypes>
+			<Ammo_41Rimfire_FMJ>Bullet_41RimfireHR_FMJ</Ammo_41Rimfire_FMJ>
+			<Ammo_41Rimfire_AP>Bullet_41RimfireHR_AP</Ammo_41Rimfire_AP>
+			<Ammo_41Rimfire_HP>Bullet_41RimfireHR_HP</Ammo_41Rimfire_HP>
+		</ammoTypes>
+	</CombatExtended.AmmoSetDef>
+
+	<!-- ==================== Ammo ========================== -->
+
+	<!-- ================== Projectiles ================== -->
+
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="Base41RimfireBullet">
+		<defName>Bullet_41RimfireHR_FMJ</defName>
+		<label>.41 Rimfire bullet (FMJ)</label>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageAmountBase>6</damageAmountBase>
+			<armorPenetrationSharp>1</armorPenetrationSharp>
+			<armorPenetrationBlunt>1.36</armorPenetrationBlunt>
+			<secondaryDamage>
+				<li>
+				<def>Bullet</def>
+				<amount>6</amount>
+				<chance>0.10</chance>
+				</li>
+			</secondaryDamage>			
+		</projectile>
+	</ThingDef>
+
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="Base41RimfireBullet">
+		<defName>Bullet_41RimfireHR_AP</defName>
+		<label>.41 Rimfire bullet (AP)</label>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageAmountBase>4</damageAmountBase>
+			<armorPenetrationSharp>2</armorPenetrationSharp>
+			<armorPenetrationBlunt>1.36</armorPenetrationBlunt>
+			<secondaryDamage>
+				<li>
+				<def>Bullet</def>
+				<amount>4</amount>
+				<chance>0.10</chance>
+				</li>
+			</secondaryDamage>			
+		</projectile>
+	</ThingDef>
+
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="Base41RimfireBullet">
+		<defName>Bullet_41RimfireHR_HP</defName>
+		<label>.41 Rimfire bullet (HP)</label>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageAmountBase>7</damageAmountBase>
+			<armorPenetrationSharp>1</armorPenetrationSharp>
+			<armorPenetrationBlunt>1.36</armorPenetrationBlunt>
+			<secondaryDamage>
+				<li>
+				<def>Bullet</def>
+				<amount>7</amount>
+				<chance>0.10</chance>
+				</li>
+			</secondaryDamage>			
+		</projectile>
+	</ThingDef>
+
+		</value>
+	    </match>
+	</match>
+</Operation>
+</Patch>
