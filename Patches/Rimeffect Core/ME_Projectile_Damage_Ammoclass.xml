@@ -1,0 +1,1900 @@
+<Patch>
+
+	<Operation Class="PatchOperationFindMod">
+    <mods>
+		<li>Rim-Effect: Core beta 4</li>
+    </mods>
+		<match Class="PatchOperationSequence">
+		<operations>		
+
+		<li Class="PatchOperationAdd">
+		<xpath>Defs</xpath>
+		<value>
+
+	<!-- ==================== Hediff Type ========================== -->
+
+
+  <HediffDef>
+    <defName>ME_Toxic</defName>
+    <label>toxin round</label>
+    <description>Neurotoxin in the bloodstream. Causes nausea and severe degradation of neuromotor functions.
+\nAt high doses, toxic buildup can have severe health effects. Even at low doses, it can generate cancers.
+\nCreatures who die with toxic buildup cannot be eaten.</description>
+    <hediffClass>HediffWithComps</hediffClass>
+    <defaultLabelColor>(0.7, 1.0, 0.7)</defaultLabelColor>
+    <makesSickThought>true</makesSickThought>
+    <scenarioCanAdd>false</scenarioCanAdd>
+    <taleOnVisible>ToxicityRevealed</taleOnVisible>
+    <comps>
+      <li Class="HediffCompProperties_Immunizable">
+        <severityPerDayNotImmune>-0.2</severityPerDayNotImmune>
+      </li>
+    </comps>
+    <stages>
+      <li>
+        <label>initial</label>
+        <becomeVisible>false</becomeVisible>
+      </li>
+      <li>
+        <label>initial</label>
+        <minSeverity>0.01</minSeverity>
+        <vomitMtbDays>0.8</vomitMtbDays>
+        <capMods>
+          <li>
+            <capacity>Consciousness</capacity>
+            <offset>-0.05</offset>
+          </li>
+        </capMods>
+      </li>
+      <li>
+        <label>minor</label>
+        <minSeverity>0.15</minSeverity>
+        <vomitMtbDays>0.33</vomitMtbDays>
+        <capMods>
+          <li>
+            <capacity>Consciousness</capacity>
+            <offset>-0.10</offset>
+          </li>
+        </capMods>
+      </li>
+      <li>
+        <label>moderate</label>
+        <minSeverity>0.35</minSeverity>
+        <vomitMtbDays>0.2</vomitMtbDays>
+        <capMods>
+          <li>
+            <capacity>Consciousness</capacity>
+            <offset>-0.175</offset>
+          </li>
+        </capMods>
+        <hediffGivers>
+          <li Class="HediffGiver_Random">
+            <hediff>Dementia</hediff>
+            <mtbDays>146</mtbDays>
+            <partsToAffect>
+              <li>Brain</li>
+            </partsToAffect>
+          </li>
+          <li Class="HediffGiver_Random">
+            <hediff>Carcinoma</hediff>
+            <mtbDays>300</mtbDays>
+            <canAffectAnyLivePart>true</canAffectAnyLivePart>
+          </li>
+        </hediffGivers>
+      </li>
+      <li>
+        <label>serious</label>
+        <minSeverity>0.65</minSeverity>
+        <vomitMtbDays>0.1</vomitMtbDays>
+        <capMods>
+          <li>
+            <capacity>Consciousness</capacity>
+            <offset>-0.25</offset>
+          </li>
+        </capMods>
+        <hediffGivers>
+          <li Class="HediffGiver_Random">
+            <hediff>Dementia</hediff>
+            <mtbDays>25</mtbDays>
+            <partsToAffect>
+              <li>Brain</li>
+            </partsToAffect>
+          </li>
+          <li Class="HediffGiver_Random">
+            <hediff>Carcinoma</hediff>
+            <mtbDays>60</mtbDays>
+            <canAffectAnyLivePart>true</canAffectAnyLivePart>
+          </li>
+        </hediffGivers>
+      </li>
+      <li>
+        <label>extreme</label>
+        <minSeverity>0.85</minSeverity>
+        <vomitMtbDays>0.06</vomitMtbDays>
+        <capMods>
+          <li>
+            <capacity>Consciousness</capacity>
+            <setMax>0.10</setMax>
+          </li>
+        </capMods>
+        <hediffGivers>
+          <li Class="HediffGiver_Random">
+            <hediff>Dementia</hediff>
+            <mtbDays>10</mtbDays>
+            <partsToAffect>
+              <li>Brain</li>
+            </partsToAffect>
+          </li>
+          <li Class="HediffGiver_Random">
+            <hediff>Carcinoma</hediff>
+            <mtbDays>30</mtbDays>
+            <canAffectAnyLivePart>true</canAffectAnyLivePart>
+          </li>
+        </hediffGivers>
+      </li>
+    </stages>
+  </HediffDef>
+
+  <HediffDef>
+    <defName>ME_Freeze</defName>
+    <label>Freeze</label>
+    <description>Dangerously low core body temperature. Unless re-warmed, hypothermia gets worse and ends in death. Recovery is quick once the victim is re-warmed. Avoid hypothermia by wearing warm clothes in cold environments.</description>
+    <defaultLabelColor>(0.8, 0.8, 1)</defaultLabelColor>
+    <hediffClass>HediffWithComps</hediffClass>
+    <taleOnVisible>HypothermiaRevealed</taleOnVisible>
+    <comps>
+      <li Class="HediffCompProperties_Immunizable">
+        <severityPerDayNotImmune>-0.5</severityPerDayNotImmune>
+      </li>
+    </comps>
+    <stages>
+      <li>
+        <label>shivering</label>
+        <becomeVisible>false</becomeVisible>
+      </li>
+      <li>
+        <label>shivering</label>
+        <minSeverity>0.03</minSeverity>
+        <capMods>
+          <li>
+            <capacity>Manipulation</capacity>
+            <offset>-0.1</offset>
+          </li>
+          <li>
+            <capacity>Moving</capacity>
+            <offset>-0.1</offset>
+          </li>
+          <li>
+            <capacity>Consciousness</capacity>
+            <offset>-0.01</offset>
+          </li>
+        </capMods>
+      </li>
+      <li>
+        <label>minor</label>
+        <minSeverity>0.2</minSeverity>
+        <capMods>
+          <li>
+            <capacity>Moving</capacity>
+            <offset>-0.2</offset>
+          </li>
+          <li>
+            <capacity>Manipulation</capacity>
+            <offset>-0.2</offset>
+          </li>
+          <li>
+            <capacity>Consciousness</capacity>
+            <offset>-0.05</offset>
+          </li>
+        </capMods>
+      </li>
+      <li>
+        <label>serious</label>
+        <minSeverity>0.35</minSeverity>
+        <painOffset>0.1</painOffset>
+        <capMods>
+          <li>
+            <capacity>Moving</capacity>
+            <offset>-0.35</offset>
+          </li>
+          <li>
+            <capacity>Manipulation</capacity>
+            <offset>-0.5</offset>
+          </li>
+          <li>
+            <capacity>Consciousness</capacity>
+            <offset>-0.1</offset>
+          </li>
+        </capMods>
+      </li>
+      <li>
+        <label>extreme</label>
+        <minSeverity>0.65</minSeverity>
+        <painOffset>0.15</painOffset>
+        <capMods>
+          <li>
+            <capacity>Moving</capacity>
+            <offset>-0.5</offset>
+          </li>
+          <li>
+            <capacity>Manipulation</capacity>
+            <offset>-0.66</offset>
+          </li>
+          <li>
+            <capacity>Consciousness</capacity>
+            <offset>-0.15</offset>
+          </li>
+        </capMods>
+      </li>
+      <li>
+        <label>Frozen</label>
+        <minSeverity>0.85</minSeverity>
+        <lifeThreatening>true</lifeThreatening>
+        <painOffset>0.2</painOffset>
+        <capMods>
+          <li>
+            <capacity>Moving</capacity>
+            <offset>-0.9</offset>
+          </li>
+          <li>
+            <capacity>Manipulation</capacity>
+            <offset>-0.9</offset>
+          </li>
+          <li>
+            <capacity>Consciousness</capacity>
+            <offset>-0.15</offset>
+          </li>
+        </capMods>
+      </li>
+    </stages>
+  </HediffDef>
+
+	<!-- ==================== Damage Type ========================== -->
+
+  <DamageDef Name="ME_Flame">
+    <defName>ME_Flame</defName>
+    <workerClass>DamageWorker_Flame</workerClass>
+    <label>incendiary</label>
+    <canInterruptJobs>false</canInterruptJobs>
+    <externalViolence>true</externalViolence>
+    <deathMessage>{0} has burned to death.</deathMessage>
+    <hediff>Burn</hediff>
+    <armorCategory>Sharp</armorCategory>
+    <minDamageToFragment>15</minDamageToFragment>
+    <defaultDamage>10</defaultDamage>
+    <defaultArmorPenetration>0</defaultArmorPenetration>
+    <explosionHeatEnergyPerCell>15</explosionHeatEnergyPerCell>
+    <explosionCellMote>Mote_BlastFlame</explosionCellMote>
+    <explosionColorCenter>(1, 0.7, 0.7)</explosionColorCenter>
+    <explosionColorEdge>(1, 1, 0.7)</explosionColorEdge>
+    <soundExplosion>Explosion_Flame</soundExplosion>
+    <combatLogRules>Damage_Flame</combatLogRules>
+  </DamageDef>
+
+  <DamageDef ParentName="Bullet">
+    <defName>ME_Cryo</defName>
+    <label>Cryo shot</label>
+    <externalViolence>false</externalViolence>
+    <deathMessage>{0} has succumbed to frostbite.</deathMessage>
+    <additionalHediffs>
+      <li>
+        <hediff>ME_Freeze</hediff>
+        <severityPerDamageDealt>0.05</severityPerDamageDealt>
+        <victimSeverityScalingByInvBodySize>true</victimSeverityScalingByInvBodySize>
+      </li>
+    </additionalHediffs>
+  </DamageDef>
+
+  <DamageDef ParentName="Bullet">
+    <defName>ME_Toxin</defName>
+    <label>Toxin shot</label>
+    <externalViolence>false</externalViolence>
+    <deathMessage>{0} has succumbed to bullet poisoning.</deathMessage>
+    <additionalHediffs>
+      <li>
+        <hediff>ME_Toxic</hediff>
+        <severityPerDamageDealt>0.05</severityPerDamageDealt>
+        <victimSeverityScalingByInvBodySize>true</victimSeverityScalingByInvBodySize>
+      </li>
+    </additionalHediffs>
+  </DamageDef>
+
+              <!-- ==================== Ammo Cat========================== -->
+
+	<ThingCategoryDef>
+		<defName>AmmoME</defName>
+		<label>Thermal clips</label>
+		<parent>AmmoAdvanced</parent>
+		<iconPath>UI/Icons/ThingCategories/CaliberPlasmaMedium</iconPath>
+	</ThingCategoryDef>
+
+	<!-- ==================== AmmoSet ========================== -->
+
+	<CombatExtended.AmmoSetDef>
+		<defName>AmmoSet_Cannon</defName>
+		<label>Thermal Clip</label>
+		<ammoTypes>
+			<Ammo_ME>VFE_Bullet_Cannon</Ammo_ME>
+			<Ammo_ME_HE>VFE_Bullet_Cannon_HE</Ammo_ME_HE>
+			<Ammo_ME_Ion>VFE_Bullet_Cannon_Ion</Ammo_ME_Ion>
+		</ammoTypes>
+	</CombatExtended.AmmoSetDef>
+
+	<CombatExtended.AmmoSetDef>
+		<defName>AmmoSet_M8</defName>
+		<label>Thermal Clip</label>
+		<ammoTypes>
+			<Ammo_ME>Bullet_M8_Basic</Ammo_ME>
+			<Ammo_ME_AP>Bullet_M8_AP</Ammo_ME_AP>
+			<Ammo_ME_Cryo>Bullet_M8_Cryo</Ammo_ME_Cryo>
+			<Ammo_ME_HE>Bullet_M8_HE</Ammo_ME_HE>
+			<Ammo_ME_FI>Bullet_M8_FI</Ammo_ME_FI>
+			<Ammo_ME_Ion>Bullet_M8_Ion</Ammo_ME_Ion>
+			<Ammo_ME_Toxic>Bullet_M8_Toxic</Ammo_ME_Toxic>
+		</ammoTypes>
+	</CombatExtended.AmmoSetDef>
+
+	<CombatExtended.AmmoSetDef>
+		<defName>AmmoSet_M15</defName>
+		<label>Thermal Clip</label>
+		<ammoTypes>
+			<Ammo_ME>Bullet_M15_Basic</Ammo_ME>
+			<Ammo_ME_AP>Bullet_M15_AP</Ammo_ME_AP>
+			<Ammo_ME_Cryo>Bullet_M15_Cryo</Ammo_ME_Cryo>
+			<Ammo_ME_HE>Bullet_M15_HE</Ammo_ME_HE>
+			<Ammo_ME_FI>Bullet_M15_FI</Ammo_ME_FI>
+			<Ammo_ME_Ion>Bullet_M15_Ion</Ammo_ME_Ion>
+			<Ammo_ME_Toxic>Bullet_M15_Toxic</Ammo_ME_Toxic>
+		</ammoTypes>
+	</CombatExtended.AmmoSetDef>
+
+
+	<CombatExtended.AmmoSetDef>
+		<defName>AmmoSet_Katana</defName>
+		<label>Thermal Clip</label>
+		<ammoTypes>
+			<Ammo_ME>Bullet_Katana</Ammo_ME>
+			<Ammo_ME_AP>Bullet_Katana_AP</Ammo_ME_AP>
+			<Ammo_ME_Cryo>Bullet_Katana_Cryo</Ammo_ME_Cryo>
+			<Ammo_ME_HE>Bullet_Katana_HE</Ammo_ME_HE>
+			<Ammo_ME_FI>Bullet_Katana_FI</Ammo_ME_FI>
+			<Ammo_ME_Ion>Bullet_Katana_Ion</Ammo_ME_Ion>
+			<Ammo_ME_Toxic>Bullet_Katana_Toxic</Ammo_ME_Toxic>
+		</ammoTypes>
+	</CombatExtended.AmmoSetDef>
+
+	<CombatExtended.AmmoSetDef>
+		<defName>AmmoSet_M98</defName>
+		<label>Thermal Clip</label>
+		<ammoTypes>
+			<Ammo_ME>Bullet_M98_Basic</Ammo_ME>
+			<Ammo_ME_AP>Bullet_M98_AP</Ammo_ME_AP>
+			<Ammo_ME_Cryo>Bullet_M98_Cryo</Ammo_ME_Cryo>
+			<Ammo_ME_HE>Bullet_M98_HE</Ammo_ME_HE>
+			<Ammo_ME_FI>Bullet_M98_FI</Ammo_ME_FI>
+			<Ammo_ME_Ion>Bullet_M98_Ion</Ammo_ME_Ion>
+			<Ammo_ME_Toxic>Bullet_M98_Toxic</Ammo_ME_Toxic>
+		</ammoTypes>
+	</CombatExtended.AmmoSetDef>
+
+	<CombatExtended.AmmoSetDef>
+		<defName>AmmoSet_Mantis</defName>
+		<label>Thermal Clip</label>
+		<ammoTypes>
+			<Ammo_ME>Bullet_Mantis</Ammo_ME>
+			<Ammo_ME_AP>Bullet_Mantis_AP</Ammo_ME_AP>
+			<Ammo_ME_Cryo>Bullet_Mantis_Cryo</Ammo_ME_Cryo>
+			<Ammo_ME_HE>Bullet_Mantis_HE</Ammo_ME_HE>
+			<Ammo_ME_FI>Bullet_Mantis_FI</Ammo_ME_FI>
+			<Ammo_ME_Ion>Bullet_Mantis_Ion</Ammo_ME_Ion>
+			<Ammo_ME_Toxic>Bullet_Mantis_Toxic</Ammo_ME_Toxic>
+		</ammoTypes>
+	</CombatExtended.AmmoSetDef>
+
+	<CombatExtended.AmmoSetDef>
+		<defName>AmmoSet_Tempest</defName>
+		<label>Thermal Clip</label>
+		<ammoTypes>
+			<Ammo_ME>Bullet_Tempest</Ammo_ME>
+			<Ammo_ME_AP>Bullet_Tempest_AP</Ammo_ME_AP>
+			<Ammo_ME_Cryo>Bullet_Tempest_Cryo</Ammo_ME_Cryo>
+			<Ammo_ME_HE>Bullet_Tempest_HE</Ammo_ME_HE>
+			<Ammo_ME_FI>Bullet_Tempest_FI</Ammo_ME_FI>
+			<Ammo_ME_Ion>Bullet_Tempest_Ion</Ammo_ME_Ion>
+			<Ammo_ME_Toxic>Bullet_Tempest_Toxic</Ammo_ME_Toxic>
+		</ammoTypes>
+	</CombatExtended.AmmoSetDef>
+
+	<CombatExtended.AmmoSetDef>
+		<defName>AmmoSet_Predator</defName>
+		<label>Thermal Clip</label>
+		<ammoTypes>
+			<Ammo_ME>Bullet_Predator</Ammo_ME>
+			<Ammo_ME_AP>Bullet_Predator_AP</Ammo_ME_AP>
+			<Ammo_ME_Cryo>Bullet_Predator_Cryo</Ammo_ME_Cryo>
+			<Ammo_ME_HE>Bullet_Predator_HE</Ammo_ME_HE>
+			<Ammo_ME_FI>Bullet_Predator_FI</Ammo_ME_FI>
+			<Ammo_ME_Ion>Bullet_Predator_Ion</Ammo_ME_Ion>
+			<Ammo_ME_Toxic>Bullet_Predator_Toxic</Ammo_ME_Toxic>
+		</ammoTypes>
+	</CombatExtended.AmmoSetDef>
+
+	<CombatExtended.AmmoSetDef>
+		<defName>AmmoSet_Phalanx</defName>
+		<label>Thermal Clip</label>
+		<ammoTypes>
+			<Ammo_ME>Bullet_Phalanx</Ammo_ME>
+			<Ammo_ME_AP>Bullet_Predator_AP</Ammo_ME_AP>
+			<Ammo_ME_Cryo>Bullet_Predator_Cryo</Ammo_ME_Cryo>
+			<Ammo_ME_HE>Bullet_Predator_HE</Ammo_ME_HE>
+			<Ammo_ME_FI>Bullet_Predator_FI</Ammo_ME_FI>
+			<Ammo_ME_Ion>Bullet_Predator_Ion</Ammo_ME_Ion>
+			<Ammo_ME_Toxic>Bullet_Predator_Toxic</Ammo_ME_Toxic>
+		</ammoTypes>
+	</CombatExtended.AmmoSetDef>
+
+
+	<CombatExtended.AmmoSetDef>
+		<defName>AmmoSet_Hydrashotty</defName>
+		<label>Thermal Clip</label>
+		<ammoTypes>
+			<Ammo_ME>Bullet_Phalanx</Ammo_ME>
+			<Ammo_ME_AP>Bullet_Phalanx_AP</Ammo_ME_AP>
+			<Ammo_ME_Cryo>Bullet_Phalanx_Cryo</Ammo_ME_Cryo>
+			<Ammo_ME_HE>Bullet_Phalanx_HE</Ammo_ME_HE>
+			<Ammo_ME_FI>Bullet_Phalanx_FI</Ammo_ME_FI>
+			<Ammo_ME_Ion>Bullet_Phalanx_Ion</Ammo_ME_Ion>
+			<Ammo_ME_Toxic>Bullet_Phalanx_Toxic</Ammo_ME_Toxic>
+		</ammoTypes>
+	</CombatExtended.AmmoSetDef>
+
+	<CombatExtended.AmmoSetDef>
+		<defName>AmmoSet_Ymir</defName>
+		<label>Thermal Clip</label>
+		<ammoTypes>
+			<Ammo_ME>RE_YmirBullet</Ammo_ME>
+		</ammoTypes>
+	</CombatExtended.AmmoSetDef>
+
+  <!-- ==================== AmmoClass========================== -->
+
+  <CombatExtended.AmmoCategoryDef>
+    <defName>ME_FMJ</defName>
+    <label>acccelerator slug</label>
+    <labelShort>Accelerator Slug</labelShort>
+    <description>The soft lead core is encased in a harder metal coating, combining a medium amount of stopping power and armor penetration.</description>
+  </CombatExtended.AmmoCategoryDef>
+
+  <CombatExtended.AmmoCategoryDef>
+    <defName>ME_AP</defName>
+    <label>Armor-piercing</label>
+    <labelShort>AP</labelShort>
+    <description>Features a hardened tungsten carbide penetrator core for increased armor penetration.</description>
+  </CombatExtended.AmmoCategoryDef>
+
+  <CombatExtended.AmmoCategoryDef>
+    <defName>ME_Cryo</defName>
+    <label>Cryo</label>
+    <description>Filled with incendiary agent that ignites after impact.</description>
+  </CombatExtended.AmmoCategoryDef>
+
+  <CombatExtended.AmmoCategoryDef>
+    <defName>ME_HE</defName>
+    <label>High Explosive</label>
+    <description>Filled with incendiary agent that ignites after impact.</description>
+  </CombatExtended.AmmoCategoryDef>
+
+  <CombatExtended.AmmoCategoryDef>
+    <defName>ME_FI</defName>
+    <label>Incendiary</label>
+    <description>Filled with incendiary agent that ignites after impact.</description>
+  </CombatExtended.AmmoCategoryDef>
+
+  <CombatExtended.AmmoCategoryDef>
+    <defName>ME_Ion</defName>
+    <label>Disruptor</label>
+    <labelShort>Disruptor</labelShort>
+    <description>Designed to combat mechanoids, the round creates an electrical current on impact, disrupting electronic systems temporarily.</description>
+  </CombatExtended.AmmoCategoryDef>
+
+  <CombatExtended.AmmoCategoryDef>
+    <defName>ME_Toxic</defName>
+    <label>Toxin</label>
+    <labelShort>Toxin</labelShort>
+    <description>Designed to combat organic targets, injects the target with a painful neuratoxin upon penetration.</description>
+  </CombatExtended.AmmoCategoryDef>
+
+  <!-- ==================== Ammo Type ========================== -->
+
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="SpacerSmallAmmoBase">
+		<defName>Ammo_ME</defName>
+		<label>Basic Thermal clip</label>
+		<description>Thermal clips designed to fit almost all mass accelerator weapons. It allows mass accelerator weapons to fire continuously without needing to slow down in order to cool. It is best not to question where the projectile itself comes from.</description>
+		<statBases>
+			<Mass>0.01</Mass>
+			<Bulk>0.01</Bulk>
+			<MarketValue>0.25</MarketValue>
+		</statBases>
+		<tradeTags>
+			<li>CE_AutoEnableTrade</li>
+			<li>CE_AutoEnableCrafting_FabricationBench</li>
+			<!-- Plasma ammo can't be handloaded, and the containment cell must be precision-machined anyway -->
+		</tradeTags>
+		<thingCategories>
+			<li>AmmoME</li>
+		</thingCategories>
+		<graphicData>
+			<texPath>ThirdParty/MassEffect/Heatsink</texPath>
+			<graphicClass>CombatExtended.Graphic_StackCountRanged</graphicClass>
+		</graphicData>
+		<ammoClass>ME_FMJ</ammoClass>
+    		<generateAllowChance>0.5</generateAllowChance>
+	</ThingDef>
+
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="SpacerSmallAmmoBase">
+		<defName>Ammo_ME_AP</defName>
+		<label>AP Thermal clip</label>
+		<description>Thermal clips designed to fit almost all mass accelerator weapons. This one penetrates armour better.</description>
+		<statBases>
+			<Mass>0.015</Mass>
+			<Bulk>0.012</Bulk>
+			<MarketValue>0.36</MarketValue>
+		</statBases>
+		<tradeTags>
+			<li>CE_AutoEnableTrade</li>
+			<li>CE_AutoEnableCrafting_FabricationBench</li>
+			<!-- Plasma ammo can't be handloaded, and the containment cell must be precision-machined anyway -->
+		</tradeTags>
+		<thingCategories>
+			<li>AmmoME</li>
+		</thingCategories>
+		<graphicData>
+			<texPath>ThirdParty/MassEffect/ME_AP</texPath>
+			<graphicClass>CombatExtended.Graphic_StackCountRanged</graphicClass>
+		</graphicData>
+		<ammoClass>ME_AP</ammoClass>
+    		<generateAllowChance>0.3</generateAllowChance>
+	</ThingDef>
+
+
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="SpacerSmallAmmoBase">
+		<defName>Ammo_ME_Cryo</defName>
+		<label>Cryo Thermal clip</label>
+		<description>Thermal clips designed to fit almost all mass accelerator weapons. This one makes your enemy slow and cumberson.</description>
+		<statBases>
+			<Mass>0.01</Mass>
+			<Bulk>0.01</Bulk>
+			<MarketValue>0.5</MarketValue>
+		</statBases>
+		<tradeTags>
+			<li>CE_AutoEnableTrade</li>
+			<li>CE_AutoEnableCrafting_FabricationBench</li>
+			<!-- Plasma ammo can't be handloaded, and the containment cell must be precision-machined anyway -->
+		</tradeTags>
+		<thingCategories>
+			<li>AmmoME</li>
+		</thingCategories>
+		<graphicData>
+			<texPath>ThirdParty/MassEffect/ME_Cryo</texPath>
+			<graphicClass>CombatExtended.Graphic_StackCountRanged</graphicClass>
+		</graphicData>
+		<ammoClass>ME_Cryo</ammoClass>
+    		<generateAllowChance>0.1</generateAllowChance>
+	</ThingDef>
+
+
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="SpacerSmallAmmoBase">
+		<defName>Ammo_ME_HE</defName>
+		<label>HE Thermal clip</label>
+		<description>Thermal clips designed to fit almost all mass accelerator weapons.</description>
+		<statBases>
+			<Mass>0.01</Mass>
+			<Bulk>0.01</Bulk>
+			<MarketValue>0.64</MarketValue>
+		</statBases>
+		<tradeTags>
+			<li>CE_AutoEnableTrade</li>
+			<li>CE_AutoEnableCrafting_FabricationBench</li>
+			<!-- Plasma ammo can't be handloaded, and the containment cell must be precision-machined anyway -->
+		</tradeTags>
+		<thingCategories>
+			<li>AmmoME</li>
+		</thingCategories>
+		<graphicData>
+			<texPath>ThirdParty/MassEffect/ME_HE</texPath>
+			<graphicClass>CombatExtended.Graphic_StackCountRanged</graphicClass>
+		</graphicData>
+		<ammoClass>ME_HE</ammoClass>
+    		<generateAllowChance>0.1</generateAllowChance>
+	</ThingDef>
+
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="SpacerSmallAmmoBase">
+		<defName>Ammo_ME_FI</defName>
+		<label>incendiary Thermal clip</label>
+		<description>Thermal clips designed to fit almost all mass accelerator weapons. Set enemy on fire.</description>
+		<statBases>
+			<Mass>0.01</Mass>
+			<Bulk>0.01</Bulk>
+			<MarketValue>0.6</MarketValue>
+		</statBases>
+		<tradeTags>
+			<li>CE_AutoEnableTrade</li>
+			<li>CE_AutoEnableCrafting_FabricationBench</li>
+			<!-- Plasma ammo can't be handloaded, and the containment cell must be precision-machined anyway -->
+		</tradeTags>
+		<thingCategories>
+			<li>AmmoME</li>
+		</thingCategories>
+		<graphicData>
+			<texPath>ThirdParty/MassEffect/ME_FI</texPath>
+			<graphicClass>CombatExtended.Graphic_StackCountRanged</graphicClass>
+		</graphicData>
+		<ammoClass>ME_FI</ammoClass>
+    		<generateAllowChance>0.1</generateAllowChance>
+	</ThingDef>
+
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="SpacerSmallAmmoBase">
+		<defName>Ammo_ME_Ion</defName>
+		<label>Disruptor Thermal clip</label>
+		<description>Thermal clips designed to fit almost all mass accelerator weapons. This one makes your enemy combust.</description>
+		<statBases>
+			<Mass>0.01</Mass>
+			<Bulk>0.01</Bulk>
+			<MarketValue>0.6</MarketValue>
+		</statBases>
+		<tradeTags>
+			<li>CE_AutoEnableTrade</li>
+			<li>CE_AutoEnableCrafting_FabricationBench</li>
+			<!-- Plasma ammo can't be handloaded, and the containment cell must be precision-machined anyway -->
+		</tradeTags>
+		<thingCategories>
+			<li>AmmoME</li>
+		</thingCategories>
+		<graphicData>
+			<texPath>ThirdParty/MassEffect/ME_EMP</texPath>
+			<graphicClass>CombatExtended.Graphic_StackCountRanged</graphicClass>
+		</graphicData>
+		<ammoClass>ME_Ion</ammoClass>
+    		<generateAllowChance>0.1</generateAllowChance>
+	</ThingDef>
+
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="SpacerSmallAmmoBase">
+		<defName>Ammo_ME_Toxic</defName>
+		<label>Toxin Thermal clip</label>
+		<description>Thermal clips designed to fit almost all mass accelerator weapons.</description>
+		<statBases>
+			<Mass>0.01</Mass>
+			<Bulk>0.01</Bulk>
+			<MarketValue>0.5</MarketValue>
+		</statBases>
+		<tradeTags>
+			<li>CE_AutoEnableTrade</li>
+			<li>CE_AutoEnableCrafting_FabricationBench</li>
+			<!-- Plasma ammo can't be handloaded, and the containment cell must be precision-machined anyway -->
+		</tradeTags>
+		<thingCategories>
+			<li>AmmoME</li>
+		</thingCategories>
+		<graphicData>
+			<texPath>ThirdParty/MassEffect/ME_Toxic</texPath>
+			<graphicClass>CombatExtended.Graphic_StackCountRanged</graphicClass>
+		</graphicData>
+		<ammoClass>ME_Toxic</ammoClass>
+    		<generateAllowChance>0.1</generateAllowChance>
+	</ThingDef>
+
+	<!-- ================== Projectiles ================== -->
+	<!-- ================== ML77 ================== -->
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="BaseRPG7Grenade">
+		<defName>VFE_Bullet_ML77CE</defName>
+		<label>ML77 Missile</label>
+		<graphicData>
+			<texPath>Things/Projectile/Rocket/M72LAW</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+			<shaderType>TransparentPostLight</shaderType>
+		</graphicData>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<speed>60</speed>
+			<damageDef>Bullet</damageDef>
+			<damageAmountBase>160</damageAmountBase>
+			<armorPenetrationSharp>300</armorPenetrationSharp>
+			<armorPenetrationBlunt>31.584</armorPenetrationBlunt>
+			<soundAmbient>RocketPropelledLoop_Small</soundAmbient>
+		</projectile>
+		<comps>
+		  <li Class="CombatExtended.CompProperties_ExplosiveCE">
+			<damageAmountBase>148</damageAmountBase>
+			<explosiveDamageType>Bomb</explosiveDamageType>
+			<explosiveRadius>2</explosiveRadius>
+			<explosionSound>MortarBomb_Explode</explosionSound>
+				<applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
+		  </li>
+		  <li Class="CombatExtended.CompProperties_Fragments">
+			<fragments>
+				<Fragment_Large>6</Fragment_Large>
+			  <Fragment_Small>40</Fragment_Small>
+			</fragments>
+		  </li>
+		</comps>
+	</ThingDef>
+	<!-- ================== Ymir Mech ================== -->
+	<ThingDef ParentName="Base6x24mmChargedBullet">
+		<defName>RE_YmirBullet</defName>
+    		<thingClass>CombatExtended.BulletCE</thingClass>
+		<label>Mass accelerator cannon</label>
+		<graphicData>
+			<texPath>Things/Projectile/Shot_MassAccelerated_Large</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+			<shaderType>TransparentPostLight</shaderType>
+		</graphicData>
+    		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+      		<flyOverhead>false</flyOverhead>
+			<speed>368</speed>
+			<damageDef>Bullet</damageDef>
+			<damageAmountBase>47</damageAmountBase>
+      			<armorPenetrationSharp>26</armorPenetrationSharp>
+      			<armorPenetrationBlunt>308</armorPenetrationBlunt>			
+    </projectile>
+	</ThingDef>
+
+	<!-- ================== Heavy CANNON ================== -->
+
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="BaseRPG7Grenade">
+		<defName>VFE_Bullet_Cannon</defName>
+		<label>Cannon Slug</label>
+		<graphicData>
+      			<texPath>Things/Projectile/Shot_MassAcceleratorTurret_Heavy</texPath>
+      			<graphicClass>Graphic_Single</graphicClass>
+		</graphicData>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<speed>400</speed>
+			<damageDef>Bullet</damageDef>
+			<damageAmountBase>120</damageAmountBase>
+			<armorPenetrationSharp>100</armorPenetrationSharp>
+			<armorPenetrationBlunt>400.584</armorPenetrationBlunt>
+		</projectile>
+		<comps>
+		  <li Class="CombatExtended.CompProperties_ExplosiveCE">
+			<damageAmountBase>30</damageAmountBase>
+			<explosiveDamageType>Bomb</explosiveDamageType>
+			<explosiveRadius>0.9</explosiveRadius>
+			<applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
+		  </li>
+		  <li Class="CombatExtended.CompProperties_Fragments">
+			<fragments>
+			  <Fragment_Small>3</Fragment_Small>
+			</fragments>
+		  </li>
+		</comps>
+	</ThingDef>
+
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="BaseRPG7Grenade">
+		<defName>VFE_Bullet_Cannon_HE</defName>
+		<label>HE Cannon Slug</label>
+		<graphicData>
+      			<texPath>Things/Projectile/Shot_MassAcceleratorTurret_Heavy</texPath>
+      			<graphicClass>Graphic_Single</graphicClass>
+		</graphicData>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<speed>400</speed>
+			<damageDef>Bullet</damageDef>
+			<damageAmountBase>100</damageAmountBase>
+			<armorPenetrationSharp>100</armorPenetrationSharp>
+			<armorPenetrationBlunt>400.584</armorPenetrationBlunt>
+		  <secondaryDamage>
+				<li>
+			  	<def>Bomb_Secondary</def>
+			  	<amount>30</amount>
+				</li>
+		  </secondaryDamage>
+		</projectile>
+		<comps>
+		  <li Class="CombatExtended.CompProperties_ExplosiveCE">
+			<damageAmountBase>48</damageAmountBase>
+			<explosiveDamageType>Bomb</explosiveDamageType>
+			<explosiveRadius>1.5</explosiveRadius>
+			<explosionSound>MortarBomb_Explode</explosionSound>
+				<applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
+		  </li>
+		  <li Class="CombatExtended.CompProperties_Fragments">
+			<fragments>
+			  <Fragment_Small>7</Fragment_Small>
+			</fragments>
+		  </li>
+		</comps>
+	</ThingDef>
+
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="BaseRPG7Grenade">
+		<defName>VFE_Bullet_Cannon_Ion</defName>
+		<label>Disruptor Cannon Slug</label>
+		<graphicData>
+      			<texPath>Things/Projectile/Shot_MassAcceleratorTurret_Heavy</texPath>
+      			<graphicClass>Graphic_Single</graphicClass>
+		</graphicData>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<speed>400</speed>
+			<damageDef>Bullet</damageDef>
+			<damageAmountBase>100</damageAmountBase>
+			<armorPenetrationSharp>100</armorPenetrationSharp>
+			<armorPenetrationBlunt>400.584</armorPenetrationBlunt>
+		  <secondaryDamage>
+				<li>
+			  	<def>EMP</def>
+			  	<amount>30</amount>
+				</li>
+		  </secondaryDamage>
+		</projectile>
+		<comps>
+		  <li Class="CombatExtended.CompProperties_ExplosiveCE">
+			<damageAmountBase>38</damageAmountBase>
+			<explosiveDamageType>EMP</explosiveDamageType>
+			<explosiveRadius>2</explosiveRadius>
+				<applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
+		  </li>
+		  <li Class="CombatExtended.CompProperties_Fragments">
+			<fragments>
+			  <Fragment_Small>7</Fragment_Small>
+			</fragments>
+		  </li>
+		</comps>
+	</ThingDef>
+
+	<!-- ================== Projectiles M8================== -->
+
+  <ThingDef Class="CombatExtended.AmmoDef" Name="BaseM8Bullet" ParentName="Base6x24mmChargedBullet" Abstract="true">
+    <graphicData>
+	<texPath>Things/Projectile/Shot_MassAccelerated_Large</texPath>
+	<graphicClass>Graphic_Single</graphicClass>
+    </graphicData>
+    <projectile Class="CombatExtended.ProjectilePropertiesCE">
+      <damageDef>Bullet</damageDef>
+      <speed>400</speed>
+    </projectile>
+  </ThingDef>
+
+  <ThingDef Class="CombatExtended.AmmoDef" ParentName="BaseM8Bullet">
+		<defName>Bullet_M8_Basic</defName>
+		<label>accelerated shot</label>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageAmountBase>15</damageAmountBase>
+      <armorPenetrationSharp>14</armorPenetrationSharp>      
+      <armorPenetrationBlunt>38</armorPenetrationBlunt>
+		</projectile>
+	</ThingDef>
+
+  <ThingDef Class="CombatExtended.AmmoDef" ParentName="BaseM8Bullet">
+		<defName>Bullet_M8_AP</defName>
+		<label>accelerated shot</label>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageAmountBase>10</damageAmountBase>
+      <armorPenetrationSharp>28</armorPenetrationSharp>      
+      <armorPenetrationBlunt>38</armorPenetrationBlunt>
+		</projectile>
+	</ThingDef>
+
+  <ThingDef Class="CombatExtended.AmmoDef" ParentName="BaseM8Bullet">
+		<defName>Bullet_M8_HE</defName>
+		<label>accelerated shot</label>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageDef>Bullet</damageDef>
+			<damageAmountBase>15</damageAmountBase>
+      <armorPenetrationSharp>14</armorPenetrationSharp>      
+      <armorPenetrationBlunt>38</armorPenetrationBlunt>
+		  <secondaryDamage>
+				<li>
+			  	<def>Bomb_Secondary</def>
+			  	<amount>7</amount>
+				</li>
+		  </secondaryDamage>
+		</projectile>
+	</ThingDef>
+
+  <ThingDef Class="CombatExtended.AmmoDef" ParentName="BaseM8Bullet">
+		<defName>Bullet_M8_FI</defName>
+		<label>accelerated incendiary shot</label>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageAmountBase>15</damageAmountBase>
+      <armorPenetrationSharp>14</armorPenetrationSharp>      
+      <armorPenetrationBlunt>38</armorPenetrationBlunt>
+		  <secondaryDamage>
+				<li>
+			  	<def>Flame</def>
+			  	<amount>3</amount>
+				</li>
+		  </secondaryDamage>
+		</projectile>
+	</ThingDef>
+
+  <ThingDef Class="CombatExtended.AmmoDef" ParentName="BaseM8Bullet">
+		<defName>Bullet_M8_Cryo</defName>
+		<label>accelerated shot</label>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageAmountBase>14</damageAmountBase>
+      <armorPenetrationSharp>14</armorPenetrationSharp>      
+      <armorPenetrationBlunt>38</armorPenetrationBlunt>
+		  <secondaryDamage>
+				<li>
+			  	<def>ME_Cryo</def>
+			  	<amount>4</amount>
+				</li>
+		  </secondaryDamage>
+		</projectile>
+	</ThingDef>
+
+
+  <ThingDef Class="CombatExtended.AmmoDef" ParentName="BaseM8Bullet">
+		<defName>Bullet_M8_Toxic</defName>
+		<label>accelerated shot</label>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageAmountBase>14</damageAmountBase>
+      <armorPenetrationSharp>14</armorPenetrationSharp>      
+      <armorPenetrationBlunt>38</armorPenetrationBlunt>
+		  <secondaryDamage>
+				<li>
+			  	<def>ME_Toxin</def>
+			  	<amount>4</amount>
+				</li>
+		  </secondaryDamage>
+		</projectile>
+	</ThingDef>
+
+  <ThingDef Class="CombatExtended.AmmoDef" ParentName="BaseM8Bullet">
+    <defName>Bullet_M8_Ion</defName>
+    <label>accelerated shot</label>
+    <projectile Class="CombatExtended.ProjectilePropertiesCE">
+      <damageAmountBase>12</damageAmountBase>
+      <secondaryDamage>
+        <li>
+          <def>EMP</def>
+          <amount>4</amount>
+        </li>
+      </secondaryDamage>
+      <armorPenetrationSharp>16</armorPenetrationSharp>
+      <armorPenetrationBlunt>38</armorPenetrationBlunt>
+      <empShieldBreakChance>0.2</empShieldBreakChance>
+    </projectile>
+  </ThingDef>
+
+
+	<!-- ================== M15 ================== -->
+
+  <ThingDef Class="CombatExtended.AmmoDef" Name="BaseM15Bullet" ParentName="Base6x24mmChargedBullet" Abstract="true">
+    <graphicData>
+	<texPath>Things/Projectile/Shot_MassAccelerated_Large</texPath>
+	<graphicClass>Graphic_Single</graphicClass>
+    </graphicData>
+    <projectile Class="CombatExtended.ProjectilePropertiesCE">
+      <damageDef>Bullet</damageDef>
+      <speed>400</speed>
+    </projectile>
+  </ThingDef>
+
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="BaseM15Bullet">
+		<defName>Bullet_M15_Basic</defName>
+		<label>accelerated shot</label>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageAmountBase>19</damageAmountBase>
+      <armorPenetrationSharp>16</armorPenetrationSharp>      
+      <armorPenetrationBlunt>50</armorPenetrationBlunt>
+		</projectile>
+	</ThingDef>
+
+
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="BaseM15Bullet">
+		<defName>Bullet_M15_AP</defName>
+		<label>accelerated shot</label>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageAmountBase>13</damageAmountBase>
+      <armorPenetrationSharp>32</armorPenetrationSharp>      
+      <armorPenetrationBlunt>50</armorPenetrationBlunt>
+		</projectile>
+	</ThingDef>
+
+  <ThingDef Class="CombatExtended.AmmoDef" ParentName="BaseM15Bullet">
+		<defName>Bullet_M15_HE</defName>
+		<label>accelerated shot</label>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageAmountBase>19</damageAmountBase>
+      <armorPenetrationSharp>16</armorPenetrationSharp>      
+      <armorPenetrationBlunt>50</armorPenetrationBlunt>
+		  <secondaryDamage>
+				<li>
+			  	<def>Bomb_Secondary</def>
+			  	<amount>9</amount>
+				</li>
+		  </secondaryDamage>
+		</projectile>
+	</ThingDef>
+
+  <ThingDef Class="CombatExtended.AmmoDef" ParentName="BaseM15Bullet">
+		<defName>Bullet_M15_Cryo</defName>
+		<label>accelerated shot</label>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageAmountBase>18</damageAmountBase>
+      <armorPenetrationSharp>16</armorPenetrationSharp>      
+      <armorPenetrationBlunt>50</armorPenetrationBlunt>
+		  <secondaryDamage>
+				<li>
+			  	<def>ME_Cryo</def>
+			  	<amount>4</amount>
+				</li>
+		  </secondaryDamage>
+		</projectile>
+	</ThingDef>
+
+
+  <ThingDef Class="CombatExtended.AmmoDef" ParentName="BaseM15Bullet">
+		<defName>Bullet_M15_Toxic</defName>
+		<label>accelerated shot</label>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageAmountBase>18</damageAmountBase>
+      <armorPenetrationSharp>16</armorPenetrationSharp>      
+      <armorPenetrationBlunt>50</armorPenetrationBlunt>
+		  <secondaryDamage>
+				<li>
+			  	<def>ME_Toxin</def>
+			  	<amount>4</amount>
+				</li>
+		  </secondaryDamage>
+		</projectile>
+	</ThingDef>
+
+  <ThingDef Class="CombatExtended.AmmoDef" ParentName="BaseM15Bullet">
+    <defName>Bullet_M15_Ion</defName>
+    <label>accelerated shot</label>
+    <projectile Class="CombatExtended.ProjectilePropertiesCE">
+      <damageAmountBase>15</damageAmountBase>
+      <secondaryDamage>
+        <li>
+          <def>EMP</def>
+          <amount>5</amount>
+        </li>
+      </secondaryDamage>
+      <armorPenetrationSharp>20</armorPenetrationSharp>
+      <armorPenetrationBlunt>50</armorPenetrationBlunt>
+      <empShieldBreakChance>0.3</empShieldBreakChance>
+    </projectile>
+  </ThingDef>
+
+  <ThingDef Class="CombatExtended.AmmoDef" ParentName="BaseM15Bullet">
+		<defName>Bullet_M15_FI</defName>
+		<label>accelerated incendiary shot</label>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageAmountBase>19</damageAmountBase>
+      <armorPenetrationSharp>16</armorPenetrationSharp>      
+      <armorPenetrationBlunt>50</armorPenetrationBlunt>
+		  <secondaryDamage>
+				<li>
+			  	<def>Flame</def>
+			  	<amount>4</amount>
+				</li>
+		  </secondaryDamage>
+		</projectile>
+	</ThingDef>
+
+	<!-- ================== Katana ================== -->
+
+  <ThingDef Class="CombatExtended.AmmoDef" Name="BaseKatanaBullet" ParentName="Base6x24mmChargedBullet" Abstract="true">
+    <graphicData>
+	<texPath>Things/Projectile/Shot_MassAccelerated_Small</texPath>
+	<graphicClass>Graphic_Single</graphicClass>
+      	<shaderType>TransparentPostLight</shaderType>
+      	<drawSize>0.8</drawSize>
+    </graphicData>
+    <projectile Class="CombatExtended.ProjectilePropertiesCE">
+      <damageDef>Bullet</damageDef>
+      <speed>200</speed>
+    </projectile>
+  </ThingDef>
+
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="BaseKatanaBullet">
+		<defName>Bullet_Katana</defName>
+		<label>accelerated blast</label>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+      <damageAmountBase>11</damageAmountBase>
+      <armorPenetrationSharp>10</armorPenetrationSharp>      
+      <armorPenetrationBlunt>20</armorPenetrationBlunt>
+      <pelletCount>8</pelletCount>
+      <spreadMult>16.8</spreadMult>
+		</projectile>
+	</ThingDef>
+
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="BaseKatanaBullet">
+		<defName>Bullet_Katana_AP</defName>
+		<label>accelerated blast</label>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+      <damageAmountBase>7</damageAmountBase>
+      <armorPenetrationSharp>20</armorPenetrationSharp>      
+      <armorPenetrationBlunt>20</armorPenetrationBlunt>
+      <pelletCount>8</pelletCount>
+      <spreadMult>16.8</spreadMult>
+		</projectile>
+	</ThingDef>
+
+  <ThingDef Class="CombatExtended.AmmoDef" ParentName="BaseKatanaBullet">
+		<defName>Bullet_Katana_HE</defName>
+		<label>accelerated shot</label>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+      <damageAmountBase>11</damageAmountBase>
+      <armorPenetrationSharp>10</armorPenetrationSharp>      
+      <armorPenetrationBlunt>20</armorPenetrationBlunt>
+		  <secondaryDamage>
+				<li>
+			  	<def>Bomb_Secondary</def>
+			  	<amount>5</amount>
+				</li>
+		  </secondaryDamage>
+      <pelletCount>8</pelletCount>
+      <spreadMult>16.8</spreadMult>
+		</projectile>
+	</ThingDef>
+
+  <ThingDef Class="CombatExtended.AmmoDef" ParentName="BaseKatanaBullet">
+    <defName>Bullet_Katana_Ion</defName>
+    <label>accelerated shot</label>
+    <projectile Class="CombatExtended.ProjectilePropertiesCE">
+      <damageAmountBase>10</damageAmountBase>
+      <secondaryDamage>
+        <li>
+          <def>EMP</def>
+          <amount>2</amount>
+        </li>
+      </secondaryDamage>
+      <armorPenetrationSharp>12</armorPenetrationSharp>
+      <armorPenetrationBlunt>20</armorPenetrationBlunt>
+      <empShieldBreakChance>0.05</empShieldBreakChance>
+      <pelletCount>8</pelletCount>
+      <spreadMult>16.8</spreadMult>
+    </projectile>
+  </ThingDef>
+
+  <ThingDef Class="CombatExtended.AmmoDef" ParentName="BaseKatanaBullet">
+    <defName>Bullet_Katana_Cryo</defName>
+    <label>accelerated shot</label>
+    <projectile Class="CombatExtended.ProjectilePropertiesCE">
+      <damageAmountBase>10</damageAmountBase>
+      <secondaryDamage>
+        <li>
+          <def>ME_Cryo</def>
+          <amount>3</amount>
+        </li>
+      </secondaryDamage>
+      <armorPenetrationSharp>10</armorPenetrationSharp>
+      <armorPenetrationBlunt>20</armorPenetrationBlunt>
+      <pelletCount>8</pelletCount>
+      <spreadMult>16.8</spreadMult>
+    </projectile>
+  </ThingDef>
+
+  <ThingDef Class="CombatExtended.AmmoDef" ParentName="BaseKatanaBullet">
+    <defName>Bullet_Katana_Toxic</defName>
+    <label>accelerated shot</label>
+    <projectile Class="CombatExtended.ProjectilePropertiesCE">
+      <damageAmountBase>10</damageAmountBase>
+      <secondaryDamage>
+        <li>
+          <def>ME_Toxin</def>
+          <amount>3</amount>
+        </li>
+      </secondaryDamage>
+      <armorPenetrationSharp>10</armorPenetrationSharp>
+      <armorPenetrationBlunt>20</armorPenetrationBlunt>
+      <pelletCount>8</pelletCount>
+      <spreadMult>16.8</spreadMult>
+    </projectile>
+  </ThingDef>
+
+  <ThingDef Class="CombatExtended.AmmoDef" ParentName="BaseKatanaBullet">
+    <defName>Bullet_Katana_FI</defName>
+    <label>accelerated shot</label>
+    <projectile Class="CombatExtended.ProjectilePropertiesCE">
+      <damageAmountBase>11</damageAmountBase>
+      <secondaryDamage>
+        <li>
+          <def>Flame</def>
+          <amount>2</amount>
+        </li>
+      </secondaryDamage>
+      <armorPenetrationSharp>10</armorPenetrationSharp>
+      <armorPenetrationBlunt>20</armorPenetrationBlunt>
+      <pelletCount>8</pelletCount>
+      <spreadMult>16.8</spreadMult>
+    </projectile>
+  </ThingDef>
+
+	<!-- ================== Hydra ================== -->
+
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="BaseKatanaBullet">
+		<defName>Bullet_HydraShotty</defName>
+		<label>accelerated blast</label>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+      <damageAmountBase>9</damageAmountBase>
+      <armorPenetrationSharp>9</armorPenetrationSharp>      
+      <armorPenetrationBlunt>18</armorPenetrationBlunt>
+      <pelletCount>8</pelletCount>
+      <spreadMult>16.8</spreadMult>
+		</projectile>
+	</ThingDef>
+
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="BaseKatanaBullet">
+		<defName>Bullet_HydraShotty_AP</defName>
+		<label>accelerated blast</label>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+      <damageAmountBase>6</damageAmountBase>
+      <armorPenetrationSharp>18</armorPenetrationSharp>      
+      <armorPenetrationBlunt>18</armorPenetrationBlunt>
+      <pelletCount>8</pelletCount>
+      <spreadMult>16.8</spreadMult>
+		</projectile>
+	</ThingDef>
+
+  <ThingDef Class="CombatExtended.AmmoDef" ParentName="BaseKatanaBullet">
+		<defName>Bullet_Hydra_HE</defName>
+		<label>accelerated shot</label>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+      <damageAmountBase>9</damageAmountBase>
+      <armorPenetrationSharp>9</armorPenetrationSharp>      
+      <armorPenetrationBlunt>18</armorPenetrationBlunt>
+		  <secondaryDamage>
+				<li>
+			  	<def>Bomb_Secondary</def>
+			  	<amount>4</amount>
+				</li>
+		  </secondaryDamage>
+      <pelletCount>8</pelletCount>
+      <spreadMult>16.8</spreadMult>
+		</projectile>
+	</ThingDef>
+
+  <ThingDef Class="CombatExtended.AmmoDef" ParentName="BaseKatanaBullet">
+    <defName>Bullet_Hydra_Cryo</defName>
+    <label>accelerated shot</label>
+    <projectile Class="CombatExtended.ProjectilePropertiesCE">
+      <damageAmountBase>8</damageAmountBase>
+      <secondaryDamage>
+        <li>
+          <def>ME_Cryo</def>
+          <amount>3</amount>
+        </li>
+      </secondaryDamage>
+      <armorPenetrationSharp>9</armorPenetrationSharp>
+      <armorPenetrationBlunt>18.6</armorPenetrationBlunt>
+      <pelletCount>8</pelletCount>
+      <spreadMult>16.8</spreadMult>
+    </projectile>
+  </ThingDef>
+
+  <ThingDef Class="CombatExtended.AmmoDef" ParentName="BaseKatanaBullet">
+    <defName>Bullet_Hydra_Toxic</defName>
+    <label>accelerated shot</label>
+    <projectile Class="CombatExtended.ProjectilePropertiesCE">
+      <damageAmountBase>8</damageAmountBase>
+      <secondaryDamage>
+        <li>
+          <def>ME_Toxin</def>
+          <amount>3</amount>
+        </li>
+      </secondaryDamage>
+      <armorPenetrationSharp>9</armorPenetrationSharp>
+      <armorPenetrationBlunt>18.6</armorPenetrationBlunt>
+      <pelletCount>8</pelletCount>
+      <spreadMult>16.8</spreadMult>
+    </projectile>
+  </ThingDef>
+
+  <ThingDef Class="CombatExtended.AmmoDef" ParentName="BaseKatanaBullet">
+    <defName>Bullet_Hydra_FI</defName>
+    <label>accelerated shot</label>
+    <projectile Class="CombatExtended.ProjectilePropertiesCE">
+      <damageAmountBase>9</damageAmountBase>
+      <secondaryDamage>
+        <li>
+          <def>Flame</def>
+          <amount>1</amount>
+        </li>
+      </secondaryDamage>
+      <armorPenetrationSharp>9</armorPenetrationSharp>
+      <armorPenetrationBlunt>18.6</armorPenetrationBlunt>
+      <pelletCount>8</pelletCount>
+      <spreadMult>16.8</spreadMult>
+    </projectile>
+  </ThingDef>
+
+	<!-- ================== M98 ================== -->
+  <ThingDef Class="CombatExtended.AmmoDef" Name="BaseM98Bullet" ParentName="Base6x24mmChargedBullet" Abstract="true">
+    <graphicData>
+			<texPath>Things/Projectile/Shot_MassAccelerated_Large</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+      			<drawSize>1.6</drawSize>
+    </graphicData>
+    <projectile Class="CombatExtended.ProjectilePropertiesCE">
+      <damageDef>Bullet</damageDef>
+      <speed>500</speed>
+    </projectile>
+  </ThingDef>
+
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="BaseM98Bullet">
+		<defName>Bullet_M98_Basic</defName>
+		<label>accelerated shot</label>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageAmountBase>68</damageAmountBase>
+      <armorPenetrationSharp>42</armorPenetrationSharp>      
+      <armorPenetrationBlunt>300</armorPenetrationBlunt>
+		</projectile>
+	</ThingDef>
+
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="BaseM98Bullet">
+		<defName>Bullet_M98_AP</defName>
+		<label>accelerated shot</label>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageAmountBase>46</damageAmountBase>
+      <armorPenetrationSharp>84</armorPenetrationSharp>      
+      <armorPenetrationBlunt>300</armorPenetrationBlunt>
+		</projectile>
+	</ThingDef>
+
+  <ThingDef Class="CombatExtended.AmmoDef" ParentName="BaseM98Bullet">
+		<defName>Bullet_M98_HE</defName>
+		<label>accelerated shot</label>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageAmountBase>68</damageAmountBase>
+      <armorPenetrationSharp>42</armorPenetrationSharp>      
+      <armorPenetrationBlunt>300</armorPenetrationBlunt>
+		  <secondaryDamage>
+				<li>
+			  	<def>Bomb_Secondary</def>
+			  	<amount>30</amount>
+				</li>
+		  </secondaryDamage>
+		</projectile>
+		<comps>
+		  <li Class="CombatExtended.CompProperties_ExplosiveCE">
+			<damageAmountBase>18</damageAmountBase>
+			<explosiveDamageType>Bomb</explosiveDamageType>
+			<explosiveRadius>1.1</explosiveRadius>
+			<explosionSound>MortarBomb_Explode</explosionSound>
+			<applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
+		  </li>
+		</comps>
+	</ThingDef>
+
+  <ThingDef Class="CombatExtended.AmmoDef" ParentName="BaseM98Bullet">
+		<defName>Bullet_M98_Cryo</defName>
+		<label>accelerated shot</label>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageAmountBase>66</damageAmountBase>
+      <armorPenetrationSharp>42</armorPenetrationSharp>      
+      <armorPenetrationBlunt>300</armorPenetrationBlunt>
+		  <secondaryDamage>
+				<li>
+			  	<def>ME_Cryo</def>
+			  	<amount>17</amount>
+				</li>
+		  </secondaryDamage>
+		</projectile>
+	</ThingDef>
+
+
+  <ThingDef Class="CombatExtended.AmmoDef" ParentName="BaseM98Bullet">
+		<defName>Bullet_M98_Toxic</defName>
+		<label>accelerated shot</label>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageAmountBase>66</damageAmountBase>
+      <armorPenetrationSharp>42</armorPenetrationSharp>      
+      <armorPenetrationBlunt>300</armorPenetrationBlunt>
+		  <secondaryDamage>
+				<li>
+			  	<def>ME_Toxin</def>
+			  	<amount>17</amount>
+				</li>
+		  </secondaryDamage>
+		</projectile>
+	</ThingDef>
+
+  <ThingDef Class="CombatExtended.AmmoDef" ParentName="BaseM98Bullet">
+		<defName>Bullet_M98_FI</defName>
+		<label>accelerated shot</label>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageAmountBase>68</damageAmountBase>
+      <armorPenetrationSharp>42</armorPenetrationSharp>      
+      <armorPenetrationBlunt>300</armorPenetrationBlunt>
+		  <secondaryDamage>
+				<li>
+			  	<def>Flame</def>
+			  	<amount>9</amount>
+				</li>
+		  </secondaryDamage>
+		</projectile>
+	</ThingDef>
+
+  <ThingDef Class="CombatExtended.AmmoDef" ParentName="BaseM98Bullet">
+    <defName>Bullet_M98_Ion</defName>
+    <label>accelerated shot</label>
+    <projectile Class="CombatExtended.ProjectilePropertiesCE">
+      <damageAmountBase>57</damageAmountBase>
+      <secondaryDamage>
+        <li>
+          <def>EMP</def>
+          <amount>14</amount>
+        </li>
+      </secondaryDamage>
+      <armorPenetrationSharp>52</armorPenetrationSharp>
+      <armorPenetrationBlunt>300</armorPenetrationBlunt>
+      <empShieldBreakChance>1</empShieldBreakChance>
+    </projectile>
+  </ThingDef>
+
+	<!-- ================== Mantis ================== -->
+
+  <ThingDef Class="CombatExtended.AmmoDef" Name="BaseMantisBullet" ParentName="Base6x24mmChargedBullet" Abstract="true">
+    <graphicData>
+			<texPath>Things/Projectile/Shot_MassAccelerated_Sniper</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+      			<drawSize>1.1</drawSize>
+    </graphicData>
+    <projectile Class="CombatExtended.ProjectilePropertiesCE">
+      <damageDef>Bullet</damageDef>
+      <speed>500</speed>
+    </projectile>
+  </ThingDef>
+
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="BaseMantisBullet">
+		<defName>Bullet_Mantis</defName>
+		<label>accelerated shot</label>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageAmountBase>40</damageAmountBase>
+      <armorPenetrationSharp>27</armorPenetrationSharp>      
+      <armorPenetrationBlunt>128</armorPenetrationBlunt>
+		</projectile>
+	</ThingDef>
+
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="BaseMantisBullet">
+		<defName>Bullet_Mantis_AP</defName>
+		<label>accelerated shot</label>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageAmountBase>27</damageAmountBase>
+      <armorPenetrationSharp>54</armorPenetrationSharp>      
+      <armorPenetrationBlunt>128</armorPenetrationBlunt>
+		</projectile>
+	</ThingDef>
+
+  <ThingDef Class="CombatExtended.AmmoDef" ParentName="BaseMantisBullet">
+		<defName>Bullet_Mantis_Cryo</defName>
+		<label>accelerated shot</label>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageAmountBase>38</damageAmountBase>
+      <armorPenetrationSharp>27</armorPenetrationSharp>      
+      <armorPenetrationBlunt>128</armorPenetrationBlunt>
+		  <secondaryDamage>
+				<li>
+			  	<def>ME_Cryo</def>
+			  	<amount>8</amount>
+				</li>
+		  </secondaryDamage>
+		</projectile>
+	</ThingDef>
+
+  <ThingDef Class="CombatExtended.AmmoDef" ParentName="BaseMantisBullet">
+		<defName>Bullet_Mantis_HE</defName>
+		<label>accelerated shot</label>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageAmountBase>40</damageAmountBase>
+      <armorPenetrationSharp>27</armorPenetrationSharp>      
+      <armorPenetrationBlunt>128</armorPenetrationBlunt>
+		  <secondaryDamage>
+				<li>
+			  	<def>Bomb_Secondary</def>
+			  	<amount>20</amount>
+				</li>
+		  </secondaryDamage>
+		</projectile>
+	</ThingDef>
+
+
+  <ThingDef Class="CombatExtended.AmmoDef" ParentName="BaseMantisBullet">
+		<defName>Bullet_Mantis_Toxic</defName>
+		<label>accelerated shot</label>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageAmountBase>38</damageAmountBase>
+      <armorPenetrationSharp>27</armorPenetrationSharp>      
+      <armorPenetrationBlunt>128</armorPenetrationBlunt>
+		  <secondaryDamage>
+				<li>
+			  	<def>ME_Toxin</def>
+			  	<amount>8</amount>
+				</li>
+		  </secondaryDamage>
+		</projectile>
+	</ThingDef>
+
+  <ThingDef Class="CombatExtended.AmmoDef" ParentName="BaseMantisBullet">
+		<defName>Bullet_Mantis_FI</defName>
+		<label>accelerated shot</label>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageAmountBase>40</damageAmountBase>
+      <armorPenetrationSharp>27</armorPenetrationSharp>      
+      <armorPenetrationBlunt>128</armorPenetrationBlunt>
+		  <secondaryDamage>
+				<li>
+			  	<def>Flame</def>
+			  	<amount>5</amount>
+				</li>
+		  </secondaryDamage>
+		</projectile>
+	</ThingDef>
+
+  <ThingDef Class="CombatExtended.AmmoDef" ParentName="BaseMantisBullet">
+    <defName>Bullet_Mantis_Ion</defName>
+    <label>accelerated shot</label>
+    <projectile Class="CombatExtended.ProjectilePropertiesCE">
+      <damageAmountBase>32</damageAmountBase>
+      <secondaryDamage>
+        <li>
+          <def>EMP</def>
+          <amount>10</amount>
+        </li>
+      </secondaryDamage>
+      <armorPenetrationSharp>32</armorPenetrationSharp>
+      <armorPenetrationBlunt>128</armorPenetrationBlunt>
+      <empShieldBreakChance>1</empShieldBreakChance>
+    </projectile>
+  </ThingDef>
+
+	<!-- ================== Tempest ================== -->
+
+
+  <ThingDef Class="CombatExtended.AmmoDef" Name="BaseTempestBullet" ParentName="Base6x24mmChargedBullet" Abstract="true">
+    <graphicData>
+			<texPath>Things/Projectile/Shot_MassAccelerated_Small</texPath>
+      			<graphicClass>Graphic_Single</graphicClass>
+      			<shaderType>TransparentPostLight</shaderType>
+      			<drawSize>1.1</drawSize>
+    </graphicData>
+    <projectile Class="CombatExtended.ProjectilePropertiesCE">
+      <damageDef>Bullet</damageDef>
+      <speed>200</speed>
+    </projectile>
+  </ThingDef>
+
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="BaseTempestBullet">
+		<defName>Bullet_Tempest</defName>
+		<label>accelerated shot</label>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageAmountBase>12</damageAmountBase>
+      <armorPenetrationSharp>8</armorPenetrationSharp>      
+      <armorPenetrationBlunt>21</armorPenetrationBlunt>
+		</projectile>
+	</ThingDef>
+
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="BaseTempestBullet">
+		<defName>Bullet_Tempest_AP</defName>
+		<label>accelerated shot</label>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageAmountBase>8</damageAmountBase>
+      <armorPenetrationSharp>16</armorPenetrationSharp>      
+      <armorPenetrationBlunt>21</armorPenetrationBlunt>
+		</projectile>
+	</ThingDef>
+
+  <ThingDef Class="CombatExtended.AmmoDef" ParentName="BaseTempestBullet">
+		<defName>Bullet_Tempest_HE</defName>
+		<label>accelerated shot</label>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageAmountBase>12</damageAmountBase>
+      <armorPenetrationSharp>8</armorPenetrationSharp>      
+      <armorPenetrationBlunt>21</armorPenetrationBlunt>
+		  <secondaryDamage>
+				<li>
+			  	<def>Bomb_Secondary</def>
+			  	<amount>6</amount>
+				</li>
+		  </secondaryDamage>
+		</projectile>
+	</ThingDef>
+
+  <ThingDef Class="CombatExtended.AmmoDef" ParentName="BaseTempestBullet">
+		<defName>Bullet_Tempest_Cryo</defName>
+		<label>accelerated shot</label>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageAmountBase>12</damageAmountBase>
+      <armorPenetrationSharp>8</armorPenetrationSharp>      
+      <armorPenetrationBlunt>21</armorPenetrationBlunt>
+		  <secondaryDamage>
+				<li>
+			  	<def>ME_Cryo</def>
+			  	<amount>3</amount>
+				</li>
+		  </secondaryDamage>
+		</projectile>
+	</ThingDef>
+
+  <ThingDef Class="CombatExtended.AmmoDef" ParentName="BaseTempestBullet">
+		<defName>Bullet_Tempest_Toxic</defName>
+		<label>accelerated shot</label>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageAmountBase>12</damageAmountBase>
+      <armorPenetrationSharp>8</armorPenetrationSharp>      
+      <armorPenetrationBlunt>21</armorPenetrationBlunt>
+		  <secondaryDamage>
+				<li>
+			  	<def>ME_Toxin</def>
+			  	<amount>3</amount>
+				</li>
+		  </secondaryDamage>
+		</projectile>
+	</ThingDef>
+
+  <ThingDef Class="CombatExtended.AmmoDef" ParentName="BaseTempestBullet">
+		<defName>Bullet_Tempest_FI</defName>
+		<label>accelerated shot</label>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageAmountBase>12</damageAmountBase>
+      <armorPenetrationSharp>8</armorPenetrationSharp>      
+      <armorPenetrationBlunt>21</armorPenetrationBlunt>
+		  <secondaryDamage>
+				<li>
+			  	<def>Flame</def>
+			  	<amount>1</amount>
+				</li>
+		  </secondaryDamage>
+		</projectile>
+	</ThingDef>
+
+  <ThingDef Class="CombatExtended.AmmoDef" ParentName="BaseTempestBullet">
+    <defName>Bullet_Tempest_Ion</defName>
+    <label>accelerated shot</label>
+    <projectile Class="CombatExtended.ProjectilePropertiesCE">
+      <damageAmountBase>9</damageAmountBase>
+      <secondaryDamage>
+        <li>
+          <def>EMP</def>
+          <amount>3</amount>
+        </li>
+      </secondaryDamage>
+      <armorPenetrationSharp>10</armorPenetrationSharp>
+      <armorPenetrationBlunt>21</armorPenetrationBlunt>
+      <empShieldBreakChance>0.2</empShieldBreakChance>
+    </projectile>
+  </ThingDef>
+
+	<!-- ================== Predator ================== -->
+
+  <ThingDef Class="CombatExtended.AmmoDef" Name="BasePredatorBullet" ParentName="Base6x24mmChargedBullet" Abstract="true">
+    <graphicData>
+			<texPath>Things/Projectile/Shot_MassAccelerated_Small</texPath>
+      			<graphicClass>Graphic_Single</graphicClass>
+      			<shaderType>TransparentPostLight</shaderType>
+      			<drawSize>1.2</drawSize>
+    </graphicData>
+    <projectile Class="CombatExtended.ProjectilePropertiesCE">
+      <damageDef>Bullet</damageDef>
+			<speed>188</speed>
+    </projectile>
+  </ThingDef>
+
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="BasePredatorBullet">
+		<defName>Bullet_Predator</defName>
+		<label>accelerated shot</label>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageAmountBase>14</damageAmountBase>
+      <armorPenetrationSharp>8</armorPenetrationSharp>      
+      <armorPenetrationBlunt>20</armorPenetrationBlunt>
+		</projectile>
+	</ThingDef>
+
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="BasePredatorBullet">
+		<defName>Bullet_Predator_AP</defName>
+		<label>accelerated shot</label>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<speed>100</speed>
+			<damageDef>Bullet</damageDef>
+			<damageAmountBase>9</damageAmountBase>
+      <armorPenetrationSharp>16</armorPenetrationSharp>      
+      <armorPenetrationBlunt>20</armorPenetrationBlunt>
+		</projectile>
+	</ThingDef>
+
+  <ThingDef Class="CombatExtended.AmmoDef" ParentName="BasePredatorBullet">
+		<defName>Bullet_Predator_HE</defName>
+		<label>accelerated shot</label>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageAmountBase>14</damageAmountBase>
+      <armorPenetrationSharp>8</armorPenetrationSharp>      
+      <armorPenetrationBlunt>20</armorPenetrationBlunt>
+		  <secondaryDamage>
+				<li>
+			  	<def>Bomb_Secondary</def>
+			  	<amount>7</amount>
+				</li>
+		  </secondaryDamage>
+		</projectile>
+	</ThingDef>
+
+  <ThingDef Class="CombatExtended.AmmoDef" ParentName="BasePredatorBullet">
+		<defName>Bullet_Predator_Cryo</defName>
+		<label>accelerated shot</label>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageAmountBase>13</damageAmountBase>
+      <armorPenetrationSharp>8</armorPenetrationSharp>      
+      <armorPenetrationBlunt>20</armorPenetrationBlunt>
+		  <secondaryDamage>
+				<li>
+			  	<def>ME_Cryo</def>
+			  	<amount>4</amount>
+				</li>
+		  </secondaryDamage>
+		</projectile>
+	</ThingDef>
+
+  <ThingDef Class="CombatExtended.AmmoDef" ParentName="BasePredatorBullet">
+		<defName>Bullet_Predator_Toxic</defName>
+		<label>accelerated shot</label>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageAmountBase>13</damageAmountBase>
+      <armorPenetrationSharp>8</armorPenetrationSharp>      
+      <armorPenetrationBlunt>20</armorPenetrationBlunt>
+		  <secondaryDamage>
+				<li>
+			  	<def>ME_Toxin</def>
+			  	<amount>4</amount>
+				</li>
+		  </secondaryDamage>
+		</projectile>
+	</ThingDef>
+
+  <ThingDef Class="CombatExtended.AmmoDef" ParentName="BasePredatorBullet">
+		<defName>Bullet_Predator_FI</defName>
+		<label>accelerated shot</label>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageAmountBase>14</damageAmountBase>
+      <armorPenetrationSharp>8</armorPenetrationSharp>      
+      <armorPenetrationBlunt>20</armorPenetrationBlunt>
+		  <secondaryDamage>
+				<li>
+			  	<def>Flame</def>
+			  	<amount>2</amount>
+				</li>
+		  </secondaryDamage>
+		</projectile>
+	</ThingDef>
+
+  <ThingDef Class="CombatExtended.AmmoDef" ParentName="BasePredatorBullet">
+    <defName>Bullet_Predator_Ion</defName>
+    <label>accelerated shot</label>
+    <projectile Class="CombatExtended.ProjectilePropertiesCE">
+      <damageAmountBase>11</damageAmountBase>
+      <secondaryDamage>
+        <li>
+          <def>EMP</def>
+          <amount>4</amount>
+        </li>
+      </secondaryDamage>
+      <armorPenetrationSharp>10</armorPenetrationSharp>
+      <armorPenetrationBlunt>20</armorPenetrationBlunt>
+      <empShieldBreakChance>0.2</empShieldBreakChance>
+    </projectile>
+  </ThingDef>
+
+	<!-- ================== Phalanx ================== -->
+
+  <ThingDef Class="CombatExtended.AmmoDef" Name="BasePhalanxBullet" ParentName="Base6x24mmChargedBullet" Abstract="true">
+    <graphicData>
+			<texPath>Things/Projectile/Shot_MassAccelerated_Small</texPath>
+      			<graphicClass>Graphic_Single</graphicClass>
+      			<shaderType>TransparentPostLight</shaderType>
+      			<drawSize>1.4</drawSize>
+    </graphicData>
+    <projectile Class="CombatExtended.ProjectilePropertiesCE">
+      <damageDef>Bullet</damageDef>
+      <speed>200</speed>
+    </projectile>
+  </ThingDef>
+
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="BasePhalanxBullet">
+		<defName>Bullet_Phalanx</defName>
+		<label>accelerated shot</label>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageAmountBase>18</damageAmountBase>
+      <armorPenetrationSharp>9</armorPenetrationSharp>      
+      <armorPenetrationBlunt>28</armorPenetrationBlunt>
+		</projectile>
+	</ThingDef>
+
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="BasePhalanxBullet">
+		<defName>Bullet_Phalanx_AP</defName>
+		<label>accelerated shot</label>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageAmountBase>12</damageAmountBase>
+      <armorPenetrationSharp>18</armorPenetrationSharp>      
+      <armorPenetrationBlunt>28</armorPenetrationBlunt>
+		</projectile>
+	</ThingDef>
+
+  <ThingDef Class="CombatExtended.AmmoDef" ParentName="BasePhalanxBullet">
+		<defName>Bullet_Phalanx_HE</defName>
+		<label>accelerated shot</label>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageAmountBase>18</damageAmountBase>
+      			<armorPenetrationSharp>9</armorPenetrationSharp>      
+      			<armorPenetrationBlunt>28</armorPenetrationBlunt>
+		  <secondaryDamage>
+				<li>
+			  	<def>Bomb_Secondary</def>
+			  	<amount>9</amount>
+				</li>
+		  </secondaryDamage>
+		</projectile>
+	</ThingDef>
+
+  <ThingDef Class="CombatExtended.AmmoDef" ParentName="BasePhalanxBullet">
+		<defName>Bullet_Phalanx_Cryo</defName>
+		<label>accelerated shot</label>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageAmountBase>17</damageAmountBase>
+      			<armorPenetrationSharp>9</armorPenetrationSharp>      
+      			<armorPenetrationBlunt>28</armorPenetrationBlunt>
+		  <secondaryDamage>
+				<li>
+			  	<def>ME_Cryo</def>
+			  	<amount>4</amount>
+				</li>
+		  </secondaryDamage>
+		</projectile>
+	</ThingDef>
+
+  <ThingDef Class="CombatExtended.AmmoDef" ParentName="BasePhalanxBullet">
+		<defName>Bullet_Phalanx_Toxic</defName>
+		<label>accelerated shot</label>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageAmountBase>17</damageAmountBase>
+      <armorPenetrationSharp>9</armorPenetrationSharp>      
+      <armorPenetrationBlunt>28</armorPenetrationBlunt>
+		  <secondaryDamage>
+				<li>
+			  	<def>ME_Toxin</def>
+			  	<amount>4</amount>
+				</li>
+		  </secondaryDamage>
+		</projectile>
+	</ThingDef>
+
+  <ThingDef Class="CombatExtended.AmmoDef" ParentName="BasePhalanxBullet">
+		<defName>Bullet_Phalanx_FI</defName>
+		<label>accelerated shot</label>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageAmountBase>18</damageAmountBase>
+      <armorPenetrationSharp>9</armorPenetrationSharp>      
+      <armorPenetrationBlunt>28</armorPenetrationBlunt>
+		  <secondaryDamage>
+				<li>
+			  	<def>Flame</def>
+			  	<amount>3</amount>
+				</li>
+		  </secondaryDamage>
+		</projectile>
+	</ThingDef>
+
+  <ThingDef Class="CombatExtended.AmmoDef" ParentName="BasePhalanxBullet">
+    <defName>Bullet_Phalanx_Ion</defName>
+    <label>accelerated shot</label>
+    <projectile Class="CombatExtended.ProjectilePropertiesCE">
+      <damageAmountBase>15</damageAmountBase>
+      <secondaryDamage>
+        <li>
+          <def>EMP</def>
+          <amount>4</amount>
+        </li>
+      </secondaryDamage>
+      <armorPenetrationSharp>11</armorPenetrationSharp>
+      <armorPenetrationBlunt>28</armorPenetrationBlunt>
+      <empShieldBreakChance>0.3</empShieldBreakChance>
+    </projectile>
+  </ThingDef>
+
+		</value>
+		</li>
+
+		</operations>
+		</match>
+	</Operation>
+</Patch>

@@ -1,0 +1,563 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+			<li>Rim-Effect: Core beta 4</li>
+		</mods>
+		<match Class="PatchOperationSequence">
+			<operations>
+
+  <!-- ========== Melee Tools ========== -->
+  <li Class="PatchOperationReplace">
+    <xpath>/Defs/ThingDef[defName="RE_Gun_AlliancePistol"  or defName="RE_Gun_AllianceSMG" or defName="RE_Gun_AllianceHandcannon"]/tools</xpath>
+    <value>
+      <tools>
+        <li Class="CombatExtended.ToolCE">
+          <label>grip</label>
+          <capacities>
+            <li>Blunt</li>
+          </capacities>
+          <power>3</power>
+          <cooldownTime>1.54</cooldownTime>
+          <chanceFactor>1.5</chanceFactor>
+          <armorPenetrationBlunt>0.555</armorPenetrationBlunt>
+          <linkedBodyPartsGroup>Grip</linkedBodyPartsGroup>
+        </li>
+        <li Class="CombatExtended.ToolCE">
+          <label>muzzle</label>
+          <capacities>
+            <li>Poke</li>
+          </capacities>
+          <power>2</power>
+          <cooldownTime>1.54</cooldownTime>
+          <armorPenetrationBlunt>0.555</armorPenetrationBlunt>
+          <linkedBodyPartsGroup>Muzzle</linkedBodyPartsGroup>
+        </li>
+      </tools>
+    </value>
+  </li>
+
+  <li Class="PatchOperationReplace">
+    <xpath>/Defs/ThingDef[defName="RE_Gun_AllianceAssaultRifle" or defName="RE_Gun_AllianceBattleRifle" or defName="RE_Gun_AllianceShotgun"
+     or defName="RE_Gun_AllianceSniperRifle" or defName="RE_Gun_AllianceAntimaterielRifle" or defName="RE_Gun_AllianceRocketLauncher" or defName="RE_Gun_AllianceChainShotgun"]/tools</xpath>
+    <value>
+      <tools>
+        <li Class="CombatExtended.ToolCE">
+          <label>stock</label>
+          <capacities>
+            <li>Blunt</li>
+          </capacities>
+          <power>8</power>
+          <cooldownTime>1.55</cooldownTime>
+          <chanceFactor>1.5</chanceFactor>
+          <armorPenetrationBlunt>2.755</armorPenetrationBlunt>
+          <linkedBodyPartsGroup>Stock</linkedBodyPartsGroup>
+        </li>
+        <li Class="CombatExtended.ToolCE">
+          <label>barrel</label>
+          <capacities>
+            <li>Blunt</li>
+          </capacities>
+          <power>5</power>
+          <cooldownTime>2.02</cooldownTime>
+          <armorPenetrationBlunt>1.630</armorPenetrationBlunt>
+          <linkedBodyPartsGroup>Barrel</linkedBodyPartsGroup>
+        </li>
+        <li Class="CombatExtended.ToolCE">
+          <label>muzzle</label>
+          <capacities>
+            <li>Poke</li>
+          </capacities>
+          <power>8</power>
+          <cooldownTime>1.55</cooldownTime>
+          <armorPenetrationBlunt>2.755</armorPenetrationBlunt>
+          <linkedBodyPartsGroup>Muzzle</linkedBodyPartsGroup>
+        </li>
+      </tools>
+    </value>
+  </li>
+
+  <!-- ========== M8 Avenger ========== -->
+  <li Class='CombatExtended.PatchOperationMakeGunCECompatible'>
+    <defName>RE_Gun_AllianceAssaultRifle</defName>
+    <statBases>
+      <WorkToMake>36000</WorkToMake>
+      <SightsEfficiency>1.1</SightsEfficiency>
+      <ShotSpread>0.07</ShotSpread>
+      <SwayFactor>1.3</SwayFactor>
+      <Bulk>8.4</Bulk>
+      <Mass>3.3</Mass>
+      <RangedWeapon_Cooldown>0.36</RangedWeapon_Cooldown>
+    </statBases>
+    <Properties>
+      <verbClass>CombatExtended.Verb_ShootCE</verbClass>
+      <hasStandardCommand>True</hasStandardCommand>
+      <defaultProjectile>Bullet_M8_Basic</defaultProjectile>
+      <warmupTime>1</warmupTime>
+      <range>55</range>
+      <burstShotCount>6</burstShotCount>
+      <ticksBetweenBurstShots>5</ticksBetweenBurstShots>
+      <soundCast>RE_Shot_Avenger</soundCast>
+      <soundCastTail>GunTail_Medium</soundCastTail>
+      <muzzleFlashScale>9</muzzleFlashScale>
+      <recoilPattern>Regular</recoilPattern>
+      <recoilAmount>1.37</recoilAmount>
+    </Properties>
+    <costList>
+      <Plasteel>65</Plasteel>
+      <ComponentSpacer>2</ComponentSpacer>
+    </costList>
+    <AmmoUser>
+      <magazineSize>30</magazineSize>
+      <reloadTime>3.5</reloadTime>
+      <ammoSet>AmmoSet_M8</ammoSet>
+    </AmmoUser>
+    <FireModes>
+      <aiUseBurstMode>True</aiUseBurstMode>
+      <aiAimMode>AimedShot</aiAimMode>
+      <aimedBurstShotCount>3</aimedBurstShotCount>
+    </FireModes>
+  </li>
+
+  <!-- Name -->
+  <li Class='PatchOperationReplace'>
+    <xpath>/Defs/ThingDef[defName='RE_Gun_AllianceAssaultRifle']/label</xpath> 
+    <value>
+      <label>M-8 Avenger</label>
+    </value>
+  </li>
+
+  <!-- ========== M-15 ========== -->
+  <li Class='CombatExtended.PatchOperationMakeGunCECompatible'>
+    <defName>RE_Gun_AllianceBattleRifle</defName>
+    <statBases>
+      <WorkToMake>38000</WorkToMake>
+      <SightsEfficiency>1.25</SightsEfficiency>
+      <ShotSpread>0.06</ShotSpread>
+      <SwayFactor>1.36</SwayFactor>
+      <Bulk>8</Bulk>
+      <Mass>3.7</Mass>
+      <RangedWeapon_Cooldown>0.36</RangedWeapon_Cooldown>
+    </statBases>
+    <Properties>
+      <verbClass>CombatExtended.Verb_ShootCE</verbClass>
+      <hasStandardCommand>True</hasStandardCommand>
+      <defaultProjectile>Bullet_M15_Basic</defaultProjectile>
+      <burstShotCount>3</burstShotCount>
+      <ticksBetweenBurstShots>6</ticksBetweenBurstShots>
+      <warmupTime>1</warmupTime>
+      <range>56</range>
+      <soundCast>RE_Shot_Vindicator</soundCast>
+      <soundCastTail>GunTail_Medium</soundCastTail>
+      <muzzleFlashScale>9</muzzleFlashScale>
+      <recoilAmount>1.0</recoilAmount>
+    </Properties>
+    <AmmoUser>
+      <magazineSize>24</magazineSize>
+      <reloadTime>3.5</reloadTime>
+      <ammoSet>AmmoSet_M15</ammoSet>
+    </AmmoUser>
+    <FireModes>
+      <aiUseBurstMode>FALSE</aiUseBurstMode>
+      <aiAimMode>AimedShot</aiAimMode>
+    </FireModes>
+  </li>
+
+  <!-- Name -->
+  <li Class='PatchOperationReplace'>
+    <xpath>/Defs/ThingDef[defName='RE_Gun_AllianceBattleRifle']/label</xpath>
+    <value>
+      <label>M-15 Vindicator</label>
+    </value>
+  </li>
+
+
+  <!-- ========== M-9 Tempest ========== -->
+  <li Class='CombatExtended.PatchOperationMakeGunCECompatible'>
+    <defName>RE_Gun_AllianceSMG</defName>
+    <statBases>
+      <WorkToMake>25000</WorkToMake>
+      <SightsEfficiency>0.9</SightsEfficiency>
+      <ShotSpread>0.15</ShotSpread>
+      <SwayFactor>1.23</SwayFactor>
+      <Bulk>3.75</Bulk>
+      <Mass>1.8</Mass>
+      <RangedWeapon_Cooldown>0.36</RangedWeapon_Cooldown>
+    </statBases>
+    <Properties>
+      <verbClass>CombatExtended.Verb_ShootCE</verbClass>
+      <hasStandardCommand>True</hasStandardCommand>
+      <defaultProjectile>Bullet_Tempest</defaultProjectile>
+      <warmupTime>0.6</warmupTime>
+      <range>24</range>
+      <burstShotCount>6</burstShotCount>
+      <ticksBetweenBurstShots>4</ticksBetweenBurstShots>
+      <soundCast>RE_Shot_Tempest</soundCast>
+      <soundCastTail>GunTail_Light</soundCastTail>
+      <muzzleFlashScale>9</muzzleFlashScale>
+      <recoilPattern>Regular</recoilPattern>
+      <recoilAmount>1.72</recoilAmount>
+    </Properties>
+    <AmmoUser>
+      <magazineSize>50</magazineSize>
+      <reloadTime>3.5</reloadTime>
+      <ammoSet>AmmoSet_Tempest</ammoSet>
+    </AmmoUser>
+    <FireModes>
+      <aiUseBurstMode>FALSE</aiUseBurstMode>
+      <aimedBurstShotCount>3</aimedBurstShotCount>
+    </FireModes>
+    <weaponTags>
+      <li>CE_OneHandedWeapon</li>
+    </weaponTags>
+  </li>
+
+  <!-- Name -->
+  <li Class='PatchOperationReplace'>
+    <xpath>/Defs/ThingDef[defName='RE_Gun_AllianceSMG']/label</xpath> 
+    <value>
+      <label>M-9 Tempest</label>
+    </value>
+  </li>
+
+  <!-- ========== Mantis ========== -->
+  <li Class='CombatExtended.PatchOperationMakeGunCECompatible'>
+    <defName>RE_Gun_AllianceSniperRifle</defName>
+    <statBases>
+      <WorkToMake>38000</WorkToMake>
+      <SightsEfficiency>2.8</SightsEfficiency>
+      <ShotSpread>0.03</ShotSpread>
+      <SwayFactor>1.56</SwayFactor>
+      <Bulk>10.0</Bulk>
+      <Mass>4.00</Mass>
+      <RangedWeapon_Cooldown>0.36</RangedWeapon_Cooldown>
+    </statBases>
+    <Properties>
+      <verbClass>CombatExtended.Verb_ShootCE</verbClass>
+      <hasStandardCommand>True</hasStandardCommand>
+      <defaultProjectile>Bullet_Mantis</defaultProjectile>
+      <warmupTime>1.4</warmupTime>
+      <range>78</range>
+      <ammoConsumedPerShotCount>5</ammoConsumedPerShotCount>
+      <soundCast>RE_Shot_Mantis</soundCast>
+      <soundCastTail>GunTail_Heavy</soundCastTail>
+      <muzzleFlashScale>11</muzzleFlashScale>
+    </Properties>
+    <AmmoUser>
+      <magazineSize>5</magazineSize>
+      <reloadTime>1.2</reloadTime>
+      <ammoSet>AmmoSet_Mantis</ammoSet>
+    </AmmoUser>
+    <FireModes>
+      <aiUseBurstMode>False</aiUseBurstMode>
+      <aiAimMode>AimedShot</aiAimMode>
+    </FireModes>
+    <weaponTags>
+      <li>SniperRifle</li>
+    </weaponTags>
+    <!-- Required research rework -->
+<!--    <researchPrerequisite>PrecisionRifling</researchPrerequisite> -->
+  </li>
+
+  <!-- Name -->
+  <li Class='PatchOperationReplace'>
+    <xpath>/Defs/ThingDef[defName='RE_Gun_AllianceSniperRifle']/label</xpath>
+    <value>
+      <label>M-92 Mantis</label>
+    </value>
+  </li>
+
+  <!-- ========== M-98 ========== -->
+  <li Class='CombatExtended.PatchOperationMakeGunCECompatible'>
+    <defName>RE_Gun_AllianceAntimaterielRifle</defName>
+    <statBases>
+      <WorkToMake>52000</WorkToMake>
+      <SightsEfficiency>3.75</SightsEfficiency>
+      <ShotSpread>0.02</ShotSpread>
+      <SwayFactor>1.82</SwayFactor>
+      <Bulk>13.8</Bulk>
+      <Mass>10</Mass>
+      <RangedWeapon_Cooldown>0.56</RangedWeapon_Cooldown>
+    </statBases>
+    <Properties>
+      <verbClass>CombatExtended.Verb_ShootCE</verbClass>
+      <hasStandardCommand>True</hasStandardCommand>
+      <defaultProjectile>Bullet_M98_Basic</defaultProjectile>
+      <warmupTime>2</warmupTime>
+      <range>88</range>
+      <ammoConsumedPerShotCount>10</ammoConsumedPerShotCount>
+      <soundCast>RE_Shot_Widow</soundCast>
+      <soundCastTail>GunTail_Heavy</soundCastTail>
+      <muzzleFlashScale>14</muzzleFlashScale>
+    </Properties>
+    <AmmoUser>
+      <magazineSize>10</magazineSize>
+      <reloadTime>1.7</reloadTime>
+      <ammoSet>AmmoSet_M98</ammoSet>
+    </AmmoUser>
+    <FireModes>
+      <aiUseBurstMode>False</aiUseBurstMode>
+      <aiAimMode>AimedShot</aiAimMode>
+    </FireModes>
+    <weaponTags>
+      <li>SniperRifle</li>
+    </weaponTags>
+    <!-- Required research rework -->
+<!--    <researchPrerequisite>PrecisionRifling</researchPrerequisite> -->
+  </li>
+
+  <!-- Name -->
+  <li Class='PatchOperationReplace'>
+    <xpath>/Defs/ThingDef[defName='RE_Gun_AllianceAntimaterielRifle']/label</xpath>
+    <value>
+      <label>M-98 Widow</label>
+    </value>
+  </li>
+
+<!-- ========== AllianceShotgun ========== -->
+  <li Class='CombatExtended.PatchOperationMakeGunCECompatible'>
+    <defName>RE_Gun_AllianceShotgun</defName>
+    <statBases>
+      <WorkToMake>31000</WorkToMake>
+      <SightsEfficiency>1</SightsEfficiency>
+      <ShotSpread>0.12</ShotSpread>
+      <SwayFactor>1.2</SwayFactor>
+      <Bulk>7.5</Bulk>
+      <Mass>3</Mass>
+      <RangedWeapon_Cooldown>0.36</RangedWeapon_Cooldown>
+    </statBases>
+    <Properties>
+      <verbClass>CombatExtended.Verb_ShootCE</verbClass>
+      <hasStandardCommand>True</hasStandardCommand>
+      <defaultProjectile>Bullet_Katana</defaultProjectile>
+      <warmupTime>0.7</warmupTime>
+      <range>20</range>
+      <ammoConsumedPerShotCount>3</ammoConsumedPerShotCount>
+      <soundCast>RE_Shot_Katana</soundCast>
+      <soundCastTail>GunTail_Heavy</soundCastTail>
+      <muzzleFlashScale>10</muzzleFlashScale>
+    </Properties>
+    <AmmoUser>
+      <magazineSize>15</magazineSize>
+      <reloadTime>3.5</reloadTime>
+      <ammoSet>AmmoSet_Katana</ammoSet>
+    </AmmoUser>
+    <FireModes>
+      <aiUseBurstMode>False</aiUseBurstMode>
+    </FireModes>
+    <weaponTags>
+      <li>SniperRifle</li>
+    </weaponTags>
+    <!-- Required research rework -->
+<!--    <researchPrerequisite>PrecisionRifling</researchPrerequisite> -->
+  </li>
+
+  <!-- Name -->
+  <li Class='PatchOperationReplace'>
+    <xpath>/Defs/ThingDef[defName='RE_Gun_AllianceShotgun']/label</xpath>
+    <value>
+      <label>M-23 Katana</label>
+    </value>
+  </li>
+
+<!-- ==========Hydra Shotgun ========== -->
+  <li Class='CombatExtended.PatchOperationMakeGunCECompatible'>
+    <defName>RE_Gun_AllianceChainShotgun</defName>
+    <statBases>
+      <WorkToMake>46000</WorkToMake>
+      <SightsEfficiency>1</SightsEfficiency>
+      <ShotSpread>0.14</ShotSpread>
+      <SwayFactor>1.36</SwayFactor>
+      <Bulk>7.5</Bulk>
+      <Mass>3</Mass>
+      <RangedWeapon_Cooldown>0.36</RangedWeapon_Cooldown>
+    </statBases>
+    <Properties>
+      <verbClass>CombatExtended.Verb_ShootCE</verbClass>
+      <hasStandardCommand>True</hasStandardCommand>
+      <defaultProjectile>Bullet_HydraShotty</defaultProjectile>
+      <warmupTime>0.7</warmupTime>
+      <range>20</range>
+      <ammoConsumedPerShotCount>3</ammoConsumedPerShotCount>
+      <burstShotCount>3</burstShotCount>
+      <ticksBetweenBurstShots>18</ticksBetweenBurstShots>
+        <soundCast>RE_Shot_Katana</soundCast>
+        <soundCastTail>GunTail_Heavy</soundCastTail>
+        <muzzleFlashScale>9</muzzleFlashScale>
+    </Properties>
+    <AmmoUser>
+      <magazineSize>25</magazineSize>
+      <reloadTime>4</reloadTime>
+      <ammoSet>AmmoSet_Hydrashotty</ammoSet>
+    </AmmoUser>
+    <FireModes>
+      <aiUseBurstMode>True</aiUseBurstMode>
+      <aimedBurstShotCount>2</aimedBurstShotCount>
+    </FireModes>
+    <weaponTags>
+      <li>SniperRifle</li>
+    </weaponTags>
+    <!-- Required research rework -->
+<!--    <researchPrerequisite>PrecisionRifling</researchPrerequisite> -->
+  </li>
+
+  <!-- Name -->
+  <li Class='PatchOperationReplace'>
+    <xpath>/Defs/ThingDef[defName='RE_Gun_AllianceChainShotgun']/label</xpath>
+    <value>
+      <label>Hydra Shotgun</label>
+    </value>
+  </li>
+
+
+  <!-- ========== Predator ========== -->
+  <li Class='CombatExtended.PatchOperationMakeGunCECompatible'>
+    <defName>RE_Gun_AlliancePistol</defName>
+    <statBases>
+      <WorkToMake>12500</WorkToMake>
+      <SightsEfficiency>0.8</SightsEfficiency>
+      <ShotSpread>0.15</ShotSpread>
+      <SwayFactor>0.86</SwayFactor>
+      <Bulk>1.75</Bulk>
+      <Mass>0.78</Mass>
+      <RangedWeapon_Cooldown>0.3</RangedWeapon_Cooldown>
+    </statBases>
+    <Properties>
+      <verbClass>CombatExtended.Verb_ShootCE</verbClass>
+      <hasStandardCommand>True</hasStandardCommand>
+      <defaultProjectile>Bullet_Predator</defaultProjectile>
+      <warmupTime>0.5</warmupTime>
+      <range>18</range>
+      <soundCast>RE_Shot_Predator</soundCast>
+      <soundCastTail>GunTail_Light</soundCastTail>
+      <muzzleFlashScale>9</muzzleFlashScale>
+    </Properties>
+    <AmmoUser>
+      <magazineSize>15</magazineSize>
+      <reloadTime>2.5</reloadTime>
+      <ammoSet>AmmoSet_Predator</ammoSet>
+    </AmmoUser>
+    <FireModes>
+      <aiUseBurstMode>False</aiUseBurstMode>
+    </FireModes>
+    <weaponTags>
+      <li>CE_OneHandedWeapon</li>
+    </weaponTags>
+    <!-- Required research rework -->
+<!--    <researchPrerequisite>BlowbackOperation</researchPrerequisite> -->
+  </li>
+
+  <!-- Name -->
+  <li Class='PatchOperationReplace'>
+    <xpath>/Defs/ThingDef[defName='RE_Gun_AlliancePistol']/label</xpath>
+    <value>
+      <label>M-3 Predator</label>
+    </value>
+  </li>
+
+  <!-- ========== Phalanx ========== -->
+  <li Class='CombatExtended.PatchOperationMakeGunCECompatible'>
+    <defName>RE_Gun_AllianceHandcannon</defName>
+    <statBases>
+      <WorkToMake>20000</WorkToMake>
+      <SightsEfficiency>0.9</SightsEfficiency>
+      <ShotSpread>0.11</ShotSpread>
+      <SwayFactor>1.12</SwayFactor>
+      <Bulk>2.2</Bulk>
+      <Mass>1</Mass>
+      <RangedWeapon_Cooldown>0.45</RangedWeapon_Cooldown>
+    </statBases>
+    <Properties>
+      <verbClass>CombatExtended.Verb_ShootCE</verbClass>
+      <hasStandardCommand>True</hasStandardCommand>
+      <defaultProjectile>Bullet_Phalanx</defaultProjectile>
+      <warmupTime>0.55</warmupTime>
+      <range>20</range>
+      <soundCast>RE_Shot_Phalanx</soundCast>
+      <soundCastTail>GunTail_Heavy</soundCastTail>
+      <muzzleFlashScale>9</muzzleFlashScale>
+    </Properties>
+    <AmmoUser>
+      <magazineSize>12</magazineSize>
+      <reloadTime>3</reloadTime>
+      <ammoSet>AmmoSet_Predator</ammoSet>
+    </AmmoUser>
+    <FireModes>
+      <aiAimMode>AimedShot</aiAimMode>
+    </FireModes>
+    <weaponTags>
+      <li>CE_OneHandedWeapon</li>
+    </weaponTags>
+    <!-- Required research rework -->
+<!--    <researchPrerequisite>BlowbackOperation</researchPrerequisite> -->
+  </li>
+
+  <!-- Name -->
+  <li Class='PatchOperationReplace'>
+    <xpath>/Defs/ThingDef[defName='RE_Gun_AllianceHandcannon']/label</xpath>
+    <value>
+      <label>M-5 Phalanx</label>
+    </value>
+  </li>
+
+		<!-- === Rocket Launcher === -->
+		<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+			<defName>RE_Gun_AllianceRocketLauncher</defName>
+			<statBases>
+				<WorkToMake>20000</WorkToMake>
+				<Mass>5.0</Mass>
+				<Bulk>8.0</Bulk>
+				<SwayFactor>2</SwayFactor>
+				<ShotSpread>0.03</ShotSpread>
+				<SightsEfficiency>1.25</SightsEfficiency>
+				<RangedWeapon_Cooldown>1.5</RangedWeapon_Cooldown>
+			</statBases>
+			<costList>
+				<Steel>60</Steel>
+				<FSX>4</FSX>
+				<ComponentIndustrial>4</ComponentIndustrial>
+			</costList>
+			<Properties>
+				<verbClass>CombatExtended.Verb_ShootCEOneUse</verbClass>
+				<hasStandardCommand>True</hasStandardCommand>
+				<defaultProjectile>Bullet_Rocket</defaultProjectile>
+				<burstShotCount>1</burstShotCount>
+				<warmupTime>1.5</warmupTime>
+				<range>48</range>
+				<soundCast>RE_Shot_MissileLauncher</soundCast>
+				<soundCastTail>GunTail_Heavy</soundCastTail>
+				<muzzleFlashScale>14</muzzleFlashScale>
+				<onlyManualCast>True</onlyManualCast>
+				<ignorePartialLoSBlocker>True</ignorePartialLoSBlocker>
+				<targetParams>
+					<canTargetLocations>true</canTargetLocations>
+				</targetParams>
+			</Properties>
+			<FireModes>
+				<aiAimMode>AimedShot</aiAimMode>
+			</FireModes>
+			<weaponTags>
+				<li>GunHeavy</li>
+				<li>CE_AI_Launcher</li>
+			</weaponTags>
+			<!-- Research prerequisite rework   -->
+		<!-- <researchPrerequisite>CE_AdvancedLaunchers</researchPrerequisite>   -->
+			<AllowWithRunAndGun>false</AllowWithRunAndGun>
+		</li>
+
+  <!-- Name -->
+  <li Class='PatchOperationReplace'>
+    <xpath>/Defs/ThingDef[defName='RE_Gun_AllianceRocketLauncher']/label</xpath>
+    <value>
+      <label>ML-77 (single use)</label>
+    </value>
+  </li>
+
+
+			</operations>		
+		</match>
+	</Operation>
+
+</Patch>
+
