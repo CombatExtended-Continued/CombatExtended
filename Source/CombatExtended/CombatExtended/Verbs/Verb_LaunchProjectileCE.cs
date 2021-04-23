@@ -597,7 +597,8 @@ namespace CombatExtended
             if (Projectile.projectile is ProjectilePropertiesCE pprop) {
                 instant = pprop.isInstant;
                 spreadDegrees = (EquipmentSource?.GetStatValue(StatDef.Named("ShotSpread")) ?? 0) * pprop.spreadMult;
-		aperatureSize = (EquipmentSource?.GetStatValue(StatDef.Named("AperatureSize")) ?? 0.03f);
+		aperatureSize = 0.03f; //(EquipmentSource?.GetStatValue(StatDef.Named("AperatureSize"))? ?? 0.03f);
+		
             }
 
             ShiftVecReport report = ShiftVecReportFor(currentTarget);
