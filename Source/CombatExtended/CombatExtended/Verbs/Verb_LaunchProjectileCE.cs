@@ -309,7 +309,7 @@ namespace CombatExtended
                     }
                     targetHeight = VerbPropsCE.ignorePartialLoSBlocker ? 0 : targetRange.Average;
                 }
-                if (projectilePropsCE.isInstant && projectilePropsCE.damageFalloff) {
+                if (projectilePropsCE.isInstant) {
 		    angleRadians += Mathf.Atan2(targetHeight - ShotHeight, (newTargetLoc - sourceLoc).magnitude);
                 }
                 else {
