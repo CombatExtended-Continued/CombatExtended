@@ -182,13 +182,11 @@
 			</li>
 			
 			<li Class="PatchOperationAdd">
-				<xpath>Defs/ThingDef[defName="Epona_SwordSabre"]</xpath>
+				<xpath>Defs/ThingDef[defName="Epona_SwordSabre"]/equippedStatOffsets</xpath>
 				<value>
-				<equippedStatOffsets>
 					<MeleeCritChance>0.63</MeleeCritChance>
 					<MeleeParryChance>0.75</MeleeParryChance>
 					<MeleeDodgeChance>0.4</MeleeDodgeChance>	
-				</equippedStatOffsets>
 				</value>
 			</li>
 			
@@ -563,6 +561,38 @@
 				<FireModes />
 			</li>
 			
+			<!-- ========== Nuckelavee =========== -->
+			
+			<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+				<defName>Epona_NuckelaveeShotgun</defName>
+				<statBases>
+				  <Mass>4.50</Mass>
+				  <RangedWeapon_Cooldown>0.39</RangedWeapon_Cooldown>
+				  <ShotSpread>0.15</ShotSpread>
+				  <SwayFactor>1.29</SwayFactor>
+				  <Bulk>7.7</Bulk>
+				  <SightsEfficiency>1</SightsEfficiency>
+				  <WorkToMake>22500</WorkToMake>
+				</statBases>
+				<Properties>
+				  <verbClass>CombatExtended.Verb_ShootCE</verbClass>
+				  <hasStandardCommand>true</hasStandardCommand>
+				  <defaultProjectile>Bullet_Epona_NapalmShotgun</defaultProjectile>
+				  <warmupTime>0.6</warmupTime>
+				  <range>16</range>
+				  <soundCast>Shot_Minigun</soundCast>
+				  <soundCastTail>GunTail_Medium</soundCastTail>
+				  <muzzleFlashScale>9</muzzleFlashScale>
+				</Properties>
+				<AmmoUser>
+				  <magazineSize>5</magazineSize>
+				  <reloadOneAtATime>true</reloadOneAtATime>
+				  <reloadTime>0.85</reloadTime>
+				  <ammoSet>AmmoSet_NuckelaveeShotgun</ammoSet>
+				</AmmoUser>
+				<FireModes />
+			</li>
+			
 			<!-- ========== Assault Rifle =========== -->
 			
 			<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
@@ -854,6 +884,39 @@
 							<label>point</label>
 							<capacities>
 								<li>Stab</li>
+							</capacities>
+							<power>14</power>
+							<cooldownTime>1.69</cooldownTime>
+							<chanceFactor>1</chanceFactor>
+							<armorPenetrationBlunt>0.8</armorPenetrationBlunt>
+							<armorPenetrationSharp>1.6</armorPenetrationSharp>
+							<linkedBodyPartsGroup>Point</linkedBodyPartsGroup>
+						</li>
+					</tools>
+				</value>
+			</li>
+			
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="Epona_NuckelaveeShotgun"
+				]/tools</xpath>
+				<value>
+					<tools>
+						<li Class="CombatExtended.ToolCE">
+							<label>stock</label>
+							<capacities>
+								<li>Blunt</li>
+							</capacities>
+							<power>8</power>
+							<cooldownTime>1.55</cooldownTime>
+							<chanceFactor>0.5</chanceFactor>
+							<armorPenetrationBlunt>2.755</armorPenetrationBlunt>
+							<linkedBodyPartsGroup>Stock</linkedBodyPartsGroup>
+						</li>
+						<li Class="CombatExtended.ToolCE">
+							<label>point</label>
+							<capacities>
+								<li>Stab</li>
+								<li>Cut</li>
 							</capacities>
 							<power>14</power>
 							<cooldownTime>1.69</cooldownTime>

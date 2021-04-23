@@ -9,10 +9,113 @@
     <match Class="PatchOperationSequence">
       <operations>
 
+        <!-- === Ammo === -->
+        <li Class="PatchOperationAdd">
+          <xpath>/Defs</xpath>
+          <value>
+
+          <CombatExtended.AmmoSetDef>
+            <defName>AmmoSet_HeavyCrossbowBolt</defName>
+            <label>crossbow bolts</label>
+            <ammoTypes>
+              <Ammo_CrossbowBolt_Stone>Projectile_HeavyCrossbowBolt_Stone</Ammo_CrossbowBolt_Stone>
+              <Ammo_CrossbowBolt_Steel>Projectile_HeavyCrossbowBolt_Steel</Ammo_CrossbowBolt_Steel>
+              <Ammo_CrossbowBolt_Plasteel>Projectile_HeavyCrossbowBolt_Plasteel</Ammo_CrossbowBolt_Plasteel>
+              <Ammo_CrossbowBolt_Venom>Projectile_HeavyCrossbowBolt_Venom</Ammo_CrossbowBolt_Venom>
+              <Ammo_CrossbowBolt_Flame>Projectile_HeavyCrossbowBolt_Flame</Ammo_CrossbowBolt_Flame>      
+            </ammoTypes>
+          </CombatExtended.AmmoSetDef>
+
+          <ThingDef Class="CombatExtended.AmmoDef" ParentName="BaseCrossbowBoltProjectile">
+            <defName>Projectile_HeavyCrossbowBolt_Stone</defName>
+            <label>crossbow bolt (stone)</label>
+            <graphicData>
+              <texPath>Things/Projectile/Arrows/Arrow_Stone</texPath>
+              <graphicClass>Graphic_Single</graphicClass>
+            </graphicData>
+            <projectile Class="CombatExtended.ProjectilePropertiesCE">
+              <damageAmountBase>8</damageAmountBase>
+              <armorPenetrationBlunt>1.5</armorPenetrationBlunt>
+              <armorPenetrationSharp>1.85</armorPenetrationSharp>			
+              <preExplosionSpawnChance>0.1</preExplosionSpawnChance>	<!-- 11.11 bolts per resource -->
+              <preExplosionSpawnThingDef>Ammo_CrossbowBolt_Stone</preExplosionSpawnThingDef>
+            </projectile>
+          </ThingDef>
+
+          <ThingDef Class="CombatExtended.AmmoDef" ParentName="BaseCrossbowBoltProjectile">
+            <defName>Projectile_HeavyCrossbowBolt_Steel</defName>
+            <label>crossbow bolt (steel)</label>
+            <graphicData>
+              <texPath>Things/Projectile/Arrows/Arrow_Steel</texPath>
+              <graphicClass>Graphic_Single</graphicClass>
+            </graphicData>
+            <projectile Class="CombatExtended.ProjectilePropertiesCE">
+              <damageAmountBase>12</damageAmountBase>
+              <armorPenetrationBlunt>6.5</armorPenetrationBlunt>
+              <armorPenetrationSharp>2.85</armorPenetrationSharp>
+              <speed>18</speed>			
+              <preExplosionSpawnChance>0.333</preExplosionSpawnChance>	<!-- 14.99 bolts per resource -->
+              <preExplosionSpawnThingDef>Ammo_CrossbowBolt_Steel</preExplosionSpawnThingDef>
+            </projectile>
+          </ThingDef>
+
+          <ThingDef Class="CombatExtended.AmmoDef" ParentName="BaseCrossbowBoltProjectile">
+            <defName>Projectile_HeavyCrossbowBolt_Plasteel</defName>
+            <label>crossbow bolt (plasteel)</label>
+            <graphicData>
+              <texPath>Things/Projectile/Arrows/Arrow_Plasteel</texPath>
+              <graphicClass>Graphic_Single</graphicClass>
+            </graphicData>
+            <projectile Class="CombatExtended.ProjectilePropertiesCE">
+              <damageAmountBase>10</damageAmountBase>
+              <armorPenetrationBlunt>8.12</armorPenetrationBlunt>
+              <armorPenetrationSharp>4</armorPenetrationSharp>
+              <speed>20</speed>				
+              <preExplosionSpawnChance>0.6</preExplosionSpawnChance>	<!-- 25 bolts per resource -->
+              <preExplosionSpawnThingDef>Ammo_CrossbowBolt_Plasteel</preExplosionSpawnThingDef>
+            </projectile>
+          </ThingDef>
+
+          <ThingDef Class="CombatExtended.AmmoDef" ParentName="BaseCrossbowBoltProjectile">
+            <defName>Projectile_HeavyCrossbowBolt_Venom</defName>
+            <label>crossbow bolt (venom)</label>
+            <graphicData>
+              <texPath>Things/Projectile/Arrows/Arrow_Venom</texPath>
+              <graphicClass>Graphic_Single</graphicClass>
+            </graphicData>
+            <projectile Class="CombatExtended.ProjectilePropertiesCE">
+              <damageDef>ArrowVenom</damageDef>
+              <damageAmountBase>12</damageAmountBase>
+              <armorPenetrationBlunt>6.5</armorPenetrationBlunt>
+              <armorPenetrationSharp>2.5</armorPenetrationSharp>
+              <speed>18</speed>	
+              <preExplosionSpawnChance>0.6</preExplosionSpawnChance>	<!-- 25 arrows per resource -->
+              <preExplosionSpawnThingDef>Ammo_CrossbowBolt_Steel</preExplosionSpawnThingDef>
+            </projectile>
+          </ThingDef>
+          
+          <ThingDef Class="CombatExtended.AmmoDef" ParentName="BaseCrossbowBoltProjectile">
+            <defName>Projectile_HeavyCrossbowBolt_Flame</defName>
+            <label>crossbow bolt (flame)</label>
+            <graphicData>
+              <texPath>Things/Projectile/Arrows/Arrow_Flame</texPath>
+              <graphicClass>Graphic_Single</graphicClass>
+            </graphicData>
+            <projectile Class="CombatExtended.ProjectilePropertiesCE">
+              <damageDef>Flame</damageDef>
+              <damageAmountBase>5</damageAmountBase>
+              <armorPenetrationBlunt>3.28</armorPenetrationBlunt>
+              <armorPenetrationSharp>1.5</armorPenetrationSharp>
+              <speed>18</speed>	
+            </projectile>
+          </ThingDef>
+
+          </value>
+        </li>
+
         <!-- === Tools === -->
         <li Class="PatchOperationReplace">
           <xpath>/Defs/ThingDef[defName="VFEM_Bow_HeavyCrossbow"]/tools</xpath>
-
           <value>
             <tools>
               <li Class="CombatExtended.ToolCE">
@@ -38,14 +141,14 @@
             <RangedWeapon_Cooldown>1</RangedWeapon_Cooldown>
           </statBases>
           <costList>
-			  <WoodLog>60</WoodLog>
-			  <Steel>25</Steel>
-			  <ComponentIndustrial>1</ComponentIndustrial>
+            <WoodLog>60</WoodLog>
+            <Steel>25</Steel>
+            <ComponentIndustrial>1</ComponentIndustrial>
           </costList>
           <Properties>
             <verbClass>CombatExtended.Verb_ShootCE</verbClass>
             <hasStandardCommand>True</hasStandardCommand>
-            <defaultProjectile>Projectile_CrossbowBolt_Steel</defaultProjectile>
+            <defaultProjectile>Projectile_HeavyCrossbowBolt_Steel</defaultProjectile>
             <warmupTime>1</warmupTime>
             <range>34</range>
             <soundCast>Bow_Large</soundCast>
@@ -53,7 +156,7 @@
           <AmmoUser>
             <magazineSize>1</magazineSize>
             <reloadTime>8</reloadTime>
-            <ammoSet>AmmoSet_CrossbowBolt</ammoSet>
+            <ammoSet>AmmoSet_HeavyCrossbowBolt</ammoSet>
           </AmmoUser>
           <FireModes>
             <aiAimMode>AimedShot</aiAimMode>
