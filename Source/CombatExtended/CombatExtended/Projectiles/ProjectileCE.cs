@@ -413,7 +413,10 @@ namespace CombatExtended
 	    var it_bounds = CE_Utility.GetBoundsFor(intendedTarget);
             for (int i=1; i < verbProps.range; i++) {
                 float spreadArea = (i * spreadRadius + 0.01f) * (i * spreadRadius + 0.01f) * 3.14159f;
-                lbce.DamageModifier = 1 / (magicLaserDamageConstant * spreadArea);
+		if (pprops.damageFalloff)
+		{
+		  lbce.DamageModifier = 1 / (magicLaserDamageConstant * spreadArea);
+		}
                 
                 Vector3 tp = ray.GetPoint(i);
                 if (tp.y > CollisionVertical.WallCollisionHeight) {
