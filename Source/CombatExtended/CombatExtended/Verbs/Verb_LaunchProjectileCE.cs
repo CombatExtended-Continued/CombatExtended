@@ -234,7 +234,7 @@ namespace CombatExtended
         /// <summary>
         /// Shifts the original target position in accordance with target leading, range estimation and weather/lighting effects
         /// </summary>
-        protected virtual void ShiftTarget(ShiftVecReport report, bool calculateMechanicalOnly = false)
+        protected virtual void ShiftTarget(ShiftVecReport report, bool calculateMechanicalOnly = false, bool isInstant = false)
         {
             if (!calculateMechanicalOnly)
             {
@@ -262,7 +262,10 @@ namespace CombatExtended
                 newTargetLoc = sourceLoc + (newTargetLoc - sourceLoc).normalized * estimatedTargDist;
 
                 // Lead a moving target
-                newTargetLoc += report.GetRandLeadVec();
+                if (!isInstant) {
+
+                    newTargetLoc += report.GetRandLeadVec();
+                }
 
                 // ----------------------------------- STEP 3: Recoil, Skewing, Skill checks, Cover calculations
 
@@ -306,14 +309,18 @@ namespace CombatExtended
                     }
                     targetHeight = VerbPropsCE.ignorePartialLoSBlocker ? 0 : targetRange.Average;
                 }
-                angleRadians += ProjectileCE.GetShotAngle(ShotSpeed, (newTargetLoc - sourceLoc).magnitude, targetHeight - ShotHeight, Projectile.projectile.flyOverhead, projectilePropsCE.Gravity);
+                if (projectilePropsCE.isInstant) {
+		    angleRadians += Mathf.Atan2(targetHeight - ShotHeight, (newTargetLoc - sourceLoc).magnitude);
+                }
+                else {
+                    angleRadians += ProjectileCE.GetShotAngle(ShotSpeed, (newTargetLoc - sourceLoc).magnitude, targetHeight - ShotHeight, Projectile.projectile.flyOverhead, projectilePropsCE.Gravity);
+                }
             }
 
             // ----------------------------------- STEP 4: Mechanical variation
 
             // Get shotvariation, in angle Vector2 RADIANS.
-            Vector2 spreadVec = report.GetRandSpreadVec();
-
+            Vector2 spreadVec = projectilePropsCE.isInstant? new Vector2(0,0) : report.GetRandSpreadVec() ;
             // ----------------------------------- STEP 5: Finalization
 
             var w = (newTargetLoc - sourceLoc);
@@ -380,6 +387,33 @@ namespace CombatExtended
             return report;
         }
 
+        public float AdjustShotHeight(Thing caster, LocalTargetInfo target, ref float shotHeight)
+        {
+            /* TODO:  This really should determine how much the shooter needs to rise up for a *good* shot.  
+               If we're shooting at something tall, we might not need to rise at all, if we're shooting at 
+               something short, we might need to rise *more* than just above the cover.  This at least handles 
+               cases where we're below cover, but the taret is taller than the cover */
+            GetHighestCoverAndSmokeForTarget(target, out Thing cover, out float smoke);
+            var shooterHeight = CE_Utility.GetBoundsFor(caster).max.y;
+            var coverHeight = CE_Utility.GetBoundsFor(cover).max.y;
+            var centerOfVisibleTarget = (CE_Utility.GetBoundsFor(target.Thing).max.y - coverHeight) / 2 + coverHeight;
+            if (centerOfVisibleTarget > shotHeight)
+            {
+                if (centerOfVisibleTarget > shooterHeight)
+                {
+                    centerOfVisibleTarget = shooterHeight;
+                }
+		float distance = target.Thing.Position.DistanceTo(caster.Position);
+                // float wobble = Mathf.Atan2(UnityEngine.Random.Range(shotHeight-centerOfVisibleTarget, centerOfVisibleTarget - shotHeight), distance);
+		float triangleHeight = centerOfVisibleTarget - shotHeight;
+		float wobble = -Mathf.Atan2(triangleHeight, distance);
+		// TODO: Add inaccuracy for not standing in as natural a position
+                shotHeight = centerOfVisibleTarget;
+                return wobble;
+            }
+            return 0;
+        }
+
         /// <summary>
         /// Checks for cover along the flight path of the bullet, doesn't check for walls or trees, only intended for cover with partial fillPercent
         /// </summary>
@@ -402,7 +436,14 @@ namespace CombatExtended
                 cover = null;
                 return false;
             }
-            for (int i = 0; i <= cells.Length / 2; i++)
+	    bool instant = false;
+	    if (Projectile.projectile is ProjectilePropertiesCE pprop)
+	    {
+		instant = pprop.isInstant;
+	    }
+	    int endCell = instant? cells.Length : cells.Length / 2;
+	    
+            for (int i = 0; i < endCell; i++)
             {
                 var cell = cells[i];
 
@@ -416,11 +457,11 @@ namespace CombatExtended
                 }
 
                 // Check for cover in the second half of LoS
-                if (i <= cells.Length / 2)
+                if (instant || i <= cells.Length / 2)
                 {
                     Pawn pawn = cell.GetFirstPawn(map);
                     Thing newCover = pawn == null ? cell.GetCover(map) : pawn;
-                    float newCoverHeight = new CollisionVertical(newCover).Max;
+		    float newCoverHeight = new CollisionVertical(newCover).Max;
 
                     // Cover check, if cell has cover compare collision height and get the highest piece of cover, ignore if cover is the target (e.g. solar panels, crashed ship, etc)
                     if (newCover != null
@@ -548,6 +589,15 @@ namespace CombatExtended
                 Log.Error(EquipmentSource.LabelCap + " tried firing with pelletCount less than 1.");
                 return false;
             }
+            bool instant = false;
+
+            float spreadDegrees = 0;
+
+            if (Projectile.projectile is ProjectilePropertiesCE pprop) {
+                instant = pprop.isInstant;
+                spreadDegrees = (EquipmentSource?.GetStatValue(StatDef.Named("ShotSpread")) ?? 0) * pprop.spreadMult;
+            }
+
             ShiftVecReport report = ShiftVecReportFor(currentTarget);
             bool pelletMechanicsOnly = false;
             for (int i = 0; i < projectilePropsCE.pelletCount; i++)
@@ -555,7 +605,7 @@ namespace CombatExtended
 
                 ProjectileCE projectile = (ProjectileCE)ThingMaker.MakeThing(Projectile, null);
                 GenSpawn.Spawn(projectile, shootLine.Source, caster.Map);
-                ShiftTarget(report, pelletMechanicsOnly);
+                ShiftTarget(report, pelletMechanicsOnly, instant);
 
                 //New aiming algorithm
                 projectile.canTargetSelf = false;
@@ -565,15 +615,32 @@ namespace CombatExtended
                 projectile.intendedTarget = currentTarget.Thing;
                 projectile.mount = caster.Position.GetThingList(caster.Map).FirstOrDefault(t => t is Pawn && t != caster);
                 projectile.AccuracyFactor = report.accuracyFactor * report.swayDegrees * ((numShotsFired + 1) * 0.75f);
-                projectile.Launch(
-                    Shooter,    //Shooter instead of caster to give turret operators' records the damage/kills obtained
-                    sourceLoc,
-                    shotAngle,
-                    shotRotation,
-                    ShotHeight,
-                    ShotSpeed,
-                    EquipmentSource
-                );
+                if (instant) {
+                    var shotHeight = ShotHeight;
+                    float tsa = AdjustShotHeight(caster, currentTarget, ref shotHeight);
+                    projectile.RayCast(
+                                       Shooter,
+                                       verbProps,
+                                       sourceLoc,
+                                       shotAngle + tsa,
+                                       shotRotation,
+                                       shotHeight,
+                                       ShotSpeed,
+                                       spreadDegrees,
+                                       EquipmentSource);
+
+                }
+                else  {
+                    projectile.Launch(
+                                      Shooter,    //Shooter instead of caster to give turret operators' records the damage/kills obtained
+                                      sourceLoc,
+                                      shotAngle,
+                                      shotRotation,
+                                      ShotHeight,
+                                      ShotSpeed,
+                                      EquipmentSource
+                                      );
+                }
                 pelletMechanicsOnly = true;
             }
             /// Log.Message("Fired from "+caster.ThingID+" at "+ShotHeight); /// 
@@ -711,6 +778,9 @@ namespace CombatExtended
                 Vector3 targetPos;
                 if (targetThing != null)
                 {
+		    float shotHeight = shotSource.y;
+		    AdjustShotHeight(caster, targetThing, ref shotHeight);
+		    shotSource.y = shotHeight;
                     Vector3 targDrawPos = targetThing.DrawPos;
                     targetPos = new Vector3(targDrawPos.x, new CollisionVertical(targetThing).Max, targDrawPos.z);
                     var targPawn = targetThing as Pawn;

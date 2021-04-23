@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+
+	<!-- ==================== Las weapons ========================== -->
+
+	<CombatExtended.AmmoCategoryDef>
+		<defName>OGLasAC</defName>
+		<label>Las Charge</label>
+		<description>Focuses a throbbing bass note into an explosive sonic crescendo that can burst eyeballs and rupture internal organs. By varying the frequency of the blast, the effect of the weapon can be altered to produce different effects.</description>
+	</CombatExtended.AmmoCategoryDef>
+
+	<ThingCategoryDef>
+		<defName>AmmoOGLas</defName>
+		<label>Las charges</label>
+		<parent>AmmoAdvanced</parent>
+		<iconPath>UI/Icons/ThingCategories/CaliberCharge</iconPath>
+	</ThingCategoryDef>
+
+	<!-- ==================== AmmoSet ========================== -->
+
+	<CombatExtended.AmmoSetDef>
+		<defName>AmmoSet_OGLasStd</defName>
+		<label>Las charge (Imperial)</label>
+		<ammoTypes>
+			<Ammo_OGLasStd>OGI_Bullet_LasGun</Ammo_OGLasStd>
+		</ammoTypes>
+	</CombatExtended.AmmoSetDef>
+
+	<!-- ==================== Ammo ========================== -->
+
+	<ThingDef Class="CombatExtended.AmmoDef" Name="OGLasChargeBase" ParentName="AmmoBase" Abstract="True">
+		<description>Las ammo</description>
+		<statBases>
+			<Mass>0.01</Mass>
+			<Bulk>0.02</Bulk>
+		</statBases>
+		<tradeTags>
+			<li>CE_AutoEnableTrade</li>
+			<li>CE_AutoEnableCrafting</li>
+		</tradeTags>
+		<thingCategories>
+			<li>AmmoOGLas</li>
+		</thingCategories>
+	</ThingDef>
+
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="OGLasChargeBase">
+		<defName>Ammo_OGLasStd</defName>
+		<label>Las charge (Imperial)</label>
+		<graphicData>
+			<texPath>Things/Ammo/Charged/Regular</texPath>
+			<graphicClass>Graphic_StackCount</graphicClass>
+		</graphicData>
+		<statBases>
+			<MarketValue>0.95</MarketValue>
+		</statBases>
+		<ammoClass>OGLasAC</ammoClass>
+	</ThingDef>
+
+	<!-- ==================== Recipes ========================== -->
+	<RecipeDef ParentName="AmmoRecipeBase">
+		<defName>MakeAmmo_OGLasStd</defName>
+		<label>make Las cartridge (I) x180</label>
+		<description>Craft 180 Las cartridges.</description>
+		<jobString>Making Las cartridges.</jobString>
+		<ingredients>
+			<li>
+				<filter>
+					<thingDefs>
+					<li>Plasteel</li>
+					</thingDefs>
+				</filter>
+				<count>3</count>
+			</li>
+			<li>
+				<filter>
+					<thingDefs>
+					<li>ComponentIndustrial</li>
+					</thingDefs>
+				</filter>
+				<count>3</count>
+			</li>
+		</ingredients>
+		<fixedIngredientFilter>
+			<thingDefs>
+				<li>Plasteel</li>
+				<li>ComponentIndustrial</li>
+			</thingDefs>
+		</fixedIngredientFilter>
+		<products>
+			<Ammo_OGLasStd>180</Ammo_OGLasStd>
+		</products>
+		<!--researchPrerequisite>OG_Common_Tech_Weapons_Laser</researchPrerequisite-->
+	</RecipeDef>
+
+</Defs>

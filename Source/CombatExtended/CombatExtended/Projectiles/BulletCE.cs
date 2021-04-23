@@ -16,6 +16,22 @@ namespace CombatExtended
         private static RulePackDef cookOffDamageEvent = null;
 
         public static RulePackDef CookOff => cookOffDamageEvent ?? (cookOffDamageEvent = DefDatabase<RulePackDef>.GetNamed("DamageEvent_CookOff"));
+	protected virtual float DamageAmount
+	{
+	    get {
+		return def.projectile.GetDamageAmount(1);
+	    }
+	}
+
+	protected virtual float PenetrationAmount
+	{
+	    get
+	    {
+		var projectilePropsCE = (ProjectilePropertiesCE)def.projectile;
+		var isSharpDmg = def.projectile.damageDef.armorCategory == DamageArmorCategoryDefOf.Sharp;
+		return isSharpDmg ? projectilePropsCE.armorPenetrationSharp : projectilePropsCE.armorPenetrationBlunt;
+	    }
+	}
 
         private void LogImpact(Thing hitThing, out LogEntry_DamageResult logEntry)
         {
@@ -48,13 +64,12 @@ namespace CombatExtended
             if (hitThing != null)
             {
                 // launcher being the pawn equipping the weapon, not the weapon itself
-                int damageAmountBase = def.projectile.GetDamageAmount(1);
-                var damDefCE = def.projectile.damageDef.GetModExtension<DamageDefExtensionCE>() ?? new DamageDefExtensionCE();
-                var projectilePropsCE = (ProjectilePropertiesCE)def.projectile;
-                var isSharpDmg = def.projectile.damageDef.armorCategory == DamageArmorCategoryDefOf.Sharp;
-                var penetration = isSharpDmg ? projectilePropsCE.armorPenetrationSharp : projectilePropsCE.armorPenetrationBlunt;
-
-                var dinfo = new DamageInfo(
+	      float damageAmountBase = DamageAmount;
+	      var projectilePropsCE = (ProjectilePropertiesCE)def.projectile;
+	      var isSharpDmg = def.projectile.damageDef.armorCategory == DamageArmorCategoryDefOf.Sharp;
+              var penetration = PenetrationAmount;
+	      var damDefCE = def.projectile.damageDef.GetModExtension<DamageDefExtensionCE>() ?? new DamageDefExtensionCE();
+	      var dinfo = new DamageInfo(
                     def.projectile.damageDef,
                     damageAmountBase,
                     penetration, //Armor Penetration
