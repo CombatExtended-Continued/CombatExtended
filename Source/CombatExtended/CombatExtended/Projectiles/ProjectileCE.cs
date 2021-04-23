@@ -390,10 +390,12 @@ namespace CombatExtended
         }
         #endregion
 
-        public virtual void RayCast(Thing launcher, VerbProperties verbProps, Vector2 origin, float shotAngle, float shotRotation, float shotHeight = 0f, float shotSpeed = -1f, float spreadDegrees = 0f, Thing equipment = null) {
-            const float magicLaserDamageConstant = 341.6478229576042f;
-	    const float aperatureSize = 0.03f;
-            ProjectilePropertiesCE pprops = def.projectile as ProjectilePropertiesCE;
+	public virtual void RayCast(Thing launcher, VerbProperties verbProps, Vector2 origin, float shotAngle, float shotRotation, float shotHeight = 0f, float shotSpeed = -1f, float spreadDegrees = 0f, float aperatureSize = 0.03f, Thing equipment = null) {
+
+	    float magicSpreadFactor = Mathf.Sin(0.06f / 2 * Mathf.Deg2Rad) + aperatureSize;
+            float magicLaserDamageConstant = 1 / (magicSpreadFactor * magicSpreadFactor * 3.14159f);
+
+	    ProjectilePropertiesCE pprops = def.projectile as ProjectilePropertiesCE;
             shotRotation = Mathf.Deg2Rad * shotRotation + (float)(3.14159/2.0f);
             Vector3 direction = new Vector3(Mathf.Cos(shotRotation) * Mathf.Cos(shotAngle), Mathf.Sin(shotAngle), Mathf.Sin(shotRotation) * Mathf.Cos(shotAngle));
             Vector3 origin3 = new Vector3(origin.x, shotHeight, origin.y);
