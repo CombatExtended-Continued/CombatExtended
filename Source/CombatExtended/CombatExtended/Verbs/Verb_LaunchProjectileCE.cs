@@ -309,7 +309,7 @@ namespace CombatExtended
                     }
                     targetHeight = VerbPropsCE.ignorePartialLoSBlocker ? 0 : targetRange.Average;
                 }
-                if (projectilePropsCE.isInstant) {
+                if (projectilePropsCE.isInstant && projectilePropsCE.damageFalloff) {
 		    angleRadians += Mathf.Atan2(targetHeight - ShotHeight, (newTargetLoc - sourceLoc).magnitude);
                 }
                 else {
@@ -320,7 +320,7 @@ namespace CombatExtended
             // ----------------------------------- STEP 4: Mechanical variation
 
             // Get shotvariation, in angle Vector2 RADIANS.
-            Vector2 spreadVec = projectilePropsCE.isInstant? new Vector2(0,0) : report.GetRandSpreadVec() ;
+            Vector2 spreadVec = (projectilePropsCE.isInstant && projectilePropsCE.damageFalloff)? new Vector2(0,0) : report.GetRandSpreadVec() ;
             // ----------------------------------- STEP 5: Finalization
 
             var w = (newTargetLoc - sourceLoc);
