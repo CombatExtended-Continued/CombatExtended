@@ -19,7 +19,7 @@ namespace CombatExtended.Lasers
         public bool isCharged = false;
         public int previousBurstCooldownTicksLeft = 0;
 
-        new public Building_LaserGunDef def => base.def as Building_LaserGunDef;
+        private Building_LaserGunDef laserGunDef => base.def as Building_LaserGunDef;
 
         public int BurstCooldownTicksLeft => burstCooldownTicksLeft;
         public int BurstWarmupTicksLeft => burstWarmupTicksLeft;
@@ -56,7 +56,7 @@ namespace CombatExtended.Lasers
 
             if (!isCharged)
             {
-                if (Drain(def.beamPowerConsumption))
+                if (Drain(laserGunDef.beamPowerConsumption))
                 {
                     isCharged = true;
                 }

@@ -10,7 +10,7 @@ namespace CombatExtended.Lasers
 
     public class LaserGun : ThingWithComps, IBeamColorThing, IDrawnWeaponWithRotation
     {
-        new public LaserGunDef def => base.def as LaserGunDef ?? LaserGunDef.defaultObj;
+        public LaserGunDef laserGunDef => base.def as LaserGunDef ?? LaserGunDef.defaultObj;
 
         public int BeamColor
         {
@@ -50,7 +50,7 @@ namespace CombatExtended.Lasers
                 if (o != null) yield return o;
             }
 
-            if (!def.supportsColors) yield break;
+            if (!laserGunDef.supportsColors) yield break;
             /*
             foreach (FloatMenuOption o in LaserColor.GetChangeBeamColorFloatMenuOptions(this, pawn))
             {

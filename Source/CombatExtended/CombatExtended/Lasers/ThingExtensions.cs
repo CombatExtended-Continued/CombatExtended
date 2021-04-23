@@ -11,7 +11,7 @@ namespace CombatExtended.Lasers
     {
         public static bool IsShielded(this Thing thing)
         {
-            return (thing as Pawn).IsShielded();
+            return (thing as Pawn)?.IsShielded() ?? false;
         }
 
         public static bool IsShielded(this Pawn pawn)

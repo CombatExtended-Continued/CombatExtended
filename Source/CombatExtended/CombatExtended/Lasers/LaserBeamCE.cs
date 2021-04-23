@@ -20,7 +20,7 @@ namespace CombatExtended.Lasers
 	}
 	
         public float DamageModifier = 1.0f;
-        public new LaserBeamDefCE def => base.def as LaserBeamDefCE;
+        public LaserBeamDefCE laserBeamDef => base.def as LaserBeamDefCE;
 
         public override void Draw()
         {
@@ -45,10 +45,10 @@ namespace CombatExtended.Lasers
 
         public void SpawnBeam(Vector3 a, Vector3 b)
         {
-            LaserBeamGraphicCE graphic = ThingMaker.MakeThing(def.beamGraphic, null) as LaserBeamGraphicCE;
+            LaserBeamGraphicCE graphic = ThingMaker.MakeThing(laserBeamDef.beamGraphic, null) as LaserBeamGraphicCE;
             if (graphic == null) return;
             graphic.ticksToDetonation = this.def.projectile.explosionDelay;
-            graphic.projDef = def;
+            graphic.projDef = laserBeamDef;
             graphic.Setup(launcher, a, b);
             GenSpawn.Spawn(graphic, Origin.ToIntVec3(), Map, WipeMode.Vanish);
         }
@@ -80,7 +80,7 @@ namespace CombatExtended.Lasers
 
         public void Impact(Thing hitThing, Vector3 muzzle)
         {
-            bool shielded = hitThing.IsShielded() && def.IsWeakToShields;
+            bool shielded = hitThing.IsShielded() && laserBeamDef.IsWeakToShields;
 
             LaserGunDef defWeapon = equipmentDef as LaserGunDef;
             Vector3 dir = (destination - muzzle).normalized;
@@ -125,7 +125,7 @@ namespace CombatExtended.Lasers
 
 	    if (hitThing is Pawn && shielded)
 	    {
-		DamageModifier *= def.shieldDamageMultiplier;
+		DamageModifier *= laserBeamDef.shieldDamageMultiplier;
 	      	SpawnBeamReflections(muzzle, b, 5);
 	    }
 	    base.Impact(hitThing);
