@@ -7,6 +7,7 @@ using Verse;
 
 namespace CombatExtended.Lasers
 {
+    [StaticConstructorOnStartup]
     public class LaserBeamGraphicCE :Thing
     {
         public LaserBeamDefCE projDef;
@@ -254,8 +255,14 @@ namespace CombatExtended.Lasers
             GenExplosion.DoExplosion(center, map2, explosionRadius, damageDef, launcher, damageAmount, 0f, soundExplode, equipmentDef, def, null, postExplosionSpawnThingDef, postExplosionSpawnChance, postExplosionSpawnThingCount, this.def.projectile.applyDamageToExplosionCellsNeighbors, preExplosionSpawnThingDef, this.def.projectile.preExplosionSpawnChance, this.def.projectile.preExplosionSpawnThingCount, this.def.projectile.explosionChanceToStartFire, this.def.projectile.explosionDamageFalloff);
         }
 
-        private static readonly Material BeamMat = MaterialPool.MatFrom("Other/OrbitalBeam", ShaderDatabase.MoteGlow, MapMaterialRenderQueues.OrbitalBeam);
-        private static readonly Material BeamEndMat = MaterialPool.MatFrom("Other/OrbitalBeamEnd", ShaderDatabase.MoteGlow, MapMaterialRenderQueues.OrbitalBeam);
-        private static readonly MaterialPropertyBlock MatPropertyBlock = new MaterialPropertyBlock();
+	static LaserBeamGraphicCE() {
+	     BeamMat = MaterialPool.MatFrom("Other/OrbitalBeam", ShaderDatabase.MoteGlow, MapMaterialRenderQueues.OrbitalBeam);
+	     BeamEndMat  = MaterialPool.MatFrom("Other/OrbitalBeamEnd", ShaderDatabase.MoteGlow, MapMaterialRenderQueues.OrbitalBeam);
+	     MatPropertyBlock = new MaterialPropertyBlock();
+	}
+	
+        private static Material BeamMat;
+        private static Material BeamEndMat;
+        private static MaterialPropertyBlock MatPropertyBlock;
     }
 }

@@ -390,8 +390,11 @@ namespace CombatExtended
         }
         #endregion
 
-        public virtual void RayCast(Thing launcher, VerbProperties verbProps, Vector2 origin, float shotAngle, float shotRotation, float shotHeight = 0f, float shotSpeed = -1f, float spreadDegrees = 0f, Thing equipment = null) {
-            const float magicLaserDamageConstant = 1789.255934470907f;
+        public virtual void RayCast(Thing launcher, VerbProperties verbProps, Vector2 origin, float shotAngle, float shotRotation, float shotHeight = 0f, float shotSpeed = -1f, float spreadDegrees = 0f, float aperatureSize = 0.03f, Thing equipment = null) {
+
+            float magicSpreadFactor = Mathf.Sin(0.06f / 2 * Mathf.Deg2Rad) + aperatureSize;
+            float magicLaserDamageConstant = 1 / (magicSpreadFactor * magicSpreadFactor * 3.14159f);
+
             ProjectilePropertiesCE pprops = def.projectile as ProjectilePropertiesCE;
             shotRotation = Mathf.Deg2Rad * shotRotation + (float)(3.14159/2.0f);
             Vector3 direction = new Vector3(Mathf.Cos(shotRotation) * Mathf.Cos(shotAngle), Mathf.Sin(shotAngle), Mathf.Sin(shotRotation) * Mathf.Cos(shotAngle));
@@ -410,10 +413,13 @@ namespace CombatExtended
 
             LaserGunDef defWeapon = equipmentDef as LaserGunDef;
             Vector3 muzzle = ray.GetPoint( (defWeapon == null ? 0.9f : defWeapon.barrelLength) );
-	    var it_bounds = CE_Utility.GetBoundsFor(intendedTarget);
+            var it_bounds = CE_Utility.GetBoundsFor(intendedTarget);
             for (int i=1; i < verbProps.range; i++) {
-                float spreadArea = (i * spreadRadius + 0.01f) * (i * spreadRadius + 0.01f) * 3.14159f;
-                lbce.DamageModifier = 1 / (magicLaserDamageConstant * spreadArea);
+                float spreadArea = (i * spreadRadius + aperatureSize) * (i * spreadRadius + aperatureSize) * 3.14159f;
+                if (pprops.damageFalloff)
+                {
+                  lbce.DamageModifier = 1 / (magicLaserDamageConstant * spreadArea);
+                }
                 
                 Vector3 tp = ray.GetPoint(i);
                 if (tp.y > CollisionVertical.WallCollisionHeight) {
@@ -866,20 +872,20 @@ namespace CombatExtended
                 ambientSustainer.Maintain();
             }
 
-	    if (def.HasModExtension<TrailerProjectileExtension>())
-	    {
-		var trailer = def.GetModExtension<TrailerProjectileExtension>();
-		if (trailer != null)
-		{
-		    if (ticksToImpact % trailer.trailerMoteInterval == 0)
-		    {
-			for (int i = 0; i < trailer.motesThrown; i++)
+            if (def.HasModExtension<TrailerProjectileExtension>())
+            {
+                var trailer = def.GetModExtension<TrailerProjectileExtension>();
+                if (trailer != null)
+                {
+                    if (ticksToImpact % trailer.trailerMoteInterval == 0)
+                    {
+                        for (int i = 0; i < trailer.motesThrown; i++)
                             {
                                 TrailThrower.ThrowSmoke(DrawPos, trailer.trailMoteSize, Map, trailer.trailMoteDef);
                             }
-		    }
-		}
-	    }
+                    }
+                }
+            }
         }
 
         /// <summary>
@@ -970,15 +976,15 @@ namespace CombatExtended
 
         protected virtual void Impact(Thing hitThing)
         {
-	    if (def.HasModExtension<EffectProjectileExtension>())
-	    {
-		def.GetModExtension<EffectProjectileExtension>()?.ThrowMote(ExactPosition,
-									    Map,
-									    def.projectile.damageDef.explosionCellMote,
-									    def.projectile.damageDef.explosionColorCenter,
-									    def.projectile.damageDef.soundExplosion,
-									    hitThing);
-	    }
+            if (def.HasModExtension<EffectProjectileExtension>())
+            {
+                def.GetModExtension<EffectProjectileExtension>()?.ThrowMote(ExactPosition,
+                                                                            Map,
+                                                                            def.projectile.damageDef.explosionCellMote,
+                                                                            def.projectile.damageDef.explosionColorCenter,
+                                                                            def.projectile.damageDef.soundExplosion,
+                                                                            hitThing);
+            }
             var ignoredThings = new List<Thing>();
 
             //Spawn things from preExplosionSpawnThingDef != null
