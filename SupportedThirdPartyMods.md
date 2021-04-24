@@ -128,6 +128,7 @@ Kenshi Armory |
 K.L.K - Styles Apparel Pack	|
 Kijin Race 2.0     	|     
 Kill la Kill Styles Pack    |
+Kit's Gunpowder Weapons |
 Kit's Industrial Weapons |   
 Kit's Roman Weapons |
 Kit's VFE Weapons |
@@ -224,6 +225,7 @@ Vanilla Furniture Expanded - Production	|
 Vanilla Furniture Expanded -  Security |
 Vanilla Vehicles Expanded	|
 Vanilla Weapons Expanded |
+Vanilla Weapons Expanded - Coilguns |
 Vanilla Weapons Expanded - Frontier	|
 Vanilla Weapons Expanded - Grenades |
 Vanilla Weapons Expanded - Heavy Weapons |

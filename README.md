@@ -1,10 +1,10 @@
 # Combat Extended
-Combat Extended completely overhauls combat. It adds completely new shooting and melee mechanics, an inventory system and rebalances the health system. **Requires a new save**
+Combat Extended completely overhauls combat. It adds completely new shooting and melee mechanics, an inventory system and rebalances the health system. **Requires a new save.**
 
 # Development Version
-If you want the latest development snapshot, without building it yourself:  **https://combatextended.lp-programming.com/CombatExtended-latest.zip**
 **Do not download this repository if you aren't going to build it yourself!**
 It is automatically updated a few minutes after each PR is merged.  
+If you want the latest development snapshot, without building it yourself:  **https://combatextended.lp-programming.com/CombatExtended-latest.zip**
 
 # Features
 ## Shooting
