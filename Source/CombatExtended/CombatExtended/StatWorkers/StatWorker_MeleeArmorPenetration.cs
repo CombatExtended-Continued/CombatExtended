@@ -13,35 +13,7 @@ namespace CombatExtended
     {
         public override string GetStatDrawEntryLabel(StatDef stat, float value, ToStringNumberSense numberSense, StatRequest optionalReq, bool finalized = true)
         {
-            var tools = (optionalReq.Def as ThingDef)?.tools;
-            if (tools.NullOrEmpty())
-            {
-                return "";
-            }
-            if (tools.Any(x => !(x is ToolCE)))
-            {
-                Log.Error($"Trying to get stat MeleeArmorPenetration from {optionalReq.Def.defName} which has no support for Combat Extended.");
-                return "";
-            }
-
-            float totalSelectionWeight = 0f;
-            foreach (Tool tool in tools)
-            {
-                totalSelectionWeight += tool.chanceFactor;
-            }
-            float totalAveragePenSharp = 0f;
-            float totalAveragePenBlunt = 0f;
-            foreach (ToolCE tool in tools)
-            {
-                var weightFactor = tool.chanceFactor / totalSelectionWeight;
-                totalAveragePenSharp += weightFactor * tool.armorPenetrationSharp;
-                totalAveragePenBlunt += weightFactor * tool.armorPenetrationBlunt;
-            }
-            var penMult = optionalReq.Thing?.GetStatValue(CE_StatDefOf.MeleePenetrationFactor) ?? 1f;
-
-            return (totalAveragePenSharp * penMult).ToStringByStyle(ToStringStyle.FloatMaxTwo) + " " + "CE_mmRHA".Translate()
-                + ", "
-                + (totalAveragePenBlunt * penMult).ToStringByStyle(ToStringStyle.FloatMaxTwo) + " " + "CE_MPa".Translate();
+            return GetFinalDisplayValue(optionalReq);
         }
 
         public override string GetExplanationUnfinalized(StatRequest req, ToStringNumberSense numberSense)
@@ -82,6 +54,44 @@ namespace CombatExtended
                 stringBuilder.AppendLine();
             }
             return stringBuilder.ToString();
+        }
+
+        public override string GetExplanationFinalizePart(StatRequest req, ToStringNumberSense numberSense, float finalVal)
+        {
+            return "StatsReport_FinalValue".Translate() + ": " + GetFinalDisplayValue(req);
+        }
+
+        private string GetFinalDisplayValue(StatRequest optionalReq)
+        {
+            var tools = (optionalReq.Def as ThingDef)?.tools;
+            if (tools.NullOrEmpty())
+            {
+                return "";
+            }
+            if (tools.Any(x => !(x is ToolCE)))
+            {
+                Log.Error($"Trying to get stat MeleeArmorPenetration from {optionalReq.Def.defName} which has no support for Combat Extended.");
+                return "";
+            }
+
+            float totalSelectionWeight = 0f;
+            foreach (Tool tool in tools)
+            {
+                totalSelectionWeight += tool.chanceFactor;
+            }
+            float totalAveragePenSharp = 0f;
+            float totalAveragePenBlunt = 0f;
+            foreach (ToolCE tool in tools)
+            {
+                var weightFactor = tool.chanceFactor / totalSelectionWeight;
+                totalAveragePenSharp += weightFactor * tool.armorPenetrationSharp;
+                totalAveragePenBlunt += weightFactor * tool.armorPenetrationBlunt;
+            }
+            var penMult = optionalReq.Thing?.GetStatValue(CE_StatDefOf.MeleePenetrationFactor) ?? 1f;
+
+            return (totalAveragePenSharp * penMult).ToStringByStyle(ToStringStyle.FloatMaxTwo) + " " + "CE_mmRHA".Translate()
+                + ", "
+                + (totalAveragePenBlunt * penMult).ToStringByStyle(ToStringStyle.FloatMaxTwo) + " " + "CE_MPa".Translate();
         }
 
     }
