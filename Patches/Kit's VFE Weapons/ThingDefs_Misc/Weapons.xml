@@ -1,0 +1,444 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+	<Operation Class="PatchOperationSequence">
+		<success></success>
+		<operations>
+			<li Class="PatchOperationFindMod">
+			<mods><li>Kit's VFE Weapons</li></mods>
+			<match Class="PatchOperationSequence">
+			<operations>
+			
+			<!-- ==========  Hammer  =========== -->
+			
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="KIT_CryptoHammer"]/tools</xpath>
+				<value>
+				  <tools>
+					<li Class="CombatExtended.ToolCE">
+					  <label>handle</label>
+					  <capacities>
+						<li>Poke</li>
+					  </capacities>
+					  <power>4</power>
+					  <cooldownTime>1.84</cooldownTime>
+					  <armorPenetrationBlunt>1.125</armorPenetrationBlunt>
+					</li>
+					<li Class="CombatExtended.ToolCE">
+					  <label>head</label>
+					  <capacities>
+						<li>CE_CryptoBlunt</li>
+					  </capacities>
+					  <power>36</power>
+					  <cooldownTime>2.61</cooldownTime>
+					  <chanceFactor>1.5</chanceFactor>
+					  <armorPenetrationBlunt>135</armorPenetrationBlunt>
+					</li>
+				  </tools>
+				</value>
+			</li>
+			
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName="KIT_CryptoHammer"]/statBases</xpath>
+				<value>
+					<MeleeCounterParryBonus>0.25</MeleeCounterParryBonus>
+					<Bulk>3.5</Bulk>
+				</value>
+			</li>
+			
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName="KIT_CryptoHammer"]</xpath>
+				<value>
+					<equippedStatOffsets>
+					  <MeleeCritChance>0.67</MeleeCritChance>
+					  <MeleeParryChance>0.25</MeleeParryChance>
+					  <MeleeDodgeChance>0.33</MeleeDodgeChance>
+					</equippedStatOffsets>
+				</value>
+			</li>
+			
+			<!-- ==========  Knife  =========== -->
+			
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="KIT_CryptoKnife"]/tools</xpath>
+				<value>
+				  <tools>
+					  <li Class="CombatExtended.ToolCE">
+						<label>handle</label>
+						<capacities>
+						  <li>Poke</li>
+						</capacities>
+						<power>5</power>
+						<cooldownTime>2.01</cooldownTime>
+						<chanceFactor>0.4</chanceFactor>
+						<armorPenetrationBlunt>1.6</armorPenetrationBlunt>
+						<linkedBodyPartsGroup>Handle</linkedBodyPartsGroup>
+					  </li>
+					  <li Class="CombatExtended.ToolCE">
+						<label>edge</label>
+						<capacities>
+						  <li>VFEV_Cut</li>
+						</capacities>
+						<power>11</power>
+						<cooldownTime>0.72</cooldownTime>
+						<chanceFactor>1</chanceFactor>
+						<armorPenetrationBlunt>1</armorPenetrationBlunt>
+						<armorPenetrationSharp>8</armorPenetrationSharp>
+						<linkedBodyPartsGroup>Edge</linkedBodyPartsGroup>
+					  </li>
+				  </tools>
+				</value>
+			</li>
+			
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName="KIT_CryptoKnife"]/statBases</xpath>
+				<value>
+					<MeleeCounterParryBonus>0.39</MeleeCounterParryBonus>
+					<Bulk>1.5</Bulk>
+				</value>
+			</li>
+			
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName="KIT_CryptoKnife"]</xpath>
+				<value>
+					<equippedStatOffsets>
+					  <MeleeCritChance>0.08</MeleeCritChance>
+					  <MeleeParryChance>0.24</MeleeParryChance>
+					  <MeleeDodgeChance>1.07</MeleeDodgeChance>
+					</equippedStatOffsets>
+				</value>
+			</li>
+			
+			
+			<!-- ========== Glaive  =========== -->
+			
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName="KIT_CryptoSpear"]/statBases</xpath>
+				<value>
+					<MeleeCounterParryBonus>1.08</MeleeCounterParryBonus>
+					<Bulk>12.50</Bulk>
+				</value>
+			</li>
+			
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName="KIT_CryptoSpear"]</xpath>
+				<value>
+					<equippedStatOffsets>
+					  <MeleeCritChance>0.22</MeleeCritChance>
+					  <MeleeParryChance>1.53</MeleeParryChance>
+					  <MeleeDodgeChance>0.67</MeleeDodgeChance>
+					</equippedStatOffsets>
+				</value>
+			</li>
+			
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="KIT_CryptoSpear"]/tools</xpath>
+				<value>
+				  <tools>
+					  <li Class="CombatExtended.ToolCE">
+						<label>blade</label>
+						<capacities>
+						  <li>VFEV_Cut</li>
+						</capacities>
+						<power>37</power>
+						<cooldownTime>3.16</cooldownTime>
+						<chanceFactor>1</chanceFactor>
+						<armorPenetrationBlunt>5</armorPenetrationBlunt>
+						<armorPenetrationSharp>25</armorPenetrationSharp>
+						<linkedBodyPartsGroup>Edge</linkedBodyPartsGroup>
+					  </li>
+					  <li Class="CombatExtended.ToolCE">
+						<label>handle</label>
+						<capacities>
+						  <li>Poke</li>
+						  <li>Blunt</li>
+						</capacities>
+						<power>11</power>
+						<cooldownTime>1.38</cooldownTime>
+						<chanceFactor>0.2</chanceFactor>
+						<armorPenetrationBlunt>4.05</armorPenetrationBlunt>
+						<linkedBodyPartsGroup>Handle</linkedBodyPartsGroup>
+					  </li>
+				  </tools>
+				</value>
+			</li>
+			
+			<!-- ==========  Sword  =========== -->
+			
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="KIT_CryptoSword"]/tools</xpath>
+				<value>
+				  <tools>
+					  <li Class="CombatExtended.ToolCE">
+						<label>handle</label>
+						<capacities>
+						  <li>Poke</li>
+						</capacities>
+						<power>5</power>
+						<cooldownTime>2.01</cooldownTime>
+						<chanceFactor>0.4</chanceFactor>
+						<armorPenetrationBlunt>1.6</armorPenetrationBlunt>
+						<linkedBodyPartsGroup>Handle</linkedBodyPartsGroup>
+					  </li>
+					  <li Class="CombatExtended.ToolCE">
+						<label>edge</label>
+						<capacities>
+						  <li>VFEV_Cut</li>
+						</capacities>
+						<power>44</power>
+						<cooldownTime>0.99</cooldownTime>
+						<chanceFactor>1</chanceFactor>
+						<armorPenetrationBlunt>4.05</armorPenetrationBlunt>
+						<armorPenetrationSharp>13.35</armorPenetrationSharp>
+						<linkedBodyPartsGroup>Edge</linkedBodyPartsGroup>
+					  </li>
+				  </tools>
+				</value>
+			</li>
+			
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName="KIT_CryptoSword"]/statBases</xpath>
+				<value>
+					<MeleeCounterParryBonus>0.39</MeleeCounterParryBonus>
+					<Bulk>1.5</Bulk>
+				</value>
+			</li>
+			
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName="KIT_CryptoSword"]</xpath>
+				<value>
+					<equippedStatOffsets>
+					  <MeleeCritChance>0.08</MeleeCritChance>
+					  <MeleeParryChance>0.24</MeleeParryChance>
+					  <MeleeDodgeChance>1.07</MeleeDodgeChance>
+					</equippedStatOffsets>
+				</value>
+			</li>
+			
+			<!-- ========== Pistol =========== -->
+			
+			<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+			<defName>KIT_Gun_PlasmaPistol</defName>
+				<statBases>
+					<SightsEfficiency>0.70</SightsEfficiency>
+					<ShotSpread>0.15</ShotSpread>
+					<SwayFactor>1.72</SwayFactor>
+					<Bulk>3.21</Bulk>
+					<Mass>2.65</Mass>
+					<RangedWeapon_Cooldown>0.37</RangedWeapon_Cooldown>
+				</statBases>
+				
+				<Properties>
+					<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+					<hasStandardCommand>true</hasStandardCommand>
+					<defaultProjectile>Bullet_KIT_PlasmaPistol</defaultProjectile>
+					<warmupTime>0.6</warmupTime>
+					<range>16</range>
+					<soundCast>VFE_PlasmaShot_Cutter</soundCast>
+					<soundCastTail>GunTail_Medium</soundCastTail>
+					<muzzleFlashScale>9</muzzleFlashScale>
+				</Properties>
+				
+				<AmmoUser>
+					<magazineSize>12</magazineSize>
+					<reloadTime>4</reloadTime>
+					<ammoSet>AmmoSet_KIT_PlasmaPistol</ammoSet>
+				</AmmoUser>
+				<FireModes>
+					<aiAimMode>Snapshot</aiAimMode>
+				</FireModes>
+			</li>
+			
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName="KIT_Gun_PlasmaPistol"]/weaponTags</xpath>
+				<value>
+					<li>CE_OneHandedWeapon</li>
+				</value>
+			</li>
+			
+			<!-- ========== SMG =========== -->
+			
+			<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+			<defName>KIT_Gun_PlasmaSMG</defName>
+				<statBases>
+					<SightsEfficiency>1.00</SightsEfficiency>
+					<ShotSpread>0.17</ShotSpread>
+					<SwayFactor>0.84</SwayFactor>
+					<Bulk>6.80</Bulk>
+					<Mass>3.00</Mass>
+					<RangedWeapon_Cooldown>0.36</RangedWeapon_Cooldown>
+				</statBases>
+				
+				<Properties>
+					<recoilAmount>0.76</recoilAmount>
+					<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+					<hasStandardCommand>true</hasStandardCommand>
+					<defaultProjectile>Bullet_KIT_PlasmaSMG</defaultProjectile>
+					<warmupTime>0.6</warmupTime>
+					<burstShotCount>5</burstShotCount>
+					<ticksBetweenBurstShots>3</ticksBetweenBurstShots>
+					<range>31</range>
+					<soundCast>VFE_PlasmaShot_Scattergun</soundCast>
+					<soundCastTail>GunTail_Medium</soundCastTail>
+					<muzzleFlashScale>9</muzzleFlashScale>
+				</Properties>
+				
+				<AmmoUser>
+					<magazineSize>35</magazineSize>
+					<reloadTime>4</reloadTime>
+					<ammoSet>AmmoSet_KIT_PlasmaSMG</ammoSet>
+				</AmmoUser>
+				<FireModes>
+					<aimedBurstShotCount>3</aimedBurstShotCount>
+					<aiUseBurstMode>FALSE</aiUseBurstMode>
+					<aiAimMode>Snapshot</aiAimMode>
+				</FireModes>
+			</li>
+			
+			<!-- ========== Rifle =========== -->
+			
+			<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+			<defName>KIT_Gun_PlasmaRifle</defName>
+				<statBases>
+					<SightsEfficiency>1.00</SightsEfficiency>
+					<ShotSpread>0.09</ShotSpread>
+					<SwayFactor>1.41</SwayFactor>
+					<Bulk>9.85</Bulk>
+					<Mass>4.21</Mass>
+					<RangedWeapon_Cooldown>0.37</RangedWeapon_Cooldown>
+				</statBases>
+				
+				<Properties>
+					<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+					<hasStandardCommand>true</hasStandardCommand>
+					<defaultProjectile>Bullet_KIT_PlasmaRifle</defaultProjectile>
+					<warmupTime>1.1</warmupTime>
+					<range>51</range>
+					<soundCast>VFE_PlasmaShot_Piercer</soundCast>
+					<soundCastTail>GunTail_Medium</soundCastTail>
+					<muzzleFlashScale>9</muzzleFlashScale>
+				</Properties>
+				
+				<AmmoUser>
+					<magazineSize>27</magazineSize>
+					<reloadTime>4</reloadTime>
+					<ammoSet>AmmoSet_KIT_PlasmaRifle</ammoSet>
+				</AmmoUser>
+				<FireModes>
+					<aiAimMode>AimedShot</aiAimMode>
+				</FireModes>
+			</li>
+			
+			<!-- ========== Sniper Rifle =========== -->
+			
+			<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+			<defName>KIT_Gun_PlasmaSniper</defName>
+				<statBases>
+					<SightsEfficiency>4.36</SightsEfficiency>
+					<ShotSpread>0.01</ShotSpread>
+					<SwayFactor>1.78</SwayFactor>
+					<Bulk>9.95</Bulk>
+					<Mass>4.79</Mass>
+					<RangedWeapon_Cooldown>0.36</RangedWeapon_Cooldown>
+				</statBases>
+				
+				<Properties>
+					<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+					<hasStandardCommand>true</hasStandardCommand>
+					<defaultProjectile>Bullet_KIT_PlasmaSniper</defaultProjectile>
+					<warmupTime>2.1</warmupTime>
+					<ammoConsumedPerShotCount>2</ammoConsumedPerShotCount>
+					<range>78</range>
+					<soundCast>VFE_PlasmaShot_Beam</soundCast>
+					<soundCastTail>GunTail_Heavy</soundCastTail>
+					<muzzleFlashScale>9</muzzleFlashScale>
+				</Properties>
+				
+				<AmmoUser>
+					<magazineSize>20</magazineSize>
+					<reloadTime>4</reloadTime>
+					<ammoSet>AmmoSet_KIT_PlasmaRifle</ammoSet>
+				</AmmoUser>
+				<FireModes>
+					<aiAimMode>AimedShot</aiAimMode>
+				</FireModes>
+			</li>
+			
+			<!-- ========== Melee Attacks =========== -->
+			
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="KIT_Gun_PlasmaSniper" or 
+				defName="KIT_Gun_PlasmaSMG" or 
+				defName="KIT_Gun_PlasmaRifle"
+				]/tools</xpath>
+				<value>
+					<tools>
+						<li Class="CombatExtended.ToolCE">
+						<label>stock</label>
+						<capacities>
+						<li>Blunt</li>
+						</capacities>
+						<power>8</power>
+						<cooldownTime>1.55</cooldownTime>
+						<chanceFactor>1.5</chanceFactor>
+						<armorPenetrationBlunt>2.755</armorPenetrationBlunt>
+						<linkedBodyPartsGroup>Stock</linkedBodyPartsGroup>
+						</li>
+						<li Class="CombatExtended.ToolCE">
+							<label>barrel</label>
+							<capacities>
+							<li>Blunt</li>
+							</capacities>
+							<power>5</power>
+							<cooldownTime>2.02</cooldownTime>
+							<armorPenetrationBlunt>1.630</armorPenetrationBlunt>
+							<linkedBodyPartsGroup>Barrel</linkedBodyPartsGroup>
+						</li>
+						<li Class="CombatExtended.ToolCE">
+						<label>muzzle</label>
+							<capacities>
+							<li>Poke</li>
+							</capacities>
+							<power>8</power>
+							<cooldownTime>1.55</cooldownTime>
+							<armorPenetrationBlunt>2.755</armorPenetrationBlunt>
+							<linkedBodyPartsGroup>Muzzle</linkedBodyPartsGroup>
+						</li>
+					</tools>
+				</value>
+			</li>
+			
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="KIT_Gun_PlasmaPistol"]/tools</xpath>
+				<value>
+					<tools>
+						<li Class="CombatExtended.ToolCE">
+							<label>grip</label>
+							<capacities>
+							<li>Blunt</li>
+							</capacities>
+							<power>2</power>
+							<cooldownTime>1.54</cooldownTime>
+							<chanceFactor>1.5</chanceFactor>
+							<armorPenetrationBlunt>0.555</armorPenetrationBlunt>
+							<linkedBodyPartsGroup>Grip</linkedBodyPartsGroup>
+						</li>
+						<li Class="CombatExtended.ToolCE">
+							<label>muzzle</label>
+							<capacities>
+							<li>Poke</li>
+							</capacities>
+							<power>2</power>
+							<cooldownTime>1.54</cooldownTime>
+							<armorPenetrationBlunt>0.555</armorPenetrationBlunt>
+							<linkedBodyPartsGroup>Muzzle</linkedBodyPartsGroup>
+						</li>
+					</tools>
+				</value>
+			</li> 
+			
+			</operations>
+			</match>
+			</li>
+		</operations>
+	</Operation>
+</Patch>

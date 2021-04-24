@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+
+  <Operation Class="PatchOperationFindMod">
+    <mods>
+      <li>Vanilla Weapons Expanded - Heavy Weapons</li>
+    </mods>
+    <match Class="PatchOperationAdd">
+      <xpath>Defs</xpath>
+      <value>
+
+        <ThingCategoryDef>
+          <defName>AmmoM73Rockets</defName>
+          <label>M73 Rockets</label>
+          <parent>AmmoRockets</parent>
+          <iconPath>UI/Icons/ThingCategories/CaliberRocket</iconPath>
+        </ThingCategoryDef>
+
+        <!-- === AmmoSet === -->
+
+        <CombatExtended.AmmoSetDef>
+          <defName>AmmoSet_M73</defName>
+          <label>M73 Rockets</label>
+          <ammoTypes>
+            <Ammo_M73_HE>Bullet_M73_HE</Ammo_M73_HE>
+          </ammoTypes>
+        </CombatExtended.AmmoSetDef>
+
+        <!-- === Ammo === -->
+
+        <ThingDef Class="CombatExtended.AmmoDef" ParentName="AmmoBase">
+          <defName>Ammo_M73_HE</defName>
+          <label>M73 Rocket (HE)</label>
+          <description>66mm high explosive rocket based upon the rocket used in the M72 LAW, used by the Swarm Missile Launcher.</description>
+          <graphicData>
+            <texPath>Things/Ammo/Rocket/M74</texPath>
+            <graphicClass>CombatExtended.Graphic_StackCountRanged</graphicClass>
+          </graphicData>
+          <statBases>
+            <MaxHitPoints>150</MaxHitPoints>
+            <MarketValue>45.19</MarketValue>
+            <Mass>1.71</Mass>
+            <Bulk>5.08</Bulk>
+          </statBases>
+          <tradeTags>
+            <li>CE_AutoEnableTrade</li>
+            <li>CE_AutoEnableCrafting</li>
+          </tradeTags>
+          <thingCategories>
+            <li>AmmoM73Rockets</li>
+          </thingCategories>
+          <stackLimit>25</stackLimit>
+          <ammoClass>GrenadeHE</ammoClass>
+          <cookOffFlashScale>40</cookOffFlashScale>
+          <cookOffSound>MortarBomb_Explode</cookOffSound>
+        </ThingDef>
+
+        <!-- === Projectile === -->
+        <ThingDef Class="CombatExtended.AmmoDef" ParentName="BaseBullet">
+          <defName>Bullet_M73_HE</defName>
+          <label>M73 Rocket (HE)</label>
+          <thingClass>CombatExtended.ProjectileCE_Explosive</thingClass>
+          <graphicData>
+            <texPath>Things/Projectile/Rocket/M74</texPath>
+            <graphicClass>Graphic_Single</graphicClass>
+            <shaderType>TransparentPostLight</shaderType>
+          </graphicData>
+          <projectile Class="CombatExtended.ProjectilePropertiesCE">
+            <speed>29</speed>
+            <damageDef>Bomb</damageDef>
+            <damageAmountBase>124</damageAmountBase>
+            <explosionRadius>4</explosionRadius>
+            <soundExplode>MortarBomb_Explode</soundExplode>
+            <soundAmbient>RocketPropelledLoop_Small</soundAmbient>
+            <applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
+          </projectile>
+          <comps>
+            <li Class="CombatExtended.CompProperties_Fragments">
+              <fragments>
+                <Fragment_Large>6</Fragment_Large>
+                <Fragment_Small>30</Fragment_Small>
+              </fragments>
+            </li>
+          </comps>
+        </ThingDef>
+
+        <!-- === Recipes === -->
+        <RecipeDef ParentName="AdvancedAmmoRecipeBase">
+          <defName>MakeAmmo_M73_HE</defName>
+          <label>make M73 HE rockets x5</label>
+          <description>Craft 5 M73 HE rockets.</description>
+          <jobString>Making M73 HE rockets.</jobString>
+          <workAmount>5200</workAmount>
+          <ingredients>
+            <li>
+              <filter>
+                <thingDefs>
+                  <li>Steel</li>
+                </thingDefs>
+              </filter>
+              <count>16</count>
+            </li>
+            <li>
+              <filter>
+                <thingDefs>
+                  <li>FSX</li>
+                </thingDefs>
+              </filter>
+              <count>3</count>
+            </li>
+            <li>
+              <filter>
+                <thingDefs>
+                  <li>ComponentIndustrial</li>
+                </thingDefs>
+              </filter>
+              <count>4</count>
+            </li>
+          </ingredients>
+          <fixedIngredientFilter>
+            <thingDefs>
+              <li>Steel</li>
+              <li>FSX</li>
+              <li>ComponentIndustrial</li>
+            </thingDefs>
+          </fixedIngredientFilter>
+          <products>
+            <Ammo_M73_HE>4</Ammo_M73_HE>
+          </products>
+        </RecipeDef>
+
+      </value>
+    </match>
+  </Operation>
+
+</Patch>

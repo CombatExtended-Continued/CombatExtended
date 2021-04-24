@@ -2,65 +2,67 @@
 <Patch>
 	<Operation Class="PatchOperationFindMod">
 		<mods>
-		<li>Alpha Animals</li>
+			<li>Alpha Animals</li>
 		</mods>
-
 		<match Class="PatchOperationSequence">
 			<operations>
-
-			<li Class="PatchOperationAddModExtension">
-				<xpath>/Defs/ThingDef[defName="AA_OvergrownColossus"]</xpath>
-				<value>
-					<li Class="CombatExtended.RacePropertiesExtensionCE">
-						<bodyShape>Quadruped</bodyShape>
-					</li>
-				</value>
-			</li>
-
-			<li Class="PatchOperationAdd">
-				<xpath>/Defs/ThingDef[defName="AA_OvergrownColossus"]/statBases</xpath>
-				<value>
-					<MeleeDodgeChance>0.00</MeleeDodgeChance>
-					<MeleeCritChance>0.45</MeleeCritChance>
-					<MeleeParryChance>0.40</MeleeParryChance>
-				</value>
-			</li>
-				
-				               	<li Class="PatchOperationReplace">
-					<xpath>/Defs/ThingDef[defName="AA_OvergrownColossus"]/race/baseHealthScale</xpath>
+				<li Class="PatchOperationAddModExtension">
+					<xpath>/Defs/ThingDef[defName="AA_OvergrownColossus" or
+						defName="AA_AnimaColossus"
+						]</xpath>
+					<value>
+						<li Class="CombatExtended.RacePropertiesExtensionCE">
+							<bodyShape>Quadruped</bodyShape>
+						</li>
+					</value>
+				</li>
+				<li Class="PatchOperationAdd">
+					<xpath>/Defs/ThingDef[defName="AA_OvergrownColossus" or
+						defName="AA_AnimaColossus"
+						]/statBases</xpath>
+					<value>
+						<MeleeDodgeChance>0.00</MeleeDodgeChance>
+						<MeleeCritChance>0.45</MeleeCritChance>
+						<MeleeParryChance>0.40</MeleeParryChance>
+					</value>
+				</li>
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/ThingDef[defName="AA_OvergrownColossus" or
+						defName="AA_AnimaColossus"
+						]/race/baseHealthScale</xpath>
 					<value>
 						<baseHealthScale>5</baseHealthScale>
 					</value>
 				</li>
-
-			<li Class="PatchOperationReplace">
-				<xpath>/Defs/ThingDef[defName="AA_OvergrownColossus"]/tools</xpath>
-				<value>
-					<tools>
-						<li Class="CombatExtended.ToolCE">
-							<capacities>
-								<li>BiteBlunt</li>
-							</capacities>
-							<power>28</power>
-							<cooldownTime>2.4</cooldownTime>
-							<linkedBodyPartsGroup>Teeth</linkedBodyPartsGroup>
-							<armorPenetrationBlunt>8</armorPenetrationBlunt>
-						</li>
-						<li Class="CombatExtended.ToolCE">
-							<label>head</label>
-							<capacities>
-								<li>Blunt</li>
-							</capacities>
-							<power>36</power>
-							<cooldownTime>3.3</cooldownTime>
-							<linkedBodyPartsGroup>HeadAttackTool</linkedBodyPartsGroup>
-							<armorPenetrationBlunt>25</armorPenetrationBlunt>
-							<chanceFactor>1</chanceFactor>
-						</li>
-					</tools>
-				</value>
-			</li>
-
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/ThingDef[defName="AA_OvergrownColossus" or
+						defName="AA_AnimaColossus"
+						]/tools</xpath>
+					<value>
+						<tools>
+							<li Class="CombatExtended.ToolCE">
+								<capacities>
+									<li>BiteBlunt</li>
+								</capacities>
+								<power>28</power>
+								<cooldownTime>2.4</cooldownTime>
+								<linkedBodyPartsGroup>Teeth</linkedBodyPartsGroup>
+								<armorPenetrationBlunt>8</armorPenetrationBlunt>
+							</li>
+							<li Class="CombatExtended.ToolCE">
+								<label>head</label>
+								<capacities>
+									<li>Blunt</li>
+								</capacities>
+								<power>36</power>
+								<cooldownTime>3.3</cooldownTime>
+								<linkedBodyPartsGroup>HeadAttackTool</linkedBodyPartsGroup>
+								<armorPenetrationBlunt>25</armorPenetrationBlunt>
+								<chanceFactor>1</chanceFactor>
+							</li>
+						</tools>
+					</value>
+				</li>
 			</operations>
 		</match>
 	</Operation>

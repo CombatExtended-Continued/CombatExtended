@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+		<li>Alpha Animals</li>
+		</mods>
+
+		<match Class="PatchOperationSequence">
+			<operations>
+	
+			<li Class="PatchOperationAddModExtension">
+				<xpath>/Defs/ThingDef[defName="AA_MatureFleshbeast"]</xpath>
+				<value>
+				<li Class="CombatExtended.RacePropertiesExtensionCE">
+					<bodyShape>Quadruped</bodyShape>
+				</li>
+				</value>
+			</li>
+
+			<!-- Remove the 'Swallow Whole' attack, since it doesn't work in CE and insta-kills instead. -->
+			<li Class="PatchOperationRemove">
+				<xpath>/Defs/ThingDef[defName="AA_MatureFleshbeast"]/thingClass</xpath>
+			</li>
+
+			<li Class="PatchOperationAdd">
+				<xpath>/Defs/ThingDef[defName="AA_MatureFleshbeast"]/statBases</xpath>
+				<value>
+				<MeleeDodgeChance>0.01</MeleeDodgeChance>
+				<MeleeCritChance>0.23</MeleeCritChance>
+				</value>
+			</li>
+			
+			<li Class="PatchOperationReplace">
+				<xpath>/Defs/ThingDef[defName="AA_MatureFleshbeast"]/tools</xpath>
+				<value>
+					<tools>
+						<li Class="CombatExtended.ToolCE">
+							<capacities>
+								<li>Bite</li>
+							</capacities>
+							<power>35</power>
+							<cooldownTime>2.56</cooldownTime>
+							<linkedBodyPartsGroup>Teeth</linkedBodyPartsGroup>
+							<armorPenetrationSharp>6</armorPenetrationSharp>
+							<armorPenetrationBlunt>9</armorPenetrationBlunt>
+						</li>
+						<li Class="CombatExtended.ToolCE">
+							<label>head</label>
+							<capacities>
+								<li>Blunt</li>
+							</capacities>
+							<power>25</power>
+							<cooldownTime>3.51</cooldownTime>
+							<linkedBodyPartsGroup>HeadAttackTool</linkedBodyPartsGroup>
+							<armorPenetrationSharp>0</armorPenetrationSharp>
+							<armorPenetrationBlunt>12</armorPenetrationBlunt>
+							<alwaysTreatAsWeapon>true</alwaysTreatAsWeapon>
+						</li>					
+					</tools>
+				</value>
+			</li>
+		</operations>
+		</match>
+	</Operation>
+</Patch>

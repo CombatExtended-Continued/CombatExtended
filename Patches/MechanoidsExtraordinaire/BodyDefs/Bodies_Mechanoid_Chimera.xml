@@ -7,8 +7,9 @@
 		<match Class="PatchOperationSequence">
 		<operations>
 			<!-- ========== Add armor coverage ========== -->
+
 			<li Class="PatchOperationAdd">
-				<xpath>/Defs/BodyDef[defName = "Chimera"]/corePart</xpath>
+				<xpath>/Defs/BodyDef[defName = "ChimeraME"]/corePart</xpath>
 				<value>
 					<groups>
 						<li>CoveredByNaturalArmor</li>
@@ -16,7 +17,7 @@
 				</value>
 			</li>
 			<li Class="PatchOperationAdd">
-				<xpath>/Defs/BodyDef[defName = "Chimera"]/corePart/parts/li[def = "LeftExtensionPort"]</xpath>
+				<xpath>/Defs/BodyDef[defName = "ChimeraME"]/corePart/parts/li[def = "ExtensionPortME"]</xpath>
 				<value>
 					<groups>
 						<li>CoveredByNaturalArmor</li>
@@ -24,7 +25,21 @@
 				</value>
 			</li>
 			<li Class="PatchOperationAdd">
-				<xpath>/Defs/BodyDef[defName = "Chimera"]/corePart/parts/li[def = "LeftExtensionPort"]/parts/li[def = "LeftGunHolder"]</xpath>
+				<xpath>/Defs/BodyDef[defName = "ChimeraME"]/corePart/parts/li[def = "MechanicalChimeraTailME"]/groups</xpath>
+				<value>
+					<li>CoveredByNaturalArmor</li>
+				</value>
+			</li>			
+			<li Class="PatchOperationAdd">
+				<xpath>/Defs/BodyDef[defName = "ChimeraME"]/corePart/parts/li[def = "ExtensionPortME"]/parts/li[def = "WeaponHolderME"]</xpath>
+				<value>
+					<groups>
+						<li>CoveredByNaturalArmor</li>
+					</groups>
+				</value>
+			</li>	
+			<li Class="PatchOperationAdd">
+				<xpath>/Defs/BodyDef[defName = "ChimeraME"]/corePart/parts/li[def = "MechanicalNeckME"]</xpath>
 				<value>
 					<groups>
 						<li>CoveredByNaturalArmor</li>
@@ -32,37 +47,13 @@
 				</value>
 			</li>
 			<li Class="PatchOperationAdd">
-				<xpath>/Defs/BodyDef[defName = "Chimera"]/corePart/parts/li[def = "RightExtensionPort"]</xpath>
-				<value>
-					<groups>
-						<li>CoveredByNaturalArmor</li>
-					</groups>
-				</value>
-			</li>
-			<li Class="PatchOperationAdd">
-				<xpath>/Defs/BodyDef[defName = "Chimera"]/corePart/parts/li[def = "RightExtensionPort"]/parts/li[def = "RightGunHolder"]</xpath>
-				<value>
-					<groups>
-						<li>CoveredByNaturalArmor</li>
-					</groups>
-				</value>
-			</li>
-			<li Class="PatchOperationAdd">
-				<xpath>/Defs/BodyDef[defName = "Chimera"]/corePart/parts/li[def = "MechanicalNeck"]</xpath>
-				<value>
-					<groups>
-						<li>CoveredByNaturalArmor</li>
-					</groups>
-				</value>
-			</li>
-			<li Class="PatchOperationAdd">
-				<xpath>/Defs/BodyDef[defName = "Chimera"]/corePart/parts/li[def = "MechanicalNeck"]/parts/li[def="MechanicalHead"]/groups</xpath>
+				<xpath>/Defs/BodyDef[defName = "ChimeraME"]/corePart/parts/li[def = "MechanicalNeckME"]/parts/li[def="MechanicalHeadME"]/groups</xpath>
 				<value>
 					<li>CoveredByNaturalArmor</li>
 				</value>
 			</li>
 			<li Class="PatchOperationAdd">
-				<xpath>/Defs/BodyDef[defName = "Chimera"]/corePart/parts/li[def = "LeftMechanicalLeg"]</xpath>
+				<xpath>/Defs/BodyDef[defName = "ChimeraME"]/corePart/parts/li[def = "MechanicalLeg"]</xpath>
 				<value>
 					<groups>
 						<li>CoveredByNaturalArmor</li>
@@ -70,167 +61,72 @@
 				</value>
 			</li>
 			<li Class="PatchOperationAdd">
-				<xpath>/Defs/BodyDef[defName = "Chimera"]/corePart/parts/li[def = "LeftMechanicalLeg"]/parts/li[def = "LeftMechanicalFoot"]</xpath>
+				<xpath>/Defs/BodyDef[defName = "ChimeraME"]/corePart/parts/li[def = "MechanicalLeg"]/parts/li[def = "MechanicalFoot"]</xpath>
 				<value>
 					<groups>
 						<li>CoveredByNaturalArmor</li>
 					</groups>
 				</value>
 			</li>
-			<li Class="PatchOperationAdd">
-				<xpath>/Defs/BodyDef[defName = "Chimera"]/corePart/parts/li[def = "RightMechanicalLeg"]</xpath>
-				<value>
-					<groups>
-						<li>CoveredByNaturalArmor</li>
-					</groups>
-				</value>
-			</li>
-			<li Class="PatchOperationAdd">
-				<xpath>/Defs/BodyDef[defName = "Chimera"]/corePart/parts/li[def = "RightMechanicalLeg"]/parts/li[def = "RightMechanicalFoot"]</xpath>
-				<value>
-					<groups>
-						<li>CoveredByNaturalArmor</li>
-					</groups>
-				</value>
-			</li>
+
 			<!-- ========== Modify coverage ========== -->
 			<li Class="PatchOperationReplace">
-				<xpath>/Defs/BodyDef[defName = "Chimera"]/corePart/parts/li[def = "LeftMechanicalLeg"]/coverage</xpath>
+				<xpath>/Defs/BodyDef[defName = "ChimeraME"]/corePart/parts/li[def = "MechanicalLeg"]/coverage</xpath>
 				<value>
 					<coverage>0.15</coverage>
 				</value>
 			</li>
 			<li Class="PatchOperationReplace">
-				<xpath>/Defs/BodyDef[defName = "Chimera"]/corePart/parts/li[def = "RightMechanicalLeg"]/coverage</xpath>
+				<xpath>/Defs/BodyDef[defName = "ChimeraME"]/corePart/parts/li[def = "MechanicalLeg"]/coverage</xpath>
 				<value>
 					<coverage>0.15</coverage>
 				</value>
 			</li>
+
 			<!-- ========== Make tail on top rather than head to match bird body shape ========== -->
 			<li Class="PatchOperationAdd">
-				<xpath>/Defs/BodyDef[defName = "Chimera"]/corePart/parts/li[def = "MechanicalChimeraTail"]</xpath>
+				<xpath>/Defs/BodyDef[defName = "ChimeraME"]/corePart/parts/li[def = "MechanicalChimeraTailME"]</xpath>
 				<value>
 					<height>Top</height>
 				</value>
 			</li>
 			<li Class="PatchOperationRemove">
-				<xpath>/Defs/BodyDef[defName = "Chimera"]/corePart/parts/li[def = "MechanicalNeck"]/height</xpath>
+				<xpath>/Defs/BodyDef[defName = "ChimeraME"]/corePart/parts/li[def = "MechanicalNeckME"]/height</xpath>
 			</li>
+
 			<!-- ========== Add new body parts ========== -->
+
 			<li Class="PatchOperationAdd">
-				<xpath>/Defs/BodyDef[defName = "Chimera"]/corePart/parts</xpath>
-				<value>
-					<li>
-						<def>MechanicalPowerCore</def>
-						<coverage>0.06</coverage>
-						<depth>Inside</depth>
-					</li>
-				</value>
-			</li>
-			<li Class="PatchOperationAdd">
-				<xpath>/Defs/BodyDef[defName = "Chimera"]/corePart/parts</xpath>
-				<value>
-					<li>
-						<def>MechanicalCapacitor</def>
-						<coverage>0.02</coverage>
-						<depth>Inside</depth>
-					</li>
-				</value>
-			</li>
-			<li Class="PatchOperationAdd">
-				<xpath>/Defs/BodyDef[defName = "Chimera"]/corePart/parts</xpath>
-				<value>
-					<li>
-						<def>MechanicalHeatSink</def>
-						<coverage>0.03</coverage>
-						<depth>Inside</depth>
-					</li>
-				</value>
-			</li>
-			<li Class="PatchOperationAdd">
-				<xpath>/Defs/BodyDef[defName = "Chimera"]/corePart/parts</xpath>
-				<value>
-					<li>
-						<def>MechanicalHeatSink</def>
-						<coverage>0.03</coverage>
-						<depth>Inside</depth>
-					</li>
-				</value>
-			</li>
-			<li Class="PatchOperationAdd">
-				<xpath>/Defs/BodyDef[defName = "Chimera"]/corePart/parts</xpath>
-				<value>
-					<li>
-						<def>MechanicalCoolantTank</def>
-						<coverage>0.06</coverage>
-						<depth>Inside</depth>
-					</li>
-				</value>
-			</li>
-			<li Class="PatchOperationAdd">
-				<xpath>/Defs/BodyDef[defName = "Chimera"]/corePart/parts/li[def = "LeftExtensionPort"]/parts/li[def = "LeftGunHolder"]</xpath>
-				<value>
-					<parts>
-						<li>
-							<def>MechanicalLeftWeaponActuator</def>
-							<coverage>0.15</coverage>
-							<depth>Inside</depth>
-						</li>
-					</parts>
-				</value>
-			</li>
-			<li Class="PatchOperationAdd">
-				<xpath>/Defs/BodyDef[defName = "Chimera"]/corePart/parts/li[def = "RightExtensionPort"]/parts/li[def = "RightGunHolder"]</xpath>
-				<value>
-					<parts>
-						<li>
-							<def>MechanicalRightWeaponActuator</def>
-							<coverage>0.15</coverage>
-							<depth>Inside</depth>
-						</li>
-					</parts>
-				</value>
-			</li>
-			<li Class="PatchOperationAdd">
-				<xpath>/Defs/BodyDef[defName = "Chimera"]/corePart/parts/li[def = "LeftMechanicalLeg"]/parts</xpath>
-				<value>
-					<li>
-						<def>MechanicalLowerActuator</def>
-						<coverage>0.15</coverage>
-						<depth>Inside</depth>
-					</li>
-				</value>
-			</li>
-			<li Class="PatchOperationAdd">
-				<xpath>/Defs/BodyDef[defName = "Chimera"]/corePart/parts/li[def = "LeftMechanicalLeg"]/parts</xpath>
+				<xpath>/Defs/BodyDef[defName = "ChimeraME"]/corePart/parts/li[def = "MechanicalLeg"]/parts</xpath>
 				<value>
 					<li>
 						<def>MechanicalLowerPiston</def>
-						<coverage>0.25</coverage>
+						<coverage>0.18</coverage>
 						<depth>Inside</depth>
 					</li>
 				</value>
 			</li>
 			<li Class="PatchOperationAdd">
-				<xpath>/Defs/BodyDef[defName = "Chimera"]/corePart/parts/li[def = "RightMechanicalLeg"]/parts</xpath>
+				<xpath>/Defs/BodyDef[defName = "ChimeraME"]/corePart/parts/li[def = "MechanicalLeg"]/parts</xpath>
 				<value>
 					<li>
 						<def>MechanicalLowerActuator</def>
-						<coverage>0.15</coverage>
+						<coverage>0.10</coverage>
 						<depth>Inside</depth>
 					</li>
 				</value>
 			</li>
 			<li Class="PatchOperationAdd">
-				<xpath>/Defs/BodyDef[defName = "Chimera"]/corePart/parts/li[def = "RightMechanicalLeg"]/parts</xpath>
+				<xpath>/Defs/BodyDef[defName = "ChimeraME"]/corePart/parts/li[def = "MechanicalLeg"]/parts</xpath>
 				<value>
 					<li>
 						<def>MechanicalLowerPiston</def>
-						<coverage>0.25</coverage>
+						<coverage>0.18</coverage>
 						<depth>Inside</depth>
 					</li>
 				</value>
 			</li>
+
 		</operations>
 		</match>
 	</Operation>

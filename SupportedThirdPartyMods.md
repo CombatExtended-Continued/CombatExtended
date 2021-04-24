@@ -10,16 +10,19 @@ Mod |
 [CP] Metal Gear Solid	|
 [CP] Red Horse Furniture	|
 [CP] Rimmu-Nation - Clothing	|
+[CP] Rimmu-Nation - Security	|
 [CP] Rimmu-Nation - Weapons	|
 [CP] Spec Ops - The Line	|
 [CP] The DOOM Kit - Classic	|
 [HLX] Rimworld: UNSC Armoury |
 [HLX] ReGrowth - Mutated Animals Pack |
+[HLX] Ultratech: Altered Carbon - Armoury
 [JDS] EFT Apparel |
 [JDS] Exiled Dawn |
 [JDS] Star Wars BlasTech Industries |
 [JDS] The Forge - Exiled Dawn |
 [JDS] The Forge - NCR Armory	|
+[KV] Hand 'n' Footwear	|
 [O21] Forgotten Realms |
 [O21] Mechadroids |
 [Ods] SCP Outfits Only Edition	|
@@ -44,6 +47,9 @@ Mod |
 [SYR] Thrumkin	|
 A Dog Said...	|
 Alpha Animals |
+Alpha Biomes |
+Ancient Eastern Armory  |
+Ancient Fallout Armory  |
 Android Tiers	|
 Android Tiers++	|
 Androids	|
@@ -60,6 +66,7 @@ Beeralope Squad	|
 Better Infestations	|
 Black Widows	|
 Carbon	|
+Censored Armory  |
 Clay Soldier Race |
 Combat Enthusiast’s Collection	|
 Cupro's Alloys	|
@@ -70,13 +77,15 @@ Defensive Machine Gun Turret Pack	|
 Dinosauria |
 Dishonored Assassin Coat |
 Dishonored Assassin Mask |
-Dragon's Descent |
 Dragonian Race	|
+Dragon's Descent    |
 Dragons!	|
 ED-Shields	|
+Epona The centaur race  |
 Equiums Horse Race	|
 Erin's Critter Collection |
 Erin's Forest Critters |
+Erin's Friendly Ferrets |
 Erin's Fox Squirrel |
 Erin's Mountain Animals |
 Expanded Materials - Metals |
@@ -97,6 +106,8 @@ Forsakens Fauna |
 Gas Traps And Shells	|
 Genetic Rim |
 Genetic Rim Alpha Animal Patch |
+GeneticRim Cosmic Horrors Patch |
+GeneticRim Dinosauria Patch |
 Girls' Frontline Apparel Pack	|
 Girls' Frontline Styles - 404 Team	|
 Girls' Frontline Weapon Pack	|
@@ -104,23 +115,30 @@ Glitter Tech	|
 GouRIMet	|
 Halo - Rimworld Auxiliary Combat Armory	|
 Hand 'n' Footwear	|
+Heavy Melee Weapons |
 High Caliber	|
 Idhale Race	|
 Iron Harvest Pkp 17 "Eisenhans" Powerarmor	|
+Japanese Dogs   |
 Jernfalk's Standalone Horses	|
 Jernalk's Skeletal Legion (Continued)	|
 Kaiser Armory	|
+Kemomimihouse |
+Kenshi Armory |
 K.L.K - Styles Apparel Pack	|
 Kijin Race 2.0     	|     
 Kill la Kill Styles Pack    |
+Kit's Gunpowder Weapons |
 Kit's Industrial Weapons |   
-Kit's Roman Weapons |   
+Kit's Roman Weapons |
+Kit's VFE Weapons |
 Kurin, The Three Tailed Fox	|
 Leeani Playable Race	|
 Let's Have a Cat!	|
 Logann Race	|
 Magical Menagerie	|
 Marilyn the Mincho Worshipper Witch |
+Mass Effect - Playable Geth |
 Mechanoids Extraordinaire	|
 Medical System Expansion	|
 Megafauna	|
@@ -137,21 +155,24 @@ More Utility Packs	|
 More Vanilla Turrets	|
 Moyo - From the Depth   |
 Nearmare Race	|
+Neclose Race	|
+NewRatkinPlus |
 Ni'Hal	|
+Not Only Just a Cannon  |
 Orassans	|
+Outer Rim - Tatooine    |
 Palm Cats   |
 Penguin	|
-Playable Geth |
 Polarisbloc - Security Force	|
 Prestige Specialist Armours	|
 Prostheses+ |
 PsiTech	|
 Rabbie The Moonrabbit	|
 Racc Race	|
+Race to the Rim |
 Rah's Bionics and Surgery Expansion	|
 Rakkle The Rattle Snake Race Mod  |
 Redcoat Apparel	|
-Reich Armory  |
 Revia Race |
 Right Tool: Rebalanced	|
 Rim Contractors Arsenal	|
@@ -168,7 +189,6 @@ Rimsenal - Security Pack |
 Rimworld - The Dark Descent |
 Rimworld - Witcher Monster Hunt |
 Rimworld of Magic |
-Rimworld: Altered Carbon |
 Save Our Ship 2	|
 SCP |
 SCP - Clothing Only	|
@@ -178,13 +198,16 @@ Simply More Melee	|
 Soviet Armory	|
 Space Worms (Continued) |
 Spartan Foundry	|
+Star Wars - Droids |
 Star Wars - Factions |
 Star Wars - Factions (Continued) |
+Tactical Extremity Protection [BAL] |
 The Mantodean insectoid race	|
 T-45b Power Armor	|
 The GiantRace	|
 TouhouStyle	|
 Trading Economy	|
+Tribal Warrior Set! |
 Tsar Armory	|
 Turk's Guns |
 Turret Collection	|
@@ -202,8 +225,13 @@ Vanilla Furniture Expanded - Production	|
 Vanilla Furniture Expanded -  Security |
 Vanilla Vehicles Expanded	|
 Vanilla Weapons Expanded |
+Vanilla Weapons Expanded - Coilguns |
+Vanilla Weapons Expanded - Frontier	|
 Vanilla Weapons Expanded - Grenades |
-Vanilla Weapons Expanded Quickdraw	|
+Vanilla Weapons Expanded - Heavy Weapons |
+Vanilla Weapons Expanded - Non-Lethal	|
+Vanilla Weapons Expanded - Quickdraw	|
+Vanilla Weapons Expanded - Tribal	|
 Vanilla-Friendly Animal Surgery	|
 Vanilla-Friendly Weapon Expansion	|
 Vanilla Storytellers Expanded - Perry Persistent |

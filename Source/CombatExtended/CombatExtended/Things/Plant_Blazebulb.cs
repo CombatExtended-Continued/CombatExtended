@@ -21,12 +21,16 @@ namespace CombatExtended
         public override void TickLong()
         {
             base.TickLong();
+            if (Destroyed)
+            {
+                return;
+            }
             float temperature = Position.GetTemperature(base.Map);
             if (temperature > IgnitionTemp)
             {
                 float ignitionChance = 0.005f * Mathf.Pow((temperature - IgnitionTemp), 2);
                 float rand = UnityEngine.Random.value;
-                if(UnityEngine.Random.value < ignitionChance)
+                if (UnityEngine.Random.value < ignitionChance)
                 {
                     FireUtility.TryStartFireIn(Position, base.Map, 0.1f);
                 }

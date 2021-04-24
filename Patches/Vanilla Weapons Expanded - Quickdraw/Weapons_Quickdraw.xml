@@ -78,30 +78,28 @@
   </li>
 
   <!-- ========== PDW ========== -->
-  <li Class='CombatExtended.PatchOperationMakeGunCECompatible'>
+  <li Class="CombatExtended.PatchOperationMakeGunCECompatible">
     <defName>VWE_Gun_PDW</defName>
     <statBases>
-      <WorkToMake>13000</WorkToMake>
-      <SightsEfficiency>1</SightsEfficiency>
-      <ShotSpread>0.12</ShotSpread>
-      <SwayFactor>0.93</SwayFactor>
-      <Bulk>6.67</Bulk>
-      <Mass>2.6</Mass>
+      <Mass>2.60</Mass>
       <RangedWeapon_Cooldown>0.36</RangedWeapon_Cooldown>
+      <SightsEfficiency>1.</SightsEfficiency>
+      <ShotSpread>0.12</ShotSpread>
+      <SwayFactor>0.77</SwayFactor>
+      <Bulk>5.05</Bulk>
     </statBases>
     <Properties>
+      <recoilAmount>1.05</recoilAmount>
       <verbClass>CombatExtended.Verb_ShootCE</verbClass>
-      <hasStandardCommand>True</hasStandardCommand>
+      <hasStandardCommand>true</hasStandardCommand>
       <defaultProjectile>Bullet_FN57x28mm_FMJ</defaultProjectile>
       <warmupTime>0.4</warmupTime>
-      <range>15</range>
+      <range>25</range>
       <burstShotCount>6</burstShotCount>
       <ticksBetweenBurstShots>4</ticksBetweenBurstShots>
       <soundCast>Shot_HeavySMG</soundCast>
       <soundCastTail>GunTail_Light</soundCastTail>
       <muzzleFlashScale>9</muzzleFlashScale>
-      <recoilPattern>Regular</recoilPattern>
-      <recoilAmount>1.14</recoilAmount>
     </Properties>
     <AmmoUser>
       <magazineSize>50</magazineSize>
@@ -109,14 +107,13 @@
       <ammoSet>AmmoSet_FN57x28mm</ammoSet>
     </AmmoUser>
     <FireModes>
-      <aiUseBurstMode>True</aiUseBurstMode>
-      <aiAimMode>AimedShot</aiAimMode>
+      <aiUseBurstMode>FALSE</aiUseBurstMode>
+      <aiAimMode>Snapshot</aiAimMode>
       <aimedBurstShotCount>3</aimedBurstShotCount>
     </FireModes>
     <weaponTags>
       <li>IndustrialGunAdvanced</li>
       <li>CE_Sidearm</li>
-      <li>CE_OneHandedWeapon</li>
     </weaponTags>
     <!-- Required research rework -->
     <researchPrerequisite>BlowbackOperation</researchPrerequisite>

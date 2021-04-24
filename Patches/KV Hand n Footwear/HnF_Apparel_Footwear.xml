@@ -1,0 +1,125 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+			<li>[KV] Hand 'n' Footwear</li>
+		</mods>
+		<match Class="PatchOperationSequence">
+			<operations>
+
+				<!-- ========== All footwear ========== -->
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/ThingDef[@Name="FootArmorMakeableBase"]/apparel/layers</xpath>
+					<value>
+						<layers>
+							<li>Shell</li>
+						</layers>
+					</value>
+				</li>
+
+				<!-- ========== Tribal Boots ========== -->
+				<li Class="PatchOperationAdd">
+					<xpath>/Defs/ThingDef[defName="Apparel_TribalBoots"]/statBases</xpath>
+					<value>
+						<Bulk>1.5</Bulk>
+						<WornBulk>0.5</WornBulk>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/ThingDef[defName="Apparel_TribalBoots"]/statBases/StuffEffectMultiplierArmor</xpath>
+					<value>
+						<StuffEffectMultiplierArmor>1</StuffEffectMultiplierArmor>
+					</value>
+				</li>
+
+				<!-- ========== Cowboy Boots ========== -->
+				<li Class="PatchOperationAdd">
+					<xpath>/Defs/ThingDef[defName="Apparel_CowboyBoots"]/statBases</xpath>
+					<value>
+						<Bulk>2</Bulk>
+						<WornBulk>0.5</WornBulk>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/ThingDef[defName="Apparel_CowboyBoots"]/statBases/StuffEffectMultiplierArmor</xpath>
+					<value>
+						<StuffEffectMultiplierArmor>2</StuffEffectMultiplierArmor>
+					</value>
+				</li>
+
+				<!-- ========== Plated Boots ========== -->
+				<li Class="PatchOperationAdd">
+					<xpath>/Defs/ThingDef[defName="Apparel_CombatBoots"]/statBases</xpath>
+					<value>
+						<StuffEffectMultiplierArmor>2</StuffEffectMultiplierArmor>
+						<Bulk>3</Bulk>
+						<WornBulk>2</WornBulk>
+					</value>
+				</li>
+
+				<li Class="PatchOperationRemove">
+					<xpath>/Defs/ThingDef[defName="Apparel_CombatBoots"]/equippedStatOffsets</xpath>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/ThingDef[defName="Apparel_CombatBoots"]/statBases/Mass</xpath>
+					<value>
+						<Mass>3</Mass>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/ThingDef[defName="Apparel_CombatBoots"]/statBases/ArmorRating_Sharp</xpath>
+					<value>
+						<ArmorRating_Sharp>0.35</ArmorRating_Sharp>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/ThingDef[defName="Apparel_CombatBoots"]/statBases/ArmorRating_Blunt</xpath>
+					<value>
+						<ArmorRating_Blunt>0.125</ArmorRating_Blunt>
+					</value>
+				</li>
+
+				<!-- ========== Power Boots ========== -->
+				<li Class="PatchOperationAdd">
+					<xpath>/Defs/ThingDef[defName="Apparel_PowerBoots"]/statBases/Mass</xpath>
+					<value>
+						<Mass>3</Mass>
+						<Bulk>2</Bulk>
+						<WornBulk>1</WornBulk>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/ThingDef[defName="Apparel_PowerBoots"]/statBases/ArmorRating_Sharp</xpath>
+					<value>
+						<ArmorRating_Sharp>18</ArmorRating_Sharp>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/ThingDef[defName="Apparel_PowerBoots"]/statBases/ArmorRating_Blunt</xpath>
+					<value>
+						<ArmorRating_Blunt>40.5</ArmorRating_Blunt>
+					</value>
+				</li>
+
+				<li Class="PatchOperationAdd">
+					<xpath>/Defs/ThingDef[defName="Apparel_PowerBoots"]</xpath>
+					<value>
+						<equippedStatOffsets>
+							<CarryWeight>6</CarryWeight>
+						</equippedStatOffsets>
+					</value>
+				</li>
+
+			</operations>
+		</match>
+	</Operation>
+
+</Patch>
