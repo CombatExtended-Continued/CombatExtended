@@ -47,7 +47,7 @@ namespace CombatExtended
                 GenSpawn.Spawn(projectile, cell, map);
 
                 projectile.canTargetSelf = true;
-                projectile.minCollisionSqr = 1f;
+                projectile.minCollisionDistance = 1f;
                 //TODO : Don't hardcode at FragmentShadowChance, make XML-modifiable
                 projectile.castShadow = (UnityEngine.Random.value < FragmentShadowChance);
                 projectile.logMisses = false;

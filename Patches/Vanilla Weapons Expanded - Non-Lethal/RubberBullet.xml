@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+
+  <Operation Class="PatchOperationFindMod">
+    <mods>
+      <li>Vanilla Weapons Expanded - Non-Lethal</li>
+    </mods>
+    <match Class="PatchOperationSequence">
+      <operations>
+
+      <li Class="PatchOperationAdd">
+        <xpath>Defs</xpath>
+        <value>
+
+	<ThingCategoryDef>
+		<defName>Ammo43cal</defName>
+		<label>.43 caliber</label>
+		<parent>AmmoPistols</parent>
+		<iconPath>UI/Icons/ThingCategories/CaliberPistol</iconPath>
+	</ThingCategoryDef>
+
+	<!-- ==================== AmmoSet ========================== -->
+
+	<CombatExtended.AmmoSetDef>
+		<defName>AmmoSet_43cal_NL</defName>
+		<label>.43 caliber rubber bullet</label>
+		<ammoTypes>
+			<Ammo_43cal_NL>Bullet_43cal_NL</Ammo_43cal_NL>
+		</ammoTypes>
+	</CombatExtended.AmmoSetDef>
+
+	<!-- ==================== Ammo ========================== -->
+
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="45ACPBase">
+		<defName>Ammo_43cal_NL</defName>
+		<label>.43 caliber rubber bullet</label>
+    <description>Gas-powered pistol cartridge firing rubberized projectiles. Painful, but generally non-lethal.</description>
+		<graphicData>
+			<texPath>Things/Ammo/Pistol/FMJ</texPath>
+			<graphicClass>Graphic_StackCount</graphicClass>
+		</graphicData>
+		<statBases>
+			<MarketValue>0.09</MarketValue>
+		</statBases>
+		<ammoClass>RubberBullet</ammoClass>
+	</ThingDef>
+
+
+	<!-- ================== Projectiles ================== -->
+
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="Base45ACPBullet">
+		<defName>Bullet_43cal_NL</defName>
+		<label>rubber bullet</label>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+      <damageDef>Blunt</damageDef>
+			<damageAmountBase>5</damageAmountBase>
+			<secondaryDamage>
+				<li>
+				  <def>Beanbag</def>
+				  <amount>4</amount>
+				  <chance>0.10</chance>
+				</li>
+			</secondaryDamage>        
+			<armorPenetrationBlunt>1.2</armorPenetrationBlunt>
+      <speed>20</speed>
+      <dropsCasings>false</dropsCasings>
+		</projectile>
+	</ThingDef>
+
+	<!-- ==================== Recipes ========================== -->
+
+	<RecipeDef ParentName="AmmoRecipeBase">
+		<defName>MakeAmmo_43cal_NL</defName>
+		<label>make .43 rubber bullet cartridges x200</label>
+		<description>Craft 200 .43 rubber bullet cartridges.</description>
+		<jobString>Making .43 rubber bullet cartridges.</jobString>
+		<ingredients>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>Steel</li>
+					</thingDefs>
+				</filter>
+				<count>16</count>
+			</li>
+      <li>
+        <filter>
+          <thingDefs>
+            <li>Chemfuel</li>
+          </thingDefs>
+        </filter>
+        <count>10</count>
+      </li>      
+		</ingredients>
+		<fixedIngredientFilter>
+			<thingDefs>
+				<li>Steel</li>
+        <li>Chemfuel</li>
+			</thingDefs>
+		</fixedIngredientFilter>
+		<products>
+			<Ammo_43cal_NL>200</Ammo_43cal_NL>
+		</products>
+		<workAmount>1800</workAmount>
+	</RecipeDef>
+
+        </value>
+      </li>
+
+      </operations>
+    </match>
+  </Operation>
+
+</Patch>

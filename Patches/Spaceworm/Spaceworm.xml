@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+		<li>Space Worms (Continued)</li>
+		</mods>
+
+		<match Class="PatchOperationSequence">
+			<operations>
+
+			<li Class="PatchOperationAddModExtension">
+				<xpath>/Defs/ThingDef[defName="Scuttlebug"]</xpath>
+				<value>
+					<li Class="CombatExtended.RacePropertiesExtensionCE">
+						<bodyShape>Serpentine</bodyShape>
+					</li>
+				</value>
+			</li>
+
+			<li Class="PatchOperationAdd">
+				<xpath>/Defs/ThingDef[defName="Scuttlebug"]/statBases</xpath>
+				<value>
+					<MeleeDodgeChance>0.36</MeleeDodgeChance>
+					<MeleeCritChance>0</MeleeCritChance>
+					<MeleeParryChance>0</MeleeParryChance>
+				</value>
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>/Defs/ThingDef[defName="Scuttlebug"]/tools</xpath>
+				<value>
+					<tools>
+						<li Class="CombatExtended.ToolCE">
+							<label>face teeth</label>
+							<capacities>
+								<li>ScuttlebugCapacity</li>
+							</capacities>
+							<power>4</power>
+							<cooldownTime>1</cooldownTime>
+							<armorPenetrationSharp>0.75</armorPenetrationSharp>
+							<armorPenetrationBlunt>0.844</armorPenetrationBlunt>
+							<linkedBodyPartsGroup>Mouth</linkedBodyPartsGroup>
+							<ensureLinkedBodyPartsGroupAlwaysUsable>true</ensureLinkedBodyPartsGroupAlwaysUsable>
+						</li>
+					</tools>
+				</value>
+			</li>
+			</operations>
+		</match>
+	</Operation>
+</Patch>

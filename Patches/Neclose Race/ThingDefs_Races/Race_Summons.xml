@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+  <Operation Class="PatchOperationSequence">
+	<operations>
+	  <li Class="PatchOperationFindMod">
+			
+		<mods><li>[1.2]Neclose Race</li></mods>
+			
+		<match Class="PatchOperationSequence">
+		<operations>
+		
+			<!-- Summons -->
+			
+			<li Class="PatchOperationAddModExtension">
+				<xpath>/Defs/ThingDef[@Name="NC_Summon_PawnBase"]</xpath>
+				<value>
+					<li Class="CombatExtended.RacePropertiesExtensionCE">
+						<bodyShape>Quadruped</bodyShape>
+					</li>
+				</value>
+			</li>
+
+			
+			<li Class="PatchOperationAdd">
+			 <xpath>/Defs/ThingDef[@Name="NC_Summon_PawnBase"]/statBases</xpath>
+				  <value>
+					<Suppressability>0</Suppressability>
+					<SmokeSensitivity>0</SmokeSensitivity>
+					<MeleeDodgeChance>0.20</MeleeDodgeChance>
+					<MeleeCritChance>0.20</MeleeCritChance>
+					<MeleeParryChance>0.20</MeleeParryChance>
+				  </value>
+			</li>
+			
+			<li Class="PatchOperationReplace">
+				<xpath>/Defs/ThingDef[
+				@Name="HAR_NC_M_a_race_Base" or
+				@Name="HAR_NC_M_b_race_Base" or
+				@Name="HAR_NC_M_c_race_Base"
+				]/tools</xpath> 
+				<value>
+					<tools>
+						<li Class="CombatExtended.ToolCE">
+							<label>left claw</label>
+							<capacities>
+								<li>HAR_NC_Damage_a</li>
+							</capacities>
+							<power>9</power>
+							<cooldownTime>1.19</cooldownTime>
+							<linkedBodyPartsGroup>FrontLeftPaw</linkedBodyPartsGroup>
+							<extraMeleeDamages>
+							<li>
+								<def>HAR_NC_Damage_b</def>
+								<amount>5</amount>
+							</li>
+							</extraMeleeDamages>
+							<armorPenetrationBlunt>2.250</armorPenetrationBlunt>
+							<armorPenetrationSharp>2.1</armorPenetrationSharp>
+						</li>
+						<li Class="CombatExtended.ToolCE">
+							<label>right claw</label>
+							<capacities>
+								<li>HAR_NC_Damage_a</li>
+							</capacities>
+							<power>9</power>
+							<cooldownTime>1.19</cooldownTime>
+							<linkedBodyPartsGroup>FrontRightPaw</linkedBodyPartsGroup>
+							<extraMeleeDamages>
+							<li>
+								<def>HAR_NC_Damage_b</def>
+								<amount>5</amount>
+							</li>
+							</extraMeleeDamages>
+							<armorPenetrationBlunt>2.250</armorPenetrationBlunt>
+							<armorPenetrationSharp>2.1</armorPenetrationSharp>
+						</li>
+						<li Class="CombatExtended.ToolCE">
+							<label>razorfangs</label>
+							<capacities>
+								<li>HAR_NC_Damage_a</li>
+							</capacities>
+							<power>19</power>
+							<cooldownTime>1.46</cooldownTime>
+							<linkedBodyPartsGroup>Teeth</linkedBodyPartsGroup>
+							<extraMeleeDamages>
+							<li>
+								<def>HAR_NC_Damage_b</def>
+								<amount>5</amount>
+							</li>
+							</extraMeleeDamages>
+							<chanceFactor>2</chanceFactor>
+							<armorPenetrationSharp>2.4</armorPenetrationSharp>
+							<armorPenetrationBlunt>5.063</armorPenetrationBlunt>
+						</li>
+					</tools>
+				</value>
+			</li>
+			
+			
+		</operations>
+		</match>	
+	  </li>
+	</operations>	
+  </Operation>
+</Patch>

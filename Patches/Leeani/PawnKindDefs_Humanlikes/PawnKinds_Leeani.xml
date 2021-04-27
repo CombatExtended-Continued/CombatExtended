@@ -1,12 +1,11 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <Patch>
-
-	<Operation Class="PatchOperationSequence">
-		<success>Always</success>
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+			<li>Leeani Playable Race</li>
+		</mods>
+		<match Class="PatchOperationSequence">
 		<operations>
-			<li Class="CombatExtended.PatchOperationFindMod">
-				<modName>Leeani Playable Race</modName>
-			</li>
 			<!-- ========== Scoot ========== -->
 			<li Class="PatchOperationAddModExtension">
 				<xpath>/Defs/PawnKindDef[defName="LeeaniScout"]</xpath>
@@ -371,5 +370,6 @@
 			</li>
 
 		</operations>
+		</match>
 	</Operation>
 </Patch>

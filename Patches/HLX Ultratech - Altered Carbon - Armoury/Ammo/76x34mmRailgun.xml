@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+
+  <Operation Class="PatchOperationFindMod">
+    <mods>
+      <li>[HLX] Ultratech: Altered Carbon - Armoury</li>
+    </mods>
+    <match Class="PatchOperationAdd">
+      <xpath>Defs</xpath>
+      <value>
+        <!-- === ThingCategory === -->
+        <ThingCategoryDef>
+          <defName>Ammo76x34mmRailgun</defName>
+          <label>7.6x34mm Railgun</label>
+          <parent>AmmoAdvanced</parent>
+          <iconPath>UI/Icons/ThingCategories/CaliberRailgunRifle</iconPath>
+        </ThingCategoryDef>
+
+        <!-- === AmmoCategory === -->
+        <CombatExtended.AmmoCategoryDef>
+          <defName>AC_Railgun</defName>
+          <label>Railgun</label>
+          <description>Uses a magnetical force to launch projectiles at higher muzzle velocities, greatly improving armor penetration.</description>
+          <advanced>true</advanced>
+        </CombatExtended.AmmoCategoryDef>
+
+        <!-- === AmmoSet === -->
+        <CombatExtended.AmmoSetDef>
+          <defName>AmmoSet_76x34mmRailgun</defName>
+          <label>7.6x34mm Railgun</label>
+          <ammoTypes>
+            <Ammo_76x34mmRailgun>Bullet_76x34mmRailgun</Ammo_76x34mmRailgun>
+          </ammoTypes>
+        </CombatExtended.AmmoSetDef>
+
+        <!-- === Ammo === -->
+        <ThingDef Class="CombatExtended.AmmoDef" ParentName="SpacerSmallAmmoBase">
+          <defName>Ammo_76x34mmRailgun</defName>
+          <label>7.6x34mm Railgun Cartridge</label>
+          <description>Fin-stabilized tungsten carbide penetrator with discarding sabot, designed for railgun rifles.</description>
+          <statBases>
+            <Mass>0.01</Mass>
+            <Bulk>0.008</Bulk>
+            <MarketValue>0.06</MarketValue>
+          </statBases>
+          <tradeTags>
+            <li>CE_AutoEnableTrade</li>
+            <li>CE_AutoEnableCrafting_TableMachining</li>
+          </tradeTags>
+          <thingCategories>
+            <li>Ammo76x34mmRailgun</li>
+          </thingCategories>
+          <graphicData>
+            <texPath>Things/Ammo/Railgun/Rifle</texPath>
+            <graphicClass>CombatExtended.Graphic_StackCountRanged</graphicClass>
+          </graphicData>
+          <ammoClass>AC_Railgun</ammoClass>
+        </ThingDef>
+
+        <!-- === Projectile === -->
+        <ThingDef Class="CombatExtended.AmmoDef" ParentName="BaseBullet">
+          <thingClass>CombatExtended.BulletCE</thingClass>
+          <defName>Bullet_76x34mmRailgun</defName>
+          <label>7.6x34mm Railgun</label>
+          <graphicData>
+            <texPath>Things/Projectile/Bullet_Small</texPath>
+            <graphicClass>Graphic_Single</graphicClass>
+          </graphicData>
+          <projectile Class="CombatExtended.ProjectilePropertiesCE">
+            <damageDef>Bullet</damageDef>
+            <damageAmountBase>25</damageAmountBase>
+            <armorPenetrationSharp>45</armorPenetrationSharp>
+            <armorPenetrationBlunt>320.80</armorPenetrationBlunt>
+            <speed>400</speed>
+          </projectile>
+        </ThingDef>
+
+        <!-- === Recipe === -->
+        <RecipeDef ParentName="AmmoRecipeBase">
+          <defName>MakeAmmo_76x34mmRailgun</defName>
+          <label>make 7.6x34mm Railgun cartridge x500</label>
+          <description>Craft 500 7.6mm Railgun cartridges.</description>
+          <jobString>Making 7.6mm Railgun cartridges.</jobString>
+          <workAmount>1500</workAmount>
+          <ingredients>
+            <li>
+              <filter>
+                <thingDefs>
+                  <li>Steel</li>
+                </thingDefs>
+              </filter>
+              <count>2</count>
+            </li>
+            <li>
+              <filter>
+                <thingDefs>
+                  <li>Uranium</li>
+                </thingDefs>
+              </filter>
+              <count>4</count>
+            </li>
+          </ingredients>
+          <fixedIngredientFilter>
+            <thingDefs>
+              <li>Steel</li>
+              <li>Uranium</li>
+            </thingDefs>
+          </fixedIngredientFilter>
+          <products>
+            <Ammo_76x34mmRailgun>500</Ammo_76x34mmRailgun>
+          </products>
+        </RecipeDef>
+      </value>
+    </match>
+  </Operation>
+
+</Patch>

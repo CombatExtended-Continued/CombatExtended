@@ -7,6 +7,8 @@ using System.Text;
 using System.Threading.Tasks;
 using Verse;
 using Verse.AI;
+using RimWorld;
+using CombatExtended.Compatibility;
 
 namespace CombatExtended
 {
@@ -31,11 +33,10 @@ namespace CombatExtended
         {
             Predicate<Thing> _isTurretThatNeedsReloadingNow = (Thing t) =>
             {
-                var turret = t as Building_TurretGunCE;
+                var turret = t as Building_Turret;
                 if (turret == null) { return false; }
                 if (!JobGiverUtils_Reload.CanReload(pawn, turret, forced: false, emergency: true)) { return false; }
-                
-                return turret.CompAmmo.CurMagCount <= turret.CompAmmo.Props.magazineSize / ammoReloadThreshold;
+                return turret.ShouldReload(ammoReloadThreshold);
             };
             Thing hopefullyTurret = GenClosest.ClosestThingReachable(pawn.Position,
                                              pawn.Map,

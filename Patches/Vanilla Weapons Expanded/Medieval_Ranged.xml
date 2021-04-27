@@ -149,7 +149,7 @@
             <Mass>1.25</Mass>
             <Bulk>3.90</Bulk>
             <SwayFactor>1.22</SwayFactor>
-            <ShotSpread>0.12</ShotSpread>
+            <ShotSpread>0.36</ShotSpread>
             <SightsEfficiency>0.7</SightsEfficiency>
             <RangedWeapon_Cooldown>0.85</RangedWeapon_Cooldown>
           </statBases>
@@ -201,7 +201,7 @@
             <Mass>4.8</Mass>
             <Bulk>14.9</Bulk>
             <SwayFactor>1.92</SwayFactor>
-            <ShotSpread>0.10</ShotSpread>
+            <ShotSpread>0.30</ShotSpread>
             <SightsEfficiency>1</SightsEfficiency>
             <RangedWeapon_Cooldown>1.35</RangedWeapon_Cooldown>
           </statBases>
@@ -252,6 +252,16 @@
         </li>
 
         <!-- == Weapon == -->
+        <li Class="PatchOperationReplace">
+          <xpath>Defs/ThingDef[defName="VWE_Throwing_Knives"]/graphicData</xpath>
+          <value>
+            <graphicData>
+              <texPath>Things/Projectile/KnifeThrown</texPath>
+              <graphicClass>Graphic_Single</graphicClass>
+            </graphicData>  
+          </value>
+        </li>
+
         <li Class="PatchOperationAttributeSet">
           <xpath>/Defs/ThingDef[defName="VWE_Throwing_Knives"]</xpath>
           <attribute>ParentName</attribute>
@@ -279,12 +289,6 @@
           <xpath>/Defs/ThingDef[defName="VWE_Throwing_Knives"]/stuffCategories</xpath>
         </li>
 
-        <li Class="PatchOperationAdd">
-          <xpath>/Defs/ThingDef[defName="VWE_Throwing_Knives"]/graphicData</xpath>
-          <value>
-            <color>(105,105,105)</color>
-          </value>
-        </li>
 
         <li Class="PatchOperationAdd">
           <xpath>/Defs/ThingDef[defName="VWE_Throwing_Knives"]</xpath>
@@ -329,16 +333,26 @@
           <value>
             <tools>
               <li Class="CombatExtended.ToolCE">
+                <label>handle</label>
+                <capacities>
+                  <li>Poke</li>
+                </capacities>
+                <power>1</power>
+                <cooldownTime>1.26</cooldownTime>
+                <armorPenetrationBlunt>0.250</armorPenetrationBlunt>
+                <linkedBodyPartsGroup>Handle</linkedBodyPartsGroup>
+              </li>
+              <li Class="CombatExtended.ToolCE">
                 <label>point</label>
                 <capacities>
-                  <li>Blunt</li>
+                  <li>Stab</li>
                 </capacities>
-                <power>14</power>
-                <cooldownTime>1.2</cooldownTime>
-                <chanceFactor>1.88</chanceFactor>
-                <armorPenetrationBlunt>0.55</armorPenetrationBlunt>
-                <armorPenetrationSharp>0.76</armorPenetrationSharp>
-                <linkedBodyPartsGroup>Head</linkedBodyPartsGroup>
+                <power>11</power>
+                <cooldownTime>1.26</cooldownTime>
+                <chanceFactor>1.33</chanceFactor>
+                <armorPenetrationBlunt>0.25</armorPenetrationBlunt>
+                <armorPenetrationSharp>0.42</armorPenetrationSharp>
+                <linkedBodyPartsGroup>Point</linkedBodyPartsGroup>
               </li>
             </tools>
           </value>

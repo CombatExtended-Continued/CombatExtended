@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <Patch>
-	<Operation Class="PatchOperationSequence">
-		<success>Always</success>
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+		<li>[RH] Faction: Elite Crew</li>
+		</mods>
+		<match Class="PatchOperationSequence">
 		<operations>
-
-			<li Class="CombatExtended.PatchOperationFindMod">
-				<modName>[RH] Faction: Elite Crew</modName>
-			</li>
 
 			<!-- ========== Remove Molotovs as CE:FT already includes a generic version ========== -->
 
@@ -272,5 +271,6 @@
 			</li>
 
 		</operations>
+		</match>
 	</Operation>
 </Patch>

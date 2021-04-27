@@ -1,13 +1,12 @@
 <?xml version="1.0" encoding="utf-8" ?>
+
 <Patch>
-	<!-- i am imprisoned inside someone's closet. please send help. -->
-	<Operation Class="PatchOperationSequence">
-		<success>Always</success>
-		<operations>
-			<!-- ==== Check for the mod. ==== -->
-			<li Class="CombatExtended.PatchOperationFindMod">
-				<modName>Black Widows 2.0</modName>
-			</li>
+	<Operation Class="PatchOperationFindMod">
+    <mods>
+		<li>Black Widows (Continued)</li>
+    </mods>
+		<match Class="PatchOperationSequence">
+		 <operations>
 
 			<li Class="PatchOperationInsert">
 				<xpath>Defs/ThingCategoryDef[defName="AmmoGreatArrows"]</xpath>
@@ -381,6 +380,7 @@
 					</stuffCategories>
 				</value>
 			</li>
-		</operations>
-	</Operation>
-</Patch>
+      </operations>
+    </match>
+  </Operation>
+</Patch>		

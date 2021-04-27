@@ -1,0 +1,366 @@
+<?xml version="1.0" encoding="utf-8" ?>
+
+<Patch>
+	<Operation Class="PatchOperationFindMod">
+    <mods>
+		<li>Kit's Industrial Weapons</li>
+    </mods>
+		<match Class="PatchOperationSequence">
+		 <operations>
+
+		  <!-- ========== Tools ========== -->
+
+		<li Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="KIT_Gun_SemiAutomaticPistol"]/tools</xpath>
+		<value>
+			<tools>
+			<li Class="CombatExtended.ToolCE">
+				<label>grip</label>
+				<capacities>
+				<li>Blunt</li>
+				</capacities>
+				<power>2</power>
+				<cooldownTime>1.54</cooldownTime>
+				<chanceFactor>1.5</chanceFactor>
+				<armorPenetrationBlunt>0.555</armorPenetrationBlunt>
+				<linkedBodyPartsGroup>Grip</linkedBodyPartsGroup>
+			</li>
+			<li Class="CombatExtended.ToolCE">
+				<label>muzzle</label>
+				<capacities>
+				<li>Poke</li>
+				</capacities>
+				<power>2</power>
+				<cooldownTime>1.54</cooldownTime>
+				<armorPenetrationBlunt>0.555</armorPenetrationBlunt>
+				<linkedBodyPartsGroup>Muzzle</linkedBodyPartsGroup>
+			</li>
+			</tools>
+		</value>
+		</li>
+
+		<li Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="KIT_Gun_PrecisionLMG" or
+		defName="KIT_Gun_BoltSMG" or
+		defName="KIT_Gun_AntiqueSniperRifle"
+			]/tools</xpath>
+		<value>
+			<tools>
+			<li Class="CombatExtended.ToolCE">
+				<label>stock</label>
+				<capacities>
+				<li>Blunt</li>
+				</capacities>
+				<power>8</power>
+				<cooldownTime>1.55</cooldownTime>
+				<chanceFactor>1.5</chanceFactor>
+				<armorPenetrationBlunt>2.755</armorPenetrationBlunt>
+				<linkedBodyPartsGroup>Stock</linkedBodyPartsGroup>
+			</li>
+			<li Class="CombatExtended.ToolCE">
+				<label>barrel</label>
+				<capacities>
+				<li>Blunt</li>
+				</capacities>
+				<power>5</power>
+				<cooldownTime>2.02</cooldownTime>
+				<armorPenetrationBlunt>1.630</armorPenetrationBlunt>
+				<linkedBodyPartsGroup>Barrel</linkedBodyPartsGroup>
+			</li>
+			<li Class="CombatExtended.ToolCE">
+				<label>muzzle</label>
+				<capacities>
+				<li>Poke</li>
+				</capacities>
+				<power>8</power>
+				<cooldownTime>1.55</cooldownTime>
+				<armorPenetrationBlunt>2.755</armorPenetrationBlunt>
+				<linkedBodyPartsGroup>Muzzle</linkedBodyPartsGroup>
+			</li>
+			</tools>
+		</value>
+		</li>
+
+		<li Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="KIT_Gun_BayonetRifle"]/tools</xpath>
+		<value>
+			<tools>
+			<li Class="CombatExtended.ToolCE">
+				<label>stock</label>
+				<capacities>
+				<li>Blunt</li>
+				</capacities>
+				<power>8</power>
+				<cooldownTime>1.55</cooldownTime>
+				<chanceFactor>1.5</chanceFactor>
+				<armorPenetrationBlunt>2.755</armorPenetrationBlunt>
+				<linkedBodyPartsGroup>Stock</linkedBodyPartsGroup>
+			</li>
+			<li Class="CombatExtended.ToolCE">
+				<label>bayonet</label>
+				<capacities>
+				<li>Cut</li>
+				</capacities>
+				<power>17</power>
+				<cooldownTime>2.14</cooldownTime>
+				<armorPenetrationBlunt>1.688</armorPenetrationBlunt>
+				<armorPenetrationSharp>0.5</armorPenetrationSharp>	
+				<linkedBodyPartsGroup>Barrel</linkedBodyPartsGroup>
+			</li>
+			<li Class="CombatExtended.ToolCE">
+				<label>bayonet</label>
+				<capacities>
+				<li>Stab</li>
+				</capacities>
+				<power>6</power>
+				<cooldownTime>1.49</cooldownTime>
+				<armorPenetrationBlunt>2.16</armorPenetrationBlunt>
+				<armorPenetrationSharp>1.44</armorPenetrationSharp>				  
+				<linkedBodyPartsGroup>Muzzle</linkedBodyPartsGroup>
+			</li>
+			</tools>
+		</value>
+		</li>
+
+		<li Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="KIT_Bazooka"]/tools</xpath>
+		<value>
+			<tools>
+			<li Class="CombatExtended.ToolCE">
+			<label>barrel</label>
+			<capacities>
+				<li>Blunt</li>
+			</capacities>
+			<power>10</power>
+			<cooldownTime>2.44</cooldownTime>
+			<armorPenetrationBlunt>3.5</armorPenetrationBlunt>
+			<linkedBodyPartsGroup>Barrel</linkedBodyPartsGroup>
+			</li>
+			</tools>
+		</value>
+		</li>
+
+		<!-- ========== Mauser C96 ========== -->
+
+		<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+		<defName>KIT_Gun_SemiAutomaticPistol</defName>
+		<statBases>
+			<Mass>1.13</Mass>
+			<RangedWeapon_Cooldown>0.37</RangedWeapon_Cooldown>
+			<SightsEfficiency>0.7</SightsEfficiency>
+			<ShotSpread>0.16</ShotSpread>
+			<SwayFactor>1.42</SwayFactor>
+			<Bulk>3.12</Bulk>
+			<WorkToMake>8000</WorkToMake>
+		</statBases>
+		<costList>
+			<Steel>40</Steel>
+			<ComponentIndustrial>1</ComponentIndustrial>
+		</costList>
+		<Properties>
+			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+			<hasStandardCommand>true</hasStandardCommand>
+			<defaultProjectile>Bullet_763x25mmMauser_FMJ</defaultProjectile>
+			<warmupTime>0.6</warmupTime>
+			<range>12</range>
+			<soundCast>KIT_SemiAutomaticPistol</soundCast>
+			<soundCastTail>GunTail_Light</soundCastTail>
+			<muzzleFlashScale>9</muzzleFlashScale>
+		</Properties>
+		<AmmoUser>
+			<magazineSize>10</magazineSize>
+			<reloadTime>4.3</reloadTime>
+			<ammoSet>AmmoSet_763x25mmMauser</ammoSet>
+		</AmmoUser>
+		<FireModes>
+			<aiUseBurstMode>FALSE</aiUseBurstMode>
+		</FireModes>
+		<weaponTags>
+			<li>CE_OneHandedWeapon</li>
+			<li>SimpleGun</li>
+			<li>Pistol</li>		  
+		</weaponTags>
+		<researchPrerequisite>KIT_EarlyGunsmithing</researchPrerequisite>
+		</li>
+
+		<!-- ========== Bren LMG ========== -->
+
+		<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+			<defName>KIT_Gun_PrecisionLMG</defName>
+			<statBases>
+				<Mass>10.35</Mass>
+				<RangedWeapon_Cooldown>0.56</RangedWeapon_Cooldown>
+				<SightsEfficiency>1.00</SightsEfficiency>
+				<ShotSpread>0.04</ShotSpread>
+				<SwayFactor>1.53</SwayFactor>
+				<Bulk>12.56</Bulk>
+			</statBases>
+			<Properties>
+				<recoilAmount>1.22</recoilAmount>
+				<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+				<hasStandardCommand>true</hasStandardCommand>
+				<defaultProjectile>Bullet_303British_FMJ</defaultProjectile>
+				<warmupTime>1.3</warmupTime>
+				<range>59</range>
+				<burstShotCount>10</burstShotCount>
+				<ticksBetweenBurstShots>7</ticksBetweenBurstShots>
+				<soundCast>Shot_Minigun</soundCast>
+				<soundCastTail>GunTail_Medium</soundCastTail>
+				<muzzleFlashScale>9</muzzleFlashScale>
+			</Properties>
+			<AmmoUser>
+				<magazineSize>30</magazineSize>
+				<reloadTime>4</reloadTime>
+				<ammoSet>AmmoSet_303British</ammoSet>
+			</AmmoUser>
+			<FireModes>
+				<aiUseBurstMode>FALSE</aiUseBurstMode>
+				<aiAimMode>SuppressFire</aiAimMode>
+				<aimedBurstShotCount>5</aimedBurstShotCount>
+			</FireModes>
+		</li>
+
+		<!-- ========== Mosin-Nagant scoped ========== -->
+
+		<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+			<defName>KIT_Gun_AntiqueSniperRifle</defName>
+			<statBases>
+				<Mass>4.27</Mass>
+				<RangedWeapon_Cooldown>1.17</RangedWeapon_Cooldown>
+				<SightsEfficiency>2.21</SightsEfficiency>
+				<ShotSpread>0.03</ShotSpread>
+				<SwayFactor>1.69</SwayFactor>
+				<Bulk>12.32</Bulk>
+			</statBases>
+			<Properties>
+				<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+				<hasStandardCommand>true</hasStandardCommand>
+				<defaultProjectile>Bullet_762x54mmR_FMJ</defaultProjectile>
+				<warmupTime>1.275</warmupTime>
+				<range>75</range>
+				<soundCast>KIT_MosinSniperRifle</soundCast>
+				<soundCastTail>GunTail_Heavy</soundCastTail>
+				<muzzleFlashScale>9</muzzleFlashScale>
+			</Properties>
+			<AmmoUser>
+				<magazineSize>5</magazineSize>
+				<reloadTime>4.3</reloadTime>
+				<ammoSet>AmmoSet_762x54mmR</ammoSet>
+			</AmmoUser>
+			<FireModes>
+				<aiUseBurstMode>FALSE</aiUseBurstMode>
+				<aiAimMode>AimedShot</aiAimMode>
+			</FireModes>
+			<AllowWithRunAndGun>false</AllowWithRunAndGun>
+		</li>
+
+		<!-- ========== Bayonet Rifle ========== -->
+
+		<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+			<defName>KIT_Gun_BayonetRifle</defName>
+			<statBases>
+				<Mass>3.85</Mass>
+				<RangedWeapon_Cooldown>0.37</RangedWeapon_Cooldown>
+				<SightsEfficiency>1.00</SightsEfficiency>
+				<ShotSpread>0.06</ShotSpread>
+				<SwayFactor>1.41</SwayFactor>
+				<Bulk>10.20</Bulk>
+			</statBases>
+			<Properties>
+				<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+				<hasStandardCommand>true</hasStandardCommand>
+				<defaultProjectile>Bullet_762x39mmSoviet_FMJ</defaultProjectile>
+				<warmupTime>1.1</warmupTime>
+				<range>48</range>
+				<soundCast>KIT_BayonetRifle</soundCast>
+				<soundCastTail>GunTail_Medium</soundCastTail>
+				<muzzleFlashScale>9</muzzleFlashScale>
+			</Properties>
+			<AmmoUser>
+				<magazineSize>10</magazineSize>
+				<reloadTime>4.3</reloadTime>
+				<ammoSet>AmmoSet_762x39mmSoviet</ammoSet>
+			</AmmoUser>
+			<FireModes>
+				<aiUseBurstMode>FALSE</aiUseBurstMode>
+				<aiAimMode>AimedShot</aiAimMode>
+			</FireModes>
+			<weaponTags>
+				<li>CE_AI_Rifle</li>
+			</weaponTags>
+			<AllowWithRunAndGun>false</AllowWithRunAndGun>
+		</li>
+
+		<!-- ========== Bolt SMG ========== -->
+
+		<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+			<defName>KIT_Gun_BoltSMG</defName>
+			<statBases>
+				<Mass>3.63</Mass>
+				<RangedWeapon_Cooldown>0.36</RangedWeapon_Cooldown>
+				<SightsEfficiency>1.00</SightsEfficiency>
+				<ShotSpread>0.12</ShotSpread>
+				<SwayFactor>1.21</SwayFactor>
+				<Bulk>9.43</Bulk>
+			</statBases>
+			<Properties>
+				<recoilAmount>1.22</recoilAmount>
+				<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+				<hasStandardCommand>true</hasStandardCommand>
+				<defaultProjectile>Bullet_762x25mmTokarev_FMJ</defaultProjectile>
+				<warmupTime>0.6</warmupTime>
+				<range>23</range>
+				<burstShotCount>6</burstShotCount>
+				<ticksBetweenBurstShots>4</ticksBetweenBurstShots>
+				<soundCast>Shot_MachinePistol</soundCast>
+				<soundCastTail>GunTail_Light</soundCastTail>
+				<muzzleFlashScale>9</muzzleFlashScale>
+			</Properties>
+			<AmmoUser>
+				<magazineSize>36</magazineSize>
+				<reloadTime>4.3</reloadTime>
+				<ammoSet>AmmoSet_762x25mmTokarev</ammoSet>
+			</AmmoUser>
+			<FireModes>
+				<aiUseBurstMode>FALSE</aiUseBurstMode>
+				<aiAimMode>Snapshot</aiAimMode>
+				<aimedBurstShotCount>3</aimedBurstShotCount>
+			</FireModes>
+		</li>
+
+		<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+			<defName>KIT_Bazooka</defName>
+			<statBases>
+				<Mass>7.20</Mass>
+				<RangedWeapon_Cooldown>1.50</RangedWeapon_Cooldown>
+				<SightsEfficiency>1.00</SightsEfficiency>
+				<ShotSpread>0.2</ShotSpread>
+				<SwayFactor>2.27</SwayFactor>
+				<Bulk>16.50</Bulk>
+			</statBases>
+			<Properties>
+				<verbClass>CombatExtended.Verb_ShootCEOneUse</verbClass>
+				<hasStandardCommand>true</hasStandardCommand>
+				<defaultProjectile>Bullet_M6A3_HEAT</defaultProjectile>
+				<warmupTime>1.9</warmupTime>
+				<range>40</range>
+				<soundCast>InfernoCannon_Fire</soundCast>
+				<soundCastTail>GunTail_Heavy</soundCastTail>
+				<muzzleFlashScale>14</muzzleFlashScale>
+				<onlyManualCast>true</onlyManualCast>
+				<stopBurstWithoutLos>false</stopBurstWithoutLos>
+				<targetParams>
+					<canTargetLocations>true</canTargetLocations>
+				</targetParams>
+			</Properties>
+			<FireModes>
+				<aiUseBurstMode>FALSE</aiUseBurstMode>
+				<aiAimMode>AimedShot</aiAimMode>
+			</FireModes>
+			<AllowWithRunAndGun>false</AllowWithRunAndGun>
+		</li>
+
+			</operations>
+			</match>
+		</Operation>
+	</Patch>

@@ -1,0 +1,199 @@
+<?xml version="1.0" encoding="utf-8" ?>
+
+<Patch>
+
+	<Operation Class="PatchOperationFindMod">
+    <mods>
+        <li>Ancient Eastern Armory</li>
+    </mods>
+		<match Class="PatchOperationSequence">
+			<operations>
+
+		<!-- Two-Handed Flail -->	
+
+		<li Class="PatchOperationReplace">
+			<xpath>Defs/ThingDef[defName="Ancient_TwoHandedFlair"]/tools</xpath>
+			<value>
+				<tools>
+					<li Class="CombatExtended.ToolCE">
+						<label>shaft</label>
+						<capacities>
+							<li>Blunt</li>
+						</capacities>
+						<power>9</power>
+						<cooldownTime>1.49</cooldownTime>
+						<chanceFactor>0.15</chanceFactor>
+						<armorPenetrationBlunt>3.375</armorPenetrationBlunt>
+						<linkedBodyPartsGroup>Shaft</linkedBodyPartsGroup>
+					</li>
+					<li Class="CombatExtended.ToolCE">
+						<label>head</label>
+						<capacities>
+						<li>Blunt</li>
+						</capacities>
+						<power>36</power>
+						<cooldownTime>2.67</cooldownTime>
+						<armorPenetrationBlunt>15.75</armorPenetrationBlunt>
+						<linkedBodyPartsGroup>Head</linkedBodyPartsGroup>
+					</li>					
+				</tools>
+			</value>
+		</li>
+
+		<li Class="PatchOperationAdd">
+			<xpath>Defs/ThingDef[defName="Ancient_TwoHandedFlair"]/statBases</xpath>
+			<value>
+				<Bulk>14</Bulk>
+				<MeleeCounterParryBonus>0.28</MeleeCounterParryBonus>
+			</value>
+		</li>
+
+		<li Class="PatchOperationAdd">
+			<xpath>Defs/ThingDef[defName="Ancient_TwoHandedFlair"]/equippedStatOffsets</xpath>
+			<value>
+				<MeleeCritChance>1.6</MeleeCritChance>
+				<MeleeParryChance>0.38</MeleeParryChance>
+				<MeleeDodgeChance>0.3</MeleeDodgeChance>
+			</value>
+		</li>
+
+		<!-- Yari -->	
+
+		<li Class="PatchOperationReplace">
+			<xpath>Defs/ThingDef[defName="Ancient_SamuraiYari"]/tools</xpath>
+			<value>
+				<tools>
+					<li Class="CombatExtended.ToolCE">
+						<label>shaft</label>
+						<capacities>
+							<li>Blunt</li>
+						</capacities>
+						<power>6</power>
+						<cooldownTime>1.29</cooldownTime>
+						<chanceFactor>0.15</chanceFactor>
+						<armorPenetrationBlunt>1.913</armorPenetrationBlunt>
+						<linkedBodyPartsGroup>Shaft</linkedBodyPartsGroup>
+					</li>
+					<li Class="CombatExtended.ToolCE">
+						<label>shaft</label>
+						<capacities>
+							<li>Poke</li>
+						</capacities>
+						<power>3</power>
+						<cooldownTime>1.71</cooldownTime>
+						<chanceFactor>0.05</chanceFactor>
+						<armorPenetrationBlunt>0.85</armorPenetrationBlunt>
+						<linkedBodyPartsGroup>Point</linkedBodyPartsGroup>
+					</li>
+					<li Class="CombatExtended.ToolCE">
+						<label>head</label>
+						<capacities>
+							<li>Stab</li>
+						</capacities>
+						<power>17</power>
+						<cooldownTime>1.14</cooldownTime>
+						<chanceFactor>1.00</chanceFactor>
+						<armorPenetrationBlunt>1.913</armorPenetrationBlunt>
+						<armorPenetrationSharp>2.4</armorPenetrationSharp>
+						<linkedBodyPartsGroup>Head</linkedBodyPartsGroup>
+					</li>
+					<li Class="CombatExtended.ToolCE">
+						<label>head</label>
+						<capacities>
+							<li>Cut</li>
+						</capacities>
+						<power>25</power>
+						<cooldownTime>3.2</cooldownTime>
+						<chanceFactor>0.33</chanceFactor>
+						<armorPenetrationBlunt>1.913</armorPenetrationBlunt>
+						<armorPenetrationSharp>1.28</armorPenetrationSharp>
+						<linkedBodyPartsGroup>Head</linkedBodyPartsGroup>
+					</li>					
+				</tools>
+			</value>
+		</li>
+
+		<li Class="PatchOperationAdd">
+			<xpath>Defs/ThingDef[defName="Ancient_SamuraiYari"]/statBases</xpath>
+			<value>
+				<Bulk>11</Bulk>
+				<MeleeCounterParryBonus>2.12</MeleeCounterParryBonus>
+			</value>
+		</li>
+
+		<li Class="PatchOperationReplace">
+			<xpath>Defs/ThingDef[defName="Ancient_SamuraiYari"]/equippedStatOffsets/MeleeDodgeChance</xpath>
+			<value>
+				<MeleeCritChance>0.39</MeleeCritChance>
+				<MeleeParryChance>1.59</MeleeParryChance>
+				<MeleeDodgeChance>0.90</MeleeDodgeChance>
+			</value>
+		</li>
+
+		<!-- Guan Do -->	
+
+		<li Class="PatchOperationReplace">
+			<xpath>Defs/ThingDef[defName="Ancient_GuanDo"]/tools</xpath>
+			<value>
+				<tools>
+					<li Class="CombatExtended.ToolCE">
+						<label>shaft</label>
+						<capacities>
+							<li>Blunt</li>
+						</capacities>
+						<power>9</power>
+						<cooldownTime>1.49</cooldownTime>
+						<chanceFactor>0.15</chanceFactor>
+						<armorPenetrationBlunt>3.375</armorPenetrationBlunt>
+						<linkedBodyPartsGroup>Shaft</linkedBodyPartsGroup>
+					</li>
+					<li Class="CombatExtended.ToolCE">
+						<label>shaft</label>
+						<capacities>
+							<li>Poke</li>
+						</capacities>
+						<power>5</power>
+						<cooldownTime>1.97</cooldownTime>
+						<chanceFactor>0.05</chanceFactor>
+						<armorPenetrationBlunt>1.50</armorPenetrationBlunt>
+						<linkedBodyPartsGroup>Point</linkedBodyPartsGroup>
+					</li>
+					<li Class="CombatExtended.ToolCE">
+						<label>head</label>
+						<capacities>
+							<li>Cut</li>
+						</capacities>
+						<power>39</power>
+						<cooldownTime>2.44</cooldownTime>
+						<chanceFactor>0.33</chanceFactor>
+						<armorPenetrationBlunt>4.86</armorPenetrationBlunt>
+						<armorPenetrationSharp>1.95</armorPenetrationSharp>
+						<linkedBodyPartsGroup>Head</linkedBodyPartsGroup>
+					</li>					
+				</tools>
+			</value>
+		</li>
+
+		<li Class="PatchOperationAdd">
+			<xpath>Defs/ThingDef[defName="Ancient_GuanDo"]/statBases</xpath>
+			<value>
+				<Bulk>12</Bulk>
+				<MeleeCounterParryBonus>0.98</MeleeCounterParryBonus>
+			</value>
+		</li>
+
+		<li Class="PatchOperationAdd">
+			<xpath>Defs/ThingDef[defName="Ancient_GuanDo"]</xpath>
+			<value>
+				<equippedStatOffsets>
+					<MeleeCritChance>0.11</MeleeCritChance>
+					<MeleeParryChance>0.73</MeleeParryChance>
+					<MeleeDodgeChance>0.73</MeleeDodgeChance>
+				</equippedStatOffsets>
+			</value>
+		</li>
+
+			</operations>
+		</match>
+	</Operation>
+</Patch>

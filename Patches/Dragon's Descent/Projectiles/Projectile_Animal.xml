@@ -1,39 +1,56 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <Patch>
-
 	<Operation Class="PatchOperationFindMod">
 		<mods>
 			<li>Dragon's Descent</li>
 		</mods>
-
 		<match Class="PatchOperationSequence">
 		<operations>
-
-			<!-- === Projectile_DragonBreath === -->
-			
+			<!-- Fire Breath -->
 			<li Class="PatchOperationReplace">
 				<xpath>/Defs/ThingDef[defName="Projectile_DragonBreath"]/thingClass</xpath>
 				<value>
 					<thingClass>CombatExtended.ProjectileCE_Explosive</thingClass>
 				</value>
-			</li>		
-			
+			</li>
 			<li Class="PatchOperationReplace">
 				<xpath>/Defs/ThingDef[defName="Projectile_DragonBreath"]/projectile</xpath>
 				<value>
 					<projectile Class="CombatExtended.ProjectilePropertiesCE">
-						<speed>48</speed>
+						<speed>26</speed>
 						<flyOverhead>false</flyOverhead>
 						<damageDef>Flame</damageDef>
-						<damageAmountBase>4</damageAmountBase>
+						<damageAmountBase>5</damageAmountBase>
 						<soundExplode>DragonBreathFire</soundExplode>
-						<explosionRadius>1.1</explosionRadius>
+						<explosionRadius>1.5</explosionRadius>
 						<ai_IsIncendiary>true</ai_IsIncendiary>
 					</projectile>
 				</value>
 			</li>
-		</operations>		
+			<!-- Fire Spit -->
+			<li Class="PatchOperationReplace">
+				<xpath>/Defs/ThingDef[defName="Projectile_DragonSpit"]/thingClass</xpath>
+				<value>
+					<thingClass>CombatExtended.ProjectileCE_Explosive</thingClass>
+				</value>
+			</li>
+			<li Class="PatchOperationReplace">
+				<xpath>/Defs/ThingDef[defName="Projectile_DragonSpit"]/projectile</xpath>
+				<value>
+					<projectile Class="CombatExtended.ProjectilePropertiesCE">
+						<speed>38</speed>
+						<damageDef>PrometheumFlame</damageDef> <!-- Applies "promethium soaked" to hit pawns. -->
+						<explosionRadius>4.5</explosionRadius>
+						<damageAmountBase>16</damageAmountBase>
+						<preExplosionSpawnThingDef>Filth_Fuel</preExplosionSpawnThingDef>
+						<preExplosionSpawnChance>0.3</preExplosionSpawnChance>
+						<ai_IsIncendiary>true</ai_IsIncendiary>
+						<arcHeightFactor>0.2</arcHeightFactor>
+						<shadowSize>1</shadowSize>
+					</projectile>
+				</value>
+			</li>
+		</operations>
 		</match>
 	</Operation>
-
 </Patch>

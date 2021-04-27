@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+
+	<Operation Class="PatchOperationFindMod">
+					<mods>
+						<li>Vanilla Weapons Expanded - Frontier</li>
+					</mods>
+		<match Class="PatchOperationFindMod">
+					<mods>
+						<li>Vanilla Weapons Expanded - Coilguns</li>
+					</mods>
+					
+			<match Class="PatchOperationSequence">
+				<operations>
+ 
+		<!-- 
+		Temporarily remove the addon weapons until they're patched,
+		so non-working weapons don't spawn.
+		-->
+
+			<li Class="PatchOperationRemove">
+				<xpath>/Defs/ThingDef[defName="VWEFT_Gun_GaussRevolver" or defName="VWEFT_Gun_GaussRepeater"]</xpath>
+			</li>
+
+				</operations>
+			</match>					
+		</match>			
+	</Operation>
+
+</Patch>
+

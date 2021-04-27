@@ -369,6 +369,51 @@
 				</value>
 			</li>
 			
+			<!--Mammoth Hammer-->
+			
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="GI_Drill"]/tools</xpath>
+				<value>
+					<tools>
+						<li Class="CombatExtended.ToolCE">
+							<label>drill bit</label>
+							<capacities>
+								<li>Stab</li>
+							</capacities>
+							<power>60</power>
+							<cooldownTime>0.8</cooldownTime>
+							<chanceFactor>2</chanceFactor>
+							<armorPenetrationSharp>25</armorPenetrationSharp>
+							<armorPenetrationBlunt>36</armorPenetrationBlunt>
+							<extraMeleeDamages>
+							<li>
+								<def>Stun</def>
+								<amount>5</amount>
+								<chance>0.3</chance>
+							</li>
+							</extraMeleeDamages>	
+						</li>
+					</tools>
+				</value>
+			</li>
+			
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName="GI_Drill"]/statBases</xpath>
+				<value>
+					<Bulk>36</Bulk>
+					<MeleeCounterParryBonus>0</MeleeCounterParryBonus>
+				</value>
+			</li>
+			
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName="GI_Drill"]/equippedStatOffsets</xpath>
+				<value>
+						<MeleeCritChance>0</MeleeCritChance>
+						<MeleeParryChance>4</MeleeParryChance>
+						<MeleeDodgeChance>0.2</MeleeDodgeChance>
+				</value>
+			</li>
+			
 		</operations>
 		</match>	
 	  </li>

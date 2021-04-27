@@ -1,0 +1,513 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+
+  <Operation Class="PatchOperationFindMod">
+    <mods>
+      <li>Vanilla Weapons Expanded - Laser</li>
+    </mods>
+    <match Class="PatchOperationSequence">
+      <operations>
+
+      <!--
+      Compared to conventional weaponry, laser weapons have high magazine capacities and high rates of fire. No noticable recoil and the instantaneous
+      nature of their projectiles makes them accurate and easy to shoot, but their damage falls-off significantly with range as the beam scatters.
+
+      Scavenged/salvaged weapons are cruder than their refined counterparts. They're heavier and bulkier, take more time to warm up and cool down, and 
+      experience greater falloff due to imperfections in the focusing lenses, but they do slightly more damage.
+      -->
+
+      <!-- === Tools === -->
+
+      <li Class="PatchOperationReplace">
+        <xpath>/Defs/ThingDef[defName = "VWEL_Gun_LaserPistol" or defName = "VWEL_Gun_SalvagedLaserPistol"]/tools</xpath>
+        <value>
+          <tools>
+            <li Class="CombatExtended.ToolCE">
+              <label>grip</label>
+              <capacities>
+                <li>Blunt</li>
+              </capacities>
+              <power>2</power>
+              <cooldownTime>1.54</cooldownTime>
+              <chanceFactor>1.5</chanceFactor>
+              <armorPenetrationBlunt>0.555</armorPenetrationBlunt>
+              <linkedBodyPartsGroup>Grip</linkedBodyPartsGroup>
+            </li>
+            <li Class="CombatExtended.ToolCE">
+              <label>muzzle</label>
+              <capacities>
+                <li>Poke</li>
+              </capacities>
+              <power>2</power>
+              <cooldownTime>1.54</cooldownTime>
+              <armorPenetrationBlunt>0.555</armorPenetrationBlunt>
+              <linkedBodyPartsGroup>Muzzle</linkedBodyPartsGroup>
+            </li>
+          </tools>
+        </value>
+      </li>
+
+      <li Class="PatchOperationReplace">
+        <xpath>/Defs/ThingDef[
+        defName = "VWEL_Gun_LaserSMG" or
+        defName = "VWEL_Gun_LaserRifle" or
+        defName = "VWEL_Gun_LaserShotgun" or
+        defName = "VWEL_Gun_LaserSniperRifle" or
+        defName = "VWEL_Gun_SalvagedLaserRifle" or
+        defName = "VWEL_Gun_SalvagedLaserShotgun" or
+        defName = "VWEL_Gun_SalvagedLaserSniperRifle"
+        ]/tools</xpath>
+        <value>
+          <tools>
+            <li Class="CombatExtended.ToolCE">
+              <label>stock</label>
+              <capacities>
+                <li>Blunt</li>
+              </capacities>
+              <power>8</power>
+              <cooldownTime>1.55</cooldownTime>
+              <chanceFactor>1.5</chanceFactor>
+              <armorPenetrationBlunt>2.755</armorPenetrationBlunt>
+              <linkedBodyPartsGroup>Stock</linkedBodyPartsGroup>
+            </li>
+            <li Class="CombatExtended.ToolCE">
+              <label>barrel</label>
+              <capacities>
+                <li>Blunt</li>
+              </capacities>
+              <power>5</power>
+              <cooldownTime>2.02</cooldownTime>
+              <armorPenetrationBlunt>1.630</armorPenetrationBlunt>
+              <linkedBodyPartsGroup>Barrel</linkedBodyPartsGroup>
+            </li>
+            <li Class="CombatExtended.ToolCE">
+              <label>muzzle</label>
+              <capacities>
+                <li>Poke</li>
+              </capacities>
+              <power>8</power>
+              <cooldownTime>1.55</cooldownTime>
+              <armorPenetrationBlunt>2.755</armorPenetrationBlunt>
+              <linkedBodyPartsGroup>Muzzle</linkedBodyPartsGroup>
+            </li>
+          </tools>
+        </value>
+      </li>
+
+      <li Class="PatchOperationReplace">
+        <xpath>/Defs/ThingDef[defName="VWEL_Gun_LaserMinigun" or defName = "VWEL_Gun_TeslaGun"]/tools</xpath>
+        <value>
+          <tools>
+            <li Class="CombatExtended.ToolCE">
+              <label>barrel</label>
+              <capacities>
+                <li>Blunt</li>
+              </capacities>
+              <power>10</power>
+              <cooldownTime>2.44</cooldownTime>
+              <armorPenetrationBlunt>3.5</armorPenetrationBlunt>
+              <linkedBodyPartsGroup>Barrel</linkedBodyPartsGroup>
+            </li>
+          </tools>
+        </value>
+      </li>
+
+      <!-- === Remove VWE Overheating Gizmo === -->
+
+      <li Class="PatchOperationRemove">
+        <xpath>/Defs/ThingDef[
+        defName = "VWEL_Gun_LaserPistol" or 
+        defName = "VWEL_Gun_SalvagedLaserPistol" or        
+        defName = "VWEL_Gun_LaserSMG" or
+        defName = "VWEL_Gun_LaserRifle" or
+        defName = "VWEL_Gun_LaserShotgun" or
+        defName = "VWEL_Gun_LaserSniperRifle" or
+        defName = "VWEL_Gun_SalvagedLaserRifle" or
+        defName = "VWEL_Gun_SalvagedLaserShotgun" or
+        defName = "VWEL_Gun_SalvagedLaserSniperRifle" or        
+        defName="VWEL_Gun_LaserMinigun" or
+        defName = "VWEL_Gun_TeslaGun"
+        ]/comps/li[@Class="VanillaWeaponsExpandedLaser.CompProperties_LaserCapacitor"]</xpath>
+      </li>
+
+      <!-- === Laser Pistol === -->
+      <li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+        <defName>VWEL_Gun_LaserPistol</defName>
+        <statBases>
+          <Mass>1.20</Mass>
+          <Bulk>2.30</Bulk>
+          <SwayFactor>1.17</SwayFactor>
+          <ShotSpread>0.06</ShotSpread>
+          <SightsEfficiency>0.8</SightsEfficiency>
+          <RangedWeapon_Cooldown>0.35</RangedWeapon_Cooldown>
+        </statBases>
+        <Properties>
+          <verbClass>CombatExtended.Verb_ShootCE</verbClass>
+          <hasStandardCommand>True</hasStandardCommand>
+          <defaultProjectile>Bullet_Laser_LaserPistol</defaultProjectile>
+          <warmupTime>0.5</warmupTime>
+          <range>16</range>
+          <soundCast>VWE_LaserShot_Light</soundCast>
+          <soundCastTail>GunTail_Heavy</soundCastTail>
+          <muzzleFlashScale>9</muzzleFlashScale>
+        </Properties>
+        <AmmoUser>
+          <magazineSize>20</magazineSize>
+          <reloadTime>4</reloadTime>
+          <ammoSet>AmmoSet_LaserPistol</ammoSet>
+        </AmmoUser>
+        <FireModes>
+          <aiAimMode>AimedShot</aiAimMode>
+        </FireModes>
+        <weaponTags>
+          <li>SpacerGun</li>
+          <li>LaserGun</li>
+          <li>CE_OneHandedWeapon</li>
+        </weaponTags>
+      </li>
+
+      <!-- === Salvaged Laser Pistol === -->
+      <li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+        <defName>VWEL_Gun_SalvagedLaserPistol</defName>
+        <statBases>
+          <Mass>1.40</Mass>
+          <Bulk>2.60</Bulk>
+          <SwayFactor>1.33</SwayFactor>
+          <ShotSpread>0.08</ShotSpread>
+          <SightsEfficiency>0.7</SightsEfficiency>
+          <RangedWeapon_Cooldown>0.5</RangedWeapon_Cooldown>
+        </statBases>
+        <Properties>
+          <verbClass>CombatExtended.Verb_ShootCE</verbClass>
+          <hasStandardCommand>True</hasStandardCommand>
+          <defaultProjectile>Bullet_Laser_SalvagedLaserPistol</defaultProjectile>
+          <warmupTime>0.6</warmupTime>
+          <range>16</range>
+          <soundCast>VWE_UnstableLaserShot_Light</soundCast>
+          <soundCastTail>GunTail_Heavy</soundCastTail>
+          <muzzleFlashScale>9</muzzleFlashScale>
+        </Properties>
+        <AmmoUser>
+          <magazineSize>20</magazineSize>
+          <reloadTime>4</reloadTime>
+          <ammoSet>AmmoSet_SalvagedLaserPistol</ammoSet>
+        </AmmoUser>
+        <FireModes>
+          <aiAimMode>AimedShot</aiAimMode>
+        </FireModes>
+        <weaponTags>
+          <li>SalvagedLaserGun</li>
+          <li>CE_OneHandedWeapon</li>
+        </weaponTags>
+      </li>
+
+      <!-- === Laser SMG === -->
+      <li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+        <defName>VWEL_Gun_LaserSMG</defName>
+        <statBases>
+          <Mass>2.25</Mass>
+          <Bulk>6.90</Bulk>
+          <SwayFactor>0.92</SwayFactor>
+          <ShotSpread>0.06</ShotSpread>
+          <SightsEfficiency>0.8</SightsEfficiency>
+          <RangedWeapon_Cooldown>0.35</RangedWeapon_Cooldown>
+        </statBases>
+        <Properties>
+          <verbClass>CombatExtended.Verb_ShootCE</verbClass>
+          <hasStandardCommand>True</hasStandardCommand>
+          <defaultProjectile>Bullet_Laser_LaserSMG</defaultProjectile>
+          <warmupTime>0.5</warmupTime>
+          <range>28</range>
+          <burstShotCount>7</burstShotCount>
+          <ticksBetweenBurstShots>4</ticksBetweenBurstShots>          
+          <soundCast>VWE_LaserShot_Light</soundCast>
+          <soundCastTail>GunTail_Heavy</soundCastTail>
+          <muzzleFlashScale>9</muzzleFlashScale>
+        </Properties>
+        <AmmoUser>
+          <magazineSize>45</magazineSize>
+          <reloadTime>4</reloadTime>
+          <ammoSet>AmmoSet_LaserSMG</ammoSet>
+        </AmmoUser>
+        <FireModes>
+          <aiAimMode>AimedShot</aiAimMode>
+          <aimedBurstShotCount>5</aimedBurstShotCount>
+        </FireModes>
+      </li>
+
+      <!-- === Laser Rifle === -->
+      <li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+        <defName>VWEL_Gun_LaserRifle</defName>
+        <statBases>
+          <Mass>3.50</Mass>
+          <Bulk>10.00</Bulk>
+          <SwayFactor>1.35</SwayFactor>
+          <ShotSpread>0.06</ShotSpread>
+          <SightsEfficiency>1.10</SightsEfficiency>
+          <RangedWeapon_Cooldown>0.35</RangedWeapon_Cooldown>
+        </statBases>
+        <Properties>
+          <recoilAmount>0.01</recoilAmount>
+          <verbClass>CombatExtended.Verb_ShootCE</verbClass>
+          <hasStandardCommand>True</hasStandardCommand>
+          <defaultProjectile>Bullet_Laser_LaserRifle</defaultProjectile>
+          <warmupTime>1</warmupTime>
+          <range>62</range>
+          <burstShotCount>6</burstShotCount>
+          <ticksBetweenBurstShots>4</ticksBetweenBurstShots>      
+          <soundCast>VWE_UnstableLaserShot_Rifle</soundCast>
+          <soundCastTail>GunTail_Heavy</soundCastTail>
+          <muzzleFlashScale>9</muzzleFlashScale>
+        </Properties>
+        <AmmoUser>
+          <magazineSize>60</magazineSize>
+          <reloadTime>4</reloadTime>
+          <ammoSet>AmmoSet_LaserRifle</ammoSet>
+        </AmmoUser>
+        <FireModes>
+          <aiAimMode>AimedShot</aiAimMode>
+          <aiUseBurstMode>True</aiUseBurstMode>
+          <aimedBurstShotCount>3</aimedBurstShotCount>            
+        </FireModes>
+      </li>
+
+      <!-- === Salvaged Laser Rifle === -->
+      <li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+        <defName>VWEL_Gun_SalvagedLaserRifle</defName>
+        <statBases>
+          <Mass>3.60</Mass>
+          <Bulk>10.10</Bulk>
+          <SwayFactor>1.37</SwayFactor>
+          <ShotSpread>0.08</ShotSpread>
+          <SightsEfficiency>1.00</SightsEfficiency>
+          <RangedWeapon_Cooldown>0.45</RangedWeapon_Cooldown>
+        </statBases>
+        <Properties>
+          <recoilAmount>0.01</recoilAmount>
+          <verbClass>CombatExtended.Verb_ShootCE</verbClass>
+          <hasStandardCommand>True</hasStandardCommand>
+          <defaultProjectile>Bullet_Laser_SalvagedLaserRifle</defaultProjectile>
+          <warmupTime>1</warmupTime>
+          <range>62</range>
+          <burstShotCount>6</burstShotCount>
+          <ticksBetweenBurstShots>4</ticksBetweenBurstShots>      
+          <soundCast>VWE_UnstableLaserShot_Rifle</soundCast>
+          <soundCastTail>GunTail_Heavy</soundCastTail>
+          <muzzleFlashScale>9</muzzleFlashScale>
+        </Properties>
+        <AmmoUser>
+          <magazineSize>60</magazineSize>
+          <reloadTime>4</reloadTime>
+          <ammoSet>AmmoSet_SalvagedLaserRifle</ammoSet>
+        </AmmoUser>
+        <FireModes>
+          <aiAimMode>AimedShot</aiAimMode>
+          <aiUseBurstMode>True</aiUseBurstMode>
+          <aimedBurstShotCount>3</aimedBurstShotCount>            
+        </FireModes>
+      </li>
+
+      <!-- === Laser Shotgun === -->
+      <li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+        <defName>VWEL_Gun_LaserShotgun</defName>
+        <statBases>
+          <Mass>3.40</Mass>
+          <Bulk>9.00</Bulk>
+          <SwayFactor>1.24</SwayFactor>
+          <ShotSpread>0.06</ShotSpread>
+          <SightsEfficiency>1.10</SightsEfficiency>
+          <RangedWeapon_Cooldown>0.38</RangedWeapon_Cooldown>
+        </statBases>
+        <Properties>
+          <recoilAmount>0.01</recoilAmount>
+          <verbClass>CombatExtended.Verb_ShootCE</verbClass>
+          <hasStandardCommand>True</hasStandardCommand>
+          <defaultProjectile>Bullet_Laser_LaserShotgun</defaultProjectile>
+          <warmupTime>0.5</warmupTime>
+          <range>17</range>
+          <soundCast>VWE_LaserShot_Heavy</soundCast>
+          <soundCastTail>GunTail_Heavy</soundCastTail>
+          <muzzleFlashScale>9</muzzleFlashScale>
+        </Properties>
+        <AmmoUser>
+          <magazineSize>20</magazineSize>
+          <reloadTime>4</reloadTime>
+          <ammoSet>AmmoSet_LaserShotgun</ammoSet>
+        </AmmoUser>
+        <FireModes>
+          <aiAimMode>AimedShot</aiAimMode>
+          <aiUseBurstMode>True</aiUseBurstMode>      
+        </FireModes>
+      </li>
+      
+      <!-- === Salvaged Laser Shotgun === -->
+      <li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+        <defName>VWEL_Gun_SalvagedLaserShotgun</defName>
+        <statBases>
+          <Mass>3.50</Mass>
+          <Bulk>9.10</Bulk>
+          <SwayFactor>1.26</SwayFactor>
+          <ShotSpread>0.06</ShotSpread>
+          <SightsEfficiency>1.00</SightsEfficiency>
+          <RangedWeapon_Cooldown>0.45</RangedWeapon_Cooldown>
+        </statBases>
+        <Properties>
+          <recoilAmount>0.01</recoilAmount>
+          <verbClass>CombatExtended.Verb_ShootCE</verbClass>
+          <hasStandardCommand>True</hasStandardCommand>
+          <defaultProjectile>Bullet_Laser_SalvagedLaserShotgun</defaultProjectile>
+          <warmupTime>0.65</warmupTime>
+          <range>17</range>
+          <soundCast>VWE_LaserShot_Heavy</soundCast>
+          <soundCastTail>GunTail_Heavy</soundCastTail>
+          <muzzleFlashScale>9</muzzleFlashScale>
+        </Properties>
+        <AmmoUser>
+          <magazineSize>20</magazineSize>
+          <reloadTime>4</reloadTime>
+          <ammoSet>AmmoSet_SalvagedLaserShotgun</ammoSet>
+        </AmmoUser>
+        <FireModes>
+          <aiAimMode>AimedShot</aiAimMode>
+          <aiUseBurstMode>True</aiUseBurstMode>      
+        </FireModes>
+      </li>
+
+      <!-- === Laser Sniper Rifle === -->
+      <li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+        <defName>VWEL_Gun_LaserSniperRifle</defName>
+        <statBases>
+          <Mass>4.20</Mass>
+          <Bulk>13.00</Bulk>
+          <SwayFactor>1.19</SwayFactor>
+          <ShotSpread>0.04</ShotSpread>
+          <SightsEfficiency>2.48</SightsEfficiency>
+          <RangedWeapon_Cooldown>0.55</RangedWeapon_Cooldown>
+        </statBases>
+        <Properties>
+          <verbClass>CombatExtended.Verb_ShootCE</verbClass>
+          <hasStandardCommand>True</hasStandardCommand>
+          <defaultProjectile>Bullet_Laser_LaserSniperRifle</defaultProjectile>
+          <warmupTime>1.7</warmupTime>
+          <range>81</range>
+          <soundCast>VWE_LaserShot_Heavy</soundCast>
+          <soundCastTail>GunTail_Heavy</soundCastTail>
+          <muzzleFlashScale>9</muzzleFlashScale>
+        </Properties>
+        <AmmoUser>
+          <magazineSize>15</magazineSize>
+          <reloadTime>4</reloadTime>
+          <ammoSet>AmmoSet_LaserSniperRifle</ammoSet>
+        </AmmoUser>
+        <FireModes>
+          <aiAimMode>AimedShot</aiAimMode>     
+        </FireModes>
+      </li>
+
+      <!-- === Salvaged Laser Sniper Rifle === -->
+      <li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+        <defName>VWEL_Gun_SalvagedLaserSniperRifle</defName>
+        <statBases>
+          <Mass>4.45</Mass>
+          <Bulk>13.50</Bulk>
+          <SwayFactor>1.35</SwayFactor>
+          <ShotSpread>0.03</ShotSpread>
+          <SightsEfficiency>2.36</SightsEfficiency>
+          <RangedWeapon_Cooldown>0.65</RangedWeapon_Cooldown>
+        </statBases>
+        <Properties>
+          <verbClass>CombatExtended.Verb_ShootCE</verbClass>
+          <hasStandardCommand>True</hasStandardCommand>
+          <defaultProjectile>Bullet_Laser_SalvagedLaserSniperRifle</defaultProjectile>
+          <warmupTime>1.85</warmupTime>
+          <range>81</range>
+          <soundCast>VWE_LaserShot_Heavy</soundCast>
+          <soundCastTail>GunTail_Heavy</soundCastTail>
+          <muzzleFlashScale>9</muzzleFlashScale>
+        </Properties>
+        <AmmoUser>
+          <magazineSize>15</magazineSize>
+          <reloadTime>4</reloadTime>
+          <ammoSet>AmmoSet_SalvagedLaserSniperRifle</ammoSet>
+        </AmmoUser>
+        <FireModes>
+          <aiAimMode>AimedShot</aiAimMode>     
+        </FireModes>
+      </li>
+
+      <!-- === Laser Minigun === -->
+      <li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+        <defName>VWEL_Gun_LaserMinigun</defName>
+        <statBases>
+          <Mass>16.00</Mass>
+          <Bulk>10.40</Bulk>
+          <SwayFactor>2.64</SwayFactor>
+          <ShotSpread>0.06</ShotSpread>
+          <SightsEfficiency>1</SightsEfficiency>
+          <RangedWeapon_Cooldown>0.36</RangedWeapon_Cooldown>
+        </statBases>
+        <Properties>
+          <verbClass>CombatExtended.Verb_ShootCE</verbClass>
+          <hasStandardCommand>True</hasStandardCommand>
+          <defaultProjectile>Bullet_Laser_LaserMiniGun</defaultProjectile>
+          <burstShotCount>250</burstShotCount>
+          <ticksBetweenBurstShots>1</ticksBetweenBurstShots>
+          <warmupTime>2</warmupTime>
+          <range>75</range>
+          <soundCast>VWE_LaserShot_Rifle</soundCast>
+          <soundCastTail>GunTail_Heavy</soundCastTail>
+          <muzzleFlashScale>9</muzzleFlashScale>
+          <recoilAmount>0.01</recoilAmount>
+          <recoilPattern>Regular</recoilPattern>
+        </Properties>
+        <AmmoUser>
+          <magazineSize>1000</magazineSize>
+          <reloadTime>6</reloadTime>
+          <ammoSet>AmmoSet_LaserMiniGun</ammoSet>
+        </AmmoUser>
+        <FireModes>
+          <aiAimMode>SuppressFire</aiAimMode>
+          <aimedBurstShotCount>100</aimedBurstShotCount>
+          <noSingleShot>true</noSingleShot>
+        </FireModes>
+      </li>
+
+      <!-- === Tesla Gun === -->
+      <li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+        <defName>VWEL_Gun_TeslaGun</defName>
+        <statBases>
+          <Mass>8.0</Mass>
+          <Bulk>10.0</Bulk>
+          <SwayFactor>1.80</SwayFactor>
+          <ShotSpread>0.01</ShotSpread>
+          <SightsEfficiency>1.1</SightsEfficiency>
+          <RangedWeapon_Cooldown>0.35</RangedWeapon_Cooldown>
+        </statBases>
+        <Properties>
+          <verbClass>CombatExtended.Verb_ShootCE</verbClass>
+          <hasStandardCommand>True</hasStandardCommand>
+          <defaultProjectile>Bullet_Laser_TeslaGun</defaultProjectile>
+          <burstShotCount>30</burstShotCount>
+          <ticksBetweenBurstShots>4</ticksBetweenBurstShots>
+          <warmupTime>0.8</warmupTime>
+          <range>31</range>
+          <soundCast>VWE_LaserShot_Electricity</soundCast>
+          <soundCastTail>GunTail_Heavy</soundCastTail>
+          <muzzleFlashScale>9</muzzleFlashScale>
+          <recoilAmount>0.01</recoilAmount>
+        </Properties>
+        <AmmoUser>
+          <magazineSize>200</magazineSize>
+          <reloadTime>6.2</reloadTime>
+          <ammoSet>AmmoSet_LaserTeslaGun</ammoSet>
+        </AmmoUser>
+        <FireModes>
+          <aiAimMode>SuppressFire</aiAimMode>
+        </FireModes>
+      </li>
+
+      </operations>
+    </match>
+  </Operation>
+
+</Patch>

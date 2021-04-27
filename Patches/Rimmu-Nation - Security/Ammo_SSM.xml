@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Patch>
+
+	<Operation Class="PatchOperationFindMod">
+	<mods>
+		<li>[CP] Rimmu-Nation - Security</li>
+	</mods>
+	<match Class="PatchOperationSequence">
+	<operations>
+
+	<!-- ========== SSM Missile ========== -->
+	<li Class="PatchOperationAdd">
+		<xpath>Defs</xpath>
+		<value>
+
+	<!-- ==================== AmmoSet ========================== -->
+
+	<CombatExtended.AmmoSetDef>
+		<defName>AmmoSet_130mmType63_SSM</defName>
+		<label>130mm Type 63 Rockets</label>
+		<ammoTypes>
+			<Ammo_130mmType63_HE>Bullet_130mmType63_SSM</Ammo_130mmType63_HE>
+		</ammoTypes>
+	</CombatExtended.AmmoSetDef>
+
+	<!-- ==================== Ammo ========================== -->
+
+	<!-- ================== Projectiles ================== -->
+
+	<ThingDef ParentName="Base130mmType63">
+		<defName>Bullet_130mmType63_SSM</defName>
+		<thingClass>CombatExtended.ProjectileCE_Explosive</thingClass>
+		<label>130mm Type 63 Rocket (HE)</label>
+		
+		<graphicData>
+			<texPath>Things/Projectile/Rocket/130mmType63</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+		</graphicData>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageDef>Bomb</damageDef>
+			<damageAmountBase>254</damageAmountBase>
+			<explosionRadius>3.5</explosionRadius>
+			<applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
+			<speed>0</speed>
+		</projectile>
+		<comps>
+			<li Class="CombatExtended.CompProperties_Fragments">
+				<fragments>
+					<Fragment_Large>80</Fragment_Large>
+					<Fragment_Small>100</Fragment_Small>
+				</fragments>
+			</li>
+		</comps>		
+	</ThingDef>
+
+	<!-- ==================== Recipes ========================== -->
+
+		</value>
+    </li>
+
+	</operations>
+	</match>
+	</Operation>
+	
+</Patch>   

@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+  <Operation Class="PatchOperationSequence">
+	<operations>
+	  <li Class="PatchOperationFindMod">
+			
+		<mods><li>Epona Race</li></mods>
+			
+		<match Class="PatchOperationSequence">
+		<operations>
+			<!--Ammo-->
+			
+			<li Class="PatchOperationAddModExtension">
+				<xpath>Defs/PawnKindDef[
+				defName="EponaMerchant" or
+				defName="EponaDemiLancer" or
+				defName="EponaHarquebusier" or
+				defName="EponaKnight" or
+				defName="EponaKnightCaptain" or
+				defName="EponaHighlander" or
+				defName="EponaHighlanderRanger" or
+				defName="EponaHighlanderCaptain" or
+				defName="EponaSenator" or
+				defName="EponaPaladin"
+				]</xpath>
+				<value>
+					<li Class="CombatExtended.LoadoutPropertiesExtension">
+					<primaryMagazineCount>
+						<min>2</min>
+						<max>5</max>
+					</primaryMagazineCount>
+					</li>
+				</value>
+			</li>
+			
+			<li Class="PatchOperationAddModExtension">
+				<xpath>Defs/PawnKindDef[
+				defName="Epona_BattleRamNPC"
+				]</xpath>
+				<value>
+					<li Class="CombatExtended.LoadoutPropertiesExtension">
+					<primaryMagazineCount>
+						<min>4</min>
+						<max>4</max>
+					</primaryMagazineCount>
+					</li>
+				</value>
+			</li>
+			
+			<li Class="PatchOperationAddModExtension">
+				<xpath>Defs/PawnKindDef[defName="EponaArcher"]</xpath>
+				<value>
+					<li Inherit="False" Class="CombatExtended.LoadoutPropertiesExtension">
+					<primaryMagazineCount>
+						<min>15</min>
+						<max>25</max>
+					</primaryMagazineCount>
+					<forcedSidearm>
+					  <sidearmMoney>
+						<min>500</min>
+						<max>1200</max>
+					  </sidearmMoney>
+					  <weaponTags>
+						<li>EponaCommon</li>
+					  </weaponTags>
+					</forcedSidearm>
+					</li>
+				</value>
+			</li>
+			
+			<li Class="PatchOperationAddModExtension">
+				<xpath>Defs/PawnKindDef[defName="EponaHighlanderGrenade"]</xpath>
+				<value>
+					<li Inherit="False" Class="CombatExtended.LoadoutPropertiesExtension">
+					<primaryMagazineCount>
+						<min>4</min>
+						<max>15</max>
+					</primaryMagazineCount>
+					<forcedSidearm>
+					  <sidearmMoney>
+						<min>500</min>
+						<max>1200</max>
+					  </sidearmMoney>
+					  <weaponTags>
+						<li>EponaCommon</li>
+					  </weaponTags>
+					</forcedSidearm>
+					</li>
+				</value>
+			</li>
+			
+			<li Class="PatchOperationAddModExtension">
+				<xpath>Defs/PawnKindDef[defName="EponaTankDestroyer"]</xpath>
+				<value>
+					<li Inherit="False" Class="CombatExtended.LoadoutPropertiesExtension">
+					<primaryMagazineCount>
+						<min>2</min>
+						<max>5</max>
+					</primaryMagazineCount>
+					<forcedSidearm>
+					  <sidearmMoney>
+						<min>500</min>
+						<max>1200</max>
+					  </sidearmMoney>
+					  <weaponTags>
+						<li>EponaCommon</li>
+					  </weaponTags>
+					</forcedSidearm>
+					</li>
+				</value>
+			</li>
+			
+		</operations>
+		</match>	
+	  </li>
+	</operations>	
+  </Operation>
+</Patch>

@@ -10,6 +10,14 @@
       <operations>
         <!-- === Boombat === -->
         <li Class="PatchOperationAdd">
+          <xpath>/Defs/ThingDef[defName="AEXP_Boombat"]/tradeTags</xpath>
+
+          <value>
+            <li>CE_AnimalBoom</li>
+          </value>
+        </li>
+
+        <li Class="PatchOperationAdd">
           <xpath>/Defs/ThingDef[defName="AEXP_Boombat"]/statBases</xpath>
 
           <value>
@@ -69,6 +77,44 @@
                 <ensureLinkedBodyPartsGroupAlwaysUsable>true</ensureLinkedBodyPartsGroupAlwaysUsable>
               </li>
             </tools>
+          </value>
+        </li>
+
+        <li Class="PatchOperationSequence">
+          <success>Always</success>
+          <operations>
+            <li Class="PatchOperationTest">
+              <xpath>/Defs/ThingDef[defName="AEXP_Boombat"]/comps</xpath>
+              <success>Invert</success>
+            </li>
+            <li Class="PatchOperationAdd">
+              <xpath>/Defs/ThingDef[defName="AEXP_Boombat"]</xpath>
+              <value>
+                <comps />
+              </value>
+            </li>
+          </operations>
+        </li>
+
+        <li Class="PatchOperationAdd">
+          <xpath>/Defs/ThingDef[defName="AEXP_Boombat"]/comps</xpath>
+          <value>
+            <li Class="CombatExtended.CompProperties_ShearableRenameable">
+              <compClass>CombatExtended.CompShearableRenameable</compClass>
+              <growthLabel>Secretion level</growthLabel>
+              <shearIntervalDays>3</shearIntervalDays>
+              <woolAmount>1</woolAmount>
+              <woolDef>FSX</woolDef>
+            </li>
+          </value>
+        </li>
+
+        <li Class="PatchOperationAdd">
+          <xpath>/Defs/ThingDef[defName="AEXP_Boombat"]</xpath>
+          <value>
+            <butcherProducts>
+              <FSX>2</FSX>
+            </butcherProducts>
           </value>
         </li>
 

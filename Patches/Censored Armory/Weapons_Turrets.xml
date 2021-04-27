@@ -1,0 +1,575 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Patch>
+
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+			<li>Censored Armory [1.2]</li>
+		</mods>
+		<match Class="PatchOperationSequence">
+			<operations>
+
+				<!-- ========== Common to all Turrets ========== -->
+
+				<li Class="PatchOperationReplace">
+					<xpath>
+						Defs/ThingDef[
+							@Name="Base_PaK_36_RA" or 
+							@Name="Base_leIG_18_RA" or 
+							@Name="Base_Nebelwerfer_41_RA" or 
+							@Name="Base_PaK_40_RA" or 
+							defName="Turret_Flak_38_Panzergrau_RA" or 
+							defName="Turret_Flak_38_Dunkelgelb_RA" or 
+							defName="Turret_Flak_38_Camo_RA" or 
+							defName="Turret_MG_42_RA"			
+						]/thingClass
+					</xpath>
+					<value>
+						<thingClass>CombatExtended.Building_TurretGunCE</thingClass>
+					</value>
+				</li>
+
+				<li Class="PatchOperationRemove">
+					<xpath>Defs/ThingDef[@Name="Base_PaK_40_Weapon_RA"]/building/defaultStorageSettings/filter/disallowedThingDefs</xpath>
+				</li>
+
+				<li Class="PatchOperationRemove">
+					<xpath>Defs/ThingDef[@Name="Base_PaK_40_RA"]/inspectorTabs</xpath>
+				</li>
+
+				<li Class="PatchOperationRemove">
+					<xpath>
+						Defs/ThingDef[
+							defName="Turret_Flak_38_Panzergrau_RA" or 
+							defName="Turret_Flak_38_Dunkelgelb_RA" or 
+							defName="Turret_Flak_38_Camo_RA" or 
+							defName="Turret_MG_42_RA"					
+						]/comps/li[@Class = "CompProperties_Refuelable"]
+					</xpath>
+				</li>
+
+				<!-- ========== Remove Vanilla Shells & Ammo & References ========== -->
+
+				<li Class="PatchOperationRemove">
+					<xpath>
+						Defs/ThingDef[defName="Shell_PaK_36_HE_RA"] |
+						Defs/ThingDef[defName="Shell_PaK_36_APCR_RA"] |
+						Defs/ThingDef[defName="Shell_leIG_18_HE_RA"] |
+						Defs/ThingDef[defName="Shell_leIG_18_HEAT_RA"] |
+						Defs/ThingDef[defName="Shell_Nebelwerfer_41_HE_RA"] |
+						Defs/ThingDef[defName="Belt_Flak_38_HEFIT_RA"] |
+						Defs/ThingDef[defName="Shell_PaK_40_HE_RA"] |
+						Defs/ThingDef[defName="Shell_PaK_40_APHECBC_RA"] |
+						Defs/ThingDef[defName="Shell_PaK_40_APCR_RA"]
+					</xpath>
+				</li>
+
+				<!-- ========== MG 42 (Static) ========== -->
+
+				<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+					<defName>Gun_MG_42_T_RA</defName>
+					<statBases>
+						<Mass>15.20</Mass>
+						<RangedWeapon_Cooldown>0.56</RangedWeapon_Cooldown>
+						<SightsEfficiency>1</SightsEfficiency>
+						<ShotSpread>0.06</ShotSpread>
+						<SwayFactor>0.94</SwayFactor>
+						<Bulk>11.60</Bulk>
+					</statBases>
+					<Properties>
+						<recoilAmount>1.25</recoilAmount>
+						<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+						<hasStandardCommand>true</hasStandardCommand>
+						<defaultProjectile>Bullet_792x57mmMauser_FMJ</defaultProjectile>
+						<warmupTime>1.3</warmupTime>
+						<range>62</range>
+						<ticksBetweenBurstShots>3</ticksBetweenBurstShots>
+						<burstShotCount>10</burstShotCount>
+						<soundCast>Shot_MG_42</soundCast>
+						<soundCastTail>GunTail_Heavy</soundCastTail>
+						<muzzleFlashScale>9</muzzleFlashScale>
+						<targetParams>
+							<canTargetLocations>true</canTargetLocations>
+						</targetParams>
+						<recoilPattern>Mounted</recoilPattern>
+					</Properties>
+					<AmmoUser>
+						<magazineSize>100</magazineSize>
+						<reloadTime>7.8</reloadTime>
+						<ammoSet>AmmoSet_792x57mmMauser</ammoSet>
+					</AmmoUser>
+					<FireModes>
+						<aimedBurstShotCount>5</aimedBurstShotCount>
+						<aiUseBurstMode>FALSE</aiUseBurstMode>
+						<aiAimMode>SuppressFire</aiAimMode>
+					</FireModes>
+					<weaponTags>
+						<li>TurretGun</li>
+					</weaponTags>
+				</li>
+
+				<!-- ========== Flak 38 ========== -->
+				<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+					<defName>Gun_Flak_38_Camo_RA</defName>
+					<statBases>
+						<RangedWeapon_Cooldown>2.3</RangedWeapon_Cooldown>
+						<SightsEfficiency>2.18</SightsEfficiency>
+						<ShotSpread>0.01</ShotSpread>
+						<SwayFactor>3.07</SwayFactor>
+					</statBases>
+					<Properties>
+						<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+						<hasStandardCommand>true</hasStandardCommand>
+						<defaultProjectile>Bullet_20x138mmB_FMJ</defaultProjectile>
+						<warmupTime>4.45</warmupTime>
+						<range>72</range>
+						<burstShotCount>5</burstShotCount>
+						<ticksBetweenBurstShots>15</ticksBetweenBurstShots>
+						<soundCast>Shot_Flak_38</soundCast>
+						<soundCastTail>GunTail_Heavy</soundCastTail>
+						<muzzleFlashScale>12</muzzleFlashScale>
+						<targetParams>
+							<canTargetLocations>true</canTargetLocations>
+						</targetParams>
+						<recoilPattern>Mounted</recoilPattern>
+					</Properties>
+					<AmmoUser>
+						<magazineSize>20</magazineSize>
+						<reloadTime>6</reloadTime>
+						<ammoSet>AmmoSet_20x138mmB</ammoSet>
+					</AmmoUser>
+					<FireModes>
+						<aimedBurstShotCount>4</aimedBurstShotCount>
+						<aiAimMode>SuppressFire</aiAimMode>
+						<noSnapshot>true</noSnapshot>
+						<noSingleShot>true</noSingleShot>
+					</FireModes>
+					<weaponTags>
+						<li>TurretGun</li>
+					</weaponTags>
+				</li>
+
+				<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+					<defName>Gun_Flak_38_Panzergrau_RA</defName>
+					<statBases>
+						<RangedWeapon_Cooldown>2.3</RangedWeapon_Cooldown>
+						<SightsEfficiency>2.18</SightsEfficiency>
+						<ShotSpread>0.01</ShotSpread>
+						<SwayFactor>3.07</SwayFactor>
+					</statBases>
+					<Properties>
+						<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+						<hasStandardCommand>true</hasStandardCommand>
+						<defaultProjectile>Bullet_20x138mmB_FMJ</defaultProjectile>
+						<warmupTime>4.45</warmupTime>
+						<range>72</range>
+						<burstShotCount>5</burstShotCount>
+						<ticksBetweenBurstShots>15</ticksBetweenBurstShots>
+						<soundCast>Shot_Flak_38</soundCast>
+						<soundCastTail>GunTail_Heavy</soundCastTail>
+						<muzzleFlashScale>12</muzzleFlashScale>
+						<targetParams>
+							<canTargetLocations>true</canTargetLocations>
+						</targetParams>
+						<recoilPattern>Mounted</recoilPattern>
+					</Properties>
+					<AmmoUser>
+						<magazineSize>20</magazineSize>
+						<reloadTime>6</reloadTime>
+						<ammoSet>AmmoSet_20x138mmB</ammoSet>
+					</AmmoUser>
+					<FireModes>
+						<aimedBurstShotCount>4</aimedBurstShotCount>
+						<aiAimMode>SuppressFire</aiAimMode>
+						<noSnapshot>true</noSnapshot>
+						<noSingleShot>true</noSingleShot>
+					</FireModes>
+					<weaponTags>
+						<li>TurretGun</li>
+					</weaponTags>
+				</li>
+
+				<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+					<defName>Gun_Flak_38_Dunkelgelb_RA</defName>
+					<statBases>
+						<RangedWeapon_Cooldown>2.3</RangedWeapon_Cooldown>
+						<SightsEfficiency>2.18</SightsEfficiency>
+						<ShotSpread>0.01</ShotSpread>
+						<SwayFactor>3.07</SwayFactor>
+					</statBases>
+					<Properties>
+						<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+						<hasStandardCommand>true</hasStandardCommand>
+						<defaultProjectile>Bullet_20x138mmB_FMJ</defaultProjectile>
+						<warmupTime>4.45</warmupTime>
+						<range>72</range>
+						<burstShotCount>5</burstShotCount>
+						<ticksBetweenBurstShots>15</ticksBetweenBurstShots>
+						<soundCast>Shot_Flak_38</soundCast>
+						<soundCastTail>GunTail_Heavy</soundCastTail>
+						<muzzleFlashScale>12</muzzleFlashScale>
+						<targetParams>
+							<canTargetLocations>true</canTargetLocations>
+						</targetParams>
+						<recoilPattern>Mounted</recoilPattern>
+					</Properties>
+					<AmmoUser>
+						<magazineSize>20</magazineSize>
+						<reloadTime>6</reloadTime>
+						<ammoSet>AmmoSet_20x138mmB</ammoSet>
+					</AmmoUser>
+					<FireModes>
+						<aimedBurstShotCount>4</aimedBurstShotCount>
+						<aiAimMode>SuppressFire</aiAimMode>
+						<noSnapshot>true</noSnapshot>
+						<noSingleShot>true</noSingleShot>
+					</FireModes>
+					<weaponTags>
+						<li>TurretGun</li>
+					</weaponTags>
+				</li>
+
+				<!-- ========== PaK 36 ========== -->
+
+				<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+					<defName>Artillery_PaK_36_RA</defName>
+					<statBases>
+						<RangedWeapon_Cooldown>1.6</RangedWeapon_Cooldown>
+						<SightsEfficiency>1.5</SightsEfficiency>
+						<ShotSpread>0.02</ShotSpread>
+						<SwayFactor>1.89</SwayFactor>
+						<Bulk>40.00</Bulk>
+					</statBases>
+					<Properties>
+						<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+						<hasStandardCommand>true</hasStandardCommand>
+						<defaultProjectile>Bullet_37x249mmR_HE</defaultProjectile>
+						<warmupTime>1.4</warmupTime>
+						<range>78</range>
+						<soundCast>Shot_PaK_36</soundCast>
+						<soundCastTail>GunTail_Heavy</soundCastTail>
+						<muzzleFlashScale>12</muzzleFlashScale>
+						<recoilPattern>Mounted</recoilPattern>
+					</Properties>
+					<AmmoUser>
+						<magazineSize>1</magazineSize>
+						<reloadTime>3</reloadTime>
+						<ammoSet>AmmoSet_37x249mmR</ammoSet>
+					</AmmoUser>
+					<FireModes>
+						<aiAimMode>AimedShot</aiAimMode>
+					</FireModes>
+					<weaponTags>
+						<li>TurretGun</li>
+					</weaponTags>
+				</li>
+
+				<!-- ========== Flak 40 ========== -->
+
+				<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+					<defName>Artillery_PaK_40_Panzergrau_RA</defName>
+					<statBases>
+						<RangedWeapon_Cooldown>2.5</RangedWeapon_Cooldown>
+						<SightsEfficiency>2.1</SightsEfficiency>
+						<ShotSpread>0.01</ShotSpread>
+						<SwayFactor>1.01</SwayFactor>
+					</statBases>
+					<Properties>
+						<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+						<hasStandardCommand>true</hasStandardCommand>
+						<defaultProjectile>Bullet_75x714mmRShell_HE</defaultProjectile>
+						<warmupTime>3.7</warmupTime>
+						<range>94</range>
+						<soundCast>Shot_PaK_40</soundCast>
+						<soundCastTail>GunTail_Heavy</soundCastTail>
+						<muzzleFlashScale>29</muzzleFlashScale>
+						<targetParams>
+							<canTargetLocations>true</canTargetLocations>
+						</targetParams>
+						<recoilPattern>Mounted</recoilPattern>
+					</Properties>
+					<AmmoUser>
+						<magazineSize>1</magazineSize>
+						<reloadTime>10</reloadTime>
+						<ammoSet>AmmoSet_75x714mmRShell</ammoSet>
+					</AmmoUser>
+					<FireModes>
+						<aiAimMode>AimedShot</aiAimMode>
+					</FireModes>
+					<weaponTags>
+						<li>TurretGun</li>
+					</weaponTags>
+				</li>
+
+				<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+					<defName>Artillery_PaK_40_Camo_RA</defName>
+					<statBases>
+						<RangedWeapon_Cooldown>2.5</RangedWeapon_Cooldown>
+						<SightsEfficiency>2.1</SightsEfficiency>
+						<ShotSpread>0.01</ShotSpread>
+						<SwayFactor>1.01</SwayFactor>
+					</statBases>
+					<Properties>
+						<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+						<hasStandardCommand>true</hasStandardCommand>
+						<defaultProjectile>Bullet_75x714mmRShell_HE</defaultProjectile>
+						<warmupTime>3.7</warmupTime>
+						<range>94</range>
+						<soundCast>Shot_PaK_40</soundCast>
+						<soundCastTail>GunTail_Heavy</soundCastTail>
+						<muzzleFlashScale>29</muzzleFlashScale>
+						<targetParams>
+							<canTargetLocations>true</canTargetLocations>
+						</targetParams>
+						<recoilPattern>Mounted</recoilPattern>
+					</Properties>
+					<AmmoUser>
+						<magazineSize>1</magazineSize>
+						<reloadTime>10</reloadTime>
+						<ammoSet>AmmoSet_75x714mmRShell</ammoSet>
+					</AmmoUser>
+					<FireModes>
+						<aiAimMode>AimedShot</aiAimMode>
+					</FireModes>
+					<weaponTags>
+						<li>TurretGun</li>
+					</weaponTags>
+				</li>
+
+				<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+					<defName>Artillery_PaK_40_Dunkelgelb_RA</defName>
+					<statBases>
+						<RangedWeapon_Cooldown>2.5</RangedWeapon_Cooldown>
+						<SightsEfficiency>2.1</SightsEfficiency>
+						<ShotSpread>0.01</ShotSpread>
+						<SwayFactor>1.01</SwayFactor>
+					</statBases>
+					<Properties>
+						<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+						<hasStandardCommand>true</hasStandardCommand>
+						<defaultProjectile>Bullet_75x714mmRShell_HE</defaultProjectile>
+						<warmupTime>3.7</warmupTime>
+						<range>94</range>
+						<soundCast>Shot_PaK_40</soundCast>
+						<soundCastTail>GunTail_Heavy</soundCastTail>
+						<muzzleFlashScale>29</muzzleFlashScale>
+						<targetParams>
+							<canTargetLocations>true</canTargetLocations>
+						</targetParams>
+						<recoilPattern>Mounted</recoilPattern>
+					</Properties>
+					<AmmoUser>
+						<magazineSize>1</magazineSize>
+						<reloadTime>10</reloadTime>
+						<ammoSet>AmmoSet_75x714mmRShell</ammoSet>
+					</AmmoUser>
+					<FireModes>
+						<aiAimMode>AimedShot</aiAimMode>
+					</FireModes>
+					<weaponTags>
+						<li>TurretGun</li>
+					</weaponTags>
+				</li>
+
+				<!-- ========== leIG 18 ========== -->
+
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="Artillery_leIG_18_RA"]</xpath>
+					<value>
+						<statBases>
+							<SightsEfficiency>0.8</SightsEfficiency>
+						</statBases>
+					</value>
+				</li>
+
+				<li Class="PatchOperationSequence">
+					<success>Always</success>
+					<operations>
+						<li Class="PatchOperationTest">
+							<xpath>Defs/ThingDef[defName="Artillery_leIG_18_RA"]/comps</xpath>
+							<success>Invert</success>
+						</li>
+						<li Class="PatchOperationAdd">
+							<xpath>Defs/ThingDef[defName="Artillery_leIG_18_RA"]</xpath>
+							<value>
+								<comps />
+							</value>
+						</li>
+					</operations>
+				</li>
+
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="Artillery_leIG_18_RA"]/comps</xpath>
+					<value>
+						<li Class="CombatExtended.CompProperties_Charges">
+							<chargeSpeeds>
+								<li>30</li>
+								<li>42</li>
+								<li>70</li>
+								<li>80</li>
+							</chargeSpeeds>
+						</li>
+						<li Class="CombatExtended.CompProperties_AmmoUser">
+							<magazineSize>1</magazineSize>
+							<reloadTime>5</reloadTime>
+							<ammoSet>AmmoSet_75cmleIG18Shell</ammoSet>
+						</li>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="Artillery_leIG_18_RA"]/verbs</xpath>
+					<value>
+						<verbs>
+							<li Class="CombatExtended.VerbPropertiesCE">
+								<verbClass>CombatExtended.Verb_ShootMortarCE</verbClass>
+								<forceNormalTimeSpeed>false</forceNormalTimeSpeed>
+								<hasStandardCommand>true</hasStandardCommand>
+								<requireLineOfSight>false</requireLineOfSight>
+								<defaultProjectile>Bullet_75cmleIG18CannonShell_HE</defaultProjectile>
+								<warmupTime>10</warmupTime>
+								<minRange>10</minRange>
+								<range>95</range>
+								<burstShotCount>1</burstShotCount>
+								<soundCast>Shot_le.IG_18</soundCast>
+								<muzzleFlashScale>39</muzzleFlashScale>
+								<circularError>1</circularError>
+								<indirectFirePenalty>0.15</indirectFirePenalty>
+								<targetParams>
+									<canTargetLocations>true</canTargetLocations>
+								</targetParams>
+							</li>
+						</verbs>
+					</value>
+				</li>
+
+				<!-- Patch base -->
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[@Name="Base_leIG_18_RA"]/thingClass</xpath>
+					<value>
+						<thingClass>CombatExtended.Building_TurretGunCE</thingClass>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[@Name="Base_leIG_18_RA"]/building/turretBurstCooldownTime</xpath>
+					<value>
+						<turretBurstCooldownTime>5</turretBurstCooldownTime>
+					</value>
+				</li>
+
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[@Name="Base_leIG_18_RA"]/building</xpath>
+					<value>
+						<spawnedConceptLearnOpportunity>CE_MortarDirectFire</spawnedConceptLearnOpportunity>
+					</value>
+				</li>
+
+				<li Class="PatchOperationRemove">
+					<xpath>Defs/ThingDef[@Name="Base_leIG_18_RA"]/inspectorTabs</xpath>
+				</li>
+
+				<!-- ========== Nebelwerfer 41 ========== -->
+
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="Artillery_Nebelwerfer_41_RA"]</xpath>
+					<value>
+						<statBases>
+							<SightsEfficiency>0.8</SightsEfficiency>
+						</statBases>
+					</value>
+				</li>
+
+				<li Class="PatchOperationSequence">
+					<success>Always</success>
+					<operations>
+						<li Class="PatchOperationTest">
+							<xpath>Defs/ThingDef[defName="Artillery_Nebelwerfer_41_RA"]/comps</xpath>
+							<success>Invert</success>
+						</li>
+						<li Class="PatchOperationAdd">
+							<xpath>Defs/ThingDef[defName="Artillery_Nebelwerfer_41_RA"]</xpath>
+							<value>
+								<comps />
+							</value>
+						</li>
+					</operations>
+				</li>
+
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="Artillery_Nebelwerfer_41_RA"]/comps</xpath>
+					<value>
+						<li Class="CombatExtended.CompProperties_Charges">
+							<chargeSpeeds>
+								<li>30</li>
+								<li>50</li>
+								<li>70</li>
+								<li>90</li>
+							</chargeSpeeds>
+						</li>
+						<li Class="CombatExtended.CompProperties_AmmoUser">
+							<magazineSize>6</magazineSize>
+							<reloadTime>5</reloadTime>
+							<ammoSet>AmmoSet_155mmHowitzerShell</ammoSet>
+						</li>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="Artillery_Nebelwerfer_41_RA"]/verbs</xpath>
+					<value>
+						<verbs>
+							<li Class="CombatExtended.VerbPropertiesCE">
+								<verbClass>CombatExtended.Verb_ShootMortarCE</verbClass>
+								<forceNormalTimeSpeed>false</forceNormalTimeSpeed>
+								<hasStandardCommand>true</hasStandardCommand>
+								<requireLineOfSight>false</requireLineOfSight>
+								<defaultProjectile>Bullet_155mmHowitzerShell_HE</defaultProjectile>
+								<warmupTime>10</warmupTime>
+								<minRange>40</minRange>
+								<range>1000</range>
+								<burstShotCount></burstShotCount>
+								<soundCast>Shot_Nebelwerfer_41</soundCast>
+								<muzzleFlashScale>39</muzzleFlashScale>
+								<circularError>1</circularError>
+								<indirectFirePenalty>0.15</indirectFirePenalty>
+								<targetParams>
+									<canTargetLocations>true</canTargetLocations>
+								</targetParams>
+							</li>
+						</verbs>
+					</value>
+				</li>
+
+				<!-- Patch base -->
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[@Name="Base_Nebelwerfer_41_RA"]/thingClass</xpath>
+					<value>
+						<thingClass>CombatExtended.Building_TurretGunCE</thingClass>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[@Name="Base_Nebelwerfer_41_RA"]/building/turretBurstCooldownTime</xpath>
+					<value>
+						<turretBurstCooldownTime>5</turretBurstCooldownTime>
+					</value>
+				</li>
+
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[@Name="Base_Nebelwerfer_41_RA"]/building</xpath>
+					<value>
+						<spawnedConceptLearnOpportunity>CE_MortarDirectFire</spawnedConceptLearnOpportunity>
+					</value>
+				</li>
+
+				<li Class="PatchOperationRemove">
+					<xpath>Defs/ThingDef[@Name="Base_Nebelwerfer_41_RA"]/inspectorTabs</xpath>
+				</li>
+
+			</operations>
+		</match>
+	</Operation>
+
+</Patch>
