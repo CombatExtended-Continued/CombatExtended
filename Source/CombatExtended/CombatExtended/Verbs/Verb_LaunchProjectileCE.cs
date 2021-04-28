@@ -617,7 +617,7 @@ namespace CombatExtended
                 projectile.canTargetSelf = false;
 
                 var targetDistance = (sourceLoc - currentTarget.Cell.ToIntVec2.ToVector2Shifted()).magnitude;
-                projectile.minCollisionDistance = Mathf.Min(1.5f, targetDistance * 0.75f);
+                projectile.minCollisionDistance = GetMinCollisionDistance(targetDistance);
                 projectile.intendedTarget = currentTarget.Thing;
                 projectile.mount = caster.Position.GetThingList(caster.Map).FirstOrDefault(t => t is Pawn && t != caster);
                 projectile.AccuracyFactor = report.accuracyFactor * report.swayDegrees * ((numShotsFired + 1) * 0.75f);
@@ -664,6 +664,24 @@ namespace CombatExtended
                 CompReloadable.UsedOnce();
             }
             return true;
+        }
+
+        private float GetMinCollisionDistance(float targetDistance)
+        {
+            var shortRangeMinCollisionDistance = 1.5f;
+            var longRangeMinCollisionDistMult = 0.2f;
+            if (targetDistance <= shortRangeMinCollisionDistance / longRangeMinCollisionDistMult)
+            {
+                //For targets at close ranges, skip collisions up to 1.5 cells away (avoids shooter embrasure diagonal collisions),
+                //or 75% of the way to the target, whichever is closer.
+                return Mathf.Min(shortRangeMinCollisionDistance, targetDistance * 0.75f);
+            }
+            else
+            {
+                //At longer ranges, skip collisions on a small % of the flight path,
+                //so pawns don't blow themselves up or mag-dump into a wall if weapon sway causes the projectiles to glance hit an obstruction close to the LOS line.
+                return targetDistance * longRangeMinCollisionDistMult;
+            }
         }
 
         /// <summary>
@@ -735,8 +753,9 @@ namespace CombatExtended
                 ShootLeanUtility.LeanShootingSourcesFromTo(root, cellRect.ClosestCellTo(root), caster.Map, tempLeanShootSources);
                 foreach (var leanLoc in tempLeanShootSources.OrderBy(c => c.DistanceTo(targ.Cell)))
                 {
-                    var leanOffset = (leanLoc - root).ToVector3() * 0.51f;  //using exactly 0.5f makes it always round up, which causes issues if offset is negative, when adding leanOffset to shotSource. Setting to 0.51f to fix.
-                    if (CanHitFromCellIgnoringRange(shotSource + leanOffset, targ, out dest))
+                    var leanOffset = 0.5f - 0.001f; // -0.001f ensures rounding works as intended regardless of whether leanOffset is positive or negative
+                    var leanPosOffset = (leanLoc - root).ToVector3() * leanOffset;
+                    if (CanHitFromCellIgnoringRange(shotSource + leanPosOffset, targ, out dest))
                     {
                         resultingLine = new ShootLine(leanLoc, dest);
                         return true;
