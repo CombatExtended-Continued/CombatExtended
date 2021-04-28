@@ -262,7 +262,8 @@ namespace CombatExtended
                 newTargetLoc = sourceLoc + (newTargetLoc - sourceLoc).normalized * estimatedTargDist;
 
                 // Lead a moving target
-                if (!isInstant) {
+                if (!isInstant)
+                {
 
                     newTargetLoc += report.GetRandLeadVec();
                 }
@@ -309,10 +310,12 @@ namespace CombatExtended
                     }
                     targetHeight = VerbPropsCE.ignorePartialLoSBlocker ? 0 : targetRange.Average;
                 }
-                if (projectilePropsCE.isInstant) {
-		    angleRadians += Mathf.Atan2(targetHeight - ShotHeight, (newTargetLoc - sourceLoc).magnitude);
+                if (projectilePropsCE.isInstant)
+                {
+                    angleRadians += Mathf.Atan2(targetHeight - ShotHeight, (newTargetLoc - sourceLoc).magnitude);
                 }
-                else {
+                else
+                {
                     angleRadians += ProjectileCE.GetShotAngle(ShotSpeed, (newTargetLoc - sourceLoc).magnitude, targetHeight - ShotHeight, Projectile.projectile.flyOverhead, projectilePropsCE.Gravity);
                 }
             }
@@ -320,7 +323,7 @@ namespace CombatExtended
             // ----------------------------------- STEP 4: Mechanical variation
 
             // Get shotvariation, in angle Vector2 RADIANS.
-            Vector2 spreadVec = (projectilePropsCE.isInstant && projectilePropsCE.damageFalloff)? new Vector2(0,0) : report.GetRandSpreadVec() ;
+            Vector2 spreadVec = (projectilePropsCE.isInstant && projectilePropsCE.damageFalloff) ? new Vector2(0, 0) : report.GetRandSpreadVec();
             // ----------------------------------- STEP 5: Finalization
 
             var w = (newTargetLoc - sourceLoc);
@@ -403,11 +406,11 @@ namespace CombatExtended
                 {
                     centerOfVisibleTarget = shooterHeight;
                 }
-		float distance = target.Thing.Position.DistanceTo(caster.Position);
+                float distance = target.Thing.Position.DistanceTo(caster.Position);
                 // float wobble = Mathf.Atan2(UnityEngine.Random.Range(shotHeight-centerOfVisibleTarget, centerOfVisibleTarget - shotHeight), distance);
-		float triangleHeight = centerOfVisibleTarget - shotHeight;
-		float wobble = -Mathf.Atan2(triangleHeight, distance);
-		// TODO: Add inaccuracy for not standing in as natural a position
+                float triangleHeight = centerOfVisibleTarget - shotHeight;
+                float wobble = -Mathf.Atan2(triangleHeight, distance);
+                // TODO: Add inaccuracy for not standing in as natural a position
                 shotHeight = centerOfVisibleTarget;
                 return wobble;
             }
@@ -436,13 +439,13 @@ namespace CombatExtended
                 cover = null;
                 return false;
             }
-	    bool instant = false;
-	    if (Projectile.projectile is ProjectilePropertiesCE pprop)
-	    {
-		instant = pprop.isInstant;
-	    }
-	    int endCell = instant? cells.Length : cells.Length / 2;
-	    
+            bool instant = false;
+            if (Projectile.projectile is ProjectilePropertiesCE pprop)
+            {
+                instant = pprop.isInstant;
+            }
+            int endCell = instant ? cells.Length : cells.Length / 2;
+
             for (int i = 0; i < endCell; i++)
             {
                 var cell = cells[i];
@@ -461,7 +464,7 @@ namespace CombatExtended
                 {
                     Pawn pawn = cell.GetFirstPawn(map);
                     Thing newCover = pawn == null ? cell.GetCover(map) : pawn;
-		    float newCoverHeight = new CollisionVertical(newCover).Max;
+                    float newCoverHeight = new CollisionVertical(newCover).Max;
 
                     // Cover check, if cell has cover compare collision height and get the highest piece of cover, ignore if cover is the target (e.g. solar panels, crashed ship, etc)
                     if (newCover != null
@@ -594,7 +597,8 @@ namespace CombatExtended
             float spreadDegrees = 0;
             float aperatureSize = 0;
 
-            if (Projectile.projectile is ProjectilePropertiesCE pprop) {
+            if (Projectile.projectile is ProjectilePropertiesCE pprop)
+            {
                 instant = pprop.isInstant;
                 spreadDegrees = (EquipmentSource?.GetStatValue(StatDef.Named("ShotSpread")) ?? 0) * pprop.spreadMult;
                 aperatureSize = 0.03f;
@@ -617,7 +621,8 @@ namespace CombatExtended
                 projectile.intendedTarget = currentTarget.Thing;
                 projectile.mount = caster.Position.GetThingList(caster.Map).FirstOrDefault(t => t is Pawn && t != caster);
                 projectile.AccuracyFactor = report.accuracyFactor * report.swayDegrees * ((numShotsFired + 1) * 0.75f);
-                if (instant) {
+                if (instant)
+                {
                     var shotHeight = ShotHeight;
                     float tsa = AdjustShotHeight(caster, currentTarget, ref shotHeight);
                     projectile.RayCast(
@@ -633,7 +638,8 @@ namespace CombatExtended
                                        EquipmentSource);
 
                 }
-                else  {
+                else
+                {
                     projectile.Launch(
                                       Shooter,    //Shooter instead of caster to give turret operators' records the damage/kills obtained
                                       sourceLoc,
@@ -744,21 +750,12 @@ namespace CombatExtended
 
         private bool CanHitFromCellIgnoringRange(Vector3 shotSource, LocalTargetInfo targ, out IntVec3 goodDest)
         {
-            if (targ.Thing != null)
+            if (targ.Thing != null && targ.Thing.Map != caster.Map)
             {
-                if (targ.Thing.Map != caster.Map)
-                {
-                    goodDest = IntVec3.Invalid;
-                    return false;
-                }
-
-                if (CanHitCellFromCellIgnoringRange(shotSource, targ.Cell, targ.Thing))
-                {   // if any of the locations the target is at or can lean to for shooting can be shot by the shooter then lets have the shooter shoot.
-                    goodDest = targ.Cell;
-                    return true;
-                }
+                goodDest = IntVec3.Invalid;
+                return false;
             }
-            else if (CanHitCellFromCellIgnoringRange(shotSource, targ.Cell, targ.Thing))
+            if (CanHitCellFromCellIgnoringRange(shotSource, targ.Cell, targ.Thing))
             {
                 goodDest = targ.Cell;
                 return true;
@@ -781,9 +778,9 @@ namespace CombatExtended
                 Vector3 targetPos;
                 if (targetThing != null)
                 {
-		    float shotHeight = shotSource.y;
-		    AdjustShotHeight(caster, targetThing, ref shotHeight);
-		    shotSource.y = shotHeight;
+                    float shotHeight = shotSource.y;
+                    AdjustShotHeight(caster, targetThing, ref shotHeight);
+                    shotSource.y = shotHeight;
                     Vector3 targDrawPos = targetThing.DrawPos;
                     targetPos = new Vector3(targDrawPos.x, new CollisionVertical(targetThing).Max, targDrawPos.z);
                     var targPawn = targetThing as Pawn;
