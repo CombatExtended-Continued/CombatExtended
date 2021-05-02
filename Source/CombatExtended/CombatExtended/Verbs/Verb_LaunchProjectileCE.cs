@@ -862,7 +862,7 @@ namespace CombatExtended
                 };
 
                 // Add validator to parameters
-                foreach (IntVec3 curCell in GenSight.PointsOnLineOfSight(shotSource.ToIntVec3(), targetLoc))
+                foreach (IntVec3 curCell in GenSightCE.PointsOnLineOfSight(shotSource, targetLoc.ToVector3Shifted()))
                 {
                     if (Controller.settings.DebugDrawPartialLoSChecks)
                         caster.Map.debugDrawer.FlashCell(curCell, 0.4f);
