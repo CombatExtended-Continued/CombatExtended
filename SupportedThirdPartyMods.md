@@ -54,6 +54,7 @@ Android Tiers	|
 Android Tiers++	|
 Androids	|
 Androids Expanded	|
+Anima Animals  |
 Anima Gear  |
 AnimalCollabProj	|
 Animal Armor: Vanilla	|
