@@ -8,16 +8,6 @@
 		<match Class="PatchOperationSequence">
 			<operations>
 				
-				<!-- ========== Remove Recipes ========== -->
-
-				<li Class="PatchOperationRemove">
-					<xpath>Defs/ThingDef[defName="Bullet_60mmHEAT"]</xpath>
-				</li>
-				
-				<li Class="PatchOperationRemove">
-				<xpath>Defs/ThingDef[defName="MORG_60MM"]/statBases</xpath>
-				</li>
-				
 				<!-- ========== Tools ========== -->
 
 				<li Class="PatchOperationReplace">
@@ -99,7 +89,7 @@
 					</value>
 				</li>
 
-				<li Class="PatchOperationAdd">
+				<li Class="PatchOperationReplace">
 					<xpath>Defs/ThingDef[defName="MORG_60MM"]</xpath>
 					<value>
 						<tools>
@@ -178,7 +168,7 @@
 					<Properties>
 						<verbClass>CombatExtended.Verb_ShootCE</verbClass>
 						<hasStandardCommand>true</hasStandardCommand>
-						<defaultProjectile>Bullet_9mmGlisenti_FMJ</defaultProjectile>
+						<defaultProjectile>Bullet_9x19mmPara_FMJ</defaultProjectile>
 						<warmupTime>0.3</warmupTime>
 						<range>24</range>
 						<soundCast>Shot_Autopistol</soundCast>
@@ -188,7 +178,7 @@
 					<AmmoUser>
 						<magazineSize>7</magazineSize>
 						<reloadTime>4</reloadTime>
-						<ammoSet>AmmoSet_9mmGlisenti</ammoSet>
+						<ammoSet>AmmoSet_9x19mmPara</ammoSet>
 					</AmmoUser>
 					<FireModes>
 						<aiUseBurstMode>FALSE</aiUseBurstMode>
@@ -269,7 +259,7 @@
 						<recoilAmount>1.16</recoilAmount>
 						<verbClass>CombatExtended.Verb_ShootCE</verbClass>
 						<hasStandardCommand>true</hasStandardCommand>
-						<defaultProjectile>Bullet_9x19mmM1938_FMJ</defaultProjectile>
+						<defaultProjectile>Bullet_9x19mmPara_FMJ</defaultProjectile>
 						<warmupTime>1.8</warmupTime>
 						<range>36.9</range>
 						<burstShotCount>6</burstShotCount>
@@ -281,7 +271,7 @@
 					<AmmoUser>
 						<magazineSize>40</magazineSize>
 						<reloadTime>4</reloadTime>
-						<ammoSet>AmmoSet_9x19mmM1938</ammoSet>
+						<ammoSet>AmmoSet_9x19mmPara</ammoSet>
 					</AmmoUser>
 					<FireModes>
 						<aiAimMode>Snapshot</aiAimMode>
