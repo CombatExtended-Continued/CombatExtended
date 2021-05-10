@@ -107,10 +107,7 @@ namespace CombatExtended
                     minDPS.ToStringByStyle(ToStringStyle.FloatMaxTwo),
                     maxDPS.ToStringByStyle(ToStringStyle.FloatMaxTwo)));
                 stringBuilder.AppendLine("    " + "CE_FinalAverageDamage".Translate() + ": " + ((minDPS + maxDPS) / 2f).ToStringByStyle(ToStringStyle.FloatMaxTwo));
-                if (tool.chanceFactor != 1f)
-                {
-                    stringBuilder.AppendLine("    " + "CE_ChanceFactor".Translate() + ": " + tool.chanceFactor.ToStringByStyle(ToStringStyle.FloatMaxTwo));
-                }
+                stringBuilder.AppendLine("    " + "CE_ChanceFactor".Translate() + ": " + tool.chanceFactor.ToStringByStyle(ToStringStyle.FloatMaxTwo));
                 stringBuilder.AppendLine();
             }
             return stringBuilder.ToString();
