@@ -26,23 +26,10 @@ namespace CombatExtended.HarmonyCE
         [HarmonyTranspiler]
         static IEnumerable<CodeInstruction> Transpiler(IEnumerable<CodeInstruction> instructions)
         {
-            bool patchApplied = false;
-            List<CodeInstruction> instructionsArray = instructions.ToList();
-            for (int i = 0; i < instructions.Count(); i++)
-            {
-                if ((instructionsArray[i].opcode == OpCodes.Call || instructionsArray[i].opcode == OpCodes.Callvirt) && ReferenceEquals(instructionsArray[i].operand, AccessTools.Method(typeof(Pawn), nameof(Pawn.WorkTagIsDisabled))))
-                {
-                    instructionsArray[i].opcode = OpCodes.Call;
-                    instructionsArray[i].operand = AccessTools.Method(typeof(Harmony_AllowNonLethalWeaponsForNonViolentPawns_Patch), nameof(WorkTagIsDisabledExceptNonLethal));
-                    patchApplied = true;
-                    break;
-                }
-            }
-            if (!patchApplied)
-            {
-                Log.Error($"{MethodBase.GetCurrentMethod().DeclaringType} did not find opcode to apply transpiler patch.");
-            }
-            return instructionsArray;
+            return instructions.MethodReplacer(
+                AccessTools.Method(typeof(Pawn), nameof(Pawn.WorkTagIsDisabled)),
+                AccessTools.Method(typeof(Harmony_AllowNonLethalWeaponsForNonViolentPawns_Patch), nameof(WorkTagIsDisabledExceptNonLethal))
+            );
         }
 
         private static bool WorkTagIsDisabledExceptNonLethal(Pawn pawn, WorkTags workTags)
