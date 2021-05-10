@@ -435,10 +435,11 @@ namespace CombatExtended
                         sound = verb.SoundHitPawn();
                     }
                 }
-                sound?.PlayOneShot(new TargetInfo(caster.Position, caster.Map));
+                // Held, because the caster may have died and despawned
+                sound?.PlayOneShot(new TargetInfo(caster.PositionHeld, caster.MapHeld));
             }
             // Register with parry tracker
-            ParryTracker tracker = defender.Map?.GetComponent<ParryTracker>();
+            ParryTracker tracker = defender.MapHeld?.GetComponent<ParryTracker>();
             if (tracker == null)
             {
                 Log.Error("CE failed to find ParryTracker to register pawn " + defender.ToString());
