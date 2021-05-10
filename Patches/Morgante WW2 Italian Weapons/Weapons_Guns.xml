@@ -1,0 +1,374 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+			<li>Morgante_WW2_Italian_Weapons</li>
+		</mods>
+		<match Class="PatchOperationSequence">
+			<operations>
+				
+				<!-- ========== Tools ========== -->
+
+				<li Class="PatchOperationReplace">
+					<xpath>
+						/Defs/ThingDef[
+							defName="MORG_BODEO" or 
+							defName="MORG_GLISENTI1910M" 
+						]/tools
+					</xpath>
+					<value>
+						<tools>
+							<li Class="CombatExtended.ToolCE">
+								<label>grip</label>
+								<capacities>
+									<li>Blunt</li>
+								</capacities>
+								<power>2</power>
+								<cooldownTime>2</cooldownTime>
+								<chanceFactor>1.5</chanceFactor>
+								<armorPenetrationBlunt>0.555</armorPenetrationBlunt>
+								<linkedBodyPartsGroup>Grip</linkedBodyPartsGroup>
+							</li>
+							<li Class="CombatExtended.ToolCE">
+								<label>muzzle</label>
+								<capacities>
+									<li>Poke</li>
+								</capacities>
+								<power>2</power>
+								<cooldownTime>2</cooldownTime>
+								<armorPenetrationBlunt>0.555</armorPenetrationBlunt>
+								<linkedBodyPartsGroup>Muzzle</linkedBodyPartsGroup>
+							</li>
+						</tools>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>
+						/Defs/ThingDef[
+							defName="MORG_MAB38M" or 
+							defName="MORG_FNAB43M" or
+							defName="MORG_60MM" or
+							defName="MORG_BREDA30M"
+						]/tools
+					</xpath>
+					<value>
+						<tools>
+							<li Class="CombatExtended.ToolCE">
+								<label>stock</label>
+								<capacities>
+									<li>Blunt</li>
+								</capacities>
+								<power>2</power>
+								<cooldownTime>1.55</cooldownTime>
+								<chanceFactor>1.5</chanceFactor>
+								<armorPenetrationBlunt>2.755</armorPenetrationBlunt>
+								<linkedBodyPartsGroup>Stock</linkedBodyPartsGroup>
+							</li>
+							<li Class="CombatExtended.ToolCE">
+								<label>barrel</label>
+								<capacities>
+									<li>Blunt</li>
+								</capacities>
+								<power>2</power>
+								<cooldownTime>2.02</cooldownTime>
+								<armorPenetrationBlunt>1.630</armorPenetrationBlunt>
+								<linkedBodyPartsGroup>Barrel</linkedBodyPartsGroup>
+							</li>
+							<li Class="CombatExtended.ToolCE">
+								<label>muzzle</label>
+								<capacities>
+									<li>Poke</li>
+								</capacities>
+								<power>2</power>
+								<cooldownTime>1.55</cooldownTime>
+								<armorPenetrationBlunt>2.755</armorPenetrationBlunt>
+								<linkedBodyPartsGroup>Muzzle</linkedBodyPartsGroup>
+							</li>
+						</tools>
+					</value>
+				</li>
+				
+				<!-- ========== Bodel Model 1889 ========== -->
+
+				<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+					<defName>MORG_BODEO</defName>
+					<statBases>
+						<Mass>0.95</Mass>
+						<RangedWeapon_Cooldown>0.38</RangedWeapon_Cooldown>
+						<SightsEfficiency>0.7</SightsEfficiency>
+						<ShotSpread>0.17</ShotSpread>
+						<SwayFactor>1.03</SwayFactor>
+						<Bulk>2.22</Bulk>
+						<WorkToMake>4000</WorkToMake>
+					</statBases>
+					<costList>
+						<Steel>30</Steel>
+						<ComponentIndustrial>2</ComponentIndustrial>
+					</costList>
+					<Properties>
+						<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+						<hasStandardCommand>true</hasStandardCommand>
+						<defaultProjectile>Bullet_1035mmOrdinanzaItaliana_FMJ</defaultProjectile>
+						<warmupTime>0.3</warmupTime>
+						<range>20</range>
+						<soundCast>Shot_Revolver</soundCast>
+						<soundCastTail>GunTail_Light</soundCastTail>
+						<muzzleFlashScale>9</muzzleFlashScale>
+					</Properties>
+					<AmmoUser>
+						<magazineSize>6</magazineSize>
+						<reloadTime>12</reloadTime>
+						<ammoSet>AmmoSet_1035mmOrdinanzaItaliana</ammoSet>
+					</AmmoUser>
+					<FireModes>
+						<aiUseBurstMode>FALSE</aiUseBurstMode>
+					</FireModes>
+					<weaponTags>
+						<li>CE_OneHandedWeapon</li>
+						<li>IndustrialGunAdvanced</li>
+					</weaponTags>
+				</li>
+				
+				<!-- ========== Glisenti Model 1910 ========== -->
+
+				<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+					<defName>MORG_GLISENTI1910M</defName>
+					<statBases>
+						<Mass>0.82</Mass>
+						<RangedWeapon_Cooldown>0.38</RangedWeapon_Cooldown>
+						<SightsEfficiency>0.7</SightsEfficiency>
+						<ShotSpread>0.17</ShotSpread>
+						<SwayFactor>1.03</SwayFactor>
+						<Bulk>2.22</Bulk>
+						<WorkToMake>5000</WorkToMake>
+					</statBases>
+					<costList>
+						<Steel>30</Steel>
+						<ComponentIndustrial>2</ComponentIndustrial>
+					</costList>
+					<Properties>
+						<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+						<hasStandardCommand>true</hasStandardCommand>
+						<defaultProjectile>Bullet_9x19mmPara_FMJ</defaultProjectile>
+						<warmupTime>0.3</warmupTime>
+						<range>24</range>
+						<soundCast>Shot_Autopistol</soundCast>
+						<soundCastTail>GunTail_Light</soundCastTail>
+						<muzzleFlashScale>9</muzzleFlashScale>
+					</Properties>
+					<AmmoUser>
+						<magazineSize>7</magazineSize>
+						<reloadTime>4</reloadTime>
+						<ammoSet>AmmoSet_9x19mmPara</ammoSet>
+					</AmmoUser>
+					<FireModes>
+						<aiUseBurstMode>FALSE</aiUseBurstMode>
+					</FireModes>
+					<weaponTags>
+						<li>CE_OneHandedWeapon</li>
+						<li>IndustrialGunAdvanced</li>
+					</weaponTags>
+					<researchPrerequisite>BlowbackOperation</researchPrerequisite>
+				</li>
+
+				<!-- ========== FNAB-43 ========== -->
+
+				<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+					<defName>MORG_FNAB43M</defName>
+					<statBases>
+						<Mass>3.97</Mass>
+						<RangedWeapon_Cooldown>0.36</RangedWeapon_Cooldown>
+						<SightsEfficiency>1.00</SightsEfficiency>
+						<ShotSpread>0.13</ShotSpread>
+						<SwayFactor>1.23</SwayFactor>
+						<Bulk>6.30</Bulk>
+						<WorkToMake>40000</WorkToMake>
+					</statBases>
+					<costList>
+						<Steel>50</Steel>
+						<WoodLog>20</WoodLog>
+					</costList>
+					<Properties>
+						<recoilAmount>1.16</recoilAmount>
+						<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+						<hasStandardCommand>true</hasStandardCommand>
+						<defaultProjectile>Bullet_9x19mmPara_FMJ</defaultProjectile>
+						<warmupTime>1.0</warmupTime>
+						<range>30.9</range>
+						<burstShotCount>5</burstShotCount>
+						<ticksBetweenBurstShots>10</ticksBetweenBurstShots>
+						<soundCast>Shot_AssaultRifle</soundCast>
+						<soundCastTail>GunTail_Medium</soundCastTail>
+						<muzzleFlashScale>9</muzzleFlashScale>
+					</Properties>
+					<AmmoUser>
+						<magazineSize>40</magazineSize>
+						<reloadTime>4</reloadTime>
+						<ammoSet>AmmoSet_9x19mmPara</ammoSet>
+					</AmmoUser>
+					<FireModes>
+						<aiAimMode>Snapshot</aiAimMode>
+						<aimedBurstShotCount>5</aimedBurstShotCount>
+						<aiUseBurstMode>FALSE</aiUseBurstMode>
+					</FireModes>
+					<weaponTags>
+						<li>CE_SMG</li>
+						<li>CE_AI_AssaultWeapon</li>
+						<li>IndustrialGunAdvanced</li>
+					</weaponTags>
+					<researchPrerequisite>GasOperation</researchPrerequisite>
+				</li>
+				
+				<!-- ========== Beretta Model 38 ========== -->
+
+				<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+					<defName>MORG_MAB38M</defName>
+					<statBases>
+						<Mass>4.2</Mass>
+						<RangedWeapon_Cooldown>0.36</RangedWeapon_Cooldown>
+						<SightsEfficiency>1.00</SightsEfficiency>
+						<ShotSpread>0.13</ShotSpread>
+						<SwayFactor>1.23</SwayFactor>
+						<Bulk>6.30</Bulk>
+						<WorkToMake>20000</WorkToMake>
+					</statBases>
+					<costList>
+						<Steel>35</Steel>
+						<WoodLog>20</WoodLog>
+					</costList>
+					<Properties>
+						<recoilAmount>1.16</recoilAmount>
+						<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+						<hasStandardCommand>true</hasStandardCommand>
+						<defaultProjectile>Bullet_9x19mmPara_FMJ</defaultProjectile>
+						<warmupTime>1.8</warmupTime>
+						<range>36.9</range>
+						<burstShotCount>6</burstShotCount>
+						<ticksBetweenBurstShots>7</ticksBetweenBurstShots>
+						<soundCast>Shot_Minigun</soundCast>
+						<soundCastTail>GunTail_Medium</soundCastTail>
+						<muzzleFlashScale>9</muzzleFlashScale>
+					</Properties>
+					<AmmoUser>
+						<magazineSize>40</magazineSize>
+						<reloadTime>4</reloadTime>
+						<ammoSet>AmmoSet_9x19mmPara</ammoSet>
+					</AmmoUser>
+					<FireModes>
+						<aiAimMode>Snapshot</aiAimMode>
+						<aimedBurstShotCount>6</aimedBurstShotCount>
+						<aiUseBurstMode>FALSE</aiUseBurstMode>
+					</FireModes>
+					<weaponTags>
+						<li>CE_SMG</li>
+						<li>CE_AI_AssaultWeapon</li>
+						<li>IndustrialGunAdvanced</li>
+					</weaponTags>
+					<researchPrerequisite>GasOperation</researchPrerequisite>
+				</li>
+				
+				<!-- ========== Breda Model 30 ========== -->
+
+				<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+					<defName>MORG_BREDA30M</defName>
+					<statBases>
+						<Mass>10.6</Mass>
+						<RangedWeapon_Cooldown>0.56</RangedWeapon_Cooldown>
+						<SightsEfficiency>1</SightsEfficiency>
+						<ShotSpread>0.06</ShotSpread>
+						<SwayFactor>1.70</SwayFactor>
+						<Bulk>12.10</Bulk>
+						<WorkToMake>50000</WorkToMake>
+					</statBases>
+					<costList>
+						<Steel>100</Steel>
+						<ComponentIndustrial>5</ComponentIndustrial>
+					</costList>
+					<Properties>
+						<recoilAmount>1.22</recoilAmount>
+						<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+						<hasStandardCommand>true</hasStandardCommand>
+						<defaultProjectile>Bullet_65x52mmCarcano_FMJ</defaultProjectile>
+						<warmupTime>1.3</warmupTime>
+						<range>65</range>
+						<ticksBetweenBurstShots>5</ticksBetweenBurstShots>
+						<burstShotCount>10</burstShotCount>
+						<soundCast>Shot_Minigun</soundCast>
+						<soundCastTail>GunTail_Heavy</soundCastTail>
+						<muzzleFlashScale>9</muzzleFlashScale>
+						<targetParams>
+							<canTargetLocations>true</canTargetLocations>
+						</targetParams>
+						<recoilPattern>Mounted</recoilPattern>
+					</Properties>
+					<AmmoUser>
+						<magazineSize>20</magazineSize>
+						<reloadTime>7.8</reloadTime>
+						<ammoSet>AmmoSet_65x52mmCarcano</ammoSet>
+					</AmmoUser>
+					<FireModes>
+						<aimedBurstShotCount>6</aimedBurstShotCount>
+						<aiUseBurstMode>FALSE</aiUseBurstMode>
+						<aiAimMode>SuppressFire</aiAimMode>
+					</FireModes>
+					<weaponTags>
+						<li>IndustrialGunAdvanced</li>
+					</weaponTags>
+					<researchPrerequisite>GasOperation</researchPrerequisite>
+				</li>
+
+				<!-- ========== 60mm Heat Grenade Rifle ========== -->	
+
+				<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+					<defName>MORG_60MM</defName>
+					<statBases>
+						<Mass>4.20</Mass>
+						<RangedWeapon_Cooldown>1.17</RangedWeapon_Cooldown>
+						<SightsEfficiency>1.00</SightsEfficiency>
+						<ShotSpread>0.05</ShotSpread>
+						<SwayFactor>1.56</SwayFactor>
+						<Bulk>11.00</Bulk>
+						<WorkToMake>20000</WorkToMake>
+					</statBases>
+					<costList>
+						<Steel>60</Steel>
+					  <ComponentIndustrial>3</ComponentIndustrial>
+					  <Uranium>15</Uranium>
+					</costList>
+					<Properties>
+						<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+						<hasStandardCommand>true</hasStandardCommand>
+						<defaultProjectile>Bullet_60mmGrenade_HEAT</defaultProjectile>
+						<warmupTime>1.8</warmupTime>
+						<minRange>3</minRange>
+						<range>20</range>
+						<soundCast>Shot_IncendiaryLauncher</soundCast>
+						<soundCastTail>GunTail_Medium</soundCastTail>
+						<muzzleFlashScale>14</muzzleFlashScale>
+						<requireLineOfSight>false</requireLineOfSight>
+						<targetParams>
+							<canTargetLocations>true</canTargetLocations>
+						</targetParams>
+					</Properties>
+					<AmmoUser>
+						<magazineSize>1</magazineSize>
+						<reloadTime>6</reloadTime>
+						<ammoSet>AmmoSet_60mmGrenade</ammoSet>
+					</AmmoUser>
+					<FireModes>
+						<aiAimMode>AimedShot</aiAimMode>
+					</FireModes>
+					<weaponTags>
+						<li>CE_AI_Rifle</li>
+						<li>IndustrialGunAdvanced</li>
+					</weaponTags>
+					<researchPrerequisite>GasOperation</researchPrerequisite>
+				</li>
+
+			</operations>
+		</match>
+	</Operation>
+
+</Patch>
