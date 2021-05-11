@@ -12,7 +12,7 @@
 				<li Class="PatchOperationAdd">
 					<xpath>/Defs/ThingDef[defName="VAE_Headgear_TrooperHelmet"]/statBases</xpath>
 					<value>
-						<Bulk>4.5</Bulk>
+						<Bulk>4</Bulk> <!-- Changed bulk to 4 since advanced helmet is 4 bulk and recon power armor helmet is 4 bulk. -->
 						<WornBulk>0.5</WornBulk>
 					</value>
 				</li>
@@ -20,26 +20,26 @@
 				<li Class="PatchOperationReplace">
 					<xpath>/Defs/ThingDef[defName="VAE_Headgear_TrooperHelmet"]/statBases/ArmorRating_Sharp</xpath>
 					<value>
-						<ArmorRating_Sharp>12.8</ArmorRating_Sharp>
+						<ArmorRating_Sharp>10.5</ArmorRating_Sharp>
 					</value>
 				</li>
 
 				<li Class="PatchOperationReplace">
 					<xpath>/Defs/ThingDef[defName="VAE_Headgear_TrooperHelmet"]/statBases/ArmorRating_Blunt</xpath>
 					<value>
-						<ArmorRating_Blunt>27</ArmorRating_Blunt>
+						<ArmorRating_Blunt>21</ArmorRating_Blunt> <!-- Blunt armor is based off it being 9mm RHA worth of sharp armor. -->
 					</value>
 				</li>
 
 				<li Class="PatchOperationReplace">
 					<xpath>/Defs/ThingDef[defName="VAE_Headgear_TrooperHelmet"]/statBases/MaxHitPoints</xpath>
 					<value>
-						<MaxHitPoints>240</MaxHitPoints>
+						<MaxHitPoints>190</MaxHitPoints> <!-- Same health as recon power armor helmet. -->
 					</value>
 				</li>
 
-				<li Class="PatchOperationAdd">
-					<xpath>/Defs/ThingDef[defName="VAE_Headgear_TrooperHelmet"]/equippedStatOffsets</xpath>
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/ThingDef[defName="VAE_Headgear_TrooperHelmet"]/equippedStatOffsets/MentalBreakThreshold</xpath>
 					<value>
 						<PsychicSensitivity>-0.1</PsychicSensitivity>
 						<AimingDelayFactor>-0.05</AimingDelayFactor>
@@ -62,46 +62,47 @@
 					</value>
 				</li>
 
-				<li Class="PatchOperationAdd">
+				<!-- It has no visor... -->
+				<!--<li Class="PatchOperationAdd">
 					<xpath>/Defs/ThingDef[defName="VAE_Headgear_TrooperHelmet"]/apparel/bodyPartGroups</xpath>
 					<value>
 						<li>Eyes</li>
 					</value>
-				</li>
+				</li>-->
 
 				<!-- === Trooper Armor === -->
 				<li Class="PatchOperationReplace">
 					<xpath>/Defs/ThingDef[defName="VAE_Apparel_TrooperArmor"]/statBases/Mass</xpath>
 					<value>
-						<Bulk>46.67</Bulk>
-						<WornBulk>7</WornBulk>
-						<Mass>24</Mass>
+						<Bulk>40</Bulk> <!-- It's supposed to be just small enough to be able to wear something on the shell layer, I think dropping it to this is good enough. -->
+						<WornBulk>6</WornBulk>
+						<Mass>25</Mass>
 					</value>
 				</li>
 
 				<li Class="PatchOperationReplace">
 					<xpath>/Defs/ThingDef[defName="VAE_Apparel_TrooperArmor"]/statBases/ArmorRating_Sharp</xpath>
 					<value>
-						<ArmorRating_Sharp>16</ArmorRating_Sharp>
+						<ArmorRating_Sharp>14</ArmorRating_Sharp> <!-- Just a bit better than a plasteel armor vest, enough to deflect 7.62mm NATO and 7.62mmR. -->
 					</value>
 				</li>
 
 				<li Class="PatchOperationReplace">
 					<xpath>/Defs/ThingDef[defName="VAE_Apparel_TrooperArmor"]/statBases/ArmorRating_Blunt</xpath>
 					<value>
-						<ArmorRating_Blunt>33.75</ArmorRating_Blunt>
+						<ArmorRating_Blunt>30</ArmorRating_Blunt> <!-- Blunt armor is based off it being 12mm RHA worth of sharp armor. -->
 					</value>
 				</li>
 
 				<li Class="PatchOperationReplace">
 					<xpath>/Defs/ThingDef[defName="VAE_Apparel_TrooperArmor"]/statBases/MaxHitPoints</xpath>
 					<value>
-						<MaxHitPoints>500</MaxHitPoints>
+						<MaxHitPoints>400</MaxHitPoints> <!-- Same health as recon power armor. -->
 					</value>
 				</li>
 
-				<li Class="PatchOperationAdd">
-					<xpath>/Defs/ThingDef[defName="VAE_Apparel_TrooperArmor"]/equippedStatOffsets</xpath>
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/ThingDef[defName="VAE_Apparel_TrooperArmor"]/equippedStatOffsets/MentalBreakThreshold</xpath>
 					<value>
 						<CarryWeight>60</CarryWeight>
 						<CarryBulk>7.5</CarryBulk>
@@ -152,7 +153,7 @@
 				<li Class="PatchOperationReplace">
 					<xpath>/Defs/ThingDef[defName="VAE_Headgear_HeavyMarineHelmet"]/statBases/MaxHitPoints</xpath>
 					<value>
-						<MaxHitPoints>240</MaxHitPoints>
+						<MaxHitPoints>300</MaxHitPoints>
 					</value>
 				</li>
 
@@ -219,7 +220,7 @@
 				<li Class="PatchOperationReplace">
 					<xpath>/Defs/ThingDef[defName="VAE_Apparel_HeavyMarineArmor"]/statBases/MaxHitPoints</xpath>
 					<value>
-						<MaxHitPoints>500</MaxHitPoints>
+						<MaxHitPoints>625</MaxHitPoints>
 					</value>
 				</li>
 
