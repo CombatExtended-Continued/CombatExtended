@@ -7,7 +7,12 @@
     </mods>
 		<match Class="PatchOperationSequence">
 		<operations>
-		
+			
+			<li Class="PatchOperationConditional">
+				<xpath>Defs/ThingDef[defName="O21_OR_ChissRifle"]</xpath>
+				<match Class="PatchOperationSequence">
+				<operations>
+			
 			<li Class="PatchOperationReplace">
 				<xpath>Defs/ThingDef[	
 				defName="O21_OR_ChissRifle" or
@@ -177,6 +182,10 @@
 						<reloadTime>4</reloadTime>
 						<ammoSet>AmmoSet_PlasmaGasCartridgeChiss</ammoSet>
 				    </AmmoUser>
+			</li>
+			
+				</operations>
+				</match>
 			</li>
 			
 		</operations>
