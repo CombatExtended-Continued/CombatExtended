@@ -533,14 +533,16 @@
 			<!-- Lightsaber patch from fully functional lightsaber mod -->
 			
 			  <li Class="PatchOperationAdd">
-				<xpath>Defs/ThingDef[@Name="O21_OR_BaseLightsaber"]/statBases</xpath>
+				<xpath>Defs/ThingDef[@Name="O21_OR_LightsaberStandardBase"]</xpath>
 				<value>
+				<statBases>
 					<Bulk>1.5</Bulk>
+				</statBases>
 				</value>
 			  </li>
-
+			
 			  <li Class="PatchOperationAdd">
-				<xpath>Defs/ThingDef[@Name="O21_OR_BaseLightsaber"]</xpath>
+				<xpath>Defs/ThingDef[@Name="O21_OR_LightsaberStandardBase"]</xpath>
 				<value>
 				  <equippedStatOffsets>
 					<Suppressability>-10</Suppressability>
@@ -551,34 +553,36 @@
 			  </li>
 				
 			  <li Class="PatchOperationAttributeSet">
-				<xpath>Defs/ThingDef[defName="O21_OR_Lightsaber_Kenobi"]/tools/li</xpath>
+				<xpath>Defs/ThingDef[@Name="O21_OR_LightsaberStandardBase"]/tools/li</xpath>
 				<attribute>Class</attribute>
 				<value>CombatExtended.ToolCE</value>
 			  </li>
 			  <li Class="PatchOperationAdd">
-				<xpath>Defs/ThingDef[@Name="O21_OR_BaseLightsaber"]/weaponTags</xpath>
+				<xpath>Defs/ThingDef[@Name="O21_OR_LightsaberStandardBase"]</xpath>
 				<value>
+				<weaponTags>
 					<li>CE_Sidearm</li>
 					<li>CE_OneHandedWeapon</li>
+				</weaponTags>
 				</value>
 			  </li>
 			  
 			  
 			  <li Class="PatchOperationAdd">
-				<xpath>Defs/ThingDef[defName="O21_OR_Lightsaber_Kenobi"]/tools/li[label="hilt"]</xpath>
+				<xpath>Defs/ThingDef[@Name="O21_OR_LightsaberStandardBase"]/tools/li[label="hilt"]</xpath>
 				<value>
 				  <armorPenetrationBlunt>0.8</armorPenetrationBlunt>
 				</value>
 			  </li>
 			  <li Class="PatchOperationAdd">
-				<xpath>Defs/ThingDef[defName="O21_OR_Lightsaber_Kenobi"]/tools/li[label="lightsaber-tip"]</xpath>
+				<xpath>Defs/ThingDef[@Name="O21_OR_LightsaberStandardBase"]/tools/li[label="blade tip"]</xpath>
 				<value>
 				  <armorPenetrationBlunt>0.9</armorPenetrationBlunt>
 				  <armorPenetrationSharp>1.9</armorPenetrationSharp>
 				</value>
 			  </li>
 			  <li Class="PatchOperationAdd">
-				<xpath>Defs/ThingDef[defName="O21_OR_Lightsaber_Kenobi"]/tools/li[label="lightsaber-edge"]</xpath>
+				<xpath>Defs/ThingDef[@Name="O21_OR_LightsaberStandardBase"]/tools/li[label="blade edge"]</xpath>
 				<value>
 				  <armorPenetrationBlunt>2.992</armorPenetrationBlunt>
 				  <armorPenetrationSharp>0.88</armorPenetrationSharp>
