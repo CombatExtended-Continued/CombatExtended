@@ -139,14 +139,14 @@
 				<li Class="PatchOperationReplace">
 					<xpath>/Defs/ThingDef[defName="VAE_Headgear_HeavyMarineHelmet"]/statBases/ArmorRating_Sharp</xpath>
 					<value>
-						<ArmorRating_Sharp>20.8</ArmorRating_Sharp>
+						<ArmorRating_Sharp>20.4</ArmorRating_Sharp>
 					</value>
 				</li>
 
 				<li Class="PatchOperationReplace">
 					<xpath>/Defs/ThingDef[defName="VAE_Headgear_HeavyMarineHelmet"]/statBases/ArmorRating_Blunt</xpath>
 					<value>
-						<ArmorRating_Blunt>48</ArmorRating_Blunt>
+						<ArmorRating_Blunt>50</ArmorRating_Blunt>
 					</value>
 				</li>
 
@@ -158,16 +158,22 @@
 				</li>
 
 				<li Class="PatchOperationReplace">
+					<xpath>/Defs/ThingDef[defName="VAE_Headgear_HeavyMarineHelmet"]/statBases/Flammability</xpath>
+					<value>
+						<Flammability>0</Flammability>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
 					<xpath>/Defs/ThingDef[defName="VAE_Headgear_HeavyMarineHelmet"]/equippedStatOffsets</xpath>
 					<value>
 						<equippedStatOffsets>
-							<PsychicSensitivity>-0.3</PsychicSensitivity>
+							<PsychicSensitivity>-0.2</PsychicSensitivity>
 							<AimingAccuracy>0.3</AimingAccuracy>
 							<ToxicSensitivity>-0.5</ToxicSensitivity>
 							<CarryWeight>5.4</CarryWeight>
 							<CarryBulk>1</CarryBulk>
 							<SmokeSensitivity>-1</SmokeSensitivity>
-							<PainShockThreshold>0.05</PainShockThreshold>
 						</equippedStatOffsets>
 					</value>
 				</li>
@@ -176,10 +182,11 @@
 					<xpath>/Defs/ThingDef[defName="VAE_Headgear_HeavyMarineHelmet"]/costList</xpath>
 					<value>
 						<costList>
-							<Plasteel>55</Plasteel>
+							<Plasteel>40</Plasteel>
 							<DevilstrandCloth>20</DevilstrandCloth>
-							<Hyperweave>5</Hyperweave>
-							<ComponentSpacer>3</ComponentSpacer>
+							<Hyperweave>10</Hyperweave>
+							<Uranium>10</Uranium>
+							<ComponentSpacer>2</ComponentSpacer>
 						</costList>
 					</value>
 				</li>
@@ -197,7 +204,7 @@
 				<li Class="PatchOperationReplace">
 					<xpath>/Defs/ThingDef[defName="VAE_Apparel_HeavyMarineArmor"]/statBases/Mass</xpath>
 					<value>
-						<Bulk>120</Bulk>
+						<Bulk>100</Bulk>
 						<WornBulk>20</WornBulk>
 						<Mass>80</Mass>
 					</value>
@@ -225,14 +232,20 @@
 				</li>
 
 				<li Class="PatchOperationReplace">
+					<xpath>/Defs/ThingDef[defName="VAE_Apparel_HeavyMarineArmor"]/statBases/Flammability</xpath>
+					<value>
+						<Flammability>0</Flammability>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
 					<xpath>/Defs/ThingDef[defName="VAE_Apparel_HeavyMarineArmor"]/equippedStatOffsets</xpath>
 					<value>
 						<equippedStatOffsets>
-							<CarryWeight>100</CarryWeight>
+							<CarryWeight>80</CarryWeight>
 							<CarryBulk>20</CarryBulk>
 							<ShootingAccuracyPawn>0.3</ShootingAccuracyPawn>
 							<ToxicSensitivity>-0.5</ToxicSensitivity>
-							<PainShockThreshold>0.05</PainShockThreshold>
 						</equippedStatOffsets>
 					</value>
 				</li>
@@ -245,16 +258,19 @@
 					</value>
 				</li>
 
-				<li Class="PatchOperationAdd">
+				<li Class="PatchOperationReplace">
 					<xpath>/Defs/ThingDef[defName="VAE_Apparel_HeavyMarineArmor"]/costList</xpath>
 					<value>
-						<DevilstrandCloth>50</DevilstrandCloth>
-						<Hyperweave>10</Hyperweave>
+						<costList>
+							<Plasteel>140</Plasteel>
+							<DevilstrandCloth>40</DevilstrandCloth>
+							<Hyperweave>20</Hyperweave>
+							<Uranium>100</Uranium>
+							<ComponentSpacer>8</ComponentSpacer>
+						</costList>
 					</value>
 				</li>
-
 			</operations>
 		</match>
 	</Operation>
-
 </Patch>
