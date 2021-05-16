@@ -4,7 +4,7 @@ using Verse;
 
 namespace CombatExtended
 {
-    public class StatWorker_ArmorCoverage : StatWorker
+    public class StatWorker_ArmorCoverageBlunt : StatWorker
     {
         public override bool ShouldShowFor(StatRequest req)
         {
@@ -20,11 +20,11 @@ namespace CombatExtended
             foreach (var apparel in pawn.apparel.WornApparel)
             {
                 var coverage = apparel.def.apparel.HumanBodyCoverage;
-                weightedArmor += apparel.GetStatValue(StatDefOf.ArmorRating_Sharp) * coverage;
+                weightedArmor += apparel.GetStatValue(StatDefOf.ArmorRating_Blunt) * coverage;
                 totalCoverage += coverage;
             }
 
-            return totalCoverage > 0 ? weightedArmor / totalCoverage : 0;
+            return totalCoverage > 0 ? weightedArmor /*/ totalCoverage*/ : 0; // Why? I'd be more scared to be dressed only in power armor than with power armor and a helmet
         }
 
         public override string GetExplanationUnfinalized(StatRequest req, ToStringNumberSense numberSense)
@@ -37,7 +37,7 @@ namespace CombatExtended
                 stringBuilder.AppendLine();
                 foreach (var apparel in pawn.apparel.WornApparel)
                 {
-                    stringBuilder.AppendLine($"{apparel.LabelCap}: {apparel.GetStatValue(StatDefOf.ArmorRating_Sharp)} x {apparel.def.apparel.HumanBodyCoverage.ToStringPercent()}");
+                    stringBuilder.AppendLine($"{apparel.LabelCap}: {apparel.GetStatValue(StatDefOf.ArmorRating_Blunt)} x {apparel.def.apparel.HumanBodyCoverage.ToStringPercent()}");
                 }
 
                 stringBuilder.AppendLine();

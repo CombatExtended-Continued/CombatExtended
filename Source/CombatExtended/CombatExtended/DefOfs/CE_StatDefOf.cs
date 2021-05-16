@@ -35,6 +35,7 @@ namespace CombatExtended
         public static StatDef BodyPartSharpArmor;
         public static StatDef BodyPartBluntArmor;
         public static StatDef AverageSharpArmor;
+        public static StatDef AverageBluntArmor;
 
         public static StatDef SmokeSensitivity;
 
