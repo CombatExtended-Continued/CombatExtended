@@ -13,6 +13,5 @@ namespace CombatExtended
     {
         public static DamageDef Electrical;
         public static DamageDef Flame_Secondary;
-        public static DamageDef Thermobaric;
     }
 }

@@ -828,9 +828,9 @@ namespace CombatExtended
             {
                 suppressionAmount = def.projectile.GetDamageAmount(1);
                 var propsCE = def.projectile as ProjectilePropertiesCE;
-                var penetrationAmount = (propsCE != null ? ((propsCE.explosionRadius > 0) && ((def.projectile.damageDef == DamageDefOf.Bomb) || (def.projectile.damageDef == CE_DamageDefOf.Thermobaric)) ? def.projectile.GetDamageAmount(0.3f) : propsCE.armorPenetrationSharp) : 0f);
-                suppressionAmount *= (propsCE.explosionRadius > 0 ? 4 : 1);
-                var armorMod = penetrationAmount <= 0 ? 0 : 1 - Mathf.Clamp(pawn.GetStatValue(propsCE?.armorPenetrationSharp > 0 ? CE_StatDefOf.AverageSharpArmor : CE_StatDefOf.AverageBluntArmor) * 0.5f / penetrationAmount, 0, 1);
+                var bluntArmorRatingStat = def.projectile.damageDef.armorCategory.armorRatingStat == StatDefOf.ArmorRating_Blunt;
+                var penetrationAmount = propsCE != null ? (bluntArmorRatingStat ? def.projectile.GetDamageAmount(0.3f) : propsCE.armorPenetrationSharp) : 0f; // You could say this is a dirty way to get the penetration of an explosion, but it's either this or hard-coding every DamageDef into here.
+                var armorMod = penetrationAmount <= 0 ? 0 : 1 - Mathf.Clamp(pawn.GetStatValue(bluntArmorRatingStat ? CE_StatDefOf.AverageSharpArmor : CE_StatDefOf.AverageBluntArmor) * 0.5f / penetrationAmount, 0, 1);
                 suppressionAmount *= armorMod;
                 /*suppressionAmount = def.projectile.GetDamageAmount(1);
                 var propsCE = def.projectile as ProjectilePropertiesCE;
