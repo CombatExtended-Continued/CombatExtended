@@ -1,0 +1,239 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+	
+	<Operation Class="PatchOperationFindMod">
+    <mods>
+		<li>Morgante_WW2_Italian_Weapons</li>
+    </mods>
+		<match Class="PatchOperationSequence">
+		<operations>
+			
+		<li Class="PatchOperationAdd">
+		<xpath>/Defs</xpath>
+		<value>
+
+		<ThingCategoryDef>
+			<defName>Ammo60mmGrenade</defName>
+			<label>60mm Grenade</label>
+			<parent>AmmoGrenades</parent>
+		<iconPath>UI/Icons/ThingCategories/CaliberGrenade</iconPath>
+		</ThingCategoryDef>
+		
+		<!-- ==================== AmmoSet ========================== -->
+
+	<CombatExtended.AmmoSetDef>
+		<defName>AmmoSet_60mmGrenade</defName>
+		<label>60mm Grenade</label>
+		<ammoTypes>
+		<Ammo_60mmGrenade_HEAT>Bullet_60mmGrenade_HEAT</Ammo_60mmGrenade_HEAT>    
+		</ammoTypes>
+	</CombatExtended.AmmoSetDef>
+		
+		<!-- ==================== Ammo ========================== -->
+
+	<ThingDef Class="CombatExtended.AmmoDef" Name="60mmGrenadeBase" ParentName="AmmoBase" Abstract="True">
+		<description>Large spigot grenade designed to be fired at tanks.</description>
+		<statBases>
+		<Mass>2.176</Mass>
+		<Bulk>4.5</Bulk>
+		</statBases>
+		<tradeTags>
+		<li>CE_AutoEnableTrade</li>
+		<li>CE_AutoEnableCrafting_TableMachining</li>
+		</tradeTags>
+		<thingCategories>
+		<li>Ammo60mmGrenade</li>
+		</thingCategories>
+		<stackLimit>25</stackLimit>
+		<cookOffFlashScale>30</cookOffFlashScale>
+		<cookOffSound>MortarBomb_Explode</cookOffSound>
+	</ThingDef>
+
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="60mmGrenadeBase">
+		<defName>Ammo_60mmGrenade_HEAT</defName>
+		<label>60mm Grenade (HEAT)</label>
+		<graphicData>
+		<texPath>Things/Ammo/GrenadeLauncher/HE</texPath>
+		<graphicClass>Graphic_StackCount</graphicClass>
+		</graphicData>
+		<statBases>
+		<MarketValue>36.3</MarketValue>
+		</statBases>
+		<ammoClass>RocketHEAT</ammoClass>
+		<detonateProjectile>Bullet_60mmGrenade_HEAT</detonateProjectile>
+	</ThingDef>
+
+		<!-- ================== Projectiles ================== -->
+
+		<ThingDef Class="CombatExtended.AmmoDef" ParentName="Base40x46mmGrenadeBullet">
+			<defName>Bullet_60mmGrenade_HEAT</defName>
+			<label>60mm Grenade(HEAT)</label>
+			<projectile Class="CombatExtended.ProjectilePropertiesCE">
+				<damageDef>Bullet</damageDef>
+				<damageAmountBase>186</damageAmountBase>
+				<armorPenetrationSharp>70</armorPenetrationSharp>      
+				<armorPenetrationBlunt>34.818</armorPenetrationBlunt>
+			</projectile>
+			<comps>
+			<li Class="CombatExtended.CompProperties_ExplosiveCE">
+				<damageAmountBase>120</damageAmountBase>
+				<explosiveDamageType>Bomb</explosiveDamageType>
+				<explosiveRadius>1</explosiveRadius>
+				<applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
+				<explosionSound>MortarBomb_Explode</explosionSound>
+			</li>
+			<li Class="CombatExtended.CompProperties_Fragments">
+				<fragments>
+					<Fragment_Large>1</Fragment_Large>
+				<Fragment_Small>32</Fragment_Small>
+				</fragments>
+			</li>
+			</comps>
+		</ThingDef>
+
+		<!-- ==================== Recipes ========================== -->
+
+	<RecipeDef ParentName="AmmoRecipeBase">
+		<defName>MakeAmmo_60mmGrenade_HEAT</defName>
+		<label>make 60mm Grenades x5</label>
+		<description>Craft 5 60mm Grenades.</description>
+		<jobString>Making 60mm Grenades.</jobString>
+		<ingredients>
+		<li>
+			<filter>
+			<thingDefs>
+				<li>Steel</li>
+			</thingDefs>
+			</filter>
+			<count>26</count>
+		</li>
+		<li>
+			<filter>
+			<thingDefs>
+				<li>FSX</li>
+			</thingDefs>
+			</filter>
+			<count>7</count>
+		</li>
+		<li>
+			<filter>
+			<thingDefs>
+				<li>ComponentIndustrial</li>
+			</thingDefs>
+			</filter>
+			<count>2</count>
+		</li>
+		</ingredients>
+		<fixedIngredientFilter>
+		<thingDefs>
+			<li>Steel</li>
+			<li>FSX</li>
+			<li>ComponentIndustrial</li>
+		</thingDefs>
+		</fixedIngredientFilter>
+		<products>
+		<Ammo_60mmGrenade_HEAT>5</Ammo_60mmGrenade_HEAT>
+		</products>
+		<workAmount>6500</workAmount>     
+	</RecipeDef>
+
+	<!-- ========== Based off of .44 Magnum ========== -->
+
+	<ThingCategoryDef>
+		<defName>Ammo1035mmOrdinanzaItaliana</defName>
+		<label>10.35mm Ordinanza Italiana</label>
+		<parent>AmmoPistols</parent>
+		<iconPath>UI/Icons/ThingCategories/CaliberPistol</iconPath>
+	</ThingCategoryDef>
+
+	<!-- ==================== AmmoSet ========================== -->
+
+	<CombatExtended.AmmoSetDef>
+		<defName>AmmoSet_1035mmOrdinanzaItaliana</defName>
+		<label>10.35mm Ordinanza Italiana</label>
+		<ammoTypes>
+			<Ammo_1035mmOrdinanzaItaliana_FMJ>Bullet_1035mmOrdinanzaItaliana_FMJ</Ammo_1035mmOrdinanzaItaliana_FMJ>
+		</ammoTypes>
+	</CombatExtended.AmmoSetDef>
+
+	<!-- ==================== Ammo ========================== -->
+
+	<ThingDef Class="CombatExtended.AmmoDef" Name="1035mmOrdinanzaItalianaBase" ParentName="SmallAmmoBase" Abstract="True">
+		<description>Ancient pistol cartridge originally designed for Italian revolvers.</description>
+		<statBases>
+			<Mass>0.02</Mass>
+			<Bulk>0.02</Bulk>
+		</statBases>
+		<tradeTags>
+			<li>CE_AutoEnableTrade</li>
+			<li>CE_AutoEnableCrafting</li>
+		</tradeTags>
+		<thingCategories>
+			<li>Ammo1035mmOrdinanzaItaliana</li>
+		</thingCategories>
+	</ThingDef>
+
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="1035mmOrdinanzaItalianaBase">
+		<defName>Ammo_1035mmOrdinanzaItaliana_FMJ</defName>
+		<label>10.35mm Ordinanza Italiana cartridge (FMJ)</label>
+		<graphicData>
+			<texPath>Things/Ammo/Pistol/FMJ</texPath>
+			<graphicClass>Graphic_StackCount</graphicClass>
+		</graphicData>
+		<statBases>
+			<MarketValue>0.1</MarketValue>
+		</statBases>
+		<ammoClass>FullMetalJacket</ammoClass>
+		<cookOffProjectile>Bullet_1035mmOrdinanzaItaliana_FMJ</cookOffProjectile>
+	</ThingDef>
+
+	<!-- ================== Projectiles ================== -->
+
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="Base44MagnumBullet">
+		<defName>Bullet_1035mmOrdinanzaItaliana_FMJ</defName>
+		<label>10.35mm Ordinanza Italiana bullet (FMJ)</label>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageAmountBase>12</damageAmountBase>
+			<armorPenetrationSharp>6.55</armorPenetrationSharp>
+			<armorPenetrationBlunt>21.280</armorPenetrationBlunt>
+		</projectile>
+	</ThingDef>
+
+	<!-- ==================== Recipes ========================== -->
+
+	<RecipeDef ParentName="AmmoRecipeBase">
+		<defName>MakeAmmo_1035mmOrdinanzaItaliana_FMJ</defName>
+		<label>make 10.35mm Ordinanza Italiana (FMJ) cartridge x250</label>
+		<description>Craft 250 10.35mm Ordinanza Italiana (FMJ) cartridges.</description>
+		<jobString>Making 10.35mm Ordinanza Italiana (FMJ) cartridges.</jobString>
+		<ingredients>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>Steel</li>
+					</thingDefs>
+				</filter>
+				<count>10</count>
+			</li>
+		</ingredients>
+		<fixedIngredientFilter>
+			<thingDefs>
+				<li>Steel</li>
+			</thingDefs>
+		</fixedIngredientFilter>
+		<products>
+			<Ammo_1035mmOrdinanzaItaliana_FMJ>250</Ammo_1035mmOrdinanzaItaliana_FMJ>
+		</products>
+		<workAmount>2200</workAmount>
+	</RecipeDef>
+
+
+
+		</value>
+		</li>	
+			
+		</operations>
+		</match>
+	</Operation>
+	
+</Patch>

@@ -41,7 +41,7 @@ namespace CombatExtended
             var fragPerTick = Mathf.CeilToInt((float)fragToSpawn / TicksToSpawnAllFrag);
             var fragSpawnedInTick = 0;
 
-            while (fragToSpawn > 0)
+            while (fragToSpawn > 0 && map != null)
             {
                 var projectile = (ProjectileCE)ThingMaker.MakeThing(frag.thingDef);
                 GenSpawn.Spawn(projectile, cell, map);
