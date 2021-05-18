@@ -21,7 +21,13 @@ namespace CombatExtended
 		
 		private int amountToDrop;
 
-        public override bool TryMakePreToilReservations(bool errorOnFailed)
+		public override void ExposeData()
+		{
+			base.ExposeData();
+			Scribe_Values.Look(ref amountToDrop, "amountToDrop", -1, false);
+		}
+
+		public override bool TryMakePreToilReservations(bool errorOnFailed)
         {
             return true;
         }
