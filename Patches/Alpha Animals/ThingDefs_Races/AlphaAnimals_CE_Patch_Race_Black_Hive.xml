@@ -8,6 +8,23 @@
 		<match Class="PatchOperationSequence">
 			<operations>
 
+          		<li Class="PatchOperationAdd">
+            			<xpath>/Defs/ThingDef[defName="AA_BlackSpelopede" or defName="AA_BlackSpider"]</xpath>
+            			<value>
+              				<comps />
+            			</value>
+          			</li>
+
+		<li Class="PatchOperationAdd">
+			<xpath>/Defs/ThingDef[defName="AA_BlackSpider" or defName="AA_BlackSpelopede"]/comps</xpath>
+			<value>
+				<li>
+				  <compClass>CombatExtended.CompPawnGizmo</compClass>
+				</li>
+				<li Class="CombatExtended.CompProperties_Suppressable" />
+			</value>
+		</li>
+
 			<li Class="PatchOperationAddModExtension">
 				<xpath>/Defs/ThingDef[defName="AA_BlackScarab"]</xpath>
 				<value>
@@ -89,7 +106,7 @@
 			<li Class="PatchOperationReplace">
 				<xpath>/Defs/ThingDef[defName="AA_BlackSpelopede"]/statBases/ArmorRating_Blunt</xpath>
 				<value>
-					<ArmorRating_Blunt>7</ArmorRating_Blunt>
+					<ArmorRating_Blunt>6</ArmorRating_Blunt>
 				</value>
 			</li>
 			<li Class="PatchOperationReplace">
@@ -105,6 +122,7 @@
 					<MeleeDodgeChance>0.08</MeleeDodgeChance>
 					<MeleeCritChance>0.18</MeleeCritChance>
 					<MeleeParryChance>0.15</MeleeParryChance>
+          					<Suppressability>0.25</Suppressability>
 				</value>
 			</li>
 				
@@ -135,6 +153,17 @@
 							<cooldownTime>1.68</cooldownTime>
 							<linkedBodyPartsGroup>HeadClaw</linkedBodyPartsGroup>
 							<armorPenetrationSharp>1</armorPenetrationSharp>
+							<armorPenetrationBlunt>3</armorPenetrationBlunt>
+						</li>
+						<li Class="CombatExtended.ToolCE">
+							<label>head claw</label>
+							<capacities>
+								<li>Stab</li>
+							</capacities>
+							<power>14</power>
+							<cooldownTime>1.48</cooldownTime>
+							<linkedBodyPartsGroup>HeadClaw</linkedBodyPartsGroup>
+							<armorPenetrationSharp>6</armorPenetrationSharp>
 							<armorPenetrationBlunt>3</armorPenetrationBlunt>
 						</li>
 						<li Class="CombatExtended.ToolCE">
@@ -188,6 +217,7 @@
 					<MeleeDodgeChance>0.09</MeleeDodgeChance>
 					<MeleeCritChance>0.45</MeleeCritChance>
 					<MeleeParryChance>0.25</MeleeParryChance>
+          					<Suppressability>0.2</Suppressability>
 				</value>
 			</li>
 				
@@ -207,8 +237,19 @@
 							<capacities>
 								<li>Cut</li>
 							</capacities>
-							<power>32</power>
-							<cooldownTime>2.1</cooldownTime>
+							<power>36</power>
+							<cooldownTime>2.0</cooldownTime>
+							<linkedBodyPartsGroup>HeadClaw</linkedBodyPartsGroup>
+							<armorPenetrationSharp>7</armorPenetrationSharp>
+							<armorPenetrationBlunt>24</armorPenetrationBlunt>
+						</li>
+						<li Class="CombatExtended.ToolCE">
+							<label>head claw</label>
+							<capacities>
+								<li>Stab</li>
+							</capacities>
+							<power>22</power>
+							<cooldownTime>1.33</cooldownTime>
 							<linkedBodyPartsGroup>HeadClaw</linkedBodyPartsGroup>
 							<armorPenetrationSharp>40</armorPenetrationSharp>
 							<armorPenetrationBlunt>20</armorPenetrationBlunt>
@@ -218,7 +259,7 @@
 							<capacities>
 								<li>Blunt</li>
 							</capacities>
-							<power>24</power>
+							<power>18</power>
 							<cooldownTime>1.33</cooldownTime>
 							<linkedBodyPartsGroup>HeadAttackTool</linkedBodyPartsGroup>
 							<ensureLinkedBodyPartsGroupAlwaysUsable>true</ensureLinkedBodyPartsGroupAlwaysUsable>
