@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+	<Operation Class="PatchOperationSequence">
+		<success></success>
+		<operations>
+			<li Class="PatchOperationFindMod">
+			<mods><li>Rim-Effect: Core</li></mods>
+			<match Class="PatchOperationSequence">
+			<operations>
+			
+			<li Class="PatchOperationAddModExtension">
+				<xpath>Defs/PawnKindDef[
+					defName="RE_Merchant" or
+					defName="RE_Colonist" or
+					defName="RE_Farmer" or
+					defName="RE_AllianceOfficer" or
+					defName="RE_AllianceRecruit" or
+					defName="RE_AllianceMilitia" or
+					defName="RE_Official" or
+					defName="RE_Ranger" or
+					defName="RE_Scientist" or
+					defName="RE_Medic" or
+					defName="RE_Scientist" or
+					defName="RE_PrimeMinister"
+					]</xpath>
+				<value>	
+					<li Class="CombatExtended.LoadoutPropertiesExtension">	
+						<primaryMagazineCount>
+							<min>2</min>
+							<max>3</max>
+						</primaryMagazineCount>
+						<sidearms>
+							<li>
+								<generateChance>0.25</generateChance>
+								<sidearmMoney>
+									<min>20</min>
+									<max>120</max>
+								</sidearmMoney>
+								<weaponTags>
+									<li>CE_Sidearm_Melee</li>
+								</weaponTags>
+							</li>
+						</sidearms>
+					</li>
+				</value>
+			</li>
+
+			<li Class="PatchOperationAddModExtension">
+				<xpath>Defs/PawnKindDef[
+					defName="RE_Alliance_MarineHeavy" or
+					defName="RE_Alliance_Adept" or
+					defName="RE_Alliance_Marine" or
+					defName="RE_Spectre" or
+					defName="RE_Alliance_Engineer"
+					]</xpath>
+				<value>	
+					<li Class="CombatExtended.LoadoutPropertiesExtension">	
+						<primaryMagazineCount>
+							<min>3</min>
+							<max>6</max>
+						</primaryMagazineCount>
+						<sidearms>
+							<li>
+								<generateChance>0.25</generateChance>
+								<sidearmMoney>
+									<min>100</min>
+									<max>300</max>
+								</sidearmMoney>
+								<weaponTags>
+									<li>CE_Sidearm_Melee</li>
+								</weaponTags>
+							</li>
+						</sidearms>
+					</li>
+				</value>
+			</li>
+			
+			<li Class="PatchOperationAddModExtension">
+				<xpath>Defs/PawnKindDef[
+					defName="RE_Alliance_MarineSniper"
+					]</xpath>
+				<value>	
+					<li Class="CombatExtended.LoadoutPropertiesExtension">	
+						<primaryMagazineCount>
+							<min>12</min>
+							<max>20</max>
+						</primaryMagazineCount>
+					</li>
+				</value>
+			</li>
+
+
+
+            <!-- ======= Combat Power ======= -->
+
+            <!-- Trooper -->
+            <li Class="PatchOperationReplace">
+			<xpath>/Defs/PawnKindDef[
+            defName="RE_Alliance_Marine"
+            ]/combatPower</xpath>
+				<value>
+					<combatPower>200</combatPower>
+				</value>
+			</li>
+
+            <!-- Infiltrator -->
+            <li Class="PatchOperationReplace">
+			<xpath>/Defs/PawnKindDef[
+            defName="RE_Ranger" or
+            defName="RE_AllianceMilitia"
+            ]/combatPower</xpath>
+				<value>
+					<combatPower>80</combatPower>
+				</value>
+			</li>
+
+
+            <!-- Special -->
+
+			
+			</operations>
+			</match>
+			</li>
+		</operations>
+	</Operation>
+</Patch>

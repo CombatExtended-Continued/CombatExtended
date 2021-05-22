@@ -1,0 +1,247 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+		<li>Rim-Effect: Core</li>
+		</mods>
+
+			<match Class="PatchOperationSequence">
+				<operations>
+
+
+			<li Class="PatchOperationAddModExtension">
+				<xpath>/Defs/ThingDef[defName="RE_Mechanoids_FENRIS" ]</xpath>
+				<value>
+					<li Class="CombatExtended.RacePropertiesExtensionCE">
+						<bodyShape>Quadruped</bodyShape>
+					</li>
+				</value>
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>/Defs/ThingDef[defName="RE_Mechanoids_FENRIS"]/race/baseHealthScale</xpath>
+				<value>
+					<baseHealthScale>1.5</baseHealthScale>
+				</value>
+			</li>
+
+
+			<li Class="PatchOperationAddModExtension">
+				<xpath>/Defs/ThingDef[defName="RE_Mechanoids_LOKI" ]</xpath>
+				<value>
+					<li Class="CombatExtended.RacePropertiesExtensionCE">
+						<bodyShape>Humanoid</bodyShape>
+					</li>
+				</value>
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>/Defs/ThingDef[defName="RE_Mechanoids_LOKI"]/race/baseHealthScale</xpath>
+				<value>
+					<baseHealthScale>1.5</baseHealthScale>
+				</value>
+			</li>
+
+
+			<li Class="PatchOperationAddModExtension">
+				<xpath>/Defs/ThingDef[defName="RE_Mechanoids_YMIR" ]</xpath>
+				<value>
+					<li Class="CombatExtended.RacePropertiesExtensionCE">
+						<bodyShape>Vehicle</bodyShape>
+					</li>
+				</value>
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>/Defs/ThingDef[defName="RE_Mechanoids_YMIR"]/race/baseHealthScale</xpath>
+				<value>
+					<baseHealthScale>3.5</baseHealthScale>
+				</value>
+			</li>
+    			<li Class="PatchOperationReplace">
+     				 <xpath>/Defs/ThingDef[defName="RE_Mechanoids_YMIR"]/race/baseBodySize</xpath>
+      				<value>
+        				<baseBodySize>2</baseBodySize>
+      				</value>
+    			</li>
+
+			<li Class="PatchOperationAdd">
+				<xpath>/Defs/ThingDef[defName="RE_Mechanoids_FENRIS"]/statBases</xpath>
+				<value>
+					<AimingAccuracy>1.0</AimingAccuracy>
+					<ShootingAccuracyPawn>1.0</ShootingAccuracyPawn>
+					<MeleeDodgeChance>1</MeleeDodgeChance>
+					<MeleeCritChance>0.28</MeleeCritChance>
+					<MeleeParryChance>0.15</MeleeParryChance>
+				</value>
+			</li>
+
+			<li Class="PatchOperationAdd">
+				<xpath>/Defs/ThingDef[defName="RE_Mechanoids_LOKI"]/statBases</xpath>
+				<value>
+					<AimingAccuracy>1.0</AimingAccuracy>
+					<ShootingAccuracyPawn>1.0</ShootingAccuracyPawn>
+					<MeleeDodgeChance>0.5</MeleeDodgeChance>
+					<MeleeCritChance>0.21</MeleeCritChance>
+					<MeleeParryChance>0.2</MeleeParryChance>
+				</value>
+			</li>
+
+			<li Class="PatchOperationAdd">
+				<xpath>/Defs/ThingDef[defName="RE_Mechanoids_YMIR"]/statBases</xpath>
+				<value>
+					<AimingAccuracy>1.1</AimingAccuracy>
+					<ShootingAccuracyPawn>1.1</ShootingAccuracyPawn>
+					<MeleeDodgeChance>0.1</MeleeDodgeChance>
+					<MeleeCritChance>0.8</MeleeCritChance>
+					<MeleeParryChance>0.5</MeleeParryChance>
+					<CarryWeight>400</CarryWeight>
+			                	<CarryBulk>1000</CarryBulk>
+					<MaxHitPoints>500</MaxHitPoints>
+				</value>
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>/Defs/ThingDef[defName="RE_Mechanoids_LOKI"]/statBases/ArmorRating_Blunt</xpath>
+				<value>
+					<ArmorRating_Blunt>14</ArmorRating_Blunt>
+				</value>
+			</li>
+			<li Class="PatchOperationReplace">
+				<xpath>/Defs/ThingDef[defName="RE_Mechanoids_LOKI"]/statBases/ArmorRating_Sharp</xpath>
+				<value>
+					<ArmorRating_Sharp>8</ArmorRating_Sharp>
+				</value>
+			</li>		
+
+			<li Class="PatchOperationReplace">
+				<xpath>/Defs/ThingDef[defName="RE_Mechanoids_FENRIS"]/statBases/ArmorRating_Blunt</xpath>
+				<value>
+					<ArmorRating_Blunt>16</ArmorRating_Blunt>
+				</value>
+			</li>
+			<li Class="PatchOperationReplace">
+				<xpath>/Defs/ThingDef[defName="RE_Mechanoids_FENRIS"]/statBases/ArmorRating_Sharp</xpath>
+				<value>
+					<ArmorRating_Sharp>5</ArmorRating_Sharp>
+				</value>
+			</li>		
+
+			<li Class="PatchOperationReplace">
+				<xpath>/Defs/ThingDef[defName="RE_Mechanoids_YMIR"]/statBases/ArmorRating_Blunt</xpath>
+				<value>
+					<ArmorRating_Blunt>75</ArmorRating_Blunt>
+				</value>
+			</li>
+			<li Class="PatchOperationReplace">
+				<xpath>/Defs/ThingDef[defName="RE_Mechanoids_YMIR"]/statBases/ArmorRating_Sharp</xpath>
+				<value>
+					<ArmorRating_Sharp>22</ArmorRating_Sharp>
+				</value>
+			</li>	
+
+    <li Class="PatchOperationReplace">
+      <xpath>Defs/ThingDef[defName="RE_Mechanoids_FENRIS"]/tools</xpath>
+      <value>
+        <tools>
+          <li Class="CombatExtended.ToolCE">
+            <label>head</label>
+            <capacities>
+              <li>Blunt</li>
+            </capacities>
+            <power>14</power>
+            <cooldownTime>1.9</cooldownTime>
+            <linkedBodyPartsGroup>HeadAttackTool</linkedBodyPartsGroup>
+            <chanceFactor>0.2</chanceFactor>
+            <armorPenetrationSharp>0</armorPenetrationSharp>
+            <armorPenetrationBlunt>5</armorPenetrationBlunt>
+          </li>
+        </tools>
+      </value>
+    </li>	
+
+    <li Class="PatchOperationReplace">
+      <xpath>Defs/ThingDef[defName="RE_Mechanoids_LOKI"]/tools</xpath>
+      <value>
+        <tools>
+          <li Class="CombatExtended.ToolCE">
+            <label>head</label>
+            <capacities>
+              <li>Blunt</li>
+            </capacities>
+            <power>4</power>
+            <cooldownTime>1.85</cooldownTime>
+            <linkedBodyPartsGroup>HeadAttackTool</linkedBodyPartsGroup>
+            <chanceFactor>0.2</chanceFactor>
+            <armorPenetrationSharp>0</armorPenetrationSharp>
+            <armorPenetrationBlunt>2</armorPenetrationBlunt>
+          </li>
+        </tools>
+      </value>
+    </li>
+	
+	<li Class="PatchOperationReplace">
+      <xpath>Defs/ThingDef[defName="RE_Mechanoids_YMIR"]/tools</xpath>
+      <value>
+        <tools>
+          <li Class="CombatExtended.ToolCE">
+            <label>head</label>
+            <capacities>
+              <li>Blunt</li>
+            </capacities>
+            <power>43</power>
+            <cooldownTime>2.68</cooldownTime>
+            <linkedBodyPartsGroup>HeadAttackTool</linkedBodyPartsGroup>
+            <armorPenetrationSharp>0</armorPenetrationSharp>
+            <armorPenetrationBlunt>124.25</armorPenetrationBlunt>
+          </li>
+        </tools>
+      </value>
+    </li>
+
+					<!--Mechs-->
+	
+					<li Class="PatchOperationAddModExtension">
+						<xpath>/Defs/PawnKindDef[defName="RE_Mechanoids_FENRIS"]</xpath>
+						<value>
+						<li Class="CombatExtended.LoadoutPropertiesExtension">
+							<primaryMagazineCount>
+							<min>5</min>
+							<max>6</max>
+						</primaryMagazineCount>
+						</li>
+						</value>
+					</li>
+
+					<!--Fireworm-->
+
+					<li Class="PatchOperationAddModExtension">
+						<xpath>/Defs/PawnKindDef[defName="RE_Mechanoids_LOKI"]</xpath>
+						<value>
+						<li Class="CombatExtended.LoadoutPropertiesExtension">
+							<primaryMagazineCount>
+							<min>3</min>
+							<max>4</max>
+						</primaryMagazineCount>
+						</li>
+						</value>
+					</li>
+					
+					<!--Goliath-->
+					
+					<li Class="PatchOperationAddModExtension">
+						<xpath>/Defs/PawnKindDef[defName="RE_Mechanoids_YMIR"]</xpath>
+						<value>
+						<li Class="CombatExtended.LoadoutPropertiesExtension">
+							<primaryMagazineCount>
+							<min>8</min>
+							<max>10</max>
+						</primaryMagazineCount>
+						</li>
+						</value>
+					</li>
+
+				</operations>
+			</match>
+	</Operation>
+</Patch>

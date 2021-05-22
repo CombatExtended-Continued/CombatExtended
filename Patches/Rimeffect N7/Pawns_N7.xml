@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+	<Operation Class="PatchOperationSequence">
+		<success></success>
+		<operations>
+			<li Class="PatchOperationFindMod">
+			<mods><li>Rim-Effect: N7</li></mods>
+			<match Class="PatchOperationSequence">
+			<operations>
+
+			<li Class="PatchOperationAddModExtension">
+				<xpath>Defs/PawnKindDef[
+					defName="REN7_N7AgentAdept" or
+					defName="REN7_N7AgentEngineer"]</xpath>
+				<value>	
+					<li Class="CombatExtended.LoadoutPropertiesExtension">	
+						<primaryMagazineCount>
+							<min>5</min>
+							<max>9</max>
+						</primaryMagazineCount>
+						<sidearms>
+							<li>
+								<generateChance>0.5</generateChance>
+								<sidearmMoney>
+									<min>100</min>
+									<max>300</max>
+								</sidearmMoney>
+								<weaponTags>
+									<li>CE_Sidearm_Melee</li>
+								</weaponTags>
+							</li>
+						</sidearms>
+					</li>
+				</value>
+			</li>
+
+            <!-- ======= Combat Power ======= -->
+
+            <!-- N7 -->
+            <li Class="PatchOperationReplace">
+			<xpath>/Defs/PawnKindDef[
+            defName="REN7_N7AgentAdept" or
+            defName="REN7_N7AgentEngineer"
+            ]/combatPower</xpath>
+				<value>
+					<combatPower>400</combatPower>
+				</value>
+			</li>
+
+			
+			</operations>
+			</match>
+			</li>
+		</operations>
+	</Operation>
+</Patch>
