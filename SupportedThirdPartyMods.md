@@ -179,6 +179,9 @@ Revia Race |
 Right Tool: Rebalanced	|
 Rim Contractors Arsenal	|
 Rim of Madness - Bones	|
+Rim-Effect: Core	|
+Rim-Effect: Extended Cut	|
+Rim-Effect: N7	|
 Rimefeller	|
 RimEffect - Asari of the Rims	|
 Rimfire	|
