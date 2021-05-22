@@ -32,11 +32,11 @@
 										<verbClass>CombatExtended.Verb_ShootCE</verbClass>
 											<hasStandardCommand>true</hasStandardCommand>
 											<defaultProjectile>AA_PoisonBolt</defaultProjectile>
-											<warmupTime>2.6</warmupTime>
+											<warmupTime>2.4</warmupTime>
 											<burstShotCount>1</burstShotCount>
 											<ticksBetweenBurstShots>2</ticksBetweenBurstShots>
 											<minRange>2</minRange>
-											<range>18</range>
+											<range>20</range>
 											<soundCast>AA_PoisonBolt</soundCast>
 											<muzzleFlashScale>0</muzzleFlashScale>
 											<commonality>0.8</commonality>
@@ -53,11 +53,11 @@
 										<verbClass>CombatExtended.Verb_ShootCE</verbClass>
 											<hasStandardCommand>true</hasStandardCommand>
 											<defaultProjectile>AA_PoisonBolt</defaultProjectile>
-											<warmupTime>2</warmupTime>
+											<warmupTime>1.6</warmupTime>
 											<burstShotCount>1</burstShotCount>
 											<ticksBetweenBurstShots>2</ticksBetweenBurstShots>
-											<minRange>2</minRange>
-											<range>28</range>
+											<minRange>1.9</minRange>
+											<range>32</range>
 											<soundCast>AA_PoisonBolt</soundCast>
 											<muzzleFlashScale>0</muzzleFlashScale>
 											<commonality>0.8</commonality>
@@ -78,7 +78,7 @@
 											<defaultProjectile>AA_Bullet_Barb</defaultProjectile>
 											<warmupTime>2</warmupTime>
 											<burstShotCount>3</burstShotCount>
-											<ticksBetweenBurstShots>2</ticksBetweenBurstShots>
+											<ticksBetweenBurstShots>10</ticksBetweenBurstShots>
 											<minRange>2</minRange>
 											<range>18</range>
 											<soundCast>AA_DartSound</soundCast>
@@ -101,7 +101,7 @@
 											<defaultProjectile>AA_Web</defaultProjectile>
 											<warmupTime>2</warmupTime>
 											<burstShotCount>3</burstShotCount>
-											<ticksBetweenBurstShots>2</ticksBetweenBurstShots>
+											<ticksBetweenBurstShots>12</ticksBetweenBurstShots>
 											<minRange>1</minRange>
 											<range>16</range>
 											<soundCast>AA_Throw</soundCast>
@@ -124,7 +124,7 @@
 											<defaultProjectile>AA_FrostWeb</defaultProjectile>
 											<warmupTime>2</warmupTime>
 											<burstShotCount>3</burstShotCount>
-											<ticksBetweenBurstShots>2</ticksBetweenBurstShots>
+											<ticksBetweenBurstShots>12</ticksBetweenBurstShots>
 											<minRange>1</minRange>
 											<range>16</range>
 											<soundCast>AA_Throw</soundCast>
@@ -145,9 +145,9 @@
 											<defaultProjectile>AA_FrostWeb</defaultProjectile>
 											<warmupTime>2</warmupTime>
 											<burstShotCount>3</burstShotCount>
-											<ticksBetweenBurstShots>2</ticksBetweenBurstShots>
+											<ticksBetweenBurstShots>12</ticksBetweenBurstShots>
 											<minRange>1</minRange>
-											<range>18</range>
+											<range>20</range>
 											<soundCast>AA_Throw</soundCast>
 											<muzzleFlashScale>0</muzzleFlashScale>
 											<commonality>0.8</commonality>
@@ -166,7 +166,7 @@
 											<defaultProjectile>AA_FireWeb</defaultProjectile>
 											<warmupTime>2</warmupTime>
 											<burstShotCount>2</burstShotCount>
-											<ticksBetweenBurstShots>2</ticksBetweenBurstShots>
+											<ticksBetweenBurstShots>12</ticksBetweenBurstShots>
 											<minRange>2</minRange>
 											<range>16</range>
 											<soundCast>AA_Throw</soundCast>
@@ -180,7 +180,7 @@
 					<!-- Dunealisk and Dunemom -->
 
 						<li Class="PatchOperationReplace">
-						<xpath>/Defs/ThingDef[defName="AA_Dunealisk" or defName="AA_DunealiskClutchMother"]/verbs</xpath>
+						<xpath>/Defs/ThingDef[defName="AA_Dunealisk"]/verbs</xpath>
 							<value>
 								<verbs>
 									<li Class="CombatExtended.VerbPropertiesCE">
@@ -189,9 +189,30 @@
 											<defaultProjectile>AA_BurnWeb</defaultProjectile>
 											<warmupTime>2</warmupTime>
 											<burstShotCount>3</burstShotCount>
-											<ticksBetweenBurstShots>7</ticksBetweenBurstShots>
+											<ticksBetweenBurstShots>12</ticksBetweenBurstShots>
 											<minRange>2</minRange>
 											<range>16</range>
+											<soundCast>AA_Throw</soundCast>
+											<muzzleFlashScale>0</muzzleFlashScale>
+											<commonality>0.8</commonality>
+									</li>
+								</verbs>
+							</value>
+					</li>
+
+						<li Class="PatchOperationReplace">
+						<xpath>/Defs/ThingDef[defName="AA_DunealiskClutchMother"]/verbs</xpath>
+							<value>
+								<verbs>
+									<li Class="CombatExtended.VerbPropertiesCE">
+										<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+											<hasStandardCommand>true</hasStandardCommand>
+											<defaultProjectile>AA_BurnWeb</defaultProjectile>
+											<warmupTime>2</warmupTime>
+											<burstShotCount>3</burstShotCount>
+											<ticksBetweenBurstShots>12</ticksBetweenBurstShots>
+											<minRange>2</minRange>
+											<range>20</range>
 											<soundCast>AA_Throw</soundCast>
 											<muzzleFlashScale>0</muzzleFlashScale>
 											<commonality>0.8</commonality>
@@ -203,7 +224,28 @@
 					<!-- Feralisk and Fera-san -->
 
 					<li Class="PatchOperationReplace">
-						<xpath>/Defs/ThingDef[defName="AA_Feralisk" or defName="AA_FeraliskClutchMother"]/verbs</xpath>
+						<xpath>/Defs/ThingDef[defName="AA_FeraliskClutchMother"]/verbs</xpath>
+							<value>
+								<verbs>
+									<li Class="CombatExtended.VerbPropertiesCE">
+										<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+											<hasStandardCommand>true</hasStandardCommand>
+											<defaultProjectile>AA_Web</defaultProjectile>
+											<warmupTime>2</warmupTime>
+											<burstShotCount>3</burstShotCount>
+											<ticksBetweenBurstShots>12</ticksBetweenBurstShots>
+											<minRange>1</minRange>
+											<range>16</range>
+											<soundCast>AA_Throw</soundCast>
+											<muzzleFlashScale>0</muzzleFlashScale>
+											<commonality>0.8</commonality>
+									</li>
+								</verbs>
+							</value>
+					</li>
+
+				<li Class="PatchOperationReplace">
+						<xpath>/Defs/ThingDef[defName="AA_FeraliskClutchMother"]/verbs</xpath>
 							<value>
 								<verbs>
 									<li Class="CombatExtended.VerbPropertiesCE">
@@ -214,7 +256,7 @@
 											<burstShotCount>3</burstShotCount>
 											<ticksBetweenBurstShots>2</ticksBetweenBurstShots>
 											<minRange>1</minRange>
-											<range>16</range>
+											<range>20</range>
 											<soundCast>AA_Throw</soundCast>
 											<muzzleFlashScale>0</muzzleFlashScale>
 											<commonality>0.8</commonality>
@@ -446,9 +488,32 @@
 										<burstShotCount>1</burstShotCount>
 										<ticksBetweenBurstShots>2</ticksBetweenBurstShots>
 										<minRange>2</minRange>
-										<range>20</range>
+										<range>18</range>
 										<soundCast>AA_DartSound</soundCast>
 										<muzzleFlashScale>0</muzzleFlashScale>
+										<commonality>0.8</commonality>
+									</li>
+								</verbs>
+							</value>
+					</li>
+
+					<!-- Glassy Cat -->
+
+					<li Class="PatchOperationReplace">
+						<xpath>/Defs/ThingDef[defName="AA_CrystallineCaracal"]/verbs</xpath>
+							<value>
+								<verbs>
+									<li Class="CombatExtended.VerbPropertiesCE">
+										<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+										<hasStandardCommand>true</hasStandardCommand>
+										<defaultProjectile>AA_LaserBullet</defaultProjectile>
+										<warmupTime>3</warmupTime>
+										<burstShotCount>1</burstShotCount>
+										<minRange>1.9</minRange>
+										<range>15</range>
+										<soundCast>AA_LaserBullet</soundCast>
+										<muzzleFlashScale>0</muzzleFlashScale>
+										<label>laser</label>
 										<commonality>0.8</commonality>
 									</li>
 								</verbs>
@@ -511,11 +576,11 @@
 										<verbClass>CombatExtended.Verb_ShootCE</verbClass>
 										<hasStandardCommand>true</hasStandardCommand>
 										<defaultProjectile>AA_FireSpit</defaultProjectile>
-										<warmupTime>3</warmupTime>
+										<warmupTime>2.5</warmupTime>
 										<burstShotCount>4</burstShotCount>
-										<ticksBetweenBurstShots>1</ticksBetweenBurstShots>
+										<ticksBetweenBurstShots>2</ticksBetweenBurstShots>
 										<minRange>2</minRange>
-										<range>13</range>
+										<range>11</range>
 										<soundCast>AA_FireSpit</soundCast>
 										<muzzleFlashScale>0</muzzleFlashScale>
 										<commonality>0.9</commonality>
@@ -536,7 +601,7 @@
 										<defaultProjectile>AA_RedPoisonBolt</defaultProjectile>
 										<warmupTime>1.5</warmupTime>
 										<burstShotCount>4</burstShotCount>
-										<ticksBetweenBurstShots>2</ticksBetweenBurstShots>
+										<ticksBetweenBurstShots>3</ticksBetweenBurstShots>
 										<minRange>2</minRange>
 										<range>30</range>
 										<soundCast>AA_PoisonBolt</soundCast>
@@ -557,9 +622,9 @@
 										<verbClass>CombatExtended.Verb_ShootCE</verbClass>
 										<hasStandardCommand>true</hasStandardCommand>
 										<defaultProjectile>AA_Plasma</defaultProjectile>
-										<warmupTime>4</warmupTime>
+										<warmupTime>3.6</warmupTime>
 										<burstShotCount>4</burstShotCount>
-										<ticksBetweenBurstShots>2</ticksBetweenBurstShots>
+										<ticksBetweenBurstShots>3</ticksBetweenBurstShots>
 										<minRange>2</minRange>
 										<range>20</range>
 										<soundCast>AA_Plasma</soundCast>
@@ -592,6 +657,29 @@
 								</verbs>
 							</value>
 					</li>
+					<!-- RedSpore -->
+
+					<li Class="PatchOperationReplace">
+						<xpath>/Defs/ThingDef[defName="AA_DarkBeast"]/verbs</xpath>
+							<value>
+								<verbs>
+									<li Class="CombatExtended.VerbPropertiesCE">
+										<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+										<hasStandardCommand>true</hasStandardCommand>
+										<defaultProjectile>AA_DarkBolt</defaultProjectile>
+										<warmupTime>2.5</warmupTime>
+										<burstShotCount>1</burstShotCount>
+										<minRange>3</minRange>
+										<range>20</range>
+										<soundCast>AA_ElectricBolt</soundCast>
+										<muzzleFlashScale>0</muzzleFlashScale>
+										<label>dark bolt</label>
+										<commonality>.8</commonality>
+									</li>
+								</verbs>
+							</value>
+					</li>
+
 				</operations>
 			</match>
 	</Operation>
