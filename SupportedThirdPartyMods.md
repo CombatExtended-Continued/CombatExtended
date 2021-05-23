@@ -142,6 +142,7 @@ Mass Effect - Playable Geth |
 Mechanoids Extraordinaire	|
 Medical System Expansion	|
 Megafauna	|
+Midworld Expanded Flak Armor  |
 Mincho, The Mint Choco Slime  |
 MiningCo. MiningHelmet	|
 Misc. Core	|
