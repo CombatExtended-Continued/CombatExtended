@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+  <Operation Class="PatchOperationSequence">
+	<operations>
+	  <li Class="PatchOperationFindMod">
+			
+		<mods><li>Nyaron race</li></mods>
+			
+		<match Class="PatchOperationSequence">
+		<operations>
+			<!--Ammo-->
+			
+			<li Class="PatchOperationAddModExtension">
+				<xpath>Defs/PawnKindDef[
+				@Name="NyaronCivBase"
+				]</xpath>
+				<value>
+					<li Class="CombatExtended.LoadoutPropertiesExtension">
+					<primaryMagazineCount>
+						<min>0</min>
+						<max>3</max>
+					</primaryMagazineCount>
+					</li>
+				</value>
+			</li>
+			
+			<li Class="PatchOperationAddModExtension">
+				<xpath>Defs/PawnKindDef[
+				@Name="NyaronMilBase"
+				]</xpath>
+				<value>
+					<li Class="CombatExtended.LoadoutPropertiesExtension">
+					<primaryMagazineCount>
+						<min>2</min>
+						<max>5</max>
+					</primaryMagazineCount>
+					<shieldMoney>
+					  <min>200</min>
+					  <max>600</max>
+					</shieldMoney>
+					<shieldTags>
+					  <li>OutlanderShield</li>
+					</shieldTags>
+					<shieldChance>0.5</shieldChance>
+					</li>
+				</value>
+			</li>
+			
+		</operations>
+		</match>	
+	  </li>
+	</operations>	
+  </Operation>
+</Patch>
