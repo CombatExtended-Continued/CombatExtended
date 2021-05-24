@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+
+  <Operation Class="PatchOperationFindMod">
+    <mods>
+      <li>RadWorld</li>
+    </mods>
+    <match Class="PatchOperationSequence">
+      <operations>
+
+		<!-- Give the gas mask filter appropriate bulk. -->
+
+		<li Class="PatchOperationAdd">
+			<xpath>Defs/ThingDef[defName = "RW_GasMaskFilter"]/statBases</xpath>
+			<value>
+				<Bulk>0.65</Bulk>
+			</value>
+		</li>
+
+		<!-- Make RadWorld gas masks work like CE gas masks. -->
+
+		<li Class="PatchOperationAddModExtension">
+			<xpath>Defs/ThingDef[defName = "RW_Apparel_DuctTapedGasMask" or defName="RW_Apparel_GasMask_Black" or defName="RW_Apparel_GasMask_Yellow"]</xpath>
+			<value>
+				<li Class="CombatExtended.ApparelHediffExtension">
+					<hediff>WearingGasMask</hediff>
+				</li>
+			</value>
+		</li>
+
+		<li Class="PatchOperationAdd">
+			<xpath>Defs/ThingDef[defName="RW_Apparel_GasMask_Black" or defName="RW_Apparel_GasMask_Yellow"]</xpath>
+			<value>
+				<equippedStatOffsets>
+					<ToxicSensitivity>-0.5</ToxicSensitivity>
+					<SmokeSensitivity>-1</SmokeSensitivity>
+				</equippedStatOffsets>
+			</value>
+		</li>
+
+		<li Class="PatchOperationAdd">
+			<xpath>Defs/ThingDef[defName="RW_Apparel_DuctTapedGasMask" or defName="RW_Apparel_ArchotechGasMask"]/equippedStatOffsets</xpath>
+			<value>
+				<SmokeSensitivity>-1</SmokeSensitivity>
+			</value>
+		</li>
+
+		<!-- Make CE gas masks work like RadWorld gas masks. -->
+
+		<li Class="PatchOperationAdd">
+			<xpath>Defs/ThingDef[defName = "Apparel_GasMask"]/statBases</xpath>
+			<value>
+				<RW_RadiationResistanceOffset>0.15</RW_RadiationResistanceOffset>
+				<RW_RadiationResistancePoweredOffset>0.35</RW_RadiationResistancePoweredOffset>
+			</value>
+		</li>
+
+		<li Class="PatchOperationAdd">
+			<xpath>Defs/ThingDef[defName = "Apparel_GasMask"]</xpath>
+			<value>
+				<comps>
+					<li Class="CompProperties_Reloadable">
+						<compClass>RadWorld.CompGasMaskReloadable</compClass>
+						<maxCharges>2</maxCharges>
+						<ammoDef>RW_GasMaskFilter</ammoDef>
+						<ammoCountToRefill>2</ammoCountToRefill>
+						<baseReloadTicks>60</baseReloadTicks>
+						<soundReload>Standard_Reload</soundReload>
+						<hotKey>Misc4</hotKey>
+						<chargeNoun>smokepop</chargeNoun>
+						<displayGizmoWhileUndrafted>false</displayGizmoWhileUndrafted>
+					</li>
+				</comps>
+			</value>
+		</li>
+
+		</operations>
+		</match>
+	</Operation>
+
+</Patch>
+
