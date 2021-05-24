@@ -1,0 +1,124 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+	<Operation Class="PatchOperationFindMod">
+			<mods>
+				<li>NewRatkinPlus</li>
+			</mods>
+		<match Class="PatchOperationSequence">
+		<operations>
+
+			<li Class="PatchOperationAdd">
+				<xpath>Defs</xpath>
+				<value>	
+	
+    <ThingCategoryDef>
+      <defName>Ammo_RKCannonShell</defName>
+      <label>Ratkin Cannon Balls</label>
+      <parent>AmmoMedieval</parent>
+    </ThingCategoryDef>
+	
+	<!-- ==================== AmmoSet ========================== -->
+
+	<CombatExtended.AmmoSetDef>
+		<defName>AmmoSet_RKCannonBall</defName>
+		<label>Cannon Ball</label>
+		<ammoTypes>
+			<Ammo_RKCannonBall>Projectile_RKCannonBall</Ammo_RKCannonBall>	
+		</ammoTypes>
+	</CombatExtended.AmmoSetDef>
+	
+	<!-- ==================== Ammo ========================== -->
+	
+   <ThingDef Name="AmmoRKCannonBall" ParentName="AmmoBase" Abstract="True">
+    <description>Simple solid shot, designed for ratkin cannons.</description>
+    <statBases>
+      <Mass>13.6</Mass>
+      <Bulk>8.31</Bulk>
+      <Flammability>1</Flammability>
+    </statBases>
+    <thingCategories>
+      <li>Ammo_RKCannonShell</li>
+    </thingCategories>
+    <stackLimit>25</stackLimit>
+    <techLevel>Medieval</techLevel>	
+  </ThingDef>
+
+  <ThingDef Class="CombatExtended.AmmoDef" ParentName="AmmoRKCannonBall">
+    <defName>Ammo_RKCannonBall</defName>
+    <label>Cannon Ball</label>
+    <graphicData>
+			<texPath>Things/Item/Resource/Big_mouse</texPath>
+			<graphicClass>Graphic_StackCount</graphicClass>
+			<drawSize>(0.6,0.6)</drawSize>
+    </graphicData>
+    <statBases>
+      <MarketValue>54.7</MarketValue>
+    </statBases>
+    <ammoClass>CannonBall</ammoClass>
+  </ThingDef>
+  
+	<!-- ================== Projectiles ================== -->
+
+	<ThingDef ParentName="BaseProjectileNeolithic" Name="BaseProjectileRKCannon" Abstract="true">
+		<thingClass>CombatExtended.BulletCE</thingClass>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<speed>45</speed>
+		</projectile>
+	</ThingDef>
+	
+	<ThingDef ParentName="BaseProjectileRKCannon">
+		<defName>Projectile_RKCannonBall</defName>
+		<label>Cannon Ball</label>
+		<graphicData>
+			<texPath>Things/Projectile/Big_mouse</texPath>
+			<drawSize>(0.6,0.6)</drawSize>
+			<graphicClass>Graphic_Single</graphicClass>
+			<shaderType>TransparentPostLight</shaderType>
+		</graphicData>			
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageDef>Bullet</damageDef>
+			<damageAmountBase>337</damageAmountBase>
+			<armorPenetrationBlunt>17856.08</armorPenetrationBlunt>
+			<armorPenetrationSharp>8</armorPenetrationSharp>	
+		</projectile>
+	</ThingDef>
+	
+	<!-- ==================== Recipes ========================== -->
+
+    <RecipeDef ParentName="AmmoRecipeNeolithicBase">
+    <defName>MakeRKCannonBall</defName>
+    <label>make Cannon 5 Balls</label>
+    <description>Craft Cannon Ball x5.</description>
+    <jobString>Making Cannon Ball.</jobString>
+    <ingredients>
+      <li>
+        <filter>
+          <thingDefs>
+            <li>Steel</li>
+          </thingDefs>
+        </filter>
+        <count>138</count>
+      </li>
+    </ingredients>
+    <workAmount>13800</workAmount>	
+    <fixedIngredientFilter>
+      <thingDefs>
+        <li>Steel</li>
+      </thingDefs>
+    </fixedIngredientFilter>
+    <products>
+      <Ammo_RKCannonBall>5</Ammo_RKCannonBall>
+    </products>
+	<recipeUsers>
+	  <li>FueledSmithy</li>
+	  <li>ElectricSmithy</li>	
+	</recipeUsers>
+    </RecipeDef>
+
+
+				</value>
+			</li>
+		</operations>
+		</match>
+	</Operation>
+</Patch>

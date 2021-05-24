@@ -557,11 +557,12 @@
 			  </tools>
 			</value>
 		  </li>
-		  <li Class="PatchOperationAdd">
-			<xpath>/Defs/ThingDef[defName="RK_HeavyLance"]/statBases</xpath>
+		  <li Class="PatchOperationReplace">
+			<xpath>/Defs/ThingDef[defName="RK_HeavyLance"]/statBases/Mass</xpath>
 			<value>
 			  <MeleeCounterParryBonus>1.28</MeleeCounterParryBonus>
 			  <Bulk>7</Bulk>
+			  <Mass>5</Mass>
 			</value>
 		  </li>
 		  <li Class="PatchOperationReplace">
@@ -574,6 +575,12 @@
 			  </equippedStatOffsets>
 			</value>
 		  </li>
+		  <li Class="PatchOperationReplace">
+		  	<xpath>/Defs/ThingDef[defName="RK_HeavyLance"]/stuffCategories/li[.="Metallic"]</xpath>
+				<value>
+				  <li>Metallic_Weapon</li>
+				</value>
+		    </li>
 
 		  <!-- Gunlances (Normal & Spread) -->
 			<li Class="PatchOperationReplace">
@@ -618,11 +625,12 @@
 				</tools>
 			</value>
 		    </li>
-		    <li Class="PatchOperationAdd">
-		  	<xpath>/Defs/ThingDef[defName="RK_Gunlance_NormalType" or defName="RK_Gunlance_SpreadType"]/statBases</xpath>
+		    <li Class="PatchOperationReplace">
+		  	<xpath>/Defs/ThingDef[defName="RK_Gunlance_NormalType" or defName="RK_Gunlance_SpreadType"]/statBases/Mass</xpath>
 				<value>
 				  <MeleeCounterParryBonus>1.28</MeleeCounterParryBonus>
 				  <Bulk>7</Bulk>
+				  <Mass>8</Mass>
 				</value>
 		    </li>
 		    <li Class="PatchOperationReplace">
@@ -633,6 +641,12 @@
 					<MeleeParryChance>0.98</MeleeParryChance>
 					<MeleeDodgeChance>0.8</MeleeDodgeChance>
 				  </equippedStatOffsets>
+				</value>
+		    </li>
+			<li Class="PatchOperationReplace">
+		  	<xpath>/Defs/ThingDef[defName="RK_Gunlance_NormalType" or defName="RK_Gunlance_SpreadType"]/stuffCategories/li[.="Metallic"]</xpath>
+				<value>
+				  <li>Metallic_Weapon</li>
 				</value>
 		    </li>
 
