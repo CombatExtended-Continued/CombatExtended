@@ -218,11 +218,34 @@
 			  </operations>
 			</li>
 			
+			<li Class="PatchOperationAttributeSet">
+			  <xpath>/Defs/ThingDef[defName="GI_Lightningjavelin"]</xpath>
+			  <attribute>Class</attribute>
+			  <value>CombatExtended.AmmoDef</value>
+			</li>
+
+			<li Class="PatchOperationSequence">
+			  <success>Always</success>
+			  <operations>
+				<li Class="PatchOperationTest">
+				  <xpath>/Defs/ThingDef[defName="GI_Lightningjavelin"]/comps</xpath>
+				  <success>Invert</success>
+				</li>
+				<li Class="PatchOperationAdd">
+				  <xpath>/Defs/ThingDef[defName="GI_Lightningjavelin"]</xpath>
+				  <value>
+					<comps />
+				  </value>
+				</li>
+			  </operations>
+			</li>
+			
 			<li Class="PatchOperationAdd">
 				<xpath>/Defs/ThingDef[
 				defName="GI_Jackstones_limestone" or
 				defName="GI_Jackstones_granite" or
 				defName="GI_Javelin" or
+				defName="GI_Lightningjavelin" or
 				defName="GI_Scrapmetal" or
 				defName="GI_Rockpillar_granite" or
 				defName="GI_Rockpillar_Marble"
@@ -237,6 +260,7 @@
 				defName="GI_Jackstones_limestone" or
 				defName="GI_Jackstones_granite" or
 				defName="GI_Javelin" or
+				defName="GI_Lightningjavelin" or
 				defName="GI_Scrapmetal" or
 				defName="GI_Rockpillar_granite" or
 				defName="GI_Rockpillar_Marble"
@@ -248,6 +272,7 @@
 				defName="GI_Jackstones_limestone" or
 				defName="GI_Jackstones_granite" or
 				defName="GI_Javelin" or
+				defName="GI_Lightningjavelin" or
 				defName="GI_Scrapmetal" or
 				defName="GI_Rockpillar_granite" or
 				defName="GI_Rockpillar_Marble"
@@ -259,6 +284,7 @@
 				defName="GI_Jackstones_limestone" or
 				defName="GI_Jackstones_granite" or
 				defName="GI_Javelin" or
+				defName="GI_Lightningjavelin" or
 				defName="GI_Scrapmetal" or
 				defName="GI_Rockpillar_granite" or
 				defName="GI_Rockpillar_Marble"
@@ -308,6 +334,15 @@
 				]/statBases</xpath>
 				<value>
 					<MarketValue>0.09</MarketValue>
+				</value>
+			</li>
+			
+			<li Class="PatchOperationAdd">
+				<xpath>/Defs/ThingDef[
+				defName="GI_Lightningjavelin"
+				]/statBases</xpath>
+				<value>
+					<MarketValue>75</MarketValue>
 				</value>
 			</li>
 
@@ -538,6 +573,48 @@
 			  </value>
 			</li>
 			
+			<li Class="PatchOperationAdd">
+			  <xpath>Defs</xpath>
+			  <value>
+				<RecipeDef ParentName="AmmoRecipeNeolithicBase">
+				  <defName>Make_GI_Lightningjavelin</defName>
+				  <label>make lightning javelin x10</label>
+				  <description>Craft 10 lightning javelins.</description>
+				  <jobString>Making lightning javelins.</jobString>
+				  <workAmount>28500</workAmount>
+				  <ingredients>
+						<li>
+							<filter>
+								<thingDefs>
+									<li>Steel</li>
+								</thingDefs>
+							</filter>
+							<count>200</count>
+						</li>
+						<li>
+							<filter>
+								<thingDefs>
+									<li>ComponentIndustrial</li>
+								</thingDefs>
+							</filter>
+							<count>12</count>
+						</li>
+				  </ingredients>
+				  <fixedIngredientFilter>
+						<thingDefs>
+							<li>Steel</li>
+							<li>ComponentIndustrial</li>
+						</thingDefs>
+				  </fixedIngredientFilter>
+				  <recipeUsers>
+				  </recipeUsers>
+				  <products>
+					<GI_Javelin>10</GI_Javelin>
+				  </products>
+				</RecipeDef>
+			  </value>
+			</li>
+			
 			<!-- Compat -->
 			
 			<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
@@ -640,7 +717,7 @@
 				<SwayFactor>2.5</SwayFactor>
 			  </statBases>
 			  <Properties>
-				<label>throw jackstone</label>
+				<label>throw javelin</label>
 				<verbClass>CombatExtended.Verb_ShootCEOneUse</verbClass>
 				<hasStandardCommand>true</hasStandardCommand>
 				<defaultProjectile>GI_Javelin_Thrown</defaultProjectile>
@@ -810,6 +887,125 @@
 				</value>
 			</li>
 			
+			<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+			  <defName>GI_Javelin</defName>
+			  <statBases>
+				<Mass>10.2</Mass>
+				<Bulk>12</Bulk>
+				<MarketValue>0.09</MarketValue>
+				<SightsEfficiency>0.6</SightsEfficiency>
+				<RangedWeapon_Cooldown>1</RangedWeapon_Cooldown>
+				<ShotSpread>1.5</ShotSpread>
+				<SwayFactor>2.5</SwayFactor>
+			  </statBases>
+			  <Properties>
+				<label>throw javelin</label>
+				<verbClass>CombatExtended.Verb_ShootCEOneUse</verbClass>
+				<hasStandardCommand>true</hasStandardCommand>
+				<defaultProjectile>GI_Javelin_Thrown</defaultProjectile>
+				<range>16</range>
+				<warmupTime>1.8</warmupTime>
+				<soundCast>Interact_BeatFire</soundCast>
+				<noiseRadius>4</noiseRadius>
+				<ai_IsBuildingDestroyer>false</ai_IsBuildingDestroyer>
+			  </Properties>
+			  <FireModes />
+			  <AllowWithRunAndGun>false</AllowWithRunAndGun>
+			</li>
+			
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="GI_Javelin"]/tools</xpath>
+				<value>
+					<tools>
+						<li Class="CombatExtended.ToolCE">
+							<label>shaft</label>
+							<capacities>
+								<li>Blunt</li>
+							</capacities>
+							<power>16</power>
+							<cooldownTime>2.79</cooldownTime>
+							<armorPenetrationBlunt>6</armorPenetrationBlunt>
+							<linkedBodyPartsGroup>Handle</linkedBodyPartsGroup>
+						</li>
+						<li Class="CombatExtended.ToolCE">
+							<label>head</label>
+							<capacities>
+								<li>Stab</li>
+							</capacities>
+							<power>46</power>
+							<cooldownTime>4.19</cooldownTime>
+							<chanceFactor>2</chanceFactor>
+							<armorPenetrationSharp>2.29</armorPenetrationSharp>
+							<armorPenetrationBlunt>24</armorPenetrationBlunt>
+							<linkedBodyPartsGroup>Head</linkedBodyPartsGroup>
+						</li>
+					</tools>
+				</value>
+			</li>
+			
+			<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+			  <defName>GI_Lightningjavelin</defName>
+			  <statBases>
+				<Mass>8.6</Mass>
+				<Bulk>12</Bulk>
+				<MarketValue>0.09</MarketValue>
+				<SightsEfficiency>0.6</SightsEfficiency>
+				<RangedWeapon_Cooldown>1</RangedWeapon_Cooldown>
+				<ShotSpread>1.5</ShotSpread>
+				<SwayFactor>1.5</SwayFactor>
+			  </statBases>
+			  <Properties>
+				<label>throw javelin</label>
+				<verbClass>CombatExtended.Verb_ShootCEOneUse</verbClass>
+				<hasStandardCommand>true</hasStandardCommand>
+				<defaultProjectile>GI_Lightningjavelin_Thrown</defaultProjectile>
+				<range>22</range>
+				<warmupTime>1.8</warmupTime>
+				<soundCast>Interact_BeatFire</soundCast>
+				<noiseRadius>4</noiseRadius>
+				<ai_IsBuildingDestroyer>false</ai_IsBuildingDestroyer>
+			  </Properties>
+			  <FireModes />
+			  <AllowWithRunAndGun>false</AllowWithRunAndGun>
+			</li>
+			
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="GI_Lightningjavelin"]/tools</xpath>
+				<value>
+					<tools>
+						<li Class="CombatExtended.ToolCE">
+							<label>shaft</label>
+							<capacities>
+								<li>Blunt</li>
+							</capacities>
+							<power>27</power>
+							<cooldownTime>3.75</cooldownTime>
+							<armorPenetrationBlunt>6</armorPenetrationBlunt>
+							<linkedBodyPartsGroup>Handle</linkedBodyPartsGroup>
+						</li>
+						<li Class="CombatExtended.ToolCE">
+							<label>head</label>
+							<capacities>
+								<li>Stab</li>
+							</capacities>
+							<power>42</power>
+							<cooldownTime>3.85</cooldownTime>
+							<chanceFactor>2</chanceFactor>
+							<armorPenetrationSharp>28</armorPenetrationSharp>
+							<armorPenetrationBlunt>40</armorPenetrationBlunt>
+							<linkedBodyPartsGroup>Head</linkedBodyPartsGroup>
+							<extraMeleeDamages>
+							<li>
+								<def>EMP</def>
+								<amount>4</amount>
+								<chance>0.5</chance>
+							</li>
+							</extraMeleeDamages>	
+						</li>
+					</tools>
+				</value>
+			</li>
+			
 			<!--Ammo-->
 			
 			<li Class="PatchOperationReplace">
@@ -955,6 +1151,35 @@
 							<preExplosionSpawnChance>0.25</preExplosionSpawnChance>	<!-- 4 javelins per resource -->
 							<preExplosionSpawnThingDef>GI_Rockpillar_Marble</preExplosionSpawnThingDef>
 						</projectile>
+					</ThingDef>
+				</value>
+			</li>
+			
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="GI_Lightningjavelin_Thrown"]</xpath>
+				<value>
+					<ThingDef Class="CombatExtended.AmmoDef" ParentName="BasePilumProjectile">
+						<defName>GI_Lightningjavelin_Thrown</defName>
+						<label>Lightningjavelin</label>
+						<graphicData>
+						  <texPath>Giant/Weapons/Industrial/GI_Lightningjavelin_Thrown</texPath>
+						  <graphicClass>Graphic_Single</graphicClass>
+						  <drawSize>2.6</drawSize>
+						</graphicData>
+						<projectile Class="CombatExtended.ProjectilePropertiesCE">
+							<damageAmountBase>45</damageAmountBase>
+							<speed>8</speed>
+							<armorPenetrationBlunt>40</armorPenetrationBlunt>
+							<armorPenetrationSharp>28</armorPenetrationSharp>
+						</projectile>
+						<comps>
+						  <li Class="CombatExtended.CompProperties_ExplosiveCE">
+							<damageAmountBase>56</damageAmountBase>
+							<explosiveDamageType>EMP</explosiveDamageType>
+							<explosiveRadius>2</explosiveRadius>
+							<applyDamageToExplosionCellsNeighbors>false</applyDamageToExplosionCellsNeighbors>
+						  </li>
+						</comps>
 					</ThingDef>
 				</value>
 			</li>
