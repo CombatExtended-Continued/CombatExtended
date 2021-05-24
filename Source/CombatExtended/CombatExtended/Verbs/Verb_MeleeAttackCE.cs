@@ -249,7 +249,8 @@ namespace CombatExtended
             Vector3 direction = (target.Thing.Position - CasterPawn.Position).ToVector3();
             DamageDef def = damDef;
             //END 1:1 COPY
-            BodyPartHeight bodyRegion = GetBodyPartHeightFor(target);   //Custom // Add check for body height
+            BodyPartHeight bodyRegion = BodyPartHeight.Undefined; //Alistaire: The GetBodyPartHeightFor code is completely broken and targets Bottom some 90% of the time! Therefore easiest fix to set to Vanilla (Undefined)
+                                                                  //GetBodyPartHeightFor(target);   //Custom // Add check for body height
             //START 1:1 COPY
             DamageInfo damageInfo = new DamageInfo(def, damAmount, armorPenetration, -1f, caster, null, source, DamageInfo.SourceCategory.ThingOrUnknown, null); //Alteration
 
@@ -450,6 +451,9 @@ namespace CombatExtended
             }
         }
 
+        /*
+         *  Alistaire: Code targets Bottom about 90% of the time, therefore commented out
+         *  
         /// <summary>
         /// Selects a random BodyPartHeight out of the ones our CasterPawn can hit, depending on our body size vs the target's. So a rabbit can hit top height of another rabbit, but not of a human.
         /// </summary>
@@ -464,7 +468,7 @@ namespace CombatExtended
             BodyPartHeight maxHeight = targetHeight.GetRandWeightedBodyHeightBelow(casterReach);
             BodyPartHeight height = (BodyPartHeight)Rand.RangeInclusive(1, (int)maxHeight);
             return height;
-        }
+        }*/
 
         // unmodified
         private SoundDef SoundHitPawn()
