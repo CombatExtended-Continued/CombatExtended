@@ -215,27 +215,40 @@
 					<StuffEffectMultiplierArmor>4</StuffEffectMultiplierArmor>						
 				</value>
 			</li>
-			<!-- ========== Order Uniform =========== -->
-			<li Class="PatchOperationAdd">
-				<xpath>Defs/ThingDef[defName="RK_OrderUniform"]/statBases</xpath>
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="RK_BulletProofHelmet"]/statBases/ArmorRating_Sharp</xpath>
 				<value>
-					<Bulk>6</Bulk>
-					<WornBulk>1</WornBulk>					
+					<ArmorRating_Sharp>1</ArmorRating_Sharp>						
+				</value>
+			</li>
+			<!-- ========== Order Uniform =========== -->
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="RK_OrderUniform"]/statBases/Mass</xpath>
+				<value>
+					<Bulk>16</Bulk>
+					<WornBulk>10</WornBulk>
+					<Mass>10</Mass>
 				</value>
 			</li>	
 			<li Class="PatchOperationReplace">
 				<xpath>Defs/ThingDef[defName="RK_OrderUniform"]/statBases/StuffEffectMultiplierArmor</xpath>
 				<value>
-					<StuffEffectMultiplierArmor>5</StuffEffectMultiplierArmor>						
+					<StuffEffectMultiplierArmor>4</StuffEffectMultiplierArmor>						
 				</value>
 			</li>
-			<li Class="PatchOperationRemove">
+			<li Class="PatchOperationReplace">
 				<xpath>Defs/ThingDef[defName="RK_OrderUniform"]/statBases/ArmorRating_Sharp</xpath>
+				<value>
+					<ArmorRating_Sharp>5.75</ArmorRating_Sharp>						
+				</value>
 			</li>
 
-			<li Class="PatchOperationRemove">
+			<li Class="PatchOperationReplace">
 				<xpath>Defs/ThingDef[defName="RK_OrderUniform"]/statBases/ArmorRating_Blunt</xpath>
-			</li>			
+				<value>
+					<ArmorRating_Blunt>7.875</ArmorRating_Blunt>						
+				</value>
+			</li>		
 			<!-- ========== Battlesuit =========== -->
 			<li Class="PatchOperationAdd">
 				<xpath>Defs/ThingDef[defName="RK_BattleSuit"]/statBases</xpath>
