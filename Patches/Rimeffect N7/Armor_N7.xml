@@ -8,6 +8,14 @@
 		<match Class="PatchOperationSequence">
 			<operations>
 
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="REN7_Apparel_N7AdeptSuit" or defName="REN7_Apparel_N7Armor" or defName="REN7_Apparel_N7HeavyArmor"]/apparel/layers</xpath>
+					<value>
+						<li>Webbing</li>
+						<li>Backpack</li>
+					</value>
+				</li>
+
 				<!-- === Mask === -->
 				<li Class="PatchOperationAdd">
 					<xpath>/Defs/ThingDef[defName="RE_Apparel_N7AdeptMask"]/statBases</xpath>
@@ -75,7 +83,7 @@
 					<xpath>/Defs/ThingDef[defName="REN7_Apparel_N7AdeptSuit"]/statBases/Mass</xpath>
 					<value>
 						<Bulk>30</Bulk>
-						<WornBulk>7</WornBulk>
+						<WornBulk>6</WornBulk>
 						<Mass>12</Mass>
 					</value>
 				</li>
@@ -112,10 +120,12 @@
 					<xpath>/Defs/ThingDef[defName="REN7_Apparel_N7AdeptSuit"]/equippedStatOffsets</xpath>
 					<value>
 						<CarryWeight>12</CarryWeight>
-						<CarryBulk>7.5</CarryBulk>
+						<CarryBulk>45</CarryBulk>
 						<ShootingAccuracyPawn>0.05</ShootingAccuracyPawn>
 						<ToxicSensitivity>-0.3</ToxicSensitivity>
 						<MoveSpeed>0.6</MoveSpeed>
+                                                			<Suppressability>-0.1</Suppressability>
+      						<ReloadSpeed>0.15</ReloadSpeed>
 					</value>
 				</li>
 
@@ -238,10 +248,12 @@
 					<xpath>/Defs/ThingDef[defName="REN7_Apparel_N7Armor"]/equippedStatOffsets/MoveSpeed</xpath>
 					<value>
 						<CarryWeight>20</CarryWeight>
-						<CarryBulk>7.5</CarryBulk>
+						<CarryBulk>50</CarryBulk>
 						<ShootingAccuracyPawn>0.05</ShootingAccuracyPawn>
 						<ToxicSensitivity>-0.3</ToxicSensitivity>
       						<MoveSpeed>0.2</MoveSpeed>
+                                                			<Suppressability>-0.1</Suppressability>
+      						<ReloadSpeed>0.15</ReloadSpeed>
 					</value>
 				</li>
 
@@ -339,7 +351,7 @@
 					<value>
 						<Bulk>80</Bulk>
 						<WornBulk>20</WornBulk>
-						<Mass>70</Mass>
+						<Mass>60</Mass>
 					</value>
 				</li>
 
@@ -375,12 +387,14 @@
 					<xpath>/Defs/ThingDef[defName="REN7_Apparel_N7HeavyArmor"]/equippedStatOffsets</xpath>
 					<value>
 						<equippedStatOffsets>
-							<CarryWeight>70</CarryWeight>
-							<CarryBulk>20</CarryBulk>
+							<CarryWeight>75</CarryWeight>
+							<CarryBulk>70</CarryBulk>
 							<ShootingAccuracyPawn>0.2</ShootingAccuracyPawn>
 							<ToxicSensitivity>-0.5</ToxicSensitivity>
 							<PainShockThreshold>0.1</PainShockThreshold>
-      							<MoveSpeed>-0.2</MoveSpeed>
+      							<MoveSpeed>-0.25</MoveSpeed>
+                                                				<Suppressability>-0.15</Suppressability>
+      							<ReloadSpeed>0.15</ReloadSpeed>
 						</equippedStatOffsets>
 					</value>
 				</li>
