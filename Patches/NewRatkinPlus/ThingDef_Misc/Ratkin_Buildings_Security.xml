@@ -82,10 +82,9 @@
 					<SightsEfficiency>1</SightsEfficiency>
 					<ShotSpread>0.04</ShotSpread>
 					<SwayFactor>0.96</SwayFactor>
-					<RangedWeapon_Cooldown>0.36</RangedWeapon_Cooldown>
+					<RangedWeapon_Cooldown>1</RangedWeapon_Cooldown>
 				</statBases>
 				<Properties>
-					<recoilAmount>1.13</recoilAmount>
 					<verbClass>CombatExtended.Verb_ShootCE</verbClass>
 					<hasStandardCommand>true</hasStandardCommand>
 					<defaultProjectile>Projectile_RKBallistaBolt</defaultProjectile>
@@ -145,6 +144,10 @@
 				<xpath>Defs/ThingDef[@Name = "RK_BaseArtilleryBuilding_Cannon"]/statBases/AccuracyLong</xpath>
 			</li>
 			
+			<li Class="PatchOperationRemove">
+				<xpath>Defs/ThingDef[@Name = "RK_BaseArtilleryBuilding_Cannon"]/costList/Chemfuel</xpath>
+			</li>
+			
 			<li Class="PatchOperationReplace">
 				<xpath>Defs/ThingDef[@Name = "RK_BaseArtilleryBuilding_Cannon"]/building/turretBurstCooldownTime</xpath>
 				<value>
@@ -189,23 +192,22 @@
 					<Mass>20</Mass>
 					<Bulk>20</Bulk>	
 					<SightsEfficiency>1</SightsEfficiency>
-					<ShotSpread>0.12</ShotSpread>
+					<ShotSpread>0.26</ShotSpread>
 					<SwayFactor>1.55</SwayFactor>
-					<RangedWeapon_Cooldown>0.36</RangedWeapon_Cooldown>
+					<RangedWeapon_Cooldown>3</RangedWeapon_Cooldown>
 				</statBases>
 				<Properties>
-					<recoilAmount>1.13</recoilAmount>
 					<verbClass>CombatExtended.Verb_ShootCE</verbClass>
 					<hasStandardCommand>true</hasStandardCommand>
 					<defaultProjectile>Projectile_RKCannonBall</defaultProjectile>
 					<warmupTime>4.9</warmupTime>
-					<range>50</range>
+					<range>75</range>
 					<soundCast>RKCannonShot</soundCast>
 					<muzzleFlashScale>12</muzzleFlashScale>
 				</Properties>
 				<AmmoUser>
 					<magazineSize>1</magazineSize>
-					<reloadTime>16</reloadTime>
+					<reloadTime>14</reloadTime>
 					<ammoSet>AmmoSet_RKCannonBall</ammoSet>
 				</AmmoUser>
 				<FireModes>

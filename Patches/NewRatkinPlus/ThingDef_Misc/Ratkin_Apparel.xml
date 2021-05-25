@@ -441,11 +441,15 @@
 				</value>
 			</li>
 			<li Class="PatchOperationReplace">
-				<xpath>Defs/ThingDef[defName="RK_HeavyShield"]/stuffCategories/li[.="Metallic"]</xpath>
+				<xpath>Defs/ThingDef[defName="RK_HeavyShield" or defName="RK_WoodenShield"]/apparel/layers</xpath>
 				<value>
-					<li>Steeled</li>					
+					<layers>
+						<li>Shield</li>
+					</layers>
 				</value>
 			</li>
+			
+			
 			<!-- ========== Add proper tags to loadbearing gear. =========== -->
 			<li Class="PatchOperationAdd">
 				<xpath>Defs/ThingDef[
