@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+			<li>Expanded Materials - Plastics</li>
+		</mods>
+
+		<match Class="PatchOperationFindMod">
+			<mods>
+				<li>Expanded Materials - Metals</li>
+			</mods>	
+			<match Class="PatchOperationSequence">
+				<operations>
+ 
+			<li Class="PatchOperationAdd">
+				<xpath>/Defs/ThingDef[defName="VMEu_CarbonFiber"]/statBases</xpath>
+				<value>
+					<Bulk>0.05</Bulk>
+				</value>
+			</li>
+
+			<li Class="PatchOperationAdd">
+				<xpath>/Defs/ThingDef[defName="VMEu_CarbonFiber"]/stuffProps/categories</xpath>
+				<value>
+					<li>Metallic_Weapon</li>
+					<li>Steeled</li>
+				</value>
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>/Defs/ThingDef[defName="VMEu_CarbonFiber"]/statBases/StuffPower_Armor_Sharp</xpath>
+				<value>
+					<StuffPower_Armor_Sharp>0.95</StuffPower_Armor_Sharp>
+				</value>
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>/Defs/ThingDef[defName="VMEu_CarbonFiber"]/statBases/StuffPower_Armor_Blunt</xpath>
+				<value>
+					<StuffPower_Armor_Blunt>1.4</StuffPower_Armor_Blunt>
+				</value>
+			</li>
+
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName="VMEu_CarbonFiber"]/stuffProps/statFactors</xpath>
+				<value>
+					<Mass>0.8</Mass>
+					<MeleePenetrationFactor>0.9</MeleePenetrationFactor>
+				</value>
+			</li>
+				</operations>
+			</match>
+			<nomatch Class="PatchOperationSequence">
+				<operations>
+ 
+				<li Class="PatchOperationAdd">
+					<xpath>/Defs/ThingDef[defName="VMEu_Fossil"]/statBases</xpath>
+					<value>
+						<Bulk>0.2</Bulk>
+					</value>
+				</li>
+
+				</operations>
+			</nomatch>
+		</match>		
+	</Operation>
+
+</Patch>
