@@ -70,5 +70,43 @@
 		</products>
 	</RecipeDef>
 
+	<RecipeDef>
+		<defName>ReclaimMechAmmo</defName>
+		<label>reclaim materials from mechanoid ammo</label>
+		<description>Use heat and strong electromagnets to break down mechanoid ammo into useful resources.</description>
+		<jobString>Smelting mechanoid ammo.</jobString>
+		<effectWorking>Smelt</effectWorking>
+		<soundWorking>Recipe_Smelt</soundWorking>
+		<workAmount>2750</workAmount>
+		<workSpeedStat>GeneralLaborSpeed</workSpeedStat>
+		<allowMixingIngredients>true</allowMixingIngredients>
+		<ingredients>
+		  <li>
+			<filter>
+			<thingDefs>
+				<li>Ammo_5x35mmCharged</li>
+				<li>Ammo_6x22mmCharged</li>
+				<li>Ammo_12x64mmCharged</li>
+			</thingDefs>
+			</filter>
+			<count>200</count>
+		  </li>
+		</ingredients>
+		<fixedIngredientFilter>
+		<thingDefs>
+				<li>Ammo_5x35mmCharged</li>
+				<li>Ammo_6x22mmCharged</li>
+				<li>Ammo_12x64mmCharged</li>	
+		</thingDefs>		
+		</fixedIngredientFilter>
+		<recipeUsers Inherit="false">
+			<li>ElectricSmelter</li>
+		</recipeUsers>	
+		<products>
+		  <Plasteel>2</Plasteel>
+		  <Steel>2</Steel>
+		</products>
+	</RecipeDef>
+
 
 </Defs>
