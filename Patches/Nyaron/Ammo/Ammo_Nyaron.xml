@@ -1,0 +1,403 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+	  <Operation Class="PatchOperationFindMod">
+			
+		<mods><li>Nyaron race</li></mods>
+			
+		<match Class="PatchOperationSequence">
+		<operations>
+			
+			<!-- ==================== Nyaron Pulse Ammo ========================== -->
+			
+			<li Class="PatchOperationAdd">
+				<xpath>Defs</xpath>
+				<value>
+					<!-- ==================== AmmoSets ========================== -->
+
+					<CombatExtended.AmmoSetDef>
+						<defName>AmmoSet_NyaronCellBall</defName>
+						<label>Energy Ball</label>
+						<ammoTypes>
+							<Ammo_NyaronCell>Bullet_NyaronCellBall</Ammo_NyaronCell>
+						</ammoTypes>
+					</CombatExtended.AmmoSetDef>
+					
+					<CombatExtended.AmmoSetDef>
+						<defName>AmmoSet_NyaronCellBullet</defName>
+						<label>Energy Ball</label>
+						<ammoTypes>
+							<Ammo_NyaronCell>Bullet_NyaronCellBullet</Ammo_NyaronCell>
+						</ammoTypes>
+					</CombatExtended.AmmoSetDef>
+					
+					<CombatExtended.AmmoSetDef>
+						<defName>AmmoSet_NyaronCellLaser</defName>
+						<label>Energy Ball</label>
+						<ammoTypes>
+							<Ammo_NyaronCell>Bullet_NyaronCellLaser</Ammo_NyaronCell>
+						</ammoTypes>
+					</CombatExtended.AmmoSetDef>
+					
+					<CombatExtended.AmmoCategoryDef>
+						<defName>NyaronCell</defName>
+						<label>Cell</label>
+						<description>Energy based weapon.</description>
+					</CombatExtended.AmmoCategoryDef>
+
+					<!-- ==================== Ammo ========================== -->
+
+					<ThingDef Class="CombatExtended.AmmoDef" ParentName="SpacerSmallAmmoBase">
+						<defName>Ammo_NyaronCell</defName>
+						<label>nyaron power cell</label>
+						<description>Energy cells for use in Nyaron energy weapons.</description>
+						<statBases>
+							<Mass>0.01</Mass>
+							<Bulk>0.01</Bulk>
+							<MarketValue>0.7</MarketValue>
+						</statBases>
+						<tradeTags>
+							<li>CE_AutoEnableTrade</li>
+							<li>CE_AutoEnableCrafting_TableMachining</li>
+						</tradeTags>
+						<thingCategories>
+							<li>AmmoAdvanced</li>
+						</thingCategories>
+						<stackLimit>500</stackLimit>
+						<graphicData>
+							<texPath>ThirdParty/CP DOOM and DOOM Kit Classic/Doom2016PlasmaCell</texPath>
+							<graphicClass>CombatExtended.Graphic_StackCountRanged</graphicClass>
+						</graphicData>
+						<ammoClass>NyaronCell</ammoClass>
+					</ThingDef>
+
+					<!-- ================== Projectiles ================== -->
+
+					<ThingDef Class="CombatExtended.AmmoDef" ParentName="Base6x24mmChargedBullet">
+						<defName>Bullet_NyaronCellBall</defName>
+						<label>nyaron power ball</label>
+						<graphicData>
+							<texPath>Things/Projectile/Energy_ball</texPath>
+							<graphicClass>Graphic_Single</graphicClass>
+							<drawSize>1</drawSize>
+						</graphicData>
+						<projectile Class="CombatExtended.ProjectilePropertiesCE">
+							<speed>120</speed>
+							<damageDef>EnergyBall</damageDef>
+							<damageAmountBase>16</damageAmountBase>
+							<armorPenetrationSharp>0</armorPenetrationSharp>
+							<armorPenetrationBlunt>60</armorPenetrationBlunt>
+						</projectile>
+					</ThingDef>
+					
+					<ThingDef Class="CombatExtended.AmmoDef" ParentName="Base6x24mmChargedBullet">
+						<defName>Bullet_NyaronCellBullet</defName>
+						<label>nyaron shock bullet</label>
+						<graphicData>
+							<texPath>Things/Projectile/Sec_bullet</texPath>
+							<graphicClass>Graphic_Single</graphicClass>
+							<drawSize>1</drawSize>
+						</graphicData>
+						<projectile Class="CombatExtended.ProjectilePropertiesCE">
+							<speed>160</speed>
+							<damageDef>Shockbullet</damageDef>
+							<damageAmountBase>4</damageAmountBase>
+							<armorPenetrationSharp>25</armorPenetrationSharp>
+							<armorPenetrationBlunt>45</armorPenetrationBlunt>
+						</projectile>
+					</ThingDef>
+					
+					<ThingDef Class="CombatExtended.Lasers.LaserBeamDefCE" ParentName="LaserBulletBlue">
+					  <defName>Bullet_NyaronCellLaser</defName>
+					  <label>pulse beam</label>                              
+					  <projectile Class="CombatExtended.ProjectilePropertiesCE">
+						<damageDef>EnergyBullet</damageDef>
+						<damageAmountBase>30</damageAmountBase>
+						<armorPenetrationSharp>40</armorPenetrationSharp>
+						<armorPenetrationBlunt>0.001</armorPenetrationBlunt>
+					  </projectile>        
+					</ThingDef>
+
+					<!-- ==================== Recipes ========================== -->
+
+					<RecipeDef ParentName="AmmoRecipeBase">
+						<defName>MakeAmmo_NyaronCell</defName>
+						<label>make nyaron power cell x500</label>
+						<description>Craft 500 nyaron power cells.</description>
+						<jobString>Making nyaron power cells.</jobString>
+						<workAmount>8600</workAmount>
+						<ingredients>
+						  <li>
+							<filter>
+							  <thingDefs>
+								<li>Plasteel</li>
+							  </thingDefs>
+							</filter>
+							<count>8</count>
+						  </li>
+						  <li>
+							<filter>
+							  <thingDefs>
+								<li>Steel</li>
+							  </thingDefs>
+							</filter>
+							<count>6</count>
+						  </li>	  
+						  <li>
+							<filter>
+							  <thingDefs>
+								<li>ComponentIndustrial</li>
+							  </thingDefs>
+							</filter>
+							<count>8</count>
+						  </li>
+						</ingredients>
+						<fixedIngredientFilter>
+						  <thingDefs>
+							<li>Plasteel</li>
+							<li>Steel</li>		
+							<li>ComponentIndustrial</li>
+						  </thingDefs>
+						</fixedIngredientFilter>
+						<products>
+							<Ammo_NyaronCell>500</Ammo_NyaronCell>
+						</products>
+					</RecipeDef>
+				</value>
+			</li>
+			
+			<!-- ==================== Nyaron Super Bow ========================== -->
+			
+			<li Class="PatchOperationAdd">
+				<xpath>Defs</xpath>
+				<value>
+					<!-- ==================== AmmoSets ========================== -->
+					
+				  <CombatExtended.AmmoSetDef>
+					<defName>AmmoSet_GreatArrowNyaron</defName>
+					<label>great arrows</label>
+					<ammoTypes>
+					  <Ammo_GreatArrow_Stone>Projectile_GreatArrowNyaron_Stone</Ammo_GreatArrow_Stone>
+					  <Ammo_GreatArrow_Steel>Projectile_GreatArrowNyaron_Steel</Ammo_GreatArrow_Steel>
+					  <Ammo_GreatArrow_Plasteel>Projectile_GreatArrowNyaron_Plasteel</Ammo_GreatArrow_Plasteel>
+					  <Ammo_GreatArrow_Venom>Projectile_GreatArrowNyaron_Venom</Ammo_GreatArrow_Venom>
+					  <Ammo_GreatArrow_Flame>Projectile_GreatArrowNyaron_Flame</Ammo_GreatArrow_Flame>
+					</ammoTypes>
+				  </CombatExtended.AmmoSetDef>
+					
+					<!-- ================== Projectiles ================== -->
+					
+					<ThingDef Class="CombatExtended.AmmoDef" ParentName="BaseGreatArrowProjectile">
+						<defName>Projectile_GreatArrowNyaron_Stone</defName>
+						<label>great arrow (stone)</label>
+						<graphicData>
+							<texPath>Things/Projectile/Arrows/Arrow_Stone</texPath>
+							<graphicClass>Graphic_Single</graphicClass>
+						</graphicData>
+						<projectile Class="CombatExtended.ProjectilePropertiesCE">
+							<speed>33</speed>
+							<damageAmountBase>28</damageAmountBase> <!--Artifically reduced from 33-->
+							<armorPenetrationBlunt>14.98</armorPenetrationBlunt>
+							<armorPenetrationSharp>3</armorPenetrationSharp>
+							<preExplosionSpawnChance>0.1</preExplosionSpawnChance>	<!-- All values are halved from original great arrow -->
+							<preExplosionSpawnThingDef>Ammo_GreatArrow_Stone</preExplosionSpawnThingDef>
+						</projectile>
+					</ThingDef>
+
+					<ThingDef Class="CombatExtended.AmmoDef" ParentName="BaseGreatArrowProjectile">
+						<defName>Projectile_GreatArrowNyaron_Steel</defName>
+						<label>great arrow (steel)</label>
+						<graphicData>
+							<texPath>Things/Projectile/Arrows/Arrow_Steel</texPath>
+							<graphicClass>Graphic_Single</graphicClass>
+						</graphicData>
+						<projectile Class="CombatExtended.ProjectilePropertiesCE">
+							<speed>36</speed>
+							<damageAmountBase>20</damageAmountBase>
+							<armorPenetrationBlunt>21.06</armorPenetrationBlunt>
+							<armorPenetrationSharp>6</armorPenetrationSharp>
+							<preExplosionSpawnChance>0.3</preExplosionSpawnChance>
+							<preExplosionSpawnThingDef>Ammo_GreatArrow_Steel</preExplosionSpawnThingDef>
+						</projectile>
+					</ThingDef>
+
+					<ThingDef Class="CombatExtended.AmmoDef" ParentName="BaseGreatArrowProjectile">
+						<defName>Projectile_GreatArrowNyaron_Plasteel</defName>
+						<label>great arrow (plasteel)</label>
+						<graphicData>
+							<texPath>Things/Projectile/Arrows/Arrow_Plasteel</texPath>
+							<graphicClass>Graphic_Single</graphicClass>
+						</graphicData>
+						<projectile Class="CombatExtended.ProjectilePropertiesCE">
+							<speed>37</speed>
+							<damageAmountBase>15</damageAmountBase>
+							<armorPenetrationBlunt>19.26</armorPenetrationBlunt>
+							<armorPenetrationSharp>9</armorPenetrationSharp>
+							<preExplosionSpawnChance>0.375</preExplosionSpawnChance>
+							<preExplosionSpawnThingDef>Ammo_GreatArrow_Plasteel</preExplosionSpawnThingDef>
+						</projectile>
+					</ThingDef>
+					
+					<ThingDef Class="CombatExtended.AmmoDef" ParentName="BaseGreatArrowProjectile">
+						<defName>Projectile_GreatArrowNyaron_Venom</defName>
+						<label>great arrow (venom)</label>
+						<graphicData>
+							<texPath>Things/Projectile/Arrows/Arrow_Venom</texPath>
+							<graphicClass>Graphic_Single</graphicClass>
+						</graphicData>
+						<projectile Class="CombatExtended.ProjectilePropertiesCE">
+							<speed>36</speed>
+							<damageDef>Arrow</damageDef>
+							<damageAmountBase>14</damageAmountBase>
+							<secondaryDamage>
+								<li>
+								<def>ArrowVenom</def>
+								<amount>6</amount>
+								</li>
+							</secondaryDamage>			
+							<armorPenetrationBlunt>21.06</armorPenetrationBlunt>
+							<armorPenetrationSharp>6</armorPenetrationSharp>
+							<preExplosionSpawnChance>0.3</preExplosionSpawnChance>
+							<preExplosionSpawnThingDef>Ammo_GreatArrow_Steel</preExplosionSpawnThingDef>
+						</projectile>
+					</ThingDef>
+					
+					<ThingDef Class="CombatExtended.AmmoDef" ParentName="BaseGreatArrowProjectile">
+						<defName>Projectile_GreatArrowNyaron_Flame</defName>
+						<label>great arrow (flame)</label>
+						<graphicData>
+							<texPath>Things/Projectile/Arrows/Arrow_Flame</texPath>
+							<graphicClass>Graphic_Single</graphicClass>
+						</graphicData>
+					<projectile Class="CombatExtended.ProjectilePropertiesCE">
+						<speed>36</speed>
+					  <damageDef>Arrow</damageDef>
+					  <damageAmountBase>6</damageAmountBase>
+					  <armorPenetrationBlunt>10.54</armorPenetrationBlunt>
+					  <armorPenetrationSharp>3</armorPenetrationSharp>
+					  <secondaryDamage>
+						<li>
+						  <def>Flame</def>
+						  <amount>1</amount>
+						  <chance>0.33</chance>
+						</li>
+					  </secondaryDamage>
+					</projectile>
+					</ThingDef>
+					
+				</value>
+			</li>
+			
+			<!-- ==================== Nyaron Flak Ammo ========================== -->
+			
+			<li Class="PatchOperationAdd">
+				<xpath>Defs</xpath>
+				<value>
+				
+				  <CombatExtended.AmmoSetDef>
+					<defName>AmmoSet_NyaronFlakGrenade</defName>
+					<label>NyaronFlak Grenades</label>
+					<ammoTypes>
+						<Ammo_NyaronFlakGrenade_HE>Bullet_NyaronFlakGrenade_HE</Ammo_NyaronFlakGrenade_HE>    
+					</ammoTypes>
+				  </CombatExtended.AmmoSetDef> 
+					
+					<!-- ==================== Ammo ========================== -->
+					
+
+				  <ThingDef Class="CombatExtended.AmmoDef" ParentName="20x42mmGrenadeBase">
+					<defName>Ammo_NyaronFlakGrenade_HE</defName>
+					<label>Nyaron flak grenade</label>
+					<graphicData>
+					  <texPath>Things/Ammo/GrenadeLauncher/HE</texPath>
+					  <graphicClass>Graphic_StackCount</graphicClass>
+					</graphicData>
+					<statBases>
+					  <MarketValue>1.69</MarketValue>
+					</statBases>
+					<ammoClass>GrenadeHE</ammoClass>
+					<thingCategories inherit="false">
+					  <li>AmmoAdvanced</li>
+					</thingCategories>
+					<detonateProjectile>Bullet_NyaronFlakGrenade_HE</detonateProjectile>
+				  </ThingDef>  
+
+
+					<!-- ================== Projectiles ================== -->
+						
+					<ThingDef ParentName="Base20x42mmGrenadeBullet">
+						<defName>Bullet_NyaronFlakGrenade_HE</defName>
+						<label>nyaron grenade (HE)</label>
+						<thingClass>CombatExtended.ProjectileCE_Explosive</thingClass>
+						<graphicData>
+							<texPath>Things/Projectile/Flak_cannon</texPath>
+							<graphicClass>Graphic_Single</graphicClass>
+						</graphicData>
+						<projectile Class="CombatExtended.ProjectilePropertiesCE">
+							<speed>25</speed>
+							<gravityFactor>7</gravityFactor>
+							<damageDef>Bomb</damageDef>
+							<damageAmountBase>15</damageAmountBase>
+							<explosionRadius>0.5</explosionRadius>
+							<applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
+						</projectile>
+						<comps>
+						  <li Class="CombatExtended.CompProperties_Fragments">
+							<fragments>
+							  <Fragment_Small>11</Fragment_Small>
+							</fragments>
+						  </li>
+						</comps>
+					</ThingDef>
+
+					<!-- ==================== Recipes ========================== -->
+
+				  <RecipeDef ParentName="AmmoRecipeBase">
+					<defName>MakeAmmo_NyaronFlakGrenade_HE</defName>
+					<label>make Nyaron Flak grenades x100</label>
+					<description>Craft 100 Nyaron Flak grenades.</description>
+					<jobString>Making Nyaron Flak grenades.</jobString>
+					<ingredients>
+					  <li>
+						<filter>
+						  <thingDefs>
+							<li>Steel</li>
+						  </thingDefs>
+						</filter>
+						<count>26</count>
+					  </li>
+					  <li>
+						<filter>
+						  <thingDefs>
+							<li>FSX</li>
+						  </thingDefs>
+						</filter>
+						<count>5</count>
+					  </li>
+					  <li>
+						<filter>
+						  <thingDefs>
+							<li>ComponentIndustrial</li>
+						  </thingDefs>
+						</filter>
+						<count>2</count>
+					  </li>
+					</ingredients>
+					<fixedIngredientFilter>
+					  <thingDefs>
+						<li>Steel</li>
+						<li>FSX</li>
+						<li>ComponentIndustrial</li>
+					  </thingDefs>
+					</fixedIngredientFilter>
+					<products>
+					  <Ammo_NyaronFlakGrenade_HE>100</Ammo_NyaronFlakGrenade_HE>
+					</products>
+					<workAmount>5800</workAmount>    
+				  </RecipeDef>
+				</value>
+			</li>
+			
+		</operations>
+		</match>	
+	  </Operation>
+</Patch>

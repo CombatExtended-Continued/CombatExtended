@@ -1,0 +1,206 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+  <Operation Class="PatchOperationFindMod">
+		
+	<mods><li>Nyaron race</li></mods>
+		
+	<match Class="PatchOperationSequence">
+	<operations>
+	
+		<!--========= Stuffable =========-->
+		
+		<!--Starter-->
+		
+		<li Class="PatchOperationReplace">
+			<xpath>Defs/ThingDef[defName="Nr_SUniform"]/statBases/ArmorRating_Sharp</xpath>
+			<value>
+				<StuffEffectMultiplierArmor>0.5</StuffEffectMultiplierArmor>
+			</value>
+		</li>
+		
+		<li Class="PatchOperationRemove">
+			<xpath>Defs/ThingDef[defName="Nr_SUniform"]/statBases/ArmorRating_Blunt</xpath>
+		</li>
+		
+		<li Class="PatchOperationRemove">
+			<xpath>Defs/ThingDef[defName="Nr_SUniform"]/statBases/ArmorRating_Heat</xpath>
+		</li>
+		
+		<!--Cat Jacket-->
+		
+		<li Class="PatchOperationReplace">
+			<xpath>Defs/ThingDef[
+			defName="Nr_CatJacket"
+			]/statBases/Mass</xpath>
+			<value>
+				<Mass>12.5</Mass>
+				<Bulk>20</Bulk>
+				<WornBulk>8</WornBulk>
+			</value>
+		</li>
+		
+		<li Class="PatchOperationReplace">
+			<xpath>Defs/ThingDef[defName="Nr_CatJacket"]/statBases/StuffEffectMultiplierArmor</xpath>
+			<value>
+				<StuffEffectMultiplierArmor>12</StuffEffectMultiplierArmor>
+			</value>
+		</li>
+		
+		<li Class="PatchOperationReplace">
+			<xpath>Defs/ThingDef[defName="Nr_CatJacket"]/statBases/ArmorRating_Sharp</xpath>
+			<value>
+				<ArmorRating_Sharp>4</ArmorRating_Sharp>
+			</value>
+		</li>
+		
+		<li Class="PatchOperationReplace">
+			<xpath>Defs/ThingDef[defName="Nr_CatJacket"]/statBases/ArmorRating_Blunt</xpath>
+			<value>
+				<ArmorRating_Blunt>6</ArmorRating_Blunt>
+			</value>
+		</li>
+		
+		<li Class="PatchOperationReplace">
+			<xpath>Defs/ThingDef[defName="Nr_CatJacket"]/stuffCategories</xpath>
+			<value>
+				<stuffCategories>
+				  <li>SoftArmor</li>
+				</stuffCategories>
+				<costList>
+					<Steel>90</Steel>
+				</costList>
+			</value>
+		</li>
+		
+		<!--Cat Hoodie-->
+		
+		<li Class="PatchOperationAdd">
+			<xpath>Defs/ThingDef[defName="Nr_CatHoodie"]/statBases</xpath>
+			<value>
+				<Bulk>10</Bulk>
+				<WornBulk>1</WornBulk>
+			</value>
+		</li>
+		
+		<li Class="PatchOperationReplace">
+			<xpath>Defs/ThingDef[defName="Nr_CatHoodie"]/statBases/StuffEffectMultiplierArmor</xpath>
+			<value>
+				<StuffEffectMultiplierArmor>5</StuffEffectMultiplierArmor>
+			</value>
+		</li>
+		
+		<li Class="PatchOperationRemove">
+			<xpath>Defs/ThingDef[defName="Nr_CatHoodie"]/statBases/ArmorRating_Sharp</xpath>
+		</li>
+		
+		<li Class="PatchOperationRemove">
+			<xpath>Defs/ThingDef[defName="Nr_CatHoodie"]/statBases/ArmorRating_Blunt</xpath>
+		</li>
+		
+		<!--========= Fixed Armor Value =========-->
+		
+		<!--Maid-->
+		
+		<li Class="PatchOperationAdd">
+			<xpath>Defs/ThingDef[defName="Nr_CatMaid"]/statBases</xpath>
+			<value>
+				<Bulk>5</Bulk>
+				<WornBulk>0</WornBulk>
+			</value>
+		</li>
+		
+		<li Class="PatchOperationReplace">
+			<xpath>Defs/ThingDef[defName="Nr_CatMaid"]/statBases/ArmorRating_Sharp</xpath>
+			<value>
+				<ArmorRating_Sharp>0.1</ArmorRating_Sharp>
+			</value>
+		</li>
+		
+		<li Class="PatchOperationReplace">
+			<xpath>Defs/ThingDef[defName="Nr_CatMaid"]/statBases/ArmorRating_Blunt</xpath>
+			<value>
+				<ArmorRating_Blunt>0.05</ArmorRating_Blunt>
+			</value>
+		</li>
+		
+		<li Class="PatchOperationAdd">
+			<xpath>Defs/ThingDef[defName="Nr_CatMaidBand"]/statBases</xpath>
+			<value>
+				<Bulk>0.5</Bulk>
+				<WornBulk>0</WornBulk>
+			</value>
+		</li>
+		
+		<li Class="PatchOperationReplace">
+			<xpath>Defs/ThingDef[defName="Nr_CatMaidBand"]/statBases/ArmorRating_Sharp</xpath>
+			<value>
+				<ArmorRating_Sharp>0.1</ArmorRating_Sharp>
+			</value>
+		</li>
+		
+		<li Class="PatchOperationReplace">
+			<xpath>Defs/ThingDef[defName="Nr_CatMaidBand"]/statBases/ArmorRating_Blunt</xpath>
+			<value>
+				<ArmorRating_Blunt>0.05</ArmorRating_Blunt>
+			</value>
+		</li>
+		
+		<!--Power Armor-->
+		
+		<li Class="PatchOperationAdd">
+			<xpath>Defs/ThingDef[defName="Nr_PowerArmor"]/statBases</xpath>
+			<value>
+				<Bulk>80</Bulk>
+				<WornBulk>10</WornBulk>
+			</value>
+		</li>
+		
+		<li Class="PatchOperationReplace">
+			<xpath>Defs/ThingDef[defName="Nr_PowerArmor"]/statBases/Mass</xpath>
+			<value>
+				<Mass>30</Mass>
+			</value>
+		</li>
+		
+		<li Class="PatchOperationReplace">
+			<xpath>Defs/ThingDef[defName="Nr_PowerArmor"]/statBases/ArmorRating_Sharp</xpath>
+			<value>
+				<ArmorRating_Sharp>20</ArmorRating_Sharp>
+			</value>
+		</li>
+		
+		<li Class="PatchOperationReplace">
+			<xpath>Defs/ThingDef[defName="Nr_PowerArmor"]/statBases/ArmorRating_Blunt</xpath>
+			<value>
+				<ArmorRating_Blunt>45</ArmorRating_Blunt>
+			</value>
+		</li>
+		
+		<li Class="PatchOperationReplace">
+			<xpath>Defs/ThingDef[defName="Nr_PowerArmor"]/statBases/Flammability</xpath>
+			<value>
+				<Flammability>0</Flammability>
+			</value>
+		</li>
+		
+		<li Class="PatchOperationAdd">
+			<xpath>Defs/ThingDef[defName="Nr_PowerArmor"]/equippedStatOffsets</xpath>
+			<value>
+				<CarryWeight>35</CarryWeight>
+				<CarryBulk>10</CarryBulk>
+				<ToxicSensitivity>-0.50</ToxicSensitivity>
+			</value>
+		</li>
+		
+		<li Class="PatchOperationAdd">
+			<xpath>Defs/ThingDef[defName="Nr_PowerArmor"]/apparel/bodyPartGroups</xpath>
+			<value>
+				<li>Hands</li>
+				<li>Feet</li>
+			</value>
+		</li>
+		
+	</operations>
+	</match>	
+  </Operation>
+</Patch>
