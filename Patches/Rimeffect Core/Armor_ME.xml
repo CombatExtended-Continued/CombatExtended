@@ -8,6 +8,15 @@
 		<match Class="PatchOperationSequence">
 			<operations>
 
+
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="RE_Apparel_LightAllianceArmor" or defName="RE_Apparel_AllianceArmor" or defName="RE_Apparel_HeavyAllianceArmor" or defName="RE_Apparel_SpectreArmor"]/apparel/layers</xpath>
+					<value>
+						<li>Webbing</li>
+						<li>Backpack</li>
+					</value>
+				</li>
+
 				<!-- === Light Helmet === -->
 				<li Class="PatchOperationAdd">
 					<xpath>/Defs/ThingDef[defName="RE_Apparel_LightAllianceHelmet"]/statBases</xpath>
@@ -115,10 +124,11 @@
 					<value>
     					<equippedStatOffsets>
 						<CarryWeight>12</CarryWeight>
-						<CarryBulk>7.5</CarryBulk>
+						<CarryBulk>45</CarryBulk>
 						<ShootingAccuracyPawn>0.05</ShootingAccuracyPawn>
 						<ToxicSensitivity>-0.3</ToxicSensitivity>
 						<MoveSpeed>0.3</MoveSpeed>
+						<ReloadSpeed>0.1</ReloadSpeed>
     					</equippedStatOffsets>
 					</value>
 				</li>
@@ -244,9 +254,10 @@
 					<xpath>/Defs/ThingDef[defName="RE_Apparel_AllianceArmor"]/equippedStatOffsets/MoveSpeed</xpath>
 					<value>
 						<CarryWeight>20</CarryWeight>
-						<CarryBulk>7.5</CarryBulk>
+						<CarryBulk>50</CarryBulk>
 						<ShootingAccuracyPawn>0.05</ShootingAccuracyPawn>
 						<ToxicSensitivity>-0.3</ToxicSensitivity>
+						<ReloadSpeed>0.1</ReloadSpeed>
 					</value>
 				</li>
 
@@ -343,7 +354,7 @@
 					<value>
 						<Bulk>80</Bulk>
 						<WornBulk>20</WornBulk>
-						<Mass>70</Mass>
+						<Mass>60</Mass>
 					</value>
 				</li>
 
@@ -379,12 +390,13 @@
 					<xpath>/Defs/ThingDef[defName="RE_Apparel_HeavyAllianceArmor"]/equippedStatOffsets</xpath>
 					<value>
 						<equippedStatOffsets>
-							<CarryWeight>70</CarryWeight>
-							<CarryBulk>20</CarryBulk>
+							<CarryWeight>75</CarryWeight>
+							<CarryBulk>65</CarryBulk>
 							<ShootingAccuracyPawn>0.2</ShootingAccuracyPawn>
 							<ToxicSensitivity>-0.5</ToxicSensitivity>
 							<PainShockThreshold>0.05</PainShockThreshold>
       							<MoveSpeed>-0.4</MoveSpeed>
+							<ReloadSpeed>0.1</ReloadSpeed>
 						</equippedStatOffsets>
 					</value>
 				</li>
@@ -448,11 +460,12 @@
 					<value>
 						<equippedStatOffsets>
 							<CarryWeight>40</CarryWeight>
-							<CarryBulk>30</CarryBulk>
+							<CarryBulk>60</CarryBulk>
 							<ShootingAccuracyPawn>0.3</ShootingAccuracyPawn>
 							<ToxicSensitivity>-0.5</ToxicSensitivity>
 							<PainShockThreshold>0.1</PainShockThreshold>
       							<MoveSpeed>0.5</MoveSpeed>
+							<ReloadSpeed>0.1</ReloadSpeed>
 						</equippedStatOffsets>
 					</value>
 				</li>
