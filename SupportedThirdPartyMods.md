@@ -91,6 +91,7 @@ Erin's Friendly Ferrets |
 Erin's Fox Squirrel |
 Erin's Mountain Animals |
 Expanded Materials - Metals |
+Expanded Materials - Plastics |
 Expanded Patchleather	|
 Expanded Prosthetics and Organ Engineering (EPOE)	|
 Expanded Prosthetics and Organ Engineering (EPOE) - Forked	|
