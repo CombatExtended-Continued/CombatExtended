@@ -68,7 +68,7 @@
 			<!--Armor Values-->
 			
 			<li Class="PatchOperationReplace">
-				<xpath>Defs/ThingDef[defName="Apparel_FlakGloves" or
+				<xpath>Defs/ThingDef[
 				defName="Apparel_FlakBoots" or
 				defName="Apparel_FlakMask"
 				]/statBases/ArmorRating_Sharp</xpath>
@@ -80,6 +80,7 @@
 			
 			<li Class="PatchOperationReplace">
 				<xpath>Defs/ThingDef[
+				defName="Apparel_FlakGloves" or
 				defName="FlakShirt"
 				]/statBases/ArmorRating_Sharp</xpath>
 				<value>
@@ -137,6 +138,16 @@
 				defName="LightFlakVest" or
 				defName="HeavyFlakSuit"
 				]/statBases/ArmorRating_Heat</xpath>
+			</li>
+			
+			<!--Movespeed-->
+			
+			<li Class="PatchOperationRemove">
+				<xpath>Defs/ThingDef[
+				defName="Apparel_FlakBoots" or
+				defName="FlakShirt" or
+				defName="HeavyFlakSuit"
+				]/equippedStatOffsets/MoveSpeed</xpath>
 			</li>
 			
 			<!--Costs-->
