@@ -70,7 +70,6 @@
 			<li Class="PatchOperationAdd">
 				<xpath>/Defs/ThingDef[defName="VMEu_PlasticPellets_TierTwo"]/stuffProps/categories</xpath>
 				<value>
-					<li>Metallic_Weapon</li>
 					<li>Steeled</li>
 				</value>
 			</li>
@@ -86,6 +85,14 @@
 				<xpath>/Defs/ThingDef[defName="VMEu_PlasticPellets_TierTwo"]/statBases/StuffPower_Armor_Blunt</xpath>
 				<value>
 					<StuffPower_Armor_Blunt>1.2</StuffPower_Armor_Blunt>
+				</value>
+			</li>
+
+			<!-- UHMWPE is a fairly good thermal conductor, making it poor thermal armor. === -->
+			<li Class="PatchOperationReplace">
+				<xpath>/Defs/ThingDef[defName="VMEu_PlasticPellets_TierTwo"]/statBases/StuffPower_Armor_Heat</xpath>
+				<value>
+					<StuffPower_Armor_Heat>0.01</StuffPower_Armor_Heat>
 				</value>
 			</li>
 
