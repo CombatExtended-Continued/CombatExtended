@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+		<li>MorrowRim - Ashlands Swamp</li>
+		</mods>
+
+		<match Class="PatchOperationSequence">
+			<operations>
+
+			<li Class="PatchOperationAddModExtension">
+				<xpath>/Defs/ThingDef[defName="MorrowRim_SwampJelly"]</xpath>
+				<value>
+					<li Class="CombatExtended.RacePropertiesExtensionCE">
+						<bodyShape>Humanoid</bodyShape>
+					</li>
+				</value>
+			</li>
+
+			<li Class="PatchOperationAdd">
+				<xpath>/Defs/ThingDef[defName="MorrowRim_SwampJelly"]/statBases</xpath>
+				<value>
+					<MeleeDodgeChance>0.45</MeleeDodgeChance>
+					<MeleeCritChance>0.09</MeleeCritChance>
+					<MeleeParryChance>0.1</MeleeParryChance>
+				</value>
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>/Defs/ThingDef[defName="MorrowRim_SwampJelly"]/tools</xpath>
+				<value>
+					<tools>
+						<li Class="CombatExtended.ToolCE">
+							<label>Head</label>
+							<capacities>
+								<li>Blunt</li>
+							</capacities>
+							<power>5</power>
+							<cooldownTime>2.0</cooldownTime>
+							<linkedBodyPartsGroup>HeadAttackTool</linkedBodyPartsGroup>
+							<armorPenetrationBlunt>1</armorPenetrationBlunt>
+							<ensureLinkedBodyPartsGroupAlwaysUsable>true</ensureLinkedBodyPartsGroupAlwaysUsable>
+						</li>
+						<li Class="CombatExtended.ToolCE">
+							<label>front left tentacle</label>
+							<capacities>
+								<li>ScratchToxic</li>
+							</capacities>
+							<power>8</power>
+							<cooldownTime>2.0</cooldownTime>
+							<linkedBodyPartsGroup>MorrowRim_TentacleAttackTool_FL</linkedBodyPartsGroup>
+							<armorPenetrationSharp>0.3</armorPenetrationSharp>
+							<armorPenetrationBlunt>0.4</armorPenetrationBlunt>
+						</li>
+						<li Class="CombatExtended.ToolCE">
+							<label>front right tentacle</label>
+							<capacities>
+								<li>ScratchToxic</li>
+							</capacities>
+							<power>8</power>
+							<cooldownTime>2.0</cooldownTime>
+							<linkedBodyPartsGroup>MorrowRim_TentacleAttackTool_FR</linkedBodyPartsGroup>
+							<armorPenetrationSharp>0.3</armorPenetrationSharp>
+							<armorPenetrationBlunt>0.4</armorPenetrationBlunt>
+						</li>
+						<li Class="CombatExtended.ToolCE">
+							<label>middle left tentacle</label>
+							<capacities>
+								<li>Scratch</li>
+							</capacities>
+							<power>7</power>
+							<cooldownTime>2.0</cooldownTime>
+							<linkedBodyPartsGroup>MorrowRim_TentacleAttackTool_BL</linkedBodyPartsGroup>
+							<armorPenetrationSharp>0.3</armorPenetrationSharp>
+							<armorPenetrationBlunt>0.4</armorPenetrationBlunt>
+						</li>
+						<li Class="CombatExtended.ToolCE">
+							<label>middle right tentacle</label>
+							<capacities>
+								<li>Scratch</li>
+							</capacities>
+							<power>7</power>
+							<cooldownTime>2.0</cooldownTime>
+							<linkedBodyPartsGroup>MorrowRim_TentacleAttackTool_BR</linkedBodyPartsGroup>
+							<armorPenetrationSharp>0.3</armorPenetrationSharp>
+							<armorPenetrationBlunt>0.4</armorPenetrationBlunt>
+						</li>
+					</tools>
+				</value>
+			</li>
+
+			</operations>
+		</match>
+	</Operation>
+</Patch>
