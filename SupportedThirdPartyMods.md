@@ -15,6 +15,7 @@ Mod |
 [CP] Spec Ops - The Line	|
 [CP] The DOOM Kit - Classic	|
 [HLX] Rimworld: UNSC Armoury |
+[HLX] ReGrowth - Extinct Animals Pack
 [HLX] ReGrowth - Mutated Animals Pack |
 [HLX] Ultratech: Altered Carbon - Armoury
 [JDS] EFT Apparel |
