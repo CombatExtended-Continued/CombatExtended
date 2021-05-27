@@ -91,6 +91,7 @@ Erin's Friendly Ferrets |
 Erin's Fox Squirrel |
 Erin's Mountain Animals |
 Expanded Materials - Metals |
+Expanded Materials - Plastics |
 Expanded Patchleather	|
 Expanded Prosthetics and Organ Engineering (EPOE)	|
 Expanded Prosthetics and Organ Engineering (EPOE) - Forked	|
@@ -156,6 +157,8 @@ More Mechanoids	|
 More Practical Traits	|
 More Utility Packs	|
 More Vanilla Turrets	|
+Morgante Mafia Weapons Pack |
+Morgante WW2 Italian Weapons    |
 MorrowRim	|
 MorrowRim - Ashlands Swamp  |
 MorrowRim - Colovian Fur Helm	|
