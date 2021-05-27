@@ -161,6 +161,7 @@ Morgante Mafia Weapons Pack |
 Morgante WW2 Italian Weapons    |
 MorrowRim	|
 MorrowRim - Ashlands Swamp  |
+MorrowRim - Bloodmoon  |
 MorrowRim - Colovian Fur Helm	|
 MorrowRim - Just the Animals	|
 Moyo - From the Depth   |
