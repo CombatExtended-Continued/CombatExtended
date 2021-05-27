@@ -157,6 +157,8 @@ More Mechanoids	|
 More Practical Traits	|
 More Utility Packs	|
 More Vanilla Turrets	|
+Morgante Mafia Weapons Pack |
+Morgante WW2 Italian Weapons    |
 Moyo - From the Depth   |
 Nearmare Race	|
 Neclose Race	|
