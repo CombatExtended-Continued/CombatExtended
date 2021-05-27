@@ -1,54 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Defs>
 
-	<ThingDef Name="BaseWeaponNeolithic" Abstract="True">
-		<category>Item</category>
-		<thingClass>ThingWithComps</thingClass>
-		<equipmentType>Primary</equipmentType>
-		<pathCost>10</pathCost>
-		<useHitPoints>True</useHitPoints>
-		<selectable>True</selectable>
-		<graphicData>
-			<onGroundRandomRotateAngle>35</onGroundRandomRotateAngle>
-		</graphicData>
-		<drawGUIOverlay>true</drawGUIOverlay>
-		<statBases>
-			<MaxHitPoints>100</MaxHitPoints>
-			<Flammability>1.0</Flammability>
-			<DeteriorationRate>2</DeteriorationRate>
-			<SellPriceFactor>0.5</SellPriceFactor>
-		</statBases>
-		<altitudeLayer>Item</altitudeLayer>
-		<alwaysHaulable>True</alwaysHaulable>
-		<tickerType>Never</tickerType>
-		<techLevel>Neolithic</techLevel>
-		<weaponTags>
-			<li>Neolithic</li>
-		</weaponTags>
-		<thingCategories>
-			<li>WeaponsRanged</li>
-		</thingCategories>
-		<comps>
-			<li Class="CompProperties_Forbiddable" />
-			<li>
-				<compClass>CompEquippable</compClass>
-			</li>
-			<li>
-				<compClass>CompQuality</compClass>
-			</li>
-		</comps>
-		<recipeMaker>
-			<workSpeedStat>GeneralLaborSpeed</workSpeedStat>
-			<workSkill>Crafting</workSkill>
-			<recipeUsers>
-				<li>ElectricSmithy</li>
-				<li>FueledSmithy</li>
-			</recipeUsers>
-			<effectWorking>Smelt</effectWorking>
-			<unfinishedThingDef>UnfinishedWeapon</unfinishedThingDef>
-		</recipeMaker>
-	</ThingDef>
-
 	<ThingDef Name="BaseProjectileNeolithic" Abstract="True">
 		<category>Projectile</category>
 		<tickerType>Normal</tickerType>
