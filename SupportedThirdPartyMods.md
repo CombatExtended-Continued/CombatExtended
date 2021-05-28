@@ -51,7 +51,7 @@ Alpha Biomes |
 Ancient Eastern Armory  |
 Ancient Fallout Armory  |
 Android Tiers	|
-Android Tiers++	|
+Android TX Series   |
 Androids	|
 Androids Expanded	|
 Anima Animals  |
