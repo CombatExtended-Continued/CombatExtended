@@ -8,12 +8,25 @@
 		<match Class="PatchOperationSequence">
 			<operations>
 
-          		<li Class="PatchOperationAdd">
-            			<xpath>/Defs/ThingDef[defName="AA_BlackSpelopede" or defName="AA_BlackSpider"]</xpath>
+	<li Class="PatchOperationConditional">
+	 <xpath>/Defs/ThingDef[defName="AA_BlackSpelopede"]/comps</xpath>
+          		<nomatch Class="PatchOperationAdd">
+            			<xpath>/Defs/ThingDef[defName="AA_BlackSpelopede"]</xpath>
             			<value>
               				<comps />
             			</value>
-          			</li>
+		</nomatch>
+	</li>
+
+	<li Class="PatchOperationConditional">
+	 <xpath>/Defs/ThingDef[defName="AA_BlackSpider"]/comps</xpath>
+          		<nomatch Class="PatchOperationAdd">
+            			<xpath>/Defs/ThingDef[defName="AA_BlackSpider"]</xpath>
+            			<value>
+              				<comps />
+            			</value>
+		</nomatch>
+	</li>
 
 		<li Class="PatchOperationAdd">
 			<xpath>/Defs/ThingDef[defName="AA_BlackSpider" or defName="AA_BlackSpelopede"]/comps</xpath>
@@ -160,7 +173,7 @@
 							<capacities>
 								<li>Stab</li>
 							</capacities>
-							<power>14</power>
+							<power>15</power>
 							<cooldownTime>1.48</cooldownTime>
 							<linkedBodyPartsGroup>HeadClaw</linkedBodyPartsGroup>
 							<armorPenetrationSharp>6</armorPenetrationSharp>
