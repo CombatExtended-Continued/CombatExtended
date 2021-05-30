@@ -220,6 +220,10 @@ namespace CombatExtended
             newPenAmount -= partDensity;    // Factor partDensity only after damage calculations
 
             // Apply damage to armor
+            var fullDeflect = armorAmount > penAmount * 2f;
+            var armorDamagePen = penAmount * 2f - armorAmount;
+            var armorDmgMult = fullDeflect ? 0 : penAmount == 0 ? 1 : Mathf.Clamp01(armorDamagePen / penAmount);
+            var armorDmgAmount = dmgAmount * armorDmgMult;
             if (armor != null)
             {
                 var isSoftArmor = armor.Stuff != null && armor.Stuff.stuffProps.categories.Any(s => softStuffs.Contains(s));
@@ -235,7 +239,7 @@ namespace CombatExtended
                 else
                 {
                     // Hard armor takes damage as reduced by damage resistance and can be almost impervious to low-penetration attacks
-                    var armorDamage = Mathf.Max(1, newDmgAmount);
+                    var armorDamage = Mathf.Max(0, armorDmgAmount);
                     armor.TakeDamage(new DamageInfo(def, Mathf.CeilToInt(armorDamage)));
                 }
             }
