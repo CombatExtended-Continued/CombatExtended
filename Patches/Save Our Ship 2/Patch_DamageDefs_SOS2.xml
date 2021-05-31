@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+	
+	<Operation Class="PatchOperationFindMod">
+    <mods>
+		<li>Save Our Ship 2</li>
+    </mods>
+		<match Class="PatchOperationSequence">
+		<operations>
+		
+		<li Class="PatchOperationReplace">
+			<xpath>/Defs/DamageDef[
+				defName="ShipLaserSmall" or
+				defName="ShipPlasmaSmall" or
+				defName="BombKinetic" or
+				defName="ShipLaserTwo" or
+				defName="BombKineticLarge" or
+				defName="ShipPlasmaLarge"
+			]/defaultArmorPenetration</xpath>
+			<value>
+				<defaultArmorPenetration>200</defaultArmorPenetration>
+			</value>
+		</li>
+			
+		</operations>
+		</match>
+	</Operation>
+	
+</Patch>
