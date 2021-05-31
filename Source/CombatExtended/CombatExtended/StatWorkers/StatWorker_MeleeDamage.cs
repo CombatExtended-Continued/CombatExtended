@@ -14,6 +14,71 @@ namespace CombatExtended
 
         public override string GetStatDrawEntryLabel(StatDef stat, float value, ToStringNumberSense numberSense, StatRequest optionalReq, bool finalized = true)
         {
+            return GetFinalDisplayValue(optionalReq);
+        }
+
+        public override string GetExplanationUnfinalized(StatRequest req, ToStringNumberSense numberSense)
+        {
+            var skilledDamageVariationMin = damageVariationMin;
+            var skilledDamageVariationMax = damageVariationMax;
+            var meleeSkillLevel = -1;
+
+            if (req.Thing?.ParentHolder is Pawn_EquipmentTracker tracker && tracker.pawn != null)
+            {
+                var pawnHolder = tracker.pawn;
+                skilledDamageVariationMin = GetDamageVariationMin(pawnHolder);
+                skilledDamageVariationMax = GetDamageVariationMax(pawnHolder);
+
+                if (pawnHolder.skills != null)
+                    meleeSkillLevel = pawnHolder.skills.GetSkill(SkillDefOf.Melee).Level;
+            }
+
+            var tools = (req.Def as ThingDef)?.tools;
+
+            if (tools.NullOrEmpty())
+            {
+                return base.GetExplanationUnfinalized(req, numberSense);
+            }
+
+            var stringBuilder = new StringBuilder();
+
+            if (meleeSkillLevel >= 0)
+            {
+                stringBuilder.AppendLine("CE_WielderSkillLevel".Translate() + ": " + meleeSkillLevel);
+            }
+            stringBuilder.AppendLine(string.Format("CE_DamageVariation".Translate() + ": {0}% - {1}%",
+                (100 * skilledDamageVariationMin).ToStringByStyle(ToStringStyle.FloatMaxTwo),
+                (100 * skilledDamageVariationMax).ToStringByStyle(ToStringStyle.FloatMaxTwo)));
+            stringBuilder.AppendLine("");
+
+            foreach (ToolCE tool in tools)
+            {
+                var adjustedToolDamage = GetAdjustedDamage(tool, req.Thing);
+                var maneuvers = DefDatabase<ManeuverDef>.AllDefsListForReading.Where(d => tool.capacities.Contains(d.requiredCapacity));
+                var maneuverString = "(";
+                foreach (var maneuver in maneuvers)
+                {
+                    maneuverString += maneuver.ToString() + "/";
+                }
+                maneuverString = maneuverString.TrimmedToLength(maneuverString.Length - 1) + ")";
+                stringBuilder.AppendLine("  " + "Tool".Translate() + ": " + tool.ToString() + " " + maneuverString);
+                stringBuilder.AppendLine("    " + "CE_DescBaseDamage".Translate() + ": " + tool.power.ToStringByStyle(ToStringStyle.FloatMaxTwo));
+                stringBuilder.AppendLine("    " + "CE_AdjustedForWeapon".Translate() + ": " + adjustedToolDamage.ToStringByStyle(ToStringStyle.FloatMaxTwo));
+                stringBuilder.AppendLine(string.Format("    " + "StatsReport_FinalValue".Translate() + ": {0} - {1}",
+                    (adjustedToolDamage * skilledDamageVariationMin).ToStringByStyle(ToStringStyle.FloatMaxTwo),
+                    (adjustedToolDamage * skilledDamageVariationMax).ToStringByStyle(ToStringStyle.FloatMaxTwo)));
+                stringBuilder.AppendLine();
+            }
+            return stringBuilder.ToString();
+        }
+
+        public override string GetExplanationFinalizePart(StatRequest req, ToStringNumberSense numberSense, float finalVal)
+        {
+            return "StatsReport_FinalValue".Translate() + ": " + GetFinalDisplayValue(req);
+        }
+
+        private string GetFinalDisplayValue(StatRequest optionalReq)
+        {
             var skilledDamageVariationMin = damageVariationMin;
             var skilledDamageVariationMax = damageVariationMax;
 
@@ -52,61 +117,6 @@ namespace CombatExtended
             return (lowestDamage * skilledDamageVariationMin).ToStringByStyle(ToStringStyle.FloatMaxTwo)
                 + " - "
                 + (highestDamage * skilledDamageVariationMax).ToStringByStyle(ToStringStyle.FloatMaxTwo);
-        }
-
-        public override string GetExplanationUnfinalized(StatRequest req, ToStringNumberSense numberSense)
-        {
-            var skilledDamageVariationMin = damageVariationMin;
-            var skilledDamageVariationMax = damageVariationMax;
-            var meleeSkillLevel = -1;
-
-            if (req.Thing?.ParentHolder is Pawn_EquipmentTracker tracker && tracker.pawn != null)
-            {
-                var pawnHolder = tracker.pawn;
-                skilledDamageVariationMin = GetDamageVariationMin(pawnHolder);
-                skilledDamageVariationMax = GetDamageVariationMax(pawnHolder);
-
-                if (pawnHolder.skills != null)
-                    meleeSkillLevel = pawnHolder.skills.GetSkill(SkillDefOf.Melee).Level;
-            }
-
-            var tools = (req.Def as ThingDef)?.tools;
-
-            if (tools.NullOrEmpty())
-            {
-                return base.GetExplanationUnfinalized(req, numberSense);
-            }
-
-            var stringBuilder = new StringBuilder();
-
-            if (meleeSkillLevel >= 0)
-            {
-                stringBuilder.AppendLine("CE_WielderSkillLevel".Translate()+": " + meleeSkillLevel);
-            }
-            stringBuilder.AppendLine(string.Format("CE_DamageVariation".Translate()+": {0}% - {1}%",
-                (100 * skilledDamageVariationMin).ToStringByStyle(ToStringStyle.FloatMaxTwo),
-                (100 * skilledDamageVariationMax).ToStringByStyle(ToStringStyle.FloatMaxTwo)));
-            stringBuilder.AppendLine("");
-
-            foreach (ToolCE tool in tools)
-            {
-                var adjustedToolDamage = GetAdjustedDamage(tool, req.Thing);
-                var maneuvers = DefDatabase<ManeuverDef>.AllDefsListForReading.Where(d => tool.capacities.Contains(d.requiredCapacity));
-                var maneuverString = "(";
-                foreach (var maneuver in maneuvers)
-                {
-                    maneuverString += maneuver.ToString() + "/";
-                }
-                maneuverString = maneuverString.TrimmedToLength(maneuverString.Length - 1) + ")";
-                stringBuilder.AppendLine("  "+"Tool".Translate()+": " + tool.ToString() + " " + maneuverString);
-                stringBuilder.AppendLine("    "+ "CE_DescBaseDamage".Translate() + ": " + tool.power.ToStringByStyle(ToStringStyle.FloatMaxTwo));
-                stringBuilder.AppendLine("    "+ "CE_AdjustedForWeapon".Translate() + ": " + adjustedToolDamage.ToStringByStyle(ToStringStyle.FloatMaxTwo));
-                stringBuilder.AppendLine(string.Format("    "+ "StatsReport_FinalValue".Translate() + ": {0} - {1}",
-                    (adjustedToolDamage * skilledDamageVariationMin).ToStringByStyle(ToStringStyle.FloatMaxTwo),
-                    (adjustedToolDamage * skilledDamageVariationMax).ToStringByStyle(ToStringStyle.FloatMaxTwo)));
-                stringBuilder.AppendLine();
-            }
-            return stringBuilder.ToString();
         }
 
     }

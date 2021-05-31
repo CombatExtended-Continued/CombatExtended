@@ -7,147 +7,224 @@
 		<match Class="PatchOperationSequence">
 		<operations>
 
-			  <!-- ========== Ratkin Ballista ========== -->
-				<li Class="PatchOperationReplace">
-					<xpath>Defs/ThingDef[@Name="RK_BaseArtilleryBuilding"]</xpath>
-					<value>
-						<ThingDef Name="RK_BaseArtilleryBuilding" ParentName="BuildingBase" Abstract="True">
-							<thingClass>CombatExtended.Building_TurretGunCE</thingClass>
-							<graphicData>
-								<texPath>Things/Building/Security/Ballista_Base</texPath>
-								<shaderType>CutoutComplex</shaderType>
-								<graphicClass>Graphic_Single</graphicClass>
-								<drawSize>(2,2)</drawSize>
-								<damageData>
-									<rect>(0.38,0.2,0.56375,0.8)</rect>
-									<cornerTL>Damage/Corner</cornerTL>
-								</damageData>
-								<shadowData>
-									<offset>(-0.13,-0.87,-0.1)</offset>
-									<volume>(0.5,0.4,1.05)</volume>
-								</shadowData>
-							</graphicData>
-							<minifiedDef>MinifiedThing</minifiedDef>
-							<altitudeLayer>Building</altitudeLayer>
-							<hasInteractionCell>True</hasInteractionCell>
-							<interactionCellOffset>(0,0,-1)</interactionCellOffset>
-							<stealable>false</stealable>
-							<size>(3,2)</size>
-							<passability>PassThroughOnly</passability>
-							<pathCost>50</pathCost>
-							<fillPercent>0.75</fillPercent>
-							<thingCategories>
-								<li>BuildingsSecurity</li>
-							</thingCategories>
-							<stuffCategories>
-								<li>Woody</li>
-							</stuffCategories>
-							<tickerType>Normal</tickerType>
-							<terrainAffordanceNeeded>Light</terrainAffordanceNeeded>
-							<designationCategory>Security</designationCategory>
-							<costStuffCount>240</costStuffCount>
-							<constructionSkillPrerequisite>5</constructionSkillPrerequisite>
-							<costList>
-								<Steel>80</Steel>
-								<ComponentIndustrial>1</ComponentIndustrial>
-							</costList>
-							<comps>
-								<li Class="CompProperties_Forbiddable"/>
-								<li Class="CompProperties_Mannable">
-									<manWorkType>Violent</manWorkType>
-								</li>
-							</comps>
-							<statBases>
-								<MaxHitPoints>180</MaxHitPoints>
-								<Flammability>0.7</Flammability>
-								<WorkToBuild>1900</WorkToBuild>
-								<Mass>30</Mass>
-								<Beauty>-20</Beauty>
-								<AccuracyTouch>0.9</AccuracyTouch>
-								<AccuracyShort>0.8</AccuracyShort>
-								<AccuracyMedium>0.75</AccuracyMedium>
-								<AccuracyLong>0.70</AccuracyLong>
-								<RangedWeapon_Cooldown>0.1</RangedWeapon_Cooldown>
-							</statBases>
-							<building>
-								<turretBurstWarmupTime>3.0</turretBurstWarmupTime>
-								<turretBurstCooldownTime>7.0</turretBurstCooldownTime>
-								<buildingTags>
-									<li>RK_Artillery</li>
-								</buildingTags>
-							</building>
-							<placeWorkers>
-								<!-- <li>PlaceWorker_NotUnderRoof</li> -->
-								<li>PlaceWorker_TurretTop</li>
-							</placeWorkers>
-							<uiIconScale>1</uiIconScale>
-							<researchPrerequisites>
-								<li>Ballista</li>
-							</researchPrerequisites>
-						</ThingDef>
-					</value>
-				</li>
+			<!-- ========== Ratkin Ballista ========== -->
+			  
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[@Name = "RK_BaseArtilleryBuilding"]/thingClass</xpath>
+				<value>
+					<thingClass>CombatExtended.Building_TurretGunCE</thingClass>
+				</value>
+			</li>
+
+			<li Class="PatchOperationRemove">
+				<xpath>Defs/ThingDef[@Name = "RK_BaseArtilleryBuilding"]/inspectorTabs</xpath>
+			</li>
 			
-				<li Class="PatchOperationReplace">
-					<xpath>Defs/ThingDef[defName="RK_Turret_Ballista_Strait"]</xpath>
-					<value>
-					  <ThingDef ParentName="BaseTurretGun">
-						<defName>RK_Turret_Ballista_Strait</defName>
-						<label>ballista</label>
-						<graphicData>
-						  <texPath>Things/Building/Security/Ballista_Turret</texPath>
-						  <graphicClass>Graphic_Single</graphicClass>
-						</graphicData>
-						<description>It is a machine that fires large arrows. It is designed to be easy to operate by Ratkin.</description>
-						<thingClass>CombatExtended.Building_TurretGunCE</thingClass>
-						<statBases>
-						  <Flammability>1.0</Flammability>
-						  <WorkToMake>31500</WorkToMake>
-						  <Mass>16.5</Mass>
-						  <Bulk>20</Bulk>	
-						  <MarketValue>2000</MarketValue>
-						  <SightsEfficiency>1</SightsEfficiency>
-						  <ShotSpread>0.04</ShotSpread>
-						  <SwayFactor>0.96</SwayFactor>
-						  <RangedWeapon_Cooldown>0.36</RangedWeapon_Cooldown>
-						</statBases>
-						<verbs>
-						  <li Class="CombatExtended.VerbPropertiesCE">
-							<verbClass>CombatExtended.Verb_ShootCE</verbClass>
-							<hasStandardCommand>true</hasStandardCommand>
-							<defaultProjectile>Projectile_RKBallistaBolt</defaultProjectile>
-							<warmupTime>1.4</warmupTime>
-							<range>44</range>
-							<soundCast>BallistaShot</soundCast>
-							<recoilPattern>Mounted</recoilPattern>
-						  </li>
-						</verbs>
-						<comps>
-							<li>
-								<compClass>CompEquippable</compClass>
-							</li>					
-						  <li Class="CombatExtended.CompProperties_AmmoUser">
-							<magazineSize>1</magazineSize>
-							<reloadTime>8</reloadTime>
-							<ammoSet>AmmoSet_RKBallistaBolt</ammoSet>
-						  </li>
-						  <li Class="CombatExtended.CompProperties_FireModes">
-							<aiAimMode>AimedShot</aiAimMode>
-						  </li>
-						</comps>
-					  </ThingDef>					
-					</value>
-				</li>
+			<li Class="PatchOperationRemove">
+				<xpath>Defs/ThingDef[@Name = "RK_BaseArtilleryBuilding"]/statBases/AccuracyTouch</xpath>
+			</li>
+			
+			<li Class="PatchOperationRemove">
+				<xpath>Defs/ThingDef[@Name = "RK_BaseArtilleryBuilding"]/statBases/AccuracyShort</xpath>
+			</li>
+			
+			<li Class="PatchOperationRemove">
+				<xpath>Defs/ThingDef[@Name = "RK_BaseArtilleryBuilding"]/statBases/AccuracyMedium</xpath>
+			</li>
+			
+			<li Class="PatchOperationRemove">
+				<xpath>Defs/ThingDef[@Name = "RK_BaseArtilleryBuilding"]/statBases/AccuracyLong</xpath>
+			</li>
+			
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[@Name = "RK_BaseArtilleryBuilding"]/building/turretBurstCooldownTime</xpath>
+				<value>
+					<turretBurstCooldownTime>1</turretBurstCooldownTime>
+				</value>
+			</li>
+			
+			<li Class="PatchOperationRemove">
+				<xpath>Defs/ThingDef[@Name = "RK_BaseArtilleryWeapon"]/building</xpath>
+			</li>
+			
+			<li Class="PatchOperationRemove">
+				<xpath>Defs/ThingDef[@Name = "RK_BaseArtilleryWeapon"]/comps/li[@Class="CompProperties_ChangeableProjectile"]</xpath>
+			</li>
+			
+			<li Class="PatchOperationRemove">
+				<xpath>Defs/ThingDef[@Name = "RK_BaseArtilleryWeapon"]/statBases/AccuracyTouch</xpath>
+			</li>
+			
+			<li Class="PatchOperationRemove">
+				<xpath>Defs/ThingDef[@Name = "RK_BaseArtilleryWeapon"]/statBases/AccuracyShort</xpath>
+			</li>
+			
+			<li Class="PatchOperationRemove">
+				<xpath>Defs/ThingDef[@Name = "RK_BaseArtilleryWeapon"]/statBases/AccuracyMedium</xpath>
+			</li>
+			
+			<li Class="PatchOperationRemove">
+				<xpath>Defs/ThingDef[@Name = "RK_BaseArtilleryWeapon"]/statBases/AccuracyLong</xpath>
+			</li>
+			
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName = "RK_Turret_Ballista_Strait"]</xpath>
+				<value>
+				<statBases/>
+				</value>
+			</li>
+			
+			<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+				<defName>RK_Turret_Ballista_Strait</defName>
+				<statBases>
+					<Mass>16.5</Mass>
+					<Bulk>20</Bulk>	
+					<SightsEfficiency>1</SightsEfficiency>
+					<ShotSpread>0.04</ShotSpread>
+					<SwayFactor>0.96</SwayFactor>
+					<RangedWeapon_Cooldown>1</RangedWeapon_Cooldown>
+				</statBases>
+				<Properties>
+					<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+					<hasStandardCommand>true</hasStandardCommand>
+					<defaultProjectile>Projectile_RKBallistaBolt</defaultProjectile>
+					<warmupTime>2.1</warmupTime>
+					<range>44</range>
+					<soundCast>BallistaShot</soundCast>
+					<muzzleFlashScale>12</muzzleFlashScale>
+				</Properties>
+				<AmmoUser>
+					<magazineSize>1</magazineSize>
+					<reloadTime>8</reloadTime>
+					<ammoSet>AmmoSet_RKBallistaBolt</ammoSet>
+				</AmmoUser>
+				<FireModes>
+				</FireModes>
+				<weaponTags>
+					<li>TurretGun</li>
+				</weaponTags>
+			</li>
+			
+			<li Class="PatchOperationRemove">
+				<xpath>Defs/ThingDef[defName="BallistaBolt_Normal"]</xpath>
+			</li>
+			<li Class="PatchOperationRemove">
+				<xpath>Defs/ThingDef[defName="BallistaBolt_AP"]</xpath>
+			</li>
+			<li Class="PatchOperationRemove">
+				<xpath>Defs/ThingDef[defName="BallistaBolt_Heavy"]</xpath>
+			</li>	
+			
+			<!-- ========== Ratkin Cannon ========== -->
+			  
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[@Name = "RK_BaseArtilleryBuilding_Cannon"]/thingClass</xpath>
+				<value>
+					<thingClass>CombatExtended.Building_TurretGunCE</thingClass>
+				</value>
+			</li>
+
+			<li Class="PatchOperationRemove">
+				<xpath>Defs/ThingDef[@Name = "RK_BaseArtilleryBuilding_Cannon"]/inspectorTabs</xpath>
+			</li>
+			
+			<li Class="PatchOperationRemove">
+				<xpath>Defs/ThingDef[@Name = "RK_BaseArtilleryBuilding_Cannon"]/statBases/AccuracyTouch</xpath>
+			</li>
+			
+			<li Class="PatchOperationRemove">
+				<xpath>Defs/ThingDef[@Name = "RK_BaseArtilleryBuilding_Cannon"]/statBases/AccuracyShort</xpath>
+			</li>
+			
+			<li Class="PatchOperationRemove">
+				<xpath>Defs/ThingDef[@Name = "RK_BaseArtilleryBuilding_Cannon"]/statBases/AccuracyMedium</xpath>
+			</li>
+			
+			<li Class="PatchOperationRemove">
+				<xpath>Defs/ThingDef[@Name = "RK_BaseArtilleryBuilding_Cannon"]/statBases/AccuracyLong</xpath>
+			</li>
+			
+			<li Class="PatchOperationRemove">
+				<xpath>Defs/ThingDef[@Name = "RK_BaseArtilleryBuilding_Cannon"]/costList/Chemfuel</xpath>
+			</li>
+			
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[@Name = "RK_BaseArtilleryBuilding_Cannon"]/building/turretBurstCooldownTime</xpath>
+				<value>
+					<turretBurstCooldownTime>1</turretBurstCooldownTime>
+				</value>
+			</li>
+			
+			<li Class="PatchOperationRemove">
+				<xpath>Defs/ThingDef[@Name = "RK_BaseArtilleryWeapon_Cannon"]/building</xpath>
+			</li>
+			
+			<li Class="PatchOperationRemove">
+				<xpath>Defs/ThingDef[@Name = "RK_BaseArtilleryWeapon_Cannon"]/comps/li[@Class="CompProperties_ChangeableProjectile"]</xpath>
+			</li>
+			
+			<li Class="PatchOperationRemove">
+				<xpath>Defs/ThingDef[@Name = "RK_BaseArtilleryWeapon_Cannon"]/statBases/AccuracyTouch</xpath>
+			</li>
+			
+			<li Class="PatchOperationRemove">
+				<xpath>Defs/ThingDef[@Name = "RK_BaseArtilleryWeapon_Cannon"]/statBases/AccuracyShort</xpath>
+			</li>
+			
+			<li Class="PatchOperationRemove">
+				<xpath>Defs/ThingDef[@Name = "RK_BaseArtilleryWeapon_Cannon"]/statBases/AccuracyMedium</xpath>
+			</li>
+			
+			<li Class="PatchOperationRemove">
+				<xpath>Defs/ThingDef[@Name = "RK_BaseArtilleryWeapon_Cannon"]/statBases/AccuracyLong</xpath>
+			</li>
+			
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName = "RK_Turret_Cannon_Strait"]</xpath>
+				<value>
+				<statBases/>
+				</value>
+			</li>
+			
+			<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+				<defName>RK_Turret_Cannon_Strait</defName>
+				<statBases>
+					<Mass>20</Mass>
+					<Bulk>20</Bulk>	
+					<SightsEfficiency>1</SightsEfficiency>
+					<ShotSpread>0.26</ShotSpread>
+					<SwayFactor>1.55</SwayFactor>
+					<RangedWeapon_Cooldown>3</RangedWeapon_Cooldown>
+				</statBases>
+				<Properties>
+					<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+					<hasStandardCommand>true</hasStandardCommand>
+					<defaultProjectile>Projectile_RKCannonBall</defaultProjectile>
+					<warmupTime>4.9</warmupTime>
+					<range>75</range>
+					<soundCast>RKCannonShot</soundCast>
+					<muzzleFlashScale>12</muzzleFlashScale>
+				</Properties>
+				<AmmoUser>
+					<magazineSize>1</magazineSize>
+					<reloadTime>14</reloadTime>
+					<ammoSet>AmmoSet_RKCannonBall</ammoSet>
+				</AmmoUser>
+				<FireModes>
+				</FireModes>
+				<weaponTags>
+					<li>TurretGun</li>
+				</weaponTags>
+			</li>
+			  
+
 				
 			<!-- Bolts -->
 				<li Class="PatchOperationRemove">
-					<xpath>Defs/ThingDef[defName="BallistaBolt_Normal"]</xpath>
+					<xpath>Defs/ThingDef[defName="Bullet_Big_mouse"]</xpath>
 				</li>
 				<li Class="PatchOperationRemove">
-					<xpath>Defs/ThingDef[defName="BallistaBolt_AP"]</xpath>
-				</li>
-				<li Class="PatchOperationRemove">
-					<xpath>Defs/ThingDef[defName="BallistaBolt_Heavy"]</xpath>
+					<xpath>Defs/ThingDef[defName="Big_mouse"]</xpath>
 				</li>				
 			
 		</operations>

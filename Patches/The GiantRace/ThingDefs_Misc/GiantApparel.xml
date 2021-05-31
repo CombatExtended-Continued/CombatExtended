@@ -28,6 +28,41 @@
 			</li>
 			
 			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="GI_Coverall"]/statBases/StuffEffectMultiplierArmor</xpath>
+				<value>
+					<StuffEffectMultiplierArmor>6</StuffEffectMultiplierArmor>
+					<Bulk>12</Bulk>
+					<WornBulk>0</WornBulk>
+				</value>
+			</li>
+			
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName="GI_Coverall"]/apparel/bodyPartGroups</xpath>
+				<value>
+					<li>Hands</li>
+					<li>Feet</li>
+				</value>
+			</li>
+			
+			<li Class="PatchOperationConditional">
+				<xpath>/Defs/ThingDef[defName="GI_Coverall"]/equippedStatOffsets</xpath>
+				<nomatch Class="PatchOperationAdd">
+					<xpath>/Defs/ThingDef[defName="GI_Coverall"]</xpath>
+					<value>
+						<equippedStatOffsets>
+							<CarryBulk>2.5</CarryBulk>
+						</equippedStatOffsets>
+					</value>
+				</nomatch>
+				<match Class="PatchOperationAdd">
+					<xpath>/Defs/ThingDef[defName="GI_Coverall"]/equippedStatOffsets</xpath>
+					<value>
+						<CarryBulk>2.5</CarryBulk>
+					</value>
+				</match>
+			</li>
+			
+			<li Class="PatchOperationReplace">
 				<xpath>Defs/ThingDef[defName="GI_Brigandine"]/statBases/StuffEffectMultiplierArmor</xpath>
 				<value>
 					<StuffEffectMultiplierArmor>3.5</StuffEffectMultiplierArmor>
@@ -164,20 +199,6 @@
 			</li>
 			
 			<li Class="PatchOperationReplace">
-				<xpath>Defs/ThingDef[defName="GI_Pauldron"]/statBases/ArmorRating_Sharp</xpath>
-				<value>
-					<ArmorRating_Sharp>0.25</ArmorRating_Sharp>
-				</value>
-			</li>
-			
-			<li Class="PatchOperationReplace">
-				<xpath>Defs/ThingDef[defName="GI_Pauldron"]/statBases/ArmorRating_Blunt</xpath>
-				<value>
-					<ArmorRating_Blunt>0.50</ArmorRating_Blunt>
-				</value>
-			</li>
-			
-			<li Class="PatchOperationReplace">
 				<xpath>Defs/ThingDef[defName="GI_Powerarmour"]/statBases/Mass</xpath>
 				<value>
 					<Mass>130</Mass>
@@ -206,6 +227,14 @@
 					<CarryBulk>15</CarryBulk>
 					<ShootingAccuracyPawn>0.15</ShootingAccuracyPawn>
 					<CarryWeight>35</CarryWeight>
+				</value>
+			</li>
+			
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName="GI_Powerarmour"]/apparel/bodyPartGroups</xpath>
+				<value>
+					<li>Hands</li>
+					<li>Feet</li>
 				</value>
 			</li>
 			
