@@ -10,15 +10,24 @@
 		
 		<li Class="PatchOperationReplace">
 			<xpath>/Defs/DamageDef[
-				defName="ShipLaserSmall" or
 				defName="ShipPlasmaSmall" or
-				defName="BombKinetic" or
+				defName="BombKinetic"
+			]/defaultArmorPenetration</xpath>
+			<value>
+				<defaultArmorPenetration>150</defaultArmorPenetration>
+			</value>
+		</li>
+		
+		<!-- Small lasers do low damage and are unlikely to kill -->
+		<li Class="PatchOperationReplace">
+			<xpath>/Defs/DamageDef[
+				defName="ShipLaserSmall" or
 				defName="ShipLaserTwo" or
 				defName="BombKineticLarge" or
 				defName="ShipPlasmaLarge"
 			]/defaultArmorPenetration</xpath>
 			<value>
-				<defaultArmorPenetration>200</defaultArmorPenetration>
+				<defaultArmorPenetration>500</defaultArmorPenetration>
 			</value>
 		</li>
 			
