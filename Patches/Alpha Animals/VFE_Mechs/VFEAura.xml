@@ -1,15 +1,19 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <Patch>
 	<Operation Class="PatchOperationFindMod">
-		<mods>
-		<li>Alpha Animals</li>
-		</mods>
+					<mods>
+						<li>Alpha Animals</li>
+					</mods>
+		<match Class="PatchOperationFindMod">
+					<mods>
+						<li>Vanilla Factions Expanded - Mechanoids</li>
+					</mods>
 
 		<match Class="PatchOperationSequence">
 			<operations>
 
 			<li Class="PatchOperationAddModExtension">
-				<xpath>/Defs/ThingDef[defName="AA_Aura"]</xpath>
+				<xpath>/Defs/ThingDef[defName="VFE_Mech_Aura"]</xpath>
 				<value>
 					<li Class="CombatExtended.RacePropertiesExtensionCE">
 						<bodyShape>Humanoid</bodyShape>
@@ -17,10 +21,11 @@
 				</value>
 			</li>
 
+
 		<!-- Assign armor values, change replace and add depending on what exists or not -->
 					
 			<li Class="PatchOperationAdd">
-				<xpath>/Defs/ThingDef[defName="AA_Aura"]</xpath>
+				<xpath>/Defs/ThingDef[defName="VFE_Mech_Aura"]</xpath>
 				<value>
 					<statBases> <!-- Ok this is pissing me off -->
 					        <MoveSpeed>5.5</MoveSpeed>
@@ -35,7 +40,7 @@
 			</li>
 
 			<li Class="PatchOperationReplace">
-				<xpath>/Defs/ThingDef[defName="AA_Aura"]/tools</xpath>
+				<xpath>/Defs/ThingDef[defName="VFE_Mech_Aura"]/tools</xpath>
 				<value>
 					<tools>
 						<li Class="CombatExtended.ToolCE">
@@ -77,7 +82,9 @@
 					</tools>
 				</value>
 			</li>
-			</operations>
-		</match>
+				</operations>
+			</match>					
+		</match>			
 	</Operation>
+
 </Patch>

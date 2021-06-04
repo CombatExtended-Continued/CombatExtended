@@ -1,15 +1,19 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <Patch>
 	<Operation Class="PatchOperationFindMod">
-		<mods>
-		<li>Alpha Animals</li>
-		</mods>
+					<mods>
+						<li>Alpha Animals</li>
+					</mods>
+		<match Class="PatchOperationFindMod">
+					<mods>
+						<li>Vanilla Factions Expanded - Mechanoids</li>
+					</mods>
 
 		<match Class="PatchOperationSequence">
 			<operations>
 
 			<li Class="PatchOperationAddModExtension">
-				<xpath>/Defs/ThingDef[defName="AA_Siegebreaker"]</xpath>
+				<xpath>/Defs/ThingDef[defName="VFE_Mech_Advanced_Siegebreaker"]</xpath>
 				<value>
 					<li Class="CombatExtended.RacePropertiesExtensionCE">
 						<bodyShape>Vehicle</bodyShape>
@@ -20,27 +24,28 @@
 		<!-- Assign armor values, change replace and add depending on what exists or not -->
 		
 			<li Class="PatchOperationReplace">
-				<xpath>/Defs/ThingDef[defName="AA_Siegebreaker"]/statBases/ArmorRating_Blunt</xpath>
+				<xpath>/Defs/ThingDef[defName="VFE_Mech_Advanced_Siegebreaker"]/statBases/ArmorRating_Blunt</xpath>
 				<value>
-					<ArmorRating_Blunt>50</ArmorRating_Blunt>
+					<ArmorRating_Blunt>56</ArmorRating_Blunt>
 				</value>
 			</li>
 			<li Class="PatchOperationReplace">
-				<xpath>/Defs/ThingDef[defName="AA_Siegebreaker"]/statBases/ArmorRating_Sharp</xpath>
+				<xpath>/Defs/ThingDef[defName="VFE_Mech_Advanced_Siegebreaker"]/statBases/ArmorRating_Sharp</xpath>
 				<value>
-					<ArmorRating_Sharp>20</ArmorRating_Sharp>
+					<ArmorRating_Sharp>22</ArmorRating_Sharp>
 				</value>
 			</li>			
 			
 			<li Class="PatchOperationReplace">
-				<xpath>/Defs/ThingDef[defName="AA_Siegebreaker"]/race/baseHealthScale</xpath>
+				<xpath>/Defs/ThingDef[defName="VFE_Mech_Advanced_Siegebreaker"]/race/baseHealthScale</xpath>
 				<value>
 					<baseHealthScale>2.5</baseHealthScale>
 				</value>
-			</li>	
+			</li>		
+			
 			
 			<li Class="PatchOperationAdd">
-				<xpath>/Defs/ThingDef[defName="AA_Siegebreaker"]/statBases</xpath>
+				<xpath>/Defs/ThingDef[defName="VFE_Mech_Advanced_Siegebreaker"]/statBases</xpath>
 				<value>
 					<MeleeDodgeChance>0.01</MeleeDodgeChance>
 					<MeleeCritChance>0.07</MeleeCritChance>
@@ -51,7 +56,7 @@
 			</li>
 
 			<li Class="PatchOperationReplace">
-				<xpath>/Defs/ThingDef[defName="AA_Siegebreaker"]/tools</xpath>
+				<xpath>/Defs/ThingDef[defName="VFE_Mech_Advanced_Siegebreaker"]/tools</xpath>
 				<value>
 					<tools>
 						<li Class="CombatExtended.ToolCE">
@@ -59,11 +64,11 @@
 							<capacities>
 								<li>Blunt</li>
 							</capacities>
-							<power>30</power>
+							<power>36</power>
 							<cooldownTime>3.4</cooldownTime>
 							<linkedBodyPartsGroup>HeadAttackTool</linkedBodyPartsGroup>
 							<ensureLinkedBodyPartsGroupAlwaysUsable>true</ensureLinkedBodyPartsGroupAlwaysUsable>
-							<armorPenetrationBlunt>75</armorPenetrationBlunt>
+							<armorPenetrationBlunt>80</armorPenetrationBlunt>
 						</li>
 					</tools>
 				</value>
@@ -73,7 +78,7 @@
 			<!-- Make it spawn with ammo -->
 			
 			<li Class="PatchOperationAdd">
-				<xpath>/Defs/ThingDef[defName="AA_Siegebreaker"]/comps</xpath>
+				<xpath>/Defs/ThingDef[defName="VFE_Mech_Advanced_Siegebreaker"]/comps</xpath>
 				<value>
 					<li>
 						<compClass>CombatExtended.CompPawnGizmo</compClass>
@@ -81,7 +86,9 @@
 				</value>
 			</li>
 			
-			</operations>
-		</match>
+				</operations>
+			</match>					
+		</match>			
 	</Operation>
+
 </Patch>

@@ -1,15 +1,19 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <Patch>
 	<Operation Class="PatchOperationFindMod">
-		<mods>
-		<li>Alpha Animals</li>
-		</mods>
+					<mods>
+						<li>Alpha Animals</li>
+					</mods>
+		<match Class="PatchOperationFindMod">
+					<mods>
+						<li>Vanilla Factions Expanded - Mechanoids</li>
+					</mods>
 
 		<match Class="PatchOperationSequence">
 			<operations>
 
 			<li Class="PatchOperationAddModExtension">
-				<xpath>/Defs/ThingDef[defName="AA_Goliath"]</xpath>
+				<xpath>/Defs/ThingDef[defName="VFE_Mech_Goliath"]</xpath>
 				<value>
 					<li Class="CombatExtended.RacePropertiesExtensionCE">
 						<bodyShape>Humanoid</bodyShape>
@@ -20,9 +24,9 @@
 		<!-- Assign armor values, change replace and add depending on what exists or not -->
 		
 			<li Class="PatchOperationReplace">
-				<xpath>/Defs/ThingDef[defName="AA_Goliath"]/statBases/ArmorRating_Blunt</xpath>
+				<xpath>/Defs/ThingDef[defName="VFE_Mech_Goliath"]/statBases/ArmorRating_Blunt</xpath>
 				<value>
-					<ArmorRating_Blunt>38</ArmorRating_Blunt>
+					<ArmorRating_Blunt>24</ArmorRating_Blunt>
 				</value>
 			</li>
 			<li Class="PatchOperationReplace">
@@ -30,15 +34,16 @@
 				<value>
 					<ArmorRating_Sharp>17</ArmorRating_Sharp>
 				</value>
-			</li>	
-						
+			</li>			
+			
+			
 			<li Class="PatchOperationAdd">
-				<xpath>/Defs/ThingDef[defName="AA_Goliath"]/statBases</xpath>
+				<xpath>/Defs/ThingDef[defName="VFE_Mech_Goliath"]/statBases</xpath>
 				<value>
 					<CarryWeight>400</CarryWeight>
-			                	<CarryBulk>1000</CarryBulk>
+			                <CarryBulk>1000</CarryBulk>
 					<AimingAccuracy>1.0</AimingAccuracy>
-			                	<ShootingAccuracyPawn>1</ShootingAccuracyPawn>
+			                <ShootingAccuracyPawn>1</ShootingAccuracyPawn>
 					<MeleeDodgeChance>0.01</MeleeDodgeChance>
 					<MeleeCritChance>0.75</MeleeCritChance>
 					<MeleeParryChance>0.17</MeleeParryChance>
@@ -46,14 +51,14 @@
 				</value>
 			</li>
 			<li Class="PatchOperationReplace">
-				<xpath>/Defs/ThingDef[defName="AA_Goliath"]/race/baseHealthScale</xpath>
+				<xpath>/Defs/ThingDef[defName="VFE_Mech_Goliath"]/race/baseHealthScale</xpath>
 				<value>
 					<baseHealthScale>2.5</baseHealthScale>
 				</value>
 			</li>
 
 			<li Class="PatchOperationReplace">
-				<xpath>/Defs/ThingDef[defName="AA_Goliath"]/tools</xpath>
+				<xpath>/Defs/ThingDef[defName="VFE_Mech_Goliath"]/tools</xpath>
 				<value>
 					<tools>
 						<li Class="CombatExtended.ToolCE">
@@ -62,10 +67,10 @@
 								<li>Blunt</li>
 							</capacities>
 							<power>28</power>
-							<cooldownTime>2.0</cooldownTime>
+							<cooldownTime>2.4</cooldownTime>
 							<linkedBodyPartsGroup>HeadAttackTool</linkedBodyPartsGroup>
 							<ensureLinkedBodyPartsGroupAlwaysUsable>true</ensureLinkedBodyPartsGroupAlwaysUsable>
-							<armorPenetrationBlunt>36</armorPenetrationBlunt>
+							<armorPenetrationBlunt>32</armorPenetrationBlunt>
 					  </li>
 					</tools>
 				</value>
@@ -74,7 +79,7 @@
 			<!-- Guns are ok, adding ammo -->
 			
 			<li Class="PatchOperationAdd">
-				<xpath>/Defs/ThingDef[defName="AA_Goliath"]/comps</xpath>
+				<xpath>/Defs/ThingDef[defName="VFE_Mech_Goliath"]/comps</xpath>
 				<value>
 					<li>
 						<compClass>CombatExtended.CompPawnGizmo</compClass>
@@ -82,7 +87,9 @@
 				</value>
 			</li>
 			
-			</operations>
-		</match>
+				</operations>
+			</match>					
+		</match>			
 	</Operation>
+
 </Patch>

@@ -1,15 +1,19 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <Patch>
 	<Operation Class="PatchOperationFindMod">
-		<mods>
-		<li>Alpha Animals</li>
-		</mods>
+					<mods>
+						<li>Alpha Animals</li>
+					</mods>
+		<match Class="PatchOperationFindMod">
+					<mods>
+						<li>Vanilla Factions Expanded - Mechanoids</li>
+					</mods>
 
 		<match Class="PatchOperationSequence">
 			<operations>
 
 			<li Class="PatchOperationAddModExtension">
-				<xpath>/Defs/ThingDef[defName="AA_Fireworm"]</xpath>
+				<xpath>/Defs/ThingDef[defName="VFE_Mech_Fireworm"]</xpath>
 				<value>
 					<li Class="CombatExtended.RacePropertiesExtensionCE">
 						<bodyShape>QuadrupedLow</bodyShape>
@@ -17,38 +21,37 @@
 				</value>
 			</li>
 
-			<li Class="PatchOperationReplace">
-				<xpath>/Defs/ThingDef[defName="AA_Fireworm"]/race/baseHealthScale</xpath>
-				<value>
-					<baseHealthScale>2.75</baseHealthScale>
-				</value>
-			</li>
-
 		<!-- Assign armor values, change replace and add depending on what exists or not -->
 		
 			<li Class="PatchOperationReplace">
-				<xpath>/Defs/ThingDef[defName="AA_Fireworm"]/statBases/ArmorRating_Blunt</xpath>
+				<xpath>/Defs/ThingDef[defName="VFE_Mech_Fireworm"]/statBases/ArmorRating_Blunt</xpath>
 				<value>
-					<ArmorRating_Blunt>20</ArmorRating_Blunt>
+					<ArmorRating_Blunt>16</ArmorRating_Blunt>
 				</value>
 			</li>
 			<li Class="PatchOperationReplace">
-				<xpath>/Defs/ThingDef[defName="AA_Fireworm"]/statBases/ArmorRating_Sharp</xpath>
+				<xpath>/Defs/ThingDef[defName="VFE_Mech_Fireworm"]/statBases/ArmorRating_Sharp</xpath>
 				<value>
-					<ArmorRating_Sharp>9</ArmorRating_Sharp>
+					<ArmorRating_Sharp>8.5</ArmorRating_Sharp>
 				</value>
 			</li>
 				
 					<li Class="PatchOperationReplace">
-				<xpath>/Defs/ThingDef[defName="AA_Fireworm"]/statBases/MoveSpeed</xpath>
+				<xpath>/Defs/ThingDef[defName="VFE_Mech_Fireworm"]/statBases/MoveSpeed</xpath>
 				<value>
 					<MoveSpeed>3.2</MoveSpeed>
 				</value>
 			</li>
-			
+
+			<li Class="PatchOperationReplace">
+				<xpath>/Defs/ThingDef[defName="VFE_Mech_Fireworm"]/race/baseHealthScale</xpath>
+				<value>
+					<baseHealthScale>2.75</baseHealthScale>
+				</value>
+			</li>			
 			
 			<li Class="PatchOperationAdd">
-				<xpath>/Defs/ThingDef[defName="AA_Fireworm"]/statBases</xpath>
+				<xpath>/Defs/ThingDef[defName="VFE_Mech_Fireworm"]/statBases</xpath>
 				<value>
 					<AimingAccuracy>1.0</AimingAccuracy>
 			                <ShootingAccuracyPawn>1</ShootingAccuracyPawn> 
@@ -59,7 +62,7 @@
 			</li>
 
 			<li Class="PatchOperationReplace">
-				<xpath>/Defs/ThingDef[defName="AA_Fireworm"]/tools</xpath>
+				<xpath>/Defs/ThingDef[defName="VFE_Mech_Fireworm"]/tools</xpath>
 				<value>
 					<tools>
 						<li Class="CombatExtended.ToolCE">
@@ -80,7 +83,7 @@
 			<!-- Make it spawn with ammo -->
 			
 			<li Class="PatchOperationAdd">
-				<xpath>/Defs/ThingDef[defName="AA_Fireworm"]/comps</xpath>
+				<xpath>/Defs/ThingDef[defName="VFE_Mech_Fireworm"]/comps</xpath>
 				<value>
 					<li>
 						<compClass>CombatExtended.CompPawnGizmo</compClass>
@@ -88,7 +91,9 @@
 				</value>
 			</li>
 			
-			</operations>
-		</match>
+				</operations>
+			</match>					
+		</match>			
 	</Operation>
+
 </Patch>

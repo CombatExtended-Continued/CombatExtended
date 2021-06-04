@@ -9,7 +9,7 @@
 			<operations>
 
 			<li Class="PatchOperationAddModExtension">
-				<xpath>/Defs/ThingDef[defName="AA_Wildpod"]</xpath>
+				<xpath>/Defs/ThingDef[defName="AA_Skiphound"]</xpath>
 				<value>
 					<li Class="CombatExtended.RacePropertiesExtensionCE">
 						<bodyShape>Quadruped</bodyShape>
@@ -17,92 +17,90 @@
 				</value>
 			</li>
 
-			<li Class="PatchOperationReplace">
-				<xpath>/Defs/ThingDef[defName="AA_Wildpod"]/statBases/ArmorRating_Blunt</xpath>
-				<value>
-					<ArmorRating_Blunt>15</ArmorRating_Blunt>
-				</value>
-			</li>
-			<li Class="PatchOperationReplace">
-				<xpath>/Defs/ThingDef[defName="AA_Wildpod"]/statBases/ArmorRating_Sharp</xpath>
-				<value>
-					<ArmorRating_Sharp>23</ArmorRating_Sharp>
-				</value>
-			</li>
-
 			<li Class="PatchOperationAdd">
-				<xpath>/Defs/ThingDef[defName="AA_Wildpod"]/statBases</xpath>
+				<xpath>/Defs/ThingDef[defName="AA_Skiphound"]/statBases</xpath>
 				<value>
-					<MeleeDodgeChance>0.06</MeleeDodgeChance>
-					<MeleeCritChance>0.2</MeleeCritChance>
-					<MeleeParryChance>0.28</MeleeParryChance>
+					<MeleeDodgeChance>1</MeleeDodgeChance>
+					<MeleeCritChance>0.18</MeleeCritChance>
+					<MeleeParryChance>0.08</MeleeParryChance>
 				</value>
 			</li>
 
 			<li Class="PatchOperationReplace">
-				<xpath>/Defs/ThingDef[defName="AA_Wildpod"]/tools</xpath>
+				<xpath>/Defs/ThingDef[defName="AA_Skiphound"]/tools</xpath>
 				<value>
 					<tools>
 						<li Class="CombatExtended.ToolCE">
-							<label>left paw</label>
+							<label>left claw</label>
 							<capacities>
-								<li>Blunt</li>
+								<li>Scratch</li>
 							</capacities>
-							<power>23</power>
-							<cooldownTime>2.0</cooldownTime>
+							<power>8</power>
+							<cooldownTime>1</cooldownTime>
 							<linkedBodyPartsGroup>FrontLeftPaw</linkedBodyPartsGroup>
 							<surpriseAttack>
 								<extraMeleeDamages>
 									<li>
 										<def>Stun</def>
-										<amount>21</amount>
+										<amount>20</amount>
 									</li>
 								</extraMeleeDamages>
 							</surpriseAttack>
-							<armorPenetrationBlunt>3</armorPenetrationBlunt>
+							<armorPenetrationSharp>0.15</armorPenetrationSharp>
+							<armorPenetrationBlunt>0.423</armorPenetrationBlunt>
 						</li>
 						<li Class="CombatExtended.ToolCE">
-							<label>right paw</label>
+							<label>right claw</label>
 							<capacities>
-								<li>Blunt</li>
+								<li>Scratch</li>
 							</capacities>
-							<power>23</power>
-							<cooldownTime>2.0</cooldownTime>
+							<power>8</power>
+							<cooldownTime>1</cooldownTime>
 							<linkedBodyPartsGroup>FrontRightPaw</linkedBodyPartsGroup>
 							<surpriseAttack>
 								<extraMeleeDamages>
 									<li>
 										<def>Stun</def>
-										<amount>21</amount>
+										<amount>20</amount>
 									</li>
 								</extraMeleeDamages>
 							</surpriseAttack>
-							<armorPenetrationBlunt>3</armorPenetrationBlunt>
+							<armorPenetrationSharp>0.15</armorPenetrationSharp>
+							<armorPenetrationBlunt>0.423</armorPenetrationBlunt>
 						</li>
 						<li Class="CombatExtended.ToolCE">
 							<capacities>
-								<li>ToxicBite</li>
+								<li>Bite</li>
 							</capacities>
-							<power>15</power>
-							<cooldownTime>1.65</cooldownTime>
+							<power>22</power>
+							<cooldownTime>1.5</cooldownTime>
 							<linkedBodyPartsGroup>Teeth</linkedBodyPartsGroup>
-							<armorPenetrationSharp>0.21</armorPenetrationSharp>
-							<armorPenetrationBlunt>3</armorPenetrationBlunt>
+							<surpriseAttack>
+								<extraMeleeDamages>
+									<li>
+										<def>Stun</def>
+										<amount>20</amount>
+									</li>
+								</extraMeleeDamages>
+							</surpriseAttack>
+							<armorPenetrationSharp>1.2</armorPenetrationSharp>
+							<armorPenetrationBlunt>5.144</armorPenetrationBlunt>
 						</li>
 						<li Class="CombatExtended.ToolCE">
 							<label>head</label>
 							<capacities>
 								<li>Blunt</li>
 							</capacities>
-							<power>12</power>
-							<cooldownTime>1.65</cooldownTime>
+							<power>3</power>
+							<cooldownTime>2</cooldownTime>
 							<linkedBodyPartsGroup>HeadAttackTool</linkedBodyPartsGroup>
-							<armorPenetrationBlunt>3</armorPenetrationBlunt>
+							<armorPenetrationBlunt>0.423</armorPenetrationBlunt>
 							<chanceFactor>0.2</chanceFactor>
 						</li>
 					</tools>
 				</value>
 			</li>
+
 			</operations>
 		</match>
 	</Operation>

@@ -7,8 +7,13 @@
 		<match Class="PatchOperationSequence">
 			<operations>
 				<!-- ============== Changing Projectile's thingClass to CE ones ================ -->
+
+				<li Class="PatchOperationRemove">
+					<xpath>/Defs/ThingDef[defName="AA_FrostWeb" or defName="AA_FireWeb" or defName="AA_AcidicWeb"]/thingClass</xpath>
+				</li>
+
 				<li Class="PatchOperationAdd">
-					<xpath>/Defs/ThingDef[defName="AA_AcidicWeb" or
+				<xpath>/Defs/ThingDef[defName="AA_AcidicWeb" or
 				defName="AA_Bullet_Barb" or
 				defName="AA_Bullet_VenomBarb" or
 				defName="AA_FireWeb" or
@@ -20,13 +25,20 @@
 				defName="AA_Web" or
 				defName="AA_FireSpit" or
 				defName="AA_AcidicVomit" or
-				defName="AA_AcidBolt" or
-				defName="AA_LaserBullet"
-				]</xpath>
+				defName="AA_DarkBolt" or
+				defName="AA_AcidBolt"]</xpath>
 					<value>
 						<thingClass>CombatExtended.BulletCE</thingClass>
 					</value>
 				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/VFECore.ExpandableProjectileDef[defName="AA_LaserBullet"]/thingClass</xpath>
+					<value>
+						<thingClass>CombatExtended.Lasers.LaserBeamCE</thingClass>
+					</value>
+				</li>
+
 				<li Class="PatchOperationReplace">
 					<xpath>/Defs/ThingDef[defName="AA_Bullet_Rock" or
 				defName="AA_ToxicInk" or
@@ -43,8 +55,10 @@
 				defName="AA_Barbslinger" or
 				defName="AA_Blizzarisk" or defName="AA_BlizzariskClutchMother" or
 				defName="AA_Cinderlisk" or
+				defName="AA_CrystallineCaracal" or
 				defName="AA_Dunealisk" or 
 				defName="AA_DunealiskClutchMother" or
+				defName="AA_Darkbeast" or
 				defName="AA_Feralisk" or 
 				defName="AA_FeraliskClutchMother" or
 				defName="AA_GreenGoo" or
@@ -96,7 +110,7 @@
 							<projectile Class="CombatExtended.ProjectilePropertiesCE">
 								<flyOverhead>false</flyOverhead>
 								<damageDef>Burn</damageDef>
-								<damageAmountBase>6</damageAmountBase>
+								<damageAmountBase>5</damageAmountBase>
 								<speed>15</speed>
 								<armorPenetrationBlunt>3</armorPenetrationBlunt>
 								<!-- Adding secondary damage with CE's Procedure instead of AA's AnimalProjectile -->
@@ -104,6 +118,7 @@
 									<li>
 										<def>Stun</def>
 										<amount>8</amount>
+          										<chance>0.5</chance>
 									</li>
 								</secondaryDamage>
 							</projectile>
@@ -131,7 +146,7 @@
 							<flyOverhead>false</flyOverhead>
 							<damageDef>AA_ToxicSting</damageDef>
 							<damageAmountBase>11</damageAmountBase>
-							<speed>27</speed>
+							<speed>28</speed>
 							<armorPenetrationSharp>7.5</armorPenetrationSharp>
 							<armorPenetrationBlunt>1.6</armorPenetrationBlunt>
 						</projectile>
@@ -145,7 +160,7 @@
 							<damageDef>AA_ToxicSting</damageDef>
 							<damageAmountBase>12</damageAmountBase>
 							<speed>27</speed>
-							<armorPenetrationSharp>6</armorPenetrationSharp>
+							<armorPenetrationSharp>5</armorPenetrationSharp>
 							<armorPenetrationBlunt>1.660</armorPenetrationBlunt>
 						</projectile>
 					</value>
@@ -169,9 +184,9 @@
 						<projectile Class="CombatExtended.ProjectilePropertiesCE">
 							<flyOverhead>false</flyOverhead>
 							<damageDef>AA_ToxicSting</damageDef>
-							<damageAmountBase>20</damageAmountBase>
+							<damageAmountBase>19</damageAmountBase>
 							<speed>20</speed>
-							<armorPenetrationSharp>3</armorPenetrationSharp>
+							<armorPenetrationSharp>2.5</armorPenetrationSharp>
 							<armorPenetrationBlunt>3</armorPenetrationBlunt>
 						</projectile>
 					</value>
@@ -189,6 +204,7 @@
 						</projectile>
 					</value>
 				</li>
+
 				<li Class="PatchOperationReplace">
 					<xpath>/Defs/ThingDef[defName="AA_Bullet_Rock"]/projectile</xpath>
 					<value>
@@ -217,13 +233,14 @@
 						</comps>
 					</value>
 				</li>
+
 				<li Class="PatchOperationReplace">
 					<xpath>/Defs/ThingDef[defName="AA_FrostWeb"]/projectile</xpath>
 					<value>
 						<projectile Class="CombatExtended.ProjectilePropertiesCE">
 							<flyOverhead>false</flyOverhead>
 							<damageDef>Frostbite</damageDef>
-							<damageAmountBase>6</damageAmountBase>
+							<damageAmountBase>5</damageAmountBase>
 							<speed>15</speed>
 							<armorPenetrationBlunt>3</armorPenetrationBlunt>
 							<!-- Adding secondary damage with CE's Procedure instead of AA's AnimalProjectile -->
@@ -231,11 +248,13 @@
 								<li>
 									<def>Stun</def>
 									<amount>8</amount>
+          									<chance>0.5</chance>
 								</li>
 							</secondaryDamage>
 						</projectile>
 					</value>
 				</li>
+
 				<li Class="PatchOperationReplace">
 					<xpath>/Defs/ThingDef[defName="AA_FireWeb"]/projectile</xpath>
 					<value>
@@ -250,6 +269,7 @@
 								<li>
 									<def>Stun</def>
 									<amount>8</amount>
+          									<chance>0.5</chance>
 								</li>
 							</secondaryDamage>
 						</projectile>
@@ -261,7 +281,7 @@
 						<projectile Class="CombatExtended.ProjectilePropertiesCE">
 							<flyOverhead>false</flyOverhead>
 							<damageDef>AA_AcidSpit</damageDef>
-							<damageAmountBase>6</damageAmountBase>
+							<damageAmountBase>5</damageAmountBase>
 							<speed>15</speed>
 							<armorPenetrationBlunt>3</armorPenetrationBlunt>
 							<!-- Adding secondary damage with CE's Procedure instead of AA's AnimalProjectile -->
@@ -269,6 +289,7 @@
 								<li>
 									<def>Stun</def>
 									<amount>8</amount>
+          									<chance>0.5</chance>
 								</li>
 							</secondaryDamage>
 						</projectile>
@@ -357,6 +378,17 @@
 					</value>
 				</li>
 				<li Class="PatchOperationReplace">
+					<xpath>/Defs/ThingDef[defName="AA_DarkBolt"]/projectile</xpath>
+					<value>
+						<projectile Class="CombatExtended.ProjectilePropertiesCE">
+							<flyOverhead>false</flyOverhead>
+							<damageDef>Flame</damageDef>
+							<damageAmountBase>10</damageAmountBase>
+							<speed>36</speed>
+						</projectile>
+					</value>
+				</li>
+				<li Class="PatchOperationReplace">
 					<xpath>/Defs/ThingDef[defName="AA_ElectricBolt"]/projectile</xpath>
 					<value>
 						<projectile Class="CombatExtended.ProjectilePropertiesCE">
@@ -373,12 +405,12 @@
 						<projectile Class="CombatExtended.ProjectilePropertiesCE">
 							<damageDef>Flame</damageDef>
 							<flyOverhead>false</flyOverhead>
-							<damageAmountBase>10</damageAmountBase>
+							<damageAmountBase>3</damageAmountBase>
 							<ai_IsIncendiary>true</ai_IsIncendiary>
-							<speed>20</speed>
 						</projectile>
 					</value>
 				</li>
+
 			</operations>
 		</match>
 	</Operation>
