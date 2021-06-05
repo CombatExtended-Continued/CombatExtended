@@ -41,7 +41,7 @@ namespace CombatExtended
                 //Find next X-axis cell in vector's path
                 var nextXPointDistance = (float)stepX;
                 var currentPosXDecimalPortion = currentPos.x % 1;
-                if (currentPosXDecimalPortion != 0f)
+                if (!NearlyEqual(currentPosXDecimalPortion, 0f) && !NearlyEqual(Mathf.Abs(currentPosXDecimalPortion), 1f))
                 {
                     nextXPointDistance = ((currentPosXDecimalPortion >= 0.5f) ? 1f - currentPosXDecimalPortion : currentPosXDecimalPortion) * stepX;
                 }
@@ -54,7 +54,7 @@ namespace CombatExtended
                 //Find next Z-axis cell in vector's path
                 var nextZPointDistance = (float)stepZ;
                 var currentPosZDecimalPortion = currentPos.z % 1;
-                if (currentPosZDecimalPortion != 0f)
+                if (!NearlyEqual(currentPosZDecimalPortion, 0f) && !NearlyEqual(Mathf.Abs(currentPosZDecimalPortion), 1f))
                 {
                     nextZPointDistance = ((currentPosZDecimalPortion >= 0.5f) ? 1f - currentPosZDecimalPortion : currentPosZDecimalPortion) * stepZ;
                 }
@@ -78,7 +78,7 @@ namespace CombatExtended
 
                     //If the current position is a corner, we need not only the 2 cells along the vector's path,
                     //but also the other two touching the corner. (prevents diagonal LOS through walls)
-                    if (currentPos.x == Mathf.Floor(currentPos.x) && currentPos.z == Mathf.Floor(currentPos.z))
+                    if (NearlyEqual(currentPos.x, Mathf.RoundToInt(currentPos.x)) && NearlyEqual(currentPos.z, Mathf.RoundToInt(currentPos.z)))
                     {
                         yield return new IntVec3(
                             (int)(currentPos.x + (0.0001f * stepX) - stepX),
@@ -158,6 +158,15 @@ namespace CombatExtended
         private static double GetDistanceSqr(Vector3 v1, Vector3 v2)
         {
             return Math.Pow(v2.x - v1.x, 2) + Math.Pow(v2.z - v1.z, 2);
+        }
+
+        private static bool NearlyEqual(float a, float b, float tolerance = 0.0001f)
+        {
+            if (a == b) // shortcut, handles infinities
+            {
+                return true;
+            }
+            return Math.Abs(a - b) < tolerance;
         }
 
     }
