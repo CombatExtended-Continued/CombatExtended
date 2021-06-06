@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+			<li>MorrowRim - Trolls</li>
+		</mods>
+		<match Class="PatchOperationSequence">
+			<operations>
+
+				<!-- Remove horn as a weapon -->
+				<li Class="PatchOperationRemove">
+					<xpath>/Defs/ThingDef[defName="MorrowRim_GrahlTusk"]/tools</xpath>
+				</li>
+				<li Class="PatchOperationAttributeSet">
+					<xpath>/Defs/ThingDef[defName="MorrowRim_GrahlTusk"]</xpath>
+					<attribute>ParentName</attribute>
+					<value>ResourceBase</value>
+				</li>
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/ThingDef[defName="MorrowRim_GrahlTusk"]/description</xpath>
+					<value>
+						<description>A grahl's tusk. It is very durable and valuable. While somewhat unwieldy as a melee weapon, it can still be deadly. Traders and collectors might pay a high price for this.</description>
+					</value>
+				</li>
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/ThingDef[defName="MorrowRim_GrahlTusk"]/statBases/MarketValue</xpath>
+					<value>
+						<MarketValue>150</MarketValue>
+					</value>
+				</li>
+				<!--Trolls -->
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/ThingDef[defName="MorrowRim_Leather_LightTroll"]/statBases/StuffPower_Armor_Sharp</xpath>
+					<value>
+						<StuffPower_Armor_Sharp>0.07</StuffPower_Armor_Sharp>
+					</value>
+				</li>
+		
+				<!--Big Troll -->
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/ThingDef[defName="MorrowRim_Leather_HeavyTroll"]/statBases/StuffPower_Armor_Sharp</xpath>
+					<value>
+						<StuffPower_Armor_Sharp>0.09</StuffPower_Armor_Sharp>
+					</value>
+				</li>
+				<!--Grahl -->
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/ThingDef[defName="MorrowRim_Leather_Grahl"]/statBases/StuffPower_Armor_Sharp</xpath>
+					<value>
+						<StuffPower_Armor_Sharp>0.11</StuffPower_Armor_Sharp>
+					</value>
+				</li>
+				<!--Gehenoth -->
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/ThingDef[defName="MorrowRim_Leather_Gehenoth"]/statBases/StuffPower_Armor_Sharp</xpath>
+					<value>
+						<StuffPower_Armor_Sharp>0.11</StuffPower_Armor_Sharp>
+					</value>
+				</li>
+
+			</operations>
+		</match>
+	</Operation>
+</Patch>
