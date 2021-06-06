@@ -173,6 +173,7 @@ Outer Rim - Tatooine    |
 Palm Cats   |
 Penguin	|
 Polarisbloc - Security Force	|
+Poleepkwa Race Update	|
 Prestige Specialist Armours	|
 Prostheses+ |
 PsiTech	|
@@ -189,6 +190,7 @@ Rim of Madness - Bones	|
 Rimefeller	|
 RimEffect - Asari of the Rims	|
 Rimfire	|
+Rim-Hivers!	|
 RimSec Security |
 Rimsenal - Core |
 Rimsenal - Enhanced Vanilla |
