@@ -1,0 +1,189 @@
+<Patch>
+
+	<Operation Class="PatchOperationFindMod">
+    <mods>
+		<li>Poleepkwa Race Update</li>
+    </mods>
+		<match Class="PatchOperationSequence">
+		<operations>		
+
+		<li Class="PatchOperationAdd">
+		<xpath>Defs</xpath>
+		<value>
+
+  <!-- ========== Tribals ========== -->
+
+<PawnKindDef>
+    <defName>PpGrenadier</defName>
+    <race>Poleepkwa</race>
+    <label>boomer</label>
+    <combatPower>60</combatPower>
+		<defaultFactionType>PoleepkwaFaction</defaultFactionType>
+		<backstoryCategories>
+			<li>Tribal</li>
+		</backstoryCategories>
+		<maxGenerationAge>60</maxGenerationAge>
+		<chemicalAddictionChance>0.05</chemicalAddictionChance>
+		<invNutrition>2.55</invNutrition>
+		<invFoodDef>Pemmican</invFoodDef>
+    <canBeSapper>true</canBeSapper>
+    <gearHealthRange>
+      <min>0.5</min>
+      <max>1.8</max>
+    </gearHealthRange>
+    <apparelMoney>
+      <min>180</min>
+      <max>350</max>
+    </apparelMoney>
+    <apparelRequired>
+      <li>Apparel_WarVeil</li>
+    </apparelRequired>
+    <apparelTags>
+      <li>Tribal</li>
+    </apparelTags>
+    <weaponMoney>
+      <min>60</min>
+      <max>400</max>
+    </weaponMoney>
+    <weaponTags>
+      <li>CE_GrenadeNeolithic</li>
+    </weaponTags>
+		<techHediffsMoney>
+			<min>50</min>
+			<max>800</max>
+		</techHediffsMoney>
+		<techHediffsTags>
+			<li>Poor</li>
+			<li>Simple</li>
+		</techHediffsTags>
+		<techHediffsChance>0.33</techHediffsChance>
+    <modExtensions>
+      <li Class="CombatExtended.LoadoutPropertiesExtension">
+        <primaryMagazineCount>
+          <min>8</min>
+          <max>20</max>
+        </primaryMagazineCount>
+        <forcedSidearm>
+          <sidearmMoney>
+            <min>80</min>
+            <max>160</max>
+          </sidearmMoney>
+          <weaponTags>
+            <li>CE_Sidearm_Tribal</li>
+          </weaponTags>
+        </forcedSidearm>
+      </li>
+    </modExtensions>
+  </PawnKindDef>
+
+<PawnKindDef>
+    <defName>PpGunner</defName>
+    <race>Poleepkwa</race>
+    <label>thunderer</label>
+    <combatPower>60</combatPower>
+		<defaultFactionType>PoleepkwaFaction</defaultFactionType>
+		<backstoryCategories>
+			<li>Tribal</li>
+		</backstoryCategories>
+		<maxGenerationAge>60</maxGenerationAge>
+		<chemicalAddictionChance>0.05</chemicalAddictionChance>
+		<invNutrition>2.55</invNutrition>
+		<invFoodDef>Pemmican</invFoodDef>
+    <gearHealthRange>
+      <min>0.5</min>
+      <max>1.8</max>
+    </gearHealthRange>
+    <apparelMoney>
+      <min>180</min>
+      <max>350</max>
+    </apparelMoney>
+    <apparelTags>
+      <li>Tribal</li>
+    </apparelTags>
+    <apparelRequired>
+      <li>Apparel_WarMask</li>
+    </apparelRequired>
+    <weaponMoney>
+      <min>180</min>
+      <max>290</max>
+    </weaponMoney>
+    <weaponTags>
+      <li>Gun</li>
+    </weaponTags>
+		<techHediffsMoney>
+			<min>50</min>
+			<max>800</max>
+		</techHediffsMoney>
+		<techHediffsTags>
+			<li>Poor</li>
+			<li>Simple</li>
+		</techHediffsTags>
+		<techHediffsChance>0.20</techHediffsChance>
+    <modExtensions>
+      <li Class="CombatExtended.LoadoutPropertiesExtension">
+        <primaryMagazineCount>
+          <min>2</min>
+          <max>4</max>
+        </primaryMagazineCount>
+        <shieldMoney>
+          <min>120</min>
+          <max>160</max>
+        </shieldMoney>
+        <shieldTags>
+          <li>TribalShield</li>
+        </shieldTags>
+        <shieldChance>0.9</shieldChance>
+        <sidearms>
+          <li>
+            <sidearmMoney>
+              <min>100</min>
+              <max>600</max>
+            </sidearmMoney>
+            <weaponTags>
+              <li>CE_Sidearm_Tribal</li>
+            </weaponTags>
+          </li>
+        </sidearms>
+      </li>
+    </modExtensions>
+  </PawnKindDef>
+		</value>
+		</li>
+
+  <!-- ========== Add tribal grenadies ========== -->
+
+  <li Class="PatchOperationAdd"> <!-- Combat -->
+    <xpath>Defs/FactionDef[defName="PoleepkwaFaction"]/pawnGroupMakers/li[1]/options</xpath>
+    <value>
+      <PpGrenadier>5</PpGrenadier>
+      <PpGunner>10</PpGunner>
+    </value>
+ </li>
+  
+  <li Class="PatchOperationAdd"> <!-- Peaceful -->
+    <xpath>Defs/FactionDef[defName="PoleepkwaFaction"]/pawnGroupMakers/li[2]/options</xpath>
+    <value>
+      <PpGrenadier>6</PpGrenadier>
+      <PpGunner>6</PpGunner>
+    </value>
+ </li>
+
+  <li Class="PatchOperationAdd"> <!-- Trader -->
+    <xpath>Defs/FactionDef[defName="PoleepkwaFaction"]/pawnGroupMakers/li[3]/guards</xpath>
+    <value>
+      <PpGrenadier>4</PpGrenadier>
+      <PpGunner>8</PpGunner>
+    </value>
+ </li>
+
+  <li Class="PatchOperationAdd"> <!-- Settlement -->
+    <xpath>Defs/FactionDef[defName="PoleepkwaFaction"]/pawnGroupMakers/li[4]/options</xpath>
+    <value>
+      <PpGrenadier>8</PpGrenadier>
+      <PpGunner>12</PpGunner>
+    </value>
+ </li>
+		</operations>
+		</match>
+	</Operation>
+</Patch>
