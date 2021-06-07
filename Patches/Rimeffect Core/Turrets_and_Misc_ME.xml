@@ -178,7 +178,7 @@
 		<li Class="PatchOperationReplace">
 		<xpath>Defs/ThingDef[defName="RE_PrefabBarricade"]/fillPercent</xpath>
 		<value>
-			<fillPercent>0.62</fillPercent>
+			<fillPercent>0.64</fillPercent>
 		</value>
 		</li>
 
@@ -209,10 +209,34 @@
 				<xpath>Defs/HediffDef[defName="RE_AdrenalineModule"]/stages/li[1]</xpath>
 				<value>
 				<statOffsets>
-					<Suppressability>-0.2</Suppressability>
+					<Suppressability>-0.15</Suppressability>
 				</statOffsets>
 			</value>
 			</li>
+
+    			<li Class="PatchOperationRemove">
+				<xpath>Defs/HediffDef[defName="RE_TargetingVI"]/hediffClass</xpath>
+			</li>
+
+    			<li Class="PatchOperationAdd">
+				<xpath>Defs/HediffDef[defName="RE_TargetingVI"]</xpath>
+				<value>
+    					<stages>
+        					<li>
+            						<statOffsets>
+							<AimingDelayFactor>-0.08</AimingDelayFactor>
+            						</statOffsets>
+        					</li>
+    					</stages>
+				</value>
+			</li>
+
+ <li Class="PatchOperationReplace">
+<xpath>Defs/defName[defName="RE_TargetingVI"]/description</xpath>
+ <value>
+               <description>A small capsule with a VI system, increasing the combat abilities of the user. Decreases the aiming time of the user.</description>
+ </value>
+ </li>
 
 		<li Class="PatchOperationReplace">
 		<xpath>Defs/HediffDef[defName="RE_OmniToolHediff"]/comps/li[@Class="HediffCompProperties_VerbGiver"]/tools</xpath>
@@ -225,7 +249,7 @@
 					</capacities>
 					<power>23</power>
 					<cooldownTime>1.33</cooldownTime>
-					<armorPenetrationSharp>32</armorPenetrationSharp>
+					<armorPenetrationSharp>30</armorPenetrationSharp>
 					<armorPenetrationBlunt>1</armorPenetrationBlunt>
 					<linkedBodyPartsGroup>Blade</linkedBodyPartsGroup>
 				</li>
@@ -236,7 +260,7 @@
 					</capacities>
 					<power>28</power>
 					<cooldownTime>1.45</cooldownTime>
-					<armorPenetrationSharp>16</armorPenetrationSharp>
+					<armorPenetrationSharp>15</armorPenetrationSharp>
 					<armorPenetrationBlunt>2</armorPenetrationBlunt>
 					<linkedBodyPartsGroup>Blade</linkedBodyPartsGroup>
 				</li>
