@@ -124,17 +124,16 @@ namespace CombatExtended
                 for (var i = apparel.Count - 1; i >= 0; i--)
                 {
                     var app = apparel[i];
+
                     if (app != null
-                    && app.def.apparel.CoversBodyPart(hitPart))
+                        && app.def.apparel.CoversBodyPart(hitPart)
+                        && !TryPenetrateArmor(dinfo.Def, app.GetStatValue(dinfo.Def.armorCategory.armorRatingStat), ref penAmount, ref dmgAmount, app))
                     {
-                        if (!TryPenetrateArmor(dinfo.Def, app.GetStatValue(dinfo.Def.armorCategory.armorRatingStat), ref penAmount, ref dmgAmount, app))
-                        {
-                            // Hit was deflected, convert damage type
-                            //armorReduced = true;
-                            dinfo = GetDeflectDamageInfo(dinfo, hitPart, ref dmgAmount, ref penAmount);
-                            if (app == apparel.ElementAtOrDefault(i)) // Check whether the "deflecting" apparel is still in the WornApparel - if not, the next loop checks again and errors out because the index is out of range
-                                i++; // We apply this piece of apparel twice on conversion, this means we can't use deflection on Blunt or else we get an infinite loop of eternal deflection
-                        }
+                        // Hit was deflected, convert damage type
+                        //armorReduced = true;
+                        dinfo = GetDeflectDamageInfo(dinfo, hitPart, ref dmgAmount, ref penAmount);
+                        if (app == apparel.ElementAtOrDefault(i))   //Check whether the "deflecting" apparel is still in the WornApparel - if not, the next loop checks again and errors out because the index is out of range
+                            i++;    // We apply this piece of apparel twice on conversion, this means we can't use deflection on Blunt or else we get an infinite loop of eternal deflection
                     }
                     if (dmgAmount <= 0)
                     {
@@ -156,6 +155,7 @@ namespace CombatExtended
                     partsToHit.Add(curPart);
                 }
             }
+
             var isSharp = dinfo.Def.armorCategory.armorRatingStat == StatDefOf.ArmorRating_Sharp;
             var partDensityStat = isSharp
                 ? CE_StatDefOf.BodyPartSharpArmor
@@ -177,6 +177,7 @@ namespace CombatExtended
                         dinfo = GetDeflectDamageInfo(dinfo, curPart, ref dmgAmount, ref penAmount);
 
                         // Fetch armor rating stat again in case of deflection conversion to blunt
+                        TryPenetrateArmor(dinfo.Def, pawn.GetStatValue(dinfo.Def.armorCategory.armorRatingStat), ref penAmount, ref dmgAmount, null, partDensity);
                     }
                     break;
                 }
@@ -189,7 +190,7 @@ namespace CombatExtended
             }
 
             // Applies blunt damage from partial penetrations.
-            if (isSharp)
+            if (isSharp && (dinfo.Amount > Mathf.CeilToInt(dmgAmount)))
             {
                 dinfoPartialPen = GetDeflectDamageInfo(dinfo, hitPart, ref dmgAmount, ref penAmount, true);
                 pawn.TakeDamage(dinfoPartialPen);
@@ -316,7 +317,8 @@ namespace CombatExtended
             //However, if it's a partially-penetrating sharp attack, then we're using the blocked values of penetration amount and damage amount instead
             //and because localPenAmount is the sharp attack's remaining penetration amount and localDmgAmount is the sharp attack's remaining damage amount,
             //we have to take that amount away from the base penetration amount and damage amount.
-            float penMulti = (!partialPen ? localPenAmount : (dinfo.ArmorPenetrationInt - localPenAmount) * (dinfo.Amount - Mathf.RoundToInt(localDmgAmount)) / dinfo.Amount) / dinfo.ArmorPenetrationInt; 
+            float penMulti = (partialPen ? ((dinfo.ArmorPenetrationInt - localPenAmount) * (dinfo.Amount - Mathf.CeilToInt(localDmgAmount)) / dinfo.Amount) : localPenAmount) / dinfo.ArmorPenetrationInt;
+
             if (dinfo.Weapon?.projectile is ProjectilePropertiesCE projectile)
             {
                 localPenAmount = projectile.armorPenetrationBlunt * penMulti;
@@ -351,7 +353,7 @@ namespace CombatExtended
                 dinfo.Angle,
                 dinfo.Instigator,
                 GetOuterMostParent(hitPart),
-                partialPen == true ? null : dinfo.Weapon); //To not apply the secondary damage twice on partial penetrations.
+                partialPen ? null : dinfo.Weapon); //To not apply the secondary damage twice on partial penetrations.
             newDinfo.SetBodyRegion(dinfo.Height, dinfo.Depth);
             newDinfo.SetWeaponBodyPartGroup(dinfo.WeaponBodyPartGroup);
             newDinfo.SetWeaponHediff(dinfo.WeaponLinkedHediff);
