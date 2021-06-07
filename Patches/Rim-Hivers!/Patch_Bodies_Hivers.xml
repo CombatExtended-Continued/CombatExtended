@@ -106,79 +106,32 @@
 					</value>
 				</li>
 				<li Class="PatchOperationReplace">
-					<xpath>/Defs/BodyDef[defName="HiverBody"]/corePart/parts/li[def="InsectLeg"]/coverage</xpath>
+					<xpath>/Defs/BodyDef[defName="HiverBody"]/corePart/parts/li[def="Leg"]/coverage</xpath>
 					<value>
 						<coverage>0.1</coverage>
 					</value>
 				</li>
 
-				<!-- Adding natural armor coverage -->
-				<li Class="PatchOperationAdd">
-					<xpath>Defs/BodyDef[defName="HiverBody"]/corePart/groups</xpath>
-					<value>
-						<li>CoveredByNaturalArmor</li>
-					</value>
-				</li>
-				<li Class="PatchOperationAdd">
-					<xpath>Defs/BodyDef[defName="HiverBody"]/corePart/parts/li[def="Neck"]/groups</xpath>
-					<value>
-						<li>CoveredByNaturalArmor</li>
-					</value>
-				</li>
-				<li Class="PatchOperationAdd">
-					<xpath>Defs/BodyDef[defName="HiverBody"]/corePart/parts/li[def="Neck"]/parts/li[def="Head"]/groups</xpath>
-					<value>
-						<li>CoveredByNaturalArmor</li>
-					</value>
-				</li>
-				<li Class="PatchOperationAdd">
-					<xpath>Defs/BodyDef[defName="HiverBody"]/corePart/parts/li[def="Neck"]/parts/li[def="Head"]/parts/li[def="Jaw"]/groups</xpath>
-					<value>
-						<li>CoveredByNaturalArmor</li>
-					</value>
-				</li>
-				<li Class="PatchOperationAdd">
-					<xpath>Defs/BodyDef[defName="HiverBody"]/corePart/parts/li[def="Neck"]/parts/li[def="Head"]/parts/li[def="InsectNostril"]/groups</xpath>
-					<value>
-							<li>CoveredByNaturalArmor</li>
-					</value>
-				</li>
-				<li Class="PatchOperationAdd">
-					<xpath>Defs/BodyDef[defName="HiverBody"]/corePart/parts/li[def="Neck"]/parts/li[def="Head"]/parts/li[def="Antenna"]/groups</xpath>
-					<value>
-						<li>CoveredByNaturalArmor</li>
-					</value>
-				</li>
-				<li Class="PatchOperationAdd">
-					<xpath>Defs/BodyDef[defName="HiverBody"]/corePart/parts/li[def="Shoulder"]/groups</xpath>
-					<value>
-						<li>CoveredByNaturalArmor</li>
-					</value>
-				</li>
-				<li Class="PatchOperationAdd">
-					<xpath>Defs/BodyDef[defName="HiverBody"]/corePart/parts/li[def="Shoulder"]/parts/li[def="Arm"]/groups</xpath>
-					<value>
-						<li>CoveredByNaturalArmor</li>
-					</value>
-				</li>
-				<li Class="PatchOperationAdd">
-					<xpath>Defs/BodyDef[defName="HiverBody"]/corePart/parts/li[def="Shoulder"]/parts/li[def="Arm"]/parts/li[def="Hand"]/groups</xpath>
-					<value>
-						<li>CoveredByNaturalArmor</li>
-					</value>
-				</li>
-				<li Class="PatchOperationAdd">
-					<xpath>Defs/BodyDef[defName="HiverBody"]/corePart/parts/li[def="Shoulder"]/parts/li[def="Arm"]/parts/li[def="Hand"]/parts/li[def="Finger"]/groups</xpath>
-					<value>
-						<li>CoveredByNaturalArmor</li>
-					</value>
-				</li>
-				<li Class="PatchOperationAdd">
-					<xpath>Defs/BodyDef[defName="HiverBody"]/corePart/parts/li[def="Leg"]/groups</xpath>
-					<value>
-						<li>CoveredByNaturalArmor</li>
-					</value>
-				</li>
+
+      <li Class="PatchOperationAdd">
+        <xpath>
+          /Defs/BodyDef[defName="HiverBody"]//*[
+          def="Torso" or 
+          def="Neck" or 
+          def="Head" or 
+          def="Jaw" or 
+          def="Antenna" or
+          def="InsectNostril" or
+          def="Shoulder" or
+          def="Arm" or
+          def="Hand" or
+          def="Finger" or
+          def="Leg"]/groups
+        </xpath>
+        <value>
+          <li>CoveredByNaturalArmor</li>
+        </value>
+      </li>
 
 			</operations>
 		</match>
