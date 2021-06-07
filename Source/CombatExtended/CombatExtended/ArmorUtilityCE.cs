@@ -180,7 +180,6 @@ namespace CombatExtended
                     }
                     break;
                 }
-                dinfoPartialPen = GetDeflectDamageInfo(dinfo, hitPart, ref dmgAmount, ref penAmount, true);
                 if (dmgAmount <= 0)
                 {
                     dinfo.SetAmount(0);
@@ -190,8 +189,11 @@ namespace CombatExtended
             }
 
             // Applies blunt damage from partial penetrations.
-            dinfoPartialPen = GetDeflectDamageInfo(dinfo, hitPart, ref dmgAmount, ref penAmount, true);
-            pawn.TakeDamage(dinfoPartialPen);
+            if (isSharp)
+            {
+                dinfoPartialPen = GetDeflectDamageInfo(dinfo, hitPart, ref dmgAmount, ref penAmount, true);
+                pawn.TakeDamage(dinfoPartialPen);
+            }
             // Return damage info.
             dinfo.SetAmount(Mathf.CeilToInt(dmgAmount));
             return dinfo;
