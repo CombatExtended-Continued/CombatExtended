@@ -24,14 +24,13 @@
 				defName="AA_RedPoisonBolt" or
 				defName="AA_Web" or
 				defName="AA_FireSpit" or
-				defName="AA_AcidicVomit" or
 				defName="AA_DarkBolt" or
 				defName="AA_AcidBolt"]</xpath>
 					<value>
 						<thingClass>CombatExtended.BulletCE</thingClass>
 					</value>
 				</li>
-
+				
 				<li Class="PatchOperationReplace">
 					<xpath>/Defs/VFECore.ExpandableProjectileDef[defName="AA_LaserBullet"]/thingClass</xpath>
 					<value>
@@ -122,6 +121,24 @@
           										<chance>0.5</chance>
 									</li>
 								</secondaryDamage>
+							</projectile>
+						</ThingDef>
+						
+						<ThingDef ParentName="BaseBullet">
+							<defName>AA_AcidicVomit_CE</defName>
+							<label>acidic vomit</label>
+							<thingClass>CombatExtended.BulletCE</thingClass>
+							<graphicData>
+								<texPath>Things/Projectiles/Proj_LiquidStream</texPath>	
+								<graphicClass>Graphic_Flicker</graphicClass>
+								<shaderType>MoteGlow</shaderType>
+							</graphicData>
+							<projectile Class="CombatExtended.ProjectilePropertiesCE">
+								<damageDef>AA_AcidSpit</damageDef>		
+								<flyOverhead>false</flyOverhead>
+								<damageAmountBase>15</damageAmountBase>
+								<armorPenetrationBlunt>0.5</armorPenetrationBlunt>		
+								<speed>18</speed>
 							</projectile>
 						</ThingDef>
 					</value>
@@ -296,18 +313,7 @@
 						</projectile>
 					</value>
 				</li>
-				<li Class="PatchOperationReplace">
-					<xpath>/Defs/VFECore.ExpandableProjectileDef[defName="AA_AcidicVomit"]/projectile</xpath>
-					<value>
-						<projectile Class="CombatExtended.ProjectilePropertiesCE">
-							<damageDef>AA_AcidSpit</damageDef>
-							<flyOverhead>false</flyOverhead>
-							<damageAmountBase>12</damageAmountBase>
-							<speed>9</speed>
-							<armorPenetrationBlunt>0.5</armorPenetrationBlunt>
-						</projectile>
-					</value>
-				</li>
+
 				<!-- ======== Note: AA_ExplodingWeb wasn't used in any Race, so it wasn't included. If it gets added, just add a secondaryDamage to the corresponding projectile, with the Bomb damageDef ======== -->
 				<li Class="PatchOperationReplace">
 					<xpath>/Defs/ThingDef[defName="AA_Web"]/projectile</xpath>
