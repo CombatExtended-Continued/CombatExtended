@@ -53,7 +53,7 @@ namespace CombatExtended
             }
 
             var dinfo = new DamageInfo(originalDinfo);
-            var partialPenBluntDamageInfo = new DamageInfo();
+            var dinfoPartialPen = new DamageInfo();
             var dmgAmount = dinfo.Amount;
             var involveArmor = dinfo.Def.harmAllLayersUntilOutside || hitPart.depth == BodyPartDepth.Outside;
             bool isAmbientDamage = dinfo.IsAmbientDamage();
@@ -135,8 +135,6 @@ namespace CombatExtended
                             if (app == apparel.ElementAtOrDefault(i)) // Check whether the "deflecting" apparel is still in the WornApparel - if not, the next loop checks again and errors out because the index is out of range
                                 i++; // We apply this piece of apparel twice on conversion, this means we can't use deflection on Blunt or else we get an infinite loop of eternal deflection
                         }
-                        else if ((dinfo.Def.armorCategory.armorRatingStat == StatDefOf.ArmorRating_Sharp) && (dinfo.Amount > Mathf.CeilToInt(dmgAmount))) // If the attack penetrates, update the partial penetration's blunt DamageInfo. We'll apply it later.
-                            partialPenBluntDamageInfo = GetPartialPenetrationBluntDamageInfo(dinfo, hitPart, dinfo.Amount - Mathf.CeilToInt(dmgAmount), dinfo.ArmorPenetrationInt - penAmount);
                     }
                     if (dmgAmount <= 0)
                     {
@@ -179,12 +177,10 @@ namespace CombatExtended
                         dinfo = GetDeflectDamageInfo(dinfo, curPart, ref dmgAmount, ref penAmount);
 
                         // Fetch armor rating stat again in case of deflection conversion to blunt
-                        TryPenetrateArmor(dinfo.Def, pawn.GetStatValue(dinfo.Def.armorCategory.armorRatingStat), ref penAmount, ref dmgAmount, null, partDensity);
                     }
                     break;
                 }
-                else if (isSharp && (dinfo.Amount > Mathf.CeilToInt(dmgAmount))) // Update the partial penetration's blunt DamageInfo again.
-                    partialPenBluntDamageInfo = GetPartialPenetrationBluntDamageInfo(dinfo, hitPart, dinfo.Amount - Mathf.CeilToInt(dmgAmount), dinfo.ArmorPenetrationInt - penAmount);
+                dinfoPartialPen = GetDeflectDamageInfo(dinfo, hitPart, ref dmgAmount, ref penAmount, true);
                 if (dmgAmount <= 0)
                 {
                     dinfo.SetAmount(0);
@@ -193,11 +189,9 @@ namespace CombatExtended
                 }
             }
 
-            // If the attack didn't deflect and there was any damage blocked, apply the blunt damage info to the pawn. Yes, it'll go trough the entire apparel list again.
-            if (isSharp && (dinfo.Amount > Mathf.CeilToInt(dmgAmount)))
-            {
-                pawn.TakeDamage(partialPenBluntDamageInfo);
-            }
+            // Applies blunt damage from partial penetrations.
+            dinfoPartialPen = GetDeflectDamageInfo(dinfo, hitPart, ref dmgAmount, ref penAmount, true);
+            pawn.TakeDamage(dinfoPartialPen);
             // Return damage info.
             dinfo.SetAmount(Mathf.CeilToInt(dmgAmount));
             return dinfo;
@@ -297,36 +291,46 @@ namespace CombatExtended
         /// </summary>
         /// <param name="dinfo">The dinfo that was deflected</param>
         /// <param name="hitPart">The originally hit part</param>
+        /// <param name="partialPen">Is this is supposed to be a partial penetration</param>
         /// <returns>DamageInfo copied from dinfo with Def and forceHitPart adjusted</returns>
-        private static DamageInfo GetDeflectDamageInfo(DamageInfo dinfo, BodyPartRecord hitPart, ref float dmgAmount, ref float penAmount)
+        private static DamageInfo GetDeflectDamageInfo(DamageInfo dinfo, BodyPartRecord hitPart, ref float dmgAmount, ref float penAmount, bool partialPen = false)
         {
-            // Non-sharp defaults to 0 damage
             if (dinfo.Def.armorCategory != DamageArmorCategoryDefOf.Sharp)
             {
-                dmgAmount = 0;
-                penAmount = 0;
+                if (!partialPen)
+                {
+                    dmgAmount = 0;
+                    penAmount = 0;
+                }
                 dinfo.SetAmount(0);
                 return dinfo;
             }
 
-            // Get kPa value
-            var penMult = penAmount / dinfo.ArmorPenetrationInt; //May be commented out in the future
+            //Creating local variables as we don't want to edit the pass-by-reference parameters in the case of partial penetrations.
+            float localDmgAmount = dmgAmount;
+            float localPenAmount = penAmount;
+
+            //Calculating blunt damage from sharp damage: if it's a deflected sharp attack, then the penetration amount is directly localPenAmount.
+            //However, if it's a partially-penetrating sharp attack, then we're using the blocked values of penetration amount and damage amount instead
+            //and because localPenAmount is the sharp attack's remaining penetration amount and localDmgAmount is the sharp attack's remaining damage amount,
+            //we have to take that amount away from the base penetration amount and damage amount.
+            float penMulti = (!partialPen ? localPenAmount : (dinfo.ArmorPenetrationInt - localPenAmount) * (dinfo.Amount - Mathf.RoundToInt(localDmgAmount)) / dinfo.Amount) / dinfo.ArmorPenetrationInt; 
             if (dinfo.Weapon?.projectile is ProjectilePropertiesCE projectile)
             {
-                penAmount = projectile.armorPenetrationBlunt * penMult;
+                localPenAmount = projectile.armorPenetrationBlunt * penMulti;
             }
             else if (dinfo.Instigator.def.thingClass == typeof(Building_TrapDamager))
             {
                 //Temporarily deriving spike trap blunt AP based on their vanilla stats, just so they're not entirely broken
                 //TODO proper integration
                 var trapAP = dinfo.Instigator.GetStatValue(StatDefOf.TrapMeleeDamage, true) * SpikeTrapAPModifierBlunt;
-                penAmount = trapAP * penMult;
+                localPenAmount = trapAP * penMulti;
             }
             else
             {
                 if (Verb_MeleeAttackCE.LastAttackVerb != null)
                 {
-                    penAmount = Verb_MeleeAttackCE.LastAttackVerb.ArmorPenetrationBlunt;
+                    localPenAmount = Verb_MeleeAttackCE.LastAttackVerb.ArmorPenetrationBlunt;
                 }
                 else
                 {
@@ -335,80 +339,27 @@ namespace CombatExtended
                     //but on rare occasions, one of the soldiers gets Bite injuries with with Weapon==null and the instigator set as *himself*.
                     //Warning message below to identify any other situations where this might be happening. -LX7
                     Log.Warning($"[CE] Deflection for Instigator:{dinfo.Instigator} Target:{dinfo.IntendedTarget} DamageDef:{dinfo.Def} Weapon:{dinfo.Weapon} has null verb, overriding AP.");
-                    penAmount = 50;
+                    localPenAmount = 50;
                 }
             }
-
-            dmgAmount = Mathf.Pow(penAmount * 10000, 1 / 3f) / 10;
-
+            localDmgAmount = Mathf.Pow(localPenAmount * 10000, 1 / 3f) / 10;
             var newDinfo = new DamageInfo(DamageDefOf.Blunt,
-                dmgAmount,
-                penAmount,
+                localDmgAmount,
+                localPenAmount,
                 dinfo.Angle,
                 dinfo.Instigator,
                 GetOuterMostParent(hitPart),
-                dinfo.Weapon);
+                partialPen == true ? null : dinfo.Weapon); //To not apply the secondary damage twice on partial penetrations.
             newDinfo.SetBodyRegion(dinfo.Height, dinfo.Depth);
             newDinfo.SetWeaponBodyPartGroup(dinfo.WeaponBodyPartGroup);
             newDinfo.SetWeaponHediff(dinfo.WeaponLinkedHediff);
             newDinfo.SetInstantPermanentInjury(dinfo.InstantPermanentInjury);
             newDinfo.SetAllowDamagePropagation(dinfo.AllowDamagePropagation);
-
-            return newDinfo;
-        }
-
-        /// <summary>
-        /// Creates a new DamageInfo for blunt damage based off the blocked amount of damage and penetration of the supplied DamageInfo.
-        /// </summary>
-        /// <param name="dinfo">The damage info the additional blunt damage will be based off</param>
-        /// <param name="hitPart">The originally hit part</param>
-        /// <param name="dmgAmount">The amount of damage blocked</param>
-        /// <param name="penAmount">The amount of penetration blocked</param>
-        /// <returns>New DamageInfo based off dinfo with damage, penetration, Def and forceHitPart adjusted</returns>>
-        private static DamageInfo GetPartialPenetrationBluntDamageInfo(DamageInfo dinfo, BodyPartRecord hitPart, float dmgAmount, float penAmount) // Not referencing the float values directly since we don't want to update them
-        {
-            // Copied form GetDeflectDamageInfo with some adjustments
-            // I have no clue how would it go this far without being a sharp attack, but if it does, this is a fail safe for that scenario
-            if (dinfo.Def.armorCategory != DamageArmorCategoryDefOf.Sharp)
+            if (!partialPen) //If it was a deflect, update dmgAmount and penAmount.
             {
-                dinfo.SetAmount(0);
-                return dinfo;
+                dmgAmount = localDmgAmount;
+                penAmount = localPenAmount;
             }
-
-            float penMulti = penAmount / dinfo.ArmorPenetrationInt * dmgAmount / dinfo.Amount; // Factoring in the remaining damage sooner than when returning the DamageInfo
-            if (dinfo.Weapon?.projectile is ProjectilePropertiesCE projectile)
-            {
-                penAmount = projectile.armorPenetrationBlunt * penMulti;
-            }
-            else if (dinfo.Instigator.def.thingClass == typeof(Building_TrapDamager))
-            {
-                var trapAP = dinfo.Instigator.GetStatValue(StatDefOf.TrapMeleeDamage, true) * SpikeTrapAPModifierBlunt;
-                penAmount = trapAP * penMulti;
-            }
-            else
-            {
-                if (Verb_MeleeAttackCE.LastAttackVerb != null)
-                {
-                    penAmount = Verb_MeleeAttackCE.LastAttackVerb.ArmorPenetrationBlunt;
-                }
-                else
-                {
-                    Log.Warning($"[CE] Deflection for Instigator:{dinfo.Instigator} Target:{dinfo.IntendedTarget} DamageDef:{dinfo.Def} Weapon:{dinfo.Weapon} has null verb, overriding AP.");
-                    penAmount = 50;
-                }
-            }
-            var newDinfo = new DamageInfo(DamageDefOf.Blunt,
-            (Mathf.Pow(penAmount * 10000, 1 / 3f) / 10),
-            penAmount,
-            dinfo.Angle,
-            dinfo.Instigator,
-            GetOuterMostParent(hitPart),
-            null); // DamageInfo's weapon is null so that attacks with secondary damage don't apply their secondary damage twice.
-            newDinfo.SetBodyRegion(dinfo.Height, dinfo.Depth);
-            newDinfo.SetWeaponBodyPartGroup(dinfo.WeaponBodyPartGroup);
-            newDinfo.SetWeaponHediff(dinfo.WeaponLinkedHediff);
-            newDinfo.SetInstantPermanentInjury(dinfo.InstantPermanentInjury);
-            newDinfo.SetAllowDamagePropagation(dinfo.AllowDamagePropagation);
             return newDinfo;
         }
 
