@@ -104,7 +104,7 @@
 			<li Class="PatchOperationReplace">
 				<xpath>/Defs/ThingDef[defName="RE_Mechanoids_LOKI"]/statBases/ArmorRating_Blunt</xpath>
 				<value>
-					<ArmorRating_Blunt>14</ArmorRating_Blunt>
+					<ArmorRating_Blunt>13</ArmorRating_Blunt>
 				</value>
 			</li>
 			<li Class="PatchOperationReplace">
@@ -140,6 +140,29 @@
 				</value>
 			</li>	
 
+		<li Class="PatchOperationAdd">
+		<xpath>Defs</xpath>
+		<value>
+  		<ManeuverDef>
+		<defName>Taser_ME</defName>
+    		<verb>
+      		<verbClass>Verb_MeleeAttackDamage</verbClass>
+      		<meleeDamageDef>Taser</meleeDamageDef>
+    		</verb>
+		<label>taser</label>
+		<deathMessage>{0} has been tasered to death.</deathMessage>
+		<hediff>MuscleSpasms</hediff>
+		<hediffSkin>TaserStab</hediffSkin>
+		<hediffSolid>TaserStab</hediffSolid>
+		<modExtensions>		
+		<li Class="CombatExtended.DamageDefExtensionCE">
+		<harmOnlyOutsideLayers>true</harmOnlyOutsideLayers>
+		</li>	
+		</modExtensions>					
+  		</ManeuverDef>
+		</value>
+		</li>
+
     <li Class="PatchOperationReplace">
       <xpath>Defs/ThingDef[defName="RE_Mechanoids_FENRIS"]/tools</xpath>
       <value>
@@ -159,7 +182,7 @@
           <li Class="CombatExtended.ToolCE">
             <label>Taser</label>
             <capacities>
-              <li>Taser</li>
+              <li>Taser_ME</li>
             </capacities>
             <power>9</power>
             <cooldownTime>1.8</cooldownTime>
