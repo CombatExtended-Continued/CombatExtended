@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>	
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+			<li>Rim-Hivers!</li>
+		</mods>
+		<match Class="PatchOperationSequence">
+			<operations>
+				<!-- Techless -->
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/PawnKindDef[defName="Hiver_Worker" or defName="Hiver_Worker_South"]/combatPower</xpath>
+					<value>
+						<combatPower>20</combatPower>
+					</value>
+				</li>
+
+				<!-- Tribal -->
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/PawnKindDef[defName="Hiver_Soldier" or defName="Hiver_Soldier_South"]/combatPower</xpath>
+					<value>
+						<combatPower>26</combatPower>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/PawnKindDef[defName="Hiver_Prince" or defName="Hiver_Prince_South"]/combatPower</xpath>
+					<value>
+						<combatPower>32</combatPower>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/PawnKindDef[defName="Hiver_Soldier_Heavy" or defName="Hiver_Soldier_Heavy_South"]/combatPower</xpath>
+					<value>
+						<combatPower>60</combatPower>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/PawnKindDef[defName="Hiver_Caravan_Guard"]/combatPower</xpath>
+					<value>
+						<combatPower>35</combatPower>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/PawnKindDef[defName="Hiver_Caravan_Prince"]/combatPower</xpath>
+					<value>
+						<combatPower>40</combatPower>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/PawnKindDef[defName="Hiver_Civil_Queen" or defName="Hiver_Faction_Queen_South"]/combatPower</xpath>
+					<value>
+						<combatPower>70</combatPower>
+					</value>
+				</li>
+
+				<!-- Hive_Archer -->
+				<li Class="PatchOperationAddModExtension">
+					<xpath>/Defs/PawnKindDef[defName="Hiver_Soldier_Archer" or defName="Hiver_Civil_Queen" or defName="Hiver_Faction_Queen_South"]</xpath>
+					<value>
+						<li Class="CombatExtended.LoadoutPropertiesExtension">
+							<primaryMagazineCount>
+								<min>14</min>
+								<max>40</max>
+							</primaryMagazineCount>
+							<shieldMoney>
+								<min>100</min>
+								<max>140</max>
+							</shieldMoney>
+							<shieldTags>
+								<li>TribalShield</li>
+							</shieldTags>
+							<shieldChance>0.6</shieldChance>
+							<sidearms>
+								<li>
+									<sidearmMoney>
+										<min>40</min>
+										<max>80</max>
+									</sidearmMoney>
+									<weaponTags>
+										<li>CE_Sidearm_Tribal</li>
+									</weaponTags>
+								</li>
+							</sidearms>
+						</li>
+					</value>
+				</li>
+
+				<!-- Hiver_Warrior -->
+				<li Class="PatchOperationAddModExtension">
+					<xpath>/Defs/PawnKindDef[defName="Hiver_Soldier" or defName="Hiver_Prince" or defName="Hiver_Caravan_Guard" or defName="Hiver_Caravan_Prince" or defName="Hiver_Soldier_South" or defName="Hiver_Prince_South"]</xpath>
+					<value>
+						<li Class="CombatExtended.LoadoutPropertiesExtension">
+							<shieldMoney>
+								<min>100</min>
+								<max>200</max>
+							</shieldMoney>
+							<shieldTags>
+								<li>TribalShield</li>
+							</shieldTags>
+							<shieldChance>0.75</shieldChance>
+						</li>
+					</value>
+				</li>
+
+			</operations>
+		</match>
+	</Operation>
+</Patch>

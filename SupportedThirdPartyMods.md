@@ -15,6 +15,7 @@ Mod |
 [CP] Spec Ops - The Line	|
 [CP] The DOOM Kit - Classic	|
 [HLX] Rimworld: UNSC Armoury |
+[HLX] ReGrowth - Extinct Animals Pack
 [HLX] ReGrowth - Mutated Animals Pack |
 [HLX] Ultratech: Altered Carbon - Armoury
 [JDS] EFT Apparel |
@@ -172,6 +173,7 @@ Outer Rim - Tatooine    |
 Palm Cats   |
 Penguin	|
 Polarisbloc - Security Force	|
+Poleepkwa Race Update	|
 Prestige Specialist Armours	|
 Prostheses+ |
 PsiTech	|
@@ -188,6 +190,7 @@ Rim of Madness - Bones	|
 Rimefeller	|
 RimEffect - Asari of the Rims	|
 Rimfire	|
+Rim-Hivers!	|
 RimSec Security |
 Rimsenal - Core |
 Rimsenal - Enhanced Vanilla |

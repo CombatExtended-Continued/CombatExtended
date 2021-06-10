@@ -20,10 +20,10 @@
 							<label>forsakens arrows</label>
 							<ammoTypes>
 								<Ammo_ForsakensArrows>Projectile_ForsakensArrows</Ammo_ForsakensArrows>
-								<Ammo_GreatArrow_Stone>Projectile_GreatArrow_Stone</Ammo_GreatArrow_Stone>
-								<Ammo_GreatArrow_Steel>Projectile_GreatArrow_Steel</Ammo_GreatArrow_Steel>
-								<Ammo_GreatArrow_Plasteel>Projectile_GreatArrow_Plasteel</Ammo_GreatArrow_Plasteel>
-	  							<Ammo_GreatArrow_Venom>Projectile_GreatArrow_Venom</Ammo_GreatArrow_Venom>
+								<Ammo_GreatArrow_Stone>Projectile_GreatArrow_StoneFO</Ammo_GreatArrow_Stone>
+								<Ammo_GreatArrow_Steel>Projectile_GreatArrow_SteelFO</Ammo_GreatArrow_Steel>
+								<Ammo_GreatArrow_Plasteel>Projectile_GreatArrow_PlasteelFO</Ammo_GreatArrow_Plasteel>
+	  							<Ammo_GreatArrow_Venom>Projectile_GreatArrow_VenomFO</Ammo_GreatArrow_Venom>
 	  							<Ammo_GreatArrow_Flame>Projectile_GreatArrow_Flame</Ammo_GreatArrow_Flame>
 							</ammoTypes>
 						</CombatExtended.AmmoSetDef>
@@ -58,15 +58,90 @@
 								<graphicClass>Graphic_Single</graphicClass>
 							</graphicData>
 							<projectile Class="CombatExtended.ProjectilePropertiesCE">
-								<damageAmountBase>9</damageAmountBase>
-								<armorPenetrationBlunt>2.840</armorPenetrationBlunt>
-								<armorPenetrationSharp>2.5</armorPenetrationSharp>
+								<damageAmountBase>11</damageAmountBase>
+								<armorPenetrationBlunt>4.5</armorPenetrationBlunt>
+								<armorPenetrationSharp>3</armorPenetrationSharp>
 								<preExplosionSpawnChance>0.6</preExplosionSpawnChance>
-								<speed>19</speed>
+								<speed>23</speed>
 								<!-- 25 arrows per resource -->
 								<preExplosionSpawnThingDef>Ammo_ForsakensArrows</preExplosionSpawnThingDef>
 							</projectile>
 						</ThingDef>
+
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="BaseGreatArrowProjectile">
+		<defName>Projectile_GreatArrow_StoneFO</defName>
+		<label>great arrow (stone)</label>
+		<graphicData>
+			<texPath>Things/Projectile/Arrows/Arrow_Stone</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+		</graphicData>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<speed>14</speed>
+			<damageAmountBase>8</damageAmountBase>
+			<armorPenetrationBlunt>1.660</armorPenetrationBlunt>
+			<armorPenetrationSharp>1</armorPenetrationSharp>
+			<preExplosionSpawnChance>0.2</preExplosionSpawnChance>	<!-- 12.5 arrows per resource -->
+			<preExplosionSpawnThingDef>Ammo_GreatArrow_Stone</preExplosionSpawnThingDef>
+		</projectile>
+	</ThingDef>
+
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="BaseGreatArrowProjectile">
+		<defName>Projectile_GreatArrow_SteelFO</defName>
+		<label>great arrow (steel)</label>
+		<graphicData>
+			<texPath>Things/Projectile/Arrows/Arrow_Steel</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+		</graphicData>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<speed>18</speed>
+			<damageAmountBase>7</damageAmountBase>
+			<armorPenetrationBlunt>2.340</armorPenetrationBlunt>
+			<armorPenetrationSharp>2</armorPenetrationSharp>
+			<preExplosionSpawnChance>0.6</preExplosionSpawnChance>	<!-- 25 arrows per resource -->
+			<preExplosionSpawnThingDef>Ammo_GreatArrow_Steel</preExplosionSpawnThingDef>
+		</projectile>
+	</ThingDef>
+
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="BaseGreatArrowProjectile">
+		<defName>Projectile_GreatArrow_PlasteelFO</defName>
+		<label>great arrow (plasteel)</label>
+		<graphicData>
+			<texPath>Things/Projectile/Arrows/Arrow_Plasteel</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+		</graphicData>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<speed>22</speed>
+			<damageAmountBase>6</damageAmountBase>
+			<armorPenetrationBlunt>2.140</armorPenetrationBlunt>
+			<armorPenetrationSharp>3</armorPenetrationSharp>
+			<preExplosionSpawnChance>0.75</preExplosionSpawnChance>	<!-- 40 arrows per resource -->
+			<preExplosionSpawnThingDef>Ammo_GreatArrow_Plasteel</preExplosionSpawnThingDef>
+		</projectile>
+	</ThingDef>
+	
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="BaseGreatArrowProjectile">
+		<defName>Projectile_GreatArrow_VenomFO</defName>
+		<label>great arrow (venom)</label>
+		<graphicData>
+			<texPath>Things/Projectile/Arrows/Arrow_Venom</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+		</graphicData>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<speed>18</speed>
+			<damageDef>Arrow</damageDef>
+			<damageAmountBase>7</damageAmountBase>
+			<secondaryDamage>
+				<li>
+				<def>ArrowVenom</def>
+				<amount>3</amount>
+				</li>
+			</secondaryDamage>			
+			<armorPenetrationBlunt>2.340</armorPenetrationBlunt>
+			<armorPenetrationSharp>2</armorPenetrationSharp>
+			<preExplosionSpawnChance>0.6</preExplosionSpawnChance>	<!-- 25 arrows per resource -->
+			<preExplosionSpawnThingDef>Ammo_GreatArrow_Steel</preExplosionSpawnThingDef>
+		</projectile>
+	</ThingDef>
 
 						<!-- ==================== Recipes ========================== -->
 

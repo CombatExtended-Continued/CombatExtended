@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+	<Operation Class="PatchOperationFindMod">
+					<mods>
+						<li>Alpha Animals</li>
+					</mods>
+		<match Class="PatchOperationFindMod">
+					<mods>
+						<li>Vanilla Factions Expanded - Mechanoids</li>
+					</mods>
+
+		<match Class="PatchOperationSequence">
+			<operations>
+
+			<li Class="PatchOperationAddModExtension">
+				<xpath>/Defs/ThingDef[defName="VFE_Mech_Aura"]</xpath>
+				<value>
+					<li Class="CombatExtended.RacePropertiesExtensionCE">
+						<bodyShape>Humanoid</bodyShape>
+					</li>
+				</value>
+			</li>
+
+
+		<!-- Assign armor values, change replace and add depending on what exists or not -->
+					
+			<li Class="PatchOperationAdd">
+				<xpath>/Defs/ThingDef[defName="VFE_Mech_Aura"]</xpath>
+				<value>
+					<statBases> <!-- Ok this is pissing me off -->
+					        <MoveSpeed>5.5</MoveSpeed>
+						<ArmorRating_Blunt>2</ArmorRating_Blunt>
+						<ArmorRating_Sharp>3</ArmorRating_Sharp>
+						<MeleeDodgeChance>0.5</MeleeDodgeChance>
+						<MeleeCritChance>0.24</MeleeCritChance>
+						<MeleeParryChance>0.33</MeleeParryChance>
+						<MaxHitPoints>200</MaxHitPoints>
+					</statBases>
+				</value>
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>/Defs/ThingDef[defName="VFE_Mech_Aura"]/tools</xpath>
+				<value>
+					<tools>
+						<li Class="CombatExtended.ToolCE">
+							<label>wing blade</label>
+							<capacities>
+							  <li>Cut</li>
+							</capacities>
+							<power>24</power>
+							<cooldownTime>0.6</cooldownTime>
+							<linkedBodyPartsGroup>AA_WingBlades</linkedBodyPartsGroup>
+							<alwaysTreatAsWeapon>true</alwaysTreatAsWeapon>
+							<armorPenetrationBlunt>20</armorPenetrationBlunt>
+							<armorPenetrationSharp>10</armorPenetrationSharp>
+						</li>
+						<li Class="CombatExtended.ToolCE">
+							<label>wing blade</label>
+							<capacities>
+							  <li>Stab</li>
+							</capacities>
+							<power>18</power>
+							<cooldownTime>0.6</cooldownTime>
+							<linkedBodyPartsGroup>AA_WingBlades</linkedBodyPartsGroup>
+							<alwaysTreatAsWeapon>true</alwaysTreatAsWeapon>
+							<armorPenetrationBlunt>30</armorPenetrationBlunt>
+							<armorPenetrationSharp>30</armorPenetrationSharp>
+						</li>
+      						<li Class="CombatExtended.ToolCE">
+							<label>head</label>
+							<capacities>
+							  <li>Blunt</li>
+							</capacities>
+							<power>10</power>
+							<cooldownTime>2</cooldownTime>
+							<linkedBodyPartsGroup>HeadAttackTool</linkedBodyPartsGroup>
+							<ensureLinkedBodyPartsGroupAlwaysUsable>true</ensureLinkedBodyPartsGroupAlwaysUsable>
+							<chanceFactor>0.2</chanceFactor>
+							<armorPenetrationBlunt>3</armorPenetrationBlunt>
+						  </li>
+					</tools>
+				</value>
+			</li>
+				</operations>
+			</match>					
+		</match>			
+	</Operation>
+
+</Patch>
