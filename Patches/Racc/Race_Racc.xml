@@ -3,7 +3,7 @@
 <Patch>
 	<Operation Class="PatchOperationFindMod">
 		<mods>
-			<li>Racc Race</li>
+			<li>Racc Race (Continued)</li>
 		</mods>
 		<match Class="PatchOperationSequence">
 		<operations>
@@ -30,12 +30,14 @@
 	<!-- === Shouldn't need to change this at all		  === -->
 	<!-- === Unless you changed the name of your BaseRaccPawn === -->
 	<!-- === In which case change "BaseRaccPawn" to that name === -->
-		<xpath>Defs/ThingDef[@Name="BaseRaccPawn"]/comps</xpath>
+		<xpath>Defs/ThingDef[@Name="BaseRaccPawn"]</xpath>
 		<value>
-			<li>
-				<compClass>CombatExtended.CompPawnGizmo</compClass>
-			</li>
-			<li Class="CombatExtended.CompProperties_Suppressable" />
+			<comps>
+				<li>
+					<compClass>CombatExtended.CompPawnGizmo</compClass>
+				</li>
+				<li Class="CombatExtended.CompProperties_Suppressable" />
+			</comps>
 		</value>
 	</li>
 	
@@ -98,29 +100,6 @@
 	<!-- ================================================= -->
 	<!-- === BaseBodySize, ArmorRatings, MoveSpeed, and BaseHealth should already be set. I think. === -->
 	<!-- ===================================== -->
-	<!-- === Adds In Inspector Tabs 	   === -->
-	<!-- === Inventory and all that jazz   === -->
-	<!-- === Again, no need to change 'em  === -->
-	<!-- === Unless you changed it         === -->
-	<!-- === then change 'em			   === -->
-	
-	<li Class="PatchOperationReplace">
-		<xpath>Defs/ThingDef[@Name="BaseRaccPawn"]/inspectorTabs/li[.="ITab_Pawn_Gear"]</xpath>
-		<value>
-			<li>CombatExtended.ITab_Inventory</li>
-		</value>
-	</li>
-
-	<li Class="PatchOperationAdd">
-	
-		<xpath>Defs/ThingDef[@Name="BaseRaccPawn"]/comps</xpath>
-		<value>
-			<li Class="CombatExtended.CompProperties_Inventory" />
-		</value>
-	</li>
-		</operations>
-		</match>
-	</Operation>
 	
 	<!-- === Congratulations! Your alien is Combat Ready!	 === -->
 	<!-- === If your alien comes with extra guns and gear,	 === -->
