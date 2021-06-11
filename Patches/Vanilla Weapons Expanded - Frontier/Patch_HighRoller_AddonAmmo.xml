@@ -5,7 +5,11 @@
 	<mods>
 		<li>Vanilla Weapons Expanded - Frontier</li>
 	</mods>
-	<match Class="PatchOperationFindMod">
+
+	<match Class="PatchOperationSequence">
+	<operations>
+
+	<li Class="PatchOperationFindMod">
 		<mods>
 			<li>Vanilla Weapons Expanded - Quickdraw</li>
 		</mods>
@@ -29,7 +33,7 @@
 
 	<!-- ================== Projectiles ================== -->
 
-	<ThingDef Class="CombatExtended.AmmoDef" ParentName="Base41RimfireBullet">
+	<ThingDef ParentName="Base41RimfireBullet">
 		<defName>Bullet_41RimfireHR_FMJ</defName>
 		<label>.41 Rimfire bullet (FMJ)</label>
 		<projectile Class="CombatExtended.ProjectilePropertiesCE">
@@ -46,7 +50,7 @@
 		</projectile>
 	</ThingDef>
 
-	<ThingDef Class="CombatExtended.AmmoDef" ParentName="Base41RimfireBullet">
+	<ThingDef ParentName="Base41RimfireBullet">
 		<defName>Bullet_41RimfireHR_AP</defName>
 		<label>.41 Rimfire bullet (AP)</label>
 		<projectile Class="CombatExtended.ProjectilePropertiesCE">
@@ -63,7 +67,7 @@
 		</projectile>
 	</ThingDef>
 
-	<ThingDef Class="CombatExtended.AmmoDef" ParentName="Base41RimfireBullet">
+	<ThingDef ParentName="Base41RimfireBullet">
 		<defName>Bullet_41RimfireHR_HP</defName>
 		<label>.41 Rimfire bullet (HP)</label>
 		<projectile Class="CombatExtended.ProjectilePropertiesCE">
@@ -80,8 +84,285 @@
 		</projectile>
 	</ThingDef>
 
-		</value>
-	    </match>
+	</value>
+	</match>
+	</li>
+
+	<li Class="PatchOperationFindMod">
+		<mods>
+			<li>Vanilla Weapons Expanded - Coilguns</li>
+		</mods>
+		<match Class="PatchOperationAdd">
+            <xpath>Defs</xpath>
+            <value>
+
+	<ThingCategoryDef>
+		<defName>AmmoCrudeRailgun</defName>
+		<label>Crude Railgun</label>
+		<parent>AmmoAdvanced</parent>
+		<iconPath>UI/Icons/ThingCategories/CaliberRailgunRifle</iconPath>
+	</ThingCategoryDef>
+
+	<CombatExtended.AmmoCategoryDef>
+		<defName>RailgunCrude</defName>
+		<label>Railgun crude</label>
+		<labelShort>Crude</labelShort>
+		<description>A simple, handmade projectile for railguns. Functional, but far less effective than a properly made sabot.</description>
+		<advanced>true</advanced>
+	</CombatExtended.AmmoCategoryDef>
+
+	<!-- ==================== AmmoSet ========================== -->
+
+	<CombatExtended.AmmoSetDef>
+		<defName>AmmoSet_GaussRevolver_HR</defName>
+		<label>Gauss Revolver</label>
+		<ammoTypes>
+			<Ammo_Coilgun_Crude>Bullet_GaussRevolver_Crude</Ammo_Coilgun_Crude>		
+			<Ammo_6mmRailgun_Sabot>Bullet_GaussRevolver_HR</Ammo_6mmRailgun_Sabot>
+		</ammoTypes>
+	</CombatExtended.AmmoSetDef>
+
+	<CombatExtended.AmmoSetDef>
+		<defName>AmmoSet_GaussRepeater_HR</defName>
+		<label>Gauss Repeater</label>
+		<ammoTypes>
+			<Ammo_Coilgun_Crude>Bullet_GaussRepeater_Crude</Ammo_Coilgun_Crude>		
+			<Ammo_6mmRailgun_Sabot>Bullet_GaussRepeater_HR</Ammo_6mmRailgun_Sabot>
+		</ammoTypes>
+	</CombatExtended.AmmoSetDef>
+
+	<!-- ==================== Ammo ========================== -->
+
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="SpacerSmallAmmoBase">
+		<defName>Ammo_Coilgun_Crude</defName>
+		<label>Crude railgun slug</label>
+		<description>A crude, handmade steel dart, designed for railgun weaponry. While functional, this projectile is inferior to properly made sabot rounds.</description>
+		<statBases>
+			<Mass>0.01</Mass>
+			<Bulk>0.008</Bulk>
+			<MarketValue>0.02</MarketValue>
+		</statBases>
+		<tradeTags inherit="false">
+			<li>CE_AutoEnableTrade</li>
+			<li>CE_AutoEnableCrafting_FueledSmithy</li>
+			<li>CE_AutoEnableCrafting_ElectricSmithy</li>
+		</tradeTags>
+		<thingCategories>
+			<li>AmmoCrudeRailgun</li>
+		</thingCategories>
+		<graphicData>
+			<texPath>Things/Ammo/Railgun/Rifle</texPath>
+			<graphicClass>CombatExtended.Graphic_StackCountRanged</graphicClass>
+		</graphicData>
+		<ammoClass>RailgunCrude</ammoClass>
+	</ThingDef>
+
+	<!-- ================== Projectiles ================== -->
+
+	<ThingDef Class="CombatExtended.Lasers.LaserBeamDefCE" ParentName="BaseLaserBullet">
+		<defName>Bullet_GaussRevolver_HR</defName>
+		<label>Gauss revolver slug</label>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<isInstant>true</isInstant>
+			<damageFalloff>False</damageFalloff>
+			<damageDef>Bullet</damageDef>
+			<damageAmountBase>14</damageAmountBase>
+			<armorPenetrationSharp>22.2</armorPenetrationSharp>
+			<armorPenetrationBlunt>115.42</armorPenetrationBlunt>
+			<secondaryDamage>
+			<li>
+			<def>Bullet</def>
+			<amount>14</amount>
+			<chance>0.10</chance>
+			</li>
+			</secondaryDamage>			  
+		</projectile>   
+	</ThingDef>
+
+	<ThingDef Class="CombatExtended.Lasers.LaserBeamDefCE" ParentName="BaseLaserBullet">
+		<defName>Bullet_GaussRevolver_Crude</defName>
+		<label>Gauss revolver slug</label>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<isInstant>true</isInstant>
+			<damageFalloff>False</damageFalloff>
+			<damageDef>Bullet</damageDef>
+			<damageAmountBase>10</damageAmountBase>
+			<armorPenetrationSharp>18</armorPenetrationSharp>
+			<armorPenetrationBlunt>45.72</armorPenetrationBlunt>
+			<secondaryDamage>
+			<li>
+			<def>Bullet</def>
+			<amount>10</amount>
+			<chance>0.10</chance>
+			</li>
+			</secondaryDamage>			  
+		</projectile>   
+	</ThingDef>
+
+	<ThingDef Class="CombatExtended.Lasers.LaserBeamDefCE"  ParentName="BaseLaserBullet">
+		<defName>Bullet_GaussRepeater_HR</defName>
+		<label>Gauss repeater slug</label>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<isInstant>true</isInstant>
+			<damageFalloff>False</damageFalloff>
+			<damageDef>Bullet</damageDef>
+			<damageAmountBase>16</damageAmountBase>
+			<armorPenetrationSharp>35.1</armorPenetrationSharp>
+			<armorPenetrationBlunt>190.8</armorPenetrationBlunt>
+			<secondaryDamage>
+			<li>
+			<def>Bullet</def>
+			<amount>16</amount>
+			<chance>0.10</chance>
+			</li>
+			</secondaryDamage>			  
+		</projectile>    		
+	</ThingDef>
+
+	<ThingDef Class="CombatExtended.Lasers.LaserBeamDefCE" ParentName="BaseLaserBullet">
+		<defName>Bullet_GaussRepeater_Crude</defName>
+		<label>Gauss repeater slug</label>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<isInstant>true</isInstant>
+			<damageFalloff>False</damageFalloff>
+			<damageDef>Bullet</damageDef>
+			<damageAmountBase>12</damageAmountBase>
+			<armorPenetrationSharp>24</armorPenetrationSharp>
+			<armorPenetrationBlunt>75.58</armorPenetrationBlunt>
+			<secondaryDamage>
+			<li>
+			<def>Bullet</def>
+			<amount>12</amount>
+			<chance>0.10</chance>
+			</li>
+			</secondaryDamage>			  
+		</projectile>   
+	</ThingDef>
+
+
+	<!-- ==================== Recipe ========================== -->
+
+	<RecipeDef ParentName="AmmoRecipeBase">
+		<defName>MakeAmmo_Coilgun_Crude</defName>
+		<label>make crude railgun slug x200</label>
+		<description>Craft crude railgun slug cartridges.</description>
+		<jobString>Making crude railgun slug cartridges.</jobString>
+		<workAmount>800</workAmount>
+		<ingredients>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>Steel</li>
+					</thingDefs>
+				</filter>
+				<count>6</count>
+			</li>
+		</ingredients>
+		<fixedIngredientFilter>
+			<thingDefs>
+				<li>Steel</li>
+			</thingDefs>
+		</fixedIngredientFilter>
+		<products>
+			<Ammo_Coilgun_Crude>200</Ammo_Coilgun_Crude>
+		</products>
+	</RecipeDef>
+
+	</value>
+	</match>
+	</li>
+
+	<li Class="PatchOperationFindMod">
+		<mods>
+			<li>Vanilla Weapons Expanded - Laser</li>
+		</mods>
+		<match Class="PatchOperationAdd">
+            <xpath>Defs</xpath>
+            <value>
+
+	<!-- ==================== AmmoSet ========================== -->
+
+	<CombatExtended.AmmoSetDef>
+		<defName>AmmoSet_SalvagedLaserRepeater_HR</defName>
+		<label>Salvaged Laser Repeater</label>
+		<ammoTypes>
+			<Ammo_LaserChargePack>Bullet_SalvagedLaserRepeater_HR</Ammo_LaserChargePack>
+		</ammoTypes>
+	</CombatExtended.AmmoSetDef>
+
+	<CombatExtended.AmmoSetDef>
+		<defName>AmmoSet_SalvagedLaserRevolver_HR</defName>
+		<label>Salvaged Laser Revolver</label>
+		<ammoTypes>
+			<Ammo_LaserChargePack>Bullet_SalvagedLaserRevolver_HR</Ammo_LaserChargePack>
+		</ammoTypes>
+	</CombatExtended.AmmoSetDef>
+
+	<CombatExtended.AmmoSetDef>
+		<defName>AmmoSet_SalvagedLaserHuntingRifle_HR</defName>
+		<label>Salvaged Laser Hunting Rifle</label>
+		<ammoTypes>
+			<Ammo_LaserChargePack>Bullet_SalvagedLaserHuntingRifle_HR</Ammo_LaserChargePack>
+		</ammoTypes>
+	</CombatExtended.AmmoSetDef>
+
+	<!-- ==================== Ammo ========================== -->
+
+	<!-- ================== Projectiles ================== -->
+
+	<ThingDef Class="CombatExtended.Lasers.LaserBeamDefCE" ParentName="LaserBulletGreen">
+		<defName>Bullet_SalvagedLaserRepeater_HR</defName>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageAmountBase>6</damageAmountBase>
+			<armorPenetrationSharp>1</armorPenetrationSharp>
+			<armorPenetrationBlunt>1.36</armorPenetrationBlunt>
+			<secondaryDamage>
+				<li>
+				<def>Bullet</def>
+				<amount>6</amount>
+				<chance>0.10</chance>
+				</li>
+			</secondaryDamage>			
+		</projectile>
+	</ThingDef>
+
+	<ThingDef Class="CombatExtended.Lasers.LaserBeamDefCE" ParentName="LaserBulletGreen">
+		<defName>Bullet_SalvagedLaserRevolver_HR</defName>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageAmountBase>6</damageAmountBase>
+			<armorPenetrationSharp>1</armorPenetrationSharp>
+			<armorPenetrationBlunt>1.36</armorPenetrationBlunt>
+			<secondaryDamage>
+				<li>
+				<def>Bullet</def>
+				<amount>6</amount>
+				<chance>0.10</chance>
+				</li>
+			</secondaryDamage>			
+		</projectile>
+	</ThingDef>
+
+	<ThingDef Class="CombatExtended.Lasers.LaserBeamDefCE" ParentName="LaserBulletGreen">
+		<defName>Bullet_SalvagedLaserHuntingRifle_HR</defName>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageAmountBase>6</damageAmountBase>
+			<armorPenetrationSharp>1</armorPenetrationSharp>
+			<armorPenetrationBlunt>1.36</armorPenetrationBlunt>
+			<secondaryDamage>
+				<li>
+				<def>Bullet</def>
+				<amount>6</amount>
+				<chance>0.10</chance>
+				</li>
+			</secondaryDamage>			
+		</projectile>
+	</ThingDef>
+
+	</value>
+	</match>	
+	</li>
+
+		</operations>
 	</match>
 </Operation>
 </Patch>
