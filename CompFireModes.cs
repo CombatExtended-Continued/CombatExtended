@@ -153,18 +153,26 @@ namespace CombatExtended
         public float rangechange;
         public override void Notify_Equipped(Pawn pawn)
         {
+            var Bipod_Shooto = CompEquippable.PrimaryVerb;
+            if (pawn != null)
+            {
+                if (Bipod_Shooto is Bipod_Shoot)
+                {
+                    Bipod_Shoot BipodShootoProper = CompEquippable.PrimaryVerb as Bipod_Shoot;
+                    rangechange = BipodShootoProper.VerbPropsCE.range;
+                    InitRecoil = BipodShootoProper.VerbPropsCE.recoilAmount;
 
-            Biped bipedo = CompEquippable.PrimaryVerb as Biped;
-            rangechange = bipedo.VerbPropsCE.range;
-            InitRecoil = bipedo.VerbPropsCE.recoilAmount;
-
-            shoe = false;
+                    shoe = false;
+                }
+            }
+           
+            
         }
-        //public Biped daPawnR
+        //public Bipod_Shoot daPawnR
         //{
         //get
         //{
-        //return this.CompEquippableR.PrimaryVerb as Biped;
+        //return this.CompEquippableR.PrimaryVerb as Bipod_Shoot;
         //}
         //}
 
