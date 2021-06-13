@@ -53,7 +53,6 @@ namespace CombatExtended
             }
 
             var dinfo = new DamageInfo(originalDinfo);
-            var dinfoPartialPen = new DamageInfo();
             var dmgAmount = dinfo.Amount;
             var involveArmor = dinfo.Def.harmAllLayersUntilOutside || hitPart.depth == BodyPartDepth.Outside;
             bool isAmbientDamage = dinfo.IsAmbientDamage();
@@ -192,8 +191,7 @@ namespace CombatExtended
             // Applies blunt damage from partial penetrations.
             if (isSharp && (dinfo.Amount > Mathf.CeilToInt(dmgAmount)))
             {
-                dinfoPartialPen = GetDeflectDamageInfo(dinfo, hitPart, ref dmgAmount, ref penAmount, true);
-                pawn.TakeDamage(dinfoPartialPen);
+                pawn.TakeDamage(GetDeflectDamageInfo(dinfo, hitPart, ref dmgAmount, ref penAmount, true));
             }
             // Return damage info.
             dinfo.SetAmount(Mathf.CeilToInt(dmgAmount));
