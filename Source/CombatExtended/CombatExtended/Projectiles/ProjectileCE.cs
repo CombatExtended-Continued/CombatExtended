@@ -828,19 +828,27 @@ namespace CombatExtended
             {
                 suppressionAmount = def.projectile.GetDamageAmount(1);
                 var propsCE = def.projectile as ProjectilePropertiesCE;
-                var bluntArmorRatingStat = def.projectile.damageDef.armorCategory.armorRatingStat == StatDefOf.ArmorRating_Blunt;
-                var penetrationAmount = propsCE != null ? (bluntArmorRatingStat ? def.projectile.GetDamageAmount(0.3f) : propsCE.armorPenetrationSharp) : 0f; // You could say this is a dirty way to get the penetration of an explosion, but it's either this or hard-coding every DamageDef into here.
-                var armorMod = penetrationAmount <= 0 ? 0 : 1 - Mathf.Clamp(pawn.GetStatValue(bluntArmorRatingStat ? CE_StatDefOf.AverageSharpArmor : CE_StatDefOf.AverageBluntArmor) * 0.5f / penetrationAmount, 0, 1);
+                var damageArmorCategory = def.projectile.damageDef.armorCategory;
+                //Good luck trying to untangle this mess.
+                float penetrationAmount = ((propsCE != null) ?
+                    (
+                        ((damageArmorCategory == CE_DamageArmorCategoryDefOf.Blunt) ?
+                            ((!propsCE.damageFalloff || propsCE.explosionRadius == 0) ?
+                                Mathf.Max(def.projectile.GetDamageAmount(1) * 0.3f, propsCE.armorPenetrationBlunt) :
+                                Mathf.Lerp(Mathf.Max(def.projectile.GetDamageAmount(1) * 0.3f, propsCE.armorPenetrationBlunt), 0.6f, Mathf.Pow(pawn.Position.DistanceTo(Position) / propsCE.explosionRadius, 0.55f)) //This is basically a condensed version of ExplosionCE.GetArmorPenetrationAtCE. Any changes to GetArmorPenetrationAtCE should be also applied
+                            ) :
+                            propsCE.armorPenetrationSharp
+                        )
+                    ) : 0f
+                );
+                float armorMod = ((propsCE.damageDef.GetModExtension<DamageDefExtensionCE>() ?? new DamageDefExtensionCE()).isAmbientDamage ?
+                    (1 - Mathf.Clamp(pawn.GetStatValue(damageArmorCategory.armorRatingStat)*(pawn.RaceProps.IsFlesh && (damageArmorCategory == CE_DamageArmorCategoryDefOf.Electric) ? 0.25f : 1), 0, 1)) : //Hardcoded fleshy pawn electric damage resistance of 75%
+                    (penetrationAmount <= 0 ? 0 : 1 - Mathf.Clamp(pawn.GetStatValue((damageArmorCategory == CE_DamageArmorCategoryDefOf.Blunt) ? CE_StatDefOf.AverageBluntArmor : CE_StatDefOf.AverageSharpArmor) * 0.5f / penetrationAmount, 0, 1))
+                );
                 suppressionAmount *= armorMod;
-                /*suppressionAmount = def.projectile.GetDamageAmount(1);
-                var propsCE = def.projectile as ProjectilePropertiesCE;
-                var penetrationAmount = propsCE?.armorPenetrationSharp ?? 0f;
-                var armorMod = penetrationAmount <= 0 ? 0 : 1 - Mathf.Clamp(pawn.GetStatValue(CE_StatDefOf.AverageSharpArmor) * 0.5f / penetrationAmount, 0, 1);
-                suppressionAmount *= armorMod;*/
                 compSuppressable.AddSuppression(suppressionAmount, OriginIV3);
             }
         }
-
         #region Tick/Draw
         public override void Tick()
         {
