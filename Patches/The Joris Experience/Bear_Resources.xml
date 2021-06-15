@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+			<li>The Joris Experience</li>
+		</mods>
+		<match Class="PatchOperationSequence">
+			<operations>
+				<!-- Remove tusk as a weapon -->
+				<li Class="PatchOperationRemove">
+					<xpath>/Defs/ThingDef[defName="JE_GoldenUniJorisHorn"]/tools</xpath>
+				</li>
+				<li Class="PatchOperationAttributeSet">
+					<xpath>/Defs/ThingDef[defName="JE_GoldenUniJorisHorn"]</xpath>
+					<attribute>ParentName</attribute>
+					<value>ResourceBase</value>
+				</li>
+
+				<!--wooly wool -->
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/ThingDef[defName="JE_JorisHair"]/statBases/StuffPower_Armor_Sharp</xpath>
+					<value>
+						<StuffPower_Armor_Sharp>0.03</StuffPower_Armor_Sharp>
+					</value>
+				</li>
+			</operations>
+		</match>
+	</Operation>
+</Patch>
