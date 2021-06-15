@@ -42,6 +42,7 @@ Mod |
 [RH] Faction: VOID	|
 [RH] Faction: War Mongrels	|
 [RWY] Advanced Mechanoid Warfare    |
+[RWY] Dragon's Descent: Void Dwellers
 [SS] Maid Project	|
 [SYR] Harpy	|
 [SYR] Naga	|

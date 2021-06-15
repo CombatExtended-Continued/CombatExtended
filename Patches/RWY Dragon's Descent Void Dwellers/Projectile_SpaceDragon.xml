@@ -1,0 +1,204 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+			<li>[RWY]Dragon's Descent: Void Dwellers</li>
+		</mods>
+		<match Class="PatchOperationSequence">
+		<operations>
+
+		<li Class="PatchOperationAdd">
+		<xpath>Defs</xpath>
+		<value>
+  <DamageDef>
+    <defName>Void_Bomb</defName>
+    <label>The void</label>
+    <workerClass>DamageWorker_AddInjury</workerClass>
+    <externalViolence>true</externalViolence>
+    <isExplosive>true</isExplosive>
+    <deathMessage>{0} is consumed by the void.</deathMessage>
+    <hediff>Shredded</hediff>
+    <hediffSolid>Crack</hediffSolid>
+    <harmAllLayersUntilOutside>true</harmAllLayersUntilOutside>
+    <canUseDeflectMetalEffect>false</canUseDeflectMetalEffect>
+    <armorCategory>Blunt</armorCategory>
+    <minDamageToFragment>15</minDamageToFragment>
+    <defaultDamage>36</defaultDamage>
+    <defaultStoppingPower>2.0</defaultStoppingPower>
+    <defaultArmorPenetration>90</defaultArmorPenetration>
+    <buildingDamageFactor>4</buildingDamageFactor>
+    <plantDamageFactor>4</plantDamageFactor>
+    <explosionAffectOutsidePartsOnly>false</explosionAffectOutsidePartsOnly>
+    <explosionHeatEnergyPerCell>1</explosionHeatEnergyPerCell>
+    <explosionCellMote>Mote_BlastDry</explosionCellMote>
+    <explosionColorCenter>(1, 0.5, 0.3)</explosionColorCenter>
+    <explosionColorEdge>(0.6, 0.5, 0.4)</explosionColorEdge>
+    <soundExplosion>Explosion_Bomb</soundExplosion>
+    <combatLogRules>Damage_Bomb</combatLogRules>
+  </DamageDef>
+
+  <DamageDef>
+    <defName>Void_Arururu</defName>
+    <label>Molten</label>
+    <workerClass>DamageWorker_AddInjury</workerClass>
+    <externalViolence>true</externalViolence>
+    <isExplosive>true</isExplosive>
+    <deathMessage>{0} is moltened.</deathMessage>
+    <hediff>Shredded</hediff>
+    <hediffSolid>Crack</hediffSolid>
+    <harmAllLayersUntilOutside>true</harmAllLayersUntilOutside>
+    <canUseDeflectMetalEffect>false</canUseDeflectMetalEffect>
+    <armorCategory>Blunt</armorCategory>
+    <minDamageToFragment>15</minDamageToFragment>
+    <defaultDamage>58</defaultDamage>
+    <defaultStoppingPower>3.0</defaultStoppingPower>
+    <defaultArmorPenetration>140</defaultArmorPenetration>
+    <buildingDamageFactor>4</buildingDamageFactor>
+    <plantDamageFactor>4</plantDamageFactor>
+    <explosionAffectOutsidePartsOnly>false</explosionAffectOutsidePartsOnly>
+    <explosionHeatEnergyPerCell>1</explosionHeatEnergyPerCell>
+    <explosionCellMote>Mote_BlastDry</explosionCellMote>
+    <explosionColorCenter>(1, 0.5, 0.3)</explosionColorCenter>
+    <explosionColorEdge>(0.6, 0.5, 0.4)</explosionColorEdge>
+    <soundExplosion>Explosion_Bomb</soundExplosion>
+    <combatLogRules>Damage_Bomb</combatLogRules>
+  </DamageDef>
+
+  <DamageDef>
+    <defName>Void_Molten</defName>
+    <label>Molten</label>
+    <workerClass>DamageWorker_AddInjury</workerClass>
+    <externalViolence>true</externalViolence>
+    <isExplosive>true</isExplosive>
+    <deathMessage>{0} is moltened.</deathMessage>
+    <hediff>Shredded</hediff>
+    <hediffSolid>Crack</hediffSolid>
+    <harmAllLayersUntilOutside>true</harmAllLayersUntilOutside>
+    <canUseDeflectMetalEffect>false</canUseDeflectMetalEffect>
+    <armorCategory>Blunt</armorCategory>
+    <minDamageToFragment>15</minDamageToFragment>
+    <defaultDamage>40</defaultDamage>
+    <defaultStoppingPower>3.0</defaultStoppingPower>
+    <defaultArmorPenetration>140</defaultArmorPenetration>
+    <buildingDamageFactor>4</buildingDamageFactor>
+    <plantDamageFactor>4</plantDamageFactor>
+    <explosionAffectOutsidePartsOnly>false</explosionAffectOutsidePartsOnly>
+    <explosionHeatEnergyPerCell>1</explosionHeatEnergyPerCell>
+    <explosionCellMote>Mote_BlastDry</explosionCellMote>
+    <explosionColorCenter>(1, 0.5, 0.3)</explosionColorCenter>
+    <explosionColorEdge>(0.6, 0.5, 0.4)</explosionColorEdge>
+    <soundExplosion>Explosion_Bomb</soundExplosion>
+    <combatLogRules>Damage_Bomb</combatLogRules>
+  </DamageDef>
+		</value>
+		</li>
+
+			<!-- Void Breath -->
+			<li Class="PatchOperationReplace">
+				<xpath>/Defs/ThingDef[defName="Projectile_VoidDragonBreath"]/thingClass</xpath>
+				<value>
+					<thingClass>CombatExtended.ProjectileCE_Explosive</thingClass>
+				</value>
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>/Defs/ThingDef[defName="Projectile_VoidDragonBreath"]/projectile</xpath>
+				<value>
+					<projectile Class="CombatExtended.ProjectilePropertiesCE">
+						<speed>36</speed>
+						<flyOverhead>false</flyOverhead>
+						<damageDef>Void_Bomb</damageDef>
+						<soundExplode>DragonBreathFire</soundExplode>
+						<explosionRadius>3.3</explosionRadius>
+					</projectile>
+				</value>
+			</li>
+
+			<!-- Nebula Breath -->
+			<li Class="PatchOperationReplace">
+				<xpath>/Defs/ThingDef[defName="Projectile_NebulaDragonBreath"]/thingClass</xpath>
+				<value>
+					<thingClass>CombatExtended.ProjectileCE_Explosive</thingClass>
+				</value>
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>/Defs/ThingDef[defName="Projectile_NebulaDragonBreath"]/projectile</xpath>
+				<value>
+					<projectile Class="CombatExtended.ProjectilePropertiesCE">
+						<speed>44</speed>
+						<flyOverhead>false</flyOverhead>
+						<damageDef>NebulaFlame</damageDef>
+						<damageAmountBase>19</damageAmountBase>
+						<soundExplode>DragonBreathFire</soundExplode>
+						<explosionRadius>2.1</explosionRadius>
+					</projectile>
+				</value>
+			</li>
+
+			<!-- Arururulion Breath -->
+			<li Class="PatchOperationReplace">
+				<xpath>/Defs/ThingDef[defName="Projectile_AurelionDragonBreath"]/thingClass</xpath>
+				<value>
+					<thingClass>CombatExtended.ProjectileCE_Explosive</thingClass>
+				</value>
+			</li>
+			<li Class="PatchOperationReplace">
+				<xpath>/Defs/ThingDef[defName="Projectile_AurelionDragonBreath"]/projectile</xpath>
+				<value>
+					<projectile Class="CombatExtended.ProjectilePropertiesCE">
+						<speed>58</speed>
+						<flyOverhead>false</flyOverhead>
+						<damageDef>Void_Arururu</damageDef>
+						<soundExplode>DragonBreathFire</soundExplode>
+						<explosionRadius>3.3</explosionRadius>
+					</projectile>
+				</value>
+			</li>
+
+
+			<!-- Stardust Breath -->
+			<li Class="PatchOperationReplace">
+				<xpath>/Defs/ThingDef[defName="Projectile_StarDustBreath"]/thingClass</xpath>
+				<value>
+					<thingClass>CombatExtended.ProjectileCE_Explosive</thingClass>
+				</value>
+			</li>
+			<li Class="PatchOperationReplace">
+				<xpath>/Defs/ThingDef[defName="Projectile_StarDustBreath"]/projectile</xpath>
+				<value>
+					<projectile Class="CombatExtended.ProjectilePropertiesCE">
+						<speed>42</speed>
+						<flyOverhead>false</flyOverhead>
+						<damageDef>EMP</damageDef>
+						<damageAmountBase>9</damageAmountBase>
+						<soundExplode>DragonBreathFire</soundExplode>
+						<explosionRadius>3.3</explosionRadius>
+					</projectile>
+				</value>
+			</li>
+
+			<!-- Molten Breath -->
+			<li Class="PatchOperationReplace">
+				<xpath>/Defs/ThingDef[defName="Projectile_MoltenBreath"]/thingClass</xpath>
+				<value>
+					<thingClass>CombatExtended.ProjectileCE_Explosive</thingClass>
+				</value>
+			</li>
+			<li Class="PatchOperationReplace">
+				<xpath>/Defs/ThingDef[defName="Projectile_MoltenBreath"]/projectile</xpath>
+				<value>
+					<projectile Class="CombatExtended.ProjectilePropertiesCE">
+						<speed>48</speed>
+						<flyOverhead>false</flyOverhead>
+						<damageDef>Void_Molten</damageDef>
+						<soundExplode>DragonBreathFire</soundExplode>
+						<explosionRadius>4.1</explosionRadius>
+					</projectile>
+				</value>
+			</li>
+
+		</operations>
+		</match>
+	</Operation>
+</Patch>
