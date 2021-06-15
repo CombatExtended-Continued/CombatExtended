@@ -216,6 +216,7 @@ Tactical Extremity Protection [BAL] |
 The Mantodean insectoid race	|
 T-45b Power Armor	|
 The GiantRace	|
+The Joris Experience	|
 TouhouStyle	|
 Trading Economy	|
 Tribal Warrior Set! |

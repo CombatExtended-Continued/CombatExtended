@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+			<li>The Joris Experience</li>
+		</mods>
+		<match Class="PatchOperationSequence">
+			<operations>
+				<!-- ============== Changing Projectile's thingClass to CE ones ================ -->
+
+				<li Class="PatchOperationAdd">
+				<xpath>/Defs/ThingDef[defName="JE_Bullet_GoldenShower" or
+				defName="JE_Tears"]</xpath>
+					<value>
+						<thingClass>CombatExtended.BulletCE</thingClass>
+					</value>
+				</li>
+
+				<!-- ============== Adding 'Standard' AimingAccuracy node to creatures' that use ranged attack statBases. =============== -->
+				<li Class="PatchOperationAdd">
+					<xpath>/Defs/ThingDef[defName="JE_FatJorry" or defName="JECom_IsaacJoris"]/statBases</xpath>
+					<value>
+						<AimingAccuracy>0.6</AimingAccuracy>
+					</value>
+				</li>
+
+				<!-- =============== Now defining Projectiles in CE Procedure ============= -->
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/ThingDef[defName="JE_Bullet_GoldenShower"]/projectile</xpath>
+					<value>
+						<projectile Class="CombatExtended.ProjectilePropertiesCE">
+							<flyOverhead>false</flyOverhead>
+							<damageDef>Bullet</damageDef>
+							<damageAmountBase>7</damageAmountBase>
+							<speed>90</speed>
+							<armorPenetrationSharp>4</armorPenetrationSharp>
+							<armorPenetrationBlunt>12</armorPenetrationBlunt>
+						</projectile>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/ThingDef[defName="JE_Tears"]/projectile</xpath>
+					<value>
+						<projectile Class="CombatExtended.ProjectilePropertiesCE">
+							<flyOverhead>false</flyOverhead>
+							<damageDef>Bullet</damageDef>
+							<damageAmountBase>8</damageAmountBase>
+							<speed>24</speed>
+							<armorPenetrationSharp>1</armorPenetrationSharp>
+							<armorPenetrationBlunt>0.1</armorPenetrationBlunt>
+						</projectile>
+					</value>
+				</li>
+
+<!--				<li Class="PatchOperationReplace">
+					<xpath>/Defs/VFECore.ExpandableProjectileDef[defName="FF_FlameBreathAnimated"]/projectile</xpath>
+					<value>
+						<projectile Class="CombatExtended.ProjectilePropertiesCE">
+							<speed>40</speed>
+							<flyOverhead>false</flyOverhead>
+							<damageDef>Flame</damageDef>
+							<damageAmountBase>16</damageAmountBase>
+							<explosionRadius>2.5</explosionRadius>
+							<ai_IsIncendiary>true</ai_IsIncendiary>
+						</projectile>
+					</value>
+				</li> -->
+
+			</operations>
+		</match>
+	</Operation>
+</Patch>
