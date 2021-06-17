@@ -1,0 +1,211 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+
+<Patch>
+	<Operation Class="PatchOperationFindMod">
+	<mods>
+		<li>[FF]Bushi!</li>
+	</mods>
+		<match Class="PatchOperationSequence">
+		<operations>
+
+	<!-- === One-handed Tags === -->
+	<li Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName = "MeleeWeapon_Wakizashi" or defName="MeleeWeapon_Tanto"]/weaponTags</xpath>
+		<value>
+			<li>CE_OneHandedWeapon</li>
+		</value>
+	</li>
+
+	<!-- === Katana === -->
+	<li Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="MeleeWeapon_Katana"]/tools</xpath>
+		<value>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<label>handle</label>
+					<capacities>
+						<li>Poke</li>
+					</capacities>
+					<power>3</power>
+					<cooldownTime>1.33</cooldownTime>
+					<chanceFactor>0.10</chanceFactor>
+					<armorPenetrationBlunt>0.936</armorPenetrationBlunt>
+					<linkedBodyPartsGroup>Handle</linkedBodyPartsGroup>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>point</label>
+					<capacities>
+						<li>Stab</li>
+					</capacities>
+					<power>15</power>
+					<cooldownTime>1.33</cooldownTime>
+					<chanceFactor>0.60</chanceFactor>
+					<armorPenetrationBlunt>0.936</armorPenetrationBlunt>
+					<armorPenetrationSharp>2.08</armorPenetrationSharp>
+					<linkedBodyPartsGroup>Point</linkedBodyPartsGroup>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>edge</label>
+					<capacities>
+						<li>Cut</li>
+					</capacities>
+					<power>31</power>
+					<cooldownTime>1.28</cooldownTime>
+					<chanceFactor>0.30</chanceFactor>
+					<armorPenetrationBlunt>2.6</armorPenetrationBlunt>
+					<armorPenetrationSharp>0.65</armorPenetrationSharp>
+					<linkedBodyPartsGroup>Edge</linkedBodyPartsGroup>
+				</li>
+			</tools>
+		</value>
+	</li>
+
+	<li Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="MeleeWeapon_Katana"]/statBases</xpath>
+		<value>
+      		<Bulk>7.85</Bulk>
+      		<MeleeCounterParryBonus>1.38</MeleeCounterParryBonus>
+		</value>
+	</li>
+
+	<li Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="MeleeWeapon_Katana"]</xpath>
+		<value>
+			<equippedStatOffsets>
+				<MeleeCritChance>0.85</MeleeCritChance>
+				<MeleeParryChance>0.69</MeleeParryChance>
+				<MeleeDodgeChance>0.37</MeleeDodgeChance>	
+			</equippedStatOffsets>
+		</value>
+	</li> 
+
+	<!-- === Wakizashi === -->
+	<li Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="MeleeWeapon_Wakizashi"]/tools</xpath>
+		<value>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<label>handle</label>
+					<capacities>
+						<li>Poke</li>
+					</capacities>
+					<power>2</power>
+					<cooldownTime>1.18</cooldownTime>
+					<chanceFactor>0.10</chanceFactor>
+					<armorPenetrationBlunt>0.339</armorPenetrationBlunt>
+					<linkedBodyPartsGroup>Handle</linkedBodyPartsGroup>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>point</label>
+					<capacities>
+						<li>Stab</li>
+					</capacities>
+					<power>24</power>
+					<cooldownTime>1.18</cooldownTime>
+					<chanceFactor>0.60</chanceFactor>
+					<armorPenetrationBlunt>0.339</armorPenetrationBlunt>
+					<armorPenetrationSharp>0.4</armorPenetrationSharp>
+					<linkedBodyPartsGroup>Point</linkedBodyPartsGroup>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>edge</label>
+					<capacities>
+						<li>Cut</li>
+					</capacities>
+					<power>17</power>
+					<cooldownTime>1.05</cooldownTime>
+					<chanceFactor>0.30</chanceFactor>
+					<armorPenetrationBlunt>0.717</armorPenetrationBlunt>
+					<armorPenetrationSharp>0.36</armorPenetrationSharp>
+					<linkedBodyPartsGroup>Edge</linkedBodyPartsGroup>
+				</li>
+			</tools>
+		</value>
+	</li>
+
+	<li Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="MeleeWeapon_Wakizashi"]/statBases</xpath>
+		<value>
+      		<Bulk>6.4</Bulk>
+      		<MeleeCounterParryBonus>0.43</MeleeCounterParryBonus>
+		</value>
+	</li>
+
+	<li Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="MeleeWeapon_Wakizashi"]</xpath>
+		<value>
+			<equippedStatOffsets>
+				<MeleeCritChance>0.60</MeleeCritChance>
+				<MeleeParryChance>0.43</MeleeParryChance>
+				<MeleeDodgeChance>0.16</MeleeDodgeChance>	
+			</equippedStatOffsets>
+		</value>
+	</li> 
+
+	<!-- === Tanto === -->
+	<li Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="MeleeWeapon_Tanto"]/tools</xpath>
+		<value>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<label>handle</label>
+					<capacities>
+						<li>Poke</li>
+					</capacities>
+					<power>1</power>
+					<cooldownTime>0.97</cooldownTime>
+					<chanceFactor>0.10</chanceFactor>
+					<armorPenetrationBlunt>0.259</armorPenetrationBlunt>
+					<linkedBodyPartsGroup>Handle</linkedBodyPartsGroup>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>point</label>
+					<capacities>
+						<li>Stab</li>
+					</capacities>
+					<power>12</power>
+					<cooldownTime>0.97</cooldownTime>
+					<chanceFactor>0.60</chanceFactor>
+					<armorPenetrationBlunt>0.259</armorPenetrationBlunt>
+					<armorPenetrationSharp>0.48</armorPenetrationSharp>
+					<linkedBodyPartsGroup>Point</linkedBodyPartsGroup>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>edge</label>
+					<capacities>
+						<li>Cut</li>
+					</capacities>
+					<power>10</power>
+					<cooldownTime>1.05</cooldownTime>
+					<chanceFactor>0.30</chanceFactor>
+					<armorPenetrationBlunt>0.304</armorPenetrationBlunt>
+					<armorPenetrationSharp>0.28</armorPenetrationSharp>
+					<linkedBodyPartsGroup>Edge</linkedBodyPartsGroup>
+				</li>
+			</tools>
+		</value>
+	</li>
+
+	<li Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="MeleeWeapon_Tanto"]/statBases</xpath>
+		<value>
+      		<Bulk>4.2</Bulk>
+      		<MeleeCounterParryBonus>0.38</MeleeCounterParryBonus>
+		</value>
+	</li>
+
+	<li Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="MeleeWeapon_Tanto"]</xpath>
+		<value>
+			<equippedStatOffsets>
+				<MeleeCritChance>0.93</MeleeCritChance>
+				<MeleeParryChance>0.38</MeleeParryChance>
+				<MeleeDodgeChance>0.09</MeleeDodgeChance>	
+			</equippedStatOffsets>
+		</value>
+	</li> 
+
+		</operations>
+		</match>
+	</Operation>
+</Patch>

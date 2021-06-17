@@ -14,6 +14,7 @@ Mod |
 [CP] Rimmu-Nation - Weapons	|
 [CP] Spec Ops - The Line	|
 [CP] The DOOM Kit - Classic	|
+[FF] Bushi!	|
 [HLX] Rimworld: UNSC Armoury |
 [HLX] ReGrowth - Mutated Animals Pack |
 [HLX] Ultratech: Altered Carbon - Armoury
