@@ -8,44 +8,75 @@
 		<match Class="PatchOperationSequence">
 		    <operations>
     <!--===== Melee Tools =====-->
-	  <li Class="PatchOperationReplace">
-    <xpath>/Defs/ThingDef[defName="Gun_LightSMG" or defName="Gun_LightAutopistol" or defName="Gun_HeavyAutopistol" or 
-	defName="Gun_VarmitPistol" or defName="Gun_AdvancedRevolver" or defName="Gun_Snubby" or defName="Gun_Magnum" or defName="Gun_SawnoffPumpShotgun" or
-	defName="Gun_BreacherShotgun" or defName="Gun_BreacherShotgunSemi"]/tools</xpath>
-    <value>
-      <tools>
-        <li Class="CombatExtended.ToolCE">
-          <label>grip</label>
-          <capacities>
-            <li>Blunt</li>
-          </capacities>
-          <power>2</power>
-          <cooldownTime>1.54</cooldownTime>
-          <chanceFactor>1.5</chanceFactor>
-          <armorPenetrationBlunt>0.555</armorPenetrationBlunt>
-          <linkedBodyPartsGroup>Grip</linkedBodyPartsGroup>
-        </li>
-        <li Class="CombatExtended.ToolCE">
-          <label>muzzle</label>
-          <capacities>
-            <li>Poke</li>
-          </capacities>
-          <power>2</power>
-          <cooldownTime>1.54</cooldownTime>
-          <armorPenetrationBlunt>0.555</armorPenetrationBlunt>
-          <linkedBodyPartsGroup>Muzzle</linkedBodyPartsGroup>
-        </li>
-      </tools>
-    </value>
-  </li>
+	<li Class="PatchOperationReplace">
+		<xpath>/Defs/ThingDef[
+		defName="Gun_LightSMG" or
+		defName="Gun_LightAutopistol" or
+		defName="Gun_HeavyAutopistol" or 
+		defName="Gun_VarmitPistol" or
+		defName="Gun_AdvancedRevolver" or
+		defName="Gun_Snubby" or
+		defName="Gun_Magnum" or
+		defName="Gun_SawnoffPumpShotgun" or
+		defName="Gun_BreacherShotgun" or
+		defName="Gun_BreacherShotgunSemi"
+		]/tools</xpath>
+		<value>
+		<tools>
+			<li Class="CombatExtended.ToolCE">
+			<label>grip</label>
+			<capacities>
+				<li>Blunt</li>
+			</capacities>
+			<power>2</power>
+			<cooldownTime>1.54</cooldownTime>
+			<chanceFactor>1.5</chanceFactor>
+			<armorPenetrationBlunt>0.555</armorPenetrationBlunt>
+			<linkedBodyPartsGroup>Grip</linkedBodyPartsGroup>
+			</li>
+			<li Class="CombatExtended.ToolCE">
+			<label>muzzle</label>
+			<capacities>
+				<li>Poke</li>
+			</capacities>
+			<power>2</power>
+			<cooldownTime>1.54</cooldownTime>
+			<armorPenetrationBlunt>0.555</armorPenetrationBlunt>
+			<linkedBodyPartsGroup>Muzzle</linkedBodyPartsGroup>
+			</li>
+		</tools>
+		</value>
+  	</li>
 
-      <li Class="PatchOperationReplace">
-    <xpath>/Defs/ThingDef[defName="Gun_ServiceRifle" or defName="Gun_BattleRifle" or defName="Gun_BattleDMR" or 
-	defName="Gun_HeavySniperRifle" or defName="Gun_VarmitRifle" or defName="Gun_DMR" or defName="Gun_CombatShotgun" or 
-	defName="Gun_CrudeRifle" or defName="Gun_EBR" or defName="Gun_AdvancedShotgun" or defName="Gun_AdvancedAssaultRifle" or 
-	defName="Gun_AutomaticShotgun" or defName="Gun_ServiceSAW" or defName="Gun_PDW" or defName="Gun_ServiceDMR" or defName="Gun_ServiceCarbine" or 
-	defName="Gun_SMG" or defName="Gun_BattleCarbine" or defName="Gun_CrudeSMG" or defName="Gun_Carbine" or defName="Gun_AdvancedPDW" or defName="Gun_HMG" or
-	defName="Gun_SAW" or defName="Gun_LightMinigun" or defName="Gun_CrudeLMG" or defName="Gun_ServiceHMG"]/tools</xpath>
+    <li Class="PatchOperationReplace">
+    <xpath>/Defs/ThingDef[
+		defName="Gun_ServiceRifle" or
+		defName="Gun_BattleRifle" or
+		defName="Gun_BattleDMR" or 
+		defName="Gun_HeavySniperRifle" or
+		defName="Gun_VarmitRifle" or
+		defName="Gun_DMR" or
+		defName="Gun_CombatShotgun" or 
+		defName="Gun_CrudeRifle" or
+		defName="Gun_EBR" or
+		defName="Gun_AdvancedShotgun" or
+		defName="Gun_AdvancedAssaultRifle" or 
+		defName="Gun_AutomaticShotgun" or
+		defName="Gun_ServiceSAW" or
+		defName="Gun_PDW" or
+		defName="Gun_ServiceDMR" or
+		defName="Gun_ServiceCarbine" or 
+		defName="Gun_SMG" or
+		defName="Gun_BattleCarbine" or
+		defName="Gun_CrudeSMG" or
+		defName="Gun_Carbine" or
+		defName="Gun_AdvancedPDW" or
+		defName="Gun_HMG" or
+		defName="Gun_SAW" or
+		defName="Gun_LightMinigun" or
+		defName="Gun_CrudeLMG" or
+		defName="Gun_ServiceHMG"
+	]/tools</xpath>
     <value>
       <tools>
         <li Class="CombatExtended.ToolCE">
@@ -84,9 +115,9 @@
   </li>
 
 <!--===== Bayonet =====-->
-      <li Class="PatchOperationReplace">
-  <xpath> /Defs/ThingDef[defName="Gun_CarbineBayonet" or defName="Gun_ServiceCarbineBayonet" or defName="Gun_CrudeCarbine"]/tools</xpath>
-  <value>
+<li Class="PatchOperationReplace">
+  <xpath>/Defs/ThingDef[defName="Gun_CarbineBayonet" or defName="Gun_ServiceCarbineBayonet" or defName="Gun_CrudeCarbine"]/tools</xpath>
+    <value>
     <tools>
 	  <li Class="CombatExtended.ToolCE">
 	    <label>Blade</label>
@@ -120,11 +151,11 @@
           <armorPenetrationBlunt>1.630</armorPenetrationBlunt>
           <linkedBodyPartsGroup>Barrel</linkedBodyPartsGroup>
         </li>
-	   </tools>
-	  </value>
-	</li>
+	</tools>
+	</value>
+</li>
 
-<!--== Combat Extended duplicate removal on mods part ==-->
+	<!--== Combat Extended duplicate removal on mods part ==-->
 	<li Class="PatchOperationRemove">
      <xpath>/Defs/ThingDef[defName="Gun_IAW"]</xpath>
     </li>
@@ -133,12 +164,12 @@
      <xpath>/Defs/ThingDef[defName="Gun_GrenadeLauncher"]</xpath>
     </li>
 
-<!--=== Removing dart rifle entirely until properly patched ===-->
+	<!--=== Removing dart rifle entirely until properly patched ===-->
 	<li Class="PatchOperationRemove">
      <xpath>/Defs/ThingDef[defName="Gun_DartRifle"]</xpath>
     </li>
 
-<!--==== Weapons ====-->
+	<!--==== Weapons ====-->
 	<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
 	<defName>Gun_VarmitRifle</defName>
 	<statBases>
@@ -146,8 +177,8 @@
       <SightsEfficiency>1.24</SightsEfficiency>
       <ShotSpread>0.08</ShotSpread>
       <SwayFactor>1.43</SwayFactor>
-      <Bulk>4.25</Bulk>
-      <Mass>1.30</Mass>
+      <Bulk>9.00</Bulk>
+      <Mass>2.30</Mass>
       <RangedWeapon_Cooldown>0.67</RangedWeapon_Cooldown>
     </statBases>
     <Properties>
@@ -155,7 +186,7 @@
       <hasStandardCommand>True</hasStandardCommand>
       <defaultProjectile>Bullet_22LR_FMJ</defaultProjectile>
       <warmupTime>1</warmupTime>
-      <range>42</range>
+      <range>21</range>
       <soundCast>Shot_MachinePistol</soundCast>
       <soundCastTail>GunTail_Light</soundCastTail>
       <muzzleFlashScale>9</muzzleFlashScale>
