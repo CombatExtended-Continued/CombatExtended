@@ -96,28 +96,12 @@
             <xpath>Defs</xpath>
             <value>
 
-	<ThingCategoryDef>
-		<defName>AmmoCrudeRailgun</defName>
-		<label>Crude Railgun</label>
-		<parent>AmmoAdvanced</parent>
-		<iconPath>UI/Icons/ThingCategories/CaliberRailgunRifle</iconPath>
-	</ThingCategoryDef>
-
-	<CombatExtended.AmmoCategoryDef>
-		<defName>RailgunCrude</defName>
-		<label>Railgun crude</label>
-		<labelShort>Crude</labelShort>
-		<description>A simple, handmade projectile for railguns. Functional, but far less effective than a properly made sabot.</description>
-		<advanced>true</advanced>
-	</CombatExtended.AmmoCategoryDef>
-
 	<!-- ==================== AmmoSet ========================== -->
 
 	<CombatExtended.AmmoSetDef>
 		<defName>AmmoSet_GaussRevolver_HR</defName>
 		<label>Gauss Revolver</label>
 		<ammoTypes>
-			<Ammo_Coilgun_Crude>Bullet_GaussRevolver_Crude</Ammo_Coilgun_Crude>		
 			<Ammo_6mmRailgun_Sabot>Bullet_GaussRevolver_HR</Ammo_6mmRailgun_Sabot>
 		</ammoTypes>
 	</CombatExtended.AmmoSetDef>
@@ -126,36 +110,11 @@
 		<defName>AmmoSet_GaussRepeater_HR</defName>
 		<label>Gauss Repeater</label>
 		<ammoTypes>
-			<Ammo_Coilgun_Crude>Bullet_GaussRepeater_Crude</Ammo_Coilgun_Crude>		
 			<Ammo_6mmRailgun_Sabot>Bullet_GaussRepeater_HR</Ammo_6mmRailgun_Sabot>
 		</ammoTypes>
 	</CombatExtended.AmmoSetDef>
 
 	<!-- ==================== Ammo ========================== -->
-
-	<ThingDef Class="CombatExtended.AmmoDef" ParentName="SpacerSmallAmmoBase">
-		<defName>Ammo_Coilgun_Crude</defName>
-		<label>Crude railgun slug</label>
-		<description>A crude, handmade steel dart, designed for railgun weaponry. While functional, this projectile is inferior to properly made sabot rounds.</description>
-		<statBases>
-			<Mass>0.01</Mass>
-			<Bulk>0.008</Bulk>
-			<MarketValue>0.02</MarketValue>
-		</statBases>
-		<tradeTags inherit="false">
-			<li>CE_AutoEnableTrade</li>
-			<li>CE_AutoEnableCrafting_FueledSmithy</li>
-			<li>CE_AutoEnableCrafting_ElectricSmithy</li>
-		</tradeTags>
-		<thingCategories>
-			<li>AmmoCrudeRailgun</li>
-		</thingCategories>
-		<graphicData>
-			<texPath>Things/Ammo/Railgun/Rifle</texPath>
-			<graphicClass>CombatExtended.Graphic_StackCountRanged</graphicClass>
-		</graphicData>
-		<ammoClass>RailgunCrude</ammoClass>
-	</ThingDef>
 
 	<!-- ================== Projectiles ================== -->
 
@@ -173,26 +132,6 @@
 			<li>
 			<def>Bullet</def>
 			<amount>14</amount>
-			<chance>0.10</chance>
-			</li>
-			</secondaryDamage>			  
-		</projectile>   
-	</ThingDef>
-
-	<ThingDef Class="CombatExtended.Lasers.LaserBeamDefCE" ParentName="BaseLaserBullet">
-		<defName>Bullet_GaussRevolver_Crude</defName>
-		<label>Gauss revolver slug</label>
-		<projectile Class="CombatExtended.ProjectilePropertiesCE">
-			<isInstant>true</isInstant>
-			<damageFalloff>False</damageFalloff>
-			<damageDef>Bullet</damageDef>
-			<damageAmountBase>10</damageAmountBase>
-			<armorPenetrationSharp>18</armorPenetrationSharp>
-			<armorPenetrationBlunt>45.72</armorPenetrationBlunt>
-			<secondaryDamage>
-			<li>
-			<def>Bullet</def>
-			<amount>10</amount>
 			<chance>0.10</chance>
 			</li>
 			</secondaryDamage>			  
@@ -219,55 +158,6 @@
 		</projectile>    		
 	</ThingDef>
 
-	<ThingDef Class="CombatExtended.Lasers.LaserBeamDefCE" ParentName="BaseLaserBullet">
-		<defName>Bullet_GaussRepeater_Crude</defName>
-		<label>Gauss repeater slug</label>
-		<projectile Class="CombatExtended.ProjectilePropertiesCE">
-			<isInstant>true</isInstant>
-			<damageFalloff>False</damageFalloff>
-			<damageDef>Bullet</damageDef>
-			<damageAmountBase>12</damageAmountBase>
-			<armorPenetrationSharp>24</armorPenetrationSharp>
-			<armorPenetrationBlunt>75.58</armorPenetrationBlunt>
-			<secondaryDamage>
-			<li>
-			<def>Bullet</def>
-			<amount>12</amount>
-			<chance>0.10</chance>
-			</li>
-			</secondaryDamage>			  
-		</projectile>   
-	</ThingDef>
-
-
-	<!-- ==================== Recipe ========================== -->
-
-	<RecipeDef ParentName="AmmoRecipeBase">
-		<defName>MakeAmmo_Coilgun_Crude</defName>
-		<label>make crude railgun slug x200</label>
-		<description>Craft crude railgun slug cartridges.</description>
-		<jobString>Making crude railgun slug cartridges.</jobString>
-		<workAmount>800</workAmount>
-		<ingredients>
-			<li>
-				<filter>
-					<thingDefs>
-						<li>Steel</li>
-					</thingDefs>
-				</filter>
-				<count>6</count>
-			</li>
-		</ingredients>
-		<fixedIngredientFilter>
-			<thingDefs>
-				<li>Steel</li>
-			</thingDefs>
-		</fixedIngredientFilter>
-		<products>
-			<Ammo_Coilgun_Crude>200</Ammo_Coilgun_Crude>
-		</products>
-	</RecipeDef>
-
 	</value>
 	</match>
 	</li>
@@ -283,18 +173,18 @@
 	<!-- ==================== AmmoSet ========================== -->
 
 	<CombatExtended.AmmoSetDef>
-		<defName>AmmoSet_SalvagedLaserRepeater_HR</defName>
-		<label>Salvaged Laser Repeater</label>
+		<defName>AmmoSet_SalvagedLaserRevolver_HR</defName>
+		<label>Salvaged Laser Revolver</label>
 		<ammoTypes>
-			<Ammo_LaserChargePack>Bullet_SalvagedLaserRepeater_HR</Ammo_LaserChargePack>
+			<Ammo_LaserChargePack>Bullet_Laser_SalvagedLaserRevolver_HR</Ammo_LaserChargePack>
 		</ammoTypes>
 	</CombatExtended.AmmoSetDef>
 
 	<CombatExtended.AmmoSetDef>
-		<defName>AmmoSet_SalvagedLaserRevolver_HR</defName>
-		<label>Salvaged Laser Revolver</label>
+		<defName>AmmoSet_SalvagedLaserRepeater_HR</defName>
+		<label>Salvaged Laser Repeater</label>
 		<ammoTypes>
-			<Ammo_LaserChargePack>Bullet_SalvagedLaserRevolver_HR</Ammo_LaserChargePack>
+			<Ammo_LaserChargePack>Bullet_Laser_SalvagedLaserRepeater_HR</Ammo_LaserChargePack>
 		</ammoTypes>
 	</CombatExtended.AmmoSetDef>
 
@@ -302,7 +192,7 @@
 		<defName>AmmoSet_SalvagedLaserHuntingRifle_HR</defName>
 		<label>Salvaged Laser Hunting Rifle</label>
 		<ammoTypes>
-			<Ammo_LaserChargePack>Bullet_SalvagedLaserHuntingRifle_HR</Ammo_LaserChargePack>
+			<Ammo_LaserChargePack>Bullet_Laser_SalvagedLaserHuntingRifle_HR</Ammo_LaserChargePack>
 		</ammoTypes>
 	</CombatExtended.AmmoSetDef>
 
@@ -311,15 +201,16 @@
 	<!-- ================== Projectiles ================== -->
 
 	<ThingDef Class="CombatExtended.Lasers.LaserBeamDefCE" ParentName="LaserBulletGreen">
-		<defName>Bullet_SalvagedLaserRepeater_HR</defName>
+		<defName>Bullet_Laser_SalvagedLaserRevolver_HR</defName>
 		<projectile Class="CombatExtended.ProjectilePropertiesCE">
-			<damageAmountBase>6</damageAmountBase>
-			<armorPenetrationSharp>1</armorPenetrationSharp>
-			<armorPenetrationBlunt>1.36</armorPenetrationBlunt>
+            <damageDef>Bullet</damageDef>
+            <damageAmountBase>12</damageAmountBase>
+            <armorPenetrationSharp>15.5</armorPenetrationSharp>
+            <armorPenetrationBlunt>0.001</armorPenetrationBlunt>
 			<secondaryDamage>
 				<li>
 				<def>Bullet</def>
-				<amount>6</amount>
+				<amount>12</amount>
 				<chance>0.10</chance>
 				</li>
 			</secondaryDamage>			
@@ -327,15 +218,16 @@
 	</ThingDef>
 
 	<ThingDef Class="CombatExtended.Lasers.LaserBeamDefCE" ParentName="LaserBulletGreen">
-		<defName>Bullet_SalvagedLaserRevolver_HR</defName>
+		<defName>Bullet_Laser_SalvagedLaserRepeater_HR</defName>
 		<projectile Class="CombatExtended.ProjectilePropertiesCE">
-			<damageAmountBase>6</damageAmountBase>
-			<armorPenetrationSharp>1</armorPenetrationSharp>
-			<armorPenetrationBlunt>1.36</armorPenetrationBlunt>
+            <damageDef>Bullet</damageDef>
+            <damageAmountBase>20</damageAmountBase>
+            <armorPenetrationSharp>16.75</armorPenetrationSharp>
+            <armorPenetrationBlunt>0.001</armorPenetrationBlunt>
 			<secondaryDamage>
 				<li>
 				<def>Bullet</def>
-				<amount>6</amount>
+				<amount>20</amount>
 				<chance>0.10</chance>
 				</li>
 			</secondaryDamage>			
@@ -343,15 +235,16 @@
 	</ThingDef>
 
 	<ThingDef Class="CombatExtended.Lasers.LaserBeamDefCE" ParentName="LaserBulletGreen">
-		<defName>Bullet_SalvagedLaserHuntingRifle_HR</defName>
+		<defName>Bullet_Laser_SalvagedLaserHuntingRifle_HR</defName>
 		<projectile Class="CombatExtended.ProjectilePropertiesCE">
-			<damageAmountBase>6</damageAmountBase>
-			<armorPenetrationSharp>1</armorPenetrationSharp>
-			<armorPenetrationBlunt>1.36</armorPenetrationBlunt>
+            <damageDef>Bullet</damageDef>
+            <damageAmountBase>24</damageAmountBase>
+            <armorPenetrationSharp>18.75</armorPenetrationSharp>
+            <armorPenetrationBlunt>0.001</armorPenetrationBlunt>
 			<secondaryDamage>
 				<li>
 				<def>Bullet</def>
-				<amount>6</amount>
+				<amount>24</amount>
 				<chance>0.10</chance>
 				</li>
 			</secondaryDamage>			

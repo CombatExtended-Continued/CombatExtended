@@ -83,22 +83,32 @@
         </value>
       </li>
 
+      <!-- === Remove VWE Overheating Gizmo === -->
+
+      <li Class="PatchOperationRemove">
+        <xpath>/Defs/ThingDef[
+        defName = "VWEFT_Gun_SalvagedLaserRevolver" or 
+        defName = "VWEFT_Gun_SalvagedLaserRepeater" or        
+        defName = "VWEFT_Bullet_SalvagedLaserHuntingRifle"
+        ]/comps/li[@Class="VanillaWeaponsExpandedLaser.CompProperties_LaserCapacitor"]</xpath>
+      </li>
+
       <!-- === Salvaged Laser Revolver === -->
-<!--
+
       <li Class="CombatExtended.PatchOperationMakeGunCECompatible">
         <defName>VWEFT_Gun_SalvagedLaserRevolver</defName>
         <statBases>
           <Mass>1.40</Mass>
           <Bulk>2.60</Bulk>
           <SwayFactor>1.33</SwayFactor>
-          <ShotSpread>0.08</ShotSpread>
+          <ShotSpread>0.07</ShotSpread>
           <SightsEfficiency>0.7</SightsEfficiency>
-          <RangedWeapon_Cooldown>0.5</RangedWeapon_Cooldown>
+          <RangedWeapon_Cooldown>0.65</RangedWeapon_Cooldown>
         </statBases>
         <Properties>
           <verbClass>CombatExtended.Verb_ShootCE</verbClass>
           <hasStandardCommand>True</hasStandardCommand>
-          <defaultProjectile>Bullet_Laser_SalvagedLaserPistol</defaultProjectile>
+          <defaultProjectile>Bullet_Laser_SalvagedLaserRevolver_HR</defaultProjectile>
           <warmupTime>0.6</warmupTime>
           <range>16</range>
           <soundCast>VWE_UnstableLaserShot_Light</soundCast>
@@ -106,7 +116,7 @@
           <muzzleFlashScale>9</muzzleFlashScale>
         </Properties>
         <AmmoUser>
-          <magazineSize>20</magazineSize>
+          <magazineSize>16</magazineSize>
           <reloadTime>4</reloadTime>
           <ammoSet>AmmoSet_SalvagedLaserRevolver_HR</ammoSet>
         </AmmoUser>
@@ -118,9 +128,9 @@
           <li>CE_OneHandedWeapon</li>
         </weaponTags>
       </li>
--->
+
       <!-- === Salvaged Laser Repeater === -->
- <!--
+ 
       <li Class="CombatExtended.PatchOperationMakeGunCECompatible">
         <defName>VWEFT_Gun_SalvagedLaserRepeater</defName>
         <statBases>
@@ -129,13 +139,12 @@
           <SwayFactor>1.37</SwayFactor>
           <ShotSpread>0.08</ShotSpread>
           <SightsEfficiency>1.00</SightsEfficiency>
-          <RangedWeapon_Cooldown>0.45</RangedWeapon_Cooldown>
+          <RangedWeapon_Cooldown>0.55</RangedWeapon_Cooldown>
         </statBases>
         <Properties>
-          <recoilAmount>0.01</recoilAmount>
           <verbClass>CombatExtended.Verb_ShootCE</verbClass>
           <hasStandardCommand>True</hasStandardCommand>
-          <defaultProjectile>Bullet_Laser_SalvagedLaserRifle</defaultProjectile>
+          <defaultProjectile>Bullet_Laser_SalvagedLaserRepeater_HR</defaultProjectile>
           <warmupTime>1</warmupTime>
           <range>62</range> 
           <soundCast>VWE_UnstableLaserShot_Rifle</soundCast>
@@ -143,7 +152,7 @@
           <muzzleFlashScale>9</muzzleFlashScale>
         </Properties>
         <AmmoUser>
-          <magazineSize>60</magazineSize>
+          <magazineSize>20</magazineSize>
           <reloadTime>4</reloadTime>
           <ammoSet>AmmoSet_SalvagedLaserRepeater_HR</ammoSet>
         </AmmoUser>
@@ -155,9 +164,9 @@
           <li>SalvagedLaserGun</li>
         </weaponTags>		
       </li>
--->
+
       <!-- === Salvaged Laser Hunting Rifle === -->
-<!--
+
       <li Class="CombatExtended.PatchOperationMakeGunCECompatible">
         <defName>VWEFT_Bullet_SalvagedLaserHuntingRifle</defName>
         <statBases>
@@ -165,21 +174,21 @@
           <Bulk>13.50</Bulk>
           <SwayFactor>1.35</SwayFactor>
           <ShotSpread>0.03</ShotSpread>
-          <SightsEfficiency>2.36</SightsEfficiency>
-          <RangedWeapon_Cooldown>0.65</RangedWeapon_Cooldown>
+          <SightsEfficiency>1.86</SightsEfficiency>
+          <RangedWeapon_Cooldown>0.78</RangedWeapon_Cooldown>
         </statBases>
         <Properties>
           <verbClass>CombatExtended.Verb_ShootCE</verbClass>
           <hasStandardCommand>True</hasStandardCommand>
           <defaultProjectile>Bullet_Laser_SalvagedLaserHuntingRifle_HR</defaultProjectile>
           <warmupTime>1.85</warmupTime>
-          <range>81</range>
+          <range>76</range>
           <soundCast>VWE_LaserShot_Heavy</soundCast>
           <soundCastTail>GunTail_Heavy</soundCastTail>
           <muzzleFlashScale>9</muzzleFlashScale>
         </Properties>
         <AmmoUser>
-          <magazineSize>15</magazineSize>
+          <magazineSize>12</magazineSize>
           <reloadTime>4</reloadTime>
           <ammoSet>AmmoSet_SalvagedLaserHuntingRifle_HR</ammoSet>
         </AmmoUser>
@@ -190,7 +199,7 @@
           <li>SalvagedLaserGun</li>
         </weaponTags>			
       </li>
--->
+
 		  </operations>
 		  </match>					
 		</match>			
