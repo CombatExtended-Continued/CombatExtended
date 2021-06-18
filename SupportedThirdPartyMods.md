@@ -162,6 +162,7 @@ Not Only Just a Cannon  |
 Orassans	|
 Outer Rim - Tatooine    |
 Palm Cats   |
+Pawnbold Race   |
 Penguin	|
 Polarisbloc - Security Force	|
 Prestige Specialist Armours	|
