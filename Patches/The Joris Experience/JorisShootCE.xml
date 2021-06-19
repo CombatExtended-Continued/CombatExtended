@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+		<li>The Joris Experience</li>
+		</mods>
+
+			<match Class="PatchOperationSequence">
+				<operations>
+
+				<!-- Syntax
+					<li Class="PatchOperationReplace">
+						<xpath>/Defs/ThingDef[defName=""]/verbs</xpath>
+							<value>
+								<verbs>
+									<li Class="CombatExtended.VerbPropertiesCE">
+										<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+										...
+									</li>
+								</verbs>
+							</value>
+					</li>
+				-->
+
+					<li Class="PatchOperationReplace">
+						<xpath>/Defs/ThingDef[defName="JECom_IsaacJoris"]/verbs</xpath>
+							<value>
+								<verbs>
+									<li Class="CombatExtended.VerbPropertiesCE">
+										<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+											<hasStandardCommand>true</hasStandardCommand>
+											<defaultProjectile>JE_Tears</defaultProjectile>
+											<warmupTime>2</warmupTime>
+											<burstShotCount>8</burstShotCount>
+											<ticksBetweenBurstShots>10</ticksBetweenBurstShots>
+											<minRange>1</minRange>
+											<range>18</range>
+											<label>tears</label>	  				
+											<soundCast>JE_TearsSound</soundCast>
+											<muzzleFlashScale>0</muzzleFlashScale>
+											<commonality>1</commonality>
+									</li>
+								</verbs>
+							</value>
+					</li>
+
+					<li Class="PatchOperationReplace">
+						<xpath>/Defs/ThingDef[defName="JE_Joku"]/verbs</xpath>
+							<value>
+								<verbs>
+									<li Class="CombatExtended.VerbPropertiesCE">
+										<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+										<hasStandardCommand>true</hasStandardCommand>
+										<defaultProjectile>JE_BeamAttack</defaultProjectile>
+										<warmupTime>2.4</warmupTime>
+										<burstShotCount>1</burstShotCount>
+										<minRange>1</minRange>
+										<range>25</range>	
+										<label>yellow kamehameha</label>	  				
+										<soundCast>JE_PoisonBreathSound</soundCast>
+										<muzzleFlashScale>0</muzzleFlashScale>
+										<commonality>1</commonality>
+									</li>
+								</verbs>
+							</value>
+					</li>
+
+
+				</operations>
+			</match>
+	</Operation>
+</Patch>

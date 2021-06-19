@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+	
+	<Operation Class="PatchOperationFindMod">
+    <mods>
+		<li>Save Our Ship 2</li>
+    </mods>
+		<match Class="PatchOperationSequence">
+		<operations>
+		
+		<li Class="PatchOperationReplace">
+			<xpath>/Defs/DamageDef[
+				defName="ShipPlasmaSmall" or
+				defName="BombKinetic"
+			]/defaultArmorPenetration</xpath>
+			<value>
+				<defaultArmorPenetration>150</defaultArmorPenetration>
+			</value>
+		</li>
+		
+		<!-- Small lasers do low damage and are unlikely to kill -->
+		<li Class="PatchOperationReplace">
+			<xpath>/Defs/DamageDef[
+				defName="ShipLaserSmall" or
+				defName="ShipLaserTwo" or
+				defName="BombKineticLarge" or
+				defName="ShipPlasmaLarge"
+			]/defaultArmorPenetration</xpath>
+			<value>
+				<defaultArmorPenetration>500</defaultArmorPenetration>
+			</value>
+		</li>
+			
+		</operations>
+		</match>
+	</Operation>
+	
+</Patch>

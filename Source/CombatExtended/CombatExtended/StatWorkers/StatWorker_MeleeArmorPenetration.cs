@@ -13,6 +13,56 @@ namespace CombatExtended
     {
         public override string GetStatDrawEntryLabel(StatDef stat, float value, ToStringNumberSense numberSense, StatRequest optionalReq, bool finalized = true)
         {
+            return GetFinalDisplayValue(optionalReq);
+        }
+
+        public override string GetExplanationUnfinalized(StatRequest req, ToStringNumberSense numberSense)
+        {
+            var tools = (req.Def as ThingDef)?.tools;
+
+            if (tools.NullOrEmpty())
+            {
+                return base.GetExplanationUnfinalized(req, numberSense);
+            }
+            var stringBuilder = new StringBuilder();
+            var penetrationFactor = GetPenetrationFactor(req);
+            stringBuilder.AppendLine("CE_WeaponPenetrationFactor".Translate() + ": " + penetrationFactor.ToStringByStyle(ToStringStyle.PercentZero));
+            stringBuilder.AppendLine();
+            foreach (ToolCE tool in tools)
+            {
+                var maneuvers = DefDatabase<ManeuverDef>.AllDefsListForReading.Where(d => tool.capacities.Contains(d.requiredCapacity));
+                var maneuverString = "(";
+                foreach (var maneuver in maneuvers)
+                {
+                    maneuverString += maneuver.ToString() + "/";
+                }
+                maneuverString = maneuverString.TrimmedToLength(maneuverString.Length - 1) + ")";
+
+                stringBuilder.AppendLine("  " + "Tool".Translate() + ": " + tool.ToString() + " " + maneuverString);
+                stringBuilder.AppendLine(string.Format("    {0}: {1} x {2} = {3} {4}",
+                    "CE_DescSharpPenetration".Translate(),
+                    tool.armorPenetrationSharp.ToStringByStyle(ToStringStyle.FloatMaxTwo),
+                    penetrationFactor.ToStringByStyle(ToStringStyle.FloatMaxThree),
+                    (tool.armorPenetrationSharp * penetrationFactor).ToStringByStyle(ToStringStyle.FloatMaxTwo),
+                    "CE_mmRHA".Translate()));
+                stringBuilder.AppendLine(string.Format("    {0}: {1} x {2} = {3} {4}",
+                    "CE_DescBluntPenetration".Translate(),
+                    tool.armorPenetrationBlunt.ToStringByStyle(ToStringStyle.FloatMaxTwo),
+                    penetrationFactor.ToStringByStyle(ToStringStyle.FloatMaxThree),
+                    (tool.armorPenetrationBlunt * penetrationFactor).ToStringByStyle(ToStringStyle.FloatMaxTwo),
+                    "CE_MPa".Translate()));
+                stringBuilder.AppendLine();
+            }
+            return stringBuilder.ToString();
+        }
+
+        public override string GetExplanationFinalizePart(StatRequest req, ToStringNumberSense numberSense, float finalVal)
+        {
+            return "StatsReport_FinalValue".Translate() + ": " + GetFinalDisplayValue(req);
+        }
+
+        private string GetFinalDisplayValue(StatRequest optionalReq)
+        {
             var tools = (optionalReq.Def as ThingDef)?.tools;
             if (tools.NullOrEmpty())
             {
@@ -37,51 +87,27 @@ namespace CombatExtended
                 totalAveragePenSharp += weightFactor * tool.armorPenetrationSharp;
                 totalAveragePenBlunt += weightFactor * tool.armorPenetrationBlunt;
             }
-            var penMult = optionalReq.Thing?.GetStatValue(CE_StatDefOf.MeleePenetrationFactor) ?? 1f;
+            var penetrationFactor = GetPenetrationFactor(optionalReq);
 
-            return (totalAveragePenSharp * penMult).ToStringByStyle(ToStringStyle.FloatMaxTwo) + " " + "CE_mmRHA".Translate()
+            return (totalAveragePenSharp * penetrationFactor).ToStringByStyle(ToStringStyle.FloatMaxTwo) + " " + "CE_mmRHA".Translate()
                 + ", "
-                + (totalAveragePenBlunt * penMult).ToStringByStyle(ToStringStyle.FloatMaxTwo) + " " + "CE_MPa".Translate();
+                + (totalAveragePenBlunt * penetrationFactor).ToStringByStyle(ToStringStyle.FloatMaxTwo) + " " + "CE_MPa".Translate();
         }
 
-        public override string GetExplanationUnfinalized(StatRequest req, ToStringNumberSense numberSense)
+        private float GetPenetrationFactor(StatRequest req)
         {
-            var tools = (req.Def as ThingDef)?.tools;
-
-            if (tools.NullOrEmpty())
+            var penetrationFactor = 1f;
+            if (req.Thing != null)
             {
-                return base.GetExplanationUnfinalized(req, numberSense);
+                penetrationFactor = req.Thing.GetStatValue(CE_StatDefOf.MeleePenetrationFactor);
             }
-            var stringBuilder = new StringBuilder();
-            var penMult = req.Thing?.GetStatValue(CE_StatDefOf.MeleePenetrationFactor) ?? 1f;
-            stringBuilder.AppendLine("CE_WeaponPenetrationFactor".Translate()+": " + penMult.ToStringByStyle(ToStringStyle.PercentZero));
-            stringBuilder.AppendLine();
-            foreach (ToolCE tool in tools)
+            else
             {
-                var maneuvers = DefDatabase<ManeuverDef>.AllDefsListForReading.Where(d => tool.capacities.Contains(d.requiredCapacity));
-                var maneuverString = "(";
-                foreach(var maneuver in maneuvers)
-                {
-                    maneuverString += maneuver.ToString() + "/";
-                }
-                maneuverString = maneuverString.TrimmedToLength(maneuverString.Length - 1) + ")";
-
-                stringBuilder.AppendLine("  "+"Tool".Translate()+": " + tool.ToString() + " " + maneuverString);
-                stringBuilder.AppendLine(string.Format("    {0}: {1} x {2} = {3} {4}",
-                    "CE_DescSharpPenetration".Translate(),
-                    tool.armorPenetrationSharp.ToStringByStyle(ToStringStyle.FloatMaxTwo),
-                    penMult.ToStringByStyle(ToStringStyle.FloatMaxThree),
-                    (tool.armorPenetrationSharp * penMult).ToStringByStyle(ToStringStyle.FloatMaxTwo),
-                    "CE_mmRHA".Translate()));
-                stringBuilder.AppendLine(string.Format("    {0}: {1} x {2} = {3} {4}",
-                    "CE_DescBluntPenetration".Translate(),
-                    tool.armorPenetrationBlunt.ToStringByStyle(ToStringStyle.FloatMaxTwo),
-                    penMult.ToStringByStyle(ToStringStyle.FloatMaxThree),
-                    (tool.armorPenetrationBlunt * penMult).ToStringByStyle(ToStringStyle.FloatMaxTwo),
-                    "CE_MPa".Translate()));
-                stringBuilder.AppendLine();
+                //Try to get melee penetration factor/offsets from stuff props if available
+                penetrationFactor *= req.StuffDef?.stuffProps?.statFactors?.FirstOrDefault(t => t.stat == CE_StatDefOf.MeleePenetrationFactor)?.value ?? 1f;
+                penetrationFactor += req.StuffDef?.stuffProps?.statOffsets?.FirstOrDefault(t => t.stat == CE_StatDefOf.MeleePenetrationFactor)?.value ?? 0f;
             }
-            return stringBuilder.ToString();
+            return penetrationFactor;
         }
 
     }

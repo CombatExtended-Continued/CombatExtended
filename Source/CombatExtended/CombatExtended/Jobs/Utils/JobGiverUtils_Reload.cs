@@ -130,7 +130,7 @@ namespace CombatExtended.CombatExtended.Jobs.Utils
 			var ammoComp = turret.GetAmmo();
 			AmmoDef requestedAmmo = ammoComp.SelectedAmmo;	
 			var bestAmmo = FindBestAmmo(pawn, requestedAmmo);   // try to find currently selected ammo first
-			if (bestAmmo == null && ammoComp.EmptyMagazine && requestedAmmo.AmmoSetDefs != null && turret.Faction == Faction.OfPlayer)
+			if (bestAmmo == null && ammoComp.EmptyMagazine && requestedAmmo.AmmoSetDefs != null && turret.Faction != Faction.OfPlayer)
 			{
 				//Turret's selected ammo not available, and magazine is empty. Pick a new ammo from the set to load.
 				foreach (AmmoSetDef set in requestedAmmo.AmmoSetDefs)

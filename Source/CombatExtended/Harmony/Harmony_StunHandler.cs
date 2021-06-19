@@ -22,11 +22,15 @@ namespace CombatExtended.HarmonyCE
 	{
 
 	    Pawn pawn = __instance.parent as Pawn;
-	    if (pawn == null || pawn.Downed || pawn.Dead)
+            float bodySize = 1.0f;
+	    if (pawn != null)
 	    {
-		return false;
+                if (pawn.Downed || pawn.Dead)
+                {
+                    return false;
+                }
+		bodySize = pawn.BodySize;
 	    }
-	    float bodySize = pawn.BodySize;
 	    
 	    if (dinfo.Def == DamageDefOf.EMP && affectedByEMP)
 	    {

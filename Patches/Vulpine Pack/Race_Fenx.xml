@@ -33,12 +33,14 @@
 	<!-- === Shouldn't need to change this at all		  === -->
 	<!-- === Unless you changed the name of your BasePawn === -->
 	<!-- === In which case change "BasePawn" to that name === -->
-		<xpath>Defs/ThingDef[@Name="BaseFnnxPawn"]/comps</xpath>
+		<xpath>Defs/ThingDef[@Name="BaseFnnxPawn"]</xpath>
 		<value>
+		    <comps>
 			<li>
 				<compClass>CombatExtended.CompPawnGizmo</compClass>
 			</li>
 			<li Class="CombatExtended.CompProperties_Suppressable" />
+		    </comps>
 		</value>
 	</li>
 	
@@ -101,25 +103,6 @@
 			</li>
 	<!-- === BaseBodySize, ArmorRatings, MoveSpeed, and BaseHealth should already be set. I think. === -->
 	<!-- ===================================== -->
-	<!-- === Adds In Inspector Tabs 	   === -->
-	<!-- === Inventory and all that jazz   === -->
-	<!-- === Again, no need to change 'em  === -->
-	<!-- === Unless you changed it         === -->
-	<!-- === then change 'em			   === -->
-	
-	<li Class="PatchOperationReplace">
-		<xpath>Defs/ThingDef[@Name="BaseFnnxPawn"]/inspectorTabs/li[.="ITab_Pawn_Gear"]</xpath>
-		<value>
-			<li>CombatExtended.ITab_Inventory</li>
-		</value>
-	</li>
-
-	<li Class="PatchOperationAdd">
-		<xpath>Defs/ThingDef[@Name="BaseFnnxPawn"]/comps</xpath>
-		<value>
-			<li Class="CombatExtended.CompProperties_Inventory" />
-		</value>
-	</li>
 
 			</operations>		
 		</match>

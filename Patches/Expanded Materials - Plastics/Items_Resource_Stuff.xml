@@ -1,0 +1,358 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+			<li>Expanded Materials - Plastics</li>
+		</mods>
+		<match Class="PatchOperationSequence">
+			<operations>
+
+			<!-- === Polyester Cloth === -->
+			<li Class="PatchOperationAdd">
+				<xpath>/Defs/ThingDef[defName="VMEu_PolyesterCloth"]/statBases</xpath>
+				<value>
+					<Bulk>0.03</Bulk>
+				</value>
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>/Defs/ThingDef[defName="VMEu_PolyesterCloth"]/statBases/StuffPower_Armor_Sharp</xpath>
+				<value>
+					<StuffPower_Armor_Sharp>0.012</StuffPower_Armor_Sharp>
+				</value>
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>/Defs/ThingDef[defName="VMEu_PolyesterCloth"]/statBases/StuffPower_Armor_Blunt</xpath>
+				<value>
+					<StuffPower_Armor_Blunt>0.015</StuffPower_Armor_Blunt>
+				</value>
+			</li>
+
+			<!-- === Plastic Pellets - T1 === -->
+			<li Class="PatchOperationAdd">
+				<xpath>/Defs/ThingDef[defName="VMEu_PlasticPellets_TierOne"]/statBases</xpath>
+				<value>
+					<Bulk>0.03</Bulk>
+				</value>
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>/Defs/ThingDef[defName="VMEu_PlasticPellets_TierOne"]/statBases/StuffPower_Armor_Sharp</xpath>
+				<value>
+					<StuffPower_Armor_Sharp>0.4</StuffPower_Armor_Sharp>
+				</value>
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>/Defs/ThingDef[defName="VMEu_PlasticPellets_TierOne"]/statBases/StuffPower_Armor_Blunt</xpath>
+				<value>
+					<StuffPower_Armor_Blunt>0.6</StuffPower_Armor_Blunt>
+				</value>
+			</li>
+
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName="VMEu_PlasticPellets_TierOne"]/stuffProps/statFactors</xpath>
+				<value>
+					<Mass>0.75</Mass>
+					<MeleePenetrationFactor>0.5</MeleePenetrationFactor>
+				</value>
+			</li>
+
+			<!-- === Plastic Pellets - T2 === -->
+			<li Class="PatchOperationAdd">
+				<xpath>/Defs/ThingDef[defName="VMEu_PlasticPellets_TierTwo"]/statBases</xpath>
+				<value>
+					<Bulk>0.03</Bulk>
+				</value>
+			</li>
+
+			<li Class="PatchOperationAdd">
+				<xpath>/Defs/ThingDef[defName="VMEu_PlasticPellets_TierTwo"]/stuffProps/categories</xpath>
+				<value>
+					<li>Steeled</li>
+				</value>
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>/Defs/ThingDef[defName="VMEu_PlasticPellets_TierTwo"]/statBases/StuffPower_Armor_Sharp</xpath>
+				<value>
+					<StuffPower_Armor_Sharp>0.8</StuffPower_Armor_Sharp>
+				</value>
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>/Defs/ThingDef[defName="VMEu_PlasticPellets_TierTwo"]/statBases/StuffPower_Armor_Blunt</xpath>
+				<value>
+					<StuffPower_Armor_Blunt>1.2</StuffPower_Armor_Blunt>
+				</value>
+			</li>
+
+			<!-- UHMWPE is a fairly good thermal conductor, making it poor thermal armor. === -->
+			<li Class="PatchOperationReplace">
+				<xpath>/Defs/ThingDef[defName="VMEu_PlasticPellets_TierTwo"]/statBases/StuffPower_Armor_Heat</xpath>
+				<value>
+					<StuffPower_Armor_Heat>0.01</StuffPower_Armor_Heat>
+				</value>
+			</li>
+
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName="VMEu_PlasticPellets_TierTwo"]/stuffProps/statFactors</xpath>
+				<value>
+					<Mass>0.8</Mass>
+					<MeleePenetrationFactor>0.7</MeleePenetrationFactor>
+				</value>
+			</li>
+
+			<!-- === Misc. === -->
+			<li Class="PatchOperationAdd">
+				<xpath>/Defs/ThingDef[defName="VMEu_AsphaltMix" or defName="VMEu_LiquidPlastic_TierOne" or defName="VMEu_LiquidPlastic_TierTwo"]/statBases</xpath>
+				<value>
+					<Bulk>0.1</Bulk>
+				</value>
+			</li>
+
+			<li Class="PatchOperationAdd">
+				<xpath>/Defs/ThingDef[defName="VMEu_NylonRoll"]/statBases</xpath>
+				<value>
+					<Bulk>0.05</Bulk>
+				</value>
+			</li>
+
+			<!-- === Shell Recipes === -->
+
+			<!-- === HE === -->			
+			<li Class="PatchOperationRemove">
+				<xpath>/Defs/RecipeDef[defName="VMEu_MakePolymerShell_HighExplosive"]/ingredients/li[2]</xpath>
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>/Defs/RecipeDef[defName="VMEu_MakePolymerShell_HighExplosive"]/fixedIngredientFilter/thingDefs/li[.="Chemfuel"]</xpath>
+				<value>
+					<li>FSX</li>
+					<li>ComponentIndustrial</li>
+				</value>				
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>/Defs/RecipeDef[defName="VMEu_MakePolymerShell_HighExplosive"]/workAmount</xpath>
+				<value>
+					<workAmount>10600</workAmount>
+				</value>				
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>/Defs/RecipeDef[defName="VMEu_MakePolymerShell_HighExplosive"]/products</xpath>
+				<value>
+					<products>
+					<Shell_HighExplosive>5</Shell_HighExplosive>
+					</products>
+				</value>				
+			</li>
+
+			<li Class="PatchOperationAdd">
+				<xpath>/Defs/RecipeDef[defName="VMEu_MakePolymerShell_HighExplosive"]/ingredients</xpath>
+				<value>
+					<li>
+						<filter>
+						<thingDefs>
+							<li>FSX</li>
+						</thingDefs>
+						</filter>
+						<count>10</count>
+					</li>
+					<li>
+						<filter>
+						<thingDefs>
+							<li>ComponentIndustrial</li>
+						</thingDefs>
+						</filter>
+						<count>2</count>
+					</li>
+				</value>
+			</li>
+
+			<!-- === Incendiary === -->			
+			<li Class="PatchOperationRemove">
+				<xpath>/Defs/RecipeDef[defName="VMEu_MakePolymerShell_Incendiary"]/ingredients/li[2]</xpath>
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>/Defs/RecipeDef[defName="VMEu_MakePolymerShell_Incendiary"]/fixedIngredientFilter/thingDefs/li[.="Chemfuel"]</xpath>
+				<value>
+					<li>Prometheum</li>
+					<li>ComponentIndustrial</li>
+				</value>				
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>/Defs/RecipeDef[defName="VMEu_MakePolymerShell_Incendiary"]/workAmount</xpath>
+				<value>
+					<workAmount>9000</workAmount>
+				</value>				
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>/Defs/RecipeDef[defName="VMEu_MakePolymerShell_Incendiary"]/products</xpath>
+				<value>
+					<products>
+					<Shell_Incendiary>5</Shell_Incendiary>
+					</products>
+				</value>				
+			</li>
+
+			<li Class="PatchOperationAdd">
+				<xpath>/Defs/RecipeDef[defName="VMEu_MakePolymerShell_Incendiary"]/ingredients</xpath>
+				<value>
+					<li>
+						<filter>
+						<thingDefs>
+							<li>Prometheum</li>
+						</thingDefs>
+						</filter>
+						<count>1</count>
+					</li>
+					<li>
+						<filter>
+						<thingDefs>
+							<li>ComponentIndustrial</li>
+						</thingDefs>
+						</filter>
+						<count>1</count>
+					</li>
+				</value>
+			</li>
+
+			<!-- === EMP === -->			
+			<li Class="PatchOperationReplace">
+				<xpath>/Defs/RecipeDef[defName="VMEu_MakePolymerShell_EMP"]/workAmount</xpath>
+				<value>
+					<workAmount>13800</workAmount>
+				</value>				
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>/Defs/RecipeDef[defName="VMEu_MakePolymerShell_EMP"]/products</xpath>
+				<value>
+					<products>
+					<Shell_EMP>5</Shell_EMP>
+					</products>
+				</value>				
+			</li>
+
+			<!-- === Smoke === -->			
+			<li Class="PatchOperationAdd">
+				<xpath>/Defs/RecipeDef[defName="VMEu_MakePolymerShell_Smoke"]/fixedIngredientFilter/thingDefs</xpath>
+				<value>
+					<li>Prometheum</li>
+					<li>ComponentIndustrial</li>
+				</value>				
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>/Defs/RecipeDef[defName="VMEu_MakePolymerShell_Smoke"]/workAmount</xpath>
+				<value>
+					<workAmount>6600</workAmount>
+				</value>				
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>/Defs/RecipeDef[defName="VMEu_MakePolymerShell_Smoke"]/products</xpath>
+				<value>
+					<products>
+					<Shell_Smoke>5</Shell_Smoke>
+					</products>
+				</value>				
+			</li>
+
+			<li Class="PatchOperationAdd">
+				<xpath>/Defs/RecipeDef[defName="VMEu_MakePolymerShell_Smoke"]/ingredients</xpath>
+				<value>
+					<li>
+						<filter>
+						<thingDefs>
+							<li>Prometheum</li>
+						</thingDefs>
+						</filter>
+						<count>2</count>
+					</li>
+					<li>
+						<filter>
+						<thingDefs>
+							<li>ComponentIndustrial</li>
+						</thingDefs>
+						</filter>
+						<count>2</count>
+					</li>
+				</value>
+			</li>
+
+			<!-- === Firefoam === -->			
+			<li Class="PatchOperationAdd">
+				<xpath>/Defs/RecipeDef[defName="VMEu_MakePolymerShell_Firefoam"]/fixedIngredientFilter/thingDefs</xpath>
+				<value>
+					<li>ComponentIndustrial</li>
+				</value>				
+			</li>
+
+			<li Class="PatchOperationAdd">
+				<xpath>/Defs/RecipeDef[defName="VMEu_MakePolymerShell_Firefoam"]/fixedIngredientFilter</xpath>
+				<value>
+					<categories>
+						<li>MeatRaw</li>
+					</categories>
+				</value>				
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>/Defs/RecipeDef[defName="VMEu_MakePolymerShell_Firefoam"]/workAmount</xpath>
+				<value>
+					<workAmount>8800</workAmount>
+				</value>				
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>/Defs/RecipeDef[defName="VMEu_MakePolymerShell_Firefoam"]/products</xpath>
+				<value>
+					<products>
+					<Shell_Firefoam>5</Shell_Firefoam>
+					</products>
+				</value>				
+			</li>
+
+			<li Class="PatchOperationAdd">
+				<xpath>/Defs/RecipeDef[defName="VMEu_MakePolymerShell_Firefoam"]/ingredients</xpath>
+				<value>
+					<li>
+						<filter>
+						<categories>
+							<li>MeatRaw</li>
+						</categories>
+						</filter>
+						<count>17</count>
+					</li>
+					<li>
+						<filter>
+						<thingDefs>
+							<li>ComponentIndustrial</li>
+						</thingDefs>
+						</filter>
+						<count>2</count>
+					</li>
+				</value>
+			</li>
+
+			<!-- === Anti-Grain === -->			
+			<li Class="PatchOperationReplace">
+				<xpath>/Defs/RecipeDef[defName="VMEu_MakeAntigrainWarhead"]/workAmount</xpath>
+				<value>
+					<workAmount>4750</workAmount>
+				</value>				
+			</li>
+
+
+			</operations>
+		</match>
+	</Operation>
+
+</Patch>

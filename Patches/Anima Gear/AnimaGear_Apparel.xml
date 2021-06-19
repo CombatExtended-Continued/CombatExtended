@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+
+  <Operation Class="PatchOperationFindMod">
+    <mods>
+      <li>Anima Gear</li>
+    </mods>
+    <match Class="PatchOperationSequence">
+      <operations>
+
+		<!-- Anima Tribalwear -->
+
+		<li Class="PatchOperationAdd">
+			<xpath>Defs/ThingDef[defName="Apparel_AnimaTribal"]/statBases</xpath>
+			<value>
+				<Bulk>1</Bulk>
+				<WornBulk>1</WornBulk>
+			</value>
+		</li>
+
+		<li Class="PatchOperationAdd">
+			<xpath>Defs/ThingDef[defName="Apparel_AnimaTribal"]/statBases</xpath>
+			<value>
+				<ArmorRating_Sharp>0.03</ArmorRating_Sharp>
+			</value>
+		</li>	
+
+		<li Class="PatchOperationAdd">
+			<xpath>Defs/ThingDef[defName="Apparel_AnimaTribal"]/statBases</xpath>
+			<value>
+				<ArmorRating_Blunt>0.045</ArmorRating_Blunt>
+			</value>
+		</li>
+
+		<!-- Anima Crown -->
+
+		<li Class="PatchOperationAdd">
+			<xpath>Defs/ThingDef[defName="Apparel_AnimaCrown"]/statBases</xpath>
+			<value>
+				<Bulk>1</Bulk>
+				<WornBulk>1</WornBulk>
+			</value>
+		</li>
+
+		<li Class="PatchOperationReplace">
+			<xpath>Defs/ThingDef[defName="Apparel_AnimaCrown"]/statBases/ArmorRating_Sharp</xpath>
+			<value>
+				<ArmorRating_Sharp>0.10</ArmorRating_Sharp>
+			</value>
+		</li>	
+
+		<li Class="PatchOperationReplace">
+			<xpath>Defs/ThingDef[defName="Apparel_AnimaCrown"]/statBases/ArmorRating_Blunt</xpath>
+			<value>
+				<ArmorRating_Blunt>0.15</ArmorRating_Blunt>
+			</value>
+		</li>
+
+		<!-- Anima War Mask & Veil -->
+
+		<li Class="PatchOperationAdd">
+			<xpath>Defs/ThingDef[defName="Apparel_AnimaWarMask" or defName="Apparel_AnimaWarVeil"]/statBases</xpath>
+			<value>
+				<Bulk>1</Bulk>
+				<WornBulk>1</WornBulk>
+			</value>
+		</li>
+
+		<li Class="PatchOperationAdd">
+			<xpath>Defs/ThingDef[defName="Apparel_AnimaWarMask" or defName="Apparel_AnimaWarVeil"]/equippedStatOffsets</xpath>
+			<value>
+			<Suppressability>-0.25</Suppressability>
+			</value>
+		</li>
+
+		<li Class="PatchOperationReplace">
+			<xpath>Defs/ThingDef[defName="Apparel_AnimaWarMask"]/statBases/ArmorRating_Sharp</xpath>
+			<value>
+				<ArmorRating_Sharp>0.10</ArmorRating_Sharp>
+			</value>
+		</li>	
+
+		<li Class="PatchOperationReplace">
+			<xpath>Defs/ThingDef[defName="Apparel_AnimaWarMask"]/statBases/ArmorRating_Blunt</xpath>
+			<value>
+				<ArmorRating_Blunt>0.15</ArmorRating_Blunt>
+			</value>
+		</li>
+
+		<li Class="PatchOperationReplace">
+			<xpath>Defs/ThingDef[defName="Apparel_AnimaWarVeil"]/statBases/ArmorRating_Sharp</xpath>
+			<value>
+				<ArmorRating_Sharp>0.01</ArmorRating_Sharp>
+			</value>
+		</li>	
+
+		<li Class="PatchOperationAdd">
+			<xpath>Defs/ThingDef[defName="Apparel_AnimaWarVeil"]/statBases</xpath>
+			<value>
+				<ArmorRating_Blunt>0.015</ArmorRating_Blunt>
+			</value>
+		</li>
+
+		</operations>
+		</match>
+	</Operation>
+
+</Patch>
+
