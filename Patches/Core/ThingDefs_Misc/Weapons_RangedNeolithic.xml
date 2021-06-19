@@ -1,6 +1,22 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <Patch>
 
+  <!-- ========== Base Neolitihic Projectile ========== -->
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[@Name="BaseProjectileNeolithic"]/thingClass</xpath>
+		<value>
+			<thingClass>CombatExtended.BulletCE</thingClass>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[@Name="BaseProjectileNeolithic"]</xpath>
+		<value>
+      <projectile Class="CombatExtended.ProjectilePropertiesCE" />
+    </value>
+	</Operation>
+
   <!-- ========== Short bow ========== -->
 
   <Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
@@ -43,7 +59,7 @@
           	</capacities>
           	<power>7</power>
           	<cooldownTime>1.6</cooldownTime>
- 	 	<armorPenetrationBlunt>0.65</armorPenetrationBlunt>
+ 	 	        <armorPenetrationBlunt>0.65</armorPenetrationBlunt>
         </li>
       </tools>
     </value>
