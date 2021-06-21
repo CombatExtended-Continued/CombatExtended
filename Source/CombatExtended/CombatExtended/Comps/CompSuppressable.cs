@@ -119,7 +119,7 @@ namespace CombatExtended
             Scribe_Values.Look(ref ticksUntilDecay, "ticksUntilDecay", 0);
         }
 
-        public void AddSuppression(float amount, IntVec3 origin)
+        public void AddSuppression(float amount, IntVec3 origin, bool isFromExplosive)
         {
             Pawn pawn = parent as Pawn;
             if (pawn == null)
@@ -165,12 +165,7 @@ namespace CombatExtended
             {
                 isSuppressed = true;
                 Job reactJob = SuppressionUtility.GetRunForCoverJob(pawn);
-                if (reactJob == null && IsHunkering)
-                {
-                    reactJob = JobMaker.MakeJob(CE_JobDefOf.HunkerDown, pawn);
-                    LessonAutoActivator.TeachOpportunity(CE_ConceptDefOf.CE_Hunkering, pawn, OpportunityType.Critical);
-                }
-                if (reactJob != null && reactJob.def != pawn.CurJob?.def)
+                if (reactJob != null && reactJob.def != pawn.CurJob?.def && (!IsHunkering || isFromExplosive))
                 {
                 	//only reserve destination when we know for certain the pawn isn't already running for cover
                 	pawn.Map.pawnDestinationReservationManager.Reserve(pawn, reactJob, reactJob.GetTarget(TargetIndex.A).Cell);
@@ -181,6 +176,14 @@ namespace CombatExtended
                 {
                     // Crouch-walk
                     isCrouchWalking = true;
+                }
+                if (IsHunkering && pawn.jobs.curJob.def != CE_JobDefOf.HunkerDown && !pawn.jobs.jobQueue.Any(x => (x.job.def == CE_JobDefOf.HunkerDown))) // Don't add new hunkering jobs if the pawn is already hunkering or will hunker.
+                {
+                    if (reactJob == pawn.jobs.curJob)
+                        pawn.jobs.jobQueue.EnqueueFirst(JobMaker.MakeJob(CE_JobDefOf.HunkerDown, pawn));
+                    else
+                        pawn.jobs.StartJob(JobMaker.MakeJob(CE_JobDefOf.HunkerDown, pawn), JobCondition.InterruptForced, null, pawn.jobs.curJob?.def == JobDefOf.ManTurret);
+                    LessonAutoActivator.TeachOpportunity(CE_ConceptDefOf.CE_Hunkering, pawn, OpportunityType.Critical);
                 }
                 // Throw taunt
                 if (Rand.Chance(0.01f))

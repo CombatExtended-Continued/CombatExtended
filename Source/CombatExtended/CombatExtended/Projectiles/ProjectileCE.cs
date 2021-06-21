@@ -835,18 +835,18 @@ namespace CombatExtended
                         ((damageArmorCategory == CE_DamageArmorCategoryDefOf.Blunt) ?
                             ((!propsCE.damageFalloff || propsCE.explosionRadius == 0) ?
                                 Mathf.Max(def.projectile.GetDamageAmount(1) * 0.3f, propsCE.armorPenetrationBlunt) :
-                                Mathf.Lerp(Mathf.Max(def.projectile.GetDamageAmount(1) * 0.3f, propsCE.armorPenetrationBlunt), 0.6f, Mathf.Pow(pawn.Position.DistanceTo(Position) / propsCE.explosionRadius, 0.55f)) //This is basically a condensed version of ExplosionCE.GetArmorPenetrationAtCE. Any changes to GetArmorPenetrationAtCE should be also applied
+                                Mathf.Lerp(Mathf.Max(def.projectile.GetDamageAmount(1) * 0.3f, propsCE.armorPenetrationBlunt), 0.6f, Mathf.Pow(pawn.Position.DistanceTo(Position) / propsCE.explosionRadius, 0.55f)) //This is basically a condensed version of ExplosionCE.GetArmorPenetrationAtCE. Any changes to GetArmorPenetrationAtCE should be also applied to this.
                             ) :
                             propsCE.armorPenetrationSharp
                         )
                     ) : 0f
                 );
                 float armorMod = ((propsCE.damageDef.GetModExtension<DamageDefExtensionCE>() ?? new DamageDefExtensionCE()).isAmbientDamage ?
-                    (1 - Mathf.Clamp(pawn.GetStatValue(damageArmorCategory.armorRatingStat)*(pawn.RaceProps.IsFlesh && (damageArmorCategory == CE_DamageArmorCategoryDefOf.Electric) ? 0.25f : 1), 0, 1)) : //Hardcoded fleshy pawn electric damage resistance of 75%
+                    (1 - Mathf.Clamp(pawn.GetStatValue(damageArmorCategory.armorRatingStat)*(pawn.RaceProps.IsFlesh && (damageArmorCategory == CE_DamageArmorCategoryDefOf.Electric) ? 0.25f : 1), 0, 1)) : //Hardcoded fleshy pawn electric damage resistance of 75% (EMP grenades and Ion projectiles only deal 25% damage).
                     (penetrationAmount <= 0 ? 0 : 1 - Mathf.Clamp(pawn.GetStatValue((damageArmorCategory == CE_DamageArmorCategoryDefOf.Blunt) ? CE_StatDefOf.AverageBluntArmor : CE_StatDefOf.AverageSharpArmor) * 0.5f / penetrationAmount, 0, 1))
                 );
                 suppressionAmount *= armorMod;
-                compSuppressable.AddSuppression(suppressionAmount, OriginIV3);
+                compSuppressable.AddSuppression(suppressionAmount, OriginIV3, (propsCE.explosionRadius > 0) ? true : false);
             }
         }
         #region Tick/Draw
