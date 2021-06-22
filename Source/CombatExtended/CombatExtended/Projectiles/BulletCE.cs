@@ -19,7 +19,16 @@ namespace CombatExtended
 	protected virtual float DamageAmount
 	{
 	    get {
-		return def.projectile.GetDamageAmount(1);
+                ProjectilePropertiesCE projectilePropertiesCE = (ProjectilePropertiesCE)this.def.projectile;
+                if (projectilePropertiesCE.ShouldUsePublicDamage)
+                {
+                    return projectilePropertiesCE.PublicDamage;
+                }
+                else
+                {
+                    return def.projectile.GetDamageAmount(1);
+                }
+		        
 	    }
 	}
 
