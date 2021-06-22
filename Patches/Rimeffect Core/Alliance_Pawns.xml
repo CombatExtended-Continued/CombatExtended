@@ -47,7 +47,6 @@
 
 			<li Class="PatchOperationAddModExtension">
 				<xpath>Defs/PawnKindDef[
-					defName="RE_Alliance_MarineHeavy" or
 					defName="RE_Alliance_Adept" or
 					defName="RE_Alliance_Marine" or
 					defName="RE_Spectre" or
@@ -74,6 +73,35 @@
 					</li>
 				</value>
 			</li>
+
+			<li Class="PatchOperationAddModExtension">
+				<xpath>Defs/PawnKindDef[defName="RE_Alliance_MarineHeavy"
+					]</xpath>
+				<value>	
+					<li Class="CombatExtended.LoadoutPropertiesExtension">	
+						<primaryMagazineCount>
+							<min>6</min>
+							<max>12</max>
+						</primaryMagazineCount>
+						<sidearms>
+							<li>
+								<generateChance>0.75</generateChance>
+								<sidearmMoney>
+									<min>200</min>
+									<max>300</max>
+								</sidearmMoney>
+								<weaponTags>
+									<li>RE_Bullet_AlliancePistol</li>
+								</weaponTags>
+        								<magazineCount>
+          								<min>2</min>
+          								<max>3</max>
+        								</magazineCount>          
+							</li>
+						</sidearms>
+					</li>
+				</value>
+			</li>
 			
 			<li Class="PatchOperationAddModExtension">
 				<xpath>Defs/PawnKindDef[
@@ -83,7 +111,7 @@
 					<li Class="CombatExtended.LoadoutPropertiesExtension">	
 						<primaryMagazineCount>
 							<min>12</min>
-							<max>20</max>
+							<max>21</max>
 						</primaryMagazineCount>
 					</li>
 				</value>
