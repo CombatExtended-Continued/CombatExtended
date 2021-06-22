@@ -12,7 +12,7 @@ namespace CombatExtended
     {
         // public float armorPenetration = 0;
         public bool ShouldUsePublicDamage = false;
-        public int PublicDamage = 1;
+        public float PublicDamage = 1f;
         public int pelletCount = 1;
         public float spreadMult = 1;
         public List<SecondaryDamage> secondaryDamage = new List<SecondaryDamage>();
