@@ -11,6 +11,8 @@ namespace CombatExtended
     public class ProjectilePropertiesCE : ProjectileProperties
     {
         // public float armorPenetration = 0;
+        public bool ShouldUsePublicDamage = false;
+        public float PublicDamage = 1;
         public int pelletCount = 1;
         public float spreadMult = 1;
         public List<SecondaryDamage> secondaryDamage = new List<SecondaryDamage>();
