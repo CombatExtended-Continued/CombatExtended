@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>	
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+			<li>Vanilla Apparel Expanded — Accessories</li>
+		</mods>
+		<match Class="PatchOperationSequence">
+			<operations>
+
+			<!-- == Backpack == -->
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/VAE_Accessories.CaravanCapacityApparelDef[defName="VAEA_Apparel_Backpack"]/statBases</xpath>
+				<value>
+					<Bulk>3</Bulk>
+				</value>
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/VAE_Accessories.CaravanCapacityApparelDef[defName="VAEA_Apparel_Backpack"]/carryingCapacity</xpath>
+				<value>
+					<equippedStatOffsets>
+					<CarryBulk>30</CarryBulk>
+					</equippedStatOffsets>
+				</value>
+			</li>
+<!-- Changing the layer causes pink squares.
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/VAE_Accessories.CaravanCapacityApparelDef[defName="VAEA_Apparel_Backpack"]/apparel/layers</xpath>
+				<value>
+					<layers>
+						<li>Backpack</li>
+					</layers>
+				</value>
+			</li>
+-->
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/VAE_Accessories.CaravanCapacityApparelDef[defName="VAEA_Apparel_Backpack"]/apparel/bodyPartGroups</xpath>
+				<value>
+					<bodyPartGroups>
+						<li>Shoulders</li>
+					</bodyPartGroups>
+				</value>
+			</li>
+
+			<!-- == Banner == -->
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName="VAEA_Apparel_BattleBanner"]/statBases</xpath>
+				<value>
+					<Bulk>4</Bulk>
+					<WornBulk>2</WornBulk>
+				</value>
+			</li>
+
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName="VAEA_Apparel_BattleBanner"]/equippedStatOffsets</xpath>
+				<value>
+					<Suppressability>-0.25</Suppressability>
+				</value>
+			</li>
+
+			<!-- == Medbag, Toolbelt == -->
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName="VAEA_Apparel_MedicBag" or defName="VAEA_Apparel_ToolBelt"]/statBases</xpath>
+				<value>
+					<Bulk>3</Bulk>
+					<WornBulk>1</WornBulk>
+				</value>
+			</li>
+
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName="VAEA_Apparel_MedicBag" or defName="VAEA_Apparel_ToolBelt"]/equippedStatOffsets</xpath>
+				<value>
+					<CarryBulk>5</CarryBulk>
+				</value>
+			</li>
+
+			<!-- == Quiver, Ammobag == -->
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName="VAEA_Apparel_Quiver" or defName="VAEA_Apparel_AmmoPack"]/statBases</xpath>
+				<value>
+					<Bulk>3</Bulk>
+					<WornBulk>1</WornBulk>
+				</value>
+			</li>
+
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName="VAEA_Apparel_Quiver"]</xpath>
+				<value>
+				<equippedStatOffsets>
+					<CarryBulk>2.5</CarryBulk>
+				</equippedStatOffsets>	
+				</value>
+			</li>
+
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName="VAEA_Apparel_AmmoPack"]</xpath>
+				<value>
+				<equippedStatOffsets>
+					<CarryBulk>3.5</CarryBulk>
+				</equippedStatOffsets>	
+				</value>
+			</li>
+
+			<!-- == Backpack == -->
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName="VAEA_Apparel_ExplosiveBelt"]/statBases</xpath>
+				<value>
+					<Bulk>5</Bulk>
+					<WornBulk>1.5</WornBulk>
+				</value>
+			</li>
+
+			<!-- == Mini-Turret Pack == -->
+<!--			
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName="VAEA_Apparel_MiniTurretPack"]/statBases</xpath>
+				<value>
+					<Bulk>15</Bulk>
+					<WornBulk>5</WornBulk>
+				</value>
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="VAEA_Apparel_MiniTurretPack"]/verbs</xpath>
+				<value>
+					<verbs>
+					<li>
+						<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+						<label>Gun</label>
+						<defaultProjectile>Bullet_556x45mmNATO_FMJ</defaultProjectile>
+						<warmupTime>0</warmupTime>
+						<range>28.9</range>
+						<ticksBetweenBurstShots>8</ticksBetweenBurstShots>
+						<burstShotCount>1</burstShotCount>
+						<soundCast>GunShotA</soundCast>
+						<soundCastTail>GunTail_Light</soundCastTail>
+						<muzzleFlashScale>9</muzzleFlashScale>
+					</li>
+					</verbs>
+				</value>
+			</li>
+-->
+
+			</operations>
+		</match>
+	</Operation>
+</Patch>
