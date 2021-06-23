@@ -20,9 +20,9 @@
 						<capacities>
 						  <li>Blunt</li>
 						</capacities>
-						<power>6</power>
-						<cooldownTime>1.31</cooldownTime>
-						<armorPenetrationBlunt>2.025</armorPenetrationBlunt>
+						<power>7</power>
+						<cooldownTime>2.24</cooldownTime>
+						<armorPenetrationBlunt>2.5</armorPenetrationBlunt>
 						<linkedBodyPartsGroup>Shaft</linkedBodyPartsGroup>
 					  </li>
 					  <li Class="CombatExtended.ToolCE">
@@ -30,11 +30,11 @@
 						<capacities>
 						  <li>Cut</li>
 						</capacities>
-						<power>24</power>
-						<cooldownTime>1.8</cooldownTime>
+						<power>59</power>
+						<cooldownTime>4.71</cooldownTime>
 						<chanceFactor>1.165</chanceFactor>
-						<armorPenetrationBlunt>8.1</armorPenetrationBlunt>
-						<armorPenetrationSharp>1.62</armorPenetrationSharp>
+						<armorPenetrationBlunt>10</armorPenetrationBlunt>
+						<armorPenetrationSharp>1.25</armorPenetrationSharp>
 						<linkedBodyPartsGroup>Edge</linkedBodyPartsGroup>
 					  </li>
 					  <li Class="CombatExtended.ToolCE">
@@ -42,11 +42,11 @@
 						<capacities>
 						  <li>Stab</li>
 						</capacities>
-						<power>22</power>
-						<cooldownTime>1.16</cooldownTime>
+						<power>23</power>
+						<cooldownTime>1.87</cooldownTime>
 						<chanceFactor>1.165</chanceFactor>
-						<armorPenetrationBlunt>2.025</armorPenetrationBlunt>
-						<armorPenetrationSharp>2.03</armorPenetrationSharp>
+						<armorPenetrationBlunt>3.6</armorPenetrationBlunt>
+						<armorPenetrationSharp>2.4</armorPenetrationSharp>
 						<linkedBodyPartsGroup>Point</linkedBodyPartsGroup>
 					  </li>
 					</tools>
@@ -84,9 +84,9 @@
 							<capacities>
 								<li>Poke</li>
 							</capacities>
-							<power>8</power>
-							<cooldownTime>1.44</cooldownTime>
-							<armorPenetrationBlunt>0.425</armorPenetrationBlunt>
+							<power>2</power>
+							<cooldownTime>1.32</cooldownTime>
+							<armorPenetrationBlunt>0.675</armorPenetrationBlunt>
 							<linkedBodyPartsGroup>Handle</linkedBodyPartsGroup>
 						</li>
 						<li Class="CombatExtended.ToolCE">
@@ -94,10 +94,10 @@
 							<capacities>
 								<li>Stab</li>
 							</capacities>
-							<power>27</power>
-							<cooldownTime>1.44</cooldownTime>
-							<armorPenetrationBlunt>0.425</armorPenetrationBlunt>
-							<armorPenetrationSharp>0.48</armorPenetrationSharp>
+							<power>15</power>
+							<cooldownTime>0.88</cooldownTime>
+							<armorPenetrationBlunt>0.675</armorPenetrationBlunt>
+							<armorPenetrationSharp>0.85</armorPenetrationSharp>
 							<linkedBodyPartsGroup>Point</linkedBodyPartsGroup>
 						</li>
 						<li Class="CombatExtended.ToolCE">
@@ -106,10 +106,9 @@
 								<li>Cut</li>
 							</capacities>
 							<power>20</power>
-							<cooldownTime>1.34</cooldownTime>
-							<chanceFactor>1.33</chanceFactor>
-							<armorPenetrationBlunt>0.956</armorPenetrationBlunt>
-							<armorPenetrationSharp>0.43</armorPenetrationSharp>
+							<cooldownTime>0.83</cooldownTime>
+							<armorPenetrationBlunt>1.2</armorPenetrationBlunt>
+							<armorPenetrationSharp>0.04</armorPenetrationSharp>
 							<linkedBodyPartsGroup>Edge</linkedBodyPartsGroup>
 						</li>
 					</tools>
@@ -135,6 +134,29 @@
 				</value>
 			</li>
 			
+			<li Class="PatchOperationSequence">
+			<success>Always</success>
+			<operations>
+				<li Class="PatchOperationTest">
+				<xpath>Defs/ThingDef[defName="TM_ElephantTusk"]/weaponTags</xpath>
+				<success>Invert</success>
+				</li>
+				<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName="TM_ElephantTusk"]</xpath>
+				<value>
+					<weaponTags />
+				</value>
+				</li>
+			</operations>
+			</li>
+
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName="TM_ElephantTusk"]/weaponTags</xpath>
+				<value>
+					<li>CE_OneHandedWeapon</li>
+				</value>
+			</li>
+			
 			
 			
 			<li Class="PatchOperationReplace">
@@ -146,9 +168,9 @@
 							<capacities>
 								<li>Poke</li>
 							</capacities>
-							<power>8</power>
-							<cooldownTime>0.5</cooldownTime>
-							<armorPenetrationBlunt>0.425</armorPenetrationBlunt>
+							<power>2</power>
+							<cooldownTime>1.5</cooldownTime>
+							<armorPenetrationBlunt>0.5</armorPenetrationBlunt>
 							<linkedBodyPartsGroup>Handle</linkedBodyPartsGroup>
 						</li>
 						<li Class="CombatExtended.ToolCE">
@@ -156,10 +178,10 @@
 							<capacities>
 								<li>Stab</li>
 							</capacities>
-							<power>32</power>
-							<cooldownTime>1.44</cooldownTime>
-							<armorPenetrationBlunt>0.425</armorPenetrationBlunt>
-							<armorPenetrationSharp>0.48</armorPenetrationSharp>
+							<power>16</power>
+							<cooldownTime>0.94</cooldownTime>
+							<armorPenetrationBlunt>1.25</armorPenetrationBlunt>
+							<armorPenetrationSharp>15.06</armorPenetrationSharp>
 							<linkedBodyPartsGroup>Point</linkedBodyPartsGroup>
 						</li>
 						<li Class="CombatExtended.ToolCE">
@@ -167,11 +189,11 @@
 							<capacities>
 								<li>Cut</li>
 							</capacities>
-							<power>25</power>
-							<cooldownTime>1.34</cooldownTime>
+							<power>35</power>
+							<cooldownTime>0.83</cooldownTime>
 							<chanceFactor>1.33</chanceFactor>
-							<armorPenetrationBlunt>0.956</armorPenetrationBlunt>
-							<armorPenetrationSharp>0.43</armorPenetrationSharp>
+							<armorPenetrationBlunt>1.28</armorPenetrationBlunt>
+							<armorPenetrationSharp>9</armorPenetrationSharp>
 							<linkedBodyPartsGroup>Edge</linkedBodyPartsGroup>
 						</li>
 					</tools>
@@ -194,6 +216,29 @@
 						<MeleeParryChance>0.5</MeleeParryChance>
 						<MeleeDodgeChance>0.4</MeleeDodgeChance>	
 					</equippedStatOffsets>
+				</value>
+			</li>
+			
+			<li Class="PatchOperationSequence">
+			<success>Always</success>
+			<operations>
+				<li Class="PatchOperationTest">
+				<xpath>Defs/ThingDef[defName="TM_ThrumboSaber"]/weaponTags</xpath>
+				<success>Invert</success>
+				</li>
+				<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName="TM_ThrumboSaber"]</xpath>
+				<value>
+					<weaponTags />
+				</value>
+				</li>
+			</operations>
+			</li>
+
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName="TM_ThrumboSaber"]/weaponTags</xpath>
+				<value>
+					<li>CE_OneHandedWeapon</li>
 				</value>
 			</li>
 			
@@ -227,11 +272,11 @@
 					<capacities>
 					  <li>Cut</li>
 					</capacities>
-					<power>48</power>
-					<cooldownTime>3.4</cooldownTime>
+					<power>59</power>
+					<cooldownTime>4.71</cooldownTime>
 					<chanceFactor>1.165</chanceFactor>
-					<armorPenetrationBlunt>10.4</armorPenetrationBlunt>
-					<armorPenetrationSharp>3.6</armorPenetrationSharp>
+					<armorPenetrationBlunt>10</armorPenetrationBlunt>
+					<armorPenetrationSharp>16.13</armorPenetrationSharp>
 					<linkedBodyPartsGroup>Edge</linkedBodyPartsGroup>
 				  </li>
 				  <li Class="CombatExtended.ToolCE">
@@ -239,11 +284,11 @@
 					<capacities>
 					  <li>Stab</li>
 					</capacities>
-					<power>41</power>
-					<cooldownTime>1.8</cooldownTime>
+					<power>20</power>
+					<cooldownTime>1.87</cooldownTime>
 					<chanceFactor>1.165</chanceFactor>
-					<armorPenetrationBlunt>2.3</armorPenetrationBlunt>
-					<armorPenetrationSharp>4.4</armorPenetrationSharp>
+					<armorPenetrationBlunt>3.6</armorPenetrationBlunt>
+					<armorPenetrationSharp>18</armorPenetrationSharp>
 					<linkedBodyPartsGroup>Point</linkedBodyPartsGroup>
 				  </li>
 				</tools>
@@ -273,11 +318,11 @@
 							<capacities>
 								<li>Stab</li>
 							</capacities>
-							<power>18</power>
-							<cooldownTime>1.69</cooldownTime>
+							<power>25</power>
+							<cooldownTime>0.94</cooldownTime>
 							<chanceFactor>0.60</chanceFactor>
-							<armorPenetrationBlunt>0.8</armorPenetrationBlunt>
-							<armorPenetrationSharp>1.6</armorPenetrationSharp>
+							<armorPenetrationBlunt>2.048</armorPenetrationBlunt>
+							<armorPenetrationSharp>32</armorPenetrationSharp>
 							<linkedBodyPartsGroup>Point</linkedBodyPartsGroup>
 						</li>
 						<li Class="CombatExtended.ToolCE">
@@ -285,11 +330,11 @@
 							<capacities>
 								<li>Cut</li>
 							</capacities>
-							<power>36</power>
-							<cooldownTime>1.56</cooldownTime>
+							<power>47</power>
+							<cooldownTime>0.83</cooldownTime>
 							<chanceFactor>0.30</chanceFactor>
-							<armorPenetrationBlunt>2.592</armorPenetrationBlunt>
-							<armorPenetrationSharp>0.58</armorPenetrationSharp>
+							<armorPenetrationBlunt>4.608</armorPenetrationBlunt>
+							<armorPenetrationSharp>24</armorPenetrationSharp>
 							<linkedBodyPartsGroup>Edge</linkedBodyPartsGroup>
 						</li>
 					</tools>
@@ -325,9 +370,9 @@
 							<capacities>
 								<li>Poke</li>
 							</capacities>
-							<power>1</power>
-							<cooldownTime>.93</cooldownTime>
-							<armorPenetrationBlunt>0.250</armorPenetrationBlunt>
+							<power>2</power>
+							<cooldownTime>1.32</cooldownTime>
+							<armorPenetrationBlunt>0.3</armorPenetrationBlunt>
 							<linkedBodyPartsGroup>Handle</linkedBodyPartsGroup>
 						</li>
 						<li Class="CombatExtended.ToolCE">
@@ -335,10 +380,10 @@
 							<capacities>
 							  <li>Stab</li>
 							</capacities>
-							<power>12</power>
-							<cooldownTime>.93</cooldownTime>
-							<armorPenetrationBlunt>0.36</armorPenetrationBlunt>
-							<armorPenetrationSharp>0.32</armorPenetrationSharp>
+							<power>13</power>
+							<cooldownTime>.88</cooldownTime>
+							<armorPenetrationBlunt>0.675</armorPenetrationBlunt>
+							<armorPenetrationSharp>8.44</armorPenetrationSharp>
 							<linkedBodyPartsGroup>Blade</linkedBodyPartsGroup>
 						</li>
 						<li Class="CombatExtended.ToolCE">
@@ -346,11 +391,11 @@
 							<capacities>
 							  <li>Cut</li>
 							</capacities>
-							<power>10</power>
-							<cooldownTime>0.78</cooldownTime>
+							<power>19</power>
+							<cooldownTime>0.83</cooldownTime>
 							<chanceFactor>1.33</chanceFactor>
-							<armorPenetrationBlunt>0.25</armorPenetrationBlunt>
-							<armorPenetrationSharp>0.42</armorPenetrationSharp>
+							<armorPenetrationBlunt>1.2</armorPenetrationBlunt>
+							<armorPenetrationSharp>6</armorPenetrationSharp>
 							<linkedBodyPartsGroup>Point</linkedBodyPartsGroup>
 						</li>
 					</tools>
