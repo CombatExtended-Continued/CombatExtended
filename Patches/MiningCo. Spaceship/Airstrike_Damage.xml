@@ -1,0 +1,174 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+			<li>MiningCo. Spaceship</li>
+		</mods>
+		<match Class="PatchOperationSequence">
+			<operations>
+
+		<li Class="PatchOperationAdd">
+		<xpath>Defs</xpath>
+		<value>
+
+  <DamageDef>
+    <defName>MiningCo_Cannon</defName>
+    <label>Autocannon</label>
+    <workerClass>DamageWorker_AddInjury</workerClass>
+    <externalViolence>true</externalViolence>
+    <isExplosive>true</isExplosive>
+    <deathMessage>{0} has died in an explosion.</deathMessage>
+    <hediff>Shredded</hediff>
+    <hediffSolid>Crack</hediffSolid>
+    <harmAllLayersUntilOutside>true</harmAllLayersUntilOutside>
+    <impactSoundType>Blunt</impactSoundType>
+    <armorCategory>Blunt</armorCategory>
+    <minDamageToFragment>15</minDamageToFragment>
+    <defaultDamage>48</defaultDamage>
+    <defaultStoppingPower>2</defaultStoppingPower>
+    <defaultArmorPenetration>75</defaultArmorPenetration>
+    <buildingDamageFactor>4</buildingDamageFactor>
+    <plantDamageFactor>4</plantDamageFactor>
+    <explosionAffectOutsidePartsOnly>false</explosionAffectOutsidePartsOnly>
+    <explosionHeatEnergyPerCell>5</explosionHeatEnergyPerCell>
+    <explosionCellMote>Mote_BlastDry</explosionCellMote>
+    <explosionColorCenter>(1, 0.5, 0.3)</explosionColorCenter>
+    <explosionColorEdge>(0.6, 0.5, 0.4)</explosionColorEdge>
+    <soundExplosion>Explosion_Bomb</soundExplosion>
+    <combatLogRules>Damage_Bomb</combatLogRules>
+  </DamageDef>
+
+  <DamageDef>
+    <defName>MiningCo_Rocket</defName>
+    <label>Rocket</label>
+    <workerClass>DamageWorker_AddInjury</workerClass>
+    <externalViolence>true</externalViolence>
+    <isExplosive>true</isExplosive>
+    <deathMessage>{0} has died in an explosion.</deathMessage>
+    <hediff>Shredded</hediff>
+    <hediffSolid>Crack</hediffSolid>
+    <harmAllLayersUntilOutside>true</harmAllLayersUntilOutside>
+    <impactSoundType>Blunt</impactSoundType>
+    <armorCategory>Blunt</armorCategory>
+    <minDamageToFragment>15</minDamageToFragment>
+    <defaultDamage>100</defaultDamage>
+    <defaultStoppingPower>3</defaultStoppingPower>
+    <defaultArmorPenetration>150</defaultArmorPenetration>
+    <buildingDamageFactor>4</buildingDamageFactor>
+    <plantDamageFactor>4</plantDamageFactor>
+    <explosionAffectOutsidePartsOnly>false</explosionAffectOutsidePartsOnly>
+    <explosionHeatEnergyPerCell>5</explosionHeatEnergyPerCell>
+    <explosionCellMote>Mote_BlastDry</explosionCellMote>
+    <explosionColorCenter>(1, 0.5, 0.3)</explosionColorCenter>
+    <explosionColorEdge>(0.6, 0.5, 0.4)</explosionColorEdge>
+    <soundExplosion>Explosion_Bomb</soundExplosion>
+    <combatLogRules>Damage_Bomb</combatLogRules>
+  </DamageDef>
+
+  <ThingDef ParentName="BaseBullet">
+    <defName>PrometheumBomb</defName>
+    <label>Prometheum bomb</label>
+    <thingClass>Projectile_Explosive</thingClass>
+    <graphicData>
+      <texPath>Things/Projectile/Rocket_Big</texPath>
+      <graphicClass>Graphic_Single</graphicClass>
+    </graphicData>
+    <projectile>
+      <flyOverhead>true</flyOverhead>
+      <damageDef>PrometheumFlame</damageDef>
+      <damageAmountBase>10</damageAmountBase>
+      <explosionRadius>6</explosionRadius>
+      <preExplosionSpawnChance>0.6</preExplosionSpawnChance>
+      <preExplosionSpawnThingDef>FilthPrometheum</preExplosionSpawnThingDef>
+      <speed>20</speed>
+      <soundHitThickRoof>Artillery_HitThickRoof</soundHitThickRoof>
+    </projectile>
+  </ThingDef>
+
+  <Def Class="Spaceship.WeaponDef">
+    <defName>PrometheumBombWeapon</defName>
+    <label>Prometheum bomb</label>
+    <ammoDef>PrometheumBomb</ammoDef>
+    <soundCastDef>InfernoCannon_Fire</soundCastDef>
+    <ammoQuantity>3</ammoQuantity>
+    <ticksBetweenShots>60</ticksBetweenShots>
+    <startShootingDistance>10</startShootingDistance>
+    <ammoTravelDistance>5</ammoTravelDistance>
+    <isTwinGun>true</isTwinGun>
+    <horizontalPositionOffset>3.0</horizontalPositionOffset>
+    <verticalPositionOffset>0.0</verticalPositionOffset>
+    <disableRainDurationInTicks>30000</disableRainDurationInTicks>
+  </Def>
+
+  <Def Class="Spaceship.AirStrikeDef">
+    <defName>PrometheumRaid</defName>
+    <label>prometheum bombing run</label>
+    <description>PROMETHEUM STICKS TO MECHANOIDS!</description>
+    <runsNumber>1</runsNumber>
+    <costInSilver>3500</costInSilver>
+    <ammoResupplyDays>20</ammoResupplyDays>
+    <cellsTravelledPerTick>0.08</cellsTravelledPerTick>
+    <ticksBeforeOverflightReducedSpeed>60</ticksBeforeOverflightReducedSpeed>
+    <weapons>
+      <li>PrometheumBombWeapon</li>
+    </weapons>
+  </Def>
+
+		</value>
+		</li>
+
+	<li Class='PatchOperationAdd'>
+    	<xpath>/Defs/ThingDef[defName='GatlingRound']</xpath>
+    	<value>
+    		<thingClass>Bullet</thingClass>
+    	</value>
+  	</li>
+
+  	<li Class='PatchOperationReplace'>
+    	<xpath>/Defs/ThingDef[defName='AutocannonRound']/projectile</xpath>
+    	<value>
+    		<projectile>
+      			<flyOverhead>true</flyOverhead>
+      			<damageDef>MiningCo_Cannon</damageDef>
+      			<explosionRadius>1.5</explosionRadius>
+      			<speed>120</speed>
+      			<soundHitThickRoof>Artillery_HitThickRoof</soundHitThickRoof>
+    		</projectile>
+    	</value>
+  	</li>
+
+  	<li Class='PatchOperationReplace'>
+    	<xpath>/Defs/ThingDef[defName='RocketAirstrike']/projectile</xpath>
+    	<value>
+    	<projectile>
+      		<flyOverhead>true</flyOverhead>
+      		<damageDef>MiningCo_Rocket</damageDef>
+      		<explosionRadius>3</explosionRadius>
+      		<speed>64</speed>
+      		<soundHitThickRoof>Artillery_HitThickRoof</soundHitThickRoof>
+    	</projectile>
+    	</value>
+  	</li>
+
+  	<li Class='PatchOperationReplace'>
+    	<xpath>/Defs/ThingDef[defName='IncendiaryBomb']/projectile</xpath>
+    	<value>
+    	<projectile>
+      		<flyOverhead>true</flyOverhead>
+      		<damageDef>Flame</damageDef>
+      		<damageAmountBase>20</damageAmountBase>
+      		<explosionRadius>6</explosionRadius>
+      		<preExplosionSpawnChance>0.6</preExplosionSpawnChance>
+      		<preExplosionSpawnThingDef>Filth_Fuel</preExplosionSpawnThingDef>
+      		<speed>20</speed>
+      		<soundHitThickRoof>Artillery_HitThickRoof</soundHitThickRoof>
+    	</projectile>
+    	</value>
+  	</li>
+			
+			</operations>
+		</match>
+	</Operation>
+
+</Patch>
