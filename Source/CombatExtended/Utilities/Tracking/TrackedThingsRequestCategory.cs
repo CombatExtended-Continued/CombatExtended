@@ -2,14 +2,10 @@
 {
     public enum TrackedThingsRequestCategory
     {
-        Pawns = 0,
-
-        Ammo = 1,
-
-        Weapons = 2,
-
-        Apparel = 3,
-
-        Medicine = 4
+        Pawns = 1,
+        Ammo = 2,
+        Weapons = 4,
+        Apparel = 8,
+        Medicine = 16
     }
 }

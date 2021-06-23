@@ -16,15 +16,31 @@ namespace CombatExtended.Utilities
 
         public static ThingsTracker GetTracker(Map map)
         {
-            var index = map.Index;
+            return GetCachedTracker(map, fallbackMode: false);
+        }
+
+        private static ThingsTracker GetCachedTracker(Map map, bool fallbackMode = false)
+        {
+            int index = map.Index;
             if (index >= 0 && index < comps.Length)
             {
-                if (maps[index] == map)
-                    return comps[index];
-                maps[index] = map;
-                return comps[index] = map.GetComponent<ThingsTracker>();
+                ThingsTracker tracker = comps[index];
+                if (maps[index] != map)
+                {
+                    maps[index] = map;
+                    comps[index] = tracker = map.GetComponent<ThingsTracker>();
+                }
+                return tracker;
             }
-            return map.GetComponent<ThingsTracker>();
+            else if (fallbackMode)
+                throw new Exception($"GetTracker has failed twice for index {index}");
+            Map[] tempMaps = new Map[Math.Max(maps.Length * 2, index + 1)];
+            ThingsTracker[] tempComps = new ThingsTracker[Math.Max(comps.Length * 2, index + 1)];
+            Array.Copy(maps, 0, tempMaps, 0, maps.Length);
+            maps = tempMaps;
+            Array.Copy(comps, 0, tempComps, 0, comps.Length);
+            comps = tempComps;
+            return GetCachedTracker(map, fallbackMode: true);
         }
 
         private ThingsTrackingModel[][] trackers;
@@ -76,7 +92,6 @@ namespace CombatExtended.Utilities
                 else
                     validDefs[def.index] = true;
             }
-
         }
 
         public override void MapComponentOnGUI()
