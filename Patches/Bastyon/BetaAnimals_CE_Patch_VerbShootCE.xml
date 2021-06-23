@@ -8,22 +8,20 @@
 			<match Class="PatchOperationSequence">
 				<operations>
 
-				<!-- Black Hive Insects -->
-
 					<li Class="PatchOperationReplace">
-						<xpath>/Defs/ThingDef[defName="AA_BlackSpelopede"]/verbs</xpath>
+						<xpath>/Defs/ThingDef[defName="Bast_Alluvium"]/verbs</xpath>
 							<value>
 								<verbs>
 									<li Class="CombatExtended.VerbPropertiesCE">
 										<verbClass>CombatExtended.Verb_ShootCE</verbClass>
 											<hasStandardCommand>true</hasStandardCommand>
-											<defaultProjectile>AA_PoisonBolt</defaultProjectile>
-											<warmupTime>2.4</warmupTime>
-											<burstShotCount>1</burstShotCount>
-											<ticksBetweenBurstShots>2</ticksBetweenBurstShots>
+											<defaultProjectile>Bast_AlluviumGoo</defaultProjectile>
+											<warmupTime>1.5</warmupTime>
+											<burstShotCount>2</burstShotCount>
+											<ticksBetweenBurstShots>15</ticksBetweenBurstShots>
 											<minRange>2</minRange>
-											<range>20</range>
-											<soundCast>AA_PoisonBolt</soundCast>
+											<range>12</range>
+											<soundCast>Bast_Throw</soundCast>
 											<muzzleFlashScale>0</muzzleFlashScale>
 											<commonality>0.8</commonality>
 									</li>
@@ -32,20 +30,21 @@
 					</li>
 
 					<li Class="PatchOperationReplace">
-						<xpath>/Defs/ThingDef[defName="AA_BlackSpider"]/verbs</xpath>
+						<xpath>/Defs/ThingDef[defName="Bast_Critter"]/verbs</xpath>
 							<value>
 								<verbs>
 									<li Class="CombatExtended.VerbPropertiesCE">
 										<verbClass>CombatExtended.Verb_ShootCE</verbClass>
 											<hasStandardCommand>true</hasStandardCommand>
-											<defaultProjectile>AA_PoisonBolt</defaultProjectile>
-											<warmupTime>1.6</warmupTime>
+											<defaultProjectile>Bast_CritterSpike</defaultProjectile>
+											<warmupTime>2</warmupTime>
 											<burstShotCount>1</burstShotCount>
 											<ticksBetweenBurstShots>2</ticksBetweenBurstShots>
 											<minRange>1.9</minRange>
-											<range>32</range>
-											<soundCast>AA_PoisonBolt</soundCast>
+											<range>10</range>
+											<soundCast>Bast_Throw</soundCast>
 											<muzzleFlashScale>0</muzzleFlashScale>
+                										<label>critter spike</label>
 											<commonality>0.8</commonality>
 									</li>
 								</verbs>
@@ -55,21 +54,22 @@
 					<!-- Barbslinger -->
 
 					<li Class="PatchOperationReplace">
-						<xpath>/Defs/ThingDef[defName="AA_Barbslinger"]/verbs</xpath>
+						<xpath>/Defs/ThingDef[defName="Bast_Gray_Terror"]/verbs</xpath>
 							<value>
 								<verbs>
 									<li Class="CombatExtended.VerbPropertiesCE">
 										<verbClass>CombatExtended.Verb_ShootCE</verbClass>
 											<hasStandardCommand>true</hasStandardCommand>
-											<defaultProjectile>AA_Bullet_Barb</defaultProjectile>
+											<defaultProjectile>Bast_Web</defaultProjectile>
 											<warmupTime>2</warmupTime>
-											<burstShotCount>3</burstShotCount>
-											<ticksBetweenBurstShots>10</ticksBetweenBurstShots>
+											<burstShotCount>2</burstShotCount>
+											<ticksBetweenBurstShots>25</ticksBetweenBurstShots>
 											<minRange>2</minRange>
-											<range>18</range>
-											<soundCast>AA_DartSound</soundCast>
+											<range>15</range>
+											<soundCast>Bast_Throw</soundCast>
+											<label>spider web</label>
 											<muzzleFlashScale>0</muzzleFlashScale>
-											<commonality>0.8</commonality>
+											<commonality>0.5</commonality>
 									</li>
 								</verbs>
 							</value>
@@ -78,314 +78,43 @@
 				<!-- Animalisk -->
 
 					<li Class="PatchOperationReplace">
-						<xpath>/Defs/ThingDef[defName="AA_Animalisk"]/verbs</xpath>
+						<xpath>/Defs/ThingDef[defName="Bast_Scire"]/verbs</xpath>
 							<value>
 								<verbs>
 									<li Class="CombatExtended.VerbPropertiesCE">
 										<verbClass>CombatExtended.Verb_ShootCE</verbClass>
 											<hasStandardCommand>true</hasStandardCommand>
-											<defaultProjectile>AA_Web</defaultProjectile>
-											<warmupTime>2</warmupTime>
+											<defaultProjectile>Bast_ScireFireBall</defaultProjectile>
+											<warmupTime>2.5</warmupTime>
 											<burstShotCount>3</burstShotCount>
-											<ticksBetweenBurstShots>12</ticksBetweenBurstShots>
-											<minRange>1</minRange>
-											<range>16</range>
-											<soundCast>AA_Throw</soundCast>
-											<muzzleFlashScale>0</muzzleFlashScale>
-											<commonality>0.8</commonality>
-									</li>
-								</verbs>
-							</value>
-					</li>
-
-					<!-- Blizzarisk and Blizzarisk mom -->
-
-					<li Class="PatchOperationReplace">
-						<xpath>/Defs/ThingDef[defName="AA_Blizzarisk"]/verbs</xpath>
-							<value>
-								<verbs>
-									<li Class="CombatExtended.VerbPropertiesCE">
-										<verbClass>CombatExtended.Verb_ShootCE</verbClass>
-											<hasStandardCommand>true</hasStandardCommand>
-											<defaultProjectile>AA_FrostWeb</defaultProjectile>
-											<warmupTime>2</warmupTime>
-											<burstShotCount>3</burstShotCount>
-											<ticksBetweenBurstShots>12</ticksBetweenBurstShots>
-											<minRange>1</minRange>
-											<range>16</range>
-											<soundCast>AA_Throw</soundCast>
-											<muzzleFlashScale>0</muzzleFlashScale>
-											<commonality>0.8</commonality>
-									</li>
-								</verbs>
-							</value>
-					</li>
-
-					<li Class="PatchOperationReplace">
-						<xpath>/Defs/ThingDef[defName="AA_BlizzariskClutchMother"]/verbs</xpath>
-							<value>
-								<verbs>
-									<li Class="CombatExtended.VerbPropertiesCE">
-										<verbClass>CombatExtended.Verb_ShootCE</verbClass>
-											<hasStandardCommand>true</hasStandardCommand>
-											<defaultProjectile>AA_FrostWeb</defaultProjectile>
-											<warmupTime>2</warmupTime>
-											<burstShotCount>3</burstShotCount>
-											<ticksBetweenBurstShots>12</ticksBetweenBurstShots>
-											<minRange>1</minRange>
-											<range>20</range>
-											<soundCast>AA_Throw</soundCast>
-											<muzzleFlashScale>0</muzzleFlashScale>
-											<commonality>0.8</commonality>
-									</li>
-								</verbs>
-							</value>
-					</li>
-
-					<li Class="PatchOperationReplace">
-						<xpath>/Defs/ThingDef[defName="AA_Cinderlisk"]/verbs</xpath>
-							<value>
-								<verbs>
-									<li Class="CombatExtended.VerbPropertiesCE">
-										<verbClass>CombatExtended.Verb_ShootCE</verbClass>
-											<hasStandardCommand>true</hasStandardCommand>
-											<defaultProjectile>AA_FireWeb</defaultProjectile>
-											<warmupTime>2</warmupTime>
-											<burstShotCount>2</burstShotCount>
-											<ticksBetweenBurstShots>12</ticksBetweenBurstShots>
+											<ticksBetweenBurstShots>18</ticksBetweenBurstShots>
 											<minRange>2</minRange>
 											<range>16</range>
-											<soundCast>AA_Throw</soundCast>
+											<soundCast>Bast_ScireFireBall</soundCast>
 											<muzzleFlashScale>0</muzzleFlashScale>
-											<commonality>0.8</commonality>
+											<label>eternal fire</label>
+											<commonality>0.75</commonality>
 									</li>
 								</verbs>
 							</value>
 					</li>
-
-					<!-- Dunealisk and Dunemom -->
-
-						<li Class="PatchOperationReplace">
-						<xpath>/Defs/ThingDef[defName="AA_Dunealisk"]/verbs</xpath>
-							<value>
-								<verbs>
-									<li Class="CombatExtended.VerbPropertiesCE">
-										<verbClass>CombatExtended.Verb_ShootCE</verbClass>
-											<hasStandardCommand>true</hasStandardCommand>
-											<defaultProjectile>AA_BurnWeb</defaultProjectile>
-											<warmupTime>2</warmupTime>
-											<burstShotCount>3</burstShotCount>
-											<ticksBetweenBurstShots>12</ticksBetweenBurstShots>
-											<minRange>2</minRange>
-											<range>16</range>
-											<soundCast>AA_Throw</soundCast>
-											<muzzleFlashScale>0</muzzleFlashScale>
-											<commonality>0.8</commonality>
-									</li>
-								</verbs>
-							</value>
-					</li>
-
-						<li Class="PatchOperationReplace">
-						<xpath>/Defs/ThingDef[defName="AA_DunealiskClutchMother"]/verbs</xpath>
-							<value>
-								<verbs>
-									<li Class="CombatExtended.VerbPropertiesCE">
-										<verbClass>CombatExtended.Verb_ShootCE</verbClass>
-											<hasStandardCommand>true</hasStandardCommand>
-											<defaultProjectile>AA_BurnWeb</defaultProjectile>
-											<warmupTime>2</warmupTime>
-											<burstShotCount>3</burstShotCount>
-											<ticksBetweenBurstShots>12</ticksBetweenBurstShots>
-											<minRange>2</minRange>
-											<range>20</range>
-											<soundCast>AA_Throw</soundCast>
-											<muzzleFlashScale>0</muzzleFlashScale>
-											<commonality>0.8</commonality>
-									</li>
-								</verbs>
-							</value>
-					</li>
-
-					<!-- Feralisk and Fera-san -->
 
 					<li Class="PatchOperationReplace">
-						<xpath>/Defs/ThingDef[defName="AA_FeraliskClutchMother"]/verbs</xpath>
+						<xpath>/Defs/ThingDef[defName="Bast_Snipping_Snail"]/verbs</xpath>
 							<value>
 								<verbs>
 									<li Class="CombatExtended.VerbPropertiesCE">
 										<verbClass>CombatExtended.Verb_ShootCE</verbClass>
 											<hasStandardCommand>true</hasStandardCommand>
-											<defaultProjectile>AA_Web</defaultProjectile>
-											<warmupTime>2</warmupTime>
-											<burstShotCount>3</burstShotCount>
-											<ticksBetweenBurstShots>12</ticksBetweenBurstShots>
-											<minRange>1</minRange>
-											<range>16</range>
-											<soundCast>AA_Throw</soundCast>
-											<muzzleFlashScale>0</muzzleFlashScale>
-											<commonality>0.8</commonality>
-									</li>
-								</verbs>
-							</value>
-					</li>
-
-				<li Class="PatchOperationReplace">
-						<xpath>/Defs/ThingDef[defName="AA_FeraliskClutchMother"]/verbs</xpath>
-							<value>
-								<verbs>
-									<li Class="CombatExtended.VerbPropertiesCE">
-										<verbClass>CombatExtended.Verb_ShootCE</verbClass>
-											<hasStandardCommand>true</hasStandardCommand>
-											<defaultProjectile>AA_Web</defaultProjectile>
-											<warmupTime>2</warmupTime>
-											<burstShotCount>3</burstShotCount>
-											<ticksBetweenBurstShots>2</ticksBetweenBurstShots>
-											<minRange>1</minRange>
-											<range>20</range>
-											<soundCast>AA_Throw</soundCast>
-											<muzzleFlashScale>0</muzzleFlashScale>
-											<commonality>0.8</commonality>
-									</li>
-								</verbs>
-							</value>
-					</li>
-
-					<!-- Gallatross -->
-
-					<li Class="PatchOperationReplace">
-						<xpath>/Defs/ThingDef[defName="AA_Gallatross"]/verbs</xpath>
-							<value>
-								<verbs>
-									<li Class="CombatExtended.VerbPropertiesCE">
-										<verbClass>CombatExtended.Verb_ShootCE</verbClass>
-											<hasStandardCommand>true</hasStandardCommand>
-											<defaultProjectile>AA_Bullet_Rock</defaultProjectile>
+											<defaultProjectile>Bast_SnippingSnailAcid</defaultProjectile>
 											<warmupTime>2.5</warmupTime>
 											<burstShotCount>1</burstShotCount>
-											<ticksBetweenBurstShots>2</ticksBetweenBurstShots>
-											<minRange>1</minRange>
-											<range>30</range>
-											<soundCast>AA_RockThrow</soundCast>
-											<muzzleFlashScale>0</muzzleFlashScale>
-											<ai_IsBuildingDestroyer>true</ai_IsBuildingDestroyer>
-											<commonality>1</commonality>
-									</li>
-								</verbs>
-							</value>
-					</li>
-
-					<!-- Gallatross Mounribound-->
-
-					<li Class="PatchOperationReplace">
-						<xpath>/Defs/ThingDef[defName="AA_GallatrossMoribund"]/verbs</xpath>
-							<value>
-								<verbs>
-									<li Class="CombatExtended.VerbPropertiesCE">
-										<verbClass>CombatExtended.Verb_ShootCE</verbClass>
-											<hasStandardCommand>true</hasStandardCommand>
-											<defaultProjectile>AA_Bullet_Rock</defaultProjectile>
-											<warmupTime>2.5</warmupTime>
-											<burstShotCount>1</burstShotCount>
-											<ticksBetweenBurstShots>2</ticksBetweenBurstShots>
-											<minRange>1</minRange>
-											<range>30</range>
-											<soundCast>AA_RockThrow</soundCast>
-											<muzzleFlashScale>0</muzzleFlashScale>
-											<ai_IsBuildingDestroyer>true</ai_IsBuildingDestroyer>
-											<commonality>1</commonality>
-									</li>
-								</verbs>
-							</value>
-					</li>
-
-					<!-- Green Goo -->
-
-					<li Class="PatchOperationReplace">
-						<xpath>/Defs/ThingDef[defName="AA_GreenGoo"]/verbs</xpath>
-							<value>
-								<verbs>
-									<li Class="CombatExtended.VerbPropertiesCE">
-										<verbClass>CombatExtended.Verb_ShootCE</verbClass>
-											<hasStandardCommand>true</hasStandardCommand>
-											<defaultProjectile>AA_PoisonBolt</defaultProjectile>
-											<warmupTime>1.5</warmupTime>
-											<burstShotCount>1</burstShotCount>
-											<ticksBetweenBurstShots>2</ticksBetweenBurstShots>
 											<minRange>2</minRange>
-											<range>20</range>
-											<soundCast>AA_PoisonBolt</soundCast>
+											<range>8</range>
+											<soundCast>Bast_SnippingSnailAcid</soundCast>
 											<muzzleFlashScale>0</muzzleFlashScale>
-											<commonality>0.6</commonality>
-									</li>
-								</verbs>
-							</value>
-					</li>
-
-					<!-- Infected Aerofleet -->
-
-					<li Class="PatchOperationReplace">
-						<xpath>/Defs/ThingDef[defName="AA_InfectedAerofleet"]/verbs</xpath>
-							<value>
-								<verbs>
-									<li Class="CombatExtended.VerbPropertiesCE">
-										<verbClass>CombatExtended.Verb_ShootCE</verbClass>
-											<hasStandardCommand>true</hasStandardCommand>
-											<defaultProjectile>AA_RedPoisonBolt</defaultProjectile>
-											<warmupTime>1.5</warmupTime>
-											<burstShotCount>1</burstShotCount>
-											<ticksBetweenBurstShots>2</ticksBetweenBurstShots>
-											<minRange>2</minRange>
-											<range>15</range>
-											<soundCast>AA_PoisonBolt</soundCast>
-											<muzzleFlashScale>0</muzzleFlashScale>
-											<commonality>0.6</commonality>
-									</li>
-								</verbs>
-							</value>
-					</li>
-					
-					<!-- Junglelisk -->
-
-					<li Class="PatchOperationReplace">
-						<xpath>/Defs/ThingDef[defName="AA_Junglelisk"]/verbs</xpath>
-							<value>
-								<verbs>
-									<li Class="CombatExtended.VerbPropertiesCE">
-										<verbClass>CombatExtended.Verb_ShootCE</verbClass>
-										<hasStandardCommand>true</hasStandardCommand>
-										<defaultProjectile>AA_AcidicWeb</defaultProjectile>
-										<warmupTime>2</warmupTime>
-										<burstShotCount>2</burstShotCount>
-										<ticksBetweenBurstShots>2</ticksBetweenBurstShots>
-										<minRange>1</minRange>
-										<range>16</range>
-										<soundCast>AA_Throw</soundCast>
-										<muzzleFlashScale>0</muzzleFlashScale>
-										<commonality>0.8</commonality>
-									</li>
-								</verbs>
-							</value>
-					</li>
-
-					<!-- Mantrap -->
-
-					<li Class="PatchOperationReplace">
-						<xpath>/Defs/ThingDef[defName="AA_Mantrap"]/verbs</xpath>
-							<value>
-								<verbs>
-									<li Class="CombatExtended.VerbPropertiesCE">
-										<verbClass>CombatExtended.Verb_ShootCE</verbClass>
-										<hasStandardCommand>true</hasStandardCommand>
-										<defaultProjectile>AA_AcidBolt</defaultProjectile>
-										<warmupTime>1.1</warmupTime>
-										<burstShotCount>1</burstShotCount>
-										<ticksBetweenBurstShots>2</ticksBetweenBurstShots>
-										<minRange>2</minRange>
-										<range>14</range>
-										<soundCast>AA_PoisonBolt</soundCast>
-										<muzzleFlashScale>0</muzzleFlashScale>
-										<commonality>0.8</commonality>
+											<label>acid stream</label>
+											<commonality>0.8</commonality>
 									</li>
 								</verbs>
 							</value>
