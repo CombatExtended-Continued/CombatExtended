@@ -8,7 +8,6 @@
 			<match Class="PatchOperationSequence">
 				<operations>
 
-
 			<li Class="PatchOperationAddModExtension">
 				<xpath>/Defs/ThingDef[defName="RE_Mechanoids_FENRIS" ]</xpath>
 				<value>
@@ -140,29 +139,6 @@
 				</value>
 			</li>	
 
-		<li Class="PatchOperationAdd">
-		<xpath>Defs</xpath>
-		<value>
-  		<ManeuverDef>
-		<defName>Taser_ME</defName>
-    		<verb>
-      		<verbClass>Verb_MeleeAttackDamage</verbClass>
-      		<meleeDamageDef>Taser</meleeDamageDef>
-    		</verb>
-		<label>taser</label>
-		<deathMessage>{0} has been tasered to death.</deathMessage>
-		<hediff>MuscleSpasms</hediff>
-		<hediffSkin>TaserStab</hediffSkin>
-		<hediffSolid>TaserStab</hediffSolid>
-		<modExtensions>		
-		<li Class="CombatExtended.DamageDefExtensionCE">
-		<harmOnlyOutsideLayers>true</harmOnlyOutsideLayers>
-		</li>	
-		</modExtensions>					
-  		</ManeuverDef>
-		</value>
-		</li>
-
     <li Class="PatchOperationReplace">
       <xpath>Defs/ThingDef[defName="RE_Mechanoids_FENRIS"]/tools</xpath>
       <value>
@@ -172,24 +148,18 @@
             <capacities>
               <li>Blunt</li>
             </capacities>
-            <power>13</power>
+            <power>11</power>
             <cooldownTime>1.8</cooldownTime>
             <linkedBodyPartsGroup>HeadAttackTool</linkedBodyPartsGroup>
             <chanceFactor>0.2</chanceFactor>
-            <armorPenetrationSharp>0</armorPenetrationSharp>
-            <armorPenetrationBlunt>5</armorPenetrationBlunt>
-          </li>
-          <li Class="CombatExtended.ToolCE">
-            <label>Taser</label>
-            <capacities>
-              <li>Taser_ME</li>
-            </capacities>
-            <power>9</power>
-            <cooldownTime>1.8</cooldownTime>
-            <linkedBodyPartsGroup>HeadAttackTool</linkedBodyPartsGroup>
-            <chanceFactor>0.4</chanceFactor>
-            <armorPenetrationSharp>15</armorPenetrationSharp>
-            <armorPenetrationBlunt>5</armorPenetrationBlunt>
+            <armorPenetrationSharp>3</armorPenetrationSharp>
+            <armorPenetrationBlunt>6</armorPenetrationBlunt>
+	<extraMeleeDamages>
+	<li>
+	<def>Taser</def>
+	<amount>4</amount>
+	</li>
+	</extraMeleeDamages>	
           </li>
         </tools>
       </value>
