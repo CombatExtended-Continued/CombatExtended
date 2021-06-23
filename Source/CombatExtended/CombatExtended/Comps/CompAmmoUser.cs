@@ -7,6 +7,7 @@ using UnityEngine;
 using Verse;
 using Verse.AI;
 using Verse.Sound;
+using CombatExtended.Compatibility;
 
 namespace CombatExtended
 {
@@ -20,7 +21,7 @@ namespace CombatExtended
 
         private Thing ammoToBeDeleted;
 
-        public Building_TurretGunCE turret;         // Cross-linked from CE turret
+        public Building_Turret turret;         // Cross-linked from CE turret
 
         internal static Type rgStance = null;       // RunAndGun compatibility, set in relevent patch if needed
         #endregion
@@ -450,7 +451,7 @@ namespace CombatExtended
         {
             if (ShouldThrowMote)
             {
-                MoteMaker.ThrowText(Position.ToVector3Shifted(), Find.CurrentMap, "CE_OutOfAmmo".Translate() + "!");
+                MoteMaker.ThrowText(Position.ToVector3Shifted(), Map, "CE_OutOfAmmo".Translate() + "!");
             }
             if (IsEquippedGun && CompInventory != null && (Wielder.CurJob == null || Wielder.CurJob.def != JobDefOf.Hunt)) CompInventory.SwitchToNextViableWeapon();
         }
@@ -522,8 +523,8 @@ namespace CombatExtended
                 newMagCount = (Props.reloadOneAtATime) ? (curMagCountInt + 1) : Props.magazineSize;
             }
             CurMagCount = newMagCount;
-            if (turret != null) turret.isReloading = false;
-            if (parent.def.soundInteract != null) parent.def.soundInteract.PlayOneShot(new TargetInfo(Position, Find.CurrentMap, false));
+            if (turret != null) turret.SetReloading(false);
+            if (parent.def.soundInteract != null) parent.def.soundInteract.PlayOneShot(new TargetInfo(Position, Map, false));
         }
 
         /// <summary>
@@ -581,12 +582,12 @@ namespace CombatExtended
         {
             GizmoAmmoStatus ammoStatusGizmo = new GizmoAmmoStatus { compAmmo = this };
             yield return ammoStatusGizmo;
-
-            if ((IsEquippedGun && Wielder.Faction == Faction.OfPlayer) || (turret != null && turret.Faction == Faction.OfPlayer && (turret.MannableComp != null || UseAmmo)))
+	    var mannableComp = turret?.GetMannable();
+            if ((IsEquippedGun && Wielder.Faction == Faction.OfPlayer) || (turret != null && turret.Faction == Faction.OfPlayer && (mannableComp != null || UseAmmo)))
             {
                 Action action = null;
                 if (IsEquippedGun) action = TryStartReload;
-                else if (turret?.MannableComp != null) action = turret.TryForceReload;
+                else if (mannableComp != null) action = turret.TryForceReload;
 
                 // Check for teaching opportunities
                 string tag;
@@ -597,7 +598,7 @@ namespace CombatExtended
                 }
                 else
                 {
-                    if (turret.MannableComp == null) tag = "CE_ReloadAuto";  // Teach about auto-turrets
+                    if (mannableComp == null) tag = "CE_ReloadAuto";  // Teach about auto-turrets
                     else tag = "CE_ReloadManned";    // Teach about reloading manned turrets
                 }
                 LessonAutoActivator.TeachOpportunity(ConceptDef.Named(tag), turret, OpportunityType.GoodToKnow);

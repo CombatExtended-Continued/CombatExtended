@@ -1,0 +1,255 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+
+	<Operation Class="PatchOperationFindMod">
+    <mods>
+		<li>A RimWorld of Magic</li>
+    </mods>
+		<match Class="PatchOperationSequence">
+		<operations>
+		
+		
+			<li Class="PatchOperationAddModExtension">
+				<xpath>Defs/ThingDef[defName="TM_SpiritBearR"]</xpath>
+				<value>
+					<li Class="CombatExtended.RacePropertiesExtensionCE">
+						<bodyShape>Quadruped</bodyShape>
+					</li>
+				</value>
+			</li>
+			
+			<li Class="PatchOperationAddModExtension">
+				<xpath>Defs/ThingDef[defName="TM_SpiritMongooseR"]</xpath>
+				<value>
+					<li Class="CombatExtended.RacePropertiesExtensionCE">
+						<bodyShape>Quadruped</bodyShape>
+					</li>
+				</value>
+			</li>
+			
+			<li Class="PatchOperationAddModExtension">
+				<xpath>Defs/ThingDef[defName="TM_SpiritCrowR"]</xpath>
+				<value>
+					<li Class="CombatExtended.RacePropertiesExtensionCE">
+						<bodyShape>Birdlike</bodyShape>
+					</li>
+				</value>
+			</li>
+			
+			
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName="TM_SpiritBearR"]/statBases</xpath>
+				<value>
+					<MeleeDodgeChance>0.15</MeleeDodgeChance>
+					<MeleeCritChance>0.19</MeleeCritChance>
+					<MeleeParryChance>0.11</MeleeParryChance>
+				</value>
+			</li>
+			
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="TM_SpiritBearR"]/statBases/ArmorRating_Blunt</xpath>
+				<value>
+					<ArmorRating_Blunt>0.875</ArmorRating_Blunt>
+				</value>
+			</li>
+			
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="TM_SpiritBearR"]/statBases/ArmorRating_Sharp</xpath>
+				<value>
+					<ArmorRating_Sharp>0.44</ArmorRating_Sharp>
+				</value>
+			</li>
+			
+			
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="TM_SpiritBearR"]/tools</xpath>
+				<value>
+					<tools>
+						<li Class="CombatExtended.ToolCE">
+							<label>left claw</label>
+							<capacities>
+								<li>Scratch</li>
+							</capacities>
+							<power>21</power>
+							<cooldownTime>1.41</cooldownTime>
+							<linkedBodyPartsGroup>FrontLeftPaw</linkedBodyPartsGroup>
+							<armorPenetrationSharp>0.15</armorPenetrationSharp>
+							<armorPenetrationBlunt>4.5</armorPenetrationBlunt>
+						</li>
+						<li Class="CombatExtended.ToolCE">
+							<label>right claw</label>
+							<capacities>
+								<li>Scratch</li>
+							</capacities>
+							<power>21</power>
+							<cooldownTime>1.41</cooldownTime>
+							<linkedBodyPartsGroup>FrontRightPaw</linkedBodyPartsGroup>
+							<armorPenetrationSharp>0.15</armorPenetrationSharp>
+							<armorPenetrationBlunt>4.5</armorPenetrationBlunt>
+						</li>
+						<li Class="CombatExtended.ToolCE">
+							<capacities>
+								<li>Bite</li>
+							</capacities>
+							<power>31</power>
+							<cooldownTime>2.05</cooldownTime>
+							<linkedBodyPartsGroup>Teeth</linkedBodyPartsGroup>
+							<armorPenetrationSharp>0.85</armorPenetrationSharp>
+							<armorPenetrationBlunt>8.450</armorPenetrationBlunt>
+						</li>
+						<li Class="CombatExtended.ToolCE">
+							<label>head</label>
+							<capacities>
+								<li>Blunt</li>
+							</capacities>
+							<power>12</power>
+							<cooldownTime>2.22</cooldownTime>
+							<linkedBodyPartsGroup>HeadAttackTool</linkedBodyPartsGroup>
+							<chanceFactor>0.2</chanceFactor>
+							<armorPenetrationBlunt>4.235</armorPenetrationBlunt>
+						</li>
+					</tools>
+				</value>
+			</li>
+			
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName="TM_SpiritMongooseR"]/statBases</xpath>
+				<value>
+					<MeleeDodgeChance>0.3</MeleeDodgeChance>
+					<MeleeCritChance>0.4</MeleeCritChance>
+					<MeleeParryChance>0</MeleeParryChance>
+				</value>
+			</li>
+			
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="TM_SpiritMongooseR"]/statBases/ArmorRating_Blunt</xpath>
+				<value>
+					<ArmorRating_Blunt>0.5</ArmorRating_Blunt>
+				</value>
+			</li>
+			
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="TM_SpiritMongooseR"]/statBases/ArmorRating_Sharp</xpath>
+				<value>
+					<ArmorRating_Sharp>0.25</ArmorRating_Sharp>
+				</value>
+			</li>
+			
+			
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="TM_SpiritMongooseR"]/tools</xpath>
+				<value>
+					<tools>
+						<li Class="CombatExtended.ToolCE">
+							<label>left claw</label>
+							<capacities>
+								<li>Scratch</li>
+							</capacities>
+							<power>7</power>
+							<cooldownTime>.8</cooldownTime>
+							<linkedBodyPartsGroup>FrontLeftPaw</linkedBodyPartsGroup>
+							<armorPenetrationBlunt>0.036</armorPenetrationBlunt>
+							<armorPenetrationSharp>0.01</armorPenetrationSharp>
+						</li>
+						<li Class="CombatExtended.ToolCE">
+							<label>right claw</label>
+							<capacities>
+								<li>Scratch</li>
+							</capacities>
+							<power>8</power>
+							<cooldownTime>.9</cooldownTime>
+							<linkedBodyPartsGroup>FrontRightPaw</linkedBodyPartsGroup>
+							<armorPenetrationBlunt>0.036</armorPenetrationBlunt>
+							<armorPenetrationSharp>0.01</armorPenetrationSharp>
+						</li>
+						<li Class="CombatExtended.ToolCE">
+							<capacities>
+								<li>Bite</li>
+							</capacities>
+							<power>11</power>
+							<cooldownTime>1</cooldownTime>
+							<linkedBodyPartsGroup>Teeth</linkedBodyPartsGroup>
+							<armorPenetrationBlunt>0.675</armorPenetrationBlunt>
+							<armorPenetrationSharp>0.07</armorPenetrationSharp>
+						</li>
+						<li Class="CombatExtended.ToolCE">
+							<label>head</label>
+							<capacities>
+								<li>Blunt</li>
+							</capacities>
+							<power>4</power>
+							<cooldownTime>1</cooldownTime>
+							<linkedBodyPartsGroup>HeadAttackTool</linkedBodyPartsGroup>
+							<chanceFactor>0.2</chanceFactor>
+							<armorPenetrationBlunt>0.125</armorPenetrationBlunt>
+							<armorPenetrationSharp>0</armorPenetrationSharp>
+						</li>
+					</tools>
+				</value>
+			</li>
+			
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName="TM_SpiritCrowR"]/statBases</xpath>
+				<value>
+					<MeleeDodgeChance>0.8</MeleeDodgeChance>
+					<MeleeCritChance>0.2</MeleeCritChance>
+					<MeleeParryChance>0</MeleeParryChance>
+				</value>
+			</li>
+			
+			<li Class="PatchOperationRemove">
+				<xpath>Defs/ThingDef[defName="TM_SpiritCrowR"]/statBases/ArmorRating_Blunt</xpath>
+			</li>
+			
+			<li Class="PatchOperationRemove">
+				<xpath>Defs/ThingDef[defName="TM_SpiritCrowR"]/statBases/ArmorRating_Sharp</xpath>
+			</li>
+			
+			
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="TM_SpiritCrowR"]/tools</xpath>
+				<value>
+					<tools>
+						<li Class="CombatExtended.ToolCE">
+							<label>claws</label>
+							<capacities>
+								<li>Cut</li>
+							</capacities>
+							<power>9</power>
+							<cooldownTime>1.42</cooldownTime>
+							<linkedBodyPartsGroup>Feet</linkedBodyPartsGroup>
+							<armorPenetrationSharp>0.08</armorPenetrationSharp>
+							<armorPenetrationBlunt>0.1</armorPenetrationBlunt>
+						</li>
+						<li Class="CombatExtended.ToolCE">
+							<capacities>
+								<li>Bite</li>
+							</capacities>
+							<power>7</power>
+							<cooldownTime>1.89</cooldownTime>
+							<linkedBodyPartsGroup>Beak</linkedBodyPartsGroup>
+							<chanceFactor>0.5</chanceFactor>
+							<armorPenetrationSharp>0.01</armorPenetrationSharp>					
+							<armorPenetrationBlunt>.325</armorPenetrationBlunt>
+						</li>
+						<li Class="CombatExtended.ToolCE">
+							<label>head</label>
+							<capacities>
+								<li>Blunt</li>
+							</capacities>
+							<power>3</power>
+							<cooldownTime>1.78</cooldownTime>
+							<linkedBodyPartsGroup>HeadAttackTool</linkedBodyPartsGroup>
+							<chanceFactor>0.2</chanceFactor>
+							<armorPenetrationBlunt>.25</armorPenetrationBlunt>
+						</li>
+					</tools>
+				</value>
+			</li>
+			
+			
+		</operations>
+		</match>
+	</Operation>
+	
+</Patch>

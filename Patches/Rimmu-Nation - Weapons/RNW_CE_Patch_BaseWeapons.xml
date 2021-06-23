@@ -1,20 +1,16 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <Patch>
-	<Operation Class="PatchOperationSequence">
-		<success>Always</success>
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+			<li>[CP] Rimmu-Nation - Weapons</li>
+		</mods>
+		<match Class="PatchOperationSequence">
 		<operations>
-		
-			<li Class="CombatExtended.PatchOperationFindMod">
-				<modName>[CP] Rimmu-Nation - Weapons</modName>
-			</li>
 
 			<!-- ==================== Weapons research prerequisite patches ==================== -->
 
 			<li Class="PatchOperationReplace">
-				<xpath>Defs/ThingDef[
-					@Name="RNMakeableGrenadeLauncher" or
-					@Name="RNMakeableOneTimeUseLauncher"
-				]/recipeMaker/researchPrerequisite[text()="MultibarrelWeapons"]</xpath>
+				<xpath>Defs/ThingDef[@Name="RNMakeableGrenadeLauncher" or @Name="RNMakeableOneTimeUseLauncher"]/recipeMaker/researchPrerequisite[text()="MultibarrelWeapons"]</xpath>
 				<value>
 					<researchPrerequisite>CE_Launchers</researchPrerequisite>
 				</value>
@@ -41,5 +37,6 @@
 			</li>
 
 		</operations>
+		</match>
 	</Operation>
 </Patch>

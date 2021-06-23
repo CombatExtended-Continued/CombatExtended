@@ -1,0 +1,246 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+  <Operation Class="PatchOperationSequence">
+	<operations>
+	  <li Class="PatchOperationFindMod">
+			
+		<mods><li>Epona Race</li></mods>
+			
+		<match Class="PatchOperationSequence">
+		<operations>
+			
+			<!-- ==================== Plasma Cell Variants ========================== -->
+			
+			<!--Shock-->
+			
+			<li Class="PatchOperationAdd">
+				<xpath>Defs</xpath>
+				<value>
+					<CombatExtended.AmmoSetDef>
+						<defName>AmmoSet_Epona_Shock</defName>
+						<label>toxic pulse</label>
+						<ammoTypes>
+						  <Ammo_PlasmaCellRifle>Bullet_Epona_Shock</Ammo_PlasmaCellRifle>
+						</ammoTypes>
+					</CombatExtended.AmmoSetDef>
+				</value>
+			</li>
+			
+			<li Class="PatchOperationAdd">
+				<xpath>Defs</xpath>
+				<value>
+				
+					<ThingDef Class="CombatExtended.AmmoDef" ParentName="Base6x24mmChargedBullet">
+						<defName>Bullet_Epona_Shock</defName>
+						<label>vaporized toxin pulse</label>
+						<graphicData>
+						  <texPath>Things/WeaponRanged/Projectile/PoisonProjectile</texPath>
+						  <graphicClass>Graphic_Single</graphicClass>
+						</graphicData>
+						<projectile Class="CombatExtended.ProjectilePropertiesCE">
+						  <speed>160</speed>
+						  <damageAmountBase>15</damageAmountBase>
+						  <damageDef>EponaShocker</damageDef>
+						  <armorPenetrationSharp>28</armorPenetrationSharp>
+						  <armorPenetrationBlunt>40</armorPenetrationBlunt>
+						</projectile>
+					</ThingDef>
+					
+				</value>
+			</li>
+			
+			<!--Shard-->
+			
+			<li Class="PatchOperationAdd">
+				<xpath>Defs</xpath>
+				<value>
+					<CombatExtended.AmmoSetDef>
+						<defName>AmmoSet_Epona_Shard</defName>
+						<label>shard pulse</label>
+						<ammoTypes>
+						  <Ammo_PlasmaCellRifle>Bullet_Epona_Shock</Ammo_PlasmaCellRifle>
+						</ammoTypes>
+					</CombatExtended.AmmoSetDef>
+				</value>
+			</li>
+			
+			<li Class="PatchOperationAdd">
+				<xpath>Defs</xpath>
+				<value>
+					<ThingDef Class="CombatExtended.AmmoDef" ParentName="Base30x64mmFuelBullet">
+						<defName>Bullet_Epona_Shard</defName>
+						<label>shard pulse</label>
+						<graphicData>
+							<texPath>Things/WeaponRanged/Projectile/ShardProjectile</texPath>
+							<graphicClass>Graphic_Single</graphicClass>
+							<shaderType>TransparentPostLight</shaderType>
+						</graphicData>
+						<projectile Class="CombatExtended.ProjectilePropertiesCE">
+							<speed>100</speed>
+							<damageDef>EponaPegasusShard</damageDef>
+							<damageAmountBase>25</damageAmountBase>
+							<explosionRadius>1.4</explosionRadius>
+							<applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
+						</projectile>
+					</ThingDef>
+					
+				</value>
+			</li>
+			
+			<!--Molten-->
+			
+			<li Class="PatchOperationAdd">
+				<xpath>Defs</xpath>
+				<value>
+					<CombatExtended.AmmoSetDef>
+						<defName>AmmoSet_Epona_Molten</defName>
+						<label>plasma pulse</label>
+						<ammoTypes>
+						  <Ammo_PlasmaCellHeavy>Bullet_Epona_Molten</Ammo_PlasmaCellHeavy>
+						</ammoTypes>
+					</CombatExtended.AmmoSetDef>
+				</value>
+			</li>
+			
+			<li Class="PatchOperationAdd">
+				<xpath>Defs</xpath>
+				<value>
+					<ThingDef Class="CombatExtended.AmmoDef" ParentName="Base30x64mmFuelBullet">
+						<defName>Bullet_Epona_Molten</defName>
+						<label>plasma pulse</label>
+						<graphicData>
+							<texPath>Things/WeaponRanged/Projectile/SunProjectile</texPath>
+							<graphicClass>Graphic_Single</graphicClass>
+							<shaderType>TransparentPostLight</shaderType>
+						</graphicData>
+						<projectile Class="CombatExtended.ProjectilePropertiesCE">
+							<speed>10</speed>
+							<damageDef>Bomb</damageDef>
+							<damageAmountBase>300</damageAmountBase>
+							<explosionRadius>5</explosionRadius>
+							<applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
+						</projectile>
+					</ThingDef>
+					
+				</value>
+			</li>
+			
+			<!--plasma-->
+			
+			<li Class="PatchOperationAdd">
+				<xpath>Defs</xpath>
+				<value>
+					<CombatExtended.AmmoSetDef>
+						<defName>AmmoSet_Epona_Plasma</defName>
+						<label>shard pulse</label>
+						<ammoTypes>
+						  <Ammo_PlasmaCellRifle>Bullet_Epona_Plasma</Ammo_PlasmaCellRifle>
+						</ammoTypes>
+					</CombatExtended.AmmoSetDef>
+				</value>
+			</li>
+			
+			<li Class="PatchOperationAdd">
+				<xpath>Defs</xpath>
+				<value>
+					<ThingDef Class="CombatExtended.AmmoDef" ParentName="Base30x64mmFuelBullet">
+						<defName>Bullet_Epona_Plasma</defName>
+						<label>plasma</label>
+						<graphicData>
+							<texPath>Things/WeaponRanged/Projectile/Plasmasperm</texPath>
+							<graphicClass>Graphic_Single</graphicClass>
+							<shaderType>TransparentPostLight</shaderType>
+							<drawSize>0.8</drawSize>
+						</graphicData>
+						<projectile Class="CombatExtended.ProjectilePropertiesCE">
+							<speed>100</speed>
+							<damageDef>EponaLancePlasma</damageDef>
+							<damageAmountBase>5</damageAmountBase>
+							<explosionRadius>0.5</explosionRadius>
+							<applyDamageToExplosionCellsNeighbors>false</applyDamageToExplosionCellsNeighbors>
+						</projectile>
+					</ThingDef>
+					
+				</value>
+			</li>
+			
+			<!-- ==================== Flamer Variant ========================== -->
+			
+			<li Class="PatchOperationAdd">
+				<xpath>Defs</xpath>
+				<value>
+					<CombatExtended.AmmoSetDef>
+						<defName>AmmoSet_NuckelaveeShotgun</defName>
+						<label>Thermal Shot</label>
+						<ammoTypes>
+						  <Ammo_30x64mmFuel_Incendiary>Bullet_Epona_NapalmShotgun</Ammo_30x64mmFuel_Incendiary>
+						</ammoTypes>
+					</CombatExtended.AmmoSetDef>
+				</value>
+			</li>
+			
+			<li Class="PatchOperationAdd">
+				<xpath>Defs</xpath>
+				<value>
+					<ThingDef Class="CombatExtended.AmmoDef" ParentName="Base6x18mmChargedBullet">
+						<defName>Bullet_Epona_NapalmShotgun</defName>
+						<label>shotgun_blast</label>
+						<graphicData>
+						  <texPath>Things/WeaponRanged/Projectile/DragonbreathProjectile</texPath>
+						  <graphicClass>Graphic_Single</graphicClass>
+						</graphicData>
+						<projectile Class="CombatExtended.ProjectilePropertiesCE">
+						  <speed>70</speed>
+						  <damageDef>EponaFlameshot</damageDef>
+						  <damageAmountBase>4</damageAmountBase>
+						  <pelletCount>6</pelletCount>
+						  <spreadMult>17.8</spreadMult>
+						  <armorPenetrationSharp>0</armorPenetrationSharp>
+						  <armorPenetrationBlunt>0</armorPenetrationBlunt>
+						</projectile>
+					</ThingDef>
+				</value>
+			</li>
+			
+			<!-- ==================== Railgun Variant ========================== -->
+			
+			<li Class="PatchOperationAdd">
+				<xpath>Defs</xpath>
+				<value>
+					<CombatExtended.AmmoSetDef>
+						<defName>AmmoSet_6mmEponaShock</defName>
+						<label>6mm Railgun</label>
+						<ammoTypes>
+							<Ammo_6mmRailgun_Sabot>Bullet_6mmEponaShock</Ammo_6mmRailgun_Sabot>
+						</ammoTypes>
+					</CombatExtended.AmmoSetDef>
+				</value>
+			</li>
+			
+			<li Class="PatchOperationAdd">
+				<xpath>Defs</xpath>
+				<value>
+					<ThingDef Class="CombatExtended.AmmoDef" ParentName="Base6x18mmChargedBullet">
+						<defName>Bullet_6mmEponaShock</defName>
+						<label>6mm Railgun bullet (Neurotoxin)</label>
+						<graphicData>
+							<texPath>Things/Projectile/Bullet_Small</texPath>
+							<graphicClass>Graphic_Single</graphicClass>
+						</graphicData>
+						<projectile Class="CombatExtended.ProjectilePropertiesCE">
+							<damageDef>EponaShocker</damageDef>
+							<damageAmountBase>7</damageAmountBase>
+							<armorPenetrationSharp>24</armorPenetrationSharp>
+							<armorPenetrationBlunt>25.6</armorPenetrationBlunt>
+							<speed>120</speed>
+						</projectile>
+					</ThingDef>
+				</value>
+			</li>
+			
+		</operations>
+		</match>	
+	  </li>
+	</operations>	
+  </Operation>
+</Patch>

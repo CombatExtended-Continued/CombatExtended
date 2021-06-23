@@ -1,0 +1,372 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+
+	<Operation Class="PatchOperationFindMod">
+    <mods>
+		<li>A RimWorld of Magic</li>
+    </mods>
+		<match Class="PatchOperationSequence">
+		<operations>
+		
+			<!-- Cloaks : Vanilla cape is 4mm, so we use a general of that as a base and modify based on the original's stat -->
+			
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[
+				defName="TM_MaestersCloak" or
+				defName="DemonLordCloak"
+				]/statBases</xpath>
+				<value>
+					<Bulk>10</Bulk>
+					<WornBulk>2</WornBulk>
+				</value>
+			</li>
+			
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[
+				defName="TM_MaestersCloak"
+				]/statBases/StuffEffectMultiplierArmor</xpath>
+				<value>
+					<StuffEffectMultiplierArmor>3</StuffEffectMultiplierArmor>
+				</value>
+			</li>
+			
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[
+				defName="DemonLordCloak"
+				]/statBases/StuffEffectMultiplierArmor</xpath>
+				<value>
+					<StuffEffectMultiplierArmor>4</StuffEffectMultiplierArmor>
+				</value>
+			</li>
+			
+			<!-- Robes : Take up middle so we'll add a little extra protection to compensate. Should still generally be inferior to the armor combo unless we're using super-fabric though-->
+			
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[
+				defName="DarkRobe" or
+				defName="ArchMageRobe" or
+				defName="TM_DreamcatcherBuckskin"
+				]/statBases</xpath>
+				<value>
+					<Bulk>20</Bulk>
+					<WornBulk>5</WornBulk>
+				</value>
+			</li>
+			
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[
+				defName="DarkRobe"
+				]/statBases/StuffEffectMultiplierArmor</xpath>
+				<value>
+					<StuffEffectMultiplierArmor>6</StuffEffectMultiplierArmor>
+				</value>
+			</li>
+			
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[
+				defName="DarkRobe"
+				]/statBases/ArmorRating_Sharp</xpath>
+				<value>
+					<ArmorRating_Sharp>0.25</ArmorRating_Sharp>
+				</value>
+			</li>
+			
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[
+				defName="DarkRobe"
+				]/statBases/ArmorRating_Blunt</xpath>
+				<value>
+					<ArmorRating_Blunt>0.1</ArmorRating_Blunt>
+				</value>
+			</li>
+			
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[
+				defName="TM_DreamcatcherBuckskin"
+				]/statBases/StuffEffectMultiplierArmor</xpath>
+				<value>
+					<StuffEffectMultiplierArmor>7</StuffEffectMultiplierArmor>
+				</value>
+			</li>
+			
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[
+				defName="TM_DreamcatcherBuckskin"
+				]/statBases/ArmorRating_Sharp</xpath>
+				<value>
+					<ArmorRating_Sharp>2</ArmorRating_Sharp>
+				</value>
+			</li>
+			
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[
+				defName="TM_DreamcatcherBuckskin"
+				]/statBases/ArmorRating_Blunt</xpath>
+				<value>
+					<ArmorRating_Blunt>1</ArmorRating_Blunt>
+				</value>
+			</li>
+			
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[
+				defName="TM_DreamcatcherBuckskin"
+				]/statBases/StuffEffectMultiplierArmor</xpath>
+				<value>
+					<StuffEffectMultiplierArmor>9</StuffEffectMultiplierArmor>
+				</value>
+			</li>
+			
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[
+				defName="TM_DreamcatcherBuckskin"
+				]/statBases/ArmorRating_Sharp</xpath>
+				<value>
+					<ArmorRating_Sharp>1</ArmorRating_Sharp>
+				</value>
+			</li>
+			
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[
+				defName="TM_DreamcatcherBuckskin"
+				]/statBases/ArmorRating_Blunt</xpath>
+				<value>
+					<ArmorRating_Blunt>1</ArmorRating_Blunt>
+				</value>
+			</li>
+			
+			<!-- Hats -->
+			
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[
+				defName="TM_WizardHat" or
+				defName="ArcaneHood"
+				]/statBases</xpath>
+				<value>
+					<Bulk>3</Bulk>
+					<WornBulk>0</WornBulk>
+				</value>
+			</li>
+			
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[
+				defName="TM_WizardHat"
+				]/statBases/StuffEffectMultiplierArmor</xpath>
+				<value>
+					<StuffEffectMultiplierArmor>3</StuffEffectMultiplierArmor>
+				</value>
+			</li>
+			
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[
+				defName="ArcaneHood"
+				]/statBases/StuffEffectMultiplierArmor</xpath>
+				<value>
+					<StuffEffectMultiplierArmor>2</StuffEffectMultiplierArmor>
+				</value>
+			</li>
+			
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[
+				defName="HoodOfMadness"
+				]/statBases/StuffEffectMultiplierArmor</xpath>
+				<value>
+					<StuffEffectMultiplierArmor>3</StuffEffectMultiplierArmor>
+				</value>
+			</li>
+			
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[
+				defName="HoodOfMadness"
+				]/statBases/StuffEffectMultiplierArmor</xpath>
+				<value>
+					<StuffEffectMultiplierArmor>5</StuffEffectMultiplierArmor>
+					<Bulk>5</Bulk>
+					<WornBulk>1</WornBulk>
+				</value>
+			</li>
+			
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[
+				defName="HoodOfMadness"
+				]/statBases/ArmorRating_Sharp</xpath>
+				<value>
+					<ArmorRating_Sharp>1.5</ArmorRating_Sharp>
+				</value>
+			</li>
+			
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[
+				defName="HoodOfMadness"
+				]/statBases/ArmorRating_Blunt</xpath>
+				<value>
+					<ArmorRating_Blunt>0.75</ArmorRating_Blunt>
+				</value>
+			</li>
+			
+			<!--Armors-->
+
+			<li Class="PatchOperationRemove">
+				<xpath>Defs/ThingDef[
+				defName="AncientMail" or
+				defName="RoyalHelm" or
+				defName="ParagonHelm" or
+				defName="RoyalArmor"
+				]/statBases/ArmorRating_Sharp</xpath>
+			</li>
+		
+			<li Class="PatchOperationRemove">
+				<xpath>Defs/ThingDef[
+				defName="AncientMail" or
+				defName="RoyalHelm" or
+				defName="ParagonHelm" or
+				defName="RoyalArmor"
+				]/statBases/ArmorRating_Blunt</xpath>
+			</li>
+
+			<!-- Based on Vanilla Armor Expanded CE patch -->
+			
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="RoyalArmor"]/statBases/Mass</xpath>
+				<value>
+					<Bulk>100</Bulk>
+					<WornBulk>10</WornBulk>
+					<Mass>15</Mass>
+				</value>
+			</li>
+			
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="RoyalArmor"]/statBases/StuffEffectMultiplierArmor</xpath>
+				<value>
+					<StuffEffectMultiplierArmor>3</StuffEffectMultiplierArmor>
+				</value>
+			</li>
+			
+			
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="AncientMail"]/statBases/Mass</xpath>
+				<value>
+					<Bulk>60</Bulk>
+					<WornBulk>7.5</WornBulk>
+					<Mass>7.5</Mass>
+				</value>
+			</li>
+			
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="AncientMail"]/statBases/StuffEffectMultiplierArmor</xpath>
+				<value>
+					<StuffEffectMultiplierArmor>2.5</StuffEffectMultiplierArmor>
+				</value>
+			</li>
+			
+			<!--<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="AncientMail"]/stuffCategories</xpath>
+				<value>
+					<stuffCategories>
+						<li>Steeled</li>
+					</stuffCategories>
+				</value>
+			</li>-->
+			
+			<li Class="PatchOperationRemove">
+				<xpath>Defs/ThingDef[defName="AncientMail"]/equippedStatOffsets/MoveSpeed</xpath>
+			</li>
+			
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="RoyalHelm"]/statBases/Mass</xpath>
+				<value>
+					<Bulk>5</Bulk>
+					<WornBulk>0.5</WornBulk>
+					<Mass>3</Mass>
+				</value>
+			</li>
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="RoyalHelm"]/statBases/StuffEffectMultiplierArmor</xpath>
+				<value>
+					<StuffEffectMultiplierArmor>4.5</StuffEffectMultiplierArmor>
+				</value>
+			</li>
+			
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="RoyalHelm"]/stuffCategories</xpath>
+				<value>
+					<stuffCategories>
+						<li>Steeled</li>
+					</stuffCategories>
+				</value>
+			</li>
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="RoyalHelm"]/apparel/bodyPartGroups</xpath>
+				<value>
+					<bodyPartGroups>
+						<li>UpperHead</li>
+						<li>Eyes</li>
+						<li>Teeth</li>
+					</bodyPartGroups>
+				</value>
+			</li>
+			
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="ParagonHelm"]/statBases/Mass</xpath>
+				<value>
+					<Bulk>5</Bulk>
+					<WornBulk>1</WornBulk>
+					<Mass>4</Mass>
+				</value>
+			</li>
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="ParagonHelm"]/statBases/StuffEffectMultiplierArmor</xpath>
+				<value>
+					<StuffEffectMultiplierArmor>5.5</StuffEffectMultiplierArmor>
+				</value>
+			</li>
+			
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="ParagonHelm"]/stuffCategories</xpath>
+				<value>
+					<stuffCategories>
+						<li>Steeled</li>
+					</stuffCategories>
+				</value>
+			</li>
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="ParagonHelm"]/apparel/bodyPartGroups</xpath>
+				<value>
+					<bodyPartGroups>
+						<li>UpperHead</li>
+						<li>Eyes</li>
+						<li>Teeth</li>
+					</bodyPartGroups>
+				</value>
+			</li>
+			
+			
+			<li Class="PatchOperationConditional">
+				<xpath>Defs/ThingDef[@Name="TM_ArtifactBase"]/statBases</xpath>
+				<nomatch Class="PatchOperationAdd">
+					<xpath>/Defs/ThingDef[@Name="TM_ArtifactBase"]</xpath>
+					<value>
+						<statBases/>
+					</value>
+				</nomatch>
+				<match Class="PatchOperationAdd">
+					<xpath>/Defs/ThingDef[@Name="TM_ArtifactBase"]</xpath>
+					<value>
+					</value>
+				</match>
+			</li>
+			
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[@Name="TM_ArtifactBase"]/statBases</xpath>
+				<value>
+					<Bulk>0.35</Bulk>
+					<WornBulk>0</WornBulk>
+				</value>
+			</li>
+			
+			
+			
+		</operations>
+		</match>
+	</Operation>
+	
+</Patch>

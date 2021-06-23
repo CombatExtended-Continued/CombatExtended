@@ -1,0 +1,308 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+	<Operation Class="PatchOperationSequence">
+		<success></success>
+		<operations>
+			<li Class="PatchOperationFindMod">
+			<mods><li>Epona Race</li></mods>
+			<match Class="PatchOperationSequence">
+			<operations>
+			
+			<!-- ========== Shock =========== -->
+			
+			<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+				<defName>Epona_PegasusShock</defName>
+				<statBases>
+					<SightsEfficiency>2.12</SightsEfficiency>
+					<ShotSpread>0.1</ShotSpread>
+					<SwayFactor>1.60</SwayFactor>
+					<Bulk>7</Bulk>
+					<Mass>9</Mass>
+					<RangedWeapon_Cooldown>0.35</RangedWeapon_Cooldown>
+				</statBases>
+				<Properties>				
+					<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+					<hasStandardCommand>true</hasStandardCommand>
+					<defaultProjectile>Bullet_Epona_Shock</defaultProjectile>
+					<warmupTime>1.35</warmupTime>
+					<range>62</range>
+					<soundCast>Epona_Pulsecarbine</soundCast>
+					<soundCastTail>GunTail_Light</soundCastTail>
+					<muzzleFlashScale>9</muzzleFlashScale>
+				</Properties>
+				<AmmoUser>
+					<magazineSize>15</magazineSize>
+					<reloadTime>4</reloadTime>
+					<ammoSet>AmmoSet_Epona_Shock</ammoSet>
+				</AmmoUser>
+				<FireModes>
+					<aiAimMode>AimedShot</aiAimMode>
+				</FireModes>
+				<weaponTags>
+				</weaponTags>
+			</li>
+			
+			<!-- ========== Shard =========== -->
+			
+			<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+				<defName>Epona_PegasusShards</defName>
+				<statBases>
+				  <Mass>5.0</Mass>
+				  <RangedWeapon_Cooldown>0.36</RangedWeapon_Cooldown>
+				  <SightsEfficiency>1.1</SightsEfficiency>
+				  <ShotSpread>0.11</ShotSpread>
+				  <SwayFactor>1.15</SwayFactor>
+				  <Bulk>6.50</Bulk>
+				</statBases>
+				<Properties>
+					<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+					<recoilAmount>2.05</recoilAmount>
+					<hasStandardCommand>true</hasStandardCommand>
+					<defaultProjectile>Bullet_Epona_Shard</defaultProjectile>
+					<ai_IsBuildingDestroyer>false</ai_IsBuildingDestroyer>
+					<warmupTime>0.5</warmupTime>
+					<range>31</range>
+				    <burstShotCount>3</burstShotCount>
+				    <ticksBetweenBurstShots>10</ticksBetweenBurstShots>
+					<targetParams>
+					  <canTargetLocations>true</canTargetLocations>
+					</targetParams>
+					<soundCast>Epona_ShardsSound</soundCast>
+					<soundCastTail>GunTail_Heavy</soundCastTail>
+					<muzzleFlashScale>14</muzzleFlashScale>
+				</Properties>
+				<AmmoUser>
+				  <magazineSize>15</magazineSize>
+				  <reloadTime>4</reloadTime>
+				  <ammoSet>AmmoSet_Epona_Shard</ammoSet>
+				</AmmoUser>
+				<FireModes>
+				  <aimedBurstShotCount>2</aimedBurstShotCount>
+				  <aiUseBurstMode>FALSE</aiUseBurstMode>
+				</FireModes>
+			</li>
+			
+			<!-- ========== Plasma =========== -->
+			
+			<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+				<defName>Epona_PegasusMolten</defName>
+				<statBases>
+				  <Mass>15</Mass>
+				  <RangedWeapon_Cooldown>1.57</RangedWeapon_Cooldown>
+				  <ShotSpread>0.15</ShotSpread>
+				  <SwayFactor>2.55</SwayFactor>
+				  <Bulk>11.50</Bulk>
+				  <SightsEfficiency>1.10</SightsEfficiency>
+				</statBases>
+				<Properties>
+					<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+					<recoilAmount>2.93</recoilAmount>
+					<hasStandardCommand>true</hasStandardCommand>
+					<defaultProjectile>Bullet_Epona_Molten</defaultProjectile>
+					<ai_IsBuildingDestroyer>true</ai_IsBuildingDestroyer>
+					<warmupTime>1.1</warmupTime>
+					<range>51</range>
+					<minRange>5</minRange>
+					<targetParams>
+					  <canTargetLocations>true</canTargetLocations>
+					</targetParams>
+					<soundCast>Epona_SunmakerSound</soundCast>
+					<soundCastTail>GunTail_Heavy</soundCastTail>
+					<muzzleFlashScale>11</muzzleFlashScale>
+					<ignorePartialLoSBlocker>true</ignorePartialLoSBlocker>
+					<ammoConsumedPerShotCount>25</ammoConsumedPerShotCount>
+				</Properties>
+				<AmmoUser>
+				  <magazineSize>25</magazineSize>
+				  <reloadTime>5.2</reloadTime>
+				  <ammoSet>AmmoSet_Epona_Molten</ammoSet>
+				</AmmoUser>
+				<FireModes />
+			</li>
+			
+			<!-- ========== Lance =========== -->
+			
+			<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+				<defName>Epona_LancePlasma</defName>
+				<statBases>
+				  <Mass>21</Mass>
+				  <RangedWeapon_Cooldown>0.35</RangedWeapon_Cooldown>
+				  <SightsEfficiency>1</SightsEfficiency>
+				  <ShotSpread>0.11</ShotSpread>
+				  <SwayFactor>3.50</SwayFactor>
+				  <Bulk>14</Bulk>
+				</statBases>
+				<Properties>
+					<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+					<recoilAmount>0.05</recoilAmount>
+					<hasStandardCommand>true</hasStandardCommand>
+					<defaultProjectile>Bullet_Epona_Shard</defaultProjectile>
+					<ai_IsBuildingDestroyer>false</ai_IsBuildingDestroyer>
+					<warmupTime>2.5</warmupTime>
+					<range>12</range>
+				    <burstShotCount>60</burstShotCount>
+				    <ticksBetweenBurstShots>1</ticksBetweenBurstShots>
+					<targetParams>
+					  <canTargetLocations>true</canTargetLocations>
+					</targetParams>
+					<soundCast>Epona_PlasmaSound</soundCast>
+					<soundCastTail>GunTail_Heavy</soundCastTail>
+					<muzzleFlashScale>11</muzzleFlashScale>
+				</Properties>
+				<AmmoUser>
+				  <magazineSize>120</magazineSize>
+				  <reloadTime>7.8</reloadTime>
+				  <ammoSet>AmmoSet_Epona_Plasma</ammoSet>
+				</AmmoUser>
+				<FireModes>
+				  <aimedBurstShotCount>30</aimedBurstShotCount>
+				  <aiUseBurstMode>FALSE</aiUseBurstMode>
+				  <noSingleShot>true</noSingleShot>
+				</FireModes>
+			</li>
+			
+			<!-- ========== Hippogryph Railgun =========== -->
+			
+			<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+				<defName>Epona_HippogryphRailgun</defName>
+				<statBases>
+				  <Mass>8.5</Mass>
+				  <RangedWeapon_Cooldown>0.36</RangedWeapon_Cooldown>
+				  <SightsEfficiency>2.60</SightsEfficiency>
+				  <ShotSpread>0.07</ShotSpread>
+				  <SwayFactor>1.89</SwayFactor>
+				  <Bulk>12.85</Bulk>
+				</statBases>
+				<Properties>
+				  <recoilAmount>2.25</recoilAmount>
+				  <verbClass>CombatExtended.Verb_ShootCE</verbClass>
+				  <hasStandardCommand>true</hasStandardCommand>
+				  <defaultProjectile>Bullet_6mmRailgun_Sabot</defaultProjectile>
+				  <warmupTime>1.5</warmupTime>
+				  <range>75</range>
+				  <soundCast>Epona_RailgunSound</soundCast>
+				  <soundCastTail>GunTail_Heavy</soundCastTail>
+				  <muzzleFlashScale>9</muzzleFlashScale>
+				</Properties>
+				<AmmoUser>
+				  <magazineSize>5</magazineSize>
+				  <reloadTime>4</reloadTime>
+				  <ammoSet>AmmoSet_8mmRailgun</ammoSet>
+				</AmmoUser>
+				<FireModes>
+				  <aimedBurstShotCount>3</aimedBurstShotCount>
+				  <aiUseBurstMode>TRUE</aiUseBurstMode>
+				  <aiAimMode>AimedShot</aiAimMode>
+				</FireModes>
+			</li>
+			
+			<!-- ========== Nightmare =========== -->
+			
+			<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+				<defName>Epona_NightmareShock</defName>
+				<statBases>
+				  <Mass>2.0</Mass>
+				  <RangedWeapon_Cooldown>0.36</RangedWeapon_Cooldown>
+				  <SightsEfficiency>1</SightsEfficiency>
+				  <ShotSpread>0.07</ShotSpread>
+				  <SwayFactor>0.85</SwayFactor>
+				  <Bulk>6.25</Bulk>
+				</statBases>
+				<Properties>
+				  <recoilAmount>2.52</recoilAmount>
+				  <verbClass>CombatExtended.Verb_ShootCE</verbClass>
+				  <hasStandardCommand>true</hasStandardCommand>
+				  <defaultProjectile>Bullet_6mmEponaShock</defaultProjectile>
+				  <warmupTime>0.50</warmupTime>
+				  <range>31</range>
+				  <burstShotCount>5</burstShotCount>
+				  <ticksBetweenBurstShots>6</ticksBetweenBurstShots>
+				  <soundCast>Epona_SilencerSound</soundCast>
+				  <soundCastTail>GunTail_Light</soundCastTail>
+				  <muzzleFlashScale>9</muzzleFlashScale>
+				</Properties>
+				<AmmoUser>
+				  <magazineSize>30</magazineSize>
+				  <reloadTime>4</reloadTime>
+				  <ammoSet>AmmoSet_6mmEponaShock</ammoSet>
+				</AmmoUser>
+				<FireModes>
+				  <aimedBurstShotCount>3</aimedBurstShotCount>
+				  <aiUseBurstMode>FALSE</aiUseBurstMode>
+				</FireModes>
+			</li>
+			
+			<!-- ========== Melee Attacks =========== -->
+			
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="Epona_PegasusShock" or 
+				defName="Epona_PegasusShards" or 
+				defName="Epona_PegasusMolten" or 
+				defName="Epona_HippogryphRailgun" or 
+				defName="Epona_NightmareShock"
+				]/tools</xpath>
+				<value>
+					<tools>
+						<li Class="CombatExtended.ToolCE">
+							<label>stock</label>
+							<capacities>
+								<li>Blunt</li>
+							</capacities>
+							<power>8</power>
+							<cooldownTime>1.55</cooldownTime>
+							<chanceFactor>1.5</chanceFactor>
+							<armorPenetrationBlunt>2.755</armorPenetrationBlunt>
+							<linkedBodyPartsGroup>Stock</linkedBodyPartsGroup>
+						</li>
+						<li Class="CombatExtended.ToolCE">
+							<label>barrel</label>
+							<capacities>
+								<li>Blunt</li>
+							</capacities>
+							<power>5</power>
+							<cooldownTime>2.02</cooldownTime>
+							<armorPenetrationBlunt>1.630</armorPenetrationBlunt>
+							<linkedBodyPartsGroup>Barrel</linkedBodyPartsGroup>
+						</li>
+						<li Class="CombatExtended.ToolCE">
+						<label>muzzle</label>
+							<capacities>
+							<li>Poke</li>
+							</capacities>
+							<power>8</power>
+							<cooldownTime>1.55</cooldownTime>
+							<armorPenetrationBlunt>2.755</armorPenetrationBlunt>
+							<linkedBodyPartsGroup>Muzzle</linkedBodyPartsGroup>
+						</li>
+					</tools>
+				</value>
+			</li>
+			
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="Epona_LancePlasma"
+				]/tools</xpath>
+				<value>
+					<tools>
+						<li Class="CombatExtended.ToolCE">
+							<label>point</label>
+							<capacities>
+								<li>MeleePlasma</li>
+							</capacities>
+							<power>30</power>
+							<cooldownTime>4</cooldownTime>
+							<chanceFactor>1</chanceFactor>
+							<armorPenetrationBlunt>25</armorPenetrationBlunt>
+							<armorPenetrationSharp>30</armorPenetrationSharp>
+							<linkedBodyPartsGroup>Point</linkedBodyPartsGroup>
+						</li>
+					</tools>
+				</value>
+			</li>
+			
+			
+			</operations>
+			</match>
+			</li>
+		</operations>
+	</Operation>
+</Patch>

@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+
+	<Operation Class="PatchOperationFindMod">
+    <mods>
+		<li>A RimWorld of Magic</li>
+    </mods>
+		<match Class="PatchOperationSequence">
+		<operations>
+			
+			
+				<li Class="PatchOperationAdd">
+					<xpath>/Defs/TraitDef[defName="Undead"]/degreeDatas/li/statOffsets</xpath>
+					<value>
+						<Suppressability>-1</Suppressability>
+						<SmokeSensitivity>-1</SmokeSensitivity>
+					</value>				
+				</li>
+				
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/TraitDef[
+					defName="InnerFire" or
+					defName="TM_TheShadow"
+					]/degreeDatas/li/statOffsets/ShootingAccuracyPawn</xpath>
+					<value>
+						<ShootingAccuracyPawn>-1</ShootingAccuracyPawn><!-- -5 -->
+					</value>				
+				</li>
+				
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/TraitDef[
+					defName="Technomancer"
+					]/degreeDatas/li/statOffsets/ShootingAccuracyPawn</xpath>
+					<value>
+						<ShootingAccuracyPawn>1</ShootingAccuracyPawn><!-- +5 -->
+					</value>				
+				</li>
+				
+				
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/TraitDef[defName="TM_Brightmage"]/degreeDatas/li/statOffsets/ShootingAccuracyPawn</xpath>
+					<value>
+						<ShootingAccuracyPawn>-3</ShootingAccuracyPawn><!-- -35 -->
+					</value>				
+				</li>
+				
+				
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/TraitDef[
+					defName="TM_Sniper"
+					]/degreeDatas/li[1]/statOffsets/ShootingAccuracyPawn</xpath>
+					<value>
+						<ShootingAccuracyPawn>0.4</ShootingAccuracyPawn><!-- +2 -->
+					</value>				
+				</li>
+				
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/TraitDef[
+					defName="TM_Sniper"
+					]/degreeDatas/li[2]/statOffsets/ShootingAccuracyPawn</xpath>
+					<value>
+						<ShootingAccuracyPawn>0.8</ShootingAccuracyPawn><!-- +4 -->
+					</value>				
+				</li>
+				
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/TraitDef[
+					defName="TM_Sniper"
+					]/degreeDatas/li[3]/statOffsets/ShootingAccuracyPawn</xpath>
+					<value>
+						<ShootingAccuracyPawn>1.2</ShootingAccuracyPawn><!-- +6 -->
+					</value>				
+				</li>
+				
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/TraitDef[
+					defName="TM_Sniper"
+					]/degreeDatas/li[4]/statOffsets/ShootingAccuracyPawn</xpath>
+					<value>
+						<ShootingAccuracyPawn>1.6</ShootingAccuracyPawn><!-- +8 -->
+					</value>				
+				</li>
+				
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/TraitDef[
+					defName="Bladedancer"
+					]/degreeDatas/li[1]/statOffsets/ShootingAccuracyPawn</xpath>
+					<value>
+						<ShootingAccuracyPawn>-2</ShootingAccuracyPawn><!-- -20 -->
+					</value>				
+				</li>
+				
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/TraitDef[
+					defName="Bladedancer"
+					]/degreeDatas/li[2]/statOffsets/ShootingAccuracyPawn</xpath>
+					<value>
+						<ShootingAccuracyPawn>-2.5</ShootingAccuracyPawn><!-- -25 -->
+					</value>				
+				</li>
+				
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/TraitDef[
+					defName="Bladedancer"
+					]/degreeDatas/li[3]/statOffsets/ShootingAccuracyPawn</xpath>
+					<value>
+						<ShootingAccuracyPawn>-2.8</ShootingAccuracyPawn><!-- -28 -->
+					</value>				
+				</li>
+				
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/TraitDef[
+					defName="Bladedancer"
+					]/degreeDatas/li[4]/statOffsets/ShootingAccuracyPawn</xpath>
+					<value>
+						<ShootingAccuracyPawn>-30</ShootingAccuracyPawn><!-- -30 -->
+					</value>				
+				</li>
+				
+				
+				
+		</operations>
+		</match>
+	</Operation>
+	
+</Patch>

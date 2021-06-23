@@ -1,52 +1,44 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <Patch>
-	<Operation Class="PatchOperationSequence">
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+			<li>Mincho, The Mint Choco Slime</li><li>Mincho, The Mint Choco Slime ~ HAR ver.</li>
+		</mods>
+		<match Class="PatchOperationSequence">
 		<operations>
-				
-			<!--Mincho body-->
-
-			<li Class="PatchOperationFindMod">
-				<mods>
-					<li>Mincho, The Mint Choco Slime</li>
-				</mods>
-				<match Class="PatchOperationSequence">
-					<operations>
 					
-						<!--Arm Groups-->
-						
-						<li Class="PatchOperationAdd">
-						  <xpath>
-							/Defs/BodyDef[defName="Mincho_BodyDef"]//*[
-							def="Mincho_Core"
-							]/groups
-						  </xpath>
-						  <value>
-							<li>LeftShoulder</li>
-							<li>RightShoulder</li>
-							<li>LeftArm</li>
-							<li>RightArm</li>
-							<li>Shoulders</li>
-						  </value>
-						</li>
-					
-						<!--Natural Armor-->
-
-						<li Class="PatchOperationAdd">
-						  <xpath>
-							/Defs/BodyDef[defName="Mincho_BodyDef"]//*[
-							def="Mincho_Torso" or 
-							def="Mincho_Head"
-							]/groups
-						  </xpath>
-						  <value>
-							<li>CoveredByNaturalArmor</li>
-						  </value>
-						</li>
-						
-					</operations>
-				</match>
+			<!--Arm Groups-->
+			
+			<li Class="PatchOperationAdd">
+				<xpath>
+				/Defs/BodyDef[defName="Mincho_BodyDef"]//*[
+				def="Mincho_Core"
+				]/groups
+				</xpath>
+				<value>
+				<li>LeftShoulder</li>
+				<li>RightShoulder</li>
+				<li>LeftArm</li>
+				<li>RightArm</li>
+				<li>Shoulders</li>
+				</value>
 			</li>
+		
+			<!--Natural Armor-->
 
+			<li Class="PatchOperationAdd">
+				<xpath>
+				/Defs/BodyDef[defName="Mincho_BodyDef"]//*[
+				def="Mincho_Torso" or 
+				def="Mincho_Head"
+				]/groups
+				</xpath>
+				<value>
+				<li>CoveredByNaturalArmor</li>
+				</value>
+			</li>
+						
 		</operations>
+		</match>
 	</Operation>
 </Patch>

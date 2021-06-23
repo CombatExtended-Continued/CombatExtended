@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+	
+	<Operation Class="PatchOperationFindMod">
+    <mods>
+		<li>[O21] Outer Rim - Core</li>
+    </mods>
+		<match Class="PatchOperationSequence">
+		<operations>
+			
+			
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName="O21_OuterRim_Durasteel" or defName="O21_OuterRim_Beskar"]/stuffProps/categories</xpath>
+				<value>
+					<li>Steeled</li>
+				</value>
+			</li>	
+			
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/DamageDef[defName="O21_OuterRim_Blaster"]/armorCategory</xpath>
+				<value>
+					<armorCategory>Sharp</armorCategory>
+				</value>
+			</li>	
+			
+			
+			
+			
+		</operations>
+		</match>
+	</Operation>
+	
+</Patch>

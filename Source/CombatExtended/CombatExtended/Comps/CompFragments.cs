@@ -41,13 +41,13 @@ namespace CombatExtended
             var fragPerTick = Mathf.CeilToInt((float)fragToSpawn / TicksToSpawnAllFrag);
             var fragSpawnedInTick = 0;
 
-            while (fragToSpawn > 0)
+            while (fragToSpawn > 0 && Find.Maps.IndexOf(map) >= 0)
             {
                 var projectile = (ProjectileCE)ThingMaker.MakeThing(frag.thingDef);
                 GenSpawn.Spawn(projectile, cell, map);
 
                 projectile.canTargetSelf = true;
-                projectile.minCollisionSqr = 1f;
+                projectile.minCollisionDistance = 1f;
                 //TODO : Don't hardcode at FragmentShadowChance, make XML-modifiable
                 projectile.castShadow = (UnityEngine.Random.value < FragmentShadowChance);
                 projectile.logMisses = false;

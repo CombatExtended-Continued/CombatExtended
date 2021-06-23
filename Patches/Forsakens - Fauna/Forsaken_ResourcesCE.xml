@@ -19,7 +19,16 @@
 				<li Class="PatchOperationAdd">
 					<xpath>/Defs/ThingDef[defName="Leather_Behemoth"]/statBases</xpath>
 					<value>
-						<StuffPower_Armor_Blunt>0.25</StuffPower_Armor_Blunt>
+						<StuffPower_Armor_Blunt>0.3</StuffPower_Armor_Blunt>
+					</value>
+				</li>
+				
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="Leather_Behemoth"]/stuffProps</xpath>
+					<value>
+					<categories>
+						<li>SoftArmor</li>
+					</categories>
 					</value>
 				</li>
 
@@ -36,6 +45,14 @@
 						<StuffPower_Armor_Blunt>0.05</StuffPower_Armor_Blunt>
 					</value>
 				</li>
+				
+				
+			<li Class="PatchOperationReplace">
+				<xpath>/Defs/ThingDef[defName="FO_NightWool"]/statBases/StuffPower_Armor_Heat</xpath>
+				<value>
+					<StuffPower_Armor_Heat>0.06</StuffPower_Armor_Heat>
+				</value>
+			</li>
 
 			<!-- Night Leather. It was made through Conditionals so it plays nice with Alpha Animals, regardless of load order. -->
 
@@ -66,7 +83,7 @@
 					<match Class="PatchOperationReplace">
 					<xpath>/Defs/ThingDef[defName="Leather_Night"]/statBases/StuffPower_Armor_Blunt</xpath>
 						<value>
-							<StuffPower_Armor_Blunt>0.064</StuffPower_Armor_Blunt>
+							<StuffPower_Armor_Blunt>0.06</StuffPower_Armor_Blunt>
 						</value>
 					</match>
 				</li>

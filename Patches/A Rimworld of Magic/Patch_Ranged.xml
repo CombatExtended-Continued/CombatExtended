@@ -1,0 +1,609 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+
+	<Operation Class="PatchOperationFindMod">
+    <mods>
+		<li>A RimWorld of Magic</li>
+    </mods>
+		<match Class="PatchOperationSequence">
+		<operations>
+			
+			
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[
+				defName="TM_LightningWand" or
+				defName="TM_IceWand" or
+				defName="TM_DefenderStaff" or
+				defName="TM_BlazingPowerStaff" or
+				defName="TM_FireWand"
+				]/tools</xpath>
+				<value>
+					<tools>
+						<li Class="CombatExtended.ToolCE">
+							<label>wand</label>
+							<capacities>
+								<li>Blunt</li>
+							</capacities>
+							<power>6</power>
+							<cooldownTime>1.2</cooldownTime>
+							<armorPenetrationBlunt>0.4</armorPenetrationBlunt>
+							<linkedBodyPartsGroup>Shaft</linkedBodyPartsGroup>
+						</li>
+					</tools>
+				</value>
+			</li>
+						
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[
+				defName="Seer_FireRing" or
+				defName="Seer_IceRing" or
+				defName="Seer_LightningRing"
+				]/tools</xpath>
+				<value>
+					<tools>
+						<li Class="CombatExtended.ToolCE">
+							<label>ring</label>
+							<capacities>
+								<li>Blunt</li>
+							</capacities>
+							<power>2</power>
+							<cooldownTime>0.5</cooldownTime>
+							<armorPenetrationBlunt>.2</armorPenetrationBlunt>
+						</li>
+					</tools>
+				</value>
+			</li>
+			
+			<li Class="PatchOperationRemove">
+				<xpath>/Defs/ThingDef[defName="Projectile_IceWand"]</xpath>
+			</li>
+
+			<li Class="PatchOperationAdd">
+				<xpath>/Defs</xpath>
+				<value>
+					<ThingDef ParentName="Base6x24mmChargedBullet" Class="AbilityUser.ProjectileDef_Ability">
+						<!--<thingClass>TorannMagic.Weapon.Projectile_IceWand</thingClass>-->
+						<defName>Projectile_IceWand</defName>
+						<label>ice shard</label>
+						<graphicData>
+							<texPath>Spells/Icebolt</texPath>
+							<graphicClass>Graphic_Single</graphicClass>
+							<shaderType>TransparentPostLight</shaderType>
+						</graphicData>
+						<projectile Class="CombatExtended.ProjectilePropertiesCE">
+							<damageDef>Iceshard</damageDef>
+							<damageAmountBase>18</damageAmountBase>
+							<armorPenetrationBlunt>50</armorPenetrationBlunt>
+							<armorPenetrationSharp>18</armorPenetrationSharp>
+							<speed>65</speed>
+							<dropsCasings>false</dropsCasings>
+						</projectile>
+					</ThingDef>
+				</value>
+			</li>
+			
+			<li Class="PatchOperationRemove">
+				<xpath>/Defs/ThingDef[defName="Projectile_FireWand"]</xpath>
+			</li>
+
+			<li Class="PatchOperationAdd">
+				<xpath>/Defs</xpath>
+				<value>
+					<ThingDef ParentName="Base6x24mmChargedBullet" Class="AbilityUser.ProjectileDef_Ability">
+						<!--<thingClass>TorannMagic.Weapon.Projectile_IceWand</thingClass>-->
+						<defName>Projectile_FireWand</defName>
+						<label>fire blast</label>
+						<graphicData>
+							<texPath>Spells/seer_ring_fire</texPath>
+							<graphicClass>Graphic_Single</graphicClass>
+							<shaderType>TransparentPostLight</shaderType>
+						</graphicData>
+						<projectile Class="CombatExtended.ProjectilePropertiesCE">
+							<damageDef>Flame</damageDef>
+							<damageAmountBase>5</damageAmountBase>
+							<armorPenetrationBlunt>30</armorPenetrationBlunt>
+							<armorPenetrationSharp>9</armorPenetrationSharp>
+							<explosionRadius>1.2</explosionRadius>
+							<speed>65</speed>
+							<dropsCasings>false</dropsCasings>
+						</projectile>
+					</ThingDef>
+				</value>
+			</li>
+			
+			<li Class="PatchOperationRemove">
+				<xpath>/Defs/ThingDef[defName="Projectile_LightningWand"]</xpath>
+			</li>
+
+			<li Class="PatchOperationAdd">
+				<xpath>/Defs</xpath>
+				<value>
+					<ThingDef ParentName="Base6x24mmChargedBullet" Class="AbilityUser.ProjectileDef_Ability">
+						<!--<thingClass>TorannMagic.Weapon.Projectile_IceWand</thingClass>-->
+						<defName>Projectile_LightningWand</defName>
+						<label>lightning bolt</label>
+						<graphicData>
+							<texPath>Spells/LightningBolt</texPath>
+							<graphicClass>Graphic_Single</graphicClass>
+							<shaderType>TransparentPostLight</shaderType>
+						</graphicData>
+						<projectile Class="CombatExtended.ProjectilePropertiesCE">
+							<damageDef>TM_Lightning</damageDef>
+							<damageAmountBase>6</damageAmountBase>
+							<armorPenetrationBlunt>30</armorPenetrationBlunt>
+							<armorPenetrationSharp>9</armorPenetrationSharp>
+							<explosionRadius>1.2</explosionRadius>
+							<speed>200</speed>
+							<dropsCasings>false</dropsCasings>
+						</projectile>
+					</ThingDef>
+				</value>
+			</li>
+			
+			<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+				<defName>TM_IceWand</defName>
+					<statBases>
+						<SightsEfficiency>1.0</SightsEfficiency>
+						<ShotSpread>0.14</ShotSpread>
+						<SwayFactor>1.01</SwayFactor>
+						<Bulk>1</Bulk>
+						<Mass>1</Mass>
+						<RangedWeapon_Cooldown>.6</RangedWeapon_Cooldown>
+					</statBases>
+					<Properties>
+						<recoilAmount>1.53</recoilAmount>
+						<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+						<hasStandardCommand>true</hasStandardCommand>
+						<defaultProjectile>Projectile_IceWand</defaultProjectile>
+						<warmupTime>0.5</warmupTime>
+						<range>40</range>
+						<soundCast>TM_Woosh</soundCast>
+						<muzzleFlashScale>5</muzzleFlashScale>
+						<soundCastTail>GunTail_Light</soundCastTail>
+					</Properties>
+					<FireModes>
+						<aiAimMode>AimedShot</aiAimMode>
+					</FireModes>
+			</li>
+			
+			<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+				<defName>Seer_IceRing</defName>
+					<statBases>
+						<SightsEfficiency>0.35</SightsEfficiency>
+						<ShotSpread>0.14</ShotSpread>
+						<SwayFactor>0.10</SwayFactor>
+						<Bulk>0.5</Bulk>
+						<Mass>1</Mass>
+						<RangedWeapon_Cooldown>.3</RangedWeapon_Cooldown>
+					</statBases>
+					<Properties>
+						<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+						<hasStandardCommand>true</hasStandardCommand>
+						<defaultProjectile>Projectile_IceWand</defaultProjectile>
+						<warmupTime>0.25</warmupTime>
+						<range>40</range>
+						<soundCast>Shot_ChargeRifle</soundCast>
+						<muzzleFlashScale>5</muzzleFlashScale>
+						<soundCastTail>GunTail_Light</soundCastTail>
+					</Properties>
+					<FireModes>
+						<aiAimMode>AimedShot</aiAimMode>
+					</FireModes>
+			</li>
+
+			<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+				<defName>TM_LightningWand</defName>
+					<statBases>
+						<SightsEfficiency>1.0</SightsEfficiency>
+						<ShotSpread>0.14</ShotSpread>
+						<SwayFactor>1.01</SwayFactor>
+						<Bulk>1</Bulk>
+						<Mass>1</Mass>
+						<RangedWeapon_Cooldown>1.6</RangedWeapon_Cooldown>
+					</statBases>
+					<Properties>
+						<recoilAmount>1.53</recoilAmount>
+						<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+						<hasStandardCommand>true</hasStandardCommand>
+						<defaultProjectile>Projectile_LightningWand</defaultProjectile>
+						<warmupTime>2.8</warmupTime>
+						<range>32</range>
+						<soundCast>TM_Thunder_OnMap</soundCast>
+						<muzzleFlashScale>5</muzzleFlashScale>
+						<soundCastTail>GunTail_Light</soundCastTail>
+					</Properties>
+					<FireModes>
+						<aiAimMode>AimedShot</aiAimMode>
+					</FireModes>
+			</li>
+
+			<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+				<defName>Seer_LightningRing</defName>
+					<statBases>
+						<SightsEfficiency>0.35</SightsEfficiency>
+						<ShotSpread>0.14</ShotSpread>
+						<SwayFactor>0.10</SwayFactor>
+						<Bulk>0.5</Bulk>
+						<Mass>1</Mass>
+						<RangedWeapon_Cooldown>.8</RangedWeapon_Cooldown>
+					</statBases>
+					<Properties>
+						<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+						<hasStandardCommand>true</hasStandardCommand>
+						<defaultProjectile>Projectile_LightningWand</defaultProjectile>
+						<warmupTime>1.4</warmupTime>
+						<range>32</range>
+						<soundCast>TM_Thunder_OnMap</soundCast>
+						<muzzleFlashScale>5</muzzleFlashScale>
+						<soundCastTail>GunTail_Light</soundCastTail>
+					</Properties>
+					<FireModes>
+						<aiAimMode>AimedShot</aiAimMode>
+					</FireModes>
+			</li>
+
+
+			<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+				<defName>TM_FireWand</defName>
+					<statBases>
+						<SightsEfficiency>1.0</SightsEfficiency>
+						<ShotSpread>0.14</ShotSpread>
+						<SwayFactor>1.01</SwayFactor>
+						<Bulk>1</Bulk>
+						<Mass>1</Mass>
+						<RangedWeapon_Cooldown>1.9</RangedWeapon_Cooldown>
+					</statBases>
+					<Properties>
+						<recoilAmount>1.53</recoilAmount>
+						<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+						<hasStandardCommand>true</hasStandardCommand>
+						<defaultProjectile>Projectile_FireWand</defaultProjectile>
+						<warmupTime>1.5</warmupTime>
+						<range>32</range>
+						<burstShotCount>3</burstShotCount>
+						<ticksBetweenBurstShots>9</ticksBetweenBurstShots>
+						<soundCast>TM_Woosh</soundCast>
+						<muzzleFlashScale>5</muzzleFlashScale>
+						<soundCastTail>GunTail_Light</soundCastTail>
+					</Properties>
+					<FireModes>
+						<aiAimMode>AimedShot</aiAimMode>
+					</FireModes>
+			</li>
+			
+			<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+				<defName>Seer_FireRing</defName>
+					<statBases>
+						<SightsEfficiency>0.35</SightsEfficiency>
+						<ShotSpread>0.14</ShotSpread>
+						<SwayFactor>0.10</SwayFactor>
+						<Bulk>0.5</Bulk>
+						<Mass>1</Mass>
+						<RangedWeapon_Cooldown>.95</RangedWeapon_Cooldown>
+					</statBases>
+					<Properties>
+						<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+						<hasStandardCommand>true</hasStandardCommand>
+						<defaultProjectile>Projectile_FireWand</defaultProjectile>
+						<warmupTime>0.75</warmupTime>
+						<range>32</range>
+						<burstShotCount>3</burstShotCount>
+						<ticksBetweenBurstShots>9</ticksBetweenBurstShots>
+						<soundCast>DropPod_Leaving</soundCast>
+						<muzzleFlashScale>5</muzzleFlashScale>
+						<soundCastTail>GunTail_Light</soundCastTail>
+					</Properties>
+					<FireModes>
+						<aiAimMode>AimedShot</aiAimMode>
+					</FireModes>
+			</li>
+			
+			<li Class="PatchOperationRemove">
+				<xpath>/Defs/ThingDef[defName="Projectile_BlazingPower"]</xpath>
+			</li>
+			
+			<li Class="PatchOperationRemove">
+				<xpath>/Defs/ThingDef[defName="TM_DefenderStaff" or defName="TM_BlazingPowerStaff"]/verbs/li[verbClass="TorannMagic.Weapon.Verb_BlazingPower"]</xpath>
+			</li>
+
+			<li Class="PatchOperationAdd">
+				<xpath>/Defs</xpath>
+				<value>
+					  <ThingDef ParentName="Base6x24mmChargedBullet" Class="AbilityUser.ProjectileDef_Ability">
+						<defName>Projectile_BlazingPower</defName>
+						<label>blazing power</label>
+						<graphicData>
+							<texPath>Spells/blazingpower</texPath>
+							<graphicClass>Graphic_Single</graphicClass>
+							<shaderType>TransparentPostLight</shaderType>
+						</graphicData>
+						<projectile Class="CombatExtended.ProjectilePropertiesCE">
+							<damageDef>TM_BlazingPower</damageDef>
+							<damageAmountBase>7</damageAmountBase>
+							<armorPenetrationBlunt>30</armorPenetrationBlunt>
+							<armorPenetrationSharp>9</armorPenetrationSharp>
+							<explosionRadius>0.5</explosionRadius>
+							<speed>65</speed>
+							<dropsCasings>false</dropsCasings>
+						</projectile>
+					  </ThingDef>
+				</value>
+			</li>
+			
+			<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+				<defName>TM_DefenderStaff</defName>
+					<statBases>
+						<SightsEfficiency>1.0</SightsEfficiency>
+						<ShotSpread>0.14</ShotSpread>
+						<SwayFactor>1.01</SwayFactor>
+						<Bulk>2</Bulk>
+						<Mass>2</Mass>
+						<RangedWeapon_Cooldown>2.6</RangedWeapon_Cooldown>
+					</statBases>
+					<Properties>
+						<recoilAmount>1.53</recoilAmount>
+						<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+						<hasStandardCommand>true</hasStandardCommand>
+						<defaultProjectile>Projectile_BlazingPower</defaultProjectile>
+						<warmupTime>0.5</warmupTime>
+						<range>40</range>
+						<soundCast>TM_Woosh</soundCast>
+						<burstShotCount>5</burstShotCount>
+						<muzzleFlashScale>7</muzzleFlashScale>
+						<soundCastTail>GunTail_Light</soundCastTail>
+					</Properties>
+					<FireModes>
+						<aimedBurstShotCount>3</aimedBurstShotCount>
+						<aiUseBurstMode>FALSE</aiUseBurstMode>
+						<aiAimMode>AimedShot</aiAimMode>
+					</FireModes>
+			</li>
+			
+			<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+				<defName>TM_BlazingPowerStaff</defName>
+					<statBases>
+						<SightsEfficiency>1.0</SightsEfficiency>
+						<ShotSpread>0.14</ShotSpread>
+						<SwayFactor>1.01</SwayFactor>
+						<Bulk>2</Bulk>
+						<Mass>2</Mass>
+						<RangedWeapon_Cooldown>3.5</RangedWeapon_Cooldown>
+					</statBases>
+					<Properties>
+						<recoilAmount>1.53</recoilAmount>
+						<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+						<hasStandardCommand>true</hasStandardCommand>
+						<defaultProjectile>Projectile_BlazingPower</defaultProjectile>
+						<warmupTime>1</warmupTime>
+						<range>40</range>
+						<soundCast>TM_Woosh</soundCast>
+						<burstShotCount>7</burstShotCount>
+						<muzzleFlashScale>8</muzzleFlashScale>
+						<soundCastTail>GunTail_Light</soundCastTail>
+					</Properties>
+					<FireModes>
+						<aimedBurstShotCount>4</aimedBurstShotCount>
+						<aiUseBurstMode>FALSE</aiUseBurstMode>
+						<aiAimMode>AimedShot</aiAimMode>
+					</FireModes>
+			</li>
+			
+			
+			
+			<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+				<defName>TM_ElephantBow</defName>
+				<statBases>
+				  <SightsEfficiency>1</SightsEfficiency>
+				  <ShotSpread>0.5</ShotSpread>
+				  <SwayFactor>1</SwayFactor>
+				  <Bulk>4.00</Bulk>
+				  <RangedWeapon_Cooldown>0.5</RangedWeapon_Cooldown>
+				</statBases>
+				<Properties>
+				  <verbClass>CombatExtended.Verb_ShootCE</verbClass>
+				  <hasStandardCommand>true</hasStandardCommand>
+				  <defaultProjectile>Projectile_StreamlinedArrow_Stone</defaultProjectile>
+				  <warmupTime>1.2</warmupTime>
+				  <range>38</range>
+				  <soundCast>TM_ThrumBow</soundCast>
+				  <soundCastTail>TM_Woosh</soundCastTail>
+				  <muzzleFlashScale>1</muzzleFlashScale>
+				</Properties>
+				<AmmoUser>
+				  <ammoSet>AmmoSet_StreamlinedArrow</ammoSet>
+				</AmmoUser>
+				<FireModes>
+					<aiAimMode>AimedShot</aiAimMode>
+				</FireModes>
+				<weaponTags>
+				  <li>CE_Bow</li>
+				</weaponTags>
+				<AllowWithRunAndGun>false</AllowWithRunAndGun>
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="TM_ElephantBow"]/tools</xpath>
+				<value>
+				  <tools>
+					<li Class="CombatExtended.ToolCE">
+						<capacities>
+							<li>Blunt</li>
+						</capacities>
+						<power>7</power>
+						<cooldownTime>1.6</cooldownTime>
+					<armorPenetrationBlunt>0.65</armorPenetrationBlunt>
+					</li>
+				  </tools>
+				</value>
+			</li>
+			
+			<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+				<defName>TM_ThrumBow</defName>
+				<statBases>
+				  <SightsEfficiency>1.4</SightsEfficiency>
+				  <ShotSpread>0.3</ShotSpread>
+				  <SwayFactor>0.7</SwayFactor>
+				  <Bulk>4.00</Bulk>
+				  <RangedWeapon_Cooldown>0.5</RangedWeapon_Cooldown>
+				</statBases>
+				<Properties>
+				  <verbClass>CombatExtended.Verb_ShootCE</verbClass>
+				  <hasStandardCommand>true</hasStandardCommand>
+				  <defaultProjectile>Projectile_StreamlinedArrow_Stone</defaultProjectile>
+				  <warmupTime>1</warmupTime>
+				  <range>40</range>
+				  <soundCast>TM_ThrumBow</soundCast>
+				</Properties>
+				<AmmoUser>
+				  <ammoSet>AmmoSet_GreatArrowRoMThrumbo</ammoSet>
+				</AmmoUser>
+				<FireModes>
+					<aiAimMode>AimedShot</aiAimMode>
+				</FireModes>
+				<weaponTags>
+				  <li>CE_Bow</li>
+				</weaponTags>
+				<AllowWithRunAndGun>false</AllowWithRunAndGun>
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="TM_ThrumBow"]/tools</xpath>
+				<value>
+				  <tools>
+					<li Class="CombatExtended.ToolCE">
+						<capacities>
+							<li>Blunt</li>
+						</capacities>
+						<power>7</power>
+						<cooldownTime>1.6</cooldownTime>
+					<armorPenetrationBlunt>0.65</armorPenetrationBlunt>
+					</li>
+				  </tools>
+				</value>
+			</li>
+			
+			<li Class="PatchOperationAdd">
+				<xpath>Defs</xpath>
+				<value>
+					<!-- ==================== AmmoSets ========================== -->
+					
+				  <CombatExtended.AmmoSetDef>
+					<defName>AmmoSet_GreatArrowRoMThrumbo</defName>
+					<label>great arrows</label>
+					<ammoTypes>
+					  <Ammo_GreatArrow_Stone>Projectile_GreatArrowRoMThrumbo_Stone</Ammo_GreatArrow_Stone>
+					  <Ammo_GreatArrow_Steel>Projectile_GreatArrowRoMThrumbo_Steel</Ammo_GreatArrow_Steel>
+					  <Ammo_GreatArrow_Plasteel>Projectile_GreatArrowRoMThrumbo_Plasteel</Ammo_GreatArrow_Plasteel>
+					  <Ammo_GreatArrow_Venom>Projectile_GreatArrowRoMThrumbo_Venom</Ammo_GreatArrow_Venom>
+					  <Ammo_GreatArrow_Flame>Projectile_GreatArrowRoMThrumbo_Flame</Ammo_GreatArrow_Flame>
+					</ammoTypes>
+				  </CombatExtended.AmmoSetDef>
+					
+					<!-- ================== Projectiles ================== -->
+					
+					<ThingDef Class="CombatExtended.AmmoDef" ParentName="BaseGreatArrowProjectile">
+						<defName>Projectile_GreatArrowRoMThrumbo_Stone</defName>
+						<label>great arrow (stone)</label>
+						<graphicData>
+							<texPath>Things/Projectile/Arrows/Arrow_Stone</texPath>
+							<graphicClass>Graphic_Single</graphicClass>
+						</graphicData>
+						<projectile Class="CombatExtended.ProjectilePropertiesCE">
+							<speed>33</speed>
+							<damageAmountBase>28</damageAmountBase> <!--Artifically reduced from 33-->
+							<armorPenetrationBlunt>14.98</armorPenetrationBlunt>
+							<armorPenetrationSharp>4</armorPenetrationSharp>
+							<preExplosionSpawnChance>0.1</preExplosionSpawnChance>	<!-- All values are halved from original great arrow -->
+							<preExplosionSpawnThingDef>Ammo_GreatArrow_Stone</preExplosionSpawnThingDef>
+						</projectile>
+					</ThingDef>
+
+					<ThingDef Class="CombatExtended.AmmoDef" ParentName="BaseGreatArrowProjectile">
+						<defName>Projectile_GreatArrowRoMThrumbo_Steel</defName>
+						<label>great arrow (steel)</label>
+						<graphicData>
+							<texPath>Things/Projectile/Arrows/Arrow_Steel</texPath>
+							<graphicClass>Graphic_Single</graphicClass>
+						</graphicData>
+						<projectile Class="CombatExtended.ProjectilePropertiesCE">
+							<speed>36</speed>
+							<damageAmountBase>20</damageAmountBase>
+							<armorPenetrationBlunt>21.06</armorPenetrationBlunt>
+							<armorPenetrationSharp>8</armorPenetrationSharp>
+							<preExplosionSpawnChance>0.3</preExplosionSpawnChance>
+							<preExplosionSpawnThingDef>Ammo_GreatArrow_Steel</preExplosionSpawnThingDef>
+						</projectile>
+					</ThingDef>
+
+					<ThingDef Class="CombatExtended.AmmoDef" ParentName="BaseGreatArrowProjectile">
+						<defName>Projectile_GreatArrowRoMThrumbo_Plasteel</defName>
+						<label>great arrow (plasteel)</label>
+						<graphicData>
+							<texPath>Things/Projectile/Arrows/Arrow_Plasteel</texPath>
+							<graphicClass>Graphic_Single</graphicClass>
+						</graphicData>
+						<projectile Class="CombatExtended.ProjectilePropertiesCE">
+							<speed>37</speed>
+							<damageAmountBase>15</damageAmountBase>
+							<armorPenetrationBlunt>19.26</armorPenetrationBlunt>
+							<armorPenetrationSharp>12</armorPenetrationSharp>
+							<preExplosionSpawnChance>0.375</preExplosionSpawnChance>
+							<preExplosionSpawnThingDef>Ammo_GreatArrow_Plasteel</preExplosionSpawnThingDef>
+						</projectile>
+					</ThingDef>
+					
+					<ThingDef Class="CombatExtended.AmmoDef" ParentName="BaseGreatArrowProjectile">
+						<defName>Projectile_GreatArrowRoMThrumbo_Venom</defName>
+						<label>great arrow (venom)</label>
+						<graphicData>
+							<texPath>Things/Projectile/Arrows/Arrow_Venom</texPath>
+							<graphicClass>Graphic_Single</graphicClass>
+						</graphicData>
+						<projectile Class="CombatExtended.ProjectilePropertiesCE">
+							<speed>36</speed>
+							<damageDef>Arrow</damageDef>
+							<damageAmountBase>14</damageAmountBase>
+							<secondaryDamage>
+								<li>
+								<def>ArrowVenom</def>
+								<amount>6</amount>
+								</li>
+							</secondaryDamage>			
+							<armorPenetrationBlunt>21.06</armorPenetrationBlunt>
+							<armorPenetrationSharp>8</armorPenetrationSharp>
+							<preExplosionSpawnChance>0.3</preExplosionSpawnChance>
+							<preExplosionSpawnThingDef>Ammo_GreatArrow_Steel</preExplosionSpawnThingDef>
+						</projectile>
+					</ThingDef>
+					
+					<ThingDef Class="CombatExtended.AmmoDef" ParentName="BaseGreatArrowProjectile">
+						<defName>Projectile_GreatArrowRoMThrumbo_Flame</defName>
+						<label>great arrow (flame)</label>
+						<graphicData>
+							<texPath>Things/Projectile/Arrows/Arrow_Flame</texPath>
+							<graphicClass>Graphic_Single</graphicClass>
+						</graphicData>
+					<projectile Class="CombatExtended.ProjectilePropertiesCE">
+						<speed>36</speed>
+					  <damageDef>Arrow</damageDef>
+					  <damageAmountBase>6</damageAmountBase>
+					  <armorPenetrationBlunt>10.54</armorPenetrationBlunt>
+					  <armorPenetrationSharp>4</armorPenetrationSharp>
+					  <secondaryDamage>
+						<li>
+						  <def>Flame</def>
+						  <amount>1</amount>
+						  <chance>0.33</chance>
+						</li>
+					  </secondaryDamage>
+					</projectile>
+					</ThingDef>
+					
+				</value>
+			</li>
+			
+		</operations>
+		</match>
+	</Operation>
+	
+</Patch>

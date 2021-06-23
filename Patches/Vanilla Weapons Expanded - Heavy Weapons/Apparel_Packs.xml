@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+
+  <Operation Class="PatchOperationFindMod">
+    <mods>
+      <li>Vanilla Weapons Expanded - Heavy Weapons</li>
+    </mods>
+    <match Class="PatchOperationSequence">
+      <operations>
+
+        <li Class="PatchOperationAdd">
+          <xpath>/Defs/ThingDef[defName="VWE_Apparel_Exoframe"]/statBases</xpath>
+          <value>
+            <Bulk>26</Bulk>
+            <WornBulk>10</WornBulk>
+          </value>
+        </li>
+
+         <li Class="PatchOperationReplace">
+          <xpath>/Defs/ThingDef[defName="VWE_Apparel_Exoframe"]/equippedStatOffsets/CarryingCapacity</xpath>
+          <value>
+            <CarryWeight>55</CarryWeight>
+          </value>
+        </li>    
+
+      </operations>
+    </match>
+  </Operation>
+
+</Patch>

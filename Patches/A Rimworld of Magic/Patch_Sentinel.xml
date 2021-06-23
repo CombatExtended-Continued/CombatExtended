@@ -1,0 +1,194 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+
+	<Operation Class="PatchOperationFindMod">
+    <mods>
+		<li>A RimWorld of Magic</li>
+    </mods>
+		<match Class="PatchOperationSequence">
+		<operations>
+			
+					
+			
+			<li Class="PatchOperationAddModExtension">
+				<xpath>Defs/ThingDef[
+				defName="TM_Lesser_SentinelR" or
+				defName="TM_SentinelR" or
+				defName="TM_Greater_SentinelR"
+				]</xpath>
+				<value>
+					<li Class="CombatExtended.RacePropertiesExtensionCE">
+						<bodyShape>Humanoid</bodyShape>
+					</li>
+				</value>
+			</li>
+			
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[
+				defName="TM_Lesser_SentinelR" or
+				defName="TM_SentinelR" or
+				defName="TM_Greater_SentinelR"
+				]/statBases</xpath>
+				<value>
+					<CarryBulk>20</CarryBulk>
+					<AimingAccuracy>1.0</AimingAccuracy>
+					<ShootingAccuracyPawn>1</ShootingAccuracyPawn>
+					<MeleeDodgeChance>0.19</MeleeDodgeChance>
+					<MeleeCritChance>0.22</MeleeCritChance>
+					<MeleeParryChance>0.09</MeleeParryChance>
+					<MaxHitPoints>200</MaxHitPoints>
+					<SmokeSensitivity>0</SmokeSensitivity>
+				</value>
+			</li>
+			
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[
+				defName="TM_Lesser_SentinelR"
+				]/statBases/ArmorRating_Blunt</xpath>
+				<value>
+					<ArmorRating_Blunt>2</ArmorRating_Blunt>
+				</value>
+			</li>
+			
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[
+				defName="TM_Lesser_SentinelR"
+				]/statBases/ArmorRating_Sharp</xpath>
+				<value>
+					<ArmorRating_Sharp>5</ArmorRating_Sharp>
+				</value>
+			</li>
+			
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[
+				defName="TM_SentinelR"
+				]/statBases/ArmorRating_Blunt</xpath>
+				<value>
+					<ArmorRating_Blunt>2.5</ArmorRating_Blunt>
+				</value>
+			</li>
+			
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[
+				defName="TM_SentinelR"
+				]/statBases/ArmorRating_Sharp</xpath>
+				<value>
+					<ArmorRating_Sharp>5.5</ArmorRating_Sharp>
+				</value>
+			</li>
+			
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[
+				defName="TM_Greater_SentinelR"
+				]/statBases/ArmorRating_Blunt</xpath>
+				<value>
+					<ArmorRating_Blunt>3</ArmorRating_Blunt>
+				</value>
+			</li>
+			
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[
+				defName="TM_Greater_SentinelR"
+				]/statBases/ArmorRating_Sharp</xpath>
+				<value>
+					<ArmorRating_Sharp>6</ArmorRating_Sharp>
+				</value>
+			</li>
+			
+			
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="TM_Lesser_SentinelR"]/tools</xpath>
+				<value>
+					<tools>
+					  <li Class="CombatExtended.ToolCE">
+						<label>claws</label>
+						<capacities>
+						  <li>Cut</li>
+						</capacities>
+						<power>6</power>
+						<cooldownTime>1</cooldownTime>
+						<armorPenetrationSharp>4</armorPenetrationSharp>
+						<armorPenetrationBlunt>18.4</armorPenetrationBlunt>
+						<linkedBodyPartsGroup>Sentinel_Claws</linkedBodyPartsGroup>
+					  </li>
+					  <li Class="CombatExtended.ToolCE">
+						<label>teeth</label>
+						<capacities>
+						  <li>Bite</li>
+						</capacities>
+						<power>12</power>
+						<cooldownTime>1.6</cooldownTime>
+						<armorPenetrationSharp>2</armorPenetrationSharp>
+						<armorPenetrationBlunt>9.2</armorPenetrationBlunt>
+						<linkedBodyPartsGroup>Sentinel_Teeth</linkedBodyPartsGroup>
+					  </li>
+					</tools>
+				</value>
+			</li>
+			
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="TM_SentinelR"]/tools</xpath>
+				<value>
+					<tools>
+					  <li Class="CombatExtended.ToolCE">
+						<label>claws</label>
+						<capacities>
+						  <li>Cut</li>
+						</capacities>
+						<power>7</power>
+						<cooldownTime>1</cooldownTime>
+						<armorPenetrationSharp>4</armorPenetrationSharp>
+						<armorPenetrationBlunt>18.4</armorPenetrationBlunt>
+						<linkedBodyPartsGroup>Sentinel_Claws</linkedBodyPartsGroup>
+					  </li>
+					  <li Class="CombatExtended.ToolCE">
+						<label>teeth</label>
+						<capacities>
+						  <li>Bite</li>
+						</capacities>
+						<power>14</power>
+						<cooldownTime>1.6</cooldownTime>
+						<armorPenetrationSharp>2</armorPenetrationSharp>
+						<armorPenetrationBlunt>9.2</armorPenetrationBlunt>
+						<linkedBodyPartsGroup>Sentinel_Teeth</linkedBodyPartsGroup>
+					  </li>
+					</tools>
+				</value>
+			</li>
+			
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="TM_Greater_SentinelR"]/tools</xpath>
+				<value>
+					<tools>
+					  <li Class="CombatExtended.ToolCE">
+						<label>claws</label>
+						<capacities>
+						  <li>Cut</li>
+						</capacities>
+						<power>8</power>
+						<cooldownTime>1</cooldownTime>
+						<armorPenetrationSharp>4</armorPenetrationSharp>
+						<armorPenetrationBlunt>18.4</armorPenetrationBlunt>
+						<linkedBodyPartsGroup>Sentinel_Claws</linkedBodyPartsGroup>
+					  </li>
+					  <li Class="CombatExtended.ToolCE">
+						<label>teeth</label>
+						<capacities>
+						  <li>Bite</li>
+						</capacities>
+						<power>16</power>
+						<cooldownTime>1.6</cooldownTime>
+						<armorPenetrationSharp>2</armorPenetrationSharp>
+						<armorPenetrationBlunt>9.2</armorPenetrationBlunt>
+						<linkedBodyPartsGroup>Sentinel_Teeth</linkedBodyPartsGroup>
+					  </li>
+					</tools>
+				</value>
+			</li>
+			
+			
+		</operations>
+		</match>
+	</Operation>
+	
+</Patch>

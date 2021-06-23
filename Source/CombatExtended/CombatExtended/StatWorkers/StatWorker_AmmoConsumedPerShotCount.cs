@@ -4,6 +4,8 @@ using System.Linq;
 using System.Text;
 using RimWorld;
 using Verse;
+using CombatExtended.Compatibility;
+
 
 namespace CombatExtended
 {
@@ -21,7 +23,7 @@ namespace CombatExtended
 
         private Thing Gun(StatRequest req)
         {
-            return (req.Thing as Building_TurretGunCE)?.Gun ?? req.Thing;
+            return (req.Thing as Building_Turret)?.GetGun() ?? req.Thing;
         }
 
         public override bool ShouldShowFor(StatRequest req)

@@ -1,0 +1,35 @@
+name: Build Release
+on:
+  release:
+    types:
+      - published
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: build
+      run: |
+        mkdir -p Assemblies
+        mkdir -p ${{ runner.temp }}/downloads
+        TEMP=${{ runner.temp }}/ python3 Make.py --download-libs --all-libs
+    - name: package
+      run: |
+        mkdir CombatExtended
+        cp -r Assemblies/ About/ Defs/ Languages/ Patches/ Royalty/ Sounds/ Textures/ LoadFolders.xml README.md SupportedThirdPartyMods.md CombatExtended
+        zip -9 -r CombatExtended.zip CombatExtended
+    - name: Upload Package
+      id: upload-package
+      uses: actions/upload-release-asset@v1
+      
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        upload_url: ${{ github.event.release.upload_url }}
+        asset_path: CombatExtended.zip
+        asset_name: CombatExtended-${{ github.event.release.tag_name }}.zip
+        asset_content_type: application/octet-stream
+      

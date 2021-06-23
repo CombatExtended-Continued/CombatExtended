@@ -1,12 +1,12 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8" ?>
 <Patch>
-
-  <Operation Class="PatchOperationSequence">
-    <success>Always</success>
-    <operations>
-      <li Class="CombatExtended.PatchOperationFindMod">
-        <modName>Racc Race</modName>
-      </li>
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+			<li>Racc Race</li>
+			<li>Racc Race (Continued)</li>
+		</mods>
+		<match Class="PatchOperationSequence">
+		<operations>
 	  
       <!-- Walthracc PPK -->
       <li Class="CombatExtended.PatchOperationMakeGunCECompatible">
@@ -59,7 +59,7 @@
 							<power>5</power>
 							<cooldownTime>1</cooldownTime>
 							<chanceFactor>1.5</chanceFactor>
-							<armorPenetration>0.102</armorPenetration>
+							<armorPenetrationBlunt>0.555</armorPenetrationBlunt>
 							<linkedBodyPartsGroup>Grip</linkedBodyPartsGroup>
 						</li>
 						<li Class="CombatExtended.ToolCE">
@@ -70,7 +70,7 @@
 							</capacities>
 							<power>2</power>
 							<cooldownTime>0.5</cooldownTime>
-							<armorPenetration>0.102</armorPenetration>
+							<armorPenetrationBlunt>0.555</armorPenetrationBlunt>
 							<linkedBodyPartsGroup>Barrel</linkedBodyPartsGroup>
 						</li>
 						<li Class="CombatExtended.ToolCE">
@@ -81,7 +81,7 @@
 							</capacities>
 							<power>2</power>
 							<cooldownTime>0.5</cooldownTime>
-							<armorPenetration>0.075</armorPenetration>
+							<armorPenetrationBlunt>0.555</armorPenetrationBlunt>
 							<linkedBodyPartsGroup>Muzzle</linkedBodyPartsGroup>
 						</li>
 					</tools>
@@ -90,6 +90,6 @@
 	  
       <!-- etc.. -->
     </operations>
+	</match>
   </Operation>
-
-</Patch>
+</Patch>	

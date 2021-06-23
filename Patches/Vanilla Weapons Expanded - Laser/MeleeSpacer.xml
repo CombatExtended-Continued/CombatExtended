@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+
+  <Operation Class="PatchOperationFindMod">
+    <mods>
+      <li>Vanilla Weapons Expanded - Laser</li>
+    </mods>
+    <match Class="PatchOperationSequence">
+      <operations>
+
+    <!-- ========== Laser Sword ========== -->
+
+    <!--
+    Appears like a laser rapier of sorts, favoring quick thrusts capable of poking through armor.
+    -->
+
+    <li Class="PatchOperationReplace">
+      <xpath>Defs/ThingDef[defName="VWEL_LaserSword"]/tools</xpath>
+      <value>
+        <tools>
+          <li Class="CombatExtended.ToolCE">
+            <label>handle</label>
+            <capacities>
+              <li>Blunt</li>
+            </capacities>
+            <power>2</power>
+            <chanceFactor>0.33</chanceFactor>
+            <cooldownTime>1.52</cooldownTime>
+            <armorPenetrationBlunt>0.500</armorPenetrationBlunt>
+            <linkedBodyPartsGroup>Handle</linkedBodyPartsGroup>
+          </li>
+          <li Class="CombatExtended.ToolCE">
+            <label>point</label>
+            <capacities>
+              <li>Stab</li>
+            </capacities>
+            <power>36</power>
+            <cooldownTime>1.24</cooldownTime>
+            <armorPenetrationBlunt>8</armorPenetrationBlunt>
+            <armorPenetrationSharp>42</armorPenetrationSharp>
+            <linkedBodyPartsGroup>Point</linkedBodyPartsGroup>
+          </li>
+          <li Class="CombatExtended.ToolCE">
+            <label>edge</label>
+            <capacities>
+              <li>Cut</li>
+            </capacities>
+            <power>18</power>
+            <cooldownTime>1.14</cooldownTime>
+            <armorPenetrationBlunt>12</armorPenetrationBlunt>
+            <armorPenetrationSharp>20</armorPenetrationSharp>
+            <linkedBodyPartsGroup>Edge</linkedBodyPartsGroup>
+          </li>
+        </tools>
+      </value>
+    </li>
+
+    <li Class="PatchOperationAdd">
+      <xpath>Defs/ThingDef[defName="VWEL_LaserSword"]/statBases</xpath>
+      <value>
+          <Bulk>2</Bulk>
+          <MeleeCounterParryBonus>0.5</MeleeCounterParryBonus>
+      </value>
+    </li>
+
+    <li Class="PatchOperationReplace">
+      <xpath>Defs/ThingDef[defName="VWEL_LaserSword"]/equippedAngleOffset</xpath>
+      <value>
+        <equippedAngleOffset>-45</equippedAngleOffset>
+      </value>
+    </li>
+
+    <li Class="PatchOperationAdd">
+      <xpath>Defs/ThingDef[defName="VWEL_LaserSword"]</xpath>
+      <value>
+        <equippedStatOffsets>
+          <MeleeCritChance>0.63</MeleeCritChance>
+          <MeleeParryChance>0.75</MeleeParryChance>
+          <MeleeDodgeChance>0.4</MeleeDodgeChance>	
+        </equippedStatOffsets>
+      </value>
+    </li>
+
+    <li Class="PatchOperationAdd">
+      <xpath>Defs/ThingDef[defName="VWEL_LaserSword"]/weaponTags</xpath>
+      <value>
+        <li>CE_OneHandedWeapon</li>
+      </value>
+    </li>
+
+      </operations>
+    </match>
+  </Operation>
+
+</Patch>

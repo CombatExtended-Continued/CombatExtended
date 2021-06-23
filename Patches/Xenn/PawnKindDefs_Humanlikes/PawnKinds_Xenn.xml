@@ -1,12 +1,12 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <Patch>
-
-	<Operation Class="PatchOperationSequence">
-		<success>Always</success>
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+			<li>Xenn Race</li>
+			<li>Xenn Race (Continued)</li>
+		</mods>
+		<match Class="PatchOperationSequence">
 		<operations>
-			<li Class="CombatExtended.PatchOperationFindMod">
-				<modName>Xenn Race</modName>
-			</li>
 			<!-- ========== Scoot ========== -->
 			<li Class="PatchOperationAddModExtension">
 				<xpath>/Defs/PawnKindDef[defName="XennColonist"]</xpath>
@@ -319,5 +319,6 @@
 				</value>
 			</li>
 		</operations>
+		</match>
 	</Operation>
 </Patch>

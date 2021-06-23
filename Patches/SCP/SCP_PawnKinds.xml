@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+  <Operation Class="PatchOperationSequence">
+	<operations>
+	  <li Class="PatchOperationFindMod">
+		<mods>
+			<li>SCP</li>
+		</mods>
+		<match Class="PatchOperationSequence">
+		<operations>
+			
+			<!-- Civilian -->
+			
+			<li Class="PatchOperationAddModExtension">
+				<xpath>Defs/PawnKindDef[defName="SCP_Staff_Scientist" or
+				defName="SCP_Staff_Ambassador" or
+				defName="SCP_Staff_SiteHead" or
+				defName="GOC_Staff_Worker" or
+				defName="GOC_Staff_Scientist" or
+				defName="GOC_Staff_Ambassador" or
+				defName="GOC_Staff_Director" or
+				defName="CI_Trader" or
+				defName="SCP_Trader" or
+				defName="GOC_Trader"
+				]</xpath>
+				<value>
+					<li Class="CombatExtended.LoadoutPropertiesExtension">
+					<primaryMagazineCount>
+						<min>3</min>
+						<max>4</max>
+					</primaryMagazineCount>
+					</li>
+				</value>
+			</li>
+			
+			<!-- Basics -->
+
+			<li Class="PatchOperationAddModExtension">
+				<xpath>Defs/PawnKindDef[defName="SCP_SecurityGuard_CQB" or defName="GOC_SecurityGuard_CQB" or defName="CI_Insurgent_CQB"]</xpath>
+				<value>
+					<li Class="CombatExtended.LoadoutPropertiesExtension">
+					<primaryMagazineCount>
+						<min>4</min>
+						<max>6</max>
+					</primaryMagazineCount>
+					</li>
+				</value>
+			</li>
+
+			<!-- Elites -->
+
+			<li Class="PatchOperationAddModExtension">
+				<xpath>Defs/PawnKindDef[defName="CI_Insurgent_Assault" or
+				defName="CI_Insurgent_Gunner" or
+				defName="CI_Insurgent_Marksman" or
+				defName="CI_Insurgent_Sniper" or
+				defName="CI_Insurgent_Elite" or
+				defName="CI_Insurgent_Commander" or
+				defName="GOC_StrikeTeam_Assault" or
+				defName="GOC_StrikeTeam_Gunner" or
+				defName="GOC_StrikeTeam_Marksman" or
+				defName="GOC_StrikeTeam_Sniper" or
+				defName="GOC_StrikeTeam_Elite" or
+				defName="SCP_SecurityTaskForce_Assault" or
+				defName="SCP_SecurityTaskForce_Marksman" or
+				defName="SCP_SecurityTaskForce_Gunner" or
+				defName="SCP_MobileTaskForce_Assault" or
+				defName="SCP_MobileTaskForce_Gunner" or
+				defName="SCP_MobileTaskForce_Marksman" or
+				defName="SCP_MobileTaskForce_Sniper" or
+				defName="SCP_MobileTaskForce_Elite"
+				]</xpath>
+				<value>
+					<li Class="CombatExtended.LoadoutPropertiesExtension">
+					<primaryMagazineCount>
+						<min>5</min>
+						<max>7</max>
+					</primaryMagazineCount>
+					</li>
+				</value>
+			</li>
+
+			<!-- Increase weaponMoney -->
+
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/PawnKindDef[defName="CI_Insurgent_CQB"]/weaponMoney/min</xpath>
+				<value>
+					<min>150</min>
+				</value>
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/PawnKindDef[defName="SCP_SecurityGuard_CQB" or
+				defName="GOC_StrikeTeam_Marksman" or
+				defName="SCP_SecurityTaskForce_Marksman" or
+				defName="SCP_MobileTaskForce_Marksman"]/weaponMoney/min</xpath>
+				<value>
+					<min>440</min>
+				</value>
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/PawnKindDef[defName="CI_Insurgent_Gunner" or
+				defName="GOC_StrikeTeam_Gunner" or
+				defName="SCP_SecurityTaskForce_Gunner" or
+				defName="SCP_MobileTaskForce_Gunner"]/weaponMoney/min</xpath>
+				<value>
+					<min>550</min>
+				</value>
+			</li>
+
+		</operations>
+		</match>	
+	  </li>
+	</operations>	
+  </Operation>
+</Patch>

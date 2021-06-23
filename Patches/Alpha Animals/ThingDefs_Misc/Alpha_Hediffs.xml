@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+	<Operation Class="PatchOperationSequence">
+		<operations>
+			<li Class="PatchOperationFindMod">
+				<mods>
+					<li>Alpha Animals</li>
+				</mods>
+				<match Class="PatchOperationSequence">
+					<operations>
+						<li Class="PatchOperationReplace">
+							<xpath>Defs/HediffDef[defName="AA_BurrowingUnderSand"]/stages/li/statOffsets</xpath>
+							<value>
+								<statOffsets>
+									<ArmorRating_Sharp>3</ArmorRating_Sharp>
+									<ArmorRating_Blunt>4.5</ArmorRating_Blunt>
+								</statOffsets>
+							</value>
+						</li>
+						<li Class="PatchOperationReplace">
+							<xpath>Defs/HediffDef[defName="AA_AnoleGrown"]/stages/li/statOffsets</xpath>
+							<value>
+								<statOffsets>
+									<ArmorRating_Sharp>1</ArmorRating_Sharp>
+									<ArmorRating_Blunt>1.5</ArmorRating_Blunt>
+								</statOffsets>
+							</value>
+						</li>
+						<li Class="PatchOperationReplace">
+							<xpath>Defs/HediffDef[defName="AA_AnoleGrown"]/comps/li[@Class="HediffCompProperties_VerbGiver"]/tools/li</xpath>
+							<value>
+								<li Class="CombatExtended.ToolCE">
+									<label>claws</label>
+									<capacities>
+										<li>Scratch</li>
+									</capacities>
+									<power>22</power>
+									<cooldownTime>1.33</cooldownTime>
+									<soundMeleeHit>MeleeHit_BionicPunch</soundMeleeHit>
+									<soundMeleeMiss>MeleeMiss_BionicPunch</soundMeleeMiss>
+									<armorPenetrationSharp>0.75</armorPenetrationSharp>
+									<armorPenetrationBlunt>2.5</armorPenetrationBlunt>
+								</li>
+							</value>
+						</li>
+						<li Class="PatchOperationReplace">
+							<xpath>Defs/HediffDef[defName="AA_EatenACorpse"]/stages/li/statOffsets</xpath>
+							<value>
+								<statOffsets>
+									<ArmorRating_Sharp>1</ArmorRating_Sharp>
+									<ArmorRating_Blunt>2</ArmorRating_Blunt>
+								</statOffsets>
+							</value>
+						</li>
+					</operations>
+				</match>
+			</li>
+		</operations>
+	</Operation>
+</Patch>

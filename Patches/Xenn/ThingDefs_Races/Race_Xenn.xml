@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8" ?>
+
 <Patch>
-	<!-- ========== Make sure the mod is there first ========== -->
-	<Operation Class="PatchOperationSequence">
-		<success>Always</success>
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+			<li>Xenn Race</li>
+			<li>Xenn Race (Continued)</li>
+		</mods>
+		<match Class="PatchOperationSequence">
 		<operations>
-			<!-- ========== Look for Fido ========== -->
-			<li Class="CombatExtended.PatchOperationFindMod">
-				<modName>Xenn Race</modName>
-			</li>
 			<!-- ========== Found Fido ========== -->
 
 			<!-- ========== Turn our dog boys into dog *boys* ========== -->
@@ -31,12 +31,14 @@
 				<!-- === Shouldn't need to change this at all		  === -->
 				<!-- === Unless you changed the name of your BaseXennPawn === -->
 				<!-- === In which case change "BaseXennPawn" to that name === -->
-				<xpath>Defs/ThingDef[@Name="BaseXennPawn"]/comps</xpath>
+				<xpath>Defs/ThingDef[@Name="BaseXennPawn"]</xpath>
 				<value>
+				    <comps>
 					<li>
 						<compClass>CombatExtended.CompPawnGizmo</compClass>
 					</li>
 					<li Class="CombatExtended.CompProperties_Suppressable" />
+				    </comps>
 				</value>
 			</li>
 
@@ -100,27 +102,8 @@
 			<!-- ===================================== -->
 			<!-- === BaseBodySize, ArmorRatings, MoveSpeed, and BaseHealth should already be set. I think. === -->
 			<!-- ===================================== -->
-			<!-- === Adds In Inspector Tabs 	   === -->
-			<!-- === Inventory and all that jazz   === -->
-			<!-- === Again, no need to change 'em  === -->
-			<!-- === Unless you changed it         === -->
-			<!-- === then change 'em			   === -->
-
-			<li Class="PatchOperationReplace">
-				<xpath>Defs/ThingDef[@Name="BaseXennPawn"]/inspectorTabs/li[.="ITab_Pawn_Gear"]</xpath>
-				<value>
-					<li>CombatExtended.ITab_Inventory</li>
-				</value>
-			</li>
-
-			<li Class="PatchOperationAdd">
-
-				<xpath>Defs/ThingDef[@Name="BaseXennPawn"]/comps</xpath>
-				<value>
-					<li Class="CombatExtended.CompProperties_Inventory" />
-				</value>
-			</li>
 		</operations>
+		</match>
 	</Operation>
 
 	<!-- === Congratulations! Your alien is Combat Ready!	 === -->

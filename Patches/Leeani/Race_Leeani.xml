@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <Patch>
-	<Operation Class="PatchOperationSequence">
-		<success>Always</success>
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+			<li>Leeani Playable Race</li>
+		</mods>
+		<match Class="PatchOperationSequence">
 		<operations>
-	<li Class="CombatExtended.PatchOperationFindMod">
-				<modName>Leeani Playable Race</modName>
-	</li>
 	<li Class="PatchOperationAddModExtension">
-		<xpath>*/AlienRace.ThingDef_AlienRace[defName="Alien_Leeani"]</xpath>
+		<xpath>Defs/AlienRace.ThingDef_AlienRace[defName="Alien_Leeani"]</xpath>
 		<value>
 			<li Class="CombatExtended.RacePropertiesExtensionCE">
 				<bodyShape>Humanoid</bodyShape>
@@ -17,16 +17,7 @@
 
 	<!-- ========== Gives Gun Gizmos to Leeani HUD thing ========== -->
 	<!-- ========== Also Makes Em Suppressable ========== -->
-	
-	<li Class="PatchOperationAdd">
-		<xpath>*/ThingDef[@Name="BasePawn"]/comps</xpath>
-		<value>
-			<li>
-				<compClass>CombatExtended.CompPawnGizmo</compClass>
-			</li>
-			<li Class="CombatExtended.CompProperties_Suppressable" />
-		</value>
-	</li>
+
 	<!-- ========== Patch Leeani Melee Attacks ========== -->
 	<!-- ========== Also Sharpens Their Slashers ========== -->
 	<!-- ========== And adds fists and chompers ========== -->
@@ -34,7 +25,7 @@
 	<!-- ========== We'll see how that works out? ========== -->
 	
 			<li Class="PatchOperationAdd">
-			<xpath>*/AlienRace.ThingDef_AlienRace[defName = "Alien_Leeani"]/statBases</xpath>
+			<xpath>Defs/AlienRace.ThingDef_AlienRace[defName = "Alien_Leeani"]/statBases</xpath>
 			<value>
 			<AimingAccuracy>1</AimingAccuracy>
 			<MeleeDodgeChance>1.5</MeleeDodgeChance>
@@ -46,7 +37,7 @@
 			</li>
 
 			<li Class="PatchOperationReplace">
-			<xpath>*/AlienRace.ThingDef_AlienRace[defName="Alien_Leeani"]/tools</xpath>
+			<xpath>Defs/AlienRace.ThingDef_AlienRace[defName="Alien_Leeani"]/tools</xpath>
 			<value>
 			<tools>
 				<li Class="CombatExtended.ToolCE">
@@ -109,21 +100,8 @@
 	
 	<!-- ========== Adds In Inspector Tabs ========== -->
 	<!-- ========== Inventory and all that jazz ========== -->
-	
-	<li Class="PatchOperationReplace">
-		<xpath>*/ThingDef[@Name="BasePawn"]/inspectorTabs/li[.="ITab_Pawn_Gear"]</xpath>
-		<value>
-			<li>CombatExtended.ITab_Inventory</li>
-		</value>
-	</li>
 
-	<li Class="PatchOperationAdd">
-	
-		<xpath>*/ThingDef[@Name="BasePawn"]/comps</xpath>
-		<value>
-			<li Class="CombatExtended.CompProperties_Inventory" />
-		</value>
-	</li>
 		</operations>
+		</match>
 	</Operation>
 </Patch>

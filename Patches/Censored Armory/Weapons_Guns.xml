@@ -1,0 +1,1365 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+			<li>Censored Armory [1.2]</li>
+		</mods>
+		<match Class="PatchOperationSequence">
+			<operations>
+
+				<!-- ========== Remove Recipes ========== -->
+
+				<!-- <li Class="PatchOperationRemove">
+					<xpath>Defs/RecipeDef[defName="Make_Kar98K_Ammo_RA"]</xpath>
+				</li>
+
+				<li Class="PatchOperationRemove">
+					<xpath>Defs/ThingDef[defName="TableRA"]/recipes/li[text()="Make_Kar98K_Ammo_RA"]</xpath>
+				</li> -->
+
+				<!-- ========== Tools ========== -->
+
+				<li Class="PatchOperationReplace">
+					<xpath>
+						/Defs/ThingDef[
+							defName="Gun_P08_RA" or 
+							defName="Gun_P38_RA" or 
+							defName="Gun_PPK_RA" or 
+							defName="Gun_Volkspistole_RA"
+						]/tools
+					</xpath>
+					<value>
+						<tools>
+							<li Class="CombatExtended.ToolCE">
+								<label>grip</label>
+								<capacities>
+									<li>Blunt</li>
+								</capacities>
+								<power>2</power>
+								<cooldownTime>1.54</cooldownTime>
+								<chanceFactor>1.5</chanceFactor>
+								<armorPenetrationBlunt>0.555</armorPenetrationBlunt>
+								<linkedBodyPartsGroup>Grip</linkedBodyPartsGroup>
+							</li>
+							<li Class="CombatExtended.ToolCE">
+								<label>muzzle</label>
+								<capacities>
+									<li>Poke</li>
+								</capacities>
+								<power>2</power>
+								<cooldownTime>1.54</cooldownTime>
+								<armorPenetrationBlunt>0.555</armorPenetrationBlunt>
+								<linkedBodyPartsGroup>Muzzle</linkedBodyPartsGroup>
+							</li>
+						</tools>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>
+						/Defs/ThingDef[
+							defName="Gun_StG_44_Scope_RA" or 
+							defName="Gun_StG_44_RA" or 
+							defName="Gun_FG_42_RA" or 
+							defName="Gun_MP_507_RA" or 
+							defName="Gun_MP_40_RA" or 
+							defName="Gun_MP_35_RA" or 
+							defName="Gun_MP_3008_RA" or 
+							defName="Gun_MG_42_RA" or 
+							defName="Gun_MG_34_RA" or 
+							defName="Gun_Kar98K_Sniper_RA" or 
+							defName="Gun_Kar98K_Schiessbecher_RA" or 
+							defName="Gun_Kar98K_RA"	or 
+							defName="Gun_VG1_RA" or 
+							defName="Gun_Gew_Scope_43_RA" or 
+							defName="Gun_Gew_43_RA"	or 
+							defName="Gun_PzB_39_RA"
+						]/tools
+					</xpath>
+					<value>
+						<tools>
+							<li Class="CombatExtended.ToolCE">
+								<label>stock</label>
+								<capacities>
+									<li>Blunt</li>
+								</capacities>
+								<power>8</power>
+								<cooldownTime>1.55</cooldownTime>
+								<chanceFactor>1.5</chanceFactor>
+								<armorPenetrationBlunt>2.755</armorPenetrationBlunt>
+								<linkedBodyPartsGroup>Stock</linkedBodyPartsGroup>
+							</li>
+							<li Class="CombatExtended.ToolCE">
+								<label>barrel</label>
+								<capacities>
+									<li>Blunt</li>
+								</capacities>
+								<power>5</power>
+								<cooldownTime>2.02</cooldownTime>
+								<armorPenetrationBlunt>1.630</armorPenetrationBlunt>
+								<linkedBodyPartsGroup>Barrel</linkedBodyPartsGroup>
+							</li>
+							<li Class="CombatExtended.ToolCE">
+								<label>muzzle</label>
+								<capacities>
+									<li>Poke</li>
+								</capacities>
+								<power>8</power>
+								<cooldownTime>1.55</cooldownTime>
+								<armorPenetrationBlunt>2.755</armorPenetrationBlunt>
+								<linkedBodyPartsGroup>Muzzle</linkedBodyPartsGroup>
+							</li>
+						</tools>
+					</value>
+				</li>
+
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="Gun_Panzerfaust_60_RA" or defName="Gun_Eintossflammenwerfer_46_RA"]</xpath>
+					<value>
+						<tools>
+							<li Class="CombatExtended.ToolCE">
+								<label>barrel</label>
+								<capacities>
+									<li>Blunt</li>
+								</capacities>
+								<power>10</power>
+								<cooldownTime>2.44</cooldownTime>
+								<armorPenetrationBlunt>3.5</armorPenetrationBlunt>
+								<linkedBodyPartsGroup>Barrel</linkedBodyPartsGroup>
+							</li>
+						</tools>
+					</value>
+				</li>
+
+				<!-- ========== STG 44 w/ Scope ========== -->
+
+				<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+					<defName>Gun_StG_44_Scope_RA</defName>
+					<statBases>
+						<Mass>4.80</Mass>
+						<RangedWeapon_Cooldown>0.36</RangedWeapon_Cooldown>
+						<SightsEfficiency>2.24</SightsEfficiency>
+						<ShotSpread>0.08</ShotSpread>
+						<SwayFactor>1.46</SwayFactor>
+						<Bulk>9.40</Bulk>
+						<WorkToMake>500</WorkToMake>
+					</statBases>
+					<costList>
+						<Gun_StG_44_RA>1</Gun_StG_44_RA>
+						<Steel>10</Steel>
+					</costList>
+					<Properties>
+						<recoilAmount>1.51</recoilAmount>
+						<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+						<hasStandardCommand>true</hasStandardCommand>
+						<defaultProjectile>Bullet_792x33mmKurz_FMJ</defaultProjectile>
+						<warmupTime>1.3</warmupTime>
+						<range>55</range>
+						<burstShotCount>6</burstShotCount>
+						<ticksBetweenBurstShots>7</ticksBetweenBurstShots>
+						<soundCast>Shot_StG_44</soundCast>
+						<soundCastTail>GunTail_Medium</soundCastTail>
+						<muzzleFlashScale>9</muzzleFlashScale>
+					</Properties>
+					<AmmoUser>
+						<magazineSize>30</magazineSize>
+						<reloadTime>4</reloadTime>
+						<ammoSet>AmmoSet_792x33mmKurz</ammoSet>
+					</AmmoUser>
+					<FireModes>
+						<aimedBurstShotCount>3</aimedBurstShotCount>
+						<aiUseBurstMode>TRUE</aiUseBurstMode>
+						<aiAimMode>AimedShot</aiAimMode>
+					</FireModes>
+					<weaponTags>
+						<li>CE_AI_Rifle</li>
+						<li>IndustrialGunAdvanced</li>
+					</weaponTags>
+					<researchPrerequisite>Stage2b_RA</researchPrerequisite>
+				</li>
+
+				<!-- ========== STG 44 ========== -->
+
+				<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+					<defName>Gun_StG_44_RA</defName>
+					<statBases>
+						<Mass>4.60</Mass>
+						<RangedWeapon_Cooldown>0.36</RangedWeapon_Cooldown>
+						<SightsEfficiency>1.00</SightsEfficiency>
+						<ShotSpread>0.08</ShotSpread>
+						<SwayFactor>1.40</SwayFactor>
+						<Bulk>9.35</Bulk>
+						<WorkToMake>20000</WorkToMake>
+					</statBases>
+					<costList>
+						<Steel>90</Steel>
+						<ComponentIndustrial>5</ComponentIndustrial>
+						<WoodLog>5</WoodLog>
+					</costList>
+					<Properties>
+						<recoilAmount>1.54</recoilAmount>
+						<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+						<hasStandardCommand>true</hasStandardCommand>
+						<defaultProjectile>Bullet_792x33mmKurz_FMJ</defaultProjectile>
+						<warmupTime>1.1</warmupTime>
+						<range>48</range>
+						<burstShotCount>6</burstShotCount>
+						<ticksBetweenBurstShots>7</ticksBetweenBurstShots>
+						<soundCast>Shot_StG_44</soundCast>
+						<soundCastTail>GunTail_Medium</soundCastTail>
+						<muzzleFlashScale>9</muzzleFlashScale>
+					</Properties>
+					<AmmoUser>
+						<magazineSize>30</magazineSize>
+						<reloadTime>4</reloadTime>
+						<ammoSet>AmmoSet_792x33mmKurz</ammoSet>
+					</AmmoUser>
+					<FireModes>
+						<aimedBurstShotCount>3</aimedBurstShotCount>
+						<aiUseBurstMode>TRUE</aiUseBurstMode>
+						<aiAimMode>AimedShot</aiAimMode>
+					</FireModes>
+					<weaponTags>
+						<li>CE_AI_Rifle</li>
+						<li>IndustrialGunAdvanced</li>
+					</weaponTags>
+					<researchPrerequisite>Stage2b_RA</researchPrerequisite>
+				</li>
+
+				<!-- ========== FG 42 ========== -->
+
+				<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+					<defName>Gun_FG_42_RA</defName>
+					<statBases>
+						<Mass>4.20</Mass>
+						<RangedWeapon_Cooldown>0.37</RangedWeapon_Cooldown>
+						<SightsEfficiency>1.00</SightsEfficiency>
+						<ShotSpread>0.07</ShotSpread>
+						<SwayFactor>1.41</SwayFactor>
+						<Bulk>9.45</Bulk>
+						<WorkToMake>24000</WorkToMake>
+					</statBases>
+					<costList>
+						<Steel>120</Steel>
+						<ComponentIndustrial>7</ComponentIndustrial>
+						<WoodLog>10</WoodLog>
+					</costList>
+					<Properties>
+						<recoilAmount>2.14</recoilAmount>
+						<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+						<hasStandardCommand>true</hasStandardCommand>
+						<defaultProjectile>Bullet_792x57mmMauser_FMJ</defaultProjectile>
+						<warmupTime>1.3</warmupTime>
+						<range>55</range>
+						<burstShotCount>6</burstShotCount>
+						<ticksBetweenBurstShots>5</ticksBetweenBurstShots>
+						<soundCast>Shot_FG_42</soundCast>
+						<soundCastTail>GunTail_Medium</soundCastTail>
+						<muzzleFlashScale>9</muzzleFlashScale>
+					</Properties>
+					<AmmoUser>
+						<magazineSize>20</magazineSize>
+						<reloadTime>4</reloadTime>
+						<ammoSet>AmmoSet_792x57mmMauser</ammoSet>
+					</AmmoUser>
+					<FireModes>
+						<aimedBurstShotCount>3</aimedBurstShotCount>
+						<aiUseBurstMode>TRUE</aiUseBurstMode>
+						<aiAimMode>AimedShot</aiAimMode>
+					</FireModes>
+					<weaponTags>
+						<li>CE_AI_Rifle</li>
+						<li>IndustrialGunAdvanced</li>
+					</weaponTags>
+					<researchPrerequisite>Stage1b_RA</researchPrerequisite>
+				</li>
+
+				<!-- ========== MP 507 ========== -->
+
+				<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+					<defName>Gun_MP_507_RA</defName>
+					<statBases>
+						<Mass>4.60</Mass>
+						<RangedWeapon_Cooldown>0.36</RangedWeapon_Cooldown>
+						<SightsEfficiency>1.00</SightsEfficiency>
+						<ShotSpread>0.09</ShotSpread>
+						<SwayFactor>1.35</SwayFactor>
+						<Bulk>8.85</Bulk>
+						<WorkToMake>12000</WorkToMake>
+					</statBases>
+					<costList>
+						<Steel>50</Steel>
+						<ComponentIndustrial>2</ComponentIndustrial>
+						<WoodLog>10</WoodLog>
+					</costList>
+					<Properties>
+						<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+						<hasStandardCommand>true</hasStandardCommand>
+						<defaultProjectile>Bullet_792x33mmKurz_FMJ</defaultProjectile>
+						<warmupTime>1.1</warmupTime>
+						<range>40</range>
+						<ticksBetweenBurstShots>7</ticksBetweenBurstShots>
+						<soundCast>Shot_MP_507</soundCast>
+						<soundCastTail>GunTail_Medium</soundCastTail>
+						<muzzleFlashScale>9</muzzleFlashScale>
+					</Properties>
+					<AmmoUser>
+						<magazineSize>30</magazineSize>
+						<reloadTime>4</reloadTime>
+						<ammoSet>AmmoSet_792x33mmKurz</ammoSet>
+					</AmmoUser>
+					<FireModes>
+						<aiAimMode>AimedShot</aiAimMode>
+					</FireModes>
+					<weaponTags>
+						<li>CE_AI_Rifle</li>
+						<li>IndustrialGunAdvanced</li>
+					</weaponTags>
+					<researchPrerequisite>Stage2c_RA</researchPrerequisite>
+				</li>
+
+				<!-- ========== MP 40 ========== -->
+
+				<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+					<defName>Gun_MP_40_RA</defName>
+					<statBases>
+						<Mass>3.97</Mass>
+						<RangedWeapon_Cooldown>0.36</RangedWeapon_Cooldown>
+						<SightsEfficiency>1.00</SightsEfficiency>
+						<ShotSpread>0.13</ShotSpread>
+						<SwayFactor>1.23</SwayFactor>
+						<Bulk>6.30</Bulk>
+						<WorkToMake>14000</WorkToMake>
+					</statBases>
+					<costList>
+						<Steel>70</Steel>
+						<ComponentIndustrial>4</ComponentIndustrial>
+					</costList>
+					<Properties>
+						<recoilAmount>1.16</recoilAmount>
+						<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+						<hasStandardCommand>true</hasStandardCommand>
+						<defaultProjectile>Bullet_9x19mmPara_FMJ</defaultProjectile>
+						<warmupTime>0.6</warmupTime>
+						<range>20</range>
+						<burstShotCount>6</burstShotCount>
+						<ticksBetweenBurstShots>7</ticksBetweenBurstShots>
+						<soundCast>Shot_MP_40</soundCast>
+						<soundCastTail>GunTail_Medium</soundCastTail>
+						<muzzleFlashScale>9</muzzleFlashScale>
+					</Properties>
+					<AmmoUser>
+						<magazineSize>32</magazineSize>
+						<reloadTime>4</reloadTime>
+						<ammoSet>AmmoSet_9x19mmPara</ammoSet>
+					</AmmoUser>
+					<FireModes>
+						<aiAimMode>Snapshot</aiAimMode>
+						<aimedBurstShotCount>3</aimedBurstShotCount>
+						<aiUseBurstMode>FALSE</aiUseBurstMode>
+					</FireModes>
+					<weaponTags>
+						<li>CE_SMG</li>
+						<li>CE_AI_AssaultWeapon</li>
+						<li>IndustrialGunAdvanced</li>
+					</weaponTags>
+					<researchPrerequisite>Stage1b_RA</researchPrerequisite>
+				</li>
+
+				<!-- ========== MP 35 ========== -->
+
+				<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+					<defName>Gun_MP_35_RA</defName>
+					<statBases>
+						<Mass>4.24</Mass>
+						<RangedWeapon_Cooldown>0.36</RangedWeapon_Cooldown>
+						<SightsEfficiency>1.00</SightsEfficiency>
+						<ShotSpread>0.14</ShotSpread>
+						<SwayFactor>1.26</SwayFactor>
+						<Bulk>8.40</Bulk>
+						<WorkToMake>18000</WorkToMake>
+					</statBases>
+					<costList>
+						<Steel>60</Steel>
+						<ComponentIndustrial>4</ComponentIndustrial>
+						<WoodLog>10</WoodLog>
+					</costList>
+					<Properties>
+						<recoilAmount>1.12</recoilAmount>
+						<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+						<hasStandardCommand>true</hasStandardCommand>
+						<defaultProjectile>Bullet_9x19mmPara_FMJ</defaultProjectile>
+						<warmupTime>0.6</warmupTime>
+						<range>20</range>
+						<burstShotCount>6</burstShotCount>
+						<ticksBetweenBurstShots>7</ticksBetweenBurstShots>
+						<soundCast>Shot_MP_35</soundCast>
+						<soundCastTail>GunTail_Medium</soundCastTail>
+						<muzzleFlashScale>9</muzzleFlashScale>
+					</Properties>
+					<AmmoUser>
+						<magazineSize>24</magazineSize>
+						<reloadTime>4</reloadTime>
+						<ammoSet>AmmoSet_9x19mmPara</ammoSet>
+					</AmmoUser>
+					<FireModes>
+						<aiAimMode>Snapshot</aiAimMode>
+						<aimedBurstShotCount>3</aimedBurstShotCount>
+						<aiUseBurstMode>FALSE</aiUseBurstMode>
+					</FireModes>
+					<weaponTags>
+						<li>CE_SMG</li>
+						<li>CE_AI_AssaultWeapon</li>
+						<li>IndustrialGunAdvanced</li>
+					</weaponTags>
+					<researchPrerequisite>Stage0b_RA</researchPrerequisite>
+				</li>
+
+				<!-- ========== MP 3008 ========== -->
+
+				<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+					<defName>Gun_MP_3008_RA</defName>
+					<statBases>
+						<Mass>4.24</Mass>
+						<RangedWeapon_Cooldown>0.36</RangedWeapon_Cooldown>
+						<SightsEfficiency>1.00</SightsEfficiency>
+						<ShotSpread>0.14</ShotSpread>
+						<SwayFactor>1.08</SwayFactor>
+						<Bulk>7.60</Bulk>
+						<WorkToMake>8000</WorkToMake>
+					</statBases>
+					<costList>
+						<Steel>40</Steel>
+						<ComponentIndustrial>2</ComponentIndustrial>
+					</costList>
+					<Properties>
+						<recoilAmount>1.29</recoilAmount>
+						<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+						<hasStandardCommand>true</hasStandardCommand>
+						<defaultProjectile>Bullet_9x19mmPara_FMJ</defaultProjectile>
+						<warmupTime>0.6</warmupTime>
+						<range>16</range>
+						<burstShotCount>6</burstShotCount>
+						<ticksBetweenBurstShots>8</ticksBetweenBurstShots>
+						<soundCast>Shot_MP_3008</soundCast>
+						<soundCastTail>GunTail_Medium</soundCastTail>
+						<muzzleFlashScale>9</muzzleFlashScale>
+					</Properties>
+					<AmmoUser>
+						<magazineSize>32</magazineSize>
+						<reloadTime>4</reloadTime>
+						<ammoSet>AmmoSet_9x19mmPara</ammoSet>
+					</AmmoUser>
+					<FireModes>
+						<aiAimMode>Snapshot</aiAimMode>
+						<aimedBurstShotCount>3</aimedBurstShotCount>
+						<aiUseBurstMode>FALSE</aiUseBurstMode>
+					</FireModes>
+					<weaponTags>
+						<li>CE_SMG</li>
+						<li>CE_AI_AssaultWeapon</li>
+						<li>IndustrialGunAdvanced</li>
+					</weaponTags>
+					<researchPrerequisite>Stage2c_RA</researchPrerequisite>
+				</li>
+
+				<!-- ========== P38 (Walther) ========== -->
+
+				<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+					<defName>Gun_P38_RA</defName>
+					<statBases>
+						<Mass>0.84</Mass>
+						<RangedWeapon_Cooldown>0.38</RangedWeapon_Cooldown>
+						<SightsEfficiency>0.70</SightsEfficiency>
+						<ShotSpread>0.17</ShotSpread>
+						<SwayFactor>1.00</SwayFactor>
+						<Bulk>2.16</Bulk>
+						<WorkToMake>10000</WorkToMake>
+					</statBases>
+					<costList>
+						<Steel>30</Steel>
+						<ComponentIndustrial>3</ComponentIndustrial>
+					</costList>
+					<Properties>
+						<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+						<hasStandardCommand>true</hasStandardCommand>
+						<defaultProjectile>Bullet_9x19mmPara_FMJ</defaultProjectile>
+						<warmupTime>0.6</warmupTime>
+						<range>12</range>
+						<soundCast>Shot_P38</soundCast>
+						<soundCastTail>GunTail_Light</soundCastTail>
+						<muzzleFlashScale>9</muzzleFlashScale>
+					</Properties>
+					<AmmoUser>
+						<magazineSize>8</magazineSize>
+						<reloadTime>4</reloadTime>
+						<ammoSet>AmmoSet_9x19mmPara</ammoSet>
+					</AmmoUser>
+					<FireModes>
+						<aiUseBurstMode>FALSE</aiUseBurstMode>
+					</FireModes>
+					<weaponTags>
+						<li>CE_OneHandedWeapon</li>
+						<li>IndustrialGunAdvanced</li>
+					</weaponTags>
+					<researchPrerequisite>Stage1b_RA</researchPrerequisite>
+				</li>
+
+				<!-- ========== P08 (Luger) ========== -->
+
+				<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+					<defName>Gun_P08_RA</defName>
+					<statBases>
+						<Mass>0.87</Mass>
+						<RangedWeapon_Cooldown>0.38</RangedWeapon_Cooldown>
+						<SightsEfficiency>0.7</SightsEfficiency>
+						<ShotSpread>0.17</ShotSpread>
+						<SwayFactor>1.03</SwayFactor>
+						<Bulk>2.22</Bulk>
+						<WorkToMake>14000</WorkToMake>
+					</statBases>
+					<costList>
+						<Steel>40</Steel>
+						<ComponentIndustrial>4</ComponentIndustrial>
+					</costList>
+					<Properties>
+						<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+						<hasStandardCommand>true</hasStandardCommand>
+						<defaultProjectile>Bullet_9x19mmPara_FMJ</defaultProjectile>
+						<warmupTime>0.6</warmupTime>
+						<range>12</range>
+						<soundCast>Shot_P08</soundCast>
+						<soundCastTail>GunTail_Light</soundCastTail>
+						<muzzleFlashScale>9</muzzleFlashScale>
+					</Properties>
+					<AmmoUser>
+						<magazineSize>8</magazineSize>
+						<reloadTime>4</reloadTime>
+						<ammoSet>AmmoSet_9x19mmPara</ammoSet>
+					</AmmoUser>
+					<FireModes>
+						<aiUseBurstMode>FALSE</aiUseBurstMode>
+					</FireModes>
+					<weaponTags>
+						<li>CE_OneHandedWeapon</li>
+						<li>IndustrialGunAdvanced</li>
+					</weaponTags>
+					<researchPrerequisite>Stage0b_RA</researchPrerequisite>
+				</li>
+
+				<!-- ========== PPK ========== -->
+
+				<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+					<defName>Gun_PPK_RA</defName>
+					<statBases>
+						<Mass>0.59</Mass>
+						<RangedWeapon_Cooldown>0.37</RangedWeapon_Cooldown>
+						<SightsEfficiency>0.7</SightsEfficiency>
+						<ShotSpread>0.19</ShotSpread>
+						<SwayFactor>0.71</SwayFactor>
+						<Bulk>1.55</Bulk>
+						<WorkToMake>10000</WorkToMake>
+					</statBases>
+					<costList>
+						<Steel>40</Steel>
+						<ComponentIndustrial>4</ComponentIndustrial>
+					</costList>
+					<Properties>
+						<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+						<hasStandardCommand>true</hasStandardCommand>
+						<defaultProjectile>Bullet_32ACP_FMJ</defaultProjectile>
+						<warmupTime>0.6</warmupTime>
+						<range>12</range>
+						<soundCast>Shot_PPK</soundCast>
+						<soundCastTail>GunTail_Light</soundCastTail>
+						<muzzleFlashScale>9</muzzleFlashScale>
+					</Properties>
+					<AmmoUser>
+						<magazineSize>7</magazineSize>
+						<reloadTime>4</reloadTime>
+						<ammoSet>AmmoSet_32ACP</ammoSet>
+					</AmmoUser>
+					<FireModes>
+						<aiUseBurstMode>FALSE</aiUseBurstMode>
+					</FireModes>
+					<weaponTags>
+						<li>CE_OneHandedWeapon</li>
+						<li>IndustrialGunAdvanced</li>
+					</weaponTags>
+					<researchPrerequisite>Stage0b_RA</researchPrerequisite>
+				</li>
+
+				<!-- ========== Volkspistole ========== -->
+
+				<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+					<defName>Gun_Volkspistole_RA</defName>
+					<statBases>
+						<Mass>1.10</Mass>
+						<RangedWeapon_Cooldown>0.37</RangedWeapon_Cooldown>
+						<SightsEfficiency>0.7</SightsEfficiency>
+						<ShotSpread>0.17</ShotSpread>
+						<SwayFactor>1.08</SwayFactor>
+						<Bulk>2.15</Bulk>
+						<WorkToMake>6000</WorkToMake>
+					</statBases>
+					<costList>
+						<Steel>25</Steel>
+						<ComponentIndustrial>2</ComponentIndustrial>
+					</costList>
+					<Properties>
+						<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+						<hasStandardCommand>true</hasStandardCommand>
+						<defaultProjectile>Bullet_9x19mmPara_FMJ</defaultProjectile>
+						<warmupTime>0.6</warmupTime>
+						<range>12</range>
+						<soundCast>Shot_Volkspistole</soundCast>
+						<soundCastTail>GunTail_Light</soundCastTail>
+						<muzzleFlashScale>9</muzzleFlashScale>
+					</Properties>
+					<AmmoUser>
+						<magazineSize>8</magazineSize>
+						<reloadTime>4</reloadTime>
+						<ammoSet>AmmoSet_9x19mmPara</ammoSet>
+					</AmmoUser>
+					<FireModes>
+						<aiUseBurstMode>FALSE</aiUseBurstMode>
+					</FireModes>
+					<weaponTags>
+						<li>CE_OneHandedWeapon</li>
+						<li>IndustrialGunAdvanced</li>
+					</weaponTags>
+					<researchPrerequisite>Stage2c_RA</researchPrerequisite>
+				</li>
+
+				<!-- ========== MG 42 ========== -->
+
+				<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+					<defName>Gun_MG_42_RA</defName>
+					<statBases>
+						<Mass>15.20</Mass>
+						<RangedWeapon_Cooldown>0.56</RangedWeapon_Cooldown>
+						<SightsEfficiency>1</SightsEfficiency>
+						<ShotSpread>0.06</ShotSpread>
+						<SwayFactor>1.67</SwayFactor>
+						<Bulk>11.60</Bulk>
+						<WorkToMake>18000</WorkToMake>
+					</statBases>
+					<costList>
+						<Steel>140</Steel>
+						<ComponentIndustrial>6</ComponentIndustrial>
+						<WoodLog>5</WoodLog>
+					</costList>
+					<Properties>
+						<recoilAmount>1.25</recoilAmount>
+						<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+						<hasStandardCommand>true</hasStandardCommand>
+						<defaultProjectile>Bullet_792x57mmMauser_FMJ</defaultProjectile>
+						<warmupTime>1.3</warmupTime>
+						<range>65</range>
+						<ticksBetweenBurstShots>3</ticksBetweenBurstShots>
+						<burstShotCount>10</burstShotCount>
+						<soundCast>Shot_MG_42</soundCast>
+						<soundCastTail>GunTail_Heavy</soundCastTail>
+						<muzzleFlashScale>9</muzzleFlashScale>
+						<targetParams>
+							<canTargetLocations>true</canTargetLocations>
+						</targetParams>
+						<recoilPattern>Mounted</recoilPattern>
+					</Properties>
+					<AmmoUser>
+						<magazineSize>50</magazineSize>
+						<reloadTime>7.8</reloadTime>
+						<ammoSet>AmmoSet_792x57mmMauser</ammoSet>
+					</AmmoUser>
+					<FireModes>
+						<aimedBurstShotCount>5</aimedBurstShotCount>
+						<aiUseBurstMode>FALSE</aiUseBurstMode>
+						<aiAimMode>SuppressFire</aiAimMode>
+					</FireModes>
+					<weaponTags>
+						<li>IndustrialGunAdvanced</li>
+					</weaponTags>
+					<researchPrerequisite>Stage0b_RA</researchPrerequisite>
+					<AllowWithRunAndGun>false</AllowWithRunAndGun>
+				</li>
+
+				<!-- ========== MG 34 ========== -->
+
+				<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+					<defName>Gun_MG_34_RA</defName>
+					<statBases>
+						<Mass>15.20</Mass>
+						<RangedWeapon_Cooldown>0.56</RangedWeapon_Cooldown>
+						<SightsEfficiency>1</SightsEfficiency>
+						<ShotSpread>0.06</ShotSpread>
+						<SwayFactor>1.70</SwayFactor>
+						<Bulk>12.10</Bulk>
+						<WorkToMake>18000</WorkToMake>
+					</statBases>
+					<costList>
+						<Steel>130</Steel>
+						<ComponentIndustrial>8</ComponentIndustrial>
+						<WoodLog>5</WoodLog>
+					</costList>
+					<Properties>
+						<recoilAmount>1.22</recoilAmount>
+						<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+						<hasStandardCommand>true</hasStandardCommand>
+						<defaultProjectile>Bullet_792x57mmMauser_FMJ</defaultProjectile>
+						<warmupTime>1.3</warmupTime>
+						<range>68</range>
+						<ticksBetweenBurstShots>4</ticksBetweenBurstShots>
+						<burstShotCount>10</burstShotCount>
+						<soundCast>Shot_MG_34</soundCast>
+						<soundCastTail>GunTail_Heavy</soundCastTail>
+						<muzzleFlashScale>9</muzzleFlashScale>
+						<targetParams>
+							<canTargetLocations>true</canTargetLocations>
+						</targetParams>
+						<recoilPattern>Mounted</recoilPattern>
+					</Properties>
+					<AmmoUser>
+						<magazineSize>50</magazineSize>
+						<reloadTime>7.8</reloadTime>
+						<ammoSet>AmmoSet_792x57mmMauser</ammoSet>
+					</AmmoUser>
+					<FireModes>
+						<aimedBurstShotCount>5</aimedBurstShotCount>
+						<aiUseBurstMode>FALSE</aiUseBurstMode>
+						<aiAimMode>SuppressFire</aiAimMode>
+					</FireModes>
+					<weaponTags>
+						<li>IndustrialGunAdvanced</li>
+					</weaponTags>
+					<researchPrerequisite>Stage0b_RA</researchPrerequisite>
+					<AllowWithRunAndGun>false</AllowWithRunAndGun>
+				</li>
+
+				<!-- ========== Kar98k with Scope ========== -->
+
+				<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+					<defName>Gun_Kar98K_Sniper_RA</defName>
+					<statBases>
+						<Mass>4.20</Mass>
+						<RangedWeapon_Cooldown>1.17</RangedWeapon_Cooldown>
+						<SightsEfficiency>2.24</SightsEfficiency>
+						<ShotSpread>0.05</ShotSpread>
+						<SwayFactor>1.56</SwayFactor>
+						<Bulk>11.00</Bulk>
+						<WorkToMake>500</WorkToMake>
+					</statBases>
+					<costList>
+						<Gun_Kar98K_RA>1</Gun_Kar98K_RA>
+						<Steel>10</Steel>
+					</costList>
+					<Properties>
+						<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+						<hasStandardCommand>true</hasStandardCommand>
+						<defaultProjectile>Bullet_792x57mmMauser_FMJ</defaultProjectile>
+						<warmupTime>1.3</warmupTime>
+						<range>68</range>
+						<soundCast>Shot_Kar98K</soundCast>
+						<soundCastTail>GunTail_Medium</soundCastTail>
+						<muzzleFlashScale>9</muzzleFlashScale>
+					</Properties>
+					<AmmoUser>
+						<magazineSize>5</magazineSize>
+						<reloadTime>4.3</reloadTime>
+						<ammoSet>AmmoSet_792x57mmMauser</ammoSet>
+					</AmmoUser>
+					<FireModes>
+						<aiAimMode>AimedShot</aiAimMode>
+					</FireModes>
+					<weaponTags>
+						<li>CE_AI_Rifle</li>
+						<li>IndustrialGunAdvanced</li>
+					</weaponTags>
+					<researchPrerequisite>Stage0b_RA</researchPrerequisite>
+					<AllowWithRunAndGun>false</AllowWithRunAndGun>
+				</li>
+
+				<!-- ========== Kar98k with Grenade Launcher ========== -->
+
+				<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+					<defName>Gun_Kar98K_Schiessbecher_RA</defName>
+					<statBases>
+						<Mass>4.20</Mass>
+						<RangedWeapon_Cooldown>1.17</RangedWeapon_Cooldown>
+						<SightsEfficiency>1.00</SightsEfficiency>
+						<ShotSpread>0.05</ShotSpread>
+						<SwayFactor>1.56</SwayFactor>
+						<Bulk>11.00</Bulk>
+						<WorkToMake>500</WorkToMake>
+					</statBases>
+					<costList>
+						<Gun_Kar98K_RA>1</Gun_Kar98K_RA>
+						<FSX>7</FSX>
+					</costList>
+					<Properties>
+						<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+						<hasStandardCommand>true</hasStandardCommand>
+						<defaultProjectile>Bullet_30mmRifleGrenade_HE</defaultProjectile>
+						<warmupTime>1.8</warmupTime>
+						<minRange>6</minRange>
+						<range>44</range>
+						<soundCast>Shot_Schiessbecher</soundCast>
+						<soundCastTail>GunTail_Medium</soundCastTail>
+						<muzzleFlashScale>9</muzzleFlashScale>
+						<requireLineOfSight>false</requireLineOfSight>
+						<targetParams>
+							<canTargetLocations>true</canTargetLocations>
+						</targetParams>
+					</Properties>
+					<AmmoUser>
+						<magazineSize>1</magazineSize>
+						<reloadTime>6</reloadTime>
+						<ammoSet>AmmoSet_30mmRifleGrenade</ammoSet>
+					</AmmoUser>
+					<FireModes>
+						<aiAimMode>AimedShot</aiAimMode>
+					</FireModes>
+					<weaponTags>
+						<li>CE_AI_Rifle</li>
+						<li>IndustrialGunAdvanced</li>
+					</weaponTags>
+					<researchPrerequisite>Stage1b_RA</researchPrerequisite>
+				</li>
+
+				<!-- ========== Kar98k with Bayonet ========== -->
+
+				<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+					<defName>Gun_Kar98K_Bayonet_RA</defName>
+					<statBases>
+						<Mass>4.10</Mass>
+						<RangedWeapon_Cooldown>1.17</RangedWeapon_Cooldown>
+						<SightsEfficiency>1.00</SightsEfficiency>
+						<ShotSpread>0.05</ShotSpread>
+						<SwayFactor>1.90</SwayFactor>
+						<Bulk>14.85</Bulk>
+						<WorkToMake>500</WorkToMake>
+					</statBases>
+					<costList>
+						<Gun_Kar98K_RA>1</Gun_Kar98K_RA>
+						<MeleeWeapon_S84_98_III_RA>1</MeleeWeapon_S84_98_III_RA>
+					</costList>
+					<Properties>
+						<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+						<hasStandardCommand>true</hasStandardCommand>
+						<defaultProjectile>Bullet_792x57mmMauser_FMJ</defaultProjectile>
+						<warmupTime>1.1</warmupTime>
+						<range>55</range>
+						<soundCast>Shot_Kar98K</soundCast>
+						<soundCastTail>GunTail_Medium</soundCastTail>
+						<muzzleFlashScale>9</muzzleFlashScale>
+					</Properties>
+					<AmmoUser>
+						<magazineSize>5</magazineSize>
+						<reloadTime>4.3</reloadTime>
+						<ammoSet>AmmoSet_792x57mmMauser</ammoSet>
+					</AmmoUser>
+					<FireModes>
+						<aiAimMode>AimedShot</aiAimMode>
+					</FireModes>
+					<weaponTags>
+						<li>CE_AI_Rifle</li>
+						<li>IndustrialGunAdvanced</li>
+					</weaponTags>
+					<researchPrerequisite>Stage0b_RA</researchPrerequisite>
+					<AllowWithRunAndGun>false</AllowWithRunAndGun>
+				</li>
+
+				<li Class="PatchOperationRemove">
+					<xpath>Defs/ThingDef[defName="Gun_Kar98K_Bayonet_RA"]/equippedStatOffsets/MentalBreakThreshold</xpath>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="Gun_Kar98K_Bayonet_RA"]/tools</xpath>
+					<value>
+						<tools>
+							<li Class="CombatExtended.ToolCE">
+								<label>stock</label>
+								<capacities>
+									<li>Blunt</li>
+								</capacities>
+								<power>8</power>
+								<cooldownTime>1.55</cooldownTime>
+								<chanceFactor>1.5</chanceFactor>
+								<armorPenetrationBlunt>2.755</armorPenetrationBlunt>
+								<linkedBodyPartsGroup>Stock</linkedBodyPartsGroup>
+							</li>
+							<li Class="CombatExtended.ToolCE">
+								<label>bayonet</label>
+								<capacities>
+									<li>Cut</li>
+								</capacities>
+								<power>17</power>
+								<cooldownTime>2.14</cooldownTime>
+								<armorPenetrationBlunt>1.688</armorPenetrationBlunt>
+								<armorPenetrationSharp>0.5</armorPenetrationSharp>
+								<linkedBodyPartsGroup>Barrel</linkedBodyPartsGroup>
+							</li>
+							<li Class="CombatExtended.ToolCE">
+								<label>bayonet</label>
+								<capacities>
+									<li>Stab</li>
+								</capacities>
+								<power>6</power>
+								<cooldownTime>1.49</cooldownTime>
+								<armorPenetrationBlunt>2.16</armorPenetrationBlunt>
+								<armorPenetrationSharp>1.44</armorPenetrationSharp>
+								<linkedBodyPartsGroup>Muzzle</linkedBodyPartsGroup>
+							</li>
+						</tools>
+					</value>
+				</li>
+
+				<!-- ========== Kar98k ========== -->
+
+				<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+					<defName>Gun_Kar98K_RA</defName>
+					<statBases>
+						<Mass>4.00</Mass>
+						<RangedWeapon_Cooldown>1.17</RangedWeapon_Cooldown>
+						<SightsEfficiency>1.00</SightsEfficiency>
+						<ShotSpread>0.05</ShotSpread>
+						<SwayFactor>1.50</SwayFactor>
+						<Bulk>11.00</Bulk>
+						<WorkToMake>12000</WorkToMake>
+					</statBases>
+					<costList>
+						<Steel>50</Steel>
+						<ComponentIndustrial>3</ComponentIndustrial>
+						<WoodLog>20</WoodLog>
+					</costList>
+					<Properties>
+						<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+						<hasStandardCommand>true</hasStandardCommand>
+						<defaultProjectile>Bullet_792x57mmMauser_FMJ</defaultProjectile>
+						<warmupTime>1.1</warmupTime>
+						<range>55</range>
+						<soundCast>Shot_Kar98K</soundCast>
+						<soundCastTail>GunTail_Medium</soundCastTail>
+						<muzzleFlashScale>9</muzzleFlashScale>
+					</Properties>
+					<AmmoUser>
+						<magazineSize>5</magazineSize>
+						<reloadTime>4.3</reloadTime>
+						<ammoSet>AmmoSet_792x57mmMauser</ammoSet>
+					</AmmoUser>
+					<FireModes>
+						<aiAimMode>AimedShot</aiAimMode>
+					</FireModes>
+					<weaponTags>
+						<li>CE_AI_Rifle</li>
+						<li>IndustrialGunAdvanced</li>
+					</weaponTags>
+					<researchPrerequisite>Stage0b_RA</researchPrerequisite>
+					<AllowWithRunAndGun>false</AllowWithRunAndGun>
+				</li>
+
+				<!-- ========== Walther VG-1 ========== -->
+
+				<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+					<defName>Gun_VG1_RA</defName>
+					<statBases>
+						<Mass>3.76</Mass>
+						<RangedWeapon_Cooldown>1.18</RangedWeapon_Cooldown>
+						<SightsEfficiency>1.00</SightsEfficiency>
+						<ShotSpread>0.06</ShotSpread>
+						<SwayFactor>1.47</SwayFactor>
+						<Bulk>10.92</Bulk>
+						<WorkToMake>8000</WorkToMake>
+					</statBases>
+					<costList>
+						<Steel>50</Steel>
+						<ComponentIndustrial>3</ComponentIndustrial>
+						<WoodLog>20</WoodLog>
+					</costList>
+					<Properties>
+						<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+						<hasStandardCommand>true</hasStandardCommand>
+						<defaultProjectile>Bullet_792x57mmMauser_FMJ</defaultProjectile>
+						<warmupTime>1.1</warmupTime>
+						<range>55</range>
+						<soundCast>Shot_VG1</soundCast>
+						<soundCastTail>GunTail_Medium</soundCastTail>
+						<muzzleFlashScale>9</muzzleFlashScale>
+					</Properties>
+					<AmmoUser>
+						<magazineSize>10</magazineSize>
+						<reloadTime>4.0</reloadTime>
+						<ammoSet>AmmoSet_792x57mmMauser</ammoSet>
+					</AmmoUser>
+					<FireModes>
+						<aiAimMode>AimedShot</aiAimMode>
+					</FireModes>
+					<weaponTags>
+						<li>CE_AI_Rifle</li>
+						<li>IndustrialGunAdvanced</li>
+					</weaponTags>
+					<researchPrerequisite>Stage2c_RA</researchPrerequisite>
+					<AllowWithRunAndGun>false</AllowWithRunAndGun>
+				</li>
+
+				<!-- ========== G43 w/ Scope ========== -->
+
+				<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+					<defName>Gun_Gew_Scope_43_RA</defName>
+					<statBases>
+						<Mass>4.60</Mass>
+						<RangedWeapon_Cooldown>0.37</RangedWeapon_Cooldown>
+						<SightsEfficiency>2.24</SightsEfficiency>
+						<ShotSpread>0.06</ShotSpread>
+						<SwayFactor>1.61</SwayFactor>
+						<Bulk>11.30</Bulk>
+						<WorkToMake>500</WorkToMake>
+					</statBases>
+					<costList>
+						<Gun_Gew_43_RA>1</Gun_Gew_43_RA>
+						<Steel>10</Steel>
+					</costList>
+					<Properties>
+						<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+						<hasStandardCommand>true</hasStandardCommand>
+						<defaultProjectile>Bullet_792x57mmMauser_FMJ</defaultProjectile>
+						<warmupTime>1.3</warmupTime>
+						<range>68</range>
+						<soundCast>Shot_Gew_43</soundCast>
+						<soundCastTail>GunTail_Medium</soundCastTail>
+						<muzzleFlashScale>9</muzzleFlashScale>
+					</Properties>
+					<AmmoUser>
+						<magazineSize>10</magazineSize>
+						<reloadTime>4</reloadTime>
+						<ammoSet>AmmoSet_792x57mmMauser</ammoSet>
+					</AmmoUser>
+					<FireModes>
+						<aiAimMode>AimedShot</aiAimMode>
+					</FireModes>
+					<weaponTags>
+						<li>CE_AI_Rifle</li>
+						<li>IndustrialGunAdvanced</li>
+					</weaponTags>
+					<researchPrerequisite>Stage1b_RA</researchPrerequisite>
+					<AllowWithRunAndGun>false</AllowWithRunAndGun>
+				</li>
+
+				<!-- ========== G43 ========== -->
+
+				<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+					<defName>Gun_Gew_43_RA</defName>
+					<statBases>
+						<Mass>4.40</Mass>
+						<RangedWeapon_Cooldown>0.37</RangedWeapon_Cooldown>
+						<SightsEfficiency>1.00</SightsEfficiency>
+						<ShotSpread>0.06</ShotSpread>
+						<SwayFactor>1.57</SwayFactor>
+						<Bulk>11.30</Bulk>
+						<WorkToMake>18000</WorkToMake>
+					</statBases>
+					<costList>
+						<Steel>70</Steel>
+						<ComponentIndustrial>5</ComponentIndustrial>
+						<WoodLog>20</WoodLog>
+					</costList>
+					<Properties>
+						<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+						<hasStandardCommand>true</hasStandardCommand>
+						<defaultProjectile>Bullet_792x57mmMauser_FMJ</defaultProjectile>
+						<warmupTime>1.1</warmupTime>
+						<range>55</range>
+						<soundCast>Shot_Gew_43</soundCast>
+						<soundCastTail>GunTail_Medium</soundCastTail>
+						<muzzleFlashScale>9</muzzleFlashScale>
+					</Properties>
+					<AmmoUser>
+						<magazineSize>10</magazineSize>
+						<reloadTime>4</reloadTime>
+						<ammoSet>AmmoSet_792x57mmMauser</ammoSet>
+					</AmmoUser>
+					<FireModes>
+						<aiAimMode>AimedShot</aiAimMode>
+					</FireModes>
+					<weaponTags>
+						<li>CE_AI_Rifle</li>
+						<li>IndustrialGunAdvanced</li>
+					</weaponTags>
+					<researchPrerequisite>Stage1b_RA</researchPrerequisite>
+				</li>
+
+				<!-- ========== PzB 38 Anti-tank Rifle ========== -->
+
+				<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+					<defName>Gun_PzB_39_RA</defName>
+					<statBases>
+						<Mass>11.60</Mass>
+						<RangedWeapon_Cooldown>1.05</RangedWeapon_Cooldown>
+						<SightsEfficiency>1.00</SightsEfficiency>
+						<ShotSpread>0.01</ShotSpread>
+						<SwayFactor>1.95</SwayFactor>
+						<Bulk>17.20</Bulk>
+						<WorkToMake>8000</WorkToMake>
+					</statBases>
+					<costList>
+						<Steel>50</Steel>
+						<ComponentIndustrial>3</ComponentIndustrial>
+						<WoodLog>20</WoodLog>
+					</costList>
+					<Properties>
+						<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+						<hasStandardCommand>true</hasStandardCommand>
+						<defaultProjectile>Bullet_792x94mmPatronen_FMJ</defaultProjectile>
+						<warmupTime>2.8</warmupTime>
+						<range>62</range>
+						<soundCast>Shot_PzB_39</soundCast>
+						<soundCastTail>GunTail_Heavy</soundCastTail>
+						<muzzleFlashScale>9</muzzleFlashScale>
+					</Properties>
+					<AmmoUser>
+						<magazineSize>1</magazineSize>
+						<reloadTime>1.6</reloadTime>
+						<ammoSet>AmmoSet_792x94mmPatronen</ammoSet>
+					</AmmoUser>
+					<FireModes>
+						<aiAimMode>AimedShot</aiAimMode>
+					</FireModes>
+					<weaponTags>
+						<li>CE_AI_Rifle</li>
+						<li>IndustrialGunAdvanced</li>
+					</weaponTags>
+					<researchPrerequisite>Stage2c_RA</researchPrerequisite>
+					<AllowWithRunAndGun>false</AllowWithRunAndGun>
+				</li>
+
+				<!-- ========== Panzerfaust 60 ========== -->
+
+				<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+					<defName>Gun_Panzerfaust_60_RA</defName>
+					<statBases>
+						<Mass>6.80</Mass>
+						<RangedWeapon_Cooldown>1.50</RangedWeapon_Cooldown>
+						<SightsEfficiency>0.80</SightsEfficiency>
+						<ShotSpread>0.6</ShotSpread>
+						<SwayFactor>1.65</SwayFactor>
+						<Bulk>11.40</Bulk>
+						<WorkToMake>6000</WorkToMake>
+					</statBases>
+					<costList>
+						<Steel>40</Steel>
+						<ComponentIndustrial>2</ComponentIndustrial>
+						<FSX>4</FSX>
+					</costList>
+					<Properties>
+						<verbClass>CombatExtended.Verb_ShootCEOneUse</verbClass>
+						<hasStandardCommand>true</hasStandardCommand>
+						<defaultProjectile>Bullet_Panzerfaust60_HEAT</defaultProjectile>
+						<warmupTime>1.8</warmupTime>
+						<range>14</range>
+						<soundCast>Shot_Panzerfaust</soundCast>
+						<soundCastTail>GunTail_Heavy</soundCastTail>
+						<muzzleFlashScale>9</muzzleFlashScale>
+						<targetParams>
+							<canTargetLocations>true</canTargetLocations>
+						</targetParams>
+					</Properties>
+					<FireModes />
+					<weaponTags>
+						<li>GunHeavy</li>
+					</weaponTags>
+					<researchPrerequisite>Stage2b_RA</researchPrerequisite>
+				</li>
+
+				<!-- ========== Eintossflammenwerfer 46 ========== -->
+
+				<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+					<defName>Gun_Eintossflammenwerfer_46_RA</defName>
+					<statBases>
+						<Mass>3.60</Mass>
+						<RangedWeapon_Cooldown>1.50</RangedWeapon_Cooldown>
+						<SightsEfficiency>0.80</SightsEfficiency>
+						<ShotSpread>0.6</ShotSpread>
+						<SwayFactor>1.65</SwayFactor>
+						<Bulk>7.50</Bulk>
+						<WorkToMake>6000</WorkToMake>
+					</statBases>
+					<costList>
+						<Steel>30</Steel>
+						<ComponentIndustrial>1</ComponentIndustrial>
+						<Chemfuel>40</Chemfuel>
+					</costList>
+					<Properties>
+						<verbClass>CombatExtended.Verb_ShootCEOneUse</verbClass>
+						<hasStandardCommand>true</hasStandardCommand>
+						<defaultProjectile>Bullet_Flamethrower_Napalm</defaultProjectile>
+						<warmupTime>1.8</warmupTime>
+						<range>11</range>
+						<ticksBetweenBurstShots>4</ticksBetweenBurstShots>
+						<burstShotCount>25</burstShotCount>
+						<soundCast>Shot_Eintoss</soundCast>
+						<soundCastTail>GunTail_Heavy</soundCastTail>
+						<targetParams>
+							<canTargetLocations>true</canTargetLocations>
+						</targetParams>
+						<muzzleFlashScale>14</muzzleFlashScale>
+					</Properties>
+					<FireModes>
+						<aiAimMode>SuppressFire</aiAimMode>
+						<noSingleShot>true</noSingleShot>
+					</FireModes>
+					<weaponTags>
+						<li>GunHeavy</li>
+					</weaponTags>
+					<researchPrerequisite>Stage2c_RA</researchPrerequisite>
+				</li>
+
+				<!-- M24 Stielhandgranate Concussion Grenade -->
+
+				<li Class="PatchOperationAttributeSet">
+					<xpath>Defs/ThingDef[defName="Weapon_M24_RA"]</xpath>
+					<attribute>ParentName</attribute>
+					<value>BaseWeapon</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="Weapon_M24_RA"]/label</xpath>
+					<value>
+						<label>M24 concussion grenade</label>
+					</value>
+				</li>
+
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="Weapon_M24_RA"]</xpath>
+					<value>
+						<equippedAngleOffset>90</equippedAngleOffset>
+					</value>
+				</li>
+
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="Weapon_M24_RA"]</xpath>
+					<value>
+						<thingClass>CombatExtended.AmmoThing</thingClass>
+						<stackLimit>75</stackLimit>
+						<resourceReadoutPriority>First</resourceReadoutPriority>
+					</value>
+				</li>
+
+				<li Class="PatchOperationAttributeSet">
+					<xpath>Defs/ThingDef[defName="Weapon_M24_RA"]</xpath>
+					<attribute>Class</attribute>
+					<value>CombatExtended.AmmoDef</value>
+				</li>
+
+				<li Class="PatchOperationSequence">
+					<success>Always</success>
+					<operations>
+						<li Class="PatchOperationTest">
+							<xpath>Defs/ThingDef[defName="Weapon_M24_RA"]/comps</xpath>
+							<success>Invert</success>
+						</li>
+						<li Class="PatchOperationAdd">
+							<xpath>Defs/ThingDef[defName="Weapon_M24_RA"]</xpath>
+							<value>
+								<comps />
+							</value>
+						</li>
+					</operations>
+				</li>
+
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="Weapon_M24_RA"]/comps</xpath>
+					<value>
+						<li Class="CombatExtended.CompProperties_ExplosiveCE">
+							<damageAmountBase>60</damageAmountBase>
+							<explosiveDamageType>Bomb</explosiveDamageType>
+							<explosiveRadius>2</explosiveRadius>
+						</li>
+					</value>
+				</li>
+
+				<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+					<defName>Weapon_M24_RA</defName>
+					<statBases>
+						<Mass>0.82</Mass>
+						<Bulk>0.36</Bulk>
+						<MarketValue>12.22</MarketValue>
+						<RangedWeapon_Cooldown>1</RangedWeapon_Cooldown>
+						<SightsEfficiency>0.65</SightsEfficiency>
+					</statBases>
+					<Properties>
+						<label>throw concussion grenade</label>
+						<verbClass>CombatExtended.Verb_ShootCEOneUse</verbClass>
+						<hasStandardCommand>true</hasStandardCommand>
+						<range>13.0</range>
+						<minRange>2</minRange>
+						<warmupTime>0.8</warmupTime>
+						<noiseRadius>4</noiseRadius>
+						<ai_IsBuildingDestroyer>true</ai_IsBuildingDestroyer>
+						<soundCast>ThrowGrenade</soundCast>
+						<targetParams>
+							<canTargetLocations>true</canTargetLocations>
+						</targetParams>
+						<defaultProjectile>Proj_M24_RA</defaultProjectile>
+						<onlyManualCast>true</onlyManualCast>
+						<ignorePartialLoSBlocker>true</ignorePartialLoSBlocker>
+					</Properties>
+					<weaponTags>
+						<li>CE_AI_Grenade</li>
+						<li>CE_OneHandedWeapon</li>
+					</weaponTags>
+					<researchPrerequisite>Stage0b_RA</researchPrerequisite>
+				</li>
+
+				<li Class="PatchOperationRemove">
+					<xpath>Defs/ThingDef[defName="Weapon_M24_RA"]/recipeMaker</xpath>
+				</li>
+
+				<li Class="PatchOperationRemove">
+					<xpath>Defs/ThingDef[defName="Weapon_M24_RA"]/costList</xpath>
+				</li>
+
+				<!-- Projectile -->
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="Proj_M24_RA"]/thingClass</xpath>
+					<value>
+						<thingClass>CombatExtended.ProjectileCE_Explosive</thingClass>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="Proj_M24_RA"]/projectile</xpath>
+					<value>
+						<projectile Class="CombatExtended.ProjectilePropertiesCE">
+							<explosionRadius>2</explosionRadius>
+							<damageDef>Bomb</damageDef>
+							<damageAmountBase>56</damageAmountBase>
+							<explosionDelay>60</explosionDelay>
+							<dropsCasings>false</dropsCasings>
+							<applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
+							<speed>5</speed>
+						</projectile>
+					</value>
+				</li>
+
+				<li Class="PatchOperationSequence">
+					<success>Always</success>
+					<operations>
+						<li Class="PatchOperationTest">
+							<xpath>Defs/ThingDef[defName="Proj_M24_RA"]/comps</xpath>
+							<success>Invert</success>
+						</li>
+						<li Class="PatchOperationAdd">
+							<xpath>Defs/ThingDef[defName="Proj_M24_RA"]</xpath>
+							<value>
+								<comps />
+							</value>
+						</li>
+					</operations>
+				</li>
+
+			</operations>
+		</match>
+	</Operation>
+
+</Patch>

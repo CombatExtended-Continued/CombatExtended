@@ -102,6 +102,9 @@ namespace CombatExtended
 
         private bool TryDetonate(float stackCountScale = 1)
         {
+            if (Find.Maps.IndexOf(Map) < 0)
+                return false;
+
             CompExplosiveCE comp = this.TryGetComp<CompExplosiveCE>();
             var detProps = AmmoDef?.detonateProjectile?.projectile;
 
@@ -133,7 +136,7 @@ namespace CombatExtended
 
         private bool TryLaunchCookOffProjectile()
         {
-            if (AmmoDef == null || AmmoDef.cookOffProjectile == null) return false;
+            if (AmmoDef == null || AmmoDef.cookOffProjectile == null || Find.Maps.IndexOf(Map) < 0) return false;
 
             // Spawn projectile if enabled
             if (!Controller.settings.RealisticCookOff)
@@ -143,7 +146,7 @@ namespace CombatExtended
 
                 // Launch in random direction
                 projectile.canTargetSelf = true;
-                projectile.minCollisionSqr = 0f;
+                projectile.minCollisionDistance = 0f;
                 projectile.logMisses = false;
                 projectile.Launch(this,
                     new Vector2(DrawPos.x, DrawPos.z),

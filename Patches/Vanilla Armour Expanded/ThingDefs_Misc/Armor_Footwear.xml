@@ -1,122 +1,128 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <Patch>	
+
 	<Operation Class="PatchOperationFindMod">
 		<mods>
 			<li>Vanilla Armour Expanded</li>
 		</mods>
 		<match Class="PatchOperationSequence">
 			<operations>
-				<!-- == VAE_Footwear_PlateBoots == -->
-				<!-- statBases -->
+				
+				<!-- === Plate Boots === -->
 				<li Class="PatchOperationReplace">
-					<xpath>Defs/ThingDef[defName="VAE_Footwear_PlateBoots"]/statBases/StuffEffectMultiplierArmor</xpath>
+					<xpath>/Defs/ThingDef[defName="VAE_Footwear_PlateBoots"]/statBases/StuffEffectMultiplierArmor</xpath>
 					<value>
 						<Bulk>3</Bulk>
 						<WornBulk>1.5</WornBulk>
 						<StuffEffectMultiplierArmor>2</StuffEffectMultiplierArmor>
 					</value>
 				</li>
+
 				<li Class="PatchOperationReplace">
-					<xpath>Defs/ThingDef[defName="VAE_Footwear_PlateBoots"]/statBases/Mass</xpath>
+					<xpath>/Defs/ThingDef[defName="VAE_Footwear_PlateBoots"]/statBases/Mass</xpath>
 					<value>
 						<Mass>2.5</Mass>
 					</value>
 				</li>
+
 				<li Class="PatchOperationReplace">
-					<xpath>Defs/ThingDef[defName="VAE_Footwear_PlateBoots"]/statBases/EquipDelay</xpath>
+					<xpath>/Defs/ThingDef[defName="VAE_Footwear_PlateBoots"]/statBases/EquipDelay</xpath>
 					<value>
 						<EquipDelay>3.5</EquipDelay>
 					</value>
 				</li>
-				<!-- Miscellaneous -->
+
 				<li Class="PatchOperationReplace">
-					<xpath>Defs/ThingDef[defName="VAE_Footwear_PlateBoots"]/equippedStatOffsets/MoveSpeed</xpath>
+					<xpath>/Defs/ThingDef[defName="VAE_Footwear_PlateBoots"]/equippedStatOffsets/MoveSpeed</xpath>
 					<value>
 						<MeleeDodgeChance>-0.05</MeleeDodgeChance>
 						<MoveSpeed>-0.46</MoveSpeed> <!-- 10% of 4.6 -->
 					</value>
 				</li>
+
 				<li Class="PatchOperationReplace">
-					<xpath>Defs/ThingDef[defName="VAE_Footwear_PlateBoots"]/description</xpath>
+					<xpath>/Defs/ThingDef[defName="VAE_Footwear_PlateBoots"]/description</xpath>
 					<value>
 						<description>A pair of plate boots which resemble sabatons. Because of the construction and weight of the boots, the wearer is somewhat slower and less nimble.</description>
 					</value>
 				</li>
+
 				<li Class="PatchOperationAdd">
-					<xpath>Defs/ThingDef[defName="VAE_Footwear_PlateBoots"]/apparel/layers</xpath>
+					<xpath>/Defs/ThingDef[defName="VAE_Footwear_PlateBoots"]/apparel/layers</xpath>
 					<value>
 						<li>Shell</li>
 					</value>
 				</li>
 
-				<!-- == VAE_Footwear_MarineBoots == -->
-				<!-- statBases -->
+				<!-- === Marine Boots === -->
 				<li Class="PatchOperationReplace">
-					<xpath>Defs/ThingDef[defName="VAE_Footwear_MarineBoots"]/statBases/Mass</xpath>
+					<xpath>/Defs/ThingDef[defName="VAE_Footwear_MarineBoots"]/statBases/Mass</xpath>
 					<value>
 						<Bulk>6.75</Bulk>
 						<WornBulk>1.5</WornBulk>
 						<Mass>3.6</Mass>
 					</value>
 				</li>
+
 				<li Class="PatchOperationReplace">
-					<xpath>Defs/ThingDef[defName="VAE_Footwear_MarineBoots"]/statBases/MaxHitPoints</xpath>
+					<xpath>/Defs/ThingDef[defName="VAE_Footwear_MarineBoots"]/statBases/MaxHitPoints</xpath>
 					<value>
 						<MaxHitPoints>240</MaxHitPoints>
 					</value>
 				</li>
+
 				<li Class="PatchOperationReplace">
-					<xpath>Defs/ThingDef[defName="VAE_Footwear_MarineBoots"]/statBases/ArmorRating_Sharp</xpath>
+					<xpath>/Defs/ThingDef[defName="VAE_Footwear_MarineBoots"]/statBases/ArmorRating_Sharp</xpath>
 					<value>
 						<ArmorRating_Sharp>18</ArmorRating_Sharp>
 					</value>
 				</li>
 				<li Class="PatchOperationReplace">
-					<xpath>Defs/ThingDef[defName="VAE_Footwear_MarineBoots"]/statBases/ArmorRating_Blunt</xpath>
+					<xpath>/Defs/ThingDef[defName="VAE_Footwear_MarineBoots"]/statBases/ArmorRating_Blunt</xpath>
 					<value>
 						<ArmorRating_Blunt>40.5</ArmorRating_Blunt>
 					</value>
 				</li>
-				<!-- Miscellaneous -->
+				
 				<li Class="PatchOperationReplace">
-					<xpath>Defs/ThingDef[defName="VAE_Footwear_MarineBoots"]/label</xpath>
+					<xpath>/Defs/ThingDef[defName="VAE_Footwear_MarineBoots"]/label</xpath>
 					<value>
 						<label>power armor boots</label>
 					</value>
 				</li>
-				<li Class="PatchOperationReplace">
-					<xpath>Defs/ThingDef[defName="VAE_Footwear_MarineBoots"]/description</xpath>
-					<value>
-						<description>A pair of standalone powered boots.\n\nThe outer shell of these boots is made from simplified plasteel-weave most commonly found in cheaper powered armors. These boots come with a basic servo-motor system, which helps the wearer carry more weight.\n\nAlthough most power armor variants cover the feet, these exist for those not fortunate enough to buy an entire suit.</description>
-					</value>
-				</li>
-				<li Class="PatchOperationReplace">
-					<xpath>Defs/ThingDef[defName="VAE_Footwear_MarineBoots"]/costList/Hyperweave</xpath>
+
+				<li Class="PatchOperationAdd">
+					<xpath>/Defs/ThingDef[defName="VAE_Footwear_MarineBoots"]/costList</xpath>
 					<value>
 						<DevilstrandCloth>5</DevilstrandCloth>
 					</value>
 				</li>
+
 				<li Class="PatchOperationReplace">
-					<xpath>Defs/ThingDef[defName="VAE_Footwear_MarineBoots"]/costList/Plasteel</xpath>
+					<xpath>/Defs/ThingDef[defName="VAE_Footwear_MarineBoots"]/costList/Plasteel</xpath>
 					<value>
 						<Plasteel>15</Plasteel>
 					</value>
 				</li>
+
 				<li Class="PatchOperationReplace">
-					<xpath>Defs/ThingDef[defName="VAE_Footwear_MarineBoots"]/equippedStatOffsets</xpath>
+					<xpath>/Defs/ThingDef[defName="VAE_Footwear_MarineBoots"]/equippedStatOffsets</xpath>
 					<value>
 						<equippedStatOffsets>
 							<CarryWeight>6</CarryWeight>
 						</equippedStatOffsets>
 					</value>
 				</li>
+
 				<li Class="PatchOperationAdd">
-					<xpath>Defs/ThingDef[defName="VAE_Footwear_MarineBoots"]/apparel/layers</xpath>
+					<xpath>/Defs/ThingDef[defName="VAE_Footwear_MarineBoots"]/apparel/layers</xpath>
 					<value>
 						<li>Shell</li>
 					</value>
 				</li>
+				
 			</operations>
 		</match>
 	</Operation>
+
 </Patch>

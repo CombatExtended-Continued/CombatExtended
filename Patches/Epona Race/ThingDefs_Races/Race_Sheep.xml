@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+  <Operation Class="PatchOperationSequence">
+	<operations>
+	  <li Class="PatchOperationFindMod">
+			
+		<mods><li>Epona Race</li></mods>
+			
+		<match Class="PatchOperationSequence">
+		<operations>
+			
+			<!--Giant Sheep-->
+			
+			<li Class="PatchOperationAddModExtension">
+				<xpath>/Defs/ThingDef[defName="Epona_Sheep"]</xpath>
+				<value>
+					<li Class="CombatExtended.RacePropertiesExtensionCE">
+						<bodyShape>Quadruped</bodyShape>
+					</li>
+				</value>
+			</li>
+
+			
+			<li Class="PatchOperationAdd">
+			 <xpath>/Defs/ThingDef[defName="Epona_Sheep"]/statBases</xpath>
+				  <value>
+					<MeleeDodgeChance>0.08</MeleeDodgeChance>
+					<MeleeCritChance>0.79</MeleeCritChance>
+					<MeleeParryChance>0.51</MeleeParryChance>
+				  </value>
+			</li>
+			
+			<li Class="PatchOperationReplace">
+				<xpath>/Defs/ThingDef[defName="Epona_Sheep"]/tools</xpath> 
+				<value>
+					<tools>
+						<li Class="CombatExtended.ToolCE">
+							<label>head</label>
+							<capacities>
+								<li>Blunt</li>
+							</capacities>
+							<power>55</power>
+							<cooldownTime>3.99</cooldownTime>
+							<linkedBodyPartsGroup>HeadAttackTool</linkedBodyPartsGroup>
+							<chanceFactor>0.2</chanceFactor>
+							<armorPenetrationBlunt>25</armorPenetrationBlunt>	
+						</li>
+					</tools>
+				</value>
+			</li>
+			
+			<li Class="PatchOperationReplace">
+			 <xpath>/Defs/ThingDef[defName="Epona_Sheep"]/race/baseBodySize</xpath>
+				  <value>
+					<baseBodySize>3</baseBodySize>
+				  </value>
+			</li>
+			
+			<!--Giant War Sheep-->
+			
+			<li Class="PatchOperationAddModExtension">
+				<xpath>/Defs/ThingDef[defName="Epona_WarRam"]</xpath>
+				<value>
+					<li Class="CombatExtended.RacePropertiesExtensionCE">
+						<bodyShape>Quadruped</bodyShape>
+					</li>
+				</value>
+			</li>
+
+			
+			<li Class="PatchOperationAdd">
+			 <xpath>/Defs/ThingDef[defName="Epona_WarRam"]/statBases</xpath>
+				  <value>
+					<MeleeDodgeChance>0.12</MeleeDodgeChance>
+					<MeleeCritChance>0.85</MeleeCritChance>
+					<MeleeParryChance>0.55</MeleeParryChance>
+				  </value>
+			</li>
+			
+			<li Class="PatchOperationReplace">
+			 <xpath>/Defs/ThingDef[defName="Epona_WarRam"]/statBases/ArmorRating_Sharp</xpath>
+				  <value>
+					<ArmorRating_Sharp>3</ArmorRating_Sharp>
+				  </value>
+			</li>
+			
+			<li Class="PatchOperationReplace">
+			 <xpath>/Defs/ThingDef[defName="Epona_WarRam"]/statBases/ArmorRating_Blunt</xpath>
+				  <value>
+					<ArmorRating_Blunt>4.5</ArmorRating_Blunt>
+				  </value>
+			</li>
+			
+			<li Class="PatchOperationRemove">
+			 <xpath>/Defs/ThingDef[defName="Epona_WarRam"]/statBases/ArmorRating_Heat</xpath>
+			</li>
+			
+			<li Class="PatchOperationReplace">
+				<xpath>/Defs/ThingDef[defName="Epona_WarRam"]/tools</xpath> 
+				<value>
+					<tools>
+						<li Class="CombatExtended.ToolCE">
+							<label>head</label>
+							<capacities>
+								<li>Blunt</li>
+							</capacities>
+							<power>55</power>
+							<cooldownTime>3.99</cooldownTime>
+							<linkedBodyPartsGroup>HeadAttackTool</linkedBodyPartsGroup>
+							<chanceFactor>0.2</chanceFactor>
+							<armorPenetrationBlunt>25</armorPenetrationBlunt>	
+						</li>
+					</tools>
+				</value>
+			</li>
+			
+			<li Class="PatchOperationReplace">
+			 <xpath>/Defs/ThingDef[defName="Epona_WarRam"]/race/baseBodySize</xpath>
+				  <value>
+					<baseBodySize>3</baseBodySize>
+				  </value>
+			</li>
+			
+		</operations>
+		</match>	
+	  </li>
+	</operations>	
+  </Operation>
+</Patch>

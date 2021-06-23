@@ -33,7 +33,8 @@ namespace CombatExtended
                 stringBuilder.AppendLine("   " + GenText.ToStringByStyle(props.GetDamageAmount(weapon), ToStringStyle.Integer) + " (" + props.damageDef.LabelCap + ")");
                 foreach (var sec in props.secondaryDamage)
                 {
-                    stringBuilder.AppendLine("   " + GenText.ToStringByStyle(sec.amount, ToStringStyle.Integer) + " (" + sec.def.LabelCap + ")");
+                    var secondaryChance = sec.chance >= 1.0f ? "" : $"({GenText.ToStringByStyle(sec.chance, ToStringStyle.PercentZero)} {"CE_Chance".Translate()})";
+                    stringBuilder.AppendLine($"   {GenText.ToStringByStyle(sec.amount, ToStringStyle.Integer)} ({sec.def.LabelCap}) {secondaryChance}");
                 }
             }
             else

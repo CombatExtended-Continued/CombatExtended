@@ -369,6 +369,115 @@
 				</value>
 			</li>
 			
+			<!--Drill-->
+			
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="GI_Drill"]/tools</xpath>
+				<value>
+					<tools>
+						<li Class="CombatExtended.ToolCE">
+							<label>drill bit</label>
+							<capacities>
+								<li>Stab</li>
+							</capacities>
+							<power>25</power>
+							<cooldownTime>0.2</cooldownTime>
+							<chanceFactor>2</chanceFactor>
+							<armorPenetrationSharp>18</armorPenetrationSharp>
+							<armorPenetrationBlunt>50</armorPenetrationBlunt>
+							<extraMeleeDamages>
+							<li>
+								<def>EMP</def>
+								<amount>4</amount>
+								<chance>0.3</chance>
+							</li>
+							</extraMeleeDamages>	
+						</li>
+					</tools>
+				</value>
+			</li>
+			
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName="GI_Drill"]/statBases</xpath>
+				<value>
+					<Bulk>36</Bulk>
+					<MeleeCounterParryBonus>0</MeleeCounterParryBonus>
+				</value>
+			</li>
+			
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName="GI_Drill"]/equippedStatOffsets</xpath>
+				<value>
+						<MeleeCritChance>0</MeleeCritChance>
+						<MeleeParryChance>4</MeleeParryChance>
+						<MeleeDodgeChance>0.2</MeleeDodgeChance>
+				</value>
+			</li>
+			
+			<!--Titan Blade-->
+			
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="GI_Titansword"]/tools</xpath>
+				<value>
+					<tools>
+					  <li Class="CombatExtended.ToolCE">
+						<label>handle</label>
+						<capacities>
+						  <li>Blunt</li>
+						</capacities>
+						<power>27</power>
+						<cooldownTime>3.75</cooldownTime>
+						<armorPenetrationBlunt>11</armorPenetrationBlunt>
+					  </li>
+					  <li Class="CombatExtended.ToolCE">
+						<label>blade</label>
+						<capacities>
+						  <li>Cut</li>
+						</capacities>
+						<power>173</power>
+						<cooldownTime>6.64</cooldownTime>
+						<chanceFactor>1.165</chanceFactor>
+						<armorPenetrationBlunt>48</armorPenetrationBlunt>
+						<armorPenetrationSharp>8</armorPenetrationSharp>
+					  </li>
+					  <li Class="CombatExtended.ToolCE">
+						<label>point</label>
+						<capacities>
+						  <li>Stab</li>
+						</capacities>
+						<power>78</power>
+						<cooldownTime>3.25</cooldownTime>
+						<chanceFactor>1.165</chanceFactor>
+						<armorPenetrationBlunt>11</armorPenetrationBlunt>
+						<armorPenetrationSharp>13.75</armorPenetrationSharp>
+					  </li>
+					</tools>
+				</value>
+			</li>
+			
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName="GI_Titansword"]/statBases</xpath>
+				<value>
+					<MeleeCounterParryBonus>0.4</MeleeCounterParryBonus>
+					<Bulk>24</Bulk>
+				</value>
+			</li>
+			
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName="GI_Titansword"]/equippedStatOffsets</xpath>
+				<value>
+					  <MeleeCritChance>0.8</MeleeCritChance>
+					  <MeleeParryChance>0.6</MeleeParryChance>
+				</value>
+			</li>
+			
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="GI_Titansword"]/equippedStatOffsets/MeleeDodgeChance</xpath>
+				<value>
+					  <MeleeDodgeChance>0.8</MeleeDodgeChance>
+				</value>
+			</li>
+			
 		</operations>
 		</match>	
 	  </li>

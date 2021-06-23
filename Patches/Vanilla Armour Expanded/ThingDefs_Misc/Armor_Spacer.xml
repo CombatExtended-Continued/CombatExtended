@@ -1,78 +1,208 @@
 <?xml version="1.0" encoding="utf-8" ?>
-<Patch>	
+<Patch>
+
 	<Operation Class="PatchOperationFindMod">
 		<mods>
 			<li>Vanilla Armour Expanded</li>
 		</mods>
 		<match Class="PatchOperationSequence">
 			<operations>
-				<!-- == VAE_Headgear_HeavyMarineHelmet == -->
-				<!-- statBases -->
-				<li Class="PatchOperationReplace">
-					<xpath>Defs/ThingDef[defName="VAE_Headgear_HeavyMarineHelmet"]/statBases/Mass</xpath>
-					<value>
-						<Bulk>10</Bulk>
-						<WornBulk>2.5</WornBulk>
-						<Mass>9</Mass>
-					</value>
-				</li>
-				<li Class="PatchOperationReplace">
-					<xpath>Defs/ThingDef[defName="VAE_Headgear_HeavyMarineHelmet"]/statBases/ArmorRating_Sharp</xpath>
-					<value>
-						<ArmorRating_Sharp>20.8</ArmorRating_Sharp>
-					</value>
-				</li>
-				<li Class="PatchOperationReplace">
-					<xpath>Defs/ThingDef[defName="VAE_Headgear_HeavyMarineHelmet"]/statBases/ArmorRating_Blunt</xpath>
-					<value>
-						<ArmorRating_Blunt>48</ArmorRating_Blunt>
-					</value>
-				</li>
-				<li Class="PatchOperationReplace">
-					<xpath>Defs/ThingDef[defName="VAE_Headgear_HeavyMarineHelmet"]/statBases/MaxHitPoints</xpath>
-					<value>
-						<MaxHitPoints>240</MaxHitPoints>
-					</value>
-				</li>
-				<!-- Miscellaneous -->
-				<li Class="PatchOperationReplace">
-					<xpath>Defs/ThingDef[defName="VAE_Headgear_HeavyMarineHelmet"]/label</xpath>
-					<value>
-						<label>heavy power armor helmet</label>
-					</value>
-				</li>
-				<li Class="PatchOperationReplace">
-					<xpath>Defs/ThingDef[defName="VAE_Headgear_HeavyMarineHelmet"]/description</xpath>
-					<value>
-						<description>A part of the heavy power armor set, mostly used by imperial stormtroopers.\n\nHas integrated neuro-memetic servo-motors to assist the wearer's muscles in holding the helmet, aswell as double-layered plasteel plating to increase protection. To eliminate a weakspot in the standard edition - the visor, this edition has no visor, but instead a built-in camera with a display HUD, containing the latest combat software, which runs real-time simulations for bullet trajectories and alerts the wearer any threats capable of piercing the armor.</description>
-					</value>
-				</li>
+
+				<!-- === Trooper Helmet === -->
 				<li Class="PatchOperationAdd">
-					<xpath>Defs/ThingDef[defName="VAE_Headgear_HeavyMarineHelmet"]</xpath>
+					<xpath>/Defs/ThingDef[defName="VAE_Headgear_TrooperHelmet"]/statBases</xpath>
+					<value>
+						<Bulk>4</Bulk> <!-- Changed bulk to 4 since advanced helmet is 4 bulk and recon power armor helmet is 4 bulk. -->
+						<WornBulk>0.5</WornBulk>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/ThingDef[defName="VAE_Headgear_TrooperHelmet"]/statBases/ArmorRating_Sharp</xpath>
+					<value>
+						<ArmorRating_Sharp>10.5</ArmorRating_Sharp>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/ThingDef[defName="VAE_Headgear_TrooperHelmet"]/statBases/ArmorRating_Blunt</xpath>
+					<value>
+						<ArmorRating_Blunt>21</ArmorRating_Blunt> <!-- Blunt armor is based off it being 9mm RHA worth of sharp armor. -->
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/ThingDef[defName="VAE_Headgear_TrooperHelmet"]/statBases/Flammability</xpath>
+					<value>
+						<Flammability>0</Flammability>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/ThingDef[defName="VAE_Headgear_TrooperHelmet"]/statBases/MaxHitPoints</xpath>
+					<value>
+						<MaxHitPoints>190</MaxHitPoints> <!-- Same health as recon power armor helmet. -->
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/ThingDef[defName="VAE_Headgear_TrooperHelmet"]/equippedStatOffsets/MentalBreakThreshold</xpath>
+					<value>
+						<PsychicSensitivity>-0.1</PsychicSensitivity>
+						<AimingDelayFactor>-0.05</AimingDelayFactor>
+						<ToxicSensitivity>-0.1</ToxicSensitivity>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/ThingDef[defName="VAE_Headgear_TrooperHelmet"]/costList/Plasteel</xpath>
+					<value>
+						<Plasteel>25</Plasteel>
+						<DevilstrandCloth>10</DevilstrandCloth>
+					</value>
+				</li>
+
+				<li Class="PatchOperationAdd">
+					<xpath>/Defs/ThingDef[defName="VAE_Headgear_TrooperHelmet"]/apparel/layers</xpath>
+					<value>
+						<li>MiddleHead</li>
+					</value>
+				</li>
+
+				<!-- It has no visor... -->
+				<!--<li Class="PatchOperationAdd">
+					<xpath>/Defs/ThingDef[defName="VAE_Headgear_TrooperHelmet"]/apparel/bodyPartGroups</xpath>
+					<value>
+						<li>Eyes</li>
+					</value>
+				</li>-->
+
+				<!-- === Trooper Armor === -->
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/ThingDef[defName="VAE_Apparel_TrooperArmor"]/statBases/Mass</xpath>
+					<value>
+						<Bulk>40</Bulk> <!-- It's supposed to be just small enough to be able to wear something on the shell layer, I think dropping it to this is good enough. -->
+						<WornBulk>6</WornBulk>
+						<Mass>25</Mass>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/ThingDef[defName="VAE_Apparel_TrooperArmor"]/statBases/ArmorRating_Sharp</xpath>
+					<value>
+						<ArmorRating_Sharp>14</ArmorRating_Sharp> <!-- Just a bit better than a plasteel armor vest, enough to deflect 7.62mm NATO and 7.62mmR. -->
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/ThingDef[defName="VAE_Apparel_TrooperArmor"]/statBases/ArmorRating_Blunt</xpath>
+					<value>
+						<ArmorRating_Blunt>30</ArmorRating_Blunt> <!-- Blunt armor is based off it being 12mm RHA worth of sharp armor. -->
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/ThingDef[defName="VAE_Apparel_TrooperArmor"]/statBases/Flammability</xpath>
+					<value>
+						<Flammability>0</Flammability>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/ThingDef[defName="VAE_Apparel_TrooperArmor"]/statBases/MaxHitPoints</xpath>
+					<value>
+						<MaxHitPoints>400</MaxHitPoints> <!-- Same health as recon power armor. -->
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/ThingDef[defName="VAE_Apparel_TrooperArmor"]/equippedStatOffsets/MentalBreakThreshold</xpath>
+					<value>
+						<CarryWeight>60</CarryWeight>
+						<CarryBulk>7.5</CarryBulk>
+						<ShootingAccuracyPawn>0.05</ShootingAccuracyPawn>
+						<ToxicSensitivity>-0.3</ToxicSensitivity>
+						<MoveSpeed>0.92</MoveSpeed>
+					</value>
+				</li>
+
+				<li Class="PatchOperationAdd">
+					<xpath>/Defs/ThingDef[defName="VAE_Apparel_TrooperArmor"]/apparel/bodyPartGroups</xpath>
+					<value>
+						<li>Feet</li>
+					</value>
+				</li>
+
+				<li Class="PatchOperationAdd">
+					<xpath>/Defs/ThingDef[defName="VAE_Apparel_TrooperArmor"]/costList</xpath>
+					<value>
+						<DevilstrandCloth>25</DevilstrandCloth>
+					</value>
+				</li>
+
+				<!-- === Siegebreaker Helmet === -->
+				<li Class="PatchOperationAdd">
+					<xpath>/Defs/ThingDef[defName="VAE_Headgear_HeavyMarineHelmet"]/statBases</xpath>
+					<value>
+						<Bulk>6</Bulk>
+						<WornBulk>2</WornBulk>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/ThingDef[defName="VAE_Headgear_HeavyMarineHelmet"]/statBases/ArmorRating_Sharp</xpath>
+					<value>
+						<ArmorRating_Sharp>20.4</ArmorRating_Sharp>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/ThingDef[defName="VAE_Headgear_HeavyMarineHelmet"]/statBases/ArmorRating_Blunt</xpath>
+					<value>
+						<ArmorRating_Blunt>50</ArmorRating_Blunt>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/ThingDef[defName="VAE_Headgear_HeavyMarineHelmet"]/statBases/MaxHitPoints</xpath>
+					<value>
+						<MaxHitPoints>300</MaxHitPoints>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/ThingDef[defName="VAE_Headgear_HeavyMarineHelmet"]/statBases/Flammability</xpath>
+					<value>
+						<Flammability>0</Flammability>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/ThingDef[defName="VAE_Headgear_HeavyMarineHelmet"]/equippedStatOffsets</xpath>
 					<value>
 						<equippedStatOffsets>
-							<PsychicSensitivity>-0.3</PsychicSensitivity>
+							<PsychicSensitivity>-0.2</PsychicSensitivity>
 							<AimingAccuracy>0.3</AimingAccuracy>
 							<ToxicSensitivity>-0.5</ToxicSensitivity>
-							<CarryWeight>5.4</CarryWeight>
-							<CarryBulk>1</CarryBulk>
 							<SmokeSensitivity>-1</SmokeSensitivity>
 						</equippedStatOffsets>
 					</value>
 				</li>
+
 				<li Class="PatchOperationReplace">
-					<xpath>Defs/ThingDef[defName="VAE_Headgear_HeavyMarineHelmet"]/costList</xpath>
+					<xpath>/Defs/ThingDef[defName="VAE_Headgear_HeavyMarineHelmet"]/costList</xpath>
 					<value>
 						<costList>
-							<Plasteel>55</Plasteel>
-							<DevilstrandCloth>20</DevilstrandCloth>
+							<Plasteel>40</Plasteel>
+							<DevilstrandCloth>25</DevilstrandCloth>
 							<Hyperweave>5</Hyperweave>
-							<ComponentSpacer>3</ComponentSpacer>
+							<ComponentSpacer>2</ComponentSpacer>
 						</costList>
 					</value>
 				</li>
+
 				<li Class="PatchOperationAdd">
-					<xpath>Defs/ThingDef[defName="VAE_Headgear_HeavyMarineHelmet"]/apparel/layers</xpath>
+					<xpath>/Defs/ThingDef[defName="VAE_Headgear_HeavyMarineHelmet"]/apparel/layers</xpath>
 					<value>
 						<li>OnHead</li>
 						<li>MiddleHead</li>
@@ -80,70 +210,74 @@
 					</value>
 				</li>
 
-				<!-- == VAE_Apparel_HeavyMarineArmor == -->
-				<!-- statBases -->
+				<!-- === Siegebreaker Armor === -->
 				<li Class="PatchOperationReplace">
-					<xpath>Defs/ThingDef[defName="VAE_Apparel_HeavyMarineArmor"]/statBases/Mass</xpath>
+					<xpath>/Defs/ThingDef[defName="VAE_Apparel_HeavyMarineArmor"]/statBases/Mass</xpath>
 					<value>
-						<Bulk>120</Bulk>
+						<Bulk>100</Bulk>
 						<WornBulk>20</WornBulk>
 						<Mass>80</Mass>
 					</value>
 				</li>
+
 				<li Class="PatchOperationReplace">
-					<xpath>Defs/ThingDef[defName="VAE_Apparel_HeavyMarineArmor"]/statBases/ArmorRating_Sharp</xpath>
+					<xpath>/Defs/ThingDef[defName="VAE_Apparel_HeavyMarineArmor"]/statBases/ArmorRating_Sharp</xpath>
 					<value>
 						<ArmorRating_Sharp>26</ArmorRating_Sharp>
 					</value>
 				</li>
+
 				<li Class="PatchOperationReplace">
-					<xpath>Defs/ThingDef[defName="VAE_Apparel_HeavyMarineArmor"]/statBases/ArmorRating_Blunt</xpath>
+					<xpath>/Defs/ThingDef[defName="VAE_Apparel_HeavyMarineArmor"]/statBases/ArmorRating_Blunt</xpath>
 					<value>
 						<ArmorRating_Blunt>60</ArmorRating_Blunt>
 					</value>
 				</li>
+
 				<li Class="PatchOperationReplace">
-					<xpath>Defs/ThingDef[defName="VAE_Apparel_HeavyMarineArmor"]/statBases/MaxHitPoints</xpath>
+					<xpath>/Defs/ThingDef[defName="VAE_Apparel_HeavyMarineArmor"]/statBases/MaxHitPoints</xpath>
 					<value>
-						<MaxHitPoints>500</MaxHitPoints>
+						<MaxHitPoints>625</MaxHitPoints>
 					</value>
 				</li>
-				<!-- Miscellaneous -->
+
 				<li Class="PatchOperationReplace">
-					<xpath>Defs/ThingDef[defName="VAE_Apparel_HeavyMarineArmor"]/label</xpath>
+					<xpath>/Defs/ThingDef[defName="VAE_Apparel_HeavyMarineArmor"]/statBases/Flammability</xpath>
 					<value>
-						<label>heavy power armor</label>
+						<Flammability>0</Flammability>
 					</value>
 				</li>
+
 				<li Class="PatchOperationReplace">
-					<xpath>Defs/ThingDef[defName="VAE_Apparel_HeavyMarineArmor"]/description</xpath>
-					<value>
-						<description>Heavy powered armor usually used by imperial heavy stormtroopers from advanced glitterworld planets.\n\nOnly stupid and fearless stand in it's way, as it transforms any soldier into a humanoid tank: the double layers of plasteel-weave plates are incredibly effective at protecting from both projectiles and explosions, while the neuro-memetic servo-motors allow a human to wear the armor without restricting movement, at the same time improving weapon-handling.\n\nA built-in blast shield allows the wearer to survive a direct hit from a rocket, upon which the shield requires time to recharge.</description>
-					</value>
-				</li>
-				<li Class="PatchOperationReplace">
-					<xpath>Defs/ThingDef[defName="VAE_Apparel_HeavyMarineArmor"]/equippedStatOffsets</xpath>
+					<xpath>/Defs/ThingDef[defName="VAE_Apparel_HeavyMarineArmor"]/equippedStatOffsets</xpath>
 					<value>
 						<equippedStatOffsets>
-							<CarryWeight>100</CarryWeight>
+							<CarryWeight>80</CarryWeight>
 							<CarryBulk>20</CarryBulk>
 							<ShootingAccuracyPawn>0.3</ShootingAccuracyPawn>
 							<ToxicSensitivity>-0.5</ToxicSensitivity>
 						</equippedStatOffsets>
 					</value>
 				</li>
+
 				<li Class="PatchOperationAdd">
-					<xpath>Defs/ThingDef[defName="VAE_Apparel_HeavyMarineArmor"]/apparel/bodyPartGroups</xpath>
+					<xpath>/Defs/ThingDef[defName="VAE_Apparel_HeavyMarineArmor"]/apparel/bodyPartGroups</xpath>
 					<value>
 						<li>Hands</li>
 						<li>Feet</li>
 					</value>
 				</li>
-				<li Class="PatchOperationAdd">
-					<xpath>Defs/ThingDef[defName="VAE_Apparel_HeavyMarineArmor"]/costList</xpath>
+
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/ThingDef[defName="VAE_Apparel_HeavyMarineArmor"]/costList</xpath>
 					<value>
-						<DevilstrandCloth>50</DevilstrandCloth>
-						<Hyperweave>10</Hyperweave>
+						<costList>
+							<Plasteel>140</Plasteel>
+							<DevilstrandCloth>50</DevilstrandCloth>
+							<Hyperweave>10</Hyperweave>
+							<Uranium>100</Uranium>
+							<ComponentSpacer>8</ComponentSpacer>
+						</costList>
 					</value>
 				</li>
 			</operations>

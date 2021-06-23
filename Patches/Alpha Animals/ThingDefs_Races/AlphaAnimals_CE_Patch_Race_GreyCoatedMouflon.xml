@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+			<li>Alpha Animals</li>
+		</mods>
+		<match Class="PatchOperationSequence">
+			<operations>
+				<li Class="PatchOperationAddModExtension">
+					<xpath>/Defs/ThingDef[defName="AA_GreyCoatedMouflon"]</xpath>
+					<value>
+						<li Class="CombatExtended.RacePropertiesExtensionCE">
+							<bodyShape>Quadruped</bodyShape>
+						</li>
+					</value>
+				</li>
+				<!-- Don't know about balancing -->
+				<li Class="PatchOperationAdd">
+					<xpath>/Defs/ThingDef[defName="AA_GreyCoatedMouflon"]/statBases</xpath>
+					<value>
+						<MeleeDodgeChance>0.05</MeleeDodgeChance>
+						<MeleeCritChance>0.07</MeleeCritChance>
+						<MeleeParryChance>0.08</MeleeParryChance>
+					</value>
+				</li>
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/ThingDef[defName="AA_GreyCoatedMouflon"]/tools</xpath>
+					<value>
+						<tools>
+							<li Class="CombatExtended.ToolCE">
+								<label>left hoof</label>
+								<capacities>
+									<li>Poke</li>
+								</capacities>
+								<power>4</power>
+								<cooldownTime>1</cooldownTime>
+								<linkedBodyPartsGroup>FrontLeftLeg</linkedBodyPartsGroup>
+								<armorPenetrationBlunt>0.25</armorPenetrationBlunt>
+							</li>
+							<li Class="CombatExtended.ToolCE">
+								<label>right hoof</label>
+								<capacities>
+									<li>Poke</li>
+								</capacities>
+								<power>4</power>
+								<cooldownTime>1</cooldownTime>
+								<linkedBodyPartsGroup>FrontRightLeg</linkedBodyPartsGroup>
+								<armorPenetrationBlunt>0.25</armorPenetrationBlunt>
+							</li>
+							<li Class="CombatExtended.ToolCE">
+								<capacities>
+									<li>Bite</li>
+								</capacities>
+								<power>4</power>
+								<cooldownTime>2.3</cooldownTime>
+								<linkedBodyPartsGroup>Teeth</linkedBodyPartsGroup>
+								<armorPenetrationBlunt>0.6</armorPenetrationBlunt>
+							</li>
+							<li Class="CombatExtended.ToolCE">
+								<label>horns</label>
+								<capacities>
+									<li>Scratch</li><li>Blunt</li>
+								</capacities>
+								<power>12</power>
+								<cooldownTime>2.0</cooldownTime>
+								<linkedBodyPartsGroup>HeadAttackTool</linkedBodyPartsGroup>
+								<armorPenetrationSharp>0.85</armorPenetrationSharp>
+								<armorPenetrationBlunt>3</armorPenetrationBlunt>
+							</li>
+						</tools>
+					</value>
+				</li>
+			</operations>
+		</match>
+	</Operation>
+</Patch>

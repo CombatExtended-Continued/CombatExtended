@@ -1,13 +1,12 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <Patch>
-	<Operation Class="PatchOperationSequence">
-		<success>Always</success>
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+			<li>Rimworld: Spartan Foundry</li>
+		</mods>
+		<match Class="PatchOperationSequence">
 		<operations>
-			<li Class="CombatExtended.PatchOperationFindMod">
-				<modName>Rimworld: Spartan Foundry</modName>
-			</li>
 
-			<!-- Using Combat Extended's vanilla Power Armor patch as a base -->
 			<!-- ==================================== Powered Assault Armor =====================================-->
 			<li Class="PatchOperationReplace">
 				<xpath>Defs/ThingDef[defName="SF_PoweredAssaultArmor"]/statBases/MaxHitPoints</xpath>
@@ -43,13 +42,13 @@
 			<li Class="PatchOperationReplace">
 				<xpath>Defs/ThingDef[defName="SF_PoweredAssaultArmor"]/statBases/ArmorRating_Sharp</xpath>
 				<value>
-					<ArmorRating_Sharp>21.85</ArmorRating_Sharp>
+					<ArmorRating_Sharp>26</ArmorRating_Sharp>
 				</value>
 			</li>
 			<li Class="PatchOperationReplace">
 				<xpath>Defs/ThingDef[defName="SF_PoweredAssaultArmor"]/statBases/ArmorRating_Blunt</xpath>
 				<value>
-					<ArmorRating_Blunt>55</ArmorRating_Blunt>
+					<ArmorRating_Blunt>59</ArmorRating_Blunt>
 				</value>
 			</li>
 			<li Class="PatchOperationReplace">
@@ -103,7 +102,7 @@
 			<li Class="PatchOperationReplace">
 				<xpath>Defs/ThingDef[defName="SF_EngineerPowerArmor"]/statBases/ArmorRating_Blunt</xpath>
 				<value>
-					<ArmorRating_Blunt>75</ArmorRating_Blunt>
+					<ArmorRating_Blunt>65</ArmorRating_Blunt>
 				</value>
 			</li>
 			<li Class="PatchOperationReplace">
@@ -150,13 +149,13 @@
 			<li Class="PatchOperationReplace">
 				<xpath>Defs/ThingDef[defName="SF_ExplorerPowerArmor"]/statBases/ArmorRating_Sharp</xpath>
 				<value>
-					<ArmorRating_Sharp>16.67</ArmorRating_Sharp>
+					<ArmorRating_Sharp>18</ArmorRating_Sharp>
 				</value>
 			</li>
 			<li Class="PatchOperationReplace">
 				<xpath>Defs/ThingDef[defName="SF_ExplorerPowerArmor"]/statBases/ArmorRating_Blunt</xpath>
 				<value>
-					<ArmorRating_Blunt>40</ArmorRating_Blunt>
+					<ArmorRating_Blunt>45</ArmorRating_Blunt>
 				</value>
 			</li>
 			<li Class="PatchOperationReplace">
@@ -189,7 +188,7 @@
 						<CarryBulk>16</CarryBulk>
 						<ShootingAccuracyPawn>0.2</ShootingAccuracyPawn>
 						<ToxicSensitivity>-0.5</ToxicSensitivity>
-						<RangedWeapon_Cooldown>-0.3</RangedWeapon_Cooldown>
+						<ReloadSpeed>-0.3</ReloadSpeed>
 					</equippedStatOffsets>
 				</value>
 			</li>
@@ -202,13 +201,13 @@
 			<li Class="PatchOperationReplace">
 				<xpath>Defs/ThingDef[defName="SF_GrenadierPowerArmor"]/statBases/ArmorRating_Sharp</xpath>
 				<value>
-					<ArmorRating_Sharp>27.41</ArmorRating_Sharp>
+					<ArmorRating_Sharp>28</ArmorRating_Sharp>
 				</value>
 			</li>
 			<li Class="PatchOperationReplace">
 				<xpath>Defs/ThingDef[defName="SF_GrenadierPowerArmor"]/statBases/ArmorRating_Blunt</xpath>
 				<value>
-					<ArmorRating_Blunt>78</ArmorRating_Blunt>
+					<ArmorRating_Blunt>91</ArmorRating_Blunt>
 				</value>
 			</li>
 			<li Class="PatchOperationReplace">
@@ -253,13 +252,13 @@
 			<li Class="PatchOperationReplace">
 				<xpath>Defs/ThingDef[defName="SF_CommandoArmor"]/statBases/ArmorRating_Sharp</xpath>
 				<value>
-					<ArmorRating_Sharp>20</ArmorRating_Sharp>
+					<ArmorRating_Sharp>22</ArmorRating_Sharp>
 				</value>
 			</li>
 			<li Class="PatchOperationReplace">
 				<xpath>Defs/ThingDef[defName="SF_CommandoArmor"]/statBases/ArmorRating_Blunt</xpath>
 				<value>
-					<ArmorRating_Blunt>46</ArmorRating_Blunt>
+					<ArmorRating_Blunt>50</ArmorRating_Blunt>
 				</value>
 			</li>
 			<li Class="PatchOperationReplace">
@@ -306,7 +305,7 @@
 			<li Class="PatchOperationReplace">
 				<xpath>Defs/ThingDef[defName="SF_HazardOperationsArmor"]/statBases/ArmorRating_Sharp</xpath>
 				<value>
-					<ArmorRating_Sharp>20.74</ArmorRating_Sharp>
+					<ArmorRating_Sharp>20</ArmorRating_Sharp>
 				</value>
 			</li>
 			<li Class="PatchOperationReplace">
@@ -359,13 +358,13 @@
 			<li Class="PatchOperationReplace">
 				<xpath>Defs/ThingDef[defName="SF_DiplomatPowerArmor"]/statBases/ArmorRating_Sharp</xpath>
 				<value>
-					<ArmorRating_Sharp>20.74</ArmorRating_Sharp>
+					<ArmorRating_Sharp>22</ArmorRating_Sharp>
 				</value>
 			</li>
 			<li Class="PatchOperationReplace">
 				<xpath>Defs/ThingDef[defName="SF_DiplomatPowerArmor"]/statBases/ArmorRating_Blunt</xpath>
 				<value>
-					<ArmorRating_Blunt>56</ArmorRating_Blunt>
+					<ArmorRating_Blunt>55</ArmorRating_Blunt>
 				</value>
 			</li>
 			<li Class="PatchOperationReplace">
@@ -466,13 +465,13 @@
 			<li Class="PatchOperationReplace">
 				<xpath>Defs/ThingDef[defName="SF_ScoutPowerArmor"]/statBases/ArmorRating_Sharp</xpath>
 				<value>
-					<ArmorRating_Sharp>19.44</ArmorRating_Sharp>
+					<ArmorRating_Sharp>20</ArmorRating_Sharp>
 				</value>
 			</li>
 			<li Class="PatchOperationReplace">
 				<xpath>Defs/ThingDef[defName="SF_ScoutPowerArmor"]/statBases/ArmorRating_Blunt</xpath>
 				<value>
-					<ArmorRating_Blunt>55</ArmorRating_Blunt>
+					<ArmorRating_Blunt>45</ArmorRating_Blunt>
 				</value>
 			</li>
 			<li Class="PatchOperationReplace">
@@ -520,13 +519,13 @@
 			<li Class="PatchOperationReplace">
 				<xpath>Defs/ThingDef[defName="SF_SamuraiPowerArmor"]/statBases/ArmorRating_Sharp</xpath>
 				<value>
-					<ArmorRating_Sharp>15.74</ArmorRating_Sharp>
+					<ArmorRating_Sharp>16</ArmorRating_Sharp>
 				</value>
 			</li>
 			<li Class="PatchOperationReplace">
 				<xpath>Defs/ThingDef[defName="SF_SamuraiPowerArmor"]/statBases/ArmorRating_Blunt</xpath>
 				<value>
-					<ArmorRating_Blunt>35</ArmorRating_Blunt>
+					<ArmorRating_Blunt>36</ArmorRating_Blunt>
 				</value>
 			</li>
 			<li Class="PatchOperationReplace">
@@ -574,13 +573,13 @@
 			<li Class="PatchOperationReplace">
 				<xpath>Defs/ThingDef[defName="SF_ShockTrooperArmor"]/statBases/ArmorRating_Sharp</xpath>
 				<value>
-					<ArmorRating_Sharp>18.52</ArmorRating_Sharp>
+					<ArmorRating_Sharp>19</ArmorRating_Sharp>
 				</value>
 			</li>
 			<li Class="PatchOperationReplace">
 				<xpath>Defs/ThingDef[defName="SF_ShockTrooperArmor"]/statBases/ArmorRating_Blunt</xpath>
 				<value>
-					<ArmorRating_Blunt>85</ArmorRating_Blunt>
+					<ArmorRating_Blunt>52</ArmorRating_Blunt>
 				</value>
 			</li>
 			<li Class="PatchOperationReplace">
@@ -629,13 +628,13 @@
 			<li Class="PatchOperationReplace">
 				<xpath>Defs/ThingDef[defName="SF_ReconPowerArmor"]/statBases/ArmorRating_Sharp</xpath>
 				<value>
-					<ArmorRating_Sharp>19.44</ArmorRating_Sharp>
+					<ArmorRating_Sharp>20</ArmorRating_Sharp>
 				</value>
 			</li>
 			<li Class="PatchOperationReplace">
 				<xpath>Defs/ThingDef[defName="SF_ReconPowerArmor"]/statBases/ArmorRating_Blunt</xpath>
 				<value>
-					<ArmorRating_Blunt>65</ArmorRating_Blunt>
+					<ArmorRating_Blunt>55</ArmorRating_Blunt>
 				</value>
 			</li>
 			<li Class="PatchOperationReplace">
@@ -645,5 +644,6 @@
 				</value>
 			</li>
 		</operations>
+		</match>
 	</Operation>
 </Patch>

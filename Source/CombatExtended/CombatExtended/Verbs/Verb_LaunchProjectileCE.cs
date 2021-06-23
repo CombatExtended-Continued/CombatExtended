@@ -234,7 +234,7 @@ namespace CombatExtended
         /// <summary>
         /// Shifts the original target position in accordance with target leading, range estimation and weather/lighting effects
         /// </summary>
-        protected virtual void ShiftTarget(ShiftVecReport report, bool calculateMechanicalOnly = false)
+        protected virtual void ShiftTarget(ShiftVecReport report, bool calculateMechanicalOnly = false, bool isInstant = false)
         {
             if (!calculateMechanicalOnly)
             {
@@ -262,7 +262,11 @@ namespace CombatExtended
                 newTargetLoc = sourceLoc + (newTargetLoc - sourceLoc).normalized * estimatedTargDist;
 
                 // Lead a moving target
-                newTargetLoc += report.GetRandLeadVec();
+                if (!isInstant)
+                {
+
+                    newTargetLoc += report.GetRandLeadVec();
+                }
 
                 // ----------------------------------- STEP 3: Recoil, Skewing, Skill checks, Cover calculations
 
@@ -286,11 +290,6 @@ namespace CombatExtended
                 {
                     var victimVert = new CollisionVertical(currentTarget.Thing);
                     var targetRange = victimVert.HeightRange;   //Get lower and upper heights of the target
-                                                                /*if (currentTarget.Thing is Building && CompFireModes?.CurrentAimMode == AimMode.SuppressFire)
-                                                                {
-                                                                    targetRange.min = targetRange.max;
-                                                                    targetRange.max = targetRange.min + 1f;
-                                                                }*/
                     if (targetRange.min < coverRange.max)   //Some part of the target is hidden behind some cover
                     {
                         // - It is possible for targetRange.max < coverRange.max, technically, in which case the shooter will never hit until the cover is gone.
@@ -311,14 +310,20 @@ namespace CombatExtended
                     }
                     targetHeight = VerbPropsCE.ignorePartialLoSBlocker ? 0 : targetRange.Average;
                 }
-                angleRadians += ProjectileCE.GetShotAngle(ShotSpeed, (newTargetLoc - sourceLoc).magnitude, targetHeight - ShotHeight, Projectile.projectile.flyOverhead, projectilePropsCE.Gravity);
+                if (projectilePropsCE.isInstant)
+                {
+                    angleRadians += Mathf.Atan2(targetHeight - ShotHeight, (newTargetLoc - sourceLoc).magnitude);
+                }
+                else
+                {
+                    angleRadians += ProjectileCE.GetShotAngle(ShotSpeed, (newTargetLoc - sourceLoc).magnitude, targetHeight - ShotHeight, Projectile.projectile.flyOverhead, projectilePropsCE.Gravity);
+                }
             }
 
             // ----------------------------------- STEP 4: Mechanical variation
 
             // Get shotvariation, in angle Vector2 RADIANS.
-            Vector2 spreadVec = report.GetRandSpreadVec();
-
+            Vector2 spreadVec = (projectilePropsCE.isInstant && projectilePropsCE.damageFalloff) ? new Vector2(0, 0) : report.GetRandSpreadVec();
             // ----------------------------------- STEP 5: Finalization
 
             var w = (newTargetLoc - sourceLoc);
@@ -385,6 +390,33 @@ namespace CombatExtended
             return report;
         }
 
+        public float AdjustShotHeight(Thing caster, LocalTargetInfo target, ref float shotHeight)
+        {
+            /* TODO:  This really should determine how much the shooter needs to rise up for a *good* shot.  
+               If we're shooting at something tall, we might not need to rise at all, if we're shooting at 
+               something short, we might need to rise *more* than just above the cover.  This at least handles 
+               cases where we're below cover, but the taret is taller than the cover */
+            GetHighestCoverAndSmokeForTarget(target, out Thing cover, out float smoke);
+            var shooterHeight = CE_Utility.GetBoundsFor(caster).max.y;
+            var coverHeight = CE_Utility.GetBoundsFor(cover).max.y;
+            var centerOfVisibleTarget = (CE_Utility.GetBoundsFor(target.Thing).max.y - coverHeight) / 2 + coverHeight;
+            if (centerOfVisibleTarget > shotHeight)
+            {
+                if (centerOfVisibleTarget > shooterHeight)
+                {
+                    centerOfVisibleTarget = shooterHeight;
+                }
+                float distance = target.Thing.Position.DistanceTo(caster.Position);
+                // float wobble = Mathf.Atan2(UnityEngine.Random.Range(shotHeight-centerOfVisibleTarget, centerOfVisibleTarget - shotHeight), distance);
+                float triangleHeight = centerOfVisibleTarget - shotHeight;
+                float wobble = -Mathf.Atan2(triangleHeight, distance);
+                // TODO: Add inaccuracy for not standing in as natural a position
+                shotHeight = centerOfVisibleTarget;
+                return wobble;
+            }
+            return 0;
+        }
+
         /// <summary>
         /// Checks for cover along the flight path of the bullet, doesn't check for walls or trees, only intended for cover with partial fillPercent
         /// </summary>
@@ -407,7 +439,14 @@ namespace CombatExtended
                 cover = null;
                 return false;
             }
-            for (int i = 0; i <= cells.Length / 2; i++)
+            bool instant = false;
+            if (Projectile.projectile is ProjectilePropertiesCE pprop)
+            {
+                instant = pprop.isInstant;
+            }
+            int endCell = instant ? cells.Length : cells.Length / 2;
+
+            for (int i = 0; i < endCell; i++)
             {
                 var cell = cells[i];
 
@@ -421,7 +460,7 @@ namespace CombatExtended
                 }
 
                 // Check for cover in the second half of LoS
-                if (i <= cells.Length / 2)
+                if (instant || i <= cells.Length / 2)
                 {
                     Pawn pawn = cell.GetFirstPawn(map);
                     Thing newCover = pawn == null ? cell.GetCover(map) : pawn;
@@ -553,6 +592,18 @@ namespace CombatExtended
                 Log.Error(EquipmentSource.LabelCap + " tried firing with pelletCount less than 1.");
                 return false;
             }
+            bool instant = false;
+
+            float spreadDegrees = 0;
+            float aperatureSize = 0;
+
+            if (Projectile.projectile is ProjectilePropertiesCE pprop)
+            {
+                instant = pprop.isInstant;
+                spreadDegrees = (EquipmentSource?.GetStatValue(StatDef.Named("ShotSpread")) ?? 0) * pprop.spreadMult;
+                aperatureSize = 0.03f;
+            }
+
             ShiftVecReport report = ShiftVecReportFor(currentTarget);
             bool pelletMechanicsOnly = false;
             for (int i = 0; i < projectilePropsCE.pelletCount; i++)
@@ -560,30 +611,48 @@ namespace CombatExtended
 
                 ProjectileCE projectile = (ProjectileCE)ThingMaker.MakeThing(Projectile, null);
                 GenSpawn.Spawn(projectile, shootLine.Source, caster.Map);
-                ShiftTarget(report, pelletMechanicsOnly);
+                ShiftTarget(report, pelletMechanicsOnly, instant);
 
                 //New aiming algorithm
                 projectile.canTargetSelf = false;
 
-                var targDist = (sourceLoc - currentTarget.Cell.ToIntVec2.ToVector2Shifted()).magnitude;
-                if (targDist <= 2)
-                    targDist *= 2;  // Double to account for divide by 4 in ProjectileCE minimum collision distance calculations
-                projectile.minCollisionSqr = Mathf.Pow(targDist, 2);
+                var targetDistance = (sourceLoc - currentTarget.Cell.ToIntVec2.ToVector2Shifted()).magnitude;
+                projectile.minCollisionDistance = GetMinCollisionDistance(targetDistance);
                 projectile.intendedTarget = currentTarget.Thing;
                 projectile.mount = caster.Position.GetThingList(caster.Map).FirstOrDefault(t => t is Pawn && t != caster);
                 projectile.AccuracyFactor = report.accuracyFactor * report.swayDegrees * ((numShotsFired + 1) * 0.75f);
-                projectile.Launch(
-                    Shooter,    //Shooter instead of caster to give turret operators' records the damage/kills obtained
-                    sourceLoc,
-                    shotAngle,
-                    shotRotation,
-                    ShotHeight,
-                    ShotSpeed,
-                    EquipmentSource
-                );
+                if (instant)
+                {
+                    var shotHeight = ShotHeight;
+                    float tsa = AdjustShotHeight(caster, currentTarget, ref shotHeight);
+                    projectile.RayCast(
+                                       Shooter,
+                                       verbProps,
+                                       sourceLoc,
+                                       shotAngle + tsa,
+                                       shotRotation,
+                                       shotHeight,
+                                       ShotSpeed,
+                                       spreadDegrees,
+                                       aperatureSize,
+                                       EquipmentSource);
+
+                }
+                else
+                {
+                    projectile.Launch(
+                                      Shooter,    //Shooter instead of caster to give turret operators' records the damage/kills obtained
+                                      sourceLoc,
+                                      shotAngle,
+                                      shotRotation,
+                                      ShotHeight,
+                                      ShotSpeed,
+                                      EquipmentSource
+                                      );
+                }
                 pelletMechanicsOnly = true;
             }
-           /// Log.Message("Fired from "+caster.ThingID+" at "+ShotHeight); /// 
+            /// Log.Message("Fired from "+caster.ThingID+" at "+ShotHeight); /// 
             pelletMechanicsOnly = false;
             numShotsFired++;
             if (CompAmmo != null && !CompAmmo.CanBeFiredNow)
@@ -595,6 +664,24 @@ namespace CombatExtended
                 CompReloadable.UsedOnce();
             }
             return true;
+        }
+
+        private float GetMinCollisionDistance(float targetDistance)
+        {
+            var shortRangeMinCollisionDistance = 1.5f;
+            var longRangeMinCollisionDistMult = 0.2f;
+            if (targetDistance <= shortRangeMinCollisionDistance / longRangeMinCollisionDistMult)
+            {
+                //For targets at close ranges, skip collisions up to 1.5 cells away (avoids shooter embrasure diagonal collisions),
+                //or 75% of the way to the target, whichever is closer.
+                return Mathf.Min(shortRangeMinCollisionDistance, targetDistance * 0.75f);
+            }
+            else
+            {
+                //At longer ranges, skip collisions on a small % of the flight path,
+                //so pawns don't blow themselves up or mag-dump into a wall if weapon sway causes the projectiles to glance hit an obstruction close to the LOS line.
+                return targetDistance * longRangeMinCollisionDistMult;
+            }
         }
 
         /// <summary>
@@ -615,8 +702,7 @@ namespace CombatExtended
          * -NIA
          */
 
-        private static List<IntVec3> tempDestList = new List<IntVec3>();
-        private static List<IntVec3> tempLeanShootSources = new List<IntVec3>();
+        private List<IntVec3> tempLeanShootSources = new List<IntVec3>();
 
         public bool TryFindCEShootLineFromTo(IntVec3 root, LocalTargetInfo targ, out ShootLine resultingLine)
         {
@@ -660,16 +746,16 @@ namespace CombatExtended
                 resultingLine = new ShootLine(root, dest);
                 return true;
             }
+
             // For pawns, calculate possible lean locations
             if (CasterIsPawn)
             {
-                // Next check lean sources
                 ShootLeanUtility.LeanShootingSourcesFromTo(root, cellRect.ClosestCellTo(root), caster.Map, tempLeanShootSources);
-                foreach (var leanLoc in tempLeanShootSources)
+                foreach (var leanLoc in tempLeanShootSources.OrderBy(c => c.DistanceTo(targ.Cell)))
                 {
-                    var leanOffset = (leanLoc - root).ToVector3() * 0.5f;
-
-                    if (CanHitFromCellIgnoringRange(shotSource + leanOffset, targ, out dest))
+                    var leanOffset = 0.5f - 0.001f; // -0.001f ensures rounding works as intended regardless of whether leanOffset is positive or negative
+                    var leanPosOffset = (leanLoc - root).ToVector3() * leanOffset;
+                    if (CanHitFromCellIgnoringRange(shotSource + leanPosOffset, targ, out dest))
                     {
                         resultingLine = new ShootLine(leanLoc, dest);
                         return true;
@@ -683,26 +769,12 @@ namespace CombatExtended
 
         private bool CanHitFromCellIgnoringRange(Vector3 shotSource, LocalTargetInfo targ, out IntVec3 goodDest)
         {
-            if (targ.Thing != null)
+            if (targ.Thing != null && targ.Thing.Map != caster.Map)
             {
-                if (targ.Thing.Map != caster.Map)
-                {
-                    goodDest = IntVec3.Invalid;
-                    return false;
-                }
-                tempDestList.Clear();
-                tempDestList.Add(targ.Cell);
-
-                foreach (var dest in tempDestList)
-                {
-                    if (CanHitCellFromCellIgnoringRange(shotSource, dest, targ.Thing))
-                    {   // if any of the locations the target is at or can lean to for shooting can be shot by the shooter then lets have the shooter shoot.
-                        goodDest = dest;
-                        return true;
-                    }
-                }
+                goodDest = IntVec3.Invalid;
+                return false;
             }
-            else if (CanHitCellFromCellIgnoringRange(shotSource, targ.Cell, targ.Thing))
+            if (CanHitCellFromCellIgnoringRange(shotSource, targ.Cell, targ.Thing))
             {
                 goodDest = targ.Cell;
                 return true;
@@ -725,6 +797,9 @@ namespace CombatExtended
                 Vector3 targetPos;
                 if (targetThing != null)
                 {
+                    float shotHeight = shotSource.y;
+                    AdjustShotHeight(caster, targetThing, ref shotHeight);
+                    shotSource.y = shotHeight;
                     Vector3 targDrawPos = targetThing.DrawPos;
                     targetPos = new Vector3(targDrawPos.x, new CollisionVertical(targetThing).Max, targDrawPos.z);
                     var targPawn = targetThing as Pawn;
@@ -748,6 +823,12 @@ namespace CombatExtended
 
                     if (cover != null && cover != ShooterPawn && cover != caster && cover != targetThing && !cover.IsPlant() && !(cover is Pawn && cover.HostileTo(caster)))
                     {
+                        //Shooter pawns don't attempt to shoot targets partially obstructed by their own faction members or allies, except when close enough to fire over their shoulder
+                        if (cover is Pawn cellPawn && !cellPawn.Downed && cellPawn.Faction != null && ShooterPawn?.Faction != null && (ShooterPawn.Faction == cellPawn.Faction || ShooterPawn.Faction.RelationKindWith(cellPawn.Faction) == FactionRelationKind.Ally) && !cellPawn.AdjacentTo8WayOrInside(ShooterPawn))
+                        {
+                            return false;
+                        }
+
                         // Skip this check entirely if we're doing suppressive fire and cell is adjacent to target
                         if ((VerbPropsCE.ignorePartialLoSBlocker || aimMode == AimMode.SuppressFire) && cover.def.Fillage != FillCategory.Full) return true;
 
@@ -781,7 +862,7 @@ namespace CombatExtended
                 };
 
                 // Add validator to parameters
-                foreach (IntVec3 curCell in SightUtility.GetCellsOnLine(shotSource, targetLoc.ToVector3(), caster.Map))
+                foreach (IntVec3 curCell in GenSightCE.PointsOnLineOfSight(shotSource, targetLoc.ToVector3Shifted()))
                 {
                     if (Controller.settings.DebugDrawPartialLoSChecks)
                         caster.Map.debugDrawer.FlashCell(curCell, 0.4f);

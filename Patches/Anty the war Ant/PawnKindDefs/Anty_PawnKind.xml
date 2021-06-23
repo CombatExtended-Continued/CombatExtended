@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+  <Operation Class="PatchOperationSequence">
+	<operations>
+	  <li Class="PatchOperationFindMod">
+			
+		<mods><li>Anty the war ant race</li></mods>
+			
+		<match Class="PatchOperationSequence">
+		<operations>
+		
+			<li Class="PatchOperationAddModExtension">
+				<xpath>Defs/PawnKindDef[defName="AT_Raid_A"]</xpath>
+				<value>
+					<li Inherit="False" Class="CombatExtended.LoadoutPropertiesExtension">
+					<primaryMagazineCount>
+						<min>12</min>
+						<max>32</max>
+					</primaryMagazineCount>
+					</li>
+				</value>
+			</li>
+			
+			<li Class="PatchOperationAddModExtension">
+				<xpath>Defs/PawnKindDef[defName="AT_Sapper_A"]</xpath>
+				<value>
+					<li Inherit="False" Class="CombatExtended.LoadoutPropertiesExtension">
+					<primaryMagazineCount>
+						<min>8</min>
+						<max>20</max>
+					</primaryMagazineCount>
+					<forcedSidearm>
+					  <sidearmMoney>
+						<min>500</min>
+						<max>1200</max>
+					  </sidearmMoney>
+					  <weaponTags>
+						<li>ATCharge</li>
+					  </weaponTags>
+					  <magazineCount>
+						<min>0</min>
+						<max>2</max>
+					  </magazineCount>
+					</forcedSidearm>
+					</li>
+				</value>
+			</li>
+			
+			<li Class="PatchOperationAddModExtension">
+				<xpath>Defs/PawnKindDef[defName="AT_Sapper_B"]</xpath>
+				<value>
+					<li Inherit="False" Class="CombatExtended.LoadoutPropertiesExtension">
+					<primaryMagazineCount>
+						<min>8</min>
+						<max>20</max>
+					</primaryMagazineCount>
+					<forcedSidearm>
+					  <sidearmMoney>
+						<min>500</min>
+						<max>1200</max>
+					  </sidearmMoney>
+					  <weaponTags>
+						<li>ATCharge</li>
+					  </weaponTags>
+					  <magazineCount>
+						<min>0</min>
+						<max>2</max>
+					  </magazineCount>
+					</forcedSidearm>
+					</li>
+				</value>
+			</li>
+			
+			<li Class="PatchOperationAddModExtension">
+				<xpath>Defs/PawnKindDef[defName="AT_SingleUse"]</xpath>
+				<value>
+					<li Inherit="False" Class="CombatExtended.LoadoutPropertiesExtension">
+					<primaryMagazineCount>
+						<min>1</min>
+						<max>3</max>
+					</primaryMagazineCount>
+					<forcedSidearm>
+					  <sidearmMoney>
+						<min>500</min>
+						<max>1200</max>
+					  </sidearmMoney>
+					  <weaponTags>
+						<li>ATCharge</li>
+					  </weaponTags>
+					  <magazineCount>
+						<min>0</min>
+						<max>2</max>
+					  </magazineCount>
+					</forcedSidearm>
+					</li>
+				</value>
+			</li>
+			
+			<!--Backpack-->
+			
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/PawnKindDef[
+				defName="Anty_Commander" or
+				defName="AT_Sapper_A" or
+				defName="AT_Sapper_B" or
+				defName="AT_Rifle_B" or
+				defName="AT_Charge_B" or
+				defName="AT_Launcher_A" or
+				defName="AT_SingleUse" or
+				defName="AT_Power"
+				]/apparelRequired</xpath>
+				<value>
+					<li>Apparel_Backpack</li>
+				</value>
+			</li>
+			
+			<li Class="PatchOperationAddModExtension">
+				<xpath>Defs/PawnKindDef[
+				defName="Anty_Commander" or
+				defName="AT_Rifle_A" or
+				defName="AT_Rifle_B" or
+				defName="AT_Charge_B" or
+				defName="AT_Launcher_A" or
+				defName="AT_Power"
+				]</xpath>
+				<value>
+					<li Inherit="False" Class="CombatExtended.LoadoutPropertiesExtension">
+					<primaryMagazineCount>
+						<min>3</min>
+						<max>6</max>
+					</primaryMagazineCount>
+					</li>
+				</value>
+			</li>
+			
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName="Apparel_Backpack"]/apparel/tags</xpath>
+				<value>
+					<li>AntyALL</li>
+				</value>
+			</li>
+			
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName="Apparel_TribalBackpack"]/apparel/tags</xpath>
+				<value>
+					<li>AntyME</li>
+				</value>
+			</li>
+			
+		</operations>
+		</match>	
+	  </li>
+	</operations>	
+  </Operation>
+</Patch>

@@ -1,0 +1,560 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+	<Operation Class="PatchOperationFindMod">
+		<mods><li>Nyaron race</li></mods>
+		<match Class="PatchOperationSequence">
+		<operations>
+		
+		<!-- ==========  Clawbar  =========== -->
+		
+		<li Class="PatchOperationReplace">
+			<xpath>Defs/ThingDef[defName="Nr_Clawbar"]/tools</xpath>
+			<value>
+			  <tools>
+				<li Class="CombatExtended.ToolCE">
+				  <label>handle</label>
+				  <capacities>
+					<li>Poke</li>
+				  </capacities>
+				  <power>2</power>
+				  <cooldownTime>1.59</cooldownTime>
+				  <armorPenetrationBlunt>0.625</armorPenetrationBlunt>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+				  <label>head</label>
+				  <capacities>
+					<li>Blunt</li>
+				  </capacities>
+				  <power>11</power>
+				  <cooldownTime>2.25</cooldownTime>
+				  <chanceFactor>1.5</chanceFactor>
+				  <armorPenetrationBlunt>4.225</armorPenetrationBlunt>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+				  <label>claw</label>
+				  <capacities>
+					<li>Scratch</li>
+				  </capacities>
+				  <power>21</power>
+				  <cooldownTime>2.25</cooldownTime>
+				  <chanceFactor>1.5</chanceFactor>
+				  <armorPenetrationSharp>1.06</armorPenetrationSharp>
+				  <armorPenetrationBlunt>4.225</armorPenetrationBlunt>
+				</li>
+			  </tools>
+			</value>
+		</li>
+		
+		<li Class="PatchOperationAdd">
+			<xpath>Defs/ThingDef[defName="Nr_Clawbar"]/statBases</xpath>
+			<value>
+				<MeleeCounterParryBonus>0.24</MeleeCounterParryBonus>
+				<Bulk>5.5</Bulk>
+			</value>
+		</li>
+		
+		<li Class="PatchOperationAdd">
+			<xpath>Defs/ThingDef[defName="Nr_Clawbar"]/weaponTags</xpath>
+			<value>
+				<li>CE_OneHandedWeapon</li>
+			</value>
+		</li>
+		
+		<li Class="PatchOperationAdd">
+			<xpath>Defs/ThingDef[defName="Nr_Clawbar"]</xpath>
+			<value>
+				<equippedStatOffsets>
+				  <MeleeCritChance>0.42</MeleeCritChance>
+				  <MeleeParryChance>0.24</MeleeParryChance>
+				  <MeleeDodgeChance>0.2</MeleeDodgeChance>
+				 </equippedStatOffsets>
+			</value>
+		</li>
+		
+		<!-- ==========  Knife  =========== -->
+		
+		<li Class="PatchOperationReplace">
+			<xpath>Defs/ThingDef[defName="Nr_Karambit"]/tools</xpath>
+			<value>
+			  <tools>
+				  <li Class="CombatExtended.ToolCE">
+					<label>handle</label>
+					<capacities>
+					  <li>Poke</li>
+					</capacities>
+					<power>5</power>
+					<cooldownTime>2.01</cooldownTime>
+					<chanceFactor>0.4</chanceFactor>
+					<armorPenetrationBlunt>1.6</armorPenetrationBlunt>
+					<linkedBodyPartsGroup>Handle</linkedBodyPartsGroup>
+				  </li>
+				  <li Class="CombatExtended.ToolCE">
+					<label>point</label>
+					<capacities>
+					  <li>Stab</li>
+					</capacities>
+					<power>11</power>
+					<cooldownTime>1.26</cooldownTime>
+					<chanceFactor>1</chanceFactor>
+					<armorPenetrationBlunt>0.25</armorPenetrationBlunt>
+					<armorPenetrationSharp>1.67</armorPenetrationSharp>
+					<linkedBodyPartsGroup>Point</linkedBodyPartsGroup>
+				  </li>
+				  <li Class="CombatExtended.ToolCE">
+					<label>edge</label>
+					<capacities>
+					  <li>Cut</li>
+					</capacities>
+					<power>10</power>
+					<cooldownTime>1.18</cooldownTime>
+					<chanceFactor>1</chanceFactor>
+					<armorPenetrationBlunt>0.36</armorPenetrationBlunt>
+					<armorPenetrationSharp>1.2</armorPenetrationSharp>
+					<linkedBodyPartsGroup>Edge</linkedBodyPartsGroup>
+				  </li>
+			  </tools>
+			</value>
+		</li>
+		
+		<li Class="PatchOperationAdd">
+			<xpath>Defs/ThingDef[defName="Nr_Karambit"]/statBases</xpath>
+			<value>
+				<MeleeCounterParryBonus>0.39</MeleeCounterParryBonus>
+				<Bulk>1.5</Bulk>
+			</value>
+		</li>
+		
+		<li Class="PatchOperationAdd">
+			<xpath>Defs/ThingDef[defName="Nr_Karambit"]</xpath>
+			<value>
+				<equippedStatOffsets>
+				  <MeleeCritChance>0.08</MeleeCritChance>
+				  <MeleeParryChance>0.24</MeleeParryChance>
+				  <MeleeDodgeChance>1.07</MeleeDodgeChance>
+				</equippedStatOffsets>
+			</value>
+		</li>
+		
+		<li Class="PatchOperationAdd">
+			<xpath>Defs/ThingDef[defName="Nr_Karambit"]/weaponTags</xpath>
+			<value>
+				<li>CE_OneHandedWeapon</li>
+			</value>
+		</li>
+		
+		
+		<!-- ==========  Sword  =========== -->
+		
+		<li Class="PatchOperationAdd">
+			<xpath>Defs/ThingDef[defName="Nr_Lightbringer"]/statBases</xpath>
+			<value>
+				<MeleeCounterParryBonus>1</MeleeCounterParryBonus>
+				<Bulk>6.5</Bulk>
+			</value>
+		</li>
+		
+		<li Class="PatchOperationAdd">
+			<xpath>Defs/ThingDef[defName="Nr_Lightbringer"]</xpath>
+			<value>
+				<equippedStatOffsets>
+				  <MeleeCritChance>0.63</MeleeCritChance>
+				  <MeleeParryChance>0.75</MeleeParryChance>
+				  <MeleeDodgeChance>0.4</MeleeDodgeChance>
+				</equippedStatOffsets>
+			</value>
+		</li>
+		
+		<li Class="PatchOperationReplace">
+			<xpath>Defs/ThingDef[defName="Nr_Lightbringer"]/tools</xpath>
+			<value>
+			  <tools>
+				  <li Class="CombatExtended.ToolCE">
+					<label>Point</label>
+					<capacities>
+					  <li>Stab</li>
+					</capacities>
+					<power>18</power>
+					<cooldownTime>1.69</cooldownTime>
+					<chanceFactor>1</chanceFactor>
+					<armorPenetrationBlunt>0.8</armorPenetrationBlunt>
+					<armorPenetrationSharp>22</armorPenetrationSharp>
+					<linkedBodyPartsGroup>Point</linkedBodyPartsGroup>
+				  </li>
+				  <li Class="CombatExtended.ToolCE">
+					<label>blade</label>
+					<capacities>
+					  <li>Cut</li>
+					</capacities>
+					<power>36</power>
+					<cooldownTime>1.69</cooldownTime>
+					<chanceFactor>1</chanceFactor>
+					<armorPenetrationBlunt>2.592</armorPenetrationBlunt>
+					<armorPenetrationSharp>16</armorPenetrationSharp>
+					<linkedBodyPartsGroup>Edge</linkedBodyPartsGroup>
+				  </li>
+				  <li Class="CombatExtended.ToolCE">
+					<label>handle</label>
+					<capacities>
+					  <li>Poke</li>
+					</capacities>
+					<power>3</power>
+					<cooldownTime>1.56</cooldownTime>
+					<chanceFactor>0.2</chanceFactor>
+					<armorPenetrationBlunt>4.05</armorPenetrationBlunt>
+					<linkedBodyPartsGroup>Handle</linkedBodyPartsGroup>
+				  </li>
+			  </tools>
+			</value>
+		</li>
+		
+		<!-- ========== Charge Pistol =========== -->
+		
+		<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+		<defName>Nr_CriPistol</defName>
+			<statBases>
+				<SightsEfficiency>0.80</SightsEfficiency>
+				<ShotSpread>0.18</ShotSpread>
+				<SwayFactor>1.27</SwayFactor>
+				<Bulk>2.50</Bulk>
+				<Mass>1.3</Mass>
+				<RangedWeapon_Cooldown>0.36</RangedWeapon_Cooldown>
+			</statBases>
+			
+			<Properties>
+				<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+				<hasStandardCommand>true</hasStandardCommand>
+				<defaultProjectile>Bullet_NyaronCellBall</defaultProjectile>
+				<warmupTime>0.6</warmupTime>
+				<range>16</range>
+				<soundCast>Cripistol_fire</soundCast>
+				<soundCastTail>Secgun_tail</soundCastTail>
+				<muzzleFlashScale>9</muzzleFlashScale>
+			</Properties>
+			
+			<AmmoUser>
+				<magazineSize>16</magazineSize>
+				<reloadTime>4</reloadTime>
+				<ammoSet>AmmoSet_NyaronCellBall</ammoSet>
+			</AmmoUser>
+			<FireModes>
+				<aiAimMode>Snapshot</aiAimMode>
+			</FireModes>
+		</li>
+		
+		<li Class="PatchOperationAdd">
+			<xpath>Defs/ThingDef[defName="Nr_CriPistol"]/weaponTags</xpath>
+			<value>
+				<li>CE_OneHandedWeapon</li>
+			</value>
+		</li>
+		
+		<!-- ========== Charge SMG =========== -->
+		
+		<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+		<defName>Nr_MfoldPdw</defName>
+			<statBases>
+				<SightsEfficiency>1.00</SightsEfficiency>
+				<ShotSpread>0.18</ShotSpread>
+				<SwayFactor>0.95</SwayFactor>
+				<Bulk>6.00</Bulk>
+				<Mass>3.50</Mass>
+				<RangedWeapon_Cooldown>0.37</RangedWeapon_Cooldown>
+			</statBases>
+			
+			<Properties>
+				<recoilAmount>1.86</recoilAmount>
+				<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+				<hasStandardCommand>true</hasStandardCommand>
+				<defaultProjectile>Bullet_NyaronCellBall</defaultProjectile>
+				<warmupTime>0.6</warmupTime>
+				<burstShotCount>6</burstShotCount>
+				<ticksBetweenBurstShots>7</ticksBetweenBurstShots>
+				<range>28</range>
+				<soundCast>Cripistol_fire</soundCast>
+				<soundCastTail>Secgun_tail</soundCastTail>
+				<muzzleFlashScale>9</muzzleFlashScale>
+			</Properties>
+			
+			<AmmoUser>
+				<magazineSize>36</magazineSize>
+				<reloadTime>4</reloadTime>
+				<ammoSet>AmmoSet_NyaronCellBall</ammoSet>
+			</AmmoUser>
+			<FireModes>
+				<aimedBurstShotCount>3</aimedBurstShotCount>
+				<aiUseBurstMode>FALSE</aiUseBurstMode>
+				<aiAimMode>Snapshot</aiAimMode>
+			</FireModes>
+		</li>
+		
+		<!-- ========== Rifle =========== -->
+		
+		<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+		<defName>Nr_NpcRifle</defName>
+			<statBases>
+				<SightsEfficiency>1.00</SightsEfficiency>
+				<ShotSpread>0.09</ShotSpread>
+				<SwayFactor>1.24</SwayFactor>
+				<Bulk>8.80</Bulk>
+				<Mass>6.50</Mass>
+				<RangedWeapon_Cooldown>0.36</RangedWeapon_Cooldown>
+			</statBases>
+			
+			<Properties>
+				<recoilAmount>2.34</recoilAmount>
+				<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+				<hasStandardCommand>true</hasStandardCommand>
+				<defaultProjectile>Bullet_NyaronCellBullet</defaultProjectile>
+				<warmupTime>1.1</warmupTime>
+				<burstShotCount>6</burstShotCount>
+				<ticksBetweenBurstShots>10</ticksBetweenBurstShots>
+				<range>51</range>
+				<ammoConsumedPerShotCount>2</ammoConsumedPerShotCount>
+				<soundCast>Secgun_fire</soundCast>
+				<soundCastTail>Secgun_tail</soundCastTail>
+				<muzzleFlashScale>9</muzzleFlashScale>
+			</Properties>
+			
+			<AmmoUser>
+				<magazineSize>48</magazineSize>
+				<reloadTime>4</reloadTime>
+				<ammoSet>AmmoSet_NyaronCellBullet</ammoSet>
+			</AmmoUser>
+			<FireModes>
+				<aimedBurstShotCount>3</aimedBurstShotCount>
+				<aiUseBurstMode>TRUE</aiUseBurstMode>
+				<aiAimMode>AimedShot</aiAimMode>
+			</FireModes>
+		</li>
+		
+		<!-- ========== Beam Rifle =========== -->
+		
+		<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+		<defName>Nr_ChRifle</defName>
+			<statBases>
+				<SightsEfficiency>2.60</SightsEfficiency>
+				<ShotSpread>0.01</ShotSpread>
+				<SwayFactor>1.90</SwayFactor>
+				<Bulk>12.5</Bulk>
+				<Mass>5.50</Mass>
+				<RangedWeapon_Cooldown>0.36</RangedWeapon_Cooldown>
+			</statBases>
+			
+			<Properties>
+				<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+				<hasStandardCommand>true</hasStandardCommand>
+				<defaultProjectile>Bullet_NyaronCellLaser</defaultProjectile>
+				<warmupTime>1.6</warmupTime>
+				<range>75</range>
+				<ammoConsumedPerShotCount>10</ammoConsumedPerShotCount>
+				<soundCast>Nr_beamfire</soundCast>
+				<soundCastTail>GunTail_Heavy</soundCastTail>
+				<muzzleFlashScale>9</muzzleFlashScale>
+			</Properties>
+			
+			<AmmoUser>
+				<magazineSize>60</magazineSize>
+				<reloadTime>4</reloadTime>
+				<ammoSet>AmmoSet_NyaronCellLaser</ammoSet>
+			</AmmoUser>
+			<FireModes>
+				<aiAimMode>AimedShot</aiAimMode>
+			</FireModes>
+		</li>
+		
+		<!-- ========== Flak Caster =========== -->
+		
+		<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+		<defName>Nr_FlakCaster</defName>
+			<statBases>
+				<SightsEfficiency>1.00</SightsEfficiency>
+				<ShotSpread>0.20</ShotSpread>
+				<SwayFactor>2.10</SwayFactor>
+				<Bulk>14.00</Bulk>
+				<Mass>7.00</Mass>
+				<RangedWeapon_Cooldown>0.36</RangedWeapon_Cooldown>
+			</statBases>
+			
+			<Properties>
+				<recoilAmount>2.04</recoilAmount>
+				<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+				<hasStandardCommand>true</hasStandardCommand>
+				<defaultProjectile>Bullet_NyaronFlakGrenade_HE</defaultProjectile>
+				<warmupTime>2.1</warmupTime>
+				<burstShotCount>16</burstShotCount>
+				<ticksBetweenBurstShots>1</ticksBetweenBurstShots>
+				<range>44</range>
+				<soundCast>InfernoCannon_Fire</soundCast>
+				<soundCastTail>GunTail_Heavy</soundCastTail>
+				<muzzleFlashScale>9</muzzleFlashScale>
+				<targetParams>
+				  <canTargetLocations>true</canTargetLocations>
+				</targetParams>
+			</Properties>
+			
+			<AmmoUser>
+				<magazineSize>32</magazineSize>
+				<reloadTime>6</reloadTime>
+				<ammoSet>AmmoSet_NyaronFlakGrenade</ammoSet>
+			</AmmoUser>
+			<FireModes>
+				<aimedBurstShotCount>4</aimedBurstShotCount>
+				<aiUseBurstMode>FALSE</aiUseBurstMode>
+				<aiAimMode>AimedShot</aiAimMode>
+				<noSingleShot>true</noSingleShot>
+			</FireModes>
+		</li>
+		
+		<!-- ========== Bow =========== -->
+		
+		<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+		<defName>Nr_ChRifle</defName>
+			<statBases>
+				<SightsEfficiency>2.60</SightsEfficiency>
+				<ShotSpread>0.01</ShotSpread>
+				<SwayFactor>1.90</SwayFactor>
+				<Bulk>12.5</Bulk>
+				<Mass>5.50</Mass>
+				<RangedWeapon_Cooldown>0.36</RangedWeapon_Cooldown>
+			</statBases>
+			
+			<Properties>
+				<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+				<hasStandardCommand>true</hasStandardCommand>
+				<defaultProjectile>Bullet_NyaronCellLaser</defaultProjectile>
+				<warmupTime>1.6</warmupTime>
+				<range>75</range>
+				<ammoConsumedPerShotCount>10</ammoConsumedPerShotCount>
+				<soundCast>Nr_beamfire</soundCast>
+				<soundCastTail>GunTail_Heavy</soundCastTail>
+				<muzzleFlashScale>9</muzzleFlashScale>
+			</Properties>
+			
+			<AmmoUser>
+				<magazineSize>60</magazineSize>
+				<reloadTime>4</reloadTime>
+				<ammoSet>AmmoSet_NyaronCellLaser</ammoSet>
+			</AmmoUser>
+			<FireModes>
+				<aiAimMode>AimedShot</aiAimMode>
+			</FireModes>
+		</li>
+		
+		<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+			<defName>Nr_Stkbow</defName>
+			<statBases>
+			  <SightsEfficiency>2.5</SightsEfficiency>
+			  <ShotSpread>1</ShotSpread>
+			  <SwayFactor>1.5</SwayFactor>
+			  <Bulk>5.00</Bulk>
+			  <RangedWeapon_Cooldown>1</RangedWeapon_Cooldown>
+			</statBases>
+			<Properties>
+			  <verbClass>CombatExtended.Verb_ShootCE</verbClass>
+			  <hasStandardCommand>true</hasStandardCommand>
+			  <defaultProjectile>Projectile_GreatArrowNyaron_Stone</defaultProjectile>
+			  <warmupTime>1.3</warmupTime>
+			  <range>35</range>
+			  <soundCast>Bow_Large</soundCast>
+			</Properties>
+			<AmmoUser>
+			  <ammoSet>AmmoSet_GreatArrowNyaron</ammoSet>
+			</AmmoUser>
+			<FireModes />
+			<AllowWithRunAndGun>false</AllowWithRunAndGun>
+		</li>
+
+		<li Class="PatchOperationReplace">
+			<xpath>Defs/ThingDef[defName="Nr_Stkbow"]/tools</xpath>
+			<value>
+			  <tools>
+				<li Class="CombatExtended.ToolCE">
+					<capacities>
+						<li>Blunt</li>
+					</capacities>
+					<power>7</power>
+					<cooldownTime>1.6</cooldownTime>
+				<armorPenetrationBlunt>0.65</armorPenetrationBlunt>
+				</li>
+			  </tools>
+			</value>
+		</li>
+		
+		<!-- ========== Melee Attacks =========== -->
+		
+		<li Class="PatchOperationReplace">
+			<xpath>Defs/ThingDef[defName="Nr_FlakCaster" or 
+			defName="Nr_ChRifle" or 
+			defName="Nr_NpcRifle" or 
+			defName="Nr_MfoldPdw"
+			]/tools</xpath>
+			<value>
+				<tools>
+					<li Class="CombatExtended.ToolCE">
+					<label>stock</label>
+					<capacities>
+					<li>Blunt</li>
+					</capacities>
+					<power>8</power>
+					<cooldownTime>1.55</cooldownTime>
+					<chanceFactor>1.5</chanceFactor>
+					<armorPenetrationBlunt>2.755</armorPenetrationBlunt>
+					<linkedBodyPartsGroup>Stock</linkedBodyPartsGroup>
+					</li>
+					<li Class="CombatExtended.ToolCE">
+						<label>barrel</label>
+						<capacities>
+						<li>Blunt</li>
+						</capacities>
+						<power>5</power>
+						<cooldownTime>2.02</cooldownTime>
+						<armorPenetrationBlunt>1.630</armorPenetrationBlunt>
+						<linkedBodyPartsGroup>Barrel</linkedBodyPartsGroup>
+					</li>
+					<li Class="CombatExtended.ToolCE">
+					<label>muzzle</label>
+						<capacities>
+						<li>Poke</li>
+						</capacities>
+						<power>8</power>
+						<cooldownTime>1.55</cooldownTime>
+						<armorPenetrationBlunt>2.755</armorPenetrationBlunt>
+						<linkedBodyPartsGroup>Muzzle</linkedBodyPartsGroup>
+					</li>
+				</tools>
+			</value>
+		</li>
+		
+		<li Class="PatchOperationReplace">
+			<xpath>Defs/ThingDef[defName="Nr_CriPistol"]/tools</xpath>
+			<value>
+				<tools>
+					<li Class="CombatExtended.ToolCE">
+						<label>grip</label>
+						<capacities>
+						<li>Blunt</li>
+						</capacities>
+						<power>2</power>
+						<cooldownTime>1.54</cooldownTime>
+						<chanceFactor>1.5</chanceFactor>
+						<armorPenetrationBlunt>0.555</armorPenetrationBlunt>
+						<linkedBodyPartsGroup>Grip</linkedBodyPartsGroup>
+					</li>
+					<li Class="CombatExtended.ToolCE">
+						<label>muzzle</label>
+						<capacities>
+						<li>Poke</li>
+						</capacities>
+						<power>2</power>
+						<cooldownTime>1.54</cooldownTime>
+						<armorPenetrationBlunt>0.555</armorPenetrationBlunt>
+						<linkedBodyPartsGroup>Muzzle</linkedBodyPartsGroup>
+					</li>
+				</tools>
+			</value>
+		</li> 
+		
+		</operations>
+		</match>
+	</Operation>
+</Patch>

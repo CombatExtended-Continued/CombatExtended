@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="utf-8" ?>
+
+<Patch>
+
+	<Operation Class="PatchOperationFindMod">
+    <mods>
+        <li>Anima Animals</li>
+    </mods>
+		<match Class="PatchOperationSequence">
+		<operations>
+
+  <!-- Anima Thrumbo Horn -->
+
+  <li Class="PatchOperationRemove">
+    <xpath>Defs/ThingDef[defName="AnimaThrumboHorn"]/tools</xpath>
+  </li>
+
+  <li Class="PatchOperationRemove">
+    <xpath>Defs/ThingDef[defName="AnimaThrumboHorn"]/equippedStatOffsets</xpath>
+  </li>
+
+  <li Class="PatchOperationAttributeSet">
+    <xpath>Defs/ThingDef[defName="AnimaThrumboHorn"]</xpath>
+    <attribute>ParentName</attribute>
+    <value>ResourceBase</value>
+  </li>
+
+  <li Class="PatchOperationReplace">
+    <xpath>Defs/ThingDef[defName="AnimaThrumboHorn"]/statBases/Mass</xpath>
+    <value>
+      <Mass>50</Mass>
+      <Bulk>25</Bulk>
+    </value>
+  </li>
+
+  <li Class="PatchOperationReplace">
+    <xpath>Defs/ThingDef[defName="AnimaThrumboHorn"]/description</xpath>
+    <value>
+      <description>An anima thrumbo's horn. It's razor-sharp, rock-hard. This is a true trophy.</description>
+    </value>
+  </li>
+
+	<!-- ========== Anima Warg Fang / Razorfang Knife ========== -->
+
+	<li Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="AnimaWargFang"]/tools</xpath>
+		<value>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<label>handle</label>
+					<capacities>
+						<li>Poke</li>
+					</capacities>
+					<power>1</power>
+					<cooldownTime>1.26</cooldownTime>
+					<armorPenetrationBlunt>0.250</armorPenetrationBlunt>
+					<linkedBodyPartsGroup>Handle</linkedBodyPartsGroup>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>blade</label>
+					<capacities>
+						<li>Cut</li>
+					</capacities>
+					<power>10</power>
+					<cooldownTime>1.18</cooldownTime>
+					<armorPenetrationBlunt>0.36</armorPenetrationBlunt>
+					<armorPenetrationSharp>0.28</armorPenetrationSharp>
+					<linkedBodyPartsGroup>Blade</linkedBodyPartsGroup>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>point</label>
+					<capacities>
+						<li>Stab</li>
+					</capacities>
+					<power>11</power>
+					<cooldownTime>1.26</cooldownTime>
+					<chanceFactor>1.33</chanceFactor>
+					<armorPenetrationBlunt>0.25</armorPenetrationBlunt>
+					<armorPenetrationSharp>0.38</armorPenetrationSharp>
+					<linkedBodyPartsGroup>Point</linkedBodyPartsGroup>
+				</li>
+			</tools>
+		</value>
+	</li>
+
+	<li Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="MeleeWeapon_RazorfangKnife"]/tools</xpath>
+		<value>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<label>handle</label>
+					<capacities>
+						<li>Poke</li>
+					</capacities>
+					<power>1</power>
+					<cooldownTime>1.26</cooldownTime>
+					<armorPenetrationBlunt>0.250</armorPenetrationBlunt>
+					<linkedBodyPartsGroup>Handle</linkedBodyPartsGroup>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>blade</label>
+					<capacities>
+						<li>Cut</li>
+					</capacities>
+					<power>11</power>
+					<cooldownTime>1.18</cooldownTime>
+					<armorPenetrationBlunt>0.36</armorPenetrationBlunt>
+					<armorPenetrationSharp>0.36</armorPenetrationSharp>
+					<linkedBodyPartsGroup>Blade</linkedBodyPartsGroup>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>point</label>
+					<capacities>
+						<li>Stab</li>
+					</capacities>
+					<power>13</power>
+					<cooldownTime>1.26</cooldownTime>
+					<chanceFactor>1.33</chanceFactor>
+					<armorPenetrationBlunt>0.25</armorPenetrationBlunt>
+					<armorPenetrationSharp>0.48</armorPenetrationSharp>
+					<linkedBodyPartsGroup>Point</linkedBodyPartsGroup>
+				</li>
+			</tools>
+		</value>
+	</li>
+
+	<li Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="AnimaWargFang" or defName="MeleeWeapon_RazorfangKnife"]/statBases</xpath>
+		<value>
+      		<Bulk>1</Bulk>
+			<MeleeCounterParryBonus>0.15</MeleeCounterParryBonus>
+		</value>
+	</li>
+
+	<li Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="AnimaWargFang" or defName="MeleeWeapon_RazorfangKnife"]</xpath>
+		<value>
+			<equippedStatOffsets>
+				<MeleeCritChance>0.5</MeleeCritChance>
+				<MeleeParryChance>0.15</MeleeParryChance>
+				<MeleeDodgeChance>0.05</MeleeDodgeChance>	
+			</equippedStatOffsets>
+		</value>
+	</li>
+
+	<li Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="AnimaWargFang" or defName="MeleeWeapon_RazorfangKnife"]</xpath>
+		<value>
+		<weaponTags>
+			<li>CE_Sidearm_Melee</li>
+			<li>CE_OneHandedWeapon</li>
+		</weaponTags>	
+		</value>
+	</li>
+
+		</operations>
+		</match>
+	</Operation>
+</Patch>

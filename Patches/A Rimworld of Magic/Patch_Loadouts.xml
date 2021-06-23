@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+
+	<Operation Class="PatchOperationFindMod">
+    <mods>
+		<li>A RimWorld of Magic</li>
+    </mods>
+		<match Class="PatchOperationSequence">
+		<operations>
+			
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/PawnKindDef[
+				defName="SeerBowman"
+				]</xpath>
+				<value>
+					<inventoryOptions>
+					<skipChance>0</skipChance>
+						<subOptionsChooseOne>
+						  <li>
+							<choiceChance>50</choiceChance>
+							<thingDef>Ammo_Arrow_Steel</thingDef>
+							<countRange>
+							  <min>20</min>
+							  <max>60</max>
+							</countRange>
+						  </li>
+						  <li>
+							<choiceChance>25</choiceChance>
+							<thingDef>Ammo_Arrow_Venom</thingDef>
+							<countRange>
+							  <min>20</min>
+							  <max>60</max>
+							</countRange>
+						  </li>
+						  <li>
+							<choiceChance>25</choiceChance>
+							<thingDef>Ammo_Arrow_Flame</thingDef>
+							<countRange>
+							  <min>20</min>
+							  <max>60</max>
+							</countRange>
+						  </li>
+						</subOptionsChooseOne>
+					</inventoryOptions>
+				</value>
+			</li>
+			
+		</operations>
+		</match>
+	</Operation>
+	
+</Patch>

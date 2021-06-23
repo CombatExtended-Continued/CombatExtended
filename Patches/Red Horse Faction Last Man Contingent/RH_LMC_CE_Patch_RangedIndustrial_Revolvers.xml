@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <Patch>
-	<Operation Class="PatchOperationSequence">
-		<success>Always</success>
-		<operations>
-
-			<li Class="CombatExtended.PatchOperationFindMod">
-				<modName>[RH] Faction: Last Man Contingent</modName>
-			</li>	
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+		<li>[RH] Faction: Last Man Contingent</li>
+		</mods>
+		<match Class="PatchOperationSequence">
+		<operations>	
 
 			<!-- ========== Colt Cobra ========== -->
 
@@ -40,7 +39,7 @@
 
 				<AmmoUser>
 					<magazineSize>6</magazineSize>
-					<reloadTime>3.5</reloadTime>
+					<reloadTime>4.6</reloadTime>
 					<ammoSet>AmmoSet_38Special</ammoSet>
 				</AmmoUser>
 
@@ -85,5 +84,6 @@
 			</li>
 
 		</operations>
+		</match>
 	</Operation>
 </Patch>

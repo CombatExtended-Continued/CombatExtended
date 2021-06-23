@@ -1,0 +1,485 @@
+<?xml version="1.0" encoding="utf-8" ?>
+
+<Patch>
+
+	<Operation Class="PatchOperationFindMod">
+    <mods>
+        <li>Anima Animals</li>
+    </mods>
+		<match Class="PatchOperationSequence">
+		<operations>
+
+	<!-- ========== AnimaThrumbo ========== -->
+
+	<li Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="AnimaThrumbo"]/statBases</xpath>
+		<value>
+			<MeleeDodgeChance>0.09</MeleeDodgeChance>
+			<MeleeCritChance>0.76</MeleeCritChance>
+			<MeleeParryChance>0.45</MeleeParryChance>
+			<Flammability>0.6</Flammability>
+		</value>
+	</li>
+
+	<li Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="AnimaThrumbo"]/statBases/ArmorRating_Blunt</xpath>
+		<value>
+			<ArmorRating_Blunt>24</ArmorRating_Blunt>
+		</value>
+	</li>
+
+	<li Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="AnimaThrumbo"]/statBases/ArmorRating_Sharp</xpath>
+		<value>
+			<ArmorRating_Sharp>16</ArmorRating_Sharp>
+		</value>
+	</li>
+
+	<li Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="AnimaThrumbo"]/statBases/ArmorRating_Heat</xpath>
+		<value>
+			<ArmorRating_Heat>0.7</ArmorRating_Heat>
+		</value>
+	</li>
+
+	<li Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="AnimaThrumbo"]/race/baseHealthScale</xpath>
+		<value>
+			<baseHealthScale>6</baseHealthScale>
+		</value>
+	</li>
+
+	<li Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="AnimaThrumbo"]/tools</xpath>
+		<value>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<label>anima horn</label>
+					<capacities>
+						<li>Cut</li>
+					</capacities>
+					<power>49</power>
+					<cooldownTime>2.52</cooldownTime>
+					<linkedBodyPartsGroup>HornAttackTool</linkedBodyPartsGroup>
+					<armorPenetrationSharp>0.85</armorPenetrationSharp>
+					<armorPenetrationBlunt>6</armorPenetrationBlunt>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>horn</label>
+					<capacities>
+						<li>Stab</li>
+					</capacities>
+					<power>46</power>
+					<cooldownTime>2.52</cooldownTime>
+					<chanceFactor>0.65</chanceFactor>
+					<linkedBodyPartsGroup>HornAttackTool_2</linkedBodyPartsGroup>
+					<armorPenetrationSharp>11</armorPenetrationSharp>
+					<armorPenetrationBlunt>7</armorPenetrationBlunt>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>left foot</label>
+					<capacities>
+						<li>Blunt</li>
+					</capacities>
+					<power>23</power>
+					<cooldownTime>2.33</cooldownTime>
+					<linkedBodyPartsGroup>FrontLeftLeg</linkedBodyPartsGroup>
+					<armorPenetrationBlunt>8.840</armorPenetrationBlunt>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>right foot</label>
+					<capacities>
+						<li>Blunt</li>
+					</capacities>
+					<power>23</power>
+					<cooldownTime>2.33</cooldownTime>
+					<linkedBodyPartsGroup>FrontRightLeg</linkedBodyPartsGroup>
+					<armorPenetrationBlunt>8.840</armorPenetrationBlunt>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<capacities>
+						<li>Bite</li>
+					</capacities>
+					<power>21</power>
+					<cooldownTime>1.62</cooldownTime>
+					<linkedBodyPartsGroup>Teeth</linkedBodyPartsGroup>
+					<armorPenetrationSharp>0.07</armorPenetrationSharp>
+					<armorPenetrationBlunt>2.216</armorPenetrationBlunt>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>head</label>
+					<capacities>
+						<li>Blunt</li>
+					</capacities>
+					<power>14</power>
+					<cooldownTime>2.52</cooldownTime>
+					<linkedBodyPartsGroup>HeadAttackTool</linkedBodyPartsGroup>
+					<chanceFactor>0.2</chanceFactor>
+					<armorPenetrationBlunt>6</armorPenetrationBlunt>
+				</li>
+			</tools>
+		</value>
+	</li>
+
+	<li Class="PatchOperationAddModExtension">
+		<xpath>Defs/ThingDef[defName="AnimaThrumbo"]</xpath>
+		<value>
+			<li Class="CombatExtended.RacePropertiesExtensionCE">
+				<bodyShape>Birdlike</bodyShape>
+			</li>
+		</value>
+	</li>
+
+	<li Class="PatchOperationReplace">
+		<xpath>Defs/PawnKindDef[defName="AnimaThrumbo"]/combatPower</xpath>
+		<value>
+			<combatPower>500</combatPower>
+		</value>
+	</li>
+
+	<!-- ========== AnimaWarg ========== -->
+
+	<li Class="PatchOperationAddModExtension">
+		<xpath>Defs/ThingDef[defName="AnimaWarg"]</xpath>
+		<value>
+			<li Class="CombatExtended.RacePropertiesExtensionCE">
+				<bodyShape>Quadruped</bodyShape>
+			</li>
+		</value>
+	</li>
+
+	<li Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="AnimaWarg"]/statBases/MoveSpeed</xpath>
+		<value>
+			<MoveSpeed>7</MoveSpeed>
+		</value>
+	</li>
+
+	<li Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="AnimaWarg"]/statBases</xpath>
+		<value>
+			<ArmorRating_Blunt>0.085</ArmorRating_Blunt>
+			<ArmorRating_Sharp>0.065</ArmorRating_Sharp>
+			<MeleeDodgeChance>0.21</MeleeDodgeChance>
+			<MeleeCritChance>0.20</MeleeCritChance>
+			<MeleeParryChance>0.09</MeleeParryChance>
+		</value>
+	</li>
+
+	<li Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="AnimaWarg"]/tools</xpath>
+		<value>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<label>left claw</label>
+					<capacities>
+						<li>Scratch</li>
+					</capacities>
+					<power>13</power>
+					<cooldownTime>1.19</cooldownTime>
+					<linkedBodyPartsGroup>FrontLeftPaw</linkedBodyPartsGroup>
+					<surpriseAttack>
+						<extraMeleeDamages>
+							<li>
+								<def>Stun</def>
+								<amount>24</amount>
+							</li>
+						</extraMeleeDamages>
+					</surpriseAttack>
+					<armorPenetrationBlunt>2.450</armorPenetrationBlunt>
+					<armorPenetrationSharp>0.95</armorPenetrationSharp>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>right claw</label>
+					<capacities>
+						<li>Scratch</li>
+					</capacities>
+					<power>13</power>
+					<cooldownTime>1.19</cooldownTime>
+					<linkedBodyPartsGroup>FrontRightPaw</linkedBodyPartsGroup>
+					<surpriseAttack>
+						<extraMeleeDamages>
+							<li>
+								<def>Stun</def>
+								<amount>24</amount>
+							</li>
+						</extraMeleeDamages>
+					</surpriseAttack>
+					<armorPenetrationBlunt>2.450</armorPenetrationBlunt>
+					<armorPenetrationSharp>0.95</armorPenetrationSharp>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<capacities>
+						<li>Bite</li>
+					</capacities>
+					<power>25</power>
+					<cooldownTime>1.46</cooldownTime>
+					<linkedBodyPartsGroup>Teeth</linkedBodyPartsGroup>
+					<surpriseAttack>
+						<extraMeleeDamages>
+							<li>
+								<def>Stun</def>
+								<amount>24</amount>
+							</li>
+						</extraMeleeDamages>
+					</surpriseAttack>
+					<chanceFactor>2</chanceFactor>
+					<armorPenetrationSharp>1.05</armorPenetrationSharp>
+					<armorPenetrationBlunt>5.263</armorPenetrationBlunt>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>head</label>
+					<capacities>
+						<li>Blunt</li>
+					</capacities>
+					<power>5</power>
+					<cooldownTime>3.2</cooldownTime>
+					<linkedBodyPartsGroup>HeadAttackTool</linkedBodyPartsGroup>
+					<chanceFactor>0.2</chanceFactor>
+					<armorPenetrationBlunt>1.425</armorPenetrationBlunt>
+				</li>
+			</tools>
+		</value>
+	</li>
+
+	<li Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="AnimaWarg"]/race/baseHealthScale</xpath>
+		<value>
+			<baseHealthScale>1.45</baseHealthScale>
+		</value>
+	</li>
+
+	<li Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="AnimaWarg"]/race/wildness</xpath>
+		<value>
+			<wildness>0.3</wildness>
+		</value>
+	</li>
+
+	<li Class="PatchOperationReplace">
+		<xpath>Defs/PawnKindDef[defName="AnimaWarg"]/combatPower</xpath>
+		<value>
+			<combatPower>160</combatPower>
+		</value>
+	</li>
+
+	<!-- ========== Anima Bear ========== -->
+
+	<li Class="PatchOperationAddModExtension">
+		<xpath>Defs/ThingDef[defName="AnimaBear"]</xpath>
+		<value>
+			<li Class="CombatExtended.RacePropertiesExtensionCE">
+				<bodyShape>Quadruped</bodyShape>
+			</li>
+		</value>
+	</li>
+
+	<li Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="AnimaBear"]/statBases/MoveSpeed</xpath>
+		<value>
+			<MoveSpeed>5.7</MoveSpeed>
+		</value>
+	</li>
+
+	<li Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="AnimaBear"]/statBases</xpath>
+		<value>
+			<MeleeDodgeChance>0.15</MeleeDodgeChance>
+			<MeleeCritChance>0.19</MeleeCritChance>
+			<MeleeParryChance>0.11</MeleeParryChance>
+		</value>
+	</li>
+
+	<li Class="PatchOperationRemove">
+		<xpath>Defs/ThingDef[defName="AnimaBear"]/tools</xpath>
+	</li>
+
+	<li Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="AnimaBear"]/race/baseBodySize</xpath>
+		<value>
+			<baseBodySize>1.15</baseBodySize>
+		</value>
+	</li>
+
+	<li Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="AnimaBear"]/race/baseHealthScale</xpath>
+		<value>
+			<baseHealthScale>1.3</baseHealthScale>
+		</value>
+	</li>
+
+	<li Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="AnimaBear"]/race/wildness</xpath>
+		<value>
+			<wildness>0.6</wildness>
+		</value>
+	</li>
+
+	<li Class="PatchOperationReplace">
+		<xpath>Defs/PawnKindDef[defName="AnimaBear"]/combatPower</xpath>
+		<value>
+			<combatPower>170</combatPower>
+		</value>
+	</li>
+
+	<li Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="AnimaBear"]</xpath>
+		<value>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<label>left claw</label>
+					<capacities>
+						<li>Scratch</li>
+					</capacities>
+					<power>23</power>
+					<cooldownTime>1.41</cooldownTime>
+					<linkedBodyPartsGroup>FrontLeftPaw</linkedBodyPartsGroup>
+					<surpriseAttack>
+						<extraMeleeDamages>
+							<li>
+								<def>Stun</def>
+								<amount>24</amount>
+							</li>
+						</extraMeleeDamages>
+					</surpriseAttack>
+					<armorPenetrationSharp>0.35</armorPenetrationSharp>
+					<armorPenetrationBlunt>4.85</armorPenetrationBlunt>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>right claw</label>
+					<capacities>
+						<li>Scratch</li>
+					</capacities>
+					<power>23</power>
+					<cooldownTime>1.41</cooldownTime>
+					<linkedBodyPartsGroup>FrontLeftPaw</linkedBodyPartsGroup>
+					<surpriseAttack>
+						<extraMeleeDamages>
+							<li>
+								<def>Stun</def>
+								<amount>24</amount>
+							</li>
+						</extraMeleeDamages>
+					</surpriseAttack>
+					<armorPenetrationSharp>0.35</armorPenetrationSharp>
+					<armorPenetrationBlunt>4.85</armorPenetrationBlunt>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<capacities>
+						<li>Bite</li>
+					</capacities>
+					<power>34</power>
+					<cooldownTime>2.05</cooldownTime>
+					<linkedBodyPartsGroup>Teeth</linkedBodyPartsGroup>
+					<surpriseAttack>
+						<extraMeleeDamages>
+							<li>
+								<def>Stun</def>
+								<amount>26</amount>
+							</li>
+						</extraMeleeDamages>
+					</surpriseAttack>
+					<armorPenetrationSharp>1.05</armorPenetrationSharp>
+					<armorPenetrationBlunt>8.850</armorPenetrationBlunt>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>head</label>
+					<capacities>
+						<li>Blunt</li>
+					</capacities>
+					<power>13</power>
+					<cooldownTime>2.22</cooldownTime>
+					<linkedBodyPartsGroup>HeadAttackTool</linkedBodyPartsGroup>
+					<chanceFactor>0.2</chanceFactor>
+					<armorPenetrationBlunt>4.435</armorPenetrationBlunt>
+				</li>
+			</tools>
+		</value>
+	</li>
+
+	<!-- ========== AnimaYak ========== -->
+
+	<li Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="AnimaYak"]/statBases/MoveSpeed</xpath>
+		<value>
+			<MoveSpeed>5</MoveSpeed>
+			<MeleeDodgeChance>0.11</MeleeDodgeChance>
+			<MeleeCritChance>0.30</MeleeCritChance>
+			<MeleeParryChance>0.19</MeleeParryChance>
+		</value>
+	</li>
+
+	<li Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="AnimaYak"]/tools</xpath>
+		<value>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<capacities>
+						<li>BiteBlunt</li>
+					</capacities>
+					<power>4</power>
+					<cooldownTime>1.66</cooldownTime>
+					<linkedBodyPartsGroup>Teeth</linkedBodyPartsGroup>
+					<armorPenetrationBlunt>0.85</armorPenetrationBlunt>			
+				</li>			
+				<li Class="CombatExtended.ToolCE">
+					<label>horns</label>
+					<capacities>
+						<li>Blunt</li>
+					</capacities>
+					<power>18</power>
+					<cooldownTime>2.05</cooldownTime>
+					<restrictedGender>Female</restrictedGender>
+					<linkedBodyPartsGroup>HeadAttackTool</linkedBodyPartsGroup>
+					<chanceFactor>0.2</chanceFactor>
+					<armorPenetrationBlunt>1.95</armorPenetrationBlunt>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>horns</label>
+					<capacities>
+						<li>Blunt</li>
+					</capacities>
+					<power>23</power>
+					<cooldownTime>2.05</cooldownTime>
+					<restrictedGender>Male</restrictedGender>
+					<linkedBodyPartsGroup>HeadAttackTool</linkedBodyPartsGroup>
+					<armorPenetrationBlunt>1.85</armorPenetrationBlunt>
+				</li>
+			</tools>
+		</value>
+	</li>
+
+	<li Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="AnimaYak"]/race/baseBodySize</xpath>
+		<value>
+			<baseBodySize>1.65</baseBodySize>
+		</value>
+	</li>
+
+	<li Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="AnimaYak"]/race/baseHealthScale</xpath>
+		<value>
+			<baseHealthScale>1.70</baseHealthScale>
+		</value>
+	</li>
+
+	<li Class="PatchOperationAddModExtension">
+		<xpath>Defs/ThingDef[defName="AnimaYak"]</xpath>
+		<value>
+			<li Class="CombatExtended.RacePropertiesExtensionCE">
+				<bodyShape>Quadruped</bodyShape>
+			</li>
+		</value>
+	</li>
+
+	<li Class="PatchOperationReplace">
+		<xpath>Defs/PawnKindDef[defName="AnimaYak"]/combatPower</xpath>
+		<value>
+			<combatPower>75</combatPower>
+		</value>
+	</li>
+
+		</operations>
+		</match>
+	</Operation>
+</Patch>
