@@ -14,7 +14,7 @@
 					</value>
 				</li>
 				<li Class="PatchOperationReplace">
-				<xpath>Defs/PawnKindDef[defName="Psion_Penitent"]/weaponMoney</xpath>
+					<xpath>Defs/PawnKindDef[defName="Psion_Penitent"]/weaponMoney</xpath>
 					<value>
 						<weaponMoney>80~150</weaponMoney>
 					</value>
@@ -44,12 +44,6 @@
 						</li>
 					</value>
 				</li>
-				<li Class="PatchOperationReplace">
-					<xpath>Defs/PawnKindDef[defName="Psion_Uninitiated"]/combatPower</xpath>
-					<value>
-						<combatPower>50</combatPower>
-					</value>
-				</li>
 
 				<!-- ==== Psion_Initiate ==== -->
 				<li Class="PatchOperationAddModExtension">
@@ -58,7 +52,7 @@
 						<li Class="CombatExtended.LoadoutPropertiesExtension">
 							<primaryMagazineCount>
 								<min>2</min>
-								<max>5</max>
+								<max>4</max>
 							</primaryMagazineCount>
 							<sidearms>
 								<li>
@@ -83,7 +77,7 @@
 						<li Class="CombatExtended.LoadoutPropertiesExtension">
 							<primaryMagazineCount>
 								<min>2</min>
-								<max>5</max>
+								<max>4</max>
 							</primaryMagazineCount>
 							<sidearms>
 								<li>
@@ -98,12 +92,6 @@
 								</li>
 							</sidearms>
 						</li>
-					</value>
-				</li>
-				<li Class="PatchOperationReplace">
-					<xpath>Defs/PawnKindDef[defName="Psion_Acolyte"]/weaponMoney</xpath>
-					<value>
-						<weaponMoney>300~800</weaponMoney>
 					</value>
 				</li>
 
@@ -131,10 +119,18 @@
 						</li>
 					</value>
 				</li>
-				<li Class="PatchOperationReplace">
-					<xpath>Defs/PawnKindDef[defName="Psion_Ascendant"]/combatPower</xpath>
+
+				<!-- ==== Forcing every elite tier psion to have a tactical vest for bulk reasons ==== -->
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/PawnKindDef[defName="Psion_Commando" or defName="Psion_Warrior" or defName="Psion_Conduit" or defName="Psion_Transcendent"]</xpath>
 					<value>
-						<combatPower>160</combatPower>
+						<specificApparelRequirements>
+							<li>
+								<bodyPartGroup>Shoulders</bodyPartGroup>
+								<apparelLayer>Webbing</apparelLayer>
+								<requiredTag>IndustrialMilitaryBasic</requiredTag>
+							</li>
+						</specificApparelRequirements>
 					</value>
 				</li>
 
@@ -145,7 +141,7 @@
 						<li Class="CombatExtended.LoadoutPropertiesExtension">
 							<primaryMagazineCount>
 								<min>2</min>
-								<max>5</max>
+								<max>6</max>
 							</primaryMagazineCount>
 							<shieldMoney>
 								<min>200</min>
@@ -166,15 +162,13 @@
 										<li>CE_Sidearm_Melee</li>
 										<li>CE_Sidearm</li>
 									</weaponTags>
+									<magazineCount>
+										<min>0</min>
+										<max>2</max>
+									</magazineCount>
 								</li>
 							</sidearms>
 						</li>
-					</value>
-				</li>
-				<li Class="PatchOperationAdd">
-					<xpath>Defs/PawnKindDef[defName="Psion_Commando"]</xpath>
-					<value>
-						<combatPower>380</combatPower>
 					</value>
 				</li>
 
@@ -185,7 +179,7 @@
 						<li Class="CombatExtended.LoadoutPropertiesExtension">
 							<primaryMagazineCount>
 								<min>2</min>
-								<max>5</max>
+								<max>6</max>
 							</primaryMagazineCount>
 							<sidearms>
 								<li>
@@ -202,12 +196,6 @@
 						</li>
 					</value>
 				</li>
-				<li Class="PatchOperationAdd">
-					<xpath>Defs/PawnKindDef[defName="Psion_Warrior"]</xpath>
-					<value>
-						<combatPower>340</combatPower>
-					</value>
-				</li>
 
 				<!-- ==== Psion_Conduit ==== -->
 				<li Class="PatchOperationAddModExtension">
@@ -216,7 +204,7 @@
 						<li Class="CombatExtended.LoadoutPropertiesExtension">
 							<primaryMagazineCount>
 								<min>2</min>
-								<max>5</max>
+								<max>6</max>
 							</primaryMagazineCount>
 							<sidearms>
 								<li>
@@ -233,10 +221,35 @@
 						</li>
 					</value>
 				</li>
-				<li Class="PatchOperationAdd">
-					<xpath>Defs/PawnKindDef[defName="Psion_Conduit"]</xpath>
+
+				<!-- ==== Psion_Transcendent ==== -->
+				<li Class="PatchOperationAddModExtension">
+					<xpath>Defs/PawnKindDef[defName="Psion_Transcendent"]</xpath>
 					<value>
-						<combatPower>320</combatPower>
+						<li Class="CombatExtended.LoadoutPropertiesExtension">
+							<primaryMagazineCount>
+								<min>2</min>
+								<max>6</max>
+							</primaryMagazineCount>
+							<shieldMoney>
+								<min>999999</min>
+								<max>999999</max>
+							</shieldMoney>
+							<shieldTags>
+								<li>OutlanderShield</li>
+							</shieldTags>
+							<shieldChance>1</shieldChance>
+							<forcedSidearm>
+								<sidearmMoney>
+									<min>999999</min>
+									<max>999999</max>
+								</sidearmMoney>
+								<weaponTags>
+									<li>CE_Sidearm_Melee</li>
+									<li>CE_Sidearm</li>
+								</weaponTags>
+							</forcedSidearm>
+						</li>
 					</value>
 				</li>
 			</operations>
