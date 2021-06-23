@@ -9,7 +9,7 @@
 			<operations>
 
 			<li Class="PatchOperationAddModExtension">
-				<xpath>/Defs/ThingDef[@Name="MorrowRim_TrollThingBase" or defName="MorrowRim_TrollThingBase_T2"]</xpath>
+				<xpath>/Defs/ThingDef[@Name="MorrowRim_TrollThingBase" or @Name="MorrowRim_TrollThingBase_T2"]</xpath>
 				<value>
 					<li Class="CombatExtended.RacePropertiesExtensionCE">
 						<bodyShape>Humanoid</bodyShape>
@@ -49,8 +49,8 @@
 				</value>
 			</li>
 
-			<li Class="PatchOperationAdd">
-				<xpath>/Defs/ThingDef[defName="MorrowRim_TrollBarren" or defName="MorrowRim_TrollForest" or defName="MorrowRim_TrollSwamp"]</xpath>
+			<li Class="PatchOperationReplace">
+				<xpath>/Defs/ThingDef[@Name="MorrowRim_TrollThingBase"]/tools</xpath>
 				<value>
 					<tools>
 						<li Class="CombatExtended.ToolCE">
@@ -58,7 +58,7 @@
 							<capacities>
 								<li>Scratch</li>
 							</capacities>
-							<power>23</power>
+							<power>22</power>
 							<cooldownTime>1.7</cooldownTime>
         							<linkedBodyPartsGroup>FrontLeftClaws</linkedBodyPartsGroup>
 							<surpriseAttack>
@@ -77,7 +77,7 @@
 							<capacities>
 								<li>Scratch</li>
 							</capacities>
-							<power>23</power>
+							<power>22</power>
 							<cooldownTime>1.7</cooldownTime>
 							<linkedBodyPartsGroup>FrontRightClaws</linkedBodyPartsGroup>
 							<surpriseAttack>
@@ -115,7 +115,7 @@
 							<capacities>
 								<li>Blunt</li>
 							</capacities>
-							<power>12</power>
+							<power>11</power>
 							<cooldownTime>2</cooldownTime>
 							<linkedBodyPartsGroup>HeadAttackTool</linkedBodyPartsGroup>
 							<armorPenetrationBlunt>8</armorPenetrationBlunt>
@@ -134,7 +134,7 @@
 							<capacities>
 								<li>Scratch</li>
 							</capacities>
-							<power>14</power>
+							<power>13</power>
 							<cooldownTime>1.45</cooldownTime>
         							<linkedBodyPartsGroup>FrontLeftClaws</linkedBodyPartsGroup>
 							<surpriseAttack>
@@ -153,7 +153,7 @@
 							<capacities>
 								<li>Scratch</li>
 							</capacities>
-							<power>14</power>
+							<power>13</power>
 							<cooldownTime>1.45</cooldownTime>
 							<linkedBodyPartsGroup>FrontRightClaws</linkedBodyPartsGroup>
 							<surpriseAttack>
@@ -171,8 +171,8 @@
 							<capacities>
 								<li>Bite</li>
 							</capacities>
-							<power>15</power>
-							<cooldownTime>1.9</cooldownTime>
+							<power>14</power>
+							<cooldownTime>1.85</cooldownTime>
         							<linkedBodyPartsGroup>Teeth</linkedBodyPartsGroup>
         							<chanceFactor>0.7</chanceFactor>
 							<surpriseAttack>
@@ -200,8 +200,8 @@
 					</tools>
 				</value>
 			</li>
-			<li Class="PatchOperationAdd">
-				<xpath>/Defs/ThingDef[defName="MorrowRim_TrollFrost" or defName="MorrowRim_TrollHill" or defName="MorrowRim_TrollRiver"]</xpath>
+			<li Class="PatchOperationReplace">
+				<xpath>/Defs/ThingDef[@Name="MorrowRim_TrollThingBase_T2"]/tools</xpath>
 				<value>
 					<tools>
 						<li Class="CombatExtended.ToolCE">
