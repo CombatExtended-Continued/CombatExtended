@@ -13,15 +13,13 @@
 		<match Class="PatchOperationSequence">
 			<operations>
 
-				<li Class="PatchOperationReplace">
+<!--				<li Class="PatchOperationReplace">
 					<xpath>/Defs/ThingDef[defName="MorrowRim_HungerBile"]/thingClass</xpath>
 					<value>
 						<thingClass>CombatExtended.BulletCE</thingClass>
 					</value>
 				</li>
 
-		<!-- Assign armor values, change replace and add depending on what exists or not -->
-			
 				<li Class="PatchOperationReplace">
 					<xpath>/Defs/ThingDef[defName="MorrowRim_ProjectileHungerBile"]/projectile</xpath>
 					<value>
@@ -29,31 +27,36 @@
 						<flyOverhead>false</flyOverhead>
 						  <damageDef>MorrowRim_HungerBile</damageDef>
 						  <damageAmountBase>9</damageAmountBase>
-						  <stoppingPower>0.3</stoppingPower>
-						  <speed>28</speed>
+						  <speed>23</speed>
 						</projectile>
 					</value>
 				</li>
 
-				<li Class="PatchOperationReplace">
+				<li Class="PatchOperationConditional">
+				<xpath>/Defs/ThingDef[defName="MorrowRim_Hunger"]/verbs</xpath>
+					<match Class="PatchOperationReplace">
 					<xpath>/Defs/ThingDef[defName="MorrowRim_Hunger"]/verbs</xpath>
-					<value>
+						<value>
 							<verbs>
-									<li Class="CombatExtended.VerbPropertiesCE">
-										<verbClass>CombatExtended.Verb_ShootCE</verbClass>
-											<hasStandardCommand>true</hasStandardCommand>
-											<defaultProjectile>MorrowRim_ProjectileHungerBile</defaultProjectile>
-											<warmupTime>1.9</warmupTime>
-											<burstShotCount>1</burstShotCount>
-											<minRange>1.9</minRange>
-											<range>10</range>
-											<soundCast>Hive_Spawn</soundCast>
-											<muzzleFlashScale>0</muzzleFlashScale>
-											<commonality>0.8</commonality>
-									</li>
+								<li Class="CombatExtended.VerbPropertiesCE">
+									<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+										<hasStandardCommand>true</hasStandardCommand>
+										<defaultProjectile>MorrowRim_ProjectileHungerBile</defaultProjectile>
+										<warmupTime>1.9</warmupTime>
+										<burstShotCount>1</burstShotCount>
+										<minRange>1.9</minRange>
+										<range>10</range>
+										<soundCast>Hive_Spawn</soundCast>
+										<muzzleFlashScale>0</muzzleFlashScale>
+										<commonality>0.8</commonality>
+								</li>
 							</verbs>
-					</value>
-					</li>
+						</value>
+					</match>
+				</li> -->
+			
+
+
 			</operations>
 		</match>
 		</match>		

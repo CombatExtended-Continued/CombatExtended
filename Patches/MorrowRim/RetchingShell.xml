@@ -11,6 +11,17 @@
 		<li Class="PatchOperationRemove">
 			<xpath>Defs/ThingDef[defName="MorrowRim_RetchingNetchShell"]</xpath>
 		</li>
+
+		<li Class="PatchOperationAdd">
+			<xpath>Defs</xpath>
+			<value>
+				<CombatExtended.AmmoCategoryDef>
+					<defName>Netchyshell</defName>
+					<label>Netch foam</label>
+					<description>Releases a flood of steaming netch jelly that extinguishes fire.</description>
+				</CombatExtended.AmmoCategoryDef>
+			</value>
+		</li>
 		
 		<li Class="PatchOperationAdd">
 			<xpath>Defs</xpath>
@@ -27,7 +38,7 @@
 						<Mass>5</Mass>
 						<Bulk>8</Bulk>
 					</statBases>
-    					<ammoClass>FoamFuel</ammoClass>
+    					<ammoClass>Netchyshell</ammoClass>
     					<generateAllowChance>0</generateAllowChance>
 					<detonateProjectile>Bullet_RetchingNetchShell</detonateProjectile>
 				</ThingDef>
@@ -76,8 +87,8 @@
 			<value>
 				<RecipeDef ParentName="AmmoRecipeBase">
 					<defName>MakeMorrowRim_RetchingNetchShell</defName>
-					<label>make 81mm netch foam mortar shell x2</label>
-					<description>Craft 2 netch firefoam shells from netch body mucus.</description>
+					<label>make 81mm netch foam mortar shell x3</label>
+					<description>Craft 3 netch firefoam shells from netch body mucus.</description>
 					<jobString>Making 81mm netch firefoam shells.</jobString>
 					<ingredients>
 					<li>
@@ -86,7 +97,7 @@
 						<li>Steel</li>
 						</thingDefs>
 						</filter>
-						<count>24</count>
+						<count>30</count>
 					</li>
 					<li>
 						<filter>
@@ -94,7 +105,7 @@
 						<li>ComponentIndustrial</li>
 						</thingDefs>
 						</filter>
-						<count>2</count>
+						<count>3</count>
 					</li>
 					<li>
 						<filter>
@@ -113,9 +124,9 @@
 					</thingDefs>
 					</fixedIngredientFilter>
 					<products>
-						<MorrowRim_RetchingNetchShell>2</MorrowRim_RetchingNetchShell>
+						<MorrowRim_RetchingNetchShell>3</MorrowRim_RetchingNetchShell>
 					</products>
-					<workAmount>2000</workAmount>
+					<workAmount>2400</workAmount>
 					<researchPrerequisite>Mortars</researchPrerequisite>
 				</RecipeDef>
 			</value>
