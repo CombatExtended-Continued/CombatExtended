@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>	
+
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+			<li>[FF]Bushi!</li>
+		</mods>
+		<match Class="PatchOperationSequence">
+			<operations>
+				
+		<!-- === Masks === -->
+		<li Class="PatchOperationReplace">
+			<xpath>/Defs/ThingDef[
+			defName="FFApparel_Samurai_mask_of_perseverance" or
+			defName="FFApparel_Samurai_mask_of_Destruction" or
+			defName="FFApparel_Samurai_mask_of_Communicating"
+			]/statBases/StuffEffectMultiplierArmor</xpath>
+			<value>
+				<StuffEffectMultiplierArmor>2.5</StuffEffectMultiplierArmor>
+			</value>
+		</li>
+
+			</operations>
+		</match>
+	</Operation>
+
+</Patch>
