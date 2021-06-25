@@ -174,6 +174,7 @@ Ogam's Warbanner Mod    |
 Orassans	|
 Outer Rim - Tatooine    |
 Palm Cats   |
+Pawnbold Race   |
 Penguin	|
 Polarisbloc - Security Force	|
 Poleepkwa Race Update	|
