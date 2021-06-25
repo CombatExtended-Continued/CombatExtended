@@ -37,6 +37,61 @@
 			</value>
 			</li>
 
+			<li Class="PatchOperationReplace">
+			<xpath>Defs/ThingDef[defName = "O21_Gun_ResonanceRifle"]/tools</xpath>
+			<value>
+				<tools>
+				<li Class="CombatExtended.ToolCE">
+					<label>stock</label>
+					<capacities>
+					<li>Blunt</li>
+					</capacities>
+					<power>8</power>
+					<cooldownTime>1.55</cooldownTime>
+					<chanceFactor>1.5</chanceFactor>
+					<armorPenetrationBlunt>2.755</armorPenetrationBlunt>
+					<linkedBodyPartsGroup>Stock</linkedBodyPartsGroup>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>barrel</label>
+					<capacities>
+					<li>Blunt</li>
+					</capacities>
+					<power>5</power>
+					<cooldownTime>2.02</cooldownTime>
+					<armorPenetrationBlunt>1.630</armorPenetrationBlunt>
+					<linkedBodyPartsGroup>Barrel</linkedBodyPartsGroup>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>muzzle</label>
+					<capacities>
+					<li>Poke</li>
+					</capacities>
+					<power>8</power>
+					<cooldownTime>1.55</cooldownTime>
+					<armorPenetrationBlunt>2.755</armorPenetrationBlunt>
+					<linkedBodyPartsGroup>Muzzle</linkedBodyPartsGroup>
+				</li>
+				</tools>
+			</value>
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[@Name="TropicalBlowpipeBase"]/tools</xpath>
+				<value>
+				<tools>
+					<li Class="CombatExtended.ToolCE">
+						<capacities>
+							<li>Blunt</li>
+						</capacities>
+						<power>7</power>
+						<cooldownTime>1.6</cooldownTime>
+					<armorPenetrationBlunt>0.65</armorPenetrationBlunt>
+					</li>
+				</tools>
+				</value>
+			</li>
+
 			<!-- Various Pistols -->
 			<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
 			<defName>O21_Gun_HighlandPistol</defName>
@@ -135,6 +190,176 @@
 			<weaponTags>
 				<li>CE_OneHandedWeapon</li>
 			</weaponTags>
+			</li>
+
+
+			<!-- ========== Boomerang =========== -->
+			<li Class="PatchOperationAttributeSet">
+				<xpath>Defs/ThingDef[defName="O21_DNI_Boomerang"]</xpath>
+				<attribute>ParentName</attribute>
+				<value>BaseWeapon</value>				
+			</li>			
+			<li Class="PatchOperationRemove">
+				<xpath>Defs/ThingDef[defName="O21_DNI_Boomerang"]/costList</xpath>
+			</li>
+			<li Class="PatchOperationRemove">
+				<xpath>Defs/ThingDef[defName="O21_DNI_Boomerang"]/recipeMaker</xpath>
+			</li>
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName="O21_DNI_Boomerang"]</xpath>
+				<value>
+					<techLevel>Neolithic</techLevel>
+					<thingCategories>
+						<li>WeaponsRanged</li>
+					</thingCategories>					
+				</value>				
+			</li>
+	
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="O21_DNI_Boomerang"]/statBases</xpath>
+				<value>
+					<statBases>
+						<SightsEfficiency>0.8</SightsEfficiency>
+						<ShotSpread>0.6</ShotSpread>
+						<SwayFactor>2</SwayFactor>
+						<Bulk>1</Bulk>
+						<Mass>0.5</Mass>
+						<RangedWeapon_Cooldown>1.3</RangedWeapon_Cooldown>
+					</statBases>
+					<stackLimit>25</stackLimit>
+					<tradeTags>
+					  <li>CE_AutoEnableTrade</li>
+					</tradeTags>					
+				</value>
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="O21_DNI_Boomerang"]/verbs</xpath>
+				<value>
+				<verbs>
+					<li Class="CombatExtended.VerbPropertiesCE">
+						<verbClass>CombatExtended.Verb_ShootCEOneUse</verbClass>
+						<hasStandardCommand>true</hasStandardCommand>
+						<defaultProjectile>Club_Thrown</defaultProjectile>
+						<warmupTime>1.5</warmupTime>
+						<range>16</range>
+						<soundCast>Interact_BeatFire</soundCast>
+					</li>
+				</verbs>
+				</value>
+			</li>		
+
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="O21_DNI_Boomerang"]/tools</xpath>
+				<value>			
+					<tools>
+						<li Class="CombatExtended.ToolCE">
+							<label>handle</label>
+							<capacities>
+								<li>Poke</li>
+							</capacities>
+							<power>3</power>
+							<cooldownTime>1.69</cooldownTime>
+							<armorPenetrationBlunt>0.8</armorPenetrationBlunt>
+							<linkedBodyPartsGroup>Handle</linkedBodyPartsGroup>
+						</li>
+						<li Class="CombatExtended.ToolCE">
+							<label>head</label>
+							<capacities>
+								<li>Blunt</li>
+							</capacities>
+							<power>6</power>
+							<cooldownTime>3.29</cooldownTime>
+							<chanceFactor>1.5</chanceFactor>
+							<armorPenetrationBlunt>3.2</armorPenetrationBlunt>
+							<linkedBodyPartsGroup>Head</linkedBodyPartsGroup>
+						</li>
+					</tools>
+				</value>
+			</li>
+
+			<li Class="PatchOperationAdd">
+				<xpath>Defs</xpath>
+				<value>
+
+				<ThingDef ParentName="BasePilumProjectile">
+					<defName>Boomerang_Thrown</defName>
+					<label>boomerang</label>
+					<graphicData>
+						<texPath>Things/Weapons/Melee/Boomerang</texPath>
+						<graphicClass>Graphic_Single</graphicClass>
+					</graphicData>			
+					<projectile Class="CombatExtended.ProjectilePropertiesCE">
+						<damageDef>Blunt</damageDef>			
+						<damageAmountBase>15</damageAmountBase>
+						<speed>12</speed>
+						<armorPenetrationBlunt>0.18</armorPenetrationBlunt>
+						<preExplosionSpawnChance>0.50</preExplosionSpawnChance>
+						<preExplosionSpawnThingDef>O21_DNI_Boomerang</preExplosionSpawnThingDef>				
+					</projectile>
+				</ThingDef>
+
+				<RecipeDef ParentName="AmmoRecipeNeolithicBase">
+				<defName>MakeAmmo_O21_DNI_Boomerang</defName>
+				<label>make boomerang x5</label>
+				<description>Craft 5 boomerangs.</description>
+				<jobString>Making boomerangs.</jobString>
+				<workAmount>1200</workAmount>
+				<ingredients>
+					<li>
+					<filter>
+						<thingDefs>
+						<li>WoodLog</li>
+						</thingDefs>
+					</filter>
+					<count>15</count>
+					</li>
+				</ingredients>
+				<fixedIngredientFilter>
+					<thingDefs>
+					<li>WoodLog</li>
+					</thingDefs>
+				</fixedIngredientFilter>
+				<recipeUsers>
+					<li>CraftingSpot</li>
+				</recipeUsers>		
+				<products>
+					<O21_DNI_Boomerang>5</O21_DNI_Boomerang>
+				</products>
+				</RecipeDef>
+
+				</value>
+			</li>
+
+			<!-- === Resonance Rifle === -->
+			<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+			<defName>O21_Gun_ResonanceRifle</defName>
+			<statBases>
+				<Mass>4.8</Mass>
+				<Bulk>14.9</Bulk>
+				<SwayFactor>1.92</SwayFactor>
+				<ShotSpread>0.30</ShotSpread>
+				<SightsEfficiency>1</SightsEfficiency>
+				<RangedWeapon_Cooldown>1.35</RangedWeapon_Cooldown>
+			</statBases>
+			<Properties>
+				<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+				<hasStandardCommand>True</hasStandardCommand>
+				<defaultProjectile>Bullet_FastMusketBall</defaultProjectile>
+				<warmupTime>2.5</warmupTime>
+				<range>45</range>
+				<soundCast>Shot_Revolver</soundCast>
+				<soundCastTail>GunTail_Light</soundCastTail>
+				<muzzleFlashScale>12</muzzleFlashScale>
+			</Properties>
+			<AmmoUser>
+				<magazineSize>1</magazineSize>
+				<reloadTime>10</reloadTime>
+				<ammoSet>AmmoSet_FastMusketBall</ammoSet>
+			</AmmoUser>
+			<FireModes>
+				<aiAimMode>AimedShot</aiAimMode>
+			</FireModes>
 			</li>
 
 			</operations>
