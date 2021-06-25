@@ -67,6 +67,7 @@ Arachne Race	|
 Area Rugs	|
 Autocleaner	|
 Auto-Mortars	|
+Bastyon  |
 Beeralope Squad	|
 Better Infestations	|
 Black Widows	|
