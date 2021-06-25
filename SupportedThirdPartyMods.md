@@ -68,6 +68,7 @@ Area Rugs	|
 Autocleaner	|
 Auto-Mortars	|
 Beeralope Squad	|
+Bastyon |
 Better Infestations	|
 Black Widows	|
 Carbon	|
