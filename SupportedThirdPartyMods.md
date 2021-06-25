@@ -67,8 +67,8 @@ Arachne Race	|
 Area Rugs	|
 Autocleaner	|
 Auto-Mortars	|
+Bastyom  |
 Beeralope Squad	|
-Bastyon |
 Better Infestations	|
 Black Widows	|
 Carbon	|
