@@ -829,6 +829,10 @@ namespace CombatExtended
                 suppressionAmount = def.projectile.GetDamageAmount(1);
                 var propsCE = def.projectile as ProjectilePropertiesCE;
                 var damageArmorCategory = def.projectile.damageDef.armorCategory;
+                if ((propsCE.damageDef.GetModExtension<DamageDefExtensionCE>() ?? new DamageDefExtensionCE()).isAmbientDamage) //Ambient damage projectiles won't deal suppression (because I'm too lazy to implement average heat and electric armor, besides, being on fire already makes pawns panic), so let's skip this entirely.
+                {
+                    return;
+                }
                 //Good luck trying to untangle this mess.
                 float penetrationAmount = ((propsCE != null) ?
                     (
@@ -841,10 +845,7 @@ namespace CombatExtended
                         )
                     ) : 0f
                 );
-                float armorMod = ((propsCE.damageDef.GetModExtension<DamageDefExtensionCE>() ?? new DamageDefExtensionCE()).isAmbientDamage ?
-                    (1 - Mathf.Clamp(pawn.GetStatValue(damageArmorCategory.armorRatingStat)*(pawn.RaceProps.IsFlesh && (damageArmorCategory == CE_DamageArmorCategoryDefOf.Electric) ? 0.25f : 1), 0, 1)) : //Hardcoded fleshy pawn electric damage resistance of 75% (EMP grenades and Ion projectiles only deal 25% damage).
-                    (penetrationAmount <= 0 ? 0 : 1 - Mathf.Clamp(pawn.GetStatValue((damageArmorCategory == CE_DamageArmorCategoryDefOf.Blunt) ? CE_StatDefOf.AverageBluntArmor : CE_StatDefOf.AverageSharpArmor) * 0.5f / penetrationAmount, 0, 1))
-                );
+                float armorMod = (penetrationAmount <= 0 ? 0 : 1 - Mathf.Clamp((pawn.GetStatValue((damageArmorCategory == CE_DamageArmorCategoryDefOf.Blunt) ? CE_StatDefOf.AverageBluntArmor : CE_StatDefOf.AverageSharpArmor)+pawn.GetStatValue(damageArmorCategory.armorRatingStat)) * 0.5f / penetrationAmount, 0, 1)); //Factoring in both natural armor and average armor troughout the body from apparel.
                 suppressionAmount *= armorMod;
                 compSuppressable.AddSuppression(suppressionAmount, OriginIV3, (propsCE.explosionRadius > 0) ? true : false);
             }
