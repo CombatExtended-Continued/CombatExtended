@@ -124,7 +124,7 @@ namespace CombatExtended.HarmonyCE
 	static bool Prefix(DamageWorker_AddInjury __instance, DamageInfo dinfo, Pawn pawn, float totalDamage, DamageWorker.DamageResult result)
 	{
 	    var hitPart = dinfo.HitPart;
-	    if (hitPart.IsInGroup(CE_BodyPartGroupDefOf.OutsideSquishy))
+	    if (dinfo.Def != DamageDefOf.SurgicalCut && dinfo.Def != DamageDefOf.ExecutionCut && hitPart.IsInGroup(CE_BodyPartGroupDefOf.OutsideSquishy))
 	    {
 		var parent = hitPart.parent;
 		if (parent != null)
