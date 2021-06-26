@@ -45,34 +45,9 @@
 					</value>
 				</li>
 
-				<!-- ==== Psion_Initiate ==== -->
+				<!-- ==== Psion_Initiate and Psion_Acolyte ==== -->
 				<li Class="PatchOperationAddModExtension">
-					<xpath>Defs/PawnKindDef[defName="Psion_Initiate"]</xpath>
-					<value>
-						<li Class="CombatExtended.LoadoutPropertiesExtension">
-							<primaryMagazineCount>
-								<min>2</min>
-								<max>4</max>
-							</primaryMagazineCount>
-							<sidearms>
-								<li>
-									<generateChance>0.6</generateChance>
-									<sidearmMoney>
-										<min>20</min>
-										<max>180</max>
-									</sidearmMoney>
-									<weaponTags>
-										<li>CE_Sidearm_Melee</li>
-									</weaponTags>
-								</li>
-							</sidearms>
-						</li>
-					</value>
-				</li>
-
-				<!-- ==== Psion_Acolyte ==== -->
-				<li Class="PatchOperationAddModExtension">
-					<xpath>Defs/PawnKindDef[defName="Psion_Acolyte"]</xpath>
+					<xpath>Defs/PawnKindDef[defName="Psion_Initiate" or defName="Psion_Acolyte"]</xpath>
 					<value>
 						<li Class="CombatExtended.LoadoutPropertiesExtension">
 							<primaryMagazineCount>
@@ -106,7 +81,7 @@
 							</primaryMagazineCount>
 							<sidearms>
 								<li>
-									<generateChance>0.6</generateChance>
+									<generateChance>0.7</generateChance>
 									<sidearmMoney>
 										<min>20</min>
 										<max>180</max>
