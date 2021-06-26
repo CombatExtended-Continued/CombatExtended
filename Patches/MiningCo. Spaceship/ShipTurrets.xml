@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+		<li>MiningCo. Spaceship</li>
+		</mods>
+		
+		<match Class="PatchOperationSequence">
+			<operations>
+
+		<!-- Replace vanilla thingClass -->
+		<li Class="PatchOperationReplace">
+        		<xpath>Defs/ThingDef[defName = "VulcanTurret"]/thingClass</xpath>
+        		<value>
+          		<thingClass>CombatExtended.Building_TurretGunCE</thingClass>
+        		</value>
+		</li>
+
+		<!-- Make turrets taller -->
+      		<!--<li Class="PatchOperationReplace">
+        		<xpath>Defs/ThingDef[defName = "VulcanTurret"]/fillPercent</xpath>
+        		<value>
+          			<fillPercent>0.85</fillPercent>
+        		</value>
+      		</li>-->
+
+	  <li Class="PatchOperationAdd">
+	  	<xpath>Defs/ThingDef[
+			defName = "VulcanTurret"]/statBases</xpath>
+	  	<value>
+	  		<AimingAccuracy>0.25</AimingAccuracy>
+	  	</value>
+	  </li>
+  
+	  <li Class="PatchOperationAdd">
+	  	<xpath>Defs/ThingDef[defName = "VulcanTurret"]/statBases</xpath>
+	  	<value>
+	  		<ShootingAccuracyTurret>0.5</ShootingAccuracyTurret>
+	  	</value>
+	  </li>
+
+    <li Class="PatchOperationReplace">
+      <xpath>Defs/ThingDef[defName = "VulcanTurret"]/building/turretBurstCooldownTime</xpath>
+      <value>
+        <turretBurstCooldownTime>1</turretBurstCooldownTime>
+      </value>
+    </li>
+			<!-- Make the Turret usable -->
+
+			<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+			<defName>Gun_VulcanTurret</defName>
+			  <statBases>
+			  <Mass>50.00</Mass>
+			  <RangedWeapon_Cooldown>0.35</RangedWeapon_Cooldown>
+			  <SightsEfficiency>1</SightsEfficiency>
+			  <ShotSpread>0.08</ShotSpread>
+			  <SwayFactor>1.33</SwayFactor>
+			  <Bulk>1.00</Bulk>
+			</statBases>
+			<Properties>
+			  <recoilAmount>1.03</recoilAmount>
+			  <verbClass>CombatExtended.Verb_ShootCE</verbClass>
+			  <hasStandardCommand>true</hasStandardCommand>
+			  <defaultProjectile>Bullet_6x24mmCharged</defaultProjectile>
+			  <warmupTime>1.2</warmupTime>
+			  <range>70</range>
+        			<ticksBetweenBurstShots>3</ticksBetweenBurstShots>
+        			<burstShotCount>20</burstShotCount>
+			  <minRange>1.5</minRange>
+        			<soundCast>Shot_ChargeRifle</soundCast>
+        			<soundCastTail>GunTail_Medium</soundCastTail>
+        			<muzzleFlashScale>12</muzzleFlashScale>
+			<recoilPattern>Mounted</recoilPattern>
+			</Properties>
+			<FireModes>
+			  <aiAimMode>AimedShot</aiAimMode>
+      			<aimedBurstShotCount>10</aimedBurstShotCount>
+      			<noSnapshot>true</noSnapshot>
+      			<noSingleShot>true</noSingleShot>
+			</FireModes>
+			</li>
+
+			</operations>
+		</match>
+	</Operation>
+</Patch>
