@@ -93,6 +93,7 @@ Erin's Critter Collection |
 Erin's Forest Critters |
 Erin's Friendly Ferrets |
 Erin's Fox Squirrel |
+Erin's Lizard Doggo |
 Erin's Mountain Animals |
 Expanded Materials - Metals |
 Expanded Materials - Plastics |
