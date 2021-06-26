@@ -164,6 +164,7 @@ More Vanilla Turrets	|
 Morgante Mafia Weapons Pack |
 Morgante WW2 Italian Weapons    |
 Moyo - From the Depth   |
+Nanosuit   |
 Nearmare Race	|
 Neclose Race	|
 NewRatkinPlus |
