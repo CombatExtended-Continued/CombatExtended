@@ -129,14 +129,21 @@ namespace CombatExtended.HarmonyCE
 		var parent = hitPart.parent;
 		if (parent != null)
 		{
+                    float hitPartHealth = pawn.health.hediffSet.GetPartHealth(hitPart);
+                    if (hitPartHealth >= totalDamage)
+                    {
+                        return true;
+                    }
+
 		    dinfo.SetHitPart(parent);
-                    if (pawn.health.hediffSet.GetPartHealth(parent) != 0f && parent.coverageAbs > 0f)
+                    float parentPartHealth = pawn.health.hediffSet.GetPartHealth(parent);
+                    if (parentPartHealth != 0f && parent.coverageAbs > 0f)
 		    {
 			Hediff_Injury hediff_Injury = (Hediff_Injury)HediffMaker.MakeHediff(HealthUtility.GetHediffDefFromDamage(dinfo.Def, pawn, parent), pawn, null);
 			hediff_Injury.Part = parent;
 			hediff_Injury.source = dinfo.Weapon;
 			hediff_Injury.sourceBodyPartGroup = dinfo.WeaponBodyPartGroup;
-			hediff_Injury.Severity = totalDamage;
+			hediff_Injury.Severity = totalDamage - (hitPartHealth * hitPartHealth / totalDamage);
 			if (hediff_Injury.Severity <= 0f)
 			{
 			    hediff_Injury.Severity = 1f;
