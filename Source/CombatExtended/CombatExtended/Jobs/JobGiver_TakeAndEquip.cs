@@ -176,7 +176,7 @@ namespace CombatExtended
                 return null;
             }
 
-            if (!pawn.Faction.IsPlayer && FindBattleWorthyEnemyPawnsCount(Find.CurrentMap, pawn) > 25)
+            if (!pawn.Faction.IsPlayer && FindBattleWorthyEnemyPawnsCount(pawn.Map, pawn) > 25)
             {
                 return null;
             }

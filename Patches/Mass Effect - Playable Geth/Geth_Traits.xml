@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+  <Operation Class="PatchOperationSequence">
+	<operations>
+	  <li Class="PatchOperationFindMod">
+			
+		<mods><li>Mass Effect - Playable Geth</li></mods>
+			
+		<match Class="PatchOperationSequence">
+		<operations>
+
+            <li Class="PatchOperationReplace">
+				<xpath>Defs/TraitDef[defName="GethNimble"]/degreeDatas/li/statFactors/MeleeDodgeChance</xpath>
+				<value>
+					<MeleeDodgeChance>2</MeleeDodgeChance>
+				</value>
+			</li>
+            
+            <li Class="PatchOperationReplace">
+				<xpath>Defs/TraitDef[defName="GethAimAccuracy"]/degreeDatas/li/statOffsets/ShootingAccuracyPawn</xpath>
+				<value>
+					<AimingAccuracy>0.6</AimingAccuracy>
+				</value>
+			</li>
+
+            <li Class="PatchOperationReplace">
+				<xpath>Defs/TraitDef[defName="GethReinforcedStructure"]/degreeDatas/li/statFactors</xpath>
+				<value>
+                                                                           <statOffsets>
+					<ArmorRating_Sharp>2</ArmorRating_Sharp>
+					<ArmorRating_Blunt>3</ArmorRating_Blunt>
+                  			           </statOffsets>
+				</value>
+			</li>
+
+            <li Class="PatchOperationAdd">
+				<xpath>Defs/TraitDef[defName="GethSlowSpeed"]/degreeDatas/li/statOffsets</xpath>
+				<value>
+					<ArmorRating_Sharp>1.5</ArmorRating_Sharp>
+					<ArmorRating_Blunt>2.5</ArmorRating_Blunt>
+				</value>
+			</li>
+			
+		</operations>
+		</match>	
+	  </li>
+	</operations>	
+  </Operation>
+</Patch>

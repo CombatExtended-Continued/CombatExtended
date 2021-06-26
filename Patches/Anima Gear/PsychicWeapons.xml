@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8" ?>
+
+<Patch>
+
+	<Operation Class="PatchOperationFindMod">
+    <mods>
+        <li>Anima Gear</li>
+    </mods>
+		<match Class="PatchOperationSequence">
+		<operations>
+
+	<!-- ========== Anima Staff ========== -->
+
+	<li Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="MeleeWeapon_AnimaStaff"]/tools</xpath>
+		<value>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<label>head</label>
+					<capacities>
+						<li>Blunt</li>
+					</capacities>
+					<power>5</power>
+					<cooldownTime>2.85</cooldownTime>
+					<chanceFactor>0.30</chanceFactor>
+					<armorPenetrationBlunt>1.69</armorPenetrationBlunt>
+					<linkedBodyPartsGroup>Head</linkedBodyPartsGroup>
+				</li>
+			</tools>
+		</value>
+	</li>
+
+	<li Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="MeleeWeapon_AnimaStaff"]/statBases</xpath>
+		<value>
+      		<Bulk>6</Bulk>
+      		<MeleeCounterParryBonus>0.93</MeleeCounterParryBonus>
+		</value>
+	</li>
+
+	<li Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="MeleeWeapon_AnimaStaff"]/equippedStatOffsets</xpath>
+		<value>
+			<MeleeCritChance>1.00</MeleeCritChance>
+			<MeleeParryChance>0.70</MeleeParryChance>
+			<MeleeDodgeChance>0.47</MeleeDodgeChance>	
+		</value>	
+	</li>
+
+		</operations>
+		</match>
+	</Operation>
+</Patch>

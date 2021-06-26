@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8" ?>
 
 <Patch>
-	<Operation Class="PatchOperationFindMod">
+  <Operation Class="PatchOperationFindMod">
     <mods>
-		<li>Logann Race (Continued)</li>
+      <li>Logann Race (Continued)</li>
     </mods>
-		<match Class="PatchOperationSequence">
-		 <operations>
+    <match Class="PatchOperationSequence">
+      <operations>
 	  
 	<li Class="PatchOperationAddModExtension">
 		<xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="Alien_Wolvx"]</xpath>
@@ -21,16 +21,16 @@
 	<!-- ========== Also Makes Em Suppressable ========== -->
 	<!-- ========== Wait is it wolvx or logann ========== -->
 	<!-- ========== Question for the ages! \o/ ========== -->
-	
-	<!-- ========== Renamed Basepawn. Naughty! ========== -->
-	
+		
 	<li Class="PatchOperationAdd">
-		<xpath>/Defs/ThingDef[@Name="BaseWolvPawn"]/comps</xpath>
+		<xpath>/Defs/ThingDef[@Name="BaseWolvPawn"]</xpath>
 		<value>
-			<li>
-				<compClass>CombatExtended.CompPawnGizmo</compClass>
-			</li>
-			<li Class="CombatExtended.CompProperties_Suppressable" />
+			<comps>
+				<li>
+					<compClass>CombatExtended.CompPawnGizmo</compClass>
+				</li>
+				<li Class="CombatExtended.CompProperties_Suppressable" />
+			</comps>
 		</value>
 	</li>
 	<!-- ========== Patch Wolvx Melee Attacks ========== -->
@@ -92,24 +92,7 @@
 
 	<!-- ========== BaseBodySize, ArmorRatings, MoveSpeed, and BaseHealth are already set. I think. ========== -->
 	<!-- ========== Thanks Xenn! ========== -->
-	
-	<!-- ========== Adds In Inspector Tabs ========== -->
-	<!-- ========== Inventory and all that jazz ========== -->
-	
-	<li Class="PatchOperationReplace">
-		<xpath>/Defs/ThingDef[@Name="BaseWolvPawn"]/inspectorTabs/li[.="ITab_Pawn_Gear"]</xpath>
-		<value>
-			<li>CombatExtended.ITab_Inventory</li>
-		</value>
-	</li>
 
-	<li Class="PatchOperationAdd">
-	
-		<xpath>/Defs/ThingDef[@Name="BaseWolvPawn"]/comps</xpath>
-		<value>
-			<li Class="CombatExtended.CompProperties_Inventory" />
-		</value>
-	</li>
 	
       </operations>
     </match>

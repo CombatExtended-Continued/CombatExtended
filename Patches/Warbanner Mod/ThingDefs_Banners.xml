@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8" ?>
+
+<Patch>
+
+	<Operation Class="PatchOperationFindMod">
+    <mods>
+        <li>Warbanner Mod</li>
+    </mods>
+		<match Class="PatchOperationSequence">
+			<operations>
+
+		<!-- ========== Banner ========== -->
+
+		<li Class="PatchOperationReplace">
+			<xpath>Defs/ThingDef[@Name="FlagMode_BasicFlag"]/tools</xpath>
+			<value>
+				<tools>
+					<li Class="CombatExtended.ToolCE">
+						<label>shaft</label>
+						<capacities>
+							<li>Blunt</li>
+						</capacities>
+						<power>7</power>
+						<cooldownTime>1.35</cooldownTime>
+						<chanceFactor>0.15</chanceFactor>
+						<armorPenetrationBlunt>2.25</armorPenetrationBlunt>
+						<linkedBodyPartsGroup>Shaft</linkedBodyPartsGroup>
+					</li>
+					<li Class="CombatExtended.ToolCE">
+						<label>shaft</label>
+						<capacities>
+							<li>Poke</li>
+						</capacities>
+						<power>4</power>
+						<cooldownTime>1.78</cooldownTime>
+						<chanceFactor>0.05</chanceFactor>
+						<armorPenetrationBlunt>1</armorPenetrationBlunt>
+						<linkedBodyPartsGroup>Point</linkedBodyPartsGroup>
+					</li>
+					<li Class="CombatExtended.ToolCE">
+						<label>head</label>
+						<capacities>
+							<li>Stab</li>
+						</capacities>
+						<power>18</power>
+						<cooldownTime>1.19</cooldownTime>
+						<chanceFactor>1.00</chanceFactor>
+						<armorPenetrationBlunt>2.25</armorPenetrationBlunt>
+						<armorPenetrationSharp>1.5</armorPenetrationSharp>
+						<linkedBodyPartsGroup>Head</linkedBodyPartsGroup>
+					</li>
+				</tools>
+			</value>
+		</li>
+
+		<li Class="PatchOperationAdd">
+			<xpath>Defs/ThingDef[@Name="FlagMode_BasicFlag"]/statBases</xpath>
+			<value>
+				<Bulk>11</Bulk>
+				<MeleeCounterParryBonus>1.28</MeleeCounterParryBonus>
+			</value>
+		</li>
+
+		<li Class="PatchOperationAdd">
+			<xpath>Defs/ThingDef[@Name="FlagMode_BasicFlag"]</xpath>
+			<value>
+				<equippedStatOffsets>
+					<MeleeCritChance>0.11</MeleeCritChance>
+					<MeleeParryChance>1.45</MeleeParryChance>
+					<MeleeDodgeChance>0.9</MeleeDodgeChance>
+				</equippedStatOffsets>
+			</value>
+		</li>
+
+		<!-- ========== Make hediff reduce suppression. ========== -->
+
+		<li Class="PatchOperationAdd">
+			<xpath>Defs/RedScare.NonSavedHediffDef[defName="Boastforme"]/stages/li</xpath>
+			<value>
+				<statOffsets>
+					<Suppressability>-0.25</Suppressability>
+				</statOffsets>
+			</value>
+		</li>
+
+			</operations>
+		</match>
+	</Operation>
+</Patch>

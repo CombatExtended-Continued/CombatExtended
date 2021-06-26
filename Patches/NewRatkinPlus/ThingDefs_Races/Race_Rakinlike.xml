@@ -23,8 +23,24 @@
 		</operations>
 		</li>
 		
+		<li Class="PatchOperationSequence">
+		<success>Always</success>
+		<operations>
+			<li Class="PatchOperationTest">
+			<xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="Ratkin_Su"]/comps</xpath>
+			<success>Invert</success>
+			</li>
+			<li Class="PatchOperationAdd">
+			<xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="Ratkin_Su"]</xpath>
+			<value>
+				<comps />
+			</value>
+			</li>
+		</operations>
+		</li>
+		
 		<li Class="PatchOperationAddModExtension">
-			<xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="Ratkin"]</xpath>
+			<xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="Ratkin" or defName="Ratkin_Su"]</xpath>
 			<value>
 				<li Class="CombatExtended.RacePropertiesExtensionCE">
 					<bodyShape>Humanoid</bodyShape>
@@ -34,21 +50,21 @@
 
 		<!-- Melee Tool & Basestats Defs -->
 		<li Class="PatchOperationAdd">
-		 <xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="Ratkin"]/statBases</xpath>
+		 <xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="Ratkin" or defName="Ratkin_Su"]/statBases</xpath>
 			  <value>
 				<MeleeCritChance>0.95</MeleeCritChance>
 				<MeleeParryChance>1</MeleeParryChance>
 			  </value>
 		</li>
 		<li Class="PatchOperationReplace">
-		 <xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="Ratkin"]/statBases/MeleeDodgeChance</xpath>
+		 <xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="Ratkin" or defName="Ratkin_Su"]/statBases/MeleeDodgeChance</xpath>
 			  <value>
 				<MeleeDodgeChance>1.05</MeleeDodgeChance>
 			  </value>
 		</li>
 		
 		<li Class="PatchOperationReplace">
-			<xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="Ratkin"]/tools</xpath> 
+			<xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="Ratkin" or defName="Ratkin_Su"]/tools</xpath> 
 			<value>
 				<tools>
 				  <li Class="CombatExtended.ToolCE">
@@ -103,7 +119,7 @@
 
 		<!-- Adding Inventory Support-->
 		<li Class="PatchOperationAdd">
-			<xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="Ratkin"]</xpath>
+			<xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="Ratkin" or defName="Ratkin_Su"]</xpath>
 			<value>
 			<inspectorTabs>
 				<li>CombatExtended.ITab_Inventory</li>
@@ -112,14 +128,14 @@
 		</li>
 
 		<li Class="PatchOperationAdd">
-			<xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="Ratkin"]/comps</xpath>
+			<xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="Ratkin" or defName="Ratkin_Su"]/comps</xpath>
 			<value>
 				<li Class="CombatExtended.CompProperties_Inventory" />
 			</value>
 		</li>
 
 		<li Class="PatchOperationAdd">
-			<xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="Ratkin"]/comps</xpath>
+			<xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="Ratkin" or defName="Ratkin_Su"]/comps</xpath>
 			<value>
 				<li>
 				  <compClass>CombatExtended.CompPawnGizmo</compClass>
@@ -130,15 +146,15 @@
 
 		<!-- Tweak weaponList -->
 		<li Class="PatchOperationRemove">
-			<xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="Ratkin"]/alienRace/raceRestriction/weaponList/li[text()="RK_LongSword"]</xpath>
+			<xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="Ratkin" or defName="Ratkin_Su"]/alienRace/raceRestriction/weaponList/li[.="RK_LongSword"]</xpath>
 		</li>
 
 		<li Class="PatchOperationRemove">
-			<xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="Ratkin"]/alienRace/raceRestriction/weaponList/li[text()="RK_FlechetteRifle"]</xpath>
+			<xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="Ratkin" or defName="Ratkin_Su"]/alienRace/raceRestriction/weaponList/li[.="RK_FlechetteRifle"]</xpath>
 		</li>
 
 		<li Class="PatchOperationRemove">
-			<xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="Ratkin"]/alienRace/raceRestriction/weaponList/li[text()="RK_FlechetteSniperRifle"]</xpath>
+			<xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="Ratkin" or defName="Ratkin_Su"]/alienRace/raceRestriction/weaponList/li[.="RK_FlechetteSniperRifle"]</xpath>
 		</li>
 
 		</operations>
