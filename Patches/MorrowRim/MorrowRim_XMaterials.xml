@@ -1,0 +1,195 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+			<li>MorrowRim</li>
+			<li>MorrowRim - Just the Animals</li>
+		</mods>
+		<match Class="PatchOperationSequence">
+			<operations>
+
+				<!-- Remove horn as a weapon -->
+				<li Class="PatchOperationRemove">
+					<xpath>/Defs/ThingDef[defName="MorrowRim_KagoutiTusk"]/tools</xpath>
+				</li>
+				<li Class="PatchOperationAttributeSet">
+					<xpath>/Defs/ThingDef[defName="MorrowRim_KagoutiTusk"]</xpath>
+					<attribute>ParentName</attribute>
+					<value>ResourceBase</value>
+				</li>
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/ThingDef[defName="MorrowRim_KagoutiTusk"]/description</xpath>
+					<value>
+						<description>A single horn of the mighty Kagouti. Proof that you're a warrior worthy of the title of Aberration Killer. Traders and collectors might pay a high price for this.</description>
+					</value>
+				</li>
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/ThingDef[defName="MorrowRim_KagoutiTusk"]/statBases/MarketValue</xpath>
+					<value>
+						<MarketValue>100</MarketValue>
+					</value>
+				</li>
+				<!--Guar -->
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/ThingDef[defName="MorrowRim_GuarHide" or defName="MorrowRim_AlbinoGuarHide"]/statBases/StuffPower_Armor_Sharp</xpath>
+					<value>
+						<StuffPower_Armor_Sharp>0.08</StuffPower_Armor_Sharp>
+					</value>
+				</li>
+				<li Class="PatchOperationAdd">
+					<xpath>/Defs/ThingDef[defName="MorrowRim_GuarHide" or defName="MorrowRim_AlbinoGuarHide"]/statBases</xpath>
+					<value>
+						<StuffPower_Armor_Blunt>0.064</StuffPower_Armor_Blunt>
+					</value>
+				</li>
+				<!--Netch -->
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/ThingDef[defName="MorrowRim_NetchLeather"]/statBases/StuffPower_Armor_Sharp</xpath>
+					<value>
+						<StuffPower_Armor_Sharp>0.11</StuffPower_Armor_Sharp>
+					</value>
+				</li>
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/ThingDef[defName="MorrowRim_NetchLeather"]/statBases/StuffPower_Armor_Blunt</xpath>
+					<value>
+						<StuffPower_Armor_Blunt>0.068</StuffPower_Armor_Blunt>
+					</value>
+				</li>
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/ThingDef[defName="MorrowRim_NetchLeather"]/statBases/StuffPower_Armor_Heat</xpath>
+					<value>
+						<StuffPower_Armor_Heat>0.02</StuffPower_Armor_Heat>
+					</value>
+				</li>
+				<!--Flea -->
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/ThingDef[defName="MorrowRim_SiltStriderChitin"]/statBases/StuffPower_Armor_Sharp</xpath>
+					<value>
+						<StuffPower_Armor_Sharp>0.18</StuffPower_Armor_Sharp>
+					</value>
+				</li>
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/ThingDef[defName="MorrowRim_SiltStriderChitin"]/statBases/StuffPower_Armor_Blunt</xpath>
+					<value>
+						<StuffPower_Armor_Blunt>0.18</StuffPower_Armor_Blunt>
+					</value>
+				</li>
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/ThingDef[defName="MorrowRim_SiltStriderChitin"]/statBases/StuffPower_Armor_Heat</xpath>
+					<value>
+						<StuffPower_Armor_Heat>0.01</StuffPower_Armor_Heat>
+					</value>
+				</li>
+				<!--Nix -->
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/ThingDef[defName="MorrowRim_NixHoundLeather"]/statBases/MarketValue</xpath>
+					<value>
+						<MarketValue>1.3</MarketValue>
+					</value>
+				</li>
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/ThingDef[defName="MorrowRim_NixHoundLeather"]/statBases/StuffPower_Armor_Sharp</xpath>
+					<value>
+						<StuffPower_Armor_Sharp>0.08</StuffPower_Armor_Sharp>
+					</value>
+				</li>
+				<li Class="PatchOperationAdd">
+					<xpath>/Defs/ThingDef[defName="MorrowRim_NixHoundLeather"]/statBases</xpath>
+					<value>
+						<StuffPower_Armor_Blunt>0.06</StuffPower_Armor_Blunt>
+					</value>
+				</li>
+				<li Class="PatchOperationAdd">
+					<xpath>/Defs/ThingDef[defName="MorrowRim_NixHoundLeather"]/statBases</xpath>
+					<value>
+						<StuffPower_Armor_Heat>0.01</StuffPower_Armor_Heat>
+					</value>
+				</li>
+				<!-- HeavyLeather-->
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/ThingDef[defName="MorrowRim_HeavyLeather"]/statBases/StuffPower_Armor_Sharp</xpath>
+					<value>
+						<StuffPower_Armor_Sharp>0.1</StuffPower_Armor_Sharp>
+					</value>
+				</li>
+				<li Class="PatchOperationAdd">
+					<xpath>/Defs/ThingDef[defName="MorrowRim_HeavyLeather"]/statBases</xpath>
+					<value>
+						<StuffPower_Armor_Blunt>0.068</StuffPower_Armor_Blunt>
+					</value>
+				</li>
+				<!--Duzog -->
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/ThingDef[defName="MorrowRim_DurzogLeather"]/statBases/StuffPower_Armor_Sharp</xpath>
+					<value>
+						<StuffPower_Armor_Sharp>0.04</StuffPower_Armor_Sharp>
+					</value>
+				</li>
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/ThingDef[defName="MorrowRim_DurzogLeather"]/statBases/StuffPower_Armor_Blunt</xpath>
+					<value>
+						<StuffPower_Armor_Blunt>0.028</StuffPower_Armor_Blunt>
+					</value>
+				</li>
+				<!--Cliff Racer -->
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/ThingDef[defName="MorrowRim_CliffRacerLeather"]/statBases/StuffPower_Armor_Sharp</xpath>
+					<value>
+						<StuffPower_Armor_Sharp>0.01</StuffPower_Armor_Sharp>
+					</value>
+				</li>
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/ThingDef[defName="MorrowRim_CliffRacerLeather"]/statBases/StuffPower_Armor_Blunt</xpath>
+					<value>
+						<StuffPower_Armor_Blunt>0.01</StuffPower_Armor_Blunt>
+					</value>
+				</li>
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/ThingDef[defName="MorrowRim_CliffRacerLeather"]/statBases/StuffPower_Armor_Heat</xpath>
+					<value>
+						<StuffPower_Armor_Heat>0</StuffPower_Armor_Heat>
+					</value>
+				</li>
+				<!--Daedra -->
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/ThingDef[defName="MorrowRim_DaedraHide"]/statBases/StuffPower_Armor_Sharp</xpath>
+					<value>
+						<StuffPower_Armor_Sharp>0.12</StuffPower_Armor_Sharp>
+					</value>
+				</li>
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/ThingDef[defName="MorrowRim_DaedraHide"]/statBases/StuffPower_Armor_Blunt</xpath>
+					<value>
+						<StuffPower_Armor_Blunt>0.8</StuffPower_Armor_Blunt>
+					</value>
+				</li>
+				<li Class="PatchOperationAdd">
+					<xpath>/Defs/ThingDef[defName="MorrowRim_DaedraHide"]/statBases</xpath>
+					<value>
+						<StuffPower_Armor_Heat>0.05</StuffPower_Armor_Heat>
+					</value>
+				</li>
+				<!--Kesh fiber -->
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/ThingDef[defName="MorrowRim_KreshFiber"]/statBases/StuffPower_Armor_Sharp</xpath>
+					<value>
+						<StuffPower_Armor_Sharp>0.02</StuffPower_Armor_Sharp>
+					</value>
+				</li>
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/ThingDef[defName="MorrowRim_KreshFiber"]/statBases/StuffPower_Armor_Blunt</xpath>
+					<value>
+						<StuffPower_Armor_Blunt>0.01</StuffPower_Armor_Blunt>
+					</value>
+				</li>
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/ThingDef[defName="MorrowRim_KreshFiber"]/statBases/StuffPower_Armor_Heat</xpath>
+					<value>
+						<StuffPower_Armor_Heat>0.01</StuffPower_Armor_Heat>
+					</value>
+				</li>
+
+			</operations>
+		</match>
+	</Operation>
+</Patch>
