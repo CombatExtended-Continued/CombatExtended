@@ -1,0 +1,237 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+
+  <Operation Class="PatchOperationFindMod">
+    <mods>
+      <li>Megafauna</li>
+    </mods>
+
+    <match Class="PatchOperationSequence">
+      <operations>
+
+      <!-- Natural Armor -->
+      <!-- Seal -->
+      <li Class="PatchOperationAdd">
+        <xpath>
+            /Defs/BodyDef[defName="Seal"]//*[
+            def="Body" or 
+            def="Neck" or 
+            def="Flipper" or 
+            def="Tail"]
+          </xpath>
+        <value>
+          <groups />
+        </value>
+      </li>
+
+      <li Class="PatchOperationAdd">
+        <xpath>
+          /Defs/BodyDef[defName="Seal"]//*[
+          def="Body" or 
+          def="Neck" or
+          def="Jaw" or
+          def="Flipper" or
+          def="Tail" or
+          def="Head"]/groups
+        </xpath>
+        <value>
+          <li>CoveredByNaturalArmor</li>
+        </value>
+      </li>
+
+      <!-- Natural Armor -->
+      <!-- Centipede -->
+      <li Class="PatchOperationAdd">
+        <xpath>
+            /Defs/BodyDef[defName="CentipedeLike"]//*[
+            def="CentipedeFirstSegment" or 
+          def="CentipedeFirstSegment" or 
+          def="CentipedeSecondSegment" or
+          def="CentipedeThirdSegment" or
+          def="CentipedeFourthSegment" or
+          def="CentipedeFifthSegment" or
+          def="CentipedeSixthSegment" or
+            def="InsectNostril" or 
+            def="Pronotum"]
+          </xpath>
+        <value>
+          <groups />
+        </value>
+      </li>
+
+      <li Class="PatchOperationAdd">
+        <xpath>
+          /Defs/BodyDef[defName="CentipedeLike"]//*[
+          def="CentipedeFirstSegment" or 
+          def="CentipedeSecondSegment" or
+          def="CentipedeThirdSegment" or
+          def="CentipedeFourthSegment" or
+          def="CentipedeFifthSegment" or
+          def="CentipedeSixthSegment" or
+          def="Pronotum" or
+          def="InsectNostril" or
+          def="InsectHead"]/groups
+        </xpath>
+        <value>
+          <li>CoveredByNaturalArmor</li>
+        </value>
+      </li>
+
+
+      <!-- Natural Armor -->
+      <!-- paw fang->
+      <li Class="PatchOperationAdd">
+        <xpath>
+            /Defs/BodyDef[defName="QuadrupedAnimalWithPawsTailAndFangs"]//*[
+            def="Body" or 
+            def="Tail" or 
+            def="Leg" or 
+            def="Neck"]
+          </xpath>
+        <value>
+          <groups />
+        </value>
+      </li>
+
+      <li Class="PatchOperationAdd">
+        <xpath>
+          /Defs/BodyDef[defName="QuadrupedAnimalWithPawsTailAndFangs"]//*[
+          def="Body" or 
+          def="Tail" or 
+          def="Neck" or 
+          def="Head" or 
+          def="AnimalJaw" or 
+          def="Fangs" or 
+          def="Paw" or 
+          def="Leg"]/groups
+        </xpath>
+        <value>
+          <li>CoveredByNaturalArmor</li>
+        </value>
+      </li>
+
+      <!-- Carapace -->
+
+      <li Class="PatchOperationAdd">
+        <xpath>
+            /Defs/BodyDef[defName="QuadrupedAnimalWithCarapace"]//*[
+            def="GlyptodonCarapace" or 
+            def="Leg" or 
+            def="Neck"]
+          </xpath>
+        <value>
+          <groups />
+        </value>
+      </li>
+
+      <li Class="PatchOperationAdd">
+        <xpath>
+          /Defs/BodyDef[defName="QuadrupedAnimalWithCarapace"]//*[
+          def="GlyptodonCarapace" or 
+          def="GlyptodonShell" or 
+          def="Tail" or 
+          def="Neck" or 
+            def="Leg" or 
+          def="Head"]/groups
+        </xpath>
+        <value>
+          <li>CoveredByNaturalArmor</li>
+        </value>
+      </li>
+
+      <!-- KangarooLike -->
+      <li Class="PatchOperationAdd">
+        <xpath>
+            /Defs/BodyDef[defName="KangarooLike"]//*[
+            def="Body" or 
+            def="Arm" or 
+            def="Leg"]
+          </xpath>
+        <value>
+          <groups />
+        </value>
+      </li>
+
+      <li Class="PatchOperationAdd">
+        <xpath>
+          /Defs/BodyDef[defName="KangarooLike"]//*[
+          def="Body" or 
+          def="Neck" or 
+          def="Head" or 
+          def="AnimalJaw" or 
+          def="Shoulder" or 
+          def="Arm" or 
+          def="Leg"]/groups
+        </xpath>
+        <value>
+          <li>CoveredByNaturalArmor</li>
+        </value>
+      </li>
+
+      <!-- FlyingInsect -->
+      <li Class="PatchOperationAdd">
+        <xpath>
+            /Defs/BodyDef[defName="FlyingInsect"]//*[
+            def="Shell" or 
+          def="Pronotum" or 
+          def="InsectNostril" or
+          def="InsectLeg"]
+          </xpath>
+        <value>
+          <groups />
+        </value>
+      </li>
+
+      <li Class="PatchOperationAdd">
+        <xpath>
+          /Defs/BodyDef[defName="FlyingInsect"]//*[
+          def="Shell" or 
+          def="Pronotum" or
+          def="InsectHead" or
+          def="InsectNostril" or
+          def="InsectMouth" or
+          def="InsectLeg"]/groups
+        </xpath>
+        <value>
+          <li>CoveredByNaturalArmor</li>
+        </value>
+      </li>
+
+      <!-- Scorpion -->
+      <li Class="PatchOperationAdd">
+        <xpath>
+            /Defs/BodyDef[defName="Scorpion"]//*[
+            def="Shell" or 
+          def="Pronotum" or 
+          def="InsectNostril" or
+          def="InsectTail" or
+          def="InsectLeg"]
+          </xpath>
+        <value>
+          <groups />
+        </value>
+      </li>
+
+      <li Class="PatchOperationAdd">
+        <xpath>
+          /Defs/BodyDef[defName="Scorpion"]//*[
+          def="Shell" or 
+          def="Pronotum" or
+          def="InsectHead" or
+          def="InsectNostril" or
+          def="InsectMouth" or
+          def="InsectTail" or
+          def="Stinger" or
+          def="Pincer" or
+          def="InsectLeg"]/groups
+        </xpath>
+        <value>
+          <li>CoveredByNaturalArmor</li>
+        </value>
+      </li>
+
+      </operations>
+    </match>
+  </Operation>
+
+</Patch>
