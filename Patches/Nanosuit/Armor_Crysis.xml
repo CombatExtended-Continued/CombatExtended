@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+			<li>Nanosuit</li>
+		</mods>
+		<match Class="PatchOperationSequence">
+			<operations>
+
+
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="ApparelArmorNanoSuitBase"]/apparel/layers</xpath>
+					<value>
+						<li>Webbing</li>
+						<li>Backpack</li>
+					</value>
+				</li>
+
+				<!-- ===Nano Helmet === -->
+				<li Class="PatchOperationAdd">
+					<xpath>/Defs/ThingDef[defName="NS_Apparel_NanosuitHelmet"]/statBases</xpath>
+					<value>
+						<Bulk>5</Bulk>
+						<WornBulk>0.5</WornBulk>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/ThingDef[defName="NS_Apparel_NanosuitHelmet"]/statBases/ArmorRating_Sharp</xpath>
+					<value>
+						<ArmorRating_Sharp>16</ArmorRating_Sharp>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/ThingDef[defName="NS_Apparel_NanosuitHelmet"]/statBases/ArmorRating_Blunt</xpath>
+					<value>
+						<ArmorRating_Blunt>36</ArmorRating_Blunt>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/ThingDef[defName="NS_Apparel_NanosuitHelmet"]/statBases/MaxHitPoints</xpath>
+					<value>
+						<MaxHitPoints>240</MaxHitPoints>
+					</value>
+				</li>
+
+				<li Class="PatchOperationAdd">
+					<xpath>/Defs/ThingDef[defName="NS_Apparel_NanosuitHelmet"]</xpath>
+					<value>
+    						<equippedStatOffsets>
+						<AimingDelayFactor>-0.05</AimingDelayFactor>
+        						<PsychicSensitivity>-0.2</PsychicSensitivity>
+        						<AimingAccuracy>0.1</AimingAccuracy>
+        						<ToxicSensitivity>-0.50</ToxicSensitivity>
+        						<SmokeSensitivity>-1</SmokeSensitivity>
+    						</equippedStatOffsets>
+					</value>
+				</li>
+
+				<li Class="PatchOperationAdd">
+					<xpath>/Defs/ThingDef[defName="NS_Apparel_NanosuitHelmet"]/apparel/layers</xpath>
+					<value>
+						<li>MiddleHead</li>
+						<li>StrappedHead</li>
+					</value>
+				</li>
+
+				<!-- === Nano Armor === -->
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/ThingDef[defName="ApparelArmorNanoSuitBase"]/statBases/Mass</xpath>
+					<value>
+						<Bulk>60</Bulk>
+						<WornBulk>8</WornBulk>
+						<Mass>18</Mass>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/ThingDef[defName="ApparelArmorNanoSuitBase"]/statBases/ArmorRating_Sharp</xpath>
+					<value>
+						<ArmorRating_Sharp>20</ArmorRating_Sharp>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/ThingDef[defName="ApparelArmorNanoSuitBase"]/statBases/ArmorRating_Blunt</xpath>
+					<value>
+						<ArmorRating_Blunt>45</ArmorRating_Blunt>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/ThingDef[defName="ApparelArmorNanoSuitBase"]/statBases/MaxHitPoints</xpath>
+					<value>
+						<MaxHitPoints>500</MaxHitPoints>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/ThingDef[defName="ApparelArmorNanoSuitBase"]/equippedStatOffsets</xpath>
+					<value>
+    					<equippedStatOffsets>
+						<CarryWeight>60</CarryWeight>
+						<CarryBulk>80</CarryBulk>
+						<ShootingAccuracyPawn>0.15</ShootingAccuracyPawn>
+						<ToxicSensitivity>-0.5</ToxicSensitivity>
+						<MoveSpeed>1</MoveSpeed>
+						<ReloadSpeed>0.15</ReloadSpeed>
+    					</equippedStatOffsets>
+					</value>
+				</li>
+
+				<li Class="PatchOperationAdd">
+					<xpath>/Defs/ThingDef[defName="ApparelArmorNanoSuitBase"]/apparel/bodyPartGroups</xpath>
+					<value>
+						<li>Hands</li>
+						<li>Feet</li>
+					</value>
+				</li>
+
+			</operations>
+		</match>
+	</Operation>
+
+</Patch>
