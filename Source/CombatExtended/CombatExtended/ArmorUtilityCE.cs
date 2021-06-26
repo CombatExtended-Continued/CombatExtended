@@ -239,7 +239,7 @@ namespace CombatExtended
                     var armorDamagePen = penAmount * 2f - armorAmount;
                     var armorDmgMult = fullDeflect ? 0 : penAmount == 0 ? 1 : Mathf.Clamp01(armorDamagePen / penAmount);
                     var armorDmgAmount = dmgAmount * armorDmgMult;
-                    var armorDamage = Mathf.Max(1, armorDmgAmount);
+                    var armorDamage = Mathf.Max(0, armorDmgAmount);
                     armor.TakeDamage(new DamageInfo(def, Mathf.CeilToInt(armorDamage)));
                 }
             }
