@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+
+	<Operation Class="PatchOperationFindMod">
+    <mods>
+        <li>MorrowRim</li>
+    </mods>
+	<match Class="PatchOperationSequence">
+		<operations>
+
+		<li Class="PatchOperationRemove">
+			<xpath>Defs/ThingDef[defName="MorrowRim_RetchingNetchShell"]</xpath>
+		</li>
+
+		<li Class="PatchOperationAdd">
+			<xpath>Defs</xpath>
+			<value>
+				<CombatExtended.AmmoCategoryDef>
+					<defName>Netchyshell</defName>
+					<label>Netch foam</label>
+					<description>Releases a flood of steaming netch jelly that extinguishes fire.</description>
+				</CombatExtended.AmmoCategoryDef>
+			</value>
+		</li>
+		
+		<li Class="PatchOperationAdd">
+			<xpath>Defs</xpath>
+			<value>
+				<ThingDef Class="CombatExtended.AmmoDef" ParentName="81mmMortarShellBaseCraftableBase">
+					<defName>MorrowRim_RetchingNetchShell</defName>
+					<label>retching netch gas shell</label>
+					<graphicData>
+      					<texPath>MorrowRim/Items/Shells/RetchingNetch</texPath>
+      					<graphicClass>Graphic_StackCount</graphicClass>
+					</graphicData>
+					<statBases>
+						<MarketValue>20.03</MarketValue>
+						<Mass>5</Mass>
+						<Bulk>8</Bulk>
+					</statBases>
+    					<ammoClass>Netchyshell</ammoClass>
+    					<generateAllowChance>0</generateAllowChance>
+					<detonateProjectile>Bullet_RetchingNetchShell</detonateProjectile>
+				</ThingDef>
+			</value>
+		</li>
+		
+		<li Class="PatchOperationAdd">
+			<xpath>Defs</xpath>
+			<value>
+				<ThingDef Class="CombatExtended.AmmoDef" ParentName="Base81mmMortarShell">
+					<defName>Bullet_RetchingNetchShell</defName>
+					<label>Retching Netch Shell</label>
+					<graphicData>
+      						<texPath>Things/Projectile/ShellFirefoam</texPath>
+      						<graphicClass>Graphic_Single</graphicClass>
+      						<shaderType>TransparentPostLight</shaderType>
+					</graphicData>
+					<projectile Class="CombatExtended.ProjectilePropertiesCE">
+      					<damageDef>Smoke</damageDef>
+      					<damageAmountBase>40</damageAmountBase>
+      					<explosionRadius>5</explosionRadius>
+      					<flyOverhead>true</flyOverhead>
+      					<soundHitThickRoof>Artillery_HitThickRoof</soundHitThickRoof>
+     					<soundExplode>Explosion_Smoke</soundExplode>
+      					<soundImpactAnticipate>MortarRound_PreImpact</soundImpactAnticipate>
+      					<soundAmbient>MortarRound_Ambient</soundAmbient>
+      					<postExplosionSpawnThingDef>Gas_RetchingNetch</postExplosionSpawnThingDef>
+      					<postExplosionSpawnChance>1</postExplosionSpawnChance>
+      					<postExplosionSpawnThingCount>1</postExplosionSpawnThingCount>
+      					<applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
+      					<explosionEffect>ExtinguisherExplosion</explosionEffect>
+					</projectile>
+				</ThingDef>
+			</value>
+		</li>
+		
+		<li Class="PatchOperationAdd">
+			<xpath>Defs/CombatExtended.AmmoSetDef[defName="AmmoSet_81mmMortarShell"]/ammoTypes</xpath>
+			<value>
+				<MorrowRim_RetchingNetchShell>Bullet_RetchingNetchShell</MorrowRim_RetchingNetchShell>
+			</value>
+		</li>
+		
+		<li Class="PatchOperationAdd">
+			<xpath>Defs</xpath>
+			<value>
+				<RecipeDef ParentName="AmmoRecipeBase">
+					<defName>MakeMorrowRim_RetchingNetchShell</defName>
+					<label>make 81mm netch foam mortar shell x3</label>
+					<description>Craft 3 netch firefoam shells from netch body mucus.</description>
+					<jobString>Making 81mm netch firefoam shells.</jobString>
+					<ingredients>
+					<li>
+						<filter>
+						<thingDefs>
+						<li>Steel</li>
+						</thingDefs>
+						</filter>
+						<count>30</count>
+					</li>
+					<li>
+						<filter>
+						<thingDefs>
+						<li>ComponentIndustrial</li>
+						</thingDefs>
+						</filter>
+						<count>3</count>
+					</li>
+					<li>
+						<filter>
+						<thingDefs>
+						<li>MorrowRim_NetchJelly</li>
+						</thingDefs>
+						</filter>
+						<count>12</count>
+					</li>
+					</ingredients>
+					<fixedIngredientFilter>
+					<thingDefs>
+					<li>Steel</li>
+					<li>ComponentIndustrial</li>
+					<li>MorrowRim_NetchJelly</li>
+					</thingDefs>
+					</fixedIngredientFilter>
+					<products>
+						<MorrowRim_RetchingNetchShell>3</MorrowRim_RetchingNetchShell>
+					</products>
+					<workAmount>2400</workAmount>
+					<researchPrerequisite>Mortars</researchPrerequisite>
+				</RecipeDef>
+			</value>
+		</li>
+		
+		</operations>
+	</match>
+	</Operation>
+</Patch>
+

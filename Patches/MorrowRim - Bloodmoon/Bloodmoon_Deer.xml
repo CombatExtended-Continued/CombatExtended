@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+		<li>MorrowRim - Bloodmoon</li>
+		</mods>
+
+		<match Class="PatchOperationSequence">
+			<operations>
+
+			<li Class="PatchOperationAddModExtension">
+				<xpath>/Defs/ThingDef[defName="MorrowRim_AvatarOfHircine"]</xpath>
+				<value>
+					<li Class="CombatExtended.RacePropertiesExtensionCE">
+						<bodyShape>Quadruped</bodyShape>
+					</li>
+				</value>
+			</li>
+
+			<li Class="PatchOperationAdd">
+				<xpath>/Defs/ThingDef[defName="MorrowRim_AvatarOfHircine"]/statBases</xpath>
+				<value>
+					<MeleeDodgeChance>0.5</MeleeDodgeChance>
+					<MeleeCritChance>0.33</MeleeCritChance>
+					<MeleeParryChance>0.15</MeleeParryChance>
+				</value>
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>/Defs/ThingDef[defName="MorrowRim_AvatarOfHircine"]/tools</xpath>
+				<value>
+					<tools>
+						<li Class="CombatExtended.ToolCE">
+						<label>head</label>
+						<capacities>
+						  <li>Blunt</li>
+						</capacities>
+						<power>11</power>
+						<cooldownTime>1.45</cooldownTime>
+						<linkedBodyPartsGroup>HeadAttackTool</linkedBodyPartsGroup>
+						<armorPenetrationBlunt>2</armorPenetrationBlunt>
+						<ensureLinkedBodyPartsGroupAlwaysUsable>true</ensureLinkedBodyPartsGroupAlwaysUsable>
+					                </li>
+						<li Class="CombatExtended.ToolCE">
+						<label>left hoof</label>
+						<capacities>
+						  <li>Blunt</li>
+						  <li>Poke</li>
+						</capacities>
+						<power>7</power>
+						<cooldownTime>1.33</cooldownTime>
+						<linkedBodyPartsGroup>FrontLeftLeg</linkedBodyPartsGroup>
+						<armorPenetrationBlunt>1</armorPenetrationBlunt>
+					  </li>
+						<li Class="CombatExtended.ToolCE">
+						<label>right hoof</label>
+						<capacities>
+						  <li>Blunt</li>
+						  <li>Poke</li>
+						</capacities>
+						<power>7</power>
+						<cooldownTime>1.33</cooldownTime>
+						<linkedBodyPartsGroup>FrontRightLeg</linkedBodyPartsGroup>
+						<armorPenetrationBlunt>1</armorPenetrationBlunt>
+					  </li>
+						<li Class="CombatExtended.ToolCE">
+						<capacities>
+						  <li>BiteBlunt</li>
+						</capacities>
+						<power>3</power>
+						<cooldownTime>2</cooldownTime>
+						<linkedBodyPartsGroup>Teeth</linkedBodyPartsGroup>
+						<chanceFactor>0.5</chanceFactor>
+						<armorPenetrationBlunt>1</armorPenetrationBlunt>
+					  </li>
+				<li Class="CombatExtended.ToolCE">
+					<label>antlers</label>
+					<capacities>
+						<li>Blunt</li>
+          						<li>Stab</li>
+          						<li>Cut</li>
+					</capacities>
+					<power>18</power>
+					<cooldownTime>1.45</cooldownTime>
+					<linkedBodyPartsGroup>HeadAttackTool</linkedBodyPartsGroup>
+					<armorPenetrationSharp>0.42</armorPenetrationSharp>
+					<armorPenetrationBlunt>1.5</armorPenetrationBlunt>
+				</li>
+					</tools>
+				</value>
+			</li>
+			</operations>
+		</match>
+	</Operation>
+</Patch>

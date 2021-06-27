@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+			<li>Bastyon</li>
+		</mods>
+		<match Class="PatchOperationSequence">
+			<operations>
+				<!-- Remove tusk as a weapon -->
+				<li Class="PatchOperationRemove">
+					<xpath>/Defs/ThingDef[defName="Bast_CeratokHorn"]/tools</xpath>
+				</li>
+				<li Class="PatchOperationAttributeSet">
+					<xpath>/Defs/ThingDef[defName="Bast_CeratokHorn"]</xpath>
+					<attribute>ParentName</attribute>
+					<value>ResourceBase</value>
+				</li>
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/ThingDef[defName="Bast_CeratokHorn"]/statBases/MarketValue</xpath>
+					<value>
+						<MarketValue>500</MarketValue>
+					</value>
+				</li>
+
+				<!--Bahlrin -->
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/ThingDef[defName="Leather_Bahlrin"]/statBases/StuffPower_Armor_Sharp</xpath>
+					<value>
+						<StuffPower_Armor_Sharp>0.09</StuffPower_Armor_Sharp>
+					</value>
+				</li>
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/ThingDef[defName="Leather_Bahlrin"]/statBases/StuffPower_Armor_Blunt</xpath>
+					<value>
+						<StuffPower_Armor_Blunt>0.04</StuffPower_Armor_Blunt>
+					</value>
+				</li>
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/ThingDef[defName="Leather_Bahlrin"]/statBases/StuffPower_Armor_Heat</xpath>
+					<value>
+						<StuffPower_Armor_Heat>0.02</StuffPower_Armor_Heat>
+					</value>
+				</li>
+
+				<!--Bastyon -->
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/ThingDef[defName="Leather_Bastyon"]/statBases/StuffPower_Armor_Sharp</xpath>
+					<value>
+						<StuffPower_Armor_Sharp>0.08</StuffPower_Armor_Sharp>
+					</value>
+				</li>
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/ThingDef[defName="Leather_Bastyon"]/statBases/StuffPower_Armor_Blunt</xpath>
+					<value>
+						<StuffPower_Armor_Blunt>0.04</StuffPower_Armor_Blunt>
+					</value>
+				</li>
+
+				<!--Leather_Blazing_Felidae -->
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/ThingDef[defName="Leather_Blazing_Felidae"]/statBases/StuffPower_Armor_Sharp</xpath>
+					<value>
+						<StuffPower_Armor_Sharp>0.09</StuffPower_Armor_Sharp>
+					</value>
+				</li>
+
+				<!--Tegu -->
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/ThingDef[defName="Leather_Chem_Tegu"]/statBases/StuffPower_Armor_Sharp</xpath>
+					<value>
+						<StuffPower_Armor_Sharp>0.06</StuffPower_Armor_Sharp>
+					</value>
+				</li>
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/ThingDef[defName="Leather_Chem_Tegu"]/statBases/StuffPower_Armor_Blunt</xpath>
+					<value>
+						<StuffPower_Armor_Blunt>0.03</StuffPower_Armor_Blunt>
+					</value>
+				</li>
+
+				<!--Leather_Scire -->
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/ThingDef[defName="Leather_Scire"]/statBases/StuffPower_Armor_Sharp</xpath>
+					<value>
+						<StuffPower_Armor_Sharp>0.046</StuffPower_Armor_Sharp>
+					</value>
+				</li>
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/ThingDef[defName="Leather_Scire"]/statBases/StuffPower_Armor_Blunt</xpath>
+					<value>
+						<StuffPower_Armor_Blunt>0.02</StuffPower_Armor_Blunt>
+					</value>
+				</li>
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/ThingDef[defName="Leather_Scire"]/statBases/StuffPower_Armor_Heat</xpath>
+					<value>
+						<StuffPower_Armor_Heat>0.07</StuffPower_Armor_Heat>
+					</value>
+				</li>
+
+				<!--Leather_Ethereal_Lion -->
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/ThingDef[defName="Leather_Ethereal_Lion"]/statBases/StuffPower_Armor_Sharp</xpath>
+					<value>
+						<StuffPower_Armor_Sharp>0.07</StuffPower_Armor_Sharp>
+					</value>
+				</li>
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/ThingDef[defName="Leather_Ethereal_Lion"]/statBases/StuffPower_Armor_Blunt</xpath>
+					<value>
+						<StuffPower_Armor_Blunt>0.036</StuffPower_Armor_Blunt>
+					</value>
+				</li>
+
+				<!--Leather_Ceratok -->
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/ThingDef[defName="Leather_Ceratok"]/statBases/StuffPower_Armor_Sharp</xpath>
+					<value>
+						<StuffPower_Armor_Sharp>0.12</StuffPower_Armor_Sharp>
+					</value>
+				</li>
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/ThingDef[defName="Leather_Ceratok"]/statBases/StuffPower_Armor_Blunt</xpath>
+					<value>
+						<StuffPower_Armor_Blunt>0.064</StuffPower_Armor_Blunt>
+					</value>
+				</li>
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/ThingDef[defName="Leather_Ceratok"]/statBases/StuffPower_Armor_Heat</xpath>
+					<value>
+						<StuffPower_Armor_Heat>0.04</StuffPower_Armor_Heat>
+					</value>
+				</li>
+
+
+				<!--Leather_Soul_Eater -->
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/ThingDef[defName="Leather_Soul_Eater"]/statBases/StuffPower_Armor_Sharp</xpath>
+					<value>
+						<StuffPower_Armor_Sharp>0.03</StuffPower_Armor_Sharp>
+					</value>
+				</li>
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/ThingDef[defName="Leather_Soul_Eater"]/statBases/StuffPower_Armor_Blunt</xpath>
+					<value>
+						<StuffPower_Armor_Blunt>0.2</StuffPower_Armor_Blunt>
+					</value>
+				</li>
+
+			</operations>
+		</match>
+	</Operation>
+</Patch>

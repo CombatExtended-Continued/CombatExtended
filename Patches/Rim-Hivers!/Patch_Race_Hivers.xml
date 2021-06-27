@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+	<Operation Class="PatchOperationFindMod">
+			<mods>
+				<li>Rim-Hivers!</li>
+			</mods>
+		<match Class="PatchOperationSequence">
+		<operations>
+		
+		<li Class="PatchOperationAddModExtension">
+			<xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="Hiver_Prince" or defName="Hiver_Soldier" or defName="Hiver_Worker" or defName="Hiver_Prince_South" or defName="Hiver_Queen" or defName="Hiver_Worker_South" or defName="Hiver_Soldier_South" or defName="Hiver_Queen_South"]</xpath>
+			<value>
+				<li Class="CombatExtended.RacePropertiesExtensionCE">
+					<bodyShape>Humanoid</bodyShape>
+				</li>
+			</value>
+		</li>
+
+		<li Class="PatchOperationAdd">
+		 <xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="Hiver_Prince" or defName="Hiver_Prince_South" or defName="Hiver_Queen" or defName="Hiver_Queen_South"]/statBases</xpath>
+			  <value>
+				<MeleeCritChance>1.1</MeleeCritChance>
+				<MeleeParryChance>1.1</MeleeParryChance>
+				<MeleeDodgeChance>1.1</MeleeDodgeChance>
+          				<Suppressability>0.8</Suppressability>
+			  </value>
+		</li>
+
+		<li Class="PatchOperationAdd">
+		 <xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="Hiver_Worker" or defName="Hiver_Worker_South"]/statBases</xpath>
+			  <value>
+				<MeleeCritChance>0.88</MeleeCritChance>
+				<MeleeParryChance>0.88</MeleeParryChance>
+				<MeleeDodgeChance>0.88</MeleeDodgeChance>
+				<AimingAccuracy>0.88</AimingAccuracy>
+          				<Suppressability>0.66</Suppressability>
+			  </value>
+		</li>
+
+		<li Class="PatchOperationAdd">
+		 <xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="Hiver_Soldier" or defName="Hiver_Soldier_South"]/statBases</xpath>
+			  <value>
+				<MeleeCritChance>1</MeleeCritChance>
+				<MeleeParryChance>1</MeleeParryChance>
+				<MeleeDodgeChance>1</MeleeDodgeChance>
+          				<Suppressability>0.66</Suppressability>
+			  </value>
+		</li>
+		
+		<li Class="PatchOperationReplace">
+			<xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="Hiver_Prince" or defName="Hiver_Soldier" or defName="Hiver_Worker" or defName="Hiver_Prince_South" or defName="Hiver_Queen" or defName="Hiver_Worker_South" or defName="Hiver_Soldier_South" or defName="Hiver_Queen_South"]/tools</xpath> 
+			<value>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<label>left fist</label>
+					<capacities>
+						<li>Blunt</li>
+					</capacities>
+					<power>1</power>
+					<cooldownTime>1.2</cooldownTime>
+					<linkedBodyPartsGroup>LeftHand</linkedBodyPartsGroup>
+					<armorPenetrationBlunt>0.22</armorPenetrationBlunt>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>right fist</label>
+					<capacities>
+						<li>Blunt</li>
+					</capacities>
+					<power>1</power>
+					<cooldownTime>1.2</cooldownTime>
+					<linkedBodyPartsGroup>RightHand</linkedBodyPartsGroup>
+					<armorPenetrationBlunt>0.22</armorPenetrationBlunt>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>head</label>
+					<capacities>
+						<li>Blunt</li>
+					</capacities>
+					<power>2</power>
+					<cooldownTime>3.4</cooldownTime>
+					<linkedBodyPartsGroup>HeadAttackTool</linkedBodyPartsGroup>
+					<chanceFactor>0.2</chanceFactor>
+					<armorPenetrationBlunt>1</armorPenetrationBlunt>
+				</li>
+			</tools>
+			</value>
+		</li>
+
+		<li Class="PatchOperationAdd">
+			<xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="Hiver_Prince" or defName="Hiver_Soldier" or defName="Hiver_Worker" or defName="Hiver_Prince_South" or defName="Hiver_Worker_South" or defName="Hiver_Soldier_South"]</xpath>
+			<value>
+             				<comps />
+			</value>
+		</li>
+
+		<li Class="PatchOperationAdd">
+			<xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="Hiver_Prince" or defName="Hiver_Soldier" or defName="Hiver_Worker" or defName="Hiver_Prince_South" or defName="Hiver_Queen" or defName="Hiver_Worker_South" or defName="Hiver_Soldier_South" or defName="Hiver_Queen_South"]/comps</xpath>
+			<value>
+				<li>
+				  <compClass>CombatExtended.CompPawnGizmo</compClass>
+				</li>
+				<li Class="CombatExtended.CompProperties_Suppressable" />
+			</value>
+		</li>
+
+		</operations>
+		</match>
+	</Operation>
+</Patch>

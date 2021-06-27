@@ -1,0 +1,207 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+			<li>[RWY]Dragon's Descent: Void Dwellers</li>
+		</mods>
+		<match Class="PatchOperationSequence">
+			<operations>
+				<!-- Void Dragon Breath -->
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/AbilityDef[defName="VoidDragonBreath"]/verbProperties/range</xpath>
+					<value>
+						<range>60</range>
+					</value>
+				</li>
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/AbilityDef[defName="VoidDragonBreath"]/verbProperties/warmupTime</xpath>
+					<value>
+						<warmupTime>1.6</warmupTime>
+					</value>
+				</li>
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/AbilityDef[defName="VoidDragonBreath"]/verbProperties/minRange</xpath>
+					<value>
+						<minRange>4</minRange>
+					</value>
+				</li>
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/AbilityDef[defName="VoidDragonBreath"]/comps/li[@Class="DD.AbilityCompProperties_CastVerb"]/verbProperties/li</xpath>
+					<value>
+						<li Class="CombatExtended.VerbPropertiesCE">
+							<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+							<hasStandardCommand>true</hasStandardCommand>
+							<ai_IsBuildingDestroyer>true</ai_IsBuildingDestroyer>
+							<defaultProjectile>Projectile_DragonBreath</defaultProjectile>
+							<range>60</range>
+							<burstShotCount>15</burstShotCount>
+							<ticksBetweenBurstShots>2</ticksBetweenBurstShots>
+							<minRange>4</minRange>
+							<soundCast>DragonBreathShot</soundCast>
+							<muzzleFlashScale>5</muzzleFlashScale>
+							<recoilAmount>1</recoilAmount>
+							<recoilPattern>Mounted</recoilPattern> <!-- Less vertical, more horizontal recoil. -->
+						</li>
+					</value>
+				</li>
+
+				<!-- Nebula dragon Breath -->
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/AbilityDef[defName="NebulaDragonBreath"]/verbProperties/range</xpath>
+					<value>
+						<range>55</range>
+					</value>
+				</li>
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/AbilityDef[defName="NebulaDragonBreath"]/verbProperties/minRange</xpath>
+					<value>
+						<minRange>8</minRange>
+					</value>
+				</li>
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/AbilityDef[defName="NebulaDragonBreath"]/verbProperties/warmupTime</xpath>
+					<value>
+						<warmupTime>2.5</warmupTime>
+					</value>
+				</li>
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/AbilityDef[defName="NebulaDragonBreath"]/comps/li[@Class="DD.AbilityCompProperties_CastVerb"]/verbProperties/li</xpath>
+					<value>
+						<li Class="CombatExtended.VerbPropertiesCE">
+							<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+							<hasStandardCommand>true</hasStandardCommand>
+							<ai_IsBuildingDestroyer>true</ai_IsBuildingDestroyer>
+							<defaultProjectile>Projectile_NebulaDragonBreath</defaultProjectile>
+							<range>55</range>
+							<burstShotCount>33</burstShotCount>
+							<ticksBetweenBurstShots>4</ticksBetweenBurstShots>
+							<minRange>8</minRange>
+							<soundCast>DragonBreathShot</soundCast>
+							<muzzleFlashScale>4</muzzleFlashScale>
+							<recoilAmount>0.48</recoilAmount>
+							<recoilPattern>Mounted</recoilPattern> <!-- Less vertical, more horizontal recoil. -->
+						</li>
+					</value>
+				</li>
+
+				<!-- Aurelion Dragon Breath -->
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/AbilityDef[defName="AurelionDragonBreath"]/verbProperties/range</xpath>
+					<value>
+						<range>60</range>
+					</value>
+				</li>
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/AbilityDef[defName="AurelionDragonBreath"]/verbProperties/minRange</xpath>
+					<value>
+						<minRange>9</minRange>
+					</value>
+				</li>
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/AbilityDef[defName="AurelionDragonBreath"]/verbProperties/warmupTime</xpath>
+					<value>
+						<warmupTime>2.0</warmupTime>
+					</value>
+				</li>
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/AbilityDef[defName="AurelionDragonBreath"]/comps/li[@Class="DD.AbilityCompProperties_CastVerb"]/verbProperties/li</xpath>
+					<value>
+						<li Class="CombatExtended.VerbPropertiesCE">
+							<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+							<hasStandardCommand>true</hasStandardCommand>
+							<ai_IsBuildingDestroyer>true</ai_IsBuildingDestroyer>
+							<defaultProjectile>Projectile_AurelionDragonBreath</defaultProjectile>
+							<range>60</range>
+							<burstShotCount>5</burstShotCount>
+							<ticksBetweenBurstShots>6</ticksBetweenBurstShots>
+							<minRange>9</minRange>
+							<soundCast>DragonBreathShot</soundCast>
+							<muzzleFlashScale>11</muzzleFlashScale>
+							<recoilAmount>0.76</recoilAmount>
+							<recoilPattern>Mounted</recoilPattern> <!-- Less vertical, more horizontal recoil. -->
+						</li>
+					</value>
+				</li>
+
+				<!-- Star Dust Breath -->
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/AbilityDef[defName="StarDustBreath"]/verbProperties/range</xpath>
+					<value>
+						<range>43</range>
+					</value>
+				</li>
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/AbilityDef[defName="StarDustBreath"]/verbProperties/minRange</xpath>
+					<value>
+						<minRange>3</minRange>
+					</value>
+				</li>
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/AbilityDef[defName="StarDustBreath"]/verbProperties/warmupTime</xpath>
+					<value>
+						<warmupTime>2.5</warmupTime>
+					</value>
+				</li>
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/AbilityDef[defName="StarDustBreath"]/comps/li[@Class="DD.AbilityCompProperties_CastVerb"]/verbProperties/li</xpath>
+					<value>
+						<li Class="CombatExtended.VerbPropertiesCE">
+							<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+							<hasStandardCommand>true</hasStandardCommand>
+							<ai_IsBuildingDestroyer>true</ai_IsBuildingDestroyer>
+							<defaultProjectile>Projectile_StarDustBreath</defaultProjectile>
+							<range>42</range>
+							<burstShotCount>5</burstShotCount>
+							<ticksBetweenBurstShots>5</ticksBetweenBurstShots>
+							<minRange>9</minRange>
+							<soundCast>DragonBreathShot</soundCast>
+							<muzzleFlashScale>9</muzzleFlashScale>
+							<recoilAmount>0.4</recoilAmount>
+							<recoilPattern>Mounted</recoilPattern> <!-- Less vertical, more horizontal recoil. -->
+						</li>
+					</value>
+				</li>
+
+				<!-- Molten Breath -->
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/AbilityDef[defName="MoltenBreath"]/verbProperties/range</xpath>
+					<value>
+						<range>36</range>
+					</value>
+				</li>
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/AbilityDef[defName="MoltenBreath"]/verbProperties/minRange</xpath>
+					<value>
+						<minRange>5</minRange>
+					</value>
+				</li>
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/AbilityDef[defName="MoltenBreath"]/verbProperties/warmupTime</xpath>
+					<value>
+						<warmupTime>3.0</warmupTime>
+					</value>
+				</li>
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/AbilityDef[defName="MoltenBreath"]/comps/li[@Class="DD.AbilityCompProperties_CastVerb"]/verbProperties/li</xpath>
+					<value>
+						<li Class="CombatExtended.VerbPropertiesCE">
+							<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+							<hasStandardCommand>true</hasStandardCommand>
+							<ai_IsBuildingDestroyer>true</ai_IsBuildingDestroyer>
+							<defaultProjectile>Projectile_MoltenBreath</defaultProjectile>
+							<range>35</range>
+							<burstShotCount>8</burstShotCount>
+							<ticksBetweenBurstShots>11</ticksBetweenBurstShots>
+							<minRange>5</minRange>
+							<soundCast>DragonBreathShot</soundCast>
+							<muzzleFlashScale>16</muzzleFlashScale>
+							<recoilAmount>1</recoilAmount>
+							<recoilPattern>Mounted</recoilPattern> <!-- Less vertical, more horizontal recoil. -->
+						</li>
+					</value>
+				</li>
+
+			</operations>
+		</match>
+	</Operation>
+</Patch>

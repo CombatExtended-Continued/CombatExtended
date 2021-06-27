@@ -1,0 +1,343 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+
+  <Operation Class="PatchOperationFindMod">
+    <mods>
+      <li>MorrowRim</li>
+    </mods>
+
+    <match Class="PatchOperationSequence">
+      <operations>
+
+      <!-- Bipedal -->
+
+      <li Class="PatchOperationAdd">
+        <xpath>
+            /Defs/BodyDef[defName="MorrowRim_Bipedal"]//*[
+            def="Body" or 
+            def="Tail" or 
+            def="Neck" or 
+            def="Leg"]
+          </xpath>
+        <value>
+          <groups />
+        </value>
+      </li>
+
+      <li Class="PatchOperationAdd">
+        <xpath>
+          /Defs/BodyDef[defName="MorrowRim_Bipedal"]//*[
+          def="Body" or 
+          def="Tail" or 
+          def="Neck" or 
+          def="Head" or 
+          def="Leg" or 
+         def="Foot"]/groups
+        </xpath>
+        <value>
+          <li>CoveredByNaturalArmor</li>
+        </value>
+      </li>
+
+      <!-- Clannfear -->
+      <li Class="PatchOperationAdd">
+        <xpath>
+            /Defs/BodyDef[defName="MorrowRim_Clannfear"]//*[
+            def="Body" or 
+            def="Tail" or 
+            def="Neck" or 
+            def="Leg"]
+          </xpath>
+        <value>
+          <groups />
+        </value>
+      </li>
+
+      <li Class="PatchOperationAdd">
+        <xpath>
+          /Defs/BodyDef[defName="MorrowRim_Clannfear"]//*[
+          def="Body" or 
+          def="Tail" or 
+          def="Neck" or 
+          def="Head" or 
+          def="AnimalJaw" or
+          def="FrontClaw" or
+          def="Shoulder" or
+            def="Arm" or 
+          def="Hand" or
+          def="Leg" or 
+         def="Foot"
+			    ]/groups
+        </xpath>
+        <value>
+          <li>CoveredByNaturalArmor</li>
+        </value>
+      </li>
+
+      <!-- Daedra -->
+      <li Class="PatchOperationAdd">
+        <xpath>
+            /Defs/BodyDef[defName="MorrowRim_Daedra"]//*[
+            def="Body" or 
+            def="Neck" or 
+            def="Leg"]
+          </xpath>
+        <value>
+          <groups />
+        </value>
+      </li>
+
+      <li Class="PatchOperationAdd">
+        <xpath>
+          /Defs/BodyDef[defName="MorrowRim_Daedra"]//*[
+          def="Body" or 
+          def="Neck" or 
+          def="Head" or 
+          def="AnimalJaw" or
+          def="Arm" or
+          def="Shoulder" or
+          def="FrontClaw" or
+          def="Hand" or 
+          def="Leg" or 
+         def="Foot"
+			    ]/groups
+        </xpath>
+        <value>
+          <li>CoveredByNaturalArmor</li>
+        </value>
+      </li>
+
+      <!-- BipedalWithTusks -->
+      <li Class="PatchOperationAdd">
+        <xpath>
+            /Defs/BodyDef[defName="MorrowRim_BipedalWithTusks"]//*[
+            def="Body" or 
+            def="Tail" or 
+            def="Neck" or 
+            def="Leg"]
+          </xpath>
+        <value>
+          <groups />
+        </value>
+      </li>
+
+      <li Class="PatchOperationAdd">
+        <xpath>
+          /Defs/BodyDef[defName="MorrowRim_BipedalWithTusks"]//*[
+          def="Body" or 
+          def="Tail" or 
+          def="Neck" or 
+          def="Head" or 
+          def="Tusk" or
+          def="Leg" or 
+         def="Foot"
+			    ]/groups
+        </xpath>
+        <value>
+          <li>CoveredByNaturalArmor</li>
+        </value>
+      </li>
+
+      <!-- KwamaScrib -->
+      <li Class="PatchOperationAdd">
+        <xpath>
+            /Defs/BodyDef[defName="MorrowRim_KwamaScrib"]//*[
+            def="Shell" or 
+            def="Pronotum" or 
+            def="InsectLeg"]
+          </xpath>
+        <value>
+          <groups />
+        </value>
+      </li>
+
+      <li Class="PatchOperationAdd">
+        <xpath>
+          /Defs/BodyDef[defName="MorrowRim_KwamaScrib"]//*[
+          def="Shell" or 
+          def="Pronotum" or 
+          def="InsectHead" or 
+          def="InsectMouth" or
+          def="InsectLeg"]/groups
+        </xpath>
+        <value>
+          <li>CoveredByNaturalArmor</li>
+        </value>
+      </li>
+
+      <!-- KwamaLeechLike -->
+      <li Class="PatchOperationAdd">
+        <xpath>
+            /Defs/BodyDef[defName="MorrowRim_KwamaLeechLike"]//*[
+            def="MorrowRim_LeechBody" or 
+            def="Tail" or 
+            def="Pronotum"]
+          </xpath>
+        <value>
+          <groups />
+        </value>
+      </li>
+
+      <li Class="PatchOperationAdd">
+        <xpath>
+          /Defs/BodyDef[defName="MorrowRim_KwamaLeechLike"]//*[
+          def="MorrowRim_LeechBody" or 
+          def="Tail" or 
+          def="Pronotum" or 
+          def="InsectHead" or 
+          def="InsectMouth"]/groups
+        </xpath>
+        <value>
+          <li>CoveredByNaturalArmor</li>
+        </value>
+      </li>
+
+
+      <!-- KwamaWarrior -->
+      <li Class="PatchOperationAdd">
+        <xpath>
+            /Defs/BodyDef[defName="MorrowRim_KwamaWarrior"]//*[
+            def="Shell" or 
+            def="Pronotum" or 
+            def="MorrowRim_Insect_Arm" or 
+            def="InsectLeg"]
+          </xpath>
+        <value>
+          <groups />
+        </value>
+      </li>
+
+      <li Class="PatchOperationAdd">
+        <xpath>
+          /Defs/BodyDef[defName="MorrowRim_KwamaWarrior"]//*[
+          def="Shell" or 
+          def="Pronotum" or 
+          def="InsectHead" or 
+          def="InsectMouth" or
+          def="MorrowRim_Insect_Arm" or
+          def="FrontClaw" or
+          def="InsectLeg"]/groups
+        </xpath>
+        <value>
+          <li>CoveredByNaturalArmor</li>
+        </value>
+      </li>
+
+      <!-- Quadrupedal Insect -->
+
+      <li Class="PatchOperationAdd">
+        <xpath>
+            /Defs/BodyDef[defName="MorrowRim_QuadrupedalInsect"]//*[
+            def="Shell" or 
+            def="Pronotum"]
+          </xpath>
+        <value>
+          <groups />
+        </value>
+      </li>
+
+      <li Class="PatchOperationAdd">
+        <xpath>
+          /Defs/BodyDef[defName="MorrowRim_QuadrupedalInsect"]//*[
+          def="Shell" or 
+          def="Pronotum" or 
+          def="InsectHead" or 
+          def="InsectMouth" or
+          def="InsectLeg"]/groups
+        </xpath>
+        <value>
+          <li>CoveredByNaturalArmor</li>
+        </value>
+      </li>
+
+      <!-- Netcha -->
+
+      <li Class="PatchOperationAdd">
+        <xpath>
+            /Defs/BodyDef[defName="MorrowRim_Jelly"]//*[
+            def="MorrowRim_Netch_Shell"]
+          </xpath>
+        <value>
+          <groups />
+        </value>
+      </li>
+
+      <li Class="PatchOperationAdd">
+        <xpath>
+          /Defs/BodyDef[defName="MorrowRim_Jelly"]//*[
+          def="Shell" or 
+          def="Head" or 
+          def="AnimalJaw"]/groups
+        </xpath>
+        <value>
+          <li>CoveredByNaturalArmor</li>
+        </value>
+      </li>
+
+      <!-- Flea-->
+
+      <li Class="PatchOperationAdd">
+        <xpath>
+            /Defs/BodyDef[defName="MorrowRim_Flea"]//*[
+            def="Shell" or 
+            def="Pronotum" or
+            def="InsectLeg" or
+            def="InsectNostril"]
+          </xpath>
+        <value>
+          <groups />
+        </value>
+      </li>
+
+      <li Class="PatchOperationAdd">
+        <xpath>
+          /Defs/BodyDef[defName="MorrowRim_Flea"]//*[
+          def="Shell" or 
+          def="Pronotum" or 
+          def="InsectNostril" or 
+          def="InsectHead" or 
+          def="InsectMouth" or
+          def="MorrowRim_Insect_Arm" or
+          def="InsectLeg"]/groups
+        </xpath>
+        <value>
+          <li>CoveredByNaturalArmor</li>
+        </value>
+      </li>
+
+      <!-- Tick-->
+
+      <li Class="PatchOperationAdd">
+        <xpath>
+            /Defs/BodyDef[defName="MorrowRim_Tick"]//*[
+            def="Shell" or 
+            def="Pronotum" or
+            def="InsectLeg" or
+            def="InsectNostril"]
+          </xpath>
+        <value>
+          <groups />
+        </value>
+      </li>
+
+      <li Class="PatchOperationAdd">
+        <xpath>
+          /Defs/BodyDef[defName="MorrowRim_Tick"]//*[
+          def="Shell" or 
+          def="Pronotum" or 
+          def="InsectNostril" or 
+          def="InsectHead" or 
+          def="InsectMouth" or
+          def="InsectLeg"]/groups
+        </xpath>
+        <value>
+          <li>CoveredByNaturalArmor</li>
+        </value>
+      </li>
+
+
+      </operations>
+    </match>
+  </Operation>
+
+</Patch>

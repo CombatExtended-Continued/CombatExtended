@@ -15,7 +15,11 @@ namespace CombatExtended
         {
             base.MapComponentTick();
 
-            if (!_sentMechWarning && GenDate.DaysPassed >= Faction.OfMechanoids.def.earliestRaidDays * 0.75f)
+            if (Find.TickManager.TicksGame % 2000 == 0  //Only test once every 33.33 seconds
+                && Faction.OfMechanoids != null         //Accounts for '#646 Exception spam with Remove Spacer Stuff (Continued)'
+                && !_sentMechWarning
+                && GenDate.DaysPassed >= Faction.OfMechanoids.def.earliestRaidDays * 0.75f
+                && Find.AnyPlayerHomeMap != null)       //Accounts for the player not having a home
             {
                 var suggestingPawn = Find.AnyPlayerHomeMap.mapPawns.FreeColonistsSpawnedCount != 0
                     ? Find.AnyPlayerHomeMap.mapPawns.FreeColonistsSpawned.RandomElement()

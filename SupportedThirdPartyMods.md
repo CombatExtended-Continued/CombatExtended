@@ -14,7 +14,9 @@ Mod |
 [CP] Rimmu-Nation - Weapons	|
 [CP] Spec Ops - The Line	|
 [CP] The DOOM Kit - Classic	|
+[FF] Bushi!	|
 [HLX] Rimworld: UNSC Armoury |
+[HLX] ReGrowth - Extinct Animals Pack
 [HLX] ReGrowth - Mutated Animals Pack |
 [HLX] Ultratech: Altered Carbon - Armoury
 [JDS] EFT Apparel |
@@ -41,6 +43,7 @@ Mod |
 [RH] Faction: VOID	|
 [RH] Faction: War Mongrels	|
 [RWY] Advanced Mechanoid Warfare    |
+[RWY] Dragon's Descent: Void Dwellers
 [SS] Maid Project	|
 [SYR] Harpy	|
 [SYR] Naga	|
@@ -51,9 +54,11 @@ Alpha Biomes |
 Ancient Eastern Armory  |
 Ancient Fallout Armory  |
 Android Tiers	|
-Android Tiers++	|
+Android TX Series   |
 Androids	|
 Androids Expanded	|
+Anima Animals  |
+Anima Gear  |
 AnimalCollabProj	|
 Animal Armor: Vanilla	|
 Anty the War Ant Race |
@@ -62,6 +67,7 @@ Arachne Race	|
 Area Rugs	|
 Autocleaner	|
 Auto-Mortars	|
+Bastyon  |
 Beeralope Squad	|
 Better Infestations	|
 Black Widows	|
@@ -87,8 +93,10 @@ Erin's Critter Collection |
 Erin's Forest Critters |
 Erin's Friendly Ferrets |
 Erin's Fox Squirrel |
+Erin's Lizard Doggo |
 Erin's Mountain Animals |
 Expanded Materials - Metals |
+Expanded Materials - Plastics |
 Expanded Patchleather	|
 Expanded Prosthetics and Organ Engineering (EPOE)	|
 Expanded Prosthetics and Organ Engineering (EPOE) - Forked	|
@@ -103,6 +111,7 @@ Ferrex Race	|
 Flak Dusters	|
 Forsakens	|
 Forsakens Fauna |
+Fuck it Unboomas your Lope |
 Gas Traps And Shells	|
 Genetic Rim |
 Genetic Rim Alpha Animal Patch |
@@ -142,6 +151,7 @@ Mass Effect - Playable Geth |
 Mechanoids Extraordinaire	|
 Medical System Expansion	|
 Megafauna	|
+Midworld Expanded Flak Armor  |
 Mincho, The Mint Choco Slime  |
 MiningCo. MiningHelmet	|
 Misc. Core	|
@@ -153,17 +163,29 @@ More Mechanoids	|
 More Practical Traits	|
 More Utility Packs	|
 More Vanilla Turrets	|
+Morgante Mafia Weapons Pack |
+Morgante WW2 Italian Weapons    |
+MorrowRim	|
+MorrowRim - Ashlands Swamp  |
+MorrowRim - Bloodmoon  |
+MorrowRim - Colovian Fur Helm	|
+MorrowRim - Just the Animals	|
+MorrowRim - Trolls	|
 Moyo - From the Depth   |
 Nearmare Race	|
 Neclose Race	|
 NewRatkinPlus |
 Ni'Hal	|
+Nyaron Race |
 Not Only Just a Cannon  |
+Ogam's Warbanner Mod    |
 Orassans	|
 Outer Rim - Tatooine    |
 Palm Cats   |
+Pawnbold Race   |
 Penguin	|
 Polarisbloc - Security Force	|
+Poleepkwa Race Update	|
 Prestige Specialist Armours	|
 Prostheses+ |
 PsiTech	|
@@ -180,6 +202,7 @@ Rim of Madness - Bones	|
 Rimefeller	|
 RimEffect - Asari of the Rims	|
 Rimfire	|
+Rim-Hivers!	|
 RimSec Security |
 Rimsenal - Core |
 Rimsenal - Enhanced Vanilla |
@@ -205,6 +228,7 @@ Tactical Extremity Protection [BAL] |
 The Mantodean insectoid race	|
 T-45b Power Armor	|
 The GiantRace	|
+The Joris Experience	|
 TouhouStyle	|
 Trading Economy	|
 Tribal Warrior Set! |

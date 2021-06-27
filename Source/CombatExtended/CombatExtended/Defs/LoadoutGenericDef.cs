@@ -118,7 +118,7 @@ namespace CombatExtended
             foreach (ThingDef gun in guns)
             {
                 // make sure the gun has ammo defined...
-                if (gun.GetCompProperties<CompProperties_AmmoUser>().ammoSet.ammoTypes.Count <= 0)
+                if (gun.GetCompProperties<CompProperties_AmmoUser>().ammoSet == null || gun.GetCompProperties<CompProperties_AmmoUser>().ammoSet.ammoTypes.Count <= 0)
                     continue;
                 generic = new LoadoutGenericDef();
                 generic.defName = "GenericAmmo-" + gun.defName;

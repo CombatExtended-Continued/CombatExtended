@@ -208,28 +208,18 @@ namespace CombatExtended
 
             if (victimProps.manhunterOnDamageChance > 0)
             {
-                // NOTE: I assumed 2 is a good number to consider for aim time of hunting weapons (since hunting weapons are likely to be sniper rifles)
-                // We can also get aim time from the actual weapon that the hunter is using
-                // but I didn't see the need.
-                const int aimTime = 2;
-                
-                // Determine how much target can move away from the hunter while the hunter is aiming
-                float moveOffset = CE_Utility.GetMoveSpeed(victim) * aimTime;
-
-                // Get a little bit closer when target is small. (Smaller targets don't attack that hard so it's ok from safety standpoint) 
+		// Get a little bit closer when target is small. (Smaller targets don't attack that hard so it's ok from safety standpoint) 
                 // For reference, Megasloth is 4, and squirrel is 0.2
                 float bodySizeFactor = Mathf.Clamp01(victimProps.baseBodySize);
                 
                 // If the hunter's shooting skill is below skillThreshold, hunter gets closer to not miss their shots
                 // I assumed level 10 is a good enough shooter to stay at maximum distance and don't miss 
-                const float skillThreshold = 10f;
+                const float skillThreshold = 5f;
                 float skillFactor = Mathf.Clamp01(hunter.skills.GetSkill(SkillDefOf.Shooting).Level / skillThreshold);
                 
                 float weaponRange = curJob.verbToUse.verbProps.range;
-
-                // Add additional offset to create a safe margin just in case something weird happens 
-                const int additionalOffset = 5;
-                float optimal = weaponRange * bodySizeFactor * skillFactor - moveOffset - additionalOffset;
+                    
+                float optimal = weaponRange * bodySizeFactor * skillFactor;
                 
                 // In some cases optimal range gets lower than the normal range that we calculated for non-manhunting animals.
                 // For example when the hunter has 0 shooting skill, optimal range will be negative.

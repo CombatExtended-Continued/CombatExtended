@@ -20,12 +20,14 @@
 				<!-- ========== Also Makes Em Suppressable ========== -->
 
 				<li Class="PatchOperationAdd">
-					<xpath>/Defs/ThingDef[@Name="BaseFerretPawn"]/comps</xpath>
+					<xpath>/Defs/ThingDef[@Name="BaseFerretPawn"]</xpath>
 					<value>
+					    <comps>
 						<li>
 							<compClass>CombatExtended.CompPawnGizmo</compClass>
 						</li>
 						<li Class="CombatExtended.CompProperties_Suppressable" />
+					   </comps>
 					</value>
 				</li>
 				<!-- ========== Patch Ferrex Melee Attacks ========== -->
@@ -86,24 +88,7 @@
 
 				<!-- ========== BaseBodySize, ArmorRatings, MoveSpeed, and BaseHealth are already set. I think. ========== -->
 				<!-- ========== Thanks Xenn! ========== -->
-
-				<!-- ========== Adds In Inspector Tabs ========== -->
-				<!-- ========== Inventory and all that jazz ========== -->
-
-				<li Class="PatchOperationReplace">
-					<xpath>/Defs/ThingDef[@Name="BaseFerretPawn"]/inspectorTabs/li[.="ITab_Pawn_Gear"]</xpath>
-					<value>
-						<li>CombatExtended.ITab_Inventory</li>
-					</value>
-				</li>
-
-				<li Class="PatchOperationAdd">
-
-					<xpath>/Defs/ThingDef[@Name="BaseFerretPawn"]/comps</xpath>
-					<value>
-						<li Class="CombatExtended.CompProperties_Inventory" />
-					</value>
-				</li>
+				
 			</operations>
 		</match>
 	</Operation>
