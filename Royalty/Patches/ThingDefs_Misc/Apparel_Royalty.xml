@@ -2,14 +2,15 @@
 <Patch>
 
 
-	<!-- ========== Ruffle Shirt, Royal Vest, Royal Robe ========== -->
+	<!-- ========== Royal Robe ========== -->
 
 	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/ThingDef[defName="Apparel_ShirtRuffle" or defName="Apparel_VestRoyal" or defName="Apparel_RobeRoyal"]/statBases/StuffEffectMultiplierArmor</xpath>
+		<xpath>Defs/ThingDef[defName="Apparel_RobeRoyal"]/statBases/StuffEffectMultiplierArmor</xpath>
 		<value>
 			<StuffEffectMultiplierArmor>1</StuffEffectMultiplierArmor>
 		</value>
 	</Operation>
+
 
 	<!-- ========== Cape ========== -->
 
@@ -22,10 +23,10 @@
 		</value>
 	</Operation>
 
-	<!-- ========== Corset ========== -->
+	<!-- ========== Ruffle Shirt, Corset, Royal Vest ========== -->
 
-	<Operation Class="PatchOperationAdd">
-		<xpath>Defs/ThingDef[defName="Apparel_Corset"]/statBases</xpath>
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[@Name="ApparelVestRoyalTier5Base" or @Name="ApparelShirtRoyalTier2Base"]/statBases/StuffEffectMultiplierArmor</xpath>
 		<value>
 			<StuffEffectMultiplierArmor>2</StuffEffectMultiplierArmor>
 		</value>
