@@ -8,16 +8,7 @@
 		<match Class="PatchOperationSequence">
 			<operations>
 
-
-				<li Class="PatchOperationAdd">
-					<xpath>Defs/ThingDef[defName="ApparelArmorNanoSuitBase"]/apparel/layers</xpath>
-					<value>
-						<li>Webbing</li>
-						<li>Backpack</li>
-					</value>
-				</li>
-
-				<!-- ===Nano Helmet === -->
+				<!-- === Nano Helmet === -->
 				<li Class="PatchOperationAdd">
 					<xpath>/Defs/ThingDef[defName="NS_Apparel_NanosuitHelmet"]/statBases</xpath>
 					<value>
@@ -69,8 +60,16 @@
 				</li>
 
 				<!-- === Nano Armor === -->
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[@Name="ApparelArmorNanoSuitBase"]/apparel/layers</xpath>
+					<value>
+						<li>Webbing</li>
+						<li>Backpack</li>
+					</value>
+				</li>
+
 				<li Class="PatchOperationReplace">
-					<xpath>/Defs/ThingDef[defName="ApparelArmorNanoSuitBase"]/statBases/Mass</xpath>
+					<xpath>/Defs/ThingDef[@Name="ApparelArmorNanoSuitBase"]/statBases/Mass</xpath>
 					<value>
 						<Bulk>60</Bulk>
 						<WornBulk>8</WornBulk>
@@ -79,28 +78,28 @@
 				</li>
 
 				<li Class="PatchOperationReplace">
-					<xpath>/Defs/ThingDef[defName="ApparelArmorNanoSuitBase"]/statBases/ArmorRating_Sharp</xpath>
+					<xpath>/Defs/ThingDef[@Name="ApparelArmorNanoSuitBase"]/statBases/ArmorRating_Sharp</xpath>
 					<value>
 						<ArmorRating_Sharp>20</ArmorRating_Sharp>
 					</value>
 				</li>
 
 				<li Class="PatchOperationReplace">
-					<xpath>/Defs/ThingDef[defName="ApparelArmorNanoSuitBase"]/statBases/ArmorRating_Blunt</xpath>
+					<xpath>/Defs/ThingDef[@Name="ApparelArmorNanoSuitBase"]/statBases/ArmorRating_Blunt</xpath>
 					<value>
 						<ArmorRating_Blunt>45</ArmorRating_Blunt>
 					</value>
 				</li>
-
+<!--
 				<li Class="PatchOperationReplace">
 					<xpath>/Defs/ThingDef[defName="ApparelArmorNanoSuitBase"]/statBases/MaxHitPoints</xpath>
 					<value>
 						<MaxHitPoints>500</MaxHitPoints>
 					</value>
 				</li>
-
+-->
 				<li Class="PatchOperationReplace">
-					<xpath>/Defs/ThingDef[defName="ApparelArmorNanoSuitBase"]/equippedStatOffsets</xpath>
+					<xpath>/Defs/ThingDef[@Name="ApparelArmorNanoSuitBase"]/equippedStatOffsets</xpath>
 					<value>
     					<equippedStatOffsets>
 						<CarryWeight>60</CarryWeight>
@@ -114,7 +113,7 @@
 				</li>
 
 				<li Class="PatchOperationAdd">
-					<xpath>/Defs/ThingDef[defName="ApparelArmorNanoSuitBase"]/apparel/bodyPartGroups</xpath>
+					<xpath>/Defs/ThingDef[@Name="ApparelArmorNanoSuitBase"]/apparel/bodyPartGroups</xpath>
 					<value>
 						<li>Hands</li>
 						<li>Feet</li>
