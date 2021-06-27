@@ -130,7 +130,8 @@ namespace CombatExtended.HarmonyCE
 		if (parent != null)
 		{
                     float hitPartHealth = pawn.health.hediffSet.GetPartHealth(hitPart);
-                    if (hitPartHealth >= totalDamage)
+                    float hitPartMaxHealth = hitPart.def.GetMaxHealth(pawn);
+                    if (hitPartHealth > 0)
                     {
                         return true;
                     }
@@ -143,7 +144,7 @@ namespace CombatExtended.HarmonyCE
 			hediff_Injury.Part = parent;
 			hediff_Injury.source = dinfo.Weapon;
 			hediff_Injury.sourceBodyPartGroup = dinfo.WeaponBodyPartGroup;
-			hediff_Injury.Severity = totalDamage - (hitPartHealth * hitPartHealth / totalDamage);
+			hediff_Injury.Severity = totalDamage - (hitPartMaxHealth * hitPartMaxHealth / totalDamage);
 			if (hediff_Injury.Severity <= 0f)
 			{
 			    hediff_Injury.Severity = 1f;
