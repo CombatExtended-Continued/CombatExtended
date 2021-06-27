@@ -25,6 +25,8 @@ namespace CombatExtended.HarmonyCE
             {
                 if (pawn.Spawned) LessonAutoActivator.TeachOpportunity(CE_ConceptDefOf.CE_ArmorSystem, OpportunityType.Critical);   // Inform the player about armor deflection
             }
+            Patch_CheckDuplicateDamageToOuterParts.lastHitPartHealth = pawn.health.hediffSet.GetPartHealth(newDinfo.HitPart);
+            
             dinfo = newDinfo;
         }
 
@@ -105,6 +107,7 @@ namespace CombatExtended.HarmonyCE
     [HarmonyPatch(typeof(DamageWorker_AddInjury), "CheckDuplicateDamageToOuterParts")]
     static class Patch_CheckDuplicateDamageToOuterParts
     {
+        public static float lastHitPartHealth = 0;
 	static MethodInfo FinalizeAndAddInjury = null;
 
 	static Patch_CheckDuplicateDamageToOuterParts()
