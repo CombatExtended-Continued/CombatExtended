@@ -172,6 +172,7 @@ MorrowRim - Colovian Fur Helm	|
 MorrowRim - Just the Animals	|
 MorrowRim - Trolls	|
 Moyo - From the Depth   |
+Nanosuit   |
 Nearmare Race	|
 Neclose Race	|
 NewRatkinPlus |
