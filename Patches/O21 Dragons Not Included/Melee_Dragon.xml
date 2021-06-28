@@ -8,6 +8,7 @@
 			<operations>
 
 	<!-- Scottish Broadswords -->
+
 	<li Class="PatchOperationReplace">
 		<xpath>Defs/ThingDef[defName="O21_DNI_BasketHiltedSword"]/tools</xpath>
 		<value>
@@ -133,6 +134,7 @@
 	</li>
 
 	<!-- Lochaber Axe -->
+
 	<li Class="PatchOperationReplace">
 	<xpath>/Defs/ThingDef[defName="O21_DNI_LochaberAxe"]/tools</xpath>
 		<value>
@@ -195,6 +197,7 @@
 	</li>
 
 	<!-- Machete -->			
+
 	<li Class="PatchOperationReplace">
 		<xpath>/Defs/ThingDef[defName="O21_DNI_SpikedMachete"]/tools</xpath>
 		<value>
@@ -252,6 +255,7 @@
 	</li>
 
 	<!-- Ball Club -->
+
 	<li Class="PatchOperationReplace">
 		<xpath>Defs/ThingDef[defName="O21_DNI_BallClubA"]/tools</xpath>
 		<value>
@@ -308,6 +312,7 @@
 	</li>
 
 	<!-- Spade-Tipped Sword -->
+
 	<li Class="PatchOperationReplace">
 		<xpath>Defs/ThingDef[defName="O21_DNI_SpadeTippedSword"]/tools</xpath>
 		<value>
@@ -371,6 +376,7 @@
 	</li>
 
 	<!-- Tropical Clubs -->
+
 	<li Class="PatchOperationReplace">
 		<xpath>Defs/ThingDef[@Name="TropicalClubBase"]/tools</xpath>
 		<value>
@@ -420,13 +426,16 @@
 	</li>
 
 	<li Class="PatchOperationAdd">
-		<xpath>Defs/ThingDef[@Name="TropicalClubBase"]/weaponTags</xpath>
+		<xpath>Defs/ThingDef[@Name="TropicalClubBase"]</xpath>
 		<value>
+		<weaponTags>
 			<li>CE_OneHandedWeapon</li>
+		</weaponTags>	
 		</value>
 	</li>
 
 	<!-- Yari -->
+
 	<li Class="PatchOperationReplace">
 		<xpath>Defs/ThingDef[defName="O21_DNI_JumonjiYari" or defName="O21_DNI_SuYari"]/tools</xpath>
 		<value>
@@ -489,16 +498,19 @@
 		</value>
 	</li>
 
-	<li Class="PatchOperationReplace">
-		<xpath>Defs/ThingDef[defName="O21_DNI_JumonjiYari" or defName="O21_DNI_SuYari"]/equippedStatOffsets/MeleeDodgeChance</xpath>
+	<li Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="O21_DNI_JumonjiYari" or defName="O21_DNI_SuYari"]</xpath>
 		<value>
+		<equippedStatOffsets>
 			<MeleeCritChance>0.39</MeleeCritChance>
 			<MeleeParryChance>1.59</MeleeParryChance>
 			<MeleeDodgeChance>0.90</MeleeDodgeChance>
+		</equippedStatOffsets>		
 		</value>
 	</li>
 
 	<!-- Tanto -->
+
 	<li Class="PatchOperationReplace">
 		<xpath>Defs/ThingDef[defName="O21_DNI_Tanto"]/tools</xpath>
 		<value>
@@ -562,6 +574,7 @@
 	</li> 
 
 	<!-- Ono -->
+
 	<li Class="PatchOperationReplace">
 		<xpath>/Defs/ThingDef[defName="O21_DNI_Ono"]/tools</xpath>
 		<value>
@@ -596,17 +609,19 @@
 	<li Class="PatchOperationAdd">
 		<xpath>/Defs/ThingDef[defName="O21_DNI_Ono"]/statBases</xpath>
 		<value>
-		<Bulk>4</Bulk>
-		<MeleeCounterParryBonus>0.15</MeleeCounterParryBonus>
+			<Bulk>4</Bulk>
+			<MeleeCounterParryBonus>0.15</MeleeCounterParryBonus>
 		</value>
 	</li>
 
 	<li Class="PatchOperationAdd">
-		<xpath>/Defs/ThingDef[defName="O21_DNI_Ono"]/equippedStatOffsets</xpath>
+		<xpath>/Defs/ThingDef[defName="O21_DNI_Ono"]</xpath>
 		<value>
-		<MeleeCritChance>0.10</MeleeCritChance>
-		<MeleeParryChance>0.15</MeleeParryChance>
-		<MeleeDodgeChance>0.20</MeleeDodgeChance>
+		<equippedStatOffsets>
+			<MeleeCritChance>0.10</MeleeCritChance>
+			<MeleeParryChance>0.15</MeleeParryChance>
+			<MeleeDodgeChance>0.20</MeleeDodgeChance>
+		</equippedStatOffsets>
 		</value>
 	</li>
 
@@ -618,6 +633,7 @@
 	</li>
 
 	<!-- Naginata -->
+
 	<li Class="PatchOperationReplace">
 		<xpath>Defs/ThingDef[defName="O21_DNI_Naginata"]/tools</xpath>
 		<value>
@@ -670,15 +686,18 @@
 	</li>
 
 	<li Class="PatchOperationAdd">
-		<xpath>Defs/ThingDef[defName="O21_DNI_Naginata"]/equippedStatOffsets</xpath>
+		<xpath>Defs/ThingDef[defName="O21_DNI_Naginata"]</xpath>
 		<value>
+		<equippedStatOffsets>
 			<MeleeCritChance>0.56</MeleeCritChance>
 			<MeleeParryChance>0.75</MeleeParryChance>
 			<MeleeDodgeChance>0.6</MeleeDodgeChance>
+		</equippedStatOffsets>	
 		</value>
 	</li>
 
 	<!-- Jitte -->	
+
 	<li Class="PatchOperationReplace">
 		<xpath>Defs/ThingDef[defName="O21_DNI_Jitte"]/tools</xpath>
 		<value>
@@ -716,23 +735,26 @@
 		</value>
 	</li>
 
-	<li Class="PatchOperationReplace">
-		<xpath>Defs/ThingDef[defName="O21_DNI_Jitte"]/equippedStatOffsets/MeleeDodgeChance</xpath>
+	<li Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="O21_DNI_Jitte"]</xpath>
 		<value>
+		<equippedStatOffsets>
 			<MeleeCritChance>0.2</MeleeCritChance>
 			<MeleeParryChance>1</MeleeParryChance>
 			<MeleeDodgeChance>0.4</MeleeDodgeChance>
+		</equippedStatOffsets>	
 		</value>
 	</li>
 
 	<li Class="PatchOperationAdd">
 		<xpath>/Defs/ThingDef[defName="O21_DNI_Jitte"]/weaponTags</xpath>
 		<value>
-		<li>CE_OneHandedWeapon</li>
+			<li>CE_OneHandedWeapon</li>
 		</value>
 	</li>
 
 	<!-- Ararebo -->	
+
 	<li Class="PatchOperationReplace">
 		<xpath>Defs/ThingDef[defName="O21_DNI_Ararebo"]/tools</xpath>
 		<value>
@@ -771,15 +793,18 @@
 	</li>
 
 	<li Class="PatchOperationAdd">
-		<xpath>Defs/ThingDef[defName="O21_DNI_Ararebo"]/equippedStatOffsets</xpath>
+		<xpath>Defs/ThingDef[defName="O21_DNI_Ararebo"]</xpath>
 		<value>
+		<equippedStatOffsets>
 			<MeleeCritChance>1.6</MeleeCritChance>
 			<MeleeParryChance>0.38</MeleeParryChance>
 			<MeleeDodgeChance>0.3</MeleeDodgeChance>
+		</equippedStatOffsets>	
 		</value>
 	</li>
 
 	<!-- Kabutowari, Sai -->	
+
 	<li Class="PatchOperationReplace">
 	<xpath>Defs/ThingDef[defName="O21_DNI_Kabutowari" or defName="O21_DNI_Sai"]/tools</xpath>
 		<value>
@@ -837,6 +862,7 @@
 	</li>
 
 	<!-- Tropical Knives -->	
+
 	<li Class="PatchOperationReplace">
 		<xpath>Defs/ThingDef[@Name="TropicalBladeBase"]/tools</xpath>
 		<value>
@@ -898,13 +924,16 @@
 	</li>
 
 	<li Class="PatchOperationAdd">
-		<xpath>Defs/ThingDef[@Name="TropicalBladeBase"]/weaponTags</xpath>
+		<xpath>Defs/ThingDef[@Name="TropicalBladeBase"]</xpath>
 		<value>
+		<weaponTags>
 			<li>CE_OneHandedWeapon</li>
+		</weaponTags>	
 		</value>
 	</li>
 
 	<!-- Masakari Axe -->
+
 	<li Class="PatchOperationAdd">
 		<xpath>Defs/ThingDef[defName="O21_DNI_Masakari"]/statBases</xpath>
 		<value>
@@ -956,6 +985,7 @@
 	</li>
 
 	<!-- Tropical Spears -->
+
 	<li Class="PatchOperationReplace">
 		<xpath>Defs/ThingDef[@Name="TropicalSpearBase"]/tools</xpath>
 		<value>
@@ -1018,6 +1048,7 @@
 	</li>
 
 	<!-- Sasumata -->
+
 	<li Class="PatchOperationReplace">
 		<xpath>Defs/ThingDef[defName="O21_DNI_Sasumata"]/tools</xpath>
 		<value>
@@ -1068,6 +1099,7 @@
 	</li>
 
 	<!-- Katana -->
+
 	<li Class="PatchOperationReplace">
 		<xpath>Defs/ThingDef[defName="O21_DNI_Katana"]/tools</xpath>
 		<value>
@@ -1131,6 +1163,7 @@
 	</li> 
 
 	<!-- Nagamaki, Odachi -->
+
 	<li Class="PatchOperationReplace">
 		<xpath>Defs/ThingDef[defName="O21_DNI_Nagamaki" or defName="O21_DNI_Odachi"]/tools</xpath>
 		<value>
@@ -1192,7 +1225,6 @@
 			</equippedStatOffsets>
 		</value>
 	</li> 
-
 
 			</operations>
 		</match>

@@ -193,6 +193,27 @@
 			</li>
 
 			<!-- Blowpipes -->
+
+			<li Class="PatchOperationRemove">
+				<xpath>/Defs/ThingDef[@Name="TropicalBlowpipeBase"]/verbs</xpath>
+			</li>
+
+			<li Class="PatchOperationRemove">
+				<xpath>/Defs/ThingDef[@Name="TropicalBlowpipeBase"]/statBases/AccuracyTouch</xpath>
+			</li>
+
+			<li Class="PatchOperationRemove">
+				<xpath>/Defs/ThingDef[@Name="TropicalBlowpipeBase"]/statBases/AccuracyShort</xpath>
+			</li>
+
+			<li Class="PatchOperationRemove">
+				<xpath>/Defs/ThingDef[@Name="TropicalBlowpipeBase"]/statBases/AccuracyMedium</xpath>
+			</li>
+
+			<li Class="PatchOperationRemove">
+				<xpath>/Defs/ThingDef[@Name="TropicalBlowpipeBase"]/statBases/AccuracyLong</xpath>
+			</li>
+
 			<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
 			<defName>O21_TropicalBoneBlowpipe</defName>
 			<statBases>
@@ -233,20 +254,20 @@
 				<SwayFactor>1.22</SwayFactor>
 				<ShotSpread>0.36</ShotSpread>
 				<SightsEfficiency>0.6</SightsEfficiency>
-				<RangedWeapon_Cooldown>0.85</RangedWeapon_Cooldown>
+				<RangedWeapon_Cooldown>1.85</RangedWeapon_Cooldown>
 			</statBases>
 			<Properties>
 				<verbClass>CombatExtended.Verb_ShootCE</verbClass>
 				<hasStandardCommand>True</hasStandardCommand>
 				<defaultProjectile>Projectile_Dart_Venom</defaultProjectile>
-				<warmupTime>1.20</warmupTime>
+				<warmupTime>2.60</warmupTime>
 				<range>10</range>
 				<soundCast>Bow_Small</soundCast>
 				<muzzleFlashScale>9</muzzleFlashScale>
 			</Properties>
 			<AmmoUser>
 				<magazineSize>1</magazineSize>
-				<reloadTime>3</reloadTime>
+				<reloadTime>5.3</reloadTime>
 				<ammoSet>AmmoSet_Blowdart</ammoSet>
 			</AmmoUser>
 			<FireModes>
@@ -258,21 +279,24 @@
 			</li>
 
 			<!-- ========== Boomerang =========== -->
+			
 			<li Class="PatchOperationAttributeSet">
 				<xpath>Defs/ThingDef[defName="O21_DNI_Boomerang"]</xpath>
 				<attribute>ParentName</attribute>
 				<value>BaseWeapon</value>				
-			</li>			
+			</li>	
+
 			<li Class="PatchOperationRemove">
-				<xpath>Defs/ThingDef[defName="O21_DNI_Boomerang"]/costList</xpath>
+				<xpath>Defs/ThingDef[defName="O21_DNI_Boomerang"]/costStuffCount</xpath>
 			</li>
+
 			<li Class="PatchOperationRemove">
 				<xpath>Defs/ThingDef[defName="O21_DNI_Boomerang"]/recipeMaker</xpath>
 			</li>
+
 			<li Class="PatchOperationAdd">
 				<xpath>Defs/ThingDef[defName="O21_DNI_Boomerang"]</xpath>
 				<value>
-					<techLevel>Neolithic</techLevel>
 					<thingCategories>
 						<li>WeaponsRanged</li>
 					</thingCategories>					
@@ -304,7 +328,7 @@
 					<li Class="CombatExtended.VerbPropertiesCE">
 						<verbClass>CombatExtended.Verb_ShootCEOneUse</verbClass>
 						<hasStandardCommand>true</hasStandardCommand>
-						<defaultProjectile>Club_Thrown</defaultProjectile>
+						<defaultProjectile>Boomerang_Thrown</defaultProjectile>
 						<warmupTime>1.5</warmupTime>
 						<range>16</range>
 						<soundCast>Interact_BeatFire</soundCast>
