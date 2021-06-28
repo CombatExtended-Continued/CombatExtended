@@ -242,6 +242,7 @@ Turk's Guns |
 Turret Collection	|
 Vanilla Animals Expanded |
 Vanilla Apparel Expanded	|
+Vanilla Apparel Expanded — Accessories  |
 Vanilla Armour Expanded	|
 Vanilla Bionics Expansion	|
 Vanilla Brewing Expanded    |
