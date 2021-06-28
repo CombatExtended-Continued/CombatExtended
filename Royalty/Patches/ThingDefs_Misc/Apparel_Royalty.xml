@@ -2,14 +2,15 @@
 <Patch>
 
 
-	<!-- ========== Ruffle Shirt, Royal Vest, Royal Robe ========== -->
+	<!-- ========== Royal Robe ========== -->
 
 	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/ThingDef[defName="Apparel_ShirtRuffle" or defName="Apparel_VestRoyal" or defName="Apparel_RobeRoyal"]/statBases/StuffEffectMultiplierArmor</xpath>
+		<xpath>Defs/ThingDef[defName="Apparel_RobeRoyal"]/statBases/StuffEffectMultiplierArmor</xpath>
 		<value>
 			<StuffEffectMultiplierArmor>1</StuffEffectMultiplierArmor>
 		</value>
 	</Operation>
+
 
 	<!-- ========== Cape ========== -->
 
@@ -18,26 +19,16 @@
 		<value>
 			<Bulk>5</Bulk>
 			<WornBulk>1.5</WornBulk>
-			<StuffEffectMultiplierArmor>1.8</StuffEffectMultiplierArmor>
+			<StuffEffectMultiplierArmor>4</StuffEffectMultiplierArmor>
 		</value>
 	</Operation>
 
-	<!-- ========== Corset ========== -->
-
-	<Operation Class="PatchOperationAdd">
-		<xpath>Defs/ThingDef[defName="Apparel_Corset"]/statBases</xpath>
-		<value>
-			<StuffEffectMultiplierArmor>2</StuffEffectMultiplierArmor>
-		</value>
-	</Operation>
-
-
-	<!-- ========== Cape ========== -->
+	<!-- ========== Ruffle Shirt, Corset, Royal Vest ========== -->
 
 	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/ThingDef[defName="Apparel_Cape"]/statBases/StuffEffectMultiplierArmor</xpath>
+		<xpath>Defs/ThingDef[@Name="ApparelVestRoyalTier5Base" or @Name="ApparelShirtRoyalTier2Base"]/statBases/StuffEffectMultiplierArmor</xpath>
 		<value>
-			<StuffEffectMultiplierArmor>4</StuffEffectMultiplierArmor>
+			<StuffEffectMultiplierArmor>2</StuffEffectMultiplierArmor>
 		</value>
 	</Operation>
 
@@ -46,14 +37,14 @@
 	<Operation Class="PatchOperationReplace">
 		<xpath>Defs/ThingDef[defName="Apparel_PsyfocusShirt" or defName="Apparel_PsyfocusVest" or defName="Apparel_PsyfocusRobe"]/statBases/ArmorRating_Sharp</xpath>
 		<value>
-			<ArmorRating_Sharp>0.03</ArmorRating_Sharp>
+			<ArmorRating_Sharp>0.07</ArmorRating_Sharp>
 		</value>
 	</Operation>
 
 	<Operation Class="PatchOperationReplace">
 		<xpath>Defs/ThingDef[defName="Apparel_PsyfocusShirt" or defName="Apparel_PsyfocusVest" or defName="Apparel_PsyfocusRobe"]/statBases/ArmorRating_Blunt</xpath>
 		<value>
-			<ArmorRating_Blunt>0.045</ArmorRating_Blunt>
+			<ArmorRating_Blunt>0.055</ArmorRating_Blunt>
 		</value>
 	</Operation>
 

@@ -1,0 +1,207 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+
+	<Operation Class="PatchOperationFindMod">
+					<mods>
+						<li>[HLX] Rimworld: UNSC Armoury</li>
+					</mods>
+		<match Class="PatchOperationFindMod">
+					<mods>
+						<li>Vanilla Weapons Expanded - Laser</li>
+					</mods>		
+			<match Class="PatchOperationSequence">
+				<operations>
+
+			<!-- === Melee === -->
+			<li Class="PatchOperationReplace">
+				<xpath>/Defs/ThingDef[defName="RUA_Gun_Anti-TankLaserRifle"]/tools</xpath>
+			<value>
+				<tools>
+				<li Class="CombatExtended.ToolCE">
+					<label>barrel</label>
+					<capacities>
+					<li>Blunt</li>
+					</capacities>
+					<power>10</power>
+					<cooldownTime>2.44</cooldownTime>
+					<armorPenetrationBlunt>3.5</armorPenetrationBlunt>
+					<linkedBodyPartsGroup>Barrel</linkedBodyPartsGroup>
+				</li>
+				</tools>
+			</value>
+			</li>
+
+			<!-- === Remove Vanilla Expanded Laser Stuff & MoveSpeed Penalty. === -->
+			<li Class="PatchOperationRemove">
+				<xpath>/Defs/ThingDef[defName = "RUA_Gun_Anti-TankLaserRifle"]/comps/li[@Class="VanillaWeaponsExpandedLaser.CompProperties_LaserCapacitor"]</xpath>
+			</li>
+
+			<li Class="PatchOperationRemove">
+				<xpath>/Defs/ThingDef[defName = "RUA_Gun_Anti-TankLaserRifle"]/equippedStatOffsets</xpath>
+			</li>
+
+			<!-- === Spartan Laser === -->
+			<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+				<defName>RUA_Gun_Anti-TankLaserRifle</defName>
+				<statBases>
+					<Mass>22</Mass>
+					<Bulk>16.00</Bulk>
+					<SwayFactor>3.42</SwayFactor>
+					<ShotSpread>0.01</ShotSpread>
+					<SightsEfficiency>2.15</SightsEfficiency>
+					<RangedWeapon_Cooldown>2.65</RangedWeapon_Cooldown>
+				</statBases>
+				<Properties>
+					<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+					<hasStandardCommand>True</hasStandardCommand>
+					<defaultProjectile>Bullet_Laser_SpartanLaser</defaultProjectile>
+					<warmupTime>2.2</warmupTime>
+					<range>65</range>
+					<soundCast>VWE_LaserShot_Heavy</soundCast>
+					<soundCastTail>GunTail_Heavy</soundCastTail>
+					<muzzleFlashScale>9</muzzleFlashScale>
+				</Properties>
+				<AmmoUser>
+					<magazineSize>4</magazineSize>
+					<reloadTime>8.6</reloadTime>
+					<ammoSet>AmmoSet_SpartanLaser</ammoSet>
+				</AmmoUser>
+				<FireModes>
+					<aiAimMode>AimedShot</aiAimMode>     
+				</FireModes>
+			</li>
+
+		<li Class="PatchOperationAdd">
+			<xpath>Defs</xpath>
+			<value>
+
+			<!-- === Spartan Laser Beam === -->
+
+			<ThingDef Class="CombatExtended.Lasers.LaserBeamDefCE" ParentName="LaserBulletRed">
+				<defName>Bullet_Laser_SpartanLaser</defName>
+				<label>laser beam</label>                          
+				<projectile Class="CombatExtended.ProjectilePropertiesCE">
+					<damageDef>Burn</damageDef>
+					<damageAmountBase>300</damageAmountBase>
+					<armorPenetrationSharp>600</armorPenetrationSharp>
+					<armorPenetrationBlunt>0.001</armorPenetrationBlunt>
+				</projectile>
+				<seam>2</seam>
+				<modExtensions>
+				<li Class="ProjectileImpactFX.EffectProjectileExtension">
+					<explosionMote>true</explosionMote>
+					<explosionMoteSize>1</explosionMoteSize>
+					<ImpactMoteDef>Mote_SparkFlash</ImpactMoteDef>
+					<ImpactMoteSize>1</ImpactMoteSize>
+					<ImpactGlowMoteDef>Mote_ExplosionFlash</ImpactGlowMoteDef>
+					<ImpactGlowMoteSize>2.5</ImpactGlowMoteSize>
+				</li>
+				</modExtensions> 				          
+			</ThingDef>
+
+			<!-- === Spartan Laser Battery === -->
+
+			<ThingCategoryDef>
+				<defName>AmmoHeavyLaserChargePack</defName>
+				<label>heavy laser charge pack</label>
+				<parent>AmmoAdvanced</parent>
+				<iconPath>UI/Icons/ThingCategories/CaliberCharge</iconPath>
+			</ThingCategoryDef>
+
+			<!-- ==================== AmmoSet ========================== -->
+
+			<CombatExtended.AmmoSetDef>
+				<defName>AmmoSet_SpartanLaser</defName>
+				<label>heavy laser rifle charge</label>
+				<ammoTypes>
+					<Ammo_HeavyLaserChargePack>Bullet_Laser_SpartanLaser</Ammo_HeavyLaserChargePack>
+				</ammoTypes>
+			</CombatExtended.AmmoSetDef>
+
+			<!-- ==================== Ammo ========================== -->
+
+			<ThingDef Class="CombatExtended.AmmoDef" Name="HeavyLaserChargePackBase" ParentName="SpacerSmallAmmoBase" Abstract="True">
+				<description>A battery pack for a heavy laser weapon.</description>
+				<statBases>
+					<Mass>0.5</Mass>
+					<Bulk>2</Bulk>
+				</statBases>
+				<tradeTags>
+					<li>CE_AutoEnableTrade</li>
+					<li>CE_AutoEnableCrafting_FabricationBench</li>
+				</tradeTags>
+				<thingCategories>
+					<li>AmmoHeavyLaserChargePack</li>
+				</thingCategories>
+				<stackLimit>200</stackLimit>	
+			</ThingDef>
+
+			<ThingDef Class="CombatExtended.AmmoDef" ParentName="LaserChargePackBase">
+				<defName>Ammo_HeavyLaserChargePack</defName>
+				<label>heavy laser charge pack</label>
+				<graphicData>
+				<texPath>Things/Ammo/PlasmaCell/Heavy</texPath>
+				<graphicClass>Graphic_StackCount</graphicClass>
+				</graphicData>
+				<statBases>
+					<MarketValue>4.69</MarketValue>
+				</statBases>
+				<ammoClass>Charged</ammoClass>
+			</ThingDef>
+
+			<!-- ==================== Recipes ========================== -->
+
+			<RecipeDef ParentName="ChargeAmmoRecipeBase">
+				<defName>MakeAmmo_HeavyLaserChargePack</defName>
+				<label>make laser charge pack x40</label>
+				<description>Craft 40 laser charge pack.</description>
+				<jobString>Making laser charge pack.</jobString>
+				<ingredients>
+				<li>
+					<filter>
+					<thingDefs>
+						<li>Plasteel</li>
+					</thingDefs>
+					</filter>
+					<count>8</count>
+				</li>
+				<li>
+					<filter>
+					<thingDefs>
+						<li>Steel</li>
+					</thingDefs>
+					</filter>
+					<count>4</count>
+				</li>	  
+				<li>
+					<filter>
+					<thingDefs>
+						<li>ComponentIndustrial</li>
+					</thingDefs>
+					</filter>
+					<count>8</count>
+				</li>
+				</ingredients>
+				<fixedIngredientFilter>
+				<thingDefs>
+					<li>Plasteel</li>
+					<li>Steel</li>		
+					<li>ComponentIndustrial</li>
+				</thingDefs>
+				</fixedIngredientFilter>
+				<products>
+					<Ammo_HeavyLaserChargePack>40</Ammo_HeavyLaserChargePack>
+				</products>
+				<workAmount>8400</workAmount>
+			</RecipeDef>
+
+			</value>
+			</li>
+
+				</operations>
+			</match>					
+		</match>			
+	</Operation>
+
+</Patch>
+
