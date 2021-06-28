@@ -25,6 +25,7 @@ Mod |
 [JDS] The Forge - Exiled Dawn |
 [JDS] The Forge - NCR Armory	|
 [KV] Hand 'n' Footwear	|
+[O21] Dragons Not Included |
 [O21] Forgotten Realms |
 [O21] Mechadroids |
 [Ods] SCP Outfits Only Edition	|
