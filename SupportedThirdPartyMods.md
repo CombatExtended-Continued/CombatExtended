@@ -52,6 +52,7 @@ Mod |
 A Dog Said...	|
 Alpha Animals |
 Alpha Biomes |
+Alpha Ships |
 Ancient Eastern Armory  |
 Ancient Fallout Armory  |
 Android Tiers	|
@@ -75,12 +76,14 @@ Black Widows	|
 Carbon	|
 Censored Armory  |
 Clay Soldier Race |
+Colony Leadership   |
 Combat Enthusiast’s Collection	|
 Cupro's Alloys	|
 Cute Penguin	|
 CyberNet	|
 Cybernetic Organism and Neural Network	|
 Defensive Machine Gun Turret Pack	|
+Devilstrand Colour Bundle   |
 Dinosauria |
 Dishonored Assassin Coat |
 Dishonored Assassin Mask |
@@ -112,7 +115,7 @@ Ferrex Race	|
 Flak Dusters	|
 Forsakens	|
 Forsakens Fauna |
-Fuck it Unboomas your Lope |
+Fuck it Unboomas Your Lope |
 Gas Traps And Shells	|
 Genetic Rim |
 Genetic Rim Alpha Animal Patch |
@@ -127,6 +130,7 @@ Halo - Rimworld Auxiliary Combat Armory	|
 Hand 'n' Footwear	|
 Heavy Melee Weapons |
 High Caliber	|
+Hive Armory |
 Idhale Race	|
 Iron Harvest Pkp 17 "Eisenhans" Powerarmor	|
 Japanese Dogs   |
@@ -152,9 +156,11 @@ Mass Effect - Playable Geth |
 Mechanoids Extraordinaire	|
 Medical System Expansion	|
 Megafauna	|
-Midworld Expanded Flak Armor  |
+Midworld Expanded: Flak Armor  |
 Mincho, The Mint Choco Slime  |
+Mincho, The Mint Choco Slime ~ HAR ver. |
 MiningCo. MiningHelmet	|
+MiningCo. Spaceship	|
 Misc. Core	|
 Misc. MAI |
 Misc. Robots	|
@@ -194,6 +200,7 @@ PsiTech	|
 Rabbie The Moonrabbit	|
 Racc Race	|
 Race to the Rim |
+Radworld    |
 Rah's Bionics and Surgery Expansion	|
 Rakkle The Rattle Snake Race Mod  |
 Redcoat Apparel	|
