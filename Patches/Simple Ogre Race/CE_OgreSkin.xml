@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+			<li>Simple Ogre Race</li>
+		</mods>
+		<match Class="PatchOperationSequence">
+			<operations>
+				<!-- Ogre Leather -->
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/ThingDef[defName="FP_OGRE_Leather"]/statBases/StuffPower_Armor_Sharp</xpath>
+					<value>
+						<StuffPower_Armor_Sharp>0.1</StuffPower_Armor_Sharp>
+					</value>
+				</li>
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/ThingDef[defName="FP_OGRE_Leather"]/statBases/StuffPower_Armor_Blunt</xpath>
+					<value>
+						<StuffPower_Armor_Blunt>0.05</StuffPower_Armor_Blunt>
+					</value>
+				</li>
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/ThingDef[defName="FP_OGRE_Leather"]/statBases/StuffPower_Armor_Heat</xpath>
+					<value>
+						<StuffPower_Armor_Heat>0.02</StuffPower_Armor_Heat>
+					</value>
+				</li>
+			</operations>
+		</match>
+	</Operation>
+</Patch>
