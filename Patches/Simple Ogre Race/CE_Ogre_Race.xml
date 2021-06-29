@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+	<!-- It's all Ogre now -->
+	<Operation Class="PatchOperationFindMod">
+					<mods>
+						<li>Simple Ogre Race</li>
+					</mods>
+		<match Class="PatchOperationSequence">
+			<operations>
+
+			<li Class="PatchOperationAddModExtension">
+				<xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="FP_OgreRace"]</xpath>
+				<value>
+					<li Class="CombatExtended.RacePropertiesExtensionCE">
+						<bodyShape>Humanoid</bodyShape>
+					</li>
+				</value>
+			</li>
+			
+			<!-- Melee Tool & Basestats Defs -->
+			<li Class="PatchOperationReplace">
+				<xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="FP_OgreRace"]/statBases/Mass</xpath>
+					<value>
+      						<Mass>80</Mass>
+						<MeleeDodgeChance>1</MeleeDodgeChance>
+						<MeleeCritChance>1.5</MeleeCritChance>
+						<MeleeParryChance>1</MeleeParryChance>
+          						<Suppressability>0.75</Suppressability>
+						<CarryWeight>55</CarryWeight>
+			                			<CarryBulk>30</CarryBulk>
+					</value>
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="FP_OgreRace"]/statBases/MoveSpeed</xpath>
+				<value>
+					<MoveSpeed>4.0</MoveSpeed>
+				</value>
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="FP_OgreRace"]/statBases/ArmorRating_Sharp</xpath>
+				<value>
+					<ArmorRating_Sharp>0.2</ArmorRating_Sharp>
+				</value>
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="FP_OgreRace"]/statBases/ArmorRating_Blunt</xpath>
+				<value>
+					<ArmorRating_Blunt>2</ArmorRating_Blunt>
+				</value>
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="FP_OgreRace"]/statBases/ArmorRating_Heat</xpath>
+				<value>
+					<ArmorRating_Heat>0.1</ArmorRating_Heat>
+				</value>
+			</li>
+
+		        <li Class="PatchOperationReplace">
+				<xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="FP_OgreRace"]/race/baseHealthScale</xpath>
+					<value>
+						<baseHealthScale>2</baseHealthScale>
+					</value>
+			</li>
+
+		        <li Class="PatchOperationReplace">
+				<xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="FP_OgreRace"]/race/baseBodySize</xpath>
+					<value>
+						<baseBodySize>1.5</baseBodySize>
+					</value>
+			</li>
+			
+			<li Class="PatchOperationReplace">
+				<xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="FP_OgreRace"]/tools</xpath> 
+				<value>
+					<tools>
+						<li Class="CombatExtended.ToolCE">
+							<label>left fist</label>
+							<capacities>
+								<li>Blunt</li>
+							</capacities>
+							<power>14</power>
+							<cooldownTime>1.8</cooldownTime>
+							<linkedBodyPartsGroup>LeftHand</linkedBodyPartsGroup>
+							<armorPenetrationBlunt>8</armorPenetrationBlunt>
+						</li>
+						<li Class="CombatExtended.ToolCE">
+							<label>right fist</label>
+							<capacities>
+								<li>Blunt</li>
+							</capacities>
+							<power>14</power>
+							<cooldownTime>1.8</cooldownTime>
+							<linkedBodyPartsGroup>RightHand</linkedBodyPartsGroup>
+							<armorPenetrationBlunt>8</armorPenetrationBlunt>
+						</li>
+						<li Class="CombatExtended.ToolCE">
+							<label>head</label>
+							<capacities>
+								<li>Blunt</li>
+							</capacities>
+							<power>15</power>
+							<cooldownTime>4.49</cooldownTime>
+							<linkedBodyPartsGroup>HeadAttackTool</linkedBodyPartsGroup>
+							<chanceFactor>0.2</chanceFactor>
+							<armorPenetrationBlunt>8</armorPenetrationBlunt>
+						</li>
+					</tools>
+				</value>
+			</li>
+			
+			<li Class="PatchOperationAdd">
+				<xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="FP_OgreRace"]/comps</xpath>
+				<value>
+					<li>
+						<compClass>CombatExtended.CompPawnGizmo</compClass>
+					</li>
+					<li Class="CombatExtended.CompProperties_Suppressable" />
+				</value>
+			</li>
+
+
+    			<li Class="PatchOperationAdd">
+				<xpath>Defs/HediffDef[defName="FP_OGRE_hediff"]/stages/li[1]</xpath>
+				<value>
+					<totalBleedFactor>0.75</totalBleedFactor>
+					<painFactor>0.8</painFactor>
+				</value>
+			</li>
+
+			</operations>		
+		</match>
+	</Operation>
+
+</Patch>

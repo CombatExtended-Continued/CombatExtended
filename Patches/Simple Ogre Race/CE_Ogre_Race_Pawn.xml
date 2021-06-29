@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>	
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+			<li>Simple Ogre Race</li>
+		</mods>
+		<match Class="PatchOperationSequence">
+			<operations>
+				<!-- Techless -->
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/PawnKindDef[defName="FP_OGRE_Tribal_Berserker"]/combatPower</xpath>
+					<value>
+						<combatPower>60</combatPower>
+					</value>
+				</li>
+
+				<!-- Tribal -->
+				<!-- Thrumkin_Penitent -->
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/PawnKindDef[defName="FP_OGRE_Pirate_Berserker"]/combatPower</xpath>
+					<value>
+						<combatPower>120</combatPower>
+					</value>
+				</li>
+
+			</operations>
+		</match>
+	</Operation>
+</Patch>
