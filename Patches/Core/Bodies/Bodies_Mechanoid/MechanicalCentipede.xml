@@ -116,6 +116,68 @@
       </li>
     </operations>
   </Operation>
+	
+<Operation Class="PatchOperationSequence">
+    <success>Always</success>
+    <operations>
+      <li Class="PatchOperationTest">
+        <xpath>/Defs/BodyDef[defName = "MechanicalCentipede"]/corePart/parts/li[def = "MechanicalHead"]/parts/li[def = "SightSensor"]/groups</xpath>
+        <success>Invert</success>
+      </li>
+      <li Class="PatchOperationAdd">
+        <xpath>/Defs/BodyDef[defName = "MechanicalCentipede"]/corePart/parts/li[def = "MechanicalHead"]/parts/li[def = "SightSensor"]</xpath>
+        <value>
+          <groups />
+        </value>
+      </li>
+    </operations>
+  </Operation>
+	
+<Operation Class="PatchOperationSequence">
+    <success>Always</success>
+    <operations>
+      <li Class="PatchOperationTest">
+        <xpath>/Defs/BodyDef[defName = "MechanicalCentipede"]/corePart/parts/li[def = "MechanicalHead"]/parts/li[def = "HearingSensor"]/groups</xpath>
+        <success>Invert</success>
+      </li>
+      <li Class="PatchOperationAdd">
+        <xpath>/Defs/BodyDef[defName = "MechanicalCentipede"]/corePart/parts/li[def = "MechanicalHead"]/parts/li[def = "HearingSensor"]</xpath>
+        <value>
+          <groups />
+        </value>
+      </li>
+    </operations>
+  </Operation>
+	
+<Operation Class="PatchOperationSequence">
+    <success>Always</success>
+    <operations>
+      <li Class="PatchOperationTest">
+        <xpath>/Defs/BodyDef[defName = "MechanicalCentipede"]/corePart/parts/li[def = "MechanicalHead"]/parts/li[def = "SmellSensor"]/groups</xpath>
+        <success>Invert</success>
+      </li>
+      <li Class="PatchOperationAdd">
+        <xpath>/Defs/BodyDef[defName = "MechanicalCentipede"]/corePart/parts/li[def = "MechanicalHead"]/parts/li[def = "SmellSensor"]</xpath>
+        <value>
+          <groups />
+        </value>
+      </li>
+    </operations>
+  </Operation>
+	
+  <!-- ========== Centipedes Squish ========== -->
+	
+	<Operation Class="PatchOperationAdd">
+        <xpath>
+          /Defs/BodyDef[defName="MechanicalCentipede"]//*[
+          def="SightSensor" or 
+          def="SmellSensor" or
+          def="HearingSensor"]/groups
+        </xpath>
+        <value>
+          <li>CoveredByNaturalArmor</li>
+        </value>
+	</Operation>
 
   <!-- ========== Add armor coverage ========== -->
 
