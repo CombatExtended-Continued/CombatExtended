@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+	
+	<Operation Class="PatchOperationFindMod">
+    <mods>
+		<li>[O21] Outer Rim Galaxies [DevBuild]</li>
+    </mods>
+		<match Class="PatchOperationSequence">
+		<operations>
+			
+			<li Class="PatchOperationRemove">
+				<xpath>Defs/ThingDef[defName = "O21_OR_AnaxesTurret"]/comps/li[@Class = "CompProperties_Refuelable"]</xpath>
+			</li>
+			
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName = "O21_OR_AnaxesTurret"]</xpath>
+				<value>
+				  <thingClass>CombatExtended.Building_TurretGunCE</thingClass>
+				</value>
+			</li>
+			
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName = "O21_OR_AnaxesTurret"]</xpath>
+				<value>
+				  <fillPercent>0.85</fillPercent>
+				</value>
+			</li>
+			
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName = "O21_OR_AnaxesTurret"]/statBases</xpath>
+				<value>
+					<AimingAccuracy>0.50</AimingAccuracy>
+				</value>
+			</li>
+			
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName = "O21_OR_AnaxesTurret"]/statBases/ShootingAccuracyTurret</xpath>
+				<value>
+					<ShootingAccuracyTurret>1</ShootingAccuracyTurret>
+				</value>
+			</li>
+			
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName = "O21_OR_AnaxesTurret"]/building/turretBurstCooldownTime</xpath>
+				<value>
+					<turretBurstCooldownTime>1.1</turretBurstCooldownTime>
+				</value>
+			</li>
+			
+			<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+			<defName>O21_OR_Gun_AnaxesTurret</defName>
+			  <statBases>
+				<SightsEfficiency>1</SightsEfficiency>
+				<ShotSpread>0.2</ShotSpread>
+				<SwayFactor>1.61</SwayFactor>
+				<RangedWeapon_Cooldown>0.36</RangedWeapon_Cooldown>
+			  </statBases>
+			  <Properties>
+				<recoilAmount>1.67</recoilAmount>
+				<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+				<hasStandardCommand>true</hasStandardCommand>
+				<defaultProjectile>Bullet_OR_Blaster_Turret_Red</defaultProjectile>
+				<warmupTime>4.3</warmupTime>
+				<range>78</range>
+				<minRange>8.9</minRange>
+				<ticksBetweenBurstShots>16</ticksBetweenBurstShots>
+				<burstShotCount>4</burstShotCount>
+				<soundCast>O21_Shot_BlasterBolt</soundCast>
+				<soundCastTail>GunTail_Heavy</soundCastTail>
+				<muzzleFlashScale>12</muzzleFlashScale>
+				<recoilPattern>Mounted</recoilPattern>
+			  </Properties>
+			  <FireModes>
+				<aiAimMode>AimedShot</aiAimMode>
+				<noSnapshot>true</noSnapshot>
+				<noSingleShot>false</noSingleShot>
+			  </FireModes>
+				<weaponTags>
+				  <li>TurretGun</li>
+				</weaponTags>
+			</li>
+			
+		</operations>
+		</match>
+	</Operation>
+	
+</Patch>
