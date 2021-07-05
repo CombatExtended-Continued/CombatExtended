@@ -210,6 +210,35 @@ namespace CombatExtended
         }
 
         /// <summary>
+        /// Extension method to determine whether a pawn has equipped a shield
+        /// </summary>
+        /// <returns>True if the pawn has a shield equipped</returns>
+        public static bool HasShield(this Pawn pawn)
+        {
+            if ((pawn.apparel?.WornApparelCount ?? 0) == 0) return false;
+            return pawn.apparel.WornApparel.Any(a => a is Apparel_Shield);
+        }
+
+        /// <summary>
+        /// Extension method to determine whether a pawn has equipped two handed weapon
+        /// </summary>
+        /// <returns>True if the pawn has equipped a two handed weapon</returns>
+        public static bool HasTwoWeapon(this Pawn pawn)
+        {
+            if (pawn.equipment?.Primary == null) return false;
+            return !(pawn.equipment.Primary.def.weaponTags?.Contains(Apparel_Shield.OneHandedTag) ?? false);
+        }
+
+        /// <summary>
+        /// Extension method to determine whether a pawn has equipped two handed weapon
+        /// </summary>
+        /// <returns>True if the pawn has equipped a two handed weapon</returns>
+        public static bool IsTwoHandedWeapon(this Thing weapon)
+        {
+            return !(weapon.def.weaponTags?.Contains(Apparel_Shield.OneHandedTag) ?? false);
+        }
+
+        /// <summary>
         /// Extension method to determine whether a ranged weapon has ammo available to it
         /// </summary>
         /// <returns>True if the gun has no CompAmmoUser, doesn't use ammo or has ammo in its magazine or carrier inventory, false otherwise</returns>
