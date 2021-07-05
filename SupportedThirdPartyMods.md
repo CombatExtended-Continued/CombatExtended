@@ -165,6 +165,7 @@ Misc. Core	|
 Misc. MAI |
 Misc. Robots	|
 Mister Meeseeks |
+Moa |
 More Consumables And Mutagens Reworked |
 More Mechanoids	|
 More Practical Traits	|
