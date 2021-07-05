@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+			<li>Bastyon</li>
+		</mods>
+		<match Class="PatchOperationSequence">
+			<operations>
+				<!-- ============== Changing Projectile's thingClass to CE ones ================ -->
+
+				<li Class="PatchOperationAdd">
+				<xpath>/Defs/ThingDef[defName="Bast_ScireFireBall" or
+				defName="Bast_Web" or
+				defName="Bast_AlluviumGoo" or
+				defName="Bast_CritterSpike" or
+				defName="Bast_SnippingSnailAcid"]</xpath>
+					<value>
+						<thingClass>CombatExtended.BulletCE</thingClass>
+					</value>
+				</li>
+
+				<!-- ============== Adding 'Standard' AimingAccuracy node to creatures' that use ranged attack statBases. =============== -->
+				<li Class="PatchOperationAdd">
+					<xpath>/Defs/ThingDef[defName="Bast_Scire" or
+				defName="Bast_Alluvium"  or defName="Bast_Snipping_Snail"]/statBases</xpath>
+					<value>
+						<AimingAccuracy>0.7</AimingAccuracy>
+					</value>
+				</li>
+				
+				<li Class="PatchOperationAdd">
+					<xpath>/Defs/ThingDef[defName="Bast_Critter" or defName="Bast_Gray_Terror"]/statBases</xpath>
+					<value>
+						<AimingAccuracy>0.3</AimingAccuracy>
+					</value>
+				</li>
+
+				<li Class="PatchOperationAdd">
+					<xpath>/Defs/ThingDef[defName="Bast_Bastyon" or defName="Bast_Blazing_Felidae"]/statBases</xpath>
+					<value>
+						<AimingAccuracy>6.7</AimingAccuracy>
+					</value>
+				</li>
+
+				<!-- =============== Now defining Projectiles in CE Procedure ============= -->
+
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/ThingDef[defName="Bast_SnippingSnailAcid"]/projectile</xpath>
+					<value>
+						<projectile Class="CombatExtended.ProjectilePropertiesCE">
+							<flyOverhead>false</flyOverhead>
+							<damageDef>Bast_AcidStream</damageDef>
+							<damageAmountBase>3</damageAmountBase>
+							<speed>12</speed>
+							<armorPenetrationSharp>2</armorPenetrationSharp>
+							<armorPenetrationBlunt>0.25</armorPenetrationBlunt>
+						</projectile>
+					</value>
+				</li>
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/ThingDef[defName="Bast_CritterSpike"]/projectile</xpath>
+					<value>
+						<projectile Class="CombatExtended.ProjectilePropertiesCE">
+						<flyOverhead>false</flyOverhead>
+						<damageDef>Cut</damageDef>
+						<damageAmountBase>6</damageAmountBase>
+						<speed>14</speed>
+						<armorPenetrationSharp>0.4</armorPenetrationSharp>
+						<armorPenetrationBlunt>0.2</armorPenetrationBlunt>
+						</projectile>
+					</value>
+				</li>
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/ThingDef[defName="Bast_AlluviumGoo"]/projectile</xpath>
+					<value>
+						<projectile Class="CombatExtended.ProjectilePropertiesCE">
+							<flyOverhead>false</flyOverhead>
+							<damageDef>Blunt</damageDef>
+							<damageAmountBase>2</damageAmountBase>
+							<speed>8</speed>
+							<armorPenetrationBlunt>6</armorPenetrationBlunt>
+							<secondaryDamage>
+								<li>
+									<def>Stun</def>
+									<amount>10</amount>
+								</li>
+							</secondaryDamage>
+						</projectile>
+					</value>
+				</li>
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/ThingDef[defName="Bast_ScireFireBall"]/projectile</xpath>
+					<value>
+						<projectile Class="CombatExtended.ProjectilePropertiesCE">
+						<flyOverhead>false</flyOverhead>
+						<damageDef>Flame</damageDef>
+						<damageAmountBase>1</damageAmountBase>
+						<armorPenetrationSharp>3</armorPenetrationSharp>
+						<speed>16</speed>
+						</projectile>
+					</value>
+				</li>
+
+
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/ThingDef[defName="Bast_Web"]/projectile</xpath>
+					<value>
+						<projectile Class="CombatExtended.ProjectilePropertiesCE">
+							<flyOverhead>false</flyOverhead>
+							<damageDef>Blunt</damageDef>
+							<damageAmountBase>2</damageAmountBase>
+							<speed>14</speed>
+							<armorPenetrationBlunt>4</armorPenetrationBlunt>
+							<secondaryDamage>
+								<li>
+									<def>Stun</def>
+									<amount>8</amount>
+								</li>
+							</secondaryDamage>
+						</projectile>
+					</value>
+				</li>
+
+			</operations>
+		</match>
+	</Operation>
+</Patch>

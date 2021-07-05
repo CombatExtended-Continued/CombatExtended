@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+			<li>Rim-Effect: Extended Cut</li>
+		</mods>
+		<match Class="PatchOperationSequence">
+			<operations>
+
+				<!-- === Light Helmet === -->
+				<li Class="PatchOperationAdd">
+					<xpath>/Defs/ThingDef[defName="RE_Apparel_CapacitorHelmet"]/statBases</xpath>
+					<value>
+						<Bulk>3</Bulk>
+						<WornBulk>0.5</WornBulk>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/ThingDef[defName="RE_Apparel_CapacitorHelmet"]/statBases/ArmorRating_Sharp</xpath>
+					<value>
+						<ArmorRating_Sharp>3</ArmorRating_Sharp>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/ThingDef[defName="RE_Apparel_CapacitorHelmet"]/statBases/ArmorRating_Blunt</xpath>
+					<value>
+						<ArmorRating_Blunt>4.5</ArmorRating_Blunt>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/ThingDef[defName="RE_Apparel_CapacitorHelmet"]/statBases/MaxHitPoints</xpath>
+					<value>
+						<MaxHitPoints>150</MaxHitPoints>
+					</value>
+				</li>
+
+
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/ThingDef[defName="RE_Apparel_CapacitorHelmet"]/statBases/Flammability</xpath>
+					<value>
+						<Flammability>0.1</Flammability>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/ThingDef[defName="RE_Apparel_CapacitorHelmet"]/equippedStatOffsets</xpath>
+					<value>
+    						<equippedStatOffsets>
+							<ShootingAccuracyPawn>-0.4</ShootingAccuracyPawn>
+    						</equippedStatOffsets>
+					</value>
+				</li>
+
+				<li Class="PatchOperationAdd">
+					<xpath>/Defs/ThingDef[defName="RE_Apparel_CapacitorHelmet"]/apparel</xpath>
+					<value>
+					<layers Inherit="false">
+						<li>Overhead</li>
+						<li>MiddleHead</li>
+						<li>StrappedHead</li>
+					</layers>
+					</value>
+				</li>
+
+
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/ThingDef[defName="RE_Apparel_ArchonVisor"]/equippedStatOffsets</xpath>
+					<value>
+						<equippedStatOffsets>
+      							<ShootingAccuracyPawn>0.5</ShootingAccuracyPawn>
+      							<AimingAccuracy>0.2</AimingAccuracy>
+						</equippedStatOffsets>
+					</value>
+				</li>
+
+				<li Class="PatchOperationAdd">
+					<xpath>/Defs/ThingDef[defName="RE_Apparel_ArchonVisor"]/apparel</xpath>
+					<value>
+					<layers Inherit="false">
+						<li>MiddleHead</li>
+						<li>StrappedHead</li>
+					</layers>
+					</value>
+				</li>
+
+			</operations>
+		</match>
+	</Operation>
+
+</Patch>

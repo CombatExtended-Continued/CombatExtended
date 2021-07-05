@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+
+  <Operation Class="PatchOperationFindMod">
+    <mods>
+      <li>MorrowRim - Bloodmoon</li>
+    </mods>
+
+    <match Class="PatchOperationSequence">
+      <operations>
+
+      <!-- Werewolf -->
+      <li Class="PatchOperationAdd">
+        <xpath>
+            /Defs/BodyDef[defName="MorrowRim_Werewolf"]//*[
+            def="Body" or 
+            def="Tail" or 
+            def="Neck"]
+          </xpath>
+        <value>
+          <groups />
+        </value>
+      </li>
+
+      <li Class="PatchOperationAdd">
+        <xpath>
+          /Defs/BodyDef[defName="MorrowRim_Werewolf"]//*[
+          def="Body" or 
+          def="Tail" or 
+          def="Neck" or 
+          def="Head" or 
+          def="AnimalJaw" or
+          def="FrontClaw" or
+          def="Shoulder" or
+            def="Arm" or 
+          def="Hand" or
+          def="Leg" or 
+         def="Foot"]/groups
+        </xpath>
+        <value>
+          <li>CoveredByNaturalArmor</li>
+        </value>
+      </li>
+
+      </operations>
+    </match>
+  </Operation>
+
+</Patch>

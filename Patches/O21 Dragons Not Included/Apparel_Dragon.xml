@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+			<li>[O21] Dragons Not Included</li>
+		</mods>
+		<match Class="PatchOperationSequence">
+			<operations>
+
+			<!-- Cloak -->
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="O21_DNI_ShoulderCloak"]/statBases/StuffEffectMultiplierArmor</xpath>
+				<value>
+					<StuffEffectMultiplierArmor>6</StuffEffectMultiplierArmor>
+					<Bulk>3.5</Bulk>
+					<WornBulk>1.5</WornBulk>
+				</value>
+			</li>
+
+			<!-- Tunic & Surcoat-->
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="O21_DNI_TunicKnight" or defName="O21_DNI_KnightSurcoat"]/statBases/StuffEffectMultiplierArmor</xpath>
+				<value>
+					<StuffEffectMultiplierArmor>4</StuffEffectMultiplierArmor>
+					<Bulk>3.5</Bulk>
+					<WornBulk>1.5</WornBulk>
+				</value>
+			</li>
+
+			<!-- Light Leather -->
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="O21_DNI_LeatherLight"]/statBases/StuffEffectMultiplierArmor</xpath>
+				<value>
+					<StuffEffectMultiplierArmor>6</StuffEffectMultiplierArmor>
+					<Bulk>75</Bulk>
+					<WornBulk>8</WornBulk>					
+				</value>
+			</li>
+
+			<!-- Pauldrons -->
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="O21_DNI_PauldronsKnight" or defName="O21_DNI_PauldronsGondorian"]/statBases/StuffEffectMultiplierArmor</xpath>
+				<value>
+					<StuffEffectMultiplierArmor>1.3</StuffEffectMultiplierArmor>
+					<Bulk>5</Bulk>
+					<WornBulk>2</WornBulk>
+				</value>
+			</li>
+
+			<!-- Breastplate -->
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="O21_DNI_BreastplateKnight" or defName="O21_DNI_CuirassGondorian"]/statBases/StuffEffectMultiplierArmor</xpath>
+				<value>
+					<StuffEffectMultiplierArmor>2.5</StuffEffectMultiplierArmor>
+					<Bulk>90</Bulk>
+					<WornBulk>13</WornBulk>
+				</value>
+			</li>
+
+			<!-- Helmet -->
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="O21_DNI_HelmetKnight" or defName="O21_DNI_HelmetGondor"]/statBases/StuffEffectMultiplierArmor</xpath>
+				<value>
+					<StuffEffectMultiplierArmor>2.1</StuffEffectMultiplierArmor>
+					<Bulk>5</Bulk>
+				</value>
+			</li>
+
+			<!-- Tropical Mask -->
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[@Name="DNIZoraiMaskBase"]/statBases/StuffEffectMultiplierArmor</xpath>
+				<value>
+					<StuffEffectMultiplierArmor>10</StuffEffectMultiplierArmor>
+				</value>
+			</li>
+
+			<!-- Hood -->
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="O21_DNI_NausicHoodGoggled" or defName="O21_DNI_NausicGasmask"]/statBases/StuffEffectMultiplierArmor</xpath>
+				<value>
+					<StuffEffectMultiplierArmor>8</StuffEffectMultiplierArmor>
+				</value>
+			</li>
+
+			<!-- Armored Hood -->
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="O21_DNI_NausicHoodGoggled_Armoured" or defName="O21_DNI_NausicGasmask_Armoured"]/statBases/StuffEffectMultiplierArmor</xpath>
+				<value>
+					<StuffEffectMultiplierArmor>8</StuffEffectMultiplierArmor>
+					<ArmorRating_Sharp>1</ArmorRating_Sharp>
+				</value>
+			</li>
+
+			<!-- Gas Mask -->
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName="O21_DNI_NausicGasmask" or defName="O21_DNI_NausicGasmask_Armoured"]/equippedStatOffsets</xpath>
+				<value>
+					<SmokeSensitivity>-0.65</SmokeSensitivity>
+				</value>
+			</li>
+
+			</operations>
+		</match>
+	</Operation>
+</Patch>
+

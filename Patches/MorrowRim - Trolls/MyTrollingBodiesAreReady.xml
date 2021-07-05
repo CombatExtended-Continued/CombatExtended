@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+
+  <Operation Class="PatchOperationFindMod">
+    <mods>
+      <li>MorrowRim - Trolls</li>
+    </mods>
+
+    <match Class="PatchOperationSequence">
+      <operations>
+
+      <!-- Bipedal -->
+
+      <li Class="PatchOperationAdd">
+        <xpath>
+            /Defs/BodyDef[defName="MorrowRim_Troll"]//*[
+            def="Body" or 
+            def="Ear" or 
+            def="Nose" or 
+            def="Neck" or 
+            def="Leg"]
+          </xpath>
+        <value>
+          <groups />
+        </value>
+      </li>
+
+      <li Class="PatchOperationAdd">
+        <xpath>
+          /Defs/BodyDef[defName="MorrowRim_Troll"]//*[
+          def="Body" or 
+          def="Neck" or 
+          def="Head" or 
+            def="Ear" or 
+            def="Nose" or 
+          def="AnimalJaw" or 
+            def="Shoulder" or 
+            def="Arm" or 
+            def="Hand" or 
+            def="FrontClaw" or 
+          def="Leg" or 
+         def="Foot"]/groups
+        </xpath>
+        <value>
+          <li>CoveredByNaturalArmor</li>
+        </value>
+      </li>
+
+      <li Class="PatchOperationAdd">
+        <xpath>
+            /Defs/BodyDef[defName="MorrowRim_TrollGrahl"]//*[
+            def="Body" or 
+            def="Ear" or 
+            def="Nose" or 
+            def="Neck" or 
+            def="Leg"]
+          </xpath>
+        <value>
+          <groups />
+        </value>
+      </li>
+
+      <li Class="PatchOperationAdd">
+        <xpath>
+          /Defs/BodyDef[defName="MorrowRim_TrollGrahl"]//*[
+          def="Body" or 
+          def="Neck" or 
+          def="Head" or 
+            def="Ear" or 
+            def="Nose" or 
+          def="AnimalJaw" or 
+          def="Tusk" or 
+            def="Shoulder" or 
+            def="Arm" or 
+            def="Hand" or 
+            def="FrontClaw" or 
+          def="Leg" or 
+         def="Foot"]/groups
+        </xpath>
+        <value>
+          <li>CoveredByNaturalArmor</li>
+        </value>
+      </li>
+
+      </operations>
+    </match>
+  </Operation>
+
+</Patch>

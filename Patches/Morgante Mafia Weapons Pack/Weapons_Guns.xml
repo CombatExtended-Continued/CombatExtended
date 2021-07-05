@@ -1,0 +1,443 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+			<li>Morgante Mafia Weapons Pack</li>
+		</mods>
+		<match Class="PatchOperationSequence">
+			<operations>
+			
+		<!-- ========== Tools ========== -->
+
+		<li Class="PatchOperationReplace">
+			<xpath>
+				/Defs/ThingDef[
+					defName="Morg_Lupara" or
+					defName="Morg_PoketRevolver" or
+					defName="Morg_ServiceRevolver" or
+					defName="Morg_M1911a" 
+				]/tools
+			</xpath>
+			<value>
+				<tools>
+					<li Class="CombatExtended.ToolCE">
+						<label>grip</label>
+						<capacities>
+							<li>Blunt</li>
+						</capacities>
+						<power>2</power>
+						<cooldownTime>2</cooldownTime>
+						<chanceFactor>1.5</chanceFactor>
+						<armorPenetrationBlunt>0.555</armorPenetrationBlunt>
+						<linkedBodyPartsGroup>Grip</linkedBodyPartsGroup>
+					</li>
+					<li Class="CombatExtended.ToolCE">
+						<label>muzzle</label>
+						<capacities>
+							<li>Poke</li>
+						</capacities>
+						<power>2</power>
+						<cooldownTime>2</cooldownTime>
+						<armorPenetrationBlunt>0.555</armorPenetrationBlunt>
+						<linkedBodyPartsGroup>Muzzle</linkedBodyPartsGroup>
+					</li>
+				</tools>
+			</value>
+		</li>
+
+		<li Class="PatchOperationReplace">
+			<xpath>
+				/Defs/ThingDef[
+					defName="Morg_TommyGun" or
+					defName="Morg_PumpShotgun" or
+					defName="Morg_BoltActionRifle"
+				]/tools
+			</xpath>
+			<value>
+				<tools>
+					<li Class="CombatExtended.ToolCE">
+						<label>stock</label>
+						<capacities>
+							<li>Blunt</li>
+						</capacities>
+						<power>2</power>
+						<cooldownTime>1.55</cooldownTime>
+						<chanceFactor>1.5</chanceFactor>
+						<armorPenetrationBlunt>2.755</armorPenetrationBlunt>
+						<linkedBodyPartsGroup>Stock</linkedBodyPartsGroup>
+					</li>
+					<li Class="CombatExtended.ToolCE">
+						<label>barrel</label>
+						<capacities>
+							<li>Blunt</li>
+						</capacities>
+						<power>2</power>
+						<cooldownTime>2.02</cooldownTime>
+						<armorPenetrationBlunt>1.630</armorPenetrationBlunt>
+						<linkedBodyPartsGroup>Barrel</linkedBodyPartsGroup>
+					</li>
+					<li Class="CombatExtended.ToolCE">
+						<label>muzzle</label>
+						<capacities>
+							<li>Poke</li>
+						</capacities>
+						<power>2</power>
+						<cooldownTime>1.55</cooldownTime>
+						<armorPenetrationBlunt>2.755</armorPenetrationBlunt>
+						<linkedBodyPartsGroup>Muzzle</linkedBodyPartsGroup>
+					</li>
+				</tools>
+			</value>
+		</li>
+
+		<!-- ========== Bolt Action Rifle / Springfield 1903 ========== -->
+		<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+			<defName>Morg_BoltActionRifle</defName>
+			<statBases>
+				<Mass>3.90</Mass>
+				<RangedWeapon_Cooldown>1.17</RangedWeapon_Cooldown>
+				<SightsEfficiency>1.00</SightsEfficiency>
+				<ShotSpread>0.05</ShotSpread>
+				<SwayFactor>1.49</SwayFactor>
+				<Bulk>11.00</Bulk>
+			</statBases>
+			<Properties>
+				<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+				<hasStandardCommand>true</hasStandardCommand>
+				<defaultProjectile>Bullet_3006Springfield_FMJ</defaultProjectile>
+				<warmupTime>1.1</warmupTime>
+				<range>55</range>
+				<soundCast>Shot_BoltActionRifle</soundCast>
+				<soundCastTail>GunTail_Heavy</soundCastTail>
+				<muzzleFlashScale>9</muzzleFlashScale>
+			</Properties>
+			<AmmoUser>
+				<magazineSize>5</magazineSize>
+				<reloadTime>4.3</reloadTime>
+				<ammoSet>AmmoSet_3006Springfield</ammoSet>
+			</AmmoUser>
+			<FireModes>
+				<aiUseBurstMode>FALSE</aiUseBurstMode>
+				<aiAimMode>AimedShot</aiAimMode>
+			</FireModes>
+		</li>
+
+		<!-- ========== Pump Shotgun / Model 1897 ========== -->
+		<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+			<defName>Morg_PumpShotgun</defName>
+			<statBases>
+				<Mass>3.60</Mass>
+				<RangedWeapon_Cooldown>0.99</RangedWeapon_Cooldown>
+				<SightsEfficiency>1</SightsEfficiency>
+				<ShotSpread>0.14</ShotSpread>
+				<SwayFactor>1.36</SwayFactor>
+				<Bulk>10.00</Bulk>
+			</statBases>
+			<Properties>
+				<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+				<hasStandardCommand>true</hasStandardCommand>
+				<defaultProjectile>Bullet_12Gauge_Buck</defaultProjectile>
+				<warmupTime>0.6</warmupTime>
+				<range>16</range>
+				<soundCast>Shot_Shotgun</soundCast>
+				<soundCastTail>GunTail_Heavy</soundCastTail>
+				<muzzleFlashScale>9</muzzleFlashScale>
+			</Properties>
+			<AmmoUser>
+				<magazineSize>5</magazineSize>
+				<reloadTime>4.25</reloadTime>
+				<ammoSet>AmmoSet_12Gauge</ammoSet>
+			</AmmoUser>
+			<FireModes>
+				<aiUseBurstMode>FALSE</aiUseBurstMode>
+				<aiAimMode>Snapshot</aiAimMode>
+			</FireModes>
+			<weaponTags>
+				<li>CE_AI_AssaultWeapon</li>
+			</weaponTags>
+		</li>
+
+		<!-- === Sawed Off === -->
+		<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+			<defName>Morg_Lupara</defName>
+			<statBases>
+				<WorkToMake>9500</WorkToMake>
+				<Bulk>4.75</Bulk>
+				<Mass>1.85</Mass>
+				<ShotSpread>0.17</ShotSpread>
+				<SwayFactor>2.20</SwayFactor>
+				<SightsEfficiency>0.7</SightsEfficiency>
+				<RangedWeapon_Cooldown>0.93</RangedWeapon_Cooldown>
+			</statBases>
+			<Properties>
+				<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+				<hasStandardCommand>true</hasStandardCommand>
+				<defaultProjectile>Bullet_12Gauge_Buck</defaultProjectile>
+				<warmupTime>0.6</warmupTime>
+				<range>13</range>
+				<soundCast>Shot_Shotgun</soundCast>
+				<soundCastTail>GunTail_Heavy</soundCastTail>
+				<muzzleFlashScale>9</muzzleFlashScale>
+			</Properties>
+			<AmmoUser>
+				<magazineSize>2</magazineSize>
+				<reloadOneAtATime>true</reloadOneAtATime>
+				<reloadTime>1.7</reloadTime>
+				<ammoSet>AmmoSet_12Gauge</ammoSet>
+			</AmmoUser>
+			<FireModes>
+				<aiAimMode>Snapshot</aiAimMode>
+			</FireModes>
+			<weaponTags>
+				<li>Gun</li>
+				<li>CE_OneHandedWeapon</li>
+			</weaponTags>
+		</li>
+
+		<!-- === Tommy Gun === -->
+		<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+			<defName>Morg_TommyGun</defName>
+			<statBases>
+				<Mass>4.90</Mass>
+				<RangedWeapon_Cooldown>0.36</RangedWeapon_Cooldown>
+				<SightsEfficiency>1.00</SightsEfficiency>
+				<ShotSpread>0.12</ShotSpread>
+				<SwayFactor>1.35</SwayFactor>
+				<Bulk>8.60</Bulk>
+			</statBases>
+			<Properties>
+				<recoilAmount>1.32</recoilAmount>
+				<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+				<hasStandardCommand>true</hasStandardCommand>
+				<defaultProjectile>Bullet_45ACP_FMJ</defaultProjectile>
+				<warmupTime>0.6</warmupTime>
+				<range>25</range>
+				<burstShotCount>6</burstShotCount>
+				<ticksBetweenBurstShots>5</ticksBetweenBurstShots>
+				<soundCast>Shot_HeavySMG</soundCast>
+				<soundCastTail>GunTail_Heavy</soundCastTail>
+				<muzzleFlashScale>9</muzzleFlashScale>
+			</Properties>
+			<AmmoUser>
+				<magazineSize>50</magazineSize>
+				<reloadTime>4</reloadTime>
+				<ammoSet>AmmoSet_45ACP</ammoSet>
+			</AmmoUser>
+			<FireModes>
+				<aiUseBurstMode>FALSE</aiUseBurstMode>
+				<aiAimMode>Snapshot</aiAimMode>
+				<aimedBurstShotCount>3</aimedBurstShotCount>
+			</FireModes>
+		</li>
+
+		<!-- ========== Pocket Revolver / S&W Model 10, Snubnose ========== -->
+		<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+			<defName>Morg_PoketRevolver</defName>
+			<statBases>
+				<Mass>0.82</Mass>
+				<RangedWeapon_Cooldown>0.48</RangedWeapon_Cooldown>
+				<SightsEfficiency>0.7</SightsEfficiency>
+				<ShotSpread>0.2</ShotSpread>
+				<SwayFactor>0.86</SwayFactor>
+				<Bulk>1.77</Bulk>
+			</statBases>
+			<Properties>
+				<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+				<hasStandardCommand>true</hasStandardCommand>
+				<defaultProjectile>Bullet_38ACP_FMJ</defaultProjectile>
+				<warmupTime>0.6</warmupTime>
+				<range>10</range>
+				<soundCast>Shot_Revolver</soundCast>
+				<soundCastTail>GunTail_Light</soundCastTail>
+				<muzzleFlashScale>9</muzzleFlashScale>
+			</Properties>
+			<AmmoUser>
+				<magazineSize>6</magazineSize>
+				<reloadTime>4.6</reloadTime>
+				<ammoSet>AmmoSet_38ACP</ammoSet>
+			</AmmoUser>
+			<FireModes>
+				<aiUseBurstMode>FALSE</aiUseBurstMode>
+			</FireModes>
+			<weaponTags>
+				<li>CE_Sidearm</li>
+				<li>CE_AI_Pistol</li>
+				<li>CE_OneHandedWeapon</li>
+			</weaponTags>
+		</li>
+
+		<!-- ========== Service Revolver / S&W Model 10, 4" Barrel ========== -->
+		<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+			<defName>Morg_ServiceRevolver</defName>
+			<statBases>
+				<Mass>0.97</Mass>
+				<RangedWeapon_Cooldown>0.48</RangedWeapon_Cooldown>
+				<SightsEfficiency>0.7</SightsEfficiency>
+				<ShotSpread>0.18</ShotSpread>
+				<SwayFactor>1.08</SwayFactor>
+				<Bulk>2.28</Bulk>
+			</statBases>
+			<Properties>
+				<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+				<hasStandardCommand>true</hasStandardCommand>
+				<defaultProjectile>Bullet_38ACP_FMJ</defaultProjectile>
+				<warmupTime>0.6</warmupTime>
+				<range>12</range>
+				<soundCast>Shot_Revolver</soundCast>
+				<soundCastTail>GunTail_Light</soundCastTail>
+				<muzzleFlashScale>9</muzzleFlashScale>
+			</Properties>
+			<AmmoUser>
+				<magazineSize>6</magazineSize>
+				<reloadTime>4.6</reloadTime>
+				<ammoSet>AmmoSet_38ACP</ammoSet>
+			</AmmoUser>
+			<FireModes>
+				<aiUseBurstMode>FALSE</aiUseBurstMode>
+			</FireModes>
+			<weaponTags>
+				<li>CE_Sidearm</li>
+				<li>CE_AI_Pistol</li>
+				<li>CE_OneHandedWeapon</li>
+			</weaponTags>
+		</li>
+
+		<!-- ========== M1911a1 ========== -->
+		<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+			<defName>Morg_M1911a</defName>
+			<statBases>
+				<Mass>1.14</Mass>
+				<RangedWeapon_Cooldown>0.38</RangedWeapon_Cooldown>
+				<SightsEfficiency>0.70</SightsEfficiency>
+				<ShotSpread>0.17</ShotSpread>
+				<SwayFactor>1.11</SwayFactor>
+				<Bulk>2.19</Bulk>
+			</statBases>
+			<Properties>
+				<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+				<hasStandardCommand>true</hasStandardCommand>
+				<defaultProjectile>Bullet_45ACP_FMJ</defaultProjectile>
+				<warmupTime>0.6</warmupTime>
+				<range>12</range>
+				<soundCast>Shot_Autopistol</soundCast>
+				<soundCastTail>GunTail_Light</soundCastTail>
+				<muzzleFlashScale>9</muzzleFlashScale>
+			</Properties>
+			<AmmoUser>
+				<magazineSize>7</magazineSize>
+				<reloadTime>4</reloadTime>
+				<ammoSet>AmmoSet_45ACP</ammoSet>
+			</AmmoUser>
+			<FireModes>
+				<aiUseBurstMode>FALSE</aiUseBurstMode>
+				<aiAimMode>AimedShot</aiAimMode>
+			</FireModes>
+			<weaponTags>
+				<li>CE_AI_Pistol</li>
+				<li>CE_Sidearm</li>
+				<li>CE_OneHandedWeapon</li>
+			</weaponTags>
+		</li>
+
+		<!-- === Molotov === -->
+
+		<!-- Projectile -->
+
+		<li Class="PatchOperationReplace">
+			<xpath>Defs/ThingDef[@Name="BaseIncendiaryProjectile"]/projectile</xpath>
+			<value>
+				<projectile Class="CombatExtended.ProjectilePropertiesCE">
+					<explosionRadius>0.5</explosionRadius>
+					<damageDef>PrometheumFlame</damageDef>
+					<damageAmountBase>10</damageAmountBase>
+					<preExplosionSpawnThingDef>FilthPrometheum</preExplosionSpawnThingDef>
+					<preExplosionSpawnChance>1</preExplosionSpawnChance>
+					<speed>5</speed>
+					<ai_IsIncendiary>true</ai_IsIncendiary>
+				</projectile>
+			</value>
+		</li>
+
+		<li Class="PatchOperationAdd">
+			<xpath>Defs/ThingDef[defName="Morg_MolotovCocktailProj"]</xpath>
+			<value>
+				<thingClass>CombatExtended.Projectile_FireTrail</thingClass>
+			</value>
+		</li>
+
+		<!-- Grenade -->
+
+		<li Class="PatchOperationAttributeSet">
+			<xpath>Defs/ThingDef[defName="Morg_MolotovCocktail"]</xpath>
+			<attribute>ParentName</attribute>
+			<value>BaseWeapon</value>
+		</li>
+
+		<li Class="PatchOperationAdd">
+			<xpath>Defs/ThingDef[defName="Morg_MolotovCocktail"]</xpath>
+			<value>
+				<thingClass>CombatExtended.AmmoThing</thingClass>
+				<stackLimit>50</stackLimit>
+				<resourceReadoutPriority>First</resourceReadoutPriority>
+			</value>
+		</li>
+
+		<li Class="PatchOperationAttributeSet">
+			<xpath>Defs/ThingDef[defName="Morg_MolotovCocktail"]</xpath>
+			<attribute>Class</attribute>
+			<value>CombatExtended.AmmoDef</value>
+		</li>
+
+		<li Class="PatchOperationReplace">
+			<xpath>Defs/ThingDef[defName="Morg_MolotovCocktail"]/comps</xpath>
+			<value>
+			<comps>
+				<li Class="CombatExtended.CompProperties_ExplosiveCE">
+					<damageAmountBase>1</damageAmountBase>
+					<explosiveDamageType>Flame</explosiveDamageType>
+					<explosiveRadius>0.5</explosiveRadius>
+					<preExplosionSpawnThingDef>Filth_Fuel</preExplosionSpawnThingDef>
+					<preExplosionSpawnChance>1</preExplosionSpawnChance>
+				</li>
+			</comps>  
+			</value>
+		</li>
+
+		<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+			<defName>Morg_MolotovCocktail</defName>
+			<statBases>
+				<Mass>0.6</Mass>
+				<Bulk>2.55</Bulk>
+				<MarketValue>7.05</MarketValue>
+				<RangedWeapon_Cooldown>1</RangedWeapon_Cooldown>
+				<SightsEfficiency>0.65</SightsEfficiency>
+			</statBases>
+			<Properties>
+				<label>throw molotov</label>
+				<verbClass>CombatExtended.Verb_ShootCEOneUse</verbClass>
+				<hasStandardCommand>true</hasStandardCommand>
+				<range>10</range>
+				<minRange>4</minRange>
+				<warmupTime>0.8</warmupTime>
+				<noiseRadius>4</noiseRadius>
+				<ai_IsBuildingDestroyer>true</ai_IsBuildingDestroyer>
+				<soundCast>ThrowMolotovCocktail</soundCast>
+				<targetParams>
+					<canTargetLocations>true</canTargetLocations>
+				</targetParams>
+				<defaultProjectile>Morg_MolotovCocktailProj</defaultProjectile>
+				<onlyManualCast>true</onlyManualCast>
+				<ignorePartialLoSBlocker>true</ignorePartialLoSBlocker>
+			</Properties>
+			<weaponTags>
+				<li>CE_AI_Grenade</li>
+				<li>CE_OneHandedWeapon</li>
+			</weaponTags>
+		</li>
+
+			</operations>
+		</match>
+	</Operation>
+
+</Patch>

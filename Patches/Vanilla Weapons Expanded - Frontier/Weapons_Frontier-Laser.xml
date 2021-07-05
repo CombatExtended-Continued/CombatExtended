@@ -2,28 +2,206 @@
 <Patch>
 
 	<Operation Class="PatchOperationFindMod">
-					<mods>
-						<li>Vanilla Weapons Expanded - Frontier</li>
-					</mods>
-		<match Class="PatchOperationFindMod">
-					<mods>
-						<li>Vanilla Weapons Expanded - Laser</li>
-					</mods>
-					
-			<match Class="PatchOperationSequence">
-				<operations>
- 
-      <!-- 
-      Temporarily remove the addon weapons until they're patched,
-      so non-working weapons don't spawn.
-      -->
+		<mods>
+			<li>Vanilla Weapons Expanded - Frontier</li>
+		</mods>
+	<match Class="PatchOperationFindMod">
+		<mods>
+			<li>Vanilla Weapons Expanded - Laser</li>
+		</mods>
+				
+		<match Class="PatchOperationSequence">
+			<operations>
 
-      <li Class="PatchOperationRemove">
-        <xpath>/Defs/ThingDef[defName="VWEFT_Gun_SalvagedLaserRevolver" or defName="VWEFT_Gun_SalvagedLaserRepeater" or defName="VWEFT_Gun_SalvagedLaserHuntingRifle"]</xpath>
+      <!-- === Tools === -->
+
+      <li Class="PatchOperationReplace">
+        <xpath>/Defs/ThingDef[defName="VWEFT_Gun_SalvagedLaserRevolver"]/tools</xpath>
+        <value>
+          <tools>
+            <li Class="CombatExtended.ToolCE">
+              <label>grip</label>
+              <capacities>
+                <li>Blunt</li>
+              </capacities>
+              <power>2</power>
+              <cooldownTime>1.54</cooldownTime>
+              <chanceFactor>1.5</chanceFactor>
+              <armorPenetrationBlunt>0.555</armorPenetrationBlunt>
+              <linkedBodyPartsGroup>Grip</linkedBodyPartsGroup>
+            </li>
+            <li Class="CombatExtended.ToolCE">
+              <label>muzzle</label>
+              <capacities>
+                <li>Poke</li>
+              </capacities>
+              <power>2</power>
+              <cooldownTime>1.54</cooldownTime>
+              <armorPenetrationBlunt>0.555</armorPenetrationBlunt>
+              <linkedBodyPartsGroup>Muzzle</linkedBodyPartsGroup>
+            </li>
+          </tools>
+        </value>
       </li>
 
-				</operations>
-			</match>					
+      <li Class="PatchOperationReplace">
+        <xpath>/Defs/ThingDef[defName="VWEFT_Gun_SalvagedLaserRepeater" or defName="VWEFT_Gun_SalvagedLaserHuntingRifle"]/tools</xpath>
+        <value>
+          <tools>
+            <li Class="CombatExtended.ToolCE">
+              <label>stock</label>
+              <capacities>
+                <li>Blunt</li>
+              </capacities>
+              <power>8</power>
+              <cooldownTime>1.55</cooldownTime>
+              <chanceFactor>1.5</chanceFactor>
+              <armorPenetrationBlunt>2.755</armorPenetrationBlunt>
+              <linkedBodyPartsGroup>Stock</linkedBodyPartsGroup>
+            </li>
+            <li Class="CombatExtended.ToolCE">
+              <label>barrel</label>
+              <capacities>
+                <li>Blunt</li>
+              </capacities>
+              <power>5</power>
+              <cooldownTime>2.02</cooldownTime>
+              <armorPenetrationBlunt>1.630</armorPenetrationBlunt>
+              <linkedBodyPartsGroup>Barrel</linkedBodyPartsGroup>
+            </li>
+            <li Class="CombatExtended.ToolCE">
+              <label>muzzle</label>
+              <capacities>
+                <li>Poke</li>
+              </capacities>
+              <power>8</power>
+              <cooldownTime>1.55</cooldownTime>
+              <armorPenetrationBlunt>2.755</armorPenetrationBlunt>
+              <linkedBodyPartsGroup>Muzzle</linkedBodyPartsGroup>
+            </li>
+          </tools>
+        </value>
+      </li>
+
+      <!-- === Remove VWE Overheating Gizmo === -->
+
+      <li Class="PatchOperationRemove">
+        <xpath>/Defs/ThingDef[
+        defName = "VWEFT_Gun_SalvagedLaserRevolver" or 
+        defName = "VWEFT_Gun_SalvagedLaserRepeater" or        
+        defName = "VWEFT_Gun_SalvagedLaserHuntingRifle"
+        ]/comps/li[@Class="VanillaWeaponsExpandedLaser.CompProperties_LaserCapacitor"]</xpath>
+      </li>
+
+      <!-- === Salvaged Laser Revolver === -->
+
+      <li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+        <defName>VWEFT_Gun_SalvagedLaserRevolver</defName>
+        <statBases>
+          <Mass>1.40</Mass>
+          <Bulk>2.60</Bulk>
+          <SwayFactor>1.33</SwayFactor>
+          <ShotSpread>0.07</ShotSpread>
+          <SightsEfficiency>0.7</SightsEfficiency>
+          <RangedWeapon_Cooldown>0.65</RangedWeapon_Cooldown>
+        </statBases>
+        <Properties>
+          <verbClass>CombatExtended.Verb_ShootCE</verbClass>
+          <hasStandardCommand>True</hasStandardCommand>
+          <defaultProjectile>Bullet_Laser_SalvagedLaserRevolver_HR</defaultProjectile>
+          <warmupTime>0.6</warmupTime>
+          <range>16</range>
+          <soundCast>VWE_UnstableLaserShot_Light</soundCast>
+          <soundCastTail>GunTail_Heavy</soundCastTail>
+          <muzzleFlashScale>9</muzzleFlashScale>
+        </Properties>
+        <AmmoUser>
+          <magazineSize>16</magazineSize>
+          <reloadTime>4</reloadTime>
+          <ammoSet>AmmoSet_SalvagedLaserRevolver_HR</ammoSet>
+        </AmmoUser>
+        <FireModes>
+          <aiAimMode>AimedShot</aiAimMode>
+        </FireModes>
+        <weaponTags>
+          <li>SalvagedLaserGun</li>
+          <li>CE_OneHandedWeapon</li>
+        </weaponTags>
+      </li>
+
+      <!-- === Salvaged Laser Repeater === -->
+ 
+      <li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+        <defName>VWEFT_Gun_SalvagedLaserRepeater</defName>
+        <statBases>
+          <Mass>3.60</Mass>
+          <Bulk>10.10</Bulk>
+          <SwayFactor>1.37</SwayFactor>
+          <ShotSpread>0.08</ShotSpread>
+          <SightsEfficiency>1.00</SightsEfficiency>
+          <RangedWeapon_Cooldown>0.55</RangedWeapon_Cooldown>
+        </statBases>
+        <Properties>
+          <verbClass>CombatExtended.Verb_ShootCE</verbClass>
+          <hasStandardCommand>True</hasStandardCommand>
+          <defaultProjectile>Bullet_Laser_SalvagedLaserRepeater_HR</defaultProjectile>
+          <warmupTime>1</warmupTime>
+          <range>62</range> 
+          <soundCast>VWE_UnstableLaserShot_Rifle</soundCast>
+          <soundCastTail>GunTail_Heavy</soundCastTail>
+          <muzzleFlashScale>9</muzzleFlashScale>
+        </Properties>
+        <AmmoUser>
+          <magazineSize>20</magazineSize>
+          <reloadTime>4</reloadTime>
+          <ammoSet>AmmoSet_SalvagedLaserRepeater_HR</ammoSet>
+        </AmmoUser>
+        <FireModes>
+          <aiAimMode>AimedShot</aiAimMode>
+          <aiUseBurstMode>True</aiUseBurstMode>         
+        </FireModes>
+        <weaponTags>
+          <li>SalvagedLaserGun</li>
+        </weaponTags>		
+      </li>
+
+      <!-- === Salvaged Laser Hunting Rifle === -->
+
+      <li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+        <defName>VWEFT_Gun_SalvagedLaserHuntingRifle</defName>
+        <statBases>
+          <Mass>4.45</Mass>
+          <Bulk>13.50</Bulk>
+          <SwayFactor>1.35</SwayFactor>
+          <ShotSpread>0.03</ShotSpread>
+          <SightsEfficiency>1.86</SightsEfficiency>
+          <RangedWeapon_Cooldown>0.78</RangedWeapon_Cooldown>
+        </statBases>
+        <Properties>
+          <verbClass>CombatExtended.Verb_ShootCE</verbClass>
+          <hasStandardCommand>True</hasStandardCommand>
+          <defaultProjectile>Bullet_Laser_SalvagedLaserHuntingRifle_HR</defaultProjectile>
+          <warmupTime>1.85</warmupTime>
+          <range>76</range>
+          <soundCast>VWE_LaserShot_Heavy</soundCast>
+          <soundCastTail>GunTail_Heavy</soundCastTail>
+          <muzzleFlashScale>9</muzzleFlashScale>
+        </Properties>
+        <AmmoUser>
+          <magazineSize>12</magazineSize>
+          <reloadTime>4</reloadTime>
+          <ammoSet>AmmoSet_SalvagedLaserHuntingRifle_HR</ammoSet>
+        </AmmoUser>
+        <FireModes>
+          <aiAimMode>AimedShot</aiAimMode>     
+        </FireModes>
+        <weaponTags>
+          <li>SalvagedLaserGun</li>
+        </weaponTags>			
+      </li>
+
+		  </operations>
+		  </match>					
 		</match>			
 	</Operation>
 

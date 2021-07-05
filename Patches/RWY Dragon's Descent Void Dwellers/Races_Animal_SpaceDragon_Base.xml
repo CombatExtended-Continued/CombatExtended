@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+	<!-- I took 3 months off of RimWorld and I've forgotten how to do patches. Great. -->
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+			<li>[RWY]Dragon's Descent: Void Dwellers</li>
+		</mods>
+		<match Class="PatchOperationSequence">
+			<operations>
+				<!-- ======== BaseDragon (Dragon Base) ======== -->
+				<!-- ====== ModExtension ====== -->
+				<li Class="PatchOperationAddModExtension">
+					<xpath>Defs/ThingDef[@Name="VoidDragonRaceBase" or @Name="NebulaDragonRaceBase" or @Name="AurelionDragonRaceBase"]</xpath>
+					<value>
+						<li Class="CombatExtended.RacePropertiesExtensionCE">
+							<bodyShape>Birdlike</bodyShape>
+						</li>
+					</value>
+				</li>
+
+				<!-- ======== Void Base ======== -->
+				<!-- ====== statBases ====== -->
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[@Name="VoidDragonRaceBase" or @Name="VoidDragonWWRaceBase" or @Name="VoidDDDragonRaceBase"]/statBases</xpath>
+					<value>
+						<MeleeDodgeChance>0.24</MeleeDodgeChance>
+						<MeleeCritChance>2</MeleeCritChance>
+						<MeleeParryChance>0.64</MeleeParryChance>
+						<SightsEfficiency>1</SightsEfficiency>
+						<AimingAccuracy>1</AimingAccuracy>
+						<ShootingAccuracyPawn>1</ShootingAccuracyPawn>
+					</value>
+				</li>
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[@Name="VoidDragonRaceBase" or @Name="VoidDragonWWRaceBase" or @Name="VoidDDDragonRaceBase" or @Name="NebulaDragonRaceBase" or @Name="AurelionDragonRaceBase"]/statBases/ArmorRating_Blunt</xpath>
+					<value>
+						<ArmorRating_Blunt>50</ArmorRating_Blunt>
+					</value>
+				</li>
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[@Name="VoidDragonRaceBase" or @Name="VoidDragonWWRaceBase" or @Name="VoidDDDragonRaceBase" or @Name="NebulaDragonRaceBase" or @Name="AurelionDragonRaceBase"]/statBases/ArmorRating_Sharp</xpath>
+					<value>
+						<ArmorRating_Sharp>20</ArmorRating_Sharp>
+					</value>
+				</li>
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[@Name="NebulaDragonRaceBase"]/statBases</xpath>
+					<value>
+						<MeleeDodgeChance>0.57</MeleeDodgeChance>
+						<MeleeCritChance>1.1</MeleeCritChance>
+						<MeleeParryChance>0.36</MeleeParryChance>
+						<SightsEfficiency>1</SightsEfficiency>
+						<AimingAccuracy>1</AimingAccuracy>
+						<ShootingAccuracyPawn>1</ShootingAccuracyPawn>
+					</value>
+				</li>
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[@Name="AurelionDragonRaceBase"]/statBases</xpath>
+					<value>
+						<MeleeDodgeChance>0.66</MeleeDodgeChance>
+						<MeleeCritChance>1.56</MeleeCritChance>
+						<MeleeParryChance>0.64</MeleeParryChance>
+						<SightsEfficiency>1</SightsEfficiency>
+						<AimingAccuracy>1</AimingAccuracy>
+						<ShootingAccuracyPawn>1</ShootingAccuracyPawn>
+					</value>
+				</li>
+		
+				<!-- ====== race (Race Properties) ====== -->
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[@Name="VoidDragonRaceBase" or @Name="VoidDragonWWRaceBase" or @Name="VoidDDDragonRaceBase" or @Name="NebulaDragonRaceBase" or @Name="AurelionDragonRaceBase"]/race/baseHealthScale</xpath>
+					<value>
+						<baseHealthScale>10</baseHealthScale>
+					</value>
+				</li>
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[@Name="VoidDragonRaceBase"]/race/manhunterOnTameFailChance</xpath>
+					<value>
+						<manhunterOnTameFailChance>0.6</manhunterOnTameFailChance>
+					</value>
+				</li>
+				<!-- ====== verbs (Because XPath dumb) ======== -->
+				<!--<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[@Name="DragonRaceBase"]</xpath>
+					<value>
+						<verbs Inherit="false">
+							<li Class="CombatExtended.VerbPropertiesCE">
+								<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+								<hasStandardCommand>true</hasStandardCommand>
+								<defaultProjectile>Projectile_DragonBreath</defaultProjectile>
+								<burstShotCount>25</burstShotCount>
+								<ticksBetweenBurstShots>2</ticksBetweenBurstShots>
+								<warmupTime>5</warmupTime>
+								<range>25</range>
+								<minRange>2</minRange>
+								<soundCast>DragonBreathShot</soundCast>
+								<muzzleFlashScale>1</muzzleFlashScale>
+								<commonality>0.9</commonality>
+								<ai_IsBuildingDestroyer>true</ai_IsBuildingDestroyer>
+								<targetParams>
+									<canTargetLocations>true</canTargetLocations>
+								</targetParams>
+								<recoilAmount>0.4</recoilAmount>
+							</li>
+						</verbs>
+					</value>
+				</li>-->
+			</operations>
+		</match>
+	</Operation>
+
+</Patch>

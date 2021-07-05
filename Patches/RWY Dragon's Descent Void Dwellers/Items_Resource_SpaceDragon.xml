@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+			<li>[RWY]Dragon's Descent: Void Dwellers</li>
+		</mods>
+
+		<match Class="PatchOperationSequence">
+			<operations>
+				<!-- === Dragon_Leather === -->
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/ThingDef[defName="DD_AbyssalPearl"]/statBases/StuffPower_Armor_Sharp</xpath>
+
+					<value>
+						<StuffPower_Armor_Sharp>0.807</StuffPower_Armor_Sharp>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/ThingDef[defName="DD_AbyssalPearl"]/statBases/StuffPower_Armor_Blunt</xpath>
+					
+					<value>
+						<StuffPower_Armor_Blunt>0.42</StuffPower_Armor_Blunt>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/ThingDef[defName="DD_AbyssalPearl"]/statBases/StuffPower_Armor_Heat</xpath>
+
+					<value>
+						<StuffPower_Armor_Heat>0.16</StuffPower_Armor_Heat>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/ThingDef[defName="DD_AbyssalPearl"]/statBases/BluntDamageMultiplier</xpath>
+
+					<value>
+      						<BluntDamageMultiplier>1.4</BluntDamageMultiplier>
+					</value>
+				</li>
+
+				<li Class="PatchOperationAdd">
+					<xpath>/Defs/ThingDef[defName="DD_AbyssalPearl"]/stuffProps/statFactors</xpath>
+
+					<value>
+						<MeleePenetrationFactor>1.5</MeleePenetrationFactor>
+					</value>
+				</li>
+
+				<!-- === Rich_Dragon_Leather === -->
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/ThingDef[defName="DD_BrittleStar"]/statBases/StuffPower_Armor_Sharp</xpath>
+
+					<value>
+						<StuffPower_Armor_Sharp>0.03</StuffPower_Armor_Sharp>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/ThingDef[defName="DD_BrittleStar"]/statBases/StuffPower_Armor_Blunt</xpath>
+
+					<value>
+						<StuffPower_Armor_Blunt>0.02</StuffPower_Armor_Blunt>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/ThingDef[defName="DD_BrittleStar"]/statBases/StuffPower_Armor_Heat</xpath>
+
+					<value>
+						<StuffPower_Armor_Heat>0.05</StuffPower_Armor_Heat>
+					</value>
+				</li>
+
+			</operations>
+		</match>
+	</Operation>
+
+</Patch>

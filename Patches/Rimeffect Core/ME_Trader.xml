@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+		<li>Rim-Effect: Core</li>
+		</mods>
+		<match Class="PatchOperationSequence">
+		<operations>
+
+			<!-- ==========  ========== -->
+
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/TraderKindDef[defName="RE_Base_Alliance_Standard"]/stockGenerators</xpath>
+				<value>
+      				<li Class="StockGenerator_SingleDef">
+        				<thingDef>FSX</thingDef>
+        				<countRange>
+          				<min>25</min>
+          				<max>90</max>
+        				</countRange>
+      				</li>
+      				<li Class="StockGenerator_SingleDef">
+        				<thingDef>Prometheum</thingDef>
+        				<countRange>
+          				<min>25</min>
+          				<max>90</max>
+        				</countRange>
+      				</li>
+					<li Class="StockGenerator_Tag">
+						<tradeTag>ME_Ammo</tradeTag>
+						<countRange>
+							<min>500</min>
+							<max>1800</max>
+						</countRange>
+						<thingDefCountRange>
+							<min>1</min>
+							<max>4</max>
+						</thingDefCountRange>
+					</li>
+				</value>
+			</li>
+
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/TraderKindDef[defName="RE_Caravan_Alliance_CombatSupplier"]/stockGenerators</xpath>
+				<value>
+      				<li Class="StockGenerator_SingleDef">
+        				<thingDef>FSX</thingDef>
+        				<countRange>
+          				<min>12</min>
+          				<max>36</max>
+        				</countRange>
+      				</li>
+      				<li Class="StockGenerator_SingleDef">
+        				<thingDef>Prometheum</thingDef>
+        				<countRange>
+          				<min>12</min>
+          				<max>36</max>
+        				</countRange>
+      				</li>
+					<li Class="StockGenerator_Tag">
+						<tradeTag>ME_Ammo</tradeTag>
+						<countRange>
+							<min>300</min>
+							<max>1200</max>
+						</countRange>
+						<price>Cheap</price>
+						<thingDefCountRange>
+							<min>1</min>
+							<max>3</max>
+						</thingDefCountRange>
+					</li>
+				</value>
+			</li>
+
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/TraderKindDef[defName="RE_Caravan_Alliance_Exotic" or
+					defName="RE_Caravan_Alliance_BulkGoods"]/stockGenerators</xpath>
+				<value>
+      				<li Class="StockGenerator_SingleDef">
+        				<thingDef>FSX</thingDef>
+        				<countRange>
+          				<min>15</min>
+          				<max>45</max>
+        				</countRange>
+      				</li>
+      				<li Class="StockGenerator_SingleDef">
+        				<thingDef>Prometheum</thingDef>
+        				<countRange>
+          				<min>15</min>
+          				<max>45</max>
+        				</countRange>
+      				</li>
+					<li Class="StockGenerator_Tag">
+						<tradeTag>ME_Ammo</tradeTag>
+						<countRange>
+							<min>120</min>
+							<max>500</max>
+						</countRange>
+						<thingDefCountRange>
+							<min>1</min>
+							<max>2</max>
+						</thingDefCountRange>
+					</li>
+				</value>
+			</li>
+
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/TraderKindDef[defName="RE_Visitor_Alliance_Standard"]/stockGenerators</xpath>
+				<value>
+					<li Class="StockGenerator_Tag">
+						<tradeTag>ME_Ammo</tradeTag>
+						<countRange>
+							<min>10</min>
+							<max>60</max>
+						</countRange>
+						<thingDefCountRange>
+							<min>-1</min>
+							<max>1</max>
+						</thingDefCountRange>
+					</li>
+				</value>
+			</li>
+
+
+		</operations>
+		</match>
+	</Operation>
+</Patch>

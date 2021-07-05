@@ -150,6 +150,13 @@
   </Operation>
 
   <Operation Class="PatchOperationReplace">
+    <xpath>Defs/ThingDef[@Name="ApparelArmorHelmetCataphractBase"]/statBases/Mass</xpath>
+    <value>
+      <Mass>6.6</Mass>
+    </value>
+  </Operation>
+
+  <Operation Class="PatchOperationReplace">
     <xpath>Defs/ThingDef[@Name="ApparelArmorHelmetCataphractBase"]/statBases/MaxHitPoints</xpath>
     <value>
       <MaxHitPoints>260</MaxHitPoints>
@@ -182,10 +189,11 @@
     </value>
   </Operation>
 
-  <Operation Class="PatchOperationAdd">
-    <xpath>Defs/ThingDef[@Name="ApparelArmorHelmetCataphractBase"]/costList</xpath>
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/ThingDef[@Name="ApparelArmorHelmetCataphractBase"]/costList/Plasteel</xpath>
     <value>
-      <DevilstrandCloth>30</DevilstrandCloth>
+      <Plasteel>110</Plasteel>
+      <DevilstrandCloth>25</DevilstrandCloth>
     </value>
   </Operation>
 
@@ -197,6 +205,29 @@
       <li>MiddleHead</li>
     </value>
   </Operation>
+  
+	<!-- ========== Prestige Armor ========== -->
+	
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Apparel_ArmorHelmetReconPrestige"]/costList/Plasteel</xpath>
+		<value>
+			<Plasteel>70</Plasteel>
+		</value>
+	</Operation>
+	
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Apparel_ArmorMarineHelmetPrestige"]/costList/Plasteel</xpath>
+		<value>
+			<Plasteel>90</Plasteel>
+		</value>
+	</Operation>
+	
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Apparel_ArmorHelmetCataphractPrestige"]/costList/Plasteel</xpath>
+		<value>
+			<Plasteel>120</Plasteel>
+		</value>
+	</Operation>
 
 </Patch>
 

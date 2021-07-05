@@ -1,0 +1,280 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+		<li>MorrowRim</li>
+		<li>MorrowRim - Just the Animals</li>
+		</mods>
+
+		<match Class="PatchOperationSequence">
+			<operations>
+
+			<li Class="PatchOperationAddModExtension">
+				<xpath>/Defs/ThingDef[defName="MorrowRim_CorprusStalker" or defName="MorrowRim_CorprusLame" or defName="MorrowRim_CorprusBloated"]</xpath>
+				<value>
+					<li Class="CombatExtended.RacePropertiesExtensionCE">
+						<bodyShape>Humanoid</bodyShape>
+					</li>
+				</value>
+			</li>
+
+			<li Class="PatchOperationAdd">
+				<xpath>/Defs/ThingDef[defName="MorrowRim_CorprusStalker"]</xpath>
+				<value>
+					<statBases>
+					<MoveSpeed>1.2</MoveSpeed>
+					<MeleeDodgeChance>0.5</MeleeDodgeChance>
+					<MeleeCritChance>0.25</MeleeCritChance>
+					<MeleeParryChance>1</MeleeParryChance>
+					</statBases>
+				</value>
+			</li>
+
+			<li Class="PatchOperationAdd">
+				<xpath>/Defs/ThingDef[defName="MorrowRim_CorprusLame"]/statBases</xpath>
+				<value>
+					<MeleeDodgeChance>0.5</MeleeDodgeChance>
+					<MeleeCritChance>0.5</MeleeCritChance>
+					<MeleeParryChance>1</MeleeParryChance>
+				</value>
+			</li>
+
+			<li Class="PatchOperationAdd">
+				<xpath>/Defs/ThingDef[defName="MorrowRim_CorprusBloated"]/statBases</xpath>
+				<value>
+					<MeleeDodgeChance>0.5</MeleeDodgeChance>
+					<MeleeCritChance>0.24</MeleeCritChance>
+					<MeleeParryChance>1</MeleeParryChance>
+				</value>
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>/Defs/ThingDef[defName="MorrowRim_CorprusStalker"]/tools</xpath>
+				<value>
+					<tools>
+						<li Class="CombatExtended.ToolCE">
+							<label>left fist</label>
+							<capacities>
+								<li>MorrowRim_CorprusScratch</li>
+							</capacities>
+							<power>6</power>
+							<cooldownTime>1</cooldownTime>
+							<linkedBodyPartsGroup>LeftHand</linkedBodyPartsGroup>
+							<surpriseAttack>
+								<extraMeleeDamages>
+									<li>
+										<def>Stun</def>
+										<amount>14</amount>
+									</li>
+								</extraMeleeDamages>
+							</surpriseAttack>
+							<armorPenetrationSharp>0.4</armorPenetrationSharp>
+							<armorPenetrationBlunt>1</armorPenetrationBlunt>
+						</li>
+						<li Class="CombatExtended.ToolCE">
+							<label>right fist</label>
+							<capacities>
+								<li>MorrowRim_CorprusScratch</li>
+							</capacities>
+							<power>6</power>
+							<cooldownTime>1</cooldownTime>
+							<linkedBodyPartsGroup>RightHand</linkedBodyPartsGroup>
+							<surpriseAttack>
+								<extraMeleeDamages>
+									<li>
+										<def>Stun</def>
+										<amount>14</amount>
+									</li>
+								</extraMeleeDamages>
+							</surpriseAttack>
+							<armorPenetrationSharp>0.4</armorPenetrationSharp>
+							<armorPenetrationBlunt>1</armorPenetrationBlunt>
+						</li>
+						<li Class="CombatExtended.ToolCE">
+							<capacities>
+								<li>MorrowRim_CorprusBite</li>
+							</capacities>
+							<power>8</power>
+							<cooldownTime>1.5</cooldownTime>
+							<linkedBodyPartsGroup>Teeth</linkedBodyPartsGroup>
+							<surpriseAttack>
+								<extraMeleeDamages>
+									<li>
+										<def>Stun</def>
+										<amount>14</amount>
+									</li>
+								</extraMeleeDamages>
+							</surpriseAttack>
+							<armorPenetrationSharp>0.75</armorPenetrationSharp>
+							<armorPenetrationBlunt>1.75</armorPenetrationBlunt>
+						</li>
+						<li Class="CombatExtended.ToolCE">
+							<label>head</label>
+							<capacities>
+								<li>Blunt</li>
+							</capacities>
+							<power>2</power>
+							<cooldownTime>2</cooldownTime>
+							<linkedBodyPartsGroup>HeadAttackTool</linkedBodyPartsGroup>
+							<armorPenetrationBlunt>1</armorPenetrationBlunt>
+							<chanceFactor>0.1</chanceFactor>
+						</li>
+					</tools>
+				</value>
+			</li>
+			
+			<li Class="PatchOperationReplace">
+				<xpath>/Defs/ThingDef[defName="MorrowRim_CorprusBloated"]/tools</xpath>
+				<value>
+					<tools>
+						<li Class="CombatExtended.ToolCE">
+							<label>left fist</label>
+							<capacities>
+								<li>MorrowRim_CorprusScratch</li>
+							</capacities>
+							<power>6</power>
+							<cooldownTime>1</cooldownTime>
+							<linkedBodyPartsGroup>LeftHand</linkedBodyPartsGroup>
+							<surpriseAttack>
+								<extraMeleeDamages>
+									<li>
+										<def>Stun</def>
+										<amount>14</amount>
+									</li>
+								</extraMeleeDamages>
+							</surpriseAttack>
+							<armorPenetrationSharp>0.5</armorPenetrationSharp>
+							<armorPenetrationBlunt>1</armorPenetrationBlunt>
+						</li>
+						<li Class="CombatExtended.ToolCE">
+							<label>right fist</label>
+							<capacities>
+								<li>MorrowRim_CorprusScratch</li>
+							</capacities>
+							<power>6</power>
+							<cooldownTime>1</cooldownTime>
+							<linkedBodyPartsGroup>RightHand</linkedBodyPartsGroup>
+							<surpriseAttack>
+								<extraMeleeDamages>
+									<li>
+										<def>Stun</def>
+										<amount>14</amount>
+									</li>
+								</extraMeleeDamages>
+							</surpriseAttack>
+							<armorPenetrationSharp>0.5</armorPenetrationSharp>
+							<armorPenetrationBlunt>1</armorPenetrationBlunt>
+						</li>
+						<li Class="CombatExtended.ToolCE">
+							<capacities>
+								<li>MorrowRim_CorprusBite</li>
+							</capacities>
+							<power>8</power>
+							<cooldownTime>1.5</cooldownTime>
+							<linkedBodyPartsGroup>Teeth</linkedBodyPartsGroup>
+							<surpriseAttack>
+								<extraMeleeDamages>
+									<li>
+										<def>Stun</def>
+										<amount>14</amount>
+									</li>
+								</extraMeleeDamages>
+							</surpriseAttack>
+							<armorPenetrationSharp>1</armorPenetrationSharp>
+							<armorPenetrationBlunt>2</armorPenetrationBlunt>
+						</li>
+						<li Class="CombatExtended.ToolCE">
+							<label>head</label>
+							<capacities>
+								<li>Blunt</li>
+							</capacities>
+							<power>2</power>
+							<cooldownTime>2</cooldownTime>
+							<linkedBodyPartsGroup>HeadAttackTool</linkedBodyPartsGroup>
+							<armorPenetrationBlunt>1</armorPenetrationBlunt>
+							<chanceFactor>0.1</chanceFactor>
+						</li>
+					</tools>
+				</value>
+			</li>
+			<li Class="PatchOperationReplace">
+				<xpath>/Defs/ThingDef[defName="MorrowRim_CorprusLame"]/tools</xpath>
+				<value>
+					<tools>
+						<li Class="CombatExtended.ToolCE">
+							<label>left fist</label>
+							<capacities>
+				  			<li>Blunt</li>
+			  				<li>MorrowRim_CorprusScratch</li>
+							</capacities>
+							<power>14</power>
+							<cooldownTime>1.9</cooldownTime>
+							<linkedBodyPartsGroup>LeftHand</linkedBodyPartsGroup>
+							<surpriseAttack>
+								<extraMeleeDamages>
+									<li>
+										<def>Stun</def>
+										<amount>14</amount>
+									</li>
+								</extraMeleeDamages>
+							</surpriseAttack>
+							<armorPenetrationSharp>2</armorPenetrationSharp>
+							<armorPenetrationBlunt>5.5</armorPenetrationBlunt>
+						</li>
+						<li Class="CombatExtended.ToolCE">
+							<label>right fist</label>
+							<capacities>
+				  			<li>Blunt</li>
+			  				<li>MorrowRim_CorprusScratch</li>
+							</capacities>
+							<power>14</power>
+							<cooldownTime>1.9</cooldownTime>
+							<linkedBodyPartsGroup>RightHand</linkedBodyPartsGroup>
+							<surpriseAttack>
+								<extraMeleeDamages>
+									<li>
+										<def>Stun</def>
+										<amount>14</amount>
+									</li>
+								</extraMeleeDamages>
+							</surpriseAttack>
+							<armorPenetrationSharp>2</armorPenetrationSharp>
+							<armorPenetrationBlunt>5.5</armorPenetrationBlunt>
+						</li>
+						<li Class="CombatExtended.ToolCE">
+							<capacities>
+								<li>MorrowRim_CorprusBite</li>
+							</capacities>
+							<power>8</power>
+							<cooldownTime>1.5</cooldownTime>
+							<linkedBodyPartsGroup>Teeth</linkedBodyPartsGroup>
+							<surpriseAttack>
+								<extraMeleeDamages>
+									<li>
+										<def>Stun</def>
+										<amount>14</amount>
+									</li>
+								</extraMeleeDamages>
+							</surpriseAttack>
+							<armorPenetrationSharp>1</armorPenetrationSharp>
+							<armorPenetrationBlunt>2.5</armorPenetrationBlunt>
+						</li>
+						<li Class="CombatExtended.ToolCE">
+							<label>head</label>
+							<capacities>
+								<li>Blunt</li>
+							</capacities>
+							<power>5</power>
+							<cooldownTime>2</cooldownTime>
+							<linkedBodyPartsGroup>HeadAttackTool</linkedBodyPartsGroup>
+							<armorPenetrationBlunt>1</armorPenetrationBlunt>
+							<chanceFactor>0.1</chanceFactor>
+						</li>
+					</tools>
+				</value>
+			</li>
+
+			</operations>
+		</match>
+	</Operation>
+</Patch>

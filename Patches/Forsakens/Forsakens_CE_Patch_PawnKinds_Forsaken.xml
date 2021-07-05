@@ -10,22 +10,14 @@
 				<!-- ========== Reduce meals and medicine carried by all pawns ========== -->
 
 				<li Class="PatchOperationReplace">
-					<xpath>Defs/PawnKindDef[
-						@Name="ForsakenBase" or
-						defName="ForsakenSniper" or
-						defName="ForsakenSlasher"
-					]/invNutrition</xpath>
+					<xpath>Defs/PawnKindDef[@Name="ForsakenBase"]/invNutrition</xpath>
 					<value>
 						<invNutrition>1</invNutrition>
 					</value>
 				</li>
 
 				<li Class="PatchOperationReplace">
-					<xpath>Defs/PawnKindDef[
-					defName="ForsakenSlasher" or
-					defName="ForsakenGunner" or
-					defName="KingOfTheLostOnes"
-				]/inventoryOptions/subOptionsChooseOne</xpath>
+					<xpath>Defs/PawnKindDef[@Name="ForsakenBase"]/inventoryOptions/subOptionsChooseOne</xpath>
 					<value>
 						<subOptionsChooseOne>
 							<li>
@@ -48,14 +40,14 @@
 
 				<!-- ========== Remove smokepop belt ========== -->
 
-				<li Class="PatchOperationRemove">
+				<!-- <li Class="PatchOperationRemove">
 					<xpath>Defs/PawnKindDef[
 					defName="ForsakenGunner" or
 					defName="KingOfTheLostOnes" or
 					defName="Town_GuardF" or
 					defName="Town_TraderF"
 				]/apparelTags/li[.="BeltDefensePop"]</xpath>
-				</li>
+				</li> -->
 
 				<!-- ========== Forsaken faction pawns should spawn backpacks, allowing them to carry their inventory ========== -->
 
@@ -63,6 +55,7 @@
 					<xpath>Defs/PawnKindDef[
 						defName="Town_GuardF" or
 						defName="VillagerF" or
+						defName="ForsakenGunner" or
 						defName="Town_TraderF"
 					]</xpath>
 					<value>
@@ -76,7 +69,6 @@
 					<xpath>Defs/PawnKindDef[
 						defName="ForsakenSniper" or
 						defName="ForsakenSlasher" or
-						defName="ForsakenGunner" or
 						defName="KingOfTheLostOnes"
 					]/apparelRequired</xpath>
 					<value>

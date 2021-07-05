@@ -1,0 +1,357 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+
+  <Operation Class="PatchOperationFindMod">
+    <mods>
+      <li>The Joris Experience</li>
+    </mods>
+    <match Class="PatchOperationSequence">
+      <operations>
+
+        <!-- === BEARS=== -->
+
+		<li Class="PatchOperationAddModExtension">
+		<xpath>/Defs/ThingDef[defName="JE_AnimeMascotJoris" 
+					or defName="JE_BeefeaterJoris"
+					or defName="JE_BiblicallyAccurateJoris"
+					or defName="JECom_BlockJoris"
+					or defName="JECom_Cerberjoris"
+					or defName="JE_ChainsawJoris"
+					or defName="JE_ChiefOBonson"
+					or defName="JECom_ColonistJoris"
+					or defName="JE_DracoJoris"
+					or defName="JE_EmoJoris"
+					or defName="JECom_FamousDevilJoris"
+					or defName="JE_FatJorry"
+					or defName="JECom_IsaacJoris"
+					or defName="JE_JagothGrr"
+					or defName="JECom_JJorisJameson"
+					or defName="JE_JockExcellente"
+					or defName="JE_Joku"
+					or defName="JE_JoneralGrievous"
+					or defName="JE_JonerysBonbearean"
+					or defName="JE_JonicTheHedgehog"
+					or defName="JE_JoobyDoo"
+					or defName="JE_JoraltOfRivia"
+					or defName="JE_JordonFreeman"
+					or defName="JECom_JorisAstley"
+					or defName="JECom_JorisSiroj"
+					or defName="JECom_JorisThePooh"
+					or defName="JE_JorisWhatLivesInASociety"
+					or defName="JE_Joromir"
+					or defName="JE_JorrickLorge"
+					or defName="JE_Joruto"
+					or defName="JE_JovidBowie"
+					or defName="JE_PerfectlyNormalJoris"
+					or defName="JECom_PickleJoris"
+					or defName="JE_QueenJorisTheSecond"
+					or defName="JE_SpongejorisSquarebonson"
+					or defName="JECom_SuperJoris"
+					or defName="JE_FourLeggedUniJoris"
+					or defName="JECom_VoidJoris"
+					or defName="JE_XorismorphQueen"
+					or defName="JE_YugiJohris"
+					or defName="JE_ZombieJoris"]</xpath>
+			<value>
+				<li Class="CombatExtended.RacePropertiesExtensionCE">
+					<bodyShape>Quadruped</bodyShape>
+				</li>
+			</value>
+		</li>
+
+		<li Class="PatchOperationAddModExtension">
+		<xpath>/Defs/ThingDef[defName="JECom_RoundJoris"]</xpath>
+			<value>
+				<li Class="CombatExtended.RacePropertiesExtensionCE">
+					<bodyShape>Vehicle</bodyShape>
+				</li>
+			</value>
+		</li>
+
+
+        		<li Class="PatchOperationReplace">
+			<xpath>Defs/PawnKindDef[defName="JE_AnimeMascotJoris" 
+					or defName="JE_BeefeaterJoris"
+					or defName="JE_BiblicallyAccurateJoris"
+					or defName="JECom_BlockJoris"
+					or defName="JECom_ColonistJoris"
+					or defName="JE_DracoJoris"
+					or defName="JE_EmoJoris"
+					or defName="JECom_FamousDevilJoris"
+					or defName="JE_FatJorry"
+					or defName="JECom_IsaacJoris"
+					or defName="JECom_JJorisJameson"
+					or defName="JE_JonerysBonbearean"
+					or defName="JE_JonicTheHedgehog"
+					or defName="JE_JordonFreeman"
+					or defName="JECom_JorisAstley"
+					or defName="JECom_JorisSiroj"
+					or defName="JECom_JorisThePooh"
+					or defName="JE_JorisWhatLivesInASociety"
+					or defName="JE_Joromir"
+					or defName="JE_Joruto"
+					or defName="JE_JovidBowie"
+					or defName="JE_PerfectlyNormalJoris"
+					or defName="JECom_PickleJoris"
+					or defName="JE_QueenJorisTheSecond"
+					or defName="JE_SpongejorisSquarebonson"
+					or defName="JECom_SuperJoris"
+					or defName="JE_YugiJohris"]/combatPower</xpath>
+			<value>
+				<combatPower>150</combatPower>
+			</value>
+		</li>
+
+        		<li Class="PatchOperationReplace">
+			<xpath>Defs/PawnKindDef[defName="JECom_Cerberjoris"
+					or defName="JE_ChainsawJoris"
+					or defName="JE_ChiefOBonson"
+					or defName="JE_JagothGrr"
+					or defName="JE_JockExcellente"
+					or defName="JE_Joku"
+					or defName="JE_JoneralGrievous"
+					or defName="JE_JoraltOfRivia"
+					or defName="JE_JorrickLorge"
+					or defName="JECom_RoundJoris"
+					or defName="JE_FourLeggedUniJoris"
+					or defName="JE_ZombieJoris"]/combatPower</xpath>
+			<value>
+				<combatPower>225</combatPower>
+			</value>
+		</li>
+
+
+        		<li Class="PatchOperationReplace">
+			<xpath>Defs/PawnKindDef[defName="JE_XorismorphQueen"]/combatPower</xpath>
+			<value>
+				<combatPower>650</combatPower>
+			</value>
+		</li>
+
+        <li Class="PatchOperationAdd">
+			<xpath>Defs/ThingDef[defName="JE_AnimeMascotJoris" 
+					or defName="JE_BeefeaterJoris"
+					or defName="JECom_BlockJoris"
+					or defName="JECom_Cerberjoris"
+					or defName="JE_ChainsawJoris"
+					or defName="JE_ChiefOBonson"
+					or defName="JECom_ColonistJoris"
+					or defName="JE_DracoJoris"
+					or defName="JE_EmoJoris"
+					or defName="JECom_FamousDevilJoris"
+					or defName="JE_FatJorry"
+					or defName="JECom_IsaacJoris"
+					or defName="JE_JagothGrr"
+					or defName="JECom_JJorisJameson"
+					or defName="JE_JockExcellente"
+					or defName="JE_Joku"
+					or defName="JE_JoneralGrievous"
+					or defName="JE_JonerysBonbearean"
+					or defName="JE_JordonFreeman"
+					or defName="JECom_JorisAstley"
+					or defName="JECom_JorisSiroj"
+					or defName="JECom_JorisThePooh"
+					or defName="JE_JorisWhatLivesInASociety"
+					or defName="JE_Joromir"
+					or defName="JE_Joruto"
+					or defName="JE_JovidBowie"
+					or defName="JE_PerfectlyNormalJoris"
+					or defName="JECom_PickleJoris"
+					or defName="JE_QueenJorisTheSecond"
+					or defName="JECom_RoundJoris"
+					or defName="JE_SpongejorisSquarebonson"
+					or defName="JECom_SuperJoris"
+					or defName="JE_FourLeggedUniJoris"
+					or defName="JE_YugiJohris"
+					or defName="JE_ZombieJoris"]/statBases</xpath>
+			<value>
+			<MeleeDodgeChance>0.09</MeleeDodgeChance>
+			<MeleeCritChance>0.38</MeleeCritChance>
+			<MeleeParryChance>0.17</MeleeParryChance>
+			</value>
+		</li>
+
+        <li Class="PatchOperationReplace">
+		             <xpath>Defs/ThingDef[defName="JE_AnimeMascotJoris" 
+					or defName="JE_BeefeaterJoris"
+					or defName="JECom_BlockJoris"
+					or defName="JECom_Cerberjoris"
+					or defName="JE_ChainsawJoris"
+					or defName="JE_ChiefOBonson"
+					or defName="JECom_ColonistJoris"
+					or defName="JE_DracoJoris"
+					or defName="JE_EmoJoris"
+					or defName="JECom_FamousDevilJoris"
+					or defName="JE_FatJorry"
+					or defName="JECom_IsaacJoris"
+					or defName="JE_JagothGrr"
+					or defName="JECom_JJorisJameson"
+					or defName="JE_JockExcellente"
+					or defName="JE_Joku"
+					or defName="JE_JoneralGrievous"
+					or defName="JE_JonerysBonbearean"
+					or defName="JE_JonicTheHedgehog"
+					or defName="JE_JoraltOfRivia"
+					or defName="JE_JordonFreeman"
+					or defName="JECom_JorisAstley"
+					or defName="JECom_JorisSiroj"
+					or defName="JECom_JorisThePooh"
+					or defName="JE_JorisWhatLivesInASociety"
+					or defName="JE_Joromir"
+					or defName="JE_Joruto"
+					or defName="JE_JovidBowie"
+					or defName="JE_PerfectlyNormalJoris"
+					or defName="JECom_PickleJoris"
+					or defName="JE_QueenJorisTheSecond"
+					or defName="JE_SpongejorisSquarebonson"
+					or defName="JECom_SuperJoris"
+					or defName="JE_FourLeggedUniJoris"
+					or defName="JE_YugiJohris"
+					or defName="JE_ZombieJoris"]/race/baseBodySize</xpath>
+		<value>
+			<baseBodySize>1.75</baseBodySize>
+		</value>
+	</li>
+
+
+        <li Class="PatchOperationReplace">
+		             <xpath>Defs/ThingDef[defName="JE_AnimeMascotJoris" 
+					or defName="JE_BeefeaterJoris"
+					or defName="JECom_BlockJoris"
+					or defName="JECom_Cerberjoris"
+					or defName="JE_ChainsawJoris"
+					or defName="JE_ChiefOBonson"
+					or defName="JECom_ColonistJoris"
+					or defName="JE_DracoJoris"
+					or defName="JE_EmoJoris"
+					or defName="JECom_FamousDevilJoris"
+					or defName="JE_FatJorry"
+					or defName="JECom_IsaacJoris"
+					or defName="JE_JagothGrr"
+					or defName="JECom_JJorisJameson"
+					or defName="JE_Joku"
+					or defName="JE_JonerysBonbearean"
+					or defName="JE_JoraltOfRivia"
+					or defName="JE_JordonFreeman"
+					or defName="JECom_JorisAstley"
+					or defName="JECom_JorisSiroj"
+					or defName="JECom_JorisThePooh"
+					or defName="JE_JorisWhatLivesInASociety"
+					or defName="JE_Joromir"
+					or defName="JE_Joruto"
+					or defName="JE_JovidBowie"
+					or defName="JE_PerfectlyNormalJoris"
+					or defName="JECom_PickleJoris"
+					or defName="JE_QueenJorisTheSecond"
+					or defName="JE_SpongejorisSquarebonson"
+					or defName="JECom_SuperJoris"
+					or defName="JE_FourLeggedUniJoris"
+					or defName="JE_YugiJohris"]/race/baseHealthScale</xpath>
+		<value>
+			<baseHealthScale>2</baseHealthScale>
+		</value>
+	</li>
+
+        <li Class="PatchOperationReplace">
+                                            <xpath>/Defs/ThingDef[defName="JE_AnimeMascotJoris" 
+					or defName="JE_BeefeaterJoris"
+					or defName="JE_ChiefOBonson"
+					or defName="JECom_ColonistJoris"
+					or defName="JE_EmoJoris"
+					or defName="JECom_FamousDevilJoris"
+					or defName="JE_FatJorry"
+					or defName="JECom_IsaacJoris"
+					or defName="JE_JagothGrr"
+					or defName="JECom_JJorisJameson"
+					or defName="JE_JockExcellente"
+					or defName="JE_Joku"
+					or defName="JE_JonerysBonbearean"
+					or defName="JECom_JorisAstley"
+					or defName="JECom_JorisThePooh"
+					or defName="JE_JorisWhatLivesInASociety"
+					or defName="JE_Joromir"
+					or defName="JE_Joruto"
+					or defName="JE_JovidBowie"
+					or defName="JE_PerfectlyNormalJoris"
+					or defName="JECom_PickleJoris"
+					or defName="JE_QueenJorisTheSecond"
+					or defName="JECom_RoundJoris"
+					or defName="JE_SpongejorisSquarebonson"]/tools</xpath>
+          <value>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<label>left claw</label>
+					<capacities>
+						<li>Scratch</li>
+					</capacities>
+					<power>24</power>
+					<cooldownTime>1.32</cooldownTime>
+					<linkedBodyPartsGroup>FrontLeftPaw</linkedBodyPartsGroup>
+					<surpriseAttack>
+						<extraMeleeDamages>
+							<li>
+								<def>Stun</def>
+								<amount>21</amount>
+							</li>
+						</extraMeleeDamages>
+					</surpriseAttack>
+					<armorPenetrationSharp>0.45</armorPenetrationSharp>
+					<armorPenetrationBlunt>7</armorPenetrationBlunt>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>right claw</label>
+					<capacities>
+						<li>Scratch</li>
+					</capacities>
+					<power>24</power>
+					<cooldownTime>1.32</cooldownTime>
+					<linkedBodyPartsGroup>FrontRightPaw</linkedBodyPartsGroup>
+					<surpriseAttack>
+						<extraMeleeDamages>
+							<li>
+								<def>Stun</def>
+								<amount>21</amount>
+							</li>
+						</extraMeleeDamages>
+					</surpriseAttack>
+					<armorPenetrationSharp>0.45</armorPenetrationSharp>
+					<armorPenetrationBlunt>7</armorPenetrationBlunt>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<capacities>
+						<li>Bite</li>
+					</capacities>
+					<power>36</power>
+					<cooldownTime>1.8</cooldownTime>
+					<linkedBodyPartsGroup>Teeth</linkedBodyPartsGroup>
+					<surpriseAttack>
+						<extraMeleeDamages>
+							<li>
+								<def>Stun</def>
+								<amount>21</amount>
+							</li>
+						</extraMeleeDamages>
+					</surpriseAttack>
+					<armorPenetrationSharp>1.8</armorPenetrationSharp>
+					<armorPenetrationBlunt>12</armorPenetrationBlunt>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>head</label>
+					<capacities>
+						<li>Blunt</li>
+					</capacities>
+					<power>12</power>
+					<cooldownTime>2.44</cooldownTime>
+					<linkedBodyPartsGroup>HeadAttackTool</linkedBodyPartsGroup>
+					<chanceFactor>0.2</chanceFactor>
+					<armorPenetrationBlunt>3.5</armorPenetrationBlunt>
+				</li>
+			</tools>
+          </value>
+        </li>
+
+      </operations>
+    </match>
+  </Operation>
+
+</Patch>

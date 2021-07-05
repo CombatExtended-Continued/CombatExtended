@@ -1,0 +1,157 @@
+<Patch>
+
+	<Operation Class="PatchOperationFindMod">
+    <mods>
+		<li>Rim-Effect: Core</li>
+    </mods>
+		<match Class="PatchOperationSequence">
+		<operations>		
+
+		<li Class="PatchOperationAdd">
+		<xpath>Defs</xpath>
+		<value>
+
+  <ThingDef ParentName="BaseGunWithQuality">
+    <defName>ME_LokiPistol</defName>
+    <label>Loki Pistol</label>
+    <description>A specialised M3 predator pistol used by LOKI mechs, does not appear to use thermal clips. Do not under any circumstance tell your mech to drop its weapon.</description>
+    <graphicData>
+      <texPath>Things/Item/Equipment/WeaponRanged/AlliancePistol</texPath>
+      <graphicClass>Graphic_Single</graphicClass>
+    </graphicData>
+    <soundInteract>RE_Interact_Predator</soundInteract>
+    <statBases>
+      <SightsEfficiency>1</SightsEfficiency>
+      <ShotSpread>0.13</ShotSpread>
+      <SwayFactor>0.88</SwayFactor>
+      <Bulk>1.75</Bulk>
+      <Mass>0.8</Mass>
+      <RangedWeapon_Cooldown>0.1</RangedWeapon_Cooldown>
+    </statBases>
+    <techLevel>Ultra</techLevel>
+    <menuHidden>True</menuHidden>
+    <tradeability>None</tradeability>
+    <destroyOnDrop>true</destroyOnDrop>    
+    <weaponTags>
+      <li>LokiGun</li>  
+    </weaponTags>
+    <verbs>
+	  <li Class="CombatExtended.VerbPropertiesCE">
+		<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+		<hasStandardCommand>true</hasStandardCommand>
+		<defaultProjectile>Bullet_Predator</defaultProjectile>
+		<warmupTime>0.5</warmupTime>
+		<range>18</range>
+		<burstShotCount>1</burstShotCount>
+        		<soundCast>RE_Shot_Predator</soundCast>
+        		<soundCastTail>GunTail_Light</soundCastTail>
+        		<muzzleFlashScale>9</muzzleFlashScale>
+	  </li>
+    </verbs>
+    <comps>
+      <li Class="CombatExtended.CompProperties_AmmoUser">
+        <magazineSize>15</magazineSize>
+        <reloadTime>2.5</reloadTime>
+      </li>
+      <li Class="CombatExtended.CompProperties_FireModes">
+        <aiUseBurstMode>FALSE</aiUseBurstMode>
+      </li>
+    </comps>
+    <tools>
+        <li Class="CombatExtended.ToolCE">
+          <label>grip</label>
+          <capacities>
+            <li>Blunt</li>
+          </capacities>
+          <power>4</power>
+          <cooldownTime>1.54</cooldownTime>
+          <chanceFactor>1.5</chanceFactor>
+          <armorPenetrationBlunt>0.75</armorPenetrationBlunt>
+          <linkedBodyPartsGroup>Grip</linkedBodyPartsGroup>
+        </li>
+        <li Class="CombatExtended.ToolCE">
+          <label>muzzle</label>
+          <capacities>
+            <li>Poke</li>
+          </capacities>
+          <power>3</power>
+          <cooldownTime>1.54</cooldownTime>
+          <armorPenetrationBlunt>0.75</armorPenetrationBlunt>
+          <linkedBodyPartsGroup>Muzzle</linkedBodyPartsGroup>
+        </li>
+    </tools>
+    <modExtensions>
+      <li Class="CombatExtended.GunDrawExtension">
+        <DrawSize>1.0,1.0</DrawSize>
+        <DrawOffset>0.0,0.0</DrawOffset>
+      </li>
+    </modExtensions>
+  </ThingDef>
+		</value>
+		</li>
+
+	<li Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="RE_Mechanoids_LOKIBase"]/costList</xpath>
+		<value>
+    			<costList>
+      				<Steel>40</Steel>
+	  			<Plasteel>40</Plasteel>
+      				<RE_PrefabComponent>7</RE_PrefabComponent>
+	  			<ComponentSpacer>4</ComponentSpacer>
+    			</costList>
+		</value>
+	</li>
+
+	<li Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="RE_Mechanoids_LOKIBase"]/comps/li[@Class ="VFE.Mechanoids.CompProperties_MachineChargingStation"]</xpath>
+		<value>
+	  	<li Class="VFE.Mechanoids.CompProperties_MachineChargingStation">
+		<pawnToSpawn>RE_Mechanoids_LOKI</pawnToSpawn>
+		<allowedWorkTypes>
+		</allowedWorkTypes>
+		<extraChargingPower>1000</extraChargingPower>
+		<spawnWithWeapon>ME_LokiPistol</spawnWithWeapon>
+		<hoursToRecharge>20</hoursToRecharge>
+	  	</li>
+		</value>
+	</li>
+
+	<li Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="RE_Mechanoids_YMIRBase"]/costList</xpath>
+		<value>
+    			<costList>
+      				<Steel>300</Steel>
+	  			<Plasteel>300</Plasteel>
+	  			<Uranium>60</Uranium>
+      				<RE_PrefabComponent>25</RE_PrefabComponent>
+	  			<ComponentSpacer>16</ComponentSpacer>
+    			</costList>
+		</value>
+	</li>
+
+	<li Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="RE_Mechanoids_YMIRBase"]/constructionSkillPrerequisite</xpath>
+		<value>
+    			<constructionSkillPrerequisite>12</constructionSkillPrerequisite>
+		</value>
+	</li>
+
+	<li Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="RE_Mechanoids_YMIRBase"]/comps/li[@Class ="VFE.Mechanoids.CompProperties_MachineChargingStation"]</xpath>
+		<value>
+	  	<li Class="VFE.Mechanoids.CompProperties_MachineChargingStation">
+		<pawnToSpawn>RE_Mechanoids_YMIR</pawnToSpawn>
+		<allowedWorkTypes>
+		</allowedWorkTypes>
+		<extraChargingPower>4400</extraChargingPower>
+		<spawnWithWeapon>RE_YMIRMassAccelerator</spawnWithWeapon>
+		<hoursToRecharge>48</hoursToRecharge>
+	  	</li>
+		</value>
+	</li>
+
+
+		</operations>
+		</match>
+	</Operation>
+</Patch>

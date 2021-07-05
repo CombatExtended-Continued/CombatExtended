@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+		<li>Bastyon</li>
+		</mods>
+
+			<match Class="PatchOperationSequence">
+				<operations>
+
+					<li Class="PatchOperationReplace">
+						<xpath>/Defs/ThingDef[defName="Bast_Alluvium"]/verbs</xpath>
+							<value>
+								<verbs>
+									<li Class="CombatExtended.VerbPropertiesCE">
+										<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+											<hasStandardCommand>true</hasStandardCommand>
+											<defaultProjectile>Bast_AlluviumGoo</defaultProjectile>
+											<warmupTime>1.5</warmupTime>
+											<burstShotCount>2</burstShotCount>
+											<ticksBetweenBurstShots>15</ticksBetweenBurstShots>
+											<minRange>2</minRange>
+											<range>12</range>
+											<soundCast>Bast_Throw</soundCast>
+											<muzzleFlashScale>0</muzzleFlashScale>
+											<commonality>0.8</commonality>
+									</li>
+								</verbs>
+							</value>
+					</li>
+
+					<li Class="PatchOperationReplace">
+						<xpath>/Defs/ThingDef[defName="Bast_Critter"]/verbs</xpath>
+							<value>
+								<verbs>
+									<li Class="CombatExtended.VerbPropertiesCE">
+										<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+											<hasStandardCommand>true</hasStandardCommand>
+											<defaultProjectile>Bast_CritterSpike</defaultProjectile>
+											<warmupTime>2</warmupTime>
+											<burstShotCount>1</burstShotCount>
+											<ticksBetweenBurstShots>2</ticksBetweenBurstShots>
+											<minRange>1.9</minRange>
+											<range>10</range>
+											<soundCast>Bast_Throw</soundCast>
+											<muzzleFlashScale>0</muzzleFlashScale>
+                										<label>critter spike</label>
+											<commonality>0.8</commonality>
+									</li>
+								</verbs>
+							</value>
+					</li>
+
+					<!-- Barbslinger -->
+
+					<li Class="PatchOperationReplace">
+						<xpath>/Defs/ThingDef[defName="Bast_Gray_Terror"]/verbs</xpath>
+							<value>
+								<verbs>
+									<li Class="CombatExtended.VerbPropertiesCE">
+										<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+											<hasStandardCommand>true</hasStandardCommand>
+											<defaultProjectile>Bast_Web</defaultProjectile>
+											<warmupTime>2</warmupTime>
+											<burstShotCount>2</burstShotCount>
+											<ticksBetweenBurstShots>25</ticksBetweenBurstShots>
+											<minRange>2</minRange>
+											<range>15</range>
+											<soundCast>Bast_Throw</soundCast>
+											<label>spider web</label>
+											<muzzleFlashScale>0</muzzleFlashScale>
+											<commonality>0.5</commonality>
+									</li>
+								</verbs>
+							</value>
+					</li>
+
+				<!-- Animalisk -->
+
+					<li Class="PatchOperationReplace">
+						<xpath>/Defs/ThingDef[defName="Bast_Scire"]/verbs</xpath>
+							<value>
+								<verbs>
+									<li Class="CombatExtended.VerbPropertiesCE">
+										<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+											<hasStandardCommand>true</hasStandardCommand>
+											<defaultProjectile>Bast_ScireFireBall</defaultProjectile>
+											<warmupTime>2.5</warmupTime>
+											<burstShotCount>3</burstShotCount>
+											<ticksBetweenBurstShots>18</ticksBetweenBurstShots>
+											<minRange>2</minRange>
+											<range>16</range>
+											<soundCast>Bast_ScireFireBall</soundCast>
+											<muzzleFlashScale>0</muzzleFlashScale>
+											<label>eternal fire</label>
+											<commonality>0.75</commonality>
+									</li>
+								</verbs>
+							</value>
+					</li>
+
+					<li Class="PatchOperationReplace">
+						<xpath>/Defs/ThingDef[defName="Bast_Snipping_Snail"]/verbs</xpath>
+							<value>
+								<verbs>
+									<li Class="CombatExtended.VerbPropertiesCE">
+										<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+											<hasStandardCommand>true</hasStandardCommand>
+											<defaultProjectile>Bast_SnippingSnailAcid</defaultProjectile>
+											<warmupTime>2.5</warmupTime>
+											<burstShotCount>1</burstShotCount>
+											<minRange>2</minRange>
+											<range>8</range>
+											<soundCast>Bast_SnippingSnailAcid</soundCast>
+											<muzzleFlashScale>0</muzzleFlashScale>
+											<label>acid stream</label>
+											<commonality>0.8</commonality>
+									</li>
+								</verbs>
+							</value>
+					</li>
+
+				</operations>
+			</match>
+	</Operation>
+</Patch>
