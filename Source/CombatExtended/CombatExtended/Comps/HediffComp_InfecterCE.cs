@@ -73,9 +73,9 @@ namespace CombatExtended
         public override void CompPostPostAdd(DamageInfo? dinfo)
         {
             // Determine time until infection check is made
-            if (!_alreadyCausedInfection 
-                && !parent.Part.def.IsSolid(parent.Part, Pawn.health.hediffSet.hediffs) 
-                && !Pawn.health.hediffSet.PartOrAnyAncestorHasDirectlyAddedParts(parent.Part) 
+            if (!_alreadyCausedInfection
+                && !parent.Part.def.IsSolid(parent.Part, Pawn.health.hediffSet.hediffs)
+                && !Pawn.health.hediffSet.PartOrAnyAncestorHasDirectlyAddedParts(parent.Part)
                 && !parent.IsPermanent())
             {
                 _ticksUntilInfect = InfectionDelayHours.RandomInRange * GenDate.TicksPerHour;
@@ -96,7 +96,7 @@ namespace CombatExtended
             }
         }
 
-        public override void CompTended_NewTemp(float quality, float maxQuality, int batchPosition = 0)
+        public override void CompTended(float quality, float maxQuality, int batchPosition = 0)
         {
             if (Pawn.Spawned)
             {

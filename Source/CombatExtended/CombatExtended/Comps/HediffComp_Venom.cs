@@ -25,9 +25,9 @@ namespace CombatExtended
                 HealthUtility.AdjustSeverity(parent.pawn, CE_HediffDefOf.VenomBuildup, _venomPerTick);
         }
 
-        public override void CompTended_NewTemp(float quality, float maxQuality, int batchPosition = 0)
+        public override void CompTended(float quality, float maxQuality, int batchPosition = 0)
         {
-            base.CompTended_NewTemp(quality, maxQuality, batchPosition);
+            base.CompTended(quality, maxQuality, batchPosition);
             _venomPerTick *= 1 - quality;
         }
     }
