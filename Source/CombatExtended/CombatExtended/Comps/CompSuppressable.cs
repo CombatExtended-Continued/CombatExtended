@@ -25,7 +25,7 @@ namespace CombatExtended
         #endregion
 
         #region Fields
-        
+
         // --------------- Location calculations ---------------
 
         /*
@@ -35,7 +35,7 @@ namespace CombatExtended
          */
         private IntVec3 suppressorLoc;
         private float locSuppressionAmount = 0f;
-        
+
         private float currentSuppression = 0f;
         public bool isSuppressed = false;
 
@@ -108,7 +108,7 @@ namespace CombatExtended
         #endregion
 
         #region Methods
-        
+
         public override void PostExposeData()
         {
             base.PostExposeData();
@@ -172,9 +172,9 @@ namespace CombatExtended
                 }
                 if (reactJob != null && reactJob.def != pawn.CurJob?.def)
                 {
-                	//only reserve destination when we know for certain the pawn isn't already running for cover
-                	pawn.Map.pawnDestinationReservationManager.Reserve(pawn, reactJob, reactJob.GetTarget(TargetIndex.A).Cell);
-                    pawn.jobs.StartJob(reactJob, JobCondition.InterruptForced, null, pawn.jobs.curJob?.def==JobDefOf.ManTurret);
+                    //only reserve destination when we know for certain the pawn isn't already running for cover
+                    pawn.Map.pawnDestinationReservationManager.Reserve(pawn, reactJob, reactJob.GetTarget(TargetIndex.A).Cell);
+                    pawn.jobs.StartJob(reactJob, JobCondition.InterruptForced, null, pawn.jobs.curJob?.def == JobDefOf.ManTurret);
                     LessonAutoActivator.TeachOpportunity(CE_ConceptDefOf.CE_SuppressionReaction, pawn, OpportunityType.Critical);
                 }
                 else
@@ -203,7 +203,7 @@ namespace CombatExtended
 
             if (ticksHunkered > MinTicksUntilMentalBreak && Rand.Chance(ChanceBreakPerTick))
             {
-                var pawn = (Pawn) parent;
+                var pawn = (Pawn)parent;
                 if (pawn.mindState != null && !pawn.mindState.mentalStateHandler.InMentalState)
                 {
                     var possibleBreaks = SuppressionUtility.GetPossibleBreaks(pawn);
@@ -215,7 +215,7 @@ namespace CombatExtended
             }
 
             //Apply decay once per second
-            if(ticksUntilDecay > 0)
+            if (ticksUntilDecay > 0)
             {
                 ticksUntilDecay--;
             }
@@ -241,14 +241,14 @@ namespace CombatExtended
             {
                 if (IsHunkering)
                 {
-                    MoteMaker.ThrowMetaIcon(parent.Position, parent.Map, CE_ThingDefOf.Mote_HunkerIcon);
+                    FleckMaker.ThrowMetaIcon(parent.Position, parent.Map, CE_FleckDefOf.Fleck_HunkerIcon);
                 }
-	            else if (this.isSuppressed)
+                else if (this.isSuppressed)
                 {
                     //MoteMaker.ThrowText(this.parent.Position.ToVector3Shifted(), parent.Map, "CE_SuppressedMote".Translate());
-                    MoteMaker.ThrowMetaIcon(parent.Position, parent.Map, CE_ThingDefOf.Mote_SuppressIcon);
+                    FleckMaker.ThrowMetaIcon(parent.Position, parent.Map, CE_FleckDefOf.Fleck_SuppressIcon);
                 }
-			}
+            }
 
             /*if (Gen.IsHashIntervalTick(parent, ticksPerMote + Rand.Range(30, 300))
                 && parent.def.race.Humanlike && !robotBodyList.Contains(parent.def.race.body.defName))

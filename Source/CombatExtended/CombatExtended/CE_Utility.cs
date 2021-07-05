@@ -13,103 +13,103 @@ namespace CombatExtended
 {
     static class CE_Utility
     {
-    	
-    	#region Blitting
-    	private const int blitMaxDimensions = 64;
-    	
-		/// <summary>
-		/// Code from https://gamedev.stackexchange.com/questions/92285/unity3d-resize-texture-without-corruption
-		/// </summary>
-		/// <param name="texture">Any texture with or without read-write protection</param>
-		/// <param name="blitRect">The Rect to be extracted from the <i>rtSize</i>'d render of <i>texture</i> (.x+.width, .y+.height smaller than <i>rtSize</i>)</param>
-		/// <param name="rtSize">The size that <i>texture</i> is to be rendered at</param>
-		/// <returns>Texture2D of size <i>blitRect</i>.width, <i>blitRect</i>.height extracted from a <i>rtSize</i>[0] width, <i>rtSize</i>[1] height render of <i>texture</i> starting at position (<i>blitRect</i>.x, <i>blitRect</i>.y).</returns>
-    	public static Texture2D Blit(this Texture2D texture, Rect blitRect, int[] rtSize)
-    	{
-			var prevFilterMode = texture.filterMode;
-			texture.filterMode = FilterMode.Point;
-			
-		   	RenderTexture rt = RenderTexture
-		   		.GetTemporary(rtSize[0],						//render width
-		   		              rtSize[1],						//render height
-		   		              0,								//no depth buffer
-		   		              RenderTextureFormat.Default,		//default (=automatic) color mode
-		   		              RenderTextureReadWrite.Default,	//default (=automatic) r/w mode
-		   		              1);								//no anti-aliasing (1=none,2=2x,4=4x,8=8x)
-			
-		   	rt.filterMode = FilterMode.Point;
-		   	
-			RenderTexture.active = rt;
-			
-			Graphics.Blit(texture, rt);
-			
-			Texture2D blit = new Texture2D((int)blitRect.width, (int)blitRect.height);
-			blit.ReadPixels(blitRect, 0, 0);
-			blit.Apply();
-			
-			RenderTexture.active = null;
-			
-			texture.filterMode = prevFilterMode;
-			
-			return blit;
-    	}
-    	
-    	/// <summary>
-    	/// Texture2D.GetPixels() method circumventing the read-write protection and taking into account <i>blitMaxDimensions</i>.
-    	/// </summary>
-    	/// <param name="texture">Any texture with/without read-write protection, of any size (but will be scaled to blitMaxDimensions if larger than those)</param>
-    	/// <param name="width">Final width of Color[]</param>
-    	/// <param name="height">Final height of Color[]</param>
-    	/// <returns>Color[] array after resizing to fit blitMaxDimensions</returns>
-    	public static Color[] GetColorSafe(this Texture2D texture, out int width, out int height)
-		{
-    		width = texture.width;
-    		height = texture.height;
-    		if (texture.width > texture.height)
-    		{
-    			width = Math.Min(width, blitMaxDimensions);
-    			height = (int)((float)width * ((float)texture.height / (float)texture.width));
-    		}
-    		else if (texture.height > texture.width)
-    		{
-    			height = Math.Min(height, blitMaxDimensions);
-    			width = (int)((float)height * ((float)texture.width / (float)texture.height));
-    		}
-    		else
-    		{
-    			width = Math.Min(width, blitMaxDimensions);
-    			height = Math.Min(height, blitMaxDimensions);
-    		}
-    		
-			Color[] color = null;
-			
-			var blitRect = new Rect(0, 0, width, height);
-			var rtSize = new []{width, height};
-			
-			if (width == texture.width && height == texture.height)
-			{
-				try
-				{
-					color = texture.GetPixels();
-				}
-				catch
-				{
-					color = texture.Blit(blitRect, rtSize).GetPixels();
-				}
-			}
-			else
-			{
-				color = texture.Blit(blitRect, rtSize).GetPixels();
-			}
-			return color;
-		}
-    	
-    	public static Texture2D BlitCrop(this Texture2D texture, Rect blitRect)
-		{
-    		return texture.Blit(blitRect, new int[]{texture.width, texture.height});
-		}
-    	#endregion
-    	
+
+        #region Blitting
+        private const int blitMaxDimensions = 64;
+
+        /// <summary>
+        /// Code from https://gamedev.stackexchange.com/questions/92285/unity3d-resize-texture-without-corruption
+        /// </summary>
+        /// <param name="texture">Any texture with or without read-write protection</param>
+        /// <param name="blitRect">The Rect to be extracted from the <i>rtSize</i>'d render of <i>texture</i> (.x+.width, .y+.height smaller than <i>rtSize</i>)</param>
+        /// <param name="rtSize">The size that <i>texture</i> is to be rendered at</param>
+        /// <returns>Texture2D of size <i>blitRect</i>.width, <i>blitRect</i>.height extracted from a <i>rtSize</i>[0] width, <i>rtSize</i>[1] height render of <i>texture</i> starting at position (<i>blitRect</i>.x, <i>blitRect</i>.y).</returns>
+        public static Texture2D Blit(this Texture2D texture, Rect blitRect, int[] rtSize)
+        {
+            var prevFilterMode = texture.filterMode;
+            texture.filterMode = FilterMode.Point;
+
+            RenderTexture rt = RenderTexture
+                .GetTemporary(rtSize[0],                        //render width
+                           rtSize[1],                       //render height
+                           0,                               //no depth buffer
+                           RenderTextureFormat.Default,     //default (=automatic) color mode
+                           RenderTextureReadWrite.Default,  //default (=automatic) r/w mode
+                           1);                              //no anti-aliasing (1=none,2=2x,4=4x,8=8x)
+
+            rt.filterMode = FilterMode.Point;
+
+            RenderTexture.active = rt;
+
+            Graphics.Blit(texture, rt);
+
+            Texture2D blit = new Texture2D((int)blitRect.width, (int)blitRect.height);
+            blit.ReadPixels(blitRect, 0, 0);
+            blit.Apply();
+
+            RenderTexture.active = null;
+
+            texture.filterMode = prevFilterMode;
+
+            return blit;
+        }
+
+        /// <summary>
+        /// Texture2D.GetPixels() method circumventing the read-write protection and taking into account <i>blitMaxDimensions</i>.
+        /// </summary>
+        /// <param name="texture">Any texture with/without read-write protection, of any size (but will be scaled to blitMaxDimensions if larger than those)</param>
+        /// <param name="width">Final width of Color[]</param>
+        /// <param name="height">Final height of Color[]</param>
+        /// <returns>Color[] array after resizing to fit blitMaxDimensions</returns>
+        public static Color[] GetColorSafe(this Texture2D texture, out int width, out int height)
+        {
+            width = texture.width;
+            height = texture.height;
+            if (texture.width > texture.height)
+            {
+                width = Math.Min(width, blitMaxDimensions);
+                height = (int)((float)width * ((float)texture.height / (float)texture.width));
+            }
+            else if (texture.height > texture.width)
+            {
+                height = Math.Min(height, blitMaxDimensions);
+                width = (int)((float)height * ((float)texture.width / (float)texture.height));
+            }
+            else
+            {
+                width = Math.Min(width, blitMaxDimensions);
+                height = Math.Min(height, blitMaxDimensions);
+            }
+
+            Color[] color = null;
+
+            var blitRect = new Rect(0, 0, width, height);
+            var rtSize = new[] { width, height };
+
+            if (width == texture.width && height == texture.height)
+            {
+                try
+                {
+                    color = texture.GetPixels();
+                }
+                catch
+                {
+                    color = texture.Blit(blitRect, rtSize).GetPixels();
+                }
+            }
+            else
+            {
+                color = texture.Blit(blitRect, rtSize).GetPixels();
+            }
+            return color;
+        }
+
+        public static Texture2D BlitCrop(this Texture2D texture, Rect blitRect)
+        {
+            return texture.Blit(blitRect, new int[] { texture.width, texture.height });
+        }
+        #endregion
+
         #region Misc
         public static List<ThingDef> allWeaponDefs = new List<ThingDef>();
 
@@ -140,8 +140,16 @@ namespace CombatExtended
         /// <returns>Move speed in cells per second</returns>
         public static float GetMoveSpeed(Pawn pawn)
         {
+            if (!pawn.pather.Moving)
+            {
+                return 0f;
+            }
             float movePerTick = 60 / pawn.GetStatValue(StatDefOf.MoveSpeed, false);    //Movement per tick
-            movePerTick +=  pawn.Map.pathGrid.CalculatedCostAt(pawn.Position, false, pawn.Position);
+
+            //pawn.pather.nextCellCostLeft
+            //the orginial is (pawn.Position, false, pawn.Position) before 1.3
+
+            movePerTick += pawn.Map.pathing.For(pawn).pathGrid.CalculatedCostAt(pawn.pather.nextCell, perceivedStatic: false, pawn.Position);
             Building edifice = pawn.Position.GetEdifice(pawn.Map);
             if (edifice != null)
             {
@@ -176,10 +184,10 @@ namespace CombatExtended
             }
             return 60 / movePerTick;
         }
-        
+
         public static float ClosestDistBetween(Vector2 origin, Vector2 destination, Vector2 target)
         {
-        	return Mathf.Abs((destination.y - origin.y) * target.x - (destination.x - origin.x) * target.y + destination.x * origin.y - destination.y * origin.x) / (destination - origin).magnitude;
+            return Mathf.Abs((destination.y - origin.y) * target.x - (destination.x - origin.x) * target.y + destination.x * origin.y - destination.y * origin.x) / (destination - origin).magnitude;
         }
 
         /// <summary>
@@ -189,7 +197,7 @@ namespace CombatExtended
         /// <returns>Turret operator if one is found, null if not</returns>
         public static Pawn TryGetTurretOperator(Thing thing)
         {
-        	// Building_TurretGunCE DOES NOT inherit from Building_TurretGun!!!
+            // Building_TurretGunCE DOES NOT inherit from Building_TurretGun!!!
             if (thing is Building_Turret)
             {
                 CompMannable comp = thing.TryGetComp<CompMannable>();
@@ -269,29 +277,29 @@ namespace CombatExtended
         /// Gravity constant in meters per second squared
         /// </summary>
         public const float GravityConst = 9.8f * 0.2f;
-		
+
         public static Bounds GetBoundsFor(IntVec3 cell, RoofDef roof)
         {
-        	if (roof == null)
-        		return new Bounds();
-        	
-        	float height = CollisionVertical.WallCollisionHeight;
-        	
-        	if (roof.isNatural)
-        		height *= CollisionVertical.NaturalRoofThicknessMultiplier;
-        	
-        	if (roof.isThickRoof)
-        		height *= CollisionVertical.ThickRoofThicknessMultiplier;
-        	
-        	height = Mathf.Max(0.1f, height - CollisionVertical.WallCollisionHeight);
-        	
-        	Vector3 center = cell.ToVector3Shifted();
-        	center.y = CollisionVertical.WallCollisionHeight + height / 2f;
-        	
-        	return new Bounds(center,
-        	                  new Vector3(1f, height, 1f));
+            if (roof == null)
+                return new Bounds();
+
+            float height = CollisionVertical.WallCollisionHeight;
+
+            if (roof.isNatural)
+                height *= CollisionVertical.NaturalRoofThicknessMultiplier;
+
+            if (roof.isThickRoof)
+                height *= CollisionVertical.ThickRoofThicknessMultiplier;
+
+            height = Mathf.Max(0.1f, height - CollisionVertical.WallCollisionHeight);
+
+            Vector3 center = cell.ToVector3Shifted();
+            center.y = CollisionVertical.WallCollisionHeight + height / 2f;
+
+            return new Bounds(center,
+                              new Vector3(1f, height, 1f));
         }
-        
+
         public static Bounds GetBoundsFor(Thing thing)
         {
             if (thing == null)
@@ -314,18 +322,18 @@ namespace CombatExtended
         /// <returns>Distance from center of Thing to its edge in cells</returns>
         public static float GetCollisionWidth(Thing thing)
         {
-        	/* Possible solution for fixing tree widths
+            /* Possible solution for fixing tree widths
 			if (thing.IsTree())
         	{
         		return (thing as Plant).def.graphicData.shadowData.volume.x;
         	}*/
-        	
+
             var pawn = thing as Pawn;
             if (pawn != null)
             {
-            	return GetCollisionBodyFactors(pawn).x;
+                return GetCollisionBodyFactors(pawn).x;
             }
-            
+
             return 1f;    //Buildings, etc. fill out a full square
         }
 
@@ -341,27 +349,27 @@ namespace CombatExtended
                 Log.Error("CE calling GetCollisionBodyHeightFactor with nullPawn");
                 return new Vector2(1, 1);
             }
-            
-        	var factors = BoundsInjector.ForPawn(pawn);
-            
+
+            var factors = BoundsInjector.ForPawn(pawn);
+
             if (pawn.GetPosture() != PawnPosture.Standing)
             {
-	            RacePropertiesExtensionCE props = pawn.def.GetModExtension<RacePropertiesExtensionCE>() ?? new RacePropertiesExtensionCE();
-	            
-	            var shape = props.bodyShape;
-	            
-	            if (shape == CE_BodyShapeDefOf.Invalid)
-	            {
-	            	Log.ErrorOnce("CE returning BodyType Undefined for pawn " + pawn.ToString(),  35000198 + pawn.GetHashCode());
-	            }
-	            
-	            factors.x *= shape.widthLaying/shape.width;
-	            factors.y *= shape.heightLaying/shape.height;
+                RacePropertiesExtensionCE props = pawn.def.GetModExtension<RacePropertiesExtensionCE>() ?? new RacePropertiesExtensionCE();
+
+                var shape = props.bodyShape;
+
+                if (shape == CE_BodyShapeDefOf.Invalid)
+                {
+                    Log.ErrorOnce("CE returning BodyType Undefined for pawn " + pawn.ToString(), 35000198 + pawn.GetHashCode());
+                }
+
+                factors.x *= shape.widthLaying / shape.width;
+                factors.y *= shape.heightLaying / shape.height;
             }
-            
+
             return factors;
         }
-		
+
         /// <summary>
         /// Determines whether a pawn should be currently crouching down or not
         /// </summary>

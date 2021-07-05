@@ -231,7 +231,7 @@ namespace CombatExtended
             Scribe_Values.Look<int>(ref this.burstWarmupTicksLeft, "burstWarmupTicksLeft", 0, false);
             Scribe_TargetInfo.Look(ref this.currentTargetInt, "currentTarget");
             Scribe_Values.Look<bool>(ref this.holdFire, "holdFire", false, false);
-	    Scribe_Values.Look<bool>(ref this.everSpawned, "everSpawned", false, false);
+            Scribe_Values.Look<bool>(ref this.everSpawned, "everSpawned", false, false);
             BackCompatibility.PostExposeData(this);
         }
 
@@ -513,7 +513,7 @@ namespace CombatExtended
 
         public override void Draw()                     // Core method
         {
-            top.DrawTurret();
+            top.DrawTurret(Vector3.zero, 0f);
             base.Draw();
         }
 

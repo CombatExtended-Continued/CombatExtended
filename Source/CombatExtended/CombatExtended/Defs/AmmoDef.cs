@@ -20,6 +20,7 @@ namespace CombatExtended
         public ThingDef detonateProjectile = null;
         // mortar ammo should still availabe when the ammo system is off
         public bool isMortarAmmo = false;
+        public bool menuHidden = false;
 
         private List<DefHyperlink> originalHyperlinks;
 
@@ -30,19 +31,19 @@ namespace CombatExtended
             {
                 if (users == null)
                 {
-                    users = CE_Utility.allWeaponDefs.FindAll(delegate(ThingDef def) 
+                    users = CE_Utility.allWeaponDefs.FindAll(delegate (ThingDef def)
                     {
                         CompProperties_AmmoUser props = def.GetCompProperties<CompProperties_AmmoUser>();
-                        if(props?.ammoSet?.ammoTypes != null)
+                        if (props?.ammoSet?.ammoTypes != null)
                         {
                             return props.ammoSet.ammoTypes.Any(x => x.ammo == this);
                         }
                         return false;
                     });
-                    
+
                     if (users != null && !users.Any())
                         return users;
-                    
+
                     if (descriptionHyperlinks.NullOrEmpty())
                         descriptionHyperlinks = new List<DefHyperlink>();
                     else
@@ -64,7 +65,7 @@ namespace CombatExtended
                             }
                         }
                     }
-                    
+
                     foreach (var user in users)
                     {
                         descriptionHyperlinks.Add(user);
@@ -91,7 +92,7 @@ namespace CombatExtended
                 return ammoSetDefs;
             }
         }
-        
+
         private string oldDescription;
         public void AddDescriptionParts()
         {

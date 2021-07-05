@@ -25,7 +25,8 @@ namespace CombatExtended
             return 120;
         }
 
-        public override GizmoResult GizmoOnGUI(Vector2 topLeft, float maxWidth)
+
+        public override GizmoResult GizmoOnGUI(Vector2 topLeft, float maxWidth, GizmoRenderParms parms)
         {
             if (!initialized)
                 InitializeTextures();
