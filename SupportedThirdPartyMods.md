@@ -215,6 +215,7 @@ Rimefeller	|
 RimEffect - Asari of the Rims	|
 Rimfire	|
 Rim-Hivers!	|
+Rim Flood	|
 RimSec Security |
 Rimsenal - Core |
 Rimsenal - Enhanced Vanilla |
