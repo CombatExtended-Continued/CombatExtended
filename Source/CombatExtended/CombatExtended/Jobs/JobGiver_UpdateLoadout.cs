@@ -160,7 +160,7 @@ namespace CombatExtended
             curThing = null;
             curCarrier = null;
 
-            Predicate<Thing> isFoodInPrison = (Thing t) => (t.GetRoom()?.isPrisonCell ?? false) && t.def.IsNutritionGivingIngestible && pawn.Faction.IsPlayer;
+            Predicate<Thing> isFoodInPrison = (Thing t) => (t.GetRoom()?.IsPrisonCell ?? false) && t.def.IsNutritionGivingIngestible && pawn.Faction.IsPlayer;
             // Hint: The following block defines how to find items... pay special attention to the Predicates below.
             ThingRequest req;
             if (curSlot.genericDef != null)

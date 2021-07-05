@@ -203,7 +203,7 @@ namespace CombatExtended
                     {
                         if (VerbPropsCE.muzzleFlashScale > 0.01f)
                         {
-                            MoteMaker.MakeStaticMote(caster.Position, caster.Map, ThingDefOf.Mote_ShotFlash, VerbPropsCE.muzzleFlashScale);
+                            FleckMaker.Static(caster.Position, caster.Map, FleckDefOf.ShotFlash, VerbPropsCE.muzzleFlashScale);
                         }
                         if (VerbPropsCE.soundCast != null)
                         {

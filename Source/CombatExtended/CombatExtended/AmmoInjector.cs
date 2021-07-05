@@ -124,7 +124,7 @@ namespace CombatExtended
                 {
                     if (ammoDef.tradeTags.Contains(destroyWithAmmoDisabledTag))
                     {
-                        // Toggle ammo visibility in the debug menu
+                        // Toggle ammo visibility in the debug menu                        
                         ammoDef.menuHidden = !ammoEnabled;
                         ammoDef.destroyOnDrop = !ammoEnabled;
                     }

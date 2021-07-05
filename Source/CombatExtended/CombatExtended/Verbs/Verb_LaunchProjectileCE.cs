@@ -547,7 +547,7 @@ namespace CombatExtended
                     foreach (Apparel current in wornApparel)
                     {
                         //pawns can use turrets while wearing shield belts, but the shield is disabled for the duration via Harmony patch (see Harmony-ShieldBelt.cs)
-                        if (!current.AllowVerbCast(root, caster.Map, targ, this) && !(current is ShieldBelt && isTurretOperator))
+                        if (!current.AllowVerbCast(this) && !(current is ShieldBelt && isTurretOperator))
                         {
                             report = "Shooting disallowed by " + current.LabelShort;
                             return false;

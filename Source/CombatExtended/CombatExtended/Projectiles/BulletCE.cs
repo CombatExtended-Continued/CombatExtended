@@ -16,22 +16,23 @@ namespace CombatExtended
         private static RulePackDef cookOffDamageEvent = null;
 
         public static RulePackDef CookOff => cookOffDamageEvent ?? (cookOffDamageEvent = DefDatabase<RulePackDef>.GetNamed("DamageEvent_CookOff"));
-	protected virtual float DamageAmount
-	{
-	    get {
-		return def.projectile.GetDamageAmount(1);
-	    }
-	}
+        protected virtual float DamageAmount
+        {
+            get
+            {
+                return def.projectile.GetDamageAmount(1);
+            }
+        }
 
-	protected virtual float PenetrationAmount
-	{
-	    get
-	    {
-		var projectilePropsCE = (ProjectilePropertiesCE)def.projectile;
-		var isSharpDmg = def.projectile.damageDef.armorCategory == DamageArmorCategoryDefOf.Sharp;
-		return isSharpDmg ? projectilePropsCE.armorPenetrationSharp : projectilePropsCE.armorPenetrationBlunt;
-	    }
-	}
+        protected virtual float PenetrationAmount
+        {
+            get
+            {
+                var projectilePropsCE = (ProjectilePropertiesCE)def.projectile;
+                var isSharpDmg = def.projectile.damageDef.armorCategory == DamageArmorCategoryDefOf.Sharp;
+                return isSharpDmg ? projectilePropsCE.armorPenetrationSharp : projectilePropsCE.armorPenetrationBlunt;
+            }
+        }
 
         private void LogImpact(Thing hitThing, out LogEntry_DamageResult logEntry)
         {
@@ -64,19 +65,19 @@ namespace CombatExtended
             if (hitThing != null)
             {
                 // launcher being the pawn equipping the weapon, not the weapon itself
-	      float damageAmountBase = DamageAmount;
-	      var projectilePropsCE = (ProjectilePropertiesCE)def.projectile;
-	      var isSharpDmg = def.projectile.damageDef.armorCategory == DamageArmorCategoryDefOf.Sharp;
-              var penetration = PenetrationAmount;
-	      var damDefCE = def.projectile.damageDef.GetModExtension<DamageDefExtensionCE>() ?? new DamageDefExtensionCE();
-	      var dinfo = new DamageInfo(
-                    def.projectile.damageDef,
-                    damageAmountBase,
-                    penetration, //Armor Penetration
-                    ExactRotation.eulerAngles.y,
-                    launcher,
-                    null,
-                    def);
+                float damageAmountBase = DamageAmount;
+                var projectilePropsCE = (ProjectilePropertiesCE)def.projectile;
+                var isSharpDmg = def.projectile.damageDef.armorCategory == DamageArmorCategoryDefOf.Sharp;
+                var penetration = PenetrationAmount;
+                var damDefCE = def.projectile.damageDef.GetModExtension<DamageDefExtensionCE>() ?? new DamageDefExtensionCE();
+                var dinfo = new DamageInfo(
+                          def.projectile.damageDef,
+                          damageAmountBase,
+                          penetration, //Armor Penetration
+                          ExactRotation.eulerAngles.y,
+                          launcher,
+                          null,
+                          def);
 
                 // Set impact height
                 BodyPartDepth partDepth = damDefCE.harmOnlyOutsideLayers ? BodyPartDepth.Outside : BodyPartDepth.Undefined;
@@ -133,10 +134,10 @@ namespace CombatExtended
                 //Only display a dirt/water hit for projectiles with a dropshadow
                 if (base.castShadow)
                 {
-                    MoteMaker.MakeStaticMote(this.ExactPosition, map, ThingDefOf.Mote_ShotHit_Dirt, 1f);
+                    FleckMaker.Static(this.ExactPosition, map, FleckDefOf.ShotHit_Dirt, 1f);
                     if (base.Position.GetTerrain(map).takeSplashes)
                     {
-                        MoteMaker.MakeWaterSplash(this.ExactPosition, map, Mathf.Sqrt(def.projectile.GetDamageAmount(this.launcher)) * 1f, 4f);
+                        FleckMaker.WaterSplash(this.ExactPosition, map, Mathf.Sqrt(def.projectile.GetDamageAmount(this.launcher)) * 1f, 4f);
                     }
                 }
                 base.Impact(null);

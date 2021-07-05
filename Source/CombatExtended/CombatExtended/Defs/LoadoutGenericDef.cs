@@ -110,8 +110,7 @@ namespace CombatExtended
             // now for the guns and ammo...
 
             // Get a list of guns that are player acquireable (not menuHidden but could also go with not dropOnDeath) which have expected comps/compProperties/verbs.
-            List<ThingDef> guns = everything.Where(td => !td.menuHidden &&
-                                                   td.HasComp(typeof(CompAmmoUser)) && td.GetCompProperties<CompProperties_AmmoUser>() != null &&
+            List<ThingDef> guns = everything.Where(td => td.HasComp(typeof(CompAmmoUser)) && td.GetCompProperties<CompProperties_AmmoUser>() != null &&
                                                    td.Verbs.FirstOrDefault(v => v is VerbPropertiesCE) != null).ToList();
             string ammoLabel = "CE_Generic_Ammo".Translate();
             const string ammoDescription = "Generic Loadout ammo for {0}. Intended for generic collection of ammo for given gun.";

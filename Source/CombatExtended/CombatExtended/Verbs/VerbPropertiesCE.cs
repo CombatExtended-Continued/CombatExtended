@@ -24,7 +24,7 @@ namespace CombatExtended
             var toolCE = (ToolCE)ownerVerb.tool;
             if (ownerVerb.verbProps != this)
             {
-                Log.ErrorOnce("Tried to calculate armor penetration for a verb with different verb props. verb=" + ownerVerb, 9865767, false);
+                Log.ErrorOnce("Tried to calculate armor penetration for a verb with different verb props. verb=" + ownerVerb, 9865767);
                 return 0f;
             }
             if (ownerVerb.EquipmentSource != null && ownerVerb.EquipmentSource.def.IsWeapon)

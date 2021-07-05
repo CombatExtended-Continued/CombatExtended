@@ -48,7 +48,7 @@ namespace CombatExtended
                 num = Mathf.Clamp(pawn.equipment.PrimaryEq.PrimaryVerb.verbProps.range * 0.66f, 2f, 20f);
             }
             float maxDist = num;
-			Thing thing = (Thing)AttackTargetFinder.BestAttackTarget(pawn, TargetScanFlags.NeedLOSToPawns | TargetScanFlags.NeedLOSToNonPawns | TargetScanFlags.NeedReachableIfCantHitFromMyPos | TargetScanFlags.NeedThreat, null, 0f, maxDist, default(IntVec3), 3.40282347E+38f, false);
+            Thing thing = (Thing)AttackTargetFinder.BestAttackTarget(pawn, TargetScanFlags.NeedLOSToPawns | TargetScanFlags.NeedLOSToNonPawns | TargetScanFlags.NeedReachableIfCantHitFromMyPos | TargetScanFlags.NeedThreat, null, 0f, maxDist, default(IntVec3), 3.40282347E+38f, false);
             // TODO evaluate if this is necessary?
             Pawn o = thing as Pawn;
             if (o != null) if
@@ -74,14 +74,14 @@ namespace CombatExtended
                 CompAmmoUser compAmmo = pawn.equipment.Primary.TryGetComp<CompAmmoUser>();
                 if (compAmmo != null && !compAmmo.CanBeFiredNow)
                 {
-            		if (compAmmo.HasAmmo)
-            		{
+                    if (compAmmo.HasAmmo)
+                    {
                         Job job = JobMaker.MakeJob(CE_JobDefOf.ReloadWeapon, pawn, pawn.equipment.Primary);
                         if (job != null)
                             return job;
-            		}
-            		
-            		return JobMaker.MakeJob(JobDefOf.AttackMelee, thing);
+                    }
+
+                    return JobMaker.MakeJob(JobDefOf.AttackMelee, thing);
                 }
             }
 
@@ -118,61 +118,61 @@ namespace CombatExtended
         //1:1 COPY from CellFinderLoose.GetFleeDestToolUser
         private IntVec3 GetFleeDest(Pawn pawn, List<Thing> threats)
         {
-			IntVec3 bestPos = pawn.Position;
-			float bestScore = -1f;
-			TraverseParms traverseParms = TraverseParms.For(pawn, Danger.Deadly, TraverseMode.ByPawn, false);
-			RegionTraverser.BreadthFirstTraverse(pawn.GetRegion(RegionType.Set_Passable), (Region from, Region reg) => reg.Allows(traverseParms, false), delegate(Region reg)
-			{
-				Danger danger = reg.DangerFor(pawn);
-				Map map = pawn.Map;
-				foreach (IntVec3 current in reg.Cells)
-				{
-					if (current.Standable(map))
-					{
-						if (!reg.IsDoorway)
-						{
-							Thing thing = null;
-							float num = 0f;
-							for (int i = 0; i < threats.Count; i++)
-							{
-								float num2 = (float)current.DistanceToSquared(threats[i].Position);
-								if (thing == null || num2 < num)
-								{
-									thing = threats[i];
-									num = num2;
-								}
-							}
-							float num3 = Mathf.Sqrt(num);
-							float f = Mathf.Min(num3, 23f); //Slight alteration
-							float num4 = Mathf.Pow(f, 1.2f);
-							num4 *= Mathf.InverseLerp(50f, 0f, (current - pawn.Position).LengthHorizontal);
-							if (current.GetRoom(map, RegionType.Set_Passable) != thing.GetRoom(RegionType.Set_Passable))
-							{
-								num4 *= 4.2f;
-							}
-							else if (num3 < 8f)
-							{
-								num4 *= 0.05f;
-							}
-							if (!map.pawnDestinationReservationManager.CanReserve(current, pawn, false))
-							{
-								num4 *= 0.5f;
-							}
-							if (danger == Danger.Deadly)
-							{
-								num4 *= 0.8f;
-							}
-							if (num4 > bestScore)
-							{
-								bestPos = current;
-								bestScore = num4;
-							}
-						}
-					}
-				}
-				return false;
-			}, 20, RegionType.Set_Passable);
-			return bestPos;
+            IntVec3 bestPos = pawn.Position;
+            float bestScore = -1f;
+            TraverseParms traverseParms = TraverseParms.For(pawn, Danger.Deadly, TraverseMode.ByPawn, false);
+            RegionTraverser.BreadthFirstTraverse(pawn.GetRegion(RegionType.Set_Passable), (Region from, Region reg) => reg.Allows(traverseParms, false), delegate (Region reg)
+            {
+                Danger danger = reg.DangerFor(pawn);
+                Map map = pawn.Map;
+                foreach (IntVec3 current in reg.Cells)
+                {
+                    if (current.Standable(map))
+                    {
+                        if (!reg.IsDoorway)
+                        {
+                            Thing thing = null;
+                            float num = 0f;
+                            for (int i = 0; i < threats.Count; i++)
+                            {
+                                float num2 = (float)current.DistanceToSquared(threats[i].Position);
+                                if (thing == null || num2 < num)
+                                {
+                                    thing = threats[i];
+                                    num = num2;
+                                }
+                            }
+                            float num3 = Mathf.Sqrt(num);
+                            float f = Mathf.Min(num3, 23f); //Slight alteration
+                            float num4 = Mathf.Pow(f, 1.2f);
+                            num4 *= Mathf.InverseLerp(50f, 0f, (current - pawn.Position).LengthHorizontal);
+                            if (current.GetRoom(map) != thing.GetRoom(RegionType.Set_Passable))
+                            {
+                                num4 *= 4.2f;
+                            }
+                            else if (num3 < 8f)
+                            {
+                                num4 *= 0.05f;
+                            }
+                            if (!map.pawnDestinationReservationManager.CanReserve(current, pawn, false))
+                            {
+                                num4 *= 0.5f;
+                            }
+                            if (danger == Danger.Deadly)
+                            {
+                                num4 *= 0.8f;
+                            }
+                            if (num4 > bestScore)
+                            {
+                                bestPos = current;
+                                bestScore = num4;
+                            }
+                        }
+                    }
+                }
+                return false;
+            }, 20, RegionType.Set_Passable);
+            return bestPos;
         }
     }
 }
