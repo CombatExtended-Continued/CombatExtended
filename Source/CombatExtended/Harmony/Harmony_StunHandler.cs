@@ -14,7 +14,6 @@ namespace CombatExtended.HarmonyCE
     {
         public static bool Prefix(StunHandler __instance,
                       DamageInfo dinfo,
-                      bool affectedByEMP,
                       int ___EMPAdaptedTicksLeft,
                       int ___stunTicksLeft,
                       bool ___stunFromEMP
@@ -32,7 +31,7 @@ namespace CombatExtended.HarmonyCE
                 bodySize = pawn.BodySize;
             }
 
-            if (dinfo.Def == DamageDefOf.EMP && affectedByEMP)
+            if (dinfo.Def == DamageDefOf.EMP && __instance.parent is Pawn p && !(p.RaceProps?.IsFlesh ?? false))
             {
                 if (___EMPAdaptedTicksLeft > 0)
                 {
@@ -87,12 +86,12 @@ namespace CombatExtended.HarmonyCE
             }
             return true;
         }
-        public static void Postfix(StunHandler __instance, DamageInfo dinfo, bool affectedByEMP)
+        public static void Postfix(StunHandler __instance, DamageInfo dinfo)
         {
             if (dinfo.Def == DamageDefOf.EMP)
             {
                 var dmgAmount = dinfo.Amount;
-                if (!affectedByEMP) dmgAmount = Mathf.RoundToInt(dmgAmount * 0.25f);
+                if (__instance.parent is Pawn p && (p.RaceProps?.IsFlesh ?? false)) dmgAmount = Mathf.RoundToInt(dmgAmount * 0.25f);
                 var newDinfo = new DamageInfo(CE_DamageDefOf.Electrical, dmgAmount, 9999, // Hack to avoid double-armor application (EMP damage reduced -> proportional electric damage reduced again)
                     dinfo.Angle, dinfo.Instigator, dinfo.HitPart, dinfo.Weapon, dinfo.Category);
                 __instance.parent.TakeDamage(newDinfo);
