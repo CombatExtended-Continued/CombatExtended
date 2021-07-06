@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+
+  <ThingCategoryDef>
+    <defName>Ammo8Gauge</defName>
+    <label>8 gauge</label>
+    <parent>AmmoShotguns</parent>
+    <iconPath>UI/Icons/ThingCategories/CaliberShotgun</iconPath>
+  </ThingCategoryDef>
+
+  <!-- ==================== AmmoSet ========================== -->
+
+  <CombatExtended.AmmoSetDef>
+    <defName>AmmoSet_8GaugeUNSC</defName>
+    <label>8 Gauge</label>
+    <ammoTypes>
+      <Ammo_8Gauge_Buck>Bullet_8Gauge_Buck</Ammo_8Gauge_Buck>
+      <Ammo_8Gauge_Slug>Bullet_8Gauge_Slug</Ammo_8Gauge_Slug>
+      <Ammo_8Gauge_ElectroSlug>Bullet_8Gauge_ElectroSlug</Ammo_8Gauge_ElectroSlug>
+      <Ammo_8Gauge_Flechette>Bullet_8Gauge_Flechette</Ammo_8Gauge_Flechette>
+    </ammoTypes>
+  </CombatExtended.AmmoSetDef>
+
+  <!-- ==================== Ammo ========================== -->
+
+  <ThingDef Class="CombatExtended.AmmoDef" Name="8GaugeBase" ParentName="SmallAmmoBase" Abstract="True">
+    <description>A rare, oversized shotgun caliber used primarily in military application.</description>
+    <statBases>
+      <Mass>0.04</Mass>
+      <Bulk>0.08</Bulk>
+    </statBases>
+    <tradeTags>
+      <li>CE_AutoEnableTrade</li>
+      <li>CE_AutoEnableCrafting</li>
+    </tradeTags>
+    <thingCategories>
+      <li>Ammo8Gauge</li>
+    </thingCategories>
+    <stackLimit>3000</stackLimit>
+  </ThingDef>
+
+  <ThingDef Class="CombatExtended.AmmoDef" ParentName="8GaugeBase">
+    <defName>Ammo_8Gauge_Buck</defName>
+    <label>Soellkraft 8 gauge shell (Buck)</label>
+    <graphicData>
+      <texPath>Things/Ammo/Shotgun/Shot</texPath>
+      <graphicClass>Graphic_StackCount</graphicClass>
+    </graphicData>
+    <statBases>
+      <MarketValue>0.2</MarketValue>
+    </statBases>
+    <ammoClass>BuckShot</ammoClass>
+    <cookOffProjectile>Bullet_8Gauge_Buck</cookOffProjectile>
+  </ThingDef>
+
+  <ThingDef Class="CombatExtended.AmmoDef" ParentName="8GaugeBase">
+    <defName>Ammo_8Gauge_Flechette</defName>
+    <label>Soellkraft 8 gauge shell (Flechette)</label>
+    <graphicData>
+      <texPath>Things/Ammo/Shotgun/Shot</texPath>
+      <graphicClass>Graphic_StackCount</graphicClass>
+    </graphicData>
+    <statBases>
+      <MarketValue>0.2</MarketValue>
+    </statBases>
+    <ammoClass>Sabot</ammoClass>
+    <cookOffProjectile>Bullet_8Gauge_Flechette</cookOffProjectile>
+  </ThingDef>
+
+  <ThingDef Class="CombatExtended.AmmoDef" ParentName="8GaugeBase">
+    <defName>Ammo_8Gauge_Slug</defName>
+    <label>Soellkraft 8 gauge shell (Slug)</label>
+    <graphicData>
+      <texPath>Things/Ammo/Shotgun/Slug</texPath>
+      <graphicClass>Graphic_StackCount</graphicClass>
+    </graphicData>
+    <statBases>
+      <Mass>0.08</Mass>
+      <MarketValue>0.3</MarketValue>
+    </statBases>
+    <ammoClass>Slug</ammoClass>
+    <cookOffProjectile>Bullet_8Gauge_Slug</cookOffProjectile>
+  </ThingDef>
+
+  <ThingDef Class="CombatExtended.AmmoDef" ParentName="8GaugeBase">
+    <defName>Ammo_8Gauge_ElectroSlug</defName>
+    <label>Soellkraft 8 gauge shell (EMP)</label>
+    <graphicData>
+      <texPath>Things/Ammo/Shotgun/EMP</texPath>
+      <graphicClass>Graphic_StackCount</graphicClass>
+    </graphicData>
+    <statBases>
+      <Mass>0.08</Mass>
+      <MarketValue>1.2</MarketValue>
+    </statBases>
+    <ammoClass>ElectroSlug</ammoClass>
+    <cookOffProjectile>Bullet_8Gauge_ElectroSlug</cookOffProjectile>
+  </ThingDef>
+
+  <!-- ================== Projectiles ================== -->
+
+  <ThingDef Class="CombatExtended.AmmoDef" Name="Base8GaugeBullet" ParentName="BaseBullet" Abstract="true">
+    <projectile Class="CombatExtended.ProjectilePropertiesCE">
+      <damageDef>Bullet</damageDef>
+      <speed>72</speed>
+      <dropsCasings>true</dropsCasings>
+      <casingMoteDefname>Mote_ShotgunShell</casingMoteDefname>
+    </projectile>
+  </ThingDef>
+
+  <ThingDef Class="CombatExtended.AmmoDef" ParentName="Base8GaugeBullet">
+    <defName>Bullet_8Gauge_Buck</defName>
+    <label>buckshot pellet</label>
+    <graphicData>
+      <texPath>Things/Projectile/Shotgun_Pellet</texPath>
+      <graphicClass>Graphic_Single</graphicClass>
+    </graphicData>
+    <projectile Class="CombatExtended.ProjectilePropertiesCE">
+      <damageAmountBase>9</damageAmountBase>
+      <pelletCount>15</pelletCount>
+      <armorPenetrationSharp>5.5</armorPenetrationSharp>
+      <armorPenetrationBlunt>6.52</armorPenetrationBlunt>
+      <spreadMult>17.8</spreadMult>
+    </projectile>
+  </ThingDef>
+
+  <ThingDef Class="CombatExtended.AmmoDef" ParentName="Base8GaugeBullet">
+    <defName>Bullet_8Gauge_Flechette</defName>
+    <label>Flechette</label>
+    <graphicData>
+      <texPath>Things/Projectile/Shotgun_Pellet</texPath>
+      <graphicClass>Graphic_Single</graphicClass>
+    </graphicData>
+    <projectile Class="CombatExtended.ProjectilePropertiesCE">
+      <damageAmountBase>5</damageAmountBase>
+      <pelletCount>15</pelletCount>
+      <armorPenetrationSharp>11</armorPenetrationSharp>
+      <armorPenetrationBlunt>7.52</armorPenetrationBlunt>
+      <spreadMult>17.8</spreadMult>
+    </projectile>
+  </ThingDef>
+
+  <ThingDef Class="CombatExtended.AmmoDef" ParentName="Base8GaugeBullet">
+    <defName>Bullet_8Gauge_Slug</defName>
+    <label>shotgun slug</label>
+    <graphicData>
+      <texPath>Things/Projectile/Bullet_big</texPath>
+      <graphicClass>Graphic_Single</graphicClass>
+    </graphicData>
+    <projectile Class="CombatExtended.ProjectilePropertiesCE">
+      <speed>110</speed>
+      <damageAmountBase>39</damageAmountBase>
+      <armorPenetrationSharp>8</armorPenetrationSharp>
+      <armorPenetrationBlunt>98.2</armorPenetrationBlunt>
+    </projectile>
+  </ThingDef>
+
+  <ThingDef Class="CombatExtended.AmmoDef" ParentName="Base8GaugeBullet">
+    <defName>Bullet_8Gauge_ElectroSlug</defName>
+    <label>EMP slug</label>
+    <graphicData>
+      <texPath>Things/Projectile/Bullet_big</texPath>
+      <graphicClass>Graphic_Single</graphicClass>
+    </graphicData>
+    <projectile Class="CombatExtended.ProjectilePropertiesCE">
+      <speed>40</speed>
+      <damageDef>EMP</damageDef>
+      <damageAmountBase>23</damageAmountBase>
+      <armorPenetrationSharp>0</armorPenetrationSharp>
+      <armorPenetrationBlunt>0</armorPenetrationBlunt>
+      <empShieldBreakChance>0.4</empShieldBreakChance>
+    </projectile>
+  </ThingDef>
+
+</Defs>
