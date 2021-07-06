@@ -13,7 +13,7 @@
 		<value>
 
 	<ThingDef ParentName="Base6x24mmChargedBullet">
-		<defName>Sporefire</defName>
+		<defName>FloodSpitfire_CE</defName>
     		<thingClass>CombatExtended.BulletCE</thingClass>
    		 <graphicData>
       		<texPath>Pawn/Flood/Body/spore_fire</texPath>
@@ -21,19 +21,37 @@
    		 </graphicData>
     		<projectile Class="CombatExtended.ProjectilePropertiesCE">
       		<flyOverhead>false</flyOverhead>
-			<speed>44</speed>
+			<speed>40</speed>
 			<damageDef>Bullet</damageDef>
-			<damageAmountBase>12</damageAmountBase>
+			<damageAmountBase>15</damageAmountBase>
+      			<armorPenetrationSharp>7</armorPenetrationSharp>
+      			<armorPenetrationBlunt>16</armorPenetrationBlunt>			
+    		</projectile>
+	</ThingDef>
+
+	<ThingDef ParentName="Base6x24mmChargedBullet">
+		<defName>FloodRangedfire_CE</defName>
+    		<thingClass>CombatExtended.BulletCE</thingClass>
+   		 <graphicData>
+      		<texPath>Pawn/Flood/Body/spore_fire</texPath>
+     		 <graphicClass>Graphic_Single</graphicClass>
+   		 </graphicData>
+    		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+      		<flyOverhead>false</flyOverhead>
+			<speed>50</speed>
+			<damageDef>Bullet</damageDef>
+			<damageAmountBase>11</damageAmountBase>
       			<armorPenetrationSharp>6</armorPenetrationSharp>
       			<armorPenetrationBlunt>12</armorPenetrationBlunt>			
     		</projectile>
 	</ThingDef>
+
 		</value>
 		</li>
 
 		<!-- Replace vanilla thingClass -->
 		<li Class="PatchOperationReplace">
-        		<xpath>Defs/ThingDef[defName = "Rangedform"]/thingClass</xpath>
+        		<xpath>Defs/ThingDef[defName = "Rangedform" or defName = "Flood_Spitter"]/thingClass</xpath>
         		<value>
           		<thingClass>CombatExtended.Building_TurretGunCE</thingClass>
         		</value>
@@ -41,14 +59,14 @@
 
 		<!-- Make turrets taller -->
       		<li Class="PatchOperationReplace">
-        		<xpath>Defs/ThingDef[defName = "Rangedform"]/fillPercent</xpath>
+        		<xpath>Defs/ThingDef[defName = "Rangedform" or defName = "Flood_Spitter"]/fillPercent</xpath>
         		<value>
           			<fillPercent>0.85</fillPercent>
         		</value>
       		</li>
 
 	  <li Class="PatchOperationAdd">
-	  	<xpath>Defs/ThingDef[defName = "Rangedform"]/statBases</xpath>
+	  	<xpath>Defs/ThingDef[defName = "Rangedform" or defName = "Flood_Spitter"]/statBases</xpath>
 	  	<value>
 	  		<AimingAccuracy>0.25</AimingAccuracy>
 	  	</value>
@@ -56,20 +74,52 @@
   
 	  <li Class="PatchOperationReplace">
 	  	<xpath>Defs/ThingDef[
-			defName = "Rangedform"]/statBases/ShootingAccuracyTurret</xpath>
+			defName = "Rangedform" or defName = "Flood_Spitter"]/statBases/ShootingAccuracyTurret</xpath>
 	  	<value>
 	  		<ShootingAccuracyTurret>0.5</ShootingAccuracyTurret>
 	  	</value>
 	  </li>
 
     	<li Class="PatchOperationReplace">
-      		<xpath>Defs/ThingDef[defName = "Rangedform" ]/building/turretBurstCooldownTime</xpath>
+      		<xpath>Defs/ThingDef[defName = "Rangedform" or defName = "Flood_Spitter" ]/building/turretBurstCooldownTime</xpath>
       		<value>
-        			<turretBurstCooldownTime>1.1</turretBurstCooldownTime>
+        			<turretBurstCooldownTime>1.25</turretBurstCooldownTime>
      		 </value>
     	</li>
 
 			<!-- Make the Turret usable -->
+
+			<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+			<defName>Spitterbulb</defName>
+			  <statBases>
+			  <Mass>10.00</Mass>
+			  <RangedWeapon_Cooldown>0.45</RangedWeapon_Cooldown>
+			  <SightsEfficiency>1</SightsEfficiency>
+			  <ShotSpread>0.08</ShotSpread>
+			  <SwayFactor>1.33</SwayFactor>
+			  <Bulk>1.00</Bulk>
+			</statBases>
+			<Properties>
+			  <recoilAmount>1.37</recoilAmount>
+			  <verbClass>CombatExtended.Verb_ShootCE</verbClass>
+			  <hasStandardCommand>true</hasStandardCommand>
+			  <defaultProjectile>FloodSpitfire_CE</defaultProjectile>
+			  <warmupTime>1</warmupTime>
+			  <range>44</range>
+        			<ticksBetweenBurstShots>10</ticksBetweenBurstShots>
+        			<burstShotCount>2</burstShotCount>
+			  <minRange>1.5</minRange>
+			  <soundCast>BulletImpact_Flesh</soundCast>
+			  <muzzleFlashScale>0</muzzleFlashScale>
+			<recoilPattern>Mounted</recoilPattern>
+			</Properties>
+			<FireModes>
+			  <aiAimMode>AimedShot</aiAimMode>
+      			<aimedBurstShotCount>2</aimedBurstShotCount>
+      			<noSnapshot>true</noSnapshot>
+      			<noSingleShot>true</noSingleShot>
+			</FireModes>
+			</li>
 
 			<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
 			<defName>Rangedtop</defName>
@@ -85,7 +135,7 @@
 			  <recoilAmount>1.27</recoilAmount>
 			  <verbClass>CombatExtended.Verb_ShootCE</verbClass>
 			  <hasStandardCommand>true</hasStandardCommand>
-			  <defaultProjectile>Sporefire</defaultProjectile>
+			  <defaultProjectile>FloodRangedfire_CE</defaultProjectile>
 			  <warmupTime>1</warmupTime>
 			  <range>50</range>
         			<ticksBetweenBurstShots>7</ticksBetweenBurstShots>
