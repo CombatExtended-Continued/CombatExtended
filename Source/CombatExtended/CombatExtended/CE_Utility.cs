@@ -290,14 +290,14 @@ namespace CombatExtended
             {
                 return;
             }
-            MoteThrown moteThrown = (MoteThrown)ThingMaker.MakeThing(casingMoteDef, null);
-            moteThrown.Scale = Rand.Range(0.5f, 0.3f) * size;
-            moteThrown.exactRotation = Rand.Range(-3f, 4f);
-            moteThrown.exactPosition = loc;
-            moteThrown.airTimeLeft = 60;
-            moteThrown.SetVelocity((float)Rand.Range(160, 200), Rand.Range(0.7f, 0.5f));
+            //MoteThrown moteThrown = (MoteThrown)ThingMaker.MakeThing(casingMoteDef, null);
+            //moteThrown.Scale = Rand.Range(0.5f, 0.3f) * size;
+            //moteThrown.exactRotation = Rand.Range(-3f, 4f);
+            //moteThrown.exactPosition = loc;
+            //moteThrown.airTimeLeft = 60;
+            //moteThrown.SetVelocity((float)Rand.Range(160, 200), Rand.Range(0.7f, 0.5f));
             //     moteThrown.SetVelocityAngleSpeed((float)Rand.Range(160, 200), Rand.Range(0.020f, 0.0115f));
-            GenSpawn.Spawn(moteThrown, loc.ToIntVec3(), map);
+            //GenSpawn.Spawn(moteThrown, loc.ToIntVec3(), map);
         }
         #endregion
 
