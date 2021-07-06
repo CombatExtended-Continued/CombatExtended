@@ -31,6 +31,7 @@
     </statBases>
     <tradeTags>
       <li>CE_AutoEnableTrade</li>
+      <li>CE_AutoEnableCrafting</li>
     </tradeTags>
     <thingCategories>
       <li>Ammo145x114mmUNSC</li>
@@ -166,4 +167,147 @@
     </projectile>
   </ThingDef>
   
+
+  <!-- ==================== Recipes ========================== -->
+
+  <RecipeDef ParentName="UNAmmoRecipeBase">
+    <defName>MakeAmmo_145x114mmUNSC_FMJ</defName>
+    <label>make 14.5x114mmUNSC (FMJ) cartridge x200</label>
+    <description>Craft 200 14.5x114mmUNSC (FMJ) cartridges.</description>
+    <jobString>Making 14.5x114mmUNSC (FMJ) cartridges.</jobString>
+    <ingredients>
+      <li>
+        <filter>
+          <thingDefs>
+            <li>Steel</li>
+          </thingDefs>
+        </filter>
+        <count>76</count>
+      </li>
+    </ingredients>
+    <fixedIngredientFilter>
+      <thingDefs>
+        <li>Steel</li>
+      </thingDefs>
+    </fixedIngredientFilter>
+    <products>
+      <Ammo_145x114mmUNSC_FMJ>200</Ammo_145x114mmUNSC_FMJ>
+    </products>
+    <workAmount>10000</workAmount>
+  </RecipeDef>
+
+  <RecipeDef ParentName="AdvancedAmmoRecipeBase">
+    <defName>MakeAmmo_145x114mmUNSC_Incendiary</defName>
+    <label>make 14.5x114mmUNSC (AP-I) cartridge x200</label>
+    <description>Craft 200 14.5x114mmUNSC (AP-I) cartridges.</description>
+    <jobString>Making 14.5x114mmUNSC (AP-I) cartridges.</jobString>
+    <ingredients>
+      <li>
+        <filter>
+          <thingDefs>
+            <li>Steel</li>
+          </thingDefs>
+        </filter>
+        <count>76</count>
+      </li>
+      <li>
+        <filter>
+          <thingDefs>
+            <li>Prometheum</li>
+          </thingDefs>
+        </filter>
+        <count>7</count>
+      </li>
+    </ingredients>
+    <fixedIngredientFilter>
+      <thingDefs>
+        <li>Steel</li>
+        <li>Prometheum</li>
+      </thingDefs>
+    </fixedIngredientFilter>
+    <products>
+      <Ammo_145x114mmUNSC_Incendiary>200</Ammo_145x114mmUNSC_Incendiary>
+    </products>
+    <workAmount>13600</workAmount>
+  </RecipeDef>
+
+  <RecipeDef ParentName="AdvancedAmmoRecipeBase">
+    <defName>MakeAmmo_145x114mmUNSC_HE</defName>
+    <label>make 14.5x114mmUNSC (HE) cartridge x200</label>
+    <description>Craft 200 14.5x114mmUNSC (HE) cartridges.</description>
+    <jobString>Making 14.5x114mmUNSC (HE) cartridges.</jobString>
+    <ingredients>
+      <li>
+        <filter>
+          <thingDefs>
+            <li>Steel</li>
+          </thingDefs>
+        </filter>
+        <count>76</count>
+      </li>
+      <li>
+        <filter>
+          <thingDefs>
+            <li>FSX</li>
+          </thingDefs>
+        </filter>
+        <count>13</count>
+      </li>
+    </ingredients>
+    <fixedIngredientFilter>
+      <thingDefs>
+        <li>Steel</li>
+        <li>FSX</li>
+      </thingDefs>
+    </fixedIngredientFilter>
+    <products>
+      <Ammo_145x114mmUNSC_HE>200</Ammo_145x114mmUNSC_HE>
+    </products>
+    <workAmount>16000</workAmount>
+  </RecipeDef>
+
+  <RecipeDef ParentName="AdvancedAmmoRecipeBase">
+    <defName>MakeAmmo_145x114mmUNSC_Sabot</defName>
+    <label>make 14.5x114mmUNSC (Sabot) cartridge x200</label>
+    <description>Craft 200 14.5x114mmUNSC (Sabot) cartridges.</description>
+    <jobString>Making 14.5x114mmUNSC (Sabot) cartridges.</jobString>
+    <ingredients>
+      <li>
+        <filter>
+          <thingDefs>
+            <li>Steel</li>
+          </thingDefs>
+        </filter>
+        <count>50</count>
+      </li>
+      <li>
+        <filter>
+          <thingDefs>
+            <li>Uranium</li>
+          </thingDefs>
+        </filter>
+        <count>8</count>
+      </li>
+      <li>
+        <filter>
+          <thingDefs>
+            <li>Chemfuel</li>
+          </thingDefs>
+        </filter>
+        <count>8</count>
+      </li>	  
+    </ingredients>
+    <fixedIngredientFilter>
+      <thingDefs>
+		<li>Chemfuel</li>	  
+        <li>Steel</li>
+		<li>Uranium</li>
+      </thingDefs>
+    </fixedIngredientFilter>
+    <products>
+      <Ammo_145x114mmUNSC_Sabot>200</Ammo_145x114mmUNSC_Sabot>
+    </products>
+    <workAmount>13000</workAmount>
+  </RecipeDef>
+
 </Defs>

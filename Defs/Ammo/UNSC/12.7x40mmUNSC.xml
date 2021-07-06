@@ -30,6 +30,7 @@
 		</statBases>
 		<tradeTags>
 			<li>CE_AutoEnableTrade</li>
+			<li>CE_AutoEnableCrafting</li>
 		</tradeTags>
 		<thingCategories>
 			<li>Ammo12.7x40mm</li>
@@ -120,5 +121,85 @@
 			<armorPenetrationBlunt>38.480</armorPenetrationBlunt>
 		</projectile>
 	</ThingDef>
+
+	<!-- ==================== Recipes ========================== -->
+
+	<RecipeDef ParentName="UNAmmoRecipeBase">
+		<defName>MakeAmmo_12.7x40mm_FMJ</defName>
+		<label>make 12.7x40mm (FMJ) cartridge x500</label>
+		<description>Craft 500 12.7x40mm (FMJ) cartridges.</description>
+		<jobString>Making 12.7x40mm (FMJ) cartridges.</jobString>
+		<ingredients>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>Steel</li>
+					</thingDefs>
+				</filter>
+				<count>30</count>
+			</li>
+		</ingredients>
+		<fixedIngredientFilter>
+			<thingDefs>
+				<li>Steel</li>
+			</thingDefs>
+		</fixedIngredientFilter>
+		<products>
+			<Ammo_12.7x40mm_FMJ>500</Ammo_12.7x40mm_FMJ>
+		</products>
+		<workAmount>3000</workAmount>
+	</RecipeDef>
+	
+	<RecipeDef ParentName="UNAmmoRecipeBase">
+		<defName>MakeAmmo_12.7x40mm_HP</defName>
+		<label>make 12.7x40mm (HP) cartridge x500</label>
+		<description>Craft 500 12.7x40mm (HP) cartridges.</description>
+		<jobString>Making 12.7x40mm (HP) cartridges.</jobString>
+		<ingredients>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>Steel</li>
+					</thingDefs>
+				</filter>
+				<count>30</count>
+			</li>
+		</ingredients>
+		<fixedIngredientFilter>
+			<thingDefs>
+				<li>Steel</li>
+			</thingDefs>
+		</fixedIngredientFilter>
+		<products>
+			<Ammo_12.7x40mm_HP>500</Ammo_12.7x40mm_HP>
+		</products>
+		<workAmount>3000</workAmount>
+	</RecipeDef>
+
+	<RecipeDef ParentName="UNAmmoRecipeBase">
+		<defName>MakeAmmo_12.7x40mm_AP</defName>
+		<label>make 12.7x40mm (AP) cartridge x500</label>
+		<description>Craft 500 12.7x40mm (AP) cartridges.</description>
+		<jobString>Making 12.7x40mm (AP) cartridges.</jobString>
+		<ingredients>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>Steel</li>
+					</thingDefs>
+				</filter>
+				<count>30</count>
+			</li>
+		</ingredients>
+		<fixedIngredientFilter>
+			<thingDefs>
+				<li>Steel</li>
+			</thingDefs>
+		</fixedIngredientFilter>
+		<products>
+			<Ammo_12.7x40mm_AP>500</Ammo_12.7x40mm_AP>
+		</products>
+		<workAmount>3000</workAmount>
+	</RecipeDef>
 
 </Defs>

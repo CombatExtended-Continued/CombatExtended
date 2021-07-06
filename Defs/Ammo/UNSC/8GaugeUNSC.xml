@@ -31,6 +31,7 @@
     </statBases>
     <tradeTags>
       <li>CE_AutoEnableTrade</li>
+      <li>CE_AutoEnableCrafting</li>
     </tradeTags>
     <thingCategories>
       <li>Ammo8Gauge</li>
@@ -164,11 +165,126 @@
     <projectile Class="CombatExtended.ProjectilePropertiesCE">
       <speed>40</speed>
       <damageDef>EMP</damageDef>
-      <damageAmountBase>23</damageAmountBase>
+      <damageAmountBase>22</damageAmountBase>
       <armorPenetrationSharp>0</armorPenetrationSharp>
       <armorPenetrationBlunt>0</armorPenetrationBlunt>
-      <empShieldBreakChance>0.4</empShieldBreakChance>
+      <empShieldBreakChance>0.35</empShieldBreakChance>
     </projectile>
   </ThingDef>
+
+  <!-- ==================== Recipe ========================== -->
+
+  <RecipeDef ParentName="UNAmmoRecipeBase">
+    <defName>MakeAmmo_8Gauge_Buck</defName>
+    <label>make 8 gauge (Buck) shell x200</label>
+    <description>Craft 200 8 gauge (Buck) shells.</description>
+    <jobString>Making 8 gauge (Buck) shells.</jobString>
+    <ingredients>
+      <li>
+        <filter>
+          <thingDefs>
+            <li>Steel</li>
+          </thingDefs>
+        </filter>
+        <count>20</count>
+      </li>
+    </ingredients>
+    <fixedIngredientFilter>
+      <thingDefs>
+        <li>Steel</li>
+      </thingDefs>
+    </fixedIngredientFilter>
+    <products>
+      <Ammo_8Gauge_Buck>200</Ammo_8Gauge_Buck>
+    </products>
+    <workAmount>2500</workAmount>
+  </RecipeDef>
+
+  <RecipeDef ParentName="UNAmmoRecipeBase">
+    <defName>MakeAmmo_8Gauge_Slug</defName>
+    <label>make 8 gauge (Slug) shell x200</label>
+    <description>Craft 200 8 gauge (Slug) shells.</description>
+    <jobString>Making 8 gauge (Slug) shells.</jobString>
+    <ingredients>
+      <li>
+        <filter>
+          <thingDefs>
+            <li>Steel</li>
+          </thingDefs>
+        </filter>
+        <count>36</count>
+      </li>
+    </ingredients>
+    <fixedIngredientFilter>
+      <thingDefs>
+        <li>Steel</li>
+      </thingDefs>
+    </fixedIngredientFilter>
+    <products>
+      <Ammo_8Gauge_Slug>200</Ammo_8Gauge_Slug>
+    </products>
+    <workAmount>4000</workAmount>
+  </RecipeDef>
+
+  <RecipeDef ParentName="AdvancedAmmoRecipeBase">
+    <defName>MakeAmmo_8Gauge_Flechette</defName>
+    <label>make 8 gauge (Flechette) shell x200</label>
+    <description>Craft 200 8 gauge (Flechette) shells.</description>
+    <jobString>Making 8 gauge (Flechette) shells.</jobString>
+    <ingredients>
+      <li>
+        <filter>
+          <thingDefs>
+            <li>Steel</li>
+          </thingDefs>
+        </filter>
+        <count>30</count>
+      </li>
+    </ingredients>
+    <fixedIngredientFilter>
+      <thingDefs>
+        <li>Steel</li>
+      </thingDefs>
+    </fixedIngredientFilter>
+    <products>
+      <Ammo_8Gauge_Flechette>200</Ammo_8Gauge_Flechette>
+    </products>
+    <workAmount>9000</workAmount>
+  </RecipeDef>
+
+  <RecipeDef ParentName="UNAmmoRecipeBase">
+    <defName>MakeAmmo_8Gauge_ElectroSlug</defName>
+    <label>make 8 gauge (EMP) shell x200</label>
+    <description>Craft 200 8 gauge (EMP) shells.</description>
+    <jobString>Making 8 gauge (EMP) shells.</jobString>
+    <ingredients>
+      <li>
+        <filter>
+          <thingDefs>
+            <li>Steel</li>
+          </thingDefs>
+        </filter>
+        <count>36</count>
+      </li>
+      <li>
+        <filter>
+          <thingDefs>
+            <li>ComponentIndustrial</li>
+          </thingDefs>
+        </filter>
+        <count>6</count>
+      </li>
+    </ingredients>
+    <fixedIngredientFilter>
+      <thingDefs>
+        <li>Steel</li>
+        <li>ComponentIndustrial</li>
+      </thingDefs>
+    </fixedIngredientFilter>
+    <products>
+      <Ammo_8Gauge_ElectroSlug>200</Ammo_8Gauge_ElectroSlug>
+    </products>
+    <workAmount>9000</workAmount>
+  </RecipeDef>
 
 </Defs>
