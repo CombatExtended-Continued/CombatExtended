@@ -20,6 +20,16 @@
 		</ammoTypes>
 	</CombatExtended.AmmoSetDef>
 
+	<CombatExtended.AmmoSetDef>
+		<defName>AmmoSet_12.7x40mmUNSCLight</defName>
+		<label>12.7x40mm</label>
+		<ammoTypes>
+			<Ammo_12.7x40mm_FMJ>Bullet_12.7x40mm_FMJ_Light</Ammo_12.7x40mm_FMJ>
+			<Ammo_12.7x40mm_AP>Bullet_12.7x40mm_AP_Light</Ammo_12.7x40mm_AP>			
+			<Ammo_12.7x40mm_HP>Bullet_12.7x40mm_HP_Light</Ammo_12.7x40mm_HP>
+		</ammoTypes>
+	</CombatExtended.AmmoSetDef>
+
 	<!-- ==================== Ammo ========================== -->
 
 	<ThingDef Class="CombatExtended.AmmoDef" Name="12.7x40mmBase" ParentName="AmmoBase" Abstract="True">
@@ -119,6 +129,36 @@
 			<damageAmountBase>24</damageAmountBase>
 			<armorPenetrationSharp>4.5</armorPenetrationSharp>
 			<armorPenetrationBlunt>38.480</armorPenetrationBlunt>
+		</projectile>
+	</ThingDef>
+
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="Base12.7x40mmBullet">
+		<defName>Bullet_12.7x40mm_FMJ_Light</defName>
+		<label>12.7x40mm bullet (FMJ)</label>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageAmountBase>17</damageAmountBase>
+			<armorPenetrationSharp>8</armorPenetrationSharp>
+			<armorPenetrationBlunt>32.480</armorPenetrationBlunt>
+		</projectile>
+	</ThingDef>
+
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="Base12.7x40mmBullet">
+		<defName>Bullet_12.7x40mm_AP_Light</defName>
+		<label>12.7x40mm bullet (AP)</label>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageAmountBase>11</damageAmountBase>
+			<armorPenetrationSharp>16</armorPenetrationSharp>
+			<armorPenetrationBlunt>32.480</armorPenetrationBlunt>
+		</projectile>
+	</ThingDef>
+
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="Base12.7x40mmBullet">
+		<defName>Bullet_12.7x40mm_HP_Light</defName>
+		<label>12.7x40mm bullet (HP)</label>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageAmountBase>22</damageAmountBase>
+			<armorPenetrationSharp>4</armorPenetrationSharp>
+			<armorPenetrationBlunt>32.480</armorPenetrationBlunt>
 		</projectile>
 	</ThingDef>
 
