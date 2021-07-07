@@ -2,7 +2,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Reflection.Emit;
+using System.Runtime.CompilerServices;
 using HarmonyLib;
 using RimWorld;
 using UnityEngine;
@@ -12,17 +14,110 @@ namespace CombatExtended.HarmonyCE
 {
 
     /*
-       Check this patch if:
-       - Apparel is rendered slightly off from the pawn sprite (update YOffset constants based on PawnRenderer values
+     *   Check this patch if:
+     *   - Apparel is rendered slightly off from the pawn sprite (update YOffset constants based on PawnRenderer values
+     *
+     *
+     *   If all apparel worn on pawns is the drop image of that apparel,
+     *       CHECK Harmony_ApparelGraphicRecordGetter.cs
+     *       INSTEAD!
+     *
+     * - Patch Harmony_PawnRenderer_DrawBodyApparel 
+     * 
+     * This patch is used to enable rendering of backpacks and tac vest and similar items.
+     *      
+     * - Patch Harmony_PawnRenderer_DrawHeadHair 
+     * 
+     * Unknown.    
+     */
+    [HarmonyPatch(typeof(PawnRenderer), "DrawBodyApparel")]
+    internal static class Harmony_PawnRenderer_DrawBodyApparel
+    {
+        /*
+         * Sync these with vanilla PawnRenderer constants
+         */
+        private const float YOffsetBehind = 0.00306122447f;
 
+        private const float YOffsetHead = 0.0244897958f;
 
-       If all apparel worn on pawns is the drop image of that apparel,
-           CHECK Harmony_ApparelGraphicRecordGetter.cs
-           INSTEAD!
-    */
+        private const float YOffsetOnHead = 0.0306122452f;
 
-    //[HarmonyPatch(typeof(PawnRenderer), "RenderPawnInternal")]
-    //internal static class Harmony_PawnRenderer_RenderPawnInternal
+        private const float YOffsetPostHead = 0.03367347f;
+
+        private const float YOffsetIntervalClothes = 0.00306122447f;
+
+        private static MethodBase mDrawMeshNowOrLater = AccessTools.Method(typeof(GenDraw), nameof(GenDraw.DrawMeshNowOrLater), parameters: new[] { typeof(Mesh), typeof(Vector3), typeof(Quaternion), typeof(Material), typeof(bool) });
+
+        private static FieldInfo fShell = AccessTools.Field(typeof(ApparelLayerDefOf), nameof(ApparelLayerDefOf.Shell));
+
+        public static IEnumerable<CodeInstruction> Transpiler(IEnumerable<CodeInstruction> instructions, ILGenerator generator)
+        {
+            List<CodeInstruction> codes = instructions.ToList();
+
+            for (int i = 0; i < codes.Count; i++)
+            {
+                CodeInstruction code = codes[i];
+                /* 
+                 * Replace ApparelLayerDef::lastLayer != ApparelLayerDefOf::Shell with IsPreShellLayer(ApparelLayerDef::lastLayer)
+                 * by poping the first part and replacin the second part and changing != to brtrue
+                 */
+                if (code.opcode == OpCodes.Ldsfld && code.OperandIs(fShell))
+                {
+                    yield return new CodeInstruction(OpCodes.Call, AccessTools.Method(typeof(Harmony_PawnRenderer_DrawBodyApparel), nameof(Harmony_PawnRenderer_DrawBodyApparel.IsVisibleLayer)));
+                    i++;
+                    yield return new CodeInstruction(OpCodes.Brfalse_S, codes[i].operand);
+                    continue;
+                }
+                /* 
+                 * Add the offset to loc before calling mDrawMeshNowOrLater
+                 */
+                if (code.opcode == OpCodes.Call && code.OperandIs(mDrawMeshNowOrLater))
+                {
+                    yield return new CodeInstruction(OpCodes.Ldloca_S, 5) { labels = code.labels };
+                    yield return new CodeInstruction(OpCodes.Dup);
+                    yield return new CodeInstruction(OpCodes.Ldfld, AccessTools.Field(typeof(Vector3), nameof(Vector3.y)));
+                    yield return new CodeInstruction(OpCodes.Ldarg_0);
+                    yield return new CodeInstruction(OpCodes.Call, AccessTools.Method(typeof(Harmony_PawnRenderer_DrawBodyApparel), nameof(GetPostShellOffset)));
+                    yield return new CodeInstruction(OpCodes.Add);
+                    yield return new CodeInstruction(OpCodes.Stfld, AccessTools.Field(typeof(Vector3), nameof(Vector3.y)));
+                    code.labels = new List<Label>();
+                }
+                yield return code;
+            }
+        }
+
+        /*
+         * Add some type of offset (reasoning is in the old code below)
+         */
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        private static float GetPostShellOffset(PawnRenderer renderer)
+        {
+            List<ApparelGraphicRecord> apparelGraphics = renderer.graphics.apparelGraphics
+                .Where(a => a.sourceApparel.def.apparel.LastLayer.drawOrder >= ApparelLayerDefOf.Shell.drawOrder).ToList();
+            return apparelGraphics.Count == 0 ? 0 : YOffsetIntervalClothes / apparelGraphics.Count;
+        }
+
+        /*
+         * This allows us to allow the new layers to render (backpacks, etc)
+         */
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        private static bool IsVisibleLayer(ApparelLayerDef layer)
+        {
+            /* 
+             * Belt is not actually a pre-shell layer, but we want to treat it as such in this patch,
+             * to avoid rendering bugs with utility items (e.g: broadshield pack)                        
+             */
+            return true
+                && layer.drawOrder >= ApparelLayerDefOf.Shell.drawOrder
+                && layer != ApparelLayerDefOf.Belt
+                && !(layer.GetModExtension<ApparelLayerExtension>()?.IsHeadwear ?? false);
+            // Log.Message(record.sourceApparel.Label + $" Layer: {layer.defName} IsVisibleLayer: {result}  shellRenderedBehindHead: {!record.sourceApparel.def.apparel.shellRenderedBehindHead}");
+            // return result;
+        }
+    }
+
+    //[HarmonyPatch(typeof(PawnRenderer), "DrawHeadHair")]
+    //internal static class Harmony_PawnRenderer_DrawHeadHair
     //{
     //    // Sync these with vanilla PawnRenderer constants
     //    private const float YOffsetBehind = 0.00306122447f;
@@ -81,29 +176,21 @@ namespace CombatExtended.HarmonyCE
     //        }
     //    }
 
-    //    private static float GetPostShellOffset(PawnRenderer renderer)
-    //    {
-    //        var apparelGraphics = renderer.graphics.apparelGraphics.Where(a => a.sourceApparel.def.apparel.LastLayer.drawOrder >= ApparelLayerDefOf.Shell.drawOrder).ToList();
-    //        return apparelGraphics.Count == 0 ? 0 : YOffsetIntervalClothes / apparelGraphics.Count;
-    //    }
-
-    //    private static bool IsPreShellLayer(ApparelLayerDef layer)
-    //    {
-    //        return layer.drawOrder < ApparelLayerDefOf.Shell.drawOrder
-    //               || (layer.GetModExtension<ApparelLayerExtension>()?.IsHeadwear ?? false)
-    //               || layer == ApparelLayerDefOf.Belt;  //Belt is not actually a pre-shell layer, but we want to treat it as such in this patch, to avoid rendering bugs with utility items (e.g: broadshield pack)
-    //    }
-
-    //    [HarmonyPriority(Priority.Last)] // Fix for VFE-V compat (:
+    //    /*
+    //     * For VFE vikings compatiblity 
+    //     * Required for better compatiblity 
+    //     */
+    //    [HarmonyPriority(Priority.Last)]
     //    internal static IEnumerable<CodeInstruction> Transpiler(IEnumerable<CodeInstruction> instructions)
     //    {
-    //        int stage = 0;
-
     //        foreach (var code in instructions)
     //        {
-    //            { // 1. Insert calls for head renderer
-
-    //                // Look for Ldloc.s 14 (only one in the method), VFE vikings modify the IL just before, so it is not easy to contextualise. If it breaks make sure to check compat with Alien Races & VFE-Vikings/Beards
+    //            {   /* 
+    //                 * 1. Insert calls for head renderer
+    //                 * 
+    //                 * Look for Ldloc.s 14 (only one in the method), VFE vikings modify the IL just before, so it is not easy to contextualise. If it 
+    //                 * breaks make sure to check compat with Alien Races & VFE-Vikings/Beards
+    //                 */
     //                if (code.operand is LocalBuilder lb && lb.LocalIndex == 14 && code.opcode == OpCodes.Ldloc_S)
     //                {
     //                    // Insert new calls for head renderer
@@ -116,7 +203,7 @@ namespace CombatExtended.HarmonyCE
     //                    yield return new CodeInstruction(OpCodes.Ldloc_0);
     //                    yield return new CodeInstruction(OpCodes.Ldarg, 7);
     //                    yield return new CodeInstruction(OpCodes.Ldloca_S, 14);
-    //                    yield return new CodeInstruction(OpCodes.Callvirt, AccessTools.Method(typeof(Harmony_PawnRenderer_RenderPawnInternal), nameof(DrawHeadApparel)));
+    //                    yield return new CodeInstruction(OpCodes.Callvirt, AccessTools.Method(typeof(Harmony_PawnRenderer_DrawHeadHair), nameof(DrawHeadApparel)));
 
     //                    yield return code;
 
@@ -124,45 +211,6 @@ namespace CombatExtended.HarmonyCE
     //                }
 
     //            }
-
-    //            { // 2. Replace Post Shell Rendering 
-
-    //                // Replace ApparelLayerDef::lastLayer != ApparelLayerDefOf::Shell with IsPreShellLayer(ApparelLayerDef::lastLayer)
-
-    //                if (stage == 0 && code.opcode == OpCodes.Ldsfld && ReferenceEquals(code.operand, AccessTools.Field(typeof(ApparelLayerDefOf), nameof(ApparelLayerDefOf.Shell))))
-    //                {
-    //                    code.opcode = OpCodes.Callvirt;
-    //                    code.operand = AccessTools.Method(typeof(Harmony_PawnRenderer_RenderPawnInternal), nameof(IsPreShellLayer));
-
-    //                    stage = 1;
-    //                }
-    //                else
-
-    //                // We replace ApparelDef != ApparelDef with a bool, so we need to change bne.un.s to brtrue
-    //                if (stage == 1)
-    //                {
-    //                    code.opcode = OpCodes.Brtrue;
-
-    //                    stage = 2;
-    //                }
-
-    //            }
-
-    //            { // 3. Insert our own Post Shell Offset Code
-    //                if (stage == 2 && code.opcode == OpCodes.Call && ReferenceEquals(code.operand, AccessTools.Method(typeof(GenDraw), nameof(GenDraw.DrawMeshNowOrLater))))
-    //                {
-    //                    yield return new CodeInstruction(OpCodes.Ldloca_S, 2);
-    //                    yield return new CodeInstruction(OpCodes.Dup);
-    //                    yield return new CodeInstruction(OpCodes.Ldfld, AccessTools.Field(typeof(Vector3), nameof(Vector3.y)));
-    //                    yield return new CodeInstruction(OpCodes.Ldarg_0);
-    //                    yield return new CodeInstruction(OpCodes.Callvirt, AccessTools.Method(typeof(Harmony_PawnRenderer_RenderPawnInternal), nameof(GetPostShellOffset)));
-    //                    yield return new CodeInstruction(OpCodes.Add);
-    //                    yield return new CodeInstruction(OpCodes.Stfld, AccessTools.Field(typeof(Vector3), nameof(Vector3.y)));
-
-    //                    stage = -1;
-    //                }
-    //            }
-
     //            yield return code;
     //        }
     //    }
@@ -171,7 +219,8 @@ namespace CombatExtended.HarmonyCE
     //[HarmonyPatch(typeof(PawnRenderer), "DrawEquipmentAiming")]
     //internal static class Harmony_PawnRenderer_DrawEquipmentAiming
     //{
-    //    public static Rot4 south = Rot4.South; // creates new invocation per call otherwise
+    //    public static Rot4 south = Rot4.South;
+
 
     //    private static void DrawMeshModified(Mesh mesh, Vector3 position, Quaternion rotation, Material mat, int layer, Thing eq, float aimAngle)
     //    {
@@ -191,6 +240,9 @@ namespace CombatExtended.HarmonyCE
     //        Graphics.DrawMesh(mesh, matrix, mat, layer);
     //    }
 
+    //    /*
+    //     * This replace the last DrawMesh in 
+    //     */
     //    internal static IEnumerable<CodeInstruction> Transpiler(IEnumerable<CodeInstruction> instructions)
     //    {
     //        var codes = instructions.ToList();
@@ -213,5 +265,4 @@ namespace CombatExtended.HarmonyCE
     //        }
     //    }
     //}
-
 }
