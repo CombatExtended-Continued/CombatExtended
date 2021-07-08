@@ -109,62 +109,6 @@ namespace CombatExtended.HarmonyCE
             }
         }
 
-        /*
-         * This patch is needed since PawnRender.DrawHeadHair check if any headgear has full headcoverage if any do it skip DrawHeadHair rendering.
-         * 
-         */
-        [HarmonyPatch(typeof(PawnRenderer), "ShellFullyCoversHead")]
-        private static class Harmony_PawnRenderer_ShellFullyCoversHead
-        {
-            private static FieldInfo fShellCoversHead = AccessTools.Field(typeof(ApparelProperties), nameof(ApparelProperties.shellCoversHead));
-
-            /*
-             * For VFE vikings compatiblity 
-             * Required for better compatiblity 
-             */
-            [HarmonyPriority(Priority.Last)]
-            internal static IEnumerable<CodeInstruction> Transpiler(IEnumerable<CodeInstruction> instructions)
-            {
-                var codes = instructions.ToList();
-                var finished = false;
-
-                for (int i = 0; i < codes.Count; i++)
-                {
-                    CodeInstruction code = codes[i];
-                    if (!finished)
-                    {
-                        /*
-                         * Replace apparelGraphics[i].sourceApparel.def.apparel.shellCoversHead with  ShellCoversHead(apparelGraphics[i].sourceApparel.def)
-                         */
-                        if (codes[i + 1].OperandIs(fShellCoversHead))
-                        {
-                            finished = true;
-                            yield return new CodeInstruction(OpCodes.Call, AccessTools.Method(typeof(Harmony_PawnRenderer_ShellFullyCoversHead), nameof(ShellCoversHead))).MoveLabelsFrom(code).MoveBlocksFrom(code);
-                            i++;
-                            continue;
-                        }
-                    }
-                    yield return code;
-                }
-            }
-
-            //private static bool Prefix(ref bool __result)
-            //{
-            //    __result = false;
-            //    return false;
-            //}
-
-            [MethodImpl(MethodImplOptions.AggressiveInlining)]
-            private static bool ShellCoversHead(ThingDef def)
-            {
-                /*
-                 * We need to check if this is a CE headgear.
-                 */
-                return false;
-                //return def.apparel.shellCoversHead && !(def.apparel.LastLayer.GetModExtension<ApparelLayerExtension>()?.IsHeadwear ?? false);
-            }
-        }
-
         [HarmonyPatch(typeof(PawnRenderer), "DrawHeadHair")]
         private static class Harmony_PawnRenderer_DrawHeadHair
         {
