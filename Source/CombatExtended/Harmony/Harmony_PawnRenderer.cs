@@ -166,7 +166,6 @@ namespace CombatExtended.HarmonyCE
                             Material apparelMat = apparelRecord.graphic.MatAt(bodyFacing);
                             apparelMat = (flags.FlagSet(PawnRenderFlags.Cache) ? apparelMat :
                                (Material)mOverrideMaterialIfNeeded.Invoke(renderer, new object[] { apparelMat, pawn, flags.FlagSet(PawnRenderFlags.Portrait) }));
-                            apparelMat = renderer.graphics.flasher.GetDamagedMat(apparelMat);
 
                             headwearPos.y += interval;
                             GenDraw.DrawMeshNowOrLater(mesh, headwearPos, quaternion, apparelMat, flags.FlagSet(PawnRenderFlags.DrawNow));
@@ -176,7 +175,6 @@ namespace CombatExtended.HarmonyCE
                             Material maskMat = apparelRecord.graphic.MatAt(bodyFacing);
                             maskMat = (flags.FlagSet(PawnRenderFlags.Cache) ? maskMat :
                                 (Material)mOverrideMaterialIfNeeded.Invoke(renderer, new object[] { maskMat, pawn, flags.FlagSet(PawnRenderFlags.Portrait) }));
-                            maskMat = renderer.graphics.flasher.GetDamagedMat(maskMat);
 
                             Vector3 maskLoc = rootLoc + headOffset;
                             maskLoc.y += !(bodyFacing == north) ? YOffsetPostHead : YOffsetBehind;
