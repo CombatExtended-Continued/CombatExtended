@@ -175,9 +175,12 @@ namespace CombatExtended.HarmonyCE
             private static void DrawHeadApparel(PawnRenderer renderer, Pawn pawn, Vector3 rootLoc, Vector3 headLoc, Vector3 headOffset, Rot4 bodyFacing, Quaternion quaternion, PawnRenderFlags flags, ref bool hideHair)
             {
                 List<ApparelGraphicRecord> apparelGraphics = renderer.graphics.apparelGraphics;
+                Mesh mesh = null;
+
+                // This will limit us to only 32 layers of headgear
+                float interval = YOffsetIntervalClothes / 32;
 
                 Vector3 headwearPos = headLoc;
-                float interval = YOffsetIntervalClothes / 32; // This will limit us to only 32 layers of headgear
 
                 for (int i = 0; i < apparelGraphics.Count; i++)
                 {
@@ -186,8 +189,7 @@ namespace CombatExtended.HarmonyCE
                     if (apparelRecord.sourceApparel.def.apparel.LastLayer.GetModExtension<ApparelLayerExtension>()?.IsHeadwear ?? false)
                     {
                         Material apparelMat = GetMaterial(renderer, pawn, apparelRecord, bodyFacing, flags);
-                        Mesh mesh = renderer.graphics.HairMeshSet.MeshAt(bodyFacing);
-
+                        mesh = mesh ?? renderer.graphics.HairMeshSet.MeshAt(bodyFacing);
                         if (apparelRecord.sourceApparel.def.apparel.hatRenderedFrontOfFace)
                         {
                             Vector3 maskLoc = rootLoc + headOffset;
@@ -209,6 +211,7 @@ namespace CombatExtended.HarmonyCE
             {
                 Material mat = record.graphic.MatAt(bodyFacing);
                 if (flags.FlagSet(PawnRenderFlags.Cache)) return mat;
+
                 return (Material)mOverrideMaterialIfNeeded.Invoke(renderer, new object[] { mat, pawn, flags.FlagSet(PawnRenderFlags.Portrait) });
             }
 
