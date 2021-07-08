@@ -24,7 +24,7 @@ namespace CombatExtended
                 ProcessApparelLayer(layer);
 
             // Process all apparel defs
-            foreach (ThingDef def in DefDatabase<ThingDef>.AllDefs.Where(t => t.IsApparel && t.apparel != null))
+            foreach (ThingDef def in DefDatabase<ThingDef>.AllDefs.Where(t => t.IsApparel))
                 ProcessApparel(def);
         }
 
@@ -36,7 +36,7 @@ namespace CombatExtended
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static bool IsVisibleLayer(this ThingDef def)
         {
-            if (def.apparel == null) throw new ArgumentException("Argument need to be apparel!");
+            if (!def.IsApparel) throw new ArgumentException("Argument need to be apparel!");
             return isVisibleLayerArray[def.index];
         }
 

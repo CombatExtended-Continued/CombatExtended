@@ -50,6 +50,9 @@ namespace CombatExtended.HarmonyCE
          * 
          * Should render just after vanilla tattoos. Used to render headgrear with the CE apparel extension
          * 
+         * - Patch Harmony_PawnRenderer_ShellFullyCoversHead
+         * 
+         * Should Allow headgear to render since most CE gear has full head coverage.
          */
         [HarmonyPatch(typeof(PawnRenderer), "DrawBodyApparel")]
         private static class Harmony_PawnRenderer_DrawBodyApparel
@@ -106,15 +109,66 @@ namespace CombatExtended.HarmonyCE
             }
         }
 
+        /*
+         * This patch is needed since PawnRender.DrawHeadHair check if any headgear has full headcoverage if any do it skip DrawHeadHair rendering.
+         * 
+         */
+        [HarmonyPatch(typeof(PawnRenderer), "ShellFullyCoversHead")]
+        private static class Harmony_PawnRenderer_ShellFullyCoversHead
+        {
+            private static FieldInfo fShellCoversHead = AccessTools.Field(typeof(ApparelProperties), nameof(ApparelProperties.shellCoversHead));
+
+            /*
+             * For VFE vikings compatiblity 
+             * Required for better compatiblity 
+             */
+            [HarmonyPriority(Priority.Last)]
+            internal static IEnumerable<CodeInstruction> Transpiler(IEnumerable<CodeInstruction> instructions)
+            {
+                var codes = instructions.ToList();
+                var finished = false;
+
+                for (int i = 0; i < codes.Count; i++)
+                {
+                    CodeInstruction code = codes[i];
+                    if (!finished)
+                    {
+                        /*
+                         * Replace apparelGraphics[i].sourceApparel.def.apparel.shellCoversHead with  ShellCoversHead(apparelGraphics[i].sourceApparel.def)
+                         */
+                        if (codes[i + 1].OperandIs(fShellCoversHead))
+                        {
+                            finished = true;
+                            yield return new CodeInstruction(OpCodes.Call, AccessTools.Method(typeof(Harmony_PawnRenderer_ShellFullyCoversHead), nameof(ShellCoversHead))).MoveLabelsFrom(code).MoveBlocksFrom(code);
+                            i++;
+                            continue;
+                        }
+                    }
+                    yield return code;
+                }
+            }
+
+            //private static bool Prefix(ref bool __result)
+            //{
+            //    __result = false;
+            //    return false;
+            //}
+
+            [MethodImpl(MethodImplOptions.AggressiveInlining)]
+            private static bool ShellCoversHead(ThingDef def)
+            {
+                /*
+                 * We need to check if this is a CE headgear.
+                 */
+                return false;
+                //return def.apparel.shellCoversHead && !(def.apparel.LastLayer.GetModExtension<ApparelLayerExtension>()?.IsHeadwear ?? false);
+            }
+        }
+
         [HarmonyPatch(typeof(PawnRenderer), "DrawHeadHair")]
         private static class Harmony_PawnRenderer_DrawHeadHair
         {
             private static Rot4 north = Rot4.North;
-            // this otherwise creates a new instance per invocation
-            private static int[] headwearGraphics = new int[1];
-            // Working under the assumption that
-            //  A. The rendering function will always be single threaded (if not this needs to be an array of threadID length)
-            //  B. A single pawn will never have more than 128 headlayers at once (this number could be decreased... but what would it change?)
 
             private static MethodBase mOverrideMaterialIfNeeded = AccessTools.Method(typeof(PawnRenderer), "OverrideMaterialIfNeeded");
 
@@ -122,43 +176,40 @@ namespace CombatExtended.HarmonyCE
             {
                 List<ApparelGraphicRecord> apparelGraphics = renderer.graphics.apparelGraphics;
 
-                // Using a manual loop without a List or an Array prevents allocation or MoveNext() functions being called,
-                // especially since this array should normally be quite small.
-                int headwearSize = 0;
+                Vector3 headwearPos = headLoc;
+                //
+                // This will limit us to only 32 layers of headgear
+                float interval = YOffsetIntervalClothes / 32;
 
                 for (int i = 0; i < apparelGraphics.Count; i++)
                 {
-                    if (apparelGraphics[i].sourceApparel.def.apparel.LastLayer.GetModExtension<ApparelLayerExtension>()?.IsHeadwear ?? false)
-                        headwearGraphics[headwearSize++] = i; // Store index to apparelrecord instead of the actual apparel                    
-                }
+                    ApparelGraphicRecord apparelRecord = apparelGraphics[i];
 
-                if (headwearSize != 0)
-                {
-                    float interval = YOffsetIntervalClothes / headwearSize;
-                    Vector3 headwearPos = headLoc;
-
-                    for (int i = 0; i < headwearSize; i++)
+                    if (apparelRecord.sourceApparel.def.apparel.LastLayer.GetModExtension<ApparelLayerExtension>()?.IsHeadwear ?? false)
                     {
-                        ApparelGraphicRecord apparelRecord = apparelGraphics[headwearGraphics[i]];
-
-                        if (!apparelRecord.sourceApparel.def.apparel.hatRenderedFrontOfFace)
-                        {
-                            hideHair = true;
-
-                            Material apparelMat = apparelRecord.graphic.MatAt(bodyFacing);
-                            apparelMat = (flags.FlagSet(PawnRenderFlags.Cache) ? apparelMat : (Material)mOverrideMaterialIfNeeded.Invoke(renderer, new object[] { apparelMat, pawn, false }));
-
-                            headwearPos.y += interval;
-                            GenDraw.DrawMeshNowOrLater(mesh, headwearPos, quaternion, apparelMat, flags.FlagSet(PawnRenderFlags.DrawNow));
-                        }
-                        else
+                        if (apparelRecord.sourceApparel.def.apparel.hatRenderedFrontOfFace)
                         {
                             Material maskMat = apparelRecord.graphic.MatAt(bodyFacing);
-                            maskMat = (flags.FlagSet(PawnRenderFlags.Cache) ? maskMat : (Material)mOverrideMaterialIfNeeded.Invoke(renderer, new object[] { maskMat, pawn, false }));
+                            maskMat = (flags.FlagSet(PawnRenderFlags.Cache) ? maskMat : (Material)mOverrideMaterialIfNeeded.Invoke(renderer, new object[] { maskMat, pawn, flags.FlagSet(PawnRenderFlags.Portrait) }));
 
                             Vector3 maskLoc = rootLoc + headOffset;
                             maskLoc.y += !(bodyFacing == north) ? YOffsetPostHead : YOffsetBehind;
                             GenDraw.DrawMeshNowOrLater(mesh, maskLoc, quaternion, maskMat, flags.FlagSet(PawnRenderFlags.DrawNow));
+
+                            Log.Message($"drawen_1: {pawn}\t{apparelRecord.sourceApparel.def.defName}");
+                        }
+                        else
+                        {
+                            hideHair = true;
+
+                            Material apparelMat = apparelRecord.graphic.MatAt(bodyFacing);
+                            apparelMat = (flags.FlagSet(PawnRenderFlags.Cache) ? apparelMat : (Material)mOverrideMaterialIfNeeded.Invoke(renderer, new object[] { apparelMat, pawn, flags.FlagSet(PawnRenderFlags.Portrait) }));
+
+                            headwearPos.y += interval;
+
+                            GenDraw.DrawMeshNowOrLater(mesh, headwearPos, quaternion, apparelMat, flags.FlagSet(PawnRenderFlags.DrawNow));
+
+                            Log.Message($"drawen_2: {pawn}\t{apparelRecord.sourceApparel.def.defName}");
                         }
                     }
                 }
