@@ -71,7 +71,7 @@ namespace CombatExtended.HarmonyCE
                      */
                     if (code.opcode == OpCodes.Ldsfld && code.OperandIs(fShell))
                     {
-                        yield return new CodeInstruction(OpCodes.Call, AccessTools.Method(typeof(Harmony_PawnRenderer_DrawBodyApparel), nameof(Harmony_PawnRenderer_DrawBodyApparel.IsVisibleLayer)));
+                        yield return new CodeInstruction(OpCodes.Call, AccessTools.Method(typeof(DefUtility), nameof(DefUtility.IsVisibleLayer), parameters: new[] { typeof(ApparelLayerDef) }));
                         i++;
                         yield return new CodeInstruction(OpCodes.Brfalse_S, codes[i].operand);
                         continue;
@@ -103,24 +103,6 @@ namespace CombatExtended.HarmonyCE
                 List<ApparelGraphicRecord> apparelGraphics = renderer.graphics.apparelGraphics
                     .Where(a => a.sourceApparel.def.apparel.LastLayer.drawOrder >= ApparelLayerDefOf.Shell.drawOrder).ToList();
                 return apparelGraphics.Count == 0 ? 0 : YOffsetIntervalClothes / apparelGraphics.Count;
-            }
-
-            /*
-             * This allows us to allow the new layers to render (backpacks, etc)
-             */
-            [MethodImpl(MethodImplOptions.AggressiveInlining)]
-            private static bool IsVisibleLayer(ApparelLayerDef layer)
-            {
-                /* 
-                 * Belt is not actually a pre-shell layer, but we want to treat it as such in this patch,
-                 * to avoid rendering bugs with utility items (e.g: broadshield pack)                        
-                 */
-                return true
-                    && layer.drawOrder >= ApparelLayerDefOf.Shell.drawOrder
-                    && layer != ApparelLayerDefOf.Belt
-                    && !(layer.GetModExtension<ApparelLayerExtension>()?.IsHeadwear ?? false);
-                // Log.Message(record.sourceApparel.Label + $" Layer: {layer.defName} IsVisibleLayer: {result}  shellRenderedBehindHead: {!record.sourceApparel.def.apparel.shellRenderedBehindHead}");
-                // return result;
             }
         }
 
@@ -164,8 +146,7 @@ namespace CombatExtended.HarmonyCE
                             hideHair = true;
 
                             Material apparelMat = apparelRecord.graphic.MatAt(bodyFacing);
-                            apparelMat = (flags.FlagSet(PawnRenderFlags.Cache) ? apparelMat :
-                               (Material)mOverrideMaterialIfNeeded.Invoke(renderer, new object[] { apparelMat, pawn, flags.FlagSet(PawnRenderFlags.Portrait) }));
+                            apparelMat = (flags.FlagSet(PawnRenderFlags.Cache) ? apparelMat : (Material)mOverrideMaterialIfNeeded.Invoke(renderer, new object[] { apparelMat, pawn, false }));
 
                             headwearPos.y += interval;
                             GenDraw.DrawMeshNowOrLater(mesh, headwearPos, quaternion, apparelMat, flags.FlagSet(PawnRenderFlags.DrawNow));
@@ -173,8 +154,7 @@ namespace CombatExtended.HarmonyCE
                         else
                         {
                             Material maskMat = apparelRecord.graphic.MatAt(bodyFacing);
-                            maskMat = (flags.FlagSet(PawnRenderFlags.Cache) ? maskMat :
-                                (Material)mOverrideMaterialIfNeeded.Invoke(renderer, new object[] { maskMat, pawn, flags.FlagSet(PawnRenderFlags.Portrait) }));
+                            maskMat = (flags.FlagSet(PawnRenderFlags.Cache) ? maskMat : (Material)mOverrideMaterialIfNeeded.Invoke(renderer, new object[] { maskMat, pawn, false }));
 
                             Vector3 maskLoc = rootLoc + headOffset;
                             maskLoc.y += !(bodyFacing == north) ? YOffsetPostHead : YOffsetBehind;
