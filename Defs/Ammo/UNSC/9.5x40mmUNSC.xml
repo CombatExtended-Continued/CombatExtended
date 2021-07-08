@@ -84,21 +84,6 @@
 		<generateAllowChance>0.1</generateAllowChance>
 		<cookOffProjectile>Bullet_95X40mmUNSC_HP</cookOffProjectile>
 	</ThingDef>
-
-	<ThingDef Class="CombatExtended.AmmoDef" ParentName="95X40mmUNSCBase">
-		<defName>Ammo_95X40mmUNSC_Shredder</defName>
-		<label>9.5X40mm UNSC cartridge (Shredder)</label>
-		<graphicData>
-			<texPath>Things/Ammo/Rifle/HP</texPath>
-			<graphicClass>Graphic_StackCount</graphicClass>
-		</graphicData>
-		<statBases>
-			<MarketValue>0.13</MarketValue>
-		</statBases>
-		<ammoClass>Shredder</ammoClass>
-		<generateAllowChance>0.1</generateAllowChance>
-		<cookOffProjectile>Bullet_95X40mmUNSC_Shredder</cookOffProjectile>
-	</ThingDef>
 	
   <ThingDef Class="CombatExtended.AmmoDef" ParentName="95X40mmUNSCBase">
     <defName>Ammo_95X40mmUNSC_Incendiary</defName>
@@ -116,7 +101,7 @@
   </ThingDef>
 
   <ThingDef Class="CombatExtended.AmmoDef" ParentName="95X40mmUNSCBase">
-    <defName>Ammo_95X40mmUNSC_HEDP</defName>
+    <defName>Ammo_95X40mmUNSC_HE</defName>
     <label>9.5X40mm UNSC cartridge (HEDP)</label>
     <graphicData>
       <texPath>Things/Ammo/Rifle/HE</texPath>
@@ -127,7 +112,7 @@
     </statBases>
     <ammoClass>ExplosiveAP</ammoClass>
 	<generateAllowChance>0.2</generateAllowChance>
-    <cookOffProjectile>Bullet_95X40mmUNSC_HEDP</cookOffProjectile>
+    <cookOffProjectile>Bullet_95X40mmUNSC_HE</cookOffProjectile>
   </ThingDef>
  
   <ThingDef Class="CombatExtended.AmmoDef" ParentName="95X40mmUNSCBase">
@@ -189,17 +174,6 @@
 		</projectile>
 	</ThingDef>
 
-	<ThingDef Class="CombatExtended.AmmoDef" ParentName="Base95X40mmUNSCBullet">
-		<defName>Bullet_95X40mmUNSC_Shredder</defName>
-		<label>9.5mm UNSC bullet (Shredder)</label>
-		<projectile Class="CombatExtended.ProjectilePropertiesCE">
-			<damageAmountBase>22</damageAmountBase>
-			<damageDef>Splinter</damageDef>
-			<armorPenetrationSharp>6.5</armorPenetrationSharp>
-			<armorPenetrationBlunt>80.72</armorPenetrationBlunt>
-		</projectile>
-	</ThingDef>
-
 	  <ThingDef Class="CombatExtended.AmmoDef" ParentName="Base95X40mmUNSCBullet">
 		<defName>Bullet_95X40mmUNSC_Incendiary</defName>
 		<label>9.5mm UNSC bullet (AP-I)</label>
@@ -217,7 +191,7 @@
 	  </ThingDef>
 	  
 	  <ThingDef Class="CombatExtended.AmmoDef" ParentName="Base95X40mmUNSCBullet">
-		<defName>Bullet_95X40mmUNSC_HEDP</defName>
+		<defName>Bullet_95X40mmUNSC_HE</defName>
 		<label>9.5mm UNSC bullet (HEDP)</label>
 		<projectile Class="CombatExtended.ProjectilePropertiesCE">
 		  <damageAmountBase>24</damageAmountBase>
@@ -359,7 +333,7 @@
   </RecipeDef>
   
   <RecipeDef ParentName="AdvancedAmmoRecipeBase">
-    <defName>MakeAmmo_95X40mmUNSC_HEDP</defName>
+    <defName>MakeAmmo_95X40mmUNSC_HE</defName>
     <label>make 9.5X40mm UNSC (HEDP) cartridge x500</label>
     <description>Craft 500 9.5X40mm UNSC (HEDP) cartridges.</description>
     <jobString>Making 9.5X40mm UNSC (HEDP) cartridges.</jobString>
@@ -388,7 +362,7 @@
       </thingDefs>
     </fixedIngredientFilter>
     <products>
-      <Ammo_95X40mmUNSC_HEDP>500</Ammo_95X40mmUNSC_HEDP>
+      <Ammo_95X40mmUNSC_HE>500</Ammo_95X40mmUNSC_HE>
     </products>
     <workAmount>6900</workAmount>
   </RecipeDef>
