@@ -128,6 +128,7 @@ Girls' Frontline Weapon Pack	|
 Glitter Tech	|
 GouRIMet	|
 Halo - Rimworld Auxiliary Combat Armory	|
+Halo UNSC Weapon Pack	|
 Hand 'n' Footwear	|
 Heavy Melee Weapons |
 High Caliber	|
