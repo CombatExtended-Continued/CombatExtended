@@ -172,14 +172,12 @@ namespace CombatExtended.HarmonyCE
 
             private static MethodBase mOverrideMaterialIfNeeded = AccessTools.Method(typeof(PawnRenderer), "OverrideMaterialIfNeeded");
 
-            private static void DrawHeadApparel(PawnRenderer renderer, Mesh mesh, Vector3 rootLoc, Vector3 headLoc, Vector3 headOffset, Rot4 bodyFacing, Quaternion quaternion, PawnRenderFlags flags, ref bool hideHair, Pawn pawn)
+            private static void DrawHeadApparel(PawnRenderer renderer, Pawn pawn, Vector3 rootLoc, Vector3 headLoc, Vector3 headOffset, Rot4 bodyFacing, Quaternion quaternion, PawnRenderFlags flags, ref bool hideHair)
             {
                 List<ApparelGraphicRecord> apparelGraphics = renderer.graphics.apparelGraphics;
 
                 Vector3 headwearPos = headLoc;
-                //
-                // This will limit us to only 32 layers of headgear
-                float interval = YOffsetIntervalClothes / 32;
+                float interval = YOffsetIntervalClothes / 32; // This will limit us to only 32 layers of headgear
 
                 for (int i = 0; i < apparelGraphics.Count; i++)
                 {
@@ -187,32 +185,31 @@ namespace CombatExtended.HarmonyCE
 
                     if (apparelRecord.sourceApparel.def.apparel.LastLayer.GetModExtension<ApparelLayerExtension>()?.IsHeadwear ?? false)
                     {
+                        Material apparelMat = GetMaterial(renderer, pawn, apparelRecord, bodyFacing, flags);
+                        Mesh mesh = renderer.graphics.HairMeshSet.MeshAt(bodyFacing);
+
                         if (apparelRecord.sourceApparel.def.apparel.hatRenderedFrontOfFace)
                         {
-                            Material maskMat = apparelRecord.graphic.MatAt(bodyFacing);
-                            maskMat = (flags.FlagSet(PawnRenderFlags.Cache) ? maskMat : (Material)mOverrideMaterialIfNeeded.Invoke(renderer, new object[] { maskMat, pawn, flags.FlagSet(PawnRenderFlags.Portrait) }));
-
                             Vector3 maskLoc = rootLoc + headOffset;
                             maskLoc.y += !(bodyFacing == north) ? YOffsetPostHead : YOffsetBehind;
-                            GenDraw.DrawMeshNowOrLater(mesh, maskLoc, quaternion, maskMat, flags.FlagSet(PawnRenderFlags.DrawNow));
-
-                            Log.Message($"drawen_1: {pawn}\t{apparelRecord.sourceApparel.def.defName}");
+                            GenDraw.DrawMeshNowOrLater(mesh, maskLoc, quaternion, apparelMat, flags.FlagSet(PawnRenderFlags.DrawNow));
                         }
                         else
                         {
                             hideHair = true;
-
-                            Material apparelMat = apparelRecord.graphic.MatAt(bodyFacing);
-                            apparelMat = (flags.FlagSet(PawnRenderFlags.Cache) ? apparelMat : (Material)mOverrideMaterialIfNeeded.Invoke(renderer, new object[] { apparelMat, pawn, flags.FlagSet(PawnRenderFlags.Portrait) }));
-
                             headwearPos.y += interval;
-
                             GenDraw.DrawMeshNowOrLater(mesh, headwearPos, quaternion, apparelMat, flags.FlagSet(PawnRenderFlags.DrawNow));
-
-                            Log.Message($"drawen_2: {pawn}\t{apparelRecord.sourceApparel.def.defName}");
                         }
                     }
                 }
+            }
+
+            [MethodImpl(MethodImplOptions.AggressiveInlining)]
+            private static Material GetMaterial(PawnRenderer renderer, Pawn pawn, ApparelGraphicRecord record, Rot4 bodyFacing, PawnRenderFlags flags)
+            {
+                Material mat = record.graphic.MatAt(bodyFacing);
+                if (flags.FlagSet(PawnRenderFlags.Cache)) return mat;
+                return (Material)mOverrideMaterialIfNeeded.Invoke(renderer, new object[] { mat, pawn, flags.FlagSet(PawnRenderFlags.Portrait) });
             }
 
             /*
@@ -236,16 +233,15 @@ namespace CombatExtended.HarmonyCE
                     {
                         // Insert new calls for headgear renderer
                         yield return new CodeInstruction(OpCodes.Ldarg_0) { labels = code.labels };  // PawnRenderer renderer
-                        yield return new CodeInstruction(OpCodes.Ldloc_S, 14);                       // Mesh mesh
+                        yield return new CodeInstruction(OpCodes.Ldarg_0);
+                        yield return new CodeInstruction(OpCodes.Ldfld, AccessTools.Field(typeof(PawnRenderer), "pawn")); // render.pawn 
                         yield return new CodeInstruction(OpCodes.Ldarg_1);                           // Vector3 rootLoc
                         yield return new CodeInstruction(OpCodes.Ldloc_0);                           // Vector3 headLoc
                         yield return new CodeInstruction(OpCodes.Ldarg_2);                           // Vector3 headOffset
                         yield return new CodeInstruction(OpCodes.Ldarg, 4);                          // Rot4 bodyFacing
                         yield return new CodeInstruction(OpCodes.Ldloc_2);                           // Quaternion quaternion
                         yield return new CodeInstruction(OpCodes.Ldarg, 7);                          // PawnRenderFlags flags
-                        yield return new CodeInstruction(OpCodes.Ldloca_S, 3);                       // ref bool hideHair
-                        yield return new CodeInstruction(OpCodes.Ldarg_0);
-                        yield return new CodeInstruction(OpCodes.Ldfld, AccessTools.Field(typeof(PawnRenderer), "pawn")); // render.pawn 
+                        yield return new CodeInstruction(OpCodes.Ldloca_S, 3);                       // ref bool hideHair                        
                         yield return new CodeInstruction(OpCodes.Call, AccessTools.Method(typeof(Harmony_PawnRenderer_DrawHeadHair), nameof(DrawHeadApparel)));
                         code.labels = new List<Label>();
                     }
