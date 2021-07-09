@@ -120,6 +120,7 @@ namespace CombatExtended.HarmonyCE
             {
                 List<ApparelGraphicRecord> apparelGraphics = renderer.graphics.apparelGraphics;
                 Mesh mesh = null;
+                Material apparelMat;
 
                 // This will limit us to only 32 layers of headgear
                 float interval = YOffsetIntervalClothes / 32;
@@ -132,8 +133,9 @@ namespace CombatExtended.HarmonyCE
 
                     if (apparelRecord.sourceApparel.def.apparel.LastLayer.GetModExtension<ApparelLayerExtension>()?.IsHeadwear ?? false)
                     {
-                        Material apparelMat = GetMaterial(renderer, pawn, apparelRecord, bodyFacing, flags);
                         mesh = mesh ?? renderer.graphics.HairMeshSet.MeshAt(bodyFacing);
+                        apparelMat = GetMaterial(renderer, pawn, apparelRecord, bodyFacing, flags);
+
                         if (apparelRecord.sourceApparel.def.apparel.hatRenderedFrontOfFace)
                         {
                             Vector3 maskLoc = rootLoc + headOffset;
@@ -142,7 +144,7 @@ namespace CombatExtended.HarmonyCE
                         }
                         else
                         {
-                            hideHair = true;
+                            hideHair = apparelRecord.sourceApparel?.def?.GetModExtension<ApperalRenderingExtension>()?.HideHair ?? true;
                             headwearPos.y += interval;
                             GenDraw.DrawMeshNowOrLater(mesh, headwearPos, quaternion, apparelMat, flags.FlagSet(PawnRenderFlags.DrawNow));
                         }
