@@ -231,6 +231,7 @@ SCP |
 SCP - Clothing Only	|
 Sergals, Gnolls, Lions and Frogs	|
 Silkiera Race	|
+Simple Ogre Race  |
 Simply More Melee	|
 Soviet Armory	|
 Space Worms (Continued) |
