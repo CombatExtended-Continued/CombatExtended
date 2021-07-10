@@ -122,6 +122,7 @@ Genetic Rim |
 Genetic Rim Alpha Animal Patch |
 GeneticRim Cosmic Horrors Patch |
 GeneticRim Dinosauria Patch |
+GeneticRim Megafauna Patch |
 Girls' Frontline Apparel Pack	|
 Girls' Frontline Styles - 404 Team	|
 Girls' Frontline Weapon Pack	|
