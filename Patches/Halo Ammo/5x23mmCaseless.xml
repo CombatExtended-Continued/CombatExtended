@@ -1,5 +1,15 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>
-<Defs>
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+
+  <Operation Class="PatchOperationFindMod">
+    <mods>
+      <li>Halo UNSC Weapon Pack</li>
+    </mods>
+
+    <match Class="PatchOperationAdd">
+      <xpath>Defs</xpath>
+      <value>
+
 
 	<ThingCategoryDef>
 		<defName>Ammo5x23mmCaseless</defName>
@@ -23,7 +33,7 @@
 	<!-- ==================== Ammo ========================== -->
 
 	<ThingDef Class="CombatExtended.AmmoDef" Name="5x23mmCaselessBase" ParentName="SmallAmmoBase" Abstract="True">
-		<description>Caseless bullet with a solid propellant enveloping the projectile. It is used by UNSC Smgs.</description>
+		<description>Caseless bullet with a solid propellant enveloping the projectile. It is used by UNSC SMGs.</description>
 		<statBases>
 		<Mass>0.008</Mass>
 		<Bulk>0.009</Bulk>
@@ -244,5 +254,10 @@
 		</products>
     <workAmount>1500</workAmount>
 	</RecipeDef>
-	
-</Defs>
+
+      
+      </value>
+    </match>
+  </Operation>
+
+</Patch>

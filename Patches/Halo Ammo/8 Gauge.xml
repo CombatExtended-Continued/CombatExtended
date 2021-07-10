@@ -1,5 +1,15 @@
 <?xml version="1.0" encoding="utf-8" ?>
-<Defs>
+<Patch>
+
+  <Operation Class="PatchOperationFindMod">
+    <mods>
+      <li>Halo UNSC Weapon Pack</li>
+    </mods>
+
+    <match Class="PatchOperationAdd">
+      <xpath>Defs</xpath>
+      <value>
+
 
   <ThingCategoryDef>
     <defName>Ammo8Gauge</defName>
@@ -24,7 +34,7 @@
   <!-- ==================== Ammo ========================== -->
 
   <ThingDef Class="CombatExtended.AmmoDef" Name="8GaugeBase" ParentName="SmallAmmoBase" Abstract="True">
-    <description>A rare, oversized shotgun caliber used primarily in military application.</description>
+    <description>An uncommon, oversized shotgun shell used primarily in military application.</description>
     <statBases>
       <Mass>0.04</Mass>
       <Bulk>0.08</Bulk>
@@ -287,4 +297,9 @@
     <workAmount>9000</workAmount>
   </RecipeDef>
 
-</Defs>
+      
+      </value>
+    </match>
+  </Operation>
+
+</Patch>
