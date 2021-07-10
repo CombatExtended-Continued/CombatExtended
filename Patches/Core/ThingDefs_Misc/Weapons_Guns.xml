@@ -33,7 +33,19 @@
   </Operation>
 
   <Operation Class="PatchOperationReplace">
-    <xpath>Defs/ThingDef[defName="Gun_PumpShotgun" or defName="Gun_ChainShotgun" or defName="Gun_BoltActionRifle" or defName="Gun_AssaultRifle" or defName="Gun_SniperRifle" or defName="Gun_HeavySMG" or defName="Gun_IncendiaryLauncher" or defName="Gun_LMG" or defName="Gun_ChargeRifle"]/tools</xpath>
+    <xpath>
+      Defs/ThingDef[
+        defName="Gun_PumpShotgun" or 
+        defName="Gun_ChainShotgun" or 
+        defName="Gun_BoltActionRifle" or 
+        defName="Gun_AssaultRifle" or 
+        defName="Gun_SniperRifle" or 
+        defName="Gun_HeavySMG" or 
+        defName="Gun_IncendiaryLauncher" or 
+        defName="Gun_LMG" or 
+        defName="Gun_ChargeRifle"
+      ]/tools
+    </xpath>
     <value>
       <tools>
         <li Class="CombatExtended.ToolCE">
@@ -1219,7 +1231,7 @@
     </weaponTags>
   </Operation>
 
-    <Operation Class="PatchOperationReplace">
+  <Operation Class="PatchOperationReplace">
     <xpath>Defs/ThingDef[@Name="Gun_InfernoCannonBase"]/tools</xpath>
     <value>
       <tools>
@@ -1311,14 +1323,7 @@
     </value>
   </Operation>
 
-  <!-- ========== Remove Needle Gun ========== -->
-
-  <Operation Class="PatchOperationRemove">
-    <xpath>Defs/ThingDef[defName="Gun_Needle"]</xpath>
-  </Operation>
-
   <!-- Disable for player -->
-
   <Operation Class="PatchOperationAttributeSet">
     <xpath>Defs/ThingDef[defName="Gun_ChargeLance"]</xpath>
     <attribute>ParentName</attribute>
@@ -1348,24 +1353,23 @@
       <menuHidden>True</menuHidden>
     </value>
   </Operation>
-  
-  <Operation Class="PatchOperationAdd">
-    <xpath>Defs/ThingDef[defName="Gun_InfernoCannon"]</xpath>
-    <value>
-      <destroyOnDrop>True</destroyOnDrop>
-    </value>
-  </Operation>
 
   <Operation Class="PatchOperationRemove">
     <xpath>/Defs/ThingDef[defName="Gun_ChargeLance"]/weaponTags/li[contains(.,"SpacerGun")]</xpath>
   </Operation>
 
+  <!-- ========== Remove Needle Gun ========== -->
+
+  <Operation Class="PatchOperationRemove">
+    <xpath>Defs/ThingDef[defName="Gun_Needle"]</xpath>
+  </Operation>
+
   <!-- Increase Orbital Bombardment Range -->
   <Operation Class="PatchOperationReplace">
     <xpath>/Defs/ThingDef[defName="OrbitalTargeterBombardment" or defName="OrbitalTargeterPowerBeam"]/verbs/li/range</xpath>
-      <value>
-        <range>60</range>
-      </value>
+    <value>
+      <range>60</range>
+    </value>
   </Operation>
 
   <!-- Remove Smoke and EMP Launchers -->
@@ -1378,4 +1382,3 @@
   </Operation>
 
 </Patch>
-
