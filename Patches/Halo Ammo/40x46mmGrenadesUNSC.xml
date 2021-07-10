@@ -59,49 +59,38 @@
 
   <!-- ================== Projectiles ================== -->
 
-  <ThingDef Name="Base40mmGrenadeBullet" ParentName="BaseBullet" Abstract="true">
-    <thingClass>CombatExtended.ProjectileCE_Explosive</thingClass>
-    <graphicData>
-      <texPath>Things/Projectile/Bullet_Big</texPath>
-      <graphicClass>Graphic_Single</graphicClass>
-    </graphicData>
-    <projectile Class="CombatExtended.ProjectilePropertiesCE">
-      <speed>21</speed>
-    </projectile>
-  </ThingDef>
-
-  <ThingDef ParentName="Base40mmGrenadeBullet">
+  <ThingDef ParentName="Base40x46mmGrenadeBullet">
     <defName>Bullet_40mmGrenade_UNSCHEDP</defName>
     <label>40x46mm grenade (HEDP)</label>
 		<projectile Class="CombatExtended.ProjectilePropertiesCE">
-			<speed>23</speed>
 			<damageDef>Bullet</damageDef>
 			<damageAmountBase>48</damageAmountBase>
 			<armorPenetrationSharp>50</armorPenetrationSharp>
 			<armorPenetrationBlunt>31.584</armorPenetrationBlunt>
+      <speed>21</speed>
 		 	 <secondaryDamage>
 				<li>
 			  	<def>EMP</def>
 			  	<amount>12</amount>
 				</li>
 		 	 </secondaryDamage>
-		</projectile>
-    		<comps>
+		  </projectile>
+    	<comps>
 		  <li Class="CombatExtended.CompProperties_ExplosiveCE">
-			<damageAmountBase>40</damageAmountBase>
-			<explosiveDamageType>Bomb</explosiveDamageType>
-			<explosiveRadius>1.5</explosiveRadius>
-			<applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
+        <damageAmountBase>40</damageAmountBase>
+        <explosiveDamageType>Bomb</explosiveDamageType>
+        <explosiveRadius>1.5</explosiveRadius>
+        <applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
 		  </li>
-      		<li Class="CombatExtended.CompProperties_Fragments">
-        		<fragments>
-          			<Fragment_Small>14</Fragment_Small>
-        		</fragments>
-      		</li>
-   		 </comps>
+      <li Class="CombatExtended.CompProperties_Fragments">
+        <fragments>
+            <Fragment_Small>14</Fragment_Small>
+        </fragments>
+      </li>
+   		</comps>
   </ThingDef>
 
-  <ThingDef ParentName="Base40mmGrenadeBullet">
+  <ThingDef ParentName="Base40x46mmGrenadeBullet">
     <defName>Bullet_40x46mmGrenade_UNSCHE</defName>
     <label>40x46mm grenade (HE)</label>
     <projectile Class="CombatExtended.ProjectilePropertiesCE">
@@ -109,6 +98,7 @@
       <damageDef>Bomb</damageDef>
       <damageAmountBase>25</damageAmountBase>
       <applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
+      <speed>21</speed>
     </projectile>
     <comps>
       <li Class="CombatExtended.CompProperties_Fragments">
@@ -119,17 +109,18 @@
     </comps>
   </ThingDef>
 
-  <ThingDef ParentName="Base40mmGrenadeBullet">
+  <ThingDef ParentName="Base40x46mmGrenadeBullet">
     <defName>Bullet_40x46mmGrenade_UNSCEMP</defName>
     <label>40x46mm grenade (EMP)</label>
     <projectile Class="CombatExtended.ProjectilePropertiesCE">
       <explosionRadius>1.5</explosionRadius>
       <damageDef>EMP</damageDef>
       <damageAmountBase>25</damageAmountBase>
+      <speed>21</speed>
     </projectile>
   </ThingDef>
 
-  <ThingDef ParentName="Base40mmGrenadeBullet">
+  <ThingDef ParentName="Base40x46mmGrenadeBullet">
     <defName>Bullet_40x46mmGrenade_UNSCSmoke</defName>
     <label>40x46mm grenade (Smoke)</label>
     <projectile Class="CombatExtended.ProjectilePropertiesCE">
@@ -137,6 +128,7 @@
       <damageDef>Smoke</damageDef>
       <postExplosionSpawnThingDef>Gas_Smoke</postExplosionSpawnThingDef>
       <preExplosionSpawnChance>1</preExplosionSpawnChance>
+      <speed>21</speed>
     </projectile>
   </ThingDef>
 

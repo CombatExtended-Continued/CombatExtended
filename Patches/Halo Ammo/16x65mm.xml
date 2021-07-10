@@ -61,22 +61,17 @@
 	</ThingDef>
 	
 	<!-- ================== Projectile ================== -->
-
-    <ThingDef Class="CombatExtended.AmmoDef" Name="Base16x65mmBullet" ParentName="BaseBullet" Abstract="true">
+    
+    <ThingDef Class="CombatExtended.AmmoDef" ParentName="BaseBullet">
+      <defName>Bullet_16x65mm_HE</defName>
+      <label>16x65mm bullet (HE)</label>
       <graphicData>
         <texPath>Things/Projectile/Bullet_Big</texPath>
         <graphicClass>Graphic_Single</graphicClass>
-      </graphicData>
+      </graphicData>      
       <projectile Class="CombatExtended.ProjectilePropertiesCE">
         <damageDef>Bullet</damageDef>
-        <speed>400</speed>
-      </projectile>
-    </ThingDef>
-    
-    <ThingDef Class="CombatExtended.AmmoDef" ParentName="Base16x65mmBullet">
-      <defName>Bullet_16x65mm_HE</defName>
-      <label>16x65mm bullet (HE)</label>
-      <projectile Class="CombatExtended.ProjectilePropertiesCE">
+        <speed>400</speed>      
       <damageAmountBase>70</damageAmountBase>
       <armorPenetrationSharp>100</armorPenetrationSharp>
       <armorPenetrationBlunt>885.88</armorPenetrationBlunt>
@@ -87,14 +82,14 @@
         </li>
       </secondaryDamage>
       </projectile>
-		<comps>
-		  <li Class="CombatExtended.CompProperties_ExplosiveCE">
-			<damageAmountBase>30</damageAmountBase>
-			<explosiveDamageType>Bomb</explosiveDamageType>
-			<explosiveRadius>0.9</explosiveRadius>
-			<applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
-		  </li>
-		</comps>
+      <comps>
+        <li Class="CombatExtended.CompProperties_ExplosiveCE">
+          <damageAmountBase>30</damageAmountBase>
+          <explosiveDamageType>Bomb</explosiveDamageType>
+          <explosiveRadius>0.9</explosiveRadius>
+          <applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
+        </li>
+      </comps>
     </ThingDef>
 
 	<!-- ==================== Recipes ========================== -->

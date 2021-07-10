@@ -11,86 +11,86 @@
       <value>
 
 
-		<ThingCategoryDef>
-			<defName>Ammo95x40mm</defName>
-			<label>9.5x40mm</label>
-			<parent>AmmoRifles</parent>
-			<iconPath>UI/Icons/ThingCategories/CaliberRifle</iconPath>
-		</ThingCategoryDef>
+	<ThingCategoryDef>
+		<defName>Ammo95x40mm</defName>
+		<label>9.5x40mm</label>
+		<parent>AmmoRifles</parent>
+		<iconPath>UI/Icons/ThingCategories/CaliberRifle</iconPath>
+	</ThingCategoryDef>
 
-		<!-- ==================== AmmoSet ========================== -->
+	<!-- ==================== AmmoSet ========================== -->
 
-		<CombatExtended.AmmoSetDef>
-			<defName>AmmoSet_95x40mm</defName>
-			<label>9.5x40mm</label>
-			<ammoTypes>
-				<Ammo_95x40mm_FMJ>Bullet_95x40mm_FMJ</Ammo_95x40mm_FMJ>
-				<Ammo_95x40mm_AP>Bullet_95x40mm_AP</Ammo_95x40mm_AP>
-				<Ammo_95x40mm_HP>Bullet_95x40mm_HP</Ammo_95x40mm_HP>
-				<Ammo_95x40mm_Incendiary>Bullet_95x40mm_Incendiary</Ammo_95x40mm_Incendiary>
-				<Ammo_95x40mm_HE>Bullet_95x40mm_HE</Ammo_95x40mm_HE>
-				<Ammo_95x40mm_Sabot>Bullet_95x40mm_Sabot</Ammo_95x40mm_Sabot>				
-			</ammoTypes>
-		</CombatExtended.AmmoSetDef>
+	<CombatExtended.AmmoSetDef>
+		<defName>AmmoSet_95x40mm</defName>
+		<label>9.5x40mm</label>
+		<ammoTypes>
+			<Ammo_95x40mm_FMJ>Bullet_95x40mm_FMJ</Ammo_95x40mm_FMJ>
+			<Ammo_95x40mm_AP>Bullet_95x40mm_AP</Ammo_95x40mm_AP>
+			<Ammo_95x40mm_HP>Bullet_95x40mm_HP</Ammo_95x40mm_HP>
+			<Ammo_95x40mm_Incendiary>Bullet_95x40mm_Incendiary</Ammo_95x40mm_Incendiary>
+			<Ammo_95x40mm_HE>Bullet_95x40mm_HE</Ammo_95x40mm_HE>
+			<Ammo_95x40mm_Sabot>Bullet_95x40mm_Sabot</Ammo_95x40mm_Sabot>				
+		</ammoTypes>
+	</CombatExtended.AmmoSetDef>
 
-		<!-- ==================== Ammo ========================== -->
+	<!-- ==================== Ammo ========================== -->
 
-		<ThingDef Class="CombatExtended.AmmoDef" Name="95x40mmBase" ParentName="SmallAmmoBase" Abstract="True">
-			<description>A high-velocity rifle round, used in machine guns and battle rifles.</description>
-			<statBases>
-				<Mass>0.022</Mass>
-				<Bulk>0.03</Bulk>
-			</statBases>
-			<tradeTags>
-				<li>CE_AutoEnableTrade</li>
-				<li>CE_AutoEnableCrafting</li>
-			</tradeTags>
-			<thingCategories>
-				<li>Ammo95x40mm</li>
-			</thingCategories>
-		</ThingDef>
+	<ThingDef Class="CombatExtended.AmmoDef" Name="95x40mmBase" ParentName="SmallAmmoBase" Abstract="True">
+		<description>A high-velocity rifle round, used in machine guns and battle rifles.</description>
+		<statBases>
+			<Mass>0.022</Mass>
+			<Bulk>0.03</Bulk>
+		</statBases>
+		<tradeTags>
+			<li>CE_AutoEnableTrade</li>
+			<li>CE_AutoEnableCrafting</li>
+		</tradeTags>
+		<thingCategories>
+			<li>Ammo95x40mm</li>
+		</thingCategories>
+	</ThingDef>
 
-		<ThingDef Class="CombatExtended.AmmoDef" ParentName="95x40mmBase">
-			<defName>Ammo_95x40mm_FMJ</defName>
-			<label>9.5x40mm cartridge (FMJ)</label>
-			<graphicData>
-				<texPath>Things/Ammo/Rifle/FMJ</texPath>
-				<graphicClass>Graphic_StackCount</graphicClass>
-			</graphicData>
-			<statBases>
-				<MarketValue>0.1</MarketValue>
-			</statBases>
-			<ammoClass>FullMetalJacket</ammoClass>
-			<cookOffProjectile>Bullet_95x40mm_FMJ</cookOffProjectile>
-		</ThingDef>
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="95x40mmBase">
+		<defName>Ammo_95x40mm_FMJ</defName>
+		<label>9.5x40mm cartridge (FMJ)</label>
+		<graphicData>
+			<texPath>Things/Ammo/Rifle/FMJ</texPath>
+			<graphicClass>Graphic_StackCount</graphicClass>
+		</graphicData>
+		<statBases>
+			<MarketValue>0.1</MarketValue>
+		</statBases>
+		<ammoClass>FullMetalJacket</ammoClass>
+		<cookOffProjectile>Bullet_95x40mm_FMJ</cookOffProjectile>
+	</ThingDef>
 
-		<ThingDef Class="CombatExtended.AmmoDef" ParentName="95x40mmBase">
-			<defName>Ammo_95x40mm_AP</defName>
-			<label>9.5x40mm cartridge (AP)</label>
-			<graphicData>
-				<texPath>Things/Ammo/Rifle/AP</texPath>
-				<graphicClass>Graphic_StackCount</graphicClass>
-			</graphicData>
-			<statBases>
-				<MarketValue>0.1</MarketValue>
-			</statBases>
-			<ammoClass>ArmorPiercing</ammoClass>
-			<cookOffProjectile>Bullet_95x40mm_AP</cookOffProjectile>
-		</ThingDef>
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="95x40mmBase">
+		<defName>Ammo_95x40mm_AP</defName>
+		<label>9.5x40mm cartridge (AP)</label>
+		<graphicData>
+			<texPath>Things/Ammo/Rifle/AP</texPath>
+			<graphicClass>Graphic_StackCount</graphicClass>
+		</graphicData>
+		<statBases>
+			<MarketValue>0.1</MarketValue>
+		</statBases>
+		<ammoClass>ArmorPiercing</ammoClass>
+		<cookOffProjectile>Bullet_95x40mm_AP</cookOffProjectile>
+	</ThingDef>
 
-		<ThingDef Class="CombatExtended.AmmoDef" ParentName="95x40mmBase">
-			<defName>Ammo_95x40mm_HP</defName>
-			<label>9.5x40mm cartridge (HP)</label>
-			<graphicData>
-				<texPath>Things/Ammo/Rifle/HP</texPath>
-				<graphicClass>Graphic_StackCount</graphicClass>
-			</graphicData>
-			<statBases>
-				<MarketValue>0.1</MarketValue>
-			</statBases>
-			<ammoClass>HollowPoint</ammoClass>
-			<cookOffProjectile>Bullet_95x40mm_HP</cookOffProjectile>
-		</ThingDef>
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="95x40mmBase">
+		<defName>Ammo_95x40mm_HP</defName>
+		<label>9.5x40mm cartridge (HP)</label>
+		<graphicData>
+			<texPath>Things/Ammo/Rifle/HP</texPath>
+			<graphicClass>Graphic_StackCount</graphicClass>
+		</graphicData>
+		<statBases>
+			<MarketValue>0.1</MarketValue>
+		</statBases>
+		<ammoClass>HollowPoint</ammoClass>
+		<cookOffProjectile>Bullet_95x40mm_HP</cookOffProjectile>
+	</ThingDef>
 		
 	<ThingDef Class="CombatExtended.AmmoDef" ParentName="95x40mmBase">
 		<defName>Ammo_95x40mm_Incendiary</defName>
@@ -134,165 +134,166 @@
 		<ammoClass>Sabot</ammoClass>
 		<cookOffProjectile>Bullet_95x40mm_Sabot</cookOffProjectile>
 	</ThingDef>
-		<!-- ================== Projectiles ================== -->
 
-		<ThingDef Class="CombatExtended.AmmoDef" ParentName="Base762x51mmNATOBullet">
-			<defName>Bullet_95x40mm_FMJ</defName>
-			<label>7.62mm  bullet (FMJ)</label>
-			<projectile Class="CombatExtended.ProjectilePropertiesCE">
-				<speed>194</speed>
-				<damageAmountBase>23</damageAmountBase>
-				<armorPenetrationSharp>8</armorPenetrationSharp>
-				<armorPenetrationBlunt>82.8</armorPenetrationBlunt>
-			</projectile>
-		</ThingDef>
+	<!-- ================== Projectiles ================== -->
 
-		<ThingDef Class="CombatExtended.AmmoDef" ParentName="Base762x51mmNATOBullet">
-			<defName>Bullet_95x40mm_AP</defName>
-			<label>7.62mm  bullet (AP)</label>
-			<projectile Class="CombatExtended.ProjectilePropertiesCE">
-				<speed>194</speed>
-				<damageAmountBase>14</damageAmountBase>
-				<armorPenetrationSharp>16</armorPenetrationSharp>
-				<armorPenetrationBlunt>82.8</armorPenetrationBlunt>
-			</projectile>
-		</ThingDef>
-
-		<ThingDef Class="CombatExtended.AmmoDef" ParentName="Base762x51mmNATOBullet">
-			<defName>Bullet_95x40mm_HP</defName>
-			<label>7.62mm  bullet (HP)</label>
-			<projectile Class="CombatExtended.ProjectilePropertiesCE">
-				<speed>194</speed>
-				<damageAmountBase>29</damageAmountBase>
-				<armorPenetrationSharp>4</armorPenetrationSharp>
-				<armorPenetrationBlunt>82.8</armorPenetrationBlunt>
-			</projectile>
-		</ThingDef>
-
-		<ThingDef Class="CombatExtended.AmmoDef" ParentName="Base762x51mmNATOBullet">
-			<defName>Bullet_95x40mm_Incendiary</defName>
-			<label>7.62mm  bullet (AP-I)</label>
-			<projectile Class="CombatExtended.ProjectilePropertiesCE">
-			<speed>194</speed>
-			<damageAmountBase>14</damageAmountBase>
-			<armorPenetrationSharp>16</armorPenetrationSharp>
-			<armorPenetrationBlunt>82.8</armorPenetrationBlunt>
-			<secondaryDamage>
-					<li>
-					<def>Flame_Secondary</def>
-					<amount>9</amount>
-					</li>
-			</secondaryDamage>
-			</projectile>
-		</ThingDef>
-		
-		<ThingDef Class="CombatExtended.AmmoDef" ParentName="Base762x51mmNATOBullet">
-			<defName>Bullet_95x40mm_HE</defName>
-			<label>7.62mm  bullet (HE)</label>
-			<projectile Class="CombatExtended.ProjectilePropertiesCE">
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="Base762x51mmNATOBullet">
+		<defName>Bullet_95x40mm_FMJ</defName>
+		<label>9.5mm bullet (FMJ)</label>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
 			<speed>194</speed>
 			<damageAmountBase>23</damageAmountBase>
 			<armorPenetrationSharp>8</armorPenetrationSharp>
 			<armorPenetrationBlunt>82.8</armorPenetrationBlunt>
-			<secondaryDamage>
-					<li>
-					<def>Bomb_Secondary</def>
-					<amount>14</amount>
-					</li>
-			</secondaryDamage>
-			</projectile>
-		</ThingDef>
+		</projectile>
+	</ThingDef>
 
-		<ThingDef Class="CombatExtended.AmmoDef" ParentName="Base762x51mmNATOBullet">
-			<defName>Bullet_95x40mm_Sabot</defName>
-			<label>7.62mm  bullet (Sabot)</label>
-			<projectile Class="CombatExtended.ProjectilePropertiesCE">
-			<damageAmountBase>11</damageAmountBase>
-			<armorPenetrationSharp>25</armorPenetrationSharp>
-			<armorPenetrationBlunt>86.28</armorPenetrationBlunt>
-			<speed>291</speed>
-			</projectile>
-		</ThingDef>
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="Base762x51mmNATOBullet">
+		<defName>Bullet_95x40mm_AP</defName>
+		<label>9.5mm bullet (AP)</label>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<speed>194</speed>
+			<damageAmountBase>14</damageAmountBase>
+			<armorPenetrationSharp>16</armorPenetrationSharp>
+			<armorPenetrationBlunt>82.8</armorPenetrationBlunt>
+		</projectile>
+	</ThingDef>
+
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="Base762x51mmNATOBullet">
+		<defName>Bullet_95x40mm_HP</defName>
+		<label>9.5mm bullet (HP)</label>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<speed>194</speed>
+			<damageAmountBase>29</damageAmountBase>
+			<armorPenetrationSharp>4</armorPenetrationSharp>
+			<armorPenetrationBlunt>82.8</armorPenetrationBlunt>
+		</projectile>
+	</ThingDef>
+
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="Base762x51mmNATOBullet">
+		<defName>Bullet_95x40mm_Incendiary</defName>
+		<label>9.5mm bullet (AP-I)</label>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+		<speed>194</speed>
+		<damageAmountBase>14</damageAmountBase>
+		<armorPenetrationSharp>16</armorPenetrationSharp>
+		<armorPenetrationBlunt>82.8</armorPenetrationBlunt>
+		<secondaryDamage>
+				<li>
+				<def>Flame_Secondary</def>
+				<amount>9</amount>
+				</li>
+		</secondaryDamage>
+		</projectile>
+	</ThingDef>
 	
-		<!-- ==================== Recipes ========================== -->
-
-		<RecipeDef ParentName="AmmoRecipeBase">
-			<defName>MakeAmmo_95x40mm_FMJ</defName>
-			<label>make 9.5x40mm (FMJ) cartridge x500</label>
-			<description>Craft 500 9.5x40mm (FMJ) cartridges.</description>
-			<jobString>Making 9.5x40mm (FMJ) cartridges.</jobString>
-			<ingredients>
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="Base762x51mmNATOBullet">
+		<defName>Bullet_95x40mm_HE</defName>
+		<label>9.5mm bullet (HE)</label>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+		<speed>194</speed>
+		<damageAmountBase>23</damageAmountBase>
+		<armorPenetrationSharp>8</armorPenetrationSharp>
+		<armorPenetrationBlunt>82.8</armorPenetrationBlunt>
+		<secondaryDamage>
 				<li>
-					<filter>
-						<thingDefs>
-							<li>Steel</li>
-						</thingDefs>
-					</filter>
-					<count>24</count>
+				<def>Bomb_Secondary</def>
+				<amount>14</amount>
 				</li>
-			</ingredients>
-			<fixedIngredientFilter>
-				<thingDefs>
-					<li>Steel</li>
-				</thingDefs>
-			</fixedIngredientFilter>
-			<products>
-				<Ammo_95x40mm_FMJ>500</Ammo_95x40mm_FMJ>
-			</products>
-		<workAmount>2400</workAmount>		
-		</RecipeDef>
+		</secondaryDamage>
+		</projectile>
+	</ThingDef>
 
-		<RecipeDef ParentName="AmmoRecipeBase">
-			<defName>MakeAmmo_95x40mm_AP</defName>
-			<label>make 9.5x40mm (AP) cartridge x500</label>
-			<description>Craft 500 9.5x40mm (AP) cartridges.</description>
-			<jobString>Making 9.5x40mm (AP) cartridges.</jobString>
-			<ingredients>
-				<li>
-					<filter>
-						<thingDefs>
-							<li>Steel</li>
-						</thingDefs>
-					</filter>
-					<count>24</count>
-				</li>
-			</ingredients>
-			<fixedIngredientFilter>
-				<thingDefs>
-					<li>Steel</li>
-				</thingDefs>
-			</fixedIngredientFilter>
-			<products>
-				<Ammo_95x40mm_AP>500</Ammo_95x40mm_AP>
-			</products>
-		<workAmount>2400</workAmount>		
-		</RecipeDef>
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="Base762x51mmNATOBullet">
+		<defName>Bullet_95x40mm_Sabot</defName>
+		<label>9.5mm bullet (Sabot)</label>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+		<damageAmountBase>11</damageAmountBase>
+		<armorPenetrationSharp>25</armorPenetrationSharp>
+		<armorPenetrationBlunt>86.28</armorPenetrationBlunt>
+		<speed>291</speed>
+		</projectile>
+	</ThingDef>
 
-		<RecipeDef ParentName="AmmoRecipeBase">
-			<defName>MakeAmmo_95x40mm_HP</defName>
-			<label>make 9.5x40mm (HP) cartridge x500</label>
-			<description>Craft 500 9.5x40mm (HP) cartridges.</description>
-			<jobString>Making 9.5x40mm (HP) cartridges.</jobString>
-			<ingredients>
-				<li>
-					<filter>
-						<thingDefs>
-							<li>Steel</li>
-						</thingDefs>
-					</filter>
-					<count>24</count>
-				</li>
-			</ingredients>
-			<fixedIngredientFilter>
-				<thingDefs>
-					<li>Steel</li>
-				</thingDefs>
-			</fixedIngredientFilter>
-			<products>
-				<Ammo_95x40mm_HP>500</Ammo_95x40mm_HP>
-			</products>
+	<!-- ==================== Recipes ========================== -->
+
+	<RecipeDef ParentName="AmmoRecipeBase">
+		<defName>MakeAmmo_95x40mm_FMJ</defName>
+		<label>make 9.5x40mm (FMJ) cartridge x500</label>
+		<description>Craft 500 9.5x40mm (FMJ) cartridges.</description>
+		<jobString>Making 9.5x40mm (FMJ) cartridges.</jobString>
+		<ingredients>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>Steel</li>
+					</thingDefs>
+				</filter>
+				<count>24</count>
+			</li>
+		</ingredients>
+		<fixedIngredientFilter>
+			<thingDefs>
+				<li>Steel</li>
+			</thingDefs>
+		</fixedIngredientFilter>
+		<products>
+			<Ammo_95x40mm_FMJ>500</Ammo_95x40mm_FMJ>
+		</products>
 		<workAmount>2400</workAmount>		
-		</RecipeDef>
+	</RecipeDef>
+
+	<RecipeDef ParentName="AmmoRecipeBase">
+		<defName>MakeAmmo_95x40mm_AP</defName>
+		<label>make 9.5x40mm (AP) cartridge x500</label>
+		<description>Craft 500 9.5x40mm (AP) cartridges.</description>
+		<jobString>Making 9.5x40mm (AP) cartridges.</jobString>
+		<ingredients>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>Steel</li>
+					</thingDefs>
+				</filter>
+				<count>24</count>
+			</li>
+		</ingredients>
+		<fixedIngredientFilter>
+			<thingDefs>
+				<li>Steel</li>
+			</thingDefs>
+		</fixedIngredientFilter>
+		<products>
+			<Ammo_95x40mm_AP>500</Ammo_95x40mm_AP>
+		</products>
+		<workAmount>2400</workAmount>		
+	</RecipeDef>
+
+	<RecipeDef ParentName="AmmoRecipeBase">
+		<defName>MakeAmmo_95x40mm_HP</defName>
+		<label>make 9.5x40mm (HP) cartridge x500</label>
+		<description>Craft 500 9.5x40mm (HP) cartridges.</description>
+		<jobString>Making 9.5x40mm (HP) cartridges.</jobString>
+		<ingredients>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>Steel</li>
+					</thingDefs>
+				</filter>
+				<count>24</count>
+			</li>
+		</ingredients>
+		<fixedIngredientFilter>
+			<thingDefs>
+				<li>Steel</li>
+			</thingDefs>
+		</fixedIngredientFilter>
+		<products>
+			<Ammo_95x40mm_HP>500</Ammo_95x40mm_HP>
+		</products>
+		<workAmount>2400</workAmount>		
+	</RecipeDef>
 
 	<RecipeDef ParentName="AdvancedAmmoRecipeBase">
 		<defName>MakeAmmo_95x40mm_Incendiary</defName>

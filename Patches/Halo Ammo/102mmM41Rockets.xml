@@ -84,17 +84,7 @@
 
 	<!-- ================== Projectiles ================== -->
 
-	<ThingDef Class="CombatExtended.AmmoDef" Name="BaseM41Rocket" ParentName="BaseBullet" Abstract="true">
-		<graphicData>
-			<shaderType>TransparentPostLight</shaderType>
-		</graphicData>
-		<projectile Class="CombatExtended.ProjectilePropertiesCE">
-			<speed>37</speed>
-			<soundAmbient>RocketPropelledLoop_Small</soundAmbient>
-		</projectile>
-	</ThingDef>	
-
-	<ThingDef Class="CombatExtended.AmmoDef" ParentName="BaseM41Rocket">
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="BaseRPG7Grenade">
 		<defName>Bullet_M41Rocket_HEAT</defName>
 		<label>M19 102mm missile (HEAT)</label>
 		<graphicData>
@@ -106,6 +96,7 @@
 			<damageAmountBase>264</damageAmountBase>
 			<armorPenetrationSharp>650</armorPenetrationSharp>
 			<armorPenetrationBlunt>41.818</armorPenetrationBlunt>
+			<speed>37</speed>
 		</projectile>
 		<comps>
 		  <li Class="CombatExtended.CompProperties_ExplosiveCE">
@@ -124,9 +115,9 @@
 		</comps>
 	</ThingDef>
 
-	<ThingDef Class="CombatExtended.AmmoDef" ParentName="BaseM41Rocket">
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="BaseRPG7Grenade">
 		<defName>Bullet_M41Rocket_HE</defName>
-		<label>M21 102mm missile (Anti-personnel)</label>
+		<label>M21 102mm missile (Anti-Personnel)</label>
 		<thingClass>CombatExtended.ProjectileCE_Explosive</thingClass>    
 		<graphicData>
 			<texPath>Things/Projectile/Rocket/SMAW_Thermobaric</texPath>
@@ -137,6 +128,7 @@
 			<damageDef>Bomb</damageDef>
 			<damageAmountBase>240</damageAmountBase>
 			<applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
+			<speed>37</speed>
 		</projectile>
 		<comps>
 		  <li Class="CombatExtended.CompProperties_Fragments">

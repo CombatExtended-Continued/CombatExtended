@@ -71,7 +71,7 @@
 	<!-- ==================== Ammo ========================== -->
 
 	<ThingDef Class="CombatExtended.AmmoDef" Name="762x51mmUNSCBase" ParentName="SmallAmmoBase" Abstract="True">
-		<description>An improved version of the ancient 7.62x51mm catridge, featuring a hardened penetrator and better propellent to counter advancements in body armour. A tiny amount of stopping power is sacrificed to achieve this superior penetrative capability. It is used by a large number of UNSC weaponry.</description>
+		<description>An improved version of the ancient 7.62x51mm cartridge, featuring a hardened penetrator and better propellent to counter advancements in body armour. A tiny amount of stopping power is sacrificed to achieve this superior penetrative capability. It is used by a large number of UNSC weaponry.</description>
 		<statBases>
 			<Mass>0.025</Mass>
 			<Bulk>0.03</Bulk>
@@ -192,49 +192,40 @@
   </ThingDef>
 	<!-- ================== Projectiles ================== -->
 
-	<ThingDef Class="CombatExtended.AmmoDef" Name="Base762x51mmUNSCBullet" ParentName="BaseBullet" Abstract="true">
-		<graphicData>
-			<texPath>Things/Projectile/Bullet_Small</texPath>
-			<graphicClass>Graphic_Single</graphicClass>
-		</graphicData>
-		<projectile Class="CombatExtended.ProjectilePropertiesCE">
-			<damageDef>Bullet</damageDef>
-			<speed>188</speed>
-			<dropsCasings>true</dropsCasings>
-		</projectile>
-	</ThingDef>
-
-	<ThingDef Class="CombatExtended.AmmoDef" ParentName="Base762x51mmUNSCBullet">
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="Base762x51mmNATOBullet">
 		<defName>Bullet_762x51mmUNSC_FMJ</defName>
 		<label>7.62mm UNSC bullet (FMJ)</label>
 		<projectile Class="CombatExtended.ProjectilePropertiesCE">
 			<damageAmountBase>19</damageAmountBase>
 			<armorPenetrationSharp>10</armorPenetrationSharp>
 			<armorPenetrationBlunt>69.72</armorPenetrationBlunt>
+			<speed>188</speed>
 		</projectile>
 	</ThingDef>
 
-	<ThingDef Class="CombatExtended.AmmoDef" ParentName="Base762x51mmUNSCBullet">
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="Base762x51mmNATOBullet">
 		<defName>Bullet_762x51mmUNSC_AP</defName>
 		<label>7.62mm UNSC bullet (AP)</label>
 		<projectile Class="CombatExtended.ProjectilePropertiesCE">
 			<damageAmountBase>12</damageAmountBase>
 			<armorPenetrationSharp>20</armorPenetrationSharp>
 			<armorPenetrationBlunt>69.72</armorPenetrationBlunt>
+			<speed>188</speed>
 		</projectile>
 	</ThingDef>
 
-	<ThingDef Class="CombatExtended.AmmoDef" ParentName="Base762x51mmUNSCBullet">
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="Base762x51mmNATOBullet">
 		<defName>Bullet_762x51mmUNSC_HP</defName>
 		<label>7.62mm UNSC bullet (HP)</label>
 		<projectile Class="CombatExtended.ProjectilePropertiesCE">
 			<damageAmountBase>24</damageAmountBase>
 			<armorPenetrationSharp>5</armorPenetrationSharp>
 			<armorPenetrationBlunt>69.72</armorPenetrationBlunt>
+			<speed>188</speed>
 		</projectile>
 	</ThingDef>
 
-	<ThingDef Class="CombatExtended.AmmoDef" ParentName="Base762x51mmUNSCBullet">
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="Base762x51mmNATOBullet">
 		<defName>Bullet_762x51mmUNSC_Shredder</defName>
 		<label>7.62mm UNSC bullet (Shredder)</label>
 		<projectile Class="CombatExtended.ProjectilePropertiesCE">
@@ -242,16 +233,18 @@
 			<damageDef>Fragment</damageDef>
 			<armorPenetrationSharp>5</armorPenetrationSharp>
 			<armorPenetrationBlunt>69.72</armorPenetrationBlunt>
+			<speed>188</speed>
 		</projectile>
 	</ThingDef>
 
-	  <ThingDef Class="CombatExtended.AmmoDef" ParentName="Base762x51mmUNSCBullet">
+	  <ThingDef Class="CombatExtended.AmmoDef" ParentName="Base762x51mmNATOBullet">
 		<defName>Bullet_762x51mmUNSC_Incendiary</defName>
 		<label>7.62mm UNSC bullet (AP-I)</label>
 		<projectile Class="CombatExtended.ProjectilePropertiesCE">
 		  <damageAmountBase>12</damageAmountBase>
 		  <armorPenetrationSharp>20</armorPenetrationSharp>
 		  <armorPenetrationBlunt>69.72</armorPenetrationBlunt>
+		  <speed>188</speed>
 		  <secondaryDamage>
 				<li>
 			  	<def>Flame_Secondary</def>
@@ -261,13 +254,14 @@
 		</projectile>
 	  </ThingDef>
 	  
-	  <ThingDef Class="CombatExtended.AmmoDef" ParentName="Base762x51mmUNSCBullet">
+	  <ThingDef Class="CombatExtended.AmmoDef" ParentName="Base762x51mmNATOBullet">
 		<defName>Bullet_762x51mmUNSC_HE</defName>
 		<label>7.62mm UNSC bullet (HEDP)</label>
 		<projectile Class="CombatExtended.ProjectilePropertiesCE">
 		  <damageAmountBase>19</damageAmountBase>
 		  <armorPenetrationSharp>10</armorPenetrationSharp>
 		  <armorPenetrationBlunt>69.72</armorPenetrationBlunt>
+		  <speed>188</speed>
 		  <secondaryDamage>
 				<li>
 			  	<def>Bomb_Secondary</def>
@@ -277,7 +271,7 @@
 		</projectile>
 	  </ThingDef>
 
-	  <ThingDef Class="CombatExtended.AmmoDef" ParentName="Base762x51mmUNSCBullet">
+	  <ThingDef Class="CombatExtended.AmmoDef" ParentName="Base762x51mmNATOBullet">
 		<defName>Bullet_762x51mmUNSC_Sabot</defName>
 		<label>7.62mm UNSC bullet (Sabot)</label>
 		<projectile Class="CombatExtended.ProjectilePropertiesCE">
@@ -288,49 +282,40 @@
 		</projectile>
 	  </ThingDef>
 
-	<ThingDef Class="CombatExtended.AmmoDef" Name="Base762x51mmUNSCBulletDMR" ParentName="BaseBullet" Abstract="true">
-		<graphicData>
-			<texPath>Things/Projectile/Bullet_Small</texPath>
-			<graphicClass>Graphic_Single</graphicClass>
-		</graphicData>
-		<projectile Class="CombatExtended.ProjectilePropertiesCE">
-			<damageDef>Bullet</damageDef>
-			<speed>208</speed>
-			<dropsCasings>true</dropsCasings>
-		</projectile>
-	</ThingDef>
-
-	<ThingDef Class="CombatExtended.AmmoDef" ParentName="Base762x51mmUNSCBulletDMR">
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="Base762x51mmNATOBullet">
 		<defName>Bullet_762x51mmUNSC_FMJ_DMR</defName>
 		<label>7.62mm UNSC bullet (FMJ)</label>
 		<projectile Class="CombatExtended.ProjectilePropertiesCE">
 			<damageAmountBase>21</damageAmountBase>
 			<armorPenetrationSharp>11</armorPenetrationSharp>
 			<armorPenetrationBlunt>74.72</armorPenetrationBlunt>
+			<speed>208</speed>
 		</projectile>
 	</ThingDef>
 
-	<ThingDef Class="CombatExtended.AmmoDef" ParentName="Base762x51mmUNSCBulletDMR">
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="Base762x51mmNATOBullet">
 		<defName>Bullet_762x51mmUNSC_AP_DMR</defName>
 		<label>7.62mm UNSC bullet (AP)</label>
 		<projectile Class="CombatExtended.ProjectilePropertiesCE">
 			<damageAmountBase>13</damageAmountBase>
 			<armorPenetrationSharp>22</armorPenetrationSharp>
 			<armorPenetrationBlunt>74.72</armorPenetrationBlunt>
+			<speed>208</speed>
 		</projectile>
 	</ThingDef>
 
-	<ThingDef Class="CombatExtended.AmmoDef" ParentName="Base762x51mmUNSCBulletDMR">
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="Base762x51mmNATOBullet">
 		<defName>Bullet_762x51mmUNSC_HP_DMR</defName>
 		<label>7.62mm UNSC bullet (HP)</label>
 		<projectile Class="CombatExtended.ProjectilePropertiesCE">
 			<damageAmountBase>25</damageAmountBase>
 			<armorPenetrationSharp>5.5</armorPenetrationSharp>
 			<armorPenetrationBlunt>74.72</armorPenetrationBlunt>
+			<speed>208</speed>
 		</projectile>
 	</ThingDef>
 
-	<ThingDef Class="CombatExtended.AmmoDef" ParentName="Base762x51mmUNSCBulletDMR">
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="Base762x51mmNATOBullet">
 		<defName>Bullet_762x51mmUNSC_Shredder_DMR</defName>
 		<label>7.62mm UNSC bullet (Shredder)</label>
 		<projectile Class="CombatExtended.ProjectilePropertiesCE">
@@ -338,16 +323,18 @@
 			<damageDef>Fragment</damageDef>
 			<armorPenetrationSharp>5.5</armorPenetrationSharp>
 			<armorPenetrationBlunt>74.72</armorPenetrationBlunt>
+			<speed>208</speed>
 		</projectile>
 	</ThingDef>
 
-	  <ThingDef Class="CombatExtended.AmmoDef" ParentName="Base762x51mmUNSCBulletDMR">
+	  <ThingDef Class="CombatExtended.AmmoDef" ParentName="Base762x51mmNATOBullet">
 		<defName>Bullet_762x51mmUNSC_Incendiary_DMR</defName>
 		<label>7.62mm UNSC bullet (AP-I)</label>
 		<projectile Class="CombatExtended.ProjectilePropertiesCE">
 		  <damageAmountBase>13</damageAmountBase>
 		  <armorPenetrationSharp>22</armorPenetrationSharp>
 		  <armorPenetrationBlunt>74.72</armorPenetrationBlunt>
+		  <speed>208</speed>
 		  <secondaryDamage>
 				<li>
 			  	<def>Flame_Secondary</def>
@@ -357,13 +344,14 @@
 		</projectile>
 	  </ThingDef>
 	  
-	  <ThingDef Class="CombatExtended.AmmoDef" ParentName="Base762x51mmUNSCBulletDMR">
+	  <ThingDef Class="CombatExtended.AmmoDef" ParentName="Base762x51mmNATOBullet">
 		<defName>Bullet_762x51mmUNSC_HE_DMR</defName>
 		<label>7.62mm UNSC bullet (HEDP)</label>
 		<projectile Class="CombatExtended.ProjectilePropertiesCE">
 		  <damageAmountBase>21</damageAmountBase>
 		  <armorPenetrationSharp>11</armorPenetrationSharp>
 		  <armorPenetrationBlunt>74.72</armorPenetrationBlunt>
+		  <speed>208</speed>
 		  <secondaryDamage>
 				<li>
 			  	<def>Bomb_Secondary</def>
@@ -373,7 +361,7 @@
 		</projectile>
 	  </ThingDef>
 
-	  <ThingDef Class="CombatExtended.AmmoDef" ParentName="Base762x51mmUNSCBulletDMR">
+	  <ThingDef Class="CombatExtended.AmmoDef" ParentName="Base762x51mmNATOBullet">
 		<defName>Bullet_762x51mmUNSC_Sabot_DMR</defName>
 		<label>7.62mm UNSC bullet (Sabot)</label>
 		<projectile Class="CombatExtended.ProjectilePropertiesCE">
