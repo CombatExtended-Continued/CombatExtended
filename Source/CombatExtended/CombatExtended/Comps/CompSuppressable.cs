@@ -241,12 +241,11 @@ namespace CombatExtended
             {
                 if (IsHunkering)
                 {
-                    FleckMaker.ThrowMetaIcon(parent.Position, parent.Map, CE_FleckDefOf.Fleck_HunkerIcon);
+                    FleckMaker.ThrowMetaIcon(parent.Position, parent.Map, CE_FleckDefOf.Fleck_HunkerIcon, velocitySpeed: 0.05f);
                 }
                 else if (this.isSuppressed)
                 {
-                    //MoteMaker.ThrowText(this.parent.Position.ToVector3Shifted(), parent.Map, "CE_SuppressedMote".Translate());
-                    FleckMaker.ThrowMetaIcon(parent.Position, parent.Map, CE_FleckDefOf.Fleck_SuppressIcon);
+                    FleckMaker.ThrowMetaIcon(parent.Position, parent.Map, CE_FleckDefOf.Fleck_SuppressIcon, velocitySpeed: 0.05f);
                 }
             }
 

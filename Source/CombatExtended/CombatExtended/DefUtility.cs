@@ -11,7 +11,12 @@ namespace CombatExtended
         /// <summary>
         /// A bitmap that store flags. The real size of this one is 2048 byte.
         /// </summary>
-        private static FlagArray isVisibleLayerArray = new FlagArray(ushort.MaxValue);
+        internal static FlagArray isVisibleLayerArray = new FlagArray(ushort.MaxValue);
+
+        // <summary>
+        /// A bitmap that store flags. The real size of this one is 2048 byte.
+        /// </summary>
+        internal static FlagArray isMenuHiddenArray = new FlagArray(ushort.MaxValue);
 
         /// <summary>
         /// Used to create and initialize def related flags that are often checked but require more than 2 or 3 steps to caculate.
@@ -26,6 +31,10 @@ namespace CombatExtended
             // Process all apparel defs
             foreach (ThingDef def in DefDatabase<ThingDef>.AllDefs.Where(t => t.IsApparel))
                 ProcessApparel(def);
+
+            // Process all defs for isMenuHiddenArray
+            foreach (ThingDef def in DefDatabase<ThingDef>.AllDefs.Where(t => t.HasModExtension<ThingDefExtensionCE>()))
+                ProcessThingDefExtensionCE(def);
         }
 
         /// <summary>
@@ -52,6 +61,29 @@ namespace CombatExtended
         }
 
         /// <summary>
+        /// Check is this ThingDef is MenuHidden. This replace the old removed menuHidden field.
+        /// </summary>
+        /// <param name="def">Thing def</param>
+        /// <returns>Is menu hidden</returns>
+        public static bool IsMenuHidden(this ThingDef def)
+        {
+            return isMenuHiddenArray[def.index];
+        }
+
+        /// <summary>
+        /// Used to update is menuhidden value.
+        /// </summary>
+        /// <param name="def">Thing def</param>
+        /// <param name="value">New value</param>
+        public static void SetMenuHidden(this ThingDef def, bool value)
+        {
+            isMenuHiddenArray[def.index] = value;
+
+            if (def.HasModExtension<ThingDefExtensionCE>()) // Check if this def has ThingDefExtensionCE
+                def.GetModExtension<ThingDefExtensionCE>().MenuHidden = value;
+        }
+
+        /// <summary>
         /// Prepare apparel def by caching isVisibleLayer.
         /// </summary>
         /// <param name="def">Apparel def</param>        
@@ -72,7 +104,7 @@ namespace CombatExtended
         }
 
         /// <summary>
-        /// Used rendering of CE custom apparel layers.
+        /// Used for rendering of CE custom apparel layers.
         /// </summary>
         /// <param name="layer"></param>
         /// <returns></returns>
@@ -86,6 +118,17 @@ namespace CombatExtended
                 && layer.drawOrder >= ApparelLayerDefOf.Shell.drawOrder
                 && layer != ApparelLayerDefOf.Belt
                 && !(layer.GetModExtension<ApparelLayerExtension>()?.IsHeadwear ?? false);
+        }
+
+        /// <summary>
+        /// Perpare the ThingDefExtensionCE.
+        /// </summary>
+        /// <param name="def">ThingDef with </param>
+        private static void ProcessThingDefExtensionCE(ThingDef def)
+        {
+            ThingDefExtensionCE ext = def.GetModExtension<ThingDefExtensionCE>();
+
+            isMenuHiddenArray[def.index] = ext.MenuHidden;
         }
     }
 }

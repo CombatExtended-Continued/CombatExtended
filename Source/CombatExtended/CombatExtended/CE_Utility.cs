@@ -284,20 +284,20 @@ namespace CombatExtended
         #endregion Misc
 
         #region MoteThrower
-        public static void ThrowEmptyCasing(Vector3 loc, Map map, ThingDef casingMoteDef, float size = 1f)
+        public static void ThrowEmptyCasing(Vector3 loc, Map map, FleckDef casingFleckDef, float size = 1f)
         {
             if (!Controller.settings.ShowCasings || !loc.ShouldSpawnMotesAt(map) || map.moteCounter.SaturatedLowPriority)
             {
                 return;
             }
-            MoteThrown moteThrown = (MoteThrown)ThingMaker.MakeThing(casingMoteDef, null);
-            moteThrown.Scale = Rand.Range(0.5f, 0.3f) * size;
-            moteThrown.exactRotation = Rand.Range(-3f, 4f);
-            moteThrown.exactPosition = loc;
-            moteThrown.airTimeLeft = 60;
-            moteThrown.SetVelocity((float)Rand.Range(160, 200), Rand.Range(0.7f, 0.5f));
-            //     moteThrown.SetVelocityAngleSpeed((float)Rand.Range(160, 200), Rand.Range(0.020f, 0.0115f));
-            GenSpawn.Spawn(moteThrown, loc.ToIntVec3(), map);
+            FleckCreationData creationData = FleckMaker.GetDataStatic(loc, map, casingFleckDef);
+            creationData.airTimeLeft = 60;
+            creationData.scale = Rand.Range(0.5f, 0.3f) * size;
+            creationData.rotation = Rand.Range(-3f, 4f);
+            creationData.spawnPosition = loc;
+            creationData.velocitySpeed = (float)Rand.Range(0.7f, 0.5f);
+            creationData.velocityAngle = (float)Rand.Range(160, 200);
+            map.flecks.CreateFleck(creationData);
         }
         #endregion
 

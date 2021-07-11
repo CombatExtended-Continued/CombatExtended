@@ -10,7 +10,7 @@ namespace CombatExtended
     [DefOf]
     public static class CE_ThingDefOf
     {
-        public static ThingDef Mote_EmptyCasing;
+        public static FleckDef Mote_EmptyCasing;
 
         public static ThingDef FSX;
 

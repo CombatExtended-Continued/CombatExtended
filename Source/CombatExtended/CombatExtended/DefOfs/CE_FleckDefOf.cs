@@ -8,6 +8,7 @@ namespace CombatExtended
     public class CE_FleckDefOf
     {
         public static FleckDef Fleck_SuppressIcon;
+
         public static FleckDef Fleck_HunkerIcon;
     }
 }
