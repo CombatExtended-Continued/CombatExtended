@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using Verse;
 using RimWorld;
 using UnityEngine;
@@ -28,7 +28,7 @@ namespace CombatExtended
                 }
             }
         }
-        protected override void Impact(Thing hitThing)
+        public override void Impact(Thing hitThing)
         {
             // Snap to target so we hit multi-tile pawns with our explosion
             if (hitThing is Pawn)

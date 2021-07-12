@@ -1,4 +1,4 @@
-using RimWorld;
+﻿using RimWorld;
 using System;
 using System.Collections.Generic;
 using UnityEngine;
@@ -33,7 +33,7 @@ namespace CombatExtended
 
         #region Properties
 
-        protected override int ShotsPerBurst
+        public override int ShotsPerBurst
         {
             get
             {
@@ -80,7 +80,7 @@ namespace CombatExtended
             }
         }
 
-        protected override float SwayAmplitude
+        public override float SwayAmplitude
         {
             get
             {
@@ -174,7 +174,7 @@ namespace CombatExtended
             return base.CanHitTargetFrom(root, targ);
         }
 
-        protected override bool TryCastShot()
+        public override bool TryCastShot()
         {
             //Reduce ammunition
             if (CompAmmo != null)

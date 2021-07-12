@@ -199,54 +199,49 @@ namespace CombatExtended.HarmonyCE
             }
         }
 
-        //[HarmonyPatch(typeof(PawnRenderer), "DrawEquipmentAiming")]
-        //internal static class Harmony_PawnRenderer_DrawEquipmentAiming
-        //{
-        //    public static Rot4 south = Rot4.South;
+        [HarmonyPatch(typeof(PawnRenderer), "DrawEquipmentAiming")]
+        internal static class Harmony_PawnRenderer_DrawEquipmentAiming
+        {
+            public static Rot4 south = Rot4.South;
 
 
-        //    private static void DrawMeshModified(Mesh mesh, Vector3 position, Quaternion rotation, Material mat, int layer, Thing eq, float aimAngle)
-        //    {
-        //        var drawData = eq.def.GetModExtension<GunDrawExtension>() ?? new GunDrawExtension();
-        //        var scale = new Vector3(drawData.DrawSize.x, 1, drawData.DrawSize.y);
-        //        var posVec = new Vector3(drawData.DrawOffset.x, 0, drawData.DrawOffset.y);
-        //        if (aimAngle > 200 && aimAngle < 340)
-        //        {
-        //            posVec.x *= -1;
-        //        }
+            private static void DrawMesh(Mesh mesh, Vector3 position, Quaternion rotation, Material mat, int layer, Thing eq, float aimAngle)
+            {
+                GunDrawExtension drawData = eq.def.GetModExtension<GunDrawExtension>() ?? new GunDrawExtension();
+                Matrix4x4 matrix = new Matrix4x4();
+                Vector3 scale = new Vector3(drawData.DrawSize.x, 1, drawData.DrawSize.y);
+                Vector3 posVec = new Vector3(drawData.DrawOffset.x, 0, drawData.DrawOffset.y);
 
-        //        posVec = posVec.RotatedBy(rotation.eulerAngles.y);
+                if (aimAngle > 200 && aimAngle < 340)
+                    posVec.x *= -1;
 
-        //        var matrix = new Matrix4x4();
-        //        matrix.SetTRS(position + posVec, rotation, scale);
+                matrix.SetTRS(position + posVec.RotatedBy(rotation.eulerAngles.y), rotation, scale);
+                Graphics.DrawMesh(mesh, matrix, mat, layer);
+            }
 
-        //        Graphics.DrawMesh(mesh, matrix, mat, layer);
-        //    }
+            /*
+             * This replace the last DrawMesh in 
+             */
+            internal static IEnumerable<CodeInstruction> Transpiler(IEnumerable<CodeInstruction> instructions)
+            {
+                var codes = instructions.ToList();
+                codes[codes.Count - 2].operand =
+                    AccessTools.Method(typeof(Harmony_PawnRenderer_DrawEquipmentAiming), nameof(DrawMesh));
+                codes.InsertRange(codes.Count - 2, new[]
+                {
+                    new CodeInstruction(OpCodes.Ldarg_1),
+                    new CodeInstruction(OpCodes.Ldarg_3)
+                });
+                return codes;
+            }
 
-        //    /*
-        //     * This replace the last DrawMesh in 
-        //     */
-        //    internal static IEnumerable<CodeInstruction> Transpiler(IEnumerable<CodeInstruction> instructions)
-        //    {
-        //        var codes = instructions.ToList();
-        //        codes[codes.Count - 2].operand =
-        //            AccessTools.Method(typeof(Harmony_PawnRenderer_DrawEquipmentAiming), nameof(DrawMeshModified));
-        //        codes.InsertRange(codes.Count - 2, new[]
-        //        {
-        //            new CodeInstruction(OpCodes.Ldarg_1),
-        //            new CodeInstruction(OpCodes.Ldarg_3)
-        //        });
-
-        //        return codes;
-        //    }
-
-        //    internal static void Prefix(PawnRenderer __instance, Pawn ___pawn, ref Vector3 drawLoc)
-        //    {
-        //        if (___pawn.Rotation == south)
-        //        {
-        //            drawLoc.y++;
-        //        }
-        //    }
-        //}
+            internal static void Prefix(PawnRenderer __instance, Pawn ___pawn, ref Vector3 drawLoc)
+            {
+                if (___pawn.Rotation == south)
+                {
+                    drawLoc.y++;
+                }
+            }
+        }
     }
 }

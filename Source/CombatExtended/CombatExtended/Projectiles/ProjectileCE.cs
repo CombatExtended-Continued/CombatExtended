@@ -27,7 +27,7 @@ namespace CombatExtended
         private const int collisionCheckSize = 5;
 
         #region Origin destination
-        protected Vector2 origin;
+        public Vector2 origin;
 
         private IntVec3 originInt = new IntVec3(0, -1000, 0);
         public IntVec3 OriginIV3
@@ -42,11 +42,11 @@ namespace CombatExtended
             }
         }
 
-        protected Vector3 destinationInt = new Vector3(0f, 0f, -1f);
+        public Vector3 destinationInt = new Vector3(0f, 0f, -1f);
         /// <summary>
         /// Calculates the destination (zero height) reached with a projectile of speed <i>shotSpeed</i> fired at <i>shotAngle</i> from height <i>shotHeight</i> starting from <i>origin</i>. Does not take into account air resistance.
         /// </summary>
-        protected Vector2 Destination
+        public Vector2 Destination
         {
             get
             {
@@ -61,8 +61,8 @@ namespace CombatExtended
         }
         #endregion
 
-        protected ThingDef equipmentDef;
-        protected Thing launcher;
+        public ThingDef equipmentDef;
+        public Thing launcher;
         public Thing intendedTarget;
         public float minCollisionDistance;
         public bool canTargetSelf;
@@ -70,8 +70,8 @@ namespace CombatExtended
         public bool logMisses = true;
 
         #region Vanilla
-        protected bool landed;
-        protected int ticksToImpact;
+        public bool landed;
+        public int ticksToImpact;
         private Sustainer ambientSustainer;
         #endregion
 
@@ -103,7 +103,7 @@ namespace CombatExtended
 
         #region Ticks/Seconds
         float startingTicksToImpactInt = -1f;
-        protected float StartingTicksToImpact
+        public float StartingTicksToImpact
         {
             get
             {
@@ -135,7 +135,7 @@ namespace CombatExtended
         /// <summary>
         /// An integer ceil value of StartingTicksToImpact. intTicksToImpact is equal to -1 when not initialized.
         /// </summary>
-        protected int IntTicksToImpact
+        public int IntTicksToImpact
         {
             get
             {
@@ -150,7 +150,7 @@ namespace CombatExtended
         /// <summary>
         /// The amount of integer ticks this projectile has remained in the air for, ignoring impact.
         /// </summary>
-        protected int FlightTicks
+        public int FlightTicks
         {
             get
             {
@@ -160,7 +160,7 @@ namespace CombatExtended
         /// <summary>
         /// The amount of float ticks the projectile has remained in the air for, including impact.
         /// </summary>
-        protected float fTicks
+        public float fTicks
         {
             get
             {
@@ -974,7 +974,7 @@ namespace CombatExtended
             Impact(null);
         }
 
-        protected virtual void Impact(Thing hitThing)
+        public virtual void Impact(Thing hitThing)
         {
             if (def.HasModExtension<EffectProjectileExtension>())
             {

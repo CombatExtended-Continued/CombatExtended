@@ -299,6 +299,16 @@ namespace CombatExtended
             creationData.velocityAngle = (float)Rand.Range(160, 200);
             map.flecks.CreateFleck(creationData);
         }
+
+        public static void MakeIconOverlay(Pawn pawn, ThingDef moteDef)
+        {
+            MoteThrownAttached moteThrown = (MoteThrownAttached)ThingMaker.MakeThing(moteDef);
+            moteThrown.Attach(pawn);
+            moteThrown.exactPosition = pawn.DrawPos;
+            moteThrown.Scale = 1.0f;
+            moteThrown.SetVelocity(Rand.Range(20f, 25f), 0.4f);
+            GenSpawn.Spawn(moteThrown, pawn.Position, pawn.Map);
+        }
         #endregion
 
         #region Physics

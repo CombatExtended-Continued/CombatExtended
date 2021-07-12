@@ -12,12 +12,7 @@ namespace CombatExtended.HarmonyCE
     [HarmonyPatch(typeof(StunHandler), "Notify_DamageApplied")]
     public static class Harmony_StunHandler_Notify_DamageApplied
     {
-        public static bool Prefix(StunHandler __instance,
-                      DamageInfo dinfo,
-                      int ___EMPAdaptedTicksLeft,
-                      int ___stunTicksLeft,
-                      bool ___stunFromEMP
-                      )
+        public static bool Prefix(StunHandler __instance, DamageInfo dinfo, ref int ___EMPAdaptedTicksLeft, ref int ___stunTicksLeft, ref bool ___stunFromEMP)
         {
 
             Pawn pawn = __instance.parent as Pawn;
@@ -39,8 +34,11 @@ namespace CombatExtended.HarmonyCE
                     int newStunTicks = Mathf.RoundToInt(dinfo.Amount * 30);
 
                     float stunResistChance = ((float)___EMPAdaptedTicksLeft / (float)newStunAdaptedTicks) * 15;
-                    void reStun()
+
+                    if (UnityEngine.Random.value > stunResistChance)
                     {
+                        ___EMPAdaptedTicksLeft += Mathf.RoundToInt(dinfo.Amount * 45 * bodySize);
+
                         if (___stunTicksLeft > 0 && newStunTicks > ___stunTicksLeft)
                         {
                             ___stunTicksLeft = newStunTicks;
@@ -49,13 +47,6 @@ namespace CombatExtended.HarmonyCE
                         {
                             __instance.StunFor(newStunTicks, dinfo.Instigator, true, true);
                         }
-
-                    }
-
-                    if (UnityEngine.Random.value > stunResistChance)
-                    {
-                        ___EMPAdaptedTicksLeft += Mathf.RoundToInt(dinfo.Amount * 45 * bodySize);
-                        reStun();
                     }
                     else
                     {
@@ -71,7 +62,15 @@ namespace CombatExtended.HarmonyCE
                             float adaptationReductionRatio = (adaptationReduction - ___EMPAdaptedTicksLeft) / adaptationReduction;
                             newStunAdaptedTicks = Mathf.RoundToInt(newStunAdaptedTicks * adaptationReductionRatio);
                             newStunTicks = Mathf.RoundToInt(newStunTicks * adaptationReductionRatio);
-                            reStun();
+
+                            if (___stunTicksLeft > 0 && newStunTicks > ___stunTicksLeft)
+                            {
+                                ___stunTicksLeft = newStunTicks;
+                            }
+                            else
+                            {
+                                __instance.StunFor(newStunTicks, dinfo.Instigator, true, true);
+                            }
                         }
                     }
 
