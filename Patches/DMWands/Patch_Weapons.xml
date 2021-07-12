@@ -1,0 +1,305 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+
+	<Operation Class="PatchOperationFindMod">
+    <mods>
+		<li>D4egons Magic Wands</li>
+    </mods>
+		<match Class="PatchOperationSequence">
+		<operations>
+			
+			
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[
+				defName="DM_BasicMagicWand" or
+				defName="DM_LesserMagicWand" or
+				defName="DM_MagicWand" or
+				defName="DM_GreaterMagicWand" or
+				defName="DM_FireWand" or
+				defName="DM_PoisonWand"
+				]/tools</xpath>
+				<value>
+					<tools>
+						<li Class="CombatExtended.ToolCE">
+							<label>wand</label>
+							<capacities>
+								<li>Blunt</li>
+							</capacities>
+							<power>5</power>
+							<cooldownTime>1.2</cooldownTime>
+							<armorPenetrationBlunt>0.4</armorPenetrationBlunt>
+							<linkedBodyPartsGroup>Shaft</linkedBodyPartsGroup>
+						</li>
+					</tools>
+				</value>
+			</li>
+			
+			<li Class="PatchOperationRemove">
+				<xpath>/Defs/ThingDef[defName="DM_MagicBolt"]</xpath>
+			</li>
+
+			<li Class="PatchOperationAdd">
+				<xpath>/Defs</xpath>
+				<value>
+					<ThingDef Class="CombatExtended.AmmoDef" ParentName="AmmoBase">
+						<thingClass>CombatExtended.ProjectileCE_Explosive</thingClass>
+						<defName>DM_MagicBolt</defName>
+						<label>magic bolt</label>
+						<graphicData>
+							<texPath>Things/Item/Equipment/WeaponRanged/DM_MagicBolts/DM_LesserMagicBolt</texPath>
+							<graphicClass>Graphic_Single</graphicClass>
+							<shaderType>TransparentPostLight</shaderType>
+							<color>(120,255,255)</color>
+						</graphicData>
+						<projectile Class="CombatExtended.ProjectilePropertiesCE">
+							<damageDef>DM_Arcane</damageDef>
+							<armorPenetrationBlunt>20</armorPenetrationBlunt>
+							<armorPenetrationSharp>20</armorPenetrationSharp>
+							<speed>50</speed>
+							<dropsCasings>false</dropsCasings>
+							<ai_IsIncendiary>false</ai_IsIncendiary>
+							<arcHeightFactor>1</arcHeightFactor>
+							<shadowSize>1</shadowSize>
+							<explosionRadius>1</explosionRadius>
+							<damageAmountBase>8</damageAmountBase>
+							<soundExplode>Explosion_EMP</soundExplode>
+							<soundImpactAnticipate>MortarRound_PreImpact</soundImpactAnticipate>
+						</projectile>
+					</ThingDef>
+				</value>
+			</li>
+			
+			<li Class="PatchOperationRemove">
+				<xpath>/Defs/ThingDef[defName="DM_FireBolt"]</xpath>
+			</li>
+
+			<li Class="PatchOperationAdd">
+				<xpath>/Defs</xpath>
+				<value>
+					<ThingDef Class="CombatExtended.AmmoDef" ParentName="AmmoBase">
+						<thingClass>CombatExtended.Projectile_FireTrail</thingClass>
+						<defName>DM_FireBolt</defName>
+						<label>fire bolt</label>
+						<graphicData>
+							<texPath>Things/Item/Equipment/WeaponRanged/DM_MagicBolts/DM_FireBolt</texPath>
+							<graphicClass>Graphic_Single</graphicClass>
+							<shaderType>TransparentPostLight</shaderType>
+							<color>(254,189,58)</color>
+						</graphicData>
+						<projectile Class="CombatExtended.ProjectilePropertiesCE">
+							<damageDef>DM_Fire</damageDef>
+							<armorPenetrationBlunt>20</armorPenetrationBlunt>
+							<armorPenetrationSharp>10</armorPenetrationSharp>
+							<speed>20</speed>
+							<dropsCasings>false</dropsCasings>
+							<ai_IsIncendiary>true</ai_IsIncendiary>
+							<arcHeightFactor>1</arcHeightFactor>
+							<shadowSize>1.5</shadowSize>
+							<damageAmountBase>5</damageAmountBase>
+							<explosionRadius>2</explosionRadius>
+							<flyOverhead>false</flyOverhead>
+							<soundExplode>Explosion_Flame</soundExplode>
+							<soundImpactAnticipate>MortarRound_PreImpact</soundImpactAnticipate>
+						</projectile>
+					</ThingDef>
+				</value>
+			</li>
+			
+			<li Class="PatchOperationRemove">
+				<xpath>/Defs/ThingDef[defName="DM_PoisonBolt"]</xpath>
+			</li>
+
+			<li Class="PatchOperationAdd">
+				<xpath>/Defs</xpath>
+				<value>
+					<ThingDef Class="CombatExtended.AmmoDef" ParentName="AmmoBase">
+						<thingClass>CombatExtended.ProjectileCE_Explosive</thingClass>
+						<defName>DM_PoisonBolt</defName>
+						<label>poison bolt</label>
+						<graphicData>
+							<texPath>Things/Item/Equipment/WeaponRanged/DM_MagicBolts/DM_PoisonBolt</texPath>
+							<graphicClass>Graphic_Single</graphicClass>
+							<shaderType>TransparentPostLight</shaderType>
+							<color>(100,255,100)</color>
+						</graphicData>
+						<projectile Class="CombatExtended.ProjectilePropertiesCE">
+							<damageDef>DM_Poison</damageDef>
+							<armorPenetrationBlunt>20</armorPenetrationBlunt>
+							<armorPenetrationSharp>10</armorPenetrationSharp>
+							<speed>5</speed>
+							<dropsCasings>false</dropsCasings>
+							<ai_IsIncendiary>false</ai_IsIncendiary>
+							<arcHeightFactor>-1</arcHeightFactor>
+							<shadowSize>0.5</shadowSize>
+							<damageAmountBase>3</damageAmountBase>
+							<explosionRadius>3</explosionRadius>
+							<soundExplode>Hive_Spawn</soundExplode>
+							<soundImpactAnticipate>MortarRound_PreImpact</soundImpactAnticipate>
+                        </projectile>
+                    </ThingDef>
+				</value>
+			</li>
+			
+			<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+				<defName>DM_BasicMagicWand</defName>
+					<statBases>
+						<SightsEfficiency>1.0</SightsEfficiency>
+						<ShotSpread>0.3</ShotSpread>
+						<SwayFactor>1.01</SwayFactor>
+						<Bulk>1</Bulk>
+						<Mass>1</Mass>
+						<RangedWeapon_Cooldown>2</RangedWeapon_Cooldown>
+					</statBases>
+					<Properties>
+						<recoilAmount>1.53</recoilAmount>
+						<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+						<hasStandardCommand>true</hasStandardCommand>
+						<defaultProjectile>DM_MagicBolt</defaultProjectile>
+						<warmupTime>2</warmupTime>
+						<range>20</range>
+						<soundCast>BuildingDestroyed_Wood_Big</soundCast>
+						<muzzleFlashScale>5</muzzleFlashScale>
+						<soundCastTail>GunTail_Light</soundCastTail>
+					</Properties>
+					<FireModes>
+						<aiAimMode>AimedShot</aiAimMode>
+					</FireModes>
+			</li>
+			
+			<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+				<defName>DM_LesserMagicWand</defName>
+					<statBases>
+						<SightsEfficiency>1.0</SightsEfficiency>
+						<ShotSpread>0.25</ShotSpread>
+						<SwayFactor>1.01</SwayFactor>
+						<Bulk>1</Bulk>
+						<Mass>1</Mass>
+						<RangedWeapon_Cooldown>1.8</RangedWeapon_Cooldown>
+					</statBases>
+					<Properties>
+						<recoilAmount>1.53</recoilAmount>
+						<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+						<hasStandardCommand>true</hasStandardCommand>
+						<defaultProjectile>DM_MagicBolt</defaultProjectile>
+						<warmupTime>1.8</warmupTime>
+						<range>22</range>
+						<soundCast>BuildingDestroyed_Wood_Big</soundCast>
+						<muzzleFlashScale>5</muzzleFlashScale>
+						<soundCastTail>GunTail_Light</soundCastTail>
+					</Properties>
+					<FireModes>
+						<aiAimMode>AimedShot</aiAimMode>
+					</FireModes>
+			</li>
+
+			<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+				<defName>DM_MagicWand</defName>
+					<statBases>
+						<SightsEfficiency>1.0</SightsEfficiency>
+						<ShotSpread>0.2</ShotSpread>
+						<SwayFactor>1.01</SwayFactor>
+						<Bulk>1</Bulk>
+						<Mass>1</Mass>
+						<RangedWeapon_Cooldown>1.6</RangedWeapon_Cooldown>
+					</statBases>
+					<Properties>
+						<recoilAmount>1.53</recoilAmount>
+						<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+						<hasStandardCommand>true</hasStandardCommand>
+						<defaultProjectile>DM_MagicBolt</defaultProjectile>
+						<warmupTime>1.6</warmupTime>
+						<range>24</range>
+						<soundCast>BuildingDestroyed_Wood_Big</soundCast>
+						<muzzleFlashScale>5</muzzleFlashScale>
+						<soundCastTail>GunTail_Light</soundCastTail>
+					</Properties>
+					<FireModes>
+						<aiAimMode>AimedShot</aiAimMode>
+					</FireModes>
+			</li>
+
+			<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+				<defName>DM_GreaterMagicWand</defName>
+					<statBases>
+						<SightsEfficiency>1.0</SightsEfficiency>
+						<ShotSpread>0.1</ShotSpread>
+						<SwayFactor>0.7</SwayFactor>
+						<Bulk>1</Bulk>
+						<Mass>1</Mass>
+						<RangedWeapon_Cooldown>1.4</RangedWeapon_Cooldown>
+					</statBases>
+					<Properties>
+						<recoilAmount>1.2</recoilAmount>
+						<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+						<hasStandardCommand>true</hasStandardCommand>
+						<defaultProjectile>DM_MagicBolt</defaultProjectile>
+						<warmupTime>1.4</warmupTime>
+						<range>26</range>
+						<soundCast>BuildingDestroyed_Wood_Big</soundCast>
+						<muzzleFlashScale>5</muzzleFlashScale>
+						<soundCastTail>GunTail_Light</soundCastTail>
+					</Properties>
+					<FireModes>
+						<aiAimMode>AimedShot</aiAimMode>
+					</FireModes>
+			</li>
+			
+			<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+				<defName>DM_PoisonWand</defName>
+					<statBases>
+						<SightsEfficiency>1.0</SightsEfficiency>
+						<ShotSpread>0.4</ShotSpread>
+						<SwayFactor>1.4</SwayFactor>
+						<Bulk>1</Bulk>
+						<Mass>1</Mass>
+						<RangedWeapon_Cooldown>2</RangedWeapon_Cooldown>
+					</statBases>
+					<Properties>
+						<recoilAmount>1.2</recoilAmount>
+						<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+						<hasStandardCommand>true</hasStandardCommand>
+						<defaultProjectile>DM_PoisonBolt</defaultProjectile>
+						<warmupTime>1.4</warmupTime>
+						<range>26</range>
+						<soundCast>BuildingDestroyed_Wood_Big</soundCast>
+						<muzzleFlashScale>5</muzzleFlashScale>
+						<soundCastTail>GunTail_Light</soundCastTail>
+					</Properties>
+					<FireModes>
+						<aiAimMode>AimedShot</aiAimMode>
+					</FireModes>
+			</li>
+			
+			<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+				<defName>DM_FireWand</defName>
+				<statBases>
+					<SightsEfficiency>1.0</SightsEfficiency>
+					<ShotSpread>0.2</ShotSpread>
+					<SwayFactor>1.01</SwayFactor>
+					<Bulk>1</Bulk>
+					<Mass>1</Mass>
+					<RangedWeapon_Cooldown>1.9</RangedWeapon_Cooldown>
+				</statBases>
+				<Properties>
+					<recoilAmount>2</recoilAmount>
+					<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+					<hasStandardCommand>true</hasStandardCommand>
+					<defaultProjectile>DM_FireBolt</defaultProjectile>
+					<warmupTime>1.5</warmupTime>
+					<range>25</range>
+					<burstShotCount>3</burstShotCount>
+					<ticksBetweenBurstShots>1</ticksBetweenBurstShots>
+					<soundCast>BuildingDestroyed_Wood_Big</soundCast>
+					<muzzleFlashScale>5</muzzleFlashScale>
+					<soundCastTail>GunTail_Light</soundCastTail>
+				</Properties>
+				<FireModes>
+					<aiAimMode>AimedShot</aiAimMode>
+				</FireModes>
+			</li>
+			
+		</operations>
+		</match>
+	</Operation>
+	
+</Patch>
