@@ -13,7 +13,7 @@ using Verse.AI.Group;
 namespace CombatExtended.HarmonyCE
 {
     [HarmonyPatch(typeof(CompressibilityDecider), "DetermineReferences")]
-    public class CompressibilityDecider_DetermineReferences_AvoidProjectileInvalidCast
+    public class CompressibilityDecider_DetermineReferences
     {
         enum Stage { Searching, Deleting, Done }
 
@@ -42,12 +42,18 @@ namespace CombatExtended.HarmonyCE
                 }
 
             }
+            if (stage != Stage.Done) throw new Exception("CE failed to patch CompressibilityDecider:DetermineReferences");
             return instructionsList;
         }
 
         private static bool IsStartOfProjectileLoopSection(List<CodeInstruction> instructionsList, int i)
         {
-            return instructionsList[i].opcode == OpCodes.Ldc_I4_S && (sbyte)instructionsList[i].operand == 48 && instructionsList[i + 1].opcode == OpCodes.Callvirt && instructionsList[i + 1].operand as MethodInfo != null && (instructionsList[i + 1].operand as MethodInfo).Name == "ThingsInGroup" && instructionsList[i + 2].opcode == OpCodes.Stloc_1;
+            return instructionsList[i].opcode == OpCodes.Ldc_I4_S
+                && (sbyte)instructionsList[i].operand == 49
+                && instructionsList[i + 1].opcode == OpCodes.Callvirt
+                && instructionsList[i + 1].operand as MethodInfo != null
+                && (instructionsList[i + 1].operand as MethodInfo).Name == "ThingsInGroup"
+                && instructionsList[i + 2].opcode == OpCodes.Stloc_1;
         }
     }
 }

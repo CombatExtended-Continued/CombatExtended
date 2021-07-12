@@ -246,7 +246,7 @@ namespace CombatExtended
                 }
                 else if (this.isSuppressed)
                 {
-                    CE_Utility.MakeIconOverlay((Pawn)parent, CE_ThingDefOf.Mote_HunkerIcon);
+                    CE_Utility.MakeIconOverlay((Pawn)parent, CE_ThingDefOf.Mote_SuppressIcon);
                 }
             }
         }

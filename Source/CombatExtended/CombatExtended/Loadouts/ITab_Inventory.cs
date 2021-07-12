@@ -140,10 +140,47 @@ namespace CombatExtended
             }
             if (ShouldShowEquipment(SelPawnForGear))
             {
+                // get the loadout so we can make a decision to show a button.
+                bool showMakeLoadout = false;
+                Loadout curLoadout = SelPawnForGear.GetLoadout();
+                if (SelPawnForGear.IsColonist && (curLoadout == null || curLoadout.Slots.NullOrEmpty()) && (SelPawnForGear.inventory.innerContainer.Any() || SelPawnForGear.equipment?.Primary != null))
+                    showMakeLoadout = true;
+
+                if (showMakeLoadout) num += 3; // Make a little room for the button.
+
+                float buttonY = num; // Could be accomplished with seperator being after the button...
+
                 Widgets.ListSeparator(ref num, viewRect.width, "Equipment".Translate());
                 foreach (ThingWithComps current in SelPawnForGear.equipment.AllEquipmentListForReading)
-                {
                     DrawThingRowCE(ref num, viewRect.width, current);
+
+                // only offer this button if the pawn has no loadout or has the default loadout and there are things/equipment...
+                if (showMakeLoadout)
+                {
+                    Rect loadoutButtonRect = new Rect(viewRect.width / 2, buttonY, viewRect.width / 2, 26f); // button is half the available width...
+                    // Backup GUI color
+                    Color color = GUI.color;
+                    TextAnchor anchor = Text.Anchor;
+
+                    // Highlight if mouse over
+                    GUI.color = Color.cyan;
+                    if (Mouse.IsOver(loadoutButtonRect)) GUI.color = Color.white;
+
+                    Text.Anchor = TextAnchor.UpperRight;
+                    Widgets.Label(loadoutButtonRect, "CE_MakeLoadout".Translate());
+
+                    if (Widgets.ButtonInvisible(loadoutButtonRect.ContractedBy(2), doMouseoverSound: true))
+                    {
+                        Loadout loadout = SelPawnForGear.GenerateLoadoutFromPawn();
+                        LoadoutManager.AddLoadout(loadout);
+                        SelPawnForGear.SetLoadout(loadout);
+
+                        // Opening this window is the same way as if from the assign tab so should be correct.
+                        Find.WindowStack.Add(new Dialog_ManageLoadouts(SelPawnForGear.GetLoadout()));
+                    }
+                    // Restore GUI color
+                    Text.Anchor = anchor;
+                    GUI.color = color;
                 }
             }
             if (ShouldShowApparel(SelPawnForGear))
@@ -158,33 +195,7 @@ namespace CombatExtended
             }
             if (ShouldShowInventory(SelPawnForGear))
             {
-                // get the loadout so we can make a decision to show a button.
-                bool showMakeLoadout = false;
-                Loadout curLoadout = SelPawnForGear.GetLoadout();
-                if (SelPawnForGear.IsColonist && (curLoadout == null || curLoadout.Slots.NullOrEmpty()) && (SelPawnForGear.inventory.innerContainer.Any() || SelPawnForGear.equipment?.Primary != null))
-                    showMakeLoadout = true;
-
-                if (showMakeLoadout) num += 3; // Make a little room for the button.
-
-                float buttonY = num; // Could be accomplished with seperator being after the button...
-
                 Widgets.ListSeparator(ref num, viewRect.width, "Inventory".Translate());
-
-                // only offer this button if the pawn has no loadout or has the default loadout and there are things/equipment...
-                if (showMakeLoadout)
-                {
-                    Rect loadoutButtonRect = new Rect(viewRect.width / 2, buttonY, viewRect.width / 2, 26f); // button is half the available width...
-                    if (Widgets.ButtonText(loadoutButtonRect, "CE_MakeLoadout".Translate()))
-                    {
-                        Loadout loadout = SelPawnForGear.GenerateLoadoutFromPawn();
-                        LoadoutManager.AddLoadout(loadout);
-                        SelPawnForGear.SetLoadout(loadout);
-
-                        // Opening this window is the same way as if from the assign tab so should be correct.
-                        Find.WindowStack.Add(new Dialog_ManageLoadouts(SelPawnForGear.GetLoadout()));
-
-                    }
-                }
 
                 workingInvList.Clear();
                 workingInvList.AddRange(SelPawnForGear.inventory.innerContainer);
@@ -246,7 +257,6 @@ namespace CombatExtended
                 GUI.color = _highlightColor;
                 GUI.DrawTexture(rect, TexUI.HighlightTex);
             }
-
             if (thing.def.DrawMatSingle != null && thing.def.DrawMatSingle.mainTexture != null)
             {
                 Widgets.ThingIcon(new Rect(4f, y, _thingIconSize, _thingIconSize), thing, 1f);
